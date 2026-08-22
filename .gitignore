@@ -32,3 +32,19 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# General OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+*.tmp
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Generated dependency/cache directories
+.dart_tool/
+vendor/
+node_modules/
