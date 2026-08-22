@@ -1,0 +1,165 @@
+{
+  "contract_version": "profile_showcase_public_display_publication_test_contract_v1",
+  "evidence_level": "L1_TEST_ONLY_FIXTURE_SKELETON",
+  "fixture_scope": "test_only_static_contract_no_runtime_behavior",
+  "review_surface": "private_personal_showcase_draft_to_owner_authorized_public_display",
+  "auth_required": true,
+  "own_user_only": true,
+  "owner_confirmation_required": true,
+  "source_moderation_status_required": "approved",
+  "publication_route_family_candidate": "GET/POST /api/v1/profile/showcase/publication",
+  "deferred_route_actions": [
+    "DELETE /api/v1/profile/showcase/publication",
+    "unpublish_or_hide"
+  ],
+  "published_response_required_fields": [
+    "publication_status",
+    "source_draft_id",
+    "moderation_status",
+    "public_display_eligible",
+    "matching_scoring_eligible",
+    "public_fields",
+    "internal_metadata_exposed",
+    "forbidden_payloads"
+  ],
+  "runtime_claims": {
+    "route_implemented": false,
+    "controller_implemented": false,
+    "migration_or_projection_implemented": false,
+    "service_action_implemented": false,
+    "public_profile_publishing_runtime_enabled": false,
+    "recommendation_or_scoring_runtime_enabled": false,
+    "endpoint_smoke_verified": false,
+    "staging_or_production_verified": false,
+    "release_work_completed": false,
+    "flutter_runtime_changed": false
+  },
+  "cases": [
+    {
+      "case_id": "approved_private_draft_publish_eligible",
+      "source_moderation_status": "approved",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": true,
+      "expected_publication_status": "published",
+      "public_display_eligible": true,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "pending_private_draft_not_publish_eligible",
+      "source_moderation_status": "pending",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_approved_draft",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "rejected_private_draft_not_publish_eligible",
+      "source_moderation_status": "rejected",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_approved_draft",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "needs_revision_private_draft_not_publish_eligible",
+      "source_moderation_status": "needs_revision",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_approved_draft",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "manual_review_required_private_draft_not_publish_eligible",
+      "source_moderation_status": "manual_review_required",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_approved_draft",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "error_private_draft_not_publish_eligible",
+      "source_moderation_status": "error",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_approved_draft",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "missing_owner_confirmation_rejected",
+      "source_moderation_status": "approved",
+      "owner_confirmation_present": false,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": false,
+      "expected_error_code": "profile_showcase_publication_requires_owner_confirmation",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "published_response_no_scoring",
+      "source_moderation_status": "approved",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": true,
+      "expected_publication_status": "published",
+      "public_display_eligible": true,
+      "matching_scoring_eligible": false
+    },
+    {
+      "case_id": "published_response_no_internal_review_metadata",
+      "source_moderation_status": "approved",
+      "owner_confirmation_present": true,
+      "auth_required": true,
+      "own_user_only": true,
+      "publish_eligible": true,
+      "expected_publication_status": "published",
+      "public_display_eligible": true,
+      "matching_scoring_eligible": false,
+      "internal_metadata_exposed": false,
+      "forbidden_payloads": [
+        "audit_notes",
+        "reviewer_identity",
+        "provider_internals",
+        "internal_command_details",
+        "generated_tags",
+        "questionnaire",
+        "astrology_payload",
+        "private_matching_payload"
+      ]
+    }
+  ],
+  "forbidden_runtime_actions": [
+    "route_registration",
+    "controller_action",
+    "database_migration",
+    "model_or_projection",
+    "service_action",
+    "public_feed",
+    "recommendation_or_scoring",
+    "generated_tags",
+    "questionnaire",
+    "flutter_source_change",
+    "endpoint_smoke",
+    "staging_production",
+    "release_apk",
+    "private_config_access"
+  ]
+}

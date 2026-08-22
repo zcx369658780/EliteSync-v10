@@ -1,0 +1,254 @@
+<?php
+
+use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\AdminController;
+use App\Http\Controllers\Api\V1\AppVersionController;
+use App\Http\Controllers\Api\V1\GeoController;
+use App\Http\Controllers\Api\V1\AstroProfileController;
+use App\Http\Controllers\Api\V1\FrontendTelemetryController;
+use App\Http\Controllers\Api\V1\ModerationController;
+use App\Http\Controllers\Api\V1\HomeController;
+use App\Http\Controllers\Api\V1\MatchController;
+use App\Http\Controllers\Api\V1\MatchRoundController;
+use App\Http\Controllers\Api\V1\AdminMatchingController;
+use App\Http\Controllers\Api\V1\MbtiProfileController;
+use App\Http\Controllers\Api\V1\ConversationController;
+use App\Http\Controllers\Api\V1\NotificationController;
+use App\Http\Controllers\Api\V1\MessageController;
+use App\Http\Controllers\Api\V1\MediaController;
+use App\Http\Controllers\Api\V1\RtcController;
+use App\Http\Controllers\Api\V1\RelationshipController;
+use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Controllers\Api\V1\ProfileShowcaseDraftController;
+use App\Http\Controllers\Api\V1\ProfileShowcasePublicationController;
+use App\Http\Controllers\Api\V1\StatusPostController;
+use App\Http\Controllers\Api\V1\QuestionnaireController;
+use App\Http\Controllers\Api\V2\AppHealthController;
+use App\Http\Controllers\Api\V2\AppReadinessController;
+use App\Http\Controllers\Api\V2\Contracts\LocationContractController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('v2')->middleware('secure.transport')->group(function () {
+    Route::get('/app/health', AppHealthController::class);
+    Route::get('/app/readiness', AppReadinessController::class);
+    Route::get('/contracts/location', LocationContractController::class);
+});
+
+Route::prefix('v1')->group(function () {
+    Route::prefix('app')->group(function () {
+        Route::get('/health', [AppVersionController::class, 'health']);
+        Route::get('/version/check', [AppVersionController::class, 'check']);
+    });
+
+    Route::get('/media/{assetId}/content', [MediaController::class, 'content'])
+        ->whereNumber('assetId');
+
+    Route::prefix('auth')->group(function () {
+        Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
+        Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
+        Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:sanctum');
+        Route::post('/password', [AuthController::class, 'changePassword'])->middleware('auth:sanctum');
+        Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware('auth:sanctum');
+    });
+
+    Route::prefix('questionnaire')->middleware('auth:sanctum')->group(function () {
+        Route::get('/questions', [QuestionnaireController::class, 'questions']);
+        Route::post('/questions/replace', [QuestionnaireController::class, 'replaceQuestion']);
+        Route::post('/answers', [QuestionnaireController::class, 'submitAnswers']);
+        Route::get('/history', [QuestionnaireController::class, 'history']);
+        // Legacy compatibility endpoints (old Android/Flutter builds)
+        Route::post('/submit', [QuestionnaireController::class, 'submitAnswers']);
+        Route::post('/draft', [QuestionnaireController::class, 'saveDraftLegacy']);
+        Route::post('/reset', [QuestionnaireController::class, 'reset']);
+        Route::get('/progress', [QuestionnaireController::class, 'progress']);
+        Route::get('/profile', [QuestionnaireController::class, 'profile']);
+    });
+
+    // 兼容旧客户端路径
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/questions', [QuestionnaireController::class, 'questions']);
+        Route::post('/questions/answers', [QuestionnaireController::class, 'submitAnswers']);
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::prefix('telemetry')->group(function () {
+            Route::post('/events', [FrontendTelemetryController::class, 'store']);
+            Route::post('/match-explanation-preview-opened', [FrontendTelemetryController::class, 'store']);
+            Route::post('/first-chat-entry', [FrontendTelemetryController::class, 'store']);
+            Route::post('/match-feedback-submitted', [FrontendTelemetryController::class, 'store']);
+        });
+
+        Route::prefix('profile')->group(function () {
+            Route::get('/basic', [ProfileController::class, 'basic']);
+            Route::post('/basic', [ProfileController::class, 'saveBasic']);
+            Route::post('/city', [ProfileController::class, 'saveCity']);
+            Route::get('/showcase/draft', [ProfileShowcaseDraftController::class, 'show']);
+            Route::put('/showcase/draft', [ProfileShowcaseDraftController::class, 'update']);
+            Route::post('/showcase/draft/submit-review', [ProfileShowcaseDraftController::class, 'submitForReview']);
+            Route::delete('/showcase/draft', [ProfileShowcaseDraftController::class, 'destroy']);
+            Route::get('/showcase/publication', [ProfileShowcasePublicationController::class, 'show']);
+            Route::post('/showcase/publication', [ProfileShowcasePublicationController::class, 'store']);
+            Route::get('/astro/summary', [AstroProfileController::class, 'showSummary']);
+            Route::get('/astro/chart', [AstroProfileController::class, 'showChart']);
+            Route::get('/astro', [AstroProfileController::class, 'show']);
+            Route::post('/astro', [AstroProfileController::class, 'save']);
+            Route::post('/astro/pair', [AstroProfileController::class, 'pair']);
+            Route::post('/astro/transit', [AstroProfileController::class, 'transit']);
+            Route::post('/astro/return', [AstroProfileController::class, 'returnChart']);
+            Route::get('/mbti/quiz', [MbtiProfileController::class, 'quiz']);
+            Route::post('/mbti/submit', [MbtiProfileController::class, 'submit']);
+            Route::get('/mbti/result', [MbtiProfileController::class, 'result']);
+        });
+
+        Route::prefix('matches')->group(function () {
+            Route::get('/current', [MatchController::class, 'current']);
+            Route::post('/confirm', [MatchController::class, 'confirm']);
+            Route::get('/history', [MatchController::class, 'history']);
+            Route::get('/{targetUserId}/explanation', [MatchController::class, 'explanationByTarget'])
+                ->whereNumber('targetUserId');
+        });
+
+        Route::get('/match-rounds/current', [MatchRoundController::class, 'current']);
+
+        Route::get('/conversation-peers/{peerUserId}', [ConversationController::class, 'showPeer'])
+            ->whereNumber('peerUserId')
+            ->middleware('throttle:conversations');
+
+        Route::prefix('conversations')->group(function () {
+            Route::get('', [ConversationController::class, 'index'])->middleware('throttle:conversations');
+            Route::post('', [ConversationController::class, 'store'])->middleware('throttle:conversations');
+            Route::get('/{conversationId}', [ConversationController::class, 'show'])
+                ->whereNumber('conversationId')
+                ->middleware('throttle:conversations');
+        });
+
+        Route::prefix('media')->group(function () {
+            Route::get('', [MediaController::class, 'index'])->middleware('throttle:media');
+            Route::post('', [MediaController::class, 'store'])->middleware('throttle:media');
+            Route::get('/{assetId}', [MediaController::class, 'show'])
+                ->whereNumber('assetId')
+                ->middleware('throttle:media');
+        });
+
+        Route::prefix('relationships')->group(function () {
+            Route::get('', [RelationshipController::class, 'index'])->middleware('throttle:relationships');
+            Route::post('', [RelationshipController::class, 'store'])->middleware('throttle:relationships');
+        });
+
+        Route::prefix('notifications')->group(function () {
+            Route::get('', [NotificationController::class, 'index'])->middleware('throttle:notifications');
+            Route::get('/unread-count', [NotificationController::class, 'unreadCount'])->middleware('throttle:notifications');
+            Route::post('/read-all', [NotificationController::class, 'markAllRead'])->middleware('throttle:notifications');
+            Route::post('/{notificationId}/read', [NotificationController::class, 'markRead'])
+                ->whereNumber('notificationId')
+                ->middleware('throttle:notifications');
+        });
+
+        Route::prefix('rtc')->group(function () {
+            Route::get('/calls', [RtcController::class, 'index']);
+            Route::post('/calls', [RtcController::class, 'store']);
+            Route::get('/calls/{callId}', [RtcController::class, 'show'])
+                ->whereNumber('callId');
+            Route::get('/calls/{callId}/livekit', [RtcController::class, 'livekit'])
+                ->whereNumber('callId');
+            Route::post('/calls/{callId}/accept', [RtcController::class, 'accept'])
+                ->whereNumber('callId');
+            Route::post('/calls/{callId}/connect', [RtcController::class, 'connect'])
+                ->whereNumber('callId');
+            Route::post('/calls/{callId}/heartbeat', [RtcController::class, 'heartbeat'])
+                ->whereNumber('callId');
+            Route::post('/calls/{callId}/reject', [RtcController::class, 'reject'])
+                ->whereNumber('callId');
+            Route::post('/calls/{callId}/end', [RtcController::class, 'end'])
+                ->whereNumber('callId');
+        });
+
+        // 兼容旧设计中的单数路径
+        Route::prefix('match')->group(function () {
+            Route::get('/current', [MatchController::class, 'current']);
+            Route::post('/like', [MatchController::class, 'confirm']);
+            Route::get('/history', [MatchController::class, 'history']);
+            Route::get('/{targetUserId}/explanation', [MatchController::class, 'explanationByTarget'])
+                ->whereNumber('targetUserId');
+        });
+
+        Route::prefix('messages')->group(function () {
+            Route::post('', [MessageController::class, 'send'])->middleware('throttle:messages');
+            Route::get('', [MessageController::class, 'list'])->middleware('throttle:messages');
+            Route::post('/read/{messageId}', [MessageController::class, 'markRead']);
+            Route::get('/ws/{userId}', [MessageController::class, 'websocketStub']);
+        });
+
+        Route::prefix('moderation')->group(function () {
+            Route::post('/reports', [ModerationController::class, 'report']);
+            Route::post('/reports/{reportId}/appeal', [ModerationController::class, 'appeal']);
+            Route::get('/blocks', [ModerationController::class, 'blocks']);
+            Route::post('/blocks', [ModerationController::class, 'block']);
+            Route::delete('/blocks/{blockedUserId}', [ModerationController::class, 'unblock'])
+                ->whereNumber('blockedUserId');
+        });
+
+        Route::prefix('home')->group(function () {
+            Route::get('/banner', [HomeController::class, 'banner']);
+            Route::get('/shortcuts', [HomeController::class, 'shortcuts']);
+            Route::get('/feed', [HomeController::class, 'feed']);
+        });
+
+        Route::prefix('status')->group(function () {
+            Route::get('/posts', [StatusPostController::class, 'index']);
+            Route::get('/posts/{postId}', [StatusPostController::class, 'show'])
+                ->whereNumber('postId');
+            Route::post('/posts', [StatusPostController::class, 'store']);
+            Route::post('/posts/{postId}/likes', [StatusPostController::class, 'like'])
+                ->whereNumber('postId');
+            Route::delete('/posts/{postId}/likes', [StatusPostController::class, 'unlike'])
+                ->whereNumber('postId');
+            Route::post('/posts/{postId}/report', [StatusPostController::class, 'report'])
+                ->whereNumber('postId');
+            Route::get('/authors/{userId}', [StatusPostController::class, 'author'])
+                ->whereNumber('userId');
+            Route::delete('/posts/{postId}', [StatusPostController::class, 'destroy'])
+                ->whereNumber('postId');
+        });
+
+        Route::prefix('discover')->group(function () {
+            Route::get('/feed', [HomeController::class, 'discoverFeed']);
+        });
+
+        Route::get('/content/{contentId}', [HomeController::class, 'content']);
+
+        Route::prefix('geo')->group(function () {
+            Route::get('/places', [GeoController::class, 'places']);
+        });
+
+        Route::prefix('admin')->middleware('admin.phone')->group(function () {
+            Route::get('/users', [AdminController::class, 'users']);
+            Route::get('/reports', [AdminController::class, 'reports']);
+            Route::get('/reports/{reportId}', [AdminController::class, 'reportDetail'])
+                ->whereNumber('reportId');
+            Route::post('/reports/{reportId}/action', [AdminController::class, 'reportAction'])
+                ->whereNumber('reportId');
+            Route::get('/questionnaire/quality-stats', [AdminController::class, 'questionQualityStats']);
+            Route::post('/questionnaire/prune-low-drop', [AdminController::class, 'pruneLowDropQuestions']);
+            Route::post('/users/{uid}/disable', [AdminController::class, 'disable']);
+            Route::get('/verify-queue', [AdminController::class, 'verifyQueue']);
+            Route::post('/verify/{uid}', [AdminController::class, 'updateVerify']);
+            Route::post('/dev/run-matching', [AdminController::class, 'devRunMatching']);
+            Route::post('/dev/release-drop', [AdminController::class, 'devReleaseDrop']);
+            Route::get('/dev/matching-debug', [AdminController::class, 'devMatchingDebugStatus']);
+            Route::post('/dev/matching-debug', [AdminController::class, 'devMatchingDebugSwitch']);
+        });
+
+        Route::prefix('admin/matching')->middleware('matching.operation')->group(function () {
+            Route::get('/rounds', [AdminMatchingController::class, 'rounds']);
+            Route::get('/rounds/{roundKey}', [AdminMatchingController::class, 'round']);
+            Route::get('/runs/{runKey}', [AdminMatchingController::class, 'run']);
+            Route::post('/rounds', [AdminMatchingController::class, 'prepare']);
+            Route::post('/rounds/{roundKey}/execution-requests', [AdminMatchingController::class, 'executionRequest']);
+            Route::post('/rounds/{roundKey}/reveal', [AdminMatchingController::class, 'reveal']);
+            Route::post('/rounds/{roundKey}/retry', [AdminMatchingController::class, 'retry']);
+            Route::post('/rounds/{roundKey}/close', [AdminMatchingController::class, 'close']);
+            Route::post('/rounds/{roundKey}/compensation', [AdminMatchingController::class, 'compensation']);
+        });
+    });
+})->middleware('secure.transport');

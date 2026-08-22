@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "description": "EliteSync shadow-only iztro runner for Ziwei diagnostic comparison.",
+  "dependencies": {
+    "iztro": "2.5.8"
+  }
+}

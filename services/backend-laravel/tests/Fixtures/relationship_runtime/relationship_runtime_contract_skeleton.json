@@ -1,0 +1,467 @@
+{
+  "contract_version": "relationship_runtime_test_contract_v1",
+  "evidence_level": "L1_TEST_ONLY_FIXTURE_SKELETON",
+  "fixture_scope": "fake_local_static_contract_only",
+  "runtime_claims": {
+    "backend_implemented": false,
+    "endpoint_smoke_verified": false,
+    "db_migration_required": false,
+    "chat_send_enabled": false,
+    "media_upload_enabled": false,
+    "feedback_remote_persistence_enabled": false,
+    "notification_push_enabled": false,
+    "matching_scoring_mutation_enabled": false,
+    "profile_truth_mutation_enabled": false,
+    "astro_truth_mutation_enabled": false,
+    "release_apk_verified": false
+  },
+  "forbidden_runtime_actions": [
+    "endpoint_smoke",
+    "db_migration",
+    "chat_send",
+    "media_upload",
+    "feedback_remote_persistence",
+    "notification_push",
+    "notification_read_state_write",
+    "matching_scoring_mutation",
+    "profile_truth_mutation",
+    "astro_truth_mutation",
+    "release_apk"
+  ],
+  "required_state_fields": [
+    "id",
+    "state",
+    "round_id",
+    "fallback_copy_key",
+    "capabilities",
+    "runtime_claims"
+  ],
+  "flutter_expectations": {
+    "match_result_keys": [
+      "status",
+      "headline",
+      "score",
+      "tags",
+      "highlights",
+      "match_id",
+      "partner_id",
+      "partner_nickname"
+    ],
+    "match_detail_keys": [
+      "reasons",
+      "weights",
+      "module_explanations",
+      "explanation_blocks",
+      "compatibility_sections",
+      "reason_glossary",
+      "evidence_strength_summary"
+    ],
+    "manual_send_boundary_key": "manual_send_allowed",
+    "local_feedback_boundary_key": "local_only"
+  },
+  "states": [
+    {
+      "id": "not-started",
+      "state": "not_started",
+      "round_id": "fixture-round-not-started",
+      "fallback_copy_key": "relationship.not_started",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate": null
+    },
+    {
+      "id": "preparing",
+      "state": "preparing",
+      "round_id": "fixture-round-preparing",
+      "fallback_copy_key": "relationship.preparing",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate": null
+    },
+    {
+      "id": "waiting",
+      "state": "waiting",
+      "round_id": "fixture-round-waiting",
+      "expected_reveal_at": "2026-06-12T12:00:00Z",
+      "fallback_copy_key": "relationship.waiting",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate": null
+    },
+    {
+      "id": "reveal-available",
+      "state": "reveal_available",
+      "round_id": "fixture-round-reveal",
+      "fallback_copy_key": "relationship.reveal_available",
+      "capabilities": {
+        "can_reveal": true,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate_summary": {
+        "candidate_id": "fixture-candidate-01",
+        "display_name": "Fixture Candidate",
+        "source_boundary_label": "test_only"
+      }
+    },
+    {
+      "id": "revealed",
+      "state": "revealed",
+      "round_id": "fixture-round-revealed",
+      "fallback_copy_key": "relationship.revealed",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate": {
+        "candidate_id": "fixture-candidate-01",
+        "display_name": "Fixture Candidate",
+        "relationship_summary": "Static fixture summary only.",
+        "source_labels": [
+          "test_only",
+          "not_runtime_evidence"
+        ]
+      },
+      "explanation_blocks": [
+        {
+          "key": "shared_pace",
+          "summary": "Shared pace fixture explanation.",
+          "source_boundary_label": "test_only",
+          "matching_scoring_status": "read_only_explanation"
+        }
+      ]
+    },
+    {
+      "id": "opener-prepared",
+      "state": "opener_prepared",
+      "round_id": "fixture-round-opener",
+      "fallback_copy_key": "relationship.opener_prepared",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": true,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "opener_suggestions": [
+        {
+          "text": "Ask a low-pressure question.",
+          "manual_send_allowed": true,
+          "auto_send_allowed": false,
+          "safety_copy_key": "relationship.opener.manual_send_only"
+        }
+      ]
+    },
+    {
+      "id": "conversation-opened",
+      "state": "conversation_opened",
+      "round_id": "fixture-round-conversation",
+      "fallback_copy_key": "relationship.conversation_opened",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": true,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "conversation": {
+        "conversation_id": "fixture-conversation-01",
+        "read_model_only": true,
+        "can_send": false,
+        "last_message_preview": null
+      }
+    },
+    {
+      "id": "feedback-pending",
+      "state": "feedback_pending",
+      "round_id": "fixture-round-feedback",
+      "fallback_copy_key": "relationship.feedback_pending",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "feedback": {
+        "can_record_local": true,
+        "can_record_remote": false,
+        "remote_persistence_status": "future_gate"
+      }
+    },
+    {
+      "id": "feedback-recorded-local",
+      "state": "feedback_recorded_local",
+      "round_id": "fixture-round-feedback-local",
+      "fallback_copy_key": "relationship.feedback_recorded_local",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "feedback": {
+        "local_only": true,
+        "selected_reason": "fixture_reason",
+        "sync_state": "not_authorized_for_remote"
+      }
+    },
+    {
+      "id": "feedback-remote-future",
+      "state": "feedback_recorded_remote_future",
+      "round_id": "fixture-round-feedback-remote",
+      "fallback_copy_key": "relationship.feedback_remote_future",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": true,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "feedback": {
+        "remote_record_id": null,
+        "sync_state": "future_gate_not_active"
+      }
+    },
+    {
+      "id": "next-round-pending",
+      "state": "next_round_pending",
+      "round_id": "fixture-round-next",
+      "fallback_copy_key": "relationship.next_round_pending",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "next_round_eta": "2026-06-13T12:00:00Z"
+    },
+    {
+      "id": "no-candidate",
+      "state": "no_candidate",
+      "round_id": "fixture-round-empty",
+      "fallback_copy_key": "relationship.no_candidate",
+      "reason_code": "no_safe_candidate",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      },
+      "candidate": null
+    },
+    {
+      "id": "paused-unavailable",
+      "state": "paused_or_unavailable",
+      "round_id": "fixture-round-paused",
+      "fallback_copy_key": "relationship.paused_or_unavailable",
+      "reason_code": "service_unavailable",
+      "retryable": true,
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      }
+    },
+    {
+      "id": "auth-session-failure",
+      "state": "auth_session_failure",
+      "round_id": "fixture-round-auth",
+      "fallback_copy_key": "relationship.auth_session_failure",
+      "authenticated": false,
+      "reason_code": "session_required",
+      "capabilities": {
+        "can_reveal": false,
+        "can_open_conversation": false,
+        "can_auto_send": false,
+        "can_upload_media": false,
+        "can_record_feedback_local": false,
+        "can_persist_feedback_remote": false,
+        "can_push_notification": false
+      },
+      "runtime_claims": {
+        "endpoint_smoke_verified": false,
+        "db_write_expected": false,
+        "message_sent": false,
+        "media_uploaded": false,
+        "feedback_persisted_remote": false,
+        "notification_pushed": false
+      }
+    }
+  ],
+  "future_write_contract_placeholders": {
+    "media_upload_future": {
+      "upload_state": "future_gate_not_active",
+      "public_url": null,
+      "runtime_write_allowed": false
+    },
+    "abuse_rate_limit_future": {
+      "limit_state": "future_gate_not_active",
+      "retry_after": null,
+      "runtime_write_allowed": false
+    },
+    "notification_return_placeholder": {
+      "route_name": "match",
+      "route_args": {
+        "round_id": "fixture-round-notification"
+      },
+      "read_state_write_allowed": false,
+      "push_delivery_claimed": false
+    }
+  }
+}

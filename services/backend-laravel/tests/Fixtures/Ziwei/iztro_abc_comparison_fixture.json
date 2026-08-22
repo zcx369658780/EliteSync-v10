@@ -1,0 +1,127 @@
+{
+  "oracle_source": "Wenmo candidate strict subset from accepted 6.2c/6.2e comparison evidence",
+  "iztro_source_version": "iztro@2.5.8",
+  "input_policy": {
+    "source_policy": "6.2e_iztro_adapter_policy_v1",
+    "calendar_inputs": "generated_fixture_from_scratch_output",
+    "strict_scope": "palace_name_branch_14_main_stars_only",
+    "display_only": true,
+    "external_oracle_status": "not_validated",
+    "scoring_status": "excluded_from_core_matching",
+    "production_runtime_enabled": false,
+    "dependency_adopted": false
+  },
+  "palace_alias_normalization": {
+    "仆役": "交友",
+    "仆役宫": "交友宫"
+  },
+  "strict_subset_fields": [
+    "palace_name",
+    "branch",
+    "main_stars"
+  ],
+  "unsupported_fields": [
+    "birthplace_geocode",
+    "timezone",
+    "dst",
+    "true_solar_time",
+    "final_timeIndex",
+    "zi_hour_cross_day"
+  ],
+  "diagnostic_only_fields": [
+    "auxiliary_stars",
+    "minor_stars",
+    "brightness",
+    "four_transformations",
+    "flying_star",
+    "ming_gong_flying_star"
+  ],
+  "warnings": [
+    "true_solar_time_must_be_precomputed_outside_iztro",
+    "dst_must_be_resolved_outside_iztro",
+    "timezone_must_be_resolved_outside_iztro",
+    "birthplace_geocode_must_be_resolved_outside_iztro",
+    "timeIndex_is_policy_decisive_and_must_be_final_before_iztro_call",
+    "zi_hour_cross_day_policy_not_validated_by_a_b_c_samples"
+  ],
+  "non_claims": [
+    "No production iztro acceptance.",
+    "No repo dependency adoption.",
+    "No full Ziwei correctness validation.",
+    "No generic algorithm validation.",
+    "No B/C runtime fixture readiness.",
+    "No auxiliary-star correctness.",
+    "No four-transformation correctness.",
+    "No brightness correctness.",
+    "No flying-star or Ming-gong flying-star correctness.",
+    "No matching/scoring readiness."
+  ],
+  "samples": [
+    {
+      "sample_id": "A",
+      "input_policy": {
+        "timeIndex": 7,
+        "normalized_time_branch": "未时",
+        "input_type": "solar_civil_clock_generated_fixture"
+      },
+      "comparison_rows": [
+        {"oracle": {"palace_name": "命宫", "branch": "寅", "main_stars": ["紫微", "天府"]}, "iztro": {"palace_name": "命宫", "branch": "寅", "main_stars": ["紫微", "天府"]}},
+        {"oracle": {"palace_name": "兄弟", "branch": "丑", "main_stars": ["天机"]}, "iztro": {"palace_name": "兄弟", "branch": "丑", "main_stars": ["天机"]}},
+        {"oracle": {"palace_name": "夫妻", "branch": "子", "main_stars": ["破军"]}, "iztro": {"palace_name": "夫妻", "branch": "子", "main_stars": ["破军"]}},
+        {"oracle": {"palace_name": "子女", "branch": "亥", "main_stars": ["太阳"]}, "iztro": {"palace_name": "子女", "branch": "亥", "main_stars": ["太阳"]}},
+        {"oracle": {"palace_name": "财帛", "branch": "戌", "main_stars": ["武曲"]}, "iztro": {"palace_name": "财帛", "branch": "戌", "main_stars": ["武曲"]}},
+        {"oracle": {"palace_name": "疾厄", "branch": "酉", "main_stars": ["天同"]}, "iztro": {"palace_name": "疾厄", "branch": "酉", "main_stars": ["天同"]}},
+        {"oracle": {"palace_name": "迁移", "branch": "申", "main_stars": ["七杀"]}, "iztro": {"palace_name": "迁移", "branch": "申", "main_stars": ["七杀"]}},
+        {"oracle": {"palace_name": "交友", "branch": "未", "main_stars": ["天梁"]}, "iztro": {"palace_name": "仆役", "branch": "未", "main_stars": ["天梁"]}},
+        {"oracle": {"palace_name": "官禄", "branch": "午", "main_stars": ["廉贞", "天相"]}, "iztro": {"palace_name": "官禄", "branch": "午", "main_stars": ["廉贞", "天相"]}},
+        {"oracle": {"palace_name": "田宅", "branch": "巳", "main_stars": ["巨门"]}, "iztro": {"palace_name": "田宅", "branch": "巳", "main_stars": ["巨门"]}},
+        {"oracle": {"palace_name": "福德", "branch": "辰", "main_stars": ["贪狼"]}, "iztro": {"palace_name": "福德", "branch": "辰", "main_stars": ["贪狼"]}},
+        {"oracle": {"palace_name": "父母", "branch": "卯", "main_stars": ["太阴"]}, "iztro": {"palace_name": "父母", "branch": "卯", "main_stars": ["太阴"]}}
+      ]
+    },
+    {
+      "sample_id": "B",
+      "input_policy": {
+        "timeIndex": 5,
+        "normalized_time_branch": "巳时",
+        "input_type": "solar_true_solar_pre_normalized_same_branch_generated_fixture"
+      },
+      "comparison_rows": [
+        {"oracle": {"palace_name": "命宫", "branch": "戌", "main_stars": ["紫微", "天相"]}, "iztro": {"palace_name": "命宫", "branch": "戌", "main_stars": ["紫微", "天相"]}},
+        {"oracle": {"palace_name": "兄弟", "branch": "酉", "main_stars": ["天机", "巨门"]}, "iztro": {"palace_name": "兄弟", "branch": "酉", "main_stars": ["天机", "巨门"]}},
+        {"oracle": {"palace_name": "夫妻", "branch": "申", "main_stars": ["贪狼"]}, "iztro": {"palace_name": "夫妻", "branch": "申", "main_stars": ["贪狼"]}},
+        {"oracle": {"palace_name": "子女", "branch": "未", "main_stars": ["太阳", "太阴"]}, "iztro": {"palace_name": "子女", "branch": "未", "main_stars": ["太阳", "太阴"]}},
+        {"oracle": {"palace_name": "财帛", "branch": "午", "main_stars": ["武曲", "天府"]}, "iztro": {"palace_name": "财帛", "branch": "午", "main_stars": ["武曲", "天府"]}},
+        {"oracle": {"palace_name": "疾厄", "branch": "巳", "main_stars": ["天同"]}, "iztro": {"palace_name": "疾厄", "branch": "巳", "main_stars": ["天同"]}},
+        {"oracle": {"palace_name": "迁移", "branch": "辰", "main_stars": ["破军"]}, "iztro": {"palace_name": "迁移", "branch": "辰", "main_stars": ["破军"]}},
+        {"oracle": {"palace_name": "交友", "branch": "卯", "main_stars": []}, "iztro": {"palace_name": "仆役", "branch": "卯", "main_stars": []}},
+        {"oracle": {"palace_name": "官禄", "branch": "寅", "main_stars": ["廉贞"]}, "iztro": {"palace_name": "官禄", "branch": "寅", "main_stars": ["廉贞"]}},
+        {"oracle": {"palace_name": "田宅", "branch": "丑", "main_stars": []}, "iztro": {"palace_name": "田宅", "branch": "丑", "main_stars": []}},
+        {"oracle": {"palace_name": "福德", "branch": "子", "main_stars": ["七杀"]}, "iztro": {"palace_name": "福德", "branch": "子", "main_stars": ["七杀"]}},
+        {"oracle": {"palace_name": "父母", "branch": "亥", "main_stars": ["天梁"]}, "iztro": {"palace_name": "父母", "branch": "亥", "main_stars": ["天梁"]}}
+      ]
+    },
+    {
+      "sample_id": "C",
+      "input_policy": {
+        "timeIndex": 11,
+        "normalized_time_branch": "亥时",
+        "input_type": "solar_true_solar_pre_normalized_same_branch_generated_fixture"
+      },
+      "comparison_rows": [
+        {"oracle": {"palace_name": "命宫", "branch": "子", "main_stars": ["破军"]}, "iztro": {"palace_name": "命宫", "branch": "子", "main_stars": ["破军"]}},
+        {"oracle": {"palace_name": "兄弟", "branch": "亥", "main_stars": ["太阳"]}, "iztro": {"palace_name": "兄弟", "branch": "亥", "main_stars": ["太阳"]}},
+        {"oracle": {"palace_name": "夫妻", "branch": "戌", "main_stars": ["武曲"]}, "iztro": {"palace_name": "夫妻", "branch": "戌", "main_stars": ["武曲"]}},
+        {"oracle": {"palace_name": "子女", "branch": "酉", "main_stars": ["天同"]}, "iztro": {"palace_name": "子女", "branch": "酉", "main_stars": ["天同"]}},
+        {"oracle": {"palace_name": "财帛", "branch": "申", "main_stars": ["七杀"]}, "iztro": {"palace_name": "财帛", "branch": "申", "main_stars": ["七杀"]}},
+        {"oracle": {"palace_name": "疾厄", "branch": "未", "main_stars": ["天梁"]}, "iztro": {"palace_name": "疾厄", "branch": "未", "main_stars": ["天梁"]}},
+        {"oracle": {"palace_name": "迁移", "branch": "午", "main_stars": ["廉贞", "天相"]}, "iztro": {"palace_name": "迁移", "branch": "午", "main_stars": ["廉贞", "天相"]}},
+        {"oracle": {"palace_name": "交友", "branch": "巳", "main_stars": ["巨门"]}, "iztro": {"palace_name": "仆役", "branch": "巳", "main_stars": ["巨门"]}},
+        {"oracle": {"palace_name": "官禄", "branch": "辰", "main_stars": ["贪狼"]}, "iztro": {"palace_name": "官禄", "branch": "辰", "main_stars": ["贪狼"]}},
+        {"oracle": {"palace_name": "田宅", "branch": "卯", "main_stars": ["太阴"]}, "iztro": {"palace_name": "田宅", "branch": "卯", "main_stars": ["太阴"]}},
+        {"oracle": {"palace_name": "福德", "branch": "寅", "main_stars": ["紫微", "天府"]}, "iztro": {"palace_name": "福德", "branch": "寅", "main_stars": ["紫微", "天府"]}},
+        {"oracle": {"palace_name": "父母", "branch": "丑", "main_stars": ["天机"]}, "iztro": {"palace_name": "父母", "branch": "丑", "main_stars": ["天机"]}}
+      ]
+    }
+  ]
+}

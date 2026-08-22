@@ -1,0 +1,135 @@
+{
+  "contract_version": "profile_showcase_manual_review_test_contract_v1",
+  "evidence_level": "L1_TEST_ONLY_FIXTURE_SKELETON",
+  "fixture_scope": "test_only_static_contract_no_runtime_behavior",
+  "review_surface": "private_personal_showcase_draft",
+  "moderated_fields": [
+    "self_intro",
+    "interest_tags",
+    "lifestyle_tags",
+    "opener_note"
+  ],
+  "allowed_actor_types": [
+    "internal_manual_reviewer",
+    "strict_test_harness"
+  ],
+  "forbidden_actor_types": [
+    "draft_owner",
+    "anonymous_public_user",
+    "real_provider_without_provider_gate",
+    "production_admin_tooling_without_gate"
+  ],
+  "allowed_transitions": [
+    {
+      "from": "pending",
+      "to": "approved",
+      "actor_type": "internal_manual_reviewer",
+      "reason_code_required": false,
+      "audit_required": true,
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "from": "pending",
+      "to": "rejected",
+      "actor_type": "internal_manual_reviewer",
+      "reason_code_required": true,
+      "audit_required": true,
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "from": "pending",
+      "to": "needs_revision",
+      "actor_type": "internal_manual_reviewer",
+      "reason_code_required": true,
+      "audit_required": true,
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    },
+    {
+      "from": "pending",
+      "to": "manual_review_required",
+      "actor_type": "strict_test_harness",
+      "reason_code_required": true,
+      "audit_required": true,
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false
+    }
+  ],
+  "forbidden_transitions": [
+    {
+      "from": "pending",
+      "to": "approved",
+      "actor_type": "draft_owner",
+      "reason": "draft_owner_self_review_forbidden"
+    },
+    {
+      "from": "pending",
+      "to": "approved",
+      "sets_public_display_eligible": true,
+      "reason": "publishing_requires_separate_gate"
+    },
+    {
+      "from": "pending",
+      "to": "approved",
+      "sets_matching_scoring_eligible": true,
+      "reason": "matching_scoring_requires_separate_gate"
+    },
+    {
+      "from": "pending",
+      "to": "approved",
+      "actor_type": "real_provider_without_provider_gate",
+      "reason": "provider_integration_requires_separate_gate"
+    }
+  ],
+  "required_audit_fields": [
+    "draft_id",
+    "user_id",
+    "actor_type",
+    "actor_id",
+    "previous_moderation_status",
+    "new_moderation_status",
+    "reason_code",
+    "note",
+    "reviewed_fields_hash",
+    "created_at"
+  ],
+  "audit_minimization": {
+    "note_required": false,
+    "note_max_length": 240,
+    "raw_content_duplication_allowed": false,
+    "raw_provider_response_allowed": false,
+    "secrets_or_env_allowed": false,
+    "unrelated_profile_fields_allowed": false,
+    "matching_payload_allowed": false,
+    "astrology_payload_allowed": false
+  },
+  "runtime_claims": {
+    "product_route_implemented": false,
+    "controller_implemented": false,
+    "migration_implemented": false,
+    "provider_behavior_implemented": false,
+    "real_review_tooling_implemented": false,
+    "external_review_service_called": false,
+    "public_profile_publishing_enabled": false,
+    "public_display_eligibility_enabled": false,
+    "matching_scoring_eligibility_enabled": false,
+    "endpoint_verification_completed": false,
+    "release_work_completed": false
+  },
+  "forbidden_runtime_actions": [
+    "product_route",
+    "controller_action",
+    "database_migration",
+    "provider_call",
+    "owner_self_review",
+    "public_profile_publish",
+    "public_display_eligible_true",
+    "matching_scoring_eligible_true",
+    "endpoint_smoke",
+    "staging_production",
+    "release_apk",
+    "private_config_access"
+  ]
+}

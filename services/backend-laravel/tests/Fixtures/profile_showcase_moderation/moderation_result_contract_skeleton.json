@@ -1,0 +1,137 @@
+{
+  "contract_version": "profile_showcase_moderation_result_test_contract_v1",
+  "evidence_level": "L1_TEST_ONLY_FIXTURE_SKELETON",
+  "fixture_scope": "test_only_static_contract_no_runtime_behavior",
+  "moderated_fields": [
+    "self_intro",
+    "interest_tags",
+    "lifestyle_tags",
+    "opener_note"
+  ],
+  "normalized_decisions": [
+    "approved",
+    "rejected",
+    "needs_revision",
+    "manual_review_required",
+    "error"
+  ],
+  "runtime_claims": {
+    "real_provider_implemented": false,
+    "external_moderation_call_enabled": false,
+    "approval_rejection_runtime_endpoint_implemented": false,
+    "public_profile_publishing_enabled": false,
+    "public_display_eligibility_enabled": false,
+    "matching_scoring_eligibility_enabled": false,
+    "generated_tags_enabled": false,
+    "questionnaire_enabled": false,
+    "endpoint_smoke_verified": false,
+    "staging_or_production_verified": false,
+    "release_apk_verified": false
+  },
+  "required_result_fields": [
+    "decision",
+    "moderation_status",
+    "public_display_eligible",
+    "matching_scoring_eligible",
+    "user_copy_key",
+    "allowed_next_actions",
+    "runtime_claims"
+  ],
+  "results": [
+    {
+      "decision": "approved",
+      "moderation_status": "approved",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false,
+      "user_copy_key": "profile_showcase.review.approved_not_public",
+      "allowed_next_actions": [
+        "edit_resets_to_not_submitted",
+        "clear_private_draft"
+      ],
+      "runtime_claims": {
+        "content_safety_pass_runtime": false,
+        "public_profile_published": false,
+        "recommendation_changed": false
+      }
+    },
+    {
+      "decision": "rejected",
+      "moderation_status": "rejected",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false,
+      "user_copy_key": "profile_showcase.review.rejected_private",
+      "allowed_next_actions": [
+        "edit_resets_to_not_submitted",
+        "clear_private_draft"
+      ],
+      "runtime_claims": {
+        "content_safety_pass_runtime": false,
+        "public_profile_published": false,
+        "recommendation_changed": false
+      }
+    },
+    {
+      "decision": "needs_revision",
+      "moderation_status": "needs_revision",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false,
+      "user_copy_key": "profile_showcase.review.needs_revision_private",
+      "allowed_next_actions": [
+        "edit_resets_to_not_submitted",
+        "resubmit_after_edit",
+        "clear_private_draft"
+      ],
+      "runtime_claims": {
+        "content_safety_pass_runtime": false,
+        "public_profile_published": false,
+        "recommendation_changed": false
+      }
+    },
+    {
+      "decision": "manual_review_required",
+      "moderation_status": "pending",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false,
+      "user_copy_key": "profile_showcase.review.manual_review_required_private",
+      "allowed_next_actions": [
+        "wait_for_review",
+        "edit_resets_to_not_submitted",
+        "clear_private_draft"
+      ],
+      "runtime_claims": {
+        "content_safety_pass_runtime": false,
+        "public_profile_published": false,
+        "recommendation_changed": false
+      }
+    },
+    {
+      "decision": "error",
+      "moderation_status": "pending",
+      "public_display_eligible": false,
+      "matching_scoring_eligible": false,
+      "user_copy_key": "profile_showcase.review.error_private",
+      "allowed_next_actions": [
+        "retry_later",
+        "edit_resets_to_not_submitted",
+        "clear_private_draft"
+      ],
+      "runtime_claims": {
+        "content_safety_pass_runtime": false,
+        "public_profile_published": false,
+        "recommendation_changed": false
+      }
+    }
+  ],
+  "forbidden_runtime_actions": [
+    "real_provider_call",
+    "approval_rejection_endpoint",
+    "public_profile_publish",
+    "public_display_eligible_true",
+    "matching_scoring_eligible_true",
+    "generated_tags",
+    "questionnaire",
+    "endpoint_smoke",
+    "staging_production",
+    "release_apk"
+  ]
+}
