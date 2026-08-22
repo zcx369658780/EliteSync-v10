@@ -1,0 +1,64 @@
+abstract class AppRouteNames {
+  static const splash = '/splash';
+
+  static const login = '/auth/login';
+  static const register = '/auth/register';
+
+  static const verificationStatus = '/verification/status';
+  static const verificationSubmit = '/verification/submit';
+
+  static const questionnaire = '/questionnaire';
+  static const questionnaireResult = '/questionnaire/result';
+  static const questionnaireHistory = '/questionnaire/history';
+
+  static const home = '/home';
+  static const discover = '/discover';
+  static const contentDetail = '/content';
+  static const buddy = '/buddy';
+  static const socialBaseline = '/social-baseline';
+  static const notificationCenter = '/notifications';
+  static const match = '/match';
+  static const messages = '/messages';
+  static const profile = '/profile';
+
+  static const matchCountdown = '/match/countdown';
+  static const matchResult = '/match/result';
+  static const matchDetail = '/match/detail';
+  static const matchIntention = '/match/intention';
+  static const matchFeedback = '/match/feedback';
+  static const innerTestFeedback = '/inner-test/feedback';
+
+  static const chatRoom = '/messages/chat';
+  static const statusSquare = '/status/square';
+  static const statusAuthor = '/status/author';
+  static const rtcCall = '/rtc/call';
+  static const rtcIncomingCall = '/rtc/incoming';
+  static const rtcCallResult = '/rtc/result';
+  static const rtcPermission = '/rtc/permission';
+
+  static const editProfile = '/profile/edit';
+  static const settings = '/profile/settings';
+  static const changePassword = '/profile/settings/password';
+  static const privacySettings = '/profile/settings/privacy';
+  static const aboutUpdate = '/profile/settings/about';
+  static const adminModeration = '/admin/moderation';
+  static const adminDashboard = '/admin/dashboard';
+  static const adminVerification = '/admin/verification';
+  static const adminUsers = '/admin/users';
+  static const adminMatchingOperations = '/admin/matching-operations';
+  static const adminModerationReportDetail = '/admin/moderation/reports';
+  static const mbtiCenter = '/profile/mbti';
+  static const personalShowcase = '/profile/showcase';
+  static const profileShowcaseReviewFixture =
+      '/debug/profile/showcase/review-fixture';
+  static const profileShowcasePublicationFixture =
+      '/debug/profile/showcase/publication-fixture';
+  static const localOnlyVisualFixture = '/debug/8-1-visual-fixture';
+  static const astroOverview = '/profile/astro/overview';
+  static const astroBazi = '/profile/astro/bazi';
+  static const astroNatalChart = '/profile/astro/natal';
+  static const astroAdvancedPreview = '/profile/astro/advanced';
+  static const astroZiwei = '/profile/astro/ziwei';
+  static const astroChartSettings = '/profile/astro/chart-settings';
+  static const astroProfile = '/profile/astro';
+}
