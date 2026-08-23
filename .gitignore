@@ -43,6 +43,7 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+/services/backend-laravel/.env.example
 
 # Generated dependency/cache directories
 .dart_tool/
