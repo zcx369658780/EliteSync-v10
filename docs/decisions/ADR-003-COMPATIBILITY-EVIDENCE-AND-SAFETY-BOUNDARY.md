@@ -1,12 +1,16 @@
 # ADR-003: Compatibility Evidence and Safety Boundary
 
-Status: PROPOSED — AWAITING GPT L3 AND OWNER REVIEW
+Status: ACCEPTED
+
+Owner acceptance recorded: 2026-08-24
+
+Independent review state: AWAITING GPT L3 REVIEW
 
 Date: 2026-08-23
 
 Decision owners: Owner (final product authority), with ChatGPT architecture/product review
 
-Depends on: ADR-001 and ADR-002, both currently proposed
+Depends on: ADR-001 and ADR-002, both accepted
 
 ## Context
 

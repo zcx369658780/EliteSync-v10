@@ -1,12 +1,16 @@
 # ADR-002: Relationship Domain Language
 
-Status: PROPOSED — AWAITING GPT L3 AND OWNER REVIEW
+Status: ACCEPTED
+
+Owner acceptance recorded: 2026-08-24
+
+Independent review state: AWAITING GPT L3 REVIEW
 
 Date: 2026-08-23
 
 Decision owners: Owner (final product authority), with ChatGPT architecture/product review
 
-Depends on: ADR-001 (Product Vision and Trust Boundary), currently proposed
+Depends on: ADR-001 (Product Vision and Trust Boundary), accepted
 
 ## Context
 

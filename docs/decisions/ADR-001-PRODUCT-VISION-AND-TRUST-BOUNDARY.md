@@ -1,6 +1,10 @@
 # ADR-001: Product Vision and Trust Boundary
 
-Status: PROPOSED — AWAITING GPT L3 AND OWNER REVIEW
+Status: ACCEPTED
+
+Owner acceptance recorded: 2026-08-24
+
+Independent review state: AWAITING GPT L3 REVIEW
 
 Date: 2026-08-23
 
