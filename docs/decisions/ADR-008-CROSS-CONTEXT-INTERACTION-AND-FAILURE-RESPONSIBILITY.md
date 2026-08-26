@@ -1,16 +1,18 @@
 # ADR-008: Cross-Context Interaction and Failure Responsibility
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `ACCEPTED`
 
 Date: `2026-08-26`
 
-Decision owner: Owner, after GPT L3 review
+Owner acceptance date: `2026-08-26`
+
+Decision owner: Owner, following GPT L3 review
 
 Depends on: ADR-001–007; accepted U-02/U-03 and U-04 closeouts; Phase 34 Safety authority; accepted LC-02 boundaries
 
 ## Context
 
-Seven conceptual domains are accepted, but U-11 remains `BLOCKING` because exact product responsibility for cross-context meaning, decisions, purpose review, lifecycle changes, failures, Connection, propagation, and reconstruction has not been accepted. Conceptual domains are not services, modules, stores, teams, or deployment units.
+Seven conceptual domains are accepted. On `2026-08-26`, the Owner accepted Decision Packet 1–10 = A for cross-context meaning, decisions, purpose review, lifecycle changes, failures, Connection, propagation, reconstruction, and the affected-MVP product-policy gate. U-11 remains `BLOCKING` pending GPT L3 / Owner final closeout review. Conceptual domains are not services, modules, stores, teams, or deployment units.
 
 ## Evidence discipline
 
@@ -26,32 +28,38 @@ The Quality Attribute Scenarios and Context Map workshop proposed movements, fai
 
 A bounded handoff must transfer only authorized meaning for a named purpose. Source and receiver retain distinct failure duties, and technical custody cannot absorb meaning, lifecycle, or decision authority.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Accept the responsibility model in `ELITESYNC_V10_U11_CROSS_CONTEXT_RESPONSIBILITY_WORKSHOP_V0_1.md`, subject to Owner selection of its Decision Packet.
+The Owner accepted the responsibility model in `ELITESYNC_V10_U11_CROSS_CONTEXT_RESPONSIBILITY_WORKSHOP_V0_1.md` through Packet 1–10 = A, including the scoped fail-closed caveat. This acceptance does not independently close U-11 or authorize implementation, processing, Safety Operations, U-06, or U-12 work.
 
 ### Still Unknown / Requires Later Review
 
 U-06 fairness method, U-12 quality/capacity, legal/factual duties, operational roles, exact targets, retention, reviewers, tooling, and implementation remain unresolved.
 
-## Proposed decision
+## Decision
 
 1. Use separate meaning authority, bounded decision authority, execution responsibility, purpose-review authority, lifecycle authority, failure ownership, reconstruction responsibility, and final Owner authority.
 2. Require every cross-context interaction to state its source meaning, named purpose, minimum necessary content, prohibited inference, receiver acceptance, lifecycle propagation, and fail-safe outcome.
 3. Keep Connection meaning in Relationship. Matching presents opportunity only; reciprocal current choice is required; Conversation receives only bounded access authority.
 4. Require affirmative purpose compatibility. Storage, custody, visibility, prior use, or broad consent creates no new purpose authority.
-5. When authority is missing, stale, contradictory, or partly propagated, do not create permission. The affected purpose applies the current effective least-permissive outcome while preserving distinct reasons and routing unresolved conflict for review.
+5. When authority is missing, stale, contradictory, unauthorized, or incompletely propagated, do not create permission. The specific affected purpose, interaction, and scope applies the current effective least-permissive outcome while preserving distinct reasons and routing unresolved conflict for review.
 6. Source authority declares correction/revocation/reversal/supersession; dependent contexts remove stale active effects and separately determine whether renewed use is permitted.
 7. Safety authorizes minimum-necessary directives; ordinary domains enforce only their meaning, receive no evidence/reasoning, and remove stale controls after authorized reversal.
 8. Consequential decisions must support bounded reconstruction of provenance, purpose, authority, time, policy, changes, restrictions, and consuming action without broad private/Safety disclosure or indefinite retention.
 9. AI and analytics remain supporting capabilities and cannot create truth, consent, guilt, Connection, Relationship state, Safety finding, or cross-context authority.
-10. Treat the workshop's nine minimum semantics as a proposed affected-MVP responsibility gate. Drafting this ADR does not satisfy or accept that gate.
+10. Treat the workshop's nine minimum semantics as the Owner-accepted affected-MVP responsibility product-policy gate. This does not authorize implementation or establish that the gate's later factual, legal, quality, operational, or technical prerequisites are satisfied.
+
+### Accepted scoped fail-closed caveat
+
+`Fail-closed` and `least-permissive` behavior applies only to the specific affected purpose, interaction, and scope whose authority/state is missing, stale, contradictory, unauthorized, or incompletely propagated. It must not escalate into a global person/account restriction or person-level meaning.
+
+The fail-closed state itself must not imply or become evidence of guilt, wrongdoing, Safety risk, dangerousness, trustworthiness, reputation, bad-actor status, Compatibility, Ranking, desirability, relationship-worth, or any other person truth or character judgment. Distinct causes and authority classes remain distinguishable. Bounded denial, omission, or cessation is a safe outcome for the affected scope, not a global judgment about the User.
 
 Dependency classifications are limited to: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`, `REQUIRES LATER FACT / FORMAL REVIEW`, `DEPENDS ON U-06 FAIRNESS`, `DEPENDS ON U-12 QUALITY / CAPACITY`, `REQUIRES LATER LEGAL AUTHORITY`, and `PROHIBITED BY ACCEPTED AUTHORITY`.
 
-## Recommended option
+## Owner acceptance
 
-Accept the workshop's recommended A options as a coherent technology-neutral product-policy baseline, then retain U-11 as `BLOCKING` until GPT L3 review, explicit Owner acceptance, incorporation of any required revisions, and final closeout.
+The Owner accepted Packet 1–10 = A as a coherent technology-neutral product-policy baseline. U-11 remains `BLOCKING` until GPT L3 / Owner final closeout review.
 
 Reasons:
 
@@ -111,11 +119,12 @@ Exit the affected MVP scope if a required responsibility cannot be accepted befo
 
 ## Retained unknowns
 
-- U-11 remains `BLOCKING` pending review and Owner decision.
-- U-06 fairness scope/method and U-12 quality/capacity remain `BLOCKING` and unchanged.
-- Concrete trigger thresholds/durations, evidence standards, reviewer qualification/authority, contested disclosure/retention outcomes, exact retention, legal preservation, backup treatment, anonymization verification, timing, notice/appeal, external routing, Safety Operations, and every other separately unresolved `BLOCKING UNKNOWN` remain unresolved.
+- U-11 remains `BLOCKING` pending GPT L3 / Owner final closeout review; ADR acceptance does not itself complete U-11.
+- U-06 fairness scope, method, metrics, thresholds, and remedies remain `BLOCKING` and unchanged.
+- U-12 quality, capacity, timing, acceptance authority, SLOs, and service targets remain `BLOCKING` and unchanged.
+- Operational personnel, teams, reviewer qualifications, separation of duties, staffing, queues, capacity, exact evidence/reviewer standards, contested disclosure/retention outcomes, exact retention periods, backup treatment, legal preservation, anonymization verification, notice/appeal details, external-routing/legal duties, Safety Operations, processing authority, and every other separately unresolved `BLOCKING UNKNOWN` remain unresolved.
 - No database, schema, API, event, service, backend, Flutter, retry, queue, consistency, storage, infrastructure, model, analytics, deployment, or code decision is made.
 
 ## Authority boundary and stop
 
-This ADR is a proposal, not acceptance. It grants no implementation, processing, Safety Operations, LC-03, LC-04, Phase 36, or successor-work authority. DeepSeek calls: `0`. Stop for GPT L3 and Owner review.
+This ADR records Owner-accepted product policy, not U-11 final closeout. It grants no implementation, processing, Safety Operations, U-06, U-12, LC-03, LC-04, Phase 36, or successor-work authority. DeepSeek calls: `0`. Stop for GPT L3 and Owner final closeout review.

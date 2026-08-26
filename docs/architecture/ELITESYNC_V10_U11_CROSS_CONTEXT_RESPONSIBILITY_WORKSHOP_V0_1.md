@@ -1,6 +1,6 @@
 # EliteSync 10.0 U-11 Cross-Context Responsibility Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `OWNER ACCEPTED — AWAITING GPT L3 AND OWNER FINAL CLOSEOUT REVIEW`
 
 Date: `2026-08-26`
 
@@ -14,7 +14,7 @@ Scope: Technology-neutral product-policy and responsibility semantics only. This
 - ADR-004 accepts seven conceptual domains: Identity, Personality, Compatibility, Matching, Conversation, Relationship, and Safety. They are not automatically services, modules, stores, teams, or deployment units, and no domain owns the User as a whole.
 - ADR-005 separates meaning, purpose, provenance, lifecycle, custody, and reconstruction authority. Technical availability or custody creates none of the others.
 - ADR-006 accepts the five-dimensional shared-information authority model and conflict-aware lifecycle semantics. ADR-007 accepts the U-04 Safety-governance baseline and preserves all 28 Phase 34 Safety invariants.
-- U-06 fairness and U-12 quality/capacity remain separately `BLOCKING`. U-11 itself remains `BLOCKING` until GPT L3 review, Owner decisions, and closeout.
+- U-06 fairness and U-12 quality/capacity remain separately `BLOCKING`. U-11 itself remains `BLOCKING` until GPT L3 / Owner final closeout review.
 
 ### Prior Conceptual Exploration
 
@@ -24,9 +24,9 @@ The Quality Attribute Scenarios and Context Map workshop proposed context moveme
 
 Cross-context use is safe only when authority for meaning, purpose, decision, lifecycle, failure handling, and reconstruction stays attributable. A handoff transfers a bounded meaning for a named purpose; it does not transfer ownership of the source concept.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the responsibility vocabulary, interaction contracts, precedence rules, propagation duties, reconstruction boundary, matrix, and MVP gate below as the U-11 product-policy baseline.
+On `2026-08-26`, the Owner accepted Decision Packet 1–10 = A, including the scoped fail-closed caveat. The responsibility vocabulary, interaction contracts, precedence rules, propagation duties, reconstruction boundary, matrix, and nine-semantic affected-MVP gate below are the accepted U-11 product-policy direction. Acceptance does not independently close U-11 or authorize implementation, processing, Safety Operations, U-06, or U-12 work.
 
 ### Still Unknown / Requires Later Review
 
@@ -66,7 +66,7 @@ Earlier context work named primary meaning authorities and safe responses but di
 
 One undifferentiated “owner” would collapse incompatible authorities and conceal failure responsibility.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Term | Technology-neutral meaning |
 | --- | --- |
@@ -101,7 +101,7 @@ The earlier context map proposed ten movements and safe failure responses; it di
 
 Every handoff needs a closed product contract: source meaning, permitted consumption, named purpose, minimum scope, prohibited inference, acceptance responsibility, lifecycle propagation, and failure-safe outcome.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | # | Interaction and named purpose | Minimum permitted crossing and acceptance responsibility | Must not cross or be inferred | Propagation and failure-safe responsibility |
 | --- | --- | --- | --- | --- |
@@ -136,7 +136,7 @@ Earlier work proposed this division but left exact interaction responsibility un
 
 Connection is an authorized reciprocal product state, not a prediction, delivery result, message activity, or inferred affection.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Matching may know whether an opportunity is currently presentable, not whether a Relationship exists.
 - Relationship may recognize only the minimum reciprocal choices and governing restrictions required for Connection; it may not infer affection, permanence, or off-product meaning.
@@ -164,7 +164,7 @@ The context map proposed stopping unclear new purposes rather than allowing conv
 
 A receiving context needs affirmative consumption authority; absence of a prohibition is not permission.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Before cross-context use, the receiver must establish: named purpose; source provenance; accepted consumption authority; minimum-necessary scope; time relevance/freshness; current lifecycle status; and no unrelated reuse. Unclear purpose compatibility, contradictory authority, or missing lifecycle status stops the proposed use and routes it to purpose review. “Available in storage,” “already visible,” operational convenience, broad consent, or prior use is never sufficient authority.
 
@@ -188,7 +188,11 @@ Earlier scenarios identified stale state, partial failure, and reconstruction ga
 
 Failure ownership should attach to the meaning at risk, not to technical custody or delivery success.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
+
+`Fail-closed` and `least-permissive` behavior is strictly bounded to the specific affected purpose, interaction, and scope whose authority or state is missing, stale, contradictory, unauthorized, or incompletely propagated. It must not escalate into a global person/account restriction or person-level meaning. A bounded denial, omission, or cessation is a safe outcome for that affected scope, not a global judgment about the User.
+
+The fail-closed state itself must not imply or become evidence of guilt, wrongdoing, Safety risk, dangerousness, trustworthiness, reputation, bad-actor status, Compatibility, Ranking, desirability, relationship-worth, or any other person truth or character judgment. Distinct causes and authority classes remain distinguishable.
 
 | Failure class | Safe product outcome | Owning responsibility class |
 | --- | --- | --- |
@@ -223,9 +227,9 @@ Earlier quality scenarios proposed that restrictive state governs during partial
 
 Precedence is purpose- and scope-specific, not a universal ranking of people or accounts.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-For the affected purpose and scope, apply the current effective state that permits the least new access/use until authorized review resolves conflict:
+For the specific affected purpose, interaction, and scope, apply the current effective state that permits the least new access/use until authorized review resolves conflict:
 
 1. a user-self protective action controls that User's future exposure/access without adjudicating another person;
 2. ordinary pause, closure, revocation, deletion, or restriction stops only the governed future use/effect;
@@ -233,7 +237,7 @@ For the affected purpose and scope, apply the current effective state that permi
 4. reviewed longer-lived Safety restriction remains distinct and requires its accepted authority;
 5. stale or unknown authority creates no new permission and routes to review.
 
-Distinct causes must remain distinguishable; they must not collapse into a generic account status. Correction or reversal removes stale controls and adverse/reputation residue without implying reporter dishonesty or allegation falsity.
+This bounded precedence must not escalate into a global person/account restriction or person-level meaning. Its denial, omission, or cessation is not evidence of guilt, wrongdoing, Safety risk, dangerousness, trustworthiness, reputation, bad-actor status, Compatibility, Ranking, desirability, relationship-worth, or any other person truth or character judgment. Distinct causes and authority classes must remain distinguishable; they must not collapse into a generic account status. Correction or reversal removes stale controls and adverse/reputation residue without implying reporter dishonesty or allegation falsity.
 
 Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; exact triggers/durations and evidence standards `REQUIRES LATER FACT / FORMAL REVIEW`; measurable cessation `DEPENDS ON U-12 QUALITY / CAPACITY`.
 
@@ -255,7 +259,7 @@ Prior work required affected outputs to be withdrawn, invalidated, refreshed, or
 
 The source cannot alone know every dependent product meaning, and the consumer cannot redefine the source change. Responsibility must be joint but non-collapsing.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Source meaning/lifecycle authority declares the change, effective scope, provenance, and governing authority.
 - Every consuming meaning authority identifies its dependent meanings and invalidates or withdraws stale active output.
@@ -284,7 +288,7 @@ The context map showed protective directions crossing while evidence flow to ord
 
 Ordinary contexts can enforce a control without learning or evaluating its allegation, evidence, reasoning, or finding basis.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Safety meaning/decision authority generates or authorizes the directive and its authority class, scope, current lifecycle, and reversal meaning. Matching, Relationship, and Conversation consume only the enforcement meaning needed for their product action, refuse evidence/reasoning leakage, and cannot reinterpret the directive as guilt or person quality. Safety declares correction/reversal/supersession; each ordinary receiver removes stale controls and residue. Authorized reconstruction joins restricted Safety-side evidence with ordinary execution evidence only within review, without disclosing protected Safety content to ordinary contexts.
 
@@ -308,7 +312,7 @@ The auditability scenario proposed reconstructing contested outputs under minimu
 
 Reconstruction is a bounded product obligation, not a license to aggregate all private or Safety information.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 For Compatibility explanations, Match presentation/eligibility, Connection/Conversation access changes, lifecycle restrictions, Safety directives/restrictions, and corrections/reversals, authorized review must be able to distinguish: source and provenance; declaration/observation/interpretation/AI language; named purpose; policy/version context; time relevance; bounded decision authority; lifecycle changes; restrictions; consuming action; and available contest/correction route. Each context supplies only its minimum necessary review slice. The reviewing function may correlate those slices for the accepted review purpose but does not acquire their domain meaning or future reuse authority.
 
@@ -332,7 +336,7 @@ Earlier work allowed bounded assistance/measurement only under consuming-context
 
 Generated or aggregated output cannot bootstrap authority that its inputs and purpose lack.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 AI may consume only explicitly permitted minimum context for a named purpose and remains labeled, uncertain, correctable, and subordinate to the consuming domain. It cannot create consent, truth, guilt, Connection, Relationship state, Safety finding, or cross-context authority. Analytics cannot silently create domain truth or new Ranking, Compatibility, Safety, reputation, trustworthiness, or relationship-worth signals. Any future new purpose stops for separate review. Private-interaction or Safety evidence use remains forbidden unless separately accepted authority explicitly permits the precise purpose; no such authority is created here.
 
@@ -364,7 +368,7 @@ This is a product-semantics matrix, not an org RACI or technical decomposition.
 - **Observed / Accepted Authority:** the domain separations and upstream prohibitions.
 - **Prior Conceptual Exploration:** supporting capabilities and context movements in the prior workshop.
 - **Product Inference:** assigning non-collapsing responsibility classes to each meaning.
-- **Proposed Product Decision:** adopt the matrix as the U-11 responsibility baseline.
+- **Owner-Accepted Product Decision:** the Owner accepted the matrix as the U-11 responsibility baseline through Packet 1–10 = A.
 - **Still Unknown / Requires Later Review:** operational assignments, technical components, targets, fairness/legal determinations, and evidence thresholds.
 
 ## 14. Affected-MVP responsibility gate
@@ -381,7 +385,7 @@ Earlier work identified context interaction and failure ownership as blockers bu
 
 An affected MVP cannot safely defer responsibility for who may create, consume, stop, correct, or reconstruct cross-context meaning.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Before any affected MVP implementation is separately authorized, Owner-accepted semantics must cover:
 
@@ -405,23 +409,29 @@ Dependencies: minimum semantics are `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; the
 
 ### Still Unknown / Requires Later Review
 
-Whether Owner accepts the gate, whether affected scope stays in MVP, and all technical/operational realization remain unresolved.
+The nine minimum semantics are Owner accepted as the affected-MVP product-policy gate. Whether affected scope proceeds to implementation, and all technical/operational realization, remain unresolved and separately unauthorized.
 
 ## 15. Owner Decision Packet
 
-For each item, choosing B retains U-11 as blocking for that item. No choice authorizes implementation or processing.
+Owner decision date: `2026-08-26`.
 
-1. **Responsibility grammar.** A: accept the eight-term non-collapsing vocabulary and dual source/receiver failure ownership (**recommended**). B: retain U-11 blocking. Reject/exit A if a term transfers source meaning through custody or obscures final Owner authority. Unknowns: operational assignment and qualifications.
-2. **Ten interaction contracts.** A: accept the closed handoff semantics in Section 4 (**recommended**). B: remove affected interactions from MVP pending later policy. Reject/exit A if any handoff requires prohibited inference or cannot fail closed. Unknowns: technical mechanism, timing, legal exceptions.
-3. **Connection authority.** A: accept Relationship meaning authority, reciprocal choice, and bounded access knowledge (**recommended**). B: omit Connection/Conversation progression from affected MVP. Reject/exit A if Matching or activity can create Connection/Relationship meaning. Unknowns: expiry/reconnection details.
-4. **Purpose-review boundary.** A: require affirmative named-purpose authority and stop unknown compatibility (**recommended**). B: prohibit all cross-context reuse beyond already accepted cases. Reject/exit A if storage/visibility can count as authority. Unknowns: purpose catalog and reviewer standard.
-5. **Failure taxonomy and restrictive precedence.** A: accept the taxonomy and least-permissive affected outcome while preserving distinct causes (**recommended**). B: retain affected journeys blocked. Reject/exit A if “fail safe” becomes guilt, punishment, or a generic person/account state. Unknowns: severity, timing, capacity.
-6. **Change propagation ownership.** A: accept joint source-declaration/consumer-cleanup responsibility and separate renewed-use review (**recommended**). B: omit derived/cross-context uses that cannot satisfy it. Reject/exit A if provenance retention preserves unauthorized active effect. Unknowns: dependency evidence and legal retention.
-7. **Safety-to-ordinary boundary.** A: accept directive-only crossing, ordinary enforcement responsibility, and reversal cleanup (**recommended**). B: stop the affected ordinary function when a safe directive-only contract cannot be maintained. Reject/exit A if evidence/reasoning or person judgment enters ordinary domains. Unknowns: Safety Operations, thresholds, review authority.
-8. **Reconstruction contract.** A: accept bounded multi-context reconstruction without authority transfer (**recommended**). B: exclude consequential functions that cannot later meet the contract. Reject/exit A if it requires broad access or indefinite retention. Unknowns: evidence depth, roles, retention, timing.
-9. **AI/analytics boundary.** A: accept supporting-only, named-purpose, no-new-authority rules (**recommended**). B: exclude AI/analytics from cross-context uses. Reject/exit A if outputs create truth, consent, guilt, Connection, Relationship, or new signals by convenience. Unknowns: U-06/U-12 and future purpose evidence.
-10. **Affected-MVP gate and U-11 disposition.** A: accept the nine minimum semantics as the affected-MVP product-policy gate, then retain U-11 `BLOCKING` pending GPT L3/Owner closeout (**recommended**). B: keep U-11 blocking and remove affected MVP scope. Reject/exit A if any prerequisite is deferred while its affected product promise remains. Unknowns: all U-06/U-12/legal/factual/operational and implementation dependencies.
+The Owner selected Packet 1–10 = A. These choices accept product-policy direction only; they do not independently close U-11 or authorize implementation or processing.
+
+1. **Responsibility grammar — OWNER ACCEPTED A.** Accept the eight-term non-collapsing vocabulary and dual source/receiver failure ownership. Reject/exit if a term transfers source meaning through custody or obscures final Owner authority. Unknowns: operational assignment and qualifications.
+2. **Ten interaction contracts — OWNER ACCEPTED A.** Accept the closed handoff semantics in Section 4. Reject/exit if any handoff requires prohibited inference or cannot fail closed within its affected scope. Unknowns: technical mechanism, timing, legal exceptions.
+3. **Connection authority — OWNER ACCEPTED A.** Accept Relationship meaning authority, reciprocal valid choice, and bounded current access knowledge. Reject/exit if Matching or activity can create Connection/Relationship meaning. Unknowns: expiry/reconnection details.
+4. **Purpose-review boundary — OWNER ACCEPTED A.** Require affirmative named-purpose authority and stop unknown compatibility for the affected use. Reject/exit if storage/visibility can count as authority. Unknowns: purpose catalog and reviewer standard.
+5. **Failure taxonomy and restrictive precedence — OWNER ACCEPTED A.** The least-permissive outcome applies only to the specific affected purpose, interaction, and scope. It cannot become a global person/account restriction, person meaning, or evidence of guilt, wrongdoing, Safety risk, dangerousness, trustworthiness, reputation, bad-actor status, Compatibility, Ranking, desirability, relationship-worth, or other character judgment. Distinct causes and authority classes remain distinguishable. Unknowns: severity, timing, capacity.
+6. **Change propagation ownership — OWNER ACCEPTED A.** Accept joint source-declaration/consumer-cleanup responsibility and separate renewed-use review. Reject/exit if provenance retention preserves unauthorized active effect. Unknowns: dependency evidence and legal retention.
+7. **Safety-to-ordinary boundary — OWNER ACCEPTED A.** Accept directive-only crossing, ordinary enforcement responsibility, and reversal cleanup. Reject/exit if evidence/reasoning or person judgment enters ordinary domains. Unknowns: Safety Operations, thresholds, review authority.
+8. **Reconstruction contract — OWNER ACCEPTED A.** Accept bounded multi-context reconstruction without authority transfer. Reject/exit if it requires broad access or indefinite retention. Unknowns: evidence depth, roles, retention, timing.
+9. **AI/analytics boundary — OWNER ACCEPTED A.** Accept supporting-only, named-purpose, no-new-authority rules. Reject/exit if outputs create truth, consent, guilt, Connection, Relationship, or new signals by convenience. Unknowns: U-06/U-12 and future purpose evidence.
+10. **Affected-MVP gate and U-11 disposition — OWNER ACCEPTED A.** Accept the nine minimum semantics as the affected-MVP product-policy gate while retaining U-11 `BLOCKING` pending GPT L3 / Owner final closeout review. Reject/exit if any prerequisite is deferred while its affected product promise remains. Unknowns: all U-06/U-12/legal/factual/operational and implementation dependencies.
 
 ## 16. Stop state
 
-U-11 remains `BLOCKING`. ADR-008 remains proposed. DeepSeek calls: `0`. No U-06, U-12, LC-03, LC-04, Phase 36, Safety Operations, processing, technical architecture, or implementation work is authorized or inferred. Stop for GPT L3 and Owner review.
+Packet 1–10 = A is Owner accepted, and ADR-008 is accepted. U-11 nevertheless remains `BLOCKING` pending GPT L3 / Owner final closeout review. DeepSeek calls: `0`. No U-06, U-12, LC-03, LC-04, Phase 36, Safety Operations, processing, technical architecture, implementation, or successor work is authorized or inferred.
+
+Retained unknowns remain unchanged: U-06 fairness scope/method/metrics/thresholds/remedies; U-12 quality/capacity/timing/acceptance/SLO/service targets; operational personnel/teams/reviewer qualifications/separation of duties/staffing/queues/capacity; exact evidence and reviewer standards; contested disclosure/retention outcomes; exact retention; backup treatment; legal preservation; anonymization verification; notice/appeal; external-routing and legal duties; Safety Operations; processing; technical architecture and implementation; and every other separately unresolved `BLOCKING UNKNOWN`.
+
+Stop for GPT L3 and Owner final closeout review.
