@@ -1,6 +1,6 @@
 # EliteSync-v10 U-07 Signal and Epistemic Evidence Standard Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `OWNER ACCEPTED — NARROW ADR-010 / U-07 CLOSEOUT REVISION AUTHORIZED`
 
 Date: `2026-08-26`
 
@@ -8,7 +8,7 @@ Issue authority: GitHub Issue #6, workshop-only execution contract
 
 ## 0. Scope, authority, and evidence discipline
 
-This is a technology-neutral signal and epistemic-evidence product-policy workshop. It defines proposed semantics, class-level boundaries, decision prerequisites, and stop conditions. It does not validate a signal, approve a field-level allowlist, select a weight or score, design Ranking, authorize processing, or resolve U-07.
+This is a technology-neutral signal and epistemic-evidence product-policy workshop. It records Owner-accepted class-level semantics, decision prerequisites, and stop conditions. It does not validate a signal, approve a field-level allowlist, select a weight or score, design Ranking, authorize processing, or resolve U-07.
 
 ### Observed / Accepted Authority
 
@@ -16,7 +16,7 @@ This is a technology-neutral signal and epistemic-evidence product-policy worksh
 - User declaration is not objective truth. AI interpretation is not verified fact.
 - A Compatibility Hypothesis is pair-specific, dimension-specific, uncertain, explainable, correctable, rejectable, and revisable. It is not a probability of relationship success, Safety clearance, diagnosis, destiny, or human-worth judgment.
 - Named-purpose authority, provenance, lifecycle authority, correction cleanup, Safety separation, fairness boundaries, and scoped fail-closed behavior remain mandatory.
-- U-07 remains `BLOCKING` until a later GPT L3 review, explicit Owner decision, incorporation, and final closeout.
+- Owner accepted Packet 1–15 = A through Issue #6 comment `5424150683`. This acceptance is incorporated into both authorized artifacts by the current revision. U-07 remains `BLOCKING` until final GPT L3 / Owner closeout review is completed.
 
 ### Prior Conceptual Exploration
 
@@ -30,9 +30,9 @@ The Track A research-methodology AI review is corpus-bounded advisory input only
 
 Compatibility, Matching, Explanation, Reflection, and Control require a non-collapsing epistemic vocabulary and purpose-specific use authority. Without them, fluent interpretation, structured declarations, stored events, and historical correlations could be promoted into unsupported truth or Ranking authority.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt Sections 2–15 as the class-level U-07 product-policy proposal, subject to the Owner Decision Packet in Section 18.
+The Owner accepted Sections 2–15 as the class-level U-07 product-policy direction through Packet 1–15 = A, subject to the accepted caveat in Section 2. This acceptance creates no field-level allowlist, validation, participant/data activity, processing, Ranking/model, implementation, or successor authority and does not itself complete U-07.
 
 ### Still Unknown / Requires Later Review
 
@@ -57,18 +57,25 @@ Item-level validity, concrete fields, field-level allowlists, tested wording, us
 
 The following classes are non-collapsing. They describe source and permitted force, not a numeric truth hierarchy.
 
-| Epistemic status | Can establish | Cannot establish | Maximum proposed product force | Correction / supersession | Prohibited promotion |
+| Epistemic status | Can establish | Cannot establish | Maximum accepted product-policy force | Correction / supersession | Prohibited promotion |
 |---|---|---|---|---|---|
 | `User Declared` | What a User currently authored or stated in a named context | Objective trait, future conduct, honesty, another person's state | Descriptive statement; candidate use only under a separately accepted purpose gate | User correction or withdrawal supersedes future optional active use | Repetition or structured form cannot convert it into verified fact |
 | `Product Observed Event` | That the bounded product event occurred in the recorded context | Motive, private thought, stable trait, attraction, worth, intent, or causal meaning | Bounded event description or separately authorized control adaptation | Correct event error; expire or withdraw stale dependent use | Frequency, engagement, or availability cannot create trait or Ranking truth |
-| `Externally Supported / Verified Fact` | Only the exact claim supported by separately authorized evidence and verification | Broader identity, character, prediction, unrelated purpose, or perpetual truth | Bounded factual claim for the accepted purpose and time | Correct, expire, or supersede when source/authority changes | The label is prohibited unless verification authority and evidence actually exist |
+| `Externally Supported / Verified Fact` | Only the exact claim supported by separately authorized evidence and verification | User-as-a-whole verification, character, stable trait, future conduct, unrelated-context truth, or perpetual truth | Bounded factual claim for the accepted source, purpose, time, and scope | Correct, expire, or supersede when source/authority changes | The label is prohibited unless verification authority and evidence actually exist; it creates no unrelated-purpose or cross-context authority |
 | `Derived Interpretation` | A transparent rule- or analyst-derived tentative meaning from permitted sources | New fact, consent, cause, diagnosis, destiny, or private thought | Tentative explanation or reflection; Ranking only after separate item/use review | Invalidate when source, rule, purpose, or authority changes | Derivation cannot upgrade source evidence strength |
 | `AI-Generated Interpretation / Explanation` | That AI generated a bounded summary, explanation, question, or tentative interpretation | Verified fact, reviewed finding, probability, consent, guilt, Safety state, or new signal | Clearly labeled explanation/reflection under separate authority | Dismiss, correct, regenerate, or withdraw after source/authority change | Fluency, repetition, or model confidence cannot upgrade evidence |
 | `Compatibility Hypothesis` | A pair- and dimension-specific, evidence-bounded proposition for human exploration | Match outcome, success probability, destiny, Safety clearance, diagnosis, or worth | Explainable, uncertain decision support only | Revise, reject, withdraw, or invalidate with evidence/lifecycle change | Must never become scalar person or relationship truth |
-| `Reviewed Finding` | Only the bounded finding accepted through a separately authorized qualified review | Universal truth, unrelated purpose, permanent person meaning, or Owner acceptance by implication | Consequences only within accepted review purpose and scope | Correct, reverse, supersede, or expire under the governing review authority | Review status cannot create cross-context or Ranking authority |
+| `Reviewed Finding` | Only the bounded finding established through a separately authorized qualified review | Owner acceptance beyond the explicit recorded product decision, universal person truth, ordinary-domain meaning, or permanent person meaning | Consequences only within the separately authorized review purpose and scope | Correct, reverse, supersede, or expire under the governing review authority | Review status creates no Ranking, ordinary-domain, or cross-context authority |
 | `Unknown / Insufficient Evidence` | That evidence is unavailable, stale, conflicting, weak, or outside authority | Negative trait, guilt, risk, deception, incompatibility, or permission to infer more | Omit, disclose uncertainty, narrow, block, or route for review | May change only with newly authorized evidence or correction | Unknown must never be promoted into adverse person meaning |
 
-Proposed dependency classes: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER QUALIFIED RESEARCH-METHOD / FAIRNESS REVIEW`; `DEPENDS ON U-05 PARTICIPANT / DATA ACTIVITY AUTHORITY`; `DEPENDS ON U-08 SEGMENT / READINESS EVIDENCE`; `DEPENDS ON U-12 QUALITY / TARGET AUTHORITY`; `REQUIRES LATER LEGAL AUTHORITY`; `PROHIBITED BY ACCEPTED AUTHORITY` where the proposed use would cross an accepted prohibition. These are the only permitted dependency classes.
+Accepted dependency classes: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER QUALIFIED RESEARCH-METHOD / FAIRNESS REVIEW`; `DEPENDS ON U-05 PARTICIPANT / DATA ACTIVITY AUTHORITY`; `DEPENDS ON U-08 SEGMENT / READINESS EVIDENCE`; `DEPENDS ON U-12 QUALITY / TARGET AUTHORITY`; `REQUIRES LATER LEGAL AUTHORITY`; `PROHIBITED BY ACCEPTED AUTHORITY` where the affected use would cross an accepted prohibition. These are the only permitted dependency classes.
+
+### Accepted epistemic-class caveat
+
+Epistemic class names are governance semantics first. They are not default user-facing truth labels, do not themselves strengthen evidence, and create no independent or new authority.
+
+- For `Externally Supported / Verified Fact`, `Verified` applies only to the exact claim actually supported by separately authorized evidence. It remains bounded to the accepted source, purpose, time, and scope. It does not imply that the User as a whole is verified and does not imply verified character, stable trait, future conduct, unrelated-context truth, or perpetual truth. It remains correctable, expirable, and supersedable and creates no unrelated-purpose or cross-context authority.
+- `Reviewed Finding` remains bounded to its separately authorized review purpose and scope. It does not automatically create Owner acceptance beyond the explicit recorded product decision, Ranking authority, ordinary-domain authority, cross-context authority, or universal person truth.
 
 ## 3. Signal provenance and authority contract
 
@@ -120,9 +127,9 @@ Every signal class and every future concrete item must pass all of the following
 
 Failing any required element blocks or narrows only the affected use. Passing this policy checklist does not validate the item, place it on a field allowlist, or authorize collection/processing.
 
-## 6. Proposed current MVP class-level signal envelope
+## 6. Owner-accepted current MVP class-level signal envelope
 
-| Signal class | Proposed class-level disposition | Permitted/deferred force | Controlling reason |
+| Signal class | Owner-accepted class-level disposition | Permitted/deferred force | Controlling reason |
 |---|---|---|---|
 | Current explicit user-authored relational intent | `CANDIDATE — SEPARATE ITEM/USE REVIEW REQUIRED` | May later support eligibility, Ranking, or Explanation only for a named purpose | Declaration is current self-report, not objective truth or future conduct |
 | Current explicit boundaries | `CANDIDATE — SEPARATE ITEM/USE REVIEW REQUIRED` | May later constrain eligibility/presentation and support explanation/control | Boundary respect is not person-worth judgment; missingness is not adverse evidence |
@@ -144,7 +151,7 @@ This table is class-level policy only. It approves no concrete preference field,
 
 ## 7. Ranking, Explanation, Reflection, and Control-use separation
 
-| Use class | Proposed boundary |
+| Use class | Owner-accepted boundary |
 |---|---|
 | Ranking / Matching presentation | Requires the strictest named-purpose, item-level evidence, fairness, privacy, comprehension, lifecycle, and correction review; current class candidacy is not permission |
 | Explanation | May explain only the permitted sources and bounded logic used; no hidden evidence or stronger truth claim |
@@ -218,7 +225,7 @@ Any new signal, concrete item, consumer, use class, or purpose stops for separat
 
 Analytics, model, historical, storage, or implementation convenience cannot create a new purpose or signal authority.
 
-## 15. Proposed affected-MVP signal/evidence policy gate
+## 15. Owner-accepted affected-MVP signal/evidence policy gate
 
 Before any affected MVP Compatibility, Matching, Ranking, Explanation, Reflection, Feedback-learning, or Control use may be separately authorized, Owner-accepted policy must cover:
 
@@ -254,11 +261,11 @@ Retained unknowns include the final field-level signal inventory/allowlist; item
 
 No DeepSeek, web/external literature research, legal research, participant research, recruitment, data collection, personal/sensitive-data processing, statistical analysis, psychometric validation, concrete new preference field, final field allowlist, concrete unaccepted questionnaire item, weight, score, feature vector, embedding, Ranking/model/optimization, training/evaluation, passive-behavior mining, private-message mining, Safety risk/prioritization model, Safety Operations, analytics/monitoring pipeline, database/schema/API/event/backend/Flutter/service/infrastructure/code, processing, U-05/U-08/U-12 resolution, LC-03, LC-04, Phase 36, or successor work is authorized or performed by this workshop.
 
-U-07 remains `BLOCKING — PROPOSED PRODUCT POLICY AWAITING GPT L3 AND OWNER REVIEW`. Issue #6 must remain open.
+U-07 remains `BLOCKING — OWNER-ACCEPTED CLASS-LEVEL PRODUCT POLICY INCORPORATED; FINAL CLOSEOUT REVIEW PENDING`. Issue #6 must remain open.
 
-## 18. Owner Decision Packet
+## 18. Owner Acceptance Record — Decision Packet
 
-For every packet, selecting A accepts product-policy semantics only and preserves every listed dependency and unknown.
+Owner Decision comment `5424150683` selected A for Packet 1–15. Each A accepts class-level product-policy semantics only and preserves every listed dependency, unknown, rejection/exit condition, and non-authority. The `recommended` markers below record the option reviewed by GPT L3 and are superseded as pending recommendations by the Owner's explicit acceptance.
 
 1. **Canonical epistemic vocabulary.** A: accept the eight non-collapsing classes in Section 2 (**recommended**). B: use only `User Declared`, `Compatibility Hypothesis`, and `Unknown`, removing affected claims that need other classes. Reject/exit A if a class becomes a numeric truth hierarchy or silent promotion route. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER QUALIFIED RESEARCH-METHOD / FAIRNESS REVIEW`; `DEPENDS ON U-12 QUALITY / TARGET AUTHORITY`. Unknowns: tested wording and comprehension.
 2. **Provenance/authority contract.** A: require all eleven fields in Section 3 (**recommended**). B: exclude affected signal use until the full contract can be supplied. Reject/exit A if custody or availability substitutes for authority. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `DEPENDS ON U-05 PARTICIPANT / DATA ACTIVITY AUTHORITY`; `REQUIRES LATER LEGAL AUTHORITY`. Unknowns: field-level provenance and lifecycle facts.
@@ -276,4 +283,4 @@ For every packet, selecting A accepts product-policy semantics only and preserve
 14. **Dependency classification.** A: accept only the seven classes in Section 16 (**recommended**). B: defer any decision whose dependency cannot be classified. Reject/exit A if readiness or planning language substitutes for authority. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`. Unknowns: applicability to each future item/use.
 15. **Affected-MVP gate and U-07 disposition.** A: accept the eleven minimum semantics in Section 15 as the affected-MVP signal/evidence product-policy gate while U-07 remains `BLOCKING` pending review/closeout (**recommended**). B: retain U-07 blocking and remove every affected MVP signal use. Reject/exit A if any prerequisite is deferred while its affected promise remains, or if acceptance is treated as data/model/implementation authority. Dependencies: all seven classes as applicable. Unknowns: all empirical, legal, data, segment, quality, operational, and technical prerequisites.
 
-Stop for GPT L3 and Owner review.
+Packet 1–15 = A is Owner accepted. Stop for GPT L3 / Owner final closeout review; do not independently mark U-07 complete or close Issue #6.
