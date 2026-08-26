@@ -1,16 +1,18 @@
 # ADR-009: Fairness Scope, Evidence, and Remedy Governance
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `ACCEPTED`
 
 Date: `2026-08-26`
 
-Decision owner: Owner, after GPT L3 review
+Owner acceptance date: `2026-08-26`
+
+Decision owner: Owner, following GPT L3 review
 
 Depends on: ADR-001–008; accepted U-02/U-03/U-04/U-11 closeouts; Phase 34 Safety authority; accepted LC-02 boundaries
 
 ## Context
 
-U-06 remains `BLOCKING`. EliteSync has accepted trust, provenance, lifecycle, Safety, and cross-context responsibility boundaries but no accepted fairness purpose/harm scope, affected-population framework, signal/proxy/missingness policy, evidence grammar, measurement prerequisites, remedy semantics, or affected-MVP fairness gate.
+On `2026-08-26`, the Owner accepted Decision Packet 1–13 = A for the fairness purpose/harm scope, affected-population framework, signal/proxy/missingness policy, evidence grammar, measurement prerequisites, remedy semantics, and affected-MVP fairness product-policy gate. U-06 remains `BLOCKING` pending GPT L3 / Owner final closeout review.
 
 ## Evidence discipline
 
@@ -30,15 +32,15 @@ Track A research-methodology AI review is advisory input only, not fairness evid
 
 Fairness must govern purpose-specific material harms with evidence-force limits, stop conditions, and remedies rather than one score.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the model in `ELITESYNC_V10_U06_FAIRNESS_SCOPE_EVIDENCE_AND_REMEDIES_WORKSHOP_V0_1.md`, subject to Owner selection of its Decision Packet.
+The Owner accepted the model in `ELITESYNC_V10_U06_FAIRNESS_SCOPE_EVIDENCE_AND_REMEDIES_WORKSHOP_V0_1.md` through Packet 1–13 = A, including both scoped caveats below. This acceptance does not independently close U-06 or authorize study, processing, data activity, fairness finding, Safety Operations, U-05/U-07/U-08/U-12 resolution, or implementation.
 
 ### Still Unknown / Requires Later Review
 
 Groups, harms in fact, metrics, baselines, thresholds, sample/evidence sufficiency, statistics, legal categories, data authority, reviewer qualification, targets, Safety process standards, and implementation remain unresolved.
 
-## Proposed decision
+## Decision
 
 1. Define fairness as purpose-specific governance of unjustified material differential burden, exclusion, exposure, error, or recourse—not equal romantic outcomes or consent override.
 2. Use the workshop's twelve-class harm taxonomy only as product-policy hypotheses; applicability requires later evidence/review.
@@ -53,13 +55,27 @@ Groups, harms in fact, metrics, baselines, thresholds, sample/evidence sufficien
 11. Separate user relational preference/consent from system allocation. A declined Match is not a fairness finding; preference data does not automatically authorize sensitive/proxy exclusion.
 12. Preserve Safety protection and containment. Fairness cannot require unwanted contact, weaken immediate protection, leak Safety evidence, or authorize Safety risk/prioritization.
 13. Preserve privacy/data authority. Fairness creates no blanket exception or collection/processing authority; absent authorized evidence requires smaller scope or blocked affected use.
-14. Treat the ten minimum semantics as a proposed affected-MVP fairness product-policy gate, not implementation or processing authority.
+14. Treat the ten minimum semantics as the Owner-accepted affected-MVP fairness product-policy gate, not implementation or processing authority.
+
+### Accepted caveat 1 — fairness evaluation category is not product/person authority
+
+Every affected-group, cohort, intersection, missingness cohort, legally relevant category, or other fairness evaluation category is only a bounded evaluation semantic for a specific named purpose/harm and authorized review.
+
+Its use must not by itself establish or redefine User identity/person attributes; authorize collection, inference, persistence, storage, linkage, comparison, visibility, or reuse; become Identity, Compatibility, Matching, Ranking, desirability, reputation, trustworthiness, Safety-risk, or another product signal; become public/user-facing labeling or unrelated analytics authority; or become person/group truth or human-worth meaning.
+
+Any actual collection, inference, storage, linkage, comparison, or reuse remains separately gated by accepted purpose/data authority and applicable U-05, U-07, privacy, lifecycle, fairness, and legal authority.
+
+### Accepted caveat 2 — Packet 11 A approves governance conditions only
+
+Packet 11 A approves no concrete preference field, sensitive/proxy preference, signal allowlist expansion, Ranking feature, weight, inference, algorithm/model, or implementation.
+
+Future Matching preference consumption, if separately authorized, must remain current, user-authored, purpose-specific, revocable, narrow, and subject to U-07 plus fairness/privacy/legal review where applicable. Missing preference creates no adverse inference.
 
 Use only these dependency classes: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`, `REQUIRES LATER QUALIFIED FAIRNESS / RESEARCH-METHOD REVIEW`, `DEPENDS ON U-05 PARTICIPANT / DATA ACTIVITY AUTHORITY`, `DEPENDS ON U-07 SIGNAL / EVIDENCE STANDARD`, `DEPENDS ON U-08 SEGMENT / READINESS EVIDENCE`, `DEPENDS ON U-12 QUALITY / TARGET AUTHORITY`, `REQUIRES LATER LEGAL AUTHORITY`, and `PROHIBITED BY ACCEPTED AUTHORITY`.
 
-## Recommended option
+## Owner acceptance
 
-Accept the workshop's recommended A options as a coherent technology-neutral fairness governance baseline, while keeping U-06 `BLOCKING` until GPT L3 review, explicit Owner acceptance, incorporation, and final closeout.
+The Owner accepted Packet 1–13 = A as a coherent technology-neutral fairness governance baseline. U-06 remains `BLOCKING` until GPT L3 / Owner final closeout review.
 
 Reasons:
 
@@ -120,11 +136,11 @@ Exit the affected MVP scope if required authority/evidence cannot be accepted be
 
 ## Retained unknowns
 
-- U-06 remains `BLOCKING` pending review and Owner decision.
-- U-05 participant/data authority, U-07 signal/evidence standard, U-08 segment/readiness evidence, and U-12 quality/target authority remain unresolved.
-- Final affected/protected groups, harms in fact, direct/proxy/sensitive treatment, metric portfolio, baseline, sample/evidence sufficiency, disparity/confidence/power rules, reviewer qualification, data authority, legal duties, targets, remedy timing, Safety process standards, and every other separately unresolved `BLOCKING UNKNOWN` remain unresolved.
+- U-06 remains `BLOCKING` pending GPT L3 / Owner final closeout review; ADR acceptance does not itself complete U-06.
+- U-05 participant/data activity authority, U-07 signal/evidence standard and allowlists, U-08 segment/readiness evidence, and U-12 quality/target authority remain unresolved.
+- Qualified fairness/research-method findings, final affected/protected groups and jurisdictional legal categories, actual harms/findings, metrics, baselines, disparity thresholds, sample/evidence sufficiency, confidence/power/statistical rules, data collection/processing/linkage/inference/retention/access/monitoring/experimentation, reviewer qualifications, operational ownership, remedy timing/SLA, Safety-process metrics/thresholds/prioritization/risk models, Safety Operations, legal conclusions/duties, model/Ranking design, technical architecture, implementation, and every other separately unresolved `BLOCKING UNKNOWN` remain unresolved.
 - No study, recruitment, collection, personal/sensitive processing, statistical analysis, database, schema, API, event, service, backend, Flutter, model, Ranking, pipeline, monitoring, infrastructure, deployment, or code decision is made.
 
 ## Authority boundary and stop
 
-This ADR is a proposal, not acceptance. It grants no fairness study, participant/data activity, personal/sensitive-data processing, statistical analysis, legal conclusion, Safety Operations, U-05/U-07/U-08/U-12 resolution, implementation, processing, LC-03, LC-04, Phase 36, or successor authority. DeepSeek calls: `0`. Stop for GPT L3 and Owner review.
+This ADR records Owner-accepted product policy, not U-06 final closeout or a fairness finding. It grants no fairness study, participant/data activity, personal/sensitive-data processing, statistical analysis, legal conclusion, Safety Operations, U-05/U-07/U-08/U-12 resolution, model/Ranking design, implementation, processing, LC-03, LC-04, Phase 36, or successor authority. DeepSeek calls: `0`. Stop for GPT L3 and Owner final closeout review.

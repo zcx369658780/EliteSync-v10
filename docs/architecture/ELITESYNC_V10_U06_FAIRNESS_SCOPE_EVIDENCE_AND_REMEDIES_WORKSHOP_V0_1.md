@@ -1,6 +1,6 @@
 # EliteSync 10.0 U-06 Fairness Scope, Evidence, and Remedies Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `OWNER ACCEPTED — AWAITING GPT L3 AND OWNER FINAL CLOSEOUT REVIEW`
 
 Date: `2026-08-26`
 
@@ -13,7 +13,7 @@ Scope: Technology-neutral fairness product policy and evidence governance only. 
 - ADR-001–008 and the U-02/U-03/U-04/U-11 closeouts are controlling. EliteSync supports human judgment under uncertainty; it does not determine worth, destiny, relationship success, guilt, or universal desirability.
 - User declaration is not objective truth; AI interpretation is not verified fact; Compatibility Hypothesis, Match, Connection, Conversation, and Relationship remain distinct.
 - Safety evidence cannot enter ordinary domains. Private Conversation is not default analytics/model-training input. Technical availability creates no purpose authority.
-- U-06 remains `BLOCKING`; U-05, U-07, U-08, and U-12 remain separately unresolved.
+- U-06 remains `BLOCKING` pending GPT L3 / Owner final closeout review; U-05, U-07, U-08, and U-12 remain separately unresolved.
 
 ### Prior Conceptual Exploration
 
@@ -27,9 +27,9 @@ The Track A research-methodology AI review supplies cautions about construct val
 
 Fairness governance must bind each material product purpose to a plausible harm, affected population rationale, authorized evidence, uncertainty, stop rule, and remedy. A universal score would hide rather than resolve purpose conflicts.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt Sections 2–16 as an Owner-decision-ready fairness policy baseline, subject to the Decision Packet. Drafting does not resolve U-06.
+On `2026-08-26`, the Owner accepted Decision Packet 1–13 = A, including both scoped caveats. Sections 2–16 are the accepted U-06 product-policy direction. This acceptance does not independently close U-06 or authorize any study, data activity, processing, fairness finding, Safety Operations, U-05/U-07/U-08/U-12 resolution, model/Ranking design, or implementation.
 
 ### Still Unknown / Requires Later Review
 
@@ -67,7 +67,7 @@ Track A cautions that a construct, population, comparison, and claim strength mu
 
 Different purposes allocate different benefits, burdens, errors, exposure, and recourse; equal romantic outcomes are neither controllable nor an appropriate fairness target.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Define fairness as purpose-specific governance of unjustified material differential burden, exclusion, exposure, error, or recourse. A separate fairness scope is required for:
 
@@ -105,7 +105,7 @@ Track A recommends naming the estimand/construct and plausible alternative expla
 
 A later evaluation needs a closed harm hypothesis per purpose, but not every harm applies to every purpose.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Use this non-universal product-policy taxonomy:
 
@@ -148,7 +148,11 @@ Track A cautions against post-hoc segmentation, sparse-cell overclaiming, and po
 
 Fairness review must consider both justified population comparisons and severe individual burdens that aggregate results can hide.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
+
+Every affected-group, cohort, intersection, missingness cohort, legally relevant category, or other fairness evaluation category is only a bounded evaluation semantic for a specific named purpose/harm and authorized review. It must not by itself establish or redefine User identity/person attributes; authorize collection, inference, persistence, storage, linkage, comparison, visibility, or reuse; become Identity, Compatibility, Matching, Ranking, desirability, reputation, trustworthiness, Safety-risk, or another product signal; become public/user-facing labeling or unrelated analytics authority; or become person/group truth or human-worth meaning.
+
+Any actual collection, inference, storage, linkage, comparison, or reuse remains separately gated by accepted purpose/data authority and applicable U-05, U-07, privacy, lifecycle, fairness, and legal authority.
 
 Every later scope must consider, where a named harm hypothesis supports it:
 
@@ -185,7 +189,7 @@ Track A warns that missingness mechanisms and proxy relationships can invalidate
 
 Evidence absence can reduce supported claim strength but cannot supply adverse character meaning.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Missing or unknown information is not a negative trait.
 - Opt-out, non-response, revocation, or withdrawal is not lower worth, desirability, Compatibility, or trustworthiness.
@@ -220,7 +224,7 @@ Track A advises predeclared claims, transparent limitations, and no causal promo
 
 Evidence force must be capped by its source, design, population, authority, and uncertainty.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Evidence level | Permitted force | Prohibited promotion |
 | --- | --- | --- |
@@ -257,7 +261,7 @@ Track A supports predeclaration of purpose, population, denominator, missingness
 
 Completeness of a plan is a gate to later consideration, not evidence or execution authority.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Before any future plan may be considered for execution or expansion, it must state:
 
@@ -302,7 +306,7 @@ Track A cautions that unlike constructs and denominators cannot be made valid by
 
 One global score would conceal trade-offs among allocation, error, privacy, autonomy, representation, Safety process, and recourse.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Explicitly prohibit one universal `fairness score` or global pass/fail metric across purposes. Future review, if authorized, must use a portfolio of purpose- and harm-specific evidence with visible conflicts, unknowns, and stop conditions. No portfolio result becomes person/group worth or unrelated-purpose authority.
 
@@ -330,7 +334,7 @@ Track A recommends predeclared stop conditions and narrower claims when evidence
 
 Policy can define categorical gates without inventing numeric thresholds.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 For the specific affected purpose/use:
 
@@ -366,7 +370,7 @@ Track A cautions that remedies must match the supported claim and cannot erase m
 
 Remedy should remove or reduce the governed product harm without promising control over human choice or history.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Available product-policy remedy classes are:
 
@@ -409,7 +413,7 @@ Track A warns that selection and prior product allocation can generate endogenou
 
 Product-created opportunity affects later responses; historical engagement cannot be treated as an independent measure of worth or Compatibility.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Exposure, engagement, response, and popularity do not equal worth.
 - Rejection does not equal undesirable person truth.
@@ -444,9 +448,11 @@ Track A cautions that observed choices do not automatically justify system polic
 
 Individual relational choice and system allocation have different authority and harm responsibilities.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 The product must not label a User discriminatory merely for declining a Match or exercising a boundary. User preferences cannot automatically justify system-level sensitive-trait discrimination, proxy exclusion, or worth Ranking.
+
+Packet 11 A accepts governance conditions only. It approves no concrete preference field, sensitive/proxy preference, signal allowlist expansion, Ranking feature, weight, inference, algorithm/model, or implementation. Any future Matching preference consumption, if separately authorized, must remain current, user-authored, purpose-specific, revocable, narrow, and subject to U-07 plus fairness/privacy/legal review where applicable. Missing preference creates no adverse inference.
 
 Owner options for MVP:
 
@@ -479,7 +485,7 @@ Track A offers no Safety specialist evidence and cannot settle protection or rev
 
 Fairness may govern process burden and recourse but cannot require unwanted contact, symmetrical exposure, evidence leakage, or weakened protection.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Fairness never overrides a User's decline/block or minimum-necessary immediate protection for symmetry.
 - Fairness review cannot treat allegation, report, block, case state, or interim action as guilt/person risk.
@@ -512,7 +518,7 @@ Track A emphasizes that unauthorized or unrepresentative data cannot support val
 
 An inability to evaluate fairly with authorized data is a product-scope constraint, not authority to collect more.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Every fairness evidence activity requires separate named-purpose data authority, minimization, provenance, access, lifecycle, correction, retention, and review boundaries. If necessary data lacks accepted authority, the affected use remains blocked or a narrower product scope must be chosen. This workshop creates no collection, participant contact, processing, linkage, inference, or retention authority.
 
@@ -540,7 +546,7 @@ Track A supports explicit prerequisites and claim-strength limits before executi
 
 A fairness-sensitive MVP purpose needs accepted policy semantics even if empirical evaluation must remain separately blocked.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Before any fairness-sensitive MVP use may be separately authorized, Owner-accepted semantics must cover:
 
@@ -584,7 +590,17 @@ Multiple classes may apply. A product rule does not resolve empirical, legal, si
 
 ## 18. Owner Decision Packet
 
-Each packet choice records product policy only. Choosing A does not resolve U-06 or authorize fairness study/data activity, processing, measurement, Safety Operations, or implementation.
+Owner decision date: `2026-08-26`.
+
+The Owner selected Packet 1–13 = A. The decision options below remain as durable rationale and exit conditions; `(**recommended**)` identifies the option the Owner accepted. These choices record product policy only and do not independently close U-06 or authorize fairness study/data activity, processing, measurement, Safety Operations, or implementation.
+
+| Packet | Owner choice |
+| --- | --- |
+| 1–13 | `A` |
+
+Packet 3 A is subject to caveat 1: every fairness evaluation category is purpose/harm- and review-bounded only. It creates no identity/person attribute, collection/inference/persistence/linkage/visibility/reuse authority, product signal, public/user label, unrelated analytics authority, person/group truth, or human-worth meaning.
+
+Packet 11 A is subject to caveat 2 and accepts governance conditions only. It approves no concrete preference field, sensitive/proxy preference, signal allowlist expansion, Ranking feature, weight, inference, algorithm/model, or implementation. Any later authorized Matching preference consumption must remain current, user-authored, purpose-specific, revocable, narrow, and subject to U-07 plus fairness/privacy/legal review where applicable. Missing preference creates no adverse inference.
 
 1. **Purpose-specific scope.** A: accept the seven-purpose harm-governance model (**recommended**). B: exclude fairness-sensitive affected purposes from MVP. Reject/exit A if it is treated as equal romantic outcomes or consent override. Dependency classes: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER QUALIFIED FAIRNESS / RESEARCH-METHOD REVIEW`; `REQUIRES LATER LEGAL AUTHORITY`. Retained unknowns: material purposes/populations.
 2. **Harm taxonomy.** A: accept the twelve-class non-universal taxonomy (**recommended**). B: keep affected uses blocked until a narrower taxonomy is accepted. Reject/exit A if harm labels are treated as empirical findings. Dependency classes: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER QUALIFIED FAIRNESS / RESEARCH-METHOD REVIEW`. Retained unknowns: applicability/materiality.
@@ -602,4 +618,8 @@ Each packet choice records product policy only. Choosing A does not resolve U-06
 
 ## 19. Stop state
 
-U-06 remains `BLOCKING`. ADR-009 remains proposed. DeepSeek calls: `0`. No fairness study, participant/user activity, data collection, personal/sensitive-data processing, statistical analysis, legal research/classification, numeric metric/threshold/sample/power choice, Safety Operations, monitoring/pipeline, model/Ranking, technical architecture, implementation, U-05/U-07/U-08/U-12 resolution, LC-03, LC-04, Phase 36, or successor work is authorized or inferred. Stop for GPT L3 and Owner review.
+Packet 1–13 = A is Owner accepted, and ADR-009 is accepted. U-06 nevertheless remains `BLOCKING` pending GPT L3 / Owner final closeout review. DeepSeek calls: `0`. No fairness study, participant/user activity, data collection, personal/sensitive-data processing, statistical analysis, legal research/classification, numeric metric/threshold/sample/power choice, Safety Operations, monitoring/pipeline, model/Ranking, technical architecture, implementation, U-05/U-07/U-08/U-12 resolution, LC-03, LC-04, Phase 36, or successor work is authorized or inferred.
+
+All retained dependencies remain unchanged: U-05 participant/data activity authority; U-07 signal/evidence standard and allowlists; U-08 segment/readiness evidence; U-12 quality/target authority; qualified fairness/research-method findings; final affected/protected group lists and legal categories; actual fairness harms/findings; metrics, baselines, disparity thresholds, sample/evidence sufficiency, confidence/power/statistical rules; data collection, processing, linkage, inference, retention, access, monitoring, or experimentation; reviewer qualifications and operational ownership; remedy timing/SLA; Safety-process metrics/thresholds, prioritization/risk model, and Safety Operations; legal conclusions/duties; model/Ranking design; technical architecture; implementation; and every other separately unresolved `BLOCKING UNKNOWN`.
+
+Stop for GPT L3 and Owner final closeout review.
