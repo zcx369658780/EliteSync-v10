@@ -1,18 +1,20 @@
 # ADR-007: Safety Governance and Moderation Responsibility
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: ACCEPTED
 
 Date: `2026-08-26`
 
-Decision owner: Owner, after GPT L3 Safety-governance review
+Owner acceptance date: `2026-08-26`
+
+Decision owners: Owner (final product authority), with GPT L3 Safety-governance review
 
 Depends on: ADR-001 through ADR-006; U-02/U-03 closeout; Phase 34 Owner-accepted Safety authority; accepted LC-02 closeout and layered advisory artifact
 
 ## Context
 
-U-04 remains `BLOCKING`. EliteSync has accepted Safety meaning boundaries but lacks an accepted product-policy taxonomy, protection model, evidence/review semantics, case-state vocabulary, appeal/lifecycle rule, repeat-pattern boundary, external-routing authority, responsibility model, and capacity evidence.
+U-04 remains `BLOCKING` pending GPT L3 / Owner final closeout review. EliteSync has accepted Safety meaning boundaries and the bounded semantic-governance direction below, while operational, factual, fairness, responsibility, quality/capacity, and legal dependencies remain unresolved.
 
-This ADR proposes technology-neutral product governance only. It does not define Safety Operations, moderation staffing, workflow, scoring, technical architecture, processing, or implementation.
+This ADR records accepted technology-neutral product governance only. It does not define Safety Operations, moderation staffing, workflow, scoring, technical architecture, processing, or implementation.
 
 ## Evidence discipline
 
@@ -32,15 +34,15 @@ Track B is AI-assisted advisory analysis only. LC-02 Layer B is AI-assisted lega
 
 A closed semantic and authority contract can reduce category collapse now while leaving factual, fairness, responsibility, capacity, legal, and operational questions unresolved.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the recommended option below after GPT L3 and Owner review.
+The Owner accepted Packet 1–9 as B and Packet 10 as A on `2026-08-26`, including the `actioned/protected` caveat below. This acceptance is not U-04 final closeout and creates no operational, processing, or implementation authority.
 
 ### Still Unknown / Requires Later Review
 
 Trigger thresholds, finding/evidence standard, reviewer qualification, responsibility, capacity, quality targets, fairness method, legal duties, external routing, exact retention, backup, anonymization verification, response timing, notice/appeal procedure, and operations remain unknown.
 
-## Proposed decision
+## Decision
 
 ### 1. Non-collapsible taxonomy
 
@@ -63,6 +65,8 @@ Finding semantics are classified `REQUIRES LATER FACT / FORMAL REVIEW`, `DEPENDS
 ### 4. Neutral case-processing vocabulary
 
 Use `submitted`, `pending review`, `insufficient information`, `actioned/protected`, `rejected/not advanced`, `unresolved`, `appealed`, `corrected/reversed/superseded`, and `closed` only as processing meanings. None implies guilt, innocence, danger, safety, truth, dishonesty, trustworthiness, character, Compatibility, or reputation.
+
+`actioned/protected` is only a neutral case-processing umbrella. It MUST NOT indicate, collapse, or substitute for whether the underlying authority was (a) interim, reversible, minimum-necessary protection or (b) a reviewed, longer-lived, consequential restriction. These authority classes remain semantically distinct, and later product or technical representations must preserve that distinction.
 
 Vocabulary is `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; transition authority remains later.
 
@@ -108,9 +112,9 @@ Before affected MVP implementation may be separately authorized, product policy 
 
 The semantic gate is `PRODUCT RULE CAN BE OWNER-DECIDED NOW`. It does not itself authorize implementation, processing, or Safety Operations; dependent scope remains blocked by unresolved U-06/U-11/U-12/legal/factual requirements.
 
-## Recommended option
+## Accepted option
 
-Adopt the bounded semantic-governance model above and the detailed Owner Decision Packet in `docs/architecture/ELITESYNC_V10_U04_SAFETY_GOVERNANCE_WORKSHOP_V0_1.md`.
+The Owner accepted the bounded semantic-governance model above through Packet 1–9 = B and Packet 10 = A, as recorded in `docs/architecture/ELITESYNC_V10_U04_SAFETY_GOVERNANCE_WORKSHOP_V0_1.md`.
 
 Reasons:
 
@@ -120,7 +124,7 @@ Reasons:
 - prevents Safety evidence, counts, AI output, and correction residue from becoming reputation or romantic meaning;
 - gives later review a product contract without inventing law, fairness, responsibility, capacity, operations, or technology.
 
-### Rejection or exit conditions
+### Reconsideration or exit conditions
 
 Reject or revise this option if it weakens any accepted invariant, permits Safety evidence leakage/person scoring/autonomous adjudication, collapses self-protection with findings, or is treated as operational or implementation authority. Stop affected MVP scope when later factual/legal/fairness/responsibility/quality prerequisites are absent.
 
@@ -177,16 +181,15 @@ Rejected because both erase purpose-specific, multi-interest, correction, review
 
 ## Unknowns retained
 
-- U-04: `BLOCKING — NOT RESOLVED BY THIS PROPOSAL`.
+- U-04: `BLOCKING — OWNER-ACCEPTED POLICY RECORDED; AWAITING FINAL CLOSEOUT REVIEW`.
 - U-06, U-11, U-12, and every other separately unresolved `BLOCKING UNKNOWN` remain unchanged.
-- No trigger threshold, finding/evidence standard, reviewer qualification, fairness method, responsible operating role, capacity/SLA, quality target, legal duty, external route, exact retention, backup rule, anonymization verification, response time, notice/appeal procedure, Safety Operations policy, processing authority, or technical design is selected.
+- No concrete trigger threshold or duration; finding/evidence standard; reviewer qualification, role, or separation of duties; U-06 fairness method; U-11 responsibility/failure ownership; U-12 quality/capacity/service target; legal/external-routing duty; exact retention period; backup treatment; anonymization verification standard; response timing; detailed notice/appeal procedure; staffing/queue/SLA; Safety Operations policy; processing authority; or implementation authority is selected.
 
-## Owner decision dependency
+## Owner acceptance and closeout dependency
 
-Owner must decide the numbered packet in the U-04 workshop after GPT L3 reviews Safety semantics, provenance, authority, lifecycle, isolation, dependencies, and MVP boundaries.
+The Owner accepted Packet 1–9 = B and Packet 10 = A on `2026-08-26`. U-04 remains blocking until this incorporated revision receives GPT L3 / Owner final closeout review.
 
-Until explicit Owner acceptance and final closeout:
+After this acceptance and until final closeout:
 
-- ADR-007 remains `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`;
 - U-04 remains blocking;
 - no DeepSeek, new legal research, real Safety case/user data, Safety Operations, workforce/queue/SLA design, Safety scoring/risk model, autonomous triage, external-routing implementation, LC-03, LC-04, Phase 36, processing, database/schema/API/backend/Flutter/services/events/queues/storage/infrastructure/code, or implementation is authorized.

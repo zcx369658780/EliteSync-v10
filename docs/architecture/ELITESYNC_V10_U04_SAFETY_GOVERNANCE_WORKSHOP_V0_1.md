@@ -1,6 +1,6 @@
 # EliteSync-v10 U-04 Safety Governance Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `OWNER ACCEPTED — NARROW REVISION INCORPORATED — AWAITING GPT L3 / OWNER FINAL CLOSEOUT REVIEW`
 
 Date: `2026-08-26`
 
@@ -14,7 +14,8 @@ This is a technology-neutral U-04 Safety-governance and product-policy workshop.
 - U-02 and U-03 are complete for the current pre-alpha product-policy purpose. Their accepted lifecycle, retention, shared-rights, correction, and control-directive boundaries remain controlling.
 - Phase 34 Owner decisions establish 28 Safety invariants. Section 1 preserves them without weakening.
 - LC-02 Layer A is repository-authoritative Safety authority. LC-02 Layer B remains `AI-ASSISTED LEGAL RESEARCH — NOT FORMAL LEGAL OPINION`.
-- U-04 remains `BLOCKING`. This draft does not resolve it.
+- On `2026-08-26`, the Owner accepted Decision Packet 1–9 as B and Packet 10 as A, including the non-blocking `actioned/protected` caveat.
+- U-04 remains `BLOCKING` until the incorporated revision receives GPT L3 / Owner final closeout review.
 
 ### Advisory Input
 
@@ -25,9 +26,9 @@ This is a technology-neutral U-04 Safety-governance and product-policy workshop.
 
 U-04 can establish a bounded semantic contract now: what each Safety concept means, what it cannot mean, which reversible protections are conceptually permitted, and which decisions must stop for later authority. It cannot establish real triggers, thresholds, personnel, capacity, law, or case outcomes.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the taxonomy, authority classes, lifecycle boundaries, control-directive contract, and MVP gate below, subject to explicit Owner selection in section 16.
+The Owner accepted the taxonomy, authority classes, lifecycle boundaries, control-directive contract, and MVP gate below. This acceptance is product policy only and does not close U-04 or authorize operations, processing, or implementation.
 
 ### Still Unknown / Requires Later Review
 
@@ -94,7 +95,7 @@ Track B identifies category collapse as a high-priority risk; its suggested voca
 
 A closed conceptual taxonomy reduces meaning drift without selecting a database enum or operational workflow.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Concept | Product-policy meaning | MUST NOT imply | Classification |
 | --- | --- | --- | --- |
@@ -129,7 +130,7 @@ Track B highlights both false-positive harm and residual false-negative risk wit
 
 Product policy can permit reversible protection categories without creating automatic thresholds.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 1. A user block/self-protective closure applies the participant's boundary without adjudicating another person. Classification: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`.
 2. A report creates a restricted concern record; it does not automatically add protection beyond separately justified scope. Classification: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`.
@@ -156,7 +157,7 @@ LC-02 suggests privacy, accuracy, purpose, correction, and deletion consideratio
 
 Each item needs an explicit source class, bounded proposition, context, uncertainty, purpose, and correction status before it can carry any reviewed force.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Provenance class | Allowed force | Prohibited force | Classification |
 | --- | --- | --- | --- |
@@ -187,7 +188,7 @@ Track B and Phase 34 name candidate states but explicitly did not accept an oper
 
 A neutral vocabulary can prevent user-facing and internal semantic overclaim while remaining implementation-neutral.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | State | Meaning | Explicit non-meaning |
 | --- | --- | --- |
@@ -200,6 +201,8 @@ A neutral vocabulary can prevent user-facing and internal semantic overclaim whi
 | `appealed` | A contest/re-review request is active or recorded | Not automatic error or reversal |
 | `corrected/reversed/superseded` | A later authorized record replaces or limits an earlier state/decision | Not deletion of provenance or proof of malicious reporting |
 | `closed` | Active handling ended for a stated reason | Not public/person truth and not necessarily deletion or expiry |
+
+`actioned/protected` is accepted only as a neutral case-processing umbrella. It MUST NOT indicate, collapse, or substitute for whether the underlying authority was (a) interim, reversible, minimum-necessary protection or (b) a reviewed, longer-lived, consequential restriction. Those authority classes remain semantically distinct, and every later product or technical representation must preserve the distinction even if both appear under this neutral umbrella.
 
 The vocabulary is `PRODUCT RULE CAN BE OWNER-DECIDED NOW`. Criteria and transitions are `REQUIRES LATER FACT / FORMAL REVIEW`, `DEPENDS ON U-11 RESPONSIBILITY`, and `DEPENDS ON U-12 QUALITY / CAPACITY`.
 
@@ -221,7 +224,7 @@ Track B identifies unresolved human-review triggers and failure ownership. This 
 
 Capability classes can define required authority without inventing staff titles or teams.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Decision class | Conceptual authority boundary | Classification |
 | --- | --- | --- |
@@ -251,7 +254,7 @@ Track B suggests bounded summarization, organization, contradiction detection, u
 
 The allowed advisory functions are useful only if no AI output becomes a hidden gate, scalar person score, or decision substitute.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Future separately authorized AI may assist with summarization, organization, contradiction detection, uncertainty exposure, review-question generation, and non-binding review support. Each output remains labeled, provenance-bound, reviewable, and non-authoritative.
 
@@ -277,7 +280,7 @@ Phase 34 gives conceptual examples only; they are not APIs, events, or schemas.
 
 Closed meanings prevent an availability directive from becoming an adverse person label.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Conceptual directive | Ordinary-domain meaning | Forbidden payload/inference |
 | --- | --- | --- |
@@ -305,7 +308,7 @@ LC-02 identifies accuracy, purpose, correction, deletion, and preservation quest
 
 Active enforcement and restricted historical/audit records require different lifecycle meanings.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 1. Superseded directives cease to authorize ordinary-domain enforcement; stale downstream controls must be removed or replaced. `PRODUCT RULE CAN BE OWNER-DECIDED NOW`.
 2. No Safety-derived reputation, hidden penalty, Compatibility feature, explanation residue, or relationship-worth effect may remain. `PROHIBITED BY ACCEPTED AUTHORITY`.
@@ -331,7 +334,7 @@ Track B identifies appeal/correction gaps. LC-02 supplies no complete disclosure
 
 Consequential reviewed restrictions should have a contest boundary, while immediate user-self protection need not be adjudicated against the protecting participant.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Correcting a factual/product error is distinct from appealing a reviewed decision.
 - Longer-lived or materially consequential reviewed restrictions should be contestable under later accepted authority; user-self block/contact refusal is not an allegation to adjudicate or override.
@@ -358,7 +361,7 @@ Track B flags hidden report-count/block-count/bad-actor scoring and false-positi
 
 Repeated records may justify later human review of the records themselves, but cannot be compressed into person truth or a hidden person score.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Preserve each record's provenance, context, uncertainty, and disposition separately.
 - Do not aggregate counts into guilt, trustworthiness, bad-actor, reputation, desirability, Compatibility, or romantic Ranking. Such use is `PROHIBITED BY ACCEPTED AUTHORITY`.
@@ -383,7 +386,7 @@ LC-02 supports shortest-necessary and deletion/correction review as advisory leg
 
 Active decision state and restricted historical/audit record can have distinct purposes and lifecycles.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Potential named purposes for later acceptance are limited to: handling an active concern; enforcing a currently authorized protection/restriction; resolving a correction/contest/appeal; preserving minimum provenance needed to explain a consequential decision; and complying with a separately established legal duty.
 
@@ -411,7 +414,7 @@ Track B routes legal questions outward and authorizes no emergency decision or e
 
 Only a stop boundary is safe before jurisdiction, duty, factual threshold, accountable authority, notice/privacy, and operations are established.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 - Law-enforcement, emergency-service, regulator, or other external routing requires separately established legal and factual authority plus explicit product and operational authorization.
 - AI may organize facts/questions but cannot decide emergency truth, reporting duty, or routing outcome.
@@ -439,7 +442,7 @@ Track B identifies cross-context failure ownership and capacity as unresolved.
 
 Responsibility capabilities can be named without selecting teams, services, reviewers, or staffing.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 | Capability | Conceptual responsibility | Dependency |
 | --- | --- | --- |
@@ -480,13 +483,14 @@ Must remain gated: reviewed findings, consequential/long-lived restrictions, evi
 
 ## 16. Owner Decision Packet
 
-The Owner may select, revise, or defer each item independently. No recommendation is accepted until explicitly recorded.
+Owner decisions recorded on `2026-08-26` are shown below. They establish bounded product policy only; they do not independently close U-04 or authorize operations, processing, or implementation.
 
 1. **Safety taxonomy and case-state vocabulary**
    - A: use generic `report/action` labels only.
    - B: adopt sections 3 and 6 with explicit non-meanings and no person-truth inference.
    - C: defer all Safety semantics.
    - **Recommendation:** B.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** reject B if any term is treated as guilt, a technical workflow, or a closed evidentiary standard.
    - **Retained unknowns:** criteria, transitions, finding standard, authority, timing.
 
@@ -495,6 +499,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: user-self protection plus reversible, minimum-necessary interim protection before adjudication under later accepted triggers/review/expiry.
    - C: automatic protection from any report/count/AI output.
    - **Recommendation:** B; A under-protects, C is overbroad and conflicts with accepted authority.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** stop if reversibility, minimum scope, review, expiry, and correction cannot be supported.
    - **Retained unknowns:** concrete triggers, duration, evidence threshold, responsibility, capacity.
 
@@ -503,6 +508,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: adopt section 5; require separately accepted review authority and standard for findings.
    - C: prohibit any future reviewed finding.
    - **Recommendation:** B.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** reject any implementation that lacks source, bounded proposition, purpose, uncertainty, correction, and contest.
    - **Retained unknowns:** admissibility, evidence threshold, review standard, external evidence, legal authority.
 
@@ -511,6 +517,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: adopt the capability/decision classes in sections 7 and 15 without selecting staff or operations.
    - C: let AI own review decisions.
    - **Recommendation:** B; C is prohibited.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** revise if classes collapse self-protection, interim protection, finding, restriction, appeal, or external routing.
    - **Retained unknowns:** accountable roles, qualification, separation, capacity, SLA, failure ownership.
 
@@ -519,6 +526,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: keep Safety-only prioritization/risk `NOT DECIDED`; prohibit person scores and autonomous triage; route later assessment to U-06/U-11/U-12/legal review.
    - C: prohibit even bounded future advisory assistance.
    - **Recommendation:** B.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** reject any aid that gates outcomes, obscures uncertainty, becomes a person score, or leaks to ordinary domains.
    - **Retained unknowns:** necessity, fairness method, evidence, threshold, review, law, capacity.
 
@@ -527,6 +535,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: send only minimum-necessary control meaning and require correction/reversal of stale controls with no reputation residue.
    - C: prohibit Safety from constraining ordinary journeys.
    - **Recommendation:** B; A is prohibited and C conflicts with accepted Safety precedence.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** stop if evidence isolation or reliable reversal cannot be preserved.
    - **Retained unknowns:** responsibility, quality targets, propagation timing, failure handling.
 
@@ -535,6 +544,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: distinguish correction from appeal; make consequential reviewed restrictions contestable under later authority while protecting reporter/private/Safety information.
    - C: disclose full evidence and reporter identity by default.
    - **Recommendation:** B.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** revise if notice over-discloses or contest overrides user-self protection.
    - **Retained unknowns:** contestable set, procedure, timing, standard, reviewer, disclosure duty.
 
@@ -543,6 +553,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: named purpose, shortest necessity, restricted access, review/expiry, termination, no ordinary reuse, separate de-identify/anonymize meanings.
    - C: universal immediate deletion.
    - **Recommendation:** B.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** reject unspecified purpose, speculative value, blanket exception, or conflated anonymization claim.
    - **Retained unknowns:** periods, backup, preservation law, deletion outcomes, access/export, anonymization verification.
 
@@ -551,6 +562,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: require separate legal/factual/product/operational authority before any external route.
    - C: promise external routing will never occur.
    - **Recommendation:** B; A is prohibited and C makes an unsupported universal promise.
+   - **Owner decision:** B.
    - **Rejection/exit conditions:** no design until jurisdiction, duty, trigger facts, authority, privacy, correction, availability, and failure ownership are established.
    - **Retained unknowns:** all duties, triggers, recipients, timing, procedures, capacity.
 
@@ -559,6 +571,7 @@ The Owner may select, revise, or defer each item independently. No recommendatio
    - B: handle Safety conflicts ad hoc during implementation.
    - C: remove all affected Safety/report/protection scope from MVP.
    - **Recommendation:** A; reject B. C is viable only as explicit scope removal and does not negate user-self protection needs.
+   - **Owner decision:** A. The nine minimum semantics are the affected-MVP product-policy gate; U-04 remains blocking pending final closeout review.
    - **Rejection/exit conditions:** stop affected MVP scope if required semantics or U-06/U-11/U-12/legal/factual dependencies are absent.
    - **Retained unknowns:** operations, implementation, thresholds, staffing, quality/capacity, fairness, legal duties.
 
@@ -566,8 +579,9 @@ The Owner may select, revise, or defer each item independently. No recommendatio
 
 - U-04: `BLOCKING — NOT SILENTLY RESOLVED`.
 - U-06, U-11, U-12, and every other separately unresolved `BLOCKING UNKNOWN`: unchanged.
-- ADR-007 remains proposed.
+- Retained unknowns remain: concrete trigger thresholds or durations; finding/evidence standard; reviewer qualification, role, or separation of duties; U-06 fairness method; U-11 responsibility/failure ownership; U-12 quality/capacity/service targets; legal/external-routing duties; exact retention periods; backup treatment; anonymization verification standard; response timing; detailed notice/appeal procedure; staffing/queues/SLAs; Safety Operations; processing authority; and implementation authority.
+- ADR-007 records the Owner-accepted policy direction but does not imply U-04 final closeout or any operational/processing/implementation authority.
 - DeepSeek calls: `0`.
 - No new legal research, real case/user data, Safety Operations, workforce/queue/SLA design, scoring/risk model, autonomous triage, external-routing implementation, LC-03, LC-04, Phase 36, processing, database/schema/API/backend/Flutter/service/event/queue/storage/infrastructure/code, or implementation is authorized or performed.
 
-Stop for GPT L3 and Owner review of the numbered packet.
+Stop for GPT L3 / Owner final closeout review. Do not independently mark U-04 complete.
