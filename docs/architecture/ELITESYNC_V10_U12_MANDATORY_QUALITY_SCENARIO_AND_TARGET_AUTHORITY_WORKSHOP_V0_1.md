@@ -1,6 +1,6 @@
 # EliteSync-v10 U-12 Mandatory Quality Scenario and Target-Authority Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 REVIEW`
+Status: `ACCEPTED — NARROW ADR-014 / U-12 ACCEPTANCE REVISION AUTHORIZED`
 
 Date: `2026-08-27`
 
@@ -8,7 +8,7 @@ Issue authority: GitHub Issue #10, bounded technology-neutral product-policy wor
 
 ## 0. Scope, authority, and evidence discipline
 
-This workshop proposes mandatory quality-governance obligations, scenario families, target-state and target-authority grammar, evidence-package requirements, and scoped remedy/stop semantics. It selects no concrete numeric or operational target and creates no research, participant/data, measurement, telemetry, processing, testing, technical-design, Safety Operations, implementation, or successor authority.
+This workshop records GPT L3's Owner-delegated bounded-governance acceptance of mandatory quality-governance obligations, scenario families, target-state and target-authority grammar, evidence-package requirements, and scoped remedy/stop semantics. GPT L3 review comment `5431918109` supplied two controlling caveats; delegated decision comment `5431919650` accepted Packet 1–13 = A and authorized this incorporation. It selects no concrete numeric or operational target and creates no research, participant/data, measurement, telemetry, processing, testing, technical-design, Safety Operations, implementation, or successor authority. This revision does not independently perform final closeout: U-12 remains `BLOCKING` and Issue #10 remains OPEN pending final GPT L3 closeout verification.
 
 ### Observed / Accepted Authority
 
@@ -33,9 +33,9 @@ The Phase-6 quality workshop and historical G-06 readiness grammar propose quali
 
 A mandatory product-policy portfolio and target-authority grammar can be decided without selecting target instances. Making a family mandatory prevents silent waiver; it does not validate performance or provide the evidence, measurement authority, or concrete target required for later acceptance.
 
-### Proposed Product Decision
+### GPT L3-Accepted Bounded Product Decision
 
-Recommend Packet 1–13 = A. This remains proposed. Codex has no acceptance authority; U-12 remains `BLOCKING`; Issue #10 remains OPEN pending independent GPT L3 review.
+GPT L3 accepted Packet 1–13 = A under Owner-delegated bounded governance, subject to both controlling caveats in comment `5431918109`. The bounded direction after incorporation and final verification is `U-12 = COMPLETE FOR CURRENT PRE-ALPHA PRODUCT-POLICY PURPOSE`. Codex has no acceptance or closeout authority. U-12 remains `BLOCKING` and Issue #10 remains OPEN pending final GPT L3 closeout verification.
 
 ### Still Unknown / Requires Later Review
 
@@ -43,17 +43,17 @@ All concrete targets, operational capacity/staffing, latency, availability, reco
 
 ## 1. Mandatory quality-attribute portfolio
 
-### Option A — seven mandatory product-level obligations (recommended)
+### Option A — seven mandatory product-level obligations (accepted)
 
 Adopt Privacy, Explainability, Reliability, Safety, Fairness, User Control, and Auditability as the mandatory current pre-alpha quality-governance portfolio.
 
-These are product-level governance obligations. They are not empirical findings, an exhaustive technical NFR list, performance commitments, or implementation requirements with accepted numeric values.
+These are product-level governance obligations. They are not empirical findings, validated product performance, an exhaustive technical NFR list, numeric commitments, or implementation requirements with accepted target values.
 
 ### Option B — retain quality portfolio fully blocked
 
 Define no mandatory portfolio until every concrete target exists.
 
-Recommendation: A. Reject or exit A if an obligation is treated as validated performance, a numeric commitment, an architecture requirement, or permission to waive another accepted boundary.
+Accepted: A. Reject or exit A if an obligation is treated as validated performance, a numeric commitment, an architecture requirement, or permission to waive another accepted boundary.
 
 Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `DEPENDS ON U-05 PARTICIPANT / DATA ACTIVITY AUTHORITY`; `DEPENDS ON U-08 SEGMENT / READINESS EVIDENCE`; `DEPENDS ON U-10 COMPREHENSION / ACCESSIBILITY EVIDENCE`; `DEPENDS ON U-15 TECHNICAL / OPERATIONS EVIDENCE`.
 
@@ -61,7 +61,7 @@ Retained unknowns: target instances, measurements, populations/environments, evi
 
 ## 2. Quality conflict and precedence
 
-### Option A — authority-constrained precedence (recommended)
+### Option A — authority-constrained precedence (accepted)
 
 - Privacy, Safety, and User Control constrain ordinary product value.
 - Reliability includes correct scoped cessation/denial, not merely successful delivery.
@@ -74,7 +74,7 @@ Retained unknowns: target instances, measurements, populations/environments, evi
 
 Rejected because delivery cannot supersede current authority, Safety containment, Privacy, or User control.
 
-Recommendation: A. Reject or exit A if quality balancing recreates expired authority, treats denial as failure when cessation is required, exposes restricted evidence, or produces global person meaning.
+Accepted: A. Reject or exit A if quality balancing recreates expired authority, treats denial as failure when cessation is required, exposes restricted evidence, or produces global person meaning.
 
 Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `REQUIRES LATER PRIVACY / LEGAL / FACTUAL AUTHORITY`; `REQUIRES LATER SAFETY / OPERATIONS AUTHORITY`; `PROHIBITED BY ACCEPTED AUTHORITY`.
 
@@ -82,7 +82,7 @@ Retained unknowns: concrete conflict instances, reviewer roles, operational proc
 
 ## 3. Mandatory scenario portfolio
 
-### Option A — seven mandatory scenario families (recommended)
+### Option A — seven mandatory scenario families (accepted)
 
 Adopt `QA-PRIV-01`, `QA-EXPL-01`, `QA-REL-01`, `QA-SAFE-01`, `QA-FAIR-01`, `QA-CTRL-01`, and `QA-AUD-01` as mandatory current pre-alpha quality-governance scenario families.
 
@@ -92,11 +92,21 @@ They are not claims that historical Phase-6 wording is validated, participant ev
 
 Retain U-12 blocked rather than permit silent waiver or ungoverned substitution.
 
-Recommendation: A. Reject or exit A if mandatory family status is treated as empirical validation, if applicable families can be omitted without authority, or if an instance invents targets/processing/implementation.
+Accepted: A. Reject or exit A if mandatory family status is treated as empirical validation, if applicable families can be omitted without authority, or if an instance invents targets/processing/implementation.
 
 Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; all later target-authority classes in Section 7; `PROHIBITED BY ACCEPTED AUTHORITY`.
 
 Retained unknowns: future instances, populations/environments, observable evidence, accepted targets, reviewer findings, and implementation.
+
+### 3.1 Controlling applicability caveat
+
+`MANDATORY PORTFOLIO != EVERY FAMILY APPLIES TO EVERY SCOPE`.
+
+The seven families are mandatory governance coverage classes. For every future concrete purpose, feature, design claim, review scope, product promise, or consequential use, applicability must be explicitly determined from the affected purpose, information class, interaction, authority, provenance, lifecycle, harm/control path, and Safety/Privacy/Fairness boundary.
+
+An applicable mandatory family may not be silently waived. A genuinely non-applicable family need not be fabricated merely because the family exists. A non-applicability determination must not bypass an actually affected Privacy, Safety, User Control, Fairness, Explainability, Reliability, or Auditability obligation.
+
+This acceptance creates no automated applicability engine, technical rule, or implementation authority.
 
 ## 4. Scenario contract schema
 
@@ -117,7 +127,7 @@ Every mandatory scenario instance must record:
 13. stop / fail-closed condition; and
 14. lifecycle / correction / reversal implications.
 
-The schema creates no measurement, telemetry, data, processing, testing, technical-design, or implementation authority.
+Schema completeness creates no target acceptance, participant, data, telemetry, measurement, processing, testing, architecture, or implementation authority.
 
 ## 5. Mandatory scenario-family contracts
 
@@ -131,7 +141,7 @@ The schema creates no measurement, telemetry, data, processing, testing, technic
 6. **Expected response:** stop affected use/visibility and invalidate or withdraw stale dependent effects within authorized scope.
 7. **Prohibited response:** continue from cache/history/default, broaden deletion, expose unrelated private/Safety information, or create person meaning.
 8. **Later observable evidence:** evidence sufficient to show authority change, scoped cessation, propagation, and stale-effect cleanup without unauthorized surveillance.
-9. **Target state:** cessation/cleanup rules are proposed `POLICY INVARIANT`; every concrete timing/coverage target is `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** cessation/cleanup rules are accepted `POLICY INVARIANT`; every concrete timing/coverage target is `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** privacy/deletion/export/retention/legal timing requires qualified privacy/legal/factual authority and explicit acceptance.
 11. **Dependencies/reviewers:** U-05 where evidence activity is proposed; privacy/legal/shared-rights review; U-15 technical/operations evidence later.
 12. **Remedy if unmet:** stop/deny affected use, invalidate/withdraw stale output, restore control where possible, route to separately authorized review, or exclude affected scope.
@@ -148,7 +158,7 @@ The schema creates no measurement, telemetry, data, processing, testing, technic
 6. **Expected response:** preserve provenance, uncertainty, epistemic limits, non-availability where applicable, and meaningful User control.
 7. **Prohibited response:** fabricate confidence, upgrade evidence, infer private thought/person truth, reveal restricted data, or present AI fluency as fact.
 8. **Later observable evidence:** attributable source/status, uncertainty and lifecycle representation, correction effect, and bounded control evidence under separately authorized observation.
-9. **Target state:** no evidence upgrade/leakage and honest uncertainty are proposed `POLICY INVARIANT`; comprehension/quality targets are `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** no evidence upgrade/leakage and honest uncertainty are accepted `POLICY INVARIANT`; comprehension/quality targets are `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** user comprehension/accessibility targets require U-10 qualified evidence and explicit later acceptance.
 11. **Dependencies/reviewers:** U-10; U-05 if participant activity is proposed; U-07; applicable privacy/Safety/legal review.
 12. **Remedy if unmet:** omit explanation/output, expose uncertainty/non-availability, withdraw stale dependent output, restore control, or route to authorized review.
@@ -165,7 +175,7 @@ The schema creates no measurement, telemetry, data, processing, testing, technic
 6. **Expected response:** correct scoped cessation/denial; no retry, cache, history, or technical state recreates expired authority.
 7. **Prohibited response:** continue delivery as success, globalize restriction, collapse reasons, leak Safety meaning, or infer person defect.
 8. **Later observable evidence:** bounded proof of current authority, denial/cessation, propagation, retry behavior, and stale-effect cleanup.
-9. **Target state:** no stale-authority recreation and scoped fail-closed are proposed `POLICY INVARIANT`; reliability/timing targets are `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** no stale-authority recreation and scoped fail-closed are accepted `POLICY INVARIANT`; reliability/timing targets are `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** reliability/availability/latency/recovery/consistency/capacity/SLO targets require later technical/operations evidence and explicit Owner acceptance.
 11. **Dependencies/reviewers:** U-15 technical/operations evidence; applicable Privacy/Safety/legal authority; U-10 for control comprehension.
 12. **Remedy if unmet:** deny/stop affected use, invalidate stale outputs, propagate correction/reversal, reduce scope, or route to authorized review.
@@ -182,7 +192,7 @@ The schema creates no measurement, telemetry, data, processing, testing, technic
 6. **Expected response:** immediate scoped protection/cessation and restricted routing/review semantics without evidence leakage.
 7. **Prohibited response:** disclose allegations/evidence/reasoning, infer guilt/person truth, create ordinary-domain Safety signal, or perform unauthorized Safety Operations.
 8. **Later observable evidence:** separately authorized evidence of directive receipt, scoped enforcement, isolation, correction/reversal, and restricted review without broad disclosure.
-9. **Target state:** no guilt/person-truth leakage and `CONTROL DIRECTIVE != SAFETY EVIDENCE` are proposed `POLICY INVARIANT`; every response/review/appeal/retention target is `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** no guilt/person-truth leakage and `CONTROL DIRECTIVE != SAFETY EVIDENCE` are accepted `POLICY INVARIANT`; every response/review/appeal/retention target is `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** Safety response/review/appeal/retention targets require separate Safety/legal/operations authority; U-12 creates none.
 11. **Dependencies/reviewers:** qualified Safety, legal/privacy, operations/human-review authority; U-15 technical evidence later.
 12. **Remedy if unmet:** stop/deny affected ordinary access, isolate/withdraw leaked output, propagate authorized reversal, narrow scope, or route to authorized review.
@@ -201,7 +211,7 @@ No Safety Operations or Safety target authority is created.
 6. **Expected response:** route through U-06-compatible review before expansion; preserve uncertainty/missingness and affected-use stop conditions.
 7. **Prohibited response:** invent a group list, metric, baseline, threshold, finding, causal claim, universal score, or processing authority.
 8. **Later observable evidence:** separately authorized purpose/harm/population evidence, provenance, method, missingness/proxy analysis, limitations, and remedy evidence.
-9. **Target state:** no unauthorized expansion/adverse missingness meaning are proposed `POLICY INVARIANT`; all fairness metrics/baselines/thresholds are `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** no unauthorized expansion/adverse missingness meaning are accepted `POLICY INVARIANT`; all fairness metrics/baselines/thresholds are `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** qualified U-06-compatible fairness/research-method review plus explicit later target acceptance.
 11. **Dependencies/reviewers:** U-05 data/activity if evidence gathering is proposed; U-08 context; U-10 comprehension where relevant; privacy/legal/Safety review.
 12. **Remedy if unmet:** stop/hold/narrow/withdraw expansion, omit affected output, reduce confidence, invalidate stale effects, or exclude MVP scope.
@@ -220,7 +230,7 @@ No fairness study, metric, group list, threshold, finding, or processing authori
 6. **Expected response:** keep controls distinct, apply scoped effects, clean stale effects, preserve understandable semantics, and avoid coercion.
 7. **Prohibited response:** equate control with deletion, punish control use, infer person meaning, bypass pause/revocation, or silently broaden/narrow effects.
 8. **Later observable evidence:** separately authorized evidence of comprehension, control invocation, scoped effect, propagation, correction/reversal, and absence of coercive consequence.
-9. **Target state:** control distinction, no punishment, and stale-effect cleanup are proposed `POLICY INVARIANT`; comprehension/timing/coverage targets are `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** control distinction, no punishment, and stale-effect cleanup are accepted `POLICY INVARIANT`; comprehension/timing/coverage targets are `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** U-10 qualified accessibility/user-research evidence for comprehension; privacy/legal/factual authority for timing/lifecycle; technical/operations evidence later.
 11. **Dependencies/reviewers:** U-05 if participant activity is proposed; U-10; U-15; applicable privacy/legal/shared-rights review.
 12. **Remedy if unmet:** stop affected use, restore control where possible, invalidate stale output, expose non-availability, route review, or reduce scope.
@@ -237,7 +247,7 @@ No fairness study, metric, group list, threshold, finding, or processing authori
 6. **Expected response:** reconstruct enough provenance/authority context for bounded review while minimizing disclosure and retention.
 7. **Prohibited response:** broad private/Safety disclosure, indiscriminate surveillance, indefinite retention, authority transfer, or person inference.
 8. **Later observable evidence:** separately authorized minimum-necessary provenance, decision/control context, lifecycle changes, reviewer access, and correction/reversal trace.
-9. **Target state:** bounded purpose/least disclosure/no indefinite retention are proposed `POLICY INVARIANT`; coverage/depth/time targets are `UNKNOWN / NO TARGET AUTHORITY`.
+9. **Target state:** bounded purpose/least disclosure/no indefinite retention are accepted `POLICY INVARIANT`; coverage/depth/time targets are `UNKNOWN / NO TARGET AUTHORITY`.
 10. **Target authority class:** audit/reconstruction targets require accepted reviewer/operations/privacy/Safety boundaries and explicit later acceptance.
 11. **Dependencies/reviewers:** privacy/legal, Safety, operations/human-review, U-15 technical evidence, and U-10 where explanation/control comprehension is affected.
 12. **Remedy if unmet:** stop affected decision/use, omit unavailable claim, invalidate stale output, route authorized review, narrow retention/scope, or propagate correction/reversal.
@@ -246,13 +256,21 @@ No fairness study, metric, group list, threshold, finding, or processing authori
 
 ## 6. Target-state vocabulary
 
-- `POLICY INVARIANT`: a non-numeric accepted product-policy rule. It is not empirical validation.
+- `POLICY INVARIANT`: an accepted non-numeric product-policy rule. It is not empirical validation, performance evidence, or target-satisfaction evidence.
 - `ACCEPTED TARGET`: a concrete target, threshold, timing, quantity, criterion, or value accepted only after separately authorized evidence/review and explicit target acceptance.
 - `UNKNOWN / NO TARGET AUTHORITY`: no accepted concrete target exists. A target-dependent decision remains blocked, or the scope must explicitly demonstrate independence and receive separate authorization.
 
-This workshop proposes policy invariants but creates no `ACCEPTED TARGET`. Every concrete target instance remains `UNKNOWN / NO TARGET AUTHORITY`.
+This workshop records accepted policy invariants but creates ZERO `ACCEPTED TARGET` instances. Every concrete target instance remains `UNKNOWN / NO TARGET AUTHORITY`.
 
-Do not use TBD, placeholder, estimate, benchmark, industry standard, vendor default, legacy value, AI estimate, implementation default, or sample value as accepted authority.
+Do not use TBD, placeholder, estimate, benchmark, industry standard, competitor value, vendor default, EliteSync 9.x value, AI estimate, implementation default, or sample value as accepted authority.
+
+### 6.1 Controlling target-portability caveat
+
+`ACCEPTED TARGET != PORTABLE UNIVERSAL DEFAULT`.
+
+Any future `ACCEPTED TARGET` is authoritative only within its exact recorded acceptance scope. The record must bind at minimum the exact scenario/scenario instance; named purpose; affected population; environment/context; quantity/criterion/unit where applicable; evidence source/provenance; evidence quality, limitations, and uncertainty; measurement/observation method; proposer; reviewer; explicit acceptance authority; applicable privacy/data authority; fairness/missingness implications; accessibility/comprehension implications; Safety/legal implications; material operational/technical context; remedy on miss; stop/rollback/review condition; expiry/revalidation condition; and downstream design scope.
+
+A target accepted for one purpose, population, environment, scenario instance, product stage, technical context, jurisdiction, version, or time period must not be silently inherited, generalized, copied, promoted, treated as a benchmark/industry standard/implementation default, or treated as a universal EliteSync target for another scope. Cross-scope reuse requires explicit applicability review and separately recorded authority.
 
 ## 7. Concrete target-authority classes
 
@@ -264,7 +282,7 @@ Do not use TBD, placeholder, estimate, benchmark, industry standard, vendor defa
 - **Reliability/availability/latency/recovery/consistency/capacity/SLO:** requires later technical/operations evidence and explicit Owner acceptance. U-15 may not invent values.
 - **Audit/reconstruction:** requires accepted reviewer/operations/privacy/Safety boundaries and explicit later acceptance.
 
-Concrete target authority does not belong automatically to Codex, technical implementers, vendors, defaults, AI, analytics, telemetry, storage, or legacy code.
+Concrete target authority does not belong automatically to Codex, implementers, technical teams, vendors, defaults, AI, analytics, telemetry, storage, old code, or historical product behavior.
 
 ## 8. Minimum evidence-package contract for future targets
 
@@ -288,7 +306,9 @@ Any future concrete target proposal must identify:
 16. review/expiry/revalidation condition; and
 17. downstream design scope affected.
 
-Checklist completeness creates no target acceptance, research, participant/data, measurement, telemetry, processing, or implementation authority.
+Checklist completeness creates no target acceptance, study, participant, data, telemetry, measurement, testing, processing, or implementation authority.
+
+Every future evidence package and acceptance record must also preserve `ACCEPTED TARGET != PORTABLE UNIVERSAL DEFAULT`; package completeness does not authorize cross-scope reuse.
 
 ## 9. Remedy semantics
 
@@ -303,7 +323,7 @@ Permissible product-policy remedy classes include:
 - reduce or exclude affected MVP scope; and
 - propagate authorized correction/reversal.
 
-A remedy must not create blame, guilt, bad-actor meaning, reputation, desirability, global person restriction, or hidden person score.
+A remedy must not create blame, guilt, bad-actor meaning, reputation, desirability, hidden person score, global person restriction, or universal trustworthiness meaning.
 
 ## 10. Scoped stop and fail-closed semantics
 
@@ -328,9 +348,9 @@ U-12 product-policy completion, if later accepted, does not make a future techni
 
 For every target-dependent design choice:
 
-- identify the applicable accepted mandatory scenario family;
+- explicitly assess portfolio applicability and identify every applicable accepted mandatory scenario family under `MANDATORY PORTFOLIO != EVERY FAMILY APPLIES TO EVERY SCOPE`;
 - identify the required target state;
-- if a concrete target is necessary, it must already be an `ACCEPTED TARGET` under separately authorized evidence/review;
+- if a concrete target is necessary, it must already be an `ACCEPTED TARGET` under separately authorized evidence/review and must be applicable to the exact design scope under `ACCEPTED TARGET != PORTABLE UNIVERSAL DEFAULT`;
 - `UNKNOWN / NO TARGET AUTHORITY` blocks target-dependent architecture or implementation acceptance;
 - a design scope may avoid a target only if independence is explicitly demonstrated and separately authorized;
 - U-15 remains independently unresolved; and
@@ -354,9 +374,9 @@ Use only:
 - `REQUIRES LATER SAFETY / OPERATIONS AUTHORITY`; and
 - `PROHIBITED BY ACCEPTED AUTHORITY`.
 
-### Option A — conditional bounded completion path (recommended)
+### Option A — conditional bounded completion path (accepted direction)
 
-If GPT L3 later accepts this portfolio, scenario/schema contract, target-state/authority grammar, evidence-package requirements, remedy/stop semantics, and no-target-smuggling rule, U-12 may become `COMPLETE FOR CURRENT PRE-ALPHA PRODUCT-POLICY PURPOSE`.
+GPT L3 accepted this portfolio, scenario/schema contract, target-state/authority grammar, evidence-package requirements, remedy/stop semantics, and no-target-smuggling rule. Subject to final GPT L3 closeout verification, the bounded direction is `U-12 = COMPLETE FOR CURRENT PRE-ALPHA PRODUCT-POLICY PURPOSE`.
 
 That would complete only the mandatory quality-scenario / target-authority / remedy-stop governance blocker. It would not select or validate any target; establish operational capacity/performance; validate comprehension/accessibility; create fairness metrics/thresholds; create Safety Operations/targets; authorize participant/data/telemetry/measurement/processing; resolve U-05/U-08/U-10/U-15; or authorize design/implementation.
 
@@ -364,34 +384,34 @@ That would complete only the mandatory quality-scenario / target-authority / rem
 
 Use B if the governance cannot be accepted without creating concrete targets or prohibited authority.
 
-Recommendation: A. Reject or exit A if completion is treated as target acceptance, validation, capacity, operations, data/measurement, downstream resolution, target-ready design, or implementation authority.
+Accepted: A. Reject or exit A if completion is treated as target acceptance, validation, capacity, operations, data/measurement, downstream resolution, target-ready design, or implementation authority.
 
 Dependencies: all nine permitted dependency classes above.
 
-Retained unknowns: final GPT L3 decision and every concrete target, evidence, population, reviewer, operational, technical, legal, Safety, and implementation dependency.
+Retained unknowns: final GPT L3 closeout verification and every concrete target, evidence, population, reviewer, operational, technical, legal, Safety, and implementation dependency.
 
 ## 15. Explicit non-goals and authority stop
 
 No DeepSeek; web/external or new legal research; participant/user research or recruitment; participant/data activity; collection/processing; telemetry/analytics/measurement; performance/load/reliability testing; statistics/experiments; concrete target/threshold/timing/SLA/SLO; staffing/capacity commitment; Safety Operations; retention/deletion/export period; fairness metric/baseline/threshold; comprehension/accessibility percentage; pacing/configuration value; architecture style/interface/store/service/database/API/backend/Flutter/infrastructure/code; implementation; U-05/U-08/U-10/U-15 resolution; LC-03; LC-04; Phase 36; or successor work is authorized.
 
-DeepSeek calls: `0`. U-12 remains `BLOCKING`. Issue #10 remains OPEN. Stop for independent GPT L3 review.
+DeepSeek calls: `0`. U-12 remains `BLOCKING — PACKET 1–13 ACCEPTED AND INCORPORATED; FINAL GPT L3 CLOSEOUT VERIFICATION PENDING`. Issue #10 remains OPEN. Stop for final GPT L3 closeout verification.
 
 ## 16. Owner Decision Packet 1–13
 
-Each A option is recommended, not accepted. Each B option retains the affected item as blocked, omitted, or discretionary. Rejection/exit conditions, dependencies, and unknowns remain controlling.
+GPT L3 delegated decision comment `5431919650` accepted Packet 1–13 = A subject to both controlling caveats in review comment `5431918109`. Each B option remains an unselected alternative/exit route. Rejection/exit conditions, dependencies, and unknowns remain controlling. Packet acceptance does not independently perform final U-12 closeout.
 
-1. **Mandatory quality portfolio.** A: adopt seven obligations in Section 1. B: retain portfolio blocked. Recommend A. Exit if obligation becomes empirical/numeric/technical authority or overrides another boundary. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; U-05/U-08/U-10/U-15 classes as applicable. Unknowns: targets, evidence, population, reviewers, operations, feasibility, implementation.
-2. **Conflict/precedence rule.** A: adopt Section 2 authority-constrained precedence. B: optimize ordinary delivery first. Recommend A; B conflicts with authority. Exit if delivery/retry overrides cessation, restricted information leaks, or fail-closed becomes person meaning. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; Privacy/legal and Safety/operations classes; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: instances, roles, procedures, evidence, enforcement.
-3. **Mandatory scenario portfolio.** A: adopt seven families in Section 3. B: retain applicability discretionary/blocked. Recommend A. Exit if mandatory means validated, applicable family is silently waived, or instance invents authority. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; all applicable target classes. Unknowns: instances, evidence, targets, populations, reviewers, implementation.
-4. **Scenario contract schema.** A: require all fourteen fields in Section 4. B: retain no scenario as acceptance-ready. Recommend A. Exit if schema completion becomes measurement/data/processing/implementation authority. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; target-specific classes. Unknowns: instance contents, evidence, target authority, reviewers.
-5. **Target-state vocabulary.** A: use `POLICY INVARIANT`, `ACCEPTED TARGET`, and `UNKNOWN / NO TARGET AUTHORITY`; create no target now. B: use informal TBD/defaults. Recommend A; B is prohibited. Exit if policy invariant is called validation or unknown becomes a convenient value. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: every concrete target and acceptance record.
-6. **Target-authority classes.** A: adopt Section 7's separate classes. B: let implementers/defaults choose. Recommend A; B is prohibited. Exit if Codex, technical teams, vendors, AI, analytics, telemetry, storage, or legacy code gains automatic authority. Dependencies: U-05/U-08/U-10/U-15, research/fairness, privacy/legal/factual, Safety/operations classes. Unknowns: qualified proposers/reviewers, evidence, explicit acceptances.
-7. **Minimum evidence package.** A: require all seventeen elements in Section 8. B: accept targets without complete evidence/authority. Recommend A. Exit if checklist becomes acceptance or research/data/measurement authority. Dependencies: all applicable target classes. Unknowns: future packages, sources, methods, limitations, feasibility, acceptance authority.
-8. **Remedy semantics.** A: use Section 9 bounded remedies. B: omit remedy or create person penalties. Recommend A. Exit if remedy creates blame/guilt/reputation/desirability/global restriction/hidden score or exceeds affected scope. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; applicable Privacy/Safety/legal/operations classes. Unknowns: scenario-specific remedy, owner, timing, evidence.
-9. **Stop/fail-closed semantics.** A: adopt Section 10 scoped rules. B: use defaults or global restriction. Recommend A. Exit if missing authority becomes permission/success or affected stop becomes account/person meaning. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; target-specific authority; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: affected design dependencies, evidence, target authority, operations.
-10. **No-target-smuggling.** A: prohibit every value/default class in Section 11. B: use provisional/default values. Recommend A; B lacks authority. Exit if any value is selected, recommended, suggested, implied, or inherited. Dependencies: all later target-authority classes; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: all values, evidence, reviewers, acceptance.
-11. **Design-entry consequence.** A: require accepted family/target state and block target-dependent design under Unknown. B: treat U-12 governance as target-ready. Recommend A. Exit if U-15/technical work invents requirements or independence is assumed without separate authorization. Dependencies: U-15 and every applicable target class. Unknowns: future design scopes, dependencies, targets, evidence, authority.
-12. **Product-promise boundary.** A: permit qualitative governance promises only. B: promise numeric/validated/implementation outcomes. Recommend A; B lacks authority. Exit if wording creates numeric performance, Safety/fairness/comprehension/timing guarantees, validation, or readiness. Dependencies: U-08/U-10/U-15 and applicable specialist classes. Unknowns: wording, evidence, targets, comprehension, implementation.
-13. **Dependency/disposition grammar.** A: use only Section 14's conditional bounded completion path. B: retain U-12 fully `BLOCKING`. Recommend A. Exit if completion becomes concrete-target, validation, capacity, operations, data/measurement, downstream, target-ready design, or implementation authority. Dependencies: all nine permitted classes. Unknowns: final GPT L3 decision and every retained target/evidence/population/reviewer/operational/technical/legal/Safety/implementation dependency.
+1. **Mandatory quality portfolio — A accepted.** A: adopt seven obligations in Section 1. B: retain portfolio blocked. Exit if obligation becomes empirical/numeric/technical authority or overrides another boundary. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; U-05/U-08/U-10/U-15 classes as applicable. Unknowns: targets, evidence, population, reviewers, operations, feasibility, implementation.
+2. **Conflict/precedence rule — A accepted.** A: adopt Section 2 authority-constrained precedence. B: optimize ordinary delivery first. B conflicts with authority. Exit if delivery/retry overrides cessation, restricted information leaks, or fail-closed becomes person meaning. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; Privacy/legal and Safety/operations classes; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: instances, roles, procedures, evidence, enforcement.
+3. **Mandatory scenario portfolio — A accepted subject to `MANDATORY PORTFOLIO != EVERY FAMILY APPLIES TO EVERY SCOPE`.** A: adopt seven coverage families and require explicit applicability determination. B: retain applicability discretionary/blocked. Exit if mandatory means validated, an applicable family is silently waived, non-applicability bypasses an affected obligation, or a non-applicable family is fabricated. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; all applicable target classes. Unknowns: concrete applicability, instances, evidence, targets, populations, reviewers, implementation.
+4. **Scenario contract schema — A accepted.** A: require all fourteen fields in Section 4. B: retain no scenario as acceptance-ready. Exit if schema completion becomes target acceptance or participant/data/telemetry/measurement/testing/processing/architecture/implementation authority. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; target-specific classes. Unknowns: instance contents, evidence, target authority, reviewers.
+5. **Target-state vocabulary — A accepted with ZERO `ACCEPTED TARGET` instances.** A: use `POLICY INVARIANT`, `ACCEPTED TARGET`, and `UNKNOWN / NO TARGET AUTHORITY`. B: use informal TBD/defaults. B is prohibited. Exit if policy invariant becomes validation/performance/satisfaction evidence, unknown becomes a convenient value, or future target is treated as portable. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: every concrete target and acceptance record.
+6. **Target-authority classes — A accepted subject to `ACCEPTED TARGET != PORTABLE UNIVERSAL DEFAULT`.** A: adopt Section 7's separate classes and exact-scope acceptance. B: let implementers/defaults choose. B is prohibited. Exit if Codex, implementers, vendors, AI, analytics, telemetry, storage, history, or old code gains automatic/portable authority. Dependencies: U-05/U-08/U-10/U-15, research/fairness, privacy/legal/factual, Safety/operations classes. Unknowns: qualified proposers/reviewers, evidence, exact scopes, explicit acceptances.
+7. **Minimum evidence package — A accepted subject to the target-portability caveat.** A: require all seventeen elements and exact-scope binding in Section 8. B: accept targets without complete evidence/authority. Exit if checklist becomes acceptance/study/data/telemetry/measurement/testing/processing authority or permits cross-scope reuse. Dependencies: all applicable target classes. Unknowns: future packages, sources, methods, limitations, feasibility, exact acceptance authority.
+8. **Remedy semantics — A accepted.** A: use Section 9 bounded remedies. B: omit remedy or create person penalties. Exit if remedy creates blame/guilt/bad-actor/reputation/desirability/global restriction/universal trustworthiness/hidden score or exceeds affected scope. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; applicable Privacy/Safety/legal/operations classes. Unknowns: scenario-specific remedy, owner, timing, evidence.
+9. **Stop/fail-closed semantics — A accepted.** A: adopt Section 10 scoped rules. B: use defaults or global restriction. Exit if missing authority becomes permission/success or affected stop becomes account/person meaning. Dependencies: `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; target-specific authority; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: affected design dependencies, evidence, target authority, operations.
+10. **No-target-smuggling — A accepted.** A: prohibit every value/default/reference/sample class in Section 11. B: use provisional/default values. B lacks authority. Exit if any value is selected, recommended, suggested, implied, inherited, or accepted here. Dependencies: all later target-authority classes; `PROHIBITED BY ACCEPTED AUTHORITY`. Unknowns: all values, evidence, reviewers, acceptance.
+11. **Design-entry consequence — A accepted subject to both caveats.** A: explicitly assess family applicability, require applicable accepted family/target state, bind targets to exact scope, and block target-dependent design under Unknown. B: treat U-12 governance as target-ready. Exit if U-15/technical work invents requirements, a family is waived, a target is generalized, or independence is assumed without separate authorization. Dependencies: U-15 and every applicable target class. Unknowns: future design scopes, applicability, dependencies, targets, evidence, authority.
+12. **Product-promise boundary — A accepted.** A: permit qualitative governance promises only. B: promise numeric/validated/implementation outcomes. B lacks authority. Exit if wording creates numeric performance, Safety/fairness/comprehension/timing guarantees, validation, or readiness. Dependencies: U-08/U-10/U-15 and applicable specialist classes. Unknowns: wording, evidence, targets, comprehension, implementation.
+13. **Dependency/disposition grammar — A accepted.** A: use only Section 14's conditional bounded completion path. B: retain U-12 fully `BLOCKING`. Exit if completion becomes concrete-target, validation, capacity, operations, data/measurement, downstream, target-ready design, or implementation authority. Dependencies: all nine permitted classes. Unknowns: final GPT L3 closeout verification and every retained target/evidence/population/reviewer/operational/technical/legal/Safety/implementation dependency.
 
-Stop for independent GPT L3 review. Do not independently accept or close U-12, and do not close Issue #10.
+Stop for final GPT L3 closeout verification. Do not independently complete or close U-12, and do not close Issue #10.
