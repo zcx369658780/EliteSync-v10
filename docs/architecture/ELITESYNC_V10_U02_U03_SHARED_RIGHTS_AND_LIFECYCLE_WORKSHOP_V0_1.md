@@ -1,27 +1,28 @@
 # EliteSync-v10 U-02 / U-03 Shared Rights and Lifecycle Product Policy Workshop V0.1
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: `OWNER ACCEPTED — NARROW REVISION INCORPORATED — AWAITING GPT L3 / OWNER FINAL CLOSEOUT REVIEW`
 
 Date: `2026-08-26`
 
 ## 0. Workshop boundary and authority
 
-This document is an Owner-decision-ready product-policy workshop for U-02 and U-03 only. It proposes technology-neutral semantics; it does not resolve either UNKNOWN, create operational policy, perform legal research, or authorize implementation.
+This document records the Owner-accepted product-policy direction for U-02 and U-03 only. It defines technology-neutral semantics; it does not independently mark either UNKNOWN complete, create operational policy, perform legal research, or authorize implementation.
 
 ### Observed / Accepted Authority
 
 - ADR-001–005 are accepted. They preserve agency, purpose limitation, provenance, correction, specific consent, private-interaction protection, and separation of declarations, interpretations, hypotheses, Match, Connection, Conversation, Relationship, feedback, and Safety.
 - LC-02 is `COMPLETE FOR CURRENT PRE-ALPHA PURPOSE`. Its accepted Layer B remains `AI-ASSISTED LEGAL RESEARCH — NOT FORMAL LEGAL OPINION` and supplies constraints and uncertainty, not formal legal advice.
-- U-02 and U-03 remain `BLOCKING`. Drafting this workshop does not change their disposition.
+- On `2026-08-26`, the Owner accepted Decision Packet 1–7 as B, Packet 8 as A, and Packet 9 as B, subject to the required separation of `de-identify` and `anonymize`.
+- U-02 and U-03 remain `BLOCKING` until the incorporated revision and closeout are independently reviewed and the Owner records final closeout.
 - Phase 34 Safety authority preserves all 28 accepted invariants, including Block ≠ Report, Report ≠ Verified misconduct, Allegation ≠ Finding, Immediate protection ≠ Guilt or punishment, Safety evidence ≠ Compatibility evidence, Control directive ≠ Safety evidence, Unknown ≠ False/Safe, and case-processing state ≠ person truth.
 
 ### Product Inference
 
 A single `owner` label cannot express shared-information policy. Authorship, visibility, subject-of-information interest, product custody, and lifecycle authority can belong to different actors and can change independently.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the policy vocabulary and recommended options in this workshop only after explicit Owner review. Until then, every recommendation is proposed, not accepted.
+The product-policy direction in Decision Packet 1–8 is Owner accepted. Packet 9B controls the current disposition: U-02 and U-03 remain blocking until final GPT L3 / Owner closeout. The accepted direction is not implementation authorization.
 
 ### Still Unknown / Requires Later Review
 
@@ -45,7 +46,7 @@ User declaration ≠ objective truth. Visibility and technical availability do n
 
 One record may require several simultaneous outcomes: an author's expression can remain attributable, another person's private details can be redacted, future platform use can stop, and a narrowly justified restricted record can remain unavailable to ordinary domains.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Every shared-record decision should state all five dimensions explicitly. Product language should use `participant-local view`, `redaction`, `future-use withdrawal`, `tombstone`, `de-identification`, `record restriction`, or `retention exception` rather than the ambiguous verb `own`.
 
@@ -53,48 +54,48 @@ Every shared-record decision should state all five dimensions explicitly. Produc
 
 Which participant interests prevail in a specific contested record, and when disclosure or retention is legally required or prohibited, remain fact-dependent and require later review.
 
-## 2. U-02 proposed shared-rights model
+## 2. U-02 Owner-accepted shared-rights model
 
 ### 2.1 Authored message containing information about another person
 
 - **Observed / Accepted Authority:** the author controls their expression as authorship; the person described may hold a distinct privacy/PI interest. Neither interest establishes objective truth.
 - **Product Inference:** an all-or-nothing record action is often too coarse.
-- **Proposed Product Decision:** preserve authorship provenance; allow the affected person to request correction, restriction, redaction, or review of information about them; do not silently rewrite the author's expression as agreed fact.
+- **Owner-Accepted Product Decision:** preserve authorship provenance; allow the affected person to request correction, restriction, redaction, or review of information about them; do not silently rewrite the author's expression as agreed fact.
 - **Still Unknown / Requires Later Review:** whether a disputed item must be disclosed, redacted, restricted, retained, or deleted in a particular case.
 
 ### 2.2 Mutually authored Relationship state or shared interaction record
 
 - **Observed / Accepted Authority:** Connection and Relationship meaning require reciprocal/human meaning; activity cannot infer Relationship state.
 - **Product Inference:** a shared state must retain each participant's contribution and disagreement rather than fabricate one joint truth.
-- **Proposed Product Decision:** represent agreement, participant-specific declaration, disagreement, supersession, and closure as distinct meanings. A participant may withdraw their own declaration or future platform use; they may not rewrite the other's declaration.
+- **Owner-Accepted Product Decision:** represent agreement, participant-specific declaration, disagreement, supersession, and closure as distinct meanings. A participant may withdraw their own declaration or future platform use; they may not rewrite the other's declaration.
 - **Still Unknown / Requires Later Review:** exact vocabulary and conflict treatment when participants give incompatible declarations.
 
 ### 2.3 Access after closure, block, withdrawal, or state change
 
 - **Observed / Accepted Authority:** closure, block, account withdrawal, and Relationship-state change are different. Block is a protective/access-control state, not guilt.
 - **Product Inference:** future access and historical receipt are separable.
-- **Proposed Product Decision:** closure stops new ordinary interaction; participant-local historical access may remain only under the applicable shared-record policy. A Safety control directive may restrict access without disclosing Safety evidence. Account withdrawal stops new product use but does not promise erasure of another participant's prior receipt.
+- **Owner-Accepted Product Decision:** closure stops new ordinary interaction; participant-local historical access may remain only under the applicable shared-record policy. A Safety control directive may restrict access without disclosing Safety evidence. Account withdrawal stops new product use but does not promise erasure of another participant's prior receipt.
 - **Still Unknown / Requires Later Review:** access during a dispute, legal preservation, or Safety restriction; U-04 owns Safety-policy resolution.
 
 ### 2.4 Export or copy exposing another person's private information
 
 - **Observed / Accepted Authority:** LC-02 identifies access/copy interests and another-person harm/privacy limits but no complete multi-subject conflict rule.
 - **Product Inference:** full-record export is not the only product outcome.
-- **Proposed Product Decision:** default to the requester's attributable content and purpose-relevant information; use redaction, participant-local extracts, or restriction when another person's private information would be exposed. Never label a redacted export as a complete mutual history.
+- **Owner-Accepted Product Decision:** default to the requester's attributable content and purpose-relevant information; use redaction, participant-local extracts, or restriction when another person's private information would be exposed. Never label a redacted export as a complete mutual history.
 - **Still Unknown / Requires Later Review:** contested disclosure scope and any mandatory exception require later fact/formal review.
 
 ### 2.5 Disputed correction
 
 - **Observed / Accepted Authority:** correction must not convert one participant's declaration into objective truth or erase another's authored expression.
 - **Product Inference:** correction of a shared record may require provenance-preserving supersession rather than overwrite.
-- **Proposed Product Decision:** correct an objective product error where established; otherwise preserve the original provenance, append the requester's contested/corrected position, mark dependent ordinary-domain outputs stale, and route unresolved factual conflict to review.
+- **Owner-Accepted Product Decision:** correct an objective product error where established; otherwise preserve the original provenance, append the requester's contested/corrected position, mark dependent ordinary-domain outputs stale, and route unresolved factual conflict to review.
 - **Still Unknown / Requires Later Review:** the evidentiary standard for reliable factual judgment. A case-processing state itself can never supply that judgment.
 
 ### 2.6 Deletion request versus legitimate retained interest
 
 - **Observed / Accepted Authority:** exact shared-record conflict rules and retention periods remain unknown; blanket deletion and blanket retention are both rejected.
 - **Product Inference:** participant-local suppression, future-use withdrawal, redaction, de-identification, restriction, and tombstoning can separate effects.
-- **Proposed Product Decision:** cease the requester's future optional use first; delete or de-identify eligible participant-local/derived material; preserve another person's independent authorship or prior receipt; retain only a narrow, named, access-restricted exception with review/expiry.
+- **Owner-Accepted Product Decision:** cease the requester's future optional use first; delete or de-identify eligible participant-local/derived material; preserve another person's independent authorship or prior receipt; retain only a narrow, named, access-restricted exception with review/expiry.
 - **Still Unknown / Requires Later Review:** whether a specific retained interest is legitimate, necessary, and authorized.
 
 ### 2.7 Actions the product must never promise
@@ -109,7 +110,7 @@ Which participant interests prevail in a specific contested record, and when dis
 
 ## 3. U-03 lifecycle action semantics
 
-All rows are **Proposed Product Decisions**, constrained by the authority and unknowns stated below.
+All rows are **Owner-Accepted Product Decisions**, constrained by the authority and unknowns stated below.
 
 ### Observed / Accepted Authority
 
@@ -129,14 +130,15 @@ Lifecycle actions should change named purposes and representations, not pretend 
 | `reset` | Retires selected learning/reflection state and begins from explicitly retained inputs | Account, other-person records, Safety records, historical provenance | Participant for their learning state | Hypotheses/explanations become invalid and may be recomputed only with permission | Independent authorship unaffected | Safety excluded |
 | `close` | Ends a Connection/Conversation/Relationship product context for future ordinary interaction | Human history, prior receipt, block/report meaning | Either participant for participation; mutual meaning remains separate | Active interaction outputs close/expire; feedback remains purpose-classified | Other participant retains own records subject to policy | Safety restriction may coexist but is distinct |
 | `delete` | Eligible information and dependent artifacts are removed or made unavailable | Another person's independent authorship/receipt; authorized exception | Subject/author/requester; final conflict outcome may require review | Dependents deleted/invalidated; no silent regeneration | Apply redaction/local deletion/conflict rule | Safety-controlled material excluded pending U-04/formal review |
-| `de-identify / anonymize` | Identifiability and person linkage are removed to an accepted standard | Must not be claimed if re-identification remains reasonably available | Authorized lifecycle authority after review | Person-specific dependents become invalid | Shared expression may remain only if no person linkage/private harm | Safety utility/authority cannot be assumed |
+| `de-identify` | Direct identity association or linkage is reduced or removed for the accepted purpose | The label does not establish that re-identification is no longer reasonably possible and does not remove person-linked privacy, purpose, access, retention, or review constraints | Authorized lifecycle authority for the accepted purpose; contested scope requires review | Person-specific dependents become stale or invalid where their permitted linkage no longer applies | Independent authorship remains; shared material remains person-linked unless and until a separate anonymization standard is met | Safety utility/authority cannot be assumed |
+| `anonymize` | Information may be treated as anonymized only after it satisfies a later accepted standard under which the person cannot be reasonably re-identified | No technical mechanism, verification result, or compliance conclusion is implied by the term | Only an authority defined by the later accepted standard; current verification authority remains unknown | Person-specific dependents cannot continue on the basis of an anonymized representation | No claim of anonymization is allowed while reasonable re-identification remains possible | Safety utility/authority cannot be assumed; Safety-specific lifecycle remains routed to U-04 |
 | `retain under exception` | Record remains for one named narrow purpose under restricted access | Ordinary use, Ranking, Compatibility, future-value reuse | Authorized formal decision, not model or convenience | Ordinary outputs remain unavailable; exception reviewed/expired | Interests remain protected and minimized | Safety exception requires U-04/formal authority |
 | `expire` | Time relevance or approved purpose ends; item no longer drives active outputs | Historical provenance only if separately justified | Policy clock or review decision; exact timing unknown | Active dependents expire/review; no automatic regeneration | No new authority over another's data | Safety expiry unresolved in U-04 |
 | `export / copy` | Requester receives an understandable bounded copy | Does not transfer meaning authority or disclose restricted other-person/Safety material | Entitled participant/requester after verification | No ordinary-output change solely from export | Redact/restrict or review conflicts | Safety evidence excluded unless separately authorized |
 
 ### Still Unknown / Requires Later Review
 
-Exact initiation authority, response timing, consent renewal, anonymization standard, backup effects, appeal/notice, retention period, legal preservation, contested-export scope, and all Safety-specific lifecycle rules remain unknown. No row authorizes implementation.
+Exact initiation authority, response timing, consent renewal, anonymization verification standard, backup effects, appeal/notice, retention period, legal preservation, contested-export scope, reviewer role, evidence threshold, and all Safety-specific lifecycle rules remain unknown. No row authorizes implementation.
 
 ## 4. Lifecycle propagation matrix
 
@@ -157,7 +159,7 @@ Legend: `refresh` = dependent ordinary output becomes stale and must be reviewed
 | Consent / purpose records | Correct product error; preserve audit provenance | Record revocation and stop purpose | Reset is not consent | Close named purpose where applicable | Retain/delete only as necessary for accountability | Review/expire | Explain requester choices | Narrow accountability purpose |
 | Audit / provenance evidence | Append correction/supersession; do not rewrite history | No new optional use | Preserve only necessary trace | Close active trail | Minimize/restrict; review deletion | Expire under policy | Bounded understandable account | Narrow, access-restricted, reviewed |
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Adopt this matrix as the semantic review baseline, not an implementation cascade. Every future technical proposal must show that it preserves these distinctions.
 
@@ -175,7 +177,7 @@ Retention is purpose-limited and shortest-necessary. LC-02 establishes no exact 
 
 A defensible exception needs a named record class, purpose, authority, access restriction, review date, exit condition, and prohibition on ordinary-domain use.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
 Permissible purpose categories for later Owner selection are limited to:
 
@@ -193,7 +195,7 @@ Exact periods; jurisdictional/legal duties; Safety needs; backup/technical-delet
 
 ## 6. Conflict-resolution principles
 
-| Conflict | Proposed product treatment | Classification |
+| Conflict | Owner-accepted product treatment | Classification |
 | --- | --- | --- |
 | One participant requests deletion; another requests retention/access | Stop requester's future optional use; separate participant-local view; redact/de-identify where possible; preserve independent authorship/receipt; review any retained exception | `PRODUCT RULE CAN BE OWNER-DECIDED NOW` for decomposition; `REQUIRES LATER FACT / FORMAL REVIEW` for final contested disclosure/retention |
 | One participant disputes/corrects a factual field | Correct established product error; otherwise preserve provenance and disagreement, invalidate dependent outputs, do not declare either participant truthful | `PRODUCT RULE CAN BE OWNER-DECIDED NOW`; reliable factual judgment requires later evidence/review |
@@ -228,68 +230,77 @@ Exact periods; jurisdictional/legal duties; Safety needs; backup/technical-delet
 
 ## 8. Owner Decision Packet
 
-The Owner may choose, revise, or defer each item independently. No recommendation below is accepted until the Owner records a decision.
+Owner decisions recorded on `2026-08-26` are shown below. They establish bounded product policy only; they do not authorize implementation or independently close U-02/U-03.
 
 1. **Shared-rights model**
    - A: single record owner controls all actions.
    - B: five independent dimensions with participant-local and conflict-aware actions.
    - C: defer all shared-record behavior.
    - **Recommendation:** B. Reject A because it collapses distinct authority; reject C because MVP cannot safely promise shared controls without a baseline.
+   - **Owner decision:** B.
 
 2. **Disputed correction**
    - A: last participant edit wins.
    - B: correct established product errors; otherwise preserve provenance, disagreement, and stale dependent outputs pending review.
    - C: prohibit all correction of shared records.
    - **Recommendation:** B.
+   - **Owner decision:** B.
 
 3. **Deletion conflict**
    - A: immediate whole-record deletion on either request.
    - B: decompose future use, local view, redaction/de-identification, independent authorship, and narrow reviewed retention.
    - C: retain whole record whenever either participant objects.
    - **Recommendation:** B; A and C make overbroad promises.
+   - **Owner decision:** B.
 
 4. **Export/copy conflict**
    - A: export the entire shared container.
    - B: bounded participant-attributable copy with redaction/restriction and formal review for contested scope.
    - C: no shared-record export.
    - **Recommendation:** B.
+   - **Owner decision:** B.
 
 5. **Lifecycle action vocabulary**
    - A: use only update/delete.
-   - B: adopt the 12 distinct actions in section 3.
+   - B: adopt the distinct actions in section 3, with `de-identify` and `anonymize` as separate product semantics.
    - C: defer vocabulary until technical design.
    - **Recommendation:** B; technical design must follow product meaning, not define it.
+   - **Owner decision:** B, with the required `de-identify` / `anonymize` separation incorporated above.
 
 6. **Retention exceptions**
    - A: retain whenever future value is plausible.
    - B: named purpose, shortest necessary, restricted access, review/expiry, no ordinary reuse.
    - C: promise immediate universal deletion.
    - **Recommendation:** B; exact periods remain unknown.
+   - **Owner decision:** B.
 
 7. **Safety-controlled information**
    - A: include it in ordinary shared-right rules.
    - B: allow only minimum-necessary Safety directives in ordinary domains; route evidence and lifecycle decisions to U-04/formal review.
    - C: ignore Safety dependencies.
    - **Recommendation:** B.
+   - **Owner decision:** B.
 
 8. **MVP boundary**
    - A: require the seven minimum behaviors in section 7 before implementation authorization.
    - B: defer shared-right/lifecycle policy and handle conflicts ad hoc.
    - C: exclude all shared Conversation/Relationship information from MVP.
    - **Recommendation:** A, unless Owner explicitly chooses C as a scope reduction. Reject B.
+   - **Owner decision:** A. The seven minimum behaviors in section 7 are a product-policy gate before affected MVP implementation may be separately authorized.
 
 9. **U-02/U-03 disposition after this draft**
    - A: mark both resolved now.
    - B: retain `BLOCKING` until GPT L3 review and explicit Owner decisions on Packet 1–8; then record the bounded resolved/retained-unknown portions.
    - C: discard the workshop.
    - **Recommendation:** B.
+   - **Owner decision:** B. U-02 and U-03 remain blocking pending final GPT L3 / Owner closeout review.
 
 ## 9. Stop and review state
 
 - U-02: `BLOCKING — NOT SILENTLY RESOLVED`.
 - U-03: `BLOCKING — NOT SILENTLY RESOLVED`.
 - U-04: unchanged and not resolved here.
-- ADR-006 remains proposed.
+- ADR-006 records the Owner-accepted policy direction but does not authorize implementation.
 - No DeepSeek, new legal research, LC-03, LC-04, Phase 36, implementation, processing, Safety Operations, schema, API, backend, Flutter, infrastructure, or code is authorized or performed.
 
-Stop for GPT L3 review and Owner decisions on the packet above.
+Stop for GPT L3 / Owner final closeout review. Do not independently mark U-02 or U-03 complete.

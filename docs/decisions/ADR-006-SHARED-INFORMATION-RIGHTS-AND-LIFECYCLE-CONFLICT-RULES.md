@@ -1,18 +1,20 @@
 # ADR-006: Shared Information Rights and Lifecycle Conflict Rules
 
-Status: `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`
+Status: ACCEPTED
 
 Date: `2026-08-26`
 
-Decision owner: Owner, after GPT L3 product-policy review
+Owner acceptance date: `2026-08-26`
+
+Decision owners: Owner (final product authority), with GPT L3 product-policy review
 
 Depends on: ADR-001 through ADR-005; accepted LC-02 closeout and V0.1 layered advisory artifact; Phase 34 Owner-accepted Safety authority
 
 ## Context
 
-U-02 and U-03 remain `BLOCKING`. Accepted authority distinguishes authorship, user declaration, private interaction, purpose-specific consent, derived outputs, shared human meaning, and Safety-controlled information, but it does not yet define a complete product-policy rule for shared-record rights conflicts or lifecycle propagation.
+U-02 and U-03 remain `BLOCKING` pending final closeout review. Accepted authority distinguishes authorship, user declaration, private interaction, purpose-specific consent, derived outputs, shared human meaning, and Safety-controlled information.
 
-This ADR records a proposed option for Owner decision. It does not select technical architecture or silently resolve U-02/U-03.
+On `2026-08-26`, the Owner accepted Decision Packet 1–7 as B, Packet 8 as A, and Packet 9 as B. This ADR records that bounded product-policy decision. It does not select technical architecture, independently close U-02/U-03, or authorize implementation.
 
 ## Evidence discipline
 
@@ -32,15 +34,15 @@ This ADR records a proposed option for Owner decision. It does not select techni
 
 Shared-information policy requires separate decisions about who authored an item, who can see it, whose information interests are implicated, why the product holds it, and who can request or decide a lifecycle action. A single `owner` field or all-or-nothing action would collapse these meanings.
 
-### Proposed Product Decision
+### Owner-Accepted Product Decision
 
-Adopt the recommended option below after Owner review.
+The Owner accepted the decision below. Its retained unknowns and non-implementation boundary remain controlling.
 
 ### Still Unknown / Requires Later Review
 
-Contested disclosure, exact retention, legal preservation, backup treatment, anonymization standard, response timing, appeal/notice, and Safety-controlled lifecycle remain dependent on later fact/formal review. U-04 remains separate and blocking.
+Contested disclosure/retention outcomes, exact retention periods, legal preservation duties, backup treatment, the anonymization verification standard, response timing, notice/appeal, reviewer role, evidence threshold, and Safety-specific lifecycle rules remain dependent on later fact/formal review. U-04 remains separate and blocking.
 
-## Proposed decision
+## Decision
 
 ### 1. Five-dimensional authority model
 
@@ -56,9 +58,13 @@ No dimension automatically grants the others. Avoid a single product concept of 
 
 ### 2. Participant-scoped and record-scoped actions
 
-The product-policy vocabulary distinguishes participant-local view/suppression, redaction, withdrawal from future optional use, provenance-preserving correction, supersession, restriction, tombstoning, de-identification/anonymization, deletion, export/copy, expiry, and narrow retention exception.
+The product-policy vocabulary distinguishes participant-local view/suppression, redaction, withdrawal from future optional use, provenance-preserving correction, supersession, restriction, tombstoning, `de-identify`, `anonymize`, deletion, export/copy, expiry, and narrow retention exception.
 
 An action must state its purpose and scope. It must not imply retroactive erasure from another participant's prior receipt, memory, device, or independently authored information.
+
+`de-identify` reduces or removes direct identity association or linkage for the accepted purpose. That label alone does not establish that re-identification is no longer reasonably possible and does not remove person-linked privacy, purpose, access, retention, or review constraints.
+
+`anonymize` may be claimed only when information satisfies a later accepted standard under which the person cannot be reasonably re-identified. The technical/anonymization verification standard remains unknown; this ADR selects no mechanism and reaches no compliance conclusion.
 
 ### 3. Disputed shared information
 
@@ -79,7 +85,7 @@ Default to a bounded, understandable copy of information attributable to or appr
 
 ### 6. Lifecycle action semantics
 
-Use distinct meanings for `correct`, `supersede`, `withdraw from future optional use`, `revoke consent`, `pause`, `reset`, `close`, `delete`, `de-identify/anonymize`, `retain under exception`, `expire`, and `export/copy`.
+Use distinct meanings for `correct`, `supersede`, `withdraw from future optional use`, `revoke consent`, `pause`, `reset`, `close`, `delete`, `de-identify`, `anonymize`, `retain under exception`, `expire`, and `export/copy`.
 
 Each action must specify what changes, what remains, who may initiate it, the status of dependent outputs, effects on another person's independently authored information, and whether Safety-controlled information is excluded.
 
@@ -93,9 +99,9 @@ Before implementation can be separately authorized for affected scope, Owner-acc
 
 Advanced mutual-history export, configurable tombstones, negotiated shared states, and automated conflict suggestions may be deferred. Ad hoc conflict handling, private-message mining, general training, public reputation, Safety leakage, truth adjudication, impossible erasure promises, and indefinite retention remain prohibited.
 
-## Recommended option
+## Accepted option
 
-Adopt the five-dimensional, conflict-aware policy above.
+The Owner accepted the five-dimensional, conflict-aware policy above through Packet 1–7 = B and Packet 8 = A.
 
 Reasons:
 
@@ -104,9 +110,9 @@ Reasons:
 - it provides deterministic product semantics without pretending missing legal/factual answers are known;
 - it gives later technical work a product contract without choosing schema, API, service, or storage behavior.
 
-### Rejection or exit conditions
+### Reconsideration or exit conditions
 
-Revise or stop this option if GPT L3 identifies a contradiction with accepted ADR-001–005, if Owner rejects participant-local decomposition, if qualified later review requires a different contested-record boundary, or if MVP explicitly excludes shared Conversation/Relationship information. Do not implement the option before those conditions and the Owner Decision Packet are resolved.
+Revise or stop this decision if later accepted review identifies a contradiction with ADR-001–005, if qualified later review requires a different contested-record boundary, or if Owner later removes shared Conversation/Relationship information from MVP. No such later revision may be inferred. Do not implement without separate authority.
 
 ## Viable alternative
 
@@ -142,7 +148,7 @@ Rejected because objection alone does not establish a necessary or authorized re
 
 Rejected because neither is person truth or autonomous adjudication authority.
 
-## Consequences if accepted
+## Consequences
 
 ### Positive
 
@@ -161,19 +167,18 @@ Rejected because neither is person truth or autonomous adjudication authority.
 
 ## Unknowns retained
 
-- U-02: `BLOCKING — NOT RESOLVED BY THIS PROPOSAL`.
-- U-03: `BLOCKING — NOT RESOLVED BY THIS PROPOSAL`.
+- U-02: `BLOCKING — OWNER-ACCEPTED POLICY RECORDED; AWAITING FINAL CLOSEOUT REVIEW`.
+- U-03: `BLOCKING — OWNER-ACCEPTED POLICY RECORDED; AWAITING FINAL CLOSEOUT REVIEW`.
 - U-04 and all other existing BLOCKING UNKNOWNs remain unchanged.
 - No exact legal/operational retention period is selected.
-- No final disputed-record decision authority, reviewer role, evidence threshold, response time, appeal, notice, backup rule, or anonymization standard is selected.
+- Contested disclosure/retention outcomes, legal preservation duties, backup treatment, the anonymization verification standard, response timing, notice/appeal, reviewer role, evidence threshold, and Safety-specific lifecycle rules remain unresolved.
 
-## Owner decision dependency
+## Owner acceptance and closeout dependency
 
-Owner must decide the numbered packet in `docs/architecture/ELITESYNC_V10_U02_U03_SHARED_RIGHTS_AND_LIFECYCLE_WORKSHOP_V0_1.md`. GPT L3 reviews consistency, options, rejection conditions, retained unknowns, and MVP boundary first.
+The Owner accepted Packet 1–7 = B, Packet 8 = A, and Packet 9 = B on `2026-08-26`. Packet 9B keeps U-02/U-03 blocking until this incorporated refinement and ADR finalization receive GPT L3 / Owner final closeout review.
 
-Until explicit Owner acceptance:
+After this acceptance:
 
-- this ADR remains `PROPOSED — AWAITING GPT L3 AND OWNER REVIEW`;
 - U-02/U-03 remain blocking;
 - no database, schema, API, backend, Flutter, service, event, storage, infrastructure, retention timer, deletion workflow, consent mechanism, Safety Operations, or code is authorized;
 - LC-03, LC-04, and Phase 36 remain unauthorized.
