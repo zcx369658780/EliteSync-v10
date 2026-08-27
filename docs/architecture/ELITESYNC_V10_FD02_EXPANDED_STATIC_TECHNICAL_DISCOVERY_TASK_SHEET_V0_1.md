@@ -4,6 +4,8 @@ Status: `PROPOSED — CANDIDATE-ONLY — AWAITING EXTERNAL GPT L3 AND OWNER EXEC
 
 Task-sheet authoring baseline: `944c499ea6c662178380041d29c09fbd045c2d7d`.
 
+Logging-boundary revision baseline: `5c9b9c0a30f25d4f23493b4cfd35ff75e0a5ce44`.
+
 ## 0. Purpose and non-authority statement
 
 This task sheet defines the complete future execution contract for FD-02: one expanded, read-only, static, demonstrably target-independent technical-discovery tranche limited to an exact closed allowlist of tracked regular Git blobs.
@@ -12,7 +14,7 @@ FD-02 remains `CANDIDATE FURTHER DISCOVERY — SEPARATE AUTHORIZATION REQUIRED`.
 
 Creating, reviewing, accepting as a proposal, committing, or publishing this task sheet does not authorize FD-02 execution. It does not accept any technical declaration, establish a current runtime, create a target or requirement, establish design-entry eligibility, select a Database/API/Backend/Flutter boundary, authorize technical design, authorize implementation, or create successor authority.
 
-This task-sheet authoring task inspected only Git path, object-type, file-mode, and blob-ID metadata. It did not read any technical file content.
+This task-sheet authoring and revision work inspected only Git path, object-type, file-mode, blob-ID, worktree-status, and exact artifact-hash metadata. It did not read any technical file content.
 
 The governing refinement order remains:
 
@@ -66,6 +68,18 @@ In particular:
 
 If an allowed technical artifact conflicts with accepted upstream authority, the artifact remains static evidence only and the affected scope must be classified `CONFLICTING EVIDENCE — STOP FOR REVIEW`. Technical text never silently supersedes product, domain, information, Safety, legal-boundary, or target authority.
 
+### 1.3 Preserved blocked-execution artifact
+
+The prior failed Stage A artifact is preserved at:
+
+`docs/architecture/ELITESYNC_V10_FD02_EXPANDED_STATIC_TECHNICAL_DISCOVERY_REPORT_V0_1.md`
+
+Expected SHA-256:
+
+`5585EA68E10A9847B24A932C045475D113DFE378790109BA1E054728FEA0E551`
+
+It is `HISTORICAL BLOCKED-EXECUTION EVIDENCE — NOT TECHNICAL AUTHORITY — NOT A RETRY INPUT`. Future Stage A and Stage B must not read, modify, delete, rename, normalize, stage, commit, cite as technical evidence, or overwrite it. Its presence as the sole preserved untracked exception does not fail retry cleanliness only while its path and SHA-256 remain exact and unchanged. Any missing file, identity drift, tracked/staged state, or use as evidence is a whole-task stop.
+
 ## 2. Authority required before future FD-02 Stage A
 
 FD-02 Stage A may begin only when one new exact execution authorization supplies all of the following:
@@ -75,10 +89,11 @@ FD-02 Stage A may begin only when one new exact execution authorization supplies
 3. the expected GitHub `origin/main` baseline;
 4. this Section 4 allowlist without additions, substitutions, roots, globs, or path inference;
 5. the exact Stage A deliverable from Section 9;
-6. the prohibited sources/actions in Sections 5 and 6;
-7. Stage A self-validation and mandatory pre-staging stop;
-8. the external GPT L3 reviewer for the completed draft; and
-9. the terminal no-successor boundary.
+6. the Section 1.3 V0.1 preservation exception by exact path, untracked state, and SHA-256, with no authority to read or use it;
+7. the prohibited sources/actions in Sections 5 and 6;
+8. Stage A self-validation and mandatory pre-staging stop;
+9. the external GPT L3 reviewer for the completed V0.2 draft; and
+10. the terminal no-successor boundary.
 
 No authority may be inferred from this proposal, the controlling review, a clean worktree, existing source, a commit, a prior discovery, or FD-02's candidate classification.
 
@@ -214,15 +229,26 @@ The following are prohibited even if tracked, referenced, present, or technicall
 
 - `.git/` contents other than non-sensitive ref/tree/path/mode/blob-ID metadata obtained through approved Git commands;
 - `.env`, `.env.*`, environment-variable values, credentials, keys, tokens, certificates, SSH material, secret stores, or local overrides;
-- AppData, user-profile application state, OS/service state, untracked/ignored files, caches, sessions, queues, logs, crash dumps, traces, metrics, profiles, monitoring, analytics, telemetry implementations or payloads;
-- every path containing or dedicated to logging or telemetry, including the repository's tracked telemetry-named source paths;
+- AppData, user-profile application state, OS/service state, untracked/ignored files other than the exact hash-locked Section 1.3 preservation exception, caches, sessions, queues, actual runtime logs, captured log or telemetry data, crash dumps, traces, metrics, profiles, monitoring data, analytics data, telemetry payloads, or production data;
+- dedicated logging/telemetry source files, pipelines, collectors, exporters, analytics implementations, and files whose primary purpose is logging, telemetry, monitoring, analytics, or payload construction; such paths remain excluded and must never be added to the allowlist;
 - private Conversation content or metadata, Relationship Feedback, participant records, personal or sensitive information, Safety cases/evidence/reasoning, allegations, findings, or restriction records;
 - production, staging, live service, runtime, database, API, container, process, worker, scheduler, network, device, emulator, filesystem, infrastructure, or deployment state;
 - EliteSync 9.x, any other repository/worktree, submodule content, external website, vendor documentation, benchmark, competitor, or external research;
 - `vendor/`, `node_modules/`, Gradle caches, package caches, downloaded dependency source, generated autoload metadata, compiled artifacts, APKs, JARs, native libraries, media, minified bundles, archives, or databases; and
 - any content requiring execution, rendering, unpacking, decompilation, reverse engineering, project parsing, or generated-code loading.
 
-If an allowed blob appears to contain a secret value, credential, actual participant/personal/sensitive information, private Conversation material, Safety case material, log/telemetry payload, or production data, stop the whole Stage A immediately without reproducing, summarizing, hashing, scrolling further, or inspecting other technical blobs. Record only `BLOCKED — PROHIBITED OR SENSITIVE CONTENT ENCOUNTERED` and the allowed path, unless naming the path itself would disclose protected information.
+If an allowed blob appears to contain a secret value, credential, actual participant/personal/sensitive information, private Conversation material, Safety case material, actual runtime log, captured telemetry/log data, telemetry payload, or production data, stop the whole Stage A immediately without reproducing, summarizing, hashing, scrolling further, or inspecting other technical blobs. Record only `BLOCKED — PROHIBITED OR SENSITIVE CONTENT ENCOUNTERED` and the allowed path, unless naming the path itself would disclose protected information.
+
+An otherwise allowlisted technical file does not become a whole-task stop merely because it contains incidental static logging calls, logger declarations, log-level references, or similar logging code. For each such expression or span, Stage A must:
+
+1. classify it exactly as `OUT OF SCOPE — INCIDENTAL LOGGING DECLARATION NOT ANALYZED`;
+2. not analyze logging or telemetry behavior;
+3. not reproduce or summarize message bodies, arguments, payload construction, or telemetry fields;
+4. continue only with independently separable, otherwise allowed static declarations in the same file;
+5. infer no logging/telemetry authority, runtime behavior, data collection, retention, analytics, or processing from its presence; and
+6. classify an affected inseparable claim only as `UNKNOWN — NOT ESTABLISHED` or `OUT OF SCOPE — NOT INSPECTED`, while continuing where separation is safe.
+
+Whole-task stop remains mandatory if the file is determined to be primarily a logging/telemetry implementation rather than merely containing incidental logging, or if actual protected, sensitive, runtime, captured, payload, or production data is encountered. Uncertainty about safe separation requires stopping the affected claim; uncertainty about whether protected data or a primarily logging/telemetry file has been encountered stops the whole task.
 
 Environment-variable names and static placeholder/default expressions may be observed only as literal code declarations. Values from the process environment or any `.env` file must never be resolved or reported.
 
@@ -236,6 +262,7 @@ Future FD-02 Stage A may use only:
 - literal path containment, regular-blob, exact mode, and expected blob-ID verification;
 - direct static text/byte reading of one allowed blob at a time, without executing, importing, loading, resolving, rendering, or following references;
 - bounded literal/structural search confined to the exact allowed blobs;
+- bounded span-level skipping and classification of incidental logging declarations under Section 5 without reproducing or analyzing their contents;
 - line locator, byte size, Git blob ID, and SHA-256 calculation for non-sensitive allowed blobs;
 - classification and traceability against the controlling governance inputs;
 - authoring the one Section 9 report; and
@@ -248,9 +275,10 @@ Graph indexing/query, codebase-memory indexing, IDE symbol expansion, language s
 Future execution must not:
 
 - modify, normalize, format, regenerate, repair, or stage any technical or governance input;
+- read, modify, stage, commit, delete, rename, normalize, overwrite, or use the preserved V0.1 blocked report as technical evidence or retry input;
 - install, restore, update, resolve, audit, or download dependencies;
 - run Gradle, Flutter, Dart, Java/Kotlin, PHP, Composer, Artisan, npm, Vite, PHPUnit, framework commands, project scripts, hooks, builds, tests, linters, formatters, migrations, seeders, servers, or containers;
-- inspect runtime behavior, effective configuration, environment values, logs, telemetry, analytics, performance, load, reliability, availability, capacity, recovery, consistency, cost, production, or staging;
+- inspect runtime behavior, effective configuration, environment values, actual logs, captured telemetry/log data, telemetry payloads, analytics data or implementations, performance, load, reliability, availability, capacity, recovery, consistency, cost, production, or staging;
 - contact/recruit/test participants, collect/process personal or sensitive data, or inspect private Conversation or Safety information;
 - perform external, competitor, market, legal, accessibility, comprehension, desirability, or launch research;
 - call DeepSeek or any external AI/research fallback;
@@ -325,6 +353,7 @@ Each finding must contain:
 - A manifest/lockfile proves only its declarations, not installation, resolution success, support, compatibility, security, or runtime use.
 - Configuration proves only literal static configuration expressions, not effective values or deployed state.
 - A route/client/repository/storage declaration proves only its static representation, not execution, reachability, persistence, ownership, correctness, or accepted contract.
+- Incidental static logging code is never a finding about logging or telemetry. Its exact expression/span is recorded only as `OUT OF SCOPE — INCIDENTAL LOGGING DECLARATION NOT ANALYZED`; message bodies, arguments, payload construction, and telemetry fields are omitted. Independently separable declarations may still be assessed under the ordinary evidence rules.
 - A bootstrap/platform declaration proves no canonical architecture or readiness.
 - A missing, excluded, conflicting, or insufficient fact remains UNKNOWN or out of scope.
 - Evidence completeness creates no technical acceptance, design-entry eligibility, design authority, implementation authority, or successor authority.
@@ -333,7 +362,9 @@ Each finding must contain:
 
 Stage A may create exactly:
 
-`docs/architecture/ELITESYNC_V10_FD02_EXPANDED_STATIC_TECHNICAL_DISCOVERY_REPORT_V0_1.md`
+`docs/architecture/ELITESYNC_V10_FD02_EXPANDED_STATIC_TECHNICAL_DISCOVERY_REPORT_V0_2.md`
+
+The V0.2 path is intentionally distinct from the preserved V0.1 blocked artifact in Section 1.3. V0.1 must not be opened or used as a source, evidence ledger, template, or retry input. V0.2 must be authored from the current exact authority, governance inputs, and allowed technical blobs only.
 
 Required status:
 
@@ -356,9 +387,10 @@ The report must contain:
 13. F-011/F-012 and U-15 change/no-change analysis without claiming resolution beyond evidence;
 14. upstream-authority traceability;
 15. UNKNOWN, target-dependent, out-of-scope, conflict, sensitivity, and stop register;
-16. Stage A self-validation and prohibited-action attestation;
-17. exact sole unstaged path; and
-18. terminal statement: `FD-02 STATIC DISCOVERY DRAFT COMPLETE — NO TECHNICAL DESIGN, IMPLEMENTATION, TARGET, OR SUCCESSOR AUTHORITY CREATED`.
+16. incidental-logging span count and the exact classification `OUT OF SCOPE — INCIDENTAL LOGGING DECLARATION NOT ANALYZED`, without reproducing excluded content;
+17. Stage A self-validation and prohibited-action attestation;
+18. exact retry deviation set consisting only of the preserved unchanged untracked V0.1 report and the new unstaged V0.2 report; and
+19. terminal statement: `FD-02 STATIC DISCOVERY DRAFT COMPLETE — NO TECHNICAL DESIGN, IMPLEMENTATION, TARGET, OR SUCCESSOR AUTHORITY CREATED`.
 
 The report's own final SHA-256 must appear only in the external Stage A stop packet, never inside the hash-locked report.
 
@@ -371,19 +403,22 @@ Stage A must:
 1. fresh-fetch and pass every Section 11.1 gate before reading governance or technical contents;
 2. read this task sheet first, then the controlling review and only necessary governance inputs;
 3. verify the complete 36-blob manifest before opening the first technical blob;
-4. read technical blobs one at a time and stop on any containment, mode, identity, or sensitivity failure;
-5. create only the Section 9 report;
-6. perform bounded offline self-validation;
-7. calculate the final report SHA-256 after all edits;
-8. leave the report unstaged with staged-path count `0`;
-9. issue the Section 13.1 Stage A stop packet; and
-10. stop for external independent GPT L3 review.
+4. verify the preserved untracked V0.1 blocked artifact only by exact path/status/SHA-256 metadata and never open or use it;
+5. read technical blobs one at a time, apply the Section 5 incidental-logging span rule, and stop on any containment, mode, identity, protected-data, primary-purpose logging/telemetry, or other sensitivity failure;
+6. create only the Section 9 V0.2 report while preserving V0.1 byte-for-byte;
+7. perform bounded offline self-validation;
+8. calculate the final V0.2 report SHA-256 after all edits;
+9. leave V0.2 unstaged with staged-path count `0` and V0.1 unchanged/untracked;
+10. issue the Section 13.1 Stage A stop packet; and
+11. stop for external independent GPT L3 review.
 
 Stage A must not stage, commit, push, self-issue external acceptance, or continue automatically.
 
 ### 10.2 Interstage external review
 
 External GPT L3 review must occur after Stage A stops and must name the exact report path and SHA-256 reviewed.
+
+External review is limited to V0.2. The historical V0.1 blocked report is neither submitted as retry evidence nor eligible for Stage B publication under this contract.
 
 If any content change is requested, Stage B is unavailable. A newly authorized Stage A revision must produce a new hash and stop again for a new external review. Whitespace, line-ending, formatting, metadata, or spelling changes count as content changes.
 
@@ -411,9 +446,10 @@ Before content reading, verify:
 - stash state;
 - task-sheet tracked mode/blob/SHA-256 and exact external acceptance/Owner Stage A authority;
 - controlling-review path/commit/SHA-256;
-- output absence;
+- V0.2 output absence;
+- exact preservation of the untracked V0.1 blocked report at the Section 1.3 SHA-256 without content reading;
 - exact 36-path count, tracked status, containment, mode `100644`, blob type, and expected blob IDs;
-- no unexpected changed/staged path; and
+- no unexpected changed/staged/untracked path: the only permitted pre-read deviation is the exact unchanged untracked V0.1 preservation exception; and
 - prohibited-source and sensitivity-stop readiness.
 
 Any failure before content reading produces `BLOCKED — FD-02 PRE-READ AUTHORITY, MANIFEST, OR CONTAINMENT GATE FAILED` and whole-task stop without repair or substitution.
@@ -424,8 +460,9 @@ For every blob:
 
 - recheck exact identity immediately before reading;
 - never follow references;
+- exclude incidental logging expressions/spans under Section 5, without reproducing or analyzing their message bodies, arguments, payload construction, or telemetry fields, and continue only with independently separable allowed declarations;
 - stop the affected item on insufficient evidence, failed target independence, or excluded dependency;
-- stop the whole task on sensitive/prohibited content, containment failure, identity drift, or upstream-authority conflict affecting integrity;
+- stop the whole task on actual protected/sensitive/runtime/captured/payload/production data, a primarily logging/telemetry file, unsafe separation, containment failure, identity drift, or upstream-authority conflict affecting integrity;
 - preserve partial evidence as partial; and
 - do not add a path or answer from memory, convention, vendor knowledge, or another source.
 
@@ -433,9 +470,10 @@ For every blob:
 
 Before the mandatory stop, verify:
 
-- exactly one new unstaged report path and staged count `0`;
+- exactly one new unstaged V0.2 report path, the exact unchanged untracked V0.1 preservation exception, no other deviation, and staged count `0`;
 - every actual technical read path is one of the 36 exact blobs;
 - all read/not-read and command ledgers are complete;
+- every incidental logging span is omitted from substantive analysis and counted only under `OUT OF SCOPE — INCIDENTAL LOGGING DECLARATION NOT ANALYZED`;
 - every finding has one evidence state, full provenance, all ten tests, limitations, prohibited inference, and stop scope;
 - no finding upgrades static text into technical authority, runtime truth, target, requirement, readiness, or design;
 - F-011/F-012/U-15 changes are evidence-bounded;
@@ -452,10 +490,10 @@ Stop without repair, retry, fallback, substitution, or expansion on:
 - baseline/task-sheet/review hash or authority mismatch;
 - dirty or ambiguous registered-worktree/stash state;
 - allowlist count, path, mode, blob-type, or blob-ID mismatch;
-- output collision or unexpected changed/staged path;
+- V0.2 output collision, V0.1 preservation mismatch, or any unexpected changed/staged/untracked path;
 - link/submodule/include/archive/generated/external-path expansion;
-- sensitive/prohibited content;
-- need for any excluded path, runtime, execution, telemetry, log, participant/data, private Conversation, Safety, production, external, legal, performance/load/reliability, or target evidence;
+- actual protected/sensitive/runtime/captured/payload/production content, or a file whose primary purpose is logging/telemetry;
+- need for any excluded path, runtime, execution, telemetry/log evidence or behavior, participant/data, private Conversation, Safety, production, external, legal, performance/load/reliability, or target evidence;
 - target-independence failure for the affected claim;
 - a proposed technical selection, recommendation, design, requirement, remediation, plan, readiness verdict, or successor;
 - external-review rejection or requested change without a new Stage A cycle;
@@ -464,16 +502,18 @@ Stop without repair, retry, fallback, substitution, or expansion on:
 
 Affected-claim insufficiency stops only that claim unless it compromises authority, containment, sensitivity protection, upstream integrity, or changed-path integrity. Those integrity failures stop the whole task. No stop creates global person/account meaning.
 
+Incidental logging code in an otherwise allowlisted, non-logging-primary file is not `sensitive/prohibited content` for whole-task-stop purposes. It is handled only by the span-level exclusion and affected-claim rules in Sections 5, 8.3, and 11.2.
+
 ## 12. Stage B publication contract
 
 After all Section 10.3 gates pass, Stage B must:
 
 1. fresh-fetch immediately before staging;
 2. verify `HEAD = origin/main =` the accepted Stage A baseline or an exact replacement baseline explicitly accepted by both external GPT L3 and Owner continuation authority;
-3. verify every registered worktree is clean except the one reviewed report and stash is empty;
+3. verify every registered worktree has no deviation except the exact unchanged untracked V0.1 preservation artifact and the one reviewed V0.2 report, and verify stash is empty;
 4. verify working SHA-256 equals the accepted hash;
-5. stage only `docs/architecture/ELITESYNC_V10_FD02_EXPANDED_STATIC_TECHNICAL_DISCOVERY_REPORT_V0_1.md` by literal path;
-6. verify staged path count `1`, exact path match, unstaged count `0`, and staged-blob SHA-256 equality;
+5. stage only `docs/architecture/ELITESYNC_V10_FD02_EXPANDED_STATIC_TECHNICAL_DISCOVERY_REPORT_V0_2.md` by literal path;
+6. verify staged path count `1`, exact V0.2 path match, tracked unstaged count `0`, preserved V0.1 still untracked with unchanged SHA-256, no other deviation, and staged-blob SHA-256 equality;
 7. run `git diff --cached --check` without modifying the report;
 8. commit with exact subject `docs: record FD-02 expanded static discovery`;
 9. verify exact parent and one changed path;
@@ -481,7 +521,7 @@ After all Section 10.3 gates pass, Stage B must:
 11. push only `main` to `origin/main`, without force;
 12. fresh-fetch after push and verify `HEAD = origin/main`;
 13. verify the committed blob SHA-256 equals the accepted hash;
-14. verify all registered worktrees clean and stash empty; and
+14. verify all registered worktrees have no deviation except the exact unchanged untracked V0.1 preservation artifact, and verify stash empty; and
 15. stop without beginning design, implementation, remediation, another discovery, or successor work.
 
 Publication is repository synchronization only. It does not accept a technical choice, establish design-entry eligibility, authorize design, authorize implementation, or authorize another discovery.
@@ -496,15 +536,17 @@ Report:
 - starting branch/refs/baseline/parent/subject/divergence;
 - registered worktrees, cleanliness, and stash;
 - task-sheet and controlling-review hashes;
+- preserved V0.1 path, untracked status, and unchanged SHA-256, with attestation that it was not opened or used as retry evidence;
 - exact 36-blob manifest verification;
 - actual governance and technical paths read/not read;
-- created report path;
+- created V0.2 report path;
 - evidence-state and ten-test counts;
 - F-011/F-012/U-15 disposition changes or retained UNKNOWN;
 - target-dependent/out-of-scope/conflict/sensitivity/stop counts;
+- incidental-logging span count classified only as `OUT OF SCOPE — INCIDENTAL LOGGING DECLARATION NOT ANALYZED`;
 - concrete accepted-target count and U-05/U-08/U-10/U-15 status;
-- self-validation, exact sole unstaged path, staged count `0`, and whitespace result;
-- final report SHA-256;
+- self-validation, exact two-path deviation set of unchanged untracked V0.1 plus unstaged V0.2, staged count `0`, no other deviations, and whitespace result;
+- final V0.2 report SHA-256;
 - DeepSeek calls `0` and prohibited-action attestation; and
 - terminal: `STAGE A FD-02 COMPLETE — REPORT UNSTAGED — STOPPED FOR EXTERNAL INDEPENDENT GPT L3 REVIEW — NO STAGE B OR SUCCESSOR AUTHORITY`.
 
@@ -516,8 +558,9 @@ Report:
 - external GPT L3 exact path/hash acceptance;
 - Owner Stage B exact path/hash continuation authority;
 - pre-stage fresh-fetch, refs, baseline, divergence, registered worktrees, cleanliness, and stash;
+- preserved V0.1 path, unchanged SHA-256, untracked status, and non-use attestation;
 - working-file and staged-blob SHA-256 equality;
-- staged count/path, unstaged count, and cached diff check;
+- staged count/exact V0.2 path, tracked unstaged count, exact preserved V0.1-only untracked exception, no other deviations, and cached diff check;
 - commit SHA, parent, exact subject, and exact changed path;
 - push result, final `HEAD = origin/main`, committed-blob hash, worktree cleanliness, and stash;
 - DeepSeek calls `0` and prohibited-action attestation; and
@@ -525,24 +568,26 @@ Report:
 
 Neither report may include a successor prompt or recommendation to begin design.
 
-## 14. Task-sheet authoring validation and publication contract
+## 14. Task-sheet revision validation and publication contract
 
-For this task-sheet authoring task only:
+For the logging-boundary and retry-path revision of this task sheet only:
 
 - no technical file content may be read;
-- only non-mutating Git ref/tree/path/mode/blob-ID metadata may define the 36-path allowlist;
-- exactly this task-sheet file may be created or modified;
+- the existing 36-path allowlist and blob identities remain unchanged unless already-authorized metadata proves a dedicated logging/telemetry exclusion violation; no such technical-content determination may be made here;
+- exactly this task-sheet file may be modified and no artifact may be created;
+- the existing untracked V0.1 blocked report is an authorized preservation exception only at its exact path and SHA-256; it must not be opened, read, modified, deleted, renamed, normalized, staged, committed, or used as technical evidence;
 - the controlling review and all upstream authority remain unchanged;
 - the task-sheet status remains proposed, candidate-only, and not authorized for execution;
 - offline Markdown, required-literal, allowlist-count, duplicate-path, whitespace, and exact changed-path checks must pass;
 - independent internal QA may review the task sheet but cannot accept FD-02 execution;
 - stage only this task-sheet path after validation;
-- verify staged count `1`, unstaged count `0`, and `git diff --cached --check`;
-- commit with exact subject `docs: define FD-02 expanded static discovery contract`;
+- before staging, verify the only worktree deviations are the modified task sheet and the exact unchanged untracked V0.1 blocked report;
+- stage only this task-sheet path and verify staged count `1`, exact staged path, tracked unstaged count `0`, the exact V0.1-only untracked exception, no other deviation, and `git diff --cached --check`;
+- commit with exact subject `docs: revise FD-02 logging boundary`;
 - fresh-fetch before push and stop on remote advancement;
 - push only `main` without force;
 - fresh-fetch after push and verify `HEAD = origin/main`;
-- report final commit, parent, subject, exact changed path, task-sheet SHA-256, registered worktrees, cleanliness, stash, and DeepSeek calls; and
+- report final commit, parent, subject, task-sheet SHA-256, exact changed/staged path counts, preserved V0.1 path and unchanged SHA-256, absence of other worktree deviations, registered worktrees, stash, and DeepSeek calls; and
 - stop without executing FD-02 or creating any successor artifact.
 
 ## 15. Terminal statement
