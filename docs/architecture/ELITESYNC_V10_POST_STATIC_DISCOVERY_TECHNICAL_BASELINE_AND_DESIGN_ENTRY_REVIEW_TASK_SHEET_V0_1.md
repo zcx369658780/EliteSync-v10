@@ -16,6 +16,8 @@ That future review may only:
 
 Creating, reviewing, accepting, committing, or publishing this task sheet does not authorize execution of the review. Executing or accepting the review would not authorize further discovery, technical design, implementation planning, implementation, remediation, migration, or any successor task.
 
+Future execution is intentionally split into two separately gated stages. Stage A may create and self-validate the single review draft but must stop before Git staging, commit, or push. Independent GPT L3 review occurs only after that stop, outside Stage A. Stage B may publish only the exact independently accepted artifact, and only after a separate continuation authorization binds the reviewed artifact path and SHA-256.
+
 The future review must end with:
 
 `GOVERNANCE REVIEW COMPLETE — NO TECHNICAL DESIGN, IMPLEMENTATION, OR SUCCESSOR EXECUTION AUTHORITY CREATED`
@@ -68,7 +70,7 @@ Later documents may refine status but may not silently erase accepted upstream p
 
 ## 2. Future execution-authority intake gates
 
-Before reading any evidence input, the future executor must complete every gate below. Failure means immediate stop without repair, source expansion, drafting, commit, or push.
+Before Stage A reads any evidence input, the future executor must complete every gate below. Failure means immediate stop without repair, source expansion, drafting, commit, or push.
 
 1. Run a fresh fetch of GitHub `origin/main`.
 2. Verify the repository remote is `git@github.com:zcx369658780/EliteSync-v10.git` or the Owner-authorized equivalent recorded in the execution prompt.
@@ -88,6 +90,19 @@ Any unexpected baseline movement, hash mismatch, dirty state, extra worktree sta
 `BLOCKED — PRE-READ AUTHORITY OR CONTAINMENT GATE FAILED`
 
 The executor must report the exact failed gate and stop. It must not reset, clean, stash, rebase, merge, repair, delete, overwrite, or silently migrate assumptions.
+
+### 2.1 Two-stage authority separation
+
+The initial execution authorization may authorize Stage A only. It does not authorize Git staging, commit, push, or Stage B.
+
+Stage B requires all of the following external inputs after Stage A has stopped:
+
+1. an independent GPT L3 acceptance that names the exact draft path and SHA-256 reviewed;
+2. a separate Owner continuation authorization for Stage B that names the same path and SHA-256;
+3. the Stage A final report and validation evidence; and
+4. a fresh repository-authority gate against the Stage A baseline, unless the continuation authorization explicitly names a separately reviewed replacement baseline.
+
+The Stage A executor must not generate, infer, simulate, self-issue, or substitute either external input. A helper-agent, self-review, lint result, clean diff, or task-sheet compliance check is not independent GPT L3 acceptance.
 
 ## 3. Exact review scope
 
@@ -111,12 +126,13 @@ Allowed actions are limited to:
 - quoting or citing existing recorded findings without re-performing them;
 - classifying and dispositioning those findings under Sections 4 through 8;
 - writing the single Markdown deliverable in Section 9;
-- running offline literal, Markdown, diff, hash, and exact-path validation of that deliverable; and
-- committing and pushing only under Section 12 after all gates pass.
+- running Stage A offline literal, Markdown, unstaged-diff, hash, and exact-path self-validation of that deliverable;
+- stopping and reporting under Sections 10.1 and 13.1 for external independent GPT L3 review; and
+- only in a later, separately authorized Stage B, performing the hash-locked staging, commit, push, and synchronization checks in Sections 10.2, 12.2, and 13.2.
 
 ### 3.3 No new technical discovery
 
-The review may not re-open, reproduce, extend, spot-check, or independently validate the technical discovery. It must not read `README.md`, `ARCHITECTURE.md`, `CURRENT_STATE.md`, `DEVELOPMENT_RULES.md`, source trees, configuration, manifests, lockfiles, routes, migrations, tests, build artifacts, or any technical path as primary evidence. Existing excerpts, blob IDs, locators, hashes, and absence/UNKNOWN statements may be reviewed only as recorded in the accepted discovery report.
+The review may not re-open, reproduce, extend, spot-check, or independently validate the technical discovery. It must not read `README.md`, `ARCHITECTURE.md`, `CURRENT_STATE.md`, `DEVELOPMENT_RULES.md`, source trees, configuration, manifests, lockfiles, routes, migrations, tests, build artifacts, or any technical path as primary evidence. Existing excerpts, blob IDs, locators, hashes, and absence/UNKNOWN statements may be reviewed only as recorded in the controlling discovery report.
 
 If a reviewer believes a recorded finding is insufficient, it must retain the affected item as `UNKNOWN`, `CONFLICTING EVIDENCE`, or `CANDIDATE FOR SEPARATE DISCOVERY AUTHORIZATION`; it must not inspect another source.
 
@@ -342,14 +358,18 @@ The deliverable must contain:
 11. U-05/U-08/U-10/U-12/U-14/U-15, Safety, legal, and Decision Packet traceability;
 12. prohibited-action attestation;
 13. validation manifest;
-14. changed-path and commit evidence; and
+14. Stage A draft-path, unstaged changed-path, and self-validation evidence, excluding the artifact's own final SHA-256;
 15. the terminal non-authority statement from Section 0.
+
+The artifact's own final SHA-256 belongs only in the external Stage A final report under Section 13.1 and must never be written back into the artifact. Stage B acceptance, continuation-authority, commit, push, and synchronization evidence belongs only in the external Stage B final report under Section 13.2. None of this evidence may be appended to or otherwise change the hash-locked review artifact.
 
 No second report, handoff, prompt, decision packet, ADR, design artifact, or successor artifact may be created.
 
 ## 10. Validation gates
 
-Before commit, the executor and independent GPT L3 reviewer must verify:
+### 10.1 Stage A bounded self-validation and mandatory stop
+
+Before the Stage A report-and-stop, the executor may self-validate only:
 
 - exactly one new file exists and it is the authorized Section 9 deliverable;
 - all authority and hash gates passed before evidence reading;
@@ -368,11 +388,28 @@ Before commit, the executor and independent GPT L3 reviewer must verify:
 - every further-discovery candidate passes all Section 6.1 tests and remains separately unauthorized;
 - any candidate design-entry boundary names one track only and contains no design or successor authorization;
 - no prohibited action occurred and DeepSeek calls equal `0`;
-- `git diff --check` passes;
-- unstaged and staged changed-path inventories each match the exact authorized state; and
-- the independent reviewer returns `ACCEPTED FOR EXACT TASK-SHEET CONTRACT` or all blocking defects are corrected within this one file and re-reviewed.
+- an offline whitespace/diff check of the unstaged deliverable passes;
+- the unstaged changed-path inventory contains exactly the Section 9 deliverable and no other path;
+- the staged changed-path inventory is empty; and
+- the deliverable SHA-256 is calculated after all Stage A edits and recorded in the Stage A final report.
 
-Review comments do not authorize substantive expansion. If a defect cannot be corrected solely inside the deliverable without new authority, stop.
+Stage A must then stop. It must not run `git add`, create a commit, push, claim independent GPT L3 acceptance, or continue automatically. The draft path, SHA-256, self-validation evidence, and non-authority attestation are the external independent GPT L3 review packet.
+
+### 10.2 Stage B external-acceptance and artifact-identity gates
+
+Before any staging, Stage B must verify:
+
+- a separate independent GPT L3 acceptance names the exact Section 9 path and Stage A SHA-256;
+- a separate Owner continuation authorization grants Stage B for that exact path and SHA-256;
+- the current file SHA-256 exactly equals the independently reviewed Stage A SHA-256;
+- the file content and line endings have not been changed, regenerated, reformatted, normalized, or repaired after review;
+- all Section 2.1 external inputs are present and mutually consistent;
+- a fresh fetch and the complete repository/worktree/cleanliness gate in Section 12.2 passes; and
+- no path other than the exact reviewed artifact is modified or staged.
+
+Any hash mismatch invalidates the acceptance for publication. Stage B must stop; it may not restage, amend, normalize, repair, or seek to treat a similar file as the reviewed artifact.
+
+Independent review comments do not authorize substantive expansion. If review requests a change, Stage B is not available: a newly authorized Stage A revision must produce a new hash, stop again, and undergo a new external independent GPT L3 review and continuation authorization.
 
 ## 11. Stop conditions
 
@@ -386,36 +423,49 @@ Stop immediately on any:
 - attempt to convert bootstrap declaration into current technical authority;
 - attempt to decide a target, architecture, schema, API, Backend, Flutter, service, infrastructure, model, migration, or implementation question;
 - attempt to create more than one deliverable or a successor artifact;
-- independent-review rejection that cannot be fixed within the exact file; or
+- Stage A attempt to stage, commit, push, or self-issue independent acceptance;
+- missing, ambiguous, conflicting, stale, or path/hash-mismatched external GPT L3 acceptance or Stage B continuation authorization;
+- any post-review artifact hash or byte-identity change;
+- independent-review rejection or requested revision without a newly authorized Stage A cycle; or
 - push rejection, remote advancement, or post-push synchronization/cleanliness failure.
 
 Stop is affected-scope-only only for a separable content disposition. Any repository or controlling-authority integrity failure, source-containment failure, prohibited/sensitive-information protection failure, or changed-path integrity failure is a whole-task stop. Never repair, retry, overwrite, rebase, force-push, or broaden sources without new authority.
 
-## 12. Commit and push contract
+## 12. Two-stage commit and push contract
 
-Commit and push are not authorized by this proposal. A future execution prompt must explicitly grant them.
+Commit and push are not authorized by this proposal or by Stage A authority. They require the separate Stage B continuation authority in Section 2.1.
 
-If granted, the executor must:
+### 12.1 Stage A — draft only; no Git publication
 
-1. complete independent GPT L3 review and all Section 10 gates;
-2. fresh-fetch `origin/main` again immediately before staging;
-3. verify `HEAD = origin/main =` the authorized baseline and every registered worktree is clean except the single authorized untracked deliverable;
-4. stage with the literal exact deliverable path only;
-5. wrap path output as an array and verify staged path count is exactly `1` and the path matches exactly;
-6. verify no unstaged change remains;
-7. commit with a narrow documentation-only subject, proposed: `docs: define post-static-discovery review contract`;
-8. verify the commit parent is the authorized baseline and the commit changes exactly one path;
-9. push only `main` to `origin/main`, with no force;
-10. fresh-fetch after push;
-11. verify `HEAD = origin/main` at the resulting commit;
-12. verify every registered worktree is clean, the registered set is reported, and stash remains empty; and
-13. stop without starting any further discovery, technical design, implementation planning, implementation, remediation, migration, or successor work.
+Stage A must leave the single deliverable unstaged. It may calculate hashes and inspect the unstaged exact-path diff, but must not invoke `git add`, commit, push, or any equivalent index/publication action. Its terminal action is the Stage A final report in Section 13.1 followed by stop for external independent GPT L3 review.
+
+### 12.2 Stage B — exact reviewed artifact publication only
+
+After, and only after, all Section 10.2 gates pass, Stage B must:
+
+1. fresh-fetch `origin/main` immediately before staging;
+2. verify `HEAD = origin/main =` the Stage A authorized baseline or the exact replacement baseline explicitly accepted in the continuation authorization;
+3. verify every registered worktree is clean except for the single authorized unstaged reviewed deliverable, and verify stash is empty;
+4. recalculate SHA-256 and verify exact equality with both the Stage A reported hash and the independent GPT L3 acceptance/continuation-authorization hash;
+5. stage with the literal exact deliverable path only;
+6. wrap staged path output as an array and verify staged path count is exactly `1` and the path matches exactly;
+7. verify no unstaged change remains and verify the staged blob bytes produce the same SHA-256 as the reviewed artifact;
+8. run `git diff --cached --check` and the exact-path validation gates without modifying the file;
+9. commit with the exact subject `docs: record post-static-discovery review`;
+10. verify the commit parent is the authorized baseline and the commit changes exactly one path;
+11. push only `main` to `origin/main`, with no force;
+12. fresh-fetch after push;
+13. verify `HEAD = origin/main` at the resulting commit;
+14. verify every registered worktree is clean, report the registered set, and verify stash remains empty; and
+15. stop without starting any further discovery, technical design, implementation planning, implementation, remediation, migration, or successor work.
 
 If `origin/main` advances unexpectedly at any pre-push gate, stop and report. Do not rebase, merge, cherry-pick, regenerate, or silently accept a new baseline.
 
-## 13. Required final report format
+## 13. Required two-stage final-report format
 
-The future executor's final report must state:
+### 13.1 Stage A draft-review report — mandatory stop packet
+
+Stage A's final report must state:
 
 - verdict: completed or the exact fail-closed blocker;
 - starting authorized baseline;
@@ -431,16 +481,32 @@ The future executor's final report must state:
 - design-entry candidate verdict and named track, if any;
 - concrete accepted-target count;
 - U-05/U-08/U-10/U-15 status;
-- independent GPT L3 review verdict;
-- validation results including `git diff --check` and exact changed/staged path counts;
-- commit SHA, parent, subject, and exact changed paths if committed;
-- push result and final `HEAD = origin/main` evidence;
-- final registered-worktree cleanliness and stash state;
+- bounded self-validation results, the offline whitespace/diff result, exact unstaged changed-path count/path, and staged path count `0`;
+- the final draft SHA-256 to be reviewed externally;
+- explicit attestation that no independent GPT L3 acceptance has yet been claimed;
+- explicit attestation that no staging, commit, or push occurred;
 - DeepSeek calls, which must be `0`;
 - prohibited-action attestation; and
-- terminal statement: `GOVERNANCE REVIEW COMPLETE — NO TECHNICAL DESIGN, IMPLEMENTATION, OR SUCCESSOR EXECUTION AUTHORITY CREATED`.
+- terminal statement: `STAGE A COMPLETE — DRAFT UNSTAGED — STOPPED FOR EXTERNAL INDEPENDENT GPT L3 REVIEW — NO STAGE B OR SUCCESSOR AUTHORITY`.
 
-The final report must not contain a successor prompt or recommendation to begin design.
+### 13.2 Stage B synchronization report — only after separate continuation authority
+
+Stage B's final report must state:
+
+- the Stage A report identity and draft SHA-256;
+- the separate independent GPT L3 acceptance and the exact path/SHA-256 it accepted;
+- the separate Owner Stage B continuation authorization and its exact path/SHA-256;
+- pre-stage fresh-fetch, baseline, branch, divergence, registered-worktree, cleanliness, and stash evidence;
+- current working-file and staged-blob SHA-256 equality with the reviewed hash;
+- exact staged path count/path, cached diff check, and unstaged path count;
+- commit SHA, parent, exact subject `docs: record post-static-discovery review`, and exact changed path;
+- push result and final `HEAD = origin/main` evidence;
+- final registered-worktree cleanliness and stash state;
+- DeepSeek calls, which must remain `0`;
+- prohibited-action attestation; and
+- terminal statement: `STAGE B SYNCHRONIZED — EXACT REVIEWED ARTIFACT PUBLISHED — NO TECHNICAL DESIGN, IMPLEMENTATION, OR SUCCESSOR EXECUTION AUTHORITY CREATED`.
+
+Neither stage's final report may contain a successor prompt or recommendation to begin design. Stage A evidence must not include synchronization claims; Stage B evidence must not rewrite, replace, or retrospectively alter the Stage A draft-review record.
 
 ## 14. Task-sheet non-authorization statement
 
