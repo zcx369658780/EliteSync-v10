@@ -2,17 +2,21 @@
 
 发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO EXECUTION OR IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3收敛和路线更新仍是待审候选；原指令版本已有独立接受，不因本次候选标题而失效。
+更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3隔离执行结果更新仍是待审候选；readiness已获验收且Owner已批准选项1，原指令版本已有独立接受。
 
 ## 1. 当前入口和生命周期
 
-本轮固定main M为 `bb2027ce077b00deb2fdaa1161f357d303ef8cd0`。已接受文档审查历史基线A为 `a2438e24564a5ce93b57068ab91a78c3f70ded3a`，包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告与接受记录；报告接受不自动批准全部建议。
+本轮固定main M为 `fd4355a29b912280c46dc5391e9bacf66be45d84`；readiness任务原main `bb2027ce077b00deb2fdaa1161f357d303ef8cd0` 保留历史角色。已接受文档审查历史基线A为 `a2438e24564a5ce93b57068ab91a78c3f70ded3a`，包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告与接受记录；报告接受不自动批准全部建议。
 
 原指令任务 `f454bab732a3bb6ca3ca3d248e74c8cf2b519113` 的候选 `4a53e8003dfafafd483a0fa762793f767d99a44f` 已由M中的 [指令接受记录](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md)（blob `a84337da303f459d9bb931fec8e42b5e9209dc86`）接受，关口已关闭。8/8精确本地文档同步依据Owner转贴执行者报告，本轮未重新实测，不声明整仓同步或当前会话加载完成。§6末句保留原版本接受前时序，当前状态以本节及接受记录为准。
 
 FIRST主动读取仍为 [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md)，blob `18485c95262051e43892436fb52413132c5ee626`。内部f77dac及旧SHA是历史角色，不执行旧startup；每轮使用启动prompt绑定并实时核验的main/任务。
 
-当前固定 [M3收敛任务v0.2](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md) 为 `2c2d1dcf3d501ab1de01480238c71ef6c8ef4544`，blob `0da93232427233f7f9ab94524591ced7987db575`。它替代旧 `8b640576822b01ae00bb04b9b5deaa75db53365c` 的未来任务用途；旧任务保持未执行，不恢复。新 [M3决定报告](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) 为 **B — OWNER SCOPE DECISION REQUIRED** 待审候选：推荐有条件的离线隔离证据范围，须Owner集中决定新增读取/写入/隔离与证据根并补齐输入。无本地执行或M3授权，M3 blocked、M2 deferred。
+历史 [M3收敛任务v0.2](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md) 为2c2d1dcf3d501ab1de01480238c71ef6c8ef4544；[readiness报告](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) blob 9466dba2800e12bf1f17414606e34af452134741，B已由ChatGPT验收，Owner已批准选项1。旧8b640576822b01ae00bb04b9b5deaa75db53365c保持未执行，不恢复。
+
+当前 [隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md) 为e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8，授权硬前置闭合后的条件式一次M3。Attempt M3-ISO-V02-001实际结果为 **M3 PRECONDITION BLOCKED — WINDOWS SANDBOX UNAVAILABLE**：唯一feature查询要求提升；未提权重试。pub和M3均未启动，exit=null，AAR未检查，不能记NON-HIT。详见 [结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)。
+
+本地HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文。Flutter/JDK/pub seed/wrapper-dists目录存在；Android SDK未解析，指定Gradle caches目录类型检查False；defines为EMPTY。宿主隔离根起初不存在，但§4创建条件未满足，未创建；指定evidence路径D:\EliteSync-M3-readiness-v02\evidence没有本地结果文件，查询摘要与结构化结果保留在GitHub候选报告。M3仍前置blocked，M2 deferred。§3保留历史边界原文，本次有限授权及其实际停止以本任务和本节为准。
 
 ## 2. 产品目标与概念基础
 
@@ -55,14 +59,14 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留Owner转贴8/8报告的证据层级 |
-| 2 M3生成与M2后续依赖证据 | M3 blocked；本次B决策包待审；M2 deferred | Owner决定报告§4集中范围；精确输入/控制/命令闭合后才可能另获执行授权；生成、产物、宿主解析各自记证据 |
+| 2 M3生成与M2后续依赖证据 | Owner已批准选项1；M3-ISO-V02-001因Sandbox查询权限不足未启动；结果待审；M2 deferred | 先解决单一Sandbox查询权限主因及已记录Android/Gradle输入缺口；不在本轮重试，不具备进入M2的新证据条件 |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例；不以真实用户研究完成作为此类演示版的一概前置门 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围中形成可演示的贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备；必要法律成熟度触发另处理，不自动启动LC-03/04 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整；不开展本轮招募/采集/实现 |
 
 虚构样例走查不是真实用户验证，不使U-08 desirability/readiness或U-10 comprehension/accessibility完成。最终首版平台与功能仍需明确授权；不在此给代码、schema、API、技术栈改造或部署设计。
-无新增证据、约束变化或具体缺陷，不另发同义治理任务；B若未获范围选择则保留同一个blocked条目。
+无新增证据、约束变化或具体缺陷，不另发同义治理任务；Owner选项1批准已落实为本次条件式任务；保留具体前置blocked结果，不重开同义readiness研究。
 
 ## 5. 精确来源与覆盖缺口
 
@@ -78,11 +82,13 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md` | M，blob `a84337da303f459d9bb931fec8e42b5e9209dc86`；指令接受记录 |
 | `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_PREFLIGHT_SIDE_EFFECT_CLOSURE_GOVERNANCE_REVIEW_V0_1.md` | M，blob `a012c612532134ff7ada1c685234aae1d866e492`；已接受Outcome B |
 | `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md` | T／blob `0da93232427233f7f9ab94524591ced7987db575`；当前读写和决策合同 |
-| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md` | 与本更新同一候选；B及官方账本/精确缺值/Owner决策包，未独立接受 |
+| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md` | blob 9466dba2800e12bf1f17414606e34af452134741；B已验收，选项1已获Owner批准 |
 | `docs/architecture/ELITESYNC_V10_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md` | M，blob `fb48743f0147fb0d25be697ba02aae63a45d07d8`；只采用§§2–7历史tracks/U状态，不恢复startup |
 
+本次新增精确来源：[隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md)，T=e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8；[M3-ISO-V02-001结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)与本更新同候选，待独立审查。readiness历史T与当前执行T不可混同。
+
 早期2026-08-22总纲路径未知；ADR-005独立审查完成事件未证实。全局AGENTS、fallback、skills配置、完整自动加载链与用户模型配置未实测。可见宿主身份为基于GPT-6的Codex；Owner声明选择Astra，未独立取得运行model ID；未更改配置或调用辅助模型。
-M3完整dart-define参数、离线输入精确清单、工具/seed绝对路径、本地Sandbox适用性和控制生效证据未知；不搜索或探测来补值。官方文件缺失及版本适用性限制见报告§3。环境控制可用的文档证据不等于本地已验证。
+本轮defines按任务允许来源解析为EMPTY（0项），不是从历史或源码搜索补值。工具/seed有限目录结果见本节关联的执行结果报告；目录存在不证明完整或兼容。Sandbox唯一查询要求提升，其feature状态和控制生效未证实；Android SDK及指定Gradle caches仍缺。本轮未启动Java版本、离线pub或M3。官方版本适用性限制仍见readiness报告§3。
 历史“项目源包”只保留历史描述；本次不检查上传、不重打包、不上传源，不声明备份恢复能力。
 
 ## 6. 官方规范的有限采用
