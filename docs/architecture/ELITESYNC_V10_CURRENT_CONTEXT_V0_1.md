@@ -1,12 +1,12 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO EXECUTION OR IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3隔离执行结果更新仍是待审候选；readiness已获验收且Owner已批准选项1，原指令版本已有独立接受。
+更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3-ISO-V02-002隔离执行结果更新仍是待审候选；001结果已接受；readiness已获验收且Owner已批准选项1，原指令版本已有独立接受。
 
 ## 1. 当前入口和生命周期
 
-本轮固定main M为 `fd4355a29b912280c46dc5391e9bacf66be45d84`；readiness任务原main `bb2027ce077b00deb2fdaa1161f357d303ef8cd0` 保留历史角色。已接受文档审查历史基线A为 `a2438e24564a5ce93b57068ab91a78c3f70ded3a`，包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告与接受记录；报告接受不自动批准全部建议。
+本轮固定main M为 `a3736a0d4790fe5fcc01d27a4a8edf06f9162917`；001任务原main `fd4355a29b912280c46dc5391e9bacf66be45d84` 为历史角色；readiness任务原main `bb2027ce077b00deb2fdaa1161f357d303ef8cd0` 保留历史角色。已接受文档审查历史基线A为 `a2438e24564a5ce93b57068ab91a78c3f70ded3a`，包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告与接受记录；报告接受不自动批准全部建议。
 
 原指令任务 `f454bab732a3bb6ca3ca3d248e74c8cf2b519113` 的候选 `4a53e8003dfafafd483a0fa762793f767d99a44f` 已由M中的 [指令接受记录](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md)（blob `a84337da303f459d9bb931fec8e42b5e9209dc86`）接受，关口已关闭。8/8精确本地文档同步依据Owner转贴执行者报告，本轮未重新实测，不声明整仓同步或当前会话加载完成。§6末句保留原版本接受前时序，当前状态以本节及接受记录为准。
 
@@ -14,9 +14,15 @@ FIRST主动读取仍为 [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTA
 
 历史 [M3收敛任务v0.2](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md) 为2c2d1dcf3d501ab1de01480238c71ef6c8ef4544；[readiness报告](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) blob 9466dba2800e12bf1f17414606e34af452134741，B已由ChatGPT验收，Owner已批准选项1。旧8b640576822b01ae00bb04b9b5deaa75db53365c保持未执行，不恢复。
 
-当前 [隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md) 为e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8，授权硬前置闭合后的条件式一次M3。Attempt M3-ISO-V02-001实际结果为 **M3 PRECONDITION BLOCKED — WINDOWS SANDBOX UNAVAILABLE**：唯一feature查询要求提升；未提权重试。pub和M3均未启动，exit=null，AAR未检查，不能记NON-HIT。详见 [结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)。
+历史001 [隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md) 为e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8，授权硬前置闭合后的条件式一次M3。Attempt M3-ISO-V02-001实际结果为 **M3 PRECONDITION BLOCKED — WINDOWS SANDBOX UNAVAILABLE**：唯一feature查询要求提升；未提权重试。pub和M3均未启动，exit=null，AAR未检查，不能记NON-HIT。该结果已由本轮main接受，详见 [001结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)。
 
 本地HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文。Flutter/JDK/pub seed/wrapper-dists目录存在；Android SDK未解析，指定Gradle caches目录类型检查False；defines为EMPTY。宿主隔离根起初不存在，但§4创建条件未满足，未创建；指定evidence路径D:\EliteSync-M3-readiness-v02\evidence没有本地结果文件，查询摘要与结构化结果保留在GitHub候选报告。M3仍前置blocked，M2 deferred。§3保留历史边界原文，本次有限授权及其实际停止以本任务和本节为准。
+
+当前 [v0.2执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_2.md) 为783efb322a3b390c7f0744ba89d5c3b1e7543fe2，blob d158003332c7f3c06f689eb970b18b167dfeba96。Owner补充Sandbox Enabled、具名Android/JDK和D:\GradleHome输入，均按来源层级采用，没有重复功能查询或提权。六个具名输入根及指定可执行文件存在、祖先reparse检查通过；不是依赖兼容性证明。
+
+M3-ISO-V02-002 [结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_2.md)：**M3 PRECONDITION BLOCKED — GIT INSTALLATION ROOT UNRESOLVED**。一次Get-Command定位后的cmd/bin结构守卫失败，执行器没有保存原始返回路径；只能说明本轮安装根绑定未闭合，不能断言Git缺失或实际结构错误。未再次定位或猜根。
+
+002已独占创建D:\EliteSync-M3-readiness-v02并保存evidence下M3-ISO-V02-002-result.json与host.log；不同于001未落盘。源码尚未物化、Sandbox未启动、实际隔离控制未取得，pub/M3各0次、exit=null，AAR为NOT_CHECKED。defines按v0.2用户home→项目→环境优先序得到EMPTY。M2仍无新增进入条件。最小剩余问题是可审计的Git安装根绑定及后续明确保留根处置，非重新批准选项1。
 
 ## 2. 产品目标与概念基础
 
@@ -59,7 +65,7 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留Owner转贴8/8报告的证据层级 |
-| 2 M3生成与M2后续依赖证据 | Owner已批准选项1；M3-ISO-V02-001因Sandbox查询权限不足未启动；结果待审；M2 deferred | 先解决单一Sandbox查询权限主因及已记录Android/Gradle输入缺口；不在本轮重试，不具备进入M2的新证据条件 |
+| 2 M3生成与M2后续依赖证据 | 001已接受；Owner补齐环境；002在Git安装根绑定阶段停止，结果待审；M2 deferred | 当前最小缺口为Git安装根绑定，001路径缺口不复活；已有专用根保留，本轮不重试，尚不具备进入M2的新证据条件 |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例；不以真实用户研究完成作为此类演示版的一概前置门 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围中形成可演示的贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备；必要法律成熟度触发另处理，不自动启动LC-03/04 |
@@ -85,10 +91,12 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md` | blob 9466dba2800e12bf1f17414606e34af452134741；B已验收，选项1已获Owner批准 |
 | `docs/architecture/ELITESYNC_V10_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md` | M，blob `fb48743f0147fb0d25be697ba02aae63a45d07d8`；只采用§§2–7历史tracks/U状态，不恢复startup |
 
-本次新增精确来源：[隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md)，T=e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8；[M3-ISO-V02-001结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)与本更新同候选，待独立审查。readiness历史T与当前执行T不可混同。
+001历史精确来源：[隔离执行任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_1.md)，T=e872b3e48548ef62dfe2b78cae088673c3a2b905，blob 46d7a53f3d9cc35b2f1820b1fc691576bfe7dbb8；[M3-ISO-V02-001结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_1.md)已由本轮main接受。readiness历史T、001任务与002任务不可混同。
+
+002固定来源：[v0.2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_2.md)，commit 783efb322a3b390c7f0744ba89d5c3b1e7543fe2／blob d158003332c7f3c06f689eb970b18b167dfeba96；[v0.2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_2.md)与本更新同候选，待审。本地证据哈希和阶段缺口在结果中；日志/AAR不上传GitHub。
 
 早期2026-08-22总纲路径未知；ADR-005独立审查完成事件未证实。全局AGENTS、fallback、skills配置、完整自动加载链与用户模型配置未实测。可见宿主身份为基于GPT-6的Codex；Owner声明选择Astra，未独立取得运行model ID；未更改配置或调用辅助模型。
-本轮defines按任务允许来源解析为EMPTY（0项），不是从历史或源码搜索补值。工具/seed有限目录结果见本节关联的执行结果报告；目录存在不证明完整或兼容。Sandbox唯一查询要求提升，其feature状态和控制生效未证实；Android SDK及指定Gradle caches仍缺。本轮未启动Java版本、离线pub或M3。官方版本适用性限制仍见readiness报告§3。
+001的Sandbox查询权限及旧默认cache缺口仅为历史。本轮采用Owner具名输入并完成路径检查，未重查Windows feature；Owner Enabled与实际控制证据分开。002未取得Git安装根原始定位值，未启动Sandbox、Java版本、pub或M3；没有AAR证据。defines按新优先序为EMPTY。目录名不证明工具版本或兼容性，完整加载链仍未实测。
 历史“项目源包”只保留历史描述；本次不检查上传、不重打包、不上传源，不声明备份恢复能力。
 
 ## 6. 官方规范的有限采用
