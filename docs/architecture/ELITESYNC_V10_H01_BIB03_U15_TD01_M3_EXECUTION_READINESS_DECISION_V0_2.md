@@ -90,7 +90,7 @@ Flutter stable首先经公开ref API解析为不可变revision `d3b14c876900e553
 | D2 | https://docs.gradle.org/current/userguide/dependency_caching.html — Using offline mode / cache | 依赖离线、缺缓存失败 |
 | D3 | https://docs.gradle.org/current/userguide/gradle_wrapper.html — Using wrapper | bootstrap下载和本地分发复用 |
 | D4 | https://docs.gradle.org/current/userguide/build_environment.html — precedence / environment / properties | GRADLE_USER_HOME、JAVA_HOME并非唯一JVM来源、daemon配置 |
-| D5 | https://docs.gradle.org/current/userguide/directory_layout.html — user/project directories / cleanup | user与project状态、daemon/wrapper、自动清理 |
+| D5 | https://docs.gradle.org/current/userguide/directory_layout.html — user与project状态、daemon/wrapper、自动清理 |
 | D6 | https://dart.dev/tools/pub/environment-variables — PUB_CACHE | pub缓存重定向 |
 | D7 | https://dart.dev/tools/pub/cmd/pub-get — cache / offline | 求解、缓存与lockfile/package_config写入 |
 | D8 | https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-configure-using-wsb-file — Networking / Mapped folders / Clipboard | OS禁网、只读映射、重定向控制 |
