@@ -2,23 +2,23 @@
 
 发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3-ISO-V02-003结果仍待独立审查；001/002历史结果已接受，readiness选项1批准继续有效。
+更新日期：2026-09-08（Asia/Shanghai）。保留产品基线与保护边界；不是恢复的2026-08-22总纲、完整ADR或实现计划。003有限执行记录已接受；004本候选在宿主自测脚本加载阶段受阻，尚待独立审查。Owner选项1批准继续有效。
 
 ## 1. 当前入口和生命周期
 
-本轮固定main M为 `d978e9d36e32e0b12f02eb9f4e7de0690a8b7226`。FIRST主动读取仍为 [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md)，blob 18485c95262051e43892436fb52413132c5ee626；其中旧startup与历史SHA不自动执行。
+本轮固定main A为89d1f091d45b472bd286628942181d7a3647d0c2。FIRST主动读取[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md)，blob 18485c95262051e43892436fb52413132c5ee626；历史startup/SHA不自动执行。
 
-文档审查历史A=a2438e24564a5ce93b57068ab91a78c3f70ded3a及指令修订接受保持；[指令接受记录](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md) blob a84337da303f459d9bb931fec8e42b5e9209dc86，关口已关闭。8/8本地同步仍仅引用Owner转贴报告，本轮不复测加载链或整仓状态。§6保留原接受前时序，其当前状态由本节说明。
+文档与指令修订接受历史保持；指令接受记录blob a84337da303f459d9bb931fec8e42b5e9209dc86，关口不重开。8/8本地同步仍仅引用Owner转贴报告，不重测加载链或整仓状态。§6保留历史时序，由本节说明当前状态。
 
-readiness选项1已由Owner批准。001结果在a3736a0d4790fe5fcc01d27a4a8edf06f9162917接受；002候选76486b323e03853fe6675ae22c8e545073f0ee1a由本轮main接受。001为功能查询权限不足、002为Git绑定采证失败，二者pub/M3都未启动，不倒写历史。旧8b640576822b01ae00bb04b9b5deaa75db53365c不恢复。
+001/002结果已接受；003候选99730a363a44c2010ed5fd4361cced0484d9a45d已由A接受为有限执行记录，不是复制成功。003 Git根C:/Program Files/Git绑定完成，旧CopySafe在客体出现长路径异常，具体失败源/目标仍未知；pub/M3均未启动。003的隔离结果不冒充004实测。旧8b640576822b01ae00bb04b9b5deaa75db53365c不恢复。
 
-当前 [v0.3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_3.md) commit 1f4ee52b262ee109a4017a4a3540e6309d1f2dc2、blob 01dc74cb1b4cfd6d11b79a61a00e1a44b52f7d75，授权保护002后新增003独立工作区，修复采证并条件式一次隔离生成。local HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文；源码使用固定main Git对象。
+本轮[v0.4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_4.md) commit a3a149aa83b0cf841e4a3f0d5dca3d48bbe7dfe9、blob cb46cea5c9c5610d1771d96448c955d58c5218bb，授权保护002/003后新增004、自测长路径复制器并条件式隔离生成；任务ref/唯一父A/单文件新增匹配。local HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文。
 
-M3-ISO-V02-003 [结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_3.md)：**M3 PRECONDITION BLOCKED — COPY PATH-LENGTH FAILURE**。Git采证1轮保存4个Application原值并选首项C:\Program Files\Git\cmd\git.exe；发行根C:\Program Files\Git绑定成功，不再保留“需Owner找Git”的阻塞。固定过滤模块输入已物化，526文件/排除1条目，defines为EMPTY。
+004[结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_4.md)：**M3 PRECONDITION BLOCKED — HOST SELFTEST SCRIPT POLICY**。独占新建D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-004，编写自有复制helper；Windows PowerShell加载D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-004/scripts/copy.ps1时返回PSSecurityException/UnauthorizedAccess，提示running scripts is disabled，包装exit=1。自测函数未运行、原生复制0次，不宣称长路径修复通过。未更改策略或换加载机制绕行；任务§4禁止系统策略改变。
 
-一次Sandbox启动取得匹配nonce、活动接口0和默认路由空的客体记录，实际控制门通过；Owner Enabled仍与此实测分开。客体复制阶段CreateDirectory触发260/248字符路径限制，具体失败路径未记录，不能判定哪个seed或宣称依赖不兼容。启动后未修改脚本或重试；pub/M3各0次、exit=null、AAR=NOT_CHECKED，M2仍deferred。
+002/003八份指定证据开始/结束hash均匹配；004 result/host日志、脚本加载错误及保护摘要保存于D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-004/evidence。本轮无Git重新发现、源码物化、defines解析、真实seed复制、配置冻结或Sandbox启动。Owner Enabled与本次未验证隔离分开；pub/M3均0次、exit=null，AAR=NOT_CHECKED。M2仍缺新增AAR证据。
 
-003证据保存于D:\EliteSync-M3-readiness-v02\attempts\M3-ISO-V02-003\evidence，包括原始Git、绑定、过滤manifest、冻结配置、隔离控制、host/guest日志及终态JSON。002两个旧文件开始和结束哈希均匹配，未覆盖旧input/flags。当前最小障碍为客体复制helper长路径处理与失败路径记录；本轮不修复后重新启动，不另发任务。§3保留历史保护原文，本次有限授权及结果由固定任务与本节说明。
+最小新增障碍为自有helper合法加载条件与禁止策略修改边界的兼容，策略scope未查询；复制器和离线输入充分性仍未实测。没有重批选项1或另发全量复制任务。§3保留历史保护原文，本次有限执行与终态由固定任务及本节说明。
 
 ## 2. 产品目标与概念基础
 
@@ -61,7 +61,7 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留Owner转贴8/8报告的证据层级 |
-| 2 M3生成与M2后续依赖证据 | 001/002已接受；003 Git绑定和隔离控制通过，复制长路径失败，pub/M3未启动；结果待审 | 最小修正为客体复制长路径处理及具体错误路径记录，非重找Git/重批选项1；M2仍缺新增AAR输入，本轮不续发或重试 |
+| 2 M3生成与M2后续依赖证据 | 001/002/003有限记录已接受；004宿主helper加载被拒，自测未执行，pub/M3未启动；004待审 | 精确障碍是脚本合法加载条件；尚未验证复制修复，不重找Git/重批选项1，不另发同编号变体；M2缺新增AAR证据 |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例；不以真实用户研究完成作为此类演示版的一概前置门 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围中形成可演示的贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备；必要法律成熟度触发另处理，不自动启动LC-03/04 |
@@ -72,24 +72,24 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 
 ## 5. 精确来源与覆盖缺口
 
-稳定GitHub路径维护正文；历史SHA保留角色，不要求项目源随任务更新。
+GitHub稳定路径维护正文；历史SHA按角色保留，ChatGPT项目源不随本候选更新。
 
 | 来源 | 版本/用途 |
 | --- | --- |
-| AGENTS.md | 已接受blob f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1；旧2ac5580d7eb4da4cc3b0d09ead7518dee6f607ad为历史 |
-| [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | 固定main中18485c95262051e43892436fb52413132c5ee626；FIRST及边界 |
-| [指令接受](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md) | a84337da303f459d9bb931fec8e42b5e9209dc86；已闭合关口，本轮未重复审查 |
-| [readiness](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) | 9466dba2800e12bf1f17414606e34af452134741；选项1批准保持，非本轮重做研究 |
-| [002结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_2.md) | 1b92aa1d1bc561e558955d50921c3e125912f3ea；已接受的真实采证失败 |
-| [v0.2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_2.md) | d158003332c7f3c06f689eb970b18b167dfeba96；§3–7沿用依据，明确差异以v0.3为准 |
-| [v0.3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_3.md) | 1f4ee52b262ee109a4017a4a3540e6309d1f2dc2／01dc74cb1b4cfd6d11b79a61a00e1a44b52f7d75；本轮范围 |
-| [003结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_3.md) | 与本更新同候选；真实阶段、Git原值/选定根、修复轮次、证据哈希及限制，待独立审查 |
+| AGENTS.md | f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1；本轮定点核验 |
+| [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | 18485c95262051e43892436fb52413132c5ee626；FIRST |
+| [指令接受](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md) | a84337da303f459d9bb931fec8e42b5e9209dc86；已闭合，本轮未重读 |
+| [readiness](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) | 9466dba2800e12bf1f17414606e34af452134741；选项1批准保持，本轮未重读 |
+| [003结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_3.md) | 0a814b8ae92497f4927d6aea13cba74bec6c0d6d；已由A接受，本轮核验 |
+| [v0.3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_3.md) | 01dc74cb1b4cfd6d11b79a61a00e1a44b52f7d75；仅历史保护及隔离范围，v0.4差异优先 |
+| [v0.4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_4.md) | a3a149aa83b0cf841e4a3f0d5dca3d48bbe7dfe9 / cb46cea5c9c5610d1771d96448c955d58c5218bb；本轮权限 |
+| [004结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_4.md) | 与本更新同候选；真实脚本加载错误、未执行阶段、保护及证据摘要，待独立审查 |
 
-历史索引报告979f3a25a0b3685840cd957b063ab0d71b18b1e6和审查建议报告36283bfb918ed515d07e4e93816a726f8616e164仍为候选7ff4721121525eddff71c16c1d1bd51f7b75dc69／A所接受的有界材料；本轮未重读，不宣称其全部建议获准。早期2026-08-22原总纲路径未知，ADR-005独立审查完成事件未证实。
+历史索引979f3a25a0b3685840cd957b063ab0d71b18b1e6、审查建议36283bfb918ed515d07e4e93816a726f8616e164仍按其既有有限接受范围理解，本轮未重读或扩大接受。2026-08-22原总纲路径未知，ADR-005独立审查完成事件未证实。
 
-003宿主Git版本实测2.53.0.windows.1；exec-path与入口同根，客体Git/Java版本尚未执行。复制异常未带具体源/目标路径，日志不能精确归属到Git/pub/Gradle某一seed；目录存在、已复制前面工具或隔离通过都不证明全部依赖兼容。无M3退出码、AAR/导出证据或M2解析结果。002原始Git值仍丢失，003新采证不伪装成恢复旧值。
+004未到达Android合同输入读取/defines解析、模块物化或工具安全复测。没有自测PASS、原生robocopy exit、客体控制、pub/M3 exit或新增AAR证据。错误只能归属Windows PowerShell加载自有copy.ps1，不证明任何seed缺失或robocopy不支持长路径。003旧失败路径仍未知，不恢复猜测；002原始Git值未找回。
 
-model ID、全局AGENTS/fallback/skills配置、完整加载链及整仓cleanliness未实测；Owner选择Astra，未改配置或调用其他型号代理。003采用一次产物候选审查，不自动续发；未检查或重上传项目源、未验证备份恢复能力。
+Owner选择Astra；未改模型配置或调用辅助代理。运行model ID、完整加载链、整仓cleanliness及备份恢复能力未实测；不宣称自动重载。不更新项目源、不自我接受，不因文档数增加虚构产品完成率。
 
 ## 6. 官方规范的有限采用
 
