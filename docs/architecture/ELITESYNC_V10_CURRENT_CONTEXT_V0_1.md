@@ -1,18 +1,18 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`INSTRUCTION REFRESH CANDIDATE — REQUIRES INDEPENDENT ACCEPTANCE AND MAIN PROMOTION`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO EXECUTION OR IMPLEMENTATION AUTHORITY`
 
-编写日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。发布状态保留历史意义；后续是否生效必须同时查明精确候选的独立接受记录与main归属。
+更新日期：2026-09-07（Asia/Singapore）。本文件整合已知产品基线、现行状态和精确来源；不是恢复的2026-08-22原始总纲，不替代完整ADR，也不是技术设计或实现计划。本次M3收敛和路线更新仍是待审候选；原指令版本已有独立接受，不因本次候选标题而失效。
 
 ## 1. 当前入口和生命周期
 
-本轮已接受的文档审查基线A：`a2438e24564a5ce93b57068ab91a78c3f70ded3a`。A包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告及独立接受记录。报告原始PROPOSED标题不否定后续接受，但报告接受也不自动接受其中每条建议。
+本轮固定main M为 `bb2027ce077b00deb2fdaa1161f357d303ef8cd0`。已接受文档审查历史基线A为 `a2438e24564a5ce93b57068ab91a78c3f70ded3a`，包含候选 `7ff4721121525eddff71c16c1d1bd51f7b75dc69` 的两份报告与接受记录；报告接受不自动批准全部建议。
 
-当前修订任务：`docs/architecture/ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_AND_LOCAL_SYNC_TASK_V0_1.md`；任务提交 `f454bab732a3bb6ca3ca3d248e74c8cf2b519113`。本文件和根AGENTS是该任务的仅有两个修订目标。在审查分支读取它们不能自动获得生效地位。
+原指令任务 `f454bab732a3bb6ca3ca3d248e74c8cf2b519113` 的候选 `4a53e8003dfafafd483a0fa762793f767d99a44f` 已由M中的 [指令接受记录](ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md)（blob `a84337da303f459d9bb931fec8e42b5e9209dc86`）接受，关口已关闭。8/8精确本地文档同步依据Owner转贴执行者报告，本轮未重新实测，不声明整仓同步或当前会话加载完成。§6末句保留原版本接受前时序，当前状态以本节及接受记录为准。
 
-本轮首先主动读取的权威仍是 `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md`，blob `18485c95262051e43892436fb52413132c5ee626`；原交接内部f77dac是历史接受基线。以启动prompt明确绑定的main与任务版本核验当前会话，不按任何历史“read first”重新执行旧任务。
+FIRST主动读取仍为 [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md)，blob `18485c95262051e43892436fb52413132c5ee626`。内部f77dac及旧SHA是历史角色，不执行旧startup；每轮使用启动prompt绑定并实时核验的main/任务。
 
-独立新会话若接受本修订，应按上述任务发布 `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md` 并推进main，才使本指令版本生效。该文件是将来规定的输出，不声称现在已经存在。候选作者不得自行填写其结论。
+当前固定 [M3收敛任务v0.2](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md) 为 `2c2d1dcf3d501ab1de01480238c71ef6c8ef4544`，blob `0da93232427233f7f9ab94524591ced7987db575`。它替代旧 `8b640576822b01ae00bb04b9b5deaa75db53365c` 的未来任务用途；旧任务保持未执行，不恢复。新 [M3决定报告](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md) 为 **B — OWNER SCOPE DECISION REQUIRED** 待审候选：推荐有条件的离线隔离证据范围，须Owner集中决定新增读取/写入/隔离与证据根并补齐输入。无本地执行或M3授权，M3 blocked、M2 deferred。
 
 ## 2. 产品目标与概念基础
 
@@ -48,33 +48,42 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 
 旧M3任务 `8b640576822b01ae00bb04b9b5deaa75db53365c` 已编写但Owner和原交接记录尚未执行，不得恢复；原任务不因本次文档修订自动重获执行权。本转型中禁止Flutter／Dart／Gradle／Java／Android工具、syncFlutterAar、依赖解析、前置检查、缓存／环境或生成输出检查。
 
-## 4. 近期路线：问题、证据、完成条件、下一决定
+## 4. 近期交付路线：以结果里程碑推进
 
-这是已有治理依赖的整理，不新增Phase、技术方案或产品完成百分比。
+以下最多六项整合已有证据与未来建议，未授权部分均为规划建议；没有已验证完整早期总纲，不虚构恢复、完成百分比或日期。不因文档数量增加而宣布产品进度。
 
-| 条目 | 要回答的问题与现有证据 | 完成条件及下一决定 |
+| 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
-| 文档索引与审查 | 有界索引和14项发现；候选7ff4721已由A独立接受 | 本交付已闭合，不因原始PROPOSED标题重复提交同一审查 |
-| 当前指令修订 | 消除含糊入口、全局停工和重复治理；只改根AGENTS与本汇编 | 独立新会话ACCEPT、固定候选进入main；本地同步和实际加载另报结果，不能提前宣称全部完成 |
-| 本地文档同步 | GitHub文件存在不证明本地已同步；旧报告记录本地HEAD滞后 | 按同一修订任务只同步8个精确文档，冲突保留，不碰默认index；不能声称整仓同步或完整宿主配置验证 |
-| 转型后的M3任务处置 | 原交接要求旧任务重评；Outcome B仍是起点 | 指令修订接受后，从届时durable main另行重新评估并重发／替代；明确新增证据或约束与单一完成条件，不复用旧任务 |
-| M3实际执行 | 当前缺少执行授权和完整边界 | 继续blocked；必须另有明确执行授权，本文不给环境或构建方案 |
-| M2及其他延期项 | M2 deferred；产品／外部证据和未授权事项仍有缺口 | 仅由具体证据与独立授权触发；不自动启动LC-03、LC-04、Phase36或实现 |
+| 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留Owner转贴8/8报告的证据层级 |
+| 2 M3生成与M2后续依赖证据 | M3 blocked；本次B决策包待审；M2 deferred | Owner决定报告§4集中范围；精确输入/控制/命令闭合后才可能另获执行授权；生成、产物、宿主解析各自记证据 |
+| 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例；不以真实用户研究完成作为此类演示版的一概前置门 |
+| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围中形成可演示的贯通流程并作必要验证；Owner演示与真正多人内测分开 |
+| 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备；必要法律成熟度触发另处理，不自动启动LC-03/04 |
+| 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整；不开展本轮招募/采集/实现 |
 
-没有新证据、约束变化或具体缺陷时，保留同一未决条目，不自动再发同义治理任务。进展说明关闭了哪个问题、证据如何变化、现在能作出什么决定，不用文档数量表示产品进度。
+虚构样例走查不是真实用户验证，不使U-08 desirability/readiness或U-10 comprehension/accessibility完成。最终首版平台与功能仍需明确授权；不在此给代码、schema、API、技术栈改造或部署设计。
+无新增证据、约束变化或具体缺陷，不另发同义治理任务；B若未获范围选择则保留同一个blocked条目。
 
 ## 5. 精确来源与覆盖缺口
 
+下表保留历史角色，稳定路径在GitHub维护；不要求ChatGPT项目源随每次commit更新。
+
 | 来源路径 | 固定版本／用途 |
 | --- | --- |
-| `AGENTS.md` | 原blob `2ac5580d7eb4da4cc3b0d09ead7518dee6f607ad`；本任务修订其表达，不改变产品权威 |
-| `docs/architecture/ELITESYNC_V10_DOCUMENT_AUDIT_ACCEPTANCE_V0_1.md` | A；接受两份报告，不是本指令候选的接受记录 |
-| `docs/architecture/ELITESYNC_V10_DOCUMENT_RECOVERY_INDEX_V0_1.md` | 候选7ff4721／A，blob `979f3a25a0b3685840cd957b063ab0d71b18b1e6`；路径、版本、状态索引 |
-| `docs/architecture/ELITESYNC_V10_SYSTEM_DOCUMENTATION_AUDIT_AND_ROADMAP_PROPOSAL_V0_1.md` | 候选7ff4721／A，blob `36283bfb918ed515d07e4e93816a726f8616e164`；14项发现和建议 |
-| `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md` | 原main0f3db3／A，blob `18485c95262051e43892436fb52413132c5ee626`；转型入口和永久边界 |
-| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_PREFLIGHT_SIDE_EFFECT_CLOSURE_GOVERNANCE_REVIEW_V0_1.md` | 原main0f3db3／A，blob `a012c612532134ff7ada1c685234aae1d866e492`；保留Outcome B，不重新做Flutter研究 |
+| `AGENTS.md` | M中已接受blob `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；旧 `2ac5580d7eb4da4cc3b0d09ead7518dee6f607ad` 为修订前历史 |
+| `docs/architecture/ELITESYNC_V10_DOCUMENT_AUDIT_ACCEPTANCE_V0_1.md` | A；接受两份有界报告，不是后续M3候选的接受 |
+| `docs/architecture/ELITESYNC_V10_DOCUMENT_RECOVERY_INDEX_V0_1.md` | 候选7ff4721／A，blob `979f3a25a0b3685840cd957b063ab0d71b18b1e6`；历史索引，本轮未重读 |
+| `docs/architecture/ELITESYNC_V10_SYSTEM_DOCUMENTATION_AUDIT_AND_ROADMAP_PROPOSAL_V0_1.md` | 候选7ff4721／A，blob `36283bfb918ed515d07e4e93816a726f8616e164`；历史14项发现，本轮未重读 |
+| `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md` | M／原main0f3db3／A同blob `18485c95262051e43892436fb52413132c5ee626`；FIRST入口与边界 |
+| `docs/architecture/ELITESYNC_V10_GPT6_ASTRA_INSTRUCTION_REFRESH_ACCEPTANCE_V0_1.md` | M，blob `a84337da303f459d9bb931fec8e42b5e9209dc86`；指令接受记录 |
+| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_PREFLIGHT_SIDE_EFFECT_CLOSURE_GOVERNANCE_REVIEW_V0_1.md` | M，blob `a012c612532134ff7ada1c685234aae1d866e492`；已接受Outcome B |
+| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_TASK_V0_2.md` | T／blob `0da93232427233f7f9ab94524591ced7987db575`；当前读写和决策合同 |
+| `docs/architecture/ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXECUTION_READINESS_DECISION_V0_2.md` | 与本更新同一候选；B及官方账本/精确缺值/Owner决策包，未独立接受 |
+| `docs/architecture/ELITESYNC_V10_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md` | M，blob `fb48743f0147fb0d25be697ba02aae63a45d07d8`；只采用§§2–7历史tracks/U状态，不恢复startup |
 
-早期2026-08-22总纲路径未知；ADR-005独立审查完成事件未证实；全局AGENTS、fallback、skills、完整自动加载链与用户配置未检查。报告中的本地存在性是执行者的有限快照，不证明当前工作区内容、index或cleanliness。本次新项目源包是已知信息汇编，不是仓库全量导出，也不证明旧项目源上传情况。
+早期2026-08-22总纲路径未知；ADR-005独立审查完成事件未证实。全局AGENTS、fallback、skills配置、完整自动加载链与用户模型配置未实测。可见宿主身份为基于GPT-6的Codex；Owner声明选择Astra，未独立取得运行model ID；未更改配置或调用辅助模型。
+M3完整dart-define参数、离线输入精确清单、工具/seed绝对路径、本地Sandbox适用性和控制生效证据未知；不搜索或探测来补值。官方文件缺失及版本适用性限制见报告§3。环境控制可用的文档证据不等于本地已验证。
+历史“项目源包”只保留历史描述；本次不检查上传、不重打包、不上传源，不声明备份恢复能力。
 
 ## 6. 官方规范的有限采用
 
@@ -86,3 +95,14 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 - https://learn.chatgpt.com/docs/agent-approvals-security — 沙箱、审批和项目授权分开，不以文档文字宣称技术隔离。
 
 以上链接仅供同主题有界核验，不授权按其示例运行status、测试、安装、网络配置或模型迁移。独立审查者的接受及本地同步结果发布前，不宣布本次指令修订生效。
+## 7. Owner交付与一次验收约定
+
+来源是固定任务T§1中的Owner原话及其有界执行约定；本节随候选接受后成为持久上下文，不能由作者自我宣布接受。
+
+- 正文、路线、任务状态只在GitHub维护；ChatGPT项目源保留稳定入口，不为每张任务、commit、验收或进度变化重发上传包。项目源固定SHA是历史快照，不是回退main命令；每轮仍核验精确远端。
+- ChatGPT收到执行报告并完成验收后，下一步若在已有权限和已接受范围内，可在同一回复自动发布下一张有界任务及启动prompt，无需反复问是否继续。这不是后台监控、自动启动本地Codex或无限连续执行；本轮执行者发布即停止。
+- 低风险文档、限定证据分析和已授权可逆工作采用一次针对具体产物的审查，满足内容/关键来源/范围即接受。不默认堆叠预审、再审、接受预审或closeout；真实失败或新差异只作定点复查。
+- 同一候选作者不得自我接受。系统/代理指令、架构、权限边界实质修改仍由未编写该候选的审查者验收；独立性针对产物，不要求没有项目历史上下文。
+- 特殊决定集中为一个明确包：新增实现范围、改变已接受产品/架构或精确证据根、未授权工具执行/网络/下载/cache/write、真实参与者或个人数据、生产访问、Safety Operations、法律承诺、付费/合同以及破坏性/不可逆动作。已有精确权限内的例行步骤不重复申请。
+- Owner所述备份与冗余试错不是本轮实测备份内容或恢复能力，不授权检查、覆盖或处置受保护状态。
+- 优先可安装可演示初版，再取得依赖初版的真实反馈。未来Owner演示可以使用明确标识的虚构样例，不能当实证或完成U-08/U-10；真实内测按实际活动满足保护边界。本次不授权实现、招募或采集。
