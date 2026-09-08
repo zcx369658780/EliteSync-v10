@@ -1,24 +1,19 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-08（Asia/Shanghai）。产品基础和保护边界保持。004与策略诊断历史已接受，策略查询关口关闭；本轮005结果待独立审查：策略、自测、复制和工具验证通过，pub命令派发失败，M3未启动。
+更新日期：2026-09-09（Asia/Shanghai）。产品基础和保护边界保持。CMD-001派发修复已由main接受；006实际接入的宿主六组集成测试未通过，Sandbox、真实pub及M3均未启动。
 
 ## 1. 当前入口和生命周期
 
-本轮固定main A=0a7d18e762581a491bee253361cead56d49d47b0；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob 18485c95262051e43892436fb52413132c5ee626匹配。历史startup不重跑，旧8b640576822b01ae00bb04b9b5deaa75db53365c不恢复。
-文档/指令修订接受及Owner转贴8/8本地同步的原证据层级保持；未重测加载链或整仓状态。§6仍保留历史时序，由本节解释当前生命周期。
+本轮固定main A=f3430901bdc06607d5506a90b69988de24ee353f；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob 18485c95262051e43892436fb52413132c5ee626匹配。历史startup不重跑，旧8b640576822b01ae00bb04b9b5deaa75db53365c不恢复。
 
-POLICY-003[查询结果](ELITESYNC_V10_M3_POLICY_QUERY_COLLECTOR_FIX_RESULT_V0_1.md) blob 5a3d50fc4d5a27fa66a02ac7a9771a78b06f169b已由A接受，五个scope Undefined、effective Restricted；001/002诊断失败不冒充成功。003 Git绑定、004未执行自测等历史事实保持，不倒写旧失败。
+Owner在本轮直接批准[v0.6任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_6.md) commit a0f3c52034ce64c67fd01dfcff9377b46de4f631、blob 1dcbc970a89b7c4b989b4c6ff4e11791ed4e55e6的§1范围。本批准是v0.6具名授权，不继承v0.5进程例外。默认主执行模型由Owner在Codex界面选择GPT-5.6 Sol、Medium；ChatGPT继续承担规划与独立验收分工。未修改模型配置或调用辅助代理，不额外声称完整model ID/加载链已实测。
 
-Owner明确批准本次专用宿主自测/沙箱客体入口进程级RemoteSigned，不是整个Codex/持久策略变更。[v0.5任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_5.md) commit 05511d43cbedd5c67209c0c747b10991188c8a91、blob ee9a9a26406bb5a95059171250f552036721f06c，唯一父A、仅新增任务匹配。§3旧禁止文字以该精确例外解释，不构成其他任务通用授权。
+006[结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_6.md)：**M3 PRECONDITION BLOCKED — HOST DISPATCH INTEGRATION SELFTEST INCOMPLETE**。专用host Process/effective=RemoteSigned和系统模块身份门通过；三次宿主自测进程、两次自有代码纠错预算耗尽。最终接入把RunBatch形参命名为PowerShell自动变量`$args`，参数数组丢失；六组cases又被嵌套数组扁平化，最终0/6通过。
 
-005[结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_5.md)：**M3 PRECONDITION BLOCKED — PUB COMMAND DISPATCH FAILURE**。宿主两轮自测，一次hashtable摘要纠错后通过；guest自测和当次nonce/禁网验证通过。宿主/guest专用Process及effective均RemoteSigned；结束普通宿主五scope Undefined、effective Restricted。
-固定A模块对象过滤物化526文件，defines EMPTY；八个输入复制均原生exit=1且摘要失败/mismatch/extras=0，客体Git/JDK版本验证exit=0。复制文件数不是产品进度。
-
-唯一pub启动调用由cmd包装返回exit=1，错误“文件名、目录名或卷标语法不正确”，没有Flutter/pub本体实际运行证据。不能用冻结脚本通用OFFLINE_PUB_INSUFFICIENT标签判定缺包；最小具体问题为cmd引用/参数派发。冻结后未改脚本/换命令重试。M3=0次、exit=null，AAR=NOT_CHECKED，M2仍缺新增产物输入。
-本次Job收尾仅剩控制器，无工具子进程；确认本次Sandbox创建时间/父链后正常关闭，同会话进程已退出。两项旧来源首尾hash匹配。证据位于D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-005/evidence。local HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅上下文；必要fetch固定A对象，无工作区切换/index操作。
-后续如另行续行，应先在自有无构建样本验证cmd派发，不以再次全量复制代替；本轮不另发任务、不重开已关闭策略诊断。
+因此脚本冻结/部署前置未满足，Windows Sandbox、guest、八项复制、真实pub、M3均未启动；pub/M3 exit=null，AAR=NOT_CHECKED且probe=0，M2仍deferred。普通宿主收尾五scope Undefined、effective Restricted。证据根为D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-006/evidence；local HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文。
+本轮没有推翻已接受[CMD-001结果](ELITESYNC_V10_M3_CMD_DISPATCH_REPAIR_RESULT_V0_1.md)的独立合成结论；它只证明006接入尚未满足同runner验证。后续若另行授权，应仅修正两个PowerShell绑定问题并重新取得六组集成PASS，不重开策略/Git/长路径/派发方法调查。
 
 ## 2. 产品目标与概念基础
 
@@ -60,15 +55,14 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
-| 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留Owner转贴8/8报告的证据层级 |
-| 2 M3生成与M2后续依赖证据 | 004及策略查询已接受；005策略/host与guest自测/八项复制/工具验证通过，pub派发exit=1，M3未启动；005待审 | 最小具体问题为cmd参数引用，离线依赖充分性未知；不重批进程条件、不以全量复制替代派发验证；M2仍deferred |
-| 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例；不以真实用户研究完成作为此类演示版的一概前置门 |
-| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围中形成可演示的贯通流程并作必要验证；Owner演示与真正多人内测分开 |
-| 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备；必要法律成熟度触发另处理，不自动启动LC-03/04 |
-| 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整；不开展本轮招募/采集/实现 |
+| 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
+| 2 M3生成与M2后续依赖证据 | CMD-001合成派发修复已接受；006 host策略门通过但同runner集成0/6，Sandbox/pub/M3未启动；006待审 | 最小缺口为避免`$args`自动变量冲突并用非扁平cases后重新取得六组PASS；不重查环境或复制SDK；M2仍deferred |
+| 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
+| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证；Owner演示与真正多人内测分开 |
+| 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
+| 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-虚构样例走查不是真实用户验证，不使U-08 desirability/readiness或U-10 comprehension/accessibility完成。最终首版平台与功能仍需明确授权；不在此给代码、schema、API、技术栈改造或部署设计。
-无新增证据、约束变化或具体缺陷，不另发同义治理任务；Owner选项1批准已落实为本次条件式任务；保留具体前置blocked结果，不重开同义readiness研究。
+虚构样例走查不是真实用户验证，不使U-08或U-10完成。无新增证据、约束变化或具体缺陷，不另发同义治理任务；本轮执行者到候选发布即停止。
 
 ## 5. 精确来源与覆盖缺口
 
@@ -78,17 +72,14 @@ GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接�
 | --- | --- |
 | AGENTS.md | f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1；已接受规则 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | 18485c95262051e43892436fb52413132c5ee626；FIRST/历史边界 |
-| [POLICY-003结果](ELITESYNC_V10_M3_POLICY_QUERY_COLLECTOR_FIX_RESULT_V0_1.md) | 5a3d50fc4d5a27fa66a02ac7a9771a78b06f169b；已由A接受，策略取证关闭 |
-| [004结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_4.md) | 10b9cf14a78c20578c4d0f7d96340ec671565456；已接受的未执行自测记录 |
-| [v0.4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_4.md) | cb46cea5c9c5610d1771d96448c955d58c5218bb；有界复制/自测细节，v0.5差异优先 |
-| [v0.5任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_5.md) | 05511d43cbedd5c67209c0c747b10991188c8a91 / ee9a9a26406bb5a95059171250f552036721f06c；本轮Owner批准与执行合同 |
-| [005结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_5.md) | 与本更新同候选；策略、自测、复制、派发错误、生命周期及hash，待独立审查 |
+| [005结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_5.md) | f5927cc0a5672208eec457a65e89959a8bcac124；已接受准备与旧派发失败证据 |
+| [CMD-001结果](ELITESYNC_V10_M3_CMD_DISPATCH_REPAIR_RESULT_V0_1.md) | d1b0fd080665df717b237de44ad47b6285289ace；已接受合成派发构造与六组独立测试 |
+| [v0.6任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_6.md) | a0f3c52034ce64c67fd01dfcff9377b46de4f631 / 1dcbc970a89b7c4b989b4c6ff4e11791ed4e55e6；本轮Owner激活与执行合同 |
+| [006结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_6.md) | 与本更新同候选；host策略通过、接入测试失败、后续阶段未运行 |
 
-指令接受a84337da303f459d9bb931fec8e42b5e9209dc86、readiness 9466dba2800e12bf1f17414606e34af452134741等历史关口不重开。原索引/审查建议有限接受范围不扩展；2026-08-22原总纲路径未知，ADR-005独立审查完成事件未证实。
-
-005新证据证明具名准备复制可完成，不证明缓存版本充分或pub依赖解析成功。cmd派发错误原字节保存，CP936解释完整；无M3 exit/AAR/导出证据。003旧错误具体路径与002丢失Git原值仍不恢复猜测。
-执行脚本hash、部署一致性和策略/nonce可定位；host/guest自测通过及普通宿主策略对照均为本次实测，不能还原004历史策略或解释001自动发现根因。
-Owner选择Astra，未改配置或调用辅助代理；model ID完整加载链、整仓cleanliness和备份恢复能力未实测，不宣称自动重载。无产品实现、M2或项目源更新。
+006固定对象快照物化526文件、defines=EMPTY仅为准备证据，不表示产品进度。宿主策略成功不补足派发集成；CMD-001独立PASS也不能替代006同runner验收。没有guest隔离、真实复制、pub/M3/AAR或M2新增证据。
+两次纠错及三个host进程均用尽；当前任务不能热修或追加第四次测试。后续最小技术差异已明确，不需要重新研究策略、Git、长路径或cmd引用机制。
+Owner选择GPT-5.6 Sol Medium；未改配置或调用辅助代理。model ID完整加载链、整仓cleanliness和备份恢复能力未实测。无产品实现、M2或项目源更新。
 
 ## 6. 官方规范的有限采用
 
@@ -111,3 +102,4 @@ Owner选择Astra，未改配置或调用辅助代理；model ID完整加载链�
 - 特殊决定集中为一个明确包：新增实现范围、改变已接受产品/架构或精确证据根、未授权工具执行/网络/下载/cache/write、真实参与者或个人数据、生产访问、Safety Operations、法律承诺、付费/合同以及破坏性/不可逆动作。已有精确权限内的例行步骤不重复申请。
 - Owner所述备份与冗余试错不是本轮实测备份内容或恢复能力，不授权检查、覆盖或处置受保护状态。
 - 优先可安装可演示初版，再取得依赖初版的真实反馈。未来Owner演示可以使用明确标识的虚构样例，不能当实证或完成U-08/U-10；真实内测按实际活动满足保护边界。本次不授权实现、招募或采集。
+
