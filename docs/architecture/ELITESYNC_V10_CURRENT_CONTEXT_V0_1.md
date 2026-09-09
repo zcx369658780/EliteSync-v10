@@ -1,19 +1,19 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — DIRECT_FLUTTER_TOOLS_SNAPSHOT_NETWORK_ATTEMPT — AAR EXACT NON-HIT — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — EXPECTED_OWNER_SANDBOX_SESSION_NOT_AVAILABLE — NO GUEST EXECUTION — NO M2`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`35667044e94c51f3f100d03a8da81cb83202691f`；R6-R4-R6用Dart直接加载既有flutter_tools.snapshot，仍从pub.dev查找coverage并exit=69，精确AAR NON-HIT。
+更新日期：2026-09-10（Asia/Shanghai）。当前权威基线为`a41158c93c134d8f53db11c90c2f5461ba0523d1`；R6-R4-R7在初始WSB门发现0个running Sandbox，按固定规则停止，未执行guest、Flutter-tools pub、M3或AAR probe。
 ## 1. 当前入口和生命周期
 
-当前权威main为`35667044e94c51f3f100d03a8da81cb83202691f`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R6 task `698bfd8fbe7b4cd01963f3886eed30792ba4bee0`、blob `fa26ae075bf5adbde77236201620086816dca6db`唯一父为main，ahead=1/behind=0且只新增task；R5 result与CURRENT_CONTEXT blobs匹配。
+当前权威main为`a41158c93c134d8f53db11c90c2f5461ba0523d1`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R7 task `0a88b97502931c50ae2f22c0a1a9d07f6ae3e635`、blob `5d89617efb19b6ed873213e99aba02961126598c`唯一父为main，ahead=1/behind=0且仅新增task；R6 result与CURRENT_CONTEXT blobs匹配。
 
-Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。controller parser/static PASS，纠正0/1，SHA=`913753BF9292C531FD4C602FBF11E9B153822B85EDE95398500C2746A8EDC739`，nonce=`M3-ISO-V02-008-R6R4R6-d67603ab33984e07bb44e425537e1933`。
+Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。host controller parser/static PASS，纠正0/1，SHA=`C7217133C0200EAEA81DB81887958047099ADEDF762D24E9ADA2B5C4476A3A39`；预生成nonce=`M3-ISO-V02-008-R6R4R7-ac0528cb546a49228dfb9448def18324`，但未建立guest绑定。
 
-fresh WSB唯一Owner Sandbox `68ece109-c661-420c-9899-02b1e9518036`。RemoteSigned、Security系统Path、活动网卡0、默认路由0、固定路径和最小PowerShell门PASS。Dart 3.11.5、snapshot及Flutter-tools package_config身份已绑定。
+WSB CLI 0.8.107.0的initial list返回0个running Sandbox，不满足预期ID。最终分类 **M3 PRECONDITION BLOCKED — EXPECTED_OWNER_SANDBOX_SESSION_NOT_AVAILABLE**。未调用wsb exec/share/stop或新建Sandbox。
 
-唯一direct-snapshot M3实际启动，未调用flutter.bat，但仍从pub.dev查找coverage，exit=69。分类 **M3 PRECONDITION BLOCKED — DIRECT_FLUTTER_TOOLS_SNAPSHOT_NETWORK_ATTEMPT**。精确AAR NON-HIT/probe=1，M2 deferred。
+coverage/cache、package_config/snapshot、Dart、Flutter-tools pub均NOT_CHECKED/NOT_RUN；M3 NOT_RUN，AAR NOT_CHECKED/probe=0，M2 deferred。
 
-B/E均20文件、2目录、20507 bytes，view SHA=`03B9515032DED27FC737437663BBB501D7E3800A138DDC759AB9B0DB5953790B`。Owner Sandbox仍唯一且未停止。
+B/E均7文件、2目录、15636 bytes，view SHA=`F74474573DFE2186AD9773D2B5852D80AFE2752A01A49064D9A561DA954A2B69`。final WSB list仍为0个running Sandbox，未执行控制动作。
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -55,30 +55,30 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | direct snapshot M3仍尝试pub.dev、exit=69；精确AAR NON-HIT | 下一关口为fresh独立审查；不得改SDK、联网、补包或重试；M2 deferred |
+| 2 M3生成与M2后续依赖证据 | R6-R4-R7初始WSB list为0，未执行guest/pub/M3/AAR | 下一关口为fresh独立审查；不得自行新建Sandbox或续跑；M2 deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-本轮证明绕过flutter.bat bootstrap仍不能消除M3中的pub.dev尝试。没有AAR或M2成功证据；无新增固定任务时不续行。
+本轮只建立了预期Owner Sandbox不可用证据；没有Flutter-tools context、M3、AAR或M2新证据。无新增固定任务时不续行。
 ## 5. 精确来源与覆盖缺口
 
 GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
 
 | 来源 | 版本与用途 |
 | --- | --- |
-| 当前main | `35667044e94c51f3f100d03a8da81cb83202691f`；已接受R6-R4-R5状态 |
+| 当前main | `a41158c93c134d8f53db11c90c2f5461ba0523d1`；已接受R6-R4-R6状态 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R6-R4-R5结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_DART_OFFLINE_AND_EXECUTION_RESULT_V0_8_R6_R4_R5.md) | `2450f706cd1ac7602f632f1e85b4019d6a9963ef`；已接受direct Dart PASS及M3网络尝试事实 |
-| [v0.8-R6-R4-R6任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_FLUTTER_TOOLS_SNAPSHOT_AND_EXECUTION_TASK_V0_8_R6_R4_R6.md) | `698bfd8fbe7b4cd01963f3886eed30792ba4bee0` / `fa26ae075bf5adbde77236201620086816dca6db`；direct snapshot一次M3合同 |
-| [v0.8-R6-R4-R6结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_FLUTTER_TOOLS_SNAPSHOT_AND_EXECUTION_RESULT_V0_8_R6_R4_R6.md) | 本候选新增；direct snapshot仍尝试pub.dev，AAR NON-HIT |
+| [v0.8-R6-R4-R6结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_FLUTTER_TOOLS_SNAPSHOT_AND_EXECUTION_RESULT_V0_8_R6_R4_R6.md) | `56d530e1010db57bfa2dabb27f337e083ef5a844`；已接受direct snapshot网络尝试事实 |
+| [v0.8-R6-R4-R7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_TOOLS_OFFLINE_CONTEXT_AND_EXECUTION_TASK_V0_8_R6_R4_R7.md) | `0a88b97502931c50ae2f22c0a1a9d07f6ae3e635` / `5d89617efb19b6ed873213e99aba02961126598c`；Flutter-tools offline context及条件式M3合同 |
+| [v0.8-R6-R4-R7结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_TOOLS_OFFLINE_CONTEXT_AND_EXECUTION_RESULT_V0_8_R6_R4_R7.md) | 本候选新增；0个running Sandbox，guest未执行 |
 
-本轮CURRENT_CONTEXT从main UTF-8 blob `3e4f0591a3f84fd166b68eb6f27dce7d709ee6d8`开始；§2/§3/§6/§7逐字保留。
+本轮CURRENT_CONTEXT从main UTF-8 blob `d25c5d86bdb1aafed4c48e1283f2337a454e2088`开始；§2/§3/§6/§7逐字保留。
 
-controller SHA=`913753BF9292C531FD4C602FBF11E9B153822B85EDE95398500C2746A8EDC739`；snapshot SHA=`E494C265BA9C38A6A5679842703D3041DF0D2D86C83BFC55DF56C3BD0DF8E808`；package_config SHA=`354D6C66AB147E9DD5C65ADD67A34252739723FBF9084A6541F099CC0D584BB7`。M3 exit=69，AAR NON-HIT/probe=1。
+controller SHA=`C7217133C0200EAEA81DB81887958047099ADEDF762D24E9ADA2B5C4476A3A39`。Flutter-tools pub NOT_RUN，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
 
-B/E一致，Owner Sandbox仍唯一且未停止。下一关口是fresh独立ACCEPT/REJECT，不授权改SDK、联网、补包、重试或M2。
+B/E一致；final WSB list为0。下一关口是fresh独立ACCEPT/REJECT，不授权新Sandbox或续跑。
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
