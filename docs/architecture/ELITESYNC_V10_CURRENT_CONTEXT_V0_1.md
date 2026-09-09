@@ -1,19 +1,21 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — R6R4R1_HOST_CURRENT_VIEW_SELFTEST_FAILED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — OFFLINE_PUB_POWERSHELL_EXECUTABLE_NOT_FOUND_IN_GUEST_PATH — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`b7ded0a4251395beb0a25073bf47d6b61d8e9081`；本轮v0.8-R6-R4-R1在host current-view SRC自测中耗尽一次定点纠正预算并再次失败，故B3比较、WSB、guest及真实Git/Java/pub/M3均未运行。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；本轮v0.8-R6-R4-R2完成helper、host/guest current-view、observable、隔离/派发、module cwd、R4工具复用和Git/Java，唯一offline pub因guest PATH中找不到PowerShell executable而exit=1，M3未启动。
 ## 1. 当前入口和生命周期
 
-当前权威main为`b7ded0a4251395beb0a25073bf47d6b61d8e9081`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。v0.8-R6-R4-R1任务commit `d13312277ec891226c6014ffaeb20d56cff976dd`、blob `aab315287dcb2624439d1a1439e279c217449614`唯一父为该main，GitHub compare为ahead=1、behind=0且只新增任务文件；R6-R3 result、CURRENT_CONTEXT和两个sentinel blob均匹配。
+当前权威main为`45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。v0.8-R6-R4-R2任务commit `f0272d3985799a3778f5e45cb55eb3c362b92f60`、blob `6f270bb1e76be79e49ffca497a38e3cb00014700`唯一父为该main，compare ahead=1/behind=0且只新增task；R6-R4-R1 result、CURRENT_CONTEXT及两个sentinel blob均匹配。
 
-Owner直接激活本任务并确认旧R6-R4 `93b0ac9ed1c4f3f380db00937204f4c015fbc8fe`永久superseded、不执行。主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。
+Owner直接激活本任务；主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。fixture selftest一次PASS、helper纠正0/2，冻结helper SHA=`6ECA7C8ADF8AF51CD2CAE08E736595F4BA4C9324F891AF80DE604A1A3DC6311D`。
 
-B4/E开始均不存在，SRC与B3精确根及冻结dispatch/copy绑定通过。host任务专用RemoteSigned PowerShell首次因5.1泛型静态方法语法在解析阶段失败；按任务只做一次定点纠正。纠正后成功生成SRC current-view TSV：527文件、301目录、3234145 bytes、reparse=0、size=69676、SHA-256=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`。
+SRC/B3各运行helper一次，均为527/301/3234145/reparse0，TSV size=69676、SHA=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`。唯一observable probe的`00/10/20/30/40/90`全部PASS。
 
-随后SRC自测在表达式`ordinal=true`触发`System.Management.Automation.CommandNotFoundException`。一次纠正预算耗尽，最终分类 **M3 PRECONDITION BLOCKED — R6R4R1_HOST_CURRENT_VIEW_SELFTEST_FAILED**。该新TSV hash不是历史legacy manifest，不重定义或替换`6D4EAE...`。
+主guest nonce与Sandbox ID绑定；PowerShell 5.1、Process/effective RemoteSigned、Security系统Path、活动网卡0、默认路由0及ordinary/batch/exit37冒烟PASS。模块直接copy至固定cwd后current-view仍精确匹配；R4七项全部复用，fallback=0。Git 2.53.0.windows.1与Java 17.0.18+8 exit=0。
 
-B3 current-view与SRC↔B3比较NOT_RUN；expected TSV未创建。WSB/observable probe与七个checkpoint均NOT_RUN，主guest、模块copy/fixed cwd、R4工具复用、Git/Java/pub/M3均NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。B4→E均为7文件、87919 bytes，evidence manifest=`FFAED27D44900EE8F7E39AB25BF748CE398D7F89D5EC4D9C7C79AE898937BA4D`。本轮未对Owner Sandbox实施任何控制动作。
+唯一`flutter pub get --offline`已启动但exit=1，stderr为`PowerShell executable not found; Either pwsh.exe or PowerShell.exe must be in your PATH.`。最终分类 **M3 PRECONDITION BLOCKED — OFFLINE_PUB_POWERSHELL_EXECUTABLE_NOT_FOUND_IN_GUEST_PATH**；不推论offline依赖不足。M3未启动，AAR=NOT_CHECKED/probe=0，M2仍deferred。
+
+B4→E最终均71文件、2目录、659719 bytes，manifest=`5E8ECD29522CC4E1B9292136417CA0A929219F8A15B95AD8AD33F2B75CD6CD75`。final WSB list仍唯一指定Owner会话，未share/stop/close/reset/kill。
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -55,31 +57,30 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | R6-R4-R1生成SRC current-view TSV，但host自测在一次定点纠正后仍失败；B3比较和WSB链未启动 | 下一关口为fresh独立审查；不得修正/重跑host脚本或启动observable/guest/pub/M3；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | R6-R4-R2 helper/host+guest current-view、observable、隔离/派发、module cwd、R4复用、Git/Java PASS；唯一offline pub在Flutter入口因PATH找不到PowerShell exit=1 | 下一关口为fresh独立审查；不得补PATH、修脚本或重试pub/M3；M2仍deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-本轮新增的是host SRC current-view TSV及自测失败证据，不是通过的SRC↔B3比较、observable checkpoint、guest隔离/派发、固定cwd、真实Git/Java、pub、M3或AAR证据。无新增固定任务时不续行。
+本轮新增了直到真实pub入口失败为止的证据；没有M3/AAR或依赖不足证据。无新增固定任务时不续行。
 ## 5. 精确来源与覆盖缺口
 
 GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
 
 | 来源 | 版本与用途 |
 | --- | --- |
-| AGENTS.md | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；已接受规则 |
-| 当前main | `b7ded0a4251395beb0a25073bf47d6b61d8e9081`；已接受R6-R3状态 |
+| 当前main | `45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；已接受R6-R4-R1状态 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R6-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_BRIDGE_DIRECTORY_TRANSFER_AND_EXECUTION_RESULT_V0_8_R6_R3.md) | `33613af1985b340c01b984cb6109b19ba6932ab9`；已接受host目录桥接与无副作用probe失败事实 |
-| [v0.8-R6-R4-R1任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_OBSERVABLE_DIRECTORY_BRIDGE_AND_EXECUTION_TASK_V0_8_R6_R4_R1.md) | `d13312277ec891226c6014ffaeb20d56cff976dd` / `aab315287dcb2624439d1a1439e279c217449614`；observable current-view诊断合同 |
-| [v0.8-R6-R4-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_OBSERVABLE_DIRECTORY_BRIDGE_AND_EXECUTION_RESULT_V0_8_R6_R4_R1.md) | 本候选新增；host SRC自测在纠正预算耗尽后失败 |
+| [v0.8-R6-R4-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_OBSERVABLE_DIRECTORY_BRIDGE_AND_EXECUTION_RESULT_V0_8_R6_R4_R1.md) | `06abaa8b4efcd717e35f5b2981bf098be4e8358f`；已接受host selftest失败事实 |
+| [v0.8-R6-R4-R2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_HOST_CURRENT_VIEW_REPAIR_AND_OBSERVABLE_EXECUTION_TASK_V0_8_R6_R4_R2.md) | `f0272d3985799a3778f5e45cb55eb3c362b92f60` / `6f270bb1e76be79e49ffca497a38e3cb00014700`；helper修复、observable与条件式M3合同 |
+| [v0.8-R6-R4-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_HOST_CURRENT_VIEW_REPAIR_AND_OBSERVABLE_EXECUTION_RESULT_V0_8_R6_R4_R2.md) | 本候选新增；真实offline pub入口因guest PATH缺PowerShell失败 |
 
-本轮CURRENT_CONTEXT从固定main UTF-8 blob `2410e6c2a35ba28fa0c23373535b5736f70ae839`开始编辑；§2/§3/§6/§7逐字保留。
+本轮CURRENT_CONTEXT从main UTF-8 blob `701c2cb96d6b219a7330a0bb4b84acb36495a6b0`开始编辑；§2/§3/§6/§7逐字保留。
 
-SRC current-view TSV SHA-256=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`，但自测未通过；B3 current-view和逐项比较NOT_RUN。首个终止stage=`HOST_CURRENT_VIEW_SRC_SELFTEST`，异常=`CommandNotFoundException`，一次纠正预算已用尽。
+helper SHA=`6ECA7C8ADF8AF51CD2CAE08E736595F4BA4C9324F891AF80DE604A1A3DC6311D`；current-view SHA=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`。observable全checkpoint、主guest隔离/派发、模块copy、R4复用、Git/Java PASS。pub一次exit=1，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
 
-B4→E evidence manifest一致。WSB与全部guest/真实工具链NOT_RUN，AAR=NOT_CHECKED、probe=0。未stop/close/reset/kill Owner Sandbox；本轮未查询其运行可用性。下一关口是fresh独立ACCEPT/REJECT，不授权修复或重试。
+B4/E manifest一致，Owner Sandbox仍唯一且未被停止。下一关口是fresh独立ACCEPT/REJECT，不授权补PATH、修复或重试。
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
