@@ -1,21 +1,19 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — OFFLINE_PUB_POWERSHELL_EXECUTABLE_NOT_FOUND_IN_GUEST_PATH — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — OFFLINE_PUB_FLUTTER_TOOL_NETWORK_ATTEMPT_BLOCKED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；本轮v0.8-R6-R4-R2完成helper、host/guest current-view、observable、隔离/派发、module cwd、R4工具复用和Git/Java，唯一offline pub因guest PATH中找不到PowerShell executable而exit=1，M3未启动。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`93a5466b57a99dcc10a369cd005bbe7953ce38a4`；v0.8-R6-R4-R3的PowerShell解析门PASS，但唯一offline pub中Flutter工具仍尝试GitHub/pub.dev并在禁网guest exit=69，M3未启动。
 ## 1. 当前入口和生命周期
 
-当前权威main为`45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。v0.8-R6-R4-R2任务commit `f0272d3985799a3778f5e45cb55eb3c362b92f60`、blob `6f270bb1e76be79e49ffca497a38e3cb00014700`唯一父为该main，compare ahead=1/behind=0且只新增task；R6-R4-R1 result、CURRENT_CONTEXT及两个sentinel blob均匹配。
+当前权威main为`93a5466b57a99dcc10a369cd005bbe7953ce38a4`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R3 task `0724df842d1e85fd405daa16e94550e63d9d5040`、blob `a70359494cf72bc7da29fcd95ac8ace91f206cae`唯一父为main，ahead=1/behind=0且只新增task；R6-R4-R2 result与CURRENT_CONTEXT blobs匹配。
 
-Owner直接激活本任务；主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。fixture selftest一次PASS、helper纠正0/2，冻结helper SHA=`6ECA7C8ADF8AF51CD2CAE08E736595F4BA4C9324F891AF80DE604A1A3DC6311D`。
+Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。controller 1/1次定点纠正后SHA=`E9887CCDBE32094B5C048833DEDB877F02648093DD66A7D0438EBA84C5C91C7F`，nonce=`M3-ISO-V02-008-R6R4R3-8b57aa248bef4e2d9de732e2bbb94487`。
 
-SRC/B3各运行helper一次，均为527/301/3234145/reparse0，TSV size=69676、SHA=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`。唯一observable probe的`00/10/20/30/40/90`全部PASS。
+fresh WSB list唯一Owner Sandbox `68ece109-c661-420c-9899-02b1e9518036`。实际controller run-as System；RemoteSigned、Security系统Path、活动网卡0、默认路由0、固定cwd/tools存在性均PASS。系统PowerShell exact path/version/hash及Get-Command、where、cmd where、PATH名子PowerShell四门PASS；PATH只在controller/子进程临时调整。
 
-主guest nonce与Sandbox ID绑定；PowerShell 5.1、Process/effective RemoteSigned、Security系统Path、活动网卡0、默认路由0及ordinary/batch/exit37冒烟PASS。模块直接copy至固定cwd后current-view仍精确匹配；R4七项全部复用，fallback=0。Git 2.53.0.windows.1与Java 17.0.18+8 exit=0。
+唯一`flutter pub get --offline`exit=69；首个诊断为Flutter工具`fetch --tags`访问GitHub并因禁网DNS失败，随后报告pub.dev socket error。分类 **M3 PRECONDITION BLOCKED — OFFLINE_PUB_FLUTTER_TOOL_NETWORK_ATTEMPT_BLOCKED**；不推论应开放网络或cache不足。M3未启动，AAR=NOT_CHECKED/probe=0，M2 deferred。
 
-唯一`flutter pub get --offline`已启动但exit=1，stderr为`PowerShell executable not found; Either pwsh.exe or PowerShell.exe must be in your PATH.`。最终分类 **M3 PRECONDITION BLOCKED — OFFLINE_PUB_POWERSHELL_EXECUTABLE_NOT_FOUND_IN_GUEST_PATH**；不推论offline依赖不足。M3未启动，AAR=NOT_CHECKED/probe=0，M2仍deferred。
-
-B4→E最终均71文件、2目录、659719 bytes，manifest=`5E8ECD29522CC4E1B9292136417CA0A929219F8A15B95AD8AD33F2B75CD6CD75`。final WSB list仍唯一指定Owner会话，未share/stop/close/reset/kill。
+B/E均19文件、2目录、101639 bytes，view SHA=`581ABD94387E9C110FFCA3DC23A722EECFD04EAAE72F62458C67C4D7D9C2D2AE`。final WSB list仍唯一Owner会话，未新share/stop/close/reset/kill。
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -57,30 +55,30 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | R6-R4-R2 helper/host+guest current-view、observable、隔离/派发、module cwd、R4复用、Git/Java PASS；唯一offline pub在Flutter入口因PATH找不到PowerShell exit=1 | 下一关口为fresh独立审查；不得补PATH、修脚本或重试pub/M3；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | R6-R4-R3隔离、固定路径、PowerShell PATH四门PASS；唯一offline pub中Flutter工具尝试GitHub/pub.dev并在禁网guest exit=69 | 下一关口为fresh独立审查；不得开放网络、补包、重试pub/M3；M2 deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-本轮新增了直到真实pub入口失败为止的证据；没有M3/AAR或依赖不足证据。无新增固定任务时不续行。
+本轮闭合进程级PowerShell PATH缺口，但`--offline`入口中的Flutter工具仍发生网络访问尝试。没有M3/AAR或cache不足证据；无新增固定任务时不续行。
 ## 5. 精确来源与覆盖缺口
 
 GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
 
 | 来源 | 版本与用途 |
 | --- | --- |
-| 当前main | `45e57fb0f77ac61fa29700d317a3aaaa02f55e87`；已接受R6-R4-R1状态 |
+| 当前main | `93a5466b57a99dcc10a369cd005bbe7953ce38a4`；已接受R6-R4-R2状态 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R6-R4-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_OBSERVABLE_DIRECTORY_BRIDGE_AND_EXECUTION_RESULT_V0_8_R6_R4_R1.md) | `06abaa8b4efcd717e35f5b2981bf098be4e8358f`；已接受host selftest失败事实 |
-| [v0.8-R6-R4-R2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_HOST_CURRENT_VIEW_REPAIR_AND_OBSERVABLE_EXECUTION_TASK_V0_8_R6_R4_R2.md) | `f0272d3985799a3778f5e45cb55eb3c362b92f60` / `6f270bb1e76be79e49ffca497a38e3cb00014700`；helper修复、observable与条件式M3合同 |
-| [v0.8-R6-R4-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_HOST_CURRENT_VIEW_REPAIR_AND_OBSERVABLE_EXECUTION_RESULT_V0_8_R6_R4_R2.md) | 本候选新增；真实offline pub入口因guest PATH缺PowerShell失败 |
+| [v0.8-R6-R4-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_HOST_CURRENT_VIEW_REPAIR_AND_OBSERVABLE_EXECUTION_RESULT_V0_8_R6_R4_R2.md) | `03720d5499fca33f837abedd79871c740a0906bf`；已接受R2证据 |
+| [v0.8-R6-R4-R3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_GUEST_POWERSHELL_PATH_AND_EXECUTION_TASK_V0_8_R6_R4_R3.md) | `0724df842d1e85fd405daa16e94550e63d9d5040` / `a70359494cf72bc7da29fcd95ac8ace91f206cae`；进程级PATH与一次offline pub合同 |
+| [v0.8-R6-R4-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_GUEST_POWERSHELL_PATH_AND_EXECUTION_RESULT_V0_8_R6_R4_R3.md) | 本候选新增；PATH门PASS，Flutter工具网络尝试被隔离阻断 |
 
-本轮CURRENT_CONTEXT从main UTF-8 blob `701c2cb96d6b219a7330a0bb4b84acb36495a6b0`开始编辑；§2/§3/§6/§7逐字保留。
+本轮CURRENT_CONTEXT从main UTF-8 blob `10595ef7ae958da0324b60b4650933067ac2e065`开始；§2/§3/§6/§7逐字保留。
 
-helper SHA=`6ECA7C8ADF8AF51CD2CAE08E736595F4BA4C9324F891AF80DE604A1A3DC6311D`；current-view SHA=`4F869B12B5F466E35326966272F13BEA6EBABC69A631200E26F8F8E3D382DD2E`。observable全checkpoint、主guest隔离/派发、模块copy、R4复用、Git/Java PASS。pub一次exit=1，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
+controller SHA=`E9887CCDBE32094B5C048833DEDB877F02648093DD66A7D0438EBA84C5C91C7F`；PowerShell SHA=`7600FFE12DA441FE89D035B13801E8E91D064BC544A27B19A5CF49F6AB8B18F5`；PATH四门与隔离PASS。pub一次exit=69，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
 
-B4/E manifest一致，Owner Sandbox仍唯一且未被停止。下一关口是fresh独立ACCEPT/REJECT，不授权补PATH、修复或重试。
+B/E一致，Owner Sandbox仍唯一且未停止。下一关口是fresh独立ACCEPT/REJECT，不授权联网、补包或重试。
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
