@@ -1,19 +1,19 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — OFFLINE_PUB_NETWORK_ATTEMPT_PERSISTS_AFTER_NO_VERSION_CHECK — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — M3_NO_PUB_NETWORK_ATTEMPT — AAR EXACT NON-HIT — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`9a415997405314fc6e047f47f238cfd6f8de1ef4`；v0.8-R6-R4-R4使用`--no-version-check`后不再出现GitHub版本检查，但唯一offline pub仍尝试pub.dev并exit=69，M3未启动。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`fd447ca5cf3c8e7407a3a65bee144b6257a317c5`；R6-R4-R5 direct Dart offline pub PASS，随后唯一M3尽管带`--no-pub`仍尝试pub.dev并exit=69，精确AAR NON-HIT。
 ## 1. 当前入口和生命周期
 
-当前权威main为`9a415997405314fc6e047f47f238cfd6f8de1ef4`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R4 task `42e58ac4dfd5aab0a9b6851dc788e187b27ba5a9`、blob `6a8adfd5b89cea94c3e1fd08bfe2a7d733aa29b6`唯一父为main，ahead=1/behind=0且只新增task；R3 result与CURRENT_CONTEXT blobs匹配。
+当前权威main为`fd447ca5cf3c8e7407a3a65bee144b6257a317c5`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R5 task `a1441caaa81134f53aaea00ae256e86fbd61b110`、blob `874ce5ddc87989e1f073fd5bbb3bfc4051d7cba2`唯一父为main，ahead=1/behind=0且只新增task；R4 result与CURRENT_CONTEXT blobs匹配。
 
-Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。controller parser/static一次PASS，纠正0/1，SHA=`73F93D84F1450C4353FB91EFB8721402C95D5DC150F17A36EAEEB2384BA82084`；nonce=`M3-ISO-V02-008-R6R4R4-9d435a22ea97477f897715cac76f149b`。
+Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。controller parser/static PASS，纠正0/1，SHA=`1B2A9630A8F446C1DEE68AABC995E5E042FDF38DA7B89F743FEE438A5AD8449B`；nonce=`M3-ISO-V02-008-R6R4R5-6fbdb40ea74043a998f9b2a21605a3d3`。
 
-fresh WSB list唯一Owner Sandbox `68ece109-c661-420c-9899-02b1e9518036`。RemoteSigned、Security系统Path、活动网卡0、默认路由0、固定cwd/tools存在性与最小Get-Command门PASS；PATH只在controller/子进程临时调整。
+fresh WSB list唯一Owner Sandbox `68ece109-c661-420c-9899-02b1e9518036`。RemoteSigned、Security系统Path、活动网卡0、默认路由0、固定路径与最小PowerShell门PASS。Dart 3.11.5 exact executable PASS；code_builder lock未命中，cache过滤命中`code_builder-4.11.1`。
 
-唯一`flutter --no-version-check pub get --offline`exit=69。R3的fetch-tags/GitHub诊断消失，首个诊断为从pub.dev查找`code_builder`时socket失败。分类 **M3 PRECONDITION BLOCKED — OFFLINE_PUB_NETWORK_ATTEMPT_PERSISTS_AFTER_NO_VERSION_CHECK**；不推论exact cache miss或授权联网。M3未启动，AAR=NOT_CHECKED/probe=0，M2 deferred。
+唯一direct Dart `pub get --offline` exit=0。随后唯一M3实际启动，但Flutter带`--no-pub`仍从pub.dev查找`coverage`，exit=69。分类 **M3 PRECONDITION BLOCKED — M3_NO_PUB_NETWORK_ATTEMPT**。精确AAR NON-HIT/probe=1，M2 deferred。
 
-B/E均17文件、2目录、18557 bytes，view SHA=`B8068CD8864FF3C14FFF3B332833522A6A8E164C32C963F735596F9D39D1998E`。final WSB list仍唯一Owner会话，未新share/stop/close/reset/kill。
+B/E均23文件、2目录、23609 bytes，view SHA=`0AA32F007F9F9104BC6976328291EA087F09D6066FF2327FE621A4EAEED185BD`。final WSB list仍唯一Owner会话，未新share/stop/close/reset/kill。
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -55,30 +55,30 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | R6-R4-R4最小隔离/PATH门PASS；`--no-version-check`消除GitHub版本检查，但pub仍尝试pub.dev并exit=69 | 下一关口为fresh独立审查；不得联网、补包、重试pub/M3；M2 deferred |
+| 2 M3生成与M2后续依赖证据 | direct Dart offline pub PASS；唯一M3带`--no-pub`仍尝试pub.dev、exit=69；精确AAR NON-HIT | 下一关口为fresh独立审查；不得联网、补包或重试；M2 deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-本轮证明版本检查网络尝试已消失，但offline pub仍访问pub.dev。没有exact cache miss、M3或AAR证据；无新增固定任务时不续行。
+本轮证明direct Dart offline依赖解析PASS；Flutter M3入口仍有pub.dev网络尝试。没有AAR产物或M2证据；无新增固定任务时不续行。
 ## 5. 精确来源与覆盖缺口
 
 GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
 
 | 来源 | 版本与用途 |
 | --- | --- |
-| 当前main | `9a415997405314fc6e047f47f238cfd6f8de1ef4`；已接受R6-R4-R3状态 |
+| 当前main | `fd447ca5cf3c8e7407a3a65bee144b6257a317c5`；已接受R6-R4-R4状态 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R6-R4-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_GUEST_POWERSHELL_PATH_AND_EXECUTION_RESULT_V0_8_R6_R4_R3.md) | `3a856692e3a2eeb7c7068c28debef20f0c88b319`；已接受进程级PATH与Flutter版本检查网络尝试事实 |
-| [v0.8-R6-R4-R4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_NO_VERSION_CHECK_AND_EXECUTION_TASK_V0_8_R6_R4_R4.md) | `42e58ac4dfd5aab0a9b6851dc788e187b27ba5a9` / `6a8adfd5b89cea94c3e1fd08bfe2a7d733aa29b6`；no-version-check、一次offline pub与条件式M3合同 |
-| [v0.8-R6-R4-R4结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_NO_VERSION_CHECK_AND_EXECUTION_RESULT_V0_8_R6_R4_R4.md) | 本候选新增；版本检查消失，pub.dev网络尝试持续 |
+| [v0.8-R6-R4-R4结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_NO_VERSION_CHECK_AND_EXECUTION_RESULT_V0_8_R6_R4_R4.md) | `f2d1024e316e096385bf1645af74788bd1554ce4`；已接受no-version-check后pub.dev网络尝试事实 |
+| [v0.8-R6-R4-R5任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_DART_OFFLINE_AND_EXECUTION_TASK_V0_8_R6_R4_R5.md) | `a1441caaa81134f53aaea00ae256e86fbd61b110` / `874ce5ddc87989e1f073fd5bbb3bfc4051d7cba2`；direct Dart offline与条件式M3合同 |
+| [v0.8-R6-R4-R5结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_DART_OFFLINE_AND_EXECUTION_RESULT_V0_8_R6_R4_R5.md) | 本候选新增；direct Dart PASS，M3 no-pub网络尝试、AAR NON-HIT |
 
-本轮CURRENT_CONTEXT从main UTF-8 blob `2c0e9353b7ccfde07c0787247a113805a3f9a440`开始；§2/§3/§6/§7逐字保留。
+本轮CURRENT_CONTEXT从main UTF-8 blob `e611420974d5bbcab20de9b0c4aaa59226133ba1`开始；§2/§3/§6/§7逐字保留。
 
-controller SHA=`73F93D84F1450C4353FB91EFB8721402C95D5DC150F17A36EAEEB2384BA82084`；最小PATH门与隔离PASS。pub一次exit=69，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
+controller SHA=`1B2A9630A8F446C1DEE68AABC995E5E042FDF38DA7B89F743FEE438A5AD8449B`；Dart 3.11.5、direct offline pub PASS。M3 exit=69，AAR NON-HIT/probe=1。
 
-B/E一致，Owner Sandbox仍唯一且未停止。下一关口是fresh独立ACCEPT/REJECT，不授权联网、补包或重试。
+B/E一致，Owner Sandbox仍唯一且未停止。下一关口是fresh独立ACCEPT/REJECT，不授权联网、补包、重试或M2。
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
