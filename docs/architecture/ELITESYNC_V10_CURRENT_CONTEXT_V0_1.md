@@ -1,22 +1,24 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — GUEST_STARTUP_NOT_ESTABLISHED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — EIGHT_INPUT_HOST_LOCATORS_NOT_ESTABLISHED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`f7939bff46326eef2d41cc27b302f48d60b8568b`；本轮v0.8-R2修复Sandbox启动身份采证，记录器无害实测通过，但唯一Sandbox launcher结束前没有建立guest.started。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`c051d6bf4d725672af4292b000c2829c067ea2b1`；本轮v0.8-R3通过官方WSB CLI安全识别并控制唯一Owner现有Sandbox，建立guest.started与禁网隔离证据，但固定来源未提供八项host输入locator。
 
 ## 1. 当前入口和生命周期
 
-当前权威main为`f7939bff46326eef2d41cc27b302f48d60b8568b`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配。v0.8-R2任务commit `3dcb69c9fe9cb15cd9c021687b8807c314205231`、blob `96c55bc2f08248dbd9ce5c7779aefc7bcacee64f`的唯一父为该main，且相对main只新增任务单。历史startup不重跑，旧`8b640576822b01ae00bb04b9b5deaa75db53365c`不恢复。
+当前权威main为`c051d6bf4d725672af4292b000c2829c067ea2b1`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配。v0.8-R3任务commit `b41c3609284f773b921b5f2fa2e854dcae8acedd`、blob `84b0e7c7f4e1f1bde01be2ca1a14f5f43567f3e9`的唯一父为该main，且相对main只新增任务单。历史startup不重跑，旧`8b640576822b01ae00bb04b9b5deaa75db53365c`不恢复。
 
-Owner直接激活本v0.8-R2范围；主执行模型由Owner在Codex界面选择GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。继续使用既有008工作区，仅新增`evidence/resume-r2`，没有清理、覆盖或改号。
+Owner直接激活本v0.8-R3范围；Owner指定主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。继续使用既有008工作区，仅新增`evidence/resume-r3`，没有清理、覆盖或改号。
 
-旧008 host ordinary native 4/4与batch 6/6证据只读复用且未重跑；ordinary override=false、batch override=true、exit37原样传播。dispatch SHA-256保持`2C0ACFEE0795B891A9331DFF97703D862052E3C7FFCAF3CF135D70063C4D8846`。固定对象526文件、defines=EMPTY及既有runner输入继续作为已接受前置事实，本轮不重复物化或测试。
+官方`wsb.exe`解析为`C:/Users/zcxve/AppData/Local/Microsoft/WindowsApps/wsb.exe`，版本`0.8.107.0`。`wsb list --raw`一次主查询返回唯一running Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`，因此使用existing-session路径；没有按PID猜测或启动新Sandbox。
 
-本轮记录器`M3-R2-LAUNCH-RECORDER-1`最终SHA-256为`103EE48EA240BD15735E601C5657653A25F0586275093FF988024B7CF5D12AB5`。无害`cmd.exe`实测取得PID `19024`，原子身份先落盘、立即回读通过，真实exit=`0`。
+仅先共享`resume-r3`到`C:/M3R3/evidence`并允许write、共享其`bootstrap`子目录到`C:/M3R3/bootstrap`且未加allow-write，两次CLI exit均为0。后者host源嵌套于可写evidence根，保留该别名限制；具名preflight脚本执行前后SHA-256均为`C4D19FAF2E4B61F416A4BA1A0E4DB6711FD7606861BF8F8A34A7EE63E5058496`。
 
-记录器通过后仅启动一次Sandbox。已可靠保存并回读launcher PID `41372`、creation UTC `2026-09-09T04:46:13.1356631Z`、nonce和记录器hash；该`WindowsSandbox.exe`进程约2秒后真实exit=`0`，结束前没有匹配nonce的`guest.started`，也没有guest result。分类为 **M3 PRECONDITION BLOCKED — GUEST_STARTUP_NOT_ESTABLISHED**。这不等于Sandbox不可用，也不证明guest已启动或隔离已建立。
+同一Sandbox ID以run-as System执行任务专用Windows PowerShell，CLI exit=`0`。nonce=`M3-ISO-V02-008-R3-5d4523ab8929495fa1619b999a1d86e4`与`guest.started`、Sandbox ID匹配；PowerShell=`5.1.26100.9168`，Process/effective均`RemoteSigned`，Security模块Name/精确系统Path通过，活动网卡0、默认路由0，隔离门PASS。
 
-guest策略、隔离、两类冒烟、八项复制、真实Git、Java、pub及M3均为NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。v0.8-R1的身份采证缺陷已关闭；当前具体缺口转为launcher返回与实际Sandbox会话/guest.started之间的可归属承接链。
+旧008 host ordinary native 4/4与batch 6/6证据只读复用且未重跑；dispatch SHA-256保持`2C0ACFEE0795B891A9331DFF97703D862052E3C7FFCAF3CF135D70063C4D8846`。固定来源没有提供八项host绝对路径或映射文件locator；在禁止搜索、枚举、猜测路径的边界下，真实输入共享前停止，分类为 **M3 PRECONDITION BLOCKED — EIGHT_INPUT_HOST_LOCATORS_NOT_ESTABLISHED**。
+
+guest两类冒烟、八项复制、真实Git、Java、pub及M3均为NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。Owner现有Sandbox未stop/close/reset/kill，仍由Owner控制；两项task share因CLI无unshare能力而保留。
 
 ## 2. 产品目标与概念基础
 
@@ -59,13 +61,13 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | 旧host ordinary 4/4与batch 6/6复用且未重跑；v0.8-R2记录器无害实测PASS并可靠保存唯一Sandbox launcher PID/creation/exit，但launcher结束前没有guest.started；guest及后续阶段均未运行 | 下一具体缺口是launcher返回与实际Sandbox会话/guest.started的可归属承接链；不重跑host 4+6，不重开dispatch、复制、策略或工具发现；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | 旧host ordinary 4/4与batch 6/6复用且未重跑；v0.8-R3由官方WSB CLI取得唯一running Sandbox ID，existing-session share/exec与guest.started/禁网隔离PASS；八项输入及后续阶段未运行 | 下一具体缺口是提供八项host绝对路径或固定映射文件locator；不得搜索、枚举或猜测路径；不重跑host 4+6，不重开dispatch、复制、策略或cmd引用算法；M2仍deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-虚构样例走查不是真实用户验证，不使U-08或U-10完成。本轮没有建立guest、复制、Git/Java、pub、M3或AAR证据；无新增授权时不另行启动Sandbox或后续阶段。
+虚构样例走查不是真实用户验证，不使U-08或U-10完成。本轮已建立唯一Sandbox ID、guest.started和禁网隔离证据，但没有两类guest冒烟、八项复制、Git/Java、pub、M3或AAR证据；无新增精确locator与授权时不续行后续阶段。
 
 ## 5. 精确来源与覆盖缺口
 
@@ -74,21 +76,23 @@ GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接�
 | 来源 | 版本与用途 |
 | --- | --- |
 | AGENTS.md | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；已接受规则 |
-| 当前main | `f7939bff46326eef2d41cc27b302f48d60b8568b`；v0.8-R1重封装结果已进入权威基线 |
+| 当前main | `c051d6bf4d725672af4292b000c2829c067ea2b1`；v0.8-R2结果已进入权威基线 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
 | [v0.7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_7.md) | `cf7b9f29cc0b0ed81a764239fdf17a34eeb86e33`；既有隔离、复制及生命周期控制 |
 | [007结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_7.md) | `6684322f5e500e5ce0dd3c0e9f81130fd0fbbe26`；已接受batch、隔离、复制证据及ordinary参数缺陷 |
 | [v0.8-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_8_R1.md) | `99b98bfc81e4dfe431d9b6919b35a2383204c8d4`；已接受启动身份采证失败事实 |
 | [v0.8-R2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_8_R2.md) | `3dcb69c9fe9cb15cd9c021687b8807c314205231` / `96c55bc2f08248dbd9ce5c7779aefc7bcacee64f`；Owner批准的启动记录链修复与条件式续行合同 |
-| [v0.8-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_8_R2.md) | 本候选新增；记录器自测PASS，唯一Sandbox launcher有可靠PID/creation/exit，但未建立guest.started |
+| [v0.8-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_8_R2.md) | `03a05c1388e5530922df0ed48163098a5b64344b`；记录器自测PASS，唯一Sandbox launcher有可靠PID/creation/exit，但未建立guest.started |
+| [v0.8-R3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_TASK_V0_8_R3.md) | `b41c3609284f773b921b5f2fa2e854dcae8acedd` / `84b0e7c7f4e1f1bde01be2ca1a14f5f43567f3e9`；Owner批准的现有Sandbox安全识别与条件式续行合同 |
+| [v0.8-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_RESULT_V0_8_R3.md) | 本候选新增；唯一running Sandbox ID、guest.started与隔离门PASS，八项host locator未建立 |
 
-本轮CURRENT_CONTEXT从当前main实际干净UTF-8 blob `f0e1c685fbddec288c92aff22588b1d2ad508f3b`开始编辑。§2/§3/§6/§7逐字保留；发布前须检查UTF-8和明显mojibake。
+本轮CURRENT_CONTEXT从当前main实际干净UTF-8 blob `b5d628cd9a3320881575d9d4ecc19954dc954c45`开始编辑。§2/§3/§6/§7逐字保留；发布前须检查UTF-8和明显mojibake。
 
-本轮记录器hash为`103EE48EA240BD15735E601C5657653A25F0586275093FF988024B7CF5D12AB5`。无害自测原子身份与回读PASS、exit=`0`。唯一Sandbox launcher PID=`41372`、creation UTC=`2026-09-09T04:46:13.1356631Z`、exit=`0`；nonce=`M3-ISO-V02-008-R2-7c1ca3490bea4dce9be574b96fccd653`，但没有`guest.started`或guest result。
+本轮`wsb.exe`版本`0.8.107.0`；一次`list --raw`返回唯一Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`。两项share和一次run-as System exec均exit 0；nonce=`M3-ISO-V02-008-R3-5d4523ab8929495fa1619b999a1d86e4`与`guest.started`匹配。Process/effective RemoteSigned、系统Security模块精确Path、活动网卡0和默认路由0均通过。
 
-因此guest策略/隔离/ordinary与batch冒烟、八项复制、真实Git/Java、pub及M3均NOT_RUN；AAR=NOT_CHECKED、probe=0。launcher正常返回不构成guest启动、隔离或Sandbox不可用证据。M2保持deferred。
+固定允许来源没有提供八项host绝对路径或固定映射文件locator，不能在禁止搜索／枚举／猜测路径的边界下续行。因此guest两类冒烟、八项复制、真实Git/Java、pub及M3均NOT_RUN；AAR=NOT_CHECKED、probe=0。M2保持deferred。
 
-Owner在本轮停止条件触发后补充：该宿主同时只能启动一个Sandbox，Owner不会主动关闭现有Sandbox窗口，未来相关任务可检测并使用现成Sandbox。本轮没有读取或接管未知既有会话，该说明不改变本次分类。下一具体缺口是安全识别现有Sandbox会话，并建立启动程序、唯一实例与guest.started的可归属承接链。没有另一次Sandbox、pub、M3或M2授权；不重跑host 4+6，不重开dispatch、复制、策略或工具发现。
+Owner现有Sandbox未stop、close、reset或kill，仍由Owner控制；公开CLI help没有unshare命令，两项task share保持。下一具体缺口仅是提供八项host绝对路径或一个具名、可哈希验证且获准读取的映射文件locator；不重跑host 4+6，不重开dispatch、复制、策略或cmd引用算法。
 
 ## 6. 官方规范的有限采用
 
