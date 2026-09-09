@@ -1,19 +1,19 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — R6R1 EVIDENCE SHARE FAILED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — FIXED_MODULE_CWD_MISSING_AFTER_BRIDGE_EXPAND — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`ac14a7ccac09fa6117936f133b50593bd5023c1d`；本轮v0.8-R6-R1通过远端authority、唯一task-owned fetch与固定模块物化，但R6-R1首项evidence share失败，guest及真实Git/Java/pub/M3未运行。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`ec16e067b80671a2c9bfeb957a7acc709d9fb78e`；本轮v0.8-R6-R2通过既有R4 evidence bridge恢复guest隔离与派发证据，但PowerShell Archive模块未加载，固定module cwd未建立，真实Git/Java/pub/M3未运行。
 ## 1. 当前入口和生命周期
 
-当前权威main为`ac14a7ccac09fa6117936f133b50593bd5023c1d`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。v0.8-R6-R1任务commit `370089838888af2f477736f961a25adc112137b4`、blob `9a79dfd3e0cfc28935e246d5790cb6a9cdc79edf`唯一父为该main；GitHub compare为ahead=1、behind=0且只新增任务单。本机缺少task ref/object未被误作阻塞。
+当前权威main为`ec16e067b80671a2c9bfeb957a7acc709d9fb78e`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。v0.8-R6-R2任务commit `db5ca28ec19f41b281b8271a212fa2f9b9578a32`、blob `680d8d7d77edae918ce809846d5ebc7d866caf4f`唯一父为该main，GitHub compare为ahead=1、behind=0且只新增任务文件。
 
-Owner直接激活本v0.8-R6-R1范围；Owner指定主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。旧R6 evidence SHA-256=`5F3C63947DFCA25C950C3F67B64B6AD5C64A82BDA7A60AAA9FE136948B524876`匹配；旧object/input/resume保持只读，未覆盖。
+Owner直接激活本v0.8-R6-R2范围；主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。R6-R1 ZIP SHA-256=`342F9D0BCB909CA73660FE9F98D17185F1ABD462C1B8712705DD3916E316B050`、size=966335；宿主模块527文件、301目录、3234145 bytes、reparse=0及manifest=`6D4EAE63074EAF59BDE32F1C09446F3E996C4E02DAEB7BBBBBD1C9B5DB3798EB`。
 
-本轮新路径开始时均不存在。唯一一次task-owned shallow fetch exit=0，`refs/r6r1/fixed-main`精确为`ac14a7ccac09fa6117936f133b50593bd5023c1d`，第二次fetch=0。固定module tree=`e369db9c603838182d29ae501a77f1afe56b6086`、类型tree；ZIP SHA-256=`342F9D0BCB909CA73660FE9F98D17185F1ABD462C1B8712705DD3916E316B050`、size=966335。物化模块527文件、301目录、3234145 bytes、reparse=0，manifest SHA-256=`6D4EAE63074EAF59BDE32F1C09446F3E996C4E02DAEB7BBBBBD1C9B5DB3798EB`。
+本轮只在旧R4 host evidence根下新增`r6r2-bridge`，未改旧条目；未调用新的`wsb share`或`wsb stop`。fresh `wsb list --raw`返回唯一running Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`。run-as System bridge probe ExitCode=0，证明旧R4 writable evidence mapping及桥中四项精确输入可达且哈希匹配。
 
-fresh `wsb list --raw`返回唯一running Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`。随后首项`W/evidence/resume-r6-r1`→`C:/M3R6R1/evidence` allow-write share返回`Value does not fall within the expected range.`，exit=`-2147024809`。按失败即停合同未重试，bootstrap/module share未运行，guest.started未建立。
+nonce=`M3-ISO-V02-008-R6R2-6bb89f2b3c6d4f9e81e85455d5e6c4fe`与guest.started、Sandbox ID匹配。PowerShell=`5.1.26100.9168`，Process/effective RemoteSigned检查通过；Security模块系统Path、活动网卡0、默认路由0通过。ordinary native override=false、batch pub/M3 shape和exit37均PASS。
 
-最终分类为 **M3 PRECONDITION BLOCKED — R6R1 EVIDENCE SHARE FAILED**。guest RemoteSigned、Security模块、禁网隔离、两类冒烟、R4工具复用/fallback、module guest copy、固定cwd、Git、Java、pub与M3均NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。没有task-owned guest进程启动；Owner Sandbox未stop/close/reset/kill，仍由Owner控制。
+guest随后调用固定`Expand-Archive`时因`Microsoft.PowerShell.Archive`模块无法加载而停止；固定`C:/M3R6R2/w/apps/flutter_elitesync_module`未建立。最终分类为 **M3 PRECONDITION BLOCKED — FIXED_MODULE_CWD_MISSING_AFTER_BRIDGE_EXPAND**。R4工具/cache复用与fallback、Git、Java、pub、M3均NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。Owner Sandbox未stop/close/reset/kill，仍由Owner控制。
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -50,38 +50,37 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 
 ## 4. 近期交付路线：以结果里程碑推进
 
-以下最多六项整合已有证据与未来建议，未授权部分均为规划建议；没有已验证完整早期总纲，不虚构恢复、完成百分比或日期。不因文档数量增加而宣布产品进度。
+以下最多六项整合已有证据与未来建议，未授权部分均为规划建议；不虚构完成百分比或日期。
 
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | R6-R1远端authority、唯一fetch和固定模块物化PASS；唯一Owner Sandbox ID保持；首项R6-R1 evidence share失败，guest与真实工具链未启动 | 下一关口是fresh独立审查本候选；不得自行重试share、另起Sandbox或继续pub/M3；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | R6-R2 existing bridge、guest隔离和派发冒烟PASS；固定ZIP展开因Archive模块未加载而停止，真实工具链未启动 | 下一关口为fresh独立审查；不得自行换解压方法、重试guest或继续pub/M3；M2仍deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
-| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证；Owner演示与真正多人内测分开 |
+| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-虚构样例走查不是真实用户验证，不使U-08或U-10完成。本轮没有新的guest隔离、冒烟、工具、pub、M3或AAR证据。无新增固定任务时不续行。
+本轮新增的是existing-share桥接、guest隔离与派发证据，不是模块cwd、真实Git/Java、pub、M3或AAR证据。无新增固定任务时不续行。
 ## 5. 精确来源与覆盖缺口
 
-GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级，不据文档数虚构产品完成率。
+GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
 
 | 来源 | 版本与用途 |
 | --- | --- |
 | AGENTS.md | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；已接受规则 |
-| 当前main | `ac14a7ccac09fa6117936f133b50593bd5023c1d`；修复后R4权威tree基线 |
+| 当前main | `ec16e067b80671a2c9bfeb957a7acc709d9fb78e`；已接受R6-R1状态 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_RESULT_V0_8_R3.md) | `24909ebac92e7c88f3159df4e3a8a3b84d8d7704`；唯一running Sandbox ID、guest.started与隔离合同 |
-| [v0.8-R4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EIGHT_INPUT_LOCATORS_AND_EXECUTION_TASK_V0_8_R4.md) | blob `e72500c1130d871d9b1d98e4ebeee0233c33064d`；locator/share/copy/生命周期合同 |
-| [v0.8-R4结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EIGHT_INPUT_LOCATORS_AND_EXECUTION_RESULT_V0_8_R4.md) | `cf05d81944aac7f14e49f99207a34d45834df171`；已接受R4隔离、冒烟、share/copy与固定cwd缺失事实 |
-| [v0.8-R6-R1任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_TASK_OWNED_OBJECT_FETCH_AND_EXECUTION_TASK_V0_8_R6_R1.md) | `370089838888af2f477736f961a25adc112137b4` / `9a79dfd3e0cfc28935e246d5790cb6a9cdc79edf`；本轮远端authority、task-owned fetch与条件式M3合同 |
-| [v0.8-R6-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_TASK_OWNED_OBJECT_FETCH_AND_EXECUTION_RESULT_V0_8_R6_R1.md) | 本候选新增；固定模块物化PASS，首项R6-R1 evidence share失败 |
+| [v0.8-R4结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EIGHT_INPUT_LOCATORS_AND_EXECUTION_RESULT_V0_8_R4.md) | `cf05d81944aac7f14e49f99207a34d45834df171`；既有R4 share/隔离/派发及工具副本来源 |
+| [v0.8-R6-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_TASK_OWNED_OBJECT_FETCH_AND_EXECUTION_RESULT_V0_8_R6_R1.md) | `b47be1a5c33c7499e14678a0dc842e6d8dc5cf09`；已接受fixed module ZIP/物化与新share失败事实 |
+| [v0.8-R6-R2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SHARE_BRIDGE_AND_EXECUTION_TASK_V0_8_R6_R2.md) | `db5ca28ec19f41b281b8271a212fa2f9b9578a32` / `680d8d7d77edae918ce809846d5ebc7d866caf4f`；existing bridge与条件式M3合同 |
+| [v0.8-R6-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SHARE_BRIDGE_AND_EXECUTION_RESULT_V0_8_R6_R2.md) | 本候选新增；bridge/隔离/冒烟PASS，固定模块展开未建立 |
 
-本轮CURRENT_CONTEXT从固定main的UTF-8 blob `54169e894e8acec881344a9b2cf86c06c5523956`开始编辑。§2/§3/§6/§7逐字保留；发布前检查UTF-8和明显mojibake。
+本轮CURRENT_CONTEXT从固定main UTF-8 blob `be718e6c3684251f930d0a0f8e7a46ce2983f0e6`开始编辑；§2/§3/§6/§7逐字保留。
 
-唯一fetch取得修复后main；module tree=`e369db9c603838182d29ae501a77f1afe56b6086`。固定ZIP及物化统计通过。fresh Sandbox ID匹配，但首项evidence share exit=`-2147024809`，因此nonce未建立guest绑定，guest preflight/隔离/冒烟、R4工具复用/fallback、module guest copy及固定cwd均NOT_RUN/NOT_ESTABLISHED。
+bridge probe、guest.started、RemoteSigned、Security系统Path、活动网卡0、默认路由0以及ordinary/batch冒烟通过。模块展开命令因Archive模块无法加载终止，module cwd未建立；R4工具/cache复用/fallback、Git/Java、pub、M3均NOT_RUN，AAR=NOT_CHECKED、probe=0。
 
-真实Git/Java、pub及M3均NOT_RUN；AAR=NOT_CHECKED、probe=0。M2保持deferred。Owner现有Sandbox未stop、close、reset或kill，仍由Owner控制。下一关口是fresh独立ACCEPT/REJECT；不得自行重试share或继续M3链。
+B→E执行证据复制manifest一致，B保留。Owner Sandbox未stop/close/reset/kill，仍由Owner控制。下一关口是fresh独立ACCEPT/REJECT，不授权修复或重试。
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
