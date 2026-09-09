@@ -1,20 +1,21 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — SANDBOX STARTUP NOT ESTABLISHED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。产品基础和保护边界保持。v0.7已修正RunBatch绑定并取得host 6/6、禁网guest隔离和八项复制；直接RunNative工具参数分支失败，真实pub/M3未启动。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为tree-repair main。旧008 host ordinary 4/4与batch 6/6证据在v0.8-R1中只读绑定且未重跑；本轮仅重封装有效结果报告并修复CURRENT_CONTEXT编码。
 
 ## 1. 当前入口和生命周期
 
-本轮固定main A=24e51edbe81317b9c1ae5351bd580cbfc2274959；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob 18485c95262051e43892436fb52413132c5ee626匹配。历史startup不重跑，旧8b640576822b01ae00bb04b9b5deaa75db53365c不恢复。
+当前权威main为tree-repair提交`16225ef1db6063dacadd3bfc8b033b325c11d5df`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配。该main恢复007候选的精确接受树，不改写007内容。历史startup不重跑，旧`8b640576822b01ae00bb04b9b5deaa75db53365c`不恢复。
 
-Owner在本轮直接批准[v0.7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_7.md) commit e81128e9e309c40ac7f37378ecbd509035df3afd、blob cf7b9f29cc0b0ed81a764239fdf17a34eeb86e33的§1范围。本批准是v0.7具名授权，不继承v0.6进程例外。主执行模型由Owner在Codex界面选择GPT-5.6 Sol、Medium；未修改模型配置或调用辅助代理，不额外声称完整model ID/加载链已实测。
+原v0.8任务`8262bc30815530f550cb472fda08b125efa1f5b0`因错误main树固定入口失配而停止，没有形成候选。随后Owner直接批准[v0.8-R1任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_8_R1.md) commit `d7d384b6616cbccd5a27a8ba2de649f07c624fea`、blob `58cbfef2a382ae7aeeb78f17e1819fb0761ac251`的续行范围。主执行模型由Owner在Codex界面选择GPT-5.6 Sol、Medium；未修改模型配置或调用辅助代理。
 
-006失败记录已接受；007在三个host自测进程和两次定点纠正内完成RunBatch参数绑定、具名cases及Windows路径规范化，最终同一dispatch取得6/6 PASS。专用host Process/effective=RemoteSigned；脚本冻结后只启动一次Windows Sandbox，Networking及相关重定向Disable，guest隔离控制和同派发器冒烟通过，八项具名复制均通过。
+v0.8-R1只读绑定旧008 host证据：ordinary native 4/4 PASS、batch 6/6 PASS，普通分支override=false、batch=true、exit37原样传播；没有重跑host测试。dispatch SHA-256为`2C0ACFEE0795B891A9331DFF97703D862052E3C7FFCAF3CF135D70063C4D8846`。固定对象机械物化526文件，defines=EMPTY，runner与WSB静态合同通过。
 
-复制后的Git/Java直接RunNative验证均实际启动但exit 1：函数分别收到`--version`/`-version`，最终OS参数却为空。原因是typed `[string]$SerializedArguments=$null`被PowerShell 5.1绑定为空字符串，空覆盖压过普通参数序列化。因此真实pub未派发、M3未启动；pub/M3 exit=null，AAR=NOT_CHECKED、probe=0，M2仍deferred。
+Sandbox仅启动一次。Start-Process返回后，自有记录代码使用`true`而不是`$true`，导致PID、创建时间和exit未被可靠保存；随后没有取得`guest.started`或guest result。分类为 **M3 PRECONDITION BLOCKED — SANDBOX STARTUP NOT ESTABLISHED**。这不等于Windows Sandbox不可用，也不等于已证明guest启动失败；launcher精确exit保持UNKNOWN。
 
-[v0.7结果候选](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_7.md)分类为 **M3 PRECONDITION BLOCKED — NATIVE TOOL VERIFY ARGUMENT DISPATCH FAILURE**。证据根为D:/EliteSync-M3-readiness-v02/attempts/M3-ISO-V02-007/evidence；local HEAD d1b45cc5da30bba3f377ef4ead2c677d0fb6eb88仅作上下文。普通宿主收尾五scope Undefined、effective Restricted。
+guest策略、隔离、冒烟、八项复制、真实Git、Java、pub及M3均为NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。候选`d45ae29ce49e8317f37b06e8479ea6d5ce992914`中的结果报告有效，但同候选CURRENT_CONTEXT blob `2033ac90e13e3bd9f6707f0f4936af99729fc687`编码损坏，因此整体候选未接受。本重封装只修GitHub文档层，不改变执行事实。
+
 ## 2. 产品目标与概念基础
 
 来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
@@ -56,30 +57,35 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | 007同runner host 6/6、禁网guest隔离、派发冒烟及8/8复制通过；直接RunNative工具参数被空覆盖，真实pub/M3未启动；007待审 | 最小技术缺口为区分未提供serialized override与非空batch override，并在Sandbox前覆盖直接原生参数；不得复用已关闭guest；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | tree-repair main恢复007权威树；旧008 host ordinary 4/4、batch 6/6及dispatch修复在v0.8-R1中只读绑定且未重跑；一次Sandbox启动未建立可归属guest证据，后续阶段均未运行 | 下一具体缺口仅为Sandbox启动记录链：另行授权时先原子保存返回Process身份再等待nonce；不重跑host 4+6，不重开dispatch、复制或策略研究；M2仍deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-虚构样例走查不是真实用户验证，不使U-08或U-10完成。无新增证据、约束变化或具体缺陷，不另发同义治理任务；本轮执行者到候选发布即停止。
+虚构样例走查不是真实用户验证，不使U-08或U-10完成。候选`d45ae29...`的结果报告事实有效，但损坏CURRENT_CONTEXT使整体候选未接受；本轮只重封装同一结果。无新增证据、约束变化或具体缺陷，不另发同义治理任务。
+
 ## 5. 精确来源与覆盖缺口
 
 GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级，不据文档数虚构产品完成率。
 
 | 来源 | 版本与用途 |
 | --- | --- |
-| AGENTS.md | f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1；已接受规则 |
-| [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | 18485c95262051e43892436fb52413132c5ee626；FIRST/历史边界 |
-| [005结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_5.md) | f5927cc0a5672208eec457a65e89959a8bcac124；已接受准备与旧派发失败证据 |
-| [CMD-001结果](ELITESYNC_V10_M3_CMD_DISPATCH_REPAIR_RESULT_V0_1.md) | d1b0fd080665df717b237de44ad47b6285289ace；已接受合成派发构造与六组独立测试 |
-| [006结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_6.md) | a6ff6ffe369922a60c620fe3d77b291812da1f53；已接受host接入失败记录 |
-| [v0.7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_7.md) | e81128e9e309c40ac7f37378ecbd509035df3afd / cf7b9f29cc0b0ed81a764239fdf17a34eeb86e33；本轮Owner激活与执行合同 |
-| [007结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_7.md) | 与本更新同候选；host/guest批处理派发和复制通过，直接原生参数分支失败 |
+| AGENTS.md | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；已接受规则 |
+| tree-repair main | `16225ef1db6063dacadd3bfc8b033b325c11d5df`；恢复007候选的精确接受树，是当前权威基线 |
+| [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
+| [v0.7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_7.md) | `cf7b9f29cc0b0ed81a764239fdf17a34eeb86e33`；既有隔离、复制及生命周期控制 |
+| [007结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_7.md) | `6684322f5e500e5ce0dd3c0e9f81130fd0fbbe26`；已接受batch、隔离、复制证据及ordinary参数缺陷 |
+| [v0.8-R1任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_8_R1.md) | `d7d384b6616cbccd5a27a8ba2de649f07c624fea` / `58cbfef2a382ae7aeeb78f17e1819fb0761ac251`；Owner批准的续行合同 |
+| [v0.8-R1结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_8_R1.md) | 本候选原样复用blob `99b98bfc81e4dfe431d9b6919b35a2383204c8d4`；Sandbox启动记录链未建立 |
+| 被拒整体接受的文档对象 | `d45ae29ce49e8317f37b06e8479ea6d5ce992914`中的结果报告有效；CURRENT_CONTEXT blob `2033ac90e13e3bd9f6707f0f4936af99729fc687`编码损坏，不作为新正文来源 |
 
-007固定对象物化526文件、defines=EMPTY、host 6/6、guest禁网隔离及8/8复制是本次新鲜准备证据；它们不等于真实pub、M3、AAR或产品进度。Git/Java进程启动只证明复制目标可启动；usage+exit1及空最终参数证明工具选项未送达，不证明SDK内容坏或依赖不足。
+本轮从干净main CURRENT_CONTEXT blob `5ef59aa9e6ad12b03ad34ab335b461fa68bbe5c9`开始编辑，没有对损坏blob转码或修补。v0.8-R1已绑定dispatch、526文件、defines=EMPTY和WSB静态合同；这些不构成guest启动、隔离、复制、Git、Java、pub、M3或AAR证据。
 
-冻结guest已结束，不能热改或复用。当前精确缺口是RunNative的optional typed-null/empty override判别及对应Sandbox前直接原生参数测试；本轮不自动创建后继任务。Owner选择GPT-5.6 Sol Medium；未改配置或调用辅助代理。model ID完整加载链、整仓cleanliness和备份恢复能力未实测。无产品实现、M2或项目源更新。
+Sandbox只调用一次；原Process身份未可靠保存，launcher精确exit=UNKNOWN。没有`guest.started`与guest result，只能记录启动证据未建立，不能写成Sandbox不可用或guest启动失败。guest、复制、Git、Java、pub、M3均NOT_RUN；AAR=NOT_CHECKED、probe=0；M2 deferred。
+
+下一具体缺口是Sandbox启动编排与采证：先原子保存返回Process的PID、创建时间及初始状态，再等待本次nonce。不重跑host ordinary 4/4或batch 6/6，不重开dispatch、复制、长路径或策略研究。未修改模型配置或调用辅助代理；无产品实现、M2或项目源更新。
+
 ## 6. 官方规范的有限采用
 
 核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
