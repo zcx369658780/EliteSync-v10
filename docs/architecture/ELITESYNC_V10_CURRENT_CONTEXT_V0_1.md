@@ -1,22 +1,24 @@
 # EliteSync v10 当前上下文与近期决定 v0.1
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — FIXED_MODULE_CWD_MISSING — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
+发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — EIGHT_INPUT_HOST_LOCATORS_NOT_ESTABLISHED — NO M2 OR PRODUCT IMPLEMENTATION AUTHORITY`
 
-更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`fd96ad5b1278b50404abbcc2bacd1c00624063dc`；本轮v0.8-R4绑定八项精确host locator并完成隔离、两类冒烟、八项只读share/copy，但固定module cwd不存在，真实Git/Java/pub/M3未运行。
+更新日期：2026-09-09（Asia/Shanghai）。当前权威基线为`c051d6bf4d725672af4292b000c2829c067ea2b1`；本轮v0.8-R3通过官方WSB CLI安全识别并控制唯一Owner现有Sandbox，建立guest.started与禁网隔离证据，但固定来源未提供八项host输入locator。
 
 ## 1. 当前入口和生命周期
 
-当前权威main为`fd96ad5b1278b50404abbcc2bacd1c00624063dc`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配。v0.8-R4任务commit `bccd0c04b9a37a98efa1f81290bd3ff9aa997196`、blob `e72500c1130d871d9b1d98e4ebeee0233c33064d`的唯一父为该main，且相对main只新增任务单。历史startup不重跑，旧`8b640576822b01ae00bb04b9b5deaa75db53365c`不恢复。
+当前权威main为`c051d6bf4d725672af4292b000c2829c067ea2b1`；FIRST[转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) blob `18485c95262051e43892436fb52413132c5ee626`匹配。v0.8-R3任务commit `b41c3609284f773b921b5f2fa2e854dcae8acedd`、blob `84b0e7c7f4e1f1bde01be2ca1a14f5f43567f3e9`的唯一父为该main，且相对main只新增任务单。历史startup不重跑，旧`8b640576822b01ae00bb04b9b5deaa75db53365c`不恢复。
 
-Owner直接激活本v0.8-R4范围；Owner指定主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。继续使用既有008工作区，仅新增`evidence/resume-r4`，旧resume-r1/r2/r3未覆盖。
+Owner直接激活本v0.8-R3范围；Owner指定主执行模型为GPT-5.6 Sol、Medium，未修改模型配置或调用辅助代理。继续使用既有008工作区，仅新增`evidence/resume-r3`，没有清理、覆盖或改号。
 
-八项精确host locator逐项exists=true、Container=true、根ACL可读；未搜索、枚举或猜测替代路径。fresh`wsb list --raw`返回唯一running Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`，与预期一致；没有启动新Sandbox。
+官方`wsb.exe`解析为`C:/Users/zcxve/AppData/Local/Microsoft/WindowsApps/wsb.exe`，版本`0.8.107.0`。`wsb list --raw`一次主查询返回唯一running Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`，因此使用existing-session路径；没有按PID猜测或启动新Sandbox。
 
-R4 evidence/bootstrap share与run-as System guest preflight均exit 0。nonce=`M3-ISO-V02-008-R4-6a683733041a4308b212dd90ebb0f336`与`guest.started`、Sandbox ID匹配；PowerShell=`5.1.26100.9168`，Process/effective均`RemoteSigned`，Security模块系统Path、活动网卡0、默认路由0通过。ordinary native override=false、batch pub/M3形状及exit37冒烟均PASS。
+仅先共享`resume-r3`到`C:/M3R3/evidence`并允许write、共享其`bootstrap`子目录到`C:/M3R3/bootstrap`且未加allow-write，两次CLI exit均为0。后者host源嵌套于可写evidence根，保留该别名限制；具名preflight脚本执行前后SHA-256均为`C4D19FAF2E4B61F416A4BA1A0E4DB6711FD7606861BF8F8A34A7EE63E5058496`。
 
-八项正式share均只读且有效记录8/8 exit 0；第1项此前有一次CLI调用在自有collector布尔字面量错误后未保存exit，最小修正证据字段后重做同路径只读share。八项guest copy合同均PASS；Flutter/Android/JDK/Git/Pub/Gradle数据完成复制，但固定`W/input` seed为source_objects=0、复制0对象。
+同一Sandbox ID以run-as System执行任务专用Windows PowerShell，CLI exit=`0`。nonce=`M3-ISO-V02-008-R3-5d4523ab8929495fa1619b999a1d86e4`与`guest.started`、Sandbox ID匹配；PowerShell=`5.1.26100.9168`，Process/effective均`RemoteSigned`，Security模块Name/精确系统Path通过，活动网卡0、默认路由0，隔离门PASS。
 
-八项copy后固定cwd`C:/M3R4/w/apps/flutter_elitesync_module`不存在，按任务停止，分类为 **M3 PRECONDITION BLOCKED — FIXED_MODULE_CWD_MISSING**。真实Git、Java、pub与M3均NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。task Job收尾无子进程残留；Owner Sandbox未stop/close/reset/kill，仍由Owner控制。
+旧008 host ordinary native 4/4与batch 6/6证据只读复用且未重跑；dispatch SHA-256保持`2C0ACFEE0795B891A9331DFF97703D862052E3C7FFCAF3CF135D70063C4D8846`。固定来源没有提供八项host绝对路径或映射文件locator；在禁止搜索、枚举、猜测路径的边界下，真实输入共享前停止，分类为 **M3 PRECONDITION BLOCKED — EIGHT_INPUT_HOST_LOCATORS_NOT_ESTABLISHED**。
+
+guest两类冒烟、八项复制、真实Git、Java、pub及M3均为NOT_RUN；AAR=NOT_CHECKED、probe=0，M2仍deferred。Owner现有Sandbox未stop/close/reset/kill，仍由Owner控制；两项task share因CLI无unshare能力而保留。
 
 ## 2. 产品目标与概念基础
 
@@ -59,13 +61,13 @@ M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍�
 | 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
 | --- | --- | --- |
 | 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | v0.8-R4八项locator与fresh Sandbox ID通过；隔离、两类guest冒烟、八项只读share及copy合同PASS；固定module input复制0对象，预期cwd不存在，真实工具及pub/M3未运行 | 下一具体缺口是处理固定`W/input`与预期`apps/flutter_elitesync_module`内容合同不一致；不得搜索替代路径或自行重新物化；M2仍deferred |
+| 2 M3生成与M2后续依赖证据 | 旧host ordinary 4/4与batch 6/6复用且未重跑；v0.8-R3由官方WSB CLI取得唯一running Sandbox ID，existing-session share/exec与guest.started/禁网隔离PASS；八项输入及后续阶段未运行 | 下一具体缺口是提供八项host绝对路径或固定映射文件locator；不得搜索、枚举或猜测路径；不重跑host 4+6，不重开dispatch、复制、策略或cmd引用算法；M2仍deferred |
 | 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
 | 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证；Owner演示与真正多人内测分开 |
 | 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
 | 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
 
-虚构样例走查不是真实用户验证，不使U-08或U-10完成。本轮已建立fresh Sandbox ID、隔离、两类guest冒烟及八项share/copy证据，但固定module cwd不存在；没有真实Git/Java、pub、M3或AAR证据。无新增固定任务时不续行。
+虚构样例走查不是真实用户验证，不使U-08或U-10完成。本轮已建立唯一Sandbox ID、guest.started和禁网隔离证据，但没有两类guest冒烟、八项复制、Git/Java、pub、M3或AAR证据；无新增精确locator与授权时不续行后续阶段。
 
 ## 5. 精确来源与覆盖缺口
 
@@ -74,7 +76,7 @@ GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接�
 | 来源 | 版本与用途 |
 | --- | --- |
 | AGENTS.md | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1`；已接受规则 |
-| 当前main | `fd96ad5b1278b50404abbcc2bacd1c00624063dc`；v0.8-R3结果已进入权威基线 |
+| 当前main | `c051d6bf4d725672af4292b000c2829c067ea2b1`；v0.8-R2结果已进入权威基线 |
 | [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
 | [v0.7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_7.md) | `cf7b9f29cc0b0ed81a764239fdf17a34eeb86e33`；既有隔离、复制及生命周期控制 |
 | [007结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_7.md) | `6684322f5e500e5ce0dd3c0e9f81130fd0fbbe26`；已接受batch、隔离、复制证据及ordinary参数缺陷 |
@@ -82,17 +84,15 @@ GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接�
 | [v0.8-R2任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_TASK_V0_8_R2.md) | `3dcb69c9fe9cb15cd9c021687b8807c314205231` / `96c55bc2f08248dbd9ce5c7779aefc7bcacee64f`；Owner批准的启动记录链修复与条件式续行合同 |
 | [v0.8-R2结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_ISOLATED_EXECUTION_AND_EVIDENCE_RESULT_V0_8_R2.md) | `03a05c1388e5530922df0ed48163098a5b64344b`；记录器自测PASS，唯一Sandbox launcher有可靠PID/creation/exit，但未建立guest.started |
 | [v0.8-R3任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_TASK_V0_8_R3.md) | `b41c3609284f773b921b5f2fa2e854dcae8acedd` / `84b0e7c7f4e1f1bde01be2ca1a14f5f43567f3e9`；Owner批准的现有Sandbox安全识别与条件式续行合同 |
-| [v0.8-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_RESULT_V0_8_R3.md) | `24909ebac92e7c88f3159df4e3a8a3b84d8d7704`；唯一running Sandbox ID、guest.started与隔离门PASS，八项host locator未建立 |
-| [v0.8-R4任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EIGHT_INPUT_LOCATORS_AND_EXECUTION_TASK_V0_8_R4.md) | `bccd0c04b9a37a98efa1f81290bd3ff9aa997196` / `e72500c1130d871d9b1d98e4ebeee0233c33064d`；Owner批准的八项精确locator与条件式M3合同 |
-| [v0.8-R4结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EIGHT_INPUT_LOCATORS_AND_EXECUTION_RESULT_V0_8_R4.md) | 本候选新增；隔离、两类冒烟与八项share/copy通过，固定module cwd不存在 |
+| [v0.8-R3结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_EXISTING_SANDBOX_SESSION_AND_EVIDENCE_RESULT_V0_8_R3.md) | 本候选新增；唯一running Sandbox ID、guest.started与隔离门PASS，八项host locator未建立 |
 
-本轮CURRENT_CONTEXT从当前main实际干净UTF-8 blob `5aa30b6c6d24ed5b4031efc0bba3f93f4a5dc368`开始编辑。§2/§3/§6/§7逐字保留；发布前须检查UTF-8和明显mojibake。
+本轮CURRENT_CONTEXT从当前main实际干净UTF-8 blob `b5d628cd9a3320881575d9d4ecc19954dc954c45`开始编辑。§2/§3/§6/§7逐字保留；发布前须检查UTF-8和明显mojibake。
 
-本轮八项精确locator均exists/Container/根ACL可读；fresh`list --raw`返回预期唯一Sandbox ID。nonce=`M3-ISO-V02-008-R4-6a683733041a4308b212dd90ebb0f336`与`guest.started`匹配；Process/effective RemoteSigned、系统Security模块精确Path、活动网卡0、默认路由0、ordinary override=false、batch形状与exit37均通过。
+本轮`wsb.exe`版本`0.8.107.0`；一次`list --raw`返回唯一Sandbox ID=`68ece109-c661-420c-9899-02b1e9518036`。两项share和一次run-as System exec均exit 0；nonce=`M3-ISO-V02-008-R3-5d4523ab8929495fa1619b999a1d86e4`与`guest.started`匹配。Process/effective RemoteSigned、系统Security模块精确Path、活动网卡0和默认路由0均通过。
 
-八项只读share有效记录均exit 0，八项copy合同均PASS；第1项固定input seed source_objects=0、复制0对象，固定module cwd不存在。因此真实Git/Java、pub及M3均NOT_RUN；AAR=NOT_CHECKED、probe=0。M2保持deferred。
+固定允许来源没有提供八项host绝对路径或固定映射文件locator，不能在禁止搜索／枚举／猜测路径的边界下续行。因此guest两类冒烟、八项复制、真实Git/Java、pub及M3均NOT_RUN；AAR=NOT_CHECKED、probe=0。M2保持deferred。
 
-Owner现有Sandbox未stop、close、reset或kill，仍由Owner控制；R3/R4 shares可保持。下一具体缺口是由新固定任务处理`W/input`与预期模块内容合同不一致；不得搜索替代路径、自行重新物化或重试真实pub/M3。
+Owner现有Sandbox未stop、close、reset或kill，仍由Owner控制；公开CLI help没有unshare命令，两项task share保持。下一具体缺口仅是提供八项host绝对路径或一个具名、可哈希验证且获准读取的映射文件locator；不重跑host 4+6，不重开dispatch、复制、策略或cmd引用算法。
 
 ## 6. 官方规范的有限采用
 
