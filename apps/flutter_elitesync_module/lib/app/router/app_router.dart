@@ -394,6 +394,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) =>
             _fadeSlidePage(state, const AstroProfilePage()),
       ),
+      GoRoute(
+        path: AppRouteNames.discover,
+        builder: (context, state) => const DiscoverShellPage(),
+      ),
+      GoRoute(
+        path: AppRouteNames.match,
+        redirect: (context, state) => AppRouteNames.progressMatch,
+      ),
+      GoRoute(
+        path: AppRouteNames.profile,
+        redirect: (context, state) => AppRouteNames.me,
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             AppShell(navigationShell: navigationShell),
@@ -409,16 +421,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: AppRouteNames.discover,
-                builder: (context, state) => const DiscoverShellPage(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: AppRouteNames.match,
-                builder: (context, state) => const MatchShellPage(),
+                path: AppRouteNames.progress,
+                builder: (context, state) => const ProgressShellPage(),
+                routes: [
+                  GoRoute(
+                    path: AppRouteNames.progressMatchSegment,
+                    builder: (context, state) => const MatchShellPage(),
+                  ),
+                ],
               ),
             ],
           ),
@@ -433,8 +443,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: AppRouteNames.profile,
-                builder: (context, state) => const ProfileShellPage(),
+                path: AppRouteNames.me,
+                builder: (context, state) => const MeShellPage(),
               ),
             ],
           ),

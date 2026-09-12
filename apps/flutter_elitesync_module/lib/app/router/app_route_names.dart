@@ -12,13 +12,19 @@ abstract class AppRouteNames {
   static const questionnaireHistory = '/questionnaire/history';
 
   static const home = '/home';
+  static const progress = '/progress';
+  static const progressMatchSegment = 'match';
+  static const progressMatch = '/progress/match';
+  static const messages = '/messages';
+  static const me = '/me';
+
+  // Temporary compatibility routes retained for existing direct consumers.
   static const discover = '/discover';
   static const contentDetail = '/content';
   static const buddy = '/buddy';
   static const socialBaseline = '/social-baseline';
   static const notificationCenter = '/notifications';
   static const match = '/match';
-  static const messages = '/messages';
   static const profile = '/profile';
 
   static const matchCountdown = '/match/countdown';

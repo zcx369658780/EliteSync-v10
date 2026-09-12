@@ -14,6 +14,7 @@ import 'package:flutter_elitesync_module/features/match/presentation/pages/match
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
+import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
@@ -76,6 +77,8 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
+  static const _progressIndex = 1;
+
   bool _warmed = false;
 
   @override
@@ -117,12 +120,14 @@ class _AppShellState extends ConsumerState<AppShell> {
     // 只预热当前首进页相关 provider，避免一次性 warm 过多链路拉高启动负担。
     if (initialRoute.startsWith(AppRouteNames.messages)) {
       warm(ref.read(conversationListProvider.future));
-    } else if (initialRoute.startsWith(AppRouteNames.match)) {
+    } else if (initialRoute.startsWith(AppRouteNames.progressMatch) ||
+        initialRoute.startsWith(AppRouteNames.match)) {
       warm(ref.read(matchCountdownProvider.future));
       warm(ref.read(matchResultProvider.future));
     } else if (initialRoute.startsWith(AppRouteNames.statusSquare)) {
       warm(ref.read(statusPostsProvider.future));
-    } else if (initialRoute.startsWith(AppRouteNames.profile)) {
+    } else if (initialRoute.startsWith(AppRouteNames.me) ||
+        initialRoute.startsWith(AppRouteNames.profile)) {
       warm(ref.read(profileProvider.future));
     } else {
       warm(ref.read(homeProvider.future));
@@ -155,7 +160,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       bottomNavigationBar: FloatingDockBottomBar(
         currentIndex: widget.navigationShell.currentIndex,
         onTap: _onTap,
-        browseMode: widget.navigationShell.currentIndex != 2,
+        browseMode: widget.navigationShell.currentIndex != _progressIndex,
         centerActionLabel: null,
         onCenterActionTap: null,
         items: const [
@@ -165,14 +170,9 @@ class _AppShellState extends ConsumerState<AppShell> {
             label: '首页',
           ),
           AppBottomNavItem(
-            icon: Icons.explore_outlined,
-            activeIcon: Icons.explore_rounded,
-            label: '发现',
-          ),
-          AppBottomNavItem(
-            icon: Icons.auto_awesome_outlined,
-            activeIcon: Icons.auto_awesome,
-            label: '匹配',
+            icon: Icons.route_outlined,
+            activeIcon: Icons.route_rounded,
+            label: '进展',
           ),
           AppBottomNavItem(
             icon: Icons.chat_bubble_outline,
@@ -251,6 +251,13 @@ class HomeShellPage extends StatelessWidget {
   Widget build(BuildContext context) => const HomePage();
 }
 
+class ProgressShellPage extends StatelessWidget {
+  const ProgressShellPage({super.key});
+
+  @override
+  Widget build(BuildContext context) => const ProgressPage();
+}
+
 class MatchShellPage extends StatelessWidget {
   const MatchShellPage({super.key});
 
@@ -272,8 +279,8 @@ class MessagesShellPage extends StatelessWidget {
   Widget build(BuildContext context) => const ConversationListPage();
 }
 
-class ProfileShellPage extends StatelessWidget {
-  const ProfileShellPage({super.key});
+class MeShellPage extends StatelessWidget {
+  const MeShellPage({super.key});
 
   @override
   Widget build(BuildContext context) => const ProfilePage();
