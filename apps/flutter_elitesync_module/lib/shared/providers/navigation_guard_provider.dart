@@ -9,26 +9,28 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 final navigationGuardProvider = Provider<NavigationSnapshot>((ref) {
   final auth = ref.watch(authStatusProvider);
 
-  final verificationStatus = auth == AuthStatus.authenticated
-      ? VerificationStatus.approved
-      : VerificationStatus.unverified;
-
-  final questionnaireStatus = auth == AuthStatus.authenticated
-      ? QuestionnaireStatus.completed
-      : QuestionnaireStatus.notStarted;
-
-  final matchStatus = auth == AuthStatus.authenticated
-      ? MatchStatus.revealed
-      : MatchStatus.unknown;
-
-  final canChat = auth == AuthStatus.authenticated;
+  // Authentication is the only authoritative fact available in this bounded
+  // source. It must not manufacture verification, questionnaire, readiness,
+  // Match, or Conversation authority.
+  final verificationStatus = auth == AuthStatus.unauthenticated
+      ? VerificationStatus.unverified
+      : VerificationStatus.unknown;
+  final questionnaireStatus = auth == AuthStatus.unauthenticated
+      ? QuestionnaireStatus.notStarted
+      : QuestionnaireStatus.unknown;
+  final readinessState = switch (auth) {
+    AuthStatus.unauthenticated => ReadinessGuardState.unauthenticated,
+    AuthStatus.authenticated => ReadinessGuardState.unknown,
+    AuthStatus.unknown => ReadinessGuardState.unknown,
+  };
 
   return NavigationSnapshot(
     authStatus: auth,
     verificationStatus: verificationStatus,
     questionnaireStatus: questionnaireStatus,
-    matchStatus: matchStatus,
-    canChat: canChat,
+    matchStatus: MatchStatus.unknown,
+    canChat: false,
+    readinessState: readinessState,
     isBootstrapLoading: auth == AuthStatus.unknown,
   );
 });

@@ -31,6 +31,7 @@ import 'package:flutter_elitesync_module/features/match/presentation/pages/match
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_intention_page.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_result_page.dart';
+import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_bazi_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_advanced_preview_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_natal_chart_page.dart';
@@ -84,6 +85,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
       if (nav.isLoggedIn && isAuthPage) {
         return AppRouteNames.home;
+      }
+
+      if (path == AppRouteNames.progressMatch && !nav.isReadinessEstablished) {
+        return AppRouteNames.meReadiness;
       }
 
       return null;
@@ -445,6 +450,31 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: AppRouteNames.me,
                 builder: (context, state) => const MeShellPage(),
+                routes: [
+                  GoRoute(
+                    path: AppRouteNames.mePrivateIdentitySegment,
+                    builder: (context, state) =>
+                        const PrivateIdentityPurposePage(),
+                  ),
+                  GoRoute(
+                    path: AppRouteNames.meMatchingInputsSegment,
+                    builder: (context, state) =>
+                        const MatchingInputsPurposePage(),
+                  ),
+                  GoRoute(
+                    path: AppRouteNames.meReadinessSegment,
+                    builder: (context, state) => const ReadinessPurposePage(),
+                  ),
+                  GoRoute(
+                    path: AppRouteNames.meShowcaseSegment,
+                    builder: (context, state) => const ShowcasePurposePage(),
+                  ),
+                  GoRoute(
+                    path: AppRouteNames.mePrivacySettingsSegment,
+                    builder: (context, state) =>
+                        const PrivacySettingsPurposePage(),
+                  ),
+                ],
               ),
             ],
           ),

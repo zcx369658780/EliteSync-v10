@@ -11,19 +11,16 @@ import 'package:flutter_elitesync_module/design_system/components/brand/floating
 import 'package:flutter_elitesync_module/features/discover/presentation/pages/discover_page.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_portal_page.dart';
+import 'package:flutter_elitesync_module/features/me/presentation/pages/me_landing_page.dart';
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/home_provider.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
-import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
-import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
 import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
@@ -126,9 +123,6 @@ class _AppShellState extends ConsumerState<AppShell> {
       warm(ref.read(matchResultProvider.future));
     } else if (initialRoute.startsWith(AppRouteNames.statusSquare)) {
       warm(ref.read(statusPostsProvider.future));
-    } else if (initialRoute.startsWith(AppRouteNames.me) ||
-        initialRoute.startsWith(AppRouteNames.profile)) {
-      warm(ref.read(profileProvider.future));
     } else {
       warm(ref.read(homeProvider.future));
     }
@@ -207,13 +201,8 @@ class SplashPage extends ConsumerWidget {
         return;
       }
 
-      if (nav.verificationStatus != VerificationStatus.approved) {
-        context.go(AppRouteNames.verificationStatus);
-        return;
-      }
-
-      if (nav.questionnaireStatus != QuestionnaireStatus.completed) {
-        context.go(AppRouteNames.questionnaire);
+      if (!nav.isReadinessEstablished) {
+        context.go(AppRouteNames.meReadiness);
         return;
       }
 
@@ -283,5 +272,5 @@ class MeShellPage extends StatelessWidget {
   const MeShellPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const ProfilePage();
+  Widget build(BuildContext context) => const MeLandingPage();
 }

@@ -17,6 +17,16 @@ abstract class AppRouteNames {
   static const progressMatch = '/progress/match';
   static const messages = '/messages';
   static const me = '/me';
+  static const mePrivateIdentitySegment = 'private-identity';
+  static const meMatchingInputsSegment = 'matching-inputs';
+  static const meReadinessSegment = 'readiness';
+  static const meShowcaseSegment = 'showcase';
+  static const mePrivacySettingsSegment = 'privacy-settings';
+  static const mePrivateIdentity = '/me/private-identity';
+  static const meMatchingInputs = '/me/matching-inputs';
+  static const meReadiness = '/me/readiness';
+  static const meShowcase = '/me/showcase';
+  static const mePrivacySettings = '/me/privacy-settings';
 
   // Temporary compatibility routes retained for existing direct consumers.
   static const discover = '/discover';
