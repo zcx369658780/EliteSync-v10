@@ -131,44 +131,57 @@ class _DockItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     final icon = selected ? (item.activeIcon ?? item.icon) : item.icon;
-    return InkWell(
-      borderRadius: BorderRadius.circular(999),
+    return Semantics(
+      label: item.label,
+      selected: selected,
+      button: true,
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: t.motionFast,
-        curve: Curves.easeOutCubic,
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(999),
-          color: selected ? t.brandPrimary.withValues(alpha: 0.16) : Colors.transparent,
-          boxShadow: selected
-              ? [
-                  BoxShadow(
-                    color: t.brandPrimary.withValues(alpha: 0.2),
-                    blurRadius: 12,
-                    offset: const Offset(0, 3),
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 18, color: selected ? t.brandPrimary : t.textSecondary),
-            const SizedBox(height: 1),
-            Text(
-              item.label,
-              maxLines: 1,
-              overflow: TextOverflow.fade,
-              softWrap: false,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: selected ? t.textPrimary : t.textSecondary,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    fontSize: 10.5,
-                    height: 1.0,
-                  ),
-            ),
-          ],
+      excludeSemantics: true,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(999),
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: t.motionFast,
+          curve: Curves.easeOutCubic,
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(999),
+            color: selected
+                ? t.brandPrimary.withValues(alpha: 0.16)
+                : Colors.transparent,
+            boxShadow: selected
+                ? [
+                    BoxShadow(
+                      color: t.brandPrimary.withValues(alpha: 0.2),
+                      blurRadius: 12,
+                      offset: const Offset(0, 3),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 18,
+                color: selected ? t.brandPrimary : t.textSecondary,
+              ),
+              const SizedBox(height: 1),
+              Text(
+                item.label,
+                maxLines: 1,
+                overflow: TextOverflow.fade,
+                softWrap: false,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: selected ? t.textPrimary : t.textSecondary,
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                  fontSize: 10.5,
+                  height: 1.0,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

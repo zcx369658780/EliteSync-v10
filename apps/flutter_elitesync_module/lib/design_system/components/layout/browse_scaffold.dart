@@ -18,6 +18,7 @@ class BrowseScaffold extends StatelessWidget {
     final t = context.appTokens;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
+      excludeFromSemantics: true,
       onTap: () {
         final currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
