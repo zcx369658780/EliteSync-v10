@@ -14,7 +14,9 @@ abstract class AppRouteNames {
   static const home = '/home';
   static const progress = '/progress';
   static const progressMatchSegment = 'match';
+  static const progressConnectionSegment = 'connection';
   static const progressMatch = '/progress/match';
+  static const progressConnection = '/progress/connection';
   static const messages = '/messages';
   static const me = '/me';
   static const mePrivateIdentitySegment = 'private-identity';

@@ -16,6 +16,7 @@ import 'package:flutter_elitesync_module/features/auth/presentation/pages/regist
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/chat_room_page.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/connection/presentation/pages/connection_page.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
 import 'package:flutter_elitesync_module/features/home/domain/entities/home_feed_entity.dart';
@@ -432,6 +433,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   GoRoute(
                     path: AppRouteNames.progressMatchSegment,
                     builder: (context, state) => const MatchShellPage(),
+                  ),
+                  GoRoute(
+                    path: AppRouteNames.progressConnectionSegment,
+                    builder: (context, state) => const ConnectionPage(),
                   ),
                 ],
               ),
