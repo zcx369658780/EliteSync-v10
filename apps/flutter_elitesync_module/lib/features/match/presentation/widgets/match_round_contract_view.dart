@@ -10,8 +10,10 @@ import 'package:flutter_elitesync_module/design_system/components/layout/browse_
 import 'package:flutter_elitesync_module/design_system/components/states/app_error_state.dart';
 import 'package:flutter_elitesync_module/design_system/components/states/app_loading_skeleton.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
+import 'package:flutter_elitesync_module/features/match/domain/entities/canonical_match_lifecycle.dart';
 import 'package:flutter_elitesync_module/features/match/domain/entities/match_round_projection.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
+import 'package:flutter_elitesync_module/features/match/presentation/widgets/canonical_match_explanation_card.dart';
 
 class MatchRoundContractView extends ConsumerStatefulWidget {
   const MatchRoundContractView({super.key});
@@ -56,100 +58,111 @@ class _MatchRoundContractViewState
     return '${hours.toString().padLeft(2, '0')}小时 ${minutes.toString().padLeft(2, '0')}分';
   }
 
-  bool _canOpenConversation(MatchRoundProjection data) {
-    final result = data.result;
-    final capability = data.conversationCapability;
-    return data.state == MatchRoundBusinessState.revealed &&
-        result != null &&
-        result.matchId > 0 &&
-        result.partnerId > 0 &&
-        capability != null &&
-        (capability.canCreate || capability.canSend);
-  }
-
   ({String title, String body, String action, IconData icon, Color color})
-  _content(BuildContext context, MatchRoundProjection data) {
+  _content(
+    BuildContext context,
+    MatchRoundProjection data,
+    CanonicalMatchLifecycleSnapshot canonical,
+  ) {
     final t = context.appTokens;
-    return switch (data.state) {
-      MatchRoundBusinessState.noRound => (
+    if (canonical.condition == CanonicalMatchPresentationCondition.noRound) {
+      return (
         title: '当前没有进行中的慢约会',
-        body: '有新的轮次开放时，会在这里显示。',
+        body: '这是当前轮次可用性，不代表退出、拒绝或匹配失败。',
         action: '返回首页',
         icon: Icons.calendar_today_outlined,
         color: t.info,
-      ),
-      MatchRoundBusinessState.scheduled => (
-        title: '本轮慢约会已安排',
-        body: data.nextTransitionAt == null
-            ? '服务器尚未公布下一次状态更新时间。'
-            : '请按服务器公布的时间等待下一次状态更新。',
+      );
+    }
+    if (canonical.condition ==
+        CanonicalMatchPresentationCondition.noCandidate) {
+      return (
+        title: '本轮暂无候选提案',
+        body: '这是本轮可用性结果，不代表你被拒绝，也不是兼容性或安全结论。',
+        action: '返回首页',
+        icon: Icons.favorite_border_rounded,
+        color: t.info,
+      );
+    }
+    if (canonical.condition ==
+        CanonicalMatchPresentationCondition.transportUnavailable) {
+      return (
+        title: '本轮状态暂时无法更新',
+        body: '请稍后重新加载；传输或服务问题不是匹配领域结果。',
+        action: '重新加载',
+        icon: Icons.sync_problem_rounded,
+        color: t.warning,
+      );
+    }
+    if (canonical.condition ==
+        CanonicalMatchPresentationCondition.closedWithoutCompletionEvidence) {
+      return (
+        title: '本轮已关闭',
+        body: '当前来源没有证明本轮已完成、已过期或建立任何后续生命周期。',
         action: '刷新状态',
-        icon: Icons.schedule_rounded,
-        color: t.brandPrimary,
-      ),
-      MatchRoundBusinessState.preparing || MatchRoundBusinessState.running => (
+        icon: Icons.task_alt_rounded,
+        color: t.textSecondary,
+      );
+    }
+
+    return switch (canonical.targetState) {
+      CanonicalMatchTargetState.active
+          when data.state == MatchRoundBusinessState.scheduled =>
+        (
+          title: '本轮慢约会已安排',
+          body: data.nextTransitionAt == null
+              ? '服务器尚未公布下一次状态更新时间。'
+              : '请按服务器公布的时间等待下一次状态更新。',
+          action: '刷新状态',
+          icon: Icons.schedule_rounded,
+          color: t.brandPrimary,
+        ),
+      CanonicalMatchTargetState.active => (
         title: '正在为你匹配',
-        body: '本轮匹配正在进行，请稍后刷新查看服务器状态。',
+        body: '当前轮次正在进行；这不代表已有候选提案。',
         action: '刷新状态',
         icon: Icons.hourglass_top_rounded,
         color: t.brandPrimary,
       ),
-      MatchRoundBusinessState.revealed => (
-        title: '本轮结果已公布',
-        body: data.result?.headline.trim().isNotEmpty == true
-            ? data.result!.headline
-            : '结果已经可以查看，请按当前可用操作继续。',
-        action: _canOpenConversation(data) ? '前往消息' : '刷新结果',
+      CanonicalMatchTargetState.proposalPresented => (
+        title: '候选提案已呈现',
+        body: '当前存在一项候选提案；可用信息仍然有限，请结合说明自行判断。',
+        action: '刷新结果',
         icon: Icons.auto_awesome_rounded,
         color: t.success,
       ),
-      MatchRoundBusinessState.noCandidate => (
-        title: '本轮暂未匹配到合适的人',
-        body: '这是本轮结果。可以返回首页，等待下一轮开放。',
-        action: '返回首页',
-        icon: Icons.favorite_border_rounded,
-        color: t.info,
-      ),
-      MatchRoundBusinessState.failed => (
-        title: '本轮状态暂时无法更新',
-        body: '请稍后重新加载；这不代表本轮暂未匹配到人。',
-        action: '重新加载',
-        icon: Icons.sync_problem_rounded,
-        color: t.warning,
-      ),
-      MatchRoundBusinessState.closed => (
-        title: '本轮已结束',
-        body: '如已有可用消息，可从消息页查看。',
-        action: '查看消息',
+      CanonicalMatchTargetState.completed => (
+        title: '本轮 Match 已完成',
+        body: '完成只结束本轮 Match；不会创建 Connection，也不会授权 Conversation。',
+        action: '刷新状态',
         icon: Icons.task_alt_rounded,
         color: t.textSecondary,
+      ),
+      CanonicalMatchTargetState.notOptedIn ||
+      CanonicalMatchTargetState.interestRecorded ||
+      CanonicalMatchTargetState.mutualInterest ||
+      CanonicalMatchTargetState.paused ||
+      CanonicalMatchTargetState.declined ||
+      CanonicalMatchTargetState.expired ||
+      CanonicalMatchTargetState.withdrawn ||
+      null => (
+        title: '目标 Match 状态尚未建立',
+        body: '当前 round projection 不足以证明该目标生命周期状态。',
+        action: '刷新状态',
+        icon: Icons.help_outline_rounded,
+        color: t.info,
       ),
     };
   }
 
-  Future<void> _primaryAction(MatchRoundProjection data) async {
-    switch (data.state) {
-      case MatchRoundBusinessState.noRound:
-      case MatchRoundBusinessState.noCandidate:
-        if (mounted) context.go(AppRouteNames.home);
-        return;
-      case MatchRoundBusinessState.revealed:
-        if (_canOpenConversation(data)) {
-          if (mounted) context.go(AppRouteNames.messages);
-        } else {
-          await _refreshProjection();
-        }
-        return;
-      case MatchRoundBusinessState.closed:
-        if (mounted) context.go(AppRouteNames.messages);
-        return;
-      case MatchRoundBusinessState.preparing:
-      case MatchRoundBusinessState.running:
-      case MatchRoundBusinessState.scheduled:
-      case MatchRoundBusinessState.failed:
-        await _refreshProjection();
-        return;
+  Future<void> _primaryAction(CanonicalMatchLifecycleSnapshot canonical) async {
+    if (canonical.condition == CanonicalMatchPresentationCondition.noRound ||
+        canonical.condition ==
+            CanonicalMatchPresentationCondition.noCandidate) {
+      if (mounted) context.go(AppRouteNames.home);
+      return;
     }
+    await _refreshProjection();
   }
 
   Future<void> _refreshProjection() {
@@ -214,15 +227,15 @@ class _MatchRoundContractViewState
         loading: () => const AppLoadingSkeleton(lines: 6),
         error: (_, _) => AppErrorState(
           title: '当前状态不可用',
-          description: '网络或服务暂时不可用，请重新连接后重试。',
+          description: '网络或服务暂时不可用，请重新连接后重试；这不是 Match 领域结果。',
           retryLabel: '重新加载',
           onRetry: _refreshProjection,
         ),
         data: (data) {
-          final content = _content(context, data);
+          final canonical = CanonicalMatchLifecycleAdapter.fromRound(data);
+          final content = _content(context, data, canonical);
           final showServerTime =
               data.state == MatchRoundBusinessState.scheduled;
-          final actionAllowed = _canOpenConversation(data);
           return RefreshIndicator(
             onRefresh: _refreshProjection,
             child: ListView(
@@ -298,20 +311,13 @@ class _MatchRoundContractViewState
                       SizedBox(height: t.spacing.lg),
                       AppPrimaryButton(
                         label: content.action,
-                        onPressed: () => _primaryAction(data),
+                        onPressed: () => _primaryAction(canonical),
                       ),
-                      if (data.state == MatchRoundBusinessState.revealed &&
-                          !actionAllowed) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          '当前没有可用的消息入口，请稍后刷新结果。',
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: t.textSecondary),
-                        ),
-                      ],
                     ],
                   ),
                 ),
+                SizedBox(height: t.spacing.md),
+                CanonicalMatchExplanationCard(snapshot: canonical),
               ],
             ),
           );

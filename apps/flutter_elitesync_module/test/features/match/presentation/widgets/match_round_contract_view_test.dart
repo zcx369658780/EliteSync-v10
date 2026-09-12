@@ -81,7 +81,7 @@ void main() {
       <MatchRoundBusinessState, ({String title, String body, String action})>{
         MatchRoundBusinessState.noRound: (
           title: '当前没有进行中的慢约会',
-          body: '有新的轮次开放时，会在这里显示。',
+          body: '这是当前轮次可用性，不代表退出、拒绝或匹配失败。',
           action: '返回首页',
         ),
         MatchRoundBusinessState.scheduled: (
@@ -91,33 +91,33 @@ void main() {
         ),
         MatchRoundBusinessState.preparing: (
           title: '正在为你匹配',
-          body: '本轮匹配正在进行，请稍后刷新查看服务器状态。',
+          body: '当前轮次正在进行；这不代表已有候选提案。',
           action: '刷新状态',
         ),
         MatchRoundBusinessState.running: (
           title: '正在为你匹配',
-          body: '本轮匹配正在进行，请稍后刷新查看服务器状态。',
+          body: '当前轮次正在进行；这不代表已有候选提案。',
           action: '刷新状态',
         ),
         MatchRoundBusinessState.revealed: (
-          title: '本轮结果已公布',
-          body: '你们都愿意从一次轻松对话开始。',
-          action: '前往消息',
+          title: '候选提案已呈现',
+          body: '当前存在一项候选提案；可用信息仍然有限，请结合说明自行判断。',
+          action: '刷新结果',
         ),
         MatchRoundBusinessState.noCandidate: (
-          title: '本轮暂未匹配到合适的人',
-          body: '这是本轮结果。可以返回首页，等待下一轮开放。',
+          title: '本轮暂无候选提案',
+          body: '这是本轮可用性结果，不代表你被拒绝，也不是兼容性或安全结论。',
           action: '返回首页',
         ),
         MatchRoundBusinessState.failed: (
           title: '本轮状态暂时无法更新',
-          body: '请稍后重新加载；这不代表本轮暂未匹配到人。',
+          body: '请稍后重新加载；传输或服务问题不是匹配领域结果。',
           action: '重新加载',
         ),
         MatchRoundBusinessState.closed: (
-          title: '本轮已结束',
-          body: '如已有可用消息，可从消息页查看。',
-          action: '查看消息',
+          title: '本轮已关闭',
+          body: '当前来源没有证明本轮已完成、已过期或建立任何后续生命周期。',
+          action: '刷新状态',
         ),
       };
 
@@ -161,7 +161,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
     expect(find.text('当前状态不可用'), findsOneWidget);
-    expect(find.text('网络或服务暂时不可用，请重新连接后重试。'), findsOneWidget);
+    expect(find.text('网络或服务暂时不可用，请重新连接后重试；这不是 Match 领域结果。'), findsOneWidget);
     expect(find.text('当前没有进行中的慢约会'), findsNothing);
     expect(find.text('等待本轮结果'), findsNothing);
     expect(find.textContaining('服务器更新时间'), findsNothing);
@@ -208,7 +208,7 @@ void main() {
     expect(find.textContaining('小时'), findsNothing);
   });
 
-  testWidgets('revealed action follows supplied conversation capability', (
+  testWidgets('revealed state ignores supplied conversation capability', (
     tester,
   ) async {
     await _pumpProjection(
@@ -218,14 +218,20 @@ void main() {
 
     expect(find.text('刷新结果'), findsOneWidget);
     expect(find.text('前往消息'), findsNothing);
-    expect(find.text('当前没有可用的消息入口，请稍后刷新结果。'), findsOneWidget);
+    expect(find.text('你们都愿意从一次轻松对话开始。'), findsNothing);
+    expect(
+      find.text('匹配不会自动创建 Connection，也不会授权或打开 Conversation。'),
+      findsOneWidget,
+    );
+    expect(find.textContaining('权威的兼容性总分'), findsOneWidget);
+    expect(find.textContaining('系统或 AI 输出是辅助判断'), findsOneWidget);
 
     await _pumpProjection(
       tester,
       _projection(MatchRoundBusinessState.revealed, headline: '   '),
     );
-    expect(find.text('结果已经可以查看，请按当前可用操作继续。'), findsOneWidget);
-    expect(find.text('前往消息'), findsOneWidget);
+    expect(find.text('当前存在一项候选提案；可用信息仍然有限，请结合说明自行判断。'), findsOneWidget);
+    expect(find.text('刷新结果'), findsOneWidget);
   });
 
   testWidgets(
@@ -360,7 +366,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('canSend alone enables the Messages action', (tester) async {
+  testWidgets('canSend alone does not authorize a Messages action', (
+    tester,
+  ) async {
     await _pumpProjection(
       tester,
       _projection(
@@ -369,8 +377,8 @@ void main() {
         conversationCanSend: true,
       ),
     );
-    expect(find.text('前往消息'), findsOneWidget);
-    expect(find.text('刷新结果'), findsNothing);
+    expect(find.text('前往消息'), findsNothing);
+    expect(find.text('刷新结果'), findsOneWidget);
   });
 
   testWidgets('transport restoration refreshes truth without app restart', (
@@ -420,40 +428,6 @@ void main() {
     expect(find.text('前往消息'), findsNothing);
   });
 
-  testWidgets('capability-gated revealed action opens canonical Messages', (
-    tester,
-  ) async {
-    final router = GoRouter(
-      initialLocation: AppRouteNames.match,
-      routes: [
-        GoRoute(
-          path: AppRouteNames.match,
-          builder: (_, _) => const MatchRoundContractView(),
-        ),
-        GoRoute(
-          path: AppRouteNames.messages,
-          builder: (_, _) => const Scaffold(body: Text('MESSAGES ROUTE')),
-        ),
-      ],
-    );
-    addTearDown(router.dispose);
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          matchRoundProjectionProvider.overrideWith(
-            (ref) async => _projection(MatchRoundBusinessState.revealed),
-          ),
-        ],
-        child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('前往消息'));
-    await tester.pumpAndSettle();
-    expect(find.text('MESSAGES ROUTE'), findsOneWidget);
-  });
-
   testWidgets('primary and secondary actions keep canonical route boundaries', (
     tester,
   ) async {
@@ -468,10 +442,6 @@ void main() {
           GoRoute(
             path: AppRouteNames.home,
             builder: (_, _) => const Scaffold(body: Text('HOME ROUTE')),
-          ),
-          GoRoute(
-            path: AppRouteNames.messages,
-            builder: (_, _) => const Scaffold(body: Text('MESSAGES ROUTE')),
           ),
           GoRoute(
             path: AppRouteNames.matchDetail,
@@ -511,9 +481,10 @@ void main() {
     final closedRouter = await pumpRouted(
       _projection(MatchRoundBusinessState.closed),
     );
-    await tester.tap(find.text('查看消息'));
+    await tester.tap(find.text('刷新状态'));
     await tester.pumpAndSettle();
-    expect(find.text('MESSAGES ROUTE'), findsOneWidget);
+    expect(find.text('本轮已关闭'), findsOneWidget);
+    expect(find.text('前往消息'), findsNothing);
     closedRouter.dispose();
 
     final deniedRouter = await pumpRouted(
@@ -522,7 +493,7 @@ void main() {
     await tester.tap(find.text('刷新结果'));
     await tester.pumpAndSettle();
     expect(find.text('刷新结果'), findsOneWidget);
-    expect(find.text('MESSAGES ROUTE'), findsNothing);
+    expect(find.text('前往消息'), findsNothing);
     deniedRouter.dispose();
 
     expect(find.text('查看完整解释'), findsNothing);
