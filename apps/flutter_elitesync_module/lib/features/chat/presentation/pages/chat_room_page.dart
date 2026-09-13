@@ -158,7 +158,8 @@ class _AuthorizedChatRoomPageState
   void dispose() {
     _draftSaveDebounce?.cancel();
     _stopRealtimeSync();
-    _persistDraftNow();
+    // WidgetRef is no longer lifecycle-safe here. Drafts are persisted only
+    // while mounted so teardown never guesses current Conversation authority.
     _controller.removeListener(_onDraftChanged);
     _controller.dispose();
     _listController.dispose();
