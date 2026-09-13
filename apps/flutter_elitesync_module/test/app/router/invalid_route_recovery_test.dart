@@ -76,13 +76,27 @@ void main() {
 
     await tester.tap(find.text('返回首页'));
     await _settleRouter(tester);
-    expect(find.text('查看慢约进展'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('home-area-current-state')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey('home-area-next-decision')),
+      findsOneWidget,
+    );
   });
 
   testWidgets('invalid pushed route can recover back', (tester) async {
     await tester.pumpWidget(_app(initialRoute: AppRouteNames.home));
     await _settleRouter(tester);
-    expect(find.text('查看慢约进展'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('home-area-current-state')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey('home-area-next-decision')),
+      findsOneWidget,
+    );
 
     final context = tester.element(find.byType(MaterialApp));
     final container = ProviderScope.containerOf(context);
@@ -94,6 +108,13 @@ void main() {
 
     await tester.tap(find.text('返回上一页'));
     await _settleRouter(tester);
-    expect(find.text('查看慢约进展'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('home-area-current-state')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey('home-area-next-decision')),
+      findsOneWidget,
+    );
   });
 }

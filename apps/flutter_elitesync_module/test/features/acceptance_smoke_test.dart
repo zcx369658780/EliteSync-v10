@@ -101,31 +101,37 @@ Widget _wrap(Widget child, {Iterable<dynamic> overrides = const []}) {
 }
 
 void main() {
-  testWidgets('home page renders current slow-date entry', (tester) async {
+  testWidgets('home page renders the calm state hub', (tester) async {
     await tester.pumpWidget(_wrap(const HomePage()));
     await tester.pumpAndSettle();
 
-    expect(find.text('首页'), findsOneWidget);
-    expect(find.text('从这里查看慢约进展。'), findsOneWidget);
     expect(
-      find.byKey(const ValueKey('e1-home-primary-match-cta')),
+      find.byKey(const ValueKey('home-area-current-state')),
       findsOneWidget,
     );
-    expect(find.text('查看慢约进展'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('home-area-next-decision')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey('home-primary-next-decision')),
+      findsOneWidget,
+    );
   });
 
-  testWidgets('conversation list page renders mock conversations', (
+  testWidgets('conversation list stays closed without message authority', (
     tester,
   ) async {
     await tester.pumpWidget(_wrap(const ConversationListPage()));
     await tester.pumpAndSettle();
 
-    expect(find.text('晨雾'), findsOneWidget);
-    expect(find.text('九紫瑶瑶'), findsOneWidget);
-    expect(find.byType(ConversationListItem), findsNWidgets(2));
+    expect(find.text('消息权限尚未建立'), findsOneWidget);
+    expect(find.text('晨雾'), findsNothing);
+    expect(find.text('九紫瑶瑶'), findsNothing);
+    expect(find.byType(ConversationListItem), findsNothing);
   });
 
-  testWidgets('chat room page renders mock thread and safety menu', (
+  testWidgets('legacy peer route stays closed without message authority', (
     tester,
   ) async {
     await tester.pumpWidget(
@@ -137,12 +143,9 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('晨雾'), findsOneWidget);
-    expect(find.text('选择图片 / 视频'), findsWidgets);
-
-    await tester.tap(find.byTooltip('安全'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('举报 / 拉黑'), findsOneWidget);
+    expect(find.text('消息权限尚未建立'), findsOneWidget);
+    expect(find.text('晨雾'), findsNothing);
+    expect(find.text('选择图片 / 视频'), findsNothing);
+    expect(find.byTooltip('安全'), findsNothing);
   });
 }
