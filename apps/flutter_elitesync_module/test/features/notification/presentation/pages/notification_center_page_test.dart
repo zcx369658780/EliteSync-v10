@@ -269,7 +269,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('暂时无法加载通知，请稍后重试。'), findsOneWidget);
+    expect(find.textContaining('暂时无法加载通知，请稍后重试。'), findsOneWidget);
+    expect(find.textContaining('不代表任何领域结果'), findsOneWidget);
     expect(find.textContaining('raw notification failure'), findsNothing);
     expect(find.text('重新加载'), findsOneWidget);
   });

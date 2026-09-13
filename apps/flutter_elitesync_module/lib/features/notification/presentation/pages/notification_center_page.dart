@@ -7,14 +7,14 @@ import 'package:flutter_elitesync_module/features/chat/presentation/providers/ch
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_feedback.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/browse_scaffold.dart';
-import 'package:flutter_elitesync_module/design_system/components/states/app_error_state.dart';
-import 'package:flutter_elitesync_module/design_system/components/states/app_loading_skeleton.dart';
 import 'package:flutter_elitesync_module/design_system/components/tags/app_choice_chip.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/state/notification_privacy_contract.dart';
+import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state.dart';
+import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state_view.dart';
 
 class NotificationCenterPage extends ConsumerStatefulWidget {
   const NotificationCenterPage({super.key});
@@ -415,15 +415,23 @@ class _NotificationCenterPageState
       body: RefreshIndicator(
         onRefresh: _refresh,
         child: listAsync.when(
-          loading: () => const AppLoadingSkeleton(lines: 6),
+          loading: () => const AppPresentationStateView(
+            state: AppPresentationState.loading(
+              safeTitle: '正在读取通知',
+              safeBody: '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
+            ),
+            loadingLines: 6,
+          ),
           error: (e, _) => ListView(
             padding: EdgeInsets.only(bottom: t.spacing.huge),
             children: [
-              AppErrorState(
-                title: '通知加载失败',
-                description: '暂时无法加载通知，请稍后重试。',
-                retryLabel: '重新加载',
-                onRetry: _refresh,
+              AppPresentationStateView(
+                state: const AppPresentationState.retryableError(
+                  safeTitle: '通知加载失败',
+                  safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
+                  safeActionLabel: '重新加载',
+                ),
+                onRetryRead: _refresh,
               ),
             ],
           ),
@@ -432,6 +440,11 @@ class _NotificationCenterPageState
                 unreadAsync.asData?.value ??
                 items.where((e) => !e.isRead).length;
             if (items.isEmpty) {
+              const emptyState = AppPresentationState.empty(
+                safeTitle: '当前没有提醒',
+                safeBody:
+                    '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+              );
               return ListView(
                 padding: EdgeInsets.only(bottom: t.spacing.huge),
                 children: [
@@ -443,7 +456,7 @@ class _NotificationCenterPageState
                       children: [
                         Expanded(
                           child: Text(
-                            '当前没有提醒。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+                            '${emptyState.safeTitle}。${emptyState.safeBody}',
                             style: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(color: t.textSecondary),
                           ),

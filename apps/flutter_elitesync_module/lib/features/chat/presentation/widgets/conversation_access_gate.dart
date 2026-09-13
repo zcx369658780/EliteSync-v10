@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/product_conversation_contract.dart';
+import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state.dart';
 
 class ConversationAccessGate extends StatelessWidget {
   const ConversationAccessGate({
@@ -28,6 +29,12 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pending = snapshot.state == ProductConversationState.pendingConsent;
+    final hasAuthority =
+        snapshot.authority == ConversationEvidenceAuthority.authoritative;
+    const unresolved = AppPresentationState.authorityNotEstablished(
+      safeTitle: '消息权限尚未建立',
+      safeBody: '当前来源不足以授权会话内容或操作；受保护的对方身份、消息预览、未读数和线程详情保持关闭。',
+    );
     return Scaffold(
       appBar: AppBar(title: const Text('消息')),
       body: ListView(
@@ -40,17 +47,20 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    pending ? '消息同意仍在等待' : '消息权限尚未建立',
+                    pending ? '消息同意仍在等待' : unresolved.safeTitle,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    snapshot.authority ==
-                            ConversationEvidenceAuthority.authoritative
+                    hasAuthority
                         ? snapshot.state.code
                         : ProductConversationAuthority.notYetEstablishedLabel,
                   ),
                   const SizedBox(height: 8),
+                  if (!hasAuthority) ...[
+                    Text(unresolved.safeBody),
+                    const SizedBox(height: 8),
+                  ],
                   const Text('锁定或等待同意时，不会加载或显示会话、对方身份、消息预览、未读数或私密线程详情。'),
                 ],
               ),

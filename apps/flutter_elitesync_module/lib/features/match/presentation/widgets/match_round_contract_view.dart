@@ -7,13 +7,13 @@ import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_card.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/browse_scaffold.dart';
-import 'package:flutter_elitesync_module/design_system/components/states/app_error_state.dart';
-import 'package:flutter_elitesync_module/design_system/components/states/app_loading_skeleton.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/match/domain/entities/canonical_match_lifecycle.dart';
 import 'package:flutter_elitesync_module/features/match/domain/entities/match_round_projection.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/widgets/canonical_match_explanation_card.dart';
+import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state.dart';
+import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state_view.dart';
 
 class MatchRoundContractView extends ConsumerStatefulWidget {
   const MatchRoundContractView({super.key});
@@ -224,12 +224,20 @@ class _MatchRoundContractViewState
       ),
       body: async.when(
         skipLoadingOnRefresh: false,
-        loading: () => const AppLoadingSkeleton(lines: 6),
-        error: (_, _) => AppErrorState(
-          title: '当前状态不可用',
-          description: '网络或服务暂时不可用，请重新连接后重试；这不是 Match 领域结果。',
-          retryLabel: '重新加载',
-          onRetry: _refreshProjection,
+        loading: () => const AppPresentationStateView(
+          state: AppPresentationState.loading(
+            safeTitle: '正在读取 Match 状态',
+            safeBody: '所属来源尚未完成解析；这不代表 Match、Connection 或同意正在等待。',
+          ),
+          loadingLines: 6,
+        ),
+        error: (_, _) => AppPresentationStateView(
+          state: const AppPresentationState.retryableError(
+            safeTitle: '当前状态不可用',
+            safeBody: '网络或服务暂时不可用，请重新连接后重试；这不是 Match 领域结果。',
+            safeActionLabel: '重新加载',
+          ),
+          onRetryRead: _refreshProjection,
         ),
         data: (data) {
           final canonical = CanonicalMatchLifecycleAdapter.fromRound(data);
