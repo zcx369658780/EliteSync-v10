@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
 import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/privacy_settings_page.dart';
 
 class PrivateIdentityPurposePage extends StatelessWidget {
   const PrivateIdentityPurposePage({super.key});
@@ -105,13 +106,7 @@ class PrivacySettingsPurposePage extends StatelessWidget {
   const PrivacySettingsPurposePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: 'Privacy & Settings · 隐私与设置',
-    description: '这里用于隐私说明和账户、设备设置；操作偏好不等于匹配或披露同意。',
-    compatibilityNote: '现阶段暂时使用原有设置页；地区数据权利与完整隐私控制仍未确定。',
-    actionLabel: '打开兼容设置页',
-    actionRoute: AppRouteNames.settings,
-  );
+  Widget build(BuildContext context) => const PrivacySettingsPage();
 }
 
 class _CompatibilityPurposePage extends StatelessWidget {

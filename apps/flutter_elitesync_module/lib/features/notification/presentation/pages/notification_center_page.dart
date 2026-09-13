@@ -14,6 +14,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme_extension
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
+import 'package:flutter_elitesync_module/features/notification/presentation/state/notification_privacy_contract.dart';
 
 class NotificationCenterPage extends ConsumerStatefulWidget {
   const NotificationCenterPage({super.key});
@@ -25,45 +26,6 @@ class NotificationCenterPage extends ConsumerStatefulWidget {
 
 class _NotificationCenterPageState
     extends ConsumerState<NotificationCenterPage> {
-  String _categoryLabel(String kind) {
-    return switch (kind) {
-      'message' ||
-      'rtc_call_invite' ||
-      'rtc_call_accepted' ||
-      'rtc_call_rejected' ||
-      'rtc_call_missed' ||
-      'rtc_call_ended' => '回到聊天',
-      'match_like' || 'match_success' => '慢约会提醒',
-      _ => '反馈与资料准备',
-    };
-  }
-
-  String _kindLabel(String kind) {
-    return switch (kind) {
-      'message' => '继续聊天',
-      'status_like' || 'status_comment' => '资料回流',
-      'match_like' || 'match_success' => '本轮进度',
-      'rtc_call_invite' ||
-      'rtc_call_accepted' ||
-      'rtc_call_rejected' ||
-      'rtc_call_missed' ||
-      'rtc_call_ended' => '聊天节奏',
-      _ => '准备提醒',
-    };
-  }
-
-  String _actionLabel(NotificationItemEntity item) {
-    if (item.routeName.trim().isEmpty) return '仅标记已读';
-    return switch (item.kind) {
-      'message' => '回到聊天',
-      'status_like' || 'status_comment' => '查看资料提醒',
-      'match_like' || 'match_success' => '查看本轮进度',
-      'rtc_call_invite' => '回到聊天节奏',
-      'rtc_call_missed' || 'rtc_call_rejected' || 'rtc_call_ended' => '查看聊天结果',
-      _ => '打开',
-    };
-  }
-
   int _intRouteArg(String key, NotificationItemEntity item) {
     final value = item.routeArgs[key];
     if (value is int) return value;
@@ -72,38 +34,6 @@ class _NotificationCenterPageState
       return value.toInt();
     }
     return int.tryParse(value?.toString() ?? '') ?? 0;
-  }
-
-  String _routeHint(NotificationItemEntity item) {
-    final routeName = item.routeName.trim();
-    if (routeName.isEmpty) return '无跳转目标，可先标记已读。';
-    return switch (routeName) {
-      'chat_room' => '回到这段对话，继续手动编辑草稿。',
-      'status_author' => '回到对方资料，看看是否需要补充表达。',
-      'match_detail' || 'match_result' || 'match_intention' => '回到本轮慢约会进度。',
-      'questionnaire_history' => '回到问卷记录，确认自己的准备状态。',
-      'content_detail' => '回到相关内容，继续查看提醒来源。',
-      'rtc_call' => '回到聊天节奏相关页面。',
-      'settings' => '回到设置与帮助入口。',
-      'social_baseline' => '回到资料准备与反馈入口。',
-      _ => '暂不支持该跳转目标。',
-    };
-  }
-
-  IconData _iconOf(String kind) {
-    return switch (kind) {
-      'message' => Icons.chat_bubble_outline,
-      'status_like' => Icons.favorite_border,
-      'status_comment' => Icons.mode_comment_outlined,
-      'match_like' => Icons.waving_hand_outlined,
-      'match_success' => Icons.favorite_rounded,
-      'rtc_call_invite' => Icons.call_outlined,
-      'rtc_call_accepted' => Icons.call,
-      'rtc_call_rejected' => Icons.call_end,
-      'rtc_call_missed' => Icons.phone_missed_outlined,
-      'rtc_call_ended' => Icons.call_end_outlined,
-      _ => Icons.notifications_outlined,
-    };
   }
 
   @override
@@ -322,6 +252,9 @@ class _NotificationCenterPageState
   }
 
   Widget _buildNotificationCard(NotificationItemEntity item, dynamic t) {
+    final privacyPresentation = NotificationPrivacyContract.inAppPreviewFor(
+      item,
+    );
     return Container(
       decoration: BoxDecoration(
         color: t.browseSurface,
@@ -346,7 +279,7 @@ class _NotificationCenterPageState
               borderRadius: BorderRadius.circular(t.radius.md),
             ),
             child: Icon(
-              _iconOf(item.kind),
+              Icons.notifications_outlined,
               size: 18,
               color: item.isRead ? t.textSecondary : t.brandPrimary,
             ),
@@ -361,7 +294,7 @@ class _NotificationCenterPageState
                   children: [
                     Expanded(
                       child: Text(
-                        item.title,
+                        privacyPresentation.title,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: t.textPrimary,
                           fontWeight: item.isRead
@@ -385,10 +318,10 @@ class _NotificationCenterPageState
                       ),
                   ],
                 ),
-                if (item.body.trim().isNotEmpty) ...[
+                if (privacyPresentation.body.isNotEmpty) ...[
                   SizedBox(height: t.spacing.xxs),
                   Text(
-                    item.body.trim(),
+                    privacyPresentation.body,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: t.textSecondary,
                       height: 1.3,
@@ -399,12 +332,10 @@ class _NotificationCenterPageState
                 Row(
                   children: [
                     AppChoiceChip(
-                      label: _categoryLabel(item.kind),
+                      label: privacyPresentation.categoryLabel,
                       selected: !item.isRead,
                       onTap: null,
                     ),
-                    SizedBox(width: t.spacing.xs),
-                    AppChoiceChip(label: _kindLabel(item.kind), onTap: null),
                     SizedBox(width: t.spacing.xs),
                     Text(
                       _formatTime(item.createdAt),
@@ -416,7 +347,7 @@ class _NotificationCenterPageState
                 ),
                 SizedBox(height: t.spacing.xs),
                 Text(
-                  _routeHint(item),
+                  privacyPresentation.routeHint,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: t.textSecondary,
                     height: 1.3,
@@ -429,8 +360,12 @@ class _NotificationCenterPageState
                   children: [
                     OutlinedButton.icon(
                       onPressed: () => _handlePrimaryAction(item),
-                      icon: Icon(_iconOf(item.kind)),
-                      label: Text(_actionLabel(item)),
+                      icon: const Icon(Icons.open_in_new_rounded),
+                      label: Text(
+                        item.routeName.trim().isEmpty
+                            ? '仅标记已读'
+                            : privacyPresentation.actionLabel,
+                      ),
                     ),
                     OutlinedButton.icon(
                       onPressed: () => _handleLater(item),

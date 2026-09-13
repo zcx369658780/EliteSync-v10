@@ -416,10 +416,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               title: '资料与隐私',
               children: [
                 SettingsItemTile(
-                  title: '隐私设置',
-                  subtitle: '查看当前隐私边界与安全说明',
+                  title: '隐私控制中心',
+                  subtitle: '按用途查看当前边界、可用入口与未建立能力',
                   icon: Icons.privacy_tip_outlined,
-                  onTap: () => context.push(AppRouteNames.privacySettings),
+                  onTap: () => context.push(AppRouteNames.mePrivacySettings),
                 ),
               ],
             ),

@@ -352,7 +352,7 @@ void main() {
       flavor: AppFlavor.prod,
       phone: '17094346566',
     );
-    final labels = ['夜间模式', '盘面设置', '站内提醒', '性能模式', '隐私设置'];
+    final labels = ['夜间模式', '盘面设置', '站内提醒', '性能模式', '隐私控制中心'];
     var next = 0;
     for (var press = 0; press < 30 && next < labels.length; press++) {
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
@@ -410,7 +410,7 @@ void main() {
     expect(find.textContaining('预览层'), findsNothing);
     expect(find.textContaining('后续完善'), findsNothing);
     expect(find.text('通过后端接口更新登录密码'), findsNothing);
-    expect(find.text('查看当前隐私边界与安全说明'), findsOneWidget);
+    expect(find.text('按用途查看当前边界、可用入口与未建立能力'), findsOneWidget);
     expect(find.text('控制资料可见范围与城市展示'), findsNothing);
 
     await tester.scrollUntilVisible(

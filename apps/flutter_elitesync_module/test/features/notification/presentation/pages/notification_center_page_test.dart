@@ -176,7 +176,7 @@ void main() {
     );
 
     await tester.pumpAndSettle();
-    final action = find.widgetWithText(OutlinedButton, '回到聊天');
+    final action = find.widgetWithText(OutlinedButton, '打开所属页面');
     await tester.scrollUntilVisible(
       action,
       220,
@@ -236,7 +236,7 @@ void main() {
     );
 
     await tester.pumpAndSettle();
-    final action = find.widgetWithText(OutlinedButton, '回到聊天');
+    final action = find.widgetWithText(OutlinedButton, '打开所属页面');
     await tester.scrollUntilVisible(
       action,
       220,
@@ -314,13 +314,15 @@ void main() {
     expect(find.text('通知中心'), findsOneWidget);
     expect(find.text('站内提醒'), findsWidgets);
     expect(find.textContaining('未读 1 条'), findsOneWidget);
-    expect(find.text('对方发来一条消息'), findsOneWidget);
-    expect(find.text('可以继续手动编辑草稿'), findsOneWidget);
-    expect(find.text('继续聊天'), findsWidgets);
-    expect(find.text('回到聊天'), findsWidgets);
+    expect(find.text('对方发来一条消息'), findsNothing);
+    expect(find.text('可以继续手动编辑草稿'), findsNothing);
+    expect(find.text('有一条新提醒'), findsOneWidget);
+    expect(find.textContaining('重新检查访问权限'), findsWidgets);
+    expect(find.text('隐私保护提醒'), findsOneWidget);
+    expect(find.text('打开所属页面'), findsOneWidget);
     expect(find.text('稍后处理'), findsOneWidget);
     expect(find.text('标记已读'), findsOneWidget);
-    expect(find.text('回到这段对话，继续手动编辑草稿。'), findsOneWidget);
+    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
     expect(find.text('提醒内容示例'), findsOneWidget);
     expect(find.textContaining('不代表当前通知'), findsOneWidget);
     expect(find.text('本轮慢约会即将揭晓'), findsOneWidget);
@@ -379,11 +381,11 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('本轮慢约会有新进度'), findsOneWidget);
-    expect(find.text('慢约会提醒'), findsOneWidget);
-    expect(find.text('本轮进度'), findsOneWidget);
-    expect(find.text('查看本轮进度'), findsOneWidget);
-    expect(find.text('回到本轮慢约会进度。'), findsOneWidget);
+    expect(find.text('本轮慢约会有新进度'), findsNothing);
+    expect(find.text('有一条新提醒'), findsOneWidget);
+    expect(find.text('隐私保护提醒'), findsOneWidget);
+    expect(find.text('打开所属页面'), findsOneWidget);
+    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
     _expectNoD7CForbiddenVisibleCopy();
   });
 
@@ -498,7 +500,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('反馈与资料准备'), findsOneWidget);
+      expect(find.text('隐私保护提醒'), findsOneWidget);
       expect(find.text('仅标记已读'), findsOneWidget);
 
       await tester.ensureVisible(find.widgetWithText(OutlinedButton, '仅标记已读'));
@@ -657,9 +659,9 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('回到聊天'), findsOneWidget);
+    expect(find.text('有一条新提醒'), findsOneWidget);
     expect(find.text('仅标记已读'), findsOneWidget);
-    expect(find.text('回到聊天'), findsOneWidget);
+    expect(find.text('回到聊天'), findsNothing);
 
     await tester.ensureVisible(find.widgetWithText(OutlinedButton, '仅标记已读'));
     await tester.pumpAndSettle();
@@ -708,12 +710,12 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('暂不支持该跳转目标。'), findsOneWidget);
-    expect(find.text('打开'), findsOneWidget);
+    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
+    expect(find.text('打开所属页面'), findsOneWidget);
 
-    await tester.ensureVisible(find.widgetWithText(OutlinedButton, '打开'));
+    await tester.ensureVisible(find.widgetWithText(OutlinedButton, '打开所属页面'));
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(OutlinedButton, '打开'));
+    await tester.tap(find.widgetWithText(OutlinedButton, '打开所属页面'));
     await tester.pumpAndSettle();
 
     expect(notifications.markedReadIds, isEmpty);
@@ -758,12 +760,13 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('可操作提醒'), findsOneWidget);
+    expect(find.text('可操作提醒'), findsNothing);
+    expect(find.text('有一条新提醒'), findsOneWidget);
     expect(
       find.ancestor(of: find.text('可操作提醒'), matching: find.byType(InkWell)),
       findsNothing,
     );
-    expect(find.widgetWithText(OutlinedButton, '回到聊天'), findsOneWidget);
+    expect(find.widgetWithText(OutlinedButton, '打开所属页面'), findsOneWidget);
     expect(find.widgetWithText(OutlinedButton, '稍后处理'), findsOneWidget);
     expect(find.widgetWithText(OutlinedButton, '标记已读'), findsOneWidget);
   });
