@@ -269,15 +269,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '${AppRouteNames.statusAuthor}/:userId',
-        pageBuilder: (context, state) {
-          final userId =
-              int.tryParse(state.pathParameters['userId'] ?? '') ?? 0;
-          final name = state.uri.queryParameters['name'] ?? '用户资料';
-          return _fadeSlidePage(
-            state,
-            StatusAuthorPage(userId: userId, name: name),
-          );
-        },
+        pageBuilder: (context, state) =>
+            _fadeSlidePage(state, const StatusAuthorPage()),
       ),
       GoRoute(
         path: '${AppRouteNames.contentDetail}/:contentId',

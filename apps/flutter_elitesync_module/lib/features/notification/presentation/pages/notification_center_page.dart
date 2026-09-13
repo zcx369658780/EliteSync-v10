@@ -140,15 +140,7 @@ class _NotificationCenterPageState
       }
     }
     if (routeName == 'status_author') {
-      final userId = _intRouteArg('user_id', item);
-      final name = (item.routeArgs['name'] ?? '用户资料').toString();
-      if (userId > 0) {
-        context.push(
-          '${AppRouteNames.statusAuthor}/$userId?name=${Uri.encodeComponent(name)}',
-        );
-        return true;
-      }
-      AppFeedback.showInfo(context, '动态作者信息缺失，暂无法打开');
+      AppFeedback.showInfo(context, '当前访问权限尚未建立，暂无法打开');
       return false;
     }
     if (routeName == 'match_detail' ||

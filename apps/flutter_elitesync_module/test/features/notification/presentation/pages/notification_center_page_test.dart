@@ -250,6 +250,87 @@ void main() {
     expect(notifications.markedReadIds, isEmpty);
   });
 
+  testWidgets(
+    'status author notification fails closed without using payload identity',
+    (tester) async {
+      tester.view.physicalSize = const Size(800, 1000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final notifications = FakeNotificationRemoteDataSource();
+      var authorRouteBuilt = false;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => const NotificationCenterPage(),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.statusAuthor}/:userId',
+            builder: (context, state) {
+              authorRouteBuilt = true;
+              return const Scaffold(body: Text('AUTHOR ROUTE'));
+            },
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            frontendTelemetryProvider.overrideWithValue(
+              FrontendTelemetry(telemetry: FakeAppTelemetryService()),
+            ),
+            notificationRemoteDataSourceProvider.overrideWithValue(
+              notifications,
+            ),
+            notificationListProvider.overrideWith(
+              (ref) async => [
+                NotificationItemEntity(
+                  id: 83,
+                  kind: 'profile',
+                  title: 'private raw title',
+                  body: 'private raw body',
+                  payload: const {},
+                  routeName: 'status_author',
+                  routeArgs: const {
+                    'user_id': 77,
+                    'name': 'Payload Author Name',
+                  },
+                  isRead: false,
+                  createdAt: '2026-08-04T00:00:00Z',
+                ),
+              ],
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 1),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      final action = find.widgetWithText(OutlinedButton, '打开所属页面');
+      await tester.scrollUntilVisible(
+        action,
+        220,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(action);
+      await tester.pumpAndSettle();
+
+      expect(authorRouteBuilt, isFalse);
+      expect(find.text('当前访问权限尚未建立，暂无法打开'), findsOneWidget);
+      expect(find.text('AUTHOR ROUTE'), findsNothing);
+      expect(find.textContaining('Payload Author Name'), findsNothing);
+      expect(find.textContaining('private raw'), findsNothing);
+      expect(notifications.markedReadIds, isEmpty);
+    },
+  );
+
   testWidgets('notification center sanitizes load failure', (tester) async {
     final telemetry = FakeAppTelemetryService();
 
