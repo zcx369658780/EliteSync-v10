@@ -19,20 +19,36 @@ import 'package:flutter_elitesync_module/features/chat/domain/entities/conversat
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/utils/conversation_snapshot_utils.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_list_item.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/performance_mode_provider.dart';
 
-class ConversationListPage extends ConsumerStatefulWidget {
+class ConversationListPage extends ConsumerWidget {
   const ConversationListPage({super.key});
 
   @override
-  ConsumerState<ConversationListPage> createState() =>
-      _ConversationListPageState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final access = ref.watch(conversationAccessProvider);
+    return ConversationAccessGate(
+      snapshot: access,
+      protectedBuilder: (context) => const _AuthorizedConversationListPage(),
+    );
+  }
 }
 
-class _ConversationListPageState extends ConsumerState<ConversationListPage>
-    with AutomaticKeepAliveClientMixin<ConversationListPage> {
+class _AuthorizedConversationListPage extends ConsumerStatefulWidget {
+  const _AuthorizedConversationListPage();
+
+  @override
+  ConsumerState<_AuthorizedConversationListPage> createState() =>
+      _AuthorizedConversationListPageState();
+}
+
+class _AuthorizedConversationListPageState
+    extends ConsumerState<_AuthorizedConversationListPage>
+    with AutomaticKeepAliveClientMixin<_AuthorizedConversationListPage> {
   int _tabIndex = 0;
   final ValueNotifier<String> _searchQueryNotifier = ValueNotifier<String>('');
   static const _tabs = ['全部', '未读', '已读'];

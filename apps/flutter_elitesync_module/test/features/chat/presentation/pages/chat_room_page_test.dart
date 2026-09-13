@@ -16,9 +16,22 @@ import 'package:flutter_elitesync_module/features/chat/data/gateway/chat_media_g
 import 'package:flutter_elitesync_module/features/chat/domain/repository/chat_repository.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/chat_room_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/product_conversation_contract.dart';
+import 'package:flutter_elitesync_module/features/connection/domain/product_connection_contract.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_bubble.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_input_bar.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+
+final _syntheticAuthorizedConversationAccess =
+    ProductConversationAccessAdapter.resolve(
+      connection: const ProductConnectionEvidence.authoritative(
+        ProductConnectionState.active,
+      ),
+      messagingConsent: const MessagingConsentEvidence.authoritative(
+        MessagingConsentState.mutual,
+      ),
+    );
 
 class FakeLocalStorageService extends LocalStorageService {
   final Map<String, Object?> _values = <String, Object?>{};
@@ -173,6 +186,9 @@ Widget _chatMediaApp({
 }) {
   return ProviderScope(
     overrides: [
+      conversationAccessProvider.overrideWithValue(
+        _syntheticAuthorizedConversationAccess,
+      ),
       appEnvProvider.overrideWithValue(
         const AppEnv(
           flavor: AppFlavor.dev,
@@ -200,6 +216,9 @@ Widget _chatMediaApp({
 
 Widget _basicChatApp(FakeChatRepository repository) => ProviderScope(
   overrides: [
+    conversationAccessProvider.overrideWithValue(
+      _syntheticAuthorizedConversationAccess,
+    ),
     appEnvProvider.overrideWithValue(
       const AppEnv(
         flavor: AppFlavor.dev,
@@ -422,6 +441,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -463,6 +485,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -492,6 +517,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -553,6 +581,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -605,6 +636,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(repository),
         ],
@@ -651,6 +685,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -686,6 +723,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(repository),
         ],
@@ -717,6 +757,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             localStorageProvider.overrideWithValue(FakeLocalStorageService()),
             chatRepositoryProvider.overrideWithValue(repository),
           ],

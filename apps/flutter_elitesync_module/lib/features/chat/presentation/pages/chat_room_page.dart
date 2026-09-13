@@ -26,6 +26,8 @@ import 'package:flutter_elitesync_module/features/chat/domain/utils/message_visi
 import 'package:flutter_elitesync_module/features/chat/domain/entities/message_attachment_entity.dart';
 import 'package:flutter_elitesync_module/features/chat/data/gateway/chat_media_gateway.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/connection_status_banner.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/attachment_upload_card.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/chat_opening_suggestion_card.dart';
@@ -41,7 +43,7 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/performance_mode_provider.dart';
 import 'package:flutter_elitesync_module/shared/widgets/a5_relationship_understanding_card.dart';
 
-class ChatRoomPage extends ConsumerStatefulWidget {
+class ChatRoomPage extends ConsumerWidget {
   const ChatRoomPage({
     super.key,
     required this.routeState,
@@ -54,10 +56,37 @@ class ChatRoomPage extends ConsumerStatefulWidget {
   final ChatAttachmentTelemetry? attachmentTelemetry;
 
   @override
-  ConsumerState<ChatRoomPage> createState() => _ChatRoomPageState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final access = ref.watch(conversationAccessProvider);
+    return ConversationAccessGate(
+      snapshot: access,
+      protectedBuilder: (context) => _AuthorizedChatRoomPage(
+        routeState: routeState,
+        mediaGateway: mediaGateway,
+        attachmentTelemetry: attachmentTelemetry,
+      ),
+    );
+  }
 }
 
-class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
+class _AuthorizedChatRoomPage extends ConsumerStatefulWidget {
+  const _AuthorizedChatRoomPage({
+    required this.routeState,
+    this.mediaGateway,
+    this.attachmentTelemetry,
+  });
+
+  final ChatRouteState routeState;
+  final ChatMediaGateway? mediaGateway;
+  final ChatAttachmentTelemetry? attachmentTelemetry;
+
+  @override
+  ConsumerState<_AuthorizedChatRoomPage> createState() =>
+      _AuthorizedChatRoomPageState();
+}
+
+class _AuthorizedChatRoomPageState
+    extends ConsumerState<_AuthorizedChatRoomPage> {
   final _controller = TextEditingController();
   final _listController = ScrollController();
   final List<MessageEntity> _localMessages = <MessageEntity>[];
@@ -88,6 +117,9 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
   int get _peerId => chatPeerUserIdForOperations(_routeState);
   String get _peerIdString => _peerId.toString();
   bool get _isConversationIdSupported => _routeState.peerUserId > 0;
+  bool get _canAccessConversation =>
+      ref.read(conversationAccessProvider).canRevealPrivateContent;
+  bool get _canSend => ref.read(conversationAccessProvider).canSend;
   String get _displayTitle => sanitizeProfileDisplayName(_routeState.title);
 
   @override
@@ -113,7 +145,7 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
       ));
 
   @override
-  void didUpdateWidget(covariant ChatRoomPage oldWidget) {
+  void didUpdateWidget(covariant _AuthorizedChatRoomPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.routeState != widget.routeState) {
       _stopRealtimeSync();
@@ -134,6 +166,7 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
   }
 
   Future<void> _loadDraft() async {
+    if (!_canAccessConversation) return;
     final draft = await _localStorage.getString(_draftKey);
     if (!mounted || draft == null || draft.isEmpty) return;
     _controller.text = draft;
@@ -149,6 +182,7 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
   }
 
   Future<void> _persistDraftNow() async {
+    if (!_canSend) return;
     final text = _controller.text.trim();
     if (text.isEmpty) {
       await _localStorage.remove(_draftKey);
@@ -176,7 +210,7 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
   }
 
   void _startRealtimeSync() {
-    if (!_isConversationIdSupported) return;
+    if (!_canAccessConversation || !_isConversationIdSupported) return;
     _realtimeSubscription = ref
         .read(observeMessagesUseCaseProvider)
         .call(_peerIdString)
@@ -207,8 +241,8 @@ class _ChatRoomPageState extends ConsumerState<ChatRoomPage> {
   }
 
   Future<void> _sendMessage() async {
-    if (!_isConversationIdSupported) {
-      AppFeedback.showError(context, '当前会话暂时无法打开，请返回消息列表重新选择后重试');
+    if (!_canSend || !_isConversationIdSupported) {
+      AppFeedback.showError(context, '消息权限尚未建立，当前不能读取或发送私密消息');
       return;
     }
     final text = _controller.text.trim();

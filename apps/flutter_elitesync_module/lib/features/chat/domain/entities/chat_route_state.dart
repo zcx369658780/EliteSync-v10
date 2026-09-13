@@ -128,6 +128,12 @@ class ChatRouteState {
   final int? matchId;
   final String title;
 
+  bool get isCompatibilityIdentifier =>
+      entryKind == ChatEntryKind.eligibleMatch ||
+      entryKind == ChatEntryKind.legacyPeer;
+
+  bool get grantsConversationReadOrSendAuthority => false;
+
   String get stableKey => conversationId == null
       ? 'peer:$peerUserId'
       : 'conversation:$conversationId';

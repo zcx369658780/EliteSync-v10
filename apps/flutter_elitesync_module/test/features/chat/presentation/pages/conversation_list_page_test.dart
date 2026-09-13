@@ -15,6 +15,9 @@ import 'package:flutter_elitesync_module/features/chat/domain/entities/conversat
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/product_conversation_contract.dart';
+import 'package:flutter_elitesync_module/features/connection/domain/product_connection_contract.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_list_ui_state.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -82,6 +85,16 @@ final _conversationStateProvider = StateProvider<ConversationListUiState>(
   (ref) => const ConversationListUiState(items: []),
 );
 
+final _syntheticAuthorizedConversationAccess =
+    ProductConversationAccessAdapter.resolve(
+      connection: const ProductConnectionEvidence.authoritative(
+        ProductConnectionState.active,
+      ),
+      messagingConsent: const MessagingConsentEvidence.authoritative(
+        MessagingConsentState.mutual,
+      ),
+    );
+
 void main() {
   testWidgets('ConversationListPage shows cached snapshot while refreshing', (
     tester,
@@ -104,6 +117,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -169,6 +185,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -220,6 +239,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -258,6 +280,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -300,6 +325,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -335,6 +363,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -396,6 +427,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -455,6 +489,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -507,6 +544,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -559,6 +599,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -626,6 +669,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -729,6 +775,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithValue(
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -785,6 +834,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -842,6 +894,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -908,6 +963,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithValue(
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,

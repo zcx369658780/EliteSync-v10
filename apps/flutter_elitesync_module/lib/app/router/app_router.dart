@@ -16,6 +16,8 @@ import 'package:flutter_elitesync_module/features/auth/presentation/pages/regist
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/chat_room_page.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/pages/connection_page.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
@@ -518,6 +520,10 @@ class _StoredConversationRoutePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final access = ref.watch(conversationAccessProvider);
+    if (!access.canRevealPrivateContent) {
+      return ConversationAccessUnavailablePage(snapshot: access);
+    }
     final detail = ref.watch(conversationDetailProvider(conversationId));
     return detail.when(
       loading: () =>

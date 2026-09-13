@@ -13,7 +13,11 @@ import 'package:flutter_elitesync_module/features/chat/domain/usecases/get_conve
 import 'package:flutter_elitesync_module/features/chat/domain/usecases/get_messages_usecase.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/usecases/send_message_usecase.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_list_ui_state.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+
+Never _conversationAccessUnavailable() =>
+    throw StateError('Product Conversation access is NOT YET ESTABLISHED');
 
 final chatRemoteDataSourceProvider = Provider<ChatRemoteDataSource>((ref) {
   final env = ref.watch(appEnvProvider);
@@ -48,6 +52,9 @@ final getConversationUseCaseProvider = Provider<GetConversationUseCase>(
 );
 final conversationDetailProvider =
     FutureProvider.family<ConversationEntity, int>((ref, conversationId) {
+      if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
+        return _conversationAccessUnavailable();
+      }
       return ref.read(getConversationUseCaseProvider).call(conversationId);
     });
 final getMessagesUseCaseProvider = Provider<GetMessagesUseCase>(
@@ -62,6 +69,9 @@ final observeMessagesUseCaseProvider = Provider<ObserveMessagesUseCase>(
 final conversationListProvider = FutureProvider<ConversationListUiState>((
   ref,
 ) async {
+  if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
+    return _conversationAccessUnavailable();
+  }
   try {
     final items = await ref.read(getConversationsUseCaseProvider).call();
     return ConversationListUiState(items: items);
@@ -99,6 +109,9 @@ final chatRoomMessagesProvider =
       ref,
       request,
     ) async {
+      if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
+        return _conversationAccessUnavailable();
+      }
       return ref
           .read(getMessagesUseCaseProvider)
           .call(request.peerUserId.toString());
