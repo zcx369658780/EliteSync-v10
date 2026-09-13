@@ -29,11 +29,6 @@ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_cal
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_permission_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_countdown_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_detail_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_intention_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_feedback_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_result_page.dart';
 import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_bazi_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_advanced_preview_page.dart';
@@ -159,28 +154,23 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRouteNames.matchCountdown,
-        pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const MatchCountdownPage()),
+        redirect: (context, state) => AppRouteNames.progressMatch,
       ),
       GoRoute(
         path: AppRouteNames.matchResult,
-        pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const MatchResultPage()),
+        redirect: (context, state) => AppRouteNames.progressMatch,
       ),
       GoRoute(
         path: AppRouteNames.matchDetail,
-        pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const MatchDetailPage()),
+        redirect: (context, state) => AppRouteNames.progressMatch,
       ),
       GoRoute(
         path: AppRouteNames.matchIntention,
-        pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const MatchIntentionPage()),
+        redirect: (context, state) => AppRouteNames.progressMatch,
       ),
       GoRoute(
         path: AppRouteNames.matchFeedback,
-        pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const MatchFeedbackPage()),
+        redirect: (context, state) => AppRouteNames.progressMatch,
       ),
       GoRoute(
         path: AppRouteNames.innerTestFeedback,

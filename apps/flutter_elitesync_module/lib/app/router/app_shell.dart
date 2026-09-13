@@ -119,8 +119,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       warm(ref.read(conversationListProvider.future));
     } else if (initialRoute.startsWith(AppRouteNames.progressMatch) ||
         initialRoute.startsWith(AppRouteNames.match)) {
-      warm(ref.read(matchCountdownProvider.future));
-      warm(ref.read(matchResultProvider.future));
+      warm(ref.read(matchRoundProjectionProvider.future));
     } else if (initialRoute.startsWith(AppRouteNames.statusSquare)) {
       warm(ref.read(statusPostsProvider.future));
     } else {

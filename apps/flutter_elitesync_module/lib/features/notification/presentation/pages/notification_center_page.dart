@@ -151,16 +151,10 @@ class _NotificationCenterPageState
       AppFeedback.showInfo(context, '动态作者信息缺失，暂无法打开');
       return false;
     }
-    if (routeName == 'match_detail') {
-      context.go(AppRouteNames.matchDetail);
-      return true;
-    }
-    if (routeName == 'match_result') {
-      context.go(AppRouteNames.matchResult);
-      return true;
-    }
-    if (routeName == 'match_intention') {
-      context.go(AppRouteNames.matchIntention);
+    if (routeName == 'match_detail' ||
+        routeName == 'match_result' ||
+        routeName == 'match_intention') {
+      context.go(AppRouteNames.progressMatch);
       return true;
     }
     if (routeName == 'questionnaire_history') {

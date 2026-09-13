@@ -5,16 +5,11 @@ import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
-import 'package:flutter_elitesync_module/features/match/domain/entities/match_highlight_entity.dart';
-import 'package:flutter_elitesync_module/features/match/domain/entities/match_result_entity.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/chat_room_page.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_list_item.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/match_result_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/state/match_result_ui_state.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class FakeLocalStorageService extends LocalStorageService {
@@ -117,52 +112,6 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('查看慢约进展'), findsOneWidget);
-  });
-
-  testWidgets('match result page renders explanation and actions', (
-    tester,
-  ) async {
-    await tester.pumpWidget(
-      _wrap(
-        const MatchResultPage(),
-        overrides: [
-          matchResultProvider.overrideWith(
-            (ref) async => const MatchResultUiState(
-              data: MatchResultEntity(
-                headline: '你们在沟通与情绪节奏上较契合',
-                score: 86,
-                tags: ['同城', '高匹配', '节奏接近'],
-                highlights: [
-                  MatchHighlightEntity(
-                    title: '依恋安全感',
-                    value: 51,
-                    desc: '都倾向稳定关系',
-                  ),
-                  MatchHighlightEntity(
-                    title: '冲突修复倾向',
-                    value: 48,
-                    desc: '冲突后愿意重建沟通',
-                  ),
-                ],
-                matchId: 1703,
-                partnerId: 42,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('你们在沟通与情绪节奏上较契合'), findsWidgets);
-    await tester.scrollUntilVisible(
-      find.text('可直接拿去聊天'),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('可直接拿去聊天'), findsOneWidget);
-    expect(find.text('点一下只把话题写进聊天草稿并打开会话页，发送仍由你在聊天页确认。'), findsOneWidget);
   });
 
   testWidgets('conversation list page renders mock conversations', (
