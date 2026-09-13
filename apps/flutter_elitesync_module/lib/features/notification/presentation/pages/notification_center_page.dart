@@ -380,126 +380,130 @@ class _NotificationCenterPageState
     final unreadAsync = ref.watch(notificationUnreadCountProvider);
     final t = context.appTokens;
 
-    return BrowseScaffold(
-      header: Row(
-        children: [
-          Expanded(
-            child: Text(
-              '通知中心',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: t.textPrimary,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: _refresh,
-            icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: _refresh,
-        child: listAsync.when(
-          loading: () => const AppPresentationStateView(
-            state: AppPresentationState.loading(
-              safeTitle: '正在读取通知',
-              safeBody: '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
-            ),
-            loadingLines: 6,
-          ),
-          error: (e, _) => ListView(
-            padding: EdgeInsets.only(bottom: t.spacing.huge),
-            children: [
-              AppPresentationStateView(
-                state: const AppPresentationState.retryableError(
-                  safeTitle: '通知加载失败',
-                  safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
-                  safeActionLabel: '重新加载',
+    return Scaffold(
+      backgroundColor: t.browseBackground,
+      body: BrowseScaffold(
+        header: Row(
+          children: [
+            Expanded(
+              child: Text(
+                '通知中心',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: t.textPrimary,
+                  fontWeight: FontWeight.w800,
                 ),
-                onRetryRead: _refresh,
               ),
-            ],
-          ),
-          data: (items) {
-            final unread =
-                unreadAsync.asData?.value ??
-                items.where((e) => !e.isRead).length;
-            if (items.isEmpty) {
-              const emptyState = AppPresentationState.empty(
-                safeTitle: '当前没有提醒',
+            ),
+            IconButton(
+              onPressed: _refresh,
+              icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+            ),
+          ],
+        ),
+        body: RefreshIndicator(
+          onRefresh: _refresh,
+          child: listAsync.when(
+            loading: () => const AppPresentationStateView(
+              state: AppPresentationState.loading(
+                safeTitle: '正在读取通知',
                 safeBody:
-                    '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
-              );
+                    '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
+              ),
+              loadingLines: 6,
+            ),
+            error: (e, _) => ListView(
+              padding: EdgeInsets.only(bottom: t.spacing.huge),
+              children: [
+                AppPresentationStateView(
+                  state: const AppPresentationState.retryableError(
+                    safeTitle: '通知加载失败',
+                    safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
+                    safeActionLabel: '重新加载',
+                  ),
+                  onRetryRead: _refresh,
+                ),
+              ],
+            ),
+            data: (items) {
+              final unread =
+                  unreadAsync.asData?.value ??
+                  items.where((e) => !e.isRead).length;
+              if (items.isEmpty) {
+                const emptyState = AppPresentationState.empty(
+                  safeTitle: '当前没有提醒',
+                  safeBody:
+                      '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+                );
+                return ListView(
+                  padding: EdgeInsets.only(bottom: t.spacing.huge),
+                  children: [
+                    AppInfoSectionCard(
+                      title: '站内提醒',
+                      subtitle: '慢约会、聊天和资料准备的关键回流会收在这里',
+                      leadingIcon: Icons.notifications_active_outlined,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${emptyState.safeTitle}。${emptyState.safeBody}',
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: t.textSecondary),
+                            ),
+                          ),
+                          AppChoiceChip(
+                            label: '去首页',
+                            leading: const Icon(Icons.home_outlined),
+                            onTap: () => context.go(AppRouteNames.home),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    const _LocalReturnPreviewCard(),
+                  ],
+                );
+              }
+
               return ListView(
                 padding: EdgeInsets.only(bottom: t.spacing.huge),
                 children: [
                   AppInfoSectionCard(
                     title: '站内提醒',
-                    subtitle: '慢约会、聊天和资料准备的关键回流会收在这里',
+                    subtitle: '慢约会、聊天和资料准备的应用内回流中心',
                     leadingIcon: Icons.notifications_active_outlined,
                     child: Row(
                       children: [
                         Expanded(
                           child: Text(
-                            '${emptyState.safeTitle}。${emptyState.safeBody}',
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(color: t.textSecondary),
+                            _unreadSummaryText(unread),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(
+                                  color: t.textPrimary,
+                                  fontWeight: FontWeight.w700,
+                                ),
                           ),
                         ),
                         AppChoiceChip(
-                          label: '去首页',
-                          leading: const Icon(Icons.home_outlined),
-                          onTap: () => context.go(AppRouteNames.home),
+                          label: '全部已读',
+                          leading: const Icon(Icons.done_all_rounded),
+                          onTap: _markAllRead,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: t.spacing.sm),
                   const _LocalReturnPreviewCard(),
+                  SizedBox(height: t.spacing.md),
+                  ...items.map(
+                    (item) => Padding(
+                      padding: EdgeInsets.only(bottom: t.spacing.sm),
+                      child: _buildNotificationCard(item, t),
+                    ),
+                  ),
                 ],
               );
-            }
-
-            return ListView(
-              padding: EdgeInsets.only(bottom: t.spacing.huge),
-              children: [
-                AppInfoSectionCard(
-                  title: '站内提醒',
-                  subtitle: '慢约会、聊天和资料准备的应用内回流中心',
-                  leadingIcon: Icons.notifications_active_outlined,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          _unreadSummaryText(unread),
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
-                                color: t.textPrimary,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                      ),
-                      AppChoiceChip(
-                        label: '全部已读',
-                        leading: const Icon(Icons.done_all_rounded),
-                        onTap: _markAllRead,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: t.spacing.sm),
-                const _LocalReturnPreviewCard(),
-                SizedBox(height: t.spacing.md),
-                ...items.map(
-                  (item) => Padding(
-                    padding: EdgeInsets.only(bottom: t.spacing.sm),
-                    child: _buildNotificationCard(item, t),
-                  ),
-                ),
-              ],
-            );
-          },
+            },
+          ),
         ),
       ),
     );
