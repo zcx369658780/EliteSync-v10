@@ -12,7 +12,12 @@ import 'package:flutter_elitesync_module/features/home/presentation/providers/ho
 import 'package:flutter_elitesync_module/features/home/presentation/state/home_ui_state.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
+import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -56,6 +61,7 @@ class _FakeHomeNotifier extends HomeNotifier {
 Widget _routerApp({
   required AuthStatus authStatus,
   required _RouterFakeLocalStorage storage,
+  bool readinessEstablished = false,
 }) {
   return ProviderScope(
     overrides: [
@@ -69,6 +75,18 @@ Widget _routerApp({
         ),
       ),
       authStatusProvider.overrideWithValue(authStatus),
+      if (readinessEstablished)
+        navigationGuardProvider.overrideWithValue(
+          const NavigationSnapshot(
+            authStatus: AuthStatus.authenticated,
+            verificationStatus: VerificationStatus.unknown,
+            questionnaireStatus: QuestionnaireStatus.unknown,
+            matchStatus: MatchStatus.unknown,
+            canChat: false,
+            readinessState: ReadinessGuardState.ready,
+            isBootstrapLoading: false,
+          ),
+        ),
       localStorageProvider.overrideWithValue(storage),
       appShellRtcInviteWatcherEnabledProvider.overrideWithValue(false),
       homeProvider.overrideWith(_FakeHomeNotifier.new),
@@ -97,7 +115,11 @@ void main() {
       final storage = _RouterFakeLocalStorage()..onboardingStatus = 'completed';
       await _pumpRouter(
         tester,
-        _routerApp(authStatus: AuthStatus.authenticated, storage: storage),
+        _routerApp(
+          authStatus: AuthStatus.authenticated,
+          storage: storage,
+          readinessEstablished: true,
+        ),
       );
 
       final dock = find.byType(FloatingDockBottomBar);
@@ -133,7 +155,7 @@ void main() {
       await tester.tap(find.descendant(of: dock, matching: find.text('进展')));
       await tester.pump();
       await tester.tap(find.byKey(ProgressPage.matchEntryKey));
-      await tester.pump();
+      await tester.pumpAndSettle();
       expect(find.byType(MatchShellPage), findsOneWidget);
 
       expect(
