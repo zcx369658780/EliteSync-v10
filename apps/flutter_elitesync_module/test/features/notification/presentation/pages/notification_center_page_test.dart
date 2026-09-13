@@ -894,7 +894,10 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('未知跳转卡片'));
+      expect(find.text('未知跳转卡片'), findsNothing);
+      final privacySafeCardSurface = find.text('有一条新提醒');
+      expect(privacySafeCardSurface, findsOneWidget);
+      await tester.tap(privacySafeCardSurface);
       await tester.pumpAndSettle();
 
       expect(notifications.markedReadIds, isEmpty);

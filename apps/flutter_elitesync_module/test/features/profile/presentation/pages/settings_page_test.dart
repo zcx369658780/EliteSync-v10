@@ -488,7 +488,7 @@ void main() {
       await tester.tap(find.text('继续'));
       await tester.pumpAndSettle();
     }
-    await tester.tap(find.text('完成'));
+    await tester.tap(find.text('完成引导'));
     await tester.pumpAndSettle();
 
     expect(find.text('TEST HOME ROUTE'), findsOneWidget);
