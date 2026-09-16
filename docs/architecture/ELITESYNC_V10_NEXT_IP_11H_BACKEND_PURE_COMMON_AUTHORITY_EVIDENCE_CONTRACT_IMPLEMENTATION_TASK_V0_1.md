@@ -18,30 +18,33 @@ The Owner explicitly authorizes execution of exactly:
 
 `NEXT-IP-11H-BACKEND-PURE-COMMON-AUTHORITY-EVIDENCE-CONTRACT-IMPLEMENTATION-V0-1`
 
-against exact accepted main commit:
+against exact accepted implementation base:
 
 `ef63312531504f06d77370cf095143da329cfa7f`
+
+The task-publication commit on `main` is governance authority only. It does not replace or advance the Owner-approved implementation base. The implementation candidate must branch from and retain sole parent `ef63312531504f06d77370cf095143da329cfa7f`.
 
 This authorization is limited to one pure common authority-evidence / source-condition / immutable-intent contract slice with synthetic fixtures only, exactly as bounded by the independently accepted IP-11G gate.
 
 No other implementation, dependency, product-policy, production, private-data, legal, Safety, client, provider, endpoint, persistence, migration or deployment authority is created.
 
-## 2. Mandatory fresh-base gate
+## 2. Mandatory publication/base gate
 
 Before any write:
 
 1. Read `AGENTS.md` first.
 2. Fresh-fetch `origin/main`.
-3. Prove `origin/main == ef63312531504f06d77370cf095143da329cfa7f`.
-4. Prove the accepted IP-11G gate is present at that commit.
-5. Create one isolated review worktree/branch from that exact commit.
-6. Verify all three authorized output paths below are absent at the base.
-7. Verify, without enumerating vendor, that these exact readiness locators exist:
+3. Read this exact task file from fresh `origin/main` and record that current commit as `TASK_PUBLICATION_COMMIT`.
+4. Prove `TASK_PUBLICATION_COMMIT` contains this task in `OWNER-AUTHORIZED` status and that `ef63312531504f06d77370cf095143da329cfa7f` remains an ancestor in its accepted governance lineage.
+5. Independently verify the accepted IP-11G gate and acceptance are present at `ef63312531504f06d77370cf095143da329cfa7f`.
+6. Create one isolated review worktree/branch from exactly `ef63312531504f06d77370cf095143da329cfa7f`, not from `TASK_PUBLICATION_COMMIT`.
+7. Verify all three authorized output paths below are absent at the implementation base.
+8. Verify, without enumerating vendor, that these exact readiness locators exist in the implementation worktree:
    - `services/backend-laravel/vendor/autoload.php`
    - `services/backend-laravel/vendor/bin/phpunit`
-8. Stop before any write if any identity/path/readiness condition differs.
+9. Stop before any write if any identity/path/readiness condition differs.
 
-A newer/different main is not permission to adapt. No rebase, merge, cherry-pick, alternate base or substitute path is authorized.
+A newer task-publication commit does not authorize a newer implementation base. No rebase, merge, cherry-pick, alternate implementation base or substitute path is authorized.
 
 Recommended branch:
 
@@ -156,7 +159,7 @@ No retry is authorized, including after failure.
 
 Also run `git diff --check` exactly once after final authoring.
 
-Read-only Git/provenance commands needed to bind base, inspect the exact three paths, capture diff/stat/hash/blob/tree/parent/ahead-behind evidence, create the bounded commit and push the review branch are authorized and do not count against the single project-command budget.
+Read-only Git/provenance commands needed to bind `TASK_PUBLICATION_COMMIT`, prove the Owner-approved implementation base, inspect the exact three paths, capture diff/stat/hash/blob/tree/parent/ahead-behind evidence, create the bounded commit and push the review branch are authorized and do not count against the single project-command budget.
 
 ## 7. Explicit prohibitions
 
@@ -188,8 +191,9 @@ Client direction remains:
 
 Stop and publish the bounded result without remediation if:
 
-- the accepted base differs;
-- any authorized path already exists;
+- the task-publication authority cannot be bound from fresh `origin/main`;
+- the Owner-approved implementation base differs or is not in the accepted governance lineage;
+- any authorized path already exists at the implementation base;
 - either exact vendor readiness locator is missing;
 - the targeted PHPUnit command cannot start or exits nonzero;
 - a missing dependency/configuration requirement appears;
@@ -201,7 +205,8 @@ No retry, alternate path, workaround or scope expansion is authorized.
 
 The exact result document must record:
 
-- Owner authorization and exact approved base commit;
+- Owner authorization and exact approved implementation base commit;
+- `TASK_PUBLICATION_COMMIT`;
 - branch/worktree identity;
 - exact tracked-file inventory proving three files only;
 - source/test/result SHA-256 and Git blob identities;
@@ -212,7 +217,7 @@ The exact result document must record:
 - `git diff --check` result;
 - prohibitions respected;
 - retained unknowns/blockers;
-- candidate commit, sole parent, tree and remote ahead/behind relation;
+- candidate commit, sole parent, tree and remote relation to both implementation base and live `origin/main`;
 - explicit statement that candidate still requires fresh independent ACCEPT/REJECT review.
 
 ## 10. Candidate publication contract
@@ -222,6 +227,8 @@ The candidate commit must contain exactly the three authorized paths.
 Its sole parent must be:
 
 `ef63312531504f06d77370cf095143da329cfa7f`
+
+Because task-publication governance commits live on `main` after the approved implementation base, the candidate may legitimately be behind live `origin/main` while ahead of the implementation base. Report both relations exactly; do not rebase merely to make ahead/behind cleaner.
 
 Push only the review branch.
 
