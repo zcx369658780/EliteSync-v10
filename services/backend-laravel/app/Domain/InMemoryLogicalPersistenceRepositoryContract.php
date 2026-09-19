@@ -6,6 +6,8 @@ use InvalidArgumentException;
 
 final class InMemoryLogicalPersistenceRepositoryContract
 {
+    public const RECORD_FAMILY_RR03 = 'RR03_RUNTIME_READINESS_DERIVED_PROJECTION';
+
     public const STORED_NEW = 'STORED_NEW';
     public const EXACT_DUPLICATE = 'EXACT_DUPLICATE';
     public const CHANGED_INPUT_REUSE_REJECTED = 'CHANGED_INPUT_REUSE_REJECTED';
@@ -40,6 +42,52 @@ final class InMemoryLogicalPersistenceRepositoryContract
         'projection_metadata',
         'transport_observation',
         'private_fixture_extensions',
+    ];
+
+    private const RR03_PAYLOAD_KEYS = [
+        'payload_kind',
+        'derived_fact_class',
+        'classification',
+        'prerequisite_set_state',
+        'prerequisite_set_identity',
+        'prerequisite_set_revision',
+        'prerequisite_set_condition',
+        'prerequisite_set_currentness',
+        'prerequisite_set_freshness',
+        'protected_use_scope',
+        'reason_categories',
+        'dependencies',
+        'invalidation',
+    ];
+
+    private const RR03_DEPENDENCY_KEYS = [
+        'dependency_identity',
+        'fact_class',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'currentness',
+        'freshness',
+        'prerequisite_outcome',
+    ];
+
+    private const RR03_REASON_CATEGORIES = [
+        'UNKNOWN_PREREQUISITE_SET',
+        'INVALID_PREREQUISITE_SET',
+        'PREREQUISITE_SET_UNUSABLE',
+        'MISSING_REQUIRED_MEMBER',
+        'INVALID_REQUIRED_MEMBER',
+        'INCOMPARABLE_DUPLICATE_EVIDENCE',
+        'CONFLICTING_DUPLICATE_EVIDENCE',
+        'INVALID_MEMBER_FACT_CLASS',
+        'PROTECTED_USE_SCOPE_MISMATCH',
+        'MEMBER_UNUSABLE',
+        'UNKNOWN_MEMBER_OUTCOME',
+        'AUTHORITATIVE_REQUIRED_MEMBER_UNSATISFIED',
+        'DEPENDENCY_INVALIDATED',
     ];
 
     /** @var array<string, array<string, mixed>> */
@@ -385,7 +433,10 @@ final class InMemoryLogicalPersistenceRepositoryContract
         $expected = self::RECORD_KEYS;
         sort($expected);
 
-        if ($keys !== $expected) {
+        $expectedWithDerivedPayload = [...$expected, 'derived_projection_payload'];
+        sort($expectedWithDerivedPayload);
+
+        if ($keys !== $expected && $keys !== $expectedWithDerivedPayload) {
             return ['valid' => false, 'reason' => 'LOGICAL_RECORD_FIELDS_MUST_MATCH_EXACT_CONTRACT'];
         }
 
@@ -411,6 +462,34 @@ final class InMemoryLogicalPersistenceRepositoryContract
             || ! is_array($record['private_fixture_extensions'])
         ) {
             return ['valid' => false, 'reason' => 'MALFORMED_LOGICAL_RECORD'];
+        }
+
+        $isRr03 = $record['record_family'] === self::RECORD_FAMILY_RR03;
+
+        if ($isRr03) {
+            if (! array_key_exists('derived_projection_payload', $record)
+                || ! is_array($record['derived_projection_payload'])
+                || ! $this->validRr03Payload($record['derived_projection_payload'])) {
+                return ['valid' => false, 'reason' => 'INVALID_RR03_DERIVED_PROJECTION_PAYLOAD'];
+            }
+
+            if (
+                ($record['source_revision']['authority_owner'] ?? null) !== 'RUNTIME_READINESS_DERIVATION'
+                || ($record['source_revision']['value'] ?? null) !== 0
+                || $record['source_condition'] !== CommonAuthorityEvidenceContract::CONDITION_PRESENT
+                || $record['authoritative_outcome'] !== CommonAuthorityEvidenceContract::OUTCOME_UNKNOWN
+                || $record['authoritative_outcome_metadata'] !== null
+            ) {
+                return ['valid' => false, 'reason' => 'INVALID_RR03_REVISION_OR_AUTHORITY_BOUNDARY'];
+            }
+        } elseif (($record['derived_projection_payload'] ?? null) !== null) {
+            return ['valid' => false, 'reason' => 'DERIVED_PAYLOAD_NOT_ALLOWED_FOR_RECORD_FAMILY'];
+        }
+
+        $fingerprintRecord = $record;
+
+        if (! $isRr03) {
+            unset($fingerprintRecord['derived_projection_payload']);
         }
 
         try {
@@ -512,7 +591,7 @@ final class InMemoryLogicalPersistenceRepositoryContract
 
         return [
             'valid' => true,
-            'input_fingerprint' => $this->fingerprint($record),
+            'input_fingerprint' => $this->fingerprint($fingerprintRecord),
             'intent_fingerprint' => $intentFingerprint,
             'record' => [
                 'record_kind' => 'IN_MEMORY_LOGICAL_PERSISTENCE_STORED_RECORD',
@@ -532,8 +611,219 @@ final class InMemoryLogicalPersistenceRepositoryContract
                 'transport_observation' => $record['transport_observation'],
                 'transport_authoritative_outcome' => $transportOutcome,
                 'source_evidence' => $evidence,
+                'derived_projection_payload' => $isRr03
+                    ? $record['derived_projection_payload']
+                    : null,
             ],
         ];
+    }
+
+    /** @param array<string, mixed> $payload */
+    private function validRr03Payload(array $payload): bool
+    {
+        if (! $this->hasExactKeys($payload, self::RR03_PAYLOAD_KEYS)
+            || ($payload['payload_kind'] ?? null) !== 'RR03_RUNTIME_READINESS'
+            || ($payload['derived_fact_class'] ?? null) !== RuntimeReadinessDerivedEvaluator::FACT_EFFECTIVE_READINESS
+            || ! in_array($payload['classification'] ?? null, [
+                RuntimeReadinessDerivedEvaluator::READINESS_READY,
+                RuntimeReadinessDerivedEvaluator::READINESS_NOT_READY,
+                RuntimeReadinessDerivedEvaluator::READINESS_UNKNOWN,
+            ], true)
+            || ! in_array($payload['prerequisite_set_state'] ?? null, [
+                RuntimeReadinessDerivedEvaluator::SET_KNOWN,
+                RuntimeReadinessDerivedEvaluator::SET_UNKNOWN,
+            ], true)
+            || ! $this->nullableNonEmptyString($payload['prerequisite_set_identity'] ?? null)
+            || ! $this->validNullableRevision($payload['prerequisite_set_revision'] ?? null)
+            || ! in_array($payload['prerequisite_set_condition'] ?? null, [
+                CommonAuthorityEvidenceContract::CONDITION_PRESENT,
+                CommonAuthorityEvidenceContract::CONDITION_ABSENT,
+                CommonAuthorityEvidenceContract::CONDITION_UNKNOWN,
+                CommonAuthorityEvidenceContract::CONDITION_UNAVAILABLE,
+                CommonAuthorityEvidenceContract::CONDITION_STALE,
+                CommonAuthorityEvidenceContract::CONDITION_SUPERSEDED,
+                CommonAuthorityEvidenceContract::CONDITION_INCOMPARABLE,
+                null,
+            ], true)
+            || ! $this->nullableBoolean($payload['prerequisite_set_currentness'] ?? null)
+            || ! $this->nullableBoolean($payload['prerequisite_set_freshness'] ?? null)
+            || ! $this->nullableNonEmptyString($payload['protected_use_scope'] ?? null)
+            || ! is_array($payload['reason_categories'] ?? null)
+            || ! array_is_list($payload['reason_categories'])
+            || count($payload['reason_categories']) !== count(array_unique($payload['reason_categories']))
+            || array_diff($payload['reason_categories'], self::RR03_REASON_CATEGORIES) !== []
+            || ! is_array($payload['dependencies'] ?? null)
+            || ! array_is_list($payload['dependencies'])
+            || ! is_array($payload['invalidation'] ?? null)
+            || $this->containsPrivateSentinel($payload)) {
+            return false;
+        }
+
+        $canonicalDependencies = [];
+        $canonicalTuples = [];
+
+        foreach ($payload['dependencies'] as $dependency) {
+            if (! is_array($dependency) || ! $this->validRr03Dependency($dependency)) {
+                return false;
+            }
+
+            $canonicalDependencies[] = $dependency;
+            $canonicalTuples[] = $this->fingerprint(array_intersect_key($dependency, array_flip([
+                'dependency_identity',
+                'fact_class',
+                'authority_owner',
+                'authority_scope',
+                'aggregate_context',
+                'source_lineage',
+                'source_revision_value',
+            ])));
+        }
+
+        $sortedDependencies = $canonicalDependencies;
+        usort($sortedDependencies, self::compareRr03Dependencies(...));
+
+        if ($canonicalDependencies !== $sortedDependencies
+            || count($canonicalTuples) !== count(array_unique($canonicalTuples))) {
+            return false;
+        }
+
+        $invalidation = $payload['invalidation'];
+
+        if (! $this->hasExactKeys($invalidation, ['invalidated', 'relation', 'dependency_identity'])
+            || ! is_bool($invalidation['invalidated'] ?? null)) {
+            return false;
+        }
+
+        if ($invalidation['invalidated'] === false) {
+            return $invalidation['relation'] === null && $invalidation['dependency_identity'] === null;
+        }
+
+        return in_array($invalidation['relation'] ?? null, [
+            CommonAuthorityEvidenceContract::INVALIDATION_CORRECTION,
+            CommonAuthorityEvidenceContract::INVALIDATION_REVOCATION,
+            CommonAuthorityEvidenceContract::INVALIDATION_SUPERSESSION,
+        ], true) && $this->nullableNonEmptyString($invalidation['dependency_identity'] ?? null)
+            && $invalidation['dependency_identity'] !== null;
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validRr03Dependency(array $dependency): bool
+    {
+        if (! $this->hasExactKeys($dependency, self::RR03_DEPENDENCY_KEYS)) {
+            return false;
+        }
+
+        foreach (['dependency_identity', 'authority_owner', 'authority_scope', 'aggregate_context', 'source_lineage'] as $key) {
+            if (! is_string($dependency[$key] ?? null) || $dependency[$key] === '') {
+                return false;
+            }
+        }
+
+        return in_array($dependency['fact_class'] ?? null, [
+            RuntimeReadinessDerivedEvaluator::FACT_ELIGIBILITY,
+            RuntimeReadinessDerivedEvaluator::FACT_CHECKLIST,
+            RuntimeReadinessDerivedEvaluator::FACT_VERIFICATION,
+        ], true)
+            && is_int($dependency['source_revision_value'] ?? null)
+            && $dependency['source_revision_value'] >= 0
+            && in_array($dependency['source_condition'] ?? null, [
+                CommonAuthorityEvidenceContract::CONDITION_PRESENT,
+                CommonAuthorityEvidenceContract::CONDITION_ABSENT,
+                CommonAuthorityEvidenceContract::CONDITION_UNKNOWN,
+                CommonAuthorityEvidenceContract::CONDITION_UNAVAILABLE,
+                CommonAuthorityEvidenceContract::CONDITION_STALE,
+                CommonAuthorityEvidenceContract::CONDITION_SUPERSEDED,
+                CommonAuthorityEvidenceContract::CONDITION_INCOMPARABLE,
+            ], true)
+            && $this->nullableBoolean($dependency['currentness'] ?? null)
+            && $this->nullableBoolean($dependency['freshness'] ?? null)
+            && in_array($dependency['prerequisite_outcome'] ?? null, [
+                RuntimeReadinessDerivedEvaluator::OUTCOME_SATISFIED,
+                RuntimeReadinessDerivedEvaluator::OUTCOME_UNSATISFIED,
+                null,
+            ], true);
+    }
+
+    /** @param array<string, mixed> $revision */
+    private function validNullableRevision(mixed $revision): bool
+    {
+        if ($revision === null) {
+            return true;
+        }
+
+        if (! is_array($revision)
+            || ! $this->hasExactKeys($revision, ['authority_owner', 'authority_scope', 'aggregate_context', 'lineage', 'value'])) {
+            return false;
+        }
+
+        foreach (['authority_owner', 'authority_scope', 'aggregate_context', 'lineage'] as $key) {
+            if (! is_string($revision[$key] ?? null) || $revision[$key] === '') {
+                return false;
+            }
+        }
+
+        return is_int($revision['value'] ?? null) && $revision['value'] >= 0;
+    }
+
+    private function nullableNonEmptyString(mixed $value): bool
+    {
+        return $value === null || (is_string($value) && $value !== '');
+    }
+
+    private function nullableBoolean(mixed $value): bool
+    {
+        return $value === null || is_bool($value);
+    }
+
+    /** @param array<string, mixed> $value @param list<string> $expected */
+    private function hasExactKeys(array $value, array $expected): bool
+    {
+        $keys = array_keys($value);
+        sort($keys);
+        sort($expected);
+
+        return $keys === $expected;
+    }
+
+    /** @param array<string, mixed> $left @param array<string, mixed> $right */
+    private static function compareRr03Dependencies(array $left, array $right): int
+    {
+        foreach ([
+            'dependency_identity',
+            'fact_class',
+            'authority_owner',
+            'authority_scope',
+            'aggregate_context',
+            'source_lineage',
+            'source_revision_value',
+        ] as $key) {
+            $comparison = $left[$key] <=> $right[$key];
+
+            if ($comparison !== 0) {
+                return $comparison;
+            }
+        }
+
+        return 0;
+    }
+
+    private function containsPrivateSentinel(mixed $value): bool
+    {
+        if (is_string($value)) {
+            return str_contains($value, 'MUST-NOT-LEAK');
+        }
+
+        if (! is_array($value)) {
+            return false;
+        }
+
+        foreach ($value as $nested) {
+            if ($this->containsPrivateSentinel($nested)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -570,6 +860,15 @@ final class InMemoryLogicalPersistenceRepositoryContract
         $invalidation = $this->invalidations[$identity] ?? null;
         $authoritativeMetadata = $record['authoritative_outcome_metadata'];
         $correctionMetadata = $record['correction_metadata'];
+        $derivedPayload = $record['derived_projection_payload'] ?? null;
+
+        if ($derivedPayload !== null && $invalidation !== null) {
+            $derivedPayload['invalidation'] = [
+                'invalidated' => true,
+                'relation' => $invalidation['relation'],
+                'dependency_identity' => $identity,
+            ];
+        }
 
         return [
             'record_kind' => 'PRIVACY_MINIMAL_LOGICAL_PERSISTENCE_PROJECTION',
@@ -607,6 +906,7 @@ final class InMemoryLogicalPersistenceRepositoryContract
             'transition_synthesized' => ($invalidation['transition_synthesized'] ?? false) === true,
             'transport_observation' => $record['transport_observation'],
             'transport_authoritative_outcome' => $record['transport_authoritative_outcome'],
+            ...($derivedPayload === null ? [] : ['derived_projection_payload' => $derivedPayload]),
             'transport_is_domain_outcome' => false,
             'source_authority' => false,
             'projection_authority' => false,

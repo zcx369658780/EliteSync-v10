@@ -58,6 +58,10 @@ final class SqliteInMemoryLogicalPersistenceAdapter
             return $validation;
         }
 
+        if (($record['record_family'] ?? null) !== InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_RR03) {
+            unset($record['derived_projection_payload']);
+        }
+
         $identity = $record['logical_record_identity'];
         $inputFingerprint = $this->fingerprint($record);
         $intentIdentity = $record['logical_intent']['intent_identity'];
@@ -586,6 +590,15 @@ final class SqliteInMemoryLogicalPersistenceAdapter
         $authoritativeMetadata = $record['authoritative_outcome_metadata'];
         $correctionMetadata = $record['correction_metadata'];
         $invalidationRelation = $this->invalidationRelation($record['logical_record_identity']);
+        $derivedPayload = $record['derived_projection_payload'] ?? null;
+
+        if ($derivedPayload !== null && $invalidationRelation !== null) {
+            $derivedPayload['invalidation'] = [
+                'invalidated' => true,
+                'relation' => $invalidationRelation,
+                'dependency_identity' => $record['logical_record_identity'],
+            ];
+        }
 
         return [
             'record_kind' => 'PRIVACY_MINIMAL_LOGICAL_PERSISTENCE_PROJECTION',
@@ -625,6 +638,7 @@ final class SqliteInMemoryLogicalPersistenceAdapter
             'transport_authoritative_outcome' => CommonAuthorityEvidenceContract::outcomeAfterTransport(
                 $record['transport_observation'],
             ),
+            ...($derivedPayload === null ? [] : ['derived_projection_payload' => $derivedPayload]),
             'transport_is_domain_outcome' => false,
             'source_authority' => false,
             'projection_authority' => false,
