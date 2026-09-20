@@ -84,6 +84,10 @@ final class RuntimeReadinessEvaluationTest extends TestCase
             $this->bindAdapter($graph['adapter']);
             $request = $this->requestFor($classification);
             $unchanged = $request;
+            $materializedProjectionUsable = $classification !== 'UNKNOWN';
+            $condition = $classification === 'UNKNOWN'
+                ? 'RR03_PROJECTION_READBACK_UNUSABLE_OR_MISMATCHED'
+                : 'EXACT_PRIVACY_MINIMAL_RR03_PROJECTION_MATERIALIZED';
 
             $response = $this
                 ->withServerVariables(['REMOTE_ADDR' => '192.0.2.10'])
@@ -96,11 +100,8 @@ final class RuntimeReadinessEvaluationTest extends TestCase
 
             $response->assertOk()
                 ->assertJsonPath('readiness_classification', $classification)
-                ->assertJsonPath('materialized_projection_usable', true)
-                ->assertJsonPath(
-                    'condition',
-                    'EXACT_PRIVACY_MINIMAL_RR03_PROJECTION_MATERIALIZED',
-                )
+                ->assertJsonPath('materialized_projection_usable', $materializedProjectionUsable)
+                ->assertJsonPath('condition', $condition)
                 ->assertJsonPath('synthetic_dev_test_only', true);
 
             $json = $response->json();
@@ -112,6 +113,11 @@ final class RuntimeReadinessEvaluationTest extends TestCase
                 'synthetic_dev_test_only',
             ], array_keys($json));
             self::assertIsArray($json['reason_categories']);
+
+            if ($classification === 'UNKNOWN') {
+                self::assertSame(['UNKNOWN_PREREQUISITE_SET'], $json['reason_categories']);
+            }
+
             self::assertSame($unchanged, $request);
             self::assertSame(1, $graph['persistence']->count());
             $this->assertPrivacyBoundary($response);
