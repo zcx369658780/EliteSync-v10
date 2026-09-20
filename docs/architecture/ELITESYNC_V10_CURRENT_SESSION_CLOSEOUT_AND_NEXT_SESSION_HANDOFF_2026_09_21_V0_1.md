@@ -810,8 +810,8 @@ This prevents application-layer arrival-order authority.
 The next session must:
 
 1. fresh-fetch current GitHub `main`;
-2. read this handoff first;
-3. read `AGENTS.md`;
+2. read `AGENTS.md` FIRST;
+3. read this handoff;
 4. read the R17 task;
 5. identify whether the R17 candidate was created from frozen authority `b0196202...`;
 6. compare candidate to `b0196202...`, not to the later handoff commit, for task-scope topology;
