@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\V2\AppHealthController;
 use App\Http\Controllers\Api\V2\AppReadinessController;
 use App\Http\Controllers\Api\V2\Contracts\LocationContractController;
 use App\Http\Controllers\Api\V2\Contracts\TransportEnvelopeController;
+use App\Http\Controllers\Api\V2\RuntimeReadiness\RuntimeReadinessEvaluationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v2')->middleware('secure.transport')->group(function () {
@@ -34,6 +35,7 @@ Route::prefix('v2')->middleware('secure.transport')->group(function () {
     Route::get('/app/readiness', AppReadinessController::class);
     Route::get('/contracts/location', LocationContractController::class);
     Route::post('/contracts/application-envelope', TransportEnvelopeController::class);
+    Route::post('/runtime-readiness/evaluations', RuntimeReadinessEvaluationController::class);
 });
 
 Route::prefix('v1')->group(function () {
