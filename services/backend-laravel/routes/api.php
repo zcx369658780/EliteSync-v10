@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\V1\StatusPostController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V2\AppHealthController;
 use App\Http\Controllers\Api\V2\AppReadinessController;
+use App\Http\Controllers\Api\V2\CanonicalMatch\CanonicalMatchEntryController;
 use App\Http\Controllers\Api\V2\Contracts\LocationContractController;
 use App\Http\Controllers\Api\V2\Contracts\TransportEnvelopeController;
 use App\Http\Controllers\Api\V2\RuntimeReadiness\RuntimeReadinessEvaluationController;
@@ -35,6 +36,8 @@ Route::prefix('v2')->middleware('secure.transport')->group(function () {
     Route::get('/app/readiness', AppReadinessController::class);
     Route::get('/contracts/location', LocationContractController::class);
     Route::post('/contracts/application-envelope', TransportEnvelopeController::class);
+    Route::post('/canonical-match/evaluations', [CanonicalMatchEntryController::class, 'evaluate']);
+    Route::post('/canonical-match/invalidations', [CanonicalMatchEntryController::class, 'invalidate']);
     Route::post('/runtime-readiness/evaluations', RuntimeReadinessEvaluationController::class);
 });
 
