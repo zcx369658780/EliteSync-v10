@@ -603,7 +603,7 @@ final class CanonicalMatchPersistenceApplicationAdapter
             'subject' => $sourceBindings['subject'],
             'participants' => $participants,
             'audience' => $sourceBindings['audience'],
-            'purpose' => $sourceBindings['purpose'],
+            'purpose' => $payload['protected_use_scope'],
             'aggregate_context' => $payload['proposal_identity'],
         ];
         $bindings = [
@@ -614,7 +614,7 @@ final class CanonicalMatchPersistenceApplicationAdapter
             'subject' => $sourceBindings['subject'],
             'participants' => $participants,
             'audience' => $sourceBindings['audience'],
-            'purpose' => $sourceBindings['purpose'],
+            'purpose' => $payload['protected_use_scope'],
             'aggregate_context' => $payload['proposal_identity'],
             'lifecycle_identity' => 'canonical-match-lifecycle-v1:'.$this->digest($lifecycleBasis),
             'terminal' => $payload['terminality']['derived_terminal'],

@@ -115,6 +115,92 @@ final class CanonicalMatchPersistenceApplicationAdapterTest extends TestCase
         self::assertStringNotContainsString('MUST-NOT-LEAK', serialize($result));
     }
 
+    public function test_source_purpose_mismatch_remains_persistable_unknown_with_derived_protected_use_purpose(): void
+    {
+        [$adapter, $application] = $this->adapter();
+        $request = $this->request();
+        $request['proposal']['required_bindings']['purpose'] = 'SYNTHETIC_OTHER_PURPOSE';
+        $request['proposal']['source_evidence']['bindings']['purpose'] = 'SYNTHETIC_OTHER_PURPOSE';
+        $before = $request;
+        $result = $adapter->evaluateSynthetic($request);
+
+        self::assertSame($before, $request);
+        self::assertSame('SYNTHETIC_OTHER_PURPOSE', $request['proposal']['required_bindings']['purpose']);
+        self::assertSame('SYNTHETIC_OTHER_PURPOSE', $request['proposal']['source_evidence']['bindings']['purpose']);
+        self::assertSame('UNKNOWN', $result['match_classification']);
+        self::assertSame(['PROPOSAL_NOT_CURRENT_FRESH_AUTHORITATIVE'], $result['reason_categories']);
+        self::assertSame(InMemoryLogicalPersistenceRepositoryContract::STORED_NEW, $result['storage_disposition']);
+        self::assertNotSame(InMemoryLogicalPersistenceRepositoryContract::INVALID_RECORD_REJECTED, $result['storage_disposition']);
+        self::assertSame('SYNTHETIC_MATCH_REVIEW', $result['match_payload']['protected_use_scope']);
+        self::assertCount(0, $result['match_payload']['participation_dependencies']);
+        self::assertCount(0, $result['match_payload']['decision_slot_dependencies']);
+        self::assertSame(InMemoryLogicalPersistenceRepositoryContract::UNKNOWN, $result['projection_read_disposition']);
+        self::assertSame('EXACT', $result['binding_classification']);
+        self::assertFalse($result['materialized_projection_usable']);
+        self::assertSame(
+            'CANONICAL_MATCH_PROJECTION_READBACK_UNUSABLE_OR_MISMATCHED',
+            $result['condition'],
+        );
+
+        $record = $this->invokePrivate(
+            $adapter,
+            'buildRecord',
+            [$result['match_payload'], $request['proposal']],
+        );
+        self::assertSame('SYNTHETIC_MATCH_REVIEW', $record['bindings']['purpose']);
+        self::assertNull($record['currentness']);
+        self::assertNull($record['freshness']);
+
+        $lifecycleBasis = [
+            'record_family' => InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_CANONICAL_MATCH,
+            'proposal_identity' => 'synthetic-proposal',
+            'protected_use_scope' => 'SYNTHETIC_MATCH_REVIEW',
+            'subject' => 'synthetic-subject',
+            'participants' => ['synthetic-member-a', 'synthetic-member-b'],
+            'audience' => 'SYNTHETIC_AUDIENCE',
+            'purpose' => 'SYNTHETIC_MATCH_REVIEW',
+            'aggregate_context' => 'synthetic-proposal',
+        ];
+        self::assertSame(
+            'canonical-match-lifecycle-v1:'.$this->invokePrivate($adapter, 'digest', [$lifecycleBasis]),
+            $record['bindings']['lifecycle_identity'],
+        );
+
+        $query = [
+            'record_family' => InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_CANONICAL_MATCH,
+            'authority_owner' => 'CANONICAL_MATCH_DERIVATION',
+            'authority_scope' => 'CANONICAL_MATCH_PROPOSAL_DECISION|SYNTHETIC_MATCH_REVIEW',
+            'aggregate_context' => 'synthetic-proposal',
+            'lineage' => $result['source_projection_lineage'],
+        ];
+        $requestBindings = [
+            'viewer' => 'synthetic-actor',
+            'subject' => 'synthetic-subject',
+            'participants' => ['synthetic-member-a', 'synthetic-member-b'],
+            'audience' => 'SYNTHETIC_AUDIENCE',
+            'purpose' => 'SYNTHETIC_MATCH_REVIEW',
+            'aggregate_context' => 'synthetic-proposal',
+        ];
+        $readback = $application->retrieveCurrentProjection($query, $requestBindings);
+        self::assertSame('EXACT', $readback['binding_classification']);
+        self::assertSame($result['match_payload'], $readback['projection']['derived_projection_payload']);
+        self::assertSame('SYNTHETIC_MATCH_REVIEW', $readback['projection']['purpose']);
+        self::assertNull($readback['projection']['currentness']);
+        self::assertNull($readback['projection']['freshness']);
+
+        $sourcePurposeRead = $application->retrieveCurrentProjection(
+            $query,
+            [...$requestBindings, 'purpose' => 'SYNTHETIC_OTHER_PURPOSE'],
+        );
+        self::assertSame('MISMATCH', $sourcePurposeRead['binding_classification']);
+        self::assertNull($sourcePurposeRead['projection']);
+        self::assertStringNotContainsString('SYNTHETIC_OTHER_PURPOSE', serialize($result));
+
+        foreach (['source_authority', 'match_authority', 'permission', 'bearer_capability'] as $field) {
+            self::assertFalse($result[$field]);
+        }
+    }
+
     public function test_terminal_classifications_and_semantic_unknown_materialize_with_exact_sticky_shape(): void
     {
         foreach ([
