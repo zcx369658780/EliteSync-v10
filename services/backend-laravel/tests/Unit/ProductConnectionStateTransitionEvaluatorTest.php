@@ -351,6 +351,218 @@ final class ProductConnectionStateTransitionEvaluatorTest extends TestCase
         self::assertSame($olderFirst, $newerFirst);
     }
 
+    public function testR17F1StateMultisetSelectsActiveMaximalRevisionAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 8),
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::STATE_ACTIVE, $result['classification']);
+        self::assertSame(8, $result['dependency_vector']['current_state']['source_revision']['value']);
+    }
+
+    public function testR17F1StateShapeSelectsOtherMaximalSemanticVariantAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 8),
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::STATE_PENDING, $result['classification']);
+        self::assertSame(8, $result['dependency_vector']['current_state']['source_revision']['value']);
+    }
+
+    public function testIdenticalMaximalStateTieConvergesAcrossAllPermutations(): void
+    {
+        $maximal = $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 8);
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 7),
+            $maximal,
+            $maximal,
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::STATE_ACTIVE, $result['classification']);
+        self::assertSame(8, $result['dependency_vector']['current_state']['source_revision']['value']);
+    }
+
+    public function testConflictingMaximalStateTieFailsClosedAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_NONE, revision: 6),
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 8),
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 8),
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::DERIVED_UNKNOWN, $result['classification']);
+        self::assertSame(['CONFLICTING_EQUAL_REVISION_STATE_EVIDENCE'], $result['reasons']);
+        self::assertNull($result['dependency_vector']['current_state']);
+    }
+
+    public function testLongComparableStateChainSelectsMaximalRevisionAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_NONE, revision: 5),
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 6),
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_PAUSED, revision: 8),
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::STATE_PAUSED, $result['classification']);
+        self::assertSame(8, $result['dependency_vector']['current_state']['source_revision']['value']);
+    }
+
+    public function testIncomparableStateNamespaceFailsClosedAcrossAllPermutations(): void
+    {
+        $otherLineage = $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 8);
+        $otherLineage['source_evidence']['source_revision'] = CommonContract::sourceRevision(
+            'synthetic-connection-authority',
+            'synthetic-connection-scope',
+            'synthetic-connection-lineage-B',
+            'synthetic-connection-A',
+            8,
+        );
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 7),
+            $otherLineage,
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(['INCOMPARABLE_DUPLICATE_STATE_EVIDENCE'], $result['reasons']);
+    }
+
+    public function testDifferentStateEvidenceIdentityFailsClosedAcrossAllPermutations(): void
+    {
+        $otherIdentity = $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 8);
+        $otherIdentity['state_evidence_identity'] = 'synthetic-state-evidence-B';
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_PENDING, revision: 7),
+            $otherIdentity,
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(['CONFLICTING_STATE_EVIDENCE_IDENTITY'], $result['reasons']);
+    }
+
+    public function testNewerUnusableStateStillControlsAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->stateEvidence(Evaluator::STATE_ACTIVE, revision: 7),
+            $this->stateEvidence(Evaluator::STATE_PENDING, freshness: false, revision: 8),
+        ], fn (array $permutation): array => Evaluator::evaluateCurrent($this->connection(), $permutation));
+
+        self::assertSame(Evaluator::DERIVED_UNKNOWN, $result['classification']);
+        self::assertSame(['CURRENT_STATE_NOT_CURRENT_FRESH_BOUND'], $result['reasons']);
+        self::assertSame(8, $result['dependency_vector']['current_state']['source_revision']['value']);
+    }
+
+    public function testR17F1TransitionAnalogueSelectsMaximalRevisionAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 8),
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_DECLINED, revision: 8),
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 9),
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(Evaluator::TRANSITION_ADMISSIBLE, $result['classification']);
+        self::assertSame(Evaluator::STATE_ACTIVE, $result['proposed_state']);
+        self::assertSame(9, $result['dependency_vector']['transition']['source_revision']['value']);
+    }
+
+    public function testMaximalTransitionTieWithDifferentExpectedRevisionFailsClosedAcrossAllPermutations(): void
+    {
+        $differentExpectedRevision = $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 10);
+        $differentExpectedRevision['expected_state_revision']['value'] = 6;
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 10),
+            $differentExpectedRevision,
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(['CONFLICTING_EQUAL_REVISION_TRANSITION_EVIDENCE'], $result['reasons']);
+        self::assertArrayNotHasKey('transition', $result['dependency_vector']);
+    }
+
+    public function testMaximalTransitionTieWithDifferentFromToSemanticsFailsClosedAcrossAllPermutations(): void
+    {
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 10),
+            $this->transitionEvidence(Evaluator::STATE_ACTIVE, Evaluator::STATE_PAUSED, revision: 10),
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(['CONFLICTING_EQUAL_REVISION_TRANSITION_EVIDENCE'], $result['reasons']);
+        self::assertArrayNotHasKey('transition', $result['dependency_vector']);
+    }
+
+    public function testDominatedTransitionDifferencesDoNotPoisonUniqueMaximalRevision(): void
+    {
+        $differentExpectedRevision = $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 8);
+        $differentExpectedRevision['expected_state_revision']['value'] = 6;
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_DECLINED, revision: 8),
+            $differentExpectedRevision,
+            $this->transitionEvidence(Evaluator::STATE_ACTIVE, Evaluator::STATE_PAUSED, revision: 7),
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 9),
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(Evaluator::TRANSITION_ADMISSIBLE, $result['classification']);
+        self::assertSame(Evaluator::STATE_ACTIVE, $result['proposed_state']);
+        self::assertSame(9, $result['dependency_vector']['transition']['source_revision']['value']);
+    }
+
+    public function testIncomparableTransitionNamespaceFailsClosedAcrossAllPermutations(): void
+    {
+        $otherLineage = $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 10);
+        $otherLineage['source_evidence']['source_revision'] = CommonContract::sourceRevision(
+            'synthetic-transition-authority',
+            'synthetic-transition-scope',
+            'synthetic-transition-lineage-B',
+            'synthetic-connection-A',
+            10,
+        );
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 9),
+            $otherLineage,
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(['INCOMPARABLE_DUPLICATE_TRANSITION_EVIDENCE'], $result['reasons']);
+    }
+
+    public function testDifferentTransitionIdentityFailsClosedAcrossAllPermutations(): void
+    {
+        $otherIdentity = $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 10);
+        $otherIdentity['transition_identity'] = 'synthetic-transition-B';
+        $result = $this->assertPermutationResults([
+            $this->transitionEvidence(Evaluator::STATE_PENDING, Evaluator::STATE_ACTIVE, revision: 9),
+            $otherIdentity,
+        ], fn (array $permutation): array => Evaluator::evaluateTransition(
+            $this->connection(),
+            [$this->stateEvidence(Evaluator::STATE_PENDING)],
+            $permutation,
+        ));
+
+        self::assertSame(['CONFLICTING_TRANSITION_IDENTITY'], $result['reasons']);
+    }
+
     public function testNoGlobalRevisionOrLastReceivedWinsFieldExists(): void
     {
         $result = Evaluator::evaluateCurrent($this->connection(), [$this->stateEvidence(Evaluator::STATE_PENDING)]);
@@ -452,6 +664,58 @@ final class ProductConnectionStateTransitionEvaluatorTest extends TestCase
             [$this->stateEvidence($from)],
             [$this->transitionEvidence($from, $to)],
         );
+    }
+
+    /**
+     * @param list<array<string, mixed>> $items
+     * @param callable(list<array<string, mixed>>): array<string, mixed> $evaluate
+     * @return array<string, mixed>
+     */
+    private function assertPermutationResults(array $items, callable $evaluate): array
+    {
+        $expected = null;
+
+        foreach ($this->permutations($items) as $permutation) {
+            $result = $evaluate($permutation);
+
+            if ($expected === null) {
+                $expected = $result;
+                continue;
+            }
+
+            self::assertSame($expected, $result);
+        }
+
+        if ($expected === null) {
+            self::fail('At least one permutation is required.');
+        }
+
+        return $expected;
+    }
+
+    /**
+     * @param list<array<string, mixed>> $items
+     * @return list<list<array<string, mixed>>>
+     */
+    private function permutations(array $items): array
+    {
+        if (count($items) <= 1) {
+            return [$items];
+        }
+
+        $permutations = [];
+
+        foreach (array_keys($items) as $index) {
+            $remaining = $items;
+            $selected = array_splice($remaining, $index, 1)[0];
+
+            foreach ($this->permutations(array_values($remaining)) as $permutation) {
+                array_unshift($permutation, $selected);
+                $permutations[] = $permutation;
+            }
+        }
+
+        return $permutations;
     }
 
     /** @return array<string, mixed> */
