@@ -1,102 +1,103 @@
-# EliteSync v10 当前上下文与近期决定 v0.1
+# EliteSync v10｜当前上下文与交付入口
 
-发布状态：`PROPOSED — AWAITING INDEPENDENT REVIEW — M3 PRECONDITION BLOCKED — EXPECTED_OWNER_SANDBOX_SESSION_NOT_AVAILABLE — NO GUEST EXECUTION — NO M2`
+维护版本：2026-09-21（Asia/Singapore）。
 
-更新日期：2026-09-10（Asia/Shanghai）。当前权威基线为`a41158c93c134d8f53db11c90c2f5461ba0523d1`；R6-R4-R7在初始WSB门发现0个running Sandbox，按固定规则停止，未执行guest、Flutter-tools pub、M3或AAR probe。
-## 1. 当前入口和生命周期
+本次整理状态：`PROPOSED — INDEPENDENT REVIEW REQUIRED — NO IMPLEMENTATION AUTHORIZED`。
 
-当前权威main为`a41158c93c134d8f53db11c90c2f5461ba0523d1`；FIRST blob `18485c95262051e43892436fb52413132c5ee626`匹配并先读取。R6-R4-R7 task `0a88b97502931c50ae2f22c0a1a9d07f6ae3e635`、blob `5d89617efb19b6ed873213e99aba02961126598c`唯一父为main，ahead=1/behind=0且仅新增task；R6 result与CURRENT_CONTEXT blobs匹配。
+事实快照基线：`67b14d97732fe831e4ac9321373a8a0a6f7d22f9`。这是证据日期的 base，不是未来 main 必须等于的常量。每轮按明确任务 fresh-fetch；本版本只有在独立接受记录绑定精确 blob 并进入 main 后才作为新入口生效。
 
-Owner直接激活；GPT-5.6 Sol、Medium，未改模型配置或调用辅助代理。host controller parser/static PASS，纠正0/1，SHA=`C7217133C0200EAEA81DB81887958047099ADEDF762D24E9ADA2B5C4476A3A39`；预生成nonce=`M3-ISO-V02-008-R6R4R7-ac0528cb546a49228dfb9448def18324`，但未建立guest绑定。
+## 1. 当前结论
 
-WSB CLI 0.8.107.0的initial list返回0个running Sandbox，不满足预期ID。最终分类 **M3 PRECONDITION BLOCKED — EXPECTED_OWNER_SANDBOX_SESSION_NOT_AVAILABLE**。未调用wsb exec/share/stop或新建Sandbox。
+`PRODUCT_CONNECTION_SELECTED — R17_CANDIDATE_REJECTED — PRODUCT_IMPLEMENTATION_PAUSED — PLANNING_DOCUMENT_OPTIMIZATION_ONLY`
 
-coverage/cache、package_config/snapshot、Dart、Flutter-tools pub均NOT_CHECKED/NOT_RUN；M3 NOT_RUN，AAR NOT_CHECKED/probe=0，M2 deferred。
+Owner 本轮授权优化项目计划、路线及必要项目源，并要求给出 Codex 同步入口；不是恢复 R17 修复、发布 R18 或启动 Messaging 的授权。
 
-B/E均7文件、2目录、15636 bytes，view SHA=`F74474573DFE2186AD9773D2B5852D80AFE2752A01A49064D9A561DA954A2B69`。final WSB list仍为0个running Sandbox，未执行控制动作。
-## 2. 产品目标与概念基础
+R17 独立拒绝记录：
+`docs/architecture/ELITESYNC_V10_IP_13I_R17_CANDIDATE_INDEPENDENT_REVIEW_V0_1.md`
+blob `415ee64eb70894eed21eee97e58762307d6e408f`。
 
-来源是固定原基线 `0f3db3e00975d95d4145954dc69f7f55d7dee1d0` 下的 `docs/architecture/ELITESYNC_V10_PHASE_35_CURRENT_SESSION_HANDOFF_V0_1.md` §§3–4（blob `3699f51b91ea563e0e2a81d6912c87ad53d1b3df`）。下列为该记录中的已接受OD与Safety语义摘要，不是重新接受全部上游ADR。
+候选 `6af50b3cdf82ac8bc285bd160f773b48b29f1328` / result `14d92368dbb6a3e7ab2ed6c0cbcf4b149f831ac8` 未接受、未合入。拓扑通过；拒绝源于 evaluator 在“旧等修订冲突 + 更高修订”组合下顺序敏感，以及后继来源清单缺项。
 
-EliteSync是在不确定条件下支持人类审慎探索关系的Relationship Decision Support System，不是AI关系裁判、自动配对裁判或以提高参与度为目标的系统。v10拥有新架构权威，9.x不提供自动继承许可。
+9 月 21 日交接 blob `ed36cab735c57f57d516400cf549dec2a1bae8db` 保留为完成会话的历史上下文；其中 R17 IN FLIGHT 已被上述拒绝记录更新。原 R17 冻结 authority `b0196202c78f688723600ac9919cf96463908375` 仍是其历史审查基线，不因本轮文档改变而要求重写旧候选。
 
-`Match ≠ Connection ≠ Conversation ≠ Relationship`。AI只做辅助，不是事实、关系、同意、罪责或自主Safety权威。用户声明不等于客观事实，AI输出不等于已验证事实，私密Conversation不是默认训练数据。
+## 2. 只读所需的四类入口
 
-七个概念责任上下文为Identity、Personality、Compatibility、Matching、Conversation、Relationship、Safety；这是概念责任边界，不要求实现七个服务或七个数据库。信息权威按Meaning、Provenance、Purpose、Lifecycle区分。
+| 文件 | 职责 | 不能替代 |
+|---|---|---|
+| `AGENTS.md` | 稳定协作和保护规则 | 本轮授权 |
+| 本文件 | 当前状态、活动边界及 lane | 代码/测试事实源 |
+| `ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md` | 产品交付里程碑与依赖 | 精确任务单 |
+| `ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md` | 固定来源、纠正/继承关系 | 被引用的原文 |
 
-Privacy、Safety、User Control优先；Explainability、Reliability、Fairness、Auditability作为支撑约束。Safety证据不得进入普通Compatibility／Ranking或公开声誉、恋爱价值、信任度等评分；最小必要执行控制指令不等于Safety证据。
+工作方式见同目录 `ELITESYNC_V10_DELIVERY_WORKFLOW_AND_TASK_CONTRACT_V0_1.md`。路径引用不是自动读取所有来源的授权。
 
-Block不等于Report；举报只说明有人提交关切，不证明违法或不当行为。Allegation不等于Finding；即时保护不等于罪责或惩罚；未推进不证明举报者说谎；未知不等于假、不等于安全。未来限定的Safety-only运营风险评估仍为NOT DECIDED。
+## 3. 进度必须按交付层区分
 
-## 3. 必须保留的当前边界
+| 层/能力 | 本轮证据支持的状态 | 尚不能宣称 |
+|---|---|---|
+| 产品目标 | Owner 已接受 15-domain 设计与四栏 IA | 生产功能全部完成 |
+| 客户端契约/界面基础 | APP-T12 rerun 结果已存在 main，记录 11-area 静态集成矩阵及 retained gaps | 本轮重新验收全部客户端；可运行/可安装 MVP 已证明 |
+| Runtime Readiness | 最新交接记录 synthetic/dev-test 纵向切片接受至 HTTP | 真实身份保证、生产 readiness authority |
+| Canonical Match | 最新交接记录 synthetic/dev-test 切片接受至 HTTP | 自动 Connection、实际生产 matching/mutation authority |
+| Product Connection | 历史 evaluator 接受、R15-R1 reason 与 R16-R1 record/cross-field 契约保留；R17 新反例未解决 | persistence family / application adapter / HTTP 已完成 |
+| Messaging / Conversation | 客户端契约基础已有报告；运行边界受 Connection 和 messaging consent 依赖阻塞 | 真实读/发消息权限 |
+| Calm Home / Notifications | 静态/隐私展示已有报告；live projection 与 delivery 仍属后续 | 活态摘要或 OS delivery 已接受 |
+| 客户端工具链/恢复链 | 独立 lane；本轮无运行、安装、缓存或构建新证据 | 恢复成功、全局构建失败或全局无产物 |
+| 真实内测/生产 | 独立授权与成熟度门槛尚未开放 | 可以采集数据、部署或上线 |
 
-以下承接转型交接§§3、8及已接受报告，不是本次重新作出的法律或技术结论。
+APP-T12 证据：`ELITESYNC_V10_APP_T12_MVP_INTEGRATION_ACCEPTANCE_RERUN_RESULT_V0_1.md`，blob `4c00def5a94a117c8d9812996baf193de4a4aeb1`。结果内的 ACCEPTED 是当时契约/静态范围的分类；该文还保留 candidate-only 文本。本轮核实其 main 内容，不用“在 main”替代其完整独立接受链，不据此授权新实现，也不把当时未运行的 Flutter 测试写成通过。
 
-- README documentary-read budget耗尽；FD02永久排除；禁止仓库／目录枚举、文件名／代码搜索及递归发现。不得访问旧 `D:\EliteSync` 或源仓库 `zcx369658780/EliteSync`。
-- 受保护无关staged state不得检查、修改、unstage、覆盖、丢弃、reset、clean、提交、引用、总结或使用。文档精简不能撤销这一保护。
-- D-02 unresolved／`D02-DURABLE-UNKNOWN-01`；U-14 exclusion；U-12 exact-scope target rules；`TP-SOURCE-CLASS-01`；`TP-TARGET-01`保持。
-- Backend `0/10 NOT INSPECTED / NOT AUTHORIZED`；Database `0/8 NOT INSPECTED / NOT AUTHORIZED`；deferred PUI；PUI-PREREQ-12=`0`保持。
-- accepted legal／Safety／no-processing边界保持；implementation、LC-03、LC-04、Phase36未授权。不得开展参与者研究／招募、业务数据活动、private-Conversation检查、telemetry／analytics／measurement、Safety Operations、新法律研究或技术实现。
+## 4. 产品与架构不变项
 
-沿用既有结论：`CORE PRE-ALPHA LEGAL BOUNDARY IS SUBSTANTIALLY COMPLETE; PRODUCTION LEGAL READINESS IS DEFERRED TO MATERIAL MATURITY TRIGGERS.` 法律不重新成为当前关键路径；这不表示生产法律准备已完成。
+目标：calm, consent-sequenced Relationship Decision Support System；体验为状态、权限、下一步、原因、退出路径清楚，不以更多 Match、消息或停留时间为目标。
 
-M1一次性冻结目标lane耗尽，结果为 `False / WORKTREE-STATE NON-HIT ONLY`，证据根仍为 `D:\EliteSync-v10`；不推论全局产物不存在、构建失败、集成无效或依赖解析失败。M2保持deferred。
+`Home | Progress | Messages | Me`；Progress 仅是导航容器。Explore 与 Relationship 支持为 Phase 2，optional AI/reference signals 为 Later/Optional，不变成 MVP 阻塞。
 
-M3保持blocked；已接受预检是Outcome B。选定的未来方法类别仍为direct `flutter build aar --no-debug --no-profile`及既有dart-define参数；这里仅记录历史类别，不是可运行命令授权。网络、缓存／工具状态、附带写入范围和安全前置检查仍未闭合。不得忽略生成型 `.android` 状态；本轮不读取它。
+`Match != Connection != Conversation != Relationship`。各阶段分别授权；Match 不自动创建 Connection，Connection 不自动开放 Conversation，Conversation 活跃度不推断 Relationship。Private Identity / Matching Inputs / Readiness / Showcase 分离；MVP 无 globally public Profile、无单一权威 Compatibility 总分。
 
-`METHOD CLASS ≠ EXECUTION AUTHORITY`；`GENERATION SUCCESS ≠ DEPENDENCY-RESOLUTION SUCCESS`；`GENERATION FAILURE ≠ INVALID INTEGRATION`；`COMMAND EXIT 0 ≠ RELEASE ARTIFACT PRODUCTION PROVEN`。未来新的一次性生成后证据方法仅原则上可支持，不授权重试M1或artifact probe。
+信息按 Meaning / Provenance / Purpose / Lifecycle Authority 区分；七个概念责任上下文不是七个服务或数据库的实现要求。用户声明不是客观事实，AI 输出不是已验证事实，Safety 证据不是 Compatibility/Ranking/reputation 输入，private Conversation 不是默认 AI/training/ranking/ads 数据。
 
-旧M3任务 `8b640576822b01ae00bb04b9b5deaa75db53365c` 已编写但Owner和原交接记录尚未执行，不得恢复；原任务不因本次文档修订自动重获执行权。本转型中禁止Flutter／Dart／Gradle／Java／Android工具、syncFlutterAar、依赖解析、前置检查、缓存／环境或生成输出检查。
+Privacy、Safety、User Control 优先；Explainability、Reliability、Fairness、Auditability 支撑。Block != Report；Report/Allegation != Finding；即时保护不等于罪责；未推进不证明举报者说谎；UNKNOWN != FALSE/SAFE。
 
-## 4. 近期交付路线：以结果里程碑推进
+## 5. Product Connection 保留基线
 
-以下最多六项整合已有证据与未来建议，未授权部分均为规划建议；不虚构完成百分比或日期。
+`NEXT_DOMAIN = PRODUCT_CONNECTION`；`MATCH_RESULT_UNUSED_AND_NON_PARTICIPATING`。
 
-| 结果里程碑 | 当前证据/状态 | 完成条件及下一决定 |
-| --- | --- | --- |
-| 1 已接受产品与治理基础 | 文档审查及指令修订已接受；§2产品与§3边界保留 | 不重开已闭合关口；同步仅保留既有证据层级 |
-| 2 M3生成与M2后续依赖证据 | R6-R4-R7初始WSB list为0，未执行guest/pub/M3/AAR | 下一关口为fresh独立审查；不得自行新建Sandbox或续跑；M2 deferred |
-| 3 可安装Owner演示版（规划建议） | 实现未授权 | 获得明确平台/功能与实现范围后，优先一平台、一主流程、明确标识的虚构样例 |
-| 4 主流程贯通的最小内测候选（规划建议） | 未实现、未验证 | 在获授权范围形成可演示贯通流程并作必要验证 |
-| 5 真实内测准备（规划建议） | U-05/U-08/U-10等缺口仍在 | 按具体活动补参与者/数据、安全、可访问性及发布准备 |
-| 6 反馈驱动迭代（规划建议） | 尚无对应真实内测证据 | 获合法活动授权后收集和使用具体反馈，按证据调整 |
+family `PRODUCT_CONNECTION_STATE_TRANSITION_DERIVED_PROJECTION`；facts `PRODUCT_CONNECTION_CURRENT_STATE_DERIVATION` / `PRODUCT_CONNECTION_TRANSITION_DERIVATION`；Binding Model A 为 derivation-owned deterministic non-authoritative correlation bindings。
 
-本轮只建立了预期Owner Sandbox不可用证据；没有Flutter-tools context、M3、AAR或M2新证据。无新增固定任务时不续行。
-## 5. 精确来源与覆盖缺口
+两类 typed dependency 的 `protected_binding_satisfied` 是非权威验证元数据。fully usable 当且仅当它为 true，source_condition=PRESENT，currentness=true，freshness=true。保留 6 个 structural diagnostics、8/19 persisted reasons、R16-R1 dependency-presence/context/revision matrix、当前状态 terminality 及失效时上下文保留。
 
-GitHub稳定路径维护正文；不为本候选更新ChatGPT项目源。已接受来源保留原权限层级。
+`GENERIC_PROJECTION_INVALIDATION != PRODUCT_CONNECTION_DEPENDENCY_INVALIDATION`；`EXACT_MATERIALIZATION != PROTECTED_USE_VALIDITY`；UNKNOWN/REJECTED 不因精确存取变成可用；`TRANSITION_ADMISSIBLE != AUTHORITATIVE_STATE_CHANGE`。
 
-| 来源 | 版本与用途 |
-| --- | --- |
-| 当前main | `a41158c93c134d8f53db11c90c2f5461ba0523d1`；已接受R6-R4-R6状态 |
-| [转型交接](ELITESYNC_V10_GPT6_ASTRA_SYSTEM_DOCUMENTATION_TRANSITION_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_V0_1.md) | `18485c95262051e43892436fb52413132c5ee626`；FIRST与历史边界 |
-| [v0.8-R6-R4-R6结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_DIRECT_FLUTTER_TOOLS_SNAPSHOT_AND_EXECUTION_RESULT_V0_8_R6_R4_R6.md) | `56d530e1010db57bfa2dabb27f337e083ef5a844`；已接受direct snapshot网络尝试事实 |
-| [v0.8-R6-R4-R7任务](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_TOOLS_OFFLINE_CONTEXT_AND_EXECUTION_TASK_V0_8_R6_R4_R7.md) | `0a88b97502931c50ae2f22c0a1a9d07f6ae3e635` / `5d89617efb19b6ed873213e99aba02961126598c`；Flutter-tools offline context及条件式M3合同 |
-| [v0.8-R6-R4-R7结果](ELITESYNC_V10_H01_BIB03_U15_TD01_M3_FLUTTER_TOOLS_OFFLINE_CONTEXT_AND_EXECUTION_RESULT_V0_8_R6_R4_R7.md) | 本候选新增；0个running Sandbox，guest未执行 |
+R17-F1 的 conflict precedence 尚未裁定。本次不排序/过滤 evidence 来绕过 evaluator，不发明 reason，不修改现有源码。R17-F2 的有效来源继承已在索引显式列出；清单补全不是 R17 接受或 F1 修复。
 
-本轮CURRENT_CONTEXT从main UTF-8 blob `d25c5d86bdb1aafed4c48e1283f2337a454e2088`开始；§2/§3/§6/§7逐字保留。
+## 6. 有界缺口与独立 lane
 
-controller SHA=`C7217133C0200EAEA81DB81887958047099ADEDF762D24E9ADA2B5C4476A3A39`。Flutter-tools pub NOT_RUN，M3 NOT_RUN，AAR NOT_CHECKED/probe=0。
+| 缺口 | 影响范围 | 本次处置 |
+|---|---|---|
+| R17-F1 / F2 | Connection 映射接受与其下游 | 保持拒绝/暂停；仅记录未来有界处理位置 |
+| launch eligibility / minimum identity assurance | 对应真实资格与身份保证 | UNKNOWN，不阻塞无身份推断的文档工作 |
+| exact proposal expiry | Match 具体到期行为 | 不从旧 countdown 继承 |
+| Conversation retention/export/deletion/revoke/closed history | 共享内容与真实数据权利 | 无生产默认值，成熟度触发专项决定 |
+| auth/session/token、durable authority writers、生产持久化/部署 | 真实端到端执行 | 未授权，不能被 derived HTTP 切片抵消 |
+| 客户端运行验证及兼容性债务 | 集成/迁移交付 | 沿用 APP-T12 G-11/G-12，不重复产品设计 |
+| Sandbox/DEP13/B12/M2/M3 | 客户端构建与恢复 lane | 不由后端或文档任务自动恢复 |
+| Phase-2 工具及 optional AI/reference allowlist | 可选后续能力 | deferred/UNKNOWN，不扩核心 MVP |
 
-B/E一致；final WSB list为0。下一关口是fresh独立ACCEPT/REJECT，不授权新Sandbox或续跑。
-## 6. 官方规范的有限采用
+M1 冻结 lane 耗尽；其 NON-HIT 不证明全局 artifact 不存在或构建失败。M2 deferred；M3/DEP13 未解除；保留 `WRITABLE_CONTINUATION_SHARE_FAILED — exit -2147024809 — Value does not fall within the expected range.` 历史事实，B12 未授权。本轮不重新检查运行环境。
 
-核验日期2026-09-07；实际模型由Owner在宿主选择。对齐指令表达不等于API迁移、配置更新、技术沙箱验证或所有代理均为Astra。
+## 7. 历史边界不能被“优化”删除
 
-- https://developers.openai.com/api/docs/guides/latest-model — Astra相关指导用于消除含糊规则、完成授权任务和校准验证范围。
-- https://learn.chatgpt.com/docs/agent-configuration/agents-md — 自动加载／覆盖是宿主机制；任务优先读取与自动加载分开陈述。
-- https://learn.chatgpt.com/guides/best-practices — 目标、上下文、约束、完成条件；保持根指令短而实用。
-- https://learn.chatgpt.com/docs/agent-approvals-security — 沙箱、审批和项目授权分开，不以文档文字宣称技术隔离。
+README 预算耗尽；FD02 永久排除；旧仓库/旧目录禁止访问；不默认枚举、代码/文件名搜索、全仓 status/index 操作。保护无关 staged/untracked/modified 状态。
 
-以上链接仅供同主题有界核验，不授权按其示例运行status、测试、安装、网络配置或模型迁移。独立审查者的接受及本地同步结果发布前，不宣布本次指令修订生效。
-## 7. Owner交付与一次验收约定
+D-02 unresolved / D02-DURABLE-UNKNOWN-01、U-14、U-12、TP-SOURCE-CLASS-01、TP-TARGET-01、deferred PUI、PUI-PREREQ-12=0 及其原证据根/精确 scope 保留。历史 Backend 0/10、Database 0/8 受限盘点未自动解除，不把它们泛化成对后续已批准 synthetic 工作的否定。
 
-来源是固定任务T§1中的Owner原话及其有界执行约定；本节随候选接受后成为持久上下文，不能由作者自我宣布接受。
+沿用 `CORE PRE-ALPHA LEGAL BOUNDARY IS SUBSTANTIALLY COMPLETE; PRODUCTION LEGAL READINESS IS DEFERRED TO MATERIAL MATURITY TRIGGERS`，不是本次新法律结论。保留 Safety-only 运营风险评估 NOT DECIDED；不启动 research/recruitment、真实或私密数据、telemetry/analytics/measurement、Safety Operations、新 legal research、LC-03/LC-04/Phase36 或生产部署。
 
-- 正文、路线、任务状态只在GitHub维护；ChatGPT项目源保留稳定入口，不为每张任务、commit、验收或进度变化重发上传包。项目源固定SHA是历史快照，不是回退main命令；每轮仍核验精确远端。
-- ChatGPT收到执行报告并完成验收后，下一步若在已有权限和已接受范围内，可在同一回复自动发布下一张有界任务及启动prompt，无需反复问是否继续。这不是后台监控、自动启动本地Codex或无限连续执行；本轮执行者发布即停止。
-- 低风险文档、限定证据分析和已授权可逆工作采用一次针对具体产物的审查，满足内容/关键来源/范围即接受。不默认堆叠预审、再审、接受预审或closeout；真实失败或新差异只作定点复查。
-- 同一候选作者不得自我接受。系统/代理指令、架构、权限边界实质修改仍由未编写该候选的审查者验收；独立性针对产物，不要求没有项目历史上下文。
-- 特殊决定集中为一个明确包：新增实现范围、改变已接受产品/架构或精确证据根、未授权工具执行/网络/下载/cache/write、真实参与者或个人数据、生产访问、Safety Operations、法律承诺、付费/合同以及破坏性/不可逆动作。已有精确权限内的例行步骤不重复申请。
-- Owner所述备份与冗余试错不是本轮实测备份内容或恢复能力，不授权检查、覆盖或处置受保护状态。
-- 优先可安装可演示初版，再取得依赖初版的真实反馈。未来Owner演示可以使用明确标识的虚构样例，不能当实证或完成U-08/U-10；真实内测按实际活动满足保护边界。本次不授权实现、招募或采集。
+无 source/account/header/auth 推断；无 global revision、synthetic aggregate dependency revision、LWW 或 arrival-order/timestamp authority。历史明细可在本文件旧 blob `e22cc69b903ef852dbb558d6f3aa9d6abd08d604` / 原基线读取，仅在任务明确授权时展开。
+
+## 8. 更新纪律
+
+只在接受、拒绝、实际 blocker 或授权变化时更新本入口。旧 handoff 与 accepted 原文不覆写。当前路线是排程层，旧 2026-09-12 roadmap 仍是产品范围/历史顺序证据，不再作为“下一步 APP-T01”的实时指令。
+
+任何完成状态附来源与层次；未知保留未知。日期仅为规划，不以任务数量/文档数量当完成百分比。不为每次 commit 重发项目源包。
