@@ -136,6 +136,30 @@ final class RuntimeReadinessEvaluationTest extends TestCase
         }
     }
 
+    public function test_legacy_request_state_shorthand_fails_schema_validation_before_dispatch(): void
+    {
+        $graph = $this->graph();
+        $this->bindAdapter($graph['adapter']);
+
+        foreach (['KNOWN', 'UNKNOWN'] as $legacyState) {
+            $request = $this->requestFor('READY');
+            $request['prerequisite_set']['state'] = $legacyState;
+
+            $response = $this->postJson(self::ENDPOINT, $request);
+
+            $response->assertStatus(400)
+                ->assertJsonPath('error.code', 'INVALID_REQUEST_SCHEMA')
+                ->assertJsonPath(
+                    'error.message',
+                    'Request rejected by the bounded synthetic Runtime Readiness HTTP contract.',
+                )
+                ->assertJsonPath('synthetic_dev_test_only', true);
+            self::assertSame(['error', 'synthetic_dev_test_only'], array_keys($response->json()));
+            self::assertStringNotContainsString(self::SENTINEL, $response->getContent());
+            self::assertSame(0, $graph['persistence']->count());
+        }
+    }
+
     public function test_request_allowlist_marker_and_nested_schema_fail_closed_before_dispatch(): void
     {
         $graph = $this->graph();
@@ -345,7 +369,9 @@ final class RuntimeReadinessEvaluationTest extends TestCase
         return [
             'prerequisite_set' => [
                 'synthetic_fixture' => RuntimeReadinessPersistenceApplicationAdapter::SYNTHETIC_FIXTURE_MARKER,
-                'state' => $classification === 'UNKNOWN' ? 'UNKNOWN' : 'KNOWN',
+                'state' => $classification === 'UNKNOWN'
+                    ? 'UNKNOWN_PREREQUISITE_SET'
+                    : 'KNOWN_PREREQUISITE_SET',
                 'set_identity' => 'SYNTHETIC-PREREQUISITE-SET',
                 'required_member_ids' => ['synthetic-member-a'],
                 'protected_use_scope' => $scope,

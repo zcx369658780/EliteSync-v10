@@ -166,7 +166,11 @@ final class RuntimeReadinessEvaluationController extends Controller
     private function validPrerequisiteSet(array $prerequisiteSet): bool
     {
         if (! $this->hasExactObjectKeys($prerequisiteSet, self::PREREQUISITE_SET_KEYS)
-            || ! in_array($prerequisiteSet['state'], ['KNOWN', 'UNKNOWN'], true)
+            || ! in_array(
+                $prerequisiteSet['state'],
+                ['KNOWN_PREREQUISITE_SET', 'UNKNOWN_PREREQUISITE_SET'],
+                true,
+            )
             || ! ($prerequisiteSet['set_identity'] === null
                 || $this->nonEmptyString($prerequisiteSet['set_identity']))
             || ! $this->nonEmptyString($prerequisiteSet['protected_use_scope'])
