@@ -1,93 +1,89 @@
 # EliteSync v10｜当前证据与契约索引｜v0.1
 
-日期：2026-09-21（Asia/Singapore）。
-状态：`PROPOSED INDEX — NO NEW DOMAIN CONTRACT — INDEPENDENT REVIEW REQUIRED`。
-快照 base：`67b14d97732fe831e4ac9321373a8a0a6f7d22f9`。
+维护修订：2026-09-21 / delivery-refresh-2。`INDEX REVISION CANDIDATE — NO NEW DOMAIN CONTRACT`。
+当前事实 ref：`608c6b04dc17022db7fcf72c34b494a0944ece03`。除另注均使用此 ref；A/=`docs/architecture/`，D/=`services/backend-laravel/app/Domain/`，T/=`services/backend-laravel/tests/Unit/`。
 
-## 1. 使用规则
+## 1. 使用方式与证据等级
 
-本索引不替代原文、不授予全表读取权限。明确 task 应选择并展开所需 path/ref/blob/章节。除表中特别注明，ref 均为上面的快照 base；路径前缀 `A/` 代表 `docs/architecture/`，`D/` 代表 `services/backend-laravel/app/Domain/`，`T/` 代表 `services/backend-laravel/tests/Unit/`。
+先找当前实际消费者，再展开精确 path/ref/blob；索引不替代原文，不授予整表读取、扫描或运行权限。新 Product Connection 实现优先消费 R17-R3 自包含契约及其接受记录，不重复拼装历史拒绝链。
 
-证据等级：DIRECT=本次计划整理重新读取相关正文/sha；REVIEW_LEDGER=本会话 R17 独立审查已核验并记录，此次只沿用其固定 ledger；HANDOFF=已核验交接报告中的历史接受信息，未来实现前仍须按 task 核验原 source/acceptance。main 归属、作者声明、独立接受、执行授权是不同事实。
+DIRECT-DOC：本轮重读的文档；PRIOR-LEDGER：既有接受／拒绝文档中的固定技术 ledger，本轮未重跑；HISTORICAL：先前上下文／交接报告，本轮未重审完整实现。main 归属、作者报告、独立接受、实际测试、执行授权分别记录。
 
-## 2. 产品、历史路线和客户端基础
+## 2. 当前活动与直接控制来源
 
-| ID | 精确路径 | Blob | 本次用途/等级 |
+| ID | 精确路径 | Blob | 状态／用途 |
 |---|---|---|---|
-| P-DESIGN | `A/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_SUPPLEMENT_V0_1.md` | `b72ed9ec851d44aba7be65883186cb275fab22d1` | Owner 15-domain 设计；DIRECT header/主要决定，完整内容仍以该 blob 为准 |
-| P-ACCEPT | `A/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md` | `063dc18309afdc8f477cc9b22a29da1842776556` | 已接受产品方向及未决项；DIRECT |
-| P-ROADMAP-HIST | `A/ELITESYNC_V10_NEW_VERSION_APP_IMPLEMENTATION_ROADMAP_BASELINE_V0_1.md` | `20863c434c7f6a06d76ba2ebdfee7ea1068fd711` | 历史产品范围与 APP-T01～T12 顺序；DIRECT，不作为当前 next action |
-| APP-T12 | `A/ELITESYNC_V10_APP_T12_MVP_INTEGRATION_ACCEPTANCE_RERUN_RESULT_V0_1.md` | `4c00def5a94a117c8d9812996baf193de4a4aeb1` | 11-area 静态矩阵、G-02～G-13、测试未建立；DIRECT |
-| HANDOFF-0921 | `A/ELITESYNC_V10_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_2026_09_21_V0_1.md` | `ed36cab735c57f57d516400cf549dec2a1bae8db` | 前序成果/原排期/R17 在途历史；DIRECT 相关部分 |
-| OLD-CONTEXT | `A/ELITESYNC_V10_CURRENT_CONTEXT_V0_1.md` | `e22cc69b903ef852dbb558d6f3aa9d6abd08d604` | 优化前的精确正文；必须用本表快照 ref，不读未来路径版本当旧版 |
-| OLD-AGENTS | `AGENTS.md` | `f9ef1a74f25b1cdce51768e6889bec7eb61ebaa1` | 本包生效前的规则；DIRECT |
+| AGENTS | `AGENTS.md` | `c9a8e192f7647a1613a195655fe9c22c56502ddb` | DIRECT-DOC；本轮不修改 |
+| PLAN-ACCEPT | `A/ELITESYNC_V10_PLANNING_OPTIMIZATION_INDEPENDENT_REVIEW_V0_1.md` | `4d7164e157cd9c0e1274af51661bd0857de05f91` | DIRECT-DOC；上一六文件计划包已接受，原文 PROPOSED 不是未接受证据 |
+| PC-MAPPING | `A/ELITESYNC_V10_IP_13I_R17_R3_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REREVIEW_RESULT_V0_1.md` | `813817fdfe4a67c2835021ca64d74d4ed41acc03` | 自包含消费契约，接受关系见下一项 |
+| PC-MAPPING-A | `A/ELITESYNC_V10_IP_13I_R17_R3_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REREVIEW_ACCEPTANCE_V0_1.md` | `2b1f23520912517f0e3ae6735208253fbfa37b4f` | DIRECT-DOC；mapping、IP-13E sufficient、Package A 已接受 |
+| PC-REPAIR-A | `A/ELITESYNC_V10_IP_13I_R17_R2_PRODUCT_CONNECTION_DUPLICATE_RESOLUTION_ORDER_INVARIANCE_EVALUATOR_REPAIR_ACCEPTANCE_V0_1.md` | `acfedada11c3c6e76b83f9674142168245db9c0f` | DIRECT-DOC；修复后 evaluator 及测试接受 |
+| PC-R18-REJECT | `A/ELITESYNC_V10_IP_13I_R18_CANDIDATE_INDEPENDENT_REVIEW_V0_1.md` | `26bcbaf64953159c0ea53c5e9be78e817e2192c9` | DIRECT-DOC；绑定键序 defect 和 first-pass 偏离；未集成 |
+| PC-R18R1-T | `A/ELITESYNC_V10_NEXT_IP_13I_R18_R1_PRODUCT_CONNECTION_APPLICATION_BINDING_ORDER_CORRECTION_TASK_V0_1.md` | `b28397028f8795149886b7c8ecb9ddb51a691b86` | DIRECT-DOC；当前代码任务，Owner 报告未执行 |
 
-APP-T12 candidate 来源为 `0b3121bb272571b7614e00115e9d6fd9d60fb862`；同一结果 blob 已核实存在快照 main。本文不把结果自带 ACCEPTED 文本或 main 位置独立当成完整接受链；旧 UI 是否需重做不能仅凭更早路线的“尚未实现”判断。
+R18-R1 的六路径及首次 PASS 停止规则不因新计划变化。若本次文档集成使 main 前进，只按精确 dispatch 的首次基线重发启动；不是在途特例。
 
-## 3. Product Connection 固定来源闭包
+## 3. 被拒 R18 的可复用材料，不是已接受源码
 
-| ID | 精确路径 | Ref/Blob | 角色 |
-|---|---|---|---|
-| PC-R15R1 | `A/ELITESYNC_V10_IP_13I_R15_R1_PRODUCT_CONNECTION_REASON_BOUNDARY_CORRECTION_REVIEW_RESULT_V0_1.md` | base / `fb064b7e290916ba7aa42d53990c9c54d289f5ba` | reason boundary；REVIEW_LEDGER |
-| PC-R15R1-A | `A/ELITESYNC_V10_IP_13I_R15_R1_PRODUCT_CONNECTION_REASON_BOUNDARY_CORRECTION_REVIEW_ACCEPTANCE_V0_1.md` | base / `7424e368a31edcd3e8ccc7d37133d6f4b321ebc3` | 6 structural、8/19 persisted、next domain 接受 |
-| PC-R16-RETAINED | `A/ELITESYNC_V10_IP_13I_R16_PRODUCT_CONNECTION_RECORD_PROJECTION_CONTRACT_REVIEW_RESULT_V0_1.md` | **仅 ref `5494bf6835134ef1af69d5ebe32aa28ef62fc92e`** / `aee15cf45c75c5a8f1733f5604803fc3ee766b4b` | 整体 rejected；仅 accepted correction 保留的定义 |
-| PC-R16R1 | `A/ELITESYNC_V10_IP_13I_R16_R1_PRODUCT_CONNECTION_DEPENDENCY_PRESENCE_CROSS_FIELD_VALIDATION_CONTRACT_CORRECTION_REVIEW_RESULT_V0_1.md` | base / `f0da912cb3dcb1525fa36053168310f187cf58cb` | dependency-presence、binding metadata、cross-field 矩阵 |
-| PC-R16R1-A | `A/ELITESYNC_V10_IP_13I_R16_R1_PRODUCT_CONNECTION_DEPENDENCY_PRESENCE_CROSS_FIELD_VALIDATION_CONTRACT_CORRECTION_REVIEW_ACCEPTANCE_V0_1.md` | base / `96110d9484897012c7946b42a2256951ec8a60fc` | 上述 correction 与 retained directions 的接受 |
-| PC-R17-T | `A/ELITESYNC_V10_NEXT_IP_13I_R17_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REVIEW_TASK_V0_1.md` | 冻结 ref `b0196202c78f688723600ac9919cf96463908375` / `68d18d4100ba24b493fd2b5ee9388f564aca9100` | 旧任务，不可恢复为新授权 |
-| PC-R17-C | `A/ELITESYNC_V10_IP_13I_R17_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REVIEW_RESULT_V0_1.md` | **仅 ref `6af50b3cdf82ac8bc285bd160f773b48b29f1328`** / `14d92368dbb6a3e7ab2ed6c0cbcf4b149f831ac8` | rejected candidate，只作缺陷来源，不消费为 accepted mapping |
-| PC-R17-R | `A/ELITESYNC_V10_IP_13I_R17_CANDIDATE_INDEPENDENT_REVIEW_V0_1.md` | base / `415ee64eb70894eed21eee97e58762307d6e408f` | DIRECT；F1/F2、拒绝与暂停的当前裁决 |
+下表所有对象只在 ref `64dd8f8dccbbb3582656f98a70b1e36c6449fe0b`；当前 main 不包含该候选。来源级别为 PC-R18-REJECT / PC-R18R1-T 的 PRIOR-LEDGER。
 
-除 DIRECT 项外，该表是 R17 独立审查 ledger 与已读 correction 的固定关系记录，不宣称本次计划整理重新执行技术审查。
-
-### 原 R16 的精确继承关系
-
-控制文件是 PC-R16R1 §16 与 PC-R16R1-A §7，不是本文的新解释。
-
-- 原 R16 §§4–7、11–15、17–22：仅在不与 R16-R1 修正冲突的部分保留，覆盖 Binding Model A、payload key sets、identity、terminal、invalidation、generic overlay、digest 和 persistence 方向。
-- 原 §§9–10：typed dependency key sets 必须按 R16-R1 §4 在 source_condition 后添加 protected_binding_satisfied，不能直接采用旧 12/14-key schema。
-- 原 §8 classification/reason consistency 由 R16-R1 §§5–11、14 的矩阵替代。
-- 原 §16 aggregate 及原 §§6–10 中不完整的 presence/context 组合以 R16-R1 §§4–14 为准。
-- 原 final classification、原 rejected candidate 整体不得接受、合入或成为新 candidate 祖先。
-
-任何未来消耗这些定义的 task，必须把 PC-R16-RETAINED 的 exact ref/blob/允许章节显式放进 READ_SET，或使用另行独立接受的自包含 consolidation。只列 R16-R1 不构成完整 payload 定义来源。本索引补齐来源关系，不宣布 R17-F2 已通过独立整改验收，更不解除 F1。
-
-## 4. 固定技术对象（不自动授权读取/运行）
-
-以下来自 PC-R17-R §3 的已核验 ledger；IP-13F 来自 HANDOFF-0921 §5。未来实现任务应在其 fresh authority 对所消费的文件再次核验。
-
-| 对象 | 精确路径 | Blob |
+| 路径 | Blob | R18-R1 处置 |
 |---|---|---|
-| Product Connection evaluator | `D/ProductConnectionStateTransitionEvaluator.php` | `35a889ee5460e5c374a5a99bd93bebae49718c5b` |
+| `D/InMemoryLogicalPersistenceRepositoryContract.php` | `6178bc7290a9e542a39155756c9dd9e43d9eb0b2` | 精确原样 materialize，未整体接受 |
+| `D/SqliteInMemoryLogicalPersistenceAdapter.php` | `678881a6c5868170270f4a400351966dd2e69a95` | 同上 |
+| `T/ProductConnectionPersistenceFamilyTest.php` | `e4e6b946e5bace72da0bf36db6fd49caa328d00f` | 同上；不得称为本轮新测 |
+| `D/ProductConnectionPersistenceApplicationAdapter.php` | `824f6950a0358d13675fb6cc79ce6c9eeaf45434` | 修正逐键 binding 比较 |
+| `T/ProductConnectionPersistenceApplicationAdapterTest.php` | `b1680ef749a7e30b7d696988809360c86ee51171` | 增补键序不变／真实字段差异回归 |
+| `A/ELITESYNC_V10_IP_13I_R18_PRODUCT_CONNECTION_PERSISTENCE_APPLICATION_IMPLEMENTATION_RESULT_V0_1.md` | `31523004ffd8d7d8511bcd667bcdea8d78cc5cd5` | 历史执行回执；不得复制为接受结果 |
+
+拒绝候选不能成为 correction 的 accepted ancestor。Phase-A 复用不要求重新设计，但最终组合回归及 correction 独立 review 仍必需。
+
+## 4. 当前 accepted main 的技术 ledger
+
+下列来自既有接受／任务记录，未来实际消费者须再次在其执行 base 验证；本轮不宣称重新审查源码或运行。
+
+| 对象 | 路径 | 当前 main blob |
+|---|---|---|
+| repaired evaluator | `D/ProductConnectionStateTransitionEvaluator.php` | `a2a2fefe2178834aa5051200cf2d1ecc3d4ea885` |
+| evaluator test | `T/ProductConnectionStateTransitionEvaluatorTest.php` | `c68f82adf44af65ca80e51d7fc73bf1522b81980` |
 | Common Authority | `D/CommonAuthorityEvidenceContract.php` | `e98e7db731d41269a7b89e01db12e1a81364751d` |
-| IP-13A | `D/InMemoryLogicalPersistenceRepositoryContract.php` | `65d4a6c1bc3c535d56e4d4b50110eef6efc7b45f` |
-| IP-13D | `D/SqliteInMemoryLogicalPersistenceAdapter.php` | `640fb4a6cd0269d8eb55f218a2fc8ce823014f7c` |
+| IP-13A，尚无 Connection family | `D/InMemoryLogicalPersistenceRepositoryContract.php` | `65d4a6c1bc3c535d56e4d4b50110eef6efc7b45f` |
+| IP-13D，尚无 Connection payload retention | `D/SqliteInMemoryLogicalPersistenceAdapter.php` | `640fb4a6cd0269d8eb55f218a2fc8ce823014f7c` |
 | IP-13E | `D/PersistenceBoundaryApplicationInterfaceIntegrationContract.php` | `aa9721dfa66fe17eb2314bc9466870d479c07644` |
-| Canonical Match adapter，contrast only | `D/CanonicalMatchPersistenceApplicationAdapter.php` | `789e8905b2c9ee54d902d8b600100896af4f6063` |
-| Match adapter unit test，contrast only | `T/CanonicalMatchPersistenceApplicationAdapterTest.php` | `c8298f5e786a47d118b56f47cef6baab7f543b60` |
+| Canonical Match adapter | `D/CanonicalMatchPersistenceApplicationAdapter.php` | `789e8905b2c9ee54d902d8b600100896af4f6063` |
+| Match adapter test | `T/CanonicalMatchPersistenceApplicationAdapterTest.php` | `c8298f5e786a47d118b56f47cef6baab7f543b60` |
 
-IP-13F 固定 blob `e70f260de92a0047e70b54827f4795edb3b74e00`，保持 unchanged/non-participating；本次未定位它的精确文件路径，故不虚构 path，也不给出运行/读取预算。
+IP-13F 历史 blob `e70f260de92a0047e70b54827f4795edb3b74e00`，unchanged/non-participating；本索引未定位其 exact path，不虚构读取授权。
 
-## 5. 两条已报告完成切片
+## 5. 产品、客户端与既有切片
 
-这些是 handoff 报告的历史接受，不是本次新运行测试。
-
-| 切片 | 固定接受信息 | 可支持的沟通 |
+| 来源 | 路径／固定身份 | 证据限制 |
 |---|---|---|
-| Runtime Readiness | acceptance commit `be27354ec6d8de894b37fba31c4586efa298f94a`；acceptance blob `efa900a6351d98adbe5fe9fce2d846004296b4a9`；result blob `b388d349c9fe77714b2f1fb1e6fd69d9f6b4ebad` | synthetic/dev-test 至 HTTP；历史报告 6 tests / 252 assertions |
-| Canonical Match | acceptance commit `d09edcea6730d5d4cea87e90b38e9938f05bbeea`；acceptance blob `1b40415cb7e7362cc0696e43a4d5e7868f2683b3`；result blob `d081cdfc1218aa225639fb9495d19b419b4d0446` | synthetic/dev-test 至 HTTP；历史报告 6 tests / 556 assertions |
+| 产品设计 | `A/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_SUPPLEMENT_V0_1.md`；`b72ed9ec851d44aba7be65883186cb275fab22d1` | HISTORICAL；15-domain 产品目标，不是 evaluator exact schema |
+| Owner acceptance | `A/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`；`063dc18309afdc8f477cc9b22a29da1842776556` | HISTORICAL；产品边界保留 |
+| 原 APP 路线 | `A/ELITESYNC_V10_NEW_VERSION_APP_IMPLEMENTATION_ROADMAP_BASELINE_V0_1.md`；`20863c434c7f6a06d76ba2ebdfee7ea1068fd711` | 历史范围，不再命令 APP-T01 下一步 |
+| APP-T12 | `A/ELITESYNC_V10_APP_T12_MVP_INTEGRATION_ACCEPTANCE_RERUN_RESULT_V0_1.md`；`4c00def5a94a117c8d9812996baf193de4a4aeb1` | DIRECT-DOC §§1–3、gaps/§8；静态矩阵、Flutter test/analyze/runtime 未建立；完整接受链未重审 |
+| 9/21 handoff | `A/ELITESYNC_V10_CURRENT_SESSION_CLOSEOUT_AND_NEXT_SESSION_HANDOFF_2026_09_21_V0_1.md`；`ed36cab735c57f57d516400cf549dec2a1bae8db` | HISTORICAL；不作实时执行入口 |
 
-精确 source path 尚未由本表展开时，不凭 basename 猜文件、不枚举查找；需要实施消费时用相应接受记录补齐 task manifest。不能把这里的通过数当作当前代码重测结果。
+Runtime Readiness：历史 acceptance commit `be27354ec6d8de894b37fba31c4586efa298f94a`、acceptance blob `efa900a6351d98adbe5fe9fce2d846004296b4a9`、result `b388d349c9fe77714b2f1fb1e6fd69d9f6b4ebad`，报告 synthetic 至 HTTP。
+Canonical Match：历史 acceptance commit `d09edcea6730d5d4cea87e90b38e9938f05bbeea`、acceptance blob `1b40415cb7e7362cc0696e43a4d5e7868f2683b3`、result `d081cdfc1218aa225639fb9495d19b419b4d0446`，报告 synthetic 至 HTTP。
+这两条是旧 handoff/index 转述，未在本轮重新定位全部 source path；未来消费时定点展开，不为补图表遍历仓库，不将通过数当本轮新测试。
 
-## 6. 缺口索引与不重做规则
+## 6. 历史纠正链：按具体疑点展开
 
-APP-T12 G-02/G-03/G-05/G-06/G-08/G-13 是 separate backend authority gaps；G-07 为 legal/data-rights；G-04/G-09 为 retained UNKNOWN；G-10 为 Phase 2；G-11 为 compatibility debt；G-12 为 tooling/evidence。编号类别保留，不因新计划改名丢失追踪。
+R15-R1 result/acceptance：`A/ELITESYNC_V10_IP_13I_R15_R1_PRODUCT_CONNECTION_REASON_BOUNDARY_CORRECTION_REVIEW_RESULT_V0_1.md` / `fb064b7e290916ba7aa42d53990c9c54d289f5ba`；同名 `..._ACCEPTANCE_V0_1.md` / `7424e368a31edcd3e8ccc7d37133d6f4b321ebc3`。
+R16-R1 result：`A/ELITESYNC_V10_IP_13I_R16_R1_PRODUCT_CONNECTION_DEPENDENCY_PRESENCE_CROSS_FIELD_VALIDATION_CONTRACT_CORRECTION_REVIEW_RESULT_V0_1.md` / `f0da912cb3dcb1525fa36053168310f187cf58cb`；同名 `..._ACCEPTANCE_V0_1.md` / `96110d9484897012c7946b42a2256951ec8a60fc`。
 
-Readiness/Match 的 derived slices 不自动关闭真实 writer/source-authority gaps。APP-T12 的 0 contract blocker 不是 runtime/production 0 blocker。原旧 APP audit 不因计划整理重开。
+原 R16 仅 ref `5494bf6835134ef1af69d5ebe32aa28ef62fc92e`、路径 `A/ELITESYNC_V10_IP_13I_R16_PRODUCT_CONNECTION_RECORD_PROJECTION_CONTRACT_REVIEW_RESULT_V0_1.md`、blob `aee15cf45c75c5a8f1733f5604803fc3ee766b4b`。仅 R16-R1 §16 / acceptance §7 保留的部分有效：原 §§4–7、11–15、17–22 限于不冲突内容；原 §§9–10 增加 binding boolean；原 §8、§16 及不完整 presence/context 组合服从纠正矩阵。原候选整体仍 rejected。
 
-D02/U-12/U-14/TP/PUI、工具链 lane 与 no-processing 明细保留在 CURRENT_CONTEXT 及其历史精确来源；本索引不创建新解除记录。
+原 R17 task 仅 ref `b0196202c78f688723600ac9919cf96463908375`、路径 `A/ELITESYNC_V10_NEXT_IP_13I_R17_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REVIEW_TASK_V0_1.md`、blob `68d18d4100ba24b493fd2b5ee9388f564aca9100`；旧 result 仅 ref `6af50b3cdf82ac8bc285bd160f773b48b29f1328`、路径 `A/ELITESYNC_V10_IP_13I_R17_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REVIEW_RESULT_V0_1.md`、blob `14d92368dbb6a3e7ab2ed6c0cbcf4b149f831ac8`，保持 rejected。其拒绝记录 `A/ELITESYNC_V10_IP_13I_R17_CANDIDATE_INDEPENDENT_REVIEW_V0_1.md` / `415ee64eb70894eed21eee97e58762307d6e408f` 不被新接受追改。
 
-## 7. 来源仍不充分的地方
+R17-R1 policy result/acceptance：`A/ELITESYNC_V10_IP_13I_R17_R1_PRODUCT_CONNECTION_DUPLICATE_RESOLUTION_ORDER_INVARIANCE_CORRECTION_REVIEW_RESULT_V0_1.md` / `3918eac68121c6d3a7601ac703e5b1663fe9c054`；同名 `..._ACCEPTANCE_V0_1.md` / `cb44607f773705c168f15ca093935be1893259b7`。使用这些简写前，task author 必须展开全路径；简写不授权猜测或扫描。
 
-本轮未重新定位 APP-T12 独立接受/Owner closeout 的精确文件；只核实结果文档 main 归属、其报告内容和执行限制。未重新核验客户端实现、运行环境或全部先前验收链。
+## 7. 未关闭缺口及外部报告
 
-因此不生成全项目完成百分比、不声明可安装包已存在、不关闭身份/数据/生产缺口、不为补齐图表去遍历仓库。未来只有实际消费这些证据的任务才定点补充。
+G-02/G-03/G-05/G-06/G-08/G-13 = separate backend authority；G-07 = legal/data-rights；G-04/G-09 = retained UNKNOWN；G-10 = Phase 2；G-11 = compatibility debt；G-12 = tooling/evidence。synthetic HTTP／派生持久化不关闭真实 writer/auth/data gaps。
+
+D02/U-12/U-14/TP/PUI、旧工具链及所有 no-processing 细节见当前入口；不解除 README/FD02/旧仓库限制。没有当前平台安装／启动完整证据，不能断言全局无 artifact，也不能宣布可运行 App 完成。
+
+Owner 提供外部评估文件 `EliteSync_v10_Delivery_Process_Optimization_Report_20260921.md`，SHA-256 `387d875de016154cd40c8e4fecf33eb2c3c6f14781b6d883b1e1e690704027fb`。它是流程建议，不作为代码／产品接受；不全文复制入库，不围绕它建立额外审计链。其工时数据不足的限制保留；本路线新增的比例／日期均是明示假设而非该报告实测结论。
