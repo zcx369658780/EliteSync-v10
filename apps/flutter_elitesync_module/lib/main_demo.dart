@@ -33,6 +33,7 @@ AppEnv createDemoAppEnv() {
     useMockAdmin: true,
     useSyntheticReadinessProjection: true,
     useSyntheticConnectionLifecycle: true,
+    useSyntheticConversationLifecycle: true,
     useMatchRoundContract: true,
     useAdminMatchingOperations: false,
     initialRoute: AppRouteNames.home,

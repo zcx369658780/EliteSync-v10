@@ -31,8 +31,12 @@ class ConversationListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final access = ref.watch(conversationAccessProvider);
+    final accessController = ref.read(conversationAccessProvider.notifier);
     return ConversationAccessGate(
       snapshot: access,
+      availableTransitions: accessController.availableTransitions,
+      onAction: accessController.apply,
+      onReset: accessController.resetLocalDemo,
       protectedBuilder: (context) => const _AuthorizedConversationListPage(),
     );
   }

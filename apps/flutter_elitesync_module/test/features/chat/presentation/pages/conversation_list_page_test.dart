@@ -117,7 +117,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -185,7 +185,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -239,7 +239,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -280,7 +280,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -325,7 +325,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -363,7 +363,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -427,7 +427,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -489,7 +489,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -544,7 +544,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -599,7 +599,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -669,7 +669,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -775,7 +775,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            conversationAccessProvider.overrideWithValue(
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
             appEnvProvider.overrideWithValue(
@@ -834,7 +834,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -894,7 +894,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
@@ -963,7 +963,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          conversationAccessProvider.overrideWithValue(
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
             _syntheticAuthorizedConversationAccess,
           ),
           appEnvProvider.overrideWithValue(
