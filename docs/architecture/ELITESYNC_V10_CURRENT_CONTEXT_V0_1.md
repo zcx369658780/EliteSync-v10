@@ -1,103 +1,85 @@
 # EliteSync v10｜当前上下文与交付入口
 
-维护版本：2026-09-21（Asia/Singapore）。
+维护修订：2026-09-21 / delivery-refresh-2。事实核验基线：`608c6b04dc17022db7fcf72c34b494a0944ece03`，不是未来 main 必须等于的常量。
+本修订：`REVIEW CANDIDATE — FACTUAL STATUS REFRESH + PROSPECTIVE DELIVERY RULES`；非作者 ACCEPT 绑定精确 blob 且进入 main 后生效。上一版计划包已由独立记录 `4d7164e157cd9c0e1274af51661bd0857de05f91` 接受，不能仅因旧正文仍写 PROPOSED 将其判为未接受。
 
-本次整理状态：`PROPOSED — INDEPENDENT REVIEW REQUIRED — NO IMPLEMENTATION AUTHORIZED`。
+## 1. 当前状态与唯一代码任务
 
-事实快照基线：`67b14d97732fe831e4ac9321373a8a0a6f7d22f9`。这是证据日期的 base，不是未来 main 必须等于的常量。每轮按明确任务 fresh-fetch；本版本只有在独立接受记录绑定精确 blob 并进入 main 后才作为新入口生效。
+`R17-R3 ACCEPTED — R18 REJECTED — R18-R1 ISSUED, OWNER REPORTS NOT STARTED — NO DOWNSTREAM IMPLEMENTATION AUTHORIZED`
 
-## 1. 当前结论
-
-`PRODUCT_CONNECTION_SELECTED — R17_CANDIDATE_REJECTED — PRODUCT_IMPLEMENTATION_PAUSED — PLANNING_DOCUMENT_OPTIMIZATION_ONLY`
-
-Owner 本轮授权优化项目计划、路线及必要项目源，并要求给出 Codex 同步入口；不是恢复 R17 修复、发布 R18 或启动 Messaging 的授权。
-
-R17 独立拒绝记录：
-`docs/architecture/ELITESYNC_V10_IP_13I_R17_CANDIDATE_INDEPENDENT_REVIEW_V0_1.md`
-blob `415ee64eb70894eed21eee97e58762307d6e408f`。
-
-候选 `6af50b3cdf82ac8bc285bd160f773b48b29f1328` / result `14d92368dbb6a3e7ab2ed6c0cbcf4b149f831ac8` 未接受、未合入。拓扑通过；拒绝源于 evaluator 在“旧等修订冲突 + 更高修订”组合下顺序敏感，以及后继来源清单缺项。
-
-9 月 21 日交接 blob `ed36cab735c57f57d516400cf549dec2a1bae8db` 保留为完成会话的历史上下文；其中 R17 IN FLIGHT 已被上述拒绝记录更新。原 R17 冻结 authority `b0196202c78f688723600ac9919cf96463908375` 仍是其历史审查基线，不因本轮文档改变而要求重写旧候选。
-
-## 2. 只读所需的四类入口
-
-| 文件 | 职责 | 不能替代 |
+| 对象 | 已核验处置 | 固定证据 |
 |---|---|---|
-| `AGENTS.md` | 稳定协作和保护规则 | 本轮授权 |
-| 本文件 | 当前状态、活动边界及 lane | 代码/测试事实源 |
-| `ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md` | 产品交付里程碑与依赖 | 精确任务单 |
-| `ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md` | 固定来源、纠正/继承关系 | 被引用的原文 |
+| 原 R17 | 历史候选仍 REJECTED，不追认 | rejection `415ee64eb70894eed21eee97e58762307d6e408f` |
+| R17-R1 / R17-R2 | Option A 及 evaluator 修复已有接受记录 | acceptance `cb44607f773705c168f15ca093935be1893259b7` / `acfedada11c3c6e76b83f9674142168245db9c0f` |
+| R17-R3 | 自包含映射、IP-13E sufficient、Package A 已接受 | result `813817fdfe4a67c2835021ca64d74d4ed41acc03`；acceptance `2b1f23520912517f0e3ae6735208253fbfa37b4f` |
+| R18 | 六路径实现候选有局部绑定键序缺陷，未集成 | candidate `64dd8f8dccbbb3582656f98a70b1e36c6449fe0b`；rejection `26bcbaf64953159c0ea53c5e9be78e817e2192c9` |
+| R18-R1 | 仅应用修正及回归；Owner 本轮报告未执行 | task `b28397028f8795149886b7c8ecb9ddb51a691b86`；原发布基线即本页事实基线 |
 
-工作方式见同目录 `ELITESYNC_V10_DELIVERY_WORKFLOW_AND_TASK_CONTRACT_V0_1.md`。路径引用不是自动读取所有来源的授权。
+当前工程任务路径：
+`docs/architecture/ELITESYNC_V10_NEXT_IP_13I_R18_R1_PRODUCT_CONNECTION_APPLICATION_BINDING_ORDER_CORRECTION_TASK_V0_1.md`。
 
-## 3. 进度必须按交付层区分
+不因本轮流程优化修改此任务的技术内容、六路径范围、最多两次 PHPUnit 及首次 PASS 停止规则。若文档集成推进 main，必须通过显式的首次执行基线重发再启动，不能假称它已通过在途 gate。重发规则见本次精确 dispatch；新工作流不自动覆盖旧任务。
 
-| 层/能力 | 本轮证据支持的状态 | 尚不能宣称 |
+R18 三个 Phase-A blob 仅获准在修正候选中原样复用，并非已独立接受的实现：IP-13A `6178bc7290a9e542a39155756c9dd9e43d9eb0b2`、IP-13D `678881a6c5868170270f4a400351966dd2e69a95`、persistence test `e4e6b946e5bace72da0bf36db6fd49caa328d00f`。当前 main 尚不包含这些实现。
+
+## 2. 读取入口：只展开本次消费的来源
+
+先实时核验明确远端，再读对应 `AGENTS.md`。当前状态读本页；排程读 `ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md`；固定来源读 `ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`；任务编写读 `ELITESYNC_V10_DELIVERY_WORKFLOW_AND_TASK_CONTRACT_V0_1.md`，均位于本目录。
+
+来源索引不是批量读取授权。Product Connection 新实现默认消费已接受的 R17-R3 自包含契约及当前精确修正，不再惯例性重读整条 rejected R16/R17 链。真实矛盾出现时才按任务展开对应历史定义。
+
+## 3. 已有能力与尚未证明的出口
+
+| 能力层 | 可复用事实／报告 | 尚不能宣称 |
 |---|---|---|
-| 产品目标 | Owner 已接受 15-domain 设计与四栏 IA | 生产功能全部完成 |
-| 客户端契约/界面基础 | APP-T12 rerun 结果已存在 main，记录 11-area 静态集成矩阵及 retained gaps | 本轮重新验收全部客户端；可运行/可安装 MVP 已证明 |
-| Runtime Readiness | 最新交接记录 synthetic/dev-test 纵向切片接受至 HTTP | 真实身份保证、生产 readiness authority |
-| Canonical Match | 最新交接记录 synthetic/dev-test 切片接受至 HTTP | 自动 Connection、实际生产 matching/mutation authority |
-| Product Connection | 历史 evaluator 接受、R15-R1 reason 与 R16-R1 record/cross-field 契约保留；R17 新反例未解决 | persistence family / application adapter / HTTP 已完成 |
-| Messaging / Conversation | 客户端契约基础已有报告；运行边界受 Connection 和 messaging consent 依赖阻塞 | 真实读/发消息权限 |
-| Calm Home / Notifications | 静态/隐私展示已有报告；live projection 与 delivery 仍属后续 | 活态摘要或 OS delivery 已接受 |
-| 客户端工具链/恢复链 | 独立 lane；本轮无运行、安装、缓存或构建新证据 | 恢复成功、全局构建失败或全局无产物 |
-| 真实内测/生产 | 独立授权与成熟度门槛尚未开放 | 可以采集数据、部署或上线 |
+| 产品设计 | 15-domain、四栏 IA、MVP/Phase 2/Later 已有 Owner 接受 | 整条愿景已经实现 |
+| 客户端 | APP-T12 报告 11-area 静态矩阵及 retained gaps | 当前 Android/iOS 安装、启动、端到端通过 |
+| Readiness / Canonical Match | 9/21 历史交接报告 synthetic/dev-test 至 HTTP | 真实账户、状态写入、生产 matching authority |
+| Product Connection | 已接受 evaluator 和映射；实现等待 R18-R1 | persistence/application 已接受、HTTP 已授权 |
+| Messaging / Conversation | fail-closed 客户端基础已有报告 | 真实读写、交流同意和运行主循环已闭合 |
+| Home / Notifications | 静态／隐私展示基础已有报告 | live projection、OS delivery 已完成 |
+| 平台运行 | 本轮无新的环境、构建或设备观察 | 全局无 APK、工具链必坏或已恢复 |
 
-APP-T12 证据：`ELITESYNC_V10_APP_T12_MVP_INTEGRATION_ACCEPTANCE_RERUN_RESULT_V0_1.md`，blob `4c00def5a94a117c8d9812996baf193de4a4aeb1`。结果内的 ACCEPTED 是当时契约/静态范围的分类；该文还保留 candidate-only 文本。本轮核实其 main 内容，不用“在 main”替代其完整独立接受链，不据此授权新实现，也不把当时未运行的 Flutter 测试写成通过。
+APP-T12 result `4c00def5a94a117c8d9812996baf193de4a4aeb1` 的契约通过不等于运行通过；本轮没有重新验证其完整独立接受链或运行。历史 handoff `ed36cab735c57f57d516400cf549dec2a1bae8db` 是前序信息，不是当前任务授权。
 
-## 4. 产品与架构不变项
+## 4. 下一段交付方向
 
-目标：calm, consent-sequenced Relationship Decision Support System；体验为状态、权限、下一步、原因、退出路径清楚，不以更多 Match、消息或停留时间为目标。
+近期以单平台、显式虚构数据的可安装开发演示为排程目标；平台暂按 Android 估算，尚非已核验的平台决定或构建许可。R18-R1 收口后，应优先把最小平台运行证明插入核心开发早期，而非等待所有后端完成。
 
-`Home | Progress | Messages | Me`；Progress 仅是导航容器。Explore 与 Relationship 支持为 Phase 2，optional AI/reference signals 为 Later/Optional，不变成 MVP 阻塞。
+保留现有 M0–M6：M0 已完成上一轮归一；M1 映射已接受；M2 待实现修正接受；M3/M4 仍待领域与实际消费边界闭合；M5 的“首次可运行证明”前移，完整集成仍在其后；M6 分真实内测与公开运营出口。这里的 M 编号不是历史工具链 M1/M2/M3。
 
-`Match != Connection != Conversation != Relationship`。各阶段分别授权；Match 不自动创建 Connection，Connection 不自动开放 Conversation，Conversation 活跃度不推断 Relationship。Private Identity / Matching Inputs / Readiness / Showcase 分离；MVP 无 globally public Profile、无单一权威 Compatibility 总分。
+只在实际消费需要时补 transport；不为形式自动加 Connection HTTP。synthetic 投影不等于状态写入：可操作演示必须单独说明虚构 actor、测试状态驱动／写入、保存与重启恢复，不能靠 UI 本地布尔值伪装服务端权限。详细工作量与条件性窗口在现有路线图内，不另建平行路线。
 
-信息按 Meaning / Provenance / Purpose / Lifecycle Authority 区分；七个概念责任上下文不是七个服务或数据库的实现要求。用户声明不是客观事实，AI 输出不是已验证事实，Safety 证据不是 Compatibility/Ranking/reputation 输入，private Conversation 不是默认 AI/training/ranking/ads 数据。
+## 5. 不变产品及 Product Connection 边界
+
+`Home | Progress | Messages | Me`；Progress 仅为导航容器。`Match != Connection != Conversation != Relationship`；各阶段独立授权。Explore、Relationship 支持为 Phase 2；optional AI/reference 为 Later，不拉入近期 MVP。
+
+Private Identity / Matching Inputs / Readiness / Showcase 分离；MVP 无 globally public Profile、无单一权威 Compatibility 总分。Meaning / Provenance / Purpose / Lifecycle Authority 区分；七个责任上下文不是七个服务／数据库。用户声明不是客观事实；AI 不是已验证事实；Safety 不进入普通 Compatibility/Ranking/reputation；private Conversation 不是默认 AI/training/ranking/ads 数据。
 
 Privacy、Safety、User Control 优先；Explainability、Reliability、Fairness、Auditability 支撑。Block != Report；Report/Allegation != Finding；即时保护不等于罪责；未推进不证明举报者说谎；UNKNOWN != FALSE/SAFE。
 
-## 5. Product Connection 保留基线
+`NEXT_DOMAIN = PRODUCT_CONNECTION`；`MATCH_RESULT_UNUSED_AND_NON_PARTICIPATING`。family `PRODUCT_CONNECTION_STATE_TRANSITION_DERIVED_PROJECTION`；facts `PRODUCT_CONNECTION_CURRENT_STATE_DERIVATION` / `PRODUCT_CONNECTION_TRANSITION_DERIVATION`；Binding Model A 为派生自有、确定性、非权威关联。
 
-`NEXT_DOMAIN = PRODUCT_CONNECTION`；`MATCH_RESULT_UNUSED_AND_NON_PARTICIPATING`。
+fully usable 当且仅当 `protected_binding_satisfied=true AND source_condition=PRESENT AND currentness=true AND freshness=true`。保留 6 structural diagnostics、8/19 persisted reasons、R16-R1 矩阵及 R17-R3 自包含定义；保留 terminal 和失效前上下文。`GENERIC_PROJECTION_INVALIDATION != PRODUCT_CONNECTION_DEPENDENCY_INVALIDATION`；`EXACT_MATERIALIZATION != PROTECTED_USE_VALIDITY`；`TRANSITION_ADMISSIBLE != AUTHORITATIVE_STATE_CHANGE`。
 
-family `PRODUCT_CONNECTION_STATE_TRANSITION_DERIVED_PROJECTION`；facts `PRODUCT_CONNECTION_CURRENT_STATE_DERIVATION` / `PRODUCT_CONNECTION_TRANSITION_DERIVATION`；Binding Model A 为 derivation-owned deterministic non-authoritative correlation bindings。
+## 6. 保留缺口、工具链及法律／数据边界
 
-两类 typed dependency 的 `protected_binding_satisfied` 是非权威验证元数据。fully usable 当且仅当它为 true，source_condition=PRESENT，currentness=true，freshness=true。保留 6 个 structural diagnostics、8/19 persisted reasons、R16-R1 dependency-presence/context/revision matrix、当前状态 terminality 及失效时上下文保留。
+APP-T12 G-02/G-03/G-05/G-06/G-08/G-13 的真实后端权威缺口不被 derived slices 自动关闭；G-07 共享数据权利、G-04/G-09 UNKNOWN、G-10 Phase 2、G-11 兼容债务、G-12 工具证据分类保留。launch eligibility、minimum identity assurance、exact proposal expiry、Conversation retention/export/deletion/revoke/closed history 均不推断默认值。
 
-`GENERIC_PROJECTION_INVALIDATION != PRODUCT_CONNECTION_DEPENDENCY_INVALIDATION`；`EXACT_MATERIALIZATION != PROTECTED_USE_VALIDITY`；UNKNOWN/REJECTED 不因精确存取变成可用；`TRANSITION_ADMISSIBLE != AUTHORITATIVE_STATE_CHANGE`。
+auth/session/token、真实 authority writers、生产持久化／部署仍需精确授权。真实内测前必须分别关闭必要权限、写入、恢复、撤回及数据处理出口；不把它们藏进笼统“最后上线”步骤。
 
-R17-F1 的 conflict precedence 尚未裁定。本次不排序/过滤 evidence 来绕过 evaluator，不发明 reason，不修改现有源码。R17-F2 的有效来源继承已在索引显式列出；清单补全不是 R17 接受或 F1 修复。
+历史工具链 M1 冻结 lane 耗尽、M2 deferred、M3/DEP13 未解除、B12 未授权；NON-HIT 不证明全局无 artifact 或构建失败。保留 `WRITABLE_CONTINUATION_SHARE_FAILED — exit -2147024809 — Value does not fall within the expected range.`。前移平台证明不解除这些规则，不授权本轮 probe、安装、缓存检查、Flutter/Dart/Gradle/Java/Android。
 
-## 6. 有界缺口与独立 lane
+README 预算耗尽；FD02 永久排除；旧 `D:\EliteSync` / `zcx369658780/EliteSync` 禁止访问；无默认枚举／搜索／全仓 status/index 操作，保护无关 staged/untracked/modified 内容。
 
-| 缺口 | 影响范围 | 本次处置 |
-|---|---|---|
-| R17-F1 / F2 | Connection 映射接受与其下游 | 保持拒绝/暂停；仅记录未来有界处理位置 |
-| launch eligibility / minimum identity assurance | 对应真实资格与身份保证 | UNKNOWN，不阻塞无身份推断的文档工作 |
-| exact proposal expiry | Match 具体到期行为 | 不从旧 countdown 继承 |
-| Conversation retention/export/deletion/revoke/closed history | 共享内容与真实数据权利 | 无生产默认值，成熟度触发专项决定 |
-| auth/session/token、durable authority writers、生产持久化/部署 | 真实端到端执行 | 未授权，不能被 derived HTTP 切片抵消 |
-| 客户端运行验证及兼容性债务 | 集成/迁移交付 | 沿用 APP-T12 G-11/G-12，不重复产品设计 |
-| Sandbox/DEP13/B12/M2/M3 | 客户端构建与恢复 lane | 不由后端或文档任务自动恢复 |
-| Phase-2 工具及 optional AI/reference allowlist | 可选后续能力 | deferred/UNKNOWN，不扩核心 MVP |
+保留 accepted ADR、D-02 unresolved / D02-DURABLE-UNKNOWN-01、U-14、U-12、TP-SOURCE-CLASS-01、TP-TARGET-01、deferred PUI、PUI-PREREQ-12=0 及原证据根。历史 Backend 0/10、Database 0/8 受限盘点未解除，也不否定后来精确获准的 synthetic 工作。
 
-M1 冻结 lane 耗尽；其 NON-HIT 不证明全局 artifact 不存在或构建失败。M2 deferred；M3/DEP13 未解除；保留 `WRITABLE_CONTINUATION_SHARE_FAILED — exit -2147024809 — Value does not fall within the expected range.` 历史事实，B12 未授权。本轮不重新检查运行环境。
+沿用 `CORE PRE-ALPHA LEGAL BOUNDARY IS SUBSTANTIALLY COMPLETE; PRODUCTION LEGAL READINESS IS DEFERRED TO MATERIAL MATURITY TRIGGERS`，不是新法律结论。Safety-only 运营风险评估 NOT DECIDED；不启动 research/recruitment、真实或私密数据、telemetry/analytics/measurement、Safety Operations、新 legal research、LC-03/LC-04/Phase36 或生产部署。
 
-## 7. 历史边界不能被“优化”删除
+无 source/account/header/auth 推断、global revision、synthetic aggregate dependency revision、LWW、arrival-order/timestamp authority。历史细节在旧 context blob `e22cc69b903ef852dbb558d6f3aa9d6abd08d604`、ref `67b14d97732fe831e4ac9321373a8a0a6f7d22f9`，仅在精确任务需要时读取。
 
-README 预算耗尽；FD02 永久排除；旧仓库/旧目录禁止访问；不默认枚举、代码/文件名搜索、全仓 status/index 操作。保护无关 staged/untracked/modified 状态。
+## 7. 状态维护纪律
 
-D-02 unresolved / D02-DURABLE-UNKNOWN-01、U-14、U-12、TP-SOURCE-CLASS-01、TP-TARGET-01、deferred PUI、PUI-PREREQ-12=0 及其原证据根/精确 scope 保留。历史 Backend 0/10、Database 0/8 受限盘点未自动解除，不把它们泛化成对后续已批准 synthetic 工作的否定。
+接受／拒绝／新任务发布时，在同一授权交付内更新受影响状态与来源指针；不再为纯事实同步串行增设预审、实施、验收。必须保留历史 task/result/acceptance/rejection/ADR/handoff 原文。事实更新不改变契约或独立接受结论；语义规则变更仍需非作者审查。
 
-沿用 `CORE PRE-ALPHA LEGAL BOUNDARY IS SUBSTANTIALLY COMPLETE; PRODUCTION LEGAL READINESS IS DEFERRED TO MATERIAL MATURITY TRIGGERS`，不是本次新法律结论。保留 Safety-only 运营风险评估 NOT DECIDED；不启动 research/recruitment、真实或私密数据、telemetry/analytics/measurement、Safety Operations、新 legal research、LC-03/LC-04/Phase36 或生产部署。
-
-无 source/account/header/auth 推断；无 global revision、synthetic aggregate dependency revision、LWW 或 arrival-order/timestamp authority。历史明细可在本文件旧 blob `e22cc69b903ef852dbb558d6f3aa9d6abd08d604` / 原基线读取，仅在任务明确授权时展开。
-
-## 8. 更新纪律
-
-只在接受、拒绝、实际 blocker 或授权变化时更新本入口。旧 handoff 与 accepted 原文不覆写。当前路线是排程层，旧 2026-09-12 roadmap 仍是产品范围/历史顺序证据，不再作为“下一步 APP-T01”的实时指令。
-
-任何完成状态附来源与层次；未知保留未知。日期仅为规划，不以任务数量/文档数量当完成百分比。不为每次 commit 重发项目源包。
+本页核验的是截至所列 base 的状态；此后以更新的精确任务／接受记录为准。不得把本页“未执行”写成执行器现场证明，也不得由本页自动启动后继。
