@@ -242,6 +242,8 @@ class _MatchRoundContractViewState
         data: (data) {
           final canonical = CanonicalMatchLifecycleAdapter.fromRound(data);
           final content = _content(context, data, canonical);
+          final revealedResult =
+              data.state == MatchRoundBusinessState.revealed ? data.result : null;
           final showServerTime =
               data.state == MatchRoundBusinessState.scheduled;
           return RefreshIndicator(
@@ -281,6 +283,44 @@ class _MatchRoundContractViewState
                           height: 1.55,
                         ),
                       ),
+                      if (revealedResult != null) ...[
+                        SizedBox(height: t.spacing.lg),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: content.color.withValues(alpha: 0.07),
+                            borderRadius: BorderRadius.circular(t.radius.lg),
+                            border: Border.all(
+                              color: content.color.withValues(alpha: 0.16),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                revealedResult.partnerNickname ?? '候选资料',
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(
+                                      color: t.textPrimary,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                              ),
+                              if (revealedResult.headline.isNotEmpty) ...[
+                                const SizedBox(height: 8),
+                                Text(
+                                  revealedResult.headline,
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(
+                                        color: t.textSecondary,
+                                        height: 1.45,
+                                      ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ],
                       if (showServerTime) ...[
                         SizedBox(height: t.spacing.lg),
                         Container(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
 import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/privacy_settings_page.dart';
@@ -40,7 +41,14 @@ class ReadinessPurposePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final readiness = ref.watch(navigationGuardProvider).readinessState;
-    final presentation = _readinessPresentation(readiness);
+    final env = ref.watch(appEnvProvider);
+    final presentation = _readinessPresentation(
+      readiness,
+      isSyntheticDemo:
+          readiness == ReadinessGuardState.ready &&
+          env.isDev &&
+          env.useSyntheticReadinessProjection,
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('Readiness · 准备状态')),
@@ -157,7 +165,16 @@ class _ReadinessPresentation {
   final String body;
 }
 
-_ReadinessPresentation _readinessPresentation(ReadinessGuardState state) {
+_ReadinessPresentation _readinessPresentation(
+  ReadinessGuardState state, {
+  required bool isSyntheticDemo,
+}) {
+  if (state == ReadinessGuardState.ready && isSyntheticDemo) {
+    return const _ReadinessPresentation(
+      'Synthetic 准备状态已建立 · 开发演示',
+      '这是仅用于演练 Match 流程的本地 synthetic projection；它不证明服务器或生产 readiness authority 已确认。',
+    );
+  }
   return switch (state) {
     ReadinessGuardState.unauthenticated => const _ReadinessPresentation(
       '尚未登录',

@@ -14,6 +14,7 @@ class AppEnv {
     this.useMockChat = false,
     this.useMockProfile = false,
     this.useMockAdmin = false,
+    this.useSyntheticReadinessProjection = false,
     this.useMatchRoundContract = false,
     this.useAdminMatchingOperations = false,
     this.initialRoute,
@@ -31,6 +32,7 @@ class AppEnv {
   final bool useMockChat;
   final bool useMockProfile;
   final bool useMockAdmin;
+  final bool useSyntheticReadinessProjection;
   final bool useMatchRoundContract;
   final bool useAdminMatchingOperations;
   final String? initialRoute;

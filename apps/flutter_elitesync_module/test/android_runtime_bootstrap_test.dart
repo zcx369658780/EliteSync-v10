@@ -28,7 +28,8 @@ void main() {
     expect(env.useMockChat, isTrue);
     expect(env.useMockProfile, isTrue);
     expect(env.useMockAdmin, isTrue);
-    expect(env.useMatchRoundContract, isFalse);
+    expect(env.useSyntheticReadinessProjection, isTrue);
+    expect(env.useMatchRoundContract, isTrue);
     expect(env.useAdminMatchingOperations, isFalse);
     expect(env.initialRoute, AppRouteNames.home);
     expect(env.initialRoute, '/home');
