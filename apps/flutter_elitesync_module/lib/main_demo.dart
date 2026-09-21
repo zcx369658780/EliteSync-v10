@@ -32,6 +32,7 @@ AppEnv createDemoAppEnv() {
     useMockProfile: true,
     useMockAdmin: true,
     useSyntheticReadinessProjection: true,
+    useSyntheticConnectionLifecycle: true,
     useMatchRoundContract: true,
     useAdminMatchingOperations: false,
     initialRoute: AppRouteNames.home,
