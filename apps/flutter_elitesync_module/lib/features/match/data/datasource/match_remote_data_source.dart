@@ -125,6 +125,12 @@ class MatchRemoteDataSource {
 
   Future<MatchRoundProjection> getRoundProjection() async {
     final receivedAt = DateTime.now().toUtc();
+    if (useMock) {
+      return MatchRoundProjection.fromJson(
+        MatchMock.roundProjection,
+        receivedAt: receivedAt,
+      );
+    }
     final result = await apiClient
         .get('/api/v1/match-rounds/current')
         .timeout(_requestTimeout);

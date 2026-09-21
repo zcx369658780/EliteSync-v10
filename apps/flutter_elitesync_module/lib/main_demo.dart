@@ -8,8 +8,7 @@ import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 
-const syntheticDemoAccessToken =
-    'ELITESYNC_SYNTHETIC_DEMO_TOKEN_NOT_AUTHORITY';
+const syntheticDemoAccessToken = 'ELITESYNC_SYNTHETIC_DEMO_TOKEN_NOT_AUTHORITY';
 const syntheticDemoOnboardingStatus = 'completed';
 const syntheticDemoProfile = UserSummary(
   id: -13001,
@@ -32,7 +31,8 @@ AppEnv createDemoAppEnv() {
     useMockChat: true,
     useMockProfile: true,
     useMockAdmin: true,
-    useMatchRoundContract: false,
+    useSyntheticReadinessProjection: true,
+    useMatchRoundContract: true,
     useAdminMatchingOperations: false,
     initialRoute: AppRouteNames.home,
   );
@@ -47,7 +47,10 @@ Future<void> seedSyntheticDemoSession({
 
   await secure.write(CacheKeys.accessToken, syntheticDemoAccessToken);
   await secure.delete(CacheKeys.refreshToken);
-  await local.setJson(CacheKeys.lastKnownProfile, syntheticDemoProfile.toJson());
+  await local.setJson(
+    CacheKeys.lastKnownProfile,
+    syntheticDemoProfile.toJson(),
+  );
   await local.setBool(CacheKeys.onboardingDone, true);
   await local.setString(
     CacheKeys.firstUseOnboardingV1Status,
