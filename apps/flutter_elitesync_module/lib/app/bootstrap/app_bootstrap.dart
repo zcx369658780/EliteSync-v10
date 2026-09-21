@@ -12,7 +12,9 @@ void runEliteSyncApp(AppEnv env) {
       overrides: [appEnvProvider.overrideWithValue(env)],
       child: Consumer(
         builder: (context, ref, child) {
-          ref.watch(rtcInviteBootstrapProvider);
+          if (env.useLiveKitRtc) {
+            ref.watch(rtcInviteBootstrapProvider);
+          }
           return child ?? const SizedBox.shrink();
         },
         child: const EliteSyncApp(),
