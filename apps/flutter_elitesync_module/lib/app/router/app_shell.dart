@@ -62,7 +62,9 @@ RtcSessionEntity? selectLatestIncomingRtcCall(
   return null;
 }
 
-final appShellRtcInviteWatcherEnabledProvider = Provider<bool>((ref) => true);
+final appShellRtcInviteWatcherEnabledProvider = Provider<bool>(
+  (ref) => ref.watch(appEnvProvider).useLiveKitRtc,
+);
 
 class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key, required this.navigationShell});
