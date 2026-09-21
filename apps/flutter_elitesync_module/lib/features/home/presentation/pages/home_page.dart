@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/browse_scaffold.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/providers/calm_home_projection_provider.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/state/calm_home_projection.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.appTokens;
-    const projection = CalmHomeProjection.current;
+    final projection = ref.watch(calmHomeProjectionProvider);
     return BrowseScaffold(
-      header: const _CurrentStateArea(projection: projection),
+      header: _CurrentStateArea(projection: projection),
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.xs, 0, t.spacing.huge),
         children: [
@@ -138,7 +140,7 @@ class _NextDecisionArea extends StatelessWidget {
           ),
           SizedBox(height: t.spacing.xxs),
           Text(
-            '当前没有足够的权威状态来推荐后续生命周期动作。先查看准备状态。',
+            decision.description,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: t.textSecondary,
               height: 1.45,

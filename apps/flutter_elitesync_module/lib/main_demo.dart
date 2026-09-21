@@ -34,6 +34,7 @@ AppEnv createDemoAppEnv() {
     useSyntheticReadinessProjection: true,
     useSyntheticConnectionLifecycle: true,
     useSyntheticConversationLifecycle: true,
+    useSyntheticHomeProjection: true,
     useMatchRoundContract: true,
     useAdminMatchingOperations: false,
     initialRoute: AppRouteNames.home,

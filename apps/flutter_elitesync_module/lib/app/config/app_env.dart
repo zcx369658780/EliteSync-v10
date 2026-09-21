@@ -17,6 +17,7 @@ class AppEnv {
     this.useSyntheticReadinessProjection = false,
     this.useSyntheticConnectionLifecycle = false,
     this.useSyntheticConversationLifecycle = false,
+    this.useSyntheticHomeProjection = false,
     this.useMatchRoundContract = false,
     this.useAdminMatchingOperations = false,
     this.initialRoute,
@@ -37,6 +38,7 @@ class AppEnv {
   final bool useSyntheticReadinessProjection;
   final bool useSyntheticConnectionLifecycle;
   final bool useSyntheticConversationLifecycle;
+  final bool useSyntheticHomeProjection;
   final bool useMatchRoundContract;
   final bool useAdminMatchingOperations;
   final String? initialRoute;
