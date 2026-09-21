@@ -7,30 +7,50 @@ class ConversationAccessGate extends StatelessWidget {
     super.key,
     required this.snapshot,
     required this.protectedBuilder,
+    this.availableTransitions = const <ConversationTransition>[],
+    this.onAction,
+    this.onReset,
   });
 
   final ConversationAccessSnapshot snapshot;
   final WidgetBuilder protectedBuilder;
+  final List<ConversationTransition> availableTransitions;
+  final ValueChanged<ConversationLifecycleAction>? onAction;
+  final VoidCallback? onReset;
 
   @override
   Widget build(BuildContext context) {
     if (snapshot.canRevealPrivateContent) {
       return Builder(builder: protectedBuilder);
     }
-    return ConversationAccessUnavailablePage(snapshot: snapshot);
+    return ConversationAccessUnavailablePage(
+      snapshot: snapshot,
+      availableTransitions: availableTransitions,
+      onAction: onAction,
+      onReset: onReset,
+    );
   }
 }
 
 class ConversationAccessUnavailablePage extends StatelessWidget {
-  const ConversationAccessUnavailablePage({super.key, required this.snapshot});
+  const ConversationAccessUnavailablePage({
+    super.key,
+    required this.snapshot,
+    this.availableTransitions = const <ConversationTransition>[],
+    this.onAction,
+    this.onReset,
+  });
 
   final ConversationAccessSnapshot snapshot;
+  final List<ConversationTransition> availableTransitions;
+  final ValueChanged<ConversationLifecycleAction>? onAction;
+  final VoidCallback? onReset;
 
   @override
   Widget build(BuildContext context) {
     final pending = snapshot.state == ProductConversationState.pendingConsent;
-    final hasAuthority =
-        snapshot.authority == ConversationEvidenceAuthority.authoritative;
+    final isSynthetic = snapshot.hasSyntheticDevelopmentState;
+    final hasAuthority = snapshot.hasAuthoritativeState;
     const unresolved = AppPresentationState.authorityNotEstablished(
       safeTitle: '消息权限尚未建立',
       safeBody: '当前来源不足以授权会话内容或操作；受保护的对方身份、消息预览、未读数和线程详情保持关闭。',
@@ -47,17 +67,24 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    pending ? '消息同意仍在等待' : unresolved.safeTitle,
+                    isSynthetic
+                        ? 'Synthetic Conversation · 开发演示'
+                        : pending
+                        ? '消息同意仍在等待'
+                        : unresolved.safeTitle,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    hasAuthority
+                    isSynthetic || hasAuthority
                         ? snapshot.state.code
                         : ProductConversationAuthority.notYetEstablishedLabel,
                   ),
                   const SizedBox(height: 8),
-                  if (!hasAuthority) ...[
+                  if (isSynthetic) ...[
+                    const Text('这是本地开发 simulation，不是服务器或生产 messaging consent authority。'),
+                    const SizedBox(height: 8),
+                  ] else if (!hasAuthority) ...[
                     Text(unresolved.safeBody),
                     const SizedBox(height: 8),
                   ],
@@ -77,11 +104,11 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
                   SizedBox(height: 8),
                   Text('匹配不会开启对话；连接本身也不会开启对话。'),
                   SizedBox(height: 8),
-                  Text('只有权威的 CN_ACTIVE 与另一项独立的双方消息同意同时成立，私密对话才可用。'),
+                  Text('只有连接保持 active，并另行完成双方消息同意后，本地 synthetic 会话才可见。'),
                   SizedBox(height: 8),
-                  Text('拉黑与举报是两个独立控制，都不是消息同意或对话生命周期事实。'),
+                  Text('生产路径仍严格要求权威 Connection 与权威消息同意证据。'),
                   SizedBox(height: 8),
-                  Text('同意或生命周期状态也不是安全认定；对话不会建立关系。'),
+                  Text('同意或生命周期状态不是安全认定；对话不会建立关系。'),
                 ],
               ),
             ),
@@ -95,20 +122,43 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
                 children: [
                   Text('可用操作', style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 8),
-                  const Text('当前没有已接入的消息同意写入权限；以下操作不会模拟成功，也不会在本机保存为双方同意事实。'),
+                  Text(
+                    isSynthetic
+                        ? '以下控件只推进本地内存 simulation，并且只展示 ProductConversationContract.transitions 当前允许的动作。'
+                        : '当前没有已接入的消息同意写入权限；以下操作不会模拟成功，也不会保存为双方同意事实。',
+                  ),
                   const SizedBox(height: 12),
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: [
-                      for (final action in ConversationLifecycleAction.values)
-                        Chip(
-                          avatar: const Icon(Icons.lock_outline, size: 16),
-                          label: Text(
-                            '${action.label} · ${ProductConversationAuthority.notYetEstablishedLabel}',
-                          ),
-                        ),
-                    ],
+                    children: isSynthetic
+                        ? [
+                            for (final transition in availableTransitions)
+                              OutlinedButton(
+                                onPressed: onAction == null
+                                    ? null
+                                    : () => onAction!(transition.action),
+                                child: Text(_syntheticLabel(transition.action)),
+                              ),
+                            if (onReset != null)
+                              OutlinedButton(
+                                onPressed: onReset,
+                                child: const Text('重置本地演示（非领域 transition）'),
+                              ),
+                          ]
+                        : [
+                            for (final action
+                                in ConversationLifecycleAction.values)
+                              Chip(
+                                avatar: const Icon(
+                                  Icons.lock_outline,
+                                  size: 16,
+                                ),
+                                label: Text(
+                                  '${action.label} · ${ProductConversationAuthority.notYetEstablishedLabel}',
+                                ),
+                              ),
+                          ],
                   ),
                 ],
               ),
@@ -118,4 +168,18 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
       ),
     );
   }
+
+  String _syntheticLabel(ConversationLifecycleAction action) => switch (action) {
+    ConversationLifecycleAction.requestMessagingConsent =>
+      '本地演示：请求消息同意',
+    ConversationLifecycleAction.acceptMessagingConsent =>
+      '本地演示：模拟对方接受',
+    ConversationLifecycleAction.declineMessagingConsent =>
+      '本地演示：模拟对方谢绝',
+    ConversationLifecycleAction.withdrawMessagingConsent =>
+      '本地演示：撤回消息请求',
+    ConversationLifecycleAction.pause => '本地演示：暂停对话',
+    ConversationLifecycleAction.resume => '本地演示：恢复对话',
+    ConversationLifecycleAction.close => '本地演示：关闭对话',
+  };
 }

@@ -30,6 +30,7 @@ void main() {
     expect(env.useMockAdmin, isTrue);
     expect(env.useSyntheticReadinessProjection, isTrue);
     expect(env.useSyntheticConnectionLifecycle, isTrue);
+    expect(env.useSyntheticConversationLifecycle, isTrue);
     expect(env.useMatchRoundContract, isTrue);
     expect(env.useAdminMatchingOperations, isFalse);
     expect(env.initialRoute, AppRouteNames.home);
