@@ -61,6 +61,7 @@ final class SqliteInMemoryLogicalPersistenceAdapter
         if (! in_array($record['record_family'] ?? null, [
             InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_RR03,
             InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_CANONICAL_MATCH,
+            InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_PRODUCT_CONNECTION,
         ], true)) {
             unset($record['derived_projection_payload']);
         }
@@ -597,7 +598,10 @@ final class SqliteInMemoryLogicalPersistenceAdapter
 
         if ($derivedPayload !== null
             && $invalidationRelation !== null
-            && $record['record_family'] !== InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_CANONICAL_MATCH) {
+            && ! in_array($record['record_family'], [
+                InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_CANONICAL_MATCH,
+                InMemoryLogicalPersistenceRepositoryContract::RECORD_FAMILY_PRODUCT_CONNECTION,
+            ], true)) {
             $derivedPayload['invalidation'] = [
                 'invalidated' => true,
                 'relation' => $invalidationRelation,
