@@ -11,7 +11,7 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
 | App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
 | 最后已接受工程状态 | APP-RUN-01、APP-INT-01～05 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation → Home 活态摘要交互。APP-INT-05 集成提交 `03ee72e1abe4e617abc45e9498ec1711ffee9ac9`；验收见 `EVIDENCE/APP-INT-05/summary.md`。 |
-| 当前任务 / 门 | `APP-INT-06-RECOVERY-BASELINE` 已获 Work LEVEL 1 ACCEPT，见 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md`；下一持久化/恢复任务须先决定 Connection 与独立 Messaging consent 的保存、失效、清除及消息可见性政策，属于 LEVEL 2，不自动启动。 |
+| 当前任务 / 门 | `APP-INT-06-RECOVERY-BASELINE` 已获 Work LEVEL 1 ACCEPT，见 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md`。Owner 已决定允许在重新核验当前有效性后恢复对话、消息等信息；现已下达 `APP-INT-07-RECOVERY-REVALIDATION-CONTRACT`（LEVEL 2，设计任务），先明确恢复核验合同，不实施存储或权限。 |
 
 ## Product scope
 
@@ -49,6 +49,6 @@ Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟
 
 ## Unsupported claims / next safe task
 
-不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。APP-INT-06 基线已接受；下一持久化/恢复任务暂停在 Owner 产品语义决定之前，不把本次重启后的清空现象直接写成应有政策。
+不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。APP-INT-06 基线已接受；Owner 的条件恢复方向已记录在 `PRODUCT_DECISIONS.md`。下一任务仅形成可独立审查的重启核验合同，不把目前的清空现象写成未来政策，也不把恢复方向当作实现证明。
 
 证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`、`EVIDENCE/APP-INT-05/summary.md`、`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。

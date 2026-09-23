@@ -1,36 +1,32 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `APP-INT-06-RECOVERY-BASELINE`
+Task ID: `APP-INT-07-RECOVERY-REVALIDATION-CONTRACT`
 
-Risk Level: `LEVEL 1`（现有 synthetic 行为验证；若需新增持久化或 consent 语义，升至 LEVEL 2 并停止）
+Risk Level: `LEVEL 2`（对话与消息恢复的权限/隐私边界；须由 Work 独立审查）
 
-Status: `ACCEPTED — OWNER DECISION REQUIRED BEFORE PERSISTENCE/RECOVERY TASK`
+Status: `ISSUED — NOT STARTED`
 
-Work verdict (2026-09-23): `ACCEPT — EXISTING SYNTHETIC RESTART/UNKNOWN BASELINE ONLY`，见 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md`。本任务已结束，不再执行或重发。下一任务如涉及跨进程保存/恢复，需先由 Owner 决定 Connection、独立 Messaging consent 的保存、失效、清除及消息可见性恢复条件；在此之前没有新任务单授权实现。
+Assignee: `Codex`。Work 已按 Owner 2026-09-23 的条件恢复方向下达本任务；本任务只形成设计候选，不授权实现、接受或后继任务。
 
 ## Objective / Why now
 
-在已接受并本地集成的 APP-INT-05 主循环上，测定 synthetic demo 的重启、状态失效以及 Match loading/error 时的**现有**行为，形成下一轮持久化/恢复任务的可信基线。APP-INT-05 的运行回执证明同一进程内主循环，尚未证明重启恢复。
+把“重启后允许在重新核验有效性后恢复对话、消息等信息”转成可审查、可测试、fail-closed 的恢复核验合同。APP-INT-06 只证明现有 synthetic/demo 重启后状态重新 seed；不能以当前本地 provider、既有 debug APK、缓存行或旧同意推断真实恢复权限。
 
-## Scope / allowed files
+## Sources to reconcile
 
-- 只读消费 `CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/APP-INT-05/summary.md`，以及 APP-INT-01～05 相关 provider、demo entry 和现有测试。当前代码基线以本地 `main` 为准；先核验工作区冲突，不碰无关 untracked 目录。
-- 可新增 `apps/flutter_elitesync_module/test/synthetic_main_loop_recovery_baseline_test.dart`；仅在测试无法表达时，可修改现有 `test/android_runtime_bootstrap_test.dart`。可写 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md` 和必要的短回执。**不修改产品 `lib/`、后端、DB、依赖、环境配置或旧接受记录。**
-- 使用虚构本地 actor/数据；不读取 app-private data、真实参与者内容或生产服务。
+- `PRODUCT_DECISIONS.md` 中 Owner 的条件恢复决定，以及 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md` 的设备/测试基线。
+- `docs/architecture/ELITESYNC_V10_BACKEND_MESSAGING_CONSENT_CONVERSATION_LIVE_GATE_TECHNICAL_DESIGN_ACCEPTANCE_V0_1.md` §2–6：当前 participant/context/revision/freshness 绑定的 `CN_ACTIVE` 与独立 `MC_ACTIVE` 两输入 live gate；read/send 分离、send 时重查、重启/并发/撤销 fail-closed。
+- `docs/architecture/ELITESYNC_V10_CONVERSATION_DATA_RIGHTS_DECISION_CLOSURE_OWNER_ACCEPTANCE_V0_1.md` D-01～03、D-07～10：无授权历史只读、数据权利、保留与私密用途边界。
+- 现有 Flutter Connection/Conversation contract、presentation provider、Home 投影；只用于标记当前 synthetic/dev 与目标 authoritative 能力差距。
 
-## Acceptance criteria
+## Deliverable / allowed paths
 
-1. 用针对性测试分别观察新 ProviderContainer/冷启动、Connection active、独立 Messaging consent 后 Conversation active、Connection close 后 relock；明确哪些状态为重新 seed 的 demo fixture，哪些是同一进程状态，哪些有持久化证据。不得把 fresh container 等同实际 Android process restart。
-2. 覆盖 Match loading/error 的 Home 摘要与下一步：UNKNOWN/不可用应保持 fail-closed，不宣称有提案或授权。覆盖 Connection non-active 时 Conversation 不可见且 Home 返回连接方向。
-3. 在 Android synthetic demo 上做一次有界进程退出与冷启动观察，记录退出前状态、重启后状态及 Home 文案/动作。观察不到时写 UNKNOWN，不能从单元测试推断设备恢复。
-4. 证据准确区分 PASS、FAIL、未运行；说明 APK/source 身份、命令次数、设备、截图或日志是否实际保留。结果只给出行为基线及缺口，不宣布 persistence/recovery 已完成。
+只可新增 `EVIDENCE/APP-INT-07-RECOVERY-REVALIDATION-CONTRACT/contract.md`，作为唯一主要结果。必要时可在同目录新增一份不含敏感数据的短执行回执。任务源文件只读；不得修改 `lib/`、test、backend、DB、依赖、环境、旧接受文档或 `PRODUCT_DECISIONS.md`。保留无关未跟踪目录。
 
-## Required tests / evidence
+合同须以精简表格或状态图明确：恢复前的锁定状态；需重新核验的身份/参与者、Connection aggregate/context、`CN_ACTIVE`、独立 `MC_ACTIVE`、purpose/audience、revision/currentness/freshness；何时允许 live read、何时允许 live send、何时仅可显示非私密占位。区分对话索引、消息正文、草稿、未读数与发送权限，不把缓存存在等同可见或可发。列出 fresh-valid、loading/unavailable、offline、stale、revoked、paused/closed、context mismatch、新 aggregate、冲突/乱序、send 期间失效的负向矩阵与下一步测试建议。
 
-优先运行新增 targeted Flutter test 与必要的既有 APP-INT-05 测试；每条命令最多初次加一次针对失败的修正重跑。Android 优先使用能核对与当前集成 blob 相同的现有 debug host；若必须重建，最多一次 locked-dependency build/assemble，不刷新依赖。Android 运行最多一次完整重启观察。保存简短执行回执，不重复全套旧 Builder 检查。
+逐项列明“已由接受合同决定”“由本任务建议但尚未接受”“仍需 Owner/法律/后端 authority 决定”的内容。若发现恢复所需的本地保存范围、保留期限、离线历史查看、真实身份/服务端来源等没有既有 authority，只列为开放问题和可选方案，不自定政策。给出后续最小实现切片顺序及每片验收门；不得把设计候选写成已可运行的恢复机制。
 
-## Stop conditions / forbidden expansion / review
+## Verification budget / stop conditions
 
-发现现有状态或数据跨重启保留的语义不明、需要决定 consent/消息/Connection 的持久化或清除政策、需要触及真实 auth/session、生产 API/DB、隐私用途、Safety、release 或新 writer 时停止实现并报告具体决策点；不得自行填补产品语义。工具链预算耗尽也停止受影响验证。不能借此修改候选原 SHA 或重审已接受 APP-INT-05。
-
-交付一个结果和证据目录，由 Work 轻量实质审查。若只得到部分证据，按实际范围验收或拒绝，不扩大成生产/内测结论。没有 Owner 决策项且通过门后，Work 按 `AGENTS.md` 自动下达下一张任务单。
+只做本地文档与源码静态核对；不运行 Flutter/Gradle、模拟器、PHP、HTTP、DB、网络或真实数据操作。检查新增路径、引用来源与文档内部一致性；不访问旧 `D:\EliteSync` 或刷新/推送 GitHub。若源合同存在实质冲突或需要新的 Owner 决策才能写出安全合同，明确冲突与决策点，停止该部分，不填补空白。交付候选与来源/检查回执后停在 Work LEVEL 2 独立审查门；Codex 不自行 ACCEPT、commit、备份或派发后继。
