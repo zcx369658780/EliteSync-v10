@@ -1,5 +1,11 @@
 # EliteSync-v10 本地工作约定
 
+## Codex 新任务入口
+
+启动项目任务时，先确认工作目录为 `D:\EliteSync-v10`，读取本地 Git 分支、HEAD 与工作区状态；以本地文件、代码和证据判断当前状态，不以旧聊天或远端可达性作为启动门。先读 [CURRENT.md](CURRENT.md)，再按任务需要读 [PRODUCT_DECISIONS.md](PRODUCT_DECISIONS.md)、[TASK_CURRENT.md](TASK_CURRENT.md) 和 [REVIEW_GATE.md](REVIEW_GATE.md)。执行已下达任务时使用 [elitesync-local-workflow](.agents/skills/elitesync-local-workflow/SKILL.md)。
+
+Codex 从 `TASK_CURRENT.md` 核对 Task ID、状态、风险级别、允许路径、验证预算与停点。只有状态为 `ISSUED`、明确交给 Codex 且当前派发与任务一致时才执行；预备、暂停、待审、已接受的任务不得自行启动。Codex 只交付候选和证据，停在相应验收门；任务发布、独立验收及后继任务由 Work 负责，Owner 权限不转移。保留无关工作区内容；不自行推送或提交 Git。
+
 ## 入口与角色
 
 本地仓库是实时项目状态来源。新会话先读 `CURRENT.md`，再按需读 `PRODUCT_DECISIONS.md`、`TASK_CURRENT.md`、`REVIEW_GATE.md` 和对应源码/证据。历史架构文档仍是来源记录，不能因新入口而改写其接受结论。当前本地 main 与远端若不同，应分别标明；不自动 pull、reset、覆盖工作区或把未合入候选写成已接受。

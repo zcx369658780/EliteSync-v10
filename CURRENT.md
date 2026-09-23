@@ -4,12 +4,14 @@
 
 本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
 
+Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX-01/summary.md`；根 `AGENTS.md` 和项目技能已在全新只读 Codex 任务中核验。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
 | App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
 | 最后已接受工程状态 | APP-RUN-01、APP-INT-01～05 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation → Home 活态摘要交互。APP-INT-05 集成提交 `03ee72e1abe4e617abc45e9498ec1711ffee9ac9`；验收见 `EVIDENCE/APP-INT-05/summary.md`。 |
-| 当前任务 / 门 | Owner 要求先固化 Codex 流程；`TASK_CURRENT.md` 已下达 `WF-CODEX-01`（LEVEL 2 本地执行控制面，待 Codex 执行与 Work 独立验收）。APP-INT-06-RECOVERY-BASELINE 暂缓，原任务单保存在本地提交 `2574d0ee94d66164499cc8ae77ea6c850a515074:TASK_CURRENT.md`；验收流程任务后再恢复。 |
+| 当前任务 / 门 | `WF-CODEX-01` 已验收；`TASK_CURRENT.md` 恢复 `APP-INT-06-RECOVERY-BASELINE`（LEVEL 1，`ISSUED — NOT STARTED`），只核验现有重启、stale/unknown、失效行为，不新增持久化语义。 |
 
 ## Product scope
 
@@ -47,6 +49,6 @@ Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟
 
 ## Unsupported claims / next safe task
 
-不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。当前先执行并独立验收 `WF-CODEX-01`；通过后恢复 APP-INT-06，测定现有 synthetic 主循环在重启、失效和未知状态下的实际基线。流程任务未验收前不启动产品任务。
+不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。下一安全任务已恢复为 APP-INT-06，测定现有 synthetic 主循环在重启、失效和未知状态下的实际基线；本轮仅下达，不启动产品实现。
 
 证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`、`EVIDENCE/APP-INT-05/summary.md`、`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。
