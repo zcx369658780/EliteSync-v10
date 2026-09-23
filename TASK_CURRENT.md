@@ -1,22 +1,34 @@
-# EliteSync v10｜下一张本地任务
+# EliteSync v10｜TASK_CURRENT
 
-**Task ID**：APP-INT-05-LOCAL-REVIEW
+Task ID: `APP-INT-06-RECOVERY-BASELINE`
 
-**Risk Level**：LEVEL 1
+Risk Level: `LEVEL 1`（现有 synthetic 行为验证；若需新增持久化或 consent 语义，升至 LEVEL 2 并停止）
 
-**Status**：预备；本次工作流迁移不执行此任务。任务完成后由 Work 更新本页，Codex 只按当前明确授权的任务执行。
+Status: `ISSUED — NOT STARTED`
 
-## APP-INT-05 本地候选审查（LEVEL 1）
+## Objective / Why now
 
-- **Goal**：对本地候选 `060f9a6499f56a434e6ae4598435d49026ec683a` 的 Home live-state 主循环做轻量但实质的非作者审查，给出 ACCEPT/REJECT；作者自述的 PASS 不是接受。
-- **Why now**：APP-INT-01～04 已接受；APP-INT-05 已有实现与 Android 作者回执，却尚未通过独立本地审查。先关闭此门，再决定是否进入持久化/恢复工程。
-- **Scope**：以 parent `77ab03389c3cce6dc7498d8a76f1873bdcfc44fd` 为基线，检查固定候选 diff、`docs/architecture/ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`、相关现有 provider/contract 与测试回执。先核验候选仍在本地、main 及工作区冲突情况。
-- **Files/components**：候选列出的 8 个变更路径；只读审查。无产品源码写权限。若接受，原样本地集成需在该审查结论里另行明确操作条件与冲突检查。
-- **Acceptance criteria**：Home 仅读取既有状态；synthetic flag 默认为 false；dev 演示明确标记；唯一主按钮按 Readiness/Match/Connection/Conversation 状态导航；Connection 关闭后 CV_LOCKED；不新增领域 authority/真实网络行为。区分 analyze 的 0 errors 与 lint 导致的非零退出；确认 Android 回执与候选内容一致。
-- **Tests/evidence**：优先审阅既有 targeted Flutter、Gradle、模拟器交互和 PID 日志回执；本任务无新的工具链执行预算。若发现证据不足，报告缺口，不将未重跑表述为本轮测试通过。
-- **Required evidence**：记录候选对象/parent/tree、8 路径 diff 与 accepted contracts 对照、作者回执的可核实范围、静态审查发现和明确 ACCEPT/REJECT。必要时补最小只读事实；不能以旧回执冒充本轮实测。
-- **Review requirement**：非作者 Work 独立审查；候选 `COMPLETE` 标签与作者测试不能代替接受。接受时另核验本地 main 集成条件、冲突与未追踪文件保护，并由 Work 更新 `CURRENT.md`。
-- **Stop conditions**：候选不存在、对象不匹配、diff 超出原任务范围、语义或证据不充分、main/工作区冲突不明时停止接受；只给出具体问题。接受不自动开始后继产品任务。
-- **Forbidden expansion**：不修改候选后接受旧 SHA；不推送 GitHub；不访问真实/私密数据；不启动生产 API、WebSocket、RTC、DB 或发布；不把 synthetic 证明升级为 release claim。
+在已接受并本地集成的 APP-INT-05 主循环上，测定 synthetic demo 的重启、状态失效以及 Match loading/error 时的**现有**行为，形成下一轮持久化/恢复任务的可信基线。APP-INT-05 的运行回执证明同一进程内主循环，尚未证明重启恢复。
 
-本页是工作流迁移形成的下一安全任务描述，不追认候选，也不覆盖其原精确任务的已耗预算。
+## Scope / allowed files
+
+- 只读消费 `CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/APP-INT-05/summary.md`，以及 APP-INT-01～05 相关 provider、demo entry 和现有测试。当前代码基线以本地 `main` 为准；先核验工作区冲突，不碰无关 untracked 目录。
+- 可新增 `apps/flutter_elitesync_module/test/synthetic_main_loop_recovery_baseline_test.dart`；仅在测试无法表达时，可修改现有 `test/android_runtime_bootstrap_test.dart`。可写 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md` 和必要的短回执。**不修改产品 `lib/`、后端、DB、依赖、环境配置或旧接受记录。**
+- 使用虚构本地 actor/数据；不读取 app-private data、真实参与者内容或生产服务。
+
+## Acceptance criteria
+
+1. 用针对性测试分别观察新 ProviderContainer/冷启动、Connection active、独立 Messaging consent 后 Conversation active、Connection close 后 relock；明确哪些状态为重新 seed 的 demo fixture，哪些是同一进程状态，哪些有持久化证据。不得把 fresh container 等同实际 Android process restart。
+2. 覆盖 Match loading/error 的 Home 摘要与下一步：UNKNOWN/不可用应保持 fail-closed，不宣称有提案或授权。覆盖 Connection non-active 时 Conversation 不可见且 Home 返回连接方向。
+3. 在 Android synthetic demo 上做一次有界进程退出与冷启动观察，记录退出前状态、重启后状态及 Home 文案/动作。观察不到时写 UNKNOWN，不能从单元测试推断设备恢复。
+4. 证据准确区分 PASS、FAIL、未运行；说明 APK/source 身份、命令次数、设备、截图或日志是否实际保留。结果只给出行为基线及缺口，不宣布 persistence/recovery 已完成。
+
+## Required tests / evidence
+
+优先运行新增 targeted Flutter test 与必要的既有 APP-INT-05 测试；每条命令最多初次加一次针对失败的修正重跑。Android 优先使用能核对与当前集成 blob 相同的现有 debug host；若必须重建，最多一次 locked-dependency build/assemble，不刷新依赖。Android 运行最多一次完整重启观察。保存简短执行回执，不重复全套旧 Builder 检查。
+
+## Stop conditions / forbidden expansion / review
+
+发现现有状态或数据跨重启保留的语义不明、需要决定 consent/消息/Connection 的持久化或清除政策、需要触及真实 auth/session、生产 API/DB、隐私用途、Safety、release 或新 writer 时停止实现并报告具体决策点；不得自行填补产品语义。工具链预算耗尽也停止受影响验证。不能借此修改候选原 SHA 或重审已接受 APP-INT-05。
+
+交付一个结果和证据目录，由 Work 轻量实质审查。若只得到部分证据，按实际范围验收或拒绝，不扩大成生产/内测结论。没有 Owner 决策项且通过门后，Work 按 `AGENTS.md` 自动下达下一张任务单。

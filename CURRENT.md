@@ -8,8 +8,8 @@
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
 | App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
-| 最后已接受工程状态 | APP-RUN-01、APP-INT-01～04 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation 交互。 |
-| 当前候选 / 任务 / 门 | APP-INT-05 `060f9a6499f56a434e6ae4598435d49026ec683a`，parent `77ab03389c3cce6dc7498d8a76f1873bdcfc44fd`，tree `12c3270116b8d070554dc1221a29d74500599f11`；**实现与报告中的 Android 证明完成，独立本地审查待办，未接受、未集成**。`TASK_CURRENT.md` 为预备的 LEVEL 1 审查任务，本轮不执行。 |
+| 最后已接受工程状态 | APP-RUN-01、APP-INT-01～05 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation → Home 活态摘要交互。APP-INT-05 集成提交 `03ee72e1abe4e617abc45e9498ec1711ffee9ac9`；验收见 `EVIDENCE/APP-INT-05/summary.md`。 |
+| 当前任务 / 门 | `TASK_CURRENT.md` 已下达 APP-INT-06-RECOVERY-BASELINE（LEVEL 1，只核验现有重启、stale/unknown、失效行为，不新增持久化语义）。 |
 
 ## Product scope
 
@@ -17,7 +17,7 @@ Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | 
 
 ## Flutter
 
-已接受 APP-INT-04：独立消息同意后可在本地 synthetic Conversation 列表/详情读发文本；Connection 关闭后重新锁定。APP-INT-05 候选报告 Home 随四段状态更新唯一下一步按钮，targeted tests 17 PASS、Android debug assemble/install/cold launch/main-loop PASS；analyze 为 0 errors、18 条既有 warning/info，命令退出 1。这些是作者回执，待独立审查，不是发布证明。
+已接受 APP-INT-04：独立消息同意后可在本地 synthetic Conversation 列表/详情读发文本；Connection 关闭后重新锁定。APP-INT-05 Home 随四段状态更新唯一下一步按钮；作者回执报告 targeted tests 17 PASS、Android debug assemble/install/cold launch/main-loop PASS，analyze 为 0 errors、18 条既有 warning/info 且命令退出 1。独立审查静态代码并原样集成，未重跑工具链；这些不是发布证明。
 
 ## Backend
 
@@ -41,12 +41,12 @@ Astrology/reference：八字、紫微等页面、服务与 migrations 确实存�
 
 ## Open observations / blockers
 
-Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟器空间不足；APP-INT-05 作者报告复用 C 盘隔离 cache 后构建，卸载旧 synthetic host 后安装成功。约 1.38 GB 为 debug host APK 大小，不是 release 大小。GitHub push 曾因账号 suspended 失败，不阻断本地工作。当前直接门槛是 APP-INT-05 独立审查；G-04/G-09 按历史索引保留 UNKNOWN，G-07 数据权利和其他真实后端缺口不由本轮关闭。
+Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟器空间不足；APP-INT-05 作者报告复用 C 盘隔离 cache 后构建，卸载旧 synthetic host 后安装成功。约 1.38 GB 为 debug host APK 大小，不是 release 大小。GitHub push 曾因账号 suspended 失败，不阻断本地工作。重启后的保存/恢复与 stale/unknown 行为尚未受证；G-04/G-09 按历史索引保留 UNKNOWN，G-07 数据权利和其他真实后端缺口不由本轮关闭。
 
 本地 Git 检查点已建立；独立存储的 Git bundle 备份位置与恢复演练尚未建立，不能把同盘 Git 历史称为独立备份。备份待办不阻断已授权的纯本地审查。
 
 ## Unsupported claims / next safe task
 
-不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用或玄学匹配权威。下一安全任务：按 `TASK_CURRENT.md` 对 APP-INT-05 固定候选做独立本地审查并决定 ACCEPT/REJECT；接受且安全集成后，才考虑主循环 persistence/restart/stale/recovery hardening。首次迁移到此停止，不执行新 feature。
+不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。下一安全任务：按 `TASK_CURRENT.md` 测定现有 synthetic 主循环在重启、失效和未知状态下的实际基线；之后才定义任何新持久化语义。
 
-证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`；APP-INT-05 候选中的 `ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`；`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。
+证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`、`EVIDENCE/APP-INT-05/summary.md`、`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。
