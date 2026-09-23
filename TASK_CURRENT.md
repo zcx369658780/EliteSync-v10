@@ -4,9 +4,11 @@ Task ID: `CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT`
 
 Risk Level: `LEVEL 2`（登录、离线私密读取与加密内容清理边界；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — REAL-AUTHORITY / IMPLEMENTATION GATE; NO ACTIVE CODEX TASK`
 
-Assignee: `Codex`。仅交付文档候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`（已交付并由 Work 独立接受）。接受证据：`EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md`。
+
+Next gate: 真实成功在线登录事件、可靠时间/防回拨、离线读取凭据、当前 Connection/Consent/CV 与数据权利来源、加密媒体及受控副本清理能力尚未建立；后续实现必须另立有界任务并按最高风险审查。当前没有活动 Codex 执行单。本合同不授权真实设备擦除、生产数据或发布。
 
 ## Authority and objective
 
