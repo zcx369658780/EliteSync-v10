@@ -30,15 +30,9 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
     state = state.copyWith(isSubmitting: true, clearError: true);
 
     try {
-      // ignore: avoid_print
-      print('LOGIN_SUBMIT phone=${state.phone}');
       final session = await ref
           .read(loginUseCaseProvider)
           .call(phone: state.phone, password: state.password);
-      // ignore: avoid_print
-      print(
-        'LOGIN_OK token=${session.accessToken.isNotEmpty} user=${session.user.phone}',
-      );
 
       await ref
           .read(sessionProvider.notifier)
