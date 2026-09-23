@@ -1,33 +1,31 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `CACHE-06-OFFLINE-RETENTION-PURE-POLICY`
+Task ID: `AUTH-01-ALIYUN-SSH-SOURCE-IDENTITY`
 
-Risk Level: `LEVEL 2`（登录期限与私密内容可见性判定；Work 独立审查）
+Risk Level: `LEVEL 2`（真实服务器只读连线与部署源码身份；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPT — REAL-AUTHORITY / INTEGRATION GATE; NO ACTIVE CODEX TASK`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`（已交付并由 Work 独立接受）。接受证据：`EVIDENCE/CACHE-06-OFFLINE-RETENTION-PURE-POLICY/summary.md`。
-
-Next gate: 可信成功在线登录事件、可靠时间/防回拨、账户/设备身份与离线读取凭据、当前 Connection/Consent/CV 和数据权利来源均未建立。当前纯判定不得接 UI、真实缓存或清理器；真实接线另立有界任务并按最高风险审查。当前没有活动 Codex 执行单。
+Assignee: `Codex`。仅交付一次有界 SSH 核验的证据候选，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-以 `PRODUCT_DECISIONS.md` 的 Owner 已定 15/30 天规则和已接受 `EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md` 为上界，在 Flutter chat domain 新增一个不读取设备、不写缓存、不连接 UI/API 的纯判定器。给定**调用方声称**的可信上次成功在线登录后经过时间、账户/设备/对象与离线读取条件、已知失效状态及受控密文完整性，分别返回：15 天在线登录窗口是否尚未届满的候选结果、离线只读候选结果、30 天清理是否到期的候选结果，并给出可测试的拒绝原因。返回值一律不是受信登录证明、真实 grant 或实际清理回执。
+Owner 于当前 Work 会话明确提供阿里云主机 `101.133.161.203` 与可尝试的私钥路径 `C:\Users\zcxve\.ssh\codexkey`，授权接下来需要服务端连线时由 Codex 尝试。先复核本地 `main`、HEAD、工作区及 `CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`，再做**一次**只读 SSH 尝试。历史 `docs/archive/source-migration/ELITESYNC_BACKEND_SYSTEM_MAP.md` 曾记录该 key 被拒绝，不能以旧记录替代当前尝试，也不能据此自动改用另一把 key。历史记录的 `root` 用户仅作为本次一次尝试的精确候选，不能视为永久凭据。
 
-规则必须覆盖：`0 ≤ Δ < 15 天` 可处于在线登录期但不自动获得 live read/send；`15 天 ≤ Δ < 30 天` 即使在线登录期结束，只要仍离线且其他离线门均通过，仍可只读；`Δ ≥ 30 天` 不可读并标出清理到期，但不执行删除。自动 Token 续期、应用重启、profile 更新时间不作为新的成功在线登录事件，不改变计时输入。时间证明缺失、不可信、负经过时间或异常时 fail-closed 锁定且不得误判已完成清理；登出/换账户/已知撤权必须拒绝离线展示。纯判定器不得返回在线 live read/send 授权，在线权威双输入门保持独立。
+本任务只建立 SSH 认证/主机身份是否可达及两份部署源码的文件身份事实。成功连线时，远端只判断 `/opt/elitesync/services/backend-laravel` 是否为目录，并对以下两条**源码**路径读取 SHA-256：
+- `/opt/elitesync/services/backend-laravel/routes/api.php`
+- `/opt/elitesync/services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php`
 
-## Allowed paths
+在本地对 `services/backend-laravel/routes/api.php` 与 `services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php` 读取 SHA-256，分别标记当前部署与本地源码是否同字节。文件存在/哈希相同不证明路由实际运行、真实身份、登录事件 `T0`、15/30 天计时、Connection/Consent/CV 权威、数据权利、生产可用或部署来源。哈希不同只记录差异，不自动拉取远端文件、修改本地或远端。
 
-仅允许新增：
+## Exact execution and stop
 
-- `apps/flutter_elitesync_module/lib/features/chat/domain/offline_private_retention_policy.dart`
-- `apps/flutter_elitesync_module/test/features/chat/domain/offline_private_retention_policy_test.dart`
-- `EVIDENCE/CACHE-06-OFFLINE-RETENTION-PURE-POLICY/summary.md`
+只允许使用 `root@101.133.161.203`、私钥 `C:\Users\zcxve\.ssh\codexkey`、`BatchMode=yes`、`IdentitiesOnly=yes`、`StrictHostKeyChecking=yes`、`ConnectTimeout=8`，关闭口令/键盘交互；依赖现有 `known_hosts`，不自动接受或改写主机密钥。最多 **1 次 SSH 进程调用**，超时预算不超过 20 秒。远端命令仅限 `test -d` 和这两条精确路径的 `sha256sum`，以及固定非私密成功标记；不运行 `php artisan`、`cat`、`find`、服务管理、部署命令或任何写入。若主机密钥不匹配、认证被拒、超时、路径缺失、命令异常或出现交互请求，记录相应分类并停止本任务的远端动作；不得重试、换用户、换 key、改变 SSH 选项或扩大范围。
 
-可只读项目控制文档、CACHE-04/05、APP-INT-07/09 和必要的 Flutter 同层纯判定器与测试。不得修改其他源码、既有测试或控制面；不得接入 provider、页面、路由、登录/Token、加密存储、旧缓存清理、网络或 backend，不读取真实账户/设备私密值，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+绝不读取或输出私钥内容、`.env`、环境变量值、Token、日志、数据库、用户资料或媒体；不访问生产 API/DB，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
 
-## Acceptance and verification budget
+## Allowed output and verification
 
-使用虚构输入做有针对性的单元测试，至少覆盖 15 天前后、29 天末、恰满 30 天、自动续期不能重置、未知/负/不可信时间、账户/设备/对象不匹配、已知失效、非离线状态、完整性失败，以及清理到期与清理完成之间的区别。测试不得声称真实授权、真实设备清理或生产可用。作者最多运行目标测试 2 次、对新增源/测试的定向分析 2 次、`git diff --check` 1 次；若失败，记录每次结果和修正。未跟踪新文件另作尾随空白检查。证据注明本地分支/HEAD、精确路径、检查回执及未运行项。
+唯一允许新增 `EVIDENCE/AUTH-01-ALIYUN-SSH-SOURCE-IDENTITY/summary.md`。可只读本地控制面、上述历史地图与两条本地源码路径。证据写清本地 HEAD、SSH 尝试次数、严格主机密钥结果、认证结果、远端目录/两文件哈希结果或精确失败分类、与本地哈希的比较及未核验项；不要记录不必要的 SSH 调试详情。只运行一次 `git diff --check`，对未跟踪新文档另作尾随空白检查；不运行产品测试、设备或全量搜索。
 
-若实现需要自行选定可信时间/登录凭据来源、持久化/删除机制、离线媒体或撤权传播方案，则停止并列出缺口，不接线。Codex 不自接受、不提交、不备份、不派发后继。Work 按 LEVEL 2 独立 ACCEPT/REJECT；本任务没有真实设备、API、DB 或生产动作授权。
+Codex 不自接受、不提交、不备份、不推送、不派发后继。Work 独立审查并接受或拒绝**事实回执**；即使 SSH 成功，也不据此授权真实权限接线或清理。
