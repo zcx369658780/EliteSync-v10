@@ -2,6 +2,8 @@
 
 更新：2026-09-23。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
 
+本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
