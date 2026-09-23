@@ -43,6 +43,8 @@ Astrology/reference：八字、紫微等页面、服务与 migrations 确实存�
 
 Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟器空间不足；APP-INT-05 作者报告复用 C 盘隔离 cache 后构建，卸载旧 synthetic host 后安装成功。约 1.38 GB 为 debug host APK 大小，不是 release 大小。GitHub push 曾因账号 suspended 失败，不阻断本地工作。当前直接门槛是 APP-INT-05 独立审查；G-04/G-09 按历史索引保留 UNKNOWN，G-07 数据权利和其他真实后端缺口不由本轮关闭。
 
+本地 Git 检查点已建立；独立存储的 Git bundle 备份位置与恢复演练尚未建立，不能把同盘 Git 历史称为独立备份。备份待办不阻断已授权的纯本地审查。
+
 ## Unsupported claims / next safe task
 
 不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用或玄学匹配权威。下一安全任务：按 `TASK_CURRENT.md` 对 APP-INT-05 固定候选做独立本地审查并决定 ACCEPT/REJECT；接受且安全集成后，才考虑主循环 persistence/restart/stale/recovery hardening。首次迁移到此停止，不执行新 feature。
