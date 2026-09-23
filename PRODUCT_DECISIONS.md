@@ -17,5 +17,6 @@
 | 通知默认 privacy-minimal；point-of-use consent 与 central privacy controls 并存；可选提醒默认关闭 | Owner accepted | Owner acceptance §2(12)；设计正文 Notifications | 上述共同条件 |
 | Canonical Match 为未来产品路径；legacy participant-linked Match 仅在 consumer inventory、replacement contract 和 rollback/cutover gate 后退休 | Owner accepted | Owner acceptance §2(11)；设计正文 Legacy fate | 上述共同条件 |
 | 重启后允许恢复对话、消息等信息，但须先重新核验其当前有效性；恢复并非由本地缓存、旧会话或旧同意自动授权 | Owner direction accepted, 2026-09-23 | 本次 Owner 明确决定；既有两输入 live gate 见 `ELITESYNC_V10_BACKEND_MESSAGING_CONSENT_CONVERSATION_LIVE_GATE_TECHNICAL_DESIGN_ACCEPTANCE_V0_1.md` §3–5，数据权利边界见 `ELITESYNC_V10_CONVERSATION_DATA_RIGHTS_DECISION_CLOSURE_OWNER_ACCEPTANCE_V0_1.md` D-02/03 | Owner 的新明确决定，或足以改变有效性/隐私/安全判断的证据 |
+| 恢复方案选择 B：允许设备保存加密的私密缓存；重启后必须先在线重新核验当前有效性，核验通过前不显示缓存内容 | Owner direction accepted, 2026-09-23 | 本次 Owner 从 A/B/C 中明确选择 B；APP-INT-07 恢复核验合同、APP-INT-09 权威来源缺口映射 | Owner 的新明确决定，或缓存/权限/隐私安全证据改变正确性 |
 
-此恢复方向不自行确定本地保存范围、加密/保留期限、后端来源、离线访问、历史只读权限或生产实现。当前 MVP live read/send 仍要求分别重新核验当前有效的 `CN_ACTIVE` 与独立 `MC_ACTIVE`，且 send 时重查；撤回、关闭、失效、未知、来源不明时按既有合同 fail-closed。历史只读在 revoke/pause/close 后默认不开放。Phase 2/Later、AI/personality/astrology 可选信号的精确 allowlist、真实身份机制、Proposal 期限、共享内容权利等仍属待决，不能由本页自行补定。产品接受不证明相应代码、后端、DB 或发布链已完成。
+方案 B 不自行确定各数据类别是否缓存、加密密钥与账户隔离方式、保留/清除期限、核验成功后的离线访问、后端来源、历史只读权限或生产实现。当前 MVP live read/send 仍要求分别重新核验当前有效的 `CN_ACTIVE` 与独立 `MC_ACTIVE`，且 send 时重查；撤回、关闭、失效、未知、来源不明时按既有合同 fail-closed。历史只读在 revoke/pause/close 后默认不开放。Phase 2/Later、AI/personality/astrology 可选信号的精确 allowlist、真实身份机制、Proposal 期限、共享内容权利等仍属待决，不能由本页自行补定。产品接受不证明相应代码、后端、DB 或发布链已完成。
