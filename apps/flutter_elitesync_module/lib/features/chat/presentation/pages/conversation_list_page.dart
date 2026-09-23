@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +16,6 @@ import 'package:flutter_elitesync_module/design_system/components/tags/app_choic
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/conversation_entity.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
-import 'package:flutter_elitesync_module/features/chat/domain/utils/conversation_snapshot_utils.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
@@ -63,8 +61,6 @@ class _AuthorizedConversationListPageState
   List<String> _recentSearches = const [];
   bool _searchFocused = false;
   bool _quickRefreshing = false;
-  List<ConversationEntity> _snapshotItems = const [];
-  bool _snapshotHydrated = false;
   final Map<int, double> _tabScrollOffsets = <int, double>{};
   List<ConversationEntity> _cachedSourceItems = const [];
   String _cachedFilterQuery = '';
@@ -96,8 +92,6 @@ class _AuthorizedConversationListPageState
         setState(() => _searchFocused = _searchFocusNode.hasFocus);
       });
     _loadUiPrefs();
-    _loadSearchHistory();
-    _loadConversationSnapshot();
   }
 
   Future<void> _loadUiPrefs() async {
@@ -114,25 +108,7 @@ class _AuthorizedConversationListPageState
     await local.setInt(CacheKeys.messagesSelectedTab, _tabIndex);
   }
 
-  Future<void> _loadSearchHistory() async {
-    final local = ref.read(localStorageProvider);
-    final raw = await local.getString(CacheKeys.messagesSearchHistory);
-    if (!mounted || raw == null || raw.isEmpty) return;
-    try {
-      final decoded = jsonDecode(raw);
-      if (decoded is List) {
-        setState(() {
-          _recentSearches = decoded
-              .map((e) => e.toString())
-              .where((e) => e.isNotEmpty)
-              .take(8)
-              .toList();
-        });
-      }
-    } catch (_) {}
-  }
-
-  Future<void> _addSearchHistory(String term) async {
+  void _addSearchHistory(String term) {
     final t = term.trim();
     if (t.isEmpty) return;
     final next = [
@@ -140,9 +116,6 @@ class _AuthorizedConversationListPageState
       ..._recentSearches.where((e) => e.toLowerCase() != t.toLowerCase()),
     ].take(8).toList();
     setState(() => _recentSearches = next);
-    await ref
-        .read(localStorageProvider)
-        .setString(CacheKeys.messagesSearchHistory, jsonEncode(next));
   }
 
   void _onSearchChanged(String value) {
@@ -160,10 +133,10 @@ class _AuthorizedConversationListPageState
     _searchQueryNotifier.value = '';
   }
 
-  Future<void> _onSearchSubmitted(String value) async {
+  void _onSearchSubmitted(String value) {
     final v = value.trim();
     if (v.isEmpty) return;
-    await _addSearchHistory(v);
+    _addSearchHistory(v);
     _searchFocusNode.unfocus();
   }
 
@@ -246,7 +219,6 @@ class _AuthorizedConversationListPageState
         if (mounted) AppFeedback.showInfo(context, '会话更新失败，请稍后重试');
         return;
       }
-      await _saveConversationSnapshot(state.items);
       if (!mounted) return;
       AppFeedback.showInfo(context, '已刷新会话列表');
     } finally {
@@ -261,9 +233,7 @@ class _AuthorizedConversationListPageState
     super.build(context);
     final async = ref.watch(conversationListProvider);
     return async.when(
-      loading: () => _snapshotHydrated
-          ? _buildSnapshotLoadingScaffold(context)
-          : const AppLoadingSkeleton(lines: 7),
+      loading: () => const AppLoadingSkeleton(lines: 7),
       error: (e, _) => AppErrorState(
         title: '会话加载失败',
         description: '暂时无法更新会话。你可以重试，或先回到本轮慢约会。',
@@ -273,18 +243,7 @@ class _AuthorizedConversationListPageState
       data: (state) {
         final liteMode =
             ref.watch(performanceLiteModeProvider).asData?.value ?? false;
-        if (state.items.isNotEmpty) {
-          _snapshotItems = state.items;
-          _snapshotHydrated = true;
-          unawaited(_saveConversationSnapshot(state.items));
-        }
-        if ((state.error ?? '').isNotEmpty && _snapshotHydrated) {
-          return _buildSnapshotLoadingScaffold(
-            context,
-            refreshUnavailable: true,
-          );
-        }
-        if ((state.error ?? '').isNotEmpty && !_snapshotHydrated) {
+        if ((state.error ?? '').isNotEmpty) {
           return AppErrorState(
             title: '会话加载失败',
             description: '暂时无法取得当前会话，请重试。',
@@ -297,15 +256,6 @@ class _AuthorizedConversationListPageState
           builder: (context, searchQuery, _) {
             final t = context.appTokens;
             final showRecentChips = _searchFocused && searchQuery.isEmpty;
-            if (state.items.isEmpty && _snapshotHydrated) {
-              _snapshotItems = const [];
-              _snapshotHydrated = false;
-              unawaited(
-                ref
-                    .read(localStorageProvider)
-                    .remove(CacheKeys.messagesConversationSnapshot),
-              );
-            }
             final sourceItems = state.items;
             final filtered = _applyFilter(sourceItems);
             final hasUnread = sourceItems.any((item) => item.unread > 0);
@@ -495,213 +445,6 @@ class _AuthorizedConversationListPageState
         );
       },
     );
-  }
-
-  Widget _buildSnapshotLoadingScaffold(
-    BuildContext context, {
-    bool refreshUnavailable = false,
-  }) {
-    final t = context.appTokens;
-    // Retained rows support continuity, but their unread counters are not
-    // current truth while the provider refresh is still pending.
-    final sourceItems = _snapshotItems
-        .map(
-          (item) => ConversationEntity(
-            id: item.id,
-            name: item.name,
-            lastMessage: item.lastMessage,
-            lastTime: item.lastTime,
-            unread: 0,
-          ),
-        )
-        .toList(growable: false);
-    final filtered = _applyFilter(sourceItems);
-    _normalizeHiddenUnreadTab(false);
-    const visibleTabs = ['全部', '已读'];
-    final visibleTabIndex = _tabIndex == 2 ? 1 : 0;
-    final hasAnyConversations = sourceItems.isNotEmpty;
-    final showSearch = sourceItems.length > 1;
-    final hasActiveFilter =
-        (_tabIndex == 1 ? 0 : _tabIndex) != 0 ||
-        _searchQueryNotifier.value.trim().isNotEmpty;
-
-    return BrowseScaffold(
-      header: Column(
-        children: [
-          if (showSearch)
-            BrowseTopSearchBar(
-              hint: '搜索上次会话（离线内容）',
-              editable: true,
-              controller: _searchController,
-              focusNode: _searchFocusNode,
-              onChanged: _onSearchChanged,
-              onSubmitted: (v) => _onSearchSubmitted(v),
-              onClear: _clearSearch,
-              onRightActionTap: _quickRefresh,
-              rightIcon: Icons.refresh_rounded,
-            ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(t.spacing.sm),
-            decoration: BoxDecoration(
-              color: t.warning.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(t.radius.lg),
-              border: Border.all(color: t.warning.withValues(alpha: 0.3)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  refreshUnavailable ? '当前无法更新 · 以下为上次内容' : '正在更新 · 以下为上次内容',
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: t.warning,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                SizedBox(height: t.spacing.xxs),
-                Text(
-                  '离线内容仅供参考；未读状态不是当前服务器事实。',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
-                ),
-                TextButton.icon(
-                  onPressed: _quickRefresh,
-                  icon: const Icon(Icons.refresh_rounded),
-                  label: const Text('重新获取当前会话'),
-                ),
-              ],
-            ),
-          ),
-          if (sourceItems.length > 1) ...[
-            SizedBox(height: t.spacing.xs),
-            CategoryTabStrip(
-              tabs: visibleTabs,
-              selectedIndex: visibleTabIndex,
-              onSelected: (index) {
-                final nextTabId = index == 0 ? 0 : 2;
-                setState(() {
-                  _searchFocusNode.unfocus();
-                  if (_listController.positions.length == 1) {
-                    _tabScrollOffsets[_tabIndex] = _listController.offset;
-                  }
-                  _tabIndex = nextTabId;
-                  _saveUiPrefs();
-                  _restoreScrollForTab(nextTabId);
-                });
-              },
-            ),
-          ],
-        ],
-      ),
-      body: filtered.isEmpty
-          ? ListView(
-              children: [
-                const SizedBox(height: 80),
-                if (hasAnyConversations && hasActiveFilter)
-                  AppEmptyState(
-                    title: '没有符合当前筛选的会话',
-                    description: '可清空筛选，或回到全部会话查看本轮慢约会对话。',
-                    actionLabel: '清空筛选',
-                    onAction: () {
-                      _tabIndex = 0;
-                      _clearSearch();
-                      setState(() {});
-                    },
-                  )
-                else
-                  AppEmptyState(
-                    title: '还没有可聊对象',
-                    description: '互相确认慢约会后，对话会出现在这里。可以先回到本轮慢约会。',
-                    actionLabel: '回到慢约会',
-                    onAction: () => context.go(AppRouteNames.match),
-                  ),
-              ],
-            )
-          : ListView.separated(
-              controller: _listController,
-              padding: EdgeInsets.only(
-                top: t.spacing.xs,
-                bottom: t.spacing.huge,
-              ),
-              itemCount: filtered.length,
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: t.spacing.xs),
-              itemBuilder: (context, index) {
-                final item = filtered[index];
-                return RepaintBoundary(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: t.browseSurface,
-                      borderRadius: BorderRadius.circular(t.radius.lg),
-                      border: Border.all(color: t.browseBorder),
-                    ),
-                    child: Semantics(
-                      container: true,
-                      label: '${item.name}，上次会话内容，仅供参考',
-                      child: ExcludeSemantics(
-                        child: IgnorePointer(
-                          child: ConversationListItem(
-                            item: item,
-                            highlightQuery: _searchQueryNotifier.value,
-                            onTap: () {},
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-    );
-  }
-
-  Future<void> _loadConversationSnapshot() async {
-    final env = ref.read(appEnvProvider);
-    final raw = await ref
-        .read(localStorageProvider)
-        .getString(CacheKeys.messagesConversationSnapshot);
-    if (!mounted || raw == null || raw.isEmpty) return;
-    try {
-      final decoded = jsonDecode(raw);
-      if (decoded is! List) return;
-      final list = decoded
-          .whereType<Map<String, dynamic>>()
-          .map(decodeConversationSnapshotItem)
-          .toList();
-      final sanitized = sanitizeConversationSnapshot(
-        list,
-        allowMockIds: env.useMockChat,
-      );
-      if (sanitized.isEmpty) {
-        await ref
-            .read(localStorageProvider)
-            .remove(CacheKeys.messagesConversationSnapshot);
-        return;
-      }
-      setState(() {
-        _snapshotItems = sanitized;
-        _snapshotHydrated = true;
-      });
-    } catch (_) {}
-  }
-
-  Future<void> _saveConversationSnapshot(List<ConversationEntity> items) async {
-    final env = ref.read(appEnvProvider);
-    final sanitized = sanitizeConversationSnapshot(
-      items,
-      allowMockIds: env.useMockChat,
-    );
-    if (sanitized.isEmpty) {
-      await ref
-          .read(localStorageProvider)
-          .remove(CacheKeys.messagesConversationSnapshot);
-      return;
-    }
-    final payload = sanitized.map(encodeConversationSnapshotItem).toList();
-    await ref
-        .read(localStorageProvider)
-        .setString(CacheKeys.messagesConversationSnapshot, jsonEncode(payload));
   }
 
   @override

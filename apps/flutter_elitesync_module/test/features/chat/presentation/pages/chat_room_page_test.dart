@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
+import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
@@ -35,21 +36,30 @@ final _syntheticAuthorizedConversationAccess =
 
 class FakeLocalStorageService extends LocalStorageService {
   final Map<String, Object?> _values = <String, Object?>{};
+  final List<String> stringReads = [];
+  final List<String> stringWrites = [];
+  final List<String> removals = [];
+
+  void seedString(String key, String value) => _values[key] = value;
+  String? storedString(String key) => _values[key] as String?;
 
   @override
   Future<String?> getString(String key) async {
+    stringReads.add(key);
     final value = _values[key];
     return value is String ? value : null;
   }
 
   @override
   Future<bool> setString(String key, String value) async {
+    stringWrites.add(key);
     _values[key] = value;
     return true;
   }
 
   @override
   Future<bool> remove(String key) async {
+    removals.add(key);
     _values.remove(key);
     return true;
   }
@@ -629,7 +639,44 @@ void main() {
     expect(find.text('选择视频'), findsOneWidget);
   });
 
-  testWidgets('ChatRoomPage opening suggestions write drafts without sending', (
+  testWidgets('ChatRoomPage ignores legacy draft and keeps current input local', (
+    tester,
+  ) async {
+    final storage = FakeLocalStorageService();
+    final repository = FakeChatRepository();
+    final route = ChatRouteState.legacyPeer(peerUserId: 2, title: 'Synthetic Peer');
+    final draftKey = '${CacheKeys.chatDraftPrefix}${route.stableKey}';
+    storage.seedString(draftKey, 'OLD PRIVATE DRAFT');
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
+          localStorageProvider.overrideWithValue(storage),
+          chatRepositoryProvider.overrideWithValue(repository),
+        ],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: ChatRoomPage(routeState: route),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, isEmpty);
+    expect(find.text('OLD PRIVATE DRAFT'), findsNothing);
+    expect(storage.stringReads, isNot(contains(draftKey)));
+
+    await tester.enterText(find.byType(TextField), 'current page input');
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'current page input');
+    expect(storage.storedString(draftKey), 'OLD PRIVATE DRAFT');
+    expect(storage.stringWrites, isNot(contains(draftKey)));
+    expect(storage.removals, isNot(contains(draftKey)));
+    expect(repository.sendMessageCount, 0);
+  });
+
+  testWidgets('ChatRoomPage opening suggestions fill input without sending', (
     tester,
   ) async {
     final repository = FakeChatRepository();
@@ -754,25 +801,27 @@ void main() {
     'ChatRoomPage rolls back failed text send and restores a sanitized draft',
     (tester) async {
       final repository = FakeChatRepository()..failSend = true;
+      final storage = FakeLocalStorageService();
+      final route = ChatRouteState.legacyPeer(
+        peerUserId: 2,
+        title: '九紫瑶瑶',
+      );
+      final draftKey = '${CacheKeys.chatDraftPrefix}${route.stableKey}';
+      storage.seedString(draftKey, 'OLD PRIVATE DRAFT');
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
             conversationAccessProvider.overrideWithBuild((ref, notifier) =>
               _syntheticAuthorizedConversationAccess,
             ),
-            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            localStorageProvider.overrideWithValue(storage),
             chatRepositoryProvider.overrideWithValue(repository),
           ],
           child: MaterialApp(
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
             themeMode: ThemeMode.light,
-            home: ChatRoomPage(
-              routeState: ChatRouteState.legacyPeer(
-                peerUserId: 2,
-                title: '九紫瑶瑶',
-              ),
-            ),
+            home: ChatRoomPage(routeState: route),
           ),
         ),
       );
@@ -801,6 +850,9 @@ void main() {
       expect(find.text('发送失败，已恢复输入框，请稍后重试'), findsOneWidget);
       expect(find.textContaining('raw send failure detail'), findsNothing);
       expect(find.textContaining('发送成功'), findsNothing);
+      expect(storage.storedString(draftKey), 'OLD PRIVATE DRAFT');
+      expect(storage.stringWrites, isNot(contains(draftKey)));
+      expect(storage.removals, isNot(contains(draftKey)));
     },
   );
 

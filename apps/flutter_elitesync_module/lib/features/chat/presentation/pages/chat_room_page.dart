@@ -4,8 +4,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
-import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/design_system/components/bars/app_top_bar.dart';
@@ -91,10 +89,8 @@ class _AuthorizedChatRoomPageState
   final _listController = ScrollController();
   final List<MessageEntity> _localMessages = <MessageEntity>[];
   late ChatRouteState _routeState;
-  late final LocalStorageService _localStorage;
   ChatMediaGateway? _defaultMediaGateway;
   ChatAttachmentTelemetry? _defaultAttachmentTelemetry;
-  Timer? _draftSaveDebounce;
   Timer? _realtimeRefreshTimer;
   StreamSubscription<MessageEntity>? _realtimeSubscription;
   bool _sending = false;
@@ -110,8 +106,6 @@ class _AuthorizedChatRoomPageState
   ChatAttachmentKind _selectedAttachmentKind = ChatAttachmentKind.image;
   AttachmentUploadStage _attachmentStage = AttachmentUploadStage.pending;
 
-  String get _draftKey =>
-      '${CacheKeys.chatDraftPrefix}${_routeState.stableKey}';
   ChatMessagesRequest get _messagesRequest =>
       ChatMessagesRequest.fromRoute(_routeState);
   int get _peerId => chatPeerUserIdForOperations(_routeState);
@@ -126,9 +120,6 @@ class _AuthorizedChatRoomPageState
   void initState() {
     super.initState();
     _routeState = widget.routeState;
-    _localStorage = ref.read(localStorageProvider);
-    _controller.addListener(_onDraftChanged);
-    _loadDraft();
     _startRealtimeSync();
   }
 
@@ -156,40 +147,10 @@ class _AuthorizedChatRoomPageState
 
   @override
   void dispose() {
-    _draftSaveDebounce?.cancel();
     _stopRealtimeSync();
-    // WidgetRef is no longer lifecycle-safe here. Drafts are persisted only
-    // while mounted so teardown never guesses current Conversation authority.
-    _controller.removeListener(_onDraftChanged);
     _controller.dispose();
     _listController.dispose();
     super.dispose();
-  }
-
-  Future<void> _loadDraft() async {
-    if (!_canAccessConversation) return;
-    final draft = await _localStorage.getString(_draftKey);
-    if (!mounted || draft == null || draft.isEmpty) return;
-    _controller.text = draft;
-    _controller.selection = TextSelection.collapsed(offset: draft.length);
-  }
-
-  void _onDraftChanged() {
-    _draftSaveDebounce?.cancel();
-    _draftSaveDebounce = Timer(
-      const Duration(milliseconds: 220),
-      _persistDraftNow,
-    );
-  }
-
-  Future<void> _persistDraftNow() async {
-    if (!_canSend) return;
-    final text = _controller.text.trim();
-    if (text.isEmpty) {
-      await _localStorage.remove(_draftKey);
-      return;
-    }
-    await _localStorage.setString(_draftKey, text);
   }
 
   void _scheduleScrollToBottom() {
@@ -300,7 +261,6 @@ class _AuthorizedChatRoomPageState
           : const [],
     );
     _controller.clear();
-    await _localStorage.remove(_draftKey);
     setState(() {
       _localMessages.add(optimistic);
       _sending = true;
