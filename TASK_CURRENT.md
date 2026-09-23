@@ -4,7 +4,9 @@ Task ID: `APP-INT-09-RECOVERY-AUTHORITY-SOURCE-MAP`
 
 Risk Level: `LEVEL 2`（恢复所需的身份、Connection 与 Messaging Consent 权威来源映射；须由 Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — OWNER DECISION AND AUTHORITY SOURCES REQUIRED BEFORE REAL RECOVERY IMPLEMENTATION`
+
+Work verdict (2026-09-23): `ACCEPT — STATIC SOURCE MAP; REAL RECOVERY AUTHORITY NOT ESTABLISHED`，见 `EVIDENCE/APP-INT-09-RECOVERY-AUTHORITY-SOURCE-MAP/source-map.md`。本任务已结束，不得重复执行或直接接入纯判定器。下一真实恢复实现任务须先明确本地私密数据保存/离线历史方向，并建立与审查当前身份、Connection、独立 Messaging Consent 的真实权威来源；当前没有后继实现任务授权。
 
 Assignee: `Codex`。Work 在 APP-INT-08 的纯判定器通过 LEVEL 2 独立审查后下达本任务；本任务只交付只读来源映射，不授权实现、接受或后继任务。
 
