@@ -4,9 +4,11 @@ Task ID: `AUTH-02-ALIYUN-CORRECTED-KEY-SOURCE-IDENTITY`
 
 Risk Level: `LEVEL 2`（真实服务器只读连线与部署源码身份；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — SOURCE HASH FACTS ONLY; REAL-AUTHORITY GATE; NO ACTIVE CODEX TASK`
 
-Assignee: `Codex`。只交付新密钥下的一次只读事实候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`（已交付并由 Work 独立接受事实回执）。接受证据：`EVIDENCE/AUTH-02-ALIYUN-CORRECTED-KEY-SOURCE-IDENTITY/summary.md`。
+
+Next gate: 指定私钥下 SSH 成功，部署 `AuthController.php` 与本地同哈希，`routes/api.php` 不同哈希；差异原因、实际运行路由和可信登录事件仍未核验。后续若需读取远端源码正文或其他线上状态，另立精确只读任务并审查；不得从本回执直接接入真实登录、权限或清理。当前无活动 Codex 执行单。
 
 ## Authority and objective
 
