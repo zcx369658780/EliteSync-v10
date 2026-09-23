@@ -68,8 +68,6 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
       state = state.copyWith(isSubmitting: false, clearError: true);
       return true;
     } catch (e) {
-      // ignore: avoid_print
-      print('LOGIN_FAIL $e');
       final msg = ref.read(authErrorMapperProvider).mapToUserMessage(e);
       state = state.copyWith(isSubmitting: false, submitError: msg);
       return false;
