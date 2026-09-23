@@ -4,7 +4,9 @@ Task ID: `APP-INT-06-RECOVERY-BASELINE`
 
 Risk Level: `LEVEL 1`（现有 synthetic 行为验证；若需新增持久化或 consent 语义，升至 LEVEL 2 并停止）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — OWNER DECISION REQUIRED BEFORE PERSISTENCE/RECOVERY TASK`
+
+Work verdict (2026-09-23): `ACCEPT — EXISTING SYNTHETIC RESTART/UNKNOWN BASELINE ONLY`，见 `EVIDENCE/APP-INT-06-RECOVERY-BASELINE/summary.md`。本任务已结束，不再执行或重发。下一任务如涉及跨进程保存/恢复，需先由 Owner 决定 Connection、独立 Messaging consent 的保存、失效、清除及消息可见性恢复条件；在此之前没有新任务单授权实现。
 
 ## Objective / Why now
 
