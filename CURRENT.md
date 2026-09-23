@@ -43,7 +43,7 @@ Astrology/reference：八字、紫微等页面、服务与 migrations 确实存�
 
 Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟器空间不足；APP-INT-05 作者报告复用 C 盘隔离 cache 后构建，卸载旧 synthetic host 后安装成功。约 1.38 GB 为 debug host APK 大小，不是 release 大小。GitHub push 曾因账号 suspended 失败，不阻断本地工作。重启后的保存/恢复与 stale/unknown 行为尚未受证；G-04/G-09 按历史索引保留 UNKNOWN，G-07 数据权利和其他真实后端缺口不由本轮关闭。
 
-本地 Git 检查点已建立；独立存储的 Git bundle 备份位置与恢复演练尚未建立，不能把同盘 Git 历史称为独立备份。备份待办不阻断已授权的纯本地审查。
+本地 Git 检查点已建立。C: 与项目所在 D: 为不同物理磁盘；完整 Git bundle 保存在 `C:\Users\zcxve\.codex\backups\EliteSync-v10\`，同目录清单记录精确 HEAD、SHA-256 与恢复镜像核验。Git bundle 不包含未跟踪文件；重要材料须先按任务范围纳入 Git。远端仍未同步。
 
 ## Unsupported claims / next safe task
 
