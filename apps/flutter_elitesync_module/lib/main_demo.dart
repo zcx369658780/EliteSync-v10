@@ -64,5 +64,5 @@ Future<void> seedSyntheticDemoSession({
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await seedSyntheticDemoSession();
-  runEliteSyncApp(createDemoAppEnv());
+  await runEliteSyncApp(createDemoAppEnv());
 }

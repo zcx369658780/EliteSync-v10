@@ -53,7 +53,7 @@ Future<void> main() async {
       String.fromEnvironment('ELITESYNC_INITIAL_ROUTE').trim().isNotEmpty
       ? String.fromEnvironment('ELITESYNC_INITIAL_ROUTE').trim()
       : (fileBootstrap['elitesync_initial_route'] ?? '').trim();
-  runEliteSyncApp(
+  await runEliteSyncApp(
     AppEnv(
       flavor: AppFlavor.dev,
       appName: 'EliteSync Dev',

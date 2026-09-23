@@ -14,6 +14,7 @@ class AuthLocalDataSource {
   final LocalStorageService _localStorage;
 
   Future<void> persistSession(AuthSession session) async {
+    await _localStorage.tryPurgeLegacyPrivateChatCache();
     await _secureStorage.write(CacheKeys.accessToken, session.accessToken);
     await _secureStorage.write(CacheKeys.refreshToken, session.refreshToken);
     await _clearAccountScopedCaches();
@@ -39,6 +40,7 @@ class AuthLocalDataSource {
   }
 
   Future<void> clearSession() async {
+    await _localStorage.tryPurgeLegacyPrivateChatCache();
     await _secureStorage.delete(CacheKeys.accessToken);
     await _secureStorage.delete(CacheKeys.refreshToken);
     await _clearAccountScopedCaches();

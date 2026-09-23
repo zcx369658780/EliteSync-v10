@@ -67,6 +67,8 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
 
+    await local.tryPurgeLegacyPrivateChatCache();
+
     await secure.write(CacheKeys.accessToken, accessToken);
     if (refreshToken != null) {
       await secure.write(CacheKeys.refreshToken, refreshToken);
@@ -118,6 +120,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
   }
 
   Future<void> setUnauthenticated() async {
+    await ref.read(localStorageProvider).tryPurgeLegacyPrivateChatCache();
     final secure = ref.read(secureStorageProvider);
     await secure.delete(CacheKeys.accessToken);
     await secure.delete(CacheKeys.refreshToken);

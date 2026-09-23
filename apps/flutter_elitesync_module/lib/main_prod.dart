@@ -97,7 +97,7 @@ Future<void> main() async {
     'MAIN_PROD_BOOTSTRAP initialRoute=${initialRoute.isNotEmpty ? initialRoute : "null"} flavor=${flavor.name}',
   );
 
-  runEliteSyncApp(
+  await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
       appName: flavor == AppFlavor.dev ? 'EliteSync Dev' : 'EliteSync',
