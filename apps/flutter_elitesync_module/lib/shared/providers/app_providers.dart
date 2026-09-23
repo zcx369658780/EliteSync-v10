@@ -36,11 +36,6 @@ final accessTokenProvider = Provider<AccessTokenProvider>((ref) {
     final token = await ref
         .read(secureStorageProvider)
         .read(CacheKeys.accessToken);
-    if (token != null && token.isNotEmpty) {
-      // Temporary debug aid for emulator-side matching setup.
-      // ignore: avoid_print
-      print('ACCESS_TOKEN_READ token=$token');
-    }
     return token;
   };
 });
