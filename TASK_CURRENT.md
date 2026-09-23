@@ -1,28 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `CACHE-03-PRIVATE-RESTORE-DECISION-PACKET`
+Task ID: `CACHE-04-OFFLINE-PRIVATE-READ-BOUNDARY-CONTRACT`
 
-Risk Level: `LEVEL 2`（私密恢复、在线权威与离线访问的待决产品边界；Work 独立审查）
+Risk Level: `LEVEL 2`（Owner 已修订的离线私密只读方向之技术/数据边界；Work 独立审查，产品细节仍归 Owner）
 
-Status: `WORK LEVEL 2 ACCEPT — OWNER DECISION GATE; NO ACTIVE CODEX TASK`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`（已交付）。CACHE-01～03 已由 Work 独立 ACCEPT 并进入本地 `main`。本任务仅汇集可核对的决策材料，不作 Owner 政策选择，不实现新缓存或恢复能力；验收见 `EVIDENCE/CACHE-03-PRIVATE-RESTORE-DECISION-PACKET/summary.md`。
-
-Next gate: Owner 需逐类决定新缓存保存范围、保留期限与登出/换账户/撤权处理，以及在线核验通过后掉线的可见范围。真实身份、Connection/Consent/CV 当前权威来源仍未建立。Work 在这些决策或来源证据到位后再下达实现任务；当前无已下达的后继 Codex 执行单。
+Assignee: `Codex`。Owner 已明确允许登录有效时离线冷启动只读设备已保存的加密会话、消息、图片/视频及草稿；离线不允许发送。此决定修订旧“每次重启先在线核验”的缓存展示条件，不取消在线 live read/send 双输入门。Owner 拒绝 24 小时建议并希望登录持续约一周至半个月；精确登录/缓存/离线可读期限尚未决定。本任务只交付合同候选，不作新的 Owner 决策或实现。
 
 ## Objective / allowed path
 
-在既有 Owner 决定 B（按账户加密保存、重启后先在线重新核验、通过前不显示）之内，整理下一步实现所缺的逐类决定。以 `PRODUCT_DECISIONS.md`、`EVIDENCE/APP-INT-07-*/`、`EVIDENCE/APP-INT-09-*/`、`EVIDENCE/APP-INT-10-*/`、CACHE-01～02 验收和当前 Flutter/后端静态代码为证据，分别列出对话列表/预览、消息正文、未发送草稿、搜索历史等候选类别：现有存储或来源、可用的当前有效性权威、缺失证据、保存与否、保留期限、登出/换账户/撤权处理、核验后离线访问及历史只读的待决问题。区分已决定、候选建议和 UNKNOWN；不得由旧代码存在推定真实服务端权威。
+基于 `PRODUCT_DECISIONS.md` 新决定、`EVIDENCE/APP-INT-07-*/`、`APP-INT-09-*/`、`CACHE-01`～`03`、Owner 数据权利接受记录及当前 Flutter/后端静态代码，形成可供 Work/Owner 审查的离线只读边界合同。至少分别定义：
 
-唯一允许新增：`EVIDENCE/CACHE-03-PRIVATE-RESTORE-DECISION-PACKET/summary.md`。可只读检查所需项目文档、源码和既有证据；不修改任何既有文件或代码，不读取设备现存私密值、账户、Token、密钥、真实数据、生产 API/DB，也不访问旧 `D:\EliteSync`。不拉取或推送 GitHub。
+- 设备曾在线获得有效主体、当前 Connection 与独立 Messaging Consent 后，哪些受绑定的已保存内容可成为离线候选；离线冷启动如何证明本地登录仍在有效期、账户/设备绑定、上次有效核验与离线可读凭据，不能把仅存在的 Token、缓存或旧 consent 当作证明。
+- 会话索引/名称/预览、消息文字、已下载图片/视频、缩略图与临时文件、未发送草稿各自的加密和账户/对象绑定、存储位置、系统备份/媒体缓存边界、删除/隔离触发、失效处理；不得把“本地已有”扩写为预下载全部历史。搜索词、通知预览不因本决定自动获准保存。
+- 区分登录会话有效期、加密缓存保留期与离线只读凭据有效期；以 7～15 天产品期望为输入，列出可审议的明确期限选项与相应撤权不可及时获知的窗口，不自行选择精确值。已知撤权/关闭/账户切换须锁定或清除；断网期间无法获知远端新撤权的残余风险必须显式标明。
+- 离线只读/草稿编辑与在线 live read、send 分离；离线发送、排队自动发送、旧消息本地操作冒充成功均禁止。重新联网时如何先锁定、重验、协调本地草稿与新状态，仍以既有双输入/数据权利合同为上界。
+- 列出最小负向测试矩阵、回退/清理边界，以及真实身份、有效期、Connection/Consent/CV 权威来源尚未建立导致的实现停点。将静态代码、synthetic 测试、设备观察和生产结论分开。
+
+唯一允许新增：`EVIDENCE/CACHE-04-OFFLINE-PRIVATE-READ-BOUNDARY-CONTRACT/contract.md`。可只读查项目文档、源码和已接受证据；不修改任何既有文件或代码，不读取真实账户、Token、设备私密值、生产 API/DB 或旧 `D:\EliteSync`，不拉取/推送 GitHub。
 
 ## Acceptance criteria / verification budget
 
-- 一份简短的决策矩阵，每项给出可核对的本地路径/符号或证据指针；若真实权威来源未建立，明确写 `UNKNOWN`，不得以 synthetic/mock/provider 或本地缓存冒充在线重验。
-- 明列需要 Owner 回答的最小问题集及每个答案对缓存范围/期限/离线访问的影响；不得填入自选默认值，也不得把历史只读在 revoke/pause/close 后开放。
-- 标明 CACHE-02 只建立精确清除代码路径、没有设备擦除观察；CACHE-01 不提供加密、恢复或重验。区分静态代码、既有 synthetic 测试、设备观察和生产证明。
-- 核对新增路径范围与一次 `git diff --check`；不运行 Flutter/Android 构建、测试、设备、HTTP/API、DB 或网络。回执写明执行时本地分支/HEAD、读取来源、未核验项和限制。
+合同明确标记 `OWNER ACCEPTED`、`PROPOSED`、`UNKNOWN/NOT ESTABLISHED`，不将建议期限或离线凭据机制写成已接受实现。内容类别、可见/可发、退出/撤权/过期矩阵须能回溯本地精确来源。只运行一次 `git diff --check`，并对唯一未跟踪新文件做尾随空白检查；不运行 Flutter/Android、设备、HTTP/API、DB、网络或全量搜索。回执记录执行时本地分支/HEAD、读取来源和未核验项。
 
 ## Stop conditions / review
 
-若材料要求作新的隐私产品决定、开放真实历史权限、读取真实/设备数据、确认生产来源或扩大到实现，则停止并报告具体问题，留给 Work/Owner 决策。根目录无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/` 保留原状；Codex 不提交或备份。候选停在 Work LEVEL 2 独立验收门。
+若需要选定精确会话/缓存/凭据期限、真实离线授权方案、法律例外、账户/Token 生命周期、撤权后历史权利或媒体生产存储设计，列出 Owner/责任方决策点并停止，不自行批准。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`；Codex 不提交、备份或派发后继。候选停在 Work LEVEL 2 独立验收门。
