@@ -4,9 +4,11 @@ Task ID: `CACHE-03-PRIVATE-RESTORE-DECISION-PACKET`
 
 Risk Level: `LEVEL 2`（私密恢复、在线权威与离线访问的待决产品边界；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — OWNER DECISION GATE; NO ACTIVE CODEX TASK`
 
-Assignee: `Codex`。CACHE-01～02 已由 Work 独立 ACCEPT 并进入本地 `main`。本任务仅汇集可核对的决策材料，不作 Owner 政策选择，不实现新缓存或恢复能力；交付候选后停在 Work LEVEL 2 门。
+Assignee: `Codex`（已交付）。CACHE-01～03 已由 Work 独立 ACCEPT 并进入本地 `main`。本任务仅汇集可核对的决策材料，不作 Owner 政策选择，不实现新缓存或恢复能力；验收见 `EVIDENCE/CACHE-03-PRIVATE-RESTORE-DECISION-PACKET/summary.md`。
+
+Next gate: Owner 需逐类决定新缓存保存范围、保留期限与登出/换账户/撤权处理，以及在线核验通过后掉线的可见范围。真实身份、Connection/Consent/CV 当前权威来源仍未建立。Work 在这些决策或来源证据到位后再下达实现任务；当前无已下达的后继 Codex 执行单。
 
 ## Objective / allowed path
 
