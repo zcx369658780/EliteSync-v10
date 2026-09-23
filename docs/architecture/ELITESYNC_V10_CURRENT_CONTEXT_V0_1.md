@@ -1,5 +1,7 @@
 # EliteSync v10｜当前上下文与交付入口
 
+> 本页为 2026-09-21 历史快照。实时本地入口已迁至仓库根 `CURRENT.md`、`TASK_CURRENT.md` 与 `REVIEW_GATE.md`；GitHub 仅用于备份、里程碑与发布。以下原文保留作来源，不作为此后任务的当前状态。
+
 维护修订：2026-09-21 / delivery-refresh-2。事实核验基线：`608c6b04dc17022db7fcf72c34b494a0944ece03`，不是未来 main 必须等于的常量。
 本修订：`REVIEW CANDIDATE — FACTUAL STATUS REFRESH + PROSPECTIVE DELIVERY RULES`；非作者 ACCEPT 绑定精确 blob 且进入 main 后生效。上一版计划包已由独立记录 `4d7164e157cd9c0e1274af51661bd0857de05f91` 接受，不能仅因旧正文仍写 PROPOSED 将其判为未接受。
 

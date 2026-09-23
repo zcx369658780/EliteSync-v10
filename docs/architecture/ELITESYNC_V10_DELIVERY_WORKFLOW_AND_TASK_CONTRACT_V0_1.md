@@ -1,5 +1,7 @@
 # EliteSync v10｜交付工作流与任务契约｜v0.1
 
+> 本页保留原工作流历史。实时工作流以仓库根 `AGENTS.md`、`CURRENT.md`、`TASK_CURRENT.md`、`REVIEW_GATE.md` 为入口；GitHub 仅用于备份、里程碑与发布。已发布任务的精确预算与停止条件继续有效。
+
 维护修订：2026-09-21 / delivery-refresh-2。`PROSPECTIVE REVISION CANDIDATE — NON-AUTHOR ACCEPTANCE REQUIRED`。
 本版本替代上一工作流的未来任务编写建议；仅在精确 blob 独立接受并进入 main 后生效。AGENTS 保持不变。任何已发布任务，尤其 R18-R1，继续遵守自己的范围、次数和首次 PASS 停止规则；不追认 R18 历史偏离。
 

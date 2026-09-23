@@ -1,5 +1,7 @@
 # EliteSync v10｜当前交付计划与路线图｜v0.1
 
+> 本页保留 2026-09-21 的计划来源。实时本地状态与当前任务请读仓库根 `CURRENT.md`、`TASK_CURRENT.md`；审查等级见 `REVIEW_GATE.md`。GitHub 不再是日常任务总线。
+
 维护修订：2026-09-21 / delivery-refresh-2。证据快照：`608c6b04dc17022db7fcf72c34b494a0944ece03`。
 `PROSPECTIVE REVISION CANDIDATE — NON-AUTHOR ACCEPTANCE REQUIRED`。上一版计划已有独立接受记录 `4d7164e157cd9c0e1274af51661bd0857de05f91`；本修订接受后仅替代当前排程、工作量假设和未来任务建议，不重置产品设计、APP-T01～T12 或历史接受记录。
 
