@@ -46,18 +46,6 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     final refreshToken = await secure.read(CacheKeys.refreshToken);
     final profileJson = await local.getJson(CacheKeys.lastKnownProfile);
 
-    assert(() {
-      if (accessToken != null && accessToken.isNotEmpty) {
-        // Temporary debug aid for emulator-side matching setup.
-        // Removed from release builds by Dart asserts.
-        // ignore: avoid_print
-        print(
-          'SESSION_BOOT_TOKEN token=$accessToken phone=${profileJson == null ? '' : (profileJson['phone'] ?? '')}',
-        );
-      }
-      return true;
-    }());
-
     if (accessToken == null || accessToken.isEmpty) {
       return const SessionState(status: AuthStatus.unauthenticated);
     }
@@ -76,10 +64,6 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     String? refreshToken,
     UserSummary? user,
   }) async {
-    // ignore: avoid_print
-    print(
-      'SESSION_SET_AUTH token=${accessToken.isNotEmpty} user=${user?.phone ?? ''}',
-    );
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
 
