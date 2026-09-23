@@ -4,9 +4,11 @@ Task ID: `CACHE-04-OFFLINE-PRIVATE-READ-BOUNDARY-CONTRACT`
 
 Risk Level: `LEVEL 2`（Owner 已修订的离线私密只读方向之技术/数据边界；Work 独立审查，产品细节仍归 Owner）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — OWNER/REAL-AUTHORITY GATE; NO ACTIVE CODEX TASK`
 
-Assignee: `Codex`。Owner 已明确允许登录有效时离线冷启动只读设备已保存的加密会话、消息、图片/视频及草稿；离线不允许发送。离线草稿编辑/持久写回尚未获 Owner 决定，不得写为已授权。此决定修订旧“每次重启先在线核验”的缓存展示条件，不取消在线 live read/send 双输入门。Owner 拒绝 24 小时建议并希望登录持续约一周至半个月；精确登录/缓存/离线可读期限尚未决定。本任务只交付合同候选，不作新的 Owner 决策或实现。
+Assignee: `Codex`（已交付）。Owner 已明确允许登录有效时离线冷启动只读设备已保存的加密会话、消息、图片/视频及草稿；离线不允许发送。离线草稿编辑/持久写回尚未获 Owner 决定。此决定修订旧“每次重启先在线核验”的缓存展示条件，不取消在线 live read/send 双输入门。Owner 拒绝 24 小时建议并希望登录持续约一周至半个月；精确登录/缓存/离线可读期限尚未决定。本任务的设计合同已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/CACHE-04-OFFLINE-PRIVATE-READ-BOUNDARY-CONTRACT/contract.md`。
+
+Next gate: Owner 需分别定登录会话、逐类加密缓存和离线可读凭据的精确期限及断网撤权窗口；身份/Connection/Consent/CV 当前来源、离线凭据和媒体受控存储仍需独立真实证据。当前无已下达的后继 Codex 执行单，不授权实现。
 
 ## Objective / allowed path
 
