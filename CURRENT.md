@@ -11,7 +11,7 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
 | App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
 | 最后已接受工程状态 | APP-RUN-01、APP-INT-01～05 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation → Home 活态摘要交互。APP-INT-05 集成提交 `03ee72e1abe4e617abc45e9498ec1711ffee9ac9`；验收见 `EVIDENCE/APP-INT-05/summary.md`。 |
-| 当前任务 / 门 | `APP-INT-06`～`09` 已获本地 ACCEPT。Owner 选择方案 B：允许加密私密缓存，重启后须在线核验通过才显示；各类数据保留/清除与后续离线访问尚未决定。真实身份和独立 Connection/Consent 当前来源未建立。现下达 `APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT`（LEVEL 2，只读审计），先核对现有设备缓存路径及暴露门。 |
+| 当前任务 / 门 | `APP-INT-06`～`10` 已获本地 ACCEPT，其中 APP-INT-10 仅为静态缓存审计。Owner 选择方案 B：允许加密私密缓存，重启后须在线核验通过才显示。审计见 `EVIDENCE/APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT/summary.md`：现有草稿、会话快照与搜索历史有未做应用层加密的 `SharedPreferences` 写入路径；动态草稿键不会被当前登出清理命中。真实设备缓存、重启可达性未核验；旧缓存处置与第一版缓存范围待 Owner 决定。 |
 
 ## Product scope
 
@@ -49,6 +49,6 @@ Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟
 
 ## Unsupported claims / next safe task
 
-不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。APP-INT-06～09 已接受；Owner 的方案 B 已记录在 `PRODUCT_DECISIONS.md`，但真实来源、逐类保存/保留与设备恢复仍无实现授权。限定静态检查发现现有 `chat_room_page.dart` 通过 `LocalStorageService` 写入草稿，而该服务使用 `SharedPreferences`；APP-INT-10 要核实存储类别、可达性、显示门及清除规则，不能直接把现有代码视作符合方案 B。
+不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用、玄学匹配权威，或主循环持久化/重启恢复已完成。APP-INT-06～10 已接受；Owner 的方案 B 已记录在 `PRODUCT_DECISIONS.md`，但真实来源、逐类保存/保留与设备恢复仍无实现授权。APP-INT-10 静态审计定位草稿、会话快照/预览和搜索历史的非应用层加密写入以及登出清理缺口；未证明设备现存内容。下一步须先决定旧缓存清除/迁移和第一版可缓存类别，再下达 containment/实现任务。
 
 证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`、`EVIDENCE/APP-INT-05/summary.md`、`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。

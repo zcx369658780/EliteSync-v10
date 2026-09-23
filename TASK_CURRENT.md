@@ -4,7 +4,9 @@ Task ID: `APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT`
 
 Risk Level: `LEVEL 2`（私密数据本地存储与访问门静态审计；Work 独立审查，Owner 保留政策决定）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — OWNER CACHE DISPOSITION DECISION REQUIRED`
+
+Work verdict (2026-09-23): `ACCEPT — STATIC PRIVATE CACHE AUDIT; REMEDIATION REQUIRES POLICY DECISION`，见 `EVIDENCE/APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT/summary.md`。本任务已结束，不再执行。旧动态草稿键、会话快照/预览及搜索历史的处置和第一版加密缓存范围待 Owner 决定；尚无删除/迁移现存设备数据或产品代码修复的任务授权。
 
 Assignee: `Codex`。Owner 已选择方案 B：允许加密本地私密缓存，重启后在线核验通过前不显示。此任务只查现状与决策缺口，不授权实现加密缓存、迁移已有数据或更改产品政策。
 
