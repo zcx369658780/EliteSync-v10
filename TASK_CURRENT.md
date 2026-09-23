@@ -1,29 +1,31 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT`
+Task ID: `CACHE-06-OFFLINE-RETENTION-PURE-POLICY`
 
-Risk Level: `LEVEL 2`（登录、离线私密读取与加密内容清理边界；Work 独立审查）
+Risk Level: `LEVEL 2`（登录期限与私密内容可见性判定；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPT — REAL-AUTHORITY / IMPLEMENTATION GATE; NO ACTIVE CODEX TASK`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`（已交付并由 Work 独立接受）。接受证据：`EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md`。
-
-Next gate: 真实成功在线登录事件、可靠时间/防回拨、离线读取凭据、当前 Connection/Consent/CV 与数据权利来源、加密媒体及受控副本清理能力尚未建立；后续实现必须另立有界任务并按最高风险审查。当前没有活动 Codex 执行单。本合同不授权真实设备擦除、生产数据或发布。
+Assignee: `Codex`。只交付隔离的纯判定候选与合成测试，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-Owner 于 2026-09-24 决定：在线登录持续 15 天；设备在第 16～30 天仍离线时，可以继续只读符合其余条件的本地已保存、按账户加密的会话/消息/图片视频/草稿；离线不能发送，草稿编辑/写回未授权。最后一次**成功在线登录**满 30 天、期间未再次成功在线登录时清理这些加密私密内容，清理后不可离线阅读。自动 Token 续期不重置 30 天计时；离线阅读不另设更短的独立时间上限。以 `PRODUCT_DECISIONS.md` 新决定及已接受 CACHE-04 合同为上界，不把合同旧 7/15 天待选建议继续当现行产品期限。
+以 `PRODUCT_DECISIONS.md` 的 Owner 已定 15/30 天规则和已接受 `EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md` 为上界，在 Flutter chat domain 新增一个不读取设备、不写缓存、不连接 UI/API 的纯判定器。给定**调用方声称**的可信上次成功在线登录后经过时间、账户/设备/对象与离线读取条件、已知失效状态及受控密文完整性，分别返回：15 天在线登录窗口是否尚未届满的候选结果、离线只读候选结果、30 天清理是否到期的候选结果，并给出可测试的拒绝原因。返回值一律不是受信登录证明、真实 grant 或实际清理回执。
 
-编写一份可由 Work 独立审查的期限与失效技术合同，精确区分：15 天在线登录期、30 天新加密私密内容清理计时、第 16～30 天离线只读资格，以及在线 live read/send 的既有双输入当前权威门。说明“成功在线登录”的可信事件、自动 Token 续期、设备重启、断网、时间回拨/跳变、账户切换、登出、已知撤权、到期和清理失败的候选处理规则；未由 Owner 决定的实现机制标记 `PROPOSED` 或 `UNKNOWN`，不得将 Token 存在或本地时间戳直接等同于有效性证明。
+规则必须覆盖：`0 ≤ Δ < 15 天` 可处于在线登录期但不自动获得 live read/send；`15 天 ≤ Δ < 30 天` 即使在线登录期结束，只要仍离线且其他离线门均通过，仍可只读；`Δ ≥ 30 天` 不可读并标出清理到期，但不执行删除。自动 Token 续期、应用重启、profile 更新时间不作为新的成功在线登录事件，不改变计时输入。时间证明缺失、不可信、负经过时间或异常时 fail-closed 锁定且不得误判已完成清理；登出/换账户/已知撤权必须拒绝离线展示。纯判定器不得返回在线 live read/send 授权，在线权威双输入门保持独立。
 
-合同逐类列出本决定覆盖的已保存加密会话信息、消息、图片/视频、草稿及可控缩略图/临时副本的范围和 30 天终点；对系统备份、第三方播放器缓存、真实设备擦除能力及未获准类别写明未建立边界。30 天新加密内容清理不扩张 CACHE-02 的旧明文键清理范围，不授权删除账户、Token 或其他缓存。纳入最小负向用例、清理失败时防展示与重试的候选原则、断网无法获知远端撤权的残余窗口、真实身份/可信时间/离线凭据/Connection/Consent/CV 当前来源停点。明确区分静态代码、synthetic 测试、设备观察和生产结论。
+## Allowed paths
 
-## Allowed path and verification budget
+仅允许新增：
 
-唯一允许新增：`EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md`。可只读核对本地项目文档、既有证据及必要的现有 Flutter 静态路径；不修改其他文件或产品代码，不读取真实账户、Token、设备私密值，不访问生产 API/DB 或旧 `D:\EliteSync`，不拉取/推送 GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+- `apps/flutter_elitesync_module/lib/features/chat/domain/offline_private_retention_policy.dart`
+- `apps/flutter_elitesync_module/test/features/chat/domain/offline_private_retention_policy_test.dart`
+- `EVIDENCE/CACHE-06-OFFLINE-RETENTION-PURE-POLICY/summary.md`
 
-作者只运行一次 `git diff --check`，并对唯一新文件做尾随空白检查；不运行 Flutter/Android、设备、HTTP/API、DB、网络或全量测试。回执记录执行时本地分支/HEAD、读取来源、精确文件路径与未核验项。若发现 Owner 新决定与既有受保护数据权利冲突，只列出冲突并停在 Work/Owner 门，不自行放宽。
+可只读项目控制文档、CACHE-04/05、APP-INT-07/09 和必要的 Flutter 同层纯判定器与测试。不得修改其他源码、既有测试或控制面；不得接入 provider、页面、路由、登录/Token、加密存储、旧缓存清理、网络或 backend，不读取真实账户/设备私密值，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
 
-## Acceptance and stop
+## Acceptance and verification budget
 
-候选必须可逐项追溯 Owner 已定值、旧合同仍有效的在线门和未建立的实现条件；尤其不能把第 16 天写成离线私密内容锁定或清理，也不能以自动 Token 续期延长 30 天。Codex 不自行接受、提交、备份或派发后继。Work 对唯一候选作 LEVEL 2 独立 ACCEPT/REJECT；真实授权机制、设备数据和生产动作另行审议。
+使用虚构输入做有针对性的单元测试，至少覆盖 15 天前后、29 天末、恰满 30 天、自动续期不能重置、未知/负/不可信时间、账户/设备/对象不匹配、已知失效、非离线状态、完整性失败，以及清理到期与清理完成之间的区别。测试不得声称真实授权、真实设备清理或生产可用。作者最多运行目标测试 2 次、对新增源/测试的定向分析 2 次、`git diff --check` 1 次；若失败，记录每次结果和修正。未跟踪新文件另作尾随空白检查。证据注明本地分支/HEAD、精确路径、检查回执及未运行项。
+
+若实现需要自行选定可信时间/登录凭据来源、持久化/删除机制、离线媒体或撤权传播方案，则停止并列出缺口，不接线。Codex 不自接受、不提交、不备份、不派发后继。Work 按 LEVEL 2 独立 ACCEPT/REJECT；本任务没有真实设备、API、DB 或生产动作授权。
