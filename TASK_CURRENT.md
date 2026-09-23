@@ -4,9 +4,11 @@ Task ID: `CACHE-06-OFFLINE-RETENTION-PURE-POLICY`
 
 Risk Level: `LEVEL 2`（登录期限与私密内容可见性判定；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — REAL-AUTHORITY / INTEGRATION GATE; NO ACTIVE CODEX TASK`
 
-Assignee: `Codex`。只交付隔离的纯判定候选与合成测试，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`（已交付并由 Work 独立接受）。接受证据：`EVIDENCE/CACHE-06-OFFLINE-RETENTION-PURE-POLICY/summary.md`。
+
+Next gate: 可信成功在线登录事件、可靠时间/防回拨、账户/设备身份与离线读取凭据、当前 Connection/Consent/CV 和数据权利来源均未建立。当前纯判定不得接 UI、真实缓存或清理器；真实接线另立有界任务并按最高风险审查。当前没有活动 Codex 执行单。
 
 ## Authority and objective
 
