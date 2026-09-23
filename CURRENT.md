@@ -1,6 +1,6 @@
 # EliteSync v10｜CURRENT
 
-更新：2026-09-23。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
+更新：2026-09-24。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
 
 本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
 
@@ -11,7 +11,7 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
 | App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
 | 最后已接受工程状态 | APP-RUN-01、APP-INT-01～05 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation → Home 活态摘要交互。APP-INT-05 集成提交 `03ee72e1abe4e617abc45e9498ec1711ffee9ac9`；验收见 `EVIDENCE/APP-INT-05/summary.md`。 |
-| 当前任务 / 门 | `APP-INT-06`～`10`、`SEC-01`～`04`、`CACHE-01`～`04` 已获本地 ACCEPT。CACHE-01 停止旧私密键读写与提前展示；CACHE-02 加入精确清除路径，均无真实设备擦除证明。Owner 新决定允许登录有效时离线冷启动只读已保存的加密会话/消息/图片视频/草稿，离线不得发送；离线草稿编辑/写回未授权。旧“每次重启先在线核验”的缓存展示条件仅在离线只读部分被修订。CACHE-04 合同已接受；24 小时建议被拒绝，登录持续约一周至半个月是方向，精确各类期限、离线凭据和真实权威来源仍待定。当前无活动 Codex 执行单。 |
+| 当前任务 / 门 | `APP-INT-06`～`10`、`SEC-01`～`04`、`CACHE-01`～`04` 已获本地 ACCEPT。CACHE-01 停止旧私密键读写与提前展示；CACHE-02 加入精确清除路径，均无真实设备擦除证明。Owner 允许离线冷启动只读已保存的加密会话/消息/图片视频/草稿，离线不得发送；草稿编辑/写回未授权。Owner 已定在线登录 15 天；第 16～30 天设备仍离线可继续只读，最后一次成功在线登录满 30 天清理加密私密内容，自动 Token 续期不重置计时。`CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT` 已下达为 docs-only 合同任务；真实身份、离线凭据和清理实现未建立。 |
 
 ## Product scope
 
