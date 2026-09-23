@@ -4,9 +4,11 @@ Task ID: `AUTH-01-ALIYUN-SSH-SOURCE-IDENTITY`
 
 Risk Level: `LEVEL 2`（真实服务器只读连线与部署源码身份；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — AUTHENTICATION_REJECTED; REMOTE NOT CHECKED; OWNER CREDENTIAL GATE`
 
-Assignee: `Codex`。仅交付一次有界 SSH 核验的证据候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`（已交付并由 Work 独立接受事实回执）。接受证据：`EVIDENCE/AUTH-01-ALIYUN-SSH-SOURCE-IDENTITY/summary.md`。
+
+Next gate: 本轮指定的 `codexkey` 对 `root@101.133.161.203` 一次认证被拒；远端路径及源码均未核验。历史地图提及另一把私钥曾成功，但不得据此自动重试。Owner 需明确授权下一次使用的私钥/用户组合或提供正确凭据；当前无活动 Codex 执行单。
 
 ## Authority and objective
 
