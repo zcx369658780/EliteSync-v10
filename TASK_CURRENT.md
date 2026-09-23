@@ -1,30 +1,21 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT`
+Task ID: `SEC-01-ACCESS-TOKEN-LOG-REMOVAL`
 
-Risk Level: `LEVEL 2`（私密数据本地存储与访问门静态审计；Work 独立审查，Owner 保留政策决定）
+Risk Level: `LEVEL 2`（认证秘密日志暴露的单点修复；须由 Work 独立审查）
 
-Status: `ACCEPTED — OWNER CACHE DISPOSITION DECISION REQUIRED`
+Status: `ISSUED — NOT STARTED`
 
-Work verdict (2026-09-23): `ACCEPT — STATIC PRIVATE CACHE AUDIT; REMEDIATION REQUIRES POLICY DECISION`，见 `EVIDENCE/APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT/summary.md`。本任务已结束，不再执行。旧动态草稿键、会话快照/预览及搜索历史的处置和第一版加密缓存范围待 Owner 决定；尚无删除/迁移现存设备数据或产品代码修复的任务授权。
+Assignee: `Codex`。Work 在准备 Owner 已授权的旧聊天缓存清理时，发现共用 `accessTokenProvider` 打印非空访问令牌；先执行本极窄修复，再回到缓存 containment。本任务只交付候选，不自接受或派发后继。
 
-Assignee: `Codex`。Owner 已选择方案 B：允许加密本地私密缓存，重启后在线核验通过前不显示。此任务只查现状与决策缺口，不授权实现加密缓存、迁移已有数据或更改产品政策。
+## Objective / allowed paths
 
-## Objective / Why now
+移除 `apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart` 中 `accessTokenProvider` 读取到非空 token 后的值打印，包括只为该打印存在的注释/ignore。保留 provider 返回 token、依赖注入和其它认证行为不变。只允许修改该源码路径，以及新增 `EVIDENCE/SEC-01-ACCESS-TOKEN-LOG-REMOVAL/summary.md` 短回执；不修改 auth/网络其它源码、测试、依赖、配置或旧接受记录。不得读取实际 token、环境秘密、app-private data 或设备日志。
 
-在规划真实恢复前，确定当前 Flutter 代码是否已在设备持久保存私密 Conversation 相关数据，实际使用哪种存储、何时写入/读取/展示、如何随账户与权限变化失效。Work 限定静态检查已见 `chat_room_page.dart` 的草稿写入 `LocalStorageService`，该服务使用 `SharedPreferences`；不能据此推断所有路径的运行可达性或设备上的实际存储内容。输出一份按类别的可审查审计表与最小修复优先级。
+## Acceptance criteria / verification budget
 
-## Allowed paths / source scope
+静态核对改动前后 `accessTokenProvider` 的非日志控制流一致，所改路径不再将 token 值输出到 print/logger。限定搜索 `app_providers.dart` 与直接相邻的本地认证 provider 调用，若发现其他具体 secret-value 输出只报告路径，不扩大写集。`git diff --check` 与定点 `rg` 各一次即可；由于仅删除日志分支，无需新增镜像实现的测试。若工具链已可用，可运行一次该文件的有界 Dart analyze；不运行 Flutter 全量测试、Android build、API/DB/设备。回执准确标注实际检查与未运行项。
 
-只可新增 `EVIDENCE/APP-INT-10-LOCAL-PRIVATE-CACHE-AUDIT/summary.md`，作为唯一主要结果；必要时同目录可新增一份短静态检索回执。只读消费 `PRODUCT_DECISIONS.md`、APP-INT-07/09 证据、Conversation data-rights Owner 接受记录，及 Flutter `apps/flutter_elitesync_module/lib/core/storage/`、`features/chat/`、`features/auth/`、`shared/providers/` 中与本地存储、路由和门控相关的源码与已有测试。不得修改源码、测试、依赖、配置、DB、旧接受文件或控制文件；保留无关 untracked 目录。
+## Stop conditions / review
 
-## Acceptance criteria
-
-1. 逐类列出草稿、Conversation 索引/对方身份、消息正文/附件、预览、未读/通知、路由与账户缓存的实际读写路径、key、后端类型、是否有加密证据、账户/Conversation 绑定、写入与读取时机。区分内存快照、`SharedPreferences`、`flutter_secure_storage`、远端/Mock；路径不存在写 `NOT FOUND IN SCOPE`，不能把注释标签当加密证明。
-2. 检查首次启动、重启、logout、账户切换、Connection/Consent 失效、页面销毁与异步回填期间，内容是否可能在未重新核验当前双输入前被读取、进入内存、显示或用于发送。按静态证据标为确定、可能、UNKNOWN；不得以本任务声称设备复现。
-3. 对照方案 B 和 D-02/03/D-07：明确哪些现有路径与“加密缓存、在线重验前不显示”有冲突或缺证，哪些只属于旧 v1 兼容路径。对每项给出最小 containment 建议、负向测试建议、数据迁移/既存草稿处理风险、回退条件；不直接选择逐类 retention 期限、离线历史权限或清除政策。
-4. 给 Owner 一张简短决策表：哪些类别建议第一版缓存、哪些应暂不缓存、核验失败/退出登录/切换账户后的候选处理选项。标明建议与已有接受政策的区别，指出需 Owner 最终决定的最少问题。
-
-## Verification budget / stop conditions
-
-只做本地限定静态检索与定点阅读；可用代码图谱优先，结果不足时用限定目录 `rg` 并说明。不运行 Flutter/Dart/Gradle、模拟器、HTTP/API、DB、网络、真实数据，也不读取 app-private data；不访问旧 `D:\EliteSync` 或同步 GitHub。若发现明确的私密内容未加密落盘或越过访问门，优先精确记录路径、触发条件及静态证据，立即报告 Work；本任务仍不擅自实施清理或迁移。交付后停在 Work LEVEL 2 独立审查门；Codex 不自接受、提交、备份或发后继。
+若移除打印会改变 token 读取/返回或存在依赖该输出的正式流程，停止并报告；不得为保留日志而脱敏一部分真实 token。保留无关 untracked 目录；不访问旧 `D:\EliteSync`，不拉取/推送 GitHub，不提交或备份。完成后停在 Work LEVEL 2 独立验收门。旧聊天缓存清理另立任务，不由本任务启动。
