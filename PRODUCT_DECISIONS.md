@@ -1,12 +1,20 @@
-# EliteSync v10｜已接受产品与架构边界
+# EliteSync v10｜PRODUCT_DECISIONS
 
-本页只摘录当前本地主线可追溯的决定，不创造新产品语义；精确依据仍是各接受记录和原文。
+这里只记录已接受的产品方向，不把实现、候选或旧代码当作产品接受。下表共同来源为 `docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`（2026-09-12 Owner ACCEPT，指向设计 blob `b72ed9ec851d44aba7be65883186cb275fab22d1`）及其所接受的 `ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_SUPPLEMENT_V0_1.md`。重开条件适用于每项：Owner 的新明确决定，或足以改变该项正确性的隐私、安全、法律、运行证据；普通实现偏好和旧代码存在不构成重开。
 
-- 信息架构：`Home | Progress | Messages | Me`。Progress 是导航容器。主循环按 `Readiness → Match → Connection → Conversation` 分段；Match、Connection、Conversation、Relationship 互不代替。
-- 隐私与权限：每段权限独立；Connection active 本身不解锁 Conversation。私密会话不默认用于 AI、训练、排序或广告。Safety 不进入普通兼容性分数；`UNKNOWN` 不等于 false/safe。
-- 资料用途：Private Identity、Matching Inputs、Readiness、Showcase 分离；MVP 不设 globally public Profile 或单一权威 Compatibility 总分。
-- 阶段：MVP 主线优先；Explore/Relationship 属 Phase 2，optional AI/reference 属 Later，不因本地演示进入当前交付范围。
-- Synthetic/dev：虚构本地 session/readiness/Match/Connection/Conversation 只能明确标为开发演示，不能冒充服务器权威、真实同意、生产写入或真实参与者数据。
-- 交付：可安装开发演示、邀请制真实内测、公开运营是不同出口。没有对应运行、签名、部署及授权证据，不提升发布声明。
+| Decision | Status | Evidence / reference | Reopening condition |
+|---|---|---|---|
+| Relationship Decision Support System；不作为关系真相、罪责或 AI 裁判，也不以停留/消息数为目标 | Owner accepted | Owner acceptance §3；设计正文 §1 | 上述共同条件 |
+| MVP 顶层 `Home | Progress | Messages | Me`；Home 为 Calm State Hub 只读投影，呈现状态、下一决定、可选支持 | Owner accepted | Owner acceptance §2(1)；设计正文 IA/Home | 上述共同条件 |
+| Discover 转为 Phase 2 secondary Explore / Support Library | Owner accepted | Owner acceptance §2(2) | 上述共同条件 |
+| `Match != Connection != Conversation != Relationship`；Match 不自动创建 Connection；Connection 不自动授权 Conversation；消息需独立双方同意 | Owner accepted | Owner acceptance §2(3–6)；设计正文 lifecycle | 上述共同条件 |
+| Relationship 为 Phase 2 双方 opt-in；不能由聊天频率、内容或 AI 自动推断 | Owner accepted | Owner acceptance §2(6–7) | 上述共同条件 |
+| MVP 无 globally public Profile；Private Identity、Matching Inputs、Readiness、Showcase 分用途；Showcase 默认有受众范围 | Owner accepted | Owner acceptance §2(8)；设计正文 Profile-purpose | 上述共同条件 |
+| Readiness 为 named checklist，解释 required/optional 的原因、可见范围、修改/撤回与过期；参考信号非强制项 | Owner accepted | Owner acceptance §2(12)；设计正文 Readiness | 上述共同条件 |
+| 无单一权威 Compatibility 总分；Match 解释保留理由、来源、约束、不确定性与用户控制 | Owner accepted | Owner acceptance §2(9)；设计正文 Match/Explainability | 上述共同条件 |
+| AI 仅作 advisory；用户声明、AI 推断、安全材料不能冒充已验证事实或普通匹配证据；Conversation 不默认进入 AI、训练或排序 | Owner accepted | Owner acceptance §2(10)、§3；设计正文 Explainability | 上述共同条件 |
+| Privacy、Safety、User Control 优先；Block、Report、Allegation、Finding 不互相等同，UNKNOWN 不等于 safe/false | Owner accepted | Owner acceptance §3 | 上述共同条件 |
+| 通知默认 privacy-minimal；point-of-use consent 与 central privacy controls 并存；可选提醒默认关闭 | Owner accepted | Owner acceptance §2(12)；设计正文 Notifications | 上述共同条件 |
+| Canonical Match 为未来产品路径；legacy participant-linked Match 仅在 consumer inventory、replacement contract 和 rollback/cutover gate 后退休 | Owner accepted | Owner acceptance §2(11)；设计正文 Legacy fate | 上述共同条件 |
 
-来源：本地主线 `docs/architecture/ELITESYNC_V10_CURRENT_CONTEXT_V0_1.md`、`ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md` 及对应已接受的产品/客户端记录。`Date Drop`、AI relationship summary、玄学解释层、backend v2 出现在迁移提案的例子里，本地 v10 未核实接受，不列为决定。
+Phase 2/Later、AI/personality/astrology 可选信号的精确 allowlist、真实身份机制、Proposal 期限、共享内容权利等仍属待决，不能由本页自行补定。产品接受不证明相应代码、后端、DB 或发布链已完成。

@@ -1,21 +1,48 @@
-# EliteSync v10｜本地当前状态
+# EliteSync v10｜CURRENT
 
-更新：2026-09-23。实时维护本页；来源与限制见下文。此页不替代精确任务或原始证据。
+更新：2026-09-23。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
 
-| 项目 | 当前可证事实 |
+| 项目 | 当前状态 |
 |---|---|
-| 本地主线 | 迁移前本地 `main` 快进至已缓存 `origin/main` `77ab03389c3cce6dc7498d8a76f1873bdcfc44fd`；本次迁移提交见 Git 历史。GitHub 本轮未刷新或推送。 |
-| App 版本/构建 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`，仅为 Runner 元数据；实际分发版本/构建号未核验。 |
-| 当前发布线 | Android synthetic/dev 演示；无受证的真实内测或 production release。 |
-| 已接受范围 | `Home | Progress | Messages | Me`、`Readiness → Match → Connection → Conversation` 的独立权限边界；APP-RUN-01 与 APP-INT-01～04 已在本地主线，使用本地虚构会话/数据。 |
-| Flutter | APP-INT-04 报告 Android API 36 模拟器上的 synthetic Connection、独立消息同意、本地会话读/发和关闭后重新锁定；它不证明真实参与者流程。 |
-| Backend | 既有 synthetic/dev-test 契约与受限实现；不等于生产 auth、writer 或完整 backend ready。 |
-| DB | 本轮未核验真实数据库状态；开发态 persistence 证据不构成生产 DB/migration 证明。 |
-| 待接受候选 | APP-INT-05 本地候选 `060f9a6499f56a434e6ae4598435d49026ec683a`，parent `77ab033…`，报告 Android Home 活态主循环通过；尚未合入 main/接受。 |
-| 当前任务 | 本地工作流迁移已落地；`TASK_CURRENT.md` 记录下一张预备任务，本轮不执行。 |
-| 阻塞/观察 | GitHub push 曾返回账号 suspended；不妨碍本地工作。APP-INT-05 的独立审查未完成。APP-INT-04 analyze 仍有既有 lint；APP-INT-05 报告亦有 18 条既有诊断、命令退出 1，需在审查中准确分类。 |
-| 下一安全任务 | 对 APP-INT-05 固定本地候选做 LEVEL 1 Work 审查；核验代码、证据与现有 synthetic 权限边界，决定接受或拒绝。 |
+| 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
+| App 元数据 | Flutter `pubspec.yaml` 声明 `0.07.04+70402`；不是受证分发版本。交接记录 Flutter 3.41.7 / Dart 3.11.5，本轮未重新运行工具链核验。 |
+| 最后已接受工程状态 | APP-RUN-01、APP-INT-01～04 已有本地接受记录并进入主线；Android synthetic/dev 四栏与 Readiness → Match → Connection → Messaging consent → Conversation 交互。 |
+| 当前候选 / 任务 / 门 | APP-INT-05 `060f9a6499f56a434e6ae4598435d49026ec683a`，parent `77ab03389c3cce6dc7498d8a76f1873bdcfc44fd`，tree `12c3270116b8d070554dc1221a29d74500599f11`；**实现与报告中的 Android 证明完成，独立本地审查待办，未接受、未集成**。`TASK_CURRENT.md` 为预备的 LEVEL 1 审查任务，本轮不执行。 |
 
-**不支持的宣称**：Date Drop、玄学解释层或 backend v2 已获 v10 接受；APP-INT-05 已进入 main；真实身份、生产 API/DB、真实 WebSocket/RTC、APK 发布或 release ready。Phase 2/Later、真实内测、生产和数据权利等仍须独立决策与证据。
+## Product scope
 
-来源：本地 main 的 APP-INT-01～04 接受提交、`docs/architecture/ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_RESULT_V0_1.md`、APP-INT-05 固定候选及其 result、`docs/architecture/ELITESYNC_V10_CURRENT_CONTEXT_V0_1.md`（历史快照）。新状态以本页更新为准；历史快照只按需查证。
+Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
+
+## Flutter
+
+已接受 APP-INT-04：独立消息同意后可在本地 synthetic Conversation 列表/详情读发文本；Connection 关闭后重新锁定。APP-INT-05 候选报告 Home 随四段状态更新唯一下一步按钮，targeted tests 17 PASS、Android debug assemble/install/cold launch/main-loop PASS；analyze 为 0 errors、18 条既有 warning/info，命令退出 1。这些是作者回执，待独立审查，不是发布证明。
+
+## Backend
+
+仓库有 Laravel 11 代码、历史 Runtime Readiness/Canonical Match synthetic HTTP 与 Product Connection evaluator、mapping、application/persistence 开发态工作。真实 auth/session、Connection/Conversation writer 和生产 backend authority 未建立；APP-T12 的 G-02/03/05/06/08/13 仍须按各自最新证据逐项关闭，不以 synthetic 演示推定关闭。
+
+## DB
+
+Contract/mapping：Product Connection 开发态映射有既有接受链。Local/test：存在 Laravel migrations 与 synthetic/dev-test persistence 证据。Target environment：本轮未核验目标 DB 实例或 migration 执行。Production DB：**NOT ESTABLISHED**；无生产 schema、备份/恢复或真实数据持久化证明。
+
+## Environments / Release
+
+Local synthetic dev：`main_demo.dart` 使用 mock flags 与 loopback，Android API 36 模拟器 debug host 已有运行证明。Invited real beta：auth、server writer、数据权利、运营和分发证据未建立。Public production/staging：本轮没有核验可用实例或部署。当前仅可称生成的 Flutter module Android **debug APK** 曾构建、安装、启动；正式 host、release build、签名和分发均未证明。
+
+## Existing assets / deferred
+
+Date Drop：Flutter 的 Date Drop 卡片目前只查到由 `local_only_visual_fixture_page.dart` 使用，归为旧展示/兼容资产；canonical Match 才是当前核心，legacy participant-linked Match 仅在 inventory、replacement contract、rollback/cutover gate 后退休。旧 Laravel 仍有 weekly drop 相关接口，存在不等于 v10 产品接受。
+
+AI / Relationship：未在当前 Flutter `lib/`、Laravel `app/` 的限定搜索中找到 AI assistant/relationship summary/health score 主流程；有 `relationship_runtime_local_preview_harness.dart`，归为本地 preview/兼容资产。Relationship mutual opt-in 与 AI support 仍为 Phase 2/Later，不能以代码存在升级为 MVP。
+
+Astrology/reference：八字、紫微等页面、服务与 migrations 确实存在，归为旧代码/可复用参考资产；不是强制 Readiness、当前 Match 权威或 Safety 证据。是否接入新的可解释 signal 架构留待独立设计。
+
+## Open observations / blockers
+
+Windows 曾有跨卷 Kotlin incremental-cache、Gradle/Maven TLS 瞬断及模拟器空间不足；APP-INT-05 作者报告复用 C 盘隔离 cache 后构建，卸载旧 synthetic host 后安装成功。约 1.38 GB 为 debug host APK 大小，不是 release 大小。GitHub push 曾因账号 suspended 失败，不阻断本地工作。当前直接门槛是 APP-INT-05 独立审查；G-04/G-09 按历史索引保留 UNKNOWN，G-07 数据权利和其他真实后端缺口不由本轮关闭。
+
+## Unsupported claims / next safe task
+
+不得宣称 production/backend/DB ready、真实用户 beta ready、真实 WebSocket/RTC、签名 release APK/store/deployment ready、Relationship 完成、AI relationship summary 生产可用或玄学匹配权威。下一安全任务：按 `TASK_CURRENT.md` 对 APP-INT-05 固定候选做独立本地审查并决定 ACCEPT/REJECT；接受且安全集成后，才考虑主循环 persistence/restart/stale/recovery hardening。首次迁移到此停止，不执行新 feature。
+
+证据指针：`docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_RUN_01_ANDROID_SYNTHETIC_RUNTIME_PROOF_ACCEPTANCE_V0_1.md`、`ELITESYNC_V10_APP_INT_04_SYNTHETIC_MESSAGING_CONVERSATION_ACCEPTANCE_V0_1.md`；APP-INT-05 候选中的 `ELITESYNC_V10_APP_INT_05_HOME_LIVE_STATE_MAIN_LOOP_INTEGRATION_RESULT_V0_1.md`；`docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md`。旧 context/roadmap 只作迁移输入。
