@@ -4,9 +4,9 @@ Task ID: `AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP`
 
 Risk Level: `LEVEL 2`（真实 auth 生命周期与私密缓存计时来源的本地静态映射；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — LOCAL STATIC GAP MAP ONLY`
 
-Assignee: `Codex`。交付纯本地只读证据清单，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。纯本地只读缺口清单已交付并获 Work 独立接受；见 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`。当前无活动 Codex 执行单。发现完整 bearer Token 调试输出，须另立有界修复任务。
 
 ## Authority and objective
 
