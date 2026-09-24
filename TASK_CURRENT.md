@@ -4,7 +4,7 @@ Task ID: `AUTH-22-ALIYUN-BACKUP-READINESS-DECISION-PACKET`
 
 Risk Level: `LEVEL 2`（真实 DB 备份前置边界与敏感数据；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付 docs-only 候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
