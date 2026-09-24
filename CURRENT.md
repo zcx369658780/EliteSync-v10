@@ -45,7 +45,7 @@ AUTH-35 本机虚构认证就绪探针的目标获 Work LEVEL 2 **REJECT**，仅
 
 AUTH-36 本机 Docker Desktop 一次启动与复核的可达目标获 Work LEVEL 2 **REJECT**，仅接受受限事实回执，见 `EVIDENCE/AUTH-36-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。作者报告固定程序只启动一次，等待 30 秒后的 daemon 仍不可达，未创建容器或接触数据库。Owner 同时报告 Docker Desktop 弹出 `unexpected error` 并亲自重启；界面错误不构成根因结论。Owner 随后报告重启完成，Work 本次只读核对本机 Docker context 与 daemon `29.6.2` 可达；这是新时点观察，不更改 AUTH-36 的验收结果。AUTH-37 已下达冻结 AUTH-35 虚构探针的新一次运行任务；截图中停止的旧容器不需启动。
 
-AUTH-37 冻结虚构认证探针的新一次运行获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。作者报告本机固定隔离声明通过，约 20/40/60 秒三个 `SELECT 1` 均失败且安全码均为 `1045`，按本次 ID 清理 PASS。Work 核对冻结脚本哈希、唯一候选和回执，未复跑容器；这不能判定密码、客户端选项或镜像初始化等具体原因，也不能证明虚构 dump/restore 或真实备份可恢复。旧预算耗尽，下一步需新任务定位虚构认证配置。
+AUTH-37 冻结虚构认证探针的新一次运行获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。作者报告本机固定隔离声明通过，约 20/40/60 秒三个 `SELECT 1` 均失败且安全码均为 `1045`，按本次 ID 清理 PASS。Work 核对冻结脚本哈希、唯一候选和回执，未复跑容器；这不能判定密码、客户端选项或镜像初始化等具体原因，也不能证明虚构 dump/restore 或真实备份可恢复。旧预算耗尽，AUTH-38 已下达一个新容器的只读认证方式诊断。
 
 ## Product scope
 

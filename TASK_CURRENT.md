@@ -1,27 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY`
+Task ID: `AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS`
 
-Risk Level: `LEVEL 2`（Docker Engine 恢复后，冻结虚构认证探针的一次运行；Work 独立审查）
+Risk Level: `LEVEL 2`（本机隔离虚构 MariaDB root 只读认证方式诊断；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — BOUNDED DIAGNOSTIC FACT ONLY`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付一次受限虚构探针回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：冻结脚本在新预算下的一次运行报告 20/40/60 秒认证均失败且安全码为 `1045`，容器精确清理 PASS；作为受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。具体认证拒绝原因、dump/restore 与真实备份恢复均未建立。一次运行预算耗尽，后继须另立任务。
+Assignee: `Codex`。只交付一次受限虚构容器候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-Owner 已亲自重启 Docker。Work 本次只读核对当前 Docker context 是本机命名管道，daemon 回应版本 `29.6.2`；这只证明该时点 Engine 可达。截图中停止的旧容器不是本任务依赖，不得启动。AUTH-35 的一次运行在 daemon 预检失败前停止，没有创建容器或执行认证；AUTH-36 的一次启动/复核预算也已耗尽。本任务**新授权一次**执行 AUTH-35 已审查的冻结脚本，观察新的单个本机隔离虚构容器中约 20/40/60 秒认证 `SELECT 1` 的安全结果。不修改旧脚本或重置旧预算，不接触真实数据库。
+AUTH-37 的冻结脚本在同一个虚构容器约 20/40/60 秒用 `MYSQL_PWD` 传递虚构密码执行 `SELECT 1`，三次都返回安全码 `1045`；原因仍未知，旧预算耗尽。本任务**新授权一个**隔离虚构容器，使用相同的固定虚构密码与只读 `SELECT 1`，按序比较环境变量、显式客户端密码参数和无密码本机 socket 连接。它只定位本机镜像/客户端的认证方式现象，不推断真实服务端认证配置，不创建业务 schema/行、不运行 dump/restore。
 
-## Frozen source and exact execution
+## Exact execution boundary
 
-- 唯一可执行脚本为 `EVIDENCE/AUTH-35-LOCAL-SYNTHETIC-AUTH-READINESS-PROBE/run.ps1`，运行前只读核对 SHA-256 必须为 `30F45B511F9E81A3665BD15A4A9C732597C4EEF839227DD78EC9E900A59B623D`，且 PowerShell 静态解析无错误；不符即停，不修订或复制脚本。该冻结脚本已在 AUTH-35 Work 审查中核对固定本机 context/daemon/镜像/容器名预检、AUTH-32 解析器哈希、无网络/端口/宿主挂载的三个 tmpfs 隔离门、最多三次同形式认证只读 SQL、安全码白名单和按自身 ID 清理。其固定唯一容器名 `elitesync-auth35-auth-probe` 仅用于本次新预算；名称预检非空即停。
-- 先核对当前 `main`、HEAD、工作区、任务单及固定脚本哈希；然后脚本最多执行 **1 次**。脚本内部每个预检、启动、隔离检查、探针、清理预算保持原样。执行失败、超时或未达到目标均不得修改脚本后重跑、换容器名/密码/客户端选项、手动执行其中命令或启动截图中其他旧容器。总运行含精确清理上限 120 秒；若清理 `FAILED/UNRESOLVED`，记录并停在 Work 门，不清理其他对象。
-- 只允许新增 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。回执只列固定阶段、三个时间点的 PASS/FAIL/NOT_CHECKED 与白名单数字码、调用次数、耗时和清理状态；不保存原始 stdout/stderr、Docker inspect/log、SQL 内容、密码、容器 ID、真实数据或 UI 截图。若无安全码或观察不足，保持 `UNKNOWN`。成功仅证明本次虚构认证在该时间点可用；不能推断 AUTH-33 原始 setup 原因、dump/restore 或真实数据库可恢复。
+- 预检 Docker context 为本机、daemon 可达、固定本地 `mariadb:10.11` 镜像存在且唯一容器名 `elitesync-auth38-auth-modes` 空闲；任一不符即停。不启动 Docker Desktop、不拉取镜像或换 context。只读核对 AUTH-32 `parse_mounts.ps1` SHA-256 `AA11EA742604C2EA9B76EF81EA8C4CD19E678D1C4E368AD421EB38D66F20D974` 后加载。
+- 最多一次启动固定容器，`--pull never`、`--network none`、无端口/宿主 bind/命名卷，数据/运行/临时目录只用 `/var/lib/mysql`、`/run/mysqld`、`/tmp` 三个 tmpfs；使用只属于本任务的固定虚构 root 密码。先核对本次 ID/名称、NetworkMode、PortBindings、Binds、HostConfig.Tmpfs 与解析后的 Mounts，要求与 AUTH-34/35 同等级 fail-closed；不通过即停。不要启动截图中的旧容器或任何项目服务。
+- 隔离通过后等待到本次容器启动后至少 45 秒，再按顺序各最多一次运行以下**仅读** SQL：① `docker exec -e MYSQL_PWD=<虚构密码> <本次容器> mariadb -uroot --batch --skip-column-names -e 'SELECT 1;'`；若 ① 成功即停止认证步骤；若安全码唯一为 `1045`，② 使用同一密码的 `mariadb -uroot --password=<虚构密码> --batch --skip-column-names -e 'SELECT 1;'`，且不传 `MYSQL_PWD`；若 ② 也唯一为 `1045`，③ 不传密码环境变量或参数，使用 `mariadb -uroot --batch --skip-column-names -e 'SELECT 1;'`。任一步未知错误、连接错误、超时或非 `1045` 均停止后续认证步骤。只将退出 0 且 stdout 严格为 `1` 判为 PASS。
+- 失败仅在内存解析单个 MariaDB `ERROR <数字>`；回执只允许白名单码 `1045`、`2002`、`2003`、`2013`、`UNRECOGNIZED/UNKNOWN`，不得保存或显示原始 stdout/stderr、密码、环境变量、进程参数、容器 inspect/log、SQL 内容或容器 ID。无论结果，仅对本任务确实创建且归属可验证的容器按 ID 精确清理最多一次，再按固定名称只读核对不存在；归属不明不删除并报 `CLEANUP_UNRESOLVED`。总执行含清理不超过 120 秒，不操作其他容器/卷/镜像或 broad prune。
 
-## Preconditions and stop
+## Candidate, verification and stop
 
-启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-32～36 回执；核对 `D:\EliteSync-v10`、`main`、HEAD、工作区。派发前接受检查点 `ef0cdcb736ddd1deb4ef5441704ff3d1ad5397f4`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。前置不符即停。
+只允许新增 `EVIDENCE/AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS/run.ps1` 与同目录 `summary.md`；不得修改 AUTH-32～37 或控制文件。先做 PowerShell 静态解析与安全边界检查，满足后脚本最多执行 1 次；任何失败不修改后重跑，不手动补探针。摘要列每步 PASS/FAIL/NOT_CHECKED、安全码、调用次数、耗时、隔离声明和清理结果。若任一方式成功，只说明该虚构镜像这次只读认证可用；不证明 AUTH-33 合并 setup 原因、dump/restore、真实 DB 身份或真实备份可恢复。Work 独立审查，作者结果不自接受。
 
-`git diff --check` 最多 1 次，新文档另作只读尾随空白检查。不得访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实 DB、备份目录、真实凭据/密钥、账号/Token/消息/媒体或业务数据；不下载软件、不启动 Docker Desktop、不运行写 SQL、dump/restore、真实备份/传输/改库。Codex 不提交、不制作 bundle、不推送、不自接受或派发后继。
+启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-32～37 回执；核对 `D:\EliteSync-v10`、`main`、HEAD、工作区。派发前接受检查点 `c20d430a2184eed10a39e7cdc5eac34a6fe46701`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。前置不符即停。
+
+`git diff --check` 最多 1 次，新文件另作只读尾随空白检查。不得访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实 DB、备份目录、真实凭据/密钥、账号/Token/消息/媒体或业务数据；不下载软件、不写 SQL、不 dump/restore、不真实备份/传输/改库。Codex 不提交、不制作 bundle、不推送、不自接受或派发后继。
