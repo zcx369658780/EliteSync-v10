@@ -4,7 +4,7 @@ Task ID: `AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（未来备份目标与规模元数据探针的本地预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付本地候选，停在 Work LEVEL 2 独立验收门。
 
