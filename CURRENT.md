@@ -59,6 +59,8 @@ AUTH-42 扩大 tmpfs 后的虚构恢复目标获 Work LEVEL 2 **REJECT**，仅�
 
 AUTH-43 扩大 tmpfs 的虚构密码认证探针获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/summary.md`。作者报告本次容器虚构初始化密码与环境变量匹配、数据 tmpfs 可用 372552 KiB，`MYSQL_PWD` 方式的首次 `SELECT 1` 成功，按本次 ID 清理 PASS；显式密码对照未运行。Work 静态审查并核对回执，未复跑；它不证明 AUTH-42 失败原因、建表或恢复能力。旧预算耗尽，后继需新任务验证同容器小样本恢复。
 
+AUTH-44 已下达：在 Docker daemon 可达后，用新建的无网络、无宿主挂载虚构容器尝试三行样本的同容器导出和恢复；只允许一次运行，交付后由 Work LEVEL 2 独立验收。旧容器和项目服务不需启动；尚无 AUTH-44 执行结果。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
@@ -75,7 +77,7 @@ Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | 
 
 Contract/mapping：Product Connection 开发态映射有既有接受链。Local/test：存在 Laravel migrations 与 synthetic/dev-test persistence 证据。Target environment：AUTH-14 仅确认部署目录本次 Laravel CLI 视图的四条目标 migration 均 Ran（57/57）；实例身份、实际表结构及 Web worker 配置未核验。Production DB：**NOT ESTABLISHED**；AUTH-14/16 仅为部署目录 CLI 迁移账本与固定结构投影，无目标实例身份、Web worker 同库、整库 schema、备份/恢复或真实数据持久化证明。
 
-Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 后续决定完整数据库备份仅在阿里云内加密保留 **30 天**，优先按私有 OSS 与受管密钥方向核验可用性；恢复演练按阿里云内独立隔离目标设计，演练副本恢复后清理，完整备份自完成日起 30 天到期并核对清理回执。此方向仍须核验资源、权限、精确目标、加密密钥与清理机制，也不代表已核验账号数据、已完成备份或恢复。敏感导出不得纳入 Git、Git bundle 或普通证据。
+Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 最新决定是完整数据库备份加密保存到自己的电脑或本地磁盘，自完成日起保留 **30 天**；恢复演练优先在电脑上的独立环境，先核验隔离与恢复能力。精确目标、加密密钥、传输、真实数据范围与恢复路径尚待确定；不代表已完成真实备份或恢复。敏感导出不得纳入 Git、Git bundle、普通证据或第三方云服务。
 
 ## Environments / Release
 

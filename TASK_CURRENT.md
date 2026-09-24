@@ -1,30 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE`
+Task ID: `AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE`
 
-Risk Level: `LEVEL 2`（扩大 tmpfs 的本机虚构容器密码认证与空间只读探针；Work 独立审查）
+Risk Level: `LEVEL 2`（本机隔离虚构数据库写入与同容器恢复；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC PASSWORD AUTH FACT ONLY`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付一次虚构容器只读认证候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：512 MiB 数据 tmpfs 的本机虚构容器报告可用 `372552 KiB`，虚构密码环境变量与初始化值匹配，首次 `SELECT 1` PASS，容器按 ID 清理 PASS；作为受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/summary.md`。未写 SQL 或运行 dump/restore，旧预算耗尽，后继须新任务。
+Assignee: `Codex`。只交付候选与一次运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-41 的 128 MiB 数据 tmpfs 在建表前报告剩余 0 KiB。AUTH-42 改用 512 MiB 后，无密码 socket `SELECT 1` 返回 `1045`，空间门和写入均未运行；这不能说明扩大空间后的密码方式是否可用。两项旧预算已耗尽。本任务**新授权一个**隔离虚构容器，在同样 512 MiB 数据 tmpfs 下只读核对固定虚构初始化密码是否传入，并比较该密码通过 `MYSQL_PWD` 环境变量与显式客户端参数的 `SELECT 1` 结果，同时读取 `/var/lib/mysql` 的固定剩余空间投影。不得写 SQL 或运行 dump/restore。
+AUTH-43 已接受的受限观察是：512 MiB 数据 tmpfs 可用 372552 KiB，固定虚构密码经 `MYSQL_PWD` 首次 `SELECT 1` 成功；未建表或恢复。旧预算已耗尽。本任务新授权**一个新的**本机隔离虚构容器，以相同 tmpfs 和密码方式，验证三行虚构样本在**同一个容器内**导出、导入到独立目标 schema 后是否一致。它不是独立环境恢复或真实备份证明。不启动任何旧容器或项目服务。
 
 ## Exact execution boundary
 
-- 预检 Docker context 本机、daemon 可达、固定本地 `mariadb:10.11` 镜像存在且唯一容器名 `elitesync-auth43-expanded-auth` 空闲；任一不符即停。不启动 Docker Desktop、不拉取镜像或换 context。只读核对 AUTH-32 `parse_mounts.ps1` SHA-256 `AA11EA742604C2EA9B76EF81EA8C4CD19E678D1C4E368AD421EB38D66F20D974` 后加载。
-- 最多一次启动固定容器，`--pull never`、`--network none`、无端口/宿主 bind/命名卷，三处 tmpfs 精确为 `/var/lib/mysql:rw,nosuid,noexec,size=512m`、`/run/mysqld:rw,nosuid,size=16m`、`/tmp:rw,nosuid,size=64m`；初始化密码只用本任务固定虚构值。先核对本次 ID/名称、NetworkMode、PortBindings、Binds、HostConfig.Tmpfs 的目标和大小、经 AUTH-32 解析的 Mounts，并在内存中比较本次容器 `Config.Env` 的 `MARIADB_ROOT_PASSWORD` 是否与该虚构值精确一致，仅记录布尔，不显示/保存环境变量原文；任一安全字段未知或不符即停。不启动截图中的旧容器或项目服务。
-- 隔离全部 PASS 后等待到容器启动至少 45 秒，只读运行固定 `df -Pk /var/lib/mysql` 一次，严格解析本目标 `size_kib/used_kib/available_kib`；解析异常保持 UNKNOWN 并停止认证。接着用同一虚构密码以 `docker exec -e MYSQL_PWD=... mariadb -uroot --batch --skip-column-names -e 'SELECT 1;'` 最多一次；若退出 0 且 stdout 严格为 `1`，记 PASS 并停止。只有失败且安全数字码唯一为 `1045` 时，才以 `mariadb -uroot --password=<同一虚构密码> --batch --skip-column-names -e 'SELECT 1;'` 最多一次，不传 `MYSQL_PWD`；其他错误或 UNKNOWN 均不再试。第二次结果无论如何立即结束认证。不得用无密码连接、改协议/凭据/选项或执行写 SQL。
-- 错误只在内存提取唯一 MariaDB `ERROR <数字>`，记录 1～65535 的数字或 UNKNOWN，以及 0～255 的退出码或 UNKNOWN；不得保存/显示原始 stdout/stderr、密码、环境变量/进程参数、Docker inspect/log、SQL 输出或容器 ID。无论结果，只对本次确实创建且归属可验证的容器按 ID 精确清理最多一次，再按固定名称只读核对不存在；归属不明不删除，报 `CLEANUP_UNRESOLVED`。不操作其他容器/卷/镜像或 broad prune。总运行含清理不超过 150 秒。
+- 启动前核对 `D:\EliteSync-v10`、本地 `main`、HEAD 与工作区；当前 HEAD 应为仅下达本任务的检查点，父提交精确为 `7e1e511c2606d89fb68f88fbd5935c6c83ed8f94`。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。阅读项目入口、产品决定、风险门、本地工作流技能及 AUTH-32、AUTH-39～43 回执；不得重用旧预算。
+- 预检 Docker context 为本机、daemon 可达、固定本地 `mariadb:10.11` 标签存在、唯一容器名 `elitesync-auth44-synthetic-restore` 空闲。只读核对 AUTH-32 `parse_mounts.ps1` SHA-256 `AA11EA742604C2EA9B76EF81EA8C4CD19E678D1C4E368AD421EB38D66F20D974` 后加载。任一不符即停；不启动 Docker Desktop、不拉取镜像、不换 context。
+- 最多一次启动固定容器：`--pull never --network none`，无端口、宿主 bind 或命名卷，tmpfs 精确为 `/var/lib/mysql:rw,nosuid,noexec,size=512m`、`/run/mysqld:rw,nosuid,size=16m`、`/tmp:rw,nosuid,size=64m`。初始化密码为本任务固定虚构值 `Auth44_Synthetic_Only_2026`，只在内存中比较 `Config.Env` 是否匹配并记录布尔；不显示/保存环境变量原文。核对本次 ID/名称、网络、端口、Binds、三个 tmpfs 目标和大小及经 AUTH-32 解析的 Mounts；任一安全字段 UNKNOWN 或不符即停。
+- 隔离 PASS 后等待容器启动至少 45 秒。固定 `df -Pk /var/lib/mysql` 一次，严格解析目标整数；可用低于 131072 KiB 或无法解析即停。以同一虚构密码通过 `docker exec -e MYSQL_PWD=...` 做一次 `SELECT 1`；只有退出 0 且 stdout 严格为 `1` 才继续。不得换认证方式、密码或连接协议。
+- 后续按固定顺序，每步最多一次且失败即停：创建虚构源 schema `auth44_source`；创建唯一表 `sample_rows (id INT PRIMARY KEY, label VARCHAR(16) NOT NULL)`；插入固定三行 `(1,'alpha'),(2,'beta'),(3,'gamma')`；源端只读核对精确计数 3 和按 id 排序的固定行内容；在容器**内存中**使用 `mariadb-dump` 仅导出源 schema 的表结构与三行数据；创建虚构目标 schema `auth44_target`；把 dump 仅在本次容器内部导入目标 schema；目标端核对计数 3 与固定三行内容，并比较源/目标一致。不得将 dump、SQL 行内容或原始命令输出写入宿主文件、Git 或回执；可记录阶段布尔、固定整数和安全错误码。若容器内导入需流式传递，只允许本次容器的 stdin/内存，不经宿主持久文件。不得使用或显示 `--password=...` 参数。
+- 输出中只记录每阶段 `PASS/FAIL/NOT_CHECKED`、调用次数、`df` 三个整数、行数和相等布尔、首个失败类别、0～255 退出码或 `UNKNOWN`、唯一 MariaDB `ERROR` 数字码或 `UNKNOWN`、耗时及清理结果。不得保存原始 stdout/stderr、Docker inspect/log、密码、完整环境变量/进程参数、容器 ID 或 dump 内容。
+- 无论成功失败，只对本次确实创建且归属可验证的容器按 ID 精确清理最多一次，再按固定名称只读核对不存在。归属不明不删除，报告 `CLEANUP_UNRESOLVED`；不碰其他容器、卷或镜像，不 broad prune。总运行含清理不超过 210 秒。
 
 ## Candidate, verification and stop
 
-只允许新增 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/run.ps1` 与同目录 `summary.md`；不得修改 AUTH-32～42 或控制文件。先 PowerShell 静态解析和安全边界检查，满足后脚本最多执行 1 次；任何失败不修改后重跑、不手动补命令。摘要列隔离布尔、tmpfs 整数、两种认证 PASS/FAIL/NOT_CHECKED 与安全码、调用次数、耗时、清理结果。即使 PASS，也只说明此虚构容器在该时点的密码认证，不证明真实 DB、写 SQL、dump/restore 或本地备份可恢复。Work 独立审查，作者不自接受；后继须新任务。
+只允许新增 `EVIDENCE/AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/run.ps1` 和同目录 `summary.md`；不得修改旧任务、源码或控制文件。先做 PowerShell 静态解析及安全边界检查，满足后脚本最多运行 **1 次**；任何失败不得修改后重跑、手动补步骤或重启旧容器。`git diff --check` 最多 1 次；新文件另做只读尾随空白检查。摘要记录精确实际阶段、未运行步骤、预算、结果和限制。Codex 不提交、制作 bundle、推送、自接受或派发后继。
 
-启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-32～42 回执；核对 `D:\EliteSync-v10`、`main`、HEAD、工作区。派发前接受检查点 `f2ae6f108d3a0e166341f28885b0f4c012e94586`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。前置不符即停。
-
-`git diff --check` 最多 1 次，新文件另作只读尾随空白检查。不得访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实 DB、备份目录、真实凭据/密钥、账号/Token/消息/媒体或业务数据；不下载软件、不真实备份/传输/改库。Codex 不提交、不制作 bundle、不推送、不自接受或派发后继。
+不得访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实 DB、备份目录、真实凭据/密钥、账号/Token/消息/媒体或业务数据；不下载软件、不做真实备份、传输、恢复或改库。即使同容器虚构 PASS，真实数据库身份、完整加密备份和本地独立环境恢复仍待单独授权与验证。
