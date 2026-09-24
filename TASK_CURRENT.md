@@ -4,9 +4,9 @@ Task ID: `AUTH-06-DEPLOYED-V2-ROUTE-LIST-READONLY`
 
 Risk Level: `LEVEL 2`（真实服务器 Laravel 路由列表只读核对；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — DEPLOYED CLI ROUTE VIEW ONLY; OWNER ENVIRONMENT/RELEASE GATE`
 
-Assignee: `Codex`。仅交付一次受限命令的事实候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。单次受限命令事实候选已获 Work 独立接受；见 `EVIDENCE/AUTH-06-DEPLOYED-V2-ROUTE-LIST-READONLY/summary.md`。本任务 SSH 1/1 预算已耗尽，当前无活动 Codex 执行单。下一步是否让四条 synthetic/dev-test v2 路由进入该服务器属于 Owner 环境/发布决策，不由本任务授权。
 
 ## Authority and objective
 
