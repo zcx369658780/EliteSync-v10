@@ -29,6 +29,8 @@ AUTH-27 本机 Docker 只读预检获 Work LEVEL 2 ACCEPT：当前上下文归�
 
 AUTH-28 一次本机已安装 Docker Desktop 启动与 daemon 复核获 Work LEVEL 2 ACCEPT：作者报告固定程序存在、启动前无进程、一次隐藏启动后等待 20 秒，本机 daemon 当次可达。见 `EVIDENCE/AUTH-28-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。未检查镜像或运行容器；隔离和恢复能力仍未证明。
 
+AUTH-29 本机固定 `mariadb:10.11` 镜像标签只读核验获 Work LEVEL 2 ACCEPT：当次本机 context 与 daemon 可用，固定标签存在。见 `EVIDENCE/AUTH-29-LOCAL-MARIADB-IMAGE-READ/summary.md`。未运行容器；镜像实际内容、网络隔离、合成恢复和真实数据兼容仍未证明。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

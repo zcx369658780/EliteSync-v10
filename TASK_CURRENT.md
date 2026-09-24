@@ -4,7 +4,7 @@ Task ID: `AUTH-29-LOCAL-MARIADB-IMAGE-READ`
 
 Risk Level: `LEVEL 2`（本地合成恢复演练依赖的精确镜像只读核验；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付受限事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
