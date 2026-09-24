@@ -4,7 +4,7 @@ Task ID: `AUTH-16-DEPLOYED-FIXED-SCHEMA-METADATA-READ`
 
 Risk Level: `LEVEL 2`（目标服务器数据库固定结构元数据一次只读观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付受限事实回执，停在 Work LEVEL 2 独立验收门。
 
