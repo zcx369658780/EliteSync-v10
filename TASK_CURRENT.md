@@ -1,27 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-21-LOGIN-EVENT-LOCAL-PERSISTENCE-PREFLIGHT`
+Task ID: `AUTH-22-ALIYUN-BACKUP-READINESS-DECISION-PACKET`
 
-Risk Level: `LEVEL 2`（auth 与未来数据模型；Work 独立审查）
+Risk Level: `LEVEL 2`（真实 DB 备份前置边界与敏感数据；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付本地候选和证据，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+Assignee: `Codex`。只交付 docs-only 候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-Owner 已决定：可信 `T0` 仅来自服务端确认的成功交互登录；自动 Token 续期不重置；在线登录 15 天，离线只读最多至最后一次成功在线登录满 30 天，随后清理已保存加密私密内容。AUTH-08/09/10 分别是合同、纯 synthetic 判定和持久化设计，均未形成真实事件存储。AUTH-20 仅报告部署目录当前 CLI 连接的聚合元数据。本任务只在本地用**虚构账户和设备**预检登录事件持久化所需的不变量与 schema 可行性，不接入真实登录或部署数据库。
+AUTH-18 已接受的是备份/隔离恢复的后继任务链；AUTH-17/20 分别仅证明当次主机工具空间和部署目录 CLI 聚合元数据，不能证明实际备份或恢复可行。Owner 新决定：未来完整数据库备份仅在阿里云内加密保留 **30 天**；未来若修改后端数据库结构，须先有完整备份与可恢复性校验。AUTH-21 本地虚构登录事件预检已接受，不是部署 migration。本任务根据已接受本地证据给出**下一次真实备份动作之前的最小决策与核验清单**，供 Work/Owner 选择，不执行任何远端或 DB 操作。
 
-Owner 另决定未来完整 DB 备份仅在阿里云内加密保留 30 天；精确位置、密钥、隔离恢复目标及清理责任仍未定。本任务不得备份、恢复或修改阿里云。
+## Allowed candidate and content
 
-## Allowed candidate
+唯一允许新增 `EVIDENCE/AUTH-22-ALIYUN-BACKUP-READINESS-DECISION-PACKET/packet.md`。先核对 `D:\EliteSync-v10` 的 `main`、HEAD、工作区及本任务 `ISSUED`，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、本地工作流技能和 AUTH-10/14/16/17/18/19/20/21 接受回执。不要读取 `.env`、实际配置、私钥或数据库内容。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
 
-仅允许新增 `EVIDENCE/AUTH-21-LOGIN-EVENT-LOCAL-PERSISTENCE-PREFLIGHT/` 下的 `schema_candidate.php`、`test_schema_candidate.php`、`summary.md`。不得修改既有源码、migration、测试、配置或控制文件。先核对 `main`、HEAD、工作区和本任务 `ISSUED` 状态，读取根 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、本地工作流技能、AUTH-08/09/10/20 接受结论及必要的本地 Laravel migrations、`AuthController.php` 和 `User.php`。保留无关未跟踪目录 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+文档应区分已决定的“阿里云内加密、30 天保留”与仍待 Owner 明确的精确存放位置及访问边界、加密与密钥托管/轮换、备份一致性、隔离恢复目标与网络边界、到期清理执行者和失败处置。给出简短推荐选项和理由，但不得把建议写成 Owner 决定。列出在制定真实备份命令前仍需受限只读核验的目标身份、CLI/Web worker 同库、数据库与工具兼容、数据分类、估算空间余量；AUTH-20 指纹只能作为同法比较线索，不能替代实例证明。说明完整备份与可选管理员创建测试账号本地导出是不同授权；无创建来源证明不能导出。明确各个后续任务的独立停点：只读核验、备份写文件、文件完整性/可解密校验、隔离恢复验证、migration 审批及 30 天清理。不要列可直接运行的远端命令、真实路径、凭据或敏感值。
 
-`schema_candidate.php` 应是仅供本地虚构数据预检的、可重复执行的 SQLite 内存 schema/操作样例，不作为 Laravel migration 或产品代码。使用抽象、不含真实标识的账户/设备引用与事件幂等键。由测试展示：同一事件重复提交不新增锚，账户/设备不串用，顺序冲突或较旧事件不覆盖较新锚，失败登录/注册/refresh 不新增成功交互登录事件，已有用户无可信事件时保持 `UNKNOWN`。若本地 SQLite 扩展不可用，停止运行预检并在 `summary.md` 标记 `NOT RUN`，不得装依赖或换远端数据库。不能用本样例模拟出真实服务端身份、设备证明、受信时间、撤权传播或合法保留/删除政策。
+## Verification and stop
 
-`summary.md` 记录精确候选路径、所核对的来源、测试结果和尚未决定的生产 schema 项（至少含设备绑定证明、可信时间与顺序、账号删除与事件保留、撤权、索引/并发和旧数据处理）。明确该预检不签发离线凭据，不提供在线读发权限，也不授权部署 migration。
-
-## Verification budget and stop
-
-仅运行 `test_schema_candidate.php` **最多 1 次**，只用虚构输入及本地内存 SQLite；`php -l` 对两个新 PHP 文件各 **最多 1 次**；`git diff --check` **最多 1 次**，并对三个新增文件另作只读尾随空白检查。若测试或语法失败，保留失败回执，不通过反复运行或扩大范围掩盖。不得读取 `.env`、真实配置值、私钥、账号/Token/日志/媒体或业务数据行；不得 SSH、HTTP/API、设备、远端 DB、备份、导出、恢复、migration、部署或 GitHub pull/push。Codex 不提交、自接受、备份或派发后继；Work 独立审查差异、负向用例和证据后决定 ACCEPT/REJECT。
+只需对新文档作只读尾随空白检查；`git diff --check` 最多 **1 次**，其结果不覆盖未跟踪新文件。不运行代码测试或构建。不得 SSH、HTTP/API、设备、远端 DB、备份、导出、恢复、migration、部署或 GitHub pull/push；不得改既有源码、证据或控制文件。作者不提交、自接受、备份或派发后继。Work 独立核对候选与来源后作 LEVEL 2 ACCEPT/REJECT；即使接受也不授权真实备份。
