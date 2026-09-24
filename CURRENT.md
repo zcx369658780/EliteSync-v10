@@ -39,7 +39,7 @@ AUTH-32 `Mounts` 纯解析器与 14 项虚构负向/正向测试获 Work LEVEL 2
 
 AUTH-33 使用已接受解析器的一次本机虚构恢复回放被 Work LEVEL 2 **REJECT** 完整证明目标，仅接受部分事实，见 `EVIDENCE/AUTH-33-LOCAL-SYNTHETIC-RESTORE-REPLAY/summary.md`。当次容器固定隔离声明通过：本机、无网络/端口/宿主 Binds，三个 tmpfs 目标匹配，`Mounts=0`；readiness 后虚构 setup 返回 `SYNTHETIC_SETUP_FAILED`，dump/restore 未执行。作者报告按 ID 精确清理 PASS。setup 具体原因 `UNKNOWN`，真实备份/恢复仍未证明；旧一次预算耗尽，需另立分步诊断。
 
-AUTH-34 本机虚构 setup 分步诊断获 Work LEVEL 2 **ACCEPT（仅定位事实）**，见 `EVIDENCE/AUTH-34-LOCAL-SYNTHETIC-SETUP-DIAGNOSIS/summary.md`。作者一次运行报告预检和固定隔离声明通过，首次真正认证连接的 `SELECT 1` 失败，安全分类 `AUTH_OR_CONNECTION`；创建 schema、表、三行及 dump/restore 均未运行。作者报告按本次容器 ID 精确清理并核对不存在。Work 静态核对脚本、回执和允许路径，未重跑一次性容器预算。具体认证或连接失败原因、AUTH-33 原始 setup 错误和任何真实备份恢复能力仍未知。Owner 要求本次任务后暂停；当前没有后继任务单。
+AUTH-34 本机虚构 setup 分步诊断获 Work LEVEL 2 **ACCEPT（仅定位事实）**，见 `EVIDENCE/AUTH-34-LOCAL-SYNTHETIC-SETUP-DIAGNOSIS/summary.md`。作者一次运行报告预检和固定隔离声明通过，首次真正认证连接的 `SELECT 1` 失败，安全分类 `AUTH_OR_CONNECTION`；创建 schema、表、三行及 dump/restore 均未运行。作者报告按本次容器 ID 精确清理并核对不存在。Work 静态核对脚本、回执和允许路径，未重跑一次性容器预算。具体认证或连接失败原因、AUTH-33 原始 setup 错误和任何真实备份恢复能力仍未知。Owner 重启应用后明确要求继续；AUTH-35 已下达，执行与验收另见 `TASK_CURRENT.md`。
 
 ## Product scope
 
