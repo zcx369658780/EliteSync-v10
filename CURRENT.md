@@ -63,7 +63,7 @@ AUTH-44 本机三行虚构样本的同容器导出、导入与固定内容一致
 
 AUTH-45 分离容器的三行虚构恢复回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-45-LOCAL-SYNTHETIC-SEPARATE-CONTAINER-RESTORE/summary.md`。作者报告源容器清理后将 2039 字节内存 dump 输入新目标容器、固定内容一致、两容器按 ID 清理 PASS；Work 静态审查并只读核对两个固定容器名均不存在，未复跑一次性脚本。它不证明真实完整加密持久备份可恢复。下一步真实数据库范围、精确本地存放位置和密钥保管等仍需 Owner 定界，不自动执行真实备份或改库。
 
-**Owner 新授权（2026-09-24）**：允许在 C 盘建立完整数据库加密备份专用目录，实际需要密码时由 Owner 本人输入。Work 已建立空目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，只为该目录设置显式 ACL：当前 Windows 用户、SYSTEM、Administrators FullControl，禁用继承；当次可用空间 649737064448 bytes。该目录不是备份，未存放数据库、密钥或密文；磁盘加密状态、自动同步软件边界及加密/传输方案仍待核验。AUTH-46 已下达只读本机目标预检，执行与验收见 `TASK_CURRENT.md`。
+**Owner 新授权（2026-09-24）**：允许在 C 盘建立完整数据库加密备份专用目录，实际需要密码时由 Owner 本人输入。Work 已建立空目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，只为该目录设置显式 ACL：当前 Windows 用户、SYSTEM、Administrators FullControl，禁用继承。AUTH-46 本地只读预检获 Work LEVEL 2 **ACCEPT（仅受限事实）**，见 `EVIDENCE/AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS/summary.md`：目录仍为空，当次 C 盘可用 649684254720 bytes，OpenSSL 3.5.6 与 SSH 9.5p2 可用；GPG 版本、BitLocker 状态、OneDrive 前缀及其他自动同步仍 UNKNOWN。该目录不是备份，未存放数据库、密钥或密文；加密/传输方案仍待核验。
 
 ## Product scope
 

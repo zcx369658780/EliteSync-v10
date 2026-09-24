@@ -4,9 +4,11 @@ Task ID: `AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS`
 
 Risk Level: `LEVEL 2`（本机真实备份目标目录的只读安全与工具预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — LOCAL DESTINATION FACTS ONLY`
 
 Assignee: `Codex`。只交付一份脱敏本机事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：精确目录存在、为空、ACL 继承关闭且只有当前用户/SYSTEM/Administrators 显式 FullControl、C 盘可用空间及 OpenSSL/SSH 工具事实获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS/summary.md`。GPG 版本、BitLocker、OneDrive 前缀及其他自动同步仍 UNKNOWN；未完成加密/传输或真实备份安全门。
 
 ## Authority and objective
 
