@@ -23,6 +23,8 @@ AUTH-25 本地加密备份实施前方案已获 Work LEVEL 2 ACCEPT，见 `EVIDE
 
 **Owner 再次改定（2026-09-24）**：恢复演练优先在 Owner 电脑上的独立环境进行，先核验本机能否安全隔离并恢复；此前“阿里云内独立隔离目标”不再是当前首选。AUTH-25 是作出该决定前的已接受实施前方案，其云内恢复假设只作历史设计输入，不作为当前执行授权。目标环境、磁盘余量、权限、密文解密与恢复路径均待核验；无真实数据恢复。
 
+AUTH-26 本机恢复环境五项固定只读查询获 Work LEVEL 2 ACCEPT：PowerShell 能解析 Docker、WSL，未解析 Podman；当次 `C_free_bytes=653779619840`、`D_free_bytes=1267261124608`。见 `EVIDENCE/AUTH-26-LOCAL-RESTORE-HOST-READINESS/summary.md`。这是作者受限事实回执，Work 未重查原始对象；命令存在与空间数字不证明容器可用、隔离成立、已选备份目录或可以恢复。真实数据仍未触碰。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

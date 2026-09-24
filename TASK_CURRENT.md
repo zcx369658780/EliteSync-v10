@@ -4,7 +4,7 @@ Task ID: `AUTH-26-LOCAL-RESTORE-HOST-READINESS`
 
 Risk Level: `LEVEL 2`（本机隔离恢复环境准备的受限只读事实；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付固定事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
