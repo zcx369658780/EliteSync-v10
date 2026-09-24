@@ -1,29 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-27-LOCAL-DOCKER-ISOLATION-PREFLIGHT`
+Task ID: `AUTH-28-LOCAL-DOCKER-STARTUP-RECHECK`
 
-Risk Level: `LEVEL 2`（本地隔离恢复运行端点的受限只读事实；Work 独立审查）
+Risk Level: `LEVEL 2`（本机现有 Docker Desktop 一次启动与只读复核；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付受限只读事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+Assignee: `Codex`。仅交付受限事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-Owner 已选择完整数据库备份加密保存在自己的电脑或本地磁盘，恢复演练优先用电脑上的独立环境，先核验安全隔离与恢复能力。AUTH-26 仅确认本机 PowerShell 能解析 Docker/WSL 命令，不证明 Docker 守护进程、镜像或隔离可用。本任务只核对当前 Docker 上下文是否指向**本机**、本机 daemon 是否可读和固定 MariaDB 10.11 镜像是否已有本地副本；不运行容器或下载镜像。
+Owner 已选加密备份到自己的电脑或本地磁盘，并优先在本机独立环境验证恢复。AUTH-27 当次确认 Docker 上下文为本机命名管道但 daemon 不可达，未查镜像。本任务只尝试启动**已安装的** Docker Desktop 一次，并在短暂等待后只读复核 daemon 是否可达，为后续虚构数据隔离演练确定可行性。不安装、不更新、不登录、不接受新协议、不创建容器或下载镜像。
 
-## Exact read-only budget and parsing
+## Exact local budget and stop
 
-1. `docker context inspect` 最多 **1 次**，只在进程内读取当前端点并将其归类为 `local_named_pipe`、`local_unix_socket`、`remote_or_other` 或 `UNKNOWN`；不记录原始端点、用户名、主机名、路径或证书内容。若非可确认的本机端点，后两项均为 `NOT_CHECKED` 并立即停止 Docker 查询。
-2. 仅当第 1 项为确认的本机端点，`docker info` 最多 **1 次**，只记录 daemon 是否可达 `yes`/`no`/`UNKNOWN`；不输出/保存服务器详情。失败不启动 Docker Desktop、不重试、不换 context，镜像项为 `NOT_CHECKED`。
-3. 仅当本机 daemon 可达，`docker image inspect mariadb:10.11` 最多 **1 次**，只记录该精确标签的本地镜像 `present`/`absent`/`UNKNOWN`。不列出其他镜像、容器、卷、网络或用户文件，不使用 registry 网络，也不拉取/构建/运行镜像。
+1. 只检查固定路径 `C:\Program Files\Docker\Docker\Docker Desktop.exe` 是否为普通文件；不枚举其他路径。若不存在，记录 `desktop_binary=absent`，后续为 `NOT_CHECKED`，停止。不读取文件内容。
+2. 若文件存在，先用 `Get-Process -Name 'Docker Desktop'` 最多一次只判断是否已有进程，不输出进程明细。已有进程则不启动；否则以固定当前 Docker 本机 context 为前提（AUTH-27），使用 `Start-Process` 对该固定程序**最多启动一次**，带 `-WindowStyle Hidden`，不传递秘密或用户数据。若需要管理员授权、更新、登录、安装组件、接受协议或安全权限，立即停下并记录待 Owner 手动处理，不自动确认。
+3. 启动后外部等待总计不超过 **60 秒**，只调用 `docker info` 最多 **1 次**，只记录 daemon `reachable`/`unreachable`/`UNKNOWN`，不输出或保存 Docker 详情。若不可达即停，不重启、不换 context、不改设置、不运行 WSL。若可达，仍不查镜像或运行容器；留给后继任务。
 
-任何命令异常或输出无法安全归类即记 `UNKNOWN` 并停止依赖项；只将固定三项归类和调用次数写入证据，不保存原始 stdout/stderr。若需要更广泛工具或不同镜像，另立任务，不能在本任务更换。
+任何异常只记 `UNKNOWN` 和对应停点，不重试、不扩大范围。若 Docker Desktop 已在运行，不重复启动，直接对现有本机端点执行一次复核；记录 `startup=already_running`。当前 daemon 状态可能随时间变化，不能将本任务结果当作永久状态。
 
-## Allowed candidate and stop
+## Allowed candidate and verification
 
-唯一允许新增 `EVIDENCE/AUTH-27-LOCAL-DOCKER-ISOLATION-PREFLIGHT/summary.md`。说明查询时点、固定结果、实际调用次数与未执行项；强调即使 daemon 可达且镜像在本地，也**不证明**网络隔离、数据保护、MariaDB 版本兼容、备份可恢复或 Owner 本地目标安全。仅建议下一个虚构数据隔离演练所需的独立授权与负向用例，不运行演练。
+唯一允许新增 `EVIDENCE/AUTH-28-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`，只记固定程序存在性、是否启动/已运行、等待是否超限、daemon 固定结果、实际调用次数和未执行项。说明即便 daemon 可达，也不证明镜像、网络隔离、恢复能力或真实数据可安全存放。
 
-启动前读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-25/26 接受记录；核对 `main`、HEAD 与工作区。派发前已接受基线为 `94def2ed3d49829d205af039e3d076c4c51311f8`；当前 HEAD 应为仅下达本任务的检查点，其父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。拓扑、任务状态或工作区不符即停，不自行修复。
+启动前读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能与 AUTH-26/27 接受记录，核对本地 `main`、HEAD、工作区。派发前已接受基线为 `4098e8980836969061db07a8f7c4a853d43c677e`；当前 HEAD 应为仅下达本任务的检查点，其父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。前置不符即停。
 
-`git diff --check` 最多 1 次，新文档另作只读尾随空白检查；无产品测试或构建。不访问旧 `D:\EliteSync`、浏览器、SSH、云 API、数据库、备份目录、凭据、密钥、账号/Token/消息/媒体或业务数据行。不创建、启动或删除容器/VM/卷/镜像，不备份、不传输、不恢复、不改库。Codex 不修改控制文件、不提交、不制作 bundle、不推送、不自接受或派发后继。
+`git diff --check` 最多 1 次，新文档另作只读尾随空白检查。不访问旧 `D:\EliteSync`、浏览器、SSH、云 API、数据库、备份目录、凭据、密钥或真实数据。不创建/启动容器或 VM、不拉取镜像、不备份、不传输、不恢复、不删除、不改库。Codex 不修改控制文件、不提交、不制作 bundle、不推送、不自接受或派发后继。
