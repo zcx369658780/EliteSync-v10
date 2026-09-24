@@ -4,9 +4,11 @@ Task ID: `AUTH-35-LOCAL-SYNTHETIC-AUTH-READINESS-PROBE`
 
 Risk Level: `LEVEL 2`（本机虚构 MariaDB 认证与就绪阶段探针；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — PREFLIGHT FACT RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付本任务的一次受限虚构容器探针和回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：本次 daemon 预检为 `DAEMON_UNREACHABLE`，未启动容器或执行认证探针；AUTH-35 目标 LEVEL 2 REJECT，仅接受受限失败回执，见 `EVIDENCE/AUTH-35-LOCAL-SYNTHETIC-AUTH-READINESS-PROBE/summary.md`。一次预算已耗尽，不得据此重试；下一步须另立本机服务启动/复核任务。
 
 ## Authority and objective
 
