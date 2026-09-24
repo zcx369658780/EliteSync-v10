@@ -4,9 +4,11 @@ Task ID: `AUTH-36-LOCAL-DOCKER-STARTUP-RECHECK`
 
 Risk Level: `LEVEL 2`（本机已安装 Docker Desktop 一次启动与服务可达性复核；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — STARTUP FACT RECEIPT ACCEPTED; OWNER RESTART PENDING`
 
 Assignee: `Codex`。只交付固定本机环境回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：固定程序只启动一次，但等待后的 daemon 仍不可达；AUTH-36 的“恢复可达”目标 LEVEL 2 REJECT，仅接受受限回执，见 `EVIDENCE/AUTH-36-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。Owner 正亲自重启 Docker；本任务一次预算已耗尽，依赖 daemon 的后继暂缓，待重启完成后重新核验。
 
 ## Authority and objective
 
