@@ -4,7 +4,7 @@ Task ID: `AUTH-21-LOGIN-EVENT-LOCAL-PERSISTENCE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（auth 与未来数据模型；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付本地候选和证据，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
