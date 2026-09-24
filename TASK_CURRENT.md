@@ -1,23 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL`
+Task ID: `AUTH-08-TRUSTED-LOGIN-ANCHOR-OFFLINE-CREDENTIAL-CONTRACT`
 
-Risk Level: `LEVEL 2`（请求 bearer Token 暴露风险；Work 独立审查）
+Risk Level: `LEVEL 2`（认证、离线凭据与隐私计时设计合同；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPT — SINGLE TOKEN PRINT REMOVED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。有界修复已获 Work 独立接受；见 `EVIDENCE/SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL/summary.md`。当前无活动 Codex 执行单；后继 T0/期限设计与实现另行下达，不从本次输出删除推定完成。
+Assignee: `Codex`。仅交付 docs-only 实现前合同候选，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-AUTH-07 Work LEVEL 2 独立验收在 `apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart:21–26` 确认完整 bearer Token 被调试 `print` 输出。该字符串可能进入设备/开发日志，须停止输出。Owner 此前已授权 SEC-01～04 移除识别出的私密调试输出；本任务依当前已确认的同类风险作单点修复，不扩大为全项目日志审计。
+Owner 已确认：`T0` 必须由服务端确认的成功交互登录事件建立；同账户、同设备获得可验证的离线凭据；自动 Token 续期不重置 `T0`；设备无法可靠判断经过时间时先锁定私密内容，联网核验后才恢复符合当前权限的访问。既有 Owner 决定仍为 15 天在线登录、最后一次成功在线登录后第 16～30 天有条件离线只读、满 30 天清理已保存加密私密内容；离线不得发送、草稿只可查看。权威见 `PRODUCT_DECISIONS.md`，边界合同见 `EVIDENCE/CACHE-05-SESSION-OFFLINE-RETENTION-CONTRACT/contract.md`、`EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`。现有真实机制未建立。
 
-先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`。只有本任务仍为 `ISSUED` 且派发匹配才执行。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能，以及上述两份证据和 APP-INT-07/09 对在线当前权限与来源的边界。只有本任务仍为 `ISSUED` 且派发匹配才执行。
 
-仅移除 `AuthInterceptor.onRequest` 内的 `AUTH_INTERCEPTOR_TOKEN` 打印及专为它存在的注释/忽略指令；保留 token provider、Authorization header、401 retry 和错误传递的现有行为。不增加替代 token 片段、hash、长度或响应日志，不改 auth/T0/15/30 天逻辑。
+目标：为后继实现写一份可验收合同，明确以下彼此独立的事实和门：服务端成功交互登录事件与 `T0` 的账户/设备绑定及事件顺序；登录回执与 Token 轮换的不同语义；15 天在线登录边界；最长至 `T0+30 天` 的离线只读凭据、内容和对象范围；时钟可信度不足时先锁定、联网重验后恢复；已知登出/换账户/撤权、凭据伪造/重放、跨账户/设备/对象、时间回拨/前跳、清理失败的负向结果。在线 live read/send 仍须当前 Connection、独立 Messaging Consent、CV 与数据权利；离线凭据不授权在线发送或历史只读。用表格区分 **OWNER ACCEPTED**、**PROPOSED 实现合同**、**UNKNOWN/需来源证明**，不臆定具体加密算法、硬件安全能力、设备标识、数据库 schema、远端撤权即时传播或物理擦除保证。
 
 ## Scope and verification
 
-允许修改的源码只有 `apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart`；唯一允许新增 `EVIDENCE/SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL/summary.md`。核对差异为删除输出语句，定向检查该文件不再有 `AUTH_INTERCEPTOR_TOKEN` 或打印 Token 的语句，且 Authorization header 仍按原逻辑设置。可运行一次该精确文件的 Dart/Flutter 静态分析；若工具不可用，记录 NOT RUN，不扩大测试。只运行一次 `git diff --check`，新文档另作尾随空白检查。无需新增镜像实现的测试。
+唯一允许新增 `EVIDENCE/AUTH-08-TRUSTED-LOGIN-ANCHOR-OFFLINE-CREDENTIAL-CONTRACT/contract.md`。只读范围限上述控制文件、CACHE-04/05/06、APP-INT-07/09、AUTH-07，以及为准确引用所需的精确 Laravel AuthController/Sanctum 和 Flutter session/offline pure policy 源码。不做全仓泛搜。合同应给后继任务建议的分片顺序与每片最小可核验反例，但**不下达实现任务**。只运行一次 `git diff --check`；新文档另作尾随空白检查。无需产品测试或构建。
 
-不读取实际 Token、设备日志、`.env`、私钥、用户/媒体数据；不连接服务器、HTTP/API、DB 或设备；不修改其他文件、部署或路由，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；这只消除一处已识别泄漏，不证明全项目日志安全。
+不连接服务器，不使用 SSH、HTTP/API、DB、设备或真实数据；不读 `.env`、私钥、实际 Token、日志、用户/媒体内容；不修改源码、现有合同或产品决定，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；合同不授权真实身份、密文库、生产部署或对用户可见的离线恢复。
