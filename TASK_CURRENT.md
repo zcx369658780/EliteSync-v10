@@ -4,7 +4,7 @@ Task ID: `AUTH-15-DB-SCHEMA-METADATA-PROBE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（未来目标数据库结构只读探针的本地预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付本地候选，停在 Work LEVEL 2 独立验收门。
 
