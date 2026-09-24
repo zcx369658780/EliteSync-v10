@@ -4,7 +4,7 @@ Task ID: `AUTH-25-LOCAL-ENCRYPTED-DB-BACKUP-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实数据库的本地加密备份设计；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付 docs-only 候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
