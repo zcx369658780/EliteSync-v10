@@ -4,7 +4,7 @@ Task ID: `AUTH-12-MIGRATION-STATUS-PARSER-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（远端数据库元数据读取方法的本地预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付本地解析预检候选，停在 Work LEVEL 2 独立验收门。
 
