@@ -1,29 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-11-DEPLOYED-MIGRATION-STATUS-READONLY`
+Task ID: `AUTH-12-MIGRATION-STATUS-PARSER-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（目标服务器数据库元数据只读观察；Work 独立审查）
+Risk Level: `LEVEL 2`（远端数据库元数据读取方法的本地预检；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — FACTUAL STOP; MIGRATION STATUS UNKNOWN`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。仅交付本任务的事实回执，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。仅交付本地解析预检候选，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-AUTH-10 docs-only 设计已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-10-LOGIN-EVENT-PERSISTENCE-DB-BACKUP-DESIGN/plan.md`。Owner 已授权在未来确需修改阿里云后端数据库结构时先备份并校验可恢复性，并允许仅将管理员创建的现有测试账号信息导出本地供恢复，禁止上传到阿里云以外其他地方。本任务是该前置链的**一次只读迁移账本观察**，不实施备份、导出、恢复或改库，不推定部署库只有测试账号。
+AUTH-11 获 Work LEVEL 2 事实回执 ACCEPT，但其一次 SSH 的 `migrate:status` stdout 未通过安全格式解析；四条目标迁移及总数仍 `UNKNOWN`，原预算已耗尽。Work 对本地 Laravel `StatusCommand.php` 的静态检查见 `EVIDENCE/AUTH-11-DEPLOYED-MIGRATION-STATUS-READONLY/summary.md`。Owner 的未来改库前数据库备份、可恢复校验及仅限管理员创建测试账号本地导出授权继续有效；本任务不接触远端或真实 DB。
 
-先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-10 接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能、AUTH-10/11 已接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。
 
-目标：在已知部署目录 `/opt/elitesync/services/backend-laravel` 运行一次 Laravel `migrate:status`，仅报告命令是否成功、迁移账本是否可读，以及本地四个精确迁移名在远端输出中的状态：`0001_01_01_000000_create_users_table`、`2026_03_11_144705_create_personal_access_tokens_table`、`2026_03_23_200000_add_synthetic_flags_to_users_table`、`2026_04_09_120000_add_account_layer_fields_to_users_table`。另记录输出中迁移总数和已运行/待运行数量；这些仅是本次 CLI 连接视图，不证明 Web worker 使用相同配置、实际表结构、备份可用或数据分类。
-
-## Exact remote budget and handling
-
-仅用已由 AUTH-02 证明可认证的 `root@101.133.161.203` 和 `C:\Users\zcxve\.ssh\CodexKey.pem`。先本地检查私钥和既有 `known_hosts` **是否存在**，不读取其内容。SSH 进程调用最多 **1 次**，使用 `BatchMode=yes`、`IdentitiesOnly=yes`、`StrictHostKeyChecking=yes`、`ConnectTimeout=8`，关闭密码和键盘交互，外部等待上限 **30 秒**；不重试、不换用户/密钥/主机。唯一远端命令为：`cd /opt/elitesync/services/backend-laravel && php artisan migrate:status --no-interaction`。远端命令不得追加探测、重定向写文件或执行 `migrate`、`db:show`、SQL、备份、服务管理。
-
-在本地进程内接收 stdout/stderr，原始输出上限 **128 KiB**；超限、超时、非零退出、认证失败、输出无法解析或含意外敏感值即停止，只报告错误类别和可安全披露的事实，不转储原文。正常时只在回执报告上述四条精确迁移名的状态及脱敏汇总；不保存原始 stdout/stderr，不输出数据库名、主机内部地址、用户名、连接串、环境变量、账号或其他迁移清单。任何实际行内容、Token、密码或媒体一律不读取。
+目标：只依据当前本地 Laravel `vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/StatusCommand.php`、直接调用的双栏输出组件源码和 `php artisan migrate:status --help`，解释 CLI 行结构、ANSI/宽度/空行/批次号可能如何影响严格解析；提出**下一次若另行授权**的安全输出策略与本地解析接受条件。给出纯虚构迁移名的最小正反例，特别说明无法从 AUTH-11 未保存的 stdout 追溯具体失败原因。若从本地源码仍无法构造稳健解析，应明确建议换一种经另行审查的只读元数据接口，不得假装已有现场结论。
 
 ## Scope, verification and stop
 
-唯一允许新增 `EVIDENCE/AUTH-11-DEPLOYED-MIGRATION-STATUS-READONLY/summary.md`。本地只读范围为任务控制文件、AUTH-10 接受记录、上述四个精确迁移文件和必要的本地 Laravel `migrate:status --help`；不做全仓泛搜。无需产品测试或构建。`git diff --check` 最多 **1 次**；新文档另作只读尾随空白检查。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+唯一允许新增 `EVIDENCE/AUTH-12-MIGRATION-STATUS-PARSER-PREFLIGHT/spec.md`。可只读精确的项目控制文件、AUTH-10/11、上述 Laravel vendor 源码及其直接调用的 Console 输出组件；只定位必要直接依赖，不做全仓泛搜。无需运行数据库命令、产品测试或构建；`php artisan migrate:status --help` 最多 **1 次**，`git diff --check` 最多 **1 次**，新文档另作只读尾随空白检查。若需验证解析，可使用文档中的虚构静态字符串，不读取真实 stdout。
 
-本任务不得读取 `.env`、私钥内容、实际配置值、账号行、Token、日志或用户/媒体数据；不运行 HTTP/API、设备操作或真实数据库写入；不访问旧 `D:\EliteSync`，不 pull/push GitHub。若一次远端读取失败或出现目标/权限/输出歧义，即停止，不以第二次 SSH 修复。Codex 只交付候选，不自接受、提交、备份或派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；后续任何备份、导出、恢复或 schema 变更另立精确任务和对应 Owner 高风险门。
+**不得 SSH、HTTP/API、读取 .env/凭据/日志/数据库行、访问设备或执行任何远端命令**；不读取、备份、导出、恢复或修改真实 DB。AUTH-11 的 SSH 预算不重置。不要输出或保存 AUTH-11 原始 stdout/stderr；不要推断四条迁移状态。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`；不访问旧 `D:\EliteSync`，不 pull/push GitHub。Codex 只交付候选，不自接受、提交、备份或派发后继；Work LEVEL 2 独立 ACCEPT/REJECT。任何再次读取服务器需另一张写明目标、命令、预算和停点的任务。
