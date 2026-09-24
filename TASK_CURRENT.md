@@ -4,9 +4,11 @@ Task ID: `AUTH-45-LOCAL-SYNTHETIC-SEPARATE-CONTAINER-RESTORE`
 
 Risk Level: `LEVEL 2`（本机虚构跨容器内存转移与独立目标恢复；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC SEPARATE-CONTAINER RESTORE FACT ONLY`
 
 Assignee: `Codex`。只交付候选与一次顺序演练回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：作者报告三行虚构数据在源容器清理后经宿主进程内存导入另一新容器，固定内容一致、两容器按 ID 清理 PASS；仅此受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-45-LOCAL-SYNTHETIC-SEPARATE-CONTAINER-RESTORE/summary.md`。未证明真实完整加密备份可恢复，旧一次预算耗尽。下一步涉及真实数据范围、精确本地加密保存位置与密钥保管等 Owner 决策，不自动执行真实备份。
 
 ## Authority and objective
 

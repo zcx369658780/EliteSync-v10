@@ -61,7 +61,7 @@ AUTH-43 扩大 tmpfs 的虚构密码认证探针获 Work LEVEL 2 **ACCEPT（仅�
 
 AUTH-44 本机三行虚构样本的同容器导出、导入与固定内容一致回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告固定隔离、空间、认证、写入、dump、导入、内容核对与按 ID 清理均 PASS；Work 静态审查并只读核对容器名不存在，未复跑一次性脚本。没有独立环境恢复或真实备份证明；旧预算耗尽，后继须新任务。
 
-AUTH-45 已下达：只用新建的无网络、无宿主挂载虚构源/目标容器，先清理源再通过宿主进程内存向目标 stdin 导入固定三行，验证独立容器的虚构恢复；最多一次顺序演练，交付后由 Work LEVEL 2 独立验收。尚无执行结果。
+AUTH-45 分离容器的三行虚构恢复回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-45-LOCAL-SYNTHETIC-SEPARATE-CONTAINER-RESTORE/summary.md`。作者报告源容器清理后将 2039 字节内存 dump 输入新目标容器、固定内容一致、两容器按 ID 清理 PASS；Work 静态审查并只读核对两个固定容器名均不存在，未复跑一次性脚本。它不证明真实完整加密持久备份可恢复。下一步真实数据库范围、精确本地存放位置和密钥保管等仍需 Owner 定界，不自动执行真实备份或改库。
 
 ## Product scope
 
