@@ -4,9 +4,11 @@ Task ID: `AUTH-34-LOCAL-SYNTHETIC-SETUP-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（AUTH-33 虚构 SQL setup 失败的本机分步诊断；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — DIAGNOSTIC FACT ONLY; PAUSED BY OWNER`
 
 Assignee: `Codex`。只交付一次虚构数据分步诊断与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：AUTH-34 已按本任务的定位目标获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-34-LOCAL-SYNTHETIC-SETUP-DIAGNOSIS/summary.md`。一次虚构运行的首个失败阶段为认证连接 `SELECT 1`，作者安全分类 `AUTH_OR_CONNECTION`；具体原因仍未知。schema/table/insert 和 dump/restore 均未执行；本机真实数据恢复能力未建立。一次性运行预算已耗尽。Owner 要求本次任务后暂停，未下达后继任务。
 
 ## Authority and objective
 
