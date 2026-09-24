@@ -20,9 +20,6 @@ class AuthInterceptor extends Interceptor {
   ) async {
     final token = await _accessTokenProvider();
     if (token != null && token.isNotEmpty) {
-      // Temporary debug aid for emulator-side matching setup.
-      // ignore: avoid_print
-      print('AUTH_INTERCEPTOR_TOKEN token=$token');
       options.headers['Authorization'] = 'Bearer $token';
     }
     super.onRequest(options, handler);

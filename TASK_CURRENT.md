@@ -4,9 +4,9 @@ Task ID: `SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL`
 
 Risk Level: `LEVEL 2`（请求 bearer Token 暴露风险；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — SINGLE TOKEN PRINT REMOVED`
 
-Assignee: `Codex`。交付一处有界修复候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。有界修复已获 Work 独立接受；见 `EVIDENCE/SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL/summary.md`。当前无活动 Codex 执行单；后继 T0/期限设计与实现另行下达，不从本次输出删除推定完成。
 
 ## Authority and objective
 
