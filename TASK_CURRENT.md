@@ -4,7 +4,7 @@ Task ID: `AUTH-14-DEPLOYED-MIGRATION-STATUS-STRICT-READ`
 
 Risk Level: `LEVEL 2`（部署目录数据库迁移账本一次只读观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付一次受限事实回执，停在 Work LEVEL 2 独立验收门。
 
