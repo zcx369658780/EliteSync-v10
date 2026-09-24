@@ -27,6 +27,8 @@ AUTH-26 本机恢复环境五项固定只读查询获 Work LEVEL 2 ACCEPT：Powe
 
 AUTH-27 本机 Docker 只读预检获 Work LEVEL 2 ACCEPT：当前上下文归类为本机命名管道，daemon 当次不可达；按依赖门未检查 `mariadb:10.11` 本地镜像。见 `EVIDENCE/AUTH-27-LOCAL-DOCKER-ISOLATION-PREFLIGHT/summary.md`。未启动 Docker、运行容器、拉取镜像或恢复数据；隔离能力仍未建立。
 
+AUTH-28 一次本机已安装 Docker Desktop 启动与 daemon 复核获 Work LEVEL 2 ACCEPT：作者报告固定程序存在、启动前无进程、一次隐藏启动后等待 20 秒，本机 daemon 当次可达。见 `EVIDENCE/AUTH-28-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。未检查镜像或运行容器；隔离和恢复能力仍未证明。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

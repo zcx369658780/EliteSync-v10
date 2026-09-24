@@ -4,7 +4,7 @@ Task ID: `AUTH-28-LOCAL-DOCKER-STARTUP-RECHECK`
 
 Risk Level: `LEVEL 2`（本机现有 Docker Desktop 一次启动与只读复核；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付受限事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
