@@ -4,9 +4,9 @@ Task ID: `AUTH-04-DEPLOYED-ROUTE-DIFF-CORRECTED`
 
 Risk Level: `LEVEL 2`（真实服务器源码只读差异；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — STATIC ROUTE DIFF ONLY`
 
-Assignee: `Codex`。只交付一次新授权下的精确只读差异事实候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。一次新授权下的精确只读差异事实候选已交付，Work 独立接受；证据见 `EVIDENCE/AUTH-04-DEPLOYED-ROUTE-DIFF-CORRECTED/summary.md`。本任务 SSH 1/1 预算已耗尽，不得在本任务下重连。
 
 ## Authority and objective
 
