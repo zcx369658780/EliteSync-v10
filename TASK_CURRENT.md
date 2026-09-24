@@ -1,27 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-32-DOCKER-MOUNTS-PARSER-STATIC-REPAIR`
+Task ID: `AUTH-33-LOCAL-SYNTHETIC-RESTORE-REPLAY`
 
-Risk Level: `LEVEL 2`（隔离声明解析逻辑的纯本地修正与负向测试；Work 独立审查）
+Risk Level: `LEVEL 2`（修正隔离字段解析后的本机虚构恢复一次验证；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付纯本地候选与测试回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+Assignee: `Codex`。只交付本机虚构数据候选与一次执行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-30 的一次虚构恢复演练在隔离声明检查失败；AUTH-31 定点诊断确认网络无连接、端口和宿主 Binds 为空、三个 tmpfs 目标匹配，但 `Mounts` 解析在 PowerShell 严格模式下失败，数量/类型仍未知。Work 独立证明 `if` 表达式空数组分支可能赋值 `$null` 并令 `.Count` 抛错。两张任务运行预算均已耗尽。本任务**只修复和测试一个纯函数解析器**，不运行 Docker 或恢复演练，不改写旧证据。
+Owner 选择完整备份加密存到自己的电脑/本地磁盘，恢复演练优先本机独立环境。AUTH-30 的一次演练未越过隔离检查；AUTH-31 的 Mounts 定点诊断因 PowerShell 空数组赋值解析失败；AUTH-32 纯解析器及 14 个虚构用例已获 Work LEVEL 2 ACCEPT。旧任务运行预算不重置。本任务是**新的一次**本机虚构 dump/restore 验证，使用已接受解析器，不接触真实 DB 或备份。
 
-## Exact candidate
+## Exact execution boundary
 
-只允许新增 `EVIDENCE/AUTH-32-DOCKER-MOUNTS-PARSER-STATIC-REPAIR/parse_mounts.ps1`、`test_parse_mounts.ps1` 和 `summary.md`。纯函数仅接收调用方提供的虚构 `Mounts` 值，返回固定 `count`（非负整数或 UNKNOWN）、`all_tmpfs`、`destinations_allowed`、`parse_ok` 四项；空/null 要可安全给出 count 0，不访问 `$null.Count`。只允许三个固定目标 `/var/lib/mysql`、`/run/mysqld`、`/tmp`；任意 `bind`/`volume`、额外目标、缺失 Type/Destination、非数组/对象或异常均 fail-closed。不得把 count 0 单独解释为隔离 PASS；真实任务仍必须结合 HostConfig.Tmpfs、Binds、端口、网络和 ID/名称。
+- 只在本机 Docker context、daemon 可达、精确本地 `mariadb:10.11` 镜像存在且唯一容器名 `elitesync-auth33-synthetic-restore` 空闲时启动；任一不符即停。不拉取镜像、换 context 或启动 Docker Desktop。
+- 唯一容器启动最多 1 次，固定 `--pull never`、`--network none`、无端口/宿主 bind/命名卷；数据、运行、临时目录只用三个 tmpfs 目标 `/var/lib/mysql`、`/run/mysqld`、`/tmp`。只用与项目/真实用户无关的虚构密码、schema、表和固定少量行。
+- 先核对容器 ID/名称、NetworkMode=none、PortBindings/Binds 为空、HostConfig.Tmpfs 三目标精确匹配，再调用 AUTH-32 的 `Parse-Mounts` 对原始内存对象解析。若 Mounts 为 null/空，只在解析成功且 count=0、上述其他隔离字段全 PASS 时允许继续；若非空，须 `parse_ok=true`、各挂载类型仅 tmpfs、目标仅在固定三项内。任何 volume/bind/额外目标、解析异常或安全字段未知即停。记录 Mounts 数量和固定谓词，不保存原始 inspect。
+- 隔离声明全部 PASS 后，才在**同一个本机临时容器**中建立虚构源 schema/表/行，dump 至容器内 tmpfs，导入第二个虚构 schema，核对固定行数与内容摘要。此验证只说明合成小数据的同容器 dump/restore，不证明独立目标恢复或真实备份可恢复。
+- 不论成功失败，仅对本任务确实创建的唯一容器按 ID 精确清理最多 1 次，随后按名称只读核对不存在；所有权不明则不删除并报 `CLEANUP_UNRESOLVED`。不得清理其他容器/卷/镜像或使用 prune。每个阶段最多 1 次，不重试；总执行/清理上限 120 秒。只输出阶段、最早失败、固定计数/布尔、调用次数及清理状态，不保存 dump、日志、SQL 行、密码或原始 stdout/stderr。
 
-测试用完全虚构值覆盖：null、空数组、三个合法 tmpfs、单个合法 tmpfs、bind、volume、额外目标、缺字段、畸形类型，以及严格模式下的 `.Count` 安全。预期必须包括明确负向拒绝。只运行固定测试脚本最多 **1 次**；若测试失败，保留最早失败，不修改后重跑。测试不调用 Docker、WSL、SSH、云或数据库。
+## Allowed candidate and stop
 
-文档说明这仅解决解析器的本地可测试语义，不证明 AUTH-30/31 当次 Docker `Mounts` 实际是什么，也不证明网络隔离或恢复能力。下一步如需容器诊断或虚构恢复，须另立任务及新预算。
+只允许新增 `EVIDENCE/AUTH-33-LOCAL-SYNTHETIC-RESTORE-REPLAY/run.ps1` 与同目录 `summary.md`。脚本可只读加载 AUTH-32 已接受的 `parse_mounts.ps1`，不得修改旧脚本/证据。先做静态解析和安全边界检查，若不满足则不运行；若满足，脚本最多执行 1 次。回执逐阶段列 PASS/FAIL/NOT_CHECKED、调用账本和实际清理结果。失败不得修后重跑，也不得把容器声明、虚构 PASS 说成真实数据可恢复。
 
-## Verification and stop
+启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-30/31/32 记录；核对 `main`、HEAD、工作区。派发前接受检查点 `be03285e2291766dd74c3df70169afb928662342`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。前置不符即停。
 
-启动前读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-30/31 失败记录；核对 `main`、HEAD、工作区。派发前检查点为 `d050792c90092b6f8b4549528dd8b28e7f652f83`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。不符即停。
-
-`git diff --check` 最多 1 次，新文件另作只读尾随空白检查。不得访问旧 `D:\EliteSync`、浏览器、Docker、SSH、云 API、真实 DB、备份目录、凭据、密钥或业务数据；不备份/传输/恢复/删除/改库。Codex 不修改控制文件、不提交、不制作 bundle、不推送、不自接受或派发后继。
+`git diff --check` 最多 1 次，新文件另作只读尾随空白检查。不访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实数据库、备份目录、凭据、密钥或业务数据；不安装软件、不拉取镜像、不真实备份/传输/改库。Codex 不修改控制文件、不提交、不制作 bundle、不推送、不自接受或派发后继。真实数据仍须独立 Owner 高风险门。
