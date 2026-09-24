@@ -1,28 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS`
+Task ID: `AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（本机真实备份目标目录的只读安全与工具预检；Work 独立审查）
+Risk Level: `LEVEL 2`（真实备份前的本机虚构加密格式与篡改拒绝探针；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — LOCAL DESTINATION FACTS ONLY`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付一份脱敏本机事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：精确目录存在、为空、ACL 继承关闭且只有当前用户/SYSTEM/Administrators 显式 FullControl、C 盘可用空间及 OpenSSL/SSH 工具事实获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS/summary.md`。GPG 版本、BitLocker、OneDrive 前缀及其他自动同步仍 UNKNOWN；未完成加密/传输或真实备份安全门。
+Assignee: `Codex`。只交付虚构探针候选与一次运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-Owner 允许在 C 盘建立加密数据库备份目录，并要求实际需要密码时由本人输入。Work 已建立**空**目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，将其 ACL 收紧为当前用户、SYSTEM、Administrators 的显式 FullControl；这不是备份。AUTH-45 仅证明三行虚构样本的分离容器恢复。本任务只读核验该精确目标的路径、权限、容量与本机加密工具可用性，为后续设计提供事实；不得生成密钥、要求密码或接触真实数据。
+AUTH-46 只确认专用空目录、ACL 和本机 OpenSSL 3.5.6 等受限事实；未建立文件加密方式。Owner 要求实际密码由本人输入。本任务使用**一次性虚构证书/私钥和固定非业务字节**，验证本机 OpenSSL CMS 能否形成可解密的 AES-256-GCM 密文、密文单字节篡改是否被拒绝。探针不生成真实备份密钥，不要求 Owner 密码，不向服务器传输；结果不能证明服务器兼容或真实备份安全。
 
 ## Exact execution boundary
 
-- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-25、AUTH-26、AUTH-45 回执；核对 `D:\EliteSync-v10`、本地 `main`、HEAD 和工作区。当前 HEAD 应为仅下达本任务的提交，父提交精确为 `803706d3ebe2ae6129bee2cebb8d82e977dcafba`。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
-- 对精确目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups` 各只读核对一次：存在且是普通目录；自身与父目录均非重解析点；目录为空；规范化绝对路径仍是该精确路径；ACL 继承为关闭，Allow 主体只含当前 Windows 用户 SID、SYSTEM 与 Administrators 且权限为 FullControl、没有 Deny 或其他主体；C 盘当前可用字节为非负整数。任一字段无法判断记 `UNKNOWN`，不推断安全。
-- 只读查询本机 `openssl`、`gpg`、`ssh` 命令是否可解析及版本各最多一次；不运行加密、生成密钥或安装工具。只读查询 C 盘 BitLocker 保护状态最多一次，失败记 `UNKNOWN`，不尝试修复或启用。只用目标路径与系统报告的 OneDrive 根路径作字符串前缀核对；未发现前缀关系只说明该项，不能证明不存在其他自动同步。
-- 输出只含上述路径/空目录/ACL 布尔、允许主体类别、可用字节、工具存在与版本、BitLocker `ON/OFF/UNKNOWN`、OneDrive 前缀布尔或 UNKNOWN、每项查询次数与首个失败；不得记录其他目录内容、用户名之外的 SID、环境变量原文、密钥、凭据、数据库行或敏感文件名。不得修改目录 ACL、写文件、删除、启动容器或访问网络。
+- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能、AUTH-25、AUTH-45～46 回执；核对 `D:\EliteSync-v10`、本地 `main`、HEAD、工作区。当前 HEAD 应为仅下达本任务的提交，父提交精确为 `4621f2a4afb15b3adc1473841d915e6b20fb5343`。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+- 预检本机 OpenSSL 可执行文件固定解析、版本为 3.x；固定临时目录 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth47-synthetic-cms` 必须不存在，且其父目录经规范化位于当前用户的本机 Temp 目录、不是重解析点。任一不符即停；不得枚举或清理其他临时目录。
+- 只允许在该固定临时目录内生成一次性**无密码虚构** RSA 3072 私钥、自签收件证书、固定 UTF-8 输入 `AUTH47-SYNTHETIC-ONLY`、原始 CMS DER 密文、解密结果、由原密文复制并仅翻转其中一个非头部字节的篡改副本。私钥只用于这次虚构测试，不能改名冒充真实备份密钥；不得写入 C 盘备份专用目录、Git 或普通证据。
+- 用本机 `openssl cms -encrypt -binary -stream -outform DER -aes-256-gcm` 和该虚构证书执行最多 1 次；再用配对私钥 `openssl cms -decrypt -binary -inform DER` 最多 1 次，严格比较恢复字节与固定输入。随后篡改密文副本，解密最多 1 次，必须非零退出且不得得到固定输入。任何失败即停，不换算法、模式、工具或参数重试。若 AES-256-GCM CMS 不支持或篡改未拒绝，明确报告，不降级为 CBC。
+- 输出仅保存固定阶段 `PASS/FAIL/NOT_CHECKED`、调用次数、OpenSSL 版本、密文长度整数、原文匹配及篡改拒绝布尔、退出码和首个失败类别、清理结果；不得保存/显示证书、私钥、密文、原文、原始 stdout/stderr 或命令中其他敏感内容。所有运行含清理不超过 120 秒。
+- 结束时只对本次创建且解析后的绝对路径仍严格等于上述固定临时目录、且处于该用户 Temp 父目录下的目录执行一次精确递归清理，并只读核对不存在；归属或路径无法证明则不删，记 `CLEANUP_UNRESOLVED`。不得删除/修改其他目录或文件；固定备份目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups` 全程只读核对仍为空即可。
 
 ## Candidate, verification and stop
 
-只允许新增 `EVIDENCE/AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS/summary.md`；不得修改控制文件、源码或此前证据。每项固定查询最多一次，失败不换方法、不重试。`git diff --check` 最多一次，新文件另做只读尾随空白检查。Codex 不提交、制作 bundle、推送、自接受或派发后继。Work 独立验收后才更新状态。
+只允许新增 `EVIDENCE/AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT/run.ps1` 与同目录 `summary.md`；不得改控制文件、旧证据或源码。先 PowerShell 静态解析和路径/清理边界检查，再最多执行脚本 **1 次**；失败不修改后重跑、不手动补命令。`git diff --check` 最多 1 次；新文件另做只读尾随空白检查。Codex 不提交、制作 bundle、推送、自接受或派发后继。
 
-不得访问旧 `D:\EliteSync`、浏览器、SSH 远端、云 API、真实 DB、备份文件、真实密钥/密码、账号/Token/消息/媒体或业务数据；不做真实备份、传输、恢复、改库、清理或部署。本任务通过只说明此时本机目标可作为后续方案输入，不能证明完整加密备份可做、磁盘故障可恢复或真实 DB 身份。
+不得访问旧 `D:\EliteSync`、SSH、浏览器、云 API、真实 DB、备份文件、真实凭据/密钥或业务数据；不安装软件、不做真实备份、传输、恢复、清理或改库。此任务的虚构私钥可自动生成且不受 Owner 密码输入约束；真实密钥生成、保管与解密将另立任务，并由 Owner 亲自输入密码。
