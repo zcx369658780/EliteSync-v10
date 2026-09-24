@@ -37,6 +37,8 @@ AUTH-31 Docker 隔离字段定点诊断目标被 Work LEVEL 2 **REJECT**，仅�
 
 AUTH-32 `Mounts` 纯解析器与 14 项虚构负向/正向测试获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-32-DOCKER-MOUNTS-PARSER-STATIC-REPAIR/summary.md`。它修复 null/空数组 `.Count` 路径并拒绝 bind、volume、额外/重复目标与畸形输入；未调用 Docker 或证明原容器实际 `Mounts`、完整隔离或恢复能力。
 
+AUTH-33 使用已接受解析器的一次本机虚构恢复回放被 Work LEVEL 2 **REJECT** 完整证明目标，仅接受部分事实，见 `EVIDENCE/AUTH-33-LOCAL-SYNTHETIC-RESTORE-REPLAY/summary.md`。当次容器固定隔离声明通过：本机、无网络/端口/宿主 Binds，三个 tmpfs 目标匹配，`Mounts=0`；readiness 后虚构 setup 返回 `SYNTHETIC_SETUP_FAILED`，dump/restore 未执行。作者报告按 ID 精确清理 PASS。setup 具体原因 `UNKNOWN`，真实备份/恢复仍未证明；旧一次预算耗尽，需另立分步诊断。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

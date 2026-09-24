@@ -4,7 +4,7 @@ Task ID: `AUTH-33-LOCAL-SYNTHETIC-RESTORE-REPLAY`
 
 Risk Level: `LEVEL 2`（修正隔离字段解析后的本机虚构恢复一次验证；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — PARTIAL FACT RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付本机虚构数据候选与一次执行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
