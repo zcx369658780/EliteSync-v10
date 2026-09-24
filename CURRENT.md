@@ -43,7 +43,7 @@ AUTH-34 本机虚构 setup 分步诊断获 Work LEVEL 2 **ACCEPT（仅定位事�
 
 AUTH-35 本机虚构认证就绪探针的目标获 Work LEVEL 2 **REJECT**，仅接受一次预检失败回执，见 `EVIDENCE/AUTH-35-LOCAL-SYNTHETIC-AUTH-READINESS-PROBE/summary.md`。作者报告当前 Docker daemon 不可达，按任务立即停止；未检查镜像/容器名，未创建容器或进行三个认证探针，清理无需执行。Work 静态审查脚本和回执，未重跑一次预算；本次没有认证或数据库就绪结论。AUTH-36 已下达本机 Docker Desktop 启动/复核任务，执行与验收见 `TASK_CURRENT.md`。
 
-AUTH-36 本机 Docker Desktop 一次启动与复核的可达目标获 Work LEVEL 2 **REJECT**，仅接受受限事实回执，见 `EVIDENCE/AUTH-36-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。作者报告固定程序只启动一次，等待 30 秒后的 daemon 仍不可达，未创建容器或接触数据库。Owner 同时报告 Docker Desktop 弹出 `unexpected error` 并亲自重启；界面错误不构成根因结论。依赖 daemon 的后继暂缓，待 Owner 重启完成后重新核验，不重用 AUTH-36 的启动预算。
+AUTH-36 本机 Docker Desktop 一次启动与复核的可达目标获 Work LEVEL 2 **REJECT**，仅接受受限事实回执，见 `EVIDENCE/AUTH-36-LOCAL-DOCKER-STARTUP-RECHECK/summary.md`。作者报告固定程序只启动一次，等待 30 秒后的 daemon 仍不可达，未创建容器或接触数据库。Owner 同时报告 Docker Desktop 弹出 `unexpected error` 并亲自重启；界面错误不构成根因结论。Owner 随后报告重启完成，Work 本次只读核对本机 Docker context 与 daemon `29.6.2` 可达；这是新时点观察，不更改 AUTH-36 的验收结果。AUTH-37 已下达冻结 AUTH-35 虚构探针的新一次运行任务；截图中停止的旧容器不需启动。
 
 ## Product scope
 
