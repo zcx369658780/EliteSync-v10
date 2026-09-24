@@ -4,9 +4,11 @@ Task ID: `AUTH-39-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE`
 
 Risk Level: `LEVEL 2`（本机单个隔离虚构容器内的小样本 dump/restore；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — TABLE FAILURE FACT RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付本任务的一次虚构数据候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：一次虚构运行在源表创建返回 `SOURCE_TABLE_FAILED`，插入、dump、导入、内容校验均未执行；AUTH-39 完整目标 LEVEL 2 REJECT，仅接受受限失败与清理回执，见 `EVIDENCE/AUTH-39-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。具体建表错误未知，旧预算耗尽，后继须另立任务。
 
 ## Authority and objective
 
