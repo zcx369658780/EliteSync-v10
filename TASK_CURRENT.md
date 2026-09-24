@@ -1,27 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-06-DEPLOYED-V2-ROUTE-LIST-READONLY`
+Task ID: `AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP`
 
-Risk Level: `LEVEL 2`（真实服务器 Laravel 路由列表只读核对；Work 独立审查）
+Risk Level: `LEVEL 2`（真实 auth 生命周期与私密缓存计时来源的本地静态映射；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPT — DEPLOYED CLI ROUTE VIEW ONLY; OWNER ENVIRONMENT/RELEASE GATE`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。单次受限命令事实候选已获 Work 独立接受；见 `EVIDENCE/AUTH-06-DEPLOYED-V2-ROUTE-LIST-READONLY/summary.md`。本任务 SSH 1/1 预算已耗尽，当前无活动 Codex 执行单。下一步是否让四条 synthetic/dev-test v2 路由进入该服务器属于 Owner 环境/发布决策，不由本任务授权。
+Assignee: `Codex`。交付纯本地只读证据清单，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-Owner 已在 2026-09-24 明确授权另立有界任务，**仅只读核对服务器当前加载的路由列表**。AUTH-04/05 已接受的有限事实：部署 `routes/api.php` 相对本地缺少四条 v2 POST 声明；本地四条入口有 controller、合成测试与接受文档，实际服务器路由仍未知。AUTH-04 的 SSH 1/1 预算保持耗尽，本任务使用 Owner 新授权的独立预算。先核对本地 `main`、HEAD、工作区和 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-04/05 证据；仅在本任务 `ISSUED` 且派发匹配时执行。
+Owner 已决定：在线登录持续 15 天；最后一次**成功在线登录**后第 16～30 天，满足其他条件时离线可继续只读已保存的按账户加密内容；满 30 天清理；自动 Token 续期不重置该时钟。AUTH-02 接受的部署 `AuthController.php` 与本地同哈希，AUTH-04/06 接受的部署源码及 Laravel CLI 视图中 `v1/auth/login`、`v1/auth/refresh` 静态入口存在；这些都不证明可信 `T0`、期限执行或真实客户端权限。四条缺席 v2 路由属于 synthetic/dev-test 入口，尚无部署授权；本任务不处理部署。
 
-目标是核对 Laravel CLI 在此次执行时列出的 `api/v2` 路由，准确报告 `/api/v2/contracts/application-envelope`、`/api/v2/canonical-match/evaluations`、`/api/v2/canonical-match/invalidations`、`/api/v2/runtime-readiness/evaluations` 四条是否出现，以及出现时的方法、action、middleware。此结果是**部署目录的 CLI bootstrap 路由视图**；即使成功，也不证明 Web worker 的即时状态、HTTP 触达、调用量、真实身份或生产权限。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能以及 AUTH-02/04/06 证据。只有本任务仍为 `ISSUED` 且派发匹配才执行。
 
-## One remote process and fail-closed parsing
-
-最多 **1 次 SSH 进程调用**，使用 `root@101.133.161.203`、`C:\Users\zcxve\.ssh\CodexKey.pem`，启用 `BatchMode=yes`、`IdentitiesOnly=yes`、`StrictHostKeyChecking=yes`、`ConnectTimeout=8`，关闭密码及键盘交互，外部等待上限 30 秒。唯一远端命令是 `cd /opt/elitesync/services/backend-laravel && php artisan route:list --json --path=api/v2`。不要先行探测或重试；若 SSH、PHP、JSON 解析失败或超时，记录分类即停，不换命令、用户、密钥或路径。
-
-用本地 Python `subprocess.run(..., stdin=DEVNULL, capture_output=True, timeout=30)` 将 stdout/stderr 仅收入内存；stdout 超过 256 KiB 即停。严格 UTF-8 解码并解析 JSON 数组，检查每条对象的 uri、method、action、middleware 字段；若输出混有非 JSON、结构异常或有疑似凭据/敏感值，不打印原始输出，记录分类并停。只写入总路由数、上述四条精确 URI 的匹配结果和必要的非私密路由字段；不保存完整列表或 stderr。若输出为空，准确分类，不等同于四条路由不存在。记录 UTC 执行时刻、命令退出状态和是否耗用 1/1 预算。
+目标：从本地源码精确追踪 `POST /api/v1/auth/login`、`refresh` 的认证、发 Token、有效期、撤销及响应字段；再定位 Flutter 当前调用/持久化入口。逐项判断是否已有可信的“最后一次成功在线登录 T0”来源和持久记录、15 天在线登录边界、refresh 不重置 T0、30 天加密缓存清理触发条件。只报告代码直接证明的状态、缺口和后继合同/实现需要的来源；不得把约定或测试桩写成真实运行证明。
 
 ## Scope and verification
 
-唯一允许新增 `EVIDENCE/AUTH-06-DEPLOYED-V2-ROUTE-LIST-READONLY/summary.md`。不读取私钥内容、`.env`、配置/环境变量值、Token、日志、DB、用户/媒体数据；不执行其他 SSH 命令、HTTP/API、服务管理、部署或远端写入，不修改本地/远端代码；不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+只读范围限当前仓库 `services/backend-laravel/routes/api.php`、`app/Http/Controllers/Api/V1/AuthController.php`、其直接使用的 User/token/Sanctum 配置与相关认证 Feature 测试，以及 `apps/flutter_elitesync_module/lib` 内已识别的登录、刷新、session/token 调用链。可用精确符号搜索定位直接依赖；不要读取 `.env`、实际配置值、设备存储内容或全仓泛搜。唯一允许新增 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`，用路径/行号写出正反证据与 UNKNOWN。无需运行测试或构建；只运行一次 `git diff --check`，新文档另作尾随空白检查。
 
-回执区分 Laravel CLI 路由视图、AUTH-04 静态文件、未核验 Web/HTTP 行为；只运行一次 `git diff --check`，新文档另作尾随空白检查，不运行产品测试或设备操作。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；本任务不授权部署修复或进一步服务器核验。
+不连接服务器，不使用 SSH、HTTP/API、DB、设备或真实数据；不读私钥、Token、日志、用户/媒体数据；不修改 auth 代码、缓存、路由、配置或部署，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；真实 auth、离线凭据与生产变更仍需后继明确任务及相应风险门。
