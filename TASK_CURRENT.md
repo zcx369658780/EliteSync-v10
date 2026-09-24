@@ -1,29 +1,27 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT`
+Task ID: `AUTH-20-DEPLOYED-DB-TARGET-SIZE-READ`
 
-Risk Level: `LEVEL 2`（未来备份目标与规模元数据探针的本地预检；Work 独立审查）
+Risk Level: `LEVEL 2`（部署目录当前 DB 目标与规模一次只读元数据观察；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。仅交付本地候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。仅交付一次受限事实回执，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-AUTH-18 docs-only 方案获 Work LEVEL 2 ACCEPT，第一步需要只读确认实际目标连接标识、服务端 MySQL/MariaDB 版本和数据规模；AUTH-14/16/17 仅有 CLI 迁移/固定结构、MySQL driver 和主机备份工具/空间的受限事实。Owner 对完整备份存放及保留期限尚未答复。本任务只准备**本地、离线测试的固定只读元数据探针**，不连接服务器或真实 DB、不读取任何账号行，不执行备份或恢复。
+AUTH-19 固定只读目标/规模探针及虚构检查已获 Work LEVEL 2 ACCEPT；AUTH-17 的工具/空间事实与 AUTH-18 的备份/恢复方案不证明实际数据库大小、服务端版本或备份可行。Owner 对完整备份存放及期限仍待决定。本任务只用**新的一次** SSH 对部署目录当前 Laravel DB 连接读取固定聚合元数据，不读取业务表或账号行，不备份、导出、恢复或改库。
 
-先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-14/16/17/18 接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-17/18/19 接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。先确认已接受探针 `EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/target_probe.php` 的本地 SHA-256 **精确等于** `22D97E89DAD575B1AC0778D298329644489F9BE3771253F8A7AB62D472038DDE`，并运行其虚构 adapter 测试 **1 次**；哈希或测试失败即停，不连远端。
 
-## Bounded candidate
+## Exact remote budget and handling
 
-仅允许新增三条路径：`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/target_probe.php`、`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/test_target_probe.php`、`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/summary.md`。使用当前 Laravel bootstrap 及固定 SQL 只读元数据接口，准备未来可从部署目录以 PHP stdin 执行的探针。只允许对**当前连接**获取 DB driver、`VERSION()`、`DATABASE()`、服务器 hostname 标识和 `information_schema.tables` 中 `table_schema = DATABASE()` 的表数与 `data_length + index_length` 合计；不得查询 `users` 或任何业务表数据行、任意 schema/table 名列表、账号数量、Token、媒体或日志。SQL 必须字面固定，无请求输入、拼接条件或外部参数；不得更换连接。
+仅用 `root@101.133.161.203`、`C:\Users\zcxve\.ssh\CodexKey.pem` 与既有 `known_hosts`；本地只检查私钥和主机密钥文件是否存在，不读取内容。SSH 进程 **最多 1 次**，`BatchMode=yes`、`IdentitiesOnly=yes`、`StrictHostKeyChecking=yes`、`ConnectTimeout=8`，禁用密码和键盘交互、不分配 PTY；外部等待上限 **30 秒**，stdout/stderr 合计上限 **64 KiB**。唯一远端命令为 `cd /opt/elitesync/services/backend-laravel && php -d display_errors=0 -d log_errors=0`，stdin 仅送入上述已接受探针的原始文件字节；不得复制为远端文件、改脚本或追加探测。
 
-脚本拆出可用虚构 adapter 测试的纯投影：只输出固定键的 JSON，包括白名单 `mysql` driver、规范化的 MySQL/MariaDB 家族与数字版本、非负的估算字节数/表数，以及由**当次服务器标识与当前库名**计算的 SHA-256 指纹；不输出原始 hostname、库名、用户名、连接串、密码、SQL、异常或任意其他元数据。指纹只是重复核对线索，不证明 Web worker 同库或生产身份；估算空间不是完整 dump 体积。未知/畸形版本、空库名、非整数字节数、负数、异常或额外元数据应 fail closed，仅输出安全错误类别。Laravel bootstrap 可能按框架机制读取配置，本任务仅测试纯投影，不执行真实入口。
+原始 stdout/stderr 仅在本地进程内接收，不显示或持久化。只有退出 0、stderr 为空、stdout 为单行严格 UTF-8 JSON、完整符合 AUTH-19 固定键/类型/白名单且无重复或额外键时，才可记录 DB 家族与规范化版本、SHA-256 目标指纹、当次 `information_schema.tables` 表数和估算字节数。若 `ok=false`，只报告安全错误类别；超时、超限、非零退出、stderr 非空、JSON/形状不符或歧义均停止且所有目标值为 `UNKNOWN`。不得临时放宽解析、输出原始库名/主机名或发第二次 SSH。指纹仅供未来同一探针重复比较，不能证明 Web worker 同库；估算字节数不是 dump 大小或完整备份可存放证明。
 
-虚构 adapter 测试至少覆盖 MariaDB/MySQL 版本、稳定指纹、非负统计、畸形/负数/异常、不泄露原始库名与服务器名。不得把测试用值写成真实目标事实。未来现场运行仍须单独授权、固定脚本哈希与受限输出解析。
+## Scope, verification and stop
 
-## Verification and stop
+唯一允许新增 `EVIDENCE/AUTH-20-DEPLOYED-DB-TARGET-SIZE-READ/summary.md`。本地只读范围限控制文件、AUTH-17/18/19 接受记录、固定探针/虚构测试及 Git 状态。除前述虚构测试 **1 次**，无需产品测试或构建；`git diff --check` 最多 **1 次**，新文档另作只读尾随空白检查。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
 
-本地只读范围限控制文件、AUTH-14/16/17/18 接受证据及 Laravel DB facade/connection 的直接方法定义；不做全仓泛搜。定向虚构测试最多 **2 次**，PHP 语法检查两份新增 PHP 文件各最多 **1 次**，`git diff --check` 最多 **1 次**；新增文件另作只读尾随空白检查。无需产品测试或构建。
-
-不得 SSH、HTTP/API、读取 `.env`/私钥/凭据/日志/数据库行、访问设备或执行真实数据库命令；不得备份、导出、恢复或修改 DB。AUTH-17 的 SSH 预算不重置。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`；不访问旧 `D:\EliteSync`，不 pull/push GitHub。Codex 不自接受、提交、备份或派发后继；Work LEVEL 2 独立 ACCEPT/REJECT。未来远端只读核验、实际备份或改库须另立精确任务和相应 Owner 高风险门。
+不得读取 `.env`、私钥内容、实际配置值、账号/Token/日志/媒体或其他业务数据行；不运行 HTTP/API、设备、数据库写入、备份、导出、恢复、迁移或部署。AUTH-17 的 SSH 预算不重置。不访问旧 `D:\EliteSync`，不 pull/push GitHub。Codex 不自接受、提交、备份或派发后继；Work LEVEL 2 独立 ACCEPT/REJECT。未来备份、恢复演练或改库须另立精确任务和 Owner 高风险门。
