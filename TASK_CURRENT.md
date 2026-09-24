@@ -4,9 +4,9 @@ Task ID: `AUTH-08-TRUSTED-LOGIN-ANCHOR-OFFLINE-CREDENTIAL-CONTRACT`
 
 Risk Level: `LEVEL 2`（认证、离线凭据与隐私计时设计合同；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — DESIGN CONTRACT ONLY`
 
-Assignee: `Codex`。仅交付 docs-only 实现前合同候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。docs-only 实现前合同已交付并获 Work 独立接受；见 `EVIDENCE/AUTH-08-TRUSTED-LOGIN-ANCHOR-OFFLINE-CREDENTIAL-CONTRACT/contract.md`。当前无活动 Codex 执行单；真实 auth、设备凭据、时间与密文库仍未获实现证明。
 
 ## Authority and objective
 
