@@ -4,9 +4,11 @@ Task ID: `AUTH-42-LOCAL-SYNTHETIC-EXPANDED-TMPFS-RESTORE`
 
 Risk Level: `LEVEL 2`（扩大本机隔离虚构容器临时空间后的一次同容器小样本恢复；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — EXPANDED-CONTAINER AUTH FAILURE RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付一次虚构数据候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：扩大 tmpfs 的本机虚构容器在无密码 socket `SELECT 1` 返回安全码 `1045`，空间门和恢复步骤未执行；AUTH-42 目标 LEVEL 2 REJECT，仅接受受限认证失败与清理回执，见 `EVIDENCE/AUTH-42-LOCAL-SYNTHETIC-EXPANDED-TMPFS-RESTORE/summary.md`。AUTH-38 的不同容器观察不能替代本次认证。旧预算耗尽，后继须新任务。
 
 ## Authority and objective
 

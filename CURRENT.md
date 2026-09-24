@@ -55,6 +55,8 @@ AUTH-40 建表定点诊断目标获 Work LEVEL 2 **REJECT**，仅接受受限事
 
 AUTH-41 资源与错误投影的完整目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-41-LOCAL-SYNTHETIC-TABLE-RESOURCE-PROBE/summary.md`。作者报告虚构容器建表前 `/var/lib/mysql` 的 128 MiB tmpfs 已用满、可用 0 KiB，建表失败，按本次 ID 清理 PASS；类别提取提前中断，建表后资源和 State 未检查。Work 静态发现类别函数使用与 PowerShell 自动 `$Matches` 同名的 `$matches`，但未复原运行错误。0 KiB 提示资源约束，不证明唯一根因；旧预算耗尽。AUTH-42 已下达扩大新虚构容器 tmpfs 后的一次同容器小样本恢复任务。
 
+AUTH-42 扩大 tmpfs 后的虚构恢复目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-42-LOCAL-SYNTHETIC-EXPANDED-TMPFS-RESTORE/summary.md`。作者报告预检与固定隔离声明通过，但 45 秒后无密码 socket `SELECT 1` 返回 `1045`，按本次 ID 清理 PASS；空间门、源表、dump/restore 均未运行。Work 静态审查并核对回执，未复跑；与 AUTH-38 的 128 MiB 容器观察不同，认证机制仍未知。扩大空间是否解决建表问题未检验，旧预算耗尽，后继须先验证该配置的虚构密码认证。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
