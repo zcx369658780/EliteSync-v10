@@ -47,6 +47,8 @@ AUTH-36 本机 Docker Desktop 一次启动与复核的可达目标获 Work LEVEL
 
 AUTH-37 冻结虚构认证探针的新一次运行获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。作者报告本机固定隔离声明通过，约 20/40/60 秒三个 `SELECT 1` 均失败且安全码均为 `1045`，按本次 ID 清理 PASS。Work 核对冻结脚本哈希、唯一候选和回执，未复跑容器；这不能判定密码、客户端选项或镜像初始化等具体原因，也不能证明虚构 dump/restore 或真实备份可恢复。旧预算耗尽，AUTH-38 已下达一个新容器的只读认证方式诊断。
 
+AUTH-38 本机虚构 root 认证方式对比获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS/summary.md`。作者报告两种带同一虚构密码的连接均返回 `1045`，不传密码的本机 socket `SELECT 1` 成功，容器按本次 ID 清理 PASS。Work 静态审查候选并核对回执，未复跑；这不确定镜像具体认证机制，不适用于真实数据库，也不证明虚构或真实备份可恢复。旧预算耗尽，下一步可在新任务的隔离虚构容器中测试小样本 dump/restore。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

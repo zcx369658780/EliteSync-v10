@@ -4,9 +4,11 @@ Task ID: `AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（本机隔离虚构 MariaDB root 只读认证方式诊断；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC AUTH MODE FACT ONLY`
 
 Assignee: `Codex`。只交付一次受限虚构容器候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：本机虚构容器中两种带虚构密码的 `SELECT 1` 均返回安全码 `1045`，不传密码的本机 socket 方式 PASS，作者报告按 ID 清理 PASS；作为受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS/summary.md`。具体认证配置原因、虚构 dump/restore 与真实数据库恢复能力未证明。本次运行预算已耗尽，后继须另立任务。
 
 ## Authority and objective
 
