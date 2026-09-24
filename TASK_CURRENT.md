@@ -4,9 +4,11 @@ Task ID: `AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY`
 
 Risk Level: `LEVEL 2`（Docker Engine 恢复后，冻结虚构认证探针的一次运行；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — BOUNDED DIAGNOSTIC FACT ONLY`
 
 Assignee: `Codex`。只交付一次受限虚构探针回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：冻结脚本在新预算下的一次运行报告 20/40/60 秒认证均失败且安全码为 `1045`，容器精确清理 PASS；作为受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-37-LOCAL-SYNTHETIC-AUTH-READINESS-REPLAY/summary.md`。具体认证拒绝原因、dump/restore 与真实备份恢复均未建立。一次运行预算耗尽，后继须另立任务。
 
 ## Authority and objective
 
