@@ -1,29 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-30-LOCAL-SYNTHETIC-RESTORE-PROOF`
+Task ID: `AUTH-31-LOCAL-DOCKER-ISOLATION-MISMATCH-DIAGNOSIS`
 
-Risk Level: `LEVEL 2`（本机容器隔离与虚构 MariaDB dump/restore 测试；Work 独立审查）
+Risk Level: `LEVEL 2`（AUTH-30 隔离声明失败的虚构容器定点诊断；Work 独立审查）
 
-Status: `WORK LEVEL 2 REJECTED — BOUNDED FAILURE RECEIPT ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付虚构数据候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+Assignee: `Codex`。只交付定点诊断候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-Owner 已决定完整数据库备份加密保存到自己的电脑/本地磁盘，恢复演练优先在本机独立环境，先核验安全隔离与恢复能力。AUTH-29 仅确认本机 daemon 当次可达、`mariadb:10.11` 标签存在。本任务只用**完全虚构的数据库、表与少量固定行**验证在单个本机临时容器内可 dump、导入到另一个虚构 schema 并核对内容，同时验证容器声明的无网络、无宿主挂载/端口。它不接触阿里云、项目真实 DB、真实账号或任何现有备份；成功也不证明生产库可恢复。
+AUTH-30 的一次虚构恢复演练在 `ISOLATION_DECLARATION_MISMATCH` 停下，未运行数据库步骤；作者报告本任务容器已精确清理，原始 inspect 未保存。旧运行预算已耗尽。本任务是**新的只检查 Docker 隔离声明字段的诊断**，不重跑 AUTH-30、不开数据库、不做 dump/restore。目的是确定哪一类固定谓词不符，避免盲目放宽隔离要求。
 
-## Exact local execution scope
+## Exact local scope
 
-- 只使用本机当前 Docker context；执行前只读确认端点仍为本机、daemon 可达、固定本地镜像标签存在。任一不符即停，不启动 Docker Desktop、不换 context、不拉取镜像。
-- 唯一允许创建的容器名：`elitesync-auth30-synthetic-restore`。先确认该名称不存在；若已存在即停，不覆盖或删除既有容器。启动**最多一次**，镜像固定 `mariadb:10.11`，`--pull never`、`--network none`、不发布端口、不挂载宿主目录或命名卷。数据目录、运行目录和临时目录仅用容器内 tmpfs；不得把容器数据导出到宿主机。仅用虚构凭据，避免与任何真实密码相似或复用。
-- 仅在刚创建的容器内建立固定虚构 schema/table/少量行，执行一次 dump，导入第二个虚构 schema，核对行数及固定内容校验。检查 Docker HostConfig 的网络模式为 `none`、无 bind mounts、无 published ports；检查失败即停止测试并清理本任务刚创建的容器。不得访问宿主文件、真实配置或网络。
-- 不论成功失败，在 `finally` 中仅对**本任务确实创建的同名容器**进行精确清理，最多一次；随后只读核对容器不存在。清理失败必须报告 `CLEANUP_FAILED`、停止，不对其他容器/镜像/卷做操作。不得使用 Docker 广泛 prune/clean/reset。所有执行步骤和清理均最多一次，不因失败重试。
-- 总运行等待上限 120 秒。只在证据中保存固定布尔/计数/校验状态、阶段和最早失败；不保存数据库 dump、容器日志、原始 stdout/stderr、镜像元数据、凭据或虚构行内容。任何超时、状态不符或输出不可安全解析即停。
+- 仅使用本机 Docker context；先只读确认端点本机、daemon 可达、固定 `mariadb:10.11` 本地镜像存在。任一失败即停。不拉取镜像、不启动 Docker Desktop、不换 context。
+- 唯一可创建容器名 `elitesync-auth31-isolation-probe`。先确认该名称不存在；已存在即停，不覆盖。最多一次启动 `mariadb:10.11` 的固定 `sleep` 进程，`--pull never`、`--network none`、无端口、无宿主 bind/volume，沿用 AUTH-30 的三个 tmpfs 目标，但**不执行 MariaDB entrypoint**、不传任何密码、SQL 或真实数据。不挂载项目/用户目录。启动/检查/清理总等待上限 90 秒。
+- 对本次容器 `docker inspect` 最多 1 次，仅提取并记录固定白名单：ID 与名称匹配、NetworkMode=`none`、PortBindings 为空、Binds 为空、HostConfig.Tmpfs 目标三项匹配、Mounts 数量及各类型是否均为 tmpfs；每项 `true`/`false`/`UNKNOWN`，数量只记非负整数或 `UNKNOWN`。不得保存原始 inspect、端点、镜像元数据、路径或容器日志。若任一必需安全字段（网络、端口、Binds、tmpfs 目标）为 false/UNKNOWN，立即停止，不进入任何功能测试。
+- 无论成功失败，仅对**本任务确实创建的同名容器**精确删除最多一次，并只读核对不存在；清理失败报告 `CLEANUP_FAILED`，不操作其他容器、镜像或卷，不用 prune/clean/reset。不可辨认所有权时不删除，报告 `CLEANUP_UNRESOLVED`。
 
-## Allowed candidate and verification
+## Allowed candidate and stop
 
-只允许新增 `EVIDENCE/AUTH-30-LOCAL-SYNTHETIC-RESTORE-PROOF/run.ps1` 与同目录 `summary.md`。脚本必须固定容器名、镜像、虚构数据和输出白名单，具有失败即停与精确清理；先静态检查脚本，再执行最多 1 次。回执写清预检、启动、隔离声明检查、虚构 dump/restore、校验、清理每阶段的 PASS/FAIL/NOT_CHECKED，明确测试限制。若脚本不能安全满足所有边界，不运行而交付原因，不为通过测试扩大权限。
+只允许新增 `EVIDENCE/AUTH-31-LOCAL-DOCKER-ISOLATION-MISMATCH-DIAGNOSIS/run.ps1` 与同目录 `summary.md`。脚本须输出固定字段、阶段、最早失败、清理结果与调用次数；先静态解析检查，再执行最多 1 次，不重试。回执说明是否能定位 AUTH-30 原失败；即使本次谓词全通过，也不能反证 AUTH-30 当次环境或证明恢复能力。若可能只是 AUTH-30 对 Docker inspect `Mounts` 的假设过严，应依据本次字段如实归类，不直接改旧证据或重新运行恢复。
 
-启动前读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-27/28/29 接受记录；核对 `main`、HEAD、工作区。派发前已接受基线 `84e709575f2c4bf9d82a2e46af480fd784be1af5`；当前 HEAD 应为仅下达本任务的检查点，父提交须为基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。不符即停。
+启动前读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-29/30 记录；核对 `main`、HEAD、工作区。派发前接受/失败检查点为 `e1bc29e20840c095017dd5d0c11e954edb3bf896`；当前 HEAD 应为仅下达本任务的检查点，父提交须为该基线。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。不符即停。
 
-`git diff --check` 最多 1 次，对新文件另作只读尾随空白检查；无需 Flutter/Laravel 产品测试或构建。不得访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实数据库、备份目录、凭据、密钥、账号/Token/消息/媒体或业务数据行。不安装软件、不拉取镜像、不修改项目源码、不提交、不制作 bundle、不推送、不自接受或派发后继。实际本地加密备份与真实恢复仍须独立 Owner 高风险门。
+`git diff --check` 最多 1 次，新文件另作只读尾随空白检查。不访问旧 `D:\EliteSync`、浏览器、SSH、云 API、真实数据库、备份目录、凭据、密钥或业务数据。不运行 DB、dump/restore、不备份/传输/改库，不下载或安装软件。Codex 不修改控制文件、不提交、不制作 bundle、不推送、不自接受或派发后继。
