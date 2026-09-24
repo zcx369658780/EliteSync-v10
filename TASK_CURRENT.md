@@ -4,7 +4,7 @@ Task ID: `AUTH-32-DOCKER-MOUNTS-PARSER-STATIC-REPAIR`
 
 Risk Level: `LEVEL 2`（隔离声明解析逻辑的纯本地修正与负向测试；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付纯本地候选与测试回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

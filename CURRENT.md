@@ -35,6 +35,8 @@ AUTH-30 本地虚构恢复证明目标被 Work LEVEL 2 **REJECT**，仅接受失
 
 AUTH-31 Docker 隔离字段定点诊断目标被 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-31-LOCAL-DOCKER-ISOLATION-MISMATCH-DIAGNOSIS/summary.md`。当次本机虚构 `sleep` 容器的 ID/名称、`NetworkMode=none`、空端口、空 Binds 和三个 tmpfs 目标报告为真；`Mounts` 数量/类型因脚本解析失败仍 `UNKNOWN`。Work 独立复核 PowerShell 严格模式空数组赋值可导致 `.Count` 错误；不证明原始 inspect 内容或完整隔离。作者报告精确清理 PASS；旧任务运行预算已耗尽。
 
+AUTH-32 `Mounts` 纯解析器与 14 项虚构负向/正向测试获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-32-DOCKER-MOUNTS-PARSER-STATIC-REPAIR/summary.md`。它修复 null/空数组 `.Count` 路径并拒绝 bind、volume、额外/重复目标与畸形输入；未调用 Docker 或证明原容器实际 `Mounts`、完整隔离或恢复能力。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
