@@ -4,9 +4,9 @@ Task ID: `AUTH-05-DEPLOYED-V2-ROUTE-GAP-IMPACT`
 
 Risk Level: `LEVEL 2`（部署源码与本地路由差异的消费端影响；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — LOCAL STATIC IMPACT ONLY; OWNER GATE FOR SERVER RUNTIME CHECK`
 
-Assignee: `Codex`。交付纯本地静态影响清单，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。纯本地静态影响清单已交付并获 Work 独立接受；见 `EVIDENCE/AUTH-05-DEPLOYED-V2-ROUTE-GAP-IMPACT/summary.md`。当前无活动 Codex 执行单；服务器运行路由核验需 Owner 对新的精确范围另行授权。
 
 ## Authority and objective
 
