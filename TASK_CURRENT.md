@@ -4,9 +4,11 @@ Task ID: `AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE`
 
 Risk Level: `LEVEL 2`（扩大 tmpfs 的本机虚构容器密码认证与空间只读探针；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC PASSWORD AUTH FACT ONLY`
 
 Assignee: `Codex`。只交付一次虚构容器只读认证候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：512 MiB 数据 tmpfs 的本机虚构容器报告可用 `372552 KiB`，虚构密码环境变量与初始化值匹配，首次 `SELECT 1` PASS，容器按 ID 清理 PASS；作为受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/summary.md`。未写 SQL 或运行 dump/restore，旧预算耗尽，后继须新任务。
 
 ## Authority and objective
 

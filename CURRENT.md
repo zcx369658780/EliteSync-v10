@@ -57,6 +57,8 @@ AUTH-41 资源与错误投影的完整目标获 Work LEVEL 2 **REJECT**，仅接
 
 AUTH-42 扩大 tmpfs 后的虚构恢复目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-42-LOCAL-SYNTHETIC-EXPANDED-TMPFS-RESTORE/summary.md`。作者报告预检与固定隔离声明通过，但 45 秒后无密码 socket `SELECT 1` 返回 `1045`，按本次 ID 清理 PASS；空间门、源表、dump/restore 均未运行。Work 静态审查并核对回执，未复跑；与 AUTH-38 的 128 MiB 容器观察不同，认证机制仍未知。扩大空间是否解决建表问题未检验，旧预算耗尽。AUTH-43 已下达该配置的虚构密码认证与空间只读探针。
 
+AUTH-43 扩大 tmpfs 的虚构密码认证探针获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/summary.md`。作者报告本次容器虚构初始化密码与环境变量匹配、数据 tmpfs 可用 372552 KiB，`MYSQL_PWD` 方式的首次 `SELECT 1` 成功，按本次 ID 清理 PASS；显式密码对照未运行。Work 静态审查并核对回执，未复跑；它不证明 AUTH-42 失败原因、建表或恢复能力。旧预算耗尽，后继需新任务验证同容器小样本恢复。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
