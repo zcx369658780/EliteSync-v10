@@ -4,7 +4,7 @@ Task ID: `AUTH-31-LOCAL-DOCKER-ISOLATION-MISMATCH-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（AUTH-30 隔离声明失败的虚构容器定点诊断；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — PARTIAL FACT RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付定点诊断候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

@@ -33,6 +33,8 @@ AUTH-29 本机固定 `mariadb:10.11` 镜像标签只读核验获 Work LEVEL 2 AC
 
 AUTH-30 本地虚构恢复证明目标被 Work LEVEL 2 **REJECT**，仅接受失败与清理的受限事实回执，见 `EVIDENCE/AUTH-30-LOCAL-SYNTHETIC-RESTORE-PROOF/summary.md`。一次容器启动后隔离声明检查返回 `ISOLATION_DECLARATION_MISMATCH`，数据库建表、dump 和 restore 均未执行；作者报告按 ID 清理并核对容器不存在。原始 inspect 未保存，具体不符项 `UNKNOWN`。旧一次运行预算已用尽，不能据此宣称本机隔离或恢复可用；下一步需另立只读/虚构定位任务。
 
+AUTH-31 Docker 隔离字段定点诊断目标被 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-31-LOCAL-DOCKER-ISOLATION-MISMATCH-DIAGNOSIS/summary.md`。当次本机虚构 `sleep` 容器的 ID/名称、`NetworkMode=none`、空端口、空 Binds 和三个 tmpfs 目标报告为真；`Mounts` 数量/类型因脚本解析失败仍 `UNKNOWN`。Work 独立复核 PowerShell 严格模式空数组赋值可导致 `.Count` 错误；不证明原始 inspect 内容或完整隔离。作者报告精确清理 PASS；旧任务运行预算已耗尽。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
