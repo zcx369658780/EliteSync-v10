@@ -4,9 +4,9 @@ Task ID: `AUTH-09-SYNTHETIC-LOGIN-ANCHOR-TRANSITION`
 
 Risk Level: `LEVEL 2`（认证计时锚的隔离纯判定；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPT — SYNTHETIC CANDIDATE ONLY`
 
-Assignee: `Codex`。交付一份隔离的 synthetic/dev-test 候选及定向测试，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。隔离 synthetic/dev-test 候选及定向测试已获 Work 独立接受；见 `EVIDENCE/AUTH-09-SYNTHETIC-LOGIN-ANCHOR-TRANSITION/summary.md`。当前无活动 Codex 执行单；真实来源、持久化与客户端接线未建立。
 
 ## Authority and objective
 
