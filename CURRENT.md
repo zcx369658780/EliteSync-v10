@@ -31,6 +31,8 @@ AUTH-28 一次本机已安装 Docker Desktop 启动与 daemon 复核获 Work LEV
 
 AUTH-29 本机固定 `mariadb:10.11` 镜像标签只读核验获 Work LEVEL 2 ACCEPT：当次本机 context 与 daemon 可用，固定标签存在。见 `EVIDENCE/AUTH-29-LOCAL-MARIADB-IMAGE-READ/summary.md`。未运行容器；镜像实际内容、网络隔离、合成恢复和真实数据兼容仍未证明。
 
+AUTH-30 本地虚构恢复证明目标被 Work LEVEL 2 **REJECT**，仅接受失败与清理的受限事实回执，见 `EVIDENCE/AUTH-30-LOCAL-SYNTHETIC-RESTORE-PROOF/summary.md`。一次容器启动后隔离声明检查返回 `ISOLATION_DECLARATION_MISMATCH`，数据库建表、dump 和 restore 均未执行；作者报告按 ID 清理并核对容器不存在。原始 inspect 未保存，具体不符项 `UNKNOWN`。旧一次运行预算已用尽，不能据此宣称本机隔离或恢复可用；下一步需另立只读/虚构定位任务。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

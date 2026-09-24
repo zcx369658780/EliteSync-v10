@@ -4,7 +4,7 @@ Task ID: `AUTH-30-LOCAL-SYNTHETIC-RESTORE-PROOF`
 
 Risk Level: `LEVEL 2`（本机容器隔离与虚构 MariaDB dump/restore 测试；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — BOUNDED FAILURE RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付虚构数据候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
