@@ -4,9 +4,11 @@ Task ID: `AUTH-41-LOCAL-SYNTHETIC-TABLE-RESOURCE-PROBE`
 
 Risk Level: `LEVEL 2`（本机隔离虚构建表失败的资源与安全错误投影；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — ZERO-FREE-SPACE FACT RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付一次虚构容器的固定诊断与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：作者一次运行报告建表前虚构容器 `/var/lib/mysql` tmpfs `size=131072`、`used=131072`、`available=0` KiB，建表失败，后续错误类别和 State 投影未完成；AUTH-41 完整诊断目标 LEVEL 2 REJECT，仅接受受限数值与清理回执，见 `EVIDENCE/AUTH-41-LOCAL-SYNTHETIC-TABLE-RESOURCE-PROBE/summary.md`。不能断言空间是唯一根因；一次运行预算耗尽，后继须新任务。
 
 ## Authority and objective
 
