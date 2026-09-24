@@ -4,7 +4,7 @@ Task ID: `AUTH-24-ALIYUN-BACKUP-RESOURCE-CHOICE-PACKET`
 
 Risk Level: `LEVEL 2`（备份资源与费用决策准备；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付 docs-only 候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

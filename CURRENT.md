@@ -15,6 +15,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 AUTH-22 阿里云备份准备决策包已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-22-ALIYUN-BACKUP-READINESS-DECISION-PACKET/packet.md`。Owner 已定阿里云内加密保留 30 天，并选择优先核验私有 OSS 与受管密钥的可用性；恢复演练按阿里云内独立隔离目标设计，演练副本恢复后清理，完整备份自完成日起保留 30 天并核对清理回执。AUTH-23 一次只读主机命令存在性回执已获 Work LEVEL 2 ACCEPT：当前 shell 中 `ossutil`、`aliyun` 未解析到，`openssl` 可解析；未核验实际 OSS/KMS 资源。真实备份与恢复尚未执行。
 
+AUTH-24 阿里云备份资源与费用选择包已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-24-ALIYUN-BACKUP-RESOURCE-CHOICE-PACKET/packet.md`。当次控制台观察：上海轻量应用服务器公网 IP 与授权目标一致；该账号 OSS 页面提示尚未开通且开通后默认按量付费；上海 KMS 软件实例列表无记录、用户主密钥 0；ECS 上海列表未见实例；RDS 列表未完成加载，保持 `UNKNOWN`。这只是指定页面和时点的 UI 事实，不证明全局资源、权限、真实 DB 目标、报价或备份/恢复能力。下步可只读核验优先路线的资源开通条件、权限要求与官方计费项；实际开通、创建和费用由 Owner 决定。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
