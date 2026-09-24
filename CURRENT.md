@@ -51,7 +51,7 @@ AUTH-38 本机虚构 root 认证方式对比获 Work LEVEL 2 **ACCEPT（仅受�
 
 AUTH-39 同容器虚构 dump/restore 目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-39-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告本机隔离声明和无密码 socket `SELECT 1` 通过，虚构源 schema 创建后，建表命令失败；插入、dump、导入、内容核验均未运行，按本次 ID 清理 PASS。Work 静态审查候选和回执，未复跑；建表具体失败原因未知，真实备份恢复能力仍未建立。旧预算耗尽，AUTH-40 已下达固定建表安全码与单变量诊断任务。
 
-AUTH-40 建表定点诊断目标获 Work LEVEL 2 **REJECT**，仅接受受限事实回执，见 `EVIDENCE/AUTH-40-LOCAL-SYNTHETIC-TABLE-FAILURE-DIAGNOSIS/summary.md`。作者报告预检、隔离声明、无密码 socket 和虚构源 schema 创建通过，原建表再次失败；安全码 `UNRECOGNIZED/UNKNOWN`，所以字段名对照未执行，按本次 ID 清理 PASS。Work 未重跑；现有证据不能判定语法、空间、权限或连接原因，旧预算耗尽。下一步需新任务观察安全资源投影与固定错误类别。
+AUTH-40 建表定点诊断目标获 Work LEVEL 2 **REJECT**，仅接受受限事实回执，见 `EVIDENCE/AUTH-40-LOCAL-SYNTHETIC-TABLE-FAILURE-DIAGNOSIS/summary.md`。作者报告预检、隔离声明、无密码 socket 和虚构源 schema 创建通过，原建表再次失败；安全码 `UNRECOGNIZED/UNKNOWN`，所以字段名对照未执行，按本次 ID 清理 PASS。Work 未重跑；现有证据不能判定语法、空间、权限或连接原因，旧预算耗尽。AUTH-41 已下达本机虚构 tmpfs 整数投影与固定错误类别诊断。
 
 ## Product scope
 
