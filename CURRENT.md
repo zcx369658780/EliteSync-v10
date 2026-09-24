@@ -67,7 +67,7 @@ AUTH-45 分离容器的三行虚构恢复回执已获 Work LEVEL 2 **ACCEPT（�
 
 AUTH-47 本机虚构 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**，仅接受虚构证书生成失败及固定临时目录清理的受限事实回执，见 `EVIDENCE/AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT/summary.md`。一次运行中证书命令退出 1，CMS 加密/解密/篡改均未执行；原始错误未保存，原因 UNKNOWN。Work 未重跑，另只读确认临时目录不存在且 C 盘备份目录仍为空。旧预算耗尽；不据此判断 CMS GCM 是否可用或开始真实备份。
 
-AUTH-48 已下达新的虚构 OpenSSL 显式配置探针：Work 只读发现默认配置目录下未见 `openssl.cnf`，固定 Conda 配置文件存在且已核对 SHA-256；这只是 AUTH-47 失败线索。Codex 最多一次使用显式配置生成虚构证书，成功后才测试 CMS GCM，交付后由 Work LEVEL 2 独立验收。未运行真实密钥或备份。
+AUTH-48 虚构显式配置 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**，见 `EVIDENCE/AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE/summary.md`。一次运行中证书及正常 CMS AES-256-GCM 解密 PASS；篡改解密退出 4，但仍留下与固定输入相同的输出文件，未满足拒绝判据。Work 静态审查并只读确认固定临时目录不存在、备份目录仍为空，未重跑。不能在认证成功前消费解密输出；旧预算耗尽。没有真实密钥、密码输入或备份。
 
 ## Product scope
 

@@ -4,9 +4,11 @@ Task ID: `AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE`
 
 Risk Level: `LEVEL 2`（虚构证书显式配置与 CMS GCM 本机预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — TAMPER OUTPUT NOT QUARANTINED`
 
 Assignee: `Codex`。只交付一次虚构探针候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：显式配置的虚构证书与正常 CMS AES-256-GCM 解密 PASS；篡改解密退出 4 却仍留下与固定输入相同的输出，完整篡改拒绝目标 LEVEL 2 REJECT，见 `EVIDENCE/AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE/summary.md`。旧预算耗尽，真实恢复不得在认证成功前消费解密输出。
 
 ## Authority and objective
 
