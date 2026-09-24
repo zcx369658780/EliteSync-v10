@@ -4,9 +4,11 @@ Task ID: `AUTH-50-LOCAL-SYNTHETIC-AUTHENTICATED-CONSUMER-GATE`
 
 Risk Level: `LEVEL 2`（虚构 CMS 认证失败明文隔离与消费者零字节验证；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC CONSUMER GATE ONLY`
 
 Assignee: `Codex`。只交付一次本机虚构探针候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：固定虚构字节的正常解密只在退出 0 后交给内存消费者，篡改解密退出 4 时消费者保持 0 次/0 字节，受限目标 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-50-LOCAL-SYNTHETIC-AUTHENTICATED-CONSUMER-GATE/summary.md`。未证明服务器 CMS 兼容、真实备份规模或真实恢复。
 
 ## Authority and objective
 
