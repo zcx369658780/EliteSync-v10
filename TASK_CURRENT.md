@@ -4,7 +4,7 @@ Task ID: `AUTH-27-LOCAL-DOCKER-ISOLATION-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（本地隔离恢复运行端点的受限只读事实；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。只交付受限只读事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

@@ -25,6 +25,8 @@ AUTH-25 本地加密备份实施前方案已获 Work LEVEL 2 ACCEPT，见 `EVIDE
 
 AUTH-26 本机恢复环境五项固定只读查询获 Work LEVEL 2 ACCEPT：PowerShell 能解析 Docker、WSL，未解析 Podman；当次 `C_free_bytes=653779619840`、`D_free_bytes=1267261124608`。见 `EVIDENCE/AUTH-26-LOCAL-RESTORE-HOST-READINESS/summary.md`。这是作者受限事实回执，Work 未重查原始对象；命令存在与空间数字不证明容器可用、隔离成立、已选备份目录或可以恢复。真实数据仍未触碰。
 
+AUTH-27 本机 Docker 只读预检获 Work LEVEL 2 ACCEPT：当前上下文归类为本机命名管道，daemon 当次不可达；按依赖门未检查 `mariadb:10.11` 本地镜像。见 `EVIDENCE/AUTH-27-LOCAL-DOCKER-ISOLATION-PREFLIGHT/summary.md`。未启动 Docker、运行容器、拉取镜像或恢复数据；隔离能力仍未建立。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
