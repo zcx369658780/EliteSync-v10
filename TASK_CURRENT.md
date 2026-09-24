@@ -4,7 +4,7 @@ Task ID: `AUTH-23-ALIYUN-BACKUP-HOST-CLIENT-READ`
 
 Risk Level: `LEVEL 2`（阿里云服务器一次只读工具存在性观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付受限事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
