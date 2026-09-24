@@ -59,7 +59,7 @@ AUTH-42 扩大 tmpfs 后的虚构恢复目标获 Work LEVEL 2 **REJECT**，仅�
 
 AUTH-43 扩大 tmpfs 的虚构密码认证探针获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-43-LOCAL-EXPANDED-TMPFS-AUTH-PROBE/summary.md`。作者报告本次容器虚构初始化密码与环境变量匹配、数据 tmpfs 可用 372552 KiB，`MYSQL_PWD` 方式的首次 `SELECT 1` 成功，按本次 ID 清理 PASS；显式密码对照未运行。Work 静态审查并核对回执，未复跑；它不证明 AUTH-42 失败原因、建表或恢复能力。旧预算耗尽，后继需新任务验证同容器小样本恢复。
 
-AUTH-44 已下达：在 Docker daemon 可达后，用新建的无网络、无宿主挂载虚构容器尝试三行样本的同容器导出和恢复；只允许一次运行，交付后由 Work LEVEL 2 独立验收。旧容器和项目服务不需启动；尚无 AUTH-44 执行结果。
+AUTH-44 本机三行虚构样本的同容器导出、导入与固定内容一致回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告固定隔离、空间、认证、写入、dump、导入、内容核对与按 ID 清理均 PASS；Work 静态审查并只读核对容器名不存在，未复跑一次性脚本。没有独立环境恢复或真实备份证明；旧预算耗尽，后继须新任务。
 
 ## Product scope
 

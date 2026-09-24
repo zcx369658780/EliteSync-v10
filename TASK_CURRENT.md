@@ -4,9 +4,11 @@ Task ID: `AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE`
 
 Risk Level: `LEVEL 2`（本机隔离虚构数据库写入与同容器恢复；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC SAME-CONTAINER RESTORE FACT ONLY`
 
 Assignee: `Codex`。只交付候选与一次运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：三行虚构样本在新建隔离容器的源 schema 经容器 `/tmp` tmpfs 内 dump 导入目标 schema，并报告固定内容一致、按 ID 清理 PASS；仅此受限观察获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。未证明独立环境恢复或真实备份可恢复，旧一次预算耗尽。
 
 ## Authority and objective
 
