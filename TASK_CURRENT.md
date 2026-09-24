@@ -1,30 +1,26 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE`
+Task ID: `AUTH-49-AUTHENTICATED-LOCAL-BACKUP-RESTORE-CONTRACT`
 
-Risk Level: `LEVEL 2`（虚构证书显式配置与 CMS GCM 本机预检；Work 独立审查）
+Risk Level: `LEVEL 2`（真实数据备份前的加密、认证解密与隔离恢复安全合同；Work 独立审查）
 
-Status: `WORK LEVEL 2 REJECTED — TAMPER OUTPUT NOT QUARANTINED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付一次虚构探针候选与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：显式配置的虚构证书与正常 CMS AES-256-GCM 解密 PASS；篡改解密退出 4 却仍留下与固定输入相同的输出，完整篡改拒绝目标 LEVEL 2 REJECT，见 `EVIDENCE/AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE/summary.md`。旧预算耗尽，真实恢复不得在认证成功前消费解密输出。
+Assignee: `Codex`。只交付 docs-only 合同候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-47 在一次性虚构证书生成时退出 1，原始错误未留存，CMS 未运行；旧预算耗尽。Work 后续只读观察到本机 OpenSSL 3.5.6 报告默认配置目录 `C:\Program Files\Common Files\ssl`，该目录下未见 `openssl.cnf`；固定已安装配置文件 `C:\Users\zcxve\miniconda3\Library\ssl\openssl.cnf` 存在，SHA-256 为 `A65A2CB9F4EE8FFDC7EF4F0AC600C0BDAFB95B7B1AB457188AC610A62F5AD6B3`。这只是线索，不证明 AUTH-47 原因。本任务新授权一个虚构临时目录，在唯一证书生成调用中显式指定该固定配置文件；若成功再测试 CMS AES-256-GCM 正常解密与篡改拒绝。不得修改 OpenSSL 全局配置或降级算法。
+Owner 已指定 C 盘专用空目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，实际需要密码时由 Owner 本人输入。AUTH-45 仅证明三行虚构样本跨容器内存恢复；AUTH-46 仅证明目录/ACL/空间的受限事实；AUTH-47 的证书生成失败；AUTH-48 显式配置后证书、CMS AES-256-GCM 正常加解密通过，但篡改解密退出 4 时仍留下与固定输入相同的输出。此任务只写一份可审查的**真实备份前合同**，明确密文、私钥、可信来源、认证失败输出隔离及逐项停点，不能把虚构结果升格为真实可恢复证明。
 
-## Exact execution boundary
+## Exact documentation scope
 
-- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-46～47 回执；核对 `D:\EliteSync-v10`、本地 `main`、HEAD、工作区。当前 HEAD 应为仅下达本任务的检查点，父提交精确为 `cbf16cd9d39b8e96c023607539555474dd70ce15`。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
-- 预检本机 `openssl` 可执行文件与版本 3.x；只读核对固定配置文件的路径、普通文件类型、非重解析点和上述 SHA-256。固定临时目录 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth48-synthetic-cms` 必须不存在，其父为当前用户本机 Temp、非重解析点；C 盘备份专用目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups` 仍为空。任一不符即停，不搜索替代配置或路径。
-- 只在固定临时目录内生成一次性**无密码虚构** RSA 3072 私钥、自签收件证书、固定 UTF-8 输入 `AUTH48-SYNTHETIC-ONLY`、CMS DER 密文、正常解密与篡改副本。证书命令最多 1 次，较 AUTH-47 唯一预先指定的改动是给 `openssl req` 加 `-config C:\Users\zcxve\miniconda3\Library\ssl\openssl.cnf`；其余核心参数保持 RSA 3072、`-x509 -newkey -nodes -keyout -out -days 1 -subj`。若失败即停，安全记录退出码与 `CONFIG/PROVIDER/PATH/OTHER/UNKNOWN` 唯一类别（无法唯一分类则 UNKNOWN）；原始 stdout/stderr 不保存、不显示，不做另一证书尝试。
-- 仅在证书 PASS 后，使用 `openssl cms -encrypt -binary -stream -outform DER -aes-256-gcm` 加密固定输入最多 1 次；配对私钥正常解密最多 1 次并严格比较固定字节；将密文副本的最后一个有效负载/认证字节翻转一次，篡改解密最多 1 次，要求非零退出且不得得到固定输入。任何失败即停，不换算法、工具、参数或重试；不能把证书 PASS 当作 CMS PASS。
-- 输出只留固定阶段 `PASS/FAIL/NOT_CHECKED`、调用次数、OpenSSL 版本、固定配置哈希匹配布尔、密文长度整数、正常明文匹配和篡改拒绝布尔、安全退出码、首个失败及清理结果；不得保存/显示证书、私钥、密文、原文、原始 stdout/stderr、环境变量原文或敏感路径内容。总运行含清理不超过 120 秒。
-- 结束时只对本次创建且规范化绝对路径仍严格等于上述固定临时目录、并经核对位于固定非重解析 Temp 父目录下的目录执行一次精确递归清理，再核对不存在；归属或路径不明则不删并报 `CLEANUP_UNRESOLVED`。不得清理其他目录，C 盘备份专用目录不写入。
+- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 AUTH-20、AUTH-25、AUTH-45～48 回执；核对 `D:\EliteSync-v10`、本地 `main`、HEAD、工作区。当前 HEAD 应为仅下达本任务的检查点，父提交精确为 `aeca4caa7dd5af7357a933c55b09998c26f67e94`。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。
+- 合同必须分开：①真实阿里云 DB 的实例/CLI 与 Web worker 同库、完整数据范围、表类型/一致性、真实 dump 体量的**只读核验**；②服务器侧 OpenSSL/CMS GCM 兼容与公共证书来源核验；③Owner 本机密码保护的私钥生成及失钥恢复安排；④服务器在网络传输前加密完整 dump、SSH 认证传输、仅在 C 盘批准目录落密文；⑤密文长度、格式/完整性、完成时点及 30 天保留/清理责任；⑥本机隔离恢复及副本清理。每项标记已有证据、UNKNOWN、未来任务与失败停点，不以历史估算替代实测。
+- **认证解密硬门**：不得将 `openssl cms -decrypt` 的 stdout 或 `-out` 文件直接接到数据库、持久盘或任何可消费目标。AUTH-48 已报告认证失败仍产生原文相同的输出。未来恢复须将明文限制在有上限的宿主进程内存或等价隔离暂存；严格等到解密进程退出 0、认证成功且密文固定身份/长度与内容校验通过后，才可送往独立隔离容器。任何非零/超时/超限立即丢弃暂存且目标容器不得消费；若无法证明上限及失败清除，保持停点。不声称 OpenSSL 会自行抑制失败时的明文输出。
+- 合同必须写明备份目录不得放私钥、明文、临时 dump、日志或普通证据；真实私钥必须加密，密码只由 Owner 交互输入，不在聊天、命令参数、脚本、环境变量、Git、Git bundle 或证据中出现。私钥另处存放及丢失时恢复路径仍需 Owner 最终确认，不得自行创建真实私钥或选择不可恢复安排。
+- 明确目前 OneDrive/其他自动同步边界、BitLocker 状态、服务器端 CMS 兼容、真实 DB 身份与完整范围均未通过；它们分别需要后续有界只读任务。若有未知导致内容可能上传至阿里云以外的地方，真实备份不得开始。完整数据库备份、管理员测试账号可证明子集导出、虚构恢复是不同对象，不互相授权。
+- 给出最短有界后继顺序：本机同步边界及服务器/DB 只读核验 → 密码/私钥及恢复安排由 Owner 确认 → 独立虚构端到端加密与失败暂存演练 → 真实加密备份单次任务 → 密文和密码解密校验 → 本机隔离真实恢复与脱敏核对 → 获批后才可能真实改库；不得在本任务直接生成操作命令执行真实动作。
 
 ## Candidate, verification and stop
 
-只允许新增 `EVIDENCE/AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE/run.ps1` 与同目录 `summary.md`；不得修改旧脚本、旧证据、控制文件或源码。先 PowerShell 静态解析和路径/清理边界检查，再最多执行 **1 次**；失败不得修改后重跑或手工补步骤。`git diff --check` 最多 1 次，新文件另做只读尾随空白检查。Codex 不提交、制作 bundle、推送、自接受或派发后继。
-
-不得访问旧 `D:\EliteSync`、SSH、浏览器、云 API、真实 DB、备份文件、真实凭据/密钥或业务数据；不安装软件、不生成真实备份密钥、不要求 Owner 密码、不做真实备份、传输、恢复或改库。虚构 PASS 也只证明本机当前 OpenSSL 形式可用，不证明服务器兼容、密码输入流程或真实数据可恢复。
+只允许新增 `EVIDENCE/AUTH-49-AUTHENTICATED-LOCAL-BACKUP-RESTORE-CONTRACT/contract.md`；不得修改控制文件、源码或此前证据。只读读取指定文档与 `git` 状态，不访问浏览器、SSH、云 API、真实 DB、真实备份目录内容、密码/密钥、账号/Token/消息/媒体或业务数据。`git diff --check` 最多 1 次，新文档另做只读尾随空白检查。Codex 不提交、制作 bundle、推送、自接受或派发后继。无脚本运行、真实备份、解密、恢复、删除、改库或发布。

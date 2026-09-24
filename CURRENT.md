@@ -69,6 +69,8 @@ AUTH-47 本机虚构 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**，仅�
 
 AUTH-48 虚构显式配置 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**，见 `EVIDENCE/AUTH-48-LOCAL-EXPLICIT-CONFIG-CMS-PROBE/summary.md`。一次运行中证书及正常 CMS AES-256-GCM 解密 PASS；篡改解密退出 4，但仍留下与固定输入相同的输出文件，未满足拒绝判据。Work 静态审查并只读确认固定临时目录不存在、备份目录仍为空，未重跑。不能在认证成功前消费解密输出；旧预算耗尽。没有真实密钥、密码输入或备份。
 
+AUTH-49 已下达 docs-only 的认证解密与本地备份恢复合同：细化 AUTH-48 暴露的失败输出隔离、Owner 密码/私钥及服务器/真实 DB/同步边界的后续门，交付后由 Work LEVEL 2 独立审查。尚无执行结果，不授权真实数据动作。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
