@@ -4,7 +4,7 @@ Task ID: `AUTH-11-DEPLOYED-MIGRATION-STATUS-READONLY`
 
 Risk Level: `LEVEL 2`（目标服务器数据库元数据只读观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — FACTUAL STOP; MIGRATION STATUS UNKNOWN`
 
 Assignee: `Codex`。仅交付本任务的事实回执，停在 Work LEVEL 2 独立验收门。
 
