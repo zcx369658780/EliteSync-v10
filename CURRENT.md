@@ -61,6 +61,8 @@ AUTH-43 扩大 tmpfs 的虚构密码认证探针获 Work LEVEL 2 **ACCEPT（仅�
 
 AUTH-44 本机三行虚构样本的同容器导出、导入与固定内容一致回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-44-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告固定隔离、空间、认证、写入、dump、导入、内容核对与按 ID 清理均 PASS；Work 静态审查并只读核对容器名不存在，未复跑一次性脚本。没有独立环境恢复或真实备份证明；旧预算耗尽，后继须新任务。
 
+AUTH-45 已下达：只用新建的无网络、无宿主挂载虚构源/目标容器，先清理源再通过宿主进程内存向目标 stdin 导入固定三行，验证独立容器的虚构恢复；最多一次顺序演练，交付后由 Work LEVEL 2 独立验收。尚无执行结果。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
