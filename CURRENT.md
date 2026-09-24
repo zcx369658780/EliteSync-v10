@@ -17,6 +17,8 @@ AUTH-22 阿里云备份准备决策包已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE
 
 AUTH-24 阿里云备份资源与费用选择包已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-24-ALIYUN-BACKUP-RESOURCE-CHOICE-PACKET/packet.md`。当次控制台观察：上海轻量应用服务器公网 IP 与授权目标一致；该账号 OSS 页面提示尚未开通且开通后默认按量付费；上海 KMS 软件实例列表无记录、用户主密钥 0；ECS 上海列表未见实例；RDS 列表未完成加载，保持 `UNKNOWN`。这只是指定页面和时点的 UI 事实，不证明全局资源、权限、真实 DB 目标、报价或备份/恢复能力。下步可只读核验优先路线的资源开通条件、权限要求与官方计费项；实际开通、创建和费用由 Owner 决定。
 
+**Owner 后续改定（2026-09-24）**：因 OSS 为付费服务，完整数据库备份改为加密保存到 Owner 的电脑或本地磁盘，不采用尚未开通的 OSS 作为当前方案。此前“完整备份仅在阿里云内保存”及 OSS/KMS 优先路线被此决定取代；加密、自完成日起保留 30 天、真实改库前先备份并验证可恢复的要求继续有效。Owner 此次未改变阿里云内独立隔离恢复演练及演练副本清理方向，该部分可能另有费用，仍待具体方案与费用边界决定。没有执行备份、传输、恢复或删除；本地精确存放位置、密钥保管、传输方式、数据类别与恢复路径尚未确定。完整备份不得进入 Git、Git bundle、普通证据或任何第三方云服务。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
