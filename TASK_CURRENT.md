@@ -4,9 +4,11 @@ Task ID: `AUTH-49-AUTHENTICATED-LOCAL-BACKUP-RESTORE-CONTRACT`
 
 Risk Level: `LEVEL 2`（真实数据备份前的加密、认证解密与隔离恢复安全合同；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — DOCS-ONLY RESTORE SAFETY CONTRACT`
 
 Assignee: `Codex`。只交付 docs-only 合同候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：认证失败输出隔离、真实 DB/服务器/同步/私钥未知项及后继顺序作为 docs-only 合同获 LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-49-AUTHENTICATED-LOCAL-BACKUP-RESTORE-CONTRACT/contract.md`；未授权真实备份、解密、恢复或改库。
 
 ## Authority and objective
 
