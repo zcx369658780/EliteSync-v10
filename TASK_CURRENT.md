@@ -4,9 +4,11 @@ Task ID: `AUTH-03-DEPLOYED-ROUTE-READONLY-DIFF`
 
 Risk Level: `LEVEL 2`（真实服务器源码只读核对与登录入口解释；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECT — DIFF INCOMPLETE; ONE SSH BUDGET SPENT; OWNER NEXT-ATTEMPT GATE`
 
-Assignee: `Codex`。仅交付精确文件的差异事实候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`（已交付失败回执；Work 独立 REJECT 任务主要结果）。审查证据：`EVIDENCE/AUTH-03-DEPLOYED-ROUTE-READONLY-DIFF/summary.md`。
+
+Next gate: 远端哈希仍与 AUTH-02 一致，但本地逐行比较脚本失败，未得到具体路由差异；本任务一次 SSH 预算已耗尽。本地 Git 历史的四个不同路由 blob 均不匹配远端 SHA-256，不能替代远端文件。若仍需完成差异，先用本地模拟输入验证新的内存比较方法，再由 Owner 明确是否授权新任务的一次精确 SSH 读取。当前无活动 Codex 执行单。
 
 ## Objective and authority
 
