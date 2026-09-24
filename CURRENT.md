@@ -71,6 +71,8 @@ AUTH-48 虚构显式配置 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**�
 
 AUTH-49 认证解密与本地备份恢复 **docs-only 合同**已获 Work LEVEL 2 ACCEPT，见 `EVIDENCE/AUTH-49-AUTHENTICATED-LOCAL-BACKUP-RESTORE-CONTRACT/contract.md`。AUTH-48 暴露的失败输出必须先隔离，认证与密文校验成功前目标容器消费 0 字节；真实 DB 身份/范围、服务器 CMS 兼容、自动同步边界、Owner 私钥失钥恢复均保持 UNKNOWN。该合同不证明或授权真实备份、解密、恢复或改库。
 
+**Owner 后续决定（2026-09-24）**：真实密码保护私钥在本机与密文分开的目录保存，并在加密 U 盘留恢复副本；密码由 Owner 本人输入。Work 已建立空目录 `C:\Users\zcxve\EliteSync-v10-DB-Keys`，仅当前 Windows 用户、SYSTEM、Administrators 显式 FullControl，禁用继承；尚未生成私钥、证书或 U 盘副本。U 盘精确设备与副本校验须在真实密钥任务前确认。Owner 同时确认 `C:\Users\zcxve\EliteSync-v10-DB-Backups` 未被 OneDrive、Dropbox、Google Drive、iCloud 或其他云同步/备份包含；这是 Owner 的设备配置声明，尚无独立全局软件审计，执行真实备份前仍应核对目标路径未变化。AUTH-50 已下达只用虚构材料验证认证失败时消费者 0 字节的本机任务。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
