@@ -1,25 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-18-ALIYUN-DB-BACKUP-RESTORE-RUNBOOK-CANDIDATE`
+Task ID: `AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（未来真实数据库备份/恢复演练的实施前方案；Work 独立审查）
+Risk Level: `LEVEL 2`（未来备份目标与规模元数据探针的本地预检；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。仅交付 docs-only 候选，停在 Work LEVEL 2 独立验收门。
+Assignee: `Codex`。仅交付本地候选，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-AUTH-14/16 仅证明部署目录当次 CLI 迁移账本与固定结构投影；AUTH-17 仅证明主机 `mysqldump` 版本 `10.11.14`、候选 `/var/backups` 目录可写测试与当次约 27,151,868 KiB 可用。数据库实例身份、服务端实际版本、数据量/分类、工具兼容、备份完整性和隔离恢复目标仍 `UNKNOWN`。Owner 要求未来若修改阿里云后端数据库结构，必须先备份并校验可恢复；仅允许现有管理员创建的测试账号信息受控本地导出供恢复，不上传到阿里云以外其他地方。完整备份的实际存放与保留期限正等待 Owner 决定；本任务不得替 Owner 决定或执行。
+AUTH-18 docs-only 方案获 Work LEVEL 2 ACCEPT，第一步需要只读确认实际目标连接标识、服务端 MySQL/MariaDB 版本和数据规模；AUTH-14/16/17 仅有 CLI 迁移/固定结构、MySQL driver 和主机备份工具/空间的受限事实。Owner 对完整备份存放及保留期限尚未答复。本任务只准备**本地、离线测试的固定只读元数据探针**，不连接服务器或真实 DB、不读取任何账号行，不执行备份或恢复。
 
-先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-10/14/16/17 接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能和 AUTH-14/16/17/18 接受记录。只有本任务仍为 `ISSUED` 且派发匹配才执行。
 
-目标：在唯一文档中形成**可审批的有界后继任务链**，明确下一次只读核对所需的目标 DB 身份、服务端 MySQL/MariaDB 版本、估算数据量与账号/关联数据分类的脱敏输出；提出在阿里云内的受控完整备份、加密/权限/空间检查、完整性校验、隔离恢复演练、账号恢复路径、失败即停、清理/保留与最终 migration 审查顺序。说明 Laravel CLI 连接与 Web worker 同库仍未证明，`mysqldump` 存在或 `test -w` 通过不能直接授权备份。若没有获确认的保留期限、加密方式、隔离恢复目标或数据范围，列为明确前置门，不补造事实。完整备份不得默认导出本地；Owner 所说的管理员创建测试账号本地导出须先有可证明的创建者与必要关联范围，否则不导出。
+## Bounded candidate
 
-文档须给每一步一个可观测 PASS/FAIL 与停止条件，并将**备份、导出、恢复、迁移**分成不同受限动作；不得写可直接执行的带真实目标/凭据的命令，不得把方案接受写成真实 DB 操作授权。指出静态 Laravel 源码和当次 CLI 元数据证据的限度；保护账号、Token、消息、媒体等真实数据，不进入 Git、bundle、普通证据或阿里云以外位置。结构变更前必须有实际备份且隔离恢复校验通过；数据是否只含管理员测试账号仍 `UNKNOWN`。
+仅允许新增三条路径：`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/target_probe.php`、`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/test_target_probe.php`、`EVIDENCE/AUTH-19-DB-TARGET-SIZE-PROBE-PREFLIGHT/summary.md`。使用当前 Laravel bootstrap 及固定 SQL 只读元数据接口，准备未来可从部署目录以 PHP stdin 执行的探针。只允许对**当前连接**获取 DB driver、`VERSION()`、`DATABASE()`、服务器 hostname 标识和 `information_schema.tables` 中 `table_schema = DATABASE()` 的表数与 `data_length + index_length` 合计；不得查询 `users` 或任何业务表数据行、任意 schema/table 名列表、账号数量、Token、媒体或日志。SQL 必须字面固定，无请求输入、拼接条件或外部参数；不得更换连接。
 
-## Scope, verification and stop
+脚本拆出可用虚构 adapter 测试的纯投影：只输出固定键的 JSON，包括白名单 `mysql` driver、规范化的 MySQL/MariaDB 家族与数字版本、非负的估算字节数/表数，以及由**当次服务器标识与当前库名**计算的 SHA-256 指纹；不输出原始 hostname、库名、用户名、连接串、密码、SQL、异常或任意其他元数据。指纹只是重复核对线索，不证明 Web worker 同库或生产身份；估算空间不是完整 dump 体积。未知/畸形版本、空库名、非整数字节数、负数、异常或额外元数据应 fail closed，仅输出安全错误类别。Laravel bootstrap 可能按框架机制读取配置，本任务仅测试纯投影，不执行真实入口。
 
-唯一允许新增 `EVIDENCE/AUTH-18-ALIYUN-DB-BACKUP-RESTORE-RUNBOOK-CANDIDATE/plan.md`。本地只读范围限控制文件、AUTH-10/14/16/17 接受证据、`services/backend-laravel/config/database.php` 的**源码键名**和必要的指定迁移文件；不做全仓泛搜。无需运行测试或构建；`git diff --check` 最多 **1 次**，新文档另作只读尾随空白检查。
+虚构 adapter 测试至少覆盖 MariaDB/MySQL 版本、稳定指纹、非负统计、畸形/负数/异常、不泄露原始库名与服务器名。不得把测试用值写成真实目标事实。未来现场运行仍须单独授权、固定脚本哈希与受限输出解析。
 
-不得 SSH、HTTP/API、读取 `.env`/私钥/凭据/日志/数据库行、访问设备或执行真实 DB/备份/导出/恢复/迁移命令；不修改源码或 schema。AUTH-17 的 SSH 预算不重置。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`；不访问旧 `D:\EliteSync`，不 pull/push GitHub。Codex 不自接受、提交、备份或派发后继；Work LEVEL 2 独立 ACCEPT/REJECT。实际备份、隔离恢复及改库须另立精确任务和 Owner 高风险门。
+## Verification and stop
+
+本地只读范围限控制文件、AUTH-14/16/17/18 接受证据及 Laravel DB facade/connection 的直接方法定义；不做全仓泛搜。定向虚构测试最多 **2 次**，PHP 语法检查两份新增 PHP 文件各最多 **1 次**，`git diff --check` 最多 **1 次**；新增文件另作只读尾随空白检查。无需产品测试或构建。
+
+不得 SSH、HTTP/API、读取 `.env`/私钥/凭据/日志/数据库行、访问设备或执行真实数据库命令；不得备份、导出、恢复或修改 DB。AUTH-17 的 SSH 预算不重置。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`；不访问旧 `D:\EliteSync`，不 pull/push GitHub。Codex 不自接受、提交、备份或派发后继；Work LEVEL 2 独立 ACCEPT/REJECT。未来远端只读核验、实际备份或改库须另立精确任务和相应 Owner 高风险门。
