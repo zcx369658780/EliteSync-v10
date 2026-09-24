@@ -4,7 +4,7 @@ Task ID: `AUTH-17-ALIYUN-DB-BACKUP-HOST-READINESS`
 
 Risk Level: `LEVEL 2`（未来数据库备份的服务器工具与空间只读事实；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付一次受限主机事实回执，停在 Work LEVEL 2 独立验收门。
 
