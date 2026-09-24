@@ -4,7 +4,7 @@ Task ID: `AUTH-20-DEPLOYED-DB-TARGET-SIZE-READ`
 
 Risk Level: `LEVEL 2`（部署目录当前 DB 目标与规模一次只读元数据观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付一次受限事实回执，停在 Work LEVEL 2 独立验收门。
 
