@@ -4,7 +4,7 @@ Task ID: `AUTH-18-ALIYUN-DB-BACKUP-RESTORE-RUNBOOK-CANDIDATE`
 
 Risk Level: `LEVEL 2`（未来真实数据库备份/恢复演练的实施前方案；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付 docs-only 候选，停在 Work LEVEL 2 独立验收门。
 
