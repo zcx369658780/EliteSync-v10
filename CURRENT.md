@@ -63,6 +63,8 @@ AUTH-44 本机三行虚构样本的同容器导出、导入与固定内容一致
 
 AUTH-45 分离容器的三行虚构恢复回执已获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-45-LOCAL-SYNTHETIC-SEPARATE-CONTAINER-RESTORE/summary.md`。作者报告源容器清理后将 2039 字节内存 dump 输入新目标容器、固定内容一致、两容器按 ID 清理 PASS；Work 静态审查并只读核对两个固定容器名均不存在，未复跑一次性脚本。它不证明真实完整加密持久备份可恢复。下一步真实数据库范围、精确本地存放位置和密钥保管等仍需 Owner 定界，不自动执行真实备份或改库。
 
+**Owner 新授权（2026-09-24）**：允许在 C 盘建立完整数据库加密备份专用目录，实际需要密码时由 Owner 本人输入。Work 已建立空目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，只为该目录设置显式 ACL：当前 Windows 用户、SYSTEM、Administrators FullControl，禁用继承；当次可用空间 649737064448 bytes。该目录不是备份，未存放数据库、密钥或密文；磁盘加密状态、自动同步软件边界及加密/传输方案仍待核验。AUTH-46 已下达只读本机目标预检，执行与验收见 `TASK_CURRENT.md`。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
@@ -79,7 +81,7 @@ Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | 
 
 Contract/mapping：Product Connection 开发态映射有既有接受链。Local/test：存在 Laravel migrations 与 synthetic/dev-test persistence 证据。Target environment：AUTH-14 仅确认部署目录本次 Laravel CLI 视图的四条目标 migration 均 Ran（57/57）；实例身份、实际表结构及 Web worker 配置未核验。Production DB：**NOT ESTABLISHED**；AUTH-14/16 仅为部署目录 CLI 迁移账本与固定结构投影，无目标实例身份、Web worker 同库、整库 schema、备份/恢复或真实数据持久化证明。
 
-Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 最新决定是完整数据库备份加密保存到自己的电脑或本地磁盘，自完成日起保留 **30 天**；恢复演练优先在电脑上的独立环境，先核验隔离与恢复能力。精确目标、加密密钥、传输、真实数据范围与恢复路径尚待确定；不代表已完成真实备份或恢复。敏感导出不得纳入 Git、Git bundle、普通证据或第三方云服务。
+Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 最新决定是完整数据库备份加密保存到自己的电脑或本地磁盘，自完成日起保留 **30 天**；恢复演练优先在电脑上的独立环境，先核验隔离与恢复能力。专用目录已定为 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，密码在实际需要时由 Owner 本人输入；加密/密钥恢复、传输、真实数据范围与恢复路径尚待核验；不代表已完成真实备份或恢复。敏感导出不得纳入 Git、Git bundle、普通证据或第三方云服务。
 
 ## Environments / Release
 
