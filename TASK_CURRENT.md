@@ -4,9 +4,11 @@ Task ID: `AUTH-40-LOCAL-SYNTHETIC-TABLE-FAILURE-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（本机隔离虚构建表失败的安全码与单变量诊断；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — UNCLASSIFIED TABLE FAILURE RECEIPT ACCEPTED`
 
 Assignee: `Codex`。只交付一次虚构容器诊断候选与受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：一次虚构运行中原建表再次失败，但安全码为 `UNRECOGNIZED/UNKNOWN`；按任务条件未运行字段名对照。AUTH-40 诊断目标 LEVEL 2 REJECT，仅接受受限失败与清理回执，见 `EVIDENCE/AUTH-40-LOCAL-SYNTHETIC-TABLE-FAILURE-DIAGNOSIS/summary.md`。不能归因于 SQL 语法或资源，旧预算耗尽；后继须另立任务。
 
 ## Authority and objective
 
