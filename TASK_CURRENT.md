@@ -1,23 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP`
+Task ID: `SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL`
 
-Risk Level: `LEVEL 2`（真实 auth 生命周期与私密缓存计时来源的本地静态映射；Work 独立审查）
+Risk Level: `LEVEL 2`（请求 bearer Token 暴露风险；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPT — LOCAL STATIC GAP MAP ONLY`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。纯本地只读缺口清单已交付并获 Work 独立接受；见 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`。当前无活动 Codex 执行单。发现完整 bearer Token 调试输出，须另立有界修复任务。
+Assignee: `Codex`。交付一处有界修复候选，停在 Work LEVEL 2 独立验收门。
 
 ## Authority and objective
 
-Owner 已决定：在线登录持续 15 天；最后一次**成功在线登录**后第 16～30 天，满足其他条件时离线可继续只读已保存的按账户加密内容；满 30 天清理；自动 Token 续期不重置该时钟。AUTH-02 接受的部署 `AuthController.php` 与本地同哈希，AUTH-04/06 接受的部署源码及 Laravel CLI 视图中 `v1/auth/login`、`v1/auth/refresh` 静态入口存在；这些都不证明可信 `T0`、期限执行或真实客户端权限。四条缺席 v2 路由属于 synthetic/dev-test 入口，尚无部署授权；本任务不处理部署。
+AUTH-07 Work LEVEL 2 独立验收在 `apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart:21–26` 确认完整 bearer Token 被调试 `print` 输出。该字符串可能进入设备/开发日志，须停止输出。Owner 此前已授权 SEC-01～04 移除识别出的私密调试输出；本任务依当前已确认的同类风险作单点修复，不扩大为全项目日志审计。
 
-先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能以及 AUTH-02/04/06 证据。只有本任务仍为 `ISSUED` 且派发匹配才执行。
+先核对本地 `main`、HEAD、工作区，读取 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、本地工作流技能及 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`。只有本任务仍为 `ISSUED` 且派发匹配才执行。
 
-目标：从本地源码精确追踪 `POST /api/v1/auth/login`、`refresh` 的认证、发 Token、有效期、撤销及响应字段；再定位 Flutter 当前调用/持久化入口。逐项判断是否已有可信的“最后一次成功在线登录 T0”来源和持久记录、15 天在线登录边界、refresh 不重置 T0、30 天加密缓存清理触发条件。只报告代码直接证明的状态、缺口和后继合同/实现需要的来源；不得把约定或测试桩写成真实运行证明。
+仅移除 `AuthInterceptor.onRequest` 内的 `AUTH_INTERCEPTOR_TOKEN` 打印及专为它存在的注释/忽略指令；保留 token provider、Authorization header、401 retry 和错误传递的现有行为。不增加替代 token 片段、hash、长度或响应日志，不改 auth/T0/15/30 天逻辑。
 
 ## Scope and verification
 
-只读范围限当前仓库 `services/backend-laravel/routes/api.php`、`app/Http/Controllers/Api/V1/AuthController.php`、其直接使用的 User/token/Sanctum 配置与相关认证 Feature 测试，以及 `apps/flutter_elitesync_module/lib` 内已识别的登录、刷新、session/token 调用链。可用精确符号搜索定位直接依赖；不要读取 `.env`、实际配置值、设备存储内容或全仓泛搜。唯一允许新增 `EVIDENCE/AUTH-07-LOCAL-LOGIN-REFRESH-T0-GAP-MAP/summary.md`，用路径/行号写出正反证据与 UNKNOWN。无需运行测试或构建；只运行一次 `git diff --check`，新文档另作尾随空白检查。
+允许修改的源码只有 `apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart`；唯一允许新增 `EVIDENCE/SEC-05-AUTH-INTERCEPTOR-TOKEN-PRINT-REMOVAL/summary.md`。核对差异为删除输出语句，定向检查该文件不再有 `AUTH_INTERCEPTOR_TOKEN` 或打印 Token 的语句，且 Authorization header 仍按原逻辑设置。可运行一次该精确文件的 Dart/Flutter 静态分析；若工具不可用，记录 NOT RUN，不扩大测试。只运行一次 `git diff --check`，新文档另作尾随空白检查。无需新增镜像实现的测试。
 
-不连接服务器，不使用 SSH、HTTP/API、DB、设备或真实数据；不读私钥、Token、日志、用户/媒体数据；不修改 auth 代码、缓存、路由、配置或部署，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；真实 auth、离线凭据与生产变更仍需后继明确任务及相应风险门。
+不读取实际 Token、设备日志、`.env`、私钥、用户/媒体数据；不连接服务器、HTTP/API、DB 或设备；不修改其他文件、部署或路由，不访问旧 `D:\EliteSync`，不 pull/push GitHub。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。Codex 不自接受、不提交、不备份、不推送、不派发后继。Work LEVEL 2 独立 ACCEPT/REJECT；这只消除一处已识别泄漏，不证明全项目日志安全。
