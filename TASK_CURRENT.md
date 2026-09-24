@@ -4,7 +4,7 @@ Task ID: `AUTH-10-LOGIN-EVENT-PERSISTENCE-DB-BACKUP-DESIGN`
 
 Risk Level: `LEVEL 2`（认证事件持久化及未来真实数据库备份/恢复设计；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付 docs-only 设计与备份门候选，停在 Work LEVEL 2 独立验收门。
 
