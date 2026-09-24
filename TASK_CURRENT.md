@@ -4,9 +4,11 @@ Task ID: `AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实备份前的本机虚构加密格式与篡改拒绝探针；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — CERTIFICATE FAILED; CMS NOT CHECKED`
 
 Assignee: `Codex`。只交付虚构探针候选与一次运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：一次运行在虚构证书生成处退出 1，CMS 加密/解密/篡改均未执行；完整目标 LEVEL 2 REJECT，仅接受失败与固定临时目录清理的受限事实回执，见 `EVIDENCE/AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT/summary.md`。旧一次预算耗尽，后继须新任务。
 
 ## Authority and objective
 

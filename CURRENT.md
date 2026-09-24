@@ -65,7 +65,7 @@ AUTH-45 分离容器的三行虚构恢复回执已获 Work LEVEL 2 **ACCEPT（�
 
 **Owner 新授权（2026-09-24）**：允许在 C 盘建立完整数据库加密备份专用目录，实际需要密码时由 Owner 本人输入。Work 已建立空目录 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，只为该目录设置显式 ACL：当前 Windows 用户、SYSTEM、Administrators FullControl，禁用继承。AUTH-46 本地只读预检获 Work LEVEL 2 **ACCEPT（仅受限事实）**，见 `EVIDENCE/AUTH-46-LOCAL-BACKUP-DESTINATION-READINESS/summary.md`：目录仍为空，当次 C 盘可用 649684254720 bytes，OpenSSL 3.5.6 与 SSH 9.5p2 可用；GPG 版本、BitLocker 状态、OneDrive 前缀及其他自动同步仍 UNKNOWN。该目录不是备份，未存放数据库、密钥或密文；加密/传输方案仍待核验。
 
-AUTH-47 已下达一次本机虚构 OpenSSL CMS AES-256-GCM 加密/解密与篡改拒绝探针；只使用临时虚构证书和固定非业务字节，交付后由 Work LEVEL 2 独立验收。尚无执行结果，不生成真实备份密钥或要求 Owner 密码。
+AUTH-47 本机虚构 CMS 探针的完整目标获 Work LEVEL 2 **REJECT**，仅接受虚构证书生成失败及固定临时目录清理的受限事实回执，见 `EVIDENCE/AUTH-47-LOCAL-SYNTHETIC-CMS-ENCRYPTION-PREFLIGHT/summary.md`。一次运行中证书命令退出 1，CMS 加密/解密/篡改均未执行；原始错误未保存，原因 UNKNOWN。Work 未重跑，另只读确认临时目录不存在且 C 盘备份目录仍为空。旧预算耗尽；不据此判断 CMS GCM 是否可用或开始真实备份。
 
 ## Product scope
 
