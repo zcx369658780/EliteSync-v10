@@ -4,7 +4,7 @@ Task ID: `AUTH-13-MIGRATION-STATUS-SAFE-PARSER`
 
 Risk Level: `LEVEL 2`（真实数据库元数据输出的离线解析工具；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED`
 
 Assignee: `Codex`。仅交付本地候选，停在 Work LEVEL 2 独立验收门。
 
