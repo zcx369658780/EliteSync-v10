@@ -49,7 +49,7 @@ AUTH-37 冻结虚构认证探针的新一次运行获 Work LEVEL 2 **ACCEPT（�
 
 AUTH-38 本机虚构 root 认证方式对比获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-38-LOCAL-SYNTHETIC-ROOT-AUTH-MODE-DIAGNOSIS/summary.md`。作者报告两种带同一虚构密码的连接均返回 `1045`，不传密码的本机 socket `SELECT 1` 成功，容器按本次 ID 清理 PASS。Work 静态审查候选并核对回执，未复跑；这不确定镜像具体认证机制，不适用于真实数据库，也不证明虚构或真实备份可恢复。旧预算耗尽，AUTH-39 已下达单容器小样本虚构 dump/restore 任务。
 
-AUTH-39 同容器虚构 dump/restore 目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-39-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告本机隔离声明和无密码 socket `SELECT 1` 通过，虚构源 schema 创建后，建表命令失败；插入、dump、导入、内容核验均未运行，按本次 ID 清理 PASS。Work 静态审查候选和回执，未复跑；建表具体失败原因未知，真实备份恢复能力仍未建立。旧预算耗尽，下一步须新任务定位建表错误。
+AUTH-39 同容器虚构 dump/restore 目标获 Work LEVEL 2 **REJECT**，仅接受部分事实回执，见 `EVIDENCE/AUTH-39-LOCAL-SYNTHETIC-SAME-CONTAINER-RESTORE/summary.md`。作者报告本机隔离声明和无密码 socket `SELECT 1` 通过，虚构源 schema 创建后，建表命令失败；插入、dump、导入、内容核验均未运行，按本次 ID 清理 PASS。Work 静态审查候选和回执，未复跑；建表具体失败原因未知，真实备份恢复能力仍未建立。旧预算耗尽，AUTH-40 已下达固定建表安全码与单变量诊断任务。
 
 ## Product scope
 
