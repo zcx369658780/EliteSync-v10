@@ -4,9 +4,9 @@ Task ID: `AUTH-93-CURRENT-USB-BITLOCKER-READONLY-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实私钥恢复副本写入前的当前设备只读身份与保护核对）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER UAC AND QUERY PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 只准备无秘密只读候选；Work 独立预运行审查后，Owner 亲自核对并批准一次 Windows UAC；Work 作 LEVEL 2 最终验收。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立审查无秘密只读候选并放行一次运行；Owner 亲自核对并批准一次 Windows UAC；Work 作 LEVEL 2 最终验收。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-79/80 曾证明同一只 Kingston `E:` 在旧时点锁定、Owner 解锁及
 
 ## Phase B — reserved, not yet authorized
 
-Work 独立审查精确脚本、固定哈希与当前 E 设备身份后，才可放行**一次** Owner 亲自核对并批准的 UAC；提权状态查询预算 **1/1，当前 0/1 未放行**。若 UAC、身份或查询失败，记录有限类别并停止，不改变参数或重试。Work 独立审查回执后才可考虑另立真实私钥副本写入任务；本任务不授权复制、解锁、写入或 U 盘恢复演练。
+Work 已于 2026-09-25 独立审查精确脚本 SHA-256 `9C2D281BA57BE16ACE71C7E4957BC4687FD5C1EBB54933FAF8FEF28F223EDB84` 与当前 E 设备身份，见同目录 `plan.md`，**放行一次** Owner 亲自核对并批准的 UAC；提权状态查询预算 **1/1，当前 0/1 已用**。若 UAC、身份或查询失败，记录有限类别并停止，不改变参数或重试。Work 独立审查回执后才可考虑另立真实私钥副本写入任务；本任务不授权复制、解锁、写入或 U 盘恢复演练。
 
 禁止读取 U 盘目录/文件，访问真实私钥正文、密码或恢复密钥，修改 BitLocker/ACL/卷，写 `E:` 或备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。旧 AUTH-79/80 查询预算不得复用。
