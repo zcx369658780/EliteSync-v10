@@ -4,9 +4,9 @@ Task ID: `AUTH-92-REAL-KEY-SYNTHETIC-CMS-ROUNDTRIP`
 
 Risk Level: `LEVEL 3`（现有真实私钥解锁参与本机虚构内容 CMS 加解密）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。Owner 只在获批后手动启动并在 OpenSSL 原生提示输入现有密码。
+Assignee: `Owner + Codex`，复用现有本地执行会话；Work 已独立 LEVEL 3 预运行审查并放行一次 Owner 手动双击，最终验收仍由 Work 负责。Owner 只在 OpenSSL 原生提示输入现有密码。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-88/89/90 建立受限的现有加密私钥、权限与一次 Owner 密码�
 
 ## Phase B — reserved, not yet authorized
 
-Work 静态审查并临运行核对固定文件、脚本哈希、三个临时目标均不存在、Owner 在场无录屏/共享后，才可放行 Owner Explorer 双击**一次**。CMS encrypt/decrypt/compare 各预算 **1/1，当前 0/1 未放行**。Owner 只回报固定成功或失败类别，不发送密码、截图或原始输出。失败不重试；Work 独立只读检查私钥/证书元数据及三个临时文件存在类别，决定后续处置。成功仍须 Work 独立验收，不能推定服务器能力或真实备份/恢复。
+Work 已于 2026-09-25 静态审查并临运行核对固定文件、脚本哈希、三个临时目标均不存在和 Owner 在场无录屏/共享条件，见同目录 `plan.md`，**放行 Owner Explorer 双击一次**固定 CMD SHA-256 `3F6680FE7894EA005436457065F91A1A6D94D58A4B7F9368A324755B4417497A`。CMS encrypt/decrypt/compare 各预算 **1/1，当前 0/1 已用**。Owner 只回报固定成功或失败类别，不发送密码、截图或原始输出。失败不重试；Work 独立只读检查私钥/证书元数据及三个临时文件存在类别，决定后续处置。成功仍须 Work 独立验收，不能推定服务器能力或真实备份/恢复。
 
 禁止运行旧 AUTH-88/90/91 脚本，读取/输出/复制/删除/改写私钥正文，写 `E:` 或真实备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。本任务不授权任何真实数据库、密钥副本或恢复操作。
