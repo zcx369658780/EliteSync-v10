@@ -1,22 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-84-VISIBLE-POWERSHELL-WINDOW-DIAGNOSIS`
+Task ID: `AUTH-85-OWNER-DESKTOP-CONSOLE-ENTRY-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（真实私钥生成失败后的本机交互入口定位；只读/虚构，无真实密码）
+Risk Level: `LEVEL 2`（真实私钥交互入口的无秘密本机预检）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ISSUED — PHASE A ONLY`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 仅做固定的无秘密窗口探针与脱敏记录；Owner 只报告是否看见窗口，不输入任何密码。Work 独立 LEVEL 2 审查。
+Assignee: `Codex`，复用现有本地执行会话。Work 独立审查 Phase A 后，才可向 Owner 下达 Phase B 的手动双击步骤。
 
 ## Authority and fixed boundary
 
-AUTH-83 的真实生成目标已被 Work LEVEL 3 REJECT：经预运行审查放行的一次脚本启动父进程退出码 1，Owner 未见可报告的窗口失败类别，精确真实私钥文件不存在；旧启动预算已耗尽。原因、子窗口是否可见及是否进入 OpenSSL 均 `UNKNOWN`。本任务只定位 Windows PowerShell 独立可见窗口/控制台条件，不运行 AUTH-83 脚本、OpenSSL 或任何密钥操作，不要求 Owner 输入密码。
+AUTH-83 真实私钥目标与 AUTH-84 可见窗口诊断均未达成，各自一次运行预算已耗尽。AUTH-84 中 Owner 只看到窗口闪过，未看到固定标记；原因 `UNKNOWN`。本任务仅建立一个由 Owner 从 Windows 桌面手动启动的**无密码、无密钥**控制台入口，确认它能显示固定标记、有限失败类别并停留供观察。不得调用 AUTH-83/84 脚本或推定其失败原因。
 
-## One bounded result
+## Phase A — candidate only, no launch
 
-1. 核对 `D:\EliteSync-v10` 本地 main、HEAD、工作区及 AUTH-83 接受的失败边界，保留两个无关未跟踪目录。只读核对固定真实私钥目标仍不存在；若出现则停止并升级 Work，不读内容。
-2. 在唯一允许路径 `EVIDENCE/AUTH-84-VISIBLE-POWERSHELL-WINDOW-DIAGNOSIS/` 准备一个**无秘密、无写入目标目录**的 `probe.ps1`。它只在新窗口输出固定可见标记 `AUTH84_VISIBLE_PROBE`，检测 `UserInteractive`、`ConsoleHost`、三种 Console 重定向布尔，并以预定有限退出码传回类别；为 Owner 观察最多保持 15 秒。父进程仅记录退出码/固定类别，不捕获子窗口原始流。静态核对脚本没有 OpenSSL、`genpkey`、`pkey`、真实密钥路径写入、密码来源或删除命令。
-3. 仅启动**一次**固定 Windows PowerShell 可见窗口探针，Owner 只报告是否实际看到固定标记或窗口（不发截图）。探针无密码、密钥、U 盘、服务器或 DB 操作。若窗口不可见、退出码异常或父/子状态矛盾，记录 `UNKNOWN` 并停，不改启动参数重试。窗口运行预算 **1/1**。
-4. 将可见性、控制台布尔、父进程结果及 AUTH-83 可能原因的有限推断写入 `EVIDENCE/AUTH-84-VISIBLE-POWERSHELL-WINDOW-DIAGNOSIS/summary.md`，明确不能追溯证明 AUTH-83 子进程具体失败。作者停在 Work LEVEL 2 独立审查门，不提交/推送/自接受/派发后继。
+1. 核对本地 `main`、HEAD、工作区、AUTH-83/84 审查边界；保留无关未跟踪内容。只读核对固定真实私钥目标 `C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem` 不存在；若存在立即停止，不读内容。
+2. 只在 `EVIDENCE/AUTH-85-OWNER-DESKTOP-CONSOLE-ENTRY-PREFLIGHT/` 写一个 Owner 可从 Explorer 双击的 `.cmd` 包装器及必要的无秘密 `.ps1`，使用绝对固定路径，不依赖当前目录。入口只打印 `AUTH85_VISIBLE_PROBE` 与有限类别，显示 `UserInteractive`、`ConsoleHost`、stdin/stdout/stderr 重定向布尔；异常时打印固定 `AUTH85_FAILURE=<类别>`，不打印异常原文、环境变量或路径。无论成功或失败，等待 Owner 按键后才关闭；不得自动尝试第二次、启动后台进程或记录原始流。普通用户权限即可运行。
+3. 静态核对路径、命令和控制流；作脚本语法检查与虚构/静态分支检查，不启动新窗口。记录文件 SHA-256、检查结果和 Windows Explorer 双击的精确后续指引草案到同目录 `summary.md`。候选必须不含 OpenSSL、`genpkey`、`pkey`、密码/恢复密钥来源、真实私钥/备份目录写入、U 盘访问、删除命令或网络调用。保存候选后停在 Work LEVEL 2 Phase A 预运行审查；不提交、推送、自接受或派发后继。
 
-禁止运行或修改 AUTH-83 `launch.ps1`，不得重试 AUTH-83 或生成/读取/删除真实或虚构密钥，不得写 E:、真实密钥/备份目录、连接服务器/真实 DB/云/Docker/GitHub 或访问旧 `D:\EliteSync`。若需要 Owner 从 Explorer 手动启动后继，只能在新任务中固定目标与停点。
+## Phase B — reserved, not yet authorized
+
+Work 审查 Phase A 后如放行，Owner 可从 Explorer **手动双击一次**经审查的固定 `.cmd`。Owner 只报告是否看到窗口、固定标记、有限类别及其是否保持打开；不输入密码、不发截图。该实际窗口预算 **1/1**，未获 Work 放行前为 **0 次授权**。若失败或窗口闪退，记录观察并停止，不换参数、不重试。Codex/Work 后续只读复核真实私钥精确目标仍不存在，最终由 Work LEVEL 2 验收。
+
+禁止运行或修改 AUTH-83/84；不得生成、读取、复制或删除任何真实/虚构密钥，不得写 `E:`、真实密钥/备份目录，不连接服务器、DB、云、Docker、GitHub 或访问旧 `D:\EliteSync`。任何真实密码、证书、U 盘副本、备份或恢复步骤均须另立任务并经过对应风险门。

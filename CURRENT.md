@@ -141,7 +141,9 @@ AUTH-81 真实密码保护私钥生成的本机 docs-only 实施前方案获 Wor
 
 AUTH-82 本机虚构密码保护 RSA 3072 私钥与用途证书交互预检获 Work LEVEL 2 **ACCEPT（仅虚构流程）**，见 `EVIDENCE/AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF/summary.md`。原生提示生成加密 PKCS#8 私钥和公有证书、正确虚构口令配对、错误口令无可消费输出均由作者按各 1/1 预算报告；Work 独立只读核对临时根已清理。原计划清理命令被自动审批拒绝，作者后以精确文件删除和空目录非递归移除完成，未接触真实材料。PTY 可记录虚构口令，因此不证明真实密码安全输入；AUTH-83 的真实执行结果另见下方。
 
-AUTH-83 的真实密码保护私钥生成目标被 Work LEVEL 3 **REJECT**，仅接受一次失败事实，见 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md`。Phase A 无秘密 `launch.ps1` 经 Work 静态审查并放行 Phase B；Owner 确认在场、无录屏/共享并准备纸质密码副本。唯一一次脚本启动父进程返回子窗口退出码 1，Owner 未见可报告的失败类别；Work 独立只读确认精确真实私钥目标不存在。子窗口可见性、失败原因及 OpenSSL 是否启动均 `UNKNOWN`，旧一次预算耗尽。AUTH-84 已下达无秘密可见窗口探针，只用于诊断交互入口；真实密钥、证书、U 盘副本仍不存在。
+AUTH-83 的真实密码保护私钥生成目标被 Work LEVEL 3 **REJECT**，仅接受一次失败事实，见 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md`。Phase A 无秘密 `launch.ps1` 经 Work 静态审查并放行 Phase B；Owner 确认在场、无录屏/共享并准备纸质密码副本。唯一一次脚本启动父进程返回子窗口退出码 1，Owner 未见可报告的失败类别；Work 独立只读确认精确真实私钥目标不存在。子窗口可见性、失败原因及 OpenSSL 是否启动均 `UNKNOWN`，旧一次预算耗尽。
+
+AUTH-84 的一次无秘密可见窗口探针获 Work LEVEL 2 **REJECT（诊断目标）**，仅接受窗口闪现和约 0.98 秒提前退出的受限事实，见 `EVIDENCE/AUTH-84-VISIBLE-POWERSHELL-WINDOW-DIAGNOSIS/summary.md`。Owner 未看到固定标记；因短于预定 12 秒，退出码 1 按位解读的控制台布尔均不可采信。具体失败阶段及 AUTH-83 原因仍 `UNKNOWN`，旧预算 1/1 已耗尽。真实密钥、证书、U 盘副本仍不存在；AUTH-85 另行验证 Owner 桌面手动启动的无秘密交互入口。
 
 ## Product scope
 
