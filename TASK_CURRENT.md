@@ -4,7 +4,7 @@ Task ID: `AUTH-63-LOCAL-CMS-CIPHERTEXT-IDENTITY-GATE-REPAIR`
 
 Risk Level: `LEVEL 2`（认证解密前密文身份核对与消费者门修复；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅本机虚构身份门矩阵，见 `EVIDENCE/AUTH-63-LOCAL-CMS-CIPHERTEXT-IDENTITY-GATE-REPAIR/summary.md`）
 
 Assignee: `Codex`。只交付本机虚构密文身份门修复、targeted 测试及一次新虚构运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
