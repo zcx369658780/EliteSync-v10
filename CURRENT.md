@@ -101,6 +101,8 @@ AUTH-63 本机虚构密文身份门修复获 Work LEVEL 2 **ACCEPT（仅本次�
 
 AUTH-64 本机固定 DB 对象元数据探针预检获 Work LEVEL 2 **ACCEPT（仅本地预检）**，见 `EVIDENCE/AUTH-64-DB-OBJECT-INVENTORY-PROBE-PREFLIGHT/summary.md`。八条固定聚合 SELECT 区分可见基表、视图、列、索引、约束、触发器、例程及事件；Work 独立复跑 35/35 虚构检查。当前连接的权限可隐藏对象，因此探针固定报告完整性 `UNKNOWN`；未连接真实库，现场观察须另立任务。真实 DB 身份、范围、一致性与恢复能力仍未建立。
 
+AUTH-65 已下达固定探针的单次部署目录 CLI 元数据只读观察，见 `TASK_CURRENT.md`。本任务有独立严格 SSH 1/1 预算，须先核对 AUTH-64 脚本哈希并通过本机严格解析测试；无业务行、备份、密钥或恢复操作。现场若 SSH 失败须立即停止并通知 Owner。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
