@@ -2,6 +2,8 @@
 
 更新：2026-09-25。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
 
+**本次 Work 交接停点**：AUTH-101 仅 Phase A 静态候选获 LEVEL 3 ACCEPT；Phase B 未放行、未执行，旧 AUTH-99 候选仍禁止运行。Owner 要求本长会话在验收、保存本地状态后立即交接，本会话不下达后继任务。下一 Work 会话先独立读取本地五份入口文件、Git/工作区及 AUTH-101 证据，再决定是否对同一任务放行一次 Owner 在场的虚构 CMS 演练；不得借交接自动消耗 UAC、BitLocker 或密码输入预算。见 `EVIDENCE/WORK-HANDOFF-20260925-AUTH101/handoff.md`。
+
 本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
 
 Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX-01/summary.md`；根 `AGENTS.md` 和项目技能已在全新只读 Codex 任务中核验。
@@ -177,6 +179,8 @@ AUTH-99 的可见入口/虚构 CMS 脚本候选获 Work LEVEL 3 **REJECT（不�
 
 AUTH-100 完全虚构的提示通道诊断获 Work LEVEL 2 **REJECT（完整合规目标）**，仅接受本次有限观察：A/C 的密码提示在标准错误检出，B 的 `2>$null` 把该提示隐藏，见 `EVIDENCE/AUTH-100-SYNTHETIC-OPENSSL-PROMPT-CHANNEL-DIAGNOSIS/summary.md`。三次虚构调用均非零，原因 `UNKNOWN`；脚本在 A 非零后仍执行 B/C 并清理，违反失败即停/保留现场任务边界，预算各 1/1 耗尽。Work 确认虚构 Temp 目录事后不存在。该事实支持 AUTH-99 拒绝，仍不能证明 Owner 真实密码提示交互可成功；后继要修订可见提示的候选，不能运行 AUTH-99。
 
+AUTH-101 的修订 Owner 可见 CMD/只读保护脚本候选获 Work LEVEL 3 **ACCEPT（仅 Phase A 静态候选）**，见 `EVIDENCE/AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR/plan.md`。唯一 CMS 解密 `-inkey` 指向 E: 精确加密私钥副本；OpenSSL 原生 stderr 留在 Owner 前台窗口，单次 BitLocker 门先于读取；三个虚构临时文件在仓库外任务目录，成功清理、失败保留。Owner 要求本长会话在验收后交接，因此 **Phase B 未放行且未执行**，UAC/BitLocker/加解密预算均 0/1。下一 Work 会话先独立复核本地状态、候选哈希、固定 E:、Temp 与 Owner 在场，再决定是否放行一次实际虚构演练；不得自动派发给旧 Codex 会话。A/B/C 及真实数据库备份/恢复仍未证明。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
@@ -193,7 +197,7 @@ Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | 
 
 Contract/mapping：Product Connection 开发态映射有既有接受链。Local/test：存在 Laravel migrations 与 synthetic/dev-test persistence 证据。Target environment：AUTH-14 仅确认部署目录本次 Laravel CLI 视图的四条目标 migration 均 Ran（57/57）；实例身份、实际表结构及 Web worker 配置未核验。Production DB：**NOT ESTABLISHED**；AUTH-14/16 仅为部署目录 CLI 迁移账本与固定结构投影，无目标实例身份、Web worker 同库、整库 schema、备份/恢复或真实数据持久化证明。
 
-Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 最新决定是完整数据库备份加密保存到自己的电脑或本地磁盘，自完成日起保留 **30 天**；恢复演练优先在电脑上的独立环境，先核验隔离与恢复能力。专用目录已定为 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，密码在实际需要时由 Owner 本人输入；加密/密钥恢复、传输、真实数据范围与恢复路径尚待核验；不代表已完成真实备份或恢复。敏感导出不得纳入 Git、Git bundle、普通证据或第三方云服务。
+Owner 于 2026-09-24 授权：未来任务若确需修改阿里云后端数据库结构，必须先备份并校验可恢复；可将现有管理员创建的测试账号信息导出到本地供变更后恢复，**不得上传至阿里云以外的其他地方**。Owner 最新决定是完整数据库备份加密保存到自己的电脑，自完成日起保留 **30 天**，不采用云同步或云备份；恢复演练优先在电脑上的独立环境，先核验隔离与恢复能力。备份专用目录为 `C:\Users\zcxve\EliteSync-v10-DB-Backups`，独立私钥目录为 `C:\Users\zcxve\EliteSync-v10-DB-Keys`。现有加密私钥和公有证书的 E: 受保护副本已在 AUTH-97 获字节身份验收；Owner 本人输入密码，纸质私钥密码副本和 BitLocker 恢复密钥分开放置。失钥恢复、传输、真实数据范围与恢复路径尚待核验；不代表已完成真实备份或恢复。敏感导出不得纳入 Git、Git bundle、普通证据或第三方云服务。
 
 ## Environments / Release
 

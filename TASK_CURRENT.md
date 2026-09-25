@@ -4,9 +4,11 @@ Task ID: `AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR`
 
 Risk Level: `LEVEL 3`（真实 E: 加密私钥副本的虚构解密演练入口；本轮仅候选）
 
-Status: `ISSUED — PHASE A REVISED CANDIDATE ONLY; NO RUN OR PASSWORD`
+Status: `PHASE A ACCEPTED — PHASE B NOT RELEASED; WORK HANDOFF HOLD`
 
 Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。
+
+Work 已在 `EVIDENCE/AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR/plan.md` 独立 LEVEL 3 **ACCEPT 静态候选**。Owner 要求当前长会话在验收后交接，故 Phase B **未放行**，手动启动、UAC/BitLocker、OpenSSL 加解密和比较使用量均为 0/1。任何人不得仅凭本状态启动入口；下一 Work 会话须先本地复核脚本哈希、固定 E: 与 Temp 状态、Owner 在场，再做独立临运行门裁决。旧 AUTH-99 拒绝候选仍禁止运行。
 
 ## Phase A — revised candidate only
 
