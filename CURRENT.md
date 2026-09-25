@@ -111,6 +111,8 @@ AUTH-68 真实备份前的 docs-only 范围与一致性门合同获 Work LEVEL 2
 
 AUTH-69 Owner 密码保护私钥与加密 U 盘恢复副本的 docs-only 实施前合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-69-OWNER-KEY-USB-RECOVERY-PREFLIGHT/plan.md`。目录与设备识别、加密卷、私钥/证书配对、副本写入、失钥演练及临时清理各有独立停点；仍无真实私钥、U 盘副本或恢复证明。真实创建/写入/解锁须各自任务及 Owner 高风险门。本地 main `0264eba53ad310d015eaf6bb86992504b7de0f14` 已制作跨磁盘 Git bundle，SHA-256 `1B0B4B5EA3FDC8A9CA757E0D8347B3FA53FE4BCF50F8427FA0F87EDB101E0D29`；bundle 不含未跟踪内容、真实 DB 或密钥。
 
+AUTH-70 已下达两处固定本机目录的只读安全边界复核，见 `TASK_CURRENT.md`。只读取路径/卷/ACL 的脱敏元数据，不枚举目录内容、不使用 U 盘或密码；技术上无法核实的同步边界仍为 `UNKNOWN`。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
