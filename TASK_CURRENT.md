@@ -4,7 +4,7 @@ Task ID: `AUTH-97-OWNER-VISIBLE-USB-KEY-PAIR-COPY-RETRY`
 
 Risk Level: `LEVEL 3`（真实加密私钥固定 E: 恢复副本写入）
 
-Status: `ISSUED — PHASE A ENTRY CANDIDATE ONLY; NO UAC OR COPY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL START PENDING`
 
 Assignee: `Codex`，复用现有本地执行会话；Work 独立预运行审查并决定是否放行 Phase B。Owner 已请求在其到场时重新触发一次。本任务是新预算；AUTH-96 的 1/1 启动已耗尽且保持关闭。
 
@@ -16,6 +16,6 @@ Assignee: `Codex`，复用现有本地执行会话；Work 独立预运行审查�
 
 ## Phase B — reserved; not released
 
-Work 审查 Phase A、临运行重新核对源/目标/固定 E: 和 Owner 在场后，才可放行新任务**一次** Owner 手动双击、本人核对并批准 UAC，以及脚本内最多一次 BitLocker 查询和两个精确非覆盖复制。若没有 UAC、UAC 取消、保护/身份不符、任何写入或核验失败，立即停止；不自动重试。成功回执仍须 Work 独立核对两个目标与源的长度和进程内 SHA-256 身份、原私钥 ACL 未变，才可 LEVEL 3 验收。部分副本若出现，保留供定点处置；不能自动删除。
+Work 已于 2026-09-25 独立审查 Phase A，并在同目录 `plan.md` 放行新任务**一次** Owner 从 Explorer 手动双击固定 `owner-visible-copy-entry.cmd`、本人核对并批准 UAC，以及脚本内最多一次 BitLocker 查询和两个精确非覆盖复制。入口 SHA-256 `01F311DAA38FBC658AD39B6EF090A2EFCB0FC285C8DBF8E84D81B6F83E923735`；原脚本 SHA-256 `A79C3715E2DD08085D8BD0AEEEBE5388A0A9C2ADE197C656C6DD7EF032C6EB6C`。新预算目前 0/1 已用。若没有 UAC、UAC 取消、保护/身份不符、任何写入或核验失败，立即停止；不自动重试。成功回执仍须 Work 独立核对两个目标与源的长度和 SHA-256 身份、原私钥 ACL 未变，才可 LEVEL 3 验收。部分副本若出现，保留供定点处置；不能自动删除。
 
 固定源：`C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem` 和同前缀 `.cert.pem`。固定目标：`E:\elitesync-v10-db-backup-recipient-20260925.key.pem` 和同前缀 `.cert.pem`。不得复制真实数据库或备份密文，不得解密私钥或输出密码/私钥正文/完整私钥哈希，不得修改 BitLocker/卷/ACL，不得连接服务器、DB、云、Docker 或 GitHub，不得访问旧 `D:\EliteSync`，私钥及副本不得纳入 Git、Git bundle 或普通证据。完成复制也不证明 U 盘失钥恢复或真实 DB 备份恢复。
