@@ -4,9 +4,11 @@ Task ID: `AUTH-54-OPENSSL-LIST-FORMAT-PARSER-REPAIR`
 
 Risk Level: `LEVEL 2`（服务器能力核验前的本地格式解析修复；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — LOCAL SYNTHETIC FORMAT REPAIR ONLY`
 
 Assignee: `Codex`。只交付本地纯解析器新版本、虚构测试和受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：虚构输入中的裸算法、OID、别名和 provider 行解析修复 LEVEL 2 ACCEPT；作者报告 9/9 targeted 测试 PASS。仅本地解析门，不更新 AUTH-53 的服务器 AES-256-GCM `UNKNOWN`。见 `EVIDENCE/AUTH-54-OPENSSL-LIST-FORMAT-PARSER-REPAIR/summary.md`。
 
 ## Authority and objective
 
