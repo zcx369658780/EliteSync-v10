@@ -129,7 +129,9 @@ AUTH-75 Owner 在场启用 BitLocker To Go 的 docs-only 交互与验收合同�
 
 AUTH-76 E 盘 BitLocker To Go 的 Owner 交互回执获 Work LEVEL 3 **ACCEPT（仅回执事实）**，见 `EVIDENCE/AUTH-76-OWNER-USB-BITLOCKER-ENABLEMENT/summary.md`。Work 复核了 E 为约 28.8 GiB Kingston USB、仅有隐藏系统目录，打开本机 BitLocker 界面；Owner 报告 E 加密完成，实际恢复密钥已纸质抄写、核对并安排与电脑/U 盘分开。Work 未看到向导或秘密，未格式化。当次保护状态由 AUTH-77 后续核验；重新接入锁定与 Owner 密码解锁仍待证明。
 
-AUTH-77 固定 E: 的 BitLocker 状态只读回执获 Work LEVEL 2 **ACCEPT（仅当次状态）**，见 `EVIDENCE/AUTH-77-USB-BITLOCKER-PROTECTION-READONLY/summary.md`。当前令牌读取被拒；Owner 批准 UAC 后一次提权只读查询复核设备身份并返回 `FullyEncrypted`、`ProtectionOn`、`Unlocked`、100%。未重插或验证密码解锁，恢复密钥可用性仍未证明。AUTH-78 已下达 Owner 在场的安全移除、重新接入锁定及本人密码解锁验证；通过前不写真实私钥副本。
+AUTH-77 固定 E: 的 BitLocker 状态只读回执获 Work LEVEL 2 **ACCEPT（仅当次状态）**，见 `EVIDENCE/AUTH-77-USB-BITLOCKER-PROTECTION-READONLY/summary.md`。当前令牌读取被拒；Owner 批准 UAC 后一次提权只读查询复核设备身份并返回 `FullyEncrypted`、`ProtectionOn`、`Unlocked`、100%。未重插或验证密码解锁，恢复密钥可用性仍未证明；后续重插过程以 AUTH-78 最新证据为准。
+
+AUTH-78 完整锁定与解锁证明被 Work LEVEL 3 **REJECT**，仅接受受限过程及失败事实，见 `EVIDENCE/AUTH-78-USB-REINSERT-LOCK-OWNER-UNLOCK-PROOF/summary.md`。Owner 安全移除并重插各一次，原 E: 卷消失、重插后固定 Kingston 身份通过；一次提权锁定阶段查询返回 `FIELD_UNKNOWN`，具体字段未保存，旧预算耗尽。因锁定门未过，Owner 未输入解锁密码，解锁后查询未运行。AUTH-79 已下达一次新的只读字段定位；当前锁定与密码解锁仍未证明，真实私钥副本不得写入。
 
 ## Product scope
 

@@ -1,23 +1,22 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-78-USB-REINSERT-LOCK-OWNER-UNLOCK-PROOF`
+Task ID: `AUTH-79-USB-LOCKED-STATE-FIELD-DIAGNOSIS`
 
-Risk Level: `LEVEL 3`（Owner 真实加密 U 盘的物理重新接入与本人密码解锁）
+Risk Level: `LEVEL 2`（Owner 真实加密 U 盘的固定状态字段只读复核）
 
 Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex + Owner`。复用现有本地执行会话；Codex 负责固定身份与脱敏只读观察，Owner 亲自安全移除/重插和在可信本机界面输入密码。Work 独立审查和最终接受；Codex 不得自接受。
+Assignee: `Codex`，复用现有本地执行会话。Work 独立 LEVEL 2 审查；Owner 只亲自核对并批准本机 UAC，不输入密码或恢复密钥。
 
-## Authority and prerequisite
+## Authority and fixed target
 
-Owner 已授权连续推进 U 盘加密恢复副本路线，并已亲自启用固定 `E:` BitLocker、纸质保管恢复密钥。AUTH-77 Work LEVEL 2 接受当次固定 E: 为 `FullyEncrypted`、`ProtectionOn`、`Unlocked`、100%。本任务只检验重新接入后的锁定与 Owner 密码解锁；不使用或暴露纸质恢复密钥，不演练失钥恢复。执行前重新核对本地 `main`、任务与工作区；两个既有无关未跟踪目录须保留。
+AUTH-77 已接受固定 E: 当次 `FullyEncrypted`、`ProtectionOn`、`Unlocked`、100%。AUTH-78 的 Owner 安全移除/重插回执及重新识别获受限接受，但锁定阶段唯一一次提权查询返回 `FIELD_UNKNOWN`，具体字段未保存；完整锁定/解锁目标被拒，旧预算已耗尽。当前 Owner 尚未输入重插后的解锁密码。此任务只对当前重新插入的固定 `E:`、25～35 GiB USB 可移动 `Kingston DataTraveler Duo` 做一次新的状态字段定位；盘符/型号/容量/唯一 Disk-Partition-Volume 映射不符即停。
 
-## One bounded operation
+## One bounded result
 
-1. Codex 只读重新核对当前 `E:` 是唯一的 25～35 GiB USB 可移动 `Kingston DataTraveler Duo`，单一分区/卷映射。身份不符立即停。不得读取 U 盘文件内容。
-2. Owner 使用 Windows 安全移除功能，亲自物理拔出这只 U 盘一次。Codex 仅核验原 E: 卷不再呈现；若安全移除失败、设备未消失或出现另一候选，停止，不强制移除。
-3. Owner 物理重插同一只 U 盘一次，暂不输入解锁密码。Codex 再次核对唯一固定设备身份；若盘符改变、映射不明、系统已自动解锁或系统要求格式化，停止并记录脱敏类别。只允许一次经 Owner 本人核对批准 UAC 的只读 BitLocker 状态查询，预期 `Locked`、`ProtectionOn`、`FullyEncrypted`；不输出原始对象/保护器信息。若无法查询，则锁定证明为 `UNKNOWN`，不以弹窗代替。
-4. 仅在锁定状态证明通过后，Owner 在可信 Windows 界面亲自输入密码解锁一次；不向 Codex/Work 展示或提供密码。若失败、恢复密钥被要求或目标不明即停。解锁后 Codex 重新核对固定设备，允许一次经 Owner 本人 UAC 的只读状态查询，预期 `Unlocked`、`ProtectionOn`、`FullyEncrypted` 和 100%。
-5. 仅将设备匹配、拔出/重插、锁定与解锁状态的固定脱敏分类及首个失败类别写到 `EVIDENCE/AUTH-78-USB-REINSERT-LOCK-OWNER-UNLOCK-PROOF/summary.md`；不保存密码、恢复密钥、保护器 ID、卷 GUID/序列号、完整原始输出、U 盘文件列表或内容。作者报告后停在 Work LEVEL 3 审查门。
+1. 核对本地 `main`、HEAD、任务及工作区，保留两个无关未跟踪目录；只读确认固定 E: 身份，且不读取卷内文件。
+2. 准备并静态检查精确只读查询：在提权进程内再次核对设备身份，仅调用一次固定 `E:` 的 `Get-BitLockerVolume`，逐字段将 `VolumeStatus`、`ProtectionStatus`、`LockStatus` 映射到既定有限枚举；`EncryptionPercentage` 映射为 0～100 的整数或 `MISSING/INVALID`。单个字段异常不得遮蔽其余已获得的安全分类。仅把固定分类传回未提权进程，不输出原始对象、异常文本或保护器属性。
+3. Owner 在本机亲自核对并批准至多一次 UAC，执行一次提权只读查询；若拒绝、设备身份不符、查询失败或超时，立即停并记脱敏原因。**本任务查询预算 1/1 次**，不重试、不换工具补查。
+4. 将各字段的固定分类、哪一字段使 AUTH-78 总体 `FIELD_UNKNOWN`、是否有 `Locked/ProtectionOn/FullyEncrypted` 的直接当次证明，以及未解决项写入唯一允许路径 `EVIDENCE/AUTH-79-USB-LOCKED-STATE-FIELD-DIAGNOSIS/summary.md`。作者报告后停在 Work LEVEL 2 审查门。
 
-任何一步失败、Owner 不在场或拒绝 UAC 即停止。只允许一次安全移除/物理重插和一次 Owner 密码解锁；锁定与解锁各 1 次提权状态读取预算。不得自动批准 UAC、输入秘密、格式化、加密/解密、修改保护器或自动解锁设置、写入 E:、提交/推送 Git 或派发后继。完成本任务也不证明恢复密钥可用、真实私钥副本或数据库备份/恢复。
+若 `LockStatus=Locked`、`ProtectionStatus=On`、`VolumeStatus=FullyEncrypted` 均由本次对象明确返回，可作为**当前重插后锁定**候选；百分比未知仍单独标 UNKNOWN，不补造。此任务不解锁，不验证密码或恢复密钥。不得格式化、写 E:、修改 BitLocker/自动解锁设置、接收或记录秘密、保护器 ID、卷 GUID/序列号、完整原始输出，或提交/推送 Git、派发后继。现有 AUTH-78 与更早任务预算不重置。
