@@ -105,6 +105,8 @@ AUTH-65 部署目录 CLI 当前连接对象元数据一次只读观察获 Work L
 
 AUTH-66 本机 DB 存储引擎与备份一致性元数据探针预检获 Work LEVEL 2 **ACCEPT（仅本地预检）**，见 `EVIDENCE/AUTH-66-DB-ENGINE-CONSISTENCY-PROBE-PREFLIGHT/summary.md`。两条固定查询区分可见基表中的 InnoDB、非 InnoDB 和 NULL 引擎；Work 独立复跑 34/34 虚构检查。探针始终保留范围完整性和备份一致性 `UNKNOWN`；没有连接服务器或真实 DB，现场读取须另立任务。
 
+AUTH-67 已下达固定引擎探针的单次部署目录 CLI 元数据只读观察，见 `TASK_CURRENT.md`。独立严格 SSH 1/1 预算，须先核对 AUTH-66 脚本哈希和本机解析测试；连接故障立即停止并告知 Owner。无业务行、真实备份或改库操作。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
