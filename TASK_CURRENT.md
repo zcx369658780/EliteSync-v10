@@ -4,9 +4,11 @@ Task ID: `AUTH-51-SERVER-OPENSSL-CMS-CAPABILITY-READONLY`
 
 Risk Level: `LEVEL 2`（真实服务器只读工具能力观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — VERSION AND AES-256-GCM LISTING UNKNOWN`
 
 Assignee: `Codex`。只交付一次限定范围的服务器只读观察与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：一次 SSH 及 `openssl`、三个子命令退出 0 的受限作者事实回执可接受；版本过滤未得到版本值，区分大小写匹配不足以判断 AES-256-GCM 是否列出，且无原始输出可补判。完整工具能力目标 LEVEL 2 REJECT，见 `EVIDENCE/AUTH-51-SERVER-OPENSSL-CMS-CAPABILITY-READONLY/summary.md`。SSH 预算 1/1 已耗尽；本次不发布后继任务。
 
 ## Authority and objective
 
