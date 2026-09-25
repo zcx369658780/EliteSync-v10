@@ -81,7 +81,7 @@ AUTH-53 服务器 OpenSSL 完整能力补测获 Work LEVEL 2 **REJECT**，仅接
 
 AUTH-54 本地 OpenSSL 算法列表格式解析修复获 Work LEVEL 2 **ACCEPT（仅虚构解析门）**，见 `EVIDENCE/AUTH-54-OPENSSL-LIST-FORMAT-PARSER-REPAIR/summary.md`。作者报告 9/9 targeted 测试 PASS；新版本接受裸算法、OID、`alias => name` 和 `name @ provider` 行，并保持完整算法名及 `UNKNOWN` 边界。AUTH-53 的远端失败原因仍未证实，服务器 AES-256-GCM 是否列出与 CMS 互通仍 `UNKNOWN`；后继服务器观察须新连接预算。
 
-AUTH-55 已下达本机 OpenSSL 花括号别名格式解析修复，见 `TASK_CURRENT.md`。Work 对本机 3.5.6 列表只读内存核对发现 AUTH-54 仍为 `UNKNOWN`，原因是本机 7 行 `{ name, alias } @ provider` 无数字 OID 行未获识别；这不是 AUTH-53 远端失败根因证明。任务不连接服务器，须在本地虚构测试后验证本机完整列表格式。AUTH-53 远端状态保持 `UNKNOWN`。
+AUTH-55 本机 OpenSSL 花括号别名格式解析修复获 Work LEVEL 2 **ACCEPT（仅本地格式门）**，见 `EVIDENCE/AUTH-55-OPENSSL-BRACED-ALIAS-PARSER-REPAIR/summary.md`。作者报告 12/12 虚构测试 PASS；当次本机 3.5.6 算法列表命令退出 0、9010 字符，新解析器返回 `LISTED`。本机列表解析不证明远端相同；AUTH-53 服务器 AES-256-GCM 是否列出仍 `UNKNOWN`，后继服务器观察须新连接预算。
 
 ## Product scope
 

@@ -4,9 +4,11 @@ Task ID: `AUTH-55-OPENSSL-BRACED-ALIAS-PARSER-REPAIR`
 
 Risk Level: `LEVEL 2`（服务器补测前的本机格式解析门；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — LOCAL FORMAT PROOF ONLY`
 
 Assignee: `Codex`。只交付纯解析器新版本、虚构测试、本机只读格式核验及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：花括号别名解析修复与当次本机完整列表格式核验 LEVEL 2 ACCEPT；作者报告虚构测试 12/12 PASS，本机列表命令退出 0、9010 字符、解析 `LISTED`。此结果不更新服务器 `UNKNOWN`，见 `EVIDENCE/AUTH-55-OPENSSL-BRACED-ALIAS-PARSER-REPAIR/summary.md`。
 
 ## Authority and objective
 
