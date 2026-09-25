@@ -1,27 +1,26 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT`
+Task ID: `AUTH-59-LOCAL-SYNTHETIC-FD-CMS-FAILURE-DIAGNOSIS`
 
-Risk Level: `LEVEL 2`（无服务器落盘 CMS 管道方案的本机虚构预检；Work 独立审查）
+Risk Level: `LEVEL 2`（本机虚构 fd/CMS 失败分阶段定位；Work 独立审查）
 
-Status: `WORK LEVEL 2 REJECTED — FD CMS ENCRYPT FAILED`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。仅交付一次本机虚构文件描述符/CMS 预检候选及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：本机虚构证书生成退出 0，但 fd/CMS 加密退出 1、原因 `UNKNOWN`，未取得可用密文或进行解密，完整可行性目标 LEVEL 2 REJECT；只接受失败与固定临时目录清理的受限事实。见 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/summary.md`。旧本地运行预算 1/1 已耗尽。
+Assignee: `Codex`。只交付一次有界本机虚构诊断脚本与脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-57 docs-only 方法已获 Work LEVEL 2 ACCEPT，但服务器用文件描述符/管道接收虚构公有证书并在不落盘条件下进行 CMS AES-256-GCM 加密仍 `UNKNOWN`。Work 只读发现本机 Git Bash `C:\Program Files\Git\bin\bash.exe` 与其 OpenSSL 3.5.5 可用，`/dev/fd/0` 的只读可访问测试退出 0；本机 Docker daemon 当次不可达。本任务仅用固定虚构样本预检同型的文件描述符传递与本机配对解密，**不连接服务器**；本机成功也不能证明服务器 OpenSSL 3.0.13 的同一路径。Owner 密码与 32GB U 盘此阶段不需要。
+AUTH-58 本机虚构证书生成成功，但 Git Bash/OpenSSL fd CMS 加密退出 1；原始 stderr 未保存，原因 `UNKNOWN`，本机与服务器无落盘路径均未建立，旧 1/1 预算耗尽。Owner 已授权沿路线图继续。此任务仅通过新的本机一次性虚构证书，分开观察 **Git Bash fd 3 可读、OpenSSL 从 fd 3 读证书、CMS 固定虚构加密** 三个阶段，记录脱敏退出码与安全错误类别；不连接服务器、不修改真实数据。U 盘与 Owner 密码不需要。
 
 ## Exact execution boundary
 
-- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-48/49/50/57 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD 与工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
-- 只允许新增 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/run.ps1` 与 `summary.md`。先静态核对 PowerShell 语法、固定路径、命令参数、进程输出处理及精确清理。不得修改源码、历史证据或控制文件。
-- 固定虚构明文为 ASCII `AUTH57-SYNTHETIC-001\n`（21 字节）。只在任务固定临时目录 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth58-fd-cms-preflight` 存放一次性无密码**虚构**证书与私钥；创建前验证规范化绝对路径、非重解析父目录和目标原先不存在，退出时只对本次精确目录清理并确认不存在。不得在服务器或真实备份/密钥目录写入任何内容。
-- 单次本地运行可生成一对一次性虚构证书/私钥；经本机 Git Bash 标准输入送公有证书，使用可静态审查的 fd 3 或等价管道路径让 Git Bash OpenSSL `cms -encrypt -aes-256-gcm` 只读取固定虚构明文并将 DER 密文送本机进程内存，**不落盘密文**。随后用本次虚构私钥在本机做有上限隔离解密；仅在退出 0 且与固定 21 字节完全匹配后记配对成功。任何 fd 路径不通、命令异常、超限、输出不完整或未能证明无密文落盘均 FAIL 并清理，不切换到普通临时文件方案。不要显示或保存私钥、公有证书全文、原始密文/明文或原始 stderr；回执仅保留脱敏阶段状态、退出码、长度、首个失败、清理状态。
-- 本地脚本运行最多 **1/1 次**；失败不得改参重跑。PowerShell 静态解析检查可先进行；`git diff --check` 最多 1 次，新文件另做只读尾随空白检查。不得运行 Docker、WSL 容器、SSH、CloudShell、云 API、数据库或真实备份/恢复。不得访问旧 `D:\EliteSync`、本机真实备份/密钥目录内容、U 盘、Owner 密码或业务数据。
+- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-48/49/50/57/58 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD、工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
+- 只允许新增 `EVIDENCE/AUTH-59-LOCAL-SYNTHETIC-FD-CMS-FAILURE-DIAGNOSIS/run.ps1`、`summary.md`。先静态核对 PowerShell 语法、固定命令、进程限量采集、失败分类、固定临时路径与精确清理；不得改源码、旧证据或控制文件。
+- 固定虚构输入仍为 ASCII `AUTH57-SYNTHETIC-001\n`（21 字节）。只在 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth59-fd-cms-diagnosis` 存放本次一次性无密码虚构证书/私钥；创建前核对规范化绝对路径、非重解析父目录、目标原先不存在，结束时只清理本次精确目录并核对不存在。证书与私钥不得进入真实备份/密钥目录、Git、聊天或普通回执。
+- 单次本地运行最多 1/1。证书生成成功后，按依赖顺序各至多执行一次：① Git Bash 内 fd 3 的固定公有证书字节可读性/长度或摘要核对；② Git Bash OpenSSL `x509` 从 `/dev/fd/3` 接受同一虚构证书；③ 若前两门 PASS，尝试 AUTH-58 固定 21 字节的 `cms -encrypt -aes-256-gcm` fd 证书输入并只把 DER 密文暂存在有上限内存。前一门 FAIL 则后续 `NOT_CHECKED`。不做解密、不改变目标为普通临时文件、不增加命令变体或重试。
+- stdout/stderr 只在本机内存有上限采集；不得显示或保存原始证书、私钥、明文、密文、stderr 或路径清单。错误只可分类为预先列明的 `FD_UNREADABLE`、`CERT_PARSE`、`CMS_OPTION_OR_RECIPIENT`、`OTHER`、`UNKNOWN`，不得把非零退出单独定为根因。回执只保存阶段 `PASS/FAIL/NOT_CHECKED`、退出码、脱敏类别、固定长度/匹配布尔、首个失败、清理状态。所有失败即停，内存缓冲清零。
+- `git diff --check` 最多 1 次，新文件另做只读尾随空白检查。不得运行 Docker/WSL 容器、SSH、CloudShell、云 API、数据库或真实备份/恢复；不得访问旧 `D:\EliteSync`、本机真实备份/密钥目录内容、U 盘、Owner 密码或业务数据。
 
 ## Stop and review
 
-本机 Git Bash/OpenSSL 预检即使 PASS，也仅说明这次本机虚构 fd/CMS 管道可运行；服务器对应能力、CMS 跨端互通、认证失败消费者门、真实规模和备份恢复仍 `UNKNOWN`。Codex 不提交、制作 bundle、推送、自接受或派发后继；本机一次预算后停在 Work LEVEL 2 独立门。服务器执行须另立固定一次 SSH 任务。
+即使本机三阶段 PASS，也只证明本机虚构路径，不证明服务器 OpenSSL 3.0.13 可行、跨端 CMS 互通或真实备份恢复。旧 AUTH-58 结果不追溯改写。Codex 不提交、制作 bundle、推送、自接受或派发后继；一次运行后停在 Work LEVEL 2 独立门，后继服务器动作须新任务。

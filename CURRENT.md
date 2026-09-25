@@ -89,6 +89,8 @@ AUTH-57 虚构 CMS 服务器到本机互通 docs-only 方法获 Work LEVEL 2 **A
 
 AUTH-58 本机虚构 fd/CMS 管道可行目标获 Work LEVEL 2 **REJECT**，仅接受证书生成成功、fd 加密退出 1、解密未运行及固定临时目录清理的受限事实，见 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/summary.md`。原始 stderr 未保存，具体失败原因 `UNKNOWN`；Work 只读确认临时目录不存在，未重跑旧 1/1 预算。服务器 fd/CMS 能力、跨端互通和真实备份恢复均未建立，不据此改用服务器临时落盘。
 
+AUTH-59 已下达本机虚构 fd/CMS 失败分阶段诊断，见 `TASK_CURRENT.md`：新的一次运行中依次核对 fd 3 可读、OpenSSL 从 fd 读虚构证书、固定 CMS 加密；仅保存脱敏退出码/错误类别，失败即停并精确清理。它不连接服务器、接触真实密钥或备份，也不重用 AUTH-58 已耗尽预算。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
