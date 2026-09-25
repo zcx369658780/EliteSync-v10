@@ -163,6 +163,8 @@ AUTH-92 的一次 Owner 本机虚构标记 CMS 往返获 Work LEVEL 3 **ACCEPT�
 
 AUTH-93 的固定 E: BitLocker 只读查询获 Work LEVEL 2 **REJECT（状态目标）**，仅接受一次普通进程返回 `UAC_OR_LAUNCH_FAILED`、退出 1 的受限事实，见 `EVIDENCE/AUTH-93-CURRENT-USB-BITLOCKER-READONLY-PREFLIGHT/plan.md`。Owner 说明当时正在打字，可能误取消 UAC，具体原因未确诊；四字段仍 `UNKNOWN`，旧 1/1 预算耗尽。Owner 明确请求再触发一次；AUTH-94 为该请求另立单次有界只读尝试，成功前不写 U 盘恢复副本。
 
+AUTH-94 的一次 Owner 批准 UAC 后固定 E: 只读查询获 Work LEVEL 2 **REJECT（四字段目标）**，仅接受 `Unlocked/FullyEncrypted/100%` 等受限字段事实，见 `EVIDENCE/AUTH-94-USB-BITLOCKER-OWNER-UAC-RETRY-READONLY/summary.md`。保护位回报 `OTHER`，但 Work 静态定位脚本把本机枚举 `Off/On/Unknown` 与不存在的 `ProtectionOn` 比较，故该位必然不匹配，不能判断当前保护开关；原始值未保存，仍 `UNKNOWN`。旧 1/1 预算耗尽，私钥副本写入停止。AUTH-95 先修复固定枚举映射并审查，再安排新的一次有界查询。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
