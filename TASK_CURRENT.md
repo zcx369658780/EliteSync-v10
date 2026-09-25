@@ -4,9 +4,11 @@ Task ID: `AUTH-59-LOCAL-SYNTHETIC-FD-CMS-FAILURE-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（本机虚构 fd/CMS 失败分阶段定位；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — X509 FD FAILED; CMS NOT CHECKED`
 
 Assignee: `Codex`。只交付一次有界本机虚构诊断脚本与脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：本机虚构证书生成及 Git Bash fd 3 字节读回 PASS；OpenSSL `x509` 从 `/dev/fd/3` 读取退出 1，脱敏类别 `OTHER`、根因 `UNKNOWN`，CMS 加密未执行，完整分阶段目标 LEVEL 2 REJECT。固定临时目录清理获受限事实接受，见 `EVIDENCE/AUTH-59-LOCAL-SYNTHETIC-FD-CMS-FAILURE-DIAGNOSIS/summary.md`。旧本地 1/1 预算已耗尽。
 
 ## Authority and objective
 
