@@ -30,3 +30,11 @@
 **ACCEPT 修订候选的静态设计；Phase B 未放行、未执行。** Work 对照 AUTH-92 的 Owner 前台 CMD 成功路径、AUTH-99 拒绝点、AUTH-100 的有限提示通道事实，逐行审查本次 CMD/PS1。独立核对保护脚本 Windows PowerShell 语法错误 0、唯一 `Get-BitLockerVolume`、CMD 各一次 CMS 加密/解密与 `fc /b`、唯一字面 `-inkey "E:\elitesync-v10-db-backup-recipient-20260925.key.pem"`，不存在 C: 私钥路径；OpenSSL 两次调用均没有标准错误重定向。独立核对任务 Temp 目录当前不存在。CMD/PS1 哈希分别为 `72CEF5684B0F34C715C63B0A3AF4D2A1B708149A153506F41DA726EC0F648E3C` / `5CAEA4AA65C11B36C3DD88AAEE6F49CEEC6ED47E4C7950BFCD6EA7AD467C2E29`；审查前 plan SHA-256 `C592DE4A537EF2F134595F3BD1622D2830EC5DED6FF39FEA95FF9E2574C4897F`，`git diff --check` PASS。
 
 本次接受只说明静态候选适合在**下一 Work 会话**重新做临运行高风险审查；它不是运行授权，也不证明 Owner 密码提示、BitLocker 现时状态或 E: 私钥实际 CMS 解锁成功。临运行前须再次核对本地 HEAD/工作区、候选文件哈希、OpenSSL 身份、E: 固定设备/两文件、Temp 目录不存在及 Owner 在场；Work 再决定是否放行一次 Owner 手动启动。`mkdir` 与 OpenSSL 输出打开之间仍有同用户并发插入同名文件的余量，且设备/状态核查与读取不是原子操作。此余量只涉及固定虚构临时材料，Work 在此记录并留给临运行门复核；任何真实保护或文件身份失败均停止。Owner 要求当前会话完成验收后立即交接，因此本会话不触发 UAC、密码提示或派发后继任务。
+
+## Work LEVEL 3 Phase B 单次执行验收（2026-09-25）
+
+**ACCEPT 仅本次固定 E: 加密私钥副本与公有证书对虚构标记的本机 CMS 往返及成功清理。** 新 Work 会话在 Owner 到场后按 `pre-run-recheck.md` 完成独立临运行门并放行一次手动启动；Owner 仅回报最终 `AUTH101_RESULT=A_MATCH_AND_CLEAN;EXIT=0`，未提供密码、窗口原文或截图。Work 没有代 Owner 操作。脚本哈希仍为放行值，静态成功分支要求固定 Kingston E: 身份、Owner UAC 后唯一 BitLocker 查询达到 `Unlocked/On/FullyEncrypted/100`、两精确 E: 文件与固定工具身份门通过，再各一次 AES-256-CBC CMS 加密、使用显式 E: `-inkey` 解密、`fc /b` 相等和三个精确虚构文件及空目录清理通过，才打印此成功类别。结合 Owner 有限回执与下述事后独立核验，接受该脚本本次成功分支的受限结果；未保存原始运行流，不把它扩展为未来持续保护状态。
+
+Work 事后只读核对本地 `main` HEAD `c54ece3887d95829fc7fbfd090a37464565d9305`，CMD/PS1/OpenSSL SHA-256 仍分别为 `72CEF5684B0F34C715C63B0A3AF4D2A1B708149A153506F41DA726EC0F648E3C` / `5CAEA4AA65C11B36C3DD88AAEE6F49CEEC6ED47E4C7950BFCD6EA7AD467C2E29` / `21C43808DDC48B9B2133ED4FE9F4F90D77305568EF3BB8291DD05D271E29A54B`；任务 Temp 目录不存在。E: 仍为唯一 `Kingston DataTraveler Duo` USB Removable，28.82 GiB、分区/卷映射相符；两精确副本为非重解析普通文件，分别 2666/1541 bytes，私钥仅加密 PKCS#8 首行匹配，公有证书公开 DER 指纹仍为 `3AB76496F11B2AF5D3AE7975569A6100FD54E6BC99A41BBF7A22967ED5567461`。本机源私钥仍为 2666 bytes 非重解析文件，Owner 为当前用户、ACL 继承关闭，恰有当前用户/SYSTEM/Administrators 三条显式 Allow FullControl。未读或计算私钥正文/哈希，未重新查询 BitLocker 或重跑 CMS。
+
+本任务 Owner 手动启动、UAC/BitLocker 查询、CMS encrypt/decrypt、`fc /b` 的各一次预算按成功分支记为 **1/1，全部耗尽，不重试**。结论只及本次本机 E: 副本与固定虚构内容；不证明重插后的 U 盘密码解锁、纸质 BitLocker 恢复密钥可用、真实数据库备份加密、备份传输、完整性或恢复。AUTH-99 仍禁止运行。已知临时输出非原子创建余量及设备检查至打开之间的时间窗并未由本次成功消除；后继任务须独立界定风险与预算。

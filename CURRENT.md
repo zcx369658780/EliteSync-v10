@@ -4,6 +4,16 @@
 
 **本次 Work 交接停点**：AUTH-101 仅 Phase A 静态候选获 LEVEL 3 ACCEPT；Phase B 未放行、未执行，旧 AUTH-99 候选仍禁止运行。Owner 要求本长会话在验收、保存本地状态后立即交接，本会话不下达后继任务。下一 Work 会话先独立读取本地五份入口文件、Git/工作区及 AUTH-101 证据，再决定是否对同一任务放行一次 Owner 在场的虚构 CMS 演练；不得借交接自动消耗 UAC、BitLocker 或密码输入预算。见 `EVIDENCE/WORK-HANDOFF-20260925-AUTH101/handoff.md`。
 
+**新 Work 会话核验与治理更新（2026-09-25）**：已独立核对本地 `main` HEAD `c54ece3887d95829fc7fbfd090a37464565d9305`、仅两个既有无关未跟踪目录、AUTH-101 Phase A 证据与候选/固定 OpenSSL 哈希；跨磁盘 bundle 哈希及 `git bundle verify` 通过，该 bundle 仅覆盖修改前的精确 HEAD，不包含本轮未提交的文档修改。Owner 新定的 Work/Codex 会话超过 30 条或明显过长即交接、Codex 复用最新合资格会话规则见根 `AGENTS.md`，取代下方历史“约 20 张任务”会话安排。本次新 Work 会话尚未达到交接阈值；依 Owner 指令，规则更新后暂停，等待后续指令。AUTH-101 Phase B 仍未放行，预算未使用；本轮未查询 BitLocker、启动脚本、触发 UAC 或 OpenSSL CMS。
+
+**Codex 接续与当前派发（2026-09-25）**：Owner 已指示交接过长的最新 Codex 执行会话并继续下达任务单。新会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115` 已在实时项目完成只读交接；旧会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。现仍为同一 AUTH-101，`TASK_CURRENT.md` 仅派发临运行只读复核与有限回执，供 Work 独立 LEVEL 3 裁决；Phase B 未放行，所有一次运行预算仍为 0/1。现有未提交文档修改与两个无关未跟踪目录保留。
+
+**本次只读复核验收（2026-09-25）**：新 Codex 会话已交 AUTH-101 临运行有限回执，Work LEVEL 3 接受该回执并在 `EVIDENCE/AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR/pre-run-recheck.md` 记录审查与并发余量。候选与 OpenSSL 哈希匹配、E: 有限元数据由作者在单轮普通权限下报告匹配、任务 Temp 当时不存在。Owner 本人在电脑前仍未核实，**Phase B 不放行**；无 UAC、BitLocker 查询、CMS 或比较运行，预算均 0/1。下一步只在 Owner 到场且动态条件仍匹配时由 Work 再作放行裁决；不得向旧会话派发或运行 AUTH-99。
+
+**AUTH-101 Phase B 单次放行（2026-09-25）**：Owner 后续确认本人在电脑前、无录屏/屏幕共享、可核对 UAC 与原生非回显提示。Work 对照上个 Codex 会话和 AUTH-92/97～101 本地证据，重新核对固定候选/OpenSSL 哈希、Kingston E: 与两份精确文件有限身份及任务 Temp 不存在；在 `pre-run-recheck.md` 记录 LEVEL 3 裁决。仅放行 Owner 从 Explorer 单次手动启动 AUTH-101 固定 CMD；脚本仍须通过当前 BitLocker 保护门，任何失败或提示异常即止且不重试。**放行不等于已执行**，目前手动启动/UAC/BitLocker/CMS/比较预算均 0/1；AUTH-92 的 C: 私钥往返和 AUTH-97 的 E: 字节相等不代替本次 E: 私钥 CMS 演练。旧 AUTH-99 继续禁止运行。
+
+**AUTH-101 Phase B 执行验收（2026-09-25，当前结论）**：Owner 报告单次可见入口结果 `AUTH101_RESULT=A_MATCH_AND_CLEAN;EXIT=0`；Work 独立核对固定脚本/工具哈希未变、指定任务 Temp 目录已清理、E: 两精确副本有限身份及本机源私钥 ACL 未变，在 `EVIDENCE/AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR/plan.md` 作 LEVEL 3 **ACCEPT 仅本次 E: 副本虚构 CMS 往返**。启动、UAC/BitLocker 查询、CMS 加密/解密及比较各 1/1 预算已耗尽，不重跑。旧 AUTH-99 仍禁止运行；U 盘重插密码解锁、纸质 BitLocker 恢复密钥、真实数据库备份/恢复均未证明。
+
 本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
 
 Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX-01/summary.md`；根 `AGENTS.md` 和项目技能已在全新只读 Codex 任务中核验。
@@ -117,7 +127,7 @@ AUTH-70 两处固定本机目录的只读元数据回执获 Work LEVEL 2 **ACCEP
 
 AUTH-71 本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练获 Work LEVEL 2 **ACCEPT（仅本次虚构矩阵）**，见 `EVIDENCE/AUTH-71-LOCAL-BOUNDED-CMS-CAPACITY-FAILURE-DRILL/summary.md`。作者一次运行报告正常消费者 1/1,048,576；篡改、截断、错钥及超限/中断受控模拟均 0/0，缓冲清零且临时目录清理。Work 静态审查并只读确认目录不存在，未重跑已耗尽预算。原始输出未保存；真实 dump 体量、服务器端大流加密、真实密钥、完整备份和恢复仍未证明。
 
-**Owner 补充决定（2026-09-25）**：备份与密钥均不采用云同步或云备份。Owner 指定空的 `E:\` 32GB U 盘供私钥恢复副本使用，并授权使用该盘；密码仍仅由 Owner 本人输入。Work 当次只读观察 `E:` 为 USB 可移动卷、约 30.9 GB、FAT32，尚未验证卷内为空或具备可用的加密保护。后继须在精确设备识别与加密门通过后才写入恢复副本；无需再次询问是否可使用这只 U 盘。Codex 连续任务默认复用同一会话，约 20 张任务单或上下文明显过长时交接，不再逐单建新会话。
+**Owner 补充决定（2026-09-25）**：备份与密钥均不采用云同步或云备份。Owner 指定空的 `E:\` 32GB U 盘供私钥恢复副本使用，并授权使用该盘；密码仍仅由 Owner 本人输入。Work 当次只读观察 `E:` 为 USB 可移动卷、约 30.9 GB、FAT32，尚未验证卷内为空或具备可用的加密保护。后继须在精确设备识别与加密门通过后才写入恢复副本；无需再次询问是否可使用这只 U 盘。此前 Codex 连续任务约 20 张任务单交接的安排已由根 `AGENTS.md` 的新会话规则取代；仍不得逐单创建新会话。
 
 AUTH-72 `E:\` U 盘只读身份、空盘与加密状态回执获 Work LEVEL 2 **ACCEPT（仅当次受限事实）**，见 `EVIDENCE/AUTH-72-OWNER-USB-IDENTITY-ENCRYPTION-READONLY/summary.md`。作者报告单一可移动 USB 卷、FAT32、约 28.802 GiB；根目录含 1 个条目，与 Owner 所述“空盘”并存，条目性质 `UNKNOWN`，没有查看名称或内容。BitLocker 工具存在但固定卷状态查询失败，保护和锁定状态仍 `UNKNOWN`。未写入或格式化；后继只读分类和状态定位另立任务。AUTH-72 的查询预算已用尽。
 
