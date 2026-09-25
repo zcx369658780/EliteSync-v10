@@ -139,7 +139,9 @@ AUTH-80 Owner 密码解锁固定 E: 及解锁后保护状态获 Work LEVEL 3 **A
 
 AUTH-81 真实密码保护私钥生成的本机 docs-only 实施前方案获 Work LEVEL 2 **ACCEPT（仅候选方案和受限只读事实）**，见 `EVIDENCE/AUTH-81-REAL-KEY-GENERATION-LOCAL-PREFLIGHT/plan.md`。两处固定目录当次规范路径、ACL 和 C: 余量复核通过，不落在本次观察的 2 个 Windows 同步根下；其他第三方同步覆盖仍技术性 `UNKNOWN`，Owner 的不使用云同步决定另行成立。本机固定 OpenSSL 3.5.5 的相关选项可见，真实口令提示、RSA 3072 密钥/证书和跨端 CMS 均未证明。Work 选定 RSA 3072、AES-256-CBC 加密 PKCS#8、用途证书与 365 天作为后继候选；C: 整卷加密不是当前真实生成前硬门。Owner 已决定真实私钥密码另写纸质副本、与电脑/U 盘分开放置，实际密码只本人输入。后续虚构交互结果以 AUTH-82 证据为准。
 
-AUTH-82 本机虚构密码保护 RSA 3072 私钥与用途证书交互预检获 Work LEVEL 2 **ACCEPT（仅虚构流程）**，见 `EVIDENCE/AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF/summary.md`。原生提示生成加密 PKCS#8 私钥和公有证书、正确虚构口令配对、错误口令无可消费输出均由作者按各 1/1 预算报告；Work 独立只读核对临时根已清理。原计划清理命令被自动审批拒绝，作者后以精确文件删除和空目录非递归移除完成，未接触真实材料。PTY 可记录虚构口令，因此不证明真实密码安全输入。AUTH-83 已下达**Phase A 仅准备无秘密运行脚本**，Work 预运行审查前不得生成真实私钥。
+AUTH-82 本机虚构密码保护 RSA 3072 私钥与用途证书交互预检获 Work LEVEL 2 **ACCEPT（仅虚构流程）**，见 `EVIDENCE/AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF/summary.md`。原生提示生成加密 PKCS#8 私钥和公有证书、正确虚构口令配对、错误口令无可消费输出均由作者按各 1/1 预算报告；Work 独立只读核对临时根已清理。原计划清理命令被自动审批拒绝，作者后以精确文件删除和空目录非递归移除完成，未接触真实材料。PTY 可记录虚构口令，因此不证明真实密码安全输入；AUTH-83 的真实执行结果另见下方。
+
+AUTH-83 的真实密码保护私钥生成目标被 Work LEVEL 3 **REJECT**，仅接受一次失败事实，见 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md`。Phase A 无秘密 `launch.ps1` 经 Work 静态审查并放行 Phase B；Owner 确认在场、无录屏/共享并准备纸质密码副本。唯一一次脚本启动父进程返回子窗口退出码 1，Owner 未见可报告的失败类别；Work 独立只读确认精确真实私钥目标不存在。子窗口可见性、失败原因及 OpenSSL 是否启动均 `UNKNOWN`，旧一次预算耗尽。AUTH-84 已下达无秘密可见窗口探针，只用于诊断交互入口；真实密钥、证书、U 盘副本仍不存在。
 
 ## Product scope
 
