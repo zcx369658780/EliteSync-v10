@@ -85,7 +85,7 @@ AUTH-55 本机 OpenSSL 花括号别名格式解析修复获 Work LEVEL 2 **ACCEP
 
 AUTH-56 服务器 OpenSSL 算法列表单次只读观察获 Work LEVEL 2 **ACCEPT（仅受限静态事实）**，见 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/summary.md`。作者报告一次 SSH 成功，OpenSSL 可解析，算法列表命令退出 0；8600 字符字段经有界完整采集和 AUTH-55 解析器返回 `LISTED`，即当次列表列出 AES-256-GCM。原始列表未保存，Work 未重连；AUTH-53 历史 `UNKNOWN` 不追溯改写。AUTH-56 预算 1/1 已耗尽；CMS 实际加解密、与本机互通及真实备份恢复均未建立，也未触碰 U 盘、密码或真实数据。
 
-AUTH-57 已下达 docs-only 虚构 CMS 服务器到本机互通方法预检，见 `TASK_CURRENT.md`。它只设计固定虚构数据、一次性虚构证书与私钥、服务器不落盘加密、本机认证成功前隔离消费者及失败清理的有界方法；不运行 SSH、加解密或备份。任务仍 `ISSUED — NOT STARTED`，互通能力未建立。
+AUTH-57 虚构 CMS 服务器到本机互通 docs-only 方法获 Work LEVEL 2 **ACCEPT（仅方法与停点）**，见 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。方案限定固定 21 字节虚构样本、一次性无密码虚构证书/私钥、单次严格 SSH、服务器不落盘、密文完整采集、本机认证成功前消费者 0 字节及失败清理；服务器文件描述符/管道证书输入可行性仍 `UNKNOWN`。没有运行互通、真实密钥、备份或恢复。
 
 ## Product scope
 

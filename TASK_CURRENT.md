@@ -4,9 +4,11 @@ Task ID: `AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（服务器与本机 CMS 格式互通前的无真实数据方法门；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — DOCS-ONLY METHOD`
 
 Assignee: `Codex`。仅交付 docs-only 有界方法候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：虚构服务器到本机 CMS 互通 docs-only 方法与失败停点 LEVEL 2 ACCEPT；服务器无落盘证书输入和 CMS 管道加密可行性仍 `UNKNOWN`，没有运行证明。见 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。
 
 ## Authority and objective
 
