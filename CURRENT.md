@@ -127,7 +127,9 @@ AUTH-74 `E:\` U 盘 BitLocker 状态只读权限定位获 Work LEVEL 2 **ACCEPT�
 
 AUTH-75 Owner 在场启用 BitLocker To Go 的 docs-only 交互与验收合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT/plan.md`。它要求操作前再核对 E 身份、Owner 离线保管恢复密钥、本人批准 UAC 并输入密码，完成后独立核验保护和重新接入锁定/解锁；根目录系统元数据不构成必须格式化的理由。后续实际操作与结果以 AUTH-76/77 的最新证据为准。
 
-AUTH-76 E 盘 BitLocker To Go 的 Owner 交互回执获 Work LEVEL 3 **ACCEPT（仅回执事实）**，见 `EVIDENCE/AUTH-76-OWNER-USB-BITLOCKER-ENABLEMENT/summary.md`。Work 复核了 E 为约 28.8 GiB Kingston USB、仅有隐藏系统目录，打开本机 BitLocker 界面；Owner 报告 E 加密完成，实际恢复密钥已纸质抄写、核对并安排与电脑/U 盘分开。Work 未看到向导或秘密，未格式化。保护状态、完全加密、重新接入锁定与 Owner 密码解锁均待独立核验。AUTH-77 已下达固定 E 的只读保护状态核验，见 `TASK_CURRENT.md`；通过前不写真实私钥副本。
+AUTH-76 E 盘 BitLocker To Go 的 Owner 交互回执获 Work LEVEL 3 **ACCEPT（仅回执事实）**，见 `EVIDENCE/AUTH-76-OWNER-USB-BITLOCKER-ENABLEMENT/summary.md`。Work 复核了 E 为约 28.8 GiB Kingston USB、仅有隐藏系统目录，打开本机 BitLocker 界面；Owner 报告 E 加密完成，实际恢复密钥已纸质抄写、核对并安排与电脑/U 盘分开。Work 未看到向导或秘密，未格式化。当次保护状态由 AUTH-77 后续核验；重新接入锁定与 Owner 密码解锁仍待证明。
+
+AUTH-77 固定 E: 的 BitLocker 状态只读回执获 Work LEVEL 2 **ACCEPT（仅当次状态）**，见 `EVIDENCE/AUTH-77-USB-BITLOCKER-PROTECTION-READONLY/summary.md`。当前令牌读取被拒；Owner 批准 UAC 后一次提权只读查询复核设备身份并返回 `FullyEncrypted`、`ProtectionOn`、`Unlocked`、100%。未重插或验证密码解锁，恢复密钥可用性仍未证明。AUTH-78 已下达 Owner 在场的安全移除、重新接入锁定及本人密码解锁验证；通过前不写真实私钥副本。
 
 ## Product scope
 
