@@ -4,15 +4,15 @@ Task ID: `AUTH-76-OWNER-USB-BITLOCKER-ENABLEMENT`
 
 Risk Level: `LEVEL 3`（Owner 设备的真实 U 盘加密和恢复信息；Owner 交互及 Work 高风险门）
 
-Status: `PREPARED — OWNER OFFLINE RECOVERY STORAGE INPUT REQUIRED`（未下达执行，Codex 不得启动）
+Status: `ISSUED — WORK + OWNER INTERACTIVE EXECUTION`（2026-09-25；仅本任务所列 E: 交互，Codex 不得启动）
 
 Assignee when issued: `Work + Owner`。Work 负责精确设备复核、打开可信本机 BitLocker 界面与脱敏记录；Owner 本人批准必要 UAC、设置密码、保存恢复密钥并完成交互。Codex 只可在后继独立任务中做已授权的只读验证。
 
 ## Authority and pending input
 
-Owner 已指定并授权使用 `E:\` 32GB U 盘，允许必要时快速格式化，不采用云同步，密码由 Owner 本人输入。AUTH-72～75 受限事实/合同已接受：E 为单一 USB 可移动 FAT32 卷、约 28.802 GiB，根目录唯一可见项是 Windows 系统元数据；当前未提权状态查询 ACCESS_DENIED，实际保护状态 UNKNOWN。系统为 Windows Professional。**唯一待 Owner 明确的执行前决定**：BitLocker 恢复密钥的独立离线保管方式。默认建议写在纸上并与电脑、U 盘分开保管；不得发到聊天、存到云、Git、普通证据或同一 U 盘。Owner 尚未答复前保持 PREPARED。
+Owner 已指定并授权使用 `E:\` 32GB U 盘，允许必要时快速格式化，不采用云同步，密码由 Owner 本人输入。AUTH-72～75 受限事实/合同已接受：E 为单一 USB 可移动 FAT32 卷、约 28.802 GiB，根目录唯一可见项是 Windows 系统元数据；当前未提权状态查询 ACCESS_DENIED，实际保护状态 UNKNOWN。系统为 Windows Professional。Owner 于 2026-09-25 确认纸质离线保存恢复密钥；实际密钥尚未生成，必须由 Owner 在向导中亲自记录、核对，并与电脑及 U 盘分开放置。不得发到聊天、存到云、Git、普通证据或同一 U 盘。
 
-## Proposed single bounded operation after Owner answer
+## Single bounded operation
 
 1. Work 先重新核对 `D:\EliteSync-v10` 本地任务状态，再只读确认 `E:\` 仍唯一映射到 25～35 GiB 的可移动 USB；不符即停止。核对根目录无非系统用户数据；不删除系统目录。
 2. 仅打开 Windows 本机 BitLocker To Go 交互界面，不用命令参数或脚本传递密码/恢复密钥。Owner 核对界面目标为上述 E 盘，自行批准可能出现的 UAC；提示目标不明或失败即停止。
@@ -22,4 +22,4 @@ Owner 已指定并授权使用 `E:\` 32GB U 盘，允许必要时快速格式化
 
 ## Stop
 
-本 PREPARED 文档本身不授权任何操作；不得自动提权、格式化、加密、解锁、写盘或要求 Owner 在聊天中提供秘密。若 Owner 选择不启动或离线恢复信息安排未定，保持停点。真实密钥生成、副本写入及失钥演练仍各需独立任务和风险门。
+不得自动提权、格式化、解锁、写盘或要求 Owner 在聊天中提供秘密。若 Owner 选择不启动或离线恢复信息无法按纸质方式妥善保管，保持停点。真实密钥生成、副本写入及失钥演练仍各需独立任务和风险门。
