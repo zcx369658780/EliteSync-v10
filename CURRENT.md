@@ -109,7 +109,7 @@ AUTH-67 部署目录 CLI 当前连接引擎元数据一次只读观察获 Work L
 
 AUTH-68 真实备份前的 docs-only 范围与一致性门合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-68-DB-BACKUP-CONSISTENCY-BOUNDARY-CONTRACT/contract.md`。它把实例/连接身份、完整对象与外部数据类别、事务引擎、DDL/写入边界、dump 权限/选项、加密先后、密钥与隔离恢复列为独立停点；影响生产写入的具体方案须 Owner 决定。没有连接服务器、真实 DB 或备份。Work 独立测试生成的 AUTH-67 Python 缓存目录仍未跟踪，因删除操作被自动审批拒绝而保留，不属于候选。
 
-AUTH-69 已下达 Owner 密码保护私钥与加密 U 盘恢复副本的 docs-only 实施前合同，见 `TASK_CURRENT.md`。不接触真实目录内容、U 盘或密码；真实创建和验证仍须独立任务与 Owner 高风险门。本地 main `0264eba53ad310d015eaf6bb86992504b7de0f14` 已制作跨磁盘 Git bundle，SHA-256 `1B0B4B5EA3FDC8A9CA757E0D8347B3FA53FE4BCF50F8427FA0F87EDB101E0D29`；bundle 不含未跟踪内容、真实 DB 或密钥。
+AUTH-69 Owner 密码保护私钥与加密 U 盘恢复副本的 docs-only 实施前合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-69-OWNER-KEY-USB-RECOVERY-PREFLIGHT/plan.md`。目录与设备识别、加密卷、私钥/证书配对、副本写入、失钥演练及临时清理各有独立停点；仍无真实私钥、U 盘副本或恢复证明。真实创建/写入/解锁须各自任务及 Owner 高风险门。本地 main `0264eba53ad310d015eaf6bb86992504b7de0f14` 已制作跨磁盘 Git bundle，SHA-256 `1B0B4B5EA3FDC8A9CA757E0D8347B3FA53FE4BCF50F8427FA0F87EDB101E0D29`；bundle 不含未跟踪内容、真实 DB 或密钥。
 
 ## Product scope
 

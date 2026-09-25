@@ -4,7 +4,7 @@ Task ID: `AUTH-69-OWNER-KEY-USB-RECOVERY-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实备份私钥及加密 U 盘恢复副本实施前合同；真实创建另设 Owner 高风险门）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅 docs-only 密钥与 U 盘恢复副本合同，见 `EVIDENCE/AUTH-69-OWNER-KEY-USB-RECOVERY-PREFLIGHT/plan.md`）
 
 Assignee: `Codex`。只交付一份 docs-only 候选实施前合同，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
