@@ -4,9 +4,9 @@ Task ID: `AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY`
 
 Risk Level: `LEVEL 3`（Owner 真实密码保护私钥生成；无 DB、服务器或备份写入）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `PHASE A ACCEPTED — PHASE B NOT RELEASED; OWNER READINESS PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 准备候选，Work 独立 LEVEL 3 预运行审查并放行后，Owner 本人从 Explorer 手动启动且只在 OpenSSL 原生提示输入密码。Work 保留最终验收权。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 3 接受 Phase A 脚本候选；仍待 Owner 当下无录屏/共享、在场及纸质密码准备确认，Phase B 尚未放行。放行后仅 Owner 本人从 Explorer 手动启动且只在 OpenSSL 原生提示输入密码。Work 保留最终验收权。
 
 ## Authority and fixed boundary
 
