@@ -4,7 +4,7 @@ Task ID: `AUTH-71-LOCAL-BOUNDED-CMS-CAPACITY-FAILURE-DRILL`
 
 Risk Level: `LEVEL 2`（真实备份前的本机虚构容量和认证失败隔离演练；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅本机 1 MiB 虚构容量/失败矩阵，见 `EVIDENCE/AUTH-71-LOCAL-BOUNDED-CMS-CAPACITY-FAILURE-DRILL/summary.md`）
 
 Assignee: `Codex`。只交付本机确定性虚构 CMS 容量/失败消费者门候选、targeted 测试和脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

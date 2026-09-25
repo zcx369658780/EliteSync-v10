@@ -113,7 +113,7 @@ AUTH-69 Owner 密码保护私钥与加密 U 盘恢复副本的 docs-only 实施�
 
 AUTH-70 两处固定本机目录的只读元数据回执获 Work LEVEL 2 **ACCEPT（仅当次受限观察）**，见 `EVIDENCE/AUTH-70-LOCAL-BACKUP-KEY-DIRECTORY-READINESS/summary.md`。作者报告目录及必要父路径为规范、非重解析目录；ACL 主体仅归类当前用户、SYSTEM 和管理员且继承关闭，C: 当次可用 642974105600 bytes。Work 未重查原始系统对象。两目录自动同步技术边界和 C: BitLocker 均 `UNKNOWN`，备份目录另有 Owner 无云同步声明；密钥目录须单独确认。未使用 U 盘或密码，无真实私钥/备份/恢复。
 
-AUTH-71 已下达本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练，见 `TASK_CURRENT.md`。新本机完整运行预算 1/1，先本机 targeted 测试；无 SSH、真实 DB、密钥目录或 U 盘操作。通过也不证明真实备份规模与恢复能力。
+AUTH-71 本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练获 Work LEVEL 2 **ACCEPT（仅本次虚构矩阵）**，见 `EVIDENCE/AUTH-71-LOCAL-BOUNDED-CMS-CAPACITY-FAILURE-DRILL/summary.md`。作者一次运行报告正常消费者 1/1,048,576；篡改、截断、错钥及超限/中断受控模拟均 0/0，缓冲清零且临时目录清理。Work 静态审查并只读确认目录不存在，未重跑已耗尽预算。原始输出未保存；真实 dump 体量、服务器端大流加密、真实密钥、完整备份和恢复仍未证明。
 
 ## Product scope
 
