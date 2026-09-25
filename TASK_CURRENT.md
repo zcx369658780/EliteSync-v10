@@ -4,9 +4,11 @@ Task ID: `AUTH-61-SERVER-TO-LOCAL-SYNTHETIC-CMS-GCM-POSITIVE`
 
 Risk Level: `LEVEL 2`（真实服务器虚构 CMS 加密与本机正向解密互通；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SYNTHETIC POSITIVE CMS INTEROP ONLY`
 
 Assignee: `Codex`。只交付一次有界虚构正向互通候选和脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：固定 21 字节虚构样本的当次服务器 CMS AES-256-GCM 加密、本机隔离解密正向互通 LEVEL 2 ACCEPT；作者报告 SSH、远端 CMS 与本机解密均退出 0，固定内容/摘要匹配且本机临时目录清理。见 `EVIDENCE/AUTH-61-SERVER-TO-LOCAL-SYNTHETIC-CMS-GCM-POSITIVE/summary.md`。负向消费者门、真实密钥/备份/恢复未证明；SSH 1/1 已耗尽。
 
 ## Authority and objective
 
