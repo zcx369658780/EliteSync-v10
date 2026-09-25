@@ -4,7 +4,7 @@ Task ID: `AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY`
 
 Risk Level: `LEVEL 2`（一次部署目录 DB 引擎元数据只读观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅当次 CLI 可见引擎聚合，见 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/summary.md`）
 
 Assignee: `Codex`。只交付固定探针的单次严格 SSH 脱敏事实回执与本机解析测试，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

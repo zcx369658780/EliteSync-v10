@@ -105,7 +105,7 @@ AUTH-65 部署目录 CLI 当前连接对象元数据一次只读观察获 Work L
 
 AUTH-66 本机 DB 存储引擎与备份一致性元数据探针预检获 Work LEVEL 2 **ACCEPT（仅本地预检）**，见 `EVIDENCE/AUTH-66-DB-ENGINE-CONSISTENCY-PROBE-PREFLIGHT/summary.md`。两条固定查询区分可见基表中的 InnoDB、非 InnoDB 和 NULL 引擎；Work 独立复跑 34/34 虚构检查。探针始终保留范围完整性和备份一致性 `UNKNOWN`；没有连接服务器或真实 DB，现场读取须另立任务。
 
-AUTH-67 已下达固定引擎探针的单次部署目录 CLI 元数据只读观察，见 `TASK_CURRENT.md`。独立严格 SSH 1/1 预算，须先核对 AUTH-66 脚本哈希和本机解析测试；连接故障立即停止并告知 Owner。无业务行、真实备份或改库操作。
+AUTH-67 部署目录 CLI 当前连接引擎元数据一次只读观察获 Work LEVEL 2 **ACCEPT（仅可见聚合事实）**，见 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/summary.md`。作者报告唯一严格 SSH 成功，当次可见 43 张 InnoDB 基表、非 InnoDB 0、引擎 NULL 0、视图 0，版本和指纹与 AUTH-65 匹配。Work 静态审查脚本，未重连服务器；一次独立测试调用因调用目录导入问题未执行测试用例，任务测试预算已耗尽。权限完整性、Web worker 同库、并发写入/DDL 下完整备份一致性及恢复能力仍 `UNKNOWN`；SSH 预算耗尽。
 
 ## Product scope
 
