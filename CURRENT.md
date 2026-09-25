@@ -123,7 +123,7 @@ AUTH-73 同一 `E:\` U 盘根条目与保护状态只读定位获 Work LEVEL 2 *
 
 **Owner 补充授权（2026-09-25）**：Owner 在看不到 U 盘文件后，明确允许对指定 `E:\` U 盘执行格式化，建议快速格式化节省时间。此授权只限准确复核后的该设备，不授权其他盘；是否需要格式化须结合加密方案判断，实际操作另立有界任务并核对停点。密码仍只由 Owner 本人输入。
 
-AUTH-74 已下达 `E:\` U 盘 BitLocker 状态查询失败的只读权限/能力定位，见 `TASK_CURRENT.md`。Work 预先只读观察 Windows EditionID 为 `Professional`，但当前进程权限和卷状态仍未知；此任务不提权、不格式化或加密。继续复用同一 Codex 会话。
+AUTH-74 `E:\` U 盘 BitLocker 状态只读权限定位获 Work LEVEL 2 **ACCEPT（仅未提权进程事实）**，见 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`。作者报告 Windows EditionID `Professional`、当前管理员令牌未启用；对 E 盘的 PowerShell 和 `manage-bde` 状态查询各一次均归类 `ACCESS_DENIED`，两种预算已耗尽。Work 未复核原始输出；卷转换/保护/锁定仍 `UNKNOWN`。快速格式化授权不能解决管理权限，下一步须在 Owner 在场的具体任务中处理提权和密码/恢复信息。
 
 ## Product scope
 

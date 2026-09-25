@@ -4,7 +4,7 @@ Task ID: `AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY`
 
 Risk Level: `LEVEL 2`（Owner 指定 U 盘加密能力与权限的只读定位；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅未提权进程的 BitLocker 权限受限事实，见 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`）
 
 Assignee: `Codex`。只交付固定本机加密能力与权限的脱敏只读回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
