@@ -4,7 +4,7 @@ Task ID: `AUTH-64-DB-OBJECT-INVENTORY-PROBE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实数据库完整范围前的只读元数据探针预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅本地元数据探针预检，见 `EVIDENCE/AUTH-64-DB-OBJECT-INVENTORY-PROBE-PREFLIGHT/summary.md`）
 
 Assignee: `Codex`。只交付本机 PHP 固定元数据探针、纯虚构 targeted 测试和脱敏说明，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
