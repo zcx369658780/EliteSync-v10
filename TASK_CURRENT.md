@@ -4,9 +4,11 @@ Task ID: `AUTH-98-USB-KEY-SYNTHETIC-RECOVERY-DRILL-DESIGN`
 
 Risk Level: `LEVEL 3`（真实加密私钥恢复副本的后继演练设计；本轮仅文档）
 
-Status: `ISSUED — DOCS-ONLY CANDIDATE; NO KEY USE OR UAC`
+Status: `ACCEPTED — DOCS-ONLY DESIGN CLOSED`
 
 Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 3 审查、验收及后继任务发布。
+
+Work LEVEL 3 ACCEPT 仅限 `EVIDENCE/AUTH-98-USB-KEY-SYNTHETIC-RECOVERY-DRILL-DESIGN/plan.md` 的文档方案；没有私钥使用、UAC、BitLocker 查询或演练执行。后继 A 的脚本与运行须另立任务及高风险门，B/C 分别独立。本任务禁止再执行。
 
 ## Objective and allowed path
 

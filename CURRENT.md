@@ -171,6 +171,8 @@ AUTH-96 的固定恢复对复制目标获 Work LEVEL 3 **REJECT**，仅接受一
 
 AUTH-97 经 Work LEVEL 3 **ACCEPT（固定加密恢复对副本及本次字节身份）**，见 `EVIDENCE/AUTH-97-OWNER-VISIBLE-USB-KEY-PAIR-COPY-RETRY/plan.md`。Owner 从 Explorer 单次启动可见入口并报告成功标记；Work 独立确认当前 E: 为指定 Kingston USB Removable，两精确副本各与本机加密私钥/公有证书同长度、SHA-256 相等，源私钥三主体受限 ACL 未变。入口和复制脚本哈希仍与放行值一致。新 1/1 启动预算已用尽。未验证纸质恢复密钥解锁、失钥恢复或真实数据库备份/恢复；E: 保护状态成功分支只适用于脚本运行当时，不能推断未来状态。
 
+AUTH-98 的 docs-only U 盘私钥恢复演练设计获 Work LEVEL 3 **ACCEPT（仅方案）**，见 `EVIDENCE/AUTH-98-USB-KEY-SYNTHETIC-RECOVERY-DRILL-DESIGN/plan.md`。后继优先 A：Owner 本机非回显输入现有私钥密码，OpenSSL 只以精确 E: 私钥副本对固定虚构内容作 CMS 往返；B 为拔插锁定后的 U 盘密码解锁，C 为纸质 BitLocker 恢复密钥验证，各自独立。AUTH-98 未执行任何演练，不证明 A/B/C 或真实数据库恢复。下一步须另立可执行脚本候选并经 Work 高风险预运行审查。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
