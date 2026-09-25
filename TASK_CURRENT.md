@@ -1,25 +1,26 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY`
+Task ID: `AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT`
 
-Risk Level: `LEVEL 2`（Owner 指定 U 盘加密能力与权限的只读定位；Work 独立审查）
+Risk Level: `LEVEL 2`（Owner 在场的 U 盘加密实施前合同；实际启用属于独立高风险操作）
 
-Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅未提权进程的 BitLocker 权限受限事实，见 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`）
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付固定本机加密能力与权限的脱敏只读回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+Assignee: `Codex`。只交付一份 docs-only 的 Owner 交互操作与验收合同，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-72/73 已确认当次 `E:\` 是单一 USB 可移动卷；根目录唯一条目为 Windows 系统元数据，未观察到用户数据。两种 BitLocker 状态查询分别失败，卷保护仍 UNKNOWN。Owner 已授权使用及必要时快速格式化准确核对后的 E 盘，但格式化不会自行建立加密保护。Work 只读读取 Windows EditionID 为 `Professional`；仍不证明当前进程有管理 BitLocker 的权限。本任务定位查询失败的安全类别与可用加密入口，不格式化或启用加密。
+Owner 指定 `E:\` 32GB U 盘用于密码保护私钥的加密恢复副本，授权必要时快速格式化，但不接受云同步。AUTH-72～74 的当次事实：E 为单一 FAT32 可移动 USB 卷、约 28.802 GiB；根目录唯一可见项为 Windows `System Volume Information`，未观察到用户数据；当前未提权进程的两种 BitLocker 状态查询为 ACCESS_DENIED，卷保护 UNKNOWN。Windows EditionID 为 Professional，固定 VeraCrypt 路径未发现。格式化系统元数据目录并不能解决管理权限。本任务只准备可让 Owner 最终审查的 BitLocker To Go 交互步骤，不打开系统界面、不触发 UAC、不格式化或加密。
 
 ## Exact execution boundary
 
-- 启动前核对 `D:\EliteSync-v10` 本地 `main`、HEAD、工作区、任务 ID/状态/派发；读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本文件、`REVIEW_GATE.md`、本地 workflow 技能及 AUTH-69/70/72/73 验收。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/` 与 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/`，不得移动、删除或纳入提交。状态或派发不匹配即停。
-- 只允许新增 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`；不写脚本或其他路径。先只读复核 E: 为单一匹配 USB 可移动卷、容量 25～35 GiB，失败即停。
-- 一次只读确认当前 Windows EditionID、BitLocker PowerShell 模块/命令存在、固定系统路径的 `manage-bde.exe` 存在、当前进程管理员令牌是否启用；只输出固定枚举/布尔，不输出账号、组、卷序列号或原始权限信息。不要搜索用户主目录或安装新软件。
-- 在设备身份门通过后，允许对 `E:` 各最多一次新的只读 `Get-BitLockerVolume` 与 `manage-bde -status` 状态尝试，以有限时间/输出缓冲捕获到本机内存；只将退出码和异常归类为 ACCESS_DENIED / NOT_SUPPORTED / INVALID_VOLUME / TOOL_FAILURE / OTHER / SUCCESS，若输出能安全解析固定保护/转换/锁定字段则返回状态，否则 UNKNOWN。不得显示或保存原始 stdout/stderr、恢复密钥、保护器 ID、卷 GUID、序列号、用户名或任何密码。第二种查询即使第一种失败也只用于本任务的诊断，不重用 AUTH-72/73 已耗预算；两种均失败不反复尝试。
-- 可只读核对固定已安装路径 `C:\Program Files\VeraCrypt\VeraCrypt.exe` 与 `C:\Program Files (x86)\VeraCrypt\VeraCrypt.exe` 是否存在，仅报告存在性；不得启动、下载或安装。回执明确区分操作系统可用性、当前令牌权限、实际 E 盘保护状态及下一步是否需 Owner 在场批准系统提权/输入密码。 `git diff --check` 最多 1 次，新文件另查尾随空白。
+- 启动前核对 `D:\EliteSync-v10` 本地 `main`、HEAD、工作区、任务 ID/状态/派发；读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本文件、`REVIEW_GATE.md`、本地 workflow 技能及 AUTH-49/69/70/72～74 验收。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/` 与 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/`，不得移动、删除或纳入提交。状态或派发不匹配即停。
+- 只允许新增 `EVIDENCE/AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT/plan.md`。不修改历史、控制文件、源码或配置。仅文档；不得调用 BitLocker 工具或打开系统 UI。
+- 计划必须按顺序写明：在实际操作前重新核对 E 与 28.8 GiB USB 的唯一映射；如需管理员提示仅由 Owner 在本机批准；只选择 E 盘的 BitLocker To Go；密码仅由 Owner 亲自输入，不能让 Codex 接收；恢复密钥由 Owner 选择并保存在独立离线位置，绝不可保存在 U 盘本身、聊天、Git、普通证据或云端。若 Owner 尚未确认恢复密钥离线保管方式，则保持操作停点，不启动加密。
+- 说明当次根目录只有系统元数据，通常不必为此格式化；Owner 的快速格式化授权仍有效，但若界面要求更换文件系统或确有需要，应另立精确任务并再次核对目标。不要写自动执行格式化命令。若采用 BitLocker 向导，空盘可考虑“仅加密已用空间”，但必须说明选项和兼容性由实际界面确认，不推定该机一定提供。
+- 计划须包括独立验收：向导完成后核验 E 盘保护开启和加密完成，移除/重新接入后锁定与 Owner 密码解锁，恢复密钥可由 Owner 找到且未进入普通证据；之后才可另立真实私钥生成/副本任务。任何 UAC 拒绝、设备身份变化、向导失败、恢复密钥无法离线保管或保护状态不可证，均停止，不写私钥。仅保存脱敏状态、容量/设备匹配、失败类别与时间；不记录密码或恢复密钥。
+- `git diff --check` 最多 1 次，新文件另查尾随空白。作者不提交、制作 bundle、推送、自接受或派发后继。
 
 ## Stop and review
 
-不得格式化、删除、加密、解锁、写入 E 盘；不得启动 UAC、提权、改变策略、安装软件或要求 Owner 输入密码。不得 SSH、CloudShell、云 API、Docker、真实 DB、备份/密钥目录内容、账号/Token/消息/媒体或旧 `D:\EliteSync`。Codex 不提交、制作 bundle、推送、自接受或派发后继。停在 Work LEVEL 2 独立审查门。
+不得连接服务器、真实 DB、云 API、Docker；不得读取备份/密钥目录内容、U 盘文件内容、Owner 密码或旧 `D:\EliteSync`。不得打开 UI、触发 UAC、提权、格式化、删除、加密、解锁、复制、写入 E 盘或创建真实密钥。停在 Work LEVEL 2 独立审查门。

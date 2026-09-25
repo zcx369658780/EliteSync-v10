@@ -125,6 +125,8 @@ AUTH-73 同一 `E:\` U 盘根条目与保护状态只读定位获 Work LEVEL 2 *
 
 AUTH-74 `E:\` U 盘 BitLocker 状态只读权限定位获 Work LEVEL 2 **ACCEPT（仅未提权进程事实）**，见 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`。作者报告 Windows EditionID `Professional`、当前管理员令牌未启用；对 E 盘的 PowerShell 和 `manage-bde` 状态查询各一次均归类 `ACCESS_DENIED`，两种预算已耗尽。Work 未复核原始输出；卷转换/保护/锁定仍 `UNKNOWN`。快速格式化授权不能解决管理权限，下一步须在 Owner 在场的具体任务中处理提权和密码/恢复信息。
 
+AUTH-75 已下达 Owner 在场启用 BitLocker To Go 的 docs-only 交互/验收合同，见 `TASK_CURRENT.md`。在 Owner 明确恢复密钥的离线保管方式、合同获独立验收前，不启动 UAC 或加密；继续复用同一 Codex 会话。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
