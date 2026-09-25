@@ -125,9 +125,9 @@ AUTH-73 同一 `E:\` U 盘根条目与保护状态只读定位获 Work LEVEL 2 *
 
 AUTH-74 `E:\` U 盘 BitLocker 状态只读权限定位获 Work LEVEL 2 **ACCEPT（仅未提权进程事实）**，见 `EVIDENCE/AUTH-74-USB-BITLOCKER-ACCESS-DIAGNOSIS-READONLY/summary.md`。作者报告 Windows EditionID `Professional`、当前管理员令牌未启用；对 E 盘的 PowerShell 和 `manage-bde` 状态查询各一次均归类 `ACCESS_DENIED`，两种预算已耗尽。Work 未复核原始输出；卷转换/保护/锁定仍 `UNKNOWN`。快速格式化授权不能解决管理权限，下一步须在 Owner 在场的具体任务中处理提权和密码/恢复信息。
 
-AUTH-75 Owner 在场启用 BitLocker To Go 的 docs-only 交互与验收合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT/plan.md`。它要求操作前再核对 E 身份、Owner 离线保管恢复密钥、本人批准 UAC 并输入密码，完成后独立核验保护和重新接入锁定/解锁；根目录系统元数据不构成必须格式化的理由。当前未启动 UAC 或加密，E 卷保护状态仍 `UNKNOWN`。恢复密钥保管方式待 Owner 明确后，方可另立实际操作任务。
+AUTH-75 Owner 在场启用 BitLocker To Go 的 docs-only 交互与验收合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT/plan.md`。它要求操作前再核对 E 身份、Owner 离线保管恢复密钥、本人批准 UAC 并输入密码，完成后独立核验保护和重新接入锁定/解锁；根目录系统元数据不构成必须格式化的理由。后续实际操作与结果以 AUTH-76/77 的最新证据为准。
 
-AUTH-76 的 E 盘 BitLocker To Go 实际启用任务已备妥但处于 `PREPARED — OWNER OFFLINE RECOVERY STORAGE INPUT REQUIRED`，见 `TASK_CURRENT.md`；它不是可执行派发。Owner 明确恢复密钥的独立离线保管方式前，不打开界面或启动加密。准备文本包含精确 E 盘复核、Owner 本人 UAC/密码/恢复信息交互，以及后续独立保护与重插验证。
+AUTH-76 E 盘 BitLocker To Go 的 Owner 交互回执获 Work LEVEL 3 **ACCEPT（仅回执事实）**，见 `EVIDENCE/AUTH-76-OWNER-USB-BITLOCKER-ENABLEMENT/summary.md`。Work 复核了 E 为约 28.8 GiB Kingston USB、仅有隐藏系统目录，打开本机 BitLocker 界面；Owner 报告 E 加密完成，实际恢复密钥已纸质抄写、核对并安排与电脑/U 盘分开。Work 未看到向导或秘密，未格式化。保护状态、完全加密、重新接入锁定与 Owner 密码解锁均待独立核验。AUTH-77 已下达固定 E 的只读保护状态核验，见 `TASK_CURRENT.md`；通过前不写真实私钥副本。
 
 ## Product scope
 
