@@ -4,9 +4,9 @@ Task ID: `AUTH-96-ENCRYPTED-USB-KEY-RECOVERY-PAIR-COPY`
 
 Risk Level: `LEVEL 3`（真实加密私钥与公有证书的固定 E: 恢复副本写入）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER UAC AND COPY PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。Owner 在获批后亲自核对并批准 Windows PowerShell UAC；无需提供私钥或 U 盘密码。
+Assignee: `Owner + Codex`，复用现有本地执行会话；Work 已独立 LEVEL 3 预运行审查并放行一次固定脚本，最终验收仍由 Work 负责。Owner 亲自核对并批准 Windows PowerShell UAC；无需提供私钥或 U 盘密码。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ Owner 已决定私钥在本人电脑独立目录、密码由本人保管，恢�
 
 ## Phase B — reserved, not yet authorized
 
-Work 独立审查脚本并临运行核对源/目标、当前 E 身份与 Owner 在场后，才可放行**一次**脚本启动和 Owner 本人批准 UAC。BitLocker 状态查询与两文件复制各预算 **1/1，当前 0/1 未放行**。若 UAC、保护状态、身份、写入或字节核验失败，立即停止，不改参数或重试。Codex 只交付有限执行回执；Work 独立核对 E 两精确文件存在、长度与源副本 SHA-256 相等，并复核原私钥元数据/ACL 后作 LEVEL 3 验收。成功复制本身不证明 U 盘丢失时的恢复密钥可用或失钥恢复演练；须另立任务。
+Work 已于 2026-09-25 独立审查脚本 SHA-256 `A79C3715E2DD08085D8BD0AEEEBE5388A0A9C2ADE197C656C6DD7EF032C6EB6C`，并临运行核对源/目标和当前 E 身份，见同目录 `plan.md`，**放行一次**脚本启动和 Owner 本人批准 UAC。BitLocker 状态查询与两文件复制各预算 **1/1，当前 0/1 已用**。若 UAC、保护状态、身份、写入或字节核验失败，立即停止，不改参数或重试。Codex 只交付有限执行回执；Work 独立核对 E 两精确文件存在、长度与源副本 SHA-256 相等，并复核原私钥元数据/ACL 后作 LEVEL 3 验收。成功复制本身不证明 U 盘丢失时的恢复密钥可用或失钥恢复演练；须另立任务。
 
 禁止读取 U 盘其他目录/文件，复制任何真实数据库或备份密文，输出私钥正文/口令/完整哈希，修改 BitLocker/卷/ACL、删除或覆盖任一现有文件，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。不得将私钥或副本加入 Git、Git bundle 或普通证据。
