@@ -1,25 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-95-USB-BITLOCKER-PROTECTION-ENUM-REPAIR`
+Task ID: `AUTH-96-ENCRYPTED-USB-KEY-RECOVERY-PAIR-COPY`
 
-Risk Level: `LEVEL 2`（当前 E: BitLocker 只读探针的保护枚举修复与后继一次核验）
+Risk Level: `LEVEL 3`（真实加密私钥与公有证书的固定 E: 恢复副本写入）
 
-Status: `ISSUED — PHASE B RELEASED; OWNER UAC AND QUERY PENDING`
+Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
 
-Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 2 审查修复候选并放行一次固定只读查询；Owner 亲自核对并批准可能出现的 Windows PowerShell UAC。
+Assignee: `Codex + Owner`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。Owner 在获批后亲自核对并批准 Windows PowerShell UAC；无需提供私钥或 U 盘密码。
 
 ## Authority and fixed boundary
 
-AUTH-94 一次查询已耗尽，返回固定 E: `Unlocked/FullyEncrypted/100%`，但 `ProtectionStatus` 映射有静态错误：本机 `BitLockerVolumeProtectionStatus` 枚举值为 `Off/On/Unknown`，旧脚本却比较 `ProtectionOn`，所以保护位本次必然 `OTHER`，原始值未保存。不得在 AUTH-94 重试。本任务只修复这一枚举判断并在独立审查后新授权一次只读查询；不读取 U 盘内容或写真实私钥副本。
+Owner 已决定私钥在本人电脑独立目录、密码由本人保管，恢复副本放在已加密的 `E:` U 盘；Owner 授权使用该空 U 盘。AUTH-95 在一次固定 Kingston `E:` 的旧时点只读取得 `Unlocked/On/FullyEncrypted/100`，不能当作写入瞬间的永久状态。AUTH-92 仅证明本机虚构 CMS 往返。本任务只复制**现有加密 PEM 私钥原样字节**及对应公有证书到同一受保护 U 盘根目录的两个精确目标，并核对源/副本字节身份；不解密、生成或修改原私钥，不写真实备份。
 
-## Phase A — static candidate only, no UAC/query
+## Phase A — candidate only; no UAC/copy
 
-1. 核对 `D:\EliteSync-v10` 本地 `main`、HEAD、工作区及 AUTH-93/94 受限验收，保留无关未跟踪内容。只读核对本机 BitLocker module DLL 中 `BitLockerVolume.ProtectionStatus` 属性的枚举类型与 `Off/On/Unknown` 值；不得调用 `Get-BitLockerVolume` 或启动提权窗口。
-2. 只在 `EVIDENCE/AUTH-95-USB-BITLOCKER-PROTECTION-ENUM-REPAIR/` 准备从 AUTH-93 经审查脚本派生的固定只读脚本；仅将保护通过条件改为**枚举 `On`**，并把 `Off`、`Unknown` 分成有限类别，不输出原始对象、保护器、卷 GUID、密码或恢复密钥。普通与提权进程仍须双重核对唯一 `Kingston DataTraveler Duo` USB、25～35 GiB、固定 `E:` 分区/卷映射与 Removable；提权端仅有一处 `Get-BitLockerVolume -MountPoint 'E:'`。不得修改旧脚本。
-3. 静态核对与旧脚本的受限 diff、唯一查询点、语法、所有输出类别和哈希；只做枚举反射/虚构静态值测试，不查询真实卷。结果写入同目录 `plan.md`，停在 Work LEVEL 2 Phase A 预运行审查。不提交、推送、自接受或派发后继。
+1. 核对本地 `main`、HEAD、工作区、AUTH-69/80/88～92/95 接受边界，保留无关未跟踪内容。固定源：`C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem` 与同前缀 `.cert.pem`。固定目标：`E:\elitesync-v10-db-backup-recipient-20260925.key.pem` 与同前缀 `.cert.pem`。只读核对源私钥规范非重解析、2666 bytes、加密 PKCS#8 首行、当前用户 Owner 与三主体显式受限 ACL；公有证书规范非重解析、1541 bytes、公开 SHA-256 指纹与 AUTH-91 匹配；目标两个精确文件名均不存在。不得读取私钥正文到普通输出或枚举 U 盘文件。
+2. 只在 `EVIDENCE/AUTH-96-ENCRYPTED-USB-KEY-RECOVERY-PAIR-COPY/` 准备固定 PowerShell 脚本与 `plan.md`。普通及提权进程内都必须确认 `E:` 是唯一 `Kingston DataTraveler Duo` USB Removable 卷，25～35 GiB，盘符/分区/卷映射唯一，剩余空间至少 1 MiB。提权进程在任何复制前对固定 `E:` **只调用一次** `Get-BitLockerVolume`，使用本机真实枚举 `On`，要求 `Unlocked/On/FullyEncrypted/100`；任何不符立即停止。再重新核对固定源/目标条件。复制只允许一次每个精确源到目标，使用禁止覆盖的原子目标创建方式（例如 .NET `File.Copy` 的 overwrite=false）；先私钥后公有证书，禁止临时明文私钥。复制后在进程内比较两对 SHA-256 与长度，只输出 MATCH/FAIL 有限类别，不输出私钥正文、哈希、原始对象或路径。失败保留任何已创建的受保护 E: 文件供 Work 定点处置，绝不自动删除、重试或改目标。
+3. 静态核对脚本唯一 BitLocker 查询点、双重身份门、源/目标绝对路径、原子非覆盖调用、失败停点、无密码/解密/网络/删除/目录枚举、无秘密输出及 SHA-256。不得启动脚本、UAC 或复制测试。候选只写任务证据目录，停在 Work LEVEL 3 Phase A 预运行审查；不提交、推送、自接受或派发后继。
 
 ## Phase B — reserved, not yet authorized
 
-Work 已于 2026-09-25 独立审查固定脚本 SHA-256 `DB45FD59BC587850F20042EDAE6C46D4AA6BA9D291E84614F79A33F81EA04861` 与枚举映射，并临运行只读核对当前 E 设备身份，见同目录 `plan.md`，**放行一次**普通进程启动；Owner 本人核对并批准 Windows PowerShell UAC。新提权状态查询预算 **1/1，当前 0/1 已用**。只记录四字段有限类别、已知退出码及 Owner UAC 回执；任何失败或 `Off/Unknown` 均停止，不改参数、不重试、不写 U 盘。Work 独立 LEVEL 2 验收后，才可另立私钥副本任务。
+Work 独立审查脚本并临运行核对源/目标、当前 E 身份与 Owner 在场后，才可放行**一次**脚本启动和 Owner 本人批准 UAC。BitLocker 状态查询与两文件复制各预算 **1/1，当前 0/1 未放行**。若 UAC、保护状态、身份、写入或字节核验失败，立即停止，不改参数或重试。Codex 只交付有限执行回执；Work 独立核对 E 两精确文件存在、长度与源副本 SHA-256 相等，并复核原私钥元数据/ACL 后作 LEVEL 3 验收。成功复制本身不证明 U 盘丢失时的恢复密钥可用或失钥恢复演练；须另立任务。
 
-禁止执行或修改 AUTH-93/94 旧任务，读取 U 盘文件或真实私钥正文，改 BitLocker/ACL/卷、写 `E:` 或备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。纸质恢复密钥实际可用性不由本任务证明。
+禁止读取 U 盘其他目录/文件，复制任何真实数据库或备份密文，输出私钥正文/口令/完整哈希，修改 BitLocker/卷/ACL、删除或覆盖任一现有文件，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。不得将私钥或副本加入 Git、Git bundle 或普通证据。
