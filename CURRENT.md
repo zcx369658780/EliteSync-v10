@@ -77,7 +77,7 @@ AUTH-51 服务器 OpenSSL 完整工具能力目标获 Work LEVEL 2 **REJECT**，
 
 AUTH-52 纯本地虚构 OpenSSL 输出解析预检获 Work LEVEL 2 **ACCEPT（仅解析门）**，见 `EVIDENCE/AUTH-52-OPENSSL-CAPABILITY-PARSER-PREFLIGHT/summary.md`。作者报告最终 12/12 测试 PASS；解析器将列表结果分为 `LISTED`、`NOT_LISTED` 和 `UNKNOWN`，不把未列出推断为不支持。它无法独立证明未来远端输出采集完整；服务器版本、AES-256-GCM 是否列出和 CMS 互通仍 `UNKNOWN`，后继须另立固定 SSH 预算与截断失败门。未触碰 U 盘、Owner 密码、真实密钥、备份或数据库。
 
-AUTH-53 已下达新的服务器 OpenSSL 能力一次只读补测，见 `TASK_CURRENT.md`：固定 SSH 入口与 1/1 连接预算，复用 AUTH-52 解析器并对采集截断、分帧及异常 fail-closed；SSH 故障须及时反馈 Owner。任务仍 `ISSUED — NOT STARTED`，不沿用 AUTH-51 预算，也不自动派给此前过长的 Codex 会话。此次尚无新服务器观察，不需要 U 盘或 Owner 密码。
+AUTH-53 服务器 OpenSSL 完整能力补测获 Work LEVEL 2 **REJECT**，仅接受一次 SSH 成功、`openssl` 可解析、OpenSSL 版本 token `3.0.13`、`cms -help` 与算法列表命令退出 0 的受限事实回执，见 `EVIDENCE/AUTH-53-SERVER-OPENSSL-CAPABILITY-RECHECK/summary.md`。列表虽经有界采集与分帧，未通过 AUTH-52 行式解析，AES-256-GCM 是否列出仍 `UNKNOWN`；无原始输出可事后补判。SSH 预算 1/1 已耗尽，不重用；服务器 CMS 互通、真实备份及恢复仍未建立。未触碰 U 盘、Owner 密码、密钥或数据库。
 
 ## Product scope
 

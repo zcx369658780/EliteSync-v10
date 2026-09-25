@@ -4,9 +4,11 @@ Task ID: `AUTH-53-SERVER-OPENSSL-CAPABILITY-RECHECK`
 
 Risk Level: `LEVEL 2`（真实服务器一次只读工具能力复核；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — AES-256-GCM LISTING UNKNOWN`
 
 Assignee: `Codex`。仅交付一次有界 SSH 静态观察候选及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。不得派给此前过长的 Codex 会话；使用新的、能核对本地状态的执行会话。
+
+Work 验收：一次 SSH 成功，OpenSSL 版本 token `3.0.13`、`cms -help` 与算法列表命令退出 0 的受限事实可接受；列表未通过 AUTH-52 行式解析，AES-256-GCM 是否列出仍 `UNKNOWN`，完整目标 LEVEL 2 REJECT。见 `EVIDENCE/AUTH-53-SERVER-OPENSSL-CAPABILITY-RECHECK/summary.md`。连接预算 1/1 已耗尽，后续不得重用。
 
 ## Authority and objective
 
