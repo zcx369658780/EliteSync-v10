@@ -4,9 +4,11 @@ Task ID: `AUTH-62-LOCAL-SYNTHETIC-CMS-FAILURE-CONSUMER-MATRIX`
 
 Risk Level: `LEVEL 2`（认证失败明文消费者隔离与负向矩阵；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — CIPHERTEXT IDENTITY GATE NOT WIRED`
 
 Assignee: `Codex`。只交付本机虚构 CMS 消费者门脚本、虚构测试与一次运行回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：作者报告正常路径消费者 1 次/21 字节、五个负向路径 0 次/0 字节并清零；其中超限和中断仅为模拟。但正常路径将 `identity_ok=True` 固定传入，没有实际比较密文长度/摘要，完整身份与消费者门目标 LEVEL 2 REJECT。见 `EVIDENCE/AUTH-62-LOCAL-SYNTHETIC-CMS-FAILURE-CONSUMER-MATRIX/summary.md`。旧本地完整运行 1/1 预算已耗尽。
 
 ## Authority and objective
 

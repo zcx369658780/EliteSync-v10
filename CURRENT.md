@@ -95,7 +95,7 @@ AUTH-60 服务器虚构公有证书 fd 读取获 Work LEVEL 2 **ACCEPT（仅受�
 
 AUTH-61 固定 21 字节虚构 CMS AES-256-GCM 服务器到本机**正向**互通获 Work LEVEL 2 **ACCEPT（仅单次虚构样本）**，见 `EVIDENCE/AUTH-61-SERVER-TO-LOCAL-SYNTHETIC-CMS-GCM-POSITIVE/summary.md`。作者报告一次严格 SSH、远端管道加密和本机隔离解密均退出 0，完整 PEM CMS 667 字节、解密为固定 21 字节且预定摘要匹配，本机临时目录清理，Work 只读确认不存在。仅公有虚构证书入服务器，私钥留本机；原始输出未保存。AUTH-61 预算 1/1 已耗尽；篡改/截断/错钥/超限/中断时消费者 0 字节、真实密钥与备份恢复仍未证明。
 
-AUTH-62 已下达本机虚构 CMS 认证失败消费者矩阵，见 `TASK_CURRENT.md`：用新一次性虚构材料验证正常、篡改、截断、错钥、超限、中断/超时的有界内存门；负向路径消费者必须 0 次/0 字节并清零缓冲。任务 `ISSUED — NOT STARTED`，不连接服务器，不触碰真实密钥、备份、U 盘或 Owner 密码。
+AUTH-62 本机虚构 CMS 消费者完整矩阵获 Work LEVEL 2 **REJECT**，见 `EVIDENCE/AUTH-62-LOCAL-SYNTHETIC-CMS-FAILURE-CONSUMER-MATRIX/summary.md`。作者一次运行报告正常路径消费者 1 次/21 字节，篡改、截断、错钥的本机解密调用和超限、中断的受控模拟均为 0 次/0 字节并清零；错钥退出 4 且曾观察暂存字节。Work 静态发现正常路径以固定 `identity_ok=True` 放行，没有实际比较密文长度/摘要，完整身份门未接线。超限和中断也不是实际大规模或进程中断证明；旧 1/1 运行预算耗尽。本机临时目录已清理，Work 只读确认不存在；未连接服务器或触碰真实密钥/备份/U 盘/密码。
 
 ## Product scope
 
