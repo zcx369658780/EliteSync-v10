@@ -103,6 +103,8 @@ AUTH-64 本机固定 DB 对象元数据探针预检获 Work LEVEL 2 **ACCEPT（�
 
 AUTH-65 部署目录 CLI 当前连接对象元数据一次只读观察获 Work LEVEL 2 **ACCEPT（仅可见计数事实）**，见 `EVIDENCE/AUTH-65-DEPLOYED-DB-OBJECT-INVENTORY-READONLY/summary.md`。作者报告严格 SSH 1/1 成功，目标指纹与 AUTH-20 同算法值一致；当次可见 43 张基表、0 视图、532 列、196 索引、43 主键、29 唯一约束、66 外键、39 CHECK，触发器/例程/事件各 0。Work 静态审查脚本和脱敏回执，未重连服务器或见原始输出。权限完整性、Web worker 同库、业务数据范围与写入一致性仍 `UNKNOWN`；SSH 预算耗尽，无真实备份或恢复。
 
+AUTH-66 已下达本机 DB 存储引擎与备份一致性元数据探针预检，见 `TASK_CURRENT.md`。只制作和虚构测试固定聚合查询，不连接服务器或真实 DB；即使可见表均为 InnoDB，也不宣称全库范围或完整备份一致性已成立。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
