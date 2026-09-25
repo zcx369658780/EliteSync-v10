@@ -83,6 +83,8 @@ AUTH-54 本地 OpenSSL 算法列表格式解析修复获 Work LEVEL 2 **ACCEPT�
 
 AUTH-55 本机 OpenSSL 花括号别名格式解析修复获 Work LEVEL 2 **ACCEPT（仅本地格式门）**，见 `EVIDENCE/AUTH-55-OPENSSL-BRACED-ALIAS-PARSER-REPAIR/summary.md`。作者报告 12/12 虚构测试 PASS；当次本机 3.5.6 算法列表命令退出 0、9010 字符，新解析器返回 `LISTED`。本机列表解析不证明远端相同；AUTH-53 服务器 AES-256-GCM 是否列出仍 `UNKNOWN`，后继服务器观察须新连接预算。
 
+AUTH-56 已下达新的服务器算法列表单次只读观察，见 `TASK_CURRENT.md`：只查询 OpenSSL 可解析与算法列表，复用 AUTH-55 已接受解析器，固定严格 SSH、采集上限和 1/1 新连接预算。任务 `ISSUED — NOT STARTED`；不继承 AUTH-53 已耗尽预算，也不触碰真实密钥、数据库、备份、U 盘或 Owner 密码。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
