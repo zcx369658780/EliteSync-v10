@@ -4,9 +4,9 @@ Task ID: `AUTH-95-USB-BITLOCKER-PROTECTION-ENUM-REPAIR`
 
 Risk Level: `LEVEL 2`（当前 E: BitLocker 只读探针的保护枚举修复与后继一次核验）
 
-Status: `ISSUED — PHASE A STATIC REPAIR ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER UAC AND QUERY PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 仅准备修复候选；Work 独立 LEVEL 2 预运行审查并放行后，Owner 亲自批准可能出现的 Windows PowerShell UAC。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 2 审查修复候选并放行一次固定只读查询；Owner 亲自核对并批准可能出现的 Windows PowerShell UAC。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-94 一次查询已耗尽，返回固定 E: `Unlocked/FullyEncrypted/100%`�
 
 ## Phase B — reserved, not yet authorized
 
-Work 独立审查固定脚本与枚举映射，并临运行只读核对当前 E 设备身份后，才可放行**一次**普通进程启动；Owner 本人核对并批准 Windows PowerShell UAC。新提权状态查询预算 **1/1，当前 0/1 未放行**。只记录四字段有限类别、已知退出码及 Owner UAC 回执；任何失败或 `Off/Unknown` 均停止，不改参数、不重试、不写 U 盘。Work 独立 LEVEL 2 验收后，才可另立私钥副本任务。
+Work 已于 2026-09-25 独立审查固定脚本 SHA-256 `DB45FD59BC587850F20042EDAE6C46D4AA6BA9D291E84614F79A33F81EA04861` 与枚举映射，并临运行只读核对当前 E 设备身份，见同目录 `plan.md`，**放行一次**普通进程启动；Owner 本人核对并批准 Windows PowerShell UAC。新提权状态查询预算 **1/1，当前 0/1 已用**。只记录四字段有限类别、已知退出码及 Owner UAC 回执；任何失败或 `Off/Unknown` 均停止，不改参数、不重试、不写 U 盘。Work 独立 LEVEL 2 验收后，才可另立私钥副本任务。
 
 禁止执行或修改 AUTH-93/94 旧任务，读取 U 盘文件或真实私钥正文，改 BitLocker/ACL/卷、写 `E:` 或备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。纸质恢复密钥实际可用性不由本任务证明。
