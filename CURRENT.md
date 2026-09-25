@@ -91,6 +91,8 @@ AUTH-58 本机虚构 fd/CMS 管道可行目标获 Work LEVEL 2 **REJECT**，仅�
 
 AUTH-59 本机虚构 fd/CMS 三阶段定位目标获 Work LEVEL 2 **REJECT**，仅接受证书生成、Git Bash fd 3 字节读回 1147 字节并匹配、OpenSSL `x509 -in /dev/fd/3` 退出 1、CMS 未执行及固定临时目录清理的受限事实，见 `EVIDENCE/AUTH-59-LOCAL-SYNTHETIC-FD-CMS-FAILURE-DIAGNOSIS/summary.md`。脱敏错误类别 `OTHER` 不定根因，原始 stderr 未保存；Work 只读确认临时目录不存在。旧 1/1 预算耗尽，不能外推服务器同样失败或可互通。
 
+AUTH-60 已下达一次服务器虚构公有证书 fd 只读观察，见 `TASK_CURRENT.md`：本机一次性虚构私钥不离机，只有公有证书经固定严格 SSH stdin 发送；远端只运行一次 `openssl x509 -in /dev/fd/3 -noout` 并输出脱敏退出码，服务器不落盘、不运行 CMS。任务 `ISSUED — NOT STARTED`，新 SSH 预算 1/1；不需要 U 盘或 Owner 密码。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
