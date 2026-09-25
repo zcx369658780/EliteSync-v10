@@ -4,9 +4,9 @@ Task ID: `AUTH-87-CMD-ONLY-OWNER-CONSOLE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实密码提示前的无秘密本机交互入口预检）
 
-Status: `ISSUED — PHASE A ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Codex`，复用现有本地执行会话；Work 独立审查 Phase A 后，才可向 Owner 下达 Phase B 手动双击。
+Assignee: `Owner + Codex`，复用现有本地执行会话；Work 已独立审查 Phase A 并放行 Phase B 的一次 Owner 手动双击。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-83/84/85 的各一次运行预算已耗尽。AUTH-86 只读观察未确诊 
 
 ## Phase B — reserved, not yet authorized
 
-经 Work 审查并核对固定哈希后，Owner 才可从 Explorer 手动双击经审查的 `.cmd` **一次**，在看到提示时按 `Y` 一次，再观察固定类别和按键关闭提示；不输入密码、不发截图。预算 **1/1，当前 0/1 已用且未放行**。若闪退、失败或显示意外内容，停止并报告，不重试。Codex/Work 后续只读复核精确真实私钥目标仍不存在，由 Work 作 LEVEL 2 验收。
+Work 已于 2026-09-25 审查并放行 Phase A，见同目录 `summary.md`。复核固定 `.cmd` SHA-256 `31B53742CA04B3A0757588F49373FE58D51620735099B9B0463D8E32C92AB94A` 后，Owner 可从 Explorer 手动双击经审查的 `.cmd` **一次**，在看到提示时按 `Y` 一次，再观察固定类别和按键关闭提示；不输入密码、不发截图。预算 **1/1，当前 0/1 已用**。若闪退、失败或显示意外内容，停止并报告，不重试。Codex/Work 后续只读复核精确真实私钥目标仍不存在，由 Work 作 LEVEL 2 验收。
 
 禁止运行 AUTH-83/84/85，改变执行策略，使用 OpenSSL、生成/读取/复制/删除密钥，写 `E:` 或真实密钥/备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。真实密码、证书、U 盘副本、备份及恢复均须另立任务并过相应风险门。
