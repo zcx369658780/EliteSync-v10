@@ -22,6 +22,14 @@
 
 Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX-01/summary.md`；根 `AGENTS.md` 和项目技能已在全新只读 Codex 任务中核验。
 
+**Owner 到场规则（2026-09-25）**：Owner 目前不会随时在电脑旁。后继步骤凡可能触发 UAC，必须在触发前停下，待 Owner 在当前 Work 会话明确输入“我在”后才按独立任务和风险门继续；先前 AUTH-101 的到场确认不得复用。当前可继续无需 UAC、无需现场连接的备份准备。此规则见根 `AGENTS.md`。
+
+**当前任务 AUTH-103（2026-09-25）**：已向最新合资格 Codex 执行会话下达 Web worker 有效 DB 连接身份诊断的 Phase A 本地静态设计任务，详见 `TASK_CURRENT.md`。本轮只准备可审查方案，无 SSH、HTTP、Laravel CLI、真实 DB、部署或备份。AUTH-102 的接受不放行现场连接；真实备份的目标、权限、范围、一致性和恢复门仍未关闭。
+
+**AUTH-103 审查与当前 AUTH-104（2026-09-25）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-103-WEB-DB-IDENTITY-DIAGNOSTIC-DESIGN/plan.md`，仅限本地静态诊断设计；Web/CLI 同库仍 UNKNOWN，生产诊断、数据库侧会话观察和部署均未放行。现已向同一最新合资格 Codex 会话下达 AUTH-104 本地静态对象全集、备份账号权限及外部数据类别预检设计，见 `TASK_CURRENT.md`。本轮仍无真实连接、UAC 或备份。
+
+**AUTH-104 审查结论（2026-09-25，当前停点）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-104-DB-BACKUP-OBJECT-SCOPE-PREFLIGHT-DESIGN/plan.md`，仅是本地静态对象全集与拟备份账号权限预检设计。真实权威对象全集、账号逐项权限、dump 版本/选项、Web/CLI 同库、非 DB 范围与一致性仍 UNKNOWN。AUTH-103/104 均无可运行现场探针，未发生产诊断或真实备份任务。下一阶段须先形成具体实现与权限/隐私/回退方案，再经对应风险门；Owner 对“完整数据库”与外部文件的范围定界已询问，等待回复。可能触发 UAC 的动作继续按到场规则停在触发前。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
