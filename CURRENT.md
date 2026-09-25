@@ -79,6 +79,8 @@ AUTH-52 纯本地虚构 OpenSSL 输出解析预检获 Work LEVEL 2 **ACCEPT（�
 
 AUTH-53 服务器 OpenSSL 完整能力补测获 Work LEVEL 2 **REJECT**，仅接受一次 SSH 成功、`openssl` 可解析、OpenSSL 版本 token `3.0.13`、`cms -help` 与算法列表命令退出 0 的受限事实回执，见 `EVIDENCE/AUTH-53-SERVER-OPENSSL-CAPABILITY-RECHECK/summary.md`。列表虽经有界采集与分帧，未通过 AUTH-52 行式解析，AES-256-GCM 是否列出仍 `UNKNOWN`；无原始输出可事后补判。SSH 预算 1/1 已耗尽，不重用；服务器 CMS 互通、真实备份及恢复仍未建立。未触碰 U 盘、Owner 密码、密钥或数据库。
 
+AUTH-54 已下达本地 OpenSSL 算法列表格式解析修复，见 `TASK_CURRENT.md`。Work 本机只读对照看到 `alias => name` 和 `name @ provider` 行，这是 AUTH-52 格式缺口线索，不是 AUTH-53 远端失败根因证明；AUTH-54 不连接服务器。当前仍无服务器 AES-256-GCM 列出或 CMS 互通结论。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
