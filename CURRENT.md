@@ -133,7 +133,9 @@ AUTH-77 固定 E: 的 BitLocker 状态只读回执获 Work LEVEL 2 **ACCEPT（�
 
 AUTH-78 完整锁定与解锁证明被 Work LEVEL 3 **REJECT**，仅接受受限过程及失败事实，见 `EVIDENCE/AUTH-78-USB-REINSERT-LOCK-OWNER-UNLOCK-PROOF/summary.md`。Owner 安全移除并重插各一次，原 E: 卷消失、重插后固定 Kingston 身份通过；一次提权锁定阶段查询返回 `FIELD_UNKNOWN`，具体字段未保存，旧预算耗尽。因锁定门未过，任务内 Owner 密码解锁和解锁后查询未运行；后续锁定字段以 AUTH-79 新时点证据为准。
 
-AUTH-79 固定 E: 锁定状态逐字段诊断获 Work LEVEL 2 **ACCEPT（仅受限新时点事实）**，见 `EVIDENCE/AUTH-79-USB-LOCKED-STATE-FIELD-DIAGNOSIS/summary.md`。重插后的同一只 Kingston 在一次提权只读查询中 `LockStatus=Locked`；锁定时 `ProtectionStatus=Unknown`、`VolumeStatus` 未映射、加密百分比缺失，不从这些字段推定保护关闭。Owner 随后说明曾自行用密码成功解锁，之后又拔出重插，目前要求密码、处于锁定状态；截图仅作 Owner 辅助回执，不纳入 Git 或独立状态证明。AUTH-80 已下达在固定 E: 上由 Owner 本人密码解锁一次、再只读验证解锁后保护状态；通过前不写真实私钥副本。
+AUTH-79 固定 E: 锁定状态逐字段诊断获 Work LEVEL 2 **ACCEPT（仅受限新时点事实）**，见 `EVIDENCE/AUTH-79-USB-LOCKED-STATE-FIELD-DIAGNOSIS/summary.md`。重插后的同一只 Kingston 在一次提权只读查询中 `LockStatus=Locked`；锁定时 `ProtectionStatus=Unknown`、`VolumeStatus` 未映射、加密百分比缺失，不从这些字段推定保护关闭。Owner 随后说明曾自行用密码成功解锁，之后又拔出重插，再次锁定；截图仅作 Owner 辅助回执，不纳入 Git 或独立状态证明。解锁后状态以 AUTH-80 新时点证据为准。
+
+AUTH-80 Owner 密码解锁固定 E: 及解锁后保护状态获 Work LEVEL 3 **ACCEPT（仅本次受限证明）**，见 `EVIDENCE/AUTH-80-OWNER-USB-PASSWORD-UNLOCK-VERIFY/summary.md`。Owner 本人在 Windows 界面输入一次密码并确认解锁成功、亲自批准 UAC；提权进程再次核对设备身份，唯一一次只读状态查询返回 `Unlocked/ProtectionOn/FullyEncrypted/100%`。结合 AUTH-79 的 `Locked`，支持本轮重插后锁定及本人密码解锁；纸质恢复密钥实际失钥恢复、真实私钥与副本、DB 备份与恢复仍未建立。AUTH-81 已下达本机真实密钥生成实施前只读核验，不授权生成密钥或写 U 盘。
 
 ## Product scope
 
