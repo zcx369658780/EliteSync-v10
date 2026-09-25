@@ -30,3 +30,9 @@ Phase B 实际双击预算 **0/1 未消耗，且尚未授权**。本任务不生
 **LEVEL 2 ACCEPT Phase A 候选并放行 Phase B 的一次 Owner 手动双击。** Work 逐行审查 `.cmd` 与 `.ps1`：固定绝对路径、同一前台控制台、无秘密探针、有限输出与失败类别、所有包装器分支最终进入 `pause`；没有授权范围外的密钥、U 盘、服务器或 DB 操作。独立核对上表两个 SHA-256 精确匹配、真实私钥目标仍不存在、本地 HEAD 为 `dc6453a1b96d5daf18fa99fbc4f2c4fd48fb0f2c`。审查前候选摘要 SHA-256 为 `C10790A816F71125C1D812A72DB30ACADD7BD22BA93B6468B20239C96617C2B9`。仅静态通过，实际双击表现仍待 Owner 回执。
 
 Phase B 仅放行 Owner 从 Explorer 对上述固定 `.cmd` 手动双击 **一次**，无密码、无 UAC、无其他动作。若窗口闪退或显示失败类别，停止并回报，不重试。
+
+## Work Phase B 独立审查（2026-09-25）
+
+**LEVEL 2 REJECT 探针可运行与控制台布尔诊断目标；ACCEPT 可见失败类别的受限事实。** Owner 回报单次手动双击显示 `AUTH85_FAILURE=PROBE_LAUNCH_EXCEPTION`、`AUTH85_POWERSHELL_EXIT=1`、`AUTH85_FAILURE=POWERSHELL_NONZERO` 和 `AUTH85_PRESS_ANY_KEY_TO_CLOSE`。未回报 `AUTH85_VISIBLE_PROBE` 或五个控制台布尔；因此仅能认定包装器进入了 PowerShell 调用和有限异常/按键提示路径，不能认定探针执行或窗口确实停留到按键。`PROBE_LAUNCH_EXCEPTION` 是宽泛 catch 类别，真实异常原因 `UNKNOWN`；执行策略等仅为后续待核假设。
+
+Work 独立复核本地 `main` HEAD `2d12ddbfe3474cab1793415452595d4de68ea2fc`、两个脚本 SHA-256 与放行值一致、真实私钥精确目标仍不存在，工作区仅保留两个既有无关未跟踪目录。AUTH-85 的 Owner 双击预算 **1/1 已耗尽**，不重试。下一步须另立只读本机诊断任务，不直接改变执行策略或尝试真实密钥。

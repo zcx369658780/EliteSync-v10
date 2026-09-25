@@ -145,6 +145,8 @@ AUTH-83 的真实密码保护私钥生成目标被 Work LEVEL 3 **REJECT**，仅
 
 AUTH-84 的一次无秘密可见窗口探针获 Work LEVEL 2 **REJECT（诊断目标）**，仅接受窗口闪现和约 0.98 秒提前退出的受限事实，见 `EVIDENCE/AUTH-84-VISIBLE-POWERSHELL-WINDOW-DIAGNOSIS/summary.md`。Owner 未看到固定标记；因短于预定 12 秒，退出码 1 按位解读的控制台布尔均不可采信。具体失败阶段及 AUTH-83 原因仍 `UNKNOWN`，旧预算 1/1 已耗尽。真实密钥、证书、U 盘副本仍不存在；AUTH-85 另行验证 Owner 桌面手动启动的无秘密交互入口。
 
+AUTH-85 的桌面手动无秘密探针获 Work LEVEL 2 **REJECT（探针运行目标）**，仅接受 Owner 看到 `PROBE_LAUNCH_EXCEPTION`、PowerShell 退出 1、`POWERSHELL_NONZERO` 和按键提示的受限事实，见 `EVIDENCE/AUTH-85-OWNER-DESKTOP-CONSOLE-ENTRY-PREFLIGHT/summary.md`。固定标记和控制台布尔未出现，宽泛异常的根因 `UNKNOWN`，不能推定 AUTH-83/84 的失败原因。一次双击预算已耗尽。AUTH-86 将只读核查本机执行策略与脚本文件标记，不启动探针、不修改策略；真实私钥、证书和 U 盘副本仍不存在。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
