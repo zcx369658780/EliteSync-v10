@@ -137,7 +137,9 @@ AUTH-79 固定 E: 锁定状态逐字段诊断获 Work LEVEL 2 **ACCEPT（仅受�
 
 AUTH-80 Owner 密码解锁固定 E: 及解锁后保护状态获 Work LEVEL 3 **ACCEPT（仅本次受限证明）**，见 `EVIDENCE/AUTH-80-OWNER-USB-PASSWORD-UNLOCK-VERIFY/summary.md`。Owner 本人在 Windows 界面输入一次密码并确认解锁成功、亲自批准 UAC；提权进程再次核对设备身份，唯一一次只读状态查询返回 `Unlocked/ProtectionOn/FullyEncrypted/100%`。结合 AUTH-79 的 `Locked`，支持本轮重插后锁定及本人密码解锁；纸质恢复密钥实际失钥恢复、真实私钥与副本、DB 备份与恢复仍未建立。后续密钥准备以 AUTH-81 最新接受边界为准。
 
-AUTH-81 真实密码保护私钥生成的本机 docs-only 实施前方案获 Work LEVEL 2 **ACCEPT（仅候选方案和受限只读事实）**，见 `EVIDENCE/AUTH-81-REAL-KEY-GENERATION-LOCAL-PREFLIGHT/plan.md`。两处固定目录当次规范路径、ACL 和 C: 余量复核通过，不落在本次观察的 2 个 Windows 同步根下；其他第三方同步覆盖仍技术性 `UNKNOWN`，Owner 的不使用云同步决定另行成立。本机固定 OpenSSL 3.5.5 的相关选项可见，真实口令提示、RSA 3072 密钥/证书和跨端 CMS 均未证明。Work 选定 RSA 3072、AES-256-CBC 加密 PKCS#8、用途证书与 365 天作为后继候选；C: 整卷加密不是当前真实生成前硬门。Owner 已决定真实私钥密码另写纸质副本、与电脑/U 盘分开放置，实际密码只本人输入。AUTH-82 已下达本机虚构交互预检；不生成真实密钥。
+AUTH-81 真实密码保护私钥生成的本机 docs-only 实施前方案获 Work LEVEL 2 **ACCEPT（仅候选方案和受限只读事实）**，见 `EVIDENCE/AUTH-81-REAL-KEY-GENERATION-LOCAL-PREFLIGHT/plan.md`。两处固定目录当次规范路径、ACL 和 C: 余量复核通过，不落在本次观察的 2 个 Windows 同步根下；其他第三方同步覆盖仍技术性 `UNKNOWN`，Owner 的不使用云同步决定另行成立。本机固定 OpenSSL 3.5.5 的相关选项可见，真实口令提示、RSA 3072 密钥/证书和跨端 CMS 均未证明。Work 选定 RSA 3072、AES-256-CBC 加密 PKCS#8、用途证书与 365 天作为后继候选；C: 整卷加密不是当前真实生成前硬门。Owner 已决定真实私钥密码另写纸质副本、与电脑/U 盘分开放置，实际密码只本人输入。后续虚构交互结果以 AUTH-82 证据为准。
+
+AUTH-82 本机虚构密码保护 RSA 3072 私钥与用途证书交互预检获 Work LEVEL 2 **ACCEPT（仅虚构流程）**，见 `EVIDENCE/AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF/summary.md`。原生提示生成加密 PKCS#8 私钥和公有证书、正确虚构口令配对、错误口令无可消费输出均由作者按各 1/1 预算报告；Work 独立只读核对临时根已清理。原计划清理命令被自动审批拒绝，作者后以精确文件删除和空目录非递归移除完成，未接触真实材料。PTY 可记录虚构口令，因此不证明真实密码安全输入。AUTH-83 已下达**Phase A 仅准备无秘密运行脚本**，Work 预运行审查前不得生成真实私钥。
 
 ## Product scope
 

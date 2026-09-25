@@ -1,23 +1,26 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF`
+Task ID: `AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY`
 
-Risk Level: `LEVEL 2`（未来真实私钥流程的本机虚构交互预检）
+Risk Level: `LEVEL 3`（Owner 真实数据库备份解密私钥与本人密码）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`（不得启动真实生成；Work 独立审查脚本后才可另行放行 Phase B）
 
-Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 2 审查。
+Assignee: `Codex + Work + Owner`。Codex 只准备并静态检查无秘密的精确本机运行器；Work 对候选做高风险预运行审查、决定是否放行 Phase B；Owner 在独立可见 Windows 终端亲自输入和纸质记录真实密码。复用现有 Codex 会话。
 
-## Authority and fixed boundary
+## Authority and fixed object
 
-AUTH-81 已由 Work 接受为 docs-only 候选方案，不证明真实口令提示、密钥或 CMS 可用。Owner 已决定真实私钥密码另写纸质副本并与电脑、U 盘分开放置；真实密码只由 Owner 本人输入。本任务**仅使用显然虚构的一次性测试口令和临时虚构密钥**验证本机 OpenSSL 原生提示、直接加密写入、证书生成和配对；不向 Owner 索取或处理真实密码。不得使用固定 `C:\Users\zcxve\EliteSync-v10-DB-Keys`、`...-DB-Backups`、E: 或项目目录存放任何虚构密钥/证书。
+Owner 已授权继续备份准备，密码需要时由本人输入；已决定备份和密钥不使用云同步、私钥密码另写纸质副本并与电脑/U 盘分开放置。AUTH-69/81/82 是本任务前置合同与虚构演练，AUTH-82 不证明真实无录制终端。固定真实私钥目标仅为 `C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem`。这张任务不创建证书或 U 盘副本，不连接服务器、数据库或云。
 
-## One bounded result
+## Phase A：仅准备候选，停在 Work 预运行门
 
-1. 核对 `D:\EliteSync-v10` 本地 main、HEAD、工作区、任务与 AUTH-81 接受门，保留两个无关未跟踪目录。只使用固定 `C:\Program Files\Git\usr\bin\openssl.exe`；核对版本及帮助/选项，不自动更换程序或参数。
-2. 精确临时根为 `C:\Users\zcxve\AppData\Local\Temp\EliteSync-v10-AUTH-82-synthetic`。创建前确认它不存在，规范解析的父目录位于当前用户本地 Temp、不是重解析点；若不满足立即停止。仅允许在该临时根写一个加密虚构私钥和一个虚构公有证书，不产生无密码私钥或明文备份。固定文件名及预期权限在运行前写入执行计划。
-3. 用交互式 PTY 启动一次 `genpkey`，RSA 3072、AES-256-CBC，**不使用 `-pass` 参数/环境变量/文件或命令替换**；由 Codex 输入明显虚构的测试口令并确认。测试口令不进入普通证据。仅检查退出码、文件存在/非空、加密 PKCS#8 头的固定布尔分类；不展示密钥字节。生成预算 **1/1 次**，失败不重试。
-4. 仅在第 3 步成功时，用同一虚构加密私钥通过交互式原生提示生成一次自签公有证书（固定非个人用途名、365 天、SHA-256、CA:FALSE、keyEncipherment）；证书预算 **1/1 次**。再以有界、无原始密钥/证书输出的检查确认加密状态、Owner 将来需输入密码的路径、证书与私钥公钥配对及证书非敏感参数。允许一次正确虚构口令和一次错误虚构口令的负向解锁检查，错误口令不得产生可消费公钥字节；各预算 1 次。所有子进程输出均限制、分类并丢弃原文，不把秘密或材料写入普通证据。
-5. 无论成功失败，按精确文件名清理两个虚构文件并核对不存在，再非递归移除临时根并核对不存在；清理失败时记录类别并停止 PASS 声明。只在 `EVIDENCE/AUTH-82-LOCAL-SYNTHETIC-PASSPHRASE-KEY-PROOF/summary.md` 保存脱敏步骤、预算、匹配结果和停点。作者报告后停在 Work LEVEL 2 审查门，不提交、不推送、不派发后继。
+1. 核对本地 `D:\EliteSync-v10` main、HEAD、工作区与控制文件；保留两个无关未跟踪目录。只读确认固定密钥目录及父路径规范、非重解析、ACL 仅当前用户/SYSTEM/Administrators 且无继承；精确目标文件当前不存在。只读复核当前 Windows 已配置同步根与目标不重叠，同时记录 Owner 的无云同步声明和第三方技术观察限制。身份或权限不符停。
+2. 仅新增 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/launch.ps1` 和 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/plan.md`，不写真实密钥目录或 U 盘。运行器仅使用固定 `C:\Program Files\Git\usr\bin\openssl.exe`，在独立可见的本机 PowerShell 窗口中以 `genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -aes-256-cbc -out <精确目标>` 生成 **1/1** 把加密私钥；不用 `-pass`、环境变量、脚本变量、输入重定向或 Codex PTY 传送真实密码。Owner 自行在 OpenSSL 原生提示中输入并确认；以后用一次 `pkey -in <精确目标> -noout` 原生提示验证可解锁，预算 1/1。脚本和启动命令不得含真实密码或恢复密钥。
+3. 运行器必须在任何写入前再次核对唯一目标不存在、目录不转向、ACL 与精确 OpenSSL 路径；进程不启用 transcript/日志，不向 Codex 收集子窗口 stdin/stdout/stderr。只允许把退出码、文件存在/非空、加密 PKCS#8 头布尔、ACL 分类和首个失败类别作为脱敏结果。若失败后存在不完整目标，保留受限目录并停止，由 Work 另行决定精确处置；不得临场重试、换目录/算法或生成无密码私钥。运行器不得自行删除真实私钥。
+4. 在 Phase A 仅做脚本语法/静态安全检查，不启动窗口，不生成密钥、不要求 Owner 输入密码。候选交 Work 审查后停止。Work 将在核对具体脚本和可见窗口输入边界后，修改本任务状态以放行或拒绝 Phase B；未明确放行前 Codex 不得执行。
 
-PTY 工具可能记录**虚构测试口令**，所以本任务不证明 Owner 真实密码可在无录制终端安全输入。后继真实密钥任务仍须独立确定可信 Owner 本机交互方式、现时目录/同步边界、实际参数、失败清理和高风险授权。本任务不得连接服务器、真实 DB、云 API、Docker、GitHub 或旧 `D:\EliteSync`；不得生成、读取、删除或修改真实密钥、备份或 U 盘内容。
+## Phase B：待 Work 预运行审查
+
+若 Work 单独记录放行，Owner 本人在电脑前确认无屏幕录制/共享，并准备独立纸质密码副本；Codex 可启动**一次**不采集输入/输出的可见独立窗口，Owner 在该窗口亲自输入真实密码。完成后 Codex 只读检查精确文件的加密头、ACL、长度及脚本有限退出状态，形成 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md` 候选，停在 Work LEVEL 3 独立验收门。密码不得进入聊天、Codex 终端、脚本、参数、环境变量、剪贴板自动化、普通证据、Git 或 Git bundle。
+
+本任务不验证证书配对、U 盘副本、纸质 BitLocker 恢复密钥实用性、服务器 CMS、真实备份或恢复；这些各需独立任务。不得提交/推送 Git、自接受或派发后继。保留无关工作区内容，不访问旧 `D:\EliteSync`。
