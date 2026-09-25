@@ -87,6 +87,8 @@ AUTH-56 服务器 OpenSSL 算法列表单次只读观察获 Work LEVEL 2 **ACCEP
 
 AUTH-57 虚构 CMS 服务器到本机互通 docs-only 方法获 Work LEVEL 2 **ACCEPT（仅方法与停点）**，见 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。方案限定固定 21 字节虚构样本、一次性无密码虚构证书/私钥、单次严格 SSH、服务器不落盘、密文完整采集、本机认证成功前消费者 0 字节及失败清理；服务器文件描述符/管道证书输入可行性仍 `UNKNOWN`。没有运行互通、真实密钥、备份或恢复。
 
+AUTH-58 已下达本机虚构 fd/CMS 管道预检，见 `TASK_CURRENT.md`：固定 21 字节样本和一次性虚构证书/私钥，在经核对的本机 Git Bash/OpenSSL 中尝试公有证书经 fd 输入、密文只在进程内存、配对本机解密，精确清理本次临时目录。单次本地运行预算 1/1，不连接服务器；本机成功也不证明服务器路径。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

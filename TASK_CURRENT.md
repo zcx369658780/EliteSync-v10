@@ -1,27 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT`
+Task ID: `AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（服务器与本机 CMS 格式互通前的无真实数据方法门；Work 独立审查）
+Risk Level: `LEVEL 2`（无服务器落盘 CMS 管道方案的本机虚构预检；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — DOCS-ONLY METHOD`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。仅交付 docs-only 有界方法候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：虚构服务器到本机 CMS 互通 docs-only 方法与失败停点 LEVEL 2 ACCEPT；服务器无落盘证书输入和 CMS 管道加密可行性仍 `UNKNOWN`，没有运行证明。见 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。
+Assignee: `Codex`。仅交付一次本机虚构文件描述符/CMS 预检候选及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-56 的一次服务器只读观察获 Work LEVEL 2 ACCEPT：当次 OpenSSL 算法列表经严格采集与已接受解析器返回 AES-256-GCM `LISTED`。这不证明服务器可用 CMS AES-256-GCM 实际加解密、与本机格式互通或真实备份恢复。AUTH-49 合同要求后继用无真实数据的有界虚构演练并隔离认证失败输出；AUTH-50 仅证明本机固定 21 字节消费者门。Owner 已授权按路线图继续。此任务先形成可审查的**虚构服务器到本机 CMS 互通方法**，不运行它；32GB U 盘和 Owner 密码此阶段不需要。
+AUTH-57 docs-only 方法已获 Work LEVEL 2 ACCEPT，但服务器用文件描述符/管道接收虚构公有证书并在不落盘条件下进行 CMS AES-256-GCM 加密仍 `UNKNOWN`。Work 只读发现本机 Git Bash `C:\Program Files\Git\bin\bash.exe` 与其 OpenSSL 3.5.5 可用，`/dev/fd/0` 的只读可访问测试退出 0；本机 Docker daemon 当次不可达。本任务仅用固定虚构样本预检同型的文件描述符传递与本机配对解密，**不连接服务器**；本机成功也不能证明服务器 OpenSSL 3.0.13 的同一路径。Owner 密码与 32GB U 盘此阶段不需要。
 
 ## Exact execution boundary
 
-- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-49、50、53、56 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD 与工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
-- 只允许新增 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。不得修改源码、旧证据、控制文件或其他路径。可只读核对本机 OpenSSL 帮助/版本及既有本地虚构合同；不得连接服务器、云 API、数据库，不生成证书/密钥、加解密、传输或写入任何密文。
-- 方案仅使用固定虚构明文字节与一次性**无密码虚构**证书/私钥，明确与 Owner 将来的真实密码保护密钥完全隔离；不使用任何真实备份、数据库行、凭据或业务数据。写出有序步骤、精确允许目标与命令类别、一次 SSH 预算建议、预检/失败停点、脱敏输出、临时材料位置和精确清理责任。优先论证服务器全程进程内存/管道完成 CMS 加密并返回虚构密文，不在服务器写文件；若无法证明可行，标记未解决并停止，不擅自放宽为服务器临时落盘。
-- 本机解密输出须先进入有上限隔离暂存，进程退出 0、认证与固定虚构内容全部核对成功前消费者 0 次/0 字节；覆盖篡改、截断、错误私钥、超限、中断的失败门。说明若完整 CMS 密文超过上限、命令选项差异或协议分帧异常如何 fail-closed。证书/私钥与密文格式的固定身份/摘要、SSH 主机核验及远端输出完整采集均需在未来执行任务中可审查；不得保存真实密码或原始远端输出到普通证据。
-- `git diff --check` 最多 1 次；新文件另做只读尾随空白检查。回执写明 docs-only、无运行证明、仍需哪些 Owner 决定或后继任务。不得把本机或服务器 OpenSSL 命令存在性当作互通 PASS。
+- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-48/49/50/57 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD 与工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
+- 只允许新增 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/run.ps1` 与 `summary.md`。先静态核对 PowerShell 语法、固定路径、命令参数、进程输出处理及精确清理。不得修改源码、历史证据或控制文件。
+- 固定虚构明文为 ASCII `AUTH57-SYNTHETIC-001\n`（21 字节）。只在任务固定临时目录 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth58-fd-cms-preflight` 存放一次性无密码**虚构**证书与私钥；创建前验证规范化绝对路径、非重解析父目录和目标原先不存在，退出时只对本次精确目录清理并确认不存在。不得在服务器或真实备份/密钥目录写入任何内容。
+- 单次本地运行可生成一对一次性虚构证书/私钥；经本机 Git Bash 标准输入送公有证书，使用可静态审查的 fd 3 或等价管道路径让 Git Bash OpenSSL `cms -encrypt -aes-256-gcm` 只读取固定虚构明文并将 DER 密文送本机进程内存，**不落盘密文**。随后用本次虚构私钥在本机做有上限隔离解密；仅在退出 0 且与固定 21 字节完全匹配后记配对成功。任何 fd 路径不通、命令异常、超限、输出不完整或未能证明无密文落盘均 FAIL 并清理，不切换到普通临时文件方案。不要显示或保存私钥、公有证书全文、原始密文/明文或原始 stderr；回执仅保留脱敏阶段状态、退出码、长度、首个失败、清理状态。
+- 本地脚本运行最多 **1/1 次**；失败不得改参重跑。PowerShell 静态解析检查可先进行；`git diff --check` 最多 1 次，新文件另做只读尾随空白检查。不得运行 Docker、WSL 容器、SSH、CloudShell、云 API、数据库或真实备份/恢复。不得访问旧 `D:\EliteSync`、本机真实备份/密钥目录内容、U 盘、Owner 密码或业务数据。
 
 ## Stop and review
 
-不得访问旧 `D:\EliteSync`、真实 DB、备份/密钥目录内容、U 盘、Owner 密码、账号/Token/消息/媒体或任何服务器文件。Codex 不提交、制作 bundle、推送、自接受或派发后继。本任务不授权实际 SSH、虚构密文制作、真实密钥、备份、恢复、清理或改库；这些均须后继明确任务和风险门。
+本机 Git Bash/OpenSSL 预检即使 PASS，也仅说明这次本机虚构 fd/CMS 管道可运行；服务器对应能力、CMS 跨端互通、认证失败消费者门、真实规模和备份恢复仍 `UNKNOWN`。Codex 不提交、制作 bundle、推送、自接受或派发后继；本机一次预算后停在 Work LEVEL 2 独立门。服务器执行须另立固定一次 SSH 任务。
