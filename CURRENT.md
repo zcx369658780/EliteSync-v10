@@ -151,6 +151,8 @@ AUTH-86 的固定只读定位获 Work LEVEL 2 **ACCEPT（仅受限观察）**，
 
 AUTH-87 的纯 CMD 无秘密可见性和单键入口获 Work LEVEL 2 **ACCEPT（仅本次交互路径）**，见 `EVIDENCE/AUTH-87-CMD-ONLY-OWNER-CONSOLE-PREFLIGHT/summary.md`。Owner 报告成功标记出现，按键关闭提示出现且按键后窗口才退出。旧一次双击预算已耗尽。这不证明 OpenSSL 密码提示或真实密钥。AUTH-88 将为新的真实密码保护私钥生成准备固定 CMD 入口，先做 LEVEL 3 预运行审查；真实私钥、证书和 U 盘副本仍不存在。
 
+AUTH-88 的一次 Owner 真实生成回执获 Work LEVEL 3 **REJECT（完整安全目标）**，仅接受 OpenSSL 成功类别、精确文件存在且 2666 bytes、加密 PKCS#8 首行等受限事实，见 `EVIDENCE/AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY/plan.md`。文件 Owner 为当前用户且三条 FullControl 主体仅当前用户、SYSTEM、Administrators，但均为继承 ACE，文件级继承尚未关闭；密码解锁及私钥与证书配对均未证明。旧生成预算 1/1 耗尽，不重试或覆盖。AUTH-89 仅修复此文件 ACL 并独立核验；之前不进行解锁、证书或 U 盘副本操作。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

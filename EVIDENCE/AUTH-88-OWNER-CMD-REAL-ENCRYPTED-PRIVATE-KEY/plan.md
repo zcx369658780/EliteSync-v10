@@ -34,3 +34,9 @@ Work 须独立复核脚本和程序精确哈希、目标仍不存在、目录 AC
 Owner 在 Work 会话确认本人正在电脑前、无录屏或共享屏幕、已准备好密码；先前已决定纸质副本分开放置，密码内容未提供给 Work。Work 临运行前再次只读核对：本地 `main` HEAD `66b2f8ac4ccf10285bc3a3b8334634cfc74929f6`，固定 CMD SHA-256 `BADB715650F0208E81925876B992AEA95D3E8417C837A6FE3BEFA359133273E5`、OpenSSL SHA-256 `21C43808DDC48B9B2133ED4FE9F4F90D77305568EF3BB8291DD05D271E29A54B`，精确真实私钥目标仍不存在；密钥目录非重解析、Owner 为当前用户、继承关闭，仍仅三主体显式 FullControl。
 
 **LEVEL 3 放行 Phase B：仅 Owner 从 Explorer 对固定 CMD 双击一次，且只在 OpenSSL 原生非回显提示输入并确认密码。** 不由 Codex/Work 启动或采集窗口流。若提示异常、密码回显、失败类别或窗口异常，立即停止且不重试；任何已产生文件保留原状，待 Work 只读核查。放行不等于生成或最终验收。
+
+## Work Phase B 独立验收（2026-09-25）
+
+**LEVEL 3 REJECT 完整安全生成目标；ACCEPT 一次生成返回成功和加密标记文件出现的受限事实。** Owner 回报在本机窗口看见 `AUTH88_GEN_EXIT_ZERO` 与 `AUTH88_OUTPUT_PRESENT` 后关闭窗口；未向 Work 提供密码或原始输出。Work 独立核对本地 HEAD `4ffb72ba7cced6d3912024644d89eabce4d80a2c`、入口脚本哈希仍匹配放行值，并只读检查精确目标为非重解析普通文件、长度 **2666 bytes**、首行为 `-----BEGIN ENCRYPTED PRIVATE KEY-----`、Owner 为当前用户；未读取私钥正文或尝试解锁。
+
+**未过门项：**文件 ACL 当前 `AreAccessRulesProtected=False`，三条 FullControl ACE 均为继承项，主体为当前用户、SYSTEM、Administrators。虽然本次实际主体范围未超出这三类，但不符合任务要求的文件级禁止继承；故不能接受完整安全生成目标，也不能开展密码解锁、证书或 U 盘副本。AUTH-88 的一次生成预算 **1/1 已耗尽**，不得重试或删除/覆盖此文件。后继须另立仅针对精确文件 ACL 的有界修复任务，核对后再判断是否继续解锁。
