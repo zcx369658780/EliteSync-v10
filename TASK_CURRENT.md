@@ -4,9 +4,9 @@ Task ID: `AUTH-85-OWNER-DESKTOP-CONSOLE-ENTRY-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实私钥交互入口的无秘密本机预检）
 
-Status: `ISSUED — PHASE A ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Codex`，复用现有本地执行会话。Work 独立审查 Phase A 后，才可向 Owner 下达 Phase B 的手动双击步骤。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立审查 Phase A 并放行 Phase B 的一次 Owner 手动双击；Codex 不代替 Owner 启动。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-83 真实私钥目标与 AUTH-84 可见窗口诊断均未达成，各自一
 
 ## Phase B — reserved, not yet authorized
 
-Work 审查 Phase A 后如放行，Owner 可从 Explorer **手动双击一次**经审查的固定 `.cmd`。Owner 只报告是否看到窗口、固定标记、有限类别及其是否保持打开；不输入密码、不发截图。该实际窗口预算 **1/1**，未获 Work 放行前为 **0 次授权**。若失败或窗口闪退，记录观察并停止，不换参数、不重试。Codex/Work 后续只读复核真实私钥精确目标仍不存在，最终由 Work LEVEL 2 验收。
+Work 已于 2026-09-25 审查并放行 Phase A，见同目录 `summary.md`；只有在复核固定 `.cmd` SHA-256 `2BEF93FA817E584E86EA7E9AF5D374EF0DDD411F9ECC7D3D97F6092A861BC206` 与 `.ps1` SHA-256 `4DDE4076CBAB0F4C6F81F689E5A0876A259064E1EADF1A89EA087EC7DCF39B48` 后，Owner 可从 Explorer **手动双击一次**经审查的固定 `.cmd`。Owner 只报告是否看到窗口、固定标记、有限类别及其是否保持打开；不输入密码、不发截图。该实际窗口预算 **1/1，当前 0/1 已用**。若失败或窗口闪退，记录观察并停止，不换参数、不重试。Codex/Work 后续只读复核真实私钥精确目标仍不存在，最终由 Work LEVEL 2 验收。
 
 禁止运行或修改 AUTH-83/84；不得生成、读取、复制或删除任何真实/虚构密钥，不得写 `E:`、真实密钥/备份目录，不连接服务器、DB、云、Docker、GitHub 或访问旧 `D:\EliteSync`。任何真实密码、证书、U 盘副本、备份或恢复步骤均须另立任务并经过对应风险门。
