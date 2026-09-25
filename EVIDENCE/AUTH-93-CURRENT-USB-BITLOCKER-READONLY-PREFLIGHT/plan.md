@@ -27,3 +27,9 @@ Work 随后只按有限回执和必要的只读复核做 LEVEL 2 验收。即使
 **LEVEL 2 ACCEPT 无秘密只读脚本候选，放行一次 Owner UAC 与固定 E: 状态查询。** Work 逐行审查普通/提权双重 Kingston 身份门、唯一 `Get-BitLockerVolume -MountPoint 'E:'`、四字段位掩码、有限退出码与异常分类；没有文件枚举、秘密输出、解锁、BitLocker 变更或写盘。独立核对本地 HEAD `b827871ae6c92db5d0d521056f4b20f62c4264e7`、脚本 SHA-256 `9C2D281BA57BE16ACE71C7E4957BC4687FD5C1EBB54933FAF8FEF28F223EDB84`；当前非提权映射仍为单一 `Kingston DataTraveler Duo` USB、`E:` Removable、约 28.8 GiB。审查前候选计划 SHA-256 为 `664021463A38C5E9C462BEBC9F0412FBD4A03B4EC6674875AA5103E28EC3277F`。
 
 仅放行一次普通进程启动脚本，由 Owner 本人核对并批准 Windows PowerShell UAC；查询预算 **0/1 已用，待运行**。若 UAC 不符、设备变化、查询失败或字段不匹配，停且不重试。放行不等于当前 BitLocker 状态通过或私钥副本写入授权。
+
+## Work Phase B 独立审查（2026-09-25）
+
+**LEVEL 2 REJECT 当前 BitLocker 四字段核验目标；ACCEPT 一次 `UAC_OR_LAUNCH_FAILED` 的受限回执。** Work 仅一次按放行脚本启动，普通进程约 2.66 秒返回 `AUTH93_RESULT=UAC_OR_LAUNCH_FAILED`、退出 1；无保护状态字段或提权查询成功证据。Owner 随后说明当时正在打字，**可能**误取消了窗口，并明确请求重新触发；是否显示/取消 UAC 仍不能从这次有限类别确定。旧任务查询预算 **1/1 已耗尽**，不得在 AUTH-93 内重试。
+
+当前 `E:` 的 BitLocker 四字段仍 `UNKNOWN`，不能据此写入真实私钥副本。Owner 对新的一次尝试已有明确授权，须另立有界任务，重新核对脚本哈希和设备身份后才可调用；失败仍须停止。

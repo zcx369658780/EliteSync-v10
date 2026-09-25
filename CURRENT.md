@@ -161,6 +161,8 @@ AUTH-91 的一次 Owner 公有收件人证书生成获 Work LEVEL 3 **ACCEPT（�
 
 AUTH-92 的一次 Owner 本机虚构标记 CMS 往返获 Work LEVEL 3 **ACCEPT（仅本机受限演练）**，见 `EVIDENCE/AUTH-92-REAL-KEY-SYNTHETIC-CMS-ROUNDTRIP/plan.md`。经审查脚本成功分支须 AES-256-CBC 加密、现有私钥解密、逐字节一致和三个精确临时文件清理均通过；Owner 回报成功标记，Work 复核三临时文件不存在、私钥元数据/ACL 与证书指纹未变。此证明本机此次证书/私钥配对及虚构数据 CMS 往返，不证明服务端或真实 DB 备份恢复。旧预算已耗尽。AUTH-93 将只读复核当前 Kingston 加密 U 盘身份与保护状态，之后才可考虑真实私钥恢复副本写入。
 
+AUTH-93 的固定 E: BitLocker 只读查询获 Work LEVEL 2 **REJECT（状态目标）**，仅接受一次普通进程返回 `UAC_OR_LAUNCH_FAILED`、退出 1 的受限事实，见 `EVIDENCE/AUTH-93-CURRENT-USB-BITLOCKER-READONLY-PREFLIGHT/plan.md`。Owner 说明当时正在打字，可能误取消 UAC，具体原因未确诊；四字段仍 `UNKNOWN`，旧 1/1 预算耗尽。Owner 明确请求再触发一次；AUTH-94 为该请求另立单次有界只读尝试，成功前不写 U 盘恢复副本。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
