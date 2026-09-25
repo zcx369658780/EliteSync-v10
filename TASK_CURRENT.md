@@ -4,9 +4,9 @@ Task ID: `AUTH-90-OWNER-PRIVATE-KEY-UNLOCK-CHECK`
 
 Risk Level: `LEVEL 3`（真实私钥的 Owner 密码解锁验证；不输出私钥）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 只准备候选，Work 独立 LEVEL 3 预运行审查并放行后，Owner 本人从 Explorer 双击并在 OpenSSL 原生提示输入密码。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 3 审查候选并放行一次 Owner 手动双击；仅 Owner 本人在 OpenSSL 原生提示输入密码。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-88 的真实生成返回成功且固定文件首行表明加密 PKCS#8；�
 
 ## Phase B — reserved, not yet authorized
 
-Work 静态审查、临运行复核文件/ACL/程序和 Owner 在场、无录屏/共享后，才可放行 Owner Explorer 双击 **一次**，OpenSSL 解锁预算 **1/1，当前 0/1 未放行**。Owner 只在原生非回显提示输入密码；若提示异常、密码回显、错误密码或失败类别，立即停止，不重试、不在聊天中报告密码或原始错误。成功只回报固定类别；Work 后续独立只读复核目标文件仍存在、长度与 ACL 不变，作 LEVEL 3 受限验收。
+Work 已于 2026-09-25 静态审查并临运行复核文件/ACL/程序和 Owner 在场、无录屏/共享条件，见同目录 `plan.md`，**放行 Owner Explorer 双击一次**固定 CMD SHA-256 `716A3195831BAFA273BA69C2C6AFDB223710D85E3F2D1ED7206ED667115FD775`。OpenSSL 解锁预算 **1/1，当前 0/1 已用**。Owner 只在原生非回显提示输入密码；若提示异常、密码回显、错误密码或失败类别，立即停止，不重试、不在聊天中报告密码或原始错误。成功只回报固定类别；Work 后续独立只读复核目标文件仍存在、长度与 ACL 不变，作 LEVEL 3 受限验收。
 
 禁止运行 AUTH-88 生成入口，生成/输出/复制/删除或改写真实私钥，不得写 `E:` 或备份目录、连接服务器/DB/云/Docker/GitHub、访问旧 `D:\EliteSync`。本任务不授权证书、U 盘副本、数据库备份或恢复。
