@@ -4,7 +4,7 @@ Task ID: `AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY`
 
 Risk Level: `LEVEL 3`（Owner 真实数据库备份解密私钥与本人密码）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`（不得启动真实生成；Work 独立审查脚本后才可另行放行 Phase B）
+Status: `ISSUED — PHASE B RELEASED`（Work 已独立审查固定脚本；仅允许一次 Owner 在场的可见窗口执行）
 
 Assignee: `Codex + Work + Owner`。Codex 只准备并静态检查无秘密的精确本机运行器；Work 对候选做高风险预运行审查、决定是否放行 Phase B；Owner 在独立可见 Windows 终端亲自输入和纸质记录真实密码。复用现有 Codex 会话。
 
@@ -21,6 +21,6 @@ Owner 已授权继续备份准备，密码需要时由本人输入；已决定�
 
 ## Phase B：待 Work 预运行审查
 
-若 Work 单独记录放行，Owner 本人在电脑前确认无屏幕录制/共享，并准备独立纸质密码副本；Codex 可启动**一次**不采集输入/输出的可见独立窗口，Owner 在该窗口亲自输入真实密码。完成后 Codex 只读检查精确文件的加密头、ACL、长度及脚本有限退出状态，形成 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md` 候选，停在 Work LEVEL 3 独立验收门。密码不得进入聊天、Codex 终端、脚本、参数、环境变量、剪贴板自动化、普通证据、Git 或 Git bundle。
+Work 的预运行审查与 Owner 无录制/共享及纸质准备确认已记录于 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/plan.md`。启动前须再次核对 `launch.ps1` SHA-256 精确为 `ED3DCD63A3DC4B50EE32C1763BA47C2BD0569A9514C06D07E3372B0260692F20`，目标仍不存在。Codex 可启动**一次**不采集输入/输出的可见独立窗口，Owner 在该窗口亲自输入真实密码。完成后 Codex 只读检查精确文件的加密头、ACL、长度及脚本有限退出状态，形成 `EVIDENCE/AUTH-83-OWNER-REAL-ENCRYPTED-PRIVATE-KEY/summary.md` 候选，停在 Work LEVEL 3 独立验收门。密码不得进入聊天、Codex 终端、脚本、参数、环境变量、剪贴板自动化、普通证据、Git 或 Git bundle。
 
 本任务不验证证书配对、U 盘副本、纸质 BitLocker 恢复密钥实用性、服务器 CMS、真实备份或恢复；这些各需独立任务。不得提交/推送 Git、自接受或派发后继。保留无关工作区内容，不访问旧 `D:\EliteSync`。
