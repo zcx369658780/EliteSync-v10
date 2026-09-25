@@ -30,3 +30,9 @@ Work 须独立审查脚本/程序哈希、私钥限定状态、证书目标不�
 **LEVEL 3 ACCEPT 脚本候选并放行一次 Owner 手动证书生成。** Work 逐行审查唯一 `req` 命令、固定私钥/证书/程序路径、用途名、365 天、SHA-256 和扩展参数；没有密码参数、私钥输出、重定向、日志、重试或删除。独立核对本地 HEAD `201664a2503218651207e99973bf6eb9d49f35c7`、脚本 SHA-256 `AB5B542EECA9F5EF9BC7F3582A9D37BD3C2CA988984657681A2DC2574C6CC3B2`、OpenSSL SHA-256 `21C43808DDC48B9B2133ED4FE9F4F90D77305568EF3BB8291DD05D271E29A54B`，私钥仍为 2666 bytes、加密 PKCS#8 首行、当前用户 Owner、继承关闭且仅三主体显式 FullControl，精确证书目标仍不存在。审查前候选计划 SHA-256 为 `934885A46C3E4258BF00BF2E092442BC27EE322FC7D3B78605965EC3D0B55BCC`。
 
 与 AUTH-88 相同，`if exist` 与实际写入之间不具原子排他性；在当前受限目录与临运行目标不存在核对下接受剩余竞争风险，不宣称绝对防覆盖。Owner 此前在本轮会话确认在电脑前、无录屏或共享，且已两次亲自在本机 OpenSSL 原生提示使用密码；无相反状态报告。仅放行其从 Explorer 双击固定 CMD **一次**，在非回显原生提示输入现有密码。若现场条件变化、提示异常、密码回显或失败类别，停下且不重试。放行不等于证书内容或配对已被验收。
+
+## Work Phase B 独立验收（2026-09-25）
+
+**LEVEL 3 ACCEPT 固定用途公有证书生成及本次受限元数据。** Owner 回报单次 CMD 同时显示 `AUTH91_REQ_EXIT_ZERO` 与 `AUTH91_CERT_OUTPUT_PRESENT`，无失败类别；未提供密码或原始输出。Work 独立核对本地 HEAD `1cafc74166098839c88fb2e0d1e68025314e9a21`、CMD 哈希仍为放行值，精确公有证书为非重解析普通文件、1541 bytes、PEM `BEGIN CERTIFICATE` 首行、Owner 当前用户，继承的三条 Allow FullControl 仅当前用户/SYSTEM/Administrators；公有证书无需继承关闭。固定 OpenSSL `x509` 只读解析退出 0：Subject 与 Issuer 均为 `CN=EliteSync-v10-DB-Backup-Recipient`，公钥 RSA 3072，签名 `sha256WithRSAEncryption`，有效期 `2026-09-25 09:46:14 UTC` 至 `2027-09-25 09:46:14 UTC`（365 天），扩展为 critical `CA:FALSE` 与 critical `Digital Signature, Key Encipherment`。公有证书 SHA-256 指纹 `3A:B7:64:96:F1:1B:2A:F5:D3:AE:79:75:56:9A:61:00:FD:54:E6:BC:99:A4:1B:BF:7A:22:96:7E:D5:56:74:61`。
+
+Work 只读复核私钥仍为原精确路径、2666 bytes、非重解析、当前用户 Owner、继承关闭与三主体显式 FullControl；未再次解锁或读取正文。证书来自该脚本的受限回执和公开元数据，但**私钥/证书公钥实际配对及 CMS 加解密尚未独立证明**，也无 U 盘副本或数据库备份。证书生成预算 **1/1 已耗尽**，不重试或覆盖。
