@@ -159,6 +159,8 @@ AUTH-90 的一次 Owner 原生提示密码解锁检查获 Work LEVEL 3 **ACCEPT�
 
 AUTH-91 的一次 Owner 公有收件人证书生成获 Work LEVEL 3 **ACCEPT（证书及元数据）**，见 `EVIDENCE/AUTH-91-OWNER-REAL-RECIPIENT-CERTIFICATE/plan.md`。精确证书 1541 bytes、PEM X.509，Subject/Issuer 为固定用途名，RSA 3072、SHA-256 签名、365 天有效期，critical `CA:FALSE` 与 `Digital Signature, Key Encipherment`；私钥元数据与三主体显式权限未变。旧一次预算已耗尽。证书与私钥实际配对、CMS 兼容和 U 盘副本未建立；AUTH-92 将以纯虚构内容进行本机 CMS 配对演练，不接触真实数据库。
 
+AUTH-92 的一次 Owner 本机虚构标记 CMS 往返获 Work LEVEL 3 **ACCEPT（仅本机受限演练）**，见 `EVIDENCE/AUTH-92-REAL-KEY-SYNTHETIC-CMS-ROUNDTRIP/plan.md`。经审查脚本成功分支须 AES-256-CBC 加密、现有私钥解密、逐字节一致和三个精确临时文件清理均通过；Owner 回报成功标记，Work 复核三临时文件不存在、私钥元数据/ACL 与证书指纹未变。此证明本机此次证书/私钥配对及虚构数据 CMS 往返，不证明服务端或真实 DB 备份恢复。旧预算已耗尽。AUTH-93 将只读复核当前 Kingston 加密 U 盘身份与保护状态，之后才可考虑真实私钥恢复副本写入。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
