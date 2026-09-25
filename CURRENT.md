@@ -173,6 +173,8 @@ AUTH-97 经 Work LEVEL 3 **ACCEPT（固定加密恢复对副本及本次字节�
 
 AUTH-98 的 docs-only U 盘私钥恢复演练设计获 Work LEVEL 3 **ACCEPT（仅方案）**，见 `EVIDENCE/AUTH-98-USB-KEY-SYNTHETIC-RECOVERY-DRILL-DESIGN/plan.md`。后继优先 A：Owner 本机非回显输入现有私钥密码，OpenSSL 只以精确 E: 私钥副本对固定虚构内容作 CMS 往返；B 为拔插锁定后的 U 盘密码解锁，C 为纸质 BitLocker 恢复密钥验证，各自独立。AUTH-98 未执行任何演练，不证明 A/B/C 或真实数据库恢复。下一步须另立可执行脚本候选并经 Work 高风险预运行审查。
 
+AUTH-99 的可见入口/虚构 CMS 脚本候选获 Work LEVEL 3 **REJECT（不得运行）**，见 `EVIDENCE/AUTH-99-USB-KEY-SYNTHETIC-CMS-DRILL-ENTRY/plan.md`。静态控制流固定唯一 E: 私钥路径，但候选把 OpenSSL 解密的标准错误重定向到空输出，可能一并隐藏原生密码提示；Owner 不得盲输。固定 Temp 输出目标还存在检查后并发覆盖余量。候选从未运行，UAC、BitLocker、加解密预算均 0/1。下一步先用完全虚构的密码保护密钥确认本机提示通道与 PowerShell 行为，再另立修订候选；未触碰真实 E: 私钥执行。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

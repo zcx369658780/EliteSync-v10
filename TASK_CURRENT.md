@@ -4,9 +4,11 @@ Task ID: `AUTH-99-USB-KEY-SYNTHETIC-CMS-DRILL-ENTRY`
 
 Risk Level: `LEVEL 3`（真实 U 盘私钥副本参与虚构 CMS 解密；本轮仅脚本候选）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY; NO RUN OR PASSWORD`
+Status: `REJECTED — PHASE A CANDIDATE CLOSED; ALL RUN BUDGETS UNUSED`
 
 Assignee: `Codex`，复用现有本地执行会话；Work 独立预运行审查和放行、最终验收及后继任务发布。
+
+Work LEVEL 3 REJECT 当前候选的运行放行，见同目录 `plan.md`。OpenSSL `cms -decrypt` 标准错误被抑制，原生非回显密码提示可能不可见；固定 Temp 输出目标还有并发覆盖余量。Phase B 从未放行，启动、UAC、BitLocker 查询、加解密使用量均为 0/1，且本任务关闭，不得据此运行或调参重试。后继先另立完全虚构的提示通道诊断，不触碰真实 E: 私钥。
 
 ## Phase A — candidate only
 
