@@ -4,9 +4,11 @@ Task ID: `AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（无服务器落盘 CMS 管道方案的本机虚构预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 REJECTED — FD CMS ENCRYPT FAILED`
 
 Assignee: `Codex`。仅交付一次本机虚构文件描述符/CMS 预检候选及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：本机虚构证书生成退出 0，但 fd/CMS 加密退出 1、原因 `UNKNOWN`，未取得可用密文或进行解密，完整可行性目标 LEVEL 2 REJECT；只接受失败与固定临时目录清理的受限事实。见 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/summary.md`。旧本地运行预算 1/1 已耗尽。
 
 ## Authority and objective
 

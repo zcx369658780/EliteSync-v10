@@ -87,7 +87,7 @@ AUTH-56 服务器 OpenSSL 算法列表单次只读观察获 Work LEVEL 2 **ACCEP
 
 AUTH-57 虚构 CMS 服务器到本机互通 docs-only 方法获 Work LEVEL 2 **ACCEPT（仅方法与停点）**，见 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。方案限定固定 21 字节虚构样本、一次性无密码虚构证书/私钥、单次严格 SSH、服务器不落盘、密文完整采集、本机认证成功前消费者 0 字节及失败清理；服务器文件描述符/管道证书输入可行性仍 `UNKNOWN`。没有运行互通、真实密钥、备份或恢复。
 
-AUTH-58 已下达本机虚构 fd/CMS 管道预检，见 `TASK_CURRENT.md`：固定 21 字节样本和一次性虚构证书/私钥，在经核对的本机 Git Bash/OpenSSL 中尝试公有证书经 fd 输入、密文只在进程内存、配对本机解密，精确清理本次临时目录。单次本地运行预算 1/1，不连接服务器；本机成功也不证明服务器路径。
+AUTH-58 本机虚构 fd/CMS 管道可行目标获 Work LEVEL 2 **REJECT**，仅接受证书生成成功、fd 加密退出 1、解密未运行及固定临时目录清理的受限事实，见 `EVIDENCE/AUTH-58-LOCAL-SYNTHETIC-FD-CMS-PREFLIGHT/summary.md`。原始 stderr 未保存，具体失败原因 `UNKNOWN`；Work 只读确认临时目录不存在，未重跑旧 1/1 预算。服务器 fd/CMS 能力、跨端互通和真实备份恢复均未建立，不据此改用服务器临时落盘。
 
 ## Product scope
 
