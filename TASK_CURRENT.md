@@ -4,9 +4,9 @@ Task ID: `AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY`
 
 Risk Level: `LEVEL 3`（Owner 真实密码保护私钥生成；无 DB、服务器或备份写入）
 
-Status: `PHASE A ACCEPTED — PHASE B NOT RELEASED; OWNER READINESS PENDING`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 3 接受 Phase A 脚本候选；仍待 Owner 当下无录屏/共享、在场及纸质密码准备确认，Phase B 尚未放行。放行后仅 Owner 本人从 Explorer 手动启动且只在 OpenSSL 原生提示输入密码。Work 保留最终验收权。
+Assignee: `Owner + Codex`，复用现有本地执行会话。Work 已独立 LEVEL 3 接受 Phase A 并在 Owner 确认在场、无录屏/共享且密码已准备后放行 Phase B 的唯一一次手动双击。仅 Owner 本人从 Explorer 启动且只在 OpenSSL 原生提示输入密码。Work 保留最终验收权。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ Owner 已授权本地真实私钥准备，选择 RSA 3072、AES-256-CBC 加密 P
 
 ## Phase B — reserved; not yet authorized
 
-Work 独立审查 Phase A 的精确脚本哈希、目录/程序/目标、Owner 在场与无录制/共享条件后，才可放行 **一次** Owner Explorer 双击，生成命令预算 **1/1，当前 0/1 且未放行**。Owner 只在 OpenSSL 原生非回显提示输入并确认新密码，不向 Codex、Work、聊天、命令参数或日志提供密码。若未见预期提示、密码回显、窗口异常或失败类别，立即停，保留任何可能的目标文件，由 Work 只读检查后决定处置；不自动重试。生成后 Work 仅做固定目标存在、文件长度、首行加密 PKCS#8 标记及 ACL 的受限只读核验；实际密码解锁、公有证书配对和 U 盘副本另立任务。
+Work 已在 `plan.md` 记录精确脚本哈希、目录/程序/目标与 Owner 现场条件的临运行核对，**放行一次** Owner Explorer 双击。生成命令预算 **1/1，当前 0/1 已用**。Owner 只在 OpenSSL 原生非回显提示输入并确认新密码，不向 Codex、Work、聊天、命令参数或日志提供密码。若未见预期提示、密码回显、窗口异常或失败类别，立即停，保留任何可能的目标文件，由 Work 只读检查后决定处置；不自动重试。生成后 Work 仅做固定目标存在、文件长度、首行加密 PKCS#8 标记及 ACL 的受限只读核验；实际密码解锁、公有证书配对和 U 盘副本另立任务。
 
 禁止调用 AUTH-83/84/85/87 的脚本或重用其预算；不得读取私钥正文、复制/删除任何密钥、写 `E:` 或备份目录、连接服务器/真实 DB/云/Docker/GitHub，或访问旧 `D:\EliteSync`。真实密码不得被 Codex 终端、聊天、脚本参数、环境变量或普通证据接收。
