@@ -1,21 +1,22 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-100-SYNTHETIC-OPENSSL-PROMPT-CHANNEL-DIAGNOSIS`
+Task ID: `AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR`
 
-Risk Level: `LEVEL 2`（AUTH-99 高风险运行门所需的完全虚构本机工具行为诊断）
+Risk Level: `LEVEL 3`（真实 E: 加密私钥副本的虚构解密演练入口；本轮仅候选）
 
-Status: `REJECTED — FULL COMPLIANCE; LIMITED FACT ACCEPTED; BUDGET USED`
+Status: `ISSUED — PHASE A REVISED CANDIDATE ONLY; NO RUN OR PASSWORD`
 
-Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 2 审查与后继任务发布。
+Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。
 
-Work LEVEL 2 REJECT 本任务完整合规目标；仅接受虚构 A/C 提示在标准错误检出、B 的 `2>$null` 未检出提示的有限事实，见同目录 `summary.md`。A 非零后仍运行 B/C 且清理，违反失败即停/保留现场。虚构密钥生成及 A/B/C 各 1/1 预算已用尽，本任务关闭，禁止重跑或将该回执升格为真实私钥解锁证明。
+## Phase A — revised candidate only
 
-## Objective and scope
+1. 核对本地 `main`、HEAD、工作区和 AUTH-92 成功的 Owner 可见 CMD 原生 OpenSSL 调用、AUTH-97 恢复副本接受范围、AUTH-99 拒绝点、AUTH-100 有限提示通道事实。只读核对固定 E: 身份、两个精确副本有限元数据、固定 OpenSSL 哈希及虚构临时目标不存在；不读私钥正文/哈希，不查询 BitLocker，不运行 OpenSSL 加解密或 UAC。保留无关未跟踪目录。
+2. 只在 `EVIDENCE/AUTH-101-USB-KEY-SYNTHETIC-CMS-VISIBLE-PROMPT-REPAIR/` 准备新的 Owner 从 Explorer 单次双击、窗口停留到按键的 `.cmd`、必要的只读保护检查脚本与 `plan.md`。优先沿用 AUTH-92 已在 Owner 窗口成功的人机路径：CMD 在前台直接调用固定 Git OpenSSL，OpenSSL 标准错误**留在 Owner 本机可见控制台**供原生非回显密码提示使用，不重定向或保存其原文。Owner 只报告预定义最终类别与退出码，勿发送窗口原文/截图。不能以 `-passin`、脚本参数、环境、管道、文件、剪贴板或 PowerShell `Read-Host` 接收真实密码。静态核对唯一 CMS 解密调用显式 `-inkey "E:\elitesync-v10-db-backup-recipient-20260925.key.pem"`，公有证书固定 E: 同前缀 `.cert.pem`，不得有 C: 私钥、回退、通配符或候选列表。
+3. 任何读取 E: 私钥前，必须有独立提权只读子过程经 Owner UAC 后对当前固定 Kingston E: 执行最多一次 `Get-BitLockerVolume`，要求唯一对象 `Unlocked/On/FullyEncrypted/100`；失败即止。普通进程和提权进程都复核唯一 Kingston USB Removable 身份、分区/卷映射、25～35 GiB、两精确 E: 文件非重解析及长度/加密首行/公开证书指纹。固定脚本/工具身份门在调用前检查。设计 ASCII 固定虚构标记、AES-256-CBC CMS 加密与解密各最多一次、`fc /b` 一次；虚构临时目标在仓库外精确任务 Temp 目录，须确保不覆盖既有文件，成功只清理本任务所建三个虚构文件及空目录并核对不存在，失败保留现场。不得触碰真实备份/DB/用户数据。
+4. 静态检查 Windows PowerShell/CMD 转义、输出与退出码、UAC/BitLocker 门、唯一 E: 私钥输入、Owner 可见原生提示、Temp 目标非覆盖与精确清理、失败即停及无自动重试。重点解释 AUTH-100 三次虚构调用非零只说明无人机/输入方式未建立，不否定 AUTH-92 的 Owner 原生窗口成功；也不能据此预判 AUTH-101 成功。**Phase A 禁止运行任何新入口/脚本、UAC、BitLocker 或 OpenSSL 加解密**。只交候选和有限证据，停在 Work LEVEL 3 预运行审查；不提交、推送、自接受或派发后继。
 
-确定本机固定 Git OpenSSL `C:\Program Files\Git\usr\bin\openssl.exe` 在 Windows PowerShell 5.1 中对**虚构密码保护私钥**请求密码时，提示究竟经哪个通道出现，以及 `2>$null` 和 `$ErrorActionPreference='Stop'` 的组合会否让 Owner 看不到提示或提前失败。只使用新生成、可丢弃的虚构测试材料；不访问或读取真实 C: 私钥、E: 或真实备份，不触发 UAC 或 BitLocker 查询。
+## Phase B — reserved; not released
 
-允许在 `EVIDENCE/AUTH-100-SYNTHETIC-OPENSSL-PROMPT-CHANNEL-DIAGNOSIS/` 写脚本和有限 `summary.md`；固定虚构临时文件只放在仓库外 `C:\Users\zcxve\AppData\Local\Temp\elitesync-auth100-synthetic/`，创建前核对该精确目录不存在且父目录为非重解析本地目录。可生成一次 RSA 2048 虚构加密 PEM，使用固定无保密价值的测试口令 `AUTH100_SYNTHETIC_ONLY`，并用受限子进程比较：A. PowerShell 5.1 原生调用的标准错误正常流向；B. `2>$null`；C. `$ErrorActionPreference='Stop'` 对本机原生 stderr 的影响。必要时用重定向的标准输入提供**测试口令**，不得对 Owner 提示或记录任何真实密码。记录提示是否出现在各通道、退出类别、是否有意外截断；不保存完整 OpenSSL 错误或虚构私钥正文。结束后只删除本任务精确虚构临时文件与目录，并核对不存在；若测试失败，停止并保留虚构现场供 Work 审查，不扩大或重试。
+Work 独立审查脚本及临运行状态、Owner 在场后才可决定是否放行一次手动启动、本人 UAC 与 OpenSSL 原生非回显密码输入。任何失败立即停止，不临场改参数/路径或重试；成功仍须 Work 核对虚构临时文件清理、E: 两文件有限元数据与源私钥 ACL 未变后作受限验收。A 成功不证明 U 盘重插密码解锁、纸质恢复密钥或真实数据库备份/恢复。
 
-执行前核对本地 `main`、HEAD、工作区、AUTH-99 REJECT 边界、OpenSSL 固定文件与哈希；预算为一次虚构密钥生成和最多三种有限调用各 1/1。结果若不确定，明确 `UNKNOWN`，不能凭猜测解除 AUTH-99 门。检查脚本没有 E:、真实私钥路径、UAC、BitLocker、网络、DB、云或用户密码通道。交付差异、有限测试回执与 `summary.md`，停在 Work LEVEL 2 独立审查；不提交、推送、自接受或派发后继。
-
-禁止修改或访问真实密钥、U 盘和备份，访问旧 `D:\EliteSync`，连接服务器/DB/云/Docker/GitHub，或将任何真实敏感材料纳入 Git、Git bundle、证据或输出。保留无关工作区目录。
+禁止修改真实密钥、BitLocker、卷、E: 副本或备份，删除/覆盖其他文件，连接服务器、DB、云、Docker 或 GitHub，访问旧 `D:\EliteSync`，将任何真实敏感材料纳入 Git、Git bundle 或普通证据。
