@@ -149,6 +149,8 @@ AUTH-85 的桌面手动无秘密探针获 Work LEVEL 2 **REJECT（探针运行�
 
 AUTH-86 的固定只读定位获 Work LEVEL 2 **ACCEPT（仅受限观察）**，见 `EVIDENCE/AUTH-86-POWERSHELL-PROBE-LAUNCH-READONLY-DIAGNOSIS/summary.md`。当前会话作用域策略为 `CurrentUser/LocalMachine=RemoteSigned`、其余三项 `Undefined`；AUTH-85 两文件无 `Zone.Identifier` 流且哈希匹配。没有支持“下载来源标记触发拦截”的正向证据，也没有 Owner 当时的原始异常；具体根因仍 `UNKNOWN`。AUTH-87 改用无 PowerShell 的纯 `.cmd` 做无秘密前台可见性预检；真实私钥、证书和 U 盘副本仍不存在。
 
+AUTH-87 的纯 CMD 无秘密可见性和单键入口获 Work LEVEL 2 **ACCEPT（仅本次交互路径）**，见 `EVIDENCE/AUTH-87-CMD-ONLY-OWNER-CONSOLE-PREFLIGHT/summary.md`。Owner 报告成功标记出现，按键关闭提示出现且按键后窗口才退出。旧一次双击预算已耗尽。这不证明 OpenSSL 密码提示或真实密钥。AUTH-88 将为新的真实密码保护私钥生成准备固定 CMD 入口，先做 LEVEL 3 预运行审查；真实私钥、证书和 U 盘副本仍不存在。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

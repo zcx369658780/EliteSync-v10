@@ -1,25 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-87-CMD-ONLY-OWNER-CONSOLE-PREFLIGHT`
+Task ID: `AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY`
 
-Risk Level: `LEVEL 2`（真实密码提示前的无秘密本机交互入口预检）
+Risk Level: `LEVEL 3`（Owner 真实密码保护私钥生成；无 DB、服务器或备份写入）
 
-Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
+Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
 
-Assignee: `Owner + Codex`，复用现有本地执行会话；Work 已独立审查 Phase A 并放行 Phase B 的一次 Owner 手动双击。
+Assignee: `Codex + Owner`，复用现有本地执行会话。Codex 准备候选，Work 独立 LEVEL 3 预运行审查并放行后，Owner 本人从 Explorer 手动启动且只在 OpenSSL 原生提示输入密码。Work 保留最终验收权。
 
 ## Authority and fixed boundary
 
-AUTH-83/84/85 的各一次运行预算已耗尽。AUTH-86 只读观察未确诊 PowerShell 脚本调用失败原因。本任务不再追溯那些失败；只验证一个**完全不调用 PowerShell**的 Windows `.cmd` 前台控制台能否显示固定标记、接受一个无秘密按键，并等待 Owner 关闭。此验证不证明 OpenSSL 密码提示、密钥生成或备份恢复。
+Owner 已授权本地真实私钥准备，选择 RSA 3072、AES-256-CBC 加密 PKCS#8，真实密码仅本人输入并有纸质副本分开放置；两固定目录不采用云同步。AUTH-83 的一次 PowerShell 真实生成失败，AUTH-84/85 的 PowerShell 诊断未成，旧预算均耗尽。AUTH-87 只证明一次纯 CMD 无秘密窗口与按键可用。此任务以**新的**纯 CMD 入口在固定目录直接生成**一个**真实加密私钥；不创建证书、U 盘副本、数据库备份或恢复。不得把 AUTH-87 当成 OpenSSL 密码提示证明。
 
-## Phase A — candidate only, no launch
+## Phase A — candidate only; no key operation
 
-1. 核对本地 `main`、HEAD、工作区、AUTH-83～86 接受边界；保留无关未跟踪内容。只读确认固定真实私钥目标 `C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem` 不存在；若存在立即停止，不读内容。
-2. 只在 `EVIDENCE/AUTH-87-CMD-ONLY-OWNER-CONSOLE-PREFLIGHT/` 准备一个 Owner 可从 Explorer 双击的 `.cmd`。不得调用 PowerShell、OpenSSL、其他脚本、后台进程或网络。运行时依次显示 `AUTH87_VISIBLE_PROBE`，使用 Windows `choice` 只接收一次固定无秘密 `Y` 键，按结果显示 `AUTH87_KEY_ACCEPTED` 或固定失败类别；无论分支均显示 `AUTH87_PRESS_ANY_KEY_TO_CLOSE` 并 `pause`。不得记录输入、读取环境变量值或输出路径/原始错误。
-3. 静态核对所有分支与入口文件 SHA-256；不得启动 `.cmd` 或新窗口。把候选、检查结果和 Owner Explorer 双击指引草案写入同目录 `summary.md`，停在 Work LEVEL 2 Phase A 预运行审查。不提交、推送、自接受或派发后继。
+1. 核对本地 `main`、HEAD、工作区、AUTH-81～87 接受边界和 Owner 决定，保留无关未跟踪内容。只读核对固定私钥目标 `C:\Users\zcxve\EliteSync-v10-DB-Keys\elitesync-v10-db-backup-recipient-20260925.key.pem` 不存在；若存在立即停止，不读内容。重新核对密钥目录及必要父路径为规范非重解析目录，密钥目录仅当前用户、SYSTEM、Administrators 三条显式 FullControl，Owner 为当前用户，继承关闭；若不满足即停止。核对固定 `C:\Program Files\Git\usr\bin\openssl.exe` 为规范文件，记录 SHA-256 和 `version` 有限结果；不得运行密钥命令。
+2. 只在 `EVIDENCE/AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY/` 准备一个供 Owner 从 Explorer 双击的 `.cmd` 候选，使用固定绝对 OpenSSL 路径，且**只调用一次** `genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -aes-256-cbc -out <固定私钥目标>`。不使用 `-pass`、环境变量、口令文件、输入/输出重定向、管道、转录、日志或 Codex PTY。脚本在调用前再次检查固定目标不存在和固定程序存在；失败即分类并停止，绝不覆盖、删除、重试、换目录/算法或降级为无密码私钥。无论结果均显示有限状态并 `pause`，窗口只由 Owner 按键关闭。不得由脚本调用 PowerShell、其他脚本、网络或 U 盘。
+3. 静态核对 `.cmd` 的全部分支、单次调用及 SHA-256；保存脱敏候选与检查结果到同目录 `plan.md`。不得执行 `.cmd`、`genpkey` 或任何真实/虚构密码测试。停在 Work LEVEL 3 Phase A 预运行审查；不提交、推送、自接受或派发后继。
 
-## Phase B — reserved, not yet authorized
+## Phase B — reserved; not yet authorized
 
-Work 已于 2026-09-25 审查并放行 Phase A，见同目录 `summary.md`。复核固定 `.cmd` SHA-256 `31B53742CA04B3A0757588F49373FE58D51620735099B9B0463D8E32C92AB94A` 后，Owner 可从 Explorer 手动双击经审查的 `.cmd` **一次**，在看到提示时按 `Y` 一次，再观察固定类别和按键关闭提示；不输入密码、不发截图。预算 **1/1，当前 0/1 已用**。若闪退、失败或显示意外内容，停止并报告，不重试。Codex/Work 后续只读复核精确真实私钥目标仍不存在，由 Work 作 LEVEL 2 验收。
+Work 独立审查 Phase A 的精确脚本哈希、目录/程序/目标、Owner 在场与无录制/共享条件后，才可放行 **一次** Owner Explorer 双击，生成命令预算 **1/1，当前 0/1 且未放行**。Owner 只在 OpenSSL 原生非回显提示输入并确认新密码，不向 Codex、Work、聊天、命令参数或日志提供密码。若未见预期提示、密码回显、窗口异常或失败类别，立即停，保留任何可能的目标文件，由 Work 只读检查后决定处置；不自动重试。生成后 Work 仅做固定目标存在、文件长度、首行加密 PKCS#8 标记及 ACL 的受限只读核验；实际密码解锁、公有证书配对和 U 盘副本另立任务。
 
-禁止运行 AUTH-83/84/85，改变执行策略，使用 OpenSSL、生成/读取/复制/删除密钥，写 `E:` 或真实密钥/备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。真实密码、证书、U 盘副本、备份及恢复均须另立任务并过相应风险门。
+禁止调用 AUTH-83/84/85/87 的脚本或重用其预算；不得读取私钥正文、复制/删除任何密钥、写 `E:` 或备份目录、连接服务器/真实 DB/云/Docker/GitHub，或访问旧 `D:\EliteSync`。真实密码不得被 Codex 终端、聊天、脚本参数、环境变量或普通证据接收。

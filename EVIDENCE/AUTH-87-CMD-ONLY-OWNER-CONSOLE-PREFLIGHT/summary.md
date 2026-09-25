@@ -27,3 +27,9 @@ Phase B 实际双击预算 **0/1，尚未放行**。本任务不调用 AUTH-83/8
 **LEVEL 2 ACCEPT Phase A 候选，放行 Phase B 的一次 Owner 双击。** Work 逐行审查唯一 `.cmd`：只打印固定标记、调用固定 `choice.exe` 一次，按 `errorlevel` 映射结果，所有分支汇入同一 `pause`；没有 PowerShell、OpenSSL、文件写入或秘密操作。独立复核入口 SHA-256 与上方值一致，真实私钥精确目标仍不存在，本地 HEAD 为 `adfdf8cd258494fc66f26e73a2748838301285e4`。审查前候选摘要 SHA-256 为 `25B969A672F9B88A20E4BD43BFA04C6B8CAFD61DB0C368F2A8E9AD098FCD39FB`。
 
 Phase B 仅放行 Owner 按上述指引从 Explorer **手动双击一次**固定入口、按一次无秘密 `Y` 并回报固定类别；不得输入密码、重复启动或扩展到真实密钥。
+
+## Work Phase B 独立审查（2026-09-25）
+
+**LEVEL 2 ACCEPT 一次纯 CMD 前台控制台可见与无秘密按键路径。** Owner 回报成功标记出现，窗口显示按任意键提示，并在按键之后才退出。结合经审查的固定 `.cmd`，这支持本次 `AUTH87_VISIBLE_PROBE`、`AUTH87_KEY_ACCEPTED`、`AUTH87_PRESS_ANY_KEY_TO_CLOSE` 的正常路径；没有录制窗口原始流，细节以 Owner 观察为限。Work 独立核对本地 HEAD `ea739777344bc6b49621af5820ac858bca39f5b3`、入口 SHA-256 仍与放行值一致、真实私钥精确目标仍不存在。
+
+Owner 双击预算 **1/1 已耗尽**，不重试。这仅证明无秘密 CMD 控制台入口和按键路径；不证明 OpenSSL 原生密码提示、真实密钥或恢复能力。真实生成须另立 LEVEL 3 有界任务并先做脚本预运行审查。
