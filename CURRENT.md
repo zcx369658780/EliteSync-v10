@@ -1,6 +1,6 @@
 # EliteSync v10｜CURRENT
 
-更新：2026-09-24。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
+更新：2026-09-25。此页是本地项目状态快速入口；任务、产品决定、风险门和证据分别见 `TASK_CURRENT.md`、`PRODUCT_DECISIONS.md`、`REVIEW_GATE.md`、`EVIDENCE/`。旧 remote-centric 治理文档仅作历史来源。
 
 本地工作流迁移提交 `1a2ab56be66673b7151ce2d6dac3ca3dae2d7337` 已完成独立本地验收：`EVIDENCE/WORKFLOW-MIGRATION-20260923/summary.md`。该验收不包含 APP-INT-05。
 
@@ -76,6 +76,8 @@ AUTH-49 认证解密与本地备份恢复 **docs-only 合同**已获 Work LEVEL 
 AUTH-51 服务器 OpenSSL 完整工具能力目标获 Work LEVEL 2 **REJECT**，仅接受作者一次只读 SSH 成功、`openssl` 可解析且 `version`、`cms -help`、`list -cipher-algorithms` 命令均退出 0 的受限事实回执，见 `EVIDENCE/AUTH-51-SERVER-OPENSSL-CMS-CAPABILITY-READONLY/summary.md`。版本过滤未取得版本值，区分大小写的算法匹配不足以判断 AES-256-GCM 是否列出；原始输出未保存，二者均为 `UNKNOWN`。Work 未连接服务器，旧 SSH 预算 1/1 已耗尽；服务器与本机 CMS 密文互通、真实备份及恢复能力仍未建立。此次交接未发布后继任务；补测须另立有界任务。
 
 AUTH-52 纯本地虚构 OpenSSL 输出解析预检获 Work LEVEL 2 **ACCEPT（仅解析门）**，见 `EVIDENCE/AUTH-52-OPENSSL-CAPABILITY-PARSER-PREFLIGHT/summary.md`。作者报告最终 12/12 测试 PASS；解析器将列表结果分为 `LISTED`、`NOT_LISTED` 和 `UNKNOWN`，不把未列出推断为不支持。它无法独立证明未来远端输出采集完整；服务器版本、AES-256-GCM 是否列出和 CMS 互通仍 `UNKNOWN`，后继须另立固定 SSH 预算与截断失败门。未触碰 U 盘、Owner 密码、真实密钥、备份或数据库。
+
+AUTH-53 已下达新的服务器 OpenSSL 能力一次只读补测，见 `TASK_CURRENT.md`：固定 SSH 入口与 1/1 连接预算，复用 AUTH-52 解析器并对采集截断、分帧及异常 fail-closed；SSH 故障须及时反馈 Owner。任务仍 `ISSUED — NOT STARTED`，不沿用 AUTH-51 预算，也不自动派给此前过长的 Codex 会话。此次尚无新服务器观察，不需要 U 盘或 Owner 密码。
 
 ## Product scope
 
