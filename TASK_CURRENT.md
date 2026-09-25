@@ -4,7 +4,7 @@ Task ID: `AUTH-66-DB-ENGINE-CONSISTENCY-PROBE-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（真实完整备份一致性前的本机只读探针预检；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅本机引擎元数据探针预检，见 `EVIDENCE/AUTH-66-DB-ENGINE-CONSISTENCY-PROBE-PREFLIGHT/summary.md`）
 
 Assignee: `Codex`。只交付固定 PHP 元数据探针、纯虚构测试与脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
