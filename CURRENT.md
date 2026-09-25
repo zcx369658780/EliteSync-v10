@@ -175,6 +175,8 @@ AUTH-98 的 docs-only U 盘私钥恢复演练设计获 Work LEVEL 3 **ACCEPT（�
 
 AUTH-99 的可见入口/虚构 CMS 脚本候选获 Work LEVEL 3 **REJECT（不得运行）**，见 `EVIDENCE/AUTH-99-USB-KEY-SYNTHETIC-CMS-DRILL-ENTRY/plan.md`。静态控制流固定唯一 E: 私钥路径，但候选把 OpenSSL 解密的标准错误重定向到空输出，可能一并隐藏原生密码提示；Owner 不得盲输。固定 Temp 输出目标还存在检查后并发覆盖余量。候选从未运行，UAC、BitLocker、加解密预算均 0/1。下一步先用完全虚构的密码保护密钥确认本机提示通道与 PowerShell 行为，再另立修订候选；未触碰真实 E: 私钥执行。
 
+AUTH-100 完全虚构的提示通道诊断获 Work LEVEL 2 **REJECT（完整合规目标）**，仅接受本次有限观察：A/C 的密码提示在标准错误检出，B 的 `2>$null` 把该提示隐藏，见 `EVIDENCE/AUTH-100-SYNTHETIC-OPENSSL-PROMPT-CHANNEL-DIAGNOSIS/summary.md`。三次虚构调用均非零，原因 `UNKNOWN`；脚本在 A 非零后仍执行 B/C 并清理，违反失败即停/保留现场任务边界，预算各 1/1 耗尽。Work 确认虚构 Temp 目录事后不存在。该事实支持 AUTH-99 拒绝，仍不能证明 Owner 真实密码提示交互可成功；后继要修订可见提示的候选，不能运行 AUTH-99。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。

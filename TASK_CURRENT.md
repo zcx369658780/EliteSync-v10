@@ -4,9 +4,11 @@ Task ID: `AUTH-100-SYNTHETIC-OPENSSL-PROMPT-CHANNEL-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（AUTH-99 高风险运行门所需的完全虚构本机工具行为诊断）
 
-Status: `ISSUED — SYNTHETIC-ONLY LOCAL DIAGNOSIS`
+Status: `REJECTED — FULL COMPLIANCE; LIMITED FACT ACCEPTED; BUDGET USED`
 
 Assignee: `Codex`，复用现有本地执行会话；Work 独立 LEVEL 2 审查与后继任务发布。
+
+Work LEVEL 2 REJECT 本任务完整合规目标；仅接受虚构 A/C 提示在标准错误检出、B 的 `2>$null` 未检出提示的有限事实，见同目录 `summary.md`。A 非零后仍运行 B/C 且清理，违反失败即停/保留现场。虚构密钥生成及 A/B/C 各 1/1 预算已用尽，本任务关闭，禁止重跑或将该回执升格为真实私钥解锁证明。
 
 ## Objective and scope
 
