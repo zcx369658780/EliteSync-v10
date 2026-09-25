@@ -4,7 +4,7 @@ Task ID: `AUTH-68-DB-BACKUP-CONSISTENCY-BOUNDARY-CONTRACT`
 
 Risk Level: `LEVEL 2`（真实完整数据库备份前的一致性/范围合同；Work 独立审查，真实操作另设高风险门）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅 docs-only 范围与一致性合同，见 `EVIDENCE/AUTH-68-DB-BACKUP-CONSISTENCY-BOUNDARY-CONTRACT/contract.md`）
 
 Assignee: `Codex`。只交付一份 docs-only 候选合同，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

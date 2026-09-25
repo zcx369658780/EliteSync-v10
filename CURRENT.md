@@ -107,7 +107,7 @@ AUTH-66 本机 DB 存储引擎与备份一致性元数据探针预检获 Work LE
 
 AUTH-67 部署目录 CLI 当前连接引擎元数据一次只读观察获 Work LEVEL 2 **ACCEPT（仅可见聚合事实）**，见 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/summary.md`。作者报告唯一严格 SSH 成功，当次可见 43 张 InnoDB 基表、非 InnoDB 0、引擎 NULL 0、视图 0，版本和指纹与 AUTH-65 匹配。Work 静态审查脚本，未重连服务器；一次独立测试调用因调用目录导入问题未执行测试用例，任务测试预算已耗尽。权限完整性、Web worker 同库、并发写入/DDL 下完整备份一致性及恢复能力仍 `UNKNOWN`；SSH 预算耗尽。
 
-AUTH-68 已下达真实备份前的 docs-only 范围与一致性门合同，见 `TASK_CURRENT.md`。它只把现有证据、UNKNOWN、失败停点和需 Owner 选择的生产写入影响列清，不接触服务器或真实数据。Work 独立测试生成的 AUTH-67 Python 缓存目录仍未跟踪，因删除操作被自动审批拒绝而保留，不属于候选。
+AUTH-68 真实备份前的 docs-only 范围与一致性门合同获 Work LEVEL 2 **ACCEPT（仅合同）**，见 `EVIDENCE/AUTH-68-DB-BACKUP-CONSISTENCY-BOUNDARY-CONTRACT/contract.md`。它把实例/连接身份、完整对象与外部数据类别、事务引擎、DDL/写入边界、dump 权限/选项、加密先后、密钥与隔离恢复列为独立停点；影响生产写入的具体方案须 Owner 决定。没有连接服务器、真实 DB 或备份。Work 独立测试生成的 AUTH-67 Python 缓存目录仍未跟踪，因删除操作被自动审批拒绝而保留，不属于候选。
 
 ## Product scope
 
