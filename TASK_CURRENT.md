@@ -1,27 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: `AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY`
+Task ID: `AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT`
 
-Risk Level: `LEVEL 2`（真实服务器一次只读算法列表复核；Work 独立审查）
+Risk Level: `LEVEL 2`（服务器与本机 CMS 格式互通前的无真实数据方法门；Work 独立审查）
 
-Status: `WORK LEVEL 2 ACCEPTED — SERVER STATIC CIPHER LISTING ONLY`
+Status: `ISSUED — NOT STARTED`
 
-Assignee: `Codex`。只交付一次有界 SSH 静态观察候选及脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
-
-Work 验收：本次服务器静态算法列表受限事实 LEVEL 2 ACCEPT；作者报告一次 SSH 成功，OpenSSL 可解析，列表命令退出 0、8600 字符经有界完整采集和 AUTH-55 解析器返回 `LISTED`。这不证明 CMS 实际加解密或备份恢复，见 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/summary.md`。SSH 1/1 已耗尽。
+Assignee: `Codex`。仅交付 docs-only 有界方法候选，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
 ## Authority and objective
 
-AUTH-53 当次 OpenSSL 版本 token 为 `3.0.13`、`cms -help` 命令退出 0，但算法列表未通过旧解析器，AES-256-GCM 是否列出仍 `UNKNOWN`；AUTH-53 的 1/1 SSH 预算已耗尽。AUTH-55 新解析器已获 Work LEVEL 2 本地接受：虚构测试 12/12 PASS，且本机 OpenSSL 3.5.6 的 9010 字符完整列表当次解析为 `LISTED`。本机格式不证明远端状态。Owner 已授权沿路线图推进；本任务仅对既有阿里云服务器做新的**一次**只读算法列表观察，不做 CMS 加解密或备份。无需 U 盘或 Owner 密码。
+AUTH-56 的一次服务器只读观察获 Work LEVEL 2 ACCEPT：当次 OpenSSL 算法列表经严格采集与已接受解析器返回 AES-256-GCM `LISTED`。这不证明服务器可用 CMS AES-256-GCM 实际加解密、与本机格式互通或真实备份恢复。AUTH-49 合同要求后继用无真实数据的有界虚构演练并隔离认证失败输出；AUTH-50 仅证明本机固定 21 字节消费者门。Owner 已授权按路线图继续。此任务先形成可审查的**虚构服务器到本机 CMS 互通方法**，不运行它；32GB U 盘和 Owner 密码此阶段不需要。
 
 ## Exact execution boundary
 
-- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-53/55 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD、工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
-- 只允许向既有 `root@101.133.161.203` 发起 **1 次** SSH 连接，私钥仅为 `C:\Users\zcxve\.ssh\CodexKey.pem`，使用既有 `known_hosts`、`BatchMode=yes`、`IdentitiesOnly=yes`、`StrictHostKeyChecking=yes`、`ConnectTimeout=8`。连接失败或超时立即停止并在本会话向 Owner 反馈；不得换入口、密钥、用户、主机校验或重试。
-- 远端只运行固定无副作用 shell 查询：`command -v openssl` 的布尔结果，以及一次 `openssl list -cipher-algorithms`；不得重复版本或帮助命令，不运行加解密、密钥生成、文件写入、服务重启、数据库、Laravel 或云 API。
-- SSH stdout/stderr 只在本机进程内有上限地完整读取；严格分帧并核对命令退出码、字段长度和采集终止。超限/截断、缺帧/混帧、非零退出、非 ASCII 或解析不符时，算法结果为 `UNKNOWN`；不得将部分列表当 `NOT_LISTED`。列表使用**已接受 AUTH-55** 的解析器，不能更改它或以 AUTH-52/54 版本替代。只保留脱敏的连接/命令退出码、采集字符数、`LISTED/NOT_LISTED/UNKNOWN`、失败阶段；如格式不符，可保留首个不识别行的抽象类别与长度（如花括号/别名/provider/其他），不得保存、显示或复述该行内容、完整列表、路径、环境变量或凭据。任何 `NOT_LISTED` 仅指该次完整采集列表未列出，不等于服务器不支持。
-- 只允许新增 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/run.py`、`test_run.py`、`summary.md`。先静态检查固定远端命令、SSH 选项、限量采集与严格分帧；纯虚构本地 targeted 测试最多 2 次；SSH 严格 1/1；`git diff --check` 最多 1 次，新文件另做只读尾随空白检查。
+- 启动前读 `AGENTS.md`、`CURRENT.md`、`PRODUCT_DECISIONS.md`、本任务、`REVIEW_GATE.md`、项目本地 workflow 技能及 AUTH-49、50、53、56 验收；核对 `D:\EliteSync-v10` 本地 `main`、HEAD 与工作区。保留无关未跟踪 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`。状态或派发不匹配则停止。
+- 只允许新增 `EVIDENCE/AUTH-57-SYNTHETIC-CMS-INTEROP-METHOD-PREFLIGHT/plan.md`。不得修改源码、旧证据、控制文件或其他路径。可只读核对本机 OpenSSL 帮助/版本及既有本地虚构合同；不得连接服务器、云 API、数据库，不生成证书/密钥、加解密、传输或写入任何密文。
+- 方案仅使用固定虚构明文字节与一次性**无密码虚构**证书/私钥，明确与 Owner 将来的真实密码保护密钥完全隔离；不使用任何真实备份、数据库行、凭据或业务数据。写出有序步骤、精确允许目标与命令类别、一次 SSH 预算建议、预检/失败停点、脱敏输出、临时材料位置和精确清理责任。优先论证服务器全程进程内存/管道完成 CMS 加密并返回虚构密文，不在服务器写文件；若无法证明可行，标记未解决并停止，不擅自放宽为服务器临时落盘。
+- 本机解密输出须先进入有上限隔离暂存，进程退出 0、认证与固定虚构内容全部核对成功前消费者 0 次/0 字节；覆盖篡改、截断、错误私钥、超限、中断的失败门。说明若完整 CMS 密文超过上限、命令选项差异或协议分帧异常如何 fail-closed。证书/私钥与密文格式的固定身份/摘要、SSH 主机核验及远端输出完整采集均需在未来执行任务中可审查；不得保存真实密码或原始远端输出到普通证据。
+- `git diff --check` 最多 1 次；新文件另做只读尾随空白检查。回执写明 docs-only、无运行证明、仍需哪些 Owner 决定或后继任务。不得把本机或服务器 OpenSSL 命令存在性当作互通 PASS。
 
 ## Stop and review
 
-报告分阶段 `PASS/FAIL/NOT_CHECKED` 与首个失败；明确此静态列表观察即使 `LISTED`，也不证明 CMS AES-256-GCM 端到端可用、与本机密文互通或真实备份恢复。不得访问旧 `D:\EliteSync`、本机真实备份/密钥目录、真实 DB、账户/Token/消息/媒体、U 盘或 Owner 密码；不创建密钥、备份、解密或恢复。Codex 不提交、制作 bundle、推送、自接受或派发后继。SSH 预算耗尽后不得追加探测；Work 独立验收决定后续门。
+不得访问旧 `D:\EliteSync`、真实 DB、备份/密钥目录内容、U 盘、Owner 密码、账号/Token/消息/媒体或任何服务器文件。Codex 不提交、制作 bundle、推送、自接受或派发后继。本任务不授权实际 SSH、虚构密文制作、真实密钥、备份、恢复、清理或改库；这些均须后继明确任务和风险门。

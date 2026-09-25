@@ -85,6 +85,8 @@ AUTH-55 本机 OpenSSL 花括号别名格式解析修复获 Work LEVEL 2 **ACCEP
 
 AUTH-56 服务器 OpenSSL 算法列表单次只读观察获 Work LEVEL 2 **ACCEPT（仅受限静态事实）**，见 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/summary.md`。作者报告一次 SSH 成功，OpenSSL 可解析，算法列表命令退出 0；8600 字符字段经有界完整采集和 AUTH-55 解析器返回 `LISTED`，即当次列表列出 AES-256-GCM。原始列表未保存，Work 未重连；AUTH-53 历史 `UNKNOWN` 不追溯改写。AUTH-56 预算 1/1 已耗尽；CMS 实际加解密、与本机互通及真实备份恢复均未建立，也未触碰 U 盘、密码或真实数据。
 
+AUTH-57 已下达 docs-only 虚构 CMS 服务器到本机互通方法预检，见 `TASK_CURRENT.md`。它只设计固定虚构数据、一次性虚构证书与私钥、服务器不落盘加密、本机认证成功前隔离消费者及失败清理的有界方法；不运行 SSH、加解密或备份。任务仍 `ISSUED — NOT STARTED`，互通能力未建立。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
