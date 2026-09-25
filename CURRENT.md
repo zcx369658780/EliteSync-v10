@@ -135,7 +135,9 @@ AUTH-78 完整锁定与解锁证明被 Work LEVEL 3 **REJECT**，仅接受受限
 
 AUTH-79 固定 E: 锁定状态逐字段诊断获 Work LEVEL 2 **ACCEPT（仅受限新时点事实）**，见 `EVIDENCE/AUTH-79-USB-LOCKED-STATE-FIELD-DIAGNOSIS/summary.md`。重插后的同一只 Kingston 在一次提权只读查询中 `LockStatus=Locked`；锁定时 `ProtectionStatus=Unknown`、`VolumeStatus` 未映射、加密百分比缺失，不从这些字段推定保护关闭。Owner 随后说明曾自行用密码成功解锁，之后又拔出重插，再次锁定；截图仅作 Owner 辅助回执，不纳入 Git 或独立状态证明。解锁后状态以 AUTH-80 新时点证据为准。
 
-AUTH-80 Owner 密码解锁固定 E: 及解锁后保护状态获 Work LEVEL 3 **ACCEPT（仅本次受限证明）**，见 `EVIDENCE/AUTH-80-OWNER-USB-PASSWORD-UNLOCK-VERIFY/summary.md`。Owner 本人在 Windows 界面输入一次密码并确认解锁成功、亲自批准 UAC；提权进程再次核对设备身份，唯一一次只读状态查询返回 `Unlocked/ProtectionOn/FullyEncrypted/100%`。结合 AUTH-79 的 `Locked`，支持本轮重插后锁定及本人密码解锁；纸质恢复密钥实际失钥恢复、真实私钥与副本、DB 备份与恢复仍未建立。AUTH-81 已下达本机真实密钥生成实施前只读核验，不授权生成密钥或写 U 盘。
+AUTH-80 Owner 密码解锁固定 E: 及解锁后保护状态获 Work LEVEL 3 **ACCEPT（仅本次受限证明）**，见 `EVIDENCE/AUTH-80-OWNER-USB-PASSWORD-UNLOCK-VERIFY/summary.md`。Owner 本人在 Windows 界面输入一次密码并确认解锁成功、亲自批准 UAC；提权进程再次核对设备身份，唯一一次只读状态查询返回 `Unlocked/ProtectionOn/FullyEncrypted/100%`。结合 AUTH-79 的 `Locked`，支持本轮重插后锁定及本人密码解锁；纸质恢复密钥实际失钥恢复、真实私钥与副本、DB 备份与恢复仍未建立。后续密钥准备以 AUTH-81 最新接受边界为准。
+
+AUTH-81 真实密码保护私钥生成的本机 docs-only 实施前方案获 Work LEVEL 2 **ACCEPT（仅候选方案和受限只读事实）**，见 `EVIDENCE/AUTH-81-REAL-KEY-GENERATION-LOCAL-PREFLIGHT/plan.md`。两处固定目录当次规范路径、ACL 和 C: 余量复核通过，不落在本次观察的 2 个 Windows 同步根下；其他第三方同步覆盖仍技术性 `UNKNOWN`，Owner 的不使用云同步决定另行成立。本机固定 OpenSSL 3.5.5 的相关选项可见，真实口令提示、RSA 3072 密钥/证书和跨端 CMS 均未证明。Work 选定 RSA 3072、AES-256-CBC 加密 PKCS#8、用途证书与 365 天作为后继候选；C: 整卷加密不是当前真实生成前硬门。Owner 已决定真实私钥密码另写纸质副本、与电脑/U 盘分开放置，实际密码只本人输入。AUTH-82 已下达本机虚构交互预检；不生成真实密钥。
 
 ## Product scope
 
