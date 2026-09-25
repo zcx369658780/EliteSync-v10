@@ -99,6 +99,8 @@ AUTH-62 本机虚构 CMS 消费者完整矩阵获 Work LEVEL 2 **REJECT**，见 
 
 AUTH-63 本机虚构密文身份门修复获 Work LEVEL 2 **ACCEPT（仅本次虚构矩阵）**，见 `EVIDENCE/AUTH-63-LOCAL-CMS-CIPHERTEXT-IDENTITY-GATE-REPAIR/summary.md`。消费者门从实际送解密的密文字节核对长度和 SHA-256；作者一次运行报告正常消费者 1/21，篡改、截断、错钥及超限/中断受控模拟均 0/0 且缓冲清零。纯虚构测试覆盖“篡改密文但伪造成功解密与正确明文”仍拒绝。Work 静态独立审查并确认本机固定临时目录不存在，未重跑已耗尽的 1/1 预算。原始输出未保存，超限/中断仅为模拟；真实 DB 身份/范围、一致性、真实密钥、完整备份及隔离恢复仍未建立。
 
+AUTH-64 已下达本机固定 DB 对象清单探针预检，见 `TASK_CURRENT.md`。仅准备和虚构测试只读元数据投影，不连接服务器或真实 DB；未来现场观察须另立精确任务并经过 Work LEVEL 2 门。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
