@@ -4,7 +4,7 @@ Task ID: `AUTH-73-OWNER-USB-ROOT-ITEM-AND-PROTECTION-DIAGNOSIS`
 
 Risk Level: `LEVEL 2`（Owner 指定 U 盘只读条目分类与加密状态定位；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅 `E:\` 根条目和加密状态查询受限事实，见 `EVIDENCE/AUTH-73-OWNER-USB-ROOT-ITEM-AND-PROTECTION-DIAGNOSIS/summary.md`）
 
 Assignee: `Codex`。只交付固定 `E:\` 的脱敏只读定位回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
