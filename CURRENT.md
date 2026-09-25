@@ -93,6 +93,8 @@ AUTH-59 本机虚构 fd/CMS 三阶段定位目标获 Work LEVEL 2 **REJECT**，�
 
 AUTH-60 服务器虚构公有证书 fd 读取获 Work LEVEL 2 **ACCEPT（仅受限事实）**，见 `EVIDENCE/AUTH-60-SERVER-SYNTHETIC-CERT-FD-READONLY/summary.md`。作者报告本机一次性虚构私钥未离机，只有公有证书经一次严格 SSH stdin 发送；服务器 `openssl x509 -in /dev/fd/3 -noout` 退出 0，SSH 退出 0，固定本机临时目录已清理，Work 只读确认不存在。原始远端输出未保存；这不证明 CMS fd 收件人读取、AES-256-GCM 加密或跨端互通。SSH 1/1 已耗尽，无真实密钥、备份或密码操作。
 
+AUTH-61 已下达服务器到本机固定 21 字节虚构 CMS AES-256-GCM **正向**互通任务，见 `TASK_CURRENT.md`。独立新 SSH 预算 1/1：仅公有虚构证书入服务器 fd、远端管道加密且不落盘、本机隔离缓冲解密并在退出 0 后比对固定内容；无负向路径或真实备份恢复授权。任务 `ISSUED — NOT STARTED`，不需要 U 盘或 Owner 密码。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
