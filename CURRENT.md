@@ -167,6 +167,8 @@ AUTH-94 的一次 Owner 批准 UAC 后固定 E: 只读查询获 Work LEVEL 2 **R
 
 AUTH-95 的修正枚举脚本一次只读核验获 Work LEVEL 2 **ACCEPT（仅本次固定 E: 状态）**，见 `EVIDENCE/AUTH-95-USB-BITLOCKER-PROTECTION-ENUM-REPAIR/summary.md`。Owner 亲自批准 UAC；固定 Kingston E: 的成功分支证明当次 `Unlocked/On/FullyEncrypted/100`，旧查询预算已耗尽。Work 后续非提权观察 E: 仍为同名 USB、FAT32、约 30.9 GB 可用，两个拟定恢复文件名不存在。AUTH-96 将准备在独立高风险门下复制已加密私钥与公有证书到受保护 E:，并做有界字节身份核验；纸质恢复密钥实测与失钥恢复仍未建立。
 
+AUTH-96 的固定恢复对复制目标获 Work LEVEL 3 **REJECT**，仅接受一次普通进程约 80 秒后 `UAC_OR_LAUNCH_FAILED`、退出 1 及两精确 E: 目标不存在的受限事实，见 `EVIDENCE/AUTH-96-ENCRYPTED-USB-KEY-RECOVERY-PAIR-COPY/summary.md`。本机源私钥仍 2666 bytes、ACL 受限；Owner 后续说明当时不在电脑前、未看到 UAC，失败具体原因仍 `UNKNOWN`，BitLocker 查询和复制没有可证成功回执。旧 1/1 启动预算耗尽，不重试。AUTH-97 准备 Owner 从 Explorer 手动启动、保持窗口可见的新入口，静态审查前不执行；当前仍无 U 盘恢复副本。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
