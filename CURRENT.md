@@ -119,6 +119,8 @@ AUTH-71 本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练获 Work 
 
 AUTH-72 `E:\` U 盘只读身份、空盘与加密状态回执获 Work LEVEL 2 **ACCEPT（仅当次受限事实）**，见 `EVIDENCE/AUTH-72-OWNER-USB-IDENTITY-ENCRYPTION-READONLY/summary.md`。作者报告单一可移动 USB 卷、FAT32、约 28.802 GiB；根目录含 1 个条目，与 Owner 所述“空盘”并存，条目性质 `UNKNOWN`，没有查看名称或内容。BitLocker 工具存在但固定卷状态查询失败，保护和锁定状态仍 `UNKNOWN`。未写入或格式化；后继只读分类和状态定位另立任务。AUTH-72 的查询预算已用尽。
 
+AUTH-73 已下达同一 `E:\` U 盘根条目固定类别和加密状态的只读定位，见 `TASK_CURRENT.md`；仍不读取内容、不删除、不格式化或写入。继续复用 AUTH-71/72 的 Codex 会话。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
