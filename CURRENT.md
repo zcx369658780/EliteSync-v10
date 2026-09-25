@@ -97,6 +97,8 @@ AUTH-61 固定 21 字节虚构 CMS AES-256-GCM 服务器到本机**正向**互�
 
 AUTH-62 本机虚构 CMS 消费者完整矩阵获 Work LEVEL 2 **REJECT**，见 `EVIDENCE/AUTH-62-LOCAL-SYNTHETIC-CMS-FAILURE-CONSUMER-MATRIX/summary.md`。作者一次运行报告正常路径消费者 1 次/21 字节，篡改、截断、错钥的本机解密调用和超限、中断的受控模拟均为 0 次/0 字节并清零；错钥退出 4 且曾观察暂存字节。Work 静态发现正常路径以固定 `identity_ok=True` 放行，没有实际比较密文长度/摘要，完整身份门未接线。超限和中断也不是实际大规模或进程中断证明；旧 1/1 运行预算耗尽。本机临时目录已清理，Work 只读确认不存在；未连接服务器或触碰真实密钥/备份/U 盘/密码。
 
+AUTH-63 已下达本机虚构密文身份门修复，见 `TASK_CURRENT.md`：新生成虚构密文后固定本次长度/摘要，消费者门必须从实际送解密的密文字节重新核对身份；targeted 测试覆盖“篡改密文但伪造成功解密与正确明文”仍拒绝。新本机一次运行预算 1/1，不重用 AUTH-62；无服务器、真实密钥、备份或 U 盘操作。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
