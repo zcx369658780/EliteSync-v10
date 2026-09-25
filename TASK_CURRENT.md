@@ -4,9 +4,11 @@ Task ID: `AUTH-60-SERVER-SYNTHETIC-CERT-FD-READONLY`
 
 Risk Level: `LEVEL 2`（真实服务器一次虚构公有证书 fd 读取观察；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SERVER SYNTHETIC PUBLIC CERT FD READ ONLY`
 
 Assignee: `Codex`。只交付一次有界 SSH 的虚构公有证书 fd 读取事实与回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：当次服务器 OpenSSL 从 fd 3 读取本次公有虚构证书的受限事实 LEVEL 2 ACCEPT；作者报告 SSH 与远端 `x509` 均退出 0，私钥留本机、固定临时目录已清理。见 `EVIDENCE/AUTH-60-SERVER-SYNTHETIC-CERT-FD-READONLY/summary.md`。这不证明 CMS 加密或跨端互通；SSH 1/1 已耗尽。
 
 ## Authority and objective
 
