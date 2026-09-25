@@ -123,6 +123,8 @@ AUTH-73 同一 `E:\` U 盘根条目与保护状态只读定位获 Work LEVEL 2 *
 
 **Owner 补充授权（2026-09-25）**：Owner 在看不到 U 盘文件后，明确允许对指定 `E:\` U 盘执行格式化，建议快速格式化节省时间。此授权只限准确复核后的该设备，不授权其他盘；是否需要格式化须结合加密方案判断，实际操作另立有界任务并核对停点。密码仍只由 Owner 本人输入。
 
+AUTH-74 已下达 `E:\` U 盘 BitLocker 状态查询失败的只读权限/能力定位，见 `TASK_CURRENT.md`。Work 预先只读观察 Windows EditionID 为 `Professional`，但当前进程权限和卷状态仍未知；此任务不提权、不格式化或加密。继续复用同一 Codex 会话。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
