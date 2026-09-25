@@ -4,7 +4,7 @@ Task ID: `AUTH-70-LOCAL-BACKUP-KEY-DIRECTORY-READINESS`
 
 Risk Level: `LEVEL 2`（真实密钥与备份前的固定本机目录安全边界只读复核；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅两处目录当次脱敏元数据，见 `EVIDENCE/AUTH-70-LOCAL-BACKUP-KEY-DIRECTORY-READINESS/summary.md`）
 
 Assignee: `Codex`。只交付两处固定目录的脱敏只读元数据回执及必要的本机静态检查，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
