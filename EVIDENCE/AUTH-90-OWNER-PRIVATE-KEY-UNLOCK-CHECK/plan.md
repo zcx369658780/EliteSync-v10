@@ -26,3 +26,7 @@ Work 须先独立复核脚本哈希、目标文件/首行/ACL、程序哈希、O
 **LEVEL 3 ACCEPT 脚本候选并放行一次 Owner 手动解锁检查。** Work 逐行审查 CMD：固定 OpenSSL 路径、唯一 `pkey -in <固定文件> -noout`、调用前存在性检查、无输出文件/密码参数/重定向、失败即停及所有分支 `pause`。独立复核本地 HEAD `ca3829adedb6486f444b788d0b371114cc8554f8`、脚本 SHA-256 `716A3195831BAFA273BA69C2C6AFDB223710D85E3F2D1ED7206ED667115FD775`、OpenSSL SHA-256 `21C43808DDC48B9B2133ED4FE9F4F90D77305568EF3BB8291DD05D271E29A54B`；真实目标仍为非重解析普通文件、2666 bytes、加密 PKCS#8 首行、当前用户 Owner、继承关闭且仅原三主体显式 FullControl。审查前候选计划 SHA-256 为 `6510F9EB94E6959FCD56D56B75F52D6949C3027B0B30AA0F58172AE1FCB8B321`。
 
 Owner 已在本轮会话确认在电脑前、没有录屏/共享屏幕且密码已准备好，且已完成 AUTH-88 本机原生提示输入；没有相反状态报告。仅放行其从 Explorer 双击固定 CMD **一次**，仅在 OpenSSL 原生非回显提示输入密码。不得由 Codex/Work 启动、捕获窗口或接收密码。若提示异常、密码回显或非零，停并只回报有限类别，不重复；放行不等于解锁成功或最终验收。
+
+## Work Phase B 独立验收（2026-09-25）
+
+**LEVEL 3 ACCEPT 现有私钥在本次 Owner 原生密码输入下可由 OpenSSL 解锁的受限事实。** Owner 对单次固定 CMD 回报出现 `AUTH90_UNLOCK_EXIT_ZERO`，未发送密码或原始窗口输出。Work 独立核对本地 HEAD `7f579bdebe5fbaa9bc8c5d610f5f068fa8cb2b20`、CMD 哈希仍为放行值、固定文件仍 2666 bytes、非重解析、Owner 当前用户、继承关闭，且仅当前用户/SYSTEM/Administrators 三条显式 FullControl。没有输出私钥内容或生成新文件；本轮不证明纸质密码副本的准确性、与未来证书配对、跨端 CMS 或 U 盘恢复。解锁预算 **1/1 已耗尽**，不重试。
