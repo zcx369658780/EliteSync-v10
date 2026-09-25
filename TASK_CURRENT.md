@@ -4,9 +4,9 @@ Task ID: `AUTH-91-OWNER-REAL-RECIPIENT-CERTIFICATE`
 
 Risk Level: `LEVEL 3`（现有真实加密私钥解锁并创建固定用途公有证书）
 
-Status: `ISSUED — PHASE A SCRIPT CANDIDATE ONLY`
+Status: `ISSUED — PHASE B RELEASED; OWNER MANUAL DOUBLE-CLICK PENDING`
 
-Assignee: `Codex + Owner`，复用现有本地执行会话；Work 独立 LEVEL 3 预运行审查和最终验收。Owner 仅在获批后从 Explorer 启动并输入现有密码。
+Assignee: `Owner + Codex`，复用现有本地执行会话；Work 已独立 LEVEL 3 预运行审查并放行一次 Owner 手动双击，最终验收仍由 Work 负责。Owner 只在 OpenSSL 原生提示输入现有密码。
 
 ## Authority and fixed boundary
 
@@ -20,6 +20,6 @@ AUTH-88 留下精确加密 PKCS#8 私钥，AUTH-89 修复文件 ACL，AUTH-90 �
 
 ## Phase B — reserved, not yet authorized
 
-Work 静态审查、临运行复核文件/权限/目标不存在/程序和 Owner 在场无录屏共享后，才可放行一次 Owner Explorer 双击。证书生成预算 **1/1，当前 0/1 未放行**。若提示异常、密码回显、非零或输出异常，立即停并只报告有限类别，不重试；任何部分目标保留供 Work 判定。成功后 Work 仅对**公有证书**做只读解析，核对 PEM 类型、Subject、RSA 3072、SHA-256、365 天窗口、CA:FALSE、keyUsage、文件权限与精确路径；私钥仅复核元数据与权限，不读取正文或再次解锁。证书与私钥公钥配对、CMS 跨端互通及 U 盘副本另立任务。
+Work 已于 2026-09-25 静态审查并临运行复核文件/权限/目标不存在/程序与 Owner 在场无录屏共享条件，见同目录 `plan.md`，**放行一次 Owner Explorer 双击**固定 CMD SHA-256 `AB5B542EECA9F5EF9BC7F3582A9D37BD3C2CA988984657681A2DC2574C6CC3B2`。证书生成预算 **1/1，当前 0/1 已用**。若提示异常、密码回显、非零或输出异常，立即停并只报告有限类别，不重试；任何部分目标保留供 Work 判定。成功后 Work 仅对**公有证书**做只读解析，核对 PEM 类型、Subject、RSA 3072、SHA-256、365 天窗口、CA:FALSE、keyUsage、文件权限与精确路径；私钥仅复核元数据与权限，不读取正文或再次解锁。证书与私钥公钥配对、CMS 跨端互通及 U 盘副本另立任务。
 
 禁止运行 AUTH-88/90 旧脚本，读取/输出/复制/删除/改写私钥正文，写 `E:` 或备份目录，连接服务器/DB/云/Docker/GitHub，访问旧 `D:\EliteSync`。不得把公有证书生成写成真实备份或恢复证明。
