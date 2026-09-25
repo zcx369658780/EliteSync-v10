@@ -4,7 +4,7 @@ Task ID: `AUTH-72-OWNER-USB-IDENTITY-ENCRYPTION-READONLY`
 
 Risk Level: `LEVEL 2`（Owner 指定 U 盘的只读身份、空盘与加密能力核验；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅 `E:\` 当次只读受限事实，见 `EVIDENCE/AUTH-72-OWNER-USB-IDENTITY-ENCRYPTION-READONLY/summary.md`）
 
 Assignee: `Codex`。只交付固定 `E:\` U 盘的脱敏只读事实回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 

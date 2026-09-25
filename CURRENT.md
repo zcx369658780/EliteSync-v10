@@ -117,7 +117,7 @@ AUTH-71 本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练获 Work 
 
 **Owner 补充决定（2026-09-25）**：备份与密钥均不采用云同步或云备份。Owner 指定空的 `E:\` 32GB U 盘供私钥恢复副本使用，并授权使用该盘；密码仍仅由 Owner 本人输入。Work 当次只读观察 `E:` 为 USB 可移动卷、约 30.9 GB、FAT32，尚未验证卷内为空或具备可用的加密保护。后继须在精确设备识别与加密门通过后才写入恢复副本；无需再次询问是否可使用这只 U 盘。Codex 连续任务默认复用同一会话，约 20 张任务单或上下文明显过长时交接，不再逐单建新会话。
 
-AUTH-72 已下达 `E:\` U 盘身份、空盘与加密能力的只读核验，见 `TASK_CURRENT.md`。不格式化、不写入、不索取密码；候选须经 Work LEVEL 2 独立审查。
+AUTH-72 `E:\` U 盘只读身份、空盘与加密状态回执获 Work LEVEL 2 **ACCEPT（仅当次受限事实）**，见 `EVIDENCE/AUTH-72-OWNER-USB-IDENTITY-ENCRYPTION-READONLY/summary.md`。作者报告单一可移动 USB 卷、FAT32、约 28.802 GiB；根目录含 1 个条目，与 Owner 所述“空盘”并存，条目性质 `UNKNOWN`，没有查看名称或内容。BitLocker 工具存在但固定卷状态查询失败，保护和锁定状态仍 `UNKNOWN`。未写入或格式化；后继只读分类和状态定位另立任务。AUTH-72 的查询预算已用尽。
 
 ## Product scope
 
