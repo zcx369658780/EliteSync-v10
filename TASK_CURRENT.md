@@ -4,9 +4,11 @@ Task ID: `AUTH-52-OPENSSL-CAPABILITY-PARSER-PREFLIGHT`
 
 Risk Level: `LEVEL 2`（后续服务器工具能力核验的本地解析门；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — LOCAL SYNTHETIC PARSER PREFLIGHT ONLY`
 
 Assignee: `Codex`。仅交付本地纯解析器、虚构测试及受限回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：纯内存版本与 AES-256-GCM 列表解析预检 LEVEL 2 ACCEPT，仅限虚构输入；作者报告最终 12/12 测试 PASS。解析器不能独立证明远端输出采集完整，后继只读任务须设置捕获上限和截断失败门。见 `EVIDENCE/AUTH-52-OPENSSL-CAPABILITY-PARSER-PREFLIGHT/summary.md`。
 
 ## Authority and objective
 
