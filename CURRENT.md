@@ -153,6 +153,8 @@ AUTH-87 的纯 CMD 无秘密可见性和单键入口获 Work LEVEL 2 **ACCEPT（
 
 AUTH-88 的一次 Owner 真实生成回执获 Work LEVEL 3 **REJECT（完整安全目标）**，仅接受 OpenSSL 成功类别、精确文件存在且 2666 bytes、加密 PKCS#8 首行等受限事实，见 `EVIDENCE/AUTH-88-OWNER-CMD-REAL-ENCRYPTED-PRIVATE-KEY/plan.md`。文件 Owner 为当前用户且三条 FullControl 主体仅当前用户、SYSTEM、Administrators，但均为继承 ACE，文件级继承尚未关闭；密码解锁及私钥与证书配对均未证明。旧生成预算 1/1 耗尽，不重试或覆盖。AUTH-89 仅修复此文件 ACL 并独立核验；之前不进行解锁、证书或 U 盘副本操作。
 
+AUTH-89 的精确真实私钥文件 ACL 修复获 Work LEVEL 3 **ACCEPT（仅权限）**，见 `EVIDENCE/AUTH-89-REAL-PRIVATE-KEY-FILE-ACL-REPAIR/summary.md`。文件仍 2666 bytes、非重解析，Owner 为当前用户，继承关闭，恰三条显式 FullControl：当前用户、SYSTEM、Administrators。此变更不证明逐字节内容一致或密码可解锁。AUTH-90 将准备只读解锁校验入口；证书、U 盘副本、数据库备份及恢复仍不存在。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
