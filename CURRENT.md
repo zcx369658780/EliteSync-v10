@@ -115,6 +115,10 @@ AUTH-70 两处固定本机目录的只读元数据回执获 Work LEVEL 2 **ACCEP
 
 AUTH-71 本机固定 1 MiB 虚构 CMS 容量和失败消费者门演练获 Work LEVEL 2 **ACCEPT（仅本次虚构矩阵）**，见 `EVIDENCE/AUTH-71-LOCAL-BOUNDED-CMS-CAPACITY-FAILURE-DRILL/summary.md`。作者一次运行报告正常消费者 1/1,048,576；篡改、截断、错钥及超限/中断受控模拟均 0/0，缓冲清零且临时目录清理。Work 静态审查并只读确认目录不存在，未重跑已耗尽预算。原始输出未保存；真实 dump 体量、服务器端大流加密、真实密钥、完整备份和恢复仍未证明。
 
+**Owner 补充决定（2026-09-25）**：备份与密钥均不采用云同步或云备份。Owner 指定空的 `E:\` 32GB U 盘供私钥恢复副本使用，并授权使用该盘；密码仍仅由 Owner 本人输入。Work 当次只读观察 `E:` 为 USB 可移动卷、约 30.9 GB、FAT32，尚未验证卷内为空或具备可用的加密保护。后继须在精确设备识别与加密门通过后才写入恢复副本；无需再次询问是否可使用这只 U 盘。Codex 连续任务默认复用同一会话，约 20 张任务单或上下文明显过长时交接，不再逐单建新会话。
+
+AUTH-72 已下达 `E:\` U 盘身份、空盘与加密能力的只读核验，见 `TASK_CURRENT.md`。不格式化、不写入、不索取密码；候选须经 Work LEVEL 2 独立审查。
+
 ## Product scope
 
 Relationship Decision Support System；MVP 顶层 `Home | Progress | Messages | Me`。Match、Connection、Conversation、Relationship 权限与生命周期分离；Home 是低密度只读状态投影。Explore、Relationship support 属 Phase 2；AI/reference signals 属 Later/Optional。已接受语义及来源见 `PRODUCT_DECISIONS.md`。
