@@ -4,9 +4,11 @@ Task ID: `AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY`
 
 Risk Level: `LEVEL 2`（真实服务器一次只读算法列表复核；Work 独立审查）
 
-Status: `ISSUED — NOT STARTED`
+Status: `WORK LEVEL 2 ACCEPTED — SERVER STATIC CIPHER LISTING ONLY`
 
 Assignee: `Codex`。只交付一次有界 SSH 静态观察候选及脱敏回执，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
+
+Work 验收：本次服务器静态算法列表受限事实 LEVEL 2 ACCEPT；作者报告一次 SSH 成功，OpenSSL 可解析，列表命令退出 0、8600 字符经有界完整采集和 AUTH-55 解析器返回 `LISTED`。这不证明 CMS 实际加解密或备份恢复，见 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/summary.md`。SSH 1/1 已耗尽。
 
 ## Authority and objective
 

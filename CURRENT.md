@@ -83,7 +83,7 @@ AUTH-54 本地 OpenSSL 算法列表格式解析修复获 Work LEVEL 2 **ACCEPT�
 
 AUTH-55 本机 OpenSSL 花括号别名格式解析修复获 Work LEVEL 2 **ACCEPT（仅本地格式门）**，见 `EVIDENCE/AUTH-55-OPENSSL-BRACED-ALIAS-PARSER-REPAIR/summary.md`。作者报告 12/12 虚构测试 PASS；当次本机 3.5.6 算法列表命令退出 0、9010 字符，新解析器返回 `LISTED`。本机列表解析不证明远端相同；AUTH-53 服务器 AES-256-GCM 是否列出仍 `UNKNOWN`，后继服务器观察须新连接预算。
 
-AUTH-56 已下达新的服务器算法列表单次只读观察，见 `TASK_CURRENT.md`：只查询 OpenSSL 可解析与算法列表，复用 AUTH-55 已接受解析器，固定严格 SSH、采集上限和 1/1 新连接预算。任务 `ISSUED — NOT STARTED`；不继承 AUTH-53 已耗尽预算，也不触碰真实密钥、数据库、备份、U 盘或 Owner 密码。
+AUTH-56 服务器 OpenSSL 算法列表单次只读观察获 Work LEVEL 2 **ACCEPT（仅受限静态事实）**，见 `EVIDENCE/AUTH-56-SERVER-OPENSSL-CIPHER-LIST-READONLY/summary.md`。作者报告一次 SSH 成功，OpenSSL 可解析，算法列表命令退出 0；8600 字符字段经有界完整采集和 AUTH-55 解析器返回 `LISTED`，即当次列表列出 AES-256-GCM。原始列表未保存，Work 未重连；AUTH-53 历史 `UNKNOWN` 不追溯改写。AUTH-56 预算 1/1 已耗尽；CMS 实际加解密、与本机互通及真实备份恢复均未建立，也未触碰 U 盘、密码或真实数据。
 
 ## Product scope
 
