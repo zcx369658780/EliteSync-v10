@@ -4,7 +4,7 @@ Task ID: `AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT`
 
 Risk Level: `LEVEL 2`（Owner 在场的 U 盘加密实施前合同；实际启用属于独立高风险操作）
 
-Status: `ISSUED — NOT STARTED`
+Status: `ACCEPTED — CLOSED`（Work LEVEL 2；仅 BitLocker To Go 交互合同，见 `EVIDENCE/AUTH-75-OWNER-BITLOCKER-TO-GO-INTERACTIVE-CONTRACT/plan.md`）
 
 Assignee: `Codex`。只交付一份 docs-only 的 Owner 交互操作与验收合同，停在 Work LEVEL 2 独立 ACCEPT/REJECT 门。
 
