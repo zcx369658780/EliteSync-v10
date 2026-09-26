@@ -1,28 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-112-SSH-REMOTE-EXIT-PROVENANCE-STATIC-CONTRACT
+Task ID: AUTH-113-SINGLE-SSH-EXIT-PROTOCOL-PARSER-SYNTHETIC
 
-Risk Level: LEVEL 2（未来只读主机回执的传输与远端退出来源；本轮仅公开文档和本地静态合同）
+Risk Level: LEVEL 2（未来只读 SSH 回执的退出语义与安全投影接口；本轮仅纯虚构字节）
 
-Status: ACCEPTED — STATIC CONTRACT ONLY; NO SSH OR REAL TOOL
+Status: ACCEPTED — LOCAL SYNTHETIC PARSER ONLY; NO SSH OR REAL TOOL
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
 ## 目标与依据
 
-AUTH-109～111 仅接受本地虚构采集/解析。AUTH-110 解析器接收调用方分别提供的 SSH 与远端退出候选；AUTH-111 正确保留后者 `UNVERIFIED_CALLER_CANDIDATE`。在真实 SSH 运行中，不能凭同一个本地进程退出码虚构两个独立实测退出码。先核对公开、权威的 OpenSSH `ssh(1)` 退出语义，再给未来单次只读主机观察提出可审查的最小协议和失败停点。本轮不生成可运行 SSH 调用器，不访问目标主机。
+AUTH-112 获 Work LEVEL 2 受限 ACCEPT：官方 `ssh(1)` 只给本地 SSH 进程一个退出值，远端命令退出按协议反映在这个值中；255 有歧义且一律失败。AUTH-110/111 的两个调用方退出输入不能变成两个独立实测量。本任务在新目录实现**纯函数新版本**，只用调用方提供的虚构 stdout/stderr、完整性与一个 SSH 退出候选；不修改已接受的 AUTH-110/111 文件，也不启动 SSH 或子进程。
 
-主要结果仅为新目录 `EVIDENCE/AUTH-112-SSH-REMOTE-EXIT-PROVENANCE-STATIC-CONTRACT/contract.md`；只允许写该文件。AUTH-107～111、控制文件和源码只读；保留两处原有无关未跟踪目录。
+主要结果为新目录 `EVIDENCE/AUTH-113-SINGLE-SSH-EXIT-PROTOCOL-PARSER-SYNTHETIC/summary.md`，可附解析器及测试。仅允许写此新目录；其他证据和控制文件只读，保留两处原有无关未跟踪目录。
 
 ## 允许工作与预算
 
-1. 核对本地 Git/工作区、五份入口、AUTH-107～111、项目技能与风险门。可只读查阅公开 OpenSSH 官方手册及必要的已保存本地证据，并给出可复核 URL/节名；不得读取 `.env`、凭据、私钥、真实业务行、备份或旧 `D:\EliteSync`。
-2. 区分 SSH 本地进程退出、远端程序退出、远端工具的两次退出与 JSON 自报状态；说明哪些可由当前本地接口直接观测、哪些是协议声明、哪些必须经目标主机/程序身份和固定字节另证。处理 SSH 255、远端命令也可能返回 255、连接中断、半行/多行、stderr、JSON 成功但进程非零以及进程零但 JSON 失败的歧义；禁止把它们归成成功。
-3. 给出**一种**最小、失败即停的未来候选协议：最多一行 2 KiB 固定 JSON、工具原文只在远端受控内存、远端程序如何把两次工具退出安全投影到 JSON、本地 SSH 退出与完整性如何联合判定。明确 AUTH-110/111 哪些字段或前置门需要另立实现任务调整；不在本任务改代码、重置旧预算或自称可现场运行。列出目标身份、host-key、远端程序固定字节、工具路径/别名/哈希、环境净化和本地采集启动阻塞等未解决门。
-4. 静态核对最多 2 轮；无虚构子进程测试预算。若官方来源不可用，标 `SOURCE_UNAVAILABLE` 并基于已保存事实保留 `UNKNOWN`，不得猜测 SSH 语义。禁止 SSH、真实工具/DB、生产 API、Laravel CLI、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 独立审查，不提交、推送、自接受或派发后继。
+1. 核对本地 Git/工作区、五份入口、AUTH-107～112、项目技能与风险门。不得读 `.env`、凭据、私钥、真实业务行、备份或旧 `D:\EliteSync`。
+2. 从 AUTH-110 固定 JSON 拒绝边界构造纯函数新接口：只接收一个 SSH 退出数值，绝不接受或自动补出“独立远端退出码”。两流各最多 2 KiB，完整性、stderr、严格单行 UTF-8、重复/额外键、类型和内部关系均失败即停。SSH 255、其他非零或未知退出一律无肯定投影；SSH 0 但 JSON 报失败、工具 `exit_codes` 非零/缺失或状态矛盾也失败。成功普通返回须固定标明 `PROTOCOL_CONSISTENT_TEXT_CANDIDATE`、`SSH_EXIT_OBSERVED_CANDIDATE` 与远端程序/工具状态只是 `UNVERIFIED_PROTOCOL_DECLARATION`；不宣称主机、程序、工具身份或备份能力。错误与异常不得回显原文、路径或输入。
+3. 用纯虚构字节测试正常、SSH 255/非零/未知、成功 JSON 与非零退出矛盾、SSH 0 但 JSON 失败、工具退出声明矛盾、两流超限/不完整/stderr、重复键/多行/控制字符/非法 UTF-8/秘密标记不泄漏。最多 3 轮本任务套件，仅为实际失败修复可重跑；最多 2 轮静态检查。说明一个 SSH 数值与 JSON 声明不能证明真实远端程序执行。
+4. 禁止启动任何子进程、SSH、真实工具/DB、生产 API、Laravel CLI、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 审查；不提交、推送、自接受或派发后继。
 
 ## 停点
 
-AUTH-107 Phase B 未放行；AUTH-101、AUTH-17、AUTH-107 已耗预算不重置，AUTH-99 禁止运行。Owner 已决定本次只备份数据库，排除数据库外上传文件；数据库内部对象全集仍 UNKNOWN。真实备份仍须目标、权限、内部对象范围、一致性、加密传输和隔离恢复前置门及 Owner LEVEL 3 单次授权。可能触发 UAC 的后继步骤须先等 Owner 在**当前 Work 会话**输入“我在”；旧到场确认不沿用。
+AUTH-107 Phase B 未放行；AUTH-101、AUTH-17、AUTH-107 既有预算不重置，AUTH-99 禁止运行。Owner 已决定本次只备份数据库，不含数据库外文件；内部对象全集仍 UNKNOWN。真实备份还需目标、权限、一致性、加密传输和隔离恢复门及 Owner LEVEL 3 单次授权。可能触发 UAC 的后继步骤须先等 Owner 在**当前 Work 会话**输入“我在”；旧到场确认不沿用。
 
-Work 已在 `EVIDENCE/AUTH-112-SSH-REMOTE-EXIT-PROVENANCE-STATIC-CONTRACT/contract.md` 作 LEVEL 2 受限 ACCEPT：仅静态协议和公开 `ssh(1)` 退出语义，不能用于现场调用。本任务不再处于 ISSUED；AUTH-110/111 若按合同修订，须新任务和独立虚构验证。
+Work 已在 `EVIDENCE/AUTH-113-SINGLE-SSH-EXIT-PROTOCOL-PARSER-SYNTHETIC/summary.md` 作 LEVEL 2 受限 ACCEPT：仅纯虚构字节的单 SSH 退出解析，Work 独立复跑 34 项通过。本任务不再处于 ISSUED，不能据此启动现场调用。

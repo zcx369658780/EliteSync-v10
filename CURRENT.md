@@ -62,6 +62,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-112 审查结论（2026-09-26，当前状态）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-112-SSH-REMOTE-EXIT-PROVENANCE-STATIC-CONTRACT/contract.md` 的静态协议边界；Work 独立核对 OpenBSD `ssh(1)` 官方 `EXIT STATUS` 原句。SSH 255 歧义一律按失败处理，不把一个本地退出值冒充两个独立实测值。AUTH-107 Phase B 仍未放行；后继须另立 AUTH-110/111 接口修订及虚构验证任务，之后才可审查具体现场方案。真实备份、SSH、UAC 均未执行。
 
+**当前任务 AUTH-113（2026-09-26）**：AUTH-112 已进入本地 `main` 检查点 `e9bdab4b7ddb46716155fce15a50142aaaf1953d`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-e9bdab4.bundle` SHA-256 `C3B50CA983A539FFBFAADF337334DB3A1AB15A034A691C1A5453ED2A22200E69`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达纯虚构单 SSH 退出协议解析任务，见 `TASK_CURRENT.md`；不执行 SSH、真实工具、UAC 或备份。
+
+**AUTH-113 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-113-SINGLE-SSH-EXIT-PROTOCOL-PARSER-SYNTHETIC/summary.md` 的纯虚构单退出解析；Work 独立复跑 34 项通过。SSH 255/非零/未知及协议状态矛盾均拒绝肯定投影；远端程序和工具退出仍是未证实的协议声明。AUTH-111 的本地进程接线未自动升级，AUTH-107 Phase B、真实 SSH、DB、备份和 UAC 均未放行。下一步需另立固定远端程序/身份与受限现场调用准备任务并经风险门。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
