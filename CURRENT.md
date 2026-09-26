@@ -30,6 +30,14 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-104 审查结论（2026-09-25，当前停点）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-104-DB-BACKUP-OBJECT-SCOPE-PREFLIGHT-DESIGN/plan.md`，仅是本地静态对象全集与拟备份账号权限预检设计。真实权威对象全集、账号逐项权限、dump 版本/选项、Web/CLI 同库、非 DB 范围与一致性仍 UNKNOWN。AUTH-103/104 均无可运行现场探针，未发生产诊断或真实备份任务。下一阶段须先形成具体实现与权限/隐私/回退方案，再经对应风险门；Owner 对“完整数据库”与外部文件的范围定界已询问，等待回复。可能触发 UAC 的动作继续按到场规则停在触发前。
 
+**AUTH-105 当前派发（2026-09-25）**：Owner 要求继续推进。已在 `TASK_CURRENT.md` 向同一最新合资格 Codex 会话下达 MariaDB 10.11 官方文档核对与备份选项/权限本地静态候选；允许公开官方资料读取，不连接阿里云服务器或真实 DB，不触发 UAC、备份或传输。AUTH-103/104 的静态接受仍不放行现场动作；“完整数据库”与外部文件边界待 Owner 回复。
+
+**AUTH-105 验收与当前 AUTH-106（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-105-MARIADB-DUMP-OPTION-AND-PRIVILEGE-SOURCE-CHECK/plan.md`，仅限 MariaDB 官方文档的静态选项/权限核对；在线文档不是目标主机 10.11.14 固定快照，当前工具支持项、账号权限及完整对象仍 UNKNOWN。现向同一最新合资格 Codex 会话下达 AUTH-106：本地严格解析器及纯虚构帮助文本测试，见 `TASK_CURRENT.md`。本轮禁止真实主机访问、UAC 和备份。
+
+**AUTH-106 验收与当前 AUTH-107（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-106-DUMP-TOOL-HELP-STRICT-PARSER/summary.md`，仅限纯函数对虚构帮助文本的拒绝边界；Work 独立复跑 20 项虚构检查 PASS。人工帮助布局不代表目标主机真实输出，工具现时能力仍 UNKNOWN。现向同一 Codex 会话下达 AUTH-107 Phase A 单次只读主机工具观察的本地候选设计，详见 `TASK_CURRENT.md`；本轮不放行 SSH、真实工具、UAC 或备份。
+
+**AUTH-107 与本次 Work 交接（2026-09-26）**：Work LEVEL 2 仅接受 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md` 的 Phase A 静态调用边界；作者的唯一虚构测试提前失败，修正后未复跑，`projector.py` 不算已验证采集器。无可运行 SSH/远端程序，Phase B 未放行。当前 Work 会话已较长，按根 `AGENTS.md` 在本地记录后交给 Owner 手动开启新 Work 会话；本次交接不下达新任务、不重置 AUTH-101、AUTH-17、AUTH-107 等预算。下一 Work 会话先独立核对本地 Git/工作区及 AUTH-105～107，再决定独立新任务来实现并验证受限采集器；不得将 AUTH-107 静态接受当作 SSH 授权。Owner 尚未回复“完整数据库”是否包含外部文件的范围问题，且未在本会话为后续 UAC 现场步骤回复“我在”。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

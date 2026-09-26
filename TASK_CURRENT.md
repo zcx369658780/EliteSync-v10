@@ -1,29 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-104-DB-BACKUP-OBJECT-SCOPE-PREFLIGHT-DESIGN
+Task ID: AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE
 
-Risk Level: LEVEL 2（真实备份账号权限、完整对象范围与数据隐私；本轮仅本地静态候选）
+Risk Level: LEVEL 2（生产主机工具身份与选项的未来只读观察；本轮仅本地候选）
 
-Status: ACCEPTED — LOCAL STATIC DESIGN ONLY; NO LIVE PROBE RELEASED
+Status: ACCEPTED — PHASE A STATIC BOUNDARY ONLY; PROJECTOR NOT VERIFIED; PHASE B NOT RELEASED
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
-## 依据与目标
+## 目标与依据
 
-AUTH-102 仅接受备份目标、权限和范围的静态预检边界；AUTH-103 仅接受 Web worker 目标身份的静态诊断设计。已有 43 张可见 InnoDB 表等元数据不能证明拟备份账号看见全库对象或具备所选 dump 方式的权限，也不能界定数据库外的媒体/文件。真实完整备份尚未获放行。
+AUTH-105 接受 MariaDB 官方资料的静态选项语义；AUTH-106 仅接受虚构帮助文本的严格解析拒绝边界。AUTH-106 的人工布局未证明与目标主机实际 `--help` 一致，不能直接当现场工具能力 PASS。AUTH-17 的 `mysqldump 10.11.14` 是旧一次主机观察且预算耗尽。本任务为将来**单次只读 SSH 工具观察**形成具体可审查候选，当前不连接主机。
 
-本任务只设计**权威对象全集与拟备份账号可见性/权限的最小核对协议**，以及数据库外数据类别的待决清单。主要结果写入 `EVIDENCE/AUTH-104-DB-BACKUP-OBJECT-SCOPE-PREFLIGHT-DESIGN/plan.md`；如需要，可在同目录放纯虚构测试夹具。仅允许写这个新证据目录；其他文件只读。保留两个既有无关未跟踪目录。
+主要结果为 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md`；可在同一新目录附固定调用器、只读远端片段及纯虚构负向测试。仅允许写该新证据目录，其他项目文件/证据只读；保留两个既有无关未跟踪目录。
 
-## 允许工作
+## Phase A 工作范围与预算
 
-1. 核对 Git、入口、AUTH-20/65/67/68/102/103 和已接受备份合同。只读检查本地迁移、模型及备份相关文档中的**类别与设计**；不读取 `.env`、凭据、私钥、业务行、真实对象清单、真实备份或旧 `D:\EliteSync`。
-2. 设计独立权威对象全集的来源及与拟备份账号视图的受控比较：基表、视图、触发器、例程、事件和其他所选 dump 方式需要的对象，严格区分“可见对象数相同”“相同对象集合”“可完整导出并恢复”。说明 `information_schema` 对低权限账号隐藏对象的风险，以及无法取得独立权威全集时的 UNKNOWN 停点。
-3. 绑定一个**待选择**的 MariaDB 10.11 兼容完整 dump 选项集合，列出每个选项所需权限和一致性依赖的核验点；任何选项、权限或服务器版本尚未锁定的部分标 UNKNOWN。不得把 `SHOW GRANTS` 文本、旧 CLI 聚合或权限猜测写成 PASS。
-4. 给出脱敏现场回执协议和后继任务必需的调用/连接/查询、超时、输出上限、错误分类、失败即停与隐私门。只在获授权的受控环境比较原始对象标识；普通证据不得包含主机名、库名、用户名、对象名、连接串、业务行或原始错误。列出媒体、上传文件、外部存储、跨库依赖等需 Owner/数据责任方定界的类别，不擅自认定其存在或缺席。
-5. 本轮可做纯虚构协议负向测试；若没有可运行候选，明确记为未运行。禁止 SSH、HTTP/API、Laravel CLI、真实 DB、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 独立审查；不提交、推送、自接受或派发后继。
+1. 核对本地 Git、入口、AUTH-17/105/106、既有受限 SSH 模式和风险门。只读使用本地已经接受的 SSH 目标身份/host-key 约束作为设计输入，不输出主机名、用户名、私钥路径/正文、连接串、对象名或原始错误；不得访问旧 `D:\EliteSync`。
+2. 设计一次性、固定目标的未来 SSH 只读工具观察：只检查 `mysqldump`/`mariadb-dump` 可执行文件身份、版本和**关闭默认选项文件读取后的**帮助选项文本，不连接 DB，不列库/表、不读取环境或配置值。严格限制进程、远端命令、超时、stdout/stderr 字节、认证方式和 host-key；不可把 AUTH-17 的 SSH 预算复用。若 `--no-defaults` 的位置/语义与目标工具版本不确定，先保留 UNKNOWN，不临场猜测或读取可能含敏感默认值的帮助输出。
+3. 候选必须在受控进程内从原始帮助内容只投影固定安全字段，并解决 AUTH-106 虚构布局不适用的问题：要么给出可证明不误判的有限解析方案及纯虚构负向测试，要么明确只取得版本/帮助摘要而将选项支持保持 UNKNOWN。不得把帮助文本中选项名出现等同为运行支持或默认值证明。
+4. 明确可能的工具别名/符号链接、帮助输出变化、stderr 提示、非零退出、管道退出码丢失、截断、重复行和 ANSI 控制字符的停点。普通证据只记录固定类别、版本候选、工具哈希或安全摘要、调用/字节计数与 UNKNOWN/PASS/FAIL；不保存或转发原始 stdout/stderr。任何真实执行前还须 Work 对固定脚本字节/哈希、主机/密钥/host-key、预算与并发风险独立审查。
+5. 本轮最多一轮纯虚构测试套件和一次静态检查；不得执行 SSH、生产 HTTP/API、Laravel CLI、真实 DB、Docker、云控制台、OpenSSL、UAC、部署、真实 dump 工具、备份、导出、传输、停写、DDL/DML 或删除。只交候选后停在 Work LEVEL 2 审查，不提交、推送、自接受或派发后继。
 
 ## 停点
 
-此静态设计不放行任何真实连接、权限探针或备份。真实备份前还须独立闭合 Web/CLI 目标、权威对象/权限、非 DB 数据范围、一致性、服务器侧加密、密文传输、本机隔离恢复准备，并由 Owner 对一次真实备份作 LEVEL 3 明确授权。凡可能触发 UAC 的后继动作，须在触发前等待 Owner 在当前 Work 会话输入“我在”；此前到场确认不可复用。AUTH-101 一次预算已耗尽，旧 AUTH-99 继续禁止运行。
+Phase A 接受不放行 SSH 或任何真实工具调用。未来单次现场只读观察须另由 Work 发布明确 Phase B 任务并过风险门；真实备份须目标、权限、范围、一致性、加密传输和隔离恢复准备成立后另由 Owner LEVEL 3 单次授权。若任何步骤可能触发 UAC，必须在触发前停下，待 Owner 在当前 Work 会话输入“我在”，且仍须具体任务授权。AUTH-101 各一次预算已耗尽，旧 AUTH-99 禁止运行。
 
-Work 已在 `EVIDENCE/AUTH-104-DB-BACKUP-OBJECT-SCOPE-PREFLIGHT-DESIGN/plan.md` 作 LEVEL 2 ACCEPT，仅接受本地静态对象/权限预检方案。AUTH-103 亦仅获本地静态设计接受。两者都没有可运行现场探针；不准因本任务状态转为 ACCEPTED 而连接服务器、查真实 DB、部署或备份。下个现场阶段须先有具体实现、隐私及生产影响方案与独立风险门；当前待 Owner 对完整数据库与外部文件范围作定界。
+Work 已在 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md` 作 LEVEL 2 **受限 ACCEPT 仅 Phase A 静态边界**。`projector.py` 的完整虚构测试未通过且修正后未复跑；无可运行 SSH/远端受限采集程序，Phase B 不放行。本任务状态已非 ISSUED，不得自动执行。当前 Work 会话达到交接长度，交接只保存进度，不下达后继；下一 Work 会话应先核对本地状态，再决定新的独立实现/虚构验证任务。
