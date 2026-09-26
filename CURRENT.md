@@ -132,6 +132,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **Owner 目标范围答复（2026-09-26）**：Owner 在本 Work 会话确认此次仍为 AUTH-24 中同一阿里云账号及华东2（上海）轻量应用服务器。此答复只关闭账号/地域的口头范围疑问，不证明今天实例 ID、公网地址、权限或页面状态。一次只读控制台查看的具体授权问题仍待 Owner 回复；登录密码、真人识别或 UAC 前须依 Owner 指示停下，不因“同一账号和地域”自动进入账号页面。
 
+**AUTH-128 单次只读控制台查看放行（2026-09-26，执行前记录）**：Owner 随后明确本人在场，授权本人亲自处理登录后，只读查看一次轻量应用服务器“服务器列表→唯一服务器概览”。Work 已在 `TASK_CURRENT.md` 与 `EVIDENCE/AUTH-128-LIGHTWEIGHT-SERVER-INSTANCE-BINDING-READONLY/summary.md` 固定官方入口、单页 1/1 预算、脱敏回执和登录前停点。当时尚未打开账号页面或消耗预算；不放行 VNC、命令助手、SSH、DB 或备份。
+
+**AUTH-128 执行结论（2026-09-26，当前有效）**：Owner 在同一页自行完成登录并回复“已登录”；Work 只读查看上海轻量应用服务器列表中的唯一条目和其概览。产品类别、地域、状态、列表/概览地址一致，现时地址与 AUTH-02 历史线索匹配；但实例 ID 未在事前由独立可信来源固定，所以 Work LEVEL 2 仅接受本次 UI 观察事实，`TARGET_BINDING=UNKNOWN`。查看预算 1/1 耗尽，不刷新或重试；未操作服务器、SSH、DB、备份。独立 host-key 来源、有效 SSH 端口与数据库目标仍 `UNKNOWN`。下一步须另立受限来源和对应风险门；本次 Owner 授权不延伸到远端操作。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
