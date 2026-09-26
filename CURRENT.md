@@ -126,6 +126,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-126 错误类别停点（2026-09-26）**：Work 重新核对 AUTH-24 第 9、13、47 行，发现 2026-09-24 Owner 确认后端目标为上海**轻量应用服务器**，当次 ECS 列表未见实例。故 Work LEVEL 2 **REJECT AUTH-126 的 ECS 目标前提**，仅接受作者及时停止且未登录/现场访问的有限事实；见 `EVIDENCE/AUTH-126-ECS-INSTANCE-BINDING-VIEW-STATIC-CANDIDATE/plan.md`。AUTH-125 的 ECS 资料仅具一般产品信息价值，不能当成本目标控制面路径或现场放行依据。后继先按轻量应用服务器另做静态候选，今天的实例现状仍 UNKNOWN；无控制台、密码、UAC、SSH、DB 或备份动作。
 
+**当前任务 AUTH-127（2026-09-26）**：AUTH-126 停点已进入本地 `main` 检查点 `d35bcc8161a3d553c2eb4446e788ec1b32223f78`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-d35bcc8.bundle` SHA-256 `A274D86D3039B8DC1C3A45EFE186F596F040CC4907D700B20A17B6FDD0514F82`，`git bundle verify` 通过。向最新 Codex 会话下达针对**轻量应用服务器**的公开资料与未来只读实例绑定静态候选，见 `TASK_CURRENT.md`；本轮不打开 Owner 账号控制台或请求密码。
+
+**AUTH-127 静态验收及 Owner 现场停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-127-LIGHTWEIGHT-SERVER-BINDING-VIEW-STATIC-CANDIDATE/plan.md` 仅为轻量应用服务器“服务器列表→唯一概览”的只读目标绑定候选。目标账号主体/地域尚无本次可固定权威，地域字段位置、今天的实例/地址均未获现场证明，当前 `PRECHECK_MISSING`、现场预算未放行。Owner 要求遇到密码或可能 UAC 先停，故下一步需 Owner 在受限方式确认账号/地域及现场参与；无账号登录、真人识别、控制台、远端终端、SSH、DB 或备份动作。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
