@@ -1,23 +1,21 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-150-CONTROL-PLANE-SSH-TRUST-BOOTSTRAP-STATIC
+Task ID: AUTH-151-SSH-PUBLIC-TRUST-READONLY-COMMAND-CANDIDATE
 
-Risk Level: LEVEL 3（首次 SSH 主机信任与端口路径；本轮纯本地静态）
+Risk Level: LEVEL 3（生产实例首次 SSH 信任；本轮纯本地静态候选）
 
-Status: COMPLETED — Work LEVEL 3 ACCEPT NOT_FIXED STOP ONLY; FIELD BUDGET 0
+Status: ISSUED — STATIC CANDIDATE ONLY; FIELD EXECUTION 0/1
 
-Assignee: 最新合资格 Codex 执行会话；Work 独立 LEVEL 3 审查。Owner 保留现场公钥观察与首次 SSH 的分别授权。
+Assignee: 最新合资格 Codex 执行会话；Work 独立 LEVEL 3 审查与现场控制。
 
-Work 审查结论见 `EVIDENCE/AUTH-150-CONTROL-PLANE-SSH-TRUST-BOOTSTRAP-STATIC/plan.md`。Owner 已确定当前上海实例为目标；不再要求证明与旧开发服务器同一。后续仍须在具体现场操作时避免选错当前实例，并另审当前 host-key、端口和权限。此任务没有可运行命令，不放行现场动作。
+Owner 已确定当前上海唯一轻量实例为目标，不再要求证明它与旧开发服务器同一。Owner 接受在该实例的阿里云命令助手中以 root **最多一次**只读检查：使用系统自带工具、不逐字节预验工具，查看当前 SSH 配置、监听端口及最多四个公钥候选；接受脚本与结果可能被阿里云留存。不得读取 host 私钥、DB 或其他秘密。此任务只交付可审查的静态候选，现场执行前须 Work 独立 LEVEL 3 裁决。AUTH-148/149 等旧预算不重置。
 
-## 固定输入与本轮问题
+## 作者范围与交付
 
-Owner 已接受以**已认证阿里云控制台中指定上海轻量实例的受限公钥观察**作为首次 SSH 主机密钥固定的信任起点，同时明确接受它不能排除实例/云控制面此刻被攻陷；仅授权准备方案，不放行 SSH。AUTH-146 只确认 root 与三个名称可定位；AUTH-149 只接受 `sshd/systemctl/service` 三个受限绝对路径**形态候选**，原值未入普通证据，不能证明程序字节身份或服务在运行。AUTH-148 执行及 AUTH-149 详情各 1/1 已耗尽。
+只读本地治理文件与 AUTH-129/130/146/149/150 证据、必要官方 OpenSSH/Ubuntu/阿里云资料。唯一允许写入 `EVIDENCE/AUTH-151-SSH-PUBLIC-TRUST-READONLY-COMMAND-CANDIDATE/plan.md`。固定一个最小完整 Shell 命令候选及系统工具依赖、执行身份、目标实例复核、默认超时 10 秒或更小、可预期最大输出、正常/异常双流行为和阿里云留存风险；或给出精确 `NOT_FIXED` 停点。只读取受限 SSH 配置/公钥文件及监听状态，不打开私钥；候选公钥上限四个，超界直接停而不是截断成成功。禁止扫描任意目录、输出配置全文、访问 `.env`、DB、密钥、备份或更改配置。
 
-本任务只问：在上述风险选择下，能否给出一条**可逐项审查、分阶段失败即停**的首次 SSH 信任启动候选，先经官方控制面取得与当前有效 sshd 服务相关的**公有 host key**及有效端口候选，再与首次严格 SSH 握手所见主机密钥比较，并独立核对云/主机网络准入。必须区分“实例自报的公钥候选”“控制面首次信任锚”“SSH 对端匹配”“外部端口可达”四类事实。不能从 AUTH-149 的路径形态、旧 known_hosts、Owner 给的端口数值或默认 Ubuntu 路径直接推导任何一项 PASS。
+优先输出有限公钥指纹/算法、有效监听端口与可关联依据，原值只经受保护会话供 Work 比较；普通聊天、Git、普通证据不得写公钥、指纹、IP、端口或配置原值。若只得到任意 `.pub` 文件而不能关联运行中 sshd，明确 `HOST_KEY_SOURCE=UNKNOWN`；若候选依赖 `sshd -T` 读私钥，则 `NO-GO`。首次 SSH 仅可在此后单独严格匹配预固定公钥，绝不能跳过 host-key 检查。需要独立云侧规则核验时不得把主机监听当外部准入 PASS。
 
-## 作者范围、结果与停点
+## 停点与预算
 
-仅读取本地根治理文件、AUTH-129/130/132/139/146/147/149 证据及必要的公开阿里云/Ubuntu/OpenSSH 官方资料；不访问旧 `D:\EliteSync`、控制台、云 API、SSH、真实 DB/密钥/备份。唯一允许写入文件为 `EVIDENCE/AUTH-150-CONTROL-PLANE-SSH-TRUST-BOOTSTRAP-STATIC/plan.md`。可提交完整、最小、无秘密的分阶段脚本/核验文本候选，或明确 `NOT_FIXED` 与首个无法闭合的输入；不得填猜测路径/算法/端口、遍历目录或读取 host 私钥。若拟通过 `sshd -T`、`systemctl` 或其他外部程序，须依据官方语义审查其是否可能读取私钥/泄露原始配置，以及在当前工具身份仅为路径候选时可否承担该风险；不满足就保持 `NO-GO`。
-
-方案须固定单次对象与预算建议、执行身份、具体只读命令/依赖、正常与异常输出和阿里云留存边界、独立云侧规则与主机监听/防火墙门、路径/公钥/指纹/端口原值的受控接收与比较通道；普通聊天/证据不得存这些原值。即使交付完整候选，也只停 Work LEVEL 3 独立静态审查；Owner 对具体控制面现场调用和首次 SSH 需另行分别授权。至多两轮本地静态/虚构检查，报告 SHA-256、实际检查数、差异；不运行候选脚本、不提交/推送、不启动后继。保留两个无关未跟踪目录及旧耗尽预算。任何密码、真人识别或 UAC 触发前停；本轮不会遇到现场提示。
+作者最多两轮本地静态/虚构检查，报告文件 SHA-256、检查数与差异；不运行候选脚本、不访问控制台/API/SSH/真实 DB、不提交、pull、push 或启动后继。现场执行仍为 `0/1`，Work 独立审查并复核表单/实例后才可消耗，失败即停不重试；任何密码、真人识别或 UAC 前停。保留两个无关未跟踪目录。Owner 要求 SSH 登录核验完毕后保存本 Work 会话进度并准备交接，未登录则记录精确停点。
