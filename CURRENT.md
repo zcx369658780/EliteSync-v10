@@ -228,7 +228,7 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-148 最终停点（2026-09-26）**：Owner 报告已在 GO 后手动点击一次，执行预算 1/1 耗尽。当前页新增唯一同名记录，控制面状态“执行完成”，创建时间 18:57:27；Work 未打开详情。仅 `CONTROL_STATUS=COMPLETED` 获 LEVEL 3 接受，退出码和三个工具路径结果 `UNKNOWN`。后继详情读取须新任务/预算；SSH、密钥、DB、dump 和备份仍未放行。见 AUTH-148 `summary.md`。
 
-**当前 AUTH-149（2026-09-26）**：Owner 已明确授权本人在 Work 复核及 GO 后，手动打开 AUTH-148 唯一“执行完成”记录的详情一次；Work 已确认同一上海实例、新旧两行区分与新行入口，LEVEL 3 给出仅 Owner 点击 AUTH-148 行一次的 GO。临运行核对 1/1、手动详情点击尚 0/1；Work 只投影退出码与路径形态类别，不在聊天或普通证据搬运路径原值。见 `TASK_CURRENT.md`；SSH、密钥、DB 与备份仍未放行。
+**AUTH-149 最终结论（2026-09-26）**：Owner 已在 Work GO 后手动打开 AUTH-148 新记录详情一次，临运行核对及详情预算各 1/1 耗尽。Work LEVEL 3 仅接受 Shell 退出码 `0`、唯一 `AUTH147=OK` 白名单行及 `sshd/systemctl/service` 三个绝对路径**形态候选**；路径原值未入聊天、普通证据或哈希。文件/链接/字节身份、服务运行、host-key、有效 SSH 端口和 DB 结构仍 `UNKNOWN`；SSH、密钥、DB、dump 和备份继续未放行。见 AUTH-149 `summary.md`。
 
 | 项目 | 当前状态 |
 |---|---|
