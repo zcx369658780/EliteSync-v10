@@ -226,6 +226,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-148 临运行 GO（2026-09-26）**：Owner 已打开新表单；Work 仅填写并核对同一上海实例、Shell、固定名称、参数关闭、`root`、默认路径和 10 秒。表单 14 行脚本与 AUTH-147 固定代码块 SHA-256 完全一致，无模板残留，按钮可见启用无遮挡。Work LEVEL 3 仅放行 Owner 本人在**当前表单手动单击“确定”一次**；尚未收到点击报告，执行预算 0/1。路径原值可能长期留存的新增风险已由 Owner 接受；SSH、密钥、DB、dump 和备份仍未放行。见 `TASK_CURRENT.md` 与 AUTH-148 `summary.md`。
 
+**AUTH-148 最终停点（2026-09-26）**：Owner 报告已在 GO 后手动点击一次，执行预算 1/1 耗尽。当前页新增唯一同名记录，控制面状态“执行完成”，创建时间 18:57:27；Work 未打开详情。仅 `CONTROL_STATUS=COMPLETED` 获 LEVEL 3 接受，退出码和三个工具路径结果 `UNKNOWN`。后继详情读取须新任务/预算；SSH、密钥、DB、dump 和备份仍未放行。见 AUTH-148 `summary.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

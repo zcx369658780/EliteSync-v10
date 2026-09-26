@@ -4,7 +4,7 @@ Task ID: AUTH-148-ONE-SHOT-TOOL-PATH-PROBE
 
 Risk Level: LEVEL 3（生产实例命令助手一次路径候选探针）
 
-Status: GO ISSUED — AWAITING OWNER'S ONE MANUAL CLICK; EXECUTION 0/1
+Status: STOPPED — OWNER CLICK 1/1; CONTROL STATUS COMPLETED; FIELD RESULT UNKNOWN
 
 Assignee: Work 准备同一实例表单、独立临运行核对和证据；最终点击由 Owner 在本任务 GO 后亲自操作，除非 Owner 对本任务另作明确决定。Codex 不执行现场动作。
 
@@ -31,3 +31,7 @@ Work 尝试关闭已读详情，但浏览器自动化点击/键盘动作无可�
 Owner 回报表单已打开。Work 核对同一上海实例的当前新表单，填写固定名称、完整脚本及 10 秒；显式执行用户目视为 `root`，执行路径保留 `/root`，Shell/输入内容/参数关闭。AUTH-147 `plan.md` SHA-256 重新计算匹配 `E9D184064CD24C8D496EDFCE0EB07ADDC79F5514D89A37D8B83B4242929DED39`；代码块原文与本次表单 14 行的 UTF-8 SHA-256 同为 `29BC4A1EBF4253ED0D7B63908AB9A46E8844B1AE5A2BF8058283BB09E373AF4B`，无模板残留。按钮可见、启用、中心无遮挡，无可见原生校验错误。Work 未点击“确定”，执行预算仍 `0/1`。
 
 Work LEVEL 3 **GO：仅 Owner 本人可在此当前表单手动单击“确定”一次**。点击开始即新预算 `1/1`，不论页面是否变化，不重试、不改用自动化补点。结果可能把三个程序路径原值长期留在阿里云命令助手，Owner 已对该新增风险作具体接受；普通聊天/证据不得复制路径。此 GO 不放行详情再读、SSH、DB 或备份。若 Owner 看到表单变化、权限/登录/真人识别/密码或其他异常，点击前停。
+
+## Owner 单次动作与最终停点
+
+Owner 报告已在 GO 后手动点击“确定”，本任务执行预算 `1/1` 耗尽。Work 仅对当前页面做一次只读观察：出现唯一一条新同名 `AUTH-148-readonly-tool-path-probe` 记录，状态“执行完成”，创建时间显示 2026-09-26 18:57:27（Asia/Shanghai）；没有打开详情、刷新或再次提交。Work LEVEL 3 **ACCEPT 仅 `CONTROL_STATUS=COMPLETED`**，退出码/脚本白名单及路径候选均 `UNKNOWN`。旧 AUTH-147 静态接受不因这条控制面记录升格为程序身份、host-key 或 SSH/DB 放行。后继详情只读查看须新任务与单次预算；本任务停止。
