@@ -48,6 +48,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-109 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-109-BOUNDED-CAPTURE-SAFE-PROJECTION-SYNTHETIC/summary.md` 的本地虚构集成；Work 独立复跑 12 项通过。真实工具身份/帮助格式、环境净化、SSH、目标及权限仍 `UNKNOWN`，AUTH-107 Phase B、真实备份及 UAC 均未放行。两个无关未跟踪目录保留；本 Work 会话继续，未达必须交接门槛。
 
+**当前任务 AUTH-110（2026-09-26）**：AUTH-109 已进入本地 `main` 检查点 `908e4d4bacccad17b627bfbd5907fc2dd7a0312b`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-908e4d4.bundle` 的 SHA-256 为 `9D6EF4D16918995F03ACBBC4D39B1C079C497BD286B3C66B5E827E1BFCF36304`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达 `AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC`，只做本地纯虚构字节接收解析；不启动 SSH/工具或触发 UAC，见 `TASK_CURRENT.md`。检查点 bundle 不含这张新任务单的未提交修改，也不含两个无关未跟踪目录。
+
+**AUTH-110 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC/summary.md` 的纯虚构传输解析；Work 独立复跑 42 项通过。没有 SSH、真实远端程序、工具、DB 或 UAC；输入字节及双层退出码的真实来源仍 `UNKNOWN`，AUTH-107 Phase B 和真实备份未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

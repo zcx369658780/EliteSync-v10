@@ -1,29 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-109-BOUNDED-CAPTURE-SAFE-PROJECTION-SYNTHETIC
+Task ID: AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC
 
-Risk Level: LEVEL 2（未来主机工具只读回执的原文隔离与投影；本轮仅本地虚构子进程）
+Risk Level: LEVEL 2（未来只读主机回执的本地接收、格式与泄漏边界；本轮仅纯虚构字节）
 
-Status: ACCEPTED — LOCAL SYNTHETIC INTEGRATION ONLY; NO SSH OR REAL TOOL
+Status: ACCEPTED — LOCAL SYNTHETIC PARSER ONLY; NO SSH OR REAL TOOL
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
 ## 目标与依据
 
-AUTH-108 获 Work LEVEL 2 受限 ACCEPT 的双流采集核心只返回安全计数和类别，故不能把受限原始字节传给 AUTH-107 的纯函数投影器；AUTH-107 的投影器完整测试仍 NOT_VERIFIED。继续准备未来只读主机工具观察时，必须在**同一个受控进程内**完成有限捕获和固定安全投影，绝不经普通回执、文件、日志或调用方返回值传递原始帮助文本。本轮只使用虚构子进程，不访问主机。
+AUTH-109 已获 Work LEVEL 2 受限 ACCEPT，仅证明本地虚构子进程内采集与投影。AUTH-107 Phase A 要求未来 SSH 标准输出最多一行 2 KiB 严格 JSON，普通回执不得带远端原始工具文本或 SSH 错误。当前尚无经验证的**本地接收解析器**；本任务只用调用方提供的虚构 stdout/stderr 字节与退出码构造拒绝边界，不启动任何进程或访问网络。
 
-主要结果为新目录 `EVIDENCE/AUTH-109-BOUNDED-CAPTURE-SAFE-PROJECTION-SYNTHETIC/summary.md`，可在该目录附候选源码和测试。仅允许写此新证据目录；AUTH-107/108 等已接受证据只读，保留两个既有无关未跟踪目录。
+主要结果为新目录 `EVIDENCE/AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC/summary.md`，可在该目录附解析器与测试。仅允许写此新目录；其他证据和控制文档只读。保留两处原有无关未跟踪目录。
 
-## 允许工作与验证预算
+## 允许工作与预算
 
-1. 核对本地 Git、入口、AUTH-105～108、项目技能与风险门。不得读取 `.env`、凭据、私钥、真实业务行、备份或旧 `D:\EliteSync`。
-2. 设计并实现仅接收调用方显式给出的绝对可执行路径、固定参数数组与已锁定预期工具身份候选的本地集成函数。它最多执行两个子进程，每次把 `--no-defaults` 放在工具首参数，之后仅为 `--version` 或 `--help`。不发现真实工具、不执行 shell、不读环境默认值；原始 stdout/stderr 在受控内存逐流限额，只有全部退出/完整性门通过后才在同进程内做固定版本/帮助状态投影。普通返回值仅固定安全字段，不含原始文本、错误、路径或秘密；任何异常也不回显原文。
-3. 对帮助文本格式未知保持 `UNKNOWN`；不得复用 AUTH-106 人为格式来宣称目标工具支持。对版本文本也只作“给定文本的版本候选”，不能证明工具来源。明确源路径/符号链接/哈希实际绑定、SSH/host-key、环境净化、真实帮助兼容性仍需未来独立门。若复用 AUTH-107 投影逻辑，必须独立修复/验证其未通过的分支，且不能改写 AUTH-107 旧预算与接受结论。
-4. 用临时虚构子进程测试：两次固定参数顺序、版本/帮助正常与不匹配、两流突发、非零/stderr/超时/超限、原文秘密标记不泄漏、第二次失败不产生第一次的部分肯定结果、子进程终止。最多 3 轮本任务虚构套件，重跑仅用于实际失败修复；最多 2 轮静态检查。记录每轮和所有未覆盖的系统/终止风险。不得运行真实 dump 工具。
-5. 禁止 SSH、生产 HTTP/API、Laravel CLI、真实 DB、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 审查；不提交、推送、自接受或派发后继。
+1. 核对本地 Git/工作区、入口、AUTH-107～109、项目技能与风险门。不得读取 `.env`、凭据、私钥、真实业务行、备份或旧 `D:\EliteSync`。
+2. 实现纯函数：只接收调用方显式给出的虚构 SSH stdout/stderr 字节、SSH 退出码和远端程序退出码候选。逐流严格上限 2 KiB；任一 stderr 非空、退出非零或未知、不完整、超限立即固定失败，绝不返回原始正文。仅接受一行严格 UTF-8 JSON、终止换行、无 BOM/ANSI/控制字符；拒绝重复键、额外/缺失键、错误类型、非法类别和计数、额外行、嵌套内容或未知版本。固定 schema 与 AUTH-109 的安全字段对齐，但不能把输入 JSON 当作真实主机身份/工具能力证明。普通返回值只允许固定字段/枚举和安全有界数字，任何异常不得回显原始字节、路径或消息。
+3. 用纯虚构字节覆盖正常最小回执、双重退出/完整性门、stdout/stderr 超限及 stderr 非空、重复/额外键、UTF-8/换行/多行/控制字符、秘密标记不泄漏和 UNKNOWN 选项。测试最多 3 轮，仅实际失败修复可重跑；静态检查最多 2 轮。记录各轮及未验证的 SSH 进程级、远端程序级和实际工具风险。
+4. 禁止启动 SSH、任何子进程、真实 dump、DB、生产 API、Laravel CLI、Docker、云控制台、OpenSSL、UAC、备份、导出、传输、停写、DDL/DML、部署或删除。交候选后停在 Work LEVEL 2 独立审查，不提交、推送、自接受或派发后继。
 
 ## 停点
 
-即使本地虚构候选通过，AUTH-107 Phase B 仍不自动放行。未来单次现场只读工具观察须另锁定目标、SSH 身份/host-key、工具绝对路径/别名/哈希、采集程序固定字节与隐私门，并经 Work 独立审查；真实备份另需全部前置门与 Owner LEVEL 3 单次授权。可能触发 UAC 的后继步骤须在触发前停下，直到 Owner 在当前 Work 会话输入“我在”，且仍须具体任务授权。AUTH-101、AUTH-17、AUTH-107 的已耗预算不重置，AUTH-99 禁止运行。
+AUTH-107 Phase B 仍未放行；真实主机工具路径/别名/哈希、SSH 身份与 host-key、环境净化、运行中 Web/CLI DB 同一性、账号权限、对象全集、一致性、加密传输和隔离恢复均 UNKNOWN。真实备份须另经 Owner LEVEL 3 单次授权。可能触发 UAC 的后继动作须先等 Owner 在**当前 Work 会话**输入“我在”，再经具体任务门；此前确认不沿用。AUTH-101、AUTH-17、AUTH-107 已耗预算不重置，AUTH-99 禁止运行。
 
-Work 已在 `EVIDENCE/AUTH-109-BOUNDED-CAPTURE-SAFE-PROJECTION-SYNTHETIC/summary.md` 作 LEVEL 2 受限 ACCEPT：仅本地虚构子进程的有界采集与安全投影，Work 独立复跑 12 项通过。真实工具、SSH、DB、备份及 UAC 均未获放行。本任务不再处于 ISSUED。
+Work 已在 `EVIDENCE/AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC/summary.md` 作 LEVEL 2 受限 ACCEPT：仅本地纯虚构字节的有界解析，Work 独立复跑 42 项通过。本任务不再处于 ISSUED，不能据此启动任何现场进程。
