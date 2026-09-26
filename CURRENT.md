@@ -146,6 +146,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **本次 Work 强制交接（2026-09-26）**：本会话已超过根 `AGENTS.md` 的 30 条对话门槛，按规则停止当前目标。Owner 最新回复同意准备限定的只读运行配置诊断**方案**，未放行实例内命令或首次备份；本会话不新建 AUTH-131、不触碰仍打开的控制台、不向 Codex 派发。精确 Git、bundle、预算、未解决门和下一 Work 会话步骤见 `EVIDENCE/WORK-HANDOFF-20260926-AUTH130/handoff.md`。由 Owner 手动交接；下一会话独立核验后再发布新任务，交接不重置旧预算。
 
+**新 Work 会话与当前 AUTH-131（2026-09-26）**：新会话独立核对本地 `main` HEAD `2b924eff0b57f9b570f2e198cdf93fd15fbca8ba`、仅两个既有无关未跟踪目录、AUTH-128～130 证据及交接 bundle。最新合资格 Codex 会话已完成 AUTH-130，实际回合 8 条、无在途任务。依据 Owner 仅同意准备方案的回复，现下达 AUTH-131 本地静态受限运行配置/公钥来源诊断设计，见 `TASK_CURRENT.md`。本轮现场预算为 0，不进入控制台、命令助手、SSH、DB 或备份；AUTH-128 页面 1/1 与其他旧预算不重置。候选须停 Work LEVEL 3 独立审查。
+
+**AUTH-131 审查与当前停点（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-131-BOUNDED-RUNTIME-SSH-TRUST-DIAGNOSTIC-DESIGN/plan.md` 的 `NOT_FIXED` 停止结论及缺口清单，不接受现场命令。单次只读诊断的对象和输出边界已有静态设计，但实例技术绑定、执行身份/程序、完整无秘密命令及命令助手留存/可见者尚无可信固定来源；拟议数值上限也未经实现/验证。现场调用预算 0，AUTH-128 与旧本机读取预算均不重置；首次备份未开始。后续如需现场诊断，须先补齐独立来源与留存边界、形成精确脚本并另经高风险门；不得因控制台仍打开而继续操作。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
