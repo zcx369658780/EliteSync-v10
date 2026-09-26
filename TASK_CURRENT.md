@@ -4,7 +4,7 @@ Task ID: AUTH-144-OWNER-MANUAL-CAPABILITY-PROBE
 
 Risk Level: LEVEL 3（生产实例命令助手；Owner 单次现场动作）
 
-Status: GO ISSUED — AWAITING OWNER'S ONE MANUAL CLICK; NO RESULT YET
+Status: STOPPED — OWNER CLICK 1/1; CONTROL STATUS COMPLETED; FIELD RESULT UNKNOWN
 
 Assignee: Work 负责临运行只读核对、GO/NO-GO 和证据；Owner 本人负责获 GO 后的唯一手动点击。Codex 不执行现场动作。
 
@@ -20,8 +20,12 @@ Work 仅在**当前已打开的旧表单**做一次只读核对：官方控制�
 
 若全部匹配，Work 可明确向 Owner 发出**仅此当前表单的一次手动点击 GO**，并请 Owner 报告页面是否出现新记录/回执。Owner 单击“确定”的动作开始即消耗新预算 `1/1`，无论页面是否变化；不得第二次点击、自动化补点或切换 SSH。旧提交可能已送达的重复风险继续存在。未拿到可验证回执则记 `SUBMIT_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`，不得推断绝无后台执行。
 
-本轮 Work 只读表单核对 `1/1`；Owner 手动点击 `0/1`。GO 后可核对当前页面直接显示的白名单结果一次；不再打开命令历史列表。普通证据只留 `UID=ROOT|NONROOT`、`SSHD/SYSTEMCTL/SERVICE=YES|NO`、状态/退出类别、时间、预算和限制；不得保存页面全文、截图、实例标识/IP、原始输出或平台错误。唯一主要结果 `EVIDENCE/AUTH-144-OWNER-MANUAL-CAPABILITY-PROBE/summary.md`。即使成功，也不证明主机公钥、实际 SSH 端口、DB 结构或备份就绪。AUTH-128/136/138/141 与本机 AUTH-121/122/123 预算均不重置；不访问旧仓库，不自动 pull/push，保留两个无关未跟踪目录。
+本轮 Work 只读表单核对 `1/1`；Owner 手动点击 `1/1`。GO 后可核对当前页面直接显示的白名单结果一次；不再打开命令历史列表。普通证据只留 `UID=ROOT|NONROOT`、`SSHD/SYSTEMCTL/SERVICE=YES|NO`、状态/退出类别、时间、预算和限制；不得保存页面全文、截图、实例标识/IP、原始输出或平台错误。唯一主要结果 `EVIDENCE/AUTH-144-OWNER-MANUAL-CAPABILITY-PROBE/summary.md`。即使成功，也不证明主机公钥、实际 SSH 端口、DB 结构或备份就绪。AUTH-128/136/138/141 与本机 AUTH-121/122/123 预算均不重置；不访问旧仓库，不自动 pull/push，保留两个无关未跟踪目录。
 
 ## Work LEVEL 3 临运行裁决
 
 2026-09-26 约 18:13（Asia/Shanghai），Work 对当前旧表单做一次只读核对：官方上海实例 URL 与 AUTH-142 同一目标；Shell、输入命令内容、命令名、参数关闭、目视 `root`、原默认执行路径及 10 秒均符合。编辑器 11 行逐行与已审文本相等，另有允许的末尾空行；按钮可见且启用、无可见遮罩/错误。源文件 SHA-256 重新计算匹配。Work LEVEL 3 对**Owner 本人现在在此旧表单手动单击“确定”一次**给出 GO；Work 不代点。旧两次提交可能已送达的重复风险已由 Owner 明确接受。见本任务 `summary.md`。本次 GO 不授权换页、改字段、重试或 SSH/DB。
+
+## 单次动作与停点
+
+Owner 报告已手动点击一次；本任务手动预算 `1/1` 耗尽。Work 对点击后当前页面做一次只读观察，见同名命令新增一条记录，控制台标记“执行完成”，创建时间显示 2026-09-26 18:16:55（Asia/Shanghai）。没有点击“查看命令详情”、刷新、再次提交或查询其他记录；没有退出码和白名单 stdout。Work LEVEL 3 仅接受本次 `CONTROL_STATUS=COMPLETED`，`FIELD_RESULT=UNKNOWN`；不得据此判定 Shell 实际退出 0、工具位或 SSH/DB 就绪。后继详情读取须新任务与具体授权，本任务停止。

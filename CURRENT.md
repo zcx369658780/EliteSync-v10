@@ -208,7 +208,7 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-143 只读诊断结论（2026-09-26）**：Work LEVEL 3 仅接受当前“确定”按钮启用/可见/无遮挡、无可见原生校验错误，以及浏览器已捕获 error 日志 0 条的受限观察。未定位可靠的两次无回执根因，也不能证明请求从未发送；未点按钮或修改表单。Owner 随后在获知前两次可能送达及重复探测风险后，同意**由本人在 Work 重新核对并给出明确 GO 后手动单击一次**；此答复不是要求 Work 代点。见 `EVIDENCE/AUTH-143-COMMAND-FORM-READONLY-UI-DIAGNOSIS/summary.md`。
 
-**当前 AUTH-144（2026-09-26）**：针对同一上海实例的旧命令助手表单，Work 已完成一次只读临运行核对并作 LEVEL 3 GO；仅 Owner 本人可在当前旧表单手动单击“确定”一次，Work 不代点。核对预算 1/1、Owner 手动预算尚 0/1，未收到点击/结果回执。旧 AUTH-140/142 的尝试均为 1/1、`SUBMIT_UNCONFIRMED`，AUTH-141 记录查看 1/1，均不重置。见 `TASK_CURRENT.md` 与 AUTH-144 `summary.md`；SSH、密钥、DB、dump 和备份仍未放行。
+**AUTH-144 最终停点（2026-09-26）**：Owner 已报告在 Work GO 后亲自点击一次，本轮核对和 Owner 手动预算各 1/1 耗尽。Work 只读观察当前页面新增一条同名命令记录，控制台状态“执行完成”；未打开详情，退出码/白名单 stdout 仍 `UNKNOWN`。Work LEVEL 3 只接受控制面记录，不据此判定探针技术结果。旧 AUTH-140/142 的尝试均为 1/1、`SUBMIT_UNCONFIRMED`，AUTH-141 记录查看 1/1，不重置。见 `TASK_CURRENT.md` 与 AUTH-144 `summary.md`；SSH、密钥、DB、dump 和备份仍未放行。后继详情读取须新任务和具体授权。
 
 | 项目 | 当前状态 |
 |---|---|
