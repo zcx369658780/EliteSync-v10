@@ -38,6 +38,12 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-107 与本次 Work 交接（2026-09-26）**：Work LEVEL 2 仅接受 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md` 的 Phase A 静态调用边界；作者的唯一虚构测试提前失败，修正后未复跑，`projector.py` 不算已验证采集器。无可运行 SSH/远端程序，Phase B 未放行。当前 Work 会话已较长，按根 `AGENTS.md` 在本地记录后交给 Owner 手动开启新 Work 会话；本次交接不下达新任务、不重置 AUTH-101、AUTH-17、AUTH-107 等预算。下一 Work 会话先独立核对本地 Git/工作区及 AUTH-105～107，再决定独立新任务来实现并验证受限采集器；不得将 AUTH-107 静态接受当作 SSH 授权。Owner 尚未回复“完整数据库”是否包含外部文件的范围问题，且未在本会话为后续 UAC 现场步骤回复“我在”。
 
+**2026-09-26 交接纠正（当前有效）**：Owner 指出本 Work 会话约 10 次往返，未达 30 条门槛，且工具调用多不等于上下文已无法可靠工作。前述 AUTH-107 “本次 Work 交接”决定和交接 prompt **撤回**；没有发生新 Work 会话交接，本会话继续推进。历史检查点与 bundle 保留为已完成工作记录，不据此重置任何预算。根 `AGENTS.md` 已明确对话计数口径；AUTH-107 的受限静态 ACCEPT、测试 NOT_VERIFIED 与 Phase B 未放行结论保持有效。
+
+**当前任务 AUTH-108（2026-09-26）**：在交接纠正后继续沿用最新合资格 Codex 会话，已下达 `AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC`，见 `TASK_CURRENT.md`。仅在本地用虚构子进程实现/验证双流限额、超时、退出码和原文不泄漏；不连接 SSH/DB、不运行真实 dump 工具、不触发 UAC。AUTH-107 的 1/1 失败测试预算不重置，Phase B 仍未放行。
+
+**AUTH-108 审查结论（2026-09-26，当前状态）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC/summary.md`，仅限本地虚构子进程的双流有界采集核心；作者 10 项和 Work 独立 10 项均通过。测试后新增的管道关闭失败分类已包含在 Work 复跑版本中，但终止失败、子孙进程和其他系统行为仍 UNKNOWN。没有 SSH、真实 dump、DB、UAC 或备份；AUTH-107 Phase B 仍未放行。前述过早交接已撤回，本 Work 会话继续；Owner 对数据库外文件范围的答复仍待收到。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

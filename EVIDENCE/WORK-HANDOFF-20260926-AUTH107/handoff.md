@@ -1,5 +1,7 @@
 # EliteSync v10｜Work 交接：AUTH-107 Phase A 静态边界
 
+**撤回说明（2026-09-26）**：Owner 指出当前 Work 会话约 10 次实际对话，未达 30 条；工具调用数被误计为会话长度。此次交接建议与 prompt 已撤回，Owner 未手动交接，本 Work 会话继续。以下保留为当时任务状态的历史快照，不是当前交接指令；AUTH-107 受限接受、未放行 Phase B 和已耗预算的事实不变。以 `CURRENT.md` 的最新状态和本地 Git 为准。
+
 日期：2026-09-26。实时项目只使用 `D:\EliteSync-v10`，禁止访问旧 `D:\EliteSync`。交接前本地 `main` 基线为 `bacb48fa8d49ab6f2a33fcc7c16b980fe2d1fc10`；本文件及 AUTH-105～107 接受记录拟作为同一有范围检查点提交，**交接后必须以本地 Git 重新核对最终 HEAD 与工作区**，不凭本文件推定。远端未拉取或推送。两个无关未跟踪目录 `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/` 与 `EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/` 须保留原状。
 
 ## 本会话进度与独立结论

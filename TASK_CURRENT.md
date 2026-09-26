@@ -1,29 +1,29 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE
+Task ID: AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC
 
-Risk Level: LEVEL 2（生产主机工具身份与选项的未来只读观察；本轮仅本地候选）
+Risk Level: LEVEL 2（未来主机工具只读观察的输出隔离与失败门；本轮仅本地虚构子进程）
 
-Status: ACCEPTED — PHASE A STATIC BOUNDARY ONLY; PROJECTOR NOT VERIFIED; PHASE B NOT RELEASED
+Status: ACCEPTED — LOCAL SYNTHETIC CAPTURE ONLY; NO HOST PROBE RELEASED
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
-## 目标与依据
+## 依据与目标
 
-AUTH-105 接受 MariaDB 官方资料的静态选项语义；AUTH-106 仅接受虚构帮助文本的严格解析拒绝边界。AUTH-106 的人工布局未证明与目标主机实际 `--help` 一致，不能直接当现场工具能力 PASS。AUTH-17 的 `mysqldump 10.11.14` 是旧一次主机观察且预算耗尽。本任务为将来**单次只读 SSH 工具观察**形成具体可审查候选，当前不连接主机。
+AUTH-107 获 Work LEVEL 2 受限 ACCEPT 的只有 Phase A 静态调用边界；其 `projector.py` 完整虚构套件 NOT_VERIFIED，且没有可运行 SSH/远端受限采集器。当前 Work 会话交接建议已被 Owner 纠正并撤回，不影响 AUTH-107 的测试和预算事实。本任务是新的**受限采集实现与虚构验证**，不重跑 AUTH-107 已耗的测试，也不放行现场。
 
-主要结果为 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md`；可在同一新目录附固定调用器、只读远端片段及纯虚构负向测试。仅允许写该新证据目录，其他项目文件/证据只读；保留两个既有无关未跟踪目录。
+主要结果为 `EVIDENCE/AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC/summary.md`；可在该新目录放候选源码和纯虚构子进程测试。仅允许写此新证据目录，其他项目文件/证据只读；保留两个既有无关未跟踪目录。
 
-## Phase A 工作范围与预算
+## 允许工作
 
-1. 核对本地 Git、入口、AUTH-17/105/106、既有受限 SSH 模式和风险门。只读使用本地已经接受的 SSH 目标身份/host-key 约束作为设计输入，不输出主机名、用户名、私钥路径/正文、连接串、对象名或原始错误；不得访问旧 `D:\EliteSync`。
-2. 设计一次性、固定目标的未来 SSH 只读工具观察：只检查 `mysqldump`/`mariadb-dump` 可执行文件身份、版本和**关闭默认选项文件读取后的**帮助选项文本，不连接 DB，不列库/表、不读取环境或配置值。严格限制进程、远端命令、超时、stdout/stderr 字节、认证方式和 host-key；不可把 AUTH-17 的 SSH 预算复用。若 `--no-defaults` 的位置/语义与目标工具版本不确定，先保留 UNKNOWN，不临场猜测或读取可能含敏感默认值的帮助输出。
-3. 候选必须在受控进程内从原始帮助内容只投影固定安全字段，并解决 AUTH-106 虚构布局不适用的问题：要么给出可证明不误判的有限解析方案及纯虚构负向测试，要么明确只取得版本/帮助摘要而将选项支持保持 UNKNOWN。不得把帮助文本中选项名出现等同为运行支持或默认值证明。
-4. 明确可能的工具别名/符号链接、帮助输出变化、stderr 提示、非零退出、管道退出码丢失、截断、重复行和 ANSI 控制字符的停点。普通证据只记录固定类别、版本候选、工具哈希或安全摘要、调用/字节计数与 UNKNOWN/PASS/FAIL；不保存或转发原始 stdout/stderr。任何真实执行前还须 Work 对固定脚本字节/哈希、主机/密钥/host-key、预算与并发风险独立审查。
-5. 本轮最多一轮纯虚构测试套件和一次静态检查；不得执行 SSH、生产 HTTP/API、Laravel CLI、真实 DB、Docker、云控制台、OpenSSL、UAC、部署、真实 dump 工具、备份、导出、传输、停写、DDL/DML 或删除。只交候选后停在 Work LEVEL 2 审查，不提交、推送、自接受或派发后继。
+1. 核对本地 Git、入口、AUTH-105～107、项目技能与风险门。只读参考 AUTH-107 的 `--no-defaults` 首参数、原始帮助不可泄漏、固定输出和预算设计；不得读取 `.env`、密钥、凭据、真实业务数据、备份或旧 `D:\EliteSync`。
+2. 实现一个**只接受调用方显式传入的可执行路径与参数数组**的有界双流采集核心；不含 SSH、网络、数据库或真实 dump 逻辑。必须并发排空 stdout/stderr，限制各流字节与整体时间，保留子进程真实退出码，超限/超时可靠终止并等待子进程；不将原始 stdout/stderr、异常文字、执行路径或环境内容写日志或普通返回值。对捕获不完整、非零退出、stderr 非空、超限和终止失败分别给固定安全类别。
+3. 提供窄门适配示例：将来如调用 dump 工具，`--no-defaults` 必须是工具首参数，其后只许 `--version` 或 `--help`；任何路径/别名身份和环境净化未独立锁定时不得调用。示例不能默认发现系统中的 `mysqldump`，不能包含真实主机/账号/密码/路径。与 AUTH-107 `projector.py` 的接口关系须说明，不能把虚构文本的 `PRESENT_IN_TEXT` 当作现场支持。
+4. 只用临时生成的纯虚构子进程检验：正常、小输出、stdout/stderr 同时突发、非零、超限、超时、恶意控制字符、原始秘密标记不泄漏、子进程退出/清理。测试过程不得启动真实工具、shell、SSH、OpenSSL、Docker 或网络。测试最多 3 轮套件，仅可为实际发现的失败修复后重试；记录每轮与最终结果。静态检查最多 2 轮。若环境无法可靠证明终止和限额，交出 UNKNOWN 而非伪造 PASS。
+5. 禁止生产 HTTP/API、Laravel CLI、真实 DB、云控制台、UAC、部署、dump、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 审查，不提交、推送、自接受或派发后继。
 
 ## 停点
 
-Phase A 接受不放行 SSH 或任何真实工具调用。未来单次现场只读观察须另由 Work 发布明确 Phase B 任务并过风险门；真实备份须目标、权限、范围、一致性、加密传输和隔离恢复准备成立后另由 Owner LEVEL 3 单次授权。若任何步骤可能触发 UAC，必须在触发前停下，待 Owner 在当前 Work 会话输入“我在”，且仍须具体任务授权。AUTH-101 各一次预算已耗尽，旧 AUTH-99 禁止运行。
+此本地虚构候选即使通过，也不授权 SSH 或目标主机工具调用；未来现场任务仍须锁定单一主机、身份、host-key、工具绝对路径/哈希、参数、脱敏回执、时限与一次预算。真实备份的目标/对象/权限、一致性、认证加密/密文传输和隔离恢复门仍 UNKNOWN，Owner LEVEL 3 单次授权另需。可能触发 UAC 的任何后继步骤在触发前停下，待 Owner 在当前 Work 会话输入“我在”；此前确认不沿用。AUTH-101、AUTH-17、AUTH-107 已耗预算不重置，AUTH-99 仍禁止运行。
 
-Work 已在 `EVIDENCE/AUTH-107-DUMP-TOOL-READONLY-PROBE-CANDIDATE/plan.md` 作 LEVEL 2 **受限 ACCEPT 仅 Phase A 静态边界**。`projector.py` 的完整虚构测试未通过且修正后未复跑；无可运行 SSH/远端受限采集程序，Phase B 不放行。本任务状态已非 ISSUED，不得自动执行。当前 Work 会话达到交接长度，交接只保存进度，不下达后继；下一 Work 会话应先核对本地状态，再决定新的独立实现/虚构验证任务。
+Work 已在 `EVIDENCE/AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC/summary.md` 作 LEVEL 2 受限 ACCEPT：仅当前 Windows 虚构子进程的有界采集核心，独立复跑 10 项通过。终止失败、子孙进程和其他系统行为未验证；没有 SSH、真实工具或 DB 证据。本任务不再处于 ISSUED，不能自行执行现场任务。
