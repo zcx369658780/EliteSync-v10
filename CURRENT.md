@@ -88,7 +88,11 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **当前任务 AUTH-119（2026-09-26）**：Owner 在当前 Work 会话回复“我在”，满足到场条件但没有放行 UAC、密码或生产动作。已向同一合资格 Codex 会话下达 AUTH-118 固定脱敏定位回执的本机纯虚构严格解析器任务，见 `TASK_CURRENT.md`；不启动进程、SSH、真实工具、DB 或备份。独立可信 host-key 来源的问题仍待 Owner 回答，AUTH-107 Phase B 未放行。
 
-**AUTH-119 审查结论与 host-key 澄清（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-119-LOCATOR-RECEIPT-STRICT-PARSER-SYNTHETIC/summary.md` 的纯虚构回执解析；最终 42 项由 Work 独立复跑通过，超限回执计数已封顶。Owner 表示本机有 SSH key，并有阿里云登录密码和真人识别权限；这是客户端登录私钥及控制台访问能力，**不是服务器主机密钥指纹的独立核对记录**，故可信 host-key 来源仍 `UNKNOWN`。Owner 当前“我在”仅满足到场条件。没有读取主机密钥、登录阿里云控制台、启动 SSH/真实工具或触发 UAC；AUTH-107 Phase B 和备份未放行。若经阿里云控制台等独立渠道取得服务器主机指纹，仍须另立具体受限任务、固定来源和审查门。
+**AUTH-119 审查结论与 host-key 澄清（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-119-LOCATOR-RECEIPT-STRICT-PARSER-SYNTHETIC/summary.md` 的纯虚构回执解析；最终 42 项由 Work 独立复跑通过，超限回执计数已封顶。Owner 表示本机有 SSH key，并有阿里云登录密码和真人识别权限；这些描述**尚不能证明存在服务器主机密钥指纹的独立核对记录**，故可信 host-key 来源仍 `UNKNOWN`。Owner 当前“我在”仅满足到场条件。没有读取主机密钥、登录阿里云控制台、启动 SSH/真实工具或触发 UAC；AUTH-107 Phase B 和备份未放行。若经阿里云控制台等独立渠道取得服务器主机指纹，仍须另立具体受限任务、固定来源和审查门。
+
+**当前任务 AUTH-120（2026-09-26）**：AUTH-119 已进入本地 `main` 检查点 `86d6ff233d201e63a2ae866caaecdf1bd77707e6`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-86d6ff2.bundle` SHA-256 `33F7FD7F82B94ECE6DA815395B8CE83CD3001AD3A66328D362328B361DBEDCC2`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达本机 `known_hosts` 固定目标指纹提取的 Phase A **纯虚构候选**，见 `TASK_CURRENT.md`；本轮不读取真实 `known_hosts`，不登录阿里云或启动 SSH。AUTH-02 未保存有效端口，不能凭未写 `-p` 推定 22。独立可信服务器主机指纹来源仍 `UNKNOWN`。
+
+**AUTH-120 Phase A 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-120-LOCAL-KNOWN-HOST-FINGERPRINT-CANDIDATE/summary.md` 的纯虚构固定目标提取；最终 36 项由 Work 独立复跑通过。真实 `known_hosts` 未读取，独立服务器指纹来源仍 `UNKNOWN`。Owner 关于本机“SSH key”的描述尚不能证明其保存了独立的服务器主机指纹；本机登录密钥与服务器主机密钥必须区分。后继一次本机只读提取须新任务与固定入口；阿里云控制台、SSH、DB、备份均未放行。
 
 | 项目 | 当前状态 |
 |---|---|
