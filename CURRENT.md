@@ -110,6 +110,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-123 Phase A 独立验收与 Codex 交接（2026-09-26）**：Work 虚构发射器确认 Windows Python 文本 stdout 单个末尾 CRLF；修订任务边界后，最终候选由 Work 独立复跑 50 项 PASS，LEVEL 2 **ACCEPT 仅虚构接收层**，见 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md`。固定启动候选未运行；`Process.Start()` 阻塞和全部子孙进程回收未证明，真实 `known_hosts` 未读取。AUTH-123 Phase B 0/1 仍未放行，AUTH-121/122 旧预算不重置，SSH/DB/备份仍未放行。前任 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115` 达 31 轮后停止派发；新会话 `01a0dc31-b629-76a3-85fd-f71566b03056` 已完成只读交接核验，现为最新合资格执行会话。交接没有建立新任务或预算。
 
+**AUTH-123 Phase B 当前派发（2026-09-26）**：Work 在本地检查点 `ae1fd832e289068f08b611cd72accd08df4b70cd` 后复核七份固定程序/依赖哈希及精确目标有限身份，作 LEVEL 2 单次放行，见 `work-review.md`。仅向最新 Codex 会话派发固定启动候选的一次本机只读诊断；启动前重核，失败即停，不重试。当前启动/真实读取预算 0/1，尚未执行；不触发 UAC 或密码，不连接 SSH/DB。放行不证明将得到有效格式结果，更不证明主机可信度或数据库备份就绪。
+
+**AUTH-123 Phase B 执行验收（2026-09-26，当前结论）**：最新 Codex 会话启动前七份哈希和精确目标有限身份复核通过，唯一固定启动返回脱敏 `ACCEPTED_CANDIDATE / INPUT_CR / FORMAT_INVALID`、已检查 0 条、先前候选 `NO`、端口/信任 `UNKNOWN`、内外层退出 0。Work 在 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md` 独立 LEVEL 2 **ACCEPT 仅这次本机格式类别事实**。AUTH-123 真实读取 1/1 已耗尽，不重跑；AUTH-121/122 旧预算不重置。服务器独立可信 host-key 来源和有效 SSH 端口仍 UNKNOWN，SSH/DB/真实备份未放行。无 UAC 或密码。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

@@ -4,9 +4,9 @@ Task ID: AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR
 
 Risk Level: LEVEL 2（本机历史信任记录诊断接收层；本轮仅虚构修复）
 
-Status: ACCEPTED — PHASE A SYNTHETIC RECEIVER ONLY; PHASE B NOT RELEASED
+Status: ACCEPTED — PHASE B BOUNDED FORMAT RECEIPT; ONE LOCAL READ 1/1 EXHAUSTED
 
-Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
+Assignee: 最新合资格 Codex 执行会话 `01a0dc31-b629-76a3-85fd-f71566b03056`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115` 与 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
 ## 目标与依据
 
@@ -23,6 +23,10 @@ AUTH-122 单次真实入口退出 0、stderr 空，但外层脱敏接收 `OUTPUT
 
 ## 停点
 
-AUTH-123 真实本机读取 Phase B 预算目前 **0/1 未放行**。只有 Work 独立接受最终接收层、固定启动字节和虚构进程级输出后，才可另作一次本机只读诊断的临运行裁决。失败即停，不重试。即使诊断成功，独立服务器 host-key 来源、有效 SSH 端口、AUTH-107 Phase B、DB 和真实备份仍未建立。Owner 当前“我在”只满足到场条件。
+AUTH-123 真实本机读取 Phase B 原为 **0/1 未放行**。只有 Work 独立接受最终接收层、固定启动字节和虚构进程级输出后，才可另作一次本机只读诊断的临运行裁决。失败即停，不重试。即使诊断成功，独立服务器 host-key 来源、有效 SSH 端口、AUTH-107 Phase B、DB 和真实备份仍未建立。Owner 当前“我在”只满足到场条件。
 
-Work LEVEL 2 已在 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md` 独立 **ACCEPT 仅 Phase A 虚构接收层候选**：最终虚构套件 50 项 PASS；固定启动候选未运行，进程启动阻塞与全部子孙进程回收未证明。上述 Phase B 0/1 仍未放行；下一步仅临运行风险复核，不从本次接受推导真实读取许可。
+Work LEVEL 2 已在 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md` 独立 **ACCEPT 仅 Phase A 虚构接收层候选**：最终虚构套件 50 项 PASS；固定启动候选未运行，进程启动阻塞与全部子孙进程回收未证明。Phase A 接受当时并未放行 Phase B；后来另作下述临运行裁决。
+
+Work 已完成上述临运行复核，并在同一 `work-review.md` 独立放行 **Phase B 一次本机只读诊断**。执行仅允许固定 PowerShell 7 `-NoProfile -File EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/launch_candidate.ps1`、零参数；作者启动前重核七份固定哈希、精确目标普通非重解析文件和 2,744 bytes 有限身份。任一不符即停，不换路径。只输出固定脱敏回执；不得显示或保存原始 stdout/stderr、known_hosts 正文、主机、公钥或指纹。启动预算最多 1/1，失败即停、不重试、不修后继续；启动/UAC/密码/SSH/DB/备份其余权限均不扩张。启动后记录预算和有限结果，交 Work LEVEL 2 独立审查。
+
+Phase B 已由最新 Codex 会话按唯一启动预算执行并交 `execution.md`；Work 核对唯一启动记录及脱敏回执后在 `work-review.md` 独立 **ACCEPT 仅受限格式诊断事实**：`INPUT_CR / FORMAT_INVALID`、`checked_entries=0`、候选 `NO`、端口/信任 `UNKNOWN`，内外层退出 0。真实本机读取/启动 **1/1 已耗尽**，不得重跑或修补本任务后继续。现有本机历史信任记录不构成独立可信 host-key 来源；服务器、SSH、DB 和备份未放行。后继须新任务处理可信来源与有效端口。
