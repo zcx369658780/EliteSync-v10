@@ -1,30 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS
+Task ID: AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR
 
-Risk Level: LEVEL 2（本机 SSH 历史信任记录受限诊断；Phase A 仅虚构候选）
+Risk Level: LEVEL 2（本机历史信任记录诊断接收层；本轮仅虚构修复）
 
-Status: REJECTED — PHASE B OUTPUT_INVALID; ONE LOCAL READ EXHAUSTED
+Status: ACCEPTED — PHASE A SYNTHETIC RECEIVER ONLY; PHASE B NOT RELEASED
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
 ## 目标与依据
 
-AUTH-121 单次真实本机读取返回 `REJECTED / FORMAT_INVALID`，无指纹候选，1/1 预算已耗尽；具体原因未保存，也不得猜测。Owner 明确选择另立**本机格式诊断**任务。先做可审查的纯虚构诊断器，将第一处拒绝归为固定结构类别；Phase A 不再读取真实文件。任何后续真实读取都须 Work 独立裁决和新预算，不作为 AUTH-121 重试。
+AUTH-122 单次真实入口退出 0、stderr 空，但外层脱敏接收 `OUTPUT_INVALID`，未取得阶段/类别；其 1/1 预算已耗尽。Work 静态审查及虚构 JSON 证明旧接收命令把 `ConvertFrom-Json` 的 `System.Int64` 错误限定为 PowerShell `[int]`。Owner 已选择继续完成本机格式诊断；先修复并**独立验证接收层**，不读取真实 `known_hosts` 或重跑 AUTH-122。
 
-主要结果为 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/plan.md`；Phase A 可在同一新目录新增诊断纯函数、固定只读入口候选与虚构测试。只允许写该目录；其他项目文件与证据只读，保留两个无关未跟踪目录。
+主要结果为 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/summary.md`；可在同一新目录新增固定 PowerShell 接收核心、未来固定启动入口候选及纯虚构测试。只允许写该目录；其余项目文件与证据只读，保留两个无关未跟踪目录。
 
 ## Phase A 允许工作与预算
 
-1. 核对本地 Git/工作区、五份入口、项目技能、AUTH-02、AUTH-120/121 已接受或受限失败证据。固定未来目标仅为 `C:\Users\zcxve\.ssh\known_hosts` 和已接受主机字面量 `101.133.161.203`；有效 SSH 端口 `UNKNOWN`。不得搜索/枚举其他 SSH 文件、主机、端口或路径。
-2. 在**虚构字节**下，设计并验证对 AUTH-120 `FORMAT_INVALID` 的有限诊断：最多 65,536 bytes、256 行、单行 2,048 bytes；仅输出固定错误阶段/类别、**首个异常前**是否曾见可解析的固定目标候选、有限已检查条目计数（封顶），不输出行号、主机名、原始行、公钥 blob、指纹、盐、哈希、文件路径、异常或其他主机信息。第一处异常即停止分类，不尝试修复、跳过或放宽原解析器。不得把“格式原因”升级为可信 host-key 或目标匹配证明。
-3. 如需未来一次真实读取入口，须复用 AUTH-121 的精确文件与依赖身份门或说明等价控制，确保只打开/读取一次并在内存中诊断；Phase A 仅做静态与虚构入口测试，**不得运行真实入口或读取真实 `known_hosts` 正文**。作者纯虚构测试最多 3 轮，静态检查最多 2 轮。记录 SHA-256、预算、负向用例及并发余量，停在 Work LEVEL 2 审查。
-4. 禁止 SSH、阿里云控制台/Cloud Assistant、远端命令、真实工具/DB、生产 API、Laravel CLI、Docker、OpenSSL、UAC、密码输入、部署、备份、导出、传输、停写、DDL/DML、删除、提交或推送。AUTH-17/101/107/121 等旧预算不重置，AUTH-99 禁止运行。
+1. 核对 Git/工作区、五份入口、项目技能、AUTH-120～122 精确证据和旧接收命令。固定未来 Python 入口仅为 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/local_format_entry.py`，其 SHA-256 `896EA25307601D4416F41219076800020526B96BC19D56338C09F60D14E3E928`。不得读取真实 `C:\Users\zcxve\.ssh\known_hosts` 正文。
+2. 修复外层接收协议：严格限制 stdout/stderr 字节或字符、总等待与回收、单行 JSON、唯一且精确的六字段、固定阶段/类别、`checked_entries` 的整数类型与 0～256 上限、前置关系和进程退出关系；PowerShell `Int64` 的有效 JSON 数字必须被接受，布尔、字符串、浮点和超限数字必须拒绝。Work 以纯虚构发射器确认固定 Windows Python 文本 stdout 末尾为单个 CRLF（末尾码点 13、10），故单行 JSON 仅允许单个末尾 LF 或单个末尾 CRLF；其他 CR、多行、重复结尾仍须拒绝。普通结果仅固定阶段/类别、封顶计数、异常前候选标志、`UNKNOWN` 端口/信任与退出码；任一失败不输出原始 stdout/stderr、异常、其他主机或路径。
+3. 纯虚构测试必须覆盖真实 PowerShell JSON 解析后的 `Int64`、负数/257、非法类型、额外/重复/缺失字段、非零退出/空 stderr 矛盾、stderr、超限/超时、LF/CRLF 正常结尾及其他 CR/多行拒绝、固定输出投影。可启动**仅本机虚构发射器**验证进程级接收，但不得启动真实 AUTH-122 入口或读取任何真实 SSH 文件。作者虚构测试 3/3、静态检查 2/2 均已耗尽；本次修订不得重置或补跑作者预算，由 Work 独立复核最终候选。记录最终文件哈希、预算和未证明项；停 Work LEVEL 2 审查。
+4. 禁止 SSH、阿里云控制台、远端命令、真实工具/DB、生产 API、Laravel CLI、Docker、OpenSSL、UAC、密码输入、部署、备份、导出、传输、停写、DDL/DML、删除、提交或推送。AUTH-121/122 的两次真实读取预算均已耗尽、不重置；AUTH-17/101/107 旧预算不重置，AUTH-99 禁止运行。
 
 ## 停点
 
-本任务真实本机读取 Phase B 预算目前 **0/1 未放行**。Work 在 Phase A 候选通过独立审查后，另作精确入口、哈希、目标身份、输出与单次预算的临运行裁决；失败即停，不重试。即使诊断得到结构类别，也不放行 SSH、AUTH-107 Phase B、阿里云控制台、DB 或真实备份。Owner 当前“我在”只满足到场条件。
+AUTH-123 真实本机读取 Phase B 预算目前 **0/1 未放行**。只有 Work 独立接受最终接收层、固定启动字节和虚构进程级输出后，才可另作一次本机只读诊断的临运行裁决。失败即停，不重试。即使诊断成功，独立服务器 host-key 来源、有效 SSH 端口、AUTH-107 Phase B、DB 和真实备份仍未建立。Owner 当前“我在”只满足到场条件。
 
-Work 已在 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/plan.md` 记录 Phase A LEVEL 2 受限 ACCEPT 与 Phase B 临运行裁决。该裁决曾仅允许固定解释器 `C:\Users\zcxve\AppData\Local\Programs\Python\Python311\python.exe` 以 `-I -B` 单次执行该目录 `local_format_entry.py`；固定哈希、目标元数据及输出边界见裁决。**该一次预算已用完，此段不再是现行执行授权。** AUTH-121 的旧 1/1 也不重置。
-
-Work LEVEL 2 Phase B **REJECT（诊断目标）**：入口单次退出 0、stderr 空，但本地接收层 `OUTPUT_INVALID`，阶段/类别/计数均 `UNKNOWN`；AUTH-122 真实读取 1/1 已耗尽，不能重试。Work 在不读取真实文件的情况下确认接收命令将 `ConvertFrom-Json` 的 `Int64` 误拒为非 `[int]`，见同目录 `plan.md`；此缺陷不能证明当次原始输出或文件格式。Phase A 虚构候选接受范围保持不变；SSH、阿里云控制台、AUTH-107 Phase B、DB 与备份均未放行。
+Work LEVEL 2 已在 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md` 独立 **ACCEPT 仅 Phase A 虚构接收层候选**：最终虚构套件 50 项 PASS；固定启动候选未运行，进程启动阻塞与全部子孙进程回收未证明。上述 Phase B 0/1 仍未放行；下一步仅临运行风险复核，不从本次接受推导真实读取许可。

@@ -106,6 +106,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-122 Phase B 执行与审查（2026-09-26）**：固定入口一次退出 0、stderr 空，但本地脱敏接收层给出 `OUTPUT_INVALID`，没有可接受的阶段/类别/计数；Work LEVEL 2 **REJECT 诊断目标**，仅接受受限单次运行事实，见 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/plan.md`。Work 以虚构 JSON 证实接收层把 `ConvertFrom-Json` 的 `System.Int64` 错误限定为 `[int]`，但原始输出未保存，不能将其认定为当次唯一原因或推断文件格式。AUTH-122 新读取预算 1/1 已耗尽，不重试；AUTH-121 旧预算不重置。后继须新任务先修复并离线验证接收层，再另过一次真实读取门。SSH/阿里云/DB/备份仍未放行。
 
+**当前任务 AUTH-123（2026-09-26）**：AUTH-122 已进入本地 `main` 检查点 `8c463dbe2c0d507736e3b9a65cb129fecfa7c3d3`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-8c463db.bundle` SHA-256 `9487D931E556EA05C2A1765814DC313AC7A519CA10B90FC686AC6BC60384CCE6`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达本机格式诊断外层接收修复的 Phase A 虚构进程/JSON 验证，见 `TASK_CURRENT.md`；不读取真实 `known_hosts`，新 Phase B 0/1 未放行，AUTH-121/122 旧预算不重置。
+
+**AUTH-123 Phase A 独立验收与 Codex 交接（2026-09-26）**：Work 虚构发射器确认 Windows Python 文本 stdout 单个末尾 CRLF；修订任务边界后，最终候选由 Work 独立复跑 50 项 PASS，LEVEL 2 **ACCEPT 仅虚构接收层**，见 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md`。固定启动候选未运行；`Process.Start()` 阻塞和全部子孙进程回收未证明，真实 `known_hosts` 未读取。AUTH-123 Phase B 0/1 仍未放行，AUTH-121/122 旧预算不重置，SSH/DB/备份仍未放行。前任 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115` 达 31 轮后停止派发；新会话 `01a0dc31-b629-76a3-85fd-f71566b03056` 已完成只读交接核验，现为最新合资格执行会话。交接没有建立新任务或预算。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
