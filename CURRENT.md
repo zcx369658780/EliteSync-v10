@@ -52,6 +52,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-110 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-110-BOUNDED-PROJECTION-TRANSPORT-PARSER-SYNTHETIC/summary.md` 的纯虚构传输解析；Work 独立复跑 42 项通过。没有 SSH、真实远端程序、工具、DB 或 UAC；输入字节及双层退出码的真实来源仍 `UNKNOWN`，AUTH-107 Phase B 和真实备份未放行。
 
+**当前任务 AUTH-111（2026-09-26）**：AUTH-110 已进入本地 `main` 检查点 `5181204ee15adef64e381285d3b4c21f8ed9b158`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-5181204.bundle` 的 SHA-256 为 `15DBA791C4103C90D50C76FF8DA742B14A5C14DD642BE98AF165852A96B59C7B`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达 `AUTH-111-SYNTHETIC-TRANSPORT-CAPTURE-AND-PARSER-WIRING`，仅本地临时虚构子进程的双流采集与 AUTH-110 解析衔接；真实 SSH、远端退出来源、UAC 和备份未放行。该检查点不含新任务单未提交修改及两个无关未跟踪目录。
+
+**AUTH-111 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-111-SYNTHETIC-TRANSPORT-CAPTURE-AND-PARSER-WIRING/summary.md` 的本地虚构进程接线；Work 独立复跑最终候选 11 项通过，AUTH-110 固定解析器 SHA-256 匹配。`Popen` 启动阻塞不能严格限时、真实远端退出来源与 SSH 语义、host-key、工具身份及数据库前置门仍 `UNKNOWN`。AUTH-107 Phase B 不放行，真实备份和 UAC 均未执行。下一个现场步骤须先另立具体风险任务；Owner 对数据库外文件是否属于“完整备份”仍未决定。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
