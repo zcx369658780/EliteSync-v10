@@ -82,6 +82,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-117 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-117-HOST-PROBE-LOCATOR-AND-LAUNCH-ENVELOPE-STATIC/plan.md` 的静态缺口清单及未来单次只读边界。AUTH-02/17 只证明历史 SSH 身份和版本；现时 host-key、解释器、远端程序与工具绝对路径/哈希仍 `UNKNOWN`。本轮没有可运行命令或 SSH；AUTH-107 Phase B、真实 DB 和备份未放行。下一步须另立授权明确的窄只读定位候选，再由 Work 独立审查是否允许一次现场观察。
 
+**当前任务 AUTH-118（2026-09-26）**：Owner 暂时离开，要求继续无需密码/UAC 的工作，触发前必须停下并等其在当前 Work 会话重新输入“我在”。本地 `main` 检查点 `799ecb50e63199e6aef572a87d6e2a49920a0387`，仅两个既有无关未跟踪目录；最新合资格 Codex 会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115` 可沿用。已下达 AUTH-118 单次只读定位调用及固定脱敏回执的**本地静态候选**，见 `TASK_CURRENT.md`；不执行 SSH、真实工具、UAC 或备份。现时 host-key 可信来源仍待定，AUTH-107 Phase B 未放行。
+
+**AUTH-118 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-118-HOST-LOCATOR-READONLY-CALL-STATIC-CANDIDATE/plan.md`，仅限本地静态调用合同与固定脱敏回执边界。现时可信 host-key 来源、远端启动语义和工具绝对路径仍 `UNKNOWN`；唯一绝对普通文件路径也只算候选，脱敏回执不交付下一次执行所需路径。本轮无 SSH、真实工具、DB、UAC 或备份；AUTH-107 Phase B 未放行。Owner 离开期间，任何需密码或可能触发 UAC 的动作停在触发前。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
