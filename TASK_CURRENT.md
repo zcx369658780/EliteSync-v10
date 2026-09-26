@@ -26,3 +26,5 @@ AUTH-24 `EVIDENCE/AUTH-24-ALIYUN-BACKUP-RESOURCE-CHOICE-PACKET/packet.md` 第 9�
 不得打开 Owner 账号控制台或登录、触发密码/真人识别/UAC、访问轻量服务器网页的私有页面、远端终端、SSH/DB、重读 known_hosts、运行真实工具、备份/导出/传输、修改生产状态、提交或推送。AUTH-121/122/123 的真实读取各 1/1 已耗尽，AUTH-107 Phase B 未放行，AUTH-99 禁止运行。Phase A 不放行任何现场动作。
 
 Work 已在 `EVIDENCE/AUTH-127-LIGHTWEIGHT-SERVER-BINDING-VIEW-STATIC-CANDIDATE/plan.md` 独立 LEVEL 2 **ACCEPT 仅静态候选**。官方产品页面范围已缩到轻量应用服务器服务器列表/唯一概览，但目标账号主体/地域尚无本次可固定权威，现为 `PRECHECK_MISSING`；地域字段位置及今天的唯一实例/公网地址均未证明。无现场预算放行。下一步在受限方式明确账号主体、地域和 Owner 现场方式后，另作具体风险裁决；遇密码/真人识别/UAC 前按 Owner 指示停止。
+
+Owner 随后在当前 Work 会话答复：本次仍是 AUTH-24 中同一阿里云账号和华东2（上海）轻量应用服务器。仅是范围确认，不证明现时实例/地址/权限；具体一次只读账号页面授权尚未取得，Phase B 仍未放行。密码、真人识别和 UAC 前继续停。

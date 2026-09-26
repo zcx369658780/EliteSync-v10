@@ -130,6 +130,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-127 静态验收及 Owner 现场停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-127-LIGHTWEIGHT-SERVER-BINDING-VIEW-STATIC-CANDIDATE/plan.md` 仅为轻量应用服务器“服务器列表→唯一概览”的只读目标绑定候选。目标账号主体/地域尚无本次可固定权威，地域字段位置、今天的实例/地址均未获现场证明，当前 `PRECHECK_MISSING`、现场预算未放行。Owner 要求遇到密码或可能 UAC 先停，故下一步需 Owner 在受限方式确认账号/地域及现场参与；无账号登录、真人识别、控制台、远端终端、SSH、DB 或备份动作。
 
+**Owner 目标范围答复（2026-09-26）**：Owner 在本 Work 会话确认此次仍为 AUTH-24 中同一阿里云账号及华东2（上海）轻量应用服务器。此答复只关闭账号/地域的口头范围疑问，不证明今天实例 ID、公网地址、权限或页面状态。一次只读控制台查看的具体授权问题仍待 Owner 回复；登录密码、真人识别或 UAC 前须依 Owner 指示停下，不因“同一账号和地域”自动进入账号页面。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
