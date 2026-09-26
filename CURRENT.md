@@ -154,6 +154,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-132 审查与待 Owner 决定（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-132-FIRST-TRUST-BOOTSTRAP-DECISION-PACKET/packet.md` 作为静态决策材料。它说明仅凭公开资料无法事前固定目标实例的现时运行值，提供保持 `NO-GO` 或另审一次受限控制面发现的两条可证路径；没有经证实的更小权限第三条。Owner 尚需明确是否愿按“命令助手可能长期留存无秘密脚本和白名单结果、可见者未知”审议路径 B；本次一般“继续”不等于同意。即使同意，实例绑定、完整脚本/权限/异常输出、独立主机信任锚及一次现场授权仍各需新门。当前现场预算 0、首次备份未开始，旧预算不重置。
 
+**Owner 留存风险决定与当前 AUTH-133（2026-09-26）**：Owner 在本 Work 会话对 AUTH-132 的精确选项回复“接受该风险，继续准备候选”，即按命令助手可能长期留存无秘密脚本和白名单结果、可见者未知的边界继续**设计**。这不放行控制台、实例内命令或默认 root，也不追认 `TARGET_BINDING`、host-key、端口与任何真实备份门。Work 核对本地 `main` HEAD `19877568c33f33cc9f266d00a339b1a5876e1e2d`、仅两个无关未跟踪目录及最新 Codex 会话空闲后，下达 AUTH-133 第一阶段运行配置来源预检静态候选，见 `TASK_CURRENT.md`；现场预算仍为 0。
+
+**AUTH-133 审查与来源停点（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-133-FIRST-STAGE-SSH-RUNTIME-PREFLIGHT-CANDIDATE/plan.md` 的 `NOT_FIXED` 及缺口表。Owner 已接受的留存风险不产生实例独立标识、最小权限用户、目标机工具身份或完整异常输出保证；即使第一阶段也无可运行命令。下一步先请 Owner 仅确认是否存在创建/交接时留存、独立于 AUTH-128 页面观察的受保护实例及部署记录，不在聊天索取原值；若不存在，另议有预算的身份/工具发现风险门，而非重发纯静态填空任务。现场预算 0、旧预算不重置、首次备份未开始。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
