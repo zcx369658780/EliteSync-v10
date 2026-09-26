@@ -1,23 +1,27 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT
+Task ID: AUTH-142-ONE-SHOT-CAPABILITY-PROBE-REATTEMPT
 
-Risk Level: LEVEL 3（生产控制台命令记录一次只读核查）
+Risk Level: LEVEL 3（生产轻量实例命令助手新预算一次只读提交）
 
-Status: COMPLETED — RECEIPT_NOT_OBSERVED; READONLY VIEW CONSUMED (1/1); NO EXECUTION
+Status: STOPPED — NEW ONE-SHOT SUBMIT ATTEMPT CONSUMED (1/1); FIELD RESULT UNKNOWN
 
-Assignee: Work 亲自只读核查；不向 Codex 派发现场动作。
+Assignee: Work 亲自临运行复核与执行；Codex 不派发现场动作。
 
-## 授权、对象与预算
+## Owner 新决定与固定对象
 
-Owner 在 AUTH-140 `SUBMIT_UNCONFIRMED`、执行点击尝试 `1/1` 已耗尽后回复“好的请继续”。本任务仅接受该回复为**一次只读延迟回执核查**授权，不推定为再次点击执行、SSH、DB 或备份授权。旧 AUTH-140 执行预算不重置。
+AUTH-140 的一次按钮动作已计 `1/1` 且 `SUBMIT_UNCONFIRMED`；AUTH-141 新的一次只读列表 1/1 未看到对应记录，但不能证明绝无后台执行。Owner 在明知此不确定性及重复探测可能性后，**明确批准全新一次执行预算**，仅限同一上海轻量实例、AUTH-140 已审的 11 行只读 Shell 能力探针。旧 AUTH-140 执行预算不重置。Owner 对本条短探针以 `root`、脚本/结果可能被命令助手长期留存的批准按相同目标和内容沿用；没有 SSH、DB、密钥或备份授权。
 
-只允许打开阿里云官方轻量应用服务器上海地域 Owner 指定的**同一唯一实例**命令助手记录页一次。为避开旧表单中可能留存的已填脚本，可新开同一精确实例命令记录 URL 的临时已登录标签页；不得操作旧表单“确定”。页面必须直接显示同一产品、地域、实例、地址类别；不符、要求重新登录、真人识别、权限/UAC 或页面异常即停。开始读取已认证命令记录计 `1/1`，不论结果；不刷新、不重复打开、不用云 API。
+固定脚本为 `EVIDENCE/AUTH-140-ONE-SHOT-COMMAND-ASSISTANT-CAPABILITY-PROBE/plan.md` 内“唯一拟粘贴文本”的 11 行，执行前该文件 SHA-256 `1B6CC2D1414619B5F8BDB656348DE4BB336A51361FD60DC29253B00FFC37ABF3`。仅输出身份类别与 `sshd/systemctl/service` 名称可定位类别，不读配置、主机密钥、客户端 PEM、数据库或业务行，不写文件/改服务。历史 root/22/跳过主机校验线索不放行 SSH。
 
-只看是否有命令名 `AUTH-140-readonly-capability-probe` 对应的新执行记录及状态。若能确认对应记录，最多打开**该记录的一次详情**，只提取白名单状态/退出类别、`UID=ROOT|NONROOT` 与 `SSHD/SYSTEMCTL/SERVICE=YES|NO`，以及时间、预算；任何额外输出、不同命令内容或来源不明即停，不复制原始页面或其他输出。无记录时只写 `NOT_OBSERVED`，不得推断绝无后台运行；不因此重试。普通证据不存账号、实例 ID、地址、路径、截图、原始命令输出或错误全文。
+## Work LEVEL 3 临运行门与单次预算
 
-唯一主要结果：`EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。AUTH-128/136/138 页面及 AUTH-121/122/123 本机预算不重置。SSH、命令助手执行、PEM、真实 DB、dump、备份预算为 0；保留两个无关未跟踪目录，不访问旧仓库或自动 pull/push。
+只操作当前用户已登录的官方上海地域 Owner 指定唯一轻量实例命令助手。先读旧表单状态，不点击旧“确定”前核对目标 URL/地域及表单：Shell、输入命令内容、无参数、名称 `AUTH-140-readonly-capability-probe`、用户 `root`、超时 10 秒、执行路径仍为原默认 `/root`、编辑器恰好上述 11 行加可忽略尾随换行。若表单失效或字段变化，只允许在**同一实例同一表单**精确恢复这些固定值一次；任何登录、真人识别、权限/UAC、内容无法完整核对或异常即停。不切换实例、用户、脚本或工具。
 
-## 执行与审查
+核对按钮实际可用、无覆盖层/禁用/验证错误后，由 Work 用页面语义控件对“确定”提交**至多一次**；动作开始即计新预算 `1/1`，不论是否可见成功。不得因页面未变化再点第二次。提交后只读观察是否出现本命令的新记录或白名单结果；最多查看对应记录一次，超出白名单/来源不明即停。普通证据只留 `UID=ROOT|NONROOT`、三个工具位 `YES|NO`、状态/退出类别、时间与预算，不存账号、实例 ID、IP、脚本原始执行输出、错误全文或截图。无记录则 `SUBMIT_UNCONFIRMED`，不推断绝无后台运行。AUTH-128/136/138/141 页面预算及 AUTH-121/122/123 本机预算不重置。
 
-Work 在临时标签完成本任务唯一一次已认证同一实例命令记录查看，预算 `1/1` 耗尽。当前实例记录表未显示任何相关命令执行记录；仅接受 `RECEIPT_NOT_OBSERVED`，不能证明 AUTH-140 后台绝无执行，旧 `SUBMIT_UNCONFIRMED`/`FIELD_RESULT=UNKNOWN` 不变。临时标签已关闭，未刷新或执行命令。见 `EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。本任务停点；新的现场提交需新任务及单次预算。
+唯一主要结果 `EVIDENCE/AUTH-142-ONE-SHOT-CAPABILITY-PROBE-REATTEMPT/summary.md`。任何成功仅证明命令助手该次环境类别，不证明 host-key、实际 SSH 端口、SSH 可信或 DB 结构。SSH、DB、dump、备份继续为 0；保留两个无关未跟踪目录，不访问旧仓库或自动 pull/push。
+
+## 执行与停点
+
+Work 核对旧表单及已审脚本后，用页面“确定”语义按钮作一次提交尝试，预算 `1/1` 耗尽；页面无状态变化、无记录/回执、无确认对话框，`SUBMIT_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`。没有第二次点击。证据见 AUTH-142 `summary.md`。本任务停止；不据此 SSH 或进入 DB，后继需要新任务/预算并处理自动化提交无可靠回执与潜在重复风险。

@@ -200,6 +200,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-141 执行结论（2026-09-26）**：Work 在临时标签只读查看同一实例命令记录一次，`1/1` 耗尽；页面未显示相关执行记录，LEVEL 3 只接受 `RECEIPT_NOT_OBSERVED`，不推断后台必未运行。临时页已关闭；AUTH-140 仍 `SUBMIT_UNCONFIRMED`、现场结果 `UNKNOWN`，执行预算 1/1 不重置。未再次提交命令、SSH、DB 或备份。见 `EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。
 
+**当前 AUTH-142（2026-09-26）**：Owner 在获知 AUTH-140 提交未确认、AUTH-141 一次只读仍无记录及潜在重复风险后，明确批准**新的单次**命令助手能力探针预算。Work 仅对同一上海轻量实例使用 AUTH-140 固定的 11 行无秘密只读脚本，先复核旧表单，再以语义按钮最多提交一次；新预算 `0/1`，旧预算不重置。即使成功也只证明当次命令助手环境类别，不放行 SSH/DB。见 `TASK_CURRENT.md`。
+
+**AUTH-142 最终停点（2026-09-26）**：Work 核对同一实例的 Shell/root/10 秒/无参数及已审 11 行脚本，并对页面“确定”作一次语义提交，`1/1` 耗尽。表单没有状态变化，命令记录仍空，无回执或确认对话框；`SUBMIT_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`，未第二次点击。原表单可能保留脚本，勿误触。没有 SSH、PEM 读取、真实 DB、dump 或备份；后继若由 Owner 手动提交或诊断自动化 UI，需要新的任务、预算并考虑潜在重复。见 `EVIDENCE/AUTH-142-ONE-SHOT-CAPABILITY-PROBE-REATTEMPT/summary.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
