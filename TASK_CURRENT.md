@@ -4,9 +4,11 @@ Task ID: AUTH-152-BOUNDED-PUBLIC-HOST-KEY-CANDIDATE
 
 Risk Level: LEVEL 3（首次 SSH 信任；本轮纯本地静态命令候选）
 
-Status: ISSUED — STATIC CANDIDATE ONLY; CONSOLE FIELD BUDGET 0/1
+Status: PHASE B GO — OWNER ONE MANUAL SUBMIT ONLY; CONSOLE FIELD BUDGET 0/1 UNTIL CLICK
 
 Assignee: 最新合资格 Codex 执行会话；Work 独立 LEVEL 3 审查和现场控制。
+
+Work LEVEL 3 已核对当前同一上海实例表单、Shell/root、10 秒与候选脚本精确 SHA-256，一次 GO 仅限 Owner 本人在当前表单手动点击“确定”。点击即耗尽唯一 1/1 预算，页面无变化也不重试；出现密码、真人识别、UAC、权限或目标歧义即点击前停。详情结果与首次 SSH 均未放行，不能将候选指纹当成已验证 host key。
 
 Owner 已指定当前阿里云上海唯一轻量实例，并接受在其命令助手中以 root 最多做一次只读 SSH 公钥/配置/监听检查，允许使用系统自带工具而不逐字节预验，脚本与结果可能由阿里云留存；不得读取 host 私钥、数据库或其他秘密。旧新服务器同一性不再是问题。AUTH-151 因要求公钥文件与运行中 sshd 事前关联而停止；Work LEVEL 3 澄清：控制面安全取得的有限**公钥候选**只作为首次信任锚候选，之后首次严格 SSH 握手精确匹配才可能证明对端正在提供该 key。匹配前不得写 `HOST_KEY_MATCH=YES`。
 
