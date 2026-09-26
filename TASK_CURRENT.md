@@ -4,13 +4,17 @@ Task ID: AUTH-137-SSH-TRUST-AND-LIVE-SCHEMA-ENTRY
 
 Risk Level: LEVEL 3（拟对生产实例建立 SSH 信任并调查真实数据库结构；当前仅范围与授权记录）
 
-Status: PREPARATORY — SSH DIRECTION AUTHORIZED BY OWNER; CONNECTION NOT RELEASED; TRUST SOURCE NOT FIXED
+Status: PREPARATORY — CLIENT IDENTITY KEY EXISTS; CONNECTION NOT RELEASED; SERVER TRUST SOURCE NOT FIXED
 
 Assignee: Work 固定下一受限候选与 Owner 决策；当前不派发现场动作。
 
 ## Owner 新授权与当前停点
 
 Owner 明确授权以 SSH 连接方式调查数据库结构，并允许必要时询问截图所示旧项目 Codex 会话。这是**方向与目的授权**；本任务尚未固定实例绑定、独立 host-key 来源、有效端口、身份、准确命令、只读 DB 元数据范围、输出及一次预算，不作为立即发起 SSH、命令助手或真实 DB 查询的临运行放行。
+
+Owner 随后指出本机保存的 SSH 客户端 PEM 路径。Work 只对该精确路径做文件存在性检查，结果 `EXISTS`；未打开、哈希、复制或读取密钥内容。客户端私钥只能用于向服务器认证，不能证明服务器 host-key、目标实例或有效端口。
+
+Owner 另提供该服务器的公网/私网地址和 SSH 端口数值；普通任务文件不保存这些原值。它们是 Owner 陈述的连接候选，尚未由当前实例的独立控制面/运行中配置核验；`PORT_VERIFIED=UNKNOWN`，服务器 host-key 来源仍 `UNKNOWN`。
 
 前一 AUTH-136 仅接受已登录上海轻量服务器列表唯一运行中条目的观察；概览因 UI 异常未核，查看 1/1 耗尽。AUTH-130 仅接受 `NOT_FIXED` 停止结论。旧项目会话 `01a0666b-6f87-7aa1-924c-75c021c9dbaf` 经 Owner 授权的定向只读回复为 `NOT_FOUND_IN_SEARCHED_SCOPE`：在其旧仓库文档/Git 历史及 2026 年 8—9 月相关本地会话范围内，未找到独立于 SSH/known_hosts 的云实例身份或主机公钥来源；此回复是外部线索，Work 不访问旧 `D:\EliteSync`，不能把搜索范围外推为不存在。
 

@@ -176,6 +176,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **当前 AUTH-137（2026-09-26）**：Owner 新明确授权以 SSH 方式调查数据库结构，并允许必要时询问截图中的旧项目 Codex。Work 向准确旧会话作一次定向只读询问；回复称在其限定旧资料范围内未找到云实例原始身份或独立主机公钥来源，不能证明搜索范围外不存在，也不能把旧 SSH/known_hosts 当现时信任锚。见 `TASK_CURRENT.md` 与 `EVIDENCE/AUTH-137-SSH-TRUST-AND-LIVE-SCHEMA-ENTRY/decision.md`。由于实例绑定、host-key/端口及精确命令仍未固定，授权只记为 SSH 调查方向，**不发起连接**；需先形成并审查受限信任来源候选，精确现场动作另取 Owner 决定。AUTH-128/136 各 1/1 及其他耗尽预算均不重置。
 
+**AUTH-137 客户端密钥提示（2026-09-26）**：Owner 提供本机 SSH 客户端 PEM 路径并要求重试；Work 仅核对该精确文件存在，未读取内容或发起 SSH。客户端身份密钥不等于服务器 host-key 信任锚，`SERVER_TRUST_SOURCE=UNKNOWN`、`PORT_VERIFIED=UNKNOWN` 和 `SSH_BUDGET=0` 不变；控制台页面仍打开也不重置 AUTH-136 的 1/1。
+
+**AUTH-137 Owner 连接候选（2026-09-26）**：Owner 补充服务器公网/私网地址及 SSH 端口。普通证据不记录原值；此为 Owner 提供的候选而非独立的当前监听、云实例或 host-key 证明。未调用网络或 SSH，独立信任门和新现场授权仍待完成。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
