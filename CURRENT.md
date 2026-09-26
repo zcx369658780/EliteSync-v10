@@ -204,6 +204,12 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-142 最终停点（2026-09-26）**：Work 核对同一实例的 Shell/root/10 秒/无参数及已审 11 行脚本，并对页面“确定”作一次语义提交，`1/1` 耗尽。表单没有状态变化，命令记录仍空，无回执或确认对话框；`SUBMIT_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`，未第二次点击。原表单可能保留脚本，勿误触。没有 SSH、PEM 读取、真实 DB、dump 或备份；后继若由 Owner 手动提交或诊断自动化 UI，需要新的任务、预算并考虑潜在重复。见 `EVIDENCE/AUTH-142-ONE-SHOT-CAPABILITY-PROBE-REATTEMPT/summary.md`。
 
+**当前 AUTH-143（2026-09-26）**：Owner 对 AUTH-140/142 两次提交无回执及 AUTH-141 记录未见后的停点回复“可以请继续”。Work 新立仅在当前旧表单上做一次只读 DOM/错误日志分类的 UI 诊断，见 `TASK_CURRENT.md`；无第三次提交预算，不触碰 SSH、DB、密钥或备份。任何后续执行仍需新任务和 Owner 具体授权。
+
+**AUTH-143 只读诊断结论（2026-09-26）**：Work LEVEL 3 仅接受当前“确定”按钮启用/可见/无遮挡、无可见原生校验错误，以及浏览器已捕获 error 日志 0 条的受限观察。未定位可靠的两次无回执根因，也不能证明请求从未发送；未点按钮或修改表单。Owner 随后在获知前两次可能送达及重复探测风险后，同意**由本人在 Work 重新核对并给出明确 GO 后手动单击一次**；此答复不是要求 Work 代点。见 `EVIDENCE/AUTH-143-COMMAND-FORM-READONLY-UI-DIAGNOSIS/summary.md`。
+
+**当前 AUTH-144（2026-09-26）**：针对同一上海实例的旧命令助手表单，Work 已完成一次只读临运行核对并作 LEVEL 3 GO；仅 Owner 本人可在当前旧表单手动单击“确定”一次，Work 不代点。核对预算 1/1、Owner 手动预算尚 0/1，未收到点击/结果回执。旧 AUTH-140/142 的尝试均为 1/1、`SUBMIT_UNCONFIRMED`，AUTH-141 记录查看 1/1，均不重置。见 `TASK_CURRENT.md` 与 AUTH-144 `summary.md`；SSH、密钥、DB、dump 和备份仍未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
