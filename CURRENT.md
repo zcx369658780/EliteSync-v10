@@ -140,6 +140,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-129 静态验收（2026-09-26，当前停点）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-129-FIRST-BACKUP-CONNECTION-TRUST-STATIC-CANDIDATE/plan.md` 仅为轻量应用服务器连接信任路径与首次备份 GO/NO-GO 顺序。官方命令助手资料支持产品的一般能力，也显示脚本和执行结果可留存；此实例精确公钥路径、算法、有效监听/防火墙、命令与脱敏投影均未固定。无现场命令、SSH、DB 或备份授权。下一步须先另立精确无秘密的只读命令候选并审查，再议一次现场风险门；Owner 的继续推进授权不重置 AUTH-128 或本机读取旧预算。
 
+**当前 AUTH-130（2026-09-26）**：AUTH-129 已进入本地 `main` 检查点 `0a50b1bbd0adc99749245f748790b216864f36f5`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-0a50b1b.bundle` SHA-256 `D6180BBB70EBDAABEACBF5A77980C17A91B209697220D828FF3B2EB26F60EE4C`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达命令助手**静态精确候选**任务，见 `TASK_CURRENT.md`；本轮禁止控制台、实例内命令、SSH、DB 和备份。若来源不足，停 `NOT_FIXED`，不得猜路径或端口。
+
+**AUTH-130 审查与首次备份停点（2026-09-26，当前有效）**：Work LEVEL 3 接受 `EVIDENCE/AUTH-130-LIGHTWEIGHT-HOST-TRUST-PROBE-STATIC-CANDIDATE/plan.md` 的 `NOT_FIXED` 否定结论，不接受任何现场命令或真实备份放行。公开资料和现有项目证据无法固定该实例当前 host-key 公钥路径/算法、有效 SSH 端口、实例内执行身份及命令助手留存边界；AUTH-128 概览只显示 Ubuntu 24.04 镜像标签，不证明实例内运行状态。若要继续，须另立受审的单次只读来源发现方式与留存/权限边界，再过具体风险门；不得因 Owner 的一般推进授权或当前控制台仍打开而操作实例、SSH 或 DB。数据库目标/范围/权限、一致性、加密传输与本机隔离恢复各门也仍未关闭，第一次备份未开始。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
