@@ -210,6 +210,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-144 最终停点（2026-09-26）**：Owner 已报告在 Work GO 后亲自点击一次，本轮核对和 Owner 手动预算各 1/1 耗尽。Work 只读观察当前页面新增一条同名命令记录，控制台状态“执行完成”；未打开详情，退出码/白名单 stdout 仍 `UNKNOWN`。Work LEVEL 3 只接受控制面记录，不据此判定探针技术结果。旧 AUTH-140/142 的尝试均为 1/1、`SUBMIT_UNCONFIRMED`，AUTH-141 记录查看 1/1，不重置。见 `TASK_CURRENT.md` 与 AUTH-144 `summary.md`；SSH、密钥、DB、dump 和备份仍未放行。后继详情读取须新任务和具体授权。
 
+**当前 AUTH-145（2026-09-26）**：Owner 已明确授权只读打开 AUTH-144 唯一新命令记录的详情一次，限定退出状态和 `AUTH140` 白名单类别。新详情查看预算 0/1，见 `TASK_CURRENT.md`；不放行重新执行、SSH、密钥、DB 或备份。
+
+**AUTH-145 最终停点（2026-09-26）**：Work 对该记录“查看命令详情”作一次界面点击，详情预算 1/1 耗尽；页面无可见变化，未出现详情或新标签页。`DETAIL_OPEN_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`，未重试。命令记录的“执行完成”不能代替退出码或白名单结果；SSH、密钥、DB、dump 与备份仍未放行。见 AUTH-145 `summary.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
