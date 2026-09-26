@@ -100,6 +100,12 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-121 Phase B 执行与审查（2026-09-26）**：Codex 在固定哈希和目标元数据复核后只启动一次本机入口，受控结果 `REJECTED / FORMAT_INVALID`、退出 1、无指纹候选；Work LEVEL 2 **REJECT 指纹候选目标**，仅接受此次受限失败事实，见 `EVIDENCE/AUTH-121-LOCAL-KNOWN-HOST-ONE-SHOT-ENTRY/plan.md`。具体格式原因 `UNKNOWN`，不读取原文猜测，不重试或改用其他工具；本机读取 1/1 预算已耗尽。独立可信服务器指纹、有效 SSH 端口、真实工具身份与 DB 前置门仍未建立；阿里云控制台、SSH、AUTH-107 Phase B、备份均未放行。
 
+**当前任务 AUTH-122（2026-09-26）**：Owner 在 AUTH-121 终止后明确选择“先做本机格式诊断”。AUTH-121 已进入本地 `main` 检查点 `77b5d57a7562b436a53426bc9708e1a89a19f43a`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-77b5d57.bundle` SHA-256 `10D36850D79990C8C3919E1FFDE4521C3BDC6A5736167EF384E9D2CBE6D3E081`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达 AUTH-122 Phase A 纯虚构诊断器与固定入口候选，见 `TASK_CURRENT.md`；本轮不读取真实 `known_hosts`，Phase B 0/1 未放行。AUTH-121 已耗预算不重置，SSH/阿里云/DB/备份仍未放行。
+
+**AUTH-122 Phase B 单次放行（2026-09-26）**：Work 独立复跑最终 21 项虚构检查，通过后核对固定入口、诊断模块、AUTH-121/120 依赖、解释器哈希及精确目标有限元数据，在 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/plan.md` 记录 LEVEL 2 临运行裁决。仅放行新任务的一次本机只读格式诊断，预算 0/1 → 最多 1/1；放行不等于已执行，不重置 AUTH-121 已耗 1/1。SSH、阿里云控制台、UAC、密码、DB 与备份仍未放行。
+
+**AUTH-122 Phase B 执行与审查（2026-09-26）**：固定入口一次退出 0、stderr 空，但本地脱敏接收层给出 `OUTPUT_INVALID`，没有可接受的阶段/类别/计数；Work LEVEL 2 **REJECT 诊断目标**，仅接受受限单次运行事实，见 `EVIDENCE/AUTH-122-LOCAL-KNOWN-HOST-FORMAT-DIAGNOSIS/plan.md`。Work 以虚构 JSON 证实接收层把 `ConvertFrom-Json` 的 `System.Int64` 错误限定为 `[int]`，但原始输出未保存，不能将其认定为当次唯一原因或推断文件格式。AUTH-122 新读取预算 1/1 已耗尽，不重试；AUTH-121 旧预算不重置。后继须新任务先修复并离线验证接收层，再另过一次真实读取门。SSH/阿里云/DB/备份仍未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
