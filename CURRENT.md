@@ -196,6 +196,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-140 最终停点（2026-09-26）**：Work 最终核对表单与 11 行脚本后，对“确定”作一次 UI 点击尝试，按固定预算计 `1/1` 耗尽。页面仍停留原表单且未出现命令记录/回执，故 `SUBMIT_UNCONFIRMED`、实例端是否运行 `UNKNOWN`，不可宣称探针成功或失败；未重试。关闭表单的 UI 操作亦无可见效果，表单可能仍含脚本，须防误触。SSH、真实 DB、dump、备份均未运行；下一现场步骤需新任务/预算。见 AUTH-140 `plan.md`。
 
+**当前 AUTH-141（2026-09-26）**：Owner 在获知 AUTH-140 结果未知与预算耗尽后回复“好的请继续”。Work 仅下达同一上海实例命令记录的一次只读延迟回执核查，见 `TASK_CURRENT.md`；新读取预算 `0/1`，不授权再次执行命令、SSH、DB 或备份。为避免旧表单误触，可在临时标签页打开同一精确实例的命令记录页；旧执行 1/1 不重置。
+
+**AUTH-141 执行结论（2026-09-26）**：Work 在临时标签只读查看同一实例命令记录一次，`1/1` 耗尽；页面未显示相关执行记录，LEVEL 3 只接受 `RECEIPT_NOT_OBSERVED`，不推断后台必未运行。临时页已关闭；AUTH-140 仍 `SUBMIT_UNCONFIRMED`、现场结果 `UNKNOWN`，执行预算 1/1 不重置。未再次提交命令、SSH、DB 或备份。见 `EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

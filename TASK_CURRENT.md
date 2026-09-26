@@ -1,31 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-140-ONE-SHOT-COMMAND-ASSISTANT-CAPABILITY-PROBE
+Task ID: AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT
 
-Risk Level: LEVEL 3（生产轻量实例命令助手一次只读调用）
+Risk Level: LEVEL 3（生产控制台命令记录一次只读核查）
 
-Status: STOPPED — ONE SUBMIT CLICK ATTEMPT CONSUMED (1/1); FIELD RESULT UNKNOWN
+Status: COMPLETED — RECEIPT_NOT_OBSERVED; READONLY VIEW CONSUMED (1/1); NO EXECUTION
 
-Assignee: Codex 会话 `01a0dc31-b629-76a3-85fd-f71566b03056` 只交 Phase A 本地候选；Work 独立 LEVEL 3 审查后，若全部门满足，亲自执行已获 Owner 明确授权的 Phase B 单次现场动作。
+Assignee: Work 亲自只读核查；不向 Codex 派发现场动作。
 
-## Owner 新授权与缩小的目的
+## 授权、对象与预算
 
-Owner 在知悉实例内执行身份/工具路径事前未知、命令助手脚本与结果可能留存后，明确回复“我允许，请执行吧”。Owner 补充该服务器目前只有少量管理员测试账号；这降低预期业务数据规模，但不把客户端 `CodexKey` 当服务器 host-key。此次只探测命令助手的执行身份类别以及 `sshd`/服务管理工具是否可由当前执行环境定位；不读取公钥、配置、客户端 PEM、DB 或业务数据，也不直接 SSH。本任务不是备份、恢复或数据库结构调查。
+Owner 在 AUTH-140 `SUBMIT_UNCONFIRMED`、执行点击尝试 `1/1` 已耗尽后回复“好的请继续”。本任务仅接受该回复为**一次只读延迟回执核查**授权，不推定为再次点击执行、SSH、DB 或备份授权。旧 AUTH-140 执行预算不重置。
 
-## Phase A：精确候选与审查
+只允许打开阿里云官方轻量应用服务器上海地域 Owner 指定的**同一唯一实例**命令助手记录页一次。为避开旧表单中可能留存的已填脚本，可新开同一精确实例命令记录 URL 的临时已登录标签页；不得操作旧表单“确定”。页面必须直接显示同一产品、地域、实例、地址类别；不符、要求重新登录、真人识别、权限/UAC 或页面异常即停。开始读取已认证命令记录计 `1/1`，不论结果；不刷新、不重复打开、不用云 API。
 
-只允许新增 `EVIDENCE/AUTH-140-ONE-SHOT-COMMAND-ASSISTANT-CAPABILITY-PROBE/plan.md`，其中给出拟粘贴到阿里云命令助手的一份**完整、短小、无秘密、只读** Linux Shell 文本，固定预期输出类别、非零退出与异常处理。可用 shell 内建 `command -v` 做有限的当前 `PATH` 查询和 `id -u` 查询运行身份，原始用户/程序路径不得回显；不得遍历目录、读取配置/密钥/DB、提权、安装或修改状态。必须明确它仅验证命令助手运行环境的能力，不能由此断言运行中 SSH 服务、公钥、实际端口或云防火墙。静态测试/检查最多 2 轮；作者不得打开控制台或运行探针。若无法固定完整安全脚本与单次 UI 运行边界，就交 `NOT_FIXED`。
+只看是否有命令名 `AUTH-140-readonly-capability-probe` 对应的新执行记录及状态。若能确认对应记录，最多打开**该记录的一次详情**，只提取白名单状态/退出类别、`UID=ROOT|NONROOT` 与 `SSHD/SYSTEMCTL/SERVICE=YES|NO`，以及时间、预算；任何额外输出、不同命令内容或来源不明即停，不复制原始页面或其他输出。无记录时只写 `NOT_OBSERVED`，不得推断绝无后台运行；不因此重试。普通证据不存账号、实例 ID、地址、路径、截图、原始命令输出或错误全文。
 
-## Phase B：仅 Work 临运行高风险门
+唯一主要结果：`EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。AUTH-128/136/138 页面及 AUTH-121/122/123 本机预算不重置。SSH、命令助手执行、PEM、真实 DB、dump、备份预算为 0；保留两个无关未跟踪目录，不访问旧仓库或自动 pull/push。
 
-目标只能是 Owner 指定的上海地域唯一轻量实例，控制面页面需与 AUTH-138 已见的产品、地域、地址类别及实例标识一致；若不一致、不明、需重新登录/真人识别或出现权限/UAC/密码提示，触发前停止，不尝试修复。允许为这一次任务导航到该实例的命令助手并检查脚本语言、执行用户、超时、结果留存可见提示；任何超出固定候选的选项、默认提权、额外脚本内容或无法设置失败停点，均不执行。Work 独立检查作者候选字节、官方页面当前实例绑定及 UI 参数后，记录 LEVEL 3 GO/NO-GO；只在 GO 时点击**一次**执行。点击即记预算 `1/1`，不论成功失败；无重试、换命令、SSH、DB、dump 或备份。命令助手脚本/输出可留存于阿里云，普通证据仅保留类别、状态、时间、退出及预算，不留原始实例 ID、地址、执行身份原值或程序路径。
+## 执行与审查
 
-AUTH-128/136/138 页面查看及 AUTH-121/122/123 本机读取预算不重置。保留两个无关未跟踪目录；不访问旧仓库，不 pull/push。旧部署脚本的 `root`、默认 22 和 `StrictHostKeyChecking=no` 只能作历史连接线索，不能作为本次主机身份核验。
-
-## Work 临运行复核
-
-Phase A 完整 11 行 Shell 候选已交，Work LEVEL 3 仅接受为静态文本。官方目标实例命令助手表单预填 `root`、`/root`、60 秒及编辑器模板；不满足作者的非特权用户/10 秒/原样文本硬门。Work 未填写或执行，预算仍 `0/1`，当前 `NO-GO`。已就以 root 执行该**唯一**短探针、完全替换模板并设 10 秒向 Owner 请求具体决定；答复前不运行，答复同意也须再次审查最终表单。
-
-Owner 已明确批准本次以 `root` 执行一次，接受命令助手留存风险。Work 临运行门现仅对该执行身份限制作例外；必须先在当前表单核对同一实例、Shell、无参数、完整 11 行脚本、10 秒超时，才能点击一次。失败或额外输出即停；SSH、DB 和备份仍为 0。
-
-Work 已核对并在 UI 对“确定”作一次点击尝试，预算 `1/1` 耗尽；页面无可见状态变化，命令记录/结果未出现，`SUBMIT_UNCONFIRMED`、`FIELD_RESULT=UNKNOWN`。未第二次点击。表单关闭操作也未呈现可见效果，可能仍留有已填内容，须防误触。详见 AUTH-140 `plan.md`。本任务停点，不能据此进入 SSH 或 DB。
+Work 在临时标签完成本任务唯一一次已认证同一实例命令记录查看，预算 `1/1` 耗尽。当前实例记录表未显示任何相关命令执行记录；仅接受 `RECEIPT_NOT_OBSERVED`，不能证明 AUTH-140 后台绝无执行，旧 `SUBMIT_UNCONFIRMED`/`FIELD_RESULT=UNKNOWN` 不变。临时标签已关闭，未刷新或执行命令。见 `EVIDENCE/AUTH-141-COMMAND-RECEIPT-ONE-READONLY-AUDIT/summary.md`。本任务停点；新的现场提交需新任务及单次预算。
