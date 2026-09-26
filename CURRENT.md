@@ -94,6 +94,12 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-120 Phase A 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-120-LOCAL-KNOWN-HOST-FINGERPRINT-CANDIDATE/summary.md` 的纯虚构固定目标提取；最终 36 项由 Work 独立复跑通过。真实 `known_hosts` 未读取，独立服务器指纹来源仍 `UNKNOWN`。Owner 关于本机“SSH key”的描述尚不能证明其保存了独立的服务器主机指纹；本机登录密钥与服务器主机密钥必须区分。后继一次本机只读提取须新任务与固定入口；阿里云控制台、SSH、DB、备份均未放行。
 
+**当前任务 AUTH-121（2026-09-26）**：AUTH-120 已进入本地 `main` 检查点 `f31db4caae21ede2b21ce623bb8b6c9bfdbc8a25`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-f31db4c.bundle` SHA-256 `BE99D1164CA8931CCDF89F4C2F147D639B701ED0DB565B39332580BA6F2A7969`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达一次本机精确 `known_hosts` 只读提取入口的 Phase A 候选，见 `TASK_CURRENT.md`；真实文件读取 Phase B 为 0/1 未放行，不登录阿里云或连接 SSH。
+
+**AUTH-121 Phase B 单次放行（2026-09-26）**：Work 独立复跑最终 27 项虚构检查，通过后核对固定入口/依赖/解释器哈希及精确 `known_hosts` 文件有限元数据，在 `EVIDENCE/AUTH-121-LOCAL-KNOWN-HOST-ONE-SHOT-ENTRY/plan.md` 记录 LEVEL 2 临运行裁决。仅放行固定入口一次本机只读运行，预算 0/1 → 最多 1/1；放行不等于已执行。没有 SSH、阿里云控制台、UAC、密码、DB 或备份授权。本机记录即使产生指纹候选，也不是独立服务器来源。
+
+**AUTH-121 Phase B 执行与审查（2026-09-26）**：Codex 在固定哈希和目标元数据复核后只启动一次本机入口，受控结果 `REJECTED / FORMAT_INVALID`、退出 1、无指纹候选；Work LEVEL 2 **REJECT 指纹候选目标**，仅接受此次受限失败事实，见 `EVIDENCE/AUTH-121-LOCAL-KNOWN-HOST-ONE-SHOT-ENTRY/plan.md`。具体格式原因 `UNKNOWN`，不读取原文猜测，不重试或改用其他工具；本机读取 1/1 预算已耗尽。独立可信服务器指纹、有效 SSH 端口、真实工具身份与 DB 前置门仍未建立；阿里云控制台、SSH、AUTH-107 Phase B、备份均未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
