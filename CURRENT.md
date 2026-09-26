@@ -66,6 +66,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-113 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-113-SINGLE-SSH-EXIT-PROTOCOL-PARSER-SYNTHETIC/summary.md` 的纯虚构单退出解析；Work 独立复跑 34 项通过。SSH 255/非零/未知及协议状态矛盾均拒绝肯定投影；远端程序和工具退出仍是未证实的协议声明。AUTH-111 的本地进程接线未自动升级，AUTH-107 Phase B、真实 SSH、DB、备份和 UAC 均未放行。下一步需另立固定远端程序/身份与受限现场调用准备任务并经风险门。
 
+**当前任务 AUTH-114（2026-09-26）**：AUTH-113 已进入本地 `main` 检查点 `15c00431c72a576a2696486cd00b7c162cb81cda`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-15c0043.bundle` SHA-256 `026A2DDEA8DFBA66AF94DA21C880F9022A35AA4F91FE954AC5764C561FD642E1`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达仅本地虚构文件的路径、重解析与哈希身份门任务，见 `TASK_CURRENT.md`；不启动程序、SSH、真实工具、UAC 或备份。
+
+**AUTH-114 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-114-EXECUTABLE-IDENTITY-BOUNDARY-SYNTHETIC/summary.md` 的本地虚构普通文件字节身份候选；Work 独立复跑 13 项通过。当前普通权限未能创建测试符号链接，该拒绝分支 `NOT_TESTED`；核验后替换、Windows 重解析语义与执行进程绑定仍 `UNKNOWN`。AUTH-107 Phase B、真实工具、SSH、数据库和备份均未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
