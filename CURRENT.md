@@ -118,6 +118,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-124 静态验收与现场停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-124-SERVER-HOST-IDENTITY-AND-PORT-TRUST-PATH-STATIC/plan.md` 仅为静态信任路径。实例身份、实际 SSH 端口、独立服务器 host-key 指纹及阿里云控制台能否直接展示该实例指纹均未获现场证明。下一步要形成精确单次现场候选，再过 Owner 具体授权与密码/真人识别停点；目前无控制台、云助手、SSH、DB、备份放行。Owner 所说本机 sshkey 不能替代服务器 host-key 来源。
 
+**当前任务 AUTH-125（2026-09-26）**：AUTH-124 已进入本地 `main` 检查点 `cc3f72ab54870cdc3996f5496ca6692eb62ce8b0`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-cc3f72a.bundle` SHA-256 `D2E08E91F455C05E7E9F171F290EE4CEC2F778323A6EDA996D4EB4FA8B787C50`，`git bundle verify` 通过。已向最新 Codex 会话下达阿里云公开官方资料与未来控制面核验的静态候选任务，详见 `TASK_CURRENT.md`；本轮不要求 Owner 登录、输入密码或真人识别，不访问控制台/服务器/DB。
+
+**AUTH-125 静态验收与当前停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-125-ALIYUN-CONTROL-PLANE-HOST-TRUST-PREFLIGHT-STATIC/plan.md` 仅为公开资料支持的静态清单。控制台是否直接显示目标实例 host-key 指纹仍 UNKNOWN，Workbench 文档正文未核验；实例绑定和有效端口没有现场证据。下一现场步骤可能要求 Owner 登录密码/真人识别，按 Owner 的暂停要求先准备精确候选，再在密码前停下；无控制台、VNC、云助手、SSH、DB 或备份授权。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
