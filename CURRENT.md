@@ -216,6 +216,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-146 最终结论（2026-09-26）**：Owner 在 Work GO 后亲自打开详情一次，本轮临运行核对与手动详情预算各 1/1 耗尽。Work LEVEL 3 接受该次 Shell 退出码 `0` 及唯一白名单行 `AUTH140=OK UID=ROOT SSHD=YES SYSTEMCTL=YES SERVICE=YES`，仅为当时命令助手的身份/名称解析类别；不证明 SSH 服务、host-key、端口、DB 结构或备份。AUTH-144/145 预算不重置。见 `TASK_CURRENT.md` 与 AUTH-146 `summary.md`；SSH、密钥、DB、dump 和备份仍未放行。
 
+**当前 AUTH-147（2026-09-26）**：依据 AUTH-146 的受限能力结果，向最新合资格 Codex 会话下达纯本地 Phase A：设计下一次更小的 `sshd`/必要观察工具身份只读候选或明确 `NOT_FIXED`。只写 AUTH-147 `plan.md`，最多两轮静态/虚构检查；现场预算 0，不执行命令助手、SSH、DB 或备份。交付后由 Work 独立 LEVEL 3 审查；静态接受不放行下一次现场调用。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

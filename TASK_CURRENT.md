@@ -1,27 +1,21 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-146-OWNER-MANUAL-COMMAND-DETAIL-OPEN
+Task ID: AUTH-147-SSHD-TOOL-IDENTITY-STATIC-CANDIDATE
 
-Risk Level: LEVEL 3（生产命令助手单条详情；Owner 单次手动打开）
+Risk Level: LEVEL 3（生产 SSH 信任路径的下一步候选；本轮纯本地静态）
 
-Status: COMPLETED — EXIT=ZERO; AUTH140=OK; UID=ROOT; SSHD/SYSTEMCTL/SERVICE=YES
+Status: ISSUED — PHASE A STATIC CANDIDATE ONLY; FIELD BUDGET 0
 
-Assignee: Work 负责只读复核、GO/NO-GO 和受限详情投影；Owner 本人负责获 GO 后的唯一手动点击。Codex 不派发现场动作。
+Assignee: 最新合资格 Codex 执行会话 `01a0dc31-b629-76a3-85fd-f71566b03056`。Work 独立 LEVEL 3 审查；Owner 保留下一次现场调用裁决。
 
-## 精确授权
+## 本轮单一问题
 
-AUTH-144 的命令记录控制面显示“执行完成”，但技术结果 `UNKNOWN`。AUTH-145 自动化点击一次“查看命令详情”后无可见变化，预算 1/1 已耗尽，不能重试。Owner 明确同意**本人在 Work 重新核对并给出 GO 后**，对当前唯一同名记录手动点击“查看命令详情”一次。它可能重复打开同一详情，但不会重新执行命令；Owner 在 GO 前不要点击。AUTH-144 命令执行 1/1 与 AUTH-145 详情点击 1/1 均不重置。
+AUTH-146 已通过 Owner 单次手动打开详情，确认 AUTH-140 短探针在同一上海轻量实例的命令助手 Shell 中退出 0、`UID=ROOT`、`SSHD/SYSTEMCTL/SERVICE=YES`。这仅证明当时的命令名称可定位，不证明可执行文件身份、服务在运行、配置、公钥或端口。AUTH-139 的整体 host-key 发现候选仍 `NOT_FIXED`；AUTH-144/145/146 预算均已耗尽，不重置。
 
-Work 只在当前已打开的阿里云官方上海轻量实例命令助手页，做一次只读临运行复核：目标 URL/地域与 AUTH-144 相同，表中恰好一条 `AUTH-140-readonly-capability-probe` 且状态“执行完成”，该行有“查看命令详情”入口，无正在执行或异常提示。任一不符，或需要登录、密码、真人识别、UAC/权限，即 `NO-GO`。不刷新、导航、重新执行命令、读取别的记录或使用隐藏 API。
+本任务只准备**更小的下一次只读工具身份发现** Phase A 静态候选：在已知 root 和三个名称可定位的前提下，是否能固定一条完整、无秘密、失败即停的命令助手 Shell 文本，仅识别 `sshd` 与必要观察工具的解析类型、绝对程序身份候选及最小元数据，供后续有效配置/公钥来源脚本审查。候选不得读取 sshd 配置、host-key 公钥/私钥、监听/端口、DB、业务文件或凭据，不执行 `sshd`、`systemctl`、`service` 本体，不写文件或修改状态。若必须猜路径、依赖未审工具、输出不受控或无法使结果有实际增量，就明确交 `NOT_FIXED`，不要填补猜测。
 
-复核通过后 Work 可给出仅此记录的手动 GO。Owner 点击该行“查看命令详情”**至多一次**，动作开始即本任务手动详情预算 `1/1`，无论结果是否出现都不重试。Work 在 Owner 报告点击后只读查看当前详情一次，仅保留明确退出码的 `ZERO|NONZERO|UNKNOWN` 类别、`AUTH140=OK|ID_ERROR|OTHER|MISSING`，以及唯一成功行中的 `UID=ROOT|NONROOT`、`SSHD/SYSTEMCTL/SERVICE=YES|NO`；任何额外、重复、非白名单或平台错误只记异常类别并停。不得保存/转发详情原文、截图、账号、实例标识/IP、密钥或业务数据。
+## 作者允许范围与验证
 
-本轮 Work 临运行核对 `1/1`，Owner 手动详情点击 `1/1`。唯一主要结果 `EVIDENCE/AUTH-146-OWNER-MANUAL-COMMAND-DETAIL-OPEN/summary.md`。即使探针成功，也仅为命令助手 Shell 的身份和名称可定位类别，不证明公钥信任、实际 SSH 端口、二进制可信、DB 结构或备份就绪。SSH、PEM、DB、dump、传输、恢复均未放行；其他旧预算不重置。保留两个无关未跟踪目录，不访问旧仓库，不自动 pull/push。
+仅读取本地根 `AGENTS.md`、`CURRENT.md`、`TASK_CURRENT.md`、`REVIEW_GATE.md`、AUTH-139/140/144/146 已接受证据及必要的公开官方 Shell/OpenSSH 文档；不访问旧 `D:\EliteSync`。唯一允许写入路径为 `EVIDENCE/AUTH-147-SSHD-TOOL-IDENTITY-STATIC-CANDIDATE/plan.md`。其中若能形成完整候选，固定脚本字节、预期解释器/依赖、显式 root、10 秒超时、无参数/路径/环境变更、stdout/stderr 白名单与长度上限、错误/非零/额外输出/超时停点、命令助手可能长期留存脚本和结果的风险、一次预算申请及不能证明的事项。实例目标复核只可作为未来临运行门，不重看旧控制台页面。普通证据不存实例 ID/IP、程序路径原值、配置、公钥、指纹、平台错误全文或截图；若候选确需临时查看路径原值，先在方案中界定受控接收/留存通道，不在本轮执行。
 
-## Work LEVEL 3 临运行裁决
-
-当前页 URL 与 AUTH-144 同目标、地域为上海；表中恰有一条同名命令，状态“执行完成”，唯一“查看命令详情”入口可见，无执行中状态或登录/权限弹窗。Work 本轮只读复核 1/1 已耗尽，LEVEL 3 **GO：仅 Owner 本人在该行手动点击“查看命令详情”一次**。Work 不代点；动作开始即 Owner 本轮详情预算 1/1。GO 发出时尚未收到 Owner 点击报告，技术结果仍 `UNKNOWN`。
-
-## Owner 手动查看与最终审查
-
-Owner 报告已手动点击一次，本轮详情预算 `1/1` 耗尽。Work 对当前打开详情作一次受限只读观察：命令类型 Shell；控制台明确显示退出码 `0`，结果为唯一一行完整白名单 `AUTH140=OK UID=ROOT SSHD=YES SYSTEMCTL=YES SERVICE=YES`。未复制原始详情、脚本或其他字段，未点击、刷新或再次执行。Work LEVEL 3 **ACCEPT 仅该次命令助手 Shell 的退出与四个类别位**；`YES` 只表示当时的命令名称可定位，不能证明 SSH 二进制、服务状态、主机公钥/端口、DB 或备份。
+至多两轮**本地静态/虚构输入**检查，报告实际检查、候选文件 SHA-256 和差异；不运行任何候选 Shell 或真实 `sshd`/`systemctl`，不进入控制台、云 API、SSH、DB 或备份，不触发密码/真人识别/UAC。保留两个无关未跟踪目录，不改现有权威文件，不提交或推送。交付 Phase A 后停 Work LEVEL 3；作者自检不构成现场 GO。Work 接受静态设计也不放行真实命令，下一次调用必须新任务、独立临运行复核与 Owner 精确授权。
