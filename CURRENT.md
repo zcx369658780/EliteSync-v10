@@ -136,6 +136,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-128 执行结论（2026-09-26，当前有效）**：Owner 在同一页自行完成登录并回复“已登录”；Work 只读查看上海轻量应用服务器列表中的唯一条目和其概览。产品类别、地域、状态、列表/概览地址一致，现时地址与 AUTH-02 历史线索匹配；但实例 ID 未在事前由独立可信来源固定，所以 Work LEVEL 2 仅接受本次 UI 观察事实，`TARGET_BINDING=UNKNOWN`。查看预算 1/1 耗尽，不刷新或重试；未操作服务器、SSH、DB、备份。独立 host-key 来源、有效 SSH 端口与数据库目标仍 `UNKNOWN`。下一步须另立受限来源和对应风险门；本次 Owner 授权不延伸到远端操作。
 
+**Owner 指定与当前 AUTH-129（2026-09-26）**：Owner 在 AUTH-128 后明确确认当前控制台上海地域唯一轻量应用服务器就是本次数据库备份的后端目标，并授权继续推进、条件具备时尝试第一次备份。此项关闭 Owner 的目标选择疑问，但不追溯改变 AUTH-128 受限 UI 结论，也不证明独立 host-key、SSH 端口、DB 范围/权限/一致性或加密恢复链。Work 核对本地 `main` HEAD `d2f49108805b9fc9b37b6a4ca83318b008925aa0` 与仅两个既有无关未跟踪目录；已下达 AUTH-129 纯静态连接信任候选给最新合资格 Codex 会话。现无可安全启动的真实备份命令；本轮不进入控制台、SSH、DB 或备份，须逐门另审。
+
+**AUTH-129 静态验收（2026-09-26，当前停点）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-129-FIRST-BACKUP-CONNECTION-TRUST-STATIC-CANDIDATE/plan.md` 仅为轻量应用服务器连接信任路径与首次备份 GO/NO-GO 顺序。官方命令助手资料支持产品的一般能力，也显示脚本和执行结果可留存；此实例精确公钥路径、算法、有效监听/防火墙、命令与脱敏投影均未固定。无现场命令、SSH、DB 或备份授权。下一步须先另立精确无秘密的只读命令候选并审查，再议一次现场风险门；Owner 的继续推进授权不重置 AUTH-128 或本机读取旧预算。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

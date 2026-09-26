@@ -1,28 +1,26 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-128-LIGHTWEIGHT-SERVER-INSTANCE-BINDING-READONLY
+Task ID: AUTH-129-FIRST-BACKUP-CONNECTION-TRUST-STATIC-CANDIDATE
 
-Risk Level: LEVEL 2（Owner 在场的阿里云轻量应用服务器控制台只读查看）
+Risk Level: LEVEL 2（真实备份前的服务器连接信任与现场步骤设计）
 
-Status: COMPLETED — WORK LEVEL 2 LIMITED ACCEPT OF UI OBSERVATION; TARGET_BINDING UNKNOWN; VIEW 1/1 EXHAUSTED
+Status: ACCEPTED — PHASE A STATIC CANDIDATE ONLY; FIELD ACTION NOT ISSUED
 
-Assignee: Work 本会话，Owner 本人只处理登录密码/真人识别；Codex 会话 `01a0dc31-b629-76a3-85fd-f71566b03056` 不派发本任务现场动作。
+Assignee: 最新合资格 Codex 执行会话 `01a0dc31-b629-76a3-85fd-f71566b03056`；Work 独立 LEVEL 2 审查。
 
-## 授权与依据
+## 目标与依据
 
-AUTH-127 的静态候选获 Work LEVEL 2 ACCEPT，仅限阿里云轻量应用服务器“服务器列表→唯一服务器概览”。Owner 在当前 Work 会话确认与 AUTH-24 同一阿里云账号、华东2（上海）轻量应用服务器，且本人在场，明确授权本人亲自处理登录后**只读查看一次**该两级页面。Owner 先前要求遇密码、真人识别或可能 UAC 停下；本任务将登录动作完全交给 Owner，Work 不输入、观察、转述或保存凭据。
+Owner 现明确指定 AUTH-128 控制台内上海地域唯一轻量应用服务器为本次数据库备份的后端目标，并授权继续推进、条件具备时尝试第一次备份。此指定确定 Owner 的目标选择，不证明该实例的独立 host-key、实际 SSH 端口、数据库连接/权限/完整范围、一致性、服务器侧加密及本机恢复。AUTH-128 的控制台单次查看 1/1 已耗尽，AUTH-121/122/123 的真实读取预算各 1/1 耗尽；不可复用。
 
-本任务唯一主要结果为 `EVIDENCE/AUTH-128-LIGHTWEIGHT-SERVER-INSTANCE-BINDING-READONLY/summary.md`；仅写脱敏状态、观察时点、预算和 Work LEVEL 2 结论。原始页面、截图、账号/实例 ID、公网 IP、密码、验证码和任何密钥不得写入普通证据或聊天。保留两个无关未跟踪目录。
+本任务唯一主要结果为 `EVIDENCE/AUTH-129-FIRST-BACKUP-CONNECTION-TRUST-STATIC-CANDIDATE/plan.md`，只允许新增或修改此文件；其他项目文件只读。以 AUTH-24/68/102～107/124～128 的已接受边界为起点，设计下一次最小现场步骤，使 Owner 指定实例、服务器 host-key 独立来源及有效 SSH 端口能够分别核对。可匿名只读访问阿里云**轻量应用服务器**官方公开文档及 OpenSSH/MariaDB 官方资料，不登录账号、不访问已打开的控制台页。
 
-本次执行后的有限结论：官方轻量应用服务器上海列表和唯一概览中的地域、地址一致，现时地址与历史线索相符；因未预先独立固定实例 ID，`TARGET_BINDING=UNKNOWN`，仅接受 UI 观察事实。`VIEW_BUDGET=1/1`，不得重看或重试。见本任务 `summary.md`；后继须另立独立来源与风险门。
+## Phase A 交付
 
-## 本次单次流程与停点
+1. 独立核对本地分支/HEAD/工作区、当前任务、AUTH-128 脱敏回执与 Owner 最新目标指定。分别列出已关闭与未关闭的第一备份前置门；不把 Owner 指定解释成 host-key 或 DB 证明。
+2. 依据可核验的轻量应用服务器官方资料，给出**一个**优先的最小现场信任核验路径及失败停点；若官方资料不能证明控制台可显示 host-key/有效端口，应明确 `UNKNOWN`，仅设计后继对精确实例的只读公钥指纹与监听/配置观察。固定未来必须预先确定的路径、算法、命令/页面、输出白名单、一次预算与密码/UAC 停点；不可在现场搜索、猜测或临时换路径。
+3. 说明连接信任通过后，真实备份还欠哪些独立门：CLI/Web worker 同库、权威对象全集及拟备份账号权限、事务/DDL 一致性、现时 dump 工具、服务器侧认证加密和本机密文及隔离恢复准备。给出最短顺序与每步 GO/NO-GO，不能交可运行真实 dump 命令或把静态方案当备份授权。
+4. 普通证据不含账号、实例 ID、IP、host-key 公钥/指纹原值、端口数字、DB 名/对象、凭据、页面原文或截图。作者最多做 2 轮文档静态检查，交最终 SHA-256、来源与限度，停 Work LEVEL 2 独立审查。
 
-1. 启动前核对本地 Git/工作区、AUTH-24/127、固定官方资料 URL 和本任务；入口仅 `https://swasnext.console.aliyun.com/servers/`。只使用一个浏览器页/会话，打开后控制台查看预算计 1/1；不刷新、重试、新开账号页或改走 ECS/RDS。
-2. 若需登录，**停在登录/密码/真人识别前**，仅由 Owner 在本机自行完成；Work 不自动操作认证控件、不读取凭据或验证码。登录失败、非预期域/权限提示、需要 UAC、账号或地域与 Owner 确认不符即停。Owner 完成后只凭其明确“已登录”继续同一页，先重新观察。
-3. 仅在阿里云轻量应用服务器“服务器”列表观察产品类别、账号/地域可核验性、唯一候选和现时地址与 AUTH-02 历史地址线索是否匹配；若页面提供精确筛选，只用该预定线索，不广泛枚举服务器。最多进入唯一候选“服务器概览”的基本信息，然后退出。缺字段、多个候选、地址漂移、地域不能独立确认、页面变化或 Owner 不确认目标，记录 `UNKNOWN/NO` 并停，不点击其他页面或操作。
-4. 普通回执只含 `TARGET_BINDING=YES|NO|UNKNOWN`、`PRODUCT_CLASS=LIGHTWEIGHT_APPLICATION_SERVER|UNKNOWN`、`SOURCE=OFFICIAL_SAS_SERVER_LIST_AND_OVERVIEW|UNKNOWN`、固定失败类别、观察时点和 `VIEW_BUDGET=1/1`。即使匹配，也只证明这次 UI 的目标绑定，不证明独立 host-key、实际 SSH 端口、SSH/DB 或备份可用。
+## 禁止与停点
 
-## 禁止
-
-不得点击远程连接、命令助手、VNC/Workbench、重置密码、编辑配置/防火墙、安装 Agent、创建/导出、购买或任何写入；不得 SSH、远端命令、DB、备份、重读 known_hosts、触发/处理 UAC。AUTH-121/122/123 旧预算不重置；AUTH-107 Phase B 和真实数据库备份均未放行。任何异常失败即停，不复用本次 1/1。
+本轮只作公开资料与本地证据的静态候选；不得继续浏览 Owner 已登录控制台、刷新/重试 AUTH-128、登录账号、点击远程连接/命令助手/VNC、访问 SSH 或 known_hosts、运行远端命令/生产 HTTP/真实 DB/dump、读取密钥/备份目录正文、触发 UAC/密码、传输/恢复/停写/部署或提交/推送。AUTH-107 Phase B 和真实备份均未放行。作者候选停 Work LEVEL 2，不自接受或派发后继。
