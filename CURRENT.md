@@ -122,6 +122,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-125 静态验收与当前停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-125-ALIYUN-CONTROL-PLANE-HOST-TRUST-PREFLIGHT-STATIC/plan.md` 仅为公开资料支持的静态清单。控制台是否直接显示目标实例 host-key 指纹仍 UNKNOWN，Workbench 文档正文未核验；实例绑定和有效端口没有现场证据。下一现场步骤可能要求 Owner 登录密码/真人识别，按 Owner 的暂停要求先准备精确候选，再在密码前停下；无控制台、VNC、云助手、SSH、DB 或备份授权。
 
+**当前任务 AUTH-126（2026-09-26）**：AUTH-125 已进入本地 `main` 检查点 `6c89ec96d799d4f54da9fcf184a9493b328a44ff`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-6c89ec9.bundle` SHA-256 `80DDF935EB5E274295103A1ACDDD1DDCC96616EAC52282DE82851C56031DB08A`，`git bundle verify` 通过。向最新 Codex 会话下达未来一次 ECS 实例绑定只读查看的 Phase A 静态候选，见 `TASK_CURRENT.md`；本轮不打开账号控制台、登录或请求密码。
+
+**AUTH-126 错误类别停点（2026-09-26）**：Work 重新核对 AUTH-24 第 9、13、47 行，发现 2026-09-24 Owner 确认后端目标为上海**轻量应用服务器**，当次 ECS 列表未见实例。故 Work LEVEL 2 **REJECT AUTH-126 的 ECS 目标前提**，仅接受作者及时停止且未登录/现场访问的有限事实；见 `EVIDENCE/AUTH-126-ECS-INSTANCE-BINDING-VIEW-STATIC-CANDIDATE/plan.md`。AUTH-125 的 ECS 资料仅具一般产品信息价值，不能当成本目标控制面路径或现场放行依据。后继先按轻量应用服务器另做静态候选，今天的实例现状仍 UNKNOWN；无控制台、密码、UAC、SSH、DB 或备份动作。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
