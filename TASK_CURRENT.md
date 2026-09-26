@@ -1,28 +1,28 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-114-EXECUTABLE-IDENTITY-BOUNDARY-SYNTHETIC
+Task ID: AUTH-115-REMOTE-READONLY-PROBE-PROGRAM-SYNTHETIC-CANDIDATE
 
-Risk Level: LEVEL 2（未来只读主机工具与远端程序的路径/字节身份门；本轮仅本地虚构文件）
+Risk Level: LEVEL 2（未来主机只读工具观察的远端受控程序；本轮仅本地虚构子进程候选）
 
-Status: ACCEPTED — LOCAL SYNTHETIC FILE IDENTITY ONLY; NO EXECUTION
+Status: ACCEPTED — LOCAL SYNTHETIC PHASE A ONLY; NO SSH OR REAL TOOL
 
 Assignee: 最新合资格 Codex 执行会话 `01a0d86d-72c8-79d3-8cb9-abe0cdd30115`；Work 独立 LEVEL 2 审查。旧过长会话 `01a0d6d8-e45e-7820-ade5-7722f0e1e5f7` 不再派发。
 
 ## 目标与依据
 
-AUTH-107/112/113 均要求现场前锁定工具绝对路径、别名/符号链接关系与完整字节，现仍没有候选路径和身份绑定证据。AUTH-109 只验证调用方所给 SHA-256 的格式，不哈希可执行文件；AUTH-111 只哈希已接受解析器源码。本任务建立**本地纯文件身份门**的候选和虚构验证，供未来远端固定程序/工具来源设计参考；它不启动任何程序，也不能单独证明未来实际运行进程来自该文件。
+AUTH-109 已接受本地虚构进程内有限工具输出投影；AUTH-112/113 已接受未来远端程序单行安全 JSON 与单个 SSH 退出的协议边界；AUTH-114 只接受虚构普通文件的字节身份候选，符号链接用例 NOT_TESTED。尚无可审查的**独立远端程序候选**能把两次工具退出、原文隔离、安全投影和自身退出连成一个固定来源。此任务只准备 Phase A 候选和本机虚构验证，不部署、不连接主机。
 
-主要结果为新目录 `EVIDENCE/AUTH-114-EXECUTABLE-IDENTITY-BOUNDARY-SYNTHETIC/summary.md`，可附候选源码和测试。仅允许写此新目录；其他证据、控制文件只读，保留两个无关未跟踪目录。
+主要结果为新目录 `EVIDENCE/AUTH-115-REMOTE-READONLY-PROBE-PROGRAM-SYNTHETIC-CANDIDATE/summary.md`，可附候选源码、测试和固定哈希回执。仅允许写此新目录；AUTH-107～114、控制文件只读；保留两个无关未跟踪目录。
 
-## 允许工作与预算
+## 允许工作与验证预算
 
-1. 核对本地 Git/工作区、五份入口、AUTH-107/109/111～113、项目技能与风险门。只读所需已保存证据；不得读 `.env`、凭据、私钥、真实业务行、备份、真实 `mysqldump` 文件或旧 `D:\EliteSync`。
-2. 实现纯文件身份函数，仅接受调用方显式提供的绝对路径、预期 SHA-256、精确允许的文件名和固定上限；拒绝相对路径、目录、符号链接/重解析点、非普通文件、空文件、过大文件、读取错误和哈希不等。以受限分块读取计算哈希，不向普通结果/异常回显路径、文件字节或原始错误；成功只返回固定候选状态与有限大小/哈希相等结论。Windows/Linux 文件系统差异和文件在核验后被替换的竞争风险必须标 `UNKNOWN`，不能宣称已绑定未来执行进程。
-3. 仅用任务临时目录内的虚构文件、目录及可用时的符号链接测试正常、错误哈希、大小边界、路径类型、重解析、读失败和秘密标记不泄漏。最多 3 轮套件，仅实际失败修复可重跑；最多 2 轮静态检查。符号链接创建若需 UAC 或权限不可用，不提权、不请求 UAC，记为 `NOT_TESTED` 并保留风险。
-4. 禁止启动任何子进程、SSH、真实工具/DB、生产 API、Laravel CLI、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。仅可由测试临时目录机制自动清理本任务生成的虚构文件；不碰项目其他文件。交候选后停在 Work LEVEL 2 审查，不提交、推送、自接受或派发后继。
+1. 核对本地 Git/工作区、五份入口、AUTH-105/107/109/112～114、项目技能与风险门。不得读 `.env`、凭据、私钥、真实业务行、备份、真实工具文件或旧 `D:\EliteSync`。
+2. 提供独立程序候选：调用方显式给出绝对虚构可执行路径、预期文件名/哈希候选及固定时间/字节限额；拒绝相对/重解析路径和不匹配的虚构文件。最多两次不经 shell 的参数数组调用，工具首参数 `--no-defaults`，其后仅 `--version` 或 `--help`。两流同时排空、逐流限额，超限/超时/非零/stderr/捕获不完整即杀死并等待或固定失败；失败不得输出原文、路径、异常或部分肯定。成功才输出与 AUTH-113 相容的一行 LF 终止 UTF-8 JSON，总计最多 2 KiB，固定九项全 `UNKNOWN`、两个真实工具退出值均为 0、版本仅文本候选；程序自身成功退出 0，失败为固定非零。不可为了兼容未知真实帮助格式而宽松猜测。可复用已接受候选，但新程序须自洽且明确依赖固定字节。
+3. 仅用本机临时虚构工具子进程检验参数顺序、两次调用、正常一行、第一/第二次失败、双流突发/超限、超时与终止、stderr、版本/帮助不匹配、原文秘密标记不泄漏、程序成功/失败退出关系。最多 3 轮本任务套件，重跑只用于实际失败修复；最多 2 轮静态检查。记录 Popen 启动阻塞、子孙进程、符号链接/替换竞争、Windows 与目标 Linux 差异等未验证风险，不能写成可现场运行。
+4. 禁止 SSH、真实 dump/DB 工具、真实数据库、生产 API、Laravel CLI、Docker、云控制台、OpenSSL、UAC、部署、备份、导出、传输、停写、DDL/DML 或删除。交候选后停在 Work LEVEL 2 审查；不提交、推送、自接受或派发后继。
 
 ## 停点
 
-AUTH-107 Phase B 未放行；文件哈希候选不证明运行中进程、远端程序、工具功能或数据库备份能力。Owner 已决定本次只备份数据库，内部对象全集仍 UNKNOWN。真实备份还需目标、权限、一致性、加密传输和隔离恢复门及 Owner LEVEL 3 单次授权。可能触发 UAC 的后继步骤须先等 Owner 在**当前 Work 会话**输入“我在”；旧到场确认不沿用。AUTH-101、AUTH-17、AUTH-107 旧预算不重置，AUTH-99 禁止运行。
+Phase A 通过也不放行 AUTH-107 Phase B。现场前还须独立锁定主机/host-key、SSH 身份、远端程序在目标机的准确字节/路径和启动方式、工具身份与环境净化，并复核本地单 SSH 退出接收器；旧 AUTH-17/107 预算不重置。Owner 已决定本次只备份数据库，内部对象全集、目标/权限、一致性、加密传输及隔离恢复仍 UNKNOWN，真实备份须 Owner LEVEL 3 单次授权。Owner 已在**当前 Work 会话**回复“我在”；这只满足到场条件，不代替具体 UAC 风险门或密码输入授权。AUTH-99 禁止运行。
 
-Work 已在 `EVIDENCE/AUTH-114-EXECUTABLE-IDENTITY-BOUNDARY-SYNTHETIC/summary.md` 作 LEVEL 2 受限 ACCEPT：仅本地虚构普通文件字节核对，独立复跑 13 项通过，符号链接用例 `NOT_TESTED`。本任务不再处于 ISSUED；不能据此核对真实工具或启动现场调用。
+Work 已在 `EVIDENCE/AUTH-115-REMOTE-READONLY-PROBE-PROGRAM-SYNTHETIC-CANDIDATE/summary.md` 作 LEVEL 2 受限 ACCEPT：仅本机虚构 Phase A 候选，Work 独立复跑 13 项通过。本任务不再处于 ISSUED，不能据此现场部署或执行。
