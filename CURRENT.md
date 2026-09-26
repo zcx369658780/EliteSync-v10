@@ -86,6 +86,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-118 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-118-HOST-LOCATOR-READONLY-CALL-STATIC-CANDIDATE/plan.md`，仅限本地静态调用合同与固定脱敏回执边界。现时可信 host-key 来源、远端启动语义和工具绝对路径仍 `UNKNOWN`；唯一绝对普通文件路径也只算候选，脱敏回执不交付下一次执行所需路径。本轮无 SSH、真实工具、DB、UAC 或备份；AUTH-107 Phase B 未放行。Owner 离开期间，任何需密码或可能触发 UAC 的动作停在触发前。
 
+**当前任务 AUTH-119（2026-09-26）**：Owner 在当前 Work 会话回复“我在”，满足到场条件但没有放行 UAC、密码或生产动作。已向同一合资格 Codex 会话下达 AUTH-118 固定脱敏定位回执的本机纯虚构严格解析器任务，见 `TASK_CURRENT.md`；不启动进程、SSH、真实工具、DB 或备份。独立可信 host-key 来源的问题仍待 Owner 回答，AUTH-107 Phase B 未放行。
+
+**AUTH-119 审查结论与 host-key 澄清（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-119-LOCATOR-RECEIPT-STRICT-PARSER-SYNTHETIC/summary.md` 的纯虚构回执解析；最终 42 项由 Work 独立复跑通过，超限回执计数已封顶。Owner 表示本机有 SSH key，并有阿里云登录密码和真人识别权限；这是客户端登录私钥及控制台访问能力，**不是服务器主机密钥指纹的独立核对记录**，故可信 host-key 来源仍 `UNKNOWN`。Owner 当前“我在”仅满足到场条件。没有读取主机密钥、登录阿里云控制台、启动 SSH/真实工具或触发 UAC；AUTH-107 Phase B 和备份未放行。若经阿里云控制台等独立渠道取得服务器主机指纹，仍须另立具体受限任务、固定来源和审查门。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
