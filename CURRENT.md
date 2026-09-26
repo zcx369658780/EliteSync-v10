@@ -114,6 +114,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-123 Phase B 执行验收（2026-09-26，当前结论）**：最新 Codex 会话启动前七份哈希和精确目标有限身份复核通过，唯一固定启动返回脱敏 `ACCEPTED_CANDIDATE / INPUT_CR / FORMAT_INVALID`、已检查 0 条、先前候选 `NO`、端口/信任 `UNKNOWN`、内外层退出 0。Work 在 `EVIDENCE/AUTH-123-LOCAL-FORMAT-RECEIVER-SYNTHETIC-REPAIR/work-review.md` 独立 LEVEL 2 **ACCEPT 仅这次本机格式类别事实**。AUTH-123 真实读取 1/1 已耗尽，不重跑；AUTH-121/122 旧预算不重置。服务器独立可信 host-key 来源和有效 SSH 端口仍 UNKNOWN，SSH/DB/真实备份未放行。无 UAC 或密码。
 
+**当前任务 AUTH-124（2026-09-26）**：AUTH-123 已进入本地 `main` 检查点 `f60863473ce8e4f950c743792504ec8f5b0982d4`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-f608634.bundle` SHA-256 `8E23711A522508F2A49D5EC65D45B214695251C2DA83994E3DE7FDE4740395D8`，`git bundle verify` 通过。已向最新合资格 Codex 会话下达独立可信服务器 host-key 来源和有效 SSH 端口的本地静态路径任务，见 `TASK_CURRENT.md`。本轮不访问控制台、SSH 或数据库，不复用已耗尽的真实读取预算；备份仍无时间承诺。
+
+**AUTH-124 静态验收与现场停点（2026-09-26）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-124-SERVER-HOST-IDENTITY-AND-PORT-TRUST-PATH-STATIC/plan.md` 仅为静态信任路径。实例身份、实际 SSH 端口、独立服务器 host-key 指纹及阿里云控制台能否直接展示该实例指纹均未获现场证明。下一步要形成精确单次现场候选，再过 Owner 具体授权与密码/真人识别停点；目前无控制台、云助手、SSH、DB、备份放行。Owner 所说本机 sshkey 不能替代服务器 host-key 来源。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
