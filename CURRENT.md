@@ -144,6 +144,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-130 审查与首次备份停点（2026-09-26，当前有效）**：Work LEVEL 3 接受 `EVIDENCE/AUTH-130-LIGHTWEIGHT-HOST-TRUST-PROBE-STATIC-CANDIDATE/plan.md` 的 `NOT_FIXED` 否定结论，不接受任何现场命令或真实备份放行。公开资料和现有项目证据无法固定该实例当前 host-key 公钥路径/算法、有效 SSH 端口、实例内执行身份及命令助手留存边界；AUTH-128 概览只显示 Ubuntu 24.04 镜像标签，不证明实例内运行状态。若要继续，须另立受审的单次只读来源发现方式与留存/权限边界，再过具体风险门；不得因 Owner 的一般推进授权或当前控制台仍打开而操作实例、SSH 或 DB。数据库目标/范围/权限、一致性、加密传输与本机隔离恢复各门也仍未关闭，第一次备份未开始。
 
+**本次 Work 强制交接（2026-09-26）**：本会话已超过根 `AGENTS.md` 的 30 条对话门槛，按规则停止当前目标。Owner 最新回复同意准备限定的只读运行配置诊断**方案**，未放行实例内命令或首次备份；本会话不新建 AUTH-131、不触碰仍打开的控制台、不向 Codex 派发。精确 Git、bundle、预算、未解决门和下一 Work 会话步骤见 `EVIDENCE/WORK-HANDOFF-20260926-AUTH130/handoff.md`。由 Owner 手动交接；下一会话独立核验后再发布新任务，交接不重置旧预算。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
