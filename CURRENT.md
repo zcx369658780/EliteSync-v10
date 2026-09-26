@@ -230,6 +230,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-149 最终结论（2026-09-26）**：Owner 已在 Work GO 后手动打开 AUTH-148 新记录详情一次，临运行核对及详情预算各 1/1 耗尽。Work LEVEL 3 仅接受 Shell 退出码 `0`、唯一 `AUTH147=OK` 白名单行及 `sshd/systemctl/service` 三个绝对路径**形态候选**；路径原值未入聊天、普通证据或哈希。文件/链接/字节身份、服务运行、host-key、有效 SSH 端口和 DB 结构仍 `UNKNOWN`；SSH、密钥、DB、dump 和备份继续未放行。见 AUTH-149 `summary.md`。
 
+**Owner 首次 SSH 信任起点决定与 AUTH-150（2026-09-26）**：Owner 明确接受已认证阿里云控制台对指定上海实例的受限公钥观察作为首次 SSH 主机密钥固定的信任起点，知晓它不能排除实例或控制面此刻被攻陷。此决定仅放行**准备**具体公钥、端口和比较方案，不把当前主机密钥或端口写为已验证，不启动 SSH/DB。现下达 AUTH-150 纯本地静态候选任务，现场预算 0，交 Work LEVEL 3 独立审查；见 `TASK_CURRENT.md` 与 `PRODUCT_DECISIONS.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
