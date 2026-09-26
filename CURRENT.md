@@ -184,6 +184,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-138 执行结论（2026-09-26）**：Work 已在该新预算内读取已认证的上海唯一轻量实例详情一次，`1/1` 耗尽。产品/地域、实例存在及运行状态、公私网地址与 Owner 候选一致；页面的镜像标签与客户端云密钥对名称不能证明实例内实际 OS、服务器 host-key 或 SSH 身份。页面未直接显示服务器 host-key 公钥/指纹及有效 SSH 端口。仅接受脱敏 UI 观察，`SERVER_TRUST_SOURCE=UNKNOWN`、`PORT_VERIFIED=UNKNOWN`、真实 DB 结构 `UNKNOWN`；未点击其他功能，未运行命令助手、SSH、DB 或备份。见 `EVIDENCE/AUTH-138-LIGHTWEIGHT-DETAIL-DIRECT-READONLY/summary.md`。下一步仍需独立审查精确只读信任来源候选及 Owner 对具体现场动作的授权，不复用本次页面预算。
 
+**当前 AUTH-139（2026-09-26）**：Owner 再次授权尝试使用其客户端密钥与地址进行 SSH，并同意尽快推进独立主机公钥来源。Work 已向最新合资格 Codex 会话下达仅本地静态的单条命令助手只读发现候选任务，见 `TASK_CURRENT.md`；作者不可进入控制台或 SSH。AUTH-138 的 `1/1` 不重置；实例内命令、SSH、DB 与备份仍为 0，必须先有精确候选、Work 独立 LEVEL 3 审查及 Owner 对具体现场动作授权。
+
+**AUTH-139 审查与 Owner 决策门（2026-09-26）**：Work LEVEL 3 仅接受静态候选的 `NOT_FIXED` 停止结论，未形成可运行命令；执行身份/工具身份、公钥映射和异常输出仍无法事前固定。Owner 已授权 SSH 方向，但首次握手可信来源未建立，故 SSH、命令助手及 DB 均未运行。若要更快推进，需 Owner 明确决定是否允许另立一次更小的**受限只读能力发现**任务，接受该步骤的实例内执行身份/工具路径事前未知及命令助手脚本/输出留存风险；即使同意，仍须先审精确脚本、一次预算与失败停点，不等于现在执行。见 `EVIDENCE/AUTH-139-BOUNDED-HOST-KEY-DISCOVERY-STATIC-CANDIDATE/plan.md`。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

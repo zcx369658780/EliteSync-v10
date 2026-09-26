@@ -1,25 +1,25 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-138-LIGHTWEIGHT-DETAIL-DIRECT-READONLY
+Task ID: AUTH-139-BOUNDED-HOST-KEY-DISCOVERY-STATIC-CANDIDATE
 
-Risk Level: LEVEL 3（已登录生产控制台实例详情的一次只读观察）
+Risk Level: LEVEL 3（生产实例连接信任；本阶段仅本地静态候选）
 
-Status: COMPLETED — ONE DETAIL-PAGE READ CONSUMED (1/1); SSH/DB NOT RELEASED
+Status: COMPLETED — LEVEL 3 ACCEPT NOT_FIXED ONLY; FIELD EXECUTION 0
 
-Assignee: Work 亲自作一次限定只读观察并记录；Codex 不派发现场动作。
+Assignee: 最新合资格 Codex 执行会话 `01a0dc31-b629-76a3-85fd-f71566b03056`；交付后停 Work 独立 LEVEL 3 审查。
 
-## Owner 授权与精确范围
+## 本次目标与授权边界
 
-Owner 在 AUTH-136 页面 1/1 已耗尽后，**新明确授权**直接在网页端的服务器详情查看信息。本任务单独设 `0/1` 的只读详情页观察预算，仅限当前已打开的阿里云官方轻量应用服务器上海唯一实例详情，不刷新、不重试、不切换实例、不倒退或重开列表。开始读取已认证详情即记 `1/1`，不论成功失败。
+Owner 指出详情页的 `CodexKey` 并提供客户端 PEM、地址及端口，明确授权尝试 SSH，随后同意尽快按独立主机公钥来源推进。AUTH-138 已接受控制台页面的产品、地域、公私网地址与 Owner 候选一致，详情查看 `1/1` 耗尽；页面 `CodexKey` 是客户端云密钥对名称，不是服务器 host-key。Owner 的 SSH 方向授权不消除首次握手的独立信任门，也不授权作者现在连接。PRODUCT_DECISIONS 已接受仅为准备候选而承担命令助手可能长期留存无秘密脚本/白名单结果的风险，不是现场执行许可。
 
-只核对页面**直接显示**的产品、地域、实例标识存在性、运行状态、公网/私网地址与 Owner 新提供的候选是否一致，以及是否直接展示当前 SSH 端口、服务器 host-key 公钥/指纹的来源和时点。未直接显示的字段填 `UNKNOWN`，不得点击远程连接、命令助手、网络/防火墙、密钥对、购买或其他功能，不查看其他页签/页面，不用云 API、SSH 或真实 DB。页面原文、截图、账号、实例 ID、地址、端口、公钥/指纹原值不进入普通证据或聊天；只留脱敏类别与预算。唯一主要结果为 `EVIDENCE/AUTH-138-LIGHTWEIGHT-DETAIL-DIRECT-READONLY/summary.md`。
+本任务只在本地准备**一条**绑定该上海唯一轻量实例的命令助手只读发现候选，回答在公钥路径、算法及有效 sshd 端口尚未知时，能否以有限、明确、失败即停的读取取得独立主机密钥来源。若无法收敛为安全精确候选，结果写 `NOT_FIXED`，不得用 Ubuntu 默认路径、旧 `known_hosts`、`ssh-keyscan` 或首次 SSH 指纹补洞。允许在静态设计中提出受限动态解析策略，但须明确输入对象、候选数量上限、拒绝多义性、执行身份、程序身份、完整命令文本、超时/输出限额、白名单投影、脚本与结果在控制台的留存/可见风险及失败停点；不得设计全盘搜索或读取任何私钥、`.env`、DB、业务行、备份。
 
-## Work 临运行门与停点
+唯一主要结果：`EVIDENCE/AUTH-139-BOUNDED-HOST-KEY-DISCOVERY-STATIC-CANDIDATE/plan.md`。仅允许新增该文件；本地静态检查最多 2 轮，不运行候选。保留两个无关未跟踪目录，不改产品代码和既有任务证据，不提交、不推送。
 
-若当前页不是官方控制台的上海轻量服务器详情，或出现登录、真人识别、权限/UAC、账号/地域/实例冲突、页面异常或缓存状态不明，失败即停；不通过刷新或其他导航“修复”。Work 不输入任何凭据、接受权限或运行实例内动作。旧 AUTH-128/136 各自的页面 1/1 仍耗尽，AUTH-121/122/123 本机读取也不重置；保留两个无关未跟踪目录。
+## 严格停点
 
-本任务即使看到地址/端口与 Owner 陈述相等，也只证明该控制台页的对应字段，不能独自证明实例内 sshd 现时监听、SSH 首次握手可信或当前数据库结构；`TARGET_BINDING` 和 `PORT_VERIFIED` 依独立来源及后继风险门判定。SSH、命令助手、真实 DB、dump、传输、恢复与首次备份在本任务中预算均为 0。
+本阶段控制台查看/命令助手、云 API、SSH、真实 DB、dump、传输、恢复、备份、客户端 PEM 读取、UAC/密码/真人识别预算均为 **0**。AUTH-128/136/138 各自页面预算及 AUTH-121/122/123 本机读取预算不重置。作者只交静态候选和 `GO|NOT_FIXED` 判定，不自审、不放行现场；Work 复核后才决定是否向 Owner 提交**精确一次**命令助手现场动作的授权请求。
 
-## 执行与 LEVEL 3 结论
+## 交付与审查
 
-Work 已在本次 Owner 新授权下读取当前已认证详情页一次，预算 `1/1` 耗尽；脱敏回执见 `EVIDENCE/AUTH-138-LIGHTWEIGHT-DETAIL-DIRECT-READONLY/summary.md`。仅接受页面上产品、地域、实例存在/运行状态及两类地址与 Owner 候选一致的观察。页面未直接提供服务器 host-key 公钥/指纹或实例内有效 SSH 端口，`SERVER_TRUST_SOURCE=UNKNOWN`、`PORT_VERIFIED=UNKNOWN`、`LIVE_DB_SCHEMA=UNKNOWN`。未点击其他功能或启动现场命令；后续须新任务与独立高风险门。
+作者已交唯一静态结果 `EVIDENCE/AUTH-139-BOUNDED-HOST-KEY-DISCOVERY-STATIC-CANDIDATE/plan.md`，Work LEVEL 3 仅接受 `NOT_FIXED` 停止结论，未放行现场执行或 SSH。预审仍缺实例技术绑定、执行身份/工具身份、公钥映射与异常输出边界。下一个决策是是否允许另立**更小的受限只读能力发现**任务，明确接受该一步的执行身份/工具路径尚未知和命令助手留存风险；即使 Owner 同意，也须先给精确脚本、单次预算及新 LEVEL 3 临运行门，不能直接运行本候选。
