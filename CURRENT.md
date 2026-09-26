@@ -44,6 +44,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-108 审查结论（2026-09-26，当前状态）**：Work LEVEL 2 接受 `EVIDENCE/AUTH-108-BOUNDED-TOOL-CAPTURE-SYNTHETIC/summary.md`，仅限本地虚构子进程的双流有界采集核心；作者 10 项和 Work 独立 10 项均通过。测试后新增的管道关闭失败分类已包含在 Work 复跑版本中，但终止失败、子孙进程和其他系统行为仍 UNKNOWN。没有 SSH、真实 dump、DB、UAC 或备份；AUTH-107 Phase B 仍未放行。前述过早交接已撤回，本 Work 会话继续；Owner 对数据库外文件范围的答复仍待收到。
 
+**当前任务 AUTH-109（2026-09-26）**：Owner 同意继续推进，已向同一合资格 Codex 会话下达有界采集与固定脱敏投影的本地虚构集成任务，见 `TASK_CURRENT.md`。AUTH-108 只返回类别/计数，不能安全地把原始字节交给 AUTH-107 投影器；本任务在受控进程内验证衔接，不连接 SSH/DB、不运行真实 dump 工具或 UAC。AUTH-107 Phase B 与真实备份均未放行。
+
+**AUTH-109 审查结论（2026-09-26）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-109-BOUNDED-CAPTURE-SAFE-PROJECTION-SYNTHETIC/summary.md` 的本地虚构集成；Work 独立复跑 12 项通过。真实工具身份/帮助格式、环境净化、SSH、目标及权限仍 `UNKNOWN`，AUTH-107 Phase B、真实备份及 UAC 均未放行。两个无关未跟踪目录保留；本 Work 会话继续，未达必须交接门槛。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
