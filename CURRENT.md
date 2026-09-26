@@ -158,6 +158,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-133 审查与来源停点（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-133-FIRST-STAGE-SSH-RUNTIME-PREFLIGHT-CANDIDATE/plan.md` 的 `NOT_FIXED` 及缺口表。Owner 已接受的留存风险不产生实例独立标识、最小权限用户、目标机工具身份或完整异常输出保证；即使第一阶段也无可运行命令。下一步先请 Owner 仅确认是否存在创建/交接时留存、独立于 AUTH-128 页面观察的受保护实例及部署记录，不在聊天索取原值；若不存在，另议有预算的身份/工具发现风险门，而非重发纯静态填空任务。现场预算 0、旧预算不重置、首次备份未开始。
 
+**Owner 旧版部署线索与当前 AUTH-134（2026-09-26）**：Owner 回答最近一周没有另存实例记录，但这台服务器在更早旧版 EliteSync 时期曾部署和调整。Work 仅在实时 `D:\EliteSync-v10` 初查 AUTH-02 旧 SSH/源码身份事实与 AUTH-24 旧控制台观察；它们均不独立确认当前实例 ID。已下达 AUTH-134，限定清点 v10 已跟踪资料和本地 Git 历史的更早来源；不访问旧 `D:\EliteSync` 或其他项目，不触发控制台/实例/SSH/DB，现场预算 0。见 `TASK_CURRENT.md`。
+
+**AUTH-134 本地清点验收（2026-09-26）**：Work LEVEL 3 接受 `EVIDENCE/AUTH-134-HISTORICAL-INSTANCE-PROVENANCE-LOCAL-INVENTORY/summary.md` 的限定 `SOURCE_NOT_FOUND_IN_V10`：在 v10 已跟踪资料及本地 Git 历史的受限检索中，未找到早于 AUTH-128 且可独立绑定当前实例的创建/交接原始凭据或现时服务/工具清单。AUTH-02/24 仍只是旧 SSH 和控制台观察，不能充当 host-key 信任锚。这个结论不推断 Owner 在仓库外没有旧版资料。下一步只需 Owner 指出是否知道其受保护存放位置或资料类别，不发送原值；任何仓库外读取须另立范围与预算。现场预算 0，旧预算不重置，首次备份未开始。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
