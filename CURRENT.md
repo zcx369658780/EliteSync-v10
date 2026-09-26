@@ -232,6 +232,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **Owner 首次 SSH 信任起点决定与 AUTH-150（2026-09-26）**：Owner 明确接受已认证阿里云控制台对指定上海实例的受限公钥观察作为首次 SSH 主机密钥固定的信任起点，知晓它不能排除实例或控制面此刻被攻陷。此决定仅放行**准备**具体公钥、端口和比较方案，不把当前主机密钥或端口写为已验证，不启动 SSH/DB。现下达 AUTH-150 纯本地静态候选任务，现场预算 0，交 Work LEVEL 3 独立审查；见 `TASK_CURRENT.md` 与 `PRODUCT_DECISIONS.md`。
 
+**AUTH-150 审查与 Owner 纠正（2026-09-26）**：Work LEVEL 3 仅接受 `NOT_FIXED` 停止结论；工具路径形态不能证明程序身份，当前没有可审为仅读公有 host-key 且关联运行中 sshd 的命令。Owner 明确要求不要再反复证明这台上海实例是否为旧开发服务器：备份目标选择已经确定。后续仅为避免现场选错当前实例及建立首次 SSH 信任而核验必要的当前公钥、端口和权限；不重开旧新服务器身份问题。现场命令、SSH、DB 和备份仍未放行，旧预算不重置。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

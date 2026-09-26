@@ -4,9 +4,11 @@ Task ID: AUTH-150-CONTROL-PLANE-SSH-TRUST-BOOTSTRAP-STATIC
 
 Risk Level: LEVEL 3（首次 SSH 主机信任与端口路径；本轮纯本地静态）
 
-Status: ISSUED — PHASE A STATIC CANDIDATE ONLY; FIELD BUDGET 0
+Status: COMPLETED — Work LEVEL 3 ACCEPT NOT_FIXED STOP ONLY; FIELD BUDGET 0
 
 Assignee: 最新合资格 Codex 执行会话；Work 独立 LEVEL 3 审查。Owner 保留现场公钥观察与首次 SSH 的分别授权。
+
+Work 审查结论见 `EVIDENCE/AUTH-150-CONTROL-PLANE-SSH-TRUST-BOOTSTRAP-STATIC/plan.md`。Owner 已确定当前上海实例为目标；不再要求证明与旧开发服务器同一。后续仍须在具体现场操作时避免选错当前实例，并另审当前 host-key、端口和权限。此任务没有可运行命令，不放行现场动作。
 
 ## 固定输入与本轮问题
 
