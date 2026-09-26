@@ -180,6 +180,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-137 Owner 连接候选（2026-09-26）**：Owner 补充服务器公网/私网地址及 SSH 端口。普通证据不记录原值；此为 Owner 提供的候选而非独立的当前监听、云实例或 host-key 证明。未调用网络或 SSH，独立信任门和新现场授权仍待完成。
 
+**当前 AUTH-138（2026-09-26）**：Owner 新授权直接查看网页端服务器详情。Work 单独固定当前已打开的上海轻量实例详情一次只读范围、脱敏回执及异常停点，见 `TASK_CURRENT.md`；新详情预算查看前 `0/1`，AUTH-128/136 旧预算不重置。不授权点击命令助手、远程连接或其他页面，不授权 SSH/DB。
+
+**AUTH-138 执行结论（2026-09-26）**：Work 已在该新预算内读取已认证的上海唯一轻量实例详情一次，`1/1` 耗尽。产品/地域、实例存在及运行状态、公私网地址与 Owner 候选一致；页面的镜像标签与客户端云密钥对名称不能证明实例内实际 OS、服务器 host-key 或 SSH 身份。页面未直接显示服务器 host-key 公钥/指纹及有效 SSH 端口。仅接受脱敏 UI 观察，`SERVER_TRUST_SOURCE=UNKNOWN`、`PORT_VERIFIED=UNKNOWN`、真实 DB 结构 `UNKNOWN`；未点击其他功能，未运行命令助手、SSH、DB 或备份。见 `EVIDENCE/AUTH-138-LIGHTWEIGHT-DETAIL-DIRECT-READONLY/summary.md`。下一步仍需独立审查精确只读信任来源候选及 Owner 对具体现场动作的授权，不复用本次页面预算。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
