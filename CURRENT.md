@@ -54,7 +54,13 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **当前任务 AUTH-111（2026-09-26）**：AUTH-110 已进入本地 `main` 检查点 `5181204ee15adef64e381285d3b4c21f8ed9b158`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-5181204.bundle` 的 SHA-256 为 `15DBA791C4103C90D50C76FF8DA742B14A5C14DD642BE98AF165852A96B59C7B`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达 `AUTH-111-SYNTHETIC-TRANSPORT-CAPTURE-AND-PARSER-WIRING`，仅本地临时虚构子进程的双流采集与 AUTH-110 解析衔接；真实 SSH、远端退出来源、UAC 和备份未放行。该检查点不含新任务单未提交修改及两个无关未跟踪目录。
 
-**AUTH-111 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-111-SYNTHETIC-TRANSPORT-CAPTURE-AND-PARSER-WIRING/summary.md` 的本地虚构进程接线；Work 独立复跑最终候选 11 项通过，AUTH-110 固定解析器 SHA-256 匹配。`Popen` 启动阻塞不能严格限时、真实远端退出来源与 SSH 语义、host-key、工具身份及数据库前置门仍 `UNKNOWN`。AUTH-107 Phase B 不放行，真实备份和 UAC 均未执行。下一个现场步骤须先另立具体风险任务；Owner 对数据库外文件是否属于“完整备份”仍未决定。
+**AUTH-111 审查结论（2026-09-26，历史停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-111-SYNTHETIC-TRANSPORT-CAPTURE-AND-PARSER-WIRING/summary.md` 的本地虚构进程接线；Work 独立复跑最终候选 11 项通过，AUTH-110 固定解析器 SHA-256 匹配。`Popen` 启动阻塞不能严格限时、真实远端退出来源与 SSH 语义、host-key、工具身份及数据库前置门仍 `UNKNOWN`。AUTH-107 Phase B 不放行，真实备份和 UAC 均未执行。后续 Owner 已决定仅备份数据库，见下。
+
+**当前任务 AUTH-112（2026-09-26）**：本地 `main` 检查点 `936ffd17b9cbc83678439244c4d207674f4c88bc`，跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-936ffd1.bundle` SHA-256 `4785C977A42543F48A6BD14E1EDCE8FF103370238C258AD4BC16E41C475C1906`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达仅公开文档与本地静态合同的 SSH/远端退出来源任务，见 `TASK_CURRENT.md`；没有 SSH、真实工具、UAC 或备份授权。
+
+**备份范围 Owner 决定（2026-09-26）**：Owner 明确选择本次只备份数据库，不包含服务器上传图片、视频等数据库外文件；已记入 `PRODUCT_DECISIONS.md`。数据库内部对象全集、目标身份、权限、恢复能力仍待核实；不得由此称为整站备份或真实备份已可执行。
+
+**AUTH-112 审查结论（2026-09-26，当前状态）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-112-SSH-REMOTE-EXIT-PROVENANCE-STATIC-CONTRACT/contract.md` 的静态协议边界；Work 独立核对 OpenBSD `ssh(1)` 官方 `EXIT STATUS` 原句。SSH 255 歧义一律按失败处理，不把一个本地退出值冒充两个独立实测值。AUTH-107 Phase B 仍未放行；后继须另立 AUTH-110/111 接口修订及虚构验证任务，之后才可审查具体现场方案。真实备份、SSH、UAC 均未执行。
 
 | 项目 | 当前状态 |
 |---|---|
