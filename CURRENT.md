@@ -78,6 +78,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-116 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-116-PROBE-PROCESS-EXIT-SYNTHETIC-ISOLATION/summary.md` 的本机独立进程级虚构测试；Work 独立复跑 6 项通过，适配脚本、测试及固定旧依赖哈希匹配。独立本机进程 0/1 退出和单行 JSON 有测试证据；虚构工具启动由适配层注入，不证明操作系统执行被核验文件、目标 Linux 或 SSH 退出。AUTH-107 Phase B、真实工具、数据库和备份均未放行。
 
+**当前任务 AUTH-117（2026-09-26）**：AUTH-116 已进入本地 `main` 检查点 `ff81c7fec2e9c0e31e1adcfd08fbe2e195a777b7`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-ff81c7f.bundle` SHA-256 `DDA17C62FBC9F8F1D6807403D59B291F7E118075D46DA8AB49DDFDDD517FA665`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达生产主机探针路径与启动边界的本地静态核对任务，见 `TASK_CURRENT.md`；不执行 SSH、真实工具、UAC 或备份。
+
+**AUTH-117 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-117-HOST-PROBE-LOCATOR-AND-LAUNCH-ENVELOPE-STATIC/plan.md` 的静态缺口清单及未来单次只读边界。AUTH-02/17 只证明历史 SSH 身份和版本；现时 host-key、解释器、远端程序与工具绝对路径/哈希仍 `UNKNOWN`。本轮没有可运行命令或 SSH；AUTH-107 Phase B、真实 DB 和备份未放行。下一步须另立授权明确的窄只读定位候选，再由 Work 独立审查是否允许一次现场观察。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
