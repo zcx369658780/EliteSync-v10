@@ -162,6 +162,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-134 本地清点验收（2026-09-26）**：Work LEVEL 3 接受 `EVIDENCE/AUTH-134-HISTORICAL-INSTANCE-PROVENANCE-LOCAL-INVENTORY/summary.md` 的限定 `SOURCE_NOT_FOUND_IN_V10`：在 v10 已跟踪资料及本地 Git 历史的受限检索中，未找到早于 AUTH-128 且可独立绑定当前实例的创建/交接原始凭据或现时服务/工具清单。AUTH-02/24 仍只是旧 SSH 和控制台观察，不能充当 host-key 信任锚。这个结论不推断 Owner 在仓库外没有旧版资料。下一步只需 Owner 指出是否知道其受保护存放位置或资料类别，不发送原值；任何仓库外读取须另立范围与预算。现场预算 0，旧预算不重置，首次备份未开始。
 
+**Owner 请求数据库结构梳理与当前 AUTH-135（2026-09-26）**：Owner 转来旧版 Codex 对旧仓库的限定只读回复，称未找到实例原始购买/创建/交接记录，只有旧部署与 SSH 观察指针；Work 将此作为未独立复核的外部线索，不访问旧 `D:\EliteSync`。Owner 要求自行理清服务器数据结构；按首次备份上下文先限定为数据库内对象。已下达 AUTH-135，仅从 v10 本地迁移/模型与 AUTH-14/16/20/65/67 已接受部署端聚合建立表级设计和证据矩阵。真实当前线上完整 schema、对象权限及 Web/CLI 同库仍 UNKNOWN；本轮现场预算 0，不重用旧 SSH/控制台预算。
+
+**AUTH-135 静态结构验收（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-135-DB-STRUCTURE-LOCAL-RECONCILIATION/summary.md` 的本地表级设计与旧部署聚合分层对照。57 个本地迁移文件有 42 个显式建表名，迁移账本名另由 Laravel 配置指定；旧部署端曾在 CLI 权限可见范围报告 43 基表、532 列、196 索引、66 外键和 43/43 可见 InnoDB 表。数量相近不证明集合相同或当前服务器结构完整；目标实例、Web/CLI 同库、权威对象全集/权限、业务行与一致性仍 UNKNOWN。现场预算 0，第一次备份未开始；需要新的连接信任与受限权威元数据门才能核对现时结构。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
