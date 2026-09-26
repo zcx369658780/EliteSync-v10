@@ -174,6 +174,8 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-136 最终回执（2026-09-26）**：Owner 自行登录并通知后，Work 在固定官方页读到上海地域轻量应用服务器列表恰一条、运行中；新查看预算 `1/1` 已耗尽。唯一一次尝试进入该条目概览时，UI 意外打开购买服务器页；未操作购买、未创建或改动资源，随即关闭该意外标签并停止，不重试。Work LEVEL 3 仅接受列表受限观察；概览、现时地址与历史来源的独立比较、技术目标绑定及当前数据库结构均 `UNKNOWN`。后继控制台查看须新任务和新明确预算；命令助手、SSH、DB、dump 和首次备份仍未放行。
 
+**当前 AUTH-137（2026-09-26）**：Owner 新明确授权以 SSH 方式调查数据库结构，并允许必要时询问截图中的旧项目 Codex。Work 向准确旧会话作一次定向只读询问；回复称在其限定旧资料范围内未找到云实例原始身份或独立主机公钥来源，不能证明搜索范围外不存在，也不能把旧 SSH/known_hosts 当现时信任锚。见 `TASK_CURRENT.md` 与 `EVIDENCE/AUTH-137-SSH-TRUST-AND-LIVE-SCHEMA-ENTRY/decision.md`。由于实例绑定、host-key/端口及精确命令仍未固定，授权只记为 SSH 调查方向，**不发起连接**；需先形成并审查受限信任来源候选，精确现场动作另取 Owner 决定。AUTH-128/136 各 1/1 及其他耗尽预算均不重置。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

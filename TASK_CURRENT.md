@@ -1,23 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-136-LIGHTWEIGHT-INSTANCE-REOBSERVATION-READONLY
+Task ID: AUTH-137-SSH-TRUST-AND-LIVE-SCHEMA-ENTRY
 
-Risk Level: LEVEL 3（已登录生产控制面只读查看，服务于当前数据库结构诊断；不含实例内动作）
+Risk Level: LEVEL 3（拟对生产实例建立 SSH 信任并调查真实数据库结构；当前仅范围与授权记录）
 
-Status: COMPLETED — WORK LEVEL 3 ACCEPT LIST OBSERVATION ONLY; OVERVIEW UNKNOWN; VIEW BUDGET EXHAUSTED (1/1)
+Status: PREPARATORY — SSH DIRECTION AUTHORIZED BY OWNER; CONNECTION NOT RELEASED; TRUST SOURCE NOT FIXED
 
-Assignee: Work 亲自执行一次受限 UI 查看并独立记录；Codex 不派发现场动作。
+Assignee: Work 固定下一受限候选与 Owner 决策；当前不派发现场动作。
 
-## Owner 授权与精确范围
+## Owner 新授权与当前停点
 
-Owner 在当前 Work 会话明确选择：**新设一次 1/1 的阿里云官方控制台只读查看**，限上海地域轻量应用服务器“服务器列表→其唯一实例概览”，只核对产品、地域、实例标识存在性、运行状态与当前地址一致性。不刷新、不重试、不保存原值；不运行命令助手、VNC、SSH、云 API、真实 DB、dump、传输或恢复。AUTH-128 的旧页面查看 1/1 继续视为耗尽，不转借/重置；本任务是新预算，查看前 0/1。
+Owner 明确授权以 SSH 连接方式调查数据库结构，并允许必要时询问截图所示旧项目 Codex 会话。这是**方向与目的授权**；本任务尚未固定实例绑定、独立 host-key 来源、有效端口、身份、准确命令、只读 DB 元数据范围、输出及一次预算，不作为立即发起 SSH、命令助手或真实 DB 查询的临运行放行。
 
-唯一主要结果为 `EVIDENCE/AUTH-136-LIGHTWEIGHT-INSTANCE-REOBSERVATION-READONLY/summary.md`。普通证据和聊天仅报观察类别、时点、失败类别与预算，不含账号、实例 ID、IP、端口、公钥/指纹、页面原文或截图。两个无关未跟踪目录保留。
+前一 AUTH-136 仅接受已登录上海轻量服务器列表唯一运行中条目的观察；概览因 UI 异常未核，查看 1/1 耗尽。AUTH-130 仅接受 `NOT_FIXED` 停止结论。旧项目会话 `01a0666b-6f87-7aa1-924c-75c021c9dbaf` 经 Owner 授权的定向只读回复为 `NOT_FOUND_IN_SEARCHED_SCOPE`：在其旧仓库文档/Git 历史及 2026 年 8—9 月相关本地会话范围内，未找到独立于 SSH/known_hosts 的云实例身份或主机公钥来源；此回复是外部线索，Work 不访问旧 `D:\EliteSync`，不能把搜索范围外推为不存在。
 
-## Work 临运行门
+唯一主要结果拟为 `EVIDENCE/AUTH-137-SSH-TRUST-AND-LIVE-SCHEMA-ENTRY/decision.md`，先记录可信连接与最小 schema 元数据读取的顺序、留存/权限边界、单次预算及失败停点；本轮无现场预算。普通证据不含账号、实例 ID、地址、端口、公钥/指纹原值、登录材料、DB 名或业务行。保留两个无关未跟踪目录。
 
-入口仅阿里云公开资料指向的 `https://swasnext.console.aliyun.com/servers/` 或已打开的同一官方控制台页。Work 先只读确认页面属于轻量应用服务器、预期账号/上海地域可见且列表恰有一个条目；再最多一次进入该条目概览。若页面已在概览，最多只读观察该页，缺列表佐证即记录 `PARTIAL`，不倒退/刷新以凑齐。页面跳转、账号/地域/产品不符、零或多个实例、字段缺失、地址漂移、缓存状态无法判断或 UI 异常均失败即停，不换入口/筛选/实例。
+## 不可跳过的门
 
-到达登录密码、真人识别、权限提示或可能 Windows UAC **之前**停，由 Owner 本人处理；当前 Work 会话尚未收到“我在”，不得触发 UAC。Work 不输入凭据、不解 CAPTCHA、不接受额外权限。若只见登录门而未读账号内容，记录停止且新查看预算保留 0/1；开始读已认证列表或概览后，不论成功失败记 1/1。
+先独立绑定 Owner 指定实例，并从独立于 SSH 握手/旧 known_hosts 的可信通道固定现时服务器公有 host-key 与有效 SSH 端口；再经单独 LEVEL 3 临运行审查对固定指纹作比较，才可尝试 SSH。旧 AUTH-02/17 成功、AUTH-121/122/123 的耗尽读取及 AUTH-128/136 页面观察不能替代。若只能通过阿里云命令助手获取实例内事实，须先单独固定无秘密只读脚本、执行身份、白名单输出、留存/可见者风险、实例绑定、一次预算和失败停点，并取得 Owner 对**该精确现场动作**的明确授权；之前接受留存风险仅用于准备候选。
 
-本次仅接受一次 UI 观察，不能因 Owner 选择或页面地址与历史吻合而把 `TARGET_BINDING=UNKNOWN` 升为独立技术绑定。它不验证 host-key、有效 SSH 端口、实例内运行身份、Web worker/CLI/备份同库或当前数据库对象结构；任何后继控制面命令/真实 DB 读取须另立任务与 LEVEL 3 门，Owner 对具体现场调用单独授权。所有旧 SSH、本机与控制台耗尽预算不重置，首次备份未开始。
+SSH 信任门通过也不直接授权读取业务行或 dump。首次 live schema 任务只应查询最小元数据与权限，先核对 Web worker/CLI/备份连接是否同一权威 DB，再逐类核对表、视图、触发器、例程、事件、列/索引/约束和可见性；输出只保留经审查的聚合/比较结论。任何密码、真人识别、额外权限或可能 UAC 在触发前停；Owner 当前会话尚未回复“我在”。实例失配、指纹/端口不能独立核验、额外输出、超时或权限不足均失败即停，不重试或改道。当前 `SSH_BUDGET=0`、`DB_READ_BUDGET=0`、首次备份未开始。
