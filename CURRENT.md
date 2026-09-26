@@ -74,6 +74,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-115 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-115-REMOTE-READONLY-PROBE-PROGRAM-SYNTHETIC-CANDIDATE/summary.md` 的本机虚构 Phase A 受控程序候选；Work 独立复跑最终版本 13 项通过，程序、测试和固定依赖哈希匹配。测试没有在操作系统层运行被核验的虚构文件，也没有证明独立程序进程退出传播、目标 Linux 行为或真实工具身份。AUTH-107 Phase B、SSH、真实工具、数据库和备份未放行。下一步须先补固定部署/调用身份及独立进程级虚构负向验证，再审查一次现场只读任务。
 
+**当前任务 AUTH-116（2026-09-26）**：AUTH-115 已进入本地 `main` 检查点 `03b2efd8678df69423697939170b73991946eda1`；跨磁盘 bundle `C:\Users\zcxve\.codex\backups\EliteSync-v10\2026-09-26-main-03b2efd.bundle` SHA-256 `A1464766223CF450E6377689220E249D4ED45A3CBFE00CA34D0F16C1E93F0666`，`git bundle verify` 通过。已向同一合资格 Codex 会话下达 AUTH-115 候选的本机独立进程级虚构 stdout/退出传播验证，见 `TASK_CURRENT.md`；不执行 SSH、真实工具、UAC 或备份。
+
+**AUTH-116 审查结论（2026-09-26，当前停点）**：Work LEVEL 2 受限 ACCEPT `EVIDENCE/AUTH-116-PROBE-PROCESS-EXIT-SYNTHETIC-ISOLATION/summary.md` 的本机独立进程级虚构测试；Work 独立复跑 6 项通过，适配脚本、测试及固定旧依赖哈希匹配。独立本机进程 0/1 退出和单行 JSON 有测试证据；虚构工具启动由适配层注入，不证明操作系统执行被核验文件、目标 Linux 或 SSH 退出。AUTH-107 Phase B、真实工具、数据库和备份均未放行。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |
