@@ -166,6 +166,10 @@ Codex 本地执行入口 `WF-CODEX-01` 已独立 ACCEPT，见 `EVIDENCE/WF-CODEX
 
 **AUTH-135 静态结构验收（2026-09-26）**：Work LEVEL 3 仅接受 `EVIDENCE/AUTH-135-DB-STRUCTURE-LOCAL-RECONCILIATION/summary.md` 的本地表级设计与旧部署聚合分层对照。57 个本地迁移文件有 42 个显式建表名，迁移账本名另由 Laravel 配置指定；旧部署端曾在 CLI 权限可见范围报告 43 基表、532 列、196 索引、66 外键和 43/43 可见 InnoDB 表。数量相近不证明集合相同或当前服务器结构完整；目标实例、Web/CLI 同库、权威对象全集/权限、业务行与一致性仍 UNKNOWN。现场预算 0，第一次备份未开始；需要新的连接信任与受限权威元数据门才能核对现时结构。
 
+**当前 AUTH-136（2026-09-26）**：Owner 在本 Work 会话明确授权**新设** 1/1 阿里云上海轻量服务器列表→唯一实例概览只读查看；AUTH-128 旧 1/1 不重置。Work 已固定页面、字段、脱敏回执和登录/真人识别/UAC 前停点，见 `TASK_CURRENT.md` 与 `EVIDENCE/AUTH-136-LIGHTWEIGHT-INSTANCE-REOBSERVATION-READONLY/summary.md`。本次无命令助手、SSH、DB 或备份授权，目标独立绑定与当前 DB 结构仍 UNKNOWN。
+
+**AUTH-136 工具停点（2026-09-26）**：浏览器控制接口在初始化时两次返回本地路径错误；未打开或读取阿里云已认证页面，新预算仍为 `0/1`。任务保持待执行，后续须先恢复受控浏览器接口，再按原单次范围和停点继续；不得改走云 API、SSH、命令助手或将工具失败当成目标核验结果。
+
 | 项目 | 当前状态 |
 |---|---|
 | 本地根 / Git | `D:\EliteSync-v10`；本地 `main` 已含工作流迁移及本页状态修订，精确 HEAD 以本地 Git 读取。`origin/main` 本轮未刷新或推送；根目录有无关 untracked `EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/`，保留原状。 |

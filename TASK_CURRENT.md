@@ -1,27 +1,23 @@
 # EliteSync v10｜TASK_CURRENT
 
-Task ID: AUTH-135-DB-STRUCTURE-LOCAL-RECONCILIATION
+Task ID: AUTH-136-LIGHTWEIGHT-INSTANCE-REOBSERVATION-READONLY
 
-Risk Level: LEVEL 3（生产数据库结构声明与后续备份范围有关；本轮仅本地静态重建）
+Risk Level: LEVEL 3（已登录生产控制面只读查看，服务于当前数据库结构诊断；不含实例内动作）
 
-Status: COMPLETED — WORK LEVEL 3 ACCEPT STATIC RECONCILIATION ONLY; LIVE SCHEMA UNKNOWN; FIELD ACTION NOT RELEASED
+Status: ISSUED — WORK PRE-RUN REVIEW COMPLETE; UI TOOL INITIALIZATION BLOCKED; VIEW NOT STARTED (0/1)
 
-Assignee: 最新合资格 Codex 执行会话 `01a0dc31-b629-76a3-85fd-f71566b03056`；Work 独立 LEVEL 3 审查。
+Assignee: Work 亲自执行一次受限 UI 查看并独立记录；Codex 不派发现场动作。
 
-## 背景与唯一结果
+## Owner 授权与精确范围
 
-Owner 转来旧版 Codex 的只读搜索回复：在旧仓库其搜索范围内未找到原始实例购买/创建/交接记录，只有部署、SSH 盘点和审计指针；这份回复是 Owner 提供的外部线索，Work 未访问旧 `D:\EliteSync` 或独立核验其旧仓库断言。Owner 现要求“自行理清服务器上的数据结构”。结合首次数据库备份上下文，本任务先针对**数据库内对象结构**，从实时 v10 本地迁移/模型与已经接受的部署目录只读元数据重建可证基线；不能把本地源码写成当前线上完整 schema。
+Owner 在当前 Work 会话明确选择：**新设一次 1/1 的阿里云官方控制台只读查看**，限上海地域轻量应用服务器“服务器列表→其唯一实例概览”，只核对产品、地域、实例标识存在性、运行状态与当前地址一致性。不刷新、不重试、不保存原值；不运行命令助手、VNC、SSH、云 API、真实 DB、dump、传输或恢复。AUTH-128 的旧页面查看 1/1 继续视为耗尽，不转借/重置；本任务是新预算，查看前 0/1。
 
-唯一主要结果为 `EVIDENCE/AUTH-135-DB-STRUCTURE-LOCAL-RECONCILIATION/summary.md`。Codex 只可新增/修改此文件；其他项目文件只读。保留两个无关未跟踪目录。
+唯一主要结果为 `EVIDENCE/AUTH-136-LIGHTWEIGHT-INSTANCE-REOBSERVATION-READONLY/summary.md`。普通证据和聊天仅报观察类别、时点、失败类别与预算，不含账号、实例 ID、IP、端口、公钥/指纹、页面原文或截图。两个无关未跟踪目录保留。
 
-## Phase A 交付
+## Work 临运行门
 
-1. 在 `D:\EliteSync-v10` 内核对当前 Git/任务/风险门，读取 `services/backend-laravel/database/migrations/` 中相关迁移与必要模型，以及 AUTH-14/16/20/65/67 和 AUTH-104 的已接受结论。可用现有 codebase-memory 图谱定位源码；图谱索引不能代替原文件核对。不要访问旧仓库、云控制台、SSH 或真实 DB。
-2. 给出**本地设计表级清单**：按账号/认证、匹配/问卷、会话/媒体、运营/安全、框架基础等功能类别列出每个由当前迁移 `Schema::create` 定义的表及来源迁移；区分多表迁移、后续 `Schema::table` 修改、迁移账本 `migrations` 表和可能的 raw SQL/非标准建表。至少核对迁移文件数、静态建表调用数、唯一表名数；若解析不能证明穷尽，标明方法局限。不得因本地数量与旧部署 43 张接近就推定集合相等。
-3. 将**部署端仅已接受的事实**单列：AUTH-14 的迁移账本可见状态、AUTH-16 固定字段/索引存在性、AUTH-20 目标/估算、AUTH-65 对象类型计数、AUTH-67 引擎计数。每项标观察时点、CLI 当前配置/权限可见范围与不能推出的结论。不得输出真实 DB 名/标识、业务行、原始对象列表、凭据或原始探针输出。
-4. 做一张三栏矩阵：本地源码可推断、旧部署聚合可证、当前目标实例仍 `UNKNOWN`。特别覆盖 Web worker/CLI 同库、权威对象全集与逐项权限、视图/触发器/例程/事件是否被权限隐藏、表列/索引实际集合、数据行/外键与一致性、外部文件边界。Owner 的备份范围只含数据库内数据和对象，不能称整站恢复。
-5. 明确要证明**当前服务器**结构仍需新任务固定目标身份、权威目录来源与最小只读元数据读取；目前 host-key/端口门未闭，既有 SSH 和 AUTH-121/122/123、AUTH-128 的 1/1 预算不重置。不得在本轮给可运行现场命令或申请现场预算。作者最多两轮本地静态检查，报告 SHA-256 和范围，停 Work LEVEL 3。
+入口仅阿里云公开资料指向的 `https://swasnext.console.aliyun.com/servers/` 或已打开的同一官方控制台页。Work 先只读确认页面属于轻量应用服务器、预期账号/上海地域可见且列表恰有一个条目；再最多一次进入该条目概览。若页面已在概览，最多只读观察该页，缺列表佐证即记录 `PARTIAL`，不倒退/刷新以凑齐。页面跳转、账号/地域/产品不符、零或多个实例、字段缺失、地址漂移、缓存状态无法判断或 UI 异常均失败即停，不换入口/筛选/实例。
 
-## 禁止
+到达登录密码、真人识别、权限提示或可能 Windows UAC **之前**停，由 Owner 本人处理；当前 Work 会话尚未收到“我在”，不得触发 UAC。Work 不输入凭据、不解 CAPTCHA、不接受额外权限。若只见登录门而未读账号内容，记录停止且新查看预算保留 0/1；开始读已认证列表或概览后，不论成功失败记 1/1。
 
-不得访问旧 `D:\EliteSync`、其他项目、Owner 账号/控制台、命令助手、VNC、SSH、云 API、真实 DB、`known_hosts`、密钥、备份或无关未跟踪目录；不得运行 dump、部署、停写、传输、恢复、触发密码/UAC、提交或推送。不得自接受或派发后继。
+本次仅接受一次 UI 观察，不能因 Owner 选择或页面地址与历史吻合而把 `TARGET_BINDING=UNKNOWN` 升为独立技术绑定。它不验证 host-key、有效 SSH 端口、实例内运行身份、Web worker/CLI/备份同库或当前数据库对象结构；任何后继控制面命令/真实 DB 读取须另立任务与 LEVEL 3 门，Owner 对具体现场调用单独授权。所有旧 SSH、本机与控制台耗尽预算不重置，首次备份未开始。
