@@ -2,6 +2,8 @@
 
 状态：ACCEPT/CLOSED；父会话结合非作者独立审查已终裁，见 [review](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。Owner 已授权 dot 承接原 Work 职责；active NONE、successor NONE。本页是当前导航与建议，不发布运行任务，不设预算，不恢复自动化。范围与检查见 [plan](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)、[result](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)；稳定治理入口见 [AGENTS](../../AGENTS.md)、[REVIEW_GATE](../../REVIEW_GATE.md)。
 
+当前工程接续（本治理接受之后）：M112准备根/task/authority已建，REJECT_CLOSED__BACKUP_CHECKPOINT_STOP（父终裁运行FAIL/REJECT；A1成功、Invocation1/FAIL、B0关闭，activeNONE/successorNONE）。旧HEAD绑定已由父接受的派生launcher闭合，准确计划与停止条件见 [M112 task](../../EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/task.md)。下文治理闭环active NONE/successor NONE描述原接受时点；运行许可仅本次正式task；首失败/验收备份节点停止。
+
 ## 当前接受与停点
 
 | 工作线 | 准确证据与限制 |
@@ -9,10 +11,10 @@
 | 机械迁移 | [同步 Work 验收](../../EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/work-review.md)：963文件/10690093bytes；只说明保存/同步，不接受全部候选或迁移运行环境。 |
 | Product Connection | [R18-R1 接受](ELITESYNC_V10_IP_13I_R18_R1_PRODUCT_CONNECTION_APPLICATION_BINDING_ORDER_CORRECTION_ACCEPTANCE_V0_1.md)：synthetic/dev-test persistence/application 已接受；无 HTTP、真实 writer、auth/session/token、下游或生产权威。R18 原拒绝不追认。 |
 | Home 主循环 | [APP-INT-05 summary](../../EVIDENCE/APP-INT-05/summary.md)：有限 synthetic Home 投影接受；历史 Android assemble/install/cold-launch/main-loop 依赖作者回执，未由审查重跑。不得外推当前受控 host 可安装或可运行。 |
-| 合成 installer | [M118 Work 验收](../../EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/work-review.md)、[M118 handoff](../../EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/handoff-current.md)：launcher 仅 SOURCEONLY；14case未跑。M110只接受有限原API事实；M100整task/M117Work及全部旧失败保留拒绝。 |
+| 合成 installer | [M118 Work 验收](../../EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/work-review.md)、[M118 handoff](../../EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/handoff-current.md)：launcher M118原资格仅 SOURCEONLY；本次M112未完成14case PASS，首失败另记。M110只接受有限原API事实；M100整task/M117Work及全部旧失败保留拒绝。 |
 | 运行/数据 | NOT_READY、settings拒绝、loader-runtime=false；真实binding-ID-path-hook、LibraryExtension时序、SDK及发布链未证明。备份回填不阻塞与真实数据隔离的 synthetic 开发；真实备份/数据恢复另门。 |
 
-M112 APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE 未建未派未跑；自动化 PAUSED。22冻结保持，两个旧bin不补读正文。路径存在不证明可运行，历史版本/配置声明不冒充当前工具实测。
+M112 APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE 准备根已建且唯一运行首失败；预算REJECT_CLOSED、终裁见 [M112 review](../../EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/review.md)；自动化 PAUSED。22冻结保持，两个旧bin不补读正文。路径存在不证明可运行，历史版本/配置声明不冒充当前工具实测。
 
 ## 路线层级与近期次序
 

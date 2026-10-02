@@ -1,3 +1,15 @@
+# 2026-10-02 M112 已终裁备份检查点
+
+M112 APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE 准备根/task/14键authority已建，状态REJECT_CLOSED__BACKUP_CHECKPOINT_STOP；A1成功、唯一Invocation exit1/FAIL，B0及余预算关闭；active NONE、successor NONE，父独立审查/终裁已完成：运行目标FAIL/REJECT_CLOSED；仅首失败处理与有限证据记录接受，不接受case能力。准确计划见 [task](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/task.md)，准备结果见 [preparation-result](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/preparation-result.md)。
+
+历史旧HEAD阻塞已由父接受的SOURCEONLY派生launcher两处固定身份适配闭合；原冻结M118不改。唯一调用及新预算见task；首失败停止，到备份候选节点不自动后继。旧接受/拒绝和22冻结保持，自动化PAUSED、NOT_READY；备份回填不阻塞隔离synthetic开发。下方治理闭环及历史停点原样保留，描述各自时点。
+
+原partial：RAW_GSTRING_PATH案例报OUTER_CLASS；wrapper候选计数UNKNOWN、runtimeReadyfalse。准确结果见 [result](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/result.md)；当前到备份检查点停止，未提交/推送、不清理。
+
+终裁见 [review](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/review.md)；实际exec.cmd与task逐字一致未独立证实，行政保存动作属作者记账，根因未定；不补证、不继续。
+
+---
+
 # 2026-10-02 当前任务：DOT-GOVERNANCE-ROUTE-20261002
 
 状态：ACCEPT/CLOSED；父会话已终裁，见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)；active NONE、successor NONE。精确授权、唯一可验收行为、读写集、检查与停点见 [plan](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)，交付见 [result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)。执行接续 01a0fa2b-c777-77b2-ba66-00ed7c5260f5 已只读接收；旧执行者不并发写入。

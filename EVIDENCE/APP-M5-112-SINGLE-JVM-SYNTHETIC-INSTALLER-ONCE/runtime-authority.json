@@ -1,0 +1,16 @@
+{
+  "TaskId": "APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE",
+  "Status": "CLOSED_AFTER_FAILURE",
+  "JVM": 1,
+  "OwnerAuthorization": "OWNER_DELEGATED_SINGLE_JVM_SYNTHETIC_TEST_AUTHORIZED",
+  "ProbeSha256": "7251ACF92C24055EEFC5E299DEF620D09263C3F5C4DFA80E7DB3A763702E5CCD",
+  "ProbeBytes": 14402,
+  "ProbePath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE\\VerifyLocalExtraRecipeInstaller.groovy",
+  "ManifestPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv",
+  "InputRoot": "D:\\GradleHome\\wrapper\\dists\\gradle-8.14-all\\dq61qkzrdg407zji6bwf6hwt7\\gradle-8.14\\lib",
+  "OutputRoot": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE",
+  "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot\\bin\\java.exe",
+  "InstallerPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy",
+  "InstallerSha256": "7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37",
+  "InstallerBytes": 6141
+}
