@@ -1,3 +1,9 @@
+# 2026-10-02 治理交叉引用（不改变产品决定）
+
+Owner 已授权 dot 接续治理；已接受治理规则见 [AGENTS](AGENTS.md)、[REVIEW_GATE](REVIEW_GATE.md) 与 [当前路线](docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md)，终点为 [本次 result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)；父会话已终裁 ACCEPT/CLOSED，见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。下方产品决定原字节保留，接受范围、Owner 保留决定及重开条件不变。历史自动化 ACTIVE/旧会话说明不覆盖当前 PAUSED、M112 未建未派未跑与 NOT_READY。
+
+---
+
 **2026-10-02 DOT迁移GitHub同步独立接受/已完成**：Work ACCEPT/CLOSED MECHANICAL_PROJECT_SNAPSHOT_SYNC；指定SSH连接成功，Downloads7原文档52291bytes已上传docs/gpt-project-sources（a8f6ff2）；现有Codex已normalpush当前项目快照3741c7e6ddd19797982aa582940ae0c09b1a72ba（963files/10690093bytes），Work独立核远端一致/manifest缺0额外0/docs7原字节/冻结22/暂存0，剩余7项保护或生成条目保留本地。无PR/产品运行或新接受；M118仅SOURCEONLY接受、所有旧拒绝/NOT_READY保护门保持，M112未建未派/自动化PAUSED。最终验收记录及本顶部更新另为docs-only检查点，当前SHA取Git HEAD；准确接续与范围见EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/handoff-current.md、snapshot-manifest.json、work-review.md。当前任务CLOSED/后继NONE，执行01a0f74b/local已completed/errornull/idle。
 
 **2026-10-01 M5-118原合成启动器源码资格接受/Owner关机接续保存**：Work独立LEVEL2 ACCEPT/CLOSED ORIGINAL_SOURCE_ARTIFACT_ONLY，freshSolhigh九文件各Read1/NO_FINDINGS；Work新cache预算原证核定与全文forward-inverse一致，源21223hash23A839B8...列第22冻结SOURCEONLY/summary4354hash94A1CCC9...，native六命令exit0false/Add2前缀与完整summary-Bhash一致。M117 Work ReferenceError及所有旧拒绝预算保持REJECT/CLOSED不追认；完整PSnativeAdd NOT_PROVEN/预写hashNOT_MEASURED/语法运行0。274status旧缺0/main指定HEAD，Frozen22完整见EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json。Owner要求当前任务结束后关机明日继续，active任务NONE/接续handoff-current.md已保存；M112未建未发布未派/JVM0。沿01a0f74b/local第13turncompleted/errornull/idle,cursor45；Owner持续小任务委托保留，NOT_READY及全部保护门保持，自动化PAUSED。

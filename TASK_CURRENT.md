@@ -1,3 +1,13 @@
+# 2026-10-02 当前任务：DOT-GOVERNANCE-ROUTE-20261002
+
+状态：ACCEPT/CLOSED；父会话已终裁，见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)；active NONE、successor NONE。精确授权、唯一可验收行为、读写集、检查与停点见 [plan](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)，交付见 [result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)。执行接续 01a0fa2b-c777-77b2-ba66-00ed7c5260f5 已只读接收；旧执行者不并发写入。
+
+本轮仅治理与路线文档，无运行许可；M112 root/task/authority 未建未派未跑，没有新增其运行或重试预算。自动化 PAUSED，NOT_READY，旧预算/冻结/拒绝与 Owner 门不变。下一工程建议见 [当前路线](docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md)，建议不是 ISSUED；APP-T01 旧基线不得重新派发为当前任务。
+
+下方保留历史任务状态及准确来源；历史 ISSUED 不可重新执行。旧任务本身的权限、预算与拒绝不得由本修订改变。
+
+---
+
 **2026-10-02 DOT迁移GitHub同步独立接受/已完成**：Work ACCEPT/CLOSED MECHANICAL_PROJECT_SNAPSHOT_SYNC；指定SSH连接成功，Downloads7原文档52291bytes已上传docs/gpt-project-sources（a8f6ff2）；现有Codex已normalpush当前项目快照3741c7e6ddd19797982aa582940ae0c09b1a72ba（963files/10690093bytes），Work独立核远端一致/manifest缺0额外0/docs7原字节/冻结22/暂存0，剩余7项保护或生成条目保留本地。无PR/产品运行或新接受；M118仅SOURCEONLY接受、所有旧拒绝/NOT_READY保护门保持，M112未建未派/自动化PAUSED。最终验收记录及本顶部更新另为docs-only检查点，当前SHA取Git HEAD；准确接续与范围见EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/handoff-current.md、snapshot-manifest.json、work-review.md。当前任务CLOSED/后继NONE，执行01a0f74b/local已completed/errornull/idle。
 
 **2026-10-01 M5-118原合成启动器源码资格接受/Owner关机接续保存**：Work独立LEVEL2 ACCEPT/CLOSED ORIGINAL_SOURCE_ARTIFACT_ONLY，freshSolhigh九文件各Read1/NO_FINDINGS；Work新cache预算原证核定与全文forward-inverse一致，源21223hash23A839B8...列第22冻结SOURCEONLY/summary4354hash94A1CCC9...，native六命令exit0false/Add2前缀与完整summary-Bhash一致。M117 Work ReferenceError及所有旧拒绝预算保持REJECT/CLOSED不追认；完整PSnativeAdd NOT_PROVEN/预写hashNOT_MEASURED/语法运行0。274status旧缺0/main指定HEAD，Frozen22完整见EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json。Owner要求当前任务结束后关机明日继续，active任务NONE/接续handoff-current.md已保存；M112未建未发布未派/JVM0。沿01a0f74b/local第13turncompleted/errornull/idle,cursor45；Owner持续小任务委托保留，NOT_READY及全部保护门保持，自动化PAUSED。

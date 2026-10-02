@@ -1,3 +1,25 @@
+# 2026-10-02 dot 当前治理入口（ACCEPT/CLOSED）
+
+Owner 已明确授权 dot 承接原 Work 的规划、派发、协调、状态维护与终裁职责，并授权治理及执行接续。父会话已结合非作者独立审查作 ACCEPT/CLOSED；作者仅记录终裁。终裁见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)；精确范围与验收见 [plan](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)、[result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)。本次已接受规则仅替代未来治理冲突项；不追认历史任务，不重置预算。
+
+## 角色、任务与保护门
+
+- dot 承担原 Work 职责；Builder 在有效任务范围内实现、验证、交付候选，不能自接受高风险成果。独立审查者须与候选作者分离；NO_FINDINGS 是审查意见，终裁须对照原证。Owner 的产品、隐私、安全、真实数据、生产、不可逆及 UAC 保护门不变。
+- 一个工作单对应一个可验收行为，合并范围内实现、必要验证与相关文档；按最高实际风险使用 L0 自检、L1 轻审、L2 独立审查、L3 Owner 保护门。受保护语义不能因 synthetic、文档或合包降级。
+- 仅未来新任务可事先给出有限行政修正次数、路径与种类，例如路径拼写、报告格式、输出处理。行政修正不得扩大读写集、运行次数或副作用；与科学、进程、受保护读取预算分账，超限停止。旧任务 one-shot、首失败停点及拒绝不变。本轮不为 M112 设置任何新运行或重试预算。
+
+## 接续与并发
+
+主聊天不继承旧 Work 每30轮要求 Owner 手动搬迁的规则。本地执行会话约30次实际用户助手往返，或上下文已不可靠时，由 dot 保存准确证据、已耗/未耗预算、当前状态与下一门，再创建继任执行接续；先只读接收，在有效任务范围内继续。工具调用不计作实际往返；换会话不重置预算、不重开拒绝。
+
+当前会话 01a0fa2b-c777-77b2-ba66-00ed7c5260f5 已完成本仓首次只读接收，为新 dot 本地执行接续；项目名“慢约会EliteSync-v10”。不宣称它属于旧 Codex app 项目，不触发旧执行会话。旧执行者不并发写入；发现其他执行者或范围外变化即停止冲突写入。
+
+本次 DOT-GOVERNANCE-ROUTE-20261002 已 ACCEPT/CLOSED；active NONE、successor NONE；M112 未建未派未跑，自动化 PAUSED，NOT_READY 保持。当前工程路线见 [dot 当前路线](docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md)。
+
+下方原文完整保留为历史/此前稳定规则来源；其中旧 Work 角色、主聊天手动交接和当前执行者叙述由本次明确授权及已接受修订标识其时点。其余不冲突保护门继续适用，历史接受/拒绝不改写。
+
+---
+
 **2026-10-02 DOT迁移GitHub同步独立接受/已完成**：Work ACCEPT/CLOSED MECHANICAL_PROJECT_SNAPSHOT_SYNC；指定SSH连接成功，Downloads7原文档52291bytes已上传docs/gpt-project-sources（a8f6ff2）；现有Codex已normalpush当前项目快照3741c7e6ddd19797982aa582940ae0c09b1a72ba（963files/10690093bytes），Work独立核远端一致/manifest缺0额外0/docs7原字节/冻结22/暂存0，剩余7项保护或生成条目保留本地。无PR/产品运行或新接受；M118仅SOURCEONLY接受、所有旧拒绝/NOT_READY保护门保持，M112未建未派/自动化PAUSED。最终验收记录及本顶部更新另为docs-only检查点，当前SHA取Git HEAD；准确接续与范围见EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/handoff-current.md、snapshot-manifest.json、work-review.md。当前任务CLOSED/后继NONE，执行01a0f74b/local已completed/errornull/idle。
 
 **2026-10-01 M5-118原合成启动器源码资格接受/Owner关机接续保存**：Work独立LEVEL2 ACCEPT/CLOSED ORIGINAL_SOURCE_ARTIFACT_ONLY，freshSolhigh九文件各Read1/NO_FINDINGS；Work新cache预算原证核定与全文forward-inverse一致，源21223hash23A839B8...列第22冻结SOURCEONLY/summary4354hash94A1CCC9...，native六命令exit0false/Add2前缀与完整summary-Bhash一致。M117 Work ReferenceError及所有旧拒绝预算保持REJECT/CLOSED不追认；完整PSnativeAdd NOT_PROVEN/预写hashNOT_MEASURED/语法运行0。274status旧缺0/main指定HEAD，Frozen22完整见EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json。Owner要求当前任务结束后关机明日继续，active任务NONE/接续handoff-current.md已保存；M112未建未发布未派/JVM0。沿01a0f74b/local第13turncompleted/errornull/idle,cursor45；Owner持续小任务委托保留，NOT_READY及全部保护门保持，自动化PAUSED。

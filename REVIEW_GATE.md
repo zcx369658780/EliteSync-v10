@@ -1,3 +1,15 @@
+# 2026-10-02 当前审查门（ACCEPT/CLOSED）
+
+本次 DOT-GOVERNANCE-ROUTE-20261002 触及治理职责和未来预算语义，LEVEL 2 非作者独立审查已完成，父会话终裁 ACCEPT/CLOSED；作者仅记录，active NONE、successor NONE。终裁见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。Owner dot 角色授权见 [plan](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)，规则见 [AGENTS](AGENTS.md)，检查见 [result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)。
+
+未来任务按最高实际风险：L0 机械自检；L1 常规轻审；L2 非作者独立审查；L3 Owner 对受保护动作的明确门。dot 承接原 Work 终裁职责，不能让 Builder 自接受高风险，也不能用 NO_FINDINGS 代替对原证的终裁。产品/隐私/安全/真实数据/生产/不可逆/UAC保护门不变；保护语义不得降级。
+
+仅未来新任务可预先限定行政修正种类、次数、路径；不得扩大读取/写入/运行副作用。行政修正与科学/进程/受保护读取预算分账，超限停止。旧 one-shot/失败停点/拒绝保持；本轮不设置 M112 新运行或重试预算。主聊天和执行接续规则见 AGENTS；接续不重置预算。
+
+下方历史审查记录原样保留；旧 ACTIVE/ISSUED/执行者不是当前状态。M112 未建未派未跑、自动化 PAUSED、NOT_READY 保持。
+
+---
+
 **2026-10-02 DOT迁移GitHub同步独立接受/已完成**：Work ACCEPT/CLOSED MECHANICAL_PROJECT_SNAPSHOT_SYNC；指定SSH连接成功，Downloads7原文档52291bytes已上传docs/gpt-project-sources（a8f6ff2）；现有Codex已normalpush当前项目快照3741c7e6ddd19797982aa582940ae0c09b1a72ba（963files/10690093bytes），Work独立核远端一致/manifest缺0额外0/docs7原字节/冻结22/暂存0，剩余7项保护或生成条目保留本地。无PR/产品运行或新接受；M118仅SOURCEONLY接受、所有旧拒绝/NOT_READY保护门保持，M112未建未派/自动化PAUSED。最终验收记录及本顶部更新另为docs-only检查点，当前SHA取Git HEAD；准确接续与范围见EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/handoff-current.md、snapshot-manifest.json、work-review.md。当前任务CLOSED/后继NONE，执行01a0f74b/local已completed/errornull/idle。
 
 **2026-10-01 M5-118原合成启动器源码资格接受/Owner关机接续保存**：Work独立LEVEL2 ACCEPT/CLOSED ORIGINAL_SOURCE_ARTIFACT_ONLY，freshSolhigh九文件各Read1/NO_FINDINGS；Work新cache预算原证核定与全文forward-inverse一致，源21223hash23A839B8...列第22冻结SOURCEONLY/summary4354hash94A1CCC9...，native六命令exit0false/Add2前缀与完整summary-Bhash一致。M117 Work ReferenceError及所有旧拒绝预算保持REJECT/CLOSED不追认；完整PSnativeAdd NOT_PROVEN/预写hashNOT_MEASURED/语法运行0。274status旧缺0/main指定HEAD，Frozen22完整见EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json。Owner要求当前任务结束后关机明日继续，active任务NONE/接续handoff-current.md已保存；M112未建未发布未派/JVM0。沿01a0f74b/local第13turncompleted/errornull/idle,cursor45；Owner持续小任务委托保留，NOT_READY及全部保护门保持，自动化PAUSED。
