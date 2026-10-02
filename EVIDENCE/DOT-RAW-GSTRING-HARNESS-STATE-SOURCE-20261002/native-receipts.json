@@ -1,0 +1,30 @@
+{
+  "JVM": 0,
+  "PreparationToolResult": {
+    "chunk_id": "a2a618",
+    "wall_time_seconds": 0.873318798,
+    "exit_code": 0,
+    "original_token_count": 137,
+    "output": "{\"Result\":\"OUTER_STATE_RENAME_SOURCE_READY_REVIEW_PENDING\",\"Directory\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002\",\"Bytes\":9932,\"SHA256\":\"D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1\",\"ChangedLines\":[25,152,153,177,203,204,205],\"OuterRenames\":12,\"FixtureReferencesUnchanged\":19,\"InverseByteMatch\":true,\"RelevantUncommittedFiles\":37,\"ExcludedPaths\":7,\"TotalStatusPaths\":44,\"GroovyParser\":0,\"Compile\":0,\"JVM\":0,\"ManifestSHA256\":\"8150BD6EFC14B5DEE46B1595AAE3F75E2BD2257A61A46F998D8D8BBA53ED264C\"}\r\n"
+  },
+  "Compile": 0,
+  "OldBudgetsRemainClosed": true,
+  "Status": "ACCEPT_CLOSED_SOURCEONLY_BACKUP_CHECKPOINT",
+  "ParentSourceReview": {
+    "ParentVerdict": "ACCEPT/CLOSED SOURCEONLY_MINIMAL_OUTER_STATE_RENAME",
+    "Source": "Parent dot explicit backup-checkpoint delegation 2026-10-02",
+    "CandidateSHA256": "D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1",
+    "AcceptedPriorScope": "20 preparation contract cases ENGINEERING PASS; the two subsequent first-failure closures accepted only for bounded failure handling",
+    "Scope": "Only7 lines12 lexical outer references; fixture19 unchanged; no Groovy compilation/runtime qualification",
+    "RuntimeReady": false,
+    "NewGStringObservation": false,
+    "Automation": "PAUSED",
+    "RecordedBy": "Candidate author, recording forwarded non-author review and parent dot verdict only",
+    "ProjectStatus": "NOT_READY",
+    "OldBudgets": "All previous diagnostic and20-case contract budgets CLOSED; no retry",
+    "Backup": "Exact Relevant37 plus CURRENT.md/TASK_CURRENT.md39, seven exclusions untouched; local commit only, no push or cleanup",
+    "NextGate": "Prepare small compile-only driver/launcher; non-author review before any new budget; nothing issued",
+    "CandidateBytes": 9932,
+    "IndependentReview": "SOURCEONLY PASS; outer-state naming collision Required closed"
+  }
+}

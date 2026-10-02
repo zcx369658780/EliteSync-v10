@@ -1,0 +1,336 @@
+{
+  "FixtureNormalizedTextSHA256": "6A8020BE42C35834BC2CD3C89E386923A5F07480C80E9D263789A1B92D961092",
+  "Status": "AUTHOR_LEXICAL_CHECK_ONLY_NOT_COMPILED",
+  "FixtureTextUnchanged": true,
+  "FixtureReferences": 19,
+  "OuterReferences": 12,
+  "OuterDeclarationBraceDepth": 0,
+  "FixtureLines": "77-125",
+  "NewBytes": 9932,
+  "ContractTestRetry": 0,
+  "ChangedLines": [
+    25,
+    152,
+    153,
+    177,
+    203,
+    204,
+    205
+  ],
+  "JVM": 0,
+  "LexerAssumptions": "Exact-source comments/quoted text excluded; no slashy/triple literal or state interpolation; brace scopes checked. Not a Groovy AST or compilation proof.",
+  "NewSHA256": "D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1",
+  "OuterDeclarationLine": 25,
+  "InverseByteMatch": true,
+  "FixtureDeclarationBraceDepth": 1,
+  "OldSHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+  "ReferencesAfterRename": [
+    {
+      "Kind": "Identifier",
+      "Offset": 889,
+      "Line": 25,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 6635,
+      "Line": 152,
+      "Text": "diagnosticState",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 6723,
+      "Line": 153,
+      "Text": "diagnosticState",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7751,
+      "Line": 177,
+      "Text": "diagnosticState",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7789,
+      "Line": 177,
+      "Text": "diagnosticState",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7826,
+      "Line": 177,
+      "Text": "diagnosticState",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9246,
+      "Line": 203,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9296,
+      "Line": 204,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9325,
+      "Line": 204,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9355,
+      "Line": 204,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9397,
+      "Line": 205,
+      "Text": "diagnosticState",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9451,
+      "Line": 205,
+      "Text": "diagnosticState",
+      "Depth": 0
+    }
+  ],
+  "OldRuntime": "CLOSED",
+  "OldBytes": 9812,
+  "ReferencesBefore": [
+    {
+      "Kind": "Identifier",
+      "Offset": 889,
+      "Line": 25,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3338,
+      "Line": 79,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3602,
+      "Line": 84,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3647,
+      "Line": 85,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3698,
+      "Line": 86,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3720,
+      "Line": 86,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3788,
+      "Line": 87,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 3927,
+      "Line": 89,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4006,
+      "Line": 92,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4039,
+      "Line": 93,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4083,
+      "Line": 94,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4153,
+      "Line": 95,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4523,
+      "Line": 103,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4573,
+      "Line": 104,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4873,
+      "Line": 111,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 4912,
+      "Line": 112,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 5047,
+      "Line": 116,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 5092,
+      "Line": 117,
+      "Text": "state",
+      "Depth": 3
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 5333,
+      "Line": 123,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 5367,
+      "Line": 124,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 6625,
+      "Line": 152,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 6703,
+      "Line": 153,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7721,
+      "Line": 177,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7749,
+      "Line": 177,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 7776,
+      "Line": 177,
+      "Text": "state",
+      "Depth": 1
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9186,
+      "Line": 203,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9226,
+      "Line": 204,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9245,
+      "Line": 204,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9265,
+      "Line": 204,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9297,
+      "Line": 205,
+      "Text": "state",
+      "Depth": 0
+    },
+    {
+      "Kind": "Identifier",
+      "Offset": 9341,
+      "Line": 205,
+      "Text": "state",
+      "Depth": 0
+    }
+  ],
+  "GroovyParser": 0,
+  "FixtureDeclarationLine": 79
+}

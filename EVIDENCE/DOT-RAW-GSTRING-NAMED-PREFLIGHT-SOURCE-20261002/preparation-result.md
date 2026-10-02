@@ -1,0 +1,12 @@
+# Preparation result — SOURCEONLY / REVIEW_PENDING
+
+Read-only reception: main HEAD 9ac66fc5566cd1fa5da23ed797cb6a08606e01d5 / tree498f04f563e57a5ceb9bd8fb7a9f102c50a7811c matched delegation. Seven original excluded status entries preserved; no out-of-scope tracked changes. No remote operation was performed; prior remote verification comes from delegation.
+
+Harness byte-identical 9812 / 0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB.
+Wrapper 26085 / C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED: exactly three task-id/path occurrences and two HEAD literals changed. Full source-diff.patch + edit-journal.json expose all wrapper/A edits. Reverse UTF8 byte hashes reproduce original wrapper and original Commands.A exactly; original harness and seven sealed diagnostic files remain unchanged.
+
+Static PowerShell parser: wrapper/A/B/disclosure each zero errors. Six A records each five ordered named fields; AST verified parenthesized four Path expressions, two absolute literals, exact Name/Bytes/Limit positions and hash-literal shapes. Literal paths resolved by inspection, no candidate expression execution. A failure reports object Name and Stage; no positional accesses remain in record loop. Groovy source only byte-checked, no Groovy parse/compile/load.
+
+A0 / Invocation0 / B0 / FailureDisclosure0 / JVM0 / externalRead0. This report is author self-check, not independent acceptance. Administrative source correction0/1 used. OS isolation/hard deadline and implicit loading remain NOT_PROVEN/NOT_MEASURED; M112 root cause unresolved. One proposed single-case attempt could obtain observation if preflight/process/schema complete; delivery and candidate behavior are not guaranteed.
+
+All deliverable and native-receipt paths were created before snapshot (count 21); existing files only updated afterward. Independent review that adds paths or any commit changes this timing: parent must recapture snapshot before new A, not after A. Proposed budgets and parent release decisions are in task.md; authority PREPARED_NOT_RELEASED. Parent must independently review and decide source acceptance/new finite scope/release. Stop here at review checkpoint, no commit/push. Root current-entry history,7 exclusions, old closed budgets, PAUSED/NOT_READY preserved.

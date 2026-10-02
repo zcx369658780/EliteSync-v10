@@ -1,0 +1,169 @@
+{
+  "Status": "REJECT_CLOSED_A_SNAPSHOT_JSON_KEYS",
+  "Commands": {
+    "A": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'\n$utf=[Text.UTF8Encoding]::new($false,$true)\n$reads=[Collections.Generic.List[object]]::new()\n$data=@{}\nfunction Ordinary($f){\n    if(($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'REPARSE'}\n    $d=$f.Directory\n    while($null-ne$d){\n        if(($d.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'ANCESTOR_REPARSE'}\n        $d=$d.Parent\n    }\n}\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$currentName='Task';$stage='SETUP'\ntry{\n$spec=@(\n    [ordered]@{Name='Harness';Path=($base+'\\DiagnoseRawGString.groovy');Bytes=9812;Limit=16384;Hash='0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB'},\n    [ordered]@{Name='Launcher';Path=($base+'\\Invoke-RawGStringDiagnostic.ps1');Bytes=26085;Limit=32768;Hash='C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED'},\n    [ordered]@{Name='Installer';Path='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy';Bytes=6141;Limit=6141;Hash='7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37'},\n    [ordered]@{Name='TSV';Path='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv';Bytes=19534;Limit=19534;Hash='E405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80'},\n    [ordered]@{Name='Authority';Path=($base+'\\runtime-authority.json');Bytes=-1;Limit=8192;Hash=''},\n    [ordered]@{Name='Snapshot';Path=($base+'\\workspace-before.json');Bytes=-1;Limit=262144;Hash=''}\n)\nforeach($item in $spec){\n    $currentName=$item.Name;$stage='SPEC'\n    if($item.Count-ne5-or@(@('Name','Path','Bytes','Limit','Hash')|Where-Object{-not$item.Contains($_)}).Count-ne0){throw 'A_SPEC_KEYS'}\n    if($item.Name-isnot[string]-or$item.Path-isnot[string]-or$item.Hash-isnot[string]-or\n       $item.Bytes-isnot[int]-or$item.Limit-isnot[int]-or$item.Limit-le0-or$item.Bytes-lt-1-or$item.Bytes-gt$item.Limit){throw 'A_SPEC_TYPES'}\n    $stage='METADATA'\n    $f=Get-Item -LiteralPath $item.Path\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt$item.Limit-or($item.Bytes-ge0-and$f.Length-ne$item.Bytes)){throw 'A_METADATA'}\n    $stage='ORDINARY';Ordinary $f\n    $stage='READ'\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length-or$b.Length-gt$item.Limit){throw 'A_READ_SIZE'}\n    $stage='HASH';$hash=HashBytes $b\n    if($item.Hash-ne''-and$hash-cne$item.Hash){throw 'A_HASH'}\n    $data[$item.Name]=$b\n    $reads.Add([ordered]@{Name=$item.Name;Bytes=$b.Length;SHA256=$hash;BodyReads=1})\n}\nfunction ExactKeys($map,[string[]]$keys){\n    if($map-isnot[Collections.IDictionary]-or$map.Count-ne$keys.Count){throw 'A_JSON_KEYS'}\n    foreach($k in $keys){if(-not$map.Contains($k)){throw 'A_JSON_KEY'}}\n}\n$currentName='Authority';$stage='AUTHORITY'\n$auth=$utf.GetString($data.Authority)|ConvertFrom-Json -AsHashtable\nExactKeys $auth @('TaskId','Status','JVM','OwnerAuthorization','ProbeSha256','ProbeBytes','ProbePath','ManifestPath','InputRoot','OutputRoot','JavaPath','InstallerPath','InstallerSha256','InstallerBytes')\n$expected=@{\n    TaskId='DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002';Status='ISSUED';JVM=1;\n    OwnerAuthorization='OWNER_SINGLE_CASE_DIAGNOSTIC_AUTHORIZED';\n    ProbeSha256='0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB';ProbeBytes=9812;\n    ProbePath=($base+'\\DiagnoseRawGString.groovy');\n    ManifestPath='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv';\n    InputRoot='D:\\GradleHome\\wrapper\\dists\\gradle-8.14-all\\dq61qkzrdg407zji6bwf6hwt7\\gradle-8.14\\lib';\n    OutputRoot=$base;JavaPath='C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot\\bin\\java.exe';\n    InstallerPath='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy';\n    InstallerSha256='7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37';InstallerBytes=6141\n}\nforeach($k in $expected.Keys){\n    if($expected[$k]-is[string]){\n        if($auth[$k]-isnot[string]-or$auth[$k]-cne$expected[$k]){throw 'A_AUTH_STRING'}\n    }elseif(($auth[$k]-isnot[int]-and$auth[$k]-isnot[long])-or$auth[$k]-ne$expected[$k]){throw 'A_AUTH_INTEGER'}\n}\n$currentName='Snapshot';$stage='SNAPSHOT'\n$snap=$utf.GetString($data.Snapshot)|ConvertFrom-Json -AsHashtable\nExactKeys $snap @('Branch','HEAD','Count','Paths')\nif($snap.Branch-cne'main'-or$snap.HEAD-cne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'-or$snap.Paths-isnot[array]-or$snap.Count-ne$snap.Paths.Count){throw 'A_SNAPSHOT'}\nforeach($p in $snap.Paths){if($p-isnot[string]){throw 'A_PATH_TYPE'}}\nif(@($snap.Paths|Select-Object -Unique).Count-ne$snap.Count){throw 'A_DUPLICATE_PATH'}\n$currentName='Workspace';$stage='WORKSPACE'\nif((Get-Location).Path-cne'D:\\EliteSync-v10'){throw 'A_CWD'}\n$branch=git branch --show-current\nif($LASTEXITCODE-ne0-or$branch-cne'main'){throw 'A_BRANCH'}\n$head=git rev-parse HEAD\nif($LASTEXITCODE-ne0-or$head-cne$snap.HEAD){throw 'A_HEAD'}\n$now=@(git --no-optional-locks -c core.quotepath=false status --porcelain=v1 --untracked-files=all)\nif($LASTEXITCODE-ne0){throw 'A_GIT_STATUS'}\n$paths=@($now|ForEach-Object{$_.Substring(3)})\nif($paths.Count-ne$snap.Count-or@($snap.Paths|Where-Object{$_ -cnotin $paths}).Count-ne0){throw 'A_WORKSPACE_PATHS'}\nforeach($name in @('invocation-started.json','stdout.bin','stderr.bin','probe-wrapper.json','cwd','tmp','user-home','appdata','localappdata','gradle-home')){\n    $currentName=$name;$stage='OUTPUT_ABSENCE'\n    if(Test-Path -LiteralPath ($base+'\\'+$name)){throw 'A_OUTPUT_EXISTS'}\n}\n[ordered]@{Result='A_READY';HEAD=$head;Branch=$branch;SnapshotPaths=$paths.Count;Reads=$reads;ExternalRead=0;JVM=0}|ConvertTo-Json -Depth 5 -Compress\n}catch{\n    throw [InvalidOperationException]::new(('A_FAILURE Name='+$currentName+' Stage='+$stage+' Tag='+$_.Exception.Message+' Class='+$_.Exception.GetType().FullName+' CompletedReads='+$reads.Count),$_.Exception)\n}\n",
+    "Invocation": "& 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\Invoke-RawGStringDiagnostic.ps1'",
+    "B": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'\n$utf=[Text.UTF8Encoding]::new($false,$true)\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$raw=@{};$facts=@{}\nforeach($name in @('stdout.bin','stderr.bin','probe-wrapper.json')){\n    $f=Get-Item -LiteralPath ($base+'\\'+$name)\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt8192-or($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'B_METADATA'}\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length-or$b.Length-gt8192){throw 'B_SIZE'}\n    $raw[$name]=$b\n    $facts[$name]=[ordered]@{Bytes=$b.Length;SHA256=(HashBytes $b);BodyReads=1}\n}\n$w=$utf.GetString($raw['probe-wrapper.json'])|ConvertFrom-Json -AsHashtable\nif($w.mode-cne'SINGLE_JVM_RAW_GSTRING_DIAGNOSTIC_RECEIPT'-or$w.Result-cne'DIAGNOSTIC_CAPTURE_COMPLETE'-or\n   $w.Root-cne$base-or$w.RuntimeReady-isnot[bool]-or$w.RuntimeReady-or\n   $w.DiagnosticSchemaChecked-isnot[bool]-or-not$w.DiagnosticSchemaChecked-or\n   $w.CaptureComplete-isnot[bool]-or-not$w.CaptureComplete-or\n   $w.StdoutComplete-isnot[bool]-or-not$w.StdoutComplete-or\n   $w.StderrComplete-isnot[bool]-or-not$w.StderrComplete-or\n   $w.CleanupComplete-isnot[bool]-or-not$w.CleanupComplete-or\n   $w.Timeout-isnot[bool]-or$w.Timeout-or$w.KillAttempt-ne0-or$w.ExitCode-ne0-or\n   $w.Started-isnot[bool]-or-not$w.Started-or$w.Exited-isnot[bool]-or-not$w.Exited-or\n   $w.ProcessStartAttempt-ne1-or$w.CandidateInvocationAttempt-ne1-or\n   $w.CandidateSourceRead-ne1-or$w.CandidateParseClassLoad-ne1-or$w.FourteenCaseInvocation-ne0-or\n   $w.ExternalGet-ne189-or$w.ExternalRead-ne189-or$w.ExternalBytes-ne115118021-or\n   $w.TSVRead-ne1-or$w.HarnessSourceRead-ne1-or$w.HarnessCopies-ne1-or$w.LocalInstallerPreflightRead-ne1-or\n   $null-ne$w.Failure-or$w.SecondaryFailure.Count-ne0){throw 'B_WRAPPER_SCOPE'}\nif($w.StdoutBytes-ne$facts['stdout.bin'].Bytes-or$w.StdoutSHA256-cne$facts['stdout.bin'].SHA256-or\n   $w.StderrBytes-ne$facts['stderr.bin'].Bytes-or$w.StderrSHA256-cne$facts['stderr.bin'].SHA256-or\n   $facts['stderr.bin'].Bytes-ne0){throw 'B_STREAM_IDENTITY'}\n$j=$utf.GetString($raw['stdout.bin'])|ConvertFrom-Json -AsHashtable\nif($j.mode-cne'DIAGNOSTIC_ONLY'-or$j.caseId-cne'RAW_GSTRING_PATH'-or\n   $j.observationComplete-isnot[bool]-or-not$j.observationComplete-or$j.runtimeReady-isnot[bool]-or$j.runtimeReady-or\n   $j.sourceReadAttempt-ne1-or$j.parseClassLoadAttempt-ne1-or$j.candidateInvocationAttempt-ne1-or\n   $j.invokeOutcome-cne$w.InvokeOutcome){throw 'B_CHILD_SCOPE'}\nif($j.invokeOutcome-ceq'DIRECT_INVOKE_EXCEPTION'){\n    if($w.CandidateInvocation-isnot[string]-or$w.CandidateInvocation-cne'UNKNOWN'){throw 'B_DIRECT_COUNT'}\n}elseif($w.CandidateInvocation-ne1){throw 'B_CANDIDATE_COUNT'}\n$head=git rev-parse HEAD\nif($LASTEXITCODE-ne0-or$head-cne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'){throw 'B_HEAD'}\n[ordered]@{Result='B_DISK_IDENTITIES_VERIFIED';HEAD=$head;Facts=$facts;Wrapper=$w;Diagnostic=$j;OriginalToolReceiptComparison='PENDING_SAME_CALLER_CACHE'}|ConvertTo-Json -Depth 8 -Compress\n",
+    "FailureDisclosure": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'\n$utf=[Text.UTF8Encoding]::new($false,$true)\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$facts=@{}\nforeach($name in @('stdout.bin','stderr.bin','probe-wrapper.json')){\n    $p=$base+'\\'+$name\n    if(-not(Test-Path -LiteralPath $p)){$facts[$name]=[ordered]@{Exists=$false;BodyReads=0};continue}\n    $f=Get-Item -LiteralPath $p\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt8192-or($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'DISCLOSURE_METADATA'}\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length){throw 'DISCLOSURE_SIZE'}\n    $facts[$name]=[ordered]@{Exists=$true;Bytes=$b.Length;SHA256=(HashBytes $b);BodyReads=1;Text=$utf.GetString($b)}\n}\n[ordered]@{Result='FAILURE_DISCLOSURE_ONLY';Facts=$facts;RuntimeReady=$false}|ConvertTo-Json -Depth 5 -Compress\n",
+    "BCacheCheck": "const inv = load(\"rawGStringInvocation\");\nconst b = load(\"rawGStringB\");\nif (inv.exit_code !== 0 || b.exit_code !== 0) throw Error(\"NATIVE_EXIT\");\nconst receipt = JSON.parse(inv.output.trim());\nconst disk = JSON.parse(b.output.trim());\nif (receipt.Result !== \"DIAGNOSTIC_CAPTURE_COMPLETE\") throw Error(\"NATIVE_RESULT\");\nfor (const [name, prefix] of [[\"stdout.bin\",\"Stdout\"],[\"stderr.bin\",\"Stderr\"],[\"probe-wrapper.json\",\"Wrapper\"]]) {\n  if (receipt[prefix+\"Bytes\"] !== disk.Facts[name].Bytes ||\n      receipt[prefix+\"SHA256\"] !== disk.Facts[name].SHA256) throw Error(\"NATIVE_DISK_IDENTITY\");\n}\nfor (const k of [\"ProcessStartAttempt\",\"CandidateInvocation\",\"CandidateInvocationAttempt\",\"CandidateParseClassLoad\",\"CandidateSourceRead\",\"FourteenCaseInvocation\",\"InvokeOutcome\",\"RuntimeReady\"]) {\n  if (receipt[k] !== disk.Wrapper[k]) throw Error(\"NATIVE_WRAPPER_FIELD\");\n}\ntext({Result:\"B_ORIGINAL_NATIVE_AND_DISK_MATCH\",CandidateAcceptance:\"NOT_GRANTED\"});\n"
+  },
+  "PreparationToolResult": {
+    "chunk_id": "34ec2f",
+    "wall_time_seconds": 0.891847003,
+    "exit_code": 0,
+    "original_token_count": 176,
+    "output": "{\"Result\":\"SOURCE_PREPARATION_COMPLETE_REVIEW_PENDING\",\"Directory\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\",\"HEAD\":\"9ac66fc5566cd1fa5da23ed797cb6a08606e01d5\",\"HarnessSHA256\":\"0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB\",\"WrapperBytes\":26085,\"WrapperSHA256\":\"C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED\",\"A\":{\"Bytes\":6098,\"SHA256\":\"1AD5AEE354B9A54FDD93E4779620762FD89B5A27F20C10A207C2810B0ECE410F\",\"ParserErrors\":0,\"Executed\":false},\"PowerShellParserErrors\":0,\"NamedRecordCount\":6,\"ReverseMatches\":true,\"OldSealedFilesUnchanged\":7,\"SnapshotCount\":21,\"AExecuted\":0,\"Invocation\":0,\"JVM\":0,\"ExternalRead\":0,\"CorrectionUsed\":0}\r\n"
+  },
+  "A": null,
+  "Invocation": null,
+  "B": null,
+  "FailureDisclosure": null,
+  "BCacheCheck": null,
+  "BudgetUsed": {
+    "FailureDisclosure": 0,
+    "Invocation": 0,
+    "A": 0,
+    "AdministrativeSourceCorrection": 0,
+    "B": 0,
+    "JVMStart": 0
+  },
+  "ReadOnlyFinalToolResult": {
+    "chunk_id": "4f21fb",
+    "wall_time_seconds": 0.365450388,
+    "exit_code": 0,
+    "original_token_count": 113,
+    "output": "{\"Result\":\"READONLY_PATCH_FORWARD_AND_FINAL_SCOPE_VERIFIED\",\"PatchFiles\":[{\"File\":\"Invoke-RawGStringDiagnostic.ps1\",\"FullForwardMatch\":true},{\"File\":\"A.ps1\",\"FullForwardMatch\":true},{\"File\":\"B.ps1\",\"FullForwardMatch\":true},{\"File\":\"FailureDisclosure.ps1\",\"FullForwardMatch\":true}],\"ProtectedOldUnchanged\":7,\"SnapshotPaths\":21,\"HEAD\":\"9ac66fc5566cd1fa5da23ed797cb6a08606e01d5\",\"TrackedChanges\":0,\"StagedChanges\":0,\"AExecuted\":0,\"Invocation\":0,\"JVM\":0}\r\n"
+  },
+  "DirectoryCreationToolResult": {
+    "chunk_id": "dea544",
+    "wall_time_seconds": 0.19687062,
+    "exit_code": 0,
+    "original_token_count": 62,
+    "output": "{\"Operation\":\"CREATE_ONE_AUTHORIZED_DIRECTORY\",\"Target\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\",\"Exists\":true,\"Attributes\":\"Directory\",\"ProcessId\":60120,\"Host\":\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\"}\r\n"
+  },
+  "BlockedPreparationToolResult": null,
+  "MaterializationAdapter": {
+    "OriginalDraftSHA256": "EAA2DAC3DEB56C6BE95A3A7BFD1A303A87CF1E2A1A89F13AD616AAF00BF5040F",
+    "ReviewedAdapterSHA256": "536F6C5D8E5C54FDB331B8CA9FBD8BD8225062839CC3BC37AC2181A8A8A2B14E",
+    "Scope": "Use precreated empty ordinary directory; in-memory unified diff; implicit script source-load accounting clarified. Candidate source corrections0; no A/Invocation/JVM."
+  },
+  "RuntimeRelease": {
+    "Status": "ISSUED_NEW_SINGLE_CASE_RUNTIME_BUDGET",
+    "SourceReview": "Parent dot accepted independent SOURCEONLY PASS, no Required; not candidate14case acceptance.",
+    "OwnerEvidence": {
+      "AssistantId": "Sentinel_c058a247e620819185d8f3924a44a822",
+      "Disclosure": "One synthetic diagnostic JVM outside sandbox; process may have broader file and network access. No app build/device connection. Once, no retry.",
+      "UserId": "Sentinel_e423aa4c48408191a1bde965cb5be7f7",
+      "Text": "好的我允许。第五章请推送后继续推进",
+      "Scope": "Only EliteSync single-case runtime delegated here; fifth chapter push is outside this repository task."
+    },
+    "Execution": {
+      "Tool": "exec_command",
+      "SandboxPermissions": "require_escalated",
+      "Workdir": "D:\\EliteSync-v10",
+      "Login": false,
+      "ChildPowerShell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "Flags": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File"
+      ],
+      "PrefixRule": null
+    },
+    "Commands": {
+      "A": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\A.ps1'; exit $LASTEXITCODE",
+      "Invocation": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\Invoke-RawGStringDiagnostic.ps1'; exit $LASTEXITCODE",
+      "B": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\B.ps1'; exit $LASTEXITCODE",
+      "FailureDisclosure": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\FailureDisclosure.ps1'; exit $LASTEXITCODE"
+    },
+    "Budget": {
+      "A": 1,
+      "Invocation": 1,
+      "B": 1,
+      "FailureDisclosure": 1,
+      "BAndDisclosureMutuallyExclusive": true,
+      "Retry": 0,
+      "ApprovalDeniedSameUnstartedOperationRetry": 1,
+      "ExternalGet": 189,
+      "ExternalRead": 189,
+      "ExternalBytes": 115118021,
+      "JVMProcessStartAttempt": 1,
+      "CandidateInvocationAttempt": 1,
+      "ChildDeadlineSeconds": 30,
+      "CleanupSeconds": 2,
+      "StreamBytesEach": 8192,
+      "ChildJSONBytes": 4096,
+      "WrapperBytes": 8192,
+      "SmallReceiptBytes": 4096
+    },
+    "Limits": {
+      "OSFileNetworkIsolation": "NOT_PROVEN",
+      "OSHardCutoff": "NOT_PROVEN",
+      "ImplicitClassloads": "NOT_MEASURED",
+      "RealInput": "PROHIBITED",
+      "NetworkRequest": "PROHIBITED",
+      "GradleAndroidDevice": "PROHIBITED",
+      "SecuritySettings": "UNCHANGED",
+      "CommitPush": "NOT_AUTHORIZED"
+    },
+    "PreparationIdentity": {
+      "HEAD": "9ac66fc5566cd1fa5da23ed797cb6a08606e01d5",
+      "TaskBeforeBytes": 6670,
+      "TaskBeforeSHA256": "584AF0F7094EF09C84B8AD78A5228E3A28CD9A7BB3F775EE3D733BA78378C9DF",
+      "Checks": "Caller administrative source-identity verification is separate from the newly issued A/Invocation stage reads."
+    }
+  },
+  "RuntimeExecutionClosure": {
+    "Status": "REJECT_CLOSED_A_SNAPSHOT_JSON_KEYS",
+    "RuntimeReleaseToolResult": {
+      "chunk_id": "cc9c77",
+      "wall_time_seconds": 0.299742895,
+      "exit_code": 0,
+      "original_token_count": 100,
+      "output": "{\"Result\":\"NEW_SINGLE_CASE_BUDGET_ISSUED_NO_RUNTIME_STARTED\",\"AuthorityStatus\":\"ISSUED\",\"AuthorityKeys\":14,\"PathCount\":21,\"TaskSHA256\":\"288C684FD4DE4BFD248C8C9F194FC8A1427627857973B92E3EFA39DC8B5B9BF4\",\"AuthoritySHA256\":\"A3B864F590E442D7124F0E83EA7070201301816A56961C0E52690FDCD3459014\",\"NativeSHA256\":\"8DECB071CD207717F2698165DB2A393C26F8684F82845F3841A7922FD90A7907\",\"A\":0,\"Invocation\":0,\"JVM\":0}\r\n"
+    },
+    "ActualCommands": {
+      "A": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\A.ps1'; exit $LASTEXITCODE",
+      "Invocation": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\Invoke-RawGStringDiagnostic.ps1'; exit $LASTEXITCODE",
+      "B": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\B.ps1'; exit $LASTEXITCODE",
+      "FailureDisclosure": "& 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' -NoLogo -NoProfile -NonInteractive -File 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\FailureDisclosure.ps1'; exit $LASTEXITCODE"
+    },
+    "A": {
+      "chunk_id": "e73dfa",
+      "wall_time_seconds": 0.717349662,
+      "exit_code": 1,
+      "original_token_count": 103,
+      "output": "OperationStopped: D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\A.ps1:90\r\nLine |\r\n  90 |      throw [InvalidOperationException]::new(('A_FAILURE Name='+$curren ��\r\n     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n     | A_FAILURE Name=Snapshot Stage=SNAPSHOT Tag=A_JSON_KEYS Class=System.Management.Automation.RuntimeException\r\n     | CompletedReads=6\r\n"
+    },
+    "Invocation": null,
+    "B": null,
+    "FailureDisclosure": null,
+    "BCacheCheck": null,
+    "BudgetUsed": {
+      "A": 1,
+      "Invocation": 0,
+      "B": 0,
+      "FailureDisclosure": 0,
+      "JVMStart": 0,
+      "ExternalRead": 0,
+      "ScientificRetry": 0
+    },
+    "ClosedRemainingBudget": true,
+    "Failure": {
+      "Name": "Snapshot",
+      "Stage": "SNAPSHOT",
+      "Tag": "A_JSON_KEYS",
+      "CompletedReads": 6,
+      "PerItemReadReceipts": "NOT_EMITTED_ON_FAILURE",
+      "NewGStringObservation": false
+    },
+    "Stop": {
+      "NoSourceRepair": true,
+      "NoRetry": true,
+      "NoJVM": true,
+      "NoRawArtifactFabrication": true,
+      "NoFailureDisclosureAfterAFailure": true
+    }
+  }
+}

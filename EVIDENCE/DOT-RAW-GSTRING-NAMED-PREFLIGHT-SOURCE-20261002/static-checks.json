@@ -1,0 +1,135 @@
+{
+  "Status": "STATIC_SOURCE_CHECKS",
+  "RuntimeExecution": 0,
+  "GroovyParser": 0,
+  "ExternalRead": 0,
+  "AdministrativeCorrectionUsed": 0,
+  "HarnessIdentical": true,
+  "Checks": {
+    "A.ps1": {
+      "Bytes": 6098,
+      "SHA256": "1AD5AEE354B9A54FDD93E4779620762FD89B5A27F20C10A207C2810B0ECE410F",
+      "ParserErrors": 0,
+      "Executed": false
+    },
+    "B.ps1": {
+      "Bytes": 3195,
+      "SHA256": "D0FE2C797D9B2021876A68753E335600C7982B7C72A1E7F511F52A2B9D369B1D",
+      "ParserErrors": 0,
+      "Executed": false
+    },
+    "Invoke-RawGStringDiagnostic.ps1": {
+      "Bytes": 26085,
+      "SHA256": "C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED",
+      "ParserErrors": 0,
+      "Executed": false
+    },
+    "FailureDisclosure.ps1": {
+      "Bytes": 1042,
+      "SHA256": "88C432E1E321DD7F4D26E57CEAF2FF79A0702A37028F7C75F354A8A5B17D6652",
+      "ParserErrors": 0,
+      "Executed": false
+    }
+  },
+  "Reverse": {
+    "Invoke-RawGStringDiagnostic.ps1": {
+      "Match": true,
+      "OriginalBytes": 26073,
+      "OriginalSHA256": "A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048",
+      "Edits": 2
+    },
+    "A.ps1": {
+      "Match": true,
+      "OriginalBytes": 4924,
+      "OriginalSHA256": "230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389",
+      "Edits": 9
+    }
+  },
+  "ProtectedOld": {
+    "task.md": "396A9C3C42358D9A4F3E98019A457C250E074AF8DE2C53835CAAC67B38F0F41D",
+    "DiagnoseRawGString.groovy": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+    "result-review.md": "7792F847E9B8B0F65E8BAC2ED4F9208816B31B70F22E366DB4351C8B769DEEB6",
+    "Invoke-RawGStringDiagnostic.ps1": "A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048",
+    "runtime-authority.json": "B396816C52204C6D1EC9158FC6CAD415F07FB17AE41A1CF1DE7C102ED761261D",
+    "native-receipts.json": "7F24533911A7BA4013D1556CDDA381C6F74D311CF11BB4D679D47A79312DABC2",
+    "workspace-before.json": "32A61CD23205E4C6843F17CF986EC9515C4ABD091C99A2018F9A92B75A5003F1"
+  },
+  "BaseStatus": [
+    "?? EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar",
+    "?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md",
+    "?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md",
+    "?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md",
+    "?? EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc",
+    "?? EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md",
+    "?? EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/"
+  ],
+  "NamedRecords": [
+    {
+      "Name": "Harness",
+      "Fields": 5,
+      "PathExpression": "($base+'\\DiagnoseRawGString.groovy')",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\DiagnoseRawGString.groovy",
+      "Bytes": 9812,
+      "Limit": 16384,
+      "HashLiteral": "'0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB'"
+    },
+    {
+      "Name": "Launcher",
+      "Fields": 5,
+      "PathExpression": "($base+'\\Invoke-RawGStringDiagnostic.ps1')",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\Invoke-RawGStringDiagnostic.ps1",
+      "Bytes": 26085,
+      "Limit": 32768,
+      "HashLiteral": "'C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED'"
+    },
+    {
+      "Name": "Installer",
+      "Fields": 5,
+      "PathExpression": "'D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy'",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy",
+      "Bytes": 6141,
+      "Limit": 6141,
+      "HashLiteral": "'7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37'"
+    },
+    {
+      "Name": "TSV",
+      "Fields": 5,
+      "PathExpression": "'D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv'",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv",
+      "Bytes": 19534,
+      "Limit": 19534,
+      "HashLiteral": "'E405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80'"
+    },
+    {
+      "Name": "Authority",
+      "Fields": 5,
+      "PathExpression": "($base+'\\runtime-authority.json')",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\runtime-authority.json",
+      "Bytes": -1,
+      "Limit": 8192,
+      "HashLiteral": "''"
+    },
+    {
+      "Name": "Snapshot",
+      "Fields": 5,
+      "PathExpression": "($base+'\\workspace-before.json')",
+      "ResolvedLiteralPath": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\workspace-before.json",
+      "Bytes": -1,
+      "Limit": 262144,
+      "HashLiteral": "''"
+    }
+  ],
+  "Harness": {
+    "Bytes": 9812,
+    "SHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+    "Identical": true,
+    "GroovyParsed": false
+  },
+  "Snapshot": {
+    "Timing": "AFTER_ALL_DELIVERABLE_PATHS_PRECREATED",
+    "Count": 21,
+    "ExactPaths": true,
+    "NoAExecuted": true,
+    "RecaptureRequiredIfReviewAddsPathOrHEADChanges": true
+  }
+}

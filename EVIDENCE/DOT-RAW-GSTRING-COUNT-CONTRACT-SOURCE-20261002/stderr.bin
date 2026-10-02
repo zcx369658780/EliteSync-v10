@@ -1,0 +1,8 @@
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002\cwd\harness.groovy: 79: The current scope already contains a variable of the name state
+ @ line 79, column 9.
+       Map state = [
+           ^
+
+1 error
+

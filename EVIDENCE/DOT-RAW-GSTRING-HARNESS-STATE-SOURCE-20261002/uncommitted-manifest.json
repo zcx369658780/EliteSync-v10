@@ -1,0 +1,410 @@
+{
+  "RelevantFileCount": 37,
+  "NoCommitPush": true,
+  "Branch": "main",
+  "StatusMode": "--porcelain=v1 --untracked-files=all exact Substring(3)",
+  "TotalStatusPaths": 46,
+  "Tree": "498f04f563e57a5ceb9bd8fb7a9f102c50a7811c",
+  "Excluded": [
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md",
+      "Status": "??"
+    },
+    {
+      "BodyRead": 0,
+      "Action": "KEEP_LOCAL_EXCLUDED_NO_STAGE_NO_CLEANUP",
+      "Path": "EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/",
+      "Status": "??"
+    }
+  ],
+  "SelfHash": "NOT_CLAIMED",
+  "HEAD": "9ac66fc5566cd1fa5da23ed797cb6a08606e01d5",
+  "MutableReceiptHashes": "Native/plan identities refreshed; manifest self hash omitted. Final index object identities required.",
+  "ExcludedCount": 7,
+  "Relevant": [
+    {
+      "Bytes": 6112,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "0A3939A62D7B9A38BB43DCCA819A3580C617243437111B74DE6A68E0D0817D75",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/A.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 9812,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "Status": "??"
+    },
+    {
+      "Bytes": 26092,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "B3BDE4B427412C843711373AB95784EEB2B6C25BAC764C800C7923CC4D11CD88",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/Invoke-RawGStringDiagnostic.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 10863,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "FEB4251C229F1772E5989287CC72F2CCF470219863B5280C1B0A7702BB3EC3F6",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/Test-PreparationContract.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 9812,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/cwd/harness.groovy",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1211,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "B57634178E987FEECDE6FF5CEF68179880B06D75B47D67BCC072419504C9D674",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/edit-journal.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 72,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "D84C70541AA7886A9A8A80CAC769FAA11334D27B66E779691913B95F397A2383",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/invocation-started.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 42779,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "F032F4EACD75FA0EE1844B7CEF3F261F6DF33E07BE60D605C240BDFB51C812B6",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/native-receipts.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1322,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "BBE191014454A639DCA552D24E5E8EDC31ECB969D374AF410B7337696C25BD71",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/preparation-result.md",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1500,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "5562AC1CC253FE5C3BAD0874D1B374895A20A7D6E0C1E34FC70984549B0E1D9C",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/probe-wrapper.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1080,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "26697D26C44ABF4235D3181DAC204A543A2BCA9A8163B321C307CA1DEA8163C6",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/runtime-authority.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 7873,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "5B55D84E9E6C8BEE3FE6C8DB80E054A7B13B9750849BE78E894A6CC71443F997",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/source-diff.patch",
+      "Status": "??"
+    },
+    {
+      "Bytes": 3066,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "1D568709B7380048E1FD826CCA53413B990613C418BA4889B516724655153E1E",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/static-checks.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 314,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "898CE60351B3FEB372098C9C0FFA863AE9D20573436B5699763AB1CE32EDCF25",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/stderr.bin",
+      "Status": "??"
+    },
+    {
+      "Bytes": 0,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/stdout.bin",
+      "Status": "??"
+    },
+    {
+      "Bytes": 7264,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "81A5454E1BE19F58A053A83E9297873D90F8DFEC3F20BE89C15EDFF816605633",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/task.md",
+      "Status": "??"
+    },
+    {
+      "Bytes": 2812,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "9DEC3A12F8353845B4500B6C7897AA6916B31B034E9EAB5597B3514404ADB1B5",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/workspace-before.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 9932,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "Status": "??"
+    },
+    {
+      "Bytes": 6734,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "EDF7AF336363EA442E115E62D15F5304E1D065A2A1846129E1EE08C6E4253B97",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/lexical-review.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 2162,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "FF6F0F06D8D31050A4FE1799A9F17D81DE08B1712899F105CDCB4EAA1BBD3DED",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/native-receipts.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 7556,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "2B974BEE6BFDABAA0F2DD65958A8D583A68A9175C96906FC04C3714EDF94369B",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/plan.md",
+      "Status": "??"
+    },
+    {
+      "Bytes": 2172,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "E990D3CD089FD28C0A1D8F42363223E646C075B0CFE652AA27A774C3B1DD6E96",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/source-diff.patch",
+      "Status": "??"
+    },
+    {
+      "Bytes": null,
+      "HashScope": "Self identity intentionally omitted; use Git index/blob and final readback",
+      "SHA256": null,
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/uncommitted-manifest.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 6098,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "1AD5AEE354B9A54FDD93E4779620762FD89B5A27F20C10A207C2810B0ECE410F",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/A.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 3195,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "D0FE2C797D9B2021876A68753E335600C7982B7C72A1E7F511F52A2B9D369B1D",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/B.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 954,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/BCacheCheck.js",
+      "Status": "??"
+    },
+    {
+      "Bytes": 9812,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1042,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "88C432E1E321DD7F4D26E57CEAF2FF79A0702A37028F7C75F354A8A5B17D6652",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/FailureDisclosure.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 26085,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/Invoke-RawGStringDiagnostic.ps1",
+      "Status": "??"
+    },
+    {
+      "Bytes": 5417,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "70A0ED349E55861A211DE7536BD8B61B10ECA6C3E35FD46BA307FECB7683C6DF",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/edit-journal.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 20971,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "F4E43A06CCD2A2CD5172D031CD009F945B41AF53F44489AA922F3BAFADE79D26",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/native-receipts.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 2299,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "75EBC2D2715FC621EC99CB532898206280A81C4F59C324C2828BDB36A81BBE62",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/preparation-result.md",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1074,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "BCF8CD01ED63CA7B04878A09449BCCA7AAA46D3A51A157D71A4FBCF203C28621",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/runtime-authority.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 11185,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "2B15A6D790997903CD0A28901AB755DF46B4F361C4B281D624512FC875652350",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/source-diff.patch",
+      "Status": "??"
+    },
+    {
+      "Bytes": 5444,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "4B534FDCA1BE48077AFB909AD24BFFD832673D2684C6EF4EAF23816338BF38F0",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/static-checks.json",
+      "Status": "??"
+    },
+    {
+      "Bytes": 8519,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "E8160FF3B29184BA955DABE4B134221DF6474B46CA2796DE9F0ED9981BA2DC7A",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/task.md",
+      "Status": "??"
+    },
+    {
+      "Bytes": 1800,
+      "HashScope": "Final disk bytes before exact staging",
+      "SHA256": "5A4E2AB401369FA01D8A3FE6516B01B94FAD710854C5892C0510C7EA4C263C98",
+      "Path": "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/workspace-before.json",
+      "Status": "??"
+    }
+  ],
+  "Backup": {
+    "CommittedHeadTree": "Readback after commit; not embedded to avoid recursion",
+    "ExcludedPaths": [
+      "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar",
+      "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md",
+      "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md",
+      "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md",
+      "EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc",
+      "EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md",
+      "EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/"
+    ],
+    "BaseHEAD": "9ac66fc5566cd1fa5da23ed797cb6a08606e01d5",
+    "ExcludedCount": 7,
+    "GitOptions": "Per-call core.autocrlf=false for exact stage; no permanent config change",
+    "TargetCount": 39,
+    "TransformCheck": "No applicable filter/working-tree-encoding/text/eol attributes on39; hook path unset/default only samples; LFS configured globally but not applicable",
+    "Status": "PREPARED_EXACT_LOCAL_COMMIT_NOT_PUSH",
+    "IndexByteVerification": "Required git hash-object --no-filters vs index object ids before commit",
+    "TargetPaths": [
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/A.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/Invoke-RawGStringDiagnostic.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/Test-PreparationContract.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/cwd/harness.groovy",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/edit-journal.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/invocation-started.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/native-receipts.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/preparation-result.md",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/probe-wrapper.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/runtime-authority.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/source-diff.patch",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/static-checks.json",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/stderr.bin",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/stdout.bin",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/task.md",
+      "EVIDENCE/DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002/workspace-before.json",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/lexical-review.json",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/native-receipts.json",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/plan.md",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/source-diff.patch",
+      "EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/uncommitted-manifest.json",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/A.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/B.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/BCacheCheck.js",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/DiagnoseRawGString.groovy",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/FailureDisclosure.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/Invoke-RawGStringDiagnostic.ps1",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/edit-journal.json",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/native-receipts.json",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/preparation-result.md",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/runtime-authority.json",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/source-diff.patch",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/static-checks.json",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/task.md",
+      "EVIDENCE/DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002/workspace-before.json",
+      "CURRENT.md",
+      "TASK_CURRENT.md"
+    ],
+    "EntryUpdates": {
+      "CURRENT.md": {
+        "OldSHA256": "F76DEE9431B122A3A1036D7754011172D897CFCBE8681B5210345764F4E69F1B",
+        "HistoricalSuffixExact": true,
+        "NewBytes": 314749,
+        "NewSHA256": "21C9FA935DA34AD862E95FA2DAE6872044ED142EC57B734F8CAEC1E1980D19B4",
+        "OldBytes": 313103
+      },
+      "TASK_CURRENT.md": {
+        "OldSHA256": "81E4F6D9A491B8C84E6775E0E19481A956E5DF28605A07B6858B44D755737A6C",
+        "HistoricalSuffixExact": true,
+        "NewBytes": 220258,
+        "NewSHA256": "30957CB508D22D148443215B3DE6169E0B6FABFE1F1E607F485F7D88E711BFAF",
+        "OldBytes": 218612
+      }
+    }
+  },
+  "ReviewDecision": {
+    "ParentVerdict": "ACCEPT/CLOSED SOURCEONLY_MINIMAL_OUTER_STATE_RENAME",
+    "Source": "Parent dot explicit backup-checkpoint delegation 2026-10-02",
+    "CandidateSHA256": "D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1",
+    "AcceptedPriorScope": "20 preparation contract cases ENGINEERING PASS; the two subsequent first-failure closures accepted only for bounded failure handling",
+    "Scope": "Only7 lines12 lexical outer references; fixture19 unchanged; no Groovy compilation/runtime qualification",
+    "RuntimeReady": false,
+    "NewGStringObservation": false,
+    "Automation": "PAUSED",
+    "RecordedBy": "Candidate author, recording forwarded non-author review and parent dot verdict only",
+    "ProjectStatus": "NOT_READY",
+    "OldBudgets": "All previous diagnostic and20-case contract budgets CLOSED; no retry",
+    "Backup": "Exact Relevant37 plus CURRENT.md/TASK_CURRENT.md39, seven exclusions untouched; local commit only, no push or cleanup",
+    "NextGate": "Prepare small compile-only driver/launcher; non-author review before any new budget; nothing issued",
+    "CandidateBytes": 9932,
+    "IndependentReview": "SOURCEONLY PASS; outer-state naming collision Required closed"
+  }
+}

@@ -1,3 +1,14 @@
+# 2026-10-02 RAW_GSTRING 源码修复接受／本地备份检查点
+
+父 dot 已接受非作者独立 SOURCEONLY PASS：harness 外层7行12处 state 改名 diagnosticState，fixture 内19处及输入／调用／计数／schema不变。候选9932bytes／SHA256 D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1，仅源码接受，未编译未运行；终裁及闭环见 [plan](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/plan.md)、[原准备／父终裁记录](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/native-receipts.json)。作者仅记录父终裁。
+
+20项准备合同工程PASS及两轮首失败闭合已接受其有限范围：NAMED预检A1／SNAPSHOT A_JSON_KEYS失败关闭；COUNT新诊断A1成功、Invocation1／JVM1、189身份读取115118021bytes后harness编译state重名失败，B0／失败披露1。原工具、旧源码、raw及UNKNOWN候选计数均封存不改。本轮没有新的GString观测，不接受14case能力；RuntimeReadyfalse／NOT_READY、自动化PAUSED、全部旧运行与合同预算CLOSED。
+
+当前为父明确备份检查点：active NONE／successor NOT_ISSUED。仅Relevant37＋CURRENT／TASK_CURRENT共39路径作精确本地commit，不push、不清理7旧排除。准确清单见 [manifest](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/uncommitted-manifest.json)；最终HEAD/tree以本次Git回读为准。下一门是小型只编译driver／launcher先准备、独立审查，再由父按真实权限范围放行；本轮不继续编译或诊断、不改installer。
+
+下方入口保留为历史，各自预算和接受／拒绝不重写。
+
+---
 # 2026-10-02 单例诊断首失败封存检查点
 
 DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE 已停止：运行 REJECT/CLOSED，父 dot 接受独立审查的首失败封存 PASS；active NONE、successor NONE。本轮仅定位准备数组构造错误，GString / 原 M112 OUTER_CLASS 根因没有新运行证据。准确结论与下一门见 [result-review](EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/result-review.md)。
