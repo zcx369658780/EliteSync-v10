@@ -1,3 +1,15 @@
+# 2026-10-02 单例诊断首失败封存检查点
+
+DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE 已停止：运行 REJECT/CLOSED，父 dot 接受独立审查的首失败封存 PASS；active NONE、successor NONE。本轮仅定位准备数组构造错误，GString / 原 M112 OUTER_CLASS 根因没有新运行证据。准确结论与下一门见 [result-review](EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/result-review.md)。
+
+固定 A 唯一调用 exit1 / A_METADATA；Invocation0、B0、失败披露0、JVM Start0，所有运行余预算关闭。独立静态审查证明 Harness/Launcher/Authority/Snapshot 四行数组与字符串加法分组错误，首项路径变成目录而被 FileInfo 检查拒绝，不是 authority 状态变更导致。失败命令/native 原字节保留，不能修补或重跑旧预算。
+
+已审单例 harness/wrapper 仅 SOURCEONLY；原 installer、旧 M112 与22冻结边界保持。原准备解析失败关闭，唯一行政修正1/1已耗且不恢复。下一步仅建议独立新任务改用命名字段并先核字段结构，尚未发布或执行。当前为精确本地提交/待备份检查点，不推送、不清理7旧排除；自动化PAUSED、NOT_READY及Owner保护门不变。
+
+下方入口完整保留为历史，按各自时点理解。
+
+---
+
 # 2026-10-02 M112 已终裁备份检查点
 
 M112 APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE 准备根/task/14键authority已建，状态REJECT_CLOSED__BACKUP_CHECKPOINT_STOP；A1成功、唯一Invocation exit1/FAIL，B0及余预算关闭；active NONE、successor NONE，父独立审查/终裁已完成：运行目标FAIL/REJECT_CLOSED；仅首失败处理与有限证据记录接受，不接受case能力。准确计划见 [task](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/task.md)，准备结果见 [preparation-result](EVIDENCE/APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE/preparation-result.md)。
