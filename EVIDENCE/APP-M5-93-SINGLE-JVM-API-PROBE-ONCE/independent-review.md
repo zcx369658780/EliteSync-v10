@@ -1,0 +1,3 @@
+# M5-93 independent GPT-6.1 Sol/high failed invocation review
+NO_FINDINGS limited failure handling, not Workverdict. Preflight1exit0/Invocation1exit1/B0closed,no rerun. Original190GetItem190Read/300429018bytes/Start1/childexit0/capturecleanuptrue/timeoutfalse/kill0. Ownedstdout810,stderr578,wrapper1202 sizeSHA256 match originalnative andwrapper. SLF4J duplicatebinding stderr from gradle-logging andgeneratedAPI triggers requirednonemptystderrFAIL: PROBE_VALIDATE/CHILD_RESULT_OR_STREAM/System.Management.Automation.RuntimeException;secondaryempty/schemaCheckedfalse. stdoutnotPASS.
+Nineexactfiles eachReadAllBytes1/strictUTF8,same-memoryhash/JSON only,allother/externalreads/hash/enumeration/Parser/Process/JVM/writes/supplement0.

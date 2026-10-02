@@ -21,6 +21,23 @@ class AuthController extends Controller
         return $candidate !== '' ? $candidate : null;
     }
 
+    private function passwordMatches(?User $user, string $password): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        try {
+            return Hash::check($password, $user->password);
+        } catch (\RuntimeException $exception) {
+            if ($exception->getMessage() !== 'This password does not use the Bcrypt algorithm.') {
+                throw $exception;
+            }
+
+            return false;
+        }
+    }
+
     private function resolveBirthTime(User $user): ?string
     {
         $profile = UserAstroProfile::query()
@@ -101,7 +118,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('phone', $data['phone'])->first();
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
+        if (! $this->passwordMatches($user, $data['password'])) {
             throw ValidationException::withMessages([
                 'phone' => ['手机号或密码错误。'],
             ]);
@@ -140,7 +157,7 @@ class AuthController extends Controller
         ]);
 
         $user = $request->user();
-        if (! $user || ! Hash::check($data['current_password'], $user->password)) {
+        if (! $this->passwordMatches($user, $data['current_password'])) {
             throw ValidationException::withMessages([
                 'current_password' => ['当前密码不正确。'],
             ]);
@@ -162,7 +179,7 @@ class AuthController extends Controller
         ]);
 
         $user = $request->user();
-        if (! $user || ! Hash::check($data['current_password'], $user->password)) {
+        if (! $this->passwordMatches($user, $data['current_password'])) {
             throw ValidationException::withMessages([
                 'current_password' => ['当前密码不正确。'],
             ]);

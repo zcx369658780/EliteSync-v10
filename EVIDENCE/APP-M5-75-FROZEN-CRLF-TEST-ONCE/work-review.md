@@ -1,0 +1,13 @@
+# M5-75 Work独立LEVEL2裁决
+
+2026-10-01 ACCEPT/CLOSED EXACT SEVEN-CASE CRLF TEST AND INDEPENDENT CHILD STREAM DELIVERY。独立GPT-6.1 Sol/high m574_source_review NO_FINDINGS，只读限定六材料核原证据/来源/七case/计数，无运行或写入；原native聚合首次展示截断后用保留同次全文分段读完，磁盘补读0，展示限制不冒原回执截断。Work独立原bytes/hash及终裁不以NO_FINDINGS或作者自报代证据。
+
+现有执行第10turn01a0f5e5-a52b-75b2-931c-3c51ad48715b completed/error=null/idle。native-receipts.json原前置exec-4cdea292、Invocationexec-f1c2b92e、Bexec-7d69ac99均exit0/native truncated=false；原包命令1990/220/2007字符均≤4096，wrapper2662bytes字符≤12KiB/18000。独立原childstdout1111bytes/hash502D2EE13E0147420AAFBDF337B7DB0D6F871898172B99F80E49989B174CB66D，stderr0/hashE3B0C442...，原bytes与wrapper逐字一致；summary5334/hash819A3561E62AE517F44E855D956B596B497EA2F495461D36F90463FD03370BF6包含完整同次wrapper，三产物身份与原B一致/完整普通祖先通过。
+
+Work workspace-review.json核main/cf8bfaa4a03b8c9a682105617b185141904413be/233status/232旧缺0/十四冻结完整祖先-size一致，十二非bin fresh hash一致，fixture/expected沿原接受回执哈希不补读正文。成员保留不证明无关dirty字节不变。新前置-Invocation-B各1/1成功关闭，B后未改产物。launcher执行1/唯一validator --test1/StartAttempt1-Started1/Wait1-Join1/两CopyComplete真/原childexit0/两receipt CreateNew1-Saved1-Dispose1/ValidatorIdentityReads1/LauncherJSONParses1。
+
+固定candidate source/原fixture/独立expected各Read1/Completed1、AST1/Completed1、compile1/Completed1、CandidateImport1/独立moduleload1/Completed1、CandidateInvocation7。正例exact bytes45907/完整独立expected相等/hash身份由已核准确validator前门和正例检查保证/原source未变；六负例顺序bytearray、bytes_subclass、str_empty→exact ValueError ES_SOURCE_TYPE，bytes_empty、short_bytes→ES_SOURCE_SIZE，offset0_xor1→ES_SOURCE_IDENTITY，所有CasePASS。未从候选表回算oracle、不另生成expected、不保存变换bytes，不重复Static，SDK/构建0。launcher与validator自身正常解释器读取编译执行另记。
+
+实际正常223ms观察，WaitForExit30000配置/Kill0/TimedOutfalse/TimeoutKillPath NOT_EXERCISED；Dispose/emit/timeout失败路径未实测，绝对硬截止和OS隔离NOT_PROVEN。父tool独立stderr仍UNKNOWN，独立childstderr0不追认父或M5-60。内部scope-anchor-scratch未覆盖NOT_CHECKED，Kotlin/SDK兼容及M5/隔离构建NOT_READY保持；属性/LibraryExtension时序及真实性恢复生产/UAC门不变。
+
+M5-50原source及输入适用性阻塞保留，不追认旧候选。所有旧失败/候选与闭budget保持；现有执行会话正常沿用，不新建。后继仅新路径将已冻结独立expected原bytes物化为隔离Kotlin候选材料，不再执行变换/测试，不修改SDK或生产源；独立原流身份验收后其它门仍另授。

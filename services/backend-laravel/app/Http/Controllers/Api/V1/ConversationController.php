@@ -14,9 +14,12 @@ class ConversationController extends Controller
     {
         $actorId = (int) $request->user()->id;
         $items = $service->listForUser($request->user())
-            ->filter(fn (array $item) => empty($item['peer_user_id']) || $capabilities->canRead($actorId, (int) $item['peer_user_id']))
+            ->filter(fn (array $item) => isset($item['peer_user_id'])
+                && is_int($item['peer_user_id'])
+                && $item['peer_user_id'] > 0
+                && $capabilities->canRead($actorId, $item['peer_user_id']))
             ->map(function (array $item) use ($capabilities, $actorId) {
-                if (!empty($item['peer_user_id'])) $item['conversation_capability'] = $capabilities->evaluate($actorId, (int) $item['peer_user_id']);
+                $item['conversation_capability'] = $capabilities->evaluate($actorId, $item['peer_user_id']);
                 return $item;
             });
 

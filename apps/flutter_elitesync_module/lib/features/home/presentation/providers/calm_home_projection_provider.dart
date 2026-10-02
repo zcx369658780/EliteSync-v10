@@ -22,8 +22,9 @@ final calmHomeProjectionProvider = Provider<CalmHomeProjection>((ref) {
   final connection = ref.watch(connectionPresentationProvider);
   final conversation = ref.watch(conversationAccessProvider);
 
-  final readinessReady =
-      navigation.readinessState == ReadinessGuardState.ready;
+  final readinessUnknown =
+      navigation.readinessState == ReadinessGuardState.unknown;
+  final readinessReady = navigation.readinessState == ReadinessGuardState.ready;
   final matchProjection = switch (match) {
     AsyncData(:final value) => value,
     _ => null,
@@ -31,14 +32,23 @@ final calmHomeProjectionProvider = Provider<CalmHomeProjection>((ref) {
   final matchSnapshot = matchProjection == null
       ? null
       : CanonicalMatchLifecycleAdapter.fromRound(matchProjection);
+  final matchConditionUnknown =
+      matchSnapshot?.condition ==
+          CanonicalMatchPresentationCondition.transportUnavailable ||
+      matchSnapshot?.condition ==
+          CanonicalMatchPresentationCondition.closedWithoutCompletionEvidence;
   final matchAvailable =
       matchSnapshot?.condition ==
           CanonicalMatchPresentationCondition.roundAvailable &&
       matchSnapshot?.targetState != null;
-  final connectionActive =
-      connection.state == ProductConnectionState.active;
+  final connectionActive = connection.state == ProductConnectionState.active;
   final conversationActive =
       conversation.state == ProductConversationState.active;
+  final downstreamStateMissing =
+      readinessReady &&
+      matchAvailable &&
+      (!connection.hasSyntheticDevelopmentState ||
+          (connectionActive && !conversation.hasSyntheticDevelopmentState));
 
   final decision = switch ((
     readinessReady,
@@ -77,12 +87,16 @@ final calmHomeProjectionProvider = Provider<CalmHomeProjection>((ref) {
     summaries: [
       HomeStateSummary(
         domain: HomeProjectedDomain.readiness,
-        authority: HomeProjectionAuthority.syntheticDevelopment,
-        stateCode: navigation.readinessState.name.toUpperCase(),
+        authority: readinessUnknown
+            ? HomeProjectionAuthority.unknown
+            : HomeProjectionAuthority.syntheticDevelopment,
+        stateCode: readinessUnknown
+            ? null
+            : navigation.readinessState.name.toUpperCase(),
       ),
       HomeStateSummary(
         domain: HomeProjectedDomain.match,
-        authority: matchProjection != null
+        authority: matchProjection != null && !matchConditionUnknown
             ? HomeProjectionAuthority.syntheticDevelopment
             : HomeProjectionAuthority.unknown,
         stateCode: matchSnapshot?.targetState?.code,
@@ -99,10 +113,20 @@ final calmHomeProjectionProvider = Provider<CalmHomeProjection>((ref) {
         authority: conversation.hasSyntheticDevelopmentState
             ? HomeProjectionAuthority.syntheticDevelopment
             : HomeProjectionAuthority.notYetEstablished,
-        stateCode: conversation.state.code,
+        stateCode: conversation.hasSyntheticDevelopmentState
+            ? conversation.state.code
+            : null,
       ),
     ],
-    readinessAuthority: HomeProjectionAuthority.syntheticDevelopment,
-    authoritativeNextDecision: decision,
+    readinessAuthority: readinessUnknown
+        ? HomeProjectionAuthority.unknown
+        : HomeProjectionAuthority.syntheticDevelopment,
+    authoritativeNextDecision:
+        readinessUnknown ||
+            (readinessReady && matchProjection == null) ||
+            (readinessReady && matchConditionUnknown) ||
+            downstreamStateMissing
+        ? null
+        : decision,
   );
 });

@@ -250,17 +250,17 @@ class RtcLiveKitService extends ChangeNotifier {
           final absAvg = samples.isEmpty
               ? 0.0
               : samples.fold<double>(
-                    0.0,
-                    (sum, sample) => sum + sample.abs().toDouble(),
-                  ) /
-                  samples.length /
-                  32768.0;
+                      0.0,
+                      (sum, sample) => sum + sample.abs().toDouble(),
+                    ) /
+                    samples.length /
+                    32768.0;
           final peak = samples.isEmpty
               ? 0.0
               : samples
-                  .map((sample) => sample.abs().toDouble())
-                  .fold<double>(0.0, math.max) /
-                  32768.0;
+                        .map((sample) => sample.abs().toDouble())
+                        .fold<double>(0.0, math.max) /
+                    32768.0;
           if (absAvg > 0.0001 || peak > 0.0001) {
             debugPrint(
               'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
@@ -419,7 +419,10 @@ class RtcLiveKitService extends ChangeNotifier {
   }) async {
     try {
       try {
-        await room.setSpeakerOn(true, forceSpeakerOutput: true);
+        await AudioManager.instance.setSpeakerOutputPreferred(
+          true,
+          force: true,
+        );
       } catch (error) {
         debugPrint(
           'RTC_LIVEKIT_AUDIO_ROUTE_FORCE_FAIL '
@@ -553,8 +556,8 @@ class RtcLiveKitService extends ChangeNotifier {
         'RTC_LIVEKIT_AUDIO_ROUTE_PRECONNECT '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'speakerOn=${Hardware.instance.speakerOn} '
-        'forceSpeaker=${Hardware.instance.forceSpeakerOutput}',
+        'speakerOn=${AudioManager.instance.isSpeakerOutputPreferred} '
+        'forceSpeaker=${AudioManager.instance.isSpeakerOutputForced}',
       );
 
       final room = Room(
@@ -584,11 +587,11 @@ class RtcLiveKitService extends ChangeNotifier {
         ..on<ParticipantDisconnectedEvent>((event) {
           _refreshRemoteAudioTrack(room, reason: 'participant_disconnected');
         })
-      ..on<TrackSubscribedEvent>((event) {
-        if (event.track is AudioTrack) {
-          _remoteAudioTrack = event.track as AudioTrack;
-          _remoteAudioTrackFromEvent = true;
-          notifyListeners();
+        ..on<TrackSubscribedEvent>((event) {
+          if (event.track is AudioTrack) {
+            _remoteAudioTrack = event.track as AudioTrack;
+            _remoteAudioTrackFromEvent = true;
+            notifyListeners();
             unawaited(
               _ensureAudioPlayback(
                 room,

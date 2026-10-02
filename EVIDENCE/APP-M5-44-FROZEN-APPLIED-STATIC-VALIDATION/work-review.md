@@ -1,0 +1,8 @@
+# M5-44 Work independent LEVEL2 original receipt review
+2026-10-01 ACCEPT/CLOSED STATIC_STRUCTURE_ONLY。
+Work只读核task/summary及原执行turn01a0f448-1c76-7bf2-8450-4fe2cb10059b。唯一Static exec-974ecc6d-f059-44c9-81c9-94f9e419dbdc exit0/695ms，工具chunkbe97e7/wall0.6960301；前置exec-7addb4ec exit0；没有重跑。
+原工具launcher JSON 29475chars，native read_thread检索每条最多20000chars。Work核原完整核心字段（到StdoutCapturedBase64前13544chars）与summary一一相同、20000chars已检索前缀逐字相同、summary原JSON总长度29475与工具originalChars一致；后段不夸称原工具完整可检索。Stdout完整11905bytes从原核心字段独立取回，summary checker JSON与此Stdout逐字相同，Stdout UTF8实际11905、全Base64重新核定与保存字段一致，stderr和Base64空。此系同次证据解析，不运行checker/源码。
+ModeStatic，Failure null，Exit/ChildExit0，StartAttemptCount/StartCount1，Elapsed0.4429315，Timeout/OutputLimitExceeded false，CleanupObservedExit true，stdout11905/stderr0≤32768。
+checker STATIC_STRUCTURE_PASS/STATIC_STRUCTURE_ONLY，145具名check全部PASS/非PASS0，三identities path/size/hash匹配，13仅authored方法数。tests_run/module_import NOT_CHECKED，algorithm_behavior/OS_isolation/absolute_hard_deadline NOT_PROVEN。静态结构接受不接受算法/tests/真实工程。
+summary46650 SHA256 A31F83447D28EB6BAEE5B6EC7CC36250A9852541FB2579BB7D46594D60239B2D。main指定HEAD保持，198status/197既有成员缺0，冻harness/source保持。Static1/1关闭、旧budget全部关闭；Test未运行。
+M5-43 SOURCE-ONLY与PTY全传输限额NOT_PROVEN保持；全部M5/隔离构建NOT_READY、settings/v1全拒绝、loader/runtime false及真实性/恢复/生产/UAC门保持。后继M5-45仅另授准确Test一次，不重跑Static。

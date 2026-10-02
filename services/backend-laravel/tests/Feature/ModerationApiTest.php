@@ -110,8 +110,10 @@ class ModerationApiTest extends TestCase
         $this->postJson('/api/v1/messages', [
             'receiver_id' => $userB->id,
             'content' => 'hello',
-        ])->assertStatus(404)
-            ->assertJsonPath('message', 'chat unavailable');
+        ])->assertNotFound()
+            ->assertExactJson(['message' => 'conversation unavailable']);
+        $this->assertDatabaseCount('chat_messages', 0);
+        // The route guard denies before the legacy internal block gate executes.
     }
 
     public function test_admin_report_action_updates_user_status(): void

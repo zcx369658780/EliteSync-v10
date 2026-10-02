@@ -27,17 +27,25 @@ class MainActivity : FlutterActivity() {
                 when (call.method) {
                     "getBootstrap" -> {
                         val extras = intent?.extras
-                        val fileBootstrap = readBootstrapFile()
+                        val synthetic = BuildConfig.ELITESYNC_SYNTHETIC_DEMO
+                        val syntheticEndpoints = if (synthetic) {
+                            BootstrapEndpointPolicy.resolve(synthetic = true, debug = BuildConfig.DEBUG)
+                        } else {
+                            null
+                        }
+                        val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic)
+                        val endpoints = syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
+                            synthetic = false,
+                            debug = BuildConfig.DEBUG,
+                            intentApi = extras?.getString("elitesync_api_base_url"),
+                            intentWs = extras?.getString("elitesync_ws_base_url"),
+                            fileApi = fileBootstrap["elitesync_api_base_url"],
+                            fileWs = fileBootstrap["elitesync_ws_base_url"],
+                        )
                         result.success(
                             mapOf(
-                                "apiBaseUrl" to firstNonBlank(
-                                    extras?.getString("elitesync_api_base_url"),
-                                    fileBootstrap["elitesync_api_base_url"],
-                                ),
-                                "wsBaseUrl" to firstNonBlank(
-                                    extras?.getString("elitesync_ws_base_url"),
-                                    fileBootstrap["elitesync_ws_base_url"],
-                                ),
+                                "apiBaseUrl" to endpoints.apiBaseUrl,
+                                "wsBaseUrl" to endpoints.wsBaseUrl,
                                 "initialRoute" to firstNonBlank(
                                     extras?.getString("elitesync_initial_route"),
                                     fileBootstrap["elitesync_initial_route"],
@@ -60,7 +68,17 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun ensureBootstrapDefaults() {
+        val syntheticEndpoints = if (BuildConfig.ELITESYNC_SYNTHETIC_DEMO) {
+            BootstrapEndpointPolicy.resolve(synthetic = true, debug = BuildConfig.DEBUG)
+        } else {
+            null
+        }
         val currentIntent = intent ?: return
+        if (syntheticEndpoints != null) {
+            currentIntent.putExtra("elitesync_api_base_url", syntheticEndpoints.apiBaseUrl)
+            currentIntent.putExtra("elitesync_ws_base_url", syntheticEndpoints.wsBaseUrl)
+            return
+        }
         if (currentIntent.getStringExtra("elitesync_api_base_url").isNullOrBlank()) {
             currentIntent.putExtra("elitesync_api_base_url", BuildConfig.API_BASE_URL)
         }
@@ -69,14 +87,16 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private fun readBootstrapFile(): Map<String, String> {
+    private fun readBootstrapFile(includeEndpoints: Boolean): Map<String, String> {
         val bootstrapFile = File(filesDir, "elitesync_bootstrap.json")
         if (!bootstrapFile.exists()) return emptyMap()
         return runCatching {
             val json = JSONObject(bootstrapFile.readText())
             buildMap {
                 json.keys().forEach { key ->
-                    put(key, json.optString(key, ""))
+                    if (includeEndpoints || (key != "elitesync_api_base_url" && key != "elitesync_ws_base_url")) {
+                        put(key, json.optString(key, ""))
+                    }
                 }
             }
         }.getOrDefault(emptyMap())

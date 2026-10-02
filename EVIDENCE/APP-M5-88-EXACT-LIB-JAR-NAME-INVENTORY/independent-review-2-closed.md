@@ -1,0 +1,1 @@
+REJECT/CLOSED REVIEW_EXECUTION_GAP。m588_fresh_review三材料各Read1/其它路径运行写入0；工具输出17925tokens超过16000截断，审查脚本重复回显入口native、未正确解析output.text数组或完成nativeAdd比较。审查执行缺口，非作者交付缺陷；预算关闭未补读。保留原拒绝，不追认，作者A-B不重开。Work仅另授独立新预算。

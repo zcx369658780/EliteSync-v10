@@ -1,0 +1,13 @@
+{
+  "TaskId": "APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE",
+  "Status": "ISSUED",
+  "JVM": 1,
+  "OwnerAuthorization": "OWNER_SINGLE_JVM_API_PROBE_AUTHORIZED",
+  "ProbeSha256": "F523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1",
+  "ProbeBytes": 1343,
+  "ProbePath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE\\Probe-GroovyGradleApi.groovy",
+  "ManifestPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv",
+  "InputRoot": "D:\\GradleHome\\wrapper\\dists\\gradle-8.14-all\\dq61qkzrdg407zji6bwf6hwt7\\gradle-8.14\\lib",
+  "OutputRoot": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE",
+  "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot\\bin\\java.exe"
+}

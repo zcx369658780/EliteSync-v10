@@ -1,0 +1,3 @@
+# New M113 governance budget
+
+M111 writer process-create206 closed, original draft not accepted. M113 independently reads same accurate source inputs and derives same semantic scope; mandatory file-tool AddFile write1 replaces long PowerShell command-line source transport. No original source modification, Parser/execution, external read or JVM. Prewrite requirement ASCII/byte-char limits only; B records first diskSHA256 and compares filetext to authored patch where available. Do not invent a prewriteSHA256 result or nativeAdd fullbyteproof. Independent fulltext region comparison/inverse+currentB identities will establish source acceptance separately. Future runtime root112 unchanged/uncreated.

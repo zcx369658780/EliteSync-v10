@@ -1,0 +1,9 @@
+# APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY
+ISSUED / LEVEL2 DIRECT JAR NAMES ONLY。派现有01a0f590-3c90-74c1-b6d4-4c01198d2d3f/local，第23turncompleted/error=null；唯一D:\EliteSync-v10/main/cf8bfaa4a03b8c9a682105617b185141904413be。Owner回复此前明确方案“请继续”，仅批准准确lib目录直属.jar名称枚举，不递归/不读jar正文/不运行。M5-87 ACCEPT/CLOSED身份核，不重开。
+入口五authority顶部各一段、本task、workspace-before.json和准确M5-87 owner-locators.md及work-review.md各一次；其它来源/技能/home/memory不读。默认git目录粒度status --porcelain=v1，禁untrackedfilesall，以workspace-before Paths核旧成员缺0。
+新A最多1：唯一外部目录
+D:\GradleHome\wrapper\dists\gradle-8.14-all\dq61qkzrdg407zji6bwf6hwt7\gradle-8.14\lib
+Get-Item准确目录一次，DirectoryInfo自身/Parent到根nonreparse；仅Get-ChildItem -LiteralPath该目录 -File -Filter '*.jar'一次，不-Recurse、不访问plugins等子目录、不手工第二枚举。只使用同次返回FileInfo Name/DirectoryName/Attributes以确认直属普通.jar；发现reparse/非预期项/失败首停，不跟随。可从同次结果排序Ordinal/去重断言，但不得筛掉失败成员或超限后缩短清单。输出准确根+完整直属.jar名称列表（只名称，不每项重复根），计数、旧成员和原预算计数；正文hash/bytes/版本/内容均NOT_CHECKED。不得对成员Get-Item/ReadAllBytes/Hash或打开jar。不列其它扩展名，不枚举环境/PATH/registry/HOME/其它cache/旧仓。
+原A cmd≤4096chars/plainpipes/login=false/tty=false，完整输出≤16384UTF8bytes且18000chars，必须先测再emit；若超过即失败关闭，不换窗口/拆分/重跑。目录名称读取不等于通配classpath加载或API兼容。
+唯一新本目录jar-name-inventory.md≤16384UTF8bytes，宿主先测完整报告一次再CreateNew1，不超限后删项缩短重试；报告完整逐行名称，准确根拼接仅形式化记录，不检查派生文件。首失败可原样记录partial和未执行项，不补查。新B最多1只候选普通自身/完整祖先/sizehashstrictUTF8/与宿主原文身份/main-HEAD-旧缺0，cmd-output≤4096，外部补读0，B后不改。
+交付停独立GPT-6.1Sol/high限定只读审查，再Work原完整证据独立LEVEL2；NO_FINDINGS不替终裁。A-B各1/1预算，首失败全闭保留partial/未执行项，不修补重跑/新会话。所有JVM/Java/Groovy/Gradle/Parser/ClassLoader/reflection/candidate/StaticTest/SDK/构建/HTTP0；不造launcher/不-version/不类加载/不启动harness。允许一次准确直属.jar名称枚举不授成员内容、子目录、邻源索引、metadata-properties、安装下载/真实数据备份密钥/生产DB-API-SSH/UAC/Git写。dirty/untracked/17冻结/rawfixture/M5-50与旧budget保持，NOT_READY/settings拒绝/loader-runtimefalse/真实binding-ID-path-hook/四project事务/LibraryExtension时序外部门、父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/内部scope-anchor-scratch与SDK兼容NOT_CHECKED/未实测失败路径NOT_EXERCISED保持。五分钟自动化PAUSED。

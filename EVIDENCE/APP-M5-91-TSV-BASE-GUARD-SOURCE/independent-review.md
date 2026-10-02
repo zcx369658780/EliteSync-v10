@@ -1,0 +1,1 @@
+NO_FINDINGS仅SOURCE-ONLY静态修正：Sol/high m587_review五允许文件各ReadAllBytes1/strictUTF8/同次内存artifacthash，补读其它路径外部读取hash枚举/写/候选运行0。三限定修改/false初始化/Ordinary成功后true/完整TSV块guard/else不保存且保留first与phase，逆源码旧全文一致。A原source及newsource-summary nativeAdd-B身份一致；原A-B各1/exit0/nativefalse。未解析编译执行，语法和实际正常异常行为NOT_CHECKED/NOT_EXERCISED，原M90 Required/闭预算保留，新源码不能直接运行。短ID/cmd2091/预写测量仅作者披露。本意见不代Work终裁。

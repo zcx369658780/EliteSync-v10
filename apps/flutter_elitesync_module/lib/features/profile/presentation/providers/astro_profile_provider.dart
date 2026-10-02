@@ -17,7 +17,6 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
     String requestPath,
     Map<String, dynamic>? requestQuery,
   ) {
-    print('[ASTRO] request => $requestPath query=${requestQuery ?? const {}}');
     ref
         .read(appLoggerProvider)
         .info(
@@ -39,7 +38,6 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
 
   NetworkResult<Map<String, dynamic>> result = await request(path, query);
   if (result is NetworkSuccess<Map<String, dynamic>>) {
-    print('[ASTRO] success <= $path keys=${result.data.keys.join(",")}');
     ref
         .read(appLoggerProvider)
         .info(
@@ -54,9 +52,6 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   }
 
   var failure = result as NetworkFailure<Map<String, dynamic>>;
-  print(
-    '[ASTRO] failure <= $path status=${failure.statusCode} code=${failure.code} message=${failure.message}',
-  );
   ref
       .read(appLoggerProvider)
       .warning(
@@ -66,9 +61,6 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   if (failure.statusCode == 404 && fallbackPath != null) {
     result = await request(fallbackPath, fallbackQuery);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      print(
-        '[ASTRO] fallback success <= $fallbackPath keys=${result.data.keys.join(",")}',
-      );
       ref
           .read(appLoggerProvider)
           .info(
@@ -82,9 +74,6 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
       return null;
     }
     failure = result as NetworkFailure<Map<String, dynamic>>;
-    print(
-      '[ASTRO] fallback failure <= $fallbackPath status=${failure.statusCode} code=${failure.code} message=${failure.message}',
-    );
     ref
         .read(appLoggerProvider)
         .warning(

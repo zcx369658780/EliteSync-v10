@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "applicationId": "com.elitesync.syntheticdemo",
+  "namespace": "com.elitesync.syntheticdemo",
+  "mode": "debug",
+  "syntheticDemo": true,
+  "target": "lib/main.dart",
+  "dartDefines": [
+    "ELITESYNC_SYNTHETIC_DEMO=true"
+  ],
+  "tools": {
+    "flutter": "D:\\flutter",
+    "androidSdk": "C:\\Users\\zcxve\\AppData\\Local\\Android\\Sdk",
+    "jdk": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot",
+    "gradle": "C:\\Users\\zcxve\\.gradle\\wrapper\\dists\\gradle-8.14-all\\5vwl8burbouivoo2kromnbp2p\\gradle-8.14"
+  },
+  "staging": {
+    "host": "host",
+    "module": "module",
+    "gradleUserHome": "gradle-user-home",
+    "gradleProjectCache": "gradle-project-cache",
+    "pubCache": "pub-cache",
+    "userHome": "user-home",
+    "temp": "temp",
+    "repo": "repo",
+    "receipts": "receipts"
+  },
+  "artifact": {
+    "status": "NOT_READY"
+  },
+  "gates": {
+    "sourceClosure": "UNRESOLVED",
+    "sdkGeneration": "UNRESOLVED",
+    "autoConfigurationIsolation": "UNRESOLVED",
+    "dependencyMaterials": "UNRESOLVED",
+    "aarIdentity": "UNRESOLVED",
+    "mergedManifest": "UNRESOLVED",
+    "pluginSideEffects": "UNRESOLVED",
+    "appDataIsolation": "UNRESOLVED"
+  },
+  "receiptRequirements": {
+    "status": "UNRESOLVED",
+    "requiredFields": [
+      "inputManifestSha256",
+      "toolIdentities",
+      "target",
+      "mode",
+      "dartDefines",
+      "hostSynthetic",
+      "aarSha256",
+      "originalGav",
+      "isolatedGav",
+      "pomSha256",
+      "dependencyClosure",
+      "isolationEvidence",
+      "mergedManifestSha256"
+    ],
+    "verification": "FUTURE_INDEPENDENT_GATE_REQUIRED"
+  }
+}

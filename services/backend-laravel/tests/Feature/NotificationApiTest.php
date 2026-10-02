@@ -6,6 +6,7 @@ use App\Models\AppNotificationItem;
 use App\Models\DatingMatch;
 use App\Models\User;
 use App\Services\NotificationService;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -129,6 +130,9 @@ class NotificationApiTest extends TestCase
 
     public function test_message_notification_uses_stored_conversation_and_sender_identity_without_replay_duplicate(): void
     {
+        // This replay check exercises legacy internals, not v10 live messaging authority.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+
         $sender = User::factory()->create(['phone' => 'notify-sender']);
         $receiver = User::factory()->create(['phone' => 'notify-receiver']);
         DatingMatch::query()->create([

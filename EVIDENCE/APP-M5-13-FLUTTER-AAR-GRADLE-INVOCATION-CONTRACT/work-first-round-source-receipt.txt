@@ -1,0 +1,1438 @@
+D:\flutter\packages\flutter_tools\lib\src\commands\build_aar.dart SHA256 3B5C49E3A8DE1C3C5FEA4A385484DB37C4799ED3B480FA8F265F99BB5F8CBDEB
+28:        super(verboseHelp: verboseHelp) {
+29:     argParser
+30:       ..addFlag('debug', defaultsTo: true, help: 'Build a debug version of the current project.')
+31:       ..addFlag(
+32:         'profile',
+33:         defaultsTo: true,
+34:         help: 'Build a version of the current project specialized for performance profiling.',
+35:       )
+36:       ..addFlag(
+37:         'release',
+38:         defaultsTo: true,
+39:         help: 'Build a release version of the current project.',
+40:       );
+41:     addTreeShakeIconsFlag();
+42:     usesFlavorOption();
+43:     usesBuildNumberOption();
+44:     usesOutputDir();
+45:     usesPubOption();
+46:     addSplitDebugInfoOption();
+47:     addDartObfuscationOption();
+48:     usesDartDefineOption();
+49:     usesExtraDartFlagOptions(verboseHelp: verboseHelp);
+50:     usesTrackWidgetCreation(verboseHelp: false);
+51:     addEnableExperimentation(hide: !verboseHelp);
+52:     addAndroidSpecificBuildOptions(hide: !verboseHelp);
+53:     argParser.addMultiOption(
+54:       'target-platform',
+55:       defaultsTo: <String>['android-arm', 'android-arm64', 'android-x64'],
+56:       allowed: <String>['android-arm', 'android-arm64', 'android-x64'],
+57:       help: 'The target platform for which the project is compiled.',
+58:     );
+86:       workflow: commandPath,
+87:       commandHasTerminal: hasTerminal,
+88:       buildAarProjectType: projectType,
+89:       buildAarTargetPlatform: stringsArg('target-platform').join(','),
+90:     );
+91:   }
+92: 
+93:   @override
+94:   final description =
+95:       'Build a repository containing an AAR and a POM file.\n\n'
+96:       'By default, AARs are built for `release`, `debug` and `profile`.\n'
+97:       'The POM file is used to include the dependencies that the AAR was compiled against.\n'
+109: 
+110:   @override
+111:   bool get regeneratePlatformSpecificToolingDuringVerify => false;
+112: 
+113:   @override
+114:   Future<FlutterCommandResult> runCommand() async {
+115:     if (_androidSdk == null) {
+116:       exitWithNoSdkMessage();
+117:     }
+118:     final androidBuildInfo = <AndroidBuildInfo>{};
+119: 
+120:     final Iterable<AndroidArch> targetArchitectures = stringsArg(
+121:       'target-platform',
+122:     ).map<AndroidArch>(getAndroidArchForName);
+123: 
+124:     final String? buildNumberArg = stringArg('build-number');
+125:     final String buildNumber =
+126:         argParser.options.containsKey('build-number') &&
+127:             buildNumberArg != null &&
+128:             buildNumberArg.isNotEmpty
+129:         ? buildNumberArg
+130:         : '1.0';
+131: 
+132:     final File targetFile = _fileSystem.file(_fileSystem.path.join('lib', 'main.dart'));
+133:     for (final buildMode in const <String>['debug', 'profile', 'release']) {
+134:       if (boolArg(buildMode)) {
+135:         androidBuildInfo.add(
+136:           AndroidBuildInfo(
+137:             await getBuildInfo(
+138:               forcedBuildMode: BuildMode.fromCliName(buildMode),
+139:               forcedTargetFile: targetFile,
+140:             ),
+141:             targetArchs: targetArchitectures,
+142:           ),
+143:         );
+144:       }
+145:     }
+146:     if (androidBuildInfo.isEmpty) {
+147:       throwToolExit('Please specify a build mode and try again.');
+148:     }
+149: 
+150:     await androidBuilder?.buildAar(
+151:       project: project,
+152:       target: targetFile.path,
+153:       androidBuildInfo: androidBuildInfo,
+154:       generateTooling: regeneratePlatformSpecificToolingIfApplicable,
+155:       outputDirectoryPath: stringArg('output'),
+156:       buildNumber: buildNumber,
+157:     );
+158: 
+159:     // When an aar is successfully built, record to analytics whether Impeller
+160:     // is enabled or disabled. Note that 'computeImpellerEnabled' will default
+161:     // to false if not enabled explicitly in the manifest.
+162:     final bool impellerEnabled = project.android.computeImpellerEnabled();
+163:     final buildLabel = impellerEnabled
+164:         ? 'manifest-aar-impeller-enabled'
+165:         : 'manifest-aar-impeller-disabled';
+166:     globals.analytics.send(Event.flutterBuildInfo(label: buildLabel, buildType: 'android'));
+167: 
+168:     return FlutterCommandResult.success();
+169:   }
+170: 
+171:   /// Returns the [FlutterProject] which is determined from the remaining command-line
+172:   /// argument if any or the current working directory.
+173:   FlutterProject _getProject() {
+174:     final List<String> remainingArguments = argResults!.rest;
+D:\flutter\packages\flutter_tools\lib\src\android\gradle.dart SHA256 CAB8B82F27CFA0FCBA61E3502683D067EC583CDFC728A63B63C74E8837D6E2FD
+3: // found in the LICENSE file.
+4: 
+5: import 'dart:math';
+6: 
+7: import 'package:crypto/crypto.dart';
+8: import 'package:meta/meta.dart';
+9: import 'package:process/process.dart';
+10: import 'package:unified_analytics/unified_analytics.dart';
+11: import 'package:xml/xml.dart';
+12: 
+13: import '../artifacts.dart';
+14: import '../base/analyze_size.dart';
+15: import '../base/common.dart';
+16: import '../base/deferred_component.dart';
+17: import '../base/file_system.dart';
+18: import '../base/io.dart';
+19: import '../base/logger.dart';
+20: import '../base/net.dart';
+21: import '../base/platform.dart';
+22: import '../base/process.dart';
+23: import '../base/project_migrator.dart';
+24: import '../base/terminal.dart';
+25: import '../base/utils.dart';
+26: import '../build_info.dart';
+27: import '../cache.dart';
+28: import '../convert.dart';
+29: import '../flutter_manifest.dart';
+30: import '../globals.dart' as globals;
+31: import '../project.dart';
+32: import 'android_builder.dart';
+33: import 'android_studio.dart';
+34: import 'gradle_errors.dart';
+35: import 'gradle_utils.dart';
+36: import 'gradle_utils.dart' as gradle;
+37: import 'java.dart';
+38: import 'migrations/android_studio_java_gradle_conflict_migration.dart';
+39: import 'migrations/cmake_android_16k_pages_migration.dart';
+40: import 'migrations/min_sdk_version_migration.dart';
+41: import 'migrations/multidex_removal_migration.dart';
+42: import 'migrations/top_level_gradle_build_file_migration.dart';
+43: 
+44: /// The regex to grab variant names from printBuildVariants gradle task
+45: ///
+46: /// The task is defined in flutter/packages/flutter_tools/gradle/src/main/kotlin/FlutterPluginUtils.kt
+47: ///
+48: /// The expected output from the task should be similar to:
+49: ///
+50: /// BuildVariant: debug
+130: @visibleForTesting
+131: String getAarTaskFor(BuildInfo buildInfo) {
+132:   return _taskFor('assembleAar', buildInfo);
+133: }
+134: 
+135: /// Returns the output APK file names for a given [AndroidBuildInfo].
+136: ///
+137: /// For example, when [AndroidBuildInfo.splitPerAbi] is `true`, multiple APKs are created.
+138: Iterable<String> _apkFilesFor(AndroidBuildInfo androidBuildInfo) {
+139:   final String buildType = camelCase(androidBuildInfo.buildInfo.modeName);
+140:   final String productFlavor = androidBuildInfo.buildInfo.lowerCasedFlavor ?? '';
+186:   /// Builds the AAR and POM files for the current Flutter module or plugin.
+187:   @override
+188:   Future<void> buildAar({
+189:     required FlutterProject project,
+190:     required Set<AndroidBuildInfo> androidBuildInfo,
+191:     required String target,
+192:     required Future<void> Function(FlutterProject, {required bool releaseMode}) generateTooling,
+193:     String? outputDirectoryPath,
+194:     required String buildNumber,
+195:   }) async {
+196:     Directory outputDirectory = _fileSystem.directory(
+204:     for (final androidBuildInfo in androidBuildInfo) {
+205:       await generateTooling(project, releaseMode: androidBuildInfo.buildInfo.isRelease);
+206:       await buildGradleAar(
+207:         project: project,
+208:         androidBuildInfo: androidBuildInfo,
+209:         target: target,
+210:         outputDirectory: outputDirectory,
+211:         buildNumber: buildNumber,
+212:       );
+213:     }
+214:     printHowToConsumeAar(
+271:     required FlutterProject project,
+272:     required List<GradleHandledError> localGradleErrors,
+273:     required String gradleExecutablePath,
+274:     int retry = 0,
+275:     VoidCallback? preRunTask,
+276:     VoidCallback? postRunTask,
+277:     int? maxRetries,
+278:     _OutputParser? outputParser,
+279:   }) async {
+280:     final bool usesAndroidX = isAppUsingAndroidX(project.android.hostAppGradleRoot);
+281:     final String? agpVersion = gradle.getAgpVersion(
+282:       project.android.hostAppGradleRoot,
+339:     final Status status = _logger.startProgress("Running Gradle task '$taskName'...");
+340:     final command = <String>[
+341:       gradleExecutablePath,
+342:       ...options, // suppresses gradle output.
+343:       taskName,
+344:     ];
+345:     preRunTask?.call();
+346: 
+347:     var exitCode = 1;
+348:     try {
+349:       exitCode = await _processUtils.stream(
+351:         workingDirectory: project.android.hostAppGradleRoot.path,
+352:         allowReentrantFlutter: true,
+353:         environment: _java?.environment,
+354:         mapFunction: consumeLog,
+355:       );
+356:     } on ProcessException catch (exception) {
+357:       consumeLog(exception.toString());
+358:       // Rethrow the exception if the error isn't handled by any of the
+359:       // `localGradleErrors`.
+360:       if (detectedGradleError == null) {
+361:         rethrow;
+378:       );
+379: 
+380:       if (maxRetries == null || retry < maxRetries) {
+381:         switch (status) {
+382:           case GradleBuildStatus.retry:
+383:             // Use binary exponential backoff before retriggering the build.
+384:             // The expected wait times are: 100ms, 200ms, 400ms, and so on...
+385:             final int waitTime = min(pow(2, retry).toInt() * 100, kMaxRetryTime.inMicroseconds);
+386:             retry += 1;
+387:             _logger.printStatus('Retrying Gradle Build: #$retry, wait time: ${waitTime}ms');
+388:             await Future<void>.delayed(Duration(milliseconds: waitTime));
+389:             exitCode = await _runGradleTask(
+390:               taskName,
+391:               options: options,
+392:               preRunTask: preRunTask,
+393:               postRunTask: postRunTask,
+394:               localGradleErrors: localGradleErrors,
+395:               gradleExecutablePath: gradleExecutablePath,
+396:               retry: retry,
+397:               project: project,
+398:               maxRetries: maxRetries,
+399:             );
+400:             if (exitCode == 0) {
+401:               final successEventLabel = 'gradle-${detectedGradleError!.eventLabel}-success';
+402:               _analytics.send(
+403:                 Event.flutterBuildInfo(
+404:                   label: successEventLabel,
+433:   /// * If [isBuildingBundle] is `true`, then the output artifact is an `*.aab`,
+434:   ///   otherwise the output artifact is an `*.apk`.
+435:   /// * [maxRetries] If not `null`, this is the max number of build retries in case a retry is triggered.
+436:   Future<void> buildGradleApp({
+437:     required FlutterProject project,
+438:     required AndroidBuildInfo androidBuildInfo,
+439:     required String target,
+440:     required bool isBuildingBundle,
+441:     required List<GradleHandledError> localGradleErrors,
+442:     required bool configOnly,
+443:     bool validateDeferredComponents = true,
+444:     bool deferredComponentsEnabled = false,
+445:     int retry = 0,
+446:     @visibleForTesting int? maxRetries,
+447:   }) async {
+448:     if (!project.android.isSupportedVersion) {
+449:       _exitWithUnsupportedProjectMessage(_logger.terminal, _analytics);
+450:     }
+451: 
+452:     final migrators = <ProjectMigrator>[
+453:       TopLevelGradleBuildFileMigration(project.android, _logger),
+464: 
+465:     final migration = ProjectMigration(migrators);
+466:     await migration.run();
+467: 
+468:     // The default Gradle script reads the version name and number
+469:     // from the local.properties file.
+470:     updateLocalProperties(project: project, buildInfo: androidBuildInfo.buildInfo);
+471: 
+472:     final options = <String>[];
+473: 
+474:     final String gradleExecutablePath = _gradleUtils.getExecutable(project);
+475: 
+476:     // All automatically created files should exist.
+477:     if (configOnly) {
+478:       _logger.printStatus('Config complete.');
+479:       return;
+480:     }
+481: 
+482:     // Assembly work starts here.
+586:       maxRetries: maxRetries,
+587:       localGradleErrors: localGradleErrors,
+588:       gradleExecutablePath: gradleExecutablePath,
+589:     );
+590: 
+591:     if (exitCode != 0) {
+592:       throwToolExit(
+593:         'Gradle task $assembleTask failed with exit code $exitCode',
+594:         exitCode: exitCode,
+595:       );
+596:     }
+691:     }
+692: 
+693:     final RunResult result = await _processUtils.run(
+694:       <String>[apkAnalyzerPath, 'files', 'list', aabPath],
+695:       workingDirectory: project.android.hostAppGradleRoot.path,
+696:       environment: _java?.environment,
+697:     );
+698: 
+699:     if (result.exitCode != 0) {
+700:       _logger.printTrace(
+701:         'apkanalyzer finished with exit code 0 when checking final appbundle for debug symbols.\n'
+702:         'stderr was: ${result.stderr}\n'
+703:         'and stdout was: ${result.stdout}',
+704:       );
+765:   /// * [outputDirectory] is the destination of the artifacts.
+766:   /// * [buildNumber] is the build number of the output aar.
+767:   Future<void> buildGradleAar({
+768:     required FlutterProject project,
+769:     required AndroidBuildInfo androidBuildInfo,
+770:     required String target,
+771:     required Directory outputDirectory,
+772:     required String buildNumber,
+773:   }) async {
+774:     final FlutterManifest manifest = project.manifest;
+775:     if (!manifest.isModule) {
+787:       'flutter_tools',
+788:       'gradle',
+789:       'aar_init_script.gradle',
+790:     );
+791:     final command = <String>[
+792:       _gradleUtils.getExecutable(project),
+793:       '-I=$initScript',
+794:       '-Pflutter-root=$flutterRoot',
+795:       '-Poutput-dir=${outputDirectory.path}',
+796:       '-Pis-plugin=${manifest.isPlugin}',
+797:       '-PbuildNumber=$buildNumber',
+798:     ];
+799:     if (_logger.isVerbose) {
+800:       command.add('--full-stacktrace');
+801:       command.add('--info');
+802:       command.add('-Pverbose=true');
+803:     } else {
+859:     RunResult result;
+860:     try {
+861:       result = await _processUtils.run(
+862:         command,
+863:         workingDirectory: project.android.hostAppGradleRoot.path,
+864:         allowReentrantFlutter: true,
+865:         environment: _java?.environment,
+866:       );
+867:     } finally {
+868:       status.stop();
+869:     }
+870:     final Duration elapsedDuration = sw.elapsed;
+871:     _analytics.send(
+872:       Event.timing(
+873:         workflow: 'build',
+923:         project: project,
+924:         localGradleErrors: gradleErrors,
+925:         gradleExecutablePath: _gradleUtils.getExecutable(project),
+926:         outputParser: (String line) {
+927:           if (_kBuildVariantRegex.firstMatch(line) case final RegExpMatch match) {
+928:             results.add(match.namedGroup(_kBuildVariantRegexGroupName)!);
+929:           }
+930:         },
+931:       );
+932:     } on Error catch (error) {
+933:       _logger.printError(error.toString());
+975:         project: project,
+976:         localGradleErrors: gradleErrors,
+977:         gradleExecutablePath: _gradleUtils.getExecutable(project),
+978:       );
+979:     } on Error catch (error) {
+980:       _logger.printError(error.toString());
+981:     }
+982: 
+983:     if (exitCode != 0) {
+984:       throwToolExit('Gradle task $taskName failed with exit code $exitCode');
+985:     }
+1011:         }
+1012:         maven {
+1013:             url "\$storageUrl/download.flutter.io"
+1014:         }
+1015:       }
+1016: 
+1017:   3. Make the host app depend on the Flutter module:
+1018: 
+1019:     dependencies {''');
+1020: 
+1021:   for (final buildMode in buildModes) {
+D:\flutter\packages\flutter_tools\lib\src\android\gradle_utils.dart SHA256 6E4EC13CA9668FABAFA84AA18A36DFFD7F4C739B627E615F18CFFDBF2D6DDFCC
+3: // found in the LICENSE file.
+4: 
+5: import 'package:meta/meta.dart';
+6: import 'package:process/process.dart';
+7: import 'package:unified_analytics/unified_analytics.dart';
+8: 
+9: import '../base/common.dart';
+10: import '../base/file_system.dart';
+11: import '../base/io.dart';
+12: import '../base/logger.dart';
+13: import '../base/os.dart';
+14: import '../base/platform.dart';
+15: import '../base/utils.dart';
+16: import '../base/version.dart';
+17: import '../base/version_range.dart';
+18: import '../build_info.dart';
+19: import '../cache.dart';
+20: import '../globals.dart' as globals;
+21: import '../project.dart';
+22: import 'android_sdk.dart';
+23: 
+24: // These are the versions used in the project templates.
+25: //
+26: // In general, Flutter aims to default to the latest stable version.
+27: // However, this currently requires to migrate existing integration tests to the
+28: // latest supported values.
+29: //
+30: // Please see the README before changing any of these values.
+31: 
+32: // See https://gradle.org/releases
+33: const templateDefaultGradleVersion = '8.14';
+34: 
+35: // When bumping, also update:
+36: //  * AGP version constants in packages/flutter_tools/gradle/build.gradle.kts
+37: //  * AGP test constants in packages/flutter_tools/gradle/src/test/kotlin/DependencyVersionCheckerTest.kt
+38: // See https://mvnrepository.com/artifact/com.android.tools.build/gradle
+39: const templateAndroidGradlePluginVersion = '8.11.1';
+40: const templateAndroidGradlePluginVersionForModule = '8.11.1';
+41: 
+42: // See https://kotlinlang.org/docs/releases.html#release-details
+43: const templateKotlinGradlePluginVersion = '2.2.20';
+44: 
+45: // The Flutter Gradle Plugin is only applied to app projects, and modules that
+46: // are built from source using (`include_flutter.groovy`). The remaining
+47: // projects are: plugins, and modules compiled as AARs. In modules, the
+48: // ephemeral directory `.android` is always regenerated after `flutter pub get`,
+49: // so new versions are picked up after a Flutter upgrade.
+50: //
+51: // Please see the README before changing any of these values.
+166: // Expected content format (with lines above and below).
+167: // Version can have 2 or 3 numbers.
+168: // 'distributionUrl=https\://services.gradle.org/distributions/gradle-7.4.2-all.zip'
+169: // '^\s*' protects against commented out lines.
+170: final distributionUrlRegex = RegExp(r'^\s*distributionUrl\s*=\s*.*\.zip', multiLine: true);
+171: 
+172: // Modified version of the gradle distribution url match designed to only match
+173: // gradle.org urls so that we can guarantee any modifications to the url
+174: // still points to a hosted zip.
+175: final gradleOrgVersionMatch = RegExp(
+176:   r'^\s*distributionUrl\s*=\s*https\\://services\.gradle\.org/distributions/gradle-([\d.]+)-(.*)\.zip',
+177:   multiLine: true,
+178: );
+179: 
+180: // This matches uncommented minSdkVersion lines in the module-level build.gradle
+181: // file which have minSdkVersion 16, 17, 18, 19, 20, 21, 22, 23 set with space sytax,
+182: // equals syntax and when using minSdk or minSdkVersion.
+183: // Matches uncommented minSdkVersion lines using equals syntax (=)
+184: final tooOldMinSdkVersionEqualsMatch = RegExp(
+201: // [gradleWrapperPropertiesFilename].
+202: // Different from the directory of gradle files stored in
+203: // `_cache.getArtifactDirectory('gradle_wrapper')`
+204: const gradleDirectoryName = 'gradle';
+205: const gradleWrapperDirectoryName = 'wrapper';
+206: const gradleWrapperPropertiesFilename = 'gradle-wrapper.properties';
+207: 
+208: /// Provides utilities to run a Gradle task, such as finding the Gradle executable
+209: /// or constructing a Gradle project.
+210: class GradleUtils {
+211:   GradleUtils({
+212:     required Platform platform,
+213:     required Logger logger,
+214:     required Cache cache,
+215:     required OperatingSystemUtils operatingSystemUtils,
+216:   }) : _platform = platform,
+217:        _logger = logger,
+218:        _cache = cache,
+219:        _operatingSystemUtils = operatingSystemUtils;
+220: 
+221:   final Cache _cache;
+222:   final Platform _platform;
+223:   final Logger _logger;
+224:   final OperatingSystemUtils _operatingSystemUtils;
+225: 
+226:   /// Gets the Gradle executable path and prepares the Gradle project.
+227:   /// This is the `gradlew` or `gradlew.bat` script in the `android/` directory.
+228:   String getExecutable(FlutterProject project) {
+229:     final Directory androidDir = project.android.hostAppGradleRoot;
+230:     injectGradleWrapperIfNeeded(androidDir);
+231: 
+232:     final File gradle = androidDir.childFile(getGradlewFileName(_platform));
+233: 
+234:     if (gradle.existsSync()) {
+235:       _logger.printTrace('Using gradle from ${gradle.absolute.path}.');
+236:       // If the Gradle executable doesn't have execute permission,
+237:       // then attempt to set it.
+238:       _operatingSystemUtils.makeExecutable(gradle);
+240:     }
+241:     throwToolExit(
+242:       'Unable to locate gradlew script. Please check that ${gradle.path} '
+243:       'exists or that ${gradle.dirname} can be read.',
+244:     );
+245:   }
+246: 
+247:   /// Injects the Gradle wrapper files if any of these files don't exist in [directory].
+248:   void injectGradleWrapperIfNeeded(Directory directory) {
+249:     copyDirectory(
+250:       _cache.getArtifactDirectory('gradle_wrapper'),
+251:       directory,
+252:       shouldCopyFile: (File sourceFile, File destinationFile) {
+253:         // Don't override the existing files in the project.
+254:         return !destinationFile.existsSync();
+255:       },
+256:       onFileCopied: (File source, File dest) {
+257:         _operatingSystemUtils.makeExecutable(dest);
+258:       },
+271:     final propertyContents =
+272:         '''
+273: distributionBase=GRADLE_USER_HOME
+274: distributionPath=wrapper/dists
+275: zipStoreBase=GRADLE_USER_HOME
+276: zipStorePath=wrapper/dists
+277: distributionUrl=https\\://services.gradle.org/distributions/gradle-$gradleVersion-all.zip
+278: ''';
+279:     propertiesFile.writeAsStringSync(propertyContents);
+280:   }
+281: }
+282: 
+283: /// Returns the Gradle version that the current Android plugin depends on when found,
+284: /// otherwise it returns a default version.
+285: ///
+291:   if (androidPluginVersion == null) {
+292:     logger.printTrace(
+293:       'AGP version cannot be determined, assuming Gradle version: $templateDefaultGradleVersion',
+294:     );
+295:     return templateDefaultGradleVersion;
+296:   }
+297:   return getGradleVersionFor(androidPluginVersion);
+298: }
+299: 
+300: /// Returns the gradle file from the top level directory.
+301: /// The returned file is not guaranteed to be present.
+302: File getGradleWrapperFile(Directory directory) {
+303:   return directory
+307: }
+308: 
+309: /// Parses the gradle wrapper distribution url to return a string containing
+310: /// the version number.
+311: ///
+312: /// Expected input is of the form '...gradle-7.4.2-all.zip', and the output
+313: /// would be of the form '7.4.2'.
+314: String? parseGradleVersionFromDistributionUrl(String? distributionUrl) {
+315:   if (distributionUrl == null) {
+316:     return null;
+317:   }
+318:   final List<String> zipParts = distributionUrl.split('-');
+319:   if (zipParts.length < 2) {
+320:     return null;
+321:   }
+322:   return zipParts[1];
+323: }
+324: 
+325: /// Returns either the gradle-wrapper.properties value from the passed in
+326: /// [directory] or if not present the version available in local path.
+338:     final String wrapperFileContent = propertiesFile.readAsStringSync();
+339: 
+340:     final RegExpMatch? distributionUrl = distributionUrlRegex.firstMatch(wrapperFileContent);
+341:     if (distributionUrl != null) {
+342:       final String? gradleVersion = parseGradleVersionFromDistributionUrl(distributionUrl.group(0));
+343:       if (gradleVersion != null) {
+344:         return gradleVersion;
+345:       } else {
+346:         // Did not find gradle zip url. Likely this is a bug in our parsing.
+347:         logger.printWarning(_formatParseWarning(wrapperFileContent, type: 'gradle'));
+348:       }
+349:     } else {
+350:       // If no distributionUrl log then treat as if there was no propertiesFile.
+351:       logger.printTrace(
+352:         '$propertiesFile does not provide a Gradle version falling back to system gradle.',
+353:       );
+354:     }
+355:   } else {
+356:     // Could not find properties file.
+357:     logger.printTrace('$propertiesFile does not exist falling back to system gradle');
+358:   }
+359:   // System installed Gradle version.
+360:   // TODO(reidbaker): Modify this gradle execution to use gradlew.
+361:   if (processManager.canRun('gradle')) {
+362:     final gradleVersionsVerbose =
+363:         (await processManager.run(<String>['gradle', gradleVersionsFlag])).stdout as String;
+364:     // Expected format:
+365:     /*
+366: 
+367: ------------------------------------------------------------
+368: Gradle 7.6
+409:   // Kotlin docs refer to the kotlin gradle plugin as kotlin android plugin.
+410:   //
+411:   // gradle --version or ./gradlew --version will print the kotlin dsl version.
+412:   // This version normally changes with the version of gradle.
+413:   // https://github.com/gradle/gradle/blob/cefbee263181a924ac4efcaace6bda97a55bc0f7/platforms/core-runtime/gradle-cli/src/main/java/org/gradle/launcher/cli/DefaultCommandLineActionFactory.java#L260
+414:   // This vesion is NOT the version of KGP that the project uses.
+415:   //
+416:   // Instead the kgpVersion task is a custom flutter task dynamiclly added that can
+417:   // print the kgp version if gradle can run successfuly.
+418: 
+419:   if (processManager.canRun('./gradlew', workingDirectory: androidDirectory.path)) {
+420:     final ProcessResult command = await processManager.run(<String>[
+421:       './gradlew',
+422:       'kgpVersion',
+423:       '-q',
+424:     ], workingDirectory: androidDirectory.path);
+425:     if (command.exitCode == 0) {
+426:       final kgpVersionOutput = command.stdout as String;
+427: 
+428:       // See expected output defined in
+429:       // flutter/packages/flutter_tools/gradle/src/main/kotlin/FlutterPluginUtils.kt addTaskForKGPVersion
+443: 
+444:   // Project valiation code is regularly run on projects that can not build.
+445:   // Because of that this code also attempts to search through known template
+446:   // locations for kotlin versions.
+447: 
+448:   logger.printTrace('Checking settings for kgp version.');
+449:   File settingsFile = androidDirectory.childFile('settings.gradle');
+450:   if (!settingsFile.existsSync()) {
+451:     settingsFile = androidDirectory.childFile('settings.gradle.kts');
+452:   }
+453: 
+873: }
+874: 
+875: /// Validate that the [javaVersion] and [gradleVersion] are compatible with
+876: /// each other.
+877: ///
+878: /// Source of truth:
+879: /// https://docs.gradle.org/current/userguide/compatibility.html#java
+880: bool validateJavaAndGradle(
+881:   Logger logger, {
+882:   required String? javaVersion,
+883:   required String? gradleVersion,
+884: }) {
+885:   // https://docs.gradle.org/current/userguide/compatibility.html#java
+886:   const oldestConsideredJavaVersion = '1.8';
+887:   const oldestDocumentedJavaGradleCompatibility = '2.0';
+888: 
+889:   // Begin Java <-> Gradle validation.
+890: 
+891:   if (javaVersion == null || gradleVersion == null) {
+892:     logger.printTrace('Java version or Gradle version unknown ($javaVersion, $gradleVersion).');
+893:     return false;
+894:   }
+895: 
+896:   // First check if versions are too old.
+897:   if (isWithinVersionRange(
+898:     javaVersion,
+899:     min: '1.1',
+900:     max: oldestConsideredJavaVersion,
+901:     inclusiveMax: false,
+902:   )) {
+903:     logger.printTrace('Java Version: $javaVersion is too old.');
+904:     return false;
+905:   }
+906:   if (isWithinVersionRange(
+907:     gradleVersion,
+908:     min: '0.0',
+909:     max: oldestDocumentedJavaGradleCompatibility,
+910:     inclusiveMax: false,
+911:   )) {
+915: 
+916:   // Check if versions are newer than the max supported versions.
+917:   if (isWithinVersionRange(javaVersion, min: oneMajorVersionHigherJavaVersion, max: '100.100')) {
+918:     // Assume versions Java versions newer than [maxSupportedJavaVersion]
+919:     // required a higher gradle version.
+920:     final bool validGradle = isWithinVersionRange(
+921:       gradleVersion,
+922:       min: maxKnownAndSupportedGradleVersion,
+923:       max: '100.00',
+924:     );
+925:     logger.printWarning(
+926:       'Newer than known valid Java version ($javaVersion), gradle ($gradleVersion).'
+927:       '\n Treating as valid configuration.',
+928:     );
+929:     return validGradle;
+930:   }
+931: 
+932:   // Begin known Java <-> Gradle evaluation.
+933:   for (final JavaGradleCompat data in _javaGradleCompatList) {
+934:     if (isWithinVersionRange(
+935:       javaVersion,
+936:       min: data.javaMin,
+937:       max: data.javaMax,
+938:       inclusiveMax: false,
+939:     )) {
+940:       // Null max value should be treated as unbounded on the max side.
+941:       return isWithinVersionRange(
+942:         gradleVersion,
+943:         min: data.gradleMin,
+944:         max: data.gradleMax ?? '100.100',
+945:       );
+948: 
+949:   logger.printTrace(
+950:     'Unknown Java-Gradle compatibility, Java: $javaVersion, Gradle: $gradleVersion',
+951:   );
+952:   return false;
+953: }
+954: 
+955: /// Returns compatibility information for the valid range of Gradle versions for
+956: /// the specified Java version.
+957: ///
+958: /// Returns null when the tooling has not documented the compatible Gradle
+959: /// versions for the Java version (either the version is too old or too new). If
+960: /// this seems like a mistake, the caller may need to update the
+961: /// [_javaGradleCompatList] detailing Java/Gradle compatibility.
+962: JavaGradleCompat? getValidGradleVersionRangeForJavaVersion(Logger logger, {required String javaV}) {
+963:   for (final JavaGradleCompat data in _javaGradleCompatList) {
+964:     if (isWithinVersionRange(javaV, min: data.javaMin, max: data.javaMax, inclusiveMax: false)) {
+965:       return data;
+966:     }
+967:   }
+968: 
+969:   logger.printTrace('Unable to determine valid Gradle version range for Java version $javaV.');
+970:   return null;
+971: }
+972: 
+973: /// Validate that the specified Java and Android Gradle Plugin (AGP) versions are
+974: /// compatible with each other.
+975: ///
+976: /// Returns true when the specified Java and AGP versions are
+977: /// definitely compatible; True if AGP is newer than known, otherwise, false. In addition,
+980: /// Source of truth are the AGP release notes:
+981: /// https://developer.android.com/build/releases/gradle-plugin
+982: bool validateJavaAndAgp(Logger logger, {required String? javaV, required String? agpV}) {
+983:   if (javaV == null || agpV == null) {
+984:     logger.printTrace('Java version or AGP version unknown ($javaV, $agpV).');
+985:     return false;
+986:   }
+987: 
+988:   // Check if AGP version is too old to perform validation.
+989:   if (isWithinVersionRange(
+990:     agpV,
+991:     min: '1.0',
+992:     max: oldestDocumentedJavaAgpCompatibilityVersion,
+1008: 
+1009:   // Begin known Java <-> AGP evaluation.
+1010:   for (final JavaAgpCompat data in _javaAgpCompatList) {
+1011:     if (isWithinVersionRange(agpV, min: data.agpMin, max: data.agpMax)) {
+1012:       return isWithinVersionRange(javaV, min: data.javaMin, max: '100.100');
+1013:     }
+1014:   }
+1015: 
+1016:   logger.printTrace('Unknown Java-AGP compatibility $javaV, $agpV');
+1017:   return false;
+1018: }
+1019: 
+1020: /// Returns compatibility information concerning the minimum AGP
+1021: /// version for the specified Java version.
+1022: JavaAgpCompat? getMinimumAgpVersionForJavaVersion(Logger logger, {required String javaV}) {
+1023:   for (final JavaAgpCompat data in _javaAgpCompatList) {
+1024:     if (isWithinVersionRange(javaV, min: data.javaMin, max: '100.100')) {
+1025:       return data;
+1026:     }
+1027:   }
+1028: 
+1029:   logger.printTrace('Unable to determine minimum AGP version for specified Java version.');
+1030:   return null;
+1031: }
+1032: 
+1037:   // Find minimum Java version based on AGP compatibility.
+1038:   String? minJavaVersion;
+1039:   for (final JavaAgpCompat data in _javaAgpCompatList) {
+1040:     if (isWithinVersionRange(agpV, min: data.agpMin, max: data.agpMax)) {
+1041:       minJavaVersion = data.javaMin;
+1042:     }
+1043:   }
+1044: 
+1045:   // Find maximum Java version based on Gradle compatibility.
+1046:   String? maxJavaVersion;
+1047:   for (final JavaGradleCompat data in _javaGradleCompatList.reversed) {
+1048:     if (isWithinVersionRange(
+1049:       gradleV,
+1050:       min: data.gradleMin,
+1051:       max: maxKnownAndSupportedGradleVersion,
+1052:     )) {
+1053:       maxJavaVersion = data.javaMax;
+1054:     }
+1055:   }
+1056: 
+1057:   return VersionRange(minJavaVersion, maxJavaVersion);
+1058: }
+1059: 
+1060: /// Returns the Gradle version that is required by the given Android Gradle plugin version
+1061: /// by picking the largest compatible version from
+1196:   throwToolExit(
+1197:     '${globals.logger.terminal.warningMark} No Android SDK found. '
+1198:     'Try setting the ANDROID_HOME environment variable.',
+1199:   );
+1200: }
+1201: 
+1202: // Data class to hold normal/defined Java <-> Gradle compatibility criteria.
+1203: //
+1204: // The [javaMax] is exclusive in terms of supporting the noted [gradleMin],
+1205: // whereas [javaMin] is inclusive.
+1206: // Gradle Max is not required and when unset should mean unbound.
+1207: @immutable
+1208: class JavaGradleCompat {
+1209:   const JavaGradleCompat({
+1210:     required this.javaMin,
+1211:     required this.javaMax,
+1212:     required this.gradleMin,
+1213:     this.gradleMax,
+1214:   });
+1215: 
+1216:   final String javaMin;
+1217:   final String javaMax;
+1218:   final String gradleMin;
+1219:   final String? gradleMax;
+1220: 
+1221:   @override
+1222:   bool operator ==(Object other) =>
+1223:       other is JavaGradleCompat &&
+1224:       other.javaMin == javaMin &&
+1225:       other.javaMax == javaMax &&
+1226:       other.gradleMin == gradleMin &&
+1227:       other.gradleMax == gradleMax;
+1228: 
+1229:   @override
+1230:   int get hashCode => Object.hash(javaMin, javaMax, gradleMin, gradleMax);
+1231: 
+1232:   @override
+1233:   String toString() {
+1234:     return '$javaMin, $javaMax, $gradleMin, $gradleMax';
+1235:   }
+1236: }
+1237: 
+1238: // Data class to hold defined Java <-> AGP compatibility criteria.
+1239: //
+1240: // The [agpMin] and [agpMax] are inclusive in terms of having the
+1241: // noted [javaMin] and [javaDefault] versions.
+1242: @immutable
+1243: class JavaAgpCompat {
+1244:   const JavaAgpCompat({
+1245:     required this.javaMin,
+1246:     required this.javaDefault,
+1247:     required this.agpMin,
+1248:     required this.agpMax,
+1249:   });
+1250: 
+1251:   final String javaMin;
+1252:   final String javaDefault;
+1253:   final String agpMin;
+1254:   final String agpMax;
+1255: 
+1256:   @override
+1257:   bool operator ==(Object other) =>
+1258:       other is JavaAgpCompat &&
+1259:       other.javaMin == javaMin &&
+1260:       other.javaDefault == javaDefault &&
+1261:       other.agpMin == agpMin &&
+1262:       other.agpMax == agpMax;
+1263: 
+1264:   @override
+1265:   int get hashCode => Object.hash(javaMin, javaDefault, agpMin, agpMax);
+1266: }
+1267: 
+1268: class GradleForAgp {
+1269:   GradleForAgp({required this.agpMin, required this.agpMax, required this.minRequiredGradle});
+1270: 
+1271:   final String agpMin;
+1272:   final String agpMax;
+1273:   final String minRequiredGradle;
+1274: }
+1275: 
+1276: // Returns gradlew file name based on the platform.
+1277: String getGradlewFileName(Platform platform) {
+1278:   if (platform.isWindows) {
+1279:     return 'gradlew.bat';
+1280:   } else {
+1281:     return 'gradlew';
+1282:   }
+1283: }
+1284: 
+1285: @visibleForTesting
+1286: const maxGradleVersionForJavaPre17 = '8.14.100';
+1287: 
+1288: /// List of compatible Java/Gradle versions.
+1289: ///
+1291: /// of Gradle, as https://docs.gradle.org/current/userguide/compatibility.html
+1292: /// details.
+1293: var _javaGradleCompatList = const <JavaGradleCompat>[
+1294:   JavaGradleCompat(javaMin: '25', javaMax: '26', gradleMin: '9.1.0'),
+1295:   JavaGradleCompat(javaMin: '24', javaMax: '25', gradleMin: '8.14'),
+1296:   JavaGradleCompat(javaMin: '23', javaMax: '24', gradleMin: '8.10'),
+1297:   JavaGradleCompat(javaMin: '22', javaMax: '23', gradleMin: '8.7'),
+1298:   JavaGradleCompat(javaMin: '21', javaMax: '22', gradleMin: '8.4'),
+1299:   JavaGradleCompat(javaMin: '20', javaMax: '21', gradleMin: '8.1'),
+1300:   JavaGradleCompat(javaMin: '19', javaMax: '20', gradleMin: '7.6'),
+1301:   JavaGradleCompat(javaMin: '18', javaMax: '19', gradleMin: '7.5'),
+1302:   JavaGradleCompat(javaMin: '17', javaMax: '18', gradleMin: '7.3'),
+1303:   JavaGradleCompat(
+1304:     javaMin: '16',
+1305:     javaMax: '17',
+1306:     gradleMin: '7.0',
+1307:     gradleMax: maxGradleVersionForJavaPre17,
+1308:   ),
+1309:   JavaGradleCompat(
+1310:     javaMin: '15',
+1311:     javaMax: '16',
+1312:     gradleMin: '6.7',
+1313:     gradleMax: maxGradleVersionForJavaPre17,
+1314:   ),
+1315:   JavaGradleCompat(
+1316:     javaMin: '14',
+1317:     javaMax: '15',
+1318:     gradleMin: '6.3',
+1319:     gradleMax: maxGradleVersionForJavaPre17,
+1320:   ),
+1321:   JavaGradleCompat(
+1322:     javaMin: '13',
+1323:     javaMax: '14',
+1324:     gradleMin: '6.0',
+1325:     gradleMax: maxGradleVersionForJavaPre17,
+1326:   ),
+1327:   JavaGradleCompat(
+1328:     javaMin: '12',
+1329:     javaMax: '13',
+1330:     gradleMin: '5.4',
+1331:     gradleMax: maxGradleVersionForJavaPre17,
+1332:   ),
+1333:   JavaGradleCompat(
+1334:     javaMin: '11',
+1335:     javaMax: '12',
+1336:     gradleMin: '5.0',
+1337:     gradleMax: maxGradleVersionForJavaPre17,
+1338:   ),
+1339:   // 1.11 is a made up java version to cover everything in 1.10.*
+1340:   JavaGradleCompat(
+1341:     javaMin: '1.10',
+1342:     javaMax: '1.11',
+1343:     gradleMin: '4.7',
+1344:     gradleMax: maxGradleVersionForJavaPre17,
+1345:   ),
+1346:   JavaGradleCompat(
+1347:     javaMin: '1.9',
+1348:     javaMax: '1.10',
+1349:     gradleMin: '4.3',
+1350:     gradleMax: maxGradleVersionForJavaPre17,
+1351:   ),
+1352:   JavaGradleCompat(
+1353:     javaMin: '1.8',
+1354:     javaMax: '1.9',
+1355:     gradleMin: '2.0',
+1356:     gradleMax: maxGradleVersionForJavaPre17,
+1357:   ),
+1358: ];
+1359: 
+1360: // List of compatible Java/AGP versions, where agpMax versions are inclusive.
+1361: //
+1362: // Should be updated whenever a new version of AGP is released as
+1363: // https://developer.android.com/build/releases/gradle-plugin details.
+1364: var _javaAgpCompatList = const <JavaAgpCompat>[
+1365:   JavaAgpCompat(
+1366:     javaMin: '17',
+1367:     javaDefault: '17',
+1368:     agpMin: '8.0',
+1369:     agpMax: maxKnownAndSupportedAgpVersion,
+1370:   ),
+1371:   JavaAgpCompat(javaMin: '11', javaDefault: '11', agpMin: '7.0', agpMax: '7.4'),
+1372:   JavaAgpCompat(
+1373:     // You may use JDK 1.7 with AGP 4.2, but we treat 1.8 as the default since
+1374:     // it is used by default for this AGP version and lower versions of Java
+1375:     // are deprecated for executing Gradle.
+1376:     javaMin: '1.8',
+1377:     javaDefault: '1.8',
+1378:     agpMin: '4.2',
+1379:     agpMax: '4.2',
+1380:   ),
+1381: ];
+D:\flutter\packages\flutter_tools\lib\src\project.dart SHA256 4ADA296DD17049F84724993CB0126131127D02DAAC61074924772D3F3013A4A4
+3: // found in the LICENSE file.
+4: 
+5: import 'dart:collection';
+6: 
+7: import 'package:meta/meta.dart';
+8: import 'package:xml/xml.dart';
+9: import 'package:yaml/yaml.dart';
+10: 
+11: import '../src/convert.dart';
+12: import 'android/android_builder.dart';
+13: import 'android/gradle_utils.dart' as gradle;
+14: import 'base/common.dart';
+15: import 'base/error_handling_io.dart';
+16: import 'base/file_system.dart';
+17: import 'base/logger.dart';
+18: import 'base/utils.dart';
+19: import 'base/version.dart';
+20: import 'base/yaml.dart';
+21: import 'bundle.dart' as bundle;
+22: import 'cmake_project.dart';
+23: import 'dart/package_map.dart';
+24: import 'features.dart';
+25: import 'flutter_manifest.dart';
+26: import 'flutter_plugins.dart';
+27: import 'globals.dart' as globals;
+28: import 'platform_plugins.dart';
+29: import 'project_validator_result.dart';
+30: import 'template.dart';
+31: import 'xcode_project.dart';
+32: 
+33: export 'cmake_project.dart';
+34: export 'xcode_project.dart';
+35: 
+36: /// Enum for each officially supported platform.
+37: enum SupportedPlatform {
+38:   android,
+39:   ios,
+276:   );
+277: 
+278:   /// True if this project is a Flutter module project.
+279:   bool get isModule => manifest.isModule;
+280: 
+281:   /// True if this project is a Flutter plugin project.
+282:   bool get isPlugin => manifest.isPlugin;
+283: 
+284:   /// True if the Flutter project is using the AndroidX support library.
+285:   bool get usesAndroidX => manifest.usesAndroidX;
+286: 
+354:   }
+355: 
+356:   /// Reapplies template files and regenerates project files and plugin
+357:   /// registrants for app and module projects only.
+358:   ///
+359:   /// Will not create project platform directories if they do not already exist.
+360:   ///
+361:   /// If [releaseMode] is `true`, platform-specific tooling and metadata generated
+362:   /// may apply optimizations or changes that are only specific to release builds,
+363:   /// such as not including dev-only dependencies.
+364:   Future<void> regeneratePlatformSpecificTooling({
+365:     DeprecationBehavior deprecationBehavior = DeprecationBehavior.none,
+366:     required bool releaseMode,
+367:   }) async {
+368:     return ensureReadyForPlatformSpecificTooling(
+369:       androidPlatform: android.existsSync(),
+370:       iosPlatform: ios.existsSync(),
+371:       // TODO(stuartmorgan): Revisit the conditions here once the plans for handling
+372:       // desktop in existing projects are in place.
+373:       linuxPlatform: featureFlags.isLinuxEnabled && linux.existsSync(),
+374:       macOSPlatform: featureFlags.isMacOSEnabled && macos.existsSync(),
+375:       windowsPlatform: featureFlags.isWindowsEnabled && windows.existsSync(),
+376:       webPlatform: featureFlags.isWebEnabled && web.existsSync(),
+380:   }
+381: 
+382:   /// Applies template files and generates project files and plugin
+383:   /// registrants for app and module projects only for the specified platforms.
+384:   ///
+385:   /// If [releaseMode] is `true`, platform-specific tooling and metadata generated
+386:   /// may apply optimizations or changes that are only specific to release builds,
+387:   /// such as not including dev-only dependencies.
+388:   Future<void> ensureReadyForPlatformSpecificTooling({
+389:     required bool releaseMode,
+390:     bool androidPlatform = false,
+391:     bool iosPlatform = false,
+392:     bool linuxPlatform = false,
+393:     bool macOSPlatform = false,
+394:     bool windowsPlatform = false,
+395:     bool webPlatform = false,
+396:     DeprecationBehavior deprecationBehavior = DeprecationBehavior.none,
+401:     await refreshPluginsList(this, iosPlatform: iosPlatform, macOSPlatform: macOSPlatform);
+402:     if (androidPlatform) {
+403:       await android.ensureReadyForPlatformSpecificTooling(deprecationBehavior: deprecationBehavior);
+404:     }
+405:     if (iosPlatform) {
+406:       await ios.ensureReadyForPlatformSpecificTooling();
+407:     }
+408:     if (linuxPlatform) {
+409:       await linux.ensureReadyForPlatformSpecificTooling();
+410:     }
+411:     if (macOSPlatform) {
+412:       await macos.ensureReadyForPlatformSpecificTooling();
+413:     }
+414:     if (windowsPlatform) {
+415:       await windows.ensureReadyForPlatformSpecificTooling();
+416:     }
+417:     if (webPlatform) {
+418:       await web.ensureReadyForPlatformSpecificTooling();
+419:     }
+420:     await injectPlugins(
+421:       this,
+422:       androidPlatform: androidPlatform,
+423:       iosPlatform: iosPlatform,
+424:       linuxPlatform: linuxPlatform,
+425:       macOSPlatform: macOSPlatform,
+426:       windowsPlatform: windowsPlatform,
+463: ///
+464: /// Instances will reflect the contents of the `android/` sub-folder of
+465: /// Flutter applications and the `.android/` sub-folder of Flutter module projects.
+466: class AndroidProject extends FlutterProjectPlatform {
+467:   AndroidProject._(this.parent);
+468: 
+469:   // User facing string when java/gradle/agp/kgp versions are compatible.
+470:   @visibleForTesting
+471:   static const validJavaGradleAgpKgpString = 'compatible java/gradle/agp/kgp';
+472: 
+473:   // User facing link that describes compatibility between gradle and
+474:   // android gradle plugin.
+475:   static const gradleAgpCompatUrl =
+476:       'https://developer.android.com/studio/releases/gradle-plugin#updating-gradle';
+477: 
+478:   // User facing link that describes compatibility between java and the first
+479:   // version of gradle to support it.
+480:   static const javaGradleCompatUrl =
+481:       'https://docs.gradle.org/current/userguide/compatibility.html#java';
+482: 
+483:   // User facing link that describes compatibility between KGP and Gradle
+484:   // and AGP.
+485:   static const kgpCompatUrl =
+486:       'https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin';
+487: 
+488:   // User facing link that describes instructions for downloading
+489:   // the latest version of Android Studio.
+490:   static const installAndroidStudioUrl = 'https://developer.android.com/studio/install';
+491: 
+492:   /// The parent of this project.
+493:   final FlutterProject parent;
+494: 
+522: 
+523:   /// The Gradle root directory of the Android host app. This is the directory
+524:   /// containing the `app/` subdirectory and the `settings.gradle` file that
+525:   /// includes it in the overall Gradle project.
+526:   Directory get hostAppGradleRoot {
+527:     if (!isModule || _editableHostAppDirectory.existsSync()) {
+528:       return _editableHostAppDirectory;
+529:     }
+530:     return ephemeralDirectory;
+531:   }
+532: 
+533:   /// The Gradle root directory of the Android wrapping of Flutter and plugins.
+534:   /// This is the same as [hostAppGradleRoot] except when the project is
+535:   /// a Flutter module with an editable host app.
+536:   Directory get _flutterLibGradleRoot => isModule ? ephemeralDirectory : _editableHostAppDirectory;
+537: 
+538:   Directory get ephemeralDirectory => parent.directory.childDirectory('.android');
+539:   Directory get _editableHostAppDirectory => parent.directory.childDirectory('android');
+540: 
+541:   /// True if the parent Flutter project is a module.
+542:   bool get isModule => parent.isModule;
+543: 
+544:   /// True if the parent Flutter project is a plugin.
+545:   bool get isPlugin => parent.isPlugin;
+546: 
+547:   /// True if the Flutter project is using the AndroidX support library.
+548:   bool get usesAndroidX => parent.usesAndroidX;
+549: 
+583:         // This syntax corresponds to applying the Flutter Gradle Plugin with a
+584:         // script.
+585:         // See https://docs.gradle.org/current/userguide/plugins.html#sec:script_plugins.
+586:         final bool fileBasedApply = line.contains(RegExp(r'apply from: .*/flutter.gradle'));
+587: 
+588:         // This syntax corresponds to applying the Flutter Gradle Plugin using
+589:         // the declarative "plugins {}" block after including it in the
+590:         // pluginManagement block of the settings.gradle file.
+591:         // See https://docs.gradle.org/current/userguide/composite_builds.html#included_plugin_builds,
+592:         // as well as the settings.gradle and build.gradle templates.
+593:         final bool declarativeApply = line.contains(
+594:           RegExp(r'dev\.flutter\.(?:(?:flutter-gradle-plugin)|(?:`flutter-gradle-plugin`))'),
+595:         );
+596: 
+597:         // This case allows for flutter run/build to work for modules. It does
+598:         // not guarantee the Flutter Gradle Plugin is applied.
+599:         final bool managed = line.contains(RegExp('def flutterPluginVersion = [\'"]managed[\'"]'));
+600:         if (fileBasedApply || declarativeApply || managed) {
+601:           return true;
+602:         }
+603:       }
+604:     } on FileSystemException {
+605:       return false;
+620:   /// See https://developer.android.com/build#top-level.
+621:   ///
+622:   /// The file must exist and it must be written in either Groovy (build.gradle)
+623:   /// or Kotlin (build.gradle.kts).
+624:   File get hostAppGradleFile {
+625:     return getGroovyOrKotlin(hostAppGradleRoot, 'build.gradle');
+626:   }
+627: 
+628:   /// Gets the project root level Gradle settings file.
+629:   ///
+630:   /// The file must exist and it must be written in either Groovy (settings.gradle)
+631:   /// or Kotlin (settings.gradle.kts).
+632:   File get settingsGradleFile {
+633:     return getGroovyOrKotlin(hostAppGradleRoot, 'settings.gradle');
+634:   }
+635: 
+636:   File getGroovyOrKotlin(Directory directory, String baseFilename) {
+637:     final File groovyFile = directory.childFile(baseFilename);
+638:     final File kotlinFile = directory.childFile('$baseFilename.kts');
+639: 
+640:     if (groovyFile.existsSync()) {
+641:       // We mimic Gradle's behavior of preferring Groovy over Kotlin when both files exist.
+652:   }
+653: 
+654:   /// Gets the module-level build.gradle file.
+655:   /// See https://developer.android.com/build#module-level.
+656:   ///
+657:   /// The file must exist and it must be written in either Groovy (build.gradle)
+658:   /// or Kotlin (build.gradle.kts).
+659:   File get appGradleFile {
+660:     final Directory appDir = hostAppGradleRoot.childDirectory('app');
+661:     return getGroovyOrKotlin(appDir, 'build.gradle');
+662:   }
+663: 
+664:   File get appManifestFile {
+665:     if (isUsingGradle) {
+666:       return hostAppGradleRoot
+667:           .childDirectory('app')
+668:           .childDirectory('src')
+669:           .childDirectory('main')
+676:   /// Gets the Gradle wrapper properties file.
+677:   ///
+678:   /// This file is located under `gradle/wrapper/gradle-wrapper.properties`
+679:   /// in the host app's Gradle root directory. It defines the distribution
+680:   /// settings for the Gradle wrapper.
+681:   File get gradleWrapperPropertiesFile {
+682:     return hostAppGradleRoot
+683:         .childDirectory('gradle')
+684:         .childDirectory('wrapper')
+685:         .childFile('gradle-wrapper.properties');
+686:   }
+687: 
+688:   File get generatedPluginRegistrantFile {
+689:     return hostAppGradleRoot
+690:         .childDirectory('app')
+691:         .childDirectory('src')
+692:         .childDirectory('main')
+693:         .childDirectory('java')
+698:   }
+699: 
+700:   File get gradleAppOutV1File => gradleAppOutV1Directory.childFile('app-debug.apk');
+701: 
+702:   Directory get gradleAppOutV1Directory {
+703:     return globals.fs.directory(
+704:       globals.fs.path.join(hostAppGradleRoot.path, 'app', 'build', 'outputs', 'apk'),
+705:     );
+706:   }
+707: 
+708:   /// Whether the current flutter project has an Android sub-project.
+709:   @override
+710:   bool existsSync() {
+734:   /// Ensures Java SDK is compatible with the project's Gradle version and
+735:   /// the project's Gradle version is compatible with the AGP version and
+736:   /// kotlin version used in build.gradle.
+737:   Future<CompatibilityResult> hasValidJavaGradleAgpVersions() async {
+738:     final String? gradleVersion = await gradle.getGradleVersion(
+739:       hostAppGradleRoot,
+740:       globals.logger,
+741:       globals.processManager,
+742:     );
+743:     final String? agpVersion = gradle.getAgpVersion(hostAppGradleRoot, globals.logger);
+744:     final String? javaVersion = versionToParsableString(globals.java?.version);
+745:     final String? kgpVersion = await gradle.getKgpVersion(
+746:       hostAppGradleRoot,
+747:       globals.logger,
+748:       globals.processManager,
+749:     );
+750: 
+751:     // Assume valid configuration.
+752:     String description = validJavaGradleAgpKgpString;
+753: 
+754:     final bool compatibleGradleAgp = gradle.validateGradleAndAgp(
+755:       globals.logger,
+756:       gradleV: gradleVersion,
+757:       agpV: agpVersion,
+758:     );
+759: 
+760:     final bool compatibleJavaGradle = gradle.validateJavaAndGradle(
+761:       globals.logger,
+762:       javaVersion: javaVersion,
+763:       gradleVersion: gradleVersion,
+764:     );
+765: 
+766:     final bool compatibleKgpGradle = gradle.validateGradleAndKGP(
+767:       globals.logger,
+768:       gradleV: gradleVersion,
+769:       kgpV: kgpVersion,
+770:     );
+771: 
+772:     final bool compatibleAgpKgp = gradle.validateAgpAndKgp(
+773:       globals.logger,
+774:       agpV: agpVersion,
+775:       kgpV: kgpVersion,
+776:     );
+777: 
+778:     // Begin description formatting.
+779:     if (!compatibleGradleAgp) {
+780:       final gradleDescription = agpVersion != null
+781:           ? 'Update Gradle to at least "${gradle.getGradleVersionFor(agpVersion)}".'
+782:           : '';
+783:       description =
+784:           '''
+785: Incompatible Gradle/AGP versions. \n
+786: Gradle Version: $gradleVersion, AGP Version: $agpVersion
+787: $gradleDescription\n
+788: See the link below for more information:
+789: $gradleAgpCompatUrl
+790: ''';
+791:     }
+792:     if (!compatibleJavaGradle) {
+793:       // Should contain the agp error (if present) but not the valid String.
+794:       description =
+795:           '''
+796: ${compatibleGradleAgp ? '' : description}
+797: Incompatible Java/Gradle versions.
+798: Java Version: $javaVersion, Gradle Version: $gradleVersion\n
+799: See the link below for more information:
+800: $javaGradleCompatUrl
+801: ''';
+802:     }
+803:     if (!compatibleKgpGradle) {
+804:       description =
+805:           '''
+806: ${compatibleGradleAgp ? '' : description}
+807: Incompatible KGP/Gradle versions.
+808: Gradle Version: $gradleVersion, Kotlin Version: $kgpVersion\n
+809: See the link below for more information:
+810:   $kgpCompatUrl
+811: ''';
+812:     }
+813:     if (!compatibleAgpKgp) {
+814:       description =
+815:           '''
+816: ${compatibleGradleAgp ? '' : description}
+855:   }
+856: 
+857:   Future<void> ensureReadyForPlatformSpecificTooling({
+858:     DeprecationBehavior deprecationBehavior = DeprecationBehavior.none,
+859:   }) async {
+860:     if (isModule && _shouldRegenerateFromTemplate()) {
+861:       await _regenerateLibrary();
+862:       // Add ephemeral host app, if an editable host app does not already exist.
+863:       if (!_editableHostAppDirectory.existsSync()) {
+864:         await _overwriteFromTemplate(
+865:           globals.fs.path.join('module', 'android', 'host_app_common'),
+866:           ephemeralDirectory,
+867:         );
+868:         await _overwriteFromTemplate(
+869:           globals.fs.path.join('module', 'android', 'host_app_ephemeral'),
+870:           ephemeralDirectory,
+871:         );
+872:       }
+873:     }
+874:     if (!hostAppGradleRoot.existsSync()) {
+875:       return;
+876:     }
+877:     gradle.updateLocalProperties(project: parent, requireAndroidSdk: false);
+878:   }
+879: 
+880:   bool _shouldRegenerateFromTemplate() {
+881:     return globals.fsUtils.isOlderThanReference(
+882:           entity: ephemeralDirectory,
+883:           referenceFile: parent.pubspecFile,
+884:         ) ||
+885:         globals.cache.isOlderThanToolsStamp(ephemeralDirectory);
+886:   }
+887: 
+888:   File get localPropertiesFile => _flutterLibGradleRoot.childFile('local.properties');
+889: 
+890:   Directory get pluginRegistrantHost =>
+891:       _flutterLibGradleRoot.childDirectory(isModule ? 'Flutter' : 'app');
+892: 
+893:   Future<void> _regenerateLibrary() async {
+894:     ErrorHandlingFileSystem.deleteIfExists(ephemeralDirectory, recursive: true);
+895:     await _overwriteFromTemplate(
+896:       globals.fs.path.join('module', 'android', 'library_new_embedding'),
+897:       ephemeralDirectory,
+898:     );
+899:     await _overwriteFromTemplate(
+900:       globals.fs.path.join('module', 'android', 'gradle'),
+901:       ephemeralDirectory,
+902:     );
+903:     globals.gradleUtils?.injectGradleWrapperIfNeeded(ephemeralDirectory);
+904:   }
+905: 
+906:   Future<void> _overwriteFromTemplate(String path, Directory target) async {
+907:     final Template template = await Template.fromName(
+908:       path,
+909:       fileSystem: globals.fs,
+910:       templateManifest: null,
+911:       logger: globals.logger,
+912:       templateRenderer: globals.templateRenderer,
+913:     );
+914:     final String androidIdentifier =
+915:         parent.manifest.androidPackage ?? 'com.example.${parent.manifest.appName}';
+916:     template.render(target, <String, Object>{
+917:       'android': true,
+918:       'projectName': parent.manifest.appName,
+919:       'androidIdentifier': androidIdentifier,
+920:       'androidX': usesAndroidX,
+921:       'agpVersion': gradle.templateAndroidGradlePluginVersion,
+922:       'agpVersionForModule': gradle.templateAndroidGradlePluginVersionForModule,
+923:       'kotlinVersion': gradle.templateKotlinGradlePluginVersion,
+924:       'gradleVersion': gradle.templateDefaultGradleVersion,
+925:       'compileSdkVersion': gradle.compileSdkVersion,
+926:       'minSdkVersion': gradle.minSdkVersion,
+927:       'ndkVersion': gradle.ndkVersion,
+928:       'targetSdkVersion': gradle.targetSdkVersion,
+929:     }, printStatusWhenWriting: false);
+930:   }
+931: 
+932:   void checkForDeprecation({DeprecationBehavior deprecationBehavior = DeprecationBehavior.none}) {
+933:     if (deprecationBehavior == DeprecationBehavior.none) {
+934:       return;
+935:     }
+936:     final AndroidEmbeddingVersionResult result = computeEmbeddingVersion();
+953:   AndroidEmbeddingVersionResult computeEmbeddingVersion() {
+954:     if (isModule) {
+955:       // A module type's Android project is used in add-to-app scenarios and
+956:       // only supports the V2 embedding.
+957:       return AndroidEmbeddingVersionResult(AndroidEmbeddingVersion.v2, 'Is add-to-app module');
+958:     }
+959:     if (isPlugin) {
+960:       // Plugins do not use an appManifest, so we stop here.
+961:       //
+962:       // TODO(garyq): This method does not currently check for code references to
+963:       // the v1 embedding, we should check for this once removal is further along.
+964:       return AndroidEmbeddingVersionResult(AndroidEmbeddingVersion.v2, 'Is plugin');
+965:     }
+1118:       parent.directory.childDirectory('.dart_tool').childDirectory('dartpad');
+1119: 
+1120:   Future<void> ensureReadyForPlatformSpecificTooling() async {
+1121:     /// Create .dart_tool/dartpad/web_plugin_registrant.dart.
+1122:     /// See: https://github.com/dart-lang/dart-services/pull/874
+1123:     await injectBuildTimePluginFilesForWebPlatform(parent, destination: dartpadToolDirectory);
+1124:   }
+1125: }
+1126: 
+1127: /// The Fuchsia sub project.
+1128: class FuchsiaProject {
+SDK_ROUND_1/2_COMPLETE

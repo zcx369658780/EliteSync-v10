@@ -1,0 +1,14 @@
+# APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT
+ISSUED / LEVEL2 DOCS-ONLY PROPOSED RUNTIME CONTRACT。现有01a0f590-3c90-74c1-b6d4-4c01198d2d3f/local，第24turncompleted/error=null，唯一D:\EliteSync-v10/main/cf8bfaa4a03b8c9a682105617b185141904413be。M5-88 ACCEPT/CLOSED 188准确直属jar名字，仅名字不是内容身份；M5-87三文件身份已接受但运行未核；M5-85冻结14case harness仅SOURCE-ONLY。
+入口五authority顶部各一段/task/workspace-before各一次，不读其它技能/home/memory。
+新A最多1，仅三准确本仓文件各FileInfo自身与完整Directory.Parent到根普通nonreparse/sizehash/ReadAllBytes1/strictUTF8，保留原全文同次宿主内存：
+EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/VerifyLocalExtraRecipeInstaller.groovy 14402 hash7251ACF92C24055EEFC5E299DEF620D09263C3F5C4DFA80E7DB3A763702E5CCD
+EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/jar-name-inventory.md 7957 hash93B5275470685BED1EF322AE2970030BBC06343699FC243F70E2E1F067A6028A
+EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/runtime-metadata.md 2714 hashF4EFC5D147F09439ACFF0CBE11B5B9FB5FDB33F29D80651317D7E977A2B6BF4B
+A只回显完整harness文字+完整metadata文字，inventory只根/同次188名称计数/所给hash及读取回执，不回显全清单或native；不补读installer。aggregate≤20480UTF8bytes且19000chars先测后emit、cmd≤4096/plainpipes/login=false/tty=false。默认git目录粒度以workspace-before旧Paths缺0/目标不存在；任一身份或输出失败首停闭，不删减回显/拆命令补读或缩短重试。
+唯一新本目录runtime-contract.md≤8192UTF8bytes，写前宿主测量一次/CreateNew1。不写launcher或代码。必须基于harness可见原文固定Java启动文件、GroovyMain入口、脚本参数顺序、候选源码绑定与固定14case规格、精确输出schema和可见实际cleanup/首失败边界；缺行为/输入契约标UNKNOWN，不臆造harnessCLI或PASS。
+候选classpath仅PROPOSED：准确M5-88根加其188已接受名字的Ordinal有序显式路径（文件按完整清单引用及hash固定，不在文档重复全路径）；最后准确gradle-api-8.14.jar，完全不使用lib*或递归plugins，不假定完整类依赖/兼容。字面拼接仅本仓设计，不访问派生成员。Java/两已核jar旧身份沿M5-87并标非当前复核。
+提出分开的未来预算：第一门仅准确188文件及API/Java所需身份清单核，每文件size上限及总量/计数/首失败/完整证据；当前成员读取未授权。再SOURCE-ONLY单次launcher候选及独立审查，之后才独立单JVM运行预算。所有未来方案PROPOSED/NOT_ISSUED，不能在本轮派发或执行。须列明确环境白名单/固定cwd隔离user.home及临时目录、禁止父环境凭据注入/网络/下载/Gradle构建、双流独立原byte捕获与有界输出/timeout/kill/cleanup/失败保留partial、不缩短补查重跑；无法证明OS硬截止或访问隔离必须NOT_PROVEN，不能把参数当沙箱。参数长度超限首停，不切换argfile或删classpath重试。来源旧SLF4J警告仅外部自报，stderr须原样保存不掩盖，不凭exit0接受。原harness失败/emit/loader关闭未经实测保持NOT_EXERCISED，不补造保证。
+报告须注明具体待Owner授权的外部成员身份读取和后续JVM启动范围，当前Owner只批准准确直属.jar名称枚举。不要求泛化开放HOME/cache/SDK。SDK/真实binding/LibraryExtension时序/Gradle构建等外部门不得借虚构case解除。报告交付不代表runtime READY。
+新B最多1只报告普通自身/全祖先/sizehash/strictUTF8/与宿主文字身份/main-HEAD-旧成员缺0，cmd-output≤4096，不补读来源或外部。A-B各1/1，首失败关闭保留partial未执行闭；B后不改，停独立Sol/high限定只读及WorkLEVEL2，不自接受/自动派后继。
+所有外部路径访问/枚举/jar正文hash/JVM/Parser/ClassLoader/reflection/compile/candidate/StaticTest/SDK/构建/HTTP0。禁旧D:\EliteSync/metadata-properties/邻源索引/安装下载/真实数据备份密钥/生产DB-API-SSH/UAC/Git写。dirty17冻结/rawfixture/M5-50/旧budget、NOT_READY/settings拒绝/loader-runtimefalse/真实binding-ID-path-hook/四project事务/LibraryExtension时序/父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/内部scope-anchor-scratch和SDK兼容NOT_CHECKED/旧失败路径NOT_EXERCISED保持；自动化PAUSED。

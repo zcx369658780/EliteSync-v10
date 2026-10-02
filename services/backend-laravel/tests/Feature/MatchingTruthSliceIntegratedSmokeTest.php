@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\DatingRoundUserState;
 use App\Services\C2LocalMatchScenarioService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -32,9 +33,14 @@ class MatchingTruthSliceIntegratedSmokeTest extends TestCase
         $this->getJson('/api/v1/match-rounds/current')
             ->assertOk()
             ->assertJsonPath('data.state', 'no_round');
+        $this->getJson('/api/v1/conversations')
+            ->assertNotFound()
+            ->assertExactJson(['message' => 'conversation unavailable']);
         $this->postJson('/api/v1/conversations', ['peer_user_id' => $peer->id])
             ->assertNotFound()
             ->assertExactJson(['message' => 'conversation unavailable']);
+        $this->assertDatabaseCount('conversations', 0);
+        $this->assertDatabaseCount('chat_messages', 0);
 
         foreach (['failed', 'no_candidate'] as $state) {
             $scenarios->build($state);
@@ -56,24 +62,30 @@ class MatchingTruthSliceIntegratedSmokeTest extends TestCase
             ->assertOk()
             ->assertJsonPath('data.state', 'revealed')
             ->assertJsonPath('data.result.partner_id', $peer->id)
-            ->assertJsonPath('data.conversation_capability.can_create', true);
+            ->assertJsonPath('data.conversation_capability', null)
+            ->assertJsonPath('data.user_action', 'refresh')
+            ->assertJsonPath('data.next_action_code', null);
+        $this->assertSame(
+            'open_conversation',
+            DatingRoundUserState::query()->where('user_id', $actor->id)->latest('id')->value('next_action_code')
+        );
         $matchId = $projection->json('data.result.match_id');
         $this->assertIsInt($matchId);
         $this->assertGreaterThan(0, $matchId);
 
+        // A revealed match does not establish live Conversation permission.
         $this->getJson('/api/v1/conversations')
-            ->assertOk()
-            ->assertJsonPath('items.0.entry_kind', 'eligible_match')
-            ->assertJsonPath('items.0.peer_user_id', $peer->id)
-            ->assertJsonPath('items.0.match_id', $matchId);
+            ->assertNotFound()
+            ->assertExactJson(['message' => 'conversation unavailable']);
         $this->postJson('/api/v1/conversations', ['peer_user_id' => $peer->id])
-            ->assertOk()
-            ->assertJsonPath('conversation.peer_user_id', $peer->id)
-            ->assertJsonPath('conversation.match_id', $matchId);
+            ->assertNotFound()
+            ->assertExactJson(['message' => 'conversation unavailable']);
+        $this->assertDatabaseCount('conversations', 0);
+        $this->assertDatabaseCount('chat_messages', 0);
 
         Sanctum::actingAs($outsider);
         $this->getJson('/api/v1/conversation-peers/'.$peer->id)
             ->assertNotFound()
-            ->assertExactJson(['message' => 'conversation not found']);
+            ->assertExactJson(['message' => 'conversation unavailable']);
     }
 }

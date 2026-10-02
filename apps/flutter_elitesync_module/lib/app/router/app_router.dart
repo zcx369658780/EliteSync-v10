@@ -85,7 +85,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         return AppRouteNames.home;
       }
 
-      if (path == AppRouteNames.progressMatch && !nav.isReadinessEstablished) {
+      final isMatchEntry =
+          path == AppRouteNames.progressMatch ||
+          path == AppRouteNames.match ||
+          path == AppRouteNames.matchCountdown ||
+          path == AppRouteNames.matchResult ||
+          path == AppRouteNames.matchDetail ||
+          path == AppRouteNames.matchIntention ||
+          path == AppRouteNames.matchFeedback;
+      if (isMatchEntry && !nav.isReadinessEstablished) {
         return AppRouteNames.meReadiness;
       }
 
@@ -192,6 +200,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           );
           if (routeState != null) {
             return _fadeSlidePage(state, ChatRoomPage(routeState: routeState));
+          }
+          if (state.extra is ChatRouteState) {
+            return _fadeSlidePage(state, const _InvalidChatRoutePage());
           }
           final storedConversationId = storedConversationIdFromSegment(segment);
           return _fadeSlidePage(
@@ -478,8 +489,8 @@ ChatRouteState? chatRouteStateFromPath({
   required String segment,
   Object? extra,
 }) {
-  if (extra is ChatRouteState && extra.canonicalSegment == segment) {
-    return extra;
+  if (extra is ChatRouteState) {
+    return extra.canonicalSegment == segment ? extra : null;
   }
   final legacyPeerId = int.tryParse(segment);
   if (legacyPeerId == null || legacyPeerId <= 0) return null;
@@ -517,17 +528,20 @@ class _StoredConversationRoutePage extends ConsumerWidget {
       ),
       data: (conversation) {
         final peerUserId = conversation.peerUserId;
-        if (peerUserId == null ||
-            peerUserId <= 0 ||
-            (conversation.conversationId != null &&
-                conversation.conversationId != conversationId)) {
+        final resolvedConversationId = conversation.conversationId;
+        if (conversation.entryKind != 'stored_conversation' ||
+            resolvedConversationId == null ||
+            resolvedConversationId <= 0 ||
+            resolvedConversationId != conversationId ||
+            peerUserId == null ||
+            peerUserId <= 0) {
           return _ChatRouteResolutionError(
             onRetry: () =>
                 ref.invalidate(conversationDetailProvider(conversationId)),
           );
         }
         final routeState = ChatRouteState.stored(
-          conversationId: conversationId,
+          conversationId: resolvedConversationId,
           peerUserId: peerUserId,
           matchId: conversation.matchId,
           title: conversation.name,

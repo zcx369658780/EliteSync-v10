@@ -189,6 +189,7 @@ void main() {
     expect(find.text('RESOLVED CHAT'), findsOneWidget);
     expect(capturedSegment, 'conversation-41');
     final routeState = capturedExtra! as ChatRouteState;
+    expect(routeState.entryKind, ChatEntryKind.storedConversation);
     expect(routeState.conversationId, 41);
     expect(routeState.peerUserId, 23);
     expect(notifications.markedReadIds, [81]);
@@ -249,6 +250,111 @@ void main() {
     expect(resolutionCalls, 1);
     expect(notifications.markedReadIds, isEmpty);
   });
+
+  for (final (caseName, entryKind, resolvedId) in <(String, String?, int?)>[
+    ('missing resolved ID', 'stored_conversation', null),
+    ('different resolved ID', 'stored_conversation', 42),
+    ('legacy entry kind', 'legacy_peer', 41),
+    ('eligible entry kind', 'eligible_match', 41),
+    ('unknown entry kind', null, 41),
+  ]) {
+    testWidgets('chat notification rejects $caseName without marking read', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(800, 1000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final notifications = FakeNotificationRemoteDataSource();
+      var chatRouteBuilt = false;
+      int? requestedConversationId;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => const NotificationCenterPage(),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              return const Scaffold(body: Text('CHAT ROUTE'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            frontendTelemetryProvider.overrideWithValue(
+              FrontendTelemetry(telemetry: FakeAppTelemetryService()),
+            ),
+            notificationRemoteDataSourceProvider.overrideWithValue(
+              notifications,
+            ),
+            notificationListProvider.overrideWith(
+              (ref) async => [
+                NotificationItemEntity(
+                  id: 90,
+                  kind: 'message',
+                  title: 'RAW PRIVATE NOTIFICATION TITLE',
+                  body: 'RAW PRIVATE NOTIFICATION BODY',
+                  payload: const {},
+                  routeName: 'chat_room',
+                  routeArgs: const {'conversation_id': 41},
+                  isRead: false,
+                  createdAt: '2026-08-04T00:00:00Z',
+                ),
+              ],
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 1),
+            conversationDetailProvider.overrideWith((
+              ref,
+              conversationId,
+            ) async {
+              requestedConversationId = conversationId;
+              return ConversationEntity(
+                id: 'legacy-peer-alias',
+                name: 'RAW PRIVATE PEER NAME',
+                lastMessage: '',
+                lastTime: '',
+                unread: 0,
+                entryKind: entryKind,
+                conversationId: resolvedId,
+                peerUserId: 23,
+              );
+            }),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      final action = find.widgetWithText(OutlinedButton, '打开所属页面');
+      await tester.scrollUntilVisible(
+        action,
+        220,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(action);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 100));
+
+      expect(requestedConversationId, 41);
+      expect(chatRouteBuilt, isFalse);
+      expect(find.text('CHAT ROUTE'), findsNothing);
+      expect(notifications.markedReadIds, isEmpty);
+      expect(notifications.markReadAttempts, 0);
+      expect(find.text('暂时无法打开这段会话，请稍后重试'), findsOneWidget);
+      expect(find.textContaining('RAW PRIVATE'), findsNothing);
+    });
+  }
 
   testWidgets(
     'status author notification fails closed without using payload identity',

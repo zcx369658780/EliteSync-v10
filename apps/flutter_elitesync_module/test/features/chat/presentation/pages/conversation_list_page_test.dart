@@ -950,6 +950,259 @@ void main() {
     expect(routeState.peerUserId, 23);
   });
 
+  for (final (caseName, entryKind, conversationId) in <(String, String?, int?)>[
+    ('legacy kind with ID', 'legacy_peer', 41),
+    ('eligible kind with ID', 'eligible_match', 41),
+    ('unknown kind with ID', null, 41),
+    ('stored kind missing ID', 'stored_conversation', null),
+  ]) {
+    testWidgets('conversation list rejects $caseName before Chat route', (
+      tester,
+    ) async {
+      final itemName = 'Conflict $caseName';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: 'legacy-peer-alias',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: entryKind,
+                    conversationId: conversationId,
+                    peerUserId: 23,
+                    matchId: 7,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
+  for (final peerUserId in <int?>[null, 0, -1]) {
+    testWidgets('stored list row rejects unresolved peer $peerUserId', (
+      tester,
+    ) async {
+      const itemName = 'Stored peer requires source binding';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: '23',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: 'stored_conversation',
+                    conversationId: 41,
+                    peerUserId: peerUserId,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
+  for (final (matchId, peerUserId) in <(int?, int?)>[
+    (null, 23),
+    (0, null),
+    (-1, 23),
+  ]) {
+    testWidgets('eligible list row rejects invalid match ID $matchId', (
+      tester,
+    ) async {
+      final itemName = 'Eligible match needs ID $matchId';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: '23',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: 'eligible_match',
+                    peerUserId: peerUserId,
+                    matchId: matchId,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
   testWidgets('conversation list refuses an invalid untyped identity', (
     tester,
   ) async {

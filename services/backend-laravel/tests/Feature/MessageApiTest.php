@@ -13,6 +13,7 @@ use App\Models\MediaAsset;
 use App\Models\MessageAttachment;
 use App\Models\User;
 use App\Http\Controllers\Api\V1\MessageController;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use App\Services\NotificationService;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -23,6 +24,14 @@ use Tests\TestCase;
 class MessageApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Exercise legacy internals only; these assertions do not grant v10 live access.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+    }
 
     private function weekTag(): string
     {

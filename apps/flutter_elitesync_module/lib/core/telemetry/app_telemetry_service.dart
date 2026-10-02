@@ -24,10 +24,7 @@ class AppTelemetryService {
       path,
       body: body,
       options: Options(
-        headers: {
-          'X-App-Version': version,
-          'X-Source-Page': sourcePage,
-        },
+        headers: {'X-App-Version': version, 'X-Source-Page': sourcePage},
       ),
     );
   }
@@ -41,8 +38,8 @@ class AppTelemetryService {
   }) async {
     final body = <String, dynamic>{
       'event_name': eventName,
-      if (targetUserId != null) 'target_user_id': targetUserId,
-      if (matchId != null) 'match_id': matchId,
+      'target_user_id': ?targetUserId,
+      'match_id': ?matchId,
       if (payload != null && payload.isNotEmpty) 'payload': payload,
     };
     return postEvent(
@@ -62,10 +59,7 @@ class AppTelemetryService {
       path,
       query: query,
       options: Options(
-        headers: {
-          'X-App-Version': version,
-          'X-Source-Page': sourcePage,
-        },
+        headers: {'X-App-Version': version, 'X-Source-Page': sourcePage},
       ),
     );
   }

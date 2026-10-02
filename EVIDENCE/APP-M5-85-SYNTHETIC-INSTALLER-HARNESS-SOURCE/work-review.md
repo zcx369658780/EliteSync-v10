@@ -1,0 +1,18 @@
+# M5-85 Work独立LEVEL2裁决
+
+ACCEPT/CLOSED SOURCE-ONLY FIXED FOURTEEN-CASE SYNTHETIC HARNESS。14case是源码规格，没有14PASS执行证据，不授任何加载或运行。
+
+独立GPT-6.1Sol/high m574_source_review NO_FINDINGS，task/native/harness/summary/准确M5-84 installer五允许材料各一次完整读取，补读/其它路径/HTTP/Parser/候选运行/hash/写入0。Work原完整A-B、source原文字、nativeAdd两全文与磁盘身份、现场成员预算及case规格独立核后终裁，不以作者或NO_FINDINGS代替。
+
+固定14case各一个反射install规格，独立字面六Stringexpected不从candidate私有字段回算；fake接口只允许列明方法和Object identity，getProperties独立map拷贝。正常Map精确字段类型值、负例outer/cause精确class/message/tag/phase-count；第三set先改后抛保留3项但completed2-attempted3，postread失败保留六写而不重试。首case失败不继续case或再次调用candidate。固定sourceRead/hashstrictUTF8与一次parseClass规格，接口准确install(Object,Object,Object)。输出emit/失败loader关闭路径未经实测，不套用旧launcher未授条件；未来单次launcher必须另授完整双流、cleanup/firstfailure/output限制，当前不声称这些路径已证。
+
+第21turn01a0f63f-c99b-7103-bfd9-ed1fc06f2a39 completed/error=null/idle。入口exec-7e095d00 exit0/nativefalse/18132UTF8bytes-12656chars；A exec-c00b9e5a exit0/nativefalse/render2262≤4096/6494ASCIIbytes字符≤8192-10000，原A源码6141完整文字与准确M5-84文件及其nativeAdd逐字一致/Read1/严格UTF8/普通FileInfo首Directory-目录Parent到根。B exec-78f784ba exit0/nativefalse/render2029≤4096/469ASCIIbytes字符≤4096，两候选各Read1，来源补读HTTP0；新A-B各1/1关闭，fileCreateNew各1/B后未改。
+
+harness14402/hash7251ACF92C24055EEFC5E299DEF620D09263C3F5C4DFA80E7DB3A763702E5CCD≤16384；summary1733/hashCC0A6396883085E1CAE94F0509F07F6F19611EDE7041B49C792056EC399E031A≤3072，建议1500非硬限。native新增全文与磁盘逐字一致/Bhash一致。源码列第17冻结，在下一workspace-before加入准确身份；summary非功能冻结。
+
+Workfresh main/cf8bfaa4a03b8c9a682105617b185141904413be/243status/242旧缺0；十六旧冻结完整祖先nonreparse-size及十四非bin freshhash匹配，两bin沿原接受hash/未补读正文。完整native-receipts/workspace-review保存。所有Groovy/Java/Kotlin/Gradle/Parser/helper/Python/AST/compile/import/exec/ClassLoader/reflection/candidate/StaticTest/SDK构建/HTTP0，语法行为NOT_CHECKED。actual runtime/API locatorUNKNOWN，14case未运行，不授SDK/HOME/cache/环境探测或包下载。
+
+后继仅M5-86准确本仓M5-10plan历史记录新一次文字读取/固定30–55，不访问其所列外部路径，定位Groovy/Gradle/JDK候选必须原文，不从版本猜邻库和路径；缺失UNKNOWN。只交小runtime-locator-evidence，区分历史pointer与current存在/身份/兼容/运行全部NOT_CHECKED，供Work决定下一精确locator预算，不直接运行harness。Work已单metadata核该plan17741/hashD0FD42495BCFF4D470741F4DFAD042EA6EDDBF9C2E1B0D1D3C60A5E3106721A5，不读正文。现有01a0f590沿用，不新会话。
+
+dirty/untracked/17冻结/rawfixture/M5-50原输入阻塞/全部旧候选及闭budget保持；NOT_READY/settings拒绝/loader-runtimefalse/earlypreflightPROPOSED/真实binding-ID-path-hook与四project事务及LibraryExtension时序外部门/父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/真实性恢复生产UAC门不变。未来运行和环境locator核定必须另task另预算，不因源码接受跨门。
+

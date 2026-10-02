@@ -1,0 +1,8 @@
+# M5-88 Work独立LEVEL2裁决
+ACCEPT/CLOSED EXACT DIRECT JAR NAME INVENTORY ONLY。接受准确lib根当次188直属.jar名称和返回普通属性，不接受内容身份/版本/类加载/classpath兼容或运行。
+两旧独立审查过程因聚合输出截断/解析执行缺口REJECT/CLOSED，记录保留不追认。第三全新独立Sol/high m587_review：三准确材料task/native/report各完整Read1，输出未截断；同次内存解析188数组与报告顺序逐字一致/nativeAdd全文一致；NO_FINDINGS。其它路径/补读/外部检查/hash/运行/写入0。Work另核原完整native、报告尺寸hash/现场冻结后独立终裁。
+作者现有01a0f590/local第24turn01a0f6c7-1b3c-77f1-a378-ef578c43d567 completed/error=null/idle。A exec-db5ae17d-61dd-423b-bb2d-499b8528ea04 exit0/nativefalse/render2078≤4096/output6719ASCIIbytes字符≤16384/18000；B exec-83e6aa2a-563c-443b-a57d-2a821501005a exit0/nativefalse/render1674≤4096/output268ASCIIbytes字符。准确目录GetItem1/Filter.jar非递归枚举1/成员GetItem-正文Read-hash0，A-B各1/1关闭，无作者补查重跑。
+报告7957UTF8bytes/hash93B5275470685BED1EF322AE2970030BBC06343699FC243F70E2E1F067A6028A，nativeAdd与磁盘逐字/188顺序一致/Bhash一致。cmd1955/预写测量/CreateNew1仅作者披露，精确原独立证明NOT_PROVEN；Work事后尺寸已核不冒原测量。首失败逻辑存在，失败路径NOT_EXERCISED。
+Workfresh main/cf8bfaa4a03b8c9a682105617b185141904413be/246status/246旧缺0/17冻结完整普通祖先-size及15非binfreshhash一致，两bin沿接受hash/未补正文。第一次Select-Object摘要对OrderedDictionary显示null，保存JSON有效，随后解析摘要核有效，未重开作者预算。
+Owner“请继续”只对此前准确lib直属.jar名称枚举方案承接，不授成员正文/JVM；名称清单使后继可做本仓SOURCE-ONLY运行合同设计，不直接读外部jar或启动。下一M5-89仅本仓已接受inventory/M5-87metadata/M5-85冻结harness的文字输入、形成未来准确依赖核和单JVM候选执行提案，运行权限仍另立预算/明确核定，不以文档为GO。
+全部JVM/候选/构建/HTTP0；NOT_READY/settings拒绝/loader-runtimefalse/真实binding-ID-path-hook/四project事务/LibraryExtension时序外部门/父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/内部scope-anchor-scratch和SDK兼容NOT_CHECKED/失败路径NOT_EXERCISED、dirty17冻结旧budget等保护门保持。无Git写或旧仓/生产/安装/UAC，自动化PAUSED。

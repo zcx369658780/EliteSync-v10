@@ -1,0 +1,156 @@
+[
+  {
+    "hash": "9DCDE55624E2FA5A1B475EB8B636AFD09543B28CA40F346441CE5F678DCD16A6",
+    "ordinaryFullAncestors": true,
+    "bytes": 27406,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/check_applied_sources.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "0FDAC8B278741B788B9B00A1BB07177E76326C8D7F61EF69114DF131AB38141F",
+    "ordinaryFullAncestors": true,
+    "bytes": 9239,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/Invoke-AppliedAarValidation.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "B324943D7CC88EB714DD19450E0E9A2853609580C3A6F9FBFACAC0DA11D04DD7",
+    "ordinaryFullAncestors": true,
+    "bytes": 20338,
+    "path": "apps/android_synthetic_demo/tools/aar_entry_materials.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "123A1164B1B0805AE28867CC0A80BB0C8085D091794A8EE78CDFE1E680CF0224",
+    "ordinaryFullAncestors": true,
+    "bytes": 6510,
+    "path": "apps/android_synthetic_demo/tools/aar_applied_materials.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "29B2E8C28EEA9E11EB41591D8395FD3B96CB2CF75C7F456EC33BE6E763FB6F9F",
+    "ordinaryFullAncestors": true,
+    "bytes": 72513,
+    "path": "apps/android_synthetic_demo/tools/test_aar_applied_materials.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "12090DC48DD9BA459FDD769AD1A6A7438A7E42E1E27AC1A091DA7E4D455499DC",
+    "ordinaryFullAncestors": true,
+    "bytes": 8131,
+    "path": "apps/android_synthetic_demo/tools/aar_scoped_kotlin_transform.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "1EEB49A1E17859B150E8ED5109C9AF0932FAFACB06810D2A02BC688A69387313",
+    "ordinaryFullAncestors": true,
+    "bytes": 42405,
+    "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/flutter_plugin_original.bin",
+    "provenance": "PRIOR_ACCEPTED_NO_BODY_READ"
+  },
+  {
+    "hash": "432FBC9201E6AD08AB4CB137FEDAB1F4414D9286C3C8B1BB8C8BBDD949C72B2B",
+    "ordinaryFullAncestors": true,
+    "bytes": 18068,
+    "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/Check-CrlfContract.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "8BBE07645FA2E181CCCA5546267E5912B432F1007506C32CFF35AFA5C29DB5B7",
+    "ordinaryFullAncestors": true,
+    "bytes": 9600,
+    "path": "apps/android_synthetic_demo/tools/aar_scoped_crlf_kotlin_transform.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "10C434ECBEDFBAC7D0CA09858BB0FA8CDEE5135616C929F616E325952336B594",
+    "ordinaryFullAncestors": true,
+    "bytes": 19817,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/Build-IndependentCrlfExpected.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "911647D43C25333D2BED7FCB4ECAE6172C8B4536D882501AAFDE1A07125A5C90",
+    "ordinaryFullAncestors": true,
+    "bytes": 45907,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/flutter_plugin_expected.bin",
+    "provenance": "PRIOR_ACCEPTED_NO_BODY_READ"
+  },
+  {
+    "hash": "6F9292CD30BB47E5472A01E272C7B769940FA64C1332ECC0F254F64B494F743C",
+    "ordinaryFullAncestors": true,
+    "bytes": 11574,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/validate_crlf_transform.py",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "BCA28F6E14E9AD01F2F7BDB75F0BD9F7E0A42C7FE0EEC03EEDCC8AB44FD0149C",
+    "ordinaryFullAncestors": true,
+    "bytes": 15348,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/Invoke-CrlfStatic.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "D1D36F3CFB3240803E9B0910A7659DEA30C56E4AFA3148BE7D6C4512BE3462FF",
+    "ordinaryFullAncestors": true,
+    "bytes": 16595,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/Invoke-CrlfTest.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "911647D43C25333D2BED7FCB4ECAE6172C8B4536D882501AAFDE1A07125A5C90",
+    "ordinaryFullAncestors": true,
+    "bytes": 45907,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/FlutterPlugin.kt",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37",
+    "ordinaryFullAncestors": true,
+    "bytes": 6141,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/LocalExtraRecipeInstaller.groovy",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "7251ACF92C24055EEFC5E299DEF620D09263C3F5C4DFA80E7DB3A763702E5CCD",
+    "ordinaryFullAncestors": true,
+    "bytes": 14402,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/VerifyLocalExtraRecipeInstaller.groovy",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "ACA9B217807870B5BD5E4ED5573C1376B65D55891788970AA08B184CC6D7B162",
+    "ordinaryFullAncestors": true,
+    "bytes": 6515,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/Collect-JarIdentities-Guarded.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "D1BE2EC4F621C1F4370731B4278C814CBAD13AEFA07B3DB4851F06AC799377AD",
+    "ordinaryFullAncestors": true,
+    "bytes": 19873,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/Invoke-GroovyApiProbe-Escaped.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "F523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1",
+    "ordinaryFullAncestors": true,
+    "bytes": 1343,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/Probe-GroovyGradleApi.groovy",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "E60B16AEDEED241CBBF0E13DC831D9E24AAC5A46EAB0AA3380A7DBF366626B7B",
+    "ordinaryFullAncestors": true,
+    "bytes": 19623,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/Invoke-DistributionApiProbe.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  },
+  {
+    "hash": "23A839B86195B28E3C86940BAF8B38A1610B8C2E007F18748EC7C32978FEC5FC",
+    "ordinaryFullAncestors": true,
+    "bytes": 21223,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/Invoke-SyntheticInstallerTest.ps1",
+    "provenance": "SYNC_FRESH_HASH"
+  }
+]

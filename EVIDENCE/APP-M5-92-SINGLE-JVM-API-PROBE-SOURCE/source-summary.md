@@ -1,0 +1,14 @@
+# M5-92 SOURCE-ONLY
+新probe只核3.0.24/17.0.18/17.0.18+8，顺序Class.forName(false)三个固定接口及codeSource，candidate0/14case0。新launcher只面向未发布M5-93，无参数；需要Owner具体单次授权后Work写准确ISSUED权限与workspace文件。权限文件是输入门，源码不是权限来源，当前M93目录/文件未创建。
+
+未来规格：188 TSV字面记录+API+Java共190 fresh身份，期望300429018bytes，单文件256MiB/总1GiB；189显式classpath不wildcard；精确probe hash/bytes后原byte物化一次；单Process.Start/固定白名单环境与cwd，参数Windows引用后≤30000，否则停。双流并行有界ReadAsync各32768，30s单调等待+另2s cleanup，只kill本child tree尝试1。原双流独立bytes/hash/CreateNew保存，严格JSON/版本/三接口codeSource映射，stderr非空FAIL不改classpath。
+base/authority未通过不写证据或目录；捕获/退出不完整保留partial/FAIL，首失败与secondary保留，不重试或二次emit。同步OS/Dispose不可宣称可强制截止，OS访问/网络沙箱和硬截止NOT_PROVEN；正常及异常分支未经执行。权限拒绝支路只抛固定PREWRITE_DENIED，不在别处补写。后续独立审查须评估其失败披露边界，不能当前冒原失败证据完整。
+
+A=3ae4a1 exit0，宿主cmd3058字符。只M90原TSV19534/hashE405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80、M87metadata2714/hashF4EFC5D147F09439ACFF0CBE11B5B9FB5FDB33F29D80651317D7E977A2B6BF4B各Read1/完整祖先/strictUTF8；TSV188/ASCII-CRLF/Ordinal/总115067677通过；metadata完整回显，外部Read0。
+main/cf8bfaa4a03b8c9a682105617b185141904413be，250旧缺0/status250，三个目标原无。
+Probe SHA256 F523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1
+Launcher SHA256 D16E9DFEFF1F5864791E91A4527E89491A6EBC4470BB3D9287FA001B25E6317B
+预写probe1343bytes/chars、launcher18996bytes/chars，均在4096及24576/19000硬限内；summary预写≤4096，三文件工具各新建1，保存时B0/1，B只三候选身份，后不改。
+
+当前外部190读取/枚举/Process/JVM/Parser/ClassLoader/reflection/compile/候选/StaticTest/SDK构建/HTTP全0。API/Java身份沿M87旧事实，版本仍外部自报，不冒当前复核或PASS。Owner仅已授jar名称和既往188身份核，未来单JVM具体运行授权仍缺；M93未建未派，不直接触发。
+dirty18冻结/rawfixture/M5-50/旧预算及NOT_READY/settings拒绝/loader-runtime false/真实binding-ID-path-hook和LibraryExtension时序外部门/父stderrUNKNOWN/硬截止NOT_PROVEN及真实性恢复生产UAC门保持。无Git写操作，自动化PAUSED。停独立Sol/high+WorkLEVEL2，不自接受。

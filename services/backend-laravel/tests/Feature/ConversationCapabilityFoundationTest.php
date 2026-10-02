@@ -12,6 +12,7 @@ use App\Models\UserBlock;
 use App\Services\ConversationCapabilityService;
 use App\Services\ConversationDomainService;
 use App\Services\ChatWebsocketAuthorizationService;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
@@ -21,6 +22,14 @@ use Tests\TestCase;
 class ConversationCapabilityFoundationTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Exercise legacy internals only; these assertions do not grant v10 live access.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+    }
 
     public function test_conversation_persists_append_only_match_link_history(): void
     {
@@ -100,11 +109,46 @@ class ConversationCapabilityFoundationTest extends TestCase
         Sanctum::actingAs($a);
         $this->getJson('/api/v1/conversations/'.$conversation->id)
             ->assertOk()
-            ->assertJsonPath('conversation.entry_kind', 'conversation')
+            ->assertJsonPath('conversation.entry_kind', 'stored_conversation')
             ->assertJsonPath('conversation.conversation_id', $conversation->id)
             ->assertJsonPath('conversation.peer_user_id', $b->id);
         $this->postJson('/api/v1/messages', ['receiver_id' => $b->id, 'content' => 'not persisted'])->assertNotFound();
         $this->assertDatabaseMissing('chat_messages', ['sender_id' => $a->id, 'receiver_id' => $b->id]);
+    }
+
+    public function test_stored_summary_never_uses_viewer_as_missing_or_departed_peer(): void
+    {
+        $viewer = User::factory()->create(['phone' => 'summary-viewer']);
+        $peer = User::factory()->create(['phone' => 'summary-peer']);
+        $service = app(ConversationDomainService::class);
+        $conversation = $service->ensureDirectConversation($viewer->id, $peer->id);
+
+        $active = $service->summarizeConversation($conversation, $viewer->id);
+        $this->assertSame('stored_conversation', $active['entry_kind']);
+        $this->assertSame($conversation->id, $active['conversation_id']);
+        $this->assertSame($peer->id, $active['peer_user_id']);
+        $this->assertSame((string) $peer->id, $active['id']);
+
+        ConversationMember::query()
+            ->where('conversation_id', $conversation->id)
+            ->where('user_id', $peer->id)
+            ->delete();
+        $onlyViewer = $service->summarizeConversation($conversation->fresh(['members.user', 'creator']), $viewer->id);
+        $this->assertNull($onlyViewer['peer_user_id']);
+        $this->assertSame($conversation->room_key, $onlyViewer['id']);
+        $this->assertNotSame((string) $viewer->id, $onlyViewer['id']);
+
+        ConversationMember::query()->create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $peer->id,
+            'role' => 'member',
+            'joined_at' => now()->subMinute(),
+            'left_at' => now(),
+        ]);
+        $departed = $service->summarizeConversation($conversation->fresh(['members.user', 'creator']), $viewer->id);
+        $this->assertNull($departed['peer_user_id']);
+        $this->assertSame($conversation->room_key, $departed['id']);
+        $this->assertNotSame((string) $viewer->id, $departed['id']);
     }
 
     public function test_list_separates_stored_and_eligible_identity_without_creating_rows(): void
@@ -125,7 +169,7 @@ class ConversationCapabilityFoundationTest extends TestCase
         $stored = $items->firstWhere('peer_user_id', $storedPeer->id);
         $eligible = $items->firstWhere('peer_user_id', $eligiblePeer->id);
 
-        $this->assertSame('conversation', $stored['entry_kind']);
+        $this->assertSame('stored_conversation', $stored['entry_kind']);
         $this->assertSame($conversation->id, $stored['conversation_id']);
         $this->assertSame((string) $storedPeer->id, $stored['id']);
         $this->assertSame('eligible_match', $eligible['entry_kind']);
@@ -158,7 +202,7 @@ class ConversationCapabilityFoundationTest extends TestCase
         }
         $this->getJson('/api/v1/conversation-peers/'.$peer->id)
             ->assertOk()
-            ->assertJsonPath('conversation.entry_kind', 'conversation')
+            ->assertJsonPath('conversation.entry_kind', 'stored_conversation')
             ->assertJsonPath('conversation.conversation_id', $conversation->id);
         $this->getJson('/api/v1/conversation-peers/'.$eligiblePeer->id)
             ->assertOk()

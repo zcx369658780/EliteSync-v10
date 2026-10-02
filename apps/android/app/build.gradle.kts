@@ -94,6 +94,7 @@ android {
 
     defaultConfig {
         applicationId = "com.elitesync"
+        buildConfigField("boolean", "ELITESYNC_SYNTHETIC_DEMO", "false")
         minSdk = 26
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]

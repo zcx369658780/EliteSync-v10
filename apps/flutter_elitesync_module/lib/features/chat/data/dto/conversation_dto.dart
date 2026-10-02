@@ -20,20 +20,23 @@ class ConversationDto {
   final int? peerUserId;
   final int? matchId;
 
-  factory ConversationDto.fromJson(Map<String, dynamic> json) =>
-      ConversationDto(
-        id: (json['id'] ?? '').toString(),
-        name: (json['name'] ?? '').toString(),
-        lastMessage: (json['last_message'] ?? '').toString(),
-        lastTime: (json['last_time'] ?? '').toString(),
-        unread: (json['unread'] as num?)?.toInt() ?? 0,
-        entryKind: _nullableString(json['entry_kind']),
-        conversationId: _positiveInt(json['conversation_id']),
-        peerUserId: json['peer_user_id'] == null
-            ? _positiveInt(json['id'])
-            : _positiveInt(json['peer_user_id']),
-        matchId: _positiveInt(json['match_id']),
-      );
+  factory ConversationDto.fromJson(Map<String, dynamic> json) {
+    final entryKind = _nullableString(json['entry_kind']);
+    return ConversationDto(
+      id: (json['id'] ?? '').toString(),
+      name: (json['name'] ?? '').toString(),
+      lastMessage: (json['last_message'] ?? '').toString(),
+      lastTime: (json['last_time'] ?? '').toString(),
+      unread: (json['unread'] as num?)?.toInt() ?? 0,
+      entryKind: entryKind,
+      conversationId: _positiveInt(json['conversation_id']),
+      peerUserId:
+          entryKind != 'stored_conversation' && json['peer_user_id'] == null
+          ? _positiveInt(json['id'])
+          : _positiveInt(json['peer_user_id']),
+      matchId: _positiveInt(json['match_id']),
+    );
+  }
 
   static String? _nullableString(dynamic value) {
     if (value == null) return null;

@@ -29,6 +29,7 @@ use App\Http\Controllers\Api\V2\CanonicalMatch\CanonicalMatchEntryController;
 use App\Http\Controllers\Api\V2\Contracts\LocationContractController;
 use App\Http\Controllers\Api\V2\Contracts\TransportEnvelopeController;
 use App\Http\Controllers\Api\V2\RuntimeReadiness\RuntimeReadinessEvaluationController;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v2')->middleware('secure.transport')->group(function () {
@@ -119,13 +120,15 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/conversation-peers/{peerUserId}', [ConversationController::class, 'showPeer'])
             ->whereNumber('peerUserId')
+            ->middleware(DenyUnverifiedMessagingLiveAccess::class)
             ->middleware('throttle:conversations');
 
         Route::prefix('conversations')->group(function () {
-            Route::get('', [ConversationController::class, 'index'])->middleware('throttle:conversations');
-            Route::post('', [ConversationController::class, 'store'])->middleware('throttle:conversations');
+            Route::get('', [ConversationController::class, 'index'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:conversations');
+            Route::post('', [ConversationController::class, 'store'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:conversations');
             Route::get('/{conversationId}', [ConversationController::class, 'show'])
                 ->whereNumber('conversationId')
+                ->middleware(DenyUnverifiedMessagingLiveAccess::class)
                 ->middleware('throttle:conversations');
         });
 
@@ -180,9 +183,9 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::prefix('messages')->group(function () {
-            Route::post('', [MessageController::class, 'send'])->middleware('throttle:messages');
-            Route::get('', [MessageController::class, 'list'])->middleware('throttle:messages');
-            Route::post('/read/{messageId}', [MessageController::class, 'markRead']);
+            Route::post('', [MessageController::class, 'send'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:messages');
+            Route::get('', [MessageController::class, 'list'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:messages');
+            Route::post('/read/{messageId}', [MessageController::class, 'markRead'])->middleware(DenyUnverifiedMessagingLiveAccess::class);
             Route::get('/ws/{userId}', [MessageController::class, 'websocketStub']);
         });
 

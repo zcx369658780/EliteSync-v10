@@ -110,19 +110,21 @@ class _NotificationCenterPageState
           conversationDetailProvider(conversationId).future,
         );
         final peerUserId = conversation.peerUserId;
-        if (!mounted || peerUserId == null || peerUserId <= 0) {
+        final resolvedConversationId = conversation.conversationId;
+        if (!mounted ||
+            conversation.entryKind != 'stored_conversation' ||
+            resolvedConversationId == null ||
+            resolvedConversationId <= 0 ||
+            resolvedConversationId != conversationId ||
+            peerUserId == null ||
+            peerUserId <= 0) {
           if (mounted) {
             AppFeedback.showInfo(context, '暂时无法打开这段会话，请稍后重试');
           }
           return false;
         }
-        if (conversation.conversationId != null &&
-            conversation.conversationId != conversationId) {
-          AppFeedback.showInfo(context, '暂时无法打开这段会话，请稍后重试');
-          return false;
-        }
         final routeState = ChatRouteState.stored(
-          conversationId: conversationId,
+          conversationId: resolvedConversationId,
           peerUserId: peerUserId,
           matchId: conversation.matchId,
           title: conversation.name,
