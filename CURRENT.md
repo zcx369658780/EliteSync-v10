@@ -1,3 +1,16 @@
+# 2026-10-05 阶段工作流已实施／首综合阶段ISSUED
+
+Owner已批准“阶段目标委托—Codex连续执行—Work集中验收”，并明确授权本地和GitHub工作流文档修订。当前Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local；首阶段WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005，准确任务EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005/task.md。执行者由本次原项目新Codex会话派发回执确定；旧Builder01a1072f及所有旧Work/执行停止新派发。
+
+Codex自主修复Launcher三缺陷、整合完整源码包、普通本地synthetic验证和失败诊断修复重测；6小时只预估，无内部逐步审批。完成/实质阻塞/必要交接通知本Work，交付后完整非作者Sol/high审查及Work LEVEL2集中终裁。
+
+本次启动前Git核对main/HEAD4bebc8f394248e254c1368a06fbdee5d2c883301、staged空、现有dirty/untracked保持。Owner授权的GitHub文档备份可能使remote main前移；本地不自动pull，不冒候选已合入。原elitesync保持PAUSED，prompt更新为阶段事件通知规则，不重建。
+
+新阶段不继承旧微任务首失败/读写次数/显示预算；旧计数错误不作为启动门，所有旧拒绝/已闭预算仍只作历史。四旧SOURCEONLY接受保留，Launcher V6 REJECT/CLOSED三缺陷仍成立；当前完整包尚未接受，M5工具链准备/M6未开放。正式compile/JVM/14case、SDK/外部依赖及全部敏感生产边界仍冻结；NOT_READY/RuntimeReadyfalse及未知保持。
+
+## 下方为历史快照，不能按旧task标题或旧自动化prompt恢复执行
+
+---
 # 2026-10-02 RAW_GSTRING 源码修复接受／本地备份检查点
 
 父 dot 已接受非作者独立 SOURCEONLY PASS：harness 外层7行12处 state 改名 diagnosticState，fixture 内19处及输入／调用／计数／schema不变。候选9932bytes／SHA256 D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1，仅源码接受，未编译未运行；终裁及闭环见 [plan](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/plan.md)、[原准备／父终裁记录](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/native-receipts.json)。作者仅记录父终裁。

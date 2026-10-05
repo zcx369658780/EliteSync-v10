@@ -1,3 +1,22 @@
+# 2026-10-05 生效：阶段目标委托—Codex 连续执行—Work 集中验收
+
+Owner已批准新工作流并授权实施。此节覆盖下方历史快照中关于未来任务的微型任务链、逐步骤审批、首个普通错误即关闭、每文件单次读写、逐命令硬预算、固定显示总量、默认复用旧Builder及五分钟监督条款；不改写历史ACCEPT/REJECT，不追认旧结果，不解除受保护动作的冻结。
+
+Work在当前ChatGPT项目会话制定综合阶段任务，每阶段在原本地项目D:\EliteSync-v10新建一个Codex执行会话；不迁移Dot或脱离项目。Codex在阶段范围内自主调查、计划与调整步骤、修改相关源码和测试、运行普通本地验证、诊断、修复、重测、记录进度及本地提交。内部步骤无需回Work批准，普通编译、测试、脚本或工具错误不使阶段授权失效；无真实阻塞时连续推进。
+
+质量检查是Codex内部执行条件：不得删除有效测试、降低既定标准、隐藏失败或沿用对当前版本无效的PASS。Work正常执行期间不高频查询、不逐步验收、不并行改执行文件。预计工时仅用于计划；持续无进展时报告证据、尝试和需要的决定，不因到钟自动关预算。
+
+仅在目标/既定科研或产品语义需改变、授权边界、重要资产风险、明确暂停或实质性持续阻塞时联系Work/Owner。历史明确禁止的正式实验、真实数据/备份/密钥、生产DB/API/SSH、发布、敏感数据外传、重要资产删除及未授权环境/SDK操作仍冻结；UAC需当前Owner“我在”与具体授权。
+
+完成后Codex提交最终版本、完成标准对照、测试及原始证据、未完成项/风险，主动通知指定Work验收；Owner明确授权该执行会话向本阶段Work发完成、阻塞及必要交接通知。LEVEL2完整非作者GPT-6.1 Sol/high审查与Work独立终裁集中在阶段交付时，不转成内部逐步审批。Work一次汇总实质修复；后续主要复核修复和必要回归，不不断加优化范围。
+
+一个阶段一个新执行会话；超过30次实际Owner/助手往返或上下文确影响可靠性时续接同一目标，保留进度、授权和证据，不重新规划。工具调用不是实际往返。不为旧计数审计补证；普通计数接口错误可修正使用方式，不成为新阶段启动门。旧执行会话停止新派发。
+
+GitHub只用于授权范围内文档/代码备份，不作逐步骤审批总线。本地阶段提交允许，仅包含本阶段owned源码/测试/证据，不混入既有dirty/untracked，不改变历史身份绑定以冒充接受；本阶段不授权push/pull/reset/clean/stash/PR/发布。Owner本次另行授权Work同步工作流文档到GitHub，范围限本轮文档变更。
+
+原elitesync五分钟自动化保留PAUSED，旧监督prompt替换为事件驱动说明，不重复创建。完成/实质阻塞由Codex通知Work；通知失败保存交付并报告，不伪称已唤起或已验收。
+
+---
 # 2026-10-02 当前审查门（ACCEPT/CLOSED）
 
 本次 DOT-GOVERNANCE-ROUTE-20261002 触及治理职责和未来预算语义，LEVEL 2 非作者独立审查已完成，父会话终裁 ACCEPT/CLOSED；作者仅记录，active NONE、successor NONE。终裁见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。Owner dot 角色授权见 [plan](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)，规则见 [AGENTS](AGENTS.md)，检查见 [result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)。
@@ -120,17 +139,17 @@
 
 **2026-10-01 M5-69源码接受/M5-70 Static单次发布**：Work独立LEVEL2 ACCEPT/CLOSED SOURCE-ONLY STABLE CRLF VALIDATOR，Sol/high NO_FINDINGS；原完整A9716bytes字符/B648bytes/native truncated=false/source全文一致/两候选hash一致/A-B1/1闭/227status/226旧成员缺0。十一旧冻结祖先-size一致，九非bin fresh hash匹配，fixture-expected哈希沿用接受原回执未补读正文。新validator11574/hash6F9292CD30BB47E5472A01E272C7B769940FA64C1332ECC0F254F64B494F743C列十二冻结，语法行为NOT_CHECKED，stderr UNKNOWN/硬超时NOT_PROVEN。M5-70只准确冻结validator --static一次，新前置-Invocation-B各一次/固定Python -I -B/独立原双流/30s wait及限额/首失败关闭；source1 AST1，candidate compile-import-函数/Test/fixture-expected正文/SDK构建0，Test一次仍另授。现有01a0f590第四turncompleted/error=null沿用不新建，全部dirty/旧失败闭budget/NOT_READY与保护门保持。
 
-# EliteSync v10｜本地风险门
+# EliteSync v10｜本地风险门（阶段集中验收）
 
-按变更的最高风险分类；具体任务的更严格限制优先。审查记录保持短，写清结果、来源、测试和未解决风险。一个任务只有一个主要结果。
+2026-10-05 Owner将质量检查转为Codex内部执行条件；下列等级作用于阶段交付与受保护动作，不对普通内部步骤设Work审批门。新阶段普通失败可诊断修复重测，6小时等预估不是硬预算。历史one-shot不追认，也不作为新阶段普通开发次数限制。
 
-| 等级 | 常见范围 | 必需门 |
+| 等级 | 常见范围 | 集中验收 |
 |---|---|---|
-| LEVEL 0 Mechanical | 文档、格式、命名、测试夹具、快照、元数据 | Work/Codex 执行并自检，可本地接受；不需要独立审查。语义或权限改变不属于此级。 |
-| LEVEL 1 Routine Engineering | 明确规格内的 Flutter presentation、UI、read-only adapter/endpoint、普通缺陷 | Work 发布任务 → Codex 实现与 targeted tests → Work 轻量实质审查。 |
-| LEVEL 2 Architecture/Data Risk | auth、数据模型、DB migration、write API、privacy、relationship state、notification、环境/发布链、破坏兼容 | 独立 Work 审查；按任务列明负向用例、回退和数据边界。 |
-| LEVEL 3 Product/Release Critical | matching/safety/privacy 核心政策、生产 DB、不可逆 schema、生产部署、APK/release claim、收费 | Owner 或明确授权的 Work 高风险门；真实数据、不可逆与生产动作仍须逐项明确授权。 |
+| LEVEL 0 | 文档、格式、元数据 | 在授权内自检，不添加独立治理任务链。 |
+| LEVEL 1 | 既定规格内普通实现 | Codex完整实现及验证后，Work集中实质审查。 |
+| LEVEL 2 | 架构、权限/数据语义、环境/发布链代码 | 阶段交付完整非作者GPT-6.1 Sol/high审查，Work独立核验并集中终裁；阶段内普通开发和mock测试自主。 |
+| LEVEL 3 | 真实数据、生产、不可逆、正式冻结实验或发布 | 对应受保护动作须Owner或明确Work授权；本轮流程调整不放行。 |
 
-LEVEL 0/1 可以在已授权范围内连续推进。Owner 已授权 Work 在不需要 Owner 决策或 Work 会话交接时，验收后自动推进下一张不跨门的 bounded task；即使某项 LEVEL 2/3 现场门未解，也可继续独立审查文档、静态、虚构或普通本地切片。任务发布与实际执行分别记录。LEVEL 2/3 的**受保护动作**仍在对应门前停止，不因自动后继授权绕过；候选作者的自检不能代替独立审查，旧任务的固定 SHA、预算与停点不重置。确无安全后继时记录精确停点。
-
-始终分别标记 `docs-only`、`Flutter presentation-only`、`backend`、`DB`、`release-chain`。本地代码、模拟器 debug APK、生产后端、签名发布各有不同证据，不能互相推导。GitHub 默认只用于备份、里程碑或发布；同步必须显式授权范围，失败不阻断本地已授权任务。
+Work一次汇总实质修复；修复仍续本阶段，重点核验修复和必要回归，不反复扩充优化要求。作者不自受，非作者NO_FINDINGS不代Work终裁；通知发出不代表验收通过。
+分别标记docs-only、源码/工具包、synthetic测试、实际compile/JVM/平台runtime与生产就绪，证据不互相替代。不得删除有效测试、降低标准、隐藏失败、将无效结果用于后续。
+保留所有历史接受/拒绝/冻结和敏感、生产、UAC、重要资产边界；GitHub为明确授权备份，不是逐步骤审批站。

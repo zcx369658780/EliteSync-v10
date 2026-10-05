@@ -1,3 +1,12 @@
+# 2026-10-05 Owner决定：阶段委托与连续执行
+
+Owner已明确批准并要求实施：Work下达综合阶段任务，每阶段一个原D:\EliteSync-v10项目新Codex会话自主执行，完成后主动唤起Work集中验收；不迁移Dot，不高频监督或逐步骤审批，6小时仅工作量预估。普通错误允许诊断修复重测，不自动关闭阶段；保留有效测试/标准和真实证据，实质阻塞/边界/产品科研定义决定才介入。允许owned本地进度与提交记录，GitHub仍备份用途，本次文档同步由Owner明确授权。历史正式实验、生产、敏感数据和重要资产冻结不自动解除。
+
+此决定覆盖下方旧工作流对未来阶段的微型任务/默认复用旧Builder/首失败闭余/五分钟监督要求，不改变产品路线、旧ACCEPT/REJECT及旧预算历史。具体阶段见当前TASK_CURRENT；SOURCEONLY不赋runtime/M6资格。
+
+## 下方为历史决定与状态来源
+
+---
 # 2026-10-02 治理交叉引用（不改变产品决定）
 
 Owner 已授权 dot 接续治理；已接受治理规则见 [AGENTS](AGENTS.md)、[REVIEW_GATE](REVIEW_GATE.md) 与 [当前路线](docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md)，终点为 [本次 result](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)；父会话已终裁 ACCEPT/CLOSED，见 [review](EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。下方产品决定原字节保留，接受范围、Owner 保留决定及重开条件不变。历史自动化 ACTIVE/旧会话说明不覆盖当前 PAUSED、M112 未建未派未跑与 NOT_READY。
