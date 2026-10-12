@@ -13,7 +13,7 @@ permalink: elitesync-v10-local/navigation
 核验日期：2026-10-12（Asia/Shanghai）。这是知识入口，不是任务授权或路线图。
 
 ## 先读什么
-- 当前权威：仓库根的 AGENTS.md、CURRENT.md、TASK_CURRENT.md、PRODUCT_DECISIONS.md、REVIEW_GATE.md；顶部 V212 暂停优先。不要因读到旧 ISSUED 或普通持续授权就执行。
+- 当前权威：先读 DOC_INDEX_CURRENT.md、docs/workflow/CURRENT_WORKFLOW.md、CURRENT_STATE.md 和根入口的 2026-10-12 生效段。旧 V212/ISSUED/持续授权是历史状态，不能单独作为当前任务授权；旧任务继续暂停，第三阶段由 Owner 手动启动。
 - [主题知识](knowledge.md)：项目重置、领域边界、现行暂停、历史失败与待确认事项；正文已有正式文档时只指向原文。
 - [环境记录](environment.md)：区分当前只读检测、历史观测、项目配置与未核验项。
 - [本次归档说明](archive-20261012.md)：覆盖来源、缺口、检索实测及本轮变更。

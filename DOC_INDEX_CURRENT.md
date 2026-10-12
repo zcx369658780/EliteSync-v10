@@ -6,6 +6,7 @@
 |---|---|
 |工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现，Owner方向决定|
 |现状、在途、暂停|[CURRENT_STATE](CURRENT_STATE.md)：本地/远端差异、历史通过与未知；[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)|
+|第二阶段本地接收与手动交接|[Codex 本地交接及下一会话启动 Prompt](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：现场保护、检索实测、同步结果；接手会话仍待 Owner 手动创建和真实读取回报|
 |知识与环境|[记忆导航](docs/memory/navigation.md)、[关键知识](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)、[归档说明](docs/memory/archive-20261012.md)|
 |产品定义与决定|[产品边界摘要](docs/gpt-project-sources/02_产品架构与不可变边界.md)、[正式功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)、[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)|
 |路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：迁移后首版尚未制定，等待第三阶段|

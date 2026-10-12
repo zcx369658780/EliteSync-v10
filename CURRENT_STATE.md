@@ -1,11 +1,27 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-12 第二阶段本地同步与手动交接
+
+当前入口：[Codex 本地交接](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)，其中包含可单独复制的下一会话启动 Prompt。Owner 授权范围为规则同步、现场保存和必要文档发布；版本开发仍暂停，第三阶段由 Owner 手动启动。
+
+本次实际源码根 D:/EliteSync-v10，main HEAD 4bebc8f394248e254c1368a06fbdee5d2c883301；fetch 实测远端 main 为 0f1df05d6a962ed0983b577f21bd10291a868bc8，与第一阶段指定提交相同，领先本地 3 提交。本地 HEAD 与默认 index 保持原身份，文档发布通过隔离临时 index 基于远端提交构造，不整体合并源码树。最终新增发布提交以本轮实际回执为准，不在文档内自引用自身 commit。
+
+本次现有 Codex 为 01a12d8a-78e6-7912-99d3-f0fd272142d1/local，应用元数据 cwd 与本项目一致，projectId=1ce219d1-c26f-4297-9b16-23b1f05975f2。旧 Builder/迁移 Work/stage-e2e 执行的具名快照均 notLoaded、最近 turn completed；未发消息或恢复任务。这不是全机进程与自动化实时审计。未来接手会话 ID：UNKNOWN — TO BE REPORTED BY SUCCESSOR。
+
+初始 staged 空，43 个 tracked 改动、207 个 untracked normal 条目（含展开目录和本次现场目录），不与第一阶段全展开文件数直接比较。具名保护哈希初始55项（54个 Flutter 源码/测试及1个历史 stage-e2e-v2 终裁），随后补纳36个 backend 新文件和4个本地知识/治理资料，最终95项；历史 EVIDENCE 不整理、不删除、不全树重哈希。223 个已注册 worktree（其中6个 prunable）保留，仅登记用途，不进入其它树或清理。
+
+核心已发布规则与知识正文已在本地；根入口生效段一致，额外本地历史记录完整保留。修正记忆导航中将旧 V212 放在当前规则之前的措辞。QMD 具名索引发现旧内容后，仅更新本项目4篇 Markdown，Astra/V57 检索和导航全文读回成功。Basic Memory 独立项目关键词检索/归档读回可用，但内容仍为旧派生归档，未完整覆盖正文或新工作流；当前规则使用 Markdown/QMD，不重建数据库或全局索引。
+
+EXECUTOR MIGRATION PREPARED；SUCCESSOR CODEX SESSION RECEIVED 尚未成立。V57 窄 SOURCE_ONLY 例外批准保留但未激活/派发/执行，H2/D0 未签发；历史 SOURCEONLY/SYNTHETIC 接受与 NOT_READY、RuntimeReady=false、M6 CLOSED 等限制不变。下方为第一阶段迁移时点记录，不代替本次现场身份。
+
+---
+
 核对日：2026-10-12（Asia/Shanghai）。此页是迁移后当前事实入口；历史状态/任务原件不重写，原计划不因入口变化改标准。
 
 ## 当前目标和权限
 第二阶段由现有Codex完成知识/规则同步与手动交接；长期管理转同项目网页GPT 6 Astra。第三阶段由Owner手动启动；迁移后首版计划尚未制定。版本开发未启动，旧暂停任务不恢复，不转Dot、不建立自动调度或监听。
 
-## 当前实测与远端差异
+## 第一阶段历史实测与远端差异
 - 实際源码根 `D:/EliteSync-v10`，remote `git@github.com:zcx369658780/EliteSync-v10.git`；文档发布分支 `main`。
 - 迁移开始本地 `main` HEAD `4bebc8f394248e254c1368a06fbdee5d2c883301`；实际fetch后的远端main `6fcf3b0178ef3619776211786f1485c22138377d`，远端领先2提交，本地已提交历史无领先。不是网页已看到全部本地成果。
 - 开始暂存区空；42个tracked改动、160374个untracked文件路径（含展开目录；与旧归档199顶层条目口径不同）。包含Flutter源码/测试、巨量历史EVIDENCE和本地治理修订。本轮源码未提交或推送。
