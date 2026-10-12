@@ -9,7 +9,7 @@
 ## 1. 已核验权威与现状（不是本地实时实测）
 
 - 远端文档规划基线：`zcx369658780/EliteSync-v10` `main`，版前阅读提交 `696834b114d9626efbf46080f42243b6a1a65183`。**本草案最终发布提交以后续真实 GitHub 回执为准**，不能用旧提交冒充草案自身冻结 SHA。
-- [动态总目录](../../../../DOC_INDEX_CURRENT.md)、[当前工作流](../../workflow/CURRENT_WORKFLOW.md)、[当前状态](../../../CURRENT_STATE.md)、[第二阶段本地交接](../../migration/CODEX_LOCAL_HANDOFF_20261012.md)、[版本登记](../README.md) 是当下主要读取入口。历史验收不能由动态目录追改。
+- [动态总目录](../../../DOC_INDEX_CURRENT.md)、[当前工作流](../../workflow/CURRENT_WORKFLOW.md)、[当前状态](../../../CURRENT_STATE.md)、[第二阶段本地交接](../../migration/CODEX_LOCAL_HANDOFF_20261012.md)、[版本登记](../README.md) 是当下主要读取入口。历史验收不能由动态目录追改。
 - 上次 Codex 实测本地 `D:/EliteSync-v10` `main` HEAD `4bebc8f394248e254c1368a06fbdee5d2c883301`，远端文档更前进。其源码/测试及大量 EVIDENCE 仍有 `LOCAL_ONLY`；95 项具名保护文件历史核验通过，新会话已只读复核。**当前实际文件身份和进展仍须 Codex 再核对所需部分**，不得把远端文档树当作完整执行代码基线。
 - 第二阶段发布 `696834b...` 仅含 4 份迁移文档；已接受的 stage-e2e-v2 仅 `SOURCEONLY_SYNTHETIC_TOOLCHAIN_E2E_STAGE_V2`，正式 Driver/JVM/compile/14case/SDK/部署资格仍未证明。
 - V57 的窄 `SOURCE_ONLY` 准备例外已获 Owner 批准但 **PAUSED / NOT_ACTIVATED / NOT_DISPATCHED / NOT_EXECUTED**；H2/D0 未签发；`NOT_READY`、`RuntimeReady=false`、`M6 CLOSED`、`S2 unsigned`、`OwnerEnvironment PENDING` 等限制保持。此次版前核查不改变它们。
