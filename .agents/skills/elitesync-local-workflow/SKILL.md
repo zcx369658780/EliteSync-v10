@@ -1,14 +1,12 @@
 ---
 name: elitesync-local-workflow
-description: Execute an issued EliteSync-v10 stage continuously and deliver a consolidated candidate for independent Work acceptance.
+description: Implement an Owner-authorized frozen EliteSync-v10 version autonomously and deliver a consolidated candidate to web Astra.
 ---
 
-# EliteSync stage workflow
+# EliteSync 版本执行
 
-1. Read CURRENT, AGENTS, PRODUCT_DECISIONS, TASK_CURRENT and REVIEW_GATE's effective sections. Record local Git and relevant source state. Act on the explicitly dispatched ISSUED stage; its goals, autonomous scope and protected boundaries control execution. Old snapshots/task budgets do not limit new-stage development.
-2. Plan and adjust internal work autonomously: inspect relevant sources, implement/refactor stage copies, add meaningful tests, run ordinary local validation, diagnose failures, repair and retest. Do not return to Work for each command or step. Ordinary compiler/test/script/tool errors do not expire stage authority. Work estimates are not hard deadlines.
-3. Preserve valid tests, established standards, raw failures and unrelated dirty/staged/untracked/frozen files. Final validation must cover the delivered implementation. Keep synthetic, source, actual runtime and production evidence distinct. Do not unfreeze formal experiments, protected dependencies/environments or production/real-data actions through a workflow exception.
-4. Keep progress, source/test manifests, raw evidence and owned local checkpoint records inside the stage's allowed paths. Commit only expressly authorized stage-owned files; do not publish/pull/reset/clean/stash or mix existing changes. The runtime/dirty-worktree skills apply only when the stage actually authorizes those actions; they grant no scope.
-5. Contact Work only for material decisions, protected boundaries, genuine sustained lack of progress, explicit pauses or necessary handoff. Continue independent unblocked work. At completion submit a consolidated delivery, mark REVIEW_PENDING and notify the designated Work using the Owner authorization in the task. Report notification failures truthfully.
-6. Work performs consolidated independent acceptance, including full non-author Sol/high review where LEVEL2 requires it, then requests substantive fixes together. Fixes continue the same stage; no self-acceptance or successor issuance. Session handoff continues the same goal and retains evidence/remaining work; do not rebuild the plan or revive old budgets.
-7. Final validation covers actual serialization and cross-component consumption for changed behavior. Index every failed and successful run, including the first, retaining raw logs and linking fixes to final validation. Freeze the technical delivery manifest (including final delivery/progress) before notifying Work; exclude the manifest itself, later notification receipts and Work review files. Notify with version, item count and full manifest SHA. A changed delivery needs an explicit revision and affected validation; never silently change the notified identity. These are internal quality conditions, not step approvals or hard attempt/time limits.
+先读根AGENTS、DOC_INDEX_CURRENT、CURRENT_STATE、docs/workflow/CURRENT_WORKFLOW和准确冻结版本计划。网页Astra承担规划、最终独立验收和复盘，Owner保留方向；Work不再实时管理，旧dot/逐步骤审批/强制新增多模型循环不适用。
+
+Codex在已授权版本范围自主拆解、实现、测试、诊断、修复和重测，保留有效测试及原始失败；自测不自接受。仅必要决定、授权边界、不可逆风险或持续阻碍才保存状态并报告。会话续接同版，不能改冻结目标或恢复旧预算。相关验证绑定最终候选与实际序列化/消费行为，按变化风险检查，不照搬所有历史测试。
+
+最终集中提交代码/测试身份、验证证据与剩余问题给Astra；缺陷批量修复，新需求/纯优化另版。Git仅按具体授权操作，保护无关dirty/staged/untracked和真实资产。旧暂停任务与受保护实验/数据/生产/部署保持冻结，不自动调度、监听或轮询。当前无迁移后首版，等待Owner手动第三阶段。

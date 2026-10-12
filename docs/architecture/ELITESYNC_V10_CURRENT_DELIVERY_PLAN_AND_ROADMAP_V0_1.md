@@ -1,3 +1,11 @@
+# 2026-10-12 生效：网页 Astra 管理与 Codex 版本实现
+
+当前规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)，导航见 [DOC_INDEX_CURRENT](../../DOC_INDEX_CURRENT.md)。Owner保留方向决定；网页Astra负责版本规划、最终独立验收与复盘；Codex按冻结版本自主实现、测试、诊断修复并集中交付。旧Work/dot实时管理、逐步骤审批及强制新增多模型循环被本次Owner指令替代。产品/科学定义、真实数据、不可逆风险及历史固定证据保留。
+
+下方为历史记录：其中旧路由、ISSUED、微审批、逐调用预算、审查角色和Git禁令不构成当前迁移或未来版的自动授权/默认流程。本轮仅文档迁移与正常GitHub发布；旧任务保持暂停，第三阶段由Owner手动启动。普通错误自主诊断；真正边界/决定/持续阻碍才报告。现状以 CURRENT_STATE.md 为入口，冻结版仍按其原计划和证据身份解释。
+
+---
+
 # 2026-10-05 阶段进展
 
 首阶段源码集成已Work SOURCEONLY接受；下一阶段WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005为完整入口链隔离集成验证与可重复交付。M5准备/M6未开放；正式运行仍冻结，具体授权以当前task为准。

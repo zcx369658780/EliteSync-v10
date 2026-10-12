@@ -1,3 +1,11 @@
+# 2026-10-12 生效：网页 Astra 管理与 Codex 版本实现
+
+当前规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)，导航见 [DOC_INDEX_CURRENT](DOC_INDEX_CURRENT.md)。Owner保留方向决定；网页Astra负责版本规划、最终独立验收与复盘；Codex按冻结版本自主实现、测试、诊断修复并集中交付。旧Work/dot实时管理、逐步骤审批及强制新增多模型循环被本次Owner指令替代。产品/科学定义、真实数据、不可逆风险及历史固定证据保留。
+
+下方为历史记录：其中旧路由、ISSUED、微审批、逐调用预算、审查角色和Git禁令不构成当前迁移或未来版的自动授权/默认流程。本轮仅文档迁移与正常GitHub发布；旧任务保持暂停，第三阶段由Owner手动启动。普通错误自主诊断；真正边界/决定/持续阻碍才报告。现状以 CURRENT_STATE.md 为入口，冻结版仍按其原计划和证据身份解释。
+
+---
+
 # 2026-10-05 第二综合阶段已派发／Codex自主连续执行
 
 WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005已原生派发至01a10b18-0d3c-7f82-b0cd-0fdb0b92b1a7/local；原项目1ce219d1-c26f-4297-9b16-23b1f05975f2，D:\EliteSync-v10。完整task和dispatch在同名EVIDENCE root。Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local等待完成/实质阻塞通知，集中独立验收，不逐步骤指导或轮询。上一阶段执行会话不接收新任务。

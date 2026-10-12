@@ -1,3 +1,11 @@
+# 2026-10-12 生效：网页 Astra 管理与 Codex 版本实现
+
+当前规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)，导航见 [DOC_INDEX_CURRENT](../../DOC_INDEX_CURRENT.md)。Owner保留方向决定；网页Astra负责版本规划、最终独立验收与复盘；Codex按冻结版本自主实现、测试、诊断修复并集中交付。旧Work/dot实时管理、逐步骤审批及强制新增多模型循环被本次Owner指令替代。产品/科学定义、真实数据、不可逆风险及历史固定证据保留。
+
+下方为历史记录：其中旧路由、ISSUED、微审批、逐调用预算、审查角色和Git禁令不构成当前迁移或未来版的自动授权/默认流程。本轮仅文档迁移与正常GitHub发布；旧任务保持暂停，第三阶段由Owner手动启动。普通错误自主诊断；真正边界/决定/持续阻碍才报告。现状以 CURRENT_STATE.md 为入口，冻结版仍按其原计划和证据身份解释。
+
+---
+
 # EliteSync-v10｜dot 当前路线｜2026-10-02
 
 状态：ACCEPT/CLOSED；父会话结合非作者独立审查已终裁，见 [review](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/review.md)。Owner 已授权 dot 承接原 Work 职责；active NONE、successor NONE。本页是当前导航与建议，不发布运行任务，不设预算，不恢复自动化。范围与检查见 [plan](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/plan.md)、[result](../../EVIDENCE/DOT-GOVERNANCE-ROUTE-20261002/result.md)；稳定治理入口见 [AGENTS](../../AGENTS.md)、[REVIEW_GATE](../../REVIEW_GATE.md)。

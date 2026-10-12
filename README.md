@@ -1,31 +1,9 @@
-# EliteSync
+# EliteSync-v10
 
-## Product Vision
+EliteSync-v10 is the architecture-reset slow-dating / relationship decision support project. It has existing implementation and bounded historical evidence; migration and design acceptance do not imply production readiness.
 
-EliteSync is a slow-dating product designed to support deliberate, meaningful connections rather than high-volume matching.
+Start with [DOC_INDEX_CURRENT](DOC_INDEX_CURRENT.md), [current workflow](docs/workflow/CURRENT_WORKFLOW.md), [current state](CURRENT_STATE.md) and [project memory](docs/memory/navigation.md). Web GPT 6 Astra manages version planning, independent final acceptance and retrospectives; Owner retains direction; designated Codex implements frozen versions autonomously. Old Sources and previous Work/dot routes are historical snapshots.
 
-## Current Stage
+Canonical source paths: apps/flutter_elitesync_module (Flutter), apps/android (Android host), services/backend-laravel (Laravel). MariaDB is a declared database context, not proof of a running qualified production service. D:/EliteSync is historical 9.x, not the v10 authority.
 
-EliteSync-v10 is in the repository bootstrap phase. This repository currently establishes the minimal product, architecture, migration-boundary, and development context required before implementation begins.
-
-## Technology Stack
-
-- Flutter client
-- Android host
-- Laravel backend
-- MariaDB database
-
-## Repository Structure
-
-The intended canonical implementation paths are:
-
-- `apps/flutter_elitesync_module` — Flutter client
-- `apps/android` — Android host
-- `services/backend-laravel` — Laravel backend
-- `infra` — infrastructure definitions introduced only through future scoped work
-
-These paths are migration candidates and are not populated by this bootstrap.
-
-## Development Overview
-
-Development proceeds through bounded implementation work against GitHub `main`. Architecture and migration boundaries are documented separately, and changes should be validated in proportion to their scope.
+This transition publishes documentation only. Existing local code/evidence can differ from GitHub; see current state. No new version, experiment, production deployment or paused-task resumption is started. The next phase requires Owner's manual start.
