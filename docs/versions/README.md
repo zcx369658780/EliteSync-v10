@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-迁移后首版：尚未制定，等待Owner手动启动第三阶段。没有新版本号、批准状态或冻结计划。本轮不制定/执行第三阶段。
+2026-10-12 Owner 已手动启动第三阶段的 **v10.0.0 版前规划**。已发布 [v10.0.0 计划草案与 Codex 核查任务单](v10.0.0/PLAN_PROPOSAL_V0_1.md)；状态 **PROPOSED / CODEX_FEASIBILITY_REVIEW / NOT_FROZEN / NOT_ISSUED_FOR_IMPLEMENTATION**。正式 `v10.0.0/plan.md` 尚不存在，产品代码开发未获本草案授权。下面原“迁移后首版尚未制定”表述属第二阶段历史时点。
 
 未来可采用versions/<Owner与Astra确定的版本号>/的plan.md、execution.md、acceptance.md、retrospective.md逻辑名称；均待创建，当前不提供不存在文件的链接。也可复用已有准确任务/证据目录。每条登记必须包含阶段、正式计划位置与冻结提交/依据、代码基线和候选commit、执行报告/实际证据、最终验收与复盘位置。草稿用于版前协商，冻结后可清理工作树草稿但保留Git历史，不重写历史。
 

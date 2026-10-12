@@ -9,7 +9,7 @@
 |第二阶段本地接收与手动交接|[Codex 本地交接及下一会话启动 Prompt](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：现场保护、检索实测、同步结果；接手会话仍待 Owner 手动创建和真实读取回报|
 |知识与环境|[记忆导航](docs/memory/navigation.md)、[关键知识](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)、[归档说明](docs/memory/archive-20261012.md)|
 |产品定义与决定|[产品边界摘要](docs/gpt-project-sources/02_产品架构与不可变边界.md)、[正式功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)、[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)|
-|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：迁移后首版尚未制定，等待第三阶段|
+|第三阶段 v10.0.0 版前协商|[v10.0.0 计划草案与 Codex 只读核查任务单](docs/versions/v10.0.0/PLAN_PROPOSAL_V0_1.md)：Owner 已启动版前规划；尚未冻结或授权实现|\n|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：迁移后首版尚未制定，等待第三阶段|
 |计划、结果、验收与复盘|版本登记入口按具名冻结版定位；[历史stage-e2e-v2安全摘要及验收原文](docs/migration/ASTRA_HANDOFF_20261012.md)；[现有证据/契约索引](docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md)只解释其具名历史提交|
 |历史归档及LOCAL_ONLY|[archive指南](docs/archive/README.md)、[重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、归档说明与迁移交接中的私有资料/未覆盖历史说明|
 
