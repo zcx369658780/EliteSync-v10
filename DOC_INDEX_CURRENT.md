@@ -4,7 +4,7 @@
 
 |逻辑槽位|现存正文与用途|
 |---|---|
-|v10.0.4 已接受并完成 GitHub 集成|[冻结计划](docs/versions/v10.0.4/plan.md)、[R1独立验收](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md)、[定点集成](docs/versions/v10.0.4/integration.md)：Readiness解释/兼容恢复，R1修复唯一lint后13项PASS、39/39 Git对象；两个Blob已进main；新版地基线/重验待Codex|
+|v10.0.4 五阶段收口（本地限定重验已回报）|[冻结计划](docs/versions/v10.0.4/plan.md)、[R1终验](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md)、[定点集成](docs/versions/v10.0.4/integration.md)、[当前状态](CURRENT_STATE.md)、[记忆K12](docs/memory/knowledge.md)：两个接受Blob进main；Codex报告新干净基线与集成后13项测试PASS/两文件分析No issues，旧dirty root保留；完整平台/生产仍NOT_RUN|
 |工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现；**2026-10-13 Owner 追加版后安全集成+本地隔离开发基线接续的长期授权**（不自动派单、不覆盖脏 main）|
 |现状、在途、暂停|[CURRENT_STATE](CURRENT_STATE.md)：本地/远端差异、历史通过与未知；[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)|
 |第二阶段本地接收与手动交接（已完成）|[Codex 本地交接及启动 Prompt](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：保留历史现场/检索结果；Owner 后续已确认继任会话入场，交接文档中的“待接收”仅是当时快照；`projectId=null` 不等于已证明上下文不可用|

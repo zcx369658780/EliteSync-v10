@@ -4,6 +4,16 @@ type: note
 permalink: elitesync-v10-local/knowledge
 ---
 
+## K12 v10.0.4 R1 版后新本地隔离基线收口（2026-10-14）
+
+性质：**GitHub远端身份由Astra逐文件独立核对；本地工作树与工具回归由Codex实际报告，网页没有直接读取本机原始证据**。当前事实以[CURRENT_STATE](../../CURRENT_STATE.md)为准；长期规则K08不变。
+
+- 网页已核GitHub `main=d49c308347d2b13f9ad417367b7ae4ec618cb4bc`、Tree `602f2aa0a219d24f6fd696c04bfbde9c442dce33`，已接受`me_purpose_pages.dart` Git Blob `af57d2d5dfc680de8490382e9e717bf790df93eb`和R1测试Git Blob `2d969c6b40f8606e0172d53c8fe485f5195d795a`准确。
+- Codex报告新clean worktree `C:/Users/zcxve/.codex/worktrees/elitesync-main-d49c308/EliteSync-v10` 具名HEAD/Tree与当时GitHub main完全一致，Git状态CLEAN；限域实际运行Flutter三份相关测试`13/13 PASS`、exit0，两个文件分析stdout明确`No issues found!`、exit0。
+- 原dirty `D:/EliteSync-v10`、两份旧clean基线`elitesync-main-2175dd6`/`elitesync-main-64a098f`、原R1候选前后HEAD/index/status不变，109具名保护零变化；旧LOCAL_ONLY成果未全部并入新基线。**LOCAL_DEVELOPMENT_BASELINE_READY与ORIGINAL_DIRTY_MAIN_RECONCILED是不同概念**。
+- v10.0.4已独立验收、两对象定点集成、隔离本地接续和指定范围回归结束，不需重复复制/测验该版。PHP/DB、BE-12完整Feature、完整Router套件、Android、Profile/Release、全App/生产均NOT_RUN；正式Readiness成员、身份政策、资格授权仍UNKNOWN；M6/V57/H1/H2/D0/BE-12保护不变。
+- v10.0.5未开始。以后如Owner发起下版规划，优先基于此已报告CLEAN新基线并定点核对GitHub最新源码；远端另增文档提交不等于新本地工作树自动更新。
+
 ## K11 v10.0.4 R1 独立终验与定点集成（2026-10-14）
 
 性质：Astra对GitHub固定候选源码、原始运行日志、R1源码差异、Git Blob的独立验收记录 + Codex本地测试/保护回执；不扩大为生产资格。详细依据见 [v10.0.4验收](../versions/v10.0.4/acceptance.md) / [复盘](../versions/v10.0.4/retrospective.md) / [集成](../versions/v10.0.4/integration.md)，当前动态状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。

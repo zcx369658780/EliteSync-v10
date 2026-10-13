@@ -1,6 +1,17 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-14 v10.0.4 R1 验收关闭并完成 GitHub 定点集成（最新）
+## 2026-10-14 v10.0.4 R1 本地隔离开发基线接续完成（当前）
+
+Codex 已执行Owner按长期K08流程手动派发的版后工程维护，集中报告 `V10.0.4 LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED — SCOPED_POST_INTEGRATION_TESTS_VERIFIED`。这不是v10.0.5的启动或新的源代码修改。
+
+- **GitHub网页已独立核验**：接续前实际`main=d49c308347d2b13f9ad417367b7ae4ec618cb4bc`、Git Tree `602f2aa0a219d24f6fd696c04bfbde9c442dce33`；接受的Readiness页面`me_purpose_pages.dart` Git Blob `af57d2d5dfc680de8490382e9e717bf790df93eb`、最终R1测试`readiness_purpose_page_test.dart` Git Blob `2d969c6b40f8606e0172d53c8fe485f5195d795a`均从该main实际读取匹配。
+- **Codex本地实际回报（网页不能直接访问Windows原证）**：新隔离干净工作树 `C:/Users/zcxve/.codex/worktrees/elitesync-main-d49c308/EliteSync-v10`，HEAD/Tree匹配上述固定main，Git状态`CLEAN`。仅复用既有SDK/依赖缓存，未下载升级或触碰真实账号、生产API/DB、消息、设备。
+- **集成后限定回归由Codex实际运行并回报**：三份既定Readiness/Match/Router Flutter测试`13/13 PASS`、零失败、exit0；对`me_purpose_pages.dart`及`readiness_purpose_page_test.dart`的Dart analyze同时确认stdout `No issues found!`及exit0。分类 `POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`；**不是网页独立重跑、不是完整App发布资格**。
+- **其他本地现场仍保护**：原`D:/EliteSync-v10` dirty main、两份旧clean基线 `elitesync-main-2175dd6`/`elitesync-main-64a098f`和R1候选的HEAD/index/status，Codex报前后完全不变；原脏根109项具名保护文件零变化。旧LOCAL_ONLY未整体吸收；`ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED`。
+- **终态与限制**：v10.0.4 `ACCEPTED/CLOSED WITH OBSERVATIONS`，远端`GITHUB_MAIN_SCOPED_CODE_INTEGRATED`，新本地隔离基线`LOCAL_DEVELOPMENT_BASELINE_READY`，集成后限定运行`SCOPED_TESTS_VERIFIED_BY_CODEX`。PHP/DB、BE-12完整Feature、完整Router套件、Android/设备、Profile/Release、全App及生产/真实用户`NOT_RUN`；正式Readiness必需集合、身份/准入和真实撤销仍未确立。BE-12默认opaque404、V57/H1/H2/D0及M6保持关闭。**v10.0.5未启动**；最新后续的纯文档状态提交不能倒推出本地HEAD又自动移动。项目知识见[K12](docs/memory/knowledge.md)。
+
+
+## 2026-10-14 v10.0.4 R1 验收关闭并完成 GitHub 定点集成（集成时历史快照）
 
 - Astra 依据首次冻结 [v10.0.4/plan.md](docs/versions/v10.0.4/plan.md)（Blob `e70ca5ef3d96a8086555586239a998227575e01e`）独立审查 R1固定候选 `bd688297da097297f1d8918631d74b8ca6292010`（tree `d0325969a6382a5897a37c60702dca4161d4c1f7`、单父 `5728251c...`）。**Acceptance=ACCEPTED/CLOSED WITH OBSERVATIONS（AC01–AC07 PASS；仅synthetic/dev-test Readiness展示）**。[最终验收](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md) 已归档。原候选`9d49d0...`的`dart analyze`虽然exit0仍有1条新lint，故首轮 AC05 PARTIAL；R1只给新测试if补花括号，产品源码Blob未变，复测**13/13 PASS、Dart分析stdout明确No issues found、均exit0**。R1 manifest **39/39 Git Blob**网页逐项匹配，旧失败日志/报告保留原样。
 - Owner长期K08授权下，GitHub远端主线已定点集成**仅两个接受对象**：`me_purpose_pages.dart` Blob `af57d2d5dfc680de8490382e9e717bf790df93eb` 和 `readiness_purpose_page_test.dart` Blob `2d969c6b40f8606e0172d53c8fe485f5195d795a`。[集成回执](docs/versions/v10.0.4/integration.md)；集成提交 `c6fd2e6258590ea192227156ff0da7849703441f` 已网页远端回读，文件与R1一致。**Integration=GITHUB_MAIN_SCOPED_CODE_INTEGRATED**；旧候选及39文件manifest未整支merge。
