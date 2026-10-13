@@ -12,8 +12,8 @@
 |v10.0.1 独立验收与复盘（已关闭）|[冻结计划](docs/versions/v10.0.1/plan.md)、[验收](docs/versions/v10.0.1/acceptance.md)、[复盘](docs/versions/v10.0.1/retrospective.md)：PHP→JSON→Dart synthetic诊断 ACCEPT/CLOSED；隔离候选未合 main，真实消息权限未开启|
 |v10.0.0 最终验收与复盘|[冻结计划](docs/versions/v10.0.0/plan.md)、[独立验收](docs/versions/v10.0.0/acceptance.md)、[复盘](docs/versions/v10.0.0/retrospective.md)：Acceptance **ACCEPTED/CLOSED**（仅 synthetic/dev-test），Integration **NOT_MERGED**；C 另版|
 |两个 accepted 候选的定点代码整合|[固定集成回执](docs/versions/v10.0.1/integration.md)：14项白名单 Git Blob 进入 GitHub main，历史候选及测试原证保留；原本地 dirty root 未同步，整合后 main 尚未重新运行测试|
-|v10.0.2 正式计划（等待 Owner 派发）|[固定冻结计划](docs/versions/v10.0.2/plan.md)：独立 Debug/Test-only Flutter 只读诊断 Widget；不进正常导航。[三处导航链接勘误](docs/versions/v10.0.2/NAVIGATION_ERRATUM_20261013.md)仅纠路径，不改变冻结 Blob/范围/验收标准；[原草案](docs/versions/v10.0.2/PLAN_PROPOSAL_V0_1.md)留历史|
-|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：v10.0.0 已终验，等待 Owner 决定后续版本/整合|
+|v10.0.2 独立验收与复盘（已关闭）|[冻结计划](docs/versions/v10.0.2/plan.md)、[独立验收](docs/versions/v10.0.2/acceptance.md)、[复盘](docs/versions/v10.0.2/retrospective.md)：Debug/Test-only synthetic 只读 Widget 已接受（附观察）；候选**未合 main**，非Debug/设备/BE-12 Feature仍NOT_RUN；[导航勘误](docs/versions/v10.0.2/NAVIGATION_ERRATUM_20261013.md)只纠链接|
+|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：v10.0.0～v10.0.2 均已独立终验；等待 Owner 下一步决定|
 |计划、结果、验收与复盘|版本登记入口按具名冻结版定位；[历史stage-e2e-v2安全摘要及验收原文](docs/migration/ASTRA_HANDOFF_20261012.md)；[现有证据/契约索引](docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md)只解释其具名历史提交|
 |历史归档及LOCAL_ONLY|[archive指南](docs/archive/README.md)、[重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、归档说明与迁移交接中的私有资料/未覆盖历史说明|
 
