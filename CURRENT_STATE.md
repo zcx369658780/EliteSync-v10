@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.3 验收后 GitHub 定点集成（最新）
+
+依 Owner 2026-10-13 已批准的长期 K08 规则，Astra 已对 v10.0.3 [正式接受](docs/versions/v10.0.3/acceptance.md) / [事实复盘](docs/versions/v10.0.3/retrospective.md) 后的固定候选 `e2f6db455a329c59b2b4158cc50c0e18561a7c99` 做了冲突核查，按**两个确切已接受代码/test Git Blob**定点纳入 GitHub main，详见 [integration.md](docs/versions/v10.0.3/integration.md)。本版原始候选、45项manifest与失败修复日志保持原提交，不整包 merge；GoRouter 动态 Guard 原缺陷实际测试2 PASS/5 FAIL，修复后 Flutter42/42及窄分析exit0的证据仍以**原候选**为准。
+
+**四项状态须分开**：v10.0.3 `Acceptance=ACCEPTED/CLOSED WITH OBSERVATIONS`；GitHub `Integration=GITHUB_MAIN_SCOPED_CODE_INTEGRATED`（Router修复1文件+测试1文件）；**最新远端 main 的 `POST_INTEGRATION_RUNTIME_NOT_RUN`**；既有本地隔离开发基线 `2175dd62...` 于此前具名回执已 READY，但尚未接续本次集成主线 `LOCAL_NEW_MAIN_HANDOFF_PENDING`，原 `D:/EliteSync-v10` dirty main仍单独保留。网页不接触本地Windows、不能宣称两工作树已更新或新主线已测试。下一步 Owner 按长期规则手动交Codex从新的远端 main 定点安全接续隔离干净基线及直接相关42项/限定测试；不要求对旧root执行 pull/reset/rebase/clean/stash，未知或冲突时保存差异。BE-12 404、V57/H1/H2/D0、M6等暂停保持，**不自动启动 v10.0.4**。
+
+
 ## 2026-10-13 v10.0.3 Astra 独立验收已关闭（最新；集成前状态）
 
 依据唯一冻结 `1ed7880a5843d2f1fe31b9d1ba254bf2792cc244` 的 [v10.0.3/plan.md](docs/versions/v10.0.3/plan.md)，Astra 独立核验固定候选 [e2f6db4...](https://github.com/zcx369658780/EliteSync-v10/commit/e2f6db455a329c59b2b4158cc50c0e18561a7c99)、Tree `bd2d0c30cf8fc1d9efd39ffbb52481375ff8fafc`、sole parent `fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae`：原 Router 7项2 PASS/5 FAIL，证明动态 Guard 更新造成 /progress→/home 误跳和 Match失效未入 Readiness；仅修改 `app_router.dart` 的 Guard refresh+dispose，新增唯一 Guard 测试。最终真实 Flutter widget/Router **42/42 PASS**（新增15项），窄分析exit0，45/45 Git Blob回读一致；仅新15项验证受控 HTTP/外部provider/存储写哨兵为0。验收 **`ACCEPTED/CLOSED WITH OBSERVATIONS`，只限 synthetic/dev-test**，记录 [验收](docs/versions/v10.0.3/acceptance.md) 与[复盘](docs/versions/v10.0.3/retrospective.md)。本条为**集成前历史阶段**，截至归档候选仍隔离、不合主线；按Owner长期K08规则可继续**有界定点集成→Codex手动接续本地干净基线**，两者不互相冒称完成。原 `D:/EliteSync-v10` 脏root、旧干净基线据Codex保护回执未变。本版**未执行 PHP/DB/BE-12 Feature/Android设备/Profile/Release/全App，未证真实auth/readiness撤销来源或正式消息许可**，V57/H1/H2/D0及 M6 保护不变，不启动 v10.0.4。

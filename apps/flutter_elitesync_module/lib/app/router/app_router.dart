@@ -57,11 +57,17 @@ import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provi
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  ref.watch(navigationGuardProvider);
   final routeObserver = ref.watch(appRouteObserverProvider);
+  // Guard changes reevaluate the current location without rebuilding the
+  // router (and losing its active branch, deep path, query or page history).
+  final guardRefresh = _GuardRouterRefresh();
+  ref.listen(navigationGuardProvider, (previous, next) {
+    guardRefresh.refresh();
+  });
 
   final env = ref.read(appEnvProvider);
-  return GoRouter(
+  final router = GoRouter(
+    refreshListenable: guardRefresh,
     observers: [routeObserver],
     initialLocation: env.initialRoute ?? AppRouteNames.splash,
     errorBuilder: (context, state) => const InvalidRouteRecoveryPage(),
@@ -483,7 +489,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+  ref.onDispose(() {
+    // GoRouter detaches its refresh listener before the bridge is disposed;
+    // Riverpod owns and closes the Guard subscription with this provider.
+    router.dispose();
+    guardRefresh.dispose();
+  });
+  return router;
 });
+
+class _GuardRouterRefresh extends ChangeNotifier {
+  void refresh() => notifyListeners();
+}
 
 ChatRouteState? chatRouteStateFromPath({
   required String segment,
