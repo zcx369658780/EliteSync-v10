@@ -1,0 +1,3 @@
+C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\app\Domain\ProductConnectionPersistenceApplicationAdapter.php
+C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\app\Domain\InMemoryLogicalPersistenceRepositoryContract.php
+C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\app\Domain\SqliteInMemoryLogicalPersistenceAdapter.php

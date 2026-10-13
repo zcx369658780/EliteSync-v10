@@ -1,0 +1,4 @@
+evidence/** -text
+manifest.json -text
+plan.md -text
+tools/*.py text eol=lf

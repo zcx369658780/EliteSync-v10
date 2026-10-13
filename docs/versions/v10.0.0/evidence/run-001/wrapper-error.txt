@@ -1,0 +1,1 @@
+Observed wrapper exit 1: xml.etree.ElementTree.ParseError: no element found: line 1, column 0. Child stdout: Test file "never" not found. Original child exit code was not persisted; retained UNKNOWN.

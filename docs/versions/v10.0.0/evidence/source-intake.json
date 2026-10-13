@@ -1,0 +1,226 @@
+{
+  "code_parent": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "files": [
+    {
+      "path": "services/backend-laravel/app/Domain/CanonicalMatchPersistenceApplicationAdapter.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "010928d5fd12fcd12d705662ac55bfbeba4f9ec58c847e102d4b3c6817e051b1",
+      "source_git_blob": "789e8905b2c9ee54d902d8b600100896af4f6063",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/CanonicalMatchProposalDecisionEvaluator.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "93f0caa2be99a4ea487adf2ce204b4d12e898b6d9c99ff5c17370b0ede802a94",
+      "source_git_blob": "c101657187348dcafa91afbf0b889bc94f0a0bff",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/CommonAuthorityEvidenceContract.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "c8d15282e3fc27923699ae4feef6e3b78eeaab7ac0b0cec84303e1c1f1fe3562",
+      "source_git_blob": "e98e7db731d41269a7b89e01db12e1a81364751d",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/InMemoryLogicalPersistenceRepositoryContract.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "3b7a808fee6d4dae22424f3aa9d74e2888b9cebe06f12f68afc5aa19c24db58e",
+      "source_git_blob": "6872ee632c4aee692fe7ac9ae22debe8c02e5713",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/LogicalPersistenceAdapterConformanceContract.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "e75559cd77a4a46b409029e3ba10a1fd58d216b0897475ea8df532019c481117",
+      "source_git_blob": "70ef19db69ebc7304b292dbad72675c9ee66f2d8",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingConsentConversationLiveGateEvaluator.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "be2d2b4ac6b1100159368d7accae89542e75466f74b2d254d4001204574168d3",
+      "source_git_blob": "900acab11dda301abdecc7491b10be27655c2155",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingConsentPersistenceApplicationAdapter.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "573e1147bbebf92e574f5c61667a003314c6c97eaa1b4e515f288a8f9922c506",
+      "source_git_blob": "f8d6cf6381b51ebab7e34b6af348b05868616918",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/PersistenceBoundaryApplicationInterfaceIntegrationContract.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "aba6b0de25403af2b44d2e893233f55358519d1aa3d34a112761bb907c22659d",
+      "source_git_blob": "aa9721dfa66fe17eb2314bc9466870d479c07644",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/ProductConnectionPersistenceApplicationAdapter.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "ba8aa1b49e5bd978383f1abd89410fcbd8f784a833a1efdf94404a39c8ce989e",
+      "source_git_blob": "06e1dfa4134a3c01dde5b4cf1ccc592a352f8e84",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/ProductConnectionStateTransitionEvaluator.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "9830dd6be47f1314e579aee08b81b9ae150f8cc8f6dfc419426797a61754d858",
+      "source_git_blob": "a2a2fefe2178834aa5051200cf2d1ecc3d4ea885",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/RuntimeReadinessDerivedEvaluator.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "e03f282c2df51290ceb004a8ccad1e11b16ba0808ddd0a15fb8ce3e45ef3f9e6",
+      "source_git_blob": "1d5918d890d5eb753032b24540a4a133107c811f",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/SqliteInMemoryLogicalPersistenceAdapter.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "39cdd2b47fb5d9f6f0c3466a73230c218e0007e27b6560964c432e67191906bd",
+      "source_git_blob": "6bf26eecd6e19c7f89d9511c69f06cd68c65e6e6",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/composer.json",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "e7cf18fbe91494ec3ef12fa5815cd7723613bc55162f965e81a41a54596ca3f6",
+      "source_git_blob": "64af0a69ce68e0d4c1b1213cd6efb1acdfb080a1",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/composer.lock",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+      "source_git_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/phpunit.xml",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "4627e69756f14b9e47093563a17e447f1e09281d74665a52314c08dae9746431",
+      "source_git_blob": "0ac22afdcc6db3aabbde7e77a0430a8e5738cda9",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/CanonicalMatchPersistenceApplicationAdapterTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "4b830df05dcae5c6ef2170140ddf9a233c7a1edc23af751334003d90d94a0161",
+      "source_git_blob": "c8298f5e786a47d118b56f47cef6baab7f543b60",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/CanonicalMatchPersistenceFamilyTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "d3bf2bfcc79a44c1807c159be0f3d42b476ce4062a6e2f7f26b003525de4e666",
+      "source_git_blob": "aaa5c90f038db7ab3fb92c927c067f7fabe2d423",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/InMemoryLogicalPersistenceRepositoryContractTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "3206e9b491877c3d1f0a619be79d24d2ad0397dc9e56d73a8e75c74917f265e3",
+      "source_git_blob": "f5ed7cef27459faa2f799040f2166fd8e2d15b1f",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/LogicalPersistenceAdapterConformanceContractTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "49d1664b3823426809eccc35154508666981790c8ff533658caa77faff9da86f",
+      "source_git_blob": "71d7db2507b3f8579533aaa80d967f7b351c4acd",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceApplicationAdapterTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "d23938c52865e2d82ffbacbbe55658aafa06a0be385eb252672a28c1c277f17b",
+      "source_git_blob": "a4dfa30089e1f00f1c6316488846263691266036",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceFamilyTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "aca2f9f8480c5cbedfc0f89278e05c8d299ab69d4cf1e17fab61eb10eeb64ed7",
+      "source_git_blob": "fd51a049e9257ecd91dfbd359f73853f0ad1f47e",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/PersistenceBoundaryApplicationInterfaceIntegrationContractTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "e7666c9f4282dacaf1dbf57f5c43765059b67b01e28fd5a2764f9f30a4a799f9",
+      "source_git_blob": "78ac776ecb3f48a9614ad94be3349464af6aa4a5",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "830fc3690e2038975a03adc71678456bfa6d6919790ba8dea6c32df5dc49a86d",
+      "source_git_blob": "f3e0d9839ea79795564b0962f36088a41735b727",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_THEN_VERSION_TEST_DELTA"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceFamilyTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "7d83cbd4d726f91a4f176c1dbc80699e70ac58fc35d4f4683cd5b06c96b1d09e",
+      "source_git_blob": "e4e6b946e5bace72da0bf36db6fd49caa328d00f",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "f21cf8d434ba33d202a26584d5f1353d979ec81ec7c8f166a4594203461c5c12",
+      "source_git_blob": "c68f82adf44af65ca80e51d7fc73bf1522b81980",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/SqliteInMemoryLogicalPersistenceAdapterTest.php",
+      "source": "TRACKED_BASELINE",
+      "source_sha256": "2dfabb0999d2d76e599a67c8e9c2c36c7298d5e3373becb1e3ce1195a4a60b84",
+      "source_git_blob": "5a7c697174710f6b189a6b86681d83d7b4d72d6a",
+      "purpose": "FROZEN_11_TEST_DEPENDENCY",
+      "materialization": "GIT_PARENT_CHECKOUT_MATCHES_SELECTED_ROOT_BYTES"
+    }
+  ],
+  "test_names": [
+    "ProductConnectionPersistenceApplicationAdapterTest",
+    "ProductConnectionPersistenceFamilyTest",
+    "ProductConnectionStateTransitionEvaluatorTest",
+    "CanonicalMatchPersistenceFamilyTest",
+    "CanonicalMatchPersistenceApplicationAdapterTest",
+    "InMemoryLogicalPersistenceRepositoryContractTest",
+    "SqliteInMemoryLogicalPersistenceAdapterTest",
+    "PersistenceBoundaryApplicationInterfaceIntegrationContractTest",
+    "LogicalPersistenceAdapterConformanceContractTest",
+    "MessagingConsentPersistenceFamilyTest",
+    "MessagingConsentPersistenceApplicationAdapterTest"
+  ]
+}

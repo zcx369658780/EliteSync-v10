@@ -1,0 +1,412 @@
+{
+  "schema": "elitesync-v100-technical-manifest-v1",
+  "code_parent": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "frozen_plan_commit": "8072ba51ad1dde2e3c3262a418af54531dcec7e0",
+  "frozen_plan_blob": "ae84a65e3636fa51a188c687154cb51856f58bf9",
+  "scope": [
+    "A",
+    "B",
+    "D"
+  ],
+  "candidate_branch": "codex/v10-0-0-boundary-closure-20261013",
+  "final_commit_and_tree_binding": "The immutable Git commit/tree containing this manifest; reported in Owner delivery receipt. Manifest excludes its own recursive hash.",
+  "final_validation": "evidence/run-002/receipt.json",
+  "files": [
+    {
+      "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/work-review.md",
+      "bytes": 1568,
+      "runtime_bytes_sha256": "4162e135cca6e955206f4d9d796e3841454c7144797bf5b1c5eef6c1519c8482",
+      "canonical_git_blob": "4554bf138ed406eb447c105bc859278fb005d81f",
+      "purpose": "HISTORICAL_ACCEPTANCE"
+    },
+    {
+      "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/work-review.md",
+      "bytes": 1402,
+      "runtime_bytes_sha256": "51d72d6ba4b234db326ad1b883ee2d068f178ad6d79fac9fa8a0806623b02aa4",
+      "canonical_git_blob": "7592b208bd05c8cab9d93ab36ce88635215b9f42",
+      "purpose": "HISTORICAL_ACCEPTANCE"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_IP_13I_R17_R3_PRODUCT_CONNECTION_DOMAIN_TO_APPLICATION_MAPPING_REREVIEW_ACCEPTANCE_V0_1.md",
+      "bytes": 5011,
+      "runtime_bytes_sha256": "d9996c0c1ff3e0d13c920e88d68ea59cf573e3d897252bb59804729d9df4195b",
+      "canonical_git_blob": "2b1f23520912517f0e3ae6735208253fbfa37b4f",
+      "purpose": "HISTORICAL_ACCEPTANCE"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_IP_13I_R18_R1_PRODUCT_CONNECTION_APPLICATION_BINDING_ORDER_CORRECTION_ACCEPTANCE_V0_1.md",
+      "bytes": 2398,
+      "runtime_bytes_sha256": "1cd90f4f95569a6836d55fbfadd685a651a9f0ae109eb08cf7cc9faee0b0191b",
+      "canonical_git_blob": "3b40a1df27ccb345457029227a4dafe51064a5ca",
+      "purpose": "HISTORICAL_ACCEPTANCE"
+    },
+    {
+      "path": "docs/versions/v10.0.0/.gitattributes",
+      "bytes": 75,
+      "runtime_bytes_sha256": "46ee54bf3aac82c3a50ddc57a4730a488142e02bc681c38b19cc10effab45abc",
+      "canonical_git_blob": "569fcd452a1a9bf9c0339a46a4e822f13f979be8",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/autoload-probe.json",
+      "bytes": 921,
+      "runtime_bytes_sha256": "6c71cb66cc621dec5bf832d68d2799af1e5dbe63989cf8be5acd91fd588d29fa",
+      "canonical_git_blob": "318b802fe3cee35276278ec36ec1112e450a38bb",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/autoload-probe.stderr.txt",
+      "bytes": 0,
+      "runtime_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/autoload-probe.stdout.txt",
+      "bytes": 438,
+      "runtime_bytes_sha256": "928e0b8cdb2fc1cdcd00f7eddb08e1bb3938d6c42b14313441fb1ea5c7c9710b",
+      "canonical_git_blob": "11ec7f1aaf962bbe858d2c9058be85983c7e6b41",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/hygiene.json",
+      "bytes": 516,
+      "runtime_bytes_sha256": "5214f769191fb7e62545d795667c46f202d959fe19919e540623d3aaa82db959",
+      "canonical_git_blob": "1c8b10636edc31707d792c6eac4d77b89568af52",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/root-after.json",
+      "bytes": 482,
+      "runtime_bytes_sha256": "03a5a6a5d9e90acc387cbae85db842848498c95b89ca492319303045cb44c763",
+      "canonical_git_blob": "9eb5a4421c897b44170a929641d757f28061a9c9",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/root-before.json",
+      "bytes": 33295,
+      "runtime_bytes_sha256": "1e07bd5cc4b875fbb03ccc78c40e2e3e11cc71c9a53f822483d81c174fc92652",
+      "canonical_git_blob": "9ebd94e79eb4ae21756a3e350caf42634123bb45",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-001/junit.xml",
+      "bytes": 0,
+      "runtime_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-001/receipt.json",
+      "bytes": 7169,
+      "runtime_bytes_sha256": "511530a3fd4069f5bb39742cae99a234724455bb1beccc638182203f12142db6",
+      "canonical_git_blob": "4b545724dfd47cca5ee4c71d8993215d97f4aeb7",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-001/stderr.txt",
+      "bytes": 0,
+      "runtime_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-001/stdout.txt",
+      "bytes": 88,
+      "runtime_bytes_sha256": "ce83222e005111adb3c1eece79016a0a4913025f2cf501603cb5c87d852978c6",
+      "canonical_git_blob": "57c6fb784e6fc999962736bb90bbe08123fd73ea",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-001/wrapper-error.txt",
+      "bytes": 201,
+      "runtime_bytes_sha256": "c0fea59ea410a16d71153dfa233583fe06ab172ad393d88cd6633d6ddb3e9772",
+      "canonical_git_blob": "17129ab303e121719683088ecc14fd0c96d7af92",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-002/junit.xml",
+      "bytes": 144039,
+      "runtime_bytes_sha256": "eb7c18d2809fc30d187512e74cfef7a30946facf07ab3f49cbb39920322371a3",
+      "canonical_git_blob": "fb6ccf249b71dd875a75fa26c18fca7e63f4def0",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-002/receipt.json",
+      "bytes": 7804,
+      "runtime_bytes_sha256": "428574e6620e154fc071c02e5932b43ffae64e03d42e41dbe8b724f23607ecf6",
+      "canonical_git_blob": "5040a9ef43c07e0a9fa9026f4e0052c467c96bd8",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-002/stderr.txt",
+      "bytes": 0,
+      "runtime_bytes_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/run-002/stdout.txt",
+      "bytes": 2335,
+      "runtime_bytes_sha256": "0dbcac6ba09ba721a8d4b0f5e8421ef01ac92afc8d4f9bfdfa2e424f384930b8",
+      "canonical_git_blob": "4418c55a36878198a8aaa865e8e2790aca92709a",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/source-intake.json",
+      "bytes": 12004,
+      "runtime_bytes_sha256": "5580c9f9158fb435f5f93ff8fe00701b1b02b0be25455e4a62f547cbea5ea910",
+      "canonical_git_blob": "5f44721cffa86d03e4ffd4d81611dcbccfef2630",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/evidence/supporting-review.md",
+      "bytes": 767,
+      "runtime_bytes_sha256": "c400f8c869f8c229c1b16130379bb473d8d90cace403d6661a24fe1b2e51defa",
+      "canonical_git_blob": "a52bf4bad4fe2d116df20ba500c2aa07db809d0b",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/execution.md",
+      "bytes": 8046,
+      "runtime_bytes_sha256": "f804f0d7e188fb9d29b2fa28b3aef3119ab714360a87135b9d4a27192dde8e00",
+      "canonical_git_blob": "ad230da5fa112281e671535e87ff2ed9469454f1",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/plan.md",
+      "bytes": 14109,
+      "runtime_bytes_sha256": "23cb480e91aea312288191ccc5f1aa2c180987b40d2341e29382060549536139",
+      "canonical_git_blob": "ae84a65e3636fa51a188c687154cb51856f58bf9",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/tools/prepare_candidate.py",
+      "bytes": 4455,
+      "runtime_bytes_sha256": "f504f3e8fc009b003967af2e5d9de399c3f6bf2827fbd0c14b874bf5fbc9848d",
+      "canonical_git_blob": "6c11dff2588ab3cae6a3988987c1ed2a84336f63",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/tools/run_frozen_suite.py",
+      "bytes": 3619,
+      "runtime_bytes_sha256": "67cd026ebf6bd958d0dedfc7b48146d6ab88cd6de64110d4041d56acc8032e95",
+      "canonical_git_blob": "bca4a67f9fefd129041b62d68660b5ebcf9693d5",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/versions/v10.0.0/tools/seal_candidate.py",
+      "bytes": 5305,
+      "runtime_bytes_sha256": "558d351ba51569c54b7b9bca52a5feefd11cf57795bdb888b5e4941ba46b6a44",
+      "canonical_git_blob": "f3d0b50055b2a7aff4ea1c1aeb85a2a80591dbfd",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "bytes": 3842,
+      "runtime_bytes_sha256": "d7669efa5a9ccdb6dbc1cfad9cf051fa30840da537996cb0e1e72ec978ed4be8",
+      "canonical_git_blob": "f429c7cba4667e2e48b767cf13b399ea637dbd3a",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/CanonicalMatchPersistenceApplicationAdapter.php",
+      "bytes": 39956,
+      "runtime_bytes_sha256": "010928d5fd12fcd12d705662ac55bfbeba4f9ec58c847e102d4b3c6817e051b1",
+      "canonical_git_blob": "789e8905b2c9ee54d902d8b600100896af4f6063",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/CanonicalMatchProposalDecisionEvaluator.php",
+      "bytes": 17276,
+      "runtime_bytes_sha256": "93f0caa2be99a4ea487adf2ce204b4d12e898b6d9c99ff5c17370b0ede802a94",
+      "canonical_git_blob": "c101657187348dcafa91afbf0b889bc94f0a0bff",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/CommonAuthorityEvidenceContract.php",
+      "bytes": 13475,
+      "runtime_bytes_sha256": "c8d15282e3fc27923699ae4feef6e3b78eeaab7ac0b0cec84303e1c1f1fe3562",
+      "canonical_git_blob": "e98e7db731d41269a7b89e01db12e1a81364751d",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/InMemoryLogicalPersistenceRepositoryContract.php",
+      "bytes": 111563,
+      "runtime_bytes_sha256": "3b7a808fee6d4dae22424f3aa9d74e2888b9cebe06f12f68afc5aa19c24db58e",
+      "canonical_git_blob": "6872ee632c4aee692fe7ac9ae22debe8c02e5713",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/LogicalPersistenceAdapterConformanceContract.php",
+      "bytes": 11071,
+      "runtime_bytes_sha256": "e75559cd77a4a46b409029e3ba10a1fd58d216b0897475ea8df532019c481117",
+      "canonical_git_blob": "70ef19db69ebc7304b292dbad72675c9ee66f2d8",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingConsentConversationLiveGateEvaluator.php",
+      "bytes": 31161,
+      "runtime_bytes_sha256": "be2d2b4ac6b1100159368d7accae89542e75466f74b2d254d4001204574168d3",
+      "canonical_git_blob": "900acab11dda301abdecc7491b10be27655c2155",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingConsentPersistenceApplicationAdapter.php",
+      "bytes": 17821,
+      "runtime_bytes_sha256": "573e1147bbebf92e574f5c61667a003314c6c97eaa1b4e515f288a8f9922c506",
+      "canonical_git_blob": "f8d6cf6381b51ebab7e34b6af348b05868616918",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/PersistenceBoundaryApplicationInterfaceIntegrationContract.php",
+      "bytes": 19118,
+      "runtime_bytes_sha256": "aba6b0de25403af2b44d2e893233f55358519d1aa3d34a112761bb907c22659d",
+      "canonical_git_blob": "aa9721dfa66fe17eb2314bc9466870d479c07644",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/ProductConnectionPersistenceApplicationAdapter.php",
+      "bytes": 43021,
+      "runtime_bytes_sha256": "ba8aa1b49e5bd978383f1abd89410fcbd8f784a833a1efdf94404a39c8ce989e",
+      "canonical_git_blob": "06e1dfa4134a3c01dde5b4cf1ccc592a352f8e84",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/ProductConnectionStateTransitionEvaluator.php",
+      "bytes": 23569,
+      "runtime_bytes_sha256": "9830dd6be47f1314e579aee08b81b9ae150f8cc8f6dfc419426797a61754d858",
+      "canonical_git_blob": "a2a2fefe2178834aa5051200cf2d1ecc3d4ea885",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/RuntimeReadinessDerivedEvaluator.php",
+      "bytes": 12312,
+      "runtime_bytes_sha256": "e03f282c2df51290ceb004a8ccad1e11b16ba0808ddd0a15fb8ce3e45ef3f9e6",
+      "canonical_git_blob": "1d5918d890d5eb753032b24540a4a133107c811f",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/SqliteInMemoryLogicalPersistenceAdapter.php",
+      "bytes": 30891,
+      "runtime_bytes_sha256": "39cdd2b47fb5d9f6f0c3466a73230c218e0007e27b6560964c432e67191906bd",
+      "canonical_git_blob": "6bf26eecd6e19c7f89d9511c69f06cd68c65e6e6",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/composer.json",
+      "bytes": 2415,
+      "runtime_bytes_sha256": "e7cf18fbe91494ec3ef12fa5815cd7723613bc55162f965e81a41a54596ca3f6",
+      "canonical_git_blob": "64af0a69ce68e0d4c1b1213cd6efb1acdfb080a1",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/composer.lock",
+      "bytes": 315896,
+      "runtime_bytes_sha256": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+      "canonical_git_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/phpunit.v100.xml",
+      "bytes": 1974,
+      "runtime_bytes_sha256": "2120b7195d6b6eb4ab2e6b89c5b01529b09f37975e17d260393ee734eb76da46",
+      "canonical_git_blob": "a140850493028ef9a62c168cffdba25bbcf89eaa",
+      "purpose": "VERSION_EVIDENCE_OR_REPRODUCTION"
+    },
+    {
+      "path": "services/backend-laravel/phpunit.xml",
+      "bytes": 1323,
+      "runtime_bytes_sha256": "4627e69756f14b9e47093563a17e447f1e09281d74665a52314c08dae9746431",
+      "canonical_git_blob": "0ac22afdcc6db3aabbde7e77a0430a8e5738cda9",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/CanonicalMatchPersistenceApplicationAdapterTest.php",
+      "bytes": 31934,
+      "runtime_bytes_sha256": "4b830df05dcae5c6ef2170140ddf9a233c7a1edc23af751334003d90d94a0161",
+      "canonical_git_blob": "c8298f5e786a47d118b56f47cef6baab7f543b60",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/CanonicalMatchPersistenceFamilyTest.php",
+      "bytes": 31089,
+      "runtime_bytes_sha256": "d3bf2bfcc79a44c1807c159be0f3d42b476ce4062a6e2f7f26b003525de4e666",
+      "canonical_git_blob": "aaa5c90f038db7ab3fb92c927c067f7fabe2d423",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/InMemoryLogicalPersistenceRepositoryContractTest.php",
+      "bytes": 22068,
+      "runtime_bytes_sha256": "3206e9b491877c3d1f0a619be79d24d2ad0397dc9e56d73a8e75c74917f265e3",
+      "canonical_git_blob": "f5ed7cef27459faa2f799040f2166fd8e2d15b1f",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/LogicalPersistenceAdapterConformanceContractTest.php",
+      "bytes": 21688,
+      "runtime_bytes_sha256": "49d1664b3823426809eccc35154508666981790c8ff533658caa77faff9da86f",
+      "canonical_git_blob": "71d7db2507b3f8579533aaa80d967f7b351c4acd",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceApplicationAdapterTest.php",
+      "bytes": 9594,
+      "runtime_bytes_sha256": "d23938c52865e2d82ffbacbbe55658aafa06a0be385eb252672a28c1c277f17b",
+      "canonical_git_blob": "a4dfa30089e1f00f1c6316488846263691266036",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceFamilyTest.php",
+      "bytes": 21474,
+      "runtime_bytes_sha256": "aca2f9f8480c5cbedfc0f89278e05c8d299ab69d4cf1e17fab61eb10eeb64ed7",
+      "canonical_git_blob": "fd51a049e9257ecd91dfbd359f73853f0ad1f47e",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/PersistenceBoundaryApplicationInterfaceIntegrationContractTest.php",
+      "bytes": 21732,
+      "runtime_bytes_sha256": "e7666c9f4282dacaf1dbf57f5c43765059b67b01e28fd5a2764f9f30a4a799f9",
+      "canonical_git_blob": "78ac776ecb3f48a9614ad94be3349464af6aa4a5",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php",
+      "bytes": 30579,
+      "runtime_bytes_sha256": "7848dfb1b5b45df85b2047a3f60426947a2f32f13a70a91f31a46524a951f6b7",
+      "canonical_git_blob": "5e59626a5ed640482cc786862f5e1e9c01511262",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceFamilyTest.php",
+      "bytes": 21145,
+      "runtime_bytes_sha256": "7d83cbd4d726f91a4f176c1dbc80699e70ac58fc35d4f4683cd5b06c96b1d09e",
+      "canonical_git_blob": "e4e6b946e5bace72da0bf36db6fd49caa328d00f",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php",
+      "bytes": 38287,
+      "runtime_bytes_sha256": "f21cf8d434ba33d202a26584d5f1353d979ec81ec7c8f166a4594203461c5c12",
+      "canonical_git_blob": "c68f82adf44af65ca80e51d7fc73bf1522b81980",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/SqliteInMemoryLogicalPersistenceAdapterTest.php",
+      "bytes": 20440,
+      "runtime_bytes_sha256": "2dfabb0999d2d76e599a67c8e9c2c36c7298d5e3373becb1e3ce1195a4a60b84",
+      "canonical_git_blob": "5a7c697174710f6b189a6b86681d83d7b4d72d6a",
+      "purpose": "SELECTED_TEST_CLOSURE"
+    }
+  ],
+  "original_root_preserved": true,
+  "byte_identity_note": "runtime_bytes_sha256 records Windows test checkout bytes; canonical_git_blob is the Git identity after attributes/EOL normalization. evidence/** is -text to retain raw streams.",
+  "excluded": [
+    "vendor binaries",
+    "Flutter/local-only App/EliteSync",
+    "unrelated EVIDENCE",
+    "C bridge",
+    "V57/H1/H2/D0",
+    "real data and production"
+  ],
+  "acceptance": "ASTRA_PENDING"
+}

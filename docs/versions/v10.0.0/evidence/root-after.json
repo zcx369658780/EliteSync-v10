@@ -1,0 +1,13 @@
+{
+  "head": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "branch": "main",
+  "index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+  "status_sha256": "9109b676615f21221399582606956b04d962df3f5a36d62c9f8d7d1ce24f4559",
+  "tracked_changed": 43,
+  "untracked_normal": 208,
+  "old_worktree_registry_preserved": true,
+  "worktree_count": 224,
+  "tracked_files_match": true,
+  "protected_files_match": true,
+  "original_root_preserved": true
+}

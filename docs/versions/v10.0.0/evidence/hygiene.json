@@ -1,0 +1,7 @@
+{
+  "authored_code_and_report_diff_check_exit": 0,
+  "whole_package_diff_check_exit": 1,
+  "whole_package_diagnostic": "Raw -text evidence retains Windows CRLF; Git calls retained CR trailing whitespace. Immutable frozen Markdown also contains intentional hard-break spaces. Authored Python/report EOF blanks were corrected. Frozen plan/raw streams were not rewritten.",
+  "frozen_plan_exact_blob": "ae84a65e3636fa51a188c687154cb51856f58bf9",
+  "no_test_or_product_source_change_after_successful_run": true
+}

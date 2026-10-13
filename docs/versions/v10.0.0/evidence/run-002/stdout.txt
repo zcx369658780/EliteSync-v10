@@ -1,0 +1,36 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\phpunit.v100.xml
+
+...............................................................  63 / 301 ( 20%)
+............................................................... 126 / 301 ( 41%)
+............................................................... 189 / 301 ( 62%)
+...........................D......D............................ 252 / 301 ( 83%)
+.................................................               301 / 301 (100%)
+
+Time: 00:00.659, Memory: 14.00 MB
+
+There were 2 PHPUnit test runner deprecations:
+
+1) Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testCanonicalTransitionIsAdmissible(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+2) Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testTerminalSameIdentityStatesHaveNoOutgoingTransition(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+--
+
+2 tests triggered 1 PHP deprecation:
+
+1) C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\tests\Unit\CanonicalMatchPersistenceApplicationAdapterTest.php:690
+Method ReflectionMethod::setAccessible() is deprecated since 8.5, as it has no effect since PHP 8.1
+
+Triggered by:
+
+* Tests\Unit\CanonicalMatchPersistenceApplicationAdapterTest::test_generic_overlay_and_exact_readback_mismatches_fail_closed_without_reclassifying_match (9 times)
+  C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\tests\Unit\CanonicalMatchPersistenceApplicationAdapterTest.php:425
+
+* Tests\Unit\CanonicalMatchPersistenceApplicationAdapterTest::test_source_purpose_mismatch_remains_persistable_unknown_with_derived_protected_use_purpose (2 times)
+  C:\Users\zcxve\.codex\worktrees\elitesync-v100\EliteSync-v10\services\backend-laravel\tests\Unit\CanonicalMatchPersistenceApplicationAdapterTest.php:118
+
+OK, but there were issues!
+Tests: 301, Assertions: 4056, Deprecations: 1, PHPUnit Deprecations: 2.
