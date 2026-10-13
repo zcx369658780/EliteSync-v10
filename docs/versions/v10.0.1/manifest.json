@@ -1,0 +1,357 @@
+{
+  "plan_commit": "f39ed2d41360b14637464937b36b5dfea945d29e",
+  "plan_blob": "c74bfe1619f69f6f496d187769668e3560759b17",
+  "parent": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "branch": "codex/v10-0-1-diagnostic",
+  "candidate_identity": "THE_FIXED_COMMIT_CONTAINING_THIS_MANIFEST; actual Git commit/tree checked in publication readback",
+  "exclusions": [
+    "manifest.json itself to avoid recursive hash",
+    "ignored vendor, .dart_tool and build caches",
+    "all historical raw evidence packages",
+    "all unrelated dirty root files"
+  ],
+  "payload_count": 56,
+  "payload": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/domain/qualification_diagnostic.dart",
+      "bytes": 6852,
+      "sha256": "feb3de8b1b622a4290014668a0daad792cb15af50358f3c786a59bb96cfc4edf",
+      "git_blob": "1d5a4cc16040d73432a0548f4cb57b85fc5bef58"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+      "bytes": 8698,
+      "sha256": "2df8ff5279b920288e591a48d4afb8d5ac94c05bd142ee859d17dd2cddb8547b",
+      "git_blob": "3e67da81d5844fdefddfd20b05e278a078f37d95"
+    },
+    {
+      "path": "docs/versions/v10.0.1/delivery.md",
+      "bytes": 10323,
+      "sha256": "fcc10ac44feaf1e075ef305acb95d1b7ef2e968701a7aa87c77d35e7c95db41f",
+      "git_blob": "13d81417bbc1a639ed7b9b97bd46c4f21ffde8da"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/accepted-test-intake.json",
+      "bytes": 450,
+      "sha256": "e929577e691ea2484eb3ab915e762c52c621385aecf7e61880d13d97544a1fcc",
+      "git_blob": "12173a56a61b409174190737b24dca357411d442"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/failures-and-retained-gaps.json",
+      "bytes": 1756,
+      "sha256": "c50513edb21e28e2cf10e0af012fe4655767ef3c6d00047f9661c140dd847d0a",
+      "git_blob": "e55505595f99ac26443c8ca619c086f896d1fe5b"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/frozen-plan.md",
+      "bytes": 19521,
+      "sha256": "cd71f3c131c5c424d9f8f6e9c3ed9af45e662365204fe7c0faefc015beee9d92",
+      "git_blob": "c74bfe1619f69f6f496d187769668e3560759b17"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/historical-acceptance-identities.json",
+      "bytes": 680,
+      "sha256": "53a781053cd5210914d8b757e7a9d50f3987c367af427e2d7aea8e57c4e83384",
+      "git_blob": "b7b59ddcdb7711601c1a37fd6781fcb14428f4c4"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/root-after.json",
+      "bytes": 429,
+      "sha256": "a14aafec20b770ed85bf82b6a4eee8479fc5d206e40f481f362ddeefb885dbc8",
+      "git_blob": "0f583e484b69cc7c953227d43b23bc245fe22cc9"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/root-before.json",
+      "bytes": 43969,
+      "sha256": "4b653eab2c7f062038e34cbba841f28bde19734718cd4ff6fde0acfd6eaaf94e",
+      "git_blob": "c17c211cb2e90ccf8dd9d35184c71a7fae21672a"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/dart-consumer.receipt.json",
+      "bytes": 861,
+      "sha256": "f9ce605ed892889f5ccad085da7f44bcd097fe6d888cf4cdbea3a2c5b31c2ad8",
+      "git_blob": "1ed5e83472b5815b43c11b7d00cede8b6c8eb36c"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/dart-consumer.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/dart-consumer.stdout.txt",
+      "bytes": 1563,
+      "sha256": "a72f321507c07a26b677b86140bccf6c2a1f5619447e18822d9c2a3021903724",
+      "git_blob": "173f7b0a705d5c93922016060359561856ec8ab3"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/diagnostic.json",
+      "bytes": 3229,
+      "sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "git_blob": "5d83355d2f3dade8ddd1f07d1ac1efd51226566a"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/junit.xml",
+      "bytes": 141557,
+      "sha256": "bcfae90a4f647f4c61e9dc252fe1b03d97b1b37e749ff70c7b7ef07c9a3f88b0",
+      "git_blob": "bdd62cbce908003e82174ef94e74b885c5a5767d"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/php-export.receipt.json",
+      "bytes": 693,
+      "sha256": "fb1ed331efffce0632af7da704b368588e79f98aa651b9235a68d0d32d013cb5",
+      "git_blob": "cb975016f4b071c059b16a1f80ec2e050e4298eb"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/php-export.stderr.txt",
+      "bytes": 115895,
+      "sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841",
+      "git_blob": "96ca3a853e76d6cb393444610d6c453a29507613"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/php-version.receipt.json",
+      "bytes": 527,
+      "sha256": "621ba4a2f0fcc420dffe345cb9504629e1bb90197d32ad9e150c796620587eba",
+      "git_blob": "6a8c2eaa02d3ec0555acaf68d3c3d9b2d8624e90"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/php-version.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/php-version.stdout.txt",
+      "bytes": 241,
+      "sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "git_blob": "c36a3652bf9f58541fd5c08b422b772235a949fe"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/phpunit.receipt.json",
+      "bytes": 1118,
+      "sha256": "720acc8b67f74b9fcd084c5400e9943acfc1854e146c9069b9f927e05bcb2ce7",
+      "git_blob": "92bf0c117e0f394964d1ec6f803dd4e90f1d4d4a"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/phpunit.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/phpunit.stdout.txt",
+      "bytes": 736,
+      "sha256": "c58191c52450555f7def7e13c524d101a03c97cf64e0f4e5969ec29b8c2e2ca1",
+      "git_blob": "7850b9a6565ea923e8008a092b6de9914a914377"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/pure-be12-guard.receipt.json",
+      "bytes": 2070,
+      "sha256": "cd483651f289076b8bfadd99e0d831447df347263937f0e122023b48ffe61697",
+      "git_blob": "e5d3342bc33107ea4fbe30fae611e6c57abc1399"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/pure-be12-guard.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/pure-be12-guard.stdout.txt",
+      "bytes": 710,
+      "sha256": "4ab3396a3101f0917bcb661048497b62d5cd89c340699588dc80669f7109125e",
+      "git_blob": "04a050d73f17199d370d7f6b668bb53aeb4d3726"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-01/summary.json",
+      "bytes": 13828,
+      "sha256": "5b81c6befe729996df00d5025445544ac5b4c74c40da50d794385b8b13982cb6",
+      "git_blob": "06d096f080e8fa1eec669e6c0426ddb49fb6d13c"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/dart-consumer.receipt.json",
+      "bytes": 916,
+      "sha256": "a255b2d97cf8e2e6d9165d491a969967b08ddc29fc977762d60c66c20c27d7ea",
+      "git_blob": "1638cbe749f8212cc5ae41a3b6da258aaafe0c93"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/dart-consumer.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/dart-consumer.stdout.txt",
+      "bytes": 1083,
+      "sha256": "15d30826b03f38199dda00b4554d7909449378e8783c7c4f17d17743f4cd5662",
+      "git_blob": "09221c0b3afb85d9444b628f2a38d87bff9651ee"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/diagnostic.json",
+      "bytes": 3229,
+      "sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "git_blob": "5d83355d2f3dade8ddd1f07d1ac1efd51226566a"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/junit.xml",
+      "bytes": 141557,
+      "sha256": "d1dda904fe1896e475b84f857684e08afcb8b003bc312aee237e90bb3bae7fd0",
+      "git_blob": "f6148376aba869035faaa685f4e7032e6f1d053c"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/php-export.receipt.json",
+      "bytes": 693,
+      "sha256": "28c8800354efc26fec2b77c0bc5ed73cf7bc3d52408b508d21bc85ef584bfb56",
+      "git_blob": "9ca392cd3478b5e0e2d13b0b6f0ebbec1bf3187f"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/php-export.stderr.txt",
+      "bytes": 115895,
+      "sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841",
+      "git_blob": "96ca3a853e76d6cb393444610d6c453a29507613"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/php-version.receipt.json",
+      "bytes": 527,
+      "sha256": "987bdbf22dc4badfa2afa09a5d6edb402817869dc460be6b1420883e6c24501c",
+      "git_blob": "ee8bd0fed522ba0176c7edfc48a7940a122c76ca"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/php-version.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/php-version.stdout.txt",
+      "bytes": 241,
+      "sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "git_blob": "c36a3652bf9f58541fd5c08b422b772235a949fe"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/phpunit.receipt.json",
+      "bytes": 1157,
+      "sha256": "c756d13a8058928f22cb1636a343f67811780fe92c2f92051a54f1ef55531ab3",
+      "git_blob": "a51cf25d0ede27f08293869d721384ccb90736c0"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/phpunit.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/phpunit.stdout.txt",
+      "bytes": 1357,
+      "sha256": "7c49718e4cf88c8c329250518e709eb31eeda3b1dbc37cdc6360f7442b9eb1c9",
+      "git_blob": "43590a8668cfaee77cf54d3d8502c809acd3b433"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/pure-be12-guard.receipt.json",
+      "bytes": 2070,
+      "sha256": "040a872351150fe3a614f9c24c2e6aa4ae1392017d95ed057df78a0648c59fef",
+      "git_blob": "b40608483d127979351bb7386b0425e02968cb2e"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/pure-be12-guard.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/pure-be12-guard.stdout.txt",
+      "bytes": 710,
+      "sha256": "4ab3396a3101f0917bcb661048497b62d5cd89c340699588dc80669f7109125e",
+      "git_blob": "04a050d73f17199d370d7f6b668bb53aeb4d3726"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/run-02/summary.json",
+      "bytes": 14259,
+      "sha256": "1f85c0b21f6ed4ebbbd13555f477e2ef55658fb524119b6f4216bd062ccd8316",
+      "git_blob": "bbf20b10c3262857b687d689184fb744ae0e0969"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/source-intake.json",
+      "bytes": 6298,
+      "sha256": "ec9fb078fec7754d46ae5ecc1680a6f54c8d118f5ca0a77804ca00ac0083595a",
+      "git_blob": "69fc7e06d0bdee9e8582ee247bd5b22d5761f8e4"
+    },
+    {
+      "path": "docs/versions/v10.0.1/evidence/tool-identities.json",
+      "bytes": 2023,
+      "sha256": "0bd6d4793ef7e0e0ac38a0cb8cffbb2b6eb2f866704676dff3cec5b8c287a303",
+      "git_blob": "a14bead59f10ff5d500b7897e7eb24a1149455ae"
+    },
+    {
+      "path": "docs/versions/v10.0.1/phpunit.test-only.xml",
+      "bytes": 1772,
+      "sha256": "04f991e74af68b28f0e72c5b1680b62d4dd7cbad42b2f98f944ed732850c0370",
+      "git_blob": "c29386d5135eb56ec0bb9e4f1b1745f3b03be0f1"
+    },
+    {
+      "path": "docs/versions/v10.0.1/tools/validate_diagnostics.py",
+      "bytes": 12198,
+      "sha256": "1bdce4f98e29f0bd72624a5a4da6b8a3815cd7c7d4c4401767502cf88468b941",
+      "git_blob": "a8845ea28ed77c7009c85f4a6ee76465030ed6d7"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationLifecycle/FrozenQualificationSource.php",
+      "bytes": 484,
+      "sha256": "5a74076e3c93914ab8add6365fd492724bfb47d6af6475bc1d72c0dffdacff99",
+      "git_blob": "5d4f9fb8238910a3a3c0cf090799dcafff6f341d"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationLifecycle/LocalTestConversationLifecycle.php",
+      "bytes": 20273,
+      "sha256": "44fb7a84511d0ea55f1ab8f36a663d34ce85c98745337f1362ce8099feb6cc81",
+      "git_blob": "3fb229d8406514f295850e33e1759db362ad08f5"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationQualificationSource.php",
+      "bytes": 504,
+      "sha256": "ca398dfc3aa06eea0597c4582f1750be4e1f86dc6a3b921a3a709a2c1069db83",
+      "git_blob": "5939892786098f8b29a1c5e29acee6dd50c6eab2"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationUsePointQualifier.php",
+      "bytes": 15007,
+      "sha256": "30a5a2b2aabe5e403d0e21000697f26494321ae99892cefda0a0f6da86e4a3c6",
+      "git_blob": "2ebf5d6afb8a09c3819584936135c3aa725b55b3"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextAuthority/ExistingEvaluatorEvidenceAdapter.php",
+      "bytes": 3657,
+      "sha256": "a48d14114dca37d710cfc04dd84d11ea8389ca3bf8f3b7e23d8b93605b9664bd",
+      "git_blob": "c48432cbd2330cacf91e06c138868e5dc16071de"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationLifecycle/FixtureFourFamilySource.php",
+      "bytes": 3797,
+      "sha256": "d14efd20d927b289abaef8cc558ad376b9c018964900b6d0a56200ad550a8dcb",
+      "git_blob": "236d4be9d9aab4da9719f4883f48f7cf58ef3513"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/DiagnosticScenarioFactory.php",
+      "bytes": 11945,
+      "sha256": "43ea04b436029d6c34d55a3bcdcc0a7ca5b8a3d640436f4309955c28a254dca2",
+      "git_blob": "d17169285e15969aa2a219d433e6230cad39ed86"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/export_diagnostic_fixture.php",
+      "bytes": 1763,
+      "sha256": "6a757b23b35cb328fc58838e08aa822c00e13bca9859328b5f74882f593c696e",
+      "git_blob": "77389961019e49cbf5d8a35d84b9afa3af05c4f6"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php",
+      "bytes": 30579,
+      "sha256": "7848dfb1b5b45df85b2047a3f60426947a2f32f13a70a91f31a46524a951f6b7",
+      "git_blob": "5e59626a5ed640482cc786862f5e1e9c01511262"
+    }
+  ],
+  "final_run": "evidence/run-02/summary.json",
+  "accepted_test_blob": "5e59626a5ed640482cc786862f5e1e9c01511262",
+  "root_protection": "evidence/root-before.json and evidence/root-after.json; 109 named files",
+  "acceptance": "AUTHOR_VERIFIED_ASTRA_PENDING",
+  "integration": "ISOLATED_CANDIDATE_ONLY_MAIN_NOT_MERGED"
+}

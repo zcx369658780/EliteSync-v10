@@ -1,0 +1,32 @@
+{
+  "name": "phpunit",
+  "argv": [
+    "C:\\tools\\php85\\php.exe",
+    "-n",
+    "-d",
+    "extension_dir=C:\\tools\\php85\\ext",
+    "-d",
+    "extension=mbstring",
+    "-d",
+    "extension=pdo_sqlite",
+    "-d",
+    "extension=sqlite3",
+    "-d",
+    "extension=fileinfo",
+    "vendor/bin/phpunit",
+    "--configuration",
+    "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\phpunit.test-only.xml",
+    "--do-not-cache-result",
+    "--display-phpunit-deprecations",
+    "--colors=never",
+    "--log-junit",
+    "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\evidence\\run-02\\junit.xml"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\services\\backend-laravel",
+  "started_utc": "2026-10-13T02:45:37.932051+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.265,
+  "stdout_sha256": "7c49718e4cf88c8c329250518e709eb31eeda3b1dbc37cdc6360f7442b9eb1c9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completed_utc": "2026-10-13T02:45:38.200971+00:00"
+}

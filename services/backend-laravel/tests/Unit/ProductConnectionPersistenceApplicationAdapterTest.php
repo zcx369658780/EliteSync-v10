@@ -8,6 +8,7 @@ use App\Domain\PersistenceBoundaryApplicationInterfaceIntegrationContract;
 use App\Domain\ProductConnectionPersistenceApplicationAdapter;
 use App\Domain\SqliteInMemoryLogicalPersistenceAdapter;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ProductConnectionPersistenceApplicationAdapterTest extends TestCase
@@ -83,6 +84,237 @@ final class ProductConnectionPersistenceApplicationAdapterTest extends TestCase
             'EXACT_PRODUCT_CONNECTION_CURRENT_STATE_PROJECTION_MATERIALIZED_DOMAIN_UNUSABLE',
             $result['condition'],
         );
+    }
+
+    #[DataProvider('bindingShapeCases')]
+    public function test_nested_binding_missing_or_extra_keys_are_structural_errors(
+        bool $transition,
+        string $side,
+        string $field,
+        bool $extra,
+    ): void {
+        [$adapter] = $this->adapter();
+        $request = $this->bindingRequest($transition);
+        $item = &$request[$transition ? 'transition_evidence' : 'state_evidence'][0];
+        $bindings = &$item['required_bindings'];
+        if ($side === 'source') {
+            $bindings = &$item['source_evidence']['bindings'];
+        }
+        if ($extra) {
+            $bindings[$field] = 'SYNTHETIC_UNDECLARED_FIELD';
+        } else {
+            unset($bindings[$field]);
+        }
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('INVALID_EVIDENCE_SHAPE');
+        $this->evaluateBindingRequest($adapter, $request, $transition);
+    }
+
+    /** @return iterable<string, array{bool, string, string, bool}> */
+    public static function bindingShapeCases(): iterable
+    {
+        foreach ([false, true] as $transition) {
+            foreach (['required', 'source'] as $side) {
+                $prefix = ($transition ? 'transition' : 'current').'-'.$side;
+                foreach (self::bindingFields() as $field) {
+                    yield $prefix.'-missing-'.$field => [$transition, $side, $field, false];
+                }
+                yield $prefix.'-extra-key' => [$transition, $side, 'undeclared_binding', true];
+            }
+        }
+    }
+
+    #[DataProvider('bindingTypeCases')]
+    public function test_nested_binding_type_changes_are_not_coerced(
+        bool $transition,
+        string $side,
+        string $field,
+        mixed $value,
+    ): void {
+        [$adapter] = $this->adapter();
+        $request = $this->bindingRequest($transition);
+        $item = &$request[$transition ? 'transition_evidence' : 'state_evidence'][0];
+        if ($side === 'required') {
+            $item['required_bindings'][$field] = $value;
+        } else {
+            $item['source_evidence']['bindings'][$field] = $value;
+        }
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('INVALID_EVIDENCE_SHAPE');
+        $this->evaluateBindingRequest($adapter, $request, $transition);
+    }
+
+    /** @return iterable<string, array{bool, string, string, mixed}> */
+    public static function bindingTypeCases(): iterable
+    {
+        foreach ([false, true] as $transition) {
+            foreach (['required', 'source'] as $side) {
+                foreach (self::bindingFields() as $field) {
+                    $value = match ($field) {
+                        'participants' => ['synthetic-participant-a', 1],
+                        'terminal' => 0,
+                        default => 1,
+                    };
+                    yield ($transition ? 'transition' : 'current').'-'.$side.'-'.$field
+                        => [$transition, $side, $field, $value];
+                }
+            }
+        }
+    }
+
+    #[DataProvider('bindingValueCases')]
+    public function test_each_validly_typed_binding_mismatch_is_persisted_but_not_usable(
+        bool $transition,
+        string $side,
+        string $field,
+    ): void {
+        [$adapter] = $this->adapter();
+        $request = $this->bindingRequest($transition);
+        $item = &$request[$transition ? 'transition_evidence' : 'state_evidence'][0];
+        $value = match ($field) {
+            'participants' => array_reverse($item['required_bindings']['participants']),
+            'terminal' => true,
+            default => 'synthetic-different-'.$field,
+        };
+        if ($side === 'required') {
+            $item['required_bindings'][$field] = $value;
+        } else {
+            $item['source_evidence']['bindings'][$field] = $value;
+            // Preserve source-local revision coherence so this probes protected equality,
+            // rather than failing the structural source-revision gate first.
+            if (in_array($field, ['authority_owner', 'authority_scope', 'aggregate_context'], true)) {
+                $item['source_evidence']['source_revision'][$field] = $value;
+            }
+        }
+        $original = $request;
+        $first = $this->evaluateBindingRequest($adapter, $request, $transition);
+        $second = $this->evaluateBindingRequest($adapter, $request, $transition);
+
+        self::assertSame($original, $request);
+        self::assertSame('UNKNOWN', $first['classification']);
+        self::assertSame([
+            $transition ? 'TRANSITION_NOT_CURRENT_FRESH_BOUND' : 'CURRENT_STATE_NOT_CURRENT_FRESH_BOUND',
+        ], $first['reason_categories']);
+        $dependency = $transition ? 'transition_dependency' : 'current_state_dependency';
+        self::assertFalse($first['product_connection_payload'][$dependency]['protected_binding_satisfied']);
+        self::assertFalse($first['materialized_projection_usable']);
+        self::assertSame(
+            'EXACT_PRODUCT_CONNECTION_'.($transition ? 'TRANSITION' : 'CURRENT_STATE')
+                .'_PROJECTION_MATERIALIZED_DOMAIN_UNUSABLE',
+            $first['condition'],
+        );
+        self::assertSame(InMemoryLogicalPersistenceRepositoryContract::STORED_NEW, $first['storage_disposition']);
+        self::assertSame(InMemoryLogicalPersistenceRepositoryContract::EXACT_DUPLICATE, $second['storage_disposition']);
+        self::assertSame('EXACT', $first['binding_classification']);
+        self::assertSame($first['product_connection_payload'], $second['product_connection_payload']);
+        self::assertSame($first['logical_record_identity'], $second['logical_record_identity']);
+        self::assertFalse($first['permission']);
+        self::assertFalse($first['conversation_granted']);
+    }
+
+    /** @return iterable<string, array{bool, string, string}> */
+    public static function bindingValueCases(): iterable
+    {
+        foreach ([false, true] as $transition) {
+            foreach (['required', 'source'] as $side) {
+                foreach (self::bindingFields() as $field) {
+                    // The existing audience/source/current test already covers this case.
+                    if (! $transition && $side === 'source' && $field === 'audience') {
+                        continue;
+                    }
+                    yield ($transition ? 'transition' : 'current').'-'.$side.'-'.$field
+                        => [$transition, $side, $field];
+                }
+            }
+        }
+    }
+
+    #[DataProvider('operationCases')]
+    public function test_matching_binding_participant_order_is_independent_of_descriptor_set_order(bool $transition): void
+    {
+        [$adapter] = $this->adapter();
+        $request = $this->bindingRequest($transition);
+        $key = $transition ? 'transition_evidence' : 'state_evidence';
+        $pair = array_reverse($request[$key][0]['required_bindings']['participants']);
+        $request[$key][0]['required_bindings']['participants'] = $pair;
+        $request[$key][0]['source_evidence']['bindings']['participants'] = $pair;
+        // Descriptor and connection permutations are independently set-equivalent.
+        $request['connection']['participants'] = array_reverse($request['connection']['participants']);
+        $request[$key][0]['participants'] = array_reverse($request[$key][0]['participants']);
+
+        $result = $this->evaluateBindingRequest($adapter, $request, $transition);
+
+        self::assertSame($transition ? 'ADMISSIBLE' : 'CN_ACTIVE', $result['classification']);
+        self::assertSame([], $result['reason_categories']);
+        self::assertTrue($result['materialized_projection_usable']);
+        self::assertTrue($result['product_connection_payload'][
+            $transition ? 'transition_dependency' : 'current_state_dependency'
+        ]['protected_binding_satisfied']);
+        self::assertSame(['synthetic-participant-a', 'synthetic-participant-b'],
+            $result['product_connection_payload']['participant_references']);
+        self::assertSame(InMemoryLogicalPersistenceRepositoryContract::STORED_NEW, $result['storage_disposition']);
+        self::assertSame('EXACT', $result['binding_classification']);
+        self::assertFalse($result['permission']);
+        self::assertFalse($result['conversation_granted']);
+    }
+
+    #[DataProvider('operationCases')]
+    public function test_descriptor_participant_set_difference_is_not_hidden_by_equal_bindings(bool $transition): void
+    {
+        [$adapter] = $this->adapter();
+        $request = $this->bindingRequest($transition);
+        $request[$transition ? 'transition_evidence' : 'state_evidence'][0]['participants'][1]
+            = 'synthetic-other-participant';
+
+        $result = $this->evaluateBindingRequest($adapter, $request, $transition);
+
+        self::assertSame('UNKNOWN', $result['classification']);
+        self::assertSame([
+            $transition ? 'TRANSITION_PARTICIPANT_MISMATCH' : 'STATE_PARTICIPANT_MISMATCH',
+        ], $result['reason_categories']);
+        self::assertFalse($result['materialized_projection_usable']);
+        self::assertNull($result['product_connection_payload'][
+            $transition ? 'transition_dependency' : 'current_state_dependency'
+        ]);
+        self::assertFalse($result['permission']);
+        self::assertFalse($result['conversation_granted']);
+    }
+
+    /** @return iterable<string, array{bool}> */
+    public static function operationCases(): iterable
+    {
+        yield 'current' => [false];
+        yield 'transition' => [true];
+    }
+
+    /** @return list<string> */
+    private static function bindingFields(): array
+    {
+        return [
+            'authority_owner', 'authority_scope', 'actor', 'actor_role', 'subject', 'participants',
+            'audience', 'purpose', 'aggregate_context', 'lifecycle_identity', 'terminal',
+        ];
+    }
+
+    /** @return array<string, mixed> */
+    private function bindingRequest(bool $transition): array
+    {
+        return $transition
+            ? $this->transitionRequest('CN_PENDING', 'CN_ACTIVE')
+            : $this->currentRequest('CN_ACTIVE');
+    }
+
+    /** @param array<string, mixed> $request @return array<string, mixed> */
+    private function evaluateBindingRequest(
+        ProductConnectionPersistenceApplicationAdapter $adapter,
+        array $request,
+        bool $transition,
+    ): array {
+        return $transition
+            ? $adapter->evaluateTransitionSynthetic($request)
+            : $adapter->evaluateCurrentSynthetic($request);
     }
 
     public function test_missing_and_unusable_current_state_are_exact_but_domain_unusable(): void

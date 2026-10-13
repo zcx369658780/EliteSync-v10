@@ -1,0 +1,15 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-v1001\EliteSync-v10\docs\versions\v10.0.1\phpunit.test-only.xml
+
+...............................................................  63 / 294 ( 21%)
+............................................................... 126 / 294 ( 42%)
+............................................................... 189 / 294 ( 64%)
+............................................................... 252 / 294 ( 85%)
+..........................................                      294 / 294 (100%)
+
+Time: 00:00.748, Memory: 14.00 MB
+
+OK, but there were issues!
+Tests: 294, Assertions: 3420, PHPUnit Deprecations: 2.

@@ -1,0 +1,20 @@
+{
+  "name": "dart-consumer",
+  "argv": [
+    "D:\\flutter\\bin\\flutter.bat",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "--dart-define=QUALIFICATION_DIAGNOSTIC_FIXTURE=C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\evidence\\run-02\\diagnostic.json",
+    "test/features/qualification_diagnostics/qualification_diagnostic_test.dart"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\apps\\flutter_elitesync_module",
+  "started_utc": "2026-10-13T02:45:38.339580+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 5.578,
+  "stdout_sha256": "15d30826b03f38199dda00b4554d7909449378e8783c7c4f17d17743f4cd5662",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completed_utc": "2026-10-13T02:45:43.932723+00:00"
+}

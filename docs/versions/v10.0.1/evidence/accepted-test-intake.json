@@ -1,0 +1,8 @@
+{
+  "path": "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php",
+  "accepted_commit": "18daf9746e2f031fbbbe18682bf0c742aad92a09",
+  "accepted_blob": "5e59626a5ed640482cc786862f5e1e9c01511262",
+  "sha256": "7848dfb1b5b45df85b2047a3f60426947a2f32f13a70a91f31a46524a951f6b7",
+  "root_blob": "f3e0d9839ea79795564b0962f36088a41735b727",
+  "classification": "SELECTIVELY_INTEGRATED_IN_ISOLATED_CANDIDATE"
+}

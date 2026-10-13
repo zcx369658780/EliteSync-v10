@@ -1,0 +1,26 @@
+{
+  "name": "pure-be12-guard",
+  "argv": [
+    "C:\\tools\\php85\\php.exe",
+    "-n",
+    "-d",
+    "extension_dir=C:\\tools\\php85\\ext",
+    "-d",
+    "extension=mbstring",
+    "-d",
+    "extension=pdo_sqlite",
+    "-d",
+    "extension=sqlite3",
+    "-d",
+    "extension=fileinfo",
+    "-r",
+    "function response() { return new class { function json($body,$status) {\n        return new \\Illuminate\\Http\\JsonResponse($body,$status); } }; }\n    require 'vendor/autoload.php';\n    require 'app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php';\n    $paths=[['GET','/api/v1/messages'],['POST','/api/v1/messages'],\n      ['POST','/api/v1/messages/read/fiction'],['GET','/api/v1/conversations'],\n      ['POST','/api/v1/conversations'],['GET','/api/v1/conversations/fiction'],\n      ['GET','/api/v1/conversation-peers/fiction'],['POST','/api/v1/messages']];\n    $called=0;foreach($paths as [$method,$path]) {\n      $request=\\Illuminate\\Http\\Request::create($path,$method);\n      $request->headers->set('X-Live-Gate-Allowed','true');\n      $r=(new \\App\\Http\\Middleware\\DenyUnverifiedMessagingLiveAccess)->handle(\n        $request,function()use(&$called){$called++;throw new \\RuntimeException('CALLBACK_REACHED');});\n      if($r->getStatusCode()!==404 || json_decode($r->getContent(),true)!==['message'=>'conversation unavailable'])\n        throw new \\RuntimeException('OPAQUE_404_REQUIRED');\n      echo json_encode(['method'=>$method,'path'=>$path,'status'=>404,'downstream_called'=>$called]).\"\\n\";\n    }if($called!==0)throw new \\RuntimeException('DOWNSTREAM_CALLED');"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\services\\backend-laravel",
+  "started_utc": "2026-10-13T02:42:33.178288+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.422,
+  "stdout_sha256": "4ab3396a3101f0917bcb661048497b62d5cd89c340699588dc80669f7109125e",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completed_utc": "2026-10-13T02:42:33.593042+00:00"
+}

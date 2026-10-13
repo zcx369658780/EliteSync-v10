@@ -1,0 +1,8 @@
+{"method":"GET","path":"\/api\/v1\/messages","status":404,"downstream_called":0}
+{"method":"POST","path":"\/api\/v1\/messages","status":404,"downstream_called":0}
+{"method":"POST","path":"\/api\/v1\/messages\/read\/fiction","status":404,"downstream_called":0}
+{"method":"GET","path":"\/api\/v1\/conversations","status":404,"downstream_called":0}
+{"method":"POST","path":"\/api\/v1\/conversations","status":404,"downstream_called":0}
+{"method":"GET","path":"\/api\/v1\/conversations\/fiction","status":404,"downstream_called":0}
+{"method":"GET","path":"\/api\/v1\/conversation-peers\/fiction","status":404,"downstream_called":0}
+{"method":"POST","path":"\/api\/v1\/messages","status":404,"downstream_called":0}

@@ -1,0 +1,14 @@
+[
+  {
+    "local_locator": "EVIDENCE/WORK-STAGE-BACKEND-CV-QUALIFICATION-CONSUMER-SEAM-20261008/work-reviews/work-review-final-v1.md",
+    "sha256": "405a12a48005821470c5bb9409b752120dd2851df00bcc98426bebc10ffe9338",
+    "layer": "ACCEPT_CLOSED_LOCAL_CONTRACT_OR_LOCAL_TEST_ONLY",
+    "publication": "ORIGINAL_RETAINED_LOCAL_ONLY"
+  },
+  {
+    "local_locator": "EVIDENCE/WORK-STAGE-BACKEND-CV-LIFECYCLE-LOCAL-SOURCE-20261008/work-reviews/work-review-final-v2.md",
+    "sha256": "11ccde85aa1aace6cc10d983537352c1daf6fb452331a8d22c12b1503857047d",
+    "layer": "ACCEPT_CLOSED_LOCAL_CONTRACT_OR_LOCAL_TEST_ONLY",
+    "publication": "ORIGINAL_RETAINED_LOCAL_ONLY"
+  }
+]

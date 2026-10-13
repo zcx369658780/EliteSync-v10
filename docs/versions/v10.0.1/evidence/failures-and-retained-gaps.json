@@ -1,0 +1,37 @@
+{
+  "application_test_failures": [],
+  "intentional_negative_cases": "All named domain refusals and Dart invalid-input throws are expected tested results, not hidden execution failures.",
+  "corrections": [
+    {
+      "after": "run-01",
+      "type": "AUTHOR_INSPECTION",
+      "finding": "Unknown or missing unique scenario IDs were not rejected by initial generic parser.",
+      "fix": "Required caller-supplied expected scenario set, exact membership/completeness checks and ninth negative test.",
+      "verified_by": "run-02"
+    }
+  ],
+  "retained_gaps": [
+    "Two existing PHPUnit doc-comment metadata deprecations, unsuppressed.",
+    "Feature route/DB regression NOT_RUN; pure actual middleware negative runtime+route bytes provided.",
+    "Real CN/MC writers and real authority NOT_PROVEN; state input is explicit fictional fixture.",
+    "Astra acceptance and retrospective PENDING; main integration NOT_MERGED."
+  ],
+  "non_test_diagnostics": [
+    {
+      "operation": "Local fixed-plan git show before fetch",
+      "result": "Path absent in local object; complete fixed GitHub content read; fetched exact commit and verified plan blob."
+    },
+    {
+      "operation": "Old suite script locator invoke-validation.ps1",
+      "result": "Missing filename; used actual prepare_candidate.py/run_frozen_suite.py as read-only references."
+    },
+    {
+      "operation": "Exact-plan git fetch",
+      "result": "Git automatic packing/unreachable loose-object advisory; no prune/clean/worktree removal requested or executed."
+    },
+    {
+      "operation": "run-01 Flutter",
+      "result": "Installed Flutter printed update advisory; no update/install performed; run-02 uses no-version-check."
+    }
+  ]
+}

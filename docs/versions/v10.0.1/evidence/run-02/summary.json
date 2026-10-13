@@ -1,0 +1,279 @@
+{
+  "plan_commit": "f39ed2d41360b14637464937b36b5dfea945d29e",
+  "code_parent": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "label": "run-02",
+  "started_utc": "2026-10-13T02:45:37.885640+00:00",
+  "inputs": {
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/DiagnosticScenarioFactory.php": "43ea04b436029d6c34d55a3bcdcc0a7ca5b8a3d640436f4309955c28a254dca2",
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/export_diagnostic_fixture.php": "6a757b23b35cb328fc58838e08aa822c00e13bca9859328b5f74882f593c696e",
+    "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/domain/qualification_diagnostic.dart": "feb3de8b1b622a4290014668a0daad792cb15af50358f3c786a59bb96cfc4edf",
+    "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_test.dart": "2df8ff5279b920288e591a48d4afb8d5ac94c05bd142ee859d17dd2cddb8547b",
+    "docs/versions/v10.0.1/tools/validate_diagnostics.py": "1bdce4f98e29f0bd72624a5a4da6b8a3815cd7c7d4c4401767502cf88468b941",
+    "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationQualificationSource.php": "ca398dfc3aa06eea0597c4582f1750be4e1f86dc6a3b921a3a709a2c1069db83",
+    "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationUsePointQualifier.php": "30a5a2b2aabe5e403d0e21000697f26494321ae99892cefda0a0f6da86e4a3c6",
+    "services/backend-laravel/app/EliteSync/TextAuthority/ExistingEvaluatorEvidenceAdapter.php": "a48d14114dca37d710cfc04dd84d11ea8389ca3bf8f3b7e23d8b93605b9664bd",
+    "services/backend-laravel/app/EliteSync/ConversationLifecycle/FrozenQualificationSource.php": "5a74076e3c93914ab8add6365fd492724bfb47d6af6475bc1d72c0dffdacff99",
+    "services/backend-laravel/app/EliteSync/ConversationLifecycle/LocalTestConversationLifecycle.php": "44fb7a84511d0ea55f1ab8f36a663d34ce85c98745337f1362ce8099feb6cc81",
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationLifecycle/FixtureFourFamilySource.php": "d14efd20d927b289abaef8cc558ad376b9c018964900b6d0a56200ad550a8dcb",
+    "services/backend-laravel/app/Domain/CommonAuthorityEvidenceContract.php": "c8d15282e3fc27923699ae4feef6e3b78eeaab7ac0b0cec84303e1c1f1fe3562",
+    "services/backend-laravel/app/Domain/ProductConnectionStateTransitionEvaluator.php": "9830dd6be47f1314e579aee08b81b9ae150f8cc8f6dfc419426797a61754d858",
+    "services/backend-laravel/app/Domain/MessagingConsentConversationLiveGateEvaluator.php": "be2d2b4ac6b1100159368d7accae89542e75466f74b2d254d4001204574168d3",
+    "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php": "7848dfb1b5b45df85b2047a3f60426947a2f32f13a70a91f31a46524a951f6b7",
+    "services/backend-laravel/tests/Unit/ProductConnectionPersistenceFamilyTest.php": "7d83cbd4d726f91a4f176c1dbc80699e70ac58fc35d4f4683cd5b06c96b1d09e",
+    "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php": "f21cf8d434ba33d202a26584d5f1353d979ec81ec7c8f166a4594203461c5c12",
+    "services/backend-laravel/tests/Unit/InMemoryLogicalPersistenceRepositoryContractTest.php": "3206e9b491877c3d1f0a619be79d24d2ad0397dc9e56d73a8e75c74917f265e3",
+    "services/backend-laravel/tests/Unit/SqliteInMemoryLogicalPersistenceAdapterTest.php": "2dfabb0999d2d76e599a67c8e9c2c36c7298d5e3373becb1e3ce1195a4a60b84",
+    "services/backend-laravel/tests/Unit/PersistenceBoundaryApplicationInterfaceIntegrationContractTest.php": "e7666c9f4282dacaf1dbf57f5c43765059b67b01e28fd5a2764f9f30a4a799f9",
+    "services/backend-laravel/tests/Unit/MessagingConsentConversationLiveGateEvaluatorTest.php": "19bc2f889ab75a4a5d4d55c2eacdb5ca59ce3a1a0a49b0ee5623502bca7a553c",
+    "services/backend-laravel/routes/api.php": "6e1769e4728f8e1e703edd432457ccd6f608e24ad7abaa14892ca13fd15a0675",
+    "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php": "a1af329f4a5e4b9326ae92235bd8d974e373b004045b512e9e084c7b9414552d",
+    "docs/versions/v10.0.1/phpunit.test-only.xml": "04f991e74af68b28f0e72c5b1680b62d4dd7cbad42b2f98f944ed732850c0370"
+  },
+  "steps": [
+    {
+      "name": "php-version",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10",
+      "started_utc": "2026-10-13T02:45:37.885640+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.031,
+      "stdout_sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-13T02:45:37.930041+00:00"
+    },
+    {
+      "name": "phpunit",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "-d",
+        "extension_dir=C:\\tools\\php85\\ext",
+        "-d",
+        "extension=mbstring",
+        "-d",
+        "extension=pdo_sqlite",
+        "-d",
+        "extension=sqlite3",
+        "-d",
+        "extension=fileinfo",
+        "vendor/bin/phpunit",
+        "--configuration",
+        "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\phpunit.test-only.xml",
+        "--do-not-cache-result",
+        "--display-phpunit-deprecations",
+        "--colors=never",
+        "--log-junit",
+        "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\evidence\\run-02\\junit.xml"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\services\\backend-laravel",
+      "started_utc": "2026-10-13T02:45:37.932051+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.265,
+      "stdout_sha256": "7c49718e4cf88c8c329250518e709eb31eeda3b1dbc37cdc6360f7442b9eb1c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-13T02:45:38.200971+00:00"
+    },
+    {
+      "name": "pure-be12-guard",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "-d",
+        "extension_dir=C:\\tools\\php85\\ext",
+        "-d",
+        "extension=mbstring",
+        "-d",
+        "extension=pdo_sqlite",
+        "-d",
+        "extension=sqlite3",
+        "-d",
+        "extension=fileinfo",
+        "-r",
+        "function response() { return new class { function json($body,$status) {\n        return new \\Illuminate\\Http\\JsonResponse($body,$status); } }; }\n    require 'vendor/autoload.php';\n    require 'app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php';\n    $paths=[['GET','/api/v1/messages'],['POST','/api/v1/messages'],\n      ['POST','/api/v1/messages/read/fiction'],['GET','/api/v1/conversations'],\n      ['POST','/api/v1/conversations'],['GET','/api/v1/conversations/fiction'],\n      ['GET','/api/v1/conversation-peers/fiction'],['POST','/api/v1/messages']];\n    $called=0;foreach($paths as [$method,$path]) {\n      $request=\\Illuminate\\Http\\Request::create($path,$method);\n      $request->headers->set('X-Live-Gate-Allowed','true');\n      $r=(new \\App\\Http\\Middleware\\DenyUnverifiedMessagingLiveAccess)->handle(\n        $request,function()use(&$called){$called++;throw new \\RuntimeException('CALLBACK_REACHED');});\n      if($r->getStatusCode()!==404 || json_decode($r->getContent(),true)!==['message'=>'conversation unavailable'])\n        throw new \\RuntimeException('OPAQUE_404_REQUIRED');\n      echo json_encode(['method'=>$method,'path'=>$path,'status'=>404,'downstream_called'=>$called]).\"\\n\";\n    }if($called!==0)throw new \\RuntimeException('DOWNSTREAM_CALLED');"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\services\\backend-laravel",
+      "started_utc": "2026-10-13T02:45:38.203318+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.078,
+      "stdout_sha256": "4ab3396a3101f0917bcb661048497b62d5cd89c340699588dc80669f7109125e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-13T02:45:38.274915+00:00"
+    },
+    {
+      "name": "php-export",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\services\\backend-laravel\\tests\\Unit\\EliteSync\\ConversationQualification\\export_diagnostic_fixture.php"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10",
+      "started_utc": "2026-10-13T02:45:38.275915+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.047,
+      "stdout_sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "stderr_sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841",
+      "completed_utc": "2026-10-13T02:45:38.337077+00:00"
+    },
+    {
+      "name": "dart-consumer",
+      "argv": [
+        "D:\\flutter\\bin\\flutter.bat",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter=expanded",
+        "--dart-define=QUALIFICATION_DIAGNOSTIC_FIXTURE=C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\docs\\versions\\v10.0.1\\evidence\\run-02\\diagnostic.json",
+        "test/features/qualification_diagnostics/qualification_diagnostic_test.dart"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10\\apps\\flutter_elitesync_module",
+      "started_utc": "2026-10-13T02:45:38.339580+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 5.578,
+      "stdout_sha256": "15d30826b03f38199dda00b4554d7909449378e8783c7c4f17d17743f4cd5662",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-13T02:45:43.932723+00:00"
+    }
+  ],
+  "application_tests_before_this_run": "NOT_ASSUMED",
+  "phpunit_exit": 0,
+  "phpunit": {
+    "classes": [
+      "Tests\\Unit\\InMemoryLogicalPersistenceRepositoryContractTest",
+      "Tests\\Unit\\MessagingConsentConversationLiveGateEvaluatorTest",
+      "Tests\\Unit\\PersistenceBoundaryApplicationInterfaceIntegrationContractTest",
+      "Tests\\Unit\\ProductConnectionPersistenceApplicationAdapterTest",
+      "Tests\\Unit\\ProductConnectionPersistenceFamilyTest",
+      "Tests\\Unit\\ProductConnectionStateTransitionEvaluatorTest",
+      "Tests\\Unit\\SqliteInMemoryLogicalPersistenceAdapterTest"
+    ],
+    "exact_selected_classes": true,
+    "tests": 294,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "assertions": [
+      "3420"
+    ],
+    "retained_phpunit_deprecations": [
+      "2"
+    ]
+  },
+  "be12_evidence_level": "PURE_MIDDLEWARE_RUNTIME_AND_ROUTING_BYTE_IDENTITY",
+  "feature_route_regression": "NOT_RUN_NO_FRAMEWORK_DB_BOOTSTRAP",
+  "exporter_exit": 0,
+  "fixture_sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+  "producer_receipt_matches_bytes": true,
+  "php_scenarios_passed": 12,
+  "php_checks_passed": 930,
+  "scenario_index": [
+    {
+      "scenario_id": "pending_single_party",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "contract_satisfied",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "CONTRACT_EVALUATED",
+      "reason_codes": [
+        "FICTIONAL_CONTRACT_ONLY_FORMAL_QUALIFICATION_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "connection_paused",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "connection_closed",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "conversation_paused",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "conversation_closed",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "consent_revoked",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "stale",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_BINDING_OR_FRESHNESS_REJECTED:identity"
+      ]
+    },
+    {
+      "scenario_id": "revision_mismatch",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_REVISION_NOT_CURRENT_OR_COMPARABLE:identity"
+      ]
+    },
+    {
+      "scenario_id": "source_error",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "UNAVAILABLE",
+      "reason_codes": [
+        "SOURCE_READ_FAILED"
+      ]
+    },
+    {
+      "scenario_id": "source_missing",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "UNAVAILABLE",
+      "reason_codes": [
+        "SOURCE_NOT_YET_ESTABLISHED:identity"
+      ]
+    },
+    {
+      "scenario_id": "cross_context",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_PROVENANCE_MISMATCH:identity"
+      ]
+    }
+  ],
+  "dart_exit": 0,
+  "dart_input_sha256": [
+    "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9"
+  ],
+  "same_fresh_bytes": true,
+  "inputs_unchanged": true,
+  "completed_utc": "2026-10-13T02:45:43.937723+00:00",
+  "author_verification": "PASS"
+}

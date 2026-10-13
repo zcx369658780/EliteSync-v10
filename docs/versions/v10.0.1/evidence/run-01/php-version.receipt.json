@@ -1,0 +1,15 @@
+{
+  "name": "php-version",
+  "argv": [
+    "C:\\tools\\php85\\php.exe",
+    "-n",
+    "--version"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1001\\EliteSync-v10",
+  "started_utc": "2026-10-13T02:42:28.664421+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.125,
+  "stdout_sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completed_utc": "2026-10-13T02:42:28.792597+00:00"
+}
