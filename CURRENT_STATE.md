@@ -1,6 +1,12 @@
 # EliteSync-v10 当前状态
 
-## CURRENT SNAPSHOT — 2026-10-13（最新；下方均为历史时点）
+## 2026-10-13 Owner 授权安全对齐与版后默认接续（当前）
+
+Owner 已同意优先处理**本地代码基线安全对齐**，并批准今后每个版本独立验收关闭后默认依次处理**远端已接受代码定点集成→Codex 本地隔离开发基线安全接续→下一版规划**，无需每版重复请求这一流程方向。该决定已正式写入 [工作流](docs/workflow/CURRENT_WORKFLOW.md) 与 [项目记忆 K08](docs/memory/knowledge.md)。Owner 最新提供的 Codex 第二次核验：四份规则/导航文档在本地与 `f6bb9ef956ae17187b955dcdf2b114a5deceb72f` 字节相同，跳过全部写入；根 `main HEAD=4bebc8f394248e254c1368a06fbdee5d2c883301`、index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`，staged0/tracked43/untracked208，status SHA无变化。**没有本地源码基线对齐的证据，`LOCAL_DEVELOPMENT_BASELINE_READY=NOT_ESTABLISHED`；原脏主树仍保持未对齐。**
+
+下一步为 Owner 手动交给 Codex 的**具名安全对齐任务**：先准确辨认最新 GitHub main/17项已接受对象和原本地 dirty/untracked 的冲突，在没有冲突与受保护取舍时可建立与最新 main 相同 Git 父提交的隔离、干净、可继续开发的本地基线，并验证有限必要测试；若冲突/必须改变有效未提交来源/不可逆或受保护操作则不越界，保存差异/身份回报 Owner。**本次不是 v10.0.3 立版或执行，也不允许整体 pull/reset/rebase/clean/stash 原根。** BE-12、V57/H1/H2/D0、真实数据和运行资格保护继续。
+
+## CURRENT SNAPSHOT — 2026-10-13（版后集成历史快照；以下为历史时点）
 
 - **已验收**：v10.0.0、v10.0.1、v10.0.2 的独立验收均 `ACCEPTED/CLOSED WITH OBSERVATIONS`，各自仅限原冻结的 synthetic/dev-test / Debug Widget 范围。验收/复盘及准确缺口仍以 [版本登记](docs/versions/README.md) 和各版 acceptance 为准，不扩大为正式 APP/线上消息/生产资格。
 - **GitHub 目标代码基线**：Owner 已授权的定点集成分别将前两版14项和 v10.0.2 新增3项接受代码/测试/辅助工具纳入 GitHub 远端 `main`。回执：[v10.0.1](docs/versions/v10.0.1/integration.md)、[v10.0.2](docs/versions/v10.0.2/integration.md)。最新提交以 GitHub 当前分支真实读取为准，不能把冻结文档提交或历史候选当作本地 HEAD。

@@ -4,15 +4,16 @@
 
 |逻辑槽位|现存正文与用途|
 |---|---|
-|工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现，Owner方向决定|
+|工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现；**2026-10-13 Owner 追加版后安全集成+本地隔离开发基线接续的长期授权**（不自动派单、不覆盖脏 main）|
 |现状、在途、暂停|[CURRENT_STATE](CURRENT_STATE.md)：本地/远端差异、历史通过与未知；[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)|
 |第二阶段本地接收与手动交接（已完成）|[Codex 本地交接及启动 Prompt](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：保留历史现场/检索结果；Owner 后续已确认继任会话入场，交接文档中的“待接收”仅是当时快照；`projectId=null` 不等于已证明上下文不可用|
-|知识与环境|[记忆导航](docs/memory/navigation.md)、[关键知识](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)、[归档说明](docs/memory/archive-20261012.md)|
+|知识与环境|[记忆导航](docs/memory/navigation.md)、[关键知识 K08 版后基线规则](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)、[归档说明](docs/memory/archive-20261012.md)|
 |产品定义与决定|[产品边界摘要](docs/gpt-project-sources/02_产品架构与不可变边界.md)、[正式功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)、[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)|
 |v10.0.1 独立验收与复盘|[冻结计划](docs/versions/v10.0.1/plan.md)、[验收](docs/versions/v10.0.1/acceptance.md)、[复盘](docs/versions/v10.0.1/retrospective.md)：PHP→JSON→Dart synthetic诊断 ACCEPT/CLOSED；已接收必要代码 [定点集成](docs/versions/v10.0.1/integration.md)，但原候选历史未整体合并|
 |v10.0.0 最终验收与复盘|[冻结计划](docs/versions/v10.0.0/plan.md)、[独立验收](docs/versions/v10.0.0/acceptance.md)、[复盘](docs/versions/v10.0.0/retrospective.md)：ACCEPTED/CLOSED（仅 synthetic/dev-test），接受的测试 Blob 已纳入 GitHub main；历史候选整体未 merge|
 |已接受代码定点整合（累计三版）|[v10.0.0 + v10.0.1 集成回执](docs/versions/v10.0.1/integration.md)：14项固定 Git Blob；[v10.0.2 集成回执](docs/versions/v10.0.2/integration.md)：新增3项固定 Git Blob。均已进入 GitHub main；原本地 dirty root 未对齐，新 main 未重新运行应用测试|
 |v10.0.2 独立验收与复盘|[冻结计划](docs/versions/v10.0.2/plan.md)、[独立验收](docs/versions/v10.0.2/acceptance.md)、[复盘](docs/versions/v10.0.2/retrospective.md)：Debug/Test-only synthetic 只读 Widget ACCEPTED/CLOSED；[必要代码已集成](docs/versions/v10.0.2/integration.md)，历史候选未整支 merge；非Debug/设备/BE-12 Feature仍NOT_RUN|
+|本地安全基线接续（Owner 已授权，Codex 待手动执行）|先定点比较 GitHub 最新 main 与原本地 dirty/untracked/17项已接受代码；若无冲突建立隔离干净新基线，原 `D:/EliteSync-v10` main 不变；不得推定本地已对齐或自动开始 v10.0.3。具体状态见 [CURRENT_STATE](CURRENT_STATE.md)|
 |路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：v10.0.0～v10.0.2 均独立终验、必要代码已进 GitHub main；下版待 Owner 决定，本地安全对齐仍未完成|
 |计划、结果、验收与复盘|版本登记入口按具名冻结版定位；[历史stage-e2e-v2安全摘要及验收原文](docs/migration/ASTRA_HANDOFF_20261012.md)；[现有证据/契约索引](docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md)只解释其具名历史提交|
 |历史归档及LOCAL_ONLY|[archive指南](docs/archive/README.md)、[重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、归档说明与迁移交接中的私有资料/未覆盖历史说明|

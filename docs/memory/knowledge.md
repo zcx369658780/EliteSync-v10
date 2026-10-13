@@ -4,7 +4,18 @@ type: note
 permalink: elitesync-v10-local/knowledge
 ---
 
-## 2026-10-12 迁移补充（当前生效）
+## K08 版后远端定点集成与本地开发基线接续（Owner 长期授权，2026-10-13）
+
+性质：Owner 在当前项目会话中明确授权的**未来各版本默认收尾顺序**；状态：现行。准确执行规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md) 的“版本验收后的安全集成与本地基线”。
+
+- 每版在 Astra 独立验收并 CLOSED 后，默认继续定向核实已接受代码→GitHub main 的必要 Blob 安全集成，再由 Owner **手动转交给 Codex** 在独立隔离 worktree 建立/验证基于新 main 的本地开发基线。无需每版反复询问是否采用这一工作次序；不构成自动派单/后台执行，也不许可越权覆盖原 dirty main。
+- 必须区分：远端 main 的具名已接受对象、**独立可用的本地新开发基线**、旧脏主工作树的独立未提交成果、以及整合后的实际运行测试。这四者不互相推出。
+- 本次截至 Owner 决策前最后具名现场：本地 `D:/EliteSync-v10` main HEAD `4bebc8f394248e254c1368a06fbdee5d2c883301`；index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`；staged0、tracked43、untracked normal208。四份最新工作流/索引文件已二次核对与远端提交 `f6bb9ef956ae17187b955dcdf2b114a5deceb72f` 字节一致，第二次核查零写入、无冲突。**不能将这个报告延伸为本地源码主线已对齐**。
+- GitHub main 已按两个固定接受版本的14项和第三版的3项完成**远端定点集成**，但这只证明代码对象进入远端；从新 main 建立安全独立开发基线与对旧未提交源码的取舍/验证仍是当前实际待做事项。
+- 一旦准确代码内容有冲突、需要处理旧 LOCAL_ONLY 独立成果或不可逆更改，报告给 Owner 决定；正常无冲突的安全隔离基线建立，可在 Owner 手动交付的具名本地对齐任务中由 Codex 自主处理。
+- 资料边界：K01–K07 的旧历史证据身份、Accepted/Rejected、V57 pause和正式运行 NOT_READY 继续。当前动态事实以 [CURRENT_STATE](../../CURRENT_STATE.md) 为准；K08 不是旧 Work/Dot 实时监督复活。
+
+## 2026-10-12 迁移补充（当时迁移说明；长期规则以 K08 与 CURRENT_WORKFLOW 为准）
 当前管理/执行方式由 [新工作流](../workflow/CURRENT_WORKFLOW.md) 和 [动态总目录](../../DOC_INDEX_CURRENT.md) 指定：网页Astra规划/最终独立验收/复盘，Codex自主实现，Owner方向决定。下方涉及旧Work/单次预算/新Work指定的描述是原归档时点知识，不是当前流程门；科学产品语义、历史接受/拒绝及旧预算冻结仍保留。当前状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。
 原始session、EVIDENCE原始证据和本地检索数据库均LOCAL_ONLY；以下本机位置仅供Owner/本地Codex准确定位，网页正文已提供安全摘要，不能假定原件已发布或可直接访问。已有被发布正式文档可按总目录寻找；未发布原证请Owner脱敏提供，不建立指回本地路径的网页访问链。
 

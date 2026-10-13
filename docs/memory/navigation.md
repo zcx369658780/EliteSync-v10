@@ -4,7 +4,11 @@ type: note
 permalink: elitesync-v10-local/navigation
 ---
 
-## 2026-10-12 迁移补充（当前生效）
+## 2026-10-13 版后安全集成与基线接续
+
+Owner 新决定：每个版本独立接受后，默认继续远端已接受成果的定点集成及**本地隔离开发基线安全接续**，再进入下一版规划；不重复询问次序，但不自动派单或覆盖脏原主树。长期执行规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)，来源与当前已证身份见 [knowledge.md K08](knowledge.md)、[CURRENT_STATE](../../CURRENT_STATE.md)。
+
+## 2026-10-12 迁移补充（历史时点）
 当前管理/执行方式由 [新工作流](../workflow/CURRENT_WORKFLOW.md) 和 [动态总目录](../../DOC_INDEX_CURRENT.md) 指定：网页Astra规划/最终独立验收/复盘，Codex自主实现，Owner方向决定。下方涉及旧Work/单次预算/新Work指定的描述是原归档时点知识，不是当前流程门；科学产品语义、历史接受/拒绝及旧预算冻结仍保留。当前状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。
 原始session、EVIDENCE原始证据和本地检索数据库均LOCAL_ONLY；以下本机位置仅供Owner/本地Codex准确定位，网页正文已提供安全摘要，不能假定原件已发布或可直接访问。已有被发布正式文档可按总目录寻找；未发布原证请Owner脱敏提供，不建立指回本地路径的网页访问链。
 
