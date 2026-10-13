@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 两个已接受版本远端代码定点整合（最新）
+
+Owner 已授权整合 v10.0.0 与 v10.0.1 两个 accepted candidates。以当前 GitHub main 文档与代码树为基础，**按 v10.0.1 固定候选的14项白名单 Git Blob 定点纳入源/测试及有限复现辅助文件**，不整体 merge/cherry-pick 旧 candidate。详细来源与证据分层：[集成回执](docs/versions/v10.0.1/integration.md)。GitHub main 的整合提交以实际发布回执为准；**Acceptance 两版保持 ACCEPTED/CLOSED；Integration 仅为 GITHUB_MAIN_SCOPED_CODE_INTEGRATED**，非历史 candidate 整体合并。原本地 `D:/EliteSync-v10` dirty root/HEAD/index 尚未由网页直接同步或检验，安全本地对齐 `PENDING`；该新 main 提交尚未实测 PHP/Flutter。BE-12 默认404、Feature NOT_RUN、V57等保护边界不变，**不自动启动新版本开发**。下方“未合入main”属于当时的历史快照。
+
+
 ## 2026-10-13 v10.0.1 独立验收已关闭（当前）
 
 Astra 依冻结计划 `f39ed2d41360b14637464937b36b5dfea945d29e` / blob `c74bfe1619f69f6f496d187769668e3560759b17` 对独立候选 `ffbfeca78b97262f141d69e0542bb72b43e2f186` 完成固定 Git 对象和原始证据审查：**56/56 payload blob、PHP 7类294 tests/3420 assertions 0fail/error/skip、PHP12场景930检查、Dart 9项PASS、同次JSON SHA一致、BE-12 pure middleware8次404无下游**。AC-01～AC-07 `PASS`，最终 **ACCEPTED/CLOSED WITH OBSERVATIONS，仅限 synthetic/dev-test 只读诊断**。见 [验收](docs/versions/v10.0.1/acceptance.md) 和 [复盘](docs/versions/v10.0.1/retrospective.md)。**Feature路由回归NOT_RUN**，产品/线上消息权限均未解冻。当前候选未合 GitHub main；v10.0.0 仍 ACCEPTED/CLOSED + NOT_MERGED_TO_MAIN；v10.0.1 Integration=ISOLATED_CANDIDATE_ONLY/NOT_MERGED_TO_MAIN。原本地根109项保护是 Codex 本地回执，非网页直接重算。V57/H1/H2/D0及 NOT_READY/RuntimeReady=false/M6 CLOSED 等限制保留。**不自动启动 v10.0.2，等待 Owner 决定。**下方冻结与等待派发均为已过去阶段的时间快照。

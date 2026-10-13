@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+**最新整合状态（2026-10-13）**：Owner 授权后已将 v10.0.0 与 v10.0.1 的已接受**必要代码/测试/有限复现文件**按14项固定 Git Blob 集成至 GitHub 远端 `main`，详见 [精确整合回执](v10.0.1/integration.md)。两版原验收结论不变；**这不是 candidate 历史整体合并，也不是本地脏工作树已安全对齐**。候选原始证据在固定提交保留，整合后 main 未新跑运行时验证；本地对齐待 Owner/Codex 执行。下文旧“未合入main”叙述为整合前历史快照。
+
+
 **最新终验：v10.0.1 ACCEPTED/CLOSED WITH OBSERVATIONS（仅 synthetic/dev-test 只读诊断）。** [冻结计划](v10.0.1/plan.md)、[Astra独立验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)；[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)。PHP→新生成 JSON→Dart 诊断链与其限定回归得到认可，但 Feature 路由测试仍NOT_RUN、无在线聊天授权。**Integration Status = ISOLATED_CANDIDATE_ONLY / NOT_MERGED_TO_MAIN**；上一版 v10.0.0 仍 ACCEPTED/CLOSED + NOT_MERGED_TO_MAIN，v10.0.2 未开始。原[版前草案](v10.0.1/PLAN_PROPOSAL_V0_1.md)保留历史身份。
 
 
@@ -13,8 +16,8 @@
 
 |版本/既有事项|Acceptance Status|Integration Status|固定依据、证据与限制|
 |---|---|---|---|
-|v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**ISOLATED_CANDIDATE_ONLY / NOT_MERGED_TO_MAIN**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|
-|v10.0.0|**ACCEPTED / CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test）|**NOT_MERGED**（候选尚未并入 GitHub main，亦不声称并入本地源码主线）|[冻结计划](v10.0.0/plan.md) A+B+D、[终验](v10.0.0/acceptance.md)、[复盘](v10.0.0/retrospective.md)；[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/18daf9746e2f031fbbbe18682bf0c742aad92a09)：301 tests / 4056 assertions、11类、0 fail；55/55 Git blob；C 另版|
+|v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|
+|v10.0.0|**ACCEPTED / CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test）|**GITHUB_MAIN_TEST_BLOB_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.0/plan.md) A+B+D、[终验](v10.0.0/acceptance.md)、[复盘](v10.0.0/retrospective.md)；[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/18daf9746e2f031fbbbe18682bf0c742aad92a09)：301 tests / 4056 assertions、11类、0 fail；55/55 Git blob；C 另版|
 |stage-e2e-v2，WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005|历史 **ACCEPT/CLOSED SOURCEONLY+SYNTHETIC**|**NOT_MERGED / LOCAL_ONLY_CODE**（完整作者候选未作为代码发布）|原计划[固定任务](https://github.com/zcx369658780/EliteSync-v10/blob/6fcf3b0178ef3619776211786f1485c22138377d/EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005/task.md)，本地基线 `4bebc8f394248e254c1368a06fbdee5d2c883301`；manifest `C78CBD247932C0799B455F34A4F7EB3670F02988A7D14DA91BDD20F1F8090518`；[历史验收转录](../migration/ASTRA_HANDOFF_20261012.md)；不等于正式运行合格|
 |V57 / H1准确SOURCE_ONLY提案|**DOCUMENT/PROPOSAL ACCEPTED；PAUSED**（窄准备例外已批准）|**NOT_APPLICABLE — NOT_ACTIVATED**（尚无代码执行或行为验收）|原计划与预算本地 `EVIDENCE/WORK-STAGE-H1-EXACT-SOURCE-SCOPE-PROPOSAL-20261011-V43`，LOCAL_ONLY；未激活、未派发、未执行；不能把准备批准提升为实现|
 
