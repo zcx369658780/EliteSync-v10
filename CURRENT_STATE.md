@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.1 独立验收已关闭（当前）
+
+Astra 依冻结计划 `f39ed2d41360b14637464937b36b5dfea945d29e` / blob `c74bfe1619f69f6f496d187769668e3560759b17` 对独立候选 `ffbfeca78b97262f141d69e0542bb72b43e2f186` 完成固定 Git 对象和原始证据审查：**56/56 payload blob、PHP 7类294 tests/3420 assertions 0fail/error/skip、PHP12场景930检查、Dart 9项PASS、同次JSON SHA一致、BE-12 pure middleware8次404无下游**。AC-01～AC-07 `PASS`，最终 **ACCEPTED/CLOSED WITH OBSERVATIONS，仅限 synthetic/dev-test 只读诊断**。见 [验收](docs/versions/v10.0.1/acceptance.md) 和 [复盘](docs/versions/v10.0.1/retrospective.md)。**Feature路由回归NOT_RUN**，产品/线上消息权限均未解冻。当前候选未合 GitHub main；v10.0.0 仍 ACCEPTED/CLOSED + NOT_MERGED_TO_MAIN；v10.0.1 Integration=ISOLATED_CANDIDATE_ONLY/NOT_MERGED_TO_MAIN。原本地根109项保护是 Codex 本地回执，非网页直接重算。V57/H1/H2/D0及 NOT_READY/RuntimeReady=false/M6 CLOSED 等限制保留。**不自动启动 v10.0.2，等待 Owner 决定。**下方冻结与等待派发均为已过去阶段的时间快照。
+
+
 ## 2026-10-13 v10.0.1 正式冻结计划（当前）
 
 Astra 根据 Codex `V10.0.1 PLAN REVIEW — READY_WITH_FINDINGS` 将本版固定为 **A 上版 accepted 232 行/139 data sets 测试增强的选择性集成 + B 既有 LOCAL_ONLY PHP 资格领域函数驱动的 synthetic JSON→Dart 只读诊断消费 + C 直接相关验证与交付**。正式计划见 [v10.0.1/plan.md](docs/versions/v10.0.1/plan.md)；先前 v10.0.1 提案转历史来源。本版 **FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**，仅 Owner 手动发送固定计划及执行指令后 Codex 才能编码或测试。它不是完整聊天消费桥或消息读发授权，真实七路由 BE-12 opaque 404、V57/H1/H2/D0 暂停、NOT_READY/RuntimeReady=false/M6 CLOSED 等边界继续不变。v10.0.0 保持 **ACCEPTED/CLOSED + NOT_MERGED**，新隔离候选不自动合并 GitHub main。
