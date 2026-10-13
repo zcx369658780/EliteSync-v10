@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+**最新版本规划（2026-10-13）**：Owner 已启动 **v10.0.4 版前规划**。Astra 发布 [v10.0.4 提案](v10.0.4/PLAN_PROPOSAL_V0_1.md)，拟定向核查 Me Readiness 的具名条件解释与安全恢复缺口。现有 PHP Runtime Readiness R5/R7 仅被接受为独立域与 synthetic HTTP 资格，**没有完整用户逐项 prerequisite-set 数据**；不可自行决定 required/optional、最低 identity assurance 或 production-ready。状态 **`PROPOSED / CODEX_READONLY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`**。此前 v10.0.0～0.3 的独立验收、远端定点集成与安全隔离基线状态不变；本次未启动代码执行。
+
+
 **最新集成与本地基线状态（2026-10-13）**：v10.0.3 的 `app_router.dart` 与动态 Guard 测试两个已接受 Git Blob 已定点进入 GitHub `main=64a098f88543efa44b499d04cb91d4c7c4290238`，见 [v10.0.3 集成回执](v10.0.3/integration.md)。Codex 已报告新独立 clean 本地基线同 SHA/Tree，四份 Router/Home 测试 **42/42 PASS、exit0**，窄分析 exit0；该实际测试**由 Codex 本机执行，网页只独立核了远端对象**。因此 `LOCAL_DEVELOPMENT_BASELINE_READY / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`，但 `ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED`，且完整 Feature/设备/生产仍 NOT_RUN。原候选历史及失败证据独立保留，不整支 merge；不自动启动 v10.0.4。详见 [当前状态](../../CURRENT_STATE.md)、[记忆 K10](../memory/knowledge.md)。
 
 
@@ -20,6 +23,7 @@
 
 |版本/既有事项|Acceptance Status|Integration Status|固定依据、证据与限制|
 |---|---|---|---|
+|v10.0.4（草案）|**NOT_FROZEN / CODEX_REVIEW_PENDING**|**NO_IMPLEMENTATION_CANDIDATE**|[提案](v10.0.4/PLAN_PROPOSAL_V0_1.md)：Me Readiness 有界只读状态解释/恢复，正式必要集合未授权，尚不执行|
 |v10.0.3|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅synthetic真实Router Guard修复）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY (CODEX_REPORTED) / SCOPED_POST_INTEGRATION_TESTS_VERIFIED (CODEX_REPORTED)**|[冻结计划](v10.0.3/plan.md)、[独立验收](v10.0.3/acceptance.md)、[复盘](v10.0.3/retrospective.md)、[定点集成](v10.0.3/integration.md)、[候选](https://github.com/zcx369658780/EliteSync-v10/commit/e2f6db455a329c59b2b4158cc50c0e18561a7c99)：原2/5→最终42/42PASS、45/45 Git Blob、新15项隔离哨兵0；Android/正式权限NOT_RUN|
 |v10.0.2|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅 Debug/Test synthetic 只读 Widget）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING / POST_INTEGRATION_RUNTIME_NOT_RUN**|[冻结计划](v10.0.2/plan.md)、[终验](v10.0.2/acceptance.md)、[复盘](v10.0.2/retrospective.md)；[候选](https://github.com/zcx369658780/EliteSync-v10/commit/5bb2de6bed2eb8cbc063e707c39a594ae35eb301)、[定点集成回执](v10.0.2/integration.md)：3项新文件，36/36候选Git blobs、PHP12/930、Flutter28 PASS、同字节；Profile/Release & BE-12 runtime/Feature NOT_RUN|
 |v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|

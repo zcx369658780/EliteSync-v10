@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.4 版前规划启动（当前）
+
+Owner 明确同意进入 **v10.0.4 规划**。Astra 在当前 GitHub main `a4f441a761e1c9ae47ab0aae8c32a5109466cb50` 与正式已接受 APP Product Design/APP-T04、Runtime Readiness R5/R7 source/contracts 上进行有限核查，发布 [v10.0.4 版前草案](docs/versions/v10.0.4/PLAN_PROPOSAL_V0_1.md)：暂拟 **Me → Readiness 用户可理解的具名条件解释与安全恢复引导**，但**不**填入尚未授权的正式必要清单、最低身份保证、launch eligibility，也不将 synthetic HTTP/Dev fixture 升为用户 READY。Codex 先按真实源码判断是否具备可信可展示的成员数据，若不足则改为明确“条件集合未建立”+现有兼容恢复路径，不用假清单凑功能。状态 `PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`；**尚未运行任何本版测试或派发代码任务**。
+
+上版 v10.0.3 已正式独立验收/远端安全集成，新隔离基线 `elitesync-main-64a098f` 的42/42 targeted Flutter和窄分析由Codex回报通过；原 `D:/EliteSync-v10` dirty main与其它已有干净基线均保持保护。消息真实权限/BE-12 opaque404、V57/H1/H2/D0、`NOT_READY/RuntimeReady=false/M6 CLOSED` 均未解冻；历史里程碑和冻结计划保持原始字节。
+
+
 ## 2026-10-13 v10.0.3 集成后本地开发基线接续完成（当前）
 
 Codex 已集中交付 `V10.0.3 LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED — SCOPED_POST_INTEGRATION_TESTS_VERIFIED`。此项是经 Owner 长期 K08 安全收尾规则手动转交的**版后工程维护**，不是 v10.0.4 的规划、执行或测试。
