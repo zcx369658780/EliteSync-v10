@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-**v10.0.2 版前规划（2026-10-13）**：Owner 已授权两版远端定点代码集成与下一版规划；远端 integration 已有 [固定回执](v10.0.1/integration.md)。已发布 [v10.0.2 版前草案](v10.0.2/PLAN_PROPOSAL_V0_1.md)，拟以安全代码基线衔接及 development-only Flutter 只读诊断消费为候选目标；**NOT_FROZEN / NO_IMPLEMENTATION_AUTHORITY**，等待 Codex 有界只读核查与 Owner 必要 UI 取舍。下方原“下一版本未启动”段落保留历史意义。
+**v10.0.2 正式计划已冻结（2026-10-13）**：[冻结计划](v10.0.2/plan.md)。根据 Codex 版前 READY_WITH_FINDINGS 选择开发/测试模式独立只读资格诊断 Widget + 同次 PHP→JSON→Dart→Widget 验证，**不纳入普通 Progress 页面或聊天授权**。状态 `FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED`，代码父基线 `be070a771114052b2f6e7796636cd1a186502988`；原 [版前草案](v10.0.2/PLAN_PROPOSAL_V0_1.md)仅作历史记录。远端 main 中两版已接受代码定点集成不等于原本地 dirty root 已同步；本版候选尚不存在。
 
 
 **最新整合状态（2026-10-13）**：Owner 授权后已将 v10.0.0 与 v10.0.1 的已接受**必要代码/测试/有限复现文件**按14项固定 Git Blob 集成至 GitHub 远端 `main`，详见 [精确整合回执](v10.0.1/integration.md)。两版原验收结论不变；**这不是 candidate 历史整体合并，也不是本地脏工作树已安全对齐**。候选原始证据在固定提交保留，整合后 main 未新跑运行时验证；本地对齐待 Owner/Codex 执行。下文旧“未合入main”叙述为整合前历史快照。
@@ -19,7 +19,7 @@
 
 |版本/既有事项|Acceptance Status|Integration Status|固定依据、证据与限制|
 |---|---|---|---|
-|v10.0.2（草案）|**NOT_FROZEN / CODEX_REVIEW_PENDING**|**NO_CODE_CANDIDATE**|[草案](v10.0.2/PLAN_PROPOSAL_V0_1.md)：仅版前调查，不授权开发或任何本地脏树覆盖|
+|v10.0.2|**FROZEN_PLAN / NOT_STARTED**|**NO_CODE_CANDIDATE**|[正式冻结计划](v10.0.2/plan.md)（Git提交身份以发布回执为准）：Debug/Test-only 只读诊断 Widget 和同次数据渲染，基线 `be070a...`；等待 Owner 手动派发，旧[草案](v10.0.2/PLAN_PROPOSAL_V0_1.md)保留|
 |v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|
 |v10.0.0|**ACCEPTED / CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test）|**GITHUB_MAIN_TEST_BLOB_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.0/plan.md) A+B+D、[终验](v10.0.0/acceptance.md)、[复盘](v10.0.0/retrospective.md)；[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/18daf9746e2f031fbbbe18682bf0c742aad92a09)：301 tests / 4056 assertions、11类、0 fail；55/55 Git blob；C 另版|
 |stage-e2e-v2，WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005|历史 **ACCEPT/CLOSED SOURCEONLY+SYNTHETIC**|**NOT_MERGED / LOCAL_ONLY_CODE**（完整作者候选未作为代码发布）|原计划[固定任务](https://github.com/zcx369658780/EliteSync-v10/blob/6fcf3b0178ef3619776211786f1485c22138377d/EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005/task.md)，本地基线 `4bebc8f394248e254c1368a06fbdee5d2c883301`；manifest `C78CBD247932C0799B455F34A4F7EB3670F02988A7D14DA91BDD20F1F8090518`；[历史验收转录](../migration/ASTRA_HANDOFF_20261012.md)；不等于正式运行合格|

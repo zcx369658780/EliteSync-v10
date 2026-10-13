@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.2 正式计划冻结（当前）
+
+Astra 收到 Codex `V10.0.2 PLAN REVIEW — READY_WITH_FINDINGS` 后，决定唯一窄范围为**默认关闭、仅 Debug/Test 的 Flutter 只读资格诊断 Widget**，使用真实 PHP synthetic exporter→同次新 JSON→已接受 Dart parser→ widget harness。既有 `Progress`/普通导航、Chat 授权/路由一律不修改。正式冻结计划：[v10.0.2/plan.md](docs/versions/v10.0.2/plan.md)。代码父基线固定为 `be070a771114052b2f6e7796636cd1a186502988`；Owner 需手动派发后才允许在隔离 worktree 开发。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。原本地脏 main HEAD `4bebc8f...` / 默认 index/43 tracked+208 untracked 仍属 Codex 最近只读回报，**并未因远端计划提交安全同步**。BE-12默认404、V57/H1/H2/D0冻结、NOT_READY/RuntimeReady=false/M6 CLOSED 均不变，下文旧“等待核查”属历史快照。
+
+
 ## 2026-10-13 v10.0.2 版前规划（最新）
 
 Owner 已授权 v10.0.0 与 v10.0.1 两个已接受候选的 GitHub 远端 main 定点整合，并开始下个版本规划。整合依据 [v10.0.1/integration.md](docs/versions/v10.0.1/integration.md)，远端 GitHub 代码已按固定14项 Git Blob 纳入，**原本地 D:/EliteSync-v10 dirty root 尚未安全对齐、新 main 未重新运行 PHP/Flutter**。现发布 [v10.0.2 版前草案](docs/versions/v10.0.2/PLAN_PROPOSAL_V0_1.md)，拟核实新主线与本地代码安全衔接，并评估开发/测试模式限定的 Flutter 只读诊断组件（不接真实 Chat 权限）。**PROPOSED / CODEX_FEASIBILITY_REVIEW_ONLY / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。v10.0.0/0.1 已接受状态不变；V57等旧暂停与 BE-12 route 404 均不解冻。
