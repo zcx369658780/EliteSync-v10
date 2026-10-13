@@ -1,6 +1,11 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-13 v10.0.4 版前规划启动（当前）
+## 2026-10-13 v10.0.4 正式计划冻结（最新）
+
+依据Codex READY_WITH_FINDINGS，Astra已将本版收敛为 [Readiness来源解释与兼容恢复](docs/versions/v10.0.4/plan.md)。仅现有Me Readiness区域及一个新测试；正式条件集合未确定，不能伪造具名清单或非Dev READY权威。代码父固定 `5728251c6345ba17524fb323dac8a02573d8d8c6`；状态 **FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。旧dirty根及clean隔离基线均受保护；BE-12默认拒绝、V57/H1/H2/D0及M6不解冻。
+
+
+## 2026-10-13 v10.0.4 版前规划启动（历史快照）
 
 Owner 明确同意进入 **v10.0.4 规划**。Astra 在当前 GitHub main `a4f441a761e1c9ae47ab0aae8c32a5109466cb50` 与正式已接受 APP Product Design/APP-T04、Runtime Readiness R5/R7 source/contracts 上进行有限核查，发布 [v10.0.4 版前草案](docs/versions/v10.0.4/PLAN_PROPOSAL_V0_1.md)：暂拟 **Me → Readiness 用户可理解的具名条件解释与安全恢复引导**，但**不**填入尚未授权的正式必要清单、最低身份保证、launch eligibility，也不将 synthetic HTTP/Dev fixture 升为用户 READY。Codex 先按真实源码判断是否具备可信可展示的成员数据，若不足则改为明确“条件集合未建立”+现有兼容恢复路径，不用假清单凑功能。状态 `PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`；**尚未运行任何本版测试或派发代码任务**。
 
