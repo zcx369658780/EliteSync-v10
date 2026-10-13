@@ -1,0 +1,32 @@
+{
+  "command": [
+    "<EXISTING_FLUTTER_SDK>/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/app/router/home_progress_guard_refresh_test.dart",
+    "test/app/router/match_legacy_redirect_regression_test.dart",
+    "test/app/router/first_use_onboarding_router_integration_test.dart",
+    "test/features/home/presentation/pages/home_page_test.dart"
+  ],
+  "stdin": "DEVNULL",
+  "exit_code": 0,
+  "started_unix": 1791879454.4550705,
+  "elapsed_seconds": 6.11,
+  "head": "fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae",
+  "input_raw_sha256": {
+    "lib/app/router/app_router.dart": "562fd13dd537c700ad73a8aa97b4c7526fd6b2cc8c8d893dcd26abbb807a7cff",
+    "test/app/router/home_progress_guard_refresh_test.dart": "b4aa809588990cdfad281dce469c20294391c3bf424b5e157eb0699b0deab23b",
+    "pubspec.lock": "9d392f33b4324149b282aa62721d642d37a4bd5e1677db403cb5a7373c385eee"
+  },
+  "stream_sha256": {
+    "stdout.txt": "925b5548948c478ea1fe3d14314f90c1e306769ce3db6bb4fc87aabae123fd5b",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence_level": "sanitized full streams",
+  "published_stream_sha256": {
+    "stdout.txt": "96038ddcd80a3ad58f3b593fa33188487ecc15f22b45b4c2fc8d04dcd9eba447",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

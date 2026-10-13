@@ -1,0 +1,11 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart
+00:00 +0 -1: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart [E]
+  Failed to load "<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart":
+  Compilation failed for testPath=<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: test/app/router/home_progress_guard_refresh_test.dart:52:16: Error: Method not found: 'StateProvider'.
+  final _guard = StateProvider<NavigationSnapshot>((ref) => _snapshot());
+                 ^^^^^^^^^^^^^
+  test/app/router/home_progress_guard_refresh_test.dart:53:16: Error: Method not found: 'StateProvider'.
+  final _match = StateProvider<Future<MatchRoundProjection>>(
+                 ^^^^^^^^^^^^^
+  .
+00:00 +0 -1: Some tests failed.

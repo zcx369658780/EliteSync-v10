@@ -1,0 +1,1 @@
+Tool failed before compilation: .dart_tool/package_graph.json missing. Automatic crash/doctor diagnostic URLs and platform inventory omitted; full original streams retained locally. See original stream hashes in receipt.

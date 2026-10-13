@@ -1,0 +1,75 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart
+00:00 +0: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +1: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +2: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:00 +3: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:00 +4: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +5: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +6: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:01 +7: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +8: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +9: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +10: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +11: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +12: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +13: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +14: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +15: All tests passed!

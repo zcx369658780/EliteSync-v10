@@ -1,0 +1,6 @@
+test/app/router/home_progress_guard_refresh_test.dart:52:16: Error: Method not found: 'StateProvider'.
+final _guard = StateProvider<NavigationSnapshot>((ref) => _snapshot());
+               ^^^^^^^^^^^^^
+test/app/router/home_progress_guard_refresh_test.dart:53:16: Error: Method not found: 'StateProvider'.
+final _match = StateProvider<Future<MatchRoundProjection>>(
+               ^^^^^^^^^^^^^

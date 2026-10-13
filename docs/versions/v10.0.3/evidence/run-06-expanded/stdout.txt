@@ -1,0 +1,147 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart
+00:00 +0: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +1: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +2: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:00 +3: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:00 +4: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +5: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +6: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +7: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +8: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: Synthetic unavailable
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:428:20)
+#6      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:418:7)
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:29)
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:189:25)
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:19)
+#12     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1671:5)
+#15     TestWidgetsFlutterBinding._runTest (package:flutter_test/src/binding.dart:1656:10)
+#16     AutomatedTestWidgetsFlutterBinding.runTest.<anonymous closure> (package:flutter_test/src/binding.dart:2189:24)
+#17     FakeAsync.run.<anonymous closure>.<anonymous closure> (package:fake_async/fake_async.dart:182:47)
+#22     withClock (package:clock/src/default.dart:52:10)
+#23     FakeAsync.run.<anonymous closure> (package:fake_async/fake_async.dart:182:15)
+#28     FakeAsync.run (package:fake_async/fake_async.dart:181:52)
+#29     AutomatedTestWidgetsFlutterBinding.runTest (package:flutter_test/src/binding.dart:2186:15)
+#30     testWidgets.<anonymous closure> (package:flutter_test/src/widget_tester.dart:184:24)
+#31     Declarer.test.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/declarer.dart:253:25)
+#33     Declarer.test.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/declarer.dart:252:15)
+#38     Declarer.test.<anonymous closure> (package:test_api/src/backend/declarer.dart:250:17)
+#39     Invoker._waitForOutstandingCallbacks.<anonymous closure> (package:test_api/src/backend/invoker.dart:318:17)
+#44     Invoker._waitForOutstandingCallbacks (package:test_api/src/backend/invoker.dart:314:5)
+#45     Invoker._onRun.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/invoker.dart:457:21)
+#47     Invoker._onRun.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/invoker.dart:455:15)
+#52     Invoker._onRun.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/invoker.dart:445:11)
+#53     Invoker._guardIfGuarded (package:test_api/src/backend/invoker.dart:500:15)
+#54     Invoker._onRun.<anonymous closure> (package:test_api/src/backend/invoker.dart:444:9)
+#61     Invoker._onRun (package:test_api/src/backend/invoker.dart:442:11)
+#62     LiveTestController.run (package:test_api/src/backend/live_test_controller.dart:161:11)
+#63     RemoteListener._runLiveTest.<anonymous closure> (package:test_api/src/backend/remote_listener.dart:323:16)
+#68     RemoteListener._runLiveTest (package:test_api/src/backend/remote_listener.dart:322:5)
+#69     RemoteListener._serializeTest.<anonymous closure> (package:test_api/src/backend/remote_listener.dart:263:7)
+#87     _GuaranteeSink.add (package:stream_channel/src/guarantee_channel.dart:125:12)
+#88     new _MultiChannel.<anonymous closure> (package:stream_channel/src/multi_channel.dart:159:31)
+#90     CastStreamSubscription._onData (dart:_internal/async_cast.dart:95:11)
+#116    new _WebSocketImpl._fromSocket.<anonymous closure> (dart:_http/websocket_impl.dart:1252:27)
+#122    _WebSocketProtocolTransformer._messageFrameEnd (dart:_http/websocket_impl.dart:348:23)
+#123    _WebSocketProtocolTransformer.add (dart:_http/websocket_impl.dart:238:46)
+#131    _Socket._onData (dart:io-patch/socket_patch.dart:2874:41)
+#138    new _RawSocket.<anonymous closure> (dart:io-patch/socket_patch.dart:2312:31)
+#139    _NativeSocket.issueReadEvent.issue (dart:io-patch/socket_patch.dart:1647:14)
+(elided 103 frames from dart:async and package:stack_trace)
+
+The test description was:
+  Home clears prior Match CTA for error in mounted shell
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +8 -1: Home clears prior Match CTA for error in mounted shell [E]
+  Test failed. See exception logs above.
+  The test description was: Home clears prior Match CTA for error in mounted shell
+  
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +8 -1: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +9 -1: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +10 -1: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +11 -1: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +12 -1: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +13 -1: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "查看进展": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:524:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 524
+The test description was:
+  Home unknown readiness clears next decision without inventing Connection revocation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +13 -2: Home unknown readiness clears next decision without inventing Connection revocation [E]
+  Test failed. See exception logs above.
+  The test description was: Home unknown readiness clears next decision without inventing Connection revocation
+  
+00:02 +13 -2: Some tests failed.

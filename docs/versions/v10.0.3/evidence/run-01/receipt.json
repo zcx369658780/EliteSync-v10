@@ -1,0 +1,24 @@
+{
+  "command": [
+    "<EXISTING_FLUTTER_SDK>/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/app/router/home_progress_guard_refresh_test.dart"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 6.62,
+  "stdin": "closed / no task input",
+  "source_blob": "0af0608d4ce17cdb65bdb24ed32f9eee1db8d7ec",
+  "test_sha256": "dee886917a79545bd0a84f92fbe52e55672ed64b4259bf64cc4f9167d6cfc27c",
+  "evidence_level": "bounded crash excerpt; automatic doctor/device/network report local-only",
+  "stream_sha256": {
+    "stdout.txt": "d0974ab23931251f57064bf6c46d74204499a46e25f1a4a92c4a200f97ba4c4b",
+    "stderr.txt": "153211f78440e037bac7192ba8e5cda81d2f378f0ed8b2985bbbf02c6bea1b1b"
+  },
+  "published_stream_sha256": {
+    "stdout.txt": "26a173d9129e9dcfb2b5e5b0c47a53c42b1a29f0967b6d5b6d1aeffde1bc3017",
+    "stderr.txt": "9e9e93b5df7f9afba05ed67ac01baae2099fb52495297744118c3cffdf5ab674"
+  }
+}

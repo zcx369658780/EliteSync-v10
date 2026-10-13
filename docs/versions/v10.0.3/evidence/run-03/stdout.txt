@@ -1,0 +1,161 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart
+00:00 +0: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +1: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +2: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: same instance as <Instance of 'GoRouter'>
+  Actual: <Instance of 'GoRouter'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:223:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 223
+The test description was:
+  unrelated Guard keeps live Progress query, page and router
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +2 -1: unrelated Guard keeps live Progress query, page and router [E]
+  Test failed. See exception logs above.
+  The test description was: unrelated Guard keeps live Progress query, page and router
+  
+00:00 +2 -1: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: same instance as <Instance of 'GoRouter'>
+  Actual: <Instance of 'GoRouter'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:244:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 244
+The test description was:
+  Match deep path loses readiness within same mounted router
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +2 -2: Match deep path loses readiness within same mounted router [E]
+  Test failed. See exception logs above.
+  The test description was: Match deep path loses readiness within same mounted router
+  
+00:01 +2 -2: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: same instance as <Instance of 'GoRouter'>
+  Actual: <Instance of 'GoRouter'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:266:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 266
+The test description was:
+  Auth loss redirects current Connection to actual login
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +2 -3: Auth loss redirects current Connection to actual login [E]
+  Test failed. See exception logs above.
+  The test description was: Auth loss redirects current Connection to actual login
+  
+00:01 +2 -3: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: same instance as <Instance of 'GoRouter'>
+  Actual: <Instance of 'GoRouter'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:296:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 296
+The test description was:
+  Home Progress Match Connection use actual UI entries
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +2 -4: Home Progress Match Connection use actual UI entries [E]
+  Test failed. See exception logs above.
+  The test description was: Home Progress Match Connection use actual UI entries
+  
+00:01 +2 -4: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: same instance as <Instance of 'GoRouter'>
+  Actual: <Instance of 'GoRouter'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart:320:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart line 320
+The test description was:
+  continuous updates and provider disposal detach old router
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +2 -5: continuous updates and provider disposal detach old router [E]
+  Test failed. See exception logs above.
+  The test description was: continuous updates and provider disposal detach old router
+  
+00:02 +2 -5: Some tests failed.

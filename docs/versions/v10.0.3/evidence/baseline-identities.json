@@ -1,0 +1,33 @@
+{
+  "parent": "fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae",
+  "tree": "a25fc46be72056b4940923c45fab81367f17fd2a",
+  "plan_commit": "1ed7880a5843d2f1fe31b9d1ba254bf2792cc244",
+  "plan_blob": "4472647408af1f972e365ac66cd8c42d127fff34",
+  "navigation_erratum": "7feea5130dc0adcbb91391d99c5c723f46786c10",
+  "app_int_05_blob": "d488e1aee6080420d3694d80fe7aaea088c6ce73",
+  "input_git_blobs": {
+    "lib/features/home/presentation/pages/home_page.dart": "4a7c0cdfe5bbceb278f2a070de872c490cfeef11",
+    "lib/features/home/presentation/providers/calm_home_projection_provider.dart": "a07e0863573db74fd7705a4657cdedc3295ba91c",
+    "lib/features/progress/presentation/pages/progress_page.dart": "8dd79b804c0d82a52eff5f876918d0f4673b2ed4",
+    "lib/app/router/app_shell.dart": "c1768de43157bc4f6ca44f60106a19a6e71e1db5",
+    "lib/app/router/app_router.dart": "bd68bfecff4a424cf580ec8bee058952122032e1",
+    "lib/shared/providers/navigation_guard_provider.dart": "f15eb57367349664dbc057424bae66bf5287473b",
+    "lib/features/match/presentation/providers/match_providers.dart": "e43f3dd7529cd5476cc5de946d5e703537c1eff1",
+    "lib/features/connection/presentation/providers/connection_presentation_provider.dart": "8c5fe6ee3e1e5cf0a6224581988f435ce22a6e5f",
+    "lib/features/chat/presentation/state/conversation_access_state.dart": "a652a3421408f9e59045cd1cd95a99306b405da7",
+    "test/app/router/match_legacy_redirect_regression_test.dart": "cbe7e7002deceab90dad0911926b1a7dd36f1669",
+    "test/app/router/first_use_onboarding_router_integration_test.dart": "2761348f172880e097a327f48ab265e7926d6268",
+    "test/features/home/presentation/pages/home_page_test.dart": "8e1f7ac22bce5f551c0dbf5faa66968b0551848d",
+    "pubspec.lock": "b56c4b2c45bab65106c12e4d75d6c5b34209aeb4"
+  },
+  "dependency_reuse": {
+    "source": "preserved clean baseline .dart_tool/package_config.json and package_graph.json; only candidate package root remapped",
+    "config_source_sha256": "b39756727cc9caca1bf2eb57f2eb21d53b282d85c054c3ec5c51da6ab8fe8db0",
+    "package_graph_sha256": "e1cbfd18980819ad2c6512f7f91164755fa30a31a7512ba2a785129ababb2946",
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "go_router": "16.3.0",
+    "flutter_riverpod": "3.3.2",
+    "pub_get": "NOT_RUN"
+  }
+}

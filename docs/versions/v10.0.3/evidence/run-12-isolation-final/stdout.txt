@@ -1,0 +1,165 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart
+00:00 +0: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match redirects to the canonical Match portal
+00:00 +1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:00 +2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match redirects to the canonical Match portal
+00:00 +3: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match redirects to the canonical Match portal
+00:00 +3: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:00 +4: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +5: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:00 +5: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/countdown redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +6: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:00 +6: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/result redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +7: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:00 +7: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/detail redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +8: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +8: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:01 +9: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +9: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/intention redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +10: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +10: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/feedback redirects to the canonical Match portal
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +11: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +12: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +12: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: readiness guard redirects a legacy Match entry to Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +13: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +13: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +14: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +14: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/countdown without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +15: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +15: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +16: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +17: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +17: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/detail without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +18: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +18: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/intention without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +19: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +20: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +20: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: /match/feedback without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +21: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +22: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +22: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart: canonical Match without readiness opens Readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +23: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +24: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +25: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +25: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +26: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +27: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +28: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +29: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +30: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +30: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:01 +31: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +31: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +32: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +32: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:01 +33: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +33: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +34: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +34: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +35: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +35: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +36: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +36: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +37: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +37: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +38: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +38: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +39: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=2
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+00:02 +40: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated home AppShell opens E2 and skip suppresses a new session
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +41: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: unauthenticated initial home redirects to login without E2 storage read
+00:02 +42: All tests passed!
