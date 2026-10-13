@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.2 版前规划（最新）
+
+Owner 已授权 v10.0.0 与 v10.0.1 两个已接受候选的 GitHub 远端 main 定点整合，并开始下个版本规划。整合依据 [v10.0.1/integration.md](docs/versions/v10.0.1/integration.md)，远端 GitHub 代码已按固定14项 Git Blob 纳入，**原本地 D:/EliteSync-v10 dirty root 尚未安全对齐、新 main 未重新运行 PHP/Flutter**。现发布 [v10.0.2 版前草案](docs/versions/v10.0.2/PLAN_PROPOSAL_V0_1.md)，拟核实新主线与本地代码安全衔接，并评估开发/测试模式限定的 Flutter 只读诊断组件（不接真实 Chat 权限）。**PROPOSED / CODEX_FEASIBILITY_REVIEW_ONLY / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。v10.0.0/0.1 已接受状态不变；V57等旧暂停与 BE-12 route 404 均不解冻。
+
+
 ## 2026-10-13 两个已接受版本远端代码定点整合（最新）
 
 Owner 已授权整合 v10.0.0 与 v10.0.1 两个 accepted candidates。以当前 GitHub main 文档与代码树为基础，**按 v10.0.1 固定候选的14项白名单 Git Blob 定点纳入源/测试及有限复现辅助文件**，不整体 merge/cherry-pick 旧 candidate。详细来源与证据分层：[集成回执](docs/versions/v10.0.1/integration.md)。GitHub main 的整合提交以实际发布回执为准；**Acceptance 两版保持 ACCEPTED/CLOSED；Integration 仅为 GITHUB_MAIN_SCOPED_CODE_INTEGRATED**，非历史 candidate 整体合并。原本地 `D:/EliteSync-v10` dirty root/HEAD/index 尚未由网页直接同步或检验，安全本地对齐 `PENDING`；该新 main 提交尚未实测 PHP/Flutter。BE-12 默认404、Feature NOT_RUN、V57等保护边界不变，**不自动启动新版本开发**。下方“未合入main”属于当时的历史快照。
