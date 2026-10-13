@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.1 正式冻结计划（当前）
+
+Astra 根据 Codex `V10.0.1 PLAN REVIEW — READY_WITH_FINDINGS` 将本版固定为 **A 上版 accepted 232 行/139 data sets 测试增强的选择性集成 + B 既有 LOCAL_ONLY PHP 资格领域函数驱动的 synthetic JSON→Dart 只读诊断消费 + C 直接相关验证与交付**。正式计划见 [v10.0.1/plan.md](docs/versions/v10.0.1/plan.md)；先前 v10.0.1 提案转历史来源。本版 **FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**，仅 Owner 手动发送固定计划及执行指令后 Codex 才能编码或测试。它不是完整聊天消费桥或消息读发授权，真实七路由 BE-12 opaque 404、V57/H1/H2/D0 暂停、NOT_READY/RuntimeReady=false/M6 CLOSED 等边界继续不变。v10.0.0 保持 **ACCEPTED/CLOSED + NOT_MERGED**，新隔离候选不自动合并 GitHub main。
+
+
 ## 2026-10-13 v10.0.1 版前规划启动（当前）
 
 Owner 核准 v10.0.0 首版试运行通过，并在三份工作流/版本登记文档同步后请求核查是否仍有同版工作及开始下一版规划。确认 **v10.0.0 Acceptance=ACCEPTED/CLOSED；Integration=NOT_MERGED**；此集成未完成事项应转入未来准确集成目标，**不重开或追改 v10.0.0 冻结计划**。Astra 已提出 [v10.0.1 计划草案](docs/versions/v10.0.1/PLAN_PROPOSAL_V0_1.md)，主要评估 v10.0.0 已接受增强的安全集成与 backend→Flutter 的可行非生产消费边界；候选范围等待 Codex 本地只读反馈，**PROPOSED / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。没有开发授权、不合并任何代码、不激活 V57/H1/H2/D0、不解除真实消息404或其它正式运行/生产保护门。下方 v10.0.0 已关闭记录仍有效，最早历史“等待后续 Owner 决定”已由本次仅版前规划的明确请求更新。
