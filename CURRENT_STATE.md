@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.1 版前规划启动（当前）
+
+Owner 核准 v10.0.0 首版试运行通过，并在三份工作流/版本登记文档同步后请求核查是否仍有同版工作及开始下一版规划。确认 **v10.0.0 Acceptance=ACCEPTED/CLOSED；Integration=NOT_MERGED**；此集成未完成事项应转入未来准确集成目标，**不重开或追改 v10.0.0 冻结计划**。Astra 已提出 [v10.0.1 计划草案](docs/versions/v10.0.1/PLAN_PROPOSAL_V0_1.md)，主要评估 v10.0.0 已接受增强的安全集成与 backend→Flutter 的可行非生产消费边界；候选范围等待 Codex 本地只读反馈，**PROPOSED / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。没有开发授权、不合并任何代码、不激活 V57/H1/H2/D0、不解除真实消息404或其它正式运行/生产保护门。下方 v10.0.0 已关闭记录仍有效，最早历史“等待后续 Owner 决定”已由本次仅版前规划的明确请求更新。
+
+
 ## 2026-10-13 v10.0.0 最终独立验收与复盘（当前）
 
 Astra 已对冻结计划 `8072ba51ad1dde2e3c3262a418af54531dcec7e0` 与候选 `18daf9746e2f031fbbbe18682bf0c742aad92a09` 完成 GitHub 固定证据独立审查：55/55 manifest Git blob、准确11个JUnit类、301 tests/4056 assertions、exit0、0 fail/error/skip。最终结论 **ACCEPT/CLOSED WITH OBSERVATIONS（仅 synthetic/dev-test 边界）**，见 [acceptance](docs/versions/v10.0.0/acceptance.md) 与 [retrospective](docs/versions/v10.0.0/retrospective.md)。R18-R1 历史接受不重复，新增139个回归数据集，产品源码未修改；初次包装器失败和deprecations保留。**候选未合并 GitHub main**；原主工作树保护依据本地工具回执，不冒网页本机重验；V57/H1/H2/D0、正式运行/真实数据/部署限制不解冻。v10.0.0 已关闭，**不自动下达后继版本**，等待 Owner 决定。
