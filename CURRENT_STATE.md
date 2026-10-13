@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.3 正式计划冻结（当前）
+
+Astra 已复核 Codex `V10.0.3 PLAN REVIEW — READY_WITH_FINDINGS`，确认 [APP-INT-05](EVIDENCE/APP-INT-05/summary.md) 已接受 Home→Connection→synthetic 消息同意主循环；新增真实缺口不是重建该主循环，而是**真实 GoRouter 在 Guard 动态变化时的路径保持、安全 redirect 和监听/Router 释放**。代码 `app_router.dart` 目前 ref.watch Guard 且在 provider build 中新建 GoRouter，但实际动态路径错误 `NOT_PROVEN`，正式冻结要求先针对性运行测试再修必要代码，绝不预先自认 bug。冻结正文 [v10.0.3/plan.md](docs/versions/v10.0.3/plan.md)，唯一源码父提交 `fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae`，可用本地隔离基线 `2175dd62...` 为已报告 CLEAN 的旧事实（此后远端只有文档变动）。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。没有发布开发授权、没有新测试回执。修复白名单仅 `app_router.dart` 与一个新 Router 动态 Guard 测试；Home/Progress/Connection/Chat/NavigationGuard 现有语义不改。原 `D:/EliteSync-v10` dirty main 保留；V57/H1/H2/D0、BE-12 404、`NOT_READY/RuntimeReady=false/M6 CLOSED` 不变，不自动下一版。
+
+
 ## 2026-10-13 v10.0.3 版前规划已启动（最新）
 
 Owner 已明确授权启动 v10.0.3 **版前规划**，Astra 提出 [v10.0.3 有界草案](docs/versions/v10.0.3/PLAN_PROPOSAL_V0_1.md)：优先利用已经存在的 Home Calm State Hub、Progress Match/Connection 实页、AppShell/Router/Guard，寻找同一真实 Flutter 路由下 synthetic 状态消费/下一步导航及失效安全回退的**实际缺口**，不重做已接受页面或将 v10.0.2 Debug 诊断接进正常产品。版本状态 **PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**，Owner 手动转交 Codex 定点只读核查后，Astra 才能冻结实际范围。新隔离开发基线已由 Codex 报告 READY，原 `D:/EliteSync-v10` dirty main 仍保留；已有17项整合代码、基础限定回归不需重新接收。消息真实路由继续 BE-12 默认404；V57/H1/H2/D0及 `RuntimeReady=false`/`M6 CLOSED` 等未解冻。不得自动编程、部署、启动旧任务或把原本地 `main` 做全量合并。
