@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.0 正式计划已冻结（当前）
+
+Astra 依据 Codex `READY_WITH_FINDINGS` 版前核查，将 v10.0.0 冻结为 **A 本地有界来源纳入 + B Product Connection 当前依赖回归补充 + D 有限联合验证和交付**；C 跨后端–Flutter 消费桥拆入后续版本。R18-R1 已历史独立接受，不能重复修复或当作待解决旧缺陷。正式计划：[v10.0.0/plan.md](docs/versions/v10.0.0/plan.md)。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；本次发布不是自动编程指令。V57 未激活、H2/D0 未签发、NOT_READY/RuntimeReady=false/M6 CLOSED 不变。下方 10 月 12 日“待 Codex 核查”属于历史快照。
+
+
 ## 2026-10-12 第三阶段 v10.0.0 版前规划已启动（当前）
 
 Owner 已手动启动迁移后首版 `v10.0.0` 的**规划阶段**。网页顾问已提出 [v10.0.0 计划草案](docs/versions/v10.0.0/PLAN_PROPOSAL_V0_1.md)，等待现有 Codex 对实际 LOCAL_ONLY 代码与遗留工作进行只读可行性核查、回复执行计划草案。**未冻结正式版本、未发出编码或运行授权**，不自动激活 V57/H1 或 H2/D0，不撤销 NOT_READY/RuntimeReady=false/M6 CLOSED 等约束。本段取代下文“第三阶段待启动/首版未制定”的历史叙述；下文第二阶段现场身份、未提交成果与保护事实不自动改变。
