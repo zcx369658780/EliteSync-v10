@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.3 版前规划已启动（最新）
+
+Owner 已明确授权启动 v10.0.3 **版前规划**，Astra 提出 [v10.0.3 有界草案](docs/versions/v10.0.3/PLAN_PROPOSAL_V0_1.md)：优先利用已经存在的 Home Calm State Hub、Progress Match/Connection 实页、AppShell/Router/Guard，寻找同一真实 Flutter 路由下 synthetic 状态消费/下一步导航及失效安全回退的**实际缺口**，不重做已接受页面或将 v10.0.2 Debug 诊断接进正常产品。版本状态 **PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**，Owner 手动转交 Codex 定点只读核查后，Astra 才能冻结实际范围。新隔离开发基线已由 Codex 报告 READY，原 `D:/EliteSync-v10` dirty main 仍保留；已有17项整合代码、基础限定回归不需重新接收。消息真实路由继续 BE-12 默认404；V57/H1/H2/D0及 `RuntimeReady=false`/`M6 CLOSED` 等未解冻。不得自动编程、部署、启动旧任务或把原本地 `main` 做全量合并。
+
+
 ## 2026-10-13 新本地隔离开发基线已建立（最新；Codex 本地回执）
 
 Owner 手动授权的**版本后本地安全对齐维护**已有 Codex 执行报告：`LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED`。本次执行不属于 v10.0.3，也没有启动新版本、部署或打开线上消息权限。
