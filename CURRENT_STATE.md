@@ -1,51 +1,64 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-13 v10.0.2 独立终验关闭（最新）
+## CURRENT SNAPSHOT — 2026-10-13（最新；下方均为历史时点）
+
+- **已验收**：v10.0.0、v10.0.1、v10.0.2 的独立验收均 `ACCEPTED/CLOSED WITH OBSERVATIONS`，各自仅限原冻结的 synthetic/dev-test / Debug Widget 范围。验收/复盘及准确缺口仍以 [版本登记](docs/versions/README.md) 和各版 acceptance 为准，不扩大为正式 APP/线上消息/生产资格。
+- **GitHub 目标代码基线**：Owner 已授权的定点集成分别将前两版14项和 v10.0.2 新增3项接受代码/测试/辅助工具纳入 GitHub 远端 `main`。回执：[v10.0.1](docs/versions/v10.0.1/integration.md)、[v10.0.2](docs/versions/v10.0.2/integration.md)。最新提交以 GitHub 当前分支真实读取为准，不能把冻结文档提交或历史候选当作本地 HEAD。
+- **本地仍未对齐**：上一具名 Codex 回执里 `D:/EliteSync-v10` 的本地 `main HEAD=4bebc8f...`、默认 index SHA256 `2be660...`、tracked 修改43/untracked normal208，保留109项具名保护。本轮网页未操作本地；**LOCAL_ROOT_PENDING_SAFE_RECONCILIATION**。不可直接 pull/reset/rebase/clean/stash 整个脏树。
+- **整合后运行验证**：`POST_INTEGRATION_RUNTIME_NOT_RUN`；先前候选 PHP/Flutter 原证只证明对应候选，通过 Git Blob 集成不自动成为新 main 的运行测试 PASS。
+- **保护状态**：BE-12 七条真实消息路由继续默认拒绝404；诊断只能 Debug/Test 只读、不能开放消息权限；V57/H1 已接受准备不等于激活，H2/D0 未签发；`NOT_READY`、`RuntimeReady=false`、`M6 CLOSED`、`S2 unsigned`、`OwnerEnvironment PENDING` 未解除。下一版本未规划或派发。
+- **工作流复核**：连续三版显示“版前资产识别→冻结→手动派发→Codex 版内自修→独立验收→独立定点集成”可行。本次只微调[长期工作流](docs/workflow/CURRENT_WORKFLOW.md)中的三层集成状态、未来日志安全发布及冻结链接的非破坏性勘误，不新增日常微审批或强制工具链门。
+
+---
+
+以下为 2026-10-12～13 各阶段**历史快照**，其“待验收”“未集成”“未启动”只描述当时，**不能覆盖本页顶部当前结论**；对应冻结 plan/acceptance/retrospective 原件仍保持不变。
+
+## 2026-10-13 v10.0.2 独立终验关闭（历史快照）
 
 Astra 已根据 `c96b3582243067d8acf572405d8a4eb908b18da3` 的冻结 [计划](docs/versions/v10.0.2/plan.md)（blob `cdb88dba4585755fafd08b30fc025a019dd39a91`）审查固定 [候选](https://github.com/zcx369658780/EliteSync-v10/commit/5bb2de6bed2eb8cbc063e707c39a594ae35eb301)（sole parent `be070a771114052b2f6e7796636cd1a186502988`，tree `482df7f9467685dd43ab79afe05e4ad782a43f5a`）。**Acceptance=ACCEPTED/CLOSED WITH OBSERVATIONS（仅 Debug/Test synthetic 只读诊断 Widget）**；独立 GitHub 检查 36/36 manifest payload、23/23 source+protected Git Blobs，PHP 12场景930检查、新 Flutter 28项 PASS，PHP/Parser/Widget 当次 JSON SHA 一致，旧状态即时清除。此前隔离 Flutter 首次缺 package graph 导致测试加载前失败，作者用既有依赖图修复后通过，原失败证据保留。**Profile/Release 实际运行、Android设备、BE-12 本版 pure middleware/Feature均 NOT_RUN**，仅源码 kDebugMode/纯门逻辑与 Debug Widget 验证。详见 [最终独立验收](docs/versions/v10.0.2/acceptance.md) 与 [复盘](docs/versions/v10.0.2/retrospective.md)。**Integration=ISOLATED_CANDIDATE_ONLY / NOT_MERGED_TO_GITHUB_MAIN**；原本地 `D:/EliteSync-v10` dirty main 尚未同步，新旧保护界限、V57/H1/H2/D0、NOT_READY/RuntimeReady=false/M6 CLOSED 不变。**v10.0.3 不自动启动**；下方冻结/等待派发均属历史时点记录。
 
 
-## 2026-10-13 v10.0.2 正式计划冻结（当前）
+## 2026-10-13 v10.0.2 正式计划冻结（历史快照）
 
 Astra 收到 Codex `V10.0.2 PLAN REVIEW — READY_WITH_FINDINGS` 后，决定唯一窄范围为**默认关闭、仅 Debug/Test 的 Flutter 只读资格诊断 Widget**，使用真实 PHP synthetic exporter→同次新 JSON→已接受 Dart parser→ widget harness。既有 `Progress`/普通导航、Chat 授权/路由一律不修改。正式冻结计划：[v10.0.2/plan.md](docs/versions/v10.0.2/plan.md)。代码父基线固定为 `be070a771114052b2f6e7796636cd1a186502988`；Owner 需手动派发后才允许在隔离 worktree 开发。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。原本地脏 main HEAD `4bebc8f...` / 默认 index/43 tracked+208 untracked 仍属 Codex 最近只读回报，**并未因远端计划提交安全同步**。BE-12默认404、V57/H1/H2/D0冻结、NOT_READY/RuntimeReady=false/M6 CLOSED 均不变，下文旧“等待核查”属历史快照。
 
 
-## 2026-10-13 v10.0.2 版前规划（最新）
+## 2026-10-13 v10.0.2 版前规划（历史快照）
 
 Owner 已授权 v10.0.0 与 v10.0.1 两个已接受候选的 GitHub 远端 main 定点整合，并开始下个版本规划。整合依据 [v10.0.1/integration.md](docs/versions/v10.0.1/integration.md)，远端 GitHub 代码已按固定14项 Git Blob 纳入，**原本地 D:/EliteSync-v10 dirty root 尚未安全对齐、新 main 未重新运行 PHP/Flutter**。现发布 [v10.0.2 版前草案](docs/versions/v10.0.2/PLAN_PROPOSAL_V0_1.md)，拟核实新主线与本地代码安全衔接，并评估开发/测试模式限定的 Flutter 只读诊断组件（不接真实 Chat 权限）。**PROPOSED / CODEX_FEASIBILITY_REVIEW_ONLY / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。v10.0.0/0.1 已接受状态不变；V57等旧暂停与 BE-12 route 404 均不解冻。
 
 
-## 2026-10-13 两个已接受版本远端代码定点整合（最新）
+## 2026-10-13 两个已接受版本远端代码定点整合（历史快照）
 
 Owner 已授权整合 v10.0.0 与 v10.0.1 两个 accepted candidates。以当前 GitHub main 文档与代码树为基础，**按 v10.0.1 固定候选的14项白名单 Git Blob 定点纳入源/测试及有限复现辅助文件**，不整体 merge/cherry-pick 旧 candidate。详细来源与证据分层：[集成回执](docs/versions/v10.0.1/integration.md)。GitHub main 的整合提交以实际发布回执为准；**Acceptance 两版保持 ACCEPTED/CLOSED；Integration 仅为 GITHUB_MAIN_SCOPED_CODE_INTEGRATED**，非历史 candidate 整体合并。原本地 `D:/EliteSync-v10` dirty root/HEAD/index 尚未由网页直接同步或检验，安全本地对齐 `PENDING`；该新 main 提交尚未实测 PHP/Flutter。BE-12 默认404、Feature NOT_RUN、V57等保护边界不变，**不自动启动新版本开发**。下方“未合入main”属于当时的历史快照。
 
 
-## 2026-10-13 v10.0.1 独立验收已关闭（当前）
+## 2026-10-13 v10.0.1 独立验收已关闭（历史快照）
 
 Astra 依冻结计划 `f39ed2d41360b14637464937b36b5dfea945d29e` / blob `c74bfe1619f69f6f496d187769668e3560759b17` 对独立候选 `ffbfeca78b97262f141d69e0542bb72b43e2f186` 完成固定 Git 对象和原始证据审查：**56/56 payload blob、PHP 7类294 tests/3420 assertions 0fail/error/skip、PHP12场景930检查、Dart 9项PASS、同次JSON SHA一致、BE-12 pure middleware8次404无下游**。AC-01～AC-07 `PASS`，最终 **ACCEPTED/CLOSED WITH OBSERVATIONS，仅限 synthetic/dev-test 只读诊断**。见 [验收](docs/versions/v10.0.1/acceptance.md) 和 [复盘](docs/versions/v10.0.1/retrospective.md)。**Feature路由回归NOT_RUN**，产品/线上消息权限均未解冻。当前候选未合 GitHub main；v10.0.0 仍 ACCEPTED/CLOSED + NOT_MERGED_TO_MAIN；v10.0.1 Integration=ISOLATED_CANDIDATE_ONLY/NOT_MERGED_TO_MAIN。原本地根109项保护是 Codex 本地回执，非网页直接重算。V57/H1/H2/D0及 NOT_READY/RuntimeReady=false/M6 CLOSED 等限制保留。**不自动启动 v10.0.2，等待 Owner 决定。**下方冻结与等待派发均为已过去阶段的时间快照。
 
 
-## 2026-10-13 v10.0.1 正式冻结计划（当前）
+## 2026-10-13 v10.0.1 正式冻结计划（历史快照）
 
 Astra 根据 Codex `V10.0.1 PLAN REVIEW — READY_WITH_FINDINGS` 将本版固定为 **A 上版 accepted 232 行/139 data sets 测试增强的选择性集成 + B 既有 LOCAL_ONLY PHP 资格领域函数驱动的 synthetic JSON→Dart 只读诊断消费 + C 直接相关验证与交付**。正式计划见 [v10.0.1/plan.md](docs/versions/v10.0.1/plan.md)；先前 v10.0.1 提案转历史来源。本版 **FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**，仅 Owner 手动发送固定计划及执行指令后 Codex 才能编码或测试。它不是完整聊天消费桥或消息读发授权，真实七路由 BE-12 opaque 404、V57/H1/H2/D0 暂停、NOT_READY/RuntimeReady=false/M6 CLOSED 等边界继续不变。v10.0.0 保持 **ACCEPTED/CLOSED + NOT_MERGED**，新隔离候选不自动合并 GitHub main。
 
 
-## 2026-10-13 v10.0.1 版前规划启动（当前）
+## 2026-10-13 v10.0.1 版前规划启动（历史快照）
 
 Owner 核准 v10.0.0 首版试运行通过，并在三份工作流/版本登记文档同步后请求核查是否仍有同版工作及开始下一版规划。确认 **v10.0.0 Acceptance=ACCEPTED/CLOSED；Integration=NOT_MERGED**；此集成未完成事项应转入未来准确集成目标，**不重开或追改 v10.0.0 冻结计划**。Astra 已提出 [v10.0.1 计划草案](docs/versions/v10.0.1/PLAN_PROPOSAL_V0_1.md)，主要评估 v10.0.0 已接受增强的安全集成与 backend→Flutter 的可行非生产消费边界；候选范围等待 Codex 本地只读反馈，**PROPOSED / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED**。没有开发授权、不合并任何代码、不激活 V57/H1/H2/D0、不解除真实消息404或其它正式运行/生产保护门。下方 v10.0.0 已关闭记录仍有效，最早历史“等待后续 Owner 决定”已由本次仅版前规划的明确请求更新。
 
 
-## 2026-10-13 v10.0.0 最终独立验收与复盘（当前）
+## 2026-10-13 v10.0.0 最终独立验收与复盘（历史快照）
 
 Astra 已对冻结计划 `8072ba51ad1dde2e3c3262a418af54531dcec7e0` 与候选 `18daf9746e2f031fbbbe18682bf0c742aad92a09` 完成 GitHub 固定证据独立审查：55/55 manifest Git blob、准确11个JUnit类、301 tests/4056 assertions、exit0、0 fail/error/skip。最终结论 **ACCEPT/CLOSED WITH OBSERVATIONS（仅 synthetic/dev-test 边界）**，见 [acceptance](docs/versions/v10.0.0/acceptance.md) 与 [retrospective](docs/versions/v10.0.0/retrospective.md)。R18-R1 历史接受不重复，新增139个回归数据集，产品源码未修改；初次包装器失败和deprecations保留。**候选未合并 GitHub main**；原主工作树保护依据本地工具回执，不冒网页本机重验；V57/H1/H2/D0、正式运行/真实数据/部署限制不解冻。v10.0.0 已关闭，**不自动下达后继版本**，等待 Owner 决定。
 
 
-## 2026-10-13 v10.0.0 正式计划已冻结（当前）
+## 2026-10-13 v10.0.0 正式计划已冻结（历史快照）
 
 Astra 依据 Codex `READY_WITH_FINDINGS` 版前核查，将 v10.0.0 冻结为 **A 本地有界来源纳入 + B Product Connection 当前依赖回归补充 + D 有限联合验证和交付**；C 跨后端–Flutter 消费桥拆入后续版本。R18-R1 已历史独立接受，不能重复修复或当作待解决旧缺陷。正式计划：[v10.0.0/plan.md](docs/versions/v10.0.0/plan.md)。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；本次发布不是自动编程指令。V57 未激活、H2/D0 未签发、NOT_READY/RuntimeReady=false/M6 CLOSED 不变。下方 10 月 12 日“待 Codex 核查”属于历史快照。
 
 
-## 2026-10-12 第三阶段 v10.0.0 版前规划已启动（当前）
+## 2026-10-12 第三阶段 v10.0.0 版前规划已启动（历史快照）
 
 Owner 已手动启动迁移后首版 `v10.0.0` 的**规划阶段**。网页顾问已提出 [v10.0.0 计划草案](docs/versions/v10.0.0/PLAN_PROPOSAL_V0_1.md)，等待现有 Codex 对实际 LOCAL_ONLY 代码与遗留工作进行只读可行性核查、回复执行计划草案。**未冻结正式版本、未发出编码或运行授权**，不自动激活 V57/H1 或 H2/D0，不撤销 NOT_READY/RuntimeReady=false/M6 CLOSED 等约束。本段取代下文“第三阶段待启动/首版未制定”的历史叙述；下文第二阶段现场身份、未提交成果与保护事实不自动改变。
 
@@ -68,7 +81,7 @@ EXECUTOR MIGRATION PREPARED；SUCCESSOR CODEX SESSION RECEIVED 尚未成立。V5
 
 核对日：2026-10-12（Asia/Shanghai）。此页是迁移后当前事实入口；历史状态/任务原件不重写，原计划不因入口变化改标准。
 
-## 当前目标和权限
+## 2026-10-12 迁移时点的目标和权限（历史快照）
 第二阶段由现有Codex完成知识/规则同步与手动交接；长期管理转同项目网页GPT 6 Astra。第三阶段由Owner手动启动；迁移后首版计划尚未制定。版本开发未启动，旧暂停任务不恢复，不转Dot、不建立自动调度或监听。
 
 ## 第一阶段历史实测与远端差异
