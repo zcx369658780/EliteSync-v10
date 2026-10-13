@@ -4,6 +4,16 @@ type: note
 permalink: elitesync-v10-local/knowledge
 ---
 
+## K09 新隔离开发基线建立与有限回归（2026-10-13）
+
+性质：Owner 已手动授权后的 Codex 本地执行回报 + GitHub 网页独立文件身份核验；状态：**基线已报告 READY，保留独立证据层级**。执行规则仍由 [K08](#k08-版后远端定点集成与本地开发基线接续owner-长期授权2026-10-13) 和 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md) 确定；实时状态详见 [CURRENT_STATE](../../CURRENT_STATE.md)。
+
+- **网页已核**：固定 GitHub `main=2175dd62d9384efa05dd6b5201f58c5282379fbb`，Tree `2fd74c05deb15fe320d9212f6966c2a731683e44`；前两版14项加 v10.0.2 三项、共17项必要代码/测试/工具 Blob，均从固定主线逐路径读取一致。
+- **Codex 本地报告**：在 `C:/Users/zcxve/.codex/worktrees/elitesync-main-2175dd6/EliteSync-v10` 的 `codex/local-baseline-2175dd6` 新隔离 worktree 建立 HEAD 与 Tree 均同主线、ahead/behind `0/0`、工作树 `CLEAN`；未新增 commit/push。原 `D:/EliteSync-v10` main 继续停留 `4bebc8f...`，index `2be660...`、状态与109项保护不变。**LOCAL_DEVELOPMENT_BASELINE_READY 不等于 ORIGINAL_DIRTY_MAIN_RECONCILED**。
+- **Codex 实测报告（非网页重跑）**：新基线 PHP 294/3420（0失败，2既有deprecations）、PHP synthetic12/930、Flutter parser/Widget28 PASS、同次 JSON SHA一致、BE-12 pure middleware 8个拒绝通过。完整版 Laravel Feature/Android/Profile/Release/全APP仍 `NOT_RUN`；故只记 `POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`，不能冒称生产。
+- **本地独立成果保留**：17项在旧根为6同字节、10缺失、1旧测试；原根另有31 Flutter差异、10文档/指导差异与限定核验30其他 PHP 文件，未整仓清理/吸收。具名本地维护回执和17项身份表保存在 `C:/Users/zcxve/.codex/visualizations/` 的本地会话目录，**网页未读取原文件**。有需要时由 Codex 准确取舍，不复活历史拒绝或暂停。
+- **后继**：无须重建一次新基线；Owner 选择下一版方向后，Astra 版前计划应请 Codex 从此干净隔离基线实际读取，按需引入旧 root 的具名有效成果；不自动编程或恢复 V57。
+
 ## K08 版后远端定点集成与本地开发基线接续（Owner 长期授权，2026-10-13）
 
 性质：Owner 在当前项目会话中明确授权的**未来各版本默认收尾顺序**；状态：现行。准确执行规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md) 的“版本验收后的安全集成与本地基线”。

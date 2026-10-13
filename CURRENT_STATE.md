@@ -1,6 +1,19 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-13 Owner 授权安全对齐与版后默认接续（当前）
+## 2026-10-13 新本地隔离开发基线已建立（最新；Codex 本地回执）
+
+Owner 手动授权的**版本后本地安全对齐维护**已有 Codex 执行报告：`LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED`。本次执行不属于 v10.0.3，也没有启动新版本、部署或打开线上消息权限。
+
+- **GitHub 可由网页独立核验**：当前 `main` 仍指向 `2175dd62d9384efa05dd6b5201f58c5282379fbb`，Tree `2fd74c05deb15fe320d9212f6966c2a731683e44`；按此前两份 [定点集成回执](docs/versions/v10.0.1/integration.md) 和 [v10.0.2 回执](docs/versions/v10.0.2/integration.md)，**17/17 项 GitHub main 中的接受文件 Blob 已实际逐路径独立核对准确**。
+- **Codex 本地观察（网页未直接读取 Windows）**：新隔离 worktree `C:/Users/zcxve/.codex/worktrees/elitesync-main-2175dd6/EliteSync-v10`，branch `codex/local-baseline-2175dd6`，HEAD `2175dd62d9384efa05dd6b5201f58c5282379fbb`，Tree `2fd74c05deb15fe320d9212f6966c2a731683e44`，与当时实时远端 ahead/behind `0/0`；测试后报告 Git 状态 `CLEAN`，无新增 commit/push。此为**独立新开发基线可用**，不是原脏 main 已被同步。
+- **该新基线的实际运行结果（依据 Codex 本地回执，网页未独立重跑）**：PHP `294 tests / 3420 assertions`、0 fail/error/skip，2项既有 metadata deprecations；PHP 诊断 `12 scenarios / 930 checks`；Flutter parser + Widget `28 PASS`，PHP/Parser/Widget 同次 synthetic JSON SHA256 一致；BE-12 **pure middleware** 八次拒绝用例通过。完整 Laravel Feature routes、Profile/Release、正式设备及全应用运行 `NOT_RUN`。因此 `POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`，而非全套应用/平台资格。
+- **旧工作树保护（Codex 回执）**：原 `D:/EliteSync-v10` 本地 `main HEAD=4bebc8f394248e254c1368a06fbdee5d2c883301`、默认 index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`，staged0、tracked修改43、untracked normal208，Git status hash不变，109项具名保护文件零变化；`ORIGINAL_DIRTY_MAIN_RECONCILED=false`。不要求这次把旧根变为 clean 或变相覆盖它。
+- **准确范围**：旧根对17项接受对象有6项同字节、10项缺失、1项为增强前测试。其他独立成果仍在旧根，Codex 只限定核查31项 Flutter 源/测试差异、10项文档/指导差异、30项其他本地 PHP 文件；还有2项 tracked 修改与新 main 正文一致。这是**有界分类而非全部 LOCAL_ONLY 完成审查/接受**。需消费这些成果时再按具名范围选择性接入，不自动整仓同步。
+- **回执可达性**：Codex 将 `integrated-17.json` 和 `alignment-receipt.json` 保存于本地私有 `C:/Users/zcxve/.codex/visualizations/.../baseline-2175dd6/`；当前网页**没有直接读取它们**，不能把其具名哈希/测试宣称为网页亲自重验。现行长期规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)、[项目记忆 K08/K09](docs/memory/knowledge.md)。
+- **下一步**：在 Owner 决定启动下一版规划时，**优先以此可用的干净隔离基线为事实来源**，同时只在需求确实依赖旧根独立成果时定点核查；不因 `LOCAL_DEVELOPMENT_BASELINE_READY` 自动派发 v10.0.3 或解除 BE-12 默认404、V57/H1/H2/D0、`NOT_READY`、`RuntimeReady=false`、`M6 CLOSED` 等保护门。
+
+
+## 2026-10-13 Owner 授权安全对齐与版后默认接续（历史快照）
 
 Owner 已同意优先处理**本地代码基线安全对齐**，并批准今后每个版本独立验收关闭后默认依次处理**远端已接受代码定点集成→Codex 本地隔离开发基线安全接续→下一版规划**，无需每版重复请求这一流程方向。该决定已正式写入 [工作流](docs/workflow/CURRENT_WORKFLOW.md) 与 [项目记忆 K08](docs/memory/knowledge.md)。Owner 最新提供的 Codex 第二次核验：四份规则/导航文档在本地与 `f6bb9ef956ae17187b955dcdf2b114a5deceb72f` 字节相同，跳过全部写入；根 `main HEAD=4bebc8f394248e254c1368a06fbdee5d2c883301`、index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`，staged0/tracked43/untracked208，status SHA无变化。**没有本地源码基线对齐的证据，`LOCAL_DEVELOPMENT_BASELINE_READY=NOT_ESTABLISHED`；原脏主树仍保持未对齐。**
 

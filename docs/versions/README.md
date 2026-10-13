@@ -1,8 +1,10 @@
 # EliteSync-v10 版本登记入口
 
+**本地隔离基线接续（2026-10-13）**：Codex 报告基于当前 GitHub `main=2175dd62d9384efa05dd6b5201f58c5282379fbb` 建立 `codex/local-baseline-2175dd6` 干净 worktree，HEAD/Tree相符，17项已接受文件在 GitHub 实际逐个校验正确；该本地基线已报告完成范围测试：PHP294/3420，diagnostic12/930，Flutter28，BE-12纯middleware8（完整 Feature、Profile/Release、设备仍 NOT_RUN）。**LOCAL_DEVELOPMENT_BASELINE_READY（Codex 回执；网页未直接读取本机） / ORIGINAL_DIRTY_MAIN_PRESERVED**。具体见 [CURRENT_STATE](../../CURRENT_STATE.md) 与 [知识 K09](../memory/knowledge.md)。不由此认定原 dirty main 已合入或全部历史代码已吸收。
+
 **当前有效状态（2026-10-13）**：v10.0.0、v10.0.1、v10.0.2 均 `ACCEPTED/CLOSED WITH OBSERVATIONS`（仅各自冻结的 synthetic/dev-test 范围）。Owner 分别授权后，前两版14项及 v10.0.2 三项接受的**必要代码/测试/工具 Git Blob**已定点整合进 GitHub 远端 `main`。详见 [前两版集成回执](v10.0.1/integration.md)、[v10.0.2 集成回执](v10.0.2/integration.md)。
 
-**三层状态不得混用**：远端主线 `GITHUB_MAIN_SCOPED_CODE_INTEGRATED`；原本地 dirty `D:/EliteSync-v10` `LOCAL_ROOT_PENDING_SAFE_RECONCILIATION`；新 main 的 `POST_INTEGRATION_RUNTIME_NOT_RUN`。既有候选提交/历史原证不整体 merge，旧候选 PASS 不等于集成后 runtime PASS。正式消息/Android/生产权限仍未放行；未自动立 v10.0.3。正文旧阶段文档以每版冻结 plan/验收原件为准。
+**现行多层事实不得混用**：远端 `GITHUB_MAIN_SCOPED_CODE_INTEGRATED`；新隔离本地 `LOCAL_DEVELOPMENT_BASELINE_READY（CODEX_REPORTED）`；原脏根 `ORIGINAL_DIRTY_MAIN_PRESERVED/NOT_RECONCILED`；目标基线 `POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`。旧 `POST_INTEGRATION_RUNTIME_NOT_RUN` 属本次独立基线测试之前的事实快照；完整 APP/Feature/设备/正式生产仍 NOT_RUN。未自动立 v10.0.3，原冻结版验收不重裁。
 
 未来可采用 `docs/versions/<经 Owner 与 Astra 确定的版本号>/` 下的 `plan.md`、`execution.md`、`acceptance.md`、`retrospective.md`；仅实际创建后才能链接，也可复用具名任务/证据目录。每版登记记录冻结计划与提交、代码基线/候选、实际证据、Acceptance Status、Integration Status 及复盘。版前草案允许反馈，冻结后不得追改目标/验收门，历史原件保持。
 

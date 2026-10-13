@@ -13,8 +13,8 @@
 |v10.0.0 最终验收与复盘|[冻结计划](docs/versions/v10.0.0/plan.md)、[独立验收](docs/versions/v10.0.0/acceptance.md)、[复盘](docs/versions/v10.0.0/retrospective.md)：ACCEPTED/CLOSED（仅 synthetic/dev-test），接受的测试 Blob 已纳入 GitHub main；历史候选整体未 merge|
 |已接受代码定点整合（累计三版）|[v10.0.0 + v10.0.1 集成回执](docs/versions/v10.0.1/integration.md)：14项固定 Git Blob；[v10.0.2 集成回执](docs/versions/v10.0.2/integration.md)：新增3项固定 Git Blob。均已进入 GitHub main；原本地 dirty root 未对齐，新 main 未重新运行应用测试|
 |v10.0.2 独立验收与复盘|[冻结计划](docs/versions/v10.0.2/plan.md)、[独立验收](docs/versions/v10.0.2/acceptance.md)、[复盘](docs/versions/v10.0.2/retrospective.md)：Debug/Test-only synthetic 只读 Widget ACCEPTED/CLOSED；[必要代码已集成](docs/versions/v10.0.2/integration.md)，历史候选未整支 merge；非Debug/设备/BE-12 Feature仍NOT_RUN|
-|本地安全基线接续（Owner 已授权，Codex 待手动执行）|先定点比较 GitHub 最新 main 与原本地 dirty/untracked/17项已接受代码；若无冲突建立隔离干净新基线，原 `D:/EliteSync-v10` main 不变；不得推定本地已对齐或自动开始 v10.0.3。具体状态见 [CURRENT_STATE](CURRENT_STATE.md)|
-|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：v10.0.0～v10.0.2 均独立终验、必要代码已进 GitHub main；下版待 Owner 决定，本地安全对齐仍未完成|
+|本地隔离开发基线（Codex 已报告建立）|[当前状态与有限回归](CURRENT_STATE.md)、[项目知识 K09](docs/memory/knowledge.md)：新隔离 worktree `codex/local-baseline-2175dd6` 对应 main `2175dd62...`、17/17 GitHub对象独立核对；Codex 报告 clean、范围回归 PASS。原 `D:/EliteSync-v10` dirty main 继续保留，网页尚未直接读取本地回执；不自动启动 v10.0.3|
+|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：v10.0.0～v10.0.2 均独立终验、必要代码已进 GitHub main；下版待 Owner 决定；隔离开发基线已报告 READY，原 dirty root 尚未全量对齐|
 |计划、结果、验收与复盘|版本登记入口按具名冻结版定位；[历史stage-e2e-v2安全摘要及验收原文](docs/migration/ASTRA_HANDOFF_20261012.md)；[现有证据/契约索引](docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md)只解释其具名历史提交|
 |历史归档及LOCAL_ONLY|[archive指南](docs/archive/README.md)、[重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、归档说明与迁移交接中的私有资料/未覆盖历史说明|
 
