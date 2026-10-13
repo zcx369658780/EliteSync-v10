@@ -1,0 +1,35 @@
+{
+  "parent": "5728251c6345ba17524fb323dac8a02573d8d8c6",
+  "parent_tree": "db55b13105e144624566b0fd0c9d391b19b6dea7",
+  "plan_commit": "ecfd8b4dae4139991a425e426e988d6aa8ba4385",
+  "plan_blob": "e70ca5ef3d96a8086555586239a998227575e01e",
+  "input_blobs": {
+    "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_purpose_pages.dart": "614d412f417d7ce2e6385ac5324c4fd79660b788",
+    "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart": "619987bc7da198c1586c9bf03848ee951211235c",
+    "apps/flutter_elitesync_module/lib/shared/providers/navigation_guard_provider.dart": "f15eb57367349664dbc057424bae66bf5287473b",
+    "apps/flutter_elitesync_module/lib/app/router/app_router.dart": "2eebd3f0959414f95e2a3ec61e94d73a2779d795",
+    "apps/flutter_elitesync_module/lib/features/verification/presentation/providers/verification_provider.dart": "c8af5081416551f001ccb62cc15d22cc2310cb66",
+    "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/providers/questionnaire_provider.dart": "26871cbee8c7796cfa0479529f189a9bafef8b6a",
+    "apps/flutter_elitesync_module/test/synthetic_readiness_match_integration_test.dart": "bf755b99df9631713030a0d78342a16a0f487765",
+    "apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart": "2761348f172880e097a327f48ab265e7926d6268",
+    "apps/flutter_elitesync_module/pubspec.lock": "b56c4b2c45bab65106c12e4d75d6c5b34209aeb4",
+    "AGENTS.md": "91ff0a9a742b1827d272a49fa3e30e6b0e5471bc",
+    "docs/workflow/CURRENT_WORKFLOW.md": "e1ccbfd8ea0c3a8c7f9864f26e139af3949cce42",
+    "DOC_INDEX_CURRENT.md": "d84cbb5521c9dc215d6af286ed4dcd0748ba86d9",
+    "CURRENT_STATE.md": "5c8a4488667e393832a0c417d8813b1cc3609c1a"
+  },
+  "other_me_classes_byte_identical": true,
+  "dependency_reuse": {
+    "source": "preserved baseline64 .dart_tool",
+    "package_config_source_sha256": "a0e1accaf266bcf53e166b937dc431697a678841e093e2030291f995372f7869",
+    "package_graph_source_sha256": "e1cbfd18980819ad2c6512f7f91164755fa30a31a7512ba2a785129ababb2946",
+    "only_remapped_local_package_root": true,
+    "lock_identical": true,
+    "pub_get": "NOT_RUN",
+    "SDK_upgrade": false,
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "riverpod": "3.3.2",
+    "go_router": "16.3.0"
+  }
+}

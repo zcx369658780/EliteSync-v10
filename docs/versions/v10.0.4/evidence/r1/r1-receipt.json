@@ -1,0 +1,135 @@
+{
+  "original_candidate": "9d49d0ec22b8a21b347c5a2ac75546fa070c4d00",
+  "parent": "5728251c6345ba17524fb323dac8a02573d8d8c6",
+  "plan_commit": "ecfd8b4dae4139991a425e426e988d6aa8ba4385",
+  "plan_blob": "e70ca5ef3d96a8086555586239a998227575e01e",
+  "product_blob_unchanged": "af57d2d5dfc680de8490382e9e717bf790df93eb",
+  "test_blob": "2d969c6b40f8606e0172d53c8fe485f5195d795a",
+  "test_delta": "add braces only at displayOnly if; all assertions unchanged",
+  "original_review_reported_by_owner": {
+    "AC01_AC04_AC06": "PASS",
+    "AC05": "PARTIAL",
+    "AC07": "PENDING",
+    "finding": "exit0 with curly_braces_in_flow_control_structures, 1 issue found; old no-issues claim inaccurate"
+  },
+  "historical_evidence_blobs_unchanged": [
+    {
+      "path": "docs/versions/v10.0.4/evidence/baseline-identities.json",
+      "git_blob": "a3077fe7d6a09d78ee3f71013fb8f34c294d79ac"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/protection.json",
+      "git_blob": "2e60137fbb0cabc200568ff1f8ca3ff626a28500"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-01-baseline/receipt.json",
+      "git_blob": "ec4b456511e6d871fbb789bedb1f696d8e58d5b1"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-01-baseline/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-01-baseline/stdout.txt",
+      "git_blob": "eb169449e173636b157815f9403f9f012ad429d5"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-02/receipt.json",
+      "git_blob": "570b460e87c1859ca038bc55af3568eacff6ca88"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-02/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-02/stdout.txt",
+      "git_blob": "61cdc1b02f2cfbd770eeb04539b58bb18e068940"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-03/receipt.json",
+      "git_blob": "f8899d3c05ded7c2291f8b0a4f14c3482b08623f"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-03/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-03/stdout.txt",
+      "git_blob": "7b1b28b1bf2cb04591fce9a96d6018027ba41bb9"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-04/receipt.json",
+      "git_blob": "fdaabf903fa3f10c31b132127a23a4d38c157427"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-04/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-04/stdout.txt",
+      "git_blob": "36b255aa68479cd29b702512a243e323b4957cb5"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-05-final/receipt.json",
+      "git_blob": "415676d1b50d9e335031088123576613fe6e35b4"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-05-final/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-05-final/stdout.txt",
+      "git_blob": "36b255aa68479cd29b702512a243e323b4957cb5"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-06-analyze/receipt.json",
+      "git_blob": "a6938118dd4b9f349767b8398aa225bdd1821472"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-06-analyze/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-06-analyze/stdout.txt",
+      "git_blob": "57ce30c6a2c402637dfb038fc7277afc39935586"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-07-final-bytes/receipt.json",
+      "git_blob": "7adca6ddaad9ad2ce21b55b38fc2f4568888b7c8"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-07-final-bytes/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-07-final-bytes/stdout.txt",
+      "git_blob": "36b255aa68479cd29b702512a243e323b4957cb5"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-08-analyze-final/receipt.json",
+      "git_blob": "6ddd3ec1403fd079abbc792670961afd2afe1a36"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-08-analyze-final/stderr.txt",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.4/evidence/run-08-analyze-final/stdout.txt",
+      "git_blob": "57ce30c6a2c402637dfb038fc7277afc39935586"
+    }
+  ],
+  "final_tests": 13,
+  "test_exit_code": 0,
+  "analysis_exit_code": 0,
+  "analysis_stdout_verdict": "No issues found!",
+  "stdin": "DEVNULL",
+  "acceptance": "PENDING_ASTRA_RECHECK",
+  "integration": "NOT_MERGED",
+  "NOT_RUN": [
+    "PHP/DB",
+    "Android/devices",
+    "Profile/Release",
+    "full app",
+    "production/real accounts"
+  ]
+}

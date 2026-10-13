@@ -1,0 +1,53 @@
+00:00 +0: loading <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart
+00:00 +0: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: production UNKNOWN separates missing source from ineligibility
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:00 +1: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +2: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +3: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: explicit dev READY is a labelled demonstration only
+00:01 +4: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: explicit dev READY is a labelled demonstration only
+00:01 +5: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: explicit dev READY is a labelled demonstration only
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +6: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: same mounted page clears synthetic success on Guard changes
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +7: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +8: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +8: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: both compatibility destinations and back preserve Guard and page
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +9: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +9: <R1_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: narrow screen and enlarged text keep explanation and actions readable
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:02 +10: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=2
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+00:03 +11: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated home AppShell opens E2 and skip suppresses a new session
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +12: <R1_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: unauthenticated initial home redirects to login without E2 storage read
+00:03 +13: All tests passed!

@@ -1,0 +1,143 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart
+00:00 +0: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: production UNKNOWN separates missing source from ineligibility
+00:00 +1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: production UNKNOWN separates missing source from ineligibility
+00:00 +2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: production UNKNOWN separates missing source from ineligibility
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:00 +3: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:00 +3: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:00 +4: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +4: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +5: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +5: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: explicit dev READY is a labelled demonstration only
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +6: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +6: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: same mounted page clears synthetic success on Guard changes
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+00:01 +7: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:01 +8: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +8: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: both compatibility destinations and back preserve Guard and page
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+
+Warning: A call to tap() with finder "Found 1 widget with type "FilledButton" that are ancestors of widget with text "查看兼容验证状态页": [
+  FilledButton(dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#02a16], _ScrollableScope], state: _ButtonStyleState#0bb4d),
+]" derived an Offset (Offset(400.0, 576.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#42615 relayoutBoundary=up5
+The hit test result at that offset is: HitTestResult(RenderPointerListener#bfa6a@Offset(0.0, 30.0), RenderSemanticsAnnotations#240f9@Offset(0.0, 30.0), RenderMouseRegion#185c7@Offset(0.0, 30.0), RenderSemanticsAnnotations#a627d@Offset(0.0, 30.0), RenderSemanticsAnnotations#eb83f@Offset(0.0, 30.0), RenderFlex#234e7@Offset(377.0, 30.0), RenderPadding#60035@Offset(384.0, 36.0), RenderDecoratedBox#05570@Offset(384.0, 36.0), RenderBackdropFilter#7af4b@Offset(384.0, 36.0), RenderClipRRect#491e8@Offset(384.0, 36.0), RenderPositionedBox#a8731@Offset(384.0, 58.0), RenderStack#062d0@Offset(384.0, 58.0), RenderConstrainedBox#4f8be@Offset(384.0, 58.0), RenderPadding#64f4b@Offset(400.0, 58.0), RenderPadding#1a407@Offset(400.0, 58.0), RenderCustomMultiChildLayoutBox#3d314@Offset(400.0, 576.0), _RenderInkFeatures#448c1@Offset(400.0, 576.0), RenderPhysicalModel#699de@Offset(400.0, 576.0), RenderSemanticsAnnotations#118be@Offset(400.0, 576.0), RenderRepaintBoundary#d8156@Offset(400.0, 576.0), RenderIgnorePointer#1b317@Offset(400.0, 576.0), RenderAnimatedOpacity#ce9c0@Offset(400.0, 576.0), RenderAnimatedOpacity#9586c@Offset(400.0, 576.0), _RenderColoredBox#cf219@Offset(400.0, 576.0), RenderAnimatedOpacity#c1ecf@Offset(400.0, 576.0), RenderIgnorePointer#99a9c@Offset(400.0, 576.0), RenderAnimatedOpacity#3985d@Offset(400.0, 576.0), RenderRepaintBoundary#d5a74@Offset(400.0, 576.0), RenderSemanticsAnnotations#b9eb3@Offset(400.0, 576.0), RenderOffstage#5ce0b@Offset(400.0, 576.0), RenderSemanticsAnnotations#8f498@Offset(400.0, 576.0), _RenderTheater#be165@Offset(400.0, 576.0), RenderAbsorbPointer#45925@Offset(400.0, 576.0), RenderPointerListener#60ef4@Offset(400.0, 576.0), RenderCustomPaint#d6f8b@Offset(400.0, 576.0), RenderSemanticsAnnotations#7c0bb@Offset(400.0, 576.0), RenderSemanticsAnnotations#a41b3@Offset(400.0, 576.0), RenderSemanticsAnnotations#9efd0@Offset(400.0, 576.0), RenderTapRegionSurface#531e3@Offset(400.0, 576.0), RenderSemanticsAnnotations#a145c@Offset(400.0, 576.0), RenderSemanticsAnnotations#133fa@Offset(400.0, 576.0), HitTestEntry<HitTestTarget>#79d3b(_ReusableRenderView#1ca8f), HitTestEntry<HitTestTarget>#cf7a5(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2158:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1942:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1075:7)
+#3      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:427:22)
+<asynchronous suspension>
+#4      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:287:11)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:282:7)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+APP_SHELL_BUILD index=2
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: '/verification/status'
+  Actual: '/messages'
+   Which: is different.
+          Expected: /verificati ...
+            Actual: /messages
+                     ^
+           Differ at offset 1
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:429:9)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:287:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:282:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 429
+The test description was:
+  both compatibility destinations and back preserve Guard and page
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +8 -1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +8 -1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: both compatibility destinations and back preserve Guard and page [E]
+  Test failed. See exception logs above.
+  The test description was: both compatibility destinations and back preserve Guard and page
+  
+00:02 +8 -1: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: narrow screen and enlarged text keep explanation and actions readable
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'me-readiness-entry'>]: []" (used in a call to "tap()") could
+not find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2090:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1942:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1075:7)
+#3      _Harness.mount (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:247:20)
+<asynchronous suspension>
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:453:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:287:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:282:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  narrow screen and enlarged text keep explanation and actions readable
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +8 -2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+00:02 +8 -2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart: narrow screen and enlarged text keep explanation and actions readable [E]
+  Test failed. See exception logs above.
+  The test description was: narrow screen and enlarged text keep explanation and actions readable
+  
+00:02 +8 -2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated shell reaches four target destinations and Match child
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=2
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+00:02 +9 -2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: authenticated home AppShell opens E2 and skip suppresses a new session
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:02 +10 -2: <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/app/router/first_use_onboarding_router_integration_test.dart: unauthenticated initial home redirects to login without E2 storage read
+00:02 +11 -2: Some tests failed.
