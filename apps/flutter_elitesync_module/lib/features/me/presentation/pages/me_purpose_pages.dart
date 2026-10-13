@@ -53,7 +53,9 @@ class ReadinessPurposePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Readiness · 准备状态')),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        // AppShell's floating dock overlays the body; keep recovery actions
+        // scrollable above it, including with enlarged text.
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 112),
         children: [
           Card(
             key: statusKey,
@@ -73,15 +75,36 @@ class ReadinessPurposePage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
+          _ReadinessExplanationCard(
+            key: const ValueKey('readiness-source-explanation'),
+            title: '当前状态来源',
+            body: presentation.source,
+          ),
+          const SizedBox(height: 12),
+          const _ReadinessExplanationCard(
+            title: '正式准备条件尚未确定',
+            body:
+                '具体必需或可选条件及其权威来源尚未建立，不能据此判断你已满足匹配资格。状态未知也不表示你不合格。'
+                '\n验证结果、问卷完成、正式准入与有效准备状态分别判断；其中一项不能替代其它结论。',
+          ),
+          const SizedBox(height: 16),
           const Text(
             '准备状态只用于判断能否继续进入匹配准备，不是兼容性、安全、可信度或个人价值判断。即使准备完成，也仍需另行选择是否加入匹配。',
           ),
           const SizedBox(height: 20),
+          const Text('兼容验证状态查看'),
+          const SizedBox(height: 8),
+          const Text('查看既有验证流程的状态。该兼容页面的旧要求不代表正式准备条件，也不确定最低身份保证或准入政策。'),
+          const SizedBox(height: 8),
           FilledButton.tonal(
             onPressed: () => context.push(AppRouteNames.verificationStatus),
             child: const Text('查看兼容验证状态页'),
           ),
           const SizedBox(height: 12),
+          const Text('兼容问卷继续设置'),
+          const SizedBox(height: 8),
+          const Text('前往既有问卷继续设置；已有草稿能否恢复由原问卷流程判断。填写或完成问卷不会自动加入匹配，也不授予消息许可。'),
+          const SizedBox(height: 8),
           OutlinedButton(
             onPressed: () => context.push(AppRouteNames.questionnaire),
             child: const Text('继续兼容问卷页'),
@@ -159,10 +182,38 @@ class _CompatibilityPurposePage extends StatelessWidget {
 }
 
 class _ReadinessPresentation {
-  const _ReadinessPresentation(this.title, this.body);
+  const _ReadinessPresentation(this.title, this.body, this.source);
 
   final String title;
   final String body;
+  final String source;
+}
+
+// Readiness-only explanation: no evidence fetching, policy or permission write.
+class _ReadinessExplanationCard extends StatelessWidget {
+  const _ReadinessExplanationCard({
+    super.key,
+    required this.title,
+    required this.body,
+  });
+
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) => Card(
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Text(body),
+        ],
+      ),
+    ),
+  );
 }
 
 _ReadinessPresentation _readinessPresentation(
@@ -173,24 +224,29 @@ _ReadinessPresentation _readinessPresentation(
     return const _ReadinessPresentation(
       'Synthetic 准备状态已建立 · 开发演示',
       '这是仅用于演练 Match 流程的本地 synthetic projection；它不证明服务器或生产 readiness authority 已确认。',
+      '来源：明确开启的本地 Synthetic 投影，仅用于开发演示，不是正式资格。整体状态显示不提供一份已确认的正式条件清单。',
     );
   }
   return switch (state) {
     ReadinessGuardState.unauthenticated => const _ReadinessPresentation(
       '尚未登录',
       '登录后才能查看账户私有的准备状态。',
+      '当前显示登录状态；它不提供正式准备条件或匹配资格结论。',
     ),
     ReadinessGuardState.setupRequired => const _ReadinessPresentation(
       '需要继续设置',
-      '准备所需步骤尚未完成；可以从下方入口恢复，但具体资格规则仍未确定。',
+      '当前状态提示继续设置，但没有具名正式条件来源，不能据此判断具体缺少哪项或是否不合格。',
+      '来源：当前应用准备状态提示，不是一份已确认的正式条件清单。',
     ),
     ReadinessGuardState.ready => const _ReadinessPresentation(
-      '准备状态已由权威来源确认',
-      '这只表示当前准备要求已满足；不会自动加入匹配。',
+      '准备状态来源未确认',
+      '当前虽显示准备状态值，但没有可依赖的正式来源佐证，不能据此判断匹配资格。',
+      '来源：未确认。状态值本身不能代替来源证据，也不证明正式条件已满足。',
     ),
     ReadinessGuardState.unknown => const _ReadinessPresentation(
       '准备状态尚未确定',
       '当前没有可依赖的权威准备状态，因此不会按“已准备”放行匹配。可以从下方入口恢复现有设置流程。',
+      '来源：尚无可依赖的正式准备状态来源。未知不是不合格，也不是条件全部完成。',
     ),
   };
 }
