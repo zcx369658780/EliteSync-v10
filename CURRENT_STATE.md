@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.3 Astra 独立验收已关闭（最新；集成前状态）
+
+依据唯一冻结 `1ed7880a5843d2f1fe31b9d1ba254bf2792cc244` 的 [v10.0.3/plan.md](docs/versions/v10.0.3/plan.md)，Astra 独立核验固定候选 [e2f6db4...](https://github.com/zcx369658780/EliteSync-v10/commit/e2f6db455a329c59b2b4158cc50c0e18561a7c99)、Tree `bd2d0c30cf8fc1d9efd39ffbb52481375ff8fafc`、sole parent `fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae`：原 Router 7项2 PASS/5 FAIL，证明动态 Guard 更新造成 /progress→/home 误跳和 Match失效未入 Readiness；仅修改 `app_router.dart` 的 Guard refresh+dispose，新增唯一 Guard 测试。最终真实 Flutter widget/Router **42/42 PASS**（新增15项），窄分析exit0，45/45 Git Blob回读一致；仅新15项验证受控 HTTP/外部provider/存储写哨兵为0。验收 **`ACCEPTED/CLOSED WITH OBSERVATIONS`，只限 synthetic/dev-test**，记录 [验收](docs/versions/v10.0.3/acceptance.md) 与[复盘](docs/versions/v10.0.3/retrospective.md)。本条为**集成前历史阶段**，截至归档候选仍隔离、不合主线；按Owner长期K08规则可继续**有界定点集成→Codex手动接续本地干净基线**，两者不互相冒称完成。原 `D:/EliteSync-v10` 脏root、旧干净基线据Codex保护回执未变。本版**未执行 PHP/DB/BE-12 Feature/Android设备/Profile/Release/全App，未证真实auth/readiness撤销来源或正式消息许可**，V57/H1/H2/D0及 M6 保护不变，不启动 v10.0.4。
+
+
 ## 2026-10-13 v10.0.3 正式计划冻结（当前）
 
 Astra 已复核 Codex `V10.0.3 PLAN REVIEW — READY_WITH_FINDINGS`，确认 [APP-INT-05](EVIDENCE/APP-INT-05/summary.md) 已接受 Home→Connection→synthetic 消息同意主循环；新增真实缺口不是重建该主循环，而是**真实 GoRouter 在 Guard 动态变化时的路径保持、安全 redirect 和监听/Router 释放**。代码 `app_router.dart` 目前 ref.watch Guard 且在 provider build 中新建 GoRouter，但实际动态路径错误 `NOT_PROVEN`，正式冻结要求先针对性运行测试再修必要代码，绝不预先自认 bug。冻结正文 [v10.0.3/plan.md](docs/versions/v10.0.3/plan.md)，唯一源码父提交 `fb8aa3527b1734ac36cf56e5a8887f52f9d5ceae`，可用本地隔离基线 `2175dd62...` 为已报告 CLEAN 的旧事实（此后远端只有文档变动）。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。没有发布开发授权、没有新测试回执。修复白名单仅 `app_router.dart` 与一个新 Router 动态 Guard 测试；Home/Progress/Connection/Chat/NavigationGuard 现有语义不改。原 `D:/EliteSync-v10` dirty main 保留；V57/H1/H2/D0、BE-12 404、`NOT_READY/RuntimeReady=false/M6 CLOSED` 不变，不自动下一版。
