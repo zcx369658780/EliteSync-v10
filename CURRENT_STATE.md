@@ -1,6 +1,17 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-13 v10.0.3 验收后 GitHub 定点集成（最新）
+## 2026-10-13 v10.0.3 集成后本地开发基线接续完成（当前）
+
+Codex 已集中交付 `V10.0.3 LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED — SCOPED_POST_INTEGRATION_TESTS_VERIFIED`。此项是经 Owner 长期 K08 安全收尾规则手动转交的**版后工程维护**，不是 v10.0.4 的规划、执行或测试。
+
+- **GitHub 端独立核验**：实时 `main=64a098f88543efa44b499d04cb91d4c7c4290238`、Tree `6d472934ceee64eb2fea01c4f14d55518df8fa3b`。已接受 `app_router.dart` Git Blob `2eebd3f0959414f95e2a3ec61e94d73a2779d795` 与 `home_progress_guard_refresh_test.dart` Git Blob `6811828ffc8c2c37f752902d7f91513d6c5dc478` 实际从主线回读匹配，集成回执为 [v10.0.3/integration.md](docs/versions/v10.0.3/integration.md)。
+- **Codex 本地基线回报，网页不能直接读取本机**：新独立 clean worktree `C:/Users/zcxve/.codex/worktrees/elitesync-main-64a098f/EliteSync-v10`，HEAD 与 Tree 都等于上述主线，状态 `CLEAN`，没有提交或推送新代码。上一干净 worktree `elitesync-main-2175dd6` 与原 `D:/EliteSync-v10` 脏主树的 HEAD/index/status 全部保持；原脏主树109项具名保护资产零变化，旧 `LOCAL_ONLY` 独立成果没有被搬入/覆盖。
+- **新本地基线实际运行（Codex 回执，不是网页端复测）**：四份指定真实 Flutter Router/Home 测试 **42/42 PASS、exit0、无失败**；`app_router.dart` 与新测试的窄范围 Dart 分析 **No issues、exit0**。现行准确分类 `POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`，不能扩张为全部项目通过；PHP/DB、BE-12 Feature、Android、Profile/Release、全应用测试均 `NOT_RUN`。
+- **需分开的状态**：v10.0.3 `ACCEPTED/CLOSED WITH OBSERVATIONS`；已接受两项产品/测试代码 `GITHUB_MAIN_SCOPED_CODE_INTEGRATED`；新隔离开发基线 `LOCAL_DEVELOPMENT_BASELINE_READY`；原 `D:/EliteSync-v10` `ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED`。创建新工作树不意味着已吸收43项tracked/208项untracked历史成果。详细项目记忆 [K10](docs/memory/knowledge.md)。
+- **下一版本与保护**：v10.0.4 尚未规划、冻结或派发。开始下一版只需以最新已核主线/可用隔离工作树作为基础，并按实际需求有界选取旧根有效成果，不能重新做历史完整审核。BE-12七条默认拒绝、V57/H1/H2/D0、`NOT_READY/RuntimeReady=false/M6 CLOSED` 等不变。
+
+
+## 2026-10-13 v10.0.3 验收后 GitHub 定点集成（历史快照）
 
 依 Owner 2026-10-13 已批准的长期 K08 规则，Astra 已对 v10.0.3 [正式接受](docs/versions/v10.0.3/acceptance.md) / [事实复盘](docs/versions/v10.0.3/retrospective.md) 后的固定候选 `e2f6db455a329c59b2b4158cc50c0e18561a7c99` 做了冲突核查，按**两个确切已接受代码/test Git Blob**定点纳入 GitHub main，详见 [integration.md](docs/versions/v10.0.3/integration.md)。本版原始候选、45项manifest与失败修复日志保持原提交，不整包 merge；GoRouter 动态 Guard 原缺陷实际测试2 PASS/5 FAIL，修复后 Flutter42/42及窄分析exit0的证据仍以**原候选**为准。
 

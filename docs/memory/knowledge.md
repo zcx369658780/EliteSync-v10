@@ -4,6 +4,16 @@ type: note
 permalink: elitesync-v10-local/knowledge
 ---
 
+## K10 v10.0.3 集成后隔离开发基线与限定回归（2026-10-13）
+
+性质：Codex 本地执行的具名回报，结合 Astra 对固定 GitHub main 的 SHA/Tree/代码 Git Blob 独立核验；**不要混同证据层级**。长期流程授权来自 [K08](#k08-版后远端定点集成与本地开发基线接续owner-长期授权2026-10-13)，实时状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。
+
+- 网页已核 GitHub 主线 `64a098f88543efa44b499d04cb91d4c7c4290238`、Tree `6d472934ceee64eb2fea01c4f14d55518df8fa3b`，Router 和新增 Guard 测试两个已接受 Git Blob 分别为 `2eebd3f0959414f95e2a3ec61e94d73a2779d795`、`6811828ffc8c2c37f752902d7f91513d6c5dc478`，均准确；另见 [v10.0.3 integration](../versions/v10.0.3/integration.md)。
+- Codex 报告 `C:/Users/zcxve/.codex/worktrees/elitesync-main-64a098f/EliteSync-v10` 新隔离干净 worktree 与该 main HEAD/Tree 一致，状态 `CLEAN`；实测四份 Router/Home 测试 `42/42 PASS` exit0、两文件 Dart 窄分析零问题 exit0。**网页版未直接读取本地私有 `alignment-receipt.json`，也未再次本机运行这些测试**。
+- 原本地 `D:/EliteSync-v10` 脏主树、前一干净基线 `elitesync-main-2175dd6` 的 HEAD/index/status 及原根109项保护回执均未变；原 LOCAL_ONLY 源/文档仍待未来有界选择性纳入，不要求强制全仓同步。
+- 当前分类：`LOCAL_DEVELOPMENT_BASELINE_READY / ORIGINAL_DIRTY_MAIN_PRESERVED / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`。PHP/DB、BE-12完整 Feature、Android/设备、Profile/Release、全应用均 `NOT_RUN`；不提升真实用户资格/消息权限、也不恢复 V57/H1/H2/D0。
+- v10.0.3 已独立接受并 GitHub 定点集成；新基线安全接续完成，不需要再安排相同基线复制任务。后续如果 Owner 决定启动 v10.0.4 规划，以此当前 clean 工作树作已报告可用的代码现场，并核实时点远端 HEAD 与可能的文档后续提交即可。
+
 ## K09 新隔离开发基线建立与有限回归（2026-10-13）
 
 性质：Owner 已手动授权后的 Codex 本地执行回报 + GitHub 网页独立文件身份核验；状态：**基线已报告 READY，保留独立证据层级**。执行规则仍由 [K08](#k08-版后远端定点集成与本地开发基线接续owner-长期授权2026-10-13) 和 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md) 确定；实时状态详见 [CURRENT_STATE](../../CURRENT_STATE.md)。
