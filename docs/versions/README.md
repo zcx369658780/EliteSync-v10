@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-**最新版本规划（2026-10-13）**：Owner 已启动 **v10.0.4 版前规划**。Astra 发布 [v10.0.4 提案](v10.0.4/PLAN_PROPOSAL_V0_1.md)，拟定向核查 Me Readiness 的具名条件解释与安全恢复缺口。现有 PHP Runtime Readiness R5/R7 仅被接受为独立域与 synthetic HTTP 资格，**没有完整用户逐项 prerequisite-set 数据**；不可自行决定 required/optional、最低 identity assurance 或 production-ready。状态 **`PROPOSED / CODEX_READONLY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`**。此前 v10.0.0～0.3 的独立验收、远端定点集成与安全隔离基线状态不变；本次未启动代码执行。
+**最新冻结计划（2026-10-13）**：v10.0.4 [正式计划](v10.0.4/plan.md) 已冻结，代码父提交 `5728251c6345ba17524fb323dac8a02573d8d8c6`；只允许现有Me Readiness的动态来源说明与兼容恢复，以及一个新真实Router测试，不发明正式必要条件集合。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；[旧草案](v10.0.4/PLAN_PROPOSAL_V0_1.md)是历史调查材料。
 
 
 **最新集成与本地基线状态（2026-10-13）**：v10.0.3 的 `app_router.dart` 与动态 Guard 测试两个已接受 Git Blob 已定点进入 GitHub `main=64a098f88543efa44b499d04cb91d4c7c4290238`，见 [v10.0.3 集成回执](v10.0.3/integration.md)。Codex 已报告新独立 clean 本地基线同 SHA/Tree，四份 Router/Home 测试 **42/42 PASS、exit0**，窄分析 exit0；该实际测试**由 Codex 本机执行，网页只独立核了远端对象**。因此 `LOCAL_DEVELOPMENT_BASELINE_READY / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED`，但 `ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED`，且完整 Feature/设备/生产仍 NOT_RUN。原候选历史及失败证据独立保留，不整支 merge；不自动启动 v10.0.4。详见 [当前状态](../../CURRENT_STATE.md)、[记忆 K10](../memory/knowledge.md)。
