@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-13 v10.0.0 最终独立验收与复盘（当前）
+
+Astra 已对冻结计划 `8072ba51ad1dde2e3c3262a418af54531dcec7e0` 与候选 `18daf9746e2f031fbbbe18682bf0c742aad92a09` 完成 GitHub 固定证据独立审查：55/55 manifest Git blob、准确11个JUnit类、301 tests/4056 assertions、exit0、0 fail/error/skip。最终结论 **ACCEPT/CLOSED WITH OBSERVATIONS（仅 synthetic/dev-test 边界）**，见 [acceptance](docs/versions/v10.0.0/acceptance.md) 与 [retrospective](docs/versions/v10.0.0/retrospective.md)。R18-R1 历史接受不重复，新增139个回归数据集，产品源码未修改；初次包装器失败和deprecations保留。**候选未合并 GitHub main**；原主工作树保护依据本地工具回执，不冒网页本机重验；V57/H1/H2/D0、正式运行/真实数据/部署限制不解冻。v10.0.0 已关闭，**不自动下达后继版本**，等待 Owner 决定。
+
+
 ## 2026-10-13 v10.0.0 正式计划已冻结（当前）
 
 Astra 依据 Codex `READY_WITH_FINDINGS` 版前核查，将 v10.0.0 冻结为 **A 本地有界来源纳入 + B Product Connection 当前依赖回归补充 + D 有限联合验证和交付**；C 跨后端–Flutter 消费桥拆入后续版本。R18-R1 已历史独立接受，不能重复修复或当作待解决旧缺陷。正式计划：[v10.0.0/plan.md](docs/versions/v10.0.0/plan.md)。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；本次发布不是自动编程指令。V57 未激活、H2/D0 未签发、NOT_READY/RuntimeReady=false/M6 CLOSED 不变。下方 10 月 12 日“待 Codex 核查”属于历史快照。
