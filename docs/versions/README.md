@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+**v10.0.4 R1 收口（2026-10-14）**：依[冻结计划](v10.0.4/plan.md)，Astra独立终验 `ACCEPTED/CLOSED WITH OBSERVATIONS`，[验收](v10.0.4/acceptance.md)/[复盘](v10.0.4/retrospective.md)已归档。首轮原候选分析exit0却报告1条lint，经R1只补测试花括号后最终13/13 Flutter PASS、分析明确No issues，R1 39/39 manifest blobs可独立核验。Owner K08程序下已把**仅一个Readiness源码和一个R1测试Git Blob** [定点集成](v10.0.4/integration.md) 至远端main，原候选历史/失败日志保留。**Acceptance=ACCEPTED/CLOSED WITH OBSERVATIONS；Integration=GITHUB_MAIN_SCOPED_CODE_INTEGRATED；LOCAL_NEW_MAIN_HANDOFF_PENDING；POST_INTEGRATION_RUNTIME_NOT_RUN**。原本地dirty root不动、权限/Android/Feature未开放，v10.0.5不自动启动。以下此前版本“待派发”只描述历史时点，不能覆盖本条最新结论。
+
+
 **最新冻结计划（2026-10-13）**：v10.0.4 [正式计划](v10.0.4/plan.md) 已冻结，代码父提交 `5728251c6345ba17524fb323dac8a02573d8d8c6`；只允许现有Me Readiness的动态来源说明与兼容恢复，以及一个新真实Router测试，不发明正式必要条件集合。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；[旧草案](v10.0.4/PLAN_PROPOSAL_V0_1.md)是历史调查材料。
 
 
@@ -23,7 +26,7 @@
 
 |版本/既有事项|Acceptance Status|Integration Status|固定依据、证据与限制|
 |---|---|---|---|
-|v10.0.4|**FROZEN_PLAN / NOT_STARTED**|**NO_IMPLEMENTATION_CANDIDATE**|[冻结计划](v10.0.4/plan.md)：Readiness来源说明、兼容恢复、非Dev异常READY无权威声明；等待Owner手动派发。候选代码父为5728251c...|
+|v10.0.4|**ACCEPTED/CLOSED WITH OBSERVATIONS**（synthetic Readiness）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_NEW_MAIN_HANDOFF_PENDING / POST_INTEGRATION_RUNTIME_NOT_RUN**|[冻结计划](v10.0.4/plan.md)、[R1验收](v10.0.4/acceptance.md)、[复盘](v10.0.4/retrospective.md)、[集成回执](v10.0.4/integration.md)：R1候选bd688297、13/13PASS、分析无issue、39/39 blobs；main仅2个接受代码/测试Blob|
 |v10.0.3|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅synthetic真实Router Guard修复）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY (CODEX_REPORTED) / SCOPED_POST_INTEGRATION_TESTS_VERIFIED (CODEX_REPORTED)**|[冻结计划](v10.0.3/plan.md)、[独立验收](v10.0.3/acceptance.md)、[复盘](v10.0.3/retrospective.md)、[定点集成](v10.0.3/integration.md)、[候选](https://github.com/zcx369658780/EliteSync-v10/commit/e2f6db455a329c59b2b4158cc50c0e18561a7c99)：原2/5→最终42/42PASS、45/45 Git Blob、新15项隔离哨兵0；Android/正式权限NOT_RUN|
 |v10.0.2|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅 Debug/Test synthetic 只读 Widget）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING / POST_INTEGRATION_RUNTIME_NOT_RUN**|[冻结计划](v10.0.2/plan.md)、[终验](v10.0.2/acceptance.md)、[复盘](v10.0.2/retrospective.md)；[候选](https://github.com/zcx369658780/EliteSync-v10/commit/5bb2de6bed2eb8cbc063e707c39a594ae35eb301)、[定点集成回执](v10.0.2/integration.md)：3项新文件，36/36候选Git blobs、PHP12/930、Flutter28 PASS、同字节；Profile/Release & BE-12 runtime/Feature NOT_RUN|
 |v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|

@@ -4,6 +4,16 @@ type: note
 permalink: elitesync-v10-local/knowledge
 ---
 
+## K11 v10.0.4 R1 独立终验与定点集成（2026-10-14）
+
+性质：Astra对GitHub固定候选源码、原始运行日志、R1源码差异、Git Blob的独立验收记录 + Codex本地测试/保护回执；不扩大为生产资格。详细依据见 [v10.0.4验收](../versions/v10.0.4/acceptance.md) / [复盘](../versions/v10.0.4/retrospective.md) / [集成](../versions/v10.0.4/integration.md)，当前动态状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。
+
+- 冻结计划`ecfd8b4dae4139991a425e426e988d6aa8ba4385`、Blob`e70ca5ef3d96a8086555586239a998227575e01e`，唯一代码父`5728251c6345ba17524fb323dac8a02573d8d8c6`。首轮候选`9d49d0...`整体13测试exit0，但dart analyze原stdout`1 issue found`，故AC05 PARTIAL；**不能只看exit0就声称分析无问题**。原候选/原错日志保留。
+- R1最终固定候选`bd688297da097297f1d8918631d74b8ca6292010`、Tree`d0325969a6382a5897a37c60702dca4161d4c1f7`；仅新测试加if花括号、产品源Blob未改，最终13/13 Flutter PASS、dart analyze确切输出No issues，39/39 manifest文件Git Blob逐路径匹配，Astra **AC01-AC07 PASS / ACCEPTED-CLOSED WITH OBSERVATIONS**。
+- Owner长期K08下，两个接受对象`me_purpose_pages.dart` Blob`af57d2d5dfc680de8490382e9e717bf790df93eb`和新增测试Blob`2d969c6b40f8606e0172d53c8fe485f5195d795a` 已定点入GitHub main提交`c6fd2e6258590ea192227156ff0da7849703441f`并回读。旧失败/完整候选原证不整包复制；冻结计划与前四版接受未重写。
+- `LOCAL_NEW_MAIN_HANDOFF_PENDING`：上一干净隔离本地基线仍以Codex回报的`64a098f...`为最近真实HEAD；原`D:/EliteSync-v10` dirty root与109具名保护需保持。GitHub集成**没有**本地新工作树，也没有新main运行回归，须Owner手动派发Codex有限安全接续，成功后另证。
+- 正式Readiness必要成员、身份保证、真实撤销/时效、Android、BE-12完整路由与生产资格继续`UNKNOWN/NOT_RUN`，BE-12默认404、V57/H1/H2/D0及M6关闭。v10.0.5未经Owner启动。
+
 ## K10 v10.0.3 集成后隔离开发基线与限定回归（2026-10-13）
 
 性质：Codex 本地执行的具名回报，结合 Astra 对固定 GitHub main 的 SHA/Tree/代码 Git Blob 独立核验；**不要混同证据层级**。长期流程授权来自 [K08](#k08-版后远端定点集成与本地开发基线接续owner-长期授权2026-10-13)，实时状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。

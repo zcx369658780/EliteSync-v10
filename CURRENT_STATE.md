@@ -1,5 +1,13 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-14 v10.0.4 R1 验收关闭并完成 GitHub 定点集成（最新）
+
+- Astra 依据首次冻结 [v10.0.4/plan.md](docs/versions/v10.0.4/plan.md)（Blob `e70ca5ef3d96a8086555586239a998227575e01e`）独立审查 R1固定候选 `bd688297da097297f1d8918631d74b8ca6292010`（tree `d0325969a6382a5897a37c60702dca4161d4c1f7`、单父 `5728251c...`）。**Acceptance=ACCEPTED/CLOSED WITH OBSERVATIONS（AC01–AC07 PASS；仅synthetic/dev-test Readiness展示）**。[最终验收](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md) 已归档。原候选`9d49d0...`的`dart analyze`虽然exit0仍有1条新lint，故首轮 AC05 PARTIAL；R1只给新测试if补花括号，产品源码Blob未变，复测**13/13 PASS、Dart分析stdout明确No issues found、均exit0**。R1 manifest **39/39 Git Blob**网页逐项匹配，旧失败日志/报告保留原样。
+- Owner长期K08授权下，GitHub远端主线已定点集成**仅两个接受对象**：`me_purpose_pages.dart` Blob `af57d2d5dfc680de8490382e9e717bf790df93eb` 和 `readiness_purpose_page_test.dart` Blob `2d969c6b40f8606e0172d53c8fe485f5195d795a`。[集成回执](docs/versions/v10.0.4/integration.md)；集成提交 `c6fd2e6258590ea192227156ff0da7849703441f` 已网页远端回读，文件与R1一致。**Integration=GITHUB_MAIN_SCOPED_CODE_INTEGRATED**；旧候选及39文件manifest未整支merge。
+- **本地与运行另证**：截至这条归档，上一Codex报READY的clean本地隔离基线为 `C:/Users/zcxve/.codex/worktrees/elitesync-main-64a098f/EliteSync-v10` HEAD `64a098f...`；它**尚未接续本版新GitHub主线**，`LOCAL_NEW_MAIN_HANDOFF_PENDING`。新main代码尚未实跑，`POST_INTEGRATION_RUNTIME_NOT_RUN`；原 `D:/EliteSync-v10` dirty main与109项保护仍依法保留（来自Codex旧本地回执，网页未直接复验）。下一步由Owner手动交Codex安全创建与当前main一致的隔离新基线并限域重跑本版13项+两文件分析，不允许盲目pull/reset/rebase/clean/stash原root或携入LOCAL_ONLY。
+- **未授予权限**：正式Readiness required/optional集合、身份/地区准入、真实撤销/过期来源及正式Match/Conversation权限 `UNKNOWN/NOT_PROVEN`；PHP/DB、BE-12 Feature、Android设备、Profile/Release、全App `NOT_RUN`。BE-12七条live消息路由默认404，V57/H1/H2/D0未激活、M6 CLOSED、RuntimeReady=false保持。不自动开始v10.0.5。
+
+
 ## 2026-10-13 v10.0.4 正式计划冻结（最新）
 
 依据Codex READY_WITH_FINDINGS，Astra已将本版收敛为 [Readiness来源解释与兼容恢复](docs/versions/v10.0.4/plan.md)。仅现有Me Readiness区域及一个新测试；正式条件集合未确定，不能伪造具名清单或非Dev READY权威。代码父固定 `5728251c6345ba17524fb323dac8a02573d8d8c6`；状态 **FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。旧dirty根及clean隔离基线均受保护；BE-12默认拒绝、V57/H1/H2/D0及M6不解冻。
