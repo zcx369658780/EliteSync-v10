@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\tools\\php85\\php.exe",
+    "-n",
+    "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10\\services\\backend-laravel\\tests\\Unit\\EliteSync\\ConversationQualification\\export_diagnostic_fixture.php"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10",
+  "started_utc": "2026-10-13T05:07:47.933685+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 0.063,
+  "completed_utc": "2026-10-13T05:07:47.988005+00:00",
+  "stdout_sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+  "stderr_sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841"
+}

@@ -1,0 +1,556 @@
+{
+  "root": "D:\\EliteSync-v10",
+  "head": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+  "index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+  "status_sha256": "a00c2102dde4c87579208cf8479086674fa4eba2e082910f7463eb59eac6cf65",
+  "staged": 0,
+  "tracked_modified": 43,
+  "untracked_normal": 208,
+  "protected_files": [
+    {
+      "path": ".agents/skills/elitesync-local-workflow/SKILL.md",
+      "bytes": 1274,
+      "sha256": "c4a95d636433e3f5a60daa4cf74d0c585f4d621f66e0cebb58eda2347cf03c60"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 572609,
+      "sha256": "084a8c16ef342f1c5cff420da972328146b89594a515f5c939eed362f56cb4ec"
+    },
+    {
+      "path": "CURRENT.md",
+      "bytes": 823436,
+      "sha256": "543c3ea217224737483971bebda2eb4f9ae04797df568f66360c74ee93058a4b"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 7318,
+      "sha256": "a0c869ac446ba8d600170db6ce8bdfc94720c9b9ca7256fe7fd1ca291b25390c"
+    },
+    {
+      "path": "DEVELOPMENT_RULES.md",
+      "bytes": 2598,
+      "sha256": "67e5bb3d24559d7432e62dbb3b7da860298481c7daa710babc2d0028b2c099ff"
+    },
+    {
+      "path": "EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005/work-review-v2.md",
+      "bytes": 5145,
+      "sha256": "c95bd36c8cb3e84a51af898c71dd3df8f12f419c0c8eb87800e0f99d6d909d28"
+    },
+    {
+      "path": "PRODUCT_DECISIONS.md",
+      "bytes": 555637,
+      "sha256": "b449fcaa08fb4cf5b3d26f53f0fde920fc09bae4b94b87a83154ec441af94e71"
+    },
+    {
+      "path": "PROJECT_MEMORY_WORK_AUTONOMY_20261010.md",
+      "bytes": 2109,
+      "sha256": "eb6d857bb1ba06a551d0d2b69d7b76f4b574a7ec23595db26e5d4b547a80a1c4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1207,
+      "sha256": "3fbf44730447253682b83ea29ca4f80e6c5672d7b201b6e78b211bc166cb3c2f"
+    },
+    {
+      "path": "REVIEW_GATE.md",
+      "bytes": 549117,
+      "sha256": "76c57fe647e692cf47c618138a109ba5b2d8d7432967934cbbc38d38577b7b06"
+    },
+    {
+      "path": "TASK_CURRENT.md",
+      "bytes": 736448,
+      "sha256": "e1486628c3b60bd6681ba3574c16c42e74d3aa126078ef019854e5fd9a36b3cb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/bootstrap/app_bootstrap.dart",
+      "bytes": 3239,
+      "sha256": "6f1fa40d678cfc1fc33a9791c4dd1d515232da326e47846ccdcf251bc4a5b79b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/bootstrap/synthetic_platform_network_guard.dart",
+      "bytes": 674,
+      "sha256": "257642b2cb445b654fa4898ae30266590faf96cc2353fa94c790686acb3ec2be"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
+      "bytes": 1675,
+      "sha256": "e495267688bc045e378fb2bd687adbfe00ff689024b70a8f7165c164a2741b4e"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "bytes": 27811,
+      "sha256": "5f24277bf3d9adae3b314d4e454f037bb1a99a5b084c6cb84fbb211dc38f7389"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/synthetic_demo_storage.dart",
+      "bytes": 1990,
+      "sha256": "c417087fbae549cd98fc450ca55ac2d596e78abdee9c888930f3269df29e49c1"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/synthetic_loop_store.dart",
+      "bytes": 1967,
+      "sha256": "efa2d43f7c06ab2cd18f0e66aba71da29b57986d775f53fc8b59806b84e5ae33"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/telemetry/offline_telemetry_api_client.dart",
+      "bytes": 972,
+      "sha256": "9f182d3e8186247e11a4c472e77f18d879157f6602f9599afe40d91fe11502c2"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_remote_data_source.dart",
+      "bytes": 8921,
+      "sha256": "f58b2563a3d5408f14e41c2bfbe903768840cd18b99c31099164da8bde695584"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/synthetic_message_memory.dart",
+      "bytes": 2721,
+      "sha256": "852c5d746fb8e40aa3bdce1ceb273606860a505c89ddfadadd207c070fd3cf5e"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
+      "bytes": 60808,
+      "sha256": "13158b2c618e81168e8c919a693866fe979ff93a504b2cf991a19bd68b99cccf"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
+      "bytes": 27346,
+      "sha256": "f012b66ca25d54ad3ee173b98d5be953b75efd8f185c8bb792ba3f8c09f571d9"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
+      "bytes": 7500,
+      "sha256": "8fb505b3e347835f14ded3fa4bcaacf2ec95405826fdc1befba644ccff51cdc9"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/state/conversation_access_state.dart",
+      "bytes": 2766,
+      "sha256": "22abbb6caa2521310e285bb1b9094394d8655afbc89f33bd054fdb884df82540"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/conversation_access_gate.dart",
+      "bytes": 8288,
+      "sha256": "8a82ccf44bb6446bbd34bcdd133c7aaed8191a11b6bf06fed76c1c8c40885aa4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/pages/connection_page.dart",
+      "bytes": 6649,
+      "sha256": "fda7631ff63be9abf5b4ddc871c319094df0ac9e9ebd5ecd57245ccf37938932"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/providers/connection_presentation_provider.dart",
+      "bytes": 3136,
+      "sha256": "2f2b82aa0e2b9421345b87998270815d06b3d52ed056c2f485c8f109c26eb70f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/providers/synthetic_loop_provider.dart",
+      "bytes": 13572,
+      "sha256": "159c20edec51d9396b5534cb882becc3d66baf25f87760d8fee1db41d5607a36"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/state/synthetic_loop_record.dart",
+      "bytes": 6139,
+      "sha256": "3ad55d9d0ca6948c79be63daa3b091247996669986e3cccc8cc856801ec21939"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/widgets/connection_authority_panel.dart",
+      "bytes": 4045,
+      "sha256": "7f471ab2e14cb9a7a576fe5b63b3523bef64b3cdcadcc7d589bf1da52e2ede10"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/pages/home_page.dart",
+      "bytes": 7828,
+      "sha256": "64ce3c5256d6cc1f2fa655ccd8205413064b2cfde1fccafee2b4c3705f5af530"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+      "bytes": 7836,
+      "sha256": "6d813505ff909e5dd8a37d16d3c88c8004e6a97b5d31d161c43bffa0071ad3ce"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/state/calm_home_projection.dart",
+      "bytes": 3680,
+      "sha256": "117395abe1964dedadbf32351aac7c8cf284c5c3fca0b8926664557693ff4634"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_round_contract_view.dart",
+      "bytes": 15552,
+      "sha256": "fc39ebe919b5cf1ac6d37d975c2c607c12c40a3b51c97395d1c740b37dbfb29a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_purpose_pages.dart",
+      "bytes": 8043,
+      "sha256": "8371bfbe1af7fd952889ece5f548b150fbd8f2d39ee7e6355eccc9b9a9f78322"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/notification_remote_data_source.dart",
+      "bytes": 2881,
+      "sha256": "db03aef5d267e4e64883527f00280a7f03fafafdd1176c99dc619d10925892cc"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/synthetic_notification_fixture_source.dart",
+      "bytes": 2656,
+      "sha256": "66705d0396d128907c05e6bd9a8b71eccd4d5880b9a7d47d2faf3174ed056bfc"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "bytes": 26565,
+      "sha256": "2ab4da472f96148d8fb476a185db4b6a168daa0ed7af0d08e285697e608c63f3"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/providers/notification_provider.dart",
+      "bytes": 2945,
+      "sha256": "6a06ac0cd86da4f3d205edc97f053f7d13153c41d55ab72caec11c7018c92ce4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/state/synthetic_notification_entry.dart",
+      "bytes": 4339,
+      "sha256": "c99dbc2d78c9713ede40d32597725130c141bcc32ace1e29fc515ca85cc1f4a4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/privacy/presentation/state/live_privacy_controls.dart",
+      "bytes": 2267,
+      "sha256": "e8d55fa28ce75f6b6281aae42144f885c4ceff0e29706527bbe9798d75d08f26"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/privacy_settings_page.dart",
+      "bytes": 7560,
+      "sha256": "fe5962bf7b26df967db603385e32379f635b996933043d2a5def5cee173f9cdf"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+      "bytes": 2089,
+      "sha256": "de31cd0caf37cec8e623becbc5a7b4332b44dcd0d9e11b85f88dec748abc7cd0"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/pages/questionnaire_page.dart",
+      "bytes": 9302,
+      "sha256": "2fcda81d052f6e96d3b2e3ff5b4febc5b1ed9b7e263e4fed472816169651283a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/pages/questionnaire_result_page.dart",
+      "bytes": 8527,
+      "sha256": "bcad96bef572ced6e621902b030ec8e6868bfbd6de1076165683157adb4a9f2d"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/providers/questionnaire_provider.dart",
+      "bytes": 12521,
+      "sha256": "f4de56572d86caa5a2b11dfad47f54743071e3f29efab738707650c5fc3dd995"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/relationship/presentation/providers/synthetic_relationship_provider.dart",
+      "bytes": 5385,
+      "sha256": "bd83d74a4a949dee607c9d1bd064e6d24a23440e36b10abe313eb7213980001b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/relationship/presentation/widgets/synthetic_relationship_card.dart",
+      "bytes": 3639,
+      "sha256": "cb001248f1dc08263d6063dc412d51b35dded2e9161d097e53b8e232b6334d93"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/main_demo.dart",
+      "bytes": 5988,
+      "sha256": "8f18a1327108438e321b0aa5d949be18f6d8c3b67c73a5ed8d55a4a2acb61342"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/telemetry/offline_demo_telemetry_test.dart",
+      "bytes": 7233,
+      "sha256": "54954f2ff79f5700dde51bbaee16adfc0778ae408e94521ab79c9667eaeb7a3c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/chat_remote_data_source_send_test.dart",
+      "bytes": 8143,
+      "sha256": "9357cacd137e2b8869215ed8bf8eb82224b096033fa7c95675a4d9ef193cd5ca"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
+      "bytes": 42974,
+      "sha256": "58a1ac81f9bac79769c6087a30b728f92fa48b9fd2500188228ab2deab84aeea"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+      "bytes": 36866,
+      "sha256": "bfaa7ae7c66c2d5afdd4f61ec199086fd48b4d72fb2af341669bc53320eeab23"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/profile/presentation/pages/privacy_settings_page_test.dart",
+      "bytes": 3033,
+      "sha256": "99e8a9e48acc01985f9aad56b9d0ba642da5e2b05540d0ff7fa167b303df18fd"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/questionnaire/presentation/pages/questionnaire_submission_flow_test.dart",
+      "bytes": 10338,
+      "sha256": "42a61ebe3a11b4ed1015b8520cd28da3bdc3cee6bfa61b14bd045b24bccbf69d"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/relationship/synthetic_relationship_consumer_test.dart",
+      "bytes": 14819,
+      "sha256": "72cf196b7f68fe9c8f20d46462981e83043ff8b0ddb15b6f03d5fd04a08dfeeb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_app_journey_test.dart",
+      "bytes": 24279,
+      "sha256": "6c376bfe774ad1b9c4af92cca580efb2c5fed86fdce7d812c5eebd29e51181be"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_loop_persistence_recovery_test.dart",
+      "bytes": 34967,
+      "sha256": "39de5dfd4d5ae21910edbfd601128519bffb929c46a252f7030d532d3351acc1"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_loop_terminal_refresh_recovery_test.dart",
+      "bytes": 16387,
+      "sha256": "f0d376947f21b3ee00ed2cdbbfdef65e0b5a7ad630853360a5405e985f484383"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_main_loop_recovery_baseline_test.dart",
+      "bytes": 6520,
+      "sha256": "77c501eedb3739a4842d7e07ce182ddcec9c2233304f66c24812848e0fb3506a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_message_consistency_test.dart",
+      "bytes": 20571,
+      "sha256": "d944f97e7b9720779dbf870da525882640aeb36381f8f377db9c96e5bcff922e"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_mvp_home_closure_test.dart",
+      "bytes": 8773,
+      "sha256": "c2161386fc38752744834e07b26be733d4b74c984367952043d71f8c7432a0d7"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_mvp_scope_boundary_test.dart",
+      "bytes": 11381,
+      "sha256": "b1caf1fd83a81b0ef9e83ce4cabcae97266538f7f6d282d854b8b3ffa99b394a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_notification_privacy_journey_test.dart",
+      "bytes": 29980,
+      "sha256": "bf7d7e42173965378e0c95604c55feef9791e546d1ea7475ad56ab6f7fd54a1d"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_platform_network_guard_test.dart",
+      "bytes": 1195,
+      "sha256": "06b50a33543848af14cd96fb127fb5ad61ceb12fa138480633424e22ee927081"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md",
+      "bytes": 451940,
+      "sha256": "69f138c06baa90352dde78630adab5ec1ab9d4588dc05184c46f051e1dc62041"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_DELIVERY_WORKFLOW_AND_TASK_CONTRACT_V0_1.md",
+      "bytes": 415276,
+      "sha256": "f746bb86bb4e8b907ab97dbc213635ae2ddf4318c7526f72be8b6dd337c2398f"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md",
+      "bytes": 11584,
+      "sha256": "5cd5c036a320a239043749b7038a28cd1648cc31ebbb82861088488d732b7755"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_POWERSHELL_CAPTURE_LESSONS_20261009.md",
+      "bytes": 4074,
+      "sha256": "8cca20cf7c48fb6e0cd2a4940f5d3591e2bf1cee98e31a5c9b5c07a30dad5db3"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_POWERSHELL_CAPTURE_LESSONS_PRESERVATION_20261009.json",
+      "bytes": 543,
+      "sha256": "24851166d1dc3163c4eff43f38d498b59f576f3d46e1d38d014d2c0329b3f174"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_WORK_AUTONOMY_RULE_20261010.md",
+      "bytes": 3667,
+      "sha256": "fcf67060b68cfe19fd647199ef8dbb705b016e79e9e695dfab093baa74eadd76"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationLifecycle/FrozenQualificationSource.php",
+      "bytes": 484,
+      "sha256": "5a74076e3c93914ab8add6365fd492724bfb47d6af6475bc1d72c0dffdacff99"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationLifecycle/LocalTestConversationLifecycle.php",
+      "bytes": 20273,
+      "sha256": "44fb7a84511d0ea55f1ab8f36a663d34ce85c98745337f1362ce8099feb6cc81"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationQualificationSource.php",
+      "bytes": 504,
+      "sha256": "ca398dfc3aa06eea0597c4582f1750be4e1f86dc6a3b921a3a709a2c1069db83"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationUsePointQualifier.php",
+      "bytes": 15007,
+      "sha256": "30a5a2b2aabe5e403d0e21000697f26494321ae99892cefda0a0f6da86e4a3c6"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/ConnectionConsentTransitionCandidate.php",
+      "bytes": 14826,
+      "sha256": "1fd4bfa20198abf445a705bef84d1cbd73effa5f87348fc0d5cdd87d3fb3c9d6"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/CvAgreementRepository.php",
+      "bytes": 9394,
+      "sha256": "12132c567ee3c021f21ce8630a71413504a41e41deb437d6a5c30ed4cd973061"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/CvTransitionCandidate.php",
+      "bytes": 8357,
+      "sha256": "c65b9706e084afb6caff7b533d94a867897a6e8d9a98baf2a00ef9697e770135"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/PersistentConnectionConsentPublisher.php",
+      "bytes": 14684,
+      "sha256": "9939cd05518d7974bed349c4cc5df63d0b4bfdb9e74e34dff1d7335b5dbc8214"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/PersistentCvPublisher.php",
+      "bytes": 18045,
+      "sha256": "4da716323209f9e6b057388bbb77f14d82de63a56861f445794928b5ad459a2b"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/PersistentFixtureTextWriter.php",
+      "bytes": 602,
+      "sha256": "a01ce1fc72c834cdb2e093b922f4543d706b70e4654188a8b992cefb957b6953"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/PersistentTransactionContext.php",
+      "bytes": 15943,
+      "sha256": "38c58e2dc1114b95e37e4eae0597f5994c0d35b3daae0a6d952531aec7c88ee6"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/SourceHeadRepository.php",
+      "bytes": 18498,
+      "sha256": "41ba9789b3e4684230699a99b65ea5d2628b235dbacaf00e4d3ddb03abfeae12"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/TransactionBoundQualificationSource.php",
+      "bytes": 1900,
+      "sha256": "07427f57db0882c6d3f82dc4d2afbf41610e2d02c50e6ebde78f38ff21538c3d"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/TransactionCoordinator.php",
+      "bytes": 16546,
+      "sha256": "5925d2fdc33b3548c1a17a43b5810f6f9555670d6b98da29b7b282ca1a17f12a"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/TransitionEvidenceCanonicalCodec.php",
+      "bytes": 14741,
+      "sha256": "53175069e3aeabffbc0a8ea36f56df1d8457011fda7678f8e1e03890ee468651"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/TransitionEvidenceDomainEnvelopeCodec.php",
+      "bytes": 13129,
+      "sha256": "4c1dc543741aef74bfd7af7a11de16cdd7720c782a2ace893c97d65f5f3cdd95"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/PersistentText/TransitionEvidenceStructuralValidator.php",
+      "bytes": 42611,
+      "sha256": "a08f84b9ece522a2ed3513d98a0e5434eb76c892ad4b52afe5827509da90d904"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextAuthority/ExistingEvaluatorEvidenceAdapter.php",
+      "bytes": 3657,
+      "sha256": "a48d14114dca37d710cfc04dd84d11ea8389ca3bf8f3b7e23d8b93605b9664bd"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextAuthority/LocalTestTextAuthoritySource.php",
+      "bytes": 19115,
+      "sha256": "24a58018333fae7a06b6592b665f77d6543859ae80a3534d627956a8ef8ffdff"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextAuthority/TextAuthorityJournal.php",
+      "bytes": 513,
+      "sha256": "6f5653d7b97219ddcee030d62891acdebdb258d6c28fd6d44c237490bb1249d9"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextWriter/LocalTestCoCommitJournal.php",
+      "bytes": 10933,
+      "sha256": "e2798c3040e6f7c7de11e3d8ebb26ac3300f1f587ae6bd805f493d851b8f99ff"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextWriter/LocalTestTextWriter.php",
+      "bytes": 636,
+      "sha256": "9c0374c0950e22ff68399048badd7c840bc7ff852aa23f15979b3ae3ff31dab3"
+    },
+    {
+      "path": "services/backend-laravel/app/EliteSync/TextWriter/TextWriterApplication.php",
+      "bytes": 499,
+      "sha256": "cc3d62075a6297a58d9e8a4004cdcd582e57a57dd1a38e176d6532b46d4474d9"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
+      "bytes": 420,
+      "sha256": "a1af329f4a5e4b9326ae92235bd8d974e373b004045b512e9e084c7b9414552d"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "bytes": 16183,
+      "sha256": "6e1769e4728f8e1e703edd432457ccd6f608e24ad7abaa14892ca13fd15a0675"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationLifecycle/FixtureFourFamilySource.php",
+      "bytes": 3797,
+      "sha256": "d14efd20d927b289abaef8cc558ad376b9c018964900b6d0a56200ad550a8dcb"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationLifecycle/run.php",
+      "bytes": 23828,
+      "sha256": "49eec9f9358b1892c668669fb786fff5b5a2a4deae91350b7c008eb80b2816e8"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/FixtureQualificationSource.php",
+      "bytes": 1276,
+      "sha256": "645c1804b3bf8c5e52d721f1530a2857fd4884c19e7b7123a11ae8113653041b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/run.php",
+      "bytes": 15722,
+      "sha256": "1022459a4fbe756ae8c18a9609fef858d69fdfa2d38386fb885bb6ebc31c1e15"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/FixtureIssuerRegistry.php",
+      "bytes": 1567,
+      "sha256": "5f93c8d439d0470e24f00b791ddc596abb6ad875946cba054ef88fde1995d23b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/publisher-run.php",
+      "bytes": 17183,
+      "sha256": "2801c0f6e48258309606b36a3b8a3896c3e7902fc965bd54bf390c65d2c7bbb5"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/run.php",
+      "bytes": 14826,
+      "sha256": "6c15df265964ec91a8d6e429d3d027ecd462c65c2c156ee31aada1068393edc7"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/source-publisher-run.php",
+      "bytes": 21455,
+      "sha256": "c63091bdba81f561158dfbb8bfd1b397ff368cbd1cb2925dc85392fcfaa2ee22"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/transition-evidence-domain-envelope-run.php",
+      "bytes": 25069,
+      "sha256": "6e931fd18ec3d6e4743d73fd3bfe6ed3846843d054cb8d36723a3c39b7932f7b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/PersistentText/transition-evidence-structure-run.php",
+      "bytes": 39858,
+      "sha256": "2d1b982b971d00983822382d35a85fe927a37dc502dcb5b906be8b9f4fd07a1c"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/TextAuthority/MemoryJournal.php",
+      "bytes": 1938,
+      "sha256": "1e03b69bd94b3623294353e923dc2a09f9aad95963deeb8ac0a46ecde5c4b30c"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/TextAuthority/run.php",
+      "bytes": 27116,
+      "sha256": "e4865d0af335d8d41064861b31536c625950e37a945273ad547512ddd988b9ae"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/EliteSync/TextWriter/run.php",
+      "bytes": 14350,
+      "sha256": "43d579a7ee165426c058a1f33a853f5793bd0eaf49b7bdf51e0b086d920f57ee"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "runs": [
+    {
+      "label": "run-01",
+      "result": "FAIL_BEFORE_TEST_LOADING",
+      "cause": "Existing package graph was not materialized alongside rebased package config",
+      "preserved": "run-01 original streams, receipts and relocated unmodified flutter-crash.log",
+      "repair": "Copied existing local package_graph.json/version to isolated ignored runtime directory; declared configuration copy/provenance in evidence/test-environment. No downloads or code/test weakening."
+    },
+    {
+      "label": "run-02",
+      "result": "PASS",
+      "changes_to_product_or_tests_after_run01": "NONE"
+    }
+  ],
+  "automatic_flutter_crash_diagnostics": "Flutter automatically collected doctor/environment/network/device-inventory diagnostics after the missing-file crash. No Android build/install/device session or production operation was requested/performed. Not platform qualification evidence.",
+  "retained_gaps": [
+    "Profile/Release build execution NOT_RUN; static kDebugMode guard plus pure truth-table/debug closed-widget tests only.",
+    "BE-12 static object identity only in this version; full Feature/runtime routes NOT_RUN.",
+    "Only current targeted parser/widget/exporter chain verified, not the whole integrated main runtime.",
+    "Production/source authority remains UNKNOWN; no live message rights.",
+    "Astra independent acceptance/retrospective PENDING."
+  ]
+}

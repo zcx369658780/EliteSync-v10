@@ -1,0 +1,237 @@
+{
+  "plan_commit": "c96b3582243067d8acf572405d8a4eb908b18da3",
+  "plan_blob": "cdb88dba4585755fafd08b30fc025a019dd39a91",
+  "navigation_erratum_commit": "1b6bb5c0a6a824061d0699477d09463dc34059ca",
+  "parent": "be070a771114052b2f6e7796636cd1a186502988",
+  "branch": "codex/v10-0-2-diagnostic-preview",
+  "candidate_identity": "FIXED_COMMIT_CONTAINING_THIS_MANIFEST; resolve actual Git commit/tree",
+  "payload_count": 36,
+  "payload": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/presentation/widgets/qualification_diagnostic_preview.dart",
+      "bytes": 3349,
+      "sha256": "a052aec46394155024d2a247b37476d8680867923e44b921d7172f08d7d6fcb4",
+      "git_blob": "47533fbec5acb8b0e02c962fba408bb5d1966f7c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart",
+      "bytes": 9883,
+      "sha256": "8825d6aa778a56ad8c5a62644d6c952b9ede193d12a01c6f8fffe98d3be38fbb",
+      "git_blob": "bd598ba850b789510739e661aa0e330e16cf2766"
+    },
+    {
+      "path": "docs/versions/v10.0.2/delivery.md",
+      "bytes": 10023,
+      "sha256": "2576df649ae32532366e172380d7e981dc6260821570253c1d2c514410b7e369",
+      "git_blob": "d847e8124f5db236fd062ba0aeae87bbf31f4af4"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/failures-and-retained-gaps.json",
+      "bytes": 1425,
+      "sha256": "e884ee89413f1c785d5d2ada82eb55cda69659a235b1a8c4c09c59c96c667f04",
+      "git_blob": "4534a6c85fab8874870b086d3b9304797f3787ab"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/frozen-plan.md",
+      "bytes": 15075,
+      "sha256": "8ade217fb885cd70b74775e8b8578ffc5a3f0c914b8c96dd7ed5b1830e206de3",
+      "git_blob": "cdb88dba4585755fafd08b30fc025a019dd39a91"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/navigation-erratum.md",
+      "bytes": 1776,
+      "sha256": "1bcc9167d734b395f781117b0b77f2fa2d86ae4681d3d4900be35eb80f21c924",
+      "git_blob": "2f0a5bf15f5643adb67092d0a0e0cb12aa931944"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/root-after.json",
+      "bytes": 421,
+      "sha256": "548814be0673e730e32f186f522c7b54eb629761dc7c57b1a1e2b581fd982bf1",
+      "git_blob": "89046c21b497349894ba4561190f0380969b4075"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/root-before.json",
+      "bytes": 24483,
+      "sha256": "b89ef0d6a4a7e5b4a6c0babce9f33c97f1296915ebb804d39910e95d7e8a3961",
+      "git_blob": "6db9120eab01be24082983f59596f96a967f4559"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/diagnostic.json",
+      "bytes": 3229,
+      "sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "git_blob": "5d83355d2f3dade8ddd1f07d1ac1efd51226566a"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/flutter-consumers.receipt.json",
+      "bytes": 979,
+      "sha256": "2783d49c7bdaa7534558d8f8943ad575d56ea969893540f63246e2b807adc90f",
+      "git_blob": "ea8dee13fc61ffd42db511624f916b1563cd4f7a"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/flutter-consumers.stderr.txt",
+      "bytes": 414,
+      "sha256": "f0e8c00daca91889f236042d42d47a1e6260efd9e22410cba2016dc87c8bd038",
+      "git_blob": "eff404761e927170de7e2505c589cc7df3ae052f"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/flutter-consumers.stdout.txt",
+      "bytes": 6963,
+      "sha256": "a22107a08ed793016f31e836cab1bfc9098a9daa89467fcf2776c33240f9c680",
+      "git_blob": "a95f151b04b33742d873333fd35def7a77cac1ab"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/flutter-crash.log",
+      "bytes": 5872,
+      "sha256": "54e569494df9aea372765136cf5c8c5071ca60a7560c2aa942a26c801c776ce4",
+      "git_blob": "5f04ff48ab51745b2a31f13546830fe25c5bd7a5"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/php-export.receipt.json",
+      "bytes": 668,
+      "sha256": "744cac81c3ced97464d2db5265321fc0b9ae93b4390710f16988396889f5bbc8",
+      "git_blob": "6cc57a5f66972ec9b7c9264294b98d2f50d8bdbe"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/php-export.stderr.txt",
+      "bytes": 115895,
+      "sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841",
+      "git_blob": "96ca3a853e76d6cb393444610d6c453a29507613"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/php-version.receipt.json",
+      "bytes": 501,
+      "sha256": "7031b14073a58c4c48d9e223ba4e27ccae7d125df0c6d0432d11c49f2b381ecb",
+      "git_blob": "ae815144513c43747566be15e2a225ca7208891c"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/php-version.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/php-version.stdout.txt",
+      "bytes": 241,
+      "sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "git_blob": "c36a3652bf9f58541fd5c08b422b772235a949fe"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-01/summary.json",
+      "bytes": 10472,
+      "sha256": "ac83d92eeedb0a315fdf8aa9fafa5ffff9c016fab5cecab6347f83375ff983b6",
+      "git_blob": "04d0f200bcbf46aa56e6627956402eeee484823f"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/diagnostic.json",
+      "bytes": 3229,
+      "sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "git_blob": "5d83355d2f3dade8ddd1f07d1ac1efd51226566a"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/flutter-consumers.receipt.json",
+      "bytes": 979,
+      "sha256": "ed8a0a906033375452fb0eae82f90b42e57e204c980d2aa1753c5c41806438f8",
+      "git_blob": "296e3cf8d2b7bbdf15a8ecb9d56dc7a842f45c48"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/flutter-consumers.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/flutter-consumers.stdout.txt",
+      "bytes": 8265,
+      "sha256": "d22cc2fd9b312e7cbf6810d5558c038ae35de7eb71edd7003890d95f3ff4b2ad",
+      "git_blob": "87532701e22be749dbb46906217b8a33f2c02e49"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/php-export.receipt.json",
+      "bytes": 668,
+      "sha256": "c87275fa60a40ad89a0349fca7cdc84ec0a704dbe2a711adc2c338a6870c2b6d",
+      "git_blob": "ee953e0a6140776d7ecf1f0e546706960c6086b6"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/php-export.stderr.txt",
+      "bytes": 115895,
+      "sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841",
+      "git_blob": "96ca3a853e76d6cb393444610d6c453a29507613"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/php-version.receipt.json",
+      "bytes": 501,
+      "sha256": "a8a5020ec42e7093bbb9fa21ae60f10746f800a75588f66081c6a64d8865e579",
+      "git_blob": "cf0af247f25ca6bc2887c8dda4bc2db3b8f5756a"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/php-version.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/php-version.stdout.txt",
+      "bytes": 241,
+      "sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "git_blob": "c36a3652bf9f58541fd5c08b422b772235a949fe"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/run-02/summary.json",
+      "bytes": 10637,
+      "sha256": "692e15e98618dbc632ee94debcfcc48d462e97a0885df8495440989715935522",
+      "git_blob": "ade82685c6b192f966088448e2e6af205d5a1fc8"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/source-identities.json",
+      "bytes": 8007,
+      "sha256": "d884464de6f7dc74a3935a22ecf08c2d0a8bd0c1813eb340c55592ce0beb8e89",
+      "git_blob": "94e2445714438f45924feb304cd429128cd0ba9e"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/test-environment/package_config.json",
+      "bytes": 36714,
+      "sha256": "a0a8fb87cdf8b5916a9e7ea54507e326550a78b0a663a1a31408c12f0b5d3eed",
+      "git_blob": "ca8c729daa31d29cdb8a3525b8d33a1ec956fa87"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/test-environment/package_graph.json",
+      "bytes": 31473,
+      "sha256": "e1cbfd18980819ad2c6512f7f91164755fa30a31a7512ba2a785129ababb2946",
+      "git_blob": "32d9c0f34f0ef261e8d61869a17da115e22806ff"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/test-environment/provenance.json",
+      "bytes": 670,
+      "sha256": "ec2890cf532d658af8ef5d96c891eedff1e55edd6c6b3f013c7cfa3b605682d0",
+      "git_blob": "649edbf6c9debf7291f4a60dbb7b03f4205d46d7"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/test-environment/version",
+      "bytes": 6,
+      "sha256": "2f3cb32174952ce3493217a7cda3b0c847d672f20d81d766526e2a5719c002b1",
+      "git_blob": "b0e9fea0fdf13c1ec10c5971088bbd1251eb1ac2"
+    },
+    {
+      "path": "docs/versions/v10.0.2/evidence/tool-identities.json",
+      "bytes": 1676,
+      "sha256": "594b82c6d1aef42e2fd408b82cb1a064874e789339cb3e488b5f8c80e34fa441",
+      "git_blob": "059ad06923836d6ff8e0f651e928e5b2e627baeb"
+    },
+    {
+      "path": "docs/versions/v10.0.2/tools/validate_preview.py",
+      "bytes": 7138,
+      "sha256": "7712f44c44a9d67b41008e940bce28e13476f7bf81cfff236a575aaaf220fb44",
+      "git_blob": "2c98bd9fd41d5d396f4611632f2131e46cd55235"
+    }
+  ],
+  "inherited_source_identity": "evidence/source-identities.json (14 accepted scoped objects + protected dependencies)",
+  "final_run": "evidence/run-02/summary.json",
+  "excluded": [
+    "manifest.json self-hash",
+    "ignored runtime .dart_tool/build/cache",
+    "original root and historical raw evidence",
+    "unchanged inherited proposal and product files"
+  ],
+  "acceptance": "AUTHOR_VERIFIED_ASTRA_PENDING",
+  "integration": "ISOLATED_CANDIDATE_NOT_MERGED"
+}

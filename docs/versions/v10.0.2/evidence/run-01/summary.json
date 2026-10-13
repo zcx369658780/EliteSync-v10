@@ -1,0 +1,203 @@
+{
+  "label": "run-01",
+  "plan_commit": "c96b3582243067d8acf572405d8a4eb908b18da3",
+  "plan_blob": "cdb88dba4585755fafd08b30fc025a019dd39a91",
+  "code_parent": "be070a771114052b2f6e7796636cd1a186502988",
+  "inputs": {
+    "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/domain/qualification_diagnostic.dart": "4c67ae4dce684a07c4d831697cff9f7acaa3e9646e56ed89f92f806376e02fe6",
+    "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_test.dart": "63e22c8419bd3b775af8c04fcb5d7b2d4ddaa6f767bedeccca457ce218becc31",
+    "docs/versions/v10.0.1/evidence/source-intake.json": "ec9fb078fec7754d46ae5ecc1680a6f54c8d118f5ca0a77804ca00ac0083595a",
+    "docs/versions/v10.0.1/phpunit.test-only.xml": "04f991e74af68b28f0e72c5b1680b62d4dd7cbad42b2f98f944ed732850c0370",
+    "docs/versions/v10.0.1/tools/validate_diagnostics.py": "072ecf724adeecee8e48151239147050a7da0836b603fc0e3c5cb8700d86f9ab",
+    "services/backend-laravel/app/EliteSync/ConversationLifecycle/FrozenQualificationSource.php": "5a74076e3c93914ab8add6365fd492724bfb47d6af6475bc1d72c0dffdacff99",
+    "services/backend-laravel/app/EliteSync/ConversationLifecycle/LocalTestConversationLifecycle.php": "44fb7a84511d0ea55f1ab8f36a663d34ce85c98745337f1362ce8099feb6cc81",
+    "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationQualificationSource.php": "ca398dfc3aa06eea0597c4582f1750be4e1f86dc6a3b921a3a709a2c1069db83",
+    "services/backend-laravel/app/EliteSync/ConversationQualification/ConversationUsePointQualifier.php": "30a5a2b2aabe5e403d0e21000697f26494321ae99892cefda0a0f6da86e4a3c6",
+    "services/backend-laravel/app/EliteSync/TextAuthority/ExistingEvaluatorEvidenceAdapter.php": "a48d14114dca37d710cfc04dd84d11ea8389ca3bf8f3b7e23d8b93605b9664bd",
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationLifecycle/FixtureFourFamilySource.php": "d14efd20d927b289abaef8cc558ad376b9c018964900b6d0a56200ad550a8dcb",
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/DiagnosticScenarioFactory.php": "43ea04b436029d6c34d55a3bcdcc0a7ca5b8a3d640436f4309955c28a254dca2",
+    "services/backend-laravel/tests/Unit/EliteSync/ConversationQualification/export_diagnostic_fixture.php": "6a757b23b35cb328fc58838e08aa822c00e13bca9859328b5f74882f593c696e",
+    "services/backend-laravel/tests/Unit/ProductConnectionPersistenceApplicationAdapterTest.php": "7848dfb1b5b45df85b2047a3f60426947a2f32f13a70a91f31a46524a951f6b7",
+    "services/backend-laravel/routes/api.php": "6e1769e4728f8e1e703edd432457ccd6f608e24ad7abaa14892ca13fd15a0675",
+    "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php": "a1af329f4a5e4b9326ae92235bd8d974e373b004045b512e9e084c7b9414552d",
+    "services/backend-laravel/app/Domain/CommonAuthorityEvidenceContract.php": "c8d15282e3fc27923699ae4feef6e3b78eeaab7ac0b0cec84303e1c1f1fe3562",
+    "services/backend-laravel/app/Domain/ProductConnectionStateTransitionEvaluator.php": "9830dd6be47f1314e579aee08b81b9ae150f8cc8f6dfc419426797a61754d858",
+    "services/backend-laravel/app/Domain/MessagingConsentConversationLiveGateEvaluator.php": "be2d2b4ac6b1100159368d7accae89542e75466f74b2d254d4001204574168d3",
+    "apps/flutter_elitesync_module/lib/app/router/app_router.dart": "37f80ae948753fb389eabb36f7f257c64b6662e1a299a1f14b5e1b70b387ff12",
+    "apps/flutter_elitesync_module/lib/app/router/app_shell.dart": "aad34efb359a1964f07c8f6a13e4f724cf5b16373d3984426a4f3ee899855c85",
+    "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart": "e4de42e83fd2f918e3e24a8257ca6f43ddf1ef24246ee08d0903281d383ca516",
+    "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart": "2920ba4d9c554a89cfc7d4b2a2f500efa15c8f88981c732fc8bde7d66ee0f337",
+    "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/presentation/widgets/qualification_diagnostic_preview.dart": "a052aec46394155024d2a247b37476d8680867923e44b921d7172f08d7d6fcb4",
+    "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart": "8825d6aa778a56ad8c5a62644d6c952b9ede193d12a01c6f8fffe98d3be38fbb",
+    "docs/versions/v10.0.2/tools/validate_preview.py": "7712f44c44a9d67b41008e940bce28e13476f7bf81cfff236a575aaaf220fb44"
+  },
+  "steps": [
+    {
+      "name": "php-version",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10",
+      "started_utc": "2026-10-13T05:06:55.894373+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.078,
+      "completed_utc": "2026-10-13T05:06:55.976746+00:00",
+      "stdout_sha256": "1419f76c5d1e98437bcf235fd89d3eed4dbff6832287a5f6317d21a1f8acf9f9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php-export",
+      "argv": [
+        "C:\\tools\\php85\\php.exe",
+        "-n",
+        "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10\\services\\backend-laravel\\tests\\Unit\\EliteSync\\ConversationQualification\\export_diagnostic_fixture.php"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10",
+      "started_utc": "2026-10-13T05:06:55.983746+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.047,
+      "completed_utc": "2026-10-13T05:06:56.036640+00:00",
+      "stdout_sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+      "stderr_sha256": "10c2d5ac6287f3e89415150ded2e01e8460f8e67b5d9be3c0d55e28d7f90c841"
+    },
+    {
+      "name": "flutter-consumers",
+      "argv": [
+        "D:\\flutter\\bin\\flutter.bat",
+        "--no-version-check",
+        "--suppress-analytics",
+        "test",
+        "--no-pub",
+        "--reporter=expanded",
+        "--dart-define=QUALIFICATION_DIAGNOSTIC_FIXTURE=C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10\\docs\\versions\\v10.0.2\\evidence\\run-01\\diagnostic.json",
+        "test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+        "test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart"
+      ],
+      "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-v1002\\EliteSync-v10\\apps\\flutter_elitesync_module",
+      "started_utc": "2026-10-13T05:06:56.048996+00:00",
+      "exit_code": 1,
+      "elapsed_seconds": 6.781,
+      "completed_utc": "2026-10-13T05:07:02.828973+00:00",
+      "stdout_sha256": "a22107a08ed793016f31e836cab1bfc9098a9daa89467fcf2776c33240f9c680",
+      "stderr_sha256": "f0e8c00daca91889f236042d42d47a1e6260efd9e22410cba2016dc87c8bd038"
+    }
+  ],
+  "started_utc": "2026-10-13T05:06:55.894373+00:00",
+  "php_export_exit": 0,
+  "fixture_sha256": "334b71e018915aedac38385d4b328bca2b6514572f90c41a8888897bba5e8ad9",
+  "fixture_bytes": 3229,
+  "php_scenarios": 12,
+  "php_checks": 930,
+  "producer_digest_matches": true,
+  "scenario_index": [
+    {
+      "scenario_id": "pending_single_party",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "contract_satisfied",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "CONTRACT_EVALUATED",
+      "reason_codes": [
+        "FICTIONAL_CONTRACT_ONLY_FORMAL_QUALIFICATION_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "connection_paused",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "connection_closed",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "conversation_paused",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "conversation_closed",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CV_LIFECYCLE_RESTRICTION_OR_UNKNOWN"
+      ]
+    },
+    {
+      "scenario_id": "consent_revoked",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "CN_MC_CONTRACT_NOT_SATISFIED"
+      ]
+    },
+    {
+      "scenario_id": "stale",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_BINDING_OR_FRESHNESS_REJECTED:identity"
+      ]
+    },
+    {
+      "scenario_id": "revision_mismatch",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_REVISION_NOT_CURRENT_OR_COMPARABLE:identity"
+      ]
+    },
+    {
+      "scenario_id": "source_error",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "UNAVAILABLE",
+      "reason_codes": [
+        "SOURCE_READ_FAILED"
+      ]
+    },
+    {
+      "scenario_id": "source_missing",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "UNAVAILABLE",
+      "reason_codes": [
+        "SOURCE_NOT_YET_ESTABLISHED:identity"
+      ]
+    },
+    {
+      "scenario_id": "cross_context",
+      "context_id": "fiction-session-pair:cn-a:cv-a",
+      "diagnostic_outcome": "REJECTED",
+      "reason_codes": [
+        "SOURCE_PROVENANCE_MISMATCH:identity"
+      ]
+    }
+  ],
+  "flutter_exit": 1,
+  "parser_input_sha256": [],
+  "widget_input_sha256": [],
+  "flutter_pass_count": [],
+  "same_fresh_bytes": false,
+  "debug_gate_source_check": true,
+  "non_debug_build_runtime": "NOT_RUN; static kDebugMode guard + executable pure gate truth table only",
+  "be12_evidence": "ROUTE_AND_MIDDLEWARE_BLOB_IDENTITY_ONLY; runtime/Feature NOT_RUN_THIS_VERSION",
+  "inputs_unchanged": true,
+  "completed_utc": "2026-10-13T05:07:02.843973+00:00",
+  "author_verification": "FAIL"
+}

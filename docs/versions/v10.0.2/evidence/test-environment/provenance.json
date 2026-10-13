@@ -1,0 +1,19 @@
+{
+  "scope": "EXISTING_LOCAL_DEPENDENCIES_ONLY",
+  "package_graph_source": "D:/EliteSync-v10/apps/flutter_elitesync_module/.dart_tool/package_graph.json",
+  "runtime_mirror": "Ignored candidate .dart_tool only; no source root/config/SDK changes",
+  "files": [
+    {
+      "path": "package_config.json",
+      "sha256": "a0a8fb87cdf8b5916a9e7ea54507e326550a78b0a663a1a31408c12f0b5d3eed"
+    },
+    {
+      "path": "package_graph.json",
+      "sha256": "e1cbfd18980819ad2c6512f7f91164755fa30a31a7512ba2a785129ababb2946"
+    },
+    {
+      "path": "version",
+      "sha256": "2f3cb32174952ce3493217a7cda3b0c847d672f20d81d766526e2a5719c002b1"
+    }
+  ]
+}
