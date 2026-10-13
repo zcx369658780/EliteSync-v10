@@ -1,0 +1,277 @@
+00:00 +0: loading <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart
+00:00 +0: production UNKNOWN separates missing source from ineligibility
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _KeyWidgetFinder:<Found 0 widgets with key [<'readiness-source-explanation'>]: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:233:5)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 233
+The test description was:
+  production UNKNOWN separates missing source from ineligibility
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: production UNKNOWN separates missing source from ineligibility [E]
+  Test failed. See exception logs above.
+  The test description was: production UNKNOWN separates missing source from ineligibility
+  
+00:01 +0 -1: injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TextWidgetFinder:<Found 1 widget with text "准备状态已由权威来源确认": [
+            Text("准备状态已由权威来源确认", debugLabel: (englishLike titleLarge 2021).merge(((blackMountainView
+titleLarge).apply).merge(unknown)), inherit: false, color: Color(alpha: 1.0000, red: 0.0667, green:
+0.0941, blue: 0.1529, colorSpace: ColorSpace.sRGB), family: Roboto, size: 18.0, weight: 600,
+letterSpacing: 0.0, baseline: alphabetic, height: 1.4x, leadingDistribution: even, decoration:
+Color(alpha: 1.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)
+TextDecoration.none, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+          ]>
+   Which: means one was found but none were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:245:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 245
+The test description was:
+  injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true) [E]
+  Test failed. See exception logs above.
+  The test description was: injected READY without active dev flag remains unconfirmed (AppFlavor.prod, true)
+  
+00:01 +0 -2: injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false)
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TextWidgetFinder:<Found 1 widget with text "准备状态已由权威来源确认": [
+            Text("准备状态已由权威来源确认", debugLabel: (englishLike titleLarge 2021).merge(((blackMountainView
+titleLarge).apply).merge(unknown)), inherit: false, color: Color(alpha: 1.0000, red: 0.0667, green:
+0.0941, blue: 0.1529, colorSpace: ColorSpace.sRGB), family: Roboto, size: 18.0, weight: 600,
+letterSpacing: 0.0, baseline: alphabetic, height: 1.4x, leadingDistribution: even, decoration:
+Color(alpha: 1.0000, red: 0.0000, green: 0.0000, blue: 0.0000, colorSpace: ColorSpace.sRGB)
+TextDecoration.none, dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+          ]>
+   Which: means one was found but none were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:245:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 245
+The test description was:
+  injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -3: injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false) [E]
+  Test failed. See exception logs above.
+  The test description was: injected READY without active dev flag remains unconfirmed (AppFlavor.dev, false)
+  
+00:01 +0 -3: explicit dev READY is a labelled demonstration only
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextContainingWidgetFinder:<Found 0 widgets with text containing 不是正式资格: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:258:5)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 258
+The test description was:
+  explicit dev READY is a labelled demonstration only
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -4: explicit dev READY is a labelled demonstration only [E]
+  Test failed. See exception logs above.
+  The test description was: explicit dev READY is a labelled demonstration only
+  
+00:01 +0 -4: same mounted page clears synthetic success on Guard changes
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "正式准备条件尚未确定": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:274:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 274
+The test description was:
+  same mounted page clears synthetic success on Guard changes
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -5: same mounted page clears synthetic success on Guard changes [E]
+  Test failed. See exception logs above.
+  The test description was: same mounted page clears synthetic success on Guard changes
+  
+00:02 +0 -5: unauthenticated display is explained without bypassing real Router
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "正式准备条件尚未确定": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:288:5)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  <CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart line 288
+The test description was:
+  unauthenticated display is explained without bypassing real Router
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -6: unauthenticated display is explained without bypassing real Router [E]
+  Test failed. See exception logs above.
+  The test description was: unauthenticated display is explained without bypassing real Router
+  
+00:02 +0 -6: both compatibility destinations and back preserve Guard and page
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:883:30)
+#2      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2382:32)
+#3      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:300:20)
+<asynchronous suspension>
+#4      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  both compatibility destinations and back preserve Guard and page
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -7: both compatibility destinations and back preserve Guard and page [E]
+  Test failed. See exception logs above.
+  The test description was: both compatibility destinations and back preserve Guard and page
+  
+00:02 +0 -7: narrow screen and enlarged text keep explanation and actions readable
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'me-readiness-entry'>]: []" (used in a call to "tap()") could
+not find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2090:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1942:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1075:7)
+#3      _Harness.mount (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:199:20)
+<asynchronous suspension>
+#4      main.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:315:33)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:226:15)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (<CANDIDATE_ROOT>/apps/flutter_elitesync_module/test/features/me/presentation/pages/readiness_purpose_page_test.dart:223:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  narrow screen and enlarged text keep explanation and actions readable
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -8: narrow screen and enlarged text keep explanation and actions readable [E]
+  Test failed. See exception logs above.
+  The test description was: narrow screen and enlarged text keep explanation and actions readable
+  
+00:02 +0 -8: Some tests failed.

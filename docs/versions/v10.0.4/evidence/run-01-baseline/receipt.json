@@ -1,0 +1,25 @@
+{
+  "command": [
+    "<EXISTING_FLUTTER_SDK>/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/features/me/presentation/pages/readiness_purpose_page_test.dart"
+  ],
+  "exit_code": 1,
+  "started_unix": 1791899519.2834723,
+  "elapsed_seconds": 35.65,
+  "source_sha256": "e99950f4375e6baadf00a49c599c205c6af10a63be2ab91742972c95024689c5",
+  "test_sha256": "d92da4d62bfb67626bc7ba717e0dfbeb62bdbb380330fbd67b85725814746dcd",
+  "stdin": "DEVNULL",
+  "evidence_level": "full streams with absolute path redaction and text newline normalization",
+  "original_stream_sha256": {
+    "stdout.txt": "93faeff4ca49666bf0400bd5f0cc556bca01d49b955b5dda5cc035694c125898",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "published_stream_sha256": {
+    "stdout.txt": "9b255695ca2f85bf3129aeda0532e11d21a402894fb8afd1308c0a4550d81f2b",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

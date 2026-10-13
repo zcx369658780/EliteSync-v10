@@ -1,0 +1,33 @@
+{
+  "command": [
+    "<EXISTING_FLUTTER_SDK>/bin/dart.bat",
+    "analyze",
+    "lib/features/me/presentation/pages/me_purpose_pages.dart",
+    "test/features/me/presentation/pages/readiness_purpose_page_test.dart"
+  ],
+  "stdin": "DEVNULL",
+  "exit_code": 0,
+  "started_unix": 1791899937.8484704,
+  "elapsed_seconds": 42.02,
+  "head": "5728251c6345ba17524fb323dac8a02573d8d8c6",
+  "input_raw_sha256": {
+    "lib/features/me/presentation/pages/me_purpose_pages.dart": "7f6aa1b78f02a1d1f3d5763eed364d90bfb9d50e0a79e9b9c881e56b4035a0b1",
+    "test/features/me/presentation/pages/readiness_purpose_page_test.dart": "62e0c213b6deb516a266666c713a4d7aeaff5aff2d4bca0bf6350ba5aadd9f6f",
+    "test/synthetic_readiness_match_integration_test.dart": "e60011c9836c1d3fddc4906059932ef64694411b08f6e704f835e694e8a5e735",
+    "test/app/router/first_use_onboarding_router_integration_test.dart": "efab6f4d5962dfb34f48d0d29248e50aaa7427b8d00a7a6bac8e93c0331448e9",
+    "pubspec.lock": "9d392f33b4324149b282aa62721d642d37a4bd5e1677db403cb5a7373c385eee"
+  },
+  "stream_sha256": {
+    "stdout.txt": "d7860a7e810282a13b71142d8824fac8e56e2171aa2491cffe7a59d16f70aba3",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence_level": "full streams with absolute path redaction and text newline normalization",
+  "original_stream_sha256": {
+    "stdout.txt": "d7860a7e810282a13b71142d8824fac8e56e2171aa2491cffe7a59d16f70aba3",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "published_stream_sha256": {
+    "stdout.txt": "d7860a7e810282a13b71142d8824fac8e56e2171aa2491cffe7a59d16f70aba3",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
