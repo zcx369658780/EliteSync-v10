@@ -79,7 +79,7 @@ val syncFlutterAar by tasks.registering(Exec::class) {
             "--no-pub",
             "--no-debug",
             "--no-profile",
-        ) + flutterDartDefineArgs
+        ) + (if (isV1006LocalBuild) listOf("--target-platform=android-x64") else emptyList()) + flutterDartDefineArgs
     )
     inputs.dir(File(flutterModuleDir, "lib"))
     inputs.file(File(flutterModuleDir, "pubspec.yaml"))
