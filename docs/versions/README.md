@@ -1,8 +1,11 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.7正式冻结计划**：[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`，八条不可变AC；Owner手动派发待完成、当前未实施。基础产品起点 `0989812c141ce892915b67c14e9291d34e3c7053` / Tree `c2dd89f3a0726bff6cd18fb8fe0008c2f347aadf`。v10.0.6 K08已完成，以下此前“待集成/待冻结”作为历史记录。
+
+
 2026-10-15更新：v10.0.6 ACCEPT WITH OBSERVATIONS 保持；[K08集成](v10.0.6/integration.md)已完成，产品main commit 78aba03a68cb5dcc0302ea7e9c20ff783f5169d5 / Tree c027d70c37b353d3e37c3570b23f673c1033dd0f。专用本地基线接续，无产品新增差异，未重跑旧套件。v10.0.7 [版前建议](v10.0.7/FEASIBILITY_RECOMMENDATION.md)已形成，FEASIBILITY_READY / NOT_FROZEN / NOT_IMPLEMENTED。下文旧pending为历史。
 
-## 当前版本：v10.0.6 已独立接受，K08集成及本地接续待完成
+## 历史状态：v10.0.6 独立接受前后的K08登记
 
 2026-10-14：按[固定正式计划](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/versions/v10.0.6/plan.md)执行后的[候选](https://github.com/zcx369658780/EliteSync-v10/commit/08ce3571ce02af3dea5960705b72cd9737dccb95)已完成Astra[独立验收](v10.0.6/acceptance.md)与[复盘](v10.0.6/retrospective.md)，结果 **ACCEPT WITH OBSERVATIONS**；两条实测链在受控本地开发环境通过。本版代码尚未集成GitHub main、本地可用基线K08接续待Owner手动转交，服务/AVD已停止。后续叙述的“待派发/未开始”为冻结当时时点，已由本句更新。
 
@@ -16,8 +19,8 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 
 | 版本 | 主要实物结果 | 当前状态 |
 |---|---|---|
-| v10.0.6 | APP城市实际持久化＋Web管理测试用户禁用与会话失效＋跨端重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[复盘](v10.0.6/retrospective.md)；固定候选08ce3571；代码集成/本地K08接续尚未执行 |
-| v10.0.7 | 选定原版APP主要功能成组恢复，接口/数据/必要任务接通 | 路线包，尚未立版 |
+| v10.0.6 | APP城市真实持久化＋独立Web禁用/会话失效＋重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[K08已完成](v10.0.6/integration.md)；产品集成78aba03a、本地已接续，K08不冒称重跑 |
+| v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [正式计划已冻结](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)；AC-07-01～08固定；待Owner手动派发，无实施候选 |
 | v10.0.8 | 用户、审核、举报、匹配、问卷等确定范围的Web模块实装 | 路线包；首个Web管理闭环已纳入0.6目标 |
 | v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
 | v10.0.10 | 完整软件包、安装/部署/恢复方式与功能/算法说明 | 路线包，不是公开运营承诺 |
