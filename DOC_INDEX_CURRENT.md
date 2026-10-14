@@ -4,6 +4,7 @@
 
 |逻辑槽位|现存正文与用途|
 |---|---|
+|v10.0.5 版前规划（待Codex只读评审）|[有界草案](docs/versions/v10.0.5/PLAN_PROPOSAL_V0_1.md)：以Progress静态Match/Connection入口为既有基础，核查是否可复用Home现有状态投影做来源明确的只读进展摘要/保守导航；不冻结、不执行、不授真实权限|
 |v10.0.4 五阶段收口（本地限定重验已回报）|[冻结计划](docs/versions/v10.0.4/plan.md)、[R1终验](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md)、[定点集成](docs/versions/v10.0.4/integration.md)、[当前状态](CURRENT_STATE.md)、[记忆K12](docs/memory/knowledge.md)：两个接受Blob进main；Codex报告新干净基线与集成后13项测试PASS/两文件分析No issues，旧dirty root保留；完整平台/生产仍NOT_RUN|
 |工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现；**2026-10-13 Owner 追加版后安全集成+本地隔离开发基线接续的长期授权**（不自动派单、不覆盖脏 main）|
 |现状、在途、暂停|[CURRENT_STATE](CURRENT_STATE.md)：本地/远端差异、历史通过与未知；[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)|

@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-14 v10.0.5 版前规划启动（当前）
+
+Owner 已明确允许进入v10.0.5规划。Astra基于GitHub主线`c687acc6e7978470a2c2501fb2662b2a5492c553`与已接受功能设计，发布 [v10.0.5有界规划草案](docs/versions/v10.0.5/PLAN_PROPOSAL_V0_1.md)：优先核查**Progress进展页当前只有Match/Connection静态入口、缺少动态只读阶段摘要**的真实产品缺口，尝试复用已经接受的Home/Readiness/Match/Connection状态投影和v10.0.3真实Router，而不再扩展诊断工具或重做Home/Me。具体来源资格、UI行为、写路径/测试范围必须先由Codex只读核查，禁止凭模拟状态推断正式授权。状态 **`PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`**；尚未启动本版代码、测试或候选。
+
+上版v10.0.4已独立验收、GitHub安全集成、Codex新隔离clean基线与13项限定回归完成（本地证据由Codex报告、远端身份由Astra核验），其后只有项目状态/记忆文档提交。旧`D:/EliteSync-v10`dirty main、109项保护和历史LOCAL_ONLY保持，BE-12七条真实消息默认404，V57/H1/H2/D0、M6及真实设备/生产资格均未开放。下一步Owner手动把本草案交Codex只读核查，反馈后才可能正式冻结。
+
+
 ## 2026-10-14 v10.0.4 R1 本地隔离开发基线接续完成（当前）
 
 Codex 已执行Owner按长期K08流程手动派发的版后工程维护，集中报告 `V10.0.4 LOCAL_DEVELOPMENT_BASELINE_READY — ORIGINAL_DIRTY_MAIN_PRESERVED — SCOPED_POST_INTEGRATION_TESTS_VERIFIED`。这不是v10.0.5的启动或新的源代码修改。
