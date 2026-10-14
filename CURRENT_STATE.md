@@ -1,31 +1,35 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-14 路线与工作流同步已接收，v10.0.6进入版前协商
+## 2026-10-14 v10.0.6 执行方案审议完成，正式计划冻结
 
-**ROADMAP_AND_WORKFLOW_SYNCED（CODEX_REPORTED） / V10_0_6_PROPOSED / AWAITING_CODEX_EXECUTION_PROPOSAL / NOT_FROZEN / IMPLEMENTATION_NOT_STARTED**。
+**V10_0_6_FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**。
 
-Owner已批准的核心目标不变：恢复选定原版EliteSync APP前端、后端、数据库与主要功能，交付独立可用Web管理面板。执行依据：[Owner决定](PRODUCT_DECISIONS.md)、[新路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[功能台账](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)、[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)。
+依据Owner已批准的[APP恢复＋独立Web管理方向](PRODUCT_DECISIONS.md)，Astra接收Codex的 `V10.0.6 EXECUTION PROPOSAL — READY_WITH_FINDINGS` 并发布[正式计划](docs/versions/v10.0.6/plan.md)。本版只交付两条真实链：现有Android APP城市字段经实际API保存到同用户的users.city并在重进/重启后读回；独立Blade管理员登录、查询并禁用该虚构用户，旧token/refresh/新登录/资料访问失效，正常对照账号不受影响。不是mock展示、不是完整原APP恢复已经完成。
 
-### 本地同步结果及证据来源
+代码起点固定 `3a78c2c81859db682369fd6e03f6d98a3c2bbeb2`，Tree `59969abfc9d04185769b22af5f7ea5d629007a33`；[原草案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)在 `98649e89e223b92c5e7817b8f0f0361242c6c476`，与起点仅文档差异。允许复用专用clean工作树、版本分支与多次提交，不强制新建worktree或单父单提交。冻结发布身份以plan首次commit/blob为准，Owner手动派发后才执行。
 
-Codex执行并由Owner转交回报：专用基线C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10，分支codex/baseline-v1005-be0636e，已从be0636ee…正常fast-forward到3a78c2c81859db682369fd6e03f6d98a3c2bbeb2，Tree 59969abfc9d04185769b22af5f7ea5d629007a33，CLEAN；九份路线/指导文档Git Blob与固定提交一致，无新增worktree或本地新提交。
+### 本版明确环境范围，但尚未运行
 
-原启动根D:/EliteSync-v10亦已同步九份文档：八份正文相同，AGENTS合并了新指导并保留仍适用的本地辅助约定，故其Blob不同是已报告的合理差异，不要求覆盖成远端字节。旧文档原件另有本地备份，未重新塞回活动指导。原dirty root HEAD仍4bebc8f394248e254c1368a06fbdee5d2c883301，默认index哈希不变；九份文档之外状态与105项具名保护文件保持。105是本次已报告保护范围，不能冒称旧109项全部原字节未变。
+- 复用Codex报告的PHP8.5.3/Composer2.9.5、现有锁定Laravel依赖和Flutter/Android工具链；允许按锁安装/补齐缺失包，不顺带升级技术栈。专用树vendor与配置独立，原根.env不复制。
+- 启动已有Docker Desktop，建立独立MariaDB10.11容器/持久volume，必要时拉官方镜像并记录digest；库 `elitesync_v1006_dev`、loopback `127.0.0.1:43316`。原3306 MySQL9.6与原数据库不动。Docker管道当前不可用属于待实测环境问题，不是已运行事实。
+- Laravel与Blade `/admin` 使用 `127.0.0.1:8000`；只创建管理员、待禁用用户、正常对照用户三个虚构账号。共享禁用动作、严格role＋明确名单、CSRF和session/token失效属于版本模块范围。
+- 复用已有Android36.1 x86_64镜像创建专用 `elitesync_v1006_api36` AVD；允许ADB反向端口、从最终源码重建AAR/debug APK、安装操作截图及受控本地浏览器测试。宿主与Dart实际地址必须一致，禁止误用旧远端或mock。
+- 原SQL gzip/VHDX只确认了Codex报告的存在性与大小，历史表/记录/媒体可恢复性仍UNKNOWN。本版不读取其内容、不解密/挂载/导入；历史数据恢复作为明确后续缺口保留，不阻塞新开发数据的真实链。
 
-本次原证仅在本地route-sync-3a78c2c/receipt.json；网页未读取本机原件，也未检验自定义AGENTS全文。Astra实际读取的GitHub main及Tree与上方目标一致；本地执行、保护及九文档匹配属于CODEX_REPORTED。没有运行APP、服务、数据库、测试或重建检索索引。同步任务已完成，不再次安排相同九文件同步或完整基线重建。
+以上权限包仅随Owner明确派发正式计划生效；当前没有实施候选、服务/数据库启动、构建安装或测试结果。额外系统级安装/提权、版本升级、生产/真实数据和费用仍需具体授权；普通依赖/环境错误在已授权范围内同版修复，不再拆治理版本。
 
-### 下一步：同一功能版的执行方案
+### 最近本地现场与读取边界
 
-已提出[v10.0.6版前方案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)：在实际开发服务与持久化数据库上完成“Android APP登录、基础资料写入及重启读回”与“独立Web管理员登录、管理测试账号、APP观察结果”两条链。首个管理动作建议复用现有禁用开发测试账号，具体会话与授权处理在集中反馈后冻结。
+Codex报告专用工作树 `C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10`，当前HEAD仍为3a78c2c、分支 `codex/baseline-v1005-be0636e`、CLEAN。此前九份新路线/指导已同步，原启动根 `D:/EliteSync-v10` 八份正文相同，AGENTS保留有效本地辅助约定。原dirty HEAD `4bebc8f394248e254c1368a06fbdee5d2c883301` 和默认index保持，最近同步回执仅证明其相应范围及105项具名文件，不将旧109/11树计数作为永久门。
 
-已读取现有Laravel管理用户/disable、Auth登录禁用拒绝、管理员中间件及Web welcome入口。文件存在不等于功能运行通过，独立Web管理系统尚未实装。首选复用Laravel服务端视图和业务服务，不先升级整套栈；方案必须一次列实际开发服务/端口、独立库、测试数据或备份副本、构建及设备和必要下载/环境操作。恢复来源核查在v10.0.6内为实现服务，不另开只读治理版本。
+网页实际读取了GitHub当前入口、工作流、草案及ProfileController城市写入、Android宿主/构建和管理员中间件相关源码；Windows环境版本、端口/镜像/备份存在性、工作树保护属于CODEX_REPORTED。Astra未访问C:/D:原件、未启动本地环境。未来本专用实施树HEAD和源码将获准正常推进，原dirty根与无关成果仍不得覆盖。
 
-当前只有方案文档，没有冻结plan、实施候选或运行授权。正式计划经Owner手动派发后才启动相应环境与开发；普通修复由Codex自主完成。旧V57/H1/H2/D0任务不恢复，亦不作为新开发授权的默认前置。BE-12消息代码本轮不改，生产覆盖、敏感备份外传、真实账号数据和不可逆操作仍需具体授权。
+### 保留成果、实际缺口和下一步
 
-### 已接受成果与尚未恢复事项
+v10.0.0～v10.0.5的限定接受/集成保持，见[版本登记](docs/versions/README.md)。当前城市保存接口与用户禁用代码存在，但Web登录操作与完整跨端运行尚未实装或验证；本版必须用真实APP、浏览器、API和数据库证据，原Widget/领域PASS不能代替。
 
-v10.0.0～0.5的独立接受、定点集成与限定本地回归保持；其中51项通过属于此前be0636ee代码基线的限定测试，不能变成3a78c2c新运行证明，更不能证明真实前后端/数据库和Web后台已恢复。[版本登记](docs/versions/README.md)保留固定入口。
+[恢复台账](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)在本版内更新A01/A02/A04/B01和A03明确未恢复范围，不另建来源研究阶段。原版完整功能清单、历史业务数据、全部管理模块继续按[路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)后续交付，不能默默删去。
 
-原版功能基线、可用安装包、数据库备份时间/范围和媒体副本尚须实际确认；开发数据库结构/seed与历史业务数据恢复分开。缺备份只阻塞对应数据，不阻塞全部开发账号链；未恢复模块继续列在单份台账。独立Web完整管理模块、原APP完整恢复、Android当前整合包、正式用户/生产运行仍未成立。
+BE-12消息运行代码、V57/H1/H2/D0旧任务本版不改不复活；旧预算不是本次获准开发操作前置。生产、真实账号/身份、设备发布和公开运营没有授权。完成本版候选后由Astra独立终验，不自动v10.0.7。
 
-[上次路线发布时完整状态](https://github.com/zcx369658780/EliteSync-v10/blob/3a78c2c81859db682369fd6e03f6d98a3c2bbeb2/CURRENT_STATE.md)作为历史保留，其“等待文档同步”已被本次回报替代。本文只更新当前事实，不改历史冻结计划与原证。最新GitHub可能增加纯文档提交，不表示本地HEAD自动移动。
+[冻结前状态](https://github.com/zcx369658780/EliteSync-v10/blob/98649e89e223b92c5e7817b8f0f0361242c6c476/CURRENT_STATE.md)作为历史，旧“待方案”不覆盖当前冻结结论；本轮只发布计划和状态文档，不重复同步任务、工具链治理或基线维护。
