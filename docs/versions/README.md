@@ -1,5 +1,7 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15更新：v10.0.6 ACCEPT WITH OBSERVATIONS 保持；[K08集成](v10.0.6/integration.md)已完成，产品main commit 78aba03a68cb5dcc0302ea7e9c20ff783f5169d5 / Tree c027d70c37b353d3e37c3570b23f673c1033dd0f。专用本地基线接续，无产品新增差异，未重跑旧套件。v10.0.7仅获版前调查授权，NOT_FROZEN / NOT_IMPLEMENTED。下文旧pending为历史。
+
 ## 当前版本：v10.0.6 已独立接受，K08集成及本地接续待完成
 
 2026-10-14：按[固定正式计划](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/versions/v10.0.6/plan.md)执行后的[候选](https://github.com/zcx369658780/EliteSync-v10/commit/08ce3571ce02af3dea5960705b72cd9737dccb95)已完成Astra[独立验收](v10.0.6/acceptance.md)与[复盘](v10.0.6/retrospective.md)，结果 **ACCEPT WITH OBSERVATIONS**；两条实测链在受控本地开发环境通过。本版代码尚未集成GitHub main、本地可用基线K08接续待Owner手动转交，服务/AVD已停止。后续叙述的“待派发/未开始”为冻结当时时点，已由本句更新。
