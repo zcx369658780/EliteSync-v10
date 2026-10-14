@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
@@ -59,6 +60,12 @@ final dioProvider = Provider<Dio>((ref) {
     logger: logger,
     accessTokenProvider: tokenProvider,
     refreshAccessToken: refreshProvider,
+    onSessionRejected: (rejectedToken) => ref
+        .read(sessionProvider.notifier)
+        .setUnauthenticated(
+          notice: '登录已失效或账号已被禁用，请重新登录。',
+          rejectedToken: rejectedToken,
+        ),
   );
 
   return factory.create();

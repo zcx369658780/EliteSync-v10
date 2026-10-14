@@ -49,10 +49,12 @@ val flutterDartDefineArgs = flutterDartDefines
     .map { it.trim() }
     .filter { it.isNotEmpty() }
     .flatMap { listOf("--dart-define=$it") }
+val isV1006LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
+    .contains("ELITESYNC_V1006_LOCAL_BUILD=true")
 val isC2LocalInternalBuild = flutterDartDefines
     .split(Regex("[;,]"))
     .map { it.trim() }
-    .contains("ELITESYNC_C2_LOCAL_BUILD=true")
+    .contains("ELITESYNC_C2_LOCAL_BUILD=true") || isV1006LocalBuild
 val flutterReleaseAarRepo =
     File(flutterModuleDir, "build/host/outputs/repo/com/elitesync/flutter_elitesync_module/flutter_release/1.0")
 val isCiBuild = System.getenv("CI")?.equals("true", ignoreCase = true) == true
@@ -74,6 +76,7 @@ val syncFlutterAar by tasks.registering(Exec::class) {
             flutterExecutable,
             "build",
             "aar",
+            "--no-pub",
             "--no-debug",
             "--no-profile",
         ) + flutterDartDefineArgs
@@ -95,6 +98,7 @@ android {
     defaultConfig {
         applicationId = "com.elitesync"
         buildConfigField("boolean", "ELITESYNC_SYNTHETIC_DEMO", "false")
+        buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", "false")
         minSdk = 26
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
@@ -125,8 +129,9 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_BASE_URL", "\"http://101.133.161.203/\"")
-            buildConfigField("String", "WS_BASE_URL", "\"ws://101.133.161.203:8081/\"")
+            buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
+            buildConfigField("String", "API_BASE_URL", if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
+            buildConfigField("String", "WS_BASE_URL", if (isV1006LocalBuild) "\"\"" else "\"ws://101.133.161.203:8081/\"")
             buildConfigField("String", "BAIDU_MAP_AK", "\"$baiduAkFromProp\"")
             buildConfigField("String", "BAIDU_MAP_SECURITY_CODE", "\"$baiduSecurityCodeFromProp\"")
             buildConfigField("boolean", "ENABLE_BAIDU_NATIVE_SDK", "false")

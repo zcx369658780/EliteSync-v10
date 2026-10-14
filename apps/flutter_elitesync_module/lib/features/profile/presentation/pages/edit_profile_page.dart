@@ -33,6 +33,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
   final _birthPlaceQuery = TextEditingController();
   final _birthPlacePanelKey = GlobalKey();
   bool _initialized = false;
+  bool _citySaving = false;
   String _lastSyncedSignature = '';
   String? _selectedGender;
   String? _selectedTarget;
@@ -142,10 +143,10 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
           SizedBox(height: t.spacing.md),
           AppInfoSectionCard(
             title: '保存后会发生什么',
-            subtitle: '资料保存后会刷新画像与星盘摘要',
+            subtitle: '城市可独立保存；完整资料保存会刷新画像与星盘摘要',
             leadingIcon: Icons.sync_alt_rounded,
             child: Text(
-              '当前页保存的是基础出生资料，不是本地展示草稿。提交后，系统会重新整理八字、紫微与星盘所需字段；出生时间和出生地会用于后续摘要刷新。本地只负责展示结果，不自行计算或改写解释结论。',
+              '保存城市只更新城市并从服务端读回，不触发画像或星盘重算。保存并重算提交的是完整基础出生资料，不是本地展示草稿。提交后，系统会重新整理八字、紫微与星盘所需字段；出生时间和出生地会用于后续摘要刷新。本地只负责展示结果，不自行计算或改写解释结论。',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: t.textSecondary,
                 height: 1.5,
@@ -169,8 +170,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
           ] else if ((async.asData?.value.error ?? '').isNotEmpty) ...[
             SizedBox(height: t.spacing.sm),
             AppInfoSectionCard(
-              title: '上次保存未成功',
-              subtitle: '请先确认网络与出生地信息，再重新提交',
+              title: '资料读取或保存未确认',
+              subtitle: '历史显示不代表最新服务端确认，请检查账号和网络',
               leadingIcon: Icons.error_outline_rounded,
               child: Text(
                 async.asData!.value.error!,
@@ -276,7 +277,20 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                     panelKey: _birthPlacePanelKey,
                   ),
                   SizedBox(height: t.spacing.sm),
-                  AppTextField(controller: _city, label: '城市'),
+                  AppTextField(
+                    key: const ValueKey('profile-city-field'),
+                    controller: _city,
+                    label: '城市',
+                  ),
+                  SizedBox(height: t.spacing.sm),
+                  AppPrimaryButton(
+                    key: const ValueKey('profile-save-city'),
+                    label: '保存城市',
+                    isLoading: _citySaving,
+                    onPressed: (async.asData?.value.saving ?? false)
+                        ? null
+                        : _saveCity,
+                  ),
                   SizedBox(height: t.spacing.sm),
                   _SelectionField(
                     label: '婚恋目标',
@@ -290,50 +304,54 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                   AppPrimaryButton(
                     label: '保存并重算',
                     isLoading: async.asData?.value.saving ?? false,
-                    onPressed: () async {
-                      final genderValue = _selectedGender ?? '';
-                      final targetValue = _selectedTarget ?? '';
-                      final birthTimeValue = _birthTime.text.trim();
-                      if (birthTimeValue.isEmpty) {
-                        final shouldContinue =
-                            await _confirmSaveWithoutBirthTime(context);
-                        if (!shouldContinue || !context.mounted) return;
-                      }
-                      try {
-                        await ref
-                            .read(editProfileProvider.notifier)
-                            .save(
-                              ProfileDetailEntity(
-                                nickname: _nickname.text.trim(),
-                                gender: genderValue,
-                                birthday: _birthday.text.trim(),
-                                birthTime: birthTimeValue,
-                                city: _city.text.trim(),
-                                target: targetValue,
-                                birthPlace: _birthPlace.text.trim(),
-                                birthLat: _selectedBirthLat,
-                                birthLng: _selectedBirthLng,
-                              ),
-                            );
-                        if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('资料已保存，服务端已重算并刷新资料 / 画像 / 星盘缓存'),
-                          ),
-                        );
-                      } catch (e) {
-                        if (!context.mounted) return;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              e.toString().contains('Timeout')
-                                  ? '保存失败：请求超时，请检查网络后重试'
-                                  : '保存失败：请检查网络后重试',
-                            ),
-                          ),
-                        );
-                      }
-                    },
+                    onPressed: _citySaving
+                        ? null
+                        : () async {
+                            final genderValue = _selectedGender ?? '';
+                            final targetValue = _selectedTarget ?? '';
+                            final birthTimeValue = _birthTime.text.trim();
+                            if (birthTimeValue.isEmpty) {
+                              final shouldContinue =
+                                  await _confirmSaveWithoutBirthTime(context);
+                              if (!shouldContinue || !context.mounted) return;
+                            }
+                            try {
+                              await ref
+                                  .read(editProfileProvider.notifier)
+                                  .save(
+                                    ProfileDetailEntity(
+                                      nickname: _nickname.text.trim(),
+                                      gender: genderValue,
+                                      birthday: _birthday.text.trim(),
+                                      birthTime: birthTimeValue,
+                                      city: _city.text.trim(),
+                                      target: targetValue,
+                                      birthPlace: _birthPlace.text.trim(),
+                                      birthLat: _selectedBirthLat,
+                                      birthLng: _selectedBirthLng,
+                                    ),
+                                  );
+                              if (!context.mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    '资料已保存，服务端已重算并刷新资料 / 画像 / 星盘缓存',
+                                  ),
+                                ),
+                              );
+                            } catch (e) {
+                              if (!context.mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    e.toString().contains('Timeout')
+                                        ? '保存失败：请求超时，请检查网络后重试'
+                                        : '保存失败：请检查网络后重试',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
                   ),
                 ],
               ),
@@ -342,6 +360,25 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
         ],
       ),
     );
+  }
+
+  Future<void> _saveCity() async {
+    if (_citySaving) return;
+    setState(() => _citySaving = true);
+    try {
+      await ref.read(editProfileProvider.notifier).saveCity(_city.text);
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('城市已保存，并已从服务端读回确认')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('城市保存未确认：${e.toString()}')));
+    } finally {
+      if (mounted) setState(() => _citySaving = false);
+    }
   }
 
   Future<void> _onBirthPlaceQueryChanged(String query) async {

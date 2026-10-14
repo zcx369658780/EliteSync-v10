@@ -17,8 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(\App\Http\Middleware\RequestTraceMiddleware::class);
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
         $middleware->prependToGroup('api', \App\Http\Middleware\ForceJsonResponse::class);
         $middleware->alias([
+            'account.active' => \App\Http\Middleware\EnsureAccountActive::class,
             'admin.phone' => \App\Http\Middleware\EnsureAdminPhone::class,
             'matching.operation' => \App\Http\Middleware\EnsureMatchingOperationPermission::class,
             'secure.transport' => \App\Http\Middleware\EnsureSecureTransport::class,

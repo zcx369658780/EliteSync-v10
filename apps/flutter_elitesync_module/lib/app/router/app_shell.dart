@@ -100,6 +100,7 @@ class _AppShellState extends ConsumerState<AppShell> {
   }
 
   Future<void> _warmupProviders() async {
+    if (ref.read(appEnvProvider).restorationLocalBuild) return;
     if (_warmed) return;
     _warmed = true;
     final lite =

@@ -298,23 +298,45 @@ bool _sameAccount(Map<String, dynamic>? json, UserSummary? user) {
       (cachedPhone.isNotEmpty && cachedPhone == user.phone.trim());
 }
 
+bool _sessionUnchanged(Ref ref, SessionState? started) {
+  if (!ref.mounted) return false;
+  final now = ref.read(sessionProvider).asData?.value;
+  return now?.status == started?.status &&
+      now?.accessToken == started?.accessToken &&
+      now?.user?.id == started?.user?.id &&
+      now?.user?.phone == started?.user?.phone;
+}
+
+void _requireSameSession(Ref ref, SessionState? started) {
+  if (!_sessionUnchanged(ref, started)) {
+    throw StateError('登录会话已变化，旧资料结果未确认。');
+  }
+}
+
 final profileProvider = FutureProvider<ProfileUiState>((ref) async {
-  final sessionState = ref.watch(sessionProvider);
-  final sessionUser = sessionState.maybeWhen(
-    data: (state) => state.user,
-    orElse: () => null,
-  );
+  final started = await ref.watch(sessionProvider.future);
+  if (!started.isLoggedIn) {
+    return const ProfileUiState(error: '请登录后读取资料。');
+  }
+  final sessionUser = started.user;
   final local = ref.read(localStorageProvider);
   try {
     final summary = await ref.read(getProfileUseCaseProvider).call();
-    await local.setJson(
-      CacheKeys.profileSummarySnapshot,
-      _summaryToJson(summary),
-    );
+    _requireSameSession(ref, started);
+    await ref
+        .read(sessionProvider.notifier)
+        .cacheProfileSnapshot(
+          CacheKeys.profileSummarySnapshot,
+          _summaryToJson(summary),
+          expectedSession: started,
+        );
+    _requireSameSession(ref, started);
     return ProfileUiState(summary: summary);
   } catch (e) {
+    _requireSameSession(ref, started);
     final cached = await local.getJson(CacheKeys.profileSummarySnapshot);
     final lastKnown = await local.getJson(CacheKeys.lastKnownProfile);
+    _requireSameSession(ref, started);
     final summary =
         (_sameAccount(cached, sessionUser) ? _summaryFromJson(cached) : null) ??
         (_sameAccount(lastKnown, sessionUser)
@@ -347,23 +369,37 @@ final personalShowcaseProvider = FutureProvider<PersonalShowcaseSnapshot>((
 class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
   @override
   Future<EditProfileUiState> build() async {
-    final sessionState = ref.watch(sessionProvider);
-    final sessionUser = sessionState.maybeWhen(
-      data: (state) => state.user,
-      orElse: () => null,
-    );
+    final started = await ref.watch(sessionProvider.future);
+    if (!started.isLoggedIn) {
+      return const EditProfileUiState(error: '请登录后读取资料。');
+    }
+    final sessionUser = started.user;
     final local = ref.read(localStorageProvider);
     try {
       final detail = await ref.read(profileRepositoryProvider).getDetail();
-      await local.setJson(
-        CacheKeys.profileDetailSnapshot,
-        _detailToJson(detail),
-      );
+      _requireSameSession(ref, started);
+      await ref
+          .read(sessionProvider.notifier)
+          .cacheProfileSnapshot(
+            CacheKeys.profileDetailSnapshot,
+            _detailToJson(detail),
+            expectedSession: started,
+          );
+      _requireSameSession(ref, started);
       return EditProfileUiState(detail: detail);
-    } catch (_) {
+    } catch (e) {
+      _requireSameSession(ref, started);
+      final message = e.toString();
+      if (message.contains('Unauthorized') ||
+          message.contains('禁用') ||
+          message.contains('Unauthenticated')) {
+        return EditProfileUiState(error: '账号不可用或登录已失效：$message');
+      }
       final cached = await local.getJson(CacheKeys.profileDetailSnapshot);
       final lastKnown = await local.getJson(CacheKeys.lastKnownProfile);
+      _requireSameSession(ref, started);
       return EditProfileUiState(
+        error: '资料读取未确认；以下如有历史资料，仅供参考：$message',
         detail:
             (_sameAccount(cached, sessionUser)
                 ? _detailFromJson(cached)
@@ -390,13 +426,38 @@ class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
     }
   }
 
+  Future<ProfileDetailEntity> saveCity(String city) async {
+    final started = ref.read(sessionProvider).asData?.value;
+    if (started?.isLoggedIn != true) throw StateError('请登录后保存资料。');
+    final current = state.asData?.value ?? const EditProfileUiState();
+    try {
+      final confirmed = const ProfileMapper().toDetail(
+        await ref.read(profileRemoteDataSourceProvider).saveCity(city),
+      );
+      _requireSameSession(ref, started);
+      // Publish only the fresh server response, never the submitted draft.
+      state = AsyncData(EditProfileUiState(detail: confirmed));
+      ref.invalidate(profileProvider);
+      ref.invalidate(personalShowcaseProvider);
+      return confirmed;
+    } catch (e) {
+      if (_sessionUnchanged(ref, started)) {
+        state = AsyncData(current.copyWith(error: e.toString()));
+      }
+      rethrow;
+    }
+  }
+
   Future<ProfileDetailEntity> save(ProfileDetailEntity detail) async {
+    final started = ref.read(sessionProvider).asData?.value;
+    if (started?.isLoggedIn != true) throw StateError('请登录后保存资料。');
     final current = state.asData?.value ?? const EditProfileUiState();
     state = AsyncData(EditProfileUiState(detail: detail, saving: true));
     try {
       final saveResult = await ref
           .read(updateProfileUseCaseProvider)
           .call(detail);
+      _requireSameSession(ref, started);
       final savedUser = saveResult['user'];
       final persistedDetail = savedUser is Map<String, dynamic>
           ? _detailFromJson(savedUser) ?? detail
@@ -404,20 +465,26 @@ class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
                 .read(profileRepositoryProvider)
                 .getDetail()
                 .catchError((_) => detail);
-      final local = ref.read(localStorageProvider);
-      await local.setJson(
-        CacheKeys.profileDetailSnapshot,
-        _detailToJson(persistedDetail),
-      );
+      _requireSameSession(ref, started);
+      await ref
+          .read(sessionProvider.notifier)
+          .cacheProfileSnapshot(
+            CacheKeys.profileDetailSnapshot,
+            _detailToJson(persistedDetail),
+            expectedSession: started,
+          );
+      _requireSameSession(ref, started);
       final currentSummary = ref.read(profileProvider).asData?.value.summary;
       final summary = _summaryFromDetail(persistedDetail, currentSummary);
-      await local.setJson(
-        CacheKeys.profileSummarySnapshot,
-        _summaryToJson(summary),
-      );
-      final sessionState = ref
-          .read(sessionProvider)
-          .maybeWhen(data: (s) => s, orElse: () => null);
+      await ref
+          .read(sessionProvider.notifier)
+          .cacheProfileSnapshot(
+            CacheKeys.profileSummarySnapshot,
+            _summaryToJson(summary),
+            expectedSession: started,
+          );
+      _requireSameSession(ref, started);
+      final sessionState = started;
       if (sessionState?.user != null) {
         final user = sessionState!.user!;
         await ref
@@ -439,8 +506,10 @@ class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
                 avatarUrl: user.avatarUrl,
                 verified: user.verified,
               ),
+              expectedAccessToken: started?.accessToken,
             );
       }
+      _requireSameSession(ref, started);
       ref.invalidate(editProfileProvider);
       ref.invalidate(profileProvider);
       ref.invalidate(personalShowcaseProvider);
@@ -451,7 +520,9 @@ class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
       );
       return persistedDetail;
     } catch (e) {
-      state = AsyncData(current.copyWith(error: e.toString()));
+      if (_sessionUnchanged(ref, started)) {
+        state = AsyncData(current.copyWith(error: e.toString()));
+      }
       rethrow;
     }
   }
