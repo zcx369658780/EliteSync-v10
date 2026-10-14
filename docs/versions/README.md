@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-2026-10-15更新：v10.0.6 ACCEPT WITH OBSERVATIONS 保持；[K08集成](v10.0.6/integration.md)已完成，产品main commit 78aba03a68cb5dcc0302ea7e9c20ff783f5169d5 / Tree c027d70c37b353d3e37c3570b23f673c1033dd0f。专用本地基线接续，无产品新增差异，未重跑旧套件。v10.0.7仅获版前调查授权，NOT_FROZEN / NOT_IMPLEMENTED。下文旧pending为历史。
+2026-10-15更新：v10.0.6 ACCEPT WITH OBSERVATIONS 保持；[K08集成](v10.0.6/integration.md)已完成，产品main commit 78aba03a68cb5dcc0302ea7e9c20ff783f5169d5 / Tree c027d70c37b353d3e37c3570b23f673c1033dd0f。专用本地基线接续，无产品新增差异，未重跑旧套件。v10.0.7 [版前建议](v10.0.7/FEASIBILITY_RECOMMENDATION.md)已形成，FEASIBILITY_READY / NOT_FROZEN / NOT_IMPLEMENTED。下文旧pending为历史。
 
 ## 当前版本：v10.0.6 已独立接受，K08集成及本地接续待完成
 

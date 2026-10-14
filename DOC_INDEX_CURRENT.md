@@ -1,5 +1,7 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：v10.0.6 [K08产品集成与本地接续](docs/versions/v10.0.6/integration.md)完成；[v10.0.7版前可行性与推荐冻结方案](docs/versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)已交付，仍NOT_FROZEN / NOT_IMPLEMENTED。最新事实以CURRENT_STATE首节与现行单份台账为准，下面冻结时点叙述保留历史。
+
 2026-10-14：当前主目标仍为**完整APP前后端/数据库恢复＋独立Web管理面板**。v10.0.6固定候选 `08ce3571ce02af3dea5960705b72cd9737dccb95` 已获Astra独立终验 **ACCEPT WITH OBSERVATIONS**；本版城市真实持久化＋Blade用户禁用闭环通过限定AC。**GitHub产品代码尚未集成main、本地K08接续待Owner手动转交Codex、目标服务已停止、v10.0.7未派发。** 下方交接/冻结旧状态按当时时点解读；当前请优先读验收、复盘及CURRENT_STATE。
 
 | 当前入口 | 正文与用途 |

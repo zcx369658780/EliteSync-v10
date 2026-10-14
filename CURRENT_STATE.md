@@ -2,9 +2,11 @@
 
 ## 2026-10-15 K08产品集成完成，v10.0.7仅版前调查
 
-**V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_SCOPING_AUTHORIZED_NOT_FROZEN / NO_IMPLEMENTATION**。
+**V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_FEASIBILITY_READY / NOT_FROZEN / NO_IMPLEMENTATION**。
 
 GitHub普通非force集成并回读：`78aba03a68cb5dcc0302ea7e9c20ff783f5169d5`，Tree `c027d70c37b353d3e37c3570b23f673c1033dd0f`；实际main起点`14358389f6e1f7c6c33d805083310fad50ff7d15`。已接受候选`08ce3571...`的APP/backend/测试和运行脚本原对象接续，main已有冻结计划、验收、复盘及文档保留。专用树`C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10`，分支`codex/k08-v1006-integration`复用同产品基线；后续状态提交仅改文档。详细固定身份、对象检查、物理包hash及NOT_RUN见[集成登记](docs/versions/v10.0.6/integration.md)。原dirty根未吸收。
+
+v10.0.7版前调查及[推荐冻结方案](docs/versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)已形成，A04–A08现状登记在单份恢复台账。正式plan尚未创建，原proposal Blob保持。题库、live同意接线及RTC/算法/占位业务的具体依赖与决定集中回报，不自行取舍。原dirty根HEAD/index/status及43个实际具名文件hash前后一致，staged0/tracked43/untracked normal209，历史105/109未重验。
 
 本次无新产品代码差异，未重跑旧套件、未启动服务/数据库/AVD，未重seed原证据库。v10.0.6接受结论保持；以下K08 pending等叙述保留为历史时点。Owner本次仅授权K08后连续版前调查，不授权冻结或实施v10.0.7、v10.0.8或生产。
 

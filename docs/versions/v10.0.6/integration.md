@@ -26,7 +26,7 @@ main 原有文档与入口共 1033 个对象在产品集成时保持，包括 pl
 
 ## 保护、缺口与后继边界
 
-原 `D:/EliteSync-v10` 不接续或覆盖；本次固定其 HEAD/index/status/AGENTS及43个变化tracked文件的保护快照，原状态 staged0/tracked43/untracked normal209。不把本次核查说成历史105或109全部重新核验；最终比对在集中回报补证。无关工作树/EVIDENCE不清理。
+原 `D:/EliteSync-v10` 不接续或覆盖；本次固定其 HEAD/index/status以及43个实际存在具名文件（包含AGENTS和变化tracked文件）的保护快照，原状态 staged0/tracked43/untracked normal209。不把本次核查说成历史105或109全部重新核验；最终比对HEAD/index/status及43个文件hash全部一致，staged0/tracked43/untracked normal209；未扩核历史集合。无关工作树/EVIDENCE不清理。
 
 不启动或重seed原验收服务/数据库/AVD；保留原持久卷与私有配置，未读取 secrets/.env/token/cookie。资源最后 STOPPED 是原交付记录，本次未重新运行或探测。五项题库错误、vendor/PSR4/构建告警与原始失败继续保留。API/Web禁用目标角色差异仍为后续管理观察项。
 
