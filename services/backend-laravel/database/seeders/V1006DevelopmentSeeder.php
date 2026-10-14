@@ -11,11 +11,19 @@ final class V1006DevelopmentSeeder extends Seeder
 {
     public function run(): void
     {
-        if (! app()->environment('local') || DB::connection()->getDatabaseName() !== 'elitesync_v1006_dev') {
+        if (! app()->environment('local') ||
+            config('database.connections.mysql.host') !== '127.0.0.1' ||
+            (int) config('database.connections.mysql.port') !== 43316 ||
+            DB::connection()->getDatabaseName() !== 'elitesync_v1006_dev') {
             throw new \RuntimeException('V1006 seeding requires the dedicated local database.');
         }
         $path = env('V1006_CREDENTIALS_FILE');
         $data = json_decode(file_get_contents($path), true, flags: JSON_THROW_ON_ERROR);
+        $kinds = array_keys($data['accounts']);
+        sort($kinds);
+        if ($kinds !== ['admin', 'control', 'target']) {
+            throw new \RuntimeException('Only the three named fictional accounts are permitted.');
+        }
         foreach ($data['accounts'] as $kind => $account) {
             $existing = User::where('phone', $account['phone'])->first();
             if ($existing) {
