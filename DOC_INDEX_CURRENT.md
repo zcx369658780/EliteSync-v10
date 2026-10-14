@@ -1,11 +1,15 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.7正式计划已冻结，Owner手动派发待执行，Codex未报告实施**。固定计划[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`；以K08实际main `0989812c...` 为技术起点，8项AC冻结。v10.0.6 K08完成，其余旧“待冻结/待集成”是对应历史时点，见CURRENT_STATE首节。RTC/完整排盘/搭子社交真实能力具名留后续，不是静默取消。
+
+
 2026-10-15：v10.0.6 [K08产品集成与本地接续](docs/versions/v10.0.6/integration.md)完成；[v10.0.7版前可行性与推荐冻结方案](docs/versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)已交付，仍NOT_FROZEN / NOT_IMPLEMENTED。最新事实以CURRENT_STATE首节与现行单份台账为准，下面冻结时点叙述保留历史。
 
 2026-10-14：当前主目标仍为**完整APP前后端/数据库恢复＋独立Web管理面板**。v10.0.6固定候选 `08ce3571ce02af3dea5960705b72cd9737dccb95` 已获Astra独立终验 **ACCEPT WITH OBSERVATIONS**；本版城市真实持久化＋Blade用户禁用闭环通过限定AC。**GitHub产品代码尚未集成main、本地K08接续待Owner手动转交Codex、目标服务已停止、v10.0.7未派发。** 下方交接/冻结旧状态按当时时点解读；当前请优先读验收、复盘及CURRENT_STATE。
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.7唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)：Blob 151d75b67238826841467fa93c140825ebf61282、AC-07-01～08固定、复用K08产品起点；Owner尚未手动派发，实际运行未开始 |
 | v10.0.6终验及复盘（优先） | [Astra独立验收](docs/versions/v10.0.6/acceptance.md)、[版本复盘](docs/versions/v10.0.6/retrospective.md)：候选已接受，代码/本地集成分离，已保留PHP范围外失败与LOCAL_ONLY；K08待接续 |
 | v10.0.7版前范围（未冻结） | [PLAN_PROPOSAL_V0_1](docs/versions/v10.0.7/PLAN_PROPOSAL_V0_1.md)：Owner已要求进入新版准备，先完成K08安全集成与代码基线接续，再由Codex一次反馈恢复功能范围/技术缺口；尚未派发v10.0.7实施 |
 | 本轮顾问交接（优先） | [ASTRA_HANDOFF_20261014_V10_0_6](docs/migration/ASTRA_HANDOFF_20261014_V10_0_6.md)：Owner方向调整、六版接受概况、当前冻结身份/环境、最近本地现场、未知与新Astra验收接续；不新增执行授权 |
