@@ -4,6 +4,10 @@ type: note
 permalink: elitesync-v10-local/navigation
 ---
 
+## 2026-10-14 最近可用基线检查点
+
+最近可用基线：`C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10`，HEAD `be0636ee…`、CLEAN；Codex执行及Owner转交回报限定51/51和两文件分析通过（CODEX_REPORTED），原dirty root独立保护。此次原证LOCAL_ONLY，Astra只核GitHub身份、未读本地原证或复跑。完整身份、状态及边界见 [CURRENT_STATE](../../CURRENT_STATE.md)；接续已完成，不启动v10.0.6。
+
 ## 2026-10-13 版后安全集成与基线接续
 
 Owner 新决定：每个版本独立接受后，默认继续远端已接受成果的定点集成及**本地隔离开发基线安全接续**，再进入下一版规划；不重复询问次序，但不自动派单或覆盖脏原主树。长期执行规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)，来源与当前已证身份见 [knowledge.md K08](knowledge.md)、[CURRENT_STATE](../../CURRENT_STATE.md)。
