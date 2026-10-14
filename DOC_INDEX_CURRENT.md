@@ -1,26 +1,23 @@
 # EliteSync-v10 动态总目录
 
-这是 `zcx369658780/EliteSync-v10` 的当前导航，发布分支main。每次立版、验收、跨会话恢复实际读取此目录及相关正文，记录读取提交；上传索引不会自动同步，也不授予仓库或本机访问。普通现状读当前页，冻结版本按固定提交的计划验收。
+2026-10-14：Owner已批准v10.0目标调整为**完整APP前后端/数据库恢复＋独立Web管理面板**。这是现行目录；上传Sources和历史会话不会自动更新，必须读取本页及所需正文并记录真实提交。当前仅发布文档，Codex同步与v10.0.6实施状态以CURRENT_STATE为准。
 
-|逻辑槽位|现存正文与用途|
+| 当前入口 | 正文与用途 |
 |---|---|
-|v10.0.5 独立验收、远端集成及本地基线接续完成|[冻结计划](docs/versions/v10.0.5/plan.md)、[独立终验](docs/versions/v10.0.5/acceptance.md)、[事实复盘](docs/versions/v10.0.5/retrospective.md)、[定点集成](docs/versions/v10.0.5/integration.md)：Progress三域只读摘要ACCEPTED/CLOSED；51项测试PASS、分析No issues、23/23 payload身份匹配。两项接受代码已进GitHub；[当前状态](CURRENT_STATE.md)登记be0636ee隔离基线CLEAN、集成后51/51和分析No issues（CODEX_REPORTED）。此次本地原证未发布，Astra只核GitHub身份、未读本地原证或复跑；原dirty root未整体对齐，不启动v10.0.6|
-|v10.0.4 五阶段收口（本地限定重验已回报）|[冻结计划](docs/versions/v10.0.4/plan.md)、[R1终验](docs/versions/v10.0.4/acceptance.md)、[复盘](docs/versions/v10.0.4/retrospective.md)、[定点集成](docs/versions/v10.0.4/integration.md)、[当前状态](CURRENT_STATE.md)、[记忆K12](docs/memory/knowledge.md)：两个接受Blob进main；Codex报告新干净基线与集成后13项测试PASS/两文件分析No issues，旧dirty root保留；完整平台/生产仍NOT_RUN|
-|工作方式与角色|[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[生效AGENTS](AGENTS.md)：网页Astra规划/独立验收/复盘，Codex自主实现；**2026-10-13 Owner追加版后安全集成+本地隔离开发基线接续的长期授权**（不自动派单、不覆盖脏main）|
-|现状、在途、暂停|[CURRENT_STATE](CURRENT_STATE.md)：本地/远端差异、当前接受与未知；[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)；[本轮更新前完整状态快照](https://github.com/zcx369658780/EliteSync-v10/blob/e8f3a2f8893e380bb766c8583ed182d5b62f655c/CURRENT_STATE.md)按原字节保留历史|
-|第二阶段本地接收与手动交接（已完成）|[Codex本地交接及启动Prompt](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：保留历史现场/检索结果；Owner已确认继任会话入场，“待接收”仅是当时快照；`projectId=null`不等于已证明上下文不可用|
-|知识与环境|[记忆导航](docs/memory/navigation.md)、[关键知识K08～K12](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)、[归档说明](docs/memory/archive-20261012.md)。版本最新接受与基线以CURRENT_STATE和版本登记为准，不由历史记忆推出实时状态|
-|产品定义与决定|[产品边界摘要](docs/gpt-project-sources/02_产品架构与不可变边界.md)、[正式功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)、[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)|
-|v10.0.1 独立验收与复盘|[冻结计划](docs/versions/v10.0.1/plan.md)、[验收](docs/versions/v10.0.1/acceptance.md)、[复盘](docs/versions/v10.0.1/retrospective.md)：PHP→JSON→Dart synthetic诊断ACCEPT/CLOSED；必要代码[定点集成](docs/versions/v10.0.1/integration.md)，原候选历史未整体合并|
-|v10.0.0 最终验收与复盘|[冻结计划](docs/versions/v10.0.0/plan.md)、[独立验收](docs/versions/v10.0.0/acceptance.md)、[复盘](docs/versions/v10.0.0/retrospective.md)：ACCEPTED/CLOSED（synthetic/dev-test），接受测试Blob已纳入GitHub main；历史候选整体未merge|
-|已接受代码定点整合|[v10.0.0+v10.0.1集成回执](docs/versions/v10.0.1/integration.md)14项；[v10.0.2](docs/versions/v10.0.2/integration.md)3项；后续各版集成分别见对应integration.md。回执中的本地未对齐/运行NOT_RUN按当时具体基线理解，不覆盖后来独立回报|
-|v10.0.2 独立验收与复盘|[冻结计划](docs/versions/v10.0.2/plan.md)、[独立验收](docs/versions/v10.0.2/acceptance.md)、[复盘](docs/versions/v10.0.2/retrospective.md)：Debug/Test synthetic只读Widget ACCEPTED/CLOSED；[必要代码已集成](docs/versions/v10.0.2/integration.md)，历史候选未整支merge；非Debug/设备/完整Feature仍无本版运行证明|
-|本地隔离开发基线的历史接续|[项目知识K09～K12](docs/memory/knowledge.md)保留2175dd6、64a098f、d49c308各次具名基线回报；[当前状态](CURRENT_STATE.md)给出最近可用be0636ee基线及已完成的限定重测。原`D:/EliteSync-v10` dirty main持续独立保护，不能视为已全量同步|
-|v10.0.3 接受、远端集成与本地基线接续完成|[冻结计划](docs/versions/v10.0.3/plan.md)、[终验](docs/versions/v10.0.3/acceptance.md)、[复盘](docs/versions/v10.0.3/retrospective.md)、[集成回执](docs/versions/v10.0.3/integration.md)、[本地回报](docs/memory/knowledge.md)：Router修复和测试Blob进入GitHub；Codex报告对应隔离基线42/42 PASS，旧dirty根未动|
-|路线图与版本登记|[原路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[版本登记入口](docs/versions/README.md)：路线图旧阶段记录不是自动执行授权；各版Acceptance、具名GitHub集成、本地基线及目标重测分别记录|
-|计划、结果、验收与复盘|按版本登记定位；[历史stage-e2e-v2摘要及验收转录](docs/migration/ASTRA_HANDOFF_20261012.md)；[证据/契约索引](docs/architecture/ELITESYNC_V10_CURRENT_EVIDENCE_AND_CONTRACT_INDEX_V0_1.md)只解释其具名历史提交|
-|历史归档及LOCAL_ONLY|[archive指南](docs/archive/README.md)、[重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、归档说明与迁移交接中的未覆盖资料。本轮前[完整版本登记快照](https://github.com/zcx369658780/EliteSync-v10/blob/e8f3a2f8893e380bb766c8583ed182d5b62f655c/docs/versions/README.md)不改写|
+| Owner决定 | [PRODUCT_DECISIONS.md](PRODUCT_DECISIONS.md)：两个核心目标、Web管理方向、原有功能优先、内测运营与公开发布分开 |
+| 路线图 | [当前交付路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)：五个功能交付包，不是已经冻结的版本任务 |
+| 单份功能台账 | [APP恢复与管理能力矩阵](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)：已有代码线索、未知、恢复结果与实际验收，不用mock或接口存在代替完成 |
+| 当前现场 | [CURRENT_STATE.md](CURRENT_STATE.md)：最近已知GitHub/本地基线、已接受成果、恢复缺口和当前任务状态 |
+| 启动与长期工作方式 | [AGENTS.md](AGENTS.md)、[CURRENT_WORKFLOW.md](docs/workflow/CURRENT_WORKFLOW.md)：功能范围内跨端自主实施、集中独立验收、简化安全接续；保留必要生产与数据保护 |
+| 版本计划与接受 | [docs/versions/README.md](docs/versions/README.md)：v10.0.0～v10.0.5历史限定接受、今后功能交付包；冻结计划须读固定提交 |
+| 记忆与环境 | [记忆导航](docs/memory/navigation.md)、[主题知识历史](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)：新Owner目标优先；QMD/Basic Memory只为本地已配置路径，网页不假设可直接访问 |
+| 已有APP资产 | [Flutter](apps/flutter_elitesync_module/)、[Android宿主](apps/android/)、[Laravel](services/backend-laravel/)、[API路由](services/backend-laravel/routes/api.php)：实际恢复需要时按功能定点读取 |
+| 已有管理资产 | [Flutter Admin](apps/flutter_elitesync_module/lib/features/admin/)、[AdminMatchingController](services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php)：复用线索，不等于独立Web后台已实装 |
+| 仍适用的产品原则 | [功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[旧Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)：独立同意/隐私等保留，冲突的交付优先级由2026-10-14新决定替代 |
+| 历史恢复与交接 | [架构重置旧交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)、[Codex历史交接](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：旧“不逐项恢复9.x”和Work/微预算规则不是现行默认要求 |
 
-分支页面是动态入口，不能充当固定验收依据。正式计划、候选代码、实际证据/验收登记commit与必要blob/hash；版本验收和集成状态独立记于版本登记，依Owner既有K08权限执行有界安全收尾，不能从验收通过推定本地已同步。旧Sources、Work/Builder和旧任务为上传或历史快照，不覆盖新流程；产品正式接受保留。
+## 历史保存和证据边界
 
-GitHub不可读或文件未发布时如实报告具体path/ref缺口。LOCAL_ONLY正文不给假远端链接，网页不能直接读D:/、C:/、QMD或Basic Memory。没有实际正文访问就不能声称已读。
+[调整前完整目录](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/DOC_INDEX_CURRENT.md)及其中旧版本证据仍可固定读取。历史plan/acceptance/rejection/raw未重写；只在本次恢复实际需要时读取，不重新审查几千份Markdown或全量sessions。
+
+源码位置、Git Blob、测试回执和产品恢复完成是不同事实；本地Windows路径/备份/QMD不能当作网页可读链接。缺文件或未发布资料如实标UNKNOWN，不能用索引或旧日志冒充已读/已恢复。MVP旧Later标签不自动排除原版已有功能，但旧设想也不自动成为必恢复范围。

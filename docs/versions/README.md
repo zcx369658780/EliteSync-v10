@@ -1,26 +1,38 @@
 # EliteSync-v10 版本登记入口
 
-**最新收口（2026-10-14）**：v10.0.5 已 `ACCEPTED/CLOSED WITH OBSERVATIONS`，仅限 Progress 三阶段只读摘要的 synthetic/dev-test 证据。固定候选 `8ff52dd6ef56d25e575aba10e109c1ab03ef2a6c`，23/23 payload Git Blob 匹配，最终51/51测试和两文件分析实际通过。见[冻结计划](v10.0.5/plan.md)、[独立验收](v10.0.5/acceptance.md)、[复盘](v10.0.5/retrospective.md)。
+## 当前方向：APP恢复与独立Web管理（2026-10-14 Owner已批准）
 
-已按Owner长期K08将两个接受的源码/测试Blob[定点集成](v10.0.5/integration.md)，代码集成提交 `91a0d2f83d2ada0ad2a8d74e2ac261b672888531`。**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY（CODEX_REPORTED） / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED / ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED**。Codex执行及Owner转交回报：新隔离基线 `elitesync-main-be0636e`（HEAD `be0636eec52baa180ac98b94a94223a2e9f9eb2f`，CLEAN）完成五份51/51 PASS、0失败、exit0；两文件分析No issues found!、exit0，两次stderr为空，新增19项受控拒绝/零调用及卸载后检查通过。11份工作树及109项文件保持，LOCAL_ONLY未整体吸收。此次原证仅在本地baseline-be0636e目录，尚未发布；Astra只核GitHub身份，未读本地原证或复跑，旧候选公开日志不是此次原证。路径、Tree、原dirty root及NOT_RUN/权限边界见[当前状态](../../CURRENT_STATE.md)。接续已完成，v10.0.6不启动。
+v10.0不再以长期只读/synthetic小切片为主要交付，而是**恢复选定原版APP的前端、后端、数据库和主要功能，并实现独立可用的Web管理面板**。本轮文档落地与Codex同步不等于v10.0.6已冻结或派发。见[当前路线图](../architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[功能台账](../architecture/RESTORATION_CAPABILITY_MATRIX.md)、[Owner决定](../../PRODUCT_DECISIONS.md)。
 
-本登记更新当前v10.0.5条目；此前累积的阶段说明全文在[收口前固定版本登记](https://github.com/zcx369658780/EliteSync-v10/blob/e8f3a2f8893e380bb766c8583ed182d5b62f655c/docs/versions/README.md)原样可读（Blob `d15bba35f6bec6e39de1c1f7c3c3d38d8133b540`）。旧表的LOCAL_ROOT_PENDING或NOT_RUN须按对应时点解释，后续已报告的隔离基线回归见[当前状态](../../CURRENT_STATE.md)及[知识K09～K12](../memory/knowledge.md)，不据此重裁旧版本。
+## 后续功能交付包（排程，非冻结任务）
 
-未来可采用 `docs/versions/<经 Owner 与 Astra 确定的版本号>/` 下的 `plan.md`、`execution.md`、`acceptance.md`、`retrospective.md`；仅实际创建后才能链接，也可复用具名任务/证据目录。每版登记记录冻结计划与提交、代码基线/候选、实际证据、Acceptance Status、Integration Status 及复盘。版前草案允许反馈，冻结后不得追改目标/验收门，历史原件保持。
+| 建议版本 | 唯一主要结果 | 当前授权层级 |
+|---|---|---|
+| v10.0.6 | 恢复运行基线：APP连真实开发后端/DB＋首个Web管理操作闭环，来源核查在本版内服务于恢复 | 路线已批准；无正式plan/候选/实施派发 |
+| v10.0.7 | 选定原版主要APP功能成组恢复，接口/数据/必要任务接通 | 路线工作包，待现场分解冻结 |
+| v10.0.8 | 用户/审核/举报/匹配/问卷等确定范围的Web管理模块实装 | 路线工作包；后台从v10.0.6开始而非推迟到此版 |
+| v10.0.9 | APP、Web管理端、后端、数据库联合流程及重启/失败恢复验收 | 路线工作包，未执行 |
+| v10.0.10 | 完整软件包、可复现安装/部署/数据库恢复和功能/算法说明 | 路线工作包，未执行；不是公开运营承诺 |
 
-**双状态规则**：`Acceptance Status` 表示本版相对冻结标准的独立验收状态与适用范围；`Integration Status` 表示候选代码/工件是否实际并入**具名目标代码主线**。允许记录 `NOT_MERGED`、`INTEGRATED`、`PARTIALLY_INTEGRATED`、`BLOCKED`、`NOT_APPLICABLE`、`UNKNOWN` 等明确值；不得从验收 PASS 推导已合并。实际版后默认授权和保护约束以[CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)的Owner K08规则为准；没有目标或原证时如实标注。远端集成、本地隔离可用基线、原脏根是否吸收和集成后实际重测不能相互推定。
+五包为初始安排，必要时据真实功能缺口调整至约5～8个功能迭代，不以历史测试数量预测工期。半年至一年内测运营是Owner给出的后续运营窗口，不在以上开发版本数内；公开运营待内测与相关条件另定。新增未实现设想后置，但恢复基线已有功能不得被旧Phase 2标签静默删去。
 
-**版前轻量既有成果核查**：从已接受、已实现待验收、历史拒绝、本地未核、真正缺失、暂停/保护及未知中识别所需对象，注明依据、真实代码基线和排除范围，再与 Codex 集中确定冻结版。不得重开全历史审查链、重复实现已接受成果或增加日常微审批。原始日志与源码格式检查结论分别记录。
+## 已完成版本（限定验收原样保留）
 
-|版本/既有事项|Acceptance Status|Integration Status|固定依据、证据与限制|
-|---|---|---|---|
-|v10.0.5|**ACCEPTED/CLOSED WITH OBSERVATIONS**（synthetic Progress三域只读摘要）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY（CODEX_REPORTED） / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED / ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED**|[冻结计划](v10.0.5/plan.md)、[终验](v10.0.5/acceptance.md)、[复盘](v10.0.5/retrospective.md)、[集成](v10.0.5/integration.md)、[候选](https://github.com/zcx369658780/EliteSync-v10/commit/8ff52dd6ef56d25e575aba10e109c1ab03ef2a6c)：51/51 PASS、分析No issues、23/23 payload；新增19项受控零调用；[本地新基线回报](../../CURRENT_STATE.md)51/51及分析通过，原证LOCAL_ONLY，非全应用/生产证明|
-|v10.0.4|**ACCEPTED/CLOSED WITH OBSERVATIONS**（synthetic Readiness）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY (CODEX_REPORTED) / SCOPED_POST_INTEGRATION_TESTS_VERIFIED (CODEX_REPORTED)**|[冻结计划](v10.0.4/plan.md)、[R1验收](v10.0.4/acceptance.md)、[复盘](v10.0.4/retrospective.md)、[集成回执](v10.0.4/integration.md)：R1候选bd688297、13/13PASS、分析无issue、39/39 blobs；main仅2个接受代码/测试Blob|
-|v10.0.3|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅synthetic真实Router Guard修复）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_DEVELOPMENT_BASELINE_READY (CODEX_REPORTED) / SCOPED_POST_INTEGRATION_TESTS_VERIFIED (CODEX_REPORTED)**|[冻结计划](v10.0.3/plan.md)、[独立验收](v10.0.3/acceptance.md)、[复盘](v10.0.3/retrospective.md)、[定点集成](v10.0.3/integration.md)、[候选](https://github.com/zcx369658780/EliteSync-v10/commit/e2f6db455a329c59b2b4158cc50c0e18561a7c99)：原2/5→最终42/42PASS、45/45 Git Blob、新15项隔离哨兵0；Android/正式权限NOT_RUN|
-|v10.0.2|**ACCEPTED/CLOSED WITH OBSERVATIONS**（仅 Debug/Test synthetic 只读 Widget）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING / POST_INTEGRATION_RUNTIME_NOT_RUN**|[冻结计划](v10.0.2/plan.md)、[终验](v10.0.2/acceptance.md)、[复盘](v10.0.2/retrospective.md)；[候选](https://github.com/zcx369658780/EliteSync-v10/commit/5bb2de6bed2eb8cbc063e707c39a594ae35eb301)、[定点集成回执](v10.0.2/integration.md)：3项新文件，36/36候选Git blobs、PHP12/930、Flutter28 PASS、同字节；Profile/Release & BE-12 runtime/Feature NOT_RUN|
-|v10.0.1|**ACCEPTED/CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test 只读诊断）|**GITHUB_MAIN_SCOPED_CODE_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.1/plan.md)、[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/ffbfeca78b97262f141d69e0542bb72b43e2f186)；56项blob，PHP294/3420，12场景930检查，Dart9 PASS；BE-12 pure middleware PASS，Feature NOT_RUN|
-|v10.0.0|**ACCEPTED / CLOSED WITH OBSERVATIONS**（限 synthetic/dev-test）|**GITHUB_MAIN_TEST_BLOB_INTEGRATED / LOCAL_ROOT_PENDING**|[冻结计划](v10.0.0/plan.md) A+B+D、[终验](v10.0.0/acceptance.md)、[复盘](v10.0.0/retrospective.md)；[固定候选](https://github.com/zcx369658780/EliteSync-v10/commit/18daf9746e2f031fbbbe18682bf0c742aad92a09)：301 tests / 4056 assertions、11类、0 fail；55/55 Git blob；C 另版|
-|stage-e2e-v2，WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005|历史 **ACCEPT/CLOSED SOURCEONLY+SYNTHETIC**|**NOT_MERGED / LOCAL_ONLY_CODE**（完整作者候选未作为代码发布）|原计划[固定任务](https://github.com/zcx369658780/EliteSync-v10/blob/6fcf3b0178ef3619776211786f1485c22138377d/EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005/task.md)，本地基线 `4bebc8f394248e254c1368a06fbdee5d2c883301`；manifest `C78CBD247932C0799B455F34A4F7EB3670F02988A7D14DA91BDD20F1F8090518`；[历史验收转录](../migration/ASTRA_HANDOFF_20261012.md)；不等于正式运行合格|
-|V57 / H1准确SOURCE_ONLY提案|**DOCUMENT/PROPOSAL ACCEPTED；PAUSED**（窄准备例外已批准）|**NOT_APPLICABLE — NOT_ACTIVATED**（尚无代码执行或行为验收）|原计划与预算本地 `EVIDENCE/WORK-STAGE-H1-EXACT-SOURCE-SCOPE-PROPOSAL-20261011-V43`，LOCAL_ONLY；未激活、未派发、未执行；不能把准备批准提升为实现|
+| 版本 | 主要接受成果 | 验收/代码集成与证据 |
+|---|---|---|
+| v10.0.0 | 既有Product Connection持久化/应用边界收口 | ACCEPTED/CLOSED WITH OBSERVATIONS；[plan](v10.0.0/plan.md)、[验收](v10.0.0/acceptance.md)、[复盘](v10.0.0/retrospective.md)；接受测试已定点纳入 |
+| v10.0.1 | PHP→JSON→Dart只读synthetic诊断 | ACCEPTED/CLOSED WITH OBSERVATIONS；[验收](v10.0.1/acceptance.md)、[复盘](v10.0.1/retrospective.md)、[前两版集成](v10.0.1/integration.md) |
+| v10.0.2 | Debug只读诊断Widget | ACCEPTED/CLOSED WITH OBSERVATIONS；[验收](v10.0.2/acceptance.md)、[复盘](v10.0.2/retrospective.md)、[集成](v10.0.2/integration.md) |
+| v10.0.3 | 动态Guard实际Router缺陷修复 | ACCEPTED/CLOSED WITH OBSERVATIONS；[验收](v10.0.3/acceptance.md)、[复盘](v10.0.3/retrospective.md)、[集成](v10.0.3/integration.md) |
+| v10.0.4 R1 | Readiness来源解释与兼容恢复；修正lint误报 | ACCEPTED/CLOSED WITH OBSERVATIONS；[验收](v10.0.4/acceptance.md)、[复盘](v10.0.4/retrospective.md)、[集成](v10.0.4/integration.md) |
+| v10.0.5 | Progress三域只读摘要、动态清除和受限导航 | ACCEPTED/CLOSED WITH OBSERVATIONS；[plan](v10.0.5/plan.md)、[验收](v10.0.5/acceptance.md)、[复盘](v10.0.5/retrospective.md)、[集成](v10.0.5/integration.md)；代码集成及本地限定重测已回报 |
 
-动态登记不能更改原冻结目标。新需求/纯优化进入未来版；计划错误保留原件并记录原因。每版结果无论通过、部分完成、失败或终止都复盘执行偏差、计划错误、环境、验证不足与验收漂移，实际可取得的用时/额度未知则写UNKNOWN。
+这些是既定synthetic/dev-test行为的接受，不代表完整原APP/数据库/Web后台已恢复。各版冻结标准、原始失败、候选和接受文件本轮不改动；[调整前完整版本登记](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/docs/versions/README.md)保留各固定SHA、统计、LOCAL_ONLY与早期暂停记录。
+
+最新Codex可用基线为elitesync-main-be0636e，HEAD be0636eec52baa180ac98b94a94223a2e9f9eb2f、CLEAN，51/51限定回归及分析通过（CODEX_REPORTED，原证未发布），原dirty根未整体吸收。准确路径/Tree/来源与后续状态见[CURRENT_STATE](../../CURRENT_STATE.md)，不要把本轮纯文档发布声称为本地HEAD自动更新。
+
+## 今后的登记与收尾
+
+每版冻结功能结果、模块和环境/数据范围；Codex范围内自主跨文件实现，Astra按最终候选真实证据独立终验。记录Acceptance、GitHub集成、本地可用基线和目标运行结果，互不推定；真实APP/Web→API→DB行为必须可验证。K08版后顺序保持，基线接续按现行[工作流](../workflow/CURRENT_WORKFLOW.md)简化，不强制每次重建工作树或重验全历史。
+
+v10.0.6之后尚无已签发任务。原V57/H1/H2/D0任务不自动重启，不能以新文档追认旧运行；新恢复版的开发授权不要求先完成整套旧治理链，生产与数据风险仍按具体操作控制。

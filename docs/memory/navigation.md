@@ -4,52 +4,32 @@ type: note
 permalink: elitesync-v10-local/navigation
 ---
 
-## 2026-10-14 最近可用基线检查点
-
-最近可用基线：`C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10`，HEAD `be0636ee…`、CLEAN；Codex执行及Owner转交回报限定51/51和两文件分析通过（CODEX_REPORTED），原dirty root独立保护。此次原证LOCAL_ONLY，Astra只核GitHub身份、未读本地原证或复跑。完整身份、状态及边界见 [CURRENT_STATE](../../CURRENT_STATE.md)；接续已完成，不启动v10.0.6。
-
-## 2026-10-13 版后安全集成与基线接续
-
-Owner 新决定：每个版本独立接受后，默认继续远端已接受成果的定点集成及**本地隔离开发基线安全接续**，再进入下一版规划；不重复询问次序，但不自动派单或覆盖脏原主树。长期执行规则见 [CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)，来源与当前已证身份见 [knowledge.md K08](knowledge.md)、[CURRENT_STATE](../../CURRENT_STATE.md)。
-
-## 2026-10-12 迁移补充（历史时点）
-当前管理/执行方式由 [新工作流](../workflow/CURRENT_WORKFLOW.md) 和 [动态总目录](../../DOC_INDEX_CURRENT.md) 指定：网页Astra规划/最终独立验收/复盘，Codex自主实现，Owner方向决定。下方涉及旧Work/单次预算/新Work指定的描述是原归档时点知识，不是当前流程门；科学产品语义、历史接受/拒绝及旧预算冻结仍保留。当前状态见 [CURRENT_STATE](../../CURRENT_STATE.md)。
-原始session、EVIDENCE原始证据和本地检索数据库均LOCAL_ONLY；以下本机位置仅供Owner/本地Codex准确定位，网页正文已提供安全摘要，不能假定原件已发布或可直接访问。已有被发布正式文档可按总目录寻找；未发布原证请Owner脱敏提供，不建立指回本地路径的网页访问链。
-
-
 # EliteSync-v10 记忆导航
-核验日期：2026-10-12（Asia/Shanghai）。这是知识入口，不是任务授权或路线图。
 
-## 先读什么
-- 当前权威：先读 DOC_INDEX_CURRENT.md、docs/workflow/CURRENT_WORKFLOW.md、CURRENT_STATE.md 和根入口的 2026-10-12 生效段。旧 V212/ISSUED/持续授权是历史状态，不能单独作为当前任务授权；旧任务继续暂停，第三阶段由 Owner 手动启动。
-- [主题知识](knowledge.md)：项目重置、领域边界、现行暂停、历史失败与待确认事项；正文已有正式文档时只指向原文。
-- [环境记录](environment.md)：区分当前只读检测、历史观测、项目配置与未核验项。
-- [本次归档说明](archive-20261012.md)：覆盖来源、缺口、检索实测及本轮变更。
-- 既有正式目录：../architecture/README.md、../archive/README.md、../ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md。
+## 2026-10-14 Owner现行决定：恢复APP与独立Web管理
 
-## 身份与历史范围
-实时根 D:/EliteSync-v10；本轮本地 main，HEAD 4bebc8f394248e254c1368a06fbdee5d2c883301。
-Git remote 为 zcx369658780/EliteSync-v10；本轮未 fetch，不能把本地 HEAD 说成当前远端 HEAD。
-Git worktree 注册证明同仓库工作树关联；本轮未读取这些树的代码、不切换、不清理 prunable 项。正式 T03 记录也具名绑定 D:/EliteSync-v10-next-t03-20260913。
-旧 D:/EliteSync 是 9.x 历史资产来源，不是重置版权威；仅具名 Gradle 复用材料已在 v10 内恢复，未扫描旧仓库。
-Work 01a12667-4f4c-7bc2-adfb-dfa5277c36b7/local 的原始 session_meta.cwd 位于 USERPROFILE/.codex/.chatgpt-projects/g-p-6a894f70a9d081919fe97e22388a1fe1；V4 handoff 明确该 Work 的实时仓库为本项目、镜像 sources 只读。不能由镜像路径推定未来会话已激活。
-本 Builder 为 01a12b4c-43b8-73a0-bcec-2675f5b21a2d/local，元数据 cwd 与本仓库相符；旧 Builder 已退休。新 Work 尚未指定。
-不纳入 HANK、Zotero、DeepLearning-HANK 或名称相似但归属未证的会话。
+Owner已明确提出并批准：v10.0只优先完成**EliteSync APP前端、后端、数据库及选定原版主要功能恢复＋真正可用的独立Web管理面板**。批准将方案写入仓库并让Codex同步；本轮不启动实际开发。准确方向见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)、[路线图](../architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[恢复台账](../architecture/RESTORATION_CAPABILITY_MATRIX.md)。
 
-## 已验证的检索路由
-Basic Memory 0.23.2：项目 elitesync-v10-local，mode=local，正文目录就是 D:/EliteSync-v10/docs/memory。先设置进程级 BASIC_MEMORY_CONFIG_DIR=D:/EliteSync-v10/.local-memory-state/basic-memory；每次显式 --project elitesync-v10-local --local。该独立配置和数据库只属本项目，共享 default_project 保持 main。
-使用进程级 BASIC_MEMORY_SEMANTIC_SEARCH_ENABLED=false 避免语义初始化；只用关键词工具，不下载模型。
-例：basic-memory tool search-notes "Gradle" --project elitesync-v10-local --local --json
-例：basic-memory tool read-note archive-20261012 --project elitesync-v10-local --local --plain
-本轮独立Basic Memory库只成功登记归档说明；三个既有正文未被普通工具自动导入，overwrite有路径冲突，未修数据库。完整正文检索使用QMD；不能声称Basic Memory已索引全部知识。
-QMD 2.8.3：本项目独立 named index elitesync-v10-memory、collection elitesync-v10-memory，只索引此正文目录；显式 --index 和 -c，不使用共享默认 index。
-例：qmd --index elitesync-v10-memory search "Gradle" -c elitesync-v10-memory -n 3
-例：qmd --index elitesync-v10-memory get qmd://elitesync-v10-memory/environment.md
-recall 0.4.1 Skill 已检查，但 USERPROFILE/.recall.db 与旧 .claude/recall.db 不存在。其 CLI 首次调用会扫描全部四源，不适用于本轮隔离范围；本轮用已定位原始 JSONL 降级，没有建立 recall 索引。
-代码图谱已有 D-EliteSync-v10；仅本项目查询。索引无命中不能证明源码不存在。
+此决定替代旧“不逐项复现9.x/重新设计优先”、长期小页面/synthetic演示优先及忽略后台的排程。原版已实现且被选入恢复基线的功能不能被旧Later标签排除；未实现设想后置。原源码与数据库备份可按具名恢复任务定点读取，不再作为全面禁区，也不得无限考古/覆盖原件。
 
-## 证据与冲突处理
-每条知识带性质、适用版本、状态、来源和核验时间。旧记录只作证据；正式后续决定可替代旧决定，助手自报不等于 Owner 批准或当前测试通过。
-README 的 bootstrap 表述仍在，但当前已有实现/合成证据；用 CURRENT 和阶段接受文件核具体进度，不由 README 推定尚无实现。
-Gradle 的 dq61... 与 c2q... 是不同用途的具名分发，不能擅自互换。Android Studio 当前路径/版本仍待定位。
-缺证据时读指定原文及已经证实归属的历史；不复活预算、不更改冻结计划、不恢复自动化。
+独立Web界面复用现有后端业务服务和数据库，管理员权限独立；不在普通APP塞满管理功能，不并行重造桌面管理客户端。五个建议功能包为v10.0.6运行恢复＋首个管理闭环、0.7原APP功能、0.8后台模块、0.9跨端联合验证、0.10完整交付和算法/使用说明。具体包尚未冻结，5～8迭代是初估而非运营日期。Owner计划半年至一年内测运营应在完整软件交付后另行安排，不能据开发版本数承诺公开运营。
+
+Astra规划/独立验收，Codex冻结版本内自主实现，Owner手动转交和关键取舍；旧Work不恢复。K08版后集成与本地接续顺序保留，但不再强制每轮新建worktree、重读全部历史或复制整篇快照。[CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)是现行执行规则，knowledge.md中K08～K12及旧Sources仅在其时点范围作历史，不覆盖本次方向和前瞻流程。
+
+## 当前需要读取的少量正文
+
+[动态目录](../../DOC_INDEX_CURRENT.md) → [当前状态](../../CURRENT_STATE.md) → 当前路线/台账和本版计划。相关旧算法、领域与环境才按需读[knowledge.md](knowledge.md)、[environment.md](environment.md)、[archive说明](archive-20261012.md)。历史冻结接受不重写、不全量复审，不重建session/图谱数据库。
+
+最近Codex回报的干净开发基线：C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10，HEAD be0636eec52baa180ac98b94a94223a2e9f9eb2f、CLEAN；限定51项和分析通过，原证LOCAL_ONLY。原D:/EliteSync-v10脏主树与旧工作树受保护。网页只核过远端对象，不直接访问这些Windows路径；本轮文档发布不代表本地已同步。实际状态仍以CURRENT_STATE和本地回执为准。
+
+## 已有本地检索路由（保留，不要求本轮重配）
+
+以下来自既有记忆记录，不表示本轮重新验证工具版本/覆盖。Markdown直接读取始终可作为回退，索引未命中不代表源码不存在。
+
+- Basic Memory：项目elitesync-v10-local，使用--project elitesync-v10-local --local；既有进程配置BASIC_MEMORY_CONFIG_DIR=D:/EliteSync-v10/.local-memory-state/basic-memory，BASIC_MEMORY_SEMANTIC_SEARCH_ENABLED=false。只覆盖部分历史归档，不是现行规则的完整镜像，不切换共享default_project，不下载模型。
+- QMD：独立named index与collection均为elitesync-v10-memory；显式--index elitesync-v10-memory和-c elitesync-v10-memory。现有索引针对原docs/memory目录；不假定自动跟随新worktree，也不为本轮文档同步重建全量索引。
+- 代码图谱已有D-EliteSync-v10历史入口；未命中时按指定实际工作树直接读源码。本轮不安装插件、不重扫所有sessions、不重建recall共享索引，不涉及HANK/Zotero/其它项目。
+
+## 原始记忆与证据
+
+[调整前完整记忆导航](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/docs/memory/navigation.md)保留旧身份、版本、路径、检索经验和迁移规则原字节。该历史导航提到的旧Work/Builder、镜像目录、V212和任务状态不应自动激活。新恢复目标不追认旧SOURCEONLY测试为真实APP/数据恢复，也不解除原始敏感备份、生产数据、真实用户隐私和不可逆操作保护。

@@ -1,36 +1,29 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-14 v10.0.5 独立验收关闭、远端定点集成及本地基线接续完成
+## 2026-10-14 Owner路线调整已批准，等待Codex文档同步
 
-**Acceptance：ACCEPTED/CLOSED WITH OBSERVATIONS。Integration：GITHUB_MAIN_SCOPED_CODE_INTEGRATED。LOCAL_DEVELOPMENT_BASELINE_READY（CODEX_REPORTED）。POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED。ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED。v10.0.6 未启动。**
+**ROADMAP_OWNER_APPROVED / CODEX_DOCUMENT_SYNC_PENDING / V10_0_6_NOT_FROZEN / IMPLEMENTATION_NOT_STARTED**。
 
-本页记录当前有效状态。之前逐版累积的完整快照原字节仍由[收口前固定 CURRENT_STATE](https://github.com/zcx369658780/EliteSync-v10/blob/e8f3a2f8893e380bb766c8583ed182d5b62f655c/CURRENT_STATE.md)保留，Git Blob `05f4e8adaa8a50016e48c39faae38dc8aa412695`；其中“待派发/未验收/未集成”只描述当时时点，不覆盖本页。历史冻结计划、验收、复盘及原始证据文件没有改写。
+当前最高优先级是[Owner已批准决定](PRODUCT_DECISIONS.md)：**恢复完整EliteSync APP的前端、后端、数据库及选定原版主要功能；交付独立可用的Web管理面板。** 其它新产品扩展和公开运营准备后置。当前[路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)已替代旧“重设计优先/不逐项复现9.x”的交付方向；使用一份[恢复功能台账](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)跟踪前端、API、数据库和管理模块，不新增连续只读治理版本。
 
-### 本版接受与代码身份
+本轮只改规划/指导/记忆文档，没有运行服务、导入数据库、构建APP、处理真实数据或修改产品源码。Codex尚未回报接收新文档，不宣称本地同步。下一步为一次文档同步；之后依据新路线制定v10.0.6“运行恢复基线＋首个Web管理闭环”的功能版本，尚无正式plan或执行候选。
 
-- [v10.0.5 冻结计划](docs/versions/v10.0.5/plan.md)：固定commit `2f9027f901f1a4a9804e64f16bdbdf9a50f8221e`，Blob `fd490f9204869504a17ae5b4263bc25e7a5a6f74`，不变。
-- 最终作者候选 `8ff52dd6ef56d25e575aba10e109c1ab03ef2a6c`，Tree `63a1e9cfe602a274a91e712c8c802c434b4d0550`，唯一父 `4a7091b580977044861ae50ff9b404842ed68283`；独立分支 `codex/v10.0.5-progress` 保留，不整支合并。
-- Astra实际读取源码、新测试、关键运行原证和全部23项payload的Git对象身份，对照冻结AC-01～AC-07裁定PASS；[独立验收](docs/versions/v10.0.5/acceptance.md)、[事实复盘](docs/versions/v10.0.5/retrospective.md) 已发布于 `e8f3a2f8893e380bb766c8583ed182d5b62f655c`。
-- Owner长期K08下，两个已接受对象定点进入主线，代码集成提交 `91a0d2f83d2ada0ad2a8d74e2ac261b672888531`，见[集成回执](docs/versions/v10.0.5/integration.md)。Progress源Blob `4057ee2c101106a3105143b88948eeee78c9fe78`，新测试Blob `90413fd290611c0e6bd142e287e291c87dba1cda`；完整候选运行包和23项payload不整包复制。实时main还可能有纯文档提交，应按实际读取记录，不以本条固定代码提交冒称实时HEAD。
+## 已完成并保留的工程事实
 
-### 结果及证据层级
+截至本轮文档变更前，GitHub main为db1300bb19182f2de46b4ff5b1f7d9b947907b69，Tree为7fa89d29576c0ec4f446b905d11aa58472defe65。v10.0.0～v10.0.5均按各自冻结标准独立验收、定点集成；已有测试证明限定synthetic/dev-test行为，不证明新恢复目标已完成。详细固定候选、计划和接受见[版本登记](docs/versions/README.md)。
 
-最终候选五份Flutter测试51/51 PASS、exit0（新Progress19 + Home loop11 + 动态Guard15 + synthetic Connection4 + Connection页面2）；两文件分析实际stdout为No issues found!、exit0。新增19项受控HTTP/provider/存储写入计数0，含卸载后检查。Astra独立核了发布的原证、源码和Git身份，**没有在Windows上重新执行测试**；原本机流与路径脱敏发布副本的SHA分别记录。
+最近Codex报告的可用基线：C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10，分支codex/baseline-v1005-be0636e，HEAD be0636eec52baa180ac98b94a94223a2e9f9eb2f，Tree 9a7f32f4f8a93cbda0b76deda42bec3ebef08936，CLEAN；51/51限定测试及两文件分析No issues found!、exit0已由Codex报告。网页核了GitHub对象，没有读取该次本地原证或复跑。
 
-初次布局/懒构建/测试滚动失败与exit0但含lint的分析保留；Codex在交付前自主修复并于最终字节重跑，本次终验无需R1。Progress只展示Readiness/Match/Connection三域，未复制消息nextDecision，未改变Home/Router/Guard或下游生命周期。复用聚合器在Dev模式间接依赖Conversation synthetic provider，不等于新增消息读写权。
+原D:/EliteSync-v10 dirty main最近回报HEAD 4bebc8f394248e254c1368a06fbdee5d2c883301；默认index SHA256 2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；staged0/tracked43/untracked normal208。11份工作树和109项具名文件保护来自Codex回执，LOCAL_ONLY尚未整体吸收；本轮没有直接访问Windows磁盘。后续恢复可具名读取这些资产，但不能默默覆盖、删除或自动标已接受。
 
-### 本地基线接续结果（Codex回报）
+## 尚待实际落实，而不是新增流程门
 
-最近可用隔离基线为 `C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10`，分支 `codex/baseline-v1005-be0636e`；HEAD `be0636eec52baa180ac98b94a94223a2e9f9eb2f`，Tree `9a7f32f4f8a93cbda0b76deda42bec3ebef08936`，Git状态CLEAN。两个接受对象与上方集成Blob一致。此前d49c308基线及作者候选保留，未改造为新基线。
+- 选定原版功能/源码基线及实际可用包；数据库备份文件、时间范围、附件和恢复目的库均未在本轮核实。台账相关项为UNKNOWN，不假装旧migrations成功等于业务数据恢复。
+- 仓库内已有Flutter Admin页面和Laravel用户/审核/举报/匹配运营等接口；独立Web管理面板及APP—API—数据库—管理员操作的完整闭环尚未证明。具体Web框架和所需环境在v10.0.6现场确定。
+- 原版已有且列入恢复基线的功能优先恢复；未实现设想才放后期。正式Readiness或身份政策确实影响功能时提出该项决定，不用未知政策阻塞所有开发。
+- 本次未改变BE-12消息运行代码，未复活V57/H1/H2/D0；完整应用/设备/生产资格仍未建立。未来恢复版应一次明确受控开发环境、数据副本、构建与设备权限，并运行真实业务链，不将旧暂停预算当新版本的全局前置。
+- 公开运营不由开发版本数预测。Owner给出的半年至一年内测运营窗口在完整软件交付后另行安排，不把大部分原功能补建留到内测。
 
-Codex在新基线上实际执行五份指定Flutter测试：51/51 PASS、0失败、exit0；两文件Dart分析stdout明确 `No issues found!`、exit0，两次stderr为空。新增19项HTTP拒绝探针、零外部Provider/存储写入及卸载后检查通过。本次运行独立于旧候选公开日志，不以旧PASS替代新基线重测。
+## 历史与当前入口
 
-本地运行与保护结果来自 **Codex执行及Owner转交回报**。原证仅在本地 `C:/Users/zcxve/.codex/visualizations/2026/10/12/01a13084-65a4-7c71-bf32-fa60a68d2099/baseline-be0636e/`（含alignment-receipt.json、tests/analyze的stdout、stderr及保护快照），尚未发布；该路径只供本地定位，网页不能直接读取。Astra接收回报并独立核对GitHub身份，**没有读取此次本地原证或复跑测试**。
-
-Codex回报11份受保护工作树（此前10份加本版候选）HEAD/index/status及109项具名文件前后一致。原 `D:/EliteSync-v10` main HEAD `4bebc8f394248e254c1368a06fbdee5d2c883301`、index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`、staged0/tracked43/untracked normal208保持；历史EVIDENCE未全树重验，LOCAL_ONLY没有被整体吸收。状态为 **LOCAL_DEVELOPMENT_BASELINE_READY（CODEX_REPORTED） / POST_INTEGRATION_RUNTIME_VERIFIED_SCOPED_CODEX_REPORTED / ORIGINAL_DIRTY_MAIN_PRESERVED / NOT_RECONCILED**。本次接续已完成，不再列为待办，不启动v10.0.6。
-
-### 持续边界与知识入口
-
-v10.0.0～v10.0.4既有独立接受、定点集成及具名本地回归结论保留，详见[版本登记](docs/versions/README.md)。长期职责、Owner手动派发、Codex版内自主实现、Astra终验及K08收口顺序以[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)为准；[记忆导航](docs/memory/navigation.md)、[知识K08～K12](docs/memory/knowledge.md)保留其历史和授权身份。
-
-正式Readiness必需/可选集合、身份保证/准入政策、可信业务来源、真实撤销/过期及消息许可仍UNKNOWN/NOT_PROVEN。全应用、PHP/后端/BE-12 Feature、Android/设备、Profile/Release、生产及真实账号数据NOT_RUN。BE-12七条opaque404、V57/H1/H2/D0、RuntimeReady=false、M6 CLOSED、S2 unsigned、OwnerEnvironment PENDING不提升；无自动v10.0.6、无旧Work实时监督或自动任务复活。
+日常只读[动态目录](DOC_INDEX_CURRENT.md)、[工作流](docs/workflow/CURRENT_WORKFLOW.md)、本页、路线图和本版台账/计划。历史[本次调整前完整状态](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/CURRENT_STATE.md)原样保留所有v10.0.5身份、测试和本地回执说明；其“v10.0.6未启动”描述调整前事实。历史冻结plan/acceptance/retrospective及原始证据本轮未改写。
