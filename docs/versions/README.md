@@ -1,8 +1,8 @@
 # EliteSync-v10 版本登记入口
 
-## 当前版本：v10.0.6 正式冻结，等待Owner手动派发
+## 当前版本：v10.0.6 已独立接受，K08集成及本地接续待完成
 
-2026-10-14：Astra接收Codex集中执行方案READY_WITH_FINDINGS，并发布[正式冻结计划](v10.0.6/plan.md)。**FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED**；本次未运行APP、服务、数据库、构建或测试。
+2026-10-14：按[固定正式计划](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/versions/v10.0.6/plan.md)执行后的[候选](https://github.com/zcx369658780/EliteSync-v10/commit/08ce3571ce02af3dea5960705b72cd9737dccb95)已完成Astra[独立验收](v10.0.6/acceptance.md)与[复盘](v10.0.6/retrospective.md)，结果 **ACCEPT WITH OBSERVATIONS**；两条实测链在受控本地开发环境通过。本版代码尚未集成GitHub main、本地可用基线K08接续待Owner手动转交，服务/AVD已停止。后续叙述的“待派发/未开始”为冻结当时时点，已由本句更新。
 
 代码起点固定 `3a78c2c81859db682369fd6e03f6d98a3c2bbeb2`，Tree `59969abfc9d04185769b22af5f7ea5d629007a33`。继续使用Codex报告CLEAN的专用工作树，不强制新增worktree或将实现压成单一提交。独立候选与最终代码身份必须可追溯；[旧草案](v10.0.6/PLAN_PROPOSAL_V0_1.md)仅为版前来源，不能覆盖正式AC。
 
@@ -14,7 +14,7 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 
 | 版本 | 主要实物结果 | 当前状态 |
 |---|---|---|
-| v10.0.6 | APP城市实际持久化＋Web管理测试用户禁用与会话失效＋跨端重启验证 | [FROZEN_PLAN](v10.0.6/plan.md)；代码起点3a78c2c；AC-01～07已冻结，无候选/实施；等待Owner派发 |
+| v10.0.6 | APP城市实际持久化＋Web管理测试用户禁用与会话失效＋跨端重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[复盘](v10.0.6/retrospective.md)；固定候选08ce3571；代码集成/本地K08接续尚未执行 |
 | v10.0.7 | 选定原版APP主要功能成组恢复，接口/数据/必要任务接通 | 路线包，尚未立版 |
 | v10.0.8 | 用户、审核、举报、匹配、问卷等确定范围的Web模块实装 | 路线包；首个Web管理闭环已纳入0.6目标 |
 | v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
