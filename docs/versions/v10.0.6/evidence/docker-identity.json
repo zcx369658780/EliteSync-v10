@@ -1,0 +1,28 @@
+{
+  "container_id": "59ce7f49433d7cc823356c43feb190a58badb89aa9659f73e8187fabe3009340",
+  "image_id": "sha256:8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008",
+  "ports": {
+    "3306/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "43316"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "Type": "volume",
+      "Name": "elitesync-v1006-db-data",
+      "Source": "/var/lib/docker/volumes/elitesync-v1006-db-data/_data",
+      "Destination": "/var/lib/mysql",
+      "Driver": "local",
+      "Mode": "z",
+      "RW": true,
+      "Propagation": ""
+    }
+  ],
+  "owner_label": "v10.0.6",
+  "image_digest": [
+    "mariadb@sha256:8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008"
+  ]
+}

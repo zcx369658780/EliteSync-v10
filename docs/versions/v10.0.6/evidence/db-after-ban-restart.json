@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.exe",
+    "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\12\\01a13084-65a4-7c71-bf32-fa60a68d2099\\v1006\\db_probe.php"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T14:54:17.897329+00:00",
+  "end": "2026-10-14T14:54:18.150641+00:00",
+  "streams": {
+    "stdout": "f2bedac5f218a82950c05cc7d840c092cb6b65602376d513ae567adb5bd32338",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

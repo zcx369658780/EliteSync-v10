@@ -1,0 +1,16 @@
+{
+  "command": [
+    "php",
+    "artisan",
+    "migrate",
+    "--force"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 0,
+  "start": "2026-10-14T12:41:03.655542+00:00",
+  "end": "2026-10-14T12:41:04.023802+00:00",
+  "streams": {
+    "stdout": "8d68a13740dc42889aebaf8b7b7bf81d2f162d283e2fe529973d07b1621b6ec6",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

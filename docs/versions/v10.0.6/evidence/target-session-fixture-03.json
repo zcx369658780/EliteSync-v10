@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.exe",
+    "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\12\\01a13084-65a4-7c71-bf32-fa60a68d2099\\v1006\\target_session_fixture.php"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T14:51:27.761853+00:00",
+  "end": "2026-10-14T14:51:28.042363+00:00",
+  "streams": {
+    "stdout": "d9a7f077341d010b4300c7c952380100f42d9bc5062a2cccc74cdd05f998ef57",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

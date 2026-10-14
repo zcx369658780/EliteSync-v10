@@ -1,0 +1,9 @@
+{
+  "owned_laravel_and_front": "STOPPED",
+  "owned_database_container": "STOPPED",
+  "dedicated_volume": "RETAINED",
+  "dedicated_avd": "STOPPED",
+  "private_configuration": "RETAINED_LOCAL_ONLY",
+  "global_docker": "NOT_SHUT_DOWN",
+  "no_background_monitor": true
+}

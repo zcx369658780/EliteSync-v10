@@ -1,0 +1,17 @@
+{
+  "command": [
+    ".\\gradlew.bat",
+    "assembleDebug",
+    "-PflutterDartDefines=ELITESYNC_V1006_LOCAL_BUILD=true",
+    "--console=plain",
+    "--info"
+  ],
+  "cwd": ".",
+  "exit": 4294967295,
+  "start": "2026-10-14T13:27:55.631135+00:00",
+  "end": "2026-10-14T13:57:04.464205+00:00",
+  "streams": {
+    "stdout": "a1a494c397dec4115951bae1e515ea071fce880f947ae1b0e151222ea8f9b87f",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,22 @@
+Analyzing session_provider.dart, auth_interceptor.dart, dio_factory.dart, app_providers.dart, login_page.dart, main_prod.dart, app_env.dart, app_shell.dart...
+
+warning - lib\shared\providers\session_provider.dart:107:44 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:108:59 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:109:56 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:110:41 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:111:41 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:112:43 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:113:37 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:114:33 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:116:43 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:117:45 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:118:41 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:119:41 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:120:43 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:121:42 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:124:21 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:125:53 - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.'. - invalid_null_aware_operator
+warning - lib\shared\providers\session_provider.dart:130:16 - Dead code. Try removing the code, or fixing the code before it so that it can be reached. - dead_code
+warning - lib\shared\providers\session_provider.dart:130:19 - The left operand can't be null, so the right operand is never executed. Try removing the operator and the right operand. - dead_null_aware_expression
+
+18 issues found.

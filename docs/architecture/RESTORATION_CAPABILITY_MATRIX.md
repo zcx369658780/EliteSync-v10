@@ -4,9 +4,9 @@
 
 ## 基线与证据口径
 
-- 选定的原版恢复基线（版本/源码位置/可用包）：待v10.0.6内实际定位，当前UNKNOWN。不从聊天记忆编造版本，不为此独立启动全仓考古。
+- v10.0.6直接复用v10现有Android宿主、Flutter module和Laravel，代码起点 `3a78c2c81859db682369fd6e03f6d98a3c2bbeb2`。完整原版恢复基线仍UNKNOWN；不以具名旧资产存在性冒充完整恢复，不全仓考古。
 - 已有v10主线核查点：db1300bb19182f2de46b4ff5b1f7d9b947907b69。v10.0.0～v10.0.5限定接受可复用，不等于下表端到端恢复完成。
-- 数据备份文件/时间/可恢复范围/附件来源：当前未实读，UNKNOWN；结构迁移成功与历史数据恢复是不同事实。
+- 备份只核具名文件元数据：三份2026-05-08 `.sql.gz`（133256、135282、135682字节）及C4-R2A VHDX（25773998080字节）存在。未读取SQL、解密、挂载或导入；历史表、业务行和媒体恢复UNKNOWN/NOT_RUN。结构迁移与历史数据恢复分开。
 - 独立Web管理方向已批准；具体实现框架、管理员认证配置、开发环境在v10.0.6按实际资产确定，不假设已有独立Web应用。
 - 状态可用：来源待核、已有代码待联通、开发环境已联通待验收、已恢复并验收、具体阻塞、Owner明确排除。组件历史ACCEPT另列证据，不自动把整行升为“已恢复”。
 - 后续只增改实际涉及的行，记录具名源码/提交、API、表/迁移和一项实际验证入口。未经选定或未实现的旧设想不计入“原版必恢复”；已在恢复基线内的功能不得仅因旧MVP标Later而删除。
@@ -15,15 +15,15 @@
 
 | ID | 功能组 | 已知源码线索（不证明运行） | 本轮可确认状态 | 恢复完成的可观察结果 | 建议交付包 |
 |---|---|---|---|---|---|
-| A01 | APP安装/后端运行基线 | apps/android、apps/flutter_elitesync_module、services/backend-laravel | 代码目录已存在；当前完整包运行未证 | 指定Android包可安装，实际连接受控后端并完成一条真实业务读写 | v10.0.6 |
-| A02 | 数据库结构/基础数据 | backend-laravel内migrations及配置；旧交接有本地MariaDB迁移历史 | 当前环境/基础数据待实际验证 | 独立目标库结构及必要字典/题库可用，与当前服务匹配 | v10.0.6起 |
-| A03 | 历史业务数据/附件恢复 | 具名备份和媒体原件待定位，不能只凭旧备份计划 | UNKNOWN，尚未读取备份 | 从获准副本导入隔离目标库，核必要记录/关联/媒体引用；缺失单列，原件不动 | v10.0.6起，联合验收收口 |
-| A04 | 账户/资料/问卷 | routes/api.php的auth、profile、questionnaire及对应Flutter功能 | 已有路由/实现线索；部分UI接受不等于跨端恢复 | 开发账号登录、资料编辑、问卷保存/恢复经过后端实际持久化，重进仍正确 | v10.0.6～7 |
+| A01 | APP安装/后端运行基线 | apps/android、apps/flutter_elitesync_module、services/backend-laravel | Codex已构建安装当前源码AAR/debug APK，专用AVD实际登录/城市读写联通；待Astra独立终验，不代表全APP恢复 | 指定Android包可安装，实际连接受控后端并完成一条真实业务读写 | v10.0.6 |
+| A02 | 数据库结构/基础数据 | backend-laravel内migrations及配置；旧交接有本地MariaDB迁移历史 | v10.0.6专用MariaDB `elitesync_v1006_dev`/43316、持久volume、57项迁移及三个虚构账号已实测建立；完整字典/题库NOT_RUN，待独立终验 | 独立目标库结构及必要字典/题库可用，与当前服务匹配 | v10.0.6起 |
+| A03 | 历史业务数据/附件恢复 | 具名备份和媒体原件待定位，不能只凭旧备份计划 | 具名备份存在性/大小由Codex核对；历史内容、记录/媒体恢复UNKNOWN/NOT_RUN，后续需具名授权 | 从获准副本导入隔离目标库，核必要记录/关联/媒体引用；缺失单列，原件不动 | v10.0.6起，联合验收收口 |
+| A04 | 账户/资料/问卷 | routes/api.php的auth、profile、questionnaire及对应Flutter功能 | v10.0.6现有APP独立城市保存→API→users.city、重进/登出再登录已实测；禁用后清会话拒绝，问卷/完整重算NOT_RUN；待Astra终验 | 开发账号登录、资料编辑、问卷保存/恢复经过后端实际持久化，重进仍正确 | v10.0.6～7 |
 | A05 | 匹配/连接及必要任务 | matches、match-rounds、既有Matching服务/领域代码；前版有synthetic接受 | 真正任务执行与当前数据库消费待验证 | 开发账号匹配流程、独立连接同意、结果保存/失败行为与APP一致 | v10.0.7 |
 | A06 | 交流/消息/媒体/RTC | conversations、messages、media、rtc路由和客户端资产 | 七条消息路由现有拒绝护栏；完整业务联通未证 | 所选原版能力在指定开发环境实际通信/存储；合法访问成功、越权拒绝，非两端mock | v10.0.7～9 |
 | A07 | 原版特色算法/解释 | mbti、astro summary/chart/pair等路由及历史算法资产 | 具体恢复名单和算法版本待选定 | 所选既有算法可执行、APP有结果与限制说明，算法文档对应实际代码；不默认推迟到Phase 2 | v10.0.7～10 |
 | A08 | 通知/动态/设置等原功能 | notifications、status、home/discover、app/version路由 | 有既有代码线索，原版范围待台账核定 | 恢复基线内功能实际读写/投递或明确受支持方式，UI与后端一致；非原版设想另列后期 | v10.0.7～9 |
-| A09 | 持久化/重启/异常与软件材料 | 前版限域回归和已接受状态/路由修复可复用 | 全APP联合运行NOT_RUN | 关键状态与用户操作重启后正确，错误可恢复；安装/部署/算法/数据与使用说明匹配最终包 | v10.0.9～10 |
+| A09 | 持久化/重启/异常与软件材料 | 前版限域回归和已接受状态/路由修复可复用 | v10.0.6城市/禁用在Laravel与MariaDB重启后持久、APP冷启动读回/拒绝已实测；全APP及算法NOT_RUN | 关键状态与用户操作重启后正确，错误可恢复；安装/部署/算法/数据与使用说明匹配最终包 | v10.0.9～10 |
 
 代码线索来源：[当前API路由](../../services/backend-laravel/routes/api.php)、[历史迁移完成记录](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)。源码存在只作为复用线索，必须在实施中补实测结果。
 
@@ -31,15 +31,15 @@
 
 | ID | 模块 | 已知复用线索 | 当前恢复状态 | 完成行为 | 建议交付包 |
 |---|---|---|---|---|---|
-| B01 | 管理端入口/登录/用户管理 | Flutter AdminDashboard/AdminUsers；AdminController、admin/users等路由 | 有APP内管理资产；独立Web管理闭环未证 | Web管理员登录、查询并对开发测试账号完成一项现有操作，APP显示数据库实际结果；普通用户不能管理 | v10.0.6首个闭环，v10.0.8补齐 |
+| B01 | 管理端入口/登录/用户管理 | Flutter AdminDashboard/AdminUsers；AdminController、admin/users等路由 | v10.0.6独立Blade管理员登录/查询ID2/禁用，DB持久、APP/API拒绝、对照ID3正常及Web退出已实测；待Astra终验 | Web管理员登录、查询并对开发测试账号完成一项现有操作，APP显示数据库实际结果；普通用户不能管理 | v10.0.6首个闭环，v10.0.8补齐 |
 | B02 | 验证审核 | Flutter AdminVerification；verify-queue、verify/{uid} | 页面/API线索已存在，Web操作未证 | 待审列表→具名决定→结果入库→APP状态更新；不发明身份资格政策 | v10.0.8 |
 | B03 | 举报/内容处理 | AdminModeration、AdminReportDetail、reports/action | 页面/API线索已存在，Web闭环未证 | 处理记录与结果可查询，作用于实际恢复功能；只访问管理所需内容，不无限制浏览私聊 | v10.0.8～9 |
 | B04 | 匹配运营 | AdminMatchingController及MatchingRound/Run服务 | 存在prepare/execute/reveal/retry/close；执行consumer未必已配置 | 轮次创建→实际执行任务→公布/失败重试/关闭→用户APP反映；不是只生成待办记录 | v10.0.8～9 |
 | B05 | 问卷运营 | questionnaire quality-stats/prune等已有路由 | 原版管理范围和操作效果待核 | 已选管理功能可操作并持久化，与用户问卷读取一致 | v10.0.8 |
 | B06 | 版本/通知/必要配置 | 现有APP对应接口和管理需求线索 | 管理API/面板具体覆盖UNKNOWN | 对实际恢复范围需要管理的项有可用入口；没有后端实现时明确补齐，不伪造可操作按钮 | v10.0.8～10 |
 
-复用依据：[Flutter现有管理代码](../../apps/flutter_elitesync_module/lib/features/admin/)、[AdminMatchingController](../../services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php)、[管理路由](../../services/backend-laravel/routes/api.php)。Web框架和全部模块的运行状态都尚未完成本轮实测。
+复用依据：[Flutter现有管理代码](../../apps/flutter_elitesync_module/lib/features/admin/)、[AdminMatchingController](../../services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php)、[管理路由](../../services/backend-laravel/routes/api.php)。本版B01限定链见[执行原证](../versions/v10.0.6/EXECUTION_REPORT.md)；其它Web模块运行仍未验证。
 
 ## 更新规则
 
-本轮仅初始化已知事实，不运行服务、不导入数据库、不填造备份/功能通过率。v10.0.6内部直接补齐选定来源并推进真实恢复。每行的完成证据应能落到固定代码版本和可重放用户/管理员操作；可将较大日志保持本地，仅发布必要安全摘要并标明可访问性。某项缺源/需产品取舍时仅阻塞该项，未完成清单必须显式交付，不能静默从范围移除。
+初始化历史不覆盖Owner已派发的v10.0.6开发环境授权。本版仅建立专用开发结构和虚构数据，未导入历史备份；其余行按实际联合验证更新，不填造功能通过率。每行的完成证据应能落到固定代码版本和可重放用户/管理员操作；可将较大日志保持本地，仅发布必要安全摘要并标明可访问性。某项缺源/需产品取舍时仅阻塞该项，未完成清单必须显式交付，不能静默从范围移除。

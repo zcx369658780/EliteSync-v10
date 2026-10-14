@@ -1,0 +1,17 @@
+{
+  "command": [
+    "adb",
+    "-s",
+    "emulator-5580",
+    "emu",
+    "kill"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T15:00:22.931805+00:00",
+  "end": "2026-10-14T15:00:22.968984+00:00",
+  "streams": {
+    "stdout": "2f2464ff20db7f0caaf9d7ea8b3e7d1356fb4e22dc58d0e17a15faf96bf41822",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
