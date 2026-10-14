@@ -1,0 +1,130 @@
+[
+  {
+    "run": "regression-01",
+    "stream": "stdout",
+    "raw_sha256": "a8e00648d09734bdb88533b8252d25981a0a5fd54483cbe540c918c2e72dd493",
+    "published_sha256": "f09124f1df6cc15e89e20829d9b930e8282cc9846088c83bd2d61f2b139fdcdb",
+    "published_path": "docs/versions/v10.0.5/evidence/regression-01.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "regression-01",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/regression-01.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "progress-01",
+    "stream": "stdout",
+    "raw_sha256": "eb223ad7dea1d72fa6cd6e88e87613f3ffc6275bfc9f29999167c88fd56e5d7e",
+    "published_sha256": "959db2a319d67ed19c8f6dd46c4f04dcc9ca31abac8dd305ec0e6834c6247995",
+    "published_path": "docs/versions/v10.0.5/evidence/progress-01.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "progress-01",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/progress-01.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "combined-02",
+    "stream": "stdout",
+    "raw_sha256": "46c1d2c9cf754c51c6048d3333ac45ce9e9d87279ffa6aec9d0c4ca9f94a4272",
+    "published_sha256": "c9be8665b3ca1aff39083839a73f3d04a8d504d55b40cdbf58fed6b52de0a00f",
+    "published_path": "docs/versions/v10.0.5/evidence/combined-02.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "combined-02",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/combined-02.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "combined-03",
+    "stream": "stdout",
+    "raw_sha256": "30e3b45712a054d0d145a53c1a621682d7699b6f0db197ede029a0336bee8f89",
+    "published_sha256": "52fcf71d3aae099aebe8c69438a666647243864f1cbf222776182a035974da12",
+    "published_path": "docs/versions/v10.0.5/evidence/combined-03.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "combined-03",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/combined-03.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "analyze-01",
+    "stream": "stdout",
+    "raw_sha256": "511321d772fa8e40df7f012be3f79bfa2da9ca6009ccde4abd38627f3de3ddca",
+    "published_sha256": "511321d772fa8e40df7f012be3f79bfa2da9ca6009ccde4abd38627f3de3ddca",
+    "published_path": "docs/versions/v10.0.5/evidence/analyze-01.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "analyze-01",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/analyze-01.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-tests",
+    "stream": "stdout",
+    "raw_sha256": "1d4aa5247076f0d963183607ef5032571f49c332a430a71760043b5a3fb14c1a",
+    "published_sha256": "7e3e32f1c8297b09c54319fd2d3d9ad235fa718217c21ee42a6813b135542852",
+    "published_path": "docs/versions/v10.0.5/evidence/final-tests.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-tests",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/final-tests.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-tests-02",
+    "stream": "stdout",
+    "raw_sha256": "783adb4b4f519dc4f3c10fa448c5c45c3abcc28948818e921724eaf85bf2cd85",
+    "published_sha256": "622afaa6ab0c24da691bf52e0d820a8448646d996a2b63aea5ec5cf66107ad22",
+    "published_path": "docs/versions/v10.0.5/evidence/final-tests-02.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-tests-02",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/final-tests-02.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-analyze",
+    "stream": "stdout",
+    "raw_sha256": "321651dd10793eee2c246934183a2f5d9a94b74e3bc1f09f074ce2ca30c0acf7",
+    "published_sha256": "321651dd10793eee2c246934183a2f5d9a94b74e3bc1f09f074ce2ca30c0acf7",
+    "published_path": "docs/versions/v10.0.5/evidence/final-analyze.stdout.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  },
+  {
+    "run": "final-analyze",
+    "stream": "stderr",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "published_path": "docs/versions/v10.0.5/evidence/final-analyze.stderr.txt",
+    "transform": "UTF-8 path redaction only; original raw bytes retained locally"
+  }
+]

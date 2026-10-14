@@ -1,0 +1,144 @@
+{
+  "parent": "4a7091b580977044861ae50ff9b404842ed68283",
+  "parent_tree": "79674652c6a39c66bdab5f2a86979741aa94d4bd",
+  "frozen_plan_commit": "2f9027f901f1a4a9804e64f16bdbdf9a50f8221e",
+  "frozen_plan_blob": "fd490f9204869504a17ae5b4263bc25e7a5a6f74",
+  "parent_progress_blob": "8dd79b804c0d82a52eff5f876918d0f4673b2ed4",
+  "unchanged_dependencies": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+      "blob": "a07e0863573db74fd7705a4657cdedc3295ba91c",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": true,
+      "checkout_sha256": "7d2adcacf09866b6130eab543dbc82611d2b752841bb1cb0bc0ea12d55d4042b",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/state/calm_home_projection.dart",
+      "blob": "b253b9f87990f9140d495ad6fa6a733b329842ac",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "1fa47134876932a5201e2fd29102fae02067fa643ed8aefb6f0a4a9acdd2cf25",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/canonical_match_lifecycle.dart",
+      "blob": "14147cce1716da38dfd2e1fdc0fea7af02d5c51f",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "3c07e32271c557c4f187e3f375d5e8d847420d26b2f2ceafc9176b26d0653a36",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/match/presentation/providers/match_providers.dart",
+      "blob": "e43f3dd7529cd5476cc5de946d5e703537c1eff1",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "cf33a3d7ebe1a2a062d6201e31b5cf249e3c46717e8648f821e69fa5df7c343f",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/domain/product_connection_contract.dart",
+      "blob": "07b0beffb9033ea960a7c3c37daa453bc194bfeb",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "8e2d0c041eefb5ee663b97f0b43d61e5d08e9b48af19f050002ec6025c1063e4",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/providers/connection_presentation_provider.dart",
+      "blob": "8c5fe6ee3e1e5cf0a6224581988f435ce22a6e5f",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "e3e2ca9d42729a61d3f397903341e9bf0f7a6b397d23277301c5deea66248d30",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/state/conversation_access_state.dart",
+      "blob": "a652a3421408f9e59045cd1cd95a99306b405da7",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "0c86f028192fb520c22975307cd11de62b0cbb30e6e8eacf26f3aaf5e3f250ac",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "blob": "2eebd3f0959414f95e2a3ec61e94d73a2779d795",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": true,
+      "checkout_sha256": "0b8a26c548bfd1be86088c7e7874ff9c8e0dc8799930905df42fa68b85101a94",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_shell.dart",
+      "blob": "c1768de43157bc4f6ca44f60106a19a6e71e1db5",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "aad34efb359a1964f07c8f6a13e4f724cf5b16373d3984426a4f3ee899855c85",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/shared/providers/navigation_guard_provider.dart",
+      "blob": "f15eb57367349664dbc057424bae66bf5287473b",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "8864db069c32c2baad0cbb00c91f27d202301a35002ccb5ff432bb984adc68fb",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_purpose_pages.dart",
+      "blob": "af57d2d5dfc680de8490382e9e717bf790df93eb",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "7f6aa1b78f02a1d1f3d5763eed364d90bfb9d50e0a79e9b9c881e56b4035a0b1",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart",
+      "blob": "6811828ffc8c2c37f752902d7f91513d6c5dc478",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": true,
+      "checkout_sha256": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_home_main_loop_integration_test.dart",
+      "blob": "055fd41a157bc0f4ec59fa13093dea30ce393700",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/synthetic_product_connection_lifecycle_test.dart",
+      "blob": "9eb72b360683af49f3daec8284b4338712c7293f",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "comparison": "exact bytes or checkout newline normalization only"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart",
+      "blob": "c7dc39245aa701a57616fa60f52c715060c65668",
+      "unchanged_from_parent": true,
+      "checkout_bytes_equal_to_blob": false,
+      "checkout_sha256": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "comparison": "exact bytes or checkout newline normalization only"
+    }
+  ],
+  "final_sources": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+      "git_blob": "4057ee2c101106a3105143b88948eeee78c9fe78",
+      "raw_sha256": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart",
+      "git_blob": "90413fd290611c0e6bd142e287e291c87dba1cda",
+      "raw_sha256": "5ba83cc8f2f1ce6790a6ee389572e398c0b43bc3f6c1136a6e3018601453c378"
+    }
+  ],
+  "existing_clean_baseline": "elitesync-main-d49c308",
+  "baseline_difference": "CURRENT_STATE.md\nDOC_INDEX_CURRENT.md\ndocs/memory/knowledge.md\ndocs/versions/README.md\ndocs/versions/v10.0.5/PLAN_PROPOSAL_V0_1.md",
+  "source_discovery": "Graph search had no ProgressPage match; bounded direct source reads used. No index rebuild."
+}

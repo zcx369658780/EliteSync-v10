@@ -1,0 +1,350 @@
+00:00 +0: loading <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart
+00:00 +0: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +4: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +5: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +6: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +7: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +8: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +9: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +10: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +11: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +12: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +12: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.dev synthetic=false never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +13: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +14: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +15: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +16: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +17: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +17: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: real Progress consumes Home three domains with explicit demo limits
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _DescendantWidgetFinder:<Found 0 widgets with text "来源：开发演示（Synthetic）" descending from
+widgets with key [<'progress-state-connection'>]: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:313:9)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart line 313
+The test description was:
+  real Progress consumes Home three domains with explicit demo limits
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +17 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +17 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: real Progress consumes Home three domains with explicit demo limits [E]
+  Test failed. See exception logs above.
+  The test description was: real Progress consumes Home three domains with explicit demo limits
+  
+00:01 +17 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +18 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match loading clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +19 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +19 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +20 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +20 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match error clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +21 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +21 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +22 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +22 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match failed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +23 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +24 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+00:01 +24 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match closed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +25 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+00:01 +26 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:01 +27 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match noCandidate clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +28 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+00:01 +28 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match noRound clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +29 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+00:01 +29 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.scheduled displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +30 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+00:01 +30 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.preparing displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +31 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +32 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.running displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +33 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+00:02 +33 -1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Connection active paused closed updates immediately; unknown Readiness does not revoke it
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _DescendantWidgetFinder:<Found 0 widgets with text "双方已同意连接" descending from widgets with
+key [<'progress-state-connection'>]: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:440:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart line 440
+The test description was:
+  Connection active paused closed updates immediately; unknown Readiness does not revoke it
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +33 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+00:02 +33 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Connection active paused closed updates immediately; unknown Readiness does not revoke it [E]
+  Test failed. See exception logs above.
+  The test description was: Connection active paused closed updates immediately; unknown Readiness does not revoke it
+  
+00:02 +33 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:02 +34 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+00:02 +34 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:02 +35 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+00:02 +35 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +36 -2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:883:30)
+#2      WidgetController.dragUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2475:38)
+<asynchronous suspension>
+#3      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#4      WidgetController.scrollUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2432:7)
+<asynchronous suspension>
+#5      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#6      _tapEntry (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:247:3)
+<asynchronous suspension>
+#7      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:480:7)
+<asynchronous suspension>
+#8      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#9      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  actual three details and back consume current state; Match retains Guard fallback
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +36 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for error in mounted shell
+00:02 +36 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback [E]
+  Test failed. See exception logs above.
+  The test description was: actual three details and back consume current state; Match retains Guard fallback
+  
+00:02 +36 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +37 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+00:02 +37 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +38 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+00:02 +38 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +39 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+00:03 +39 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:03 +40 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+00:03 +40 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +41 -3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:883:30)
+#2      WidgetController.dragUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2475:38)
+<asynchronous suspension>
+#3      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#4      WidgetController.scrollUntilVisible.<anonymous closure> (package:flutter_test/src/controller.dart:2432:7)
+<asynchronous suspension>
+#5      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#6      _tapEntry (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:247:3)
+<asynchronous suspension>
+#7      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:525:9)
+<asynchronous suspension>
+#8      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#9      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#10     testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#11     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  320px doubled text keeps actual detail entries tappable above dock
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +41 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+00:03 +41 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock [E]
+  Test failed. See exception logs above.
+  The test description was: 320px doubled text keeps actual detail entries tappable above dock
+  
+00:03 +41 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +42 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.authoritative cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:03 +43 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +44 -4: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _DescendantWidgetFinder:<Found 0 widgets with text "当前无法确认" descending from widgets with
+key [<'progress-state-connection'>]: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:556:9)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart line 556
+The test description was:
+  HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +44 -5: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success [E]
+  Test failed. See exception logs above.
+  The test description was: HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success
+  
+00:03 +44 -5: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.notYetEstablished cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:03 +45 -5: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.unknown cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:03 +46 -5: Some tests failed.

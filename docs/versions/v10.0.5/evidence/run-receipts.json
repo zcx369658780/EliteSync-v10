@@ -1,0 +1,212 @@
+[
+  {
+    "run": "regression-01",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/synthetic_home_main_loop_integration_test.dart",
+      "test/app/router/home_progress_guard_refresh_test.dart",
+      "test/synthetic_product_connection_lifecycle_test.dart",
+      "test/features/connection/presentation/connection_page_test.dart"
+    ],
+    "exit": 1,
+    "start": "2026-10-14T03:13:25.721981+00:00",
+    "end": "2026-10-14T03:14:01.807970+00:00",
+    "sources_sha256": {
+      "lib/features/progress/presentation/pages/progress_page.dart": "5d9bc10bc891b475bea18d974740f03ee032649193f36ada5a1cc80be9f72ff9",
+      "test/synthetic_product_connection_lifecycle_test.dart": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "test/features/connection/presentation/connection_page_test.dart": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "test/synthetic_home_main_loop_integration_test.dart": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "test/app/router/home_progress_guard_refresh_test.dart": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109"
+    },
+    "streams": {
+      "stdout": "a8e00648d09734bdb88533b8252d25981a0a5fd54483cbe540c918c2e72dd493",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "progress-01",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/features/progress/presentation/pages/progress_page_test.dart"
+    ],
+    "exit": 1,
+    "start": "2026-10-14T03:14:18.584011+00:00",
+    "end": "2026-10-14T03:14:25.046547+00:00",
+    "sources_sha256": {
+      "test/features/progress/presentation/pages/progress_page_test.dart": "26f2a34cc5591811143102e1a4685c0166a2d765ec8c09bd9f4f8d01ef1bd85e",
+      "lib/features/progress/presentation/pages/progress_page.dart": "5d9bc10bc891b475bea18d974740f03ee032649193f36ada5a1cc80be9f72ff9"
+    },
+    "streams": {
+      "stdout": "eb223ad7dea1d72fa6cd6e88e87613f3ffc6275bfc9f29999167c88fd56e5d7e",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "combined-02",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/features/progress/presentation/pages/progress_page_test.dart",
+      "test/synthetic_home_main_loop_integration_test.dart",
+      "test/app/router/home_progress_guard_refresh_test.dart",
+      "test/synthetic_product_connection_lifecycle_test.dart",
+      "test/features/connection/presentation/connection_page_test.dart"
+    ],
+    "exit": 1,
+    "start": "2026-10-14T03:15:23.440840+00:00",
+    "end": "2026-10-14T03:15:57.177361+00:00",
+    "sources_sha256": {
+      "test/synthetic_home_main_loop_integration_test.dart": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "test/features/progress/presentation/pages/progress_page_test.dart": "26f2a34cc5591811143102e1a4685c0166a2d765ec8c09bd9f4f8d01ef1bd85e",
+      "test/synthetic_product_connection_lifecycle_test.dart": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "test/features/connection/presentation/connection_page_test.dart": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "test/app/router/home_progress_guard_refresh_test.dart": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109",
+      "lib/features/progress/presentation/pages/progress_page.dart": "652cf48b07b886230e77f768e64f31d5fd19fafcd93d1b750b7e3ae1e22f7116"
+    },
+    "streams": {
+      "stdout": "46c1d2c9cf754c51c6048d3333ac45ce9e9d87279ffa6aec9d0c4ca9f94a4272",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "combined-03",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/features/progress/presentation/pages/progress_page_test.dart",
+      "test/synthetic_home_main_loop_integration_test.dart",
+      "test/app/router/home_progress_guard_refresh_test.dart",
+      "test/synthetic_product_connection_lifecycle_test.dart",
+      "test/features/connection/presentation/connection_page_test.dart"
+    ],
+    "exit": 0,
+    "start": "2026-10-14T03:16:44.160108+00:00",
+    "end": "2026-10-14T03:16:51.039424+00:00",
+    "sources_sha256": {
+      "test/features/progress/presentation/pages/progress_page_test.dart": "e325c39e79ad69d73a7a9a52aaa588f7d574085e7273fef7398d966b58fc1ffe",
+      "test/app/router/home_progress_guard_refresh_test.dart": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109",
+      "test/synthetic_home_main_loop_integration_test.dart": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "test/features/connection/presentation/connection_page_test.dart": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "test/synthetic_product_connection_lifecycle_test.dart": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "lib/features/progress/presentation/pages/progress_page.dart": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d"
+    },
+    "streams": {
+      "stdout": "30e3b45712a054d0d145a53c1a621682d7699b6f0db197ede029a0336bee8f89",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "analyze-01",
+    "command": [
+      "D:\\flutter\\bin\\dart.bat",
+      "analyze",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "test/features/progress/presentation/pages/progress_page_test.dart"
+    ],
+    "exit": 0,
+    "start": "2026-10-14T03:17:00.340905+00:00",
+    "end": "2026-10-14T03:17:43.878850+00:00",
+    "sources_sha256": {
+      "lib/features/progress/presentation/pages/progress_page.dart": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d",
+      "test/features/progress/presentation/pages/progress_page_test.dart": "e325c39e79ad69d73a7a9a52aaa588f7d574085e7273fef7398d966b58fc1ffe"
+    },
+    "streams": {
+      "stdout": "511321d772fa8e40df7f012be3f79bfa2da9ca6009ccde4abd38627f3de3ddca",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "final-tests",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/features/progress/presentation/pages/progress_page_test.dart",
+      "test/synthetic_home_main_loop_integration_test.dart",
+      "test/app/router/home_progress_guard_refresh_test.dart",
+      "test/synthetic_product_connection_lifecycle_test.dart",
+      "test/features/connection/presentation/connection_page_test.dart"
+    ],
+    "exit": 0,
+    "start": "2026-10-14T03:18:33.089055+00:00",
+    "end": "2026-10-14T03:18:39.836429+00:00",
+    "sources_sha256": {
+      "test/synthetic_home_main_loop_integration_test.dart": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "test/synthetic_product_connection_lifecycle_test.dart": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "test/features/connection/presentation/connection_page_test.dart": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "lib/features/progress/presentation/pages/progress_page.dart": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d",
+      "test/features/progress/presentation/pages/progress_page_test.dart": "c6d548e5740985a75e950362110dd0fe08041a0cdad4cee08b45374ee4d63cb3",
+      "test/app/router/home_progress_guard_refresh_test.dart": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109"
+    },
+    "streams": {
+      "stdout": "1d4aa5247076f0d963183607ef5032571f49c332a430a71760043b5a3fb14c1a",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "final-tests-02",
+    "command": [
+      "D:\\flutter\\bin\\flutter.bat",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "expanded",
+      "test/features/progress/presentation/pages/progress_page_test.dart",
+      "test/synthetic_home_main_loop_integration_test.dart",
+      "test/app/router/home_progress_guard_refresh_test.dart",
+      "test/synthetic_product_connection_lifecycle_test.dart",
+      "test/features/connection/presentation/connection_page_test.dart"
+    ],
+    "exit": 0,
+    "start": "2026-10-14T03:18:57.994853+00:00",
+    "end": "2026-10-14T03:19:04.965335+00:00",
+    "sources_sha256": {
+      "lib/features/progress/presentation/pages/progress_page.dart": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d",
+      "test/features/connection/presentation/connection_page_test.dart": "77be5282c369ad33f0ece5870c83a9cbeda113e97690ecfd3923bf8156c80e32",
+      "test/synthetic_product_connection_lifecycle_test.dart": "7d8b2b222ae8aa9c82ad0e10d4ec3fe6ecf5ca81f6cf34062c0dca7e335596af",
+      "test/features/progress/presentation/pages/progress_page_test.dart": "5ba83cc8f2f1ce6790a6ee389572e398c0b43bc3f6c1136a6e3018601453c378",
+      "test/synthetic_home_main_loop_integration_test.dart": "2dcae9a7a8f31bf22355f877b54c8c87cb3892c6719b1aa4751fdcf70435e894",
+      "test/app/router/home_progress_guard_refresh_test.dart": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109"
+    },
+    "streams": {
+      "stdout": "783adb4b4f519dc4f3c10fa448c5c45c3abcc28948818e921724eaf85bf2cd85",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "run": "final-analyze",
+    "command": [
+      "D:\\flutter\\bin\\dart.bat",
+      "analyze",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "test/features/progress/presentation/pages/progress_page_test.dart"
+    ],
+    "exit": 0,
+    "start": "2026-10-14T03:19:05.072235+00:00",
+    "end": "2026-10-14T03:19:08.904421+00:00",
+    "sources_sha256": {
+      "lib/features/progress/presentation/pages/progress_page.dart": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d",
+      "test/features/progress/presentation/pages/progress_page_test.dart": "5ba83cc8f2f1ce6790a6ee389572e398c0b43bc3f6c1136a6e3018601453c378"
+    },
+    "streams": {
+      "stdout": "321651dd10793eee2c246934183a2f5d9a94b74e3bc1f09f074ce2ca30c0acf7",
+      "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

@@ -1,0 +1,5 @@
+Analyzing progress_page.dart, progress_page_test.dart...
+
+   info - test\features\progress\presentation\pages\progress_page_test.dart:135:5 - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this.textScale') to initialize the field. - prefer_initializing_formals
+
+1 issue found.

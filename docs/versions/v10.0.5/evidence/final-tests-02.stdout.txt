@@ -1,0 +1,227 @@
+00:00 +0: loading <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart
+00:00 +0: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +1: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +2: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +3: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +4: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +5: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +6: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +7: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +8: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +9: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +10: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+00:00 +11: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.prod synthetic=true never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:00 +12: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: AppFlavor.dev synthetic=false never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:00 +13: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: real Progress consumes Home three domains with explicit demo limits
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:00 +14: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:00 +14: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match loading clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:00 +15: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +15: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match error clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +16: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +17: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +18: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +19: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +20: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:01 +20: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match failed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +21: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +22: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match closed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +23: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:01 +24: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match noCandidate clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +25: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: unrelated Guard keeps live Progress query, page and router
+00:01 +25: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: same mount Match noRound clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +26: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +27: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +27: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.scheduled displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +28: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +28: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.preparing displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +29: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +29: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Match MatchRoundBusinessState.running displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +30: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +30: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: Connection active paused closed updates immediately; unknown Readiness does not revoke it
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:01 +31: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +31: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:01 +32: <CANDIDATE>/apps/flutter_elitesync_module/test/features/connection/presentation/connection_page_test.dart: fails closed when no authoritative Connection state exists
+00:01 +33: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+00:02 +34: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+00:02 +34: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:02 +35: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: actual three details and back consume current state; Match retains Guard fallback
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +36: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:02 +37: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: 320px doubled text keeps actual detail entries tappable above dock
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +38: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+00:02 +38: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.authoritative cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +39: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+00:02 +39: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +40: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+00:02 +40: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.notYetEstablished cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +41: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+00:02 +41: <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.unknown cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed
+PROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0
+00:02 +42: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:02 +43: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +44: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:02 +45: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:03 +46: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:03 +47: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:03 +48: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +49: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +50: <CANDIDATE>/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:03 +51: All tests passed!

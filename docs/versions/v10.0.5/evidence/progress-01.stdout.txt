@@ -1,0 +1,114 @@
+00:00 +0: loading <CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart
+00:00 +0: AppFlavor.prod synthetic=true never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +1: AppFlavor.dev synthetic=false never starts business sources
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:00 +2: real Progress consumes Home three domains with explicit demo limits
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _KeyWidgetFinder:<Found 0 widgets with key [<'progress-connection-entry'>]: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:324:7)
+<asynchronous suspension>
+#5      main.isolatedTest.<anonymous closure>.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:275:11)
+<asynchronous suspension>
+#6      main.isolatedTest.<anonymous closure> (file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart:269:7)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///<CANDIDATE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart line 324
+The test description was:
+  real Progress consumes Home three domains with explicit demo limits
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +2 -1: real Progress consumes Home three domains with explicit demo limits [E]
+  Test failed. See exception logs above.
+  The test description was: real Progress consumes Home three domains with explicit demo limits
+  
+00:00 +2 -1: same mount Match loading clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +3 -1: same mount Match error clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +4 -1: same mount Match failed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +5 -1: same mount Match closed clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +6 -1: same mount Match noCandidate clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +7 -1: same mount Match noRound clears old proposal without inventing reason
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:01 +8 -1: Match MatchRoundBusinessState.scheduled displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +9 -1: Match MatchRoundBusinessState.preparing displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +10 -1: Match MatchRoundBusinessState.running displays only accepted active summary
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +11 -1: Connection active paused closed updates immediately; unknown Readiness does not revoke it
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:01 +12 -1: actual three details and back consume current state; Match retains Guard fallback
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:02 +13 -1: 320px doubled text keeps actual detail entries tappable above dock
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+00:02 +14 -1: HomeProjectionAuthority.authoritative cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:02 +15 -1: HomeProjectionAuthority.syntheticDevelopment cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:02 +16 -1: HomeProjectionAuthority.notYetEstablished cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:02 +17 -1: HomeProjectionAuthority.unknown cannot convert unrecognized codes to success
+APP_SHELL_INIT
+APP_SHELL_BUILD index=1
+00:02 +18 -1: Some tests failed.
