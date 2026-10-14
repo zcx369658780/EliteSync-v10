@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-14 v10.0.6 独立终验已通过：K08待接续
+
+**V10_0_6_ACCEPTED_WITH_OBSERVATIONS / GITHUB_PRODUCT_CODE_NOT_YET_INTEGRATED / LOCAL_BASELINE_K08_PENDING / RUNTIME_STOPPED_CODEX_REPORTED / V10_0_7_NOT_DISPATCHED**。
+
+Astra已按固定plan `dbe02b9ba603b79820f77ee28663787e405ccc4f`（Blob `77eee557325449543710fc4d5fe2b10aa712fa46`）独立审查并接受候选 `08ce3571ce02af3dea5960705b72cd9737dccb95`（Tree `0cfae117b88a3313b854ecc9a7739b303c06e0f3`）。[独立验收](docs/versions/v10.0.6/acceptance.md)和[版本复盘](docs/versions/v10.0.6/retrospective.md)已发布；证据源与截图由Astra从GitHub读取，真实Windows执行为Codex报告，AAR/APK仅LOCAL_ONLY未由Astra下载核物理SHA。
+
+结论仅覆盖城市真实持久化和独立Blade禁用闭环的AC-01～AC-07；原备份/真实账号/生产/旧APP全部功能不追认。产品代码仍位于 `codex/v10.0.6-restoration-admin`，**尚未合入main**。按K08由Owner手动转交Codex安全集成及本地接续，不自动派发v10.0.7；原dirty根继续保护。下文“待验收/未收到候选”均是**交接前历史时点**，已被本节终验状态取代。
+
+
 ## 2026-10-14 顾问会话交接：v10.0.6保持原冻结计划，终验转新Astra
 
 **V10_0_6_PLAN_FROZEN / EXECUTION_PROMPT_DELIVERED_TO_OWNER / CANDIDATE_NOT_RECEIVED_IN_OLD_ASTRA / FINAL_ACCEPTANCE_PENDING / ASTRA_HANDOFF_READY**。
