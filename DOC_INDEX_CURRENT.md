@@ -1,25 +1,26 @@
 # EliteSync-v10 动态总目录
 
-2026-10-14：现行目标为**完整APP前后端/数据库恢复＋独立Web管理面板**。路线同步及Codex集中执行方案已接收；v10.0.6正式计划已冻结，等待Owner手动派发，尚未实施。上传Sources不自动同步，先读当前入口及必要正文并记录实际Git提交。
+2026-10-14：当前主目标为**完整APP前后端/数据库恢复＋独立Web管理面板**。v10.0.6正式计划已冻结、执行Prompt已交Owner；Owner要求换Astra会话承接该任务的后续验收。旧会话未收到实施候选，实时执行状态须由新回执确认。本次只是顾问交接，不重开任务。先实际读取下列正文并记录固定提交，上传Sources不自动更新。
 
 | 当前入口 | 正文与用途 |
 |---|---|
-| v10.0.6 正式冻结计划 | [城市持久化＋Web管理禁用闭环](docs/versions/v10.0.6/plan.md)：固定代码起点3a78c2c；APP真实城市写库/重启读回、Blade管理员禁用、旧token及非法角色拒绝；专用Docker/DB/AVD/依赖安装权限随Owner派发一次生效。不是只读或mock交付 |
-| 版前来源 | [原草案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)保留历史；Codex反馈及现行取舍已收敛至正式计划，不再按草案另开环境治理版本 |
+| 本轮顾问交接（优先） | [ASTRA_HANDOFF_20261014_V10_0_6](docs/migration/ASTRA_HANDOFF_20261014_V10_0_6.md)：Owner方向调整、六版接受概况、当前冻结身份/环境、最近本地现场、未知与新Astra验收接续；不新增执行授权 |
+| v10.0.6唯一冻结计划 | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/versions/v10.0.6/plan.md)：Blob 77eee557325449543710fc4d5fe2b10aa712fa46、代码起点3a78c2c；城市真实持久化＋Blade管理禁用闭环；AC01～07不变 |
+| 版前来源 | [原草案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)仅为历史，Codex集中反馈已收敛到正式计划，不再据草案另开环境治理版本 |
+| 当前现场 | [CURRENT_STATE.md](CURRENT_STATE.md)：已交Owner执行Prompt，无候选交付到旧会话；代码起点、本地报告与实时未知分开，新执行回执优先 |
 | Owner决定 | [PRODUCT_DECISIONS.md](PRODUCT_DECISIONS.md)：恢复两目标、原版功能优先、独立Web、内测与公开运营分开 |
-| 路线图 | [当前交付路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)：v10.0.6～10功能包；未来包不是已派发任务 |
-| 单份功能台账 | [恢复能力矩阵](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)：源码/前端/API/数据库/管理员操作逐项落实；历史备份只知元数据不等于数据恢复 |
-| 当前现场 | [CURRENT_STATE.md](CURRENT_STATE.md)：代码起点、本机环境的Codex回报、待Owner派发与尚未运行范围；本地路径不能作为网页读证 |
-| 启动与长期工作方式 | [AGENTS.md](AGENTS.md)、[CURRENT_WORKFLOW.md](docs/workflow/CURRENT_WORKFLOW.md)：功能模块内跨端自主实施，Astra集中终验；不强制每轮新worktree或重验全历史 |
-| 版本计划与接受 | [版本登记](docs/versions/README.md)：前六版限定接受及v10.0.6冻结状态，原计划/接受/失败不重写 |
-| 记忆与环境 | [记忆导航](docs/memory/navigation.md)、[历史主题知识](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)：新目标和正式计划优先，旧索引仅按需读取 |
-| APP与后端资产 | [Flutter](apps/flutter_elitesync_module/)、[Android宿主](apps/android/)、[Laravel](services/backend-laravel/)、[API路由](services/backend-laravel/routes/api.php)：复用现有工程，不另造Hello World |
-| 管理资产 | [Flutter Admin](apps/flutter_elitesync_module/lib/features/admin/)、[AdminController](services/backend-laravel/app/Http/Controllers/Api/V1/AdminController.php)、[AdminMatchingController](services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php)：已有代码线索，未证明独立Web各模块可用 |
-| 保留产品原则 | [原功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)：隐私和独立同意保持，恢复优先级按10月14日新决定 |
-| 历史交接 | [旧重置交接](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、[迁移交接](docs/migration/ASTRA_HANDOFF_20261012.md)、[Codex交接](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：旧Work/微预算/不得恢复9.x不作为新功能版默认限制 |
+| 路线图 | [当前交付路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)：v10.0.6～10功能包，后续版本不是已派发任务 |
+| 单份恢复台账 | [能力矩阵](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)：来源/前端/API/数据库/管理员逐项落实；历史备份存在不等于已恢复 |
+| 启动与执行规则 | [AGENTS.md](AGENTS.md)、[CURRENT_WORKFLOW.md](docs/workflow/CURRENT_WORKFLOW.md)：模块内跨端自主实现、Astra集中独立验收；不强制一文件一版、新worktree或重验全历史 |
+| 版本接受入口 | [版本登记](docs/versions/README.md)：v10.0.0～0.5限定接受和0.6冻结身份，旧plan/acceptance/raw原样保留 |
+| 记忆与环境 | [记忆导航](docs/memory/navigation.md)、[历史知识](docs/memory/knowledge.md)、[环境记录](docs/memory/environment.md)：本轮交接和新Owner决定优先，旧条目按需读 |
+| APP与后端资产 | [Flutter](apps/flutter_elitesync_module/)、[Android宿主](apps/android/)、[Laravel](services/backend-laravel/)、[API路由](services/backend-laravel/routes/api.php)：复用原工程，不另造Hello World |
+| 管理资产 | [Flutter Admin](apps/flutter_elitesync_module/lib/features/admin/)、[AdminController](services/backend-laravel/app/Http/Controllers/Api/V1/AdminController.php)、[AdminMatchingController](services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php)：需实际Web操作与APP结果，不用源码存在冒实装 |
+| 保留产品原则 | [原功能设计](docs/gpt-project-sources/06_新版本APP功能设计正文_已接受.md)、[Owner接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)：隐私/独立同意保留，恢复优先级按2026-10-14新决定 |
+| 历史交接 | [旧重置](docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)、[10月12日Astra](docs/migration/ASTRA_HANDOFF_20261012.md)、[旧Codex交接](docs/migration/CODEX_LOCAL_HANDOFF_20261012.md)：历史流程/项目ID/微预算/不得复现9.x不覆盖现行恢复任务 |
 
-## 历史与证据
+## 历史和证据边界
 
-[冻结前目录](https://github.com/zcx369658780/EliteSync-v10/blob/98649e89e223b92c5e7817b8f0f0361242c6c476/DOC_INDEX_CURRENT.md)和[路线调整前完整目录](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/DOC_INDEX_CURRENT.md)保持历史入口。冻结plan/acceptance/rejection/raw不追改，不扫描所有Markdown或sessions。
+[本轮交接前目录](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/DOC_INDEX_CURRENT.md)与[路线调整前目录](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/DOC_INDEX_CURRENT.md)保留旧入口，历史冻结计划/原验收/失败不修改，不扫描全部Markdown或sessions。
 
-正式计划冻结与Owner派发、实际运行及最后接受是不同事实；本轮没有启动服务、数据库或设备。原3306、生产服务、历史敏感备份、真实账号和不可逆操作不在默认授权内。已允许的本版开发链需真实执行，不能以旧全局禁令替代实际操作或用模拟输出冒充通过。
+当前会话交接不赋予本机访问、不说明Codex已完成或尚未运行、不更新其本地技术起点。原3306、生产、敏感备份内容、真实账号和额外不可逆操作仍受保护；本版已经由计划涵盖且随Owner派发生效的开发HTTP、数据库、依锁依赖及AVD操作不能被旧synthetic小版本禁令覆盖。
