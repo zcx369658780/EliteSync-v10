@@ -1,29 +1,31 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-14 Owner路线调整已批准，等待Codex文档同步
+## 2026-10-14 路线与工作流同步已接收，v10.0.6进入版前协商
 
-**ROADMAP_OWNER_APPROVED / CODEX_DOCUMENT_SYNC_PENDING / V10_0_6_NOT_FROZEN / IMPLEMENTATION_NOT_STARTED**。
+**ROADMAP_AND_WORKFLOW_SYNCED（CODEX_REPORTED） / V10_0_6_PROPOSED / AWAITING_CODEX_EXECUTION_PROPOSAL / NOT_FROZEN / IMPLEMENTATION_NOT_STARTED**。
 
-当前最高优先级是[Owner已批准决定](PRODUCT_DECISIONS.md)：**恢复完整EliteSync APP的前端、后端、数据库及选定原版主要功能；交付独立可用的Web管理面板。** 其它新产品扩展和公开运营准备后置。当前[路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)已替代旧“重设计优先/不逐项复现9.x”的交付方向；使用一份[恢复功能台账](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)跟踪前端、API、数据库和管理模块，不新增连续只读治理版本。
+Owner已批准的核心目标不变：恢复选定原版EliteSync APP前端、后端、数据库与主要功能，交付独立可用Web管理面板。执行依据：[Owner决定](PRODUCT_DECISIONS.md)、[新路线图](docs/architecture/ELITESYNC_V10_CURRENT_DELIVERY_PLAN_AND_ROADMAP_V0_1.md)、[功能台账](docs/architecture/RESTORATION_CAPABILITY_MATRIX.md)、[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)。
 
-本轮只改规划/指导/记忆文档，没有运行服务、导入数据库、构建APP、处理真实数据或修改产品源码。Codex尚未回报接收新文档，不宣称本地同步。下一步为一次文档同步；之后依据新路线制定v10.0.6“运行恢复基线＋首个Web管理闭环”的功能版本，尚无正式plan或执行候选。
+### 本地同步结果及证据来源
 
-## 已完成并保留的工程事实
+Codex执行并由Owner转交回报：专用基线C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10，分支codex/baseline-v1005-be0636e，已从be0636ee…正常fast-forward到3a78c2c81859db682369fd6e03f6d98a3c2bbeb2，Tree 59969abfc9d04185769b22af5f7ea5d629007a33，CLEAN；九份路线/指导文档Git Blob与固定提交一致，无新增worktree或本地新提交。
 
-截至本轮文档变更前，GitHub main为db1300bb19182f2de46b4ff5b1f7d9b947907b69，Tree为7fa89d29576c0ec4f446b905d11aa58472defe65。v10.0.0～v10.0.5均按各自冻结标准独立验收、定点集成；已有测试证明限定synthetic/dev-test行为，不证明新恢复目标已完成。详细固定候选、计划和接受见[版本登记](docs/versions/README.md)。
+原启动根D:/EliteSync-v10亦已同步九份文档：八份正文相同，AGENTS合并了新指导并保留仍适用的本地辅助约定，故其Blob不同是已报告的合理差异，不要求覆盖成远端字节。旧文档原件另有本地备份，未重新塞回活动指导。原dirty root HEAD仍4bebc8f394248e254c1368a06fbdee5d2c883301，默认index哈希不变；九份文档之外状态与105项具名保护文件保持。105是本次已报告保护范围，不能冒称旧109项全部原字节未变。
 
-最近Codex报告的可用基线：C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10，分支codex/baseline-v1005-be0636e，HEAD be0636eec52baa180ac98b94a94223a2e9f9eb2f，Tree 9a7f32f4f8a93cbda0b76deda42bec3ebef08936，CLEAN；51/51限定测试及两文件分析No issues found!、exit0已由Codex报告。网页核了GitHub对象，没有读取该次本地原证或复跑。
+本次原证仅在本地route-sync-3a78c2c/receipt.json；网页未读取本机原件，也未检验自定义AGENTS全文。Astra实际读取的GitHub main及Tree与上方目标一致；本地执行、保护及九文档匹配属于CODEX_REPORTED。没有运行APP、服务、数据库、测试或重建检索索引。同步任务已完成，不再次安排相同九文件同步或完整基线重建。
 
-原D:/EliteSync-v10 dirty main最近回报HEAD 4bebc8f394248e254c1368a06fbdee5d2c883301；默认index SHA256 2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；staged0/tracked43/untracked normal208。11份工作树和109项具名文件保护来自Codex回执，LOCAL_ONLY尚未整体吸收；本轮没有直接访问Windows磁盘。后续恢复可具名读取这些资产，但不能默默覆盖、删除或自动标已接受。
+### 下一步：同一功能版的执行方案
 
-## 尚待实际落实，而不是新增流程门
+已提出[v10.0.6版前方案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)：在实际开发服务与持久化数据库上完成“Android APP登录、基础资料写入及重启读回”与“独立Web管理员登录、管理测试账号、APP观察结果”两条链。首个管理动作建议复用现有禁用开发测试账号，具体会话与授权处理在集中反馈后冻结。
 
-- 选定原版功能/源码基线及实际可用包；数据库备份文件、时间范围、附件和恢复目的库均未在本轮核实。台账相关项为UNKNOWN，不假装旧migrations成功等于业务数据恢复。
-- 仓库内已有Flutter Admin页面和Laravel用户/审核/举报/匹配运营等接口；独立Web管理面板及APP—API—数据库—管理员操作的完整闭环尚未证明。具体Web框架和所需环境在v10.0.6现场确定。
-- 原版已有且列入恢复基线的功能优先恢复；未实现设想才放后期。正式Readiness或身份政策确实影响功能时提出该项决定，不用未知政策阻塞所有开发。
-- 本次未改变BE-12消息运行代码，未复活V57/H1/H2/D0；完整应用/设备/生产资格仍未建立。未来恢复版应一次明确受控开发环境、数据副本、构建与设备权限，并运行真实业务链，不将旧暂停预算当新版本的全局前置。
-- 公开运营不由开发版本数预测。Owner给出的半年至一年内测运营窗口在完整软件交付后另行安排，不把大部分原功能补建留到内测。
+已读取现有Laravel管理用户/disable、Auth登录禁用拒绝、管理员中间件及Web welcome入口。文件存在不等于功能运行通过，独立Web管理系统尚未实装。首选复用Laravel服务端视图和业务服务，不先升级整套栈；方案必须一次列实际开发服务/端口、独立库、测试数据或备份副本、构建及设备和必要下载/环境操作。恢复来源核查在v10.0.6内为实现服务，不另开只读治理版本。
 
-## 历史与当前入口
+当前只有方案文档，没有冻结plan、实施候选或运行授权。正式计划经Owner手动派发后才启动相应环境与开发；普通修复由Codex自主完成。旧V57/H1/H2/D0任务不恢复，亦不作为新开发授权的默认前置。BE-12消息代码本轮不改，生产覆盖、敏感备份外传、真实账号数据和不可逆操作仍需具体授权。
 
-日常只读[动态目录](DOC_INDEX_CURRENT.md)、[工作流](docs/workflow/CURRENT_WORKFLOW.md)、本页、路线图和本版台账/计划。历史[本次调整前完整状态](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/CURRENT_STATE.md)原样保留所有v10.0.5身份、测试和本地回执说明；其“v10.0.6未启动”描述调整前事实。历史冻结plan/acceptance/retrospective及原始证据本轮未改写。
+### 已接受成果与尚未恢复事项
+
+v10.0.0～0.5的独立接受、定点集成与限定本地回归保持；其中51项通过属于此前be0636ee代码基线的限定测试，不能变成3a78c2c新运行证明，更不能证明真实前后端/数据库和Web后台已恢复。[版本登记](docs/versions/README.md)保留固定入口。
+
+原版功能基线、可用安装包、数据库备份时间/范围和媒体副本尚须实际确认；开发数据库结构/seed与历史业务数据恢复分开。缺备份只阻塞对应数据，不阻塞全部开发账号链；未恢复模块继续列在单份台账。独立Web完整管理模块、原APP完整恢复、Android当前整合包、正式用户/生产运行仍未成立。
+
+[上次路线发布时完整状态](https://github.com/zcx369658780/EliteSync-v10/blob/3a78c2c81859db682369fd6e03f6d98a3c2bbeb2/CURRENT_STATE.md)作为历史保留，其“等待文档同步”已被本次回报替代。本文只更新当前事实，不改历史冻结计划与原证。最新GitHub可能增加纯文档提交，不表示本地HEAD自动移动。
