@@ -1,0 +1,1340 @@
+{
+  "fixed_plan_commit": "dbe02b9ba603b79820f77ee28663787e405ccc4f",
+  "fixed_plan_blob": "77eee557325449543710fc4d5fe2b10aa712fa46",
+  "code_start": "3a78c2c81859db682369fd6e03f6d98a3c2bbeb2",
+  "build_test_product_source_anchor": "6a6642aa457188866a1b8cd6d9cc733aff86a0c4",
+  "delivery_content_anchor": "191ec592e28061b57e41d5a0101628612cddcc95",
+  "delivery_content_tree": "923c1a185cc5c205b102428d2f32303ebfd2a275",
+  "source": {
+    "apps/android/app/build.gradle.kts": {
+      "git_blob": "8525adcce45b56d15c1d581dbd5d9e4a28f3c979",
+      "worktree_sha256": "c589403d333aa8527a8b200dbb71205bb5ffad78fc55dead5990d3630f1e7b13"
+    },
+    "apps/android/app/src/main/java/com/elitesync/MainActivity.kt": {
+      "git_blob": "7013376c29021da681b47b54e5045d3abce51d4b",
+      "worktree_sha256": "4ed04f1074135a986dd5411cf25c31b8879dbaf16862c42dc7bb8f1ec5d2feff"
+    },
+    "apps/flutter_elitesync_module/lib/app/config/app_env.dart": {
+      "git_blob": "53864daac635952fcd8cbd91cdfcab1d4430629a",
+      "worktree_sha256": "8a4b370e8a3182483352f401169b01be395f2335b2b83764afe1033cf5b66657"
+    },
+    "apps/flutter_elitesync_module/lib/app/router/app_shell.dart": {
+      "git_blob": "e67cd16364b0eb01a36cf754f85462fdfa5ce0b6",
+      "worktree_sha256": "2f011ac85e4b1ed98a89097fe33bf87c4c947694ce1cc150a36f2c053690910b"
+    },
+    "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart": {
+      "git_blob": "3c8426f1503eab187fce1530bb0eaa18e22d951d",
+      "worktree_sha256": "a4e203b92328cf704314df64feb55353fb20e51b0e2b88caf3972902dd98946b"
+    },
+    "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart": {
+      "git_blob": "69244285b642c43c4465428fc230dac0f54d95a1",
+      "worktree_sha256": "39e1c5d2b883d14bb71de9a6821555c301e0baad4c9be2edf7102c5dd2a9f236"
+    },
+    "apps/flutter_elitesync_module/lib/features/auth/presentation/pages/login_page.dart": {
+      "git_blob": "52a9ebb40769a261daea7fab0199e7ced1194884",
+      "worktree_sha256": "b9b3f3fff7333340fb118e8e853f49098ec4cd608d260fc551dc75139a6f1fc9"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/data/datasource/profile_remote_data_source.dart": {
+      "git_blob": "32edc3d676d45842c55c454c50b7e9b927d56b74",
+      "worktree_sha256": "51fa9ccef664f19219a14f9bfd37c0c85ba81fd65b28502d78807087b0ab3e8d"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/edit_profile_page.dart": {
+      "git_blob": "8625b8e21ef008d44649a1583762dde5fd657cbc",
+      "worktree_sha256": "a59515782955a18a5221c597eda8b731eafd9ed5a4ff4778461828765c361f4c"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/profile_providers.dart": {
+      "git_blob": "a899ec4f4fea8c112185379e13755151bb313da6",
+      "worktree_sha256": "5b0e2192f26857714d19efb7659d95a79fa776e94a39cb7e3f4d87465af598a8"
+    },
+    "apps/flutter_elitesync_module/lib/main_prod.dart": {
+      "git_blob": "cb05d8c42ca6f4c21aca576ac139687f0c4bffad",
+      "worktree_sha256": "1746d3b271752dddfaeff7d6203617c39f837588ce14eab084f1cf75cf09e152"
+    },
+    "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart": {
+      "git_blob": "c3fd4fcee86ec1933a33c734440296b5c0659bc7",
+      "worktree_sha256": "86a86112e11cf50fae1cddff82200160b459d8374b756e15b65e525f26cbba0d"
+    },
+    "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart": {
+      "git_blob": "826c866bbbfce4319dafbd2c89a82cec6e659ecc",
+      "worktree_sha256": "c2f90d9b6bf6479d1a161a9f60397c1b5a1830cb5e48997fa09a3b451aad791a"
+    },
+    "apps/flutter_elitesync_module/test/app/router/app_shell_rtc_invite_test.dart": {
+      "git_blob": "dc7da2d5c503cf5e4bb40a0e304d11aafd01d937",
+      "worktree_sha256": "b51593ba6984c8feeb40f0d63f74e57c4aedcc5d7e42631926f548ef1e9f4faa"
+    },
+    "apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart": {
+      "git_blob": "6811828ffc8c2c37f752902d7f91513d6c5dc478",
+      "worktree_sha256": "04cd83ef0eb814691dfbc55fd372e8fed3b1fe2554430a165ef12df483e45109"
+    },
+    "apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart": {
+      "git_blob": "88e7642bb8bd602605fb9a5dbd1e909ee7e50404",
+      "worktree_sha256": "9ace4ffa6b381ea323e27c6ea177709e8b70949486ff4e451386f143a2e1955e"
+    },
+    "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+      "git_blob": "8ee664ff6857e3e2816417536dd8ebb132dab48d",
+      "worktree_sha256": "98b0c5324544fdc5157863ddc94e7504bdd96f6e31bfa1e6d24162e8ac12eb4a"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart": {
+      "git_blob": "5a5353c62e745e78bc4e742b8db2c74ceae4e861",
+      "worktree_sha256": "ab64fe768f7a46dd3324e5b1115eb5305f71eb1b16db14ad4303a720cef2f764"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart": {
+      "git_blob": "0557d6b4ca77ff75cfd8be2167d17fb79dd8aa36",
+      "worktree_sha256": "6970b871537f9a7ec19283e26b54bc32e750dc55ef19cc0864baf8c402824829"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/presentation/providers/profile_city_provider_test.dart": {
+      "git_blob": "2344979393a8f9b5fc3598e79023f81232f8dd10",
+      "worktree_sha256": "77d9e3857219224328cce2aaee08c7ab9403291487d8e50e7ce943fc5ff6d09c"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/presentation/providers/profile_providers_test.dart": {
+      "git_blob": "bef35a663e145768417da63aa3d410a7f7b5e62a",
+      "worktree_sha256": "abfd5f758f0aa386ed8f66a5b687ece1e20c4eb0f9e3d7ec6b3b3afc0ce50af2"
+    },
+    "apps/flutter_elitesync_module/test/session_rejection_test.dart": {
+      "git_blob": "50b307ac93efcfef0ffe0a9b42f760476b9e856f",
+      "worktree_sha256": "d517cd4efffd910637a6971cda26c82a680708aaf187a8c3259f115269987d58"
+    },
+    "services/backend-laravel/.gitignore": {
+      "git_blob": "c71ef0256802e2439f9d889f34317f7f61a041dd",
+      "worktree_sha256": "2425ff40f6d31df4ba655de32c129b6541b3823d6cd368d9c8d4313bbdbcf0ff"
+    },
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AdminController.php": {
+      "git_blob": "46e498b00a0e2cb2512cc7783865274db5b5ccdc",
+      "worktree_sha256": "a2f4b80102327397e16684c586330510df34e2c7a061457e387e1bbe4d5b524e"
+    },
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php": {
+      "git_blob": "e5f346a5c7d9f00581fd24e5f963c529a9deb803",
+      "worktree_sha256": "1bd487f9d89a3d020566e10b096062be6d97ea0ec4db70ddd11d610b2bfb19b7"
+    },
+    "services/backend-laravel/app/Http/Controllers/Web/AdminController.php": {
+      "git_blob": "2ea3ea67c0c217dc955b97a7771ea282bc8f7d62",
+      "worktree_sha256": "c9b588532f365dc4b94ce59594a56633253080b86360283bb4792fa373491e70"
+    },
+    "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php": {
+      "git_blob": "c2cc411bee21e5b5547ed6f7d178b2a6d2e5415b",
+      "worktree_sha256": "bb082d7c1d9a5bc99c21e15af8c1768367dc4f5ff209049aa7f4d19dc4a4fffd"
+    },
+    "services/backend-laravel/app/Http/Middleware/EnsureAdminPhone.php": {
+      "git_blob": "3b772692bf511cae623a37f0ba98298b069e9ad7",
+      "worktree_sha256": "1c4923838b4341387da40fe983ec704ce856ee440e3c7cf77bd7ea1c49207c1c"
+    },
+    "services/backend-laravel/app/Services/Accounts/AdminAccess.php": {
+      "git_blob": "06921f9f0c1f392d4e3780cb20cb8d1c6e2d2595",
+      "worktree_sha256": "45e1f2611eefdafe6f2d8f03c16865bed8dfea603b2b8e8dc22143a2061fc7b8"
+    },
+    "services/backend-laravel/app/Services/Accounts/DisableUser.php": {
+      "git_blob": "c59d490b50e42871d0bc5ac04f144e49e6ae0887",
+      "worktree_sha256": "4714ddcefa415d917ed573c5114924fbbe80176aa74a0f9860cdddb2fa5eff70"
+    },
+    "services/backend-laravel/bootstrap/app.php": {
+      "git_blob": "728dc0a390c0a6796c81531a36aed6010a261f1e",
+      "worktree_sha256": "0e8fdb87679988b3f9328b5fa5b12a236746fa414a046b3ef01e448c80c19b31"
+    },
+    "services/backend-laravel/database/seeders/V1006DevelopmentSeeder.php": {
+      "git_blob": "14d7170fca5efe53c5c7289807a1bc8f8634de8f",
+      "worktree_sha256": "8ecc7513a0d41e40b2ae95991f3693cb19b6d58254d6e2f7592acb6e9de4237a"
+    },
+    "services/backend-laravel/resources/views/admin/layout.blade.php": {
+      "git_blob": "5704b667ac081cf3ee486cc1200ac79e82d92dfa",
+      "worktree_sha256": "a6847683f53d83880d08197dbc449e8425b9ed85737fa1abd7b4b831af946195"
+    },
+    "services/backend-laravel/resources/views/admin/login.blade.php": {
+      "git_blob": "39b92e32b454762cc19c31b4bb469dfb0105586b",
+      "worktree_sha256": "b5928748a59cc04e4dd2a22ae84594903ee99fb243445f393f3a4b2ad2b99aaf"
+    },
+    "services/backend-laravel/resources/views/admin/users.blade.php": {
+      "git_blob": "40308c0e14b996904eec3cec63d03706a3f2a6bc",
+      "worktree_sha256": "3843fa1e562c2b39eb5d50ff3432e702b971b7d19ff6fec1da06d31a048a5285"
+    },
+    "services/backend-laravel/routes/api.php": {
+      "git_blob": "b0e5d93b0a2783d04d9c83119d8f6a447292c517",
+      "worktree_sha256": "60493e2412a4685adfa15914dcd016acc6800efb9413802a408fa3911cb7bcb0"
+    },
+    "services/backend-laravel/routes/web.php": {
+      "git_blob": "cac2902dddbd990bb9c3f7bf21df1cbaef6a9bed",
+      "worktree_sha256": "dc6dd32eda519458721069717bb3b88b8ff4cc15987b398cef44e9a67e51e23e"
+    },
+    "services/backend-laravel/tests/Feature/AdminApiTest.php": {
+      "git_blob": "d8f6f9a1e889574c16403cb3f00744e0a85db4f2",
+      "worktree_sha256": "320af8666db9132141c46779ccb3ab0fa36529ec4095dbffa051bfbacfee3d94"
+    },
+    "services/backend-laravel/tests/Feature/AuthPasswordApiTest.php": {
+      "git_blob": "5221627274f72f7f159fafa907dfb5e9c15111c9",
+      "worktree_sha256": "8e8c7db35f506918ced1f01425960a13d1c63d4879750bb30db771cc39a938eb"
+    },
+    "services/backend-laravel/tests/Feature/V1006AdminWebTest.php": {
+      "git_blob": "65bd5d00c3e5b3c39df6d0192241b6a97470394a",
+      "worktree_sha256": "129380c28f4600d4a48bda022e9d337c5be4fc7ba828a96a3ad19ded7dd6ee8f"
+    }
+  },
+  "artifacts": {
+    "source_commit": "6a6642aa457188866a1b8cd6d9cc733aff86a0c4",
+    "artifacts": {
+      "apps\\flutter_elitesync_module\\build\\host\\outputs\\repo\\com\\elitesync\\flutter_elitesync_module\\flutter_release\\1.0\\flutter_release-1.0.aar": {
+        "bytes": 3953207,
+        "sha256": "6521ff058334f16b24994ed03c8ee8271d0c886efbb7232ce65a93371448b9ad"
+      },
+      "apps\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk": {
+        "bytes": 213058140,
+        "sha256": "213c1a3a7081c339626e841706fad08d88e793e8610c93492d297be20cd3f965"
+      }
+    },
+    "libapp_match": true,
+    "libapp_sha256": "45b6ba7bf6bb5e2aa1e344a1e4b38ad6c4c45b82494a6f23d5c44bfbcf19e01f",
+    "flutter_assets_compared": 9,
+    "flutter_assets_match": true
+  },
+  "final_automated_receipts": {
+    "flutter-final-03": {
+      "command": [
+        "D:\\flutter\\bin\\flutter.bat",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/session_rejection_test.dart",
+        "test/core/network/auth_interceptor_rejection_test.dart",
+        "test/features/profile/data/profile_city_save_test.dart",
+        "test/features/profile/presentation/pages/edit_profile_city_test.dart",
+        "test/features/profile/presentation/providers/profile_city_provider_test.dart",
+        "test/features/profile/presentation/providers/profile_providers_test.dart",
+        "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "test/app/router/home_progress_guard_refresh_test.dart",
+        "test/app/router/app_shell_rtc_invite_test.dart"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T13:32:16.134053+00:00",
+      "end": "2026-10-14T13:32:26.393340+00:00",
+      "streams": {
+        "stdout": "8476f262ff78ef309fe446f8dbb0dfeaa927b30fdb72e290c4ef21a44d9f023b",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "dart-final-04": {
+      "command": [
+        "D:\\flutter\\bin\\dart.bat",
+        "analyze",
+        "lib/shared/providers/session_provider.dart",
+        "lib/core/network/interceptors/auth_interceptor.dart",
+        "lib/core/network/dio_factory.dart",
+        "lib/shared/providers/app_providers.dart",
+        "lib/features/auth/presentation/pages/login_page.dart",
+        "lib/main_prod.dart",
+        "lib/app/config/app_env.dart",
+        "lib/app/router/app_shell.dart",
+        "lib/features/profile/data/datasource/profile_remote_data_source.dart",
+        "lib/features/profile/presentation/pages/edit_profile_page.dart",
+        "lib/features/profile/presentation/providers/profile_providers.dart",
+        "test/session_rejection_test.dart",
+        "test/core/network/auth_interceptor_rejection_test.dart",
+        "test/features/profile/data/profile_city_save_test.dart",
+        "test/features/profile/presentation/pages/edit_profile_city_test.dart",
+        "test/features/profile/presentation/providers/profile_city_provider_test.dart"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T13:30:26.358135+00:00",
+      "end": "2026-10-14T13:30:50.686997+00:00",
+      "streams": {
+        "stdout": "c1bfeeb6fa0b7f341df4d84a89ddb753c3ecae8ce2d2f0ffc9d3f00fec756e2c",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "php-final-01": {
+      "command": [
+        "php",
+        "vendor/bin/phpunit",
+        "tests/Feature/V1006AdminWebTest.php",
+        "tests/Feature/AuthPasswordApiTest.php",
+        "--display-deprecations"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T13:13:07.042031+00:00",
+      "end": "2026-10-14T13:13:25.910775+00:00",
+      "streams": {
+        "stdout": "817944bf1ac13b871347869b370130f8a246a4f3ca9cabb9afa8a0a6c562bab8",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "php-admin-scoped": {
+      "command": [
+        "php",
+        "vendor/bin/phpunit",
+        "tests/Feature/AdminApiTest.php",
+        "--filter",
+        "test_verify_queue_and_update_flow|test_admin_users_exposes_batch_audit_fields_and_filters_by_batch_id|test_admin_endpoints_forbid_non_admin_user|test_admin_endpoints_forbid_whitelisted_phone_without_admin_role",
+        "--display-deprecations"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T12:58:37.607361+00:00",
+      "end": "2026-10-14T12:58:38.546493+00:00",
+      "streams": {
+        "stdout": "eaf0674cc78009b5a20b1eb5ecc25c0de8a860afdb5373065bd7210f8cac0840",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "android-build-09": {
+      "command": [
+        ".\\gradlew.bat",
+        "assembleDebug",
+        "-PflutterDartDefines=ELITESYNC_V1006_LOCAL_BUILD=true",
+        "--console=plain",
+        "--info"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T13:58:38.232010+00:00",
+      "end": "2026-10-14T14:01:06.020305+00:00",
+      "streams": {
+        "stdout": "572ca1320fa7865274a0e6f9d4cb7e88c95a23859a84a823b688ef9735a82b8b",
+        "stderr": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+      }
+    },
+    "apk-install": {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5580",
+        "install",
+        "-r",
+        "apps/android/app/build/outputs/apk/debug/app-debug.apk"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "start": "2026-10-14T14:10:10.348383+00:00",
+      "end": "2026-10-14T14:10:15.947272+00:00",
+      "streams": {
+        "stdout": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "evidence": {
+    "docs/versions/v10.0.6/evidence/.gitattributes": {
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "git_blob": "fa1385d99a319b43c06f5309d1aae9fdd3adea46"
+    },
+    "docs/versions/v10.0.6/evidence/adb_ui.py": {
+      "bytes": 1621,
+      "sha256": "029c996e8ebaa3f75e05a4bfd6371d7bc28dd32a33212781566c4bac533f19db",
+      "git_blob": "452b4dc7554ceb981de316d7605d0c67df40f01d"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-01.json": {
+      "bytes": 465,
+      "sha256": "c1ab6601343bfff0cca82418a89f2adb6a72df2c9f564bf8b47804cc2462d393",
+      "git_blob": "34c6c7bec498660bf7deae088069882b70934354"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-01.stderr": {
+      "bytes": 1108,
+      "sha256": "12f0945f0f9a9a92c7be0e9033b21b0ef20b04fbf8adaace676c3ad873fe4a2c",
+      "git_blob": "9ee67c637d1804f52f982aca02dfaf2245ee9ebe"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-01.stdout": {
+      "bytes": 61,
+      "sha256": "a062d0fadd2b654af198b2d7602934738db3912fff0de30ae0b77364cad35e53",
+      "git_blob": "e1b33a60dcdc9670f783b708ec4a1b272e9bb7e6"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-02.json": {
+      "bytes": 544,
+      "sha256": "464fb1f93f52b35397b82b04695498ef61c59cc46cc917a4d40a24838f869273",
+      "git_blob": "7d55f34af86a9da84b6ac79320f260e7294c22eb"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-02.stderr": {
+      "bytes": 1108,
+      "sha256": "7a03ce178424b0f065a0f4deee20ec74f52905b991e695fed32654a43a833bac",
+      "git_blob": "a62ec1e64b8434ad027f4819548a22fae93ab7eb"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-02.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-03.json": {
+      "bytes": 559,
+      "sha256": "d36b9f52e33c93e906a992419d72c48125b02008ddc3e1677a1fb9efc7fdc21b",
+      "git_blob": "ff2730f3cfffbe9c1cb652b37ecc6af24a40cb18"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-03.stderr": {
+      "bytes": 1098,
+      "sha256": "7c786633378d4d1984ddc19004edd1e8bf9682257e8e60e289b97780105bc1e7",
+      "git_blob": "30708a22c4bd3b2105ff82046d838437bcc0acf1"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-03.stdout": {
+      "bytes": 1379,
+      "sha256": "914fafd6591c023ca6e88a4928239c52b3bb23e2fd8a7044e4013d2988b8ea3c",
+      "git_blob": "5b41eac1ccac70a993fb37d0d634aa8f1b4339d3"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-04.json": {
+      "bytes": 705,
+      "sha256": "e0cce6d5d9200ad7ecd2cbbf92a3b95ee51326c3dad1dac1175a444e68593faa",
+      "git_blob": "3326cb41555bab98bce971f8a89f07d28689011b"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-04.stderr": {
+      "bytes": 21021,
+      "sha256": "68d81fdf5292adc218fb3d0013e4de2515ad677efd5d237b83a441c5a914cddb",
+      "git_blob": "85376cba719f851169a640e954fcd0d5eb8990c8"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-04.stdout": {
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "git_blob": "87034ab4f8c529799080251aeec7c19b04191f03"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-05.json": {
+      "bytes": 612,
+      "sha256": "5891350a68e22b795f91d8e8d2e23ed170f9eb9fab0744ae6d9dff2d98c8476d",
+      "git_blob": "dc627a17f2f901fafb4008f9894d92d465d4688e"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-05.stderr": {
+      "bytes": 1332,
+      "sha256": "91bf3b79dea52490da03b9598d42b111af0e413ffc68ae1eb45a42a7f1694f7e",
+      "git_blob": "28d97c18318c2a5bb5b9389b8ce3925dc208d3b6"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-05.stdout": {
+      "bytes": 333198,
+      "sha256": "f065810958874b41fd10ad11516e9e6246d9ec8d460abfb9fea3360366e49f72",
+      "git_blob": "4f723afb2eeaa3b60d1cb0376a35bad8be08cc73"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-06.json": {
+      "bytes": 480,
+      "sha256": "e09b6dbce8d3ca0f8faa8615dc865cc2dcbebc355ffd9e76904573b8b5bdb929",
+      "git_blob": "4b3da1b77c80305f026096489b9a3d667a61b0d0"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-06.stderr": {
+      "bytes": 1319,
+      "sha256": "40c16f88680ef56100634d652fade4db96f0997787f649fe3aaa9e09bd11701e",
+      "git_blob": "87867cb439258a45d85facaca9b5c16a4e1734fe"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-06.stdout": {
+      "bytes": 8391,
+      "sha256": "e1ea307125cb2bf69210cd126968fa780a3475a947d8a7e936d8a5d2cbde0da4",
+      "git_blob": "b09fdcb9111acb5e70096b7d2e9abb6638dccf02"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-07.json": {
+      "bytes": 489,
+      "sha256": "803889424177a092c7cd811518ebe366eb27743fc192e0c292e3514082cafd97",
+      "git_blob": "85fc386becb20ff8c7b394435a4d5f78ac29bcba"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-07.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-07.stdout": {
+      "bytes": 903155,
+      "sha256": "a1a494c397dec4115951bae1e515ea071fce880f947ae1b0e151222ea8f9b87f",
+      "git_blob": "118d76337650edbd9b3b686e82aa3f3cab7ee17c"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-08.json": {
+      "bytes": 510,
+      "sha256": "be27027f9d6a00a433c643abefd54a6a6ec47b4504182245c1b044ed565161a5",
+      "git_blob": "342093272dc27233cd2368e3f6c05a19a68d466e"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-08.stderr": {
+      "bytes": 44,
+      "sha256": "83cee69214da2175b5033379ed8853ff7990d883aa32a0acf6b28bef6f404b66",
+      "git_blob": "ea159000a7191103807a14baf66cc0db9740b526"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-08.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-09.json": {
+      "bytes": 480,
+      "sha256": "69169c0871978221ca1383b40e44d3d4d7089a19b0cfa3f4a020735304913691",
+      "git_blob": "6c8eb0e955f50b5b68cc140f0117fb77a8815a13"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-09.stderr": {
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "git_blob": "fddfd9db53bfbe526312b778d9fa6bd96c37b0de"
+    },
+    "docs/versions/v10.0.6/evidence/android-build-09.stdout": {
+      "bytes": 443102,
+      "sha256": "572ca1320fa7865274a0e6f9d4cb7e88c95a23859a84a823b688ef9735a82b8b",
+      "git_blob": "56f13e639d9e0e8db5b1e15138f2a2ad7db36fd1"
+    },
+    "docs/versions/v10.0.6/evidence/api-after-app-city.json": {
+      "bytes": 2447,
+      "sha256": "299361a18853696a8bf4640872f00805e83140db3526f3c6b70d6aca87d58a29",
+      "git_blob": "2af07b3123e98072740e23aafddb5c9b1f4ef5dd"
+    },
+    "docs/versions/v10.0.6/evidence/api-after-ban-restart.json": {
+      "bytes": 2167,
+      "sha256": "8fb783ca62b28cb66d55f4ca3e489929b7eafacb77a80cbb348be821ea6d1b44",
+      "git_blob": "f61559d860a84b498b53767d2f2cb8e74312009f"
+    },
+    "docs/versions/v10.0.6/evidence/api-after-city-restart.json": {
+      "bytes": 2447,
+      "sha256": "299361a18853696a8bf4640872f00805e83140db3526f3c6b70d6aca87d58a29",
+      "git_blob": "2af07b3123e98072740e23aafddb5c9b1f4ef5dd"
+    },
+    "docs/versions/v10.0.6/evidence/api-after-web-ban.json": {
+      "bytes": 2173,
+      "sha256": "00afa8e7e8d1b587c1db8413d148af66f9ea23070b19b265f733d82ce2f5b296",
+      "git_blob": "4bf403e5b015071f3be16cfceb03262ac3dadbe8"
+    },
+    "docs/versions/v10.0.6/evidence/api-before.json": {
+      "bytes": 284,
+      "sha256": "6bcdc95f26567e5382efd1dcefa8cdae30a20871ac6f0f2c691067d7311efd5c",
+      "git_blob": "d439499cc7b129e765affeb5a0ba9989267f7340"
+    },
+    "docs/versions/v10.0.6/evidence/api-invalid.json": {
+      "bytes": 1549,
+      "sha256": "030761e765f24d8cb0c5b84a6ddc747ace08d57a2a92e0a677ed745803669da4",
+      "git_blob": "79fc7940e23ae48e6358c8325028a23b03d9ed07"
+    },
+    "docs/versions/v10.0.6/evidence/api-read.json": {
+      "bytes": 2447,
+      "sha256": "299361a18853696a8bf4640872f00805e83140db3526f3c6b70d6aca87d58a29",
+      "git_blob": "2af07b3123e98072740e23aafddb5c9b1f4ef5dd"
+    },
+    "docs/versions/v10.0.6/evidence/api_probe.py": {
+      "bytes": 2807,
+      "sha256": "41ca1d82b4ad595d9de5815eaa987e0e861257b8a8e9e14a51506e07d98c85ce",
+      "git_blob": "fe2cbb599c9edf2ec2bb11bacef3496009453ea6"
+    },
+    "docs/versions/v10.0.6/evidence/apk-install.json": {
+      "bytes": 469,
+      "sha256": "e879763ed0049cd657035e0ddb07b6bd50d6c54e6e608e9bb669672933411f77",
+      "git_blob": "045275fff869ecd23e73b97edfa53f919e3c6b9d"
+    },
+    "docs/versions/v10.0.6/evidence/apk-install.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/apk-install.stdout": {
+      "bytes": 38,
+      "sha256": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3",
+      "git_blob": "b7cb995bb958211b5cd9bb21bc90a0f2d9c63f22"
+    },
+    "docs/versions/v10.0.6/evidence/app-after-ban-cold-start.png": {
+      "bytes": 255839,
+      "sha256": "249b0b035a4cdb15acf37f196678ce18a795e54058c12fe2515bf8b8108fa71f",
+      "git_blob": "ac5cccd1dbebede90fe58c2d485c13b5d1e3ec7b"
+    },
+    "docs/versions/v10.0.6/evidence/app-after-ban-cold-start.xml": {
+      "bytes": 8664,
+      "sha256": "3c80d26879438851b688ed02425bd7bd592fc14f072a56cb151fa86a40a21804",
+      "git_blob": "5bc131aea8cc708e58a4a44a1f0d7d749fec3b3b"
+    },
+    "docs/versions/v10.0.6/evidence/app-ban-save-rejected.png": {
+      "bytes": 296966,
+      "sha256": "cc4f84b46923058b14cef538901b4df2c57abd5670f3bac80bfb3b82c5559dc6",
+      "git_blob": "625086030159c69f795d790d99e35a8ce4afd8aa"
+    },
+    "docs/versions/v10.0.6/evidence/app-ban-save-rejected.xml": {
+      "bytes": 9059,
+      "sha256": "7f46887284990435359028781b585cc3dc4a3b4a3e93d02005bf3dc79e6c6d25",
+      "git_blob": "664a700447f7247fdf6448ae7df8dcb54a3afa1f"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-after-relogin.png": {
+      "bytes": 146922,
+      "sha256": "f61cdd9e49e98e2b588158c97aaea9e653971bcd7981991234c25c0db7631373",
+      "git_blob": "b90c9a9ef8ff6a4d826368f2df64e777312410f9"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-after-relogin.xml": {
+      "bytes": 7994,
+      "sha256": "b177506f1371086d013ab2aa058c9e39da23cd061cc023eb3ac656076df8e719",
+      "git_blob": "dcf5e0f946213669ae54c5d1c5457a19e90ec056"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-after-services-restart.png": {
+      "bytes": 146150,
+      "sha256": "8d9cfed2e330aa81f387bfff3a2fda7579f9967e214a460f07128763bf7e64f2",
+      "git_blob": "a34cf9ca8175451ff8bf617cb38880b33e6112d7"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-after-services-restart.xml": {
+      "bytes": 7995,
+      "sha256": "68c76b4ac0541bf29306831ae50cd61e78d7856718a2cab3de520c9f5dfc6749",
+      "git_blob": "6a6ab328fdbbc0b89b5e3691012b34e0686c7e7d"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-reentered-view.png": {
+      "bytes": 146382,
+      "sha256": "553fdb6385fb89aa5a88e49ee7c5a95c04ed2db3177e9eaa22630493f2439d8b",
+      "git_blob": "88ab1663e6a9d6a973ce364932cdf5c80cb2cd60"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-reentered-view.xml": {
+      "bytes": 7994,
+      "sha256": "b177506f1371086d013ab2aa058c9e39da23cd061cc023eb3ac656076df8e719",
+      "git_blob": "dcf5e0f946213669ae54c5d1c5457a19e90ec056"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-save-result.png": {
+      "bytes": 156407,
+      "sha256": "10c59e90fdcccd56967dc57b08a9c3dad8616657545e3bb96950a7480c3a5149",
+      "git_blob": "8529f66818f9031b17a42edf6e8b58d575266b0d"
+    },
+    "docs/versions/v10.0.6/evidence/app-city-save-result.xml": {
+      "bytes": 8378,
+      "sha256": "3ea1fda546b26ccb0bf1e622a44da40c3af9a4d69c6ce41213eeefa64556ffa9",
+      "git_blob": "ea9d6d771779b00510463ac00f7b6068f52f3b4d"
+    },
+    "docs/versions/v10.0.6/evidence/app-identity-logout.json": {
+      "bytes": 392,
+      "sha256": "9e3c5989607155bca722f386c1e995d11854cf2421ad9dc0c73a4a4ec44126a9",
+      "git_blob": "4cb5ddb578c2d8f8cc717168ffd49c981a3e0695"
+    },
+    "docs/versions/v10.0.6/evidence/app-identity-rejected.json": {
+      "bytes": 392,
+      "sha256": "9e3c5989607155bca722f386c1e995d11854cf2421ad9dc0c73a4a4ec44126a9",
+      "git_blob": "4cb5ddb578c2d8f8cc717168ffd49c981a3e0695"
+    },
+    "docs/versions/v10.0.6/evidence/app-identity-relogin.json": {
+      "bytes": 432,
+      "sha256": "a39ece75f60000bda9c8e4bba537e4744b33e7fd739178b053c7dc6575139db3",
+      "git_blob": "37deb3a66de149b356ac8b7b913a5012ca7fc49d"
+    },
+    "docs/versions/v10.0.6/evidence/app-identity-target.json": {
+      "bytes": 432,
+      "sha256": "a39ece75f60000bda9c8e4bba537e4744b33e7fd739178b053c7dc6575139db3",
+      "git_blob": "37deb3a66de149b356ac8b7b913a5012ca7fc49d"
+    },
+    "docs/versions/v10.0.6/evidence/app_identity.py": {
+      "bytes": 1063,
+      "sha256": "f084760dccb28cf05521c6553f047a651597647a2239751f5a16a2194d827735",
+      "git_blob": "599e652be16b5e57c2501e6f35707228b81d59b0"
+    },
+    "docs/versions/v10.0.6/evidence/artifacts.json": {
+      "bytes": 735,
+      "sha256": "5a11fff90c7006726f1640050b6e66edc858f20887429502fdc53adcaaeb4c50",
+      "git_blob": "7194711060be2f410c24eca5952c9e1f8dae34db"
+    },
+    "docs/versions/v10.0.6/evidence/build-source-final-before.json": {
+      "bytes": 8769,
+      "sha256": "d0031382106c560fafae61fbae4a874e1698bf50d4eeeb63cd3bdcc13655123c",
+      "git_blob": "31fbb27c5e3d8235b500783392429c24aa4bfaf3"
+    },
+    "docs/versions/v10.0.6/evidence/composer-readback-install.json": {
+      "bytes": 477,
+      "sha256": "64f505a2d00896a1f034d40a65f3e791ad04942e64ba89887027c11ceef22f48",
+      "git_blob": "d859fa46634f20c02bfc5dc2590b95a43fbdbf12"
+    },
+    "docs/versions/v10.0.6/evidence/composer-readback-install.stderr": {
+      "bytes": 895,
+      "sha256": "7ed7d89fcf622badaeacf1e156465992a6654617a4131d965562ecdb0e5656a3",
+      "git_blob": "0de451924763b97980bd08aaa20451c5ebb8dfc3"
+    },
+    "docs/versions/v10.0.6/evidence/composer-readback-install.stdout": {
+      "bytes": 7649,
+      "sha256": "36666fe4208a7850bc14c0d57bf92b93678358c7cec4f8dcb89b8709010de3d3",
+      "git_blob": "6b27c5569d88fc00828eca13d3e0bb2f54fe95ab"
+    },
+    "docs/versions/v10.0.6/evidence/control-session-after-ban.json": {
+      "bytes": 395,
+      "sha256": "ecc2ab123c5663ba3773fc398cb9c6bf5f8f71522ae76675bbe54f02301017a3",
+      "git_blob": "bb9d01f81d341b654dff8bef60ad21ba5f877b08"
+    },
+    "docs/versions/v10.0.6/evidence/control_session_probe.py": {
+      "bytes": 1696,
+      "sha256": "8d81683263e728fc15835ecdc156f1bd9f036d4a8c000909b3b8bee9217ca05e",
+      "git_blob": "799404186da53c390ebfd62f15705aa363b6b453"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-01.json": {
+      "bytes": 1300,
+      "sha256": "77e54c5c75e6e5d2b1bcc6699222cd814d6819e76183aa867fe361537beb2e92",
+      "git_blob": "ec962960e76f85c29689710d3130d79c37efda1e"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-01.stdout": {
+      "bytes": 415,
+      "sha256": "c1bfeeb6fa0b7f341df4d84a89ddb753c3ecae8ce2d2f0ffc9d3f00fec756e2c",
+      "git_blob": "04293f80c28e727a682465f37e879cae5275b3b0"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-02.json": {
+      "bytes": 1300,
+      "sha256": "1d5ed77d2b16741b9cde5fd31eb301bbc8e73894b9bac73d36a4f8453e764746",
+      "git_blob": "abd4068178dd7e9c54e7d7dd8810d9f59b468e09"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-02.stdout": {
+      "bytes": 608,
+      "sha256": "77e46ee46bb2bedc7552ddd418ca1d01d4845121eaa2215b60615f1797a1ae63",
+      "git_blob": "ff9ed5f601a35ee6659016bfed1dc61df1e45771"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-03.json": {
+      "bytes": 1300,
+      "sha256": "a51a3b05b8d614b0240a16ea9a219cdd5ce546f7e0190d7603d2ba6e3356f265",
+      "git_blob": "071735fde138487b52060ceac813b52c5747b335"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-03.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-03.stdout": {
+      "bytes": 643,
+      "sha256": "a51b547010740d7b173120ae97ed1ec90a998b810cf11cb3ba71999894e45142",
+      "git_blob": "e754090ece1d85ccfd286adebd50cb66ce4dec17"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-04.json": {
+      "bytes": 1300,
+      "sha256": "efbffde7e51049594773c08fe46781d1e600e21b717836b3e1a55b4049c8724a",
+      "git_blob": "39994c2da8f16d14197037389a6a9a8f0f78400d"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-04.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/dart-final-04.stdout": {
+      "bytes": 415,
+      "sha256": "c1bfeeb6fa0b7f341df4d84a89ddb753c3ecae8ce2d2f0ffc9d3f00fec756e2c",
+      "git_blob": "04293f80c28e727a682465f37e879cae5275b3b0"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-app-city.json": {
+      "bytes": 468,
+      "sha256": "1f1a4b85d1a1887dd4aa7f6918d00257a88dfa634dea6c96747725503cf9cb67",
+      "git_blob": "49d4061dced6b65450bbd86ee1f659f0e849ac36"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-app-city.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-app-city.stdout": {
+      "bytes": 1274,
+      "sha256": "5b9f1d3e804ce55c8b3f4ca3884ae309b2ad4517ba473839e27eabc955e96bfb",
+      "git_blob": "78fa62807127bac6db20e84988802e460b22000c"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-ban-restart.json": {
+      "bytes": 490,
+      "sha256": "956c05c70816c9ac40fadcfa90cafa8e9734561e56235ec5ba3e98044090504b",
+      "git_blob": "64d9192aa3d4300d170fecbfbdf60d3344fad4ed"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-ban-restart.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-ban-restart.stdout": {
+      "bytes": 1267,
+      "sha256": "f2bedac5f218a82950c05cc7d840c092cb6b65602376d513ae567adb5bd32338",
+      "git_blob": "6c5f3e548874c518b958c7fbad507ae56703e1d4"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-city-restart.json": {
+      "bytes": 468,
+      "sha256": "5e921f30a93adafe1d57b5532b704e73355c5b7a7aac83cd6023feee48740f01",
+      "git_blob": "8433940ac664b9ea06c6c8cf97509b12063894c3"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-city-restart.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-city-restart.stdout": {
+      "bytes": 1274,
+      "sha256": "36a32dedbce730ea8b794429464e14917088cc9b4a7515acb23bb5f4128727ba",
+      "git_blob": "b98233ffd342d42e11ebfcde596eeb1dae874fa4"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-web-ban.json": {
+      "bytes": 490,
+      "sha256": "da694246ccf30c2f447ddaefe703d18470aef3b1d5261eff5630c1154d701bc0",
+      "git_blob": "2eca335be47d93f12ae014849e5a1aeb9d552062"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-web-ban.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-after-web-ban.stdout": {
+      "bytes": 1273,
+      "sha256": "974a7c3b4941a1382e496be4774cc827f5f5e87f0d28c4a53f1f7dc47d0e78e6",
+      "git_blob": "efcb0fbfbbd392c32d8f8a44bf2b8a51d64da655"
+    },
+    "docs/versions/v10.0.6/evidence/db-before-city.json": {
+      "bytes": 468,
+      "sha256": "7ea6699c81f1c7aa86a2fd6613aef5275450df93adc1ed62ed5e332c4e35955e",
+      "git_blob": "56590379624b349988865cbc826adc07f3af3ac3"
+    },
+    "docs/versions/v10.0.6/evidence/db-before-city.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-before-city.stdout": {
+      "bytes": 1286,
+      "sha256": "60fac0a1655a95175252e531bbac8330a7b484c4f98cc3f57a5c00c882451f33",
+      "git_blob": "069f9f13c4d92be36cdecd65660b1ef29f8ab726"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban-final.json": {
+      "bytes": 459,
+      "sha256": "0639f97c096b14d21447b6529fadaa543896a332ecd5d5fbc2f9d11743b9ccec",
+      "git_blob": "34a3d2aa98c1ac9e4c434473de49f3c14ce49be2"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban-final.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban-final.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban.json": {
+      "bytes": 459,
+      "sha256": "3ef317822284561209c25c47e916db01263588eb22a5afef5b6989b24d723683",
+      "git_blob": "baa20d17583a12009321e29e37f394a756e5eab9"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban.stderr": {
+      "bytes": 122,
+      "sha256": "d4b772b2c8ed18aac899da2a679acfff6e844f49236aa3c2bb8e9eeab1102d49",
+      "git_blob": "f15587b014bf077b11d37c7570b8da87e1ea47cb"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-ban.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city-02.json": {
+      "bytes": 459,
+      "sha256": "89baf05883dd880d8a9637ff7a4ab619fc245ed133eb688b6e06f8cf46321ff6",
+      "git_blob": "535d9af948d17f97907d4ebec05aa2e0f97a44c5"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city-02.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city.json": {
+      "bytes": 459,
+      "sha256": "57a4653d64f465b01ce84d4612937aa75fa602b308b719c67e8dbe9f45e15e53",
+      "git_blob": "4154dee113d30b4322114d229930c4e3b6a30e44"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city.stderr": {
+      "bytes": 122,
+      "sha256": "d4b772b2c8ed18aac899da2a679acfff6e844f49236aa3c2bb8e9eeab1102d49",
+      "git_blob": "f15587b014bf077b11d37c7570b8da87e1ea47cb"
+    },
+    "docs/versions/v10.0.6/evidence/db-health-city.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-ban.json": {
+      "bytes": 392,
+      "sha256": "5bbb8c223cb6390ef33355eb72b34f38911f0affcfbe2c7921b4b5937b47d3ac",
+      "git_blob": "13211e4d3f86f394149e850afc210cd9c96b6e55"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-ban.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-ban.stdout": {
+      "bytes": 19,
+      "sha256": "d373214cf8710d8d59dedac0f0f7e1a7d44a60901ed009ff8e3a0e5f8619c152",
+      "git_blob": "2e1e1a6e7d592101b384b1685998136232549645"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-city.json": {
+      "bytes": 392,
+      "sha256": "5a191b4168ff62be141fd123160a331a059a754b18401d26acd0dd632312b0de",
+      "git_blob": "d251ef2ec49b025a0e553abac3333e8e677651ae"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-city.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/db-restart-city.stdout": {
+      "bytes": 19,
+      "sha256": "d373214cf8710d8d59dedac0f0f7e1a7d44a60901ed009ff8e3a0e5f8619c152",
+      "git_blob": "2e1e1a6e7d592101b384b1685998136232549645"
+    },
+    "docs/versions/v10.0.6/evidence/db_probe.php": {
+      "bytes": 1369,
+      "sha256": "81f50883b6dec8465f862a000d89eb95e65987b0aa8ef45abc57821f43872e39",
+      "git_blob": "ec7d60a46f6dd0d7f5e9cf05173a335f72f73e23"
+    },
+    "docs/versions/v10.0.6/evidence/docker-identity.json": {
+      "bytes": 754,
+      "sha256": "205e13db4bbe529b467006d983382d7b1e8284837dc79883bd6a715ee401aa6b",
+      "git_blob": "45ec6c15fd702f289b2caa03451b8add9752300e"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-01.json": {
+      "bytes": 748,
+      "sha256": "3d5cf0089accc85ae17a20edabb629deff313663f4d92973a74972542e6ef6c5",
+      "git_blob": "c78aa2f54f3592eeae3b749f7623ca21e63145a0"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-01.stdout": {
+      "bytes": 3914,
+      "sha256": "1723947398d80cc70915ab3264038cbde43cc42b91707540935d245eb98181e3",
+      "git_blob": "fda85cf07010685852c4bcf6ac0944d56d0e4302"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-02.json": {
+      "bytes": 748,
+      "sha256": "7f54376d0dad4a040b112bbd89508669e118da340f2b544de460c25d4b31d7d7",
+      "git_blob": "118c7bf47b6de4ec3e30b356341f9cc7823fae58"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-analyze-02.stdout": {
+      "bytes": 176,
+      "sha256": "f421b160e0871c9473c8c17d443694c6a2425239a81db6bbf0718c3159f5e604",
+      "git_blob": "13639750a7bac547da68304edb31c323b60d1ead"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-01.json": {
+      "bytes": 1041,
+      "sha256": "849b59bc1951f0c491ae358de6d19264d17acd6f387aae5141ea538db98cd6e5",
+      "git_blob": "54a7b84fa0547a92880a7ea310149251cccc85d9"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-01.stdout": {
+      "bytes": 14617,
+      "sha256": "98b41df857dc74e4c793d61321f6158c3516e66a1f88d23c8d9203561ecae55b",
+      "git_blob": "cb6b45c94021b6c0ca3287e20b5d3947757aa7e4"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-02.json": {
+      "bytes": 1041,
+      "sha256": "f94f7a06108e4e6f127ae3bb6d1f4c40d3fb08d09ee35ee30bd73ac356ae8c33",
+      "git_blob": "750eef1b738849f29671aed5fcbd9af1ae4e5983"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-02.stdout": {
+      "bytes": 16936,
+      "sha256": "8b0ecab2459a9164f222e320ec595ce790b1fba175b5ba53868d7cca7a52aab2",
+      "git_blob": "f0bc3d884a5cc147cfecb73aa6e68ed2114dbd2c"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-03.json": {
+      "bytes": 1041,
+      "sha256": "ba98183e8dcb6ee5700bd633b650bd8a61132e877a39fe376a633512e6d7ac32",
+      "git_blob": "f7dd24d69b378cf55c46de09f87885a12b845d3e"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-03.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-final-03.stdout": {
+      "bytes": 16545,
+      "sha256": "8476f262ff78ef309fe446f8dbb0dfeaa927b30fdb72e290c4ef21a44d9f023b",
+      "git_blob": "b7096d9fddf40273f6db41f713d451d7aad123b8"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-01.json": {
+      "bytes": 1041,
+      "sha256": "55b18a60afde58607b471f730f835389c7b5d3b03f2756970a4aeb0625bff666",
+      "git_blob": "ee3d94f39b0c21999a5e819490baae1d28bc7763"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-01.stdout": {
+      "bytes": 17001,
+      "sha256": "be3fecab94068c64572ff5e6cdd62f3fa80ef9a6b89251bdfc55996e08eaa538",
+      "git_blob": "acfc762d32be98957489ee2066878391aeb501d8"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-02.json": {
+      "bytes": 1041,
+      "sha256": "235f960cd1fc2902b62dd8902e271cb245ee7a8d090ae60ddb2c09414991991c",
+      "git_blob": "9e575294e7e6c3de378abbec76e555f4e3dd5988"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/flutter-related-02.stdout": {
+      "bytes": 14386,
+      "sha256": "df3703827b93c8b8bac5d01256599a9c112088587231f96baa93c85a84c1cb3f",
+      "git_blob": "78ce40c21f12ebcc83ca1954c21d142789238a0e"
+    },
+    "docs/versions/v10.0.6/evidence/http-front-idle-probe.json": {
+      "bytes": 141,
+      "sha256": "e8c8d05d1e1e9be8a63146ca53d7347cb5d802f846d734c9847f1bc377cf5733",
+      "git_blob": "cfc3791500ae054bd51cbeb65edc023379f06030"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-before-seed.json": {
+      "bytes": 494,
+      "sha256": "d048109b5538e3f480ae2d57fa4a960ef5feaaf8cd04ba474db84810a02c7a67",
+      "git_blob": "0a8c911c9a3dab816adb9cc184da86a34812378c"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-before-seed.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-before-seed.stdout": {
+      "bytes": 34,
+      "sha256": "8d68a13740dc42889aebaf8b7b7bf81d2f162d283e2fe529973d07b1621b6ec6",
+      "git_blob": "7dfa04afd5717cf20bcba34c83475d2f6fc564aa"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-status.json": {
+      "bytes": 403,
+      "sha256": "c606b65c55336ad1354f9412742e67807eefccccc51acd5347fcc6dad44dc75c",
+      "git_blob": "810e17f7e657901acedd749a19a0dd0817dfae01"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-status.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/migrate-status.stdout": {
+      "bytes": 7080,
+      "sha256": "cc5af29125416fb266a35d26db2aa17a5a0e72e302c5b9ea29cb79e32c069e6c",
+      "git_blob": "2e0f07992ad71b4af59b50b57cef8bfcac196d22"
+    },
+    "docs/versions/v10.0.6/evidence/operations-syntax.json": {
+      "bytes": 502,
+      "sha256": "596ba79a827862054d50f619f5034760805ea6073b1caf281dfaa05f40d47360",
+      "git_blob": "dde588d70080b00522196f5524a1f0cac230b6ff"
+    },
+    "docs/versions/v10.0.6/evidence/operations-syntax.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/operations-syntax.stdout": {
+      "bytes": 24,
+      "sha256": "0d4ea8e38781f34240463fa48d1495c5a5944b65b5a83441749dd5cddc4ae58f",
+      "git_blob": "0fb8ded6710095644d12358c405d970320a895f6"
+    },
+    "docs/versions/v10.0.6/evidence/php-admin-scoped.json": {
+      "bytes": 678,
+      "sha256": "3785c3340e553cc0b4bf9361e088f476da78453b644760533549d3e852942c72",
+      "git_blob": "4b2442100913cc3900fb2d4fbe26a8a878ac0042"
+    },
+    "docs/versions/v10.0.6/evidence/php-admin-scoped.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-admin-scoped.stdout": {
+      "bytes": 2689,
+      "sha256": "eaf0674cc78009b5a20b1eb5ecc25c0de8a860afdb5373065bd7210f8cac0840",
+      "git_blob": "68689e14c444607543f1e107d4745ba0754945a5"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-01.json": {
+      "bytes": 602,
+      "sha256": "04bb654337bf088bd85a7d798ad2dfbe0584f9bf04ae5fd3f63876238017c2df",
+      "git_blob": "b848e665c9eb5698df8e1f7319b6cb19d6b07744"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-01.stdout": {
+      "bytes": 110942,
+      "sha256": "dca0479f34551d6aab573b5a441ef3d510f04aee9ed7431c602b43e261c94fa7",
+      "git_blob": "49e96cb57fdeda673440846c570711f65b167bd1"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-02.json": {
+      "bytes": 602,
+      "sha256": "5982f2a0641165357fad323bc40bb78f5c7055926390c65ca1f9cd615d452f89",
+      "git_blob": "1a1f4d0455857896dac5f01c2522e905ebe36f3c"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-02.stdout": {
+      "bytes": 110942,
+      "sha256": "85965aa414b3c48454af0922d523f99ddb3076caefb4245ce0f78c6de484606e",
+      "git_blob": "624cca6d62b0ee5d01431f2e9100ae11e1162b8f"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-03.json": {
+      "bytes": 502,
+      "sha256": "a26449aaf9b71a4886fa3fa0bf99c74e1afd8c9f0a09596108723e9a4070c563",
+      "git_blob": "7aa0c18dc2492bb1d266d85f3d1f4ed4620a7593"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-03.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-03.stdout": {
+      "bytes": 32189,
+      "sha256": "71a77d4cfdf6d25791f424a998e371527ce8436a80bd2389d27bea1a78137e9c",
+      "git_blob": "e46f0eac6ea1f3dce6ac5c435354c798c48fe5d4"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-scoped-01.json": {
+      "bytes": 463,
+      "sha256": "6a9ddc04605c1e5e989a37aafc1b22afd09badbaf9ed7f4887c42729f95afcd2",
+      "git_blob": "ea745dd1f191a5d2091ab644aa86982f957473cc"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-scoped-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-feature-scoped-01.stdout": {
+      "bytes": 402,
+      "sha256": "05e348967c2e0c99781b7bb49ea275bf5683136365dbdc4f15f19ee7d95c2724",
+      "git_blob": "29573c3f2011c7de1930f4b4c5512d190d6b71a7"
+    },
+    "docs/versions/v10.0.6/evidence/php-final-01.json": {
+      "bytes": 494,
+      "sha256": "3c7d0e422c55872bc8b8ffeee98afaa171d1f6f08d7595847dd9b62c9b5f863b",
+      "git_blob": "4ecb919005e0ce407e1bb01946fdf3839b14201c"
+    },
+    "docs/versions/v10.0.6/evidence/php-final-01.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/php-final-01.stdout": {
+      "bytes": 11188,
+      "sha256": "817944bf1ac13b871347869b370130f8a246a4f3ca9cabb9afa8a0a6c562bab8",
+      "git_blob": "735fc11c8a61f72741c955a7c368c158e60fd36e"
+    },
+    "docs/versions/v10.0.6/evidence/protect_check.py": {
+      "bytes": 1164,
+      "sha256": "e89bdfa26ad92d9d537c09d618b5266145eb26f262dcb8d1180e337e2be8eee8",
+      "git_blob": "bc536441c61321e02e750b71b00bb694a56ea96e"
+    },
+    "docs/versions/v10.0.6/evidence/pub-get.json": {
+      "bytes": 519,
+      "sha256": "e733372d833e3e3cf7d454cfa32514e66ddc8973a57613dc9d2024835978da7f",
+      "git_blob": "75c7b19ce267c201f88a5391daf28e4b0703c1c4"
+    },
+    "docs/versions/v10.0.6/evidence/pub-get.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/pub-get.stdout": {
+      "bytes": 658,
+      "sha256": "2ce1144a6e12ed2f5be516ec692a7b6bb82b02b1522ed04a2a2be709fe53ead6",
+      "git_blob": "ae8a8f371e30fc739ef299571f7b108dcb6829f6"
+    },
+    "docs/versions/v10.0.6/evidence/resource-final.json": {
+      "bytes": 274,
+      "sha256": "001b43b76405eade1646633684017a4c3eaeb062223477a6ba52049d0d969e70",
+      "git_blob": "4d7df9374af043b20fb6af8fdba1c8f450a9787b"
+    },
+    "docs/versions/v10.0.6/evidence/resources-avd-stop.json": {
+      "bytes": 404,
+      "sha256": "be7567979ed6eaf0cdb9458b98e79eaa7ebdb6591babccc9ddde240a260ddc15",
+      "git_blob": "ad09d27fb11340d051e602cfd804970b89712cc6"
+    },
+    "docs/versions/v10.0.6/evidence/resources-avd-stop.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/resources-avd-stop.stdout": {
+      "bytes": 37,
+      "sha256": "2f2464ff20db7f0caaf9d7ea8b3e7d1356fb4e22dc58d0e17a15faf96bf41822",
+      "git_blob": "5361d5d9a1710930ffb55745080bf5bf29d575b2"
+    },
+    "docs/versions/v10.0.6/evidence/resources-db-stop.json": {
+      "bytes": 389,
+      "sha256": "7a9a09ffb4d139d80d6864933f8cfc2c5833e7cdbd1aa35ea71cad5a429ac973",
+      "git_blob": "5c1b86b3bb3e3718f47da67b2145158ea2ac6b34"
+    },
+    "docs/versions/v10.0.6/evidence/resources-db-stop.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/resources-db-stop.stdout": {
+      "bytes": 19,
+      "sha256": "d373214cf8710d8d59dedac0f0f7e1a7d44a60901ed009ff8e3a0e5f8619c152",
+      "git_blob": "2e1e1a6e7d592101b384b1685998136232549645"
+    },
+    "docs/versions/v10.0.6/evidence/root-after.json": {
+      "bytes": 17416,
+      "sha256": "e4a5f49ec1a5440a9e409a43c0e983a43b352c433799c1223963209bdb45caa5",
+      "git_blob": "ba4428568d3df4c94a471a1acb72258561e87d21"
+    },
+    "docs/versions/v10.0.6/evidence/root-before.json": {
+      "bytes": 17108,
+      "sha256": "71bd7c0d0cceff3df3e289e061d1ba4890cc0258c3f19e8547947008a74b8060",
+      "git_blob": "06430e39b023e8baf3f334d349380502e040a02e"
+    },
+    "docs/versions/v10.0.6/evidence/root-status-counts.json": {
+      "bytes": 65,
+      "sha256": "97657c3c66f427d375269fa0e1853794bd6295cbe44099d53b9c1b29952508e0",
+      "git_blob": "ada986245424b671b0f06c285511c4485d29cdfa"
+    },
+    "docs/versions/v10.0.6/evidence/run.py": {
+      "bytes": 841,
+      "sha256": "5dde06b660c22b9bb0a7892af1fd47c22ef7ed3f1757d42c91e854177beeac27",
+      "git_blob": "10733b6dfb264988a55a7f7b6448580bce7b8396"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-database-session-http-front.stderr": {
+      "bytes": 1575,
+      "sha256": "6c6b91d3134baab8c431e4c99c46e5edd5b7ebfc3090f00db3fbc10384feec3f",
+      "git_blob": "38725616fb3f2b0238255fed36488142a5dfe284"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-database-session-laravel.stderr": {
+      "bytes": 2251,
+      "sha256": "7ec5ffdc879c2cda083047153efddc39ae9421fb06fcc6187add2a6d334b0043",
+      "git_blob": "5580f2d871ee9f8beb1b801a7fed7c6349ae650d"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-database-session-laravel.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-restart-ban-http-front.stderr": {
+      "bytes": 1048,
+      "sha256": "c14c30e434d21f70a91bf55f5a63d1aac116a10a703409c65ac6d359909ea16e",
+      "git_blob": "301e0c678da0def3380c2d4c466ef1ed35ae275c"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-restart-ban-laravel.stderr": {
+      "bytes": 1530,
+      "sha256": "932644ea24a9bf7d05f3688fc6ad74765652ff67ad1e5183f68df2b5aba44728",
+      "git_blob": "811f83c9c3a1bac7dc853e5291a7897887ca016e"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-restart-ban-laravel.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-restart-city-laravel.stderr": {
+      "bytes": 1221,
+      "sha256": "fbbb8445d5e587fc57a9198311e78c966298f38d2bce9c80bb451876c2668c09",
+      "git_blob": "e68a2531063ef191f1f018a80a5386f1d7d2a4ef"
+    },
+    "docs/versions/v10.0.6/evidence/runtime-restart-city-laravel.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/seed-idempotence-guard.json": {
+      "bytes": 458,
+      "sha256": "047f3110e45fa74b7d788c462de4d84bc92f23f8795efc582acc43be7bea8793",
+      "git_blob": "12eb0277c96083b740b356b23fe20ae79b9de8dd"
+    },
+    "docs/versions/v10.0.6/evidence/seed-idempotence-guard.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/seed-idempotence-guard.stdout": {
+      "bytes": 32,
+      "sha256": "498c29e2b728a76a4078c498c46eba1b2d8e80c9d7b46edb7ae73bb400b9b9ff",
+      "git_blob": "dc812851b0c8d17995ecd3644cacb6718741d284"
+    },
+    "docs/versions/v10.0.6/evidence/seed.json": {
+      "bytes": 533,
+      "sha256": "272d05943c59f102788accaa85a8dd609d8f5459dd283b9023115a56035af13e",
+      "git_blob": "ce2bb316c7b854cde88a80efa84099fe8db04deb"
+    },
+    "docs/versions/v10.0.6/evidence/seed.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/seed.stdout": {
+      "bytes": 32,
+      "sha256": "498c29e2b728a76a4078c498c46eba1b2d8e80c9d7b46edb7ae73bb400b9b9ff",
+      "git_blob": "dc812851b0c8d17995ecd3644cacb6718741d284"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-02.json": {
+      "bytes": 482,
+      "sha256": "ea6541adbea837bc834ec52d928edf8965e9e649705f260fdadfe92511136af5",
+      "git_blob": "1f483930a55c3b4df6c0d59f55d15287ff145cea"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-02.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-02.stdout": {
+      "bytes": 119,
+      "sha256": "ea269333cde68351dcb3af5e9e28e728a6e1303ecc3d54ee756c7941a0ba12b9",
+      "git_blob": "38aa86c15d83aa258cc6b28700d0b5649ac28348"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-03.json": {
+      "bytes": 504,
+      "sha256": "976e8db3934586ace3eab934a79733f9e71d6720f02476180e19de84b621712a",
+      "git_blob": "6f30fc024f8dc7ffff66d99e60b3dc9b3b1beb3f"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-03.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture-03.stdout": {
+      "bytes": 119,
+      "sha256": "d9a7f077341d010b4300c7c952380100f42d9bc5062a2cccc74cdd05f998ef57",
+      "git_blob": "701b89eea9e138d981b8b6de0a6be0bcf913d7cf"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture.json": {
+      "bytes": 482,
+      "sha256": "251da1fb5e2febe80f4cb407a330ac2e6f0849876b6ad9646db8d6fd4fdd309c",
+      "git_blob": "ae9588ca52e4fb6e535e14b833027ee3ecaf68b1"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "docs/versions/v10.0.6/evidence/target-session-fixture.stdout": {
+      "bytes": 119,
+      "sha256": "ea269333cde68351dcb3af5e9e28e728a6e1303ecc3d54ee756c7941a0ba12b9",
+      "git_blob": "38aa86c15d83aa258cc6b28700d0b5649ac28348"
+    },
+    "docs/versions/v10.0.6/evidence/target_session_fixture.php": {
+      "bytes": 2086,
+      "sha256": "5ddb003054dc5d6eb3f11b0781097e83debcb3fb4ce694ed37176a2952fb2ffe",
+      "git_blob": "a4e07d6ed5cce31687ea1451df6dfa331eff29e6"
+    },
+    "docs/versions/v10.0.6/evidence/web-disabled-after-restart.png": {
+      "bytes": 60536,
+      "sha256": "3e93b9be73cd151d5a490ad871c13d15a042ff2b4d8cc9c4aa39e71d70cdabef",
+      "git_blob": "23eb9118fa28042d22dd2f85f24d60b3f9b86fd3"
+    },
+    "docs/versions/v10.0.6/evidence/web-logout-database-session.png": {
+      "bytes": 25585,
+      "sha256": "7cb9999155c72e9cd9fefc75da2bb089f3c41052d04db3fb8afff0a0ea680399",
+      "git_blob": "4a8961e925eca1f055e74c87a698335bf6a33fe9"
+    },
+    "docs/versions/v10.0.6/evidence/web-normal-login-rejected-final.png": {
+      "bytes": 31786,
+      "sha256": "aa8ca0d9fd0772af6aace573e4e17bb171076262b6a8b12ac3705dcc7a7603dc",
+      "git_blob": "9262e71e057d84b3781ea53112a0c1670aefb71a"
+    },
+    "docs/versions/v10.0.6/evidence/web-target-before.png": {
+      "bytes": 45316,
+      "sha256": "eb4989b9b67ec69c0a86929f7d0fe64dca8f319965eb1fd4841f5289b79fba3f",
+      "git_blob": "b385204d38389a1917f5eb400a519cd87236506b"
+    },
+    "docs/versions/v10.0.6/evidence/web-target-disabled.png": {
+      "bytes": 65937,
+      "sha256": "78cb71f10471f5e6f41147d388cc16a0b67558dd920974b963b5c08807d5fa95",
+      "git_blob": "c2647b3267ef960123619cf3ab116600cbf27039"
+    }
+  },
+  "privacy": "Private .env/credentials/tokens/cookies and verbose registry debug logs excluded; scanned actual generated secret values before staging.",
+  "original_root_protection": "before/after HEAD index status AGENTS and105 measured named files match; historical109 not fully rehashed",
+  "candidate_identity": "Final commit/tree delivered after this non-self-referential manifest commit; product/test sources identical to anchor."
+}
