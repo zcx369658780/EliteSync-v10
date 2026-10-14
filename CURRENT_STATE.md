@@ -1,6 +1,13 @@
 # EliteSync-v10 当前状态
 
-## 2026-10-14 v10.0.5 版前规划启动（当前）
+## 2026-10-14 v10.0.5 正式计划冻结（当前）
+
+Astra根据Codex `V10.0.5 PLAN REVIEW — READY_WITH_FINDINGS`，独立核对GitHub `main=4a7091b580977044861ae50ff9b404842ed68283`、Tree `79674652c6a39c66bdab5f2a86979741aa94d4bd` 与已有Progress/Home/Match/Connection/Router代码，正式冻结 [v10.0.5/plan.md](docs/versions/v10.0.5/plan.md)。唯一产品切片是**Progress当前静态Match/Connection入口下增量只读消费已有Home的Readiness、Match、Connection三域摘要**，保留原入口、有限新增Readiness详情导航，非Dev保守、Dev醒目标Synthetic；不得推断noCandidate/noRound细节、不得复制Home可能指向Messages的nextDecision或对Conversation产生新写入。源代码白名单仅 `progress_page.dart` 与新增 `progress_page_test.dart`，加本版必要安全证据；不修改Home provider、Guard、Router或后端及权限。代码候选唯一父为 `4a7091b580977044861ae50ff9b404842ed68283`；计划Git Blob/提交以正式发布回执为准。
+
+状态：**`FROZEN_PLAN / AWAITING_OWNER_MANUAL_DISPATCH / IMPLEMENTATION_NOT_STARTED`**。尚未批准本版源码编写、测试或建立候选，须由Owner手动派发冻结计划。旧 `D:/EliteSync-v10` dirty主树、已有clean本地隔离基线及109项具名保护保持。此前v10.0.0～v10.0.4版本接受/集成和回归不重裁；BE-12 opaque404、V57/H1/H2/D0、M6、真实用户/设备/生产门禁不解除。
+
+
+## 2026-10-14 v10.0.5 版前规划启动（历史快照）
 
 Owner 已明确允许进入v10.0.5规划。Astra基于GitHub主线`c687acc6e7978470a2c2501fb2662b2a5492c553`与已接受功能设计，发布 [v10.0.5有界规划草案](docs/versions/v10.0.5/PLAN_PROPOSAL_V0_1.md)：优先核查**Progress进展页当前只有Match/Connection静态入口、缺少动态只读阶段摘要**的真实产品缺口，尝试复用已经接受的Home/Readiness/Match/Connection状态投影和v10.0.3真实Router，而不再扩展诊断工具或重做Home/Me。具体来源资格、UI行为、写路径/测试范围必须先由Codex只读核查，禁止凭模拟状态推断正式授权。状态 **`PROPOSED / CODEX_FEASIBILITY_REVIEW_PENDING / NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED`**；尚未启动本版代码、测试或候选。
 
