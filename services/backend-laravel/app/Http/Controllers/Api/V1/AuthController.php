@@ -123,30 +123,31 @@ class AuthController extends Controller
                 'phone' => ['手机号或密码错误。'],
             ]);
         }
-        if ($user->disabled) {
-            return response()->json(['message' => '账号已被禁用。'], 403);
-        }
+        return \Illuminate\Support\Facades\DB::transaction(function () use ($user) {
+            $user = User::query()->lockForUpdate()->findOrFail($user->id);
+            if ($user->disabled) {
+                return response()->json(['message' => '账号已被禁用。'], 403);
+            }
 
-        $token = $user->createToken('mobile-access')->plainTextToken;
+            $token = $user->createToken('mobile-access')->plainTextToken;
 
-        return response()->json([
-            'user' => $this->userPayload($user),
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+            return response()->json([
+                'user' => $this->userPayload($user),
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ]);
+        });
     }
 
     public function refresh(Request $request): JsonResponse
     {
-        $user = $request->user();
-        $user->currentAccessToken()?->delete();
-        $token = $user->createToken('mobile-access')->plainTextToken;
-
-        return response()->json([
-            'user' => $this->userPayload($user),
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+        return \Illuminate\Support\Facades\DB::transaction(function () use ($request) {
+            $user = User::query()->lockForUpdate()->findOrFail($request->user()->id);
+            abort_if($user->disabled, 403, '账号已被禁用。');
+            $request->user()->currentAccessToken()?->delete();
+            $token = $user->createToken('mobile-access')->plainTextToken;
+            return response()->json(['user' => $this->userPayload($user), 'access_token' => $token, 'token_type' => 'Bearer']);
+        });
     }
 
     public function changePassword(Request $request): JsonResponse

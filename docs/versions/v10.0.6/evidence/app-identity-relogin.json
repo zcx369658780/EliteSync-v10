@@ -1,0 +1,15 @@
+{
+  "serial": "emulator-5580",
+  "package": "com.elitesync",
+  "cached_identity_present": true,
+  "identity": {
+    "id": 2,
+    "phone": "19900000602"
+  },
+  "profile_cache_presence": {
+    "last_known_profile": true,
+    "profile_summary_snapshot_v1": true,
+    "profile_detail_snapshot_v1": true
+  },
+  "purpose": "identity/cleanup only; cached identity is not persistence proof; secure credentials were not read"
+}

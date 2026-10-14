@@ -1,0 +1,17 @@
+{
+  "command": [
+    "php",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1006AdminWebTest.php",
+    "tests/Feature/AuthPasswordApiTest.php",
+    "--display-deprecations"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T13:13:07.042031+00:00",
+  "end": "2026-10-14T13:13:25.910775+00:00",
+  "streams": {
+    "stdout": "817944bf1ac13b871347869b370130f8a246a4f3ca9cabb9afa8a0a6c562bab8",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

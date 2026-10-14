@@ -58,6 +58,14 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8000/') {
+      throw StateError(
+        'Restoration build requires the matching local Android host.',
+      );
+    }
+    return hostOverride;
+  }
   if (hostOverride.isNotEmpty) {
     return hostOverride.endsWith('/') ? hostOverride : '$hostOverride/';
   }
@@ -86,7 +94,8 @@ Future<void> main() async {
       'ELITESYNC_ADMIN_MATCHING_OPERATIONS',
     ),
   );
-  final flavor = internalFeatures.flavor;
+  const restoration = bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD');
+  final flavor = restoration ? AppFlavor.dev : internalFeatures.flavor;
   final initialRoute = _firstNonEmpty([
     String.fromEnvironment('ELITESYNC_INITIAL_ROUTE'),
     hostBootstrap['initialRoute'] ?? '',
@@ -106,7 +115,8 @@ Future<void> main() async {
       // verified direct backend entry until the public domain chain is stable.
       apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
       useMockData: false,
-      useLiveKitRtc: true,
+      useLiveKitRtc: !restoration,
+      restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,
       useMockHome: false,

@@ -161,32 +161,9 @@ class AdminController extends Controller
         return response()->json(['ok' => true]);
     }
 
-    public function disable(int $uid): JsonResponse
+    public function disable(int $uid, \App\Services\Accounts\DisableUser $action): JsonResponse
     {
-        $user = User::find($uid);
-        if (!$user) {
-            return response()->json(['message' => 'user not found'], 404);
-        }
-
-        $user->disabled = true;
-        $user->moderation_status = 'banned';
-        if (Schema::hasColumn('users', 'account_status')) {
-            $user->account_status = 'disabled';
-        }
-        if (Schema::hasColumn('users', 'visibility_scope')) {
-            $user->visibility_scope = 'hidden';
-        }
-        if (Schema::hasColumn('users', 'is_match_eligible')) {
-            $user->is_match_eligible = false;
-        }
-        if (Schema::hasColumn('users', 'is_square_visible')) {
-            $user->is_square_visible = false;
-        }
-        if (Schema::hasColumn('users', 'exclude_from_metrics')) {
-            $user->exclude_from_metrics = true;
-        }
-        $user->save();
-
+        $action->execute($uid);
         return response()->json(['ok' => true]);
     }
 

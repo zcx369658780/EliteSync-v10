@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -61,6 +62,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final sessionNotice = ref.watch(sessionRejectionNoticeProvider);
     final t = context.appTokens;
     final state = ref.watch(loginFormProvider);
 
@@ -78,6 +80,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (sessionNotice != null)
+                  Text(
+                    sessionNotice,
+                    key: const ValueKey('session-rejection-notice'),
+                  ),
                 Align(
                   alignment: Alignment.topRight,
                   child: const SizedBox.shrink(),

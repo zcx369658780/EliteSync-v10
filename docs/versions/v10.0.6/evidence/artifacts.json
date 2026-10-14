@@ -1,0 +1,17 @@
+{
+  "source_commit": "6a6642aa457188866a1b8cd6d9cc733aff86a0c4",
+  "artifacts": {
+    "apps\\flutter_elitesync_module\\build\\host\\outputs\\repo\\com\\elitesync\\flutter_elitesync_module\\flutter_release\\1.0\\flutter_release-1.0.aar": {
+      "bytes": 3953207,
+      "sha256": "6521ff058334f16b24994ed03c8ee8271d0c886efbb7232ce65a93371448b9ad"
+    },
+    "apps\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk": {
+      "bytes": 213058140,
+      "sha256": "213c1a3a7081c339626e841706fad08d88e793e8610c93492d297be20cd3f965"
+    }
+  },
+  "libapp_match": true,
+  "libapp_sha256": "45b6ba7bf6bb5e2aa1e344a1e4b38ad6c4c45b82494a6f23d5c44bfbcf19e01f",
+  "flutter_assets_compared": 9,
+  "flutter_assets_match": true
+}

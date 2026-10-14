@@ -11,14 +11,19 @@ import 'package:flutter_elitesync_module/mocks/mock_data/profile_mock.dart';
 class ProfileRemoteDataSource {
   static const Duration _requestTimeout = Duration(seconds: 4);
 
-  const ProfileRemoteDataSource({required this.apiClient, required this.useMock});
+  const ProfileRemoteDataSource({
+    required this.apiClient,
+    required this.useMock,
+  });
 
   final ApiClient apiClient;
   final bool useMock;
 
   Future<ProfileSummaryDto> getSummary() async {
     if (useMock) return ProfileSummaryDto.fromJson(ProfileMock.summary);
-    final result = await apiClient.get('/api/v1/profile/basic').timeout(_requestTimeout);
+    final result = await apiClient
+        .get('/api/v1/profile/basic')
+        .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return ProfileSummaryDto.fromJson(result.data);
     }
@@ -28,7 +33,9 @@ class ProfileRemoteDataSource {
 
   Future<ProfileDetailDto> getDetail() async {
     if (useMock) return ProfileDetailDto.fromJson(ProfileMock.detail);
-    final result = await apiClient.get('/api/v1/profile/basic').timeout(_requestTimeout);
+    final result = await apiClient
+        .get('/api/v1/profile/basic')
+        .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return ProfileDetailDto.fromJson(result.data);
     }
@@ -36,9 +43,34 @@ class ProfileRemoteDataSource {
     throw Exception(failure.message);
   }
 
+  /// City is a separate server mutation; never falls back to mock or cache.
+  Future<ProfileDetailDto> saveCity(String city) async {
+    final normalized = city.trim();
+    if (normalized.isEmpty || normalized.runes.length > 64) {
+      throw ArgumentError('城市不能为空且不能超过64个字符');
+    }
+    if (useMock) {
+      throw StateError('城市保存需要真实服务，演示模式不可保存');
+    }
+    final result = await apiClient
+        .post('/api/v1/profile/city', body: {'city': normalized})
+        .timeout(_requestTimeout);
+    if (result is NetworkFailure<Map<String, dynamic>>) {
+      throw Exception(result.message);
+    }
+    // Only a fresh basic-profile read confirms the visible saved value.
+    final confirmed = await getDetail();
+    if (confirmed.city != normalized) {
+      throw StateError('服务端城市读回不一致，请重新读取资料');
+    }
+    return confirmed;
+  }
+
   Future<Map<String, dynamic>> update(UpdateProfileRequestDto dto) async {
     if (useMock) return const {};
-    final result = await apiClient.post('/api/v1/profile/basic', body: dto.toJson()).timeout(_requestTimeout);
+    final result = await apiClient
+        .post('/api/v1/profile/basic', body: dto.toJson())
+        .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return result.data;
     }
@@ -68,13 +100,9 @@ class ProfileRemoteDataSource {
           .toList();
     }
 
-    final result = await apiClient.get(
-      '/api/v1/geo/places',
-      query: {
-        'query': query,
-        'region': region,
-      },
-    ).timeout(_requestTimeout);
+    final result = await apiClient
+        .get('/api/v1/geo/places', query: {'query': query, 'region': region})
+        .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final places = result.data['places'];
       if (places is List) {

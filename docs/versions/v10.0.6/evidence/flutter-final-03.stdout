@@ -1,0 +1,128 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart
+00:00 +0: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: matching rejected token clears state, credentials and profile snapshots
+00:00 +1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: stale response cannot clear newer login token or profile
+00:00 +2: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: storage delete failure stays unauthenticated and queue recovers
+00:00 +3: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: rejection cleanup serializes before simultaneous new login
+00:00 +4: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: old account profile completion cannot contaminate newer login
+00:00 +5: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: late profile completion cannot resurrect rejected session
+00:00 +6: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/session_rejection_test.dart: read failure during rejection also fails closed
+00:00 +7: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: /api/v1/profile/basic 401 rejects matching token and propagates original response
+00:00 +8: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: /api/v1/profile/city 401 rejects matching token and propagates original response
+00:00 +9: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: /api/v1/auth/refresh 401 rejects matching token and propagates original response
+00:00 +10: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: account_disabled403 clears, ordinary permission403 does not
+00:00 +11: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: login422 and login403 do not reject existing session
+00:00 +12: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: stale old-token rejection cannot clear new session
+00:00 +13: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: secure read failure after response still rejects and never hangs
+00:00 +14: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart: callback storage failure completes with original Dio rejection, never hangs
+00:00 +15: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: city save sends only city and reads fresh basic profile, never full save
+00:00 +16: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: connection failure cannot be reported as saved
+00:00 +17: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: invalid cities perform no request
+00:00 +18: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: POST 401 is failure and never reads or confirms cache
+00:00 +19: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: POST 403 is failure and never reads or confirms cache
+00:00 +20: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: POST 422 is failure and never reads or confirms cache
+00:00 +21: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: POST 500 is failure and never reads or confirms cache
+00:00 +22: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: failed readback does not confirm successful POST
+00:00 +23: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: mismatching readback fails rather than using submitted draft
+00:00 +24: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart: mock is explicitly rejected for city mutation
+00:00 +25: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +26: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +27: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +28: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +29: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +30: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +31: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +32: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:00 +33: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +34: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +35: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +36: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +36: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/providers/profile_providers_test.dart: profileProvider refreshes after session switch instead of reusing old nickname cache
+Legacy private cache cleanup failed; retry at next boundary
+00:01 +37: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +38: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +38: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart: failed purge does not block existing session replacement
+Legacy private cache cleanup failed; retry at next boundary
+00:01 +39: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +40: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +40: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart: failed purge does not block existing logout token deletion
+Legacy private cache cleanup failed; retry at next boundary
+00:01 +41: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=false
+00:01 +42: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart: independent city button preserves full action, failure=true
+00:04 +43: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:04 +44: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:04 +45: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:04 +46: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+00:04 +47: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.unknown cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:05 +48: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: initial ReadinessGuardState.setupRequired cannot bypass Match readiness
+APP_SHELL_INIT
+APP_SHELL_BUILD index=3
+00:05 +49: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: unrelated Guard keeps live Progress query, page and router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:05 +50: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Match deep path loses readiness within same mounted router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:05 +51: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Auth loss redirects current Connection to actual login
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:06 +52: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home Progress Match Connection use actual UI entries
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+00:06 +53: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: continuous updates and provider disposal detach old router
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=3
+00:06 +54: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for loading in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:06 +55: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for error in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:06 +56: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for failed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:06 +57: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for closed in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:06 +58: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home clears prior Match CTA for noCandidate in mounted shell
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+APP_SHELL_BUILD index=1
+APP_SHELL_BUILD index=0
+00:07 +59: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.pause clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:07 +60: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Connection ConnectionLifecycleAction.close clears synthetic consent and Home CTA immediately
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:07 +61: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/home_progress_guard_refresh_test.dart: Home unknown readiness clears next decision without inventing Connection revocation
+APP_SHELL_INIT
+APP_SHELL_BUILD index=0
+00:07 +62: All tests passed!

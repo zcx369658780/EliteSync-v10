@@ -54,9 +54,9 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
-        Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:sanctum');
-        Route::post('/password', [AuthController::class, 'changePassword'])->middleware('auth:sanctum');
-        Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware('auth:sanctum');
+        Route::post('/refresh', [AuthController::class, 'refresh'])->middleware(['auth:sanctum', 'account.active']);
+        Route::post('/password', [AuthController::class, 'changePassword'])->middleware(['auth:sanctum', 'account.active']);
+        Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
     });
 
     Route::prefix('questionnaire')->middleware('auth:sanctum')->group(function () {
@@ -86,7 +86,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/match-feedback-submitted', [FrontendTelemetryController::class, 'store']);
         });
 
-        Route::prefix('profile')->group(function () {
+        Route::prefix('profile')->middleware('account.active')->group(function () {
             Route::get('/basic', [ProfileController::class, 'basic']);
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);

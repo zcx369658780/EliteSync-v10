@@ -1,0 +1,47 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDD                                                                4 / 4 (100%)
+
+Time: 00:00.769, Memory: 46.00 MB
+
+4 tests triggered 2 PHP deprecations:
+
+1) C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\config\database.php:61
+Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\Mysql::ATTR_SSL_CA instead
+
+Triggered by:
+
+* Tests\Feature\AdminApiTest::test_admin_endpoints_forbid_non_admin_user
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:364
+
+* Tests\Feature\AdminApiTest::test_admin_endpoints_forbid_whitelisted_phone_without_admin_role
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:388
+
+* Tests\Feature\AdminApiTest::test_admin_users_exposes_batch_audit_fields_and_filters_by_batch_id
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:80
+
+* Tests\Feature\AdminApiTest::test_verify_queue_and_update_flow
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:24
+
+2) C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\config\database.php:81
+Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\Mysql::ATTR_SSL_CA instead
+
+Triggered by:
+
+* Tests\Feature\AdminApiTest::test_admin_endpoints_forbid_non_admin_user
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:364
+
+* Tests\Feature\AdminApiTest::test_admin_endpoints_forbid_whitelisted_phone_without_admin_role
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:388
+
+* Tests\Feature\AdminApiTest::test_admin_users_exposes_batch_audit_fields_and_filters_by_batch_id
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:80
+
+* Tests\Feature\AdminApiTest::test_verify_queue_and_update_flow
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AdminApiTest.php:24
+
+OK, but there were issues!
+Tests: 4, Assertions: 38, Deprecations: 2.

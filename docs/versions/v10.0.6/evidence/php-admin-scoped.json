@@ -1,0 +1,18 @@
+{
+  "command": [
+    "php",
+    "vendor/bin/phpunit",
+    "tests/Feature/AdminApiTest.php",
+    "--filter",
+    "test_verify_queue_and_update_flow|test_admin_users_exposes_batch_audit_fields_and_filters_by_batch_id|test_admin_endpoints_forbid_non_admin_user|test_admin_endpoints_forbid_whitelisted_phone_without_admin_role",
+    "--display-deprecations"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T12:58:37.607361+00:00",
+  "end": "2026-10-14T12:58:38.546493+00:00",
+  "streams": {
+    "stdout": "eaf0674cc78009b5a20b1eb5ecc25c0de8a860afdb5373065bd7210f8cac0840",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,38 @@
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'D:\flutter\packages\flutter_tools\gradle\build.gradle.kts' line: 7
+
+* What went wrong:
+Plugin [id: 'org.jetbrains.kotlin.jvm', version: '1.9.20'] was not found in any of the following sources:
+
+- Gradle Core Plugins (plugin is not in 'org.gradle' namespace)
+- Included Builds (No included builds contain this plugin)
+- Plugin Repositories (could not resolve plugin artifact 'org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:1.9.20')
+  Searched in the following repositories:
+    Gradle Central Plugin Repository
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 10s
+
+Gradle task assembleAarRelease failed with exit code 1.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:syncFlutterAar'.
+> Process 'command 'D:\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 29s

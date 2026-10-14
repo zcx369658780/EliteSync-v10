@@ -11,15 +11,18 @@ class DioFactory {
     required AppLogger logger,
     required AccessTokenProvider accessTokenProvider,
     RefreshAccessToken? refreshAccessToken,
+    Future<void> Function(String rejectedToken)? onSessionRejected,
   }) : _env = env,
        _logger = logger,
        _accessTokenProvider = accessTokenProvider,
-       _refreshAccessToken = refreshAccessToken;
+       _refreshAccessToken = refreshAccessToken,
+       _onSessionRejected = onSessionRejected;
 
   final AppEnv _env;
   final AppLogger _logger;
   final AccessTokenProvider _accessTokenProvider;
   final RefreshAccessToken? _refreshAccessToken;
+  final Future<void> Function(String rejectedToken)? _onSessionRejected;
 
   Dio create() {
     final dio = Dio(
@@ -37,6 +40,7 @@ class DioFactory {
       AuthInterceptor(
         accessTokenProvider: _accessTokenProvider,
         refreshAccessToken: _refreshAccessToken,
+        onSessionRejected: _onSessionRejected,
       ),
       RetryInterceptor(),
       // Keep request logging on during the current astro-loading investigation.

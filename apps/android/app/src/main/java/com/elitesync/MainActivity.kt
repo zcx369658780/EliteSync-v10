@@ -28,13 +28,14 @@ class MainActivity : FlutterActivity() {
                     "getBootstrap" -> {
                         val extras = intent?.extras
                         val synthetic = BuildConfig.ELITESYNC_SYNTHETIC_DEMO
+                        val restoration = BuildConfig.DEBUG && BuildConfig.ELITESYNC_V1006_LOCAL_BUILD
                         val syntheticEndpoints = if (synthetic) {
                             BootstrapEndpointPolicy.resolve(synthetic = true, debug = BuildConfig.DEBUG)
                         } else {
                             null
                         }
                         val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic)
-                        val endpoints = syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
+                        val endpoints = if (restoration) BootstrapEndpointPolicy.Endpoints("http://127.0.0.1:8000/", "") else syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
                             synthetic = false,
                             debug = BuildConfig.DEBUG,
                             intentApi = extras?.getString("elitesync_api_base_url"),

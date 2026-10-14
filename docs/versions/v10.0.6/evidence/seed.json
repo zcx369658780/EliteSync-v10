@@ -1,0 +1,17 @@
+{
+  "command": [
+    "php",
+    "artisan",
+    "db:seed",
+    "--class=V1006DevelopmentSeeder",
+    "--force"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 0,
+  "start": "2026-10-14T12:41:04.102043+00:00",
+  "end": "2026-10-14T12:41:04.908059+00:00",
+  "streams": {
+    "stdout": "498c29e2b728a76a4078c498c46eba1b2d8e80c9d7b46edb7ae73bb400b9b9ff",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
