@@ -1,5 +1,16 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.7正式冻结，等待Owner手动派发
+
+**V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_FROZEN_PLAN / OWNER_DISPATCH_PENDING / V10_0_7_IMPLEMENTATION_NOT_STARTED**。
+
+Astra已核验K08实际main `0989812c141ce892915b67c14e9291d34e3c7053`（Tree `c2dd89f3a0726bff6cd18fb8fe0008c2f347aadf`）、既有产品集成 `78aba03a68cb5dcc0302ea7e9c20ff783f5169d5`；并实际读取[版前可行性报告](docs/versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)后，冻结唯一[正式v10.0.7计划](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)；冻结提交 `ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307`、Blob `151d75b67238826841467fa93c140825ebf61282`，**AC-07-01～AC-07-08不可事后改写**。前述K08 main是本版技术起点，本计划与后续纯文档登记不自动替换它。
+
+当前范围：真实资料/题库问卷→Matching consumer/发布→独立Connection与Messaging Consent→合法文本与本地图片附件、八字/可选MBTI规则解释、动态/站内通知/本地设置。默认生产私信仍fail-closed，旧鉴权不可整体移除。RTC双端媒体、完整紫微/西占、仍为占位的Buddy/Social真业务以及Push/地图/外部服务均**未获本版实施授权、明确留后续具名恢复工作包**，不得冒已恢复或永久排除。Astra批准的是版本排程，不是开通许可、付费服务、生产数据或更改Owner最终方向。
+
+Owner手动转交本固定计划并明确“执行v10.0.7”后才一次启动限定开发授权，Codex在版内自主实施修复与测试，完成后提交候选供Astra集中终验。当前无新实施回执或候选。下面K08“调查待冻结”和0.6“K08待续”段落均为历史时点。
+
+
 ## 2026-10-15 K08产品集成完成，v10.0.7仅版前调查
 
 **V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_FEASIBILITY_READY / NOT_FROZEN / NO_IMPLEMENTATION**。
