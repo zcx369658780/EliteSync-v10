@@ -5,6 +5,7 @@
 | 当前入口 | 正文与用途 |
 |---|---|
 | v10.0.6终验及复盘（优先） | [Astra独立验收](docs/versions/v10.0.6/acceptance.md)、[版本复盘](docs/versions/v10.0.6/retrospective.md)：候选已接受，代码/本地集成分离，已保留PHP范围外失败与LOCAL_ONLY；K08待接续 |
+| v10.0.7版前范围（未冻结） | [PLAN_PROPOSAL_V0_1](docs/versions/v10.0.7/PLAN_PROPOSAL_V0_1.md)：Owner已要求进入新版准备，先完成K08安全集成与代码基线接续，再由Codex一次反馈恢复功能范围/技术缺口；尚未派发v10.0.7实施 |
 | 本轮顾问交接（优先） | [ASTRA_HANDOFF_20261014_V10_0_6](docs/migration/ASTRA_HANDOFF_20261014_V10_0_6.md)：Owner方向调整、六版接受概况、当前冻结身份/环境、最近本地现场、未知与新Astra验收接续；不新增执行授权 |
 | v10.0.6唯一冻结计划 | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/versions/v10.0.6/plan.md)：Blob 77eee557325449543710fc4d5fe2b10aa712fa46、代码起点3a78c2c；城市真实持久化＋Blade管理禁用闭环；AC01～07不变 |
 | 版前来源 | [原草案](docs/versions/v10.0.6/PLAN_PROPOSAL_V0_1.md)仅为历史，Codex集中反馈已收敛到正式计划，不再据草案另开环境治理版本 |
