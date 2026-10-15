@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.EXE",
+    "-l",
+    "services/backend-laravel/app/Services/NotificationService.php"
+  ],
+  "exit": 0,
+  "stdout_sha256": "5352fa18ce2082d5f0d68c32d15dcd0915e75f67bfaddcf2719cc14499db8ca4",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

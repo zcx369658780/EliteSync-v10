@@ -1,5 +1,10 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-15 v10.0.7 K08完成
+
+**V10.0.7 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_8_NOT_DISPATCHED**。最终接受R1候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` 已安全接入main；产品commit `18c1ddb67378518b6b2c3e912e1e3b2afd394051` / Tree `4cde05f06079a8bd4879ae34a31db7ac0c30c625`，普通non-force推送并回读一致。完整apps/services/题库与接受R1一致，保留通知隐私修复、冻结8AC、独立验收/复盘及全部原始失败。原专用树接续；原dirty根HEAD/index/status及43项具名hash相同。PHP4项语法检查通过，包hash未变；本次套件/分析/构建/安装/业务重跑NOT_RUN，无新增产品差异。原Flutter普通793/5、带fixture821/3仍exit1。0.6/0.7容器停止、卷保留，未seed或启动服务/AVD。以下K08 PENDING/候选未合main为历史状态；保留全部能力限定、未恢复项和观察。不规划或实施0.8。 [K08详细登记](v10.0.7/integration.md)。
+
+
 2026-10-15：**v10.0.7已独立接受（ACCEPT WITH OBSERVATIONS）**，[最终验收](v10.0.7/acceptance.md)及[复盘](v10.0.7/retrospective.md)。最终候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` / Tree `11f1d086b0c9180998a3684c0df176e1d9c4d2b2`；R1通知安全与失败归因收口，原冻结8AC不变。**候选产品代码尚未完成K08 GitHub/main集成及本地接续**；R1 Flutter普通793/5、带fixture821/3均exit1且具名保留，Dart分析exit0。v10.0.8尚未启动；以下早先“未接受/待实施”等为历史时点。
 
 

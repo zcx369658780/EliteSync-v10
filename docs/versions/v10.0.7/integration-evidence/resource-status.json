@@ -1,0 +1,7 @@
+{
+  "services_started_this_task": false,
+  "database_writes_this_task": false,
+  "process_snapshot": [],
+  "volumes": "existing v1006 and v1007 retained; docker read-only snapshots separate",
+  "avd_started_this_task": false
+}

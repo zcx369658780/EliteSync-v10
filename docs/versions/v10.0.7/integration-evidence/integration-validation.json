@@ -1,0 +1,22 @@
+{
+  "main_non_source_objects_preserved": 3562,
+  "source_and_run_tools_delta_from_accepted": "NONE",
+  "php_syntax_checks": 4,
+  "crlf_aware_diff_check_exit": 0,
+  "default_diff_check_exit": 2,
+  "default_note": "inherited CRLF flagged; raw output preserved; no source normalized",
+  "packages": [
+    {
+      "file": "app-debug.apk",
+      "sha256": "fe3d9556977e5cbd34ec006a67537fd6f41efbc9d2a57e724f5d64932b102765",
+      "unchanged": true
+    },
+    {
+      "file": "flutter_release-1.0.aar",
+      "sha256": "76800ca93d696d8cfb0db87be930bd106927bb26edd45c4c730ec3193957acb5",
+      "unchanged": true
+    }
+  ],
+  "tests_build_install_app_api_db": "NOT_RUN_NO_PRODUCT_DELTA",
+  "accepted_flutter_observation": "793 pass/5 fail exit1 default; 821 pass/3 fail exit1 same-run fixture; not rerun"
+}
