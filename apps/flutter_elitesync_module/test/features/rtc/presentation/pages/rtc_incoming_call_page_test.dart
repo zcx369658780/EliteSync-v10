@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,12 +19,12 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class FakeAppTelemetryService extends AppTelemetryService {
   FakeAppTelemetryService()
-      : super(
-          apiClient: ApiClient(
-            dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
-          ),
-          appVersionProvider: () async => '0.04.06',
-        );
+    : super(
+        apiClient: ApiClient(
+          dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
+        ),
+        appVersionProvider: () async => '0.04.06',
+      );
 
   final List<Map<String, Object?>> calls = <Map<String, Object?>>[];
 
@@ -39,19 +41,22 @@ class FakeAppTelemetryService extends AppTelemetryService {
 
 class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   FakeRtcRemoteDataSource(this._session)
-      : super(
-          apiClient: ApiClient(
-            dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
-          ),
-        );
+    : super(
+        apiClient: ApiClient(
+          dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
+        ),
+      );
 
   RtcSessionEntity _session;
+  int acceptRequests = 0;
+  int rejectRequests = 0;
 
   @override
   Future<RtcSessionEntity> fetchCall(int callId) async => _session;
 
   @override
   Future<RtcSessionEntity> acceptCall(int callId) async {
+    acceptRequests++;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'connecting',
@@ -93,6 +98,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   @override
   Future<RtcSessionEntity> rejectCall(int callId) async {
+    rejectRequests++;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'rejected',
@@ -157,7 +163,11 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   }
 }
 
-Widget _wrap(Widget child, {required RtcRemoteDataSource rtc}) {
+Widget _wrap(
+  Widget child, {
+  required RtcRemoteDataSource rtc,
+  GoRouter? router,
+}) {
   final telemetry = FakeAppTelemetryService();
   return ProviderScope(
     overrides: [
@@ -174,17 +184,21 @@ Widget _wrap(Widget child, {required RtcRemoteDataSource rtc}) {
       ),
       rtcRemoteDataSourceProvider.overrideWithValue(rtc),
     ],
-    child: MaterialApp(
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.light,
-      home: child,
-    ),
+    child: router != null
+        ? MaterialApp.router(theme: AppTheme.light, routerConfig: router)
+        : MaterialApp(
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: ThemeMode.light,
+            home: child,
+          ),
   );
 }
 
 void main() {
-  testWidgets('RtcIncomingCallPage renders incoming call actions', (tester) async {
+  testWidgets('RtcIncomingCallPage renders incoming call actions', (
+    tester,
+  ) async {
     final session = RtcSessionEntity.fromJson({
       'id': 2,
       'call_key': 'call-2',
@@ -224,14 +238,7 @@ void main() {
     final rtc = FakeRtcRemoteDataSource(session);
 
     await tester.pumpWidget(
-      _wrap(
-        const RtcIncomingCallPage(
-          callId: 2,
-          title: '来电',
-          autoAccept: false,
-        ),
-        rtc: rtc,
-      ),
+      _wrap(const RtcIncomingCallPage(callId: 2, title: '来电'), rtc: rtc),
     );
 
     await tester.pumpAndSettle();
@@ -292,14 +299,7 @@ void main() {
     final rtc = FakeRtcRemoteDataSource(session);
 
     await tester.pumpWidget(
-      _wrap(
-        const RtcIncomingCallPage(
-          callId: 116,
-          title: '语音来电',
-          autoAccept: false,
-        ),
-        rtc: rtc,
-      ),
+      _wrap(const RtcIncomingCallPage(callId: 116, title: '语音来电'), rtc: rtc),
     );
 
     await tester.pumpAndSettle();
@@ -309,4 +309,61 @@ void main() {
     expect(find.text('接听'), findsNothing);
     expect(find.text('拒绝'), findsNothing);
   });
+  for (final action in ['接听', '拒绝']) {
+    testWidgets('default incoming page requires explicit $action action', (
+      tester,
+    ) async {
+      final rtc = FakeRtcRemoteDataSource(
+        RtcSessionEntity.fromJson({
+          'id': 29,
+          'mode': 'video',
+          'status': 'ringing',
+          'initiator_user_id': 1,
+          'peer_user_id': 2,
+          'initiator_name': 'Caller',
+          'is_initiator': false,
+          'is_active': true,
+        }),
+      );
+      final router = GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (_, _) => const RtcIncomingCallPage(callId: 29),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.rtcCall}/:callId',
+            builder: (_, _) => const Scaffold(body: Text('accepted route')),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.rtcCallResult}/:callId',
+            builder: (_, _) => const Scaffold(body: Text('rejected route')),
+          ),
+        ],
+      );
+      await tester.pumpWidget(
+        _wrap(const SizedBox(), rtc: rtc, router: router),
+      );
+      await tester.pumpAndSettle();
+      await tester.pump(const Duration(seconds: 6));
+      expect(
+        rtc.acceptRequests,
+        0,
+        reason: 'Rendering an incoming call is not acceptance',
+      );
+      expect(rtc.rejectRequests, 0);
+      final button = find.text(action);
+      await tester.ensureVisible(button);
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      expect(rtc.acceptRequests, action == '接听' ? 1 : 0);
+      expect(rtc.rejectRequests, action == '拒绝' ? 1 : 0);
+      expect(
+        find.text(action == '接听' ? 'accepted route' : 'rejected route'),
+        findsOneWidget,
+      );
+      await tester.pumpWidget(const SizedBox());
+      router.dispose();
+    });
+  }
 }

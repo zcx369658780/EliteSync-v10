@@ -566,54 +566,56 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     final liveKitService = ref.watch(rtcLiveKitServiceProvider);
     final t = context.appTokens;
 
-    return BrowseScaffold(
-      header: AppTopBar(
-        title: widget.title,
-        mode: AppTopBarMode.backTitle,
-        actions: [
-          IconButton(
-            tooltip: '刷新通话',
-            onPressed: _refresh,
-            icon: const Icon(Icons.refresh_rounded),
-          ),
-        ],
-      ),
-      body: sessionAsync.when(
-        loading: () => const AppLoadingSkeleton(lines: 6),
-        error: (e, _) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) {
-              unawaited(_liveKitService.leave(callId: widget.callId));
+    return Scaffold(
+      body: BrowseScaffold(
+        header: AppTopBar(
+          title: widget.title,
+          mode: AppTopBarMode.backTitle,
+          actions: [
+            IconButton(
+              tooltip: '刷新通话',
+              onPressed: _refresh,
+              icon: const Icon(Icons.refresh_rounded),
+            ),
+          ],
+        ),
+        body: sessionAsync.when(
+          loading: () => const AppLoadingSkeleton(lines: 6),
+          error: (e, _) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                unawaited(_liveKitService.leave(callId: widget.callId));
+              }
+            });
+            return ListView(
+              padding: EdgeInsets.only(bottom: t.spacing.huge),
+              children: [
+                AppErrorState(
+                  title: '通话加载失败',
+                  description: e.toString(),
+                  onRetry: _refresh,
+                ),
+              ],
+            );
+          },
+          data: (session) {
+            if (widget.autoConnect) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
+                unawaited(_autoConnect(session));
+              });
             }
-          });
-          return ListView(
-            padding: EdgeInsets.only(bottom: t.spacing.huge),
-            children: [
-              AppErrorState(
-                title: '通话加载失败',
-                description: e.toString(),
-                onRetry: _refresh,
-              ),
-            ],
-          );
-        },
-        data: (session) {
-          if (widget.autoConnect) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!mounted) return;
-              unawaited(_autoConnect(session));
+              unawaited(_syncLiveKit(session));
             });
-          }
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            unawaited(_syncLiveKit(session));
-          });
-          return _buildContent(
-            session,
-            t,
-            remoteAudioTrack: liveKitService.remoteAudioTrack,
-          );
-        },
+            return _buildContent(
+              session,
+              t,
+              remoteAudioTrack: liveKitService.remoteAudioTrack,
+            );
+          },
+        ),
       ),
     );
   }

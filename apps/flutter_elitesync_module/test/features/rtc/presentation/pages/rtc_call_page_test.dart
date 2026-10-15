@@ -46,6 +46,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
       );
 
   RtcSessionEntity _session;
+  int connectRequests = 0;
 
   @override
   Future<RtcSessionEntity> fetchCall(int callId) async => _session;
@@ -82,6 +83,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   @override
   Future<RtcSessionEntity> connectCall(int callId) async {
+    connectRequests++;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'in_call',
@@ -268,4 +270,29 @@ void main() {
     expect(find.text('视频预留'), findsNothing);
     semantics.dispose();
   });
+  for (final status in ['calling', 'ringing']) {
+    testWidgets(
+      '$status call does not auto-connect before independent acceptance',
+      (tester) async {
+        final rtc = FakeRtcRemoteDataSource(
+          RtcSessionEntity.fromJson({
+            'id': 31,
+            'mode': 'voice',
+            'status': status,
+            'initiator_user_id': 1,
+            'peer_user_id': 2,
+            'is_initiator': true,
+            'is_active': true,
+          }),
+        );
+        await tester.pumpWidget(_wrap(const RtcCallPage(callId: 31), rtc: rtc));
+        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 5));
+        await tester.pumpAndSettle();
+        expect(rtc.connectRequests, 0);
+        expect(find.text('进入通话'), findsNothing);
+        await tester.pumpWidget(const SizedBox());
+      },
+    );
+  }
 }
