@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.9 FROZEN_PLAN / OWNER_D4_D5_D6_APPROVED / OWNER_MANUAL_DISPATCH_PENDING / NOT_IMPLEMENTED**。固定[正式计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md) Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`，AC-09-01～08不可变；Owner D4/5/6已经批准于[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。交付目标真实双端RTC语音/视频、撤权与旧JWT不重入、私有短视频及必要已接受消息/管理权限回归；新受控本地SFU/0.9数据库/两个APP客户端授权只有Owner派发后启动。产品技术起点0.8 K08 main3a8f7989，当前纯文档不改变代码。原暂定0.9联合验收顺延但不取消，未恢复主要功能仍须内测前完成；下文PREPLAN_READY/未批准改排均为旧时点。
+
+
 2026-10-15：**v10.0.9 PREPLAN_READY / NOT_FROZEN / NOT_IMPLEMENTED**。固定[版前恢复能力方案](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`。0.8 K08已完成，main产品技术起点`3a8f7989aa208285b885f1c80f4365f38488ac54` / Tree`95fadde468d8a21b39c544fdb74093dd35184717`。Astra推荐优先RTC真实双端＋已实现媒体等尚缺原版能力，而非直接用0.9联合验收名义宣称APP全部可交付；**仍是待Owner决定的建议**，原路线表保留且不视为已经批准改排。后续限域源码/依赖收敛后才冻结正式plan，Owner手动派发实施；原0.6～0.8接受与所有保留失败不重写。
 
 
@@ -53,7 +56,7 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 | v10.0.6 | APP城市真实持久化＋独立Web禁用/会话失效＋重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[K08已完成](v10.0.6/integration.md)；产品集成78aba03a、本地已接续，K08不冒称重跑 |
 | v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [ACCEPTED WITH OBSERVATIONS](v10.0.7/acceptance.md) / [复盘](v10.0.7/retrospective.md)；最终R1 cf0c359b，待K08安全产品集成；Flutter仍有3项旧测试失败 |
 | v10.0.8 | B01～B05独立Blade运营闭环及B06开发渠道版本管理；R1受罚人申诉 | [ACCEPT WITH OBSERVATIONS](v10.0.8/acceptance.md)、[版本复盘](v10.0.8/retrospective.md)，最终R1 d37121eb；待K08集成/本地接续，0.9未启动 |
-| v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
+| v10.0.9 | **双端RTC语音/新增视频、撤权安全、私有短视频及限域回归** | [FROZEN_PLAN](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，AC-09-01～08固定、待Owner手动派发；原“联合验收”经D6批准顺延至主要功能恢复后 |
 | v10.0.10 | 完整软件包、安装/部署/恢复方式与功能/算法说明 | 路线包，不是公开运营承诺 |
 
 五包、必要时5～8个功能迭代只是排程估计；本版Codex粗估4～7工程日不是自动时限或已测吞吐。Owner半年至一年内测运营窗口在完整交付后另列，公开运营另行决定。恢复基线已有功能不得因旧Later标签省略；本版只初始化开发库与虚构数据，历史业务数据仍是后续具名恢复项。
