@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.7已独立接受（ACCEPT WITH OBSERVATIONS）**，[最终验收](v10.0.7/acceptance.md)及[复盘](v10.0.7/retrospective.md)。最终候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` / Tree `11f1d086b0c9180998a3684c0df176e1d9c4d2b2`；R1通知安全与失败归因收口，原冻结8AC不变。**候选产品代码尚未完成K08 GitHub/main集成及本地接续**；R1 Flutter普通793/5、带fixture821/3均exit1且具名保留，Dart分析exit0。v10.0.8尚未启动；以下早先“未接受/待实施”等为历史时点。
+
+
 2026-10-15：v10.0.7初始候选 `69b3f26c6ed28a7306e4ba6b902aac2475bfe103` 已经Astra审阅，当前**TARGETED_R1_REQUIRED / NOT_ACCEPTED**，见[R1审查](v10.0.7/ASTRA_R1_REVIEW_FINDINGS.md)。冻结8AC不改、成功业务原证继续有效；通知API最小化与撤销后拒绝及Flutter失败定点归因/修复待同版返修。产品候选未集成main，0.8未启动；下文“等待Owner派发”属于上一时点。
 
 
@@ -23,7 +26,7 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 | 版本 | 主要实物结果 | 当前状态 |
 |---|---|---|
 | v10.0.6 | APP城市真实持久化＋独立Web禁用/会话失效＋重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[K08已完成](v10.0.6/integration.md)；产品集成78aba03a、本地已接续，K08不冒称重跑 |
-| v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [正式计划已冻结](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)；AC-07-01～08固定；待Owner手动派发，无实施候选 |
+| v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [ACCEPTED WITH OBSERVATIONS](v10.0.7/acceptance.md) / [复盘](v10.0.7/retrospective.md)；最终R1 cf0c359b，待K08安全产品集成；Flutter仍有3项旧测试失败 |
 | v10.0.8 | 用户、审核、举报、匹配、问卷等确定范围的Web模块实装 | 路线包；首个Web管理闭环已纳入0.6目标 |
 | v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
 | v10.0.10 | 完整软件包、安装/部署/恢复方式与功能/算法说明 | 路线包，不是公开运营承诺 |
