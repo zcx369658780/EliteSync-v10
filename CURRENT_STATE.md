@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8版前开始：Web管理主模块，尚未冻结/实施
+
+**V10_0_7_K08_INTEGRATION_COMPLETE / V10_0_8_PREPLAN_READY / FEASIBILITY_PENDING / NOT_FROZEN / NO_IMPLEMENTATION_DISPATCH**。
+
+Astra已独立核验GitHub当前代码main `a75b8d4061ae012937ef4823120b396f257d3aec` / Tree `89637891276cdf4280f918ccad7eb4c5030f55be`，产品集成 `18c1ddb67378518b6b2c3e912e1e3b2afd394051`，与最终R1候选的apps/services/question_bank Git Tree一致；v10.0.7验收与K08关闭，不重新执行。Owner此前已批准下一路线包为独立Web管理模块；已发布[唯一v10.0.8版前范围草案](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)，Blob `a1b380521ac8b6fffb1b06a17f759e8755671cc8`，**不是正式plan或新开发授权**。
+
+候选版前调查：B01～B06 Web用户、审核、举报、匹配运营、问卷管理与必要配置；侧重真实浏览器操作→共享Laravel服务/持久库→同一用户APP。特别核原API举报封禁/恢复直接改用户字段与共享禁用会话撤销的一致性。RTC、完整紫微西占、搭子社交真业务等既有用户欠账仍须在完整软件内测前安排，不因Web优先静默删减。等待Owner手动交Codex一次具名只读可行性与冻结建议；0.8源码/环境/系统服务尚未启动。下文“不规划0.8”是K08执行阶段的历史时点。
+
+
 ## 2026-10-15 v10.0.7 K08安全集成与本地接续完成
 
 **V10.0.7 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_8_NOT_DISPATCHED**。最终接受R1候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` 已安全接入main；产品commit `18c1ddb67378518b6b2c3e912e1e3b2afd394051` / Tree `4cde05f06079a8bd4879ae34a31db7ac0c30c625`，普通non-force推送并回读一致。完整apps/services/题库与接受R1一致，保留通知隐私修复、冻结8AC、独立验收/复盘及全部原始失败。原专用树接续；原dirty根HEAD/index/status及43项具名hash相同。PHP4项语法检查通过，包hash未变；本次套件/分析/构建/安装/业务重跑NOT_RUN，无新增产品差异。原Flutter普通793/5、带fixture821/3仍exit1。0.6/0.7容器停止、卷保留，未seed或启动服务/AVD。以下K08 PENDING/候选未合main为历史状态；保留全部能力限定、未恢复项和观察。不规划或实施0.8。 [K08详细登记](docs/versions/v10.0.7/integration.md)。
