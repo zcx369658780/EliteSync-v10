@@ -1,0 +1,35 @@
+{
+  "version": "v10.0.9",
+  "status": "NOT_RUN",
+  "plan_commit": "68d57f755d0091bc15cb867b96d3a21caee83690",
+  "plan_blob": "042cf7298b75169a89b1dcd7c9fb113f6ddd72e3",
+  "owner_device_and_adb_authorization": null,
+  "owner_network_authorization": null,
+  "owner_avd_audio_input_authorization": null,
+  "abi_check": "NOT_RUN",
+  "apk_source_commit": null,
+  "apk_sha256_each_endpoint": {},
+  "devices": {
+    "avd": { "alias": "AVD_A", "virtual_account_id": null, "abi": null },
+    "phone": { "alias": "PHONE_P1_PENDING_OWNER", "virtual_account_id": null, "abi": null }
+  },
+  "call_id": null,
+  "room": null,
+  "cn_revision": null,
+  "mc_revisions": null,
+  "selected_ice_transport": "NOT_OBSERVED",
+  "selected_candidate_address_class": null,
+  "raw_candidate_addresses_public": false,
+  "human_listening": {
+    "phone_to_avd": { "result": "NOT_RUN", "source_id": null, "mic_enabled": null, "speaker_or_headset": null, "decoded_nonzero_observed": null, "rtp_delta": null, "owner_heard": null, "heard_pattern": null, "owner_confirmation_text": null, "host_received_confirmation_utc": null },
+    "avd_to_phone": { "result": "NOT_RUN", "source_id": null, "mic_enabled": null, "speaker_or_headset": null, "decoded_nonzero_observed": null, "rtp_delta": null, "owner_heard": null, "heard_pattern": null, "owner_confirmation_text": null, "host_received_confirmation_utc": null },
+    "simultaneous_bidirectional": { "result": "NOT_RUN", "owner_confirmation_text": null, "host_received_confirmation_utc": null }
+  },
+  "host_clock": { "wall_utc": null, "monotonic_ns": null, "device_clocks_kept_separate": true },
+  "revocation": { "result": "NOT_RUN", "kind": null, "continuous_source_active_before_and_after_t0": null, "t0_host": null, "sfu_ack_host": null, "last_effective_media_observed_host_each_endpoint": {}, "stop_bound_seconds": null, "clock_uncertainty_seconds": null, "owner_stopped_hearing_confirmation": null },
+  "private_video": { "result": "NOT_RUN", "asset_id": null, "position_advanced": null, "completed": null, "revocation_player_stopped": null },
+  "evidence": { "safe_stdout": [], "safe_stderr": [], "actual_exit_codes": [], "no_recorded_owner_audio": null },
+  "limitations": [],
+  "ac_09_03_pass": false,
+  "all_ac_complete": false
+}

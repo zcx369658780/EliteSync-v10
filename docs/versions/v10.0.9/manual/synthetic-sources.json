@@ -1,0 +1,37 @@
+[
+  {
+    "name": "tone-a-440-3pulses.wav",
+    "hz": 440,
+    "pulse_count": 3,
+    "seconds": 5,
+    "channels": 1,
+    "sample_rate": 48000,
+    "sha256": "4856084e507435fca6a74c0aef460b551e0b9e8a422031a97d8443b8b9592849",
+    "played": false,
+    "captured_from_microphone": false,
+    "rtc_sent": false
+  },
+  {
+    "name": "tone-b-880-2pulses.wav",
+    "hz": 880,
+    "pulse_count": 2,
+    "seconds": 5,
+    "channels": 1,
+    "sample_rate": 48000,
+    "sha256": "9e5dcbd91d41a985032f0e0ea5faca0f59a39895aa44959c71d56a115ff6d7b5",
+    "played": false,
+    "captured_from_microphone": false,
+    "rtc_sent": false
+  },
+  {
+    "name": "tone-continuous-660-45s.wav",
+    "hz": 660,
+    "seconds": 45,
+    "channels": 1,
+    "sample_rate": 48000,
+    "sha256": "b24673cdba1adc184195cbd900ebf3eed2c42ffc66170355529738ecad64d255",
+    "played": false,
+    "captured_from_microphone": false,
+    "rtc_sent": false
+  }
+]

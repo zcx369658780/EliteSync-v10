@@ -1,5 +1,10 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-16 v10.0.9人工音频验证准备
+
+**AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。详见[人工测试准备](docs/versions/v10.0.9/MANUAL_AUDIO_TEST_PREPARATION.md)。尚未指定真机/ADB许可、稳定AVD输入或批准USB-only 7881/TCP方案；现有包仅x86_64。Docker API本轮不可核验，指定宿主端口无监听；未启动服务、枚举设备、修改网络或重建包。原成功/失败证据和冻结8AC保留。
+
+
 2026-10-15 最新：**v10.0.9正式plan已冻结／待Owner手动派发／功能未实施。** 首读[固定冻结plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`、8项AC，及[Owner批准D4～D6](PRODUCT_DECISIONS.md) Blob`85dd5f9b88840104b0d5c26ba57d96fad4a17f11`。0.8 K08已完成；本版优先双端语音/视频与私有短视频、实时授权与旧JWT防重入，允许限域本地SFU/第二端但只有Owner手动派发后生效。原0.9联合终验经Owner批准顺延至主要恢复功能完成，完整紫微西占/Buddy/地图Push/历史数据仍有具名欠账。0.9候选尚无，产品技术起点3a8f7989。以下PREPLAN_READY/联合验收旧版数为历史快照。
 
 

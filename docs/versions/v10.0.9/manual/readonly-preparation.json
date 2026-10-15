@@ -1,0 +1,84 @@
+{
+  "client_date": "2026-10-16",
+  "captured_utc": "2026-10-15T22:51:12.650159+00:00",
+  "progress_commit": "844402af3b1aa465e502359d3f396da9b9167b44",
+  "status": [
+    "AUDIO_DEVICE_VALIDATION_BLOCKED",
+    "NOT_CANDIDATE_DELIVERED",
+    "NOT_ACCEPTED"
+  ],
+  "docker_rtc_inspect_exit": 1,
+  "docker_db_inspect_exit": 1,
+  "docker_runtime_verified": false,
+  "host_tcp_probe_exit": 0,
+  "host_tcp_listeners": [],
+  "host_udp_probe_exit": 0,
+  "host_udp_7882_endpoints": [],
+  "saved_sfu_config": {
+    "bind_addresses": [
+      "127.0.0.1"
+    ],
+    "rtc": {
+      "node_ip": "10.0.2.2",
+      "use_external_ip": false,
+      "udp_port": 7882,
+      "tcp_port": 7881,
+      "force_tcp": null,
+      "enable_loopback_candidate": null
+    }
+  },
+  "configured_candidate_address": "10.0.2.2",
+  "currently_selected_ice_pair": "NOT_OBSERVED_SERVICES_NOT_STARTED",
+  "original_apk": {
+    "sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc",
+    "abis": {
+      "x86_64": {
+        "libflutter": true,
+        "libapp": true
+      }
+    }
+  },
+  "avd_host_audio_permission_flag_present": false,
+  "synthetic_sources": [
+    {
+      "name": "tone-a-440-3pulses.wav",
+      "hz": 440,
+      "pulse_count": 3,
+      "seconds": 5,
+      "channels": 1,
+      "sample_rate": 48000,
+      "sha256": "4856084e507435fca6a74c0aef460b551e0b9e8a422031a97d8443b8b9592849",
+      "played": false,
+      "captured_from_microphone": false,
+      "rtc_sent": false
+    },
+    {
+      "name": "tone-b-880-2pulses.wav",
+      "hz": 880,
+      "pulse_count": 2,
+      "seconds": 5,
+      "channels": 1,
+      "sample_rate": 48000,
+      "sha256": "9e5dcbd91d41a985032f0e0ea5faca0f59a39895aa44959c71d56a115ff6d7b5",
+      "played": false,
+      "captured_from_microphone": false,
+      "rtc_sent": false
+    }
+  ],
+  "physical_device_operations": "NONE_NOT_EVEN_ADB_INVENTORY",
+  "product_source_modified": false,
+  "services_started": false,
+  "network_configuration_modified": false,
+  "confirmed_host_checks": [
+    {
+      "kind": "tcp",
+      "exit": 0,
+      "results": []
+    },
+    {
+      "kind": "udp",
+      "exit": 0,
+      "results": []
+    }
+  ]
+}
