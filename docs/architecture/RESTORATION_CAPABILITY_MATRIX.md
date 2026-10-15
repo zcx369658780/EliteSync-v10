@@ -1,4 +1,21 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
+
+## 2026-10-15 v10.0.7最终验收限定状态（当前）
+
+**ACCEPT WITH OBSERVATIONS / FINAL R1 CANDIDATE cf0c359b86e35c794da389a58ba0b687c3c0bd32 / PRODUCT K08 INTEGRATION PENDING**。Astra独立[验收](../versions/v10.0.7/acceptance.md)与[复盘](../versions/v10.0.7/retrospective.md)已完成。以下覆盖本页较早“0.7未冻结、题库缺失、消息全404”等历史描述，但**只在固定开发环境和冻结AC范围内有效**；候选源码仍未入main，不冒称main已可运行这些新功能。
+
+| ID | 当前限定结论 |
+|---|---|
+| A01/A02 | 原Android宿主与本版最终AAR/debug APK在受控AVD实际运行，独立0.7 MariaDB 58迁移、157题去重/137启用；不等于旧数据恢复 |
+| A04 | 完整资料/真实问卷20题/草稿、同用户APP及持久DB重启读回已接受 |
+| A05 | Matching consumer/发布/APP结果、双人独立Connection与消息同意的live持久闭环已接受；不是所有生产匹配算法准确性认证 |
+| A06 | **限定文本聊天与本地私有图片**、七条HTTP有权成功无权拒绝、撤销/block/禁用及R1消息通知隐私修复已接受；RTC/WebSocket/音视频附件仍NOT_RUN |
+| A07 | 本地八字可核计算、可选MBTI与规则解释已接受；紫微/西占完整排盘仍缺真实准确性/许可依据，不参与未验证评分 |
+| A08 | 动态、站内通知和本地设置已接受；真实Buddy/Social、系统Push/地图仍未恢复 |
+| A03/A09与B02～B06 | 历史真实业务备份、全APP联合/生产及完整独立Web管理模块继续未验，按后续具名功能包收口；B01独立Web禁用链已由0.6接受并获本版回归 |
+
+**测试观察**：R1 Flutter普通793/5、同次fixture821/3均exit1，剩余3项在固定起点复现；相关PHP和全域Dart分析通过。历史开发库中旧通知明文仍未清洗，仅新存储及安全API投影已修。下面“2026-10-14初始化”及旧状态表保留为之前的来源线索，不得替代本节最新分类。K08集成应与本节对照，避免把候选的旧“待验收”快照重新覆写为当前状态。
+
 2026-10-15更新：v10.0.6 **ACCEPT WITH OBSERVATIONS**，已完成[K08](../versions/v10.0.6/integration.md)，产品commit `78aba03a68cb5dcc0302ea7e9c20ff783f5169d5` / Tree `c027d70c37b353d3e37c3570b23f673c1033dd0f`。当前单份台账继续维护，具名源码链、旧来源Blob、推荐组合/AC及少数决定见[v10.0.7版前建议](../versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)。**0.7 NOT_FROZEN / NOT_IMPLEMENTED**；以下初始口径中的待定位/未证明不覆盖本次限域更新，其余未知保留。
 
 已核旧源码来源为D:/EliteSync HEAD `0f06e895a89629a7f4f0cf0c62b784446ecf515a`的具名题库/算法/客户端文件，源码存在与运行完成分开；未选定或实测整个旧APP。新功能均RUNTIME_NOT_RUN；数据库备份内容和原3306继续保护。
