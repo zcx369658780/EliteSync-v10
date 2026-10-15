@@ -246,7 +246,35 @@ class RtcLiveKitService extends ChangeNotifier {
       try {
         final reports = await entry.value?.getStats();
         if (reports == null) continue;
+        final selectedPairs = reports
+            .where((r) => r.type == 'transport')
+            .map((r) => r.values['selectedCandidatePairId'])
+            .whereType<String>()
+            .toSet();
+        final byId = {for (final r in reports) r.id: r};
         for (final report in reports) {
+          if (report.type == 'candidate-pair' &&
+              (selectedPairs.contains(report.id) ||
+                  report.values['selected'] == true ||
+                  (report.values['nominated'] == true &&
+                      report.values['state'] == 'succeeded'))) {
+            final remote = byId[report.values['remoteCandidateId']]?.values;
+            final protocol = remote?['protocol'];
+            final transport = protocol == 'tcp' || protocol == 'udp'
+                ? protocol
+                : 'unknown';
+            final address = remote?['address'] ?? remote?['ip'];
+            final addressClass = address == null
+                ? 'unknown'
+                : address == '127.0.0.1' || address == '::1'
+                ? 'loopback'
+                : 'non_loopback';
+            // Log categories only; never expose candidate addresses, ports or IDs.
+            debugPrint(
+              'RTC_MEDIA_ICE callId=$callId direction=${entry.key} '
+              'transport=$transport remoteAddressClass=$addressClass',
+            );
+          }
           if (report.type != '${entry.key}-rtp') continue;
           final v = report.values;
           // Explicit allowlist: exclude network candidates, addresses and credentials.
