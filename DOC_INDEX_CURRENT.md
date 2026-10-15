@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.9仅形成版前交付建议，尚未冻结、未实施。** 固定[PLAN_PROPOSAL_V0_1](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`。0.8 K08已完成，产品技术main`3a8f7989aa208285b885f1c80f4365f38488ac54`；受控APP/Web/DB主链已限域交付，但RTC真实双端、完整紫微/西占及其它原版用户功能仍有缺口。Astra建议先恢复主要用户能力、将最后联合验收顺延；该排程调整尚待Owner批准，不自动购买、启服务或派发0.9源码实施。其余既有验收及失败保留，下文时点状态保持历史原文。
+
+
 2026-10-15：**v10.0.8 K08_INTEGRATION_COMPLETE**。[集成登记](docs/versions/v10.0.8/integration.md)为当前入口；接受最终R1 `d37121e...` 已集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，本地专用树接续。保留独立验收/复盘及全部失败，R1申诉未退回初始版本；无新产品差异，本次只做对象/语法/包hash检查，运行及套件NOT_RUN。状态提交不改产品，v10.0.9未启动；下方待K08为历史时点。
 
 2026-10-15 最新：**v10.0.8 Astra最终验收 ACCEPT WITH OBSERVATIONS，K08产品源码安全集成待执行。** 固定接受R1候选`d37121eb11d3cc845f1606a631d17ca01fe6105a`、Tree`6d260f525de8976b7aea5e4a1fe6c9282d91a332`。优先读取[最终独立验收](docs/versions/v10.0.8/acceptance.md)和[复盘](docs/versions/v10.0.8/retrospective.md)；Restrict本人申诉已贯通APP→PHP→持久DB→Blade，保留原全部8AC及R1实测证据。R1全量Flutter/PHP未跑，旧失败/通知存储与发布版本元数据旧包SHA已具名观察。**产品代码尚未并入main、K08和v10.0.9未自动派发**。下文初始候选待R1及顾问交接的状态皆为历史时点。
@@ -37,6 +40,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.9版前提案（未冻结）** | [固定范围建议](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)：RTC真实双端与其它恢复欠账优先、联合终验改排待Owner批准；Blob fbb060fc9a4b79a9e7075809e961a9d258455f83 |
 | **v10.0.8已接受最终验收与复盘（首读）** | [固定AC终验](docs/versions/v10.0.8/acceptance.md)、[复盘](docs/versions/v10.0.8/retrospective.md)：R1受罚人申诉通过、旧成功B01～B06保留；产品K08仍待执行 |
 | **2026-10-15新顾问会话交接（首读）** | [固定完整正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)：Owner与版本状态、当前v10.0.8 R1已经下达待新会话验收、原证与权限边界；Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1` |
 | **v10.0.8 Astra R1审查（当前）** | [R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)：D2本人申诉缺口，初始候选暂不接受，等待同版定点返修 |
