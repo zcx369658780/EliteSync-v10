@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：v10.0.7初始候选 `69b3f26c6ed28a7306e4ba6b902aac2475bfe103` 已经Astra审阅，当前**TARGETED_R1_REQUIRED / NOT_ACCEPTED**，见[R1审查](v10.0.7/ASTRA_R1_REVIEW_FINDINGS.md)。冻结8AC不改、成功业务原证继续有效；通知API最小化与撤销后拒绝及Flutter失败定点归因/修复待同版返修。产品候选未集成main，0.8未启动；下文“等待Owner派发”属于上一时点。
+
+
 2026-10-15：**v10.0.7正式冻结计划**：[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`，八条不可变AC；Owner手动派发待完成、当前未实施。基础产品起点 `0989812c141ce892915b67c14e9291d34e3c7053` / Tree `c2dd89f3a0726bff6cd18fb8fe0008c2f347aadf`。v10.0.6 K08已完成，以下此前“待集成/待冻结”作为历史记录。
 
 
