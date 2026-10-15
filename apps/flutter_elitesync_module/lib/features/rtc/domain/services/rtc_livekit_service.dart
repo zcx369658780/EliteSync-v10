@@ -113,6 +113,7 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   bool get isEnabled => appEnv.useLiveKitRtc;
+  bool get isConnecting => _connecting;
   bool get isConnected =>
       _room?.connectionState == ConnectionState.connected &&
       _connectedCallId != null;
@@ -120,6 +121,13 @@ class RtcLiveKitService extends ChangeNotifier {
   AudioTrack? get remoteAudioTrack => _remoteAudioTrack;
 
   String _platformLabel() => defaultTargetPlatform.name;
+
+  void _logLifecycle(int? callId, String event) {
+    debugPrint(
+      'RTC_LIFECYCLE callId=${callId ?? -1} event=$event '
+      'epochMs=${DateTime.now().millisecondsSinceEpoch}',
+    );
+  }
 
   // Never log bearer material, even a prefix/suffix of a JWT or an SDK URL.
   void _logJoinInfo({
@@ -667,13 +675,16 @@ class RtcLiveKitService extends ChangeNotifier {
       );
       room.events
         ..on<RoomDisconnectedEvent>((event) {
+          _logLifecycle(callId, 'room_disconnected');
           if (identical(_room, room)) unawaited(leave(callId: callId));
         })
         ..on<RoomReconnectingEvent>((event) {
+          _logLifecycle(callId, 'room_reconnecting');
           // The trusted server gateway also re-authorizes every WS reconnect.
           unawaited(_sendHeartbeat(callId));
         })
         ..on<RoomReconnectedEvent>((event) {
+          _logLifecycle(callId, 'room_reconnected');
           unawaited(_sendHeartbeat(callId));
           _mediaChanged();
         })
@@ -878,6 +889,7 @@ class RtcLiveKitService extends ChangeNotifier {
         _pendingCallId != callId) {
       return;
     }
+    final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;
     _connectionGeneration += 1;
     final room = _room;
     room?.removeListener(_mediaChanged);
@@ -890,13 +902,17 @@ class RtcLiveKitService extends ChangeNotifier {
     _stopAudioStatsTimer();
     unawaited(_unbindLocalAudioTrackDiagnostics());
     _mediaChanged();
-    if (room == null) return;
+    if (room == null) {
+      _logLifecycle(leavingCallId, 'leave_complete');
+      return;
+    }
     try {
       await room.disconnect();
       await room.dispose();
     } catch (_) {
       // leave should be best-effort only.
     }
+    _logLifecycle(leavingCallId, 'leave_complete');
   }
 
   Future<RtcLiveKitJoinInfoEntity> _loadJoinInfo(int callId) =>

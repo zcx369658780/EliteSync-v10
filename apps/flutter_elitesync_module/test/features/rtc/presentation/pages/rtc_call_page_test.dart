@@ -11,6 +11,7 @@ import 'package:flutter_elitesync_module/core/telemetry/app_telemetry_service.da
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -47,9 +48,23 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   RtcSessionEntity _session;
   int connectRequests = 0;
+  int joinRequests = 0;
+  bool denySession = false;
+  final List<String> requestOrder = [];
 
   @override
-  Future<RtcSessionEntity> fetchCall(int callId) async => _session;
+  Future<RtcSessionEntity> fetchCall(int callId) async {
+    requestOrder.add('session');
+    if (denySession) throw StateError('session denied');
+    return _session;
+  }
+
+  @override
+  Future<RtcLiveKitJoinInfoEntity> fetchLiveKitJoinInfo(int callId) async {
+    requestOrder.add('join');
+    joinRequests++;
+    throw StateError('join denied');
+  }
 
   @override
   Future<RtcSessionEntity> acceptCall(int callId) async {
@@ -159,16 +174,21 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   }
 }
 
-Widget _wrap(Widget child, {required RtcRemoteDataSource rtc}) {
+Widget _wrap(
+  Widget child, {
+  required RtcRemoteDataSource rtc,
+  bool liveKit = false,
+}) {
   final telemetry = FakeAppTelemetryService();
   return ProviderScope(
     overrides: [
       appEnvProvider.overrideWithValue(
-        const AppEnv(
+        AppEnv(
           flavor: AppFlavor.dev,
           appName: 'EliteSync',
           apiBaseUrl: 'http://127.0.0.1',
           useMockData: true,
+          useLiveKitRtc: liveKit,
         ),
       ),
       frontendTelemetryProvider.overrideWithValue(
@@ -186,6 +206,54 @@ Widget _wrap(Widget child, {required RtcRemoteDataSource rtc}) {
 }
 
 void main() {
+  for (final outcome in ['active', 'terminal', 'unknown']) {
+    testWidgets('explicit reconnect rechecks current session: $outcome', (
+      tester,
+    ) async {
+      final rtc = FakeRtcRemoteDataSource(
+        RtcSessionEntity.fromJson({
+          'id': 72,
+          'mode': 'voice',
+          'status': 'in_call',
+          'initiator_user_id': 1,
+          'peer_user_id': 2,
+          'is_initiator': true,
+          'is_active': true,
+        }),
+      );
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 72, autoConnect: false),
+          rtc: rtc,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(rtc.joinRequests, 1);
+      expect(find.text('重新连接'), findsOneWidget);
+      final previous = rtc.requestOrder.length;
+      if (outcome == 'terminal') {
+        rtc._session = RtcSessionEntity.fromJson({
+          ...rtc._sessionToJson(),
+          'status': 'ended',
+          'is_terminal': true,
+          'is_active': false,
+        });
+      } else if (outcome == 'unknown') {
+        rtc.denySession = true;
+      }
+      await tester.ensureVisible(find.text('重新连接'));
+      await tester.tap(find.text('重新连接'));
+      await tester.pumpAndSettle();
+      expect(rtc.requestOrder[previous], 'session');
+      expect(rtc.joinRequests, outcome == 'active' ? 2 : 1);
+      if (outcome == 'active') {
+        expect(rtc.requestOrder[previous + 1], 'join');
+      }
+      expect(rtc.connectRequests, 0);
+      await tester.pumpWidget(const SizedBox());
+    });
+  }
   testWidgets('RtcCallPage renders session status and actions', (tester) async {
     final session = RtcSessionEntity.fromJson({
       'id': 1,

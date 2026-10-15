@@ -40,7 +40,7 @@ async def backend(action,payload):
     temporary=request.with_suffix('.tmp')
     temporary.write_text(json.dumps({'action':action,'payload':payload}));temporary.replace(request)
     try:
-        for _ in range(100):
+        for _ in range(200):
             if reply.exists():
                 result=json.loads(reply.read_text())
                 if not result.get('ok'): raise RuntimeError('authority denied')
@@ -94,7 +94,7 @@ async def handle(reader,writer):
         if len(header)>32768: raise ValueError('headers too large')
         lines=header.decode('latin1').split('\r\n');method,target,version=lines[0].split(' ')
         url=urlsplit(target)
-        if method!='GET' or url.path not in ['/rtc','/rtc/validate'] or not ready or time.monotonic()-last_sweep>1.5: raise ValueError('unavailable')
+        if method!='GET' or url.path not in ['/rtc','/rtc/validate'] or not ready or time.monotonic()-last_sweep>2.5: raise ValueError('unavailable')
         headers={}
         for line in lines[1:]:
             if not line: continue
@@ -156,7 +156,7 @@ async def main():
     last_sweep=time.monotonic()
     async def watchdog():
         while child.returncode is None:
-            if time.monotonic()-last_sweep>2:
+            if time.monotonic()-last_sweep>3.5:
                 stop_sfu();return
             await asyncio.sleep(.05)
     deadline=asyncio.create_task(watchdog())

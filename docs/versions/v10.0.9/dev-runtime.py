@@ -38,6 +38,14 @@ elif action in ['migrate','seed']:
  sys.exit(run(action,args,BACKEND,env()))
 elif action=='start':
  check_ports();owned={'php':start_one('laravel',[PHP,'-d','upload_max_filesize=26M','-d','post_max_size=27M','-S','127.0.0.1:8001','-t','public','public/index.php'],BACKEND),'front':start_one('front',[sys.executable,str(ROOT/'docs/versions/v10.0.9/local-http-front.py')])};(Q/'owned-processes.json').write_text(json.dumps(owned,indent=2));print('Owned V1009 services started')
+elif action=='authority':
+ with socket.socket() as s:
+  if s.connect_ex(('127.0.0.1',8002))==0:raise RuntimeError('Owned authority port already occupied; inspect first')
+ p=start_one('authority-php',[PHP,'-S','127.0.0.1:8002','-t','public','public/index.php'],BACKEND)
+ (Q/'owned-authority-php.json').write_text(json.dumps(p,indent=2));print('Owned same-code same-database authority listener started')
+elif action=='bridge':
+ p=start_one('authority-bridge',[sys.executable,str(ROOT/'docs/versions/v10.0.9/authority-bridge.py'),str(Q)])
+ (Q/'owned-bridge.json').write_text(json.dumps(p,indent=2));print('Owned authority bridge started')
 elif action=='worker':
  p=start_one('worker',[PHP,'artisan','queue:work','database','--queue=v1009-matching','--sleep=1','--tries=1','--timeout=180'],BACKEND);(Q/'owned-worker.json').write_text(json.dumps(p,indent=2));print('Owned V1009 matching worker started')
 elif action=='php':sys.exit(run(sys.argv[3],[PHP,str(ROOT/sys.argv[4])],BACKEND,env()))

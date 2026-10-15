@@ -145,6 +145,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       return;
     }
 
+    if (_busy) return;
     if (!['connecting', 'in_call'].contains(session.status)) return;
     if (_liveKitAttemptedCallId == session.id) return;
     _liveKitAttemptedCallId = session.id;
@@ -153,6 +154,38 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     } catch (_) {
       if (mounted) setState(() {});
       return;
+    }
+  }
+
+  Future<void> _reconnectMedia() async {
+    if (_busy || _liveKitService.isConnecting || _liveKitService.isConnected) {
+      return;
+    }
+    setState(() => _busy = true);
+    try {
+      // Never reuse the page's cached session or the previous room credentials.
+      final current = await ref
+          .read(rtcRemoteDataSourceProvider)
+          .fetchCall(widget.callId);
+      if (!mounted) return;
+      if (current.id != widget.callId ||
+          current.isTerminal ||
+          !['connecting', 'in_call'].contains(current.status)) {
+        throw StateError('通话当前不可重新连接');
+      }
+      await _liveKitService.leave(callId: widget.callId);
+      if (!mounted) return;
+      _liveKitAttemptedCallId = current.id;
+      // ensureConnected obtains fresh join information through the server gate.
+      await _liveKitService.ensureConnected(current.id);
+    } catch (_) {
+      await _liveKitService.leave(callId: widget.callId);
+      if (mounted) AppFeedback.showError(context, '当前通话授权或网络不可验证，媒体保持关闭');
+    } finally {
+      if (mounted) {
+        ref.invalidate(rtcCallProvider(widget.callId));
+        setState(() => _busy = false);
+      }
     }
   }
 
@@ -283,10 +316,17 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
           AppErrorState(
             title: '媒体连接已关闭',
             description: _liveKitService.failureMessage!,
-            onRetry: () async {
-              _liveKitAttemptedCallId = null;
-              await _syncLiveKit(session);
-            },
+          ),
+        if (_liveKitService.isEnabled &&
+            ['connecting', 'in_call'].contains(session.status) &&
+            !session.isTerminal &&
+            _liveKitAttemptedCallId == session.id &&
+            !_liveKitService.isConnected &&
+            !_liveKitService.isConnecting)
+          AppSecondaryButton(
+            label: '重新连接',
+            isLoading: _busy,
+            onPressed: _busy ? null : _reconnectMedia,
           ),
         if (_liveKitService.isConnected) ...[
           Wrap(
