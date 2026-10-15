@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 顾问交接：v10.0.8 R1终验转新会话
+
+**ASTRA_HANDOFF_ARCHIVED / V10_0_8_INITIAL_CANDIDATE_NOT_ACCEPTED / TARGETED_R1_LAST_TASK_ALREADY_DELIVERED / R1_LIVE_STATUS_UNKNOWN / NEXT_SESSION_OWNS_FINAL_ACCEPTANCE / NO_V10_0_9_DISPATCH**。
+
+Owner要求当前会话在GitHub保存本会话历史决定和进度，再交由新顾问会话验收上一轮**已下达**的v10.0.8定点R1。完整[交接正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)，固定归档Commit `38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`、Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1`，已实际读回。最后R1只针对D2/`AC-08-04`中`restrict`受罚者本人申诉的APP→Laravel→持久DB→Blade管理员可见链，以及归属/越权/申诉不解罚等正反例；**不重下任务单、不重开B01～B06、不修改冻结AC或Owner三项决定**。此交接前GitHub动态main为`d15aa037b63edda2adc54ee47242a171c27eb4cc`，初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`，未收到新的R1候选/阻塞回执；真实Codex实时执行状态**UNKNOWN**。
+
+冻结计划Commit`ac57d3370a2f2f17c042987a758d86c9aa725650`、Blob`0856e7372d1f91fadfa3350b30f926f7af9cf809`仍唯一，8项AC不改。R1独立[审查原件](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md) Blob`c91a7fbeb4f838278dff28db9234ea9abd170e61`。初始候选不接受、不合main、0.9未启动；本交接只写文档不改变0.8产品技术起点或初始候选。新Astra收到Owner转交R1结果立即进入原计划独立终验；无回执等待。以下更早“待派发/待初审”均为历史记录。
+
+
 ## 2026-10-15 v10.0.8 初始候选Astra独立审查：需R1定点申诉修复
 
 **V10_0_8_INITIAL_CANDIDATE_REVIEWED / TARGETED_R1_REQUIRED / NOT_ACCEPTED / NO_PRODUCT_MAIN_INTEGRATION / NO_V10_0_9_DISPATCH**。Astra已独立读取初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`（Tree `0da1d69a06a91be3c765d9f4bb6a1febac69d08f`）固定报告、原始安全结果、GitHub源码及真实Blade/APP截图。B01、B02、B04、B05、B06及A08最终构建/重启有核心闭环证据；但D2和AC-08-04已明确`restrict`须保留受罚人申诉能力，当前唯一申诉API只允许`moderation_reports.reporter_id`（举报者）而没有对被处罚者本人具名active sanction的申诉入口，不能视为完成。
