@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.9正式冻结：Owner D4～D6批准，等待手动派发
+
+**V10_0_9_FROZEN_PLAN / OWNER_D4_D5_D6_APPROVED / OWNER_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED / V10_0_8_K08_COMPLETE**。
+
+Owner已明确批准D4双端语音与补建视频＋私有短视频、D5有限本地自托管SFU/信令撤权/第二APP端与隔离0.9资源、D6优先恢复主要用户功能且把原0.9联合验收顺延。固定[Owner决定](PRODUCT_DECISIONS.md)新增提交`4bda572e225b64a3b4d826ae75e355e958251c58` / Blob`85dd5f9b88840104b0d5c26ba57d96fad4a17f11`；Astra已实读[Codex可行性](docs/versions/v10.0.9/FEASIBILITY_RECOMMENDATION.md)并冻结[唯一正式0.9计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md) Commit`68d57f755d0091bc15cb867b96d3a21caee83690` / Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`，**AC-09-01～AC-09-08不可事后增删/降级**。重点包括RTC当前CN/MC/Restrict等权限、真实双APP语音和视频、SFU撤权后≤5秒停止媒体且旧JWT不能重入、私有视频附件及已验消息/后台必要回归。0.9尚未运行APP、DB、SFU、worker或测试，原8版成功运行历史不自动变为0.9 PASS。
+
+固定**产品技术起点**仍为0.8 K08 main`3a8f7989aa208285b885f1c80f4365f38488ac54` / Tree`95fadde468d8a21b39c544fdb74093dd35184717`；本轮之后的Owner政策、冻结plan与状态更新仅文档，不改变 apps/services 代码Tree。Owner手动将固定plan交Codex并明确“正式执行v10.0.9”后，计划第5节限域开发权限才一次生效，包括镜像版本+Digest核验、受控本地网络/设备和新0.9 DB/volume。未批准公共SFU、Cloud、系统提权、商业算法许可或生产/历史私有数据操作。RTC真实用户功能先收口，完整紫微/西占、Buddy/Social、地图/Push/历史数据等仍需在内测前具名解决，联合验收顺延、后续编号未冻结。下方“0.9版前未冻结”等均是历史时点。
+
+
 ## 2026-10-15 v10.0.9版前交付建议（未冻结、未实施）
 
 **V10_0_8_K08_INTEGRATION_COMPLETE / V10_0_9_PREPLAN_READY / OWNER_SCOPE_DECISION_PENDING / NOT_FROZEN / NOT_IMPLEMENTED**。Astra实核main`3a8f7989aa208285b885f1c80f4365f38488ac54` / Tree`95fadde468d8a21b39c544fdb74093dd35184717`及8版[K08](docs/versions/v10.0.8/integration.md)，Flutter/Android、Laravel与题库Git对象同最终接受R1。K08只做8项PHP语法检查exit0、空白提示exit1留存；其它业务/测试/构建NOT_RUN。现已建立[唯一v10.0.9版前建议](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`，**仅供Owner排程和一次性具名可行性收敛，不是正式plan、没有0.9 AC或新的环境启动/开发授权**。
