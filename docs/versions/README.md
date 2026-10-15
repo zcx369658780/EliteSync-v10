@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：v10.0.8固定候选`cff049ae602049adf49014ec2ed27963dc40aff5`已交付，但Astra初审为**TARGETED_R1_REQUIRED / NOT_ACCEPTED**；见[具名审查](v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)。已有Blade/APP/DB、实际matching队列、问卷变更与开发版本元数据的主要成功原证保留；D2 restrict本人申诉未提供，须同版定点补齐。冻结AC-08-01～08不改，main产品未合候选，0.9尚未派发。下方“等正式派发”属于历史时点。
+
+
 2026-10-15：**v10.0.8 FROZEN_PLAN / OWNER_DISPATCH_PENDING**。固定正式计划：[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)；Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项不可变AC；Owner D1运营审核、D2处罚与受控恢复、D3问卷历史保留及新匹配按有效题资格均已正式批准见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。范围B01～B05＋B06既有Android开发channel版本管理。技术起点仍为v10.0.7 K08 main a75b8d4/Tree8963789；现行产品未因纯文档改变。无实施候选、数据库启动或新版业务实测；后续此前的FEASIBILITY_READY/NOT_FROZEN属于历史时点。
 
 
