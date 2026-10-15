@@ -1,5 +1,22 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8 已冻结，运行仍未开始（当前）
+
+**B01～B05＋B06 Android开发channel发布元数据：FROZEN_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_DISPATCH_PENDING。** [唯一固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)，Git Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809；D1运营参与资格、D2分级处罚与受控恢复、D3历史问卷保留/新轮次有效题资格均已获Owner正式批准，见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。
+
+| 台账分组 | 当前有效限定 |
+|---|---|
+| B01 | 原0.6真实Blade登录、查询、禁用/会话失效已经验收且K08；v0.8的新增查询、审计、Web/API角色一致性仍NOT_RUN |
+| B02 | 审核/资格Web闭环未实现；0.8冻结为运营准入而非实名认证，需APP及新matching实际使用点 |
+| B03 | 举报Web、限制/处罚/恢复共享事务、动态处置与审计未实现；原API字段直改的安全旁路需0.8修复 |
+| B04 | 0.7真实Matching consumer已有接受证据；从独立Web请求到指定worker实际消费/发布与APP结果尚未实测 |
+| B05 | 已有统计/prune API但变更版本/历史资格/草稿并发合同未闭环；0.8需真实Web+APP持久证据 |
+| B06 | 开发channel发布CLI/版本表/APP读API为既有源码基础；管理Blade操作及同库版本结果仍NOT_RUN |
+| A03/A06/A07/A08/A09 | 历史真数据、RTC、完整星盘、Buddy/Social、其它媒体、地图/Push与联合交付仍有具名恢复欠账；不默认移至内测后 |
+
+下方0.7已接受与更旧的“0.7待冻结”等状态为各自历史时点，不能被理解为0.8已运行或已完成。0.6/0.7原验收卷与private来源不自动授权修改。
+
+
 ## 2026-10-15 v10.0.7 K08接续（当前）
 
 **V10.0.7 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_8_NOT_DISPATCHED**。最终接受R1候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` 已安全接入main；产品commit `18c1ddb67378518b6b2c3e912e1e3b2afd394051` / Tree `4cde05f06079a8bd4879ae34a31db7ac0c30c625`，普通non-force推送并回读一致。完整apps/services/题库与接受R1一致，保留通知隐私修复、冻结8AC、独立验收/复盘及全部原始失败。原专用树接续；原dirty根HEAD/index/status及43项具名hash相同。PHP4项语法检查通过，包hash未变；本次套件/分析/构建/安装/业务重跑NOT_RUN，无新增产品差异。原Flutter普通793/5、带fixture821/3仍exit1。0.6/0.7容器停止、卷保留，未seed或启动服务/AVD。以下K08 PENDING/候选未合main为历史状态；保留全部能力限定、未恢复项和观察。不规划或实施0.8。 [K08详细登记](../versions/v10.0.7/integration.md)。
