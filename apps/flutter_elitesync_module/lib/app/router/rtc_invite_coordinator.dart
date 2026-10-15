@@ -8,6 +8,7 @@ import 'package:flutter_elitesync_module/app/router/app_shell.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/app/router/app_shell.dart' as shell;
 
@@ -24,7 +25,7 @@ final rtcInviteBootstrapProvider = Provider<void>((ref) {
 int _currentUserId(dynamic ref) {
   final session = ref.read(sessionProvider);
   if (session is AsyncData<SessionState>) {
-    return session.value.user?.id ?? 0;
+    return session.value.isLoggedIn ? session.value.user?.id ?? 0 : 0;
   }
   return 0;
 }
@@ -54,12 +55,22 @@ Future<void> _openIncomingCall(
   );
 }
 
-Future<bool> _scanIncomingCalls(dynamic ref, {int? handledCallId}) async {
+Future<bool> _scanIncomingCalls(
+  dynamic ref, {
+  int? handledCallId,
+  bool Function()? isCurrent,
+}) async {
   final currentUserId = _currentUserId(ref);
   if (currentUserId <= 0) return false;
 
   ref.invalidate(rtcCallsProvider);
-  final calls = await ref.read(rtcCallsProvider.future);
+  final calls =
+      await (ref.read(rtcCallsProvider.future)
+              as Future<List<RtcSessionEntity>>)
+          .timeout(const Duration(seconds: 8));
+  if ((isCurrent != null && !isCurrent()) ||
+      _currentUserId(ref) != currentUserId)
+    return false;
   final incoming = shell.selectLatestIncomingRtcCall(calls, currentUserId);
   // ignore: avoid_print
   print(
@@ -80,14 +91,25 @@ void startRtcInviteWatcher(dynamic ref) {
   // ignore: avoid_print
   print('RTC_INVITE_PROVIDER_BUILD');
 
+  var disposed = false;
   Future<void> pollOnce() async {
-    if (_rtcInviteScanning) return;
+    if (disposed || _rtcInviteScanning) return;
+    final userId = _currentUserId(ref);
+    // A signed-out notification provider can retry indefinitely. Do not let
+    // that request hold the scan lock across a later successful login.
+    if (userId <= 0) return;
+    bool isCurrent() => !disposed && _currentUserId(ref) == userId;
     _rtcInviteScanning = true;
     try {
-      if (await _scanIncomingCalls(ref)) return;
+      if (await _scanIncomingCalls(ref, isCurrent: isCurrent)) return;
+      if (!isCurrent()) return;
 
       ref.invalidate(notificationListProvider);
-      final notifications = await ref.read(notificationListProvider.future);
+      final notifications =
+          await (ref.read(notificationListProvider.future)
+                  as Future<List<NotificationItemEntity>>)
+              .timeout(const Duration(seconds: 8));
+      if (!isCurrent()) return;
       final invite = shell.selectLatestRtcInvite(notifications);
       // ignore: avoid_print
       print(
@@ -125,22 +147,26 @@ void startRtcInviteWatcher(dynamic ref) {
       }
     } catch (error) {
       // ignore: avoid_print
-      print('RTC_INVITE_PROVIDER_ERROR $error');
+      print('RTC_INVITE_PROVIDER_ERROR type=${error.runtimeType}');
     } finally {
-      _rtcInviteScanning = false;
+      if (!disposed) _rtcInviteScanning = false;
     }
   }
 
+  // Claim the timer synchronously so bootstrap and AppShell cannot each start
+  // a watcher during the same frame.
+  _rtcInviteTimer = Timer.periodic(const Duration(seconds: 2), (_) {
+    pollOnce();
+  });
   WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (disposed) return;
     // ignore: avoid_print
     print('RTC_INVITE_PROVIDER_START');
     pollOnce();
-    _rtcInviteTimer = Timer.periodic(const Duration(seconds: 2), (_) {
-      pollOnce();
-    });
   });
 
   ref.onDispose(() {
+    disposed = true;
     _rtcInviteTimer?.cancel();
     _rtcInviteTimer = null;
     _rtcInviteScanning = false;

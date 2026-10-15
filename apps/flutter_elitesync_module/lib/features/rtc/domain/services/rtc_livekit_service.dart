@@ -269,10 +269,16 @@ class RtcLiveKitService extends ChangeNotifier {
                 : address == '127.0.0.1' || address == '::1'
                 ? 'loopback'
                 : 'non_loopback';
+            final selection = selectedPairs.contains(report.id)
+                ? 'transport_selected'
+                : report.values['selected'] == true
+                ? 'selected_flag'
+                : 'nominated_inference';
             // Log categories only; never expose candidate addresses, ports or IDs.
             debugPrint(
               'RTC_MEDIA_ICE callId=$callId direction=${entry.key} '
-              'transport=$transport remoteAddressClass=$addressClass',
+              'transport=$transport remoteAddressClass=$addressClass '
+              'selection=$selection',
             );
           }
           if (report.type != '${entry.key}-rtp') continue;
