@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.7 Astra初审：原范围定点R1返修
+
+**V10_0_7_INITIAL_CANDIDATE_REVIEWED / TARGETED_R1_REQUIRED / NOT_ACCEPTED / MAIN_PRODUCT_CODE_NOT_INTEGRATED / V10_0_8_NOT_DISPATCHED**。
+
+Astra已实际读取固定候选 `69b3f26c6ed28a7306e4ba6b902aac2475bfe103` / Tree `09982c2349fb47c276018ff24aa30ac2f267dc34` 的报告、Manifest、TEST_RESULTS、相关源码及安全原始日志、DB/API/APP截图；8项冻结AC按 `ef1bf4d...` / plan Blob `151d75b...`不变。真实用户业务链主要证据成立，但初始候选存在消息通知API读取敏感内容的服务端旁路/缺撤销负例，以及本轮Flutter 6项失败未完成限定归因（含改动过的chat mock测试不匹配）；全范围Dart analyze 3条既存测试info仍为exit1。独立反馈：[R1审查原件](https://github.com/zcx369658780/EliteSync-v10/blob/657c1af73749c2925dd4fd8a7b3a63350f86cb79/docs/versions/v10.0.7/ASTRA_R1_REVIEW_FINDINGS.md)。当前**不接受、不集成main**，Owner手动转交Codex同版定点修复/测试，保留已有成功链和原始失败；v10.0.8未启动。以下冻结等待实施等均为之前历史时点。
+
+
 ## 2026-10-15 v10.0.7正式冻结，等待Owner手动派发
 
 **V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_FROZEN_PLAN / OWNER_DISPATCH_PENDING / V10_0_7_IMPLEMENTATION_NOT_STARTED**。
