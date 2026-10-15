@@ -386,7 +386,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
         fresh.copyWith(
           isSubmitting: false,
           errorMessage: stale
-              ? (e as ValidationException).message
+              ? e.message
               : e.toString(),
         ),
       );

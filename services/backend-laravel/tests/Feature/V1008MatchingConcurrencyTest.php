@@ -105,6 +105,17 @@ final class V1008MatchingConcurrencyTest extends TestCase
         $this->assertSame(['admin_versions', 'users', 'dating_rounds', 'matching_runs'],
             array_column(array_slice($locks, 0, 4), 'table'));
         $this->assertSame([['column' => 'id', 'direction' => 'asc']], $locks[1]['orders']);
+        $notifications = \App\Models\AppNotificationItem::where('kind', 'matching_round')->get();
+        $this->assertCount(2, $notifications);
+        foreach ($notifications as $notification) {
+            $this->assertSame($run->round->round_key, $notification->payload['round_key']);
+            $this->assertSame($run->run_key, $notification->payload['run_key']);
+            $this->assertSame('match_result', $notification->payload['route_name']);
+            $this->assertArrayNotHasKey('partner_user_id', $notification->payload);
+            $this->assertStringContainsString('不授予连接或消息同意', $notification->body);
+        }
+        $this->assertDatabaseCount('product_connections', 0);
+        $this->assertDatabaseCount('messaging_consents', 0);
         $this->assertDatabaseHas('dating_matches', ['matching_run_id' => $run->id, 'drop_released' => true]);
     }
 

@@ -83,8 +83,9 @@ class _Api extends ApiClient {
         'profile': {'complete': true},
       });
     }
-    if (!path.endsWith('/draft'))
+    if (!path.endsWith('/draft')) {
       return const NetworkSuccess(<String, dynamic>{});
+    }
     draftSaves++;
     if (staleDraft) {
       return const NetworkFailure(

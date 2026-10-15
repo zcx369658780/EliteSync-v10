@@ -92,6 +92,13 @@ class MatchingRoundService
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNotNull('dating_match_id')->update(['state' => UserRoundState::Revealed->value, 'conversation_eligible' => true, 'reason_code' => 'match_revealed', 'next_action_code' => 'open_conversation', 'projection_version' => DB::raw('projection_version + 1')]);
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNull('dating_match_id')->update(['state' => UserRoundState::NoCandidate->value, 'conversation_eligible' => false, 'reason_code' => 'no_candidate', 'next_action_code' => 'wait_next_round', 'projection_version' => DB::raw('projection_version + 1')]);
                 DatingMatch::query()->where('round_id', $locked->id)->update(['drop_released' => true, 'released_at' => now()->utc()]);
+                $runKey = MatchingRun::whereKey($locked->active_run_id)->value('run_key');
+                foreach ($currentUsers->keys() as $userId) {
+                    app(NotificationService::class)->createForUser((int) $userId, 'matching_round',
+                        '匹配轮次结果已发布', '请在应用内查看本轮结果。匹配不授予连接或消息同意。',
+                        ['source' => 'matching_round', 'round_key' => $locked->round_key, 'run_key' => $runKey,
+                            'route_name' => 'match_result', 'route_args' => []]);
+                }
                 $values['revealed_at'] = now()->utc();
             }
             if ($next === RoundState::Closed) {
