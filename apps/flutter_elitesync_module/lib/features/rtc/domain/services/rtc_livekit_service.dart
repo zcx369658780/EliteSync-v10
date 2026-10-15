@@ -692,6 +692,11 @@ class RtcLiveKitService extends ChangeNotifier {
       room.addListener(_mediaChanged);
       _startHeartbeat(callId);
       final connectOptions = ConnectOptions(
+        // Explicit empty list prevents the SDK adopting SFU public STUN defaults.
+        // Local restoration uses only the Owner-approved host candidate path.
+        rtcConfiguration: appEnv.restorationLocalBuild
+            ? const RTCConfiguration(iceServers: [])
+            : const RTCConfiguration(),
         timeouts: const Timeouts(
           connection: Duration(seconds: 30),
           debounce: Duration(milliseconds: 20),
