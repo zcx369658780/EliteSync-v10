@@ -1,5 +1,18 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8 Astra最终独立验收：R1已通过、K08产品集成待完成
+
+**V10_0_8_ACCEPTED_WITH_OBSERVATIONS / R1_OWNER_SANCTION_APPEAL_VERIFIED / GITHUB_PRODUCT_INTEGRATION_PENDING / LOCAL_K08_PENDING / V10_0_9_NOT_DISPATCHED**。
+
+Astra已独立核验接受最终候选 `d37121eb11d3cc845f1606a631d17ca01fe6105a` / Tree `6d260f525de8976b7aea5e4a1fe6c9282d91a332`（分支 `codex/v10.0.8-web-admin`），相对初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`前进2 commits、无落后。唯一冻结plan Commit`ac57d3370a2f2f17c042987a758d86c9aa725650`、Blob`0856e7372d1f91fadfa3350b30f926f7af9cf809`、AC-08-01～08和Owner D1/D2/D3全不变。
+
+[独立验收](docs/versions/v10.0.8/acceptance.md)与[版本复盘](docs/versions/v10.0.8/retrospective.md)已发布，裁决**ACCEPT WITH OBSERVATIONS**。初始B01～B05＋B06 Blade→共享Laravel→同库→APP真实证据继续有效；R1补齐D2/AC-08-04“受限用户本人申诉”：真实APP用户11提交处罚4申诉1、持久DB、授权Blade审计读回、重启后同记录，非本人/已restore/禁用token拒绝，申诉不解除restrict；旧历史合法读200与新发404保持。R1 PHP31项367断言exit0（2 vendor弃用）、Flutter21项exit0、全范围Dart No issues/exit0，最终R1 AAR/debug APK重新构建安装并报告设备回读一致。Windows物理包、设备/dirty根/停止状态由Codex报告，Astra不冒亲自运行。
+
+**观察项**：本版全Flutter/全PHP suite未跑；原0.7旧Flutter3失败、vendor deprecations和旧开发库通知明文记录保留。R1 APK SHA已变，但当前0.8 development release记录仍对应初始APK，这不是R1包已在Web渠道正式发布；任何真实分发须具名同步新sha/URL并验证可下载。重启前后的Blade截图同Git Blob，重启后的APP/DB及新增view审计另给独立支持。
+
+目前只是Astra的**验收/复盘文档**进入GitHub main，**最终R1产品源码尚未集成main**。下一步依CURRENT_WORKFLOW K08由Owner手动把固定接受候选转Codex进行安全集成/本地接续及必要差异回归，不重做整版、不中断原dirty根，不自动启动v10.0.9。下面“R1待修/交接等待”等是较早历史快照，已由本节结论替代。
+
+
 ## 2026-10-15 顾问交接：v10.0.8 R1终验转新会话
 
 **ASTRA_HANDOFF_ARCHIVED / V10_0_8_INITIAL_CANDIDATE_NOT_ACCEPTED / TARGETED_R1_LAST_TASK_ALREADY_DELIVERED / R1_LIVE_STATUS_UNKNOWN / NEXT_SESSION_OWNS_FINAL_ACCEPTANCE / NO_V10_0_9_DISPATCH**。
