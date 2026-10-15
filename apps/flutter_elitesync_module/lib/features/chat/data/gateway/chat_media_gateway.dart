@@ -1,5 +1,7 @@
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/features/chat/data/utils/chat_media_upload_form.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -45,15 +47,36 @@ abstract interface class ChatMediaGateway {
   );
 }
 
-class PlatformChatMediaGateway implements ChatMediaGateway {
+abstract interface class SessionBoundChatMediaGateway
+    implements ChatMediaGateway {
+  Future<ChatMediaUploadResponse> uploadForSession(
+    ChatAttachmentKind kind,
+    ChatPickedMedia media, {
+    required bool Function() isCurrent,
+    required CancelToken cancelToken,
+  });
+}
+
+typedef ChatMediaFormBuilder =
+    Future<FormData> Function({
+      required String mediaType,
+      required String filePath,
+      required String fileName,
+      required Map<String, dynamic> metadata,
+    });
+
+class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
   PlatformChatMediaGateway({
     required ApiClient apiClient,
     ImagePicker? imagePicker,
+    ChatMediaFormBuilder formBuilder = buildChatMediaUploadForm,
   }) : _apiClient = apiClient,
-       _imagePicker = imagePicker ?? ImagePicker();
+       _imagePicker = imagePicker ?? ImagePicker(),
+       _formBuilder = formBuilder;
 
   final ApiClient _apiClient;
   final ImagePicker _imagePicker;
+  final ChatMediaFormBuilder _formBuilder;
 
   @override
   Future<ChatPickedMedia?> pick(ChatAttachmentKind kind) async {
@@ -80,14 +103,43 @@ class PlatformChatMediaGateway implements ChatMediaGateway {
   Future<ChatMediaUploadResponse> upload(
     ChatAttachmentKind kind,
     ChatPickedMedia media,
-  ) async {
-    final form = await buildChatMediaUploadForm(
+  ) => _upload(kind, media);
+
+  @override
+  Future<ChatMediaUploadResponse> uploadForSession(
+    ChatAttachmentKind kind,
+    ChatPickedMedia media, {
+    required bool Function() isCurrent,
+    required CancelToken cancelToken,
+  }) => _upload(kind, media, isCurrent: isCurrent, cancelToken: cancelToken);
+
+  Future<ChatMediaUploadResponse> _upload(
+    ChatAttachmentKind kind,
+    ChatPickedMedia media, {
+    bool Function()? isCurrent,
+    CancelToken? cancelToken,
+  }) async {
+    if (isCurrent != null && !isCurrent()) {
+      throw const ChatMediaGatewayException();
+    }
+    final form = await _formBuilder(
       mediaType: kind.mediaType,
       filePath: media.path,
       fileName: media.name,
       metadata: {'source_page': 'chat_room', 'media_kind': kind.mediaType},
     );
-    final result = await _apiClient.post('/api/v1/media', body: form);
+    if (isCurrent != null && !isCurrent()) {
+      throw const ChatMediaGatewayException();
+    }
+    if (cancelToken?.isCancelled == true) throw cancelToken!.cancelError!;
+    final result = await _apiClient.post(
+      '/api/v1/media',
+      body: form,
+      cancelToken: cancelToken,
+      options: isCurrent == null
+          ? null
+          : Options(extra: {requestSessionGuardKey: isCurrent}),
+    );
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
       throw const ChatMediaGatewayException();
     }

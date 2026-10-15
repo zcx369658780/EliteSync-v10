@@ -29,6 +29,10 @@ return [
     */
 
     'disks' => [
+        'v1007' => [
+            'driver'=>'local', 'root'=>env('V1007_MEDIA_ROOT',storage_path('app/v1007-private')),
+            'visibility'=>'private','serve'=>false,'throw'=>true,
+        ],
 
         'local' => [
             'driver' => 'local',

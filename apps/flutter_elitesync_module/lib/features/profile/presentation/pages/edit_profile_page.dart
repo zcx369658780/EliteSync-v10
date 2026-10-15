@@ -14,6 +14,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme_extension
 import 'package:flutter_elitesync_module/app/router/app_route_observer.dart';
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_detail_entity.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class EditProfilePage extends ConsumerStatefulWidget {
   const EditProfilePage({super.key});
@@ -31,6 +32,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
   final _city = TextEditingController();
   final _birthPlace = TextEditingController();
   final _birthPlaceQuery = TextEditingController();
+  final _birthLat = TextEditingController();
+  final _birthLng = TextEditingController();
   final _birthPlacePanelKey = GlobalKey();
   bool _initialized = false;
   bool _citySaving = false;
@@ -73,6 +76,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
     _city.dispose();
     _birthPlace.dispose();
     _birthPlaceQuery.dispose();
+    _birthLat.dispose();
+    _birthLng.dispose();
     super.dispose();
   }
 
@@ -100,6 +105,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
     final async = ref.watch(editProfileProvider);
     final detail = async.asData?.value.detail;
     final t = context.appTokens;
+    final localRestoration = ref.watch(appEnvProvider).restorationLocalBuild;
 
     if (detail != null) {
       final signature = [
@@ -123,6 +129,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
         _city.text = detail.city;
         _birthPlace.text = detail.birthPlace ?? '';
         _birthPlaceQuery.text = detail.birthPlace ?? '';
+        _birthLat.text = detail.birthLat?.toString() ?? '';
+        _birthLng.text = detail.birthLng?.toString() ?? '';
         _selectedGender = _normalizeGender(detail.gender);
         _selectedTarget = _normalizeTarget(detail.target);
         _selectedBirthPlace = detail.birthPlace;
@@ -143,10 +151,14 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
           SizedBox(height: t.spacing.md),
           AppInfoSectionCard(
             title: '保存后会发生什么',
-            subtitle: '城市可独立保存；完整资料保存会刷新画像与星盘摘要',
+            subtitle: localRestoration
+                ? '城市可独立保存；完整出生资料用于本地真实八字'
+                : '城市可独立保存；完整资料保存会刷新画像与星盘摘要',
             leadingIcon: Icons.sync_alt_rounded,
             child: Text(
-              '保存城市只更新城市并从服务端读回，不触发画像或星盘重算。保存并重算提交的是完整基础出生资料，不是本地展示草稿。提交后，系统会重新整理八字、紫微与星盘所需字段；出生时间和出生地会用于后续摘要刷新。本地只负责展示结果，不自行计算或改写解释结论。',
+              localRestoration
+                  ? '保存城市只更新城市并从服务端读回。出生时间采用 Asia/Shanghai（UTC+8）；其它时区需先转换。本地真实八字由服务端计算，时间缺失会明确记录默认午时降级；完整紫微与西占仍待恢复。出生地名称及坐标可手工填写，本页不调用外部地图搜索。请以各模块来源说明为准。'
+                  : '保存城市只更新城市并从服务端读回，不触发画像或星盘重算。保存并重算提交的是完整基础出生资料，不是本地展示草稿。提交后，系统会重新整理八字、紫微与星盘所需字段；出生时间和出生地会用于后续摘要刷新。本地只负责展示结果，不自行计算或改写解释结论。',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: t.textSecondary,
                 height: 1.5,
@@ -157,10 +169,14 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
             SizedBox(height: t.spacing.sm),
             AppInfoSectionCard(
               title: '正在保存与重算',
-              subtitle: '保存完成后，会自动触发画像与星盘刷新',
+              subtitle: localRestoration
+                  ? '保存完成后可读取本地真实八字'
+                  : '保存完成后，会自动触发画像与星盘刷新',
               leadingIcon: Icons.sync_problem_rounded,
               child: Text(
-                '当前提交正在同步基础资料。请保持网络连接，保存完成后会自动刷新资料页、画像页和星盘页的最新结果。',
+                localRestoration
+                    ? '当前提交正在同步完整基础资料。完整紫微与西占仍待恢复；此操作不代表完整排盘已完成。'
+                    : '当前提交正在同步基础资料。请保持网络连接，保存完成后会自动刷新资料页、画像页和星盘页的最新结果。',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: t.textSecondary,
                   height: 1.5,
@@ -234,7 +250,9 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      '出生时间会影响八字 / 紫微 / 星盘计算，建议填写精确时间',
+                      localRestoration
+                          ? '出生时间用于本地真实八字，建议填写精确时间；完整紫微与西占待恢复'
+                          : '出生时间会影响八字 / 紫微 / 星盘计算，建议填写精确时间',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: t.textSecondary,
                         height: 1.35,
@@ -242,40 +260,69 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                     ),
                   ),
                   SizedBox(height: t.spacing.sm),
-                  _BirthPlaceSearchField(
-                    searchController: _birthPlaceQuery,
-                    valueController: _birthPlace,
-                    visible: _birthPlacePanelVisible,
-                    animatingOut: _birthPlacePanelAnimatingOut,
-                    searching: _birthPlaceSearching,
-                    errorText: _birthPlaceSearchError,
-                    candidates: _birthPlaceCandidatesView.take(10).toList(),
-                    selectedLabel: _selectedBirthPlace,
-                    onFocusTap: () {
-                      setState(() => _birthPlacePanelVisible = true);
-                      _ensureBirthPlacePanelVisible();
-                    },
-                    onQueryChanged: _onBirthPlaceQueryChanged,
-                    onSelect: (item) async {
-                      setState(() {
-                        _selectedBirthPlace = item.label;
-                        _selectedBirthLat = item.lat;
-                        _selectedBirthLng = item.lng;
-                        _birthPlace.text = item.label;
-                        _birthPlaceQuery.text = item.label;
-                        _birthPlacePanelAnimatingOut = true;
-                      });
-                      await Future<void>.delayed(
-                        const Duration(milliseconds: 500),
-                      );
-                      if (!mounted) return;
-                      setState(() {
-                        _birthPlacePanelAnimatingOut = false;
-                        _birthPlacePanelVisible = false;
-                      });
-                    },
-                    panelKey: _birthPlacePanelKey,
-                  ),
+                  if (localRestoration) ...[
+                    AppTextField(
+                      key: const ValueKey('profile-local-birth-place'),
+                      controller: _birthPlace,
+                      label: '出生地名称（手工填写）',
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    AppTextField(
+                      key: const ValueKey('profile-local-birth-lat'),
+                      controller: _birthLat,
+                      label: '出生地纬度',
+                      hint: '-90 至 90',
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: true,
+                      ),
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    AppTextField(
+                      key: const ValueKey('profile-local-birth-lng'),
+                      controller: _birthLng,
+                      label: '出生地经度',
+                      hint: '-180 至 180',
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: true,
+                      ),
+                    ),
+                  ] else
+                    _BirthPlaceSearchField(
+                      searchController: _birthPlaceQuery,
+                      valueController: _birthPlace,
+                      visible: _birthPlacePanelVisible,
+                      animatingOut: _birthPlacePanelAnimatingOut,
+                      searching: _birthPlaceSearching,
+                      errorText: _birthPlaceSearchError,
+                      candidates: _birthPlaceCandidatesView.take(10).toList(),
+                      selectedLabel: _selectedBirthPlace,
+                      onFocusTap: () {
+                        setState(() => _birthPlacePanelVisible = true);
+                        _ensureBirthPlacePanelVisible();
+                      },
+                      onQueryChanged: _onBirthPlaceQueryChanged,
+                      onSelect: (item) async {
+                        setState(() {
+                          _selectedBirthPlace = item.label;
+                          _selectedBirthLat = item.lat;
+                          _selectedBirthLng = item.lng;
+                          _birthPlace.text = item.label;
+                          _birthPlaceQuery.text = item.label;
+                          _birthPlacePanelAnimatingOut = true;
+                        });
+                        await Future<void>.delayed(
+                          const Duration(milliseconds: 500),
+                        );
+                        if (!mounted) return;
+                        setState(() {
+                          _birthPlacePanelAnimatingOut = false;
+                          _birthPlacePanelVisible = false;
+                        });
+                      },
+                      panelKey: _birthPlacePanelKey,
+                    ),
                   SizedBox(height: t.spacing.sm),
                   AppTextField(
                     key: const ValueKey('profile-city-field'),
@@ -302,6 +349,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                   ),
                   SizedBox(height: t.spacing.lg),
                   AppPrimaryButton(
+                    key: const ValueKey('profile-save-full'),
                     label: '保存并重算',
                     isLoading: async.asData?.value.saving ?? false,
                     onPressed: _citySaving
@@ -310,9 +358,40 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                             final genderValue = _selectedGender ?? '';
                             final targetValue = _selectedTarget ?? '';
                             final birthTimeValue = _birthTime.text.trim();
+                            if (localRestoration) {
+                              final lat = double.tryParse(
+                                _birthLat.text.trim(),
+                              );
+                              final lng = double.tryParse(
+                                _birthLng.text.trim(),
+                              );
+                              if (_birthPlace.text.trim().isEmpty ||
+                                  lat == null ||
+                                  lng == null ||
+                                  !lat.isFinite ||
+                                  !lng.isFinite ||
+                                  lat < -90 ||
+                                  lat > 90 ||
+                                  lng < -180 ||
+                                  lng > 180) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      '请填写出生地名称及有效坐标：纬度 -90 至 90，经度 -180 至 180。',
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
+                              _selectedBirthLat = lat;
+                              _selectedBirthLng = lng;
+                            }
                             if (birthTimeValue.isEmpty) {
                               final shouldContinue =
-                                  await _confirmSaveWithoutBirthTime(context);
+                                  await _confirmSaveWithoutBirthTime(
+                                    context,
+                                    localRestoration: localRestoration,
+                                  );
                               if (!shouldContinue || !context.mounted) return;
                             }
                             try {
@@ -333,9 +412,11 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                                   );
                               if (!context.mounted) return;
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                   content: Text(
-                                    '资料已保存，服务端已重算并刷新资料 / 画像 / 星盘缓存',
+                                    birthTimeValue.isEmpty
+                                        ? '资料已保存；出生时间缺失，八字按保留时间或默认午时降级，请核对来源说明。完整紫微与西占待恢复。'
+                                        : '资料已保存，八字结果已刷新；完整紫微与西占待恢复，请以各模块来源说明为准',
                                   ),
                                 ),
                               );
@@ -529,13 +610,18 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
   }
 }
 
-Future<bool> _confirmSaveWithoutBirthTime(BuildContext context) async {
+Future<bool> _confirmSaveWithoutBirthTime(
+  BuildContext context, {
+  bool localRestoration = false,
+}) async {
   final result = await showDialog<bool>(
     context: context,
     builder: (context) => AlertDialog(
       title: const Text('未填写出生时间'),
-      content: const Text(
-        '出生时间会影响八字、紫微和星盘摘要。当前保存后，系统可能会使用历史值或默认值进行计算；前端不会自行补算。是否继续保存？',
+      content: Text(
+        localRestoration
+            ? '出生时间影响八字计算。缺少准确时间时，相关解释可能不完整；完整紫微与西占仍待恢复。是否继续保存资料？'
+            : '出生时间会影响八字、紫微和星盘摘要。当前保存后，系统可能会使用历史值或默认值进行计算；前端不会自行补算。是否继续保存？',
       ),
       actions: [
         TextButton(

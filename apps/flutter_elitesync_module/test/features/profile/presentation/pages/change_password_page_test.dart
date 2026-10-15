@@ -14,6 +14,7 @@ class _PasswordFailureApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
+    CancelToken? cancelToken,
     Object? body,
     Map<String, dynamic>? query,
     Options? options,

@@ -135,7 +135,9 @@ class ModerationController extends Controller
             return response()->json(['message' => 'cannot block self'], 422);
         }
 
-        $block = UserBlock::query()->firstOrCreate(
+        $block = \Illuminate\Support\Facades\DB::transaction(function()use($blockerId,$blockedUserId,$data){
+        if(app(\App\Services\LiveConsentService::class)->enabled())\App\Models\User::whereIn('id',[$blockerId,$blockedUserId])->orderBy('id')->lockForUpdate()->get();
+        return UserBlock::query()->firstOrCreate(
             [
                 'blocker_id' => $blockerId,
                 'blocked_user_id' => $blockedUserId,
@@ -145,6 +147,7 @@ class ModerationController extends Controller
                 'detail' => $data['detail'] ?? null,
             ]
         );
+        });
 
         $events->log(
             eventName: 'block_submit',

@@ -59,14 +59,15 @@ Route::prefix('v1')->group(function () {
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
     });
 
-    Route::prefix('questionnaire')->middleware('auth:sanctum')->group(function () {
+    Route::prefix('questionnaire')->middleware(['auth:sanctum','account.active'])->group(function () {
         Route::get('/questions', [QuestionnaireController::class, 'questions']);
         Route::post('/questions/replace', [QuestionnaireController::class, 'replaceQuestion']);
         Route::post('/answers', [QuestionnaireController::class, 'submitAnswers']);
         Route::get('/history', [QuestionnaireController::class, 'history']);
         // Legacy compatibility endpoints (old Android/Flutter builds)
         Route::post('/submit', [QuestionnaireController::class, 'submitAnswers']);
-        Route::post('/draft', [QuestionnaireController::class, 'saveDraftLegacy']);
+        Route::get('/draft', [\App\Http\Controllers\Api\V1\QuestionnaireDraftController::class,'show']);
+        Route::post('/draft', [\App\Http\Controllers\Api\V1\QuestionnaireDraftController::class,'save']);
         Route::post('/reset', [QuestionnaireController::class, 'reset']);
         Route::get('/progress', [QuestionnaireController::class, 'progress']);
         Route::get('/profile', [QuestionnaireController::class, 'profile']);
@@ -116,6 +117,8 @@ Route::prefix('v1')->group(function () {
                 ->whereNumber('targetUserId');
         });
 
+        Route::get('/connections/{peerId}', [\App\Http\Controllers\Api\V1\LiveConnectionController::class,'show'])->whereNumber('peerId');
+        Route::post('/connections/{peerId}/{kind}', [\App\Http\Controllers\Api\V1\LiveConnectionController::class,'transition'])->whereNumber('peerId')->middleware('throttle:conversations');
         Route::get('/match-rounds/current', [MatchRoundController::class, 'current']);
 
         Route::get('/conversation-peers/{peerUserId}', [ConversationController::class, 'showPeer'])

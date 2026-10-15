@@ -13,6 +13,15 @@ class AstroCanonicalApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // These legacy service-contract fixtures use Http::fake. Keep their
+        // test URL independent from the local build's intentionally empty base.
+        config(['python_astro.api_base' => 'http://127.0.0.1:8002/api/v1/profile/astro']);
+        Http::preventStrayRequests();
+    }
+
     private function fakePythonAstroService(): void
     {
         Http::fake([

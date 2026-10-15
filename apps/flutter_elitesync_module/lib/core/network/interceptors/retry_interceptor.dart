@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 class RetryInterceptor extends Interceptor {
   RetryInterceptor({this.maxRetries = 2});
@@ -10,6 +11,10 @@ class RetryInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     final requestOptions = err.requestOptions;
+    if (!requestSessionIsCurrent(requestOptions)) {
+      handler.reject(staleSessionRequest(requestOptions));
+      return;
+    }
 
     final isRetryableMethod = _retryableMethods.contains(
       requestOptions.method.toUpperCase(),
@@ -30,6 +35,10 @@ class RetryInterceptor extends Interceptor {
 
       final delayMs = 250 * (retries + 1);
       await Future<void>.delayed(Duration(milliseconds: delayMs));
+      if (!requestSessionIsCurrent(requestOptions)) {
+        handler.reject(staleSessionRequest(requestOptions));
+        return;
+      }
 
       try {
         final response = await Dio().fetch(requestOptions);

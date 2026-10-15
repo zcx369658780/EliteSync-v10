@@ -38,6 +38,23 @@ class AstroCompatibilityService
         $weightChart = (float) ($w['natal_chart'] ?? 0.10);
         $weightZiwei = $this->ziweiMainStarAffinityWeight();
         $weightPairChart = (float) ($w['pair_chart'] ?? 0.0);
+        if(app(LiveConsentService::class)->enabled()){
+            $weightChart=0.0;$weightZiwei=0.0;$weightPairChart=0.0;
+            foreach ([$chart, $ziwei, $pairChart] as $index => $detail) {
+                $detail = array_replace($detail, [
+                    'score' => 0, 'confidence' => 0.0, 'weight' => 0.0,
+                    'degraded' => true, 'degrade_reason' => 'v1007_not_restored',
+                    'reason_short' => '待恢复；不参与本版匹配排序',
+                    'reason_detail' => '本版未核验完整排盘，本模块仅保留恢复位置。',
+                    'match' => '', 'mismatch' => '', 'risk_detail' => '',
+                    'status' => 'not_restored', 'weight_policy' => 'excluded_from_core_matching',
+                    'score_delta' => 0.0,
+                ]);
+                if ($index === 0) $chart = $detail;
+                elseif ($index === 1) $ziwei = $detail;
+                else $pairChart = $detail;
+            }
+        }
         $total = (int) round(
             ($bazi['score'] * $weightBazi)
             + ($zodiac['score'] * $weightZodiac)
@@ -161,6 +178,8 @@ class AstroCompatibilityService
                 'ziwei' => $ziwei,
                 'pair_chart' => $pairChart,
             ],
+            'effective_weights' => ['bazi'=>$weightBazi,'zodiac'=>$weightZodiac,'constellation'=>$weightConstellation,
+                'natal_chart'=>$weightChart,'ziwei'=>$weightZiwei,'pair_chart'=>$weightPairChart],
         ];
     }
 

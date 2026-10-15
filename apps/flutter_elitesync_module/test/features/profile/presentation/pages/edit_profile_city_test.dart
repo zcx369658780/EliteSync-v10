@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_detail_entity.dart';
@@ -58,7 +61,17 @@ void main() {
         final notifier = _Edit()..fail = fail;
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [editProfileProvider.overrideWith(() => notifier)],
+            overrides: [
+              editProfileProvider.overrideWith(() => notifier),
+              appEnvProvider.overrideWithValue(
+                const AppEnv(
+                  flavor: AppFlavor.dev,
+                  appName: '测试',
+                  apiBaseUrl: 'http://localhost',
+                  useMockData: false,
+                ),
+              ),
+            ],
             child: MaterialApp(
               theme: AppTheme.light,
               home: const EditProfilePage(),

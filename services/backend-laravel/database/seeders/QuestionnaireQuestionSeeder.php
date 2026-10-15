@@ -15,6 +15,8 @@ class QuestionnaireQuestionSeeder extends Seeder
         $seenKeys = [];
         $sortOrder = 1;
 
+        \Illuminate\Support\Facades\DB::transaction(function()use($banks,&$seenKeys,&$sortOrder){
+
         foreach ($banks as $q) {
             $questionKey = (string) ($q['question_id'] ?? '');
             if ($questionKey === '' && isset($q['source_question_no'])) {
@@ -67,9 +69,7 @@ class QuestionnaireQuestionSeeder extends Seeder
             );
         }
 
-        QuestionnaireQuestion::query()
-            ->whereNotIn('question_key', $seenKeys)
-            ->delete();
+        }); // Unrelated or historical question records are never deleted by this seed.
     }
 
     /**
@@ -82,6 +82,7 @@ class QuestionnaireQuestionSeeder extends Seeder
         $files = [];
         if ($dir && is_dir($dir)) {
             $files = glob($dir.DIRECTORY_SEPARATOR.'question_bank_*.json') ?: [];
+            sort($files, SORT_STRING);
         }
 
         // fallback to legacy single file if split banks are absent
@@ -97,6 +98,7 @@ class QuestionnaireQuestionSeeder extends Seeder
         }
 
         $all = [];
+        $byKey = [];
         foreach ($files as $file) {
             $raw = file_get_contents($file);
             $payload = json_decode((string) $raw, true);
@@ -109,6 +111,18 @@ class QuestionnaireQuestionSeeder extends Seeder
                 if (!isset($q['recommended_bank'])) {
                     $q['recommended_bank'] = $inferredBank;
                 }
+                $key=(string)($q['question_id']??'');
+                if($key==='' && (int)($q['source_question_no']??0)>0)$key=sprintf('Q_DOCX_V2_%03d',(int)$q['source_question_no']);
+                if($key==='' || empty($q['options']) || trim((string)data_get($q,'question_text.zh',''))==='')throw new RuntimeException('invalid question bank row');
+                $ids=array_map(fn($o)=>(string)($o['option_id']??''),$q['options']);
+                if(in_array('',$ids,true)||count(array_unique($ids))!==count($ids))throw new RuntimeException('invalid question option identifiers');
+                // Research questions are retained as source, not implicitly opened to users.
+                if($q['recommended_bank']==='research')$q['active']=false;
+                if(isset($byKey[$key])){
+                    if($byKey[$key]!==$q)throw new RuntimeException('conflicting duplicate question key: '.$key);
+                    continue;
+                }
+                $byKey[$key]=$q;
                 $all[] = $q;
             }
         }

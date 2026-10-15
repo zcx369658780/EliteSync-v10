@@ -30,6 +30,11 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
+        <env name="APP_SESSION_DRIVER" value="array" force="true"/>
+        <env name="APP_SESSION_CONNECTION" value="sqlite" force="true"/>
+        <env name="V1007_LOCAL_RESTORATION" value="false" force="true"/>
+        <env name="FEATURE_MBTI_ENABLED" value="false" force="true"/>
+        <env name="MEDIA_STORAGE_DISK" value="public" force="true"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
 </phpunit>

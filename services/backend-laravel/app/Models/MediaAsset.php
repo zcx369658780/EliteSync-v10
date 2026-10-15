@@ -58,6 +58,7 @@ class MediaAsset extends Model
     {
         return Attribute::make(
             get: function ($value, array $attributes): string {
+                if(($attributes['storage_disk']??null)==='v1007')return $this->isBackingObjectAvailable()?$this->resolveContentRouteUrl($attributes):'';
                 if (!$this->isBackingObjectAvailable()) {
                     return '';
                 }

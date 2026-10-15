@@ -64,6 +64,18 @@ class MatchController extends Controller
                 $module = [];
             }
             $key = (string) ($module['key'] ?? '');
+            if (app(\App\Services\LiveConsentService::class)->enabled() && in_array($key, ['natal_chart', 'ziwei', 'pair_chart'], true)) {
+                // Old development records retain their original stored receipt. Public
+                // explanations must not imply an excluded algorithm has authority.
+                $module['weight'] = 0;
+                $module['score'] = 0;
+                $module['confidence'] = 0;
+                $module['degraded'] = true;
+                $module['degrade_reason'] = 'v1007_not_restored';
+                $module['reason_short'] = $module['reason_detail'] = '本项完整算法尚未恢复，不参与本版排序。';
+                $module['evidence'] = [];
+                $module['evidence_tags'] = ['v1007_not_restored'];
+            }
             $algoVersion = (string) config("matching.algo_versions.{$key}", 'p1');
             $module['algo_version'] = (string) ($module['algo_version'] ?? $algoVersion);
             $tags = $tagMapper->normalizeTags((array) ($module['evidence_tags'] ?? []));
@@ -661,13 +673,14 @@ class MatchController extends Controller
             return response()->json(['message' => 'questionnaire incomplete'], 404);
         }
 
+        $localRestoration = app(\App\Services\LiveConsentService::class)->enabled();
         $match = DatingMatch::query()
-            ->where('week_tag', $this->weekTag())
+            ->when(!$localRestoration, fn($q) => $q->where('week_tag', $this->weekTag()))
             ->where(function ($q) use ($user) {
                 $q->where('user_a', $user->id)
                     ->orWhere('user_b', $user->id);
             })
-            ->first();
+            ->orderByDesc('id')->first();
 
         if (!$match) {
             return response()->json(['message' => 'no match'], 404);
@@ -678,6 +691,9 @@ class MatchController extends Controller
         }
 
         $partnerId = $match->user_a == $user->id ? $match->user_b : $match->user_a;
+        if ($localRestoration && !app(\App\Services\LiveConsentService::class)->match((int)$user->id, (int)$partnerId)) {
+            return response()->json(['message' => 'no match'], 404);
+        }
         $partnerUser = User::query()->find((int) $partnerId);
         $partnerNickname = '';
         if ($partnerUser) {
@@ -725,6 +741,7 @@ class MatchController extends Controller
         $user = $request->user();
         $match = DatingMatch::findOrFail($data['match_id']);
 
+        $wasMutual = (bool) $match->like_a && (bool) $match->like_b;
         if ($user->id == $match->user_a) {
             $match->like_a = $data['like'];
         } elseif ($user->id == $match->user_b) {
@@ -733,7 +750,6 @@ class MatchController extends Controller
             return response()->json(['message' => 'not in match'], 403);
         }
 
-        $wasMutual = (bool) $match->like_a && (bool) $match->like_b;
         $match->save();
         $match->refresh();
         $partnerId = (int) ($user->id == $match->user_a ? $match->user_b : $match->user_a);
@@ -781,10 +797,11 @@ class MatchController extends Controller
                 userId: (int) $user->id,
                 kind: 'match_success',
                 title: '你们已经互相喜欢了',
-                body: '现在可以开始聊天了',
+                body: app(\App\Services\LiveConsentService::class)->enabled() ? '请先双方建立连接，再独立完成双方消息同意。' : '双方意愿已记录，请确认当前连接及消息权限。',
                 payload: [
-                    'route_name' => 'chat_room',
+                    'route_name' => 'match_detail',
                     'route_args' => [
+                        'match_id' => (int) $match->id,
                         'conversation_id' => (string) $partnerId,
                         'title' => $partnerName,
                     ],
@@ -797,10 +814,11 @@ class MatchController extends Controller
                 userId: $partnerId,
                 kind: 'match_success',
                 title: '你们已经互相喜欢了',
-                body: '现在可以开始聊天了',
+                body: app(\App\Services\LiveConsentService::class)->enabled() ? '请先双方建立连接，再独立完成双方消息同意。' : '双方意愿已记录，请确认当前连接及消息权限。',
                 payload: [
-                    'route_name' => 'chat_room',
+                    'route_name' => 'match_detail',
                     'route_args' => [
+                        'match_id' => (int) $match->id,
                         'conversation_id' => (string) $user->id,
                         'title' => $actorName,
                     ],
@@ -822,6 +840,7 @@ class MatchController extends Controller
         $includeSyntheticUsers = app(MatchingDebugModeService::class)->includeSyntheticUsers();
 
         $rows = DatingMatch::query()
+            ->when(app(\App\Services\LiveConsentService::class)->enabled(), fn($q) => $q->where('drop_released', true))
             ->where(function ($q) use ($user) {
                 $q->where('user_a', $user->id)
                     ->orWhere('user_b', $user->id);
@@ -843,6 +862,10 @@ class MatchController extends Controller
 
         $items = $rows
             ->filter(function (DatingMatch $match) use ($user, $includeSyntheticUsers, $syntheticMap) {
+                if (app(\App\Services\LiveConsentService::class)->enabled()) {
+                    $peer = (int) ($match->user_a == $user->id ? $match->user_b : $match->user_a);
+                    if (!app(\App\Services\LiveConsentService::class)->match((int)$user->id, $peer)) return false;
+                }
                 if ($includeSyntheticUsers) {
                     return true;
                 }
