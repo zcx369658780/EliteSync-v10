@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.8唯一正式计划已冻结，等待Owner手动派发**。首读[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)（Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项AC）与[Owner三政策](PRODUCT_DECISIONS.md)。本版B01～B05+开发channel版控，Web管理员真实操作→共享Laravel/独立MariaDB→APP反映；原0.7 K08保持完成，产品代码起点a75b8d4，后续纯文档提交不替换。尚无0.8实现候选/测试，RTC/完整排盘/搭子等仍未恢复。下文PREPLAN_READY、0.8尚未冻结及其它历史待执行信息按记录时点解读。
+
+
 2026-10-15：**v10.0.8版前范围入口已建立，非正式冻结版**。[单份草案](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md) Blob `a1b380521ac8b6fffb1b06a17f759e8755671cc8`，独立Web管理员用户/验证/举报/匹配/问卷模块为主，代码基线沿用v10.0.7完成K08的 `a75b8d4...`。尚未派发Codex只读调查，更没有启动v10.0.8实现；v10.0.7限定验收和Flutter遗留失败保留。以下历史“未规划0.8/0.7待合并”由本节最新事实覆盖。
 
 
@@ -23,6 +26,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.8正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)：Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809、D1～D3已批准、AC-08-01～08冻结；Owner手动派发后方可实施 |
 | v10.0.8当前版前草案 | [固定入口](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)：尚未冻结，Codex调查待派发；B01～B06 Web可操作模块及用户恢复欠账排程 |
 | **v10.0.7最终验收及复盘（首读）** | [独立验收](docs/versions/v10.0.7/acceptance.md)、[版本复盘](docs/versions/v10.0.7/retrospective.md)：R1接受、全量Flutter保留既有3失败、K08产品集成待完成 |
 | **v10.0.7唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)：Blob 151d75b67238826841467fa93c140825ebf61282、AC-07-01～08固定、复用K08产品起点；Owner尚未手动派发，实际运行未开始 |
