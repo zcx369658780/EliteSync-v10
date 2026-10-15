@@ -1,5 +1,22 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8 Astra最终接受状态（当前）
+
+**ACCEPT WITH OBSERVATIONS / FINAL R1 CANDIDATE `d37121eb11d3cc845f1606a631d17ca01fe6105a` / K08 PRODUCT INTEGRATION PENDING。** 完整[独立验收](../versions/v10.0.8/acceptance.md)与[版本复盘](../versions/v10.0.8/retrospective.md)已发布；唯一冻结plan及D1/D2/D3不变。本节覆盖下面“v10.0.8 R1待返修/初始候选未接受”等历史时点，但**不将候选已接受误写为main源码已集成或生产已上线**。
+
+| 已验收功能组 | 当前受限开发环境内的可观察结果 |
+|---|---|
+| B01 用户管理/可信会话 | 真实独立Blade登录、查询/筛选、角色名单/CSRF/session失效、共享禁用审计及同ID APP拒绝，按v10.0.8冻结AC接受 |
+| B02 运营审核 | D1状态/理由、APP真实资格及匹配consumer使用点，历史Match/CN/MC保留 |
+| B03 举报、处罚和本人申诉 | 真实举报/公开动态管理、D2 restrict/banned/具名restore、消息权限；R1再补user11→Restrict4→APP申诉1→MariaDB同库持久→有权Blade管理员查看，重启保持、非本人/已restore/disabled拒绝，不自动解罚 |
+| B04 匹配轮次运营 | 独立Web→database queue/consumer实际运行→reveal/close→APP匹配/通知，含失败、零候选、重试及题库输入变动；R1未新跑worker且不把fixture Match2当真实Matching成果 |
+| B05 问卷质量运营 | 管理题目preview/变更签名、历史answers/attempt和已发布Match保留、有效题不足提示补答与新匹配资格一致 |
+| B06 Android development release | Web metadata管理与APP`development/database/0.08.04`读回已验；R1物理包sha变化，数据库release元数据仍指旧初始APK，**R1包未宣布经Web托管/发布**；生产分发前须具名更新/核对实际URL及SHA |
+| A03/A06/A07/A08/A09 | RTC双端媒体、完整紫微/西占准确算法及许可证、Buddy/Social真实业务、其它媒体、地图/系统Push、获准历史数据/附件与全端联合交付仍待具名内测前恢复/Owner取舍，不从0.8主张全部APP已恢复 |
+
+限定：R1相关PHP31/367 exit0（2 vendor弃用），Flutter相关21 exit0、全范围Dart分析exit0；R1全Flutter、全后端套件NOT_RUN，v10.0.7旧Flutter3失败/exit1保留。R1源/build/local AAR/APK是Codex Windows报告，Astra直接GitHub核代码/公开原证。主仓产品代码仍在独立候选，等待Owner手动K08安全集成和本地基线接续。原0.6/0.7验收卷、原dirty根与历史备份受保护。
+
+
 ## 2026-10-15 v10.0.8 初始候选R1状态（当前）
 
 **NOT_ACCEPTED / TARGETED_R1_REQUIRED**。v10.0.8初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`的B01/B02/B04/B05/B06和跨端重启/构建有实证支持，B03举报软删/封禁/恢复及合法历史只读亦有证据。但Owner D2/冻结AC-08-04要求**受限用户本人申诉**，当前`/api/v1/moderation/reports/{id}/appeal`仅允许举报者（reporter_id）申诉，并没有具名处罚的受限目标独立申诉接口、数据、实际APP入口与Web确认链。因此B03不提升为“已恢复并独立验收”，等待同版一次定点R1。见[Astra固定审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)。
