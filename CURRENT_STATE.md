@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8 初始候选Astra独立审查：需R1定点申诉修复
+
+**V10_0_8_INITIAL_CANDIDATE_REVIEWED / TARGETED_R1_REQUIRED / NOT_ACCEPTED / NO_PRODUCT_MAIN_INTEGRATION / NO_V10_0_9_DISPATCH**。Astra已独立读取初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`（Tree `0da1d69a06a91be3c765d9f4bb6a1febac69d08f`）固定报告、原始安全结果、GitHub源码及真实Blade/APP截图。B01、B02、B04、B05、B06及A08最终构建/重启有核心闭环证据；但D2和AC-08-04已明确`restrict`须保留受罚人申诉能力，当前唯一申诉API只允许`moderation_reports.reporter_id`（举报者）而没有对被处罚者本人具名active sanction的申诉入口，不能视为完成。
+
+独立R1归档：[ASTRA_R1_REVIEW_FINDINGS.md](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)，固定Blob `c91a7fbeb4f838278dff28db9234ea9abd170e61`。Owner只需手动转交Codex在同版本补本人Restrict申诉→持久数据库→Web核查的最小安全闭环及负例；不要重做已成功B01～B06或全历史。计划Blob `0856e7372d1f91fadfa3350b30f926f7af9cf809`、D1/D2/D3和八项AC不变。初始业务候选未集成main，也未启动0.9。本节覆盖下文“0.8待派发”历史快照。
+
+
 ## 2026-10-15 v10.0.8正式冻结：Owner三政策已批准，等待手动派发
 
 **V10_0_8_FROZEN_PLAN / D1_D2_D3_OWNER_APPROVED / OWNER_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner本次明确批准运营参与资格审核（非实名认证）、分级restrict/banned/受控restore、历史答卷保留且新轮次按当前enabled有效回答计算。三项原始决定已写入[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)（commit cacfa889128f9a3a4b443efa87f4c347a178f1d5 / Blob 4f84f1968ee2737b842f828ad2e0cbdd5c929936），不得再当未决建议。
