@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15 最新：**v10.0.8 Astra会话交接已归档；已下达的R1定点返修由新顾问会话验收。** 首读[固定完整交接正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)（Commit `38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`、Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1`），其中包括Owner D1/D2/D3、0.6/0.7限定验收及K08、0.8唯一冻结8AC与初始候选、R1本人处罚申诉缺口、独立验收顺序和本地安全边界。现阶段初始候选**NOT_ACCEPTED**，R1实时Codex状态**UNKNOWN**，不自动重派发、合main或启动0.9。旧“未派发/待初审”段落只作为历史时点。
+
+
 2026-10-15：**v10.0.8 初始候选已由Astra审查，TARGETED R1 REQUIRED／尚未接受**。固定候选 `cff049ae602049adf49014ec2ed27963dc40aff5`，主要Web+APP+MariaDB业务链已有真实证据；唯一需收口是D2要求的受限者本人申诉，旧appeal路由仅允许举报人。首读[R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)，Blob `c91a7fbeb4f838278dff28db9234ea9abd170e61`。原8AC/plan不变，产品代码不合main、0.9未派发；先前“0.8尚未实施”是冻结时历史事实。
 
 
@@ -29,6 +32,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **2026-10-15新顾问会话交接（首读）** | [固定完整正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)：Owner与版本状态、当前v10.0.8 R1已经下达待新会话验收、原证与权限边界；Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1` |
 | **v10.0.8 Astra R1审查（当前）** | [R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)：D2本人申诉缺口，初始候选暂不接受，等待同版定点返修 |
 | **v10.0.8正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)：Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809、D1～D3已批准、AC-08-01～08冻结；Owner手动派发后方可实施 |
 | v10.0.8当前版前草案 | [固定入口](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)：尚未冻结，Codex调查待派发；B01～B06 Web可操作模块及用户恢复欠账排程 |
