@@ -1,0 +1,8 @@
+[codex/v10.0.8-web-admin 788f7d1] fix(v1008): deliver restricted owner sanction appeals
+ 10 files changed, 828 insertions(+), 1 deletion(-)
+ create mode 100644 apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/sanction_appeal_card.dart
+ create mode 100644 apps/flutter_elitesync_module/test/features/profile/sanction_appeal_card_test.dart
+ create mode 100644 services/backend-laravel/app/Http/Controllers/Api/V1/SanctionAppealController.php
+ create mode 100644 services/backend-laravel/app/Services/SanctionAppeals.php
+ create mode 100644 services/backend-laravel/database/migrations/2026_10_15_090000_create_sanction_appeals.php
+ create mode 100644 services/backend-laravel/tests/Feature/V1008SanctionAppealTest.php

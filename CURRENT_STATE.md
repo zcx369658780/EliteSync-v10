@@ -1,5 +1,11 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8 R1本人申诉返修候选
+
+**V10.0.8 R1 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。针对Astra固定审查 `08044b1...` 的D2/AC-08-04缺口，新增受限用户本人处罚申诉，独立于原举报者申诉；不重做B01～B06或K08。产品源码 `788f7d13927d57e6f31a22b5ce1a990b98bd2f53` / Tree `e8ef3f5f1157011df59f415704df5df649cb712c`，分支仍 `codex/v10.0.8-web-admin`；main实读 `d15aa037b63edda2adc54ee47242a171c27eb4cc`，未合入。
+
+[R1报告](docs/versions/v10.0.8/R1_EXECUTION_REPORT.md)、[R1 Manifest](docs/versions/v10.0.8/R1_manifest.json)、[R1退出码](docs/versions/v10.0.8/R1_TEST_RESULTS.md)、[R1证据](docs/versions/v10.0.8/r1-evidence/INDEX.json)、[运行补充](docs/versions/v10.0.8/R1_RUNBOOK.md)。真实APP用户11→本人Restrict4→申诉1→MariaDB→Blade同ID读取；重启后仍存在。历史可读、新发送拒绝保持；独立负例13验证幂等与restore竞争后404。旧材料和原记录hash保持、不reseed；新包构建安装及设备回读hash一致。PHP相关31/367、Flutter21通过，Dart全范围无问题；vendor弃用、旧全量失败/NOT_RUN保留。专用服务/容器/AVD停止，volume保留。等待Astra定点复核，不自接受、不启动0.9；下文初始候选为此前时点。
+
 ## 2026-10-15 v10.0.8候选交付，等待Astra独立终验
 
 **V10.0.8 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。Owner已手动派发唯一冻结plan，按D1/D2/D3实现B01～B06。独立候选分支 `codex/v10.0.8-web-admin`，最终产品源码 `1f73a80afd2e0678006ce62e019235dc5ec36374` / Tree `9f7071412a0341604563ee73a9556116b6b1bc28`；包含文档/安全证据的最终发布commit/tree见交付回读。main最后读取 `e1dec331d7fc4d6d42fb2fffa63e02987d52e4a0`，未集成main。

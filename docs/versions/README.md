@@ -1,5 +1,7 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.8 R1 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。[返修报告](v10.0.8/R1_EXECUTION_REPORT.md)、[Manifest](v10.0.8/R1_manifest.json)、[测试](v10.0.8/R1_TEST_RESULTS.md)、[Runbook补充](v10.0.8/R1_RUNBOOK.md)。源码 `788f7d13927d57e6f31a22b5ce1a990b98bd2f53` / Tree `e8ef3f5f1157011df59f415704df5df649cb712c`；同版补D2本人申诉闭环、保持原权限与成功证据；等待Astra定点复核，不合main或启动后继。
+
 2026-10-15：**v10.0.8 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。分支 `codex/v10.0.8-web-admin`；最终产品源码 `1f73a80afd2e0678006ce62e019235dc5ec36374` / Tree `9f7071412a0341604563ee73a9556116b6b1bc28`。[执行报告](v10.0.8/EXECUTION_REPORT.md)、[Manifest](v10.0.8/manifest.json)、[实际退出码](v10.0.8/TEST_RESULTS.md)、[证据索引](v10.0.8/evidence/INDEX.json)、[Runbook](v10.0.8/RUNBOOK.md)。最终源码构建/安装及真实Web/APP/MariaDB联合重启已登记；0.7原Flutter3失败/exit1保留，本版未跑全量。候选尚未接受或K08，未合main或启动0.9。下方未派发/未实施为历史时点。
 
 2026-10-15：**v10.0.8 FROZEN_PLAN / OWNER_DISPATCH_PENDING**。固定正式计划：[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)；Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项不可变AC；Owner D1运营审核、D2处罚与受控恢复、D3问卷历史保留及新匹配按有效题资格均已正式批准见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。范围B01～B05＋B06既有Android开发channel版本管理。技术起点仍为v10.0.7 K08 main a75b8d4/Tree8963789；现行产品未因纯文档改变。无实施候选、数据库启动或新版业务实测；后续此前的FEASIBILITY_READY/NOT_FROZEN属于历史时点。

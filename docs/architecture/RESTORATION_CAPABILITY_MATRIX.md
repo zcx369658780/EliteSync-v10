@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8 R1本人处罚申诉候选（当前）
+
+**B03 / D2 / AC-08-04：DEVELOPMENT_CONNECTED / R1_CANDIDATE_DELIVERED / NOT_ACCEPTED**。初始版“举报者申诉”不能证明受处罚者申诉，Astra原审查保持。R1源码 `788f7d13927d57e6f31a22b5ce1a990b98bd2f53` 新增真实Me入口→本人有效Restrict→可信身份/当前锁→独立sanction_appeals→Blade受控查看/审计；APP与Web重启后同记录。原处罚、历史读、新发送拒绝和CN/MC不因申诉改变；原举报人申诉合同不改。详见[R1报告](../versions/v10.0.8/R1_EXECUTION_REPORT.md)及[证据](../versions/v10.0.8/r1-evidence/INDEX.json)。其它B01～B06初始成功证据保留，本次不重做；RTC/完整排盘/Buddy/Social/媒体/地图/Push/历史恢复等原欠账不删改。以下为初始与更早时点，候选不等于验收。
+
 ## 2026-10-15 v10.0.8候选已实际联通，等待独立终验（当前）
 
 **DEVELOPMENT_CONNECTED / CANDIDATE_DELIVERED / NOT_ACCEPTED**。实现按固定plan `ac57d337...`及Owner已批准D1/D2/D3；最终产品源码 `1f73a80afd2e0678006ce62e019235dc5ec36374`，完整证据见[报告](../versions/v10.0.8/EXECUTION_REPORT.md)、[Manifest](../versions/v10.0.8/manifest.json)。不能把以下候选实测升级为Astra已验收。

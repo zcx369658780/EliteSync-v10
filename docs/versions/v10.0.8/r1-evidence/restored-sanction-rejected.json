@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-15T09:36:21.227742+00:00",
+  "user": "r1stale",
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "HTTP error",
+      "details": null
+    }
+  }
+}
