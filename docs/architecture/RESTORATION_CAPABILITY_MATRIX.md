@@ -1,5 +1,12 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8 初始候选R1状态（当前）
+
+**NOT_ACCEPTED / TARGETED_R1_REQUIRED**。v10.0.8初始候选`cff049ae602049adf49014ec2ed27963dc40aff5`的B01/B02/B04/B05/B06和跨端重启/构建有实证支持，B03举报软删/封禁/恢复及合法历史只读亦有证据。但Owner D2/冻结AC-08-04要求**受限用户本人申诉**，当前`/api/v1/moderation/reports/{id}/appeal`仅允许举报者（reporter_id）申诉，并没有具名处罚的受限目标独立申诉接口、数据、实际APP入口与Web确认链。因此B03不提升为“已恢复并独立验收”，等待同版一次定点R1。见[Astra固定审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)。
+
+其余功能不因这项缺口归零；源码和功能结果未合main。原冻结8AC不变、旧Flutter全套历史失败继续如实保留，未完成RTC、完整占星/紫微、Buddy/Social、地图/Push、历史数据及其它媒体等仍单列后续。
+
+
 ## 2026-10-15 v10.0.8 已冻结，运行仍未开始（当前）
 
 **B01～B05＋B06 Android开发channel发布元数据：FROZEN_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_DISPATCH_PENDING。** [唯一固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)，Git Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809；D1运营参与资格、D2分级处罚与受控恢复、D3历史问卷保留/新轮次有效题资格均已获Owner正式批准，见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。
