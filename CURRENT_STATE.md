@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.7 独立候选已交付，等待Astra终验
+
+**V10.0.7 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。Owner已手动派发固定8项AC，实施源码锚 `7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f` / Tree `754b9a65b41ac9393687417836e380effc81c09b`；独立分支`codex/v10.0.7-app-restoration`，最终报告提交只追加文档/安全原证。精确最终candidate commit/tree见Owner固定交付链接及远端回读，不能将源码锚混成报告tree。
+
+真实APP/HTTP/MariaDB：完整资料与20题问卷/重登续填、实际consumer/发布、独立CN/MC、双账号文字/本地图片、八字/可选MBTI、动态/通知/本地设置已提供具名观察；block/revoke并发、Blade禁用/旧凭据拒绝和联合重启原证保留。详见[执行报告](docs/versions/v10.0.7/EXECUTION_REPORT.md)、[manifest](docs/versions/v10.0.7/manifest.json)、[测试结果](docs/versions/v10.0.7/TEST_RESULTS.md)。相关PHP通过；全量Flutter792/6失败、全范围analyze3 info、vendor及构建警告保留，不称全套通过。
+
+专用服务/0.7容器/AVD已停止，卷/私配/包LOCAL_ONLY保留。原dirty根HEAD/index/status和本轮43项具名hash不变，0.6原验收卷未seed。没有ACCEPT、main合并、0.8或生产授权；后文“未派发/未实施”等为历史时点。
+
+
 ## 2026-10-15 v10.0.7正式冻结，等待Owner手动派发
 
 **V10_0_6_ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE / V10_0_7_FROZEN_PLAN / OWNER_DISPATCH_PENDING / V10_0_7_IMPLEMENTATION_NOT_STARTED**。

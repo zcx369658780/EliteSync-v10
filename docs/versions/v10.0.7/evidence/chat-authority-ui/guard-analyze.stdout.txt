@@ -1,0 +1,7 @@
+Analyzing api_client.dart, auth_interceptor.dart, retry_interceptor.dart, chat_media_gateway.dart, live_chat_page.dart, live_chat_page_test.dart...
+
+   info - lib\features\chat\data\gateway\chat_media_gateway.dart:123:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\features\chat\data\gateway\chat_media_gateway.dart:131:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\features\chat\presentation\pages\live_chat_page.dart:184:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+3 issues found.

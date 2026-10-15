@@ -1,0 +1,5 @@
+Analyzing live_chat_page.dart, live_chat_page_test.dart...
+
+   info - lib\features\chat\presentation\pages\live_chat_page.dart:182:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+1 issue found.

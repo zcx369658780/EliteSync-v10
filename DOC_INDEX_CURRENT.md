@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：v10.0.7独立候选交付，等待Astra终验；[执行报告](docs/versions/v10.0.7/EXECUTION_REPORT.md)、[manifest](docs/versions/v10.0.7/manifest.json)、[测试与失败](docs/versions/v10.0.7/TEST_RESULTS.md)、[运行说明](docs/versions/v10.0.7/RUNBOOK.md)。源码锚7f8da695；完整Flutter仍6失败，不能称全套通过。下面冻结/未开始条目保留历史。
+
+
 2026-10-15：**v10.0.7正式计划已冻结，Owner手动派发待执行，Codex未报告实施**。固定计划[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`；以K08实际main `0989812c...` 为技术起点，8项AC冻结。v10.0.6 K08完成，其余旧“待冻结/待集成”是对应历史时点，见CURRENT_STATE首节。RTC/完整排盘/搭子社交真实能力具名留后续，不是静默取消。
 
 

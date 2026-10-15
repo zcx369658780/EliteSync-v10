@@ -1,0 +1,2772 @@
+{
+  "root_local_only": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007",
+  "published_files": [
+    {
+      "file": "alice-cn-accepted.png",
+      "bytes": 153510,
+      "sha256": "1e18d3fa6efa5326a6aa59bea027cfe97dcf57c084c78d97fb1f36358fb42884",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-cn-accepted.xml",
+      "bytes": 8634,
+      "sha256": "5d7994e77ec33f89a4f93bc14b8840e6f54f1e54b066d9ccfaee430e346365f6",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-complete-profile-saved.png",
+      "bytes": 148263,
+      "sha256": "ad493255b1d9fe53bb1728a54e1faa3d2a7517c63856ff58f2e7fc0369832892",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-complete-profile-saved.xml",
+      "bytes": 7938,
+      "sha256": "07b9c87584e7802e7b9768139a102f66ea7a73e386a1134e6640088737581a97",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-declined-charlie.png",
+      "bytes": 139304,
+      "sha256": "b07ce4a4480a622e71ed8de4864aa5cb9d583df3364fc34506e8283716230458",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-declined-charlie.xml",
+      "bytes": 7911,
+      "sha256": "37e072220832a9f4a7db074dbfe54514392b565e5d03222062c7a80d266bfeb8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-mc-pending.png",
+      "bytes": 156353,
+      "sha256": "4bf26bf8d8b0e47903603cdf92ba8d3d0c1310c80fb99e989cfd2d67b899bcd0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-mc-pending.xml",
+      "bytes": 8643,
+      "sha256": "9d1ea3cc76ba48348fafe93ff38fa322ae1691f387da6d3cf7f1ecf4cf74b66e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-settings-after-app-restart.png",
+      "bytes": 227738,
+      "sha256": "75de35c84d91b824a16b68b67f20ed2dd58d670fe3d0b0f25cf197d374564f31",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "alice-settings-after-app-restart.xml",
+      "bytes": 10598,
+      "sha256": "8f32fb6630694c22a181e123b0883751271d5f8e2f202fe2ec02ebb224e00f4e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-crossdate-readback.json",
+      "bytes": 19869,
+      "sha256": "f34ee6ade203243291f4548d176e0512851b74e2baf177ace3f2a5c0f06521e9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-derived-spoof-rejected.json",
+      "bytes": 610,
+      "sha256": "ebab87d843b181e219bedd9c06fc66c67359cb5b9f29d551a0bd65e36e9dc152",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-invalid-time-real-api.json",
+      "bytes": 481,
+      "sha256": "3a9ce6723e7fb7df2564addfd551c726b4aed1a36e24e7e4018c1190572915eb",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-known-real-api.json",
+      "bytes": 22546,
+      "sha256": "fc996d4e81fdb4b7d690a84a7d9b1f273e45d30a78121bd5f921c46a658c3668",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-longitude-crossdate-real-api.json",
+      "bytes": 22687,
+      "sha256": "cb08e653909e2001cc6558715c4c70d520104e2a75fc155af5dd4ee2c6e892cc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-missing-input-readback.json",
+      "bytes": 19736,
+      "sha256": "57cee8f23a86caeb09d7c8ad619f10f41626005762bd40d423894321cbbb0384",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-missing-input-real-api.json",
+      "bytes": 19318,
+      "sha256": "e3679a4b79700621de06be99a5c8c8d21c41a64a39ebd2206c65a0a6f938ee48",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/corrected.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/corrected.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/corrected.stdout.txt",
+      "bytes": 400,
+      "sha256": "79c19757a67cb777777dc3f93f738a90079ccf39253ab42b428f820232ce5ebf",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/initial.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/initial.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/initial.stdout.txt",
+      "bytes": 2371,
+      "sha256": "5ffe2f0b3d95e3398c37ba501355b0f331a3ce3aa02bdd4054eb6e3a475dd30a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/repeat-time.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/repeat-time.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-provenance/repeat-time.stdout.txt",
+      "bytes": 400,
+      "sha256": "7c9b54399ee4a48af24e1cb1768e0b233f2414ad2d71ac7ad67b6500d5c51824",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bazi-unconverted-timezone-rejected.json",
+      "bytes": 480,
+      "sha256": "0b0c7e8d1f9e6f6196147c9e81e25cadc86dad673464e07b27c4fa8bb0ee9dbd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "blade-before-disable.png",
+      "bytes": 103455,
+      "sha256": "78e52a3ba3f07c34b1dacea4124ed3199ae1fc14727328d587e7ebf87cadf522",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "blade-bob-disabled.png",
+      "bytes": 106833,
+      "sha256": "1863713ea98a6d16e19b2b37e160f4bfad6f9576c8ed86f594eb8a870c0c1fac",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-cn-requested.png",
+      "bytes": 148572,
+      "sha256": "77b46dd81be4db473a4b500562f62b37a8f294d6c7728d64e151890e1dd46446",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-cn-requested.xml",
+      "bytes": 8278,
+      "sha256": "9fc13e2ebe5e5c5f21e33ab752fa60ab56babddd93acfe8f4c23bc61eb222fce",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-draft-after-app-restart.png",
+      "bytes": 210869,
+      "sha256": "cef4620bf16e9cedd9d120c2a16a2bc0f65a13700c1a876b0605a7faffcebd72",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-draft-after-app-restart.xml",
+      "bytes": 8076,
+      "sha256": "2cedbf46773d26041688b9dbc6172404195b8eac17729293b5e2e3b444e7fe05",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-draft-after-db-restart.json",
+      "bytes": 597,
+      "sha256": "0028671ed38fc236a5d57e454c777955a9fb24029537223d6ad5e5352cbc2546",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-mc-active.png",
+      "bytes": 155722,
+      "sha256": "c7d30bf60ddd833f424aa9cfd6c8e7217dcb7994a580fe89e9acdb1aa48133bc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-mc-active.xml",
+      "bytes": 8634,
+      "sha256": "1fe2fa4e55523763acf91cdeebb6d13954c023cac564d6868906188bd98bea38",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-messages-no-consent.json",
+      "bytes": 228,
+      "sha256": "8359512231d202add932ee4a14cc465f98fa54c0679370e3cbe615e00330c37b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-profile-complete.png",
+      "bytes": 188224,
+      "sha256": "c9e38faa951b19c33f863f27779e69c177e5bbe90c3791d18e68360ae9966c5a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "bob-profile-complete.xml",
+      "bytes": 5403,
+      "sha256": "8e81a864e84c03682a406a587e5adbc36a45cf642e720d60e8d05a0bae7c8abd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-01.json",
+      "bytes": 719,
+      "sha256": "6acf46182a0e782cbb342714432af9e44ecca1d945599f41ef02dbc182e40979",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-01.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-01.stdout",
+      "bytes": 3158,
+      "sha256": "bd9cc98156f6522b7f114b58d8dc0c3cbc63ff8e5067458cbc0af6ef9986fc4c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-02.json",
+      "bytes": 646,
+      "sha256": "9269afcff2a38e56d11277ed0ff6a4a02a9f39e4bcb67c307dc4eee8e1917bcf",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-02.stderr",
+      "bytes": 426,
+      "sha256": "6b751995fda23cee45b48059bae24e7dc89b2b3e785dfc0cb6c3d924b9a651af",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-02.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-03.json",
+      "bytes": 640,
+      "sha256": "d12485dbe5187152aa112f96931c29a7b7f15f01dfd24c2d0491078d04f1a2e5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-03.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-03.stdout",
+      "bytes": 3059,
+      "sha256": "10878a6cbb94f2f04131955a2af78e9bf89b48cf39be81a6b839c35bb6c85a5b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-04.json",
+      "bytes": 640,
+      "sha256": "ef19c7d37c023b9abaaa923f2ef1fd499b5e060608b53b519aba0eadc6b75d6c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-04.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-04.stdout",
+      "bytes": 3037,
+      "sha256": "4a200c236f2dc2a97ec389f3d193bfd10f2dd89a2a90bbfc4a49bbbe2736548e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-05.json",
+      "bytes": 640,
+      "sha256": "e4e3be7020e8792ecfb99bf7e1d1b735f22d41550473a67cbabb299874d3f4c9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-05.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-05.stdout",
+      "bytes": 3058,
+      "sha256": "573bb563101383a77e31e36ea5722117ce1d21d72e76716bd0926b43d4db1c51",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-06.json",
+      "bytes": 624,
+      "sha256": "7461bc48c4c068bfbe199e42c55f176880aee572fef395c8acfbd458b48c7e76",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-06.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-06.stdout",
+      "bytes": 3059,
+      "sha256": "6d20e76f7af6288ffae38e901a14868bda153c3761079af784847c9159934c76",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-07.json",
+      "bytes": 624,
+      "sha256": "333ecbcdeed2a44f739c9974becdbfc24441337d1f47bfdc9ce9cebbb1dd9e2c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-07.stderr",
+      "bytes": 104,
+      "sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "build-07.stdout",
+      "bytes": 3059,
+      "sha256": "b1f48197e8f28b21d7d1b6d55ecaa5741f801a3634fcf7e043429bf90753440d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze-final.stdout.txt",
+      "bytes": 93,
+      "sha256": "011d8f0902bc4631c4ed44bd03ee0ebdf668ab433c4705387fc43e6a666ae224",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-analyze.stdout.txt",
+      "bytes": 93,
+      "sha256": "011d8f0902bc4631c4ed44bd03ee0ebdf668ab433c4705387fc43e6a666ae224",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-focused.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-focused.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-focused.stdout.txt",
+      "bytes": 4185,
+      "sha256": "f8f732d3502c27432e2bf100dc3e62a74b5f8c7c5b673ecdd1c825703fb19b30",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format-final.stdout.txt",
+      "bytes": 47,
+      "sha256": "a8665628d3d8dc8a51632550dfb214cf87c098912f4250420d0df700431790e6",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-format.stdout.txt",
+      "bytes": 187,
+      "sha256": "084b392bfe692283fabc136d0da8e0164801d2e04bb8d7c4f1723c462cb22535",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-test-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-test-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-test-final.stdout.txt",
+      "bytes": 8373,
+      "sha256": "ab80dbae211ee3efcd7c3e83f26780d2cb9ac5655b90fe0e395998dd74314773",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-test.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/all-dispatch-test.stdout.txt",
+      "bytes": 4096,
+      "sha256": "dfed7c27580faa8a83169e0640f4ed8142de36bb0a616418375bb49e00870e4c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze-clean.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze-clean.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze-clean.stdout.txt",
+      "bytes": 76,
+      "sha256": "cb429b9595ea3d404f840ca8745baeaa2b603a068b80f36f1355a8db2cc4a11c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/analyze.stdout.txt",
+      "bytes": 283,
+      "sha256": "fc6cf5373cc636a7978ffc74ec9fbb31fa08e0db6a6b3042e6e691172eab1b5a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format-final.stdout.txt",
+      "bytes": 120,
+      "sha256": "f4d959f18a59fe21801261b54d8929477998c1ae9cf64de1f4d67b92d60610e2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/format.stdout.txt",
+      "bytes": 187,
+      "sha256": "0dc133aa2d28149b9780973a7c6492161a85c022e1d8572ca5ecc3c1039fd110",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green-final.stdout.txt",
+      "bytes": 4397,
+      "sha256": "14cc228871262cffff01ff31b10ca16be3e5c9350c6e8213f9fac6c3b8ea840d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/green.stdout.txt",
+      "bytes": 4249,
+      "sha256": "f2c1cec0ec05584dc0951b86f79d475621d31bab44dd3262991f937273843d64",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze-clean.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze-clean.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze-clean.stdout.txt",
+      "bytes": 165,
+      "sha256": "aab3245f51acf835edc628e6aa581f7d0a23fdcea4e558a0c71923d3735c0351",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-analyze.stdout.txt",
+      "bytes": 783,
+      "sha256": "11d439685ef981197b9558bc50e032ea529b219182d2f4e8dd5182deefdd8721",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-format.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-format.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-format.stdout.txt",
+      "bytes": 252,
+      "sha256": "6ed0ae06faca472c0a9034ed030f3d536ac4b4e30267ce5c368f32bbdef42f7a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-regression.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-regression.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-regression.stdout.txt",
+      "bytes": 8075,
+      "sha256": "e425374f924fa9db007a8b21660de04b6101c7acdac2d1bddb095a00360b90e7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test-fixed.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test-fixed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test-fixed.stdout.txt",
+      "bytes": 4542,
+      "sha256": "59b4403784f86f05e4422c8d9c6bbeeff7bad395fc0507fd2d891e2d3d0096b7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test.stderr.txt",
+      "bytes": 532,
+      "sha256": "43455b99d90ae95e00e46b4f3c4a35c17985c8426e20b8ca3c5dcef0c3bb24db",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/guard-test.stdout.txt",
+      "bytes": 5220,
+      "sha256": "c5aef379ffd437e8ca7556ca739bba478873e39925936d00283db7bf6288ce74",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red-valid.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red-valid.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red-valid.stdout.txt",
+      "bytes": 8266,
+      "sha256": "0493dc4bb54c71222ac02ca6c3af73ee55c48a0dc216eddb51da5ff98e33d94e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "chat-authority-ui/red.stdout.txt",
+      "bytes": 4249,
+      "sha256": "f2c1cec0ec05584dc0951b86f79d475621d31bab44dd3262991f937273843d64",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "cn-active-no-mc-messages-denied.json",
+      "bytes": 230,
+      "sha256": "c2a11446776e1dea8dde7ec7c419564c311959138b3d848d2518c411ca3bee4e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "cn-pending-messages-denied.json",
+      "bytes": 230,
+      "sha256": "b35098c398a40ae9101a3a429489605febbd32e8a61406fbcbb0997319b01ebb",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-block-locker.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-block-locker.stdout",
+      "bytes": 39,
+      "sha256": "2d02eedd761c8884537da1adae784ba3adc7c536fd862061461077f2ad886600",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-block-media.json",
+      "bytes": 226,
+      "sha256": "3e6693eafd44e4b00c95c2e41b2a8b761201a0b7f1cdf592abd735070b9a13df",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-block-result.json",
+      "bytes": 135,
+      "sha256": "a73c601cc788c5d4e855b87d834b0bae6800f9ba26bc99386c4825c76c588493",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-block-send.json",
+      "bytes": 341,
+      "sha256": "91ca24b3e3720c0a87e17c28a3ae010a9845518b89f037cd00cee4bdf0bf1628",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-revoke-locker.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-revoke-locker.stdout",
+      "bytes": 40,
+      "sha256": "ba55974ae4ea5f9d25c3dd8002db85e12d8a941e3e635405895eb814f157a7ab",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-revoke-media.json",
+      "bytes": 226,
+      "sha256": "2d053b8abbf58d3c7d8e14a5fa31405b4c190630fa356f790a23db556995d7f6",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-revoke-result.json",
+      "bytes": 135,
+      "sha256": "a73c601cc788c5d4e855b87d834b0bae6800f9ba26bc99386c4825c76c588493",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "concurrent-revoke-send.json",
+      "bytes": 343,
+      "sha256": "84ac3b7739f5fbdbc2c998c6b3741024af6ea46a48ca4866f7e437a78f277597",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-nonparticipant-real-api.json",
+      "bytes": 391,
+      "sha256": "1c00c90cb73ba271df6bfa53803577eb9aed1713e27511a935b83d6df51656f5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-stale-real-api.json",
+      "bytes": 377,
+      "sha256": "14c5143fd5b2cde4f3e8849b834e98bc45bcdb753419625c7f025b91128c44ca",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze-clean.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze-clean.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze-clean.stdout.txt",
+      "bytes": 88,
+      "sha256": "c5e42653afc6312d09a8c30d261f8f83fed03bb846455e64b811fa10e0200b9c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/analyze.stdout.txt",
+      "bytes": 1349,
+      "sha256": "211464b5b24d677f8c7e51b746b1c5ab14deb80e9cc82969e7e7ef67f73f5942",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format-final.stdout.txt",
+      "bytes": 47,
+      "sha256": "43a0060b01f8d00290502db016cbde393b149f5a0971989771a4fe3fddc181e7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/format.stdout.txt",
+      "bytes": 192,
+      "sha256": "962301159e2586e7ab1fde60cb5551892599043d701a76e0aa0e820aa73cd6bd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-final.stdout.txt",
+      "bytes": 4376,
+      "sha256": "da1c0054b71d7e20bd6670fe559c6d7126e4436358aefda1eb04a3b9d91c6e5f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-fixed.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-fixed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green-fixed.stdout.txt",
+      "bytes": 4376,
+      "sha256": "da1c0054b71d7e20bd6670fe559c6d7126e4436358aefda1eb04a3b9d91c6e5f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green.stderr.txt",
+      "bytes": 1246,
+      "sha256": "943e07333f9a46fbe013b46f028df5c359f38ac52e9bd1d181748a606aa81214",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/green.stdout.txt",
+      "bytes": 5914,
+      "sha256": "983176f4769845f8bce2da4495628882517a17825d139cad1f693bad6112d98d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-analyze.stdout.txt",
+      "bytes": 88,
+      "sha256": "c5e42653afc6312d09a8c30d261f8f83fed03bb846455e64b811fa10e0200b9c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-format.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-format.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-format.stdout.txt",
+      "bytes": 192,
+      "sha256": "962301159e2586e7ab1fde60cb5551892599043d701a76e0aa0e820aa73cd6bd",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-test.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-test.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/guard-test.stdout.txt",
+      "bytes": 4441,
+      "sha256": "45f5b1eaecae0df22f86cdd934666381bc2b5a0fbd4ede65a9941e5c33500298",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/red.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/red.stderr.txt",
+      "bytes": 1053,
+      "sha256": "f452bc5651bc2f57b89fabbc8c6c234665fbd3428b106b930827e1c597f1496f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "connection-ui/red.stdout.txt",
+      "bytes": 5813,
+      "sha256": "697d0ab9edf7bb852b4076db43b41837c687e6129b9c8f974c59bb17f6f10e2b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-01.json",
+      "bytes": 482,
+      "sha256": "6972102d1a05f090a86d8c389ef88f3384385f719212f4e1546dfafe664ec644",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-01.stderr",
+      "bytes": 31,
+      "sha256": "9067aeaa1597a506c3b74398e9826ad8eb75af73fce4e95b79ba6312c9a32074",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-01.stdout",
+      "bytes": 4911,
+      "sha256": "046c15ff4c3f9e3cdf7620b1e5f67c0a7f8a3fac987959f7edee5f1e7f3d3b25",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-02.json",
+      "bytes": 482,
+      "sha256": "4437226471c024127450fa5faad53825f14f06a7b0e5bfe95f3025adcb3a75ea",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-02.stderr",
+      "bytes": 31,
+      "sha256": "82abe8f3a53b6c0a08a147987d2fee8829ecd261678216e9d0976543648869e2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-analyze-final-02.stdout",
+      "bytes": 4555,
+      "sha256": "d32d28fcc7c0c1865f85b368f3ca5d9b0ab03e9192978639aa37b78f5ecd5386",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-lib-analyze-final-03.json",
+      "bytes": 494,
+      "sha256": "a50ed3fdf539210bea82c07a4638a7d30731a6dd45ca84bdf0adaa8052d2ad29",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-lib-analyze-final-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "dart-lib-analyze-final-03.stdout",
+      "bytes": 4000,
+      "sha256": "a0274c2544cd6a2009fee56d4ae5400ccd4833beacb8972319d70b7ff2cdcdc9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-after-restart-01.json",
+      "bytes": 670,
+      "sha256": "dc42b76adb11e82042f5dfd0d3a8e82b6ee91f8e63bcea259a3bd340a343a677",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-after-restart-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-after-restart-01.stdout",
+      "bytes": 13445,
+      "sha256": "9db3f563ccabcc4f94b3715e5be5d5ecc076e694fc50be3a0099f583dca5a7eb",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-01.json",
+      "bytes": 671,
+      "sha256": "eb472aeb9bca0d481bcbbc396a5b4c2d6d99eeca49b21652ba419be76abe3845",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-01.stdout",
+      "bytes": 17629,
+      "sha256": "3716520cf740e96390b7df9275a46a29df208c9ff45c4f021266d5ced02f6c23",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-02.json",
+      "bytes": 671,
+      "sha256": "ac7ab963a5856e86f858b2ac270a284f7ee83fe74261f71b8ee07d00269ed1b0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-business-02.stdout",
+      "bytes": 17714,
+      "sha256": "4a49209918d026251f9224d2e7c1006ad9eace950262f3cf238b561dc84405e4",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-metadata-01.json",
+      "bytes": 674,
+      "sha256": "598a094242e5a62f1874caa7ea7f165755c8d902acf3f5ad66f0567869860c7d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-metadata-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "db-final-metadata-01.stdout",
+      "bytes": 1887,
+      "sha256": "cb129b7f8f0d4d8a4a6c1b369bfcb0b6075de8999393c950d2092a4a7135820e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-1.json",
+      "bytes": 316,
+      "sha256": "91bca6238a6bf54bf973cb5ae10d0df912a692c00e87cc71095aa3111b999065",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-10.json",
+      "bytes": 114122,
+      "sha256": "91e52fae537cf72ed5a9110f0a7172dbaa19e5a6d6d7ee2b59a932740f318cf7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-11.json",
+      "bytes": 226,
+      "sha256": "8394ca6681b07d7eff9e2a51a6b6e9631fd5414fc4cba12c9405a704d8212264",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-2.json",
+      "bytes": 316,
+      "sha256": "24e83740b2056130ce4449a0cdaedcfd929d6c6f6b1cabd389124a0d808cddc3",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-3.json",
+      "bytes": 318,
+      "sha256": "286351959138f1d8c9e2b462ef15a929bb5b9943af8a8501199819afaef12e04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-4.json",
+      "bytes": 316,
+      "sha256": "62c81fe7149ef50c33acf48298409ffa75373d5bb0ec7231140b0f61e7c48eda",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-5.json",
+      "bytes": 321,
+      "sha256": "72338101b91502996ad12f96ac162de49f408f80ab2a8c7bc1e5b0339c5376ad",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-6.json",
+      "bytes": 435,
+      "sha256": "c77d36dc395cb1a4e4a8732ca34f5d238d126629a2459cc3cf4b78ae4a3c7392",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-7.json",
+      "bytes": 224,
+      "sha256": "b8ed344896d3e90ba8d088f7ade25935e3e0e3b8ed6e2e12e1a681a412aeee1b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-8.json",
+      "bytes": 1244,
+      "sha256": "5b00fb5e74c6512548e36cf5498f523797f094a8d25b3e6572c036060dcfd190",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-9.json",
+      "bytes": 319,
+      "sha256": "32b46f10544921aab4a4b6b4474174e6c9c6ef525c3df7fb42d63959d0d00d01",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-new-login.json",
+      "bytes": 238,
+      "sha256": "5eaeb7fb8db989c029cf2f3246ea1ffcaf4f3fe7ffe9d38a8cedd6c8cfaecccc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "disabled-final-results.json",
+      "bytes": 1517,
+      "sha256": "1d220c5379d542fcd08504e3bbc8b690acfbcc9cd036c3c6bc10f266319a4595",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-bazi-after-restart-02.png",
+      "bytes": 136759,
+      "sha256": "31789f93aa97facc76afe671b03d6204d760a2795c6314381f053a49c80bd15b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-bazi-after-restart-02.xml",
+      "bytes": 19509,
+      "sha256": "07bd7aa872c3590651012f58ed20ab8f3d3cf6161028c479f78feae86c1e9ff0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-conversation-list-01.png",
+      "bytes": 115873,
+      "sha256": "7fb1114abf4b1e18867532797aa83e49599541d5265c6af257e6eefdc3281e0d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-conversation-list-01.xml",
+      "bytes": 7146,
+      "sha256": "5adc185a5d3b9ec03face9e013fc7d51583625b0973d29495b30e04a36e1c378",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-mbti-after-restart-02.png",
+      "bytes": 107431,
+      "sha256": "5c97a46a1872be11c5f212b5581f031a01af53d3054df94b8012c912c78791c2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-mbti-after-restart-02.xml",
+      "bytes": 7828,
+      "sha256": "dfa8d6f80f4fa8b4a4904f0506c51b6c948a1302cc2bd9ed35f1c45a54c2fc07",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-messages-image-after-restart-01.png",
+      "bytes": 77727,
+      "sha256": "da8033d600d012f5e12e68db96b78f08584e756f6b8c1c3acf4a4bd26175b2e8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-messages-image-after-restart-01.xml",
+      "bytes": 7729,
+      "sha256": "8dfe4adcf032ae73b1ab1beb8239ec8042e560c901ebca56877d2d25cff94842",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-notification-unread-01.png",
+      "bytes": 316372,
+      "sha256": "e2f5f732c01217fcb63fa5e60f8fd6a036469542ad6bc1295899375e3a4c414c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-notification-unread-01.xml",
+      "bytes": 8034,
+      "sha256": "f1133751ae046dbe031d46c9908c8fa57dccc8d94a6d5dc86a5893e861f923b4",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-notifications-readall-01.png",
+      "bytes": 336575,
+      "sha256": "168e7c941d2e30c511c43c2669c059e6f46a0e7242032cdcf1aee8e59f655f87",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-notifications-readall-01.xml",
+      "bytes": 8041,
+      "sha256": "d3c70709e02fbb379eb91bfe96e88160abf28ddb7cfa88d11cd252f85b924520",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-notifications-readall-api.json",
+      "bytes": 4327,
+      "sha256": "1e1442277065649e086e8315242799e1e94f4746489edf9058824e0375cf792c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-reply-sent-01.png",
+      "bytes": 91195,
+      "sha256": "f170ddad3396da2ef1aa0204e50867991fe4e5ee32f1e231f2a12052074ab97a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-reply-sent-01.xml",
+      "bytes": 8450,
+      "sha256": "7428b0aeec157f6b93d20a200043b35d5d9474795a980e7f5497dce7167eb759",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-status-after-restart-01.png",
+      "bytes": 227532,
+      "sha256": "06b45d7289725d74adea05d0c1671b2376a3c3427d7004d2a5a6e103b7a43806",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-status-after-restart-01.xml",
+      "bytes": 9410,
+      "sha256": "7477488be61563bcfb7816167b7660a476554696d142ee7c43acf243db260670",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-status-deleted-01.png",
+      "bytes": 148952,
+      "sha256": "a9a54b019f5a5a4cd5e90285c54625675bf73ebd3105fc27269066500a989174",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-alice-status-deleted-01.xml",
+      "bytes": 7390,
+      "sha256": "88037ec67b9017d58f020e4ed7ea207f7a8e136e10d0d50b9e444d9775635b15",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-before-revoke-messages.json",
+      "bytes": 2972,
+      "sha256": "49e33fbfff903d06fe532ab8a89b7c71e7c061651da9b69969e2de44c7e4c1e5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-before-revoke-notifications.json",
+      "bytes": 3518,
+      "sha256": "ad20bfd150e0ff24ae2adfc25741db7eae2a5704961f08dfb39477ba65706146",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-chat-revoked-cleared-01.png",
+      "bytes": 61799,
+      "sha256": "b9e54af51fd21bcc40c6d1b9fb9460102f0239a89519459f819d2b3d1b5fd8e8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-chat-revoked-cleared-01.xml",
+      "bytes": 5670,
+      "sha256": "cb09346bd13a7924e4e6ddeece09d744ffead2023bbdccc580e3ba051097169a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-disabled-session-cleared-02.png",
+      "bytes": 286406,
+      "sha256": "82d10b12160bbe5fae8061f009b3c7fed256fe1c56e4ab34483f2e23c907f592",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-disabled-session-cleared-02.xml",
+      "bytes": 9016,
+      "sha256": "0ab023b8e7da997c558445ef2715daf0a97c8e20285b029472d37de4df554793",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-list-unread-01.png",
+      "bytes": 116446,
+      "sha256": "00793a6f3744167e1f6c594d9849b7acfec1c0e7040448aeb047d67a5004c575",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-list-unread-01.xml",
+      "bytes": 7150,
+      "sha256": "0872b4fa432f5f945b73e4a5b1eac1b3313c9bcbe7685ae02350795ef0199e31",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-match-result-01.png",
+      "bytes": 195877,
+      "sha256": "269a20c5760d6ca0fe1629b673a2d8a6013d52b0e9270d9ce16423ad70bcedaf",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-match-result-01.xml",
+      "bytes": 10397,
+      "sha256": "4c9daa4a9ce308d0894b56b12c34aa09c01edfb7f581262976df052a9a1e6536",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-match-result-api.json",
+      "bytes": 48464,
+      "sha256": "099f26d5f329952de8fffa13bc079c069d1705fea439b61463a3df6f28d64ebe",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-reply-received-read-01.png",
+      "bytes": 89283,
+      "sha256": "83fa382bed271df211c5dd3c558c7639211d72197b13ba675a224eba3c545dd8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-bob-reply-received-read-01.xml",
+      "bytes": 8451,
+      "sha256": "1fea94f2b80f17240eff7ee298baacd46d0c00cd7305ff55a764fff2411032e9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "final-status-delete-read.json",
+      "bytes": 291,
+      "sha256": "0edf828e6e6f224d43bed0ef34df22e6113d29f1829a47c74bfb32d84506f093",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/authenticated-green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/authenticated-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/authenticated-green.stdout.txt",
+      "bytes": 12688,
+      "sha256": "46db5c3682ad2628cbfcc0dacbac0cd4daff7a95f6f90b67368c9912573c7276",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted-green.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted-green.stdout.txt",
+      "bytes": 14817,
+      "sha256": "fc44d106ee02edf8516c0b14ed99add3283524eaeb2853cf129bd019f479bb3f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted.stderr.txt",
+      "bytes": 2128,
+      "sha256": "48f51d6e0f76dcaa7c64bbf806609825b5e61588c8aab7c6897493ab483d4870",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "fixture-repair/targeted.stdout.txt",
+      "bytes": 12881,
+      "sha256": "7f0dde60d46db471036e650eb904a15d3ebdf8d4cce0d5cbbdd3501b79713ec8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-01.json",
+      "bytes": 479,
+      "sha256": "ec7d3b2d69f1dc1c23ded872aa21d48c4a53ac8bffe104d5b4574e923e02314a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-01.stdout",
+      "bytes": 317747,
+      "sha256": "27bfe0d5d2765d7f9dd61e61acf3abaeaf48cdab85d07bda5fc20b638d4331aa",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-02.json",
+      "bytes": 479,
+      "sha256": "6b300055c273ad856b66a910f2add92e28b7be33e06db25a81b4192f2c93d356",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-02.stdout",
+      "bytes": 223763,
+      "sha256": "b9151cb2c855e0c09e5e72ffeafa82cbc49319da3f7fa71d57caf1aec5b30584",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-final-03.json",
+      "bytes": 479,
+      "sha256": "e608290ff6649d6eca4242156d3d898aa7b0c826a8c7f9ec540e1a25b543c6e7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-final-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "flutter-full-final-03.stdout",
+      "bytes": 223244,
+      "sha256": "29bed792503f663f526c5e401f5c8a3be5e81639d5b3c25b7e1047fa3bf45a1b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "install-final-07.json",
+      "bytes": 601,
+      "sha256": "d39f046a9bc0386b16161d1a481ed67c1df50a8996753a0f985d241963ffd79d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "install-final-07.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "install-final-07.stdout",
+      "bytes": 38,
+      "sha256": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "isolation-gate/unit.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "isolation-gate/unit.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "isolation-gate/unit.stdout.txt",
+      "bytes": 401,
+      "sha256": "cb0823faf22b0ddecc7261a18f2798bc9b7ed78dad13d0ce148c1fb93ade58cc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "joint-db-restart-01.json",
+      "bytes": 465,
+      "sha256": "c8a029a450e2b8791599623f0e0daea6bee28c3aebbd103d5bfbbc80a76d524b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "joint-db-restart-final-02.json",
+      "bytes": 459,
+      "sha256": "415e053d3625204cba95592945a626e21abde3532d3a0bcc938704ddf18487aa",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/format-check.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/format-check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/format-check.stdout.txt",
+      "bytes": 17,
+      "sha256": "96d76c7af1675073cf95e0f4b26015864dda6f761d129b5d79875d1cef4d475e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/green.stdout.txt",
+      "bytes": 400,
+      "sha256": "0ef94717678ceec0dcc75fed5101428b487b43cd9ba644583c970661234abaf0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/initial.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/initial.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "match-notification/initial.stdout.txt",
+      "bytes": 741,
+      "sha256": "495a4cbd1c8ee99db310a0c55f40b4c5b89c5208ea47374e4c31d71ad0d0ac29",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-decline-consumer-01.json",
+      "bytes": 536,
+      "sha256": "9f99de30ec003f61f19785c5275e3cd871e036cd9b06b979c809559f7fd6ed3c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-decline-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-decline-consumer-01.stdout",
+      "bytes": 62,
+      "sha256": "c60d94f6c75622a5d682bd9e6c3c0afd084d9216de0b2eb9ef3c555bc0832246",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-duplicate-consumer-01.json",
+      "bytes": 536,
+      "sha256": "91ba96cbcd766b91cd01760b909a0d8637d224842cc57aa474e22cd25dcfcdbb",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-duplicate-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-duplicate-consumer-01.stdout",
+      "bytes": 26,
+      "sha256": "e99b46c74f9f2fd0be82e903c118243e69a8621d7dd9060e09855447aaa80351",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-explanation/focused.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-explanation/focused.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-explanation/focused.stdout.txt",
+      "bytes": 400,
+      "sha256": "d5cd5cc2954502646636e74f2b167a7763a3d8e9017986898547d9252c50d66a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-final-explanation-consumer-01.json",
+      "bytes": 525,
+      "sha256": "d0ea2db30010ddb980e68df91f01adea99f1547b836b2c7147b1506c9ba14ff5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-final-explanation-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-final-explanation-consumer-01.stdout",
+      "bytes": 62,
+      "sha256": "4e41b54e63481c109be5b1ea60b84fdcc18d46c273792dcc723f9c5df199f338",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-retry-consumer-01.json",
+      "bytes": 536,
+      "sha256": "62781c0e7d178dc04d77835a9a937989743357d799748d735f74f93e76692fdf",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-retry-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-retry-consumer-01.stdout",
+      "bytes": 62,
+      "sha256": "f3da458c8703548ed328e530c0c6a003db2ebc1a102b2ee8cda1f41ab19fc3bf",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-withdraw-consumer-01.json",
+      "bytes": 536,
+      "sha256": "2f8330c3d08512a18bc8f805107e998735affb17229f34d04480fd88a17067f2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-withdraw-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-withdraw-consumer-01.stdout",
+      "bytes": 62,
+      "sha256": "60c732ecd439b07167261aa9812e31ec5cffe14146a79f6556ab767c499fcc07",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-consumer-01.json",
+      "bytes": 536,
+      "sha256": "9b869d7cc0fbe77be7265ef6d2a2c7465ccbbc97e036c30d5d788053e40beee5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-consumer-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-consumer-01.stdout",
+      "bytes": 59,
+      "sha256": "c2ece091c954a81262e7f077a53651baf0f1cb750c79fca2d210e06cfec73023",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-recovery-01.json",
+      "bytes": 536,
+      "sha256": "baeaf7676c52f236f57a28a5b0cbed6ade7ff7e978483032a300a8c7193a01c2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-recovery-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "matching-zero-bank-recovery-01.stdout",
+      "bytes": 62,
+      "sha256": "e34f6b54ce7f70aad652fe51e09258e9fbcdfbfa2e49627994f926016af0232d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "mc-pending-messages-denied.json",
+      "bytes": 228,
+      "sha256": "4f112b996fa6b014648afefb2c817704a5ca6712b9bad37192727b819a343edc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/corrected.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/corrected.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/corrected.stdout.txt",
+      "bytes": 768,
+      "sha256": "fb758fc8e09c752061f465be89c824af8abdadb2a8723069da160a20bcf19142",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/fixture-isolated.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/fixture-isolated.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/fixture-isolated.stdout.txt",
+      "bytes": 400,
+      "sha256": "1cca6990b38bedd3a7f747903c31e3134e64745a9580e49a26f3ab3648073884",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/gates.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/gates.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/gates.stdout.txt",
+      "bytes": 1621,
+      "sha256": "6fe1d012194a08ddff78ec237681aefd7fa265ba66f02eeece453e7be9c04fe9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/initial.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/initial.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/initial.stdout.txt",
+      "bytes": 1718,
+      "sha256": "66acc98f30945b472fd1f377c508a12a11f44ee21111a05fcd35e800c5707144",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/isolated.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/isolated.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/isolated.stdout.txt",
+      "bytes": 3265,
+      "sha256": "21ae0ca46394ed3ed17674b886008f04f8b937546927e0010fbffd116a2c0c0b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/ordered-lock-green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/ordered-lock-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "media-tests/ordered-lock-green.stdout.txt",
+      "bytes": 400,
+      "sha256": "e4fb56f90e6afc7f767e4ab19b60be4f3c50bab124049e9127e61fe9c2b6d95e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "packages-final.json",
+      "bytes": 1148,
+      "sha256": "6ba9fb94b2a58470b5b70fbb213d859c0c61249483fe4d5f6c9286179349f418",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "persisted-explanation-comparison.json",
+      "bytes": 4447,
+      "sha256": "1f4f5957cacefd709b49415e8296901513e1b9b9b9c219d2f0450f98f238d6be",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-01.json",
+      "bytes": 535,
+      "sha256": "e4a23533c9a86e647572e805a2a064531f85be58eb39091ebe5b9c253c69e77e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-01.stdout",
+      "bytes": 896,
+      "sha256": "ed3a7da1596d70abc76c0900ac6f7a5413a4ffd3e5144e522146081f59571517",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-02.json",
+      "bytes": 535,
+      "sha256": "3ee6f290359ea14e58bf490069ab7dc962b305ea8b8e87962268643b632d6b9c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-projection-final-02.stdout",
+      "bytes": 400,
+      "sha256": "22b55c6b37c190f5a7c845d055559591d5cabff861c0fb7dde3465049c3a119c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-01.json",
+      "bytes": 1121,
+      "sha256": "2a9262c5b0ddb398bcd5abfde30af1d1f0c6432778325d58f5fdb867b8ccae4c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-01.stdout",
+      "bytes": 127331,
+      "sha256": "e455647bf460c2fb40ad09d307db8307eeea061191e6b8e7f56460996db497d0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-02.json",
+      "bytes": 1121,
+      "sha256": "ef7ca1d178c9d62f500de161e9780b7e0b921098c8da10d64c1398e1b38a69a4",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-02.stdout",
+      "bytes": 483,
+      "sha256": "119900fb89fd3e7b6da92ee26059e57eeed098dc6f41f9cff9cb7838ee555873",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-03.json",
+      "bytes": 1428,
+      "sha256": "e4d8bd6ec7c37df9b728d8e4b6f9ea286e586ecc9c0df7edad35b3946e57f852",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-03.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-03.stdout",
+      "bytes": 8017,
+      "sha256": "c48e719cc1acdf84cb7ed2d01f186faa1c7fdb5b65c53924a7cf3fd47f198f8f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-04.json",
+      "bytes": 1536,
+      "sha256": "84ebb341b09e3d6e75107ad1ca8dc4c77d605b6bd851854e16d273691cc30c20",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-04.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "php-related-04.stdout",
+      "bytes": 566,
+      "sha256": "a0010f22e8f01c7f27d5fa9e486cf46860c2845017ea897b451a271006a75c22",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "private-media-download-alice.json",
+      "bytes": 286,
+      "sha256": "67ebc52ff4e1d4ab9582bd73faeaeb5dd6e32b40219aa66ead83ca5d21b56453",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "private-media-download-nonparticipant.json",
+      "bytes": 231,
+      "sha256": "8e1c22928098459591a430cbc14c5bd6af9373ecbcd48b1add1b82a342a31917",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-disable-01.json",
+      "bytes": 873,
+      "sha256": "d5e681864d2917aa931bc6dd08d6f2f61c7d4f0eae4225d6db921deb306b7fd7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-disable-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-disable-01.stdout",
+      "bytes": 44,
+      "sha256": "7e74408544484b0b4c4d6b02586b3fb615ae1feb1dbcf2a991ba2989799612fc",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-restore-01.json",
+      "bytes": 873,
+      "sha256": "2c994e5f137ed85383cf867b775cb5d29b92087c8a3eea09197691ef7d46bbf8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-restore-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-bank-zero-restore-01.stdout",
+      "bytes": 49,
+      "sha256": "9f83a1a6e498e509fce76110a05e3d03963281ad4273ba25912c2445721dc662",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "question-source-import-counts.json",
+      "bytes": 872,
+      "sha256": "86cf4dc8d8051fb773a7d783b6da9dc0d4f0254a39fd1ef88c45d7f67cb5fba7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/analyze.stdout.txt",
+      "bytes": 3999,
+      "sha256": "55dddc6ddaf93ae423c5e395b3095ddd03c508bb947d6aae52b41c16dd688489",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider-analyze.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider-analyze.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider-analyze.stdout.txt",
+      "bytes": 3999,
+      "sha256": "b988a7961fdeaca3a9fadce940649b1b488938b0229e8e6459c91672013bade5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/durable-provider.stdout.txt",
+      "bytes": 4467,
+      "sha256": "1dcb8af6c2c9c66f190c4c87b6c4a3e8f6b99f6ae44a4731b9cbc31852706342",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/focused.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/focused.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/focused.stdout.txt",
+      "bytes": 5718,
+      "sha256": "d21013467cb0b5d2c263284673d941394c1aa1ce75653387c64ae11fe7d7c7ad",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/green.stdout.txt",
+      "bytes": 5035,
+      "sha256": "58e96c009a3a9e4a72cd2940f3927de1483681d45589e7884e5a2667f8746e78",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-full.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-full.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-full.stdout.txt",
+      "bytes": 402,
+      "sha256": "a5931c9cdc90e346f405112b76323adafe1128d4f13a0ed7229a8486998f6b8b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-initial.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-initial.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/legacy-guards-initial.stdout.txt",
+      "bytes": 400,
+      "sha256": "aec5ad3b33815b9d72abf6519cff83481cb5fbcf9b3a5b9c65074f18fd93a60f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-full-green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-full-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-full-green.stdout.txt",
+      "bytes": 401,
+      "sha256": "fa3d864007b3c17c6145e0c9a977e4252073852063374bc1f629d491f3cf23cb",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-initial.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-initial.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-initial.stdout.txt",
+      "bytes": 400,
+      "sha256": "2cd2865a6f1cae1787a99052657a2a541d4463fc622e9d6b775d721311de2227",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-snapshot-red.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-snapshot-red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-snapshot-red.stdout.txt",
+      "bytes": 2253,
+      "sha256": "5c5fb1b093d9819e19e66306df279b5306c9e10afcda5180a0df41b4aace547d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-green.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-green.stdout.txt",
+      "bytes": 400,
+      "sha256": "d54e06a6c5b6ff44d1719823f65b4734a594799cf8761847fa3c9d18fa309f24",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-red.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/php-stale-snapshot-red.stdout.txt",
+      "bytes": 1122,
+      "sha256": "c1eb22aad105f38d903ba7cbac763847e7bcdafbd1f9a21779267507436728ae",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/red.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "questionnaire-contract/red.stdout.txt",
+      "bytes": 6207,
+      "sha256": "1734c1067a72520a4782ae84dea49013ee1e2b24c0dc880e718425531987ccb2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "restart-final-alice-mbti-02.json",
+      "bytes": 519,
+      "sha256": "cb3f4b930e1f98fdc81a6099217534780ee0a30f15c7e9354700ea1335f06d1c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "restart-final-alice-mbti.json",
+      "bytes": 343,
+      "sha256": "1f83afa9af8ad52ce86dd84bb911256e90927a2c6421f7b6c058fdd77b6393c1",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "restart-final-alice-profile.json",
+      "bytes": 1244,
+      "sha256": "7832426516c5e74914da4f2e8ea3d0310b2963867258916e2eeea8a7cdf42b66",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "restart-final-bob-status.json",
+      "bytes": 1628,
+      "sha256": "ee861bcbd826b9f1dbacb0c35d05f338a2d23b96bd2bbbc99e221df1564df39e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "restart-final-ownership.json",
+      "bytes": 131,
+      "sha256": "8962c7939e62a4f4e5cc594b2113ec65aa630fb3b94856f06deae12996a5fd4f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "root-protection-comparison.json",
+      "bytes": 104,
+      "sha256": "2d6742d46ae47f8393e8b500fef7c0824dbc8de808c316687618c12b2864ef4d",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-block-01.json",
+      "bytes": 544,
+      "sha256": "f0cb02f1086467ff3746438e07ecb03b4242af13fff9737bf89a044e69958a79",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-block-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-block-01.stdout",
+      "bytes": 236,
+      "sha256": "21a7abd19d4b386a13ffee70a433769d48769f0a53ac7bff52a202e316d1c89c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-revoke-01.json",
+      "bytes": 545,
+      "sha256": "82efc6bada70c445ded95bc9495e062d61b07f005cd97c046de8b6ec6f39d8b5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-revoke-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-concurrency-revoke-01.stdout",
+      "bytes": 238,
+      "sha256": "11700caaa528f199fc3ecac3b32b8cad4ae80c037f29a907abe6220f0b4fcc6e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-seven-legal-01.json",
+      "bytes": 586,
+      "sha256": "c14f7333028cbb88004dc5a4c2cf6ed54ee372cda7ed970e7f38e4eb55dd70c6",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "run-seven-thirdparty-01.json",
+      "bytes": 591,
+      "sha256": "d089d835d1447f6f4ac93995304c499ef4cff0ff80c1d790adc6104bbfacb8c7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-01.json",
+      "bytes": 788,
+      "sha256": "8b7dbbe18a76195f6bc4d57a818bee47d3ed17bbf8ac558dda1a4a465d76b624",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-02.json",
+      "bytes": 1076,
+      "sha256": "3f53c3cab898ff637963a381bdb7abddc799ae0558f544ab3b6f7bb720a1ccf0",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-03.json",
+      "bytes": 787,
+      "sha256": "41b088b878f7d0f17c36d63dab83eecc57d817d3c2554852238857e510e3c148",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-04.json",
+      "bytes": 763,
+      "sha256": "ad2e20a813d10a95ecf57d273073aa1b22b2e41003aff2c69e5fd046c3dd41e1",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-05.json",
+      "bytes": 893,
+      "sha256": "17f61254972e4ed71a03919ade8fd4f5e01947cbc21dc6a9b7a60ffea600da69",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-06.json",
+      "bytes": 2571,
+      "sha256": "1e653af45d64f563a2f1b5de0acffd2ad9851909494a0b76bd5ca252ed170460",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-legal-07.json",
+      "bytes": 199,
+      "sha256": "b9592e7274813642773f7ef241298f3013476129d6489aad3fffa0f036f78455",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-01.json",
+      "bytes": 237,
+      "sha256": "b3b32a51c42e977491d4eccefd91d7cfd966b595a653153cc68092c3c1a25ae8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-02.json",
+      "bytes": 230,
+      "sha256": "bc9adbe6fafd3ead10520f4da967ce2682ec773edc3a61c53a1484eb15186070",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-03.json",
+      "bytes": 256,
+      "sha256": "3fa7825d624e6b2fbf73e99016fadd1c9138de8682130d0f23ea23258bc5a187",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-04.json",
+      "bytes": 232,
+      "sha256": "e6f71df353b70cdd8b968eca086801fb76ba7be435fe859e4c7d967d139a87d8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-05.json",
+      "bytes": 363,
+      "sha256": "a070a8d4725ba051c9abfa5d01badd4faec934e5c37a60ac69e9033eda001291",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-06.json",
+      "bytes": 235,
+      "sha256": "e3d37966a31568af0d7d20884444e81a63d5854032869ec20e36e1f6c2bc7ef7",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "seven-thirdparty-07.json",
+      "bytes": 231,
+      "sha256": "b263cf7c4d414136e6b614480ae7c82def2a173d57575a0f7950f18de8c46383",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "shutdown-final.json",
+      "bytes": 328,
+      "sha256": "6449bbf7a67711abd8040b8ed5c38d6cc92af8a5f1cd4be8e3823d0b07373bf4",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "terminal-db-restart-03.json",
+      "bytes": 459,
+      "sha256": "04c41176399ba2a3bbbe8f342189461bf39eb0dc2d7611d03a4ca5d10b28e671",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "terminal-restart-messages-denied.json",
+      "bytes": 230,
+      "sha256": "89f007503e70a2aba07ec6137a0632a736cdfeaf59f15f98fb28d1a62626240e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "terminal-restart-normal-alice.json",
+      "bytes": 1244,
+      "sha256": "576592f76b77a72d59e295b3de91cefed7b8ad5a09d48e34a920cc22cf04d1d5",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "unblock-after-concurrency.json",
+      "bytes": 226,
+      "sha256": "c6003a7e21fd83b191fc0c9857c433c797715276fbf1802c5ff0f4141448b00a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-decline-01-before-reveal.json",
+      "bytes": 5042,
+      "sha256": "d514cd11432e2a0544d2c62bd8e05a512c1f00c6f90ea793210da7400ea8ba91",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-decline-01-identity.json",
+      "bytes": 53,
+      "sha256": "18e40cddb6610acfae2f7e796794a678f3b19dac9834d7c10ef9a6f994b6ed69",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-decline-01-prepare.json",
+      "bytes": 982,
+      "sha256": "e377b5e6843b9f6edb765390ab3c5561a51ec7f8023d71c1996adefe17e7857a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-decline-01-request.json",
+      "bytes": 1080,
+      "sha256": "46fb3333a5a3260b6785be94143edeba1005d85d2f76a7c16003c64177923243",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-decline-01-reveal.json",
+      "bytes": 983,
+      "sha256": "fb55f32b34fe92994a4e8a442af4d7633b009f9216e72462cb6faf3c5c0af7e9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-explanation-final-01-before-reveal.json",
+      "bytes": 5075,
+      "sha256": "574ee13ecbd5938fe81339052596c2354f81a374bf57cb771ac88fc53e7e0c98",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-explanation-final-01-identity.json",
+      "bytes": 53,
+      "sha256": "b9c7487b23af0a90a3a00a21f3e3b18a8c262f2109ffa19378fda63b8fc22c1e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-explanation-final-01-prepare.json",
+      "bytes": 1002,
+      "sha256": "182f4340173ab34049635a7831869f7a3b2e2590652bffdd639cb76876b4e11b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-explanation-final-01-request.json",
+      "bytes": 1091,
+      "sha256": "aaaf453387b8b31c462d2a11c46b24dc5e862d8f5944963f0a11dc7a0106efff",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-explanation-final-01-reveal.json",
+      "bytes": 994,
+      "sha256": "c70e32938ff3f5107a1f5f17c6ff7347d22a05e01ea62d92986346e14dbb8cb4",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-before-close.json",
+      "bytes": 7625,
+      "sha256": "a5e739f1817f2bc486deb69787b9b347ff75b632b1f8592fd691fe9a37829b18",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-before-retry.json",
+      "bytes": 4875,
+      "sha256": "a216eeb294d29c2b4a4772a1c07f431cc11f986375b25a06506ef506ec06ae6b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-before-reveal.json",
+      "bytes": 7132,
+      "sha256": "3cc9ab0b2540420968b7c089aaf7018a740d882064a762c8b24b4d0bf2dbe512",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-close.json",
+      "bytes": 1012,
+      "sha256": "d2fb7dde5c1767fbbba8930e78e36a4718a3211101dac63f676cec765d5b7e70",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-identity.json",
+      "bytes": 53,
+      "sha256": "1edb4cc813a8e84c470624feafa6911c4f93b4aae3d7740c3b35c3d909548f0f",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-prepare.json",
+      "bytes": 996,
+      "sha256": "1fceaedb67e231484656634f542e5810b040d887207fd1bac0e1efb37e83fd4c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-request.json",
+      "bytes": 1087,
+      "sha256": "f776e6bacfe982d0a984ad7ad104cb98cf271472bc6561d8bddc2a39f8c47de1",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-retry.json",
+      "bytes": 984,
+      "sha256": "31d15a54488c5776b11f3b79602fc8a0eee07f060a5216adb4b090bf4d97614a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-lease-recovery-01-reveal.json",
+      "bytes": 994,
+      "sha256": "dfbd5848589415619a0da2ab71795b963923a5f66367779c07499cfeb0d752ba",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-before-close.json",
+      "bytes": 5141,
+      "sha256": "7cd2bfd96fc070e282b3d5052f19a1c0d4d86adf738af13a09b22a0ca8cb064b",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-before-reveal.json",
+      "bytes": 5141,
+      "sha256": "80bcc46f052e63c3ad3d17de01cc96ea3fe0b6c8daf82510a23930c97dcb0207",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-close.json",
+      "bytes": 1033,
+      "sha256": "9e4c5dd8161b91176a50f3d120fcf2f4c10ffcd74d63d6f35bd88fb49bee5540",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-identity.json",
+      "bytes": 53,
+      "sha256": "067969292ca070e576d09b0cd2c574050177278aa4f621a69231c3172fc6dc5c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-prepare.json",
+      "bytes": 992,
+      "sha256": "7d937ae33f3529d26eaad0c876004b7d6549616f247f0c6003b02f5862b702df",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-request.json",
+      "bytes": 1085,
+      "sha256": "18616be556256a33f4dbfd224b690424fea3493392f34a0e74d9e8e937e538b9",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-no-candidate-01-reveal.json",
+      "bytes": 444,
+      "sha256": "aed048666b52759f873300b675b8b489d6e20dc8c03ac776b836bf260c4fd306",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-pair-01-before-reveal.json",
+      "bytes": 5033,
+      "sha256": "81c31bbfc9fad61e59e9a261072d61af7affaa8afd434d188f4dbeafdd0f1796",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-pair-01-identity.json",
+      "bytes": 53,
+      "sha256": "8f79fc3fe8acd546ecb51aacf72224f807884e6f2a810e51d6800b2d2b54005a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-pair-01-prepare.json",
+      "bytes": 976,
+      "sha256": "b0fb12006874c0991ead541498071f45cbe394a793ae4faf703e14b9e92d76e2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-pair-01-request.json",
+      "bytes": 1077,
+      "sha256": "e6dfc78abaf5ea141962c624b2aed4e4423fd74e022330870f5ac82949c491a2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-pair-01-reveal.json",
+      "bytes": 980,
+      "sha256": "5275d55b8e8f9d1a427c5d3413a94af48f427b36d4a9680dc54ee214eb54b42e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-withdraw-01-before-reveal.json",
+      "bytes": 5045,
+      "sha256": "5607e87eee2ae17db9d22bbb64d85626416ddd65664d77dfbb24e7c6be657485",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-withdraw-01-identity.json",
+      "bytes": 53,
+      "sha256": "8374dafcffcedea286755867424d5f6dd1414e341aa9df687015b4c98e17be05",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-withdraw-01-prepare.json",
+      "bytes": 984,
+      "sha256": "30ac3b0aff5e063dca8b8cf3f11c1bf37b18ac7fa28b63b38ad18cf138849ac8",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-withdraw-01-request.json",
+      "bytes": 1081,
+      "sha256": "45a6eff77cf0a95890c4c29a26fc411f7379a14ef046aed6f8215c565b102687",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-withdraw-01-reveal.json",
+      "bytes": 984,
+      "sha256": "1e32214cad0240207a7afa6107122cdb4b978ef34e898514eeaf85991654ba8c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-before-close.json",
+      "bytes": 7593,
+      "sha256": "c52063a43eefd8951a24d2a0cd49523c1dad5f73f3979060fa39557bde519462",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-before-retry.json",
+      "bytes": 4848,
+      "sha256": "86fc7d7d271f195564bba9ee693434c51ed5e916832859dc7ce271389a9c654a",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-before-reveal.json",
+      "bytes": 7100,
+      "sha256": "8121a918eb250ab3342fc915e47e198976ebac967f41b134524d3f6b81103f34",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-close.json",
+      "bytes": 1008,
+      "sha256": "04a44fd45abc4cbc68a2d6aa87b852df25f22e8d9de67e3933c38725d04828b2",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-identity.json",
+      "bytes": 53,
+      "sha256": "5e8a76796f770d7c4a49801b49219420e162caf3ff3b9c7c31198cfea386dd32",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-prepare.json",
+      "bytes": 986,
+      "sha256": "273a5b126182ea6218ff9a02da04eb96bc7cab2e634978446d8968c98871227e",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-request.json",
+      "bytes": 1082,
+      "sha256": "69da43bd98b182d11925c9e5ecb3856eccf8595a3d93826f4ffa34ece19d88fe",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-retry.json",
+      "bytes": 980,
+      "sha256": "0b4f72882939aab15725b1a97110034afa81c8ee973e25007b582c175aaa618c",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "v1007-zero-bank-01-reveal.json",
+      "bytes": 990,
+      "sha256": "7ba3af6d4933c85e3583905b25ad9f7ee3b0a61c19b76e6fcc1a29d7060db6ed",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    },
+    {
+      "file": "zero-bank-incomplete-readiness.json",
+      "bytes": 1242,
+      "sha256": "05d282b9a61a3b1deedf6fd599bef757dd4c0c4983982b2b6b47798e8ec9df62",
+      "original_encoding": "raw; UTF8 stdout, some Windows JSON CP936; preserve bytes"
+    }
+  ],
+  "excluded": "secrets, private runtime logs/config, physical packages and unselected raw local evidence remain LOCAL_ONLY"
+}

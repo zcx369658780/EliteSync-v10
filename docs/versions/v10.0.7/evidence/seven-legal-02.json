@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-15T00:27:10.840587+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/conversations",
+  "request": null,
+  "status": 200,
+  "body": {
+    "ok": true,
+    "domain": "conversation",
+    "items": [
+      {
+        "entry_kind": "stored_conversation",
+        "conversation_id": 1,
+        "match_id": 1,
+        "id": "3",
+        "peer_user_id": 3,
+        "room_key": "2_3",
+        "name": "V1007 Fictional bob",
+        "last_message": "Í¼Æ¬ÏûÏ¢",
+        "last_time": "6 minutes ago",
+        "unread": 0,
+        "state": "active",
+        "members": [
+          {
+            "user_id": 2,
+            "role": "member"
+          },
+          {
+            "user_id": 3,
+            "role": "member"
+          }
+        ],
+        "conversation_capability": {
+          "can_list": true,
+          "can_read": true,
+          "can_create": true,
+          "can_send": true,
+          "can_ws": true,
+          "reason_code": null
+        }
+      }
+    ],
+    "total": 1,
+    "note": null
+  }
+}

@@ -1,0 +1,13 @@
+lib/features/connection/presentation/pages/live_connection_page.dart:99:21: Error: The argument type 'SessionState?' can't be assigned to the parameter type 'SessionState'.
+ - 'SessionState' is from 'package:flutter_elitesync_module/shared/providers/session_provider.dart' ('lib/shared/providers/session_provider.dart').
+      if (!_current(session, epoch)) return;
+                    ^
+lib/features/connection/presentation/pages/live_connection_page.dart:100:20: Error: Property 'isLoggedIn' cannot be accessed on 'SessionState?' because it is potentially null.
+ - 'SessionState' is from 'package:flutter_elitesync_module/shared/providers/session_provider.dart' ('lib/shared/providers/session_provider.dart').
+Try accessing using ?. instead.
+      if (!session.isLoggedIn) throw StateError('请登录后读取连接。');
+                   ^^^^^^^^^^
+lib/features/connection/presentation/pages/live_connection_page.dart:106:20: Error: The argument type 'SessionState?' can't be assigned to the parameter type 'SessionState'.
+ - 'SessionState' is from 'package:flutter_elitesync_module/shared/providers/session_provider.dart' ('lib/shared/providers/session_provider.dart').
+      await action(session, epoch);
+                   ^

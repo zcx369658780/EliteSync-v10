@@ -1,0 +1,759 @@
+{
+  "utc": "2026-10-15T00:18:18.036205+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/profile/astro",
+  "request": {
+    "birth_time": "14:30"
+  },
+  "status": 200,
+  "body": {
+    "ok": true,
+    "user": {
+      "id": 1,
+      "name": "V1007 Fictional admin",
+      "phone": "19900000701",
+      "birthday": "1989-09-05",
+      "birth_time": "14:30",
+      "zodiac_animal": "蛇",
+      "gender": "male",
+      "city": "V1007 Development City",
+      "relationship_goal": "long_term",
+      "birth_place": null,
+      "birth_lat": null,
+      "birth_lng": null,
+      "realname_verified": false
+    },
+    "profile": {
+      "birthday": "1989-09-05",
+      "birth_time": "14:30",
+      "birth_place": null,
+      "birth_lat": null,
+      "birth_lng": null,
+      "sun_sign": "处女座",
+      "moon_sign": "金牛座",
+      "asc_sign": "处女座",
+      "bazi": "己巳 壬申 戊辰 己未",
+      "bazi_details": {
+        "pillars": [
+          {
+            "index": 0,
+            "label": "year",
+            "gan_zhi": "己巳",
+            "gan": "己",
+            "zhi": "巳",
+            "hidden_stems": [
+              "丙",
+              "庚",
+              "戊"
+            ]
+          },
+          {
+            "index": 1,
+            "label": "month",
+            "gan_zhi": "壬申",
+            "gan": "壬",
+            "zhi": "申",
+            "hidden_stems": [
+              "庚",
+              "壬",
+              "戊"
+            ]
+          },
+          {
+            "index": 2,
+            "label": "day",
+            "gan_zhi": "戊辰",
+            "gan": "戊",
+            "zhi": "辰",
+            "hidden_stems": [
+              "戊",
+              "乙",
+              "癸"
+            ]
+          },
+          {
+            "index": 3,
+            "label": "hour",
+            "gan_zhi": "己未",
+            "gan": "己",
+            "zhi": "未",
+            "hidden_stems": [
+              "己",
+              "丁",
+              "乙"
+            ]
+          }
+        ]
+      },
+      "true_solar_time": "14:32",
+      "location_shift_minutes": 2,
+      "longitude_offset_minutes": 0,
+      "equation_of_time_minutes": 2,
+      "position_signature": "c2b90ebe",
+      "location_source": "no_location",
+      "da_yun": [
+        {
+          "index": 1,
+          "gan_zhi": "辛未",
+          "start_year": 1999,
+          "end_year": 2008,
+          "start_age": 11,
+          "end_age": 20
+        },
+        {
+          "index": 2,
+          "gan_zhi": "庚午",
+          "start_year": 2009,
+          "end_year": 2018,
+          "start_age": 21,
+          "end_age": 30
+        },
+        {
+          "index": 3,
+          "gan_zhi": "己巳",
+          "start_year": 2019,
+          "end_year": 2028,
+          "start_age": 31,
+          "end_age": 40
+        },
+        {
+          "index": 4,
+          "gan_zhi": "戊辰",
+          "start_year": 2029,
+          "end_year": 2038,
+          "start_age": 41,
+          "end_age": 50
+        },
+        {
+          "index": 5,
+          "gan_zhi": "丁卯",
+          "start_year": 2039,
+          "end_year": 2048,
+          "start_age": 51,
+          "end_age": 60
+        },
+        {
+          "index": 6,
+          "gan_zhi": "丙寅",
+          "start_year": 2049,
+          "end_year": 2058,
+          "start_age": 61,
+          "end_age": 70
+        },
+        {
+          "index": 7,
+          "gan_zhi": "乙丑",
+          "start_year": 2059,
+          "end_year": 2068,
+          "start_age": 71,
+          "end_age": 80
+        }
+      ],
+      "liu_nian": [
+        {
+          "year": 2019,
+          "age": 31,
+          "gan_zhi": "己亥"
+        },
+        {
+          "year": 2020,
+          "age": 32,
+          "gan_zhi": "庚子"
+        },
+        {
+          "year": 2021,
+          "age": 33,
+          "gan_zhi": "辛丑"
+        },
+        {
+          "year": 2022,
+          "age": 34,
+          "gan_zhi": "壬寅"
+        },
+        {
+          "year": 2023,
+          "age": 35,
+          "gan_zhi": "癸卯"
+        },
+        {
+          "year": 2024,
+          "age": 36,
+          "gan_zhi": "甲辰"
+        },
+        {
+          "year": 2025,
+          "age": 37,
+          "gan_zhi": "乙巳"
+        },
+        {
+          "year": 2026,
+          "age": 38,
+          "gan_zhi": "丙午"
+        },
+        {
+          "year": 2027,
+          "age": 39,
+          "gan_zhi": "丁未"
+        },
+        {
+          "year": 2028,
+          "age": 40,
+          "gan_zhi": "戊申"
+        }
+      ],
+      "wu_xing": {
+        "木": 10,
+        "火": 20,
+        "土": 70,
+        "金": 20,
+        "水": 20
+      },
+      "ziwei": {
+        "life_palace": "父母宫",
+        "body_palace": "财帛宫",
+        "oracle_source": null,
+        "rule_mouthpiece": "approximate_seed_containment",
+        "input_policy": {
+          "gregorian_date": "1989-09-05",
+          "user_input_time": "14:30",
+          "true_solar_time_observation": "14:32",
+          "chart_beijing_time": null,
+          "lunar_date": null,
+          "time_branch": null,
+          "policy_status": "not_oracle_validated"
+        },
+        "major_themes": {
+          "life_palace": "父母宫",
+          "body_palace": "财帛宫",
+          "life_body_gap": 5,
+          "career_bias": "仆役宫",
+          "wealth_bias": "子女宫",
+          "relationship_bias": "兄弟宫"
+        },
+        "palaces": [
+          {
+            "index": 1,
+            "name": "命宫",
+            "palace_name": "命宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "七杀",
+            "main_stars": [
+              "七杀"
+            ],
+            "secondary_stars": [
+              "破军",
+              "紫微"
+            ],
+            "auxiliary_stars": [
+              "天魁",
+              "天钺",
+              "左辅"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "normal",
+            "summary": "七杀落在命宫：命宫主轴体现个人气质与行事风格，命身分离度较明显"
+          },
+          {
+            "index": 2,
+            "name": "兄弟宫",
+            "palace_name": "兄弟宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "破军",
+            "main_stars": [
+              "破军"
+            ],
+            "secondary_stars": [
+              "紫微",
+              "天机"
+            ],
+            "auxiliary_stars": [
+              "左辅",
+              "右弼",
+              "文昌"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "normal",
+            "summary": "破军落在兄弟宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 3,
+            "name": "夫妻宫",
+            "palace_name": "夫妻宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "紫微",
+            "main_stars": [
+              "紫微"
+            ],
+            "secondary_stars": [
+              "天机",
+              "太阳"
+            ],
+            "auxiliary_stars": [
+              "文昌",
+              "文曲",
+              "禄存"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "紫微落在夫妻宫：夫妻宫反映关系中对亲密与承诺的表达，命身分离度较明显"
+          },
+          {
+            "index": 4,
+            "name": "子女宫",
+            "palace_name": "子女宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "天机",
+            "main_stars": [
+              "天机"
+            ],
+            "secondary_stars": [
+              "太阳",
+              "武曲"
+            ],
+            "auxiliary_stars": [
+              "禄存",
+              "擎羊",
+              "陀罗"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "天机落在子女宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 5,
+            "name": "财帛宫",
+            "palace_name": "财帛宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "太阳",
+            "main_stars": [
+              "太阳"
+            ],
+            "secondary_stars": [
+              "武曲",
+              "天同"
+            ],
+            "auxiliary_stars": [
+              "陀罗",
+              "火星",
+              "铃星"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "high",
+            "summary": "太阳落在财帛宫：财帛宫偏向资源配置与消费习惯，命身分离度较明显"
+          },
+          {
+            "index": 6,
+            "name": "疾厄宫",
+            "palace_name": "疾厄宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "武曲",
+            "main_stars": [
+              "武曲"
+            ],
+            "secondary_stars": [
+              "天同",
+              "廉贞"
+            ],
+            "auxiliary_stars": [
+              "铃星",
+              "天空",
+              "地劫"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "武曲落在疾厄宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 7,
+            "name": "迁移宫",
+            "palace_name": "迁移宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "天同",
+            "main_stars": [
+              "天同"
+            ],
+            "secondary_stars": [
+              "廉贞",
+              "天府"
+            ],
+            "auxiliary_stars": [
+              "地劫",
+              "天魁",
+              "天钺"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "天同落在迁移宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 8,
+            "name": "仆役宫",
+            "palace_name": "仆役宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "廉贞",
+            "main_stars": [
+              "廉贞"
+            ],
+            "secondary_stars": [
+              "天府",
+              "太阴"
+            ],
+            "auxiliary_stars": [
+              "天钺",
+              "左辅",
+              "右弼"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "normal",
+            "summary": "廉贞落在仆役宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 9,
+            "name": "官禄宫",
+            "palace_name": "官禄宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "天府",
+            "main_stars": [
+              "天府"
+            ],
+            "secondary_stars": [
+              "太阴",
+              "贪狼"
+            ],
+            "auxiliary_stars": [
+              "右弼",
+              "文昌",
+              "文曲"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "normal",
+            "summary": "天府落在官禄宫：官禄宫体现工作路径与责任感，命身分离度较明显"
+          },
+          {
+            "index": 10,
+            "name": "田宅宫",
+            "palace_name": "田宅宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "太阴",
+            "main_stars": [
+              "太阴"
+            ],
+            "secondary_stars": [
+              "贪狼",
+              "巨门"
+            ],
+            "auxiliary_stars": [
+              "文曲",
+              "禄存",
+              "擎羊"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "太阴落在田宅宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          },
+          {
+            "index": 11,
+            "name": "福德宫",
+            "palace_name": "福德宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "贪狼",
+            "main_stars": [
+              "贪狼"
+            ],
+            "secondary_stars": [
+              "巨门",
+              "天相"
+            ],
+            "auxiliary_stars": [
+              "擎羊",
+              "陀罗",
+              "火星"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "medium",
+            "summary": "贪狼落在福德宫：福德宫体现内在稳定感与恢复能力，命身分离度较明显"
+          },
+          {
+            "index": 12,
+            "name": "父母宫",
+            "palace_name": "父母宫",
+            "branch": null,
+            "palace_stem": null,
+            "main_star": "巨门",
+            "main_stars": [
+              "巨门"
+            ],
+            "secondary_stars": [
+              "天相",
+              "天梁"
+            ],
+            "auxiliary_stars": [
+              "火星",
+              "铃星",
+              "天空"
+            ],
+            "star_status_map": [],
+            "transformations": [],
+            "display_notes": [
+              "approximate_not_validated",
+              "branch_oracle_missing",
+              "palace_stem_oracle_missing"
+            ],
+            "strength": "high",
+            "summary": "巨门落在父母宫：该宫位反映相关主题的倾向，命身分离度较明显"
+          }
+        ],
+        "four_transformations": [],
+        "flying_star_status": {
+          "status": "insufficient_oracle",
+          "implementation": "not_implemented",
+          "reason": "current_cece_screenshots_do_not_provide_full_flying_star_graph"
+        },
+        "ziwei_advanced_fields": {
+          "status": "pending_oracle",
+          "source": "ziwei_seed_estimate",
+          "oracle_status": "pending_oracle",
+          "field_status": {
+            "sihua": "pending_oracle",
+            "auxiliary_stars": "pending_oracle",
+            "minor_stars": "pending_oracle",
+            "brightness": "pending_oracle",
+            "flying_stars": "pending_oracle",
+            "ming_gong_flying_star": "pending_oracle"
+          },
+          "sihua": {
+            "status": "pending_oracle",
+            "items": []
+          },
+          "auxiliary_stars": {
+            "status": "pending_oracle",
+            "palaces": []
+          },
+          "minor_stars": {
+            "status": "pending_oracle",
+            "palaces": []
+          },
+          "brightness": {
+            "status": "pending_oracle",
+            "items": []
+          },
+          "flying_stars": {
+            "status": "pending_oracle",
+            "implementation": "not_implemented",
+            "reason": "non_fixture_seed_output_has_no_advanced_field_oracle"
+          },
+          "ming_gong_flying_star": {
+            "status": "pending_oracle",
+            "implementation": "not_implemented",
+            "reason": "non_fixture_seed_output_has_no_advanced_field_oracle"
+          },
+          "display_policy": "hide_as_unavailable_without_penalty",
+          "matching_policy": "skip_unverified_or_missing_fields"
+        },
+        "summary": "命宫落在父母宫，身宫落在财帛宫，命身差距为5宫位，适合用于长期画像解释。",
+        "engine": "ziwei_seed_estimate",
+        "precision": "approximate_not_validated",
+        "confidence": 0.22,
+        "external_oracle_status": "not_validated",
+        "display_only": true,
+        "scoring_status": "excluded_from_core_matching",
+        "validation_status": "rule_mouthpiece_pending",
+        "disclaimer": "当前为紫微试算参考，待外部排盘校验，不作为真实紫微排盘结论，暂不参与核心匹配评分。"
+      },
+      "notes": [
+        "location_source:no_location",
+        "location_shift_minutes:2",
+        "civil_timezone:Asia/Shanghai",
+        "birth_time_input_source:user_input",
+        "canonical_source:lunar_php",
+        "precision:calendar_canonical",
+        "time_source:true_solar_time",
+        "confidence_policy:no_birth_location",
+        "rollout_bazi:bazi_global_enabled",
+        "canonical_accuracy:canonical_server",
+        "canonical_confidence:0.65",
+        "western_engine:legacy_input",
+        "western_precision:legacy_estimate",
+        "western_confidence:0.66",
+        "western_degraded:1",
+        "western_degrade_reason:western_rollout_disabled",
+        "western_rollout_enabled:0",
+        "western_rollout_reason:western_global_disabled",
+        "ziwei_engine:ziwei_seed_estimate",
+        "ziwei_precision:approximate_not_validated",
+        "ziwei_confidence:0.22",
+        "ziwei_external_oracle_status:not_validated",
+        "ziwei_display_only:1",
+        "ziwei_scoring_status:excluded_from_core_matching"
+      ],
+      "accuracy": "canonical_server",
+      "confidence": 0.65,
+      "western_engine": "legacy_input",
+      "western_precision": "legacy_estimate",
+      "western_confidence": 0.66,
+      "western_degraded": true,
+      "western_degrade_reason": "western_rollout_disabled",
+      "western_rollout_enabled": false,
+      "western_rollout_reason": "western_global_disabled",
+      "computed_at": "2026-10-15T00:18:18+00:00",
+      "house_truth_status": "not_house_truth",
+      "western_natal_input_signature": "6d7cecefb79b0e412ea3fb800781d21d9acffbec9b937d5d4bd8890663d766dd",
+      "western_natal_policy": {
+        "engine": "kerykeion",
+        "zodiac_mode": "tropical",
+        "house_system": "placidus",
+        "timezone": "Asia/Shanghai",
+        "coordinates": {
+          "lat": null,
+          "lng": null
+        },
+        "uses_true_solar_time": false,
+        "contract_version": "western_natal_v1"
+      },
+      "western_natal_degraded": true,
+      "western_natal_degrade_reason": "python_render_unavailable",
+      "metadata": {
+        "input_signature": "6d7cecefb79b0e412ea3fb800781d21d9acffbec9b937d5d4bd8890663d766dd",
+        "input_signature_fields": {
+          "birth_date": "1989-09-05",
+          "birth_lat": null,
+          "birth_lng": null,
+          "birth_place": "",
+          "birth_time": "14:30",
+          "contract_version": "western_natal_v1",
+          "engine": "kerykeion",
+          "house_system": "placidus",
+          "timezone": "Asia/Shanghai",
+          "zodiac_mode": "tropical"
+        },
+        "western_natal_policy": {
+          "engine": "kerykeion",
+          "zodiac_mode": "tropical",
+          "house_system": "placidus",
+          "timezone": "Asia/Shanghai",
+          "coordinates": {
+            "lat": null,
+            "lng": null
+          },
+          "uses_true_solar_time": false,
+          "contract_version": "western_natal_v1"
+        },
+        "provenance": {
+          "source": "legacy_summary_only",
+          "engine": "kerykeion",
+          "contract_version": "western_natal_v1",
+          "zodiac_mode": "tropical",
+          "house_system": "placidus",
+          "timezone": "Asia/Shanghai",
+          "coordinates": {
+            "lat": null,
+            "lng": null
+          },
+          "uses_true_solar_time": false,
+          "generated_at": "2026-10-15T00:18:18+00:00",
+          "house_truth_status": "not_house_truth",
+          "degraded": true,
+          "degrade_reason": "python_render_unavailable",
+          "external_oracle_status": "not_validated"
+        },
+        "field_roles": {
+          "canonical": [
+            "birthday",
+            "birth_time",
+            "birth_place",
+            "birth_lat",
+            "birth_lng",
+            "tz_str"
+          ],
+          "display_only": [
+            "route_mode"
+          ]
+        },
+        "route_context": {
+          "route_mode": "standard",
+          "route_preset": "standard",
+          "source": "display_only"
+        }
+      },
+      "route_mode": "standard"
+    }
+  }
+}

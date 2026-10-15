@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1007MatchProjectionTest.php"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel",
+  "exit": 2,
+  "start": "2026-10-15T00:48:57.053748+00:00",
+  "end": "2026-10-15T00:48:58.364507+00:00",
+  "streams": {
+    "stdout": "ed3a7da1596d70abc76c0900ac6f7a5413a4ffd3e5144e522146081f59571517",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

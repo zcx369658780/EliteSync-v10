@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+v10.0.7：**CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**，产品源码锚7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f；[集中报告](v10.0.7/EXECUTION_REPORT.md)及[测试原结果](v10.0.7/TEST_RESULTS.md)。未独立接受，未合并main。
+
+
 2026-10-15：**v10.0.7正式冻结计划**：[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`，八条不可变AC；Owner手动派发待完成、当前未实施。基础产品起点 `0989812c141ce892915b67c14e9291d34e3c7053` / Tree `c2dd89f3a0726bff6cd18fb8fe0008c2f347aadf`。v10.0.6 K08已完成，以下此前“待集成/待冻结”作为历史记录。
 
 

@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T00:28:03.396626+00:00",
+  "role": "incomplete",
+  "method": "GET",
+  "path": "/api/v1/conversation-peers/3",
+  "request": null,
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

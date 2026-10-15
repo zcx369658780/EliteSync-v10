@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-15T00:42:47.568326+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/messages",
+  "request": {
+    "receiver_id": 2,
+    "content": "MUST NOT PERSIST block",
+    "client_message_id": "concurrent-block-denied-01"
+  },
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

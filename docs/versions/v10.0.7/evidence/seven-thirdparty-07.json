@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T00:27:12.500415+00:00",
+  "role": "incomplete",
+  "method": "POST",
+  "path": "/api/v1/messages/read/1",
+  "request": {},
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

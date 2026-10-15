@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-15T00:27:11.630128+00:00",
+  "role": "incomplete",
+  "method": "POST",
+  "path": "/api/v1/connections/3/connection",
+  "request": {
+    "action": "accept",
+    "expected_revision": 1
+  },
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "connection unavailable",
+      "details": null
+    }
+  }
+}

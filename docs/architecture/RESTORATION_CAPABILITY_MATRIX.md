@@ -1,4 +1,24 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
+
+## 2026-10-15 v10.0.7候选实测更新（独立验收待定）
+
+源码锚 `7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f`；真实链及固定原证见[集中报告](../versions/v10.0.7/EXECUTION_REPORT.md)、[manifest](../versions/v10.0.7/manifest.json)。本节覆盖下文旧0.7 NOT_IMPLEMENTED时点，**不将候选自验升为已独立验收**。全量Flutter6失败/analyze3 info保留。
+
+| ID | 本版真实开发恢复结果 | 保留缺口/后续位置 |
+|---|---|---|
+| A01/A02 | 最终源码AAR/debug APK安装；隔离MariaDB58迁移，157源题/137 enabled/20研究inactive；真实服务及联合重启 | 原业务备份仍UNKNOWN，非生产部署；包LOCAL_ONLY |
+| A04 | 登录、完整出生/城市资料、canonical问卷20题、服务端draft/attempt版本、APP重启/重登续填 | 真实SMS/历史账号内容未运行；旧readiness只读summary尚未接在线权威，不授予权限 |
+| A05 | 实际MatchingRun consumer/fence/重试/发布、APP current/history；持久CN独立请求/接受/拒绝/撤回，MC另行双方决定 | 完整后台运营UI留0.8；Match/Connection/MC/Relationship不合并 |
+| A06 | 七条消息HTTP仅本版local当前许可；双账号文字、列表/未读已读、私有图片上传处理关联下载；block/revoke并发及禁用拒绝 | HTTP拉取；RTC双端、WebSocket、视频/语音附件留0.8及后续具名用户恢复包，不能称已完成 |
+| A07 | lunar本地真实八字输入/版本/来源/降级/跨日；APP可选MBTI ENFP attempt读回；MBTI人格不排序；排除算法权重0 | 完整紫微/西占引擎、oracle/许可/时间地理源后续具名决定；原seed/估计不冒真实排盘 |
+| A08 | APP动态发布/点赞/作者soft-delete、非作者拒绝；真实消息/匹配事件通知及read_at；本地主题/性能重进保留 | Buddy/Social真业务、地图、OS Push/SMS和云同步未恢复，按plan第3节保留在后续用户恢复包，非永久删除 |
+| A09 | 原APP同账号/双账号、Laravel/数据库重启、权限正反例及最终包hash留证 | 全APP/生产/跨设备/所有历史功能仍NOT_RUN，0.9/0.10联合验收及说明未派发 |
+| B01/B04 | 既有Blade实际禁用Bob及撤销旧凭据；admin matching HTTP→实际consumer回归 | 不冒完整Web后台恢复；0.8独立Web管理方向保留但未启动 |
+
+原3306、SQL gzip/VHDX及真实账号/生产未访问；0.6验收卷未修改/重seed，原dirty根保持。后续版本须Owner新派发，Astra终验前不合并候选。
+
+## 以下为先前调查时点
+
 2026-10-15更新：v10.0.6 **ACCEPT WITH OBSERVATIONS**，已完成[K08](../versions/v10.0.6/integration.md)，产品commit `78aba03a68cb5dcc0302ea7e9c20ff783f5169d5` / Tree `c027d70c37b353d3e37c3570b23f673c1033dd0f`。当前单份台账继续维护，具名源码链、旧来源Blob、推荐组合/AC及少数决定见[v10.0.7版前建议](../versions/v10.0.7/FEASIBILITY_RECOMMENDATION.md)。**0.7 NOT_FROZEN / NOT_IMPLEMENTED**；以下初始口径中的待定位/未证明不覆盖本次限域更新，其余未知保留。
 
 已核旧源码来源为D:/EliteSync HEAD `0f06e895a89629a7f4f0cf0c62b784446ecf515a`的具名题库/算法/客户端文件，源码存在与运行完成分开；未选定或实测整个旧APP。新功能均RUNTIME_NOT_RUN；数据库备份内容和原3306继续保护。

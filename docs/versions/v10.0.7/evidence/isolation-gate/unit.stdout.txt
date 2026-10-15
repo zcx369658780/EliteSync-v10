@@ -1,0 +1,11 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDD                                                 17 / 17 (100%)
+
+Time: 00:01.514, Memory: 34.00 MB
+
+OK, but there were issues!
+Tests: 17, Assertions: 17, Deprecations: 2.

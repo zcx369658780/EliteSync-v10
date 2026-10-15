@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-15T01:07:43.675613+00:00",
+  "role": "",
+  "method": "POST",
+  "path": "/api/v1/auth/login",
+  "request": {
+    "phone": "19900000703"
+  },
+  "status": 403,
+  "body": {
+    "message": "’À∫≈“—±ªΩ˚”√°£"
+  }
+}
