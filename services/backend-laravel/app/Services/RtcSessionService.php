@@ -153,6 +153,7 @@ class RtcSessionService
             'status' => 'connecting',
             'accepted_by_user_id' => $userId,
             'accepted_at' => now(),
+            'expires_at' => now()->addSeconds(self::INVITE_TIMEOUT_SECONDS),
             'peer_last_seen_at' => $userId === (int) $session->peer_user_id ? now() : $session->peer_last_seen_at,
             'initiator_last_seen_at' => $userId === (int) $session->initiator_user_id ? now() : $session->initiator_last_seen_at,
         ])->save();

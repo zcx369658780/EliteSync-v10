@@ -81,7 +81,8 @@ async def reconcile():
                     print(json.dumps({'event':'room_removed','room':name,'time':time.time(),'attempt':1}),flush=True)
                     await backend('audit',{'room':name,'event':'sfu_removed','attempt':1})
             last_sweep=time.monotonic(); ready=True
-        except Exception:
+        except Exception as error:
+            print(json.dumps({'event':'authority_monitor_failed','error_type':type(error).__name__,'time':time.time()}),flush=True)
             stop_sfu()
             return
         await asyncio.sleep(.25)

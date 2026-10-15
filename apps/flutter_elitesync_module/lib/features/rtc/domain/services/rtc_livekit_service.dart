@@ -100,6 +100,17 @@ class RtcLiveKitService extends ChangeNotifier {
   bool _remoteAudioTrackFromEvent = false;
   AudioTrack? _remoteAudioTrack;
   String? _boundLocalAudioTrackId;
+  final Stopwatch _audioDiagnosticClock = Stopwatch()..start();
+  final Map<String, int> _localAudioLogAt = {};
+
+  bool _shouldLogLocalAudioFrame(String trackId, String reason) {
+    final key = '$trackId:$reason';
+    final now = _audioDiagnosticClock.elapsedMilliseconds;
+    final previous = _localAudioLogAt[key];
+    if (previous != null && now - previous < 1000) return false;
+    _localAudioLogAt[key] = now;
+    return true;
+  }
 
   bool get isEnabled => appEnv.useLiveKitRtc;
   bool get isConnected =>
@@ -254,6 +265,7 @@ class RtcLiveKitService extends ChangeNotifier {
   }) async {
     final localParticipant = room.localParticipant;
     if (localParticipant == null) {
+      if (!_shouldLogLocalAudioFrame('none', reason)) return;
       debugPrint(
         'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
         'device=${_platformLabel()} '
@@ -277,6 +289,7 @@ class RtcLiveKitService extends ChangeNotifier {
     }
 
     if (nextTrack == null || nextTrackId == null) {
+      if (!_shouldLogLocalAudioFrame('none', reason)) return;
       debugPrint(
         'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
         'device=${_platformLabel()} '
@@ -305,10 +318,9 @@ class RtcLiveKitService extends ChangeNotifier {
     );
 
     try {
-      var localFrameCount = 0;
       _cancelLocalAudioRenderer = nextTrack.addAudioRenderer(
         onFrame: (frame) {
-          localFrameCount += 1;
+          if (!_shouldLogLocalAudioFrame(nextTrackId!, reason)) return;
           final sampleCount = frame.data.lengthInBytes ~/ 2;
           if (sampleCount <= 0) return;
           final samples = frame.data.buffer.asInt16List(
@@ -329,20 +341,7 @@ class RtcLiveKitService extends ChangeNotifier {
                         .map((sample) => sample.abs().toDouble())
                         .fold<double>(0.0, math.max) /
                     32768.0;
-          if (absAvg > 0.0001 || peak > 0.0001) {
-            debugPrint(
-              'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
-              'device=${_platformLabel()} '
-              'callId=$callId '
-              'reason=$reason '
-              'trackId=$nextTrackId '
-              'sampleRate=${frame.sampleRate} '
-              'channels=${frame.channels} '
-              'bytes=${frame.data.lengthInBytes} '
-              'absAvg=${absAvg.toStringAsFixed(4)} '
-              'peak=${peak.toStringAsFixed(4)}',
-            );
-          } else if (localFrameCount == 1 || localFrameCount % 25 == 0) {
+          {
             debugPrint(
               'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
               'device=${_platformLabel()} '

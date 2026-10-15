@@ -47,6 +47,48 @@ final class V1009RtcAuthorityTest extends TestCase
     {
         $this->postJson('/api/v1/rtc/calls',['peer_user_id'=>$this->b->id])->assertForbidden();
     }
+    public function test_accepting_a_still_valid_invitation_grants_a_fresh_connection_deadline(): void
+    {
+        $this->travelTo(now()->startOfSecond());
+        $this->active();
+        $id=$this->create();
+        $invitationDeadline=RtcSession::findOrFail($id)->expires_at->copy();
+        $this->travel(29)->seconds();
+
+        $this->accept($id);
+        $call=RtcSession::findOrFail($id);
+        $this->assertSame('connecting',$call->status);
+        $this->assertTrue($call->accepted_at->equalTo(now()));
+        $this->assertTrue($call->expires_at->equalTo(now()->addSeconds(30)));
+        $this->assertTrue($call->expires_at->greaterThan($invitationDeadline));
+
+        // Keep the caller present independently of the invitation deadline.
+        Sanctum::actingAs($this->a);
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/heartbeat')->assertOk();
+        $this->travel(29)->seconds();
+        $this->assertTrue(now()->greaterThan($invitationDeadline));
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/connect')->assertOk();
+        $this->assertSame('in_call',$call->fresh()->status);
+    }
+    public function test_an_expired_invitation_cannot_be_accepted_or_revived(): void
+    {
+        $this->travelTo(now()->startOfSecond());
+        $this->active();
+        $id=$this->create();
+        $invitationDeadline=RtcSession::findOrFail($id)->expires_at->copy();
+        $this->travel(31)->seconds();
+        Sanctum::actingAs($this->b);
+
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/accept')->assertStatus(409);
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/connect')->assertStatus(409);
+        $this->getJson('/api/v1/rtc/calls/'.$id.'/livekit')->assertNotFound();
+        $call=RtcSession::findOrFail($id);
+        $this->assertNull($call->accepted_at);
+        $this->assertNull($call->accepted_by_user_id);
+        $this->assertTrue($call->expires_at->equalTo($invitationDeadline));
+        $this->assertNotContains($call->status,['connecting','in_call']);
+        $this->assertFalse($call->events()->where('event_name','accepted')->exists());
+    }
     public function test_independent_accept_and_current_revisions_guard_join_and_reconnect(): void
     {
         $this->active();$id=$this->create();
