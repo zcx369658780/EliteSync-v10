@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
+import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_video_player.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -184,11 +188,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage> {
     }
   }
 
-  Future<void> _picture() async {
+  Future<void> _picture() => _attachment(ChatAttachmentKind.image);
+  Future<void> _video() => _attachment(ChatAttachmentKind.video);
+
+  Future<void> _attachment(ChatAttachmentKind kind) async {
     if (_busy || !mounted) return;
     final session = ref.read(sessionProvider).asData?.value;
     if (session == null || !session.isLoggedIn) {
-      _reject('图片上传或处理未完成，请检查登录与消息权限。');
+      _reject('附件上传或处理未完成，仅支持25MiB内、30秒内的MP4/H.264视频或图片。');
       return;
     }
     _session = session;
@@ -196,28 +203,74 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage> {
     setState(() => _busy = true);
     try {
       final gateway = ref.read(liveChatMediaGatewayProvider);
-      final picked = await gateway.pick(ChatAttachmentKind.image);
+      final picked = await gateway.pick(kind);
       if (!_current(session, epoch) || picked == null) return;
       if (gateway is! SessionBoundChatMediaGateway) {
-        throw StateError('图片上传缺少会话保护');
+        throw StateError('附件上传缺少会话保护');
       }
       final uploaded = await gateway.uploadForSession(
-        ChatAttachmentKind.image,
+        kind,
         picked,
         isCurrent: () => _current(session, epoch),
         cancelToken: _uploadCancellation,
       );
       if (!_current(session, epoch)) return;
       if (uploaded.assetId == null || uploaded.status != 'ready') {
-        throw StateError('图片尚未就绪');
+        throw StateError('附件尚未就绪');
       }
       await _post(session, epoch, asset: uploaded.assetId);
       if (!_current(session, epoch)) return;
     } catch (_) {
-      if (_current(session, epoch)) _reject('图片上传或处理未完成，请检查登录与消息权限。');
+      if (_current(session, epoch)) {
+        _reject('附件上传或处理未完成，仅支持25MiB内、30秒内的MP4/H.264视频或图片。');
+      }
     } finally {
       if (_current(session, epoch)) setState(() => _busy = false);
     }
+  }
+
+  Future<void> _call(String mode) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    if (session == null || !session.isLoggedIn || _busy) return;
+    final epoch = _epoch;
+    setState(() => _busy = true);
+    try {
+      final call = await ref
+          .read(rtcRemoteDataSourceProvider)
+          .createCall(peerUserId: widget.peerId, mode: mode);
+      if (!mounted || !_current(session, epoch)) return;
+      final route = call.isTerminal
+          ? AppRouteNames.rtcCallResult
+          : AppRouteNames.rtcCall;
+      await context.push('$route/${call.id}');
+    } catch (_) {
+      if (_current(session, epoch)) {
+        setState(() => _error = '当前无法通话，请检查双方连接、消息同意及账号状态。');
+      }
+    } finally {
+      if (_current(session, epoch)) setState(() => _busy = false);
+    }
+  }
+
+  void _openVideo(int assetId) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              PrivateVideoPlayer(assetId: assetId),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('关闭'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -243,6 +296,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage> {
         title: const Text('对话'),
         actions: [
           IconButton(onPressed: _load, icon: const Icon(Icons.refresh)),
+          IconButton(
+            onPressed: _busy ? null : () => _call('voice'),
+            tooltip: '语音通话',
+            icon: const Icon(Icons.call_outlined),
+          ),
+          IconButton(
+            onPressed: _busy ? null : () => _call('video'),
+            tooltip: '视频通话',
+            icon: const Icon(Icons.videocam_outlined),
+          ),
         ],
       ),
       body: Column(
@@ -266,6 +329,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage> {
                                         .toInt()]
                                     case final bytes?)
                                   Image.memory(bytes, height: 140),
+                            for (final a in (m['attachments'] as List? ?? []))
+                              if (a['media_asset'] is Map &&
+                                  a['media_asset']['media_type'] == 'video')
+                                TextButton.icon(
+                                  onPressed: () => _openVideo(
+                                    (a['media_asset']['id'] as num).toInt(),
+                                  ),
+                                  icon: const Icon(Icons.play_circle_outline),
+                                  label: const Text('播放私有视频'),
+                                ),
                             Text(
                               m['is_read'] == true ? '已读' : '未读',
                               style: Theme.of(context).textTheme.bodySmall,
@@ -285,6 +358,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage> {
                   onPressed: _busy ? null : _picture,
                   icon: const Icon(Icons.image),
                   tooltip: '发送图片',
+                ),
+                IconButton(
+                  onPressed: _busy ? null : _video,
+                  icon: const Icon(Icons.video_library_outlined),
+                  tooltip: '发送短视频',
                 ),
                 Expanded(
                   child: TextField(

@@ -60,7 +60,8 @@ String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
   if (const bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
       const bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
-      const bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD')) {
+      const bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
+      const bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8000/') {
       throw StateError(
         'Restoration build requires the matching local Android host.',
@@ -99,7 +100,8 @@ Future<void> main() async {
   const restoration =
       bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
-      bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD');
+      bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD');
   final flavor = restoration ? AppFlavor.dev : internalFeatures.flavor;
   final initialRoute = _firstNonEmpty([
     String.fromEnvironment('ELITESYNC_INITIAL_ROUTE'),
@@ -111,6 +113,7 @@ Future<void> main() async {
     'MAIN_PROD_BOOTSTRAP initialRoute=${initialRoute.isNotEmpty ? initialRoute : "null"} flavor=${flavor.name}',
   );
 
+  const rtcRestoration = bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD');
   await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
@@ -120,7 +123,7 @@ Future<void> main() async {
       // verified direct backend entry until the public domain chain is stable.
       apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
       useMockData: false,
-      useLiveKitRtc: !restoration,
+      useLiveKitRtc: rtcRestoration || !restoration,
       restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,

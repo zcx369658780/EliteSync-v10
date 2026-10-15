@@ -428,7 +428,11 @@ class _AuthorizedChatRoomPageState
     );
   }
 
-  Future<void> _startVoiceCall() async {
+  Future<void> _startVoiceCall() => _startCall(mode: 'voice');
+
+  Future<void> _startVideoCall() => _startCall(mode: 'video');
+
+  Future<void> _startCall({required String mode}) async {
     final peerId = _peerId;
     if (peerId <= 0) {
       AppFeedback.showError(context, '当前会话无法发起通话');
@@ -456,7 +460,7 @@ class _AuthorizedChatRoomPageState
     try {
       final session = await ref
           .read(rtcRemoteDataSourceProvider)
-          .createCall(peerUserId: peerId, mode: 'voice');
+          .createCall(peerUserId: peerId, mode: mode);
       telemetry.rtcCallStatusChanged(
         sourcePage: 'chat_room',
         callId: session.id,
@@ -1123,6 +1127,11 @@ class _AuthorizedChatRoomPageState
             tooltip: '语音通话',
             onPressed: _startVoiceCall,
             icon: const Icon(Icons.call_outlined),
+          ),
+          IconButton(
+            tooltip: '视频通话',
+            onPressed: _startVideoCall,
+            icon: const Icon(Icons.videocam_outlined),
           ),
           PopupMenuButton<String>(
             tooltip: '安全',

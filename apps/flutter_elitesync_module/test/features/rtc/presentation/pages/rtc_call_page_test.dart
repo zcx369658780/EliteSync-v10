@@ -225,11 +225,7 @@ void main() {
 
     await tester.pumpWidget(
       _wrap(
-        const RtcCallPage(
-          callId: 1,
-          title: '语音通话',
-          autoConnect: false,
-        ),
+        const RtcCallPage(callId: 1, title: '语音通话', autoConnect: false),
         rtc: rtc,
       ),
     );
@@ -240,5 +236,36 @@ void main() {
     expect(find.text('Callee'), findsOneWidget);
     expect(find.text('等待对方接听'), findsOneWidget);
     expect(find.text('挂断'), findsWidgets);
+  });
+  testWidgets('video session renders remote and local video surfaces', (
+    tester,
+  ) async {
+    final semantics = tester.ensureSemantics();
+    final session = RtcSessionEntity.fromJson({
+      'id': 2,
+      'call_key': 'call-video-2',
+      'mode': 'video',
+      'status': 'calling',
+      'initiator_user_id': 1,
+      'peer_user_id': 2,
+      'initiator_name': 'Caller',
+      'peer_name': 'Callee',
+      'is_initiator': true,
+    });
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 2, autoConnect: false),
+        rtc: FakeRtcRemoteDataSource(session),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('等待对方视频'), findsOneWidget);
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('rtc-local-video-preview')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.bySemanticsLabel(RegExp('本机视频预览')), findsOneWidget);
+    expect(find.text('视频预留'), findsNothing);
+    semantics.dispose();
   });
 }

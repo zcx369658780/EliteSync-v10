@@ -8,6 +8,7 @@ import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
 import 'package:livekit_client/livekit_client.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv});
@@ -18,6 +19,79 @@ class RtcLiveKitService extends ChangeNotifier {
   Room? _room;
   int? _connectedCallId;
   bool _connecting = false;
+  int? _pendingCallId;
+  int _connectionGeneration = 0;
+  bool _microphoneEnabled = true;
+  bool _cameraEnabled = false;
+  bool _frontCamera = true;
+  bool _disposed = false;
+  String? _failureMessage;
+
+  bool get microphoneEnabled => _microphoneEnabled;
+  bool get cameraEnabled => _cameraEnabled;
+  String? get failureMessage => _failureMessage;
+  LocalVideoTrack? get localVideoTrack {
+    for (final publication
+        in _room?.localParticipant?.videoTrackPublications ??
+            <LocalTrackPublication<LocalVideoTrack>>[]) {
+      if (!publication.muted) return publication.track;
+    }
+    return null;
+  }
+
+  VideoTrack? get remoteVideoTrack {
+    for (final participant
+        in _room?.remoteParticipants.values ?? <RemoteParticipant>[]) {
+      for (final publication in participant.videoTrackPublications) {
+        if (publication.subscribed && !publication.muted) {
+          return publication.track;
+        }
+      }
+    }
+    return null;
+  }
+
+  void _mediaChanged() {
+    if (!_disposed) notifyListeners();
+  }
+
+  Future<void> setMicrophoneEnabled(bool enabled) async {
+    final participant = _room?.localParticipant;
+    if (participant == null) return;
+    if (enabled &&
+        !await const PermissionHandlerRtcPermissionService()
+            .ensureVoiceCallPermission()) {
+      throw StateError('需要麦克风权限');
+    }
+    await participant.setMicrophoneEnabled(enabled);
+    _microphoneEnabled = enabled;
+    _mediaChanged();
+  }
+
+  Future<void> setCameraEnabled(bool enabled) async {
+    final participant = _room?.localParticipant;
+    if (participant == null) return;
+    if (enabled &&
+        !await const PermissionHandlerRtcPermissionService()
+            .ensureCameraPermission()) {
+      throw StateError('需要摄像头权限');
+    }
+    await participant.setCameraEnabled(enabled);
+    _cameraEnabled = enabled;
+    _mediaChanged();
+  }
+
+  Future<void> switchCamera() async {
+    final track = localVideoTrack;
+    if (track == null) return;
+    final nextFront = !_frontCamera;
+    await track.setCameraPosition(
+      nextFront ? CameraPosition.front : CameraPosition.back,
+    );
+    _frontCamera = nextFront;
+    _mediaChanged();
+  }
+
   Timer? _heartbeatTimer;
   Timer? _audioStatsTimer;
   CancelListenFunc? _cancelLocalAudioRenderer;
@@ -28,59 +102,20 @@ class RtcLiveKitService extends ChangeNotifier {
   String? _boundLocalAudioTrackId;
 
   bool get isEnabled => appEnv.useLiveKitRtc;
-  bool get isConnected => _room != null && _connectedCallId != null;
+  bool get isConnected =>
+      _room?.connectionState == ConnectionState.connected &&
+      _connectedCallId != null;
   int? get connectedCallId => _connectedCallId;
   AudioTrack? get remoteAudioTrack => _remoteAudioTrack;
 
-  String _maskToken(String token) {
-    if (token.length <= 16) {
-      return token;
-    }
-    return '${token.substring(0, 12)}...${token.substring(token.length - 8)}';
-  }
+  String _platformLabel() => defaultTargetPlatform.name;
 
-  String _platformLabel() {
-    return defaultTargetPlatform.name;
-  }
-
-  String _expectedConnectUri(String url) {
-    final uri = Uri.parse(url);
-    final scheme = uri.scheme == 'https' ? 'wss' : 'ws';
-    final pathSegments = <String>[
-      ...uri.pathSegments.where((segment) => segment.isNotEmpty),
-      'rtc',
-    ];
-    return uri.replace(scheme: scheme, pathSegments: pathSegments).toString();
-  }
-
-  String _expectedValidateUri(String url) {
-    final uri = Uri.parse(url);
-    final scheme = uri.scheme == 'https' ? 'https' : 'http';
-    final pathSegments = <String>[
-      ...uri.pathSegments.where((segment) => segment.isNotEmpty),
-      'rtc',
-      'validate',
-    ];
-    return uri.replace(scheme: scheme, pathSegments: pathSegments).toString();
-  }
-
+  // Never log bearer material, even a prefix/suffix of a JWT or an SDK URL.
   void _logJoinInfo({
     required int callId,
     required RtcLiveKitJoinInfoEntity info,
   }) {
-    debugPrint(
-      'RTC_LIVEKIT_JOIN_INFO '
-      'device=${_platformLabel()} '
-      'callId=$callId '
-      'url=${info.url} '
-      'room=${info.roomName} '
-      'identity=${info.identity} '
-      'participant=${info.participantName} '
-      'mode=${info.mode} '
-      'expected_connect=${_expectedConnectUri(info.url)} '
-      'expected_validate=${_expectedValidateUri(info.url)} '
-      'token=${_maskToken(info.token)}',
-    );
+    debugPrint('RTC_LIVEKIT_JOIN_INFO callId=$callId mode=${info.mode}');
   }
 
   void _logRoomSnapshot(
@@ -126,7 +161,7 @@ class RtcLiveKitService extends ChangeNotifier {
   void _startHeartbeat(int callId) {
     if (!isEnabled) return;
     _heartbeatTimer?.cancel();
-    _heartbeatTimer = Timer.periodic(const Duration(seconds: 5), (_) {
+    _heartbeatTimer = Timer.periodic(const Duration(seconds: 2), (_) {
       unawaited(_sendHeartbeat(callId));
     });
     unawaited(_sendHeartbeat(callId));
@@ -153,8 +188,10 @@ class RtcLiveKitService extends ChangeNotifier {
         'RTC_LIVEKIT_HEARTBEAT_FAIL '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'error=$error',
+        'errorType=${error.runtimeType}',
       );
+      _failureMessage = '通话授权暂不可验证，媒体已关闭';
+      await leave(callId: callId);
     } finally {
       _heartbeatInFlight = false;
     }
@@ -170,6 +207,7 @@ class RtcLiveKitService extends ChangeNotifier {
     _audioStatsTimer?.cancel();
     _audioStatsTimer = Timer.periodic(const Duration(seconds: 4), (_) {
       unawaited(_logRemoteAudioStats(callId));
+      unawaited(_logMediaStats(callId));
     });
     unawaited(_logRemoteAudioStats(callId));
   }
@@ -177,6 +215,36 @@ class RtcLiveKitService extends ChangeNotifier {
   void _stopAudioStatsTimer() {
     _audioStatsTimer?.cancel();
     _audioStatsTimer = null;
+  }
+
+  Future<void> _logMediaStats(int callId) async {
+    final room = _room;
+    if (room == null) return;
+    for (final entry in {
+      'outbound': room.engine.publisher?.pc,
+      'inbound': room.engine.subscriber?.pc,
+    }.entries) {
+      try {
+        final reports = await entry.value?.getStats();
+        if (reports == null) continue;
+        for (final report in reports) {
+          if (report.type != '${entry.key}-rtp') continue;
+          final v = report.values;
+          // Explicit allowlist: exclude network candidates, addresses and credentials.
+          debugPrint(
+            'RTC_MEDIA_RTP callId=$callId direction=${entry.key} '
+            'kind=${v['kind'] ?? v['mediaType']} bytes=${v['bytesSent'] ?? v['bytesReceived']} '
+            'packets=${v['packetsSent'] ?? v['packetsReceived']} '
+            'framesEncoded=${v['framesEncoded']} framesDecoded=${v['framesDecoded']} '
+            'framesReceived=${v['framesReceived']} framesPerSecond=${v['framesPerSecond']}',
+          );
+        }
+      } catch (error) {
+        debugPrint(
+          'RTC_MEDIA_STATS_UNAVAILABLE callId=$callId type=${error.runtimeType}',
+        );
+      }
+    }
   }
 
   Future<void> _bindLocalAudioTrackDiagnostics(
@@ -302,7 +370,7 @@ class RtcLiveKitService extends ChangeNotifier {
         'callId=$callId '
         'reason=$reason '
         'trackId=$nextTrackId '
-        'error=$error',
+        'errorType=${error.runtimeType}',
       );
     }
   }
@@ -363,7 +431,7 @@ class RtcLiveKitService extends ChangeNotifier {
           }
         }
       } catch (error) {
-        statsSummary = 'stats_error=$error';
+        statsSummary = 'stats_error=${error.runtimeType}';
       }
     }
 
@@ -393,7 +461,7 @@ class RtcLiveKitService extends ChangeNotifier {
       try {
         signaling = (await pc.getSignalingState()).toString();
       } catch (error) {
-        signaling = 'error:$error';
+        signaling = 'error:${error.runtimeType}';
       }
       return 'connection=${pc.connectionState} ice=${pc.iceConnectionState} signaling=$signaling';
     }
@@ -429,7 +497,7 @@ class RtcLiveKitService extends ChangeNotifier {
           'device=${_platformLabel()} '
           'callId=$callId '
           'reason=$reason '
-          'error=$error',
+          'errorType=${error.runtimeType}',
         );
       }
       debugPrint(
@@ -454,7 +522,7 @@ class RtcLiveKitService extends ChangeNotifier {
         'device=${_platformLabel()} '
         'callId=$callId '
         'reason=$reason '
-        'error=$error',
+        'errorType=${error.runtimeType}',
       );
     }
   }
@@ -521,6 +589,9 @@ class RtcLiveKitService extends ChangeNotifier {
         'source=${_remoteAudioTrackFromEvent ? "event" : "scan"} '
         'preserved=${currentId != null ? "yes" : "no"}',
       );
+      _remoteAudioTrack = null;
+      _remoteAudioTrackFromEvent = false;
+      if (currentId != null) _mediaChanged();
       return;
     }
     if (currentId == nextId) {
@@ -537,21 +608,36 @@ class RtcLiveKitService extends ChangeNotifier {
       'trackId=${nextId ?? "none"} '
       'roomParticipants=${room.remoteParticipants.length}',
     );
-    notifyListeners();
+    _mediaChanged();
   }
 
   Future<void> ensureConnected(int callId) async {
-    if (!isEnabled || callId <= 0) return;
+    if (_disposed || !isEnabled || callId <= 0) return;
     if (_connectedCallId == callId && _room != null) return;
     if (_connecting) return;
     _connecting = true;
+    _pendingCallId = callId;
+    final requestedGeneration = _connectionGeneration;
+    int? generation;
     try {
       final info = await _loadJoinInfo(callId);
-      if (info == null || !info.isReady) return;
+      if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (!info.isReady) throw StateError('通话服务当前不可用');
+      if (!await const PermissionHandlerRtcPermissionService()
+          .ensureVoiceCallPermission()) {
+        throw StateError('需要麦克风权限');
+      }
+      if (info.mode == 'video' &&
+          !await const PermissionHandlerRtcPermissionService()
+              .ensureCameraPermission()) {
+        throw StateError('需要摄像头权限');
+      }
+      if (_disposed || requestedGeneration != _connectionGeneration) return;
+      _failureMessage = null;
       _logJoinInfo(callId: callId, info: info);
       await leave();
+      generation = _connectionGeneration;
       _connectedCallId = callId;
-      _startHeartbeat(callId);
       debugPrint(
         'RTC_LIVEKIT_AUDIO_ROUTE_PRECONNECT '
         'device=${_platformLabel()} '
@@ -567,6 +653,9 @@ class RtcLiveKitService extends ChangeNotifier {
           defaultAudioOutputOptions: AudioOutputOptions(speakerOn: true),
         ),
       );
+      _room = room;
+      room.addListener(_mediaChanged);
+      _startHeartbeat(callId);
       final connectOptions = ConnectOptions(
         timeouts: const Timeouts(
           connection: Duration(seconds: 30),
@@ -578,6 +667,17 @@ class RtcLiveKitService extends ChangeNotifier {
         ),
       );
       room.events
+        ..on<RoomDisconnectedEvent>((event) {
+          if (identical(_room, room)) unawaited(leave(callId: callId));
+        })
+        ..on<RoomReconnectingEvent>((event) {
+          // The trusted server gateway also re-authorizes every WS reconnect.
+          unawaited(_sendHeartbeat(callId));
+        })
+        ..on<RoomReconnectedEvent>((event) {
+          unawaited(_sendHeartbeat(callId));
+          _mediaChanged();
+        })
         ..on<RoomConnectedEvent>((event) {
           _refreshRemoteAudioTrack(room, reason: 'room_connected');
         })
@@ -591,7 +691,7 @@ class RtcLiveKitService extends ChangeNotifier {
           if (event.track is AudioTrack) {
             _remoteAudioTrack = event.track as AudioTrack;
             _remoteAudioTrackFromEvent = true;
-            notifyListeners();
+            _mediaChanged();
             unawaited(
               _ensureAudioPlayback(
                 room,
@@ -621,7 +721,7 @@ class RtcLiveKitService extends ChangeNotifier {
               event.track.mediaStreamTrack.id) {
             _remoteAudioTrack = null;
             _remoteAudioTrackFromEvent = false;
-            notifyListeners();
+            _mediaChanged();
           }
           _refreshRemoteAudioTrack(room, reason: 'track_unsubscribed');
         })
@@ -691,11 +791,14 @@ class RtcLiveKitService extends ChangeNotifier {
         'RTC_LIVEKIT_ROOM_CONNECT_START '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'url=${info.url} '
         'room=${info.roomName} '
         'identity=${info.identity}',
       );
       await room.connect(info.url, info.token, connectOptions: connectOptions);
+      if (generation != _connectionGeneration || !identical(_room, room)) {
+        await room.disconnect();
+        return;
+      }
       debugPrint(
         'RTC_LIVEKIT_ROOM_CONNECT_OK '
         'device=${_platformLabel()} '
@@ -718,6 +821,15 @@ class RtcLiveKitService extends ChangeNotifier {
       );
       _logLocalAudioSnapshot(room, callId: callId, reason: 'after_set_speaker');
       await room.localParticipant?.setMicrophoneEnabled(true);
+      _microphoneEnabled = true;
+      if (info.mode == 'video') {
+        await room.localParticipant?.setCameraEnabled(true);
+        _cameraEnabled = true;
+      }
+      if (generation != _connectionGeneration || !identical(_room, room)) {
+        await room.disconnect();
+        return;
+      }
       _logLocalAudioSnapshot(
         room,
         callId: callId,
@@ -744,46 +856,57 @@ class RtcLiveKitService extends ChangeNotifier {
       _logRoomSnapshot(room, callId: callId, reason: 'after_enable_audio');
       _startHeartbeat(callId);
       _startAudioStatsTimer(callId);
-      notifyListeners();
+      _mediaChanged();
     } catch (error) {
+      _failureMessage ??= '通话连接失败，请检查权限及网络后重试';
       await leave(callId: callId);
       debugPrint(
         'RTC_LIVEKIT_ROOM_CONNECT_FAIL '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'error=$error',
+        'errorType=${error.runtimeType}',
       );
       rethrow;
     } finally {
       _connecting = false;
+      _pendingCallId = null;
     }
   }
 
   Future<void> leave({int? callId}) async {
-    if (!isEnabled) return;
-    if (callId != null && _connectedCallId != callId) return;
+    if (callId != null &&
+        _connectedCallId != callId &&
+        _pendingCallId != callId) {
+      return;
+    }
+    _connectionGeneration += 1;
     final room = _room;
+    room?.removeListener(_mediaChanged);
     _room = null;
+    _cameraEnabled = false;
     _connectedCallId = null;
     _remoteAudioTrack = null;
     _remoteAudioTrackFromEvent = false;
     _stopHeartbeat();
     _stopAudioStatsTimer();
     unawaited(_unbindLocalAudioTrackDiagnostics());
-    notifyListeners();
+    _mediaChanged();
     if (room == null) return;
     try {
       await room.disconnect();
+      await room.dispose();
     } catch (_) {
       // leave should be best-effort only.
     }
   }
 
-  Future<RtcLiveKitJoinInfoEntity?> _loadJoinInfo(int callId) async {
-    try {
-      return await remoteDataSource.fetchLiveKitJoinInfo(callId);
-    } catch (_) {
-      return null;
-    }
+  Future<RtcLiveKitJoinInfoEntity> _loadJoinInfo(int callId) =>
+      remoteDataSource.fetchLiveKitJoinInfo(callId);
+
+  @override
+  void dispose() {
+    _disposed = true;
+    unawaited(leave());
+    super.dispose();
   }
 }

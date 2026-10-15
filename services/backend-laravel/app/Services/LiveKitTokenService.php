@@ -12,6 +12,7 @@ class LiveKitTokenService
 {
     public function issueJoinInfo(RtcSession $session, User $user): array
     {
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, (int)$user->id, true), 404, 'call unavailable');
         $config = config('livekit');
         if (!($config['enabled'] ?? false)) {
             throw new HttpException(503, 'livekit not configured');
@@ -20,13 +21,13 @@ class LiveKitTokenService
         $url = trim((string) ($config['url'] ?? ''));
         $apiKey = trim((string) ($config['api_key'] ?? ''));
         $apiSecret = trim((string) ($config['api_secret'] ?? ''));
-        $ttl = max(60, (int) ($config['ttl_seconds'] ?? 600));
+        $ttl = min(120, max(30, (int) ($config['ttl_seconds'] ?? 60)));
 
         if ($url === '' || $apiKey === '' || $apiSecret === '') {
             throw new HttpException(503, 'livekit not configured');
         }
 
-        $identity = 'rtc-user-' . (int) $user->id;
+        $identity = app(RtcAuthorityService::class)->identity($session, (int)$user->id);
         $expiresAt = Carbon::now()->utc()->addSeconds($ttl)->timestamp;
         $notBefore = Carbon::now()->utc()->subSeconds(30)->timestamp;
         $roomName = (string) $session->room_key;
@@ -36,7 +37,7 @@ class LiveKitTokenService
             'user_id' => (int) $user->id,
             'room_name' => $roomName,
             'identity' => $identity,
-            'participant_name' => trim((string) ($user->nickname ?? $user->name ?? '')) ?: ('用户 #' . (int) $user->id),
+            'participant_name' => '通话参与者',
             'mode' => (string) $session->mode,
             'url' => $url,
         ]);
@@ -48,13 +49,14 @@ class LiveKitTokenService
                 'sub' => $identity,
                 'nbf' => $notBefore,
                 'exp' => $expiresAt,
-                'name' => trim((string) ($user->nickname ?? $user->name ?? '')),
+                'name' => '通话参与者',
                 'video' => [
                     'roomJoin' => true,
                     'room' => $roomName,
                     'canPublish' => true,
                     'canSubscribe' => true,
                     'canPublishData' => false,
+                    'canPublishSources' => $session->mode === 'video' ? ['microphone','camera'] : ['microphone'],
                 ],
             ]
         );
@@ -65,7 +67,7 @@ class LiveKitTokenService
             'token' => $token,
             'room_name' => $roomName,
             'identity' => $identity,
-            'participant_name' => trim((string) ($user->nickname ?? $user->name ?? '')) ?: ('用户 #' . (int) $user->id),
+            'participant_name' => '通话参与者',
             'mode' => (string) $session->mode,
             'expires_at' => Carbon::createFromTimestampUTC($expiresAt)->toISOString(),
         ];

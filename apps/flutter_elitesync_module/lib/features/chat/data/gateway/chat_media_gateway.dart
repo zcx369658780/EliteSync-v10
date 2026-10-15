@@ -87,6 +87,7 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
       ),
       ChatAttachmentKind.video => await _imagePicker.pickVideo(
         source: ImageSource.gallery,
+        maxDuration: const Duration(seconds: 30),
       ),
     };
     if (picked == null) return null;
@@ -145,6 +146,9 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
     }
     final asset = result.data['asset'];
     if (asset is! Map<String, dynamic>) {
+      throw const ChatMediaGatewayException();
+    }
+    if (kind == ChatAttachmentKind.video && asset['status'] != 'ready') {
       throw const ChatMediaGatewayException();
     }
     return ChatMediaUploadResponse(
