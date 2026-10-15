@@ -87,12 +87,12 @@
   "safe_evidence": [
     {
       "path": "docs/versions/v10.0.9/evidence/ban-media-teardown.json",
-      "sha256": "370036961a6c8c7333b6950c71b627e85c9219d3b65019595c73cc44e66b486a",
+      "sha256": "df92ba5e4a338bd113e8edc8ea71817733fa216f806d1a99af4772f049a76f65",
       "bytes": 1404
     },
     {
       "path": "docs/versions/v10.0.9/evidence/ffmpeg-tool-identity.json",
-      "sha256": "dab22c5a760452b3e2955dc1ce6160594fbf37780251b4211f628fa688e75a48",
+      "sha256": "fc022767c64f1bd04f310c03a6248e52728441393fbf374cb0d444bef630680d",
       "bytes": 283
     },
     {
@@ -107,17 +107,17 @@
     },
     {
       "path": "docs/versions/v10.0.9/evidence/installed-fourth-identities.json",
-      "sha256": "4eca2eaa113aff8805cbb12b25325417f8647ce8a13eeeff11556b2af72c03a9",
+      "sha256": "4a23c34a8bf91cba31c50b7dca87da5e8c03d504e10a59ef926a55779329bda9",
       "bytes": 347
     },
     {
       "path": "docs/versions/v10.0.9/evidence/joint-restart-comparison.json",
-      "sha256": "d5a6f49e93edc922bcda0bce32ca63035fb2202a11fc0bedff043ebb37a74874",
+      "sha256": "4d1e2e3227cbbb2529fbb6ea3afcd51711cbe79a588a1d3257568e2763155dc0",
       "bytes": 198
     },
     {
       "path": "docs/versions/v10.0.9/evidence/licenses.json",
-      "sha256": "567b01315690e550b5b77e32d0ff89948503390d2bb06a2c8253ea4d446fa923",
+      "sha256": "c6374cc35cf2a72f2e057daa42800d3ddb0281414817d5beac5c492fb2b1ca13",
       "bytes": 389
     },
     {
@@ -127,17 +127,17 @@
     },
     {
       "path": "docs/versions/v10.0.9/evidence/official-images.json",
-      "sha256": "98029a4639365996bffe83e98a0d03deea9f05ef4d587328b1f94f6c1cdbca27",
+      "sha256": "d6f045e149e8495b289af5cbcc25aee88e709704b325170349de083f2d5fe1bc",
       "bytes": 1965
     },
     {
       "path": "docs/versions/v10.0.9/evidence/private-video-after-mc-media-probe.json",
-      "sha256": "c8fecd38d897a62258fd55b04266b56d017c9d32fb6a6817a0267aefc79e4fed",
+      "sha256": "7bdc2aa8d131e4c448eae1c32245a9a52279a29079ec5444dcb175756e1bf99d",
       "bytes": 1828
     },
     {
       "path": "docs/versions/v10.0.9/evidence/private-video-current-media-probe.json",
-      "sha256": "3d8634a8d1488a08debe56d04b3c9a04af6413d259190ddc1e8ae05402987212",
+      "sha256": "fc5cf59317736fc0fe9a89fbc3d0d480e16d3c4ab1d69547e02dffac4f2a050b",
       "bytes": 1866
     },
     {
@@ -147,17 +147,17 @@
     },
     {
       "path": "docs/versions/v10.0.9/evidence/process-watchdog-final.json",
-      "sha256": "e6dfb274518170fedf5027885196b6386de905d51368c87e948c2dd39a5041bb",
+      "sha256": "8ae839c4daa75b322dcc49f3c98ebc718e486a907a3ed3604f2f930fc75f7c39",
       "bytes": 603
     },
     {
       "path": "docs/versions/v10.0.9/evidence/protected-root-after.json",
-      "sha256": "7e7598ffdad7c69b03e30ba0d05612ff006ec7015a313d9f992da974bb3ca3d0",
+      "sha256": "075303b71407c31563e29518b604b67de116f6b70ef1ee6bd821dbbdc3431fbe",
       "bytes": 254
     },
     {
       "path": "docs/versions/v10.0.9/evidence/python-3.11.17-license.json",
-      "sha256": "2bec34ef6989d72c0dd0580c97bf2b0a0c45ec913f223cca81216aff9fbea338",
+      "sha256": "b7ee7bab23575a604d1183a3a9719805852bace1126017bbb9d34ac25eab1009",
       "bytes": 252
     },
     {
@@ -167,32 +167,32 @@
     },
     {
       "path": "docs/versions/v10.0.9/evidence/raw-stream-index.json",
-      "sha256": "484c6e5034e457d115d19da819538ca596f707adea77142be2a1e8f618f7b333",
+      "sha256": "254e0ff894f595e5d0547ee0a6174f7553df1f1ef85d3f440482dbaacc6ca590",
       "bytes": 72370
     },
     {
       "path": "docs/versions/v10.0.9/evidence/resource-state.json",
-      "sha256": "53e70b31add13af9fbf3fbf3e13e90966369fab37882f53d06075c4e01033e95",
+      "sha256": "20e336dad4fd6ff6aa0378c818e7a615d2d7abcffb380ae05013ab5f2d6caccf",
       "bytes": 1218
     },
     {
       "path": "docs/versions/v10.0.9/evidence/runtime-matrix-disabled.json",
-      "sha256": "ce97b51f844084b46c854320d1e7deb0e8d13480734658c61a3a493c9c85e2ee",
+      "sha256": "2b760f1ad5686d2e3e78c8bf1f0b1547c6e74bcd31445bcc7ef43c17640c44b7",
       "bytes": 683
     },
     {
       "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restored-login.json",
-      "sha256": "7aef32ba36d9a284c667dd60b409840a2228eb45f272d86859293b4a322f5e66",
+      "sha256": "12a9323fa6ba099f255768f658b7f054bd5ca1de9bc4aa79e69dd3115d92c9e8",
       "bytes": 390
     },
     {
       "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restricted.json",
-      "sha256": "214a75432a0c806c8f73bf9eddc2d2d7f1ee2e7088e368b78fb88fa11f35f725",
+      "sha256": "a174dd9cad4c59e975484e496567dd82f526636314af33a05cc4415fe775ec26",
       "bytes": 1209
     },
     {
       "path": "docs/versions/v10.0.9/evidence/safe-media-statistics.json",
-      "sha256": "75fffc7fea64dc92de1f52c68a715ac8217b0e2c19b991b8f04bce3e380a829f",
+      "sha256": "d72368ae20ea2b9f92d9c1c8075ce282143364d08d03b2edea22b3b01192f8ae",
       "bytes": 18603
     },
     {
@@ -200,5 +200,6 @@
       "sha256": "d0c0320922ee37c6d482db20ac1015d7394786fc8e3f5612b6714957ff9b1162",
       "bytes": 160626
     }
-  ]
+  ],
+  "safe_evidence_hash_basis": "Git blob content bytes; LOCAL_ONLY raw stream hashes remain physical file hashes"
 }
