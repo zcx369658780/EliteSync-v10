@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.8 初始候选已由Astra审查，TARGETED R1 REQUIRED／尚未接受**。固定候选 `cff049ae602049adf49014ec2ed27963dc40aff5`，主要Web+APP+MariaDB业务链已有真实证据；唯一需收口是D2要求的受限者本人申诉，旧appeal路由仅允许举报人。首读[R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)，Blob `c91a7fbeb4f838278dff28db9234ea9abd170e61`。原8AC/plan不变，产品代码不合main、0.9未派发；先前“0.8尚未实施”是冻结时历史事实。
+
+
 2026-10-15：**v10.0.8唯一正式计划已冻结，等待Owner手动派发**。首读[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)（Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项AC）与[Owner三政策](PRODUCT_DECISIONS.md)。本版B01～B05+开发channel版控，Web管理员真实操作→共享Laravel/独立MariaDB→APP反映；原0.7 K08保持完成，产品代码起点a75b8d4，后续纯文档提交不替换。尚无0.8实现候选/测试，RTC/完整排盘/搭子等仍未恢复。下文PREPLAN_READY、0.8尚未冻结及其它历史待执行信息按记录时点解读。
 
 
@@ -26,6 +29,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.8 Astra R1审查（当前）** | [R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)：D2本人申诉缺口，初始候选暂不接受，等待同版定点返修 |
 | **v10.0.8正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)：Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809、D1～D3已批准、AC-08-01～08冻结；Owner手动派发后方可实施 |
 | v10.0.8当前版前草案 | [固定入口](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)：尚未冻结，Codex调查待派发；B01～B06 Web可操作模块及用户恢复欠账排程 |
 | **v10.0.7最终验收及复盘（首读）** | [独立验收](docs/versions/v10.0.7/acceptance.md)、[版本复盘](docs/versions/v10.0.7/retrospective.md)：R1接受、全量Flutter保留既有3失败、K08产品集成待完成 |
