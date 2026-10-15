@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：v10.0.7初始候选 `69b3f26c6ed28a7306e4ba6b902aac2475bfe103` 已由Astra独立审查，**TARGETED_R1_REQUIRED / NOT_ACCEPTED**。首读[R1审查意见](https://github.com/zcx369658780/EliteSync-v10/blob/657c1af73749c2925dd4fd8a7b3a63350f86cb79/docs/versions/v10.0.7/ASTRA_R1_REVIEW_FINDINGS.md)。真实业务主链有安全原证，但消息通知API泄露风险、Flutter 6项失败归因及全范围analyze 3 info尚须收口；Plan Blob和8AC不改，main未合入候选，0.8未派发。
+
+
 2026-10-15：**v10.0.7正式计划已冻结，Owner手动派发待执行，Codex未报告实施**。固定计划[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)，Blob `151d75b67238826841467fa93c140825ebf61282`；以K08实际main `0989812c...` 为技术起点，8项AC冻结。v10.0.6 K08完成，其余旧“待冻结/待集成”是对应历史时点，见CURRENT_STATE首节。RTC/完整排盘/搭子社交真实能力具名留后续，不是静默取消。
 
 
