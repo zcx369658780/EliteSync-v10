@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15 最新：**v10.0.9正式plan已冻结／待Owner手动派发／功能未实施。** 首读[固定冻结plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`、8项AC，及[Owner批准D4～D6](PRODUCT_DECISIONS.md) Blob`85dd5f9b88840104b0d5c26ba57d96fad4a17f11`。0.8 K08已完成；本版优先双端语音/视频与私有短视频、实时授权与旧JWT防重入，允许限域本地SFU/第二端但只有Owner手动派发后生效。原0.9联合终验经Owner批准顺延至主要恢复功能完成，完整紫微西占/Buddy/地图Push/历史数据仍有具名欠账。0.9候选尚无，产品技术起点3a8f7989。以下PREPLAN_READY/联合验收旧版数为历史快照。
+
+
 2026-10-15：**v10.0.9仅形成版前交付建议，尚未冻结、未实施。** 固定[PLAN_PROPOSAL_V0_1](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`。0.8 K08已完成，产品技术main`3a8f7989aa208285b885f1c80f4365f38488ac54`；受控APP/Web/DB主链已限域交付，但RTC真实双端、完整紫微/西占及其它原版用户功能仍有缺口。Astra建议先恢复主要用户能力、将最后联合验收顺延；该排程调整尚待Owner批准，不自动购买、启服务或派发0.9源码实施。其余既有验收及失败保留，下文时点状态保持历史原文。
 
 
@@ -40,6 +43,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.9唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)：Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`、Owner D4～D6已批准、八项AC冻结；待手动派发，RTC服务及0.9开发环境均未启动 |
 | **v10.0.9版前提案（未冻结）** | [固定范围建议](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)：RTC真实双端与其它恢复欠账优先、联合终验改排待Owner批准；Blob fbb060fc9a4b79a9e7075809e961a9d258455f83 |
 | **v10.0.8已接受最终验收与复盘（首读）** | [固定AC终验](docs/versions/v10.0.8/acceptance.md)、[复盘](docs/versions/v10.0.8/retrospective.md)：R1受罚人申诉通过、旧成功B01～B06保留；产品K08仍待执行 |
 | **2026-10-15新顾问会话交接（首读）** | [固定完整正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)：Owner与版本状态、当前v10.0.8 R1已经下达待新会话验收、原证与权限边界；Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1` |
