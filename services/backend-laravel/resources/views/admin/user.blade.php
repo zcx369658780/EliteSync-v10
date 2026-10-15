@@ -4,6 +4,13 @@
 <h1>账号 #{{ $user->id }} {{ $user->name }}</h1>
 <p>状态：{{ $user->disabled?'禁用':$user->moderation_status }}；运营审核：{{ $user->verify_status }}。运营参与资格不代表实名认证。</p>
 @if($user->role === 'user')
+<section class="panel" aria-label="本人处罚申诉"><h2>被处罚者本人申诉</h2>
+<p>以下是此账号对其本人Restrict处罚的提交，与举报者申诉分别保存。submitted仅表示已登记，未自动裁决或恢复任何权限；需要处理时仍使用下方具名处罚操作。</p>
+@forelse($appeals as $appeal)
+<article><h3>申诉 #{{ $appeal->id }} · 账号 #{{ $user->id }} · 处罚 #{{ $appeal->sanction_id }}</h3>
+<p>状态：{{ $appeal->status }}；提交时间：{{ $appeal->submitted_at }}；关联处罚：{{ $appeal->active && !$appeal->restored_at ? '有效' : '已失效/解除' }}</p>
+<p style="white-space:pre-wrap;overflow-wrap:anywhere">{{ $appeal->note }}</p></article>
+@empty<p>此账号暂无本人处罚申诉。</p>@endforelse</section>
 <section class="panel"><h2>运营参与资格</h2><p>当前原因：{{ $user->verify_reason }}</p>
 <form method="post" action="{{ route('admin.review',$user->id) }}">@csrf
 <input type="hidden" name="expected_revision" value="{{ $user->verify_revision }}"><select name="status"><option>pending</option><option>approved</option><option>rejected</option></select>

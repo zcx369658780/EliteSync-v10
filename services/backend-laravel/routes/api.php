@@ -195,6 +195,8 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::prefix('moderation')->group(function () {
+            Route::get('/sanctions', [\App\Http\Controllers\Api\V1\SanctionAppealController::class, 'index'])->middleware('account.active');
+            Route::post('/sanctions/{sanctionId}/appeals', [\App\Http\Controllers\Api\V1\SanctionAppealController::class, 'store'])->whereNumber('sanctionId')->middleware(['account.active', 'throttle:10,1']);
             Route::post('/reports', [ModerationController::class, 'report']);
             Route::post('/reports/{reportId}/appeal', [ModerationController::class, 'appeal']);
             Route::get('/blocks', [ModerationController::class, 'blocks']);
