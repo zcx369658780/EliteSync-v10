@@ -4,4 +4,5 @@ FROM ${LIVEKIT_IMAGE} AS sfu
 FROM ${PYTHON_IMAGE}
 COPY --from=sfu /livekit-server /usr/local/bin/livekit-server
 COPY rtc-gateway.py /opt/rtc-gateway.py
+COPY rtc-watchdog.py /opt/rtc-watchdog.py
 ENTRYPOINT ["python", "-u", "/opt/rtc-gateway.py"]

@@ -3,7 +3,7 @@
 The SFU has no published signal/API port. Backend uncertainty terminates its
 owned child, not merely the client websocket. No request URLs or JWTs are logged.
 """
-import asyncio, base64, hashlib, hmac, json, os, signal, time, pathlib, uuid
+import asyncio, base64, hashlib, hmac, json, os, signal, time, pathlib, uuid, sys
 from urllib.parse import urlsplit, parse_qs
 
 SECRET=os.environ['LIVEKIT_API_SECRET'].encode()
@@ -13,6 +13,8 @@ BACKEND=os.environ.get('RTC_AUTHORITY_HOST','host.docker.internal')
 child=None
 last_sweep=0.0
 ready=False
+watchdog=None
+watchdog_pipe=None
 
 def b64(raw): return base64.urlsafe_b64encode(raw).decode().rstrip('=')
 def decode(raw): return json.loads(base64.urlsafe_b64decode(raw+'='*(-len(raw)%4)))
@@ -64,6 +66,7 @@ async def reconcile():
     global last_sweep,ready
     while True:
         try:
+            if watchdog is None or watchdog.returncode is not None: raise RuntimeError('watchdog unavailable')
             result=await backend('sweep',{})
             allowed=set(result['allowed_rooms'])
             rooms=(await control('ListRooms',{})).get('rooms',[])
@@ -80,7 +83,9 @@ async def reconcile():
                         return
                     print(json.dumps({'event':'room_removed','room':name,'time':time.time(),'attempt':1}),flush=True)
                     await backend('audit',{'room':name,'event':'sfu_removed','attempt':1})
-            last_sweep=time.monotonic(); ready=True
+            last_sweep=time.monotonic()
+            os.write(watchdog_pipe,b'.')
+            ready=True
         except Exception as error:
             print(json.dumps({'event':'authority_monitor_failed','error_type':type(error).__name__,'time':time.time()}),flush=True)
             stop_sfu()
@@ -149,17 +154,18 @@ async def handle(reader,writer):
         writer.close()
 
 async def main():
-    global child,last_sweep
+    global child,last_sweep,watchdog,watchdog_pipe
+    signal.signal(signal.SIGTERM,lambda *_: os._exit(1))
     # stdout/stderr contains LiveKit's own non-JWT diagnostics; retain LOCAL_ONLY.
     child=await asyncio.create_subprocess_exec('/usr/local/bin/livekit-server','--config','/private/livekit.yaml')
     await asyncio.sleep(1)
     last_sweep=time.monotonic()
-    async def watchdog():
-        while child.returncode is None:
-            if time.monotonic()-last_sweep>3.5:
-                stop_sfu();return
-            await asyncio.sleep(.05)
-    deadline=asyncio.create_task(watchdog())
+    reader,watchdog_pipe=os.pipe();os.set_blocking(watchdog_pipe,False)
+    watchdog=await asyncio.create_subprocess_exec(sys.executable,'/opt/rtc-watchdog.py',str(reader),str(os.getpid()),str(child.pid),pass_fds=(reader,),env={})
+    os.close(reader)
+    if os.environ.get('RTC_GUARD_TEST_STALL')=='1':
+        # Explicit local test deployment only; no HTTP trigger or permission grant.
+        signal.signal(signal.SIGUSR1,lambda *_: time.sleep(10))
     monitor=asyncio.create_task(reconcile())
     server=await asyncio.start_server(handle,'0.0.0.0',7884,limit=32768)
     async with server:
