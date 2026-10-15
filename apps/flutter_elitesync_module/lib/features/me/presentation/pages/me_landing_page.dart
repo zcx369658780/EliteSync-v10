@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/widgets/operational_status_card.dart';
 
 class MeLandingPage extends StatelessWidget {
   const MeLandingPage({super.key, this.restorationLocalBuild = false});
@@ -25,6 +26,8 @@ class MeLandingPage extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
         children: [
           if (restorationLocalBuild) ...[
+            const OperationalStatusCard(),
+            const SizedBox(height: 16),
             Text('本地恢复功能', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8),
             _MePurposeEntry(

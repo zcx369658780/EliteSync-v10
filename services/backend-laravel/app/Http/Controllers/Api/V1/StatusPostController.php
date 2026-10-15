@@ -8,9 +8,12 @@ use App\Models\ModerationReport;
 use App\Models\StatusPost;
 use App\Models\StatusPostLike;
 use App\Models\User;
+use App\Services\Accounts\AdminAccess;
+use App\Services\Admin\OperationAudit;
 use App\Services\EventLogger;
 use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +26,7 @@ class StatusPostController extends Controller
      * 3.1 account-layer columns may not exist yet.
      *
      * @param  array<string, mixed>  $fallbacks
-     * @return array<int, string|\Illuminate\Database\Query\Expression>
+     * @return array<int, string|Expression>
      */
     private function safeAuthorSelect(array $fallbacks = []): array
     {
@@ -32,6 +35,7 @@ class StatusPostController extends Controller
         foreach ($fallbacks as $column => $fallback) {
             if (Schema::hasColumn('users', $column)) {
                 $columns[] = $column;
+
                 continue;
             }
 
@@ -63,7 +67,7 @@ class StatusPostController extends Controller
      */
     private function shapeMediaAsset(?MediaAsset $asset): array
     {
-        if (!$asset) {
+        if (! $asset) {
             return [];
         }
 
@@ -221,7 +225,7 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
+        $viewerIsAdmin = app(AdminAccess::class)->allows($user);
         $limit = max(1, min((int) $request->query('limit', 20), 50));
         $cursor = max(0, (int) $request->query('cursor', 0));
         $includeHidden = $viewerIsAdmin && $request->boolean('include_hidden', false);
@@ -254,12 +258,12 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
+        $viewerIsAdmin = app(AdminAccess::class)->allows($user);
 
         $post = $this->visibleStatusQueryForPost($postId, $viewerId, $viewerIsAdmin)
             ->first();
 
-        if (!$post) {
+        if (! $post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
 
@@ -273,7 +277,7 @@ class StatusPostController extends Controller
     {
         $viewer = $request->user();
         $viewerId = $viewer?->id !== null ? (int) $viewer->id : null;
-        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($viewer);
+        $viewerIsAdmin = app(AdminAccess::class)->allows($viewer);
 
         $author = User::query()
             ->select($this->safeAuthorSelect([
@@ -289,15 +293,15 @@ class StatusPostController extends Controller
             ]))
             ->find($userId);
 
-        if (!$author) {
+        if (! $author) {
             return response()->json(['message' => 'author not found'], 404);
         }
 
-        if (!$viewerIsAdmin && (bool) $author->disabled) {
+        if (! $viewerIsAdmin && (bool) $author->disabled) {
             return response()->json(['message' => 'author not found'], 404);
         }
 
-        if (!$viewerIsAdmin && $viewerId !== $userId && !(bool) ($author->is_square_visible ?? true)) {
+        if (! $viewerIsAdmin && $viewerId !== $userId && ! (bool) ($author->is_square_visible ?? true)) {
             return response()->json(['message' => 'author not found'], 404);
         }
 
@@ -322,7 +326,7 @@ class StatusPostController extends Controller
     public function store(Request $request): JsonResponse
     {
         $user = $request->user();
-        if (($user?->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned','restricted'],true)) {
+        if (($user?->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
             return response()->json(['message' => 'account blocked'], 403);
         }
 
@@ -340,21 +344,21 @@ class StatusPostController extends Controller
         }
 
         $coverMediaAssetId = null;
-        if (!empty($data['cover_media_asset_id'])) {
+        if (! empty($data['cover_media_asset_id'])) {
             $coverAsset = MediaAsset::query()
                 ->where('id', (int) $data['cover_media_asset_id'])
                 ->where('owner_user_id', (int) $user->id)
                 ->first();
 
-            if (!$coverAsset) {
+            if (! $coverAsset) {
                 return response()->json(['message' => 'cover media not found'], 422);
             }
 
-            if (!str_starts_with((string) $coverAsset->media_type, 'image')) {
+            if (! str_starts_with((string) $coverAsset->media_type, 'image')) {
                 return response()->json(['message' => 'cover media must be an image'], 422);
             }
 
-            if (!in_array((string) $coverAsset->status, ['uploaded', 'ready'], true)) {
+            if (! in_array((string) $coverAsset->status, ['uploaded', 'ready'], true)) {
                 return response()->json(['message' => 'cover media is not ready'], 422);
             }
 
@@ -390,7 +394,7 @@ class StatusPostController extends Controller
 
         return response()->json([
             'ok' => true,
-            'item' => $this->shapePost($post, (int) $user->id, app(\App\Services\Accounts\AdminAccess::class)->allows($user)),
+            'item' => $this->shapePost($post, (int) $user->id, app(AdminAccess::class)->allows($user)),
         ], 201);
     }
 
@@ -410,12 +414,11 @@ class StatusPostController extends Controller
         bool $liked,
         EventLogger $events,
         NotificationService $notifications
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $user = $request->user();
         $viewerId = (int) $user->id;
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->first();
-        if (!$post) {
+        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
+        if (! $post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
 
@@ -463,11 +466,11 @@ class StatusPostController extends Controller
             );
         }
 
-        $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->firstOrFail();
+        $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->firstOrFail();
 
         return response()->json([
             'ok' => true,
-            'item' => $this->shapePost($fresh, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user)),
+            'item' => $this->shapePost($fresh, $viewerId, app(AdminAccess::class)->allows($user)),
         ]);
     }
 
@@ -475,8 +478,8 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = (int) $user->id;
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->first();
-        if (!$post) {
+        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
+        if (! $post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
 
@@ -540,20 +543,49 @@ class StatusPostController extends Controller
             ])
             ->find($postId);
 
-        if (!$post) {
+        if (! $post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
 
-        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
+        $viewerIsAdmin = app(AdminAccess::class)->allows($user);
         $isOwner = (int) $post->author_user_id === (int) $user?->id;
-        if (!$viewerIsAdmin && !$isOwner) {
+        if (! $viewerIsAdmin && ! $isOwner) {
             return response()->json(['message' => 'forbidden'], 403);
         }
 
-        $post->is_deleted = true;
-        $post->deleted_by_user_id = (int) $user->id;
-        $post->deleted_at = now();
-        $post->save();
+        if (! $isOwner) {
+            $data = $request->validate([
+                'reason' => ['required', 'string', 'max:1000'],
+                'expected_revision' => ['required', 'integer', 'min:0'],
+                'confirm' => ['required', 'accepted'],
+            ]);
+            abort_if(trim($data['reason']) === '', 422, 'reason required');
+            $post = DB::transaction(function () use ($user, $postId, $data) {
+                $actor = User::query()->whereKey($user->id)->lockForUpdate()->first();
+                abort_unless(app(AdminAccess::class)->allows($actor), 403);
+                $locked = StatusPost::query()->whereKey($postId)->lockForUpdate()->firstOrFail();
+                // This operation only moderates public content. Private authors retain their own delete flow.
+                abort_unless(in_array($locked->visibility, ['public', 'square'], true), 403);
+                // The delete lifecycle is revision 0 (present) -> 1 (soft-deleted).
+                // Recheck the locked row, including deletes performed through report operations.
+                abort_if((int) $data['expected_revision'] !== 0 || $locked->is_deleted, 409, 'stale post deletion revision');
+                $before = ['is_deleted' => false, 'revision' => 0];
+                $locked->is_deleted = true;
+                $locked->deleted_by_user_id = $actor->id;
+                $locked->deleted_at = now();
+                $locked->save();
+                OperationAudit::record($actor->id, 'status_post.remove', 'status_post',
+                    $locked->id, trim($data['reason']), 0, $before,
+                    ['is_deleted' => true, 'revision' => 1, 'deleted_by_user_id' => $actor->id]);
+
+                return $locked;
+            });
+        } else {
+            $post->is_deleted = true;
+            $post->deleted_by_user_id = (int) $user->id;
+            $post->deleted_at = now();
+            $post->save();
+        }
 
         return response()->json([
             'ok' => true,

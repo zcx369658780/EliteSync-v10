@@ -29,9 +29,13 @@ class AboutUpdatePage extends ConsumerStatefulWidget {
   const AboutUpdatePage({
     super.key,
     this.externalUrlLauncher = _launchExternalUrl,
+    this.v1008LocalBuild = const bool.fromEnvironment(
+      'ELITESYNC_V1008_LOCAL_BUILD',
+    ),
   });
 
   final ExternalUrlLauncher externalUrlLauncher;
+  final bool v1008LocalBuild;
 
   @override
   ConsumerState<AboutUpdatePage> createState() => _AboutUpdatePageState();
@@ -42,6 +46,16 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
   String _moduleVersionName = '-';
   String _status = '尚未手动检查更新';
   bool _checking = false;
+  String _releaseSource = 'unchecked';
+  String _releaseVersion = '-';
+  String _releaseChangelog = '尚未取得发布更新说明';
+  String get _channel => widget.v1008LocalBuild ? 'development' : 'stable';
+  String get _sourceLabel => switch (_releaseSource) {
+    'database' => '数据库（database）',
+    'config' => '配置回退（config fallback），非数据库有效发布',
+    'unchecked' => '尚未检查',
+    _ => '未知来源（unknown），更新未确认',
+  };
   String _historyTitle = '更新历史';
   List<String> _historyItems = const ['更新记录加载中...'];
   String _qualificationTitle = '资质';
@@ -120,13 +134,16 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
     setState(() {
       _checking = true;
       _status = '';
+      _releaseSource = 'unknown';
+      _releaseVersion = '-';
+      _releaseChangelog = '尚未取得发布更新说明';
     });
     final api = ref.read(apiClientProvider);
     final result = await api.get(
       '/api/v1/app/version/check',
       query: {
         'platform': 'android',
-        'channel': 'stable',
+        'channel': _channel,
         'version_name': _productVersion == _moduleVersionName
             ? _moduleVersionName
             : _productVersion,
@@ -142,6 +159,24 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
 
     final data = (result as NetworkSuccess<Map<String, dynamic>>).data;
     final latest = (data['latest_version_name'] ?? '').toString();
+    final source = data['source'];
+    final sourceKnown =
+        (source == 'database' || source == 'config') &&
+        data['channel'] == _channel;
+    setState(() {
+      _releaseSource = sourceKnown ? source as String : 'unknown';
+      _releaseVersion = latest.isEmpty ? '-' : latest;
+      final changelog = (data['changelog'] ?? '').toString().trim();
+      _releaseChangelog = changelog.isEmpty ? '此来源未提供更新说明' : changelog;
+    });
+    if (!sourceKnown) {
+      setState(() => _status = '版本来源未确认，无法确认更新；请稍后重试。');
+      return;
+    }
+    if (widget.v1008LocalBuild && source != 'database') {
+      setState(() => _status = '开发渠道当前为配置回退，未确认数据库有效发布；不提供下载。');
+      return;
+    }
     final hasUpdate = data['has_update'] == true;
     final forceUpdate = data['force_update'] == true;
     final downloadUrl = (data['download_url'] ?? '').toString();
@@ -150,6 +185,14 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
     });
 
     if (!hasUpdate || downloadUrl.isEmpty) return;
+    final uri = Uri.tryParse(downloadUrl);
+    if (uri == null ||
+        !const ['http', 'https'].contains(uri.scheme) ||
+        uri.host.isEmpty ||
+        uri.userInfo.isNotEmpty) {
+      setState(() => _status = '下载地址不可用，请稍后重试。');
+      return;
+    }
     final confirmed = await AppConfirmDialog.show(
       context,
       title: forceUpdate ? '需要更新后继续使用' : '发现可用版本',
@@ -161,7 +204,7 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
     );
     if (!confirmed) return;
     try {
-      final launched = await widget.externalUrlLauncher(Uri.parse(downloadUrl));
+      final launched = await widget.externalUrlLauncher(uri);
       if (!launched && mounted) {
         setState(() => _status = '暂时无法打开下载页面，请稍后重试。');
       }
@@ -197,6 +240,9 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _KeyValueLine(label: '产品版本', value: _productVersion),
+                  _KeyValueLine(label: '检查渠道', value: _channel),
+                  _KeyValueLine(label: '版本来源', value: _sourceLabel),
+                  _KeyValueLine(label: '发布版本', value: _releaseVersion),
                   if (_status.isNotEmpty) ...[
                     SizedBox(height: t.spacing.xs),
                     Text(
@@ -230,6 +276,7 @@ class _AboutUpdatePageState extends ConsumerState<AboutUpdatePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(_releaseChangelog),
                   Text(
                     '这里展示当前安装包与本地更新说明；是否有可用更新，以手动检查结果为准。',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(

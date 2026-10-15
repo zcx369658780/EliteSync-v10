@@ -3,6 +3,8 @@
 namespace App\Services\Admin;
 
 use App\Models\AppReleaseVersion;
+use App\Models\User;
+use App\Services\Accounts\AdminAccess;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -18,7 +20,7 @@ final class ReleaseManagement
 
     public function web(int $actor, array $input): AppReleaseVersion
     {
-        abort_unless(app(\App\Services\Accounts\AdminAccess::class)->allows(\App\Models\User::find($actor)),403);
+        abort_unless(app(AdminAccess::class)->allows(User::find($actor)), 403);
         $data = Validator::make($input, [
             'action' => 'required|in:upsert,activate,deactivate',
             'id' => 'nullable|integer|min:1',
@@ -33,6 +35,7 @@ final class ReleaseManagement
             throw ValidationException::withMessages(['id' => '请选择发布记录。']);
         }
         $attributes = $data['action'] === 'upsert' ? $this->validateMetadata($input, true) : [];
+
         return $this->write('android', 'development', $data['action'], $data['id'] ?? null,
             $attributes, $actor, trim($data['reason']), (int) $data['expected_revision'], 'web');
     }
@@ -41,6 +44,7 @@ final class ReleaseManagement
     {
         // Existing CLI channels remain available, under the same serialization and audit.
         $attributes = $this->validateMetadata($attributes, $platform === 'android' && $channel === 'development');
+
         return $this->write($platform, $channel, 'upsert', null, $attributes, null,
             'CLI release metadata upsert and activation', null, 'cli', true);
     }
@@ -62,7 +66,7 @@ final class ReleaseManagement
             $host = strtolower((string) ($parts['host'] ?? ''));
             $local = $scheme === 'http' && in_array($host, ['localhost', '127.0.0.1'], true)
                 && ($parts['port'] ?? 80) === 8000;
-            if (!filter_var($data['download_url'], FILTER_VALIDATE_URL) || (!$local && $scheme !== 'https')
+            if (! filter_var($data['download_url'], FILTER_VALIDATE_URL) || (! $local && $scheme !== 'https')
                 || $host === '' || isset($parts['user']) || isset($parts['pass'])) {
                 throw ValidationException::withMessages(['download_url' => '仅允许 HTTPS 或本地 localhost/127.0.0.1:8000 HTTP 下载地址。']);
             }
@@ -73,6 +77,7 @@ final class ReleaseManagement
         $data['sha256'] = strtoupper((string) ($data['sha256'] ?? ''));
         $data['changelog'] = (string) ($data['changelog'] ?? '');
         $data['force_update'] = (bool) ($data['force_update'] ?? false);
+
         return $data;
     }
 
@@ -81,9 +86,13 @@ final class ReleaseManagement
         $parse = static function (string $value): array {
             preg_match('/^(\d+)\.(\d+)\.(\d+)([a-z]*)$/i', $value, $m);
             $rank = 0;
-            foreach (str_split(strtolower($m[4])) as $char) { $rank = $rank * 26 + ord($char) - 96; }
+            foreach (str_split(strtolower($m[4])) as $char) {
+                $rank = $rank * 26 + ord($char) - 96;
+            }
+
             return [(int) $m[1], (int) $m[2], (int) $m[3], $rank];
         };
+
         return $parse($a) <=> $parse($b);
     }
 
@@ -94,6 +103,10 @@ final class ReleaseManagement
             $key = 'releases:'.$platform.':'.$channel;
             DB::table('admin_versions')->insertOrIgnore(['key' => $key, 'revision' => 0]);
             $lock = DB::table('admin_versions')->where('key', $key)->lockForUpdate()->first();
+            if ($source === 'web') {
+                $trusted = User::query()->whereKey($actor)->lockForUpdate()->first();
+                abort_unless(app(AdminAccess::class)->allows($trusted), 403);
+            }
             $revision = (int) $lock->revision;
             abort_if($expected !== null && $expected !== $revision, 409, '发布列表已改变，请刷新后重试。');
             $query = AppReleaseVersion::query()->where('platform', $platform)->where('channel', $channel);
@@ -107,17 +120,23 @@ final class ReleaseManagement
             }
             if ($action === 'upsert') {
                 $duplicate = (clone $query)->where('version_code', $attributes['version_code']);
-                if ($release->exists) { $duplicate->where('id', '!=', $release->id); }
+                if ($release->exists) {
+                    $duplicate->where('id', '!=', $release->id);
+                }
                 if ($duplicate->exists()) {
                     throw ValidationException::withMessages(['version_code' => '该渠道版本号已存在，请编辑已有记录。']);
                 }
                 $release->fill($attributes);
-                abort_if($source === 'web' && $release->exists && !$release->isDirty(), 409, '版本元数据未发生变化。');
-                if (!$release->exists) { $release->fill(['platform' => $platform, 'channel' => $channel, 'is_active' => false]); }
+                abort_if($source === 'web' && $release->exists && ! $release->isDirty(), 409, '版本元数据未发生变化。');
+                if (! $release->exists) {
+                    $release->fill(['platform' => $platform, 'channel' => $channel, 'is_active' => false]);
+                }
             } else {
                 abort_if((bool) $release->is_active === ($action === 'activate'), 409, '该发布已处于目标状态。');
             }
-            if ($action === 'activate') { $this->validateMetadata($release->attributesToArray(), true); }
+            if ($action === 'activate') {
+                $this->validateMetadata($release->attributesToArray(), true);
+            }
             if ($publish || $action === 'activate') {
                 (clone $query)->when($release->exists, fn ($q) => $q->where('id', '!=', $release->id))
                     ->where('is_active', true)->update(['is_active' => false]);
@@ -132,6 +151,7 @@ final class ReleaseManagement
             OperationAudit::record($actor, 'release.'.$source.'.'.$action, 'app_release', $release->id,
                 $reason, $expected ?? $revision, ['revision' => $revision, 'releases' => $before],
                 ['revision' => $revision + 1, 'releases' => $after]);
+
             return $release->refresh();
         });
     }
@@ -142,5 +162,3 @@ final class ReleaseManagement
             'min_supported_version_name', 'download_url', 'sha256', 'force_update', 'is_active', 'published_at']);
     }
 }
-
-

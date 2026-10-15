@@ -7,6 +7,7 @@ import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/operational_status_card.dart';
+import 'package:flutter_elitesync_module/features/me/presentation/pages/me_landing_page.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -64,6 +65,26 @@ Widget _wrap(_OperatingApiClient client) => ProviderScope(
 );
 
 void main() {
+  testWidgets('Actual Me landing shows the server operating status', (
+    tester,
+  ) async {
+    final client = _OperatingApiClient(
+      () async => NetworkSuccess(_payload(reason: 'Web审核原因')),
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [apiClientProvider.overrideWithValue(client)],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: const MeLandingPage(restorationLocalBuild: true),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('运营审核待处理'), findsOneWidget);
+    expect(find.text('审核原因：Web审核原因'), findsOneWidget);
+    expect(client.requestedPaths, ['/api/v1/profile/operating-status']);
+  });
   for (final entry in {
     'pending': '运营审核待处理',
     'approved': '运营审核已通过',
@@ -192,4 +213,3 @@ void main() {
     expect(find.text('Existing questionnaire'), findsOneWidget);
   });
 }
-

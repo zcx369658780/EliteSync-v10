@@ -192,7 +192,8 @@ class ModerationApiTest extends TestCase
                 'target_id' => (string) ($type === 'user' ? $target->id : $report->id),
                 'expected_version' => 0, 'reason' => 'confirmed spam']);
         }
-        $this->assertDatabaseCount('admin_operation_audits', 2);
+        $this->assertDatabaseHas('admin_operation_audits', ['action' => 'report.view', 'actor_user_id' => $admin->id, 'target_id' => (string) $report->id]);
+        $this->assertDatabaseCount('admin_operation_audits', 3);
 
         // Restore must identify this exact active sanction and retain revoked credentials.
         $this->postJson('/api/v1/admin/reports/'.$report->id.'/action', [
@@ -208,7 +209,7 @@ class ModerationApiTest extends TestCase
             'status' => 'closed', 'admin_revision' => 2]);
         $this->assertDatabaseMissing('personal_access_tokens', ['id' => $oldTokenId]);
         $this->assertDatabaseMissing('sessions', ['user_id' => $target->id]);
-        $this->assertDatabaseCount('admin_operation_audits', 4);
+        $this->assertDatabaseCount('admin_operation_audits', 5);
         foreach (['user.restore' => 'user', 'report.restore' => 'report'] as $action => $type) {
             $this->assertDatabaseHas('admin_operation_audits', ['actor_user_id' => $admin->id,
                 'action' => $action, 'target_type' => $type,

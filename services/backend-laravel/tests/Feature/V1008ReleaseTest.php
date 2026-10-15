@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Models\AppReleaseVersion;
 use App\Models\User;
 use App\Services\Admin\ReleaseManagement;
+use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
 final class V1008ReleaseTest extends TestCase
@@ -19,6 +19,7 @@ final class V1008ReleaseTest extends TestCase
         $user = User::create(['name' => 'Release fixture', 'phone' => '19900000861',
             'password' => 'fixture-password', 'role' => 'admin', 'disabled' => false]);
         config(['app.admin_phones' => [$user->phone]]);
+
         return $user;
     }
 
@@ -105,5 +106,38 @@ final class V1008ReleaseTest extends TestCase
         $this->post('/admin/releases', $this->metadata())->assertForbidden();
         $this->assertDatabaseCount('app_release_versions', 0);
     }
-}
 
+    public function test_actor_demoted_after_preflight_is_rejected_inside_release_lock(): void
+    {
+        $this->assertActorRevokedAfterPreflight(['role' => 'user']);
+    }
+
+    public function test_actor_disabled_after_preflight_is_rejected_inside_release_lock(): void
+    {
+        $this->assertActorRevokedAfterPreflight(['disabled' => true]);
+    }
+
+    private function assertActorRevokedAfterPreflight(array $revocation): void
+    {
+        $admin = $this->admin();
+        DB::table('admin_versions')->updateOrInsert(['key' => ReleaseManagement::KEY], ['revision' => 7]);
+        $revoked = false;
+        // Inject revocation after the outer permission check and channel-lock query.
+        // The authenticated object stays stale; only the transaction's current user read can deny it.
+        DB::listen(static function (QueryExecuted $query) use ($admin, $revocation, &$revoked): void {
+            if (! $revoked && str_starts_with(strtolower($query->sql), 'select')
+                && str_contains($query->sql, 'admin_versions')) {
+                $revoked = true;
+                DB::table('users')->where('id', $admin->id)->update($revocation);
+            }
+        });
+        $this->actingAs($admin, 'web')->post('/admin/releases',
+            $this->metadata(['expected_revision' => 7]))->assertForbidden();
+        $this->assertTrue($revoked, 'The test must exercise revocation after the version-lock query.');
+        $this->assertSame('admin', $admin->role);
+        $this->assertFalse($admin->disabled);
+        $this->assertDatabaseCount('app_release_versions', 0);
+        $this->assertDatabaseCount('admin_operation_audits', 0);
+        $this->assertDatabaseHas('admin_versions', ['key' => ReleaseManagement::KEY, 'revision' => 7]);
+    }
+}

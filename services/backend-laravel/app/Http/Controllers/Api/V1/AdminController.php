@@ -8,10 +8,15 @@ use App\Models\ModerationReport;
 use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
-use App\Models\UserBlock;
+use App\Services\Accounts\AdminAccess;
+use App\Services\Admin\OperationAudit;
+use App\Services\Admin\QuestionOperations;
+use App\Services\Admin\ReportOperations;
+use App\Services\Admin\UserGovernance;
 use App\Services\MatchingDebugModeService;
 use App\Services\MatchingEngineService;
 use App\Services\PersonalityProfileService;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +34,7 @@ class AdminController extends Controller
      * 3.1 columns may not exist yet.
      *
      * @param  array<string, mixed>  $fallbacks
-     * @return array<int, string|\Illuminate\Database\Query\Expression>
+     * @return array<int, string|Expression>
      */
     private function safeUserSelect(array $fallbacks = []): array
     {
@@ -38,6 +43,7 @@ class AdminController extends Controller
         foreach ($fallbacks as $column => $fallback) {
             if (Schema::hasColumn('users', $column)) {
                 $columns[] = $column;
+
                 continue;
             }
 
@@ -67,8 +73,7 @@ class AdminController extends Controller
     public function users(Request $request): JsonResponse
     {
         $query = User::query()
-            ->orderBy('id')
-            ;
+            ->orderBy('id');
 
         $accountType = trim((string) $request->query('account_type', ''));
         if ($accountType !== '') {
@@ -144,132 +149,109 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updateVerify(Request $request,int $uid):JsonResponse {
-        $d=$request->validate(['status'=>'required|in:pending,approved,rejected','reason'=>'required|string|max:1000','expected_revision'=>'required|integer|min:0','confirm'=>'required|accepted']);
-        app(\App\Services\Admin\UserGovernance::class)->review($request->user(),$uid,$d['status'],$d['reason'],$d['expected_revision']);return response()->json(['ok'=>true]);
-    }
-    public function disable(Request $request,int $uid):JsonResponse {
-        $d=$request->validate(['reason'=>'required|string|max:1000','expected_revision'=>'required|integer|min:0','confirm'=>'required|accepted']);
-        $id=app(\App\Services\Admin\UserGovernance::class)->punish($request->user(),$uid,'banned',$d['reason'],$d['expected_revision']);return response()->json(['ok'=>true,'sanction_id'=>$id]);
-    }
-    public function reports(): JsonResponse
+    public function updateVerify(Request $request, int $uid): JsonResponse
     {
-        $items = ModerationReport::query()
-            ->with([
-                'reporter' => function ($query) {
-                    $query->select($this->safeUserSelect());
-                },
-                'targetUser' => function ($query) {
-                    $query->select($this->safeUserSelect([
-                        'disabled' => false,
-                        'moderation_status' => 'normal',
-                    ]));
-                },
-                'resolver' => function ($query) {
-                    $query->select($this->safeUserSelect());
-                },
-            ])
-            ->orderByDesc('id')
-            ->get()
-            ->map(fn (ModerationReport $report) => [
+        $d = $request->validate(['status' => 'required|in:pending,approved,rejected', 'reason' => 'required|string|max:1000', 'expected_revision' => 'required|integer|min:0', 'confirm' => 'required|accepted']);
+        app(UserGovernance::class)->review($request->user(), $uid, $d['status'], $d['reason'], $d['expected_revision']);
+
+        return response()->json(['ok' => true]);
+    }
+
+    public function disable(Request $request, int $uid): JsonResponse
+    {
+        $d = $request->validate(['reason' => 'required|string|max:1000', 'expected_revision' => 'required|integer|min:0', 'confirm' => 'required|accepted']);
+        $id = app(UserGovernance::class)->punish($request->user(), $uid, 'banned', $d['reason'], $d['expected_revision']);
+
+        return response()->json(['ok' => true, 'sanction_id' => $id]);
+    }
+
+    public function reports(Request $request): JsonResponse
+    {
+        $data = $request->validate(['page' => 'sometimes|integer|min:1', 'per_page' => 'sometimes|integer|min:1|max:100']);
+        $page = ModerationReport::query()->select([
+            'id', 'status', 'appeal_status', 'category', 'reason_code', 'admin_revision',
+            'reporter_id', 'target_user_id', 'resolved_by_user_id', 'appealed_at', 'resolved_at',
+        ])->with('targetUser:id,disabled,moderation_status')->orderByDesc('id')
+            ->paginate((int) ($data['per_page'] ?? 20));
+        $items = $page->getCollection()->map(fn (ModerationReport $report) => [
+            'id' => $report->id,
+            'status' => $report->status,
+            'appeal_status' => $report->appeal_status,
+            'category' => $report->category,
+            'reason_code' => $report->reason_code,
+            'admin_revision' => (int) $report->admin_revision,
+            'appealed_at' => optional($report->appealed_at)?->toIso8601String(),
+            'resolved_at' => optional($report->resolved_at)?->toIso8601String(),
+            'reporter' => ['id' => $report->reporter_id],
+            'target_user' => [
+                'id' => $report->target_user_id,
+                'disabled' => (bool) ($report->targetUser?->disabled ?? false),
+                'moderation_status' => (string) ($report->targetUser?->moderation_status ?? 'normal'),
+            ],
+            'resolver' => ['id' => $report->resolved_by_user_id],
+        ])
+            ->values();
+
+        return response()->json([
+            'items' => $items,
+            'total' => $page->total(),
+            'current_page' => $page->currentPage(),
+            'per_page' => $page->perPage(),
+            'last_page' => $page->lastPage(),
+        ]);
+    }
+
+    public function reportDetail(Request $request, int $reportId): JsonResponse
+    {
+        return DB::transaction(function () use ($request, $reportId) {
+            $actor = User::whereKey($request->user()->id)->lockForUpdate()->first();
+            abort_unless(app(AdminAccess::class)->allows($actor), 403);
+            // Only the report's own user-supplied explanation is opened here.
+            // The targetMessage relation and private conversation content are never loaded.
+            $report = ModerationReport::query()->with('targetUser:id,disabled,moderation_status')
+                ->lockForUpdate()->findOrFail($reportId);
+            OperationAudit::record($actor->id, 'report.view', 'report', $reportId,
+                'case detail view', null, [], ['category' => $report->category]);
+
+            return response()->json([
                 'id' => $report->id,
+                'admin_revision' => (int) $report->admin_revision,
                 'status' => $report->status,
                 'appeal_status' => $report->appeal_status,
                 'category' => $report->category,
                 'reason_code' => $report->reason_code,
                 'detail' => $report->detail,
                 'appeal_note' => $report->appeal_note,
+                'admin_note' => $report->admin_note,
                 'appealed_at' => optional($report->appealed_at)?->toIso8601String(),
                 'resolved_at' => optional($report->resolved_at)?->toIso8601String(),
-                'reporter' => [
-                    'id' => $report->reporter?->id,
-                    'name' => $report->reporter?->name,
-                    'phone' => $report->reporter?->phone,
-                ],
+                'target_message_id' => $report->target_message_id,
+                'target_status_post_id' => $report->target_status_post_id,
+                'reporter' => ['id' => $report->reporter_id],
                 'target_user' => [
-                    'id' => $report->targetUser?->id,
-                    'name' => $report->targetUser?->name,
-                    'phone' => $report->targetUser?->phone,
+                    'id' => $report->target_user_id,
                     'disabled' => (bool) ($report->targetUser?->disabled ?? false),
                     'moderation_status' => (string) ($report->targetUser?->moderation_status ?? 'normal'),
                 ],
-                'resolver' => [
-                    'id' => $report->resolver?->id,
-                    'name' => $report->resolver?->name,
-                ],
-            ])
-            ->values();
-
-        return response()->json([
-            'items' => $items,
-            'total' => $items->count(),
-        ]);
+                'resolver' => ['id' => $report->resolved_by_user_id],
+            ]);
+        });
     }
 
-    public function reportDetail(int $reportId): JsonResponse
+    public function reportAction(Request $request, int $reportId): JsonResponse
     {
-        $report = ModerationReport::query()
-            ->with([
-                'reporter' => function ($query) {
-                    $query->select($this->safeUserSelect());
-                },
-                'targetUser' => function ($query) {
-                    $query->select($this->safeUserSelect([
-                        'disabled' => false,
-                        'moderation_status' => 'normal',
-                    ]));
-                },
-                'resolver' => function ($query) {
-                    $query->select($this->safeUserSelect());
-                },
-            ])
-            ->find($reportId);
+        $d = $request->validate(['action' => 'required|in:triage,investigate,dismiss,restrict,banned,restore,close,remove_post', 'reason' => 'required|string|max:1000', 'expected_revision' => 'required|integer|min:0', 'expected_user_revision' => 'required|integer|min:0', 'sanction_id' => 'nullable|integer', 'confirm' => 'required|accepted']);
+        app(ReportOperations::class)->act($request->user(), $reportId, $d);
 
-        if (!$report) {
-            return response()->json(['message' => 'report not found'], 404);
-        }
-
-        return response()->json([
-            'id' => $report->id,
-            'status' => $report->status,
-            'appeal_status' => $report->appeal_status,
-            'category' => $report->category,
-            'reason_code' => $report->reason_code,
-            'detail' => $report->detail,
-            'appeal_note' => $report->appeal_note,
-            'admin_note' => $report->admin_note,
-            'appealed_at' => optional($report->appealed_at)?->toIso8601String(),
-            'resolved_at' => optional($report->resolved_at)?->toIso8601String(),
-            'reporter' => [
-                'id' => $report->reporter?->id,
-                'name' => $report->reporter?->name,
-                'phone' => $report->reporter?->phone,
-            ],
-            'target_user' => [
-                'id' => $report->targetUser?->id,
-                'name' => $report->targetUser?->name,
-                'phone' => $report->targetUser?->phone,
-                'disabled' => (bool) ($report->targetUser?->disabled ?? false),
-                'moderation_status' => (string) ($report->targetUser?->moderation_status ?? 'normal'),
-            ],
-            'resolver' => [
-                'id' => $report->resolver?->id,
-                'name' => $report->resolver?->name,
-            ],
-        ]);
+        return response()->json(['ok' => true]);
     }
 
-    public function reportAction(Request $request,int $reportId):JsonResponse {
-        $d=$request->validate(['action'=>'required|in:triage,investigate,dismiss,restrict,banned,restore,close,remove_post','reason'=>'required|string|max:1000','expected_revision'=>'required|integer|min:0','expected_user_revision'=>'required|integer|min:0','sanction_id'=>'nullable|integer','confirm'=>'required|accepted']);
-        app(\App\Services\Admin\ReportOperations::class)->act($request->user(),$reportId,$d);return response()->json(['ok'=>true]);
-    }
     public function devRunMatching(
         PersonalityProfileService $profileService,
         MatchingEngineService $matchingEngine,
         MatchingDebugModeService $debugMode
-    ): JsonResponse
-    {
-        abort(403,'Use audited matching round operations');
+    ): JsonResponse {
+        abort(403, 'Use audited matching round operations');
 
         // Dev matching may process large synthetic batches; avoid php max_execution_time cutoff.
         @set_time_limit(0);
@@ -299,7 +281,7 @@ class AdminController extends Controller
 
         $users = User::query()
             ->where('disabled', false)
-            ->when(!$includeSyntheticUsers, function ($q) {
+            ->when(! $includeSyntheticUsers, function ($q) {
                 $q->where('is_synthetic', false);
             })
             ->whereIn('id', $eligibleUserIds)
@@ -336,6 +318,7 @@ class AdminController extends Controller
 
             if ($exists) {
                 $createdMatchIds[] = $exists->id;
+
                 continue;
             }
 
@@ -389,7 +372,7 @@ class AdminController extends Controller
 
     public function devMatchingDebugSwitch(Request $request, MatchingDebugModeService $debugMode): JsonResponse
     {
-        abort(403,'Use audited matching round operations');
+        abort(403, 'Use audited matching round operations');
 
         $data = $request->validate([
             'include_synthetic_users' => ['required', 'boolean'],
@@ -406,7 +389,7 @@ class AdminController extends Controller
 
     public function devReleaseDrop(): JsonResponse
     {
-        abort(403,'Use audited matching round operations');
+        abort(403, 'Use audited matching round operations');
 
         $weekTag = $this->weekTag();
         $updated = DatingMatch::query()
@@ -460,13 +443,22 @@ class AdminController extends Controller
         ]);
     }
 
-    public function pruneLowDropQuestions(Request $request):JsonResponse {
-      $d=$request->validate(['dry_run'=>'nullable|boolean','reasons'=>'nullable|array','reasons.*'=>'string|max:64','expected_revision'=>'nullable|integer|min:0','preview_signature'=>'nullable|string','confirm'=>'nullable|accepted','reason'=>'nullable|string|max:1000']);
-      $query=QuestionnaireQuestion::where('enabled',true)->where('quality_tag','low_drop');if(!empty($d['reasons']))$query->whereIn('quality_reason',$d['reasons']);$ids=$query->pluck('id')->all();
-      if(!$ids)return response()->json(['ok'=>true,'dry_run'=>true,'candidates'=>0,'updated'=>0]);
-      $ops=app(\App\Services\Admin\QuestionOperations::class);
-      if($d['dry_run']??true)return response()->json(['ok'=>true,'updated'=>0]+$ops->preview($ids,false));
-      $request->validate(['expected_revision'=>'required|integer|min:0','preview_signature'=>'required|string','reason'=>'required|string|max:1000','confirm'=>'required|accepted']);
-      return response()->json($ops->apply($ids,false,(int)$d['expected_revision'],$d['preview_signature'],$d['reason'],(int)$request->user()->id));
+    public function pruneLowDropQuestions(Request $request): JsonResponse
+    {
+        $d = $request->validate(['dry_run' => 'nullable|boolean', 'reasons' => 'nullable|array', 'reasons.*' => 'string|max:64', 'expected_revision' => 'nullable|integer|min:0', 'preview_signature' => 'nullable|string', 'confirm' => 'sometimes|accepted', 'reason' => 'nullable|string|max:1000']);
+        $query = QuestionnaireQuestion::where('enabled', true)->where('quality_tag', 'low_drop');
+        if (! empty($d['reasons'])) {
+            $query->whereIn('quality_reason', $d['reasons']);
+        }$ids = $query->pluck('id')->all();
+        if (! $ids) {
+            return response()->json(['ok' => true, 'dry_run' => true, 'candidates' => 0, 'updated' => 0]);
+        }
+        $ops = app(QuestionOperations::class);
+        if ($d['dry_run'] ?? true) {
+            return response()->json(['ok' => true, 'updated' => 0] + $ops->preview($ids, false));
+        }
+        $request->validate(['expected_revision' => 'required|integer|min:0', 'preview_signature' => 'required|string', 'reason' => 'required|string|max:1000', 'confirm' => 'required|accepted']);
+
+        return response()->json($ops->apply($ids, false, (int) $d['expected_revision'], $d['preview_signature'], $d['reason'], (int) $request->user()->id));
     }
 }

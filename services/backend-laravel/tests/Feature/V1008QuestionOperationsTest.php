@@ -9,6 +9,7 @@ use App\Services\Admin\QuestionOperations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
@@ -17,6 +18,7 @@ final class V1008QuestionOperationsTest extends TestCase
     use RefreshDatabase;
 
     private QuestionnaireQuestion $question;
+
     private User $actor;
 
     protected function setUp(): void
@@ -124,6 +126,39 @@ final class V1008QuestionOperationsTest extends TestCase
         $this->assertDatabaseCount('admin_operation_audits', 0);
     }
 
+    public function test_prune_api_defaults_to_read_only_preview_without_confirmation(): void
+    {
+        Sanctum::actingAs($this->actor);
+        foreach ([[], ['dry_run' => true]] as $payload) {
+            $this->postJson('/api/v1/admin/questionnaire/prune-low-drop', $payload)
+                ->assertOk()->assertJsonPath('dry_run', true)
+                ->assertJsonPath('candidates', 1)->assertJsonPath('updated', 0)
+                ->assertJsonPath('expected_revision', 1);
+        }
+        $this->assertTrue($this->question->fresh()->enabled);
+        $this->assertSame(1, $this->question->fresh()->version);
+        $this->assertDatabaseHas('admin_versions', ['key' => 'questionnaire', 'revision' => 1]);
+        $this->assertDatabaseCount('admin_operation_audits', 0);
+    }
+
+    public function test_prune_api_apply_without_confirmation_is_rejected_even_with_valid_preview(): void
+    {
+        Sanctum::actingAs($this->actor);
+        $preview = app(QuestionOperations::class)->preview([$this->question->id], false);
+        $response = $this->postJson('/api/v1/admin/questionnaire/prune-low-drop', [
+            'dry_run' => false, 'expected_revision' => $preview['expected_revision'],
+            'preview_signature' => $preview['preview_signature'], 'reason' => '具名停用原因',
+        ])->assertUnprocessable()->assertJsonPath('ok', false)
+            ->assertJsonPath('error.code', 'validation_error');
+        // This API wraps validation fields under error.details, not Laravel's errors key.
+        $this->assertSame(['confirm'], array_keys($response->json('error.details')));
+        $this->assertNotEmpty($response->json('error.details.confirm'));
+        $this->assertTrue($this->question->fresh()->enabled);
+        $this->assertSame(1, $this->question->fresh()->version);
+        $this->assertDatabaseHas('admin_versions', ['key' => 'questionnaire', 'revision' => 1]);
+        $this->assertDatabaseCount('admin_operation_audits', 0);
+    }
+
     public function test_service_rechecks_current_admin_authority_before_applying(): void
     {
         $service = app(QuestionOperations::class);
@@ -144,7 +179,8 @@ final class V1008QuestionOperationsTest extends TestCase
     {
         $service = app(QuestionOperations::class);
         $preview = $service->preview([$this->question->id], false);
-        $this->app->instance(OperationAudit::class, new class {
+        $this->app->instance(OperationAudit::class, new class
+        {
             public function record(...$arguments): void
             {
                 throw new \RuntimeException('fixture audit failure');

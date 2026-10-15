@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Middleware\EnsureAccountActive;
+use App\Http\Middleware\EnsureAdminPhone;
+use App\Http\Middleware\EnsureMatchingOperationPermission;
+use App\Http\Middleware\EnsureSecureTransport;
+use App\Http\Middleware\ForceJsonResponse;
+use App\Http\Middleware\QuestionSnapshotLock;
+use App\Http\Middleware\RequestTraceMiddleware;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
@@ -16,20 +23,20 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(\App\Http\Middleware\RequestTraceMiddleware::class);
-        $middleware->appendToGroup('api', \App\Http\Middleware\QuestionSnapshotLock::class);
+        $middleware->append(RequestTraceMiddleware::class);
+        $middleware->appendToGroup('api', QuestionSnapshotLock::class);
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
-        $middleware->prependToGroup('api', \App\Http\Middleware\ForceJsonResponse::class);
+        $middleware->prependToGroup('api', ForceJsonResponse::class);
         $middleware->alias([
-            'account.active' => \App\Http\Middleware\EnsureAccountActive::class,
-            'admin.phone' => \App\Http\Middleware\EnsureAdminPhone::class,
-            'matching.operation' => \App\Http\Middleware\EnsureMatchingOperationPermission::class,
-            'secure.transport' => \App\Http\Middleware\EnsureSecureTransport::class,
+            'account.active' => EnsureAccountActive::class,
+            'admin.phone' => EnsureAdminPhone::class,
+            'matching.operation' => EnsureMatchingOperationPermission::class,
+            'secure.transport' => EnsureSecureTransport::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e, $request) {
-            if (!$request->is('api/*')) {
+            if (! $request->is('api/*')) {
                 return null;
             }
 
@@ -43,6 +50,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 $code = 'validation_error';
                 $message = $e->getMessage() ?: 'The given data was invalid.';
                 $details = $e->errors();
+            } elseif ($request->is('api/v1/admin/matching/*') && ($e instanceof DomainException || $e instanceof InvalidArgumentException)) {
+                $status = 409;
+                $code = 'matching_conflict';
+                $message = $e->getMessage();
             } elseif ($e instanceof AuthenticationException) {
                 $status = 401;
                 $code = 'unauthenticated';

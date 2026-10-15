@@ -7,6 +7,7 @@ use App\Domain\Matching\RoundState;
 use App\Domain\Matching\RunOutcome;
 use App\Domain\Matching\RunState;
 use App\Http\Controllers\Controller;
+use App\Jobs\ExecuteMatchingRun;
 use App\Models\DatingRound;
 use App\Models\MatchingOperationAudit;
 use App\Models\MatchingRun;
@@ -72,8 +73,9 @@ class AdminMatchingController extends Controller
         }
         $run = $service->request($round, $idempotencyKey, 'admin', (int) $request->user()->id, $data['reason_code']);
 
-        \App\Jobs\ExecuteMatchingRun::dispatch((int)$run->id);
-        return response()->json(['data'=>$run,'meta'=>['consumer'=>'database_queue','background_started'=>false]],202);
+        ExecuteMatchingRun::dispatch((int) $run->id);
+
+        return response()->json(['data' => $run, 'meta' => ['consumer' => 'database_queue', 'background_started' => false]], 202);
     }
 
     public function reveal(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse
@@ -107,9 +109,18 @@ class AdminMatchingController extends Controller
         if ((int) $round->state_version !== (int) $data['state_version']) {
             return $this->stale($round);
         }
-        $failed = MatchingRun::query()->where('round_id', $round->id)->where('state', 'failed')->latest('attempt_no')->firstOrFail();
+        abort_unless($round->active_run_id, 409, 'active_run_required');
+        $failed = MatchingRun::query()->whereKey($round->active_run_id)->lockForUpdate()->firstOrFail();
+        if ($failed->state === RunState::Running) {
+            abort_unless($failed->lease_expires_at?->isPast(), 409, 'run_lease_not_expired');
+            // Explicit retry fences an abandoned lease before creating a new durable attempt.
+            $failed = $service->expireLease((int) $failed->id);
+        }
 
-        $run=$service->retry($failed,$idempotencyKey,'admin',(int)$request->user()->id);\App\Jobs\ExecuteMatchingRun::dispatch((int)$run->id);return response()->json(['data'=>$run],201);
+        $run = $service->retry($failed, $idempotencyKey, 'admin', (int) $request->user()->id);
+        ExecuteMatchingRun::dispatch((int) $run->id);
+
+        return response()->json(['data' => $run], 201);
     }
 
     public function close(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse
