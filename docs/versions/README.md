@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.9 PREPLAN_READY / NOT_FROZEN / NOT_IMPLEMENTED**。固定[版前恢复能力方案](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`。0.8 K08已完成，main产品技术起点`3a8f7989aa208285b885f1c80f4365f38488ac54` / Tree`95fadde468d8a21b39c544fdb74093dd35184717`。Astra推荐优先RTC真实双端＋已实现媒体等尚缺原版能力，而非直接用0.9联合验收名义宣称APP全部可交付；**仍是待Owner决定的建议**，原路线表保留且不视为已经批准改排。后续限域源码/依赖收敛后才冻结正式plan，Owner手动派发实施；原0.6～0.8接受与所有保留失败不重写。
+
+
 2026-10-15：**v10.0.8 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS**。接受最终R1候选 `d37121eb11d3cc845f1606a631d17ca01fe6105a` 安全集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，non-force推送/回读一致，本地复用专用树接续。详细四分法、对象相等、8项语法exit0、原空白exit1与运行NOT_RUN、包身份区别和资源保留见 [K08登记](v10.0.8/integration.md)。原候选、Astra验收/复盘、原失败不改写；停止，不自动启动0.9。下方K08待执行为历史时点。
 
 2026-10-15：v10.0.8 **ASTRA FINAL ACCEPT WITH OBSERVATIONS / FINAL R1 d37121eb11d3cc845f1606a631d17ca01fe6105a**。原B01～B06真实业务已留初始证据，R1受罚本人申诉D2缺口已通过[独立验收](v10.0.8/acceptance.md)及[复盘](v10.0.8/retrospective.md)收口。AC-08-01～08未改；**GitHub产品集成和本地K08仍PENDING**，目前main只含文档归档。R1相关PHP31/367 exit0、Flutter21 exit0、Dart全范围exit0；全量套件NOT_RUN、原旧Flutter失败与2 vendor弃用、dev release元数据旧APK SHA观察保留。0.9未启动。下面初审R1未接受/新顾问待验等为历史时点。
