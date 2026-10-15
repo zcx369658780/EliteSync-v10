@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-15T07:18:50.311968+00:00",
+  "user": "alice",
+  "status": 403,
+  "body": {
+    "message": "account blocked"
+  }
+}

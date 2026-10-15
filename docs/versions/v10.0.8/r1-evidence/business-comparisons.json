@@ -1,0 +1,34 @@
+{
+  "restart": {
+    "database": true,
+    "port": true,
+    "initial_business_invariant_hashes": true,
+    "appeals": true,
+    "r1_users": true,
+    "r1_sanctions": true,
+    "r1_cn": true,
+    "r1_mc": true,
+    "appeal_view_audit": true
+  },
+  "initial_business_preserved": {
+    "original_users": true,
+    "questionnaire_answers": true,
+    "questionnaire_attempts": true,
+    "questionnaire_questions": true,
+    "dating_rounds": true,
+    "matching_runs": true,
+    "status_posts": true,
+    "moderation_reports": true,
+    "app_release_versions": true,
+    "original_sanctions": true,
+    "original_match": true,
+    "original_cn": true,
+    "original_mc": true
+  },
+  "appeal_did_not_change_authority": {
+    "r1_users": true,
+    "r1_sanctions": true,
+    "r1_cn": true,
+    "r1_mc": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "time": "2026-10-15T09:34:17.709143+00:00",
+  "user": "r1restricted",
+  "status": 200,
+  "body": {
+    "ok": true,
+    "domain": "conversation",
+    "conversation": {
+      "entry_kind": "stored_conversation",
+      "conversation_id": 2,
+      "match_id": 2,
+      "id": "12",
+      "peer_user_id": 12,
+      "room_key": "11_12",
+      "name": "V1008 R1 Fictional r1peer",
+      "last_message": "V1008 R1 lawful history before restriction",
+      "last_time": "5 minutes ago",
+      "unread": 0,
+      "state": "active",
+      "members": [
+        {
+          "user_id": 11,
+          "role": "member"
+        },
+        {
+          "user_id": 12,
+          "role": "member"
+        }
+      ]
+    }
+  }
+}

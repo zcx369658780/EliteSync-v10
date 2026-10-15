@@ -1,0 +1,6 @@
+{
+  "container": "/elitesync-v1008-db",
+  "volume": "elitesync-v1008-db-data",
+  "port": 43318,
+  "id": "463dc53f333a289b7c6355fec8c0e155e28668d23522595f7c5b37f5389f9baa"
+}

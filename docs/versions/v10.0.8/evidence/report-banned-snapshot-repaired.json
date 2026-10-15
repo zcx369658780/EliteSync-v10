@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\docs\\versions\\v10.0.8\\snapshot.php"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 0,
+  "stdout_sha256": "3f7e3531c7a8be4389866433a98ae6d6bb146bf7203071acb7eeaf1d6f8451fb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-15T09:34:16.289367+00:00",
+  "user": "r1peer",
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "HTTP error",
+      "details": null
+    }
+  }
+}

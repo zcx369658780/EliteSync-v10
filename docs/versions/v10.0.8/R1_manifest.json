@@ -1,0 +1,177 @@
+{
+  "version": "v10.0.8 R1",
+  "status": "CANDIDATE_DELIVERED_AWAITING_ASTRA_FINAL_ACCEPTANCE",
+  "initial_candidate": {
+    "commit": "cff049ae602049adf49014ec2ed27963dc40aff5",
+    "tree": "0da1d69a06a91be3c765d9f4bb6a1febac69d08f"
+  },
+  "authority": {
+    "plan_commit": "ac57d3370a2f2f17c042987a758d86c9aa725650",
+    "plan_blob": "0856e7372d1f91fadfa3350b30f926f7af9cf809",
+    "review_commit": "08044b1cff4379ce2a73127dac3d9e13cc032c75",
+    "review_blob": "c91a7fbeb4f838278dff28db9234ea9abd170e61",
+    "owner_decisions_blob": "4f84f1968ee2737b842f828ad2e0cbdd5c929936",
+    "main_read": "d15aa037b63edda2adc54ee47242a171c27eb4cc"
+  },
+  "final_product": {
+    "commit": "788f7d13927d57e6f31a22b5ce1a990b98bd2f53",
+    "tree": "e8ef3f5f1157011df59f415704df5df649cb712c",
+    "flutter_lib_tree": "db3185dda6e35988f01315ea6dabc021bd1e1eae",
+    "android_tree": "7e76419254e889c95d846d91bde7674020331c75",
+    "backend_tree": "c8328534804b32e1b5f6964839f85103f824bf75"
+  },
+  "publication_identity": "Containing publication commit/tree recorded in final delivery and LOCAL_ONLY r1/publication-receipt.json after GitHub readback; no recursive self hash",
+  "branch": "codex/v10.0.8-web-admin",
+  "product_changed_paths": [
+    "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/sanction_appeal_card.dart",
+    "apps/flutter_elitesync_module/test/features/profile/sanction_appeal_card_test.dart",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/SanctionAppealController.php",
+    "services/backend-laravel/app/Http/Controllers/Web/AdminOperationsController.php",
+    "services/backend-laravel/app/Services/SanctionAppeals.php",
+    "services/backend-laravel/database/migrations/2026_10_15_090000_create_sanction_appeals.php",
+    "services/backend-laravel/resources/views/admin/user.blade.php",
+    "services/backend-laravel/routes/api.php",
+    "services/backend-laravel/tests/Feature/V1008SanctionAppealTest.php"
+  ],
+  "main_chain": {
+    "user_id": 11,
+    "sanction_id": 4,
+    "appeal_id": 1,
+    "status": "submitted",
+    "submitted_from": "real APP",
+    "restriction_remains_active": true,
+    "historical_read_status": 200,
+    "new_send_status": 404
+  },
+  "independent_negative_chain": {
+    "user_id": 13,
+    "sanction_id": 5,
+    "appeal_id": 2,
+    "explicit_restore": true,
+    "retry_after_restore": 404,
+    "restore_wait_seconds": 2.953,
+    "not_the_main_app_chain": true
+  },
+  "packages": [
+    {
+      "kind": "debug APK",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\r1\\packages\\v1008-r1-debug.apk",
+      "sha256": "76817f85f8267552f23e07deb08bbf93879719f9606c4bf9096800a03dfed43b",
+      "bytes": 222632154,
+      "versionName": "0.08.04",
+      "versionCode": 80400,
+      "local_only": true
+    },
+    {
+      "kind": "release AAR",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\r1\\packages\\v1008-r1-release.aar",
+      "sha256": "72e04eb1ef628870a6f66cd969c3239debdc940f26b7d2d6416acc5430187562",
+      "bytes": 3964613,
+      "versionName": "0.08.04",
+      "versionCode": 80400,
+      "local_only": true
+    },
+    {
+      "kind": "device readback APK",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\r1\\packages\\device-installed.apk",
+      "sha256": "76817f85f8267552f23e07deb08bbf93879719f9606c4bf9096800a03dfed43b",
+      "bytes": 222632154,
+      "versionName": "0.08.04",
+      "versionCode": 80400,
+      "local_only": true
+    }
+  ],
+  "environment": {
+    "database": "elitesync_v1008_dev",
+    "container": "elitesync-v1008-db",
+    "volume": "elitesync-v1008-db-data",
+    "loopback_port": 43318,
+    "avd": "elitesync_v1007_api36",
+    "serial": "emulator-5582",
+    "front_php": "127.0.0.1:8000 -> 8001",
+    "final_resources": "front/PHP, DB container and AVD STOPPED; volume/media/private configuration RETAINED",
+    "worker": "NOT_RUN in R1; unaffected prior worker evidence retained",
+    "seed": "NOT_RUN; only append-only fictional fixtures and one new migration"
+  },
+  "tests": {
+    "php_related": {
+      "tests": 31,
+      "assertions": 367,
+      "exit": 0,
+      "deprecations": 2
+    },
+    "flutter_related": {
+      "tests": 21,
+      "exit": 0
+    },
+    "dart_full": {
+      "result": "No issues found!",
+      "exit": 0
+    },
+    "build": {
+      "exit": 0
+    },
+    "install": {
+      "exit": 0,
+      "device_readback_sha_equal": true
+    }
+  },
+  "comparisons": {
+    "restart": {
+      "database": true,
+      "port": true,
+      "initial_business_invariant_hashes": true,
+      "appeals": true,
+      "r1_users": true,
+      "r1_sanctions": true,
+      "r1_cn": true,
+      "r1_mc": true,
+      "appeal_view_audit": true
+    },
+    "initial_business_preserved": {
+      "original_users": true,
+      "questionnaire_answers": true,
+      "questionnaire_attempts": true,
+      "questionnaire_questions": true,
+      "dating_rounds": true,
+      "matching_runs": true,
+      "status_posts": true,
+      "moderation_reports": true,
+      "app_release_versions": true,
+      "original_sanctions": true,
+      "original_match": true,
+      "original_cn": true,
+      "original_mc": true
+    },
+    "appeal_did_not_change_authority": {
+      "r1_users": true,
+      "r1_sanctions": true,
+      "r1_cn": true,
+      "r1_mc": true
+    }
+  },
+  "protected_root": {
+    "normal_status_equal": true,
+    "index_equal": true,
+    "changed_files": [],
+    "named_count": 43,
+    "head_equal": true
+  },
+  "evidence": "r1-evidence/INDEX.json",
+  "original_materials": "Initial report/manifest/evidence remain unchanged; R1 failures kept separately",
+  "not_run": [
+    "full Flutter suite",
+    "full PHP suite",
+    "B01-B06 full reacceptance",
+    "new matching consumer",
+    "production/real accounts/third-party/historical backups",
+    "B06 artifact URL hosting or release metadata replacement"
+  ],
+  "observations_retained": [
+    "v10.0.7 historical 3 Flutter failures and exit1",
+    "vendor deprecations",
+    "legacy local notification storage",
+    "original restoration capability backlog"
+  ]
+}

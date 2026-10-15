@@ -1,0 +1,2 @@
+@extends('admin.layout')
+@section('content')<h1>管理操作审计</h1><table><tr><th>ID/时间</th><th>管理员</th><th>动作/目标</th><th>版本/原因</th></tr>@foreach($audits as $a)<tr><td>{{ $a->id }} / {{ $a->created_at }}</td><td>{{ $a->actor_user_id ?? '受控CLI' }}</td><td>{{ $a->action }} {{ $a->target_type }}#{{ $a->target_id }}</td><td>{{ $a->expected_version }} {{ $a->reason }}</td></tr>@endforeach</table>{{ $audits->links() }}@endsection

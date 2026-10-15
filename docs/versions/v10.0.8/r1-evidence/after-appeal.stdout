@@ -1,0 +1,100 @@
+{
+    "database": "elitesync_v1008_dev",
+    "port": 43318,
+    "initial_business_invariant_hashes": {
+        "original_users": "baf0e04fd45d370674252c564a3bbb04e0985549263629f63878a856be41ea81",
+        "questionnaire_answers": "d7d919717acc31b4a3d3198252d8b9cca52ee2d42a2d2a47c4e12a38dca92012",
+        "questionnaire_attempts": "4414a79c7330bc1c66d9a3975e2490b54ff4e54fc5a249e24f0276d8a9bec26d",
+        "questionnaire_questions": "aeee4231bd5af711734a6d48871031901c42ad1d3ffb84f20c1de4a3c458981c",
+        "dating_rounds": "0a8ee51b65b7c1784721ead660cb296e9d0daf3a2a55e6f647d5d588a073c7f2",
+        "matching_runs": "93b636a4fceeff4d7f2894a8640b28cc9859fb3e3d08201b4bcebab6b3d41f03",
+        "status_posts": "0db950859d0072b833bf7ad6e200184bf709614241aab1f80e2ab417ae396d8d",
+        "moderation_reports": "cc0ff27da5dd9cf511e6d8ecb3d152351bc49e32a986a897e6918979e4cdffa2",
+        "app_release_versions": "198a39134a4b42045f29ff0e6d44f09ce599abe378190aa8976ffebbeb644798",
+        "original_sanctions": "cb793bcc2bbf5412c5b355fcf4e0ec366198cf04363045c000cabc10a3525eab",
+        "original_match": "f7d5bce46c28d833d6cd8f58d1fe96ae3d5ed33a4e1ae981023fb8b150e48100",
+        "original_cn": "cc5aaad09bf4a2735099dbffcd5c3a58ef45c1c4f14505ad451924e57f182747",
+        "original_mc": "754d35dfb7787a7a98013b7450cbf2219d679df8464423d3516c664fb7c0c5df"
+    },
+    "appeals": [
+        {
+            "id": 1,
+            "sanction_id": 4,
+            "user_id": 11,
+            "status": "submitted",
+            "note": "V1008R1PleaseReviewRestrictionNoAutoRestore",
+            "submitted_at": "2026-10-15 09:33:29",
+            "created_at": "2026-10-15 09:33:29",
+            "updated_at": "2026-10-15 09:33:29"
+        }
+    ],
+    "r1_users": [
+        {
+            "id": 11,
+            "name": "V1008 R1 Fictional r1restricted",
+            "disabled": 0,
+            "moderation_status": "restricted",
+            "account_status": "active",
+            "is_match_eligible": 0,
+            "admin_revision": 1
+        },
+        {
+            "id": 12,
+            "name": "V1008 R1 Fictional r1peer",
+            "disabled": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "is_match_eligible": 1,
+            "admin_revision": 0
+        }
+    ],
+    "r1_sanctions": [
+        {
+            "id": 4,
+            "user_id": 11,
+            "kind": "restrict",
+            "active": 1,
+            "restored_at": null
+        }
+    ],
+    "r1_cn": [
+        {
+            "id": 2,
+            "match_id": 2,
+            "user_a": 11,
+            "user_b": 12,
+            "requester_id": 11,
+            "state": "CN_ACTIVE",
+            "revision": 2,
+            "created_at": "2026-10-15 09:29:13",
+            "updated_at": "2026-10-15 09:29:13"
+        }
+    ],
+    "r1_mc": [
+        {
+            "id": 5,
+            "connection_id": 2,
+            "purpose": "CONVERSATION_LIVE_READ",
+            "state": "MC_ACTIVE",
+            "requester_id": 11,
+            "revision": 2,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 09:29:13",
+            "updated_at": "2026-10-15 09:29:14",
+            "generation": 1
+        },
+        {
+            "id": 6,
+            "connection_id": 2,
+            "purpose": "CONVERSATION_LIVE_SEND",
+            "state": "MC_ACTIVE",
+            "requester_id": 11,
+            "revision": 2,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 09:29:13",
+            "updated_at": "2026-10-15 09:29:14",
+            "generation": 1
+        }
+    ],
+    "appeal_view_audit": []
+}

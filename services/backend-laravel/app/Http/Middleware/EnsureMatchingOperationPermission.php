@@ -12,7 +12,7 @@ class EnsureMatchingOperationPermission
     {
         $user = $request->user();
         $phones = config('app.admin_phones', []);
-        if (!$user || !$user->isAdminRole() || !in_array((string) $user->phone, $phones, true)) {
+        if (!app(\App\Services\Accounts\AdminAccess::class)->allows($user)) {
             return response()->json(['message' => 'matching operation access required'], 403);
         }
         if (!(bool) config('matching.foundation.admin_operations_enabled', false)) {

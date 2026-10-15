@@ -23,7 +23,7 @@ final class LiveConsentService
         }
         $db = DB::connection();
 
-        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && $db->getDatabaseName() === 'elitesync_v1007_dev'
+        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318]], true)
             && $db->getConfig('host') === '127.0.0.1' && ! $db->getConfig('unix_socket')
             && (int) $db->getConfig('port') === (int) config('restoration.port')
             && ! in_array((int) $db->getConfig('port'), [3306, 43316], true);
@@ -56,7 +56,7 @@ final class LiveConsentService
             $q->lockForUpdate();
         }
 
-return $q->first();
+        return $q->first();
     }
 
     private function identity(object $cn): array
@@ -123,16 +123,23 @@ return $q->first();
         if (! $cn) {
             return $denied;
         }
-        $rows = DB::table('messaging_consents')->where('connection_id', $cn->id)->orderBy('id')->lockForUpdate()->get()->keyBy('purpose');
+        $all = DB::table('messaging_consents')->where('connection_id', $cn->id)->orderBy('id')->lockForUpdate()->get();
+        $rows = $all->where('generation', $all->max('generation'))->keyBy('purpose');
         $read = $rows->get(MC::PURPOSE_LIVE_READ);
         $send = $rows->get(MC::PURPOSE_LIVE_SEND);
         if (! $read || ! $send) {
             return $denied;
         }
 
-        return MC::evaluateLiveGates($this->identity($cn), [$this->connectionEvidence($cn)],
+        $result = MC::evaluateLiveGates($this->identity($cn), [$this->connectionEvidence($cn)],
             $this->consentIdentity($cn, $read), [$this->consentEvidence($cn, $read)],
             $this->consentIdentity($cn, $send), [$this->consentEvidence($cn, $send)]);
+        // Locking reads stay current even when an outer transaction already has a snapshot.
+        if (User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get(['moderation_status'])->contains('moderation_status', 'restricted')) {
+            $result['live_send_allowed'] = false;
+        }
+
+        return $result;
     }
 
     public function current(int $actor, int $peer): array
@@ -140,7 +147,7 @@ return $q->first();
         $match = $this->match($actor, $peer);
         abort_unless($match, 404, 'connection unavailable');
         $cn = DB::table('product_connections')->where('match_id', $match->id)->first();
-        $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)->first() : null;
+        $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)->orderByDesc('generation')->first() : null;
 
         return ['connection' => ['state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
             'consent' => ['state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
@@ -152,6 +159,7 @@ return $q->first();
         return DB::transaction(function () use ($actor, $peer, $kind, $action, $expected) {
             $match = $this->match($actor, $peer, true);
             abort_unless($match, 404, 'connection unavailable');
+            abort_if(in_array($action, ['request', 'accept'], true) && User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get(['moderation_status'])->contains('moderation_status', 'restricted'), 403, 'restricted interaction');
             $cn = DB::table('product_connections')->where('match_id', $match->id)->lockForUpdate()->first();
             if (! $cn) {
                 abort_unless($kind === 'connection' && $action === 'request' && $expected === 0, 409, 'invalid transition');
@@ -192,11 +200,18 @@ return $q->first();
                 $next = match ($action) {
                     'request' => MC::STATE_PENDING,'accept' => MC::STATE_ACTIVE,'decline' => MC::STATE_DECLINED,'withdraw' => MC::STATE_WITHDRAWN,'revoke' => MC::STATE_REVOKED,default => null
                 };
+                $latest = DB::table('messaging_consents')->where('connection_id', $cn->id)->orderByDesc('generation')->lockForUpdate()->first();
+                $generation = (int) ($latest->generation ?? 1);
+                if ($action === 'request' && $latest && in_array($latest->state, [MC::STATE_REVOKED, MC::STATE_DECLINED, MC::STATE_WITHDRAWN], true)) {
+                    abort_unless((int) $latest->revision === $expected, 409, 'stale revision');
+                    $generation++;
+                    $expected = 0;
+                }
                 foreach ([MC::PURPOSE_LIVE_READ, MC::PURPOSE_LIVE_SEND] as $purpose) {
-                    $mc = DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', $purpose)->lockForUpdate()->first();
+                    $mc = DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', $purpose)->where('generation', $generation)->lockForUpdate()->first();
                     if (! $mc) {
                         abort_unless($action === 'request' && $expected === 0, 409, 'request required');
-                        $id = DB::table('messaging_consents')->insertGetId(['connection_id' => $cn->id, 'purpose' => $purpose, 'requester_id' => $actor, 'state' => MC::STATE_NONE,
+                        $id = DB::table('messaging_consents')->insertGetId(['connection_id' => $cn->id, 'purpose' => $purpose, 'generation' => $generation, 'requester_id' => $actor, 'state' => MC::STATE_NONE,
                             'revision' => 0, 'connection_revision' => $cn->revision, 'created_at' => now(), 'updated_at' => now()]);
                         $mc = DB::table('messaging_consents')->where('id', $id)->first();
                     }
@@ -226,9 +241,9 @@ return $q->first();
         });
     }
 
-    private function transitionEvidence(array $current,string $identity,string $subject,array $participants,string $purpose,string $from,string $to,int $actor,string $kind): array
+    private function transitionEvidence(array $current, string $identity, string $subject, array $participants, string $purpose, string $from, string $to, int $actor, string $kind): array
     {
-        $proof = $this->source($identity,$subject,$participants,$purpose,'TRANSITION',(int) $current['source_evidence']['source_revision']['value'] + 1,$kind.'-transition');
+        $proof = $this->source($identity, $subject, $participants, $purpose, 'TRANSITION', (int) $current['source_evidence']['source_revision']['value'] + 1, $kind.'-transition');
         $proof['required_bindings']['actor'] = 'user:'.$actor;
         $proof['source_evidence']['bindings'] = $proof['required_bindings'];
 

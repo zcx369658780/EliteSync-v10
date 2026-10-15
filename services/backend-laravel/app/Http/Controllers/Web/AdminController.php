@@ -32,20 +32,21 @@ final class AdminController extends Controller
     public function users(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
-        $users = User::query()->select(['id', 'name', 'phone', 'role', 'disabled'])
+        $users = User::query()->select(['id', 'name', 'phone', 'role', 'disabled', 'moderation_status','verify_status','admin_revision'])
             ->when($q !== '', fn ($query) => $query->where(function ($filter) use ($q) {
                 $filter->where('name', 'like', '%'.$q.'%')->orWhere('phone', 'like', '%'.$q.'%');
                 if (ctype_digit($q)) { $filter->orWhere('id', (int) $q); }
-            }))->orderBy('id')->paginate(20)->withQueryString();
+            }))->when($request->filled('verify_status'), fn($query)=>$query->where('verify_status',$request->query('verify_status')))
+            ->when($request->filled('moderation_status'),fn($query)=>$query->where('moderation_status',$request->query('moderation_status')))->orderBy('id')->paginate(20)->withQueryString();
         return view('admin.users', compact('users', 'q'));
     }
 
     public function disable(Request $request, int $userId, DisableUser $action)
     {
-        $request->validate(['confirm_disable' => 'accepted']);
+        $data=$request->validate(['confirm_disable' => 'accepted|required','expected_revision'=>'required|integer|min:0','reason'=>'required|string|max:1000']);
         $target = User::findOrFail($userId);
         abort_if($target->role !== 'user' || $target->id === $request->user()->id, 403);
-        $action->execute($userId);
+        app(\App\Services\Admin\UserGovernance::class)->punish($request->user(),$userId,'banned',$data['reason'],(int)$data['expected_revision']);
         return redirect()->route('admin.users')->with('status', '用户 '.$userId.' 已禁用，令牌和持久会话已撤销。');
     }
 

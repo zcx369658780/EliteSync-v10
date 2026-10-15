@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-15T08:18:06.214612+00:00",
+  "user": "alice",
+  "status": 401,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "unauthenticated",
+      "message": "Unauthenticated.",
+      "details": null
+    }
+  }
+}

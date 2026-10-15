@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\StatusPost;
 use App\Models\MediaAsset;
-use App\Models\ModerationReport;
-use App\Models\UserBlock;
+use App\Models\StatusPost;
 use App\Models\User;
+use App\Models\UserBlock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
@@ -77,6 +76,7 @@ class StatusPostApiTest extends TestCase
 
     public function test_admin_can_delete_any_status_post(): void
     {
+        config(['app.admin_phones' => ['17000000099']]);
         $author = $this->makeUser(['phone' => '17000000002']);
         $admin = $this->makeUser([
             'phone' => '17000000099',
@@ -94,7 +94,7 @@ class StatusPostApiTest extends TestCase
         ]);
 
         $this->actingAs($admin, 'sanctum')
-            ->deleteJson("/api/v1/status/posts/{$post->id}")
+            ->deleteJson("/api/v1/status/posts/{$post->id}", ['reason' => 'Reviewed public fixture', 'expected_revision' => 0, 'confirm' => true])
             ->assertOk()
             ->assertJsonPath('ok', true);
 

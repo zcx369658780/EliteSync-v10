@@ -1,0 +1,3 @@
+Auto packing the repository for optimum performance.
+See "git help gc" for manual housekeeping.
+warning: There are too many unreachable loose objects; run 'git prune' to remove them.

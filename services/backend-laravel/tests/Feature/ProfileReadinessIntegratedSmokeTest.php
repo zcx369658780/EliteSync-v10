@@ -23,13 +23,13 @@ class ProfileReadinessIntegratedSmokeTest extends TestCase
             'category' => 'readiness',
             'content' => 'r2-smoke',
             'question_type' => 'single',
-            'options' => ['a', 'b'],
+            'options' => [['option_id' => 'a', 'label' => ['zh' => 'A']], ['option_id' => 'b', 'label' => ['zh' => 'B']]],
             'sort_order' => 1,
             'enabled' => true,
             'version' => 1,
         ]);
-        $actor = User::factory()->create(['phone' => 'r2-smoke-actor']);
-        $outsider = User::factory()->create(['phone' => 'r2-smoke-outsider']);
+        $actor = User::factory()->create(['phone' => 'r2-smoke-actor', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
+        $outsider = User::factory()->create(['phone' => 'r2-smoke-outsider', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
         Sanctum::actingAs($actor);
 
         $this->getJson('/api/v1/profile/basic')

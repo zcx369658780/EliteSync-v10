@@ -1,0 +1,104 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+FFFEFFF                                                             7 / 7 (100%)
+
+Time: 00:00.902, Memory: 48.00 MB
+
+There was 1 error:
+
+1) Tests\Feature\V1008SanctionAppealTest::test_inactive_restored_wrong_kind_and_stale_account_state_fail_closed
+Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1 no such table: sanction_appeals (Connection: sqlite, SQL: select count(*) as aggregate from "sanction_appeals")
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3603
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3531
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Constraints\CountInDatabase.php:54
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:79
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:79
+
+Caused by
+PDOException: SQLSTATE[HY000]: General error: 1 no such table: sanction_appeals
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:407
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3603
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3531
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Constraints\CountInDatabase.php:54
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:79
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:79
+
+--
+
+There were 6 failures:
+
+1) Tests\Feature\V1008SanctionAppealTest::test_owner_lists_minimal_current_restriction_and_submits_without_changing_authority
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:40
+
+2) Tests\Feature\V1008SanctionAppealTest::test_exact_duplicate_is_idempotent_but_changed_note_conflicts
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:54
+
+3) Tests\Feature\V1008SanctionAppealTest::test_non_owner_unknown_and_forged_actor_are_rejected
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:63
+
+4) Tests\Feature\V1008SanctionAppealTest::test_disabled_cached_identity_and_unauthenticated_access_are_rejected
+Expected response status code [401] but received 404.
+Failed asserting that 404 is identical to 401.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:121
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:84
+
+5) Tests\Feature\V1008SanctionAppealTest::test_note_validation_and_admin_read_is_escaped_minimal_and_audited
+Expected response status code [422] but received 404.
+Failed asserting that 404 is identical to 422.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:221
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:96
+
+6) Tests\Feature\V1008SanctionAppealTest::test_restore_disallows_resubmission_and_retains_original_appeal
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008SanctionAppealTest.php:113
+
+ERRORS!
+Tests: 7, Assertions: 12, Errors: 1, Failures: 6, Deprecations: 2.

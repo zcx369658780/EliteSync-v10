@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-15T09:34:16.688072+00:00",
+  "user": "r1restricted",
+  "status": 409,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "appeal already submitted",
+      "details": null
+    }
+  }
+}

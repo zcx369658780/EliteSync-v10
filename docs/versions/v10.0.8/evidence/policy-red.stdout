@@ -1,0 +1,79 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+EEE                                                                 3 / 3 (100%)
+
+Time: 00:14.698, Memory: 42.00 MB
+
+There were 3 errors:
+
+1) Tests\Feature\V1008PolicyTest::test_review_is_versioned_audited_and_stale_request_is_atomic
+Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Services\Admin\UserGovernance] does not exist.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:961
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:12
+
+Caused by
+ReflectionException: Class "App\Services\Admin\UserGovernance" does not exist
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:959
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:12
+
+2) Tests\Feature\V1008PolicyTest::test_restrict_does_not_clear_ban_and_restore_requires_exact_owned_sanction
+Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Services\Admin\UserGovernance] does not exist.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:961
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:19
+
+Caused by
+ReflectionException: Class "App\Services\Admin\UserGovernance" does not exist
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:959
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:19
+
+3) Tests\Feature\V1008PolicyTest::test_role_only_actor_and_admin_targets_are_refused
+Illuminate\Contracts\Container\BindingResolutionException: Target class [App\Services\Admin\UserGovernance] does not exist.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:961
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:29
+
+Caused by
+ReflectionException: Class "App\Services\Admin\UserGovernance" does not exist
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:959
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:832
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1078
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Container\Container.php:763
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:1058
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php:124
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008PolicyTest.php:29
+
+ERRORS!
+Tests: 3, Assertions: 0, Errors: 3, Deprecations: 2.

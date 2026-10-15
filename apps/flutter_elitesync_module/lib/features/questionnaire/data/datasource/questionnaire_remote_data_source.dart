@@ -16,10 +16,24 @@ class QuestionnaireRemoteDataSource {
   final ApiClient _apiClient;
   final bool _useMockQuestionnaire;
   QuestionnaireBundleDto? _lastBundle;
+  String _draftNotice = '';
+  int? _bankRevision;
+
+  String get draftNotice => _draftNotice;
+  int? get bankRevision => _bankRevision;
+
+  QuestionnaireBundleDto _readBundle(Map<String, dynamic> data) {
+    final meta = data['meta'];
+    _draftNotice = meta is Map ? (meta['draft_notice'] ?? '').toString() : '';
+    _bankRevision = meta is Map
+        ? int.tryParse((meta['bank_revision'] ?? '').toString())
+        : null;
+    return _lastBundle = QuestionnaireBundleDto.fromJson(data);
+  }
 
   Future<QuestionnaireBundleDto> fetchQuestionnaire() async {
     if (_useMockQuestionnaire) {
-      return _lastBundle = QuestionnaireBundleDto.fromJson({
+      return _readBundle({
         'meta': QuestionnaireMock.meta,
         'questions': QuestionnaireMock.questions,
       });
@@ -27,7 +41,7 @@ class QuestionnaireRemoteDataSource {
 
     final result = await _apiClient.get('/api/v1/questionnaire/questions');
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      return _lastBundle = QuestionnaireBundleDto.fromJson(result.data);
+      return _readBundle(result.data);
     }
 
     final failure = result as NetworkFailure<Map<String, dynamic>>;
@@ -57,6 +71,12 @@ class QuestionnaireRemoteDataSource {
     );
     if (result is NetworkSuccess<Map<String, dynamic>>) return;
     final failure = result as NetworkFailure<Map<String, dynamic>>;
+    if (failure.statusCode == 422 || failure.statusCode == 409) {
+      throw const ValidationException(
+        '草稿与当前题目不兼容，请重新加载当前题目后补答。',
+        code: 'QUESTIONNAIRE_DRAFT_STALE',
+      );
+    }
     throw ValidationException(
       failure.message,
       code: failure.code ?? 'QUESTIONNAIRE_DRAFT_SAVE_FAILED',
@@ -124,6 +144,12 @@ class QuestionnaireRemoteDataSource {
     }
 
     final failure = result as NetworkFailure<Map<String, dynamic>>;
+    if (failure.statusCode == 422 || failure.statusCode == 409) {
+      throw const ValidationException(
+        '题目集合已变更，提交未保存；已保留当前答案，请重新加载当前题目后补答。',
+        code: 'QUESTIONNAIRE_SUBMIT_STALE',
+      );
+    }
     throw ValidationException(
       failure.message,
       code: failure.code ?? 'QUESTIONNAIRE_SUBMIT_FAILED',

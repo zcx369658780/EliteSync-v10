@@ -1,0 +1,12 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/about_update_page_test.dart
+00:00 +0: Version shows explicit unchecked initial state
+00:00 +1: Version reports false external launcher result
+00:00 +2: Version sanitizes thrown external launcher failure
+00:00 +3: Local build queries development and displays database metadata
+00:00 +4: Stable build retains explicit download confirmation
+00:00 +5: Deactivated development release shows config fallback without production download
+00:00 +6: Unknown source null cannot confirm an update
+00:01 +7: Unknown source untrusted cannot confirm an update
+00:01 +8: Unknown source true cannot confirm an update
+00:01 +9: Database metadata from the wrong channel is unconfirmed
+00:01 +10: All tests passed!

@@ -10,6 +10,8 @@ use App\Models\DatingRound;
 use App\Models\DatingRoundChannel;
 use App\Models\DatingRoundUserState;
 use App\Models\MatchingOperationAudit;
+use App\Models\MatchingRun;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -18,6 +20,7 @@ class MatchingRoundService
     public function prepare(string $channelKey, string $cadenceKey, ?\DateTimeInterface $scheduledFor, ?\DateTimeInterface $revealAt, string $actorType, ?int $actorId, string $source = 'admin', ?int $expectedChannelVersion = null, ?string $idempotencyKey = null): DatingRound
     {
         return DB::transaction(function () use ($channelKey, $cadenceKey, $scheduledFor, $revealAt, $actorType, $actorId, $source, $expectedChannelVersion, $idempotencyKey) {
+            app(CurrentQuestionnaire::class)->lock();
             DatingRoundChannel::query()->firstOrCreate(['channel_key' => $channelKey], ['state_version' => 1]);
             $channel = DatingRoundChannel::query()->whereKey($channelKey)->lockForUpdate()->firstOrFail();
             $existing = DatingRound::query()->where('channel_key', $channelKey)->where('cadence_key', $cadenceKey)->first();
@@ -49,7 +52,17 @@ class MatchingRoundService
     public function transition(DatingRound $round, RoundState $next, int $expectedVersion, string $actorType, ?int $actorId, OperationAction $action, ?string $idempotencyKey = null): DatingRound
     {
         return DB::transaction(function () use ($round, $next, $expectedVersion, $actorType, $actorId, $action, $idempotencyKey) {
+            app(CurrentQuestionnaire::class)->lock();
+            $publishing = in_array($next, [RoundState::Revealed, RoundState::NoCandidate], true);
+            $currentUsers = collect();
+            if ($publishing) {
+                $ids = DatingRoundUserState::query()->where('round_id', $round->id)->pluck('user_id')->all();
+                $currentUsers = User::query()->whereIn('id', $ids)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            }
             $locked = DatingRound::query()->whereKey($round->id)->lockForUpdate()->firstOrFail();
+            if ($publishing && $locked->active_run_id !== null) {
+                MatchingRun::query()->whereKey($locked->active_run_id)->lockForUpdate()->firstOrFail();
+            }
             if ($locked->state_version !== $expectedVersion) {
                 throw new \DomainException('stale_state_version');
             }
@@ -58,7 +71,14 @@ class MatchingRoundService
             }
             $before = ['state' => $locked->state->value, 'state_version' => $locked->state_version];
             $values = ['state' => $next, 'state_version' => $locked->state_version + 1];
-            if (in_array($next, [RoundState::Revealed, RoundState::NoCandidate], true)) {
+            if ($publishing) {
+                $participants = DatingRoundUserState::where('round_id', $locked->id)->pluck('user_id')->map(fn ($id) => (int) $id)->all();
+                foreach ($participants as $userId) {
+                    $user = $currentUsers->get($userId);
+                    if (! $user || ! app(ProfileReadinessService::class)->forUser($user)['matching_eligibility']['eligible']) {
+                        throw new \DomainException('eligibility_changed_before_reveal');
+                    }
+                }
                 if (! $locked->reveal_at || $locked->reveal_at->isFuture()) {
                     throw new \DomainException('round_not_reveal_eligible');
                 }
@@ -72,6 +92,13 @@ class MatchingRoundService
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNotNull('dating_match_id')->update(['state' => UserRoundState::Revealed->value, 'conversation_eligible' => true, 'reason_code' => 'match_revealed', 'next_action_code' => 'open_conversation', 'projection_version' => DB::raw('projection_version + 1')]);
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNull('dating_match_id')->update(['state' => UserRoundState::NoCandidate->value, 'conversation_eligible' => false, 'reason_code' => 'no_candidate', 'next_action_code' => 'wait_next_round', 'projection_version' => DB::raw('projection_version + 1')]);
                 DatingMatch::query()->where('round_id', $locked->id)->update(['drop_released' => true, 'released_at' => now()->utc()]);
+                $runKey = MatchingRun::whereKey($locked->active_run_id)->value('run_key');
+                foreach ($currentUsers->keys() as $userId) {
+                    app(NotificationService::class)->createForUser((int) $userId, 'matching_round',
+                        '匹配轮次结果已发布', '请在应用内查看本轮结果。匹配不授予连接或消息同意。',
+                        ['source' => 'matching_round', 'round_key' => $locked->round_key, 'run_key' => $runKey,
+                            'route_name' => 'match_result', 'route_args' => []]);
+                }
                 $values['revealed_at'] = now()->utc();
             }
             if ($next === RoundState::Closed) {

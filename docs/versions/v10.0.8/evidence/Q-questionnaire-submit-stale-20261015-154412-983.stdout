@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/questionnaire/questionnaire_bank_change_notice_test.dart
+00:00 +0: server bank metadata reaches provider and survives option selection
+00:00 +1: stale draft retains current answer and requires current-bank reload
+00:00 +2: last answer submit 422 keeps answers, blocks resubmit and reloads current bank
+00:00 +3: last answer submit 409 keeps answers, blocks resubmit and reloads current bank
+00:00 +4: network submit failure preserves answers without claiming a bank change
+00:00 +5: All tests passed!

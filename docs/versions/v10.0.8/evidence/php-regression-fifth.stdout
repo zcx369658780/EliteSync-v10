@@ -1,0 +1,58 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD  63 / 146 ( 43%)
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 126 / 146 ( 86%)
+DDDDDDDDDDDDDDDFFFDF                                            146 / 146 (100%)
+
+Time: 00:06.011, Memory: 76.00 MB
+
+There were 4 failures:
+
+1) Tests\Feature\ProfileReadinessIntegratedSmokeTest::test_disposable_readiness_refresh_publication_separation_and_owner_isolation
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'questionnaire_incomplete'
++'account_state_unavailable'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\ProfileReadinessIntegratedSmokeTest.php:38
+
+2) Tests\Feature\ProfileReadinessTruthApiTest::test_profile_basic_exposes_canonical_matching_eligibility_and_missing_action
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'questionnaire_incomplete'
++'account_state_unavailable'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\ProfileReadinessTruthApiTest.php:39
+
+3) Tests\Feature\ProfileReadinessTruthApiTest::test_profile_basic_refreshes_to_eligible_without_publication
+Failed asserting that false is identical to true.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\ProfileReadinessTruthApiTest.php:76
+
+4) Tests\Feature\QuestionnaireReadinessActionLoopIntegratedSmokeTest::test_submission_moves_only_the_owner_from_incomplete_to_fresh_eligible_truth
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'questionnaire_incomplete'
++'account_state_unavailable'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\QuestionnaireReadinessActionLoopIntegratedSmokeTest.php:48
+
+FAILURES!
+Tests: 146, Assertions: 1403, Failures: 4, Deprecations: 2.

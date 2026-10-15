@@ -1,0 +1,286 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDEEEEEEE                                                   15 / 15 (100%)
+
+Time: 00:06.450, Memory: 54.00 MB
+
+There were 7 errors:
+
+1) Tests\Feature\V1008QuestionOperationsTest::test_preview_is_read_only_and_counts_history_without_returning_private_payloads
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Prof. Demarcus Moore DVM, greenholt.tessie@example.net, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], Zs3TufxOfE, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+2) Tests\Feature\V1008QuestionOperationsTest::test_disable_and_restore_increment_versions_and_preserve_history
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Albina Crooks MD, dovie72@example.org, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], xiLBwa60wi, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+3) Tests\Feature\V1008QuestionOperationsTest::test_stale_revision_or_tampered_signature_does_not_write
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Florencio Konopelski, xrenner@example.net, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], 4Ii1Ku28bw, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+4) Tests\Feature\V1008QuestionOperationsTest::test_question_version_change_invalidates_preview_even_without_revision_change
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Andy Spencer Sr., augusta.konopelski@example.com, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], a5U7cuqVo6, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+5) Tests\Feature\V1008QuestionOperationsTest::test_non_low_drop_disable_and_unaudited_restore_are_rejected
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Conner Ortiz, kshlerin.marty@example.com, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], bISeHEaaQr, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+6) Tests\Feature\V1008QuestionOperationsTest::test_missing_confirmation_cannot_apply_from_web
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Rod Schmitt, casandra.effertz@example.com, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], OIEuyPK6DE, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+7) Tests\Feature\V1008QuestionOperationsTest::test_audit_failure_rolls_back_question_and_global_revision
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone (Connection: sqlite, SQL: insert into "users" ("name", "email", "email_verified_at", "password", "remember_token", "updated_at", "created_at") values (Velva Gibson, norene31@example.com, 2026-10-15 06:37:16, [REDACTED_PASSWORD_HASH], FIYmJBH5fn, 2026-10-15 06:37:16, 2026-10-15 06:37:16))
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: users.phone
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2120
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1359
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1324
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1163
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:352
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:261
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:347
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:303
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1008QuestionOperationsTest.php:27
+
+ERRORS!
+Tests: 15, Assertions: 56, Errors: 7, Deprecations: 2.

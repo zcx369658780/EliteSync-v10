@@ -1,0 +1,2 @@
+# Preserve receipt bytes and hashes, including CRLF and raw stream whitespace.
+* -text

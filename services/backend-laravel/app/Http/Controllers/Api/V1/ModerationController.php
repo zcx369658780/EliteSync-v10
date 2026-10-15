@@ -34,6 +34,15 @@ class ModerationController extends Controller
             return response()->json(['message' => 'cannot report self'], 422);
         }
 
+        if(!empty($data['target_message_id'])) {
+            $message=\App\Models\ChatMessage::find($data['target_message_id']);
+            abort_unless($message && in_array($reporterId,[(int)$message->sender_id,(int)$message->receiver_id],true) && in_array($targetUserId,[(int)$message->sender_id,(int)$message->receiver_id],true)
+                && app(\App\Services\LiveConsentService::class)->gates($reporterId,$targetUserId)['live_read_allowed'],404);
+        }
+        if(!empty($data['target_status_post_id'])) {
+            $post=\App\Models\StatusPost::find($data['target_status_post_id']);
+            abort_unless($post&&!$post->is_deleted&&(int)$post->author_user_id===$targetUserId&&in_array($post->visibility,['public','square'],true),404);
+        }
         $report = ModerationReport::create([
             'reporter_id' => $reporterId,
             'target_user_id' => $targetUserId,

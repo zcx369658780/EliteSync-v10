@@ -6,6 +6,7 @@ use App\Models\DatingMatch;
 use App\Models\ModerationReport;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -154,17 +155,66 @@ class ModerationApiTest extends TestCase
             'status' => 'new',
         ]);
 
+        $oldTokenId = $target->createToken('pre-ban')->accessToken->id;
+        DB::table('sessions')->insert(['id' => 'moderation-target-session', 'user_id' => $target->id,
+            'payload' => '', 'last_activity' => time()]);
+        $oldRememberToken = $target->remember_token;
         Sanctum::actingAs($admin);
         $this->postJson('/api/v1/admin/reports/'.$report->id.'/action', [
             'action' => 'banned',
             'note' => 'confirmed spam',
-        ])->assertOk()
-            ->assertJsonPath('report.status', 'action_taken');
-
+            'expected_revision' => 0,
+            'expected_user_revision' => 0,
+            'reason' => 'confirmed spam',
+            'confirm' => true,
+        ])->assertOk()->assertJsonPath('ok', true);
+        // Mutation now acknowledges success; report detail still proves the resulting status.
+        $this->getJson('/api/v1/admin/reports/'.$report->id)->assertOk()
+            ->assertJsonPath('status', 'action_taken');
+        $this->assertDatabaseHas('moderation_reports', ['id' => $report->id,
+            'status' => 'action_taken', 'admin_revision' => 1, 'resolved_by_user_id' => $admin->id]);
         $this->assertDatabaseHas('users', [
             'id' => $target->id,
             'disabled' => true,
             'moderation_status' => 'banned',
         ]);
+        $this->assertDatabaseHas('users', ['id' => $target->id, 'admin_revision' => 1,
+            'account_status' => 'disabled', 'visibility_scope' => 'hidden', 'is_match_eligible' => false]);
+        $this->assertDatabaseMissing('personal_access_tokens', ['id' => $oldTokenId]);
+        $this->assertDatabaseMissing('sessions', ['user_id' => $target->id]);
+        $this->assertNotSame($oldRememberToken, $target->fresh()->remember_token);
+        $sanction = DB::table('admin_sanctions')->where('user_id', $target->id)
+            ->where('report_id', $report->id)->where('kind', 'banned')->where('active', true)->sole();
+        $this->assertSame($admin->id, (int) $sanction->actor_user_id);
+        foreach (['user.banned' => 'user', 'report.banned' => 'report'] as $action => $type) {
+            $this->assertDatabaseHas('admin_operation_audits', ['actor_user_id' => $admin->id,
+                'action' => $action, 'target_type' => $type,
+                'target_id' => (string) ($type === 'user' ? $target->id : $report->id),
+                'expected_version' => 0, 'reason' => 'confirmed spam']);
+        }
+        $this->assertDatabaseHas('admin_operation_audits', ['action' => 'report.view', 'actor_user_id' => $admin->id, 'target_id' => (string) $report->id]);
+        $this->assertDatabaseCount('admin_operation_audits', 3);
+
+        // Restore must identify this exact active sanction and retain revoked credentials.
+        $this->postJson('/api/v1/admin/reports/'.$report->id.'/action', [
+            'action' => 'restore', 'sanction_id' => $sanction->id,
+            'expected_revision' => 1, 'expected_user_revision' => 1,
+            'reason' => 'Reviewed this fixture sanction', 'confirm' => true,
+        ])->assertOk()->assertJsonPath('ok', true);
+        $this->assertDatabaseHas('admin_sanctions', ['id' => $sanction->id, 'active' => false,
+            'restored_by' => $admin->id]);
+        $this->assertDatabaseHas('users', ['id' => $target->id, 'disabled' => false,
+            'moderation_status' => 'normal', 'account_status' => 'active', 'admin_revision' => 2]);
+        $this->assertDatabaseHas('moderation_reports', ['id' => $report->id,
+            'status' => 'closed', 'admin_revision' => 2]);
+        $this->assertDatabaseMissing('personal_access_tokens', ['id' => $oldTokenId]);
+        $this->assertDatabaseMissing('sessions', ['user_id' => $target->id]);
+        $this->assertDatabaseCount('admin_operation_audits', 5);
+        foreach (['user.restore' => 'user', 'report.restore' => 'report'] as $action => $type) {
+            $this->assertDatabaseHas('admin_operation_audits', ['actor_user_id' => $admin->id,
+                'action' => $action, 'target_type' => $type,
+                'target_id' => (string) ($type === 'user' ? $target->id : $report->id),
+                'expected_version' => 1, 'reason' => 'Reviewed this fixture sanction']);
+        }
     }
 }

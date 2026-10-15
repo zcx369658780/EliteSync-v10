@@ -29,6 +29,12 @@ class MatchingFoundationServiceTest extends TestCase
         config()->set('matching.foundation.digest_key', 'unit-test-digest-key');
     }
 
+    private function qualify(User ...$users): void {
+        config(['questionnaire.required_answer_count'=>1]);
+        $q=QuestionnaireQuestion::firstOrCreate(['question_key'=>'foundation-qualification'],['category'=>'test','content'=>'Foundation valid answer fixture','question_type'=>'single_choice','options'=>[['option_id'=>'A']],'sort_order'=>0,'enabled'=>true,'version'=>1]);
+        foreach($users as $u){$u->verify_status='approved';$u->save();\App\Models\QuestionnaireAnswer::updateOrCreate(['user_id'=>$u->id,'questionnaire_question_id'=>$q->id],['answer_payload'=>['value'=>'A','selected_answer'=>['A']],'version'=>1]);}
+    }
+
     public function test_additive_schema_and_legacy_match_coexist(): void
     {
         foreach (['dating_round_channels','dating_rounds','matching_runs','matching_run_candidates','dating_round_user_states','matching_operation_audits'] as $table) $this->assertTrue(Schema::hasTable($table));
@@ -72,7 +78,7 @@ class MatchingFoundationServiceTest extends TestCase
         $this->assertTrue($runs->heartbeat($claimed, 'worker-a', $claimed->fencing_token, 120));
         $this->assertFalse($runs->heartbeat($claimed, 'worker-b', $claimed->fencing_token, 120));
         $a = User::factory()->create(['phone' => 'candidate-a']); $b = User::factory()->create(['phone' => 'candidate-b']);
-        $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
+        $this->qualify($a,$b); $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
         $done = $runs->finalize($claimed->fresh(), 'worker-a', $claimed->fencing_token, [$a->id, $b->id], [['user_a' => $a->id, 'user_b' => $b->id, 'highlights' => 'bounded test']]);
         $this->assertSame(RunState::Succeeded, $done->state);
         $this->assertSame(RunOutcome::MatchesCreated, $done->outcome);
@@ -110,7 +116,7 @@ class MatchingFoundationServiceTest extends TestCase
         $runs->request($round, 'idem-atomic', 'test', null);
         $claimed = $runs->claimNext('worker-a', 120);
         $a = User::factory()->create(['phone' => 'atomic-a']); $b = User::factory()->create(['phone' => 'atomic-b']);
-        $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
+        $this->qualify($a,$b); $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
         try {
             $runs->finalize($claimed, 'worker-a', $claimed->fencing_token, [$a->id, $b->id], [
                 ['user_a' => $a->id, 'user_b' => $b->id],
@@ -157,7 +163,7 @@ class MatchingFoundationServiceTest extends TestCase
         $claimed = $runs->claimNext('worker-a', 120);
         $a = User::factory()->create(['phone' => 'change-a']); $b = User::factory()->create(['phone' => 'change-b']);
         $question = QuestionnaireQuestion::query()->create(['question_key' => 'freeze_test', 'category' => 'test', 'content' => 'before', 'question_type' => 'single', 'options' => ['a','b'], 'sort_order' => 1, 'enabled' => true, 'version' => 1]);
-        $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
+        $this->qualify($a,$b); $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
         $this->travel(1)->seconds();
         $question->forceFill(['content' => 'after'])->save();
         $this->expectException(\DomainException::class);
@@ -171,7 +177,7 @@ class MatchingFoundationServiceTest extends TestCase
         $round = $rounds->prepare('default', '2026-W38', null, now()->subMinute(), 'test', null);
         $runs->request($round, 'idem-reveal', 'test', null); $claimed = $runs->claimNext('worker-a', 120);
         $a = User::factory()->create(['phone' => 'reveal-a']); $b = User::factory()->create(['phone' => 'reveal-b']);
-        $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
+        $this->qualify($a,$b); $runs->freezeCandidates($claimed, collect([$a, $b]), 'worker-a', $claimed->fencing_token);
         $runs->finalize($claimed->fresh(), 'worker-a', $claimed->fencing_token, [$a->id, $b->id], [['user_a' => $a->id, 'user_b' => $b->id]]);
         $waiting = $round->fresh();
         $revealed = $rounds->transition($waiting, RoundState::Revealed, $waiting->state_version, 'test', null, OperationAction::Reveal);
@@ -186,7 +192,7 @@ class MatchingFoundationServiceTest extends TestCase
         $round = $rounds->prepare('default', '2026-W39', null, now()->subMinute(), 'test', null);
         $runs->request($round, 'idem-no-candidate', 'test', null); $claimed = $runs->claimNext('worker-a', 120);
         $user = User::factory()->create(['phone' => 'no-candidate-user']);
-        $runs->freezeCandidates($claimed, collect([$user]), 'worker-a', $claimed->fencing_token);
+        $this->qualify($user); $runs->freezeCandidates($claimed, collect([$user]), 'worker-a', $claimed->fencing_token);
         $done = $runs->finalize($claimed->fresh(), 'worker-a', $claimed->fencing_token, [$user->id], []);
         $this->assertSame(RunOutcome::NoCandidate, $done->outcome);
         $waiting = $round->fresh();

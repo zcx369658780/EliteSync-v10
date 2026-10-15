@@ -1,0 +1,24 @@
+{
+  "time": "2026-10-15T07:15:44.010353+00:00",
+  "user": "alice",
+  "status": 200,
+  "body": {
+    "items": [
+      {
+        "id": 1,
+        "room_id": "",
+        "sender_id": 2,
+        "receiver_id": 3,
+        "content": "V1008-before-restrict",
+        "client_message_id": null,
+        "is_read": false,
+        "read_at": null,
+        "created_at": "2026-10-15T07:14:52.000000Z",
+        "message_type": "text",
+        "has_attachments": false,
+        "attachments": []
+      }
+    ],
+    "total": 1
+  }
+}
