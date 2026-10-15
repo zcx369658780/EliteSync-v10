@@ -56,6 +56,22 @@ final class V1008EligibilityConsentTest extends TestCase
         $this->assertTrue($readiness->forUser($this->a->fresh())['matching_eligibility']['eligible']);
     }
 
+    public function test_independent_match_exclusion_remains_effective_after_restrict_restore(): void
+    {
+        foreach ($this->questions() as $question) { $this->answer($question); }
+        $this->a->update(['is_match_eligible' => false]);
+        $governance = app(UserGovernance::class);
+        $sanction = $governance->punish($this->admin, $this->a->id, 'restrict', 'controlled restriction', 0);
+        $governance->restore($this->admin, $this->a->id, $sanction, 'restore only this restriction', 1);
+        $readiness = app(ProfileReadinessService::class);
+        $this->assertFalse((bool) $this->a->fresh()->is_match_eligible);
+        $this->assertFalse($readiness->eligibleUsersQuery()->whereKey($this->a->id)->exists());
+        $this->assertSame('matching_participation_excluded', $readiness->forUser($this->a->fresh())['matching_eligibility']['reason_code']);
+        $this->a->update(['is_match_eligible' => true, 'account_status' => 'disabled']);
+        $this->assertFalse($readiness->eligibleUsersQuery()->whereKey($this->a->id)->exists());
+        $this->assertFalse($readiness->forUser($this->a->fresh())['matching_eligibility']['eligible']);
+    }
+
     public function test_approved_requires_twenty_current_enabled_answers_with_valid_option_identity(): void
     {
         $questions = $this->questions();

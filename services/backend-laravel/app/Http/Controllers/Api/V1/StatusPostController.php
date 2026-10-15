@@ -325,77 +325,80 @@ class StatusPostController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $user = $request->user();
-        if (($user?->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
-            return response()->json(['message' => 'account blocked'], 403);
-        }
-
-        $data = $request->validate([
-            'title' => ['required', 'string', 'max:120'],
-            'body' => ['required', 'string', 'max:500'],
-            'location_name' => ['nullable', 'string', 'max:120'],
-            'visibility' => ['nullable', 'string', 'in:public,square,private'],
-            'cover_media_asset_id' => ['nullable', 'integer', 'exists:media_assets,id'],
-        ]);
-
-        $location = trim((string) ($data['location_name'] ?? ''));
-        if ($location === '') {
-            $location = trim((string) ($user?->city ?? $user?->private_birth_place ?? ''));
-        }
-
-        $coverMediaAssetId = null;
-        if (! empty($data['cover_media_asset_id'])) {
-            $coverAsset = MediaAsset::query()
-                ->where('id', (int) $data['cover_media_asset_id'])
-                ->where('owner_user_id', (int) $user->id)
-                ->first();
-
-            if (! $coverAsset) {
-                return response()->json(['message' => 'cover media not found'], 422);
+        return DB::transaction(function () use ($request): JsonResponse {
+            $user = User::query()->whereKey($request->user()?->id)->lockForUpdate()->first();
+            if (!$user || ($user->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
+                return response()->json(['message' => 'account blocked'], 403);
             }
 
-            if (! str_starts_with((string) $coverAsset->media_type, 'image')) {
-                return response()->json(['message' => 'cover media must be an image'], 422);
+            $data = $request->validate([
+                'title' => ['required', 'string', 'max:120'],
+                'body' => ['required', 'string', 'max:500'],
+                'location_name' => ['nullable', 'string', 'max:120'],
+                'visibility' => ['nullable', 'string', 'in:public,square,private'],
+                'cover_media_asset_id' => ['nullable', 'integer', 'exists:media_assets,id'],
+            ]);
+
+            $location = trim((string) ($data['location_name'] ?? ''));
+            if ($location === '') {
+                $location = trim((string) ($user?->city ?? $user?->private_birth_place ?? ''));
             }
 
-            if (! in_array((string) $coverAsset->status, ['uploaded', 'ready'], true)) {
-                return response()->json(['message' => 'cover media is not ready'], 422);
+            $coverMediaAssetId = null;
+            if (! empty($data['cover_media_asset_id'])) {
+                $coverAsset = MediaAsset::query()
+                    ->where('id', (int) $data['cover_media_asset_id'])
+                    ->where('owner_user_id', (int) $user->id)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $coverAsset) {
+                    return response()->json(['message' => 'cover media not found'], 422);
+                }
+
+                if (! str_starts_with((string) $coverAsset->media_type, 'image')) {
+                    return response()->json(['message' => 'cover media must be an image'], 422);
+                }
+
+                if (! in_array((string) $coverAsset->status, ['uploaded', 'ready'], true)) {
+                    return response()->json(['message' => 'cover media is not ready'], 422);
+                }
+
+                $coverMediaAssetId = (int) $coverAsset->id;
             }
 
-            $coverMediaAssetId = (int) $coverAsset->id;
-        }
+            $post = StatusPost::create([
+                'author_user_id' => (int) $user->id,
+                'cover_media_asset_id' => $coverMediaAssetId,
+                'title' => trim($data['title']),
+                'body' => trim($data['body']),
+                'location_name' => $location === '' ? null : $location,
+                'visibility' => $data['visibility'] ?? 'public',
+                'is_deleted' => false,
+                'deleted_by_user_id' => null,
+                'deleted_at' => null,
+            ])->load([
+                'author' => function ($query) {
+                    $query->select($this->safeAuthorSelect([
+                        'nickname' => '',
+                        'city' => '',
+                        'relationship_goal' => '',
+                        'public_mbti' => '',
+                        'public_personality' => null,
+                        'role' => 'user',
+                        'account_type' => 'normal',
+                        'is_synthetic' => false,
+                        'is_square_visible' => true,
+                    ]));
+                },
+                'coverMediaAsset',
+            ]);
 
-        $post = StatusPost::create([
-            'author_user_id' => (int) $user->id,
-            'cover_media_asset_id' => $coverMediaAssetId,
-            'title' => trim($data['title']),
-            'body' => trim($data['body']),
-            'location_name' => $location === '' ? null : $location,
-            'visibility' => $data['visibility'] ?? 'public',
-            'is_deleted' => false,
-            'deleted_by_user_id' => null,
-            'deleted_at' => null,
-        ])->load([
-            'author' => function ($query) {
-                $query->select($this->safeAuthorSelect([
-                    'nickname' => '',
-                    'city' => '',
-                    'relationship_goal' => '',
-                    'public_mbti' => '',
-                    'public_personality' => null,
-                    'role' => 'user',
-                    'account_type' => 'normal',
-                    'is_synthetic' => false,
-                    'is_square_visible' => true,
-                ]));
-            },
-            'coverMediaAsset',
-        ]);
-
-        return response()->json([
-            'ok' => true,
-            'item' => $this->shapePost($post, (int) $user->id, app(AdminAccess::class)->allows($user)),
-        ], 201);
+            return response()->json([
+                'ok' => true,
+                'item' => $this->shapePost($post, (int) $user->id, app(AdminAccess::class)->allows($user)),
+            ], 201);
+        });
     }
 
     public function like(Request $request, int $postId, EventLogger $events, NotificationService $notifications): JsonResponse
@@ -612,3 +615,5 @@ class StatusPostController extends Controller
         ]);
     }
 }
+
+

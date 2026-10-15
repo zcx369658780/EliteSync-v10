@@ -75,6 +75,28 @@ final class V1008MatchingConcurrencyTest extends TestCase
         $this->assertDatabaseHas('dating_matches', ['matching_run_id' => $run->id, 'drop_released' => false]);
     }
 
+    public function test_finalize_rejects_a_running_run_that_is_no_longer_the_current_attempt(): void
+    {
+        $run = $this->freeze();
+        DB::table('dating_rounds')->where('id', $run->round_id)->update(['active_run_id' => null]);
+        try {
+            $this->finalize($run);
+            $this->fail('Detached run must not finalize');
+        } catch (\DomainException $error) {
+            $this->assertSame('run_not_current', $error->getMessage());
+        }
+        $this->assertDatabaseCount('dating_matches', 0);
+        $this->assertDatabaseHas('matching_runs', ['id' => $run->id, 'state' => 'running', 'pair_count' => 0]);
+        $before = $this->publicationSnapshot();
+        $runs = app(MatchingRunService::class);
+        // The consumer's finalize catch must not let either fallback overwrite the current round.
+        $this->assertRejected(fn () => $runs->fail($run, 'fixture-worker', $run->fencing_token, 'execution_failed', 'failure'), 'run_not_current');
+        $this->travel(121)->seconds();
+        $this->assertRejected(fn () => $runs->expireLease($run->id), 'run_not_current');
+        $this->assertFalse($runs->heartbeat($run, 'fixture-worker', $run->fencing_token));
+        $this->assertSame($before, $this->publicationSnapshot());
+    }
+
     public function test_reveal_requests_the_same_input_locks_before_publishing(): void
     {
         $run = $this->freeze();

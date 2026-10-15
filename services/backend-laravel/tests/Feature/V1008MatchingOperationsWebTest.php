@@ -48,6 +48,23 @@ final class V1008MatchingOperationsWebTest extends TestCase
         Queue::assertNothingPushed();
     }
 
+    public function test_second_execution_with_new_key_and_current_version_cannot_supersede_pending_run(): void
+    {
+        $round = $this->prepare();
+        Sanctum::actingAs($this->admin);
+        $this->postJson($this->apiPath($round, 'execution-requests'), [
+            'state_version' => $round->state_version, 'reason_code' => 'first',
+        ], ['Idempotency-Key' => 'first-current-run'])->assertAccepted();
+        $before = $this->snapshot();
+        $round->refresh();
+        $this->postJson($this->apiPath($round, 'execution-requests'), [
+            'state_version' => $round->state_version, 'reason_code' => 'second',
+        ], ['Idempotency-Key' => 'different-current-run'])->assertConflict()
+            ->assertJsonPath('error.message', 'execution_already_requested_use_retry');
+        $this->assertSame($before, $this->snapshot());
+        Queue::assertPushed(ExecuteMatchingRun::class, 1);
+    }
+
     public function test_web_prepare_and_execution_replay_show_pending_without_manufacturing_completion(): void
     {
         $this->actingAs($this->admin, 'web')->withSession(['_token' => self::CSRF]);

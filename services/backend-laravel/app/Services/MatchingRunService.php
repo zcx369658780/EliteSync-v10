@@ -40,6 +40,9 @@ class MatchingRunService
             if (! in_array($locked->state, [RoundState::Preparing, RoundState::Failed], true)) {
                 throw new \DomainException('round_not_executable');
             }
+            if ($locked->active_run_id !== null) {
+                throw new \DomainException('execution_already_requested_use_retry');
+            }
             $attempt = ((int) MatchingRun::query()->where('round_id', $locked->id)->max('attempt_no')) + 1;
             $run = MatchingRun::query()->create([
                 'round_id' => $locked->id, 'run_key' => (string) Str::uuid(), 'idempotency_key' => $idempotencyKey,
@@ -70,6 +73,9 @@ class MatchingRunService
             $roundId = MatchingRun::query()->whereKey($failed->id)->value('round_id');
             $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $lockedFailed = MatchingRun::query()->whereKey($failed->id)->lockForUpdate()->firstOrFail();
+            if ((int) $round->active_run_id !== (int) $lockedFailed->id) {
+                throw new \DomainException('only_current_failed_run_can_retry');
+            }
             if ($lockedFailed->state !== RunState::Failed || $round->state !== RoundState::Failed) {
                 throw new \DomainException('only_current_failed_run_can_retry');
             }
@@ -92,7 +98,9 @@ class MatchingRunService
     {
         return DB::transaction(function () use ($leaseOwner, $leaseSeconds, $runId) {
             app(CurrentQuestionnaire::class)->lock();
-            $run = MatchingRun::query()->where('state', RunState::Pending->value)->when($runId !== null, fn ($q) => $q->whereKey($runId))->orderBy('id')->lockForUpdate()->first();
+            $run = MatchingRun::query()->where('state', RunState::Pending->value)
+                ->whereHas('round', fn ($q) => $q->where('state', RoundState::Preparing->value)->whereColumn('dating_rounds.active_run_id', 'matching_runs.id'))
+                ->when($runId !== null, fn ($q) => $q->whereKey($runId))->orderBy('id')->lockForUpdate()->first();
             if (! $run) {
                 return null;
             }
@@ -107,6 +115,7 @@ class MatchingRunService
         return DB::transaction(function () use ($run, $leaseOwner, $fencingToken, $leaseSeconds) {
             app(CurrentQuestionnaire::class)->lock();
             $guard = MatchingRun::query()->whereKey($run->id)->where('state', RunState::Running->value)
+                ->whereHas('round', fn ($q) => $q->where('state', RoundState::Preparing->value)->whereColumn('dating_rounds.active_run_id', 'matching_runs.id'))
                 ->where('lease_owner', $leaseOwner)->where('fencing_token', $fencingToken)
                 ->where('lease_expires_at', '>', now()->utc());
             $changed = (clone $guard)->update(['heartbeat_at' => now()->utc(), 'lease_expires_at' => now()->utc()->addSeconds($leaseSeconds)]);
@@ -126,7 +135,12 @@ class MatchingRunService
             if ($currentUsers->count() !== count($ids)) {
                 throw new \DomainException('input_changed');
             }
+            $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
+            $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
+            if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {
+                throw new \DomainException('run_not_current');
+            }
             if ($locked->state !== RunState::Running || $locked->lease_owner !== $leaseOwner || $locked->fencing_token !== $fencingToken || ! $locked->lease_expires_at?->isFuture()) {
                 throw new \DomainException('stale_lease_or_fence');
             }
@@ -155,6 +169,9 @@ class MatchingRunService
             $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
             $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
+            if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {
+                throw new \DomainException('run_not_current');
+            }
             if ($locked->state !== RunState::Running || $locked->lease_owner !== $leaseOwner || $locked->fencing_token !== $fencingToken || ! $locked->lease_expires_at?->isFuture()) {
                 throw new \DomainException('stale_lease_or_fence');
             }
@@ -219,8 +236,11 @@ class MatchingRunService
         return DB::transaction(function () use ($run, $leaseOwner, $fencingToken, $code, $summary) {
             app(CurrentQuestionnaire::class)->lock();
             $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
-            DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
+            $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
+            if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {
+                throw new \DomainException('run_not_current');
+            }
             if ($locked->state !== RunState::Running || $locked->lease_owner !== $leaseOwner || $locked->fencing_token !== $fencingToken || ! $locked->lease_expires_at?->isFuture()) {
                 throw new \DomainException('stale_lease_or_fence');
             }
@@ -237,8 +257,11 @@ class MatchingRunService
         return DB::transaction(function () use ($runId) {
             app(CurrentQuestionnaire::class)->lock();
             $roundId = MatchingRun::query()->whereKey($runId)->value('round_id');
-            DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
+            $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $run = MatchingRun::query()->whereKey($runId)->lockForUpdate()->firstOrFail();
+            if ((int) $round->active_run_id !== (int) $run->id || $round->state !== RoundState::Preparing) {
+                throw new \DomainException('run_not_current');
+            }
             if ($run->state !== RunState::Running || ! $run->lease_expires_at?->isPast()) {
                 throw new \DomainException('run_lease_not_expired');
             }

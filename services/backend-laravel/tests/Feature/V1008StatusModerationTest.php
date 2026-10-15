@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\MediaAsset;
 use App\Models\StatusPost;
 use App\Models\User;
 use Illuminate\Database\Events\QueryExecuted;
@@ -114,5 +115,55 @@ final class V1008StatusModerationTest extends TestCase
         $this->assertFalse($post->fresh()->is_deleted);
         $this->assertNull($post->fresh()->deleted_by_user_id);
         $this->assertDatabaseCount('admin_operation_audits', 0);
+    }
+    public function test_stale_authenticated_author_cannot_publish_after_restriction(): void
+    {
+        $this->assertStaleAuthorCannotPublish(['moderation_status' => 'restricted']);
+    }
+
+    public function test_stale_authenticated_author_cannot_publish_after_disable(): void
+    {
+        $this->assertStaleAuthorCannotPublish(['disabled' => true, 'moderation_status' => 'banned']);
+    }
+
+    private function assertStaleAuthorCannotPublish(array $currentState): void
+    {
+        $author = $this->user('19900000879');
+        $asset = MediaAsset::create(['owner_user_id' => $author->id, 'media_type' => 'image',
+            'storage_provider' => 'local', 'storage_disk' => 'public', 'storage_key' => 'fixture/status-owned.png',
+            'status' => 'ready', 'mime_type' => 'image/png', 'size_bytes' => 10]);
+        $before = (array) DB::table('media_assets')->where('id', $asset->id)->first();
+        $this->actingAs($author, 'sanctum');
+        DB::table('users')->where('id', $author->id)->update($currentState);
+        // The authenticated model remains old; the write transaction must read current DB state.
+        $this->assertFalse($author->disabled);
+        $this->assertSame('normal', $author->moderation_status ?? 'normal');
+        $this->postJson('/api/v1/status/posts', ['title' => 'Forbidden new post', 'body' => 'Fixture body',
+            'visibility' => 'public', 'cover_media_asset_id' => $asset->id])->assertForbidden();
+        $this->assertDatabaseCount('status_posts', 0);
+        $this->assertDatabaseCount('media_assets', 1);
+        $this->assertSame($before, (array) DB::table('media_assets')->where('id', $asset->id)->first());
+        $this->assertDatabaseCount('admin_operation_audits', 0);
+    }
+
+    public function test_publish_retains_success_contract_and_rejects_foreign_media_without_partial_write(): void
+    {
+        $author = $this->user('19900000879');
+        $other = $this->user('19900000880');
+        $foreign = MediaAsset::create(['owner_user_id' => $other->id, 'media_type' => 'image',
+            'storage_provider' => 'local', 'storage_disk' => 'public', 'storage_key' => 'fixture/status-foreign.png',
+            'status' => 'ready', 'mime_type' => 'image/png', 'size_bytes' => 10]);
+        $before = (array) DB::table('media_assets')->where('id', $foreign->id)->first();
+        $this->actingAs($author, 'sanctum')->postJson('/api/v1/status/posts', [
+            'title' => 'Fixture title', 'body' => 'Fixture body', 'visibility' => 'public',
+            'cover_media_asset_id' => $foreign->id])->assertUnprocessable();
+        $this->assertDatabaseCount('status_posts', 0);
+        $this->assertSame($before, (array) DB::table('media_assets')->where('id', $foreign->id)->first());
+        $this->postJson('/api/v1/status/posts', ['title' => 'Fixture title', 'body' => 'Fixture body',
+            'visibility' => 'public'])->assertCreated()->assertJsonPath('ok', true)
+            ->assertJsonPath('item.title', 'Fixture title')->assertJsonPath('item.author.id', $author->id);
+        $this->assertDatabaseCount('status_posts', 1);
+        $this->assertDatabaseHas('status_posts', ['author_user_id' => $author->id,
+            'title' => 'Fixture title', 'visibility' => 'public', 'is_deleted' => false]);
     }
 }

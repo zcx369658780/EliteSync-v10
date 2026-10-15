@@ -373,8 +373,22 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       return true;
     } catch (e) {
       final fresh = _current ?? current;
+      final stale =
+          e is ValidationException && e.code == 'QUESTIONNAIRE_SUBMIT_STALE';
+      if (stale) {
+        _bankNotice = QuestionnaireBankNotice(
+          draftNotice: _bankNotice.draftNotice,
+          bankRevision: _bankNotice.bankRevision,
+          needsReload: true,
+        );
+      }
       state = AsyncData(
-        fresh.copyWith(isSubmitting: false, errorMessage: e.toString()),
+        fresh.copyWith(
+          isSubmitting: false,
+          errorMessage: stale
+              ? (e as ValidationException).message
+              : e.toString(),
+        ),
       );
       return false;
     }
