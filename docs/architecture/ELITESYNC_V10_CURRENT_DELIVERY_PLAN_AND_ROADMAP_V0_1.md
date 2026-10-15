@@ -1,5 +1,15 @@
 # EliteSync-v10 当前交付路线图｜APP恢复与独立Web管理面板
 
+## 2026-10-15 Owner D6批准的顺序修订（优先于下文历史五包表）
+
+原v10.0.6～v10.0.8在各自冻结范围内**ACCEPT WITH OBSERVATIONS并完成K08**，不是完整APP所有主要能力已交付。Owner于2026-10-15明确批准D4～D6，见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)及[v10.0.9唯一冻结plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)（Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`）。
+
+- **v10.0.9 改为用户侧RTC＋私有视频能力恢复功能版**：真正双端语音、新增可操作视频通话、私有短视频附件及当前CN/MC授权/撤权后的旧JWT不得重入。Owner已限定批准本地自托管SFU/受控双APP设备/限域端口，只有手动派发冻结计划才生效。仍是**FROZEN_PLAN / NOT_IMPLEMENTED**，不因文档修改启动LiveKit或重建APP。
+- **原暂定v10.0.9“APP/Web联合验收”顺延，不取消**。完整联合验收、最终安装/部署与算法/数据说明必须在选定原版主要功能实际恢复或Owner明确逐项批准范围舍弃之后；不能用局部K08/RTC Token或软件材料替代尚未实现的能力。
+- **剩余功能仍具名待内测前收口**：完整紫微/西占真实算法＋非fixture oracle/合法许可，Buddy/Social具名旧实现或Owner单项批准的新业务合同，其他已实现的原版媒体、地图/系统Push/必要设置及获准的历史数据/附件。具体后续功能包/版本编号**尚未冻结**，不因本修订推断v10.0.10已经有实施授权。
+- 内测运营半年到一年仍在完整主要软件交付之后，公开发布时点另决策；旧五包表和原2026-10-14文案按彼时排程保存，不再优先覆盖本节已批准的新顺序。
+
+
 生效：2026-10-14，Owner在当前项目会话明确提出并批准方向调整及文档落地。
 状态：OWNER_APPROVED_ROADMAP / DOCUMENT_SYNC_ONLY；这不是v10.0.6冻结计划或实施派发。
 
