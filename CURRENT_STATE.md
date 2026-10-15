@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8正式冻结：Owner三政策已批准，等待手动派发
+
+**V10_0_8_FROZEN_PLAN / D1_D2_D3_OWNER_APPROVED / OWNER_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner本次明确批准运营参与资格审核（非实名认证）、分级restrict/banned/受控restore、历史答卷保留且新轮次按当前enabled有效回答计算。三项原始决定已写入[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)（commit cacfa889128f9a3a4b443efa87f4c347a178f1d5 / Blob 4f84f1968ee2737b842f828ad2e0cbdd5c929936），不得再当未决建议。
+
+Astra已读取并核[Codex版前可行性](docs/versions/v10.0.8/FEASIBILITY_RECOMMENDATION.md)，发布[唯一v10.0.8正式冻结计划](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)：commit ac57d3370a2f2f17c042987a758d86c9aa725650，Git Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809；AC-08-01～AC-08-08严格固定。范围为独立Blade后台B01用户、B02运营资格、B03举报/分级处罚、B04真实Matching consumer、B05问卷运营以及B06 Android开发channel release，相关APP实际读回和权限/重启同版交付。生产/真实身份资料、外部收费服务、历史真实数据以及原0.6/0.7验收卷均未获授权，其他尚未恢复的用户能力仍在单份台账具名保留。
+
+**产品代码技术起点**仍为v10.0.7 K08 main a75b8d4061ae012937ef4823120b396f257d3aec / Tree 89637891276cdf4280f918ccad7eb4c5030f55be；版前main 1bb76362522876fcc9b4b45e383e905e40fdaa79及本次Owner决定/冻结计划提交均为文档，无产品源码修改。**尚未派发Codex、未启动实施服务/数据库/构建/测试**。以下PREPLAN_READY和K08历史段落仅作为此前时点。
+
+
 ## 2026-10-15 v10.0.8版前开始：Web管理主模块，尚未冻结/实施
 
 **V10_0_7_K08_INTEGRATION_COMPLETE / V10_0_8_PREPLAN_READY / FEASIBILITY_PENDING / NOT_FROZEN / NO_IMPLEMENTATION_DISPATCH**。
