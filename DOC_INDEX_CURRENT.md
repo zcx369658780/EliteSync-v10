@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.7 Astra终验已接受（WITH OBSERVATIONS）**，固定接受候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` / Tree `11f1d086b0c9180998a3684c0df176e1d9c4d2b2`。[独立验收](docs/versions/v10.0.7/acceptance.md)及[复盘](docs/versions/v10.0.7/retrospective.md)为当前首读；相关Flutter真实业务链通过，R1消息通知隐私问题已修复。全量Flutter 3项既存legacy失败仍在，普通无同次fixture另2项失败；全范围Dart无问题。**GitHub产品源码K08集成尚未完成，v10.0.8未派发**。下文R1待返修/原冻结阶段说明均为历史时点。
+
+
 2026-10-15：v10.0.7初始候选 `69b3f26c6ed28a7306e4ba6b902aac2475bfe103` 已由Astra独立审查，**TARGETED_R1_REQUIRED / NOT_ACCEPTED**。首读[R1审查意见](https://github.com/zcx369658780/EliteSync-v10/blob/657c1af73749c2925dd4fd8a7b3a63350f86cb79/docs/versions/v10.0.7/ASTRA_R1_REVIEW_FINDINGS.md)。真实业务主链有安全原证，但消息通知API泄露风险、Flutter 6项失败归因及全范围analyze 3 info尚须收口；Plan Blob和8AC不改，main未合入候选，0.8未派发。
 
 
@@ -12,6 +15,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.7最终验收及复盘（首读）** | [独立验收](docs/versions/v10.0.7/acceptance.md)、[版本复盘](docs/versions/v10.0.7/retrospective.md)：R1接受、全量Flutter保留既有3失败、K08产品集成待完成 |
 | **v10.0.7唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)：Blob 151d75b67238826841467fa93c140825ebf61282、AC-07-01～08固定、复用K08产品起点；Owner尚未手动派发，实际运行未开始 |
 | v10.0.6终验及复盘（优先） | [Astra独立验收](docs/versions/v10.0.6/acceptance.md)、[版本复盘](docs/versions/v10.0.6/retrospective.md)：候选已接受，代码/本地集成分离，已保留PHP范围外失败与LOCAL_ONLY；K08待接续 |
 | v10.0.7版前范围（未冻结） | [PLAN_PROPOSAL_V0_1](docs/versions/v10.0.7/PLAN_PROPOSAL_V0_1.md)：Owner已要求进入新版准备，先完成K08安全集成与代码基线接续，再由Codex一次反馈恢复功能范围/技术缺口；尚未派发v10.0.7实施 |
