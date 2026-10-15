@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.8 FROZEN_PLAN / OWNER_DISPATCH_PENDING**。固定正式计划：[plan.md](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)；Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项不可变AC；Owner D1运营审核、D2处罚与受控恢复、D3问卷历史保留及新匹配按有效题资格均已正式批准见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。范围B01～B05＋B06既有Android开发channel版本管理。技术起点仍为v10.0.7 K08 main a75b8d4/Tree8963789；现行产品未因纯文档改变。无实施候选、数据库启动或新版业务实测；后续此前的FEASIBILITY_READY/NOT_FROZEN属于历史时点。
+
+
 2026-10-15：v10.0.8 **PREPLAN READY / NOT FROZEN / NOT IMPLEMENTED**。[版前范围草案](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md) Blob `a1b380521ac8b6fffb1b06a17f759e8755671cc8`，接续已完成K08的v10.0.7 `a75b8d4...` 代码main；先集中核Web管理B01～B06真实实现、共享权限/会话及APP结果，完成后Astra再冻结正式计划、Owner手动派发。RTC/完整星盘/搭子社交及其它已实现旧功能不默默后置到内测以后；历史Flutter3项失败仍保留。下方“不规划/尚未开始0.8”属K08执行时点。
 
 
@@ -35,7 +38,7 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 |---|---|---|
 | v10.0.6 | APP城市真实持久化＋独立Web禁用/会话失效＋重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[K08已完成](v10.0.6/integration.md)；产品集成78aba03a、本地已接续，K08不冒称重跑 |
 | v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [ACCEPTED WITH OBSERVATIONS](v10.0.7/acceptance.md) / [复盘](v10.0.7/retrospective.md)；最终R1 cf0c359b，待K08安全产品集成；Flutter仍有3项旧测试失败 |
-| v10.0.8 | 独立Web用户、验证、举报、匹配、问卷与必要配置管理模块 | [PREPLAN_READY](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)；待一次可行性调查、正式冻结及Owner手动派发；NOT_IMPLEMENTED |
+| v10.0.8 | B01～B05独立Blade运营闭环及B06既有开发渠道release管理 | [正式plan FROZEN](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)，8项固定AC，D1～D3 Owner已批准；待手动派发，尚未实施 |
 | v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
 | v10.0.10 | 完整软件包、安装/部署/恢复方式与功能/算法说明 | 路线包，不是公开运营承诺 |
 
