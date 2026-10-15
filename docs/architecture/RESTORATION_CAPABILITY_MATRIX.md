@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8最终R1已接受并完成K08（当前）
+
+**B01～B06：ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE**。以[Astra固定独立验收](../versions/v10.0.8/acceptance.md)的限定范围为准；最终R1候选 `d37121e...` 已集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217`，产品Tree与接受候选相同，完整提交Tree因保留main最新文档不同。B03包含本人有效Restrict申诉APP→同库→Blade能力，原举报者申诉合同独立保留，没有退回初始缺口。详细身份与NOT_RUN见[K08登记](../versions/v10.0.8/integration.md)。K08没有启动/重seed数据库或重复实测整版；旧失败、vendor弃用、R1包与development旧包的不同SHA均保留。主APP其它具名恢复欠账不删改，不因本次集成自动开始下一版；下方候选/待K08为历史时点。
+
 ## 2026-10-15 v10.0.8 Astra最终接受状态（当前）
 
 **ACCEPT WITH OBSERVATIONS / FINAL R1 CANDIDATE `d37121eb11d3cc845f1606a631d17ca01fe6105a` / K08 PRODUCT INTEGRATION PENDING。** 完整[独立验收](../versions/v10.0.8/acceptance.md)与[版本复盘](../versions/v10.0.8/retrospective.md)已发布；唯一冻结plan及D1/D2/D3不变。本节覆盖下面“v10.0.8 R1待返修/初始候选未接受”等历史时点，但**不将候选已接受误写为main源码已集成或生产已上线**。

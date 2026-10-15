@@ -1,0 +1,57 @@
+{
+  "php_syntax": [
+    {
+      "path": "app/Services/SanctionAppeals.php",
+      "exit": 0
+    },
+    {
+      "path": "app/Http/Controllers/Api/V1/SanctionAppealController.php",
+      "exit": 0
+    },
+    {
+      "path": "database/migrations/2026_10_15_090000_create_sanction_appeals.php",
+      "exit": 0
+    },
+    {
+      "path": "app/Services/Admin/UserGovernance.php",
+      "exit": 0
+    },
+    {
+      "path": "app/Jobs/ExecuteMatchingRun.php",
+      "exit": 0
+    },
+    {
+      "path": "app/Services/MatchingRunService.php",
+      "exit": 0
+    },
+    {
+      "path": "routes/api.php",
+      "exit": 0
+    },
+    {
+      "path": "routes/web.php",
+      "exit": 0
+    }
+  ],
+  "local_packages": [
+    {
+      "kind": "debug APK",
+      "sha256": "76817f85f8267552f23e07deb08bbf93879719f9606c4bf9096800a03dfed43b",
+      "matches_accepted_R1_manifest": true
+    },
+    {
+      "kind": "release AAR",
+      "sha256": "72e04eb1ef628870a6f66cd969c3239debdc940f26b7d2d6416acc5430187562",
+      "matches_accepted_R1_manifest": true
+    },
+    {
+      "kind": "device readback APK",
+      "sha256": "76817f85f8267552f23e07deb08bbf93879719f9606c4bf9096800a03dfed43b",
+      "matches_accepted_R1_manifest": true
+    }
+  ],
+  "build": "NOT_RUN",
+  "suites": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "reason": "Product objects exactly equal accepted candidate; no new business code"
+}

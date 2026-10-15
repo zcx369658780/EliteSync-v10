@@ -1,5 +1,13 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8 K08安全集成及本地代码接续完成
+
+**V10.0.8 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_9_NOT_STARTED**。最终接受R1候选 `d37121eb11d3cc845f1606a631d17ca01fe6105a`（Tree `6d260f525de8976b7aea5e4a1fe6c9282d91a332`）已安全集成实际main：产品集成commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，普通non-force推送和GitHub回读一致。产品对象等于最终R1，包含本人处罚申诉；main已有验收/复盘/Owner政策/冻结计划/最新状态及原失败安全证据全部保留。原候选分支未改写。
+
+本地复用专用树 `codex/k08-v1008-integration` 接续同一产品基线；此后仅状态文档提交。8项关键PHP语法检查exit0、本地R1包hash相同；套件、分析、构建、安装、APP/API/DB业务重跑均NOT_RUN，无新增产品差异。原空白检查exit1、历史Flutter旧失败、vendor弃用及其它未运行项保留。R1 APK与development记录旧APK不同sha，K08没有访问或更新数据库发布记录，不冒R1正式分发。
+
+原dirty根HEAD/index/normal status及43项具名hash相同；109项未重验。0.6/0.7/0.8容器停止、对应volume保留；未启动服务/worker/AVD或重seed。详细固定身份、检查和四分法见 [K08登记](docs/versions/v10.0.8/integration.md)。下方K08_PENDING等为历史时点；本次已完成既定收尾，停止等待Astra规划，不自动启动下一版。
+
 ## 2026-10-15 v10.0.8 Astra最终独立验收：R1已通过、K08产品集成待完成
 
 **V10_0_8_ACCEPTED_WITH_OBSERVATIONS / R1_OWNER_SANCTION_APPEAL_VERIFIED / GITHUB_PRODUCT_INTEGRATION_PENDING / LOCAL_K08_PENDING / V10_0_9_NOT_DISPATCHED**。

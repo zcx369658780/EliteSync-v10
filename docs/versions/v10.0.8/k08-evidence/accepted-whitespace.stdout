@@ -1,0 +1,8 @@
+apps/android/app/build.gradle.kts:53: trailing whitespace.
++    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" }
+services/backend-laravel/app/Console/Commands/AppReleaseUpsertCommand.php:96: new blank line at EOF.
+services/backend-laravel/app/Http/Controllers/Api/V1/AppVersionController.php:160: new blank line at EOF.
+services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php:618: new blank line at EOF.
+services/backend-laravel/app/Http/Controllers/Web/AdminReleaseController.php:31: new blank line at EOF.
+services/backend-laravel/tests/Feature/V1006AdminWebTest.php:137: new blank line at EOF.
+services/backend-laravel/tests/Feature/V1008SessionWebTest.php:174: new blank line at EOF.

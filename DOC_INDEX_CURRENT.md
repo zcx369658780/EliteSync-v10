@@ -1,5 +1,7 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.8 K08_INTEGRATION_COMPLETE**。[集成登记](docs/versions/v10.0.8/integration.md)为当前入口；接受最终R1 `d37121e...` 已集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，本地专用树接续。保留独立验收/复盘及全部失败，R1申诉未退回初始版本；无新产品差异，本次只做对象/语法/包hash检查，运行及套件NOT_RUN。状态提交不改产品，v10.0.9未启动；下方待K08为历史时点。
+
 2026-10-15 最新：**v10.0.8 Astra最终验收 ACCEPT WITH OBSERVATIONS，K08产品源码安全集成待执行。** 固定接受R1候选`d37121eb11d3cc845f1606a631d17ca01fe6105a`、Tree`6d260f525de8976b7aea5e4a1fe6c9282d91a332`。优先读取[最终独立验收](docs/versions/v10.0.8/acceptance.md)和[复盘](docs/versions/v10.0.8/retrospective.md)；Restrict本人申诉已贯通APP→PHP→持久DB→Blade，保留原全部8AC及R1实测证据。R1全量Flutter/PHP未跑，旧失败/通知存储与发布版本元数据旧包SHA已具名观察。**产品代码尚未并入main、K08和v10.0.9未自动派发**。下文初始候选待R1及顾问交接的状态皆为历史时点。
 
 

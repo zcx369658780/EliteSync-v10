@@ -1,5 +1,7 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：**v10.0.8 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS**。接受最终R1候选 `d37121eb11d3cc845f1606a631d17ca01fe6105a` 安全集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，non-force推送/回读一致，本地复用专用树接续。详细四分法、对象相等、8项语法exit0、原空白exit1与运行NOT_RUN、包身份区别和资源保留见 [K08登记](v10.0.8/integration.md)。原候选、Astra验收/复盘、原失败不改写；停止，不自动启动0.9。下方K08待执行为历史时点。
+
 2026-10-15：v10.0.8 **ASTRA FINAL ACCEPT WITH OBSERVATIONS / FINAL R1 d37121eb11d3cc845f1606a631d17ca01fe6105a**。原B01～B06真实业务已留初始证据，R1受罚本人申诉D2缺口已通过[独立验收](v10.0.8/acceptance.md)及[复盘](v10.0.8/retrospective.md)收口。AC-08-01～08未改；**GitHub产品集成和本地K08仍PENDING**，目前main只含文档归档。R1相关PHP31/367 exit0、Flutter21 exit0、Dart全范围exit0；全量套件NOT_RUN、原旧Flutter失败与2 vendor弃用、dev release元数据旧APK SHA观察保留。0.9未启动。下面初审R1未接受/新顾问待验等为历史时点。
 
 
