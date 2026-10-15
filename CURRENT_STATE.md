@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.9版前交付建议（未冻结、未实施）
+
+**V10_0_8_K08_INTEGRATION_COMPLETE / V10_0_9_PREPLAN_READY / OWNER_SCOPE_DECISION_PENDING / NOT_FROZEN / NOT_IMPLEMENTED**。Astra实核main`3a8f7989aa208285b885f1c80f4365f38488ac54` / Tree`95fadde468d8a21b39c544fdb74093dd35184717`及8版[K08](docs/versions/v10.0.8/integration.md)，Flutter/Android、Laravel与题库Git对象同最终接受R1。K08只做8项PHP语法检查exit0、空白提示exit1留存；其它业务/测试/构建NOT_RUN。现已建立[唯一v10.0.9版前建议](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)，Blob`fbb060fc9a4b79a9e7075809e961a9d258455f83`，**仅供Owner排程和一次性具名可行性收敛，不是正式plan、没有0.9 AC或新的环境启动/开发授权**。
+
+当前仍缺真实RTC双方媒体、其它原版媒体、完整紫微/西占准确排盘与许可、Buddy/Social真业务及部分地图/Push/历史数据。原路线暂称v10.0.9“联合验收”，但若缺失主要用户能力，Astra建议先作为功能恢复包、联合终验顺延到恢复结束后；**此为待Owner决定的排程建议，不修改Owner现行批准路线图或擅改主要功能目标**。首选RTC真实双端＋已实现的其它媒体，需先核本地SFU/第二端/当前CN/MC权控、费用/许可与最小权限；其它算法及新业务需Owner单项选择，现阶段禁止擅启LiveKit新容器和blocked占星依赖。保留0.6～0.8已验成果和旧失败。以下旧“v10.0.9未启动”与此提案不冲突：**研发实施确实尚未启动**。
+
+
 ## 2026-10-15 v10.0.8 K08安全集成及本地代码接续完成
 
 **V10.0.8 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_9_NOT_STARTED**。最终接受R1候选 `d37121eb11d3cc845f1606a631d17ca01fe6105a`（Tree `6d260f525de8976b7aea5e4a1fe6c9282d91a332`）已安全集成实际main：产品集成commit `4f1b3c52d09346cf831249ee7e8186f2679b2217` / Tree `8088a870c979d8697aa781456d994076a158d799`，普通non-force推送和GitHub回读一致。产品对象等于最终R1，包含本人处罚申诉；main已有验收/复盘/Owner政策/冻结计划/最新状态及原失败安全证据全部保留。原候选分支未改写。
