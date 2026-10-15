@@ -163,6 +163,23 @@ class QuestionnaireController extends Controller
         }
 
         $questions = $questions->shuffle()->values();
+        $saved=\Illuminate\Support\Facades\DB::table('questionnaire_drafts')->where('user_id',$user->id)->first();
+        $draft=$saved?json_decode($saved->payload,true):[];
+        $ids=$draft['question_ids']??[];
+        if (($draft['version'] ?? null) !== $this->questionnaireVersion()
+            || ($draft['bank_version'] ?? null) !== $this->bankVersion()) {
+            $ids = [];
+        }
+        if($ids && ($draft['version']??null)===$this->questionnaireVersion()&&($draft['bank_version']??null)===$this->bankVersion()){
+            $map=QuestionnaireQuestion::whereIn('id',$ids)->where('enabled',true)->get()->keyBy('id');
+            if($map->count()===count($ids))$questions=collect($ids)->map(fn($id)=>$map->get($id));
+            else $ids=[];
+        }
+        if(!$ids){
+            $draft=['answers'=>new \stdClass(),'current_index'=>0,'version'=>$this->questionnaireVersion(),'bank_version'=>$this->bankVersion(),
+                'question_ids'=>$questions->pluck('id')->values()->all()];
+            \Illuminate\Support\Facades\DB::table('questionnaire_drafts')->updateOrInsert(['user_id'=>$user->id],['payload'=>json_encode($draft),'created_at'=>now(),'updated_at'=>now()]);
+        }
         $questions = $questions->map(function (QuestionnaireQuestion $q) {
             return [
                 'id' => $q->id,
@@ -350,6 +367,7 @@ class QuestionnaireController extends Controller
             'answers.*.question_id' => ['required', 'integer', 'exists:questionnaire_questions,id'],
             // legacy payload
             'answers.*.answer' => ['nullable'],
+            'answers.*.option_id' => ['nullable','string'],
             // v2 payload
             'answers.*.selected_answer' => ['nullable', 'array', 'min:1'],
             'answers.*.selected_answer.*' => ['string'],
@@ -366,9 +384,22 @@ class QuestionnaireController extends Controller
             ->all();
         $questionMap = QuestionnaireQuestion::query()
             ->whereIn('id', $questionIds)
-            ->get(['id', 'question_key', 'version'])
+            ->get(['id', 'question_key', 'version','options','enabled'])
             ->keyBy('id');
 
+        // Validate every answer before any mutation; commit the answers and attempt atomically.
+        foreach($data['answers'] as$item){
+            $q=$questionMap->get((int)$item['question_id']);
+            if(isset($item['option_id']) || app(\App\Services\LiveConsentService::class)->enabled()){
+                $ids=array_column($q->options??[],'option_id');
+                $selected = $this->normalizeSelectedAnswer($item);
+                $acceptable = $this->normalizeAcceptableAnswers($item, $selected);
+                if(!$q->enabled || !$selected || array_diff($selected, $ids) || array_diff($acceptable, $ids)
+                    || (int)($item['version']??0)!==(int)$q->version)
+                    throw ValidationException::withMessages(['answers'=>['invalid option or stale question version']]);
+            }
+        }
+        return \Illuminate\Support\Facades\DB::transaction(function()use($data,$user,$questionMap,$profiles){
         foreach ($data['answers'] as $item) {
             $selected = $this->normalizeSelectedAnswer($item);
             if (count($selected) === 0) {
@@ -424,6 +455,7 @@ class QuestionnaireController extends Controller
             'result_highlights_json' => (array) data_get($profile, 'summary.highlights', []),
             'completed_at' => now(),
         ]);
+        \Illuminate\Support\Facades\DB::table('questionnaire_drafts')->where('user_id',$user->id)->delete();
 
         return response()->json([
             'ok' => true,
@@ -432,6 +464,7 @@ class QuestionnaireController extends Controller
             'attempt_version' => $this->attemptVersion(),
             'profile' => $profile,
         ]);
+        });
     }
 
     public function history(Request $request): JsonResponse
@@ -504,6 +537,7 @@ class QuestionnaireController extends Controller
 
     private function normalizeSelectedAnswer(array $item): array
     {
+        if(isset($item['option_id']))return [(string)$item['option_id']];
         $selected = $item['selected_answer'] ?? null;
         if (is_array($selected) && count($selected) > 0) {
             return array_values(array_map('strval', $selected));

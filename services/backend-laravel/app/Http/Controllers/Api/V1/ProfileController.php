@@ -35,7 +35,7 @@ class ProfileController extends Controller
             return null;
         }
 
-        return preg_match('/^\d{2}:\d{2}$/', $candidate) ? $candidate : null;
+        return preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d$/', $candidate) ? $candidate : null;
     }
 
     /**
@@ -55,6 +55,22 @@ class ProfileController extends Controller
             ?? $this->normalizeBirthTime($existingProfile->birth_time)
             ?? $this->normalizeBirthTime(data_get($user, 'private_natal_chart.true_solar_time'))
             ?? '12:00';
+        $localRestoration = app(\App\Services\LiveConsentService::class)->enabled();
+        $existingNotes = (array)($existingProfile->notes ?? []);
+        $retainedUnknown = in_array('birth_time_input_source:default_noon_unknown', $existingNotes, true)
+            || in_array('birth_time_input_source:retained_legacy_time_unverified', $existingNotes, true);
+        $birthTimeSource = $this->normalizeBirthTime($request->input('birth_time')) !== null ? 'user_input'
+            : ($retainedUnknown ? 'default_noon_unknown'
+                : ($this->normalizeBirthTime($existingProfile->birth_time) !== null
+                    ? (in_array('birth_time_input_source:user_input', $existingNotes, true)
+                        || in_array('birth_time_input_source:retained_profile', $existingNotes, true)
+                        ? 'retained_profile' : 'retained_legacy_time_unverified') : 'default_noon_unknown'));
+        if ($localRestoration) {
+            $existingNotes = array_values(array_filter($existingNotes, fn($note) => !preg_match(
+                '/^(birth_time_input_source|civil_timezone|location_source|location_shift_minutes|canonical_accuracy|canonical_confidence):/',
+                (string)$note
+            )));
+        }
         $resolvedBirthPlace = $this->normalizeBirthPlace($user->private_birth_place)
             ?? $this->normalizeBirthPlace($existingProfile->birth_place);
         $existingBirthPlace = $this->normalizeBirthPlace($existingProfile->birth_place);
@@ -87,11 +103,12 @@ class ProfileController extends Controller
             'liu_nian' => (array) ($existingProfile->liu_nian ?? []),
             'wu_xing' => (array) ($existingProfile->wu_xing ?? []),
             'notes' => array_values(array_filter(array_merge(
-                (array) ($existingProfile->notes ?? []),
+                $existingNotes,
                 [
                     'recomputed_from_basic_profile',
                     'location_source:'.(string) ($locationContext['location_source'] ?? 'unknown'),
                     'location_shift_minutes:'.(string) ($locationContext['location_shift_minutes'] ?? 0),
+                    ...($localRestoration ? ['civil_timezone:Asia/Shanghai', 'birth_time_input_source:'.$birthTimeSource] : []),
                 ]
             ))),
             'user_id' => (int) $user->id,
@@ -100,6 +117,10 @@ class ProfileController extends Controller
         ];
 
         $normalized = $canonical->canonicalize($canonicalPayload);
+        if ($localRestoration && in_array($birthTimeSource, ['default_noon_unknown', 'retained_legacy_time_unverified'], true)) {
+            $normalized['confidence'] = min(0.35, (float)($normalized['confidence'] ?? 0.35));
+            $normalized['accuracy'] = 'unknown_birth_time_default_noon';
+        }
         $ziwei = $ziweiCanonical->canonicalize($canonicalPayload);
         $westernPayload = array_merge($canonicalPayload, [
             'sun_sign' => (string) ($normalized['sun_sign'] ?? ($existingProfile->sun_sign ?? '')),
@@ -108,7 +129,7 @@ class ProfileController extends Controller
         ]);
         $western = $westernCanonical->compute($westernPayload);
         $notes = array_values(array_filter(array_merge(
-            (array) ($existingProfile->notes ?? []),
+            $existingNotes,
             (array) ($normalized['notes'] ?? []),
             [
                 'canonical_accuracy:'.(string) ($normalized['accuracy'] ?? 'legacy_estimate'),
@@ -522,7 +543,8 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'birthday' => ['nullable', 'date_format:Y-m-d'],
-            'birth_time' => ['nullable', 'regex:/^\d{2}:\d{2}$/'],
+            'birth_time' => ['nullable', 'date_format:H:i'],
+            'tz_str' => ['nullable', 'in:Asia/Shanghai'],
             'name' => ['nullable', 'string', 'max:255'],
             'gender' => ['required', 'in:male,female'],
             'city' => ['required', 'string', 'max:64'],

@@ -1,0 +1,12 @@
+{
+  "avd": "elitesync_v1007_api36",
+  "volume": "elitesync-v1007-db-data",
+  "serial": "emulator-5582",
+  "ownership_reverified": true,
+  "container": "elitesync-v1007-db",
+  "volume_preserved": true,
+  "php_pid": 36212,
+  "private_configuration_preserved": true,
+  "php_front_stopped": true,
+  "front_pid": 42976
+}

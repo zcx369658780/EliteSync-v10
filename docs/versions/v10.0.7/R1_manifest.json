@@ -1,0 +1,193 @@
+{
+  "version": "v10.0.7",
+  "revision": "R1",
+  "status": "CANDIDATE_DELIVERED_AWAITING_ASTRA_FINAL_ACCEPTANCE",
+  "plan_commit": "ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307",
+  "plan_blob": "151d75b67238826841467fa93c140825ebf61282",
+  "review_commit": "657c1af73749c2925dd4fd8a7b3a63350f86cb79",
+  "review_blob": "177e6511d68d1bd10b9dd217157e7f2beca81360",
+  "initial_candidate": "69b3f26c6ed28a7306e4ba6b902aac2475bfe103",
+  "initial_tree": "09982c2349fb47c276018ff24aa30ac2f267dc34",
+  "r1_source_commit": "d3fa5f2bc891931fc9bb86eeb196d233d8686d71",
+  "r1_source_tree": "66b0050ed85d74cd3a55509264cd2c095089f4a5",
+  "candidate_branch": "codex/v10.0.7-app-restoration",
+  "final_candidate_identity": "fixed Owner delivery and local r1/candidate-publication.json; Git file cannot self-reference own final commit SHA",
+  "tests": {
+    "php_related": {
+      "passed": 27,
+      "assertions": 332,
+      "exit": 0,
+      "deprecations": 2
+    },
+    "flutter_full_default": {
+      "passed": 793,
+      "failed": 5,
+      "exit": 1
+    },
+    "flutter_full_same_run_fixture": {
+      "passed": 821,
+      "failed": 3,
+      "exit": 1
+    },
+    "flutter_related": {
+      "passed": 36,
+      "exit": 0
+    },
+    "dart_full": {
+      "result": "No issues found",
+      "exit": 0
+    },
+    "dart_lib": {
+      "result": "No issues found",
+      "exit": 0
+    },
+    "fixed_base_five": {
+      "passed": 20,
+      "failed": 5,
+      "exit": 1
+    }
+  },
+  "real_business": {
+    "fixture": {
+      "users": {
+        "r1sender": 11,
+        "r1recipient": 12
+      },
+      "match_id": 5,
+      "purpose": "R1 notification current-permission fixture; not a new matching consumer claim"
+    },
+    "message_id": 5,
+    "media_id": 2,
+    "notification_id": 10,
+    "active_navigation_derived": true,
+    "block_revoke_generic": true,
+    "disabled_old_token_denied": true,
+    "legacy_original_message_rows_protected": true
+  },
+  "original_rows_preserved": {
+    "users": {
+      "original_rows": 8,
+      "unchanged": true
+    },
+    "answers": {
+      "original_rows": 5,
+      "unchanged": true
+    },
+    "attempts": {
+      "original_rows": 5,
+      "unchanged": true
+    },
+    "drafts": {
+      "original_rows": 0,
+      "unchanged": true
+    },
+    "astro": {
+      "original_rows": 4,
+      "unchanged": true
+    },
+    "matches": {
+      "original_rows": 4,
+      "unchanged": true
+    },
+    "connections": {
+      "original_rows": 3,
+      "unchanged": true
+    },
+    "consents": {
+      "original_rows": 2,
+      "unchanged": true
+    },
+    "messages": {
+      "original_rows": 4,
+      "unchanged": true
+    },
+    "messages_decrypted": {
+      "original_rows": 4,
+      "unchanged": true
+    },
+    "mbti_attempts": {
+      "original_rows": 1,
+      "unchanged": true
+    },
+    "statuses": {
+      "original_rows": 1,
+      "unchanged": true
+    },
+    "status_likes": {
+      "original_rows": 1,
+      "unchanged": true
+    },
+    "notifications": {
+      "original_rows": 9,
+      "unchanged": true
+    }
+  },
+  "client_packages": {
+    "product_paths_checked": 489,
+    "dev_dependency_metadata_only": true,
+    "original_client_source": "7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f",
+    "original_client_tree": "754b9a65b41ac9393687417836e380effc81c09b",
+    "artifacts": [
+      {
+        "file": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\app-debug.apk",
+        "sha256": "fe3d9556977e5cbd34ec006a67537fd6f41efbc9d2a57e724f5d64932b102765",
+        "unchanged": true
+      },
+      {
+        "file": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\flutter_release-1.0.aar",
+        "sha256": "76800ca93d696d8cfb0db87be930bd106927bb26edd45c4c730ec3193957acb5",
+        "unchanged": true
+      }
+    ],
+    "rebuild_required": false,
+    "reason": "Flutter lib and Android blobs unchanged; pubspec lock versions/package hashes unchanged, only crypto direct-dev metadata",
+    "initial_hash_object_filter_mismatches": [
+      "apps/android/app/build.gradle.kts",
+      "apps/android/app/src/main/java/com/elitesync/BootstrapEndpointPolicy.kt",
+      "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+      "apps/android/app/src/test/java/com/elitesync/BootstrapEndpointPolicyJvmTest.kt",
+      "apps/android/settings.gradle.kts",
+      "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "apps/flutter_elitesync_module/lib/core/network/interceptors/logging_interceptor.dart",
+      "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart",
+      "apps/flutter_elitesync_module/lib/features/chat/data/dto/conversation_dto.dart",
+      "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_route_state.dart",
+      "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+      "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_provider.dart",
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/standard_ziwei_grid.dart",
+      "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart"
+    ],
+    "product_blob_changes": [],
+    "product_subtree_proof": [
+      {
+        "path": "apps/android",
+        "original_tree": "8b5522866720fcb7f5448683e1bcb23b639fdfca",
+        "staged_tree": "8b5522866720fcb7f5448683e1bcb23b639fdfca",
+        "equal": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib",
+        "original_tree": "03c83a1c4615352c29003f724e8f193fd8603538",
+        "staged_tree": "03c83a1c4615352c29003f724e8f193fd8603538",
+        "equal": true
+      }
+    ],
+    "worktree_product_diff": "",
+    "method": "Git subtree identity + no unstaged product changes; hash-object filters on existing CRLF blobs are not source changes"
+  },
+  "shutdown": {
+    "apk_build_install_r1": "NOT_RUN_PRODUCT_UNCHANGED",
+    "volume_preserved": true,
+    "pid_ownership_reverified": true,
+    "avd_r1": "NOT_STARTED",
+    "php_front_stopped": true,
+    "container": "elitesync-v1007-db"
+  },
+  "evidence": "evidence/r1/index.json",
+  "local_raw_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\r1",
+  "remaining": "3 reproduced legacy failures; absent same-run fixture adds2; no false full PASS",
+  "no_main_merge": true,
+  "no_successor": true
+}

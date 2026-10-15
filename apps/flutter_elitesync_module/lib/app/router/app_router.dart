@@ -19,6 +19,9 @@ import 'package:flutter_elitesync_module/features/chat/presentation/providers/ch
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/pages/connection_page.dart';
+import 'package:flutter_elitesync_module/features/connection/presentation/pages/live_connection_page.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
+import 'package:flutter_elitesync_module/features/match/presentation/pages/live_match_page.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
 import 'package:flutter_elitesync_module/features/home/domain/entities/home_feed_entity.dart';
@@ -99,13 +102,30 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           path == AppRouteNames.matchDetail ||
           path == AppRouteNames.matchIntention ||
           path == AppRouteNames.matchFeedback;
-      if (isMatchEntry && !nav.isReadinessEstablished) {
+      // Local restoration shows the real server result/readiness rejection.
+      // The navigation projection is not an authority for backend operations.
+      if (isMatchEntry &&
+          !env.restorationLocalBuild &&
+          !nav.isReadinessEstablished) {
         return AppRouteNames.meReadiness;
       }
 
       return null;
     },
     routes: [
+      if (env.restorationLocalBuild)
+        GoRoute(
+          path: '/live-connection',
+          builder: (context, state) => LiveConnectionPage(
+            peerId: int.tryParse(state.uri.queryParameters['peerId'] ?? ''),
+          ),
+        ),
+      if (env.restorationLocalBuild)
+        GoRoute(
+          path: '/live-chat/:peerId',
+          builder: (context, state) =>
+              LiveChatPage(peerId: int.parse(state.pathParameters['peerId']!)),
+        ),
       if (env.isDev)
         GoRoute(
           path: AppRouteNames.profileShowcaseReviewFixture,
@@ -434,11 +454,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 routes: [
                   GoRoute(
                     path: AppRouteNames.progressMatchSegment,
-                    builder: (context, state) => const MatchShellPage(),
+                    builder: (context, state) => env.restorationLocalBuild
+                        ? const LiveMatchPage()
+                        : const MatchShellPage(),
                   ),
                   GoRoute(
                     path: AppRouteNames.progressConnectionSegment,
-                    builder: (context, state) => const ConnectionPage(),
+                    builder: (context, state) => env.restorationLocalBuild
+                        ? const LiveConnectionPage()
+                        : const ConnectionPage(),
                   ),
                 ],
               ),

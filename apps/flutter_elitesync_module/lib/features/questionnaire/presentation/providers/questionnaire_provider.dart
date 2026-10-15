@@ -125,10 +125,11 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       questions: bundle.questions,
     );
 
+    // Server-owned per-account draft survives logout/restart. Local cache is never authority.
     final draft = await ref
-        .read(localStorageProvider)
-        .getJson(CacheKeys.questionnaireDraft);
-    if (draft != null) {
+        .read(questionnaireRemoteDataSourceProvider)
+        .fetchDraft();
+    if (draft.isNotEmpty) {
       final answers = _parseAnswers(draft['answers']);
       final rawIndex =
           int.tryParse((draft['current_index'] ?? 0).toString()) ?? 0;
@@ -169,7 +170,9 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
 
   Future<bool> selectOptionAndProceed(int optionIndex) async {
     final before = _current;
-    if (before == null) return false;
+    if (before == null || before.isSavingDraft || before.isSubmitting) {
+      return false;
+    }
 
     selectOption(optionIndex);
 
@@ -180,7 +183,24 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       return submit();
     }
 
-    next();
+    // Advance only after the account-owned server draft is durable.
+    state = AsyncData(after.copyWith(isSavingDraft: true));
+    try {
+      await ref
+          .read(saveQuestionnaireDraftUseCaseProvider)
+          .call(currentIndex: after.currentIndex + 1, answers: after.answers);
+      final saved = after.copyWith(
+        currentIndex: after.currentIndex + 1,
+        isSavingDraft: false,
+        clearError: true,
+      );
+      state = AsyncData(saved);
+      await _persistLocalDraft(saved);
+    } catch (e) {
+      state = AsyncData(
+        after.copyWith(isSavingDraft: false, errorMessage: '草稿未保存，请重试当前答案：$e'),
+      );
+    }
     return false;
   }
 

@@ -166,7 +166,9 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
                               child: QuestionOptionButton(
                                 label: q.options[index],
                                 selected: selected == index,
-                                onTap: () => _answerAndContinue(index),
+                                onTap: state.isSavingDraft || state.isSubmitting
+                                    ? null
+                                    : () => _answerAndContinue(index),
                               ),
                             );
                           }),

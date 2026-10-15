@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-15T02:03:01.551559+00:00",
+  "role": "r1recipient",
+  "method": "POST",
+  "path": "/api/v1/moderation/blocks",
+  "request": {
+    "blocked_user_id": 11,
+    "reason_code": "v1007-r1"
+  },
+  "status": 200,
+  "body": {
+    "ok": true,
+    "block": {
+      "id": 2,
+      "blocked_user_id": 11
+    }
+  }
+}

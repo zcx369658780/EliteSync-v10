@@ -1,0 +1,9 @@
+test/features/connection/live_connection_page_test.dart:8:8: Error: Error when reading 'lib/features/connection/presentation/pages/live_connection_page.dart': 系统找不到指定的文件。
+import 'package:flutter_elitesync_module/features/connection/presentation/pages/live_connection_page.dart';
+       ^
+test/features/connection/live_connection_page_test.dart:43:187: Error: Couldn't find constructor 'LiveConnectionPage'.
+  await tester.pumpWidget(ProviderScope(overrides:[apiClientProvider.overrideWithValue(api),sessionProvider.overrideWith(_Session.new)],child:MaterialApp(theme:AppTheme.light,home:const LiveConnectionPage())));
+                                                                                          ^^^^^^^^^^^^^^^^^^
+test/features/connection/live_connection_page_test.dart:68:74: Error: Undefined name 'LiveConnectionPage'.
+    final container=ProviderScope.containerOf(tester.element(find.byType(LiveConnectionPage)));
+                                                                         ^^^^^^^^^^^^^^^^^^

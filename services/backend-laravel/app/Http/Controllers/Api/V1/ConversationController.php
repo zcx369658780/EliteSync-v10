@@ -13,7 +13,7 @@ class ConversationController extends Controller
     public function index(Request $request, ConversationDomainService $service, ConversationCapabilityService $capabilities): JsonResponse
     {
         $actorId = (int) $request->user()->id;
-        $items = $service->listForUser($request->user())
+        $items = ($request->attributes->get('v1007_conversation_items') ?? $service->listForUser($request->user()))
             ->filter(fn (array $item) => isset($item['peer_user_id'])
                 && is_int($item['peer_user_id'])
                 && $item['peer_user_id'] > 0

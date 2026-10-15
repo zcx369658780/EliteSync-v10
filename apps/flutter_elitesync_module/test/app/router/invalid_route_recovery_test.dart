@@ -101,7 +101,6 @@ void main() {
     final context = tester.element(find.byType(MaterialApp));
     final container = ProviderScope.containerOf(context);
     final router = container.read(appRouterProvider);
-    addTearDown(router.dispose);
     router.push('/missing-pushed-route');
     await _settleRouter(tester);
     expect(find.text('页面未找到'), findsOneWidget);

@@ -1,0 +1,38 @@
+{
+  "product_paths_checked": 489,
+  "product_blob_changes": [
+    "apps/android/app/build.gradle.kts",
+    "apps/android/app/src/main/java/com/elitesync/BootstrapEndpointPolicy.kt",
+    "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+    "apps/android/app/src/test/java/com/elitesync/BootstrapEndpointPolicyJvmTest.kt",
+    "apps/android/settings.gradle.kts",
+    "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+    "apps/flutter_elitesync_module/lib/core/network/interceptors/logging_interceptor.dart",
+    "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart",
+    "apps/flutter_elitesync_module/lib/features/chat/data/dto/conversation_dto.dart",
+    "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_route_state.dart",
+    "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+    "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_provider.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/standard_ziwei_grid.dart",
+    "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+    "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart"
+  ],
+  "dev_dependency_metadata_only": true,
+  "original_client_source": "7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f",
+  "original_client_tree": "754b9a65b41ac9393687417836e380effc81c09b",
+  "artifacts": [
+    {
+      "file": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\app-debug.apk",
+      "sha256": "fe3d9556977e5cbd34ec006a67537fd6f41efbc9d2a57e724f5d64932b102765",
+      "unchanged": true
+    },
+    {
+      "file": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\flutter_release-1.0.aar",
+      "sha256": "76800ca93d696d8cfb0db87be930bd106927bb26edd45c4c730ec3193957acb5",
+      "unchanged": true
+    }
+  ],
+  "rebuild_required": false,
+  "reason": "Flutter lib and Android blobs unchanged; pubspec lock versions/package hashes unchanged, only crypto direct-dev metadata"
+}

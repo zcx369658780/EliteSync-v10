@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python",
+    "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\seven-routes.py",
+    "legal"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007",
+  "exit": 0,
+  "start": "2026-10-15T00:27:10.260430+00:00",
+  "end": "2026-10-15T00:27:11.647149+00:00",
+  "streams": {
+    "stdout": "d9fbf4405c713a690d47a56661df4645272708a2868a9cd038cb28ddcc7f388e",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -85,7 +85,13 @@ class MatchingRunService
 
     public function heartbeat(MatchingRun $run, string $leaseOwner, int $fencingToken, int $leaseSeconds = 60): bool
     {
-        return MatchingRun::query()->whereKey($run->id)->where('state', RunState::Running->value)->where('lease_owner', $leaseOwner)->where('fencing_token', $fencingToken)->where('lease_expires_at', '>', now()->utc())->update(['heartbeat_at' => now()->utc(), 'lease_expires_at' => now()->utc()->addSeconds($leaseSeconds)]) === 1;
+        $guard = MatchingRun::query()->whereKey($run->id)->where('state', RunState::Running->value)
+            ->where('lease_owner', $leaseOwner)->where('fencing_token', $fencingToken)
+            ->where('lease_expires_at', '>', now()->utc());
+        $changed = (clone $guard)->update(['heartbeat_at' => now()->utc(), 'lease_expires_at' => now()->utc()->addSeconds($leaseSeconds)]);
+        // MariaDB reports changed rows: a second heartbeat in the same second
+        // can be a valid no-op. Recheck the complete current lease/fence guard.
+        return $changed === 1 || (clone $guard)->exists();
     }
 
     public function freezeCandidates(MatchingRun $run, iterable $users, string $leaseOwner, int $fencingToken): void

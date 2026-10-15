@@ -1,0 +1,210 @@
+[
+  {
+    "match_id": 1,
+    "round_id": 4,
+    "users": [
+      2,
+      3
+    ],
+    "modules": [
+      {
+        "key": "bazi",
+        "weight": 0.4211,
+        "score": 66,
+        "degraded": true,
+        "degrade_reason": "missing_branch_relation"
+      },
+      {
+        "key": "zodiac",
+        "weight": 0.2105,
+        "score": 55,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "constellation",
+        "weight": 0.0842,
+        "score": 75,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "natal_chart",
+        "weight": 0.0737,
+        "score": 81,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "ziwei",
+        "weight": 0.0526,
+        "score": 69,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "pair_chart",
+        "weight": 0.1579,
+        "score": 81,
+        "degraded": false,
+        "degrade_reason": ""
+      }
+    ]
+  },
+  {
+    "match_id": 2,
+    "round_id": 6,
+    "users": [
+      2,
+      6
+    ],
+    "modules": [
+      {
+        "key": "bazi",
+        "weight": 0.4211,
+        "score": 55,
+        "degraded": true,
+        "degrade_reason": "missing_bazi"
+      },
+      {
+        "key": "zodiac",
+        "weight": 0.2105,
+        "score": 55,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "constellation",
+        "weight": 0.0842,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "missing_constellation"
+      },
+      {
+        "key": "natal_chart",
+        "weight": 0.0737,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "partial_natal_chart"
+      },
+      {
+        "key": "ziwei",
+        "weight": 0.0526,
+        "score": 0,
+        "degraded": true,
+        "degrade_reason": "missing_ziwei_main_star_data"
+      },
+      {
+        "key": "pair_chart",
+        "weight": 0.1579,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "sun_only_estimation"
+      }
+    ]
+  },
+  {
+    "match_id": 3,
+    "round_id": 7,
+    "users": [
+      2,
+      7
+    ],
+    "modules": [
+      {
+        "key": "bazi",
+        "weight": 0.4211,
+        "score": 55,
+        "degraded": true,
+        "degrade_reason": "missing_bazi"
+      },
+      {
+        "key": "zodiac",
+        "weight": 0.2105,
+        "score": 55,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "constellation",
+        "weight": 0.0842,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "missing_constellation"
+      },
+      {
+        "key": "natal_chart",
+        "weight": 0.0737,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "partial_natal_chart"
+      },
+      {
+        "key": "ziwei",
+        "weight": 0.0526,
+        "score": 0,
+        "degraded": true,
+        "degrade_reason": "missing_ziwei_main_star_data"
+      },
+      {
+        "key": "pair_chart",
+        "weight": 0.1579,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "sun_only_estimation"
+      }
+    ]
+  },
+  {
+    "match_id": 4,
+    "round_id": 9,
+    "users": [
+      3,
+      8
+    ],
+    "modules": [
+      {
+        "key": "bazi",
+        "weight": 0.5882,
+        "score": 55,
+        "degraded": true,
+        "degrade_reason": "missing_bazi"
+      },
+      {
+        "key": "zodiac",
+        "weight": 0.2941,
+        "score": 30,
+        "degraded": false,
+        "degrade_reason": ""
+      },
+      {
+        "key": "constellation",
+        "weight": 0.1176,
+        "score": 60,
+        "degraded": true,
+        "degrade_reason": "missing_constellation"
+      },
+      {
+        "key": "natal_chart",
+        "weight": 0,
+        "score": 0,
+        "degraded": true,
+        "degrade_reason": "v1007_not_restored"
+      },
+      {
+        "key": "ziwei",
+        "weight": 0,
+        "score": 0,
+        "degraded": true,
+        "degrade_reason": "v1007_not_restored"
+      },
+      {
+        "key": "pair_chart",
+        "weight": 0,
+        "score": 0,
+        "degraded": true,
+        "degrade_reason": "v1007_not_restored"
+      }
+    ]
+  }
+]

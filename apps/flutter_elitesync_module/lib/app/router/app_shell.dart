@@ -14,6 +14,7 @@ import 'package:flutter_elitesync_module/features/match/presentation/pages/match
 import 'package:flutter_elitesync_module/features/me/presentation/pages/me_landing_page.dart';
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
@@ -263,16 +264,21 @@ class DiscoverShellPage extends StatelessWidget {
   Widget build(BuildContext context) => const DiscoverPage();
 }
 
-class MessagesShellPage extends StatelessWidget {
+class MessagesShellPage extends ConsumerWidget {
   const MessagesShellPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const ConversationListPage();
+  Widget build(BuildContext context, WidgetRef ref) =>
+      ref.watch(appEnvProvider).restorationLocalBuild
+      ? const LiveConversationListPage()
+      : const ConversationListPage();
 }
 
-class MeShellPage extends StatelessWidget {
+class MeShellPage extends ConsumerWidget {
   const MeShellPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const MeLandingPage();
+  Widget build(BuildContext context, WidgetRef ref) => MeLandingPage(
+    restorationLocalBuild: ref.watch(appEnvProvider).restorationLocalBuild,
+  );
 }

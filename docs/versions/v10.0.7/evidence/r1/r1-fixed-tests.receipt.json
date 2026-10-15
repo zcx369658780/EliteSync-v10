@@ -1,0 +1,18 @@
+{
+  "command": [
+    "D:/flutter/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "--dart-define=QUALIFICATION_DIAGNOSTIC_FIXTURE=C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\r1\\same-run-diagnostic.json",
+    "test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+    "test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart",
+    "test/features/chat/data/datasource/chat_remote_data_source_send_test.dart"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\apps\\flutter_elitesync_module",
+  "exit": 0,
+  "receipt_created_utc": "2026-10-15T01:58:18.551410+00:00",
+  "streams": {
+    "stdout": "a6c7cc83408e319ed5dc5587b13b02ecc1e9506f536a4e3b3cdc88bd9c90b7f0",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

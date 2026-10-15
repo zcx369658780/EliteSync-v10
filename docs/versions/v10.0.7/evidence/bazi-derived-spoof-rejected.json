@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-15T00:18:18.241963+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/profile/astro",
+  "request": {
+    "birth_time": "14:30",
+    "bazi": "FAKE",
+    "notes": [
+      "canonical_source:fake"
+    ]
+  },
+  "status": 422,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "validation_error",
+      "message": "The bazi field is prohibited. (and 1 more error)",
+      "details": {
+        "bazi": [
+          "The bazi field is prohibited."
+        ],
+        "notes": [
+          "The notes field is prohibited."
+        ]
+      }
+    }
+  }
+}

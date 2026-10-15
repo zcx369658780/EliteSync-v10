@@ -490,8 +490,14 @@ class MessageApiTest extends TestCase
         $this->assertSame($counts, [Conversation::count(), ConversationMember::count(), ConversationMatchLink::count(), ChatMessage::count(), AppEvent::count(), AppNotificationItem::count()]);
 
         $notification = AppNotificationItem::query()->firstOrFail();
-        $this->assertSame((string) $conversationId, $notification->payload['route_args']['conversation_id']);
-        $this->assertSame($sender->id, $notification->payload['peer_user_id']);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_TITLE, $notification->title);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_BODY, $notification->body);
+        $this->assertArrayNotHasKey('peer_user_id', $notification->payload);
+        $this->assertArrayNotHasKey('route_args', $notification->payload);
+        $storedMessage = \App\Models\ChatMessage::findOrFail($notification->payload['message_id']);
+        $storedConversation = \App\Models\Conversation::where('room_key', $storedMessage->room_id)->firstOrFail();
+        $this->assertSame((int) $conversationId, (int) $storedConversation->id);
+        $this->assertSame($sender->id, (int) $storedMessage->sender_id);
         $this->assertSame($first['id'], $notification->payload['message_id']);
     }
 

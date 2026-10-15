@@ -1,0 +1,18 @@
+{
+  "command": [
+    "pwsh",
+    "-NoProfile",
+    "-File",
+    "docs/versions/v10.0.7/build-local.ps1",
+    "-GradleHome",
+    "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\12\\01a13084-65a4-7c71-bf32-fa60a68d2099\\v1006\\gradle-home"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10",
+  "exit": 0,
+  "start": "2026-10-14T23:57:03.043664+00:00",
+  "end": "2026-10-14T23:58:18.087662+00:00",
+  "streams": {
+    "stdout": "10878a6cbb94f2f04131955a2af78e9bf89b48cf39be81a6b839c35bb6c85a5b",
+    "stderr": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+  }
+}

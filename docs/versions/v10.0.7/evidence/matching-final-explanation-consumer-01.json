@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "artisan",
+    "app:matching:execute-pending",
+    "--once"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel",
+  "exit": 0,
+  "start": "2026-10-15T00:42:44.594683+00:00",
+  "end": "2026-10-15T00:42:45.121568+00:00",
+  "streams": {
+    "stdout": "4e41b54e63481c109be5b1ea60b84fdcc18d46c273792dcc723f9c5df199f338",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

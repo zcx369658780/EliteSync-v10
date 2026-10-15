@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/db-final.php",
+    "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel",
+  "exit": 0,
+  "start": "2026-10-15T02:03:47.973806+00:00",
+  "end": "2026-10-15T02:03:48.220717+00:00",
+  "streams": {
+    "stdout": "2d0d627ccd949012020af9abb49c85083d60724f7ddc5640ed94ca4c066a786a",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

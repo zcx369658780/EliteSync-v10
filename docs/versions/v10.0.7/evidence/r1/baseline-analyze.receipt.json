@@ -1,0 +1,14 @@
+{
+  "command": [
+    "D:/flutter/bin/flutter.bat",
+    "analyze",
+    "--no-pub"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\r1\\baseline-package",
+  "exit": 1,
+  "receipt_created_utc": "2026-10-15T01:58:18.550908+00:00",
+  "streams": {
+    "stdout": "e3e8152f318e44fd1dd0b2b5e36de4bd7a527eceef866915ee5839bda194107f",
+    "stderr": "0b89d6c0ba60bdac2343203085dde012050de35e2aa3e6ab095332ef133e1ba3"
+  }
+}

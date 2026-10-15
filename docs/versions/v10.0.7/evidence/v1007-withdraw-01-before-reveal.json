@@ -1,0 +1,142 @@
+{
+  "utc": "2026-10-15T00:24:04.976740+00:00",
+  "role": "admin",
+  "method": "GET",
+  "path": "/api/v1/admin/matching/rounds/093abb04-1013-46a3-b35a-6f9c7e342a50",
+  "request": null,
+  "status": 200,
+  "body": {
+    "data": {
+      "id": 7,
+      "round_key": "093abb04-1013-46a3-b35a-6f9c7e342a50",
+      "channel_key": "v1007-withdraw-01",
+      "cadence_key": "2026-10-15",
+      "state": "waiting",
+      "state_version": 3,
+      "scheduled_for": null,
+      "reveal_at": "2026-10-14T00:00:00.000000Z",
+      "revealed_at": null,
+      "closed_at": null,
+      "active_run_id": 8,
+      "created_by_type": "admin",
+      "created_by_id": 1,
+      "source": "admin",
+      "failure_code": null,
+      "failure_summary": null,
+      "created_at": "2026-10-15T00:24:03.000000Z",
+      "updated_at": "2026-10-15T00:24:04.000000Z",
+      "active_run": {
+        "id": 8,
+        "round_id": 7,
+        "run_key": "fd6d9480-bcfd-41cd-b944-1343a1ba4015",
+        "idempotency_key": "v1007-withdraw-01-execute",
+        "correlation_id": "23669fb4-dbf4-4a93-b4b2-50b529f06d8b",
+        "attempt_no": 1,
+        "state": "succeeded",
+        "outcome": "matches_created",
+        "trigger_source": "admin",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "eligible_count": 4,
+        "candidate_count": 4,
+        "pair_count": 1,
+        "no_candidate_count": 2,
+        "lease_owner": "zcx_265K:50268",
+        "lease_expires_at": "2026-10-15T00:25:04.000000Z",
+        "heartbeat_at": "2026-10-15T00:24:04.000000Z",
+        "started_at": "2026-10-15T00:24:04.000000Z",
+        "finished_at": "2026-10-15T00:24:04.000000Z",
+        "eligibility_cutoff_at": "2026-10-15T00:24:03.000000Z",
+        "algorithm_version": "v1",
+        "config_version": "5523b80f7d837d1f9f616a88311fc658b3f9ea0cce93d65f182e8cad471d5124",
+        "candidate_digest": "c9f8fa87a9f441dae3cd7ac726095aa600e36720bdc7d198987a10f6f4ecd5cf",
+        "digest_version": "hmac-sha256-v1",
+        "digest_key_version": "local-v1",
+        "supersedes_run_id": null,
+        "error_code": null,
+        "error_summary": null,
+        "timeout_seconds": null,
+        "created_at": "2026-10-15T00:24:03.000000Z",
+        "updated_at": "2026-10-15T00:24:04.000000Z"
+      },
+      "runs": [
+        {
+          "id": 8,
+          "round_id": 7,
+          "run_key": "fd6d9480-bcfd-41cd-b944-1343a1ba4015",
+          "idempotency_key": "v1007-withdraw-01-execute",
+          "correlation_id": "23669fb4-dbf4-4a93-b4b2-50b529f06d8b",
+          "attempt_no": 1,
+          "state": "succeeded",
+          "outcome": "matches_created",
+          "trigger_source": "admin",
+          "actor_type": "admin",
+          "actor_id": 1,
+          "reason_code": "v1007-authorized-development",
+          "eligible_count": 4,
+          "candidate_count": 4,
+          "pair_count": 1,
+          "no_candidate_count": 2,
+          "lease_owner": "zcx_265K:50268",
+          "lease_expires_at": "2026-10-15T00:25:04.000000Z",
+          "heartbeat_at": "2026-10-15T00:24:04.000000Z",
+          "started_at": "2026-10-15T00:24:04.000000Z",
+          "finished_at": "2026-10-15T00:24:04.000000Z",
+          "eligibility_cutoff_at": "2026-10-15T00:24:03.000000Z",
+          "algorithm_version": "v1",
+          "config_version": "5523b80f7d837d1f9f616a88311fc658b3f9ea0cce93d65f182e8cad471d5124",
+          "candidate_digest": "c9f8fa87a9f441dae3cd7ac726095aa600e36720bdc7d198987a10f6f4ecd5cf",
+          "digest_version": "hmac-sha256-v1",
+          "digest_key_version": "local-v1",
+          "supersedes_run_id": null,
+          "error_code": null,
+          "error_summary": null,
+          "timeout_seconds": null,
+          "created_at": "2026-10-15T00:24:03.000000Z",
+          "updated_at": "2026-10-15T00:24:04.000000Z"
+        }
+      ]
+    },
+    "audits": [
+      {
+        "action": "schedule",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": null,
+        "before_state": null,
+        "after_state": {
+          "state": "preparing"
+        },
+        "created_at": "2026-10-15T00:24:03.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "pending"
+        },
+        "created_at": "2026-10-15T00:24:04.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "succeeded",
+          "outcome": "matches_created",
+          "pair_count": 1
+        },
+        "created_at": "2026-10-15T00:24:04.000000Z"
+      }
+    ],
+    "meta": {
+      "compensation_enabled": false
+    }
+  }
+}

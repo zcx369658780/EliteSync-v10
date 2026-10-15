@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-15T00:43:07.160926+00:00",
+  "role": "alice",
+  "method": "DELETE",
+  "path": "/api/v1/moderation/blocks/3",
+  "request": null,
+  "status": 200,
+  "body": {
+    "ok": true,
+    "deleted": 1
+  }
+}

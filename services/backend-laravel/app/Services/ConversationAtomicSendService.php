@@ -54,6 +54,7 @@ class ConversationAtomicSendService
             if (!$asset || (int) $asset->owner_user_id !== $senderId) {
                 return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
             }
+            if(app(LiveConsentService::class)->enabled() && $asset->storage_disk!=='v1007')return ['ok'=>false,'status'=>422,'code'=>'private_attachment_required'];
         }
         foreach ($attachmentIds as $id) {
             if ((string) $assets->get($id)->status !== 'ready') {
@@ -196,18 +197,14 @@ class ConversationAtomicSendService
                 ],
             );
 
-            $senderName = trim((string) ($sender->nickname ?? $sender->name ?? $sender->phone ?? '有人'));
             $message->load('attachments.mediaAsset');
             $this->notifications->createForUser(
                 userId: $receiverId,
                 kind: 'message',
-                title: "{$senderName} 发来一条消息",
-                body: $this->notificationBody($message),
+                title: NotificationService::MESSAGE_TITLE,
+                body: NotificationService::MESSAGE_BODY,
                 payload: [
-                    'route_name' => 'chat_room',
-                    'route_args' => ['conversation_id' => (string) $conversation->id, 'title' => $senderName],
                     'message_id' => (int) $message->id,
-                    'peer_user_id' => (int) $sender->id,
                     'source' => 'message',
                 ],
             );
@@ -229,6 +226,7 @@ class ConversationAtomicSendService
             return ['ok' => true, 'assets' => collect()];
         }
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->lockForUpdate()->get()->keyBy('id');
+        if(app(LiveConsentService::class)->enabled()&&$assets->contains(fn($asset)=>$asset->storage_disk!=='v1007'))return ['ok'=>false,'status'=>422,'code'=>'private_attachment_required'];
         foreach ($attachmentIds as $id) {
             $asset = $assets->get($id);
             if (!$asset || (int) $asset->owner_user_id !== $senderId) {
@@ -246,6 +244,7 @@ class ConversationAtomicSendService
     /** @return array<string, mixed> */
     private function replayResult(ChatMessage $message, string $fingerprint): array
     {
+        if(app(LiveConsentService::class)->enabled()&&!$this->capabilities->canSend((int)$message->sender_id,(int)$message->receiver_id))return ['ok'=>false,'status'=>404,'code'=>'conversation_unavailable'];
         if (!hash_equals((string) $message->request_fingerprint, $fingerprint)) {
             return [
                 'ok' => false,
@@ -274,19 +273,4 @@ class ConversationAtomicSendService
             : (str_starts_with($mediaType, 'image') || $mediaType === 'image' ? 'image' : 'media');
     }
 
-    private function notificationBody(ChatMessage $message): string
-    {
-        $content = trim((string) $message->content);
-        if ($content !== '') {
-            return mb_strimwidth($content, 0, 90, '…', 'UTF-8');
-        }
-        $types = $message->attachments->map(fn ($item) => (string) ($item->mediaAsset?->media_type ?? ''));
-        if ($types->contains(fn ($type) => str_starts_with($type, 'video') || $type === 'video')) {
-            return '发送了一条视频消息';
-        }
-        if ($types->contains(fn ($type) => str_starts_with($type, 'image') || $type === 'image')) {
-            return '发送了一条图片消息';
-        }
-        return $types->isNotEmpty() ? '发送了一条多媒体消息' : '发送了一条新消息';
-    }
 }

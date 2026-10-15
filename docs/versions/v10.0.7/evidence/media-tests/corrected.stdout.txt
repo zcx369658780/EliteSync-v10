@@ -1,0 +1,18 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+FDDD                                                                4 / 4 (100%)
+
+Time: 00:00.987, Memory: 54.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1007PrivateMediaTest::test_private_attachment_download_requires_current_participant_consent
+Failed asserting that 'no-store, public' [ASCII](length: 16) contains "private" [ASCII](length: 7).
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007PrivateMediaTest.php:60
+
+FAILURES!
+Tests: 4, Assertions: 27, Failures: 1, Deprecations: 2.

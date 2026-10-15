@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-15T00:16:11.094258+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/admin/matching/rounds/2fd673e0-c40b-460c-b35f-47ea8dc24f9e/retry",
+  "request": {
+    "state_version": 3,
+    "reason_code": "v1007-authorized-development"
+  },
+  "status": 201,
+  "body": {
+    "data": {
+      "round_id": 5,
+      "run_key": "f35bd992-0abc-4af9-87fa-6cdea8264a9f",
+      "idempotency_key": "v1007-lease-recovery-01-retry",
+      "correlation_id": "053a2f3d-d21b-41e5-bdc1-dfa583299838",
+      "attempt_no": 2,
+      "state": "pending",
+      "trigger_source": "admin",
+      "actor_type": "admin",
+      "actor_id": 1,
+      "reason_code": "retry",
+      "eligibility_cutoff_at": "2026-10-15T00:16:11.000000Z",
+      "algorithm_version": "v1",
+      "config_version": "c1",
+      "supersedes_run_id": 5,
+      "updated_at": "2026-10-15T00:16:11.000000Z",
+      "created_at": "2026-10-15T00:16:11.000000Z",
+      "id": 6
+    }
+  }
+}

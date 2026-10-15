@@ -7,7 +7,7 @@ import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questio
 import 'package:flutter_elitesync_module/mocks/mock_data/questionnaire_mock.dart';
 
 class QuestionnaireRemoteDataSource {
-  const QuestionnaireRemoteDataSource({
+  QuestionnaireRemoteDataSource({
     required ApiClient apiClient,
     required bool useMockQuestionnaire,
   }) : _apiClient = apiClient,
@@ -15,10 +15,11 @@ class QuestionnaireRemoteDataSource {
 
   final ApiClient _apiClient;
   final bool _useMockQuestionnaire;
+  QuestionnaireBundleDto? _lastBundle;
 
   Future<QuestionnaireBundleDto> fetchQuestionnaire() async {
     if (_useMockQuestionnaire) {
-      return QuestionnaireBundleDto.fromJson({
+      return _lastBundle = QuestionnaireBundleDto.fromJson({
         'meta': QuestionnaireMock.meta,
         'questions': QuestionnaireMock.questions,
       });
@@ -26,7 +27,7 @@ class QuestionnaireRemoteDataSource {
 
     final result = await _apiClient.get('/api/v1/questionnaire/questions');
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      return QuestionnaireBundleDto.fromJson(result.data);
+      return _lastBundle = QuestionnaireBundleDto.fromJson(result.data);
     }
 
     final failure = result as NetworkFailure<Map<String, dynamic>>;
@@ -43,9 +44,62 @@ class QuestionnaireRemoteDataSource {
     if (_useMockQuestionnaire) {
       return;
     }
-    // Backend draft endpoint has been removed in unified questionnaire API.
-    // Keep local draft only to avoid noisy 404/network errors.
-    return;
+    final bundle = _lastBundle ?? await fetchQuestionnaire();
+    _canonicalAnswers(answers, bundle);
+    final result = await _apiClient.post(
+      '/api/v1/questionnaire/draft',
+      body: {
+        'answers': answers.map((key, value) => MapEntry(key.toString(), value)),
+        'current_index': currentIndex,
+        'version': bundle.version,
+        'bank_version': bundle.bankVersion,
+      },
+    );
+    if (result is NetworkSuccess<Map<String, dynamic>>) return;
+    final failure = result as NetworkFailure<Map<String, dynamic>>;
+    throw ValidationException(
+      failure.message,
+      code: failure.code ?? 'QUESTIONNAIRE_DRAFT_SAVE_FAILED',
+    );
+  }
+
+  Future<Map<String, dynamic>> fetchDraft() async {
+    if (_useMockQuestionnaire) return {};
+    final result = await _apiClient.get('/api/v1/questionnaire/draft');
+    if (result is NetworkSuccess<Map<String, dynamic>>) return result.data;
+    final failure = result as NetworkFailure<Map<String, dynamic>>;
+    throw ValidationException(
+      failure.message,
+      code: failure.code ?? 'QUESTIONNAIRE_DRAFT_FETCH_FAILED',
+    );
+  }
+
+  List<Map<String, dynamic>> _canonicalAnswers(
+    Map<int, int> answers,
+    QuestionnaireBundleDto bundle,
+  ) {
+    final questions = {
+      for (final question in bundle.questions) question.id: question,
+    };
+    return answers.entries.map((entry) {
+      final question = questions[entry.key];
+      final index = entry.value;
+      if (question == null ||
+          index < 0 ||
+          index >= question.optionIds.length ||
+          question.optionIds[index].isEmpty) {
+        throw ValidationException(
+          '问卷选项与当前题库不一致，请重新载入。',
+          code: 'QUESTIONNAIRE_INVALID_OPTION',
+        );
+      }
+      return <String, dynamic>{
+        'question_id': question.id,
+        'option_id': question.optionIds[index],
+        'importance': 2,
+        'version': question.version,
+      };
+    }).toList();
   }
 
   Future<QuestionnaireSubmissionResultDto> submitAnswers(
@@ -57,17 +111,8 @@ class QuestionnaireRemoteDataSource {
       );
     }
 
-    final normalizedAnswers = answers.entries
-        .map(
-          (entry) => <String, dynamic>{
-            'question_id': entry.key,
-            // backend accepts legacy "answer" string
-            'answer': entry.value.toString(),
-            'importance': 2,
-            'version': 1,
-          },
-        )
-        .toList();
+    final bundle = _lastBundle ?? await fetchQuestionnaire();
+    final normalizedAnswers = _canonicalAnswers(answers, bundle);
 
     final result = await _apiClient.post(
       '/api/v1/questionnaire/answers',

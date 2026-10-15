@@ -102,8 +102,14 @@ class AstroProfileController extends Controller
         $profile = UserAstroProfile::query()
             ->where('user_id', (int) $user->id)
             ->first();
+        if (app(\App\Services\LiveConsentService::class)->enabled()) {
+            $request->validate(array_fill_keys(
+                ['bazi', 'true_solar_time', 'sun_sign', 'moon_sign', 'asc_sign', 'da_yun', 'liu_nian', 'wu_xing', 'notes'],
+                ['prohibited']
+            ) + ['tz_str' => ['nullable', 'in:Asia/Shanghai']]);
+        }
         $data = $request->validate([
-            'birth_time' => ['required', 'regex:/^\d{2}:\d{2}$/'],
+            'birth_time' => ['required', 'date_format:H:i'],
             'birth_place' => ['nullable', 'string', 'max:255'],
             'birth_lat' => ['nullable', 'numeric', 'between:-90,90'],
             'birth_lng' => ['nullable', 'numeric', 'between:-180,180'],
@@ -161,6 +167,7 @@ class AstroProfileController extends Controller
             [
                 'location_source:'.(string) ($locationContext['location_source'] ?? 'unknown'),
                 'location_shift_minutes:'.(string) ($locationContext['location_shift_minutes'] ?? 0),
+                ...(app(\App\Services\LiveConsentService::class)->enabled() ? ['civil_timezone:Asia/Shanghai', 'birth_time_input_source:user_input'] : []),
             ]
         )));
         $normalized = $canonical->canonicalize($canonicalPayload);

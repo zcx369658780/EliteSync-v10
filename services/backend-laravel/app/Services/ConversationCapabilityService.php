@@ -44,6 +44,7 @@ class ConversationCapabilityService
         }
 
         $allowed = !$blocked && !$syntheticDenied && $match !== null && !$departed;
+        if(app(LiveConsentService::class)->enabled())$allowed=$allowed&&(app(LiveConsentService::class)->gates($actorId,$peerId)['live_send_allowed']??false);
 
         return [
             'allowed' => $allowed,
@@ -75,6 +76,11 @@ class ConversationCapabilityService
 
         $canRead = $conversation !== null || $releasedMatch;
         $canMutate = !$blocked && !$syntheticDenied && $releasedMatch;
+        if(app(LiveConsentService::class)->enabled()){
+            $gates=app(LiveConsentService::class)->gates($actorId,$peerId);
+            $canRead=$canRead&&($gates['live_read_allowed']??false);
+            $canMutate=$canMutate&&($gates['live_send_allowed']??false);
+        }
 
         return [
             'can_list' => true,

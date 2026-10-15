@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T02:03:02.192393+00:00",
+  "role": "r1recipient",
+  "method": "GET",
+  "path": "/api/v1/media/2/content",
+  "request": null,
+  "status": 404,
+  "body": {
+    "message": "media asset unavailable"
+  }
+}

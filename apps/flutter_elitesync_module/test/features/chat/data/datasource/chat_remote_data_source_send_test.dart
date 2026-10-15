@@ -104,7 +104,7 @@ void main() {
       clientMessageId: 'mock-client',
     );
 
-    expect(first.serverMessageId, 1);
+    expect(first.serverMessageId, 990000499);
     expect(first.conversationId, isNot(23));
     expect(first.message.id, first.serverMessageId.toString());
     expect(first.clientMessageId, 'mock-client');
@@ -216,6 +216,7 @@ class _FakeApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
+    CancelToken? cancelToken,
     Object? body,
     Map<String, dynamic>? query,
     Options? options,
@@ -234,6 +235,7 @@ class _ConversationFallbackApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {
@@ -254,6 +256,7 @@ class _ConversationDetailApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {

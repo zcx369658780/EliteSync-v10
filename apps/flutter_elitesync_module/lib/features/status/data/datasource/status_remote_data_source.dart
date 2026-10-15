@@ -36,10 +36,7 @@ class StatusRemoteDataSource {
       final failure = result as NetworkFailure<Map<String, dynamic>>;
       throw Exception(failure.message);
     } catch (_) {
-      return StatusMock.posts
-          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
-          .take(limit)
-          .toList();
+      rethrow;
     }
   }
 

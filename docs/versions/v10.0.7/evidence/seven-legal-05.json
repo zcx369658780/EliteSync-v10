@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-15T00:27:11.132639+00:00",
+  "role": "alice",
+  "method": "POST",
+  "path": "/api/v1/messages",
+  "request": {
+    "receiver_id": 3,
+    "content": "V1007 protected route probe",
+    "client_message_id": "a743f0c2-28cd-41f1-9a05-989176567501"
+  },
+  "status": 200,
+  "body": {
+    "id": 3,
+    "ok": true,
+    "conversation_id": 1,
+    "client_message_id": "a743f0c2-28cd-41f1-9a05-989176567501",
+    "idempotent_replay": false,
+    "message": {
+      "id": 3,
+      "room_id": "2_3",
+      "sender_id": 2,
+      "receiver_id": 3,
+      "content": "V1007 protected route probe",
+      "client_message_id": "a743f0c2-28cd-41f1-9a05-989176567501",
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-10-15T00:27:11.000000Z",
+      "message_type": "text",
+      "has_attachments": false,
+      "attachments": []
+    }
+  }
+}

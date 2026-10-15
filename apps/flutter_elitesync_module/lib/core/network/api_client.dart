@@ -8,12 +8,14 @@ class ApiClient {
 
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {
     try {
       final response = await _dio.get<Map<String, dynamic>>(
         path,
+        cancelToken: cancelToken,
         queryParameters: query,
         options: options,
       );
@@ -31,12 +33,14 @@ class ApiClient {
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
     Object? body,
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {
     try {
       final response = await _dio.post<Map<String, dynamic>>(
         path,
+        cancelToken: cancelToken,
         data: body,
         queryParameters: query,
         options: options,

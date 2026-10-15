@@ -3,6 +3,25 @@ import 'package:dio/dio.dart';
 typedef AccessTokenProvider = Future<String?> Function();
 typedef RefreshAccessToken = Future<String?> Function();
 
+const requestSessionGuardKey = '__request_session_is_current__';
+
+bool requestSessionIsCurrent(RequestOptions options) {
+  final guard = options.extra[requestSessionGuardKey];
+  if (guard == null) return true;
+  if (guard is! bool Function()) return false;
+  try {
+    return guard();
+  } catch (_) {
+    return false;
+  }
+}
+
+DioException staleSessionRequest(RequestOptions options) => DioException(
+  requestOptions: options,
+  type: DioExceptionType.cancel,
+  message: 'Request session is no longer current',
+);
+
 class AuthInterceptor extends Interceptor {
   AuthInterceptor({
     required AccessTokenProvider accessTokenProvider,
@@ -21,7 +40,15 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
+    if (!requestSessionIsCurrent(options)) {
+      handler.reject(staleSessionRequest(options));
+      return;
+    }
     final token = await _accessTokenProvider();
+    if (!requestSessionIsCurrent(options)) {
+      handler.reject(staleSessionRequest(options));
+      return;
+    }
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }
@@ -30,6 +57,10 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
+    if (!requestSessionIsCurrent(err.requestOptions)) {
+      handler.reject(staleSessionRequest(err.requestOptions));
+      return;
+    }
     final path = err.requestOptions.path;
     final protectedProfile =
         path.startsWith('/api/v1/profile/') || path == '/api/v1/auth/refresh';
@@ -68,6 +99,10 @@ class AuthInterceptor extends Interceptor {
       final currentAuthorization = req.headers['Authorization']?.toString();
       if (!hasRetried) {
         final refreshed = await _refreshAccessToken();
+        if (!requestSessionIsCurrent(req)) {
+          handler.reject(staleSessionRequest(req));
+          return;
+        }
         final nextAuthorization = (refreshed != null && refreshed.isNotEmpty)
             ? 'Bearer $refreshed'
             : null;

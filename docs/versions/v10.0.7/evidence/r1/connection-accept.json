@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-15T02:03:00.562468+00:00",
+  "role": "r1recipient",
+  "method": "POST",
+  "path": "/api/v1/connections/11/connection",
+  "request": {
+    "action": "accept",
+    "expected_revision": 1
+  },
+  "status": 200,
+  "body": {
+    "connection": {
+      "state": "CN_ACTIVE",
+      "revision": 2,
+      "requester_id": 11
+    },
+    "consent": {
+      "state": "MC_NONE",
+      "revision": 0,
+      "requester_id": null
+    },
+    "peer_id": 11,
+    "gates": {
+      "live_read_allowed": false,
+      "live_send_allowed": false
+    }
+  }
+}

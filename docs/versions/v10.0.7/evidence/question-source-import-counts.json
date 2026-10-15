@@ -1,0 +1,29 @@
+{
+  "loaded_split_sources": [
+    {
+      "path": "question_bank/question_bank_core_v1.json",
+      "rows": 50,
+      "blob": "02611e93fcb50cbe35126381cc4a79b178b2d423"
+    },
+    {
+      "path": "question_bank/question_bank_docx_scored_v2.json",
+      "rows": 57,
+      "blob": "6d3fb19242734dd6938979f3846e9837518be175"
+    },
+    {
+      "path": "question_bank/question_bank_extended_v1.json",
+      "rows": 30,
+      "blob": "d18a585139e7b179c670f84e9ca1f8734fa0398b"
+    },
+    {
+      "path": "question_bank/question_bank_research_v1.json",
+      "rows": 20,
+      "blob": "086cceddba59704b0085e21d7e3fead8a01f7495"
+    }
+  ],
+  "rows": 157,
+  "distinct_keys": 157,
+  "duplicate_keys": 0,
+  "legacy_single_file": "retained provenance / used only when split banks absent",
+  "research": "retained but inactive; not automatically enabled"
+}
