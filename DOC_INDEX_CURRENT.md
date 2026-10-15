@@ -1,5 +1,7 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.8 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。Owner已派发冻结8AC；[执行报告](docs/versions/v10.0.8/EXECUTION_REPORT.md)、[Manifest](docs/versions/v10.0.8/manifest.json)、[测试退出码](docs/versions/v10.0.8/TEST_RESULTS.md)、[安全原证](docs/versions/v10.0.8/evidence/INDEX.json)、[Runbook](docs/versions/v10.0.8/RUNBOOK.md)为当前入口。源码锚 `1f73a80afd2e0678006ce62e019235dc5ec36374`，独立候选分支 `codex/v10.0.8-web-admin`；未合main、未自接受。下文冻结待派发等为历史时点，未恢复用户能力保留在单份台账。
+
 2026-10-15：**v10.0.8唯一正式计划已冻结，等待Owner手动派发**。首读[固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)（Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809，8项AC）与[Owner三政策](PRODUCT_DECISIONS.md)。本版B01～B05+开发channel版控，Web管理员真实操作→共享Laravel/独立MariaDB→APP反映；原0.7 K08保持完成，产品代码起点a75b8d4，后续纯文档提交不替换。尚无0.8实现候选/测试，RTC/完整排盘/搭子等仍未恢复。下文PREPLAN_READY、0.8尚未冻结及其它历史待执行信息按记录时点解读。
 
 

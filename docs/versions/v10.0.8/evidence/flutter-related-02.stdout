@@ -1,0 +1,19 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart
+00:00 +0 -1: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/questionnaire/questionnaire_durable_draft_test.dart [E]
+  Failed to load "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/questionnaire/questionnaire_durable_draft_test.dart": Does not exist.
+00:00 +0 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Shows pending from the real API provider contract
+00:00 +1 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Shows pending from the real API provider contract
+00:00 +2 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Shows pending from the real API provider contract
+00:00 +3 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Shows approved from the real API provider contract
+00:00 +4 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Shows rejected from the real API provider contract
+00:00 +5 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/questionnaire/data/questionnaire_contract_test.dart: option IDs stay aligned when empty labels are omitted
+00:00 +6 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +7 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +8 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +9 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +10 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +11 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Approved review does not manufacture matching eligibility
+00:00 +12 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Loading and failed refresh never display stale approval
+00:00 +13 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Malformed server eligibility fails closed
+00:00 +14 -1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart: Supplement answers uses the existing questionnaire route
+00:00 +15 -1: Some tests failed.

@@ -1,0 +1,33 @@
+{
+  "time": "2026-10-15T08:23:16.593412+00:00",
+  "user": "bob",
+  "status": 200,
+  "body": {
+    "data": {
+      "round_id": null,
+      "state": "no_round",
+      "server_now": "2026-10-15T08:23:16.588215Z",
+      "scheduled_at": null,
+      "next_transition_at": null,
+      "result_id": null,
+      "no_candidate_reason_code": null,
+      "failure_code": null,
+      "retry_eligible": false,
+      "user_action": "wait_next_round",
+      "projection_version": 1,
+      "updated_at": "2026-10-15T08:23:16.588215Z",
+      "round_key": null,
+      "state_version": null,
+      "server_time": "2026-10-15T08:23:16.588215Z",
+      "scheduled_for": null,
+      "reveal_at": null,
+      "reason_code": null,
+      "next_action_code": null,
+      "result": null,
+      "conversation_capability": null
+    },
+    "meta": {
+      "contract_version": "match_round_v2"
+    }
+  }
+}

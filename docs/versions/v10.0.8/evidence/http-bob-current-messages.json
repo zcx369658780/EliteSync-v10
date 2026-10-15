@@ -1,0 +1,71 @@
+{
+  "time": "2026-10-15T08:00:59.763596+00:00",
+  "user": "bob",
+  "status": 200,
+  "body": {
+    "items": [
+      {
+        "id": 1,
+        "room_id": "",
+        "sender_id": 2,
+        "receiver_id": 3,
+        "content": "V1008-before-restrict",
+        "client_message_id": null,
+        "is_read": true,
+        "read_at": null,
+        "created_at": "2026-10-15T07:14:52.000000Z",
+        "message_type": "text",
+        "has_attachments": false,
+        "attachments": []
+      },
+      {
+        "id": 2,
+        "room_id": "",
+        "sender_id": 2,
+        "receiver_id": 3,
+        "content": "",
+        "client_message_id": null,
+        "is_read": true,
+        "read_at": null,
+        "created_at": "2026-10-15T08:00:41.000000Z",
+        "message_type": "image",
+        "has_attachments": true,
+        "attachments": [
+          {
+            "id": 1,
+            "attachment_type": "image",
+            "sort_order": 0,
+            "metadata": {
+              "media_type": "image",
+              "status": "ready"
+            },
+            "media_asset": {
+              "id": 1,
+              "owner_user_id": 2,
+              "media_type": "image",
+              "storage_provider": "oss",
+              "storage_disk": "v1007",
+              "storage_key": "chat-media/2/image/99e47556-9f50-43ed-b563-18eb8500451d.png",
+              "mime_type": "image/jpeg",
+              "size_bytes": 1431,
+              "width": null,
+              "height": null,
+              "duration_ms": null,
+              "status": "ready",
+              "error_code": null,
+              "error_message": null,
+              "public_url": "http://127.0.0.1:8000/api/v1/media/1/content",
+              "metadata": {
+                "source_page": "chat_room",
+                "media_kind": "image"
+              },
+              "uploaded_at": "2026-10-15T08:00:41.000000Z",
+              "processed_at": "2026-10-15T08:00:41.000000Z"
+            }
+          }
+        ]
+      }
+    ],
+    "total": 2
+  }
+}

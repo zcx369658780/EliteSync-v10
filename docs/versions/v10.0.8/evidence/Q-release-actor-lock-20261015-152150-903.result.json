@@ -1,0 +1,6 @@
+{
+  "label": "Q-release-actor-lock-20261015-152150-903",
+  "test": "V1008ReleaseTest",
+  "database": "sqlite::memory:",
+  "exit_code": 0
+}

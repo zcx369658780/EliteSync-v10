@@ -1,0 +1,60 @@
+{
+  "time": "2026-10-15T08:18:07.087048+00:00",
+  "user": "bob",
+  "status": 200,
+  "body": {
+    "ok": true,
+    "items": [
+      {
+        "id": 4,
+        "kind": "matching_round",
+        "title": "匹配轮次结果已发布",
+        "body": "请在应用内查看本轮结果。匹配不授予连接或消息同意。",
+        "payload": {
+          "source": "matching_round",
+          "round_key": "5829c486-ea91-4c98-ac16-a4003d274822",
+          "run_key": "1896c78f-3656-444a-b0b3-b149d272e7cc",
+          "route_name": "match_result",
+          "route_args": []
+        },
+        "route_name": "match_result",
+        "route_args": [],
+        "read_at": null,
+        "expires_at": null,
+        "created_at": "2026-10-15T08:07:15.000000Z",
+        "updated_at": "2026-10-15T08:07:15.000000Z",
+        "is_read": false
+      },
+      {
+        "id": 2,
+        "kind": "message",
+        "title": "有一条新消息",
+        "body": "请打开会话查看，读取前会验证当前权限。",
+        "payload": [],
+        "route_name": "",
+        "route_args": [],
+        "read_at": null,
+        "expires_at": null,
+        "created_at": "2026-10-15T08:00:41.000000Z",
+        "updated_at": "2026-10-15T08:00:41.000000Z",
+        "is_read": false
+      },
+      {
+        "id": 1,
+        "kind": "message",
+        "title": "有一条新消息",
+        "body": "请打开会话查看，读取前会验证当前权限。",
+        "payload": [],
+        "route_name": "",
+        "route_args": [],
+        "read_at": null,
+        "expires_at": null,
+        "created_at": "2026-10-15T07:14:52.000000Z",
+        "updated_at": "2026-10-15T07:14:52.000000Z",
+        "is_read": false
+      }
+    ],
+    "total": 3,
+    "unread_total": 3
+  }
+}

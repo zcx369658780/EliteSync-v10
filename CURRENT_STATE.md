@@ -1,5 +1,13 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.8候选交付，等待Astra独立终验
+
+**V10.0.8 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。Owner已手动派发唯一冻结plan，按D1/D2/D3实现B01～B06。独立候选分支 `codex/v10.0.8-web-admin`，最终产品源码 `1f73a80afd2e0678006ce62e019235dc5ec36374` / Tree `9f7071412a0341604563ee73a9556116b6b1bc28`；包含文档/安全证据的最终发布commit/tree见交付回读。main最后读取 `e1dec331d7fc4d6d42fb2fffa63e02987d52e4a0`，未集成main。
+
+[执行报告](docs/versions/v10.0.8/EXECUTION_REPORT.md)、[Manifest](docs/versions/v10.0.8/manifest.json)、[实际退出码](docs/versions/v10.0.8/TEST_RESULTS.md)、[安全证据](docs/versions/v10.0.8/evidence/INDEX.json)、[运行说明](docs/versions/v10.0.8/RUNBOOK.md)。真实Blade→共享Laravel→独立MariaDB→同账号APP完成审核、处罚/禁用、举报动态、Matching消费/重试/发布/站内事件、问卷停用补答及development发布读回；最终AAR/APK构建安装及设备回读同hash，联合重启快照一致。PHP相关146项/1457断言exit0但保留2项vendor弃用；Flutter相关41/30各自范围exit0、全范围analyze无问题/exit0。全量Flutter本版NOT_RUN，0.7历史3失败及原exit1不改写。
+
+专用服务、0.8容器、AVD已停止；volume/媒体/私配保留。原dirty根HEAD/index/normal status及43项具名hash与既有保护锚一致，109项未全量重验；无关LOCAL_ONLY保留。RTC、完整星盘、Buddy/Social、其它媒体、地图/Push及历史恢复仍待具名安排。候选不自接受、不合main、不启动0.9；下文未派发/未实施等为历史时点。
+
 ## 2026-10-15 v10.0.8正式冻结：Owner三政策已批准，等待手动派发
 
 **V10_0_8_FROZEN_PLAN / D1_D2_D3_OWNER_APPROVED / OWNER_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner本次明确批准运营参与资格审核（非实名认证）、分级restrict/banned/受控restore、历史答卷保留且新轮次按当前enabled有效回答计算。三项原始决定已写入[PRODUCT_DECISIONS](PRODUCT_DECISIONS.md)（commit cacfa889128f9a3a4b443efa87f4c347a178f1d5 / Blob 4f84f1968ee2737b842f828ad2e0cbdd5c929936），不得再当未决建议。

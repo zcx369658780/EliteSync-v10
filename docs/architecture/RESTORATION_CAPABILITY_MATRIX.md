@@ -1,5 +1,21 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.8候选已实际联通，等待独立终验（当前）
+
+**DEVELOPMENT_CONNECTED / CANDIDATE_DELIVERED / NOT_ACCEPTED**。实现按固定plan `ac57d337...`及Owner已批准D1/D2/D3；最终产品源码 `1f73a80afd2e0678006ce62e019235dc5ec36374`，完整证据见[报告](../versions/v10.0.8/EXECUTION_REPORT.md)、[Manifest](../versions/v10.0.8/manifest.json)。不能把以下候选实测升级为Astra已验收。
+
+| 分组 | 本版实际状态与依据 |
+|---|---|
+| B01 | 独立Blade查询/禁用→UserGovernance共享DisableUser→同库tokens/session撤销→最终APP清会话；role/名单/当前账号/CSRF/旧session拒绝与事务审计。 |
+| B02 | Blade运营审核三态/原因/版本→ProfileReadiness/真实consumer→Me运营资格卡；pending/rejected不能新匹配，旧Match/CN/MC保持。不是实名认证。 |
+| B03 | APP举报公开动态→Blade处理/软删/分级处罚及审计→APP观察；restrict保留合法历史读，ban撤销凭据，restore不覆盖独立处罚、不恢复旧MC；R1通知隐私保留。 |
+| B04 | Web prepare/request→database queue真实consumer→发布/close；同库5round/7run含pair1、零候选、lease失败重试和input_changed拒绝，发布事件APP读取/已读。Match不授权CN/MC。 |
+| B05 | Blade统计/预览/确认启停→题库revision/审计；历史hash保持，APP19/20需补→真实补答39/20，恢复题后40；草稿安全续答，末题stale重载有定向测试。 |
+| B06 | Blade Android/development元数据创建/编辑/激活/停用→同库release1 revision6→最终APP development/database/0.08.04；fallback明确。未验证包URL托管/下载、未生产发布。 |
+| A04/A05/A08/A09相关 | 资格、题库补答、匹配运营事件/通知和开发版本链已实际回归；最终包构建安装、Web/Laravel/MariaDB/worker/APP联合重启有限快照一致。不是完整APP或所有历史功能已恢复。 |
+
+**保留的具名欠账不变**：A03历史获准数据及附件恢复；A06 RTC真实双端、其它原版媒体；A07完整紫微/西占及许可/oracle；A08 Buddy/Social真实业务、地图、系统Push与必要设置。必须在完整软件内测前完成或由Owner明确取舍，本版未启动第三方服务、采购许可或访问真实历史数据。旧本地通知存储观察保留。以下冻结待实施与早期台账均为历史时点；0.6/0.7验收/K08不重做。
+
 ## 2026-10-15 v10.0.8 已冻结，运行仍未开始（当前）
 
 **B01～B05＋B06 Android开发channel发布元数据：FROZEN_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_DISPATCH_PENDING。** [唯一固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)，Git Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809；D1运营参与资格、D2分级处罚与受控恢复、D3历史问卷保留/新轮次有效题资格均已获Owner正式批准，见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。

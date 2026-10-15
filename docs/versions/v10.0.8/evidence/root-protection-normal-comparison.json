@@ -1,0 +1,10 @@
+{
+  "named_files": 43,
+  "status_normal_equal": true,
+  "changed_named_files": [],
+  "comparison_anchor": "existing pre-version root-before.json; not freshly captured before this continuation",
+  "historical_109": "NOT_RECHECKED",
+  "initial_check": "-uall differed in enumeration and emitted long-path warnings; normal comparison is the comparable scope",
+  "head_equal": true,
+  "index_equal": true
+}

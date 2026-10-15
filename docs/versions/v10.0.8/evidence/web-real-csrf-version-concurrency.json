@@ -1,0 +1,32 @@
+{
+  "trusted_admin_login": 200,
+  "forged_csrf": 419,
+  "stale_revision": 409,
+  "self_target": 403,
+  "concurrent_same_revision": [
+    200,
+    409
+  ],
+  "logout_redirect_login": 200,
+  "after_logout_url_is_login": true,
+  "alice": {
+    "status": 200,
+    "stayed_login": true,
+    "permission_error": true
+  },
+  "roleonly": {
+    "status": 200,
+    "stayed_login": true,
+    "permission_error": true
+  },
+  "listonly": {
+    "status": 200,
+    "stayed_login": true,
+    "permission_error": true
+  },
+  "disabled": {
+    "status": 200,
+    "stayed_login": true,
+    "permission_error": true
+  }
+}

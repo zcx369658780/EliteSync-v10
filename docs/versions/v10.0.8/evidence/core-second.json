@@ -1,0 +1,1 @@
+{"command": ["C:/tools/php85/php.exe", "vendor/bin/phpunit", "tests/Feature/V1008PolicyTest.php", "tests/Feature/V1008ReleaseTest.php", "tests/Feature/V1008QuestionOperationsTest.php"], "exit": 2}

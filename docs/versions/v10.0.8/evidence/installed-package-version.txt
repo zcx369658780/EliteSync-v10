@@ -1,0 +1,2 @@
+    versionCode=80400 minSdk=26 targetSdk=35
+    versionName=0.08.04
