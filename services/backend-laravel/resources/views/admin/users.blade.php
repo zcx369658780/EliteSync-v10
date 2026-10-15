@@ -11,7 +11,7 @@
             <label for="q">查询用户（ID、姓名或手机号）</label>
             <input id="q" name="q" type="search" value="{{ request('q') }}">
         </div>
-        <button type="submit">查询</button>
+        <label>运营审核<select name="verify_status"><option value="">全部</option><option>pending</option><option>approved</option><option>rejected</option></select></label><label>处罚<select name="moderation_status"><option value="">全部</option><option>normal</option><option>restricted</option><option>banned</option></select></label><button type="submit">查询</button>
         <a href="{{ route('admin.users') }}">清除查询</a>
     </form>
     <div class="table-scroll" tabindex="0" role="region" aria-label="用户查询结果">
@@ -21,7 +21,7 @@
             <tbody>
             @forelse ($users as $user)
                 <tr>
-                    <th scope="row">{{ $user->id }}</th>
+                    <th scope="row">{{ $user->id }} <a href="{{ route('admin.user',$user->id) }}">详情/审核</a></th>
                     <td>{{ $user->name ?: '未设置' }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->disabled ? '已禁用' : '正常' }}</td>
@@ -33,6 +33,7 @@
                         @else
                             <form method="post" action="{{ route('admin.disable', ['userId' => $user->id]) }}">
                                 @csrf
+<input type="hidden" name="expected_revision" value="{{ $user->admin_revision }}"><label>原因<input name="reason" required maxlength="1000"></label>
                                 <label class="confirmation" for="confirm-{{ $user->id }}">
                                     <input id="confirm-{{ $user->id }}" name="confirm_disable" type="checkbox" value="1" required>
                                     <span>确认禁用账号 #{{ $user->id }}</span>

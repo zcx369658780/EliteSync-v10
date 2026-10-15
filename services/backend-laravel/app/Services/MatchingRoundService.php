@@ -59,6 +59,9 @@ class MatchingRoundService
             $before = ['state' => $locked->state->value, 'state_version' => $locked->state_version];
             $values = ['state' => $next, 'state_version' => $locked->state_version + 1];
             if (in_array($next, [RoundState::Revealed, RoundState::NoCandidate], true)) {
+                $paired=DatingRoundUserState::where('round_id',$locked->id)->whereNotNull('dating_match_id')->pluck('user_id')->map(fn($id)=>(int)$id)->all();
+                $current=app(ProfileReadinessService::class)->eligibleUsersQuery()->pluck('id')->map(fn($id)=>(int)$id)->all();
+                if(array_diff($paired,$current))throw new \DomainException('eligibility_changed_before_reveal');
                 if (! $locked->reveal_at || $locked->reveal_at->isFuture()) {
                     throw new \DomainException('round_not_reveal_eligible');
                 }

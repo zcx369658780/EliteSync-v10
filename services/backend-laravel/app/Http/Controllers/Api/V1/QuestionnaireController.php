@@ -175,9 +175,10 @@ class QuestionnaireController extends Controller
             if($map->count()===count($ids))$questions=collect($ids)->map(fn($id)=>$map->get($id));
             else $ids=[];
         }
+        $draftNotice=($saved&&!$ids)?'题目集合已变更，旧草稿已失效，请使用当前题目补答。':'';
         if(!$ids){
             $draft=['answers'=>new \stdClass(),'current_index'=>0,'version'=>$this->questionnaireVersion(),'bank_version'=>$this->bankVersion(),
-                'question_ids'=>$questions->pluck('id')->values()->all()];
+                'notice'=>$draftNotice,'question_ids'=>$questions->pluck('id')->values()->all()];
             \Illuminate\Support\Facades\DB::table('questionnaire_drafts')->updateOrInsert(['user_id'=>$user->id],['payload'=>json_encode($draft),'created_at'=>now(),'updated_at'=>now()]);
         }
         $questions = $questions->map(function (QuestionnaireQuestion $q) {
@@ -229,6 +230,8 @@ class QuestionnaireController extends Controller
         return response()->json([
             'meta' => [
                 'version' => $this->questionnaireVersion(),
+                'draft_notice'=>$draft['notice']??'',
+                'bank_revision'=>(int)\Illuminate\Support\Facades\DB::table('admin_versions')->where('key','questionnaire')->value('revision'),
                 'bank_version' => $this->bankVersion(),
                 'attempt_version' => $this->attemptVersion(),
                 'label' => $this->questionnaireLabel(),

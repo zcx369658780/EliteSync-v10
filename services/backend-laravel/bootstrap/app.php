@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(\App\Http\Middleware\RequestTraceMiddleware::class);
+        $middleware->appendToGroup('api', \App\Http\Middleware\QuestionSnapshotLock::class);
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
         $middleware->prependToGroup('api', \App\Http\Middleware\ForceJsonResponse::class);
         $middleware->alias([

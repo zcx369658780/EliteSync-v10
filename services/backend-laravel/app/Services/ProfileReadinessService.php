@@ -14,28 +14,23 @@ class ProfileReadinessService
     public function eligibleUsersQuery(): Builder
     {
         $required = $this->requiredAnswerCount();
-        $eligible = QuestionnaireAnswer::query()
-            ->select('user_id')
-            ->groupBy('user_id')
-            ->havingRaw('COUNT(DISTINCT questionnaire_question_id) >= ?', [$required]);
+        $query = User::query()->where('disabled',false)->where('is_synthetic',false)
+            ->where('verify_status','approved')->where('moderation_status','!=','restricted');
+        $ids = (clone $query)->pluck('id')->filter(fn($id)=>app(CurrentQuestionnaire::class)->validCount((int)$id)>=$required);
+        return $query->whereIn('id',$ids);
 
-        return User::query()
-            ->where('disabled', false)
-            ->where('is_synthetic', false)
-            ->whereIn('id', $eligible);
     }
 
     public function forUser(User $user): array
     {
         $required = $this->requiredAnswerCount();
-        $answered = QuestionnaireAnswer::query()
-            ->where('user_id', (int) $user->id)
-            ->distinct()
-            ->count('questionnaire_question_id');
+        $answered = app(CurrentQuestionnaire::class)->validCount((int)$user->id);
         $enabledQuestions = QuestionnaireQuestion::query()->where('enabled', true)->count();
 
         [$eligible, $reasonCode, $nextActionCode] = match (true) {
             (bool) $user->disabled => [false, 'account_disabled', 'contact_support'],
+            ($user->moderation_status ?? 'normal') === 'restricted' => [false, 'account_restricted', 'contact_support'],
+            ($user->verify_status ?? 'pending') !== 'approved' => [false, 'operational_review_'.($user->verify_status ?? 'pending'), 'wait_for_review'],
             (bool) $user->is_synthetic => [false, 'synthetic_account_excluded', 'contact_support'],
             $enabledQuestions === 0 => [false, 'questionnaire_unavailable', 'wait_for_service'],
             $answered < $required => [false, 'questionnaire_incomplete', 'complete_questionnaire'],
@@ -58,6 +53,7 @@ class ProfileReadinessService
 
         return [
             'contract_version' => 'profile_readiness_v1',
+            'operational_review' => ['status'=>$user->verify_status ?? 'pending','reason'=>$user->verify_reason ?? '', 'revision'=>(int)$user->verify_revision,'scope'=>'运营参与资格，非实名认证'],
             'matching_eligibility' => [
                 'eligible' => $eligible,
                 'reason_code' => $reasonCode,

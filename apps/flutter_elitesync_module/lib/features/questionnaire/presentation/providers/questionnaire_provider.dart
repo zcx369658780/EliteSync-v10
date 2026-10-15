@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_elitesync_module/core/error/app_exception.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -80,8 +81,44 @@ final questionnaireProfileSnapshotProvider =
       );
     });
 
+class QuestionnaireBankNotice {
+  const QuestionnaireBankNotice({
+    this.draftNotice = '',
+    this.bankRevision,
+    this.needsReload = false,
+  });
+
+  final String draftNotice;
+  final int? bankRevision;
+  final bool needsReload;
+}
+
+// Kept separately from transient feedback so selecting an answer cannot hide
+// the server's explanation that the previous draft was invalidated.
+final questionnaireBankNoticeProvider = Provider<QuestionnaireBankNotice>((
+  ref,
+) {
+  ref.watch(questionnaireProvider);
+  return ref.read(questionnaireProvider.notifier).bankNotice;
+});
+
 class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
+  QuestionnaireBankNotice _bankNotice = const QuestionnaireBankNotice();
+  QuestionnaireBankNotice get bankNotice => _bankNotice;
   QuestionnaireState? get _current => state.asData?.value;
+
+  String _draftSaveError(Object error) {
+    if (error is ValidationException &&
+        error.code == 'QUESTIONNAIRE_DRAFT_STALE') {
+      _bankNotice = QuestionnaireBankNotice(
+        draftNotice: _bankNotice.draftNotice,
+        bankRevision: _bankNotice.bankRevision,
+        needsReload: true,
+      );
+      return error.message;
+    }
+    return '草稿未保存，请重试当前答案：$error';
+  }
 
   Map<int, int> _parseAnswers(dynamic raw) {
     if (raw is! Map) return const <int, int>{};
@@ -114,6 +151,11 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   @override
   Future<QuestionnaireState> build() async {
     final bundle = await ref.read(getQuestionnaireUseCaseProvider).call();
+    final remote = ref.read(questionnaireRemoteDataSourceProvider);
+    _bankNotice = QuestionnaireBankNotice(
+      draftNotice: remote.draftNotice,
+      bankRevision: remote.bankRevision,
+    );
     var base = QuestionnaireState(
       version: bundle.version,
       bankVersion: bundle.bankVersion,
@@ -147,6 +189,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   void selectOption(int optionIndex) {
+    if (_bankNotice.needsReload) return;
     final current = _current;
     if (current == null) return;
     final question = current.currentQuestion;
@@ -170,7 +213,10 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
 
   Future<bool> selectOptionAndProceed(int optionIndex) async {
     final before = _current;
-    if (before == null || before.isSavingDraft || before.isSubmitting) {
+    if (before == null ||
+        before.isSavingDraft ||
+        before.isSubmitting ||
+        _bankNotice.needsReload) {
       return false;
     }
 
@@ -198,7 +244,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       await _persistLocalDraft(saved);
     } catch (e) {
       state = AsyncData(
-        after.copyWith(isSavingDraft: false, errorMessage: '草稿未保存，请重试当前答案：$e'),
+        after.copyWith(isSavingDraft: false, errorMessage: _draftSaveError(e)),
       );
     }
     return false;
@@ -241,6 +287,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   Future<void> saveDraft() async {
+    if (_bankNotice.needsReload) return;
     final current = _current;
     if (current == null) return;
     state = AsyncData(
@@ -262,12 +309,13 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
     } catch (e) {
       final fresh = _current ?? current;
       state = AsyncData(
-        fresh.copyWith(isSavingDraft: false, errorMessage: e.toString()),
+        fresh.copyWith(isSavingDraft: false, errorMessage: _draftSaveError(e)),
       );
     }
   }
 
   Future<bool> submit() async {
+    if (_bankNotice.needsReload) return false;
     final current = _current;
     if (current == null) return false;
     if (current.questions.isEmpty) return false;

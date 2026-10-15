@@ -13,6 +13,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme_extension
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_summary_entity.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/utils/profile_display_sanitizer.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/widgets/operational_status_card.dart';
 import 'package:flutter_elitesync_module/shared/models/user_role.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -61,6 +62,7 @@ class ProfilePage extends ConsumerWidget {
             serverTruthFresh: state.error == null,
             showAdminEntry: showAdminEntry,
             onRefresh: () async {
+              ref.invalidate(operationalStatusProvider);
               ref.invalidate(profileProvider);
               await ref.read(profileProvider.future);
             },
@@ -106,6 +108,8 @@ class _ProfileReadinessCenter extends StatelessWidget {
               city: displayCity,
               verified: summary.verified,
             ),
+            SizedBox(height: t.spacing.sm),
+            const OperationalStatusCard(),
             SizedBox(height: t.spacing.sm),
             _MatchingReadinessCard(
               readiness: summary.readiness,

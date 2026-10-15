@@ -37,11 +37,19 @@ final class V1006AdminWebTest extends TestCase
         $this->post('/admin/login', ['phone' => $admin->phone, 'password' => 'fixture-password'])
             ->assertRedirect('/admin');
         $this->get('/admin?q='.$target->id)->assertOk()->assertSee($target->phone);
-        $this->post('/admin/users/'.$target->id.'/disable', ['confirm_disable' => '1'])
+        $this->post('/admin/users/'.$target->id.'/disable', ['confirm_disable' => '1', 'expected_revision' => 0, 'reason' => 'Fixture account disable'])
             ->assertRedirect('/admin');
         $this->assertDatabaseHas('users', ['id' => $target->id, 'disabled' => true, 'moderation_status' => 'banned']);
         $this->assertDatabaseMissing('personal_access_tokens', ['tokenable_id' => $target->id]);
         $this->assertDatabaseMissing('sessions', ['user_id' => $target->id]);
+        $this->assertDatabaseHas('users', ['id' => $target->id, 'admin_revision' => 1,
+            'account_status' => 'disabled', 'visibility_scope' => 'hidden', 'is_match_eligible' => false]);
+        $this->assertDatabaseHas('admin_sanctions', ['user_id' => $target->id,
+            'kind' => 'banned', 'active' => true, 'actor_user_id' => $admin->id]);
+        $this->assertDatabaseHas('admin_operation_audits', ['actor_user_id' => $admin->id,
+            'action' => 'user.banned', 'target_type' => 'user', 'target_id' => (string) $target->id,
+            'reason' => 'Fixture account disable', 'expected_version' => 0]);
+        $this->assertDatabaseCount('admin_operation_audits', 1);
     }
 
     public function test_empty_admin_list_rejects_web_and_api_even_in_local(): void
@@ -60,7 +68,7 @@ final class V1006AdminWebTest extends TestCase
         config(['app.admin_phones' => [$user->phone]]);
         $this->app->bind(ValidateCsrfToken::class, fn ($app) => new EnforcedV1006Csrf($app, $app['encrypter']));
         $this->actingAs($user, 'web')->withSession(['_token' => 'valid-csrf-fixture'])
-            ->post('/admin/users/'.$target->id.'/disable', ['_token' => 'valid-csrf-fixture', 'confirm_disable' => '1'])
+            ->post('/admin/users/'.$target->id.'/disable', ['_token' => 'valid-csrf-fixture', 'confirm_disable' => '1', 'expected_revision' => 0, 'reason' => 'Unauthorized fixture disable'])
             ->assertForbidden();
         $this->getJson('/api/v1/admin/users')->assertForbidden();
         $this->assertDatabaseHas('users', ['id' => $target->id, 'disabled' => false]);
@@ -112,7 +120,10 @@ final class V1006AdminWebTest extends TestCase
     public function test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected(): void
     {
         $admin = $this->administrator();
-        $this->actingAs($admin, 'web')->post('/admin/users/'.$admin->id.'/disable', ['confirm_disable' => '1'])->assertForbidden();
+        $this->actingAs($admin, 'web')->post('/admin/users/'.$admin->id.'/disable', ['confirm_disable' => '1', 'expected_revision' => 0, 'reason' => 'Fixture account disable'])->assertForbidden();
+        $this->assertDatabaseHas('users', ['id' => $admin->id, 'disabled' => false, 'admin_revision' => 0]);
+        $this->assertDatabaseCount('admin_sanctions', 0);
+        $this->assertDatabaseCount('admin_operation_audits', 0);
         $admin->disabled = true;
         $admin->save();
         $this->get('/admin')->assertForbidden();
@@ -123,3 +134,4 @@ final class EnforcedV1006Csrf extends ValidateCsrfToken
 {
     protected function runningUnitTests(): bool { return false; }
 }
+

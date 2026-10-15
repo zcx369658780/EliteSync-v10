@@ -43,6 +43,7 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     final asyncState = ref.watch(questionnaireProvider);
+    final bankNotice = ref.watch(questionnaireBankNoticeProvider);
 
     if (asyncState.hasValue && !_entryOpenedTracked) {
       _entryOpenedTracked = true;
@@ -59,7 +60,7 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
       floatingActionButton: kDebugMode
           ? FloatingActionButton.extended(
               onPressed: asyncState.maybeWhen(
-                data: (state) => state.isSubmitting
+                data: (state) => state.isSubmitting || bankNotice.needsReload
                     ? null
                     : () async {
                         await ref
@@ -82,7 +83,13 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
         data: (state) {
           final q = state.currentQuestion;
           if (q == null) {
-            return const Center(child: Text('暂无问卷内容'));
+            return Center(
+              child: Text(
+                bankNotice.draftNotice.isEmpty
+                    ? '暂无问卷内容'
+                    : '${bankNotice.draftNotice}\n暂无问卷内容，请稍后重新加载。',
+              ),
+            );
           }
 
           final selected = state.selectedOptionForCurrent();
@@ -93,6 +100,34 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: t.spacing.md),
+                  if (bankNotice.draftNotice.isNotEmpty ||
+                      bankNotice.needsReload) ...[
+                    AppCard(
+                      child: Semantics(
+                        liveRegion: true,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (bankNotice.draftNotice.isNotEmpty)
+                              Text(bankNotice.draftNotice),
+                            if (bankNotice.needsReload) ...[
+                              const Text('草稿与当前题目不兼容，请重新加载当前题目后补答。'),
+                              TextButton.icon(
+                                onPressed:
+                                    state.isSavingDraft || state.isSubmitting
+                                    ? null
+                                    : () =>
+                                          ref.invalidate(questionnaireProvider),
+                                icon: const Icon(Icons.refresh),
+                                label: const Text('重新加载当前题目'),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: t.spacing.md),
+                  ],
                   SectionReveal(
                     child: PageTitleRail(
                       title: state.label,
@@ -111,7 +146,7 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: TextButton.icon(
-                        onPressed: state.isSubmitting
+                        onPressed: state.isSubmitting || bankNotice.needsReload
                             ? null
                             : () async {
                                 await ref
@@ -166,7 +201,10 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
                               child: QuestionOptionButton(
                                 label: q.options[index],
                                 selected: selected == index,
-                                onTap: state.isSavingDraft || state.isSubmitting
+                                onTap:
+                                    state.isSavingDraft ||
+                                        state.isSubmitting ||
+                                        bankNotice.needsReload
                                     ? null
                                     : () => _answerAndContinue(index),
                               ),

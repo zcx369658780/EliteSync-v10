@@ -72,7 +72,8 @@ class AdminMatchingController extends Controller
         }
         $run = $service->request($round, $idempotencyKey, 'admin', (int) $request->user()->id, $data['reason_code']);
 
-        return response()->json(['data' => $run, 'meta' => ['consumer' => 'manual_cli_once', 'background_started' => false]], 202);
+        \App\Jobs\ExecuteMatchingRun::dispatch((int)$run->id);
+        return response()->json(['data'=>$run,'meta'=>['consumer'=>'database_queue','background_started'=>false]],202);
     }
 
     public function reveal(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse
@@ -108,7 +109,7 @@ class AdminMatchingController extends Controller
         }
         $failed = MatchingRun::query()->where('round_id', $round->id)->where('state', 'failed')->latest('attempt_no')->firstOrFail();
 
-        return response()->json(['data' => $service->retry($failed, $idempotencyKey, 'admin', (int) $request->user()->id)], 201);
+        $run=$service->retry($failed,$idempotencyKey,'admin',(int)$request->user()->id);\App\Jobs\ExecuteMatchingRun::dispatch((int)$run->id);return response()->json(['data'=>$run],201);
     }
 
     public function close(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse

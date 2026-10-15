@@ -73,10 +73,10 @@ class MatchingRunService
         });
     }
 
-    public function claimNext(string $leaseOwner, int $leaseSeconds = 60): ?MatchingRun
+    public function claimNext(string $leaseOwner, int $leaseSeconds = 60, ?int $runId = null): ?MatchingRun
     {
-        return DB::transaction(function () use ($leaseOwner, $leaseSeconds) {
-            $run = MatchingRun::query()->where('state', RunState::Pending->value)->orderBy('id')->lockForUpdate()->first();
+        return DB::transaction(function () use ($leaseOwner, $leaseSeconds, $runId) {
+            $run = MatchingRun::query()->where('state', RunState::Pending->value)->when($runId!==null,fn($q)=>$q->whereKey($runId))->orderBy('id')->lockForUpdate()->first();
             if (!$run) return null;
             $run->forceFill(['state' => RunState::Running, 'lease_owner' => $leaseOwner, 'fencing_token' => $run->fencing_token + 1, 'lease_expires_at' => now()->utc()->addSeconds($leaseSeconds), 'heartbeat_at' => now()->utc(), 'started_at' => now()->utc()])->save();
             return $run->fresh();
@@ -124,7 +124,9 @@ class MatchingRunService
             $key = (string) config('matching.foundation.digest_key');
             if ($key === '' || !hash_equals((string) $locked->candidate_digest, hash_hmac('sha256', implode(',', $frozenIds), $key))) throw new \DomainException('input_changed');
             if (!hash_equals((string) $locked->config_version, $this->inputFingerprint())) throw new \DomainException('input_changed');
+            $eligibleNow=app(ProfileReadinessService::class)->eligibleUsersQuery()->pluck('id')->map(fn($id)=>(int)$id)->all();
             foreach ($candidateUserIds as $userId) {
+                if(!in_array((int)$userId,$eligibleNow,true))throw new \DomainException('eligibility_changed');
                 $candidate = $frozen->get((int) $userId);
                 $currentVersion = User::query()->whereKey((int) $userId)->value('updated_at');
                 [$eligibilityVersion, $profileVersion] = $this->sourceVersions((int) $userId, $currentVersion);

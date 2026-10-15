@@ -50,7 +50,7 @@ val flutterDartDefineArgs = flutterDartDefines
     .filter { it.isNotEmpty() }
     .flatMap { listOf("--dart-define=$it") }
 val isV1006LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
-    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" }
+    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" }
 val isC2LocalInternalBuild = flutterDartDefines
     .split(Regex("[;,]"))
     .map { it.trim() }

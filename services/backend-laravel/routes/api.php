@@ -88,6 +88,8 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::prefix('profile')->middleware('account.active')->group(function () {
+            Route::get('/operating-status', function(\Illuminate\Http\Request $r){$u=$r->user();return response()->json(['status'=>$u->verify_status,'reason'=>$u->verify_reason??'','revision'=>(int)$u->verify_revision,'moderation_status'=>$u->moderation_status,'matching_eligibility'=>app(\App\Services\ProfileReadinessService::class)->forUser($u)['matching_eligibility']]);});
+
             Route::get('/basic', [ProfileController::class, 'basic']);
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);
@@ -252,7 +254,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/dev/matching-debug', [AdminController::class, 'devMatchingDebugSwitch']);
         });
 
-        Route::prefix('admin/matching')->middleware('matching.operation')->group(function () {
+        Route::prefix('admin/matching')->middleware(['matching.operation',\App\Http\Middleware\MatchingOperationTransaction::class])->group(function () {
             Route::get('/rounds', [AdminMatchingController::class, 'rounds']);
             Route::get('/rounds/{roundKey}', [AdminMatchingController::class, 'round']);
             Route::get('/runs/{runKey}', [AdminMatchingController::class, 'run']);

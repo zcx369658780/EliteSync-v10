@@ -221,7 +221,7 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = $user?->isAdminRole() ?? false;
+        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
         $limit = max(1, min((int) $request->query('limit', 20), 50));
         $cursor = max(0, (int) $request->query('cursor', 0));
         $includeHidden = $viewerIsAdmin && $request->boolean('include_hidden', false);
@@ -254,7 +254,7 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = $user?->isAdminRole() ?? false;
+        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
 
         $post = $this->visibleStatusQueryForPost($postId, $viewerId, $viewerIsAdmin)
             ->first();
@@ -273,7 +273,7 @@ class StatusPostController extends Controller
     {
         $viewer = $request->user();
         $viewerId = $viewer?->id !== null ? (int) $viewer->id : null;
-        $viewerIsAdmin = $viewer?->isAdminRole() ?? false;
+        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($viewer);
 
         $author = User::query()
             ->select($this->safeAuthorSelect([
@@ -322,7 +322,7 @@ class StatusPostController extends Controller
     public function store(Request $request): JsonResponse
     {
         $user = $request->user();
-        if (($user?->disabled ?? false) || (($user?->moderation_status ?? 'normal') === 'banned')) {
+        if (($user?->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned','restricted'],true)) {
             return response()->json(['message' => 'account blocked'], 403);
         }
 
@@ -390,7 +390,7 @@ class StatusPostController extends Controller
 
         return response()->json([
             'ok' => true,
-            'item' => $this->shapePost($post, (int) $user->id, $user?->isAdminRole() ?? false),
+            'item' => $this->shapePost($post, (int) $user->id, app(\App\Services\Accounts\AdminAccess::class)->allows($user)),
         ], 201);
     }
 
@@ -414,7 +414,7 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = (int) $user->id;
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, $user?->isAdminRole() ?? false)->first();
+        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->first();
         if (!$post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
@@ -463,11 +463,11 @@ class StatusPostController extends Controller
             );
         }
 
-        $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, $user?->isAdminRole() ?? false)->firstOrFail();
+        $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->firstOrFail();
 
         return response()->json([
             'ok' => true,
-            'item' => $this->shapePost($fresh, $viewerId, $user?->isAdminRole() ?? false),
+            'item' => $this->shapePost($fresh, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user)),
         ]);
     }
 
@@ -475,7 +475,7 @@ class StatusPostController extends Controller
     {
         $user = $request->user();
         $viewerId = (int) $user->id;
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, $user?->isAdminRole() ?? false)->first();
+        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(\App\Services\Accounts\AdminAccess::class)->allows($user))->first();
         if (!$post) {
             return response()->json(['message' => 'status post not found'], 404);
         }
@@ -544,7 +544,7 @@ class StatusPostController extends Controller
             return response()->json(['message' => 'status post not found'], 404);
         }
 
-        $viewerIsAdmin = $user?->isAdminRole() ?? false;
+        $viewerIsAdmin = app(\App\Services\Accounts\AdminAccess::class)->allows($user);
         $isOwner = (int) $post->author_user_id === (int) $user?->id;
         if (!$viewerIsAdmin && !$isOwner) {
             return response()->json(['message' => 'forbidden'], 403);
