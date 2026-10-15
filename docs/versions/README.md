@@ -1,8 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-2026-10-15 新顾问交接：v10.0.8 初始候选 cff049ae602049adf49014ec2ed27963dc40aff5 已经Astra审查，结论`TARGETED_R1_REQUIRED / NOT_ACCEPTED`；唯一待验R1为restrict受罚者本人处罚申诉闭环，**上一会话已下Codex任务单，后续候选由新顾问会话验收而不是重新派发**。完整[固定交接](
-https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md
-)（提交`38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`）和[R1审查](v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)先读。Owner D1/D2/D3与v10.0.8 plan/AC-08-01～08不变；R1执行实时UNKNOWN，尚无本会话新候选。产品代码未合main、0.9未启动；以下旧状态均作为历史时点。
+2026-10-15 新顾问交接：v10.0.8 初始候选 cff049ae602049adf49014ec2ed27963dc40aff5 已经Astra审查，结论`TARGETED_R1_REQUIRED / NOT_ACCEPTED`；唯一待验R1为restrict受罚者本人处罚申诉闭环，**上一会话已下Codex任务单，后续候选由新顾问会话验收而不是重新派发**。完整[固定交接](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)（提交`38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`）和[R1审查](v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)先读。Owner D1/D2/D3与v10.0.8 plan/AC-08-01～08不变；R1执行实时UNKNOWN，尚无本会话新候选。产品代码未合main、0.9未启动；以下旧状态均作为历史时点。
 
 
 2026-10-15：v10.0.8固定候选`cff049ae602049adf49014ec2ed27963dc40aff5`已交付，但Astra初审为**TARGETED_R1_REQUIRED / NOT_ACCEPTED**；见[具名审查](v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)。已有Blade/APP/DB、实际matching队列、问卷变更与开发版本元数据的主要成功原证保留；D2 restrict本人申诉未提供，须同版定点补齐。冻结AC-08-01～08不改，main产品未合候选，0.9尚未派发。下方“等正式派发”属于历史时点。
