@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.7 Astra终验通过：K08安全集成待接续
+
+**V10_0_7_ACCEPTED_WITH_OBSERVATIONS / R1_VERIFIED / GITHUB_PRODUCT_INTEGRATION_PENDING / LOCAL_CONTINUATION_K08_PENDING / V10_0_8_NOT_DISPATCHED**。
+
+Astra已核定最终R1候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` / Tree `11f1d086b0c9180998a3684c0df176e1d9c4d2b2`。依据唯一冻结[plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)及8项原AC，已发布[独立验收](docs/versions/v10.0.7/acceptance.md)与[复盘](docs/versions/v10.0.7/retrospective.md)，结论**ACCEPT WITH OBSERVATIONS**。原业务主循环保留；R1通知隐私修复与真实block/MC撤销/禁用负例通过。全量Flutter普通793/5、带fixture821/3仍exit1；剩余3项已在固定起点复现，为旧展示/导航合同缺口。全范围Dart分析已No issues/exit0。初始AAR/APK仍LOCAL_ONLY，R1未重建/重装（产品lib/Android Git Tree不变）；后端在R1有变更。本版不冒称生产、完整APP及其它后置能力已恢复。
+
+本次GitHub main仅加入接受/复盘/状态**文档**，v10.0.7产品代码尚在独立候选分支，**未合main**。下一步由Owner手动转交Codex依CURRENT_WORKFLOW第4节执行K08安全集成和必要差异回归；不得自动启动v10.0.8、覆盖原dirty根或重做全历史。以下“初审R1待返修/冻结待派发”等为旧时点快照，已由本节替代。
+
+
 ## 2026-10-15 v10.0.7 Astra初审：原范围定点R1返修
 
 **V10_0_7_INITIAL_CANDIDATE_REVIEWED / TARGETED_R1_REQUIRED / NOT_ACCEPTED / MAIN_PRODUCT_CODE_NOT_INTEGRATED / V10_0_8_NOT_DISPATCHED**。
