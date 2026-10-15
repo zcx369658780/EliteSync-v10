@@ -1,0 +1,9 @@
+{
+  "users": true,
+  "product_connections": true,
+  "messaging_consents": true,
+  "media_assets": true,
+  "message_attachments": true,
+  "admin_sanctions": true,
+  "sanction_appeals": true
+}

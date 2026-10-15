@@ -1,0 +1,63 @@
+{
+  "kind": "SUPPLEMENTAL_REAL_HTTP_NOT_MEDIA",
+  "checks": [
+    {
+      "name": "restricted login valid",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "time": 1792073631.7705195
+    },
+    {
+      "name": "restricted history read",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "time": 1792073631.8498535
+    },
+    {
+      "name": "restricted new send denied",
+      "status": 404,
+      "expected": [
+        403,
+        404
+      ],
+      "time": 1792073631.9642415
+    },
+    {
+      "name": "restricted new RTC denied",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "time": 1792073632.0383627
+    },
+    {
+      "name": "restricted own sanctions",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "time": 1792073632.093278
+    },
+    {
+      "name": "own appeal survives restrict",
+      "status": 201,
+      "expected": [
+        200,
+        201
+      ],
+      "time": 1792073632.175406
+    },
+    {
+      "name": "appeal does not restore RTC",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "time": 1792073632.2393384
+    }
+  ]
+}

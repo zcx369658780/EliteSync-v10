@@ -1,0 +1,39 @@
+{
+  "web": {
+    "operation": "banned",
+    "user_id": 3,
+    "submitted_at": 1792073476.809656,
+    "response_at": 1792073477.5018787,
+    "status": 302,
+    "browser": "isolated real Edge",
+    "csrf": "Blade form token submitted by browser"
+  },
+  "events": [
+    {
+      "side": "b",
+      "host_received": 1792073477.8927574,
+      "seconds_from_form_submission": 1.083102,
+      "safe_event": "1792073460.233  4429  4429 I flutter : RTC_LIFECYCLE callId=11 event=room_disconnected epochMs=1792073460233"
+    },
+    {
+      "side": "b",
+      "host_received": 1792073477.8937874,
+      "seconds_from_form_submission": 1.084131,
+      "safe_event": "1792073460.235  4429  4429 I flutter : RTC_LIFECYCLE callId=11 event=leave_complete epochMs=1792073460235"
+    },
+    {
+      "side": "a",
+      "host_received": 1792073477.9550333,
+      "seconds_from_form_submission": 1.145377,
+      "safe_event": "1792073460.375  4334  4334 I flutter : RTC_LIFECYCLE callId=11 event=room_disconnected epochMs=1792073460375"
+    },
+    {
+      "side": "a",
+      "host_received": 1792073477.9591472,
+      "seconds_from_form_submission": 1.149491,
+      "safe_event": "1792073460.380  4334  4334 I flutter : RTC_LIFECYCLE callId=11 event=leave_complete epochMs=1792073460380"
+    }
+  ],
+  "clock_basis": "host receive times; no mixing AVD clock",
+  "not_full_ac_09_05": true
+}

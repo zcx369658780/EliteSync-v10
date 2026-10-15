@@ -1,0 +1,5 @@
+{
+  "source": "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n8.1-latest-win64-lgpl-shared-8.1.zip",
+  "archive_sha256": "1689da96399f372cfee985b3f2b9d74685892078059bc37764388f49e3118bdb",
+  "scope": "isolated local development tool, not bundled in APK"
+}

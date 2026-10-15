@@ -1,0 +1,204 @@
+{
+  "version": "v10.0.9",
+  "status": "IMPLEMENTATION_IN_PROGRESS_AUDIO_DEVICE_VALIDATION_BLOCKED",
+  "candidate_delivered": false,
+  "accepted": false,
+  "authority": {
+    "plan_commit": "68d57f755d0091bc15cb867b96d3a21caee83690",
+    "plan_blob": "042cf7298b75169a89b1dcd7c9fb113f6ddd72e3",
+    "owner_commit": "4bda572e225b64a3b4d826ae75e355e958251c58",
+    "owner_blob": "85dd5f9b88840104b0d5c26ba57d96fad4a17f11",
+    "base_commit": "3a8f7989aa208285b885f1c80f4365f38488ac54",
+    "base_tree": "95fadde468d8a21b39c544fdb74093dd35184717",
+    "observed_main": "03c7de98d79c3075d4b3adb93a9b383dd342377f"
+  },
+  "implementation_anchor": {
+    "commit": "29ebda1ba71bdcb17d260cceec616031f1360ca6",
+    "tree": "13910eac5c882e21cb76156a28ce2cef891d71be"
+  },
+  "android_package_source": {
+    "commit": "c2ba84cc50a1946e697a8e94e50181201304bb12",
+    "tree": "d15e2023bd7492684f88d1529fb105a178145886",
+    "defines": [
+      "ELITESYNC_V1009_LOCAL_BUILD=true"
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-app-debug.apk",
+        "sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc",
+        "bytes": 223877338
+      },
+      {
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-flutter_release-1.0.aar",
+        "sha256": "a621e4989c39e34af5df0b54bb1e18b90ce77e8c2f8966bb824e074cc9d7c4c8",
+        "bytes": 4451332
+      }
+    ]
+  },
+  "final_sfu_image_id": "sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e",
+  "database": {
+    "name": "elitesync_v1009_dev",
+    "port": 43319,
+    "volume": "elitesync-v1009-db-data",
+    "reseeded_after_initialization": false
+  },
+  "tests": {
+    "php_related": {
+      "exit": 0,
+      "tests": 46,
+      "assertions": 372,
+      "vendor_deprecations_retained": true
+    },
+    "flutter_related": {
+      "exit": 0,
+      "tests": 38
+    },
+    "dart_full": {
+      "exit": 0,
+      "result": "No issues found"
+    },
+    "build_fourth": {
+      "exit": 0
+    },
+    "full_flutter_suite": "NOT_RUN",
+    "full_php_suite": "NOT_RUN",
+    "historical_flutter_failures": "RETAINED_NOT_RECLASSIFIED"
+  },
+  "ac_status": {
+    "AC-09-01": "PARTIAL",
+    "AC-09-02": "PARTIAL",
+    "AC-09-03": "BLOCKED_AUDIO_DEVICE_VALIDATION",
+    "AC-09-04": "PARTIAL_REAL_DUAL_VIDEO",
+    "AC-09-05": "PARTIAL_REAL_REVOCATION",
+    "AC-09-06": "PARTIAL_REAL_PRIVATE_VIDEO",
+    "AC-09-07": "PARTIAL_REGRESSION",
+    "AC-09-08": "PARTIAL_NOT_FINAL_DELIVERY"
+  },
+  "local_evidence_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009",
+  "evidence_access": "CODEX_REPORTED_LOCAL_ONLY_UNLESS_COPIED_HERE",
+  "limitations": [
+    "Some exploratory diagnostic stdout/stderr exists only in task tool transcript; do not claim every exploratory call has separate physical raw files.",
+    "Early media-proof helper exit0 with RPC error receipts is semantic failure.",
+    "Early fixture exit0 with SQL error is semantic failure.",
+    "Safe image is a private-video start frame, not proof of complete five-second playback.",
+    "AVD epoch offset was not mixed with host epoch to measure revocation.",
+    "Final independent watchdog was fault-tested without repeating the complete dual-APP media matrix."
+  ],
+  "safe_evidence": [
+    {
+      "path": "docs/versions/v10.0.9/evidence/ban-media-teardown.json",
+      "sha256": "370036961a6c8c7333b6950c71b627e85c9219d3b65019595c73cc44e66b486a",
+      "bytes": 1404
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/ffmpeg-tool-identity.json",
+      "sha256": "dab22c5a760452b3e2955dc1ce6160594fbf37780251b4211f628fa688e75a48",
+      "bytes": 283
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/final-video-eleventh-after-outage-a.png",
+      "sha256": "478c69d546bb9e52bea971007d7398fa099973c7389b37eaed572e518944a3a3",
+      "bytes": 145662
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/final-video-eleventh-b.png",
+      "sha256": "5fc8dbf7681320590546b559ae6cbd722cc77e2dd5fca1bc3119e475bf95b017",
+      "bytes": 146132
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/installed-fourth-identities.json",
+      "sha256": "4eca2eaa113aff8805cbb12b25325417f8647ce8a13eeeff11556b2af72c03a9",
+      "bytes": 347
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/joint-restart-comparison.json",
+      "sha256": "d5a6f49e93edc922bcda0bce32ca63035fb2202a11fc0bedff043ebb37a74874",
+      "bytes": 198
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/licenses.json",
+      "sha256": "567b01315690e550b5b77e32d0ff89948503390d2bb06a2c8253ea4d446fa923",
+      "bytes": 389
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/livekit-license.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/official-images.json",
+      "sha256": "98029a4639365996bffe83e98a0d03deea9f05ef4d587328b1f94f6c1cdbca27",
+      "bytes": 1965
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/private-video-after-mc-media-probe.json",
+      "sha256": "c8fecd38d897a62258fd55b04266b56d017c9d32fb6a6817a0267aefc79e4fed",
+      "bytes": 1828
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/private-video-current-media-probe.json",
+      "sha256": "3d8634a8d1488a08debe56d04b3c9a04af6413d259190ddc1e8ae05402987212",
+      "bytes": 1866
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/private-video-playing-second-b.png",
+      "sha256": "e2706365ae3ed8bcd140e5ceb9add389fcf1a246a7d6342ecca63415c7f82947",
+      "bytes": 158756
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/process-watchdog-final.json",
+      "sha256": "e6dfb274518170fedf5027885196b6386de905d51368c87e948c2dd39a5041bb",
+      "bytes": 603
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/protected-root-after.json",
+      "sha256": "7e7598ffdad7c69b03e30ba0d05612ff006ec7015a313d9f992da974bb3ca3d0",
+      "bytes": 254
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/python-3.11.17-license.json",
+      "sha256": "2bec34ef6989d72c0dd0580c97bf2b0a0c45ec913f223cca81216aff9fbea338",
+      "bytes": 252
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/python-3.11.17-license.txt",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "bytes": 13936
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/raw-stream-index.json",
+      "sha256": "484c6e5034e457d115d19da819538ca596f707adea77142be2a1e8f618f7b333",
+      "bytes": 72370
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/resource-state.json",
+      "sha256": "53e70b31add13af9fbf3fbf3e13e90966369fab37882f53d06075c4e01033e95",
+      "bytes": 1218
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-disabled.json",
+      "sha256": "ce97b51f844084b46c854320d1e7deb0e8d13480734658c61a3a493c9c85e2ee",
+      "bytes": 683
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restored-login.json",
+      "sha256": "7aef32ba36d9a284c667dd60b409840a2228eb45f272d86859293b4a322f5e66",
+      "bytes": 390
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restricted.json",
+      "sha256": "214a75432a0c806c8f73bf9eddc2d2d7f1ee2e7088e368b78fb88fa11f35f725",
+      "bytes": 1209
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/safe-media-statistics.json",
+      "sha256": "75fffc7fea64dc92de1f52c68a715ac8217b0e2c19b991b8f04bce3e380a829f",
+      "bytes": 18603
+    },
+    {
+      "path": "docs/versions/v10.0.9/evidence/text-image-current-b.png",
+      "sha256": "d0c0320922ee37c6d482db20ac1015d7394786fc8e3f5612b6714957ff9b1162",
+      "bytes": 160626
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "asset_id": 1,
+  "time": 1792072526.3178003,
+  "checks": [
+    {
+      "actor": "alice",
+      "range": true,
+      "status": 206,
+      "bytes": 32,
+      "sha256": "b1c35f1e6d75af66f96c70ff2572346caa6812dee411ad1134cffb50e33fba5c",
+      "content_range": "bytes 0-31/185416"
+    },
+    {
+      "actor": "alice",
+      "range": false,
+      "status": 200,
+      "bytes": 185416,
+      "sha256": "4bc1f6a8dbf2f2d17a6a52a4c4d637be93b3b930b2b82dec654fb0a466ac019f",
+      "content_range": null
+    },
+    {
+      "actor": "bob",
+      "range": true,
+      "status": 206,
+      "bytes": 32,
+      "sha256": "b1c35f1e6d75af66f96c70ff2572346caa6812dee411ad1134cffb50e33fba5c",
+      "content_range": "bytes 0-31/185416"
+    },
+    {
+      "actor": "bob",
+      "range": false,
+      "status": 200,
+      "bytes": 185416,
+      "sha256": "4bc1f6a8dbf2f2d17a6a52a4c4d637be93b3b930b2b82dec654fb0a466ac019f",
+      "content_range": null
+    },
+    {
+      "actor": "pending",
+      "range": true,
+      "status": 404,
+      "bytes": 37,
+      "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+      "content_range": null
+    },
+    {
+      "actor": "pending",
+      "range": false,
+      "status": 404,
+      "bytes": 37,
+      "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+      "content_range": null
+    },
+    {
+      "actor": "anonymous",
+      "range": true,
+      "status": 404,
+      "bytes": 37,
+      "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+      "content_range": null
+    },
+    {
+      "actor": "anonymous",
+      "range": false,
+      "status": 404,
+      "bytes": 37,
+      "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+      "content_range": null
+    }
+  ]
+}

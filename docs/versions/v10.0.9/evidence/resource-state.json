@@ -1,0 +1,56 @@
+{
+  "captured_at": "2026-10-15T14:31:07.602213+00:00",
+  "containers": [
+    {
+      "name": "elitesync-v1006-db",
+      "status": "exited",
+      "running": false,
+      "container_exit_code": 0
+    },
+    {
+      "name": "elitesync-v1007-db",
+      "status": "exited",
+      "running": false,
+      "container_exit_code": 0
+    },
+    {
+      "name": "elitesync-v1008-db",
+      "status": "exited",
+      "running": false,
+      "container_exit_code": 0
+    },
+    {
+      "name": "elitesync-v1009-db",
+      "status": "exited",
+      "running": false,
+      "container_exit_code": 0
+    },
+    {
+      "name": "elitesync-v1009-rtc",
+      "status": "exited",
+      "running": false,
+      "container_exit_code": 1
+    }
+  ],
+  "volumes": [
+    {
+      "name": "elitesync-v1006-db-data",
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1007-db-data",
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1008-db-data",
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1009-db-data",
+      "retained": true
+    }
+  ],
+  "owned_host_processes_stopped": true,
+  "owned_avds_stopped": true,
+  "raw_secrets_retained_local": true
+}

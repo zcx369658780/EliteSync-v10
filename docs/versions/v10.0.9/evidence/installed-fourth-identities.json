@@ -1,0 +1,12 @@
+[
+  {
+    "serial": "emulator-5584",
+    "package": "com.elitesync",
+    "installed_apk_sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc"
+  },
+  {
+    "serial": "emulator-5586",
+    "package": "com.elitesync",
+    "installed_apk_sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc"
+  }
+]

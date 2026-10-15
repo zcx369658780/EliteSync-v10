@@ -1,0 +1,21 @@
+{
+  "fault": "explicit SIGUSR1 blocks gateway main event loop for 10 seconds",
+  "watchdog": "independent process and anonymous pipe",
+  "trigger_at": 1792074160.856081,
+  "container_stopped_at": 1792074165.5697832,
+  "observed_seconds": 4.713702201843262,
+  "trigger_exit": 0,
+  "state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 1,
+    "Error": "",
+    "StartedAt": "2026-10-15T14:22:22.784084721Z",
+    "FinishedAt": "2026-10-15T14:22:44.483526692Z"
+  }
+}

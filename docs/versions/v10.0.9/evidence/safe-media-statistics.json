@@ -1,0 +1,128 @@
+[
+  {
+    "local_source": "final-video-eleventh-before-a.stdout",
+    "first_samples": [
+      "         1792073372.412  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=audio bytes=1139 packets=27 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073372.412  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=64774 packets=72 framesEncoded=38 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.412  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=63466 packets=104 framesEncoded=41 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.412  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=405523 packets=386 framesEncoded=38 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.416  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=660 packets=22 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073372.416  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=190762 packets=189 framesEncoded=null framesDecoded=44 framesReceived=53 framesPerSecond=11.0"
+    ],
+    "last_samples": [
+      "         1792073372.416  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=660 packets=22 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073372.416  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=190762 packets=189 framesEncoded=null framesDecoded=44 framesReceived=53 framesPerSecond=11.0",
+      "         1792073376.395  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=audio bytes=1790 packets=47 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073376.395  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=144980 packets=165 framesEncoded=83 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073376.395  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=121809 packets=179 framesEncoded=86 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073376.395  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=903459 packets=863 framesEncoded=83 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073376.401  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=1280 packets=42 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073376.402  4334  4334 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=338131 packets=341 framesEncoded=null framesDecoded=90 framesReceived=98 framesPerSecond=12.0"
+    ]
+  },
+  {
+    "local_source": "final-video-eleventh-before-b.stdout",
+    "first_samples": [
+      "         1792073372.362  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=audio bytes=1341 packets=35 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073372.362  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=141076 packets=170 framesEncoded=60 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.362  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=121409 packets=132 framesEncoded=55 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.362  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=1123242 packets=1042 framesEncoded=55 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073372.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=1072 packets=27 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073372.372  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=73510 packets=83 framesEncoded=null framesDecoded=34 framesReceived=41 framesPerSecond=11.0"
+    ],
+    "last_samples": [
+      "         1792073376.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=1535 packets=41 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073376.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=194857 packets=209 framesEncoded=null framesDecoded=72 framesReceived=78 framesPerSecond=4.0",
+      "         1792073380.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=audio bytes=2530 packets=73 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073380.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=250406 packets=306 framesEncoded=150 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073380.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=272347 packets=311 framesEncoded=145 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073380.366  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=outbound kind=video bytes=2144722 packets=2032 framesEncoded=145 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792073380.369  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=audio bytes=2169 packets=61 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792073380.369  4429  4429 I flutter : RTC_MEDIA_RTP callId=11 direction=inbound kind=video bytes=376265 packets=394 framesEncoded=null framesDecoded=118 framesReceived=130 framesPerSecond=11.0"
+    ]
+  },
+  {
+    "local_source": "voice-seventh-after-a.stdout",
+    "first_samples": [
+      "         1792071344.644  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=1104 packets=27 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071344.687  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=626 packets=20 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071348.559  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=1729 packets=47 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071348.582  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=1254 packets=40 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071352.548  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=2285 packets=65 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071352.560  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=1743 packets=56 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null"
+    ],
+    "last_samples": [
+      "         1792071372.541  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=5286 packets=161 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071372.548  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=4585 packets=148 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071376.546  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=5847 packets=179 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071376.549  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=5139 packets=166 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071380.540  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=6478 packets=199 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071380.547  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=5740 packets=186 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071389.600  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=18841 packets=317 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071389.600  3429  3429 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=9969 packets=250 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null"
+    ]
+  },
+  {
+    "local_source": "voice-seventh-after-b.stdout",
+    "first_samples": [
+      "         1792071323.312  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=1561 packets=41 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071323.321  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=983 packets=26 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071327.320  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=2189 packets=61 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071327.324  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=1545 packets=44 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071331.348  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=2743 packets=79 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071331.359  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=1791 packets=52 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null"
+    ],
+    "last_samples": [
+      "         1792071351.324  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=5715 packets=175 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071351.332  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=3975 packets=122 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071355.323  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=6329 packets=194 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071355.328  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=4603 packets=142 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071359.333  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=6870 packets=213 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071359.339  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=5041 packets=156 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071368.405  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=outbound kind=audio bytes=11335 packets=282 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792071368.405  3398  3398 I flutter : RTC_MEDIA_RTP callId=7 direction=inbound kind=audio bytes=17882 packets=278 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null"
+    ]
+  },
+  {
+    "local_source": "video-eighth-first-a.stdout",
+    "first_samples": [
+      "         1792072048.871  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=audio bytes=1368 packets=37 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072048.871  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=0 packets=1 framesEncoded=0 framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072048.871  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=63526 packets=416 framesEncoded=64 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792072048.872  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=25507 packets=223 framesEncoded=27 framesDecoded=null framesReceived=null framesPerSecond=12.0",
+      "         1792072048.881  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=858 packets=25 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072048.881  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=110311 packets=117 framesEncoded=null framesDecoded=31 framesReceived=38 framesPerSecond=12.0"
+    ],
+    "last_samples": [
+      "         1792072076.894  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=4024 packets=137 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072076.894  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=1209001 packets=1214 framesEncoded=null framesDecoded=304 framesReceived=343 framesPerSecond=12.0",
+      "         1792072080.892  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=audio bytes=5662 packets=189 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072080.893  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=2130306 packets=2027 framesEncoded=194 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792072080.893  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=529287 packets=993 framesEncoded=424 framesDecoded=null framesReceived=null framesPerSecond=12.0",
+      "         1792072080.893  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=1588044 packets=2159 framesEncoded=387 framesDecoded=null framesReceived=null framesPerSecond=12.0",
+      "         1792072080.965  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=4588 packets=157 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072080.965  5431  5431 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=1372881 packets=1375 framesEncoded=null framesDecoded=349 framesReceived=389 framesPerSecond=11.0"
+    ]
+  },
+  {
+    "local_source": "video-eighth-first-b.stdout",
+    "first_samples": [
+      "         1792072027.610  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=audio bytes=1115 packets=29 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072027.610  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=60298 packets=99 framesEncoded=41 framesDecoded=null framesReceived=null framesPerSecond=10.0",
+      "         1792072027.610  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=74803 packets=87 framesEncoded=37 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792072027.610  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=636485 packets=606 framesEncoded=37 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792072027.632  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=647 packets=22 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072027.633  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=46997 packets=61 framesEncoded=null framesDecoded=37 framesReceived=44 framesPerSecond=12.0"
+    ],
+    "last_samples": [
+      "         1792072055.537  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=4209 packets=148 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072055.537  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=848671 packets=905 framesEncoded=null framesDecoded=323 framesReceived=348 framesPerSecond=10.0",
+      "         1792072059.531  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=audio bytes=5409 packets=181 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072059.532  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=525027 packets=683 framesEncoded=401 framesDecoded=null framesReceived=null framesPerSecond=12.0",
+      "         1792072059.532  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=687105 packets=794 framesEncoded=397 framesDecoded=null framesReceived=null framesPerSecond=12.0",
+      "         1792072059.532  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=outbound kind=video bytes=4890188 packets=4642 framesEncoded=397 framesDecoded=null framesReceived=null framesPerSecond=11.0",
+      "         1792072059.548  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=audio bytes=4717 packets=166 framesEncoded=null framesDecoded=null framesReceived=null framesPerSecond=null",
+      "         1792072059.549  5217  5217 I flutter : RTC_MEDIA_RTP callId=8 direction=inbound kind=video bytes=1008746 packets=1066 framesEncoded=null framesDecoded=367 framesReceived=393 framesPerSecond=11.0"
+    ]
+  }
+]

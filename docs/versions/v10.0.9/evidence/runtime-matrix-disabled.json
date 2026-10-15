@@ -1,0 +1,37 @@
+{
+  "kind": "SUPPLEMENTAL_REAL_HTTP_NOT_MEDIA",
+  "checks": [
+    {
+      "name": "disabled old token",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "time": 1792073573.2854238
+    },
+    {
+      "name": "disabled fresh login",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "time": 1792073573.5205207
+    },
+    {
+      "name": "disabled peer new call",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "time": 1792073573.592203
+    },
+    {
+      "name": "match alone no RTC",
+      "status": 403,
+      "expected": [
+        403
+      ],
+      "time": 1792073573.6571658
+    }
+  ]
+}

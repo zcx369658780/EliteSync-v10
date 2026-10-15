@@ -1,0 +1,21 @@
+{
+  "kind": "SUPPLEMENTAL_REAL_HTTP_NOT_MEDIA",
+  "checks": [
+    {
+      "name": "restore does not restore old token",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "time": 1792073576.6795573
+    },
+    {
+      "name": "explicit new login",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "time": 1792073576.9171803
+    }
+  ]
+}

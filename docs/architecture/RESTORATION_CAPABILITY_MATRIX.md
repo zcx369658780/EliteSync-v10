@@ -1,5 +1,17 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.9实现与部分实链（当前，未接受）
+
+**IMPLEMENTATION_IN_PROGRESS / AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED**，固定8AC未改变。实现锚29ebda1ba71bdcb17d260cceec616031f1360ca6；[执行记录](../versions/v10.0.9/EXECUTION_REPORT.md)及[证据索引](../versions/v10.0.9/manifest.json)为具名依据，下面FROZEN_NOT_RUN是早期时点。
+
+| 能力 | 实际限定进展与剩余项 |
+|---|---|
+| A06 RTC | 当前CN/MC/revision及处罚门、受控SFU入房/踢房、APP独立接听、视频发布订阅已实现；双APP真实视频/RTP、MC/Web restrict/banned及旧JWT拒绝已有部分实测。最终双端可辨语音播放受现有模拟器原生注入退出/挂起阻塞，不能登记恢复完成；完整重连/权限矩阵仍待同版收口 |
+| A06 媒体 | 私有短视频已补建真实picker→ffprobe→消息关联→接收APP起播及同库重启读回，完整/Range当前权限正反例已测；完整播放时序/撤权缓存销毁及全异常矩阵未齐。录音消息继续来源未证明，不纳入本版完成 |
+| A09 | 第四轮AAR/APK构建/双安装hash相同，相关PHP46项/Flutter38项/全域Dart通过；不是全Flutter/全PHP或完整联合验收。旧失败/vendor弃用保留；0.9资源已停止、卷保留 |
+| B01～B06 | 0.8接受与K08不变；本轮只做相关Web处罚、受限历史只读/申诉和消息安全定点回归，不重做后台验收 |
+| A03/A07/A08 | 历史数据、完整紫微/西占、Buddy/Social、地图/Push及其它具名欠账全部保留，未实施/未虚报恢复；联合终验仍在主要功能恢复后 |
+
 ## 2026-10-15 v10.0.9正式冻结待实施（当前）
 
 **FROZEN_PLAN / OWNER_DISPATCH_PENDING / NOT_IMPLEMENTED**。Owner D4～D6正式批准：0.9优先补齐双端RTC语音＋视频、SFU/JWT实时撤权及私有短视频附件；此功能包未实施，不能将旧Flutter RTC SDK/视频预留、媒体model、签JWT或旧preview当PASS。唯一[固定计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`；AC-09-01～08不变，需真实两个APP+Laravel/受控SFU/私有MariaDB/worker/媒体联动、撤权后旧JWT不重入且5秒内停止媒体、必要持久重启正反例。RTC本地SFU和0.9新DB授权仅在Owner手动正式派发后生效，本轮没有运行任何服务。
