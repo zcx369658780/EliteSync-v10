@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：v10.0.7 R1候选已交付，独立终验待定。[R1集中报告](docs/versions/v10.0.7/R1_EXECUTION_REPORT.md)、[R1 manifest](docs/versions/v10.0.7/R1_manifest.json)、[六项归因与诊断方法](docs/versions/v10.0.7/R1_TEST_ATTRIBUTION.md)。旧报告/初始失败不重写；无main合并、无后继派发。
+
+
 2026-10-15：v10.0.7独立候选交付，等待Astra终验；[执行报告](docs/versions/v10.0.7/EXECUTION_REPORT.md)、[manifest](docs/versions/v10.0.7/manifest.json)、[测试与失败](docs/versions/v10.0.7/TEST_RESULTS.md)、[运行说明](docs/versions/v10.0.7/RUNBOOK.md)。源码锚7f8da695；完整Flutter仍6失败，不能称全套通过。下面冻结/未开始条目保留历史。
 
 

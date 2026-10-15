@@ -1,0 +1,98 @@
+[
+  {
+    "path": "apps/flutter_elitesync_module/test/features/chat/presentation/conversation_access_gate_test.dart",
+    "baseline_blob": "e32f6f0d932919c0c896b85829ff396e0685ba31",
+    "candidate_blob": "e32f6f0d932919c0c896b85829ff396e0685ba31",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/match/presentation/widgets/match_round_contract_view_test.dart",
+    "baseline_blob": "8caeda9c28a14b1f584e803967d721a3d2740b4b",
+    "candidate_blob": "8caeda9c28a14b1f584e803967d721a3d2740b4b",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/synthetic_main_loop_recovery_baseline_test.dart",
+    "baseline_blob": "4129fd6ab23cb87cc26640e11ee714e06d037710",
+    "candidate_blob": "4129fd6ab23cb87cc26640e11ee714e06d037710",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+    "baseline_blob": "3e67da81d5844fdefddfd20b05e278a078f37d95",
+    "candidate_blob": "3e67da81d5844fdefddfd20b05e278a078f37d95",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart",
+    "baseline_blob": "bd598ba850b789510739e661aa0e330e16cf2766",
+    "candidate_blob": "bd598ba850b789510739e661aa0e330e16cf2766",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/chat_remote_data_source_send_test.dart",
+    "baseline_blob": "966f08ce32bdc0f24e52039e2ca8696498276d71",
+    "candidate_blob": "5a8cdca0e74bc418289756b57bfaa5a823f23d56",
+    "equal": false
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_remote_data_source.dart",
+    "baseline_blob": "b6c8c281aabb45e3dcbfa6bb00b27d41ca35a2a6",
+    "candidate_blob": "b6c8c281aabb45e3dcbfa6bb00b27d41ca35a2a6",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/conversation_access_gate.dart",
+    "baseline_blob": "fb09ca4ed76590c78c889eccba49b26a4a33f259",
+    "candidate_blob": "fb09ca4ed76590c78c889eccba49b26a4a33f259",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_round_contract_view.dart",
+    "baseline_blob": "a88d36f68809c79686fc700c260692759cc972cb",
+    "candidate_blob": "a88d36f68809c79686fc700c260692759cc972cb",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+    "baseline_blob": "a07e0863573db74fd7705a4657cdedc3295ba91c",
+    "candidate_blob": "a07e0863573db74fd7705a4657cdedc3295ba91c",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/state/calm_home_projection.dart",
+    "baseline_blob": "b253b9f87990f9140d495ad6fa6a733b329842ac",
+    "candidate_blob": "b253b9f87990f9140d495ad6fa6a733b329842ac",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/domain/qualification_diagnostic.dart",
+    "baseline_blob": "1d5a4cc16040d73432a0548f4cb57b85fc5bef58",
+    "candidate_blob": "1d5a4cc16040d73432a0548f4cb57b85fc5bef58",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/presentation/widgets/qualification_diagnostic_preview.dart",
+    "baseline_blob": "47533fbec5acb8b0e02c962fba408bb5d1966f7c",
+    "candidate_blob": "47533fbec5acb8b0e02c962fba408bb5d1966f7c",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/pubspec.yaml",
+    "baseline_blob": "1b807ccdcced1e3166fd6e5378865ecb5bba4708",
+    "candidate_blob": "1b807ccdcced1e3166fd6e5378865ecb5bba4708",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/pubspec.lock",
+    "baseline_blob": "b56c4b2c45bab65106c12e4d75d6c5b34209aeb4",
+    "candidate_blob": "b56c4b2c45bab65106c12e4d75d6c5b34209aeb4",
+    "equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_route_names.dart",
+    "baseline_blob": "d831a56e7f8a7bb162b25f390128b3c004042e68",
+    "candidate_blob": "d831a56e7f8a7bb162b25f390128b3c004042e68",
+    "equal": true
+  }
+]

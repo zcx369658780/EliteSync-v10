@@ -1,5 +1,8 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+2026-10-15 R1更新：A06/A08消息通知已补服务端最小存储/旧通知通用投影及当前MC导航门，真实block/revoke/禁用反例见[R1报告](../versions/v10.0.7/R1_EXECUTION_REPORT.md)。R1源码锚d3fa5f2，初始成功链/原数据保留；仍为候选待Astra终验。未恢复功能和后续版本位置不变。
+
+
 ## 2026-10-15 v10.0.7候选实测更新（独立验收待定）
 
 源码锚 `7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f`；真实链及固定原证见[集中报告](../versions/v10.0.7/EXECUTION_REPORT.md)、[manifest](../versions/v10.0.7/manifest.json)。本节覆盖下文旧0.7 NOT_IMPLEMENTED时点，**不将候选自验升为已独立验收**。全量Flutter6失败/analyze3 info保留。

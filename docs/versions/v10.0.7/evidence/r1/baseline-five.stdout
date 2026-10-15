@@ -1,0 +1,104 @@
+00:00 +0: loading C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart
+00:00 +0: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart: locked gate does not build or reveal protected content
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextContainingWidgetFinder:<Found 0 widgets with text containing 拉黑与举报是两个独立控制: []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart:30:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart line 30
+The test description was:
+  locked gate does not build or reveal protected content
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart: locked gate does not build or reveal protected content [E]
+  Test failed. See exception logs above.
+  The test description was: locked gate does not build or reveal protected content
+  
+00:00 +0 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/chat/presentation/conversation_access_gate_test.dart: only prerequisite-backed active access builds protected content
+00:01 +1 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful no_round state
+00:01 +2 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful scheduled state
+00:01 +3 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful preparing state
+00:01 +4 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful running state
+00:01 +5 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful revealed state
+00:01 +6 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful no_candidate state
+00:01 +7 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful failed state
+00:01 +8 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: renders truthful closed state
+00:01 +9 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: loading does not invent a round or countdown
+00:01 +10 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: network error remains separate from no round
+00:01 +11 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: countdown is shown only for scheduled server transition
+00:01 +12 -1: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: revealed state ignores supplied conversation capability
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TextWidgetFinder:<Found 1 widget with text "你们都愿意从一次轻松对话开始。": [
+            Text("你们都愿意从一次轻松对话开始。", debugLabel: ((englishLike bodyMedium
+2021).merge(((blackMountainView bodyMedium).apply).merge(unknown))).copyWith, inherit: false, color:
+Color(alpha: 1.0000, red: 0.3569, green: 0.3922, blue: 0.4588, colorSpace: ColorSpace.sRGB), family:
+Roboto, size: 14.0, weight: 400, letterSpacing: 0.3, baseline: alphabetic, height: 1.4x,
+leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.0000, green: 0.0000, blue:
+0.0000, colorSpace: ColorSpace.sRGB) TextDecoration.none, dependencies: [DefaultSelectionStyle,
+DefaultTextStyle, MediaQuery]),
+          ]>
+   Which: means one was found but none were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart:221:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart line 221
+The test description was:
+  revealed state ignores supplied conversation capability
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +12 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: revealed state ignores supplied conversation capability [E]
+  Test failed. See exception logs above.
+  The test description was: revealed state ignores supplied conversation capability
+  
+00:01 +12 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: pending refresh hides stale projection before rendering failure
+00:02 +13 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: header refresh is awaited and coalesces in-flight taps
+00:02 +14 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: pull refresh failure is owned by provider error UI
+00:02 +15 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: canSend alone does not authorize a Messages action
+00:02 +16 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: transport restoration refreshes truth without app restart
+00:02 +17 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: server action cannot bypass denied conversation capability
+00:02 +18 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/match/presentation/widgets/match_round_contract_view_test.dart: primary and secondary actions keep canonical route boundaries
+00:06 +19 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/synthetic_main_loop_recovery_baseline_test.dart: fresh container re-seeds demo state; it is not a process restart
+00:06 +20 -2: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/synthetic_main_loop_recovery_baseline_test.dart: Match loading and error stay UNKNOWN and route to Match
+00:06 +20 -3: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/synthetic_main_loop_recovery_baseline_test.dart: Match loading and error stay UNKNOWN and route to Match [E]
+  Expected: '/progress/match'
+    Actual: '/progress'
+     Which: is different. Both strings start the same, but the actual value is missing the following trailing characters: /match
+  
+  package:matcher                                             expect
+  package:flutter_test/src/widget_tester.dart 473:18          expect
+  test\synthetic_main_loop_recovery_baseline_test.dart 106:5  main.<fn>
+  
+00:06 +20 -3: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_test.dart: (setUpAll)
+00:06 +20 -4: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_test.dart: (setUpAll) [E]
+  Bad state: Same-run PHP diagnostic fixture is mandatory
+  test\features\qualification_diagnostics\qualification_diagnostic_test.dart 71:7  main.<fn>
+  
+00:06 +20 -4: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_test.dart: (tearDownAll)
+00:06 +20 -4: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart: (setUpAll)
+00:06 +20 -5: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart: (setUpAll) [E]
+  Bad state: Same-run PHP JSON is mandatory; no static fallback
+  test\features\qualification_diagnostics\qualification_diagnostic_preview_test.dart 73:7  main.<fn>
+  
+00:06 +20 -5: C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/baseline-package/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart: (tearDownAll)
+00:06 +20 -5: Some tests failed.

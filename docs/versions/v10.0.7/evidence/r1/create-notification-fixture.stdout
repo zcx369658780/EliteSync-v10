@@ -1,0 +1,22 @@
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'week_tag' at row 1 (Connection: mysql, SQL: insert into `dating_matches` (`week_tag`, `user_a`, `user_b`, `drop_released`, `updated_at`, `created_at`) values (v1007-r1-notification-fixture, 9, 10, 1, 2026-10-15 02:01:08, 2026-10-15 02:01:08))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+    821▕                     $this->getName(), $query, $this->prepareBindings($bindings), $e
+    822▕                 );
+    823▕             }
+    824▕ 
+  ➜ 825▕             throw new QueryException(
+    826▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+    827▕             );
+    828▕         }
+    829▕     }
+
+  1   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOException::("SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'week_tag' at row 1")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOStatement::execute()
+

@@ -1,0 +1,8 @@
+{
+    "users": {
+        "r1sender": 11,
+        "r1recipient": 12
+    },
+    "match_id": 5,
+    "purpose": "R1 notification current-permission fixture; not a new matching consumer claim"
+}

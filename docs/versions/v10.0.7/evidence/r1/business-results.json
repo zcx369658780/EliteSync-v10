@@ -1,0 +1,17 @@
+{
+  "fixture": {
+    "users": {
+      "r1sender": 11,
+      "r1recipient": 12
+    },
+    "match_id": 5,
+    "purpose": "R1 notification current-permission fixture; not a new matching consumer claim"
+  },
+  "message_id": 5,
+  "media_id": 2,
+  "notification_id": 10,
+  "active_navigation_derived": true,
+  "block_revoke_generic": true,
+  "disabled_old_token_denied": true,
+  "legacy_original_message_rows_protected": true
+}

@@ -1,0 +1,6 @@
+Analyzing baseline-package...                                   
+
+   info - The imported package 'crypto' isn't a dependency of the importing package - test\features\qualification_diagnostics\qualification_diagnostic_preview_test.dart:4:8 - depend_on_referenced_packages
+   info - The imported package 'crypto' isn't a dependency of the importing package - test\features\qualification_diagnostics\qualification_diagnostic_test.dart:4:8 - depend_on_referenced_packages
+   info - Use interpolation to compose strings and values - test\features\qualification_diagnostics\qualification_diagnostic_test.dart:221:7 - prefer_interpolation_to_compose_strings
+

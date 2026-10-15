@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-15 v10.0.7 R1候选交付，等待Astra集中复核
+
+**V10.0.7 R1 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。固定审查657c1af7/Blob177e6511、冻结8AC不变，R1源码锚d3fa5f2bc891931fc9bb86eeb196d233d8686d71（Tree66b0050ed85d74cd3a55509264cd2c095089f4a5）。[R1集中报告](docs/versions/v10.0.7/R1_EXECUTION_REPORT.md)、[manifest](docs/versions/v10.0.7/R1_manifest.json)、[固定起点归因](docs/versions/v10.0.7/R1_TEST_ATTRIBUTION.md)。通知新存储最小化及旧读取当前门已修；真实block/revoke/禁用反例保留，原记录不改写。PHP27/332通过；全量Flutter普通793/5、同次fixture821/3均exit1，3legacy在固定起点复现；全范围及lib分析均无问题exit0。不冒全绿。Flutter/Android产品子树和物理包hash未变，未重建APP。本轮自有服务/容器停止，私配/卷保留；原报告、冻结plan及初始候选均保留。等待Astra终验，无main合并或0.8。后文初始候选为历史时点。
+
+
 ## 2026-10-15 v10.0.7 独立候选已交付，等待Astra终验
 
 **V10.0.7 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。Owner已手动派发固定8项AC，实施源码锚 `7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f` / Tree `754b9a65b41ac9393687417836e380effc81c09b`；独立分支`codex/v10.0.7-app-restoration`，最终报告提交只追加文档/安全原证。精确最终candidate commit/tree见Owner固定交付链接及远端回读，不能将源码锚混成报告tree。

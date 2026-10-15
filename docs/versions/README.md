@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+v10.0.7 R1：**CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**。[R1报告](v10.0.7/R1_EXECUTION_REPORT.md)，源码锚d3fa5f2；通知隐私已定点修复，剩余legacy失败有固定起点复测，未独立接受。
+
+
 v10.0.7：**CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE**，产品源码锚7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f；[集中报告](v10.0.7/EXECUTION_REPORT.md)及[测试原结果](v10.0.7/TEST_RESULTS.md)。未独立接受，未合并main。
 
 

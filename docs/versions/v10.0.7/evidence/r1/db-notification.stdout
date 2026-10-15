@@ -1,0 +1,61 @@
+{
+    "notifications": [
+        {
+            "id": 10,
+            "user_id": 12,
+            "title": "有一条新消息",
+            "body": "请打开会话查看，读取前会验证当前权限。",
+            "payload": "{\"source\":\"message\",\"message_id\":5}",
+            "read_at": "2026-10-15 02:03:02"
+        }
+    ],
+    "connections": [
+        {
+            "id": 4,
+            "match_id": 5,
+            "user_a": 11,
+            "user_b": 12,
+            "requester_id": 11,
+            "state": "CN_ACTIVE",
+            "revision": 2,
+            "created_at": "2026-10-15 02:03:00",
+            "updated_at": "2026-10-15 02:03:00"
+        }
+    ],
+    "consents": [
+        {
+            "id": 3,
+            "connection_id": 4,
+            "purpose": "CONVERSATION_LIVE_READ",
+            "state": "MC_REVOKED",
+            "requester_id": 11,
+            "revision": 3,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 02:03:00",
+            "updated_at": "2026-10-15 02:03:01"
+        },
+        {
+            "id": 4,
+            "connection_id": 4,
+            "purpose": "CONVERSATION_LIVE_SEND",
+            "state": "MC_REVOKED",
+            "requester_id": 11,
+            "revision": 3,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 02:03:00",
+            "updated_at": "2026-10-15 02:03:01"
+        }
+    ],
+    "users": [
+        {
+            "id": 11,
+            "name": "V1007 R1 Fictional r1sender",
+            "disabled": false
+        },
+        {
+            "id": 12,
+            "name": "V1007 R1 Fictional r1recipient",
+            "disabled": true
+        }
+    ]
+}
