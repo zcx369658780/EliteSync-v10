@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15 最新：**v10.0.8 Astra最终验收 ACCEPT WITH OBSERVATIONS，K08产品源码安全集成待执行。** 固定接受R1候选`d37121eb11d3cc845f1606a631d17ca01fe6105a`、Tree`6d260f525de8976b7aea5e4a1fe6c9282d91a332`。优先读取[最终独立验收](docs/versions/v10.0.8/acceptance.md)和[复盘](docs/versions/v10.0.8/retrospective.md)；Restrict本人申诉已贯通APP→PHP→持久DB→Blade，保留原全部8AC及R1实测证据。R1全量Flutter/PHP未跑，旧失败/通知存储与发布版本元数据旧包SHA已具名观察。**产品代码尚未并入main、K08和v10.0.9未自动派发**。下文初始候选待R1及顾问交接的状态皆为历史时点。
+
+
 2026-10-15 最新：**v10.0.8 Astra会话交接已归档；已下达的R1定点返修由新顾问会话验收。** 首读[固定完整交接正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)（Commit `38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`、Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1`），其中包括Owner D1/D2/D3、0.6/0.7限定验收及K08、0.8唯一冻结8AC与初始候选、R1本人处罚申诉缺口、独立验收顺序和本地安全边界。现阶段初始候选**NOT_ACCEPTED**，R1实时Codex状态**UNKNOWN**，不自动重派发、合main或启动0.9。旧“未派发/待初审”段落只作为历史时点。
 
 
@@ -32,6 +35,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **v10.0.8已接受最终验收与复盘（首读）** | [固定AC终验](docs/versions/v10.0.8/acceptance.md)、[复盘](docs/versions/v10.0.8/retrospective.md)：R1受罚人申诉通过、旧成功B01～B06保留；产品K08仍待执行 |
 | **2026-10-15新顾问会话交接（首读）** | [固定完整正文](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)：Owner与版本状态、当前v10.0.8 R1已经下达待新会话验收、原证与权限边界；Blob `9ae48420a425de714fc19885a5b63f9a1e6e31a1` |
 | **v10.0.8 Astra R1审查（当前）** | [R1审查](https://github.com/zcx369658780/EliteSync-v10/blob/08044b1cff4379ce2a73127dac3d9e13cc032c75/docs/versions/v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)：D2本人申诉缺口，初始候选暂不接受，等待同版定点返修 |
 | **v10.0.8正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)：Blob 0856e7372d1f91fadfa3350b30f926f7af9cf809、D1～D3已批准、AC-08-01～08冻结；Owner手动派发后方可实施 |
