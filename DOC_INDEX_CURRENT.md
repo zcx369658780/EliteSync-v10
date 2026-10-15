@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-15：**v10.0.8版前范围入口已建立，非正式冻结版**。[单份草案](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md) Blob `a1b380521ac8b6fffb1b06a17f759e8755671cc8`，独立Web管理员用户/验证/举报/匹配/问卷模块为主，代码基线沿用v10.0.7完成K08的 `a75b8d4...`。尚未派发Codex只读调查，更没有启动v10.0.8实现；v10.0.7限定验收和Flutter遗留失败保留。以下历史“未规划0.8/0.7待合并”由本节最新事实覆盖。
+
+
 ## 2026-10-15 K08最新登记
 
 **V10.0.7 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / V10_0_8_NOT_DISPATCHED**。最终接受R1候选 `cf0c359b86e35c794da389a58ba0b687c3c0bd32` 已安全接入main；产品commit `18c1ddb67378518b6b2c3e912e1e3b2afd394051` / Tree `4cde05f06079a8bd4879ae34a31db7ac0c30c625`，普通non-force推送并回读一致。完整apps/services/题库与接受R1一致，保留通知隐私修复、冻结8AC、独立验收/复盘及全部原始失败。原专用树接续；原dirty根HEAD/index/status及43项具名hash相同。PHP4项语法检查通过，包hash未变；本次套件/分析/构建/安装/业务重跑NOT_RUN，无新增产品差异。原Flutter普通793/5、带fixture821/3仍exit1。0.6/0.7容器停止、卷保留，未seed或启动服务/AVD。以下K08 PENDING/候选未合main为历史状态；保留全部能力限定、未恢复项和观察。不规划或实施0.8。 [K08详细登记](docs/versions/v10.0.7/integration.md)。
@@ -20,6 +23,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| v10.0.8当前版前草案 | [固定入口](https://github.com/zcx369658780/EliteSync-v10/blob/407c6b652086610075b2aa53ae3e750225062afc/docs/versions/v10.0.8/PLAN_PROPOSAL_V0_1.md)：尚未冻结，Codex调查待派发；B01～B06 Web可操作模块及用户恢复欠账排程 |
 | **v10.0.7最终验收及复盘（首读）** | [独立验收](docs/versions/v10.0.7/acceptance.md)、[版本复盘](docs/versions/v10.0.7/retrospective.md)：R1接受、全量Flutter保留既有3失败、K08产品集成待完成 |
 | **v10.0.7唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307/docs/versions/v10.0.7/plan.md)：Blob 151d75b67238826841467fa93c140825ebf61282、AC-07-01～08固定、复用K08产品起点；Owner尚未手动派发，实际运行未开始 |
 | v10.0.6终验及复盘（优先） | [Astra独立验收](docs/versions/v10.0.6/acceptance.md)、[版本复盘](docs/versions/v10.0.6/retrospective.md)：候选已接受，代码/本地集成分离，已保留PHP范围外失败与LOCAL_ONLY；K08待接续 |
