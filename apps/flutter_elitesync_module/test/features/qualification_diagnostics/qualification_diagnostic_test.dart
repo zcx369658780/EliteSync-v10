@@ -218,7 +218,7 @@ void main() {
     for (final invalid in [
       '', '{', '$raw false', raw.substring(0, raw.length ~/ 2),
       '{"permission":false,}', '[1,]', '{"x":"\\q"}',
-      List.filled(66, '[').join() + '0' + List.filled(66, ']').join(),
+      '${List.filled(66, '[').join()}0${List.filled(66, ']').join()}',
     ]) {
       expect(() => parse(invalid), throwsFormatException);
     }

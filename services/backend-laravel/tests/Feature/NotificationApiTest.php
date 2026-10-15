@@ -128,7 +128,7 @@ class NotificationApiTest extends TestCase
         $this->assertSame(1, AppNotificationItem::query()->where('user_id', $user->id)->count());
     }
 
-    public function test_message_notification_uses_stored_conversation_and_sender_identity_without_replay_duplicate(): void
+    public function test_message_notification_keeps_private_pointer_and_replay_does_not_duplicate(): void
     {
         // This replay check exercises legacy internals, not v10 live messaging authority.
         $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
@@ -153,8 +153,14 @@ class NotificationApiTest extends TestCase
 
         $this->assertDatabaseCount('notifications', 1);
         $notification = AppNotificationItem::query()->firstOrFail();
-        $this->assertSame((string) $send['conversation_id'], $notification->payload['route_args']['conversation_id']);
-        $this->assertSame($sender->id, $notification->payload['peer_user_id']);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_TITLE, $notification->title);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_BODY, $notification->body);
+        $this->assertArrayNotHasKey('peer_user_id', $notification->payload);
+        $this->assertArrayNotHasKey('route_args', $notification->payload);
+        $storedMessage = \App\Models\ChatMessage::findOrFail($notification->payload['message_id']);
+        $storedConversation = \App\Models\Conversation::where('room_key', $storedMessage->room_id)->firstOrFail();
+        $this->assertSame((int) $send['conversation_id'], (int) $storedConversation->id);
+        $this->assertSame($sender->id, (int) $storedMessage->sender_id);
         $this->assertSame($send['id'], $notification->payload['message_id']);
     }
 }

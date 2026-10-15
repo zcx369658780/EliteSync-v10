@@ -148,7 +148,7 @@ Route::prefix('v1')->group(function () {
             Route::post('', [RelationshipController::class, 'store'])->middleware('throttle:relationships');
         });
 
-        Route::prefix('notifications')->group(function () {
+        Route::prefix('notifications')->middleware('account.active')->group(function () {
             Route::get('', [NotificationController::class, 'index'])->middleware('throttle:notifications');
             Route::get('/unread-count', [NotificationController::class, 'unreadCount'])->middleware('throttle:notifications');
             Route::post('/read-all', [NotificationController::class, 'markAllRead'])->middleware('throttle:notifications');

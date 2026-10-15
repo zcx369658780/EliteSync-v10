@@ -14,15 +14,16 @@ class NotificationController extends Controller
     /**
      * @return array<string, mixed>
      */
-    private function shapeNotification(AppNotificationItem $notification): array
+    private function shapeNotification(AppNotificationItem $notification, int $viewerId, NotificationService $notifications): array
     {
-        $payload = (array) ($notification->payload ?? []);
+        $presentation = $notifications->presentationForUser($notification, $viewerId);
+        $payload = $presentation['payload'];
 
         return [
             'id' => (int) $notification->id,
             'kind' => (string) $notification->kind,
-            'title' => (string) $notification->title,
-            'body' => (string) ($notification->body ?? ''),
+            'title' => (string) $presentation['title'],
+            'body' => (string) $presentation['body'],
             'payload' => $payload,
             'route_name' => (string) ($payload['route_name'] ?? ''),
             'route_args' => (array) ($payload['route_args'] ?? []),
@@ -40,7 +41,7 @@ class NotificationController extends Controller
 
         return response()->json([
             'ok' => true,
-            'items' => $items->map(fn (AppNotificationItem $item) => $this->shapeNotification($item))->values(),
+            'items' => $items->map(fn (AppNotificationItem $item) => $this->shapeNotification($item, (int) $request->user()->id, $notifications))->values(),
             'total' => $items->count(),
             'unread_total' => $items->whereNull('read_at')->count(),
         ]);
@@ -58,7 +59,7 @@ class NotificationController extends Controller
     {
         $notification = $notifications->markRead((int) $request->user()->id, $notificationId);
 
-        if (!$notification) {
+        if (! $notification) {
             return response()->json(['message' => 'notification not found'], 404);
         }
 

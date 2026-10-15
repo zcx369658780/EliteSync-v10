@@ -104,7 +104,7 @@ void main() {
       clientMessageId: 'mock-client',
     );
 
-    expect(first.serverMessageId, 1);
+    expect(first.serverMessageId, 990000499);
     expect(first.conversationId, isNot(23));
     expect(first.message.id, first.serverMessageId.toString());
     expect(first.clientMessageId, 'mock-client');
