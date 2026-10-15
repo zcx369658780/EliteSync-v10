@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-15：v10.0.8 **ASTRA FINAL ACCEPT WITH OBSERVATIONS / FINAL R1 d37121eb11d3cc845f1606a631d17ca01fe6105a**。原B01～B06真实业务已留初始证据，R1受罚本人申诉D2缺口已通过[独立验收](v10.0.8/acceptance.md)及[复盘](v10.0.8/retrospective.md)收口。AC-08-01～08未改；**GitHub产品集成和本地K08仍PENDING**，目前main只含文档归档。R1相关PHP31/367 exit0、Flutter21 exit0、Dart全范围exit0；全量套件NOT_RUN、原旧Flutter失败与2 vendor弃用、dev release元数据旧APK SHA观察保留。0.9未启动。下面初审R1未接受/新顾问待验等为历史时点。
+
+
 2026-10-15 新顾问交接：v10.0.8 初始候选 cff049ae602049adf49014ec2ed27963dc40aff5 已经Astra审查，结论`TARGETED_R1_REQUIRED / NOT_ACCEPTED`；唯一待验R1为restrict受罚者本人处罚申诉闭环，**上一会话已下Codex任务单，后续候选由新顾问会话验收而不是重新派发**。完整[固定交接](https://github.com/zcx369658780/EliteSync-v10/blob/38f5ee6814e52cfa1391e1c59f87f7b70fecd45e/docs/migration/ASTRA_HANDOFF_20261015_V10_0_8_R1.md)（提交`38f5ee6814e52cfa1391e1c59f87f7b70fecd45e`）和[R1审查](v10.0.8/ASTRA_R1_REVIEW_FINDINGS.md)先读。Owner D1/D2/D3与v10.0.8 plan/AC-08-01～08不变；R1执行实时UNKNOWN，尚无本会话新候选。产品代码未合main、0.9未启动；以下旧状态均作为历史时点。
 
 
@@ -44,7 +47,7 @@ v10.0优先恢复选定原版APP前后端、数据库与主要功能，并交付
 |---|---|---|
 | v10.0.6 | APP城市真实持久化＋独立Web禁用/会话失效＋重启验证 | [ACCEPT WITH OBSERVATIONS](v10.0.6/acceptance.md)；[K08已完成](v10.0.6/integration.md)；产品集成78aba03a、本地已接续，K08不冒称重跑 |
 | v10.0.7 | 完整问卷→实际匹配→独立Connection/MC→合法文本/图片＋八字/MBTI与站内功能 | [ACCEPTED WITH OBSERVATIONS](v10.0.7/acceptance.md) / [复盘](v10.0.7/retrospective.md)；最终R1 cf0c359b，待K08安全产品集成；Flutter仍有3项旧测试失败 |
-| v10.0.8 | B01～B05独立Blade运营闭环及B06既有开发渠道release管理 | [正式plan FROZEN](https://github.com/zcx369658780/EliteSync-v10/blob/ac57d3370a2f2f17c042987a758d86c9aa725650/docs/versions/v10.0.8/plan.md)，8项固定AC，D1～D3 Owner已批准；待手动派发，尚未实施 |
+| v10.0.8 | B01～B05独立Blade运营闭环及B06开发渠道版本管理；R1受罚人申诉 | [ACCEPT WITH OBSERVATIONS](v10.0.8/acceptance.md)、[版本复盘](v10.0.8/retrospective.md)，最终R1 d37121eb；待K08集成/本地接续，0.9未启动 |
 | v10.0.9 | APP/Web/后端/数据库联合流程、持久化及重启/失败恢复 | 路线包，未执行 |
 | v10.0.10 | 完整软件包、安装/部署/恢复方式与功能/算法说明 | 路线包，不是公开运营承诺 |
 
