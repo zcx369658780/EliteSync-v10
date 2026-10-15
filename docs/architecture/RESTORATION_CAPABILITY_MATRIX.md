@@ -1,5 +1,22 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-15 v10.0.9正式冻结待实施（当前）
+
+**FROZEN_PLAN / OWNER_DISPATCH_PENDING / NOT_IMPLEMENTED**。Owner D4～D6正式批准：0.9优先补齐双端RTC语音＋视频、SFU/JWT实时撤权及私有短视频附件；此功能包未实施，不能将旧Flutter RTC SDK/视频预留、媒体model、签JWT或旧preview当PASS。唯一[固定计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`；AC-09-01～08不变，需真实两个APP+Laravel/受控SFU/私有MariaDB/worker/媒体联动、撤权后旧JWT不重入且5秒内停止媒体、必要持久重启正反例。RTC本地SFU和0.9新DB授权仅在Owner手动正式派发后生效，本轮没有运行任何服务。
+
+| 功能/模块 | 最新有效记录 |
+|---|---|
+| A06 RTC | **FROZEN_NOT_RUN**：旧语音客户端/SDK与RTC API存在，不代表双端连通；当前旧call/JWT授权与最新CN/MC/restrict不一致。v10.0.9冻结为真实语音、明确补建双端视频及失效后入房/强制媒体撤权 |
+| A06聊天短视频 | **FROZEN_NOT_RUN**：旧/当前具名视频picker存在但私有服务端允许image，缺实际视频上传、内容/时长校验、附件、播放、Range及撤权；0.9须闭环 |
+| A06文本/图片 | **ALREADY_ACCEPTED_SCOPED**：0.7真实文本、图片与隐私撤权已接受且K08；0.9仅影响部分定点回归，不重开整版 |
+| A07完整紫微／西占 | **NOT_RUN/OWNER_LICENSE_OR_ORACLE_OPEN**：必须有具名合法算法引擎、非fixture oracle及输入/时区/坐标签名；Kerykeion/Swiss等默认许可证门禁止绕过，Owner未批准商用许可 |
+| A08 Buddy／Social／地图／系统Push | **SOURCE_OR_PRODUCT_CONTRACT_PENDING**：具名旧Buddy/Social页mock/静态，不能称有真实双端业务；后续须核其它原版来源或Owner明确批准新合同；现有本地设置/站内通知不冒系统Push/地图 |
+| A03/A09 | **HISTORICAL_DATA_UNKNOWN / FULL_JOINT_ACCEPTANCE_DEFERRED**：具名备份/媒体关联获准使用范围待决定，完整APP+Web联合验收在主要用户能力恢复后实施，仍在内测运营之前 |
+| B01～B06 | **ACCEPTED_WITH_OBSERVATIONS / K08_COMPLETE**：0.8 Blade用户、运营资格、处罚/本人申诉、matching、问卷及dev release记录的限定接受继续有效，0.9安全权限必要回归而非新增全后台重构 |
+
+Owner D6已正式批准改排：原暂定v10.0.9“全端联合验收”顺延，未自动指定其后正式版本号，不因0.9 RTC成功而认定全部APP完成。下文v10.0.8终验与更早“未实装”是对应历史快照，本节的`FROZEN_NOT_RUN`优先表述当前未恢复的真实边界。
+
+
 ## 2026-10-15 v10.0.8最终R1已接受并完成K08（当前）
 
 **B01～B06：ACCEPTED_WITH_OBSERVATIONS / K08_INTEGRATION_COMPLETE**。以[Astra固定独立验收](../versions/v10.0.8/acceptance.md)的限定范围为准；最终R1候选 `d37121e...` 已集成main产品commit `4f1b3c52d09346cf831249ee7e8186f2679b2217`，产品Tree与接受候选相同，完整提交Tree因保留main最新文档不同。B03包含本人有效Restrict申诉APP→同库→Blade能力，原举报者申诉合同独立保留，没有退回初始缺口。详细身份与NOT_RUN见[K08登记](../versions/v10.0.8/integration.md)。K08没有启动/重seed数据库或重复实测整版；旧失败、vendor弃用、R1包与development旧包的不同SHA均保留。主APP其它具名恢复欠账不删改，不因本次集成自动开始下一版；下方候选/待K08为历史时点。
