@@ -1,5 +1,8 @@
 # EliteSync-v10 版本登记入口
 
+2026-10-16：**v10.0.9 已正式实施但尚未完成候选 / AUDIO_ICE_BLOCKED / NOT_ACCEPTED**。本次会话[完整交接](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md)（Commit`de8d44cbf30ecda03175fcbd07e5cf7595dc5e39`、Blob`cc818c61199260b77850b199627857d89926514a`）记录实际main与新Codex分支`6150d104924355a5427868f5b429ef82cf1eab51`、10月16日Owner具名设备授权的`CODEX_REPORTED`边界、双ABI测试包/36项相关Flutter通过，以及真机部分UDP上行和AVD ICE失败。**同WLAN 7881/TCP媒体回退未获批准**，新会话依下一条Owner/Codex回报处理最小阻塞，不重复派发旧任务。plan Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`及AC-09-01～08不变；新0.9完成候选、Astra最终验收、K08与下版均未启动。下方“0.9待派发”等为更早时点。
+
+
 2026-10-15：**v10.0.9 FROZEN_PLAN / OWNER_D4_D5_D6_APPROVED / OWNER_MANUAL_DISPATCH_PENDING / NOT_IMPLEMENTED**。固定[正式计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md) Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`，AC-09-01～08不可变；Owner D4/5/6已经批准于[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。交付目标真实双端RTC语音/视频、撤权与旧JWT不重入、私有短视频及必要已接受消息/管理权限回归；新受控本地SFU/0.9数据库/两个APP客户端授权只有Owner派发后启动。产品技术起点0.8 K08 main3a8f7989，当前纯文档不改变代码。原暂定0.9联合验收顺延但不取消，未恢复主要功能仍须内测前完成；下文PREPLAN_READY/未批准改排均为旧时点。
 
 
