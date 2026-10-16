@@ -1,0 +1,21 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart
+00:00 +0: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+00:00 +1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+00:00 +2: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+00:00 +3: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+00:00 +4: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_SCAN total=0 invite=0
+00:00 +5: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: a stuck notification future releases the next call scan
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_ERROR type=TimeoutException
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_ERROR type=TimeoutException
+00:00 +6: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: an old signed-out scan cannot continue into notifications
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+00:00 +7: All tests passed!

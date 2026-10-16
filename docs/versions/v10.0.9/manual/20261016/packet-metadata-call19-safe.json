@@ -1,0 +1,167 @@
+{
+  "payload_saved": false,
+  "counts": [
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 99,
+      "endpoint_alias": "endpoint_1"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 98,
+      "endpoint_alias": "endpoint_1"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 98,
+      "endpoint_alias": "endpoint_1"
+    },
+    {
+      "direction": "inbound",
+      "kind": "encrypted_or_other",
+      "count": 1616,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 99,
+      "endpoint_alias": "endpoint_3"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 99,
+      "endpoint_alias": "endpoint_3"
+    },
+    {
+      "direction": "outbound",
+      "kind": "encrypted_or_other",
+      "count": 70,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 18,
+      "endpoint_alias": "endpoint_4"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 18,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_success",
+      "count": 18,
+      "endpoint_alias": "endpoint_4"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_success",
+      "count": 18,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 14,
+      "endpoint_alias": "endpoint_4"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 14,
+      "endpoint_alias": "endpoint_4"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 14,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 14,
+      "endpoint_alias": "endpoint_2"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 8,
+      "endpoint_alias": "endpoint_5"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 16,
+      "endpoint_alias": "endpoint_6"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 8,
+      "endpoint_alias": "endpoint_7"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 16,
+      "endpoint_alias": "endpoint_8"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 143,
+      "endpoint_alias": "endpoint_9"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 143,
+      "endpoint_alias": "endpoint_9"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 151,
+      "endpoint_alias": "endpoint_9"
+    },
+    {
+      "direction": "inbound",
+      "kind": "stun_request",
+      "count": 146,
+      "endpoint_alias": "endpoint_10"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_success",
+      "count": 146,
+      "endpoint_alias": "endpoint_10"
+    },
+    {
+      "direction": "outbound",
+      "kind": "stun_request",
+      "count": 8,
+      "endpoint_alias": "endpoint_10"
+    },
+    {
+      "direction": "inbound",
+      "kind": "encrypted_or_other",
+      "count": 1,
+      "endpoint_alias": "endpoint_4"
+    },
+    {
+      "direction": "outbound",
+      "kind": "encrypted_or_other",
+      "count": 1,
+      "endpoint_alias": "endpoint_4"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+lib/app/router/rtc_invite_coordinator.dart:185:35: Error: Required named parameter 'isCurrent' must be provided.
+      if (await _scanIncomingCalls(ref, handledCallId: handledCallId)) return;
+                                  ^
+lib/app/router/rtc_invite_coordinator.dart:57:14: Context: Found this candidate, but the arguments don't match.
+Future<bool> _scanIncomingCalls(
+             ^^^^^^^^^^^^^^^^^^
+lib/app/router/rtc_invite_coordinator.dart:68:30: Error: 'RtcSessionEntity' isn't a type.
+              as Future<List<RtcSessionEntity>>)
+                             ^^^^^^^^^^^^^^^^
+lib/app/router/rtc_invite_coordinator.dart:185:35: Error: Required named parameter 'isCurrent' must be provided.
+      if (await _scanIncomingCalls(ref, handledCallId: handledCallId)) return;
+                                  ^
+lib/app/router/rtc_invite_coordinator.dart:57:14: Context: Found this candidate, but the arguments don't match.
+Future<bool> _scanIncomingCalls(
+             ^^^^^^^^^^^^^^^^^^
+lib/app/router/rtc_invite_coordinator.dart:68:30: Error: 'RtcSessionEntity' isn't a type.
+              as Future<List<RtcSessionEntity>>)
+                             ^^^^^^^^^^^^^^^^

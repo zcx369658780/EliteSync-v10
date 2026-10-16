@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-16 v10.0.9真机音频接续：仍阻塞
+
+**AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。本轮已授权小米真机、现有AVD、ARM适配、宿主合成音输入和限域WLAN UDP。已安装同一双ABI独立测试包，修复首次登录来电扫描；36项相关测试exit0。手机UDP上行成立，模拟器ICE仍失败，没有人耳双向通过；同WLAN TCP回退待Owner新授权。SFU已暂停、AVD宿主输入关闭，持久数据和原证保留。详见[人工执行接续](docs/versions/v10.0.9/MANUAL_AUDIO_EXECUTION_20261016.md)。下方纯准备及旧时点状态按历史理解。
+
+
 ## 2026-10-16 v10.0.9人工音频验证准备
 
 **AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。详见[人工测试准备](docs/versions/v10.0.9/MANUAL_AUDIO_TEST_PREPARATION.md)。尚未指定真机/ADB许可、稳定AVD输入或批准USB-only 7881/TCP方案；现有包仅x86_64。Docker API本轮不可核验，指定宿主端口无监听；未启动服务、枚举设备、修改网络或重建包。原成功/失败证据和冻结8AC保留。

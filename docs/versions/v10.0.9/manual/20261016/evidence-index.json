@@ -1,0 +1,156 @@
+{
+  "raw_streams": "Copied without content redaction after credential scan; Git line-ending normalization may differ from LOCAL_ONLY bytes",
+  "artifacts": [
+    {
+      "file": "current-safe-progress.json",
+      "bytes": 1211,
+      "local_original_sha256": "6a364867a8537b89b2c1cf42df26ef9c9dc412ae2ba069e58823b8c2beeaad9f"
+    },
+    {
+      "file": "calls12-19-safe-status.json",
+      "bytes": 1657,
+      "local_original_sha256": "ebd42584951d1501b7b86ba65bee0b6fa043e8f4575cb9a4e179b5de330a6b3f"
+    },
+    {
+      "file": "installed-watcher-packages.json",
+      "bytes": 252,
+      "local_original_sha256": "fd4f2283a92a45c1a82c6aeb441ce69fe2ef65562d87db152ec2233ce09d8673"
+    },
+    {
+      "file": "packet-metadata-call19-safe.json",
+      "bytes": 3741,
+      "local_original_sha256": "3f2015aa453148ad6718b09e669e8546cc488769365a7c8e09e063953a2c9132"
+    },
+    {
+      "file": "protected-root-before.json",
+      "bytes": 254,
+      "local_original_sha256": "f20fbec68bbb600adbfd5505806e3e9c91137553ffb961999f3378b4d2a84fb8"
+    },
+    {
+      "file": "protected-root-after.json",
+      "bytes": 254,
+      "local_original_sha256": "f20fbec68bbb600adbfd5505806e3e9c91137553ffb961999f3378b4d2a84fb8"
+    },
+    {
+      "file": "build-dual.stdout",
+      "bytes": 2305,
+      "local_original_sha256": "4c82403e31627379b399f74dc4bec4b7180ecfee03b5394f8589d33afe6ac711"
+    },
+    {
+      "file": "build-dual.stderr",
+      "bytes": 1634,
+      "local_original_sha256": "4b1ebd2b7831db63f20d7baca3232812380113b8722137adfc2a617d5b5bd79a"
+    },
+    {
+      "file": "build-dual.exit",
+      "bytes": 1,
+      "local_original_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "file": "build-dual-direct.stdout",
+      "bytes": 2452,
+      "local_original_sha256": "aebc0ba88cd8047b9569e04aa63eefef535efc937de4e6b8d097aa900718c0e4"
+    },
+    {
+      "file": "build-dual-direct.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "build-dual-direct.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "file": "build-dual-final.stdout",
+      "bytes": 3340,
+      "local_original_sha256": "db82132785cc44abecf9c7a56ac014bddd8d7550e095904e92b4d2b72c7d1183"
+    },
+    {
+      "file": "build-dual-final.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "build-dual-final.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "file": "build-dual-watcher.stdout",
+      "bytes": 3340,
+      "local_original_sha256": "3b38967d449e2edef0ba1ebc5d7d1500a84d7cad147ee196eab1f812cb8559e2"
+    },
+    {
+      "file": "build-dual-watcher.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "build-dual-watcher.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "file": "test-watcher-first.stdout",
+      "bytes": 3806,
+      "local_original_sha256": "d487aea990ec03fd925e5b03b5cb6a1dfd90e0912c3c9ce5b58caf8f5799cf8e"
+    },
+    {
+      "file": "test-watcher-first.stderr",
+      "bytes": 1180,
+      "local_original_sha256": "80d69383907e69315febf44748b2b27388143ffaa8b484fe14aa38b7f1d75f3f"
+    },
+    {
+      "file": "test-watcher-first.exit",
+      "bytes": 1,
+      "local_original_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "file": "test-watcher-fixed.stdout",
+      "bytes": 2106,
+      "local_original_sha256": "4dff0fd5d9bfc493cad0523d5af82de963558d013953dc626ac6c24bf92222b1"
+    },
+    {
+      "file": "test-watcher-fixed.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "test-watcher-fixed.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "file": "flutter-related-watcher-final.stdout",
+      "bytes": 12403,
+      "local_original_sha256": "c48439106e92d35db245b32a486a2ca40e068ac85fa3d2cd9f260b3cc1da0a5f"
+    },
+    {
+      "file": "flutter-related-watcher-final.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "flutter-related-watcher-final.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "file": "analyze-final-watcher.stdout",
+      "bytes": 308,
+      "local_original_sha256": "339b304e578bf1d17b75ead45614b368e3b12a08eb0e5dc269e3842b36a68461"
+    },
+    {
+      "file": "analyze-final-watcher.stderr",
+      "bytes": 0,
+      "local_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "analyze-final-watcher.exit",
+      "bytes": 1,
+      "local_original_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    }
+  ],
+  "status": "NOT_CANDIDATE_DELIVERED"
+}

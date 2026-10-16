@@ -1,0 +1,84 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart
+00:00 +0: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: cold login starts polling without a process restart
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_SCAN total=0 invite=0
+00:00 +1: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: a stuck notification future releases the next call scan
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_ERROR type=TimeoutException
+RTC_INVITE_PROVIDER_CALL_SCAN total=0 incoming=0
+RTC_INVITE_PROVIDER_ERROR type=TimeoutException
+00:00 +2: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/app_shell_rtc_invite_test.dart: selectLatestRtcInvite returns the first unread rtc invite with call id
+00:00 +3: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: an old signed-out scan cannot continue into notifications
+00:00 +4: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: an old signed-out scan cannot continue into notifications
+00:00 +5: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: an old signed-out scan cannot continue into notifications
+00:00 +6: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/app/router/rtc_invite_bootstrap_test.dart: an old signed-out scan cannot continue into notifications
+RTC_INVITE_PROVIDER_BUILD
+RTC_INVITE_PROVIDER_START
+00:00 +7: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/entities/rtc_livekit_join_info_entity_test.dart: RtcLiveKitJoinInfoEntity parses join payload
+00:00 +8: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/entities/rtc_session_entity_test.dart: RtcSessionEntity parses voice call payload
+00:00 +9: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/entities/rtc_session_event_entity_test.dart: RtcSessionEventEntity treats list payload as empty map
+00:00 +10: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/entities/rtc_session_event_entity_test.dart: RtcSessionEventEntity keeps map payload content
+00:01 +11: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart: disabled RTC does not request join credentials
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107902577
+00:01 +12: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart: authorization failure never creates a media connection
+RTC_LIFECYCLE callId=1 event=leave_complete epochMs=1792107902584
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=1 errorType=StateError
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107902586
+00:01 +13: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart: unavailable join information fails closed before device capture
+RTC_LIFECYCLE callId=1 event=leave_complete epochMs=1792107902590
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=1 errorType=StateError
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107902590
+00:01 +14: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart: leaving during credential request prevents late device capture
+RTC_LIFECYCLE callId=19 event=leave_complete epochMs=1792107902593
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107902593
+00:01 +15: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: explicit reconnect rechecks current session: active
+RTC_LIFECYCLE callId=72 event=leave_complete epochMs=1792107903382
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=72 errorType=StateError
+RTC_LIFECYCLE callId=72 event=leave_complete epochMs=1792107903486
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=72 errorType=StateError
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903571
+00:02 +16: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_result_page_test.dart: RtcCallResultPage renders terminal summary
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903670
+00:02 +17: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart: RtcIncomingCallPage renders incoming call actions
+00:02 +17: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: explicit reconnect rechecks current session: terminal
+RTC_LIFECYCLE callId=72 event=leave_complete epochMs=1792107903636
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=72 errorType=StateError
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903713
+00:02 +18: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart: RtcIncomingCallPage renders incoming call actions
+00:02 +18: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: explicit reconnect rechecks current session: unknown
+RTC_LIFECYCLE callId=72 event=leave_complete epochMs=1792107903758
+RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=72 errorType=StateError
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903816
+00:02 +19: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart: RtcIncomingCallPage renders incoming call actions
+00:02 +19: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: RtcCallPage renders session status and actions
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903873
+00:02 +20: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart: RtcIncomingCallPage renders incoming call actions
+00:02 +21: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +21: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: video session renders remote and local video surfaces
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903937
+00:02 +22: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +23: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +23: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: calling call does not auto-connect before independent acceptance
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107903996
+00:02 +24: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +24: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart: ringing call does not auto-connect before independent acceptance
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107904062
+00:02 +25: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +26: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +27: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+00:02 +28: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallResultPage back button returns to messages
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107904319
+00:02 +29: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_permission_page_test.dart: RtcPermissionPage renders permission hints and actions
+00:02 +30: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_permission_page_test.dart: RtcPermissionPage renders permission hints and actions
+00:02 +31: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart: RtcAudioSpectrumBar shows waiting state without track
+00:03 +31: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart: RtcCallPage back button returns to messages
+RTC_LIFECYCLE callId=-1 event=leave_complete epochMs=1792107904435
+00:03 +32: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart: RtcAudioSpectrumBar shows waiting state without track
+00:03 +33: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart: RtcAudioSpectrumBar shows waiting state without track
+00:03 +34: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/chat/presentation/widgets/private_video_player_test.dart: private player uses current header and server ID; revoke stops native buffer
+00:03 +35: C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/chat/presentation/widgets/private_video_player_test.dart: server denies preflight: no native player is created
+00:03 +36: All tests passed!

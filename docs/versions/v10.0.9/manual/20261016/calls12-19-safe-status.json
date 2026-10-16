@@ -1,0 +1,66 @@
+[
+  {
+    "call_id": 12,
+    "http_status": 200,
+    "status": "missed",
+    "failure_code": "timeout",
+    "accepted_by_user_id": null,
+    "room": "rtc-9aaf0fce-32b8-449b-b932-74c193c2260b"
+  },
+  {
+    "call_id": 13,
+    "http_status": 200,
+    "status": "missed",
+    "failure_code": "timeout",
+    "accepted_by_user_id": null,
+    "room": "rtc-63781b04-ffc7-47bf-ac68-0153b1b941eb"
+  },
+  {
+    "call_id": 14,
+    "http_status": 200,
+    "status": "missed",
+    "failure_code": "timeout",
+    "accepted_by_user_id": null,
+    "room": "rtc-32d315f7-09b8-4187-a86e-0b3b89a56311"
+  },
+  {
+    "call_id": 15,
+    "http_status": 200,
+    "status": "ended",
+    "failure_code": "peer_disconnected",
+    "accepted_by_user_id": 3,
+    "room": "rtc-f84cda89-ae69-44cb-876b-a6752c5bab65"
+  },
+  {
+    "call_id": 16,
+    "http_status": 200,
+    "status": "ended",
+    "failure_code": "peer_disconnected",
+    "accepted_by_user_id": 3,
+    "room": "rtc-cf42fc92-1935-415c-8a0b-305cd7762cdf"
+  },
+  {
+    "call_id": 17,
+    "http_status": 200,
+    "status": "ended",
+    "failure_code": "peer_disconnected",
+    "accepted_by_user_id": 3,
+    "room": "rtc-4865d3c7-24ad-4d40-8c95-96c0c42bd5df"
+  },
+  {
+    "call_id": 18,
+    "http_status": 200,
+    "status": "ended",
+    "failure_code": "peer_disconnected",
+    "accepted_by_user_id": 3,
+    "room": "rtc-e41b14ab-1442-4b81-83e9-ff18674cc87f"
+  },
+  {
+    "call_id": 19,
+    "http_status": 200,
+    "status": "ended",
+    "failure_code": "peer_disconnected",
+    "accepted_by_user_id": 3,
+    "room": "rtc-bb0e9f68-865f-4fae-a2ef-9aa6b7650ec5"
+  }
+]

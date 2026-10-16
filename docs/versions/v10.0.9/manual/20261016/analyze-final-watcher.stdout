@@ -1,0 +1,5 @@
+Analyzing rtc_invite_coordinator.dart, rtc_livekit_service.dart, rtc_invite_bootstrap_test.dart...
+
+   info - lib\app\router\rtc_invite_coordinator.dart:73:5 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+1 issue found.
