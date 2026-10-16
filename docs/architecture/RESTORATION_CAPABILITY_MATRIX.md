@@ -1,5 +1,20 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-16 v10.0.9真实RTC／媒体进行中：ICE阻塞，未验收（最新）
+
+**IMPLEMENTATION_IN_PROGRESS / AUDIO_DEVICE_ICE_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED / NO_K08 / NO_NEXT_VERSION**。固定原[plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md) Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`和AC-09-01～08不变。新顾问[完整交接](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md) Blob`cc818c61199260b77850b199627857d89926514a`，实际10月16日Codex开发分支`6150d104924355a5427868f5b429ef82cf1eab51`，仍**未合main**。
+
+| 范围 | 目前可证明的实际状态 |
+|---|---|
+| A06 RTC安全/双端音视频 | 已有真实两AVD视频与部分权限/SFU撤权、短期JWT拒重入限定原证；10月16日小米arm64真机＋Pixel_6_Pro_2 AVD构建独立双ABI包并实际联动。USB-only TCP未建RTC媒体，已获批LAN UDP有手机侧上行但模拟器ICE仍失败，**两方向人耳可辨音均NOT_PASS**。AC-09-03、04、05的最终双端音频/视频状态与撤权矩阵尚未完成，不宣称PASS |
+| A06私有短视频 | 已见真实APP短视频选择上传、FFprobe、同库附件、收件方起播/Range及撤权404；**完整播放到结尾、播放中撤权播放器停止与额外失败矩阵仍缺**，AC-09-06未终裁 |
+| 10月16日设备授权状态 | Codex报告Owner已具名批准真机ADB、模拟器、合成音PC输入和受限局域网UDP规则；**同一WLAN 7881/TCP媒体回退尚未明确批准**，不允许把USB-only旧批准自动扩大 |
+| 0.9候选／环境 | 最新分支只是开发进度和脱敏证据，不能作为已交付最终候选。报告最后SFU暂停，专用0.9 DB/媒体保留，部分本地API/worker仍可能运行、受限UDP规则尚存在；实时状况须Codex现场重查。旧0.6/0.7/0.8卷和dirty根未受影响，不能自动删除或重seed |
+| B01～B06与其它A组 | 0.6～0.8限定接受＋K08持续有效，不因新RTC缺口归零；完整A07紫微/西占与算法许可、Buddy/Social、地图/Push、历史数据及完整联合验收仍待后续功能包和Owner具名决定 |
+
+此节为进度与风险事实，**不是验收、冻结AC修改或追加0.9权限**。严格区分Owner在本聊天直接批准的D4～D6与Codex报告中的设备/防火墙具体授权；新增LAN TCP要获得Owner新决定。下文0.9 FROZEN_NOT_RUN是更早时点，不应覆盖最新实际开发进度。
+
+
 ## 2026-10-15 v10.0.9正式冻结待实施（当前）
 
 **FROZEN_PLAN / OWNER_DISPATCH_PENDING / NOT_IMPLEMENTED**。Owner D4～D6正式批准：0.9优先补齐双端RTC语音＋视频、SFU/JWT实时撤权及私有短视频附件；此功能包未实施，不能将旧Flutter RTC SDK/视频预留、媒体model、签JWT或旧preview当PASS。唯一[固定计划](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`；AC-09-01～08不变，需真实两个APP+Laravel/受控SFU/私有MariaDB/worker/媒体联动、撤权后旧JWT不重入且5秒内停止媒体、必要持久重启正反例。RTC本地SFU和0.9新DB授权仅在Owner手动正式派发后生效，本轮没有运行任何服务。
