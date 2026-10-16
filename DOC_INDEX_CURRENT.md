@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+2026-10-16 **最新顾问会话交接（首读）**：v10.0.9**AUDIO_ICE_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**，已有RTC+视频/媒体限定实测但真机＋模拟器仍不能双向可辨音。请实读[固定完整交接正文](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md)（Commit`de8d44cbf30ecda03175fcbd07e5cf7595dc5e39`、Blob`cc818c61199260b77850b199627857d89926514a`），包含Owner D1～D6、固定AC09、2026-10-16新人工报告和已/未获批的设备及网络边界。Codex分支最新本次读取`6150d104924355a5427868f5b429ef82cf1eab51`已比旧844402进度继续前进，**不能机械继续“明天才接真机”旧任务**；最新同WLAN 7881/TCP尚待具体Owner许可。主仓本次只是交接文档，不代表产品代码集成。新会话接收最新Codex回执并接续旧任务，勿重派发/自动启动下版。
+
+
 2026-10-15 最新：**v10.0.9正式plan已冻结／待Owner手动派发／功能未实施。** 首读[固定冻结plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)，Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`、8项AC，及[Owner批准D4～D6](PRODUCT_DECISIONS.md) Blob`85dd5f9b88840104b0d5c26ba57d96fad4a17f11`。0.8 K08已完成；本版优先双端语音/视频与私有短视频、实时授权与旧JWT防重入，允许限域本地SFU/第二端但只有Owner手动派发后生效。原0.9联合终验经Owner批准顺延至主要恢复功能完成，完整紫微西占/Buddy/地图Push/历史数据仍有具名欠账。0.9候选尚无，产品技术起点3a8f7989。以下PREPLAN_READY/联合验收旧版数为历史快照。
 
 
@@ -43,6 +46,7 @@
 
 | 当前入口 | 正文与用途 |
 |---|---|
+| **2026-10-16 最新会话交接：v10.0.9 ICE 阻塞** | [固定完整归档](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md)：Blob`cc818c61199260b77850b199627857d89926514a`，Codex新分支人工测试已推进、最新ICE故障及有限TCP授权待决；冻结8AC未改，R1候选未交 |
 | **v10.0.9唯一正式冻结计划（首读）** | [固定plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)：Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`、Owner D4～D6已批准、八项AC冻结；待手动派发，RTC服务及0.9开发环境均未启动 |
 | **v10.0.9版前提案（未冻结）** | [固定范围建议](https://github.com/zcx369658780/EliteSync-v10/blob/8847624120aab5de0ac90e05c7e80ea53c65f2d6/docs/versions/v10.0.9/PLAN_PROPOSAL_V0_1.md)：RTC真实双端与其它恢复欠账优先、联合终验改排待Owner批准；Blob fbb060fc9a4b79a9e7075809e961a9d258455f83 |
 | **v10.0.8已接受最终验收与复盘（首读）** | [固定AC终验](docs/versions/v10.0.8/acceptance.md)、[复盘](docs/versions/v10.0.8/retrospective.md)：R1受罚人申诉通过、旧成功B01～B06保留；产品K08仍待执行 |
