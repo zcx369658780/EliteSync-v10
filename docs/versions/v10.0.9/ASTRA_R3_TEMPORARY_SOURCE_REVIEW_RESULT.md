@@ -32,3 +32,9 @@
 **R3网络脚本源码门：PASS_WITH_OBSERVATIONS，已足以进入Owner下一次独立系统网络与语音测试授权审查，不再要求无原因的R4脚本重写。** 这不是Owner已批准运行，更不是AC-09-03的真实双向语音PASS。R1-1/R1-2此前结论保留，v10.0.9总版仍`NOT_ACCEPTED`；无正式`acceptance.md`、无`main`产品集成、无K08/后继版。
 
 根据Owner已批准的[临时审阅材料清理协议](../../workflow/TEMP_REVIEW_EVIDENCE_PROTOCOL.md)，完成此固定源码复核后可清理临时审阅子树/独立分支：优先以一次**仅影响临时分支**、非force的反向树提交从其最新HEAD移除该临时目录，并回读GitHub分支工作树；当前GitHub连接器不提供删除远端branch引用，需Codex按唯一具名分支精确执行远端分支删除并由Astra核验。**不能**删除`main`、`codex/v10.0.9-rtc-media`或原LOCAL_ONLY，不能对Git仓库prune、reset、历史重写或声称Git对象已不可恢复。清理动作是否完成须依后续真实GitHub结果另登记。
+
+## 本次独立审查后的实际清理进展（2026-10-17）
+
+Astra已在原临时审阅分支`review/temporary-evidence-v1009-r3-20261016`以**non-force fast-forward**生成并推送一次纯清理提交`b00d34c7e3155fed69ec0fcdce0d39a5d3c9fd7f`，其唯一parent是原审阅候选`1ec67749fe8d6129cc0593a8de19703620e3a403`，Tree `c4f7dd9f2c914ebe0455485d1ebb2902eb34d872`严格等于该短期分支派生时的`main` Tree，意味着324个审阅文件均已从**临时分支最新工作树**删除；GitHub实际读回该分支HEAD与提交一致，`docs/_temporary_review/v1009-r3-20261016/README.md`在清理HEAD返回404。审阅源码的历史固定Commit仍可能可访问，清理并非抹除Git历史。对比接口分页只展示前300条删除，但Tree等同性确认整棵审阅目录都不在HEAD。
+
+清理后实际确认：`main`仅保留独立审查文档，HEAD `076f448ce5e2ffabe3cfdc42cbdb2eb2f1f81a4c`（本次续写后将前进一个纯文档提交）；原产品开发分支依然`70612d36652660e8bdd9d12017c1254ada686298`。**暂存分支引用尚未删除**：现有GitHub连接器仅可删除具名文件，不提供删除远端branch动作；待Codex执行精确`git push origin --delete review/temporary-evidence-v1009-r3-20261016`并回报，再由Astra独立核验分支不存在。当前阶段`TEMP_TREE_CLEANED / BRANCH_DELETE_PENDING`，不能冒称完整清理。
