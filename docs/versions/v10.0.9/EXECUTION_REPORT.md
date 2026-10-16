@@ -1,4 +1,115 @@
-# v10.0.9 执行记录：实现与部分实链完成，语音设备验证阻塞
+# v10.0.9 执行记录：实现与实链回归继续，尚未候选交付
+
+## 2026-10-16 最终候选集中报告
+
+**V10.0.9 CANDIDATE — AWAITING ASTRA FINAL ACCEPTANCE / NOT_ACCEPTED**。本节为最终状态；后文所有阻塞、未安装、未测试、运行中或FROZEN_NOT_RUN是原时点，不覆盖本节。候选分支`codex/v10.0.9-rtc-media`，只普通non-force推送，未合main、未K08、未启动后继版本。最终远端Candidate Commit/Tree以交付回执及Owner收到的固定链接为准（文档不能自含自身Git hash）。
+
+产品源码及测试锚 **e0eb86ada8f8dff95a7b384969ace058385e2c37 / Tree a6be76c7963fcd2cff42e207660503c3b0856424**，来自原专用树6150d104924355a5427868f5b429ef82cf1eab51；固定plan68d57f755d0091bc15cb867b96d3a21caee83690 / Blob042cf7298b75169a89b1dcd7c9fb113f6ddd72e3未变，8AC未变。远端main另有cab5e7c07d214572385521a33fdacc0eb1c8fc2f，只读观察、未引入此版本。
+
+### 结果与最终包
+
+- 音频设备阻塞已解除；Owner明确确认电脑/手机播放与话筒正常，第三版回声少或无、正常与轻声清楚、静音再开麦仍保持。Android首次初始化请求voice processing及AEC/NS/HPF/AGC，禁用硬件处理请求；不声称原生最终实现已证明为纯软件AEC。
+- 授权检查数据库异常不再伪装永久撤权；Laravel Routing Pipeline中的数据库异常恢复到最外层事务，最多3次处理并发错误，失败generic503，无partial allow-list。完整非作者审查发现原始PDO边界，已补回滚和统一503并实测关闭该P2；不替代Astra终验。
+- Windows单worker本地开发front串行完整上游请求，同25MiB+1文件在真实语音中6.755秒422、双方RTP继续增长；原30秒502及所有失败保留。RTC查询禁用叠加的框架默认retry，避免授权404时一直加载；call59两端真实错误卡及停止媒体已核。
+- 最终APK `77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca`，414145599字节；AAR `dd1e869f34eea40693793871e03de895cc4a50d3f131255b9edd9e2d05642d9e`，8708051字节；arm64-v8a+x86_64，签名校验0，双端独立实读base.apk等于该hash。独立测试包com.elitesync.v1009test，保留数据，手机每次安装均取得当次Owner确认、失败不自动重试。Android manifest仍显示既有0.08.04，治理版本为v10.0.9，未混称显示版本已改。
+- 物理包及完整原证位于本会话version-regression/provider-fix-artifacts及同目录原证，LOCAL_ONLY。音频引擎、依赖与Owner确认第三版的对应源字节相同，后续只增加通话查询错误处理；构建消费的产品源与最终源码锚逐项核同。
+
+### 固定8AC提交情况（CODEX_REPORTED，待Astra裁决）
+
+| AC | 已提交的实证与限制 |
+|---|---|
+| 09-01 | 独立0.9 DB/volume、官方固定LiveKit及最终image、具名手机与AVD的双APP同源hash、源码diff/许可证记录；原dirty根/旧库卷/无关untracked不动。最终Commit/Tree由远端读回回执固定。 |
+| 09-02 | Match→CN→双方当前MC独立真实同意，pending/单方同意/处罚/block/非参与者及错误call拒绝；真实create/独立accept/connect/join/重连正反例与对应PHP测试。新fixture追加不reseed，原CN1 CLOSED revision3保留。 |
+| 09-03 | Owner双端听感、静音再开麦；最终包call59双向RTP及正常结束/历史、拒接/忙线/未接/超时原证；mic系统拒绝及APP媒体关闭错误卡call56，恢复后call57双端各28条RTP；call37正向重连、call55断网撤权复网拒绝。采集许可/网络/时间退出码原证均保留。 |
+| 09-04 | 最终包call60双方不同合成图及视频帧/RTP；camera拒绝call58双方StateError/leave、OSfalse及无RTP；恢复/手机1→0→1切换/关闭原证。call61实际1440×3120→3120×1440、ROTATION_90→原ROTATION_0，横屏时in_call且手机解码855→885；后台camera client与RECORD_AUDIO app-op都由active转inactive，回前台仍inactive，手动启用后解码1792→2775。原旋转设置恢复、结束后无采集残留。 |
+| 09-05 | MC/CN/block/Web restrict/ban及end的分项有效媒体停止原证；call49 CN关闭0.521/0.745秒且声音源继续/QEMU后续为0，call54 block1.815/2.092秒，call59 MC0.551/0.524秒；call61真实APP挂断0.790/1.125秒且5秒后无RTP、旧JWT余51.69秒时Join404/validate及WS403。call55实际离线期间撤MC、恢复原网络及反向通道后不重入；原始SFU bypass、看门狗/故障/未知权限与有限重试原证保留。 |
+| 09-06 | 原真实APP picker→ffprobe校验→持久asset1/message/attachment→另一APP播放链；重启后最终包实看2.333秒运动帧及4.933秒片尾，完整/Range权限200/206/404；播放中撤权销毁原证、伪MIME/损坏/25MiB/30秒/重复/非本人asset/幂等冲突等真实HTTP负例。HTTP补证不替代APP原链，无公开fallback，不声称转码或生成封面。 |
+| 09-07 | 原文本/私有图片及通知最小化、CN/MC独立阶段、Web处罚/申诉/D1使用点的受影响实链与定点回归保留；本轮不重做B01～B06。全量PHP失败是下列明确观察项，未冒称全套绿。 |
+| 09-08 | 最终包双端安装hash、音视频/撤权/权限/旋转/前后台、DB/API/SFU/worker/双APP联合重启选定持久字段一致、视频再次完整播放、相关测试/构建/退出码/失败/固定源码锚；安全统计及少量AVD截图入候选，手机/真实摄像头原件与大包LOCAL_ONLY，最终普通推送后停止等Astra终验。 |
+
+### 验证和必须保留的观察项
+
+- 最后PHP相关明确选集`V1009|V1007LiveConsent|V1008EligibilityConsent`：37项/325断言，exit0；RetryTest7项/53断言，rawPDO两用例先RED后GREEN。此前39/281为不同选集，未伪造累加。Dart RTC最后32项exit0，新增用例保留实际provider并启用LiveKit，拒绝不新增Join、查询恢复不自动重启媒体；局部analyze及双ABI构建/签名均exit0。仅测试文件在通过后格式化，产品源未变。
+- 全量PHP最近1063项/14037断言仍4errors+12failures、exit2，发生于最后HTTP异常边界修复之前；最终只重复必要相关选集。16个名称与本轮死锁修复前相同，**不证明它们全都早于0.9**，保留交Astra审阅。未重跑全套Flutter，不冒称全套通过。
+- 尚存锁序环，最多3次尝试不保证1.5秒总预算；网关超时仍fail-closed。有效Android原生处理模式UNVERIFIED。framework默认异常report可能含SQL，完整日志LOCAL_ONLY；自定义安全诊断不含SQL/绑定/JWT。
+- 本地front串行队列无总等待上限，短body完整性为既存trusted本地入口风险；不是生产并发/公网加固方案。完整非作者静态审查原PDO P2已修复复核、无新阻断；独立代码审查不等同产品ACCEPT。
+- 手机摄像头call60原图包含测试图外屏幕边缘/上方背景，全部LOCAL_ONLY；GitHub只放经过查看的AVD合成画面/错误状态截图。Astra不能从GitHub亲自运行或读取本地原证，相关结论统一CODEX_REPORTED/LOCAL_ONLY。
+
+### 资源及交付边界
+
+最后Owner批准窗口起点 **2026-10-16T18:04:13.882207+08:00**，配置最多1200秒、自动截止2026-10-16T18:24:13.882207+08:00；本轮完成后 **2026-10-16T18:13:00.027507+08:00提前收口**，未自动续时。停止前核每个PID完整命令归属，0.9 DB/SFU、5个owned服务、relay及两端测试APP均停止；DB卷、媒体、私配/原失败、Owner现有AVD及4条既有临时防火墙规则保留，**不是全部资源关闭**。原Windows麦克风静音未改；模拟器方向设置已恢复。
+
+原prepare-sfu.py及无关untracked保留在工作树，不加入候选；冻结plan原Blob再核相同。仅提交本轮13个产品/测试对象、固定文档、恢复台账和已筛选证据。下一步仅Astra独立ACCEPT/REJECT；Codex不自接受、不合main、不K08、不启动后继版本。
+
+
+## 2026-10-16 17:53 审查及封存进度（最新，仍未候选交付）
+
+本轮产品源码/测试已本地提交：e0eb86ada8f8dff95a7b384969ace058385e2c37 / Tree a6be76c7963fcd2cff42e207660503c3b0856424。尚未推送“完成候选”，NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED。原prepare-sfu.py及无关untracked完整保留，未加入此提交。远端main只读观察为cab5e7c07d214572385521a33fdacc0eb1c8fc2f；不将其合入冻结版本。
+
+- 新包call60真实双端不同测试图、音视频RTP及帧增长已核，手机镜头关闭后end；手机约1.242秒、AVD约1.734秒leave，5秒后无RTP。摄像头画面带到显示器边缘/上方背景，原件仅LOCAL_ONLY，不公开。
+- 新源码组合联合重启完成，选定14类持久字段/计数全部一致、原SFU image及DB volume保留。最终APP重启后再次完整播放原5秒私有视频，2.5秒截图实际时间码2.333、6.2秒截图末帧4.933且播放按钮恢复；完整/Range有权200/206，无权404，旧call59/60Join404。59旧JWT重启后已过期，不冒充未过期测试；未过期证明来自即时call59/55原证。
+- 完整非作者审查发现原始PDO异常可能绕过外层回滚/通用503。两处改为PDOException（QueryException及DeadlockException均继承它），普通HTTP拒绝不变。真实HTTP先写再抛rawPDO及begin前抛rawPDO两用例先RED；修复后RetryTest7项53断言通过，最终明确filter V1009|V1007LiveConsent|V1008EligibilityConsent 为37项325断言exit0。它与此前39项的选集不同，不伪造39→41计数。全量仍4errors12failures且未在最后PDO修复后重复全量。审查复核原P2闭合，无新阻断，不构成ACCEPT。
+- 已按冻结计划核归属后停止0.9 DB/SFU、五个owned服务、临时relay及两端测试APP，保留DB卷/媒体/原证。最后窗口于17:34:45启动，最多1200秒；本版资源停止于17:50:08完成，提前收口且未续时。Owner现有AVD保留；实际只读仍四条既有防火墙规则。不能声称全部资源关闭。
+- 最终逐项复核发现call39旋转仅请求但surface_orientation为空，前后台对照最终call为异常终态。此前“新包视频/联合重启完成”不消除这两项缺证，AC-09-04仍PARTIAL。已弹窗请求新的同范围最多20分钟及手机前置遮挡后视频准备；回答前不启动新窗口、不拨打。无需重装APP，不改冻结AC。
+
+公开准备材料仅安全统计及三张已查看的AVD截图：evidence/20261016-final-device-safe-summary.json、final-private-video-mid.png、final-private-video-complete.png、final-call-revoked-error.png。完整手机/摄像头截图、设备标识/私网/私配/原始框架日志均LOCAL_ONLY。尚待旋转/前后台有效回归，再完成固定报告/manifest/runbook/台账的最终普通non-force独立候选交付；不合main、不K08、不启动后继版本。
+
+
+## 2026-10-16 17:30 新包及本窗口收口（最新状态）
+
+IMPLEMENTATION_IN_PROGRESS / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED，8AC不改，无Git提交/推送。
+
+- Owner授权的纯语音窗口09:09:52.314Z启动，实际09:29:52.503Z自动停止（上海17:09:52～17:29:52）；没有续时。四条旧临时防火墙、0.9 DB/SFU/API/worker/AVD仍保留，不能声称全部资源关闭。
+- call55新入口串行转发在真实语音中测试同25MiB+1文件：6.755秒422，上传中及之后双方RTP继续增长、call保持in_call，未重现502。未把HTTP上传诊断冒充APP picker E2E。
+- call55 AVD原wifi_on=1，关闭Wi-Fi并移除原有8000/7884反向通道，实际核offline后服务端撤MC200。恢复原Wi-Fi及两条同端口映射；原SDK已进入reconnecting，恢复后不再room_connected/reconnected，5秒后无RTP；旧JWT仍余44.26秒时Join404、validate/WS403。此前call37为正向重连，不能混淆二者。网络与通道原状已恢复。
+- call56实际AVD系统麦克风拒绝，OSfalse及APP“媒体连接已关闭/检查权限及网络”错误卡已实拍。权限和原flags恢复后call57真实双端语音RTP各28条、双向各14条，正常end200。恢复时旧call56已终态，fresh UI点击重连安全拒绝，原失败保留。
+- Owner当次另准call58摄像头拒绝入口；预先拒绝双方CAMERA，手机额外user-fixed拒绝确保不拍摄，AVD系统拒绝实际点击。双方当前PID原日志各有ROOM_CONNECT_FAIL StateError与leave_complete，无RTP；AVD错误卡实拍。随后两APP先force-stop，再恢复双方CAMERA/RECORD_AUDIO及所有原flags，逐项相同，无手机拍摄。
+- call55恢复后发现404持续骨架屏。锁定Riverpod3.3.2默认重试与每4秒invalidate叠加；仅rtcCallProvider设retry返回null，保留既有poll与fail-closed error/leave，影响同provider的来电及结果页也会更早显示错误，可按既有刷新恢复。未改变音频引擎/AEC/NS/AGC配置。
+- 真实datasource抛Exception；最初Fake抛StateError导致假绿，随后一次脚本GBK解码失败未修改Fake，均保留。显式UTF8修正Fake后真实Exception用例RED exit1；provider修复后整个RTC32项exit0。按非作者审查建议，两新用例启用LiveKit，核拒绝不新增Join、查询恢复不暗中重启媒体；再次32项通过。局部analyze通过。
+- 首次构建因进程未指向既有SDK而exit1，原输出保留；仅给该构建进程配置既有SDK/JDK/Flutter，无全局改动，第二次双ABI构建exit0，签名0。APK SHA256 77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca；AAR dd1e869f34eea40693793871e03de895cc4a50d3f131255b9edd9e2d05642d9e。显示versionName仍为既有0.08.04，本版治理标识为v10.0.9测试包，不虚报Android manifest版本已改。
+- 手机取得当次准备确认后仅安装一次Success，模拟器一次Success，均保留数据；两端base.apk实读hash等于新APK。首次安装后导航一次ADB input timeout，未创建call；核当前界面及无call后重新fresh导航，旧失败保留。初次AVDcollector在APP未launch时失败；实际启动后重绑，不拿无输出代替媒体证据。
+- 新包call59真实双端voice接通及双向RTP增长；MC revoke200后手机0.551秒、AVD0.524秒leave，5秒后无RTP；旧JWT余45.87秒时Join404、validate/WS403。两端实际截图均显示“通话加载失败/Not found”，不再持续骨架屏。没有打开摄像头。
+
+当前MC已撤销（call59），CN2仍active；原CN1 CLOSED revision3保留。下一需要新通话时先经真实request/accept更新MC，不复活旧call。当前无新TCP窗口授权。新包视频复核及最终联合重启/证据封存/独立候选尚未完成；不得整版PASS、自接受、合main、K08或启动后继版本。
+
+本地证据根同本会话version-regression：voice55-permission58-safe-summary.json、call55-offline-revoke-restore.json、mic56-denied-os-state.json、mic56-restored.json、device-permissions-after58-restored.json、rtc-provider-fix-media-enabled-suite.txt、provider-fix-preliminary-test-limitations.json、provider-fix-build-v2-receipt.json、provider-final-installed-package-hashes.json、provider-fix-final-package-manifest.json、provider59-safe-summary.json与relay-voice-final.stdout。截图/完整日志/标识/私配均LOCAL_ONLY，安全摘要仅CODEX_REPORTED。
+
+
+## 2026-10-16 17:04 接续状态（覆盖前面的较早快照）
+
+IMPLEMENTATION_IN_PROGRESS / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED。冻结8AC不变；本段无手机安装、无新视频拨打、无Git提交。当前会话01a14250-b40a-7410-ac1d-61dde1ec0644，工作树HEAD6150d104924355a5427868f5b429ef82cf1eab51。
+
+- 音频设备阻塞已由Owner实听解除：第三版回声少/无、正常与轻声清楚，静音再开麦保持；原生最终处理模式仍UNVERIFIED，不声称已证明纯软件AEC。
+- call49在有效语音及合成源继续播放时关闭CN：AVD0.521秒、手机0.745秒离房，5秒后无RTP；源继续7.326秒，QEMU后续11个输出样本peak=0。旧JWT尚余12.60秒时join404、validate/WS403。原CN1保留CLOSED revision3。
+- 追加虚构Match3/CN2供权限回归；未重seed、未覆盖旧CN。CN_PENDING、仅CN_ACTIVE、MC_PENDING的RTC create均403，双方独立MC完成后可通话。过长week_tag失败回滚证据保留。
+- mic拒绝call50/51、camera拒绝call53：真实系统拒绝及OS权限false成立，但等弹窗期间发生超时/peer_disconnected，APP即时错误卡证据不足，不能登记整项PASS。原CAMERA/RECORD_AUDIO权限与flags均已恢复；call52语音及call54视频双端RTP持续增长，恢复有效。
+- call54原生手机摄像头确证1→0→1，最后16:54:49设备1断开。Owner已逐次批准视频及两侧遮挡后的切换。block真实200后手机1.815秒、AVD2.092秒leave_complete，记录5秒后无RTP；双方实际截图ended/权限失效。已unblock，旧call54维持ended。补探测join404、validate/WS403时旧JWT已经过期117秒，不算未过期JWT证据；其它有效旧JWT用例仍保留。没有录制手机场景。
+- 精确核PID身份后完成0.9 DB/SFU/API/authority/bridge/worker/双APP联合重启，volume保留、SFU image未变、选定持久字段一致；第三版APK两端再次实读hash相同。重启后真实APP完整播放原5秒合成私有视频。未清数据或重装。
+- HTTP负例完成伪MIME、损坏MP4、禁止public_url/storage_key、非本人asset、重复附件ID、client UUID重放及冲突、失败不增asset。31.194792秒合成片streamcopy校验后实际422（30秒限值）；原archive/bin及媒体hash核对保留。这些HTTP补证不替代真实APP播放链。
+- 新发现开发front并发问题：同25MiB+1 payload（SHA256 1b55f713d105dc0e7be77b11a4b2db46534405560d7dfe4265d1e6dac74441aa），idle/direct约5.75/6.46秒422；双APP活跃时30秒502，两次复现。40秒DB状态采样未见长时间等待，不足定位PHP内部根因。
+- local-http-front.py仅在发往单worker PHP的完整request/response阶段持互斥锁；客户端收体/回包在锁外。仅重启已核owned front，相同双APP活跃场景改为4.546秒422并明确25MiB限制；真实完整/Range有权200/206、匿名/非参与者404保持。源码非作者只读审查无阻断。锁等待总时限未限定，仍有队头等待风险；正在通话的心跳表现尚未补证，不夸称完整并发修复。
+- 最终PHP相关39/281 exit0；全量1063/14037仍4errors12failures，名称与本轮修复前一致，最终HTTP边界后仅相关回归。Flutter第三版37项、局部analyze、双ABI构建通过。原失败保留。
+
+当前精确证据入口（均CODEX_REPORTED/LOCAL_ONLY）：call49-cn-safe-summary.json、call54-block-safe-summary.json、device-permissions-restored-final.json、final-joint-comparison.json、final-joint-installed-package-hashes.json、joint-video-complete-playback.json、real-private-media-negative-matrix-v2.json、overduration-front-backend-diagnostic.json、oversize-front-polling-probe.json、oversize-front-serialized-probe.json、front-serialized-private-media-regression.json。绝对根为本会话version-regression目录；完整截图、日志、设备标识及凭据禁止公开。
+
+仍需：权限拒绝期间APP可观察无媒体闭环；真实断线期间撤权后恢复网络的SDK负例；正在通话时入口修复必要回归；最终源码锚/产物/报告/manifest/runbook/台账及独立候选封存。不得自接受、合main、K08或后继版本。
+
+当前窗口16:46:58.401～17:06:58.401，最长1200秒自动停止，未续。四条原防火墙规则及0.9 DB/SFU/本版服务仍保留，不能声称资源全关。最新front PID归属见owned-services-after-joint.json，不能盲用旧PID。
+
+
+## 2026-10-16 接续增量（下文保留原时点）
+
+**IMPLEMENTATION_IN_PROGRESS / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。8项AC不变，尚未提交本轮候选。
+
+- Owner已确认电脑及手机播放/话筒正常；第三版处理策略下回声很少或无，正常及轻声均清楚，静音再开麦后保持。第三版APK SHA256为`904efe1429740b2a435c511343586b4d9e5b4a1f7f5d84e37bdaa3b642cb20bd`，本段未再安装。
+- call43真实复现授权检查数据库死锁被误写为永久权限失效。修复保留正常拒绝，异常向最外层事务传播、并发错误有限尝试；恢复Routing Pipeline已渲染响应所附数据库异常后再回滚/重试，耗尽返回通用503。guard失败不返回成功的部分allow-list。安全诊断不含SQL/绑定/JWT；框架原始日志仍LOCAL_ONLY，不宣称框架日志全部脱敏。锁顺序环和1.5秒总时限风险尚未完全消除。
+- call46两端不同测试画面及帧/RTP增长，手机摄像头随后关闭。20次并发列表均200且通话保持；MC撤销后手机约0.607秒、AVD约1.157秒离房，5秒后无RTP继续；旧JWT尚余约26秒时新join404、validate/WS403。该有效对照远离窗口到期。短视频新播放器在运动帧中撤权后退出并提示不可用。
+- 最终相关PHP定点回归39项/281断言exit0，存在依赖弃用警告。全量最近一次1063项/14037断言仍4错误/12失败，16个名称与本轮修复前相同；最终HTTP边界修改之后仅跑上述相关回归，不冒称最终全量PASS。原128M耗尽、测试fixture及其它失败全部保留。
+- 详细增量、精确限制、回执及原证均为CODEX_REPORTED/LOCAL_ONLY：`C:/Users/zcxve/.codex/visualizations/2026/10/16/01a14250-b40a-7410-ac1d-61dde1ec0644/version-regression/CONTINUATION_RESULT_20261016.md`；音频试听在同会话`audio-echo-software/`。完整设备截图、框架日志及私配不得公开。
+- 本轮最后窗口15:47:05～16:07:05（上海）已实际自动停止。CN关闭独立媒体停止、部分设备权限/切换、最终联合重启及候选封存仍未完成。0.9 DB/SFU及四条既有临时防火墙规则仍保留，不能声称全部资源关闭。
+- Owner新增：每次开始APP视频通话先弹窗取得当次准备确认，网络授权不能代替。只测当次确认的前置构图，核图后关闭手机摄像头；下一次窗口须另批。最后语音准备确认在窗口末尾收到，未拨打，不能算CN用例通过。
+
+## 2026-10-15 原执行记录
 
 2026-10-15。**IMPLEMENTATION_IN_PROGRESS / AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。
 
@@ -88,3 +199,10 @@
 0.6/0.7/0.8数据库容器继续停止、各持久volume保留，未重seed；0.9持久业务记录也未重seed。只在本0.9首次开发库创建虚构账号/题库及具名已发布Match测试fixture。
 
 本0.9 SFU/数据库容器、Laravel/front/授权监听/bridge/worker和两专用AVD已停止；volume、media、私配和原始失败保留。当前Bob3保留受限处罚3及申诉1，旧处罚1/2已受控restore；CN/MC/账号状态以Q/before-owned-stop.stdout为准，不能盲目从初始fixture重置。恢复运行说明见 [RUNBOOK](RUNBOOK.md)。
+
+
+### 17:07窗口收口
+
+relay-final-camera.stdout已实际记录17:06:58.579（上海）relay_stopped，无续时、无新增拨打。纯语音准备问题在窗口内未收到回答，因此未执行，不能复用该问题启动新窗口。DB/SFU/本版服务及四条旧临时防火墙仍保留。
+
+最终源码/产物复核：第三版5个源文件及APK/AAR哈希全部匹配构建清单；交接SHA256仍匹配。front Python compile及错误Host400、负数长度413、传输封套超限413三检查通过；首轮脚本误把负数长度期望为400而AssertionError，保留front-boundary-initial-failure.json，未修改既有拒绝逻辑。14项当前安全证据存在性/字节/hash索引为continuation-safe-evidence-index.json。仍NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED；下一媒体窗口需Owner新授权，视频拨打仍须当次准备确认。

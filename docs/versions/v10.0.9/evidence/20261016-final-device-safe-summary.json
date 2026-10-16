@@ -1,0 +1,278 @@
+{
+  "status": "CANDIDATE_EVIDENCE_CODEX_REPORTED_NOT_ACCEPTED",
+  "classification": "safe_summary_only_raw_device_material_LOCAL_ONLY",
+  "package_sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+  "audio_owner_confirmation": "echo_little_or_none_normal_and_quiet_speech_clear_after_mute_reopen",
+  "effective_native_audio_processing": "UNVERIFIED",
+  "call49": {
+    "receipt_sha256": "7b027778ef7920771f3bfe9cc36867a9a0865baeac2a4e8b2cf590ea7fc3a4d4",
+    "avd_leave_seconds": 0.521,
+    "phone_leave_seconds": 0.745,
+    "source_continued_seconds": 7.326,
+    "post5s_qemu_samples_zero": 11,
+    "old_jwt_seconds_remaining_at_denial": 12.6
+  },
+  "call54": {
+    "endpoints": {
+      "PHONE_XIAOMI_TEST": {
+        "leave_seconds_from_request": 1.8147273063659668,
+        "last_rtp_host_time": 1792140885.5541353,
+        "rtp_rows_after_five_seconds": 0
+      },
+      "AVD_MANUAL": {
+        "leave_seconds_from_request": 2.0923514366149902,
+        "last_rtp_host_time": 1792140885.637383,
+        "rtp_rows_after_five_seconds": 0
+      }
+    }
+  },
+  "call55": {
+    "created_at": 1792142729.5802824,
+    "scope": "per_call_and_per_PID_corrected_extraction",
+    "call55": {
+      "PHONE_XIAOMI_TEST": {
+        "rtp_rows_during_upload": 4,
+        "rtp_rows_after_upload_before_disconnect": 28,
+        "connected_after_restore": 0,
+        "rtp_after_restore_plus5": 0
+      },
+      "AVD_MANUAL": {
+        "rtp_rows_during_upload": 4,
+        "rtp_rows_after_upload_before_disconnect": 28,
+        "connected_after_restore": 0,
+        "rtp_after_restore_plus5": 0
+      }
+    },
+    "call56": {
+      "evidence": "mic56-denied-observed-AVD_MANUAL.png + mic56-denied-os-state.json",
+      "whole_call_rtp_absence": "NOT_CLAIMED_FROM_LATE_COLLECTOR"
+    },
+    "call57": {
+      "PHONE_XIAOMI_TEST": {
+        "rtp_rows": 28,
+        "direction_counts": {
+          "inbound": 14,
+          "outbound": 14
+        }
+      },
+      "AVD_MANUAL": {
+        "rtp_rows": 28,
+        "direction_counts": {
+          "inbound": 14,
+          "outbound": 14
+        }
+      }
+    },
+    "call58": {
+      "PHONE_XIAOMI_TEST": {
+        "recorded_lifecycle": [
+          "RTC_LIFECYCLE callId=58 event=leave_complete epochMs=1792142331255",
+          "RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=58 errorType=StateError"
+        ],
+        "room_connect_failure": true,
+        "camera_denied_before_and_after_verified": true,
+        "rtp_rows_in_scoped_PID_log": 0
+      },
+      "AVD_MANUAL": {
+        "recorded_lifecycle": [
+          "RTC_INVITE_PROVIDER_OPEN callId=58",
+          "RTC_LIFECYCLE callId=58 event=leave_complete epochMs=1792142329030",
+          "RTC_LIVEKIT_ROOM_CONNECT_FAIL device=android callId=58 errorType=StateError"
+        ],
+        "room_connect_failure": true,
+        "camera_denied_before_and_after_verified": true,
+        "rtp_rows_in_scoped_PID_log": 0
+      }
+    }
+  },
+  "call59": {
+    "call_id": 59,
+    "revoke": {
+      "action": "revoke",
+      "host_time": 1792142949.5540192,
+      "request_started": 1792142949.5540192,
+      "status": 200,
+      "response_at": 1792142949.7266355
+    },
+    "package_sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+    "ui_both_reviewed": "CALL_LOAD_FAILED_NOT_LOADING_SKELETON",
+    "endpoints": {
+      "PHONE_XIAOMI_TEST": {
+        "leave_seconds_from_request": 0.5506477355957031,
+        "rtp_rows": 16,
+        "rtp_after_revoke_plus5": 0,
+        "directions": {}
+      },
+      "AVD_MANUAL": {
+        "leave_seconds_from_request": 0.5237586498260498,
+        "rtp_rows": 8,
+        "rtp_after_revoke_plus5": 0,
+        "directions": {}
+      }
+    }
+  },
+  "call60": {
+    "call_id": 60,
+    "package_sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+    "mode": "video",
+    "different_test_sources_reviewed": true,
+    "raw_camera_frames": "LOCAL_ONLY_includes_screen_edge_and_background_not_for_publication",
+    "camera_disabled_then_call_ended": true,
+    "end": {
+      "action": "end",
+      "host_time": 1792143344.5140114,
+      "request_started": 1792143344.5140114,
+      "status": 200,
+      "response_at": 1792143345.185754
+    },
+    "endpoints": {
+      "PHONE_XIAOMI_TEST": {
+        "leave_seconds_from_end_request": 1.2416036128997803,
+        "rtp_after_end_plus5": 0,
+        "rtp": {
+          "inbound_audio": {
+            "rows": 7,
+            "bytes_range": [
+              665,
+              4297
+            ],
+            "packets_range": [
+              22,
+              136
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": null
+          },
+          "inbound_video": {
+            "rows": 7,
+            "bytes_range": [
+              157219,
+              833636
+            ],
+            "packets_range": [
+              155,
+              838
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": [
+              39,
+              242
+            ]
+          },
+          "outbound_audio": {
+            "rows": 7,
+            "bytes_range": [
+              9648,
+              37321
+            ],
+            "packets_range": [
+              102,
+              468
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": null
+          },
+          "outbound_video": {
+            "rows": 21,
+            "bytes_range": [
+              81372,
+              4513502
+            ],
+            "packets_range": [
+              116,
+              4168
+            ],
+            "framesEncoded_range": [
+              44,
+              559
+            ],
+            "framesDecoded_range": null
+          }
+        }
+      },
+      "AVD_MANUAL": {
+        "leave_seconds_from_end_request": 1.7340281009674072,
+        "rtp_after_end_plus5": 0,
+        "rtp": {
+          "inbound_audio": {
+            "rows": 7,
+            "bytes_range": [
+              9256,
+              36870
+            ],
+            "packets_range": [
+              97,
+              461
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": null
+          },
+          "inbound_video": {
+            "rows": 7,
+            "bytes_range": [
+              292188,
+              4418440
+            ],
+            "packets_range": [
+              273,
+              4083
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": [
+              30,
+              545
+            ]
+          },
+          "outbound_audio": {
+            "rows": 7,
+            "bytes_range": [
+              1620,
+              5247
+            ],
+            "packets_range": [
+              46,
+              161
+            ],
+            "framesEncoded_range": null,
+            "framesDecoded_range": null
+          },
+          "outbound_video": {
+            "rows": 21,
+            "bytes_range": [
+              74273,
+              4147257
+            ],
+            "packets_range": [
+              126,
+              3840
+            ],
+            "framesEncoded_range": [
+              60,
+              268
+            ],
+            "framesDecoded_range": null
+          }
+        }
+      }
+    }
+  },
+  "joint_restart": {
+    "same": {
+      "database": true,
+      "port": true,
+      "users": true,
+      "rtc_sessions": true,
+      "rtc_session_events": true,
+      "product_connections": true,
+      "messaging_consents": true,
+      "media_assets": true,
+      "message_attachments": true,
+      "admin_sanctions": true,
+      "sanction_appeals": true,
+      "admin_operation_audits": true,
+      "credential_counts": true
+    },
+    "same_sfu_image": true,
+    "volume_retained": true
+  }
+}

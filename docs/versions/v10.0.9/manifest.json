@@ -1,6 +1,6 @@
 {
   "version": "v10.0.9",
-  "status": "IMPLEMENTATION_IN_PROGRESS_AUDIO_DEVICE_VALIDATION_BLOCKED",
+  "status": "CANDIDATE_AWAITING_ASTRA_FINAL_ACCEPTANCE",
   "candidate_delivered": false,
   "accepted": false,
   "authority": {
@@ -13,27 +13,36 @@
     "observed_main": "03c7de98d79c3075d4b3adb93a9b383dd342377f"
   },
   "implementation_anchor": {
-    "commit": "29ebda1ba71bdcb17d260cceec616031f1360ca6",
-    "tree": "13910eac5c882e21cb76156a28ce2cef891d71be"
+    "commit": "e0eb86ada8f8dff95a7b384969ace058385e2c37",
+    "tree": "a6be76c7963fcd2cff42e207660503c3b0856424"
   },
   "android_package_source": {
-    "commit": "c2ba84cc50a1946e697a8e94e50181201304bb12",
-    "tree": "d15e2023bd7492684f88d1529fb105a178145886",
-    "defines": [
-      "ELITESYNC_V1009_LOCAL_BUILD=true"
-    ],
+    "source_anchor": "e0eb86ada8f8dff95a7b384969ace058385e2c37",
     "artifacts": [
       {
-        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-app-debug.apk",
-        "sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc",
-        "bytes": 223877338
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\provider-fix-artifacts\\provider-fix-app-debug.apk",
+        "bytes": 414145599,
+        "sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca"
       },
       {
-        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-flutter_release-1.0.aar",
-        "sha256": "a621e4989c39e34af5df0b54bb1e18b90ce77e8c2f8966bb824e074cc9d7c4c8",
-        "bytes": 4451332
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\provider-fix-artifacts\\provider-fix-flutter_release-1.0.aar",
+        "bytes": 8708051,
+        "sha256": "dd1e869f34eea40693793871e03de895cc4a50d3f131255b9edd9e2d05642d9e"
       }
-    ]
+    ],
+    "source_sha256": {
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_android_audio_engine.dart": "3699d17f493babf322f7464d0baa220923ceeb1ce52d9cd509a7474ee4ec81fd",
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart": "8b6c99ce02e74353abc9d59a040011bc3d5f218eb43812eca107b8a3045f1a60",
+      "apps/flutter_elitesync_module/pubspec.yaml": "78e52456080ed382e6777fd7fe69e1e7c4a423769d05771147645c38b40b0115",
+      "apps/flutter_elitesync_module/pubspec.lock": "0b38db9d35ec72fd6637e29f9ba9b2706bbd100fd6e6b244f79f4a1b346b7640",
+      "apps/flutter_elitesync_module/lib/features/rtc/presentation/providers/rtc_providers.dart": "e2aeeec2cf4d5d22d801b5ec2a77263bb5e9401ccc00b3cd1453115ef403ca73"
+    },
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "installed_hash_receipt": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\provider-final-installed-package-hashes.json",
+    "test_source_note": "Tests separately pinned in final product source identity; call-page test formatting only after successful execution."
   },
   "final_sfu_image_id": "sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e",
   "database": {
@@ -62,17 +71,28 @@
     },
     "full_flutter_suite": "NOT_RUN",
     "full_php_suite": "NOT_RUN",
-    "historical_flutter_failures": "RETAINED_NOT_RECLASSIFIED"
+    "historical_flutter_failures": "RETAINED_NOT_RECLASSIFIED",
+    "final_php_related": {
+      "tests": 37,
+      "assertions": 325,
+      "exit": 0,
+      "filter": "V1009|V1007LiveConsent|V1008EligibilityConsent"
+    },
+    "final_flutter_rtc": {
+      "tests": 32,
+      "exit": 0
+    },
+    "final_full_php": "NOT_RERUN_AFTER_LAST_PDO_FIX_OLD_4_ERRORS_12_FAILURES_RETAINED"
   },
   "ac_status": {
-    "AC-09-01": "PARTIAL",
-    "AC-09-02": "PARTIAL",
-    "AC-09-03": "BLOCKED_AUDIO_DEVICE_VALIDATION",
-    "AC-09-04": "PARTIAL_REAL_DUAL_VIDEO",
-    "AC-09-05": "PARTIAL_REAL_REVOCATION",
-    "AC-09-06": "PARTIAL_REAL_PRIVATE_VIDEO",
-    "AC-09-07": "PARTIAL_REGRESSION",
-    "AC-09-08": "PARTIAL_NOT_FINAL_DELIVERY"
+    "AC-09-01": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-02": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-03": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-04": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-05": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-06": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-07": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS",
+    "AC-09-08": "EVIDENCE_SUBMITTED_FOR_ASTRA_DECISION_WITH_OBSERVATIONS"
   },
   "local_evidence_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009",
   "evidence_access": "CODEX_REPORTED_LOCAL_ONLY_UNLESS_COPIED_HERE",
@@ -86,120 +106,195 @@
   ],
   "safe_evidence": [
     {
-      "path": "docs/versions/v10.0.9/evidence/ban-media-teardown.json",
-      "sha256": "df92ba5e4a338bd113e8edc8ea71817733fa216f806d1a99af4772f049a76f65",
-      "bytes": 1404
+      "path": "evidence/20261016-final-device-safe-summary.json",
+      "sha256": "62dde03501b32d5c66c24e8e26c0c25c3eb9ffb25f405141841fffe15bbbfe25",
+      "bytes": 8057
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/ffmpeg-tool-identity.json",
-      "sha256": "fc022767c64f1bd04f310c03a6248e52728441393fbf374cb0d444bef630680d",
-      "bytes": 283
+      "path": "evidence/20261016-rotation-background-safe-summary.json",
+      "sha256": "f5ab4d9fbc393e633b9cb467f17a32ab6802e640862ec582d0317e710268cea0",
+      "bytes": 4279
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/final-video-eleventh-after-outage-a.png",
-      "sha256": "478c69d546bb9e52bea971007d7398fa099973c7389b37eaed572e518944a3a3",
-      "bytes": 145662
+      "path": "evidence/final-call-revoked-error.png",
+      "sha256": "3da049091f09c892081cca6e86bc55e6650ddc72a309a91492c407dd9b32ae53",
+      "bytes": 77759
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/final-video-eleventh-b.png",
-      "sha256": "5fc8dbf7681320590546b559ae6cbd722cc77e2dd5fca1bc3119e475bf95b017",
-      "bytes": 146132
+      "path": "evidence/final-private-video-complete.png",
+      "sha256": "c828183e88dcb7163651357389d1863569af081c54b59f50c1f4580a3290ca6d",
+      "bytes": 286057
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/installed-fourth-identities.json",
-      "sha256": "4a23c34a8bf91cba31c50b7dca87da5e8c03d504e10a59ef926a55779329bda9",
-      "bytes": 347
+      "path": "evidence/final-private-video-mid.png",
+      "sha256": "09e58b1b791282b2b24495bb0b4c1137efbf281e2052ab712854febc335e005a",
+      "bytes": 281389
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/joint-restart-comparison.json",
-      "sha256": "4d1e2e3227cbbb2529fbb6ea3afcd51711cbe79a588a1d3257568e2763155dc0",
-      "bytes": 198
+      "path": "evidence/final-video-landscape.png",
+      "sha256": "5a66accec08b394e845fe2cf7ed62ea30a59b94e4cafdcac144c5d1f93cf23de",
+      "bytes": 147477
     },
     {
-      "path": "docs/versions/v10.0.9/evidence/licenses.json",
-      "sha256": "c6374cc35cf2a72f2e057daa42800d3ddb0281414817d5beac5c492fb2b1ca13",
-      "bytes": 389
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/livekit-license.txt",
-      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-      "bytes": 11358
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/official-images.json",
-      "sha256": "d6f045e149e8495b289af5cbcc25aee88e709704b325170349de083f2d5fe1bc",
-      "bytes": 1965
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/private-video-after-mc-media-probe.json",
-      "sha256": "7bdc2aa8d131e4c448eae1c32245a9a52279a29079ec5444dcb175756e1bf99d",
-      "bytes": 1828
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/private-video-current-media-probe.json",
-      "sha256": "fc5cf59317736fc0fe9a89fbc3d0d480e16d3c4ab1d69547e02dffac4f2a050b",
-      "bytes": 1866
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/private-video-playing-second-b.png",
-      "sha256": "e2706365ae3ed8bcd140e5ceb9add389fcf1a246a7d6342ecca63415c7f82947",
-      "bytes": 158756
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/process-watchdog-final.json",
-      "sha256": "8ae839c4daa75b322dcc49f3c98ebc718e486a907a3ed3604f2f930fc75f7c39",
-      "bytes": 603
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/protected-root-after.json",
-      "sha256": "075303b71407c31563e29518b604b67de116f6b70ef1ee6bd821dbbdc3431fbe",
-      "bytes": 254
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/python-3.11.17-license.json",
-      "sha256": "b7ee7bab23575a604d1183a3a9719805852bace1126017bbb9d34ac25eab1009",
-      "bytes": 252
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/python-3.11.17-license.txt",
-      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
-      "bytes": 13936
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/raw-stream-index.json",
-      "sha256": "254e0ff894f595e5d0547ee0a6174f7553df1f1ef85d3f440482dbaacc6ca590",
-      "bytes": 72370
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/resource-state.json",
-      "sha256": "20e336dad4fd6ff6aa0378c818e7a615d2d7abcffb380ae05013ab5f2d6caccf",
-      "bytes": 1218
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-disabled.json",
-      "sha256": "2b760f1ad5686d2e3e78c8bf1f0b1547c6e74bcd31445bcc7ef43c17640c44b7",
-      "bytes": 683
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restored-login.json",
-      "sha256": "12a9323fa6ba099f255768f658b7f054bd5ca1de9bc4aa79e69dd3115d92c9e8",
-      "bytes": 390
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/runtime-matrix-restricted.json",
-      "sha256": "a174dd9cad4c59e975484e496567dd82f526636314af33a05cc4415fe775ec26",
-      "bytes": 1209
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/safe-media-statistics.json",
-      "sha256": "d72368ae20ea2b9f92d9c1c8075ce282143364d08d03b2edea22b3b01192f8ae",
-      "bytes": 18603
-    },
-    {
-      "path": "docs/versions/v10.0.9/evidence/text-image-current-b.png",
-      "sha256": "d0c0320922ee37c6d482db20ac1015d7394786fc8e3f5612b6714957ff9b1162",
-      "bytes": 160626
+      "path": "evidence/final-video-return-devices-off.png",
+      "sha256": "0ed691f50e0f2a1c9ea72341d677b7fb973ebb3f49d28b0baf3a64ed17654cdb",
+      "bytes": 200149
     }
   ],
-  "safe_evidence_hash_basis": "Git blob content bytes; LOCAL_ONLY raw stream hashes remain physical file hashes"
+  "safe_evidence_hash_basis": "Git blob content bytes; LOCAL_ONLY raw stream hashes remain physical file hashes",
+  "historical_snapshot_before_20261016_1704": {
+    "status": "IMPLEMENTATION_IN_PROGRESS_AUDIO_DEVICE_VALIDATION_BLOCKED",
+    "android_package_source": {
+      "commit": "c2ba84cc50a1946e697a8e94e50181201304bb12",
+      "tree": "d15e2023bd7492684f88d1529fb105a178145886",
+      "defines": [
+        "ELITESYNC_V1009_LOCAL_BUILD=true"
+      ],
+      "artifacts": [
+        {
+          "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-app-debug.apk",
+          "sha256": "3358c629a9884e433cb501d02b364e2aea4c2354f33cd3b5003817d4cd8674cc",
+          "bytes": 223877338
+        },
+        {
+          "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1009\\artifacts\\fourth-flutter_release-1.0.aar",
+          "sha256": "a621e4989c39e34af5df0b54bb1e18b90ce77e8c2f8966bb824e074cc9d7c4c8",
+          "bytes": 4451332
+        }
+      ]
+    },
+    "tests": {
+      "php_related": {
+        "exit": 0,
+        "tests": 46,
+        "assertions": 372,
+        "vendor_deprecations_retained": true
+      },
+      "flutter_related": {
+        "exit": 0,
+        "tests": 38
+      },
+      "dart_full": {
+        "exit": 0,
+        "result": "No issues found"
+      },
+      "build_fourth": {
+        "exit": 0
+      },
+      "full_flutter_suite": "NOT_RUN",
+      "full_php_suite": "NOT_RUN",
+      "historical_flutter_failures": "RETAINED_NOT_RECLASSIFIED"
+    },
+    "ac_status": {
+      "AC-09-01": "PARTIAL",
+      "AC-09-02": "PARTIAL",
+      "AC-09-03": "BLOCKED_AUDIO_DEVICE_VALIDATION",
+      "AC-09-04": "PARTIAL_REAL_DUAL_VIDEO",
+      "AC-09-05": "PARTIAL_REAL_REVOCATION",
+      "AC-09-06": "PARTIAL_REAL_PRIVATE_VIDEO",
+      "AC-09-07": "PARTIAL_REGRESSION",
+      "AC-09-08": "PARTIAL_NOT_FINAL_DELIVERY"
+    }
+  },
+  "current_continuation": {
+    "thread_id": "01a14250-b40a-7410-ac1d-61dde1ec0644",
+    "evidence_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression",
+    "report": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\CONTINUATION_RESULT_20261016.md",
+    "audio_device_blocker": "RESOLVED_OWNER_LISTENING_CONFIRMATION",
+    "php_related": {
+      "tests": 39,
+      "assertions": 281,
+      "exit": 0
+    },
+    "php_full": {
+      "tests": 1063,
+      "assertions": 14037,
+      "errors": 4,
+      "failures": 12,
+      "exit": 2,
+      "before_final_http_boundary_fix": true
+    },
+    "flutter_related": {
+      "tests": 37,
+      "exit": 0
+    },
+    "effective_native_audio_processing": "UNVERIFIED",
+    "remaining": [
+      "nonforce_push_remote_readback"
+    ],
+    "relay": {
+      "started_at": "2026-10-16T18:04:13.882207+08:00",
+      "configured_max_seconds": 1200,
+      "configured_deadline": "2026-10-16T18:24:13.882207+08:00",
+      "closed_early_at": "2026-10-16T18:13:00.027507+08:00",
+      "renewed": false
+    },
+    "source_artifact_recheck": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\final-source-artifact-recheck.json",
+    "safe_evidence_index": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\final-product-source-identity.json",
+    "latest_update": "2026-10-16T09:30:00Z",
+    "package_manifest": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\provider-fix-final-package-manifest.json",
+    "rtc_flutter_related": {
+      "tests": 32,
+      "exit": 0,
+      "media_enabled_denial_regression": true
+    },
+    "last_call": {
+      "id": 59,
+      "mc": "REVOKED",
+      "cn": "ACTIVE",
+      "media_stopped": true
+    },
+    "original_failure_retained": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\provider-fix-preliminary-test-limitations.json",
+    "php_final_related": {
+      "tests": 37,
+      "assertions": 325,
+      "exit": 0,
+      "filter": "V1009|V1007LiveConsent|V1008EligibilityConsent"
+    },
+    "independent_non_author_review": "PDO_P2_FIXED_REVIEWED_NO_NEW_BLOCKER_NOT_ACCEPTANCE",
+    "resource_stop_receipt": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\rotation-final-resource-stop.json",
+    "retained_firewall_rule_count": 4,
+    "all_resources_closed": false,
+    "safe_evidence": "evidence/20261016-final-device-safe-summary.json",
+    "source_commit": "e0eb86ada8f8dff95a7b384969ace058385e2c37",
+    "latest_call": 61,
+    "rotation_background": "VERIFIED_AND_ORIGINAL_SETTINGS_RESTORED",
+    "native_processing": "UNVERIFIED",
+    "full_suite_limit": "4 errors 12 failures retained; not proved pre-v10.0.9",
+    "final_review": "non-author full scoped static review; PDO P2 fixed and re-reviewed; no new blocker; not acceptance"
+  },
+  "historical_android_package_source_before_provider_fix": {
+    "source_anchor": "UNCOMMITTED_SOURCE_HASHES",
+    "artifacts": [
+      {
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\audio-echo-software\\artifacts\\software-agc-app-debug.apk",
+        "bytes": 414145599,
+        "sha256": "904efe1429740b2a435c511343586b4d9e5b4a1f7f5d84e37bdaa3b642cb20bd"
+      },
+      {
+        "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\audio-echo-software\\artifacts\\software-agc-flutter_release-1.0.aar",
+        "bytes": 8708511,
+        "sha256": "8b0db8392114f18d395219a9e274b766281bdc24cb2a6e30b494040b7173b555"
+      }
+    ],
+    "source_sha256": {
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_android_audio_engine.dart": "3699d17f493babf322f7464d0baa220923ceeb1ce52d9cd509a7474ee4ec81fd",
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart": "8b6c99ce02e74353abc9d59a040011bc3d5f218eb43812eca107b8a3045f1a60",
+      "apps/flutter_elitesync_module/pubspec.yaml": "78e52456080ed382e6777fd7fe69e1e7c4a423769d05771147645c38b40b0115",
+      "apps/flutter_elitesync_module/pubspec.lock": "0b38db9d35ec72fd6637e29f9ba9b2706bbd100fd6e6b244f79f4a1b346b7640",
+      "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_android_audio_engine_test.dart": "936ddd6d45b2dfa0dec72b68b228695f6a9d465e40d21ed224384890b9c02a9b"
+    },
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "installed_hash_receipt": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\final-joint-installed-package-hashes.json"
+  },
+  "publication_state": "READY_FOR_NONFORCE_PUSH_REMOTE_VERIFY_PENDING",
+  "candidate_identity": {
+    "branch": "codex/v10.0.9-rtc-media",
+    "product_commit": "e0eb86ada8f8dff95a7b384969ace058385e2c37",
+    "product_tree": "a6be76c7963fcd2cff42e207660503c3b0856424",
+    "final_commit_and_tree": "Recorded by external delivery receipt after non-force push; cannot self-embed final Git hash"
+  }
 }

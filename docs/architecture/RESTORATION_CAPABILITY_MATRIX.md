@@ -1,5 +1,27 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-16 最终候选实链补证（当前，待独立终验）
+
+**CANDIDATE_PREPARED / NOT_ACCEPTED**。v10.0.9固定8AC均提交具名证据与观察，完成候选的实际Commit/Tree由最终远端交付回执固定。最终源码e0eb86ada8f8dff95a7b384969ace058385e2c37。下文音频阻塞/旋转待补/未安装/未执行均为较早时点。
+
+- A06：Owner确认双端播放/话筒与回声改善；最终同源包双端语音、不同测试源视频、权限拒绝/恢复、当前CN/MC/Web撤权、旧JWT拒绝、断网正反例及私有短视频完整播放/撤权/限值已留证。call61新增实际90°旋转及原设置恢复、后台采集停止/前台不自动开麦开镜、显式恢复及APP挂断无残留，补齐最后设备缺证。
+- A09：最终双ABI安装hash一致，DB/API/SFU/worker/双APP联合重启选定持久数据一致；PHP相关37/325、RTC Flutter32通过，构建/签名通过。全量PHP4errors/12failures、有限重试时间与原生音频模式等观察不删除，交Astra按原AC裁决。
+- 最终源码和材料保持独立候选，不合main，不K08，不等同全部APP恢复/最终软件联合验收。完整星盘/紫微oracle、Buddy/Social、地图/系统Push、录音消息及历史真人数据仍按原具名恢复边界，不因0.9媒体候选自动恢复。
+
+
+## 2026-10-16 v10.0.9接续（当前，未候选交付/未接受）
+
+**IMPLEMENTATION_IN_PROGRESS / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED**。固定8AC保持；以下2026-10-15段为历史快照，不覆盖本节。具体原证、失败及限制见[最新执行记录](../versions/v10.0.9/EXECUTION_REPORT.md)及[Manifest](../versions/v10.0.9/manifest.json)。
+
+| 能力 | 当前已证与边界 |
+|---|---|
+| A06 RTC语音 | 原模拟器输出阻塞已解除，Owner确认第三版回声少/无、正常与轻声清楚、静音再开麦保持。AEC/NS/AGC源不变；新增仅通话查询错误重试修复的新包已双端安装hash一致、call59双向RTP及撤权停止有效。不能据此自接受全部AC。 |
+| A06 RTC视频/设备 | 真实不同合成画面及双端视频帧已证；手机前后前原生ID1→0→1及摄像头关闭已证。麦克风拒绝APP错误卡/恢复后call57媒体、摄像头拒绝call58两端StateError/leave及无RTP原流已补，原权限/flags恢复。查询修复新包call60视频已核；但AVD旋转/前后台原证不足，仍待同版有效回归。 |
+| A06 失效与重连 | MC/CN/block/Web处罚等分项证据保存；call49 CN关闭有效声音停止，call55真实断网期间撤MC、复网不重入，call59新包MC撤销双端约0.55秒内离房，旧未过期JWT403。网络窗口逐次Owner批准/自动停止，不能称全资源关闭。 |
+| A06 私有短视频 | 真实5秒完整播放、播放中撤权销毁、联合重启保留与完整/Range权限已补；伪类型/超25MiB/超30秒/损坏/重复及非本人asset HTTP负例留证。仅HTTP诊断不替代真实APP picker和播放原链；不声称转码、封面或录音消息恢复。 |
+| A09 最终交付 | 最终包目前APK SHA256 77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca，AAR/dd1e869f...；相关PHP39/281通过、当前RTC Flutter32通过、构建/签名通过。全量PHP仍4errors/12failures及全部原失败保留；新包视频/最终封存/独立候选仍未完成，不合main、不K08、不启动后继版本。 |
+
+
 ## 2026-10-15 v10.0.9实现与部分实链（当前，未接受）
 
 **IMPLEMENTATION_IN_PROGRESS / AUDIO_DEVICE_VALIDATION_BLOCKED / NOT_CANDIDATE_DELIVERED**，固定8AC未改变。实现锚29ebda1ba71bdcb17d260cceec616031f1360ca6；[执行记录](../versions/v10.0.9/EXECUTION_REPORT.md)及[证据索引](../versions/v10.0.9/manifest.json)为具名依据，下面FROZEN_NOT_RUN是早期时点。
