@@ -13,12 +13,14 @@ final rtcCallsProvider = FutureProvider<List<RtcSessionEntity>>((ref) async {
   return ref.read(rtcRemoteDataSourceProvider).fetchCalls();
 });
 
-final rtcCallProvider = FutureProvider.family<RtcSessionEntity, int>((
-  ref,
-  callId,
-) async {
-  return ref.read(rtcRemoteDataSourceProvider).fetchCall(callId);
-});
+final rtcCallProvider = FutureProvider.family<RtcSessionEntity, int>(
+  (ref, callId) async {
+    return ref.read(rtcRemoteDataSourceProvider).fetchCall(callId);
+  },
+  // The call page already polls. A second retry loop can hide revoked/unknown
+  // authorization behind loading state instead of showing the fail-closed UI.
+  retry: (_, _) => null,
+);
 
 final rtcLiveKitServiceProvider = ChangeNotifierProvider<RtcLiveKitService>((ref) {
   return RtcLiveKitService(

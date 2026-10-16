@@ -7,6 +7,12 @@ No credentials, headers or bodies are logged.
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from http.client import HTTPConnection
 import sys
+import threading
+
+# The Windows PHP development server has one worker. In the observed APP polling
+# scenario, serializing upstream requests avoided large-upload timeouts.
+# Read each client's body first, then give PHP one complete request at a time.
+BACKEND_LOCK = threading.Lock()
 
 HOP = {'connection', 'keep-alive', 'proxy-authenticate', 'proxy-authorization',
        'te', 'trailer', 'transfer-encoding', 'upgrade'}
@@ -31,9 +37,10 @@ class Front(BaseHTTPRequestHandler):
         connection = HTTPConnection('127.0.0.1', 8001, timeout=30)
         response_started = False
         try:
-            connection.request(self.command, self.path, body=body, headers=headers)
-            response = connection.getresponse()
-            content = response.read()
+            with BACKEND_LOCK:
+                connection.request(self.command, self.path, body=body, headers=headers)
+                response = connection.getresponse()
+                content = response.read()
             self.send_response(response.status)
             for key, value in response.getheaders():
                 if key.lower() not in HOP | {'content-length'}:

@@ -55,7 +55,8 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   @override
   Future<RtcSessionEntity> fetchCall(int callId) async {
     requestOrder.add('session');
-    if (denySession) throw StateError('session denied');
+    // Match the real data source: failed HTTP results throw Exception.
+    if (denySession) throw Exception('session denied');
     return _session;
   }
 
@@ -206,6 +207,36 @@ Widget _wrap(
 }
 
 void main() {
+  testWidgets('denied call fetch shows an error instead of retry loading', (
+    tester,
+  ) async {
+    final rtc = FakeRtcRemoteDataSource(
+      RtcSessionEntity.fromJson({
+        'id': 91,
+        'mode': 'voice',
+        'status': 'in_call',
+        'initiator_user_id': 1,
+        'peer_user_id': 2,
+        'is_active': true,
+      }),
+    )..denySession = true;
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 91, autoConnect: false),
+        rtc: rtc,
+        liveKit: true,
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text('通话加载失败'), findsOneWidget);
+    expect(rtc.joinRequests, 0);
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pump();
+    expect(find.text('通话加载失败'), findsOneWidget);
+    expect(rtc.joinRequests, 0);
+    await tester.pumpWidget(const SizedBox());
+  });
   for (final outcome in ['active', 'terminal', 'unknown']) {
     testWidgets('explicit reconnect rechecks current session: $outcome', (
       tester,
@@ -254,6 +285,44 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
   }
+  testWidgets('polling a revoked call replaces cached data with an error', (
+    tester,
+  ) async {
+    final rtc = FakeRtcRemoteDataSource(
+      RtcSessionEntity.fromJson({
+        'id': 92,
+        'mode': 'voice',
+        'status': 'in_call',
+        'initiator_user_id': 1,
+        'peer_user_id': 2,
+        'is_active': true,
+      }),
+    );
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 92, autoConnect: false),
+        rtc: rtc,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('通话进行中'), findsOneWidget);
+    expect(rtc.joinRequests, 1);
+    rtc.denySession = true;
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text('通话加载失败'), findsOneWidget);
+    expect(find.text('通话进行中'), findsNothing);
+    expect(rtc.joinRequests, 1);
+    rtc.denySession = false;
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
+    expect(find.text('通话进行中'), findsOneWidget);
+    // Fetch recovery must not silently republish media. Explicit reconnect remains required.
+    expect(rtc.joinRequests, 1);
+    await tester.pumpWidget(const SizedBox());
+  });
   testWidgets('RtcCallPage renders session status and actions', (tester) async {
     final session = RtcSessionEntity.fromJson({
       'id': 1,

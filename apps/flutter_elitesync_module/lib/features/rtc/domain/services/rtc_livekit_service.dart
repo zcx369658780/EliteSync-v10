@@ -9,6 +9,7 @@ import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
 import 'package:livekit_client/livekit_client.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_android_audio_engine.dart';
 
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv});
@@ -674,6 +675,10 @@ class RtcLiveKitService extends ChangeNotifier {
         throw StateError('需要摄像头权限');
       }
       if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+        await initializeRtcAndroidAudioEngine();
+        if (_disposed || requestedGeneration != _connectionGeneration) return;
+      }
       _failureMessage = null;
       _logJoinInfo(callId: callId, info: info);
       await leave();
@@ -691,6 +696,15 @@ class RtcLiveKitService extends ChangeNotifier {
         roomOptions: const RoomOptions(
           adaptiveStream: true,
           dynacast: true,
+          // Keep AEC/NS enabled; AGC is enabled to support quiet speech. Android
+          // engine policy is requested before the first Room is created.
+          // https://docs.livekit.io/reference/client-sdk-flutter/livekit_client/AudioCaptureOptions-class.html
+          defaultAudioCaptureOptions: AudioCaptureOptions(
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            highPassFilter: true,
+          ),
           defaultAudioOutputOptions: AudioOutputOptions(speakerOn: true),
         ),
       );

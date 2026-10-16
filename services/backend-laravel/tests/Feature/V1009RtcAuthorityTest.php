@@ -7,6 +7,7 @@ use App\Services\LiveConsentService;
 use App\Services\RtcAuthorityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -137,5 +138,100 @@ final class V1009RtcAuthorityTest extends TestCase
         $this->assertSame('in_call',$oldSnapshot->fresh()->status);
         RtcSession::whereKey($id)->update(['initiator_last_seen_at'=>now()->subSeconds(31),'peer_last_seen_at'=>now()->subSeconds(31)]);
         $this->getJson('/api/v1/rtc/calls/'.$id.'/livekit')->assertNotFound();
+    }
+
+    public function test_expired_busy_attempt_does_not_invalidate_an_active_call(): void
+    {
+        $this->travelTo(now()->startOfSecond());
+        $this->active();
+        $id=$this->create();
+        $this->accept($id);
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/connect')->assertOk();
+        $room=RtcSession::findOrFail($id)->room_key;
+        $busyId=$this->create();
+        $busy=RtcSession::findOrFail($busyId);
+        $this->assertSame('busy',$busy->status);
+        $this->assertNotSame($room,$busy->room_key);
+
+        // Both participants remain present while the separate busy record expires.
+        for ($i=0;$i<4;$i++) {
+            $this->travel(16)->seconds();
+            foreach ([$this->a,$this->b] as $user) {
+                Sanctum::actingAs($user);
+                $this->postJson('/api/v1/rtc/calls/'.$id.'/heartbeat')->assertOk();
+            }
+        }
+        $this->assertTrue($busy->expires_at->isPast());
+        $this->withHeader('X-RTC-Gateway',str_repeat('g',40))
+            ->postJson('/api/v1/rtc-guard/sweep')->assertOk()
+            ->assertJsonPath('allowed_rooms',[$room]);
+        $this->assertSame('in_call',RtcSession::findOrFail($id)->status);
+        $this->assertFalse(RtcSession::findOrFail($id)->events()->where('event_name','authority_invalidated')->exists());
+        $this->assertSame('busy',$busy->fresh()->status);
+        $this->getJson('/api/v1/rtc/calls/'.$busyId.'/livekit')->assertNotFound();
+        $this->getJson('/api/v1/rtc/calls/'.$id.'/livekit')->assertOk();
+    }
+
+    public function test_authority_exception_propagates_with_only_safe_diagnostic_fields(): void
+    {
+        $call=new RtcSession();
+        $call->id=123;
+        DB::shouldReceive('transaction')->once()->andThrow(new \RuntimeException('private SQL and bearer must never be logged',1213));
+        Log::shouldReceive('warning')->once()->with('rtc_authority_denied',[
+            'call_id'=>123,'reason'=>'exception','exception_class'=>\RuntimeException::class,'exception_code'=>1213,
+        ]);
+        $this->expectException(\RuntimeException::class);
+        app(RtcAuthorityService::class)->authorized($call);
+    }
+
+    public function test_database_denial_records_safe_sqlstate_and_driver_code_without_sql(): void
+    {
+        $call=new RtcSession();$call->id=124;
+        $pdo=new \PDOException('private driver message');
+        $pdo->errorInfo=['40001',1213,'private deadlock SQL'];
+        $error=new \Illuminate\Database\QueryException('mysql','private SQL',['private binding'],$pdo);
+        DB::shouldReceive('transaction')->once()->andThrow($error);
+        Log::shouldReceive('warning')->once()->with('rtc_authority_denied',[
+            'call_id'=>124,'reason'=>'exception','exception_class'=>get_class($error),'exception_code'=>0,
+            'sqlstate'=>'40001','driver_code'=>1213,
+        ]);
+        $this->expectException(get_class($error));
+        app(RtcAuthorityService::class)->authorized($call);
+    }
+
+    public function test_logging_failure_cannot_change_an_authority_denial(): void
+    {
+        $call=new RtcSession();$call->id=125;
+        DB::shouldReceive('transaction')->once()->andThrow(new \RuntimeException('not logged'));
+        Log::shouldReceive('warning')->once()->andThrow(new \RuntimeException('log unavailable'));
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('not logged');
+        app(RtcAuthorityService::class)->authorized($call);
+    }
+
+    public function test_sweep_check_error_does_not_permanently_invalidate_active_call_or_publish_partial_allowlist(): void
+    {
+        $this->active();$id=$this->create();$this->accept($id);
+        $this->postJson('/api/v1/rtc/calls/'.$id.'/connect')->assertOk();
+        $other=RtcSession::findOrFail($id)->replicate();
+        $other->call_key=(string)\Illuminate\Support\Str::uuid();
+        $other->room_key='rtc-'.\Illuminate\Support\Str::uuid();
+        $other->save();
+        $inject=true;
+        $reads=0;
+        DB::connection()->beforeExecuting(function ($sql) use (&$inject,&$reads) {
+            if ($inject && str_contains($sql,'rtc_sessions') && str_contains($sql,'limit 1') && ++$reads===2) {
+                $inject=false;
+                throw new \RuntimeException('injected authority read failure');
+            }
+        });
+        $response=$this->withHeader('X-RTC-Gateway',str_repeat('g',40))->postJson('/api/v1/rtc-guard/sweep');
+        $inject=false;
+        $response->assertStatus(503)->assertExactJson(['message'=>'RTC authority unavailable']);
+        $this->assertSame(2,$reads); // One room was allowed before the second check failed.
+        $this->assertArrayNotHasKey('allowed_rooms',$response->json());
+        $call=RtcSession::findOrFail($id);
+        $this->assertSame('in_call',$call->status);
+        $this->assertFalse($call->events()->where('event_name','authority_invalidated')->exists());
     }
 }

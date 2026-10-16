@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\RtcSession;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 /** Every RTC use point reads the same current persisted CN/MC authority. */
@@ -36,17 +37,45 @@ final class RtcAuthorityService
         try {
             return DB::transaction(function () use ($call, $actor, $join) {
                 $locked = RtcSession::whereKey($call->id)->lockForUpdate()->first();
-                if (!$locked) return false;
+                if (!$locked) return $this->deny($call, 'call_missing');
                 $call->setRawAttributes($locked->getAttributes(), true);
                 $call = app(RtcSessionService::class)->refreshExpiredSession($call);
-                if ($actor !== null && !in_array($actor, [(int)$call->initiator_user_id, (int)$call->peer_user_id], true)) return false;
+                if ($actor !== null && !in_array($actor, [(int)$call->initiator_user_id, (int)$call->peer_user_id], true)) return $this->deny($call, 'actor_not_participant');
                 $signature = $this->signature((int)$call->initiator_user_id, (int)$call->peer_user_id);
                 $expected = (string)($call->metadata['authority_signature'] ?? '');
-                if (!$signature || !$expected || !hash_equals($expected, $signature)) return false;
-                if ($join && (!in_array($call->status, ['connecting', 'in_call'], true) || !$call->accepted_at || !$call->expires_at?->isFuture())) return false;
+                if (!$signature) return $this->deny($call, 'current_authority_unavailable');
+                if (!$expected) return $this->deny($call, 'stored_signature_missing');
+                if (!hash_equals($expected, $signature)) return $this->deny($call, 'authority_signature_changed');
+                if ($join && (!in_array($call->status, ['connecting', 'in_call'], true) || !$call->accepted_at || !$call->expires_at?->isFuture())) return $this->deny($call, 'join_not_active');
                 return true;
-            });
-        } catch (Throwable) { return false; }
+            }, 3);
+        } catch (Throwable $error) {
+            $this->deny($call, 'exception', $error);
+            // Preserve database errors for the outer transaction's bounded retry.
+            // A failed check must never be reported as confirmed revocation.
+            throw $error;
+        }
+    }
+
+    /** Never log exception messages, SQL, bindings, tokens or authority signatures. */
+    private function deny(RtcSession $call, string $reason, ?Throwable $error = null): bool
+    {
+        $context = ['call_id'=>(int)$call->id, 'reason'=>$reason];
+        if ($error) {
+            $context['exception_class'] = get_class($error);
+            $context['exception_code'] = is_int($error->getCode()) ? $error->getCode() : 'non_numeric';
+            if ($error instanceof \PDOException) {
+                $info = $error->errorInfo;
+                if (is_array($info) && is_string($info[0] ?? null) && preg_match('/\A[A-Z0-9]{5}\z/D', $info[0])) {
+                    $context['sqlstate'] = $info[0];
+                }
+                if (is_array($info) && is_int($info[1] ?? null)) $context['driver_code'] = $info[1];
+            }
+        }
+        try { Log::warning('rtc_authority_denied', $context); } catch (Throwable) {
+            // Diagnostics must not turn a denial into an exception or an allow.
+        }
+        return false;
     }
 
     public function identity(RtcSession $call, int $actor): string
