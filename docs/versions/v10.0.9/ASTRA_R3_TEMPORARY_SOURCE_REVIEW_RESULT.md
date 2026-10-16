@@ -38,3 +38,11 @@
 Astra已在原临时审阅分支`review/temporary-evidence-v1009-r3-20261016`以**non-force fast-forward**生成并推送一次纯清理提交`b00d34c7e3155fed69ec0fcdce0d39a5d3c9fd7f`，其唯一parent是原审阅候选`1ec67749fe8d6129cc0593a8de19703620e3a403`，Tree `c4f7dd9f2c914ebe0455485d1ebb2902eb34d872`严格等于该短期分支派生时的`main` Tree，意味着324个审阅文件均已从**临时分支最新工作树**删除；GitHub实际读回该分支HEAD与提交一致，`docs/_temporary_review/v1009-r3-20261016/README.md`在清理HEAD返回404。审阅源码的历史固定Commit仍可能可访问，清理并非抹除Git历史。对比接口分页只展示前300条删除，但Tree等同性确认整棵审阅目录都不在HEAD。
 
 清理后实际确认：`main`仅保留独立审查文档，HEAD `076f448ce5e2ffabe3cfdc42cbdb2eb2f1f81a4c`（本次续写后将前进一个纯文档提交）；原产品开发分支依然`70612d36652660e8bdd9d12017c1254ada686298`。**暂存分支引用尚未删除**：现有GitHub连接器仅可删除具名文件，不提供删除远端branch动作；待Codex执行精确`git push origin --delete review/temporary-evidence-v1009-r3-20261016`并回报，再由Astra独立核验分支不存在。当前阶段`TEMP_TREE_CLEANED / BRANCH_DELETE_PENDING`，不能冒称完整清理。
+
+## 远端短期审阅分支最终删除（独立回读）
+
+2026-10-17。Codex报告：先核对远端短期分支HEAD为 `b00d34c7e3155fed69ec0fcdce0d39a5d3c9fd7f`，仅对 `review/temporary-evidence-v1009-r3-20261016` 执行一次普通远端分支删除，命令exit0；本地Windows `CLEANUP_RECEIPT.json` 未由Astra直接读取，其本地执行及受保护dirty资源声明维持 `CODEX_REPORTED`。
+
+**Astra随即通过GitHub API独立复核**：对该精确分支的读取返回 `404 Branch not found`；与此同时 `main` 仍为 `567ed14b31784bf3f0ea1dbd8243d94299c1817c`、`codex/v10.0.9-rtc-media` 仍为 `70612d36652660e8bdd9d12017c1254ada686298`。确认未因这一步更改两条主分支引用。上一节的 `BRANCH_DELETE_PENDING` 是历史阶段，本节覆盖其当前状态。
+
+最终状态：`TEMP_REVIEW_BRANCH_REMOVED_VERIFIED`、`TEMP_TREE_CLEANED`，审阅与临时分支清理闭环。**不声称公开过的Git对象/缓存或外部克隆均已永久删除**。R3脚本源码审查结论 `PASS_WITH_OBSERVATIONS` 不变，真实系统UAC、规则写入、音频A/B/C仍 `NOT_RUN`；`AC-09-03 NOT_PROVEN`，`V10.0.9 NOT_ACCEPTED`。再次进入真实设备/网络测试仍需Owner另行当前明确授权，并先核脚本原始SHA、网络及设备实时状态；不自动合main/K08/后继版本。
