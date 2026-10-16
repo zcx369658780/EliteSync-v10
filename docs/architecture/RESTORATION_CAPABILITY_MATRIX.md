@@ -2,7 +2,7 @@
 
 ## 2026-10-16 最终候选实链补证（当前，待独立终验）
 
-**CANDIDATE_PREPARED / NOT_ACCEPTED**。v10.0.9固定8AC均提交具名证据与观察，完成候选的实际Commit/Tree由最终远端交付回执固定。最终源码e0eb86ada8f8dff95a7b384969ace058385e2c37。下文音频阻塞/旋转待补/未安装/未执行均为较早时点。
+**CANDIDATE_DELIVERED / AWAITING_ASTRA_FINAL_ACCEPTANCE / NOT_ACCEPTED**。v10.0.9固定8AC均提交具名证据与观察，完成候选的实际Commit/Tree由最终远端交付回执固定。最终源码e0eb86ada8f8dff95a7b384969ace058385e2c37。下文音频阻塞/旋转待补/未安装/未执行均为较早时点。
 
 - A06：Owner确认双端播放/话筒与回声改善；最终同源包双端语音、不同测试源视频、权限拒绝/恢复、当前CN/MC/Web撤权、旧JWT拒绝、断网正反例及私有短视频完整播放/撤权/限值已留证。call61新增实际90°旋转及原设置恢复、后台采集停止/前台不自动开麦开镜、显式恢复及APP挂断无残留，补齐最后设备缺证。
 - A09：最终双ABI安装hash一致，DB/API/SFU/worker/双APP联合重启选定持久数据一致；PHP相关37/325、RTC Flutter32通过，构建/签名通过。全量PHP4errors/12failures、有限重试时间与原生音频模式等观察不删除，交Astra按原AC裁决。

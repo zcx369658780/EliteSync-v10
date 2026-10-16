@@ -1,8 +1,12 @@
-# v10.0.9 执行记录：实现与实链回归继续，尚未候选交付
+# v10.0.9 候选交付报告：等待 Astra 独立终验
 
 ## 2026-10-16 最终候选集中报告
 
-**V10.0.9 CANDIDATE — AWAITING ASTRA FINAL ACCEPTANCE / NOT_ACCEPTED**。本节为最终状态；后文所有阻塞、未安装、未测试、运行中或FROZEN_NOT_RUN是原时点，不覆盖本节。候选分支`codex/v10.0.9-rtc-media`，只普通non-force推送，未合main、未K08、未启动后继版本。最终远端Candidate Commit/Tree以交付回执及Owner收到的固定链接为准（文档不能自含自身Git hash）。
+**V10.0.9 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE / NOT_ACCEPTED**。本节为最终状态；后文所有阻塞、未安装、未测试、运行中或FROZEN_NOT_RUN是原时点，不覆盖本节。候选分支`codex/v10.0.9-rtc-media`，只普通non-force推送，未合main、未K08、未启动后继版本。最终远端Candidate Commit/Tree以交付回执及Owner收到的固定链接为准（文档不能自含自身Git hash）。
+
+远端首次交付已于2026-10-16T18:18:23.462471+08:00普通推送并读回：[Commit 635d9088dd7d182bfc250387ac963b575f96b223](https://github.com/zcx369658780/EliteSync-v10/commit/635d9088dd7d182bfc250387ac963b575f96b223)，Tree `b30372bafe10717ee4f96db7baab51b48fd2be26`。随后只登记这份交付状态，不改产品；最终交付文档提交的精确Commit/Tree在Owner收到的最终回执固定。
+
+关键公开资料：[安全媒体统计](evidence/20261016-final-device-safe-summary.json)、[旋转/前后台统计](evidence/20261016-rotation-background-safe-summary.json)、[横屏](evidence/final-video-landscape.png)、[回前台设备保持关闭](evidence/final-video-return-devices-off.png)、[完整播放片中](evidence/final-private-video-mid.png)、[片尾](evidence/final-private-video-complete.png)、[撤权错误界面](evidence/final-call-revoked-error.png)。均为已筛选的AVD/统计，不公开手机/真实摄像头原件。
 
 产品源码及测试锚 **e0eb86ada8f8dff95a7b384969ace058385e2c37 / Tree a6be76c7963fcd2cff42e207660503c3b0856424**，来自原专用树6150d104924355a5427868f5b429ef82cf1eab51；固定plan68d57f755d0091bc15cb867b96d3a21caee83690 / Blob042cf7298b75169a89b1dcd7c9fb113f6ddd72e3未变，8AC未变。远端main另有cab5e7c07d214572385521a33fdacc0eb1c8fc2f，只读观察、未引入此版本。
 

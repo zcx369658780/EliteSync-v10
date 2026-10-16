@@ -1,7 +1,7 @@
 {
   "version": "v10.0.9",
-  "status": "CANDIDATE_AWAITING_ASTRA_FINAL_ACCEPTANCE",
-  "candidate_delivered": false,
+  "status": "V10.0.9 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE",
+  "candidate_delivered": true,
   "accepted": false,
   "authority": {
     "plan_commit": "68d57f755d0091bc15cb867b96d3a21caee83690",
@@ -220,7 +220,7 @@
     },
     "effective_native_audio_processing": "UNVERIFIED",
     "remaining": [
-      "nonforce_push_remote_readback"
+      "ASTRA_INDEPENDENT_FINAL_ACCEPT_OR_REJECT"
     ],
     "relay": {
       "started_at": "2026-10-16T18:04:13.882207+08:00",
@@ -290,11 +290,17 @@
     ],
     "installed_hash_receipt": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\16\\01a14250-b40a-7410-ac1d-61dde1ec0644\\version-regression\\final-joint-installed-package-hashes.json"
   },
-  "publication_state": "READY_FOR_NONFORCE_PUSH_REMOTE_VERIFY_PENDING",
+  "publication_state": "NONFORCE_PUSH_REMOTE_READBACK_VERIFIED",
   "candidate_identity": {
     "branch": "codex/v10.0.9-rtc-media",
     "product_commit": "e0eb86ada8f8dff95a7b384969ace058385e2c37",
     "product_tree": "a6be76c7963fcd2cff42e207660503c3b0856424",
     "final_commit_and_tree": "Recorded by external delivery receipt after non-force push; cannot self-embed final Git hash"
+  },
+  "first_delivery": {
+    "commit": "635d9088dd7d182bfc250387ac963b575f96b223",
+    "tree": "b30372bafe10717ee4f96db7baab51b48fd2be26",
+    "verified_at": "2026-10-16T18:18:23.462471+08:00",
+    "force": false
   }
 }
