@@ -1,0 +1,9 @@
+{
+  "source_session": "rollout-2026-10-16T09-25-47-01a14250-b40a-7410-ac1d-61dde1ec0644.jsonl",
+  "line": 3577,
+  "timestamp": "2026-10-16T08:04:32.983Z",
+  "phpunit_exit": 2,
+  "wrapper_exit": 0,
+  "summary": "1063 tests / 14037 assertions / 4 errors / 12 failures",
+  "distinction": "wrapper exit0 only indicates final Write-Output; TEST_EXIT=2 captured immediately after PHP command"
+}

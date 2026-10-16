@@ -1,3 +1,7 @@
+# 2026-10-16 同版R1集中交付
+
+V10.0.9 R1 CANDIDATE DELIVERED — AWAITING ASTRA FINAL RE-ACCEPTANCE / NOT_ACCEPTED。详见[R1报告](R1_REPORT.md)、[16项归因](R1_PHP_FAILURE_ATTRIBUTION.md)及[语音关联](R1_AUDIO_EVIDENCE_LINKAGE.md)。R1无产品源码改动，37/325相关PHP exit0；四条临时防火墙已按当前Owner一次UAC授权精确删除。R1-3同call同时双向人耳证据仍NOT_PROVEN，不能声称三项全部闭合。以下原报告与失败保留。
+
 # v10.0.9 候选交付报告：等待 Astra 独立终验
 
 ## 2026-10-16 最终候选集中报告

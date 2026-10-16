@@ -1,6 +1,6 @@
 {
   "version": "v10.0.9",
-  "status": "V10.0.9 CANDIDATE DELIVERED — AWAITING ASTRA FINAL ACCEPTANCE",
+  "status": "V10.0.9 R1 CANDIDATE DELIVERED — AWAITING ASTRA FINAL RE-ACCEPTANCE",
   "candidate_delivered": true,
   "accepted": false,
   "authority": {
@@ -302,5 +302,25 @@
     "tree": "b30372bafe10717ee4f96db7baab51b48fd2be26",
     "verified_at": "2026-10-16T18:18:23.462471+08:00",
     "force": false
+  },
+  "r1": {
+    "review_commit": "27df047ea348de226b2f6a24e754cb9ae4633617",
+    "initial_candidate": "66a8638581d1017823ac3caa2536568e0de3b939",
+    "product_source_changed": false,
+    "new_build": "NOT_RUN_DOCUMENTATION_ONLY",
+    "accepted": false,
+    "R1_1": "16 baseline reproduced; see named attribution and order limitations",
+    "R1_2": "four precise temporary firewall rules removed; exit0; readback0",
+    "R1_3": "NOT_PROVEN same-call simultaneous two-way human intelligibility; existing evidence linked",
+    "related_php": {
+      "tests": 37,
+      "assertions": 325,
+      "exit": 0
+    },
+    "full_php": "NOT_RUN; original 1063/14037/4errors/12failures/exit2 preserved",
+    "full_flutter": "NOT_RUN",
+    "report": "R1_REPORT.md",
+    "evidence": "evidence/r1/raw-evidence-index.json",
+    "final_identity": "external delivery receipt; cannot self-embed commit hash"
   }
 }

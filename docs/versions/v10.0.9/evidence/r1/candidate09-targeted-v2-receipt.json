@@ -1,0 +1,7 @@
+{
+  "exit": 2,
+  "started_epoch": 1792147968.2090259,
+  "duration_seconds": 2.3024439811706543,
+  "fixture": "tracked question_bank at respective fixed ref, matching existing root fixture; no persistent DB seed",
+  "prior_attempt": "preserved: missing question_bank caused MatchPayload setup error; wrapper constant warning fixed without product/test edits"
+}
