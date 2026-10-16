@@ -1,5 +1,16 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-16 顾问交接：v10.0.9音频ICE阻塞转下会话
+
+**ASTRA_HANDOFF_ARCHIVED / AUDIO_DEVICE_AND_ICE_BLOCKED / V10_0_9_NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED / LAST_CODEX_TASK_ALREADY_ISSUED / NEXT_SESSION_CONTINUES / NO_NEXT_VERSION**。
+
+Owner要求保存本会话产品方向、D1～D6及当前v10.0.9任务进度，并让新Astra会话继续上一会话**已交付Codex**的人工双端音频接续任务。完整[固定交接正文](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md)，归档Commit`de8d44cbf30ecda03175fcbd07e5cf7595dc5e39`、Blob`cc818c61199260b77850b199627857d89926514a`，GitHub已实际读回。最新本轮发现：独立Codex分支`codex/v10.0.9-rtc-media`在此前844402进度后又前进5个提交，至本次读取HEAD`6150d104924355a5427868f5b429ef82cf1eab51` / Tree`bc8145bdab7da8dd6865b0c5df62cb455ac86926`，并发布[10月16日真机/模拟器ICE测试报告](https://github.com/zcx369658780/EliteSync-v10/blob/6150d104924355a5427868f5b429ef82cf1eab51/docs/versions/v10.0.9/MANUAL_AUDIO_EXECUTION_20261016.md)。**该分支尚未候选完成/未独立验收，也未合main；本次main归档只改文档。**
+
+Codex最新公开记录：Owner已在其独立执行交流中具名允许小米arm64测试手机＋Pixel_6_Pro_2 AVD、限域ADB/双ABI/合成音及具名LAN UDP规则（权限事实**CODEX_REPORTED**，不能由Astra扩权）。双ABI包已装两个测试端；手机部分UDP上行有证据，但模拟器ICE失败、两方向人耳可辨音均NOT_PASS。USB-only TCP端口可达不等于RTC通话成功。**同WLAN的7881/TCP媒体回退尚未批准/应用，下一次如需更改规则必须Owner按具体地址/端口/来源/提权明确许可**。音频之外的视频/短视频与部分撤权旧成功证据保持限定有效，但完整AC-09-01～08未通过，不可发K08、自动接受或开始下一版。实际运行资源/防火墙规则以Codex最后报告时点为准，新会话再核实时状态。冻结plan Commit`68d57f755d0091bc15cb867b96d3a21caee83690` / Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`，Owner D4～D6不变。
+
+新会话无须重复派发原任务、重做0.9版前、翻修已接受0.6～0.8；请先实查main与最新开发分支，然后依据用户下一条具体回报接续ICE/人工试听/冻结AC，或等待。下方早期“0.9待派发／10月15日AVD音频阻塞”是对应历史时点，本节与分支最新报告优先。
+
+
 ## 2026-10-15 v10.0.9正式冻结：Owner D4～D6批准，等待手动派发
 
 **V10_0_9_FROZEN_PLAN / OWNER_D4_D5_D6_APPROVED / OWNER_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED / V10_0_8_K08_COMPLETE**。
