@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-17 v10.0.10 综合实施检查点，尚非完整候选
+
+**IMPLEMENTATION_CHECKPOINT_SAVED / RIGHTS_AND_ORACLE_BLOCKED / NOT_YET_ACCEPTED**。Owner 方案 A 已实际实施；[综合报告](v10.0.10/IMPLEMENTATION_REPORT.md)与[验证汇总](v10.0.10/validation-summary.json)记录三盘真实运算、APP/Laravel/独立库持久与重启、源码/构建、内部非作者修复及全部八项 AC 的真实缺口。Chiron 权利、紫微亮度异文/覆盖和精确公历交运等未关闭，冻结 AC 不改。本版运行已停止、volume/原证保留，没有 main 集成、K08 或后继版本；下文未实施等状态为历史记录。
+
 ## 2026-10-17 v10.0.10 正式冻结（待Owner手动派发）
 
 **V10.0.10 FROZEN_FUNCTIONAL_PLAN / OWNER_OPTION_A_APPROVED / IMPLEMENTATION_NOT_STARTED**。本版唯一正式计划为[plan](v10.0.10/plan.md)：八字、紫微、西占本命完整恢复与旧版本命扩展、真实APP→Laravel→本版独立DB、独立oracle及许可准入，AC-10-01～08固定；动态/关系盘按Owner方案A具名保留后续，内测前收口。前置[规划报告](v10.0.10/PREPLAN_REPORT.md)与[Astra审查](v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)。这是doc-only冻结，并非已经开始开发、安装算法、购买许可或验证玄学精度。既有v10.0.9 K08仍保持完成，下方旧状态按记录时点解读。

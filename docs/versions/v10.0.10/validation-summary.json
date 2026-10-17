@@ -1,0 +1,245 @@
+{
+  "schema": "elitesync.v1010.validation-checkpoint.v1",
+  "classification": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE",
+  "source": {
+    "commit": "883a53cb23830ec79b5811f71a2238b7d1aacd20",
+    "tree": "1e92c5382533fc31498edbe4abaebfd50e36bba3",
+    "apps": "8e69c77a7ab82f6104936e9986f23a66bda2b5a2",
+    "services": "768bde48ecd9a56def4d8b405c8f87f36d1d8ec9",
+    "parent": "257f3cb6412dec370e49d028103f1f7bde56adfd",
+    "status": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE"
+  },
+  "oracle": {
+    "bazi": {
+      "samples": 88,
+      "fresh": 64,
+      "blind": 24,
+      "discrete_comparisons": 2200,
+      "failures": [],
+      "pass_": true,
+      "not_covered": [
+        "Gregorian qiyun timestamp",
+        "astronomical true solar time",
+        "other epochs",
+        "precise solar-term +/-1s"
+      ]
+    },
+    "ziwei_rules": {
+      "samples": 72,
+      "fresh": 48,
+      "blind": 24,
+      "comparisons": 5040,
+      "failures": [],
+      "pass_": true,
+      "not_covered": [
+        "brightness",
+        "unlisted minor stars",
+        "selected-year horoscope",
+        "historical timezone conversion"
+      ]
+    },
+    "ziwei_brightness": {
+      "comparisons": 1008,
+      "unique_pairs": 154,
+      "mismatch_occurrences": 18,
+      "mismatch_pairs": [
+        "七杀酉",
+        "太阴酉"
+      ],
+      "missing_pairs": 14,
+      "status": "BLOCKED_DIFFERENT_PUBLISHED_RULE_VARIANTS_UPSTREAM_UNKNOWN"
+    },
+    "western_positions": {
+      "main_samples": 120,
+      "main_comparisons": 1200,
+      "main_failures": 0,
+      "nonauthor_extra_samples": 24,
+      "nonauthor_extra_comparisons": 240,
+      "nonauthor_failures": 0,
+      "maximum_error_degrees": 6.800191073352835e-05,
+      "threshold": 0.001,
+      "independence": "Horizons versus Skyfield implementation, shared JPL data family; time normalizer limitations retained"
+    },
+    "western_geometry": {
+      "cases": 96,
+      "comparisons": 1504,
+      "failures": 0,
+      "maximum_error_degrees": 1.9696244635269977e-11,
+      "boundary_probes": 3168,
+      "boundary_failures": 0,
+      "not_blind": true
+    },
+    "lunar_points": {
+      "samples": 120,
+      "comparisons": 360,
+      "failures": 0,
+      "max_error_degrees": 3.488128186290851e-08,
+      "not_blind": true
+    },
+    "solar": {
+      "samples": 120,
+      "max_difference_seconds": 2.6732767724846553,
+      "failures": 0,
+      "not_blind": true
+    }
+  },
+  "tests": {
+    "php": {
+      "tests": 43,
+      "assertions": 275,
+      "exit": 0,
+      "deprecations": 2
+    },
+    "node": {
+      "tests": 8,
+      "exit": 0
+    },
+    "python": {
+      "discovered": 25,
+      "first_passes": 23,
+      "first_skipped": 2,
+      "explicit_real_kernel_followup_passes": 2,
+      "exit": 0
+    },
+    "flutter": {
+      "author_review_regression_per_mode": 65,
+      "final_after_cold_per_mode": 23,
+      "default_and_v1010": true,
+      "final_analyze_exit": 0
+    },
+    "real_api": {
+      "requests": 42,
+      "input_or_setting_changes": 15,
+      "exit": 0
+    }
+  },
+  "build": {
+    "package": "com.elitesync.v1010test",
+    "artifacts": {
+      "app-debug.apk": {
+        "bytes": 222959834,
+        "sha256": "f330c9a24f539e250130028aade5cd835de7bafb30195da18624d3a235d01c50"
+      },
+      "flutter_release-1.0.aar": {
+        "bytes": 4024898,
+        "sha256": "577a7acbe4e5081b435d7fe077d0e2c0ba76c10eb1b927d294bb2021f3bef6f7"
+      }
+    },
+    "display_version": "0.08.04",
+    "purpose": "final current implementation functional test; version not accepted or complete",
+    "source_binding": "Local build4 source file manifest retained privately; Git source is separately identified. EOL normalization may differ from raw filesystem bytes."
+  },
+  "runtime": {
+    "app_stopped": true,
+    "reverse_removed": true,
+    "api_stopped": true,
+    "db_stopped": true,
+    "volume_preserved": true,
+    "original_dirty_root_snapshot_equal": true,
+    "checked_dirty_tracked_files": 43,
+    "protected_scope": "original HEAD/index/normal status/recorded dirty-file hashes; no blanket rehash of all historical untracked media",
+    "historical_assets": "Not modified/deleted by this run",
+    "other_projects": "untouched",
+    "global_sdk_uac_firewall_rtc": "NOT_RUN"
+  },
+  "limitations": [
+    "Chiron rights unresolved and data not admitted",
+    "Exact Gregorian qiyun oracle incomplete",
+    "Ziwei brightness/minor-star/year-horoscope independent coverage incomplete",
+    "Original sidereal/Lilith exact equivalence not proven",
+    "No version acceptance, main integration, K08, production or successor"
+  ],
+  "evidence_access": "Sanitized Codex-reported summaries; raw stdout/stderr/exit, database/API and device receipts remain LOCAL_ONLY. Web Astra has not read local raw files.",
+  "local_raw_receipt_hashes": [
+    {
+      "label": "php-natal-final-targeted-suite",
+      "exit": 0,
+      "stdout_sha256": "dbde6a471ad086dc73f588af3dcdc41f708579b11dbaec4a047d874cceaec070",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "ziwei-final-local-tests",
+      "exit": 0,
+      "stdout_sha256": "3865b265946a7a1bc7680df5f3a05f84dafb61c9affd720e8d9ade3e47cbba86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "python-natal-final-suite",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "65ee1df6b13215209e0dafbdb3941d7b523e51c72b7cc244212c5f8cd6751842"
+    },
+    {
+      "label": "python-final-explicit-real-kernel-two-tests",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "24a5802fcbe0662c4f928252796656eeec7581722481cf1043ed40f83ff4824a"
+    },
+    {
+      "label": "flutter-after-cold-final-default",
+      "exit": 0,
+      "stdout_sha256": "c431d6ed73aea1e5292a22d3afad0a12c2cbbbd9e0b07226e0aeac5f40b164fe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "flutter-after-cold-final-v1010",
+      "exit": 0,
+      "stdout_sha256": "cf6832c0edbcbaa64f68e7ed79db98ea569d634261f13d2d816fb6dc2b68ae53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "flutter-final-changed-files-analyze",
+      "exit": 0,
+      "stdout_sha256": "de17a509e75e8b9d8a7afd36886f2fe35519e95a8ece6040320217a4a621add4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "v1010-native-aar-apk-build4",
+      "exit": 0,
+      "stdout_sha256": "6dd6f1c1cfbb1e0b83eb493d86ebb8f3ba5861f0c3771773e1e1d48d3cd7bde2",
+      "stderr_sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+    },
+    {
+      "label": "real-api-db-regression-third-run",
+      "exit": 0,
+      "stdout_sha256": "2ae4c90a94ef24966aa743d33dae420fb0d62638819bd4fec2500cf40543c8e0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "owned-api-db-persistent-restart-first-run",
+      "exit": 0,
+      "stdout_sha256": "d3256a896a9fec67fd3a7d93f98f571945ff5b42850686c7704345c9e08717d7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "v1010-owned-runtime-final-close",
+      "exit": 0,
+      "stdout_sha256": "2f821dbc0e9778164544baa33480203465c7c12dc97b45b1a6f9eb90c23fc895",
+      "stderr_sha256": "b2e285b86507ebbd1452c11e9b7114a2597fb53e2bee1acb3b779a8f1322fb0e"
+    },
+    {
+      "label": "western-horizons-independent-batch3",
+      "exit": 0,
+      "stdout_sha256": "ec60fb1a0b54aba172a85385ff05bfa46a437df1b882d680c3e66e6ca9cbadc5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "western-nonauthor-horizons-second-run",
+      "exit": 0,
+      "stdout_sha256": "b0f1aaf247210edf009cd5c027e5549789d66ea32925a161450bebc1ee444a5a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "lunar-horizons-independent-first-run",
+      "exit": 0,
+      "stdout_sha256": "3ca62b15bd1c116da614af29796de95014c920bb39dc22d8494374f844013937",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "solar-independent-noaa-first-run",
+      "exit": 0,
+      "stdout_sha256": "1874fd5aa50ab4a7f1472cf2d335d5f58960da7b02222ef8f4dbd88c644b7b04",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

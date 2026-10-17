@@ -1,5 +1,11 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-17 A07 v10.0.10 已实际实施，完整恢复仍受阻（当前）
+
+**PARTIALLY_IMPLEMENTED_AND_RUNTIME_VERIFIED / RIGHTS_AND_ORACLE_BLOCKED / NOT_ACCEPTED**。本版新链已真实计算八字/紫微/西占本命，贯通实装 APP、Laravel 和独立持久 MariaDB；输入/设置修改、重读、重登/冷启动及 API/DB 重启有证据。未证明字段仍 UNVERIFIED，Chiron 缺失明示 partial；紫微亮度异文、余星/完整运限及精确公历交运等独立参考未闭合，不能将 A07 升为“完整恢复”。详见[单份综合报告](../versions/v10.0.10/IMPLEMENTATION_REPORT.md)。
+
+合盘/synastry/composite、行运/transit、太阳/月亮回归、法达及其它已证旧动态/关系盘继续是**内测前必须恢复**的具名欠账；本版未开发，不删除或默认 Later。Match/CN/MC、canonical 与 D1～D6 不变，v10.0.9 已接受成果保留。本版服务已停止、volume/私有原证保留；不合 main/K08、不启动后继版本。下方“未实施/当前”为原记录时点。
+
 ## 2026-10-17 A07玄学三盘完整恢复：v10.0.10 已冻结未实施（当前）
 
 **OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED**。A07范围以[唯一正式plan](../versions/v10.0.10/plan.md)为准：八字已验基础继续完善、紫微和西方星盘真实本命算法/独立oracle、本命扩展及大运流年/紫微运限，APP→Laravel→私有持久库全链。现有紫微seed/飞星缺独立参考、西占legacy估算及第三方许可门仍未消除，不得由“冻结”提升为“已恢复”。**经确认原版已实现的合盘、行运、回归、法达及其它动态关系盘属于后续内测前具名必恢复欠账，不并入本版，不得以Later删去。** v10.0.9 K08真实成功状态保持，下文以旧时点记录。当前没有新版算法运行/安装/业务实测或Owner实施派发。

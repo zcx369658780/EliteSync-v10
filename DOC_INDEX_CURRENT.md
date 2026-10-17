@@ -1,5 +1,9 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-17 v10.0.10 综合实施检查点（首读）
+
+**RIGHTS_AND_ORACLE_BLOCKED / NOT_FINAL_CANDIDATE / NOT_YET_ACCEPTED**。先读[单份综合实施报告](docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)、[验证汇总](docs/versions/v10.0.10/validation-summary.json)，继续遵守[唯一冻结 plan](docs/versions/v10.0.10/plan.md)。已实现并真实验证本命 APP/后端/持久库链；Chiron 许可、紫微规则异文/独立覆盖、精确公历交运等尚未闭合，不能当作完整候选或接受。运行已安全收口，保留本版 volume 和私有原证。开发源码 `883a53cb23830ec79b5811f71a2238b7d1aacd20`；未合 main/K08/启动下版。下方旧状态保留原时点含义。
+
 ## 2026-10-17 v10.0.10 玄学三盘本命版 FROZEN（首读）
 
 **OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_MANUAL_DISPATCH_PENDING**。新会话首读[唯一正式plan](docs/versions/v10.0.10/plan.md)，并核对[Astra独立版前审查](docs/versions/v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)及[Codex固定报告](https://github.com/zcx369658780/EliteSync-v10/blob/70ca8a945dc933f33ff815058b29813c744e6009/docs/versions/v10.0.10/PREPLAN_REPORT.md)。本版仅完成八字/紫微/西方本命与有据本命扩展（含大运流年、紫微运限）；旧合盘/行运/回归/法达等属后续内测前必恢复项。v10.0.9 K08产品main起点`a1ce6473e85ee02786fc2fb4bb33ca1eac46ea8f`仍有效，新版源/运行未启动，许可证与独立oracle不可假报。下文K08与更早ICE/NOT_ACCEPTED均为对应时点的历史状态。
