@@ -34,3 +34,11 @@ Astra额外实读产品开发分支源码`services/backend-laravel/app/Http/Cont
 ## 5. 临时证据处理
 
 审阅完8文件后，依据Owner已批准`docs/workflow/TEMP_REVIEW_EVIDENCE_PROTOCOL.md`，允许Astra仅在`review/temporary-evidence-v1009-prewarm-20261017`上执行非强制快进清理，**恢复它自己的父提交`70612d36652660e8bdd9d12017c1254ada686298`的Tree**，切勿将`main`树覆盖到由开发分支派生的临时分支。确认HEAD及临时目录不再存在后，仅由Codex精确删除该短期远端branch引用、Astra读回API404；删除不能保证Git历史/外部缓存完全消失。
+
+## 6. 临时审阅文件清理实际回读
+
+Astra已对本次短期分支`review/temporary-evidence-v1009-prewarm-20261017`执行且验证**non-force fast-forward**纯树清理：新Commit `6d908a0ddcfe7449b686b61d5c81c873eb6b0f36`，唯一parent为原审阅Commit `58c58173ce01a12c235dc9f152379ad2d4dbc9f4`；新Tree精确恢复`6dccb9f4339e7656883bc7594fbb8a8cc11f5636`（即从产品开发分支派生时的父树），不是main的产品树。GitHub独立回读临时分支HEAD正确，原审阅文件`docs/_temporary_review/v1009-prewarm-20261017/FAILED_WINDOW_REPORT.md`在清理HEAD返回404；8个临时文件不再位于最新工作树。
+
+**尚未删除短期远端branch引用。** 当前阶段`TEMP_TREE_CLEANED / BRANCH_DELETE_PENDING`；Codex只在重新只读核对远端分支HEAD正是`6d908a0ddcfe7449b686b61d5c81c873eb6b0f36`后，一次性普通删除该精确远端branch；Astra再独立查API404，之后另行更新闭环状态。原固定审阅Commit的历史对象不能因清理而声称永久擦除。
+
+清理后`main`仍含本审查文档，开发分支为`70612d36652660e8bdd9d12017c1254ada686298`，不改产品源或冻结AC。
