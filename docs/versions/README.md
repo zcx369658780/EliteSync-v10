@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-17 v10.0.10 正式冻结（待Owner手动派发）
+
+**V10.0.10 FROZEN_FUNCTIONAL_PLAN / OWNER_OPTION_A_APPROVED / IMPLEMENTATION_NOT_STARTED**。本版唯一正式计划为[plan](v10.0.10/plan.md)：八字、紫微、西占本命完整恢复与旧版本命扩展、真实APP→Laravel→本版独立DB、独立oracle及许可准入，AC-10-01～08固定；动态/关系盘按Owner方案A具名保留后续，内测前收口。前置[规划报告](v10.0.10/PREPLAN_REPORT.md)与[Astra审查](v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)。这是doc-only冻结，并非已经开始开发、安装算法、购买许可或验证玄学精度。既有v10.0.9 K08仍保持完成，下方旧状态按记录时点解读。
+
 ## 2026-10-17 v10.0.9 K08完成（当前）
 
 **V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
