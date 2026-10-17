@@ -35,3 +35,9 @@ Astra按声明算法独立计算以上原始文件SHA映射的JSON SHA256，得�
 ## 四、短期审阅分支清理
 
 本正式结论归档后，按Owner已批准的临时审阅协议，仅对`review/temporary-evidence-v1009-prewarm-diagnostics-20261017`按固定HEAD做普通**非force快进**提交，恢复其自己的父提交`70612d36652660e8bdd9d12017c1254ada686298`之Tree，而**不能**用main的树。回读确认最新临时目录不存在后，再由Codex按精确的新清理HEAD仅删除该短期远端分支引用一次；Astra核验GitHub API404。不得宣称已擦除历史Git对象或缓存；原LOCAL_ONLY资料不变。
+
+## 五、短期审阅文件树清理实绩
+
+Astra在本轮实际执行并通过GitHub独立回读：临时分支`review/temporary-evidence-v1009-prewarm-diagnostics-20261017`在HEAD为审阅Commit `e843cc77f3938877814dc331d0e5c8399bd7b29e`时，以唯一parent执行普通non-force快进清理Commit **`ef66a9aeda69888252bbbfdd5ea7246b6466acaa`**；清理后Tree **`6dccb9f4339e7656883bc7594fbb8a8cc11f5636`**，精确等于**开发分支的父树**（不是docs-only main树）。GitHub独立回读分支HEAD及Commit身份一致，原临时目录的`PREWARM_DIAGNOSTICS_REPORT.md`在新HEAD返回404。28份审阅文件已从该短期分支最新树移除。
+
+**当前：`TEMP_TREE_CLEANED / TEMP_BRANCH_DELETE_PENDING`。** 远端branch引用尚待Codex在重新核对精确HEAD为`ef66a9aeda69888252bbbfdd5ea7246b6466acaa`后仅删除这一个具名短期分支一次，再由Astra查询API404。Git历史/缓存中可能仍有固定历史对象，不能宣称彻底擦除。清理时main（审阅文档写入后`51fa71ab9b7141f02d76bdf173b08d41cc6871fa`）与产品开发分支`70612d36652660e8bdd9d12017c1254ada686298`均未被此清理动作更改。
