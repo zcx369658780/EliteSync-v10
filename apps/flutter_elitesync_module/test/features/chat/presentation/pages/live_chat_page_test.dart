@@ -53,9 +53,16 @@ class _Api extends ApiClient {
 
 class _Gateway implements SessionBoundChatMediaGateway {
   final uploaded = Completer<ChatMediaUploadResponse>();
+  ChatAttachmentKind? pickedKind;
   @override
-  Future<ChatPickedMedia?> pick(ChatAttachmentKind kind) async =>
-      const ChatPickedMedia(path: 'fictional', name: 'fixture.png');
+  Future<ChatPickedMedia?> pick(ChatAttachmentKind kind) async {
+    pickedKind = kind;
+    return ChatPickedMedia(
+      path: 'fictional',
+      name: kind == ChatAttachmentKind.video ? 'fixture.mp4' : 'fixture.png',
+    );
+  }
+
   @override
   Future<ChatMediaUploadResponse> upload(
     ChatAttachmentKind kind,
@@ -98,6 +105,51 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets(
+    'video attachment waits for real ready upload before message dispatch',
+    (tester) async {
+      final api = _Api();
+      final gateway = _Gateway();
+      await _show(tester, api, gateway: gateway);
+      await tester.tap(find.byTooltip('发送短视频'));
+      await tester.pump();
+      expect(gateway.pickedKind, ChatAttachmentKind.video);
+      expect(api.posts, 0);
+      gateway.uploaded.complete(
+        const ChatMediaUploadResponse(
+          assetId: 42,
+          publicUrl: '/api/v1/media/42/content',
+          status: 'ready',
+        ),
+      );
+      await tester.pump();
+      await tester.pump();
+      expect(api.posts, 1);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+  testWidgets('processing video never becomes a sendable local ready asset', (
+    tester,
+  ) async {
+    final api = _Api();
+    final gateway = _Gateway();
+    await _show(tester, api, gateway: gateway);
+    await tester.tap(find.byTooltip('发送短视频'));
+    await tester.pump();
+    gateway.uploaded.complete(
+      const ChatMediaUploadResponse(
+        assetId: 42,
+        publicUrl: '/api/v1/media/42/content',
+        status: 'processing',
+      ),
+    );
+    await tester.pump();
+    await tester.pump();
+    expect(api.posts, 0);
+    expect(find.textContaining('附件上传或处理未完成'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'session switch during message token await dispatches no message',
     (tester) async {

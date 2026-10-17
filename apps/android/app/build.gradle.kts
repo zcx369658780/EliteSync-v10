@@ -50,7 +50,13 @@ val flutterDartDefineArgs = flutterDartDefines
     .filter { it.isNotEmpty() }
     .flatMap { listOf("--dart-define=$it") }
 val isV1006LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
-    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" }
+    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" || it == "ELITESYNC_V1009_LOCAL_BUILD=true" }
+val isV1009LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
+    .contains("ELITESYNC_V1009_LOCAL_BUILD=true")
+val v1009DualDeviceBuild = providers.gradleProperty("v1009DualDeviceBuild").orNull == "true"
+require(!v1009DualDeviceBuild || isV1009LocalBuild) {
+    "Dual-device test builds require the V1009 local restoration gate"
+}
 val isC2LocalInternalBuild = flutterDartDefines
     .split(Regex("[;,]"))
     .map { it.trim() }
@@ -79,11 +85,13 @@ val syncFlutterAar by tasks.registering(Exec::class) {
             "--no-pub",
             "--no-debug",
             "--no-profile",
-        ) + (if (isV1006LocalBuild) listOf("--target-platform=android-x64") else emptyList()) + flutterDartDefineArgs
+        ) + (if (v1009DualDeviceBuild) listOf("--target-platform=android-x64,android-arm64")
+            else if (isV1006LocalBuild) listOf("--target-platform=android-x64") else emptyList()) + flutterDartDefineArgs
     )
     inputs.dir(File(flutterModuleDir, "lib"))
     inputs.file(File(flutterModuleDir, "pubspec.yaml"))
     inputs.property("flutterDartDefines", flutterDartDefines)
+    inputs.property("v1009DualDeviceBuild", v1009DualDeviceBuild)
     outputs.dir(flutterReleaseAarRepo)
 }
 
@@ -108,7 +116,9 @@ android {
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
             // Keep ARM ABIs for real-device testing and release publishing.
-            abiFilters += if (isC2LocalInternalBuild) {
+            abiFilters += if (v1009DualDeviceBuild) {
+                listOf("x86_64", "arm64-v8a")
+            } else if (isC2LocalInternalBuild) {
                 listOf("x86_64")
             } else {
                 listOf("arm64-v8a")
@@ -129,6 +139,8 @@ android {
 
     buildTypes {
         debug {
+            // Keep Owner's existing application and its data untouched on both test devices.
+            if (v1009DualDeviceBuild) applicationIdSuffix = ".v1009test"
             buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
             buildConfigField("String", "API_BASE_URL", if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
             buildConfigField("String", "WS_BASE_URL", if (isV1006LocalBuild) "\"\"" else "\"ws://101.133.161.203:8081/\"")

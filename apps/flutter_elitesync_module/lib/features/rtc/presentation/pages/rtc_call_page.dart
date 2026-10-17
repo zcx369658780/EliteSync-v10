@@ -37,16 +37,18 @@ class RtcCallPage extends ConsumerStatefulWidget {
   ConsumerState<RtcCallPage> createState() => _RtcCallPageState();
 }
 
-class _RtcCallPageState extends ConsumerState<RtcCallPage> {
+class _RtcCallPageState extends ConsumerState<RtcCallPage>
+    with WidgetsBindingObserver {
   Timer? _pollTimer;
   bool _busy = false;
   int? _autoConnectedCallId;
-  int? _liveKitConnectedCallId;
+  int? _liveKitAttemptedCallId;
   late final RtcLiveKitService _liveKitService;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _liveKitService = ref.read(rtcLiveKitServiceProvider);
     ref
         .read(frontendTelemetryProvider)
@@ -59,9 +61,31 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
 
   @override
   void dispose() {
-    unawaited(_liveKitService.leave(callId: _liveKitConnectedCallId));
+    WidgetsBinding.instance.removeObserver(this);
+    unawaited(_liveKitService.leave(callId: widget.callId));
     _pollTimer?.cancel();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      // No background capture; the user explicitly re-enables devices on return.
+      unawaited(
+        _mediaAction(() async {
+          await _liveKitService.setCameraEnabled(false);
+          await _liveKitService.setMicrophoneEnabled(false);
+        }),
+      );
+    }
+  }
+
+  Future<void> _mediaAction(Future<void> Function() action) async {
+    try {
+      await action();
+    } catch (_) {
+      if (mounted) AppFeedback.showError(context, '媒体操作失败，请检查设备权限后重试');
+    }
   }
 
   Future<void> _refresh() async {
@@ -87,7 +111,6 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
       ref.invalidate(rtcCallProvider(widget.callId));
       if (!mounted) return;
       if (session.isTerminal) {
-        _liveKitConnectedCallId = null;
         unawaited(
           ref.read(rtcLiveKitServiceProvider).leave(callId: session.id),
         );
@@ -114,24 +137,55 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
   }
 
   Future<void> _syncLiveKit(RtcSessionEntity session) async {
-    if (session.mode != 'voice') return;
     final liveKit = _liveKitService;
     if (!liveKit.isEnabled) return;
 
     if (session.isTerminal) {
-      if (_liveKitConnectedCallId == session.id) {
-        await liveKit.leave(callId: session.id);
-      }
-      _liveKitConnectedCallId = null;
+      await liveKit.leave(callId: session.id);
       return;
     }
 
+    if (_busy) return;
     if (!['connecting', 'in_call'].contains(session.status)) return;
-    if (_liveKitConnectedCallId == session.id && liveKit.isConnected) return;
+    if (_liveKitAttemptedCallId == session.id) return;
+    _liveKitAttemptedCallId = session.id;
+    try {
+      await liveKit.ensureConnected(session.id);
+    } catch (_) {
+      if (mounted) setState(() {});
+      return;
+    }
+  }
 
-    await liveKit.ensureConnected(session.id);
-    if (liveKit.isConnected) {
-      _liveKitConnectedCallId = session.id;
+  Future<void> _reconnectMedia() async {
+    if (_busy || _liveKitService.isConnecting || _liveKitService.isConnected) {
+      return;
+    }
+    setState(() => _busy = true);
+    try {
+      // Never reuse the page's cached session or the previous room credentials.
+      final current = await ref
+          .read(rtcRemoteDataSourceProvider)
+          .fetchCall(widget.callId);
+      if (!mounted) return;
+      if (current.id != widget.callId ||
+          current.isTerminal ||
+          !['connecting', 'in_call'].contains(current.status)) {
+        throw StateError('通话当前不可重新连接');
+      }
+      await _liveKitService.leave(callId: widget.callId);
+      if (!mounted) return;
+      _liveKitAttemptedCallId = current.id;
+      // ensureConnected obtains fresh join information through the server gate.
+      await _liveKitService.ensureConnected(current.id);
+    } catch (_) {
+      await _liveKitService.leave(callId: widget.callId);
+      if (mounted) AppFeedback.showError(context, '当前通话授权或网络不可验证，媒体保持关闭');
+    } finally {
+      if (mounted) {
+        ref.invalidate(rtcCallProvider(widget.callId));
+        setState(() => _busy = false);
+      }
     }
   }
 
@@ -162,7 +216,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
       children: [
         AppInfoSectionCard(
           title: title,
-          subtitle: 'RTC 最小闭环',
+          subtitle: session.mode == 'video' ? '双向音视频' : '双向语音',
           leadingIcon: session.mode == 'video'
               ? Icons.videocam_outlined
               : Icons.call_outlined,
@@ -196,7 +250,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
                         ),
                         SizedBox(height: t.spacing.xxs),
                         Text(
-                          session.failureMessage ?? '语音优先通话骨架已接入',
+                          session.failureMessage ?? '以双方当前授权建立通话',
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: t.textSecondary),
                         ),
@@ -216,7 +270,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
                     onTap: null,
                   ),
                   AppChoiceChip(
-                    label: session.mode == 'video' ? '视频预留' : '语音优先',
+                    label: session.mode == 'video' ? '视频通话' : '语音通话',
                     onTap: null,
                   ),
                   if (session.latestEventName != null)
@@ -244,7 +298,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
               ),
               SizedBox(height: t.spacing.xxs),
               Text(
-                '当前以 1v1 语音优先体验为主，后续媒体能力会在单独阶段继续完善。',
+                '麦克风和摄像头仅在当前通话中使用，挂断后关闭。',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: t.textSecondary,
                   height: 1.35,
@@ -254,9 +308,70 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
           ),
         ),
         SizedBox(height: t.spacing.md),
+        if (session.mode == 'video' && !session.isTerminal) ...[
+          _videoPanel(),
+          SizedBox(height: t.spacing.md),
+        ],
+        if (_liveKitService.failureMessage != null && !session.isTerminal)
+          AppErrorState(
+            title: '媒体连接已关闭',
+            description: _liveKitService.failureMessage!,
+          ),
+        if (_liveKitService.isEnabled &&
+            ['connecting', 'in_call'].contains(session.status) &&
+            !session.isTerminal &&
+            _liveKitAttemptedCallId == session.id &&
+            !_liveKitService.isConnected &&
+            !_liveKitService.isConnecting)
+          AppSecondaryButton(
+            label: '重新连接',
+            isLoading: _busy,
+            onPressed: _busy ? null : _reconnectMedia,
+          ),
+        if (_liveKitService.isConnected) ...[
+          Wrap(
+            spacing: 8,
+            children: [
+              IconButton.filledTonal(
+                tooltip: _liveKitService.microphoneEnabled ? '静音' : '开启麦克风',
+                onPressed: () => _mediaAction(
+                  () => _liveKitService.setMicrophoneEnabled(
+                    !_liveKitService.microphoneEnabled,
+                  ),
+                ),
+                icon: Icon(
+                  _liveKitService.microphoneEnabled ? Icons.mic : Icons.mic_off,
+                ),
+              ),
+              if (session.mode == 'video') ...[
+                IconButton.filledTonal(
+                  tooltip: _liveKitService.cameraEnabled ? '关闭摄像头' : '开启摄像头',
+                  onPressed: () => _mediaAction(
+                    () => _liveKitService.setCameraEnabled(
+                      !_liveKitService.cameraEnabled,
+                    ),
+                  ),
+                  icon: Icon(
+                    _liveKitService.cameraEnabled
+                        ? Icons.videocam
+                        : Icons.videocam_off,
+                  ),
+                ),
+                IconButton.filledTonal(
+                  tooltip: '切换摄像头',
+                  onPressed: _liveKitService.cameraEnabled
+                      ? () => _mediaAction(_liveKitService.switchCamera)
+                      : null,
+                  icon: const Icon(Icons.cameraswitch),
+                ),
+              ],
+            ],
+          ),
+          SizedBox(height: t.spacing.md),
+        ],
         AppInfoSectionCard(
           title: '通话操作',
-          subtitle: '状态机最小闭环',
+          subtitle: '接听与结束',
           leadingIcon: Icons.tune_rounded,
           child: Column(
             children: [
@@ -439,53 +554,108 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage> {
     );
   }
 
+  Widget _videoPanel() {
+    final remote = _liveKitService.remoteVideoTrack;
+    final local = _liveKitService.localVideoTrack;
+    return AspectRatio(
+      aspectRatio: 4 / 3,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          ColoredBox(
+            color: Colors.black,
+            child: remote == null
+                ? const Center(
+                    child: Text(
+                      '等待对方视频',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                : VideoTrackRenderer(
+                    remote,
+                    key: ValueKey('remote-${remote.sid}'),
+                  ),
+          ),
+          Positioned(
+            right: 8,
+            bottom: 8,
+            width: 100,
+            height: 135,
+            child: Semantics(
+              key: const ValueKey('rtc-local-video-preview'),
+              label: '本机视频预览',
+              child: local == null
+                  ? const ColoredBox(
+                      color: Colors.black54,
+                      child: Icon(Icons.videocam_off, color: Colors.white),
+                    )
+                  : VideoTrackRenderer(
+                      local,
+                      key: ValueKey('local-${local.sid}'),
+                    ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final sessionAsync = ref.watch(rtcCallProvider(widget.callId));
     final liveKitService = ref.watch(rtcLiveKitServiceProvider);
     final t = context.appTokens;
 
-    return BrowseScaffold(
-      header: AppTopBar(
-        title: widget.title,
-        mode: AppTopBarMode.backTitle,
-        actions: [
-          IconButton(
-            tooltip: '刷新通话',
-            onPressed: _refresh,
-            icon: const Icon(Icons.refresh_rounded),
-          ),
-        ],
-      ),
-      body: sessionAsync.when(
-        loading: () => const AppLoadingSkeleton(lines: 6),
-        error: (e, _) => ListView(
-          padding: EdgeInsets.only(bottom: t.spacing.huge),
-          children: [
-            AppErrorState(
-              title: '通话加载失败',
-              description: e.toString(),
-              onRetry: _refresh,
+    return Scaffold(
+      body: BrowseScaffold(
+        header: AppTopBar(
+          title: widget.title,
+          mode: AppTopBarMode.backTitle,
+          actions: [
+            IconButton(
+              tooltip: '刷新通话',
+              onPressed: _refresh,
+              icon: const Icon(Icons.refresh_rounded),
             ),
           ],
         ),
-        data: (session) {
-          if (widget.autoConnect) {
+        body: sessionAsync.when(
+          loading: () => const AppLoadingSkeleton(lines: 6),
+          error: (e, _) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                unawaited(_liveKitService.leave(callId: widget.callId));
+              }
+            });
+            return ListView(
+              padding: EdgeInsets.only(bottom: t.spacing.huge),
+              children: [
+                AppErrorState(
+                  title: '通话加载失败',
+                  description: e.toString(),
+                  onRetry: _refresh,
+                ),
+              ],
+            );
+          },
+          data: (session) {
+            if (widget.autoConnect) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
+                unawaited(_autoConnect(session));
+              });
+            }
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!mounted) return;
-              unawaited(_autoConnect(session));
+              unawaited(_syncLiveKit(session));
             });
-          }
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            unawaited(_syncLiveKit(session));
-          });
-          return _buildContent(
-            session,
-            t,
-            remoteAudioTrack: liveKitService.remoteAudioTrack,
-          );
-        },
+            return _buildContent(
+              session,
+              t,
+              remoteAudioTrack: liveKitService.remoteAudioTrack,
+            );
+          },
+        ),
       ),
     );
   }

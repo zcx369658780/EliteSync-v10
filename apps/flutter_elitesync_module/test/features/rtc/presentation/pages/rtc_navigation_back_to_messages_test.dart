@@ -21,12 +21,12 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class FakeAppTelemetryService extends AppTelemetryService {
   FakeAppTelemetryService()
-      : super(
-          apiClient: ApiClient(
-            dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
-          ),
-          appVersionProvider: () async => '0.04.06',
-        );
+    : super(
+        apiClient: ApiClient(
+          dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
+        ),
+        appVersionProvider: () async => '0.04.06',
+      );
 
   @override
   Future<NetworkResult<Map<String, dynamic>>> postEvent(
@@ -40,11 +40,11 @@ class FakeAppTelemetryService extends AppTelemetryService {
 
 class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   FakeRtcRemoteDataSource(this._session)
-      : super(
-          apiClient: ApiClient(
-            dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
-          ),
-        );
+    : super(
+        apiClient: ApiClient(
+          dio: Dio(BaseOptions(baseUrl: 'http://127.0.0.1')),
+        ),
+      );
 
   final RtcSessionEntity _session;
 
@@ -97,19 +97,13 @@ Widget _wrap({
           ),
           GoRoute(
             path: '${AppRouteNames.rtcCall}/:callId',
-            builder: (context, state) => const RtcCallPage(
-              callId: 1,
-              title: '语音通话',
-              autoConnect: false,
-            ),
+            builder: (context, state) =>
+                const RtcCallPage(callId: 1, title: '语音通话', autoConnect: false),
           ),
           GoRoute(
             path: '${AppRouteNames.rtcIncomingCall}/:callId',
-            builder: (context, state) => const RtcIncomingCallPage(
-              callId: 2,
-              title: '来电',
-              autoAccept: false,
-            ),
+            builder: (context, state) =>
+                const RtcIncomingCallPage(callId: 2, title: '来电'),
           ),
           GoRoute(
             path: '${AppRouteNames.rtcCallResult}/:callId',

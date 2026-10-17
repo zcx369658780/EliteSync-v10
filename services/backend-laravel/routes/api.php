@@ -74,6 +74,11 @@ Route::prefix('v1')->group(function () {
     });
 
     // 兼容旧客户端路径
+    Route::post('/rtc-guard/{action}', function (\Illuminate\Http\Request $r, string $action, \App\Services\RtcAuthorityService $authority) {
+        abort_unless(in_array($action, ['authorize','sweep','audit'], true), 404);
+        return app(\App\Http\Controllers\Api\V1\RtcGuardController::class)->$action($r, $authority);
+    });
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/questions', [QuestionnaireController::class, 'questions']);
         Route::post('/questions/answers', [QuestionnaireController::class, 'submitAnswers']);
@@ -159,7 +164,7 @@ Route::prefix('v1')->group(function () {
                 ->middleware('throttle:notifications');
         });
 
-        Route::prefix('rtc')->group(function () {
+        Route::prefix('rtc')->middleware([\App\Http\Middleware\RtcTransaction::class])->group(function () {
             Route::get('/calls', [RtcController::class, 'index']);
             Route::post('/calls', [RtcController::class, 'store']);
             Route::get('/calls/{callId}', [RtcController::class, 'show'])

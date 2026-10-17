@@ -1,0 +1,306 @@
+{
+  "roots": {
+    "R": "current session v1009-r1",
+    "E": "source session version-regression",
+    "A": "source session audio-echo-software"
+  },
+  "current_session": "01a14441-a7c4-7951-aa79-58748c6393a0",
+  "source_session": "01a14250-b40a-7410-ac1d-61dde1ec0644",
+  "entries": [
+    {
+      "locator": "E/php-final-after-deadlock-fix.txt",
+      "bytes": 50139,
+      "sha256": "148ba0baa7d4881c29d634155bb0545b25190b67795eb95cdfa9ac080245ca3d",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/php-pdo-final-related.txt",
+      "bytes": 429,
+      "sha256": "37e1769c42e01b7d718393f8509c0d58176d02fc33ad378020c4c5adf794010c",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/php-suite-failure-comparison.json",
+      "bytes": 4044,
+      "sha256": "cef874c782ec9e070b4d30b4d5d25618748560144a991436ad8dcef68680b661",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider-final-installed-package-hashes.json",
+      "bytes": 363,
+      "sha256": "5aba3f6638f6184f6d6931f0e884ec03166be49c18ee57e2f53d54d9703ba3d9",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider-fix-final-package-manifest.json",
+      "bytes": 2843,
+      "sha256": "3bd6bffb04f69cadc3dde73e9128f8603c097c96d678fd06cb8fa4d5de3536fb",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider59-before-revoke-state.json",
+      "bytes": 261,
+      "sha256": "c40c8353262b2a709089e910277b3f28c7b5eb427d8020fccca0ec8d806c40c9",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider59-final-v2-call-identity.json",
+      "bytes": 47,
+      "sha256": "e1bb98f2cb4bb9cee9039baf425f2660ede29df3b398ee5a1950ac8d51c8d5eb",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider59-current-PHONE_XIAOMI_TEST-events.jsonl",
+      "bytes": 11536,
+      "sha256": "fb8d485ff4829f575cfc740469b43d2125325de1753a34205b5ba7390201f37a",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/provider59-connected-AVD_MANUAL-events.jsonl",
+      "bytes": 5359,
+      "sha256": "e4fb537015417decddac2209abe77bf13aa9ad5f5c0fd1feaed0737df253f319",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/call49-cn-safe-summary.json",
+      "bytes": 3607,
+      "sha256": "7b027778ef7920771f3bfe9cc36867a9a0865baeac2a4e8b2cf590ea7fc3a4d4",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/rotation-final-resource-stop.json",
+      "bytes": 2252,
+      "sha256": "266b949294cf07f59c440326d29466e86639975852a668dbbe5ea20ce2631645",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "E/FINAL_CANDIDATE_DELIVERY_RECEIPT.json",
+      "bytes": 850,
+      "sha256": "d1e208d9074642060631cc327a9b2536493848cfe6cd89dd77fef767be566509",
+      "visibility": "LOCAL_ONLY",
+      "kind": "prior evidence; not rerun"
+    },
+    {
+      "locator": "A/agc-manifest.json",
+      "bytes": 2374,
+      "sha256": "165792dd5a903aa9b2f6c2e780590b0aa7296b8fa296b44b9cb0077ca289249e",
+      "visibility": "LOCAL_ONLY",
+      "kind": "original audio/device receipt"
+    },
+    {
+      "locator": "A/agc-installed-runtime-receipt.json",
+      "bytes": 598,
+      "sha256": "21abb4876b47bbf12da48438044c4b58646eaa527b81404e981457315b5f5022",
+      "visibility": "LOCAL_ONLY",
+      "kind": "original audio/device receipt"
+    },
+    {
+      "locator": "A/agc-avd-install-receipt.json",
+      "bytes": 97,
+      "sha256": "aa37a9fc3740a74aa95ca2af2258b3e83e31121f7607be171b1673df2305ed71",
+      "visibility": "LOCAL_ONLY",
+      "kind": "original audio/device receipt"
+    },
+    {
+      "locator": "A/agc-phone-install-receipt.json",
+      "bytes": 97,
+      "sha256": "826580f10748b825a38a979d70065cab9b9dd8aaf9c1e3ce3573be8207671bfb",
+      "visibility": "LOCAL_ONLY",
+      "kind": "original audio/device receipt"
+    },
+    {
+      "locator": "A/owner-agc-profile-result.json",
+      "bytes": 301,
+      "sha256": "97351bba80096d6bc08d104880613005337c252369fe41a4d9bd4f268a04be1e",
+      "visibility": "LOCAL_ONLY",
+      "kind": "original audio/device receipt"
+    },
+    {
+      "locator": "R/private/baseline08-targeted.stdout",
+      "bytes": 58041,
+      "sha256": "55255db3b8a27fd165ccbbe607b3b76fcf28dd35929584a97b8fb98809b0dbd2",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/baseline08-targeted.stderr",
+      "bytes": 235,
+      "sha256": "be2e309786a262d95a3f650a630d6d85b19f859e610e023d6c18f0da2197fb15",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/baseline08-targeted.xml",
+      "bytes": 70942,
+      "sha256": "d7ac6a7aeb228be2904ecb80a8e8be1a665641f2b21debdb9d870afccb37c6e1",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted.stdout",
+      "bytes": 58081,
+      "sha256": "40e2b4cc9e88d3bbcf48f9c9f3aaaf11e97e9a8f883505fec978c6212918ddc4",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted.stderr",
+      "bytes": 235,
+      "sha256": "be2e309786a262d95a3f650a630d6d85b19f859e610e023d6c18f0da2197fb15",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted.xml",
+      "bytes": 71009,
+      "sha256": "d22606d67f3874eface60e26b4e70fd365b6e13b6061cbe4790c8e5a6fcc3fe9",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/baseline08-targeted-v2.stdout",
+      "bytes": 52382,
+      "sha256": "9d5aecb946a5bf32dbaac65c6d329134b6ea52e9a2f852f31bd10ec785a857f8",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/baseline08-targeted-v2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/baseline08-targeted-v2.xml",
+      "bytes": 65314,
+      "sha256": "65b0f5ef3ae599f6974c94acba0c82d3a0ea4a8d9db169c95acd066d901e2bec",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted-v2.stdout",
+      "bytes": 52419,
+      "sha256": "ee4821b081b542f8f2616a084c7f47f21ead6b5a37f01d6ed9712d3d76e297db",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted-v2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/candidate09-targeted-v2.xml",
+      "bytes": 65378,
+      "sha256": "c8755abfabb6f27a09ff0595477c788e67993c809cf6c21380fbeaba77e044db",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/final-related.stdout",
+      "bytes": 472,
+      "sha256": "f4c18e15d2843b49d6473e26337e3a36d77fe8867fb364f070f6c2a59140c4dc",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/final-related.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/final-related.xml",
+      "bytes": 17475,
+      "sha256": "1ee8a1bf3d0ee9265b91da02c4d0933e91012574f825c77ece75d37d6fca044c",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/private/firewall-before.json",
+      "bytes": 11549,
+      "sha256": "ad2566651b6db4582d40e775137fb292313c4d5cea5006923cc63c6e11d4c5ce",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 raw stream or original readback"
+    },
+    {
+      "locator": "R/Remove-FourV1009Rules.ps1",
+      "bytes": 2843,
+      "sha256": "69f914cc5c967d958ba18f9d3e777427f0a78947943bc2906021586b2274be90",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/firewall-cleanup.stdout",
+      "bytes": 86,
+      "sha256": "0ff337eab3a203b6d0715237d8d8f9f430231b03298ed0ea3d20e6b34967e7f6",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/firewall-cleanup.stderr",
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/firewall-cleanup-result.json",
+      "bytes": 1659,
+      "sha256": "3bff779645b21e397af9f40c1c6f663ed7a4f35202303f20d2c38e3252dcfb8f",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/resource-containers.txt",
+      "bytes": 276,
+      "sha256": "0ebea8a1ba76cfbead84c5a1411a77679d41cace44ba043dbdf5fdbe64722aa1",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/resource-volume.txt",
+      "bytes": 25,
+      "sha256": "7e7ec2c25ceed136f3d2d3afb69819d7ea59ac266b1a94844fba49c9c3ede972",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/prepare-comparison.py",
+      "bytes": 1954,
+      "sha256": "4ab236e3b998c16e220cf8882585aa302a7a7d3a4493db697e3bfeb76f876da7",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/run-targeted.py",
+      "bytes": 1520,
+      "sha256": "4b63eb157586c375ef3476a3b5b6751b31c929b18fc872781ed89d0819070557",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    },
+    {
+      "locator": "R/run-targeted-v2.py",
+      "bytes": 2037,
+      "sha256": "820815e3d23a71b444c0a1c51d430df9e7ac2279c811a5dfff7000980ed81274",
+      "visibility": "LOCAL_ONLY",
+      "kind": "R1 exact command script / result"
+    }
+  ],
+  "stream_limit": "Original full PHP command merged stdout/stderr. Its raw separate stderr is unavailable; R1 test streams separately preserved. Source session line3577 records TEST_EXIT=2 while wrapper exit is 0."
+}

@@ -153,7 +153,7 @@ class MediaAssetService
             throw $e;
         }
 
-        if($asset->storage_disk==='v1007')$asset->forceFill(['public_url'=>rtrim((string)config('app.url'),'/').'/api/v1/media/'.$asset->id.'/content'])->save();
+        if(in_array($asset->storage_disk,['v1007','v1009'],true))$asset->forceFill(['public_url'=>rtrim((string)config('app.url'),'/').'/api/v1/media/'.$asset->id.'/content'])->save();
         return $asset->refresh();
     }
 

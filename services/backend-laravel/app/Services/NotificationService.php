@@ -25,6 +25,18 @@ class NotificationService
     public function presentationForUser(AppNotificationItem $notification, int $viewerId): array
     {
         $payload = (array) ($notification->payload ?? []);
+        if (str_starts_with((string)$notification->kind, 'rtc_call_')) {
+            $safe = ['title'=>'通话通知','body'=>'请打开APP查看当前有权通话','payload'=>[]];
+            try {
+                $id = (int)($payload['route_args']['call_id'] ?? 0);
+                $call = \App\Models\RtcSession::find($id);
+                if ($call && app(RtcAuthorityService::class)->authorized($call, $viewerId) && in_array($call->status,['calling','ringing','connecting','in_call'],true)) {
+                    $safe['payload'] = ['route_name'=>'rtc_call','route_args'=>['call_id'=>$call->id, 'mode'=>$call->mode]];
+                }
+            } catch (Throwable) {}
+            return $safe;
+        }
+
         if (! $this->isPrivateMessage((string) $notification->kind, $payload)) {
             return ['title' => $notification->title, 'body' => $notification->body ?? '', 'payload' => $payload];
         }

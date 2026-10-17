@@ -1,0 +1,122 @@
+{
+  "before": [
+    {
+      "Name": "EliteSync-v1009-manual-rtc-7882-20261016-block-others",
+      "DisplayName": "EliteSync v1009 manual RTC block other IPv4 sources",
+      "Protocol": "UDP",
+      "LocalPort": "7882",
+      "InterfaceAlias": "WLAN",
+      "Action": "Block",
+      "Enabled": "True",
+      "RemoteAddressCount": 2,
+      "LocalAddressCount": 11,
+      "address_detail": "LOCAL_ONLY; allow-test has 3 exact sources; block-others has 63 complementary IPv4 ranges excluding allowed sources; host-local address constrained"
+    },
+    {
+      "Name": "EliteSync-v1009-manual-rtc-7882-20261016-allow-test",
+      "DisplayName": "EliteSync v1009 manual RTC exact test sources",
+      "Protocol": "UDP",
+      "LocalPort": "7882",
+      "InterfaceAlias": "WLAN",
+      "Action": "Allow",
+      "Enabled": "True",
+      "RemoteAddressCount": 2,
+      "LocalAddressCount": 11,
+      "address_detail": "LOCAL_ONLY; allow-test has 3 exact sources; block-others has 63 complementary IPv4 ranges excluding allowed sources; host-local address constrained"
+    },
+    {
+      "Name": "EliteSync-v1009-manual-rtc-7881-20261016-block-others",
+      "DisplayName": "EliteSync v1009 manual RTC TCP block-others",
+      "Protocol": "TCP",
+      "LocalPort": "7881",
+      "InterfaceAlias": "WLAN",
+      "Action": "Block",
+      "Enabled": "True",
+      "RemoteAddressCount": 2,
+      "LocalAddressCount": 11,
+      "address_detail": "LOCAL_ONLY; allow-test has 3 exact sources; block-others has 63 complementary IPv4 ranges excluding allowed sources; host-local address constrained"
+    },
+    {
+      "Name": "EliteSync-v1009-manual-rtc-7881-20261016-allow-test",
+      "DisplayName": "EliteSync v1009 manual RTC TCP allow-test",
+      "Protocol": "TCP",
+      "LocalPort": "7881",
+      "InterfaceAlias": "WLAN",
+      "Action": "Allow",
+      "Enabled": "True",
+      "RemoteAddressCount": 2,
+      "LocalAddressCount": 11,
+      "address_detail": "LOCAL_ONLY; allow-test has 3 exact sources; block-others has 63 complementary IPv4 ranges excluding allowed sources; host-local address constrained"
+    }
+  ],
+  "provenance": [
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/PROPOSED_ALLOW_MANUAL_RTC_UDP.ps1",
+      "sha256": "4f775f139a96d5fd229856d7a709a01c1ca4b6e7b61344597354deff5e97346b"
+    },
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/PROPOSED_ALLOW_MANUAL_RTC_TCP.ps1",
+      "sha256": "378766974fdfe6b7b4afe7873a6f5adc76286e34c383627659e33d93eae26082"
+    },
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/APPLY_SCOPED_RULES_CAPTURE.ps1",
+      "sha256": "ae4e46d13171e14f79ae79807505269d41ec004a9358ba0671bd6b8821db65b0"
+    },
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/ADJUST_HOST_LOOPBACK_ONLY.ps1",
+      "sha256": "2fe32951059a2663f52bb536898f6765ddd6c6b4c2b8d950fe927588d247bc5c"
+    },
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/firewall-exact-readback.json",
+      "sha256": "8bdfa558ac5aa30bfbb9887f3304fcf268affe5348680779bdfb9cba4546ef07"
+    },
+    {
+      "local_only_relative": "Q/manual-device-20261016/private/firewall-tcp-readback.json",
+      "sha256": "f11b146d7fd308bd0b4f0ee2db6cb2d7582e07e127f2f4c56c3d37ed6e7555e5"
+    }
+  ],
+  "after": {
+    "unrelated_rule_identity_and_enabled_direction_action_profile_unchanged": true,
+    "time": "2026-10-16T18:51:41.7965431+08:00",
+    "exit": 0,
+    "all_after_count": 828,
+    "remaining_count": 0,
+    "owner_authorization": "Current Owner explicitly present and approved four exact rules and one UAC",
+    "all_before_count": 832,
+    "events": [
+      {
+        "NativeExit": null,
+        "Name": "EliteSync-v1009-manual-rtc-7882-20261016-block-others",
+        "Success": true,
+        "ExitConvention": "PowerShell cmdlet success or terminating exception"
+      },
+      {
+        "NativeExit": null,
+        "Name": "EliteSync-v1009-manual-rtc-7882-20261016-allow-test",
+        "Success": true,
+        "ExitConvention": "PowerShell cmdlet success or terminating exception"
+      },
+      {
+        "NativeExit": null,
+        "Name": "EliteSync-v1009-manual-rtc-7881-20261016-block-others",
+        "Success": true,
+        "ExitConvention": "PowerShell cmdlet success or terminating exception"
+      },
+      {
+        "NativeExit": null,
+        "Name": "EliteSync-v1009-manual-rtc-7881-20261016-allow-test",
+        "Success": true,
+        "ExitConvention": "PowerShell cmdlet success or terminating exception"
+      }
+    ]
+  },
+  "scope": "Only four uniquely named v10.0.9 temporary inbound WLAN rules; Owner explicitly present and authorized one UAC; no service starts",
+  "readback": "Four precise rule names absent; unrelated names/enabled/direction/action/profile compare equal. Other unrelated filter fields not compared.",
+  "exit": 0,
+  "exit_evidence": {
+    "script_recorded_exit": 0,
+    "parent_observed_elevated_process_exit": "NOT_CAPTURED",
+    "each_cmdlet_success": true,
+    "independent_readback_remaining": 0
+  }
+}

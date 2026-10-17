@@ -6,6 +6,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:livekit_client/livekit_client.dart';
 
+// Only aggregate one PCM block; never retain samples or treat this as playback proof.
+@visibleForTesting
+({int zeroCrossings, double tone440, double tone880}) rtcAudioToneDiagnostics(
+  List<int> samples,
+  int sampleRate,
+) {
+  if (samples.length < 2 || sampleRate <= 0) {
+    return (zeroCrossings: 0, tone440: 0, tone880: 0);
+  }
+  final mean =
+      samples.fold<double>(0, (sum, sample) => sum + sample) / samples.length;
+  var energy = 0.0;
+  var crossings = 0;
+  var previous = samples.first - mean;
+  for (final sample in samples) {
+    final centered = sample - mean;
+    energy += centered * centered;
+    if ((previous < 0 && centered >= 0) || (previous >= 0 && centered < 0)) {
+      crossings += 1;
+    }
+    previous = centered;
+  }
+  double toneFraction(double hz) {
+    if (energy == 0 || hz >= sampleRate / 2) return 0;
+    final coefficient = 2 * math.cos(2 * math.pi * hz / sampleRate);
+    var previous = 0.0;
+    var beforePrevious = 0.0;
+    for (final sample in samples) {
+      final current = sample - mean + coefficient * previous - beforePrevious;
+      beforePrevious = previous;
+      previous = current;
+    }
+    final power =
+        previous * previous +
+        beforePrevious * beforePrevious -
+        coefficient * previous * beforePrevious;
+    return (2 * power / (samples.length * energy)).clamp(0.0, 1.0);
+  }
+
+  return (
+    zeroCrossings: crossings,
+    tone440: toneFraction(440),
+    tone880: toneFraction(880),
+  );
+}
+
 class RtcAudioSpectrumBar extends StatefulWidget {
   const RtcAudioSpectrumBar({super.key, required this.audioTrack});
 
@@ -27,6 +73,8 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
   DateTime? _lastFrameAt;
   String? _boundTrackId;
   double _lastPeak = 0.0;
+  final Stopwatch _diagnosticClock = Stopwatch()..start();
+  int? _lastDiagnosticAt;
 
   String? _safeTrackId(AudioTrack? track) {
     if (track == null) return null;
@@ -66,6 +114,7 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
 
   Future<void> _bindTrack(AudioTrack? track) async {
     await _unbindTrack();
+    _lastDiagnosticAt = null;
     if (!mounted) return;
 
     if (track == null) {
@@ -186,33 +235,34 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
     final frameAbsAverage = samples.isEmpty
         ? 0.0
         : samples.fold<double>(
-            0.0,
-            (sum, sample) => sum + sample.abs().toDouble(),
-          ) /
-            samples.length /
-            32768.0;
+                0.0,
+                (sum, sample) => sum + sample.abs().toDouble(),
+              ) /
+              samples.length /
+              32768.0;
     final framePeak = samples.isEmpty
         ? 0.0
         : samples
-            .map((sample) => sample.abs().toDouble())
-            .fold<double>(0.0, math.max) /
-            32768.0;
+                  .map((sample) => sample.abs().toDouble())
+                  .fold<double>(0.0, math.max) /
+              32768.0;
 
     if (!mounted) return;
     setState(() {
       _frameCount += 1;
       _lastFrameAt = DateTime.now();
       _lastPeak = framePeak;
-      _status = framePeak <= _silentThreshold
-          ? '远端音轨已接入但无声'
-          : '远端音轨输入中';
+      _status = framePeak <= _silentThreshold ? '远端音轨已接入但无声' : '远端音轨输入中';
       _levels = List<double>.generate(
         _barCount,
         (i) => math.max(nextLevels[i], _levels[i] * _decay),
       );
     });
 
-    if (_frameCount == 1 || _frameCount % 25 == 0) {
+    final now = _diagnosticClock.elapsedMilliseconds;
+    if (_lastDiagnosticAt == null || now - _lastDiagnosticAt! >= 1000) {
+      _lastDiagnosticAt = now;
+      final tones = rtcAudioToneDiagnostics(samples, frame.sampleRate);
       debugPrint(
         'RTC_LIVEKIT_AUDIO_FRAME '
         'trackId=${_boundTrackId ?? "none"} '
@@ -222,6 +272,9 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
         'bytes=${frame.data.lengthInBytes} '
         'absAvg=${frameAbsAverage.toStringAsFixed(4)} '
         'peak=${framePeak.toStringAsFixed(4)} '
+        'zeroCrossings=${tones.zeroCrossings} '
+        'tone440=${tones.tone440.toStringAsFixed(4)} '
+        'tone880=${tones.tone880.toStringAsFixed(4)} '
         'frames=$_frameCount',
       );
     }
@@ -316,10 +369,10 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
           track == null
               ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
               : _frameCount == 0
-                  ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
-                  : _lastPeak <= _silentThreshold
-                      ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
-                      : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
+              ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
+              : _lastPeak <= _silentThreshold
+              ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
+              : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
           style: Theme.of(
             context,
           ).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),

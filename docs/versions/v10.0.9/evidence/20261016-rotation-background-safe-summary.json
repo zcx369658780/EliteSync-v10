@@ -1,0 +1,168 @@
+{
+  "call_id": 61,
+  "real_APP_end": {
+    "call_id": 61,
+    "started_at": 1792145471.3573494,
+    "method": "fresh_screenshot_APP_hangup",
+    "exit": 0,
+    "completed_at": 1792145471.5831914
+  },
+  "rotation": {
+    "call_id": 61,
+    "original": {
+      "accelerometer_rotation": "1",
+      "user_rotation": "0"
+    },
+    "stages": [
+      {
+        "label": "portrait-before",
+        "time": 1792145184.136945,
+        "screenshot_size": [
+          1440,
+          3120
+        ],
+        "rotation_markers": [
+          "ROTATION_0"
+        ]
+      },
+      {
+        "label": "landscape",
+        "time": 1792145187.741621,
+        "screenshot_size": [
+          3120,
+          1440
+        ],
+        "rotation_markers": [
+          "ROTATION_90"
+        ]
+      },
+      {
+        "label": "portrait-restored",
+        "time": 1792145194.064921,
+        "screenshot_size": [
+          1440,
+          3120
+        ],
+        "rotation_markers": [
+          "ROTATION_0"
+        ]
+      }
+    ],
+    "rotate_requested_at": 1792145184.2544725,
+    "landscape_verified": true,
+    "landscape_call": {
+      "action": "call",
+      "host_time": 1792145187.8958642,
+      "status": 200,
+      "call": {
+        "id": 61,
+        "status": "in_call",
+        "mode": "video",
+        "failure_code": null,
+        "ended_at": null,
+        "initiator_user_id": 3,
+        "peer_user_id": 2
+      }
+    },
+    "restored_at": 1792145191.362705,
+    "restored_settings": {
+      "accelerometer_rotation": "1",
+      "user_rotation": "0"
+    }
+  },
+  "background": {
+    "call_id": 61,
+    "stages": [
+      {
+        "label": "foreground-before-home",
+        "time": 1792145285.8910756,
+        "app_resumed": true,
+        "camera_client_package_in_active_header": true,
+        "record_appops_running": true
+      },
+      {
+        "label": "background",
+        "time": 1792145289.1143148,
+        "app_resumed": false,
+        "camera_client_package_in_active_header": false,
+        "record_appops_running": false
+      },
+      {
+        "label": "foreground-after-home",
+        "time": 1792145293.6972508,
+        "app_resumed": true,
+        "camera_client_package_in_active_header": false,
+        "record_appops_running": false
+      }
+    ],
+    "home_requested_at": 1792145285.8916047,
+    "foreground_requested_at": 1792145291.1797817,
+    "after_call": {
+      "action": "call",
+      "host_time": 1792145293.8615825,
+      "status": 200,
+      "call": {
+        "id": 61,
+        "status": "in_call",
+        "mode": "video",
+        "failure_code": null,
+        "ended_at": null,
+        "initiator_user_id": 3,
+        "peer_user_id": 2
+      }
+    }
+  },
+  "explicit_reenable": {
+    "time": 1792145348.4661338,
+    "camera_active": true,
+    "mic_appops_running": true
+  },
+  "endpoints": {
+    "PHONE_XIAOMI_TEST": {
+      "leave_seconds_from_UI_action_start": 0.7899312973022461,
+      "rtp_after_end_plus5": 0
+    },
+    "AVD_MANUAL": {
+      "leave_seconds_from_UI_action_start": 1.1246654987335205,
+      "rtp_after_end_plus5": 0
+    }
+  },
+  "AVD_video_received_on_phone": {
+    "rotation": {
+      "samples": 2,
+      "decoded_frames_range": [
+        855,
+        885
+      ]
+    },
+    "after_explicit_reenable": {
+      "samples": 30,
+      "decoded_frames_range": [
+        1792,
+        2775
+      ]
+    }
+  },
+  "ended_native_resources": {
+    "PHONE_XIAOMI_TEST": {
+      "camera_active": false,
+      "microphone_appops_running": false
+    },
+    "AVD_MANUAL": {
+      "camera_active": false,
+      "microphone_appops_running": false
+    }
+  },
+  "rotation_original_settings_still_restored": true,
+  "old_unexpired_jwt_denial": {
+    "action": "probe",
+    "host_time": 1792145477.7265608,
+    "current_join_status": 404,
+    "saved_jwt_seconds_remaining": 51.69297432899475,
+    "saved_jwt_validate_status": 403,
+    "saved_jwt_ws_status": 403,
+    "raw_loopback_7880_reachable": false,
+    "raw_loopback_7881_reachable": false
+  },
+  "helper_failure_retained": "rotation61-end-ui.stderr fresh UI dump unavailable; no tap; fresh screenshot APP hangup then succeeded"
+}

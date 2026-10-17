@@ -32,9 +32,17 @@ class MediaController extends Controller
 
     public function store(Request $request, MediaAssetService $service): JsonResponse
     {
+        if (config('media.disk') === 'v1009') {
+            abort_unless(app(\App\Services\LiveConsentService::class)->enabled(), 404);
+        }
         if(app(\App\Services\LiveConsentService::class)->enabled()){
-            abort_unless(config('media.disk')==='v1007',422,'private media configuration required');
-            $request->validate(['file'=>'required|image|max:5120','storage_key'=>'prohibited','public_url'=>'prohibited']);
+            abort_unless(in_array(config('media.disk'), ['v1007', 'v1009'], true),422,'private media configuration required');
+            $request->validate(['media_type'=>'required|in:image,video', 'file'=>'required|file', 'storage_key'=>'prohibited','public_url'=>'prohibited']);
+            if ($request->input('media_type') === 'video') {
+                abort_unless(config('media.disk') === 'v1009', 422, 'private video configuration required');
+            } else {
+                $request->validate(['file'=>'required|image|max:5120']);
+            }
         }
         $data = $request->validate([
             'media_type' => ['required', 'string', 'max:24'],
@@ -50,6 +58,10 @@ class MediaController extends Controller
             'public_url' => ['nullable', 'string', 'max:512'],
             'metadata' => ['nullable', 'array'],
         ]);
+
+        if (app(\App\Services\LiveConsentService::class)->enabled() && $request->input('media_type') === 'video') {
+            $data = array_merge($data, app(\App\Services\PrivateVideoValidator::class)->validate($request->file('file')));
+        }
 
         try {
             if ($request->hasFile('file')) {
@@ -121,7 +133,7 @@ class MediaController extends Controller
     public function content(Request $request,int $assetId)
     {
         $asset = MediaAsset::query()->find($assetId);
-        if($asset && $asset->storage_disk==='v1007')return $this->privateContent($request,$assetId,(int)$asset->owner_user_id);
+        if($asset && in_array($asset->storage_disk, ['v1007', 'v1009'], true))return $this->privateContent($request,$assetId,(int)$asset->owner_user_id);
 
         if (!$asset) {
             return response()->json(['message' => 'media asset not found'], 404);
@@ -182,9 +194,14 @@ class MediaController extends Controller
                 $allowed=$allowed||($service->gates((int)$viewer->id,$peer)['live_read_allowed']??false);
             }}
             $asset=MediaAsset::whereKey($id)->lockForUpdate()->first();
-            if(!$allowed||!$asset||!$asset->isBackingObjectAvailable())return response()->json(['message'=>'media asset unavailable'],404);
-            $response=response()->file(Storage::disk('v1007')->path($asset->storage_key),['Content-Type'=>$asset->mime_type,'X-Content-Type-Options'=>'nosniff']);
-            $response->setPrivate();$response->headers->set('Cache-Control','private, no-store');return $response;
+            if(!$allowed||!$asset||!in_array($asset->storage_disk, ['v1007', 'v1009'], true)
+                ||($asset->storage_disk === 'v1009' && $asset->status !== 'ready')||!$asset->isBackingObjectAvailable())return response()->json(['message'=>'media asset unavailable'],404);
+            $response=response()->file(Storage::disk($asset->storage_disk)->path($asset->storage_key),['Content-Type'=>$asset->mime_type,'X-Content-Type-Options'=>'nosniff']);
+            $response->setPrivate();
+            $response->headers->set('Cache-Control','private, no-store, max-age=0');
+            $response->headers->set('Accept-Ranges', 'bytes');
+            $response->headers->set('Vary', 'Authorization, Cookie');
+            return $response;
         });
     }
 }

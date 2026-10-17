@@ -1,0 +1,30 @@
+{
+  "first_pair": {
+    "exit_each": 2,
+    "counts": "16 tests, 58 assertions, 5 errors, 11 failures",
+    "limitation": "missing question_bank fixture, extra MatchPayload setup error; retained, superseded by v2"
+  },
+  "v2_pair": {
+    "exit_each": 2,
+    "counts": "16 tests, 62 assertions, 4 errors, 12 failures",
+    "fix": "restore tracked question_bank at each fixed ref; avoid PHPUnit wrapper duplicate constant warning; no product/test edit"
+  },
+  "analysis_script_failures": [
+    {
+      "exit": 1,
+      "reason": "Python default GBK read raised UnicodeDecodeError; explicit UTF-8 fixed analysis only"
+    },
+    {
+      "exit": 1,
+      "reason": "raw blob verification detected archive CRLF question-bank conversion; diagnosed and recorded normalized-byte + JSON equality; no code/fixture content edit"
+    },
+    {
+      "exit": 1,
+      "reason": "Audio linkage temporary JSON initially saved in Windows default encoding; explicit UTF-8 regeneration before publication"
+    },
+    {
+      "exit": 1,
+      "reason": "Raw worktree source SHA differs from canonical Git for three CRLF files; explicit raw/canonical hashes and normalized content equivalence now recorded; no product edit"
+    }
+  ]
+}

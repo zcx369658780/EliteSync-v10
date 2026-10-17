@@ -33,7 +33,9 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
   @override
   void initState() {
     super.initState();
-    ref.read(frontendTelemetryProvider).rtcCallEntryOpened(sourcePage: widget.sourcePage);
+    ref
+        .read(frontendTelemetryProvider)
+        .rtcCallEntryOpened(sourcePage: widget.sourcePage);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _refreshPermissionState(showFeedback: false);
@@ -42,8 +44,9 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
 
   Future<void> _refreshPermissionState({required bool showFeedback}) async {
     if (_busy) return;
-    final granted =
-        await ref.read(rtcPermissionServiceProvider).hasVoiceCallPermission();
+    final granted = await ref
+        .read(rtcPermissionServiceProvider)
+        .hasVoiceCallPermission();
     if (!mounted) return;
     if (granted) {
       if (showFeedback) {
@@ -98,11 +101,16 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
 
   Widget _buildContent(dynamic t) {
     return ListView(
-      padding: EdgeInsets.fromLTRB(t.spacing.pageHorizontal, t.spacing.md, t.spacing.pageHorizontal, t.spacing.huge),
+      padding: EdgeInsets.fromLTRB(
+        t.spacing.pageHorizontal,
+        t.spacing.md,
+        t.spacing.pageHorizontal,
+        t.spacing.huge,
+      ),
       children: [
         AppInfoSectionCard(
           title: '通话权限',
-          subtitle: '语音优先 RTC 的最小设备门槛',
+          subtitle: '通话需要设备权限',
           leadingIcon: Icons.mic_none_rounded,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,26 +129,31 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
                       children: [
                         Text(
                           '麦克风权限',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: t.textPrimary,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: t.textPrimary,
+                                fontWeight: FontWeight.w800,
+                              ),
                         ),
                         SizedBox(height: t.spacing.xxs),
                         Text(
-                          '语音通话需要麦克风权限，视频预留后续再扩。',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: t.textSecondary),
+                          '语音和视频通话需要麦克风权限，视频连接时另行请求摄像头权限。',
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: t.textSecondary),
                         ),
                       ],
                     ),
                   ),
-                  AppChoiceChip(label: '1v1 语音优先', onTap: null, selected: true),
+                  AppChoiceChip(label: '1v1 通话', onTap: null, selected: true),
                 ],
               ),
               SizedBox(height: t.spacing.md),
               Text(
                 '如果权限未开启，来电或发起通话时会先停留在这里，避免直接失败后让用户看不懂。',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: t.textSecondary,
+                  height: 1.35,
+                ),
               ),
             ],
           ),
@@ -181,7 +194,10 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
           leadingIcon: Icons.info_outline_rounded,
           child: Text(
             '如果你已经授权但仍然无法通话，先返回上一页重试；如果依然失败，再检查系统级麦克风开关。',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: t.textSecondary,
+              height: 1.35,
+            ),
           ),
         ),
       ],
