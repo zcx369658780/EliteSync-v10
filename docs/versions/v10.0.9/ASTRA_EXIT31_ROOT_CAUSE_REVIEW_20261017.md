@@ -34,3 +34,9 @@ Astra通过GitHub连接实际读取临时审阅分支 `review/temporary-evidence
 ## 四、临时分支清理
 
 这39个文件仅用于本轮独立审阅，完成正式归档后允许按`docs/workflow/TEMP_REVIEW_EVIDENCE_PROTOCOL.md`仅清理该独立分支的临时目录。Astra在可用连接器能力内作无force快进、移除临时目录并回读；删除短期远端分支引用仍由Codex按精确HEAD执行，Astra最终回读404。任何清理均不宣称已从Git历史/外部缓存永久删除。
+
+## 审阅分支工作树清理实际结果
+
+Astra已在短期分支`review/temporary-evidence-v1009-exit31-20261017`上执行**普通非强制快进**清理提交`37f4ea75c7e7ce67176ce4211cc70edf9e9a8b8e`，其唯一父节点为原审阅Commit`09ed26b611959aa4a8b141180c41a7020a98b4ad`，新Tree`972e76b2827b3b613dd5ad74395b4438f9666582`与该临时分支创建前父提交的Tree严格相等。GitHub回读临时分支HEAD一致，`docs/_temporary_review/v1009-exit31-20261017/ROOT_CAUSE_REPORT.md`在新HEAD返回404。**39项审阅文件已从该分支最新工作树撤出**，但旧固定Commit中的Git对象可能仍在历史/缓存中，不能宣称彻底抹除。
+
+**仅剩短期远端分支引用待删除**：现有GitHub连接器未暴露删branch接口，由Codex在只读核HEAD正是`37f4ea75c7e7ce67176ce4211cc70edf9e9a8b8e`后，精确执行一次普通远端分支删除；Astra再查GitHub API 404。当前分类`TEMP_TREE_CLEANED / TEMP_BRANCH_DELETE_PENDING`，不可提前声称完整清理。清理过程中`main`与`codex/v10.0.9-rtc-media`均未被更改。
