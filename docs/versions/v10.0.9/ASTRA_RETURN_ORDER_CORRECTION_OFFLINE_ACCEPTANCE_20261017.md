@@ -41,3 +41,13 @@ Astra实际审阅了`audit/RETURN_ORDER_CORRECTION.diff`、7个运行脚本、`t
 2026-10-17：Astra已执行纯GitHub**non-force fast-forward**临时分支清理：原审阅Commit `3175f3c9427f53843fda79f88c641602c5333c7a` 为唯一parent，新清理Commit `cc639391f906c3e7a9047af3504d5a7a199db7db`，其Tree `50102808ff66225256925751a408a6ae6c4ea843` 精确等于短期分支创建前 `29984bd24da0f0cffc3a977d825cb014903d40b9` 的Tree。GitHub独立回读短期分支最新HEAD与清理Commit一致，`docs/_temporary_review/v1009-return-order-20261017/REPORT.md`在新HEAD返回404；因此73个临时文件已从**最新工作树**清除，但其固定历史Commit不等于被抹除。
 
 后续仅剩**远端临时分支引用删除**，当前`TEMP_REVIEW_TREE_CLEANED / TEMP_BRANCH_DELETE_PENDING`；Codex须在独立核验精确HEAD为`cc639391f906c3e7a9047af3504d5a7a199db7db`后一次性删除`review/temporary-evidence-v1009-return-order-20261017`，Astra再API 404确认。未获得最终404之前不可宣称完整清理。正式main和产品开发分支均未在临时分支清理动作中被更改。
+
+## 6. 临时审阅分支最终删除核验
+
+2026-10-17，Codex在清理后报告：原短期分支 `review/temporary-evidence-v1009-return-order-20261017` 的远端HEAD与 `cc639391f906c3e7a9047af3504d5a7a199db7db` 一致，只执行一次精确删除，实际命令exit0；原本地stdout/exit及Windows资源未由Astra直接读取，这些本地操作声明保持 `CODEX_REPORTED`。
+
+Astra随即独立通过GitHub API查询这一完整分支名，明确得到 **404 Branch not found**。同时远端`main`保持 `843b4d6d395dee648b8cc2031d3e28082545f260`，产品开发分支`codex/v10.0.9-rtc-media`保持 `70612d36652660e8bdd9d12017c1254ada686298`（此次状态记录属于main的后继**纯文档**提交，不改变产品分支）。
+
+最终阶段：`TEMP_REVIEW_BRANCH_REMOVED_VERIFIED`。此前 `TEMP_BRANCH_DELETE_PENDING` 已由此实际回读闭环；但历史Git对象、缓存及外部克隆可能保留原公开材料，不能承诺彻底抹除。
+
+`RETURN_ORDER_CORRECTION_OFFLINE_ACCEPTED_WITH_OBSERVATIONS` 保持有效；任何下一次真实四规则/UAC及最长1200秒音频窗口仍须Owner新的一次性明确授权，按新Bundle `a8d52ef415ef4157052a0fa128564d36195fc235b595ae51f001e1c67b5ab4ee` 重新核验真实原脚本与环境，不得复用上次窗口或Run身份；`AC-09-03 NOT_PROVEN`、`V10.0.9 NOT_ACCEPTED`、不合main产品、不执行K08或后继版本。
