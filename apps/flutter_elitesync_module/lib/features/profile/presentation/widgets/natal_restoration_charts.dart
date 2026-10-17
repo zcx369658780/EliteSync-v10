@@ -204,6 +204,8 @@ class NatalRestorationCharts extends StatelessWidget {
                   : '逆行'}',
             ),
             Text('时间口径：${natalText(natalMap(bazi['time_basis'])['mode'])}'),
+            if (natalMap(yun['calendar_policy'])['id'] != null)
+              const Text('交运采用兼容公历换算；保留分秒不代表秒级准确性。'),
             for (final raw in natalList(bazi['da_yun']))
               Builder(
                 builder: (_) {
@@ -381,6 +383,15 @@ class NatalRestorationCharts extends StatelessWidget {
           ]),
         if (section == null || section == 'western')
           _section(context, '西方本命盘', western, [
+            if (natalMap(western['sidereal_reference'])['display_name_zh'] !=
+                null)
+              Text(
+                natalText(
+                  natalMap(western['sidereal_reference'])['display_name_zh'],
+                ),
+              ),
+            if (planets.any((raw) => natalMap(raw)['name'] == 'mean_lilith'))
+              const Text('平均莉莉丝：平均月球远地点；非瞬时真实远地点。'),
             if (planets.isNotEmpty)
               Semantics(
                 label: '西方本命星盘示意；精确数值见下方列表',

@@ -30,6 +30,8 @@ Kerykeion、Swiss、pyswisseph 保持原许可证门。Chiron 未下载、未运
 
 ## 固定计算口径
 
+完整的兼容 Gregorian 顺序/截日/时区/舍入、具名恒星黄道和 Lilith 定义见 [CALCULATION_CONVENTIONS](CALCULATION_CONVENTIONS.md)。现代工程换算约定与传统比例来源分别登记；既有数值口径保持，新增 profile 说明使旧缓存按原合同失效。
+
 - 八字：lunar-php 1.4.0，日 sect 2、起运 sect 1，年月柱按出生瞬间换算固定 UTC+08 节令；日时柱用当地民用或明确选择的真太阳时。起运、节令分别记录 UTC+08/UTC/用户时区，不能把带日历换算的交运时间说成独立验真已完成。
 - 紫微：`iztro-2.5.8-modern-default-v1`，农历年界，闰月前十五日归本月、后半归次月，早晚子采用 current。封诰明确寅起子顺行，保留已发现逆行异文及首轮失败；宫干飞化是来源宫干→化星→目标宫的有向边。目标年以七月一日为明确参考日，出生当年晚于该日则用出生时刻；不是声称该年所有时刻运限恒定。
 - 西占：十主体为地心视位置、真黄道/真春分点 of-date；DE440s 外行星 4～9 明确是重心目标。四轴与 whole/Placidus/Alcabitius 真实计算；极地无适用解不暗换宫制。恒星黄道是具名现代重建 `CRC1956-23.25-true-frame-anchor-IAU2000A-v1`，1956-03-21 TT 的 23°15′固定惯性方向锚；**不是已证明逐位复现官方 Lahiri**。

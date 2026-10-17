@@ -398,8 +398,10 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                     Text('计算设置', style: Theme.of(context).textTheme.titleLarge),
                     _choice('黄道', _zodiac, {
                       'tropical': '回归黄道',
-                      'sidereal': '恒星黄道（以服务端准入规则为准）',
+                      'sidereal': '自定义恒星黄道（CRC1956）',
                     }, (v) => _zodiac = v),
+                    if (_zodiac == 'sidereal')
+                      const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
                     _choice('宫制', _house, {
                       'placidus': 'Placidus',
                       'whole': '整宫制',

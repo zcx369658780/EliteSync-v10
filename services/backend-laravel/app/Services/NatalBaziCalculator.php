@@ -146,6 +146,8 @@ final class NatalBaziCalculator
             'start_user_datetime' => $startInstant !== null && is_string($context['timezone'] ?? null)
                 ? $startInstant->setTimezone(new DateTimeZone($context['timezone']))->format(DATE_ATOM) : null,
             'resolution' => $rules['yun_sect'] === 1 ? 'double_hour_conversion' : 'minute_conversion',
+            'calendar_policy' => $rules['yun_calendar_policy'],
+            'precision_note' => 'retained_birth_seconds_are_not_independent_second_precision_of_jie_or_qiyun',
             'oracle_status' => 'UNVERIFIED',
         ];
         $base['da_yun'] = [];
@@ -194,6 +196,16 @@ final class NatalBaziCalculator
             'yun_sect' => $yunSect,
             'yun_conversion' => $yunSect === 1 ? 'days_and_double_hours' : 'minutes',
             'yun_direction' => 'yang_male_yin_female_forward_otherwise_backward',
+            'yun_calendar_policy' => [
+                'id' => 'lunar-php-1.4.0-sequential-gregorian-clamp-utc8-v1',
+                'order' => ['years_clamp_day', 'months_clamp_day', 'calendar_days', 'hours'],
+                'arithmetic_frame' => 'fixed_UTC+08:00_when_utc_available_otherwise_compatibility_wall_time',
+                'user_timezone' => 'convert_final_instant_only_no_local_DST_arithmetic',
+                'minute_second_policy' => 'retain_birth_minute_and_second_not_physical_precision',
+                'sect1_quantization' => '12*gregorian_day_ordinal+min(11,floor((hour+1)/2)); endpoint_difference; 36_units/year,3/month,10_days/unit',
+                'sect2_quantization' => 'subtract_endpoint_whole_minute_labels_ignore_seconds; 4320_minutes/year,360/month,12/day,2_hours/minute',
+                'historical_claim' => 'modern_compatibility_convention_not_unique_classical_gregorian_rule',
+            ],
             'year_boundary' => 'li_chun_exact', 'month_boundary' => 'jie_exact',
             'age_convention' => 'lunar_php_calendar_year_nominal_age',
             'annual_boundary' => 'li_chun_year_label_not_january_1_instant',

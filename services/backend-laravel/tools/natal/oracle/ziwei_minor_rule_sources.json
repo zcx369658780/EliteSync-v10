@@ -1,0 +1,263 @@
+{
+  "status": "SOURCE_RULES_ONLY_NOT_PRODUCT_VERIFIED",
+  "coordinate": "子=0..亥=11; formulas mod 12; m=nominal lunar month 1..12, d=lunar day, y=year branch index, s=year stem index, life/body from independent oracle",
+  "sources": [
+    "https://sanqing.com.tw/en/the-chinese-astrology-chart010/",
+    "https://www.ncc.com.tw/fate/paleo/gv/gv_15.htm"
+  ],
+  "leapMonth": "UNKNOWN for these additional month/day stars until independently profile-registered; do not infer shared leap behavior merely from engine match",
+  "monthRules": {
+    "解神": {
+      "monthPositions": [
+        8,
+        8,
+        10,
+        10,
+        0,
+        0,
+        2,
+        2,
+        4,
+        4,
+        6,
+        6
+      ],
+      "sourceSection": "安解神（生月）"
+    },
+    "天巫": {
+      "monthPositions": [
+        5,
+        8,
+        2,
+        11,
+        5,
+        8,
+        2,
+        11,
+        5,
+        8,
+        2,
+        11
+      ],
+      "sourceSection": "安天巫"
+    },
+    "天月": {
+      "monthPositions": [
+        10,
+        5,
+        4,
+        2,
+        7,
+        3,
+        11,
+        7,
+        2,
+        6,
+        10,
+        2
+      ],
+      "sourceSection": "安天月"
+    },
+    "阴煞": {
+      "monthPositions": [
+        2,
+        0,
+        10,
+        8,
+        6,
+        4,
+        2,
+        0,
+        10,
+        8,
+        6,
+        4
+      ],
+      "sourceSection": "安阴煞"
+    }
+  },
+  "yearStemRules": {
+    "天官": {
+      "positions": [
+        7,
+        4,
+        5,
+        2,
+        3,
+        9,
+        11,
+        9,
+        10,
+        6
+      ],
+      "sourceSection": "安天官天福贵人诀"
+    },
+    "天福": {
+      "positions": [
+        9,
+        8,
+        0,
+        11,
+        3,
+        2,
+        6,
+        5,
+        6,
+        5
+      ],
+      "sourceSection": "安天官天福贵人诀"
+    },
+    "天厨": {
+      "positions": [
+        5,
+        6,
+        0,
+        5,
+        6,
+        8,
+        2,
+        6,
+        9,
+        11
+      ],
+      "sourceSection": "安天厨诀"
+    }
+  },
+  "yearBranchRules": {
+    "孤辰": {
+      "positions": [
+        2,
+        2,
+        5,
+        5,
+        5,
+        8,
+        8,
+        8,
+        11,
+        11,
+        11,
+        2
+      ],
+      "sourceSection": "安孤辰寡宿"
+    },
+    "寡宿": {
+      "positions": [
+        10,
+        10,
+        1,
+        1,
+        1,
+        4,
+        4,
+        4,
+        7,
+        7,
+        7,
+        10
+      ],
+      "sourceSection": "安孤辰寡宿"
+    },
+    "蜚廉": {
+      "positions": [
+        8,
+        9,
+        10,
+        5,
+        6,
+        7,
+        2,
+        3,
+        4,
+        11,
+        0,
+        1
+      ],
+      "sourceSection": "安蜚廉",
+      "warning": "Distinct from 博士十二星 飞廉; do not silently rename/collapse"
+    },
+    "破碎": {
+      "positions": [
+        5,
+        1,
+        9,
+        5,
+        1,
+        9,
+        5,
+        1,
+        9,
+        5,
+        1,
+        9
+      ],
+      "sourceSection": "安破碎"
+    },
+    "华盖": {
+      "positions": [
+        4,
+        1,
+        10,
+        7,
+        4,
+        1,
+        10,
+        7,
+        4,
+        1,
+        10,
+        7
+      ],
+      "sourceSection": "安华盖"
+    },
+    "咸池": {
+      "positions": [
+        9,
+        6,
+        3,
+        0,
+        9,
+        6,
+        3,
+        0,
+        9,
+        6,
+        3,
+        0
+      ],
+      "sourceSection": "安咸池"
+    }
+  },
+  "derivedRules": {
+    "天才": {
+      "formula": "(life+y)%12",
+      "sourceSection": "安天才天寿"
+    },
+    "天寿": {
+      "formula": "(body+y)%12",
+      "sourceSection": "安天才天寿"
+    },
+    "恩光": {
+      "formula": "(文昌+d-2)%12",
+      "sourceSection": "安恩光天贵",
+      "warning": "Published formula only; day1 exceptional handling NOT established here"
+    },
+    "天贵": {
+      "formula": "(文曲+d-2)%12",
+      "sourceSection": "安恩光天贵",
+      "warning": "Published formula only; day1 exceptional handling NOT established here"
+    }
+  },
+  "unresolved": {
+    "年解": "Classical 安天德月德解神诀 gives 解神 from 戌逆birth year; modern alias 年解 vs 解神 mapping is not established by name alone.",
+    "天德": "Classical 酉起子顺流年太岁; mapping to natal birth-year minor-star field not established by that wording alone.",
+    "月德": "Classical 子起子顺流年; modern 巳起子 table also exists. Do not choose on product agreement.",
+    "截路": "Classical gives two-branch 截路空亡 pair; split labels and positive/secondary mapping unresolved.",
+    "空亡": "Could be second 截路空亡 member or distinct alias; source/name mapping not established.",
+    "旬空": "Classical sexagenary-decade pair established, but selected single branch/polarity/label mapping unresolved."
+  },
+  "coveredNamedAdditionalStars": 17,
+  "unresolvedNamedAdditionalStars": 6,
+  "productComparison": "NOT_RUN",
+  "upstreamLineage": "Sanqing/NCC publication independent of product access; shared older-source lineage not researched"
+}

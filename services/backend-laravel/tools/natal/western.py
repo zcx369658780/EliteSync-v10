@@ -263,6 +263,8 @@ def compute(payload, kernel_path, expected_sha256):
                     time_context=time_metadata, requested_profile=profile,
                     effective_profile={**profile, 'point_set': 'PARTIAL_FULL' if missing else point_set},
                     sidereal_reference=(dict(id='CRC1956-23.25-true-frame-anchor-IAU2000A-v1',
+                                             display_name_zh='CRC1956 自定义恒星黄道（非官方 Lahiri）',
+                                             standard_status='CUSTOM_NAMED_RECONSTRUCTION_NOT_OFFICIAL_LAHIRI',
                                              anchor_tt='1956-03-21T00:00:00', anchor_degrees=23.25,
                                              ayanamsha_degrees=offset, oracle_status='UNVERIFIED')
                                         if zodiac == 'sidereal' else None), planets=planets, houses=rows,
