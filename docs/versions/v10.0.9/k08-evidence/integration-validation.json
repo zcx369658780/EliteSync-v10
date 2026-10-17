@@ -1,0 +1,14 @@
+{
+  "base": "d6090677a4f35b60edc5fb169432252a96e746cc",
+  "candidate": "70612d36652660e8bdd9d12017c1254ada686298",
+  "index_tree": "21631f359e3486bdde385a663ff6d8ef4510f974",
+  "apps": "cb244162165c572c95bf428c11945d37d0e56d52",
+  "services": "f383a84689a0039077b030988ba55ad720b425dd",
+  "main_nonproduct_objects_preserved": 3627,
+  "product_objects_match": true,
+  "delivery_files": 54,
+  "conflict_stages": 0,
+  "json_files_parsed": 22,
+  "runtime": "NOT_RUN",
+  "prohibited_paths_added": false
+}

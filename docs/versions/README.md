@@ -1,5 +1,12 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-17 v10.0.9 K08完成（当前）
+
+**V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
+
+本次25项PHP语法、17项Python AST、依赖JSON及对象检查通过，非作者内部复核无阻断；套件/构建/安装/服务/DB/SFU/设备/真实RTC均NOT_RUN。保留原PHP16项失败、AEC/回声、call65额外终态读回缺失及旧/up根因UNKNOWN。call65短期审阅分支已按精确HEAD一次删除、API404；产品开发分支和LOCAL_ONLY原证保留。完整玄学算法恢复仅为下一版方向，v10.0.10未冻结/未实施，不调整D6路线。下方未接受/阻塞/K08待办为历史时点。 详见[K08单份完成报告](v10.0.9/integration.md)。
+
+
 2026-10-16：**v10.0.9 已正式实施但尚未完成候选 / AUDIO_ICE_BLOCKED / NOT_ACCEPTED**。本次会话[完整交接](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md)（Commit`de8d44cbf30ecda03175fcbd07e5cf7595dc5e39`、Blob`cc818c61199260b77850b199627857d89926514a`）记录实际main与新Codex分支`6150d104924355a5427868f5b429ef82cf1eab51`、10月16日Owner具名设备授权的`CODEX_REPORTED`边界、双ABI测试包/36项相关Flutter通过，以及真机部分UDP上行和AVD ICE失败。**同WLAN 7881/TCP媒体回退未获批准**，新会话依下一条Owner/Codex回报处理最小阻塞，不重复派发旧任务。plan Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`及AC-09-01～08不变；新0.9完成候选、Astra最终验收、K08与下版均未启动。下方“0.9待派发”等为更早时点。
 
 

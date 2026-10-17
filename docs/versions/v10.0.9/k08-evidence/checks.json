@@ -1,0 +1,153 @@
+{
+  "php_syntax": [
+    {
+      "path": "docs/versions/v10.0.9/runtime-fixtures.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in docs/versions/v10.0.9/runtime-fixtures.php"
+    },
+    {
+      "path": "docs/versions/v10.0.9/snapshot.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in docs/versions/v10.0.9/snapshot.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/RtcGuardController.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Http/Controllers/Api/V1/RtcGuardController.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/RtcTransaction.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Http/Middleware/RtcTransaction.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Models/MediaAsset.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Models/MediaAsset.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/ConversationAtomicSendService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/LiveConsentService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveKitTokenService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/LiveKitTokenService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MediaAssetService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/MediaAssetService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MediaStorageService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/MediaStorageService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/NotificationService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/PrivateVideoValidator.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/PrivateVideoValidator.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/RtcAuthorityService.php"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/RtcSessionService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/RtcSessionService.php"
+    },
+    {
+      "path": "services/backend-laravel/config/filesystems.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/config/filesystems.php"
+    },
+    {
+      "path": "services/backend-laravel/config/media.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/config/media.php"
+    },
+    {
+      "path": "services/backend-laravel/config/rtc_guard.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/config/rtc_guard.php"
+    },
+    {
+      "path": "services/backend-laravel/database/seeders/V1009DevelopmentSeeder.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/database/seeders/V1009DevelopmentSeeder.php"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/routes/api.php"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/RtcApiTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/RtcApiTest.php"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/LiveKitTokenServiceTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Unit/LiveKitTokenServiceTest.php"
+    }
+  ],
+  "python_ast_files": [
+    "app-ui.py",
+    "authority-bridge.py",
+    "browser-action.py",
+    "dev-runtime.py",
+    "device-control.py",
+    "inspect-images.py",
+    "local-http-front.py",
+    "media-probe.py",
+    "media-proof.py",
+    "prepare-sfu.py",
+    "revocation-observe.py",
+    "rtc-gateway.py",
+    "rtc-probe.py",
+    "rtc-watchdog.py",
+    "runtime-client.py",
+    "runtime-matrix.py",
+    "watchdog-proof.py"
+  ],
+  "json_lock_parse": "PASS",
+  "diff_check_output": "",
+  "business_tests": "NOT_RUN",
+  "build_install": "NOT_RUN",
+  "services_db_sfu_devices": "NOT_RUN"
+}

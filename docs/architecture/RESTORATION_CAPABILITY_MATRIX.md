@@ -1,5 +1,12 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-17 v10.0.9 K08完成（当前）
+
+**V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
+
+本次25项PHP语法、17项Python AST、依赖JSON及对象检查通过，非作者内部复核无阻断；套件/构建/安装/服务/DB/SFU/设备/真实RTC均NOT_RUN。保留原PHP16项失败、AEC/回声、call65额外终态读回缺失及旧/up根因UNKNOWN。call65短期审阅分支已按精确HEAD一次删除、API404；产品开发分支和LOCAL_ONLY原证保留。完整玄学算法恢复仅为下一版方向，v10.0.10未冻结/未实施，不调整D6路线。下方未接受/阻塞/K08待办为历史时点。A06在冻结范围内已接受：同call65双向同时人工可辨语音、真实双端视频、安全撤权/旧JWT拒重入及私有短视频。A07完整算法、其它未恢复功能及最终联合验收继续具名保留，不能视为全APP已恢复。 详见[K08单份完成报告](../versions/v10.0.9/integration.md)。
+
+
 ## 2026-10-16 v10.0.9真实RTC／媒体进行中：ICE阻塞，未验收（最新）
 
 **IMPLEMENTATION_IN_PROGRESS / AUDIO_DEVICE_ICE_BLOCKED / NOT_CANDIDATE_DELIVERED / NOT_ACCEPTED / NO_K08 / NO_NEXT_VERSION**。固定原[plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md) Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`和AC-09-01～08不变。新顾问[完整交接](https://github.com/zcx369658780/EliteSync-v10/blob/de8d44cbf30ecda03175fcbd07e5cf7595dc5e39/docs/migration/ASTRA_HANDOFF_20261016_V10_0_9_AUDIO_ICE.md) Blob`cc818c61199260b77850b199627857d89926514a`，实际10月16日Codex开发分支`6150d104924355a5427868f5b429ef82cf1eab51`，仍**未合main**。

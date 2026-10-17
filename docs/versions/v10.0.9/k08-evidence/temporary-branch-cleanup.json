@@ -1,0 +1,10 @@
+{
+  "branch": "review/temporary-evidence-v1009-final-audio-call65-20261017",
+  "expected_head": "82b1c1e755a2e0a0a76470947dfd40538211987b",
+  "verified_head": "82b1c1e755a2e0a0a76470947dfd40538211987b",
+  "delete_requests": 1,
+  "delete_exit": 0,
+  "api_readback_http": 404,
+  "product_branch_untouched": true,
+  "local_objects_and_evidence_retained": true
+}
