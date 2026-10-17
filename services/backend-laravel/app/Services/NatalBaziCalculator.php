@@ -13,7 +13,9 @@ use InvalidArgumentException;
 /** Real lunar-php calculations; independent oracle approval is deliberately separate. */
 final class NatalBaziCalculator
 {
-    public function compute(array $context, ?array $solarContext = null): array
+    public function __construct(private readonly ?NatalBaziTimeScale $timeScale = null) {}
+
+    public function compute(array $context, ?array $solarContext = null, ?array $expectedTimeContext = null): array
     {
         $rules = $this->rules($context['calculation_profile']['bazi'] ?? []);
         $date = $context['civil_date'] ?? null;
@@ -84,19 +86,24 @@ final class NatalBaziCalculator
         $termEight = $eight;
         $termLunar = $lunar;
         $hasInstant = isset($context['utc']);
-        $termFrame = $hasInstant ? 'UTC+08:00' : 'compatibility_wall_time';
-        $base['time_basis']['year_month_mode'] = $hasInstant ? 'instant_fixed_utc_plus_08' : 'compatibility_wall_time';
-        $base['time_basis']['year_month_frame'] = $termFrame;
+        $resolvedTerms = null;
+        $termFrame = 'compatibility_wall_time';
+        $base['time_basis']['year_month_mode'] = $hasInstant ? 'instant_tt_term_bracket' : 'compatibility_wall_time';
         $base['time_basis']['year_month_cst_datetime'] = null;
         if ($hasInstant) {
             $instant = $this->utcInstant($context['utc']);
             $cst = $instant->setTimezone(new DateTimeZone('+08:00'));
-            $cstSolar = Solar::fromYmdHms(...array_map('intval', explode(' ', $cst->format('Y n j G i s'))));
-            $termLunar = $cstSolar->getLunar();
+            $resolvedTerms = ($this->timeScale ?? new NatalBaziTimeScale)->resolve($context, $expectedTimeContext);
+            $termFrame = $resolvedTerms['time_context']['utc_interpretation'] === 'PRE_1960_CIVIL_LABEL_AS_UT1'
+                ? 'model_UT1+08:00' : 'UTC+08:00';
+            $termLunar = Solar::fromJulianDay($resolvedTerms['representative_library_jd'])->getLunar();
             $termEight = $termLunar->getEightChar();
             $termEight->setSect($rules['day_sect']);
             $base['time_basis']['year_month_cst_datetime'] = $cst->format(DATE_ATOM);
+            $base['time_basis']['term_time_context'] = $resolvedTerms['time_context'];
+            $base['time_basis']['engine_calendar_time_scale'] = 'library_model_UT1_plus_08_roots_restored_to_TT';
         }
+        $base['time_basis']['year_month_frame'] = $termFrame;
         $base['rules']['year_month_and_yun_frame'] = $termFrame;
         $base['rules']['day_hour_frame'] = $base['time_basis']['mode'];
         $base['pillars'] = $this->pillars($eight, $termEight, $termFrame, $base['time_basis']['mode']);
@@ -104,28 +111,39 @@ final class NatalBaziCalculator
         $base['five_elements'] = $this->fiveElements($base['pillars']);
         $mingGong = $this->gong($termEight, $eight, false);
         $shenGong = $this->gong($termEight, $eight, true);
+        $legacyShenGong = $this->gong($termEight, $eight, true, true);
         $base['extensions'] = [
             'status' => 'UNVERIFIED',
-            'source' => 'EightChar.php@1.4.0:getTaiYuan,getTaiXi,getMingGong,getShenGong',
+            'source' => 'EightChar.php@1.4.0-compatible-geometry;explicit-same-year-five-tigers-gong-stems',
+            'ming_shen_month_profile' => 'modern_jie_month_compatibility_not_classical_zhongqi_month',
             'tai_yuan' => ['gan_zhi' => $termEight->getTaiYuan(), 'na_yin' => $termEight->getTaiYuanNaYin(), 'frame' => $termFrame],
             'tai_xi' => ['gan_zhi' => $eight->getTaiXi(), 'na_yin' => $eight->getTaiXiNaYin(), 'frame' => $base['time_basis']['mode']],
             'ming_gong' => ['gan_zhi' => $mingGong, 'na_yin' => LunarUtil::$NAYIN[$mingGong], 'frame' => 'term_year_month_plus_effective_hour'],
-            'shen_gong' => ['gan_zhi' => $shenGong, 'na_yin' => LunarUtil::$NAYIN[$shenGong], 'frame' => 'term_year_month_plus_effective_hour'],
+            'shen_gong' => ['gan_zhi' => $shenGong, 'na_yin' => LunarUtil::$NAYIN[$shenGong], 'frame' => 'term_year_month_plus_effective_hour',
+                'engine_compatible_gan_zhi' => $legacyShenGong,
+                'stem_rule' => 'same_selected_year_five_tigers',
+                'correction_profile' => $shenGong !== $legacyShenGong ? 'shen-chou-five-tigers-stem-v1' : null],
             'mixed_frame_rule' => ['year_month' => $termFrame, 'day_hour' => $base['time_basis']['mode']],
         ];
         $previous = $termLunar->getPrevJie();
         $next = $termLunar->getNextJie();
         $base['solar_terms'] = [
             'oracle_status' => 'UNVERIFIED',
-            'time_scale' => $termFrame,
-            'previous_jie' => $this->term($previous, $hasInstant),
-            'next_jie' => $this->term($next, $hasInstant),
+            'time_scale' => $hasInstant ? 'TT_classification_with_declared_civil_endpoint_labels' : $termFrame,
+            'previous_jie' => $resolvedTerms['previous_jie'] ?? $this->term($previous, false),
+            'next_jie' => $resolvedTerms['next_jie'] ?? $this->term($next, false),
         ];
         if ($sex === 'unknown') {
             $base['status'] = 'PARTIAL_UNVERIFIED';
             $base['yun'] = $this->unknownYun('algorithm_sex_unknown');
 
             return $base;
+        }
+
+        if ($hasInstant) {
+            $base['status'] = 'COMPUTED_UNVERIFIED';
+
+            return [...$base, ...(new NatalBaziLuckProjection)->compute($context, $termEight, $resolvedTerms, $rules)];
         }
 
         $yun = $termEight->getYunBySect($sex === 'male' ? 1 : 0, $rules['yun_sect']);
@@ -247,8 +265,8 @@ final class NatalBaziCalculator
         return $pillars;
     }
 
-    /** Replays EightChar's published Ming/Shen Gong rule with the selected mixed inputs. */
-    private function gong(EightChar $termEight, EightChar $eight, bool $shen): string
+    /** Compatible palace geometry; both stems follow the same selected year's Five Tigers. */
+    private function gong(EightChar $termEight, EightChar $eight, bool $shen, bool $legacyShenStem = false): string
     {
         $monthIndex = array_search($termEight->getMonthZhi(), EightChar::$MONTH_ZHI, true);
         $hourIndex = array_search($eight->getTimeZhi(), $shen ? LunarUtil::$ZHI : EightChar::$MONTH_ZHI, true);
@@ -261,7 +279,9 @@ final class NatalBaziCalculator
             $offset = ($offset >= 14 ? 26 : 14) - $offset;
         }
         $yearGanIndex = array_search($termEight->getYearGan(), LunarUtil::$GAN, true) - 1;
-        $ganIndex = ($yearGanIndex + 1) * 2 + ($shen ? $offset % 12 : $offset);
+        // The vendor's Shen-only offset%12 wraps 丑 to zero, losing two stem
+        // positions. Keep that value only as explicit historical provenance.
+        $ganIndex = ($yearGanIndex + 1) * 2 + ($shen && $legacyShenStem ? $offset % 12 : $offset);
         while ($ganIndex > 10) {
             $ganIndex -= 10;
         }

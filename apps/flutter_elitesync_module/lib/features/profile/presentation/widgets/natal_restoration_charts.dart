@@ -204,6 +204,16 @@ class NatalRestorationCharts extends StatelessWidget {
                   : '逆行'}',
             ),
             Text('时间口径：${natalText(natalMap(bazi['time_basis'])['mode'])}'),
+            if (natalMap(
+                  natalMap(bazi['time_basis'])['term_time_context'],
+                )['utc_interpretation'] ==
+                'PRE_1960_CIVIL_LABEL_AS_UT1')
+              const Text('1960年前的时间采用历史模型近似，不能当作精确UTC。'),
+            if (natalMap(
+                  natalMap(bazi['time_basis'])['term_time_context'],
+                )['accuracy_status'] ==
+                'FUTURE_ASSUMPTION')
+              const Text('未来时刻按当前闰秒表推算，实际未来闰秒未知。'),
             if (natalMap(yun['calendar_policy'])['id'] != null)
               const Text('交运采用兼容公历换算；保留分秒不代表秒级准确性。'),
             for (final raw in natalList(bazi['da_yun']))
@@ -238,7 +248,7 @@ class NatalRestorationCharts extends StatelessWidget {
                     ListTile(
                       title: Text(entry.key),
                       subtitle: Text(
-                        '${natalMap(entry.value)['name']} ${natalMap(entry.value)['solar_datetime']}',
+                        '${natalMap(entry.value)['name']} ${natalMap(entry.value)['solar_datetime']}（${natalText(natalMap(entry.value)['timestamp_frame'])}）',
                       ),
                     ),
                 for (final entry in natalMap(bazi['extensions']).entries)

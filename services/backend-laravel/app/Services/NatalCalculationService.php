@@ -15,6 +15,7 @@ class NatalCalculationService
             // independently supported chart outside the admitted reference domain.
             $unverified = ['status' => 'UNVERIFIED', 'oracle_status' => 'UNVERIFIED',
                 'reason' => 'outside_current_independent_reference_domain'];
+
             return ['bazi' => [...$unverified, 'pillars' => null, 'da_yun' => null],
                 'ziwei' => [...$unverified, 'palaces' => null],
                 'western' => [...$unverified, 'calculation_status' => 'UNVERIFIED',
@@ -40,7 +41,11 @@ class NatalCalculationService
                 throw new RuntimeException('solar_context_unavailable');
             }
         }
-        $bazi = app(NatalBaziCalculator::class)->compute($context, $solar);
+        if ($hasTime && ! is_array($western['time_context'] ?? null)) {
+            throw new RuntimeException('natal_time_context_unavailable');
+        }
+        $bazi = (new NatalBaziCalculator(new NatalBaziTimeScale((string) config('natal.python'))))
+            ->compute($context, $solar, $western['time_context'] ?? null);
         $ziwei = $this->run([(string) config('natal.node'), base_path('tools/natal/ziwei.mjs')], [
             'effective_civil_date' => $solar['effective_solar_date'] ?? $context['civil_date'],
             'effective_time' => $solar['effective_solar_time'] ?? $context['normalized_time'],
@@ -48,6 +53,7 @@ class NatalCalculationService
             'target_year' => $settings['target_year'],
             'requested_profile' => ['id' => 'iztro-2.5.8-modern-default-v1'],
         ]);
+
         return ['bazi' => $bazi, 'ziwei' => $ziwei, 'western' => $western];
     }
 
@@ -68,6 +74,7 @@ class NatalCalculationService
         if (! is_array($result) || in_array($result['status'] ?? $result['calculation_status'] ?? 'ERROR', ['ERROR'], true)) {
             throw new RuntimeException('local_natal_result_invalid');
         }
+
         return $result;
     }
 }

@@ -12,6 +12,11 @@ const PROFILE_ID = 'iztro-2.5.8-modern-default-v1';
 const CONFIG = Object.freeze({ yearDivide: 'normal', horoscopeDivide: 'normal', ageDivide: 'normal', dayDivide: 'current', algorithm: 'default' });
 const MUTAGENS = ['禄', '权', '科', '忌'];
 const STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+// Backport only the three official data-error corrections, without upgrading
+// the frozen 2.5.8 engine or selecting values from different school tables.
+// https://github.com/SylarLong/iztro/releases/tag/v2.6.1 and issue #270.
+const BRIGHTNESS_FIX_ID = 'iztro-2.5.8-with-official-2.6.1-you-data-fix-v1';
+const YOU_BRIGHTNESS_FIX = Object.freeze({ '太阳': '平', '太阴': '旺', '七杀': '旺' });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fileHash = path => sha(readFileSync(path));
 const pkg = JSON.parse(readFileSync(new URL('package.json', engineRoot), 'utf8'));
@@ -46,11 +51,13 @@ function requestedProfile(value) {
   check(Object.keys(value).length === 1 && value.id === PROFILE_ID, 'UNSUPPORTED_PROFILE');
   return { id: value.id };
 }
-function starData(star) {
+function starData(star, branch = null) {
+  const correction = branch === '酉' ? YOU_BRIGHTNESS_FIX[star.name] : undefined;
   return {
     name: star.name, type: star.type, scope: star.scope,
-    brightness: star.brightness || null,
+    brightness: correction ?? (star.brightness || null),
     brightness_status: star.brightness ? 'UNVERIFIED' : 'NOT_PROVIDED_BY_ENGINE',
+    ...(correction ? { engine_brightness: star.brightness || null, brightness_correction: BRIGHTNESS_FIX_ID } : {}),
     natal_transformation: star.mutagen || null,
   };
 }
@@ -89,7 +96,10 @@ export function calculate(input) {
     late_zi_rule: 'CURRENT_EFFECTIVE_DATE_NO_ADDITIONAL_DAY_SHIFT',
     feng_gao_rule: 'YIN_PALACE_ZI_HOUR_FORWARD',
     flight_definition: 'SOURCE_PALACE_STEM_TO_TRANSFORMED_STAR_NATAL_PALACE',
-    rule_source: 'PINNED_IZTRO_2_5_8_TABLES_AND_METHODS',
+    rule_source: 'PINNED_IZTRO_2_5_8_TABLES_AND_METHODS_WITH_OFFICIAL_YOU_BRIGHTNESS_DATA_FIX',
+    brightness_correction_profile: BRIGHTNESS_FIX_ID,
+    brightness_correction_source: 'https://github.com/SylarLong/iztro/releases/tag/v2.6.1',
+    brightness_correction_scope: 'SUN_MOON_SEVEN_KILLINGS_AT_YOU_ONLY_NOT_FULL_ORACLE_APPROVAL',
     rule_verification: 'UNVERIFIED',
   };
   const base = {
@@ -140,7 +150,7 @@ export function calculate(input) {
     soul_star: chart.soul, body_star: chart.body, five_elements_class: chart.fiveElementsClass,
     palaces: chart.palaces.map(p => ({ index: p.index, name: p.name, is_body_palace: p.isBodyPalace,
       is_original_palace: p.isOriginalPalace, heavenly_stem: p.heavenlyStem, earthly_branch: p.earthlyBranch,
-      is_empty: p.majorStars.length === 0, major_stars: p.majorStars.map(starData),
+      is_empty: p.majorStars.length === 0, major_stars: p.majorStars.map(star => starData(star, p.earthlyBranch)),
       minor_stars: p.minorStars.map(starData), adjective_stars: p.adjectiveStars.map(starData),
       changsheng12: p.changsheng12, boshi12: p.boshi12, jiangqian12: p.jiangqian12, suiqian12: p.suiqian12,
       decadal: p.decadal, nominal_ages: p.ages })),

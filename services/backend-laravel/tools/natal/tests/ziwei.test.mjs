@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { calculate } from '../ziwei.mjs';
 
 const entry = fileURLToPath(new URL('../ziwei.mjs', import.meta.url));
 const require = createRequire(import.meta.url);
@@ -13,6 +14,44 @@ function run(value, raw = false) {
   assert.equal(result.stderr, '', 'stderr must not disclose input or engine traces');
   return { ...result, json: JSON.parse(result.stdout) };
 }
+
+test('official upstream three-cell brightness corrections retain raw values and unverified status', () => {
+  // Inputs selected by the independent placement reference, not by engine search.
+  // These assertions certify the backport contract, not an independent full brightness table.
+  const fixtures = [
+    ['2015-02-19', '10:30:00', 'male', 5],
+    ['2015-03-05', '10:30:00', 'female', 5],
+    ['2023-03-26', '04:30:00', 'female', 2],
+  ];
+  const corrected = new Set();
+  const expected = { '太阳': ['陷', '平'], '太阴': ['不', '旺'], '七杀': ['庙', '旺'] };
+  for (const [date, time, sex, timeIndex] of fixtures) {
+    const input = { effective_civil_date: date, effective_time: time, algorithm_sex: sex, target_year: 2030 };
+    const chart = calculate(input);
+    const native = astro.withOptions({ type: 'solar', dateStr: date, timeIndex, gender: sex === 'male' ? '男' : '女',
+      fixLeap: true, language: 'zh-CN', config: { yearDivide: 'normal', horoscopeDivide: 'normal', ageDivide: 'normal', dayDivide: 'current', algorithm: 'default' } });
+    assert.equal(chart.engine.version, '2.5.8');
+    for (const p of chart.palaces) {
+      for (const star of p.major_stars) {
+        const raw = native.palaces[p.index].majorStars.find(s => s.name === star.name).brightness;
+        if (p.earthly_branch === '酉' && expected[star.name]) {
+          assert.deepEqual([star.engine_brightness, star.brightness], expected[star.name]);
+          assert.equal(star.engine_brightness, raw);
+          assert.equal(star.brightness_correction, chart.effective_profile.brightness_correction_profile);
+          corrected.add(star.name);
+        } else {
+          assert.equal(star.brightness, raw || null);
+          assert.equal('brightness_correction' in star, false);
+          assert.equal('engine_brightness' in star, false);
+        }
+        assert.equal(star.brightness_status, 'UNVERIFIED');
+      }
+    }
+    assert.equal(chart.flying_transformations.length, 48);
+    assert.equal(chart.selected_horoscope.yearly.palaceNames.length, 12);
+  }
+  assert.deepEqual([...corrected].sort(), Object.keys(expected).sort());
+});
 
 test('JSON-only complete engine structure with provenance, without an oracle claim', () => {
   const result = run(sample);

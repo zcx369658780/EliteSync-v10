@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use App\Services\NatalBaziCalculator;
+use App\Services\NatalBaziTimeScale;
 use App\Services\NatalInputContext;
-use com\nlf\calendar\Solar;
 use com\nlf\calendar\util\LunarUtil;
 use DateTimeImmutable;
 use DateTimeZone;
@@ -182,7 +182,7 @@ class V1010NatalBaziCalculatorTest extends TestCase
         }
         $this->assertNotSame($west['pillars']['day']['gan_zhi'], $east['pillars']['day']['gan_zhi']);
         $this->assertNotSame($west['pillars']['hour']['gan_zhi'], $east['pillars']['hour']['gan_zhi']);
-        $this->assertSame('instant_fixed_utc_plus_08', $west['time_basis']['year_month_mode']);
+        $this->assertSame('instant_tt_term_bracket', $west['time_basis']['year_month_mode']);
         $this->assertSame($west['yun']['start_offset'], $east['yun']['start_offset']);
         $this->assertSame($west['yun']['start_utc'], $east['yun']['start_utc']);
         $this->assertSame($west['da_yun'], $east['da_yun']);
@@ -193,15 +193,21 @@ class V1010NatalBaziCalculatorTest extends TestCase
 
     public function test_li_chun_boundary_uses_real_instant_rather_than_local_wall_clock(): void
     {
-        // Metamorphic boundary from the library, not an independent astronomical oracle.
-        $term = Solar::fromYmdHms(2024, 6, 1, 0, 0, 0)->getLunar()->getJieQiTable()['立春']->toYmdHms();
-        $transition = new DateTimeImmutable($term, new DateTimeZone('+08:00'));
+        // Adapter regression at its own root, not an independent accuracy oracle.
+        $terms = (new NatalBaziTimeScale)->resolve($this->contextAtUtc('2100-02-01T00:00:00Z', 'UTC'));
+        $this->assertSame('立春', $terms['next_jie']['name']);
+        $transition = new DateTimeImmutable($terms['next_jie']['cst_datetime']);
         $calculator = new NatalBaziCalculator;
-        $before = $calculator->compute($this->contextAtUtc($transition->modify('-1 second')->format(DATE_ATOM), 'America/New_York'));
-        $after = $calculator->compute($this->contextAtUtc($transition->modify('+1 second')->format(DATE_ATOM), 'America/New_York'));
+        $before = $calculator->compute($this->contextAtUtc($transition->modify('-2 seconds')->format(DATE_ATOM), 'America/New_York'));
+        $after = $calculator->compute($this->contextAtUtc($transition->modify('+2 seconds')->format(DATE_ATOM), 'America/New_York'));
         $this->assertNotSame($before['pillars']['year']['gan_zhi'], $after['pillars']['year']['gan_zhi']);
         $this->assertNotSame($before['pillars']['month']['gan_zhi'], $after['pillars']['month']['gan_zhi']);
         $this->assertSame('UNVERIFIED', $after['solar_terms']['oracle_status']);
+        // The old model-UT1 label is >1 minute earlier here and must no longer classify the year.
+        $old = new DateTimeImmutable($terms['next_jie']['library_calendar_label'], new DateTimeZone('+08:00'));
+        $this->assertGreaterThan(60, $transition->getTimestamp() - $old->getTimestamp());
+        $middle = $calculator->compute($this->contextAtUtc($old->modify('+30 seconds')->format(DATE_ATOM), 'America/New_York'));
+        $this->assertSame($before['pillars']['year']['gan_zhi'], $middle['pillars']['year']['gan_zhi']);
     }
 
     public function test_parent_solar_cross_day_does_not_reclassify_instant_year_month_or_yun(): void
@@ -247,5 +253,29 @@ class V1010NatalBaziCalculatorTest extends TestCase
         $this->assertNull($result['yun']['start_utc']);
         $this->assertNull($result['yun']['start_user_datetime']);
         $this->assertSame('UNVERIFIED', $result['oracle_status']);
+    }
+
+    public function test_domain_edges_and_pre_utc_birth_crossing_1960_keep_explicit_time_frames(): void
+    {
+        $calculator = new NatalBaziCalculator;
+        $early = $calculator->compute($this->contextAtUtc('1900-01-01T00:00:00Z', 'UTC'));
+        $this->assertStringStartsWith('1899-', $early['solar_terms']['previous_jie']['id']);
+        $this->assertNull($early['solar_terms']['previous_jie']['utc']);
+        $this->assertSame('model_UT1+08:00', $early['solar_terms']['previous_jie']['timestamp_frame']);
+        $this->assertSame('model_UT1+08:00', $early['yun']['timestamp_frame']);
+        $this->assertNull($early['yun']['start_utc']);
+        $late = $calculator->compute($this->contextAtUtc('2100-12-31T23:59:59Z', 'UTC'));
+        $this->assertStringStartsWith('2101-', $late['solar_terms']['next_jie']['id']);
+        $this->assertSame('FUTURE_ASSUMPTION', $late['time_basis']['term_time_context']['accuracy_status']);
+        $this->assertSame('UNKNOWN', $late['yun']['future_leap_seconds_actual']);
+        $context = $this->contextAtUtc('1959-12-31T12:00:00Z', 'America/New_York');
+        $context['algorithm_sex'] = 'female'; // yin year, forward, start extends past 1960.
+        $cross = $calculator->compute($context);
+        $this->assertSame('PRE_1960_CIVIL_LABEL_AS_UT1', $cross['time_basis']['term_time_context']['utc_interpretation']);
+        $this->assertSame('UTC+08:00', $cross['yun']['timestamp_frame']);
+        $this->assertNotNull($cross['yun']['start_utc']);
+        $this->assertSame('CIVIL_UTC_LABEL', $cross['yun']['start_time_interpretation']);
+        $display = (new DateTimeImmutable($cross['yun']['start_utc']))->setTimezone(new DateTimeZone('America/New_York'))->format(DATE_ATOM);
+        $this->assertSame($display, $cross['yun']['start_user_datetime']);
     }
 }

@@ -89,6 +89,38 @@ Map<String, dynamic> _native() => {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  testWidgets('historical and future time assumptions remain visible', (
+    tester,
+  ) async {
+    for (final data in [
+      [
+        {'utc_interpretation': 'PRE_1960_CIVIL_LABEL_AS_UT1'},
+        '1960年前的时间采用历史模型近似，不能当作精确UTC。',
+      ],
+      [
+        {'accuracy_status': 'FUTURE_ASSUMPTION'},
+        '未来时刻按当前闰秒表推算，实际未来闰秒未知。',
+      ],
+    ]) {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: NatalRestorationCharts(
+                section: 'bazi',
+                results: {
+                  'bazi': {
+                    'time_basis': {'term_time_context': data[0]},
+                  },
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(find.text(data[1] as String), findsOneWidget);
+    }
+  });
   testWidgets('qiyun timestamp keeps the returned local offset', (
     tester,
   ) async {

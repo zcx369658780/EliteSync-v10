@@ -357,5 +357,15 @@
     "NumPy wheel includes OpenBLAS, LAPACK and GCC runtime GPL-3.0-or-later WITH GCC-exception-3.1; retain complete wheel license text. Do not describe the binary wheel as MIT-only.",
     "Certifi is unmodified MPL-2.0 covered material; preserve its notice, MPL text and source availability information: https://github.com/certifi/python-certifi .",
     "PyERFA BSD wrapper and ERFA BSD notices both retained; runtime reports actual embedded ERFA version."
+  ],
+  "local_source_corrections": [
+    {
+      "id": "iztro-2.5.8-with-official-2.6.1-you-data-fix-v1",
+      "manifest": "resources/natal/ziwei-upstream-corrections.json",
+      "license": "MIT",
+      "notice": "resources/natal/notices/node--iztro--LICENSE",
+      "notice_sha256": "e6c7b6e313cbda3135b41bccc66c98be132cb8319d0d465903d17e669e748b36",
+      "package_lock_changed": false
+    }
   ]
 }

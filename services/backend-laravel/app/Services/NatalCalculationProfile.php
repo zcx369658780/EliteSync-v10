@@ -31,6 +31,7 @@ final class NatalCalculationProfile
         if (! is_bool($solar) || ($target !== null && (! is_int($target) || $target < 1900 || $target > 2100))) {
             throw new InvalidArgumentException('invalid_solar_or_target_year_setting');
         }
+
         return [...$settings, 'true_solar_time' => $solar, 'target_year' => $target];
     }
 
@@ -39,10 +40,12 @@ final class NatalCalculationProfile
         $profile = json_decode(file_get_contents(resource_path('natal/calculation-profile-registry.json')), true, 512, JSON_THROW_ON_ERROR);
         $paths = ['composer.lock', 'resources/natal/calculation-profile-registry.json',
             'app/Services/NatalInputContext.php', 'app/Services/NatalBaziCalculator.php',
+            'app/Services/NatalBaziTimeScale.php', 'app/Services/NatalBaziLuckProjection.php', 'tools/natal/bazi_time.py',
             'app/Services/NatalCalculationProfile.php', 'app/Services/NatalCalculationService.php',
             'app/Services/NatalRuntimeIdentity.php', 'tools/natal/runtime_identity.py', 'config/natal.php',
             'tools/natal/western.py', 'tools/natal/time_context.py', 'tools/natal/lunar_points.py',
             'tools/natal/ziwei.mjs', 'tools/ziwei/iztro-runner/package-lock.json'];
+        $paths[] = 'resources/natal/ziwei-upstream-corrections.json';
         foreach ($paths as $path) {
             $profile['source_hashes'][$path] = hash_file('sha256', base_path($path));
         }
@@ -56,6 +59,7 @@ final class NatalCalculationProfile
         }
         $profile['runtime_identity'] = app(NatalRuntimeIdentity::class)->make();
         $profile['settings'] = $settings;
+
         return $profile;
     }
 }
