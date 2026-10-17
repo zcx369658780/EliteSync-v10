@@ -41,3 +41,11 @@ Astra按声明算法独立计算以上原始文件SHA映射的JSON SHA256，得�
 Astra在本轮实际执行并通过GitHub独立回读：临时分支`review/temporary-evidence-v1009-prewarm-diagnostics-20261017`在HEAD为审阅Commit `e843cc77f3938877814dc331d0e5c8399bd7b29e`时，以唯一parent执行普通non-force快进清理Commit **`ef66a9aeda69888252bbbfdd5ea7246b6466acaa`**；清理后Tree **`6dccb9f4339e7656883bc7594fbb8a8cc11f5636`**，精确等于**开发分支的父树**（不是docs-only main树）。GitHub独立回读分支HEAD及Commit身份一致，原临时目录的`PREWARM_DIAGNOSTICS_REPORT.md`在新HEAD返回404。28份审阅文件已从该短期分支最新树移除。
 
 **当前：`TEMP_TREE_CLEANED / TEMP_BRANCH_DELETE_PENDING`。** 远端branch引用尚待Codex在重新核对精确HEAD为`ef66a9aeda69888252bbbfdd5ea7246b6466acaa`后仅删除这一个具名短期分支一次，再由Astra查询API404。Git历史/缓存中可能仍有固定历史对象，不能宣称彻底擦除。清理时main（审阅文档写入后`51fa71ab9b7141f02d76bdf173b08d41cc6871fa`）与产品开发分支`70612d36652660e8bdd9d12017c1254ada686298`均未被此清理动作更改。
+
+## 六、最终临时分支删除确认
+
+2026-10-17：Owner转发Codex回执，称已在远端HEAD精确匹配`ef66a9aeda69888252bbbfdd5ea7246b6466acaa`后仅执行一次普通分支删除，进程exit0，LOCAL_ONLY原证与产品树未被改动。该实际Windows/Codex命令属于`CODEX_REPORTED`。
+
+Astra随即独立调用GitHub API查询精确分支`review/temporary-evidence-v1009-prewarm-diagnostics-20261017`，得到 **HTTP 404 / Branch not found**；此前已在固定Commit `ef66a9aeda69888252bbbfdd5ea7246b6466acaa`将临时28文件恢复至原产品父Tree并确认目录消失。因此状态正式改为**`TEMP_REVIEW_BRANCH_REMOVED_VERIFIED`**，不再是`BRANCH_DELETE_PENDING`。删除分支引用不证明历史Git对象/缓存/克隆彻底消除。
+
+同时GitHub独立查询时`main`为`98a2d218754e3b8eb362e5faadf920e163befd68`，产品开发分支`codex/v10.0.9-rtc-media`为`70612d36652660e8bdd9d12017c1254ada686298`；本条文档后继更新只变更main文档，不变产品代码、冻结AC、离线验收结论。任何新真实UAC、防火墙/DB/SFU/网关/sweep与两端音频操作仍须Owner**新的具名一次性批准**；`AC-09-03 NOT_PROVEN`、`V10.0.9 NOT_ACCEPTED`，不得K08/合main产品/后继版本。
