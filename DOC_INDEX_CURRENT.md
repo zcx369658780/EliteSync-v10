@@ -1,5 +1,9 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-17 v10.0.10 玄学三盘本命版 FROZEN（首读）
+
+**OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_MANUAL_DISPATCH_PENDING**。新会话首读[唯一正式plan](docs/versions/v10.0.10/plan.md)，并核对[Astra独立版前审查](docs/versions/v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)及[Codex固定报告](https://github.com/zcx369658780/EliteSync-v10/blob/70ca8a945dc933f33ff815058b29813c744e6009/docs/versions/v10.0.10/PREPLAN_REPORT.md)。本版仅完成八字/紫微/西方本命与有据本命扩展（含大运流年、紫微运限）；旧合盘/行运/回归/法达等属后续内测前必恢复项。v10.0.9 K08产品main起点`a1ce6473e85ee02786fc2fb4bb33ca1eac46ea8f`仍有效，新版源/运行未启动，许可证与独立oracle不可假报。下文K08与更早ICE/NOT_ACCEPTED均为对应时点的历史状态。
+
 ## 2026-10-17 v10.0.9 K08完成（当前）
 
 **V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
