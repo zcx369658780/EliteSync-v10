@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-17 v10.0.10 本命三盘已实施检查点，继续同一版本（当前）
+
+**V10.0.10 IMPLEMENTATION_CHECKPOINT_SAVED / RIGHTS_AND_ORACLE_BLOCKED / NOT_FINAL_CANDIDATE / NOT_ACCEPTED / CONTINUE_SAME_VERSION**。Owner方案A已派发，开发分支`codex/v10.0.10-natal-restoration`固定Commit`54aaeca7bf8863554f07c6412fa912107e17b4b9` / Tree`877314cfa4180f79e733e0680a737fd1939c0571`，源码身份`883a53cb23830ec79b5811f71a2238b7d1aacd20`。已完成真实APP→Laravel→隔离MariaDB输入、设置、签名、重算、重登/冷启动/持久重启的限定回执及算法独立对照部分覆盖；**完整三盘独立准确性与许可尚未通过**。三类真正阻塞：Chiron JPL/Horizons数据合法分发/商业使用待回复或替代源权利验证；紫微亮度流派异文与小星/运限参考；八字Gregorian交运与西占sidereal/Lilith扩展具名定义/独立校验。Astra已独立核实固定源码/汇总并归档[检查点审查](docs/versions/v10.0.10/ASTRA_IMPLEMENTATION_CHECKPOINT_REVIEW_20261017.md)，结论**同版自主继续**，不拆微任务、不降低冻结8AC、不等待一封邮件而停全部工程。当前新测试APP/API/DB已停止及dirty根不变为`CODEX_REPORTED`；未合main、K08、正式接受或启动下一版。下方`IMPLEMENTATION_NOT_STARTED`仅为计划冻结当时的历史状态。
+
+
 ## 2026-10-17 v10.0.10 玄学本命恢复正式计划冻结（当前）
 
 **V10.0.10 FROZEN_FUNCTIONAL_PLAN / OWNER_OPTION_A_APPROVED / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner已确认方案A：八字＋紫微＋西方本命三盘、旧版实际本命扩展、大运流年及紫微运限本版必达；合盘/行运/回归/法达等真实已实现动态关系盘留后续且必须内测前收口。正式计划：[v10.0.10唯一冻结plan](docs/versions/v10.0.10/plan.md)，前置[版前报告](docs/versions/v10.0.10/PREPLAN_REPORT.md)和[Astra独立审查](docs/versions/v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)。主产品起点仍是v10.0.9 K08 `a1ce6473e85ee02786fc2fb4bb33ca1eac46ea8f`；本次为文档同步，算法、oracle、新DB、APP构建/测试均NOT_RUN。现代紫微飞星独立oracle、Skyfield/JPL具体数据及许可准入仍是实施中必达门，不因plan冻结宣称已解决。**Owner尚未手动转交Codex实施；不启动环境、不合产品、不修改D6路线图。** 下方v10.0.9 K08为上一阶段真实已完成状态，不能当新版本未规划的当前结论。
