@@ -1,5 +1,9 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-17 v10.0.10 玄学本命恢复正式计划冻结（当前）
+
+**V10.0.10 FROZEN_FUNCTIONAL_PLAN / OWNER_OPTION_A_APPROVED / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner已确认方案A：八字＋紫微＋西方本命三盘、旧版实际本命扩展、大运流年及紫微运限本版必达；合盘/行运/回归/法达等真实已实现动态关系盘留后续且必须内测前收口。正式计划：[v10.0.10唯一冻结plan](docs/versions/v10.0.10/plan.md)，前置[版前报告](docs/versions/v10.0.10/PREPLAN_REPORT.md)和[Astra独立审查](docs/versions/v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)。主产品起点仍是v10.0.9 K08 `a1ce6473e85ee02786fc2fb4bb33ca1eac46ea8f`；本次为文档同步，算法、oracle、新DB、APP构建/测试均NOT_RUN。现代紫微飞星独立oracle、Skyfield/JPL具体数据及许可准入仍是实施中必达门，不因plan冻结宣称已解决。**Owner尚未手动转交Codex实施；不启动环境、不合产品、不修改D6路线图。** 下方v10.0.9 K08为上一阶段真实已完成状态，不能当新版本未规划的当前结论。
+
 ## 2026-10-17 v10.0.9 K08完成（当前）
 
 **V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
