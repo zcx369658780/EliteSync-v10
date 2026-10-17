@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-17 A07玄学三盘完整恢复：v10.0.10 已冻结未实施（当前）
+
+**OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED**。A07范围以[唯一正式plan](../versions/v10.0.10/plan.md)为准：八字已验基础继续完善、紫微和西方星盘真实本命算法/独立oracle、本命扩展及大运流年/紫微运限，APP→Laravel→私有持久库全链。现有紫微seed/飞星缺独立参考、西占legacy估算及第三方许可门仍未消除，不得由“冻结”提升为“已恢复”。**经确认原版已实现的合盘、行运、回归、法达及其它动态关系盘属于后续内测前具名必恢复欠账，不并入本版，不得以Later删去。** v10.0.9 K08真实成功状态保持，下文以旧时点记录。当前没有新版算法运行/安装/业务实测或Owner实施派发。
+
 ## 2026-10-17 v10.0.9 K08完成（当前）
 
 **V10.0.9 K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_CANDIDATE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Astra最终接受记录固定于`d6090677a4f35b60edc5fb169432252a96e746cc`；已接受候选`70612d36652660e8bdd9d12017c1254ada686298`安全集成产品提交`15f44aaab49a74950675c63d13cafd9ee335c999` / Tree`21631f359e3486bdde385a663ff6d8ef4510f974`。完整apps=`cb244162165c572c95bf428c11945d37d0e56d52`、services=`f383a84689a0039077b030988ba55ad720b425dd`与接受候选相同，题库原已相同。main原Owner决定/工作流/冻结AC/独立验收及历史原文保留；原dirty根未吸收代码，复用干净专用树`codex/k08-v1009-integration`接续。
