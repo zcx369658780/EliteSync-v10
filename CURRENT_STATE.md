@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-17 v10.0.10 第二次继续实施及旧仓许可核对（当前）
+
+**V10.0.10 CONTINUE_SAME_VERSION / RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。新开发分支Commit`4222645703821ab20896765a31df1cfa375034ca`（Tree`b97a4d2f4b3135ed2970bdd324213845d9245069`），本轮源码`0384a8ee65294931d35602b2a486f70ae3baedb6`。补充Gregorian交运公历90项与起运249项（另5样本保留uncertain）、自定义sidereal/mean Lilith定义84项、紫微余星680项与选定运限1512项对照；本轮真实APP/API/DB及重建安装`NOT_RUN`，原实装链仍是上一源码时点。
+
+Owner本轮上传旧仓库License合规材料ZIP，Astra实际核阅：它证明历史lunar/iztro等MIT许可证及Kerykeion/Swiss类受限门，**没有Chiron/NIMA授权文件或旧APP闭源全套商业许可证明**，且旧仓报告声明不适用于v10实际运行。Astra已归档[独立审查](docs/versions/v10.0.10/ASTRA_CONTINUATION_LEGACY_LICENSE_REVIEW_20261017.md)，**建议**仅一次向Lucky Star/NIMA官方联系邮箱询问Chiron离线商业使用/数据分发权，但**Owner尚未批准新的收件人、尚未发送**；旧JPL一次性许可不可继承。紫微亮度、余星、完整运限与更广边界仍是冻结AC阻塞，不降级、不合main/K08，不拆微任务。下方历史checkpoint继续按原时点解释。
+
+
 ## 2026-10-17 v10.0.10 本命三盘已实施检查点，继续同一版本（当前）
 
 **V10.0.10 IMPLEMENTATION_CHECKPOINT_SAVED / RIGHTS_AND_ORACLE_BLOCKED / NOT_FINAL_CANDIDATE / NOT_ACCEPTED / CONTINUE_SAME_VERSION**。Owner方案A已派发，开发分支`codex/v10.0.10-natal-restoration`固定Commit`54aaeca7bf8863554f07c6412fa912107e17b4b9` / Tree`877314cfa4180f79e733e0680a737fd1939c0571`，源码身份`883a53cb23830ec79b5811f71a2238b7d1aacd20`。已完成真实APP→Laravel→隔离MariaDB输入、设置、签名、重算、重登/冷启动/持久重启的限定回执及算法独立对照部分覆盖；**完整三盘独立准确性与许可尚未通过**。三类真正阻塞：Chiron JPL/Horizons数据合法分发/商业使用待回复或替代源权利验证；紫微亮度流派异文与小星/运限参考；八字Gregorian交运与西占sidereal/Lilith扩展具名定义/独立校验。Astra已独立核实固定源码/汇总并归档[检查点审查](docs/versions/v10.0.10/ASTRA_IMPLEMENTATION_CHECKPOINT_REVIEW_20261017.md)，结论**同版自主继续**，不拆微任务、不降低冻结8AC、不等待一封邮件而停全部工程。当前新测试APP/API/DB已停止及dirty根不变为`CODEX_REPORTED`；未合main、K08、正式接受或启动下一版。下方`IMPLEMENTATION_NOT_STARTED`仅为计划冻结当时的历史状态。
