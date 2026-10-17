@@ -1,5 +1,35 @@
 # v10.0.10 三盘本命恢复：综合实施与阻塞报告
 
+## 2026-10-17 Astra阶段复核后的同版继续实施
+
+**CONTINUE_SAME_VERSION / RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。已完整读取固定于 `1bdc76c1e51b29af0e54ceb17b9bdb82eaf04c67` 的 [Astra阶段审查](https://github.com/zcx369658780/EliteSync-v10/blob/1bdc76c1e51b29af0e54ceb17b9bdb82eaf04c67/docs/versions/v10.0.10/ASTRA_IMPLEMENTATION_CHECKPOINT_REVIEW_20261017.md)。唯一冻结plan、八项AC不变；不是重新规划或新R任务。
+
+本轮源码 **`0384a8ee65294931d35602b2a486f70ae3baedb6`**，Tree `b14d2bc2130e4fe881744f18fc2301970066c00d`，父为上轮 `54aaeca7bf8863554f07c6412fa912107e17b4b9`；apps=`6625bce44380b800bcaa843eb8f0c090422d076e`，services=`d3dcd788ef6d0500090ec84c50f0dcb5b4c05942`。15个源码/说明/独立参考路径：明确现有交运Gregorian行为与西占定义、profile1.0.1、APP可见标签和独立参考/测试。**未改变现有数值算法、紫微表、引擎、依赖版本或资料权限。** 后续报告提交继承上述产品子Tree，开发分支仍为 `codex/v10.0.10-natal-restoration`。
+
+本节运行结果仍为 **CODEX_REPORTED / LOCAL_ONLY**；公开机器汇总关联回执名与stdout/stderr hash，Astra未登录本机复算。日期算术含少量1900或远期世纪规则探针，不把这些纯算术测试提升为APP全历史域验真。
+
+| 本轮实际核验 | 结果与不能外推的范围 |
+|---|---|
+| 交运Gregorian盲选日期 | 非作者未读生产，30样本×公历/UTC/用户TZ=90项一致；含闰日、世纪、月底、年月非结合、DST与日期变更线。证明具名兼容算术，不是古籍唯一现代规则。 |
+| HKO/起运补对照 | 复用先前88个生产输出，新增83个精度足够样本×offset/calendar/UTC=249项无差异；5个跨桶区间保持REFERENCE_UNCERTAIN。sect2全88个仅有分钟精度区间，未伪造唯一值。 |
+| 西占定义补盲 | 28个非作者TT输入，ayanamsha、mean-apogee真春分点黄经及速率共84项通过；最大误差分别约1.448e-8°、1.363e-8°、8.583e-8°/日。独立ERFA矩阵/基本角，共享IERS/ERFA模型族；不证明官方Lahiri或旧版逐位等价。 |
+| 紫微余星合法输入 | 独立HKO72输入中40个非闰月且初三以后，17星共680位置无差异；其余32例逐星NOT_ASSERTED。最初结构样本不保证农历月存在，没有拿它们运行APP域算法；另从原合法集独立生成并冻结新expected后才比产品。 |
+| 选定大限/流年 | 同72输入新目标年，216个大限字段、72个年干支、864个宫名、72组四化数组、288个四化目标，共1512项一致；是选定规则子集，未含全流曜、小限/童限或完整边界oracle。 |
+| 截路/旬空 | 60干支循环＋24非作者年份：84个截路/空亡合并双支集合相等，84个旬空单支落在古典双支集合；不证明两名称分支分配或单支阴阳选择。 |
+| 定点回归 | PHP八字15 tests/130 assertions exit0，保留2个既有PHPUnit deprecation；Flutter默认/本版define各20项exit0，定点analyze exit0。独立参考可移植重放/语法通过；拒绝覆盖已有输出预期exit2且原hash不变。不累计为不重叠测试数量。 |
+
+交运现有兼容行为已登记：固定UTC+08，顺序加年截日→加月截日→日→小时，最终转UTC/用户TZ；23时起运桶保留末桶11特例；保留出生分秒不代表秒级准确性。自定义CRC1956和平均月球远地点在同一profile、API元数据及APP标签中明示。见 [CALCULATION_CONVENTIONS](../../../services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md)和[新参考来源清单](../../../services/backend-laravel/tools/natal/oracle/continuation_reference_sources.json)。参考生成器不进入生产，不用生产输出制造expected。
+
+内部非作者复核确认产品数值口径未变、hash已进入既有缓存签名及未误标标准/验证状态；发现参考CLI先exists后write的覆盖竞态，已改原子 `open('x')` 并回读关闭。保留原手工探针ID，但明确其UTC00实际为UTC+08的08，不冒称本地23→00。公开紫微参考移植只改路径、输入去旧expected及stdout，72条case与冻结原稿逐值相同；无生产导入、绝对私有路径或受限亮度整表。复核不代替Astra接受。
+
+本轮失败/限制完整保留：标签两项先RED后GREEN；西占参考v1省略月球平近点角和真春分点修正在**任何生产对照前**被发现，原件不覆盖，v2独立重冻后才比产品；交运重放hash差异经结构对比仅为sect2说明文字，88数值记录相同；本地harness字段/导入错误与一次报告脚本语法错误不按生产失败或静默通过计。原v1封诰与历史失败继续保留。
+
+本轮只读原JPL线程一次，仍只有原SENT一封，没有重发、下载Chiron或付费。替代来源调查及剩余紫微/完整扩展参考仍不足以关闭最终AC；免费/第三方/商业备用路线、当前官方价格/六年合同及可审阅限定询问信息集中于唯一 [Owner决策请求](OWNER_DECISION_REQUEST.md)。不要求Owner逐字段转发或批准普通技术工作，不提供删必达字段追绿的选项。
+
+本轮APP/API/DB/服务重启、完整套件及APK/AAR重建安装均 **NOT_RUN**。既有build4/数据库链证据继续绑定下方首轮源码 `883a53c...`，不能当成本轮标签已安装或新HEAD已完整实装。新profile按既有hash合同使旧结果STALE，待权利/完整参考闭合后才统一重算、构建和最终验收。原dirty根HEAD/index/status/43项hash保护快照仍相同；未动volume、历史资产、UAC、防火墙、RTC、main/K08或后继版本。
+
+以下首轮原记录保留其固定身份、失败与范围，不能覆盖本节新增事实。
+
 2026-10-17。**IMPLEMENTATION_CHECKPOINT_SAVED / RIGHTS_AND_ORACLE_BLOCKED / NOT_FINAL_CANDIDATE / V10.0.10 NOT_YET_ACCEPTED**。
 
 Owner 方案 A 已实际派发并实施。真实三盘计算、APP 输入/设置/详情、Laravel 私有接口和独立 MariaDB 已贯通；本版仍未满足全部冻结必达字段的许可和独立准确性证明，**不能报告 FINAL CANDIDATE DELIVERED**。没有修改 AC、切入 Swiss/Kerykeion、合 main、执行 K08 或启动下一版本。本文集中保存同一版本成果和真正阻塞，不另立微型版本或新的规划轮次。

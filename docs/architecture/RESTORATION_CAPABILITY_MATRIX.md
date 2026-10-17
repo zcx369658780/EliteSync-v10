@@ -1,5 +1,10 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-17 v10.0.10 同版参考补足
+
+已补交运Gregorian约定、CRC1956/平均远地点定义与APP标签；新增30日期、83起运、28西占定义样本及40合法输入的17余星/72选定运限局部参考。完整亮度/流曜/边界和Chiron仍阻塞，见[同一综合报告](../versions/v10.0.10/IMPLEMENTATION_REPORT.md)与[集中决策请求](../versions/v10.0.10/OWNER_DECISION_REQUEST.md)。动态/关系盘内测前必恢复欠账不删除，不降AC，不合main/K08。
+
+
 ## 2026-10-17 A07 v10.0.10 已实际实施，完整恢复仍受阻（当前）
 
 **PARTIALLY_IMPLEMENTED_AND_RUNTIME_VERIFIED / RIGHTS_AND_ORACLE_BLOCKED / NOT_ACCEPTED**。本版新链已真实计算八字/紫微/西占本命，贯通实装 APP、Laravel 和独立持久 MariaDB；输入/设置修改、重读、重登/冷启动及 API/DB 重启有证据。未证明字段仍 UNVERIFIED，Chiron 缺失明示 partial；紫微亮度异文、余星/完整运限及精确公历交运等独立参考未闭合，不能将 A07 升为“完整恢复”。详见[单份综合报告](../versions/v10.0.10/IMPLEMENTATION_REPORT.md)。

@@ -1,5 +1,10 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-17 v10.0.10 同版继续
+
+源码0384a8ee65294931d35602b2a486f70ae3baedb6补明确计算约定与独立参考。[同一综合报告](v10.0.10/IMPLEMENTATION_REPORT.md)、[唯一集中决策请求](v10.0.10/OWNER_DECISION_REQUEST.md)。仍为RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED。
+
+
 ## 2026-10-17 v10.0.10 综合实施检查点，尚非完整候选
 
 **IMPLEMENTATION_CHECKPOINT_SAVED / RIGHTS_AND_ORACLE_BLOCKED / NOT_YET_ACCEPTED**。Owner 方案 A 已实际实施；[综合报告](v10.0.10/IMPLEMENTATION_REPORT.md)与[验证汇总](v10.0.10/validation-summary.json)记录三盘真实运算、APP/Laravel/独立库持久与重启、源码/构建、内部非作者修复及全部八项 AC 的真实缺口。Chiron 权利、紫微亮度异文/覆盖和精确公历交运等未关闭，冻结 AC 不改。本版运行已停止、volume/原证保留，没有 main 集成、K08 或后继版本；下文未实施等状态为历史记录。

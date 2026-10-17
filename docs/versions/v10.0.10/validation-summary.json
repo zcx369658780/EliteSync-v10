@@ -241,5 +241,170 @@
       "stdout_sha256": "1874fd5aa50ab4a7f1472cf2d335d5f58960da7b02222ef8f4dbd88c644b7b04",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
-  ]
+  ],
+  "continuation_20261017": {
+    "authority_review_commit": "1bdc76c1e51b29af0e54ceb17b9bdb82eaf04c67",
+    "source": {
+      "commit": "0384a8ee65294931d35602b2a486f70ae3baedb6",
+      "tree": "b14d2bc2130e4fe881744f18fc2301970066c00d",
+      "apps": "6625bce44380b800bcaa843eb8f0c090422d076e",
+      "services": "d3dcd788ef6d0500090ec84c50f0dcb5b4c05942",
+      "parent": "54aaeca7bf8863554f07c6412fa912107e17b4b9"
+    },
+    "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
+    "tests": [
+      {
+        "receipt": "continuation-bazi-php-regression",
+        "exit": 0,
+        "stdout_sha256": "a3922d36f82115dd697a4d11867a5d4927f1d877ec2619f2b515b14774696f25",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-labels-red",
+        "exit": 1,
+        "stdout_sha256": "9ddbff4be5e7a78b8bab150c4321998e5dd5a955b08882e8b70a87c4eeeafb25",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-labels-green",
+        "exit": 0,
+        "stdout_sha256": "4e2d1dd2c9746d7ac83b015b803c0b09ee63a14d8eaef1e8a8d4d3ba4d25fc7c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-flutter-green-local-define",
+        "exit": 0,
+        "stdout_sha256": "68fb9b6cbbe7adac90c8bacddd851d0e82293dbaa2f5ebe1453371a115a83c9a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-flutter-analyze",
+        "exit": 0,
+        "stdout_sha256": "32a574de213d331708e5bac94465878aa174a8c7b171a6507e8d4202f3297861",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-western-reference-replay",
+        "exit": 0,
+        "stdout_sha256": "ec0c8f2375b061f86fa23666d6ec987979bb384991c88f1ed21907f22e19fd89",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-calendar-reference-selfcheck",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-ziwei-minor-reference-replay",
+        "exit": 0,
+        "stdout_sha256": "fa513e3793c2e068848bcecfbd80799db6bced4f080fd575fb942c624d9fab40",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-oracle-refuses-existing-output",
+        "exit": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c9ecbadf72300e71b61f00240f9efee78a22463e86f9d0d0509eaecdbdab3151"
+      }
+    ],
+    "runtime": "NOT_RUN_IN_CONTINUATION_PRIOR_BUILD4_CHAIN_REUSED_WITH_ITS_ORIGINAL_IDENTITY",
+    "apk_rebuild_install": "NOT_RUN",
+    "jpl_thread": "SENT_ONLY_NO_REPLY_ONE_READ_NO_SEND",
+    "owner_decisions": "OWNER_DECISION_REQUEST.md",
+    "calendar": {
+      "samples": 30,
+      "field_comparisons": 90,
+      "failures": [],
+      "expected_sha256": "b8b825546e1cefd9e1a520ea0c6e7a7675ccc5eb57796262015c7fda595286ff",
+      "independence": "non-author blind dates and stdlib reference; only compatibility calendar arithmetic, not astronomical qiyun truth"
+    },
+    "qiyun": {
+      "samples": 88,
+      "unique_samples": 83,
+      "uncertain": [
+        "bazi-fresh-025",
+        "bazi-fresh-029",
+        "bazi-fresh-038",
+        "bazi-blind-018",
+        "bazi-blind-024"
+      ],
+      "field_comparisons": 249,
+      "failures": [],
+      "production": "reused original frozen bazi-production-blackbox.stdout; unchanged numeric code, no baseline rerun",
+      "expected_sha256": "617ef097a4811ba61f60adecbed20d7ec1d7347df065740370be292db88d923f",
+      "scope": "sect1 HKO guard and engineering Gregorian compatibility; not all epochs/second-precision astronomical claim"
+    },
+    "western_definition": {
+      "samples": 28,
+      "comparisons": 84,
+      "max_absolute_errors": {
+        "ayanamsha_degrees": 1.4479894616670208e-08,
+        "mean_lilith_degrees": 1.3632643458549865e-08,
+        "mean_lilith_rate_degrees_per_day": 8.582446753280237e-08
+      },
+      "failures": [],
+      "reference_hashes": [
+        "34df6f3ac35cd05972dee51fc7f7aa99dee26ee328d07ebdfb79b07b52502044",
+        "02dd3f0f2da2b3955a206f79815ec09890dd305c4b4d0ad02147291f6fe83f61"
+      ],
+      "scope": "non-author input/expected frozen before production; independent ERFA matrix/arguments, shared IERS and model family, not official Lahiri/original-engine equivalence",
+      "v1_apogee": "transcription omitted mean anomaly and true-equinox correction; rejected before production comparison; preserved"
+    },
+    "ziwei_void": {
+      "samples": 84,
+      "cut_void_pair_equalities": 84,
+      "xun_void_membership_only": 84,
+      "failures": [],
+      "unproven": [
+        "which pair member is named cut-road vs void",
+        "single xun member parity selection",
+        "all other stars/brightness/full selected-year horoscope"
+      ],
+      "expected_sha256": "1dcc0d01870cf7ba874f938e445d4287ce61bd9653f5b524bdca12929dead049"
+    },
+    "ziwei_minor_selected_luck": {
+      "legal_samples": 72,
+      "eligible_minor_samples": 40,
+      "unasserted_minor_samples": 32,
+      "counts": {
+        "minor_star_positions": 680,
+        "selected_decade_fields": 216,
+        "annual_year_ganzhi": 72,
+        "annual_palace_names": 864,
+        "annual_transformations": 72,
+        "annual_transform_targets": 288
+      },
+      "failures": [],
+      "full_horoscope_oracle": false,
+      "unproven": [
+        "leap-month and day-1/day-2 exceptions",
+        "17 star placement rules are not brightness verification",
+        "yearly/decadal auxiliary-star full sets",
+        "small-age layer and boundary-year/full selected horoscope",
+        "all source profile lineage independent of iztro"
+      ],
+      "expected_sha256": "acb062e0ab59de1197903fe1e8d275d4d4d821214f4a66ddf01f966ee0e86fe8"
+    },
+    "test_summary": {
+      "php_bazi": {
+        "tests": 15,
+        "assertions": 130,
+        "exit": 0,
+        "existing_phpunit_deprecations": 2
+      },
+      "flutter_default": {
+        "tests": 20,
+        "exit": 0
+      },
+      "flutter_v1010_define": {
+        "tests": 20,
+        "exit": 0
+      },
+      "flutter_targeted_analyze": {
+        "exit": 0
+      },
+      "overlapping_tests_not_summed": true
+    }
+  }
 }

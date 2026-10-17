@@ -1,5 +1,10 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-17 v10.0.10 同版续接（首读）
+
+先读[同一综合报告新增段](docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)、[集中Owner决策请求](docs/versions/v10.0.10/OWNER_DECISION_REQUEST.md)及[验证汇总](docs/versions/v10.0.10/validation-summary.json)。CONTINUE_SAME_VERSION / RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE；未合main/K08或启动下一版。
+
+
 ## 2026-10-17 v10.0.10 综合实施检查点（首读）
 
 **RIGHTS_AND_ORACLE_BLOCKED / NOT_FINAL_CANDIDATE / NOT_YET_ACCEPTED**。先读[单份综合实施报告](docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)、[验证汇总](docs/versions/v10.0.10/validation-summary.json)，继续遵守[唯一冻结 plan](docs/versions/v10.0.10/plan.md)。已实现并真实验证本命 APP/后端/持久库链；Chiron 许可、紫微规则异文/独立覆盖、精确公历交运等尚未闭合，不能当作完整候选或接受。运行已安全收口，保留本版 volume 和私有原证。开发源码 `883a53cb23830ec79b5811f71a2238b7d1aacd20`；未合 main/K08/启动下版。下方旧状态保留原时点含义。
