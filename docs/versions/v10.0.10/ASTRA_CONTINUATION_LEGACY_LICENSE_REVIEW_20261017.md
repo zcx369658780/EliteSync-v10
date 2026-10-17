@@ -41,3 +41,11 @@ Astra通过GitHub连接实读固定版本：
 ## 五、工作流结论
 
 `V10.0.10 NOT_ACCEPTED / CONTINUE_SAME_VERSION`。保持唯一正式冻结计划与Owner方案A。普通同版源码、合法参考和测试由Codex自行继续，**不发新微型任务单**。仅在下一次确实需要新第三方发信、付费/许可证承诺、隐私合同或重大互斥流派选择时向Owner集中提问。提交完整版`FINAL_CANDIDATE`前必须具合法Chiron来源及完整紫微/八字/西占独立参考和实际新源码APP/DB联动证据；所有现场结论如实标`CODEX_REPORTED`与`NOT_RUN`。
+
+## 2026-10-17 后继事实：Owner一次性NIMA询问批准与Gmail发送确认
+
+**`NIMA_ONCE_ENQUIRY_SENT / REPLY_PENDING / RIGHTS_NOT_GRANTED`**。
+
+Owner在本会话明确回复“我批准仅向 NIMA 上述收件人发送一次限定权利询问，不授权购买或使用数据”，批准唯一收件人`josselin.desmars@obspm.fr`和原定主题`Rights and coverage clarification for offline Chiron NIMA ephemerides`。据此Astra通过已连接Gmail**实际发送一次**英文权利/覆盖咨询；Gmail发信回执为`SENT`，随后查询发件箱取得恰好一封同收件人/主题的已发送邮件。发送时间按Gmail回执为2026-10-17 23:52:44北京时间。**未附用户资料、源码、文件，不承诺付费，不下载/安装/使用Chiron数据，也没有改变JPL此前已发邮件状态**。正文明确项目尚未成立公司/未公开测试、仅独立开发者前期询问；同时询问授权主体、闭源本地运算、派生坐标、可选原样再分发、覆盖/不确定性、署名及费用过程；如收件人无权许可，请转介适格主体。
+
+本记录仅持久化脱敏**事件状态**，不公开发件人身份、完整私人邮件ID/线程ID或Gmail私有URL；原Gmail回执可从授权账户核查。之前文档`EXPLICIT_OWNER_APPROVAL_PENDING / NOT_SENT`属于**原审查时点**，已由本节后继事实覆盖。当前`REPLY_PENDING`不能当作权利许可，也不代表对方已经接收/阅读/拒绝。v10.0.10开发分支未因发信获得新增引擎/数据准入或改变冻结AC，保持`CONTINUE_SAME_VERSION / NOT_FINAL_CANDIDATE / NOT_ACCEPTED`，其余独立oracle合法开发可自主继续。
