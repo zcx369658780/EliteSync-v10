@@ -62,6 +62,14 @@ class AstroProfileController extends Controller
     ): JsonResponse {
         $routeMode = $this->normalizeRouteMode((string) $request->query('route_mode', 'standard'));
         $user = $request->user();
+        $natal = \App\Models\UserNatalProfile::where('user_id', (int) $user->id)->first();
+        if ($natal !== null) {
+            // Only an explicitly saved new calculation selects this view. Old
+            // canonical facts/private mirrors and accepted legacy rows stay intact.
+            return response()->json(['exists' => true, 'profile' =>
+                app(\App\Services\NatalProfileView::class)->legacyProjection($natal, $user->birthday)])
+                ->header('Cache-Control', 'no-store, private');
+        }
         $profile = UserAstroProfile::query()
             ->where('user_id', (int) $user->id)
             ->first();

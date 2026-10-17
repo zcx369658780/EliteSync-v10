@@ -1,0 +1,12 @@
+{
+  "id": "elitesync-v1010-natal",
+  "version": "1.0.0",
+  "verification": "IN_PROGRESS_UNVERIFIED",
+  "input": {"coordinates":"WGS84-east-north-positive","timezone":"explicit-IANA-runtime-version-recorded","unknown_time":"no-invented-instant","algorithm_sex":"explicit-independent-selection"},
+  "bazi": {"engine":"6tail/lunar-php","version":"1.4.0","day_sect":2,"yun_sect":1,"da_yun_count":10,"term_time_scale":"China-standard-calendar-wall-time-UTC+08","oracle_status":"UNVERIFIED"},
+  "ziwei": {"engine":"iztro","version":"2.5.8","profile":"iztro-2.5.8-modern-default-v1","oracle_status":"UNVERIFIED"},
+  "western": {"engine":"skyfield","version":"1.55","kernel":"DE440s","sha256":"c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2","coordinates":"geocentric-apparent-true-ecliptic-of-date","outer_planets":"explicit-DE440s-barycentre-targets","oracle_status":"UNVERIFIED"},
+  "prohibited_engines": ["kerykeion","swisseph","pyswisseph"],
+  "privacy": {"private_to_owner":true,"external_birth_data":false,"matching_effect":false},
+  "sources": ["https://github.com/6tail/lunar-php/tree/1.4.0","https://github.com/SylarLong/iztro/tree/v2.5.8","https://rhodesmill.org/skyfield/","https://naif.jpl.nasa.gov/naif/rules.html"]
+}

@@ -5,6 +5,7 @@ import 'package:flutter_elitesync_module/features/profile/presentation/providers
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/natal_chart_svg_builder.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'natal_restoration_provider.dart';
 
 Future<Map<String, dynamic>?> _fetchAstroProfile(
   Ref ref, {
@@ -13,19 +14,35 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   String? fallbackPath,
   Map<String, dynamic>? fallbackQuery,
 }) async {
+  var active = true;
+  ref.onDispose(() => active = false);
+  final session = await ref.watch(sessionProvider.future);
+  bool current() =>
+      active &&
+      natalSessionMatches(session, ref.read(sessionProvider).asData?.value);
+  void requireCurrent() {
+    if (!current()) {
+      throw const AstroProfileApiException(
+        message: '登录身份已变化，请重新读取。',
+        statusCode: 401,
+        code: 'stale_session',
+      );
+    }
+  }
+
+  requireCurrent();
   Future<NetworkResult<Map<String, dynamic>>> request(
     String requestPath,
     Map<String, dynamic>? requestQuery,
   ) {
-    ref
-        .read(appLoggerProvider)
-        .info(
-          '[ASTRO] request => $requestPath query=${requestQuery ?? const {}}',
-          tag: 'ASTRO',
-        );
+    requireCurrent();
     return ref
         .read(apiClientProvider)
-        .get(requestPath, query: requestQuery)
+        .get(
+          requestPath,
+          query: requestQuery,
+          options: natalSessionOptions(current),
+        )
         .timeout(
           const Duration(seconds: 10),
           onTimeout: () => throw const AstroProfileApiException(
@@ -37,13 +54,8 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   }
 
   NetworkResult<Map<String, dynamic>> result = await request(path, query);
+  requireCurrent();
   if (result is NetworkSuccess<Map<String, dynamic>>) {
-    ref
-        .read(appLoggerProvider)
-        .info(
-          '[ASTRO] success <= $path keys=${result.data.keys.join(",")}',
-          tag: 'ASTRO',
-        );
     final exists = result.data['exists'] == true;
     if (!exists) return null;
     final profile = result.data['profile'];
@@ -52,21 +64,10 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   }
 
   var failure = result as NetworkFailure<Map<String, dynamic>>;
-  ref
-      .read(appLoggerProvider)
-      .warning(
-        '[ASTRO] failure <= $path status=${failure.statusCode} code=${failure.code} message=${failure.message}',
-        tag: 'ASTRO',
-      );
   if (failure.statusCode == 404 && fallbackPath != null) {
     result = await request(fallbackPath, fallbackQuery);
+    requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      ref
-          .read(appLoggerProvider)
-          .info(
-            '[ASTRO] fallback success <= $fallbackPath keys=${result.data.keys.join(",")}',
-            tag: 'ASTRO',
-          );
       final exists = result.data['exists'] == true;
       if (!exists) return null;
       final profile = result.data['profile'];
@@ -74,17 +75,10 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
       return null;
     }
     failure = result as NetworkFailure<Map<String, dynamic>>;
-    ref
-        .read(appLoggerProvider)
-        .warning(
-          '[ASTRO] fallback failure <= $fallbackPath status=${failure.statusCode} code=${failure.code} message=${failure.message}',
-          tag: 'ASTRO',
-        );
   }
 
-  if (failure.statusCode == 401 || failure.statusCode == 403) {
-    await ref.read(sessionProvider.notifier).setUnauthenticated();
-  }
+  // AuthInterceptor owns token-bound session rejection. A delayed profile
+  // response must never invoke an unconditional logout of a newer session.
 
   throw AstroProfileApiException(
     message: failure.message,
@@ -120,6 +114,7 @@ final astroNatalChartProvider = FutureProvider<Map<String, dynamic>?>((
 final astroChartPreviewProvider = FutureProvider<String?>((ref) async {
   final profile = await ref.watch(astroNatalChartProvider.future);
   if (profile == null) return null;
+  if (profile.containsKey('natal')) return null;
   final svg = buildNatalChartSvgFromProfile(profile).trim();
   return svg.isEmpty ? null : svg;
 });

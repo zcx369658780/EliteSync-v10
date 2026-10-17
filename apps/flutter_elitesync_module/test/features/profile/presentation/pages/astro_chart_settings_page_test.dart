@@ -9,6 +9,7 @@ import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_chart_settings_page.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_profile_provider.dart';
 
 class FakeLocalStorageService extends LocalStorageService {
   FakeLocalStorageService([Map<String, Object?>? initialValues]) {
@@ -96,6 +97,9 @@ Widget _wrap(Widget child) {
         ),
       ),
       localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+      astroSummaryProvider.overrideWith(
+        (ref) async => {'name': 'Fictional legacy settings fixture'},
+      ),
     ],
     child: MaterialApp.router(
       theme: AppTheme.light,

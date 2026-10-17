@@ -1,0 +1,9 @@
+# CPython 3.11 / Windows x86_64. Binary wheels only; retain resources/natal/notices.
+# Install in an isolated environment with --require-hashes --only-binary=:all:.
+# Other platforms are NOT validated by these wheel identities.
+certifi==2026.7.22 --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+jplephem==2.24 --hash=sha256:2de15608a0f13010a71a0a8af8765646d5884402006dac0dd7639d7db13629ac
+numpy==2.4.6 --hash=sha256:1e254a00cdf42b1e4d5b3d68d33af63268d41340d8885df2ab6470f2e1500147
+pyerfa==2.0.1.5 --hash=sha256:66292d437dcf75925b694977aa06eb697126e7b86553e620371ed3e48b5e0ad0
+sgp4==2.27 --hash=sha256:827c63feb60987ad177c2c80f3a927e721ead2f444d6560cd2a4337ca90d2490
+skyfield==1.55 --hash=sha256:9f98964855067460c94aa81a337194136f4a97a62ba8bbbfac1b8556f2b66ad4

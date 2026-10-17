@@ -48,9 +48,16 @@ class MeLandingPage extends StatelessWidget {
               push: true,
             ),
             _MePurposeEntry(
+              icon: Icons.auto_awesome_outlined,
+              title: '三盘本命 · 输入与排盘',
+              subtitle: '编辑私有出生资料，查看八字、紫微与西方本命盘及各项核验状态。',
+              route: AppRouteNames.astroProfile,
+              push: true,
+            ),
+            _MePurposeEntry(
               icon: Icons.calendar_month_outlined,
               title: '本地真实八字',
-              subtitle: '使用已保存出生资料计算；完整紫微与西占待恢复。',
+              subtitle: '查看已保存的八字；新的三盘输入与设置请使用上方排盘入口。',
               route: AppRouteNames.astroBazi,
               push: true,
             ),
