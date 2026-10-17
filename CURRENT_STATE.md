@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-17 NIMA Chiron权利询问一次性发送（当前）
+
+**`NIMA_ONCE_ENQUIRY_SENT / REPLY_PENDING / RIGHTS_NOT_GRANTED`**。Owner批准一次且仅一次向NIMA官方公开联系人发送Chiron离线闭源服务与可选分发权利询问，不批准购买、下载或使用数据。Astra已通过已连接Gmail实际发送，Gmail SENT回执及发件箱单封回读成立；英文邮件如实说明尚未公司注册/公开内测、仅独立开发前期咨询，无用户生辰、附件、源码或费用承诺。原JPL邮件另行仍是已发待答，NIMA询问亦**不是许可证或法务准入**。详见[独立审查与后继发信记录](docs/versions/v10.0.10/ASTRA_CONTINUATION_LEGACY_LICENSE_REVIEW_20261017.md)。Codex在原v10.0.10任务内继续合法未阻塞的算法/独立oracle；完整AC仍未收口，`CONTINUE_SAME_VERSION / NOT_FINAL_CANDIDATE / NOT_ACCEPTED`。下方NIMA尚待批准的记录是此前时点，现已由本段覆盖。
+
+
 ## 2026-10-17 v10.0.10 第二次继续实施及旧仓许可核对（当前）
 
 **V10.0.10 CONTINUE_SAME_VERSION / RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。新开发分支Commit`4222645703821ab20896765a31df1cfa375034ca`（Tree`b97a4d2f4b3135ed2970bdd324213845d9245069`），本轮源码`0384a8ee65294931d35602b2a486f70ae3baedb6`。补充Gregorian交运公历90项与起运249项（另5样本保留uncertain）、自定义sidereal/mean Lilith定义84项、紫微余星680项与选定运限1512项对照；本轮真实APP/API/DB及重建安装`NOT_RUN`，原实装链仍是上一源码时点。
