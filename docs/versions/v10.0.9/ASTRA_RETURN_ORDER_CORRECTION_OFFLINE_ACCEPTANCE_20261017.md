@@ -35,3 +35,9 @@ Astra实际审阅了`audit/RETURN_ORDER_CORRECTION.diff`、7个运行脚本、`t
 ## 4. 临时证据清理
 
 依据Owner已批准的`docs/workflow/TEMP_REVIEW_EVIDENCE_PROTOCOL.md`，独立审阅已完成，允许仅对本临时分支做非强制快进纯清理提交，恢复其创建时的parent Tree，GitHub回读该子目录在最新HEAD不再存在；再由Codex**只按固定新HEAD**删除该临时远端分支，Astra核验API404。**在最终404前必须保留BRANCH_DELETE_PENDING，不可假称完成。** Git历史/缓存中的提交不能保证永久擦除，因此无敏感原证进入公开副本。
+
+## 5. 审阅证据工作树清理实绩
+
+2026-10-17：Astra已执行纯GitHub**non-force fast-forward**临时分支清理：原审阅Commit `3175f3c9427f53843fda79f88c641602c5333c7a` 为唯一parent，新清理Commit `cc639391f906c3e7a9047af3504d5a7a199db7db`，其Tree `50102808ff66225256925751a408a6ae6c4ea843` 精确等于短期分支创建前 `29984bd24da0f0cffc3a977d825cb014903d40b9` 的Tree。GitHub独立回读短期分支最新HEAD与清理Commit一致，`docs/_temporary_review/v1009-return-order-20261017/REPORT.md`在新HEAD返回404；因此73个临时文件已从**最新工作树**清除，但其固定历史Commit不等于被抹除。
+
+后续仅剩**远端临时分支引用删除**，当前`TEMP_REVIEW_TREE_CLEANED / TEMP_BRANCH_DELETE_PENDING`；Codex须在独立核验精确HEAD为`cc639391f906c3e7a9047af3504d5a7a199db7db`后一次性删除`review/temporary-evidence-v1009-return-order-20261017`，Astra再API 404确认。未获得最终404之前不可宣称完整清理。正式main和产品开发分支均未在临时分支清理动作中被更改。
