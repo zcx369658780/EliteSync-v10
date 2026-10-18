@@ -747,5 +747,220 @@
     "rights_source_documents_and_tables": "LOCAL_ONLY_NOT_COPIED_INTO_PRODUCT_OR_PUBLIC_TESTS",
     "protection": "Before and after local source save, original dirty rootHEAD/index/status/43tracked hashes equal; no blanket rehash of all untracked media",
     "exit_state": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED_NO_MAIN_K08_SUCCESSOR"
+  },
+  "continuation_20261018_independent_rules": {
+    "classification": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED",
+    "evidence_level": "CODEX_REPORTED_LOCAL_ONLY_NOT_ASTRA_REVIEWED",
+    "local_source": {
+      "commit": "dce899c88f707ba5e50843e5a724a0f76f140e53",
+      "tree": "df56d363d7beb0a419c41e5aa06224b30b030926",
+      "apps": "f7a13582772aabdb606e020a232b573c67482222",
+      "services": "0c6450f77ba8d7352936b5667e9ab9ebf49bc549",
+      "paths_sha256": {
+        "services/backend-laravel/tools/natal/oracle/ziwei_brightness_reference.py": "56ac64c89c027b1de1767d6a7b205832625131a40b81ea6eb89754b6dd4b04ee",
+        "services/backend-laravel/tools/natal/oracle/ziwei_classical_brightness_sources.json": "10413aed882d1d414505f0761ecd78a11483b20a24fdcad69d86c1a535e070fa"
+      },
+      "scope": "Independent oracle only; no production numerical changes, no push",
+      "review": "Non-author reviewed; dependency identity fix confirmed"
+    },
+    "remote_main": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+    "remote_development_branch": "4222645703821ab20896765a31df1cfa375034ca",
+    "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+    "published": false,
+    "counts": {
+      "classical_main_cells": 168,
+      "classical_auxiliary_cells": 64,
+      "classical_distinct_cells_total": 232,
+      "classical_main_reads": 1050,
+      "classical_auxiliary_reads": 450,
+      "joint_position_brightness72_rows": 1440,
+      "joint72_distinct_cells": 218,
+      "hanlu_model_conditioned5_fields": 35,
+      "leap_month_inference_positions": 48,
+      "original_leap48_not_asserted_unchanged": true,
+      "annual_pair72_positions": 144,
+      "all_unresolved_inventory_before_annual_pair_positions": 504,
+      "original_flow_not_asserted_markers_unchanged": 288,
+      "cny_cases": 24,
+      "cny_rows": 3384,
+      "selected_limit_cases": 30,
+      "selected_limit_rows": 1080,
+      "flutter_each_mode_tests": 22
+    },
+    "counts_are_overlapping_not_ac_scores": true,
+    "comparisons": {
+      "classical_fourteen_brightness_compare": {
+        "result_sha256": "da525b6da0bb6d449485d4fb91075f90068990acbd61e716ba208b8515496c57",
+        "status": "SPECIFIED_CLASSICAL_FOURTEEN_MATRIX_VALUE_MATCH"
+      },
+      "classical_six_brightness_compare": {
+        "result_sha256": "cb18258b980dde72293b4eca55430d2bf55b060f9cd981e7da4d0106d33c6bf7",
+        "status": "SPECIFIED_CLASSICAL_TRANSCRIPTION_FACTS_MATCH"
+      },
+      "hanlu_qiyun_current5_compare": {
+        "result_sha256": "34a00ef11d4a0d71e7d4a0f985d4b04229b2875c7edc4aea85afd7ee339a3672",
+        "status": "PASS_FIVE_MODEL_CONDITIONED_SECT1_CROSSCHECK"
+      },
+      "leap_inference_compare": {
+        "result_sha256": "3a663c2d1fbd7ff27de29477f83a2feacad29274d34babbc95254d8232623c27",
+        "status": "SOURCE_INFERENCE_NOT_EXPLICIT_PER_STAR_LEAP_RULE"
+      },
+      "annual_pair_compare": {
+        "result_sha256": "fe471e8c19359fa6fbb6b9072ed7bfe06087d638c21d9038136b1ed9aa135629",
+        "status": "ANNUAL_PAIR_SOURCE_RULE_MATCH"
+      },
+      "classical_position_brightness72_compare_v2": {
+        "result_sha256": "57a790082d9a7b5c7f3c3561710e2aba56ac6c4836af85cc286f8b355d6e522d",
+        "status": "PASS_72_INDEPENDENT_POSITION_BRIGHTNESS_RULES"
+      },
+      "cny24": {
+        "result_sha256": "1f123c87a16e22c7a7562f7b9a19950f007181d7db639ae52acf3b2255b1dcf8",
+        "status": "PASS_24_NATAL_CNY_CURRENT_ZI_SOURCE_RULES",
+        "cases": 24,
+        "comparison_rows": 3384,
+        "differences": 0
+      },
+      "selected_limit30": {
+        "result_sha256": "9bb7f3c9dcb0900744d8bc7c859b5b5e729d8f5c23857eb14aa58d45c1a276b0",
+        "status": "PASS_SELECTED_DECADAL_START_END_NEXT",
+        "cases": 30,
+        "comparison_rows": 1080,
+        "differences": 0
+      }
+    },
+    "command_receipts": [
+      {
+        "receipt": "20261018-continuation-live-refs",
+        "exit": 0,
+        "stdout_sha256": "ed2c4496e11b1c2142a0b7c2cb747ccd506792c7bd77a5462c194ccb2afcb7d9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-continuation-plan",
+        "exit": 0,
+        "stdout_sha256": "286b7253143a5a6ddc405848d2c8f836cf00446a78f8eafd83367556438be95f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-hanlu-five-current-class",
+        "exit": 0,
+        "stdout_sha256": "87bfcba3170f5fc2ea123c3995f8df88bbc7a981d787bbfbe24ac56d76f3f235",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-format",
+        "exit": 0,
+        "stdout_sha256": "4ce9607dfce4cd221e200e5f01c073cbbd48c81a8d2a7befeb853468b27416d3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-default",
+        "exit": 0,
+        "stdout_sha256": "ef4ff914581bef9a97503f29ceda79a22eb3e80df68ae722232140ee30a002ab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-v1010",
+        "exit": 0,
+        "stdout_sha256": "ef4ff914581bef9a97503f29ceda79a22eb3e80df68ae722232140ee30a002ab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-analyze",
+        "exit": 0,
+        "stdout_sha256": "f5a0b5dbb5579d971129e1eab9c90d5fa8171d0a188bfccd3db0443ac699f551",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-source-fetch",
+        "exit": 0,
+        "stdout_sha256": "54bd7e76aa6cf0612543f0552f815a965303eb3bc3b96a5cca415dec25429bed",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-reference-freeze",
+        "exit": 0,
+        "stdout_sha256": "3b5a869a51e9e4f893b35407362585ba6114d46902bea280988281b86d59c59a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-cache-compare",
+        "exit": 0,
+        "stdout_sha256": "bf6fb761f314afd11b573061e91c8df090d4b993a059a156594a6ca3a4e9d968",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-adapter24",
+        "exit": 0,
+        "stdout_sha256": "735d04cf2cd3f50410babb7471a9c77c759e85d1a5d32811ee68a946497a7838",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-compare",
+        "exit": 0,
+        "stdout_sha256": "239d6e32aad0199bc1065fc64095db2206c0616fb8f8cdc1541a977bab864fd5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-compare-v2",
+        "exit": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c571bcf7ca30893f47c942326d2ae5385a60fe0f82900c063f5731a18867d54d"
+      },
+      {
+        "receipt": "20261018-cny-current-compare-v2-fixed",
+        "exit": 0,
+        "stdout_sha256": "7056a75758bb418cb195685e64b6c14e60dfe450ace36a67e0a2a8e5f423b1b9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-selected-limit-current-adapter30",
+        "exit": 0,
+        "stdout_sha256": "5728b961bd80607a99ba83590dc9054565ba8016d921269563c3f4b79de833bd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-selected-limit-current-compare",
+        "exit": 0,
+        "stdout_sha256": "9ccb63a97ae411bccff36d2b5202a39eef983fd1593e8d29b95906c1af2dd6e0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-classical-position-brightness72-v2",
+        "exit": 0,
+        "stdout_sha256": "97319a1bef648c1a34b080e455c073088624a7bceda82b1bf25c1d91b8b3c257",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-oracle-binding-final-check",
+        "exit": 0,
+        "stdout_sha256": "27492fd0b99598b26c7dec40a2aaf09e835f7308e16fd97b4f4bdc284f365237",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-luck-ui-commit",
+        "exit": 0,
+        "stdout_sha256": "b5f642e6bbf432a03f6ff08357153dc9f0e80809f9d543dd8400880235788642",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-classical-oracle-commit",
+        "exit": 0,
+        "stdout_sha256": "2fcd351a364c5414b8bffedc83e7d40ba94c680f9056a59068dd5b30fb67ddc4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "rights": "JPL_NIMA_SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED_NO_MAIL_ACTIONS",
+    "latest_app_api_db_build_install": "NOT_RUN_OLD_BUILD4_NOT_RELABELED",
+    "remaining": "Full selected-flow layer provenance, childhood/age layers, selected luck lunar-year boundaries, split empty-star labels, Chiron rights/century accuracy and full frozen completion; no scope reduction",
+    "protection": "Two source-save before/after comparisons equal protected root HEAD/index/status/43recorded hashes; no mass untracked rehash or volume operation",
+    "review": "Non-author extraction and static code reviews; position-oracle dependency hash fix confirmed; no Astra acceptance",
+    "exit": "NO_PUSH_NO_MAIN_K08_SUCCESSOR",
+    "blindness": "NOT_BLIND; source reader did not read actual, but these reused/new supplementary cases do not increase historical blind-test counts",
+    "source_identity_readback": {
+      "path": "20261018-hanlu-five-identity-independent-readback.json",
+      "sha256": "472161caf29f3eb9fd545e79b1237438b86a75c5b3051e46d7122ac87b3eb10b",
+      "scope": "file SHA256 and historical Git blob equality only, no rerun"
+    }
   }
 }
