@@ -3,6 +3,7 @@ import asyncio
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import os
+import sys
 from pathlib import Path
 import threading
 import unittest
@@ -11,6 +12,7 @@ from unittest.mock import AsyncMock, Mock, patch
 os.environ.setdefault('LIVEKIT_API_KEY', 'test-only')
 os.environ.setdefault('LIVEKIT_API_SECRET', 'not-a-real-key' * 4)
 os.environ.setdefault('V1009_GATEWAY_SECRET', 'not-a-real-gateway' * 3)
+sys.path.insert(0, str(Path(__file__).parent))
 spec = importlib.util.spec_from_file_location('pilot_gateway', Path(__file__).with_name('gateway.py'))
 pilot = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pilot)

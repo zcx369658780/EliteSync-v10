@@ -15,6 +15,8 @@ from pathlib import Path
 import signal
 import sys
 import time
+import socket
+from authority_bridge import SOCKET_ROOT, prepare_socket, relay
 
 ROOT = Path(__file__).resolve().parents[2]
 HISTORICAL = ROOT / "docs/versions/v10.0.9"
@@ -35,7 +37,13 @@ def stop_owned_sfu():
 
 def _post(port, path, payload, headers):
     """Bounded HTTP client; Nginx may use chunked JSON responses."""
-    connection = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
+    class AuthorityConnection(http.client.HTTPConnection):
+        def connect(self):
+            self.sock = socket.socket(socket.AF_UNIX)
+            self.sock.settimeout(1)
+            self.sock.connect(str(SOCKET_ROOT / 'rtc-authority.sock'))
+    connection_class = AuthorityConnection if port == 8030 else http.client.HTTPConnection
+    connection = connection_class("127.0.0.1", port, timeout=1)
     try:
         connection.request("POST", path, body=json.dumps(payload).encode(),
                            headers={"Content-Type": "application/json", **headers})
@@ -147,6 +155,7 @@ async def main():
     signal.signal(signal.SIGTERM, terminate)
     reader = None
     server = None
+    media_server = None
     monitor = None
     try:
         gateway.child = await asyncio.create_subprocess_exec(
@@ -163,13 +172,23 @@ async def main():
         os.close(reader)
         reader = None
         monitor = asyncio.create_task(gateway.reconcile())
-        server = await asyncio.start_server(handle, "127.0.0.1", 8032, limit=32768)
+        signal_path = SOCKET_ROOT / 'rtc-signal.sock'
+        media_path = SOCKET_ROOT / 'rtc-media.sock'
+        prepare_socket(signal_path)
+        prepare_socket(media_path)
+        server = await asyncio.start_unix_server(handle, str(signal_path), limit=32768)
+        media_server = await asyncio.start_unix_server(lambda r, w: relay(r, w, 8033), str(media_path))
+        signal_path.chmod(0o600)
+        media_path.chmod(0o600)
         async with server:
             await monitor
     finally:
         if server is not None:
             server.close()
             await server.wait_closed()
+        if media_server is not None:
+            media_server.close()
+            await media_server.wait_closed()
         if monitor is not None:
             monitor.cancel()
             await asyncio.gather(monitor, return_exceptions=True)
