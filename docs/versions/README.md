@@ -1,5 +1,10 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-18 v10.0.11 K09集成候选（待独立集成验收）
+
+**K09_INTEGRATION_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE**。Owner已手动派发K09；v10.0.11功能已由Astra限定`ACCEPTED_WITH_OBSERVATIONS`，本次仅从实时main接入21个精确接受产品对象。产品提交`5b2b018facfe5e3558ce6a1e9269a39159f7103a`；完整apps/services与接受源一致，有限静态检查通过，原dirty根/其它worktree/临时审阅包及历史观察保留。运行、构建安装、算法重验、K10与v10.0.12均NOT_RUN；K09尚未被Astra独立接受。[单份集成报告](v10.0.11/integration.md)。下方原状态按原时点保留。
+
+
 ## 2026-10-18 v10.0.10 K08完成（当前）
 
 **K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Owner本任务已正式派发；已接受产品普通集成main `d82f19b7a7a6c15f486734ce24a4090262cccf48`，完整apps/services保持 `01b58edcfec2766a1e764231d4098c0d61ea6d95` / `c72d392f37968e20d1b48d2252a9549c2b0d04dc`。最新并发Owner/交接/验收文档保留；专用干净分支安全接续，原dirty根和持久资产未改。临时审阅ref精确核头后仅一次普通删除、API404。仅必要静态核验；套件、构建安装、服务/DB/设备及RTC均NOT_RUN，科学/许可/旧失败观察延续。见[单份K08报告](v10.0.10/integration.md)。下方“尚未派发/未集成/待清理”均保留为原时点事实；本次完成后停止，未启动下一版。
