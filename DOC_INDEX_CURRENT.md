@@ -1,5 +1,9 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-18 v10.0.11 K09独立集成验收完成
+
+**K09_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / NEXT_VERSION_NOT_STARTED**。Astra已直接回读最终main、Tree、产品集成Commit、完整apps/services子Tree及21项接受Blob，均与接受源码一致；普通非强制发布与远端回读成立。静态命令、本地连续分支及dirty根保护仍区分CODEX_REPORTED/LOCAL_ONLY，APP/API/DB/AVD/RTC与完整功能重验均NOT_RUN。v10.0.11功能接受观察及v10.0.10/K08状态不变；未授权K10、v10.0.12、生产发布或临时审阅分支清理。详见[单份K09 Astra独立集成验收](docs/versions/v10.0.11/integration_acceptance.md)。
+
 ## 2026-10-18 v10.0.11 K09集成候选（待独立集成验收）
 
 **K09_INTEGRATION_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE**。Owner已手动派发K09；v10.0.11功能已由Astra限定`ACCEPTED_WITH_OBSERVATIONS`，本次仅从实时main接入21个精确接受产品对象。产品提交`5b2b018facfe5e3558ce6a1e9269a39159f7103a`；完整apps/services与接受源一致，有限静态检查通过，原dirty根/其它worktree/临时审阅包及历史观察保留。运行、构建安装、算法重验、K10与v10.0.12均NOT_RUN；K09尚未被Astra独立接受。[单份集成报告](docs/versions/v10.0.11/integration.md)。下方原状态按原时点保留。
