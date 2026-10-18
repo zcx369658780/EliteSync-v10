@@ -34,7 +34,7 @@ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_cal
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_permission_page.dart';
 import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_bazi_page.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_advanced_preview_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/dynamic_chart_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_natal_chart_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_overview_page.dart';
@@ -344,7 +344,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRouteNames.astroAdvancedPreview,
         pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const AstroAdvancedPreviewPage()),
+            _fadeSlidePage(state, const DynamicChartPage()),
       ),
       GoRoute(
         path: AppRouteNames.astroChartSettings,

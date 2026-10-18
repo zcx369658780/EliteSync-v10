@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(RequestTraceMiddleware::class);
+        $middleware->prependToGroup('api', \App\Http\Middleware\PrivateDynamicCharts::class);
         $middleware->appendToGroup('api', QuestionSnapshotLock::class);
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
         $middleware->prependToGroup('api', ForceJsonResponse::class);
@@ -79,6 +80,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 ],
             ];
 
-            return response()->json($payload, $status);
+            $response = response()->json($payload, $status);
+            if ($request->is('api/v1/profile/dynamic', 'api/v1/profile/dynamic/*')) {
+                $response->header('Cache-Control', 'private, no-store');
+            }
+            return $response;
         });
     })->create();

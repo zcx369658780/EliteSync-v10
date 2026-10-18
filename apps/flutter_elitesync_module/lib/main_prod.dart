@@ -58,9 +58,17 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8011/') {
+      throw StateError('Dynamic chart build requires its isolated local host.');
+    }
+    return hostOverride;
+  }
   if (const bool.fromEnvironment('ELITESYNC_V1010_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8010/') {
-      throw StateError('Natal restoration build requires its isolated local host.');
+      throw StateError(
+        'Natal restoration build requires its isolated local host.',
+      );
     }
     return hostOverride;
   }
@@ -108,7 +116,8 @@ Future<void> main() async {
       bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
-      bool.fromEnvironment('ELITESYNC_V1010_LOCAL_BUILD');
+      bool.fromEnvironment('ELITESYNC_V1010_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD');
   final flavor = restoration ? AppFlavor.dev : internalFeatures.flavor;
   final initialRoute = _firstNonEmpty([
     String.fromEnvironment('ELITESYNC_INITIAL_ROUTE'),
