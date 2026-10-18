@@ -1,5 +1,11 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-18 当前下一版：v10.1.0云端开发试点（未派发）
+
+**V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。目标：阿里云开发试点、管理员轻量备份与恢复、APP/管理后台/API/DB/匹配/聊天/媒体/星盘/RTC必要端到端验收。当前不是内测版或生产发布。旧管理员账号不可恢复时允许新建专用开发管理员，不无限追溯；不导入真实用户全库或私密资料，不自行新增公网/安全组/防火墙规则或产生费用。需Owner手动派发后才开始。
+
+
+
 ## 2026-10-18 v10.0.11 K09独立集成验收完成
 
 **K09_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / NEXT_VERSION_NOT_STARTED**。Astra已直接回读最终main、Tree、产品集成Commit、完整apps/services子Tree及21项接受Blob，均与接受源码一致；普通非强制发布与远端回读成立。静态命令、本地连续分支及dirty根保护仍区分CODEX_REPORTED/LOCAL_ONLY，APP/API/DB/AVD/RTC与完整功能重验均NOT_RUN。v10.0.11功能接受观察及v10.0.10/K08状态不变；未授权K10、v10.0.12、生产发布或临时审阅分支清理。详见[单份K09 Astra独立集成验收](docs/versions/v10.0.11/integration_acceptance.md)。
