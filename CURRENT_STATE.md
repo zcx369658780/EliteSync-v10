@@ -2,7 +2,7 @@
 
 ## 2026-10-18 v10.1.0云端开发试点计划已冻结（等待Owner手动派发）
 
-**V10.1.0 FROZEN_PLAN / OWNER_APPROVED_SCOPE / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner选择下一版本编号v10.1.0，目标为阿里云开发试点部署、管理员恢复和真实端到端联合验收；不是公开内测或生产发布。管理员/角色及必要配置须先做简单可验证备份；旧账号不可恢复时可创建专用开发管理员，不无限追溯。真实用户全库、私密消息/生辰/媒体不导入。不得未经授权新增公网/安全组/防火墙规则或产生费用。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。下一步为Owner手动派发Codex长任务；尚未执行云端变更、管理员修改或测试。
+**V10.1.0 FROZEN_PLAN / OWNER_APPROVED_SCOPE / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner选择下一版本编号v10.1.0，目标为阿里云开发试点部署、管理员恢复和真实端到端联合验收；不是公开内测或生产发布。管理员/角色及必要配置须先做简单可验证备份；旧账号不可恢复时可创建专用开发管理员，不无限追溯。真实用户全库、私密消息/生辰/媒体不导入。不得未经授权新增公网/安全组/防火墙规则或产生费用。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。 [Codex综合任务单](docs/versions/v10.1.0/task_order.md)。下一步为Owner手动派发Codex长任务；尚未执行云端变更、管理员修改或测试。
 
 
 
