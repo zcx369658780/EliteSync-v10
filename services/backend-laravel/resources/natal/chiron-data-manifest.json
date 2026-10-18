@@ -1,0 +1,95 @@
+{
+  "schema": "elitesync.chiron.data.v1",
+  "profile": "lowell-astorb2060-dop54-hermite8d-v1",
+  "rights_status": "ADMITTED_FOR_CLOSED_SOURCE_COMPUTATION_WITH_ATTRIBUTION",
+  "status": "SOURCE_PERMISSION_ADMITTED_WITH_SAMPLED_REFERENCE_NOT_VERSION_ACCEPTANCE",
+  "artifact": "resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+  "artifact_sha256": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+  "artifact_bytes": 438113,
+  "element_record": "resources/natal/data/chiron-lowell-elements-v1.json",
+  "npz_metadata": {
+    "profile": "lowell-astorb2060-dop54-hermite8d-v1",
+    "rights_status": "ADMITTED_FOR_CLOSED_SOURCE_COMPUTATION_WITH_ATTRIBUTION",
+    "accuracy_status": "INDEPENDENT_SAMPLED_REFERENCE_MATCH_NOT_VERSION_ACCEPTANCE",
+    "origin_tdb_jd": 2459300.500000019,
+    "first_offset_days": -44296.0,
+    "last_offset_days": 29152.0,
+    "knot_count": 9182,
+    "frame": "heliocentric ICRF",
+    "time_scale": "TDB",
+    "position_units": "AU",
+    "velocity_units": "AU/day",
+    "element_record_sha256": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+    "attribution_notice": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+    "attribution_notice_sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+    "dynamics_sha256": "fb21eb222cdaac9d3ec6d426e1f4bda70c36798f5e43a4d453e35c6555333da2",
+    "integrator_sha256": "83f4ff3dff6c0da4a0500413c97e608bdd46b95d8695ee36e6262c1861f009cf",
+    "kernel_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+    "gm_sha256": "924ddf4fb9ead9fe8a1aa55780bcabde40b09d00065d58226e24b68d8092f140"
+  },
+  "source_rights": {
+    "owner": "Lowell Observatory astorb",
+    "sources": [
+      "https://asteroid.lowell.edu/astorb/",
+      "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true"
+    ],
+    "terms_response_sha256": "c44b89dfb02999bce916e22ee3f6608bfd7c54a82041450ff7d5b390b8b7fdd5",
+    "source_scope": "Selected astorb.dat element facts and our derived trajectory; original author express free use/copy/transmit with attribution, not generic permissions for other VizieR catalogs",
+    "attribution_notice": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+    "attribution_notice_sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+    "fees": 0,
+    "no_restricted_data_included": [
+      "MPC raw observations",
+      "Gaia raw state/covariance product",
+      "NIMA",
+      "Horizons output",
+      "Swiss-derived coefficients"
+    ]
+  },
+  "sampled_validation": {
+    "original_dates": 96,
+    "new_selector_blind_timestamps": 24,
+    "reference_selected_station_side_cases": 20,
+    "longitude_latitude_threshold_deg": 0.001,
+    "all_retrograde_classifications_equal": true,
+    "comparison_sha256": {
+      "comparison96-v2.json": "9e8d6454dbe1f920b27cffb28c2619eb5ee45b2cb037acfeda7290f7ec4ca1b0",
+      "comparison24-stations20-v2.json": "698bc298c050b291ad8e115546bab46e59598d7e83ddfaf27c0d067beea290cb",
+      "interpolation120-result.json": "13deb35119534a564ab80d936870039f7c602f70087fd061226b598667f5ac4c"
+    },
+    "max_longitude_difference_deg": 0.00011355449294114806,
+    "max_latitude_difference_deg": 6.414310619362595e-05,
+    "diagnostic_only_fields": [
+      "distance_au",
+      "speed_degrees_per_day"
+    ],
+    "interpolation": {
+      "intervals": 120,
+      "points": 360,
+      "maximum_position_error_au": 1.064037263946877e-10,
+      "maximum_velocity_error_au_day": 4.011391730442506e-11
+    }
+  },
+  "build_source_sha256": {
+    "tools/natal/chiron_dynamics.py": "fb21eb222cdaac9d3ec6d426e1f4bda70c36798f5e43a4d453e35c6555333da2",
+    "tools/natal/orbit_integrator.py": "83f4ff3dff6c0da4a0500413c97e608bdd46b95d8695ee36e6262c1861f009cf",
+    "tools/natal/chiron_build.py": "4c866dbadd6005c10af458292728f96a0993370087b54a7848eb41d5513d660a",
+    "resources/natal/data/chiron-lowell-elements-v1.json": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+    "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3"
+  },
+  "build_inputs": {
+    "planetary_kernel": "NAIF DE440s unmodified and separately acquired",
+    "gm_source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/gm_de440.tpc",
+    "gm_sha256": "924ddf4fb9ead9fe8a1aa55780bcabde40b09d00065d58226e24b68d8092f140",
+    "gm_rights": "NAIF posted kernel rules; unmodified source, no Toolkit bundled",
+    "gm_terms": "https://naif.jpl.nasa.gov/naif/rules.html"
+  },
+  "limitations": [
+    "Independent software/external fitted initial solution, not an independent physical model or proven disjoint observations",
+    "Shared planetary data and finite-force assumptions; 10 original-fit perturbing asteroids/full EIH/J2/NG/covariance propagation omitted",
+    "Sampled comparisons do not certify an all-continuous-date physical uncertainty bound or every exact station instant",
+    "No original-engine bitwise equivalence or astronomical/predictive efficacy guarantee",
+    "Reference is Gaia plus independent force author/SciPy DOP853/ERFA; main runner NOT_BLIND; selector24 is input-selection blindness only",
+    "Source permission and sampled numerical evidence do not constitute Astra version acceptance"
+  ]
+}

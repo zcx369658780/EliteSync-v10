@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'natal_restoration_page.dart';
+import '../providers/astro_profile_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -15,6 +17,78 @@ import 'package:flutter_elitesync_module/features/profile/presentation/widgets/a
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_chart_settings_provider.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/settings_group.dart';
 
+Widget _nativeSettings(
+  BuildContext context,
+  WidgetRef ref,
+  AstroChartDisplayPrefs prefs,
+  AstroChartSettingsNotifier notifier,
+) {
+  final toggles = <(String, bool, Future<void> Function(bool))>[
+    ('行星摘要', prefs.showPlanetSummary, notifier.setShowPlanetSummary),
+    ('宫位摘要', prefs.showHouseSummary, notifier.setShowHouseSummary),
+    ('相位摘要', prefs.showAspectSummary, notifier.setShowAspectSummary),
+    (
+      '技术参数',
+      prefs.showTechnicalParameters,
+      notifier.setShowTechnicalParameters,
+    ),
+    ('紧凑显示', prefs.compactDensity, notifier.setCompactDensity),
+    ('星座分区线', prefs.showChartSignGridLines, notifier.setShowChartSignGridLines),
+    ('星座标签', prefs.showChartSignLabels, notifier.setShowChartSignLabels),
+    ('宫位线', prefs.showChartHouseLines, notifier.setShowChartHouseLines),
+    ('宫位编号', prefs.showChartHouseNumbers, notifier.setShowChartHouseNumbers),
+    ('相位连线', prefs.showChartAspectLines, notifier.setShowChartAspectLines),
+    (
+      '行星引导线',
+      prefs.showChartPlanetConnectors,
+      notifier.setShowChartPlanetConnectors,
+    ),
+    ('行星标记', prefs.showChartPlanetMarkers, notifier.setShowChartPlanetMarkers),
+    ('行星标签', prefs.showChartPlanetLabels, notifier.setShowChartPlanetLabels),
+    ('中心标题', prefs.showChartCenterTitle, notifier.setShowChartCenterTitle),
+    (
+      '中心计算口径',
+      prefs.showChartCenterSubtitle,
+      notifier.setShowChartCenterSubtitle,
+    ),
+    ('中心地点', prefs.showChartCenterPlace, notifier.setShowChartCenterPlace),
+  ];
+  return AppScaffold(
+    appBar: const AppTopBar(title: '本命盘设置', mode: AppTopBarMode.backTitle),
+    body: ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        const Text('黄道、宫制、相位容许度和点集合属于计算设置，保存后由算法重新计算并持久化。下方开关只控制本机显示。'),
+        FilledButton.icon(
+          icon: const Icon(Icons.calculate_outlined),
+          label: const Text('计算设置（重新计算并保存）'),
+          onPressed: () async {
+            await Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const NatalRestorationPage(),
+              ),
+            );
+            if (!context.mounted) return;
+            ref.invalidate(astroSummaryProvider);
+            ref.invalidate(astroNatalChartProvider);
+          },
+        ),
+        const Text('本命计算镜像不提供合盘、行运、返照或高级时法计算。'),
+        OutlinedButton(
+          onPressed: notifier.resetToDefaults,
+          child: const Text('恢复展示默认'),
+        ),
+        for (final item in toggles)
+          SwitchListTile(
+            title: Text(item.$1),
+            value: item.$2,
+            onChanged: item.$3,
+          ),
+      ],
+    ),
+  );
+}
+
 class AstroChartSettingsPage extends ConsumerWidget {
   const AstroChartSettingsPage({super.key});
 
@@ -27,6 +101,36 @@ class AstroChartSettingsPage extends ConsumerWidget {
     final routeNotifier = ref.read(astroChartRouteProvider.notifier);
     final workbenchPrefs = ref.watch(astroChartWorkbenchProvider);
     final workbenchNotifier = ref.read(astroChartWorkbenchProvider.notifier);
+    final summary = ref.watch(astroSummaryProvider);
+    if (summary.isLoading || summary.hasError) {
+      return AppScaffold(
+        appBar: const AppTopBar(title: '盘面设置', mode: AppTopBarMode.backTitle),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (summary.isLoading) ...[
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 16),
+                  const Text('正在读取本命计算设置…'),
+                ] else ...[
+                  const Text('无法读取本命设置，请重试。'),
+                  OutlinedButton(
+                    onPressed: () => ref.invalidate(astroSummaryProvider),
+                    child: const Text('重新读取'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+    if (summary.asData?.value?.containsKey('natal') == true) {
+      return _nativeSettings(context, ref, prefs, notifier);
+    }
 
     return AppScaffold(
       appBar: const AppTopBar(title: '盘面设置', mode: AppTopBarMode.backTitle),

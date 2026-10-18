@@ -1,0 +1,120 @@
+{
+  "profile": "independent-usno-hko-classical-daysect2-v1",
+  "retrieved_utc_date": "2026-10-17",
+  "status": "REFERENCE_IMPLEMENTATION_NOT_PRODUCTION_ACCEPTANCE",
+  "independence": {
+    "production_source_read": false,
+    "production_algorithm_executed": false,
+    "lunar_or_iztro_used": false,
+    "sources": "Read-only public primary astronomical tables and classical-text transcriptions; no natal input submitted to any external calculator.",
+    "expected_method": "USNO Gregorian day number relative to visually checked official HKO day anchor; cited discrete classical rules; manually transcribed independent HKO jie timestamps. Seeds choose only fictitious inputs."
+  },
+  "limits": [
+    "HKO jie times were visually read from each 2024 monthly PDF, published to minutes. +/-60 seconds is a conservative comparison guard, not an HKO-certified error bound.",
+    "No expected year/month is issued within the source precision guard. No astronomical claim for +/-1 second solar-term boundaries.",
+    "Classical rules use named profile conventions, not a scientific validation of fortune-telling.",
+    "Classical web transcriptions were read; original historical printed folios were not independently collated. In particular MLTY's transcription contains a ten-versus-eleven o'clock typo; HKO supplies the 23:00 Zi boundary and the explicit next-day-stem example supplies late-Zi hour policy.",
+    "Hidden stem membership is asserted; order, percentages and principal/secondary ranking are display conventions and not independent expected truth.",
+    "Nayin spelling aliases must normalize 泉中水/井泉水, 沙中金/砂中金, 沙中土/砂中土, 覆灯火/佛灯火; the source spelling is returned.",
+    "Qiyun returns an elapsed-time interval and formal 360-day-year age interval. Gregorian start-date addition, nominal age, rounding policy and sub-shichen interpolation are not independently asserted.",
+    "Built-in complete natal samples use 2024-01-07 through 2024-12-05 with adjacent independent jie; other epochs require independently sourced external jie records with source_id and uncertainty_seconds.",
+    "Annual pillar labels begin at Lichun; annual list does not assert age columns or Jan-1 transitions.",
+    "Synthetic samples cover all 12 hour branches by deterministic time selection and male/female direction; they do not establish historical DST, IANA conversion, true-solar-time or astronomical ephemeris accuracy."
+  ],
+  "sources": [
+    {
+      "id": "USNO_JD",
+      "url": "https://aa.usno.navy.mil/faq/JD_formula",
+      "kind": "official_primary_algorithm",
+      "locator": "Formula for Conversion, AD1801-2099; truncation/sign definitions; 1970-01-01 noon JDN2440588",
+      "rule": "USNO Almanac for Computers Gregorian-to-JD formula, preserving Jan/Feb1900 correction. Civil-date label is evaluated at nominal noon; this is a day-number mapping, not UTC8 birth instant converted to UT1."
+    },
+    {
+      "id": "HKO_CAL_2024_01",
+      "url": "https://www.hko.gov.hk/tc/gts/astron2024/files/2024cal01.pdf",
+      "kind": "official_primary_table_visually_checked",
+      "locator": "Page1 Monday Jan1 daily cell: lunar twenty, 甲子; Jan6 小寒04:49",
+      "anchor": {"gregorian_date": "2024-01-01", "sexagenary_day": "甲子", "index_zero_based": 0}
+    },
+    {
+      "id": "HKO_STEMS",
+      "url": "https://www.hko.gov.hk/tc/gts/time/stemsandbranches.htm",
+      "kind": "official_primary_rule_table",
+      "locator": "Tables2-5: sexagenary sequence; Zi23-01, other branch intervals; year-to-month and day-to-hour stems",
+      "year_anchor": {"solar_year_label": 2024, "pillar": "甲辰", "index_zero_based":40,"note":"2024甲辰 heading visually checked in official HKO monthly PDFs; solar-year boundary separately follows MLTY_YEAR_MONTH."}
+    },
+    {
+      "id": "HKO_TIME_ZONE",
+      "url": "https://www.hko.gov.hk/tc/gts/astronomy/Solar_Term.htm",
+      "kind": "official_primary_explanation",
+      "locator": "Notes1-2: based on HMNAO/USNO astronomical data, HKT=UTC+8"
+    },
+    {
+      "id": "MLTY_YEAR_MONTH",
+      "url": "https://libokang.com/classics/bazi/%E5%91%BD%E7%90%86%E6%8E%A2%E6%BA%90/",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "卷二 推年法/推月法/推日法/推时法; original-text paragraphs, not site's modern explanatory commentary",
+      "rule": "Lichun changes solar year and Yin month; 12 jie delimit months; five-tiger month stems and five-rat hour stems; daily sexagenary sequence advances one per calendar day."
+    },
+    {
+      "id": "MLTY_NIGHT_ZI",
+      "url": "https://libokang.com/classics/bazi/%E5%91%BD%E7%90%86%E6%8E%A2%E6%BA%90/",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "卷五 杂说 论时刻及夜子时与子时正不同, original 按 paragraph around lines1350-1356",
+      "short_quote": "用壬日起庚子时",
+      "rule": "Example preserves 辛酉 day at night Zi but uses next 壬戌 day's 庚子 hour; after midnight uses 壬戌 day, same 庚子 hour. Profile daysect2 therefore preserves day until00:00 and changes late-Zi hour stem at23:00."
+    },
+    {
+      "id": "YHZP_CANG",
+      "url": "https://www.donglishuzhai.net/chapter/12808.html",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "淵海子平卷一 又地支藏遁歌, six original couplets",
+      "rule": "Twelve branch hidden-stem membership; no independent ranking or percentages asserted."
+    },
+    {
+      "id": "MLTY_TEN_GODS",
+      "url": "https://libokang.com/classics/bazi/%E5%91%BD%E7%90%86%E6%8E%A2%E6%BA%90/",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "卷二 十干生克定名, 五阳干/五阴干 original tables",
+      "rule": "Five generating/controlling relations plus polarity determine ten gods; normalize 败财=劫财 and 偏官=七杀."
+    },
+    {
+      "id": "SMTH_GROWTH",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83/%E5%8D%B7%E4%BA%8C",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "论天干阴阳生死; 论五行旺相休囚死并寄生十二宫; cross-check MLTY卷三 original yin/yang tables",
+      "rule": "甲亥乙午丙戊寅丁己酉庚巳辛子壬申癸卯长生; 阳顺阴逆; 戊随丙/己随丁."
+    },
+    {
+      "id": "MLTY_NAYIN",
+      "url": "https://www.keepds.com/book/read?bo=minglitanyuan",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "卷一 六十花甲子纳音五行, all30 consecutive paired headings",
+      "rule": "Thirty paired sexagenary lookup names, with aliases explicitly noted in limits."
+    },
+    {
+      "id": "SMTH_THREE_DAYS_ONE_YEAR",
+      "url": "https://zh.wikisource.org/zh-hant/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83/%E5%8D%B7%E4%BA%8C",
+      "kind": "classical_primary_text_web_transcription",
+      "locator": "论大运; cross-check MLTY卷二推大运法 original paragraphs",
+      "rule": "阳男阴女顺、阴男阳女逆; 从月柱 sequentially to next/previous pillar; adjacent jie only, 三日一年、一日四月、一时辰十日; one pillar10years. Fractional subdivisions are mathematical interpolation only."
+    }
+  ],
+  "jie_2024": [
+    {"name":"小寒","month_index":11,"utc":"2024-01-05T20:49:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_01"},
+    {"name":"立春","month_index":0,"utc":"2024-02-04T08:27:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_02"},
+    {"name":"惊蛰","month_index":1,"utc":"2024-03-05T02:23:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_03"},
+    {"name":"清明","month_index":2,"utc":"2024-04-04T07:02:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_04"},
+    {"name":"立夏","month_index":3,"utc":"2024-05-05T00:10:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_05"},
+    {"name":"芒种","month_index":4,"utc":"2024-06-05T04:10:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_06"},
+    {"name":"小暑","month_index":5,"utc":"2024-07-06T14:20:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_07"},
+    {"name":"立秋","month_index":6,"utc":"2024-08-07T00:09:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_08"},
+    {"name":"白露","month_index":7,"utc":"2024-09-07T03:11:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_09"},
+    {"name":"寒露","month_index":8,"utc":"2024-10-07T19:00:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_10"},
+    {"name":"立冬","month_index":9,"utc":"2024-11-06T22:20:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_11"},
+    {"name":"大雪","month_index":10,"utc":"2024-12-06T15:17:00Z","uncertainty_seconds":60,"source_id":"HKO_CAL_2024_12"}
+  ],
+  "monthly_source_url_pattern": "https://www.hko.gov.hk/tc/gts/astron2024/files/2024cal{MM}.pdf",
+  "monthly_source_evidence": "All twelve monthly PDFs were opened and screenshot-read page0 during this source-only authoring turn; ids HKO_CAL_2024_02 through12 resolve using the pattern.",
+  "sample_protocol": {"fresh_count":64,"blind_count":24,"fresh_seed":10010064,"blind_seed":10010024,"disjointness":"different parity of synthetic calendar date relative to2024-01-07","heldout_meaning":"independent author did not read production or compare production results; parent must freeze expected hashes before running engine"}
+}

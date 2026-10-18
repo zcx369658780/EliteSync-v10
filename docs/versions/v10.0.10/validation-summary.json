@@ -1,0 +1,1777 @@
+{
+  "schema": "elitesync.v1010.final-candidate.v1",
+  "classification": "FINAL_CANDIDATE_DELIVERED_AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE_NOT_YET_ACCEPTED",
+  "source": {
+    "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+    "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+    "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+    "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc",
+    "paths": [
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+      "services/backend-laravel/.gitattributes",
+      "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+      "services/backend-laravel/app/Services/NatalCalculationService.php",
+      "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+      "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+      "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+      "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+      "services/backend-laravel/resources/natal/dependency-manifest.json",
+      "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+      "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+      "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+      "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+      "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+      "services/backend-laravel/tools/natal/README.md",
+      "services/backend-laravel/tools/natal/chiron_build.py",
+      "services/backend-laravel/tools/natal/chiron_dynamics.py",
+      "services/backend-laravel/tools/natal/chiron_orbit.py",
+      "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+      "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+      "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+      "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+      "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+      "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+      "services/backend-laravel/tools/natal/orbit_integrator.py",
+      "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+      "services/backend-laravel/tools/natal/tests/test_western.py",
+      "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+      "services/backend-laravel/tools/natal/western.py",
+      "services/backend-laravel/tools/natal/ziwei.mjs"
+    ],
+    "pinned_blobs_byte_equal": 8,
+    "remote_pushed": true,
+    "crlf_preserved": true,
+    "role": "FIXED_PRODUCT_SOURCE_DOCUMENTATION_SUCCESSORS_MAY_DIFFER"
+  },
+  "oracle": {
+    "coverage": "IMPLEMENTATION_REPORT current AC table; historical sections retain original counts; overlaps are not summed",
+    "chiron": {
+      "original_dates": 96,
+      "new_selector_blind_timestamps": 24,
+      "reference_selected_station_side_cases": 20,
+      "longitude_latitude_threshold_deg": 0.001,
+      "all_retrograde_classifications_equal": true,
+      "comparison_sha256": {
+        "comparison96-v2.json": "9e8d6454dbe1f920b27cffb28c2619eb5ee45b2cb037acfeda7290f7ec4ca1b0",
+        "comparison24-stations20-v2.json": "698bc298c050b291ad8e115546bab46e59598d7e83ddfaf27c0d067beea290cb",
+        "interpolation120-result.json": "13deb35119534a564ab80d936870039f7c602f70087fd061226b598667f5ac4c"
+      },
+      "max_longitude_difference_deg": 0.00011355449294114806,
+      "max_latitude_difference_deg": 6.414310619362595e-05,
+      "diagnostic_only_fields": [
+        "distance_au",
+        "speed_degrees_per_day"
+      ],
+      "interpolation": {
+        "intervals": 120,
+        "points": 360,
+        "maximum_position_error_au": 1.064037263946877e-10,
+        "maximum_velocity_error_au_day": 4.011391730442506e-11
+      }
+    },
+    "ziwei_minor": {
+      "cases": 72,
+      "comparisons": 1224,
+      "new_product_runs": 0
+    },
+    "ziwei_markers": {
+      "cases": 72,
+      "comparisons": 2736,
+      "new_product_runs": 0
+    },
+    "child_profile_composition": {
+      "status": "PORTABLE_ARITHMETIC_REPLAY_MATCH_OLD_420",
+      "cases": 30,
+      "comparisons": 420,
+      "new_product_runs": 0,
+      "new_blind_cases": 0,
+      "whole_ac_claim": false,
+      "traditional_child_source_closed": false,
+      "reference_sha256": "da732dbde21e7bece5d155c5bc12e3454a25db8e9bd2ffda5602cdd74f9e2739",
+      "source_sha256": "b8f8cdf2a4dbfed43229384a589ff94091ff48fbe77367aed28b89d63056c92e",
+      "original_frozen_scope_preserved": true,
+      "reference_exit": 0
+    },
+    "limits": [
+      "sampled/mathematical comparison, not all-school certification",
+      "child extra HUA/stars classical applicability not established",
+      "no all-continuous-century Chiron physical bound",
+      "selector blindness distinguished from runner blindness"
+    ]
+  },
+  "tests": {
+    "php": {
+      "passed": 36,
+      "deprecated": 14,
+      "assertions": 9022,
+      "exit": 0,
+      "receipt": "20261018-final-source-all-v1010-php"
+    },
+    "node": {
+      "tests": 10,
+      "passed": 10,
+      "skipped": 0,
+      "exit": 0,
+      "receipt": "20261018-derived-solar-boundary-node-green"
+    },
+    "western": {
+      "tests": 15,
+      "exit": 0,
+      "receipt": "20261018-sidereal-cli-encoding-green"
+    },
+    "chiron_reader": {
+      "tests": 7,
+      "exit": 0,
+      "receipt": "20261018-chiron-reader-vector-tests"
+    },
+    "flutter": {
+      "passed": 23,
+      "exit": 0,
+      "receipt": "20261018-chiron-credits-flutter-regression",
+      "analyze": "No issues found"
+    },
+    "constructor_integrity": {
+      "checks": 19,
+      "exit": 0,
+      "new_integration": false
+    },
+    "actual_api": {
+      "status": "FINAL_SOURCE_APP_A_AND_API_B_PERSISTED",
+      "profiles": {
+        "a": {
+          "revision": 6,
+          "signature": "f34ddfcb8479ceedf0e303e0f7e2d44be55440cdf3770fe36229b275a8861211",
+          "source_hashes": {
+            "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+            "resources/natal/calculation-profile-registry.json": "bc61eb86e79cdd3230337831ea319043bc328a709bb842e0d83a5cc8bd4302d1",
+            "app/Services/NatalInputContext.php": "6f6fc78a3d380de193997eb0ab6ef97473c8c278631a38773c63b283aaccb21c",
+            "app/Services/NatalBaziCalculator.php": "1ef4e49d343c695230c5c9f0f6fc4b4719f6df3009bc8565eecd39ddfe7bbe43",
+            "app/Services/NatalBaziTimeScale.php": "9e3bac836db1662cfac10c6253b5ae5337fa00a81927437d5ea37ccd076e6aae",
+            "app/Services/NatalBaziLuckProjection.php": "789ed428665b379b91bbbbf626ad11231ee96aaf78d7e30058fe794355ca30fd",
+            "tools/natal/bazi_time.py": "11ddc527d1f58069bd361aa1a1214e746018f172a905a1858db360371ee3e988",
+            "app/Services/NatalCalculationProfile.php": "2bda949b7d96d5ebd48bed55f409a5f8fb3390d5748ec8ee32ea49ebb6ac9bb5",
+            "app/Services/NatalCalculationService.php": "3525c0f08fcab207f245e9f28a72c008bcfcfb7a64521e1677e696334679cd4b",
+            "app/Services/NatalRuntimeIdentity.php": "9482524c9d7eb1eca1147db351fc5987078b377391618bb1e84c35b1dd2fe1d2",
+            "tools/natal/runtime_identity.py": "7ad1a4dea797189cbd5276ffcd54bb66ce7dd19b41b0a93be902f50410950f62",
+            "config/natal.php": "98a160054aef90a7323e173cf2c0c8d4ea2f58a50b4e677f5dcda5ca7be32d27",
+            "tools/natal/western.py": "a424df6439954cd16caf74e584ec40456a11e8b0ed0baa20be75a9fe6dd433a1",
+            "tools/natal/time_context.py": "f9c4b0b05b0cb98b6d8b120e67e8c6624ba967fb8b3fc071d9cb21bcf03d12d4",
+            "tools/natal/lunar_points.py": "165dcc826233f57176f952c1cd05750f2b4d3ffbaf7051fac676ed6b97f8440d",
+            "tools/natal/chiron_orbit.py": "2ea3fb58b82c17b71fdf1d5247be6e75cd487aa86c6b543aa46799b2b7eb9d4f",
+            "resources/natal/chiron-data-manifest.json": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+            "resources/natal/data/chiron-lowell-hermite8d-v1.npz": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+            "resources/natal/data/chiron-lowell-elements-v1.json": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+            "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+            "tools/natal/ziwei.mjs": "dddfdad1c7b6b732ec903c43068a914f19693e957c67a77a284f857b631e2b27",
+            "tools/ziwei/iztro-runner/package-lock.json": "fb11a11dc4ecb7c6fc342b05dc2864d5b36805da04b661c8d9cd076aef0780d2",
+            "resources/natal/ziwei-upstream-corrections.json": "8eb74121cdec8d8348041a9cea80587bb0658f22999b0cda27ea597a4bc59757",
+            "tools/natal/requirements.lock": null,
+            "tools/natal/requirements.txt": null,
+            "tools/natal/requirements.windows-cp311.lock": "b2ec15f4e534c76cdad45af4baf8db59d8c7c5a935aecd4fe59facf53bc9ce45",
+            "resources/natal/dependency-manifest.json": "3430a61737f9caa140da0bdbc290c2b7395bafe1d44c859a1660c143f1dd2708",
+            "tools/natal/sbom.json": null,
+            "tools/natal/SBOM.json": null
+          },
+          "full_points": 14
+        },
+        "b": {
+          "revision": 31,
+          "signature": "1460071e24a9f94d4d3e771865514fc7de524e26cbdaed01b1a9d7d5e384ce6f",
+          "source_hashes": {
+            "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+            "resources/natal/calculation-profile-registry.json": "bc61eb86e79cdd3230337831ea319043bc328a709bb842e0d83a5cc8bd4302d1",
+            "app/Services/NatalInputContext.php": "6f6fc78a3d380de193997eb0ab6ef97473c8c278631a38773c63b283aaccb21c",
+            "app/Services/NatalBaziCalculator.php": "1ef4e49d343c695230c5c9f0f6fc4b4719f6df3009bc8565eecd39ddfe7bbe43",
+            "app/Services/NatalBaziTimeScale.php": "9e3bac836db1662cfac10c6253b5ae5337fa00a81927437d5ea37ccd076e6aae",
+            "app/Services/NatalBaziLuckProjection.php": "789ed428665b379b91bbbbf626ad11231ee96aaf78d7e30058fe794355ca30fd",
+            "tools/natal/bazi_time.py": "11ddc527d1f58069bd361aa1a1214e746018f172a905a1858db360371ee3e988",
+            "app/Services/NatalCalculationProfile.php": "2bda949b7d96d5ebd48bed55f409a5f8fb3390d5748ec8ee32ea49ebb6ac9bb5",
+            "app/Services/NatalCalculationService.php": "3525c0f08fcab207f245e9f28a72c008bcfcfb7a64521e1677e696334679cd4b",
+            "app/Services/NatalRuntimeIdentity.php": "9482524c9d7eb1eca1147db351fc5987078b377391618bb1e84c35b1dd2fe1d2",
+            "tools/natal/runtime_identity.py": "7ad1a4dea797189cbd5276ffcd54bb66ce7dd19b41b0a93be902f50410950f62",
+            "config/natal.php": "98a160054aef90a7323e173cf2c0c8d4ea2f58a50b4e677f5dcda5ca7be32d27",
+            "tools/natal/western.py": "a424df6439954cd16caf74e584ec40456a11e8b0ed0baa20be75a9fe6dd433a1",
+            "tools/natal/time_context.py": "f9c4b0b05b0cb98b6d8b120e67e8c6624ba967fb8b3fc071d9cb21bcf03d12d4",
+            "tools/natal/lunar_points.py": "165dcc826233f57176f952c1cd05750f2b4d3ffbaf7051fac676ed6b97f8440d",
+            "tools/natal/chiron_orbit.py": "2ea3fb58b82c17b71fdf1d5247be6e75cd487aa86c6b543aa46799b2b7eb9d4f",
+            "resources/natal/chiron-data-manifest.json": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+            "resources/natal/data/chiron-lowell-hermite8d-v1.npz": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+            "resources/natal/data/chiron-lowell-elements-v1.json": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+            "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+            "tools/natal/ziwei.mjs": "dddfdad1c7b6b732ec903c43068a914f19693e957c67a77a284f857b631e2b27",
+            "tools/ziwei/iztro-runner/package-lock.json": "fb11a11dc4ecb7c6fc342b05dc2864d5b36805da04b661c8d9cd076aef0780d2",
+            "resources/natal/ziwei-upstream-corrections.json": "8eb74121cdec8d8348041a9cea80587bb0658f22999b0cda27ea597a4bc59757",
+            "tools/natal/requirements.lock": null,
+            "tools/natal/requirements.txt": null,
+            "tools/natal/requirements.windows-cp311.lock": "b2ec15f4e534c76cdad45af4baf8db59d8c7c5a935aecd4fe59facf53bc9ce45",
+            "resources/natal/dependency-manifest.json": "3430a61737f9caa140da0bdbc290c2b7395bafe1d44c859a1660c143f1dd2708",
+            "tools/natal/sbom.json": null,
+            "tools/natal/SBOM.json": null
+          },
+          "full_points": 14
+        }
+      },
+      "checks": [
+        "a: exact final-source signature, full14, persisted GET, stale409",
+        "b: exact final-source signature, full14, persisted GET, stale409"
+      ],
+      "real_app_a": true,
+      "accuracy_claim": false
+    },
+    "persistence": {
+      "status": "CURRENT_FULL_THREE_CHART_PERSISTENCE_RESTART_MATCH",
+      "profiles": 2,
+      "sql_bytes_equal": true,
+      "api_profiles_equal": true,
+      "canonical_birthdays_unchanged": true,
+      "volume_preserved": true,
+      "reseed": false,
+      "original_api_pid": 48444,
+      "current_api_pid": 4620,
+      "revisions": {
+        "a": 6,
+        "b": 31
+      },
+      "sql_sha256": "c8b45a39c9c0bc29fe534c750df820f2858cdfa3d6110b0ad6d6382142a64709",
+      "app_reread": "PENDING_SEPARATE_CURRENT_APP_UI",
+      "accuracy_claim": false
+    },
+    "app_after_restart": "VISIBLE_A6_RESULT6_SCREENSHOT_AFTER_PERSISTENCE_RECORD"
+  },
+  "build": {
+    "artifacts": {
+      "app-debug.apk": {
+        "bytes": 222959834,
+        "sha256": "d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2"
+      },
+      "flutter_release-1.0.aar": {
+        "bytes": 4030249,
+        "sha256": "dca5a7d4b24d7ce01fb53ffb4053f195dcf5266d172dcb48e942013f947a19e0"
+      }
+    },
+    "source_manifest": "input-source-hashes.json",
+    "package": "com.elitesync.v1010test",
+    "acceptance": false,
+    "source_unchanged_during_build": true,
+    "current_source_inputs_equal": 498
+  },
+  "runtime": {
+    "app_stopped": true,
+    "reverse_removed": true,
+    "api_stopped": true,
+    "db_stopped": true,
+    "volume_preserved": true,
+    "no_reseed_or_volume_deletion": true,
+    "protected_snapshot_equal": true,
+    "protected_dirty_tracked": 43,
+    "protected_scope": "HEAD/index/status/recorded dirty tracked bytes; not blanket untracked-media rehash",
+    "emulator": "Controlled AVD left running; app stopped; no wipe/uninstall",
+    "docker_desktop": "Left running; no other service stopped",
+    "global_sdk_uac_firewall_rtc": "NOT_RUN",
+    "mail": "NOT_READ_OR_SENT",
+    "main_merge_k08_next_version": "NOT_RUN"
+  },
+  "limitations": [
+    "Not Astra accepted; no main merge/K08/next version",
+    "Historical16 PHP failures and audio/call65/up observations retained",
+    "Source and reference limitations explicitly in current report; no false VERIFIED promotion",
+    "Windows raw originals remain LOCAL_ONLY; public copies are not independent execution",
+    "Controlled AVD and Docker Desktop left running, product APP/API/DB stopped"
+  ],
+  "evidence_access": "PUBLIC_SAFE_TEMPORARY_COPIES_AND_PRODUCT_SOURCE_READABLE;WINDOWS_EXECUTION_CODEX_REPORTED",
+  "local_raw_receipt_hashes": [
+    {
+      "label": "php-natal-final-targeted-suite",
+      "exit": 0,
+      "stdout_sha256": "dbde6a471ad086dc73f588af3dcdc41f708579b11dbaec4a047d874cceaec070",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "ziwei-final-local-tests",
+      "exit": 0,
+      "stdout_sha256": "3865b265946a7a1bc7680df5f3a05f84dafb61c9affd720e8d9ade3e47cbba86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "python-natal-final-suite",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "65ee1df6b13215209e0dafbdb3941d7b523e51c72b7cc244212c5f8cd6751842"
+    },
+    {
+      "label": "python-final-explicit-real-kernel-two-tests",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "24a5802fcbe0662c4f928252796656eeec7581722481cf1043ed40f83ff4824a"
+    },
+    {
+      "label": "flutter-after-cold-final-default",
+      "exit": 0,
+      "stdout_sha256": "c431d6ed73aea1e5292a22d3afad0a12c2cbbbd9e0b07226e0aeac5f40b164fe",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "flutter-after-cold-final-v1010",
+      "exit": 0,
+      "stdout_sha256": "cf6832c0edbcbaa64f68e7ed79db98ea569d634261f13d2d816fb6dc2b68ae53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "flutter-final-changed-files-analyze",
+      "exit": 0,
+      "stdout_sha256": "de17a509e75e8b9d8a7afd36886f2fe35519e95a8ece6040320217a4a621add4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "v1010-native-aar-apk-build4",
+      "exit": 0,
+      "stdout_sha256": "6dd6f1c1cfbb1e0b83eb493d86ebb8f3ba5861f0c3771773e1e1d48d3cd7bde2",
+      "stderr_sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+    },
+    {
+      "label": "real-api-db-regression-third-run",
+      "exit": 0,
+      "stdout_sha256": "2ae4c90a94ef24966aa743d33dae420fb0d62638819bd4fec2500cf40543c8e0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "owned-api-db-persistent-restart-first-run",
+      "exit": 0,
+      "stdout_sha256": "d3256a896a9fec67fd3a7d93f98f571945ff5b42850686c7704345c9e08717d7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "v1010-owned-runtime-final-close",
+      "exit": 0,
+      "stdout_sha256": "2f821dbc0e9778164544baa33480203465c7c12dc97b45b1a6f9eb90c23fc895",
+      "stderr_sha256": "b2e285b86507ebbd1452c11e9b7114a2597fb53e2bee1acb3b779a8f1322fb0e"
+    },
+    {
+      "label": "western-horizons-independent-batch3",
+      "exit": 0,
+      "stdout_sha256": "ec60fb1a0b54aba172a85385ff05bfa46a437df1b882d680c3e66e6ca9cbadc5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "western-nonauthor-horizons-second-run",
+      "exit": 0,
+      "stdout_sha256": "b0f1aaf247210edf009cd5c027e5549789d66ea32925a161450bebc1ee444a5a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "lunar-horizons-independent-first-run",
+      "exit": 0,
+      "stdout_sha256": "3ca62b15bd1c116da614af29796de95014c920bb39dc22d8494374f844013937",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "solar-independent-noaa-first-run",
+      "exit": 0,
+      "stdout_sha256": "1874fd5aa50ab4a7f1472cf2d335d5f58960da7b02222ef8f4dbd88c644b7b04",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "continuation_20261017": {
+    "authority_review_commit": "1bdc76c1e51b29af0e54ceb17b9bdb82eaf04c67",
+    "source": {
+      "commit": "0384a8ee65294931d35602b2a486f70ae3baedb6",
+      "tree": "b14d2bc2130e4fe881744f18fc2301970066c00d",
+      "apps": "6625bce44380b800bcaa843eb8f0c090422d076e",
+      "services": "d3dcd788ef6d0500090ec84c50f0dcb5b4c05942",
+      "parent": "54aaeca7bf8863554f07c6412fa912107e17b4b9"
+    },
+    "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
+    "tests": [
+      {
+        "receipt": "continuation-bazi-php-regression",
+        "exit": 0,
+        "stdout_sha256": "a3922d36f82115dd697a4d11867a5d4927f1d877ec2619f2b515b14774696f25",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-labels-red",
+        "exit": 1,
+        "stdout_sha256": "9ddbff4be5e7a78b8bab150c4321998e5dd5a955b08882e8b70a87c4eeeafb25",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-labels-green",
+        "exit": 0,
+        "stdout_sha256": "4e2d1dd2c9746d7ac83b015b803c0b09ee63a14d8eaef1e8a8d4d3ba4d25fc7c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-flutter-green-local-define",
+        "exit": 0,
+        "stdout_sha256": "68fb9b6cbbe7adac90c8bacddd851d0e82293dbaa2f5ebe1453371a115a83c9a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-definition-flutter-analyze",
+        "exit": 0,
+        "stdout_sha256": "32a574de213d331708e5bac94465878aa174a8c7b171a6507e8d4202f3297861",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-western-reference-replay",
+        "exit": 0,
+        "stdout_sha256": "ec0c8f2375b061f86fa23666d6ec987979bb384991c88f1ed21907f22e19fd89",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-calendar-reference-selfcheck",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-public-ziwei-minor-reference-replay",
+        "exit": 0,
+        "stdout_sha256": "fa513e3793c2e068848bcecfbd80799db6bced4f080fd575fb942c624d9fab40",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "continuation-oracle-refuses-existing-output",
+        "exit": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c9ecbadf72300e71b61f00240f9efee78a22463e86f9d0d0509eaecdbdab3151"
+      }
+    ],
+    "runtime": "NOT_RUN_IN_CONTINUATION_PRIOR_BUILD4_CHAIN_REUSED_WITH_ITS_ORIGINAL_IDENTITY",
+    "apk_rebuild_install": "NOT_RUN",
+    "jpl_thread": "SENT_ONLY_NO_REPLY_ONE_READ_NO_SEND",
+    "owner_decisions": "OWNER_DECISION_REQUEST.md",
+    "calendar": {
+      "samples": 30,
+      "field_comparisons": 90,
+      "failures": [],
+      "expected_sha256": "b8b825546e1cefd9e1a520ea0c6e7a7675ccc5eb57796262015c7fda595286ff",
+      "independence": "non-author blind dates and stdlib reference; only compatibility calendar arithmetic, not astronomical qiyun truth"
+    },
+    "qiyun": {
+      "samples": 88,
+      "unique_samples": 83,
+      "uncertain": [
+        "bazi-fresh-025",
+        "bazi-fresh-029",
+        "bazi-fresh-038",
+        "bazi-blind-018",
+        "bazi-blind-024"
+      ],
+      "field_comparisons": 249,
+      "failures": [],
+      "production": "reused original frozen bazi-production-blackbox.stdout; unchanged numeric code, no baseline rerun",
+      "expected_sha256": "617ef097a4811ba61f60adecbed20d7ec1d7347df065740370be292db88d923f",
+      "scope": "sect1 HKO guard and engineering Gregorian compatibility; not all epochs/second-precision astronomical claim"
+    },
+    "western_definition": {
+      "samples": 28,
+      "comparisons": 84,
+      "max_absolute_errors": {
+        "ayanamsha_degrees": 1.4479894616670208e-08,
+        "mean_lilith_degrees": 1.3632643458549865e-08,
+        "mean_lilith_rate_degrees_per_day": 8.582446753280237e-08
+      },
+      "failures": [],
+      "reference_hashes": [
+        "34df6f3ac35cd05972dee51fc7f7aa99dee26ee328d07ebdfb79b07b52502044",
+        "02dd3f0f2da2b3955a206f79815ec09890dd305c4b4d0ad02147291f6fe83f61"
+      ],
+      "scope": "non-author input/expected frozen before production; independent ERFA matrix/arguments, shared IERS and model family, not official Lahiri/original-engine equivalence",
+      "v1_apogee": "transcription omitted mean anomaly and true-equinox correction; rejected before production comparison; preserved"
+    },
+    "ziwei_void": {
+      "samples": 84,
+      "cut_void_pair_equalities": 84,
+      "xun_void_membership_only": 84,
+      "failures": [],
+      "unproven": [
+        "which pair member is named cut-road vs void",
+        "single xun member parity selection",
+        "all other stars/brightness/full selected-year horoscope"
+      ],
+      "expected_sha256": "1dcc0d01870cf7ba874f938e445d4287ce61bd9653f5b524bdca12929dead049"
+    },
+    "ziwei_minor_selected_luck": {
+      "legal_samples": 72,
+      "eligible_minor_samples": 40,
+      "unasserted_minor_samples": 32,
+      "counts": {
+        "minor_star_positions": 680,
+        "selected_decade_fields": 216,
+        "annual_year_ganzhi": 72,
+        "annual_palace_names": 864,
+        "annual_transformations": 72,
+        "annual_transform_targets": 288
+      },
+      "failures": [],
+      "full_horoscope_oracle": false,
+      "unproven": [
+        "leap-month and day-1/day-2 exceptions",
+        "17 star placement rules are not brightness verification",
+        "yearly/decadal auxiliary-star full sets",
+        "small-age layer and boundary-year/full selected horoscope",
+        "all source profile lineage independent of iztro"
+      ],
+      "expected_sha256": "acb062e0ab59de1197903fe1e8d275d4d4d821214f4a66ddf01f966ee0e86fe8"
+    },
+    "test_summary": {
+      "php_bazi": {
+        "tests": 15,
+        "assertions": 130,
+        "exit": 0,
+        "existing_phpunit_deprecations": 2
+      },
+      "flutter_default": {
+        "tests": 20,
+        "exit": 0
+      },
+      "flutter_v1010_define": {
+        "tests": 20,
+        "exit": 0
+      },
+      "flutter_targeted_analyze": {
+        "exit": 0
+      },
+      "overlapping_tests_not_summed": true
+    }
+  },
+  "historical_sections_note": "source/oracle/tests/build/runtime above and continuation_20261017 retain their original source and time; they are not latest build/runtime evidence",
+  "continuation_20261018": {
+    "authority": {
+      "main_and_astra_review": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+      "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+      "owner_option": "A_CONTINUED",
+      "acceptance": "NOT_ACCEPTED"
+    },
+    "source": {
+      "commit": "e86db6e24907ed91c342f21a0dbe6c9f99dc38bd",
+      "tree": "9c067e755c1da545dc36bc4d6dbaa07be8ddc53e",
+      "parent": "4222645703821ab20896765a31df1cfa375034ca",
+      "apps": "c4f659466ca9b9d1a195e901478808db594c4ca0",
+      "services": "2cd1d3fbce25eee64fd84ea169784e7b67c18e5d",
+      "paths": 18,
+      "scope": "LOCAL_SAME_VERSION_SOURCE_SAVE_NOT_FINAL_CANDIDATE_NOT_PUSHED",
+      "registry_version": "1.0.2"
+    },
+    "fixes": [
+      "Restore lunar-php model UT1+08 roots to TT before classifying solar-term year/month; explicitly convert qiyun endpoints",
+      "Only three official iztro2.6.1 You-palace brightness data fixes backported into adapter; package stays2.5.8",
+      "Shen palace Chou stem uses same selected-year Five Tigers; exact legacy value retained"
+    ],
+    "solar_terms": {
+      "count": 2424,
+      "year_range": [
+        1900,
+        2101
+      ],
+      "maximum_tt_seconds": 2.62594711384736,
+      "maximum_calendar_seconds": 2.714901,
+      "calendar_comparable_count": 2280,
+      "excluded_calendar_labels": "1960-1971: reference used Skyfield UTC without ERFA rubber seconds; TT remains usable",
+      "failures": [],
+      "reference_sha256": "536cd93e7c79ee076bc30bc2c2fe8ca8c744986f25786d064e69c398f9cb3b8a",
+      "uncertainty_guard_seconds": 60,
+      "guard_comparisons": 4848,
+      "blind": false,
+      "independence": "Independent astronomical engine/data from lunar-php; author has read integration code, NOT_BLIND; shared with Western subsystem, not independent observations",
+      "not_claimed": [
+        "independent observations",
+        "subsecond physical accuracy",
+        "whole Bazi AC pass"
+      ],
+      "numerical_error_limit_seconds": 60,
+      "reference_side_offset_seconds": 61,
+      "guard_check_kind": "Two root-position inequalities per2424terms; not4848adapter runs; no threshold relaxation"
+    },
+    "bazi": {
+      "qiyun_fields": 249,
+      "clear_cases": 83,
+      "reference_uncertain_cases": [
+        "bazi-fresh-025",
+        "bazi-fresh-029",
+        "bazi-fresh-038",
+        "bazi-blind-018",
+        "bazi-blind-024"
+      ],
+      "gregorian_fields": 90,
+      "compatibility_projection_assertions": 8685,
+      "taiyuan_taixi_fields": 352,
+      "ming_shen_fields": 352,
+      "ming_shen_civil_source": "78 unchanged cached outputs plus10 updated outputs; not88 fresh full-metadata runs",
+      "pure_rule_fields": 5760,
+      "pure_rule_inputs": 1440,
+      "only_chou_changes": 120,
+      "ming_gong_changes": 0,
+      "legacy_replay_all_equal": true,
+      "affected_full_results_with_no_unexpected_difference": 10,
+      "uncertain_hanlu_reference_cst": "2024-10-08 02:59:57.338861",
+      "physical_second_accuracy": "NOT_CERTIFIED"
+    },
+    "ziwei": {
+      "day_stars_positions": 288,
+      "additional15_positions": 1032,
+      "leap_month_cells_not_asserted": 48,
+      "boshi_positions": 864,
+      "small_limit_positions": 615,
+      "selected_flow_checks": 6048,
+      "selected_flow_unasserted_cells": 288,
+      "changsheng_branch_cells": 864,
+      "changsheng_pure100": "NOT_RUN",
+      "misc_legal_four_positions": 288,
+      "misc_legal_pair_checks": 72,
+      "misc_legal_xun_primary_checks": 72,
+      "misc_pure60_four_positions": 240,
+      "misc_pure60_pair_checks": 60,
+      "misc_pure60_xun_primary_checks": 60,
+      "misc_pure_scope": "NOT_A_CIVIL_DATE",
+      "jie_kong_label_mapping": "NOT_ASSERTED",
+      "external_brightness": {
+        "comparisons": 1050,
+        "unique_cells": 168,
+        "missing": 0,
+        "mismatches": 0,
+        "normalization": {
+          "得": "得地",
+          "不": "不得地"
+        },
+        "lineage": "UNKNOWN",
+        "full_independent_oracle": "NOT_CERTIFIED",
+        "table_redistribution": "NOT_ADMITTED_LOCAL_ONLY"
+      },
+      "overlapping_checks_not_summed": true
+    },
+    "tests": {
+      "php": {
+        "tests": 47,
+        "assertions": 8996,
+        "exit": 0,
+        "skipped": 0,
+        "deprecations": 2,
+        "phpunit_deprecations": 2,
+        "real_owned_runtime_identity_tests": 2
+      },
+      "node": {
+        "tests": 9,
+        "exit": 0
+      },
+      "python_time": {
+        "tests": 3,
+        "exit": 0
+      },
+      "flutter_review_fixes": {
+        "tests": 19,
+        "exit": 0
+      },
+      "flutter_targeted_analyze_exit": 0,
+      "pint_exit": 0,
+      "service_class_subprocess_smoke_exit": 0,
+      "full_php": "NOT_RUN_HISTORICAL16_FAILURES_PRESERVED"
+    },
+    "chiron": {
+      "jpl": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED",
+      "nima": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED",
+      "mail_sent_this_continuation": false,
+      "mailbox_read_this_continuation": false,
+      "additional_monitor_created": false,
+      "production_calculation": "DISABLED",
+      "nima_jpl_data_acquired_this_continuation": false,
+      "lowell": {
+        "file": "astorb.dat",
+        "source": "https://asteroid.lowell.edu/astorb/",
+        "historical_source": "https://ftp.lowell.edu/pub/elgb/astorb.html",
+        "publisher_permission": "Free use copy transmit conditional on named attribution; applies only to this file",
+        "independent_review": "Historical publisher terms read; no NC or source-disclosure clause seen; current direct page timeout",
+        "full1900_2101_accuracy": "NOT_PROVEN",
+        "data_request": "NOT_STARTED_TERMS_READ_TIMED_OUT",
+        "data_acquired": false,
+        "product_admission": "NOT_GRANTED",
+        "cost_incurred": 0
+      }
+    },
+    "latest_runtime": {
+      "apk_aar_build": "NOT_RUN",
+      "install": "NOT_RUN",
+      "http_api_db_restart_chain": "NOT_RUN",
+      "service_smoke": "LOCAL_LARAVEL_BOOTSTRAP_AND_SUBPROCESSES_ONLY",
+      "old_build4": "PREVIOUS_SOURCE_IDENTITY_NOT_LATEST_SOURCE_BUILD",
+      "rtc_uac_firewall_production": "NOT_RUN",
+      "docker_resource_recheck": "UNAVAILABLE_DOCKER_DAEMON_NOT_RUNNING_NOT_STARTED",
+      "current_volume_existence": "UNKNOWN_INSPECTION_UNAVAILABLE",
+      "owned_ports": [
+        8010,
+        8011,
+        43320
+      ],
+      "owned_listener_count": 0
+    },
+    "nonauthor_review": {
+      "model_role": "GPT-6.1 Sol high read-only",
+      "result": "NO_NEW_DETERMINISTIC_SOURCE_DEFECT_IDENTIFIED",
+      "shen_narrow_regression_requirements": "CLOSED",
+      "version_acceptance": false
+    },
+    "remaining": [
+      "Chiron applicable legal data and1900-2101 accuracy",
+      "Full independent brightness and auxiliary-star oracle lineage",
+      "Leap-month moon-star and remaining flow/year-boundary rules",
+      "JieLu/KongWang individual primary-secondary naming",
+      "Five qiyun quantization-sensitive cases and remaining calendar physical boundary limits",
+      "Latest-source final installedAPP/API/persistentDB/restart/build evidence after algorithm gates close"
+    ],
+    "command_receipts": [
+      {
+        "receipt": "20261018-natal-php-final-scoped-with-owned-runtime",
+        "exit": 0,
+        "stdout_sha256": "807f3720994443ef3d8a20d471c7fbb60f6cc4b59e89570c8581dee74c44f13c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-bazi-time-python-regression1",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c5bf70fc3e783d5779e6e885ca5f6f3ef5d499c671a296e876598ff62707cdcf"
+      },
+      {
+        "receipt": "20261018-ziwei-node-targeted-regression",
+        "exit": 0,
+        "stdout_sha256": "8d72bf3fa6bf10312da7539fab54a644c53b83b2646065e4079061f2baf2a041",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-flutter-time-note-tests",
+        "exit": 0,
+        "stdout_sha256": "89d59922ece9cf002a62e161a0d6978b4dc0404a05c94bcf49b982768122ff1f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-flutter-time-note-analyze",
+        "exit": 0,
+        "stdout_sha256": "0613275567c842882ca0825b88293dfc84ed6d1bf9888283ccd7dc3ec04edfaf",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-natal-style-final-green",
+        "exit": 0,
+        "stdout_sha256": "96d76c7af1675073cf95e0f4b26015864dda6f761d129b5d79875d1cef4d475e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-natal-final-service-smoke",
+        "exit": 0,
+        "stdout_sha256": "eab3612ee271dd9541b726755871f95c5226fd88cc0c670a827ecc9bcd2668aa",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-bazi-gong-legacy-provenance-verify",
+        "exit": 0,
+        "stdout_sha256": "d40d5b2c609522c2e33b44a27a6e4365f9dc3e9cd1551e61d409ed545dfa8cd4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-lowell-public-terms-documents",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b00de695af2fde299c26e2b473ad5f217df219a10acfda255669014c294710d5"
+      },
+      {
+        "receipt": "20261018-lowell-scoped-licensed-source-research",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "69ed49ca14f008dd76e22ca46e8f98a07d8c0e5585a920d82bcdeec2c8182709"
+      },
+      {
+        "receipt": "20261018-owned-db-state-readonly",
+        "exit": 1,
+        "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr_sha256": "e9133cf10b02b0b91c8b119848513db0ac541e7c3c19681266939e4b9952f7cc"
+      },
+      {
+        "receipt": "20261018-owned-volume-state-readonly",
+        "exit": 1,
+        "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr_sha256": "e9133cf10b02b0b91c8b119848513db0ac541e7c3c19681266939e4b9952f7cc"
+      },
+      {
+        "receipt": "20261018-owned-loopback-state-readonly",
+        "exit": 0,
+        "stdout_sha256": "d221e8297599016ad9376cf3af6148972e0d1d7eba0420fdb75043ee05530f4f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "comparison_receipts": [
+      {
+        "receipt": "20261018-extension-comparisons/brightness_full168_compare",
+        "exit": 0,
+        "result_sha256": "1bbfc01c82be035bee299859d8079fe5d8ba126a06455c8999d95e837f07cd33",
+        "script_sha256": "40e1a797173e4b0c4383e882a1c6113eab1f2dbdaa636961db5457f5afcf7b3c",
+        "stdout_sha256": "6652eef3fb0c7a309471829805b90a771289227a289c03e7124935f165706b54",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/changsheng_compare",
+        "exit": 0,
+        "result_sha256": "3cdc9ee3a957cf3251dd426c9339f2b5d70cc4fdd43908c956534fce95685324",
+        "script_sha256": "2ebd96d43775274e66b9a625dbecc2f636d2a33c32d55978b8284c3a7fde51c8",
+        "stdout_sha256": "f7d5f324c5e49b6b6fe192e6cea08cd939141c1917646a96271f0ff949116671",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/misc_pure60_compare",
+        "exit": 0,
+        "result_sha256": "e98ac3758946b2d80e4e2f589b959676317dca3a8fc92478aa38e0c19d630882",
+        "script_sha256": "def58ff0c92c15af3fdac7be5397996679a87d45d1f5bc163f1c311c3ff12f17",
+        "stdout_sha256": "059079fb15074b7e51d012b845f4549c87925eebdcb3de46a8be47371906229f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/misc_compare",
+        "exit": 0,
+        "result_sha256": "b99a5fe431051cefe37ac6b995b2406995215de335a97193b032c337d192ce6c",
+        "script_sha256": "f8f915e85bff46dd64d18e0bd5fb7e0b8e59548e5b56cae765065368dae5f488",
+        "stdout_sha256": "874546ec1f2d17e8fff3682f9f007189bd708b1a7b9bc02e7f07b6442ed18bb1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/flow_compare",
+        "exit": 0,
+        "result_sha256": "45ae50eae11345490fb7ce4169eefbdc1fa8b9274ba161c8589aae331021cd6f",
+        "script_sha256": "7318b2e49c66069c87fa122f8b083b2a60644f7a5ab018bdb27afb1dbca9d87a",
+        "stdout_sha256": "c17bc58fec4a6a792d2c41d4ee30a78150454517e2971ae84ff99c4431a097a3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/gong_compare_v4",
+        "exit": 0,
+        "result_sha256": "ccdb10d57a4f295bb493c5afed90a2213aeea6f235972fcb3dedaa460141241f",
+        "script_sha256": "cb8000ee8a65096145835f84d256237a6f0837b49d18beeada6aa50420d90d59",
+        "stdout_sha256": "2871d43b4c3b6fd486dce441c65f77c0cf23a987cc9e5f4af0ae0cd8e683a4f3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/bazi_updated_extensions",
+        "exit": 0,
+        "result_sha256": "16881ed5a63e33d96c9a212954d00f7c55278e1ce9806d38759fed6c7e69d676",
+        "script_sha256": "e5f35313a4b9a16a4b3f9fe8240a41c14cb5361181f6e882507e382609fcb018",
+        "stdout_sha256": "3152edeffa1e03a25b67cdca09bbc481fa718cab263cd709f0c6a29b8cc33b66",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/extra_compare",
+        "exit": 0,
+        "result_sha256": "ffb2ff8d3963c333e33bed00ad1abd0d40dbb99362bb9a322406d81a274cbbc9",
+        "script_sha256": "e748920ea3aa96fea3b1a06ac1784408229d8745ac60eb3a7b64f576d207ed83",
+        "stdout_sha256": "3bb6694be47e5781176af96c04b1bbed7b356d6d5540a402c4ede1546cb05f56",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "source_and_expected_identities": {
+      "20261018-ziwei-extra-reference/expected.json": "8c4cc47ebdeec35604b1fa1716b3c12791bdf243422473cfbdd8a07488648322",
+      "20261018-ziwei-extra-reference/flow-reference.json": "d04713b950fca9a889ec59ebab9c29233baac908fe95a8f3f1d0aae576b31ccd",
+      "20261018-ziwei-extra-reference/last-misc-reference.json": "3292b98541804ce269c3a9bd5f479d02d25b6ccc9fa86de38fe3784d8c7783c3",
+      "20261018-ziwei-extra-reference/changsheng-reference.json": "f77489f38dde7a65c83ffb2991e1a77621c110a2af1cc4a48fe7ce53437412d4",
+      "20261018-bazi-gong-reference/reference.py": "cb5fce4f4451039c1bc997841fa93f8825669f01148682046bb1f8be97fee008",
+      "20261018-bazi-gong-reference/expected.json": "01d1d52d35fa73d3373262ce35bc820c86eb630576b84cda27a0c8bbcc2c749c"
+    },
+    "rights_source_documents_and_tables": "LOCAL_ONLY_NOT_COPIED_INTO_PRODUCT_OR_PUBLIC_TESTS",
+    "protection": "Before and after local source save, original dirty rootHEAD/index/status/43tracked hashes equal; no blanket rehash of all untracked media",
+    "exit_state": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED_NO_MAIN_K08_SUCCESSOR"
+  },
+  "continuation_20261018_independent_rules": {
+    "classification": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED",
+    "evidence_level": "CODEX_REPORTED_LOCAL_ONLY_NOT_ASTRA_REVIEWED",
+    "local_source": {
+      "commit": "dce899c88f707ba5e50843e5a724a0f76f140e53",
+      "tree": "df56d363d7beb0a419c41e5aa06224b30b030926",
+      "apps": "f7a13582772aabdb606e020a232b573c67482222",
+      "services": "0c6450f77ba8d7352936b5667e9ab9ebf49bc549",
+      "paths_sha256": {
+        "services/backend-laravel/tools/natal/oracle/ziwei_brightness_reference.py": "56ac64c89c027b1de1767d6a7b205832625131a40b81ea6eb89754b6dd4b04ee",
+        "services/backend-laravel/tools/natal/oracle/ziwei_classical_brightness_sources.json": "10413aed882d1d414505f0761ecd78a11483b20a24fdcad69d86c1a535e070fa"
+      },
+      "scope": "Independent oracle only; no production numerical changes, no push",
+      "review": "Non-author reviewed; dependency identity fix confirmed"
+    },
+    "remote_main": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+    "remote_development_branch": "4222645703821ab20896765a31df1cfa375034ca",
+    "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+    "published": false,
+    "counts": {
+      "classical_main_cells": 168,
+      "classical_auxiliary_cells": 64,
+      "classical_distinct_cells_total": 232,
+      "classical_main_reads": 1050,
+      "classical_auxiliary_reads": 450,
+      "joint_position_brightness72_rows": 1440,
+      "joint72_distinct_cells": 218,
+      "hanlu_model_conditioned5_fields": 35,
+      "leap_month_inference_positions": 48,
+      "original_leap48_not_asserted_unchanged": true,
+      "annual_pair72_positions": 144,
+      "all_unresolved_inventory_before_annual_pair_positions": 504,
+      "original_flow_not_asserted_markers_unchanged": 288,
+      "cny_cases": 24,
+      "cny_rows": 3384,
+      "selected_limit_cases": 30,
+      "selected_limit_rows": 1080,
+      "flutter_each_mode_tests": 22
+    },
+    "counts_are_overlapping_not_ac_scores": true,
+    "comparisons": {
+      "classical_fourteen_brightness_compare": {
+        "result_sha256": "da525b6da0bb6d449485d4fb91075f90068990acbd61e716ba208b8515496c57",
+        "status": "SPECIFIED_CLASSICAL_FOURTEEN_MATRIX_VALUE_MATCH"
+      },
+      "classical_six_brightness_compare": {
+        "result_sha256": "cb18258b980dde72293b4eca55430d2bf55b060f9cd981e7da4d0106d33c6bf7",
+        "status": "SPECIFIED_CLASSICAL_TRANSCRIPTION_FACTS_MATCH"
+      },
+      "hanlu_qiyun_current5_compare": {
+        "result_sha256": "34a00ef11d4a0d71e7d4a0f985d4b04229b2875c7edc4aea85afd7ee339a3672",
+        "status": "PASS_FIVE_MODEL_CONDITIONED_SECT1_CROSSCHECK"
+      },
+      "leap_inference_compare": {
+        "result_sha256": "3a663c2d1fbd7ff27de29477f83a2feacad29274d34babbc95254d8232623c27",
+        "status": "SOURCE_INFERENCE_NOT_EXPLICIT_PER_STAR_LEAP_RULE"
+      },
+      "annual_pair_compare": {
+        "result_sha256": "fe471e8c19359fa6fbb6b9072ed7bfe06087d638c21d9038136b1ed9aa135629",
+        "status": "ANNUAL_PAIR_SOURCE_RULE_MATCH"
+      },
+      "classical_position_brightness72_compare_v2": {
+        "result_sha256": "57a790082d9a7b5c7f3c3561710e2aba56ac6c4836af85cc286f8b355d6e522d",
+        "status": "PASS_72_INDEPENDENT_POSITION_BRIGHTNESS_RULES"
+      },
+      "cny24": {
+        "result_sha256": "1f123c87a16e22c7a7562f7b9a19950f007181d7db639ae52acf3b2255b1dcf8",
+        "status": "PASS_24_NATAL_CNY_CURRENT_ZI_SOURCE_RULES",
+        "cases": 24,
+        "comparison_rows": 3384,
+        "differences": 0
+      },
+      "selected_limit30": {
+        "result_sha256": "9bb7f3c9dcb0900744d8bc7c859b5b5e729d8f5c23857eb14aa58d45c1a276b0",
+        "status": "PASS_SELECTED_DECADAL_START_END_NEXT",
+        "cases": 30,
+        "comparison_rows": 1080,
+        "differences": 0
+      }
+    },
+    "command_receipts": [
+      {
+        "receipt": "20261018-continuation-live-refs",
+        "exit": 0,
+        "stdout_sha256": "ed2c4496e11b1c2142a0b7c2cb747ccd506792c7bd77a5462c194ccb2afcb7d9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-continuation-plan",
+        "exit": 0,
+        "stdout_sha256": "286b7253143a5a6ddc405848d2c8f836cf00446a78f8eafd83367556438be95f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-hanlu-five-current-class",
+        "exit": 0,
+        "stdout_sha256": "87bfcba3170f5fc2ea123c3995f8df88bbc7a981d787bbfbe24ac56d76f3f235",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-format",
+        "exit": 0,
+        "stdout_sha256": "4ce9607dfce4cd221e200e5f01c073cbbd48c81a8d2a7befeb853468b27416d3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-default",
+        "exit": 0,
+        "stdout_sha256": "ef4ff914581bef9a97503f29ceda79a22eb3e80df68ae722232140ee30a002ab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-v1010",
+        "exit": 0,
+        "stdout_sha256": "ef4ff914581bef9a97503f29ceda79a22eb3e80df68ae722232140ee30a002ab",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-after722-luck-ui-final-analyze",
+        "exit": 0,
+        "stdout_sha256": "f5a0b5dbb5579d971129e1eab9c90d5fa8171d0a188bfccd3db0443ac699f551",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-source-fetch",
+        "exit": 0,
+        "stdout_sha256": "54bd7e76aa6cf0612543f0552f815a965303eb3bc3b96a5cca415dec25429bed",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-reference-freeze",
+        "exit": 0,
+        "stdout_sha256": "3b5a869a51e9e4f893b35407362585ba6114d46902bea280988281b86d59c59a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-annual-pair-cache-compare",
+        "exit": 0,
+        "stdout_sha256": "bf6fb761f314afd11b573061e91c8df090d4b993a059a156594a6ca3a4e9d968",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-adapter24",
+        "exit": 0,
+        "stdout_sha256": "735d04cf2cd3f50410babb7471a9c77c759e85d1a5d32811ee68a946497a7838",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-compare",
+        "exit": 0,
+        "stdout_sha256": "239d6e32aad0199bc1065fc64095db2206c0616fb8f8cdc1541a977bab864fd5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-cny-current-compare-v2",
+        "exit": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c571bcf7ca30893f47c942326d2ae5385a60fe0f82900c063f5731a18867d54d"
+      },
+      {
+        "receipt": "20261018-cny-current-compare-v2-fixed",
+        "exit": 0,
+        "stdout_sha256": "7056a75758bb418cb195685e64b6c14e60dfe450ace36a67e0a2a8e5f423b1b9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-selected-limit-current-adapter30",
+        "exit": 0,
+        "stdout_sha256": "5728b961bd80607a99ba83590dc9054565ba8016d921269563c3f4b79de833bd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-selected-limit-current-compare",
+        "exit": 0,
+        "stdout_sha256": "9ccb63a97ae411bccff36d2b5202a39eef983fd1593e8d29b95906c1af2dd6e0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-classical-position-brightness72-v2",
+        "exit": 0,
+        "stdout_sha256": "97319a1bef648c1a34b080e455c073088624a7bceda82b1bf25c1d91b8b3c257",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-oracle-binding-final-check",
+        "exit": 0,
+        "stdout_sha256": "27492fd0b99598b26c7dec40a2aaf09e835f7308e16fd97b4f4bdc284f365237",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-luck-ui-commit",
+        "exit": 0,
+        "stdout_sha256": "b5f642e6bbf432a03f6ff08357153dc9f0e80809f9d543dd8400880235788642",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-classical-oracle-commit",
+        "exit": 0,
+        "stdout_sha256": "2fcd351a364c5414b8bffedc83e7d40ba94c680f9056a59068dd5b30fb67ddc4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "rights": "JPL_NIMA_SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED_NO_MAIL_ACTIONS",
+    "latest_app_api_db_build_install": "NOT_RUN_OLD_BUILD4_NOT_RELABELED",
+    "remaining": "Full selected-flow layer provenance, childhood/age layers, selected luck lunar-year boundaries, split empty-star labels, Chiron rights/century accuracy and full frozen completion; no scope reduction",
+    "protection": "Two source-save before/after comparisons equal protected root HEAD/index/status/43recorded hashes; no mass untracked rehash or volume operation",
+    "review": "Non-author extraction and static code reviews; position-oracle dependency hash fix confirmed; no Astra acceptance",
+    "exit": "NO_PUSH_NO_MAIN_K08_SUCCESSOR",
+    "blindness": "NOT_BLIND; source reader did not read actual, but these reused/new supplementary cases do not increase historical blind-test counts",
+    "source_identity_readback": {
+      "path": "20261018-hanlu-five-identity-independent-readback.json",
+      "sha256": "472161caf29f3eb9fd545e79b1237438b86a75c5b3051e46d7122ac87b3eb10b",
+      "scope": "file SHA256 and historical Git blob equality only, no rerun"
+    }
+  },
+  "current_local_source": {
+    "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+    "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+    "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+    "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc"
+  },
+  "continuation_20261018_selected_periods": {
+    "classification": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED",
+    "source": {
+      "commit": "24ac02cf21cc56a1d74c33e7587460e99d3a2af3",
+      "tree": "8ce86fd0bb3086a1bae8321618bf076c3a5a13c5",
+      "apps": "52e4a3ea6878e9c5fcc16fc352aef358e99d4602",
+      "services": "9012fbcfda4a49d786f3e763a978b27e2451f360",
+      "remote_pushed": false
+    },
+    "file_sha256": {
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart": "e2a08c41cc63f3338498612f80cf895abe0f94f936f52b9019e4cc1bb8830d6f",
+      "apps/flutter_elitesync_module/test/features/profile/natal_review_fixes_test.dart": "464aac4509154d569f5fabe5f7bc9152fea638fe2a3953e511e0d7bd2cf8b5ee",
+      "services/backend-laravel/tools/natal/ziwei.mjs": "c8e0f766e42886fad33a89588e6c3f12b978c7723fd258a31b2c9bb6189ac7fb",
+      "services/backend-laravel/tools/natal/tests/ziwei-period-domain.test.mjs": "de1147adeda9ced542cc60986d6553491e6c490cb4b8e8ded1472af950170716",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_reference.py": "dd5dbc207714855b5435cf07f8dd6a6207c09cd8e691ad9d66cc428e18d1ba7b",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json": "9c058a1eed1bc9e9f5ec00a2782d164cfdc19dfd61d4f84d034e68fa46b31a85",
+      "services/backend-laravel/tools/natal/oracle/ziwei_kong_reference.py": "39368321c0b663d844002b75df9ef8527828809df83b027de9f2f5cb40a81a04",
+      "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md": "62d4ee9c4c3fa3c38ae0124a769279460328dc452d14c3359d2da944e7ee296f"
+    },
+    "domain_fix": "Only decadal/age index=-1 yields NOT_APPLICABLE; invalid/yearly sentinel remains error; UI omits fake details",
+    "node_tests": {
+      "tests": 12,
+      "fail": 0,
+      "skip": 0,
+      "exit": 0
+    },
+    "flutter_tests": {
+      "default": 23,
+      "v1010_define": 23,
+      "exit": 0,
+      "analyze": "No issues found;exit0"
+    },
+    "child_small_scope": {
+      "cases": {
+        "child_current": 30,
+        "small_cache": 72
+      },
+      "comparison_rows": 2358,
+      "differences": 0,
+      "limitations": [
+        "Child table+modern bureau-cutoff is profile composition",
+        "Child HUA/flow scope not established",
+        "Small HUA mathematical composition only"
+      ]
+    },
+    "seven_flow": {
+      "cases": 72,
+      "comparison_rows": 504,
+      "differences": 0,
+      "overlap": "Includes previous144 annual Luan/Joy; not additive",
+      "source_limits": [
+        "Annual horse original context inference",
+        "Decadal Luan/Joy modern Sanhe only",
+        "NianJie base edition unverified"
+      ]
+    },
+    "native_cny": {
+      "cases": 16,
+      "comparison_rows": 800,
+      "differences": 0,
+      "scope": "Pinned real engine component, not HTTP or APP/DB",
+      "blind": false
+    },
+    "permanent_selected_reference": {
+      "cases": 102,
+      "comparison_rows": 10464,
+      "differences": 0,
+      "blind": false,
+      "actual": "Cached72 plus current-child30; no rerun",
+      "stdin_binding_addendum_sha256": "95856f94f1b1e81c41c2de6e90af21f6d08946a65d66635f12481f3fc37da625",
+      "stdin_payload_evidence": "Deterministic reconstruction from exact original expression, not fresh runtime recapture"
+    },
+    "selected_boundary_blind": {
+      "cases": 24,
+      "comparison_rows": 2470,
+      "group_counts": {
+        "context": 72,
+        "child_limit": 102,
+        "small_limit": 400,
+        "yearly": 1416,
+        "decadal": 480
+      },
+      "layer_status_counts": {
+        "child_limit.CALCULATED_REFERENCE": 6,
+        "small_limit.CALCULATED_REFERENCE": 16,
+        "yearly.CALCULATED_REFERENCE": 24,
+        "decadal.CALCULATED_REFERENCE": 14,
+        "small_limit.NOT_APPLICABLE": 8,
+        "decadal.NOT_APPLICABLE": 4
+      },
+      "expected_sha256": "8ffa643ed5b339f0593c7692242f9f401823aa03521dc3c65736350bf41d1a55",
+      "actual_sha256": "17815fdf042bcd0cab01c90b977a402fe79d2258035937ae374e02ba1ef17e0c"
+    },
+    "blind_limits": {
+      "selector_blind_to_actual_and_parent": true,
+      "new_independent_implementation": false,
+      "births": "HKO1901 first month only; yin birth year",
+      "stage_scope_addendum_sha256": "1697df82da87246cb1a1e3c6fa84c15fa0906c40a05e62dd562a7a19f6083d0b",
+      "unestablished_child_fields_asserted": false
+    },
+    "kong_polarity": {
+      "cycles": 60,
+      "comparison_rows": 180,
+      "pair_matches": 60,
+      "xun_regular_matches": 60,
+      "individual_alias_hypothesis_failures": 30,
+      "original_compare_exit": 1,
+      "meaning": "Rejects fixed alias hypothesis for yin stems, does not establish engine placement error",
+      "blind": false,
+      "source": "Selected Zhongzhou transcription, printed edition unknown"
+    },
+    "chiron_research": [
+      {
+        "candidate": "CDS/VizieR J/A+A/584/A96",
+        "url": "https://vizier.cds.unistra.fr/cgi-bin/VizieR-3?-source=J%2FA%2BA%2F584%2FA96",
+        "kind": "2895 ground-based astrometric observations, not an orbital state/ephemeris",
+        "rights": "DATASET_SPECIFIC_LICENSE_UNKNOWN",
+        "coverage": "Historical observational input, not 1900-2101 ephemeris accuracy",
+        "admission": "NOT_ADMITTED"
+      },
+      {
+        "candidate": "Ketu1.8.0 Chiron coefficients",
+        "url": "https://ketu.readthedocs.io/en/latest/chiron.html",
+        "generation": "https://github.com/alkimya/ketu/blob/main/tools/gen_chiron_coeffs.py",
+        "kind": "Author-declared Swiss/pyswisseph-generated coefficients; Moshier fallback accepted by generator",
+        "license": "Software MIT declaration does not establish embedded coefficient data rights; no such separate grant established",
+        "coverage": "Docs claim1900-01-01 through2100-12-31, generator inspected has2100-01-01 terminal setup; exact artifact scope not verified",
+        "accuracy": "Author claims max0.001214 degrees against same Swiss/Moshier family; not independent oracle",
+        "admission": "NOT_ADMITTED_NO_DATA_DOWNLOAD"
+      },
+      {
+        "candidate": "ChironCalculator",
+        "url": "https://www.chironcalculator.com/data-sources",
+        "kind": "Author-declared JPL Horizons offline table, six-hour samples",
+        "coverage": "1900-01-01 through2050-12-31; insufficient final-century range",
+        "rights": "No applicable closed-source/data-redistribution grant established",
+        "admission": "NOT_ADMITTED_NO_DATA_DOWNLOAD"
+      },
+      {
+        "candidate": "Lowell astorb B/astorb mirror metadata",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true",
+        "kind": "ReadMe only, no orbital numeric rows fetched",
+        "rights": "The mirrored astorb description repeats attribution-based free use/copy/transmit grant for astorb.dat; not MPC/NIMA/JPL grant",
+        "accuracy": "Explicit two-body near-epoch +/-50-day statement for most non-planet-approaching objects, not Chiron century accuracy",
+        "coverage": "ReadMe identifies2022-Dec-12 version; no verified2060 row or century error proof",
+        "admission": "METADATA_ONLY_NOT_PRODUCT_DATA"
+      }
+    ],
+    "public_findings_sha256": "95419bea644c20c188df8d6e88df6838de2d7aa54107244f427a440b87b657ab",
+    "internal_review": "Non-author: domain guard/UI, reference independence/mapping/source grades and Kong conclusion checked; receipt stdin field corrected by preserved addendum; independent Astra acceptance NOT_DONE",
+    "raw_receipts": {
+      "20261018-period-node-final-regression": {
+        "exit": 0,
+        "stdout_sha256": "b9e21f0454f9df2a4ef442401e2a861ed521630f90bb6e4f540d3cadf962cb6e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "024cbdfbe97d01a7a1439b3948a439818014b738831445dab6a734563a590de7"
+      },
+      "20261018-period-ui-default": {
+        "exit": 0,
+        "stdout_sha256": "c88ea083039caaccadbb813fcaecaaf30158a386d70f7f20bd8594dc14a72a96",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "ce07558fabd724ef27cb40bd75bd98b4d0ead634f0d662f92a6758e377df2f57"
+      },
+      "20261018-period-ui-v1010": {
+        "exit": 0,
+        "stdout_sha256": "c88ea083039caaccadbb813fcaecaaf30158a386d70f7f20bd8594dc14a72a96",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "bc581063e29739892fc66306d614234356978bbd86afbfc80e1e2e4c79928ba4"
+      },
+      "20261018-period-ui-analyze": {
+        "exit": 0,
+        "stdout_sha256": "4914c47f95e6074fc0cd1f97fb9b5e2b47b428355f3060f6da4dbc7249348aa9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "83402af427457b4dd72a759be05e4fc9eaef47a587a48155f76709e291599287"
+      },
+      "20261018-selected-permanent-freeze": {
+        "exit": 0,
+        "stdout_sha256": "1ebb0ca3cc39dd04015d28bc59446867bf4b08561c9a7a4ceba364ca8bbec6f7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "4029612e7d85294352f257445666f365be77e992958c5a6434717b5ca0d8154e"
+      },
+      "20261018-selected-permanent-cached-compare": {
+        "exit": 0,
+        "stdout_sha256": "d17485e90c74b9bb25883d69c1eea9cd53c916c9583d1037a7fa099f96567cb5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "de5f0a08cfde5ef92be9b30507a79b1aee380b94412bd456eb93bc60cb0c1bcd"
+      },
+      "20261018-horoscope-cny-native16": {
+        "exit": 0,
+        "stdout_sha256": "9768a4ae9263880cfd28851251837568214d9d0a1c281aebbd08ee538cbc658d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "0672edea5e7b3562abb9a232db51d7821ec0f2e3106bd9ca13cbc66909ee057e"
+      },
+      "20261018-horoscope-cny-native16-compare": {
+        "exit": 0,
+        "stdout_sha256": "9c45725e4770188725dfc5d452f7a72aa3a853a60ffbfb4257ddf4e7dad33e71",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "8de4d4ba93e18c97cc98550ef8b85c7d82056f27a353ed252f5b2afe1b47af5d"
+      },
+      "20261018-child-current-adapter30": {
+        "exit": 0,
+        "stdout_sha256": "186aa24655895de22d239a2ea5d1cf0026485058135f65873d730fe684fe18b5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "cb97a480382ad47ec7a34ff7a2fe40af48df4b541d61f6691dac88a6cd23a967"
+      },
+      "20261018-child-small-compare-v2": {
+        "exit": 0,
+        "stdout_sha256": "320bffba4fd9b3167a8737e0f8f7a5793221a1fde406380f34f0d7204df2fe2a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "620e2d96bbe619b064f781ce1202c2688009eee1362cf367d2fadf97859fe88a"
+      },
+      "20261018-seven-flow-cached-compare": {
+        "exit": 0,
+        "stdout_sha256": "ca15c1d562c3a369968ec18eb4f96521316a3a446e761904fe99e55e815f110a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "a5561b475f4ee816d1f151ca7470812e7f3fe6a52754fee7e5d0fffb9e663871"
+      },
+      "20261018-kong-explicit-polarity-freeze": {
+        "exit": 0,
+        "stdout_sha256": "da33d29912c115ab71cb605c901ac6b0e320f860ac0f451a4802c433b7dee576",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "d39e953496deb57e7e02df9b04a41dbaa4157bfb1d418f779e7944a3f3244640"
+      },
+      "20261018-kong-explicit-polarity-cached-compare": {
+        "exit": 1,
+        "stdout_sha256": "4e0a6809cdfd4328d6f6ff42c837a0dced907c0dd34226cfbe8a9d30283cf48d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "5d16a29e5db7b67d2088d541145aac0d1abaabd942317e55d25dd601107253c5"
+      },
+      "20261018-selected-blind-reference-intake": {
+        "exit": 0,
+        "stdout_sha256": "ec2d9018ac0a2746b380e54ae62b604d275f56a27c39062618656048b8111b31",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "85a70f74f03926a9113ea2334274547c5f86ad5566725346eada8f4b3add1c8e"
+      },
+      "20261018-selected-blind-current24": {
+        "exit": 0,
+        "stdout_sha256": "17815fdf042bcd0cab01c90b977a402fe79d2258035937ae374e02ba1ef17e0c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "c34600d0cfeab200b9d415fbbaf7b8e15a1806d21f05f35097c7265dcd51eaaf"
+      },
+      "20261018-selected-blind-current24-compare": {
+        "exit": 0,
+        "stdout_sha256": "330695f7842c7a1e9ed72423394eccba8f3454770c35a09e9114427be0fca6dd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "aae5ca9194bc1b85ee66faa660a8808ef042b9f7e497430b65520aa08cd1f65f"
+      },
+      "20261018-selected-reference-stdin-binding-addendum": {
+        "exit": 0,
+        "stdout_sha256": "6107bcf6a54f202378d7b209cd2f5a6f5a1d161f56b2b55a6a86b61d63c6c12b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "912bea784fbb1594127c38912d051b331ad3f58bc6c252291c4a62ea43c82fa8"
+      }
+    },
+    "protected_snapshot_match_before_after_source_commit": true,
+    "not_run": [
+      "Latest APP/AAR/APK build/install",
+      "Latest APP-HTTP-MariaDB recompute/restart",
+      "Full historical PHP/Flutter/RTC",
+      "New mail/mail polling",
+      "Restricted Chiron data download/integration",
+      "Main merge/K08/next version"
+    ]
+  },
+  "historical_initial_checkpoint_20261017": {
+    "schema": "elitesync.v1010.validation-checkpoint.v1",
+    "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
+    "source": {
+      "commit": "883a53cb23830ec79b5811f71a2238b7d1aacd20",
+      "tree": "1e92c5382533fc31498edbe4abaebfd50e36bba3",
+      "apps": "8e69c77a7ab82f6104936e9986f23a66bda2b5a2",
+      "services": "768bde48ecd9a56def4d8b405c8f87f36d1d8ec9",
+      "parent": "257f3cb6412dec370e49d028103f1f7bde56adfd",
+      "status": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE"
+    },
+    "oracle": {
+      "bazi": {
+        "samples": 88,
+        "fresh": 64,
+        "blind": 24,
+        "discrete_comparisons": 2200,
+        "failures": [],
+        "pass_": true,
+        "not_covered": [
+          "Gregorian qiyun timestamp",
+          "astronomical true solar time",
+          "other epochs",
+          "precise solar-term +/-1s"
+        ]
+      },
+      "ziwei_rules": {
+        "samples": 72,
+        "fresh": 48,
+        "blind": 24,
+        "comparisons": 5040,
+        "failures": [],
+        "pass_": true,
+        "not_covered": [
+          "brightness",
+          "unlisted minor stars",
+          "selected-year horoscope",
+          "historical timezone conversion"
+        ]
+      },
+      "ziwei_brightness": {
+        "comparisons": 1008,
+        "unique_pairs": 154,
+        "mismatch_occurrences": 18,
+        "mismatch_pairs": [
+          "七杀酉",
+          "太阴酉"
+        ],
+        "missing_pairs": 14,
+        "status": "BLOCKED_DIFFERENT_PUBLISHED_RULE_VARIANTS_UPSTREAM_UNKNOWN"
+      },
+      "western_positions": {
+        "main_samples": 120,
+        "main_comparisons": 1200,
+        "main_failures": 0,
+        "nonauthor_extra_samples": 24,
+        "nonauthor_extra_comparisons": 240,
+        "nonauthor_failures": 0,
+        "maximum_error_degrees": 6.800191073352835e-05,
+        "threshold": 0.001,
+        "independence": "Horizons versus Skyfield implementation, shared JPL data family; time normalizer limitations retained"
+      },
+      "western_geometry": {
+        "cases": 96,
+        "comparisons": 1504,
+        "failures": 0,
+        "maximum_error_degrees": 1.9696244635269977e-11,
+        "boundary_probes": 3168,
+        "boundary_failures": 0,
+        "not_blind": true
+      },
+      "lunar_points": {
+        "samples": 120,
+        "comparisons": 360,
+        "failures": 0,
+        "max_error_degrees": 3.488128186290851e-08,
+        "not_blind": true
+      },
+      "solar": {
+        "samples": 120,
+        "max_difference_seconds": 2.6732767724846553,
+        "failures": 0,
+        "not_blind": true
+      }
+    },
+    "tests": {
+      "php": {
+        "tests": 43,
+        "assertions": 275,
+        "exit": 0,
+        "deprecations": 2
+      },
+      "node": {
+        "tests": 8,
+        "exit": 0
+      },
+      "python": {
+        "discovered": 25,
+        "first_passes": 23,
+        "first_skipped": 2,
+        "explicit_real_kernel_followup_passes": 2,
+        "exit": 0
+      },
+      "flutter": {
+        "author_review_regression_per_mode": 65,
+        "final_after_cold_per_mode": 23,
+        "default_and_v1010": true,
+        "final_analyze_exit": 0
+      },
+      "real_api": {
+        "requests": 42,
+        "input_or_setting_changes": 15,
+        "exit": 0
+      }
+    },
+    "build": {
+      "package": "com.elitesync.v1010test",
+      "artifacts": {
+        "app-debug.apk": {
+          "bytes": 222959834,
+          "sha256": "f330c9a24f539e250130028aade5cd835de7bafb30195da18624d3a235d01c50"
+        },
+        "flutter_release-1.0.aar": {
+          "bytes": 4024898,
+          "sha256": "577a7acbe4e5081b435d7fe077d0e2c0ba76c10eb1b927d294bb2021f3bef6f7"
+        }
+      },
+      "display_version": "0.08.04",
+      "purpose": "final current implementation functional test; version not accepted or complete",
+      "source_binding": "Local build4 source file manifest retained privately; Git source is separately identified. EOL normalization may differ from raw filesystem bytes."
+    },
+    "runtime": {
+      "app_stopped": true,
+      "reverse_removed": true,
+      "api_stopped": true,
+      "db_stopped": true,
+      "volume_preserved": true,
+      "original_dirty_root_snapshot_equal": true,
+      "checked_dirty_tracked_files": 43,
+      "protected_scope": "original HEAD/index/normal status/recorded dirty-file hashes; no blanket rehash of all historical untracked media",
+      "historical_assets": "Not modified/deleted by this run",
+      "other_projects": "untouched",
+      "global_sdk_uac_firewall_rtc": "NOT_RUN"
+    },
+    "limitations": [
+      "Chiron rights unresolved and data not admitted",
+      "Exact Gregorian qiyun oracle incomplete",
+      "Ziwei brightness/minor-star/year-horoscope independent coverage incomplete",
+      "Original sidereal/Lilith exact equivalence not proven",
+      "No version acceptance, main integration, K08, production or successor"
+    ],
+    "evidence_access": "Sanitized Codex-reported summaries; raw stdout/stderr/exit, database/API and device receipts remain LOCAL_ONLY. Web Astra has not read local raw files.",
+    "local_raw_receipt_hashes": [
+      {
+        "label": "php-natal-final-targeted-suite",
+        "exit": 0,
+        "stdout_sha256": "dbde6a471ad086dc73f588af3dcdc41f708579b11dbaec4a047d874cceaec070",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "ziwei-final-local-tests",
+        "exit": 0,
+        "stdout_sha256": "3865b265946a7a1bc7680df5f3a05f84dafb61c9affd720e8d9ade3e47cbba86",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "python-natal-final-suite",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "65ee1df6b13215209e0dafbdb3941d7b523e51c72b7cc244212c5f8cd6751842"
+      },
+      {
+        "label": "python-final-explicit-real-kernel-two-tests",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "24a5802fcbe0662c4f928252796656eeec7581722481cf1043ed40f83ff4824a"
+      },
+      {
+        "label": "flutter-after-cold-final-default",
+        "exit": 0,
+        "stdout_sha256": "c431d6ed73aea1e5292a22d3afad0a12c2cbbbd9e0b07226e0aeac5f40b164fe",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "flutter-after-cold-final-v1010",
+        "exit": 0,
+        "stdout_sha256": "cf6832c0edbcbaa64f68e7ed79db98ea569d634261f13d2d816fb6dc2b68ae53",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "flutter-final-changed-files-analyze",
+        "exit": 0,
+        "stdout_sha256": "de17a509e75e8b9d8a7afd36886f2fe35519e95a8ece6040320217a4a621add4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "v1010-native-aar-apk-build4",
+        "exit": 0,
+        "stdout_sha256": "6dd6f1c1cfbb1e0b83eb493d86ebb8f3ba5861f0c3771773e1e1d48d3cd7bde2",
+        "stderr_sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+      },
+      {
+        "label": "real-api-db-regression-third-run",
+        "exit": 0,
+        "stdout_sha256": "2ae4c90a94ef24966aa743d33dae420fb0d62638819bd4fec2500cf40543c8e0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "owned-api-db-persistent-restart-first-run",
+        "exit": 0,
+        "stdout_sha256": "d3256a896a9fec67fd3a7d93f98f571945ff5b42850686c7704345c9e08717d7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "v1010-owned-runtime-final-close",
+        "exit": 0,
+        "stdout_sha256": "2f821dbc0e9778164544baa33480203465c7c12dc97b45b1a6f9eb90c23fc895",
+        "stderr_sha256": "b2e285b86507ebbd1452c11e9b7114a2597fb53e2bee1acb3b779a8f1322fb0e"
+      },
+      {
+        "label": "western-horizons-independent-batch3",
+        "exit": 0,
+        "stdout_sha256": "ec60fb1a0b54aba172a85385ff05bfa46a437df1b882d680c3e66e6ca9cbadc5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "western-nonauthor-horizons-second-run",
+        "exit": 0,
+        "stdout_sha256": "b0f1aaf247210edf009cd5c027e5549789d66ea32925a161450bebc1ee444a5a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "lunar-horizons-independent-first-run",
+        "exit": 0,
+        "stdout_sha256": "3ca62b15bd1c116da614af29796de95014c920bb39dc22d8494374f844013937",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "solar-independent-noaa-first-run",
+        "exit": 0,
+        "stdout_sha256": "1874fd5aa50ab4a7f1472cf2d335d5f58960da7b02222ef8f4dbd88c644b7b04",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "final_delivery_20261018": {
+    "product_source": {
+      "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+      "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+      "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+      "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc",
+      "paths": [
+        "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+        "services/backend-laravel/.gitattributes",
+        "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+        "services/backend-laravel/app/Services/NatalCalculationService.php",
+        "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+        "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+        "services/backend-laravel/resources/natal/dependency-manifest.json",
+        "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+        "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+        "services/backend-laravel/tools/natal/README.md",
+        "services/backend-laravel/tools/natal/chiron_build.py",
+        "services/backend-laravel/tools/natal/chiron_dynamics.py",
+        "services/backend-laravel/tools/natal/chiron_orbit.py",
+        "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+        "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+        "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+        "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+        "services/backend-laravel/tools/natal/orbit_integrator.py",
+        "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+        "services/backend-laravel/tools/natal/tests/test_western.py",
+        "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+        "services/backend-laravel/tools/natal/western.py",
+        "services/backend-laravel/tools/natal/ziwei.mjs"
+      ],
+      "pinned_blobs_byte_equal": 8,
+      "remote_pushed": true,
+      "crlf_preserved": true,
+      "role": "FIXED_PRODUCT_SOURCE_DOCUMENTATION_SUCCESSORS_MAY_DIFFER"
+    },
+    "authority_review": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+    "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+    "review": {
+      "branch": "review/temporary-evidence-v1010-natal-final-20261018",
+      "commit": "10bd9be1b7c6d14fa16003a266845d5f40fe32ab",
+      "tree": "a4f90066863936679cde69185147740ea56a59d4",
+      "prefix": "docs/_temporary_review/v1010-natal-final-20261018/"
+    },
+    "review_files": 91,
+    "review_unique_blobs": 71,
+    "github_api_bytes_equal": true,
+    "source_commit_receipt": "20261018-final-source-commit-crlf-aware",
+    "nonauthor_review": "Cumulative read-only review found no definite defect; child supplement also reviewed; not Astra/legal/scientific adjudication",
+    "integrity": {
+      "status": "INTEGRITY_MATCH",
+      "syntax": {
+        "python": 18,
+        "json": 11
+      },
+      "chiron_pins": 6,
+      "notice_files": 34,
+      "client_source_files_unchanged": 498,
+      "artifacts": {
+        "app-debug.apk": {
+          "bytes": 222959834,
+          "sha256": "d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2"
+        },
+        "flutter_release-1.0.aar": {
+          "bytes": 4030249,
+          "sha256": "dca5a7d4b24d7ce01fb53ffb4053f195dcf5266d172dcb48e942013f947a19e0"
+        }
+      },
+      "protected_snapshot_equal": true,
+      "protected_dirty_tracked": 43,
+      "protected_scope": "HEAD/index/status/recorded dirty tracked bytes; not all untracked media",
+      "frozen_plan_unchanged": true,
+      "conflict_stages": 0,
+      "changed_paths": [
+        "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+        "docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md",
+        "docs/versions/v10.0.10/OWNER_DECISION_REQUEST.md",
+        "docs/versions/v10.0.10/validation-summary.json",
+        "services/backend-laravel/.gitattributes",
+        "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+        "services/backend-laravel/app/Services/NatalCalculationService.php",
+        "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+        "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+        "services/backend-laravel/resources/natal/dependency-manifest.json",
+        "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+        "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+        "services/backend-laravel/tools/natal/README.md",
+        "services/backend-laravel/tools/natal/chiron_build.py",
+        "services/backend-laravel/tools/natal/chiron_dynamics.py",
+        "services/backend-laravel/tools/natal/chiron_orbit.py",
+        "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+        "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+        "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+        "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+        "services/backend-laravel/tools/natal/orbit_integrator.py",
+        "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+        "services/backend-laravel/tools/natal/tests/test_western.py",
+        "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+        "services/backend-laravel/tools/natal/western.py",
+        "services/backend-laravel/tools/natal/ziwei.mjs"
+      ]
+    },
+    "owner_new_decision_required": false,
+    "preserved_failures": [
+      "cp936503",
+      "encoding RED",
+      "derived-edge RED",
+      "harness context key KeyError",
+      "byte-preserved CRLF default diff-check",
+      "restart health1 then2",
+      "API copy verifier duplicate empty-blob log collision; v2 content-deduplicated verification passed"
+    ],
+    "main_merge_k08_next_version": "NOT_RUN"
+  }
+}
