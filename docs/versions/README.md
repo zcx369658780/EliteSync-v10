@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-19 Astra已接受v10.1.0 R1同版开发接续（当前）
+
+**R1_ACCEPTED_WITH_OBSERVATIONS / DEV_CHANNEL_CONTINUATION_COMPLETE_IN_SCOPE / V10.1.0_PARTIAL_NOT_ACCEPTED / AC-10.1-08_PARTIAL / OWNER_FILING_DEFERRED**。GitHub已独立核对R1仅新增结果报告、向开发分支状态前置一段，apps/services与此前云端试点源码树不变；Codex报告8项云端服务、备份和原dirty根的限定身份不变，已恢复既有受控loopback/SSH转发，非作者审查未发现本任务阻断。云端原始运行证据仍CODEX_REPORTED/LOCAL_ONLY。未新增公网裸IP访问、未续证、未启443，受邀同事Web后台仍未交付；整版v10.1.0未被Astra接受，产品未合main，不启动K10或下一功能版。保留Android明文策略与RTC join-info URL白名单的后续观察。正式审查见[R1独立验收](v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_ACCEPTANCE.md)。下方旧段落按原时点保留。
+
 ## 2026-10-19 v10.1.0 同版接续任务待Owner派发（当前）
 
 **V10.1.0_PARTIAL_NOT_ACCEPTED / AC-10.1-08_PARTIAL / OWNER_FILING_DEFERRED / DEV_ENDPOINT_CONTINUATION_TASK_READY / MANUAL_DISPATCH_PENDING / NEXT_FEATURE_VERSION_NOT_STARTED**。已归档v10.1.0云端隔离开发的部分交付和受控测试证据；外部域名出现ICP备案403，Web受邀管理员入口未闭环。Owner明确公司注册、网站/APP备案与正式上架推迟到APP功能较完整并与同事开会评估质量后再决定。IP作为开发受控loopback/隧道/私有网络配置核查，不作为中国内地公网裸IP无备案开放依据。不改冻结AC、不直接接受整版、不清理云端已有成果；不恢复同事SSH或APP管理面板。下一份[同版Codex接续长任务](v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_TASK.md)须Owner手动派发，当前未执行。
