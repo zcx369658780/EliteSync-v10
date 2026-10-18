@@ -93,6 +93,10 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::prefix('profile')->middleware('account.active')->group(function () {
+            Route::get('/dynamic', [\App\Http\Controllers\Api\V1\DynamicChartController::class, 'index']);
+            Route::get('/dynamic/{id}', [\App\Http\Controllers\Api\V1\DynamicChartController::class, 'show'])->whereNumber('id');
+            Route::post('/dynamic', [\App\Http\Controllers\Api\V1\DynamicChartController::class, 'save']);
+            Route::post('/dynamic/{id}', [\App\Http\Controllers\Api\V1\DynamicChartController::class, 'save'])->whereNumber('id');
             Route::get('/natal', [\App\Http\Controllers\Api\V1\NatalProfileController::class, 'show']);
             Route::post('/natal', [\App\Http\Controllers\Api\V1\NatalProfileController::class, 'save']);
             Route::get('/operating-status', function(\Illuminate\Http\Request $r){$u=$r->user();return response()->json(['status'=>$u->verify_status,'reason'=>$u->verify_reason??'','revision'=>(int)$u->verify_revision,'moderation_status'=>$u->moderation_status,'matching_eligibility'=>app(\App\Services\ProfileReadinessService::class)->forUser($u)['matching_eligibility']]);});

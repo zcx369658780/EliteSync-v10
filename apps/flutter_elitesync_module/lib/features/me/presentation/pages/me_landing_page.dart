@@ -56,6 +56,13 @@ class MeLandingPage extends StatelessWidget {
             ),
             _MePurposeEntry(
               icon: Icons.calendar_month_outlined,
+              title: '动态星盘与关系盘',
+              subtitle: '本人私有双盘、行运与太阳／月亮回归；显式输入，不读取他人生辰。',
+              route: AppRouteNames.astroAdvancedPreview,
+              push: true,
+            ),
+            _MePurposeEntry(
+              icon: Icons.calendar_month_outlined,
               title: '本地真实八字',
               subtitle: '查看已保存的八字；新的三盘输入与设置请使用上方排盘入口。',
               route: AppRouteNames.astroBazi,

@@ -50,7 +50,9 @@ val flutterDartDefineArgs = flutterDartDefines
     .filter { it.isNotEmpty() }
     .flatMap { listOf("--dart-define=$it") }
 val isV1006LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
-    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" || it == "ELITESYNC_V1009_LOCAL_BUILD=true" || it == "ELITESYNC_V1010_LOCAL_BUILD=true" }
+    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" || it == "ELITESYNC_V1009_LOCAL_BUILD=true" || it == "ELITESYNC_V1010_LOCAL_BUILD=true" || it == "ELITESYNC_V1011_LOCAL_BUILD=true" }
+val isV1011LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
+    .contains("ELITESYNC_V1011_LOCAL_BUILD=true")
 val isV1010LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
     .contains("ELITESYNC_V1010_LOCAL_BUILD=true")
 val isV1009LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
@@ -144,8 +146,9 @@ android {
             // Keep Owner's existing application and its data untouched on both test devices.
             if (v1009DualDeviceBuild) applicationIdSuffix = ".v1009test"
             if (isV1010LocalBuild) applicationIdSuffix = ".v1010test"
+            if (isV1011LocalBuild) applicationIdSuffix = ".v1011test"
             buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
-            buildConfigField("String", "API_BASE_URL", if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
+            buildConfigField("String", "API_BASE_URL", if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
             buildConfigField("String", "WS_BASE_URL", if (isV1006LocalBuild) "\"\"" else "\"ws://101.133.161.203:8081/\"")
             buildConfigField("String", "BAIDU_MAP_AK", "\"$baiduAkFromProp\"")
             buildConfigField("String", "BAIDU_MAP_SECURITY_CODE", "\"$baiduSecurityCodeFromProp\"")
