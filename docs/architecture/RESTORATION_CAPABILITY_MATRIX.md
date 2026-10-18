@@ -1,5 +1,10 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-18 v10.0.10 A07已限定接受，K08待Codex派发（当前）
+
+**`V10.0.10 ACCEPTED WITH OBSERVATIONS / OWNER_K08_APPROVED / PRODUCT_INTEGRATION_NOT_STARTED`**。本版八字、紫微、西方本命三盘和选定运限/本命扩展，按[正式验收](../versions/v10.0.10/acceptance.md)的AC-10-01～08与科学/许可边界接受；Owner已批准K08，但Codex综合任务尚未由Owner手动派发。正式main仍为v10.0.9 K08的apps/services产品对象，不可误称v10.0.10已并入。完整[交接](../migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md)指定待集成的固定产品树、临时review分支ref精确清理与LOCAL_ONLY保护。Chiron全世纪连续真实误差、紫微童限现代组合传统适用性、原旧全量失败保留；确证旧版动态关系盘、Buddy/Social、其它媒体、地图/Push及合法数据/附件仍需内测前具名收口。此归档不是新版本业务实施。
+
+
 ## 2026-10-18 A07三盘本命恢复限定接受（当前）
 
 **A07 V10.0.10 ACCEPTED_WITH_OBSERVATIONS / K08 PRODUCT INTEGRATION PENDING**：[Astra最终接受](../versions/v10.0.10/acceptance.md)确认八字/紫微/西方本命实际规则计算、旧证本命扩展与选定运限、APP→Laravel→私有MariaDB持久重启的冻结范围；各算法数据来源/正确性不等于玄学预测科学认证或全世纪Chiron真实误差保证；部分紫微童限现代组合仅具名`UNVERIFIED/SCOPE_NOT_ESTABLISHED`。原旧版合盘、行运、回归、法达仍是**最终联合验收和内测前必须具名恢复**的后续能力；其它A/B模块的接受/欠账不改变。接受候选仅在`codex/v10.0.10-natal-restoration`，产品K08尚未集成main，开发环境不等于生产。下方未验/冻结前记载为历史时点，旧失败不删。

@@ -1,5 +1,10 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-18 14:11 下一Astra会话首读：Owner批准K08，任务单尚未发出
+
+**`ACCEPTED_WITH_OBSERVATIONS / OWNER_K08_APPROVED / K08_TASK_ORDER_NOT_DISPATCHED / NEXT_VERSION_NOT_STARTED`**。用户因会话长度要求先归档并新会话接续。**先读[2026-10-18完整会话交接](docs/migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md)**，其次[正式v10.0.10接受](docs/versions/v10.0.10/acceptance.md)、[冻结plan](docs/versions/v10.0.10/plan.md)、[现行工作流](docs/workflow/CURRENT_WORKFLOW.md)、[Owner决策](PRODUCT_DECISIONS.md)。已完成独立终验，v10.0.10产品仍未集成main；立即形成**单一综合K08 Codex任务单**让Owner手动派发，**不是**重开算法验收、重做规划或自动执行K08。已接受候选`65b4991837e76d04762b85a9439851264766e192`，固定源码锚`2be08468754c7b1ad453f9eb0b7085050b3aaf99`，精确产品Tree见交接。临时审阅分支ref待K08附带条件清理。
+
+
 ## 2026-10-18 v10.0.10 Astra最终验收（首读）
 
 **V10.0.10 ACCEPTED WITH OBSERVATIONS / K08 PRODUCT INTEGRATION PENDING / NO NEXT VERSION**。首读[正式接受](docs/versions/v10.0.10/acceptance.md)并保存原[唯一冻结plan](docs/versions/v10.0.10/plan.md)、[Codex固定实施报告](https://github.com/zcx369658780/EliteSync-v10/blob/65b4991837e76d04762b85a9439851264766e192/docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)、[91项固定临时审阅原commit](https://github.com/zcx369658780/EliteSync-v10/blob/10bd9be1b7c6d14fa16003a266845d5f40fe32ab/docs/_temporary_review/v1010-natal-final-20261018/README.md)。接受源`2be08468754c7b1ad453f9eb0b7085050b3aaf99` apps/services固化；正式main只有doc接受，K08须Owner转交Codex。Chiron物理精度、紫微童限现代profile适用性、旧全量失败及安全原证LOCAL_ONLY保留；其它原版动态/关系盘仍在内测前必恢复清单。下方已冻结/等待实施属于此前历史时点。

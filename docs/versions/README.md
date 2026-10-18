@@ -1,5 +1,10 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-18 v10.0.10验收后K08已获Owner批准，交接待Codex任务单（当前）
+
+**`V10.0.10 ACCEPTED WITH OBSERVATIONS / OWNER_K08_APPROVED / K08_NOT_YET_DISPATCHED / PRODUCT_NOT_YET_IN_MAIN`**。正式[接受](v10.0.10/acceptance.md)不等于产品main集成。Owner授权本版K08受控安全集成及本地接续，因会话长度原因完整综合指令将在新会话才交给Owner转发Codex。完整[会话交接](../migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md)保存接受源码Commit/Tree、待集成apps/services子树、main原有权威文档保护、旧LOCAL_ONLY以及临时ref待删除的精确条件。旧合盘/行运/回归/法达等内测前恢复欠账不变；无生产/后继功能版授权。
+
+
 ## 2026-10-18 v10.0.10 Astra最终接受（当前）
 
 **V10.0.10 ACCEPTED WITH OBSERVATIONS / AC-10-01..08 PASS IN FROZEN SCOPE / K08 PENDING**。最终接受候选`65b4991837e76d04762b85a9439851264766e192`、源码锚`2be08468754c7b1ad453f9eb0b7085050b3aaf99`；[正式独立验收](v10.0.10/acceptance.md)涵盖三盘本命恢复、许可与独立参考、真实APP/API/开发DB持久回读及具名科学/旧失败观察。**代码尚未并main，不是商用或公开版本**，本轮只同步文档；合同[plan](v10.0.10/plan.md)和原失败不改。原合盘/行运/回归/法达必恢复范围仍明确留给后续内测前功能版。下方K08待办/版本未派发均为记录时点历史。
