@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "[LOCAL_ONLY]\domain_final_probe.py", line 29, in <module>
+    assert instant(r['window']['start'])==instant(start) and instant(r['window']['end_exclusive'])==instant(end),r['window']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'start': '1899-12-31T15:54:17.000000Z', 'end_exclusive': '1900-12-31T16:00:00.000000Z'}

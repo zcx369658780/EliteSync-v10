@@ -1,0 +1,12 @@
+{
+  "name": "flutter-affected-final",
+  "run_id": "flutter-affected-final-8bef2546",
+  "started_utc": "2026-10-18T08:46:39.380065+00:00",
+  "exit": 0,
+  "stdout_sha256": "421ad5e6504b848e71a238ba754446585b1d497f60b2e7ebf82419885464e201",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[LOCAL_PATH] test --no-pub test/features/profile/dynamic_chart_page_test.dart test/features/profile/natal_restoration_session_guard_test.dart test/app/router/astro_advanced_demo_route_exclusion_test.dart",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "d551a1315bc39ed8415f05f6e569a62ef4d96c254940afb05cc95430fb031621",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

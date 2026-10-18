@@ -1,0 +1,12 @@
+{
+  "name": "build-v1011-source-anchor",
+  "run_id": "build-v1011-source-anchor-3d684c97",
+  "started_utc": "2026-10-18T08:54:55.541695+00:00",
+  "exit": 0,
+  "stdout_sha256": "07208f86acc3b208261b6a3ceb7d483aee7d8c37d35547bd832179fe4f16c17a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[WORKTREE]\\apps\\android\\gradlew.bat :app:assembleDebug --no-daemon -PflutterDartDefines=ELITESYNC_V1011_LOCAL_BUILD=true;ELITESYNC_INITIAL_ROUTE=/profile/astro/advanced",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "7d60265e3be3f132fe4a435457bd9997194475a66628db56c4395003939f8a1f",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

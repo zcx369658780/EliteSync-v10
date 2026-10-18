@@ -1,0 +1,48 @@
+{
+  "status": [
+    "V10.0.11 CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE",
+    "NOT_YET_ACCEPTED"
+  ],
+  "authority_main": "f4b547f11ced66065a53ffae816db34c210f7009",
+  "plan_blob": "eb6de5a0ef6cdbd0cc8aa2fd35826a22b88b63d9",
+  "candidate_commit": "2d7e96c315a3c19345a4b9d5af3969ddcff4e0ea",
+  "candidate_tree": "7ec351844db5c9d989cfd033093df57caee8d306",
+  "source": {
+    "commit": "78ab7827b258cb649920e5121f24d506dae2a93c",
+    "tree": "6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186",
+    "apps": "fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7",
+    "services": "29cedff599411c7c246ba32e62d53b5d63e28f3f"
+  },
+  "artifacts": {
+    "source": {
+      "commit": "988e9d9b521d445141f70db06358bf7913d85fae",
+      "tree": "b764c4b9c37edf319f777734f269f84189daa63e"
+    },
+    "package": "com.elitesync.v1011test",
+    "artifacts": [
+      {
+        "name": "app-debug.apk",
+        "bytes": 223025370,
+        "sha256": "67aa8b7d33dbbbf8ce225612943583e8a898a0b23c3e1ebae593e5baadde7943"
+      },
+      {
+        "name": "flutter_release-1.0.aar",
+        "bytes": 4027105,
+        "sha256": "8126dd9fdc90bdb578b2c3c0d4e7522221b56dac4247fe496423f68d4b133ac0"
+      }
+    ],
+    "candidate_source": {
+      "commit": "78ab7827b258cb649920e5121f24d506dae2a93c",
+      "tree": "6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186",
+      "apps": "fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7",
+      "services": "29cedff599411c7c246ba32e62d53b5d63e28f3f"
+    },
+    "binding": "apps subtree identical at build-source 988e9d9b and final product source; subsequent changes are backend Python, registry and tests only",
+    "rebuild_after_backend_only_fix": "NOT_RUN: Android/Flutter sources unchanged"
+  },
+  "product_branch": "codex/v10.0.11-dynamic-relationship-charts",
+  "review_branch": "review/temporary-evidence-v1011-dynamic-final-20261018",
+  "main_merge_K08_successor": "NOT_RUN",
+  "evidence_level": "CODEX_REPORTED execution; published safe copies hash-verified; no Astra acceptance"
+}

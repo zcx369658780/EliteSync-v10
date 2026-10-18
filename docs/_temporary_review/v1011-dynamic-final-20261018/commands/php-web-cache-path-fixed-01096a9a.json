@@ -1,0 +1,12 @@
+{
+  "name": "php-web-cache-path-fixed",
+  "run_id": "php-web-cache-path-fixed-01096a9a",
+  "started_utc": "2026-10-18T08:52:35.433318+00:00",
+  "exit": 0,
+  "stdout_sha256": "d10f43e4a359cd5789261d7d60a38ede3a750563f59547a5d9097e3d8d4be4a5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[LOCAL_PATH] artisan test --filter=V1008SessionWebTest|V1011Dynamic",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "93bc1908cf078dbb56c097636de43b88595069636f687423de2800fe4033cf53",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,21 @@
+test_circle_wrap_and_opposite (test_dynamic_reference.IndependentReferenceTests.test_circle_wrap_and_opposite) ... ok
+test_inclusive_and_exclusive_orb (test_dynamic_reference.IndependentReferenceTests.test_inclusive_and_exclusive_orb) ... ok
+test_invalid_domain_and_callback_failure_are_not_empty_success (test_dynamic_reference.IndependentReferenceTests.test_invalid_domain_and_callback_failure_are_not_empty_success) ... ok
+test_quantized_model_event_is_first_microsecond_not_plateau_midpoint (test_dynamic_reference.IndependentReferenceTests.test_quantized_model_event_is_first_microsecond_not_plateau_midpoint) ... ok
+test_reverse_crossing_and_residual_bracket (test_dynamic_reference.IndependentReferenceTests.test_reverse_crossing_and_residual_bracket) ... ok
+test_start_just_before_at_after_event_without_past_epsilon (test_dynamic_reference.IndependentReferenceTests.test_start_just_before_at_after_event_without_past_epsilon) ... ok
+test_swap_separation_and_directional_houses (test_dynamic_reference.IndependentReferenceTests.test_swap_separation_and_directional_houses) ... ok
+test_wrap_does_not_create_opposition_pseudoroot (test_dynamic_reference.IndependentReferenceTests.test_wrap_does_not_create_opposition_pseudoroot) ... ok
+test_zero_one_multiple_and_exact_half_open_boundaries (test_dynamic_reference.IndependentReferenceTests.test_zero_one_multiple_and_exact_half_open_boundaries) ... ok
+test_cross_aspects_all_modes_and_orbs_against_independent_arithmetic (test_dynamic_reference.ProductionSyntheticComparisonTests.test_cross_aspects_all_modes_and_orbs_against_independent_arithmetic) ... ok
+test_directional_overlay_against_independent_intervals (test_dynamic_reference.ProductionSyntheticComparisonTests.test_directional_overlay_against_independent_intervals) ... ok
+test_production_half_open_and_start_inclusion_without_past_epsilon (test_dynamic_reference.ProductionSyntheticComparisonTests.test_production_half_open_and_start_inclusion_without_past_epsilon) ... ok
+test_production_search_matches_independent_full_window (test_dynamic_reference.ProductionSyntheticComparisonTests.test_production_search_matches_independent_full_window) ... ok
+test_blind_dates_full_window_count_time_residual_and_bracket (test_dynamic_reference.RealSharedModelBlindSearchTests.test_blind_dates_full_window_count_time_residual_and_bracket) ... ok
+test_crc1956_sidereal_sun_and_moon_independent_complete_windows (test_dynamic_reference.RealSharedModelBlindSearchTests.test_crc1956_sidereal_sun_and_moon_independent_complete_windows) ... ok
+test_solar_extreme_civil_years_keep_complete_utc_windows (test_dynamic_reference.RealSharedModelBlindSearchTests.test_solar_extreme_civil_years_keep_complete_utc_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 19.214s
+
+OK

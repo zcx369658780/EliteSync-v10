@@ -1,0 +1,12 @@
+{
+  "name": "php-dynamic-and-affected-natal",
+  "run_id": "php-dynamic-and-affected-natal-cf755756",
+  "started_utc": "2026-10-18T08:29:36.142253+00:00",
+  "exit": 0,
+  "stdout_sha256": "0629d14ab419c9735faf34b5c1fc198e7c23430aef9812f60521752b5473c66c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[LOCAL_PATH] artisan test --filter=V1011Dynamic|V1010NatalApiTest|V1010NatalRuntimeGateTest",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "1d7d34b83b6012bf695b7852c92dc86f6cc2b0ad226d99ed2873a3bdf424c043",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

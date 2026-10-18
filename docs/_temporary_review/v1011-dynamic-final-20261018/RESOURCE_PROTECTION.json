@@ -1,0 +1,29 @@
+{
+  "closure": {
+    "APP": "STOPPED",
+    "API": "STOPPED",
+    "task_MariaDB": "STOPPED",
+    "loopback_ports_closed": {
+      "8011": true,
+      "43321": true
+    },
+    "reverse_tcp_8011": "REMOVED_VERIFIED",
+    "volume": "PRESERVED",
+    "AVD": "PRESERVED_NOT_STOPPED",
+    "Docker_Desktop": "NOT_STOPPED",
+    "old_volumes_media_evidence": "NOT_MODIFIED",
+    "source": "78ab7827b258cb649920e5121f24d506dae2a93c",
+    "production_RTC_UAC_firewall": "NOT_RUN"
+  },
+  "protected_dirty_root": {
+    "same_head": true,
+    "same_porcelain_v2_status": true,
+    "same_index_sha256": true,
+    "index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+    "dirty_file_content_full_hash_recheck": "NOT_RUN: no initial per-file byte manifest; no claim of full-byte verification",
+    "operations_on_dirty_root": "read-only Git identity/status with optional locks disabled; no reset/pull/stash/clean/rebase/checkout/prune",
+    "status_command": "git status --porcelain=v2 (same normal untracked mode as initial snapshot)",
+    "initial_all_mode_comparison": "NOT_COMPARABLE: expanded individual untracked files versus initial directory summaries; normal-mode readback corrected",
+    "exit": 0
+  }
+}

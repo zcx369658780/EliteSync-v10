@@ -1,0 +1,12 @@
+{
+  "name": "final-domain-real-api",
+  "run_id": "final-domain-real-api-eb5e6498",
+  "started_utc": "2026-10-18T09:25:56.651038+00:00",
+  "exit": 1,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e583276d07f149a73decb6b48221ef78e2e423c3427a27961fd00bceb1171643",
+  "command": "[LOCAL_PATH] [LOCAL_ONLY]\\domain_final_probe.py",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "public.stderr_sha256": "99945b5e91a2750e5045dde5242e0f8b3511bd288a266fe05a62c07c7445eab7"
+}

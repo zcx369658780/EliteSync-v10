@@ -1,0 +1,35 @@
+
+   WARN  Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testCanonicalTransitionIsAdmissible(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+   WARN  Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testTerminalSameIdentityStatesHaveNoOutgoingTransition(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+   DEPR  Tests\Unit\V1010NatalRuntimeGateTest
+  ! known time cannot calculate or reuse an unobserved runtime identity → Constant PDO::MYSQL_ATTR_SSL_CA is de… 0.17s  
+
+   DEPR  Tests\Unit\V1011DynamicInputTest
+  ! solar year is the selected timezone half open civil year → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated si… 0.45s  
+  ! event fold is explicit and does not change birth or first cache signature → Constant PDO::MYSQL_ATTR_SSL_CA… 0.90s  
+  ! unknown time and missing coordinates are refused without synthetic values → Constant PDO::MYSQL_ATTR_SSL_CA… 0.43s  
+  ! runtime gate remains closed by default → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\M… 0.05s  
+
+   DEPR  Tests\Feature\V1010NatalApiTest
+  ! natal requires identity and is private to current user → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated sinc… 2.34s  
+  ! stale edit cannot overwrite and repeated input reuses result → Constant PDO::MYSQL_ATTR_SSL_CA is deprecate… 3.39s  
+  ! gap and unadmitted options do not write a result → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5,… 0.44s  
+  ! calculator failure is not a cached success → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use P… 0.85s  
+  ! superseded inflight result is not stored → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo… 0.44s  
+  ! disabled owner cannot read or recompute private chart → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since… 0.02s  
+
+   DEPR  Tests\Feature\V1011DynamicChartApiTest
+  ! records are owner filtered and multiple records are allowed → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated… 3.41s  
+  ! unknown identity fields and unowned natal source are rejected → Constant PDO::MYSQL_ATTR_SSL_CA is deprecat… 0.44s  
+  ! cas cache and input change have separate generations → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since…  3.80s  
+  ! failure and superseded result never become cached success → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated s… 0.44s  
+  ! runtime change and disabled owner during compute reject old results → Constant PDO::MYSQL_ATTR_SSL_CA is de… 0.44s  
+  ! late result cannot replace new generation → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pd… 0.45s  
+  ! event edit reuses trusted first chart and selection does not recompute → Constant PDO::MYSQL_ATTR_SSL_CA is… 4.22s  
+  ! civil gap and forged cache are rejected before persistence → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated…  0.44s  
+
+  Tests:    19 deprecated (100 assertions)
+  Duration: 23.35s
+

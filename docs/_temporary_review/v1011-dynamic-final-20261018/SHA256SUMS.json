@@ -1,0 +1,210 @@
+{
+  "files": [
+    {
+      "path": "APP_DB_RESULTS.json",
+      "bytes": 4539,
+      "sha256": "c61883f10addd3499aeec9275c818e1a1eb681994b1e92d58c4502b96aa22351"
+    },
+    {
+      "path": "commands/build-v1011-source-anchor-3d684c97.json",
+      "bytes": 837,
+      "sha256": "c307026f676ac44238ab9466f03a231e2687bed03de92646422fe4b2f91a2501"
+    },
+    {
+      "path": "commands/build-v1011-source-anchor-3d684c97.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/build-v1011-source-anchor-3d684c97.stdout.txt",
+      "bytes": 3198,
+      "sha256": "7d60265e3be3f132fe4a435457bd9997194475a66628db56c4395003939f8a1f"
+    },
+    {
+      "path": "commands/final-domain-corrected-api-82bc52ba.json",
+      "bytes": 729,
+      "sha256": "f1c2675bec42a13d84870f3e0fc51367fa1056e2b6e6b831b7f93caf1560264c"
+    },
+    {
+      "path": "commands/final-domain-corrected-api-82bc52ba.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/final-domain-corrected-api-82bc52ba.stdout.txt",
+      "bytes": 774,
+      "sha256": "caf97547f99f9f9bdeb34ed0d5f3dd4b8680e9d9e772e475d83b013928370739"
+    },
+    {
+      "path": "commands/final-domain-real-api-eb5e6498.json",
+      "bytes": 706,
+      "sha256": "40ef0bd9784248bdf4b969d34c519b0785a124433e94ef8d531289da9772ce3c"
+    },
+    {
+      "path": "commands/final-domain-real-api-eb5e6498.stderr.txt",
+      "bytes": 449,
+      "sha256": "99945b5e91a2750e5045dde5242e0f8b3511bd288a266fe05a62c07c7445eab7"
+    },
+    {
+      "path": "commands/final-domain-real-api-eb5e6498.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/flutter-affected-final-8bef2546.json",
+      "bytes": 863,
+      "sha256": "76efdac3842773307fe1a3b23ae98a1a337980420193f5fa516d6d53f88bb936"
+    },
+    {
+      "path": "commands/flutter-affected-final-8bef2546.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/flutter-affected-final-8bef2546.stdout.txt",
+      "bytes": 1600,
+      "sha256": "d551a1315bc39ed8415f05f6e569a62ef4d96c254940afb05cc95430fb031621"
+    },
+    {
+      "path": "commands/flutter-bounded-final-analyze-e3805528.json",
+      "bytes": 960,
+      "sha256": "80bd722aa3f582ce72ab114b475b381f7f5a68ef829c2efeb1b0dda47d5b96ae"
+    },
+    {
+      "path": "commands/flutter-bounded-final-analyze-e3805528.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/flutter-bounded-final-analyze-e3805528.stdout.txt",
+      "bytes": 99,
+      "sha256": "179bf6c4df6e4461e5816d86f33025975fda6beb6e30345a27190eddfa3f312f"
+    },
+    {
+      "path": "commands/php-dynamic-and-affected-natal-cf755756.json",
+      "bytes": 767,
+      "sha256": "ad09fbb3f7d2fe8f2b0dae8ce64f280ba76842f1b2b0d4dc8593e9dccc743584"
+    },
+    {
+      "path": "commands/php-dynamic-and-affected-natal-cf755756.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/php-dynamic-and-affected-natal-cf755756.stdout.txt",
+      "bytes": 3240,
+      "sha256": "1d7d34b83b6012bf695b7852c92dc86f6cc2b0ad226d99ed2873a3bdf424c043"
+    },
+    {
+      "path": "commands/php-web-cache-path-fixed-01096a9a.json",
+      "bytes": 731,
+      "sha256": "8f12c6138ae026009deeda81bd12f89516b2a54d963129345f33268c659db271"
+    },
+    {
+      "path": "commands/php-web-cache-path-fixed-01096a9a.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands/php-web-cache-path-fixed-01096a9a.stdout.txt",
+      "bytes": 3697,
+      "sha256": "93bc1908cf078dbb56c097636de43b88595069636f687423de2800fe4033cf53"
+    },
+    {
+      "path": "commands/python-final-domain-corrected-08edb735.json",
+      "bytes": 760,
+      "sha256": "ddc06fa72d25ce792260e7a8e1ba91eeb6890c1d746a22712d7708dc8af55ed2"
+    },
+    {
+      "path": "commands/python-final-domain-corrected-08edb735.stderr.txt",
+      "bytes": 2845,
+      "sha256": "bd7cd42ab2a2d45ccdcbda59bb49cab3e1075d6eb9ffc77deec76fea9e769627"
+    },
+    {
+      "path": "commands/python-final-domain-corrected-08edb735.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "DELIVERY.json",
+      "bytes": 2036,
+      "sha256": "519fb4b9ee394450cac4e0ffda7058b180c4e843fca48f8945433c89965f0474"
+    },
+    {
+      "path": "DEPENDENCY_IDENTITY.json",
+      "bytes": 1465,
+      "sha256": "d9955dad66d944b724a59d1573d4475907af09b53d13b2d494487798985ddfcb"
+    },
+    {
+      "path": "EXECUTION_RECEIPTS.json",
+      "bytes": 33838,
+      "sha256": "45c27f42b35daf409de1804fc457ed03c7ec98d6a56f40c6400c0c7062075bb2"
+    },
+    {
+      "path": "IMPLEMENTATION_REPORT.md",
+      "bytes": 14031,
+      "sha256": "4068ffe96904ef6569ebf21a8161b2622fbd1d1f883d13362a34e695bbf53526"
+    },
+    {
+      "path": "INTERNAL_REVIEW.md",
+      "bytes": 926,
+      "sha256": "5848135ac93712eec85e17f00b9228eff7cb7847d4cd96bfcd35eddf47012aa6"
+    },
+    {
+      "path": "PROFILE_REGISTRY.json",
+      "bytes": 1848,
+      "sha256": "e86be24ab52d119f015ef209dbfab6e2884475c64d5886ada20f8f75a7a8aaab"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1467,
+      "sha256": "418797cda7159cc37d0b5cb2742b69199c13a39aafa5bd50012b662aa3f0bd7c"
+    },
+    {
+      "path": "REFERENCE_RESULTS.json",
+      "bytes": 5501,
+      "sha256": "4d1aeb22fed3a95cd3af72c38d067e02649ab5bd836983c1969d551394ee04f9"
+    },
+    {
+      "path": "RESOURCE_PROTECTION.json",
+      "bytes": 1255,
+      "sha256": "a7413adaa9b09556c0de67ccb53daa6c4d78d098a76b8b1713bc6f232a92651e"
+    },
+    {
+      "path": "screenshots/01-final-backend-restart-synastry.png",
+      "bytes": 455365,
+      "sha256": "04cf28237e22e38a63cc4234d87fa2706a48b287f1484c82df18b4655fd90ab7"
+    },
+    {
+      "path": "screenshots/02-transit-app.png",
+      "bytes": 469817,
+      "sha256": "4283c489d2011131e2e6dc60813afe16bdb6b72fdf432bf4b9522fa26d49e35c"
+    },
+    {
+      "path": "screenshots/03-solar-two-events.png",
+      "bytes": 338279,
+      "sha256": "ddbbfb3f3ad2bfe24ded4f212fd676ca1a60c42fcba17d5ebd433687a8daf407"
+    },
+    {
+      "path": "screenshots/04-lunar-selected.png",
+      "bytes": 330809,
+      "sha256": "aa0eeb8d4209aeec53a0014f9b5e307f7a1147571c3698aac092ed12fbc990f9"
+    },
+    {
+      "path": "screenshots/05-solar-no-event.png",
+      "bytes": 399741,
+      "sha256": "ff83ccd83c4a4244ed9c6e323931577d0da95f6497f027c80b22e42484a196eb"
+    },
+    {
+      "path": "screenshots/06-secondary-private-empty.png",
+      "bytes": 281062,
+      "sha256": "6ac5247d5b0d3a024df23c574de5c60e0edf96581e01c3acd5a3ba8aed3f2568"
+    },
+    {
+      "path": "SOURCE_OBJECTS.json",
+      "bytes": 6164,
+      "sha256": "69582324a44020ed78ab993cb310abf5b22bef9379d704675b0d41b0b014a181"
+    }
+  ],
+  "self_excluded": true
+}

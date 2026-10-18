@@ -1,0 +1,12 @@
+{
+  "name": "flutter-bounded-final-analyze",
+  "run_id": "flutter-bounded-final-analyze-e3805528",
+  "started_utc": "2026-10-18T08:52:45.527478+00:00",
+  "exit": 0,
+  "stdout_sha256": "b6a48876ef090745e777358c717671add56c37f355c45f67736dd100dc0a5a15",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[LOCAL_PATH] analyze --no-pub lib/features/profile/presentation/pages/dynamic_chart_page.dart lib/features/profile/presentation/widgets/dynamic_chart_wheel.dart lib/features/me/presentation/pages/me_landing_page.dart lib/main_prod.dart test/features/profile/dynamic_chart_page_test.dart",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "179bf6c4df6e4461e5816d86f33025975fda6beb6e30345a27190eddfa3f312f",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

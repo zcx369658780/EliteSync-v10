@@ -1,0 +1,20 @@
+00:00 +0: loading [LOCAL_PATH]
+00:00 +0: [LOCAL_PATH] manual inputs have no noon timezone or coordinate defaults
+00:00 +1: [LOCAL_PATH] manual inputs have no noon timezone or coordinate defaults
+00:00 +2: [LOCAL_PATH] manual inputs have no noon timezone or coordinate defaults
+00:00 +3: [LOCAL_PATH] concurrent edit between POST and GET never rebinds old form to new revision
+00:01 +4: [LOCAL_PATH] chart type exposes explicit solar year and does not score relationships
+00:01 +5: [LOCAL_PATH] real ziwei schema renders natal transformation beside star
+00:01 +6: [LOCAL_PATH] event selection persists expected revision then rereads before display
+00:01 +7: [LOCAL_PATH] event selection persists expected revision then rereads before display
+00:01 +8: [LOCAL_PATH] event selection persists expected revision then rereads before display
+00:01 +9: [LOCAL_PATH] POST is blocked during token await: same user new session token
+00:01 +10: [LOCAL_PATH] editing input hides persisted result immediately
+00:02 +11: [LOCAL_PATH] late detail response cannot populate another account
+00:04 +12: [LOCAL_PATH] advanced demo route is excluded in dev
+00:04 +13: [LOCAL_PATH] authenticated direct advanced demo navigation fails closed in dev
+00:04 +14: [LOCAL_PATH] unauthenticated removed path remains bounded by login in dev
+00:05 +15: [LOCAL_PATH] advanced demo route is excluded in prod
+00:05 +16: [LOCAL_PATH] authenticated direct advanced demo navigation fails closed in prod
+00:05 +17: [LOCAL_PATH] unauthenticated removed path remains bounded by login in prod
+00:05 +18: All tests passed!

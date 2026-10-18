@@ -1,0 +1,145 @@
+{
+  "source": {
+    "commit": "78ab7827b258cb649920e5121f24d506dae2a93c",
+    "tree": "6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186",
+    "apps": "fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7",
+    "services": "29cedff599411c7c246ba32e62d53b5d63e28f3f"
+  },
+  "paths": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "blob": "6d50b295eb8aaf423b1fdcbf17c2ed80236e8480",
+      "bytes": 9593,
+      "sha256": "bad1365b1f3b907c3b94ad9ea9365950d33ac0f02a7e1aeda18ae59e6f63e784"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "blob": "2b54d5edec20b29baa9dd55fb941ae5bd576220a",
+      "bytes": 28250,
+      "sha256": "9dbe79769208570779b6133e4e9ce68c03003f02bdc11297011f053434aece8c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+      "blob": "6186d80b97ea24a847cc8e519b451946daeaee4c",
+      "bytes": 6529,
+      "sha256": "3825a3bd8c9fda5e5c96e37fbe791b7d26e02ca43ce82b0996306a96c7d1517a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/dynamic_chart_page.dart",
+      "blob": "5a7673b704a354746e889a35cc733fb198efed17",
+      "bytes": 29079,
+      "sha256": "d01f6b61342c9a6531c329082099ee6bb9db824b87664e3e8d80fe296f878e84"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/dynamic_chart_wheel.dart",
+      "blob": "1b0c79aa178626da96b0146f9b35fc56ea2ba748",
+      "bytes": 4441,
+      "sha256": "abeb1d5992d26c7a0a3d9ced8be596c3dc04e064feadecd58c19b5bd40c29d7b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+      "blob": "03a10479df3bb571815fc37d5f9663baf2e648e3",
+      "bytes": 5623,
+      "sha256": "79c7335de29cea349eda9043dcfcd486972ec3d15afb492966a1cc41e861f961"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/profile/dynamic_chart_page_test.dart",
+      "blob": "4dff19867ec94b641a2657d78f300b227e716359",
+      "bytes": 8151,
+      "sha256": "52fad422d0064cf6593ec1802e8f651f92e4c91191168cc30737c44ef173c28f"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/DynamicChartController.php",
+      "blob": "a371e7a39b2c3b0376ca5c66788a96f64be76dd6",
+      "bytes": 9325,
+      "sha256": "c498060747e2c0d5dd09fc81a87f17fb93008931f6f68d0d48b54b8c5089e128"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/PrivateDynamicCharts.php",
+      "blob": "c58ffbb1a2504e34686679b802a4a22bd5b30b27",
+      "bytes": 1143,
+      "sha256": "65699b0a6fc95922af924b12425df9aaf286d35133cc1e48934faeb523966689"
+    },
+    {
+      "path": "services/backend-laravel/app/Models/UserDynamicChart.php",
+      "blob": "6f443de74684c0cfb9db216d88aa0dbd71282287",
+      "bytes": 427,
+      "sha256": "ca97125e1c61387a1d1b19cd1cdb290ae268525caca0d1e1a083d2831182e284"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/DynamicChartService.php",
+      "blob": "dc2d36fa8386b169d8e9a70dc30ae790b56e0210",
+      "bytes": 12183,
+      "sha256": "6bd554188d22b143e30a1690d6552b2bab9e2fb9e7a3694a36e30133415568fc"
+    },
+    {
+      "path": "services/backend-laravel/bootstrap/app.php",
+      "blob": "460bc9bf926a141d740c2e3654303e0053ab8ef2",
+      "bytes": 3748,
+      "sha256": "aef260e61e5ba551a1cb3043aae08d6a9f21cae92e7638dc21baa6eda6ceb07c"
+    },
+    {
+      "path": "services/backend-laravel/config/dynamic_charts.php",
+      "blob": "123e9905a85d154c0fc77a94c00867a203ecc70c",
+      "bytes": 145,
+      "sha256": "3c82cc29a5a8aa59e138a1dafc8eb3db0faa9d96eee1f19f335188010f782622"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_18_100011_create_user_dynamic_charts_table.php",
+      "blob": "7aeb5f23cd0f5971758dea42e7b54d76f64cc2b2",
+      "bytes": 1088,
+      "sha256": "e575dbb985b5f124f53c77cecf93bf4603265acca79c053059253ad7a0464325"
+    },
+    {
+      "path": "services/backend-laravel/resources/natal/dynamic-profile-registry.json",
+      "blob": "d9d3781ec1b9e78b453b8808896003cd63fbca32",
+      "bytes": 1811,
+      "sha256": "a437a9ac0d1ad6eb1370004de1af9f9145c78711e38d04a3d0a0ac6d081ec724"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "blob": "6ef864bf8405e80c973afb60198c6e73167b48c7",
+      "bytes": 18644,
+      "sha256": "8ff13b663559acbb2c50dd189fdb46375850c5e03b5aaf4fca289e0841ca968e"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1011DynamicChartApiTest.php",
+      "blob": "9104b05bca7c8677a88455d6bcf9c8560b4cc899",
+      "bytes": 9646,
+      "sha256": "f77196991717a59d1ba05ea6f9270344c1144d927d369b0dd199036450549072"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/V1011DynamicInputTest.php",
+      "blob": "c917435d0c30b5b0a30d4a94ea74fcd9705d1a71",
+      "bytes": 2752,
+      "sha256": "92ff20f33e73c99feb1328e083b350729a43cffd91d5a8bc2982ec27218c63a1"
+    },
+    {
+      "path": "services/backend-laravel/tools/natal/dynamic.py",
+      "blob": "28c82b377bf50c0960fa8d7b723fa86cd459d0f1",
+      "bytes": 11322,
+      "sha256": "d03bcfbca2ce6b25be5fe8ff5d8d0f665a78ba461b38fb1ee0f9d6f35cc2af1f"
+    },
+    {
+      "path": "services/backend-laravel/tools/natal/oracle/dynamic_reference.py",
+      "blob": "7083afd8cc71569504716f4ccd90c0b551268185",
+      "bytes": 8510,
+      "sha256": "9d55b5505e877864a77cd45087a931feec9e27f21c03d3c859b74746308a90ea"
+    },
+    {
+      "path": "services/backend-laravel/tools/natal/tests/test_dynamic_reference.py",
+      "blob": "5c981355e7fda6e8ee5c708c115a65178072aac6",
+      "bytes": 19502,
+      "sha256": "d2af276969c7b13092a424767c9b8ab279b2e34eb50898e8bf455aea5f907405"
+    }
+  ],
+  "integrity": {
+    "source": "78ab7827b258cb649920e5121f24d506dae2a93c",
+    "candidate": "2d7e96c315a3c19345a4b9d5af3969ddcff4e0ea",
+    "python_ast_files": 3,
+    "plan_blob_unchanged": true,
+    "no_conflict_stages": true,
+    "historical_active_document_bodies_preserved": true,
+    "apps_build_subtree_equal": true
+  }
+}

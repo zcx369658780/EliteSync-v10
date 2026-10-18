@@ -1,0 +1,143 @@
+{
+  "latest_chain": {
+    "source": {
+      "commit": "78ab7827b258cb649920e5121f24d506dae2a93c",
+      "tree": "6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186",
+      "apps": "fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7",
+      "services": "29cedff599411c7c246ba32e62d53b5d63e28f3f"
+    },
+    "rows": [
+      {
+        "id": 8,
+        "revision": 5,
+        "result_revision": 5,
+        "signature": "222d67cb898df032628aebedc98017cc687862afd749bde76757f2621664ce38",
+        "selected_event_index": null,
+        "first_cache_reused": true,
+        "status": "CALCULATED"
+      },
+      {
+        "id": 10,
+        "revision": 3,
+        "result_revision": 3,
+        "signature": "ede420dc89f6e042f89cb87f2a131a3f8562e98badc0e0babaa96f3d4d6183fe",
+        "selected_event_index": 0,
+        "first_cache_reused": false,
+        "status": "CALCULATED"
+      },
+      {
+        "id": 11,
+        "revision": 3,
+        "result_revision": 3,
+        "signature": "8e9c2ad97a568aa5a1654ccb0a7a0161af150418beb990a6ff9099046a33a954",
+        "selected_event_index": null,
+        "first_cache_reused": false,
+        "status": "CALCULATED"
+      },
+      {
+        "id": 12,
+        "revision": 2,
+        "result_revision": 2,
+        "signature": "097a81e7779ba7af636f62b5f7461b347dc9acb8b94ae39af4c3d6e27df36ded",
+        "selected_event_index": null,
+        "first_cache_reused": false,
+        "status": "CALCULATED"
+      },
+      {
+        "id": 13,
+        "revision": 2,
+        "result_revision": 2,
+        "signature": "b7ccd25b9816ad7259a93f2c8d9e73b0c190ca4a0bd30d8ba7d0a322b7b5f5f7",
+        "selected_event_index": null,
+        "first_cache_reused": false,
+        "status": "NO_EVENT"
+      },
+      {
+        "id": 14,
+        "revision": 3,
+        "result_revision": 3,
+        "signature": "bdac2bb9246be9afbe57eaa84f8d6c0a1646bec1b7bdbbb58178d7b0497a1748",
+        "selected_event_index": 1,
+        "first_cache_reused": false,
+        "status": "MULTIPLE_EVENTS"
+      },
+      {
+        "id": 15,
+        "revision": 1,
+        "result_revision": 1,
+        "signature": "d09f540c90a70b2bf3121267de5f835b6b3a24d61f1d8f013eb4f5530dd12e37",
+        "selected_event_index": null,
+        "first_cache_reused": false,
+        "status": "CALCULATED"
+      },
+      {
+        "id": 16,
+        "revision": 1,
+        "result_revision": 1,
+        "signature": "cb09fcd968388b9839f65d674e4d4e93dbb26140e2749e4579861058cc74ea60",
+        "selected_event_index": null,
+        "first_cache_reused": false,
+        "status": "CALCULATED"
+      }
+    ]
+  },
+  "latest_restart": {
+    "source": {
+      "commit": "78ab7827b258cb649920e5121f24d506dae2a93c",
+      "tree": "6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186",
+      "apps": "fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7",
+      "services": "29cedff599411c7c246ba32e62d53b5d63e28f3f"
+    },
+    "same_16_rows": true,
+    "natal_rows": 1,
+    "same_results_revisions_selections": true,
+    "canonical_birthdays_unchanged": true,
+    "API_readback_count": 8,
+    "actual_db_version": "10.11.18-MariaDB-ubu2204"
+  },
+  "earlier_installed_app_account_switch": {
+    "source": "installed APK 67aa8b7d source988e9d9b",
+    "primary_logout_login_page_seen": true,
+    "secondary_login_completed": true,
+    "secondary_history_absent": true,
+    "secondary_inputs_blank": true,
+    "no_primary_results_or_wheel": true
+  },
+  "earlier_permissions": [
+    {
+      "path": "/profile/dynamic",
+      "status": 403,
+      "cache_control": "no-store, private"
+    },
+    {
+      "path": "/profile/dynamic/11",
+      "status": 403,
+      "cache_control": "no-store, private"
+    }
+  ],
+  "earlier_cache_and_selection": [
+    {
+      "case": "old_runtime_cache_hidden",
+      "id": 1,
+      "status": "STALE_RECALCULATION_REQUIRED",
+      "results": null
+    },
+    {
+      "case": "installed_APP_event_choice_persisted",
+      "id": 10,
+      "selected_event_index": 0,
+      "revision": 2
+    },
+    {
+      "case": "installed_APP_event_choice_persisted",
+      "id": 14,
+      "selected_event_index": 1,
+      "revision": 2
+    },
+    {
+      "case": "nonowner_cannot_read_APP_row",
+      "http": 404
+    }
+  ],
+  "source_scope": "Earlier APP evidence uses identical final apps objects; final backend revalidation/rewrites/restart are in latest_chain/latest_restart. Older unrelated historical rows remain stored but fail live stale identity checks."
+}

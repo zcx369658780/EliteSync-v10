@@ -1,0 +1,37 @@
+
+   WARN  Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testCanonicalTransitionIsAdmissible(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+   WARN  Metadata found in doc-comment for method Tests\Unit\ProductConnectionStateTransitionEvaluatorTest::testTerminalSameIdentityStatesHaveNoOutgoingTransition(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+
+   DEPR  Tests\Unit\V1011DynamicInputTest
+  ! solar year is the selected timezone half open civil year → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated si… 0.58s  
+  ! event fold is explicit and does not change birth or first cache signature → Constant PDO::MYSQL_ATTR_SSL_CA… 0.86s  
+  ! unknown time and missing coordinates are refused without synthetic values → Constant PDO::MYSQL_ATTR_SSL_CA… 0.45s  
+  ! runtime gate remains closed by default → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\M… 0.05s  
+
+   DEPR  Tests\Feature\V1008SessionWebTest
+  ! incomplete identity cannot login or manage even with valid csrf with data set "role-only" → Constant PDO::M… 0.68s  
+  ! incomplete identity cannot login or manage even with valid csrf with data set "list-only" → Constant PDO::M… 0.02s  
+  ! incomplete identity cannot login or manage even with valid csrf with data set "empty-list" → Constant PDO::… 0.02s  
+  ! incomplete identity cannot login or manage even with valid csrf with data set "disabled-admin" → Constant P… 0.02s  
+  ! incomplete identity cannot login or manage even with valid csrf with data set "ordinary" → Constant PDO::MY… 0.03s  
+  ! valid session and csrf do not allow self target → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5,…  0.03s  
+  ! login and logout rotate session and csrf and old csrf is rejected → Constant PDO::MYSQL_ATTR_SSL_CA is depr… 0.16s  
+  ! demoted existing web session loses read and write access → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated si… 0.03s  
+  ! disabled existing web session loses access → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use P… 0.03s  
+  ! removed allowlist entry revokes an existing session → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8… 0.02s  
+
+   DEPR  Tests\Feature\V1011DynamicChartApiTest
+  ! records are owner filtered and multiple records are allowed → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated… 2.79s  
+  ! unknown identity fields and unowned natal source are rejected → Constant PDO::MYSQL_ATTR_SSL_CA is deprecat… 0.44s  
+  ! cas cache and input change have separate generations → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since…  3.78s  
+  ! failure and superseded result never become cached success → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated s… 0.45s  
+  ! runtime change and disabled owner during compute reject old results → Constant PDO::MYSQL_ATTR_SSL_CA is de… 0.44s  
+  ! late result cannot replace new generation → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pd… 0.46s  
+  ! event edit reuses trusted first chart and selection does not recompute → Constant PDO::MYSQL_ATTR_SSL_CA is… 4.26s  
+  ! civil gap and forged cache are rejected before persistence → Constant PDO::MYSQL_ATTR_SSL_CA is deprecated…  0.44s  
+  ! history is bounded and never probes or returns private results → Constant PDO::MYSQL_ATTR_SSL_CA is depreca… 0.03s  
+
+  Tests:    23 deprecated (179 assertions)
+  Duration: 16.30s
+

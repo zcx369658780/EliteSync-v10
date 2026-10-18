@@ -1,0 +1,12 @@
+{
+  "name": "final-domain-corrected-api",
+  "run_id": "final-domain-corrected-api-82bc52ba",
+  "started_utc": "2026-10-18T09:26:30.754117+00:00",
+  "exit": 0,
+  "stdout_sha256": "caf97547f99f9f9bdeb34ed0d5f3dd4b8680e9d9e772e475d83b013928370739",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "[LOCAL_PATH] [LOCAL_ONLY]\\domain_boundary_corrected_probe.py",
+  "streams": "Sanitized copies: local paths/controlled device identifiers redacted; original byte hashes retained.",
+  "public.stdout_sha256": "caf97547f99f9f9bdeb34ed0d5f3dd4b8680e9d9e772e475d83b013928370739",
+  "public.stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

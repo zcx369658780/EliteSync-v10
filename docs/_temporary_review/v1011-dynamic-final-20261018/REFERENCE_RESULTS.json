@@ -1,0 +1,154 @@
+{
+  "external_positions_speeds": {
+    "epoch": "2026-10-18T07:37:26+00:00",
+    "threshold_position_deg": 0.001,
+    "threshold_speed_deg_day": 0.001,
+    "source": "JPL Horizons DE441, observer quantity31; shared JPL lineage; finite-difference speed; future time assumptions",
+    "comparisons": [
+      {
+        "name": "sun",
+        "target_id": 10,
+        "longitude_error_deg": 1.3002228286040918e-05,
+        "latitude_error_deg": 1.2518958491986888e-06,
+        "speed_error_deg_per_day": 7.880270004534395e-05,
+        "retrograde_equal": true,
+        "response_sha256": "49186685de77d6d47d83d0687b1d12e5d74ba156bec29ce89b602f48e2d7ca8d"
+      },
+      {
+        "name": "moon",
+        "target_id": 301,
+        "longitude_error_deg": 1.2573165065532521e-05,
+        "latitude_error_deg": 1.0868597573487904e-05,
+        "speed_error_deg_per_day": 6.828795449109748e-06,
+        "retrograde_equal": true,
+        "response_sha256": "fb6eebddd1bd00da4c78943aca5a5d7c814c01b89d04bda79be16f53cef21e3a"
+      },
+      {
+        "name": "mercury",
+        "target_id": 199,
+        "longitude_error_deg": 1.2452016420638756e-05,
+        "latitude_error_deg": 3.255839091664825e-06,
+        "speed_error_deg_per_day": 7.921013093437068e-05,
+        "retrograde_equal": true,
+        "response_sha256": "3627c9e6345ac41cd1633fa9a05d9b52205fa8c163e763605b90d84a2091279d"
+      },
+      {
+        "name": "venus",
+        "target_id": 299,
+        "longitude_error_deg": 1.1641220822866671e-05,
+        "latitude_error_deg": 5.329349139771011e-07,
+        "speed_error_deg_per_day": 3.453941644693259e-05,
+        "retrograde_equal": true,
+        "response_sha256": "f05d28f1ae35b80b7752685cdbbd499eac7d68b4705f8482539ae0c6a1fc3865"
+      },
+      {
+        "name": "mars",
+        "target_id": 4,
+        "longitude_error_deg": 1.3009713484279928e-05,
+        "latitude_error_deg": 1.0953753060594096e-05,
+        "speed_error_deg_per_day": 8.454864200757584e-05,
+        "retrograde_equal": true,
+        "response_sha256": "ebd642d510bf0e4b08e9388eef8a4a6952a0d8072e09d3907ea80c4a339df5cb"
+      },
+      {
+        "name": "jupiter",
+        "target_id": 5,
+        "longitude_error_deg": 1.3087561626434763e-05,
+        "latitude_error_deg": 1.032872040207522e-05,
+        "speed_error_deg_per_day": 2.5190074666170403e-05,
+        "retrograde_equal": true,
+        "response_sha256": "bb6d8851b5ba71f5f56320c3473e1e2bd91a60701371033d03ebe42cf49aa70d"
+      },
+      {
+        "name": "saturn",
+        "target_id": 6,
+        "longitude_error_deg": 1.3521260285642711e-05,
+        "latitude_error_deg": 4.030715532010731e-06,
+        "speed_error_deg_per_day": 1.6545582184335217e-05,
+        "retrograde_equal": true,
+        "response_sha256": "732f5e8af8208c58029941efd1fb7c05e540e87548a6b3afafe07ce505b64737"
+      },
+      {
+        "name": "uranus",
+        "target_id": 7,
+        "longitude_error_deg": 1.3016552145472815e-05,
+        "latitude_error_deg": 6.0795910601652015e-06,
+        "speed_error_deg_per_day": 6.534065960295266e-05,
+        "retrograde_equal": true,
+        "response_sha256": "feee22514f35342f501ec2d42b344d51d81aa75cb9843c16577c13ddb91b9859"
+      },
+      {
+        "name": "neptune",
+        "target_id": 8,
+        "longitude_error_deg": 1.3224387288346406e-05,
+        "latitude_error_deg": 5.373360764338031e-06,
+        "speed_error_deg_per_day": 2.3492084437748417e-05,
+        "retrograde_equal": true,
+        "response_sha256": "77ba36e8c1ac587429ad21afafe056bdeb7c61f7e63a2c8c1cc90babe5c49da4"
+      },
+      {
+        "name": "pluto",
+        "target_id": 9,
+        "longitude_error_deg": 1.3060330672942655e-05,
+        "latitude_error_deg": 1.1086023908646325e-05,
+        "speed_error_deg_per_day": 3.670561454782728e-05,
+        "retrograde_equal": true,
+        "response_sha256": "15e64741c8d4e68bf28c07fd3802855a57b4a6f466f6b35a3d695e5c66af92af"
+      }
+    ]
+  },
+  "solar_zero_multiple": [
+    {
+      "year": 2001,
+      "id": 13,
+      "status": "NO_EVENT",
+      "expected_count": 0,
+      "independent_count": 0,
+      "events": []
+    },
+    {
+      "year": 2004,
+      "id": 14,
+      "status": "MULTIPLE_EVENTS",
+      "expected_count": 2,
+      "independent_count": 2,
+      "events": [
+        "2004-01-01T04:48:00.000000Z",
+        "2004-12-31T10:33:26.795399Z"
+      ]
+    }
+  ],
+  "final_boundary_years": [
+    {
+      "case": "complete_civil_year_real_API_independent_search",
+      "year": 1900,
+      "timezone": "Asia/Shanghai",
+      "id": 15,
+      "window": {
+        "start": "1899-12-31T15:54:17.000000Z",
+        "end_exclusive": "1900-12-31T16:00:00.000000Z"
+      },
+      "events": [
+        "1900-04-15T13:59:31.597935Z"
+      ],
+      "full_points": 14,
+      "status": "CALCULATED"
+    },
+    {
+      "case": "complete_civil_year_real_API_independent_search",
+      "year": 2100,
+      "timezone": "America/New_York",
+      "id": 16,
+      "window": {
+        "start": "2100-01-01T05:00:00.000000Z",
+        "end_exclusive": "2101-01-01T05:00:00.000000Z"
+      },
+      "events": [
+        "2100-04-15T00:15:42.748787Z"
+      ],
+      "full_points": 14,
+      "status": "CALCULATED"
+    }
+  ],
+  "limitations": "Independent full-window search shares PositionModel; DE441 and DE440s share JPL ancestry; numerical convergence is not physical accuracy."
+}

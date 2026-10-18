@@ -1,0 +1,38 @@
+[
+  {
+    "path": "services/backend-laravel/tools/natal/requirements.windows-cp311.lock",
+    "accepted_blob": "d4276c3f1e628cf3e7eba352b9be482aebf4875d",
+    "source_blob": "d4276c3f1e628cf3e7eba352b9be482aebf4875d",
+    "unchanged": true
+  },
+  {
+    "path": "services/backend-laravel/resources/natal/dependency-manifest.json",
+    "accepted_blob": "e3e0386d1cef0ecc1cb953b1b6cac94abc8e4693",
+    "source_blob": "e3e0386d1cef0ecc1cb953b1b6cac94abc8e4693",
+    "unchanged": true
+  },
+  {
+    "path": "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+    "accepted_blob": "bc12f0b59bf325f599c4cc01cc9246f02f248e3e",
+    "source_blob": "bc12f0b59bf325f599c4cc01cc9246f02f248e3e",
+    "unchanged": true
+  },
+  {
+    "path": "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+    "accepted_blob": "8667a778e0539425d073d82acf13e41bf5dc28db",
+    "source_blob": "8667a778e0539425d073d82acf13e41bf5dc28db",
+    "unchanged": true
+  },
+  {
+    "path": "services/backend-laravel/tools/natal/western.py",
+    "accepted_blob": "34e53181fc83e0e0d3e2e3145379d133edb59c00",
+    "source_blob": "34e53181fc83e0e0d3e2e3145379d133edb59c00",
+    "unchanged": true
+  },
+  {
+    "path": "services/backend-laravel/tools/natal/time_context.py",
+    "accepted_blob": "7c79d439a98b086b40dab999e6d49e17a2c051b7",
+    "source_blob": "7c79d439a98b086b40dab999e6d49e17a2c051b7",
+    "unchanged": true
+  }
+]

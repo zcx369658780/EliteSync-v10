@@ -1,0 +1,32 @@
+[
+  {
+    "case": "complete_civil_year_real_API_independent_search",
+    "year": 1900,
+    "timezone": "Asia/Shanghai",
+    "id": 15,
+    "window": {
+      "start": "1899-12-31T15:54:17.000000Z",
+      "end_exclusive": "1900-12-31T16:00:00.000000Z"
+    },
+    "events": [
+      "1900-04-15T13:59:31.597935Z"
+    ],
+    "full_points": 14,
+    "status": "CALCULATED"
+  },
+  {
+    "case": "complete_civil_year_real_API_independent_search",
+    "year": 2100,
+    "timezone": "America/New_York",
+    "id": 16,
+    "window": {
+      "start": "2100-01-01T05:00:00.000000Z",
+      "end_exclusive": "2101-01-01T05:00:00.000000Z"
+    },
+    "events": [
+      "2100-04-15T00:15:42.748787Z"
+    ],
+    "full_points": 14,
+    "status": "CALCULATED"
+  }
+]
