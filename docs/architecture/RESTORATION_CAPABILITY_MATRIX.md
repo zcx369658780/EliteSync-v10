@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-19 v10.1.0 同版接续任务待Owner派发（当前）
+
+**V10.1.0_PARTIAL_NOT_ACCEPTED / AC-10.1-08_PARTIAL / OWNER_FILING_DEFERRED / DEV_ENDPOINT_CONTINUATION_TASK_READY / MANUAL_DISPATCH_PENDING / NEXT_FEATURE_VERSION_NOT_STARTED**。已归档v10.1.0云端隔离开发的部分交付和受控测试证据；外部域名出现ICP备案403，Web受邀管理员入口未闭环。Owner明确公司注册、网站/APP备案与正式上架推迟到APP功能较完整并与同事开会评估质量后再决定。IP作为开发受控loopback/隧道/私有网络配置核查，不作为中国内地公网裸IP无备案开放依据。不改冻结AC、不直接接受整版、不清理云端已有成果；不恢复同事SSH或APP管理面板。下一份[同版Codex接续长任务](../versions/v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_TASK.md)须Owner手动派发，当前未执行。
+
 ## 2026-10-18 v10.1.0云端开发试点计划冻结（等待派发）
 
 **V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。本版目标为阿里云开发试点、管理后台/管理员恢复和真实APP/API/数据库/匹配/聊天/媒体/星盘/RTC联合验证；不是内测或生产发布。管理员信息可控丢失，但须先简单备份管理员/角色及必要配置；旧账号无法安全恢复时允许新建专用开发管理员。真实用户全库和私密资料不导入。唯一冻结计划：[v10.1.0 plan](../versions/v10.1.0/plan.md)。
