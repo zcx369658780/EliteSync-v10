@@ -23,6 +23,16 @@ gateway = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(gateway)
 
 
+def stop_owned_sfu():
+    gateway.ready = False
+    if gateway.child is not None and gateway.child.returncode is None:
+        try:
+            gateway.child.kill()
+        except ProcessLookupError:
+            pass
+    print(json.dumps({'event': 'sfu_fail_closed', 'time': time.time()}), flush=True)
+
+
 def _post(port, path, payload, headers):
     """Bounded HTTP client; Nginx may use chunked JSON responses."""
     connection = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
@@ -129,33 +139,50 @@ async def main():
         raise RuntimeError("unexpected private runtime")
     gateway.backend = backend
     gateway.control = control
-    signal.signal(signal.SIGTERM, lambda *_: os._exit(1))
-    gateway.child = await asyncio.create_subprocess_exec(
-        str(runtime / "livekit-server"), "--config", str(runtime / "livekit.yaml"))
-    await asyncio.sleep(1)
-    if gateway.child.returncode is not None:
-        raise RuntimeError("owned SFU exited before supervision")
-    gateway.last_sweep = time.monotonic()
-    reader, gateway.watchdog_pipe = os.pipe()
-    os.set_blocking(gateway.watchdog_pipe, False)
-    gateway.watchdog = await asyncio.create_subprocess_exec(
-        sys.executable, str(HISTORICAL / "rtc-watchdog.py"), str(reader),
-        str(os.getpid()), str(gateway.child.pid), pass_fds=(reader,), env={})
-    os.close(reader)
-    monitor = asyncio.create_task(gateway.reconcile())
-    server = await asyncio.start_server(handle, "127.0.0.1", 8032, limit=32768)
+    gateway.stop_sfu = stop_owned_sfu
+    owner_task = asyncio.current_task()
+    def terminate(*_):
+        stop_owned_sfu()
+        owner_task.cancel()
+    signal.signal(signal.SIGTERM, terminate)
+    reader = None
+    server = None
+    monitor = None
     try:
+        gateway.child = await asyncio.create_subprocess_exec(
+            str(runtime / "livekit-server"), "--config", str(runtime / "livekit.yaml"))
+        await asyncio.sleep(1)
+        if gateway.child.returncode is not None:
+            raise RuntimeError("owned SFU exited before supervision")
+        gateway.last_sweep = time.monotonic()
+        reader, gateway.watchdog_pipe = os.pipe()
+        os.set_blocking(gateway.watchdog_pipe, False)
+        gateway.watchdog = await asyncio.create_subprocess_exec(
+            sys.executable, str(HISTORICAL / "rtc-watchdog.py"), str(reader),
+            str(os.getpid()), str(gateway.child.pid), pass_fds=(reader,), env={})
+        os.close(reader)
+        reader = None
+        monitor = asyncio.create_task(gateway.reconcile())
+        server = await asyncio.start_server(handle, "127.0.0.1", 8032, limit=32768)
         async with server:
             await monitor
     finally:
-        server.close()
-        await server.wait_closed()
+        if server is not None:
+            server.close()
+            await server.wait_closed()
+        if monitor is not None:
+            monitor.cancel()
+            await asyncio.gather(monitor, return_exceptions=True)
         gateway.stop_sfu()
-        if gateway.child.returncode is None:
+        if gateway.child is not None:
             await gateway.child.wait()
-        if gateway.watchdog.returncode is None:
-            gateway.watchdog.terminate()
-        os.close(gateway.watchdog_pipe)
+        if gateway.watchdog is not None:
+            if gateway.watchdog.returncode is None:
+                gateway.watchdog.terminate()
+            await gateway.watchdog.wait()
+        for descriptor in [reader, gateway.watchdog_pipe]:
+            if descriptor is not None:
+                os.close(descriptor)
     raise SystemExit(1)
 
 

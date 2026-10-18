@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import threading
 import unittest
+from unittest.mock import AsyncMock, Mock, patch
 
 os.environ.setdefault('LIVEKIT_API_KEY', 'test-only')
 os.environ.setdefault('LIVEKIT_API_SECRET', 'not-a-real-key' * 4)
@@ -67,6 +68,47 @@ class AdapterTransportTest(unittest.TestCase):
     def test_unknown_control_action_has_no_network_use(self):
         with self.assertRaises(ValueError):
             asyncio.run(pilot.control('CreateRoom', {}))
+
+    def test_watchdog_start_failure_kills_owned_sfu_and_closes_pipe(self):
+        child = Mock(pid=12345, returncode=None)
+        child.wait = AsyncMock(return_value=-9)
+        pilot.gateway.child = None
+        pilot.gateway.watchdog = None
+        pilot.gateway.watchdog_pipe = None
+        with patch.dict(os.environ, {'V10100_PRIVATE_RUNTIME': '/opt/elitesync-v10.1.0-devpilot/shared/runtime'}), \
+                patch.object(pilot.signal, 'signal'), \
+                patch.object(pilot.asyncio, 'sleep', new=AsyncMock()), \
+                patch.object(pilot.asyncio, 'create_subprocess_exec', new=AsyncMock(
+                    side_effect=[child, RuntimeError('test watchdog launch failure')])), \
+                patch.object(pilot.os, 'pipe', return_value=(101, 102)), \
+                patch.object(pilot.os, 'set_blocking', create=True), \
+                patch.object(pilot.os, 'close') as close:
+            with self.assertRaisesRegex(RuntimeError, 'watchdog launch failure'):
+                asyncio.run(pilot.main())
+            child.kill.assert_called_once()
+            child.wait.assert_awaited_once()
+            self.assertEqual({101, 102}, {call.args[0] for call in close.call_args_list})
+
+    def test_sigterm_before_watchdog_kills_child_and_runs_cleanup(self):
+        child = Mock(pid=12345, returncode=None)
+        child.kill.side_effect = lambda: setattr(child, 'returncode', -9)
+        child.wait = AsyncMock(return_value=-9)
+        pilot.gateway.child = None
+        pilot.gateway.watchdog = None
+        pilot.gateway.watchdog_pipe = None
+        handlers = []
+        real_sleep = asyncio.sleep
+        async def pause(_):
+            handlers[-1]()
+            await real_sleep(0)
+        with patch.dict(os.environ, {'V10100_PRIVATE_RUNTIME': '/opt/elitesync-v10.1.0-devpilot/shared/runtime'}), \
+                patch.object(pilot.signal, 'signal', side_effect=lambda _, handler: handlers.append(handler)), \
+                patch.object(pilot.asyncio, 'sleep', side_effect=pause), \
+                patch.object(pilot.asyncio, 'create_subprocess_exec', new=AsyncMock(return_value=child)):
+            with self.assertRaises(asyncio.CancelledError):
+                asyncio.run(pilot.main())
+            child.kill.assert_called_once()
+            child.wait.assert_awaited_once()
 
 
 if __name__ == '__main__':
