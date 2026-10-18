@@ -2,7 +2,7 @@
 
 ## 2026-10-18 v10.1.0云端开发试点计划冻结（等待派发）
 
-**V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner已选择下一版本编号v10.1.0。范围为阿里云开发试点部署、管理员/角色轻量备份与恢复、APP/管理后台及业务后端真实端到端验收。不是公开内测或生产发布。唯一冻结计划：[v10.1.0 plan](v10.1.0/plan.md)。须Owner手动派发后实施。
+**V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner已选择下一版本编号v10.1.0。范围为阿里云开发试点部署、管理员/角色轻量备份与恢复、APP/管理后台及业务后端真实端到端验收。不是公开内测或生产发布。唯一冻结计划：[v10.1.0 plan](v10.1.0/plan.md)。 [Codex综合任务单](v10.1.0/task_order.md)。须Owner手动派发后实施。
 
 
 
