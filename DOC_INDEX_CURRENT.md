@@ -2,7 +2,7 @@
 
 ## 2026-10-18 当前下一版：v10.1.0云端开发试点（未派发）
 
-**V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。目标：阿里云开发试点、管理员轻量备份与恢复、APP/管理后台/API/DB/匹配/聊天/媒体/星盘/RTC必要端到端验收。当前不是内测版或生产发布。旧管理员账号不可恢复时允许新建专用开发管理员，不无限追溯；不导入真实用户全库或私密资料，不自行新增公网/安全组/防火墙规则或产生费用。需Owner手动派发后才开始。
+**V10.1.0 FROZEN_PLAN / OWNER_MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。 [Codex综合任务单](docs/versions/v10.1.0/task_order.md)。目标：阿里云开发试点、管理员轻量备份与恢复、APP/管理后台/API/DB/匹配/聊天/媒体/星盘/RTC必要端到端验收。当前不是内测版或生产发布。旧管理员账号不可恢复时允许新建专用开发管理员，不无限追溯；不导入真实用户全库或私密资料，不自行新增公网/安全组/防火墙规则或产生费用。需Owner手动派发后才开始。
 
 
 
