@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-19 v10.1.0 R1同版接续已交付，待Astra审阅
+
+**DEV_CHANNEL_CONTINUATION_DELIVERED / EXTERNAL_ICP_GATE_OWNER_DEFERRED / AC-10.1-08_PARTIAL / VERSION_NOT_ACCEPTED**。Owner已手动派发；云端源文件/备份与8服务身份已最小核验，恢复原有本机回环开发隧道，产品源码和APK未变。公司注册、网站/APP备案及上架延期；公网恢复、续证与443暂停，不再探测既有备案拦截。独立Web后台保留，未恢复同事SSH或APP管理面板。新证据、端点矩阵、备案技术清单、NOT_RUN及既有观察见[单份接续结果](docs/versions/v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_RESULT.md)。旧段落保留其历史时点，本段不改变冻结AC或宣称整版接受；完成后等待Astra，不合main或启动下一版。
+
+
 ## 2026-10-18 v10.1.0云端开发试点计划已冻结（等待Owner手动派发）
 
 **V10.1.0 FROZEN_PLAN / OWNER_APPROVED_SCOPE / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Owner选择下一版本编号v10.1.0，目标为阿里云开发试点部署、管理员恢复和真实端到端联合验收；不是公开内测或生产发布。管理员/角色及必要配置须先做简单可验证备份；旧账号不可恢复时可创建专用开发管理员，不无限追溯。真实用户全库、私密消息/生辰/媒体不导入。不得未经授权新增公网/安全组/防火墙规则或产生费用。唯一冻结计划：[v10.1.0 plan](docs/versions/v10.1.0/plan.md)。 [Codex综合任务单](docs/versions/v10.1.0/task_order.md)。下一步为Owner手动派发Codex长任务；尚未执行云端变更、管理员修改或测试。
