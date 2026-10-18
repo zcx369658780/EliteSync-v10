@@ -397,6 +397,152 @@ void main() {
       expect(find.textContaining('12:00:00'), findsNothing);
     },
   );
+  testWidgets(
+    'inapplicable age omits fake details while valid luck stays readable',
+    (tester) async {
+      tester.view.physicalSize = const Size(1200, 3000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: NatalRestorationCharts(
+                section: 'ziwei',
+                results: {
+                  'ziwei': {
+                    'calculation_status': 'CALCULATED',
+                    'oracle_status': 'UNVERIFIED',
+                    'palaces': [
+                      {'index': 0, 'name': '命宫', 'earthly_branch': '寅'},
+                    ],
+                    'selected_horoscope': {
+                      'calculation_status': 'CALCULATED',
+                      'oracle_status': 'UNVERIFIED',
+                      'target_year': 2100,
+                      'reference_date': '2100-07-01',
+                      'reference_time': '12:00:00',
+                      // Valid older layers intentionally omit calculation_status.
+                      'decadal': {
+                        'index': 0,
+                        'name': '大限',
+                        'heavenlyStem': '壬',
+                        'earthlyBranch': '寅',
+                        'palaceNames': [
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                          '兄弟',
+                        ],
+                        'mutagen': [],
+                        'stars': [
+                          [
+                            {'name': '运魁'},
+                          ],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                        ],
+                      },
+                      'age': {
+                        'name': '小限',
+                        'nominalAge': 121,
+                        'calculation_status': 'NOT_APPLICABLE',
+                        'reason_codes': ['OUTSIDE_DEFINED_PERIOD_RANGE'],
+                      },
+                      'yearly': {
+                        'index': 0,
+                        'name': '流年',
+                        'heavenlyStem': '庚',
+                        'earthlyBranch': '申',
+                        'palaceNames': [
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                          '兄弟',
+                        ],
+                        'mutagen': [],
+                        'stars': [
+                          [
+                            {'name': '流禄'},
+                          ],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                        ],
+                      },
+                    },
+                  },
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('选定运限'));
+      await tester.pumpAndSettle();
+      final unavailable = find.widgetWithText(ListTile, '小限');
+      expect(unavailable, findsOneWidget);
+      expect(find.text('不适用：超出已定义的运限范围；名义年龄 121岁'), findsOneWidget);
+      expect(
+        find.descendant(of: unavailable, matching: find.byType(ExpansionTile)),
+        findsNothing,
+      );
+      expect(find.textContaining('干支 未知'), findsNothing);
+      expect(find.textContaining('甲子'), findsNothing);
+      expect(find.text('宫职与流曜详情'), findsNothing);
+      expect(find.text('运限四化（禄、权、科、忌）· 待核验'), findsNothing);
+      await tester.tap(find.text('大限'));
+      await tester.pumpAndSettle();
+      expect(find.text('干支 壬寅'), findsOneWidget);
+      await tester.tap(find.text('宫职与流曜详情'));
+      await tester.pumpAndSettle();
+      expect(find.text('流曜：运魁'), findsOneWidget);
+      await tester.tap(find.text('大限'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('流年'));
+      await tester.pumpAndSettle();
+      expect(find.text('干支 庚申'), findsOneWidget);
+      await tester.tap(find.text('宫职与流曜详情'));
+      await tester.pumpAndSettle();
+      expect(find.text('流曜：流禄'), findsOneWidget);
+      expect(find.text('小限命宫对应 寅宫（本命命宫）'), findsNothing);
+      expect(find.text('独立核验：待核验'), findsOneWidget);
+    },
+  );
   testWidgets('unrequested and unknown luck do not invent empty layers', (
     tester,
   ) async {

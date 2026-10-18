@@ -536,6 +536,19 @@ class NatalRestorationCharts extends StatelessWidget {
     final title = name == null || name.isEmpty
         ? const {'decadal': '运限', 'age': '小限', 'yearly': '流年'}[key]!
         : name;
+    if (layer['calculation_status'] == 'NOT_APPLICABLE') {
+      final outsideRange = natalList(
+        layer['reason_codes'],
+      ).contains('OUTSIDE_DEFINED_PERIOD_RANGE');
+      return ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(title),
+        subtitle: Text(
+          '不适用：${outsideRange ? '超出已定义的运限范围' : '此参考时刻无适用运限'}'
+          '${layer['nominalAge'] == null ? '' : '；名义年龄 ${layer['nominalAge']}岁'}',
+        ),
+      );
+    }
     final transformations = natalList(layer['mutagen']);
     final decorations = natalMap(layer['yearlyDecStar']);
     final anchors = palaces

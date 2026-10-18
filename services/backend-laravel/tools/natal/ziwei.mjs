@@ -61,8 +61,19 @@ function starData(star, branch = null) {
     natal_transformation: star.mutagen || null,
   };
 }
-function horoscopeData(item) {
-  const result = { index: item.index, name: item.name, heavenlyStem: item.heavenlyStem,
+export function serializeHoroscopeLayer(item, layer) {
+  check(['decadal', 'age', 'yearly'].includes(layer) && item && Number.isInteger(item.index)
+    && item.index >= -1 && item.index < 12
+    && (item.index !== -1 || layer !== 'yearly'),
+    'ENGINE_HOROSCOPE_INDEX_INVALID');
+  if (item.index === -1) {
+    // The engine has finite period/age tables. Its unmatched sentinel retains
+    // default Jia/Zi values; they must never become a fabricated selected layer.
+    return { name: item.name, calculation_status: 'NOT_APPLICABLE',
+      reason_codes: ['OUTSIDE_DEFINED_PERIOD_RANGE'],
+      ...(item.nominalAge === undefined ? {} : { nominalAge: item.nominalAge }) };
+  }
+  const result = { calculation_status: 'CALCULATED', index: item.index, name: item.name, heavenlyStem: item.heavenlyStem,
     earthlyBranch: item.earthlyBranch, palaceNames: [...item.palaceNames], mutagen: [...item.mutagen] };
   if (item.stars) result.stars = item.stars.map(stars => stars.map(starData));
   if (item.nominalAge !== undefined) result.nominalAge = item.nominalAge;
@@ -141,8 +152,8 @@ export function calculate(input) {
     const horoscope = chart.horoscope(`${reference} ${referenceTime}`, useBirthInstant ? base.effective_input.time_index : 6);
     selectedHoroscope = { calculation_status: 'CALCULATED', oracle_status: 'UNVERIFIED', target_year: input.target_year,
       reference_date: reference, reference_time: referenceTime, reference_policy: 'MID_YEAR_OR_BIRTH_DATE_IF_LATER',
-      lunar_date: horoscope.lunarDate, decadal: horoscopeData(horoscope.decadal),
-      age: horoscopeData(horoscope.age), yearly: horoscopeData(horoscope.yearly) };
+      lunar_date: horoscope.lunarDate, decadal: serializeHoroscopeLayer(horoscope.decadal, 'decadal'),
+      age: serializeHoroscopeLayer(horoscope.age, 'age'), yearly: serializeHoroscopeLayer(horoscope.yearly, 'yearly') };
   }
   return { ...base, calculation_status: 'CALCULATED',
     lunar_date: chart.lunarDate, chinese_date: chart.chineseDate, raw_dates: chart.rawDates,

@@ -1,0 +1,136 @@
+{
+  "oracle": "independent-ziwei-selected-limits-v1",
+  "version": "1",
+  "inputContract": {
+    "birth": "Existing independent ziwei_reference.chart lunar input; no solar conversion",
+    "target_lunar_year": "Explicit integer lunar-year label, never API Gregorian target_year",
+    "nominalAge": "target_lunar_year - birth.lunarYear + 1",
+    "calendarBoundary": "NOT_CONVERTED_OR_CERTIFIED"
+  },
+  "sources": [
+    {
+      "id": "base-natal-profile",
+      "localReference": "ziwei_reference.py / ziwei_reference_sources.json",
+      "scope": "Independent natal palace stems/roles, selected ten-stem HUA, decade intervals and direction",
+      "evidence": "REGISTERED_INDEPENDENT_BASE_PROFILE_NOT_WHOLE_SCHOOL"
+    },
+    {
+      "id": "modern-decade-start",
+      "url": "https://sanqing.com.tw/en/the-chinese-astrology-chart010/",
+      "scope": "First decade at life palace, bureau-based nominal starting age, yin/yang and sex direction",
+      "evidence": "SELECTED_MODERN_RULE"
+    },
+    {
+      "id": "flow-stem-layer",
+      "url": "https://www.zhouyi.co/a/yixueketang/20141218/454.html",
+      "scope": "Decadal stars/HUA use decadal life-palace stem; annual stars/HUA use annual stem",
+      "evidence": "SELECTED_PUBLISHED_RULE_PROGRAM_UPSTREAM_UNKNOWN"
+    },
+    {
+      "id": "selected-flow-seven-series",
+      "url": "https://www.ziweicn.com/show/3085.html",
+      "sections": ["39", "40", "42", "43"],
+      "scope": "Selected seven moving stars, annual SuiQian/JiangQian sequences",
+      "evidence": "SELECTED_ZHONGZHOU_RULES_NOT_ENTIRE_SCHOOL_EQUIVALENCE",
+      "alias": {"岁前大耗": "岁破"},
+      "aliasScope": "Only this annual SuiQian sequence"
+    },
+    {
+      "id": "decadal-horse",
+      "url": "https://ziwei.yi958.com/zwds/10335/",
+      "title": "王亭之初级讲义",
+      "scope": "Horse at opposite of trine long-life branch of selected decadal life branch",
+      "evidence": "EXPLICIT_SELECTED_DECADAL_LAYER_RULE"
+    },
+    {
+      "id": "annual-horse-context",
+      "url": "https://divinehere.com/column/15fanyanglo/0615017.html",
+      "scope": "Horse rule at corresponding cycle branch; explicit annual-branch wording not established",
+      "evidence": "SOURCE_CONTEXT_INFERENCE"
+    },
+    {
+      "id": "decadal-luan-joy",
+      "url": "https://ziweiscience.com/index.php/2024/05/27/anhongluantianxi/",
+      "scope": "Modern Sanhe: substitute decadal life branch for natal-year branch, Luan reverse from Mao, Joy opposite",
+      "evidence": "MODERN_SANHE_ONLY"
+    },
+    {
+      "id": "annual-luan-joy-reused",
+      "localReference": "Previously registered annual Luan/Joy rule, included in prior144 comparisons",
+      "scope": "Substitute supplied annual branch in reverse-from-Mao rule; Joy opposite",
+      "evidence": "REUSED_REGISTERED_SELECTED_ANNUAL_RULE",
+      "counting": "Not144 additional independent facts"
+    },
+    {
+      "id": "annual-nianjie",
+      "url": "https://vlee0610.pixnet.net/blog/posts/3036351234",
+      "title": "深造讲义转载",
+      "scope": "Annual NianJie reverse from Xu using annual branch, distinct from natal field",
+      "evidence": "TRANSCRIBED_EDITION_UNKNOWN"
+    },
+    {
+      "id": "small-limit-branch",
+      "url": "https://zh.wikisource.org/zh/紫微斗數全書/卷二",
+      "scope": "Age-one start from birth-year trine; male forward/female reverse, age1..120",
+      "evidence": "SELECTED_CLASSICAL_TRANSCRIPTION_RULE_EDITION_UNKNOWN"
+    },
+    {
+      "id": "small-limit-hua-composition",
+      "scope": "At selected small-limit branch take natal palace stem, compose registered HUA and natal destination",
+      "evidence": "REGISTERED_PROFILE_MATH_COMPOSITION",
+      "notClaimed": "Classical small-limit passage explicitly prescribing small-limit four-HUA"
+    },
+    {
+      "id": "child-limit-table",
+      "url": "https://tianjihq.com/zh-CN/learn/books/ziwei-jielan/53",
+      "title": "新刻纂集紫微斗数捷览",
+      "scope": "Same male/female six-age role table; use only before bureau start and ages<=5",
+      "evidence": "SELECTED_PUBLIC_TRANSCRIPTION_TABLE_EDITION_UNVERIFIED"
+    },
+    {
+      "id": "child-limit-corollary",
+      "title": "古今图书集成 卷567",
+      "url": "https://zh.wikisource.org/wiki/欽定古今圖書集成/博物彙編/藝術典/第567卷",
+      "locator": "卷567童限1..6同表；parent-supplied independently read corroboration",
+      "scope": "Only corroboration of six-age role table",
+      "evidence": "CORROBORATING_TRANSCRIPTION_AUTHORSHIP_AND_BASE_EDITION_UNRESOLVED",
+      "notAdopted": "Original seven-luminary adult-limit start, subsequent age19 rules or attribution as unique author",
+      "combinationLimit": "The six-age table and modern bureau-start cutoff are separate registered rules. Their profile composition is not quoted as a single classical prescription."
+    },
+    {
+      "id": "cyclic-coordinate-convention",
+      "scope": "Rotate independent12 role order around selected branch",
+      "evidence": "REGISTERED_CYCLIC_COORDINATE_CONVENTION"
+    }
+  ],
+  "tables": {
+    "lu": [2, 3, 5, 6, 5, 6, 8, 9, 11, 0],
+    "kuiYue": [[1, 7], [0, 8], [11, 9], [11, 9], [1, 7], [0, 8], [1, 7], [6, 2], [3, 5], [3, 5]],
+    "flowChang": [5, 6, 8, 9, 8, 9, 11, 0, 2, 3],
+    "flowQu": [9, 8, 6, 5, 6, 5, 3, 2, 0, 11],
+    "suiQian": ["岁建", "晦气", "丧门", "贯索", "官符", "小耗", "大耗", "龙德", "白虎", "天德", "吊客", "病符"],
+    "jiangQian": ["将星", "攀鞍", "岁驿", "息神", "华盖", "劫煞", "灾煞", "天煞", "指背", "咸池", "月煞", "亡神"],
+    "horseTrines": [{"branches": "申子辰", "growthBranch": "申"}, {"branches": "巳酉丑", "growthBranch": "巳"}, {"branches": "寅午戌", "growthBranch": "寅"}, {"branches": "亥卯未", "growthBranch": "亥"}],
+    "smallAgeOneTrines": [{"branches": "寅午戌", "start": "辰"}, {"branches": "申子辰", "start": "戌"}, {"branches": "巳酉丑", "start": "未"}, {"branches": "亥卯未", "start": "丑"}],
+    "childRoleByAge": {"1": "命宫", "2": "财帛", "3": "疾厄", "4": "夫妻", "5": "福德", "6": "官禄"}
+  },
+  "frozenReferenceIdentities": {
+    "flow-reference.json": "d04713b950fca9a889ec59ebab9c29233baac908fe95a8f3f1d0aae576b31ccd",
+    "flow-completion-expected.json": "e2318d8ceb3186bfd33400f9670b762c16a4647ee31e875619a2a3c5be1bf0b1",
+    "child-age-expected.json": "efe863231ea7e346c1152db818113a8d7f3f5d36e5e9e842765188aec02edd9e"
+  },
+  "localOnlyReferenceLocators": {
+    "flow-completion-expected.json": "20261018-ziwei-flow-completion-reference/expected.json",
+    "child-age-expected.json": "20261018-ziwei-child-age-reference/expected.json",
+    "root": "LOCAL_ONLY evidence root; descriptive identity keys are not original basenames"
+  },
+  "limits": [
+    "NOT_BLIND; code author has prior product/cache knowledge, no product/vendor/actual imports or current actual used to generate reference",
+    "Source facts independently read by helper and parent; code author no new network or print-edition collation",
+    "Only supplied lunar-year labels; no Gregorian/API target_year conversion, no time-zone or lunar-year-boundary proof",
+    "Program/source lineage and exact printed editions remain unknown; not entire school equivalence or whole AC acceptance",
+    "Child four-HUA and flowing stars SCOPE_NOT_ESTABLISHED; no seven-luminary adult-start or subsequent age19 rule adopted",
+    "Small-limit age range1..120; registered twelve decadal periods only; unknown scope not filled with zero or empty expected arrays",
+    "No predictive/scientific efficacy assertion, no product engine or online fallback"
+  ]
+}
