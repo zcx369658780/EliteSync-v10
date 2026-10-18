@@ -34,6 +34,9 @@ class NatalCalculationService
             'calculation_status' => 'UNKNOWN', 'reason' => 'birth_time_unknown', 'oracle_status' => 'UNVERIFIED',
             'requested_profile' => $settings, 'planets' => [], 'houses' => [], 'aspects' => [],
         ];
+        if ($hasTime && ($settings['point_set'] ?? null) === 'full') {
+            $this->validateChironIdentity($western, $context['calculation_profile']);
+        }
         $solar = null;
         if ($settings['true_solar_time'] && $hasTime) {
             $solar = $western['solar_context'] ?? null;
@@ -47,6 +50,7 @@ class NatalCalculationService
         $bazi = (new NatalBaziCalculator(new NatalBaziTimeScale((string) config('natal.python'))))
             ->compute($context, $solar, $western['time_context'] ?? null);
         $ziwei = $this->run([(string) config('natal.node'), base_path('tools/natal/ziwei.mjs')], [
+            'source_civil_date' => $context['civil_date'],
             'effective_civil_date' => $solar['effective_solar_date'] ?? $context['civil_date'],
             'effective_time' => $solar['effective_solar_time'] ?? $context['normalized_time'],
             'algorithm_sex' => $context['algorithm_sex'],
@@ -55,6 +59,24 @@ class NatalCalculationService
         ]);
 
         return ['bazi' => $bazi, 'ziwei' => $ziwei, 'western' => $western];
+    }
+
+    public function validateChironIdentity(array $western, array $profile): void
+    {
+        $points = array_values(array_filter($western['planets'] ?? [],
+            fn ($point) => is_array($point) && ($point['name'] ?? null) === 'chiron'));
+        $artifact = $profile['source_hashes']['resources/natal/data/chiron-lowell-hermite8d-v1.npz'] ?? null;
+        $manifest = $profile['source_hashes']['resources/natal/chiron-data-manifest.json'] ?? null;
+        // Bind the bytes actually used by the subprocess to the request's
+        // fingerprint. A concurrent data change must fail, never persist a
+        // new orbit under the old input signature or overwrite newer results.
+        if (count($points) !== 1 || ! is_string($artifact) || ! is_string($manifest)
+            || ! hash_equals($artifact, (string) ($points[0]['data_sha256'] ?? ''))
+            || ! hash_equals($manifest, (string) ($points[0]['data_manifest_sha256'] ?? ''))
+            || ($western['effective_profile']['point_set'] ?? null) !== 'full'
+            || ($western['unavailable_points'] ?? null) !== []) {
+            throw new RuntimeException('natal_chiron_result_identity_mismatch');
+        }
     }
 
     private function run(array $command, array $payload): array

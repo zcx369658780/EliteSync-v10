@@ -145,6 +145,27 @@ test('a birth-year selected horoscope never queries a date before birth', () => 
   assert.equal(chart.selected_horoscope.reference_policy, 'MID_YEAR_OR_BIRTH_DATE_IF_LATER');
 });
 
+test('caller-derived solar dates use bounded padding without widening the birth-date contract', () => {
+  const cases = [
+    ['1900-01-01', '1899-12-31', 1900],
+    ['2100-12-31', '2101-01-01', 2100],
+  ];
+  for (const [source, effective, target] of cases) {
+    const result = run({ ...sample, source_civil_date: source, effective_civil_date: effective, target_year: target });
+    assert.equal(result.status, 0);
+    assert.equal(result.json.palaces.length, 12);
+    assert.equal(result.json.effective_input.source_civil_date, source);
+    assert.equal(result.json.effective_input.effective_civil_date, effective);
+    assert.equal(result.json.effective_input.calendar_reference_status, 'DERIVED_EDGE_DATE_UNVERIFIED');
+    assert.equal(result.json.oracle_status, 'UNVERIFIED');
+    assert.equal(run({ ...sample, effective_civil_date: effective, target_year: null }).status, 2);
+  }
+  for (const [source, effective] of [['1899-12-31', '1900-01-01'], ['2100-12-31', '2101-01-03'],
+    ['2000-01-01', '2000-01-04'], ['1900-02-29', '1900-03-01']]) {
+    assert.equal(run({ ...sample, source_civil_date: source, effective_civil_date: effective, target_year: null }).status, 2);
+  }
+});
+
 test('invalid JSON, dates, times, range, sex, target and unsupported rule overrides fail closed', () => {
   const bad = [[], null, { ...sample, effective_civil_date: '2001-02-29' }, { ...sample, effective_civil_date: '1800-01-01' },
     { ...sample, effective_time: '24:00' }, { ...sample, effective_time: '10:60' }, { ...sample, algorithm_sex: 'M' },

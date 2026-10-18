@@ -1,6 +1,6 @@
 # v10.0.10 本命计算开发链
 
-本目录为冻结方案 A 的实施代码，**不是已接受版本**。Chiron 数据尚未准入，紫微亮度/部分辅星/运限、八字精确公历交运仍有独立参考缺口；完整 AC 状态见本版综合报告。计算结果保留 `UNVERIFIED`，不能用于匹配评分、硬筛选或关系事实判断。
+本目录为冻结方案 A 的实施代码，**不是已接受版本**。具名规则、独立参考的覆盖范围及来源限定见本版综合报告；不能把局部对照或代码存在当作整版验收。计算结果保留 `UNVERIFIED`，不能用于匹配评分、硬筛选或关系事实判断。
 
 ## 依赖与数据
 
@@ -16,7 +16,11 @@ Python 已实测环境为 CPython 3.11、Windows x86_64。六项 wheel 的固定
 
 字节数 `32726016`，SHA256 `c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2`，官方 MD5 `3917ee56769db332790c751e2168843d`，TDB 覆盖约 1849-12-25～2150-01-21。遵守 [NAIF 规则](https://naif.jpl.nasa.gov/naif/rules.html)；该条款覆盖 NAIF 分发的 kernel，不能推广为 SSD/Horizons Chiron 数据许可。本目录不内置 SPK，不自动下载，也不捆绑 SPICE Toolkit。
 
-Kerykeion、Swiss、pyswisseph 保持原许可证门。Chiron 未下载、未运行，`full` 明示 `PARTIAL_FULL` 及 `unavailable_points`，不把空集合当完整盘。
+Kerykeion、Swiss、pyswisseph 保持原许可证门。Chiron 使用 [Lowell 数据清单](../../resources/natal/chiron-data-manifest.json)中固定的元素事实和自有离线轨道，不使用待回复的 JPL/NIMA 数据。所选 `astorb.dat` 采用原作者明确的署名使用/复制/传输许可；保留 [完整署名](../../resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt)，不把该许可扩张到其它目录或原始观测。`full` 现在真实计算十主体、真南北交点、平均 Lilith 和 Chiron；数据缺失、hash/准入不符或越界均拒绝，不在线回退。
+
+轨道制品 SHA256 `b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3`，438113 字节，9182 个八日节点。它是有限力模型的自产轨道，独立样本对照不等于全连续日期的物理误差保证。只在显式离线构建时执行 `chiron_build.py --kernel <已核DE440s路径> --gm <已核gm_de440.tpc路径> --output <不存在的输出路径>`；无下载、覆盖或服务启动行为。GM 官方地址、hash、NAIF 条款及所有构建源码 pin 在清单内。请求时只做经 hash 校验的 Hermite 插值和视位置运算。制品、manifest、reader 和署名参与缓存签名；Laravel 核对计算实际使用的数据与 manifest 身份，防止数据变化后以旧签名落库。
+
+Chiron 独立参考的可重放代码及仅参考环境的锁见 [oracle/CHIRON_REFERENCE.md](oracle/CHIRON_REFERENCE.md)。SciPy 不属于产品运行依赖，Gaia 原始状态/协方差未分发；JPL/NIMA 邮件仍为待回复，不重复联系。
 
 ## 本地接线
 

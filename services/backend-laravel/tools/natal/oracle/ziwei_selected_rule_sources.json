@@ -1,6 +1,50 @@
 {
   "oracle": "independent-ziwei-selected-limits-v1",
   "version": "1",
+  "sourceAddenda_20261018": {
+    "scope": "New source observations only; original tables, frozen source grades and old expected files are unchanged. This does not certify a whole school or close child-HUA/star source gaps.",
+    "sources": [
+      {
+        "id": "small-limit-hua-modern-author",
+        "author": "Jerry Beh 马迦立",
+        "title": "禄权科忌入命",
+        "date": "2023-01-07",
+        "url": "https://jerrybeh.wordpress.com/2023/01/07/禄权科忌入命/",
+        "localRawSha256": "6b6ab955f8a815a24b09c4de9ec1bab8a572c2acc84dfe069d68918e7d328187",
+        "scope": "Author explicitly lists small-limit palace-stem HUA and an alternative five-tigers re-stem method as different school choices.",
+        "evidence": "PRIMARY_AUTHOR_MODERN_RULE_BRANCH_CORROBORATION",
+        "limit": "Does not explicitly distinguish an original natal palace stem from every possible re-stem interpretation; not a full HUA table or moving-star oracle."
+      },
+      {
+        "id": "child-limit-alternative-author",
+        "author": "林贊孫",
+        "title": "起大限及行限",
+        "date": "2013-08-31",
+        "url": "https://jdmedicalcare.com/《起大限及行限》/",
+        "scope": "Author treats the first natal-life decade as operating from birth and explicitly abandons the six-age child-palace table.",
+        "evidence": "PRIMARY_AUTHOR_EXPLICIT_DIFFERENT_PROFILE",
+        "limit": "Not adopted: conflicts with current selected child-role profile. Cannot use its first-decade HUA/stars to prove current child HUA/stars. Web rendering read; independent raw capture returned HTTP406 and was not bypassed."
+      },
+      {
+        "id": "leap-month-author-variants",
+        "author": "林贊孫",
+        "title": "四化簡介（六）",
+        "date": "2013-09-20",
+        "url": "https://jdmedicalcare.com/《四化簡介》六/",
+        "scope": "Author distinguishes Wang Tingzhi's half-month method, Ziwei Yang's solar-term treatment of month stars, and a whole-month method.",
+        "evidence": "PRIMARY_AUTHOR_VARIANTS_WITH_NAMED_SECONDARY_ATTRIBUTION",
+        "limit": "No new mixed profile adopted; does not independently prescribe the leap behavior of each of the four additional month stars."
+      },
+      {
+        "id": "ncc-explicit-configuration-options",
+        "author": "NCC 星侨官方产品说明",
+        "url": "https://www.ncc.com.tw/soft/product.php?cate=fate&os=T00&soft=T07",
+        "scope": "Official documentation separates leap-month mode, application to month stars, child-role selection and palace-stem HUA options.",
+        "evidence": "PRIMARY_VENDOR_CONFIGURATION_DOCUMENTATION_ONLY",
+        "limit": "No NCC program run, purchase or chart output. Documentation is not a numerical oracle, exact pinned-engine equivalence, whole-school certification or permission to reproduce the software."
+      }
+    ]
+  },
   "inputContract": {
     "birth": "Existing independent ziwei_reference.chart lunar input; no solar conversion",
     "target_lunar_year": "Explicit integer lunar-year label, never API Gregorian target_year",

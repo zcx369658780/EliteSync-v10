@@ -1,6 +1,6 @@
 {
   "schema": "elitesync.natal.dependencies.v1",
-  "status": "PINNED_LOCAL_RUNTIME_CHIRON_NOT_ADMITTED",
+  "status": "PINNED_LOCAL_RUNTIME_WITH_LOWELL_CHIRON_SAMPLED_REFERENCE",
   "scope": "New natal PHP/Node/Python calculation chain; existing application dependencies retain their baseline locks and notices.",
   "python_platform": "CPython 3.11 win_amd64 only; other platform artifacts require separate hashes and license audit",
   "python": [
@@ -338,9 +338,48 @@
     },
     {
       "name": "Chiron",
-      "status": "NOT_ADMITTED_AWAITING_JPL_RIGHTS_CLARIFICATION",
-      "data_acquired": false,
-      "runtime_enabled": false
+      "status": "SOURCE_PERMISSION_ADMITTED_WITH_SAMPLED_REFERENCE_NOT_VERSION_ACCEPTANCE",
+      "data_acquired": true,
+      "runtime_enabled": true,
+      "manifest": "resources/natal/chiron-data-manifest.json",
+      "manifest_sha256": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+      "sha256": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+      "bytes": 438113,
+      "source_permission": {
+        "owner": "Lowell Observatory astorb",
+        "sources": [
+          "https://asteroid.lowell.edu/astorb/",
+          "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true"
+        ],
+        "terms_response_sha256": "c44b89dfb02999bce916e22ee3f6608bfd7c54a82041450ff7d5b390b8b7fdd5",
+        "source_scope": "Selected astorb.dat element facts and our derived trajectory; original author express free use/copy/transmit with attribution, not generic permissions for other VizieR catalogs",
+        "attribution_notice": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "attribution_notice_sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+        "fees": 0,
+        "no_restricted_data_included": [
+          "MPC raw observations",
+          "Gaia raw state/covariance product",
+          "NIMA",
+          "Horizons output",
+          "Swiss-derived coefficients"
+        ]
+      },
+      "accuracy_limitations": [
+        "Independent software/external fitted initial solution, not an independent physical model or proven disjoint observations",
+        "Shared planetary data and finite-force assumptions; 10 original-fit perturbing asteroids/full EIH/J2/NG/covariance propagation omitted",
+        "Sampled comparisons do not certify an all-continuous-date physical uncertainty bound or every exact station instant",
+        "No original-engine bitwise equivalence or astronomical/predictive efficacy guarantee",
+        "Reference is Gaia plus independent force author/SciPy DOP853/ERFA; main runner NOT_BLIND; selector24 is input-selection blindness only",
+        "Source permission and sampled numerical evidence do not constitute Astra version acceptance"
+      ],
+      "old_jpl_nima_requests": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED; not used by this route"
+    },
+    {
+      "name": "NAIF DE440 GM (offline Chiron build input only)",
+      "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/gm_de440.tpc",
+      "sha256": "924ddf4fb9ead9fe8a1aa55780bcabde40b09d00065d58226e24b68d8092f140",
+      "terms": "https://naif.jpl.nasa.gov/naif/rules.html",
+      "redistribution": "Not bundled; acquire unmodified and verify exact SHA256; no SPICE Toolkit"
     }
   ],
   "extra_notices": [
@@ -351,6 +390,10 @@
     {
       "path": "resources/natal/notices/MPL-2.0.txt",
       "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+      "sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3"
     }
   ],
   "binary_notice_obligations": [

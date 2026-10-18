@@ -104,6 +104,70 @@ class GeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(os.environ.get('NATAL_TEST_KERNEL'), 'explicit locally audited kernel required')
 class OfflineRuntimeTests(unittest.TestCase):
+    def test_sidereal_full_cli_json_is_portable_under_windows_legacy_encoding(self):
+        import subprocess
+        import sys
+        payload = {'context': {'utc': '2000-01-02T05:30:00Z', 'time_precision': 'second',
+                               'latitude': 31.2, 'longitude': 121.5},
+                   'profile': {'zodiac_mode': 'sidereal', 'house_system': 'placidus', 'point_set': 'full'}}
+        process = subprocess.run([sys.executable, str(MODULE), os.environ['NATAL_TEST_KERNEL'],
+            'c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2'],
+            input=json.dumps(payload).encode('utf-8'), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            env={**os.environ, 'PYTHONIOENCODING': 'cp936'}, timeout=30)
+        self.assertEqual(process.returncode, 0, process.stderr)
+        result = json.loads(process.stdout.decode('utf-8'))
+        self.assertEqual(len(result['planets']), 14)
+        self.assertEqual(result['effective_profile']['point_set'], 'full')
+        self.assertIn('自定义', result['sidereal_reference']['display_name_zh'])
+
+    def test_full_refuses_missing_or_corrupt_manifest_and_orbit(self):
+        payload = {'context': {'utc': '2000-01-01T12:00:00Z', 'time_precision': 'second'},
+                   'profile': {'point_set': 'full'}}
+        args = (os.environ['NATAL_TEST_KERNEL'], 'c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2')
+        resources = MODULE.parents[2] / 'resources/natal'
+        manifest_path = resources / 'chiron-data-manifest.json'
+        orbit_path = resources / 'data/chiron-lowell-hermite8d-v1.npz'
+        original_read = pathlib.Path.read_bytes
+        manifest = json.loads(original_read(manifest_path))
+        for case in ('missing_manifest', 'unadmitted_manifest', 'missing_orbit', 'corrupt_orbit'):
+            def read(path):
+                if path == manifest_path:
+                    if case == 'missing_manifest':
+                        raise FileNotFoundError('synthetic missing manifest')
+                    if case == 'unadmitted_manifest':
+                        return json.dumps({**manifest, 'rights_status': 'PENDING'}).encode()
+                if path == orbit_path:
+                    if case == 'missing_orbit':
+                        raise FileNotFoundError('synthetic missing orbit')
+                    if case == 'corrupt_orbit':
+                        return original_read(path) + b'changed-by-test-in-memory-only'
+                return original_read(path)
+            with self.subTest(case=case), mock.patch.object(pathlib.Path, 'read_bytes', read):
+                with self.assertRaises((ValueError, FileNotFoundError)):
+                    western.compute(payload, *args)
+
+    def test_full_points_include_real_chiron_and_modes_recompute_it(self):
+        payload = {'context': {'utc': '2000-01-01T12:00:00Z', 'time_precision': 'second',
+                               'latitude': 51.5, 'longitude': 0.0},
+                   'profile': {'zodiac_mode': 'tropical', 'house_system': 'whole', 'point_set': 'full'}}
+        args = (os.environ['NATAL_TEST_KERNEL'], 'c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2')
+        tropical = western.compute(payload, *args)
+        chiron = next(p for p in tropical['planets'] if p['name'] == 'chiron')
+        self.assertEqual(len(tropical['planets']), 14)
+        self.assertEqual(tropical['effective_profile']['point_set'], 'full')
+        self.assertEqual(tropical['unavailable_points'], [])
+        self.assertEqual(chiron['reference_status'], 'INDEPENDENT_SAMPLED_REFERENCE_MATCH')
+        self.assertGreater(chiron['distance_au'], 1)
+        self.assertNotEqual(chiron['longitude'], 0)
+        self.assertIn('house', chiron)
+        payload['profile']['zodiac_mode'] = 'sidereal'
+        sidereal = western.compute(payload, *args)
+        shifted = next(p for p in sidereal['planets'] if p['name'] == 'chiron')
+        self.assertAlmostEqual(western.angle(chiron['longitude'] - shifted['longitude']),
+                               sidereal['sidereal_reference']['ayanamsha_degrees'], places=8)
+        self.assertEqual(chiron['data_sha256'], shifted['data_sha256'])
+        json.dumps(sidereal, allow_nan=False)
+
     def test_pre_utc_solar_context_keeps_ut1_interpretation(self):
         payload = {'context': {'utc': '1901-01-01T23:59:59Z', 'time_precision': 'second',
                                'latitude': 31.2, 'longitude': 179.0},

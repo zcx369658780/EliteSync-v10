@@ -468,6 +468,19 @@ class NatalRestorationCharts extends StatelessWidget {
                     ),
                 ],
               ),
+            if (planets.any((raw) => natalMap(raw)['name'] == 'chiron'))
+              ExpansionTile(
+                title: const Text('凯龙星数据来源'),
+                tilePadding: EdgeInsets.zero,
+                children: [
+                  for (final raw in planets)
+                    if (natalMap(raw)['name'] == 'chiron')
+                      SelectableText(
+                        natalText(natalMap(raw)['source_attribution']),
+                      ),
+                  const Text('采用已署名的 Lowell 轨道资料在本地推算。独立样本对照不代表对全部日期的连续误差保证。'),
+                ],
+              ),
             if (prefs.showTechnicalParameters)
               Text('扩展点：${natalText(western['extensions_status'])}'),
           ]),

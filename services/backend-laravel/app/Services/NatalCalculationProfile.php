@@ -44,6 +44,10 @@ final class NatalCalculationProfile
             'app/Services/NatalCalculationProfile.php', 'app/Services/NatalCalculationService.php',
             'app/Services/NatalRuntimeIdentity.php', 'tools/natal/runtime_identity.py', 'config/natal.php',
             'tools/natal/western.py', 'tools/natal/time_context.py', 'tools/natal/lunar_points.py',
+            'tools/natal/chiron_orbit.py', 'resources/natal/chiron-data-manifest.json',
+            'resources/natal/data/chiron-lowell-hermite8d-v1.npz',
+            'resources/natal/data/chiron-lowell-elements-v1.json',
+            'resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt',
             'tools/natal/ziwei.mjs', 'tools/ziwei/iztro-runner/package-lock.json'];
         $paths[] = 'resources/natal/ziwei-upstream-corrections.json';
         foreach ($paths as $path) {

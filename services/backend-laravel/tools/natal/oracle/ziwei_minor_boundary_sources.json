@@ -1,0 +1,90 @@
+{
+  "schema": "elitesync.ziwei.minor-boundary-sources.v1",
+  "outputSchema": "elitesync.ziwei.minor-boundary-reference.v1",
+  "status": "SOURCE_RULE_PROFILE_ONLY_NOT_PRODUCT_VERIFIED",
+  "coordinate": "Branches 子=0..亥=11; stem 甲=0..癸=9; all placement arithmetic modulo 12.",
+  "profile": {
+    "name": "Explicit half-month leap convention plus unmodified Chang/Qu day-count verse",
+    "school": "Selected 中州派 half-month convention combined with named published placement verses; no all-school certification or complete independent program lineage claimed.",
+    "calendar": "Explicit lunar year/month/day, algorithmSex, yearStem/yearBranch and hourBranch; no solar conversion or lunar-date existence/length validation.",
+    "leapMonth": "Use independent base effectiveLunarMonth: leap day 1..15 nominal month, 16..30 next month, retaining original lunar day. Effective month 13 wraps to month 1 for the four month tables.",
+    "earlyDays": "For 恩光/天贵 apply (文昌/文曲 + lunarDay - 2) mod 12 also on days 1 and 2. This is verse-derived arithmetic, not an attested day-1/day-2 special-case ruling."
+  },
+  "dependencyFiles": [
+    "ziwei_minor_boundary_reference.py",
+    "ziwei_minor_boundary_sources.json",
+    "ziwei_reference.py",
+    "ziwei_reference_sources.json",
+    "ziwei_minor_rule_sources.json"
+  ],
+  "dependencyHashPolicy": "Each result carries SHA-256 of the exact bytes of all five dependency files, including this metadata file and the new reference code. No self-referential hash is embedded in this file.",
+  "sources": [
+    {
+      "id": "minor-rule-transcription",
+      "files": ["ziwei_minor_rule_sources.json"],
+      "urls": ["https://sanqing.com.tw/en/the-chinese-astrology-chart010/", "https://www.ncc.com.tw/fate/paleo/gv/gv_15.htm"],
+      "use": "Previously separately transcribed 17-star month, year-stem, year-branch and derived placement rules; original boundary warnings retained in per-field output.",
+      "lineage": "Published rule transcriptions; shared historical upstream and independent implementation lineage unestablished."
+    },
+    {
+      "id": "zhongzhou-half-month",
+      "url": "https://www.bilibili.com/opus/1009560968086159362",
+      "title": "王亭之《中州派紫微斗数初级讲义 安星法一》转录",
+      "use": "General leap-month convention: first 15 days use nominal month, day 16 onward next month.",
+      "evidenceLimit": "A named transcription of a general convention, not an original-edition facsimile or explicit exception-free statement for each of the four minor stars."
+    },
+    {
+      "id": "ziwei-jielan-chang-qu",
+      "url": "https://tianjihq.com/en/learn/glossary/ziwei-enguang",
+      "title": "Tianji HQ 恩光 glossary citing《紫微斗数捷览》",
+      "use": "文昌/文曲顺数至生日退一步; gives (Chang/Qu + day - 2) mod 12 under inclusive first-day counting.",
+      "evidenceLimit": "Named classical citation via a modern publisher; no statement that days 1 and 2 must be treated as day 3. Early-day arithmetic is an inference from the verse."
+    },
+    {
+      "id": "ziweicn-placement-verses",
+      "url": "https://www.ziweicn.com/show/3085.html",
+      "sections": ["安恩光天贵", "安解神", "安天巫", "安天月", "安阴煞"],
+      "use": "Chang/Qu birthday-count verse and the individual birth-month verses for 解神、天巫、天月、阴煞.",
+      "evidenceLimit": "Does not itself state the four stars each obey the half-month leap convention without exception, nor a day-1/day-2-as-day-3 exception."
+    }
+  ],
+  "ruleProfiles": {
+    "monthRules": {
+      "ruleSources": ["minor-rule-transcription", "ziweicn-placement-verses", "zhongzhou-half-month"],
+      "school": "Selected 中州派 general half-month convention applied to published birth-month tables",
+      "formula": "monthPositions[(base.effectiveLunarMonth - 1) % 12]",
+      "limitations": ["Combination inference from a general convention and individual verses; not per-star explicit no-exception text or all-school agreement.", "解神 means 生月解神; unresolved 年解 alias is not folded into it."]
+    },
+    "yearStemRules": {
+      "ruleSources": ["minor-rule-transcription"],
+      "school": "Named Sanqing/NCC transcription profile; upstream school lineage unestablished",
+      "formula": "positions[explicit yearStem index]",
+      "limitations": ["No lunar month, day or leap-status dependence; no inference about other schools."]
+    },
+    "yearBranchRules": {
+      "ruleSources": ["minor-rule-transcription"],
+      "school": "Named Sanqing/NCC transcription profile; upstream school lineage unestablished",
+      "formula": "positions[explicit yearBranch index]",
+      "limitations": ["No lunar month, day or leap-status dependence; 蜚廉 is distinct from 博士十二星飞廉."]
+    },
+    "derivedRules": {
+      "ruleSources": ["minor-rule-transcription"],
+      "school": "Published verse profile with independent base life/body/Chang/Qu anchors",
+      "limitations": ["Anchor placements inherit the explicitly selected independent base profile; no whole-chart independent-program lineage is claimed."]
+    }
+  },
+  "fieldProfiles": {
+    "天才": {"formula": "(base.lifeBranchIndex + yearBranchIndex) % 12", "ruleSources": ["minor-rule-transcription"], "school": "Published 安天才天寿 verse", "limitations": ["Life anchor inherits independent base half-month policy."]},
+    "天寿": {"formula": "(base.bodyBranchIndex + yearBranchIndex) % 12", "ruleSources": ["minor-rule-transcription"], "school": "Published 安天才天寿 verse", "limitations": ["Body anchor inherits independent base half-month policy."]},
+    "恩光": {"formula": "(independent 文昌 + lunarDay - 2) % 12", "ruleSources": ["ziwei-jielan-chang-qu", "ziweicn-placement-verses"], "school": "《紫微斗数捷览》quoted verse; no unique implementation lineage asserted", "limitations": ["Days 1/2 follow inclusive-count verse arithmetic, not an original-text special-case claim; no clamping to day 3.", "Original lunar day is retained in leap months."]},
+    "天贵": {"formula": "(independent 文曲 + lunarDay - 2) % 12", "ruleSources": ["ziwei-jielan-chang-qu", "ziweicn-placement-verses"], "school": "《紫微斗数捷览》quoted verse; no unique implementation lineage asserted", "limitations": ["Days 1/2 follow inclusive-count verse arithmetic, not an original-text special-case claim; no clamping to day 3.", "Original lunar day is retained in leap months."]}
+  },
+  "limitations": [
+    "Rule-level reference only, not scientific validity, complete natal-chart validation, product compatibility, acceptance, or prediction.",
+    "Boundary sources are named documentary evidence; publication independence does not establish an independent algorithm/program lineage.",
+    "Base input validation does not prove that a leap month exists in that year or that its supplied day exists.",
+    "Only the 17 transcribed minor stars are placed; the six unresolved names retain their original unresolved status. No brightness or selected-luck output is added.",
+    "Expected generation and product comparison must be separately authorized and recorded; this source file alone is neither a frozen expected dataset nor comparison evidence."
+  ],
+  "productComparison": "NOT_RUN"
+}

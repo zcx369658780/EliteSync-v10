@@ -1,0 +1,61 @@
+{
+  "schema": "elitesync.ziwei.child-composition-sources.v1",
+  "outputSchema": "elitesync.ziwei.child-composition-reference.v1",
+  "status": "MODERN_PROFILE_COMPOSITION_SOURCE_REGISTRATION_ONLY",
+  "blindness": "NOT_BLIND_NO_ACTUAL_READ",
+  "dependencyFiles": ["ziwei_child_composition_reference.py", "ziwei_child_composition_sources.json", "ziwei_selected_reference.py", "ziwei_selected_rule_sources.json", "ziwei_reference.py", "ziwei_reference_sources.json"],
+  "dependencyHashPolicy": "Each output records SHA-256 of the exact bytes of all six dependency files, including new code and this registry; no static self-referential hash.",
+  "inputContract": {
+    "shape": "ziwei_selected_reference.calculate input: exactly birth and target_lunar_year; object or list on stdin",
+    "validation": "Existing independent selected.calculate and base.chart retain validation authority.",
+    "year": "Explicit lunar-year label, not Gregorian/API target_year; no calendar conversion."
+  },
+  "sources": [
+    {
+      "id": "registered-child-layer",
+      "localReference": "ziwei_selected_reference.calculate / child_limit; ziwei_selected_rule_sources.json child-limit-table and child-limit-corollary",
+      "urls": ["https://tianjihq.com/zh-CN/learn/books/ziwei-jielan/53", "https://zh.wikisource.org/wiki/欽定古今圖書集成/博物彙編/藝術典/第567卷"],
+      "use": "Reuse already registered age/role selection and resulting independent natal palace stem/branch.",
+      "limit": "Classical child rule 专就宫垣 and the age/role table do not directly prescribe child four-HUA or moving stars. Original child-limit four_hua/moving_stars remain SCOPE_NOT_ESTABLISHED."
+    },
+    {
+      "id": "registered-hua-component",
+      "localReference": "ziwei_selected_reference.four_hua; ziwei_reference.HUA and independent natal starPositions",
+      "componentSourceId": "flow-stem-layer / base-natal-profile",
+      "urls": ["https://sanqing.com.tw/en/the-chinese-astrology-chart010/", "https://minglimr.com/learn/ziwei/si-hua", "https://www.zhouyi.co/a/yixueketang/20141218/454.html"],
+      "use": "Child-selected palace stem indexes the registered modern ten-stem HUA map; transformation destination is the independently calculated natal star position.",
+      "limit": "Source reuse supplies the HUA table and selected decadal component convention, not independent traditional child-layer applicability. The function's retained flow-stem-layer evidence tag has only component-formula scope here."
+    },
+    {
+      "id": "registered-moving-component",
+      "localReference": "ziwei_selected_reference.moving_stars(stem, branch, annual=False); ziwei_selected_rule_sources.json",
+      "componentSourceIds": ["selected-flow-seven-series", "decadal-horse", "decadal-luan-joy"],
+      "urls": ["https://www.ziweicn.com/show/3085.html", "https://ziwei.yi958.com/zwds/10335/", "https://ziweiscience.com/index.php/2024/05/27/anhongluantianxi/"],
+      "use": "Reuse selected decadal formulas at the child-selected stem/branch with annual=False.",
+      "returnedFields": ["运魁", "运钺", "运禄", "运羊", "运陀", "运昌", "运曲", "运马", "运鸾", "运喜"],
+      "limit": "The existing function returns seven stem-based stars plus horse/Luan/Joy (ten fields), not seven total fields. Their decadal source tags do not establish child-layer traditional applicability."
+    },
+    {
+      "id": "modern-child-composition-profile",
+      "authority": "Main-agent-delegated frozen iztro-compatible modern product-profile choice",
+      "use": "Apply the independently registered decadal component formulas to the independently selected child palace stem/branch, solely to check mathematical composition consistency.",
+      "evidenceGrade": "PRODUCT_PROFILE_COMPOSITION_INFERENCE_NOT_INDEPENDENT_TRADITIONAL_CHILD_RULE",
+      "limit": "Profile choice determines applicability; no actual/vendor/product code was read by this helper, and exact product agreement is NOT_RUN. No invented ancient source or independent program lineage."
+    }
+  ],
+  "fieldProfiles": {
+    "original_child_limit": {"sources": ["registered-child-layer"], "status": "UNCHANGED_REGISTERED_REFERENCE", "limit": "Original SCOPE_NOT_ESTABLISHED child four-HUA/moving-star fields are retained verbatim; this new composition does not amend the old reference."},
+    "child_composition.four_hua": {"sources": ["registered-hua-component", "modern-child-composition-profile"], "formula": "selected.four_hua(child.life_stem.stem_index, independent natal, flow-stem-layer)", "status": "MODERN_PROFILE_MATH_COMPOSITION_ONLY", "limit": "No flow relocation of natal destinations; no direct classical child-HUA prescription asserted."},
+    "child_composition.moving_stars": {"sources": ["registered-moving-component", "modern-child-composition-profile"], "formula": "selected.moving_stars(child.life_stem.stem_index, child.life_branch.branch_index, annual=False)", "status": "MODERN_PROFILE_MATH_COMPOSITION_ONLY", "limit": "Ten returned fields retain 运 prefixes from the selected decadal formula; this reuse is a chosen modern child profile, not independent ancient child moving-star evidence."},
+    "NOT_APPLICABLE": {"sources": ["registered-child-layer"], "formula": "original.child_limit.status != CALCULATED_REFERENCE", "limit": "No child expected arrays fabricated outside the independently selected child layer."}
+  },
+  "limitations": [
+    "NOT_BLIND: author has task/profile context; no actual/vendor read. This is not a blind independent engine comparison.",
+    "Only frozen iztro-compatible modern-profile mathematical composition consistency is referenced; product-profile applicability is chosen, not proven from classical child-limit text.",
+    "古籍童限专就宫垣 is not represented as directly prescribing four-HUA or moving stars. No new independent traditional source or program lineage is manufactured.",
+    "Original registered selected reference and its SCOPE_NOT_ESTABLISHED fields remain unchanged and are included separately in every output.",
+    "Expected generation, freezing and actual/cache comparison are main-agent work. This helper only writes sources and checks AST/JSON syntax.",
+    "No prediction/scientific validity, complete school equivalence, calendar-boundary legality, product acceptance or operational authorization is asserted."
+  ],
+  "productComparison": "NOT_RUN"
+}

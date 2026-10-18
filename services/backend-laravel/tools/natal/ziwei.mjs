@@ -27,13 +27,18 @@ class InputError extends Error {
   constructor(code) { super(code); this.code = code; }
 }
 function check(condition, code) { if (!condition) throw new InputError(code); }
-function dateParts(value) {
+function dateParts(value, sourceDate = null) {
   check(typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value), 'INVALID_EFFECTIVE_DATE');
   const [year, month, day] = value.split('-').map(Number);
-  check(year >= 1900 && year <= 2100, 'UNSUPPORTED_DATE_RANGE');
+  check(year >= (sourceDate ? 1899 : 1900) && year <= (sourceDate ? 2101 : 2100), 'UNSUPPORTED_DATE_RANGE');
   const date = new Date(Date.UTC(year, month - 1, day));
   check(date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day, 'INVALID_EFFECTIVE_DATE');
-  return { year, month, day };
+  const epochDay = Math.floor(date.getTime() / 86400000);
+  // A supported civil birth instant can cross a domain endpoint after the
+  // caller's longitude/timezone conversion. Padding is for that derivation,
+  // not additional accepted birth years or an independent calendar approval.
+  if (sourceDate) check(Math.abs(epochDay - sourceDate.epochDay) <= 2, 'DERIVED_DATE_OUTSIDE_PADDING');
+  return { year, month, day, epochDay };
 }
 function timeParts(value) {
   if (value === undefined || value === null) return null;
@@ -83,12 +88,13 @@ export function serializeHoroscopeLayer(item, layer) {
 
 export function calculate(input) {
   check(input && typeof input === 'object' && !Array.isArray(input), 'INVALID_INPUT');
-  const birth = dateParts(input.effective_civil_date);
+  const sourceBirth = input.source_civil_date == null ? null : dateParts(input.source_civil_date);
+  const birth = dateParts(input.effective_civil_date, sourceBirth);
   const time = timeParts(input.effective_time);
   check(['male', 'female', 'unknown', null, undefined].includes(input.algorithm_sex), 'INVALID_ALGORITHM_SEX');
   const requested = requestedProfile(input.requested_profile);
   if (input.target_year !== undefined && input.target_year !== null) {
-    check(Number.isInteger(input.target_year) && input.target_year >= birth.year && input.target_year <= 2100, 'INVALID_TARGET_YEAR');
+    check(Number.isInteger(input.target_year) && input.target_year >= (sourceBirth ?? birth).year && input.target_year <= 2100, 'INVALID_TARGET_YEAR');
   }
   check(pkg.version === '2.5.8' && lock.packages['node_modules/iztro'].version === '2.5.8', 'ENGINE_VERSION_MISMATCH');
   const ruleFiles = ['lib/data/heavenlyStems.js', 'lib/data/stars.js', 'lib/star/location.js', 'lib/astro/palace.js', 'lib/astro/astro.js', 'lib/astro/FunctionalAstrolabe.js'];
@@ -105,6 +111,7 @@ export function calculate(input) {
     year_boundary: 'LUNAR_NEW_YEAR', horoscope_boundary: 'LUNAR_NEW_YEAR',
     leap_month_rule: 'LEAP_DAYS_1_TO_15_CURRENT_MONTH_16_PLUS_NEXT_MONTH',
     late_zi_rule: 'CURRENT_EFFECTIVE_DATE_NO_ADDITIONAL_DAY_SHIFT',
+    derived_date_policy: 'SUPPORTED_CIVIL_BIRTH_WITH_MAX_TWO_DAY_EFFECTIVE_PADDING_NOT_REFERENCE_APPROVAL',
     feng_gao_rule: 'YIN_PALACE_ZI_HOUR_FORWARD',
     flight_definition: 'SOURCE_PALACE_STEM_TO_TRANSFORMED_STAR_NATAL_PALACE',
     rule_source: 'PINNED_IZTRO_2_5_8_TABLES_AND_METHODS_WITH_OFFICIAL_YOU_BRIGHTNESS_DATA_FIX',
@@ -117,6 +124,8 @@ export function calculate(input) {
     schema_version: 'elitesync.ziwei.natal.v1', engine, requested_profile: requested, effective_profile: effectiveProfile,
     oracle_status: 'UNVERIFIED',
     effective_input: { effective_civil_date: input.effective_civil_date, effective_time: time?.canonical ?? null,
+      source_civil_date: input.source_civil_date ?? input.effective_civil_date,
+      calendar_reference_status: birth.year < 1900 || birth.year > 2100 ? 'DERIVED_EDGE_DATE_UNVERIFIED' : 'UNVERIFIED',
       algorithm_sex: input.algorithm_sex ?? 'unknown', time_index: time ? util.timeToIndex(time.hour) : null },
   };
   if (!time || !['male', 'female'].includes(input.algorithm_sex)) {

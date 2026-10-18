@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
+use App\Models\UserNatalProfile;
 use App\Services\NatalCalculationProfile;
-use App\Services\NatalRuntimeIdentity;
 use App\Services\NatalInputContext;
 use App\Services\NatalProfileView;
-use App\Models\UserNatalProfile;
+use App\Services\NatalRuntimeIdentity;
 use Tests\TestCase;
 
 class V1010NatalRuntimeIdentityTest extends TestCase
@@ -105,6 +105,36 @@ class V1010NatalRuntimeIdentityTest extends TestCase
         }
         $this->assertSame($row->results, $view->profile($row)['results']);
         $this->assertSame($profile['runtime_identity']['kernel']['actual_sha256'], hash_file('sha256', $kernel));
+        $this->assertFalse($row->exists);
+    }
+
+    public function test_prior_chiron_data_identity_cannot_reuse_the_current_full_chart(): void
+    {
+        $python = getenv('NATAL_IDENTITY_TEST_PYTHON');
+        $kernel = getenv('NATAL_IDENTITY_TEST_KERNEL');
+        if (! $python || ! $kernel) {
+            $this->markTestSkipped('Explicit owned runtime/kernel paths not supplied.');
+        }
+        config(['natal.python' => $python, 'natal.kernel' => $kernel]);
+        $input = ['civil_date' => '2000-01-01', 'civil_time' => '12:00:00',
+            'time_precision' => 'second', 'timezone' => 'Europe/London',
+            'latitude' => 51.5, 'longitude' => 0.0, 'algorithm_sex' => 'male'];
+        $settings = app(NatalCalculationProfile::class)->settings(['point_set' => 'full']);
+        $profile = app(NatalCalculationProfile::class)->make($settings);
+        $this->assertSame('AVAILABLE', $profile['runtime_identity']['status']);
+        $previous = $profile;
+        $previous['source_hashes']['resources/natal/data/chiron-lowell-hermite8d-v1.npz'] = str_repeat('0', 64);
+        $oldContext = app(NatalInputContext::class)->normalize($input, $previous);
+        $currentContext = app(NatalInputContext::class)->normalize($input, $profile);
+        $this->assertNotSame($oldContext['input_signature'], $currentContext['input_signature']);
+        $row = new UserNatalProfile(['input' => $input, 'settings' => $settings,
+            'context' => $oldContext, 'input_signature' => $oldContext['input_signature'],
+            'input_revision' => 1, 'result_revision' => 1, 'status' => 'UNVERIFIED',
+            'results' => ['test_marker' => 'previous-data-chart-for-cache-contract-only']]);
+        $stale = app(NatalProfileView::class)->profile($row);
+        $this->assertSame('STALE_RECALCULATION_REQUIRED', $stale['status']);
+        $this->assertNull($stale['results']);
+        $this->assertNull($stale['result_revision']);
         $this->assertFalse($row->exists);
     }
 }

@@ -1,0 +1,51 @@
+{
+  "status": "SOURCE_SCOPED_LABEL_CONVENTION_AND_COMMENTARY",
+  "blindness": {
+    "status": "NOT_BLIND",
+    "parent_knows_actual": true,
+    "reference_author_read_actual": false,
+    "reference_author_read_product_or_vendor": false
+  },
+  "sources": [
+    {
+      "role": "classical_paired_source",
+      "url": "https://zh.wikisource.org/zh/紫微斗數全書/卷二",
+      "scope": "Five paired locations: 甲己申酉, 乙庚午未, 丙辛辰巳, 丁壬寅卯, 戊癸子丑.",
+      "evidence": "CLASSICAL_TRANSCRIPTION_BASE_EDITION_UNVERIFIED",
+      "limit": "The paired rule alone does not uniquely establish the modern fixed split-label convention."
+    },
+    {
+      "role": "modern_original_author_label_semantics_and_commentary",
+      "url": "https://shunshi.ai/zh-tw/wiki/ziwei/zayao/xunkong-jiekong",
+      "parent_observed_lines": "69-86",
+      "scope": "For each fixed pair, the first member is labelled 截路 and the second 空亡. The page distinguishes these labels from selected Zhongzhou regular/secondary 截空 roles.",
+      "inspection": "Parent supplied a freshly read source excerpt; reference author did not independently fetch the page.",
+      "content_policy": "Rule summary only; modern article not reproduced in full."
+    },
+    {
+      "role": "selected_zhongzhou_regular_member_commentary",
+      "url": "https://shunshi.ai/zh-tw/wiki/ziwei/zayao/xunkong-jiekong",
+      "scope": "Select the paired branch with the same yin/yang polarity as the birth-year stem; this role need not equal fixed 截路.",
+      "corroborating_registered_reference": "ziwei_kong_reference.py",
+      "limit": "Selected school commentary only; the existing reference and its alias_limit are unchanged."
+    }
+  ],
+  "provenance_limits": {
+    "possible_common_program_lineage": "UNKNOWN_NOT_EXCLUDED",
+    "authorial_textual_research": "UNKNOWN",
+    "classical_unique_label_authority": false,
+    "complete_independent_certification": false,
+    "acceptance_pass": false,
+    "expected_derived_from_engine": false
+  },
+  "output_contract": {
+    "input": "Strict Python int in 0..59 for 甲子..癸亥; bool rejected.",
+    "branch_fields": "Branch-name strings; regular_branch and selected_zhongzhou_regular_member denote the same selected role.",
+    "source_sha256": "SHA-256 of the reference Python source bytes, not a remote-source integrity assertion."
+  },
+  "limits": [
+    "No civil date, lunar conversion, leap month or year-boundary assertion.",
+    "No all-school equivalence or predictive efficacy assertion.",
+    "No generated expected output, engine comparison, numerical test, product test or scientific test."
+  ]
+}

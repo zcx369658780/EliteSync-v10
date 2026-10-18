@@ -228,7 +228,38 @@ def compute(payload, kernel_path, expected_sha256):
                     retrograde=speed < 0, target_kind='defined_lunar_direction',
                     definition=DEFINITIONS[name], oracle_status='UNVERIFIED'))
         if point_set == 'full':
-            missing.append(dict(name='chiron', status='UNVERIFIED', reason='fixed_data_rights_not_admitted'))
+            from chiron_orbit import ChironOrbit, ChironVector
+            resources = pathlib.Path(__file__).resolve().parents[2] / 'resources/natal'
+            manifest_bytes = (resources / 'chiron-data-manifest.json').read_bytes()
+            manifest = json.loads(manifest_bytes)
+            if (manifest.get('schema') != 'elitesync.chiron.data.v1'
+                    or manifest.get('rights_status') != 'ADMITTED_FOR_CLOSED_SOURCE_COMPUTATION_WITH_ATTRIBUTION'
+                    or manifest.get('profile') != 'lowell-astorb2060-dop54-hermite8d-v1'
+                    or manifest.get('artifact') != 'resources/natal/data/chiron-lowell-hermite8d-v1.npz'):
+                raise ValueError('chiron_data_admission_missing')
+            # The file is local, fixed, and separately permission-admitted.
+            # No remote or restricted-engine fallback is attempted on failure.
+            orbit = ChironOrbit(resources / 'data/chiron-lowell-hermite8d-v1.npz', manifest['artifact_sha256'])
+            target = eph[10] + ChironVector(orbit)
+            def chiron_at(time):
+                position = earth.at(time).observe(target).apparent()
+                latitude, longitude, distance = position.frame_latlon(ecliptic_frame)
+                value = float(longitude.degrees)
+                if zodiac == 'sidereal':
+                    value = angle(value - ayanamsha(time, ts))
+                return value, float(latitude.degrees), float(distance.au)
+            value, chiron_latitude, distance = chiron_at(t)
+            speed = signed(chiron_at(after_time)[0] - chiron_at(before_time)[0]) * 1440
+            planets.append(dict(name='chiron', longitude=value, latitude=chiron_latitude, distance_au=distance,
+                sign_index=int(value // 30), degree=value % 30, speed_degrees_per_day=speed,
+                retrograde=speed < 0, target_id=2002060, target_kind='derived_small_body_centre',
+                definition='Lowell astorb2060 finite-force trajectory; geocentric apparent true ecliptic of date',
+                data_profile=manifest['profile'], data_sha256=manifest['artifact_sha256'],
+                data_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+                reference_status='INDEPENDENT_SAMPLED_REFERENCE_MATCH',
+                oracle_status='UNVERIFIED',
+                source_attribution='Lowell Observatory; L.H. Wasserman; NASA NAG5-4741, NNX16AG52G; Lowell endowment',
+                source_notice='resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt'))
         # True obliquity used by the same true-of-date coordinate frame.
         eps = float(t._mean_obliquity_radians + t._nutation_angles_radians[1])
         house = (houses(latitude, float(t.gast) * 15.0 + longitude, math.degrees(eps), profile.get('house_system', 'placidus'))
@@ -283,7 +314,9 @@ def main():
         if len(raw) > 65536:
             raise ValueError('input_too_large')
         result = compute(json.loads(raw), sys.argv[1], sys.argv[2])
-        print(json.dumps(result, ensure_ascii=False, allow_nan=False))
+        # JSON crosses a PHP subprocess boundary. ASCII escapes preserve Unicode
+        # values without inheriting Windows' legacy stdout code page.
+        print(json.dumps(result, ensure_ascii=True, allow_nan=False))
     except Exception:
         print(json.dumps(dict(calculation_status='ERROR', code='natal_calculation_failed')))
         return 1
