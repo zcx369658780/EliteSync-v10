@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-18 本轮GitHub归档后短期审阅ref核验更新（当前）
+
+**`TEMP_REVIEW_REMOTE_BRANCH_ABSENT / NO_ACTION_IF_API404`**：主交接`9b9f4226a8bda032c6bf4dc5b2c222ea4e285d87`归档之后，GitHub对`review/temporary-evidence-v1010-natal-final-20261018`的branch和git/ref双接口均返回404，清理Commit`5ee12ef9b21a0780e0d1be8b60afcde1bbd81968`仍可读取。Astra本轮**没有对该review branch执行delete**；删除行为/时间来源不做推断。新会话K08核实时若仍404，则视为已缺席，无须重复删除；交接文件末尾“更新核验”覆盖其前文旧ref存在的历史时点。**v10.0.10 K08 Owner已批准但任务单仍未派发、产品未合main**。这只是GitHub文档状态校正，非产品集成。
+
+
 ## 2026-10-18 14:11 会话交接：v10.0.10已接受，Owner批准K08但未派发（当前）
 
 **`V10.0.10 ACCEPTED WITH OBSERVATIONS / OWNER_K08_APPROVED / K08_TASK_ORDER_NOT_YET_DISPATCHED / PRODUCT_NOT_IN_MAIN / NEXT_VERSION_NOT_STARTED`**。Owner已经明确回复“可以我同意，请进入K08”，但当前会话因长度限制停止在**K08综合任务单尚未正式下达、Codex尚未执行**的交接点。Astra已核`main=344b61e9098b213369116993adbb0fe7e8b9949d`（本次doc-only交接将形成较新的main）、接受开发Commit`65b4991837e76d04762b85a9439851264766e192`，源码锚`2be08468754c7b1ad453f9eb0b7085050b3aaf99`，接受apps`01b58edcfec2766a1e764231d4098c0d61ea6d95` / services`c72d392f37968e20d1b48d2252a9549c2b0d04dc`；当前main产品仍是前版apps`cb244162165c572c95bf428c11945d37d0e56d52` / services`f383a84689a0039077b030988ba55ad720b425dd`。临时审阅91文件已从远端审阅分支最新树清除，但`review/temporary-evidence-v1010-natal-final-20261018` ref仍指`5ee12ef9b21a0780e0d1be8b60afcde1bbd81968`，K08应精确头核后顺带删除。完整[交接与下轮K08任务合同](docs/migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md)及[正式验收](docs/versions/v10.0.10/acceptance.md)为新会话首读。旧科学/许可/本地运行限制、原dirty根/历史卷及v10.0.9正式接受状态全部保留。此次仅文档归档，不启动任何服务或产品合并；下一会话先编制一份Codex K08安全集成任务单，由Owner手动派发。

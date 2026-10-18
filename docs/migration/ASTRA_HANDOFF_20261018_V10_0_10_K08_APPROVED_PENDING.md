@@ -76,3 +76,11 @@
 新会话可以使用GitHub直接读当前仓库，但**第一步不再重构路线图或重新验收v10.0.10玄学科学细节**。先核本交接最新main的权限/对象身份，再交付**唯一综合K08 Codex任务单**。后续Owner回报K08完成，由Astra独立核对GitHub对象、报告和测试级别，不单看`CODEX_REPORTED`标签。若有新的远端并发变化，依据实时main调整集成基线，**固定已接受的目标`apps/services`不能漂移**。如Owner未来改变许可、范围或决定，应追加具名决定而不是改写历史失败。
 
 **本文件为handoff snapshot，具体GitHub提交SHA以本次归档后的最新main API回读为准。**
+
+
+## 8. 本轮GitHub归档后的更新核验：临时审阅分支ref已不存在（覆盖上文先前快照）
+
+**重要的新事实（在前述主交接Commit `9b9f4226a8bda032c6bf4dc5b2c222ea4e285d87`写入后再次核验）**：`review/temporary-evidence-v1010-natal-final-20261018` 原先在本会话检查时仍指向`5ee12ef9b21a0780e0d1be8b60afcde1bbd81968`，但GitHub后来对**branch endpoint和git/ref endpoint均返回404**，同时清理Commit `5ee12ef...`仍可直接查询且Tree依旧为接受源码Tree。**远端branch ref目前已不存在**；本轮Astra只调用了docs的create_blob/create_tree/create_commit/update_ref（`main`），**没有执行该review branch的delete操作**，不能武断归因是谁、何时删除或声称历史Git对象被清除。
+
+**下一会话/K08应以此后继事实为当前状态**：先独立复核远端review branch是否404；如已404则登记`ALREADY_ABSENT / NO_ACTION`，**不要创建、重复删除或反复申请临时证据清理权限**。只有若后来同名分支意外重现且头精确等于上文清理Commit，才可按原批准边界执行一次普通删除，否则暂停回报。上述历史节内“ref仍存在/待清理”是本次归档前已经核验过的真实时点，不代表最新状态。正式产品`main`和开发分支`codex/v10.0.10-natal-restoration`在此核验时均未因这一变化而合并或改变。
+
