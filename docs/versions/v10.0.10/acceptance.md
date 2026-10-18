@@ -41,3 +41,10 @@
 **最终裁决：`V10.0.10 ACCEPTED WITH OBSERVATIONS`**。本次完成冻结三盘本命版的功能验收（8AC按上表限定PASS），保留精度、许可、现代规则/童限、版本元数据与LOCAL_ONLY证据级别。
 
 停止本版自行继续无穷定点返修；未经Owner具体派发，**不自动开展K08产品集成、不可做正式生产发布、不得开启动态关系盘后继版本**。后续由Owner向Codex手动转交同一版本级K08安全集成/本地接续任务，延续此前0.9成功方法，保持严格产品源身份和所有本版原始失败/科学观察及私有数据/dirty根保护。短期审阅目录仅作证据，不纳入main。
+
+
+## 五、接受后短期审阅材料清理实况（追加事实）
+
+Astra独立接受之后，针对**唯一具名**远端审阅分支`review/temporary-evidence-v1010-natal-final-20261018`，确认原HEAD精确为`10bd9be1b7c6d14fa16003a266845d5f40fe32ab`，按既有临时审阅协议创建**普通非force的快进**清理Commit`5ee12ef9b21a0780e0d1be8b60afcde1bbd81968`，其唯一parent为前述91项公开脱敏审阅Commit，**Tree精确等于已接受的产品源Tree**`8c893d71984ff9cdece9b22718ade86ab9bb5f2f`。审阅分支远端HEAD回读等于清理Commit，最新HEAD上的`docs/_temporary_review/v1010-natal-final-20261018/README.md`已返回HTTP404，91项临时文件不再在该分支当前树出现。
+
+**远端审阅分支ref尚未删除**，状态为`TEMP_CONTENT_CLEARED / REMOTE_REVIEW_REF_DELETION_PENDING`；后续Owner手动派发v10.0.10 K08时可由Codex**仅在该远端分支HEAD仍精确等于清理Commit**的条件下一次性普通删除，并经API404核验，无须单独微任务。固定原审阅Commit的历史对象可能仍可按SHA访问，branch ref删除不能保证公共历史或缓存消除。不得把临时清理扩大为产品分支删除、Git历史重写、清理本地PRIVATE/LOCAL_ONLY或无关worktree。
