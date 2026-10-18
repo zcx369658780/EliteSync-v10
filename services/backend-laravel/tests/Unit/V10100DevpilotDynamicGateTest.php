@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Http\Middleware\PrivateDynamicCharts;
 use App\Services\DynamicChartService;
+use Illuminate\Http\Request;
 use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
 use Tests\TestCase;
@@ -11,6 +13,42 @@ class V10100DevpilotDynamicGateTest extends TestCase
 {
     #[DataProvider('gateCases')]
     public function test_gate_before_any_calculation_or_database_access(array $overrides, string $expected): void
+    {
+        $this->configureGate($overrides);
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage($expected);
+        // Empty input stops admitted cases at runtime identity, before Process is constructed.
+        app(DynamicChartService::class)->compute([]);
+    }
+
+    #[DataProvider('gateCases')]
+    public function test_get_collection_and_item_share_the_calculation_gate(array $overrides, string $expected): void
+    {
+        $this->configureGate($overrides);
+        $admitted = $expected === 'dynamic_runtime_unavailable';
+
+        foreach (['/api/v1/profile/dynamic', '/api/v1/profile/dynamic/123'] as $path) {
+            $reachedHandler = false;
+            $response = app(PrivateDynamicCharts::class)->handle(Request::create($path, 'GET'),
+                function () use (&$reachedHandler) {
+                    $reachedHandler = true;
+
+                    return response()->json(['test_handler' => true]);
+                });
+
+            $this->assertSame($admitted, $reachedHandler, $path);
+            $this->assertSame($admitted ? 200 : 403, $response->getStatusCode());
+            $this->assertTrue($response->headers->hasCacheControlDirective('private'));
+            $this->assertTrue($response->headers->hasCacheControlDirective('no-store'));
+            if (! $admitted) {
+                $this->assertSame(['code' => 'dynamic_environment_not_admitted'],
+                    json_decode($response->getContent(), true));
+            }
+        }
+    }
+
+    private function configureGate(array $overrides): void
     {
         $this->app->instance('env', $overrides['environment'] ?? 'local');
         unset($overrides['environment']);
@@ -24,11 +62,6 @@ class V10100DevpilotDynamicGateTest extends TestCase
             ],
         ]);
         config($overrides);
-
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage($expected);
-        // Empty input stops admitted cases at runtime identity, before Process is constructed.
-        app(DynamicChartService::class)->compute([]);
     }
 
     public static function gateCases(): array

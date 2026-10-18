@@ -131,10 +131,11 @@ class DynamicChartService
         return $context;
     }
 
-    public function compute(array $prepared): array
+    // Configuration only: safe for read middleware before any database or calculation work.
+    public static function admissionError(): ?string
     {
         if (! app()->environment(['local', 'testing']) || ! config('dynamic_charts.enabled', false)) {
-            throw new RuntimeException('dynamic_runtime_not_admitted');
+            return 'dynamic_runtime_not_admitted';
         }
         $connection = config('database.connections.'.config('database.default'), []);
         $testingSqlite = app()->environment('testing')
@@ -148,7 +149,16 @@ class DynamicChartService
                 || ($connection['host'] ?? null) !== '127.0.0.1'
                 || ! in_array($connection['driver'] ?? null, ['mysql', 'mariadb'], true)
                 || ! empty($connection['url']) || ! empty($connection['unix_socket']))) {
-            throw new RuntimeException('dynamic_database_not_admitted');
+            return 'dynamic_database_not_admitted';
+        }
+
+        return null;
+    }
+
+    public function compute(array $prepared): array
+    {
+        if (($error = self::admissionError()) !== null) {
+            throw new RuntimeException($error);
         }
         if (($prepared['payload']['first']['calculation_profile']['runtime_identity']['status'] ?? null) !== 'AVAILABLE') {
             throw new RuntimeException('dynamic_runtime_unavailable');
