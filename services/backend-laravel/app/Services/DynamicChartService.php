@@ -136,9 +136,18 @@ class DynamicChartService
         if (! app()->environment(['local', 'testing']) || ! config('dynamic_charts.enabled', false)) {
             throw new RuntimeException('dynamic_runtime_not_admitted');
         }
-        if (! app()->environment('testing')
-            && (config('database.connections.'.config('database.default').'.database') !== config('dynamic_charts.database', 'elitesync_v1011_dev')
-                || config('database.connections.'.config('database.default').'.host') !== '127.0.0.1')) {
+        $connection = config('database.connections.'.config('database.default'), []);
+        $testingSqlite = app()->environment('testing')
+            && ($connection['driver'] ?? null) === 'sqlite'
+            && ($connection['database'] ?? null) === ':memory:'
+            && empty($connection['url']);
+        $selectedDatabase = config('dynamic_charts.database', 'elitesync_v1011_dev');
+        if (! $testingSqlite
+            && (! in_array($selectedDatabase, ['elitesync_v1011_dev', 'elitesync_v1010_devpilot'], true)
+                || ($connection['database'] ?? null) !== $selectedDatabase
+                || ($connection['host'] ?? null) !== '127.0.0.1'
+                || ! in_array($connection['driver'] ?? null, ['mysql', 'mariadb'], true)
+                || ! empty($connection['url']) || ! empty($connection['unix_socket']))) {
             throw new RuntimeException('dynamic_database_not_admitted');
         }
         if (($prepared['payload']['first']['calculation_profile']['runtime_identity']['status'] ?? null) !== 'AVAILABLE') {

@@ -29,13 +29,14 @@ class MainActivity : FlutterActivity() {
                         val extras = intent?.extras
                         val synthetic = BuildConfig.ELITESYNC_SYNTHETIC_DEMO
                         val restoration = BuildConfig.DEBUG && BuildConfig.ELITESYNC_V1006_LOCAL_BUILD
+                        val pilot = BuildConfig.DEBUG && BuildConfig.ELITESYNC_V10_1_0_PILOT_BUILD
                         val syntheticEndpoints = if (synthetic) {
                             BootstrapEndpointPolicy.resolve(synthetic = true, debug = BuildConfig.DEBUG)
                         } else {
                             null
                         }
-                        val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic)
-                        val endpoints = if (restoration) BootstrapEndpointPolicy.Endpoints(BuildConfig.API_BASE_URL, "") else syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
+                        val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic && !pilot)
+                        val endpoints = if (pilot) BootstrapEndpointPolicy.Endpoints(BuildConfig.API_BASE_URL, BuildConfig.WS_BASE_URL) else if (restoration) BootstrapEndpointPolicy.Endpoints(BuildConfig.API_BASE_URL, "") else syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
                             synthetic = false,
                             debug = BuildConfig.DEBUG,
                             intentApi = extras?.getString("elitesync_api_base_url"),
@@ -69,6 +70,11 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun ensureBootstrapDefaults() {
+        if (BuildConfig.DEBUG && BuildConfig.ELITESYNC_V10_1_0_PILOT_BUILD) {
+            intent?.putExtra("elitesync_api_base_url", BuildConfig.API_BASE_URL)
+            intent?.putExtra("elitesync_ws_base_url", BuildConfig.WS_BASE_URL)
+            return
+        }
         val syntheticEndpoints = if (BuildConfig.ELITESYNC_SYNTHETIC_DEMO) {
             BootstrapEndpointPolicy.resolve(synthetic = true, debug = BuildConfig.DEBUG)
         } else {

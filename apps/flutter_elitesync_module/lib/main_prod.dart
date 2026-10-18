@@ -56,7 +56,72 @@ String _firstNonEmpty(List<String> values) {
 }
 
 @visibleForTesting
+String resolvePilotApiBaseUrl({
+  required Map<String, String> hostBootstrap,
+  required String configuredApi,
+}) {
+  _validatePilotEndpoint(configuredApi, webSocket: false);
+  if (hostBootstrap['apiBaseUrl'] != configuredApi) {
+    throw StateError('Pilot API must match the explicit Android build endpoint.');
+  }
+  return configuredApi.endsWith('/') ? configuredApi : '$configuredApi/';
+}
+
+@visibleForTesting
+String resolvePilotWsBaseUrl({
+  required Map<String, String> hostBootstrap,
+  required String configuredWs,
+}) {
+  if ((hostBootstrap['wsBaseUrl'] ?? '') != configuredWs) {
+    throw StateError('Pilot WS must match the explicit Android build endpoint.');
+  }
+  if (configuredWs.isNotEmpty) {
+    _validatePilotEndpoint(configuredWs, webSocket: true);
+  }
+  return configuredWs;
+}
+
+void _validatePilotEndpoint(String value, {required bool webSocket}) {
+  final uri = Uri.tryParse(value);
+  // Uri may normalize away an empty userinfo marker, so inspect the input too.
+  final rawAuthority = RegExp(r'^[A-Za-z][A-Za-z0-9+.-]*://([^/?#]*)')
+      .firstMatch(value)
+      ?.group(1);
+  final secureScheme = webSocket ? 'wss' : 'https';
+  final loopbackScheme = webSocket ? 'ws' : 'http';
+  if (value.isEmpty ||
+      value.trim() != value ||
+      uri == null ||
+      !uri.isAbsolute ||
+      !uri.hasAuthority ||
+      uri.host.isEmpty ||
+      uri.userInfo.isNotEmpty ||
+      (rawAuthority?.contains('@') ?? false) ||
+      uri.authority.contains('@') ||
+      uri.hasQuery ||
+      uri.hasFragment ||
+      !(uri.scheme == secureScheme ||
+          (uri.scheme == loopbackScheme &&
+              uri.authority == '127.0.0.1:8030' &&
+              (webSocket || value == 'http://127.0.0.1:8030/')))) {
+    throw StateError(
+      'Pilot endpoint requires HTTPS/WSS or controlled 127.0.0.1:8030 forwarding.',
+    );
+  }
+}
+
+@visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
+  if (const bool.fromEnvironment('ELITESYNC_V10_1_0_PILOT_BUILD')) {
+    resolvePilotWsBaseUrl(
+      hostBootstrap: hostBootstrap,
+      configuredWs: const String.fromEnvironment('ELITESYNC_PILOT_WS_BASE_URL'),
+    );
+    return resolvePilotApiBaseUrl(
+      hostBootstrap: hostBootstrap,
+      configuredApi: const String.fromEnvironment('ELITESYNC_PILOT_API_BASE_URL'),
+    );
+  }
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
   if (const bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8011/') {
@@ -97,6 +162,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final hostBootstrap = await _readHostBootstrap();
+  const pilotBuild = bool.fromEnvironment('ELITESYNC_V10_1_0_PILOT_BUILD');
   const internalDevPreview = bool.fromEnvironment(
     'ELITESYNC_INTERNAL_DEV_PREVIEW',
   );
@@ -112,6 +178,7 @@ Future<void> main() async {
     ),
   );
   const restoration =
+      bool.fromEnvironment('ELITESYNC_V10_1_0_PILOT_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
@@ -133,13 +200,17 @@ Future<void> main() async {
   await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
-      appName: flavor == AppFlavor.dev ? 'EliteSync Dev' : 'EliteSync',
+      appName: pilotBuild
+          ? 'EliteSync 10.1.0-devpilot'
+          : flavor == AppFlavor.dev
+          ? 'EliteSync Dev'
+          : 'EliteSync',
       // The Android host app embeds the Flutter release AAR, which always
       // boots through main.dart -> main_prod.dart. Keep prod pointed at the
       // verified direct backend entry until the public domain chain is stable.
       apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
       useMockData: false,
-      useLiveKitRtc: rtcRestoration || !restoration,
+      useLiveKitRtc: pilotBuild || rtcRestoration || !restoration,
       restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,
