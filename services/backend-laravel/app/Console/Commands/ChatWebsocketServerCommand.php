@@ -17,20 +17,6 @@ class ChatWebsocketServerCommand extends Command
 
     protected $description = 'Run lightweight chat websocket gateway based on DB polling';
 
-    private function parseUserIdFromPath(string $uri): ?int
-    {
-        $path = parse_url($uri, PHP_URL_PATH) ?: '/';
-
-        if (preg_match('#^/api/v1/messages/ws/(\d+)$#', $path, $m)) {
-            return (int) $m[1];
-        }
-        if (preg_match('#^/ws/(\d+)$#', $path, $m)) {
-            return (int) $m[1];
-        }
-
-        return null;
-    }
-
     private function prepareWorkermanArgv(): void
     {
         $argv = $_SERVER['argv'] ?? [];
@@ -79,19 +65,15 @@ class ChatWebsocketServerCommand extends Command
         };
 
         $gateway->onWebSocketConnect = function (TcpConnection $connection, $request): void {
-            $uri = $request->server['request_uri'] ?? '/';
-            $userId = $this->parseUserIdFromPath($uri);
-            parse_str((string) parse_url($uri, PHP_URL_QUERY), $query);
-            $peerId = (int) ($query['peer_id'] ?? 0);
-            $authorization = method_exists($request, 'header') ? (string) $request->header('authorization') : '';
-
-            $authorizationResult = $userId ? app(ChatWebsocketAuthorizationService::class)->authorize($authorization, $userId, $peerId) : null;
+            $authorizationResult = app(ChatWebsocketAuthorizationService::class)->authorizeRequest($request);
             if (!$authorizationResult) {
                 $connection->close();
 
                 return;
             }
 
+            $userId = (int) $authorizationResult['actor_id'];
+            $peerId = (int) $authorizationResult['peer_id'];
             $connection->userId = $userId;
             $connection->peerId = $peerId;
             $connection->tokenId = (int) $authorizationResult['token_id'];

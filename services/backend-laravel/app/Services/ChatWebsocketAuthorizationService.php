@@ -4,9 +4,22 @@ namespace App\Services;
 
 use App\Models\User;
 use Laravel\Sanctum\PersonalAccessToken;
+use Workerman\Protocols\Http\Request;
 
 class ChatWebsocketAuthorizationService
 {
+    public function authorizeRequest(Request $request): ?array
+    {
+        $uri = $request->uri();
+        $path = parse_url($uri, PHP_URL_PATH) ?: '/';
+        if (!preg_match('#^/(?:api/v1/messages/ws|ws)/(\d+)$#', $path, $match)) return null;
+        $userId = (int) $match[1];
+        if ($userId <= 0) return null;
+        parse_str((string) parse_url($uri, PHP_URL_QUERY), $query);
+
+        return $this->authorize((string) $request->header('authorization'), $userId, (int) ($query['peer_id'] ?? 0));
+    }
+
     public function authorize(string $authorizationHeader, int $claimedUserId, int $peerId): ?array
     {
         if (!preg_match('/^Bearer\s+(\S+)$/i', trim($authorizationHeader), $match)) return null;
