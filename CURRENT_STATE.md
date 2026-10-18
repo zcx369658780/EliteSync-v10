@@ -1,5 +1,9 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-18 v10.0.10 完整本命候选交付（当前）
+
+**FINAL_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**。来源、许可、八字/紫微/西占、独立参考、当前APK、APP→Laravel→本版MariaDB重算/重启及限制统一见[综合报告](docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)和[验证汇总](docs/versions/v10.0.10/validation-summary.json)。产品源码`2be08468754c7b1ad453f9eb0b7085050b3aaf99`，开发分支已交付；不是main集成、K08或下一版。APP/API/本版DB停止、卷与原证保留，受控AVD/Docker Desktop仍运行。历史BLOCKED/NOT_RUN按其时点保留。
+
 ## 2026-10-17 v10.0.10 同版继续：新增参考，最终仍阻塞
 
 源码0384a8ee65294931d35602b2a486f70ae3baedb6明确交运/西占定义并新增独立参考；数值口径与冻结AC不变。CONTINUE_SAME_VERSION / RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED。见[综合报告](docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)和[唯一集中决策请求](docs/versions/v10.0.10/OWNER_DECISION_REQUEST.md)。本轮服务/DB/APP重建安装NOT_RUN；以下历史记录保留各时点含义。

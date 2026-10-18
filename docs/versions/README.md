@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-18 v10.0.10 候选（尚未接受）
+
+完整三盘本命、具名扩展及选定运限已集中交付，源`2be08468754c7b1ad453f9eb0b7085050b3aaf99`；详见[综合报告](v10.0.10/IMPLEMENTATION_REPORT.md)。FINAL_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED。有限参考、异文与旧失败保留；旧动态/关系盘仍为内测前具名强制欠账。未合main/K08，未实施下一版。下方历史正文保留。
+
 ## 2026-10-17 v10.0.10 同版继续
 
 源码0384a8ee65294931d35602b2a486f70ae3baedb6补明确计算约定与独立参考。[同一综合报告](v10.0.10/IMPLEMENTATION_REPORT.md)、[唯一集中决策请求](v10.0.10/OWNER_DECISION_REQUEST.md)。仍为RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL / NOT_FINAL_CANDIDATE / NOT_ACCEPTED。

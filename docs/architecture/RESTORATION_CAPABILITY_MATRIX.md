@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-18 v10.0.10 候选（尚未接受）
+
+完整三盘本命、具名扩展及选定运限已集中交付，源`2be08468754c7b1ad453f9eb0b7085050b3aaf99`；详见[综合报告](../versions/v10.0.10/IMPLEMENTATION_REPORT.md)。FINAL_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED。有限参考、异文与旧失败保留；旧动态/关系盘仍为内测前具名强制欠账。未合main/K08，未实施下一版。下方历史正文保留。
+
 ## 2026-10-17 v10.0.10 同版参考补足
 
 已补交运Gregorian约定、CRC1956/平均远地点定义与APP标签；新增30日期、83起运、28西占定义样本及40合法输入的17余星/72选定运限局部参考。完整亮度/流曜/边界和Chiron仍阻塞，见[同一综合报告](../versions/v10.0.10/IMPLEMENTATION_REPORT.md)与[集中决策请求](../versions/v10.0.10/OWNER_DECISION_REQUEST.md)。动态/关系盘内测前必恢复欠账不删除，不降AC，不合main/K08。

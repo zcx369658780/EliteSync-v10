@@ -1,8 +1,51 @@
 # v10.0.10 三盘本命恢复：综合实施与阻塞报告
 
+## 2026-10-18 完整本命候选集中交付（当前唯一状态）
+
+**V10.0.10 FINAL CANDIDATE DELIVERED / AWAITING ASTRA INDEPENDENT ACCEPTANCE / NOT_YET_ACCEPTED**。方案A及冻结plan Blob `2057aa81e5c36da3236861ff767aed1c4fceb141` 未改；这是一份综合候选，非接受、main集成或K08。以下旧章节按原时点保留，其 BLOCKED、NOT_RUN、旧build与旧HEAD不能覆盖本节，也不反向改写原失败。
+
+产品源码 Commit **`2be08468754c7b1ad453f9eb0b7085050b3aaf99`**；Tree **`8c893d71984ff9cdece9b22718ade86ab9bb5f2f`**；apps=`01b58edcfec2766a1e764231d4098c0d61ea6d95`；services=`c72d392f37968e20d1b48d2252a9549c2b0d04dc`。本节及交付登记的后继纯文档提交不改变这两个产品子Tree。开发分支 `codex/v10.0.10-natal-restoration`；正式main本次只读为 `234b0cc1fc30b163a80bbbb9ebaa487720cf5234`，未合main。代码相对K08的范围为Flutter本命输入/盘面/真实设置及相应私有Laravel、迁移、独立PHP/Node/Python计算器/锁/NOTICE/测试；本轮相对24ac的精确路径见validation-summary的source.paths。没有RTC或匹配评分新增功能。
+
+[最小公开安全审阅副本](https://github.com/zcx369658780/EliteSync-v10/blob/10bd9be1b7c6d14fa16003a266845d5f40fe32ab/docs/_temporary_review/v1010-natal-final-20261018/README.md)：分支 `review/temporary-evidence-v1010-natal-final-20261018`，Commit `10bd9be1b7c6d14fa16003a266845d5f40fe32ab`，Tree `a4f90066863936679cde69185147740ea56a59d4`，91文件／71个唯一blob，GitHub API逐路径及内容回读全等；原始LOCAL_ONLY未上传。MANIFEST逐项列原件SHA256、公开副本SHA256及脱敏方式；GitHub可读源码/副本不等于Astra已核验Windows执行。分支不得合产品/main；保留到Astra审阅及具名、精确HEAD清理授权。
+
+| 冻结AC | 本候选真实结果、来源与适用限制（交Astra逐项裁决，非自授ACCEPT） |
+|---|---|
+| AC-10-01 来源/许可/完整性 | lunar-php1.4.0、iztro2.5.8＋三格官方数据勘误、Skyfield1.55及固定DE440s/时表；34个具名NOTICE文件再次核hash。Lowell元素及自产Chiron轨道以明确署名use/copy/transmit许可准入；不用Swiss/Kerykeion/pyswisseph/NIMA/Horizons Chiron或MPC原观测。旧具名能力、动态关系盘强制后续欠账、SBOM/来源/锁保留。 |
+| AC-10-02 输入/历法/TZ | 实装APP生日/民用时精度/unknown、IANA TZ、坐标和独立算法性别→Laravel校验→私有表；原DST gap/fold、子时/岁首、节令及负例保留。最后新增合法原生日旁两日的太阳日期派生padding，1900/2101边缘不冒称独立历表已验；canonical保存合同不扩张。 |
+| AC-10-03 八字 | 四柱/藏干/十神/纳音/地势/五行及大运/起运/流年/胎元胎息命身宫真实计算。原64＋24盲选2200比较、起运249/Gregorian90、扩展及纯规则5760等各自适用；跨年代24例600字段与日历标签补充一致。4848独立节气根、2424节最大2.626秒差；五寒露样本获独立秒网格下sect1/Gregorian条件化核对，原HKO分钟不确定性不删。现代Gregorian顺序截月末/时区/量化是具名兼容约定，不称传统唯一秒级物理真值。 |
+| AC-10-04 紫微 | 单一冻结iztro-compatible profile的十二宫/命身/宫干五局/66星、四化/自化/有向命宫飞星、亮度与选定大限/小限/流年真实输出。232格有具名明表；原5040基本规则、102运限快照10464行、16岁首800行、24新selector边界2470行及原24盲选保留原范围；本轮17星72缓存1224项、命身主/来因/本命岁前将前2736项均一致。长生864＋1200、博士864、年系180、固定截空名称120等不叠加成覆盖率。童限附加四化/10流曜30例420仅现代profile组合一致性，古籍适用源仍未证；不借其它派别拼表。月星闰月为通则组合，刻本/异文及来源谱系限制保留。 |
+| AC-10-05 西占 | 十主体/四轴/三宫制/落宫/相位/逆行、具名CRC1956自定义恒星黄道、真交点轴、平均Lilith及Chiron，full实算14点。保留96＋24主体参考、288几何、120月点/28定义补盲等各自证据。Chiron独立外部初值/force软件96＋24新时刻＋20停滞点邻侧比较最大黄经差0.000113555°、纬度0.000064144°，阈值0.001°，逆行一致。不是官方Lahiri/旧引擎逐位等价，不证明全世纪连续物理误差；极地/缺时/未准入数据正确拒绝或降级。 |
+| AC-10-06 APP/API/持久DB/缓存 | 当前APK实际安装，UI修改01:05:06→01:06:07至A5；最后后端修复触发STALE隐藏，APP再保存至A6，B以最新源码重算至31。逐一核实际source_hashes、full14、同输入缓存、GET和旧编辑409。之后只重启本版API＋原虚构MariaDB/volume，两行SQL字节及API profile前后一致；APP进程冷启动重入可见A6/6。canonical生日未改，未重建/seed。日期/时/TZ/坐标/模式变化回归按此前适用范围复用。 |
+| AC-10-07 权限/既有合同 | 最新50项PHP涵本人/非本人、禁用者、过期编辑/过期计算、异常及runtime/data cache使用点；原真实API鉴权401、越权query无效、422不覆盖结果保留。Flutter23项涵会话切换/设置/旧动态入口保护。CN/MC/匹配代码合同未改，不新增玄学评分/硬筛选；全历史/RTC NOT_RUN。 |
+| AC-10-08 构建/安装/交付/复核 | 当前AAR/APK、本地stdout/stderr/exit、数据/源码/依赖hash、原失败及非作者只读累计复核已关联。内部复核无确定缺陷，不替代Astra精度、权利或版本独立裁决。498个客户端构建输入当前字节仍相同；后端末次修复后的真实重算/重启已单独完成。 |
+
+实际最终检查：PHP **36 passed＋14 deprecated，9022 assertions，exit0**；Node主测试**10/10、0skip、exit0**；Western **15**、Chiron reader **7**均exit0；Flutter **23通过**，修改文件analyze无问题；19项portable构造/身份校验通过但未积分。原period-domain/clock、算法oracle、权限回归按影响复用，不与本轮数相加。最后新增参考只重放原30/420缓存，产品新运行0。语法/JSON、6项制品/构建pin、8项staged blob与原字节、34 NOTICE及无冲突阶段检查通过。字节pin故意保留CRLF；默认diff-check的CR尾误报原件保留，以命令局部 `cr-at-eol`重新识别后检查通过，未改全局Git或轨道字节。
+
+APK **`d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2`**（222959834 bytes）；AAR **`dca5a7d4b24d7ce01fb53ffb4053f195dcf5266d172dcb48e942013f947a19e0`**（4030249 bytes）。是本版隔离开发测试包，显示版本仍0.08.04，不伪称已发布正式0.10包；旧build4仅代表旧源码。
+
+Chiron自产轨道SHA256 `b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3`，438113 bytes、9182个8日节点、1900–2101含padding，builder逐字节重放一致。独立Gaia拟合初值只留内部参考，不分发原始状态/协方差；共享行星数据与有限力模型、遗漏小行星/fullEIH/J2/NG/协方差传播均在清单中。24例只有输入selector盲，主runner NOT_BLIND。这里的独立采样/规则证据不把所有盘面UNVERIFIED自动改成VERIFIED，也不宣称任何玄学预测效力。JPL/NIMA仍SENT/REPLY_PENDING/RIGHTS_NOT_GRANTED，本次无新邮件、查信、监测或费用请求。
+
+最后安全收口：测试APP/API/本版DB已停，8010 reverse已撤，volume/数据/临时socket备份及全部旧原证保留；受控AVD与Docker Desktop留运行，没有停止其它项目。原dirty根HEAD/index/status及43项记录hash相同；不声称重哈全部untracked媒体。原PHP16既有失败、AEC/回声观察、call65额外DB/room终态缺证、旧/up根因UNKNOWN保留。原503/RED、默认diff-check、脚本字段KeyError、启动health首失败及所有科学差异记录保留；health次读通过。无生产、旧敏感DB、UAC/防火墙/全局SDK、RTC、main合并/K08或下一版。
+
+**没有新增Owner费用/权限/流派决定请求。等待Astra按冻结8AC独立接受或集中指出真实缺陷；Codex没有宣布ACCEPTED。**
+
+---
+
+## 2026-10-18 当前事实增补（最终核验进行中）
+
+**FINAL_VERIFICATION_IN_PROGRESS / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。主代理稍后填写最终源码identity；本节不预填或推定该identity。新增核验仍为 **CODEX_REPORTED / LOCAL_ONLY**，不是Astra终验。下一个章节及其后全部正文保留为历史记录，按当时源码和证据时点理解。
+
+Lowell `astorb.dat` 作者条款明确允许署名后free use/copy/transmit；当前官网及CDS具名ReadMe已核，来源权利已登记于notice和manifest。许可仅覆盖所选轨道元素与自产轨道，不延伸到CDS其他catalog、MPC原观测、Gaia原数据、NIMA/Horizons或Swiss。JPL/NIMA仍待回复且未授予权利，不启动替代联系、邮箱查询或购买。
+
+Chiron使用Lowell 2021-03-27 TT初值（3186条观测、45945天弧）；Gaia独立拟合初值仅作内部参考。自有太阳、主要行星、EarthMoon和solar 1PN有限模型，以DOPRI54及8日Hermite生成1900–2101含pad的9182节点。离线builder重建产物 SHA-256 `b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3`（438113 bytes）；八个源码/数据pin逐字节核对通过。constructor/身份验证19项仅检查构造、导入和method binding，**未积分**。原96日期Gaia独立force/DOP853/ERFA对照和新增24个selector时间、20个停滞点邻近参考时刻，最大黄经差 `0.00011355449294114806°`、纬度差 `6.414310619362595e-05°`，逆行一致；距离/速度只作诊断。selector只对输入选择盲，主runner **NOT_BLIND**，共用物理模型和行星数据，不能建立世纪连续误差界；小行星扰动、完整EIH、J2、非引力项、协方差传播仍未覆盖。120区间×3点插值误差只说明数学插值，不是轨道oracle。原closing失败、路径exit2和重复样本guard exit1保留；compare重放未重积分expected。完整限定与许可来源见本报告旧记录。
+
+本轮选定源码PHP结果为36 passed、14 deprecated、9022 assertions（`20261018-final-source-all-v1010-php.stdout`）；时标CLI为15 tests，衍生太阳日期Node为10/10、PHP为1 test/14 assertions。JSON cp936中文编码已改为ASCII转义，原503及RED记录保留。派生太阳日期只在canonical出生域1900–2100旁最多扩展2天供计算，不扩大canonical范围；输入明确标为 **UNVERIFIED**。童限边界使用72例缓存×17项=1224项，产品新运行0；chart-marker对照为72×38=2736项，产品新运行0。年解/天德/月德180项及固定截路/空亡120项保留来源边界；66个本命星位有具名参考，但代码和数据查表推导不等于整派认证。紫微亮度余下8个表格空位不是缺格，来源谱系/刻本限制及阴干反例均保留。比较回执只证明已列案例，不升级整体AC或字段 `VERIFIED`。
+
+当前APK本轮构建成功并安装，APK SHA-256 `d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2`；旧build4不能代表当前源码。A盘UI将 `01:05:06` 修改为 `01:06:07` 至revision 5，并有API/DB读回。较早A5/B30持久化与重启结果尚未绑定此后源码边界修复，需待主代理最终固定源码后再做最终存储核验；API请求总数以主代理实际summary为准，本节不推算。Docker两个临时socket目录仅改名并完整保留恢复；未reset、改volume、配置或密钥，数据库当前运行。最终复核及最终candidate identity仍由主代理收口；没有新增Owner决定。
+
 ## 2026-10-18 持续实施：独立规则与实际边界补齐（当前）
 
-**CONTINUE_SAME_VERSION / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。沿用方案A和冻结AC；不另发检查点、不重复申请普通技术权限。本地源码依次保存运限UI `d445051e6212277a1f77e772bd2936d4a55613a8`、可重放独立亮度参考 `dce899c88f707ba5e50843e5a724a0f76f140e53`（Tree `df56d363d7beb0a419c41e5aa06224b30b030926`）；apps=`f7a13582772aabdb606e020a232b573c67482222`，services=`0c6450f77ba8d7352936b5667e9ab9ebf49bc549`。后续本报告/规则说明只改变文档身份。实时只读核验main仍 `234b0cc1fc30b163a80bbbb9ebaa487720cf5234`，远端开发分支仍 `4222645703821ab20896765a31df1cfa375034ca`；本地新成果**没有推送**，仍是CODEX_REPORTED / LOCAL_ONLY，非Astra已复核。
+**CONTINUE_SAME_VERSION / NOT_FINAL_CANDIDATE / NOT_ACCEPTED**。沿用方案A和冻结AC。本地源码已保存 `24ac02cf21cc56a1d74c33e7587460e99d3a2af3` / Tree `8ce86fd0bb3086a1bae8321618bf076c3a5a13c5`，apps=`52e4a3ea6878e9c5fcc16fc352aef358e99d4602`、services=`9012fbcfda4a49d786f3e763a978b27e2451f360`。本轮8个精确路径含有限运限哨兵修复、APP不适用层、相应测试及永久独立参考/计算说明；前次232格亮度等成果保留。只读远端核验main仍 `234b0cc1fc30b163a80bbbb9ebaa487720cf5234`，开发分支仍 `4222645703821ab20896765a31df1cfa375034ca`。未推送微型检查点；结果为 **CODEX_REPORTED / LOCAL_ONLY**，不是Astra终验。
 
 | 已完成工作 | 真实结果与适用范围 |
 |---|---|
@@ -12,14 +55,19 @@
 | 闰月四星 | 12例×4星48位置与来源结构推论一致；讲义通用上下半月规则及月星分类支持推论，但没有逐星无例外明文。保留原48个NOT_ASSERTED，不把推论吻合升级为全流派认证。 |
 | 本命农历年界与早晚子 | 非作者先冻6个HKO日期×男女×00:00/23:00共24例；当前Node适配器实际运行。公农历、年干支、五行局、命身/宫干宫职、43具名星位、四化及有向飞化共3384比较行一致。部分比较行包含多个字段，不冒称3384独立样本。只证选定current-date子时与这三次本命岁首，不含运限年界。 |
 | 已起大限切换 | 独立参考覆盖五行局2～6×男女10组，首限首年/末年/次限首年共30例；当前适配器实际运行，1080比较行一致，含名义年龄、宫干支/index/区间方向/12宫职/四化目标与七曜。不覆盖首限前童限、所有年龄或农历运限岁首。 |
-| 流年鸾喜 | 具名公开文章明确按该年太岁支起，独立数学参考先冻后比既有72缓存，144位置一致。页面作者/程序谱系UNKNOWN；只引用安星事实，不复制文章进产品、不扩到大限。原288未断言标记保留；完整库存实际为两层马鸾喜＋流年年解7类504位置，其中本次仅144流年鸾喜有此限定对照。 |
-| APP运限详情 | 补出后端已有的参考日/时刻、童限/大限/小限/流年中文名、四化、真实本命落宫、宫职/流曜/岁前将前；始终按本命palace.index联接乱序列表。未知/未请求不造空盘，保留待核验。非正午且晚于7月1的出生年用例、乱序宫索引及空状态回归已复核。默认与v1010两模式各22项通过，analyze无问题；不与此前21/19项叠加计数。 |
+| 七类剩余流曜 | 72例共504位置与具名规则一致，包含原144流年鸾喜，不能叠加。运马有层别明文；大限鸾喜限现代三合；流马原参考仍SOURCE_CONTEXT_INFERENCE；年解有深造讲义转载依据。额外作者说明补强流年马按当年支，但程序谱系/刻本未知，不倒改已冻结来源等级。 |
+| APP运限与定义域修复 | 大限/小限有限表未匹配时，不再把引擎默认甲子和index=-1序列化为有效结果；明确NOT_APPLICABLE和中文原因，保留有效本命/流年，畸形或流年负索引仍报错。默认与v1010两模式各23项通过，analyze无问题；Node最终12项通过0skip。原RED和原22/9项保留，不叠加计数。 |
+| 童限与小限 | 30个童限当前组件结果加72个旧小限缓存，2358行一致。童限古表仅佐证六龄角色，现代五行局截断是profile组合；童限四化/流曜仍SCOPE_NOT_ESTABLISHED，小限四化仍是明确登记的数学组合。 |
+| 运限农历岁首 | 2个出生输入×8时刻共16真实引擎组件例，800行一致，含2023/24/25春节前后、元旦和立春次日。不是HTTP任意target_date能力或APP/DB实测。 |
+| 永久选定运限参考 | 独立selected oracle与来源JSON已保留，102例复用缓存10464行一致（72×107＋30×92）；不运行旧产品集合，不扩增盲测。非作者发现stdin hash实际指输入文件的回执命名错误，原件保留并以独立补充区分文件hash和按原表达式重建的载荷hash；输入语义与比较值未变，无产品重跑。 |
+| 新盲选运限边界 | 无父历史助手先冻结24新组合（男女各12，HKO1901首月），再以当前适配器运行，2470比较行一致。含局2～6童限→首限、小限120/121及12大限末段/越界。仅selector对actual及父结果盲，复用原独立规则，不冒称新文献/新实现或全域。 |
+| 截空／旬空来源与反例 | 新永久pair/正旁参考获中州派转录明文支持；60周期的pair60与旬空正支60一致。将截路恒等正、空亡恒等旁的假设在30阴干例失败，原180行对照exit1保留；这是别名假设失败，不能据此交换产品星位。非作者复核确认旬空选择的源证可限定关闭，截路／空亡名称映射仍未证。 |
 
-本轮新增参考生成与比较均按 **NOT_BLIND** 解释；来源提取助手未读actual，不等于整个补证过程成为fresh-context盲测。现有独立盲测保留原身份，不用这批复用样本扩增盲测数量。
+除另列24例无父历史盲选外，本轮复用参考生成与比较均按 **NOT_BLIND** 解释；来源提取未读actual不使整个补证成为新盲测。24例只新增具名边界的selector隔离，不把底层参考实现/来源重新认证，也不与旧24例或复用比较数合成覆盖率。各项有重叠，不能相加当完整AC通过数。
 
 新增Node运行只针对尚未验证的24＋30边界例；亮度、闰月、流年鸾喜尽量复用已绑定的缓存，没有重复全量PHP/Node/Python/Flutter、RTC或旧APP/DB验收。所有指定验证回执包含stdout/stderr/exit；辅助脚本引号、缺脚本exit2及路径/字段检查错误保留，修正后缓存比较不冒称修复了业务算法。原全部RED、PHP16项旧失败、旧观察和原证不覆盖。
 
-JPL/NIMA仍按已发待回复处理，**RIGHTS_NOT_GRANTED**；不查邮箱、不重发、不取未准入Chiron、不付费。剩余工作集中在完整流曜层别（马/大限鸾喜/流年年解）、童限/小限其余字段、运限岁首及其它必达边界，不能由局部亮度或快照通过推成AC-10-04完成。公开来源中流马、四化表存在传承差别；仅登记各自适用范围，不拿另一表补值追绿。寒露模型证据也不能消除全部时标与物理参考限制。
+JPL/NIMA保持 **SENT / REPLY_PENDING / RIGHTS_NOT_GRANTED**，不查邮箱、不重发或付费。限定替代研究已排除以CDS观测记录冒充星历；Ketu的MIT软件标示不能解除其Swiss生成系数数据权利门，作者误差声明也不是独立oracle；ChironCalculator表来自Horizons、仅到2050且未确立再分发许可。Lowell/CDS ReadMe明确astorb署名后自由使用/复制/传输，但只声明多数对象epoch±50日二体精度，未核Chiron世纪精度。本轮均仅资料/元数据，未取轨道数值或集成数据。剩余真实缺口是Chiron适用权利/世纪参考、童限未证字段、截路/空亡独立别名、月星闰月逐项适用及完整单一profile来源限制；不再把已完成的102快照/16岁首子集笼统标为未做。寒露仍为模型条件下证据，冻结AC未降级。
 
 最新源码对应APP/AAR/APK构建安装、HTTP→MariaDB重算/重启均 **NOT_RUN**，旧build4仍仅绑定其旧源码。独立内部复核不是Astra最终验收。原dirty根HEAD/index/status/43项记录hash在两次源码保存前后相同；没有遍历重哈全部untracked原件，也没有删除/改写卷、私有资料或历史资产。未启动服务、未碰生产/UAC/防火墙/RTC/全局SDK，未合main/K08/下版。当前没有新增Owner决定请求；本任务继续同版，保留其它可推进工作。
 

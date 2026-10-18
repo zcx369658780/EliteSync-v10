@@ -1,133 +1,272 @@
 {
-  "schema": "elitesync.v1010.validation-checkpoint.v1",
-  "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
+  "schema": "elitesync.v1010.final-candidate.v1",
+  "classification": "FINAL_CANDIDATE_DELIVERED_AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE_NOT_YET_ACCEPTED",
   "source": {
-    "commit": "883a53cb23830ec79b5811f71a2238b7d1aacd20",
-    "tree": "1e92c5382533fc31498edbe4abaebfd50e36bba3",
-    "apps": "8e69c77a7ab82f6104936e9986f23a66bda2b5a2",
-    "services": "768bde48ecd9a56def4d8b405c8f87f36d1d8ec9",
-    "parent": "257f3cb6412dec370e49d028103f1f7bde56adfd",
-    "status": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE"
+    "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+    "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+    "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+    "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc",
+    "paths": [
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+      "services/backend-laravel/.gitattributes",
+      "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+      "services/backend-laravel/app/Services/NatalCalculationService.php",
+      "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+      "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+      "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+      "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+      "services/backend-laravel/resources/natal/dependency-manifest.json",
+      "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+      "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+      "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+      "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+      "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+      "services/backend-laravel/tools/natal/README.md",
+      "services/backend-laravel/tools/natal/chiron_build.py",
+      "services/backend-laravel/tools/natal/chiron_dynamics.py",
+      "services/backend-laravel/tools/natal/chiron_orbit.py",
+      "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+      "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+      "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+      "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+      "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+      "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+      "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+      "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+      "services/backend-laravel/tools/natal/orbit_integrator.py",
+      "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+      "services/backend-laravel/tools/natal/tests/test_western.py",
+      "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+      "services/backend-laravel/tools/natal/western.py",
+      "services/backend-laravel/tools/natal/ziwei.mjs"
+    ],
+    "pinned_blobs_byte_equal": 8,
+    "remote_pushed": true,
+    "crlf_preserved": true,
+    "role": "FIXED_PRODUCT_SOURCE_DOCUMENTATION_SUCCESSORS_MAY_DIFFER"
   },
   "oracle": {
-    "bazi": {
-      "samples": 88,
-      "fresh": 64,
-      "blind": 24,
-      "discrete_comparisons": 2200,
-      "failures": [],
-      "pass_": true,
-      "not_covered": [
-        "Gregorian qiyun timestamp",
-        "astronomical true solar time",
-        "other epochs",
-        "precise solar-term +/-1s"
-      ]
-    },
-    "ziwei_rules": {
-      "samples": 72,
-      "fresh": 48,
-      "blind": 24,
-      "comparisons": 5040,
-      "failures": [],
-      "pass_": true,
-      "not_covered": [
-        "brightness",
-        "unlisted minor stars",
-        "selected-year horoscope",
-        "historical timezone conversion"
-      ]
-    },
-    "ziwei_brightness": {
-      "comparisons": 1008,
-      "unique_pairs": 154,
-      "mismatch_occurrences": 18,
-      "mismatch_pairs": [
-        "七杀酉",
-        "太阴酉"
+    "coverage": "IMPLEMENTATION_REPORT current AC table; historical sections retain original counts; overlaps are not summed",
+    "chiron": {
+      "original_dates": 96,
+      "new_selector_blind_timestamps": 24,
+      "reference_selected_station_side_cases": 20,
+      "longitude_latitude_threshold_deg": 0.001,
+      "all_retrograde_classifications_equal": true,
+      "comparison_sha256": {
+        "comparison96-v2.json": "9e8d6454dbe1f920b27cffb28c2619eb5ee45b2cb037acfeda7290f7ec4ca1b0",
+        "comparison24-stations20-v2.json": "698bc298c050b291ad8e115546bab46e59598d7e83ddfaf27c0d067beea290cb",
+        "interpolation120-result.json": "13deb35119534a564ab80d936870039f7c602f70087fd061226b598667f5ac4c"
+      },
+      "max_longitude_difference_deg": 0.00011355449294114806,
+      "max_latitude_difference_deg": 6.414310619362595e-05,
+      "diagnostic_only_fields": [
+        "distance_au",
+        "speed_degrees_per_day"
       ],
-      "missing_pairs": 14,
-      "status": "BLOCKED_DIFFERENT_PUBLISHED_RULE_VARIANTS_UPSTREAM_UNKNOWN"
+      "interpolation": {
+        "intervals": 120,
+        "points": 360,
+        "maximum_position_error_au": 1.064037263946877e-10,
+        "maximum_velocity_error_au_day": 4.011391730442506e-11
+      }
     },
-    "western_positions": {
-      "main_samples": 120,
-      "main_comparisons": 1200,
-      "main_failures": 0,
-      "nonauthor_extra_samples": 24,
-      "nonauthor_extra_comparisons": 240,
-      "nonauthor_failures": 0,
-      "maximum_error_degrees": 6.800191073352835e-05,
-      "threshold": 0.001,
-      "independence": "Horizons versus Skyfield implementation, shared JPL data family; time normalizer limitations retained"
+    "ziwei_minor": {
+      "cases": 72,
+      "comparisons": 1224,
+      "new_product_runs": 0
     },
-    "western_geometry": {
-      "cases": 96,
-      "comparisons": 1504,
-      "failures": 0,
-      "maximum_error_degrees": 1.9696244635269977e-11,
-      "boundary_probes": 3168,
-      "boundary_failures": 0,
-      "not_blind": true
+    "ziwei_markers": {
+      "cases": 72,
+      "comparisons": 2736,
+      "new_product_runs": 0
     },
-    "lunar_points": {
-      "samples": 120,
-      "comparisons": 360,
-      "failures": 0,
-      "max_error_degrees": 3.488128186290851e-08,
-      "not_blind": true
+    "child_profile_composition": {
+      "status": "PORTABLE_ARITHMETIC_REPLAY_MATCH_OLD_420",
+      "cases": 30,
+      "comparisons": 420,
+      "new_product_runs": 0,
+      "new_blind_cases": 0,
+      "whole_ac_claim": false,
+      "traditional_child_source_closed": false,
+      "reference_sha256": "da732dbde21e7bece5d155c5bc12e3454a25db8e9bd2ffda5602cdd74f9e2739",
+      "source_sha256": "b8f8cdf2a4dbfed43229384a589ff94091ff48fbe77367aed28b89d63056c92e",
+      "original_frozen_scope_preserved": true,
+      "reference_exit": 0
     },
-    "solar": {
-      "samples": 120,
-      "max_difference_seconds": 2.6732767724846553,
-      "failures": 0,
-      "not_blind": true
-    }
+    "limits": [
+      "sampled/mathematical comparison, not all-school certification",
+      "child extra HUA/stars classical applicability not established",
+      "no all-continuous-century Chiron physical bound",
+      "selector blindness distinguished from runner blindness"
+    ]
   },
   "tests": {
     "php": {
-      "tests": 43,
-      "assertions": 275,
+      "passed": 36,
+      "deprecated": 14,
+      "assertions": 9022,
       "exit": 0,
-      "deprecations": 2
+      "receipt": "20261018-final-source-all-v1010-php"
     },
     "node": {
-      "tests": 8,
-      "exit": 0
+      "tests": 10,
+      "passed": 10,
+      "skipped": 0,
+      "exit": 0,
+      "receipt": "20261018-derived-solar-boundary-node-green"
     },
-    "python": {
-      "discovered": 25,
-      "first_passes": 23,
-      "first_skipped": 2,
-      "explicit_real_kernel_followup_passes": 2,
-      "exit": 0
+    "western": {
+      "tests": 15,
+      "exit": 0,
+      "receipt": "20261018-sidereal-cli-encoding-green"
+    },
+    "chiron_reader": {
+      "tests": 7,
+      "exit": 0,
+      "receipt": "20261018-chiron-reader-vector-tests"
     },
     "flutter": {
-      "author_review_regression_per_mode": 65,
-      "final_after_cold_per_mode": 23,
-      "default_and_v1010": true,
-      "final_analyze_exit": 0
+      "passed": 23,
+      "exit": 0,
+      "receipt": "20261018-chiron-credits-flutter-regression",
+      "analyze": "No issues found"
     },
-    "real_api": {
-      "requests": 42,
-      "input_or_setting_changes": 15,
-      "exit": 0
-    }
+    "constructor_integrity": {
+      "checks": 19,
+      "exit": 0,
+      "new_integration": false
+    },
+    "actual_api": {
+      "status": "FINAL_SOURCE_APP_A_AND_API_B_PERSISTED",
+      "profiles": {
+        "a": {
+          "revision": 6,
+          "signature": "f34ddfcb8479ceedf0e303e0f7e2d44be55440cdf3770fe36229b275a8861211",
+          "source_hashes": {
+            "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+            "resources/natal/calculation-profile-registry.json": "bc61eb86e79cdd3230337831ea319043bc328a709bb842e0d83a5cc8bd4302d1",
+            "app/Services/NatalInputContext.php": "6f6fc78a3d380de193997eb0ab6ef97473c8c278631a38773c63b283aaccb21c",
+            "app/Services/NatalBaziCalculator.php": "1ef4e49d343c695230c5c9f0f6fc4b4719f6df3009bc8565eecd39ddfe7bbe43",
+            "app/Services/NatalBaziTimeScale.php": "9e3bac836db1662cfac10c6253b5ae5337fa00a81927437d5ea37ccd076e6aae",
+            "app/Services/NatalBaziLuckProjection.php": "789ed428665b379b91bbbbf626ad11231ee96aaf78d7e30058fe794355ca30fd",
+            "tools/natal/bazi_time.py": "11ddc527d1f58069bd361aa1a1214e746018f172a905a1858db360371ee3e988",
+            "app/Services/NatalCalculationProfile.php": "2bda949b7d96d5ebd48bed55f409a5f8fb3390d5748ec8ee32ea49ebb6ac9bb5",
+            "app/Services/NatalCalculationService.php": "3525c0f08fcab207f245e9f28a72c008bcfcfb7a64521e1677e696334679cd4b",
+            "app/Services/NatalRuntimeIdentity.php": "9482524c9d7eb1eca1147db351fc5987078b377391618bb1e84c35b1dd2fe1d2",
+            "tools/natal/runtime_identity.py": "7ad1a4dea797189cbd5276ffcd54bb66ce7dd19b41b0a93be902f50410950f62",
+            "config/natal.php": "98a160054aef90a7323e173cf2c0c8d4ea2f58a50b4e677f5dcda5ca7be32d27",
+            "tools/natal/western.py": "a424df6439954cd16caf74e584ec40456a11e8b0ed0baa20be75a9fe6dd433a1",
+            "tools/natal/time_context.py": "f9c4b0b05b0cb98b6d8b120e67e8c6624ba967fb8b3fc071d9cb21bcf03d12d4",
+            "tools/natal/lunar_points.py": "165dcc826233f57176f952c1cd05750f2b4d3ffbaf7051fac676ed6b97f8440d",
+            "tools/natal/chiron_orbit.py": "2ea3fb58b82c17b71fdf1d5247be6e75cd487aa86c6b543aa46799b2b7eb9d4f",
+            "resources/natal/chiron-data-manifest.json": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+            "resources/natal/data/chiron-lowell-hermite8d-v1.npz": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+            "resources/natal/data/chiron-lowell-elements-v1.json": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+            "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+            "tools/natal/ziwei.mjs": "dddfdad1c7b6b732ec903c43068a914f19693e957c67a77a284f857b631e2b27",
+            "tools/ziwei/iztro-runner/package-lock.json": "fb11a11dc4ecb7c6fc342b05dc2864d5b36805da04b661c8d9cd076aef0780d2",
+            "resources/natal/ziwei-upstream-corrections.json": "8eb74121cdec8d8348041a9cea80587bb0658f22999b0cda27ea597a4bc59757",
+            "tools/natal/requirements.lock": null,
+            "tools/natal/requirements.txt": null,
+            "tools/natal/requirements.windows-cp311.lock": "b2ec15f4e534c76cdad45af4baf8db59d8c7c5a935aecd4fe59facf53bc9ce45",
+            "resources/natal/dependency-manifest.json": "3430a61737f9caa140da0bdbc290c2b7395bafe1d44c859a1660c143f1dd2708",
+            "tools/natal/sbom.json": null,
+            "tools/natal/SBOM.json": null
+          },
+          "full_points": 14
+        },
+        "b": {
+          "revision": 31,
+          "signature": "1460071e24a9f94d4d3e771865514fc7de524e26cbdaed01b1a9d7d5e384ce6f",
+          "source_hashes": {
+            "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+            "resources/natal/calculation-profile-registry.json": "bc61eb86e79cdd3230337831ea319043bc328a709bb842e0d83a5cc8bd4302d1",
+            "app/Services/NatalInputContext.php": "6f6fc78a3d380de193997eb0ab6ef97473c8c278631a38773c63b283aaccb21c",
+            "app/Services/NatalBaziCalculator.php": "1ef4e49d343c695230c5c9f0f6fc4b4719f6df3009bc8565eecd39ddfe7bbe43",
+            "app/Services/NatalBaziTimeScale.php": "9e3bac836db1662cfac10c6253b5ae5337fa00a81927437d5ea37ccd076e6aae",
+            "app/Services/NatalBaziLuckProjection.php": "789ed428665b379b91bbbbf626ad11231ee96aaf78d7e30058fe794355ca30fd",
+            "tools/natal/bazi_time.py": "11ddc527d1f58069bd361aa1a1214e746018f172a905a1858db360371ee3e988",
+            "app/Services/NatalCalculationProfile.php": "2bda949b7d96d5ebd48bed55f409a5f8fb3390d5748ec8ee32ea49ebb6ac9bb5",
+            "app/Services/NatalCalculationService.php": "3525c0f08fcab207f245e9f28a72c008bcfcfb7a64521e1677e696334679cd4b",
+            "app/Services/NatalRuntimeIdentity.php": "9482524c9d7eb1eca1147db351fc5987078b377391618bb1e84c35b1dd2fe1d2",
+            "tools/natal/runtime_identity.py": "7ad1a4dea797189cbd5276ffcd54bb66ce7dd19b41b0a93be902f50410950f62",
+            "config/natal.php": "98a160054aef90a7323e173cf2c0c8d4ea2f58a50b4e677f5dcda5ca7be32d27",
+            "tools/natal/western.py": "a424df6439954cd16caf74e584ec40456a11e8b0ed0baa20be75a9fe6dd433a1",
+            "tools/natal/time_context.py": "f9c4b0b05b0cb98b6d8b120e67e8c6624ba967fb8b3fc071d9cb21bcf03d12d4",
+            "tools/natal/lunar_points.py": "165dcc826233f57176f952c1cd05750f2b4d3ffbaf7051fac676ed6b97f8440d",
+            "tools/natal/chiron_orbit.py": "2ea3fb58b82c17b71fdf1d5247be6e75cd487aa86c6b543aa46799b2b7eb9d4f",
+            "resources/natal/chiron-data-manifest.json": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+            "resources/natal/data/chiron-lowell-hermite8d-v1.npz": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+            "resources/natal/data/chiron-lowell-elements-v1.json": "2e3654ab1c3448c816d0462a05ffa704e272e270fb6b23f1b0284b7909e07c46",
+            "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+            "tools/natal/ziwei.mjs": "dddfdad1c7b6b732ec903c43068a914f19693e957c67a77a284f857b631e2b27",
+            "tools/ziwei/iztro-runner/package-lock.json": "fb11a11dc4ecb7c6fc342b05dc2864d5b36805da04b661c8d9cd076aef0780d2",
+            "resources/natal/ziwei-upstream-corrections.json": "8eb74121cdec8d8348041a9cea80587bb0658f22999b0cda27ea597a4bc59757",
+            "tools/natal/requirements.lock": null,
+            "tools/natal/requirements.txt": null,
+            "tools/natal/requirements.windows-cp311.lock": "b2ec15f4e534c76cdad45af4baf8db59d8c7c5a935aecd4fe59facf53bc9ce45",
+            "resources/natal/dependency-manifest.json": "3430a61737f9caa140da0bdbc290c2b7395bafe1d44c859a1660c143f1dd2708",
+            "tools/natal/sbom.json": null,
+            "tools/natal/SBOM.json": null
+          },
+          "full_points": 14
+        }
+      },
+      "checks": [
+        "a: exact final-source signature, full14, persisted GET, stale409",
+        "b: exact final-source signature, full14, persisted GET, stale409"
+      ],
+      "real_app_a": true,
+      "accuracy_claim": false
+    },
+    "persistence": {
+      "status": "CURRENT_FULL_THREE_CHART_PERSISTENCE_RESTART_MATCH",
+      "profiles": 2,
+      "sql_bytes_equal": true,
+      "api_profiles_equal": true,
+      "canonical_birthdays_unchanged": true,
+      "volume_preserved": true,
+      "reseed": false,
+      "original_api_pid": 48444,
+      "current_api_pid": 4620,
+      "revisions": {
+        "a": 6,
+        "b": 31
+      },
+      "sql_sha256": "c8b45a39c9c0bc29fe534c750df820f2858cdfa3d6110b0ad6d6382142a64709",
+      "app_reread": "PENDING_SEPARATE_CURRENT_APP_UI",
+      "accuracy_claim": false
+    },
+    "app_after_restart": "VISIBLE_A6_RESULT6_SCREENSHOT_AFTER_PERSISTENCE_RECORD"
   },
   "build": {
-    "package": "com.elitesync.v1010test",
     "artifacts": {
       "app-debug.apk": {
         "bytes": 222959834,
-        "sha256": "f330c9a24f539e250130028aade5cd835de7bafb30195da18624d3a235d01c50"
+        "sha256": "d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2"
       },
       "flutter_release-1.0.aar": {
-        "bytes": 4024898,
-        "sha256": "577a7acbe4e5081b435d7fe077d0e2c0ba76c10eb1b927d294bb2021f3bef6f7"
+        "bytes": 4030249,
+        "sha256": "dca5a7d4b24d7ce01fb53ffb4053f195dcf5266d172dcb48e942013f947a19e0"
       }
     },
-    "display_version": "0.08.04",
-    "purpose": "final current implementation functional test; version not accepted or complete",
-    "source_binding": "Local build4 source file manifest retained privately; Git source is separately identified. EOL normalization may differ from raw filesystem bytes."
+    "source_manifest": "input-source-hashes.json",
+    "package": "com.elitesync.v1010test",
+    "acceptance": false,
+    "source_unchanged_during_build": true,
+    "current_source_inputs_equal": 498
   },
   "runtime": {
     "app_stopped": true,
@@ -135,21 +274,24 @@
     "api_stopped": true,
     "db_stopped": true,
     "volume_preserved": true,
-    "original_dirty_root_snapshot_equal": true,
-    "checked_dirty_tracked_files": 43,
-    "protected_scope": "original HEAD/index/normal status/recorded dirty-file hashes; no blanket rehash of all historical untracked media",
-    "historical_assets": "Not modified/deleted by this run",
-    "other_projects": "untouched",
-    "global_sdk_uac_firewall_rtc": "NOT_RUN"
+    "no_reseed_or_volume_deletion": true,
+    "protected_snapshot_equal": true,
+    "protected_dirty_tracked": 43,
+    "protected_scope": "HEAD/index/status/recorded dirty tracked bytes; not blanket untracked-media rehash",
+    "emulator": "Controlled AVD left running; app stopped; no wipe/uninstall",
+    "docker_desktop": "Left running; no other service stopped",
+    "global_sdk_uac_firewall_rtc": "NOT_RUN",
+    "mail": "NOT_READ_OR_SENT",
+    "main_merge_k08_next_version": "NOT_RUN"
   },
   "limitations": [
-    "Chiron rights unresolved and data not admitted",
-    "Exact Gregorian qiyun oracle incomplete",
-    "Ziwei brightness/minor-star/year-horoscope independent coverage incomplete",
-    "Original sidereal/Lilith exact equivalence not proven",
-    "No version acceptance, main integration, K08, production or successor"
+    "Not Astra accepted; no main merge/K08/next version",
+    "Historical16 PHP failures and audio/call65/up observations retained",
+    "Source and reference limitations explicitly in current report; no false VERIFIED promotion",
+    "Windows raw originals remain LOCAL_ONLY; public copies are not independent execution",
+    "Controlled AVD and Docker Desktop left running, product APP/API/DB stopped"
   ],
-  "evidence_access": "Sanitized Codex-reported summaries; raw stdout/stderr/exit, database/API and device receipts remain LOCAL_ONLY. Web Astra has not read local raw files.",
+  "evidence_access": "PUBLIC_SAFE_TEMPORARY_COPIES_AND_PRODUCT_SOURCE_READABLE;WINDOWS_EXECUTION_CODEX_REPORTED",
   "local_raw_receipt_hashes": [
     {
       "label": "php-natal-final-targeted-suite",
@@ -962,5 +1104,674 @@
       "sha256": "472161caf29f3eb9fd545e79b1237438b86a75c5b3051e46d7122ac87b3eb10b",
       "scope": "file SHA256 and historical Git blob equality only, no rerun"
     }
+  },
+  "current_local_source": {
+    "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+    "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+    "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+    "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc"
+  },
+  "continuation_20261018_selected_periods": {
+    "classification": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED",
+    "source": {
+      "commit": "24ac02cf21cc56a1d74c33e7587460e99d3a2af3",
+      "tree": "8ce86fd0bb3086a1bae8321618bf076c3a5a13c5",
+      "apps": "52e4a3ea6878e9c5fcc16fc352aef358e99d4602",
+      "services": "9012fbcfda4a49d786f3e763a978b27e2451f360",
+      "remote_pushed": false
+    },
+    "file_sha256": {
+      "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart": "e2a08c41cc63f3338498612f80cf895abe0f94f936f52b9019e4cc1bb8830d6f",
+      "apps/flutter_elitesync_module/test/features/profile/natal_review_fixes_test.dart": "464aac4509154d569f5fabe5f7bc9152fea638fe2a3953e511e0d7bd2cf8b5ee",
+      "services/backend-laravel/tools/natal/ziwei.mjs": "c8e0f766e42886fad33a89588e6c3f12b978c7723fd258a31b2c9bb6189ac7fb",
+      "services/backend-laravel/tools/natal/tests/ziwei-period-domain.test.mjs": "de1147adeda9ced542cc60986d6553491e6c490cb4b8e8ded1472af950170716",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_reference.py": "dd5dbc207714855b5435cf07f8dd6a6207c09cd8e691ad9d66cc428e18d1ba7b",
+      "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json": "9c058a1eed1bc9e9f5ec00a2782d164cfdc19dfd61d4f84d034e68fa46b31a85",
+      "services/backend-laravel/tools/natal/oracle/ziwei_kong_reference.py": "39368321c0b663d844002b75df9ef8527828809df83b027de9f2f5cb40a81a04",
+      "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md": "62d4ee9c4c3fa3c38ae0124a769279460328dc452d14c3359d2da944e7ee296f"
+    },
+    "domain_fix": "Only decadal/age index=-1 yields NOT_APPLICABLE; invalid/yearly sentinel remains error; UI omits fake details",
+    "node_tests": {
+      "tests": 12,
+      "fail": 0,
+      "skip": 0,
+      "exit": 0
+    },
+    "flutter_tests": {
+      "default": 23,
+      "v1010_define": 23,
+      "exit": 0,
+      "analyze": "No issues found;exit0"
+    },
+    "child_small_scope": {
+      "cases": {
+        "child_current": 30,
+        "small_cache": 72
+      },
+      "comparison_rows": 2358,
+      "differences": 0,
+      "limitations": [
+        "Child table+modern bureau-cutoff is profile composition",
+        "Child HUA/flow scope not established",
+        "Small HUA mathematical composition only"
+      ]
+    },
+    "seven_flow": {
+      "cases": 72,
+      "comparison_rows": 504,
+      "differences": 0,
+      "overlap": "Includes previous144 annual Luan/Joy; not additive",
+      "source_limits": [
+        "Annual horse original context inference",
+        "Decadal Luan/Joy modern Sanhe only",
+        "NianJie base edition unverified"
+      ]
+    },
+    "native_cny": {
+      "cases": 16,
+      "comparison_rows": 800,
+      "differences": 0,
+      "scope": "Pinned real engine component, not HTTP or APP/DB",
+      "blind": false
+    },
+    "permanent_selected_reference": {
+      "cases": 102,
+      "comparison_rows": 10464,
+      "differences": 0,
+      "blind": false,
+      "actual": "Cached72 plus current-child30; no rerun",
+      "stdin_binding_addendum_sha256": "95856f94f1b1e81c41c2de6e90af21f6d08946a65d66635f12481f3fc37da625",
+      "stdin_payload_evidence": "Deterministic reconstruction from exact original expression, not fresh runtime recapture"
+    },
+    "selected_boundary_blind": {
+      "cases": 24,
+      "comparison_rows": 2470,
+      "group_counts": {
+        "context": 72,
+        "child_limit": 102,
+        "small_limit": 400,
+        "yearly": 1416,
+        "decadal": 480
+      },
+      "layer_status_counts": {
+        "child_limit.CALCULATED_REFERENCE": 6,
+        "small_limit.CALCULATED_REFERENCE": 16,
+        "yearly.CALCULATED_REFERENCE": 24,
+        "decadal.CALCULATED_REFERENCE": 14,
+        "small_limit.NOT_APPLICABLE": 8,
+        "decadal.NOT_APPLICABLE": 4
+      },
+      "expected_sha256": "8ffa643ed5b339f0593c7692242f9f401823aa03521dc3c65736350bf41d1a55",
+      "actual_sha256": "17815fdf042bcd0cab01c90b977a402fe79d2258035937ae374e02ba1ef17e0c"
+    },
+    "blind_limits": {
+      "selector_blind_to_actual_and_parent": true,
+      "new_independent_implementation": false,
+      "births": "HKO1901 first month only; yin birth year",
+      "stage_scope_addendum_sha256": "1697df82da87246cb1a1e3c6fa84c15fa0906c40a05e62dd562a7a19f6083d0b",
+      "unestablished_child_fields_asserted": false
+    },
+    "kong_polarity": {
+      "cycles": 60,
+      "comparison_rows": 180,
+      "pair_matches": 60,
+      "xun_regular_matches": 60,
+      "individual_alias_hypothesis_failures": 30,
+      "original_compare_exit": 1,
+      "meaning": "Rejects fixed alias hypothesis for yin stems, does not establish engine placement error",
+      "blind": false,
+      "source": "Selected Zhongzhou transcription, printed edition unknown"
+    },
+    "chiron_research": [
+      {
+        "candidate": "CDS/VizieR J/A+A/584/A96",
+        "url": "https://vizier.cds.unistra.fr/cgi-bin/VizieR-3?-source=J%2FA%2BA%2F584%2FA96",
+        "kind": "2895 ground-based astrometric observations, not an orbital state/ephemeris",
+        "rights": "DATASET_SPECIFIC_LICENSE_UNKNOWN",
+        "coverage": "Historical observational input, not 1900-2101 ephemeris accuracy",
+        "admission": "NOT_ADMITTED"
+      },
+      {
+        "candidate": "Ketu1.8.0 Chiron coefficients",
+        "url": "https://ketu.readthedocs.io/en/latest/chiron.html",
+        "generation": "https://github.com/alkimya/ketu/blob/main/tools/gen_chiron_coeffs.py",
+        "kind": "Author-declared Swiss/pyswisseph-generated coefficients; Moshier fallback accepted by generator",
+        "license": "Software MIT declaration does not establish embedded coefficient data rights; no such separate grant established",
+        "coverage": "Docs claim1900-01-01 through2100-12-31, generator inspected has2100-01-01 terminal setup; exact artifact scope not verified",
+        "accuracy": "Author claims max0.001214 degrees against same Swiss/Moshier family; not independent oracle",
+        "admission": "NOT_ADMITTED_NO_DATA_DOWNLOAD"
+      },
+      {
+        "candidate": "ChironCalculator",
+        "url": "https://www.chironcalculator.com/data-sources",
+        "kind": "Author-declared JPL Horizons offline table, six-hour samples",
+        "coverage": "1900-01-01 through2050-12-31; insufficient final-century range",
+        "rights": "No applicable closed-source/data-redistribution grant established",
+        "admission": "NOT_ADMITTED_NO_DATA_DOWNLOAD"
+      },
+      {
+        "candidate": "Lowell astorb B/astorb mirror metadata",
+        "url": "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true",
+        "kind": "ReadMe only, no orbital numeric rows fetched",
+        "rights": "The mirrored astorb description repeats attribution-based free use/copy/transmit grant for astorb.dat; not MPC/NIMA/JPL grant",
+        "accuracy": "Explicit two-body near-epoch +/-50-day statement for most non-planet-approaching objects, not Chiron century accuracy",
+        "coverage": "ReadMe identifies2022-Dec-12 version; no verified2060 row or century error proof",
+        "admission": "METADATA_ONLY_NOT_PRODUCT_DATA"
+      }
+    ],
+    "public_findings_sha256": "95419bea644c20c188df8d6e88df6838de2d7aa54107244f427a440b87b657ab",
+    "internal_review": "Non-author: domain guard/UI, reference independence/mapping/source grades and Kong conclusion checked; receipt stdin field corrected by preserved addendum; independent Astra acceptance NOT_DONE",
+    "raw_receipts": {
+      "20261018-period-node-final-regression": {
+        "exit": 0,
+        "stdout_sha256": "b9e21f0454f9df2a4ef442401e2a861ed521630f90bb6e4f540d3cadf962cb6e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "024cbdfbe97d01a7a1439b3948a439818014b738831445dab6a734563a590de7"
+      },
+      "20261018-period-ui-default": {
+        "exit": 0,
+        "stdout_sha256": "c88ea083039caaccadbb813fcaecaaf30158a386d70f7f20bd8594dc14a72a96",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "ce07558fabd724ef27cb40bd75bd98b4d0ead634f0d662f92a6758e377df2f57"
+      },
+      "20261018-period-ui-v1010": {
+        "exit": 0,
+        "stdout_sha256": "c88ea083039caaccadbb813fcaecaaf30158a386d70f7f20bd8594dc14a72a96",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "bc581063e29739892fc66306d614234356978bbd86afbfc80e1e2e4c79928ba4"
+      },
+      "20261018-period-ui-analyze": {
+        "exit": 0,
+        "stdout_sha256": "4914c47f95e6074fc0cd1f97fb9b5e2b47b428355f3060f6da4dbc7249348aa9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "83402af427457b4dd72a759be05e4fc9eaef47a587a48155f76709e291599287"
+      },
+      "20261018-selected-permanent-freeze": {
+        "exit": 0,
+        "stdout_sha256": "1ebb0ca3cc39dd04015d28bc59446867bf4b08561c9a7a4ceba364ca8bbec6f7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "4029612e7d85294352f257445666f365be77e992958c5a6434717b5ca0d8154e"
+      },
+      "20261018-selected-permanent-cached-compare": {
+        "exit": 0,
+        "stdout_sha256": "d17485e90c74b9bb25883d69c1eea9cd53c916c9583d1037a7fa099f96567cb5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "de5f0a08cfde5ef92be9b30507a79b1aee380b94412bd456eb93bc60cb0c1bcd"
+      },
+      "20261018-horoscope-cny-native16": {
+        "exit": 0,
+        "stdout_sha256": "9768a4ae9263880cfd28851251837568214d9d0a1c281aebbd08ee538cbc658d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "0672edea5e7b3562abb9a232db51d7821ec0f2e3106bd9ca13cbc66909ee057e"
+      },
+      "20261018-horoscope-cny-native16-compare": {
+        "exit": 0,
+        "stdout_sha256": "9c45725e4770188725dfc5d452f7a72aa3a853a60ffbfb4257ddf4e7dad33e71",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "8de4d4ba93e18c97cc98550ef8b85c7d82056f27a353ed252f5b2afe1b47af5d"
+      },
+      "20261018-child-current-adapter30": {
+        "exit": 0,
+        "stdout_sha256": "186aa24655895de22d239a2ea5d1cf0026485058135f65873d730fe684fe18b5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "cb97a480382ad47ec7a34ff7a2fe40af48df4b541d61f6691dac88a6cd23a967"
+      },
+      "20261018-child-small-compare-v2": {
+        "exit": 0,
+        "stdout_sha256": "320bffba4fd9b3167a8737e0f8f7a5793221a1fde406380f34f0d7204df2fe2a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "620e2d96bbe619b064f781ce1202c2688009eee1362cf367d2fadf97859fe88a"
+      },
+      "20261018-seven-flow-cached-compare": {
+        "exit": 0,
+        "stdout_sha256": "ca15c1d562c3a369968ec18eb4f96521316a3a446e761904fe99e55e815f110a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "a5561b475f4ee816d1f151ca7470812e7f3fe6a52754fee7e5d0fffb9e663871"
+      },
+      "20261018-kong-explicit-polarity-freeze": {
+        "exit": 0,
+        "stdout_sha256": "da33d29912c115ab71cb605c901ac6b0e320f860ac0f451a4802c433b7dee576",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "d39e953496deb57e7e02df9b04a41dbaa4157bfb1d418f779e7944a3f3244640"
+      },
+      "20261018-kong-explicit-polarity-cached-compare": {
+        "exit": 1,
+        "stdout_sha256": "4e0a6809cdfd4328d6f6ff42c837a0dced907c0dd34226cfbe8a9d30283cf48d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "5d16a29e5db7b67d2088d541145aac0d1abaabd942317e55d25dd601107253c5"
+      },
+      "20261018-selected-blind-reference-intake": {
+        "exit": 0,
+        "stdout_sha256": "ec2d9018ac0a2746b380e54ae62b604d275f56a27c39062618656048b8111b31",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "85a70f74f03926a9113ea2334274547c5f86ad5566725346eada8f4b3add1c8e"
+      },
+      "20261018-selected-blind-current24": {
+        "exit": 0,
+        "stdout_sha256": "17815fdf042bcd0cab01c90b977a402fe79d2258035937ae374e02ba1ef17e0c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "c34600d0cfeab200b9d415fbbaf7b8e15a1806d21f05f35097c7265dcd51eaaf"
+      },
+      "20261018-selected-blind-current24-compare": {
+        "exit": 0,
+        "stdout_sha256": "330695f7842c7a1e9ed72423394eccba8f3454770c35a09e9114427be0fca6dd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "aae5ca9194bc1b85ee66faa660a8808ef042b9f7e497430b65520aa08cd1f65f"
+      },
+      "20261018-selected-reference-stdin-binding-addendum": {
+        "exit": 0,
+        "stdout_sha256": "6107bcf6a54f202378d7b209cd2f5a6f5a1d161f56b2b55a6a86b61d63c6c12b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "command.json_sha256": "912bea784fbb1594127c38912d051b331ad3f58bc6c252291c4a62ea43c82fa8"
+      }
+    },
+    "protected_snapshot_match_before_after_source_commit": true,
+    "not_run": [
+      "Latest APP/AAR/APK build/install",
+      "Latest APP-HTTP-MariaDB recompute/restart",
+      "Full historical PHP/Flutter/RTC",
+      "New mail/mail polling",
+      "Restricted Chiron data download/integration",
+      "Main merge/K08/next version"
+    ]
+  },
+  "historical_initial_checkpoint_20261017": {
+    "schema": "elitesync.v1010.validation-checkpoint.v1",
+    "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
+    "source": {
+      "commit": "883a53cb23830ec79b5811f71a2238b7d1aacd20",
+      "tree": "1e92c5382533fc31498edbe4abaebfd50e36bba3",
+      "apps": "8e69c77a7ab82f6104936e9986f23a66bda2b5a2",
+      "services": "768bde48ecd9a56def4d8b405c8f87f36d1d8ec9",
+      "parent": "257f3cb6412dec370e49d028103f1f7bde56adfd",
+      "status": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE"
+    },
+    "oracle": {
+      "bazi": {
+        "samples": 88,
+        "fresh": 64,
+        "blind": 24,
+        "discrete_comparisons": 2200,
+        "failures": [],
+        "pass_": true,
+        "not_covered": [
+          "Gregorian qiyun timestamp",
+          "astronomical true solar time",
+          "other epochs",
+          "precise solar-term +/-1s"
+        ]
+      },
+      "ziwei_rules": {
+        "samples": 72,
+        "fresh": 48,
+        "blind": 24,
+        "comparisons": 5040,
+        "failures": [],
+        "pass_": true,
+        "not_covered": [
+          "brightness",
+          "unlisted minor stars",
+          "selected-year horoscope",
+          "historical timezone conversion"
+        ]
+      },
+      "ziwei_brightness": {
+        "comparisons": 1008,
+        "unique_pairs": 154,
+        "mismatch_occurrences": 18,
+        "mismatch_pairs": [
+          "七杀酉",
+          "太阴酉"
+        ],
+        "missing_pairs": 14,
+        "status": "BLOCKED_DIFFERENT_PUBLISHED_RULE_VARIANTS_UPSTREAM_UNKNOWN"
+      },
+      "western_positions": {
+        "main_samples": 120,
+        "main_comparisons": 1200,
+        "main_failures": 0,
+        "nonauthor_extra_samples": 24,
+        "nonauthor_extra_comparisons": 240,
+        "nonauthor_failures": 0,
+        "maximum_error_degrees": 6.800191073352835e-05,
+        "threshold": 0.001,
+        "independence": "Horizons versus Skyfield implementation, shared JPL data family; time normalizer limitations retained"
+      },
+      "western_geometry": {
+        "cases": 96,
+        "comparisons": 1504,
+        "failures": 0,
+        "maximum_error_degrees": 1.9696244635269977e-11,
+        "boundary_probes": 3168,
+        "boundary_failures": 0,
+        "not_blind": true
+      },
+      "lunar_points": {
+        "samples": 120,
+        "comparisons": 360,
+        "failures": 0,
+        "max_error_degrees": 3.488128186290851e-08,
+        "not_blind": true
+      },
+      "solar": {
+        "samples": 120,
+        "max_difference_seconds": 2.6732767724846553,
+        "failures": 0,
+        "not_blind": true
+      }
+    },
+    "tests": {
+      "php": {
+        "tests": 43,
+        "assertions": 275,
+        "exit": 0,
+        "deprecations": 2
+      },
+      "node": {
+        "tests": 8,
+        "exit": 0
+      },
+      "python": {
+        "discovered": 25,
+        "first_passes": 23,
+        "first_skipped": 2,
+        "explicit_real_kernel_followup_passes": 2,
+        "exit": 0
+      },
+      "flutter": {
+        "author_review_regression_per_mode": 65,
+        "final_after_cold_per_mode": 23,
+        "default_and_v1010": true,
+        "final_analyze_exit": 0
+      },
+      "real_api": {
+        "requests": 42,
+        "input_or_setting_changes": 15,
+        "exit": 0
+      }
+    },
+    "build": {
+      "package": "com.elitesync.v1010test",
+      "artifacts": {
+        "app-debug.apk": {
+          "bytes": 222959834,
+          "sha256": "f330c9a24f539e250130028aade5cd835de7bafb30195da18624d3a235d01c50"
+        },
+        "flutter_release-1.0.aar": {
+          "bytes": 4024898,
+          "sha256": "577a7acbe4e5081b435d7fe077d0e2c0ba76c10eb1b927d294bb2021f3bef6f7"
+        }
+      },
+      "display_version": "0.08.04",
+      "purpose": "final current implementation functional test; version not accepted or complete",
+      "source_binding": "Local build4 source file manifest retained privately; Git source is separately identified. EOL normalization may differ from raw filesystem bytes."
+    },
+    "runtime": {
+      "app_stopped": true,
+      "reverse_removed": true,
+      "api_stopped": true,
+      "db_stopped": true,
+      "volume_preserved": true,
+      "original_dirty_root_snapshot_equal": true,
+      "checked_dirty_tracked_files": 43,
+      "protected_scope": "original HEAD/index/normal status/recorded dirty-file hashes; no blanket rehash of all historical untracked media",
+      "historical_assets": "Not modified/deleted by this run",
+      "other_projects": "untouched",
+      "global_sdk_uac_firewall_rtc": "NOT_RUN"
+    },
+    "limitations": [
+      "Chiron rights unresolved and data not admitted",
+      "Exact Gregorian qiyun oracle incomplete",
+      "Ziwei brightness/minor-star/year-horoscope independent coverage incomplete",
+      "Original sidereal/Lilith exact equivalence not proven",
+      "No version acceptance, main integration, K08, production or successor"
+    ],
+    "evidence_access": "Sanitized Codex-reported summaries; raw stdout/stderr/exit, database/API and device receipts remain LOCAL_ONLY. Web Astra has not read local raw files.",
+    "local_raw_receipt_hashes": [
+      {
+        "label": "php-natal-final-targeted-suite",
+        "exit": 0,
+        "stdout_sha256": "dbde6a471ad086dc73f588af3dcdc41f708579b11dbaec4a047d874cceaec070",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "ziwei-final-local-tests",
+        "exit": 0,
+        "stdout_sha256": "3865b265946a7a1bc7680df5f3a05f84dafb61c9affd720e8d9ade3e47cbba86",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "python-natal-final-suite",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "65ee1df6b13215209e0dafbdb3941d7b523e51c72b7cc244212c5f8cd6751842"
+      },
+      {
+        "label": "python-final-explicit-real-kernel-two-tests",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "24a5802fcbe0662c4f928252796656eeec7581722481cf1043ed40f83ff4824a"
+      },
+      {
+        "label": "flutter-after-cold-final-default",
+        "exit": 0,
+        "stdout_sha256": "c431d6ed73aea1e5292a22d3afad0a12c2cbbbd9e0b07226e0aeac5f40b164fe",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "flutter-after-cold-final-v1010",
+        "exit": 0,
+        "stdout_sha256": "cf6832c0edbcbaa64f68e7ed79db98ea569d634261f13d2d816fb6dc2b68ae53",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "flutter-final-changed-files-analyze",
+        "exit": 0,
+        "stdout_sha256": "de17a509e75e8b9d8a7afd36886f2fe35519e95a8ece6040320217a4a621add4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "v1010-native-aar-apk-build4",
+        "exit": 0,
+        "stdout_sha256": "6dd6f1c1cfbb1e0b83eb493d86ebb8f3ba5861f0c3771773e1e1d48d3cd7bde2",
+        "stderr_sha256": "e44c4e9456e90dc235b41cc1dbee30d387d120d657db353e5f4ab151a67d5bcd"
+      },
+      {
+        "label": "real-api-db-regression-third-run",
+        "exit": 0,
+        "stdout_sha256": "2ae4c90a94ef24966aa743d33dae420fb0d62638819bd4fec2500cf40543c8e0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "owned-api-db-persistent-restart-first-run",
+        "exit": 0,
+        "stdout_sha256": "d3256a896a9fec67fd3a7d93f98f571945ff5b42850686c7704345c9e08717d7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "v1010-owned-runtime-final-close",
+        "exit": 0,
+        "stdout_sha256": "2f821dbc0e9778164544baa33480203465c7c12dc97b45b1a6f9eb90c23fc895",
+        "stderr_sha256": "b2e285b86507ebbd1452c11e9b7114a2597fb53e2bee1acb3b779a8f1322fb0e"
+      },
+      {
+        "label": "western-horizons-independent-batch3",
+        "exit": 0,
+        "stdout_sha256": "ec60fb1a0b54aba172a85385ff05bfa46a437df1b882d680c3e66e6ca9cbadc5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "western-nonauthor-horizons-second-run",
+        "exit": 0,
+        "stdout_sha256": "b0f1aaf247210edf009cd5c027e5549789d66ea32925a161450bebc1ee444a5a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "lunar-horizons-independent-first-run",
+        "exit": 0,
+        "stdout_sha256": "3ca62b15bd1c116da614af29796de95014c920bb39dc22d8494374f844013937",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "solar-independent-noaa-first-run",
+        "exit": 0,
+        "stdout_sha256": "1874fd5aa50ab4a7f1472cf2d335d5f58960da7b02222ef8f4dbd88c644b7b04",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "final_delivery_20261018": {
+    "product_source": {
+      "commit": "2be08468754c7b1ad453f9eb0b7085050b3aaf99",
+      "tree": "8c893d71984ff9cdece9b22718ade86ab9bb5f2f",
+      "apps": "01b58edcfec2766a1e764231d4098c0d61ea6d95",
+      "services": "c72d392f37968e20d1b48d2252a9549c2b0d04dc",
+      "paths": [
+        "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+        "services/backend-laravel/.gitattributes",
+        "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+        "services/backend-laravel/app/Services/NatalCalculationService.php",
+        "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+        "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+        "services/backend-laravel/resources/natal/dependency-manifest.json",
+        "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+        "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+        "services/backend-laravel/tools/natal/README.md",
+        "services/backend-laravel/tools/natal/chiron_build.py",
+        "services/backend-laravel/tools/natal/chiron_dynamics.py",
+        "services/backend-laravel/tools/natal/chiron_orbit.py",
+        "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+        "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+        "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+        "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+        "services/backend-laravel/tools/natal/orbit_integrator.py",
+        "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+        "services/backend-laravel/tools/natal/tests/test_western.py",
+        "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+        "services/backend-laravel/tools/natal/western.py",
+        "services/backend-laravel/tools/natal/ziwei.mjs"
+      ],
+      "pinned_blobs_byte_equal": 8,
+      "remote_pushed": true,
+      "crlf_preserved": true,
+      "role": "FIXED_PRODUCT_SOURCE_DOCUMENTATION_SUCCESSORS_MAY_DIFFER"
+    },
+    "authority_review": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+    "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+    "review": {
+      "branch": "review/temporary-evidence-v1010-natal-final-20261018",
+      "commit": "10bd9be1b7c6d14fa16003a266845d5f40fe32ab",
+      "tree": "a4f90066863936679cde69185147740ea56a59d4",
+      "prefix": "docs/_temporary_review/v1010-natal-final-20261018/"
+    },
+    "review_files": 91,
+    "review_unique_blobs": 71,
+    "github_api_bytes_equal": true,
+    "source_commit_receipt": "20261018-final-source-commit-crlf-aware",
+    "nonauthor_review": "Cumulative read-only review found no definite defect; child supplement also reviewed; not Astra/legal/scientific adjudication",
+    "integrity": {
+      "status": "INTEGRITY_MATCH",
+      "syntax": {
+        "python": 18,
+        "json": 11
+      },
+      "chiron_pins": 6,
+      "notice_files": 34,
+      "client_source_files_unchanged": 498,
+      "artifacts": {
+        "app-debug.apk": {
+          "bytes": 222959834,
+          "sha256": "d340e30b543a290c373c6405a66d6b6f8f27d65741dcfa14083f53ede0981cd2"
+        },
+        "flutter_release-1.0.aar": {
+          "bytes": 4030249,
+          "sha256": "dca5a7d4b24d7ce01fb53ffb4053f195dcf5266d172dcb48e942013f947a19e0"
+        }
+      },
+      "protected_snapshot_equal": true,
+      "protected_dirty_tracked": 43,
+      "protected_scope": "HEAD/index/status/recorded dirty tracked bytes; not all untracked media",
+      "frozen_plan_unchanged": true,
+      "conflict_stages": 0,
+      "changed_paths": [
+        "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_restoration_charts.dart",
+        "docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md",
+        "docs/versions/v10.0.10/OWNER_DECISION_REQUEST.md",
+        "docs/versions/v10.0.10/validation-summary.json",
+        "services/backend-laravel/.gitattributes",
+        "services/backend-laravel/app/Services/NatalCalculationProfile.php",
+        "services/backend-laravel/app/Services/NatalCalculationService.php",
+        "services/backend-laravel/resources/natal/calculation-profile-registry.json",
+        "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-elements-v1.json",
+        "services/backend-laravel/resources/natal/data/chiron-lowell-hermite8d-v1.npz",
+        "services/backend-laravel/resources/natal/dependency-manifest.json",
+        "services/backend-laravel/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "services/backend-laravel/tests/Unit/V1010NatalChironResultIdentityTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalDerivedDateBoundaryTest.php",
+        "services/backend-laravel/tests/Unit/V1010NatalRuntimeIdentityTest.php",
+        "services/backend-laravel/tools/natal/CALCULATION_CONVENTIONS.md",
+        "services/backend-laravel/tools/natal/README.md",
+        "services/backend-laravel/tools/natal/chiron_build.py",
+        "services/backend-laravel/tools/natal/chiron_dynamics.py",
+        "services/backend-laravel/tools/natal/chiron_orbit.py",
+        "services/backend-laravel/tools/natal/oracle/CHIRON_REFERENCE.md",
+        "services/backend-laravel/tools/natal/oracle/bazi_broad_epoch_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_force_reference.py",
+        "services/backend-laravel/tools/natal/oracle/chiron_gaia_reference.py",
+        "services/backend-laravel/tools/natal/oracle/requirements.oracle.windows-cp311.lock",
+        "services/backend-laravel/tools/natal/oracle/solar_term_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_changsheng_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_chart_markers_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_child_composition_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_minor_boundary_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_selected_rule_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_supplement_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_label_sources.json",
+        "services/backend-laravel/tools/natal/oracle/ziwei_void_labels_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_reference.py",
+        "services/backend-laravel/tools/natal/oracle/ziwei_year_helpers_sources.json",
+        "services/backend-laravel/tools/natal/orbit_integrator.py",
+        "services/backend-laravel/tools/natal/tests/test_chiron_orbit.py",
+        "services/backend-laravel/tools/natal/tests/test_western.py",
+        "services/backend-laravel/tools/natal/tests/ziwei.test.mjs",
+        "services/backend-laravel/tools/natal/western.py",
+        "services/backend-laravel/tools/natal/ziwei.mjs"
+      ]
+    },
+    "owner_new_decision_required": false,
+    "preserved_failures": [
+      "cp936503",
+      "encoding RED",
+      "derived-edge RED",
+      "harness context key KeyError",
+      "byte-preserved CRLF default diff-check",
+      "restart health1 then2",
+      "API copy verifier duplicate empty-blob log collision; v2 content-deduplicated verification passed"
+    ],
+    "main_merge_k08_next_version": "NOT_RUN"
   }
 }
