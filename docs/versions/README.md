@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-18 v10.0.10 Astra最终接受（当前）
+
+**V10.0.10 ACCEPTED WITH OBSERVATIONS / AC-10-01..08 PASS IN FROZEN SCOPE / K08 PENDING**。最终接受候选`65b4991837e76d04762b85a9439851264766e192`、源码锚`2be08468754c7b1ad453f9eb0b7085050b3aaf99`；[正式独立验收](v10.0.10/acceptance.md)涵盖三盘本命恢复、许可与独立参考、真实APP/API/开发DB持久回读及具名科学/旧失败观察。**代码尚未并main，不是商用或公开版本**，本轮只同步文档；合同[plan](v10.0.10/plan.md)和原失败不改。原合盘/行运/回归/法达必恢复范围仍明确留给后续内测前功能版。下方K08待办/版本未派发均为记录时点历史。
+
 ## 2026-10-17 v10.0.10 正式冻结（待Owner手动派发）
 
 **V10.0.10 FROZEN_FUNCTIONAL_PLAN / OWNER_OPTION_A_APPROVED / IMPLEMENTATION_NOT_STARTED**。本版唯一正式计划为[plan](v10.0.10/plan.md)：八字、紫微、西占本命完整恢复与旧版本命扩展、真实APP→Laravel→本版独立DB、独立oracle及许可准入，AC-10-01～08固定；动态/关系盘按Owner方案A具名保留后续，内测前收口。前置[规划报告](v10.0.10/PREPLAN_REPORT.md)与[Astra审查](v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)。这是doc-only冻结，并非已经开始开发、安装算法、购买许可或验证玄学精度。既有v10.0.9 K08仍保持完成，下方旧状态按记录时点解读。

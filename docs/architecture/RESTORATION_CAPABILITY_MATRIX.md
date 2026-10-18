@@ -1,5 +1,9 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-18 A07三盘本命恢复限定接受（当前）
+
+**A07 V10.0.10 ACCEPTED_WITH_OBSERVATIONS / K08 PRODUCT INTEGRATION PENDING**：[Astra最终接受](../versions/v10.0.10/acceptance.md)确认八字/紫微/西方本命实际规则计算、旧证本命扩展与选定运限、APP→Laravel→私有MariaDB持久重启的冻结范围；各算法数据来源/正确性不等于玄学预测科学认证或全世纪Chiron真实误差保证；部分紫微童限现代组合仅具名`UNVERIFIED/SCOPE_NOT_ESTABLISHED`。原旧版合盘、行运、回归、法达仍是**最终联合验收和内测前必须具名恢复**的后续能力；其它A/B模块的接受/欠账不改变。接受候选仅在`codex/v10.0.10-natal-restoration`，产品K08尚未集成main，开发环境不等于生产。下方未验/冻结前记载为历史时点，旧失败不删。
+
 ## 2026-10-17 A07玄学三盘完整恢复：v10.0.10 已冻结未实施（当前）
 
 **OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED**。A07范围以[唯一正式plan](../versions/v10.0.10/plan.md)为准：八字已验基础继续完善、紫微和西方星盘真实本命算法/独立oracle、本命扩展及大运流年/紫微运限，APP→Laravel→私有持久库全链。现有紫微seed/飞星缺独立参考、西占legacy估算及第三方许可门仍未消除，不得由“冻结”提升为“已恢复”。**经确认原版已实现的合盘、行运、回归、法达及其它动态关系盘属于后续内测前具名必恢复欠账，不并入本版，不得以Later删去。** v10.0.9 K08真实成功状态保持，下文以旧时点记录。当前没有新版算法运行/安装/业务实测或Owner实施派发。

@@ -1,5 +1,9 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-18 v10.0.10 Astra最终验收（首读）
+
+**V10.0.10 ACCEPTED WITH OBSERVATIONS / K08 PRODUCT INTEGRATION PENDING / NO NEXT VERSION**。首读[正式接受](docs/versions/v10.0.10/acceptance.md)并保存原[唯一冻结plan](docs/versions/v10.0.10/plan.md)、[Codex固定实施报告](https://github.com/zcx369658780/EliteSync-v10/blob/65b4991837e76d04762b85a9439851264766e192/docs/versions/v10.0.10/IMPLEMENTATION_REPORT.md)、[91项固定临时审阅原commit](https://github.com/zcx369658780/EliteSync-v10/blob/10bd9be1b7c6d14fa16003a266845d5f40fe32ab/docs/_temporary_review/v1010-natal-final-20261018/README.md)。接受源`2be08468754c7b1ad453f9eb0b7085050b3aaf99` apps/services固化；正式main只有doc接受，K08须Owner转交Codex。Chiron物理精度、紫微童限现代profile适用性、旧全量失败及安全原证LOCAL_ONLY保留；其它原版动态/关系盘仍在内测前必恢复清单。下方已冻结/等待实施属于此前历史时点。
+
 ## 2026-10-17 v10.0.10 玄学三盘本命版 FROZEN（首读）
 
 **OWNER_OPTION_A_APPROVED / V10.0.10 FROZEN_FUNCTIONAL_PLAN / IMPLEMENTATION_NOT_STARTED / OWNER_MANUAL_DISPATCH_PENDING**。新会话首读[唯一正式plan](docs/versions/v10.0.10/plan.md)，并核对[Astra独立版前审查](docs/versions/v10.0.10/ASTRA_PREPLAN_REVIEW_20261017.md)及[Codex固定报告](https://github.com/zcx369658780/EliteSync-v10/blob/70ca8a945dc933f33ff815058b29813c744e6009/docs/versions/v10.0.10/PREPLAN_REPORT.md)。本版仅完成八字/紫微/西方本命与有据本命扩展（含大运流年、紫微运限）；旧合盘/行运/回归/法达等属后续内测前必恢复项。v10.0.9 K08产品main起点`a1ce6473e85ee02786fc2fb4bb33ca1eac46ea8f`仍有效，新版源/运行未启动，许可证与独立oracle不可假报。下文K08与更早ICE/NOT_ACCEPTED均为对应时点的历史状态。

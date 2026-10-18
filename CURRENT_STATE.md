@@ -1,5 +1,9 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-18 v10.0.10 Astra最终接受（当前）
+
+**`V10.0.10 ACCEPTED WITH OBSERVATIONS / AC-10-01..08 PASS IN FROZEN SCOPE / PRODUCT_K08_PENDING / NEXT_VERSION_NOT_STARTED`**。固定产品候选Commit `65b4991837e76d04762b85a9439851264766e192`，产品锚`2be08468754c7b1ad453f9eb0b7085050b3aaf99`，apps `01b58edcfec2766a1e764231d4098c0d61ea6d95`、services `c72d392f37968e20d1b48d2252a9549c2b0d04dc`；[Astra独立验收](docs/versions/v10.0.10/acceptance.md)对本命三盘、原版本命扩展、可复现APP→Laravel→隔离DB链给予**限定接受**。Lowell具名Chiron来源有署名自由使用/复制/传输依据，但其源本身与共用模型分层对照**不能证明1900—2101所有日期真实轨道误差上界**；童限现代组合、其他流派和旧PHP16失败/本地LOCAL_ONLY等均具名保留。验收不等于商用天文精度认证、生产发布、产品合main、K08、下一版本、其它原版动态/关系盘恢复；合盘/行运/回归/法达仍须内测前具名收口。**本次main只更新正式接受/状态文档，不包含新产品源码**。下方未接受/阻塞/问询记录均属当时真实历史事实。
+
 ## 2026-10-17 NIMA Chiron权利询问一次性发送（当前）
 
 **`NIMA_ONCE_ENQUIRY_SENT / REPLY_PENDING / RIGHTS_NOT_GRANTED`**。Owner批准一次且仅一次向NIMA官方公开联系人发送Chiron离线闭源服务与可选分发权利询问，不批准购买、下载或使用数据。Astra已通过已连接Gmail实际发送，Gmail SENT回执及发件箱单封回读成立；英文邮件如实说明尚未公司注册/公开内测、仅独立开发前期咨询，无用户生辰、附件、源码或费用承诺。原JPL邮件另行仍是已发待答，NIMA询问亦**不是许可证或法务准入**。详见[独立审查与后继发信记录](docs/versions/v10.0.10/ASTRA_CONTINUATION_LEGACY_LICENSE_REVIEW_20261017.md)。Codex在原v10.0.10任务内继续合法未阻塞的算法/独立oracle；完整AC仍未收口，`CONTINUE_SAME_VERSION / NOT_FINAL_CANDIDATE / NOT_ACCEPTED`。下方NIMA尚待批准的记录是此前时点，现已由本段覆盖。
