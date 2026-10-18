@@ -1,5 +1,10 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-18 v10.0.11 动态星盘与关系盘候选
+
+**CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**。四组确定功能已完成候选实现、独立整窗/跨盘参考及实装APP→Laravel→隔离MariaDB重启读回；源码锚`78ab7827b258cb649920e5121f24d506dae2a93c`。服务/本版APP/DB已停，卷与原dirty根保护；原v10.0.10接受及K08持续有效，既有科学/许可/失败观察保留。Composite/完整法达等条件项仍按具名来源`SOURCE_NOT_ESTABLISHED / NOT_IMPLEMENTED`保留，未自行新增或删除欠账。[单份综合报告](docs/versions/v10.0.11/IMPLEMENTATION_REPORT.md)。仅候选分支交付，未合main/K08/启动后继版本；下方旧状态按原时点保留。
+
+
 ## 2026-10-18 v10.0.10 K08完成（当前）
 
 **K08_INTEGRATION_COMPLETE / ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / LOCAL_DEVELOPMENT_BASELINE_READY / NEXT_VERSION_NOT_STARTED**。Owner本任务已正式派发；已接受产品普通集成main `d82f19b7a7a6c15f486734ce24a4090262cccf48`，完整apps/services保持 `01b58edcfec2766a1e764231d4098c0d61ea6d95` / `c72d392f37968e20d1b48d2252a9549c2b0d04dc`。最新并发Owner/交接/验收文档保留；专用干净分支安全接续，原dirty根和持久资产未改。临时审阅ref精确核头后仅一次普通删除、API404。仅必要静态核验；套件、构建安装、服务/DB/设备及RTC均NOT_RUN，科学/许可/旧失败观察延续。见[单份K08报告](docs/versions/v10.0.10/integration.md)。下方“尚未派发/未集成/待清理”均保留为原时点事实；本次完成后停止，未启动下一版。
