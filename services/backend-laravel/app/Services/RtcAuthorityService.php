@@ -14,8 +14,11 @@ final class RtcAuthorityService
         if (!config('rtc_guard.enabled') || !app()->environment(['local', 'testing'])) return false;
         if (app()->environment('testing')) return DB::connection()->getDriverName() === 'sqlite';
         $db = DB::connection();
-        return app(LiveConsentService::class)->enabled() && $db->getDatabaseName() === 'elitesync_v1009_dev'
-            && (int)$db->getConfig('port') === 43319 && $db->getConfig('host') === '127.0.0.1';
+        return app(LiveConsentService::class)->enabled()
+            && in_array([$db->getDatabaseName(), (int)$db->getConfig('port')], [
+                ['elitesync_v1009_dev', 43319], ['elitesync_v1010_devpilot', 43330],
+            ], true)
+            && $db->getConfig('host') === '127.0.0.1';
     }
 
     public function signature(int $a, int $b): ?string
