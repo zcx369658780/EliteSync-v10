@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "scope": "natal_birth_year_branch",
+  "profile": "selected_modern_birth_year_si_yuede_iztro_compatible",
+  "status": "SOURCE_REFERENCE_ONLY",
+  "acceptance": "NO_ACCEPTANCE_OR_VERIFIED_CLAIM",
+  "branch_encoding": "子=0, 丑=1, 寅=2, 卯=3, 辰=4, 巳=5, 午=6, 未=7, 申=8, 酉=9, 戌=10, 亥=11",
+  "selected_rules": [
+    {"label": "月德", "start_branch": "巳", "start_index": 5, "direction": "forward", "direction_step": 1, "input": "birth_year_branch", "sources": ["ziweicn_2017", "doushu_public_rules"]},
+    {"label": "天德", "start_branch": "酉", "start_index": 9, "direction": "forward", "direction_step": 1, "input": "birth_year_branch", "sources": ["ziweicn_2017", "doushu_public_rules"]},
+    {"label": "年解", "start_branch": "戌", "start_index": 10, "direction": "backward", "direction_step": -1, "input": "birth_year_branch", "sources": ["liu_2022", "zhongzhou_transcription", "doushu_public_rules"]}
+  ],
+  "sources": [
+    {
+      "id": "liu_2022",
+      "url": "https://www.ziweishuyuan.com/discussion/b-star/579.html",
+      "attribution": "刘韫龄原作者文章",
+      "publication_date": "2022-04-07",
+      "reported_rule": "年解按出生年支，戌宫起子逆至出生年；月解按生月，不能同名混用。",
+      "evidence_origin": "Main agent directly read the named public source and supplied this rule; helper did not fetch it.",
+      "chronology_limit": "Author publication predates the current engine; this does not establish independence of all sources."
+    },
+    {
+      "id": "zhongzhou_transcription",
+      "url": "https://www.guoxuedashi.com/a/22312bxfo/281042u.html",
+      "attribution": "《中州派紫微斗数深造讲义》网络转录",
+      "locator": "Main-agent read lines 107-110",
+      "reported_rule": "年解按生年，戌起子逆行；年解流曜同式按流年支。",
+      "selected_scope": "Only natal birth-year 年解 is implemented.",
+      "edition_or_printing": "UNKNOWN",
+      "evidence_origin": "Main-agent documentary reading supplied to helper."
+    },
+    {
+      "id": "ziweicn_2017",
+      "url": "https://www.ziweicn.com/show/3085.html",
+      "attribution": "2017年安星法网络转录，安月德及安天德年解段",
+      "reported_rule": "天德酉起子顺至生年；月德巳起子顺至生年。",
+      "edition_or_printing": "UNKNOWN",
+      "evidence_origin": "Main-agent documentary reading supplied to helper."
+    },
+    {
+      "id": "doushu_public_rules",
+      "url": "https://www.doushu.ai/star-rules",
+      "attribution": "原作者公开产品规则说明",
+      "locator": "Main-agent read lines 899-901",
+      "reported_rule": "月德巳顺、天德酉顺、年解戌逆，均取生年支。",
+      "program_lineage": "UNKNOWN",
+      "evidence_origin": "Main-agent public prose reading; no program or product agreement used to derive the reference."
+    }
+  ],
+  "alternatives": [
+    {
+      "status": "ALTERNATIVE_NOT_SELECTED",
+      "attribution": "《紫微斗数全书》另一网络转录口径，由主代理提供差异摘要",
+      "url": null,
+      "edition_or_printing": "UNKNOWN",
+      "reported_differences": ["天德、月德按流年支。", "月德子起子。"],
+      "evidence_limit": "Exact edition and URL were not supplied to helper; this entry preserves the reported disagreement without inventing a bibliographic locator.",
+      "selection_reason": "This reference explicitly selects modern natal birth-year rules with 巳-start 月德. No rules from this alternative are mixed into the selected table."
+    }
+  ],
+  "limitations": [
+    "Online transcriptions do not establish an identified historical printing or edition.",
+    "Sources may share classical textual ancestry; they are not asserted to be wholly independent observations.",
+    "The newer doushu public explanation has unknown program lineage.",
+    "Compatibility profile selection is not all-school certification and changes no product implementation.",
+    "月解 and transiting/annual placements are excluded; similar labels must not collapse these distinct inputs.",
+    "No actual outputs, expected cases, algorithm execution, product tests, or scientific tests were used by this helper."
+  ],
+  "source_sha": {
+    "algorithm": "SHA-256",
+    "implementation": "ziwei_year_helpers_reference.source_sha256",
+    "files_in_order": ["ziwei_year_helpers_reference.py", "ziwei_year_helpers_sources.json"],
+    "framing": "For each file: UTF-8 basename, NUL, ASCII byte length, NUL, raw bytes.",
+    "meaning": "Digest covers the reference itself and this manifest; it is not acceptance or web-content authentication."
+  }
+}

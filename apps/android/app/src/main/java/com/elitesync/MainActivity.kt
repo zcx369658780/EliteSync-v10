@@ -35,7 +35,7 @@ class MainActivity : FlutterActivity() {
                             null
                         }
                         val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic)
-                        val endpoints = if (restoration) BootstrapEndpointPolicy.Endpoints("http://127.0.0.1:8000/", "") else syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
+                        val endpoints = if (restoration) BootstrapEndpointPolicy.Endpoints(BuildConfig.API_BASE_URL, "") else syntheticEndpoints ?: BootstrapEndpointPolicy.resolve(
                             synthetic = false,
                             debug = BuildConfig.DEBUG,
                             intentApi = extras?.getString("elitesync_api_base_url"),

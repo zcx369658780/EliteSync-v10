@@ -1,0 +1,25 @@
+{
+  "schema": "elitesync.chiron.astorb2060.v1",
+  "record": {
+    "Planet": "2060",
+    "Name": "Chiron",
+    "CompName": "L.H. Wasserman",
+    "Epoch": "2021-03-27",
+    "M": "178.779286",
+    "omega": "339.738434",
+    "Omega": "209.267586",
+    "i": "6.932175",
+    "e": "0.37754650",
+    "a": "13.69774353",
+    "DateOrb": "2021-03-11",
+    "CEU": "1e-02",
+    "dCEU": "9e-06",
+    "Nobs": "3186",
+    "Narc": "45945"
+  },
+  "raw_catalog_response_sha256": "6b97fdfcb48f018cc359eb8f35064c318c236085b8338fc1b2f2cd3ec7e1beed",
+  "source": "Lowell astorb.dat; selected CDS B/astorb archival record",
+  "source_url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/B/astorb",
+  "rights_source": "https://asteroid.lowell.edu/astorb/",
+  "attribution": "Lowell Observatory; L.H. Wasserman; NASA NAG5-4741 (PI E. Bowell), NASA PDART NNX16AG52G (PI N. Moskovitz); Lowell Observatory endowment; additional current publication grant 80NSSC19K0420"
+}
