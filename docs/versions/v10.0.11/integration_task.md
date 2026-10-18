@@ -33,7 +33,7 @@ Codex 交付 Commit/Tree：`2d7e96c315a3c19345a4b9d5af3969ddcff4e0ea` / `7ec3518
 
 仅集成下面 21 个产品/测试路径，按固定源码锚的精确 blob/object 选择。产品源码不得编辑或“顺手修复”；如集成发现接受源码缺陷，暂停受影响集成并报告 Astra，不能把代码修复混进 K09。
 
-### Android / Flutter（6）
+### Android / Flutter（7）
 
 - `apps/android/app/build.gradle.kts` — `6d50b295eb8aaf423b1fdcbf17c2ed80236e8480`
 - `apps/flutter_elitesync_module/lib/app/router/app_router.dart` — `2b54d5edec20b29baa9dd55fb941ae5bd576220a`
