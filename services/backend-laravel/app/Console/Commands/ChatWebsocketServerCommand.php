@@ -154,6 +154,9 @@ class ChatWebsocketServerCommand extends Command
         $this->info("Chat websocket gateway running at ws://{$host}:{$port}");
         $this->info('Authenticated scoped path: /api/v1/messages/ws/{userId}?peer_id={peerId}');
         $this->prepareWorkermanArgv();
+        Worker::$pidFile = storage_path('logs/chat-gateway.pid');
+        Worker::$logFile = storage_path('logs/chat-gateway.log');
+        Worker::$stdoutFile = storage_path('logs/chat-gateway.stdout.log');
         Worker::runAll();
 
         return self::SUCCESS;

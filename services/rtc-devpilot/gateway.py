@@ -7,6 +7,8 @@ import asyncio
 import importlib.util
 import hashlib
 import hmac
+import http.client
+import json
 from urllib.parse import urlsplit, parse_qs
 import os
 from pathlib import Path
@@ -21,11 +23,29 @@ gateway = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(gateway)
 
 
+def _post(port, path, payload, headers):
+    """Bounded HTTP client; Nginx may use chunked JSON responses."""
+    connection = http.client.HTTPConnection("127.0.0.1", port, timeout=1)
+    try:
+        connection.request("POST", path, body=json.dumps(payload).encode(),
+                           headers={"Content-Type": "application/json", **headers})
+        response = connection.getresponse()
+        body = response.read(131073)
+        if response.status != 200 or len(body) > 131072:
+            raise RuntimeError("control denied")
+        result = json.loads(body)
+        if not isinstance(result, dict):
+            raise RuntimeError("invalid control response")
+        return result
+    finally:
+        connection.close()
+
+
 async def backend(action, payload):
     if action not in {"authorize", "sweep", "audit"}:
         raise ValueError("unknown authority action")
-    return await gateway.http("127.0.0.1", 8030, "/api/v1/rtc-guard/" + action,
-                              payload, {"X-RTC-Gateway": gateway.GATE})
+    return await asyncio.to_thread(_post, 8030, "/api/v1/rtc-guard/" + action,
+                                   payload, {"X-RTC-Gateway": gateway.GATE})
 
 
 async def control(action, payload):
@@ -35,8 +55,8 @@ async def control(action, payload):
                          "exp": int(time.time()) + 20,
                          "video": {"roomList": True, "roomAdmin": True,
                                    "room": payload.get("room", "")}})
-    return await gateway.http("127.0.0.1", 8034, "/twirp/livekit.RoomService/" + action,
-                              payload, {"Authorization": "Bearer " + token})
+    return await asyncio.to_thread(_post, 8034, "/twirp/livekit.RoomService/" + action,
+                                   payload, {"Authorization": "Bearer " + token})
 
 
 # Retain the accepted request/JWT parser; only the private upstream and
