@@ -452,6 +452,31 @@
       "local_only_file": "cloud-static-media-identity.json",
       "sha256": "d8b392f57a73177bb575429c4e5a67a2e3220a63166722e02bc333712972fd26",
       "bytes": 1948
+    },
+    {
+      "local_only_file": "owner-correction-ssh-withdrawal-result.json",
+      "sha256": "67076ee7c727de27521293a78853508aaf93ea5a7d86e1722c1943fa172bc11f",
+      "bytes": 557
+    },
+    {
+      "local_only_file": "https-backup-and-acme-preflight.private.json",
+      "sha256": "8c478da10fd5c2c4c441c9f25807d2a051d15716a7daab9a1cedc28374436f54",
+      "bytes": 2104
+    },
+    {
+      "local_only_file": "external-acme-first-403-diagnostic.json",
+      "sha256": "0486db6af4a3197f0f71f809761f6bdf4644fcf2618cfc604850b3189152c1f3",
+      "bytes": 388
+    },
+    {
+      "local_only_file": "acme-owned-probe-route-diagnosis.json",
+      "sha256": "e60713b2c185a2b72b4f239efa8a60e479c9ce9753cbbfc47f4a2dc790919fdd",
+      "bytes": 413
+    },
+    {
+      "local_only_file": "https-icp-gate-safe-terminal-result.json",
+      "sha256": "cb6e57a04ff5020d028dbaa7f7c2f864c27b35ed283eeda27c805961490d6180",
+      "bytes": 1063
     }
   ],
   "linux_runtime_dependency_admission": {
@@ -632,5 +657,142 @@
     "global_install": false
   },
   "de440s_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
-  "chiron_manifest_path": "services/backend-laravel/resources/natal/chiron-data-manifest.json"
+  "chiron_manifest_path": "services/backend-laravel/resources/natal/chiron-data-manifest.json",
+  "continuation_owner_decisions": {
+    "admin_interface": "independent Web admin; same administrator phone/password; no server login",
+    "app_admin_panel": "abandoned old design; NOT_RESTORED",
+    "ssh_selection": "WITHDRAWN_BY_OWNER",
+    "https_restore_scope": "APPROVED: free renewal existing certificate and 443 only for /admin; no security-group/firewall/paid/old-business-route change"
+  },
+  "continuation_ssh_withdrawal": {
+    "utc": "2026-10-18T13:44:05.457071+00:00",
+    "sshd_main_config_restored_exact_bytes": true,
+    "root_effective_settings_restored": true,
+    "unrelated_effective_settings_restored": true,
+    "probe_key_file_empty": true,
+    "probe_account_locked_and_expired": true,
+    "owned_probe_sshd_children_terminated": [],
+    "sshd_mainpid_unchanged": true,
+    "task_created_config_and_account_retained_for_evidence": true,
+    "private_keys_or_old_accounts_deleted": false
+  },
+  "continuation_https_backup": {
+    "backup_archive": "/opt/backups/elitesync-v10.1.0-https-before-20261018T135207Z/certificate-nginx-pilot-config.tar.gz",
+    "backup_sha256": "e236ef4766989ccac97266c67eca00ccfc83c3c24ba9bf97be1e703126fa0e4d",
+    "archive_bytes": 13347,
+    "readable_regular_files": 19,
+    "archive_members": 25,
+    "backup_mode": "0o600",
+    "directory_mode": "0o700"
+  },
+  "continuation_external_probe": {
+    "http_status": 403,
+    "server": "Beaver",
+    "html_title": "Non-compliance ICP Filing",
+    "internal_same_probe": [
+      {
+        "route": "loopback",
+        "status": 200,
+        "sha256": "e5afdbed693f9d2814c9f30d50c24959fda56fcadffb8e221f8d1e82eb709bb4"
+      },
+      {
+        "route": "domain",
+        "status": 200,
+        "sha256": "e5afdbed693f9d2814c9f30d50c24959fda56fcadffb8e221f8d1e82eb709bb4"
+      }
+    ]
+  },
+  "continuation_https_terminal": {
+    "utc": "2026-10-18T13:54:37.576416+00:00",
+    "classification": "EXTERNAL_ICP_FILING_INTERCEPT_OBSERVED / HTTPS_ACTIVATION_PAUSED",
+    "probe_public_path_removed": true,
+    "probe_original_retained_in_restricted_backup": "/opt/backups/elitesync-v10.1.0-https-before-20261018T135207Z/acme-preflight-public-probe.txt",
+    "probe_sha256_unchanged": true,
+    "only_new_empty_probe_directories_removed": [
+      "/opt/elitesync/services/backend-laravel/public/.well-known/acme-challenge",
+      "/opt/elitesync/services/backend-laravel/public/.well-known"
+    ],
+    "certificate_and_config_before_hashes_still_match": true,
+    "certbot_actual_renewal": "NOT_RUN",
+    "public_https_site_config_installed": false,
+    "port443_listening": false,
+    "states": {
+      "database": "active",
+      "redis": "active",
+      "php": "active",
+      "http": "active",
+      "websocket": "active",
+      "queue": "active",
+      "rtc-authority": "active",
+      "rtc": "active"
+    },
+    "firewall_security_group_paid_services_changed": false,
+    "old_business_routes_changed": false
+  },
+  "continuation_command_receipts": [
+    {
+      "original_file": "prepare-only-ssh-candidate-policy-2ded4358.json",
+      "exit": 0,
+      "utc": "2026-10-18T13:35:44.872347+00:00",
+      "stdout_sha256": "9520509e6329b5015b1c13a1264f3741bceb0e70632174cbf070a925d12881e1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "install-only-restricted-synthetic-ssh-probe-e285de95.json",
+      "exit": 0,
+      "utc": "2026-10-18T13:38:24.650842+00:00",
+      "stdout_sha256": "8f2da18df06986ef08cfcece1337231064d1487e9e9299f34d84b8f0dec95c81",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "restricted-ssh-live-allowed-denied-and-admin-browser-244535f4.json",
+      "exit": 1,
+      "utc": "2026-10-18T13:39:04.136130+00:00",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "64f7e77fd7d3253ddf7d1755a89437eae41bd677d92ff5c7a15f093751544df7"
+    },
+    {
+      "original_file": "restricted-ssh-validation-correct-windows-user-259e245d.json",
+      "exit": 1,
+      "utc": "2026-10-18T13:39:44.763352+00:00",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c0d1a4b3bc6d4c295226ee218f0999144143cb628fc965e5550ad1a417b206a9"
+    },
+    {
+      "original_file": "restricted-ssh-live-denial-types-and-browser-f6607e9b.json",
+      "exit": 1,
+      "utc": "2026-10-18T13:41:00.040188+00:00",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "efd753586e78e4f93d7623407d98554c869a591e5a48c0cfb4718369dde3ed0d"
+    },
+    {
+      "original_file": "restricted-ssh-browser-diagnostic-cc217aa1.json",
+      "exit": 1,
+      "utc": "2026-10-18T13:42:43.353298+00:00",
+      "stdout_sha256": "b20dc35beeab4735a9d52349ceda2f94094ef2087e5bfaa7ca07512215de558e",
+      "stderr_sha256": "93dd7abc6db7fd7501224a6b4edd163bbbe1a14d2535fee6305d2ac143b7259a"
+    },
+    {
+      "original_file": "withdraw-only-owned-ssh-probe-after-owner-correction-3570f4d5.json",
+      "exit": 0,
+      "utc": "2026-10-18T13:44:05.639605+00:00",
+      "stdout_sha256": "e291b901ba39982f9d14eca4db15d73624af10d991f9b9842bb82afdde054f19",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "authorized-https-backup-and-external-acme-path-b8127a73.json",
+      "exit": 1,
+      "utc": "2026-10-18T13:52:07.635119+00:00",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "fdf68ab6733552bb5357f2520a27734382b998b1bc7bcb0fe53944557efbfdbc"
+    },
+    {
+      "original_file": "close-only-owned-acme-preflight-at-icp-gate-56b1cd1e.json",
+      "exit": 0,
+      "utc": "2026-10-18T13:54:37.592834+00:00",
+      "stdout_sha256": "81d806c87171ccb765f945f50564bee87327feea733a1bdfcd4920fd57c80446",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "continuation_next_gate": "Owner verifies/resolves existing domain ICP/access-filing intercept through provider; resume already authorized HTTPS steps in same version; no SSH/app admin restoration"
 }

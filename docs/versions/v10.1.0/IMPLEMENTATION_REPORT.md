@@ -2,7 +2,7 @@
 
 **2026-10-18 — V10.1.0_PARTIAL_DELIVERY / AWAITING_ASTRA_REVIEW / NOT_ACCEPTED**
 
-本版已完成隔离云端部署、专用管理员、真实 APP/API/数据库/匹配/消息/媒体/星盘/RTC 联调和受控重启读回。**AC-10.1-08 仍为 PARTIAL：受邀同事的独立访问入口尚未建立。**现有验证经主执行环境的既有 SSH 加密转发访问云端；不能将它写成受邀同事已能自行访问，更不能共享既有 root 私钥来追求 PASS。未修改公网规则、旧入口或生产资源。
+本版已完成隔离云端部署、专用管理员、真实 APP/API/数据库/匹配/消息/媒体/星盘/RTC 联调和受控重启读回。**AC-10.1-08 仍为 PARTIAL：当前外部域名请求收到ICP备案拦截页，Web管理员入口尚未交付。**Owner最新明确：管理员使用独立Web后台、以管理员手机号和密码登录；同事不需要服务器账号或SSH，APP旧管理员面板已抛弃，本版不恢复。Owner已进一步批准免费续期现有证书并恢复仅`/admin`的443 HTTPS；但外部ACME路径预检收到403，尚未触发实际续期或启用443。原受控SSH仅为Codex执行环境，不是同事访问方案。
 
 这是一份集中部分交付，不申请完整功能接受或生产就绪。所有运行结论是 **CODEX_EXECUTED / LOCAL_ONLY_RAW**；内部非作者复核不是 Astra 验收。冻结 plan/task_order、旧接受记录与失败原文保持。没有合 main、清理审阅分支或启动 v10.1.1。
 
@@ -33,7 +33,7 @@
 
 本版独立代码目录、nologin 服务用户、MariaDB 进程/datadir/schema、Redis/队列前缀、PHP-FPM、Nginx、WS、RTC 及私有媒体。数据库 `elitesync_v1010_devpilot`，专属 loopback `43330`；Redis `63330`；API `8030`；WS `8031`。新库从空表建立，迁移现为64项，未导入旧用户、出生信息、消息或媒体。
 
-管理员原认证链无法安全交付原密码，按 Owner 决定创建新开发管理员 `id=1`，正常密码哈希，未改旧管理员密码。新库另有虚构 Alpha/Beta 账号和已禁用探针；账号不是实名验证。Alpha/Beta 为既有真实执行合同要求的正常开发账号类型，`is_synthetic=false` **不证明真实身份或真实资料**，并排除指标。新凭据在云端专属 private 文件0600，本地使用当前 Windows 用户 DPAPI 加密和受限 ACL，文件名 `owner-credentials.dpapi`；密码、token、hash及密文实体均不入 Git。管理员权限没有扩展为任意私密星盘/媒体读取权。
+管理员原认证链无法安全交付原密码，按 Owner 决定创建新开发管理员 `id=1`，正常密码哈希，未改旧管理员密码。新库另有虚构 Alpha/Beta 账号和已禁用探针；账号不是实名验证。Alpha/Beta 为既有真实执行合同要求的正常开发账号类型，`is_synthetic=false` **不证明真实身份或真实资料**，并排除指标。新凭据在云端专属 private 文件0600，本地使用当前 Windows 用户 DPAPI 加密和受限 ACL，文件名 `owner-credentials.dpapi`；密码、token、hash及密文实体均不入 Git。附LOCAL_ONLY手动查看脚本`Show-DevpilotAdminCredentials.ps1`：默认遮蔽密码、仅当前Windows用户解密，不向终端输出凭据；仅做语法检查，未自动打开或截图。管理员权限没有扩展为任意私密星盘/媒体读取权。
 
 | 备份/保护点 | 身份与验证 |
 |---|---|
@@ -58,7 +58,7 @@
 | 05 对话与媒体 | **PASS（已测类型）** | 真实文字发送/幂等/历史/已读、WS实时投递；合成图片/2秒H264/AAC视频上传ready、peer取回字节一致、匿名404、private/no-store；浏览器实际图片/视频解码，APP显示图片、播放视频并发送文字。撤MC后读/发、图片/视频GET和Range均404，已开WS关闭，显式新代同意才恢复。其它媒体类型NOT_RUN。 |
 | 06 星盘与算法 | **PASS（部署复用，不重验天文真值）** | 本命八字/紫微/西占full；未变输入cache、改时间revision/signature变化；synastry/comparison/transit/solar_return/lunar_return真实云计算、非本人404；APP改时间并存库到revision4。重启后本命及五种动态详情读回。全部保留实际 `COMPUTED_UNVERIFIED`。 |
 | 07 视频与实时 | **PASS（受控双方客户端）** | 同一call7双方视频实际解码+非零PCM，断开重入均恢复；end200后独立DB ended与ListRooms=0。call10另补APP↔浏览器双向视频，APP入站截图与浏览器解码25帧。权限桥SIGSTOP后本版SFU 1.308秒关闭，恢复成功。无真人听辨/AEC证明。 |
-| 08 管理后台/受邀访问 | **PARTIAL** | 执行环境真实浏览器后台及权限/失效均通过；**尚无受邀同事的独立访问身份/入口**。现有HTTPS证书过期且443无监听；没有擅自续证、开放端口或分享root密钥。 |
+| 08 管理后台/受邀访问 | **PARTIAL** | 执行环境真实浏览器后台及权限/失效均通过；最新目标为独立Web后台，不是APP面板或SSH。Owner已批准受限HTTPS恢复；外部验证请求实际403/`Non-compliance ICP Filing`，故暂停公网子项。未续证、未启用443、不绕过拦截。 |
 | 09 持久化与重启 | **PASS** | 先备份、停本版writer，只重启专属8服务，PID均改变；重启DB/Redis前后无writer的完整dump摘要相同。APP与后台重新登录，消息/媒体/三盘/动态盘/匹配/CN/MC读回；旧SFU ID/StartedAt未变。 |
 | 10 集中交付 | **PASS（部分交付记录）** | 本唯一报告、产品Blob清单、最小脱敏机器回执与两张合成场景截图；非作者复核；源码/部署/APK/备份与命令流关联。AC08未闭合，因此不把整版写为完整候选。 |
 
@@ -105,9 +105,14 @@ RTC使用从旧已核容器只读复制的LiveKit1.11.0二进制，新独立keys
 9. 云端缺ffprobe的包闭包探索触预设cap，未全局安装；改合法独立进程后合成视频真实就绪/播放。原失败保持。
 10. 本次读回脚本曾调用不存在的`/api/v1/auth/logout`得到404/exit1；核对接受源码确认APP原本仅清本地session，未偷偷新增服务端注销合同。APP真实退出/重登录已完成；服务端注销撤销token为NOT_IMPLEMENTED，不能写成PASS。
 
+11. 本次SSH接续的原失败继续保留：本地工具缺Windows用户名环境使getpass尝试导入pwd失败；识别远程转发被拒时脚本未捕获ChannelListenError；修正harness后浏览器等待登录跳转超时。它们未形成受邀管理员成功证据，随后路径因Owner更正整体撤回。测试工具仅隔离安装本地，官方wheel hash验证，无全局Python/产品依赖升级。
+12. HTTPS验证路径从外部得到403而脚本原预期200，包装命令exit1保留；后续同文件内外路径诊断证明上文具名拦截。未触发实际证书续期、启用443或修改公网规则来“追绿”。
+
 原v10.0.9回声/AEC、call65未独立终态读回、旧/up内部超时根因UNKNOWN，以及v10.0.10/11科学/许可和动态盘未建立能力等历史观察全部延续；本版call7的独立终态证据不能倒填call65。
 
 ## 6. 非作者复核、保护及实际终态
+
+专用连续工作树尚未被代码图谱索引，本次所需入口按该树当前源码直接读取，未用原dirty根的陈旧图谱替代。
 
 独立非作者助手（GPT-6.1 Sol/high，`pilot_source_review`）只读复核最终`997af1e…`相对启动main的源码，结论：**未发现新增源码级阻断**。Workerman解析仍走原token/actor/peer/能力检查；此前SFU初始化/SIGTERM清理P1关闭。其要求的真实Unix权限路径、断桥failclosed、namespace/监听、MariaDB拒绝保护、持久化与最终源身份均由主代理补证，不反称助手自己执行了远端测试。它特别要求保留call7合成媒体、非人耳/非APP证据边界，报告已分开call10说明。内部审查不能替代Astra。
 
@@ -115,14 +120,27 @@ RTC使用从旧已核容器只读复制的LiveKit1.11.0二进制，新独立keys
 
 最终专属database/redis/php/http/websocket/queue/rtc-authority/rtc均active，未设置开机自启（authority为static，其余disabled）。旧LiveKit容器仍为原ID，StartedAt `2026-10-07T10:05:28.840899721Z`；本版受控重启前后均一致。本地仅本版独立APK安装及专属转发继续可用，受控AVD未清除；未无授权修改全局环境。依赖的本地SSH会话结束后转发将不可用，这不是已建立的同事长期访问设施。
 
-## 7. 唯一未闭合的访问决定
+## 7. 最新Owner口径、已撤回SSH和真实外部阻塞
 
-已有域名`slowdate.top`证书notAfter为2026-08-16，现有HTTPS连接拒绝，最终443无监听。未覆盖旧公网80或改旧Nginx。云服务可经既有执行者SSH真实测试，但同事没有自己的受控通道。需要Owner选择并明确访问身份/网络变更后才继续受影响子项：
+本节覆盖首份交付中“推荐具名SSH”的方案。Owner先选择SSH，随后明确更正并最终确认：**管理员只使用独立Web管理后台，以管理员手机号和密码登录；不要求同事登录后端服务器，APP端旧管理员面板已抛弃，本版不恢复或扩建。**不再需要同事名单、公钥或服务器账号。
 
-- **推荐：具名受邀者的独立受限SSH转发身份**，复用既有SSH入口，限制到本版API/WS、禁止shell/任意转发/读取旧资源，逐人撤销；不得复制root密钥。需Owner确认受邀人员及其公钥/可接受的凭据交付方式。其配置、创建与他人端登录本次NOT_RUN，未将执行者通道冒充该方案。
-- **HTTPS入口：** 明确域名/证书续期与现有443配置、云安全组/系统防火墙的授权范围后，仅映射隔离试点；RTC访问路径也需同时限定。费用UNKNOWN，未购买；任何新增公网规则或旧入口变更本次NOT_RUN。
+Owner另已明确批准：先备份，免费续期`slowdate.top`现有证书，恢复该域名443 HTTPS，仅公开本版隔离Web后台`/admin`；不购买服务、不改安全组/系统防火墙、不改旧业务路由。该授权仍保留，不因本次网络阻塞反复请求同一普通技术权限。
 
-两者均不是生产开放、公开注册或真实用户迁移许可。除此之外，没有为普通源码修复反复请求审批。
+### 本次接续实际执行
+
+1. 实时main仍`d80d3d0d1650e73e9654362d3a1491450687cdee`；接续前开发分支仍`f077875e83c7a7124e04b70fcfd3cebc8379b633`。两份正式文档Blob未变，已接受产品对象再次核对一致。2026-10-18 13:29:09 UTC，云端658文件再次核验零不匹配，8专属服务active，旧8配置/管理员备份hash保持，原dirty根HEAD/index/status摘要与起点一致。因产品代码未变，复用既有真实联调和非作者审查，没有重复部署、建管理员、构建或全量测试。
+2. 在Owner当时选择SSH期间，曾备份SSH配置、对独立虚构测试账号应用具名限制并正常reload，未重启sshd。候选和实际配置均证明root/nobody有效配置不变；仅允许转发本版8030/8031，禁止旧DB/HTTP、Unix socket、反向转发、shell与SFTP。测试浏览器路径未完成登录，不把API200算后台成功。Owner纠正后已撤回：**SSH主配置逐字节恢复原SHA256 `233de7bf77edb119c8d8acae8a88e3c2966066a796fc5b02bfa5543608b284d6`；root/nobody有效配置恢复；探针公钥清空，账号锁定并过期；sshd MainPID不变。**新建配置/锁定探针与原失败保留作证，不删除旧账号/密钥，不再作为访问方案。
+3. SSH操作前受控备份：`/opt/backups/elitesync-v10.1.0-ssh-before-20261018T133546Z/sshd-before-access.tar.gz`，SHA256 `b492a1e40343609aa96134378b648d804637f44d4710f80ed13ff59c108cfe60`，归档0600且可读。撤回回执原reason曾写“administrators use APP”，仅代表当时那条更正；**其后Owner明确的独立Web后台口径才是当前目标**。没有据旧reason恢复APP面板。
+4. HTTPS写入前已完成证书/Nginx/本版必要配置备份：`/opt/backups/elitesync-v10.1.0-https-before-20261018T135207Z/certificate-nginx-pilot-config.tar.gz`，SHA256 **`e236ef4766989ccac97266c67eca00ccfc83c3c24ba9bf97be1e703126fa0e4d`**，13347 bytes，25 members/19 regular files可读，目录0700、归档0600。含现有证书链/私钥及必要配置，仅留受控服务器，不进入Git或本地公开证据。
+5. 已确认该域名DNS仍指向已核云主机，Certbot2.9.0已存在；原证书notAfter仍2026-08-16。准备了只代理`/admin`及`/admin/`的新站点候选，其它路径404，不公开API注册、RTC或其它业务。非作者指出的HTTPS scheme/port、独立Secure/HttpOnly/SameSite cookie与Host/CSRF验证仍列为**实际激活后的必测项**，不是已实现或已通过。
+6. 使用本任务独立随机文件预检现有HTTP-01验证路径。执行环境从外部请求得到 **HTTP403，Server `Beaver`，HTML标题 `Non-compliance ICP Filing`**；云主机内loopback及域名访问同一文件均200，内容SHA256均为 `e5afdbed693f9d2814c9f30d50c24959fda56fcadffb8e221f8d1e82eb709bb4`。这证明当前外部测试路径遇到备案拦截，不能误判为Laravel管理员认证失败，也不推断所有地区或CA节点都已测过。
+7. 外部预检未通过，按边界暂停受影响公网子项：**Certbot实际续期NOT_RUN，新的HTTPS站点NOT_INSTALLED，443仍无监听；安全组/防火墙/费用/旧业务路由均未变。**没有通过IP、其它端口、其它域名或代理规避该拦截。临时公开验证文件已精确核hash后移入同一受控备份目录保留原件；仅撤销本次新建的空验证目录，未清理既有资产。13:54:37 UTC终态回读证明证书及配置仍与HTTPS前备份hash相同，8专属服务均active。
+
+### 真正需要Owner处理的剩余事项
+
+请在阿里云账户核实并处理`slowdate.top`的ICP备案/接入备案状态及该拦截。当前只证实拦截页，未访问Owner云控制台，也不擅自断言具体备案记录或原因。**解除并确认现有域名可以正常从外部访问后，可在本版原已批准范围继续免费续证、恢复受限443并真实验证网页登录/权限/安全Cookie。**无需再选择SSH或重新派发普通工程任务。
+
+若该云资源/域名因资质等原因无法合法解除拦截，任何新托管地区、付费资源或数据合同变化都需Owner另行决定，本次未购买、未迁移。未对ICP备案作法律认定，不通过技术绕行伪造AC08 PASS。
 
 ## 8. 最小审阅证据与产品Blob清单
 
@@ -158,4 +176,4 @@ RTC使用从旧已核容器只读复制的LiveKit1.11.0二进制，新独立keys
 | `services/rtc-devpilot/gateway.py` | `fb46d8563b21ef5702c87c98db2b71842154fe16` |
 | `services/rtc-devpilot/test_gateway.py` | `2b382967c2ce1efbf21b3f8db5da9c3fb371884c` |
 
-**出口：V10.1.0_PARTIAL_DELIVERY / AC-10.1-08_PARTIAL / AWAITING_ASTRA_REVIEW / NOT_ACCEPTED。**保留已经完成的隔离试点与所有原始失败，等待Astra独立审阅及Owner集中处理访问决定；不自动进入生产或v10.1.1。
+**出口：V10.1.0_PARTIAL_DELIVERY / AC-10.1-08_PARTIAL / AWAITING_ASTRA_REVIEW / NOT_ACCEPTED。**保留已经完成的隔离试点与所有原始失败，等待Astra独立审阅及Owner核实域名备案拦截；不自动进入生产或v10.1.1。
