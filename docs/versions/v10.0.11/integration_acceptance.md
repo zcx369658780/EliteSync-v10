@@ -19,7 +19,7 @@ Astra 已独立回读实时 GitHub main、最终集成 Commit/Tree、完整 apps
 - 最终 main Commit：`7e5c2cbad009f571742672b9b809a705695a1deb`
 - 最终 main Tree：`9279ade3b5bba634845aac04e384ef1a88c9dc01`
 - 最终 apps Tree：`fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7`
-- 最终 services Tree：`29cedff599411c7c246ba32d2252a9549c2b0d04dc`
+- 最终 services Tree：`29cedff599411c7c246ba32d53b5d63e28f3f`
 - 接受产品源码锚：`78ab7827b258cb649920e5121f24d506dae2a93c` / Tree `6f3edd909f37a3a0b8ecaf3fa8da1af02a47f186`
 - 固定源对象清单：审阅分支 `ab8e5a307fe4fe10b90c1fbfe2ff54fc68553b44` 下 `SOURCE_OBJECTS.json`，Blob `4a6dbf336fd2dab7042bc8f08228ab5884778e31`
 - K09 单份集成报告：`docs/versions/v10.0.11/integration.md`，Blob `b5483f7198972c6f121b3a88fcca15bb3ee42a2e`
