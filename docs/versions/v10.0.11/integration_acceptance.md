@@ -54,3 +54,16 @@ GitHub 回读确认：产品集成 Commit 的唯一 parent 为派发前 main；�
 - K10、v10.0.12、生产发布、审阅分支清理：`NOT_STARTED / NOT_AUTHORIZED`。
 
 本验收只关闭 K09。后续版本必须重新核对恢复台账并冻结一份独立长任务单，由 Owner 手动派发；本记录不自动授权下一任务。
+
+
+## 6. 验收记录发布后的治理文档更新
+
+K09集成验收记录写入main后，继续按本项目惯例将接受状态登记到活动入口。这些后续提交只更新验收/状态文档，不修改 apps/services 或 21 项产品对象：
+
+- 验收记录初次发布：`dfb218f3356224223202b65ac5d8e0287f439055`，随后仅修正本记录中的 services Tree 字符串为准确对象身份。
+- `CURRENT_STATE.md`：`3f69d572ad925853fc5cfb8c6bdbebec2c63e86c`
+- `DOC_INDEX_CURRENT.md`：`4d37239ee2a8eadd3280bf13a86183a6a7cde717`
+- `docs/versions/README.md`：`d729af9dc6cda9443afda4e6160327f1bfd480d7`，后续只修正相对链接。
+- `docs/architecture/RESTORATION_CAPABILITY_MATRIX.md`：`7413736fdd7b39be2124c29e84bc34db79cccc60`，后续只修正相对链接。
+
+最新 main 在这些文档登记之后为 `236c6f0210fb920f65e4a61bcc28bfa5a9a3dd17` / Tree `f3a5eca7b4e567c0b1508d5128e8ac9f6c277a63`。该后继治理提交不改变本次 K09 的产品接受结论；apps/services 仍分别为 `fc925bd85ed9c5ced157ae7dc3cad2b0aabe62c7` / `29cedff599411c7c246ba32d53b5d63e28f3f`。
