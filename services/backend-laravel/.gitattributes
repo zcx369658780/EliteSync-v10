@@ -9,3 +9,13 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+
+# Preserve byte-pinned offline data/build inputs across host newline policies.
+/tools/natal/chiron_dynamics.py -text !eol
+/tools/natal/chiron_build.py -text !eol
+/tools/natal/orbit_integrator.py -text !eol
+/tools/natal/oracle/chiron_force_reference.py -text !eol
+/resources/natal/chiron-data-manifest.json -text !eol
+/resources/natal/data/chiron-lowell-elements-v1.json -text !eol
+/resources/natal/data/chiron-lowell-hermite8d-v1.npz -text !eol
+/resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt -text !eol

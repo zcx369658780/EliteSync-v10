@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/natal_restoration_charts.dart';
+import 'natal_restoration_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -22,6 +24,7 @@ class AstroNatalChartPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = context.appTokens;
     final async = ref.watch(astroNatalChartProvider);
+    final native = async.asData?.value?.containsKey('natal') == true;
     final routePrefs = ref.watch(astroChartRouteProvider);
     final chartPrefs = ref.watch(astroChartSettingsProvider);
     final workbenchPrefs = ref.watch(astroChartWorkbenchProvider);
@@ -42,10 +45,27 @@ class AstroNatalChartPage extends ConsumerWidget {
         mode: AppTopBarMode.backTitle,
         actions: [
           IconButton(
-            tooltip: '盘面设置',
-            onPressed: () => context.push(AppRouteNames.astroChartSettings),
+            tooltip: native ? '计算设置' : '盘面设置',
+            onPressed: native
+                ? () async {
+                    await Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const NatalRestorationPage(),
+                      ),
+                    );
+                    if (!context.mounted) return;
+                    ref.invalidate(astroSummaryProvider);
+                    ref.invalidate(astroNatalChartProvider);
+                  }
+                : () => context.push(AppRouteNames.astroChartSettings),
             icon: const Icon(Icons.tune_rounded),
           ),
+          if (native)
+            IconButton(
+              tooltip: '展示设置',
+              onPressed: () => context.push(AppRouteNames.astroChartSettings),
+              icon: const Icon(Icons.visibility_outlined),
+            ),
         ],
       ),
       body: RefreshIndicator(
@@ -64,6 +84,8 @@ class AstroNatalChartPage extends ConsumerWidget {
               height: chartPrefs.compactDensity ? t.spacing.xs : t.spacing.md,
             ),
             async.when(
+              skipLoadingOnRefresh: false,
+              skipLoadingOnReload: false,
               loading: () =>
                   AstroProfileStateView(spec: astroProfileLoadingSpec('星盘')),
               error: (e, _) {
@@ -84,6 +106,12 @@ class AstroNatalChartPage extends ConsumerWidget {
                   );
                 }
 
+                if (profile.containsKey('natal')) {
+                  return NatalProjectionView(
+                    natal: natalMap(profile['natal']),
+                    section: 'western',
+                  );
+                }
                 final trueSolarTime = astroText(profile['true_solar_time']);
                 final birthTime = astroText(profile['birth_time']);
                 final birthPlace = astroText(

@@ -1,0 +1,25 @@
+{
+  "schema": "elitesync.ziwei.upstream-corrections.v1",
+  "id": "iztro-2.5.8-with-official-2.6.1-you-data-fix-v1",
+  "base_engine_version": "2.5.8",
+  "base_source_commit": "9d39f1743bf31c2b3c635c9b9556215d9c90ee2c",
+  "correction_source_commit": "b78dfe391f65e938d79f2419dddb80f74c6bbb8e",
+  "source_file": "src/data/stars.ts",
+  "correction_source_file_sha256": "b616ea6bf47086ef01ac897eb4f9122ec30d44716ed5debc373db361066e8c76",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2023 All Contributors",
+  "notice": "resources/natal/notices/node--iztro--LICENSE",
+  "changes": [
+    {"star":"太阳", "branch":"酉", "engine_value":"陷", "corrected_value":"平"},
+    {"star":"太阴", "branch":"酉", "engine_value":"不", "corrected_value":"旺"},
+    {"star":"七杀", "branch":"酉", "engine_value":"庙", "corrected_value":"旺"}
+  ],
+  "reason": "Official upstream data-error corrections; no engine upgrade or combination of school tables.",
+  "sources": [
+    "https://github.com/SylarLong/iztro/issues/270",
+    "https://github.com/SylarLong/iztro/releases/tag/v2.6.1",
+    "https://github.com/SylarLong/iztro/blob/b78dfe391f65e938d79f2419dddb80f74c6bbb8e/src/data/stars.ts"
+  ],
+  "accuracy_status": "FULL_INDEPENDENT_BRIGHTNESS_ORACLE_STILL_PENDING",
+  "historical_failures": "Preserved; raw engine values are returned alongside corrections."
+}

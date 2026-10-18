@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'natal_restoration_page.dart';
+import '../widgets/natal_restoration_charts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -50,6 +52,7 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
   @override
   void didPopNext() {
     ref.invalidate(astroSummaryProvider);
+    ref.invalidate(astroNatalChartProvider);
   }
 
   @override
@@ -71,10 +74,29 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
       body: ListView(
         padding: EdgeInsets.only(top: t.spacing.sm, bottom: t.spacing.xl),
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: FilledButton.icon(
+              onPressed: () async {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const NatalRestorationPage(),
+                  ),
+                );
+                if (!mounted) return;
+                ref.invalidate(astroSummaryProvider);
+                ref.invalidate(astroNatalChartProvider);
+              },
+              icon: const Icon(Icons.auto_awesome),
+              label: const Text('三盘本命 · 输入与排盘'),
+            ),
+          ),
           SectionReveal(
             child: PageTitleRail(
               title: '星座 / 星盘 / 八字画像',
-              subtitle: '用于匹配结果中的过程与结论解释，先看生活化摘要',
+              subtitle: astroAsync.asData?.value?.containsKey('natal') == true
+                  ? '私有本命计算镜像，计算与核验状态分别记录'
+                  : '用于匹配结果中的过程与结论解释，先看生活化摘要',
             ),
           ),
           SizedBox(height: t.spacing.sm),
@@ -144,6 +166,8 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
               subtitle: '八字 / 星象 / 五行 / 大运 / 流年 / 参考状态',
               leadingIcon: Icons.auto_graph_rounded,
               child: astroAsync.when(
+                skipLoadingOnRefresh: false,
+                skipLoadingOnReload: false,
                 loading: () =>
                     AstroProfileStateView(spec: astroProfileLoadingSpec('画像')),
                 error: (e, _) {
@@ -163,6 +187,11 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
                       onAction: () {
                         reloadAstro();
                       },
+                    );
+                  }
+                  if (profile.containsKey('natal')) {
+                    return NatalProjectionView(
+                      natal: natalMap(profile['natal']),
                     );
                   }
                   final birthTime = (profile['birth_time'] ?? '').toString();
