@@ -169,8 +169,13 @@ def compute(payload, kernel_path, expected_hash):
         start = instant(event['window_start'] if kind == 'solar_return' else event['utc'])
         end = (instant(event['window_end']) if kind == 'solar_return'
                else start + dt.timedelta(days=35))
-        # The fixed accepted scientific/input domain is retained for derived times.
-        if start < dt.datetime(1900, 1, 1, tzinfo=UTC) or end > dt.datetime(2101, 1, 1, tzinfo=UTC):
+        # Solar input years are civil years in the selected IANA zone. Keep
+        # their complete UTC windows, including adjacent UTC dates; the fixed
+        # admitted data have padding beyond these conservative limits. Lunar
+        # retains its declared UTC query-window policy (the full 35 days).
+        lower = dt.datetime(1899, 12, 31, tzinfo=UTC) if kind == 'solar_return' else dt.datetime(1900, 1, 1, tzinfo=UTC)
+        upper = dt.datetime(2101, 1, 2, tzinfo=UTC) if kind == 'solar_return' else dt.datetime(2101, 1, 1, tzinfo=UTC)
+        if start < lower or end > upper:
             return {**result, 'status': 'OUTSIDE_DATA_DOMAIN', 'second': None,
                     'cross_aspects': [], 'house_overlays': None}
         with closing(PositionModel(kernel_path, expected_hash, profile)) as model:

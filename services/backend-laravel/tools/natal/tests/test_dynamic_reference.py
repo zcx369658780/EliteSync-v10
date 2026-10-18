@@ -258,6 +258,50 @@ class RealSharedModelBlindSearchTests(unittest.TestCase):
                 if expected:
                     self.assert_canonical_boundaries(self.model, body, target, expected[0])
 
+    def test_solar_extreme_civil_years_keep_complete_utc_windows(self):
+        kernel = pathlib.Path(os.environ['NATAL_JPL_KERNEL'])
+        digest = hashlib.sha256(kernel.read_bytes()).hexdigest()
+        profile = {'zodiac_mode': 'tropical', 'house_system': 'whole',
+                   'point_set': 'full', 'aspect_mode': 'major', 'orb_preset': 'standard'}
+        # PHP DateTimeZone conversion is separately exercised through the API.
+        # Historical Shanghai is LMT +08:05:43, not modern +08:00.
+        cases = [
+            (1900, 'Asia/Shanghai', 31.23, 121.47,
+             '1899-12-31T15:54:17Z', '1900-12-31T15:54:17Z'),
+            (2100, 'America/New_York', 40.71, -74.00,
+             '2100-01-01T05:00:00Z', '2101-01-01T05:00:00Z'),
+        ]
+        first = self.production.western.compute({'context': {
+            'utc': '1997-04-15T01:42:19Z', 'time_precision': 'second',
+            'latitude': 31.23, 'longitude': 121.47}, 'profile': profile}, str(kernel), digest)
+        target = next(p['longitude'] for p in first['planets'] if p['name'] == 'sun')
+        for year, zone, lat, lon, begin, finish in cases:
+            with self.subTest(year=year, timezone=zone):
+                start, end = instant(begin), instant(finish)
+                expected = search_crossings(lambda t: self.model.longitude(t, 'sun'),
+                                            target, start, end, 21600)
+                actual = self.production.compute({'chart_type': 'solar_return',
+                    'first_calculated': first, 'profile': profile,
+                    'event': {'year': year, 'timezone': zone, 'latitude': lat,
+                              'longitude': lon, 'window_start': begin, 'window_end': finish}},
+                    str(kernel), digest)
+                self.assertNotEqual(actual['status'], 'OUTSIDE_DATA_DOMAIN')
+                self.assertTrue(expected)
+                self.assertEqual([x['utc'] for x in actual['events']], [x['utc'] for x in expected])
+                self.assertEqual(instant(actual['window']['start']), start)
+                self.assertEqual(instant(actual['window']['end_exclusive']), end)
+                for event in actual['events']:
+                    self.assertLessEqual(event['bracket_seconds'], 1)
+                    self.assertLessEqual(event['residual_degrees'], 1e-5)
+                    self.assertGreaterEqual(instant(event['utc']), start)
+                    self.assertLess(instant(event['utc']), end)
+                    self.assertEqual(len(event['chart']['planets']), 14)
+        # The separate Lunar full-query-domain policy remains explicit.
+        outside = self.production.compute({'chart_type': 'lunar_return',
+            'first_calculated': first, 'profile': profile,
+            'event': {'utc': '2100-12-15T00:00:00Z'}}, str(kernel), digest)
+        self.assertEqual(outside['status'], 'OUTSIDE_DATA_DOMAIN')
+
     def test_crc1956_sidereal_sun_and_moon_independent_complete_windows(self):
         kernel = pathlib.Path(os.environ['NATAL_JPL_KERNEL'])
         model = self.production.PositionModel(str(kernel), hashlib.sha256(kernel.read_bytes()).hexdigest(),

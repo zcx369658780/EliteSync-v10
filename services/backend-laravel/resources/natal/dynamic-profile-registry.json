@@ -9,12 +9,20 @@
     "lunar_selection": "first event at or after explicit start",
     "start_inclusion": "canonical representable UTC microsecond t: f(t-1us)<0<=f(t); not a residual epsilon",
     "time_quantization": "datetime 1us grid; inherited historical UT1/model may be coarser; no physical microsecond accuracy claim",
-    "scan_seconds": {"sun": 86400, "moon": 10800},
-    "required_monotonic_advance_degrees": [0, 90],
+    "scan_seconds": {
+      "sun": 86400,
+      "moon": 10800
+    },
+    "required_monotonic_advance_degrees": [
+      0,
+      90
+    ],
     "bracket_max_seconds": 1,
-    "implementation_bracket_seconds": 0.000001,
-    "residual_max_degrees": 0.00001,
-    "accuracy_scope": "numerical convergence in the same model, not physical ephemeris accuracy"
+    "implementation_bracket_seconds": 1e-06,
+    "residual_max_degrees": 1e-05,
+    "accuracy_scope": "numerical convergence in the same model, not physical ephemeris accuracy",
+    "solar_utc_domain": "complete civil years 1900..2100; conservative UTC padding [1899-12-31, 2101-01-02] within admitted fixed data",
+    "lunar_utc_domain": "entire 35-day UTC query window must be within [1900-01-01, 2101-01-01]"
   },
   "cross_aspects": "A x B inclusive orb, no same-side pairs; same-name cross-pairs retained",
   "house_overlay": "A longitude in B cusps and B longitude in A cusps; cusp start inclusive",
