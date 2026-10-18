@@ -1,0 +1,636 @@
+{
+  "classification": "V10.1.0_PARTIAL_DELIVERY",
+  "not_accepted": true,
+  "raw_evidence": "CODEX_EXECUTED / LOCAL_ONLY; not independently replayed by Astra",
+  "authority_main": "d80d3d0d1650e73e9654362d3a1491450687cdee",
+  "source": {
+    "commit": "997af1e58e8982eb791ead54861c23e1c1a6e4a2",
+    "tree": "f4d39c58785d3a1d64bccc276e6deff9fe64dae4"
+  },
+  "product_objects": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "blob": "1bc9038b4a6b4461c8da9070c188d67bc380cc8c"
+    },
+    {
+      "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+      "blob": "edff7ec4bc03b22e35c10f41faeb17b8578725d0"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+      "blob": "6c56df6bb7898154716534a18e70d061076c8f8b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/v10100_pilot_endpoint_test.dart",
+      "blob": "ab63605630f79dc34798602b542d40007df290ee"
+    },
+    {
+      "path": "services/backend-laravel/app/Console/Commands/ChatWebsocketServerCommand.php",
+      "blob": "00e3bc14a66198b169d5ac1bd843d4a74bb81c65"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/PrivateDynamicCharts.php",
+      "blob": "dfc2a2fd4f2c865949db4143fdfee2d21cb9684c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php",
+      "blob": "db63a5505788baecf20ae29ef363e5f2aec6abba"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/DynamicChartService.php",
+      "blob": "3aa49b2a77b31a7e20d7cce4d7fb8e3f31e35f66"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "blob": "95e7c30c91e6cf77511d4c8b08122f7327923efa"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+      "blob": "6c519c63166206a8f36a33c46d9b09cf2ddf9e68"
+    },
+    {
+      "path": "services/backend-laravel/config/dynamic_charts.php",
+      "blob": "7db0268287b24a236e1cc2cade9db3d08f66b1e6"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_18_000001_widen_match_week_tag_for_round_cadence.php",
+      "blob": "91f81553543725a423bde305b3f6914214811ecd"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V10100CadencePersistenceTest.php",
+      "blob": "08d8f4b0b47f85385be877dfda783ddcb66b65a4"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/V10100DevpilotConsentGateTest.php",
+      "blob": "cb736cd7d3fe7a1a8ac4a55bed80ba046348bc3c"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/V10100DevpilotDynamicGateTest.php",
+      "blob": "0bc014604100c211de3b281f08214200a4127727"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/V10100DevpilotRtcGateTest.php",
+      "blob": "494710687da6e11c9f4c70c6eabd0e131fe8186b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/V10100WorkermanHandshakeTest.php",
+      "blob": "f28923dfaced7e9fb254afb975de1db673c21f14"
+    },
+    {
+      "path": "services/rtc-devpilot/authority_bridge.py",
+      "blob": "3018803c5397ad7d4e7412668f8aebfba47321a7"
+    },
+    {
+      "path": "services/rtc-devpilot/gateway.py",
+      "blob": "fb46d8563b21ef5702c87c98db2b71842154fe16"
+    },
+    {
+      "path": "services/rtc-devpilot/test_gateway.py",
+      "blob": "2b382967c2ce1efbf21b3f8db5da9c3fb371884c"
+    }
+  ],
+  "apps": "a1fef5535db3e196580f437040dd5b1f86fd70db",
+  "services": "7cbd25640b8c0f0c23de7e32cb60cb2e04bc9166",
+  "apk": {
+    "sha256": "a19ea2a365ae4c7a1976dbb55c6cc208aa465c0bf9a46c2a37e272a842fcb0a7",
+    "bytes": 214435684,
+    "flags": "ELITESYNC_V10_1_0_PILOT_BUILD=true;ELITESYNC_PILOT_API_BASE_URL=http://127.0.0.1:8030/;ELITESYNC_PILOT_WS_BASE_URL=ws://127.0.0.1:8030/;ELITESYNC_INTERNAL_DEV_PREVIEW=true;ELITESYNC_MATCH_ROUND_CONTRACT=true;ELITESYNC_ADMIN_MATCHING_OPERATIONS=true",
+    "source_commit_at_build_start": "d7593d97bfc8ed6544a9c131bfbdde318095c475"
+  },
+  "runtime_source_check": {
+    "files": 658,
+    "storage_scaffold_files": 2,
+    "mismatches": [],
+    "release_local_vendor": true
+  },
+  "rtc_call7": {
+    "status": "PASS",
+    "initial": [
+      {
+        "state": "connected",
+        "remoteParticipants": 1,
+        "videoWidth": 320,
+        "videoHeight": 240,
+        "videoFrames": 38,
+        "videoTime": 3.66176,
+        "audioRms": 0.08375210643177977,
+        "audioContextState": "running",
+        "localAudioRms": 0.08499889767019672,
+        "audioTrackState": "live",
+        "events": [
+          "connecting",
+          "connected"
+        ]
+      },
+      {
+        "state": "connected",
+        "remoteParticipants": 1,
+        "videoWidth": 320,
+        "videoHeight": 240,
+        "videoFrames": 36,
+        "videoTime": 3.518116,
+        "audioRms": 0.08430753838871913,
+        "audioContextState": "running",
+        "localAudioRms": 0.08485760053585831,
+        "audioTrackState": "live",
+        "events": [
+          "connecting",
+          "connected"
+        ]
+      }
+    ],
+    "rejoined": [
+      {
+        "state": "connected",
+        "remoteParticipants": 1,
+        "videoWidth": 320,
+        "videoHeight": 240,
+        "videoFrames": 37,
+        "videoTime": 3.620513,
+        "audioRms": 0.08564371459860959,
+        "audioContextState": "running",
+        "localAudioRms": 0.08489583035504754,
+        "audioTrackState": "live",
+        "events": [
+          "connecting",
+          "connected"
+        ]
+      },
+      {
+        "state": "connected",
+        "remoteParticipants": 1,
+        "videoWidth": 320,
+        "videoHeight": 240,
+        "videoFrames": 35,
+        "videoTime": 3.351681,
+        "audioRms": 0.08315323091316616,
+        "audioContextState": "running",
+        "localAudioRms": 0.08469339197864535,
+        "audioTrackState": "live",
+        "events": [
+          "connecting",
+          "connected"
+        ]
+      }
+    ],
+    "synthetic_media": true,
+    "human_audibility": "NOT_TESTED",
+    "call_id": 7,
+    "node_exit": 0
+  },
+  "app_call10": {
+    "call_id": 10,
+    "entry": "actual installed APP originated call",
+    "node_exit": 0,
+    "browser": {
+      "state": "connected",
+      "participants": 1,
+      "video_width": 180,
+      "video_height": 320,
+      "decoded_frames": 25,
+      "remote_audio_rms": 0
+    }
+  },
+  "authority_fault": {
+    "sfu_stopped": true,
+    "seconds": 1.308,
+    "recovered": "active"
+  },
+  "restart": {
+    "utc": "2026-10-18T13:06:33.460526+00:00",
+    "backup": {
+      "path": "/opt/elitesync-v10.1.0-devpilot/shared/private/pilot-before-final-controlled-restart.sql.gz",
+      "archive_bytes": 156542,
+      "archive_sha256": "230e95022d96196f630f77387f130fe0e1a5cd9d0dff51a1922b78bd78d7724f",
+      "uncompressed_sha256": "897b8ca2aae3f39ea5e21d913c9bfe3f572c7c93868d14f674146111c339bc13",
+      "readable": true,
+      "scope": "only isolated fictitious development schema"
+    },
+    "dump_matches": true,
+    "down_guard": {
+      "rollback_refused": true,
+      "reason": "week_tag_rollback_blocked_values_exceed_16_characters",
+      "writers_stopped": true
+    },
+    "down_guard_database_unchanged": true,
+    "all_owned_pids_changed": true,
+    "old_sfu_identity_unchanged": true
+  },
+  "protection": {
+    "dirty_root_recorded_identity_equal": true,
+    "full_asset_byte_inventory": "NOT_AVAILABLE",
+    "old_configs_match": true,
+    "old_admin_records_match": true,
+    "old_migrations_match": true,
+    "old_backup_readable": true
+  },
+  "final_service_state": {
+    "elitesync-v10100-database": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-redis": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-php": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-http": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-websocket": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-queue": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "disabled"
+    },
+    "elitesync-v10100-rtc-authority": {
+      "ActiveState": "active",
+      "PrivateNetwork": "no",
+      "UnitFileState": "static"
+    },
+    "elitesync-v10100-rtc": {
+      "ActiveState": "active",
+      "PrivateNetwork": "yes",
+      "UnitFileState": "disabled"
+    }
+  },
+  "host_rtc_listener_present": false,
+  "https_listener_present": false,
+  "test_receipts": [
+    {
+      "original_file": "pilot-dynamic-gate-regression-7f4bea87.json",
+      "exit": 0,
+      "utc": "2026-10-18T11:59:28.768153+00:00",
+      "stdout_sha256": "6af8b8677c12dda98f6087c520710309b03ae0855b64357cb65f2b1c69bf0c63",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "shared-pilot-gates-and-live-contract-regression-90a9a44e.json",
+      "exit": 0,
+      "utc": "2026-10-18T12:05:20.824135+00:00",
+      "stdout_sha256": "91985d2db9395f6d55d2103e52b0f1b407d3ec0fc0bca259b25be9f12496c8e5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "native-workerman-request-and-chat-capability-regression-0a132cf6.json",
+      "exit": 0,
+      "utc": "2026-10-18T12:51:52.858050+00:00",
+      "stdout_sha256": "93d81b96dc55868d1fcc4e235ace5a5d060924fc9875e9bdc4e14582f6ab50ea",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "cadence-rtc-and-round-regression-scoped-392d20a2.json",
+      "exit": 0,
+      "utc": "2026-10-18T12:22:41.631766+00:00",
+      "stdout_sha256": "70ca8e466ca43d91404c7b157310ffc166bb30f0baef8794e13fb9a330d60c29",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "rtc-adapter-transport-regression-a8132db2.json",
+      "exit": 0,
+      "utc": "2026-10-18T12:34:31.775088+00:00",
+      "stdout_sha256": "7359853457d30e015dc8b790c2ce67d8b5e4238ae112209f80335d02c5bd9c73",
+      "stderr_sha256": "0f20a9e29e8847b0f2485e0196b28ea9aa3d3ccdf3db2e1727561cf3520188c3"
+    },
+    {
+      "original_file": "pilot-flutter-actual-gate-fixed-f801b3eb.json",
+      "exit": 0,
+      "utc": "2026-10-18T11:50:38.775017+00:00",
+      "stdout_sha256": "bb66caa3149490818192ac9e2ae90b5b92af1bdd97d83266f4945e51548cc2c6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "pilot-flutter-legacy-endpoint-router-socket-regression-0d88b4fa.json",
+      "exit": 0,
+      "utc": "2026-10-18T11:50:43.198031+00:00",
+      "stdout_sha256": "341db53069bc65306ff039d3180b32378d4a25206b8b09f3db81cee5c0f6c94a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "build-v10100-pilot-apk-a252c204.json",
+      "exit": 0,
+      "utc": "2026-10-18T12:04:28.326163+00:00",
+      "stdout_sha256": "e4bbb2642d2365e136652df9622f40770a7b8c94e18ad8c9e6faa47ba53aa2cf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "cadence-migration-and-matching-regression-38a053ce.json",
+      "exit": 2,
+      "utc": "2026-10-18T12:18:30.760755+00:00",
+      "stdout_sha256": "7f06149209b7da6c6fb8db32d039c479a04ad6ea9838a45f2c11b649af418f2c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "cadence-rtc-and-matching-regression-fixed-9c228a09.json",
+      "exit": 1,
+      "utc": "2026-10-18T12:21:48.573042+00:00",
+      "stdout_sha256": "266df692733cb21a30521745ba03feb6fb890e88c7eaea733c5aa5a62e8c3f69",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_file": "pilot-flutter-endpoint-and-routing-tests-53d90a0f.json",
+      "exit": 1,
+      "utc": "2026-10-18T11:48:14.691817+00:00",
+      "stdout_sha256": "96263b03b9a035694c6f2c4c951a58d63c1808e5cb06d8d7306333d56a49638f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "local_only_evidence_catalog": [
+    {
+      "local_only_file": "cloud-runtime-source-deployment.json",
+      "sha256": "54473f86cc8c6c4d345365e8b3033a9f21af23d99829d59d4d31025738511107",
+      "bytes": 498
+    },
+    {
+      "local_only_file": "cloud-final-identity-and-protection-result.json",
+      "sha256": "5eefcf66dd76dc7394a0ee35c33d538089d502c04dd0c48332ddf452bc0acef7",
+      "bytes": 4828
+    },
+    {
+      "local_only_file": "cloud-private-rtc-failclosed-result.json",
+      "sha256": "ef4012acd3a238a9b22b615a56ce56bd0150174090a8d732702a466feb6949b8",
+      "bytes": 590
+    },
+    {
+      "local_only_file": "cloud-final-restart-persistence-result.json",
+      "sha256": "b313440cdf02da5b0b834c19586768eff7928cff2f2abe667bc53917f7c3b5cf",
+      "bytes": 12001
+    },
+    {
+      "local_only_file": "cloud-after-restart-read-results.json",
+      "sha256": "6cc0f238757e8589f594972c341878c1f6c4d46b4c0a38e6014383b3d57df152",
+      "bytes": 3797
+    },
+    {
+      "local_only_file": "cloud-dynamic-detail-after-restart-result.json",
+      "sha256": "86fa0060c0b051c1258ac083bb66054590fc040e2e23048c5f13e78aff113415",
+      "bytes": 712
+    },
+    {
+      "local_only_file": "app-restart-relogin-results.json",
+      "sha256": "217584ae9f53b3e756df6eaaaf4d82a385142ef433382917b45a14b75a13175a",
+      "bytes": 198
+    },
+    {
+      "local_only_file": "app-endpoint-attack-results.json",
+      "sha256": "cb01dacc98fc56f60385f4dc316aa2b1582e1c3bc0a60984bc56a6bcf5a130ed",
+      "bytes": 606
+    },
+    {
+      "local_only_file": "cloud-media-results.json",
+      "sha256": "23f0a7032cc8333300db80db92f472b67819921d0c5f5e1f3e1c234200110c39",
+      "bytes": 703
+    },
+    {
+      "local_only_file": "cloud-ws-revoke-results.json",
+      "sha256": "2bdf7edcbe6242f699dcf08da8096eded2e53cbfa14b09f68a7aa1e48233456d",
+      "bytes": 506
+    },
+    {
+      "local_only_file": "cloud-ws-revoke-owner.json",
+      "sha256": "c60c03db6b31a8bf1d36987665504ddd8e89744b236b7717060dd22bb4cfdbb1",
+      "bytes": 1559
+    },
+    {
+      "local_only_file": "cloud-ws-revoke-peer.json",
+      "sha256": "20aa5f6e989491ee4bb3f8bb706ce663ddd20cd7c4a9735cd1339d0b5dcfba08",
+      "bytes": 2004
+    },
+    {
+      "local_only_file": "cloud-rtc-media-call-7.json",
+      "sha256": "c5d0a182364aba312ca8c37257be48de44e85997f5b2301e0201a1570a976218",
+      "bytes": 1827
+    },
+    {
+      "local_only_file": "app-rtc-result-call-10.json",
+      "sha256": "5668044d19bc779dcdd8b4364389110b40b241557287b8727609e4302a8a20b8",
+      "bytes": 270
+    },
+    {
+      "local_only_file": "admin-browser-results.json",
+      "sha256": "e7f843b06a897b57917a7685cc8323f781f8b21b0f60c196ff7d06bf8912fc24",
+      "bytes": 462
+    },
+    {
+      "local_only_file": "admin-role-browser.stdout",
+      "sha256": "8c9f39a14657bc6430bd528bd5643354cad14579b4fb7e1b5f4578674e47dcfe",
+      "bytes": 118
+    },
+    {
+      "local_only_file": "admin-after-restart-browser.stdout",
+      "sha256": "d0cc9d5fd06faae4e1abb75fe035953861b51bd4da3ee377de4464a4f29c6ec6",
+      "bytes": 100
+    },
+    {
+      "local_only_file": "protected-final-readback.json",
+      "sha256": "106e62a8bc4309ccd0dc73f0e3315955cd51c5a3dcee46ad54e0dc35c5cfd1cd",
+      "bytes": 651
+    },
+    {
+      "local_only_file": "cloud-runtime-final.json",
+      "sha256": "57baf6edcec16e410adf5806451d3f92a3fcd596a9dd5610a1305e446f52cf0b",
+      "bytes": 3431
+    },
+    {
+      "local_only_file": "cloud-iztro-identity.json",
+      "sha256": "f7be6796a796f6bbe933652fc37a4ec5e869385d2c341b4d28dd51f00d58e330",
+      "bytes": 3593
+    },
+    {
+      "local_only_file": "cloud-static-media-identity.json",
+      "sha256": "d8b392f57a73177bb575429c4e5a67a2e3220a63166722e02bc333712972fd26",
+      "bytes": 1948
+    }
+  ],
+  "linux_runtime_dependency_admission": {
+    "wheels": [
+      {
+        "package": "certifi",
+        "version": "2026.7.22",
+        "filename": "certifi-2026.7.22-py3-none-any.whl",
+        "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+        "source": "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl",
+        "license_metadata": [
+          "License: MPL-2.0",
+          "Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+        ]
+      },
+      {
+        "package": "jplephem",
+        "version": "2.24",
+        "filename": "jplephem-2.24-py3-none-any.whl",
+        "sha256": "2de15608a0f13010a71a0a8af8765646d5884402006dac0dd7639d7db13629ac",
+        "source": "https://files.pythonhosted.org/packages/9d/3f/b9d5739352badc11ca637c8f72525d519458622936bc3313ddefdc7dee96/jplephem-2.24-py3-none-any.whl",
+        "license_metadata": [
+          "License: MIT"
+        ]
+      },
+      {
+        "package": "numpy",
+        "version": "2.4.6",
+        "filename": "numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+        "sha256": "90f9849678c75fe7afa2d348ac842c168b0a4d3d61919687216dfc547976d853",
+        "source": "https://files.pythonhosted.org/packages/99/60/14115e6364fa676c5397c2ad3004e527e9aa487abf5d0706ec81bbd08529/numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+        "license_metadata": [
+          "License-Expression: BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+        ]
+      },
+      {
+        "package": "pyerfa",
+        "version": "2.0.1.5",
+        "filename": "pyerfa-2.0.1.5-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "sha256": "0e43c7194e3242083f2350b46c09fd4bf8ba1bcc0ebd1460b98fc47fe2389906",
+        "source": "https://files.pythonhosted.org/packages/e5/e0/050018d855d26d3c0b4a7d1b2ed692be758ce276d8289e2a2b44ba1014a5/pyerfa-2.0.1.5-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "license_metadata": [
+          "License: BSD 3-Clause License",
+          "Classifier: License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "package": "sgp4",
+        "version": "2.27",
+        "filename": "sgp4-2.27-py3-none-any.whl",
+        "sha256": "5f3f5716649988b638fbe7fcda592830e0956f548ca273b93cfa5f75917b9087",
+        "source": "https://files.pythonhosted.org/packages/78/cd/06dc91b31f2b919e788396c2cb5ad313d5ce0754321165343fd585c4be53/sgp4-2.27-py3-none-any.whl",
+        "license_metadata": [
+          "License-Expression: MIT"
+        ]
+      },
+      {
+        "package": "skyfield",
+        "version": "1.55",
+        "filename": "skyfield-1.55-py3-none-any.whl",
+        "sha256": "9f98964855067460c94aa81a337194136f4a97a62ba8bbbfac1b8556f2b66ad4",
+        "source": "https://files.pythonhosted.org/packages/8d/5a/c4cc09d4421de255ca0504485efceb3646a4e5381bfb665647e39bea5cb1/skyfield-1.55-py3-none-any.whl",
+        "license_metadata": [
+          "License: MIT",
+          "Classifier: License :: OSI Approved :: MIT License"
+        ]
+      }
+    ],
+    "node": {
+      "filename": "node-v24.14.0-linux-x64.tar.xz",
+      "sha256": "41cd79bb7877c81605a9e68ec4c91547774f46a40c67a17e34d7179ef11729df",
+      "source": "https://nodejs.org/dist/v24.14.0/node-v24.14.0-linux-x64.tar.xz"
+    },
+    "python_version": "3.12.3",
+    "python_install_exit": 0,
+    "node_version": "v24.14.0",
+    "global_dependencies_modified": false
+  },
+  "iztro_dependency_admission": {
+    "npm_ci_exit": 0,
+    "source": "accepted lock; registry integrity checked; scripts disabled",
+    "packages": [
+      {
+        "filename": "node_modules_@babel_runtime.tgz",
+        "package_path": "node_modules/@babel/runtime",
+        "version": "7.29.7",
+        "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.29.7.tgz",
+        "integrity": "sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==",
+        "license": "MIT",
+        "engines": {
+          "node": ">=6.9.0"
+        },
+        "sha256": "4d7f1bd502a1a64d47625cc738d13284865f0666d2ed01f244de0adf05b69aa5"
+      },
+      {
+        "filename": "node_modules_dayjs.tgz",
+        "package_path": "node_modules/dayjs",
+        "version": "1.11.21",
+        "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.21.tgz",
+        "integrity": "sha512-98IT+HOahAisibz/yjKbzuOBwYcjJ7BCLPzARyHiyEBmRz4fatF+KPJszEHXsGYjUG234aH/cOjW1wwTbKUZlA==",
+        "license": "MIT",
+        "sha256": "290ec8bf81878ae4927581d9be74125f07722ea8bbea2ff77a2226dce12df876"
+      },
+      {
+        "filename": "node_modules_i18next.tgz",
+        "package_path": "node_modules/i18next",
+        "version": "23.16.8",
+        "resolved": "https://registry.npmjs.org/i18next/-/i18next-23.16.8.tgz",
+        "integrity": "sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==",
+        "funding": [
+          {
+            "type": "individual",
+            "url": "https://locize.com"
+          },
+          {
+            "type": "individual",
+            "url": "https://locize.com/i18next.html"
+          },
+          {
+            "type": "individual",
+            "url": "https://www.i18next.com/how-to/faq#i18next-is-awesome.-how-can-i-support-the-project"
+          }
+        ],
+        "license": "MIT",
+        "dependencies": {
+          "@babel/runtime": "^7.23.2"
+        },
+        "sha256": "283f7f0da577e8ee54eb5fdeb4c97cdaecbb54e28fc85b32e5c908731d131015"
+      },
+      {
+        "filename": "node_modules_iztro.tgz",
+        "package_path": "node_modules/iztro",
+        "version": "2.5.8",
+        "resolved": "https://registry.npmjs.org/iztro/-/iztro-2.5.8.tgz",
+        "integrity": "sha512-kgyyvxdSEvgJxi6zvHpvzGbXZLGXCdhTHYK2Pe/sRdBIQ7RfCArvupmg2ChUMQCSQGomW7XCI0gWwUuKJwPENg==",
+        "license": "MIT",
+        "dependencies": {
+          "dayjs": "^1.11.10",
+          "i18next": "^23.5.1",
+          "lunar-lite": "^0.2.8",
+          "lunar-typescript": "^1.7.8"
+        },
+        "sha256": "8293c6a587de521b0713e45826745ba4b7482fc507bd2da43fc820cadf06deca"
+      },
+      {
+        "filename": "node_modules_lunar-lite.tgz",
+        "package_path": "node_modules/lunar-lite",
+        "version": "0.2.8",
+        "resolved": "https://registry.npmjs.org/lunar-lite/-/lunar-lite-0.2.8.tgz",
+        "integrity": "sha512-Y4tba4RaIFI0ikImJhgoEsyqtDE64lJIM3yFwRX01dbmagCDq7rNmpDQFrSFFy4WXeuywdRVFpIBoT1GGCEizw==",
+        "license": "MIT",
+        "dependencies": {
+          "lunar-typescript": "^1.8.6"
+        },
+        "sha256": "963f134a8a46b92ec6e243a98be90dc5a33c33637581b151b7c11e5833d0b157"
+      },
+      {
+        "filename": "node_modules_lunar-typescript.tgz",
+        "package_path": "node_modules/lunar-typescript",
+        "version": "1.8.6",
+        "resolved": "https://registry.npmjs.org/lunar-typescript/-/lunar-typescript-1.8.6.tgz",
+        "integrity": "sha512-5Eo4T/cnuXfrgO4k5LCpOGHIUOuz5hCF/IfNv0T29WY2shR36Hiz+ecN9WjnUuxUKhql9gbOkPaQoqLFKtPRNA==",
+        "license": "MIT",
+        "sha256": "257163cff2e2bb8359861721e72e5dbed2f583340b1400e459fd27816ac2ac39"
+      }
+    ]
+  },
+  "media_process_identity": {
+    "ffprobe_exit": 0,
+    "version": "ffprobe version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2007-2024 the FFmpeg developers\nbuilt with gcc 8 (Debian 8.3.0-6)\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gmp --enable-libgme --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libdav1d --enable-libxvid --enable-libzvbi --enable-libzimg\nlibavutil      59.  8.100 / 59.  8.100\nlibavcodec     61.  3.100 / 61.  3.100\nlibavformat    61.  1.100 / 61.  1.100\nlibavdevice    61.  1.100 / 61.  1.100\nlibavfilter    10.  1.100 / 10.  1.100\nlibswscale      8.  1.100 /  8.  1.100\nlibswresample   5.  1.100 /  5.  1.100\nlibpostproc    58.  1.100 / 58.  1.100\n",
+    "archive_sha256": "abda8d77ce8309141f83ab8edf0596834087c52467f6badf376a6a2a4c87cf67",
+    "ffprobe_sha256": "4f231a1960d83e403d08f7971e271707bec278a9ae18e21b8b5b03186668450d",
+    "ffmpeg_sha256": "e7e7fb30477f717e6f55f9180a70386c62677ef8a4d4d1a5d948f4098aa3eb99",
+    "license": "GPL-3.0; separate local server process; no linking or client redistribution",
+    "source_url": "https://johnvansickle.com/ffmpeg/release-source",
+    "probe_path": "/opt/elitesync-v10.1.0-devpilot/shared/runtime/static-media/ffmpeg-7.0.2-amd64-static/ffprobe",
+    "ffmpeg_path": "/opt/elitesync-v10.1.0-devpilot/shared/runtime/static-media/ffmpeg-7.0.2-amd64-static/ffmpeg",
+    "global_install": false
+  },
+  "de440s_sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+  "chiron_manifest_path": "services/backend-laravel/resources/natal/chiron-data-manifest.json"
+}
