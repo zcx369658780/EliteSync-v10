@@ -89,6 +89,348 @@ Map<String, dynamic> _native() => {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  testWidgets(
+    'selected luck preserves childhood and real palace star mapping',
+    (tester) async {
+      tester.view.physicalSize = const Size(1200, 3000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      // Literal adapter-shaped data; deliberately reordered natal palaces prove
+      // arrays are joined by the palace index rather than UI list position.
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: NatalRestorationCharts(
+                section: 'ziwei',
+                displayPrefs: AstroChartDisplayPrefs.forPreset(
+                  AstroChartDisplayPreset.minimal,
+                ),
+                results: {
+                  'ziwei': {
+                    'calculation_status': 'CALCULATED',
+                    'oracle_status': 'UNVERIFIED',
+                    'palaces': [
+                      {
+                        'index': 1,
+                        'name': '兄弟',
+                        'earthly_branch': '卯',
+                        'major_stars': [
+                          {'name': '天机'},
+                        ],
+                        'minor_stars': [
+                          {'name': '文曲'},
+                        ],
+                      },
+                      {
+                        'index': 0,
+                        'name': '命宫',
+                        'earthly_branch': '寅',
+                        'major_stars': [
+                          {'name': '太阳'},
+                          {'name': '武曲'},
+                        ],
+                      },
+                    ],
+                    'selected_horoscope': {
+                      'calculation_status': 'CALCULATED',
+                      'oracle_status': 'UNVERIFIED',
+                      'target_year': 2001,
+                      'reference_date': '2001-07-01',
+                      'reference_time': '12:00:00',
+                      'decadal': {
+                        'index': 1,
+                        'name': '童限',
+                        'heavenlyStem': '甲',
+                        'earthlyBranch': '子',
+                        'palaceNames': [
+                          '兄弟',
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                        ],
+                        'mutagen': ['太阳', '武曲', '天机', '文曲'],
+                        'stars': [
+                          [
+                            {'name': '运魁', 'brightness': null},
+                          ],
+                          [
+                            {'name': '运禄', 'brightness': '旺'},
+                          ],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                        ],
+                      },
+                      'age': {
+                        'index': 0,
+                        'name': '小限',
+                        'nominalAge': 2,
+                        'heavenlyStem': '乙',
+                        'earthlyBranch': '丑',
+                        'palaceNames': [
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                          '兄弟',
+                        ],
+                        'mutagen': ['天机', '太阳', '武曲', '文曲'],
+                      },
+                      'yearly': {
+                        'index': 0,
+                        'name': '流年',
+                        'heavenlyStem': '辛',
+                        'earthlyBranch': '巳',
+                        'palaceNames': [
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                          '兄弟',
+                        ],
+                        'mutagen': ['天机', '太阳', '武曲', '未提供星'],
+                        'stars': [
+                          [
+                            {'name': '流魁'},
+                          ],
+                          [
+                            {'name': '流禄'},
+                            {'name': '流马'},
+                          ],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                        ],
+                        'yearlyDecStar': {
+                          'suiqian12': [
+                            '晦气',
+                            '丧门',
+                            '贯索',
+                            '官符',
+                            '小耗',
+                            '大耗',
+                            '龙德',
+                            '白虎',
+                            '天德',
+                            '吊客',
+                            '病符',
+                            '岁建',
+                          ],
+                          'jiangqian12': [
+                            '劫煞',
+                            '灾煞',
+                            '天煞',
+                            '指背',
+                            '咸池',
+                            '月煞',
+                            '亡神',
+                            '将星',
+                            '攀鞍',
+                            '岁驿',
+                            '息神',
+                            '华盖',
+                          ],
+                        },
+                      },
+                    },
+                  },
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('选定运限'));
+      await tester.pumpAndSettle();
+      expect(find.text('童限'), findsOneWidget);
+      expect(find.text('大限'), findsNothing);
+      expect(find.text('小限'), findsOneWidget);
+      expect(find.text('流年'), findsOneWidget);
+      expect(find.textContaining('参考时刻 12:00:00'), findsOneWidget);
+      expect(find.textContaining('目标年份 2001'), findsOneWidget);
+      expect(find.textContaining('不代表目标年份全年恒定'), findsOneWidget);
+      expect(find.textContaining('待核验 (UNVERIFIED)'), findsOneWidget);
+      expect(find.text('独立核验：待核验'), findsOneWidget);
+      await tester.tap(find.text('童限'));
+      await tester.pumpAndSettle();
+      expect(find.text('童限命宫对应 卯宫（本命兄弟）'), findsOneWidget);
+      final mutagens = tester
+          .widgetList<Text>(find.byType(Text))
+          .map((text) => text.data)
+          .where((text) => ['太阳化禄', '武曲化权', '天机化科', '文曲化忌'].contains(text))
+          .toList();
+      expect(mutagens, ['太阳化禄', '武曲化权', '天机化科', '文曲化忌']);
+      expect(find.text('本命落宫 寅宫（本命命宫）'), findsNWidgets(2));
+      await tester.tap(find.text('宫职与流曜详情'));
+      await tester.pumpAndSettle();
+      expect(find.text('命宫 → 卯宫（本命兄弟）'), findsOneWidget);
+      expect(find.text('流曜：运禄（亮度 旺，待核验）'), findsOneWidget);
+      expect(find.text('流曜：运魁'), findsOneWidget);
+      await tester.tap(find.text('童限'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('小限'));
+      await tester.pumpAndSettle();
+      expect(find.text('干支 乙丑；名义年龄 2岁'), findsOneWidget);
+      await tester.tap(find.text('小限'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('流年'));
+      await tester.pumpAndSettle();
+      expect(find.text('本命落宫未提供'), findsOneWidget);
+      await tester.tap(find.text('宫职与流曜详情'));
+      await tester.pumpAndSettle();
+      expect(find.text('父母 → 卯宫（本命兄弟）'), findsOneWidget);
+      expect(find.text('流曜：流禄 · 流马\n岁前：丧门\n将前：灾煞'), findsOneWidget);
+      expect(find.text('流曜：流魁\n岁前：晦气\n将前：劫煞'), findsOneWidget);
+    },
+  );
+  testWidgets(
+    'birth-year luck preserves the returned non-noon reference instant',
+    (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: NatalRestorationCharts(
+                section: 'ziwei',
+                results: {
+                  'ziwei': {
+                    'calculation_status': 'CALCULATED',
+                    'oracle_status': 'UNVERIFIED',
+                    'selected_horoscope': {
+                      'calculation_status': 'CALCULATED',
+                      'oracle_status': 'UNVERIFIED',
+                      'target_year': 2024,
+                      'reference_date': '2024-12-31',
+                      'reference_time': '15:37:42',
+                      'reference_policy': 'MID_YEAR_OR_BIRTH_DATE_IF_LATER',
+                      'decadal': {
+                        'index': 0,
+                        'name': '童限',
+                        'heavenlyStem': '丙',
+                        'earthlyBranch': '寅',
+                        'palaceNames': [
+                          '命宫',
+                          '父母',
+                          '福德',
+                          '田宅',
+                          '官禄',
+                          '仆役',
+                          '迁移',
+                          '疾厄',
+                          '财帛',
+                          '子女',
+                          '夫妻',
+                          '兄弟',
+                        ],
+                        'mutagen': ['天同', '天机', '文昌', '廉贞'],
+                        'stars': [
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                          [],
+                        ],
+                      },
+                    },
+                  },
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('选定运限'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('目标年份 2024；参考日 2024-12-31；参考时刻 15:37:42'),
+        findsOneWidget,
+      );
+      expect(find.text('以下运限按参考时刻选取，不代表目标年份全年恒定。'), findsOneWidget);
+      expect(find.text('童限'), findsOneWidget);
+      expect(find.text('独立核验：待核验'), findsOneWidget);
+      expect(find.textContaining('2024-07-01'), findsNothing);
+      expect(find.textContaining('12:00:00'), findsNothing);
+    },
+  );
+  testWidgets('unrequested and unknown luck do not invent empty layers', (
+    tester,
+  ) async {
+    for (final status in ['NOT_REQUESTED', 'UNKNOWN']) {
+      await tester.pumpWidget(
+        MaterialApp(
+          key: ValueKey(status),
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: NatalRestorationCharts(
+                section: 'ziwei',
+                results: {
+                  'ziwei': {
+                    'oracle_status': 'UNVERIFIED',
+                    'selected_horoscope': {'calculation_status': status},
+                  },
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('选定运限'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text(status == 'NOT_REQUESTED' ? '未请求运限计算' : '运限结果未知或尚未就绪'),
+        findsOneWidget,
+      );
+      for (final label in ['童限', '大限', '小限', '流年', '宫职与流曜详情']) {
+        expect(find.text(label), findsNothing);
+      }
+      expect(find.textContaining('待核验 (UNVERIFIED)'), findsOneWidget);
+    }
+  });
   testWidgets('historical and future time assumptions remain visible', (
     tester,
   ) async {

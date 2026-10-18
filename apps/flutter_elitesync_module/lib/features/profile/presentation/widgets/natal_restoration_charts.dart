@@ -367,29 +367,7 @@ class NatalRestorationCharts extends StatelessWidget {
                   ),
               ],
             ),
-            ExpansionTile(
-              title: const Text('选定运限'),
-              tilePadding: EdgeInsets.zero,
-              children: [
-                Text(
-                  '参考日 ${natalText(natalMap(ziwei['selected_horoscope'])['reference_date'])}',
-                ),
-                for (final key in ['decadal', 'age', 'yearly'])
-                  Builder(
-                    builder: (_) {
-                      final h = natalMap(
-                        natalMap(ziwei['selected_horoscope'])[key],
-                      );
-                      return ListTile(
-                        title: Text(key),
-                        subtitle: Text(
-                          '${natalText(h['heavenlyStem'])}${natalText(h['earthlyBranch'])} ${natalText(h['palaceNames'])}',
-                        ),
-                      );
-                    },
-                  ),
-              ],
-            ),
+            _selectedHoroscope(ziwei, palaces),
           ]),
         if (section == null || section == 'western')
           _section(context, '西方本命盘', western, [
@@ -493,6 +471,125 @@ class NatalRestorationCharts extends StatelessWidget {
             if (prefs.showTechnicalParameters)
               Text('扩展点：${natalText(western['extensions_status'])}'),
           ]),
+      ],
+    );
+  }
+
+  Widget _selectedHoroscope(Map<String, dynamic> ziwei, List<dynamic> palaces) {
+    final selected = natalMap(ziwei['selected_horoscope']);
+    final status = selected['calculation_status'];
+    return ExpansionTile(
+      title: const Text('选定运限'),
+      tilePadding: EdgeInsets.zero,
+      children: [
+        if (status != 'CALCULATED')
+          Text(status == 'NOT_REQUESTED' ? '未请求运限计算' : '运限结果未知或尚未就绪')
+        else ...[
+          Text(
+            '目标年份 ${natalText(selected['target_year'])}；'
+            '参考日 ${natalText(selected['reference_date'])}；'
+            '参考时刻 ${natalText(selected['reference_time'])}',
+          ),
+          const Text('以下运限按参考时刻选取，不代表目标年份全年恒定。'),
+          const Text('独立核验：待核验'),
+          for (final key in ['decadal', 'age', 'yearly'])
+            if (natalMap(selected[key]).isNotEmpty)
+              _horoscopeLayer(key, natalMap(selected[key]), palaces),
+        ],
+      ],
+    );
+  }
+
+  Widget _horoscopeLayer(
+    String key,
+    Map<String, dynamic> layer,
+    List<dynamic> palaces,
+  ) {
+    // Engine arrays use the natal palace's explicit index, never its position
+    // in a filtered/reordered UI list, nor this layer's selected index.
+    dynamic at(dynamic values, dynamic index) {
+      final list = natalList(values);
+      return index is int && index >= 0 && index < list.length
+          ? list[index]
+          : null;
+    }
+
+    String palaceLabel(Map<String, dynamic> palace) =>
+        '${natalText(palace['earthly_branch'])}宫（本命${natalText(palace['name'])}）';
+    String transformationLocation(dynamic star) {
+      if (star == null || star == '') return '本命落宫未提供';
+      final matches = palaces
+          .map(natalMap)
+          .where(
+            (palace) => ['major_stars', 'minor_stars', 'adjective_stars'].any(
+              (group) => natalList(
+                palace[group],
+              ).any((raw) => natalMap(raw)['name'] == star),
+            ),
+          );
+      return matches.isEmpty
+          ? '本命落宫未提供'
+          : '本命落宫 ${matches.map(palaceLabel).join('、')}';
+    }
+
+    final name = layer['name']?.toString();
+    final title = name == null || name.isEmpty
+        ? const {'decadal': '运限', 'age': '小限', 'yearly': '流年'}[key]!
+        : name;
+    final transformations = natalList(layer['mutagen']);
+    final decorations = natalMap(layer['yearlyDecStar']);
+    final anchors = palaces
+        .map(natalMap)
+        .where((p) => layer['index'] is int && p['index'] == layer['index']);
+    return ExpansionTile(
+      tilePadding: EdgeInsets.zero,
+      title: Text(title),
+      subtitle: Text(
+        '干支 ${natalText(layer['heavenlyStem'])}${natalText(layer['earthlyBranch'])}'
+        '${layer['nominalAge'] == null ? '' : '；名义年龄 ${layer['nominalAge']}岁'}',
+      ),
+      children: [
+        if (anchors.isNotEmpty)
+          Text('$title命宫对应 ${anchors.map(palaceLabel).join('、')}'),
+        if (transformations.isNotEmpty) ...[
+          const Text('运限四化（禄、权、科、忌）· 待核验'),
+          for (var i = 0; i < math.min(4, transformations.length); i++)
+            ListTile(
+              dense: true,
+              title: Text(
+                '${transformations[i]}化${const ['禄', '权', '科', '忌'][i]}',
+              ),
+              subtitle: Text(transformationLocation(transformations[i])),
+            ),
+        ],
+        ExpansionTile(
+          title: const Text('宫职与流曜详情'),
+          tilePadding: EdgeInsets.zero,
+          children: [
+            for (final palace in palaces.map(natalMap))
+              ListTile(
+                dense: true,
+                title: Text(
+                  '${natalText(at(layer['palaceNames'], palace['index']))} → ${palaceLabel(palace)}',
+                ),
+                subtitle: Text(
+                  [
+                    if (at(layer['stars'], palace['index']) is List)
+                      '流曜：${natalList(at(layer['stars'], palace['index'])).isEmpty ? '无' : natalList(at(layer['stars'], palace['index'])).map((raw) {
+                              final star = natalMap(raw);
+                              return '${natalText(star['name'])}'
+                                  '${star['brightness'] == null ? '' : '（亮度 ${star['brightness']}，待核验）'}'
+                                  '${star['natal_transformation'] == null ? '' : ' 化${star['natal_transformation']}'}';
+                            }).join(' · ')}',
+                    if (at(decorations['suiqian12'], palace['index']) != null)
+                      '岁前：${at(decorations['suiqian12'], palace['index'])}',
+                    if (at(decorations['jiangqian12'], palace['index']) != null)
+                      '将前：${at(decorations['jiangqian12'], palace['index'])}',
+                  ].join('\n'),
+                ),
+              ),
+          ],
+        ),
       ],
     );
   }
