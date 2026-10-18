@@ -1,6 +1,6 @@
 {
   "schema": "elitesync.v1010.validation-checkpoint.v1",
-  "classification": "IMPLEMENTATION_CHECKPOINT_NOT_FINAL_CANDIDATE",
+  "classification": "CONTINUE_SAME_VERSION_RIGHTS_AND_ORACLE_BLOCKED_FOR_FINAL_NOT_FINAL_CANDIDATE",
   "source": {
     "commit": "883a53cb23830ec79b5811f71a2238b7d1aacd20",
     "tree": "1e92c5382533fc31498edbe4abaebfd50e36bba3",
@@ -406,5 +406,346 @@
       },
       "overlapping_tests_not_summed": true
     }
+  },
+  "historical_sections_note": "source/oracle/tests/build/runtime above and continuation_20261017 retain their original source and time; they are not latest build/runtime evidence",
+  "continuation_20261018": {
+    "authority": {
+      "main_and_astra_review": "234b0cc1fc30b163a80bbbb9ebaa487720cf5234",
+      "plan_blob": "2057aa81e5c36da3236861ff767aed1c4fceb141",
+      "owner_option": "A_CONTINUED",
+      "acceptance": "NOT_ACCEPTED"
+    },
+    "source": {
+      "commit": "e86db6e24907ed91c342f21a0dbe6c9f99dc38bd",
+      "tree": "9c067e755c1da545dc36bc4d6dbaa07be8ddc53e",
+      "parent": "4222645703821ab20896765a31df1cfa375034ca",
+      "apps": "c4f659466ca9b9d1a195e901478808db594c4ca0",
+      "services": "2cd1d3fbce25eee64fd84ea169784e7b67c18e5d",
+      "paths": 18,
+      "scope": "LOCAL_SAME_VERSION_SOURCE_SAVE_NOT_FINAL_CANDIDATE_NOT_PUSHED",
+      "registry_version": "1.0.2"
+    },
+    "fixes": [
+      "Restore lunar-php model UT1+08 roots to TT before classifying solar-term year/month; explicitly convert qiyun endpoints",
+      "Only three official iztro2.6.1 You-palace brightness data fixes backported into adapter; package stays2.5.8",
+      "Shen palace Chou stem uses same selected-year Five Tigers; exact legacy value retained"
+    ],
+    "solar_terms": {
+      "count": 2424,
+      "year_range": [
+        1900,
+        2101
+      ],
+      "maximum_tt_seconds": 2.62594711384736,
+      "maximum_calendar_seconds": 2.714901,
+      "calendar_comparable_count": 2280,
+      "excluded_calendar_labels": "1960-1971: reference used Skyfield UTC without ERFA rubber seconds; TT remains usable",
+      "failures": [],
+      "reference_sha256": "536cd93e7c79ee076bc30bc2c2fe8ca8c744986f25786d064e69c398f9cb3b8a",
+      "uncertainty_guard_seconds": 60,
+      "guard_comparisons": 4848,
+      "blind": false,
+      "independence": "Independent astronomical engine/data from lunar-php; author has read integration code, NOT_BLIND; shared with Western subsystem, not independent observations",
+      "not_claimed": [
+        "independent observations",
+        "subsecond physical accuracy",
+        "whole Bazi AC pass"
+      ],
+      "numerical_error_limit_seconds": 60,
+      "reference_side_offset_seconds": 61,
+      "guard_check_kind": "Two root-position inequalities per2424terms; not4848adapter runs; no threshold relaxation"
+    },
+    "bazi": {
+      "qiyun_fields": 249,
+      "clear_cases": 83,
+      "reference_uncertain_cases": [
+        "bazi-fresh-025",
+        "bazi-fresh-029",
+        "bazi-fresh-038",
+        "bazi-blind-018",
+        "bazi-blind-024"
+      ],
+      "gregorian_fields": 90,
+      "compatibility_projection_assertions": 8685,
+      "taiyuan_taixi_fields": 352,
+      "ming_shen_fields": 352,
+      "ming_shen_civil_source": "78 unchanged cached outputs plus10 updated outputs; not88 fresh full-metadata runs",
+      "pure_rule_fields": 5760,
+      "pure_rule_inputs": 1440,
+      "only_chou_changes": 120,
+      "ming_gong_changes": 0,
+      "legacy_replay_all_equal": true,
+      "affected_full_results_with_no_unexpected_difference": 10,
+      "uncertain_hanlu_reference_cst": "2024-10-08 02:59:57.338861",
+      "physical_second_accuracy": "NOT_CERTIFIED"
+    },
+    "ziwei": {
+      "day_stars_positions": 288,
+      "additional15_positions": 1032,
+      "leap_month_cells_not_asserted": 48,
+      "boshi_positions": 864,
+      "small_limit_positions": 615,
+      "selected_flow_checks": 6048,
+      "selected_flow_unasserted_cells": 288,
+      "changsheng_branch_cells": 864,
+      "changsheng_pure100": "NOT_RUN",
+      "misc_legal_four_positions": 288,
+      "misc_legal_pair_checks": 72,
+      "misc_legal_xun_primary_checks": 72,
+      "misc_pure60_four_positions": 240,
+      "misc_pure60_pair_checks": 60,
+      "misc_pure60_xun_primary_checks": 60,
+      "misc_pure_scope": "NOT_A_CIVIL_DATE",
+      "jie_kong_label_mapping": "NOT_ASSERTED",
+      "external_brightness": {
+        "comparisons": 1050,
+        "unique_cells": 168,
+        "missing": 0,
+        "mismatches": 0,
+        "normalization": {
+          "得": "得地",
+          "不": "不得地"
+        },
+        "lineage": "UNKNOWN",
+        "full_independent_oracle": "NOT_CERTIFIED",
+        "table_redistribution": "NOT_ADMITTED_LOCAL_ONLY"
+      },
+      "overlapping_checks_not_summed": true
+    },
+    "tests": {
+      "php": {
+        "tests": 47,
+        "assertions": 8996,
+        "exit": 0,
+        "skipped": 0,
+        "deprecations": 2,
+        "phpunit_deprecations": 2,
+        "real_owned_runtime_identity_tests": 2
+      },
+      "node": {
+        "tests": 9,
+        "exit": 0
+      },
+      "python_time": {
+        "tests": 3,
+        "exit": 0
+      },
+      "flutter_review_fixes": {
+        "tests": 19,
+        "exit": 0
+      },
+      "flutter_targeted_analyze_exit": 0,
+      "pint_exit": 0,
+      "service_class_subprocess_smoke_exit": 0,
+      "full_php": "NOT_RUN_HISTORICAL16_FAILURES_PRESERVED"
+    },
+    "chiron": {
+      "jpl": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED",
+      "nima": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED",
+      "mail_sent_this_continuation": false,
+      "mailbox_read_this_continuation": false,
+      "additional_monitor_created": false,
+      "production_calculation": "DISABLED",
+      "nima_jpl_data_acquired_this_continuation": false,
+      "lowell": {
+        "file": "astorb.dat",
+        "source": "https://asteroid.lowell.edu/astorb/",
+        "historical_source": "https://ftp.lowell.edu/pub/elgb/astorb.html",
+        "publisher_permission": "Free use copy transmit conditional on named attribution; applies only to this file",
+        "independent_review": "Historical publisher terms read; no NC or source-disclosure clause seen; current direct page timeout",
+        "full1900_2101_accuracy": "NOT_PROVEN",
+        "data_request": "NOT_STARTED_TERMS_READ_TIMED_OUT",
+        "data_acquired": false,
+        "product_admission": "NOT_GRANTED",
+        "cost_incurred": 0
+      }
+    },
+    "latest_runtime": {
+      "apk_aar_build": "NOT_RUN",
+      "install": "NOT_RUN",
+      "http_api_db_restart_chain": "NOT_RUN",
+      "service_smoke": "LOCAL_LARAVEL_BOOTSTRAP_AND_SUBPROCESSES_ONLY",
+      "old_build4": "PREVIOUS_SOURCE_IDENTITY_NOT_LATEST_SOURCE_BUILD",
+      "rtc_uac_firewall_production": "NOT_RUN",
+      "docker_resource_recheck": "UNAVAILABLE_DOCKER_DAEMON_NOT_RUNNING_NOT_STARTED",
+      "current_volume_existence": "UNKNOWN_INSPECTION_UNAVAILABLE",
+      "owned_ports": [
+        8010,
+        8011,
+        43320
+      ],
+      "owned_listener_count": 0
+    },
+    "nonauthor_review": {
+      "model_role": "GPT-6.1 Sol high read-only",
+      "result": "NO_NEW_DETERMINISTIC_SOURCE_DEFECT_IDENTIFIED",
+      "shen_narrow_regression_requirements": "CLOSED",
+      "version_acceptance": false
+    },
+    "remaining": [
+      "Chiron applicable legal data and1900-2101 accuracy",
+      "Full independent brightness and auxiliary-star oracle lineage",
+      "Leap-month moon-star and remaining flow/year-boundary rules",
+      "JieLu/KongWang individual primary-secondary naming",
+      "Five qiyun quantization-sensitive cases and remaining calendar physical boundary limits",
+      "Latest-source final installedAPP/API/persistentDB/restart/build evidence after algorithm gates close"
+    ],
+    "command_receipts": [
+      {
+        "receipt": "20261018-natal-php-final-scoped-with-owned-runtime",
+        "exit": 0,
+        "stdout_sha256": "807f3720994443ef3d8a20d471c7fbb60f6cc4b59e89570c8581dee74c44f13c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-bazi-time-python-regression1",
+        "exit": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c5bf70fc3e783d5779e6e885ca5f6f3ef5d499c671a296e876598ff62707cdcf"
+      },
+      {
+        "receipt": "20261018-ziwei-node-targeted-regression",
+        "exit": 0,
+        "stdout_sha256": "8d72bf3fa6bf10312da7539fab54a644c53b83b2646065e4079061f2baf2a041",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-flutter-time-note-tests",
+        "exit": 0,
+        "stdout_sha256": "89d59922ece9cf002a62e161a0d6978b4dc0404a05c94bcf49b982768122ff1f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-flutter-time-note-analyze",
+        "exit": 0,
+        "stdout_sha256": "0613275567c842882ca0825b88293dfc84ed6d1bf9888283ccd7dc3ec04edfaf",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-natal-style-final-green",
+        "exit": 0,
+        "stdout_sha256": "96d76c7af1675073cf95e0f4b26015864dda6f761d129b5d79875d1cef4d475e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-natal-final-service-smoke",
+        "exit": 0,
+        "stdout_sha256": "eab3612ee271dd9541b726755871f95c5226fd88cc0c670a827ecc9bcd2668aa",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-bazi-gong-legacy-provenance-verify",
+        "exit": 0,
+        "stdout_sha256": "d40d5b2c609522c2e33b44a27a6e4365f9dc3e9cd1551e61d409ed545dfa8cd4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-lowell-public-terms-documents",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b00de695af2fde299c26e2b473ad5f217df219a10acfda255669014c294710d5"
+      },
+      {
+        "receipt": "20261018-lowell-scoped-licensed-source-research",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "69ed49ca14f008dd76e22ca46e8f98a07d8c0e5585a920d82bcdeec2c8182709"
+      },
+      {
+        "receipt": "20261018-owned-db-state-readonly",
+        "exit": 1,
+        "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr_sha256": "e9133cf10b02b0b91c8b119848513db0ac541e7c3c19681266939e4b9952f7cc"
+      },
+      {
+        "receipt": "20261018-owned-volume-state-readonly",
+        "exit": 1,
+        "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr_sha256": "e9133cf10b02b0b91c8b119848513db0ac541e7c3c19681266939e4b9952f7cc"
+      },
+      {
+        "receipt": "20261018-owned-loopback-state-readonly",
+        "exit": 0,
+        "stdout_sha256": "d221e8297599016ad9376cf3af6148972e0d1d7eba0420fdb75043ee05530f4f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "comparison_receipts": [
+      {
+        "receipt": "20261018-extension-comparisons/brightness_full168_compare",
+        "exit": 0,
+        "result_sha256": "1bbfc01c82be035bee299859d8079fe5d8ba126a06455c8999d95e837f07cd33",
+        "script_sha256": "40e1a797173e4b0c4383e882a1c6113eab1f2dbdaa636961db5457f5afcf7b3c",
+        "stdout_sha256": "6652eef3fb0c7a309471829805b90a771289227a289c03e7124935f165706b54",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/changsheng_compare",
+        "exit": 0,
+        "result_sha256": "3cdc9ee3a957cf3251dd426c9339f2b5d70cc4fdd43908c956534fce95685324",
+        "script_sha256": "2ebd96d43775274e66b9a625dbecc2f636d2a33c32d55978b8284c3a7fde51c8",
+        "stdout_sha256": "f7d5f324c5e49b6b6fe192e6cea08cd939141c1917646a96271f0ff949116671",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/misc_pure60_compare",
+        "exit": 0,
+        "result_sha256": "e98ac3758946b2d80e4e2f589b959676317dca3a8fc92478aa38e0c19d630882",
+        "script_sha256": "def58ff0c92c15af3fdac7be5397996679a87d45d1f5bc163f1c311c3ff12f17",
+        "stdout_sha256": "059079fb15074b7e51d012b845f4549c87925eebdcb3de46a8be47371906229f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/misc_compare",
+        "exit": 0,
+        "result_sha256": "b99a5fe431051cefe37ac6b995b2406995215de335a97193b032c337d192ce6c",
+        "script_sha256": "f8f915e85bff46dd64d18e0bd5fb7e0b8e59548e5b56cae765065368dae5f488",
+        "stdout_sha256": "874546ec1f2d17e8fff3682f9f007189bd708b1a7b9bc02e7f07b6442ed18bb1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/flow_compare",
+        "exit": 0,
+        "result_sha256": "45ae50eae11345490fb7ce4169eefbdc1fa8b9274ba161c8589aae331021cd6f",
+        "script_sha256": "7318b2e49c66069c87fa122f8b083b2a60644f7a5ab018bdb27afb1dbca9d87a",
+        "stdout_sha256": "c17bc58fec4a6a792d2c41d4ee30a78150454517e2971ae84ff99c4431a097a3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/gong_compare_v4",
+        "exit": 0,
+        "result_sha256": "ccdb10d57a4f295bb493c5afed90a2213aeea6f235972fcb3dedaa460141241f",
+        "script_sha256": "cb8000ee8a65096145835f84d256237a6f0837b49d18beeada6aa50420d90d59",
+        "stdout_sha256": "2871d43b4c3b6fd486dce441c65f77c0cf23a987cc9e5f4af0ae0cd8e683a4f3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/bazi_updated_extensions",
+        "exit": 0,
+        "result_sha256": "16881ed5a63e33d96c9a212954d00f7c55278e1ce9806d38759fed6c7e69d676",
+        "script_sha256": "e5f35313a4b9a16a4b3f9fe8240a41c14cb5361181f6e882507e382609fcb018",
+        "stdout_sha256": "3152edeffa1e03a25b67cdca09bbc481fa718cab263cd709f0c6a29b8cc33b66",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "receipt": "20261018-extension-comparisons/extra_compare",
+        "exit": 0,
+        "result_sha256": "ffb2ff8d3963c333e33bed00ad1abd0d40dbb99362bb9a322406d81a274cbbc9",
+        "script_sha256": "e748920ea3aa96fea3b1a06ac1784408229d8745ac60eb3a7b64f576d207ed83",
+        "stdout_sha256": "3bb6694be47e5781176af96c04b1bbed7b356d6d5540a402c4ede1546cb05f56",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "source_and_expected_identities": {
+      "20261018-ziwei-extra-reference/expected.json": "8c4cc47ebdeec35604b1fa1716b3c12791bdf243422473cfbdd8a07488648322",
+      "20261018-ziwei-extra-reference/flow-reference.json": "d04713b950fca9a889ec59ebab9c29233baac908fe95a8f3f1d0aae576b31ccd",
+      "20261018-ziwei-extra-reference/last-misc-reference.json": "3292b98541804ce269c3a9bd5f479d02d25b6ccc9fa86de38fe3784d8c7783c3",
+      "20261018-ziwei-extra-reference/changsheng-reference.json": "f77489f38dde7a65c83ffb2991e1a77621c110a2af1cc4a48fe7ce53437412d4",
+      "20261018-bazi-gong-reference/reference.py": "cb5fce4f4451039c1bc997841fa93f8825669f01148682046bb1f8be97fee008",
+      "20261018-bazi-gong-reference/expected.json": "01d1d52d35fa73d3373262ce35bc820c86eb630576b84cda27a0c8bbcc2c749c"
+    },
+    "rights_source_documents_and_tables": "LOCAL_ONLY_NOT_COPIED_INTO_PRODUCT_OR_PUBLIC_TESTS",
+    "protection": "Before and after local source save, original dirty rootHEAD/index/status/43tracked hashes equal; no blanket rehash of all untracked media",
+    "exit_state": "CONTINUE_SAME_VERSION_NOT_FINAL_CANDIDATE_NOT_ACCEPTED_NO_MAIN_K08_SUCCESSOR"
   }
 }
