@@ -264,10 +264,10 @@ class RealSharedModelBlindSearchTests(unittest.TestCase):
         profile = {'zodiac_mode': 'tropical', 'house_system': 'whole',
                    'point_set': 'full', 'aspect_mode': 'major', 'orb_preset': 'standard'}
         # PHP DateTimeZone conversion is separately exercised through the API.
-        # Historical Shanghai is LMT +08:05:43, not modern +08:00.
+        # Shanghai starts 1900 at LMT +08:05:43, but ends at +08:00.
         cases = [
             (1900, 'Asia/Shanghai', 31.23, 121.47,
-             '1899-12-31T15:54:17Z', '1900-12-31T15:54:17Z'),
+             '1899-12-31T15:54:17Z', '1900-12-31T16:00:00Z'),
             (2100, 'America/New_York', 40.71, -74.00,
              '2100-01-01T05:00:00Z', '2101-01-01T05:00:00Z'),
         ]
