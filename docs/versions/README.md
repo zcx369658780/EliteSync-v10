@@ -1,5 +1,9 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-20 v10.1.1 R1返修待验收
+
+v10.1.1首轮候选当前为**CHANGES_REQUIRED / NOT_ACCEPTED**；Astra已对B1权限竞态签发同版R1集中返修。Codex执行完成后在下一会话继续独立验收，v10.1.2未启动。会话恢复入口：[2026-10-20 R1 pending handoff](../workflow/SESSION_HANDOFF_20261020_V1011_R1_PENDING.md)。
+
 ## 2026-10-19 后续10.x规划登记（非冻结/非派发）
 
 唯一规划正文：[10.x后续路线V1.0](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)。Owner方向与Astra版本拆分分开；没有新建下列版本plan或目录，没有启动实现。
