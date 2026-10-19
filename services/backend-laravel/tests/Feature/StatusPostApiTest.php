@@ -7,6 +7,7 @@ use App\Models\StatusPost;
 use App\Models\User;
 use App\Models\UserBlock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -52,6 +53,7 @@ class StatusPostApiTest extends TestCase
             ->postJson('/api/v1/status/posts', [
                 'title' => '今晚想散步',
                 'body' => '在南阳找个轻松话题开始聊天。',
+                'audience' => 'SELF',
             ])
             ->assertCreated()
             ->assertJsonPath('ok', true)
@@ -61,8 +63,8 @@ class StatusPostApiTest extends TestCase
             ->getJson('/api/v1/status/posts')
             ->assertOk()
             ->assertJsonPath('items.0.title', '今晚想散步')
-            ->assertJsonPath('items.0.author.is_synthetic', true)
-            ->assertJsonPath('items.0.author.account_type', 'test');
+            ->assertJsonPath('items.0.audience', 'SELF')
+            ->assertJsonMissingPath('items.0.author.phone');
 
         $postId = (int) StatusPost::query()->firstOrFail()->id;
 
@@ -104,10 +106,10 @@ class StatusPostApiTest extends TestCase
     public function test_single_image_status_like_report_and_author_page_flow(): void
     {
         config([
-            'app.url' => 'http://101.133.161.203',
-            'filesystems.disks.public.url' => 'http://101.133.161.203/storage',
+            'app.url' => 'http://127.0.0.1:8012',
+            'restoration.enabled' => true,
         ]);
-        Storage::fake('public');
+        Storage::fake('v1011_relationship');
 
         $author = $this->makeUser([
             'phone' => '17000000003',
@@ -118,28 +120,30 @@ class StatusPostApiTest extends TestCase
             'name' => 'Viewer',
         ]);
 
+        DB::table('friendships')->insert(['user_a' => min($author->id, $viewer->id), 'user_b' => max($author->id, $viewer->id), 'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         $asset = MediaAsset::create([
             'owner_user_id' => $author->id,
             'media_type' => 'image',
-            'storage_provider' => 'oss',
-            'storage_disk' => 'public',
+            'storage_provider' => 'local',
+            'storage_disk' => 'v1011_relationship',
             'storage_key' => 'status-media/'.$author->id.'/cover.jpg',
             'original_name' => 'cover.jpg',
             'mime_type' => 'image/jpeg',
             'size_bytes' => 1024,
             'status' => 'ready',
-            'public_url' => 'http://localhost:8080/storage/status-media/'.$author->id.'/cover.jpg',
+            'public_url' => null,
             'uploaded_at' => now(),
             'processed_at' => now(),
         ]);
-        Storage::disk('public')->put($asset->storage_key, 'cover-bytes');
+        Storage::disk('v1011_relationship')->put($asset->storage_key, 'cover-bytes');
 
-        $expectedUrl = 'http://localhost:8080/api/v1/media/'.$asset->id.'/content';
+        $expectedUrl = 'http://127.0.0.1:8012/api/v1/media/'.$asset->id.'/content';
 
         Sanctum::actingAs($author);
         $created = $this->postJson('/api/v1/status/posts', [
             'title' => '今晚想散步',
             'body' => '单图动态测试。',
+            'audience' => 'FRIENDS',
             'cover_media_asset_id' => $asset->id,
         ])
             ->assertCreated()
@@ -153,6 +157,9 @@ class StatusPostApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('item.id', $postId)
             ->assertJsonPath('item.media.0', $expectedUrl);
+
+        $content = $this->get('/api/v1/media/'.$asset->id.'/content')->assertOk();
+        $this->assertSame('cover-bytes', file_get_contents($content->baseResponse->getFile()->getPathname()));
 
         $this->postJson('/api/v1/status/posts/'.$postId.'/likes')
             ->assertOk()
@@ -242,8 +249,43 @@ class StatusPostApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('item.id', $post->id)
             ->assertJsonPath('item.cover_media_asset_id', $asset->id)
-            ->assertJsonPath('item.cover_media.id', $asset->id)
-            ->assertJsonPath('item.cover_media.public_url', '')
+            ->assertJsonPath('item.cover_media', [])
             ->assertJsonCount(0, 'item.media');
+    }
+
+    public function test_legacy_public_and_oss_assets_cannot_be_shared_and_old_posts_omit_media_urls(): void
+    {
+        $author = $this->makeUser(['phone' => '17000000008']);
+        Sanctum::actingAs($author);
+        foreach (['public', 'oss'] as $disk) {
+            Storage::fake($disk);
+            $legacyUrl = 'https://legacy.invalid/'.$disk.'/cover.jpg';
+            $asset = MediaAsset::create([
+                'owner_user_id' => $author->id, 'media_type' => 'image',
+                'storage_provider' => $disk === 'oss' ? 'oss' : 'local',
+                'storage_disk' => $disk, 'storage_key' => 'status-media/'.$disk.'-legacy-cover.jpg',
+                'status' => 'ready', 'public_url' => $legacyUrl,
+            ]);
+            Storage::disk($disk)->put($asset->storage_key, 'legacy-cover-bytes');
+            $before = StatusPost::count();
+            $this->postJson('/api/v1/status/posts', [
+                'title' => 'Rejected legacy cover', 'body' => 'Legacy asset remains retained.',
+                'audience' => 'FRIENDS', 'cover_media_asset_id' => $asset->id,
+            ])->assertStatus(422)->assertJsonPath('message', 'private cover media required');
+            $this->assertSame($before, StatusPost::count());
+            $this->assertDatabaseHas('media_assets', ['id' => $asset->id, 'storage_disk' => $disk, 'public_url' => $legacyUrl]);
+            Storage::disk($disk)->assertExists($asset->storage_key);
+
+            $post = StatusPost::create([
+                'author_user_id' => $author->id, 'title' => 'Retained legacy post',
+                'body' => 'Original content retained.', 'visibility' => 'public',
+                'audience' => 'SELF', 'is_deleted' => false, 'cover_media_asset_id' => $asset->id,
+            ]);
+            $this->getJson('/api/v1/status/posts/'.$post->id)->assertOk()
+                ->assertJsonPath('item.cover_media_asset_id', $asset->id)
+                ->assertJsonPath('item.cover_media', [])->assertJsonCount(0, 'item.media')
+                ->assertDontSee($legacyUrl, false);
+            $this->assertDatabaseHas('status_posts', ['id' => $post->id, 'cover_media_asset_id' => $asset->id, 'is_deleted' => false]);
+        }
     }
 }

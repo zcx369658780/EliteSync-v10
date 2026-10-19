@@ -58,6 +58,12 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8012/') {
+      throw StateError('Relationship development requires its isolated local host.');
+    }
+    return hostOverride;
+  }
   if (const bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8011/') {
       throw StateError('Dynamic chart build requires its isolated local host.');
@@ -112,6 +118,7 @@ Future<void> main() async {
     ),
   );
   const restoration =
+      bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
@@ -129,7 +136,9 @@ Future<void> main() async {
     'MAIN_PROD_BOOTSTRAP initialRoute=${initialRoute.isNotEmpty ? initialRoute : "null"} flavor=${flavor.name}',
   );
 
-  const rtcRestoration = bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD');
+  const rtcRestoration =
+      bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD');
   await runEliteSyncApp(
     AppEnv(
       flavor: flavor,

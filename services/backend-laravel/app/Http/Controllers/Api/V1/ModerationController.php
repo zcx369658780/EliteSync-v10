@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChatMessage;
 use App\Models\ModerationReport;
+use App\Models\StatusPost;
 use App\Models\User;
 use App\Models\UserBlock;
 use App\Services\EventLogger;
+use App\Services\LiveConsentService;
+use App\Services\SocialPolicy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModerationController extends Controller
 {
@@ -34,14 +39,14 @@ class ModerationController extends Controller
             return response()->json(['message' => 'cannot report self'], 422);
         }
 
-        if(!empty($data['target_message_id'])) {
-            $message=\App\Models\ChatMessage::find($data['target_message_id']);
-            abort_unless($message && in_array($reporterId,[(int)$message->sender_id,(int)$message->receiver_id],true) && in_array($targetUserId,[(int)$message->sender_id,(int)$message->receiver_id],true)
-                && app(\App\Services\LiveConsentService::class)->gates($reporterId,$targetUserId)['live_read_allowed'],404);
+        if (! empty($data['target_message_id'])) {
+            $message = ChatMessage::find($data['target_message_id']);
+            abort_unless($message && in_array($reporterId, [(int) $message->sender_id, (int) $message->receiver_id], true) && in_array($targetUserId, [(int) $message->sender_id, (int) $message->receiver_id], true)
+                && app(LiveConsentService::class)->gates($reporterId, $targetUserId)['live_read_allowed'], 404);
         }
-        if(!empty($data['target_status_post_id'])) {
-            $post=\App\Models\StatusPost::find($data['target_status_post_id']);
-            abort_unless($post&&!$post->is_deleted&&(int)$post->author_user_id===$targetUserId&&in_array($post->visibility,['public','square'],true),404);
+        if (! empty($data['target_status_post_id'])) {
+            $post = StatusPost::find($data['target_status_post_id']);
+            abort_unless($post && ! $post->is_deleted && (int) $post->author_user_id === $targetUserId && in_array($post->visibility, ['public', 'square'], true), 404);
         }
         $report = ModerationReport::create([
             'reporter_id' => $reporterId,
@@ -88,7 +93,7 @@ class ModerationController extends Controller
             ->where('reporter_id', $this->currentUserId($request))
             ->first();
 
-        if (!$report) {
+        if (! $report) {
             return response()->json(['message' => 'report not found'], 404);
         }
 
@@ -109,15 +114,15 @@ class ModerationController extends Controller
     public function blocks(Request $request): JsonResponse
     {
         $items = UserBlock::query()
-            ->with(['blockedUser:id,name,phone'])
+            ->with(['blockedUser:id,disabled'])
             ->where('blocker_id', $this->currentUserId($request))
             ->orderByDesc('id')
             ->get()
             ->map(fn (UserBlock $block) => [
                 'id' => $block->id,
                 'blocked_user_id' => $block->blocked_user_id,
-                'blocked_user_name' => $block->blockedUser?->name ?? '',
-                'blocked_user_phone' => $block->blockedUser?->phone ?? '',
+                'blocked_user_name' => '账号不可用',
+                'blocked_user_phone' => '',
                 'reason_code' => $block->reason_code,
                 'detail' => $block->detail,
                 'created_at' => optional($block->created_at)?->toIso8601String(),
@@ -144,18 +149,21 @@ class ModerationController extends Controller
             return response()->json(['message' => 'cannot block self'], 422);
         }
 
-        $block = \Illuminate\Support\Facades\DB::transaction(function()use($blockerId,$blockedUserId,$data){
-        if(app(\App\Services\LiveConsentService::class)->enabled())\App\Models\User::whereIn('id',[$blockerId,$blockedUserId])->orderBy('id')->lockForUpdate()->get();
-        return UserBlock::query()->firstOrCreate(
-            [
-                'blocker_id' => $blockerId,
-                'blocked_user_id' => $blockedUserId,
-            ],
-            [
-                'reason_code' => $data['reason_code'] ?? null,
-                'detail' => $data['detail'] ?? null,
-            ]
-        );
+        $block = DB::transaction(function () use ($blockerId, $blockedUserId, $data) {
+            User::whereIn('id', [$blockerId, $blockedUserId])->orderBy('id')->lockForUpdate()->get();
+            $block = UserBlock::query()->firstOrCreate(
+                [
+                    'blocker_id' => $blockerId,
+                    'blocked_user_id' => $blockedUserId,
+                ],
+                [
+                    'reason_code' => $data['reason_code'] ?? null,
+                    'detail' => $data['detail'] ?? null,
+                ]
+            );
+            app(SocialPolicy::class)->revokePair($blockerId, $blockedUserId);
+
+            return $block;
         });
 
         $events->log(

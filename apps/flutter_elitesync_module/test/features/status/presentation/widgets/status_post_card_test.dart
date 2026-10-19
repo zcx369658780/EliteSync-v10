@@ -12,6 +12,10 @@ void main() {
   testWidgets(
     'status post card shows author, actions and media placeholder text',
     (tester) async {
+      tester.view.physicalSize = const Size(800, 1400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
       final post = StatusPostEntity.fromJson({
         'id': 2,
         'title': '周末状态',

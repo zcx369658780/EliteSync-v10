@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -31,18 +32,25 @@ class RtcCallResultPage extends ConsumerStatefulWidget {
 }
 
 class _RtcCallResultPageState extends ConsumerState<RtcCallResultPage> {
+  bool _mediaClosed = false;
+  SessionState? _ownerSession;
+  bool _sessionInvalidated = false;
+  bool get _currentSession =>
+      mounted &&
+      !_sessionInvalidated &&
+      _ownerSession?.isLoggedIn == true &&
+      identical(ref.read(sessionProvider).asData?.value, _ownerSession);
+
+  void _refresh() {
+    if (_currentSession) ref.invalidate(rtcCallProvider(widget.callId));
+  }
+
   @override
   void initState() {
     super.initState();
     ref
         .read(frontendTelemetryProvider)
         .rtcCallEntryOpened(sourcePage: 'rtc_call_result');
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      unawaited(
-        ref.read(rtcLiveKitServiceProvider).leave(callId: widget.callId),
-      );
-    });
   }
 
   String _statusLabel(RtcSessionEntity session) {
@@ -317,6 +325,30 @@ class _RtcCallResultPageState extends ConsumerState<RtcCallResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentSession = ref.watch(sessionProvider).asData?.value;
+    if (_ownerSession == null && currentSession?.isLoggedIn == true) {
+      _ownerSession = currentSession;
+    }
+    if (_ownerSession != null && !identical(currentSession, _ownerSession)) {
+      _sessionInvalidated = true;
+    }
+    if (!_currentSession) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('通话')),
+        body: const Center(child: Text('登录状态已变化，请重新打开通话')),
+      );
+    }
+
+    if (!_mediaClosed) {
+      _mediaClosed = true;
+      final callId = widget.callId;
+      final service = ref.read(rtcLiveKitServiceProvider);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_currentSession && widget.callId == callId) {
+          unawaited(service.leave(callId: callId));
+        }
+      });
+    }
     final sessionAsync = ref.watch(rtcCallProvider(widget.callId));
     final t = context.appTokens;
 
@@ -327,12 +359,14 @@ class _RtcCallResultPageState extends ConsumerState<RtcCallResultPage> {
         actions: [
           IconButton(
             tooltip: '刷新结果',
-            onPressed: () => ref.invalidate(rtcCallProvider(widget.callId)),
+            onPressed: _refresh,
             icon: const Icon(Icons.refresh_rounded),
           ),
         ],
       ),
       body: sessionAsync.when(
+        skipLoadingOnReload: false,
+        skipLoadingOnRefresh: false,
         loading: () => const AppLoadingSkeleton(lines: 6),
         error: (e, _) => ListView(
           padding: EdgeInsets.only(bottom: t.spacing.huge),
@@ -340,7 +374,7 @@ class _RtcCallResultPageState extends ConsumerState<RtcCallResultPage> {
             AppErrorState(
               title: '结果加载失败',
               description: e.toString(),
-              onRetry: () => ref.invalidate(rtcCallProvider(widget.callId)),
+              onRetry: _refresh,
             ),
           ],
         ),

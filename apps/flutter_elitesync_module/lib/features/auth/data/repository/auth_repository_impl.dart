@@ -63,7 +63,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> logout() {
-    return _local.clearSession();
+  Future<void> logout() async {
+    try {
+      await _remote.logout();
+    } finally {
+      await _local.clearSession();
+    }
   }
 }

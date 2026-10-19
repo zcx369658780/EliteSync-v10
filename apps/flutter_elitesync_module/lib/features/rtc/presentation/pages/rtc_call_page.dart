@@ -18,6 +18,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme_extension
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_livekit_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart';
 import 'package:livekit_client/livekit_client.dart';
 
@@ -43,26 +44,56 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   bool _busy = false;
   int? _autoConnectedCallId;
   int? _liveKitAttemptedCallId;
+  final Set<int> _closedMediaCallIds = {};
   late final RtcLiveKitService _liveKitService;
+  bool _serviceBound = false;
+  SessionState? _ownerSession;
+  bool _sessionInvalidated = false;
+
+  bool get _currentSession =>
+      mounted &&
+      !_sessionInvalidated &&
+      _ownerSession?.isLoggedIn == true &&
+      identical(ref.read(sessionProvider).asData?.value, _ownerSession);
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _liveKitService = ref.read(rtcLiveKitServiceProvider);
     ref
         .read(frontendTelemetryProvider)
         .rtcCallEntryOpened(sourcePage: 'rtc_call');
     _pollTimer = Timer.periodic(const Duration(seconds: 4), (_) {
-      if (!mounted) return;
+      if (!_currentSession) return;
       ref.invalidate(rtcCallProvider(widget.callId));
     });
   }
 
   @override
+  void didUpdateWidget(covariant RtcCallPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.callId != widget.callId) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_leaveMediaOnce(oldWidget.callId));
+      });
+      _autoConnectedCallId = null;
+      _liveKitAttemptedCallId = null;
+      _busy = false;
+    }
+  }
+
+  // Set the guard before leave can notify listeners and schedule another build.
+  // Explicit reconnect starts a fresh media attempt; rebuilds never do.
+  Future<void> _leaveMediaOnce(int callId) async {
+    if (!_serviceBound) return;
+    if (!_closedMediaCallIds.add(callId)) return;
+    await _liveKitService.leave(callId: callId);
+  }
+
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    unawaited(_liveKitService.leave(callId: widget.callId));
+    unawaited(_leaveMediaOnce(widget.callId));
     _pollTimer?.cancel();
     super.dispose();
   }
@@ -81,14 +112,18 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   }
 
   Future<void> _mediaAction(Future<void> Function() action) async {
+    if (!_currentSession) return;
     try {
       await action();
     } catch (_) {
-      if (mounted) AppFeedback.showError(context, '媒体操作失败，请检查设备权限后重试');
+      if (mounted && _currentSession) {
+        AppFeedback.showError(context, '媒体操作失败，请检查设备权限后重试');
+      }
     }
   }
 
   Future<void> _refresh() async {
+    if (!_currentSession) return;
     ref.invalidate(rtcCallProvider(widget.callId));
     await ref.read(rtcCallProvider(widget.callId).future);
   }
@@ -97,10 +132,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     Future<RtcSessionEntity> Function() action,
     String okMessage,
   ) async {
-    if (_busy) return;
+    if (_busy || !_currentSession) return;
+    final callId = widget.callId;
     setState(() => _busy = true);
     try {
       final session = await action();
+      if (!mounted || !_currentSession || widget.callId != callId) return;
       ref
           .read(frontendTelemetryProvider)
           .rtcCallStatusChanged(
@@ -108,25 +145,23 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
             callId: session.id,
             status: session.status,
           );
-      ref.invalidate(rtcCallProvider(widget.callId));
-      if (!mounted) return;
+      ref.invalidate(rtcCallProvider(callId));
       if (session.isTerminal) {
-        unawaited(
-          ref.read(rtcLiveKitServiceProvider).leave(callId: session.id),
-        );
+        unawaited(_leaveMediaOnce(session.id));
       }
       AppFeedback.showInfo(context, okMessage);
     } catch (e) {
-      if (!mounted) return;
+      if (!mounted || !_currentSession || widget.callId != callId) return;
       AppFeedback.showError(context, e.toString());
     } finally {
-      if (mounted) {
+      if (mounted && _currentSession && widget.callId == callId) {
         setState(() => _busy = false);
       }
     }
   }
 
   Future<void> _autoConnect(RtcSessionEntity session) async {
+    if (!_currentSession) return;
     if (_busy || _autoConnectedCallId == session.id) return;
     if (!session.canConnect) return;
     _autoConnectedCallId = session.id;
@@ -137,13 +172,14 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   }
 
   Future<void> _syncLiveKit(RtcSessionEntity session) async {
+    if (!_currentSession) return;
     final liveKit = _liveKitService;
-    if (!liveKit.isEnabled) return;
-
     if (session.isTerminal) {
-      await liveKit.leave(callId: session.id);
+      await _leaveMediaOnce(session.id);
       return;
     }
+
+    if (!liveKit.isEnabled || _closedMediaCallIds.contains(session.id)) return;
 
     if (_busy) return;
     if (!['connecting', 'in_call'].contains(session.status)) return;
@@ -152,38 +188,43 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     try {
       await liveKit.ensureConnected(session.id);
     } catch (_) {
-      if (mounted) setState(() {});
+      if (_currentSession && widget.callId == session.id) setState(() {});
       return;
     }
   }
 
   Future<void> _reconnectMedia() async {
+    if (!_currentSession) return;
     if (_busy || _liveKitService.isConnecting || _liveKitService.isConnected) {
       return;
     }
+    final callId = widget.callId;
     setState(() => _busy = true);
     try {
       // Never reuse the page's cached session or the previous room credentials.
       final current = await ref
           .read(rtcRemoteDataSourceProvider)
-          .fetchCall(widget.callId);
-      if (!mounted) return;
-      if (current.id != widget.callId ||
+          .fetchCall(callId);
+      if (!mounted || !_currentSession || widget.callId != callId) return;
+      if (current.id != callId ||
           current.isTerminal ||
           !['connecting', 'in_call'].contains(current.status)) {
         throw StateError('通话当前不可重新连接');
       }
-      await _liveKitService.leave(callId: widget.callId);
-      if (!mounted) return;
+      await _leaveMediaOnce(callId);
+      if (!mounted || !_currentSession || widget.callId != callId) return;
+      _closedMediaCallIds.remove(callId);
       _liveKitAttemptedCallId = current.id;
       // ensureConnected obtains fresh join information through the server gate.
       await _liveKitService.ensureConnected(current.id);
     } catch (_) {
-      await _liveKitService.leave(callId: widget.callId);
-      if (mounted) AppFeedback.showError(context, '当前通话授权或网络不可验证，媒体保持关闭');
+      await _leaveMediaOnce(callId);
+      if (mounted && _currentSession && widget.callId == callId) {
+        AppFeedback.showError(context, '当前通话授权或网络不可验证，媒体保持关闭');
+      }
     } finally {
-      if (mounted) {
-        ref.invalidate(rtcCallProvider(widget.callId));
+      if (mounted && _currentSession && widget.callId == callId) {
+        ref.invalidate(rtcCallProvider(callId));
         setState(() => _busy = false);
       }
     }
@@ -452,6 +493,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
                     color: Colors.white,
                   ),
                   onPressed: () {
+                    if (!_currentSession) return;
                     context.push(
                       '${AppRouteNames.rtcCallResult}/${session.id}',
                       extra: session.title,
@@ -602,6 +644,27 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
 
   @override
   Widget build(BuildContext context) {
+    final session = ref.watch(sessionProvider).asData?.value;
+    if (_ownerSession == null && session?.isLoggedIn == true) {
+      _ownerSession = session;
+    }
+    if (_ownerSession != null && !identical(session, _ownerSession)) {
+      _sessionInvalidated = true;
+    }
+    if (!_currentSession) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) unawaited(_leaveMediaOnce(widget.callId));
+      });
+      return Scaffold(
+        appBar: AppBar(title: const Text('通话')),
+        body: const Center(child: Text('登录状态已变化，请重新打开通话')),
+      );
+    }
+    if (!_serviceBound) {
+      _liveKitService = ref.read(rtcLiveKitServiceProvider);
+      _serviceBound = true;
+    }
+    final callId = widget.callId;
     final sessionAsync = ref.watch(rtcCallProvider(widget.callId));
     final liveKitService = ref.watch(rtcLiveKitServiceProvider);
     final t = context.appTokens;
@@ -620,11 +683,13 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
           ],
         ),
         body: sessionAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
           loading: () => const AppLoadingSkeleton(lines: 6),
           error: (e, _) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) {
-                unawaited(_liveKitService.leave(callId: widget.callId));
+              if (mounted && _currentSession && widget.callId == callId) {
+                unawaited(_leaveMediaOnce(callId));
               }
             });
             return ListView(
@@ -641,12 +706,16 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
           data: (session) {
             if (widget.autoConnect) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (!mounted) return;
+                if (!mounted || !_currentSession || widget.callId != callId) {
+                  return;
+                }
                 unawaited(_autoConnect(session));
               });
             }
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (!mounted) return;
+              if (!mounted || !_currentSession || widget.callId != callId) {
+                return;
+              }
               unawaited(_syncLiveKit(session));
             });
             return _buildContent(

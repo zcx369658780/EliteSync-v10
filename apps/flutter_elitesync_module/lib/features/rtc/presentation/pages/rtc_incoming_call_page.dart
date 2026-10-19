@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +33,18 @@ class RtcIncomingCallPage extends ConsumerStatefulWidget {
 }
 
 class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
+  SessionState? _ownerSession;
+  bool _sessionInvalidated = false;
+  bool get _currentSession =>
+      mounted &&
+      !_sessionInvalidated &&
+      _ownerSession?.isLoggedIn == true &&
+      identical(ref.read(sessionProvider).asData?.value, _ownerSession);
+
+  void _refresh() {
+    if (_currentSession) ref.invalidate(rtcCallProvider(widget.callId));
+  }
+
   bool _busy = false;
 
   @override
@@ -46,10 +59,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
     Future<RtcSessionEntity> Function() action,
     String okMessage,
   ) async {
-    if (_busy) return null;
+    if (_busy || !_currentSession) return null;
+    final callId = widget.callId;
     setState(() => _busy = true);
     try {
       final session = await action();
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       ref
           .read(frontendTelemetryProvider)
           .rtcCallStatusChanged(
@@ -58,15 +73,15 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
             status: session.status,
           );
       ref.invalidate(rtcCallProvider(widget.callId));
-      if (!mounted) return session;
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       AppFeedback.showInfo(context, okMessage);
       return session;
     } catch (e) {
-      if (!mounted) return null;
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       AppFeedback.showError(context, e.toString());
       return null;
     } finally {
-      if (mounted) {
+      if (_currentSession && widget.callId == callId) {
         setState(() => _busy = false);
       }
     }
@@ -203,7 +218,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                           .acceptCall(session.id),
                       '已接听来电',
                     );
-                    if (!mounted || updated == null) return;
+                    if (!mounted ||
+                        !_currentSession ||
+                        updated == null ||
+                        updated.id != widget.callId) {
+                      return;
+                    }
                     context.go(
                       '${AppRouteNames.rtcCall}/${updated.id}',
                       extra: updated.title.isNotEmpty
@@ -225,7 +245,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                           .rejectCall(session.id),
                       '已拒绝来电',
                     );
-                    if (!mounted || updated == null) return;
+                    if (!mounted ||
+                        !_currentSession ||
+                        updated == null ||
+                        updated.id != widget.callId) {
+                      return;
+                    }
                     context.go(
                       '${AppRouteNames.rtcCallResult}/${updated.id}',
                       extra: updated.title.isNotEmpty
@@ -319,6 +344,20 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentSession = ref.watch(sessionProvider).asData?.value;
+    if (_ownerSession == null && currentSession?.isLoggedIn == true) {
+      _ownerSession = currentSession;
+    }
+    if (_ownerSession != null && !identical(currentSession, _ownerSession)) {
+      _sessionInvalidated = true;
+    }
+    if (!_currentSession) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('通话')),
+        body: const Center(child: Text('登录状态已变化，请重新打开通话')),
+      );
+    }
+
     final sessionAsync = ref.watch(rtcCallProvider(widget.callId));
     final t = context.appTokens;
 
@@ -330,12 +369,14 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
           actions: [
             IconButton(
               tooltip: '刷新来电',
-              onPressed: () => ref.invalidate(rtcCallProvider(widget.callId)),
+              onPressed: _refresh,
               icon: const Icon(Icons.refresh_rounded),
             ),
           ],
         ),
         body: sessionAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
           loading: () => const AppLoadingSkeleton(lines: 6),
           error: (e, _) => ListView(
             padding: EdgeInsets.only(bottom: t.spacing.huge),
@@ -343,7 +384,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
               AppErrorState(
                 title: '来电加载失败',
                 description: e.toString(),
-                onRetry: () => ref.invalidate(rtcCallProvider(widget.callId)),
+                onRetry: _refresh,
               ),
             ],
           ),

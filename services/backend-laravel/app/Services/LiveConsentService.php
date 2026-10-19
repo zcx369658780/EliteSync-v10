@@ -23,7 +23,7 @@ final class LiveConsentService
         }
         $db = DB::connection();
 
-        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319]], true)
+        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322]], true)
             && $db->getConfig('host') === '127.0.0.1' && ! $db->getConfig('unix_socket')
             && (int) $db->getConfig('port') === (int) config('restoration.port')
             && ! in_array((int) $db->getConfig('port'), [3306, 43316], true);
@@ -57,6 +57,30 @@ final class LiveConsentService
         }
 
         return $q->first();
+    }
+
+    public function connection(int $actor, int $peer, bool $lock = false): ?object
+    {
+        if (! $this->enabled() || ! app(SocialPolicy::class)->pairAllowed($actor, $peer)) {
+            return null;
+        }
+        $q = DB::table('product_connections')->where('user_a', min($actor, $peer))->where('user_b', max($actor, $peer));
+        if ($lock) {
+            $q->lockForUpdate();
+        }
+
+        return $q->orderByDesc('id')->first();
+    }
+
+    private function acceptedMessage(int $a, int $b): ?object
+    {
+        return DB::table('social_requests')->where('pair_key', min($a, $b).':'.max($a, $b))->where('purpose', 'message')->where('state', 'ACCEPTED')->orderByDesc('id')->first();
+    }
+
+    private function hasContext(int $actor, int $peer, bool $lock = false): bool
+    {
+        return $this->enabled() && $actor !== $peer && app(SocialPolicy::class)->pairAllowed($actor, $peer)
+            && ($this->match($actor, $peer, $lock) || app(SocialPolicy::class)->friendship($actor, $peer) || $this->acceptedMessage($actor, $peer) || $this->connection($actor, $peer, $lock));
     }
 
     private function identity(object $cn): array
@@ -115,11 +139,11 @@ final class LiveConsentService
     private function lockedGates(int $actor, int $peer): array
     {
         $denied = ['live_read_allowed' => false, 'live_send_allowed' => false];
-        $match = $this->match($actor, $peer, true);
-        if (! $match) {
+        $context = $this->hasContext($actor, $peer, true);
+        if (! $context) {
             return $denied;
         }
-        $cn = DB::table('product_connections')->where('match_id', $match->id)->lockForUpdate()->first();
+        $cn = $this->connection($actor, $peer, true);
         if (! $cn) {
             return $denied;
         }
@@ -144,26 +168,42 @@ final class LiveConsentService
 
     public function current(int $actor, int $peer): array
     {
-        $match = $this->match($actor, $peer);
-        abort_unless($match, 404, 'connection unavailable');
-        $cn = DB::table('product_connections')->where('match_id', $match->id)->first();
+        $context = $this->hasContext($actor, $peer);
+        abort_unless($context, 404, 'connection unavailable');
+        $cn = $this->connection($actor, $peer);
         $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)->orderByDesc('generation')->first() : null;
 
-        return ['connection' => ['state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
-            'consent' => ['state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
+        return ['connection' => ['id' => $cn->id ?? null, 'generation' => (int) ($cn->lifecycle_generation ?? 1), 'state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
+            'consent' => ['id' => $mc->id ?? null, 'generation' => (int) ($mc->generation ?? 1), 'state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
             'peer_id' => $peer, 'gates' => $this->gates($actor, $peer)];
     }
 
-    public function transition(int $actor, int $peer, string $kind, string $action, int $expected): array
+    public function transition(int $actor, int $peer, string $kind, string $action, int $expected, ?int $expectedConnectionId = null, ?int $expectedConsentId = null): array
     {
-        return DB::transaction(function () use ($actor, $peer, $kind, $action, $expected) {
+        return DB::transaction(function () use ($actor, $peer, $kind, $action, $expected, $expectedConnectionId, $expectedConsentId) {
+            if ($this->enabled()) {
+                app(SocialPolicy::class)->lockPair($actor, $peer);
+            }
+            abort_unless($this->hasContext($actor, $peer, true), 404, 'connection unavailable');
             $match = $this->match($actor, $peer, true);
-            abort_unless($match, 404, 'connection unavailable');
+            $friend = app(SocialPolicy::class)->friendship($actor, $peer);
+            $messageRequest = $this->acceptedMessage($actor, $peer);
             abort_if(in_array($action, ['request', 'accept'], true) && User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get(['moderation_status'])->contains('moderation_status', 'restricted'), 403, 'restricted interaction');
-            $cn = DB::table('product_connections')->where('match_id', $match->id)->lockForUpdate()->first();
+            $cn = $this->connection($actor, $peer, true);
+            $generation = (int) ($cn->lifecycle_generation ?? 1);
+            if ($cn && ($generation > 1 || $expectedConnectionId !== null)) {
+                abort_unless($expectedConnectionId === (int) $cn->id, 409, 'stale lifecycle');
+            }
+            if ($cn && $kind === 'connection' && $action === 'request' && in_array($cn->state, [CN::STATE_CLOSED, CN::STATE_DECLINED, CN::STATE_WITHDRAWN, CN::STATE_EXPIRED], true)) {
+                abort_unless($expectedConnectionId === (int) $cn->id && $expected === (int) $cn->revision, 409, 'new lifecycle confirmation required');
+                abort_unless($match || $friend || $messageRequest, 404, 'new context required');
+                $generation++;
+                $cn = null;
+                $expected = 0;
+            }
             if (! $cn) {
                 abort_unless($kind === 'connection' && $action === 'request' && $expected === 0, 409, 'invalid transition');
-                $id = DB::table('product_connections')->insertGetId(['match_id' => $match->id, 'user_a' => min($actor, $peer), 'user_b' => max($actor, $peer),
+                $id = DB::table('product_connections')->insertGetId(['lifecycle_generation' => $generation, 'match_id' => $match?->id, 'friendship_id' => $match ? null : $friend?->id, 'social_request_id' => ! $match && ! $friend ? $messageRequest?->id : null, 'user_a' => min($actor, $peer), 'user_b' => max($actor, $peer),
                     'requester_id' => $actor, 'state' => CN::STATE_NONE, 'revision' => 0, 'created_at' => now(), 'updated_at' => now()]);
                 $cn = DB::table('product_connections')->where('id', $id)->first();
             }
@@ -200,9 +240,13 @@ final class LiveConsentService
                 $next = match ($action) {
                     'request' => MC::STATE_PENDING,'accept' => MC::STATE_ACTIVE,'decline' => MC::STATE_DECLINED,'withdraw' => MC::STATE_WITHDRAWN,'revoke' => MC::STATE_REVOKED,default => null
                 };
-                $latest = DB::table('messaging_consents')->where('connection_id', $cn->id)->orderByDesc('generation')->lockForUpdate()->first();
+                $latest = DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)->orderByDesc('generation')->lockForUpdate()->first();
                 $generation = (int) ($latest->generation ?? 1);
+                if ($latest && ($generation > 1 || $expectedConsentId !== null)) {
+                    abort_unless($expectedConsentId === (int) $latest->id, 409, 'stale consent lifecycle');
+                }
                 if ($action === 'request' && $latest && in_array($latest->state, [MC::STATE_REVOKED, MC::STATE_DECLINED, MC::STATE_WITHDRAWN], true)) {
+                    abort_unless($expectedConsentId === (int) $latest->id, 409, 'terminal consent identity required');
                     abort_unless((int) $latest->revision === $expected, 409, 'stale revision');
                     $generation++;
                     $expected = 0;

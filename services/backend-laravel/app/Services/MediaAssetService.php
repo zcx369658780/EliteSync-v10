@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
+use App\Jobs\ProcessMediaAssetJob;
 use App\Models\MediaAsset;
 use App\Models\MediaProcessingJob;
 use App\Models\User;
-use App\Jobs\ProcessMediaAssetJob;
+use App\Services\Accounts\AccountClosure;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -31,10 +33,10 @@ class MediaAssetService
             'height' => $data['height'] ?? null,
             'duration_ms' => $data['duration_ms'] ?? null,
             'sha256' => $data['sha256'] ?? null,
-            'status' => !empty($data['public_url']) ? 'uploaded' : 'pending',
+            'status' => ! empty($data['public_url']) ? 'uploaded' : 'pending',
             'public_url' => $data['public_url'] ?? null,
             'metadata' => $data['metadata'] ?? null,
-            'uploaded_at' => !empty($data['public_url']) ? now() : null,
+            'uploaded_at' => ! empty($data['public_url']) ? now() : null,
         ]);
 
         MediaProcessingJob::query()->create([
@@ -83,7 +85,7 @@ class MediaAssetService
             'uploaded_at' => null,
         ]);
 
-        if (!$policy->isAllowedMime($asset->mime_type)) {
+        if (! $policy->isAllowedMime($asset->mime_type)) {
             $asset->forceFill([
                 'status' => 'blocked',
                 'error_code' => 'mime_not_allowed',
@@ -93,7 +95,7 @@ class MediaAssetService
             return $asset->refresh();
         }
 
-        if (!$policy->isAllowedSize($asset->size_bytes)) {
+        if (! $policy->isAllowedSize($asset->size_bytes)) {
             $asset->forceFill([
                 'status' => 'failed',
                 'error_code' => 'upload_too_large',
@@ -153,7 +155,13 @@ class MediaAssetService
             throw $e;
         }
 
-        if(in_array($asset->storage_disk,['v1007','v1009'],true))$asset->forceFill(['public_url'=>rtrim((string)config('app.url'),'/').'/api/v1/media/'.$asset->id.'/content'])->save();
+        if (in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+            $asset->forceFill(['public_url' => rtrim((string) config('app.url'), '/').'/api/v1/media/'.$asset->id.'/content'])->save();
+        }
+        if ($asset->storage_disk === 'v1011_relationship' && app(AccountClosure::class)->erasurePermitted((int) $user->id)) {
+            DB::table('v1011_erasure_assets')->insertOrIgnore(['asset_id' => $asset->id, 'user_id' => $user->id, 'dataset' => config('account_security.dataset'), 'storage_key' => $asset->storage_key, 'sha256' => $asset->sha256, 'evidence_hold' => false, 'registered_at' => now()]);
+        }
+
         return $asset->refresh();
     }
 

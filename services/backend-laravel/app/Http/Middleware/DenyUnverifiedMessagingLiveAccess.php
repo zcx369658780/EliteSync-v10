@@ -57,7 +57,7 @@ final class DenyUnverifiedMessagingLiveAccess
 
                 return $eligible ? $next($request) : $deny();
             }
-            if (! $service->match($actor, $peer, true)) {
+            if (! $service->connection($actor, $peer, true)) {
                 return $deny();
             }
             $gates = $service->gates($actor, $peer);

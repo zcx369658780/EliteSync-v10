@@ -79,7 +79,7 @@ class ChatWebsocketServerCommand extends Command
         };
 
         $gateway->onWebSocketConnect = function (TcpConnection $connection, $request): void {
-            $uri = $request->server['request_uri'] ?? '/';
+            $uri = $request->uri();
             $userId = $this->parseUserIdFromPath($uri);
             parse_str((string) parse_url($uri, PHP_URL_QUERY), $query);
             $peerId = (int) ($query['peer_id'] ?? 0);

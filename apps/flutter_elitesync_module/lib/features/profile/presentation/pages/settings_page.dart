@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +17,6 @@ import 'package:flutter_elitesync_module/design_system/components/layout/page_ti
 import 'package:flutter_elitesync_module/design_system/components/layout/section_reveal.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_mode.dart';
-import 'package:flutter_elitesync_module/features/auth/presentation/providers/auth_guard_provider.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/dev/relationship_runtime_local_preview_harness.dart';
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/settings_group.dart';
@@ -24,6 +25,10 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/performance_mode_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/theme_provider.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_center_page.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/account_security_page.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/pending_logout_store.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
@@ -118,6 +123,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _handleLogout(BuildContext context, WidgetRef ref) async {
+    final originalToken = ref.read(sessionProvider).asData?.value.accessToken;
     final confirmed = await AppConfirmDialog.show(
       context,
       title: '退出登录',
@@ -126,14 +132,55 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       cancelLabel: '取消',
       destructive: true,
     );
-    if (!confirmed) return;
-    await ref.read(logoutUseCaseProvider).call();
+    if (!confirmed || !context.mounted) return;
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    if (token != originalToken) return;
+    final revocationCredential =
+        ref.read(sessionProvider).asData?.value.refreshToken ?? token;
+    final secure = ref.read(secureStorageProvider);
+    final client = ref.read(restrictedAccountClientProvider);
+    final notifier = ref.read(sessionProvider.notifier);
+    final container = ProviderScope.containerOf(context, listen: false);
     try {
-      const channel = MethodChannel('elitesync/bootstrap');
-      await channel.invokeMethod<void>('clearBootstrap');
-    } catch (_) {}
-    await ref.read(sessionProvider.notifier).setUnauthenticated();
-    if (context.mounted) {
+      if (revocationCredential != null) {
+        await PendingLogoutStore.add(secure, revocationCredential);
+      }
+    } catch (_) {
+      if (context.mounted) {
+        AppFeedback.showError(context, '无法安全保存待撤销凭据，尚未退出。请重试。');
+      }
+      return;
+    }
+    await notifier.setUnauthenticated(
+      notice: '本机已退出；服务端撤销尚未确认，正在后台尝试。可在账号安全中重试未完成撤销。',
+      rejectedToken: token,
+    );
+    // Capture all dependencies before navigation. Background work must never
+    // read a disposed widget ref or inherit a later account's credentials.
+    unawaited(() async {
+      if (revocationCredential == null) return;
+      try {
+        final result = await client.post(
+          '/api/v1/auth/logout',
+          options: Options(
+            headers: {'Authorization': 'Bearer $revocationCredential'},
+          ),
+        );
+        if (result is NetworkSuccess<Map<String, dynamic>>) {
+          await PendingLogoutStore.remove(secure, revocationCredential);
+        }
+      } catch (_) {
+        /* The secure queue remains available for recovery. */
+      }
+    }());
+    unawaited(() async {
+      try {
+        const channel = MethodChannel('elitesync/bootstrap');
+        await channel.invokeMethod<void>('clearBootstrap');
+      } catch (_) {}
+    }());
+    if (context.mounted &&
+        container.read(sessionProvider).asData?.value.isLoggedIn != true) {
       context.go(AppRouteNames.login);
     }
   }
@@ -416,6 +463,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               title: '资料与隐私',
               children: [
                 SettingsItemTile(
+                  title: '好友与请求',
+                  subtitle: '定向邀请、好友申请和消息请求',
+                  icon: Icons.people_outline,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const RelationshipCenterPage(),
+                    ),
+                  ),
+                ),
+                SettingsItemTile(
                   title: '隐私控制中心',
                   subtitle: '按用途查看当前边界、可用入口与未建立能力',
                   icon: Icons.privacy_tip_outlined,
@@ -430,6 +487,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             child: SettingsGroup(
               title: '账号与安全',
               children: [
+                SettingsItemTile(
+                  title: '设备会话与账号安全',
+                  subtitle: '撤销设备、退出全部设备及申请注销',
+                  icon: Icons.security_outlined,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const AccountSecurityPage(),
+                    ),
+                  ),
+                ),
                 SettingsItemTile(
                   title: '更新登录密码',
                   subtitle: '按账号安全流程修改当前登录密码',

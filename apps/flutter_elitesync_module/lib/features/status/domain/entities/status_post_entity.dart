@@ -15,6 +15,7 @@ class StatusPostEntity {
     required this.authorPublicPersonality,
     required this.locationName,
     required this.visibility,
+    this.audience = 'SELF',
     required this.canDelete,
     required this.likesCount,
     required this.likedByViewer,
@@ -39,6 +40,7 @@ class StatusPostEntity {
   final List<String> authorPublicPersonality;
   final String locationName;
   final String visibility;
+  final String audience;
   final bool canDelete;
   final int likesCount;
   final bool likedByViewer;
@@ -113,6 +115,7 @@ class StatusPostEntity {
       ).map((e) => e.toString()).where((e) => e.isNotEmpty).toList(),
       locationName: (json['location_name'] ?? '').toString(),
       visibility: (json['visibility'] ?? 'public').toString(),
+      audience: json['audience'] == 'FRIENDS' ? 'FRIENDS' : 'SELF',
       canDelete: parseBool(json['can_delete']),
       likesCount: parseInt(json['likes_count']),
       likedByViewer: parseBool(json['liked_by_viewer']),
@@ -133,11 +136,7 @@ class StatusPostEntity {
   bool get isPublic => visibility == 'public' || visibility == 'square';
 
   String get visibilityLabel {
-    return switch (visibility) {
-      'private' => '仅自己可见',
-      'square' => '广场可见',
-      _ => '公开',
-    };
+    return audience == 'FRIENDS' ? '双向好友可见' : '仅自己可见';
   }
 
   String get visibilityTierLabel {
@@ -173,6 +172,7 @@ class StatusPostEntity {
       'body': body,
       'location_name': locationName,
       'visibility': visibility,
+      'audience': audience,
       'is_deleted': isDeleted,
       'can_delete': canDelete,
       'likes_count': likesCount,

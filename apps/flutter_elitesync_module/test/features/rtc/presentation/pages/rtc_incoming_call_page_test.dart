@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import '../../rtc_test_session.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -171,6 +173,7 @@ Widget _wrap(
   final telemetry = FakeAppTelemetryService();
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(RtcTestSession.new),
       appEnvProvider.overrideWithValue(
         const AppEnv(
           flavor: AppFlavor.dev,

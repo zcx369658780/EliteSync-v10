@@ -12,6 +12,7 @@ use App\Services\Accounts\AdminAccess;
 use App\Services\Admin\OperationAudit;
 use App\Services\EventLogger;
 use App\Services\NotificationService;
+use App\Services\SocialPolicy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Http\JsonResponse;
@@ -67,7 +68,7 @@ class StatusPostController extends Controller
      */
     private function shapeMediaAsset(?MediaAsset $asset): array
     {
-        if (! $asset) {
+        if (! $asset || ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
             return [];
         }
 
@@ -76,13 +77,13 @@ class StatusPostController extends Controller
             'media_type' => (string) $asset->media_type,
             'storage_provider' => (string) $asset->storage_provider,
             'storage_disk' => (string) $asset->storage_disk,
-            'storage_key' => (string) $asset->storage_key,
+            'storage_key' => '',
             'mime_type' => (string) ($asset->mime_type ?? ''),
             'size_bytes' => (int) ($asset->size_bytes ?? 0),
             'status' => (string) $asset->status,
             'error_code' => (string) ($asset->error_code ?? ''),
             'error_message' => (string) ($asset->error_message ?? ''),
-            'public_url' => (string) ($asset->public_url ?? ''),
+            'public_url' => rtrim((string) config('app.url'), '/').'/api/v1/media/'.$asset->id.'/content',
             'width' => $asset->width,
             'height' => $asset->height,
             'duration_ms' => $asset->duration_ms,
@@ -94,20 +95,7 @@ class StatusPostController extends Controller
      */
     private function shapeAuthor(?User $author): array
     {
-        return [
-            'id' => (int) ($author?->id ?? 0),
-            'name' => (string) ($author?->nickname ?? $author?->name ?? $author?->phone ?? ''),
-            'nickname' => (string) ($author?->nickname ?? ''),
-            'phone' => (string) ($author?->phone ?? ''),
-            'role' => (string) ($author?->role ?? 'user'),
-            'account_type' => (string) ($author?->account_type ?? 'normal'),
-            'is_synthetic' => (bool) ($author?->is_synthetic ?? false),
-            'is_square_visible' => (bool) ($author?->is_square_visible ?? true),
-            'city' => (string) ($author?->city ?? ''),
-            'relationship_goal' => (string) ($author?->relationship_goal ?? ''),
-            'public_mbti' => (string) ($author?->public_mbti ?? ''),
-            'public_personality' => (array) ($author?->public_personality ?? []),
-        ];
+        return ['id' => (int) ($author?->id ?? 0), 'public_id' => 'ES-'.($author?->id ?? 0), 'name' => 'ES-'.($author?->id ?? 0), 'avatar' => null];
     }
 
     /**
@@ -144,25 +132,19 @@ class StatusPostController extends Controller
             ])
             ->orderByDesc('id');
 
-        if ($includeHidden && $viewerIsAdmin) {
-            return $query;
-        }
-
-        $query->where('is_deleted', false)
+        $query->where('is_deleted', false)->whereHas('author', fn ($q) => $q->where('disabled', false))
             ->where(function ($q) use ($viewerId) {
-                $q->whereIn('visibility', ['public', 'square']);
+                $q->where('author_user_id', $viewerId ?? 0);
                 if ($viewerId !== null) {
-                    $q->orWhere('author_user_id', $viewerId);
-                }
-            })
-            ->whereHas('author', function ($q) use ($viewerId) {
-                $q->where('disabled', false)
-                    ->where(function ($inner) use ($viewerId) {
-                        $inner->where('is_square_visible', true);
-                        if ($viewerId !== null) {
-                            $inner->orWhere('id', $viewerId);
-                        }
+                    $q->orWhere(function ($f) use ($viewerId) {
+                        $f->where('audience', 'FRIENDS')->whereExists(function ($sub) use ($viewerId) {
+                            $sub->select(DB::raw(1))->from('friendships')->where('state', 'ACTIVE')->where(function ($pair) use ($viewerId) {
+                                $pair->where(fn ($p) => $p->where('user_a', $viewerId)->whereColumn('user_b', 'status_posts.author_user_id'))
+                                    ->orWhere(fn ($p) => $p->where('user_b', $viewerId)->whereColumn('user_a', 'status_posts.author_user_id'));
+                            });
+                        });
                     });
+                }
             });
 
         if ($viewerId !== null) {
@@ -191,16 +173,17 @@ class StatusPostController extends Controller
         $canDelete = $viewerIsAdmin || ($viewerId !== null && (int) $author?->id === $viewerId);
 
         $media = [];
-        if ($coverMedia && (string) ($coverMedia->public_url ?? '') !== '') {
-            $media[] = (string) $coverMedia->public_url;
+        if ($coverMedia && in_array($coverMedia->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+            $media[] = rtrim((string) config('app.url'), '/').'/api/v1/media/'.$coverMedia->id.'/content';
         }
 
         return [
             'id' => (int) $post->id,
             'title' => (string) $post->title,
             'body' => (string) $post->body,
-            'location_name' => (string) ($post->location_name ?? ''),
-            'visibility' => (string) ($post->visibility ?? 'public'),
+            'location_name' => '',
+            'visibility' => (string) ($post->visibility ?? 'private'),
+            'audience' => $post->audience ?? 'SELF',
             'is_deleted' => (bool) $post->is_deleted,
             'can_delete' => $canDelete,
             'likes_count' => (int) ($post->likes_count ?? 0),
@@ -293,6 +276,10 @@ class StatusPostController extends Controller
             ]))
             ->find($userId);
 
+        app(SocialPolicy::class)->profile((int) $viewerId, $userId);
+        if (! app(SocialPolicy::class)->pairAllowed((int) $viewerId, $userId)) {
+            return response()->json(['message' => 'author not found'], 404);
+        }
         if (! $author) {
             return response()->json(['message' => 'author not found'], 404);
         }
@@ -327,7 +314,7 @@ class StatusPostController extends Controller
     {
         return DB::transaction(function () use ($request): JsonResponse {
             $user = User::query()->whereKey($request->user()?->id)->lockForUpdate()->first();
-            if (!$user || ($user->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
+            if (! $user || ($user->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
                 return response()->json(['message' => 'account blocked'], 403);
             }
 
@@ -336,6 +323,7 @@ class StatusPostController extends Controller
                 'body' => ['required', 'string', 'max:500'],
                 'location_name' => ['nullable', 'string', 'max:120'],
                 'visibility' => ['nullable', 'string', 'in:public,square,private'],
+                'audience' => ['required', 'in:SELF,FRIENDS'],
                 'cover_media_asset_id' => ['nullable', 'integer', 'exists:media_assets,id'],
             ]);
 
@@ -356,6 +344,10 @@ class StatusPostController extends Controller
                     return response()->json(['message' => 'cover media not found'], 422);
                 }
 
+                if (! in_array($coverAsset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+                    return response()->json(['message' => 'private cover media required'], 422);
+                }
+
                 if (! str_starts_with((string) $coverAsset->media_type, 'image')) {
                     return response()->json(['message' => 'cover media must be an image'], 422);
                 }
@@ -373,7 +365,8 @@ class StatusPostController extends Controller
                 'title' => trim($data['title']),
                 'body' => trim($data['body']),
                 'location_name' => $location === '' ? null : $location,
-                'visibility' => $data['visibility'] ?? 'public',
+                'visibility' => 'private',
+                'audience' => $data['audience'],
                 'is_deleted' => false,
                 'deleted_by_user_id' => null,
                 'deleted_at' => null,
@@ -401,6 +394,20 @@ class StatusPostController extends Controller
         });
     }
 
+    public function audience(Request $request, int $id): JsonResponse
+    {
+        $d = $request->validate(['audience' => 'required|in:SELF,FRIENDS']);
+
+        return DB::transaction(function () use ($request, $id, $d) {
+            User::whereKey($request->user()->id)->lockForUpdate()->firstOrFail();
+            $post = StatusPost::whereKey($id)->where('author_user_id', $request->user()->id)->where('is_deleted', false)->lockForUpdate()->firstOrFail();
+            $post->audience = $d['audience'];
+            $post->save();
+
+            return response()->json(['id' => $post->id, 'audience' => $post->audience]);
+        });
+    }
+
     public function like(Request $request, int $postId, EventLogger $events, NotificationService $notifications): JsonResponse
     {
         return $this->toggleLike($request, $postId, true, $events, $notifications);
@@ -418,63 +425,67 @@ class StatusPostController extends Controller
         EventLogger $events,
         NotificationService $notifications
     ): JsonResponse {
-        $user = $request->user();
-        $viewerId = (int) $user->id;
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
-        if (! $post) {
-            return response()->json(['message' => 'status post not found'], 404);
-        }
+        return DB::transaction(function () use ($request, $postId, $liked, $events, $notifications) {
+            $owner = StatusPost::whereKey($postId)->value('author_user_id');
+            User::whereIn('id', [$request->user()->id, $owner])->orderBy('id')->lockForUpdate()->get();
+            $user = $request->user();
+            $viewerId = (int) $user->id;
+            $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
+            if (! $post) {
+                return response()->json(['message' => 'status post not found'], 404);
+            }
 
-        if ($liked) {
-            StatusPostLike::query()->firstOrCreate([
-                'status_post_id' => (int) $post->id,
-                'user_id' => $viewerId,
-            ]);
-        } else {
-            StatusPostLike::query()
-                ->where('status_post_id', (int) $post->id)
-                ->where('user_id', $viewerId)
-                ->delete();
-        }
-
-        $events->log(
-            eventName: $liked ? 'status_post_like' : 'status_post_unlike',
-            actorUserId: $viewerId,
-            targetUserId: (int) $post->author_user_id,
-            payload: [
-                'status_post_id' => (int) $post->id,
-                'liked' => $liked,
-                'app_version' => (string) $request->header('X-App-Version', 'unknown'),
-                'source_page' => (string) $request->header('X-Source-Page', 'unknown'),
-            ]
-        );
-
-        if ($liked && (int) $post->author_user_id !== $viewerId) {
-            $actorName = trim((string) ($user->nickname ?? $user->name ?? $user->phone ?? '有人'));
-            $notifications->createForUser(
-                userId: (int) $post->author_user_id,
-                kind: 'status_like',
-                title: "{$actorName} 赞了你的动态",
-                body: trim((string) $post->title) !== '' ? mb_strimwidth(trim((string) $post->title), 0, 60, '…', 'UTF-8') : '你的动态获得了新的互动',
-                payload: [
-                    'route_name' => 'status_author',
-                    'route_args' => [
-                        'user_id' => (int) $post->author_user_id,
-                        'name' => trim((string) ($post->author->nickname ?? $post->author->name ?? $post->author->phone ?? '用户')),
-                    ],
+            if ($liked) {
+                StatusPostLike::query()->firstOrCreate([
                     'status_post_id' => (int) $post->id,
-                    'actor_user_id' => $viewerId,
-                    'source' => 'status_like',
+                    'user_id' => $viewerId,
+                ]);
+            } else {
+                StatusPostLike::query()
+                    ->where('status_post_id', (int) $post->id)
+                    ->where('user_id', $viewerId)
+                    ->delete();
+            }
+
+            $events->log(
+                eventName: $liked ? 'status_post_like' : 'status_post_unlike',
+                actorUserId: $viewerId,
+                targetUserId: (int) $post->author_user_id,
+                payload: [
+                    'status_post_id' => (int) $post->id,
+                    'liked' => $liked,
+                    'app_version' => (string) $request->header('X-App-Version', 'unknown'),
+                    'source_page' => (string) $request->header('X-Source-Page', 'unknown'),
                 ]
             );
-        }
 
-        $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->firstOrFail();
+            if ($liked && (int) $post->author_user_id !== $viewerId) {
+                $actorName = 'ES-'.$user->id;
+                $notifications->createForUser(
+                    userId: (int) $post->author_user_id,
+                    kind: 'status_like',
+                    title: "{$actorName} 赞了你的动态",
+                    body: trim((string) $post->title) !== '' ? mb_strimwidth(trim((string) $post->title), 0, 60, '…', 'UTF-8') : '你的动态获得了新的互动',
+                    payload: [
+                        'route_name' => 'status_author',
+                        'route_args' => [
+                            'user_id' => (int) $post->author_user_id,
+                            'name' => 'ES-'.$post->author_user_id,
+                        ],
+                        'status_post_id' => (int) $post->id,
+                        'actor_user_id' => $viewerId,
+                        'source' => 'status_like',
+                    ]
+                );
+            }
 
-        return response()->json([
-            'ok' => true,
-            'item' => $this->shapePost($fresh, $viewerId, app(AdminAccess::class)->allows($user)),
-        ]);
+            $fresh = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->firstOrFail();
+
+            return response()->json([
+                'ok' => true,
+                'item' => $this->shapePost($fresh, $viewerId, app(AdminAccess::class)->allows($user)),
+            ]);
+        });
     }
 
     public function report(Request $request, int $postId, EventLogger $events): JsonResponse
@@ -615,5 +626,3 @@ class StatusPostController extends Controller
         ]);
     }
 }
-
-

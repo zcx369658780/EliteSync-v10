@@ -12,7 +12,25 @@ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permis
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_android_audio_engine.dart';
 
 class RtcLiveKitService extends ChangeNotifier {
-  RtcLiveKitService({required this.remoteDataSource, required this.appEnv});
+  RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
+    : _microphonePermission = const PermissionHandlerRtcPermissionService()
+          .ensureVoiceCallPermission,
+      _cameraPermission =
+          const PermissionHandlerRtcPermissionService().ensureCameraPermission;
+
+  @visibleForTesting
+  RtcLiveKitService.mediaControlTest({
+    required this.remoteDataSource,
+    required this.appEnv,
+    required Room room,
+    required Future<bool> Function() microphonePermission,
+    required Future<bool> Function() cameraPermission,
+  }) : _room = room,
+       _microphonePermission = microphonePermission,
+       _cameraPermission = cameraPermission;
+
+  final Future<bool> Function() _microphonePermission;
+  final Future<bool> Function() _cameraPermission;
 
   final RtcRemoteDataSource remoteDataSource;
   final AppEnv appEnv;
@@ -57,27 +75,43 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   Future<void> setMicrophoneEnabled(bool enabled) async {
-    final participant = _room?.localParticipant;
-    if (participant == null) return;
-    if (enabled &&
-        !await const PermissionHandlerRtcPermissionService()
-            .ensureVoiceCallPermission()) {
-      throw StateError('需要麦克风权限');
+    final room = _room;
+    final participant = room?.localParticipant;
+    final generation = _connectionGeneration;
+    bool current() =>
+        !_disposed &&
+        generation == _connectionGeneration &&
+        identical(_room, room);
+    if (participant == null || !current()) return;
+    if (enabled) {
+      final granted = await _microphonePermission();
+      if (!current()) return;
+      if (!granted) throw StateError('需要麦克风权限');
     }
+    if (!current()) return;
     await participant.setMicrophoneEnabled(enabled);
+    if (!current()) return;
     _microphoneEnabled = enabled;
     _mediaChanged();
   }
 
   Future<void> setCameraEnabled(bool enabled) async {
-    final participant = _room?.localParticipant;
-    if (participant == null) return;
-    if (enabled &&
-        !await const PermissionHandlerRtcPermissionService()
-            .ensureCameraPermission()) {
-      throw StateError('需要摄像头权限');
+    final room = _room;
+    final participant = room?.localParticipant;
+    final generation = _connectionGeneration;
+    bool current() =>
+        !_disposed &&
+        generation == _connectionGeneration &&
+        identical(_room, room);
+    if (participant == null || !current()) return;
+    if (enabled) {
+      final granted = await _cameraPermission();
+      if (!current()) return;
+      if (!granted) throw StateError('需要摄像头权限');
     }
+    if (!current()) return;
     await participant.setCameraEnabled(enabled);
+    if (!current()) return;
     _cameraEnabled = enabled;
     _mediaChanged();
   }
@@ -665,13 +699,10 @@ class RtcLiveKitService extends ChangeNotifier {
       final info = await _loadJoinInfo(callId);
       if (_disposed || requestedGeneration != _connectionGeneration) return;
       if (!info.isReady) throw StateError('通话服务当前不可用');
-      if (!await const PermissionHandlerRtcPermissionService()
-          .ensureVoiceCallPermission()) {
+      if (!await _microphonePermission()) {
         throw StateError('需要麦克风权限');
       }
-      if (info.mode == 'video' &&
-          !await const PermissionHandlerRtcPermissionService()
-              .ensureCameraPermission()) {
+      if (info.mode == 'video' && !await _cameraPermission()) {
         throw StateError('需要摄像头权限');
       }
       if (_disposed || requestedGeneration != _connectionGeneration) return;
@@ -681,7 +712,9 @@ class RtcLiveKitService extends ChangeNotifier {
       }
       _failureMessage = null;
       _logJoinInfo(callId: callId, info: info);
+      final expectedAfterLeave = _connectionGeneration + 1;
       await leave();
+      if (_disposed || _connectionGeneration != expectedAfterLeave) return;
       generation = _connectionGeneration;
       _connectedCallId = callId;
       debugPrint(

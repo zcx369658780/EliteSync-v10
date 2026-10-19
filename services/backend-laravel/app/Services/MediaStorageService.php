@@ -11,8 +11,7 @@ class MediaStorageService
 {
     public function __construct(
         protected MediaUploadPolicy $policy
-    ) {
-    }
+    ) {}
 
     public function disk(): string
     {
@@ -52,13 +51,17 @@ class MediaStorageService
             throw new RuntimeException('failed to write media file to storage');
         }
 
-        if (in_array($disk, ['v1007','v1009'], true)) return ['disk'=>$disk,'provider'=>'local','storage_key'=>$storedPath,'public_url'=>null];
+        if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+            return ['disk' => $disk, 'provider' => 'local', 'storage_key' => $storedPath, 'public_url' => null];
+        }
         $publicUrl = null;
         try {
             $publicUrl = Storage::disk($disk)->url($storedPath);
         } catch (\Throwable) {
-            if (in_array($disk, ['v1007','v1009'], true)) return ['disk'=>$disk,'provider'=>'local','storage_key'=>$storedPath,'public_url'=>null];
-        $publicUrl = null;
+            if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+                return ['disk' => $disk, 'provider' => 'local', 'storage_key' => $storedPath, 'public_url' => null];
+            }
+            $publicUrl = null;
         }
         if ($this->looksLikeLocalMediaUrl((string) $publicUrl)) {
             $publicUrl = $this->buildRuntimePublicUrl($storedPath);
@@ -83,7 +86,7 @@ class MediaStorageService
             $request = request();
             $base = trim((string) $request->getSchemeAndHttpHost());
             if ($base !== '') {
-                return rtrim($base, '/') . '/storage/' . ltrim($storagePath, '/');
+                return rtrim($base, '/').'/storage/'.ltrim($storagePath, '/');
             }
         } catch (\Throwable) {
             // Fallback to the configured application URL below.
@@ -91,7 +94,7 @@ class MediaStorageService
 
         $appUrl = trim((string) config('app.url'));
         if ($appUrl !== '') {
-            return rtrim($appUrl, '/') . '/storage/' . ltrim($storagePath, '/');
+            return rtrim($appUrl, '/').'/storage/'.ltrim($storagePath, '/');
         }
 
         return $storagePath;
@@ -108,12 +111,12 @@ class MediaStorageService
             return true;
         }
 
-        if (!str_contains($trimmed, '://')) {
+        if (! str_contains($trimmed, '://')) {
             return true;
         }
 
         $host = parse_url($trimmed, PHP_URL_HOST);
-        if (!is_string($host) || $host === '') {
+        if (! is_string($host) || $host === '') {
             return true;
         }
 

@@ -1,3 +1,5 @@
+import 'package:livekit_client/livekit_client.dart';
+import 'package:flutter/foundation.dart';
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -43,7 +45,133 @@ RtcLiveKitService _service(_DeniedRtcSource source, {bool enabled = true}) =>
       ),
     );
 
+class _MediaParticipant implements LocalParticipant {
+  int microphonePublications = 0;
+  int cameraPublications = 0;
+  @override
+  Future<LocalTrackPublication?> setMicrophoneEnabled(
+    bool enabled, {
+    AudioCaptureOptions? audioCaptureOptions,
+  }) async {
+    if (enabled) microphonePublications++;
+    return null;
+  }
+
+  @override
+  Future<LocalTrackPublication?> setCameraEnabled(
+    bool enabled, {
+    CameraCaptureOptions? cameraCaptureOptions,
+  }) async {
+    if (enabled) cameraPublications++;
+    return null;
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _MediaRoom implements Room {
+  _MediaRoom(this.localParticipant);
+  Completer<void>? disconnectPending;
+  final disconnectStarted = Completer<void>();
+  @override
+  final LocalParticipant localParticipant;
+  @override
+  void removeListener(VoidCallback listener) {}
+  @override
+  Future<void> disconnect() async {
+    if (!disconnectStarted.isCompleted) disconnectStarted.complete();
+    await disconnectPending?.future;
+  }
+
+  @override
+  Future<bool> dispose() async => true;
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 void main() {
+  test(
+    'dispose during old room disconnect cannot create a new media room',
+    () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+      addTearDown(() => debugDefaultTargetPlatformOverride = null);
+      final room = _MediaRoom(_MediaParticipant())
+        ..disconnectPending = Completer<void>();
+      final source = _PendingRtcSource();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: source,
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Media control test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+          useLiveKitRtc: true,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+      );
+      final connection = service.ensureConnected(20);
+      source.reply.complete(
+        RtcLiveKitJoinInfoEntity.fromJson({
+          'enabled': true,
+          'url': 'ws://127.0.0.1',
+          'token': 'unit-test-placeholder',
+          'mode': 'voice',
+        }),
+      );
+      await room.disconnectStarted.future;
+      service.dispose();
+      room.disconnectPending!.complete();
+      await connection;
+      expect(service.connectedCallId, isNull);
+      expect(service.isConnected, false);
+    },
+  );
+
+  for (final device in ['microphone', 'camera']) {
+    for (final boundary in ['leave', 'dispose', 'current']) {
+      test(
+        '$device permission result cannot publish after $boundary boundary',
+        () async {
+          final permission = Completer<bool>();
+          final participant = _MediaParticipant();
+          final service = RtcLiveKitService.mediaControlTest(
+            remoteDataSource: _DeniedRtcSource(),
+            appEnv: const AppEnv(
+              flavor: AppFlavor.dev,
+              appName: 'Media control test',
+              apiBaseUrl: 'http://127.0.0.1',
+              useMockData: false,
+            ),
+            room: _MediaRoom(participant),
+            microphonePermission: () => permission.future,
+            cameraPermission: () => permission.future,
+          );
+          final operation = device == 'microphone'
+              ? service.setMicrophoneEnabled(true)
+              : service.setCameraEnabled(true);
+          expect(participant.microphonePublications, 0);
+          expect(participant.cameraPublications, 0);
+          if (boundary == 'leave') await service.leave();
+          if (boundary == 'dispose') service.dispose();
+          permission.complete(true);
+          await operation;
+          expect(
+            participant.microphonePublications,
+            boundary == 'current' && device == 'microphone' ? 1 : 0,
+          );
+          expect(
+            participant.cameraPublications,
+            boundary == 'current' && device == 'camera' ? 1 : 0,
+          );
+          if (boundary != 'dispose') service.dispose();
+        },
+      );
+    }
+  }
+
   test('disabled RTC does not request join credentials', () async {
     final source = _DeniedRtcSource();
     final service = _service(source, enabled: false);

@@ -21,6 +21,7 @@ class StatusPost extends Model
         'body',
         'location_name',
         'visibility',
+        'audience',
         'is_deleted',
         'deleted_by_user_id',
         'deleted_at',

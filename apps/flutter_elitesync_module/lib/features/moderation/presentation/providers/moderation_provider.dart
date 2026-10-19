@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/telemetry/app_telemetry_service.dart';
 import 'package:flutter_elitesync_module/features/moderation/data/datasource/moderation_remote_data_source.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 final moderationRemoteDataSourceProvider = Provider<ModerationRemoteDataSource>(
   (ref) {
@@ -9,6 +10,8 @@ final moderationRemoteDataSourceProvider = Provider<ModerationRemoteDataSource>(
     return ModerationRemoteDataSource(
       telemetry: ref.watch(appTelemetryProvider),
       useMock: env.useMockData,
+      onBlocked: () =>
+          ref.read(relationshipAuthorityEpochProvider.notifier).invalidate(),
     );
   },
 );

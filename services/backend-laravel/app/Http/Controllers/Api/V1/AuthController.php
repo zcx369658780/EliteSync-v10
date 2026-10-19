@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserAstroProfile;
+use App\Services\Accounts\AccountClosure;
+use App\Services\Accounts\DeviceSessions;
 use App\Services\ChineseZodiacService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -78,7 +82,9 @@ class AuthController extends Controller
             'private_birth_lat' => $birthLat,
             'birth_lng' => $birthLng,
             'private_birth_lng' => $birthLng,
-            'realname_verified' => (bool) $user->realname_verified,
+            'realname_verified' => false,
+            'identity_provider' => 'NOT_CONFIGURED',
+            'identity_status' => 'NOT_VERIFIED',
         ];
     }
 
@@ -89,7 +95,7 @@ class AuthController extends Controller
             'password' => ['required', 'string', Password::min(8)->letters()->numbers()],
             'name' => ['nullable', 'string', 'max:255'],
             'birthday' => ['nullable', 'date_format:Y-m-d'],
-            'realname_verified' => ['required', 'accepted'],
+            'realname_verified' => ['sometimes', 'boolean'],
         ]);
 
         $user = User::create([
@@ -97,16 +103,15 @@ class AuthController extends Controller
             'name' => $data['name'] ?? null,
             'birthday' => $data['birthday'] ?? null,
             'zodiac_animal' => $zodiacService->fromBirthdayString($data['birthday'] ?? null),
-            'realname_verified' => true,
+            'realname_verified' => false,
             'password' => Hash::make($data['password']),
         ]);
 
-        $token = $user->createToken('mobile-access')->plainTextToken;
+        $tokens = app(DeviceSessions::class)->issue($user);
 
         return response()->json([
             'user' => $this->userPayload($user),
-            'access_token' => $token,
-            'token_type' => 'Bearer',
+            ...$tokens,
         ], 201);
     }
 
@@ -123,31 +128,29 @@ class AuthController extends Controller
                 'phone' => ['手机号或密码错误。'],
             ]);
         }
-        return \Illuminate\Support\Facades\DB::transaction(function () use ($user) {
+
+        return DB::transaction(function () use ($user) {
             $user = User::query()->lockForUpdate()->findOrFail($user->id);
             if ($user->disabled) {
                 return response()->json(['message' => '账号已被禁用。'], 403);
             }
 
-            $token = $user->createToken('mobile-access')->plainTextToken;
+            $tokens = app(DeviceSessions::class)->issue($user);
 
             return response()->json([
                 'user' => $this->userPayload($user),
-                'access_token' => $token,
-                'token_type' => 'Bearer',
+                ...$tokens,
             ]);
         });
     }
 
     public function refresh(Request $request): JsonResponse
     {
-        return \Illuminate\Support\Facades\DB::transaction(function () use ($request) {
-            $user = User::query()->lockForUpdate()->findOrFail($request->user()->id);
-            abort_if($user->disabled, 403, '账号已被禁用。');
-            $request->user()->currentAccessToken()?->delete();
-            $token = $user->createToken('mobile-access')->plainTextToken;
-            return response()->json(['user' => $this->userPayload($user), 'access_token' => $token, 'token_type' => 'Bearer']);
-        });
+        $token = $request->user()->currentAccessToken();
+        abort_unless($token instanceof PersonalAccessToken, 401);
+        $tokens = app(DeviceSessions::class)->refresh($request->user(), $token);
+
+        return response()->json(['user' => $this->userPayload($request->user()->fresh()), ...$tokens]);
     }
 
     public function changePassword(Request $request): JsonResponse
@@ -175,35 +178,6 @@ class AuthController extends Controller
 
     public function deleteSelf(Request $request): JsonResponse
     {
-        $data = $request->validate([
-            'current_password' => ['required', 'string'],
-        ]);
-
-        $user = $request->user();
-        if (! $this->passwordMatches($user, $data['current_password'])) {
-            throw ValidationException::withMessages([
-                'current_password' => ['当前密码不正确。'],
-            ]);
-        }
-
-        $phone = (string) $user->phone;
-        $name = (string) ($user->name ?? '');
-        $allowSyntheticCleanup = str_starts_with($phone, '90')
-            || (bool) $user->is_synthetic
-            || str_starts_with($name, 'Smoke');
-
-        if (! $allowSyntheticCleanup) {
-            return response()->json([
-                'message' => 'only smoke/synthetic accounts can be deleted by this endpoint',
-            ], 403);
-        }
-
-        $user->tokens()->delete();
-        $user->delete();
-
-        return response()->json([
-            'ok' => true,
-            'message' => '账号已删除',
-        ]);
+        return app(AccountSecurityController::class)->close($request, app(AccountClosure::class));
     }
 }

@@ -51,10 +51,12 @@ class ConversationAtomicSendService
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->get()->keyBy('id');
         foreach ($attachmentIds as $id) {
             $asset = $assets->get($id);
-            if (!$asset || (int) $asset->owner_user_id !== $senderId) {
+            if (! $asset || (int) $asset->owner_user_id !== $senderId) {
                 return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
             }
-            if(app(LiveConsentService::class)->enabled() && !in_array($asset->storage_disk,['v1007','v1009'],true))return ['ok'=>false,'status'=>422,'code'=>'private_attachment_required'];
+            if (app(LiveConsentService::class)->enabled() && ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+                return ['ok' => false, 'status' => 422, 'code' => 'private_attachment_required'];
+            }
         }
         foreach ($attachmentIds as $id) {
             if ((string) $assets->get($id)->status !== 'ready') {
@@ -85,12 +87,12 @@ class ConversationAtomicSendService
             }
 
             $authorization = $this->capabilities->authorizeSend((int) $sender->id, $receiverId, true);
-            if (!$authorization['allowed']) {
+            if (! $authorization['allowed']) {
                 return ['ok' => false, 'status' => 404, 'message' => 'chat unavailable'];
             }
 
             $assetsResult = $this->lockedReadyAssets((int) $sender->id, $attachmentIds);
-            if (!$assetsResult['ok']) {
+            if (! $assetsResult['ok']) {
                 return $assetsResult;
             }
 
@@ -124,17 +126,19 @@ class ConversationAtomicSendService
                 }
             }
 
-            $matchId = (int) $authorization['dating_match_id'];
-            ConversationMatchLink::query()->firstOrCreate(
-                ['dating_match_id' => $matchId],
-                ['conversation_id' => $conversation->id, 'linked_at' => now()],
-            );
-            $link = ConversationMatchLink::query()
-                ->where('dating_match_id', $matchId)
-                ->lockForUpdate()
-                ->firstOrFail();
-            if ((int) $link->conversation_id !== (int) $conversation->id) {
-                throw new RuntimeException('match link conversation invariant violation');
+            $matchId = $authorization['dating_match_id'];
+            if ($matchId !== null) {
+                ConversationMatchLink::query()->firstOrCreate(
+                    ['dating_match_id' => $matchId],
+                    ['conversation_id' => $conversation->id, 'linked_at' => now()],
+                );
+                $link = ConversationMatchLink::query()
+                    ->where('dating_match_id', $matchId)
+                    ->lockForUpdate()
+                    ->firstOrFail();
+                if ((int) $link->conversation_id !== (int) $conversation->id) {
+                    throw new RuntimeException('match link conversation invariant violation');
+                }
             }
 
             if ($clientMessageId === null) {
@@ -156,7 +160,7 @@ class ConversationAtomicSendService
                         'request_fingerprint' => $fingerprint,
                     ],
                 );
-                if (!$message->wasRecentlyCreated) {
+                if (! $message->wasRecentlyCreated) {
                     return $this->replayResult($message, (string) $fingerprint);
                 }
             }
@@ -226,10 +230,12 @@ class ConversationAtomicSendService
             return ['ok' => true, 'assets' => collect()];
         }
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->lockForUpdate()->get()->keyBy('id');
-        if(app(LiveConsentService::class)->enabled()&&$assets->contains(fn($asset)=>!in_array($asset->storage_disk,['v1007','v1009'],true)))return ['ok'=>false,'status'=>422,'code'=>'private_attachment_required'];
+        if (app(LiveConsentService::class)->enabled() && $assets->contains(fn ($asset) => ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true))) {
+            return ['ok' => false, 'status' => 422, 'code' => 'private_attachment_required'];
+        }
         foreach ($attachmentIds as $id) {
             $asset = $assets->get($id);
-            if (!$asset || (int) $asset->owner_user_id !== $senderId) {
+            if (! $asset || (int) $asset->owner_user_id !== $senderId) {
                 return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
             }
         }
@@ -238,14 +244,17 @@ class ConversationAtomicSendService
                 return ['ok' => false, 'status' => 409, 'code' => 'attachment_not_ready', 'retry_safe' => true];
             }
         }
+
         return ['ok' => true, 'assets' => $assets];
     }
 
     /** @return array<string, mixed> */
     private function replayResult(ChatMessage $message, string $fingerprint): array
     {
-        if(app(LiveConsentService::class)->enabled()&&!$this->capabilities->canSend((int)$message->sender_id,(int)$message->receiver_id))return ['ok'=>false,'status'=>404,'code'=>'conversation_unavailable'];
-        if (!hash_equals((string) $message->request_fingerprint, $fingerprint)) {
+        if (app(LiveConsentService::class)->enabled() && ! $this->capabilities->canSend((int) $message->sender_id, (int) $message->receiver_id)) {
+            return ['ok' => false, 'status' => 404, 'code' => 'conversation_unavailable'];
+        }
+        if (! hash_equals((string) $message->request_fingerprint, $fingerprint)) {
             return [
                 'ok' => false,
                 'status' => 409,
@@ -254,9 +263,10 @@ class ConversationAtomicSendService
             ];
         }
         $conversation = Conversation::query()->where('room_key', $message->room_id)->first();
-        if (!$conversation) {
+        if (! $conversation) {
             throw new RuntimeException('idempotent message conversation missing');
         }
+
         return [
             'ok' => true,
             'message' => $message->load('attachments.mediaAsset'),
@@ -272,5 +282,4 @@ class ConversationAtomicSendService
             ? 'video'
             : (str_starts_with($mediaType, 'image') || $mediaType === 'image' ? 'image' : 'media');
     }
-
 }

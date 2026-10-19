@@ -25,6 +25,9 @@ import 'package:flutter_elitesync_module/features/status/presentation/providers/
 import 'package:flutter_elitesync_module/features/status/presentation/widgets/status_post_card.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/widgets/status_report_sheet.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 enum _CoverUploadStage { idle, uploading, processing, ready, failed }
 
@@ -40,7 +43,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   final TextEditingController _bodyController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final ImagePicker _imagePicker = ImagePicker();
-  String _visibility = 'public';
+  String _audience = 'SELF';
   bool _submitting = false;
   bool _prefilledLocation = false;
   String? _coverImagePath;
@@ -74,6 +77,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     }
 
     setState(() => _submitting = true);
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
     try {
       final item = await ref
           .read(statusRemoteDataSourceProvider)
@@ -83,11 +87,16 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             locationName: _locationController.text.trim().isEmpty
                 ? null
                 : _locationController.text.trim(),
-            visibility: _visibility,
+            visibility: 'private',
+            audience: _audience,
             coverMediaAssetId: _coverStage == _CoverUploadStage.ready
                 ? _coverMediaAssetId
                 : null,
           );
+      if (!mounted ||
+          token != ref.read(sessionProvider).asData?.value.accessToken) {
+        return;
+      }
       ref
           .read(frontendTelemetryProvider)
           .statusPostPublished(sourcePage: 'status_square', postId: item.id);
@@ -128,6 +137,47 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     } catch (e) {
       if (!mounted) return;
       AppFeedback.showError(context, '删除失败：$e');
+    }
+  }
+
+  Future<void> _changeAudience(StatusPostEntity post) async {
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final audience = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('修改这条动态的受众'),
+        children: [
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, 'SELF'),
+            child: const Text('仅自己'),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context, 'FRIENDS'),
+            child: const Text('双向好友'),
+          ),
+        ],
+      ),
+    );
+    if (audience == null ||
+        !mounted ||
+        token != ref.read(sessionProvider).asData?.value.accessToken) {
+      return;
+    }
+    try {
+      await ref
+          .read(statusRemoteDataSourceProvider)
+          .updateAudience(post.id, audience);
+      if (!mounted ||
+          token != ref.read(sessionProvider).asData?.value.accessToken) {
+        return;
+      }
+      ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+      AppFeedback.showSuccess(context, '受众已保存');
+    } catch (e) {
+      if (mounted &&
+          token == ref.read(sessionProvider).asData?.value.accessToken) {
+        AppFeedback.showError(context, '受众未修改：$e');
+      }
     }
   }
 
@@ -192,6 +242,9 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
 
   Future<void> _pickAndUploadCoverImage() async {
     if (_submitting || _coverStage == _CoverUploadStage.uploading) return;
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    bool current() =>
+        mounted && token == ref.read(sessionProvider).asData?.value.accessToken;
     ref
         .read(frontendTelemetryProvider)
         .statusImagePickerOpened(sourcePage: 'status_square');
@@ -199,7 +252,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       source: ImageSource.gallery,
       imageQuality: 88,
     );
-    if (picked == null) return;
+    if (picked == null || !current()) return;
 
     setState(() {
       _coverImagePath = picked.path;
@@ -222,7 +275,12 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
         ),
         'metadata': {'source_page': 'status_square'},
       });
-      final result = await api.post('/api/v1/media', body: form);
+      final result = await api.post(
+        '/api/v1/media',
+        body: form,
+        options: Options(extra: {requestSessionGuardKey: current}),
+      );
+      if (!current()) return;
       if (result is! NetworkSuccess<Map<String, dynamic>>) {
         throw Exception(
           (result as NetworkFailure<Map<String, dynamic>>).message,
@@ -234,7 +292,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       }
       final assetId = (asset['id'] as num?)?.toInt() ?? 0;
       final status = (asset['status'] ?? '').toString();
-      if (!mounted) return;
+      if (!current()) return;
       setState(() {
         _coverMediaAssetId = assetId > 0 ? assetId : null;
         _coverStage = status == 'processing'
@@ -248,9 +306,10 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             sourcePage: 'status_square',
             assetId: assetId,
           );
+      if (!mounted) return;
       AppFeedback.showSuccess(context, '封面图片已准备好，可以发布状态');
     } catch (e) {
-      if (!mounted) return;
+      if (!current()) return;
       setState(() {
         _coverMediaAssetId = null;
         _coverStage = _CoverUploadStage.failed;
@@ -262,6 +321,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             sourcePage: 'status_square',
             errorCode: 'upload_failed',
           );
+      if (!mounted) return;
       AppFeedback.showError(context, '封面上传失败，请重试');
     }
   }
@@ -391,6 +451,21 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(sessionProvider, (previous, next) {
+      if (previous?.asData?.value.accessToken ==
+          next.asData?.value.accessToken) {
+        return;
+      }
+      _titleController.clear();
+      _bodyController.clear();
+      _locationController.clear();
+      _clearCoverImage();
+      setState(() {
+        _audience = 'SELF';
+        _submitting = false;
+        _prefilledLocation = false;
+      });
+    });
     final t = context.appTokens;
     final postsAsync = ref.watch(statusPostsProvider);
     final profileAsync = ref.watch(profileProvider);
@@ -431,14 +506,13 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
           children: [
             AppInfoSectionCard(
               title: '状态分层',
-              subtitle: '公开层 / 广场层 / 私密层，展示与治理分开',
+              subtitle: '受众仅自己或双向好友，展示与治理分开',
               leadingIcon: Icons.layers_outlined,
               child: Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: const [
-                  _TierChip(label: '公开层', description: '全员可见'),
-                  _TierChip(label: '广场层', description: '首页 / 广场可见'),
+                  _TierChip(label: '好友层', description: '双向好友可见'),
                   _TierChip(label: '私密层', description: '仅自己可见'),
                 ],
               ),
@@ -479,19 +553,14 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                     runSpacing: t.spacing.xs,
                     children: [
                       AppChoiceChip(
-                        label: '公开',
-                        selected: _visibility == 'public',
-                        onTap: () => setState(() => _visibility = 'public'),
-                      ),
-                      AppChoiceChip(
-                        label: '广场可见',
-                        selected: _visibility == 'square',
-                        onTap: () => setState(() => _visibility = 'square'),
+                        label: '双向好友',
+                        selected: _audience == 'FRIENDS',
+                        onTap: () => setState(() => _audience = 'FRIENDS'),
                       ),
                       AppChoiceChip(
                         label: '仅自己',
-                        selected: _visibility == 'private',
-                        onTap: () => setState(() => _visibility = 'private'),
+                        selected: _audience == 'SELF',
+                        onTap: () => setState(() => _audience = 'SELF'),
                       ),
                     ],
                   ),
@@ -528,7 +597,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                 data: (posts) {
                   if (posts.isEmpty) {
                     return AppEmptyState(
-                      title: '还没有公开状态',
+                      title: '还没有当前可见的状态',
                       description: '先发布一条状态，看看会不会出现在广场里。',
                       actionLabel: '去发布',
                       onAction: _publish,
@@ -552,6 +621,9 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                             onReport: post.canDelete
                                 ? null
                                 : () => _reportPost(post),
+                            onChangeAudience: post.canDelete
+                                ? () => _changeAudience(post)
+                                : null,
                             onDelete: post.canDelete
                                 ? () => _deletePost(post)
                                 : null,

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Models\UserAstroProfile;
+use App\Services\Accounts\AccountClosure;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -289,34 +290,22 @@ class AuthPasswordApiTest extends TestCase
             ->assertJsonPath('error.code', 'validation_error');
     }
 
-    public function test_delete_self_only_allows_smoke_accounts(): void
+    // v10.1.1 deliberately replaces the former 90/Smoke physical-delete contract.
+    public function test_ordinary_account_closure_is_pending_and_prefixes_do_not_authorize_erasure(): void
     {
-        $smokeUser = User::create([
-            'phone' => '90123456789',
-            'name' => 'SmokeUser',
-            'password' => 'secret123',
-        ]);
-
-        Sanctum::actingAs($smokeUser);
-
-        $this->deleteJson('/api/v1/auth/account', [
-            'current_password' => 'secret123',
-        ])->assertOk()->assertJsonPath('ok', true);
-
-        $this->assertDatabaseMissing('users', [
-            'phone' => '90123456789',
-        ]);
-
-        $realUser = User::create([
-            'phone' => '13800000914',
-            'password' => 'secret123',
-        ]);
-
-        Sanctum::actingAs($realUser);
-
-        $this->deleteJson('/api/v1/auth/account', [
-            'current_password' => 'secret123',
-        ])->assertStatus(403);
+        foreach ([['90123456789', 'SmokeUser'], ['13800000914', 'Ordinary member']] as [$phone, $name]) {
+            $user = User::create(['phone' => $phone, 'name' => $name, 'password' => 'secret123']);
+            Sanctum::actingAs($user);
+            $response = $this->deleteJson('/api/v1/auth/account', [
+                'current_password' => 'secret123',
+                'confirmation' => 'CLOSE_MY_ACCOUNT',
+                'idempotency_key' => 'ordinary-closure-'.$phone,
+            ])->assertStatus(202)->assertJsonPath('status', 'DELETION_PENDING');
+            $this->assertDatabaseHas('users', ['id' => $user->id, 'disabled' => true]);
+            app(AccountClosure::class)->process($response->json('request_id'));
+            $this->assertDatabaseHas('users', ['id' => $user->id, 'phone' => $phone]);
+            $this->assertDatabaseHas('account_closures', ['user_id' => $user->id, 'status' => 'PRODUCTION_RETENTION_POLICY_PENDING']);
+        }
     }
 
     public function test_synthetic_delete_rejects_unsupported_hash_without_removing_account_or_token(): void
@@ -335,7 +324,9 @@ class AuthPasswordApiTest extends TestCase
 
         $response = $this->deleteJson('/api/v1/auth/account', [
             'current_password' => 'syntheticCorrect123',
-        ])->assertStatus(422)->assertJsonPath('error.code', 'validation_error');
+            'confirmation' => 'CLOSE_MY_ACCOUNT',
+            'idempotency_key' => 'malformed-password-closure-key',
+        ])->assertStatus(422)->assertJsonPath('error.code', 'http_error');
 
         $payload = $response->json();
         self::assertArrayNotHasKey('exception', $payload);

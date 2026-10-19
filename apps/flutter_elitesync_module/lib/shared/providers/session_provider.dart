@@ -58,6 +58,27 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     return next;
   }
 
+  Future<void> _clearAccountSnapshots() async {
+    final local = ref.read(localStorageProvider);
+    for (final key in [
+      CacheKeys.lastKnownProfile,
+      CacheKeys.profileSummarySnapshot,
+      CacheKeys.profileDetailSnapshot,
+      CacheKeys.questionnaireProfileSnapshot,
+      CacheKeys.questionnaireDraft,
+      CacheKeys.matchResultSnapshot,
+      CacheKeys.matchDetailSnapshot,
+      CacheKeys.matchFeedbackHistory,
+      CacheKeys.homeFeedSnapshot,
+      CacheKeys.discoverFeedSnapshot,
+      CacheKeys.messagesConversationSnapshot,
+      CacheKeys.rtcAutoInviteHandledCallId,
+      CacheKeys.rtcAutoInviteHandledNotificationId,
+    ]) {
+      await local.remove(key);
+    }
+  }
+
   @override
   Future<SessionState> build() async {
     final secure = ref.read(secureStorageProvider);
@@ -89,6 +110,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     final local = ref.read(localStorageProvider);
 
     await local.tryPurgeLegacyPrivateChatCache();
+    await _clearAccountSnapshots();
 
     await secure.write(CacheKeys.accessToken, accessToken);
     if (refreshToken != null) {
@@ -137,7 +159,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
       birthLat: user.birthLat ?? current.user?.birthLat,
       birthLng: user.birthLng ?? current.user?.birthLng,
       avatarUrl: user.avatarUrl ?? current.user?.avatarUrl,
-      verified: user.verified || (current.user?.verified ?? false),
+      verified: user.verified,
       moderationStatus: user.moderationStatus.isNotEmpty
           ? user.moderationStatus
           : (current.user?.moderationStatus ?? 'normal'),
@@ -190,6 +212,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
         await secure.delete(CacheKeys.refreshToken);
 
         final local = ref.read(localStorageProvider);
+        await _clearAccountSnapshots();
         await local.remove(CacheKeys.lastKnownProfile);
         await local.remove(CacheKeys.profileSummarySnapshot);
         await local.remove(CacheKeys.profileDetailSnapshot);
