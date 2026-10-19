@@ -1,5 +1,9 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-19 Astra接受v10产品功能差距与候选矩阵（研究输入）
+
+**PRODUCT_GAP_MATRIX_ACCEPTED_WITH_OBSERVATIONS / NO_NEXT_VERSION_PLAN**。只读候选报告已独立核对：分支候选唯一parent为任务冻结时main，compare仅新增单份报告，apps/services与接受产品对象未改。报告可作为Owner/Astra讨论输入，不是已批准路线图、优先级或实施授权。旧竞品资料仍为历史证据，未读取原始截图像素、未做本轮测试；公开市场资料另行补充。v10.1.0仍PARTIAL/NOT_ACCEPTED，AC-10.1-08仍PARTIAL，下一功能版本未启动。正式记录：[Astra独立审阅](docs/research/V10_PRODUCT_FUNCTION_GAP_AND_CANDIDATE_MATRIX_ACCEPTANCE_20261019.md)。
+
 ## 2026-10-19 产品功能差距与候选矩阵任务已冻结（等待Owner派发）
 
 **OWNER_APPROVED_RESEARCH_TASK / MANUAL_DISPATCH_PENDING / READ_ONLY_PRODUCT_AUDIT / NO_NEXT_VERSION_PLAN**。对照旧EliteSync历史竞品研究与v10真实实现、接受版本、恢复台账，形成候选矩阵与10–15项讨论清单。只读，不实现功能、不冻结下一版、不做新的公开市场搜索。唯一任务单：[V10产品功能差距与候选矩阵任务](docs/research/V10_PRODUCT_FUNCTION_GAP_AND_CANDIDATE_MATRIX_TASK_20261019.md)。Owner手动派发后执行，报告候选分支交付，等待Astra审阅。
