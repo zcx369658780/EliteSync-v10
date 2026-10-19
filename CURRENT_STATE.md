@@ -1,5 +1,12 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-19 10.x路线与项目源已同步（仅文档）
+
+**DOC_SYNC_COMPLETE / ROADMAP_AND_PROJECT_SOURCES_ALIGNED / PRODUCT_TREES_UNCHANGED / NEXT_FEATURE_VERSION_NOT_STARTED**。当前[后续路线](docs/architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)、[Owner决定增量](docs/decisions/OWNER_PRODUCT_DECISIONS_20261019_LONG_TERM_RELATIONSHIP_V1_0.md)与[版本化项目源索引](docs/gpt-project-sources/20261019_10x/PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md)为一致入口；06/07及旧竞品报告作为原字节快照保留。
+
+main产品仍为已接受v10.0.11；v10.1.0整版仍PARTIAL/NOT_ACCEPTED，AC-10.1-08外部Web访问PARTIAL，R1只在开发接续范围接受。v10.1.1～1.7仅PLANNED，尚未冻结、派发或实施，10.2.x以后是条件阶段；后续可在新冻结合同内选择验证有用候选适配，不追认1.0或盲合分支。本次不动服务/隧道/公网/证书，不启动下一版。[唯一同步回执](docs/workflow/10X_ROADMAP_SYNC_RESULT_20261019.md)。下方旧状态按其历史时点保留。
+
+
 ## 2026-10-19 Astra接受v10产品功能差距与候选矩阵（研究输入）
 
 **PRODUCT_GAP_MATRIX_ACCEPTED_WITH_OBSERVATIONS / NO_NEXT_VERSION_PLAN**。只读候选报告已独立核对：分支候选唯一parent为任务冻结时main，compare仅新增单份报告，apps/services与接受产品对象未改。报告可作为Owner/Astra讨论输入，不是已批准路线图、优先级或实施授权。旧竞品资料仍为历史证据，未读取原始截图像素、未做本轮测试；公开市场资料另行补充。v10.1.0仍PARTIAL/NOT_ACCEPTED，AC-10.1-08仍PARTIAL，下一功能版本未启动。正式记录：[Astra独立审阅](docs/research/V10_PRODUCT_FUNCTION_GAP_AND_CANDIDATE_MATRIX_ACCEPTANCE_20261019.md)。

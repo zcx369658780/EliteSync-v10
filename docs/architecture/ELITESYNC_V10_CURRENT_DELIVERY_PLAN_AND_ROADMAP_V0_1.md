@@ -1,5 +1,10 @@
 # EliteSync-v10 当前交付路线图｜APP恢复与独立Web管理面板
 
+## 2026-10-19 后续规划入口已接续
+
+当前后续方向见[10.x后续版本计划路线图V1.0](ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)及[Owner决定补充](../decisions/OWNER_PRODUCT_DECISIONS_20261019_LONG_TERM_RELATIONSHIP_V1_0.md)。这是规划与项目源同步，1.1～1.7未冻结/派发/实施；原恢复目标和欠账不因新规划归零。v10.1.0整版PARTIAL/NOT_ACCEPTED及AC-10.1-08 PARTIAL不变；不触发运行或产品合并。下方旧五包、D6及日期全文保留，按历史时点解释；新规划不改写过去冻结AC或验收。
+
+
 ## 2026-10-15 Owner D6批准的顺序修订（优先于下文历史五包表）
 
 原v10.0.6～v10.0.8在各自冻结范围内**ACCEPT WITH OBSERVATIONS并完成K08**，不是完整APP所有主要能力已交付。Owner于2026-10-15明确批准D4～D6，见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)及[v10.0.9唯一冻结plan](https://github.com/zcx369658780/EliteSync-v10/blob/68d57f755d0091bc15cb867b96d3a21caee83690/docs/versions/v10.0.9/plan.md)（Blob`042cf7298b75169a89b1dcd7c9fb113f6ddd72e3`）。

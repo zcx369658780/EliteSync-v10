@@ -1,5 +1,25 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-19 后续10.x规划登记（非冻结/非派发）
+
+唯一规划正文：[10.x后续路线V1.0](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)。Owner方向与Astra版本拆分分开；没有新建下列版本plan或目录，没有启动实现。
+
+| 规划位置 | 功能包 | 状态 |
+|---|---|---|
+| v10.1.1 | 关系、资料权限与账号安全基础 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.2 | 完整慢约会与正式恋爱关系 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.3 | 独立搭子与好友可见社区 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.4 | 平台活动与内部安全处置 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.5 | 消息可靠性、离线/会话及通知 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.6 | 玄学、关系解释与自愿AI辅助 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.1.7 | 全APP/Web联合质量与会议演示包 | PLANNED / NOT_FROZEN / NOT_STARTED |
+| v10.2.0 | 会后修订、主体/备案及真实认证接入 | CONDITIONAL / NOT_FROZEN / NOT_STARTED |
+| v10.2.1 | 付费解读与员工指导履约 | CONDITIONAL / NOT_FROZEN / NOT_STARTED |
+| v10.2.2 | 小范围真实活动与运营试点 | CONDITIONAL / NOT_FROZEN / NOT_STARTED |
+
+更后条件阶段见路线正文，不承诺公开日期。v10.1.0整体PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL保持；不把未接受产品合main，也不把它变成后续研发永久等待。[本次仅文档同步回执](../workflow/10X_ROADMAP_SYNC_RESULT_20261019.md)。下方历史登记原样保留。
+
+
 ## 2026-10-19 Astra已接受v10.1.0 R1同版开发接续（当前）
 
 **R1_ACCEPTED_WITH_OBSERVATIONS / DEV_CHANNEL_CONTINUATION_COMPLETE_IN_SCOPE / V10.1.0_PARTIAL_NOT_ACCEPTED / AC-10.1-08_PARTIAL / OWNER_FILING_DEFERRED**。GitHub已独立核对R1仅新增结果报告、向开发分支状态前置一段，apps/services与此前云端试点源码树不变；Codex报告8项云端服务、备份和原dirty根的限定身份不变，已恢复既有受控loopback/SSH转发，非作者审查未发现本任务阻断。云端原始运行证据仍CODEX_REPORTED/LOCAL_ONLY。未新增公网裸IP访问、未续证、未启443，受邀同事Web后台仍未交付；整版v10.1.0未被Astra接受，产品未合main，不启动K10或下一功能版。保留Android明文策略与RTC join-info URL白名单的后续观察。正式审查见[R1独立验收](v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_ACCEPTANCE.md)。下方旧段落按原时点保留。

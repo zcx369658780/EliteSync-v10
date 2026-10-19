@@ -1,5 +1,10 @@
 # PROJECT_SOURCE_INDEX_ELITESYNC_V10
 
+## 2026-10-19 版本化项目源入口
+
+当前快照索引：[20261019_10x项目源首读索引](20261019_10x/PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md)。先读01/08/09，再按其来源读取实时GitHub入口；06/07及旧竞品报告是原字节历史材料，新08/09与正式决定/路线正文一致。快照中的PENDING只代表生成时点；[同步完成回执](../workflow/10X_ROADMAP_SYNC_RESULT_20261019.md)及实时状态接续后续事实。当前仅文档同步，未来版未冻结/派发/实施；本稳定索引下方原文保留。
+
+
 项目：EliteSync-v10架构重置版；ChatGPT项目“EliteSync重置-GPT顾问”。唯一对应仓库：https://github.com/zcx369658780/EliteSync-v10；实际文档发布分支main。旧EliteSync/9.x仅历史资产来源，Zotero第五章及DeepLearning-HANK均排除。
 
 ## 稳定远端入口与读取顺序

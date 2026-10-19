@@ -1,5 +1,12 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-19 恢复欠账对后续规划的归属（非完成声明）
+
+依据[10.x后续路线V1.0](ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)：A03获准历史数据/附件在v10.1.7按具名来源、用途与恢复范围收口，当前UNKNOWN/未恢复仍保留；A08由v10.1.1隐私/必要设置、v10.1.3独立搭子/好友社区、v10.1.5通信/Push/位置等规划承接，未建立的能力不改为PASS；A09完整APP/Web联合、安装/说明/备份与会议评审归v10.1.7，终点顺延而未取消。A07已接受本命/动态切片复用，v10.1.6对解释/分享及具名条件旧扩展作一次范围核查，不虚报Composite或科学认证。
+
+所有新归属仅PLANNED、未冻结/派发/实施；不删除或重写下面A03/A08/A09和历史原文。v10.1.0仍整版PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL。真实供应商/设备/许可/数据用途未准入部分各自保留门禁，测试替身不能证明实人认证、Push、支付或线下活动成功。
+
+
 ## 2026-10-19 Astra已接受v10.1.0 R1同版开发接续（当前）
 
 **R1_ACCEPTED_WITH_OBSERVATIONS / DEV_CHANNEL_CONTINUATION_COMPLETE_IN_SCOPE / V10.1.0_PARTIAL_NOT_ACCEPTED / AC-10.1-08_PARTIAL / OWNER_FILING_DEFERRED**。GitHub已独立核对R1仅新增结果报告、向开发分支状态前置一段，apps/services与此前云端试点源码树不变；Codex报告8项云端服务、备份和原dirty根的限定身份不变，已恢复既有受控loopback/SSH转发，非作者审查未发现本任务阻断。云端原始运行证据仍CODEX_REPORTED/LOCAL_ONLY。未新增公网裸IP访问、未续证、未启443，受邀同事Web后台仍未交付；整版v10.1.0未被Astra接受，产品未合main，不启动K10或下一功能版。保留Android明文策略与RTC join-info URL白名单的后续观察。正式审查见[R1独立验收](../versions/v10.1.0/DEV_ACCESS_AND_FILING_DEFER_CONTINUATION_ACCEPTANCE.md)。下方旧段落按原时点保留。
