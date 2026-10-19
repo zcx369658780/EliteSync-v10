@@ -1,5 +1,9 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-20 会话交接：v10.1.1 R1返修执行中／待候选回传
+
+**SESSION_HANDOFF / V10.1.1_CHANGES_REQUIRED / R1_TASK_ISSUED / NEXT_CHAT_CONTINUE_ACCEPTANCE / NO_NEXT_VERSION**。v10.1.1首轮候选已由Astra独立审阅，当前不接受；阻断为AC-10.1.1-04/05内同根因的MariaDB REPEATABLE READ权限竞态，涉及`MediaController::privateContent`和`StatusPostController::toggleLike`。正式R1同版集中返修任务已发布并交由Codex执行，不重复派发、不重开整版、不启动v10.1.2。Owner长期关系、独立搭子、关系/字段最小披露、内部可申诉Safety记录、AI非终裁、消息请求非陌生人直私信、备案延期等决定均已在正式Owner决定和10.x路线中固化。下一会话收到R1候选后直接独立验收。完整会话状态见[2026-10-20交接](docs/workflow/SESSION_HANDOFF_20261020_V1011_R1_PENDING.md)。
+
 ## 2026-10-19 10.x路线与项目源已同步（仅文档）
 
 **DOC_SYNC_COMPLETE / ROADMAP_AND_PROJECT_SOURCES_ALIGNED / PRODUCT_TREES_UNCHANGED / NEXT_FEATURE_VERSION_NOT_STARTED**。当前[后续路线](docs/architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)、[Owner决定增量](docs/decisions/OWNER_PRODUCT_DECISIONS_20261019_LONG_TERM_RELATIONSHIP_V1_0.md)与[版本化项目源索引](docs/gpt-project-sources/20261019_10x/PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md)为一致入口；06/07及旧竞品报告作为原字节快照保留。
