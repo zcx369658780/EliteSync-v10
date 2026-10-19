@@ -1,9 +1,8 @@
-
-## 2026-10-19 v10.1.1 已由Owner正式派发
-
-**IN_PROGRESS / NOT_ACCEPTED**。按 [冻结计划](docs/versions/v10.1.1/plan.md) 实施关系、资料权限与账号安全基础；v10.1.0保持PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL。仅独立本地开发环境；云端试点不操作，接受前不合main、不启动v10.1.2。
-
 # EliteSync-v10 当前状态
+
+## 2026-10-19 v10.1.1 候选待独立验收
+
+**CANDIDATE_FOR_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**。见[唯一实施报告](docs/versions/v10.1.1/IMPLEMENTATION_REPORT.md)和[制品manifest](docs/versions/v10.1.1/artifact_manifest.json)。v10.1.0仍PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL；不合main、不启动v10.1.2。
 
 ## 2026-10-19 10.x路线与项目源已同步（仅文档）
 

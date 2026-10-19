@@ -1,8 +1,8 @@
-## v10.1.1 IN_PROGRESS / NOT_ACCEPTED
-
-[冻结计划](v10.1.1/plan.md)，Owner已正式派发；v10.1.0仍PARTIAL/NOT_ACCEPTED。
-
 # EliteSync-v10 版本登记入口
+
+## v10.1.1 候选待独立验收
+
+**CANDIDATE_FOR_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**。[冻结计划](v10.1.1/plan.md)／[唯一实施报告](v10.1.1/IMPLEMENTATION_REPORT.md)；v10.1.0仍PARTIAL/NOT_ACCEPTED。
 
 ## 2026-10-19 后续10.x规划登记（非冻结/非派发）
 
