@@ -11,3 +11,5 @@ call7 is synthetic AVD audio/video on the earlier x86 package. call14 uses the f
 The 20-minute UDP authorization was used once and closed early; its exact temporary rule and AVD mapping were removed. All owned test services and containers stopped; volumes, artifacts and backups retained. No cloud/main/successor work is authorized by this package.
 
 Historical field clarification: the inspected `scripts/rtc-final-revoke.py` retains its original contemporaneous `same_final_apk_both_sides` output field. The selected call7 JSON renames that field to `same_prior_x86_apk_both_sides` and supplies the original x86 artifact hash; raw historical receipts are unchanged LOCAL_ONLY. This is a schema/name clarification, not a claim of final dual-ABI video.
+
+Hash convention: review-copy SHA256 and FILES_SHA256 describe canonical public LF bytes. Original execution-source hashes describe preserved LOCAL_ONLY bytes and may use CRLF. An initial public-manifest mismatch from Git normalization was detected and corrected without changing product source or raw evidence.

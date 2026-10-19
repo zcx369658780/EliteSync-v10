@@ -1,182 +1,182 @@
 [
   {
     "path": "accept-preferences-race-result.json",
-    "size": 220,
-    "sha256": "c882aae13f87e79a65e86b98c87d9577d5296215ff94244aad77802ef4438c57"
+    "size": 212,
+    "sha256": "af884fa584aa90a7d07483c8fc28cddfa23674146f2bf5c787a8f8e3918e7018"
   },
   {
     "path": "candidate-whitespace-crlf.json",
-    "size": 814,
-    "sha256": "08c4a14bfab7e29b8d3ec53065bc66e42e3d616088672567e9f803474c79a416"
+    "size": 781,
+    "sha256": "58e68f68501ca770f63ec56aec451571b5c0f1c7ee9ec779beea4bab382a47e1"
   },
   {
     "path": "changed-paths.tsv",
-    "size": 8375,
-    "sha256": "82afa4f8c50c974262b488ecb9946b788e0c7fa1eeecde890e7f1b71162219bd"
+    "size": 8270,
+    "sha256": "792784fcb58bafc2ed10aebbd136e5ed9ba27422a73bd2fc3853988e265dd509"
   },
   {
     "path": "closure-final-state.json",
-    "size": 849,
-    "sha256": "3e40f21cf4c1963b4f13a377b85a776d210b180117191000daa7a1349ab63ca6"
+    "size": 814,
+    "sha256": "152d11f55d3ea573cf99f6002f3a5421767aa95d0a72f6e3c22fc74b2779b654"
   },
   {
     "path": "closure-peer-evidence-denial.json",
-    "size": 259,
-    "sha256": "b64d00c9fa7bc5fef62737a7f588f55b023bedd4c84f3d1f437f4122d5924e8f"
+    "size": 242,
+    "sha256": "becfa7d7a42a1474dca4ea10aac3fdac136297bd105eed8a1f0ea666539e9d7d"
   },
   {
     "path": "command-receipts-redacted.json",
-    "size": 10736,
-    "sha256": "e40547111c3fdd8b61f4da87f6c885b9d2ac5fa1ce60ab382f5abbb97827335d"
+    "size": 10518,
+    "sha256": "8899fa1967f734c42dbea36bc85bb4ec7754e3bc9bf5995f5829311235237d4d"
   },
   {
     "path": "final-db-backup.json",
-    "size": 194,
-    "sha256": "92780800d78352dd4832924160e20c2edbe905cab3c8fc3d2fe154ebb15751bc"
+    "size": 187,
+    "sha256": "56840d1b8b38f112f428f2a3945494fa28e70cea06e69525ae60918db3e37377"
   },
   {
     "path": "identity.json",
-    "size": 2057,
-    "sha256": "a3af3de319af89acc38b882c43265b532e759625d08c0132b89160ce2bb7e3e5"
+    "size": 2009,
+    "sha256": "e8b9e2ba0db595aca6a8481ea273de1668e1b28c8e47004a22b6a2b093523c78"
   },
   {
     "path": "non-author-review-summary.json",
-    "size": 1094,
-    "sha256": "aa8d5a55c88b80d04ef9aced62f6ff7e1009e7c125f1e1108dedc66c47156b0c"
+    "size": 1076,
+    "sha256": "6ed56c2cd7065d27217a56fd435cc3d8140a5528884198ab4488ae8bf05f4a08"
   },
   {
     "path": "offline-session-after.json",
-    "size": 117,
-    "sha256": "f6adb8a882419866fb948fb444a2c9f67dd0d3db6767ab1be7218fd9cf02e2b7"
+    "size": 112,
+    "sha256": "1cbd2b9d26755094f2466ff784adb49b2e168a4f446793cb39a92b9515b98cae"
   },
   {
     "path": "phone-avd-dnat-removed.json",
-    "size": 49,
-    "sha256": "d24c02bb2abe8f8839a3559049323a724060c631a0a5ce5f1f9499b659c8976a"
+    "size": 45,
+    "sha256": "133fccbb8f68b0b022078dc39c26b1aba5d19dea78a867556354cdabcedbf0a7"
   },
   {
     "path": "phone-call14-owner-hearing.json",
-    "size": 263,
-    "sha256": "fd4c18a3073e862d38ab8af3b3e212ed0bf3c383d414088aff69d44e58b2bfb2"
+    "size": 255,
+    "sha256": "3e57ba4859fb6561b05463c9c8e5f4430fbe31b24c70cd0a3f3fb72145000467"
   },
   {
     "path": "phone-final-installed-readback.json",
-    "size": 373,
-    "sha256": "5ab1af6ef31d6084039687d3b067f4500056f0a4031165af6278a5c168dfdb67"
+    "size": 359,
+    "sha256": "6b18bc547043cacb61cfa1e82b3690b4677706eb24cdb306b1de903cb22001af"
   },
   {
     "path": "phone-final-revocation-result.json",
-    "size": 1019,
-    "sha256": "f998bdb543f2d43d824b22f2d928ad5c27d991065d95f4aee676d65485c0ffd1"
+    "size": 983,
+    "sha256": "4f82b587351d22bd45e668ce7dcd8f0044c0b67b84e9cfb9c88afce42b897299"
   },
   {
     "path": "phone-lan-window-final.json",
-    "size": 105,
-    "sha256": "e9332c420470da97b5f1d9d9e11c60505e29342e95195ac3e17dc35c49c354fa"
+    "size": 100,
+    "sha256": "909d5886e4f045931ac4d539a6b4fa8f001b3a52f28d99e26359578a79baf3a1"
   },
   {
     "path": "phone-lifecycle-readback.json",
-    "size": 437,
-    "sha256": "29034f3472079f545c75942acd346860c9d40c670c764c69480a7357c3787d1a"
+    "size": 423,
+    "sha256": "f2e2cc7a1fada2147fd2880d32d7496d6e1ed5068a985f47651b56015635fa4b"
   },
   {
     "path": "protected-roots-final.json",
-    "size": 703,
-    "sha256": "d35e4940d3efa139f685df9917efdb61772aa1407c22a8b1e20fe5229f36e30d"
+    "size": 671,
+    "sha256": "2529eefa99a43d2f29eba28f805002c5699cf9638e863cf21baecde9c6778630"
   },
   {
     "path": "README.md",
-    "size": 2083,
-    "sha256": "d7c372177428f9adf905f679f97854ed25d834acbdf5d394330dc43d26e91800"
+    "size": 2382,
+    "sha256": "144516c3a949dd8a7fc54a5d4c1385c8cf3db2968bfb388f907ee20808e714fc"
   },
   {
     "path": "resources-final.json",
-    "size": 1247,
-    "sha256": "9f8524f1489938595d1ea5e4643b9e0ef26e651250950e314b9e572e8543ab60"
+    "size": 1197,
+    "sha256": "99e0fbf76a8613aa41cadf919e894652eec8401406f2fb38b720bd9a5acf0acd"
   },
   {
     "path": "rtc-final-revocation-result.json",
-    "size": 1368,
-    "sha256": "d41003a6fa3adbd35d4aa16ce3f694f68d61f130dbf8daa301c0acc0b7a6330d"
+    "size": 1320,
+    "sha256": "40fda3fbcd689b86a02335c2271a8e54b2397203d7badafbb682aaa133962d2d"
   },
   {
     "path": "script-copy-manifest.json",
-    "size": 4107,
-    "sha256": "10bf286c6c8b2579f2b5fe51d13fd787d323fcb23855bbfa81ac00523402e8b5"
+    "size": 4021,
+    "sha256": "9c5c58b2974020d7cb38f85b74c0bb9afa1b64a5385d56d13fd67e58b9efd418"
   },
   {
     "path": "scripts/accept-preferences-race.py",
-    "size": 2343,
-    "sha256": "175292ef4e8c5524285bb34da123e47493e1c2ead9df462a5588f87e4d121227"
+    "size": 2319,
+    "sha256": "d364596b0626c8093c3830a3900605ad0d3193eb64222e2d7a6b8bc49852628e"
   },
   {
     "path": "scripts/closure-evidence.py",
-    "size": 2514,
-    "sha256": "ce8ce603db357e4d3a84f45c7a1d4d6064360b367c476feb442349b717e94c49"
+    "size": 2490,
+    "sha256": "7338df47714ec14f518931e25a7a250bc11b4b90a8a3c29cfa0e8978cd4bc84e"
   },
   {
     "path": "scripts/concurrent-real-db.py",
-    "size": 3060,
-    "sha256": "01dea52c1d89cbda092ad08cf426b31e4e5ed4a53bf4a5217279d9b3debd5a59"
+    "size": 3020,
+    "sha256": "9f8467a038d289a63d1a02f19a0f6f0069f09fb53f2a1d43452b04cfa1b531ce"
   },
   {
     "path": "scripts/http-after-restart.py",
-    "size": 1574,
-    "sha256": "ab18441731fdbadeecb6450b570b6ac12d3d513497353fb4fddf07225ae88bf6"
+    "size": 1556,
+    "sha256": "5a9aeee7d0e393d29315aa47581b01fcc10b6631f142591872045885eefcdafd"
   },
   {
     "path": "scripts/http-hidden-sessions.py",
-    "size": 2202,
-    "sha256": "3a637ae40ac582c5466006a660ecd389529fa7777dda272ec1ae570eb4e130b5"
+    "size": 2173,
+    "sha256": "a8099d71ef502ac379c2263ed59ba6577f61e05d5f50f32fd41c65f43a3ac21e"
   },
   {
     "path": "scripts/http-matrix.py",
-    "size": 4027,
-    "sha256": "7e3384af8585ef49da5a52035b5b8df055fc4ff3e04d8c6ee5b586e653ffef82"
+    "size": 3970,
+    "sha256": "a26907e21f01fe87ca2c6b219395e801ee375ae824e8e396cbf9151f3640da5c"
   },
   {
     "path": "scripts/http-more.py",
-    "size": 3723,
-    "sha256": "80110e6261e731cc37a8679cddf6509ca737c63ad7d420621527bb8d40ac48fa"
+    "size": 3677,
+    "sha256": "b72775a50f9f489e39988c01318a46f29bb3aef33682327cbe17ee49071806b5"
   },
   {
     "path": "scripts/phone-avd-map-expiry.py",
-    "size": 919,
-    "sha256": "046b9a044db17df9e60b0d36f396b9dfbffb0a19013a4a7977bf09c446380bb5"
+    "size": 912,
+    "sha256": "80e8e20aabff8414b35f8cb694f7763f8fb9dc4ac88cb77141bafe5cf5898edd"
   },
   {
     "path": "scripts/phone-final-revoke.py",
-    "size": 4035,
-    "sha256": "89d1b138027ac7d55c59d2629f7db8879fdf81589397cc2406355fbcd8b855de"
+    "size": 3978,
+    "sha256": "40cc030ba48cc28e6e7ea319aa0129df13108e25d0e143c1fb46f296f572d898"
   },
   {
     "path": "scripts/phone-lan-add-self.ps1",
-    "size": 919,
-    "sha256": "536bd8145fc955064dace609dc9bd4d775fcacc3a5adc7139c8e027ae7d2d321"
+    "size": 911,
+    "sha256": "65fbadb826cdcfe504d7744db91c3dec096d7366681e1037b3bcfaf111cde036"
   },
   {
     "path": "scripts/phone-lan-window.ps1",
-    "size": 1738,
-    "sha256": "2b135f078c36ad6c6a70d2b73adb106b2312a48b270fbd16e7a4fe1170299aed"
+    "size": 1723,
+    "sha256": "4840ac7122ecfd2a40537bfc19288a41900101b870fa89d4591938d0884d6c52"
   },
   {
     "path": "scripts/phone-rtc-token-fixture.php",
-    "size": 1118,
-    "sha256": "6440d5d32e098d9a294e6172a76bcbb1fd07cdade3c65a75f3f22b4c9484dedc"
+    "size": 1106,
+    "sha256": "3b9c86c64282e4e88503b2a691994ead0adf71c70318dcd0c0b55c2e81584ef4"
   },
   {
     "path": "scripts/rtc-final-revoke.py",
-    "size": 4145,
-    "sha256": "71518980968a76ae4d95e910d70c98b581ae691deb6839236b83738c92aa942e"
+    "size": 4086,
+    "sha256": "de95dec1890f0212151cb862b3d0e6afe8c10bd4db09f528da4eb9532169a33c"
   },
   {
     "path": "scripts/ws-revoke.py",
-    "size": 1586,
-    "sha256": "41202e23aeef2f2540ca99613790fa57db6b7a969c1ad76313cd41d203fd1616"
+    "size": 1560,
+    "sha256": "7de50aae734c298c4286622954bdac1e0316ae86b16eb7f98834d5db85587df1"
   },
   {
     "path": "ws-revoke-result.json",
-    "size": 109,
-    "sha256": "7324736e73468e17f020b83968b0d07319c46bc82ab46f922203c87497a3b130"
+    "size": 104,
+    "sha256": "14a27a7b7643529942e9c0f0d9e1b330967fc9e9f9a1f2f50af6b80f2de03760"
   }
 ]
