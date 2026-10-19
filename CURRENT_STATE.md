@@ -1,5 +1,9 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-19 Astra接受v10产品功能差距与候选矩阵（研究输入）
+
+**PRODUCT_GAP_MATRIX_ACCEPTED_WITH_OBSERVATIONS / NO_NEXT_VERSION_PLAN**。只读候选报告已独立核对：分支候选唯一parent为任务冻结时main，compare仅新增单份报告，apps/services与接受产品对象未改。报告可作为Owner/Astra讨论输入，不是已批准路线图、优先级或实施授权。旧竞品资料仍为历史证据，未读取原始截图像素、未做本轮测试；公开市场资料另行补充。v10.1.0仍PARTIAL/NOT_ACCEPTED，AC-10.1-08仍PARTIAL，下一功能版本未启动。正式记录：[Astra独立审阅](docs/research/V10_PRODUCT_FUNCTION_GAP_AND_CANDIDATE_MATRIX_ACCEPTANCE_20261019.md)。
+
 ## 2026-10-19 产品功能现状对照与候选矩阵任务已冻结（等待Owner派发）
 
 **OWNER_APPROVED_RESEARCH_TASK / MANUAL_DISPATCH_PENDING / READ_ONLY_PRODUCT_AUDIT / NO_NEXT_VERSION_PLAN**。Owner同意先把旧仓历史竞品研究与v10真实实现状态对照，形成产品功能候选矩阵，再由Owner/Astra结合公开市场资料讨论后续路线图。唯一任务单：[V10产品功能差距与候选矩阵只读任务](docs/research/V10_PRODUCT_FUNCTION_GAP_AND_CANDIDATE_MATRIX_TASK_20261019.md)。本任务只读v10代码/验收/台账及旧EliteSync历史研究，不实施功能、不修改路线图/恢复台账、不搜索新市场、不启动下一版。R1已在限定范围接受；v10.1.0整版仍PARTIAL/NOT_ACCEPTED，AC-10.1-08 PARTIAL。下一步由Owner手动派发Codex，产物为候选分支单份Markdown报告，待Astra审阅。
