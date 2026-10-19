@@ -89,10 +89,12 @@ USB TCP 原始 MediaConnectException 保留；回显验证宿主私网 UDP hairp
 | 最后 social transition | 10 deprecated／143 assertions，exit0 |
 | Flutter 本版相关合跑 | 63 项，exit0 |
 | 最后完整 RTC 范围 | 67 项，exit0；范围 analyze 0 issues，exit0 |
-| Pint／whitespace | 通过 |
+| Pint／whitespace | 通过；Git 按原有 CRLF 行尾检查，详见下文 |
 | 真实 API | 分批34／22／17／9项，后续并发、注销、手机补证另列 |
 
 非作者复核驱动修复：消息请求后续入口、CN／MC 生命周期、通知撤回／跨号、封面授权、旧关系写旁路、私有写与注销锁、晚到媒体复活、RTC 切号／await 竞态、保留证据、RR 锁后重读。最后相关源码无剩余可操作发现；构建小增量另经非作者复核。不是 Astra 接受，原现场对话／材料 LOCAL_ONLY。
+
+Git 默认范围检查曾将两个原本即为 CRLF 的 Dart 文件的 CR 记为 trailing whitespace（exit2）；已逐一比对基线／候选行尾，使用命令局部 cr-at-eol 检查 exit0，不改源码或全局 Git 配置，原失败保留。
 
 原始失败保留：私有写／注销／动态断言修复；Flutter focused02→03；RTC测试失败→66→67，introduced analyze10→2→0；Gradle缺环境／错误cwd；Workerman握手；RR双201；TCP媒体失败；设备未boot／控件未就绪；手机NO_MATCHING_ABIS、USER_RESTRICTED，双架构修复和Owner手机端允许后成功。PHP8.5／旧PHPUnit deprecation、原rtc_invite_coordinator历史info保留。注销业务FAILED_RETRYABLE时worker CLI exit0不代表擦除成功；无监听查询外层exit1不代表停止失败。不冒称全仓绿色，不跑无关全部算法oracle。
 
