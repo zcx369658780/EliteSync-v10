@@ -1,0 +1,8 @@
+{
+  "accept_status": 404,
+  "waited_on_user_lock": true,
+  "off_committed_before_accept_resumed": true,
+  "locking_queries_observed": 1,
+  "pending_preserved": true,
+  "preferences_restored_by_owner_api": true
+}

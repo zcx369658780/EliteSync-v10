@@ -1,0 +1,32 @@
+[
+  {
+    "root_alias": "protected-dirty-root",
+    "head_match": true,
+    "index_match": true,
+    "status_match": true,
+    "status_matching_method": [
+      "porcelain_raw"
+    ],
+    "status_entries_original": 252
+  },
+  {
+    "root_alias": "protected-legacy-repo",
+    "head_match": true,
+    "index_match": true,
+    "status_match": true,
+    "status_matching_method": [
+      "porcelain_raw"
+    ],
+    "status_entries_original": 68
+  },
+  {
+    "root_alias": "protected-v1010-worktree",
+    "head_match": true,
+    "index_match": true,
+    "status_match": true,
+    "status_matching_method": [
+      "porcelain_raw"
+    ],
+    "status_entries_original": 2
+  }
+]

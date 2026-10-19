@@ -1,0 +1,86 @@
+[
+  {
+    "path": "scripts/http-matrix.py",
+    "raw_execution_source_sha256": "a26907e21f01fe87ca2c6b219395e801ee375ae824e8e396cbf9151f3640da5c",
+    "review_copy_sha256": "7e3384af8585ef49da5a52035b5b8df055fc4ff3e04d8c6ee5b586e653ffef82",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/http-more.py",
+    "raw_execution_source_sha256": "b72775a50f9f489e39988c01318a46f29bb3aef33682327cbe17ee49071806b5",
+    "review_copy_sha256": "80110e6261e731cc37a8679cddf6509ca737c63ad7d420621527bb8d40ac48fa",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/http-hidden-sessions.py",
+    "raw_execution_source_sha256": "a8099d71ef502ac379c2263ed59ba6577f61e05d5f50f32fd41c65f43a3ac21e",
+    "review_copy_sha256": "3a637ae40ac582c5466006a660ecd389529fa7777dda272ec1ae570eb4e130b5",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/http-after-restart.py",
+    "raw_execution_source_sha256": "5a9aeee7d0e393d29315aa47581b01fcc10b6631f142591872045885eefcdafd",
+    "review_copy_sha256": "ab18441731fdbadeecb6450b570b6ac12d3d513497353fb4fddf07225ae88bf6",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/ws-revoke.py",
+    "raw_execution_source_sha256": "7de50aae734c298c4286622954bdac1e0316ae86b16eb7f98834d5db85587df1",
+    "review_copy_sha256": "41202e23aeef2f2540ca99613790fa57db6b7a969c1ad76313cd41d203fd1616",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/concurrent-real-db.py",
+    "raw_execution_source_sha256": "c0e827c2d496ff51034fca587c34542a8ba76dbe4fced6380dd1fedf6051d6de",
+    "review_copy_sha256": "01dea52c1d89cbda092ad08cf426b31e4e5ed4a53bf4a5217279d9b3debd5a59",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/accept-preferences-race.py",
+    "raw_execution_source_sha256": "fb4d65f192f21a7ef7af1efd9fb4107a59e17f5542a9809ffc5ff8d377a88eb9",
+    "review_copy_sha256": "175292ef4e8c5524285bb34da123e47493e1c2ead9df462a5588f87e4d121227",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/closure-evidence.py",
+    "raw_execution_source_sha256": "7338df47714ec14f518931e25a7a250bc11b4b90a8a3c29cfa0e8978cd4bc84e",
+    "review_copy_sha256": "ce8ce603db357e4d3a84f45c7a1d4d6064360b367c476feb442349b717e94c49",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/rtc-final-revoke.py",
+    "raw_execution_source_sha256": "1414a611a3207dc24fa1e8a07f07a4dc5dfe6215c4f9ab896158a80d79c68371",
+    "review_copy_sha256": "71518980968a76ae4d95e910d70c98b581ae691deb6839236b83738c92aa942e",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/phone-final-revoke.py",
+    "raw_execution_source_sha256": "3015c780be6e62a7f3041ac5251b84fc5252d8fb3c2f61506c16a8572cfb156d",
+    "review_copy_sha256": "89d1b138027ac7d55c59d2629f7db8879fdf81589397cc2406355fbcd8b855de",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/phone-rtc-token-fixture.php",
+    "raw_execution_source_sha256": "3b9c86c64282e4e88503b2a691994ead0adf71c70318dcd0c0b55c2e81584ef4",
+    "review_copy_sha256": "6440d5d32e098d9a294e6172a76bcbb1fd07cdade3c65a75f3f22b4c9484dedc",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/phone-lan-window.ps1",
+    "raw_execution_source_sha256": "4840ac7122ecfd2a40537bfc19288a41900101b870fa89d4591938d0884d6c52",
+    "review_copy_sha256": "2b135f078c36ad6c6a70d2b73adb106b2312a48b270fbd16e7a4fe1170299aed",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/phone-lan-add-self.ps1",
+    "raw_execution_source_sha256": "65fbadb826cdcfe504d7744db91c3dec096d7366681e1037b3bcfaf111cde036",
+    "review_copy_sha256": "536bd8145fc955064dace609dc9bd4d775fcacc3a5adc7139c8e027ae7d2d321",
+    "review_copy_not_executed": true
+  },
+  {
+    "path": "scripts/phone-avd-map-expiry.py",
+    "raw_execution_source_sha256": "80e8e20aabff8414b35f8cb694f7763f8fb9dc4ac88cb77141bafe5cf5898edd",
+    "review_copy_sha256": "046b9a044db17df9e60b0d36f396b9dfbffb0a19013a4a7977bf09c446380bb5",
+    "review_copy_not_executed": true
+  }
+]

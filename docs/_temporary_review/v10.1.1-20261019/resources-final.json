@@ -1,0 +1,50 @@
+{
+  "containers": [
+    {
+      "name": "elitesync-v1011-relationships-db",
+      "running": false,
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1011-relationships-rtc",
+      "running": false,
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1011-relationships-rtc-udp",
+      "running": false,
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1011-relationships-rtc-phone-lan",
+      "running": false,
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1011-relationships-rtc-phone-dual",
+      "running": false,
+      "retained": true
+    },
+    {
+      "name": "elitesync-v1011-phone-network-diag",
+      "running": false,
+      "retained": true
+    }
+  ],
+  "owned_tcp_listeners_closed": {
+    "8012": true,
+    "8013": true,
+    "8014": true,
+    "7884": true,
+    "7881": true,
+    "43322": true
+  },
+  "temporary_firewall_rule_absent": true,
+  "emulator_dnat_removed": true,
+  "avd_stopped_and_adbd_unrooted": true,
+  "phone_app_stopped_package_retained": true,
+  "phone_adb_reverse_empty": true,
+  "db_volume_backups_apks_retained": true,
+  "docker_desktop_left_running": true,
+  "timestamp_utc": "2026-10-19T14:01:04.529951+00:00"
+}

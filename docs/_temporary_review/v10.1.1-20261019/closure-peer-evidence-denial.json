@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/status/posts/5",
+    "status": 404,
+    "expected": 404
+  },
+  {
+    "path": "/media/6/content",
+    "status": 404,
+    "expected": 404
+  },
+  {
+    "path": "/profile-peers/1",
+    "status": 404,
+    "expected": 404
+  }
+]

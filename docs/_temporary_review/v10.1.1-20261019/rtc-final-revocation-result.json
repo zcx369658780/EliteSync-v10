@@ -1,0 +1,48 @@
+{
+  "call_id": 7,
+  "synthetic_emulated_video_and_no_host_audio": true,
+  "inbound_audio_video_increased_both_sides": {
+    "a_audio": {
+      "min_bytes": 25176,
+      "max_bytes": 25742,
+      "samples": 2
+    },
+    "a_video": {
+      "min_bytes": 6671882,
+      "max_bytes": 6809560,
+      "samples": 2
+    },
+    "b_audio": {
+      "min_bytes": 24840,
+      "max_bytes": 25405,
+      "samples": 2
+    },
+    "b_video": {
+      "min_bytes": 6779197,
+      "max_bytes": 6917253,
+      "samples": 2
+    }
+  },
+  "block_started_monotonic": 5258.281,
+  "block_started_epoch": 1792404020.5064445,
+  "response_seconds": 0.7030000000004293,
+  "stops": {
+    "a": {
+      "stop_after_block_seconds": 1.530999999999949,
+      "late_rtp_after_5_seconds": false
+    },
+    "b": {
+      "stop_after_block_seconds": 1.3119999999998981,
+      "late_rtp_after_5_seconds": false
+    }
+  },
+  "old_jwt_pre_validate": 200,
+  "old_jwt_post_validate": 403,
+  "old_jwt_websocket_reconnect": 403,
+  "new_join_denied": true,
+  "saved_jwt_source": "official server issuer, controlled pre-revocation fixture, not extracted from APP",
+  "all_pass": true,
+  "same_prior_x86_apk_both_sides": true,
+  "package_stage": "prior_x86_only_not_final_dual_abi",
+  "artifact_sha256": "c2df93bd9030af6677872f3677e3776fe424d012e1b6adad2992bd195e075346"
+}

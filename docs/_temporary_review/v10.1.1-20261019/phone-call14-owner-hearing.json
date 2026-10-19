@@ -1,0 +1,8 @@
+{
+  "call_id": 14,
+  "owner_reply": "能听见",
+  "direction": "synthetic emulator tone -> real phone speaker",
+  "reverse_human_hearing": "NOT_RUN",
+  "audio_quality_AEC": "NOT_ASSESSED",
+  "timestamp_recorded_utc": "2026-10-19T13:49:46.153881+00:00"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PRIVATE_DATA_ERASURE_COMPLETE",
+  "attempts": 2,
+  "assets": [
+    {
+      "label": "standalone-retry",
+      "state": "deleted",
+      "file_exists": false,
+      "post_reference_exists": false
+    },
+    {
+      "label": "self-post-only",
+      "state": "deleted",
+      "file_exists": false,
+      "post_reference_exists": false
+    },
+    {
+      "label": "evidence-hold",
+      "state": "ready",
+      "file_exists": true,
+      "post_reference_exists": true
+    },
+    {
+      "label": "reported-post",
+      "state": "ready",
+      "file_exists": true,
+      "post_reference_exists": true
+    }
+  ],
+  "shared_messages_retained": 2,
+  "initial_backup_preserved": true,
+  "held_body_and_link_preserved": true,
+  "reported_body_and_link_preserved": true,
+  "moderation_report_retained": true
+}

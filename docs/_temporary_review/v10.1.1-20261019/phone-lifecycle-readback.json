@@ -1,0 +1,14 @@
+{
+  "app_created_and_withdrew_request_id": 8,
+  "state": "WITHDRAWN",
+  "next_request_id": 9,
+  "app_declined_state": "DECLINED",
+  "expiry_fixture_request_id": 10,
+  "app_refreshed_expired_state": "EXPIRED",
+  "retry_before_24h_denied": 409,
+  "isolated_timestamp_fixture_not_real_elapsed_time": true,
+  "final_accept_request_id": 11,
+  "app_accepted": true,
+  "app_unfriended": true,
+  "independent_api_readback": true
+}

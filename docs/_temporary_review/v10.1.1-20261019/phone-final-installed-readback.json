@@ -1,0 +1,14 @@
+[
+  {
+    "side": "phone",
+    "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+    "size": 403852021,
+    "readback": "pm path -> pull -> SHA256"
+  },
+  {
+    "side": "avd",
+    "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+    "size": 403852021,
+    "readback": "pm path -> pull -> SHA256"
+  }
+]

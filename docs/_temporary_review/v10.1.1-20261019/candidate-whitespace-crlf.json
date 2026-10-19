@@ -1,0 +1,34 @@
+{
+  "default_check_exit": 2,
+  "reason": "CR in preserved baseline CRLF files",
+  "command_local_cr_at_eol_check_exit": 0,
+  "baseline_and_candidate_styles": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart",
+      "baseline_and_candidate": [
+        {
+          "CRLF": 80,
+          "LF": 80
+        },
+        {
+          "CRLF": 115,
+          "LF": 115
+        }
+      ]
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "baseline_and_candidate": [
+        {
+          "CRLF": 596,
+          "LF": 596
+        },
+        {
+          "CRLF": 598,
+          "LF": 598
+        }
+      ]
+    }
+  ],
+  "no_global_git_config_changed": true
+}

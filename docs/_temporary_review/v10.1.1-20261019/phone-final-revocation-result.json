@@ -1,0 +1,36 @@
+{
+  "call_id": 14,
+  "same_final_apk_both_sides": true,
+  "real_phone_and_synthetic_emulator_audio": true,
+  "block_started_monotonic": 19042.421,
+  "block_started_epoch": 1792417804.6443868,
+  "response_seconds": 0.4850000000005821,
+  "stops": {
+    "phone": {
+      "stop_after_block_seconds": 0.7190000000009604,
+      "late_rtp_after_5_seconds": false
+    },
+    "avd": {
+      "stop_after_block_seconds": 0.7040000000015425,
+      "late_rtp_after_5_seconds": false
+    }
+  },
+  "old_jwt_pre_validate": 200,
+  "old_jwt_post_validate": 403,
+  "old_jwt_websocket_reconnect": 403,
+  "new_join_denied": true,
+  "saved_jwt_source": "official server issuer, controlled pre-revocation fixture, not extracted from APP",
+  "all_pass": true,
+  "inbound_audio_increased_both_sides": {
+    "phone_audio": {
+      "min_bytes": 143022,
+      "max_bytes": 143651,
+      "samples": 2
+    },
+    "avd_audio": {
+      "min_bytes": 624460,
+      "max_bytes": 644979,
+      "samples": 2
+    }
+  }
+}
