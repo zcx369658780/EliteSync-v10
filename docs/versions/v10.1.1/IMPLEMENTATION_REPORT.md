@@ -123,3 +123,89 @@ APK、SQL、凭据、JWT、私配、VHDX、真实设备序列／IP、原日志�
 **NOT_RUN**：阿里云原试点及8服务／数据库／隧道；公网／证书／备案／TURN／费用；真实认证／Push／支付；真实用户物删和生产保留政策；最终双架构APK真机摄像头／视频画面；反向人工听辨／音质／AEC；全部算法oracle；SQL恢复演练／强制旧schema rollback。call7合成音视频和call14最终包真机音频分别列示，未拼接为同包同call真机视频结论。
 
 交付后停止：**AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**。独立接受、main集成、清理和下一版派发各自需要相应权限。
+
+
+## R1 同版集中返修（2026-10-20）
+
+本节追加于原报告，不改写上文原时点结论。状态：**V10.1.1_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED**；成立条件为本节后继候选与审阅引用普通发布并独立回读完成。不是 Astra 接受、产品 main 集成或后继版本授权。
+
+### 固定身份与范围
+
+正式任务为 [Astra R1](https://github.com/zcx369658780/EliteSync-v10/blob/f6531845e05992619123748ca3251b4c7c2f8f73/docs/versions/v10.1.1/ASTRA_REVIEW_AND_R1_TASK_20261019.md)，Blob `9ff9f23304fe47aed7ac7f375ed2b627fa741605`。被审源码 `34a0b0ed4209895cebd4ef040519ac13a8054b6c`、原完整候选 `713e801345c4cb2f996fdf1338eb2d973c810359`、原审阅 `e03b4c44df328ce3ae5656009dcca7a3cba7b262` 均保留。接收时实时 main 为 `8823fc6244efa0ab6007228c6738b58ce571cc1c`；只读核验，没有合入其后继文档或改写冻结计划。
+
+| R1 对象 | 固定身份 |
+|---|---|
+| 新源码 Commit | `ee2459953146a135ae9b118a1ffe75946efd0183` |
+| 新源码 Tree | `a25020ce6f11da173aafc5e699a38f3c9b32fec7` |
+| 源码父提交 | `713e801345c4cb2f996fdf1338eb2d973c810359` |
+| apps（未改） | `1ddc864a8f7f8f7e024d6102a36057252bc77bab` |
+| services | `e4ae92d12d0bbac81a8ed7730a061aaec214da13` |
+| 候选引用 | `codex/v10.1.1-r1-candidate` |
+| 脱敏审阅 Commit / Tree | `33f64ef9a4adcd04f34d51e946cbea35ea9422cb` / `433f28170d03d26cecc321185c59b9356d62f4ae` |
+| 审阅引用 | `review/temporary-evidence-v10.1.1-r1-20261020` |
+
+最终报告提交是上述源码的后继文档提交，完整 Commit/Tree 与逐文件回读登记于集中交付回执；没有把本地私密 checkpoint 历史推到远端。源码只改变下面九条路径：
+
+- `services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php`
+- `services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php`
+- `services/backend-laravel/app/Services/Admin/UserGovernance.php`
+- `services/backend-laravel/phpunit.xml`
+- `services/backend-laravel/tests/TestCase.php`
+- `services/backend-laravel/tests/Feature/V1011R1AuthorizationTest.php`
+- `services/backend-laravel/tests/Integration/v1011_r1/worker.php`
+- `services/backend-laravel/tests/Integration/v1011_r1/run.py`
+- `services/backend-laravel/tests/Integration/v1011_r1/README.md`
+
+### 修补合同与有界类比检查
+
+`privateContent` 的附件参与者发现移至事务外，作为候选。事务内先按 id 递增取得全部候选 User 协调锁，再重读附件关系；新增未锁参与者直接 404，不在锁后乱序追加用户。重新锁定 MediaAsset 并核对 owner 与候选一致，再判断当前受众、好友、block 和独立聊天授权。事务外旧关联不作权限证据。
+
+`toggleLike` 的作者候选定位移至事务外；事务内先有序 User 锁，再锁 Post 重核作者、删除状态及当前用户状态，之后才执行受众查询、like/unlike、event、notice 和正文投影。不是改名 fresh，也不是只锁最终资产。真实路由及 EnsureAccountActive 不在这两个入口外层先开启一致性读事务；SQL 屏障记录最终首次定位的 transaction_level=0，协调锁与授权在 level=1。该结论针对当前 HTTP 调用链，不声称能刷新任意调用者预先建立的外层 RR 快照。
+
+直接相关的作者 `destroy` 原来未参与协调，现为 User→Post 锁后重读再软删除。管理员删除仍限已允许的 public/square 内容及原 revision/reason/confirm 合同，增加按 id 排序的 actor+owner 锁和作者重核。非作者发现它与举报删除经 `UserGovernance::target` 的 actor→owner 顺序可能互等，后者已统一为有序两用户查询；未放宽管理员受众或处理真实私有内容。检查限于两个受影响 Controller、SocialPolicy、LiveConsent gates、现行中间件及直接删除/举报协调，没有扩为全仓审计。
+
+没有新增产品字段、迁移或受众种类；原 SELF/FRIENDS、独立 CN/MC、消息/附件/RTC 许可、拉黑、隐藏、登出和注销区分保持。下面披露的测试事故曾误执行已有迁移流程，不将其写成“数据库迁移从未运行”。
+
+### 真实 MariaDB 前后对照
+
+独立本地 `elitesync_v10_1_1_dev`，loopback 43322，MariaDB **10.11.18**。实际 session/global isolation 均 **REPEATABLE-READ**，autocommit=1，innodb_snapshot_isolation=OFF；未降低隔离或修改全局配置。最终 runner 对每个 reader 的实际 RR 作 PASS 条件。
+
+真实 Laravel HTTP kernel→认证/路由/Controller→持久 MariaDB/私盘响应。每例使用独立虚构 pair/post，无聊天附件独立授权。撤权进程先持有有序用户锁；reader 完成首次读取并尝试用户锁；第三 PDO 观察到精确 reader connection→revoker connection 的 INNODB_LOCK_WAITS 后，才开放撤权屏障。撤权走实际 audience/unfriend/block 产品入口，外层提交后 reader 得锁继续；请求事务结束后再读已提交权限和 like/event/notice。COMMIT 的进程回执可晚于 reader 唤醒，依据是数据库锁交接及持久状态，不拼接 wall-clock 假次序。
+
+| 最终有效 PNG 对照 | 并发 9 项 | 先撤权再请求 9 项 | 合法正例 3 项 | 原始总 exit |
+|---|---|---|---|---|
+| 原两个 Controller（34a0…固定 Blob，PHP prepend 加载） | 9 项均 200，封面字节/正文泄露；like 增行/event/notice，unlike 删除既有 like/event | 全部明确 404、无新副作用 | 全部 200，图片字节/正文及预期互动成功 | 1，12/21 符合安全断言 |
+| R1 Controller | 全部明确 404；无图片/正文，无 like/event/notice 改变 | 全部明确 404，无副作用 | 全部 200，合法读取/like/unlike 保持 | 0，21/21 |
+
+三类撤权分别为 FRIENDS→SELF、解除好友、拉黑；media/like/unlike 各独立覆盖。两轮各 9 个精确锁等待屏障、各 21 个实际 RR 记录均命中。没有把 500、死锁或进程异常当拒绝。原源码现场失败是 Codex 本地合成执行结果，不冒称 Astra 曾现场复现或有真实用户受害。
+
+最早原源码轮 12/21、首修轮 21/21、恢复后首轮 21/21 原证均保留。其 68-byte PNG 后被发现 IDAT CRC 错误：可证明返回私密字节，不能证明正常图片渲染。最终重新生成 CRC 正确的 32×32 图片，并重做上述原 Controller/R1 对照；没有用旧坏图结果代替最终 APP 渲染。原 Controller 两文件 Blob 与正式审阅一致；baseline prepend 不重写授权算法，固定副本与 loader 原件保持 LOCAL_ONLY。
+
+### 必须披露的开发库事故与恢复
+
+主代理第一次 Feature 启动只设置 DB_CONNECTION=sqlite，没有识别本项目优先的 APP_DB_CONNECTION。它把 PHPUnit RefreshDatabase 连到了本版本地持久库，误清空数据；相关测试出现连接/fixture/授权错误。**这是执行错误，不是产品权限拒绝，也不是获准的清库操作。** 原错误 stdout/stderr/exit、误清空后的 SQL 快照和事前恢复点全部保留。其它数据库、旧试点和保护仓未触及。
+
+停止 API 后用事前 SQL 恢复：restore exit=0；事前 31 个有 INSERT 数据表的规范 VALUES 哈希全部一致，差异表为空。恢复点 SHA256：`e9ab8f176b3049097fcf9469a73ec4f31cfc3d52e6ffb471a5055241a9637c95`。这是主代理实际回读，非作者没有现场核验数据库。最初 baseline/fixed 新增的 R1 夹具行已经丢失，不能宣称这些新行连续保留；其原始请求/屏障/响应证据仍保留。恢复后重新建立独立 final/validpng 夹具，最终库、SQL 备份和所有失败保留，没有再次 seed 或覆盖原历史数据。
+
+修正防护：phpunit.xml 强制 APP_ENV/testing、APP_DB_CONNECTION 和 DB_CONNECTION/sqlite、DB_DATABASE/:memory:、DB_URL 空；Tests\TestCase 在 RefreshDatabase 执行前检查有效配置，包括缓存配置，异常立即阻止迁移。持久 MariaDB harness 不继承该 TestCase、不调用迁移，另核对实际连接 host/port/database/unix_socket。
+
+### Feature、APP、APK 与原失败
+
+- R1 Feature：**10 tests / 117 assertions / exit0**，含合法正例、三类撤权、作者删除、锁后资产 owner/动态 author/附件参与者变化拒绝，以及低 id owner/高 id admin 的统一查询顺序和审计。SQLite 的身份注入/SQL 顺序测试不声称证明真实锁等待。
+- 相关原测试：55 tests / 453 assertions / exit1，剩余两项为私媒注销后预期404实际401、旧动态发布预期201实际422；以原两个 Controller 精确加载重跑这两项仍同样失败（2 tests / 12 assertions / exit1），未删断言。其它相关项通过；不把重叠集合加成通过率。管理举报/处罚回归另 12 tests / 270 assertions / exit0。PHP 语法及差异空白检查通过；既有 deprecation 仍记录。
+- 初始错误环境：R1 Feature exit1（9项/90断言/3失败），相关集 exit2（55项/275断言/10错误/5失败）；均保留而非擦除。修正环境首个 R1 Feature 为9项/103断言/exit0，随后补管理锁序测试形成最终10项。
+- 先启动的既有 AVD 装有较早 x86 APK，225646810 bytes / SHA256 `c2df93bd9030af6677872f3677e3776fe424d012e1b6adad2992bd195e075346`，身份断言 exit1；该轮只是前置观察。停止它后使用另一既有授权 AVD，pm path→pull 确认原最终双 ABI 包：`com.elitesync.v10x.relationshipdev`、10.1.1-dev / 1010101、403852021 bytes、SHA256 `5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9`。与原包完全同 hash，签名仍为原 `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`；本次未构建或安装。
+- 最终 APP 组合为上述原 APK/apps 对象＋本节新 R1 后端。真实登录虚构测试账号、显示经产品上传/创建的有效封面和正文、点击喜欢与取消喜欢；独立后端读回 true/1→false/0。Owner 产品入口撤 SELF 后，图片及正文新请求均404，点击旧卡片未新增互动；显式刷新后标题/正文/卡片消失。原先已交付的像素可留到刷新，不声称能远程擦除旧画面。
+- APP 辅助副作用脚本曾错误预期第二轮再新增一条通知；产品有5分钟去重，实际仍为1条。原脚本抛异常但 Laravel 顶层使进程exit0；按 stdout 将该次列为失败，未把exit0算通过。随后过早连接刚启动DB又出现 QueryException/exit0，也未算通过。修正 oracle 后等待 SELECT1就绪，JSON及断言核对最终0 like、4条合法like/unlike事件、1条去重通知、SELF，exit0；拒绝操作没有第五条事件。所有原异常与恢复后只读结果保留。
+
+最终截图、SQL、凭据、token、响应字节、设备日志与 APK 原件均 LOCAL_ONLY。公开运行结论为 CODEX_REPORTED；非作者及 Astra 没有亲自操控这些物理资源。
+
+### 非作者复核、资源终态与 NOT_RUN
+
+独立 GPT-6.1 Sol/high 只读复核（非本次 Controller 作者）集中检查 RR、锁序、候选身份、独立附件授权、正文与 like/event/notice。其发现的 admin/report 锁序冲突已修；复核最终增量后无剩余阻断项。限制保留：封面矩阵不是全部聊天附件或管理删除并发矩阵；旧聊天媒体正例在相关测试中保持，但没有新增全量矩阵。源码复核不是 Astra 独立接受。
+
+本轮专属 API、两既有 AVD、MariaDB 容器均停止；8012/8013/43322/5554/5556 无监听，ADB无设备、临时8012 reverse已精确移除。AVD无音频、未root；没有再开手机、UDP、系统防火墙、DNAT或UAC窗口。为纠正辅助oracle最后只读重启过本版DB，SELECT1就绪后读回并再次停止；未启动其它服务。Docker Desktop保留运行，容器/卷/恢复点/事故及最终SQL/APK/原证全部保留。三保护根 HEAD/index/status 与本轮事前快照相同；长路径枚举警告保留，不把它写成全盘文件内容审计。
+
+复用原 call14 及其听辨/传输/撤权证据，仍按原同call/原时点限制；没有再测人耳、最终手机视频、AEC或新 RTC 窗口。NOT_RUN：手机操作、私网/公网开口、提权、防火墙/DNAT、云端原试点、供应商/费用/真实身份、真实用户删除、算法oracle、整版十AC重跑、客户端构建/安装、main/K08集成、旧资产/分支清理、v10.1.2。
+
+按现行临时审阅协议，新分支只增加 `docs/_temporary_review/v10.1.1-r1-20261020/` 的31份脱敏副本，旧审阅固定点与分支不变。文件清单 SHA 描述公开 LF 字节；脚本执行原件与占位副本 hash 分列。候选最终报告提交及审阅提交须普通 non-force 发布，再用独立全新 bare fetch 核 Commit/Tree，并逐一读取本次变更文件/审阅副本的远端字节核 Blob/SHA；回执固定最终身份。完成后停止，等待 Astra。
