@@ -1,5 +1,11 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-20 v10.1.1集成验收完成；v10.1.2冻结待Owner手动派发
+
+**V10.1.1_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / MAIN_PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / V10.1.2_FROZEN_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Astra已直接核验main `9e25756af9e4a969cc631a54d385d84bce18d890`、Root Tree `7b999e4af667b4c85a08cc8846de060e847b8a6c`、apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab`与services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`完整匹配，以及正常父子提交、107个产品路径、正式文档保护。独立终验见[集成验收](docs/versions/v10.1.1/integration_acceptance.md)；本地基线/资源终态仍CODEX_REPORTED/LOCAL_ONLY，运行未重测。Owner批准进入下一版，Astra已发布[冻结v10.1.2计划](docs/versions/v10.1.2/plan.md)及[唯一Codex长任务](docs/versions/v10.1.2/task_order.md)；尚待Owner手动交付本地Codex，当前不是已实施。真实身份供应商仍未选择或授权，正式关系只在隔离合成开发验证中可激活；v10.1.0整版PARTIAL/NOT_ACCEPTED与AC-10.1-08 PARTIAL、既有DB误清事故及历史失败保留。未启动v10.1.3。
+
+---
+
 ## 2026-10-20 v10.1.1功能已接受；安全集成候选待Astra独立核验
 
 **V10.1.1_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。Owner本次手动任务转交了Astra既有功能接受裁决，Codex仅在[正式功能验收归档](docs/versions/v10.1.1/acceptance.md)代录；B1-A/B已关闭。接受源码为`ee2459953146a135ae9b118a1ffe75946efd0183`，完整apps/services通过精确对象接入本次main集成候选，产品提交`6b7d7f47c47b642d453cb496c8556a1b76330add`，唯一parent为实时main`8823fc6244efa0ab6007228c6738b58ce571cc1c`；实际普通发布与远端回读结果见[唯一集成报告](docs/versions/v10.1.1/integration.md)及最终交付身份。尚未获得Astra的本次独立集成接受，不以本地Git核对代替运行环境验证。
