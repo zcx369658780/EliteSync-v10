@@ -1,0 +1,25 @@
+{
+  "operator_error": "APP_DB_CONNECTION in local env overrode DB_CONNECTION; PHPUnit RefreshDatabase reached the owned persistent development DB and emptied it.",
+  "actual_counts_after_incident": [
+    "elitesync_v10_1_1_dev",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "scope": "Only elitesync_v10_1_1_dev in the R1-owned local container; no protected repository or other DB was reset.",
+  "restore_point_sha256": "e9ab8f176b3049097fcf9469a73ec4f31cfc3d52e6ffb471a5055241a9637c95",
+  "restore_exit": 0,
+  "original_insert_tables": 31,
+  "all_original_insert_values_identical_after_restore": true,
+  "lost_new_fixtures": "The initial baseline/fixed R1 fixture rows were lost. Their raw results remain; they are not represented as continuously retained DB state.",
+  "retest": "Restored original pre-R1 data; new final/validpng suites were created and retained. The final validpng baseline and fixed matrices are separate fixture pairs.",
+  "prevention": "phpunit.xml forces testing + app-scoped SQLite-memory selector + empty DB_URL; Tests\\TestCase rejects effective cached/non-memory config before RefreshDatabase.",
+  "png_fixture_issue": "Initial 68-byte PNG had invalid IDAT CRC; raw bytes proved disclosure but not image rendering. Final comparisons and APP use a valid 32x32 PNG.",
+  "apk_probe_issue": {
+    "first_avd_apk_sha256": "c2df93bd9030af6677872f3677e3776fe424d012e1b6adad2992bd195e075346",
+    "first_avd_bytes": 225646810,
+    "identity_assertion_exit": 1,
+    "resolution": "Stopped that AVD and used the other previously authorized AVD with original final dual-ABI APK; no build or installation."
+  }
+}

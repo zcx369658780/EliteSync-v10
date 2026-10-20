@@ -1,0 +1,155 @@
+{
+  "lf_bytes": true,
+  "files": [
+    {
+      "path": "app-readback.json",
+      "bytes": 2465,
+      "sha256": "ddb8e9e1e2b45167fbf68d013ff8c18e7373b4ca2266a783244f0bb55a70ed46"
+    },
+    {
+      "path": "baseline-validpng-races.json",
+      "bytes": 46310,
+      "sha256": "40be43831d12cc8f62b64670417497b69157a1f3c6abfbc1a8601932ac61386a"
+    },
+    {
+      "path": "baseline-validpng-races.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline-validpng-races.stdout.txt",
+      "bytes": 2322,
+      "sha256": "0217dfec124ee83681f9e4f90f7b9860cf1b5a4d4aeca47a0e0a4850e5b37709"
+    },
+    {
+      "path": "environment-incident.json",
+      "bytes": 1625,
+      "sha256": "36c8d75806d93817c22c248f9b339336beb037b66253658b5623db51b5189c01"
+    },
+    {
+      "path": "exits.json",
+      "bytes": 3490,
+      "sha256": "d37e8c38c07e98642a7695704a1c3c89ee6eee06991cdd8f57e691e357c99d9e"
+    },
+    {
+      "path": "fixed-validpng-races.json",
+      "bytes": 46052,
+      "sha256": "16e2916db9561219c79a491aec5b31ec3cb43118fefbea5f963ef0e2b8162bfe"
+    },
+    {
+      "path": "fixed-validpng-races.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixed-validpng-races.stdout.txt",
+      "bytes": 2313,
+      "sha256": "cfa1e098e6928f2d7cc5d851304c0aedbc122fa123b677ce075644614f07c8b8"
+    },
+    {
+      "path": "historical-failures-baseline.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "historical-failures-baseline.stdout.txt",
+      "bytes": 1656,
+      "sha256": "e87da99c62df9e0e8dda5aaa5687aafda0d5bc262d0699d01a7cb81400f7f625"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 2856,
+      "sha256": "910708d94f63d01353bd24d210efd1bb7efa44f173998cac79ea8188042d9ebe"
+    },
+    {
+      "path": "management-feature.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "management-feature.stdout.txt",
+      "bytes": 360,
+      "sha256": "b98d7b73e0a47f9b2a5c1cb9df067226a33f4f85be8e463a2572030ada235b29"
+    },
+    {
+      "path": "NON_AUTHOR_REVIEW.md",
+      "bytes": 1292,
+      "sha256": "8fb428bd73f4d2fa6a77f7523d7e465831550bd54ea5c896b9ae3ee246387806"
+    },
+    {
+      "path": "protection.json",
+      "bytes": 972,
+      "sha256": "2522794ea1e525d776a63a1bc961316f1268c1bbb4cc094322f316ceceba94f0"
+    },
+    {
+      "path": "r1-feature-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "r1-feature-final.stdout.txt",
+      "bytes": 360,
+      "sha256": "13e59b76a966e0d91fb905c06267e4bf8aabfe8fcd50089fe9c9ad9c1e8fdc26"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1285,
+      "sha256": "40d0f668873cc25968509ca971c563972bb0e0a1776ee0ec991763e693350f31"
+    },
+    {
+      "path": "related-feature-fixed-env.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "related-feature-fixed-env.stdout.txt",
+      "bytes": 1658,
+      "sha256": "7c97ed1521551f37cb68dd7f9c98eec95c59df80d4d5290369ac2e1c361aa537"
+    },
+    {
+      "path": "resources.json",
+      "bytes": 365,
+      "sha256": "6ce1f9ae435d739e10f80baa7e17338e36dd9ddc7d85a35ce91b9248227ae099"
+    },
+    {
+      "path": "script-hashes.json",
+      "bytes": 1598,
+      "sha256": "2197f7a4ac6261a00921707e6b86afeadc904e03332fdaff596da334fb7f1cef"
+    },
+    {
+      "path": "scripts/android-ui.py",
+      "bytes": 3820,
+      "sha256": "2c18189ce34b2b6efbc012cfe8e2cdc69e752c46b46bfe9d7c792ef0e62e0245"
+    },
+    {
+      "path": "scripts/app-effects.php",
+      "bytes": 1736,
+      "sha256": "420dff8cc7a9130e4172df02de2684928782ef5d02852f38b5538875f740091a"
+    },
+    {
+      "path": "scripts/app-fixture.php",
+      "bytes": 1339,
+      "sha256": "2e2aa4b1d1c182b91cd3ac2aa0ecedfd6560ff694f283504ebc3bd2d7373aef0"
+    },
+    {
+      "path": "scripts/app-http.py",
+      "bytes": 2551,
+      "sha256": "144777134f319258650f54065fd028a1f7c7179120c014823d28515304e32074"
+    },
+    {
+      "path": "scripts/finish-local.py",
+      "bytes": 2956,
+      "sha256": "9b29a48257b1673228545a2d5375ba3e51f9ab9607d56125d016239b1c49cdde"
+    },
+    {
+      "path": "scripts/record.py",
+      "bytes": 546,
+      "sha256": "666560ae010ebebaaa372b05400e0276a0436dd99d7fb6a2714f95d7e948d655"
+    },
+    {
+      "path": "scripts/restore-owned-db.py",
+      "bytes": 2847,
+      "sha256": "5477180a7115e83ff4dc494c228a998ae4bb6c58c461002c59e5c3a9806ce363"
+    }
+  ]
+}

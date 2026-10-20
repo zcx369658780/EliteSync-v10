@@ -1,0 +1,1540 @@
+{
+  "total": 21,
+  "passed": 12,
+  "cases": [
+    {
+      "label": "race-audience-media",
+      "mode": "race",
+      "action": "media",
+      "revoke": "audience",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 99,
+        "sha256": "e199af092c3c5598150611341101b9e423c450c6ab8a8d4ba3cd5e38272a314f",
+        "content_type": "image/png",
+        "private_body_returned": false,
+        "private_media_returned": true
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454426.926945,
+        "connection_id": 487,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454426.977681,
+          "sql": "select `sender_id`, `receiver_id` from `chat_messages` where exists (select * from `message_attachments` where `chat_messages`.`id` = `message_attachments`.`message_id` and `media_asset_id` = ?)",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454426.979248,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454427.1794467,
+          "rows": [
+            {
+              "waiting_connection": 487,
+              "blocking_connection": 484,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454427.236627,
+          "response": {
+            "status": 200,
+            "length": 27,
+            "sha256": "7402afe2396dc02e46ecf784db9e11d9062912546adbefcdf750c528f5ca1abc",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454427.241246
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454427.23946,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-audience-like",
+      "mode": "race",
+      "action": "like",
+      "revoke": "audience",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 856,
+        "sha256": "740ba8877fa20332b5afa40a2fdb954a1ac8c1771d7ad7e6bfa7ddc67aee3c07",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [
+            "status_post_like"
+          ],
+          "notification_count": 1
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454427.691631,
+        "connection_id": 490,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454427.740524,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454427.742307,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454427.9232073,
+          "rows": [
+            {
+              "waiting_connection": 490,
+              "blocking_connection": 489,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454427.97693,
+          "response": {
+            "status": 200,
+            "length": 27,
+            "sha256": "b810d87e0ecfc0115ebdaaac923ffa46901e73dc8156d3c6117e3ebe964b3df8",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454427.980854
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454427.979851,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-audience-unlike",
+      "mode": "race",
+      "action": "unlike",
+      "revoke": "audience",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 857,
+        "sha256": "8fc7e3feaf85ef7678d12add1fdb3812994a153529e9e591dfbd09249bdfd043",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [
+            "status_post_unlike"
+          ],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454428.447316,
+        "connection_id": 493,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454428.493065,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454428.494667,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454428.7021692,
+          "rows": [
+            {
+              "waiting_connection": 493,
+              "blocking_connection": 492,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454428.763039,
+          "response": {
+            "status": 200,
+            "length": 27,
+            "sha256": "f9fdd3a3df44d6a8b94fd6f5a7b7514100c909845a066575b6c15141e06f478d",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454428.767421
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454428.766504,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-unfriend-media",
+      "mode": "race",
+      "action": "media",
+      "revoke": "unfriend",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 99,
+        "sha256": "e199af092c3c5598150611341101b9e423c450c6ab8a8d4ba3cd5e38272a314f",
+        "content_type": "image/png",
+        "private_body_returned": false,
+        "private_media_returned": true
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454429.226478,
+        "connection_id": 498,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454429.273437,
+          "sql": "select `sender_id`, `receiver_id` from `chat_messages` where exists (select * from `message_attachments` where `chat_messages`.`id` = `message_attachments`.`message_id` and `media_asset_id` = ?)",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454429.275096,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454429.47915,
+          "rows": [
+            {
+              "waiting_connection": 498,
+              "blocking_connection": 497,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454429.532583,
+          "response": {
+            "status": 200,
+            "length": 48,
+            "sha256": "1636db47e30786ad286f45d257415ff9798e28266ad6587581defaeaf8f4f7a0",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454429.537751
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454429.535413,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-unfriend-like",
+      "mode": "race",
+      "action": "like",
+      "revoke": "unfriend",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 856,
+        "sha256": "1e833317fb1c63165a239d0585b0d6b679f1e0ddbdea864153eb75c2b65ef19a",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [
+            "status_post_like"
+          ],
+          "notification_count": 1
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454429.990707,
+        "connection_id": 501,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454430.034246,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454430.03587,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454430.229367,
+          "rows": [
+            {
+              "waiting_connection": 501,
+              "blocking_connection": 500,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454430.283001,
+          "response": {
+            "status": 200,
+            "length": 48,
+            "sha256": "1636db47e30786ad286f45d257415ff9798e28266ad6587581defaeaf8f4f7a0",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454430.286931
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454430.285891,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-unfriend-unlike",
+      "mode": "race",
+      "action": "unlike",
+      "revoke": "unfriend",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 857,
+        "sha256": "a947a56bafd466ad96e4a4353d4f72c66ef45aa6361d6ccb6301a4be5490082e",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [
+            "status_post_unlike"
+          ],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454430.741132,
+        "connection_id": 504,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454430.784869,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454430.786592,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454430.9950142,
+          "rows": [
+            {
+              "waiting_connection": 504,
+              "blocking_connection": 503,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454431.046225,
+          "response": {
+            "status": 200,
+            "length": 48,
+            "sha256": "1636db47e30786ad286f45d257415ff9798e28266ad6587581defaeaf8f4f7a0",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454431.050787
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454431.049525,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-block-media",
+      "mode": "race",
+      "action": "media",
+      "revoke": "block",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 99,
+        "sha256": "e199af092c3c5598150611341101b9e423c450c6ab8a8d4ba3cd5e38272a314f",
+        "content_type": "image/png",
+        "private_body_returned": false,
+        "private_media_returned": true
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454431.539114,
+        "connection_id": 509,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454431.587913,
+          "sql": "select `sender_id`, `receiver_id` from `chat_messages` where exists (select * from `message_attachments` where `chat_messages`.`id` = `message_attachments`.`message_id` and `media_asset_id` = ?)",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454431.590245,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454431.7921464,
+          "rows": [
+            {
+              "waiting_connection": 509,
+              "blocking_connection": 508,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454431.856353,
+          "response": {
+            "status": 200,
+            "length": 50,
+            "sha256": "f82c76cc0caa13323c342227195d4c916cbb8d066b7c252ca89d43ba0110c84a",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454431.860428
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454431.85933,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-block-like",
+      "mode": "race",
+      "action": "like",
+      "revoke": "block",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 856,
+        "sha256": "78518b837aeee41d9c1786cc2f052c8c15208d93cba2a321173acec91c536ef0",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [
+            "status_post_like"
+          ],
+          "notification_count": 1
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454432.301396,
+        "connection_id": 512,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454432.349735,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454432.351324,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454432.5366807,
+          "rows": [
+            {
+              "waiting_connection": 512,
+              "blocking_connection": 511,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454432.606214,
+          "response": {
+            "status": 200,
+            "length": 50,
+            "sha256": "b8cbaad077568d300e5a085f6804d01c9b6271ef500403863cfa2a42063d0436",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454432.610948
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454432.609301,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "race-block-unlike",
+      "mode": "race",
+      "action": "unlike",
+      "revoke": "block",
+      "pass": false,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 857,
+        "sha256": "05f1d10973d34ae83e803aece1dac3a09a139d8a2402505a16d37d4a74f8e3cd",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [
+            "status_post_unlike"
+          ],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454433.08512,
+        "connection_id": 517,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      },
+      "barrier_order_pass": true,
+      "barrier": {
+        "first_read": {
+          "event": "first_target_read",
+          "wall_time": 1792454433.129581,
+          "sql": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+          "transaction_level": 1
+        },
+        "lock_attempt": {
+          "event": "reader_user_lock_attempt",
+          "wall_time": 1792454433.131071,
+          "transaction_level": 1
+        },
+        "observed_wait": {
+          "wall_time": 1792454433.3344846,
+          "rows": [
+            {
+              "waiting_connection": 517,
+              "blocking_connection": 516,
+              "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update"
+            }
+          ]
+        },
+        "revocation_written": {
+          "event": "revocation_written",
+          "wall_time": 1792454433.398604,
+          "response": {
+            "status": 200,
+            "length": 50,
+            "sha256": "d6e358f13b908f5bf41e377da070c00803a36421383dc8ccc8b1b3208daf4314",
+            "content_type": "application/json"
+          }
+        },
+        "revocation_committed_ack": {
+          "event": "revocation_committed",
+          "wall_time": 1792454433.404208
+        },
+        "reader_acquired": {
+          "event": "reader_user_locks_acquired",
+          "wall_time": 1792454433.40163,
+          "transaction_level": 1
+        }
+      }
+    },
+    {
+      "label": "serial-audience-media",
+      "mode": "serial",
+      "action": "media",
+      "revoke": "audience",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 37,
+        "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454433.894837,
+        "connection_id": 520,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-audience-like",
+      "mode": "serial",
+      "action": "like",
+      "revoke": "audience",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454434.441408,
+        "connection_id": 522,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-audience-unlike",
+      "mode": "serial",
+      "action": "unlike",
+      "revoke": "audience",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "SELF",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454434.970802,
+        "connection_id": 526,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-unfriend-media",
+      "mode": "serial",
+      "action": "media",
+      "revoke": "unfriend",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 37,
+        "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454435.501332,
+        "connection_id": 528,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-unfriend-like",
+      "mode": "serial",
+      "action": "like",
+      "revoke": "unfriend",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454436.032863,
+        "connection_id": 530,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-unfriend-unlike",
+      "mode": "serial",
+      "action": "unlike",
+      "revoke": "unfriend",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REMOVED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454436.58406,
+        "connection_id": 532,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-block-media",
+      "mode": "serial",
+      "action": "media",
+      "revoke": "block",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 37,
+        "sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454437.169683,
+        "connection_id": 537,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-block-like",
+      "mode": "serial",
+      "action": "like",
+      "revoke": "block",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454437.79341,
+        "connection_id": 542,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "serial-block-unlike",
+      "mode": "serial",
+      "action": "unlike",
+      "revoke": "block",
+      "pass": true,
+      "denied": true,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": true,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 404,
+        "length": 35,
+        "sha256": "002d29b2df5abf6ab7cdf9ef14d415f6ce122ef83732e68e8ce17df161a571c8",
+        "content_type": "application/json",
+        "private_body_returned": false,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "revoke": 0,
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "REVOKED",
+        "friendship_revision": 2,
+        "owner_blocks_viewer": true,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454438.405927,
+        "connection_id": 544,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "positive-none-media",
+      "mode": "positive",
+      "action": "media",
+      "revoke": "none",
+      "pass": true,
+      "denied": false,
+      "side_effects_unchanged": true,
+      "committed_revocation_verified": false,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 99,
+        "sha256": "e199af092c3c5598150611341101b9e423c450c6ab8a8d4ba3cd5e38272a314f",
+        "content_type": "image/png",
+        "private_body_returned": false,
+        "private_media_returned": true
+      },
+      "exit_codes": {
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454438.688967,
+        "connection_id": 545,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "positive-none-like",
+      "mode": "positive",
+      "action": "like",
+      "revoke": "none",
+      "pass": true,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": false,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 856,
+        "sha256": "d5000edbf5bd2ceba7eabf046988afb42fc2be7240a67d64b7bc46c535d9561f",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 0,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 1,
+          "events": [
+            "status_post_like"
+          ],
+          "notification_count": 1
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454439.00272,
+        "connection_id": 546,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    },
+    {
+      "label": "positive-none-unlike",
+      "mode": "positive",
+      "action": "unlike",
+      "revoke": "none",
+      "pass": true,
+      "denied": false,
+      "side_effects_unchanged": false,
+      "committed_revocation_verified": false,
+      "repeatable_read_verified": true,
+      "response": {
+        "status": 200,
+        "length": 857,
+        "sha256": "3bba6629b855eae70c8730948467014ff7f929d429baca61df973ab1b0d0230b",
+        "content_type": "application/json",
+        "private_body_returned": true,
+        "private_media_returned": false
+      },
+      "exit_codes": {
+        "reader": 0
+      },
+      "effects": {
+        "before": {
+          "like_count": 1,
+          "events": [],
+          "notification_count": 0
+        },
+        "after": {
+          "like_count": 0,
+          "events": [
+            "status_post_unlike"
+          ],
+          "notification_count": 0
+        }
+      },
+      "persisted_authorization": {
+        "transaction_level": 0,
+        "post_exists": true,
+        "post_audience": "FRIENDS",
+        "post_is_deleted": false,
+        "friendship_state": "ACTIVE",
+        "friendship_revision": 1,
+        "owner_blocks_viewer": false,
+        "viewer_blocks_owner": false
+      },
+      "reader_settings": {
+        "event": "reader_started",
+        "wall_time": 1792454439.390163,
+        "connection_id": 547,
+        "database": "elitesync_v10_1_1_dev",
+        "version": "10.11.18-MariaDB-ubu2204",
+        "session_isolation": "REPEATABLE-READ",
+        "global_isolation": "REPEATABLE-READ"
+      }
+    }
+  ]
+}

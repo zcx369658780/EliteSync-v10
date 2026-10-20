@@ -1,0 +1,26 @@
+[
+  {
+    "protected_root_ordinal": 1,
+    "head": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+    "index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+    "status_sha256": "f301e811bb5dd8960b28f795d2ccd1febc350692acdfa4e178b6d3a11fe56a5e",
+    "status_entries": 252,
+    "unchanged": true
+  },
+  {
+    "protected_root_ordinal": 2,
+    "head": "0f06e895a89629a7f4f0cf0c62b784446ecf515a",
+    "index_sha256": "cc0efd6312ec299f257a8f06544e15114d23386696d652a8399fcb133982cb60",
+    "status_sha256": "db9612a69b0079eb28697c8839c4031de2a696ca99006749fccc74d558f634ab",
+    "status_entries": 68,
+    "unchanged": true
+  },
+  {
+    "protected_root_ordinal": 3,
+    "head": "3ef84dbce8ff927363a1d71f9296b73a3f9442e2",
+    "index_sha256": "eb3d491444a5d64ae91313717ca3ba39db99898c0149a4df236395f4b05a63e7",
+    "status_sha256": "a5564b2b28afdb840237be601f36e185910c30cbf0a3a7c91a3c1f99ed36fb95",
+    "status_entries": 2,
+    "unchanged": true
+  }
+]

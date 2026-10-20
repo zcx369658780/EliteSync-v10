@@ -1,0 +1,11 @@
+{
+  "owned_api_stopped": true,
+  "owned_db_stopped": true,
+  "owned_avds_stopped": true,
+  "owned_ports_no_listeners": true,
+  "adb_reverse_removed": true,
+  "avd_nonroot": true,
+  "avd_audio_disabled": true,
+  "firewall_dnat_uac_phone_rtc": "NOT_RUN",
+  "retained": "Volumes, original candidates, APKs, SQL backups, incident snapshot and raw evidence retained."
+}

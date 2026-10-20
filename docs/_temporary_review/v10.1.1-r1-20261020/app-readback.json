@@ -1,0 +1,68 @@
+{
+  "app-b-owner-restore": {
+    "post_status": 200,
+    "cover_status": 200,
+    "private_body_returned": true,
+    "private_image_returned": true,
+    "liked_by_viewer": false,
+    "likes_count": 0
+  },
+  "app-b-like-readback": {
+    "post_status": 200,
+    "cover_status": 200,
+    "private_body_returned": true,
+    "private_image_returned": true,
+    "liked_by_viewer": true,
+    "likes_count": 1
+  },
+  "app-b-unlike-readback": {
+    "post_status": 200,
+    "cover_status": 200,
+    "private_body_returned": true,
+    "private_image_returned": true,
+    "liked_by_viewer": false,
+    "likes_count": 0
+  },
+  "app-b-owner-revoke": {
+    "post_status": 404,
+    "cover_status": 404,
+    "private_body_returned": false,
+    "private_image_returned": false
+  },
+  "app-b-stale-effects-ready": {
+    "likes": 0,
+    "events": [
+      "status_post_like",
+      "status_post_unlike",
+      "status_post_like",
+      "status_post_unlike"
+    ],
+    "notifications": 1,
+    "audience": "SELF"
+  },
+  "oracle_failure_retained": {
+    "original_label": "app-b-stale-effects",
+    "process_exit": 0,
+    "stdout_assertion": "RuntimeException: unauthorized effect or missing APP effects",
+    "cause": "Test expected two notifications; product correctly deduplicates identical likes within five minutes. Corrected read-only oracle requires one notice and explicit exit(1) on failure. Exit0 was not treated as pass."
+  },
+  "early_db_read_failure_retained": {
+    "label": "app-b-stale-effects-corrected",
+    "process_exit": 0,
+    "stdout": "QueryException / MySQL server has gone away before DB ready",
+    "verdict": "NOT_PASS; final ready-gated read-only probe parsed structured JSON and asserted the expected state."
+  },
+  "apk": {
+    "package": "com.elitesync.v10x.relationshipdev",
+    "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+    "bytes": 403852021,
+    "pull_exit": 0,
+    "same_as_original": true
+  },
+  "refresh_revoked_marker_absent": true,
+  "cache_limit": "A previously displayed card can remain until explicit refresh. Stale APP action creates no additional DB effect; refresh removes revoked title/body. No claim of erasing already delivered pixels.",
+  "screenshots_local_only": {
+    "app-b-allowed-cover-emulator-5556.png": "22d96209331053143523914d491cbb31fe88e85c4ff64e4049b990310d21fadb",
+    "app-b-revoked-refreshed-emulator-5556.png": "cccc6d22c1b9fdc27ca8853b8d9d1324afbe4d035801fc0e83b7a9305cbee60f"
+  }
+}

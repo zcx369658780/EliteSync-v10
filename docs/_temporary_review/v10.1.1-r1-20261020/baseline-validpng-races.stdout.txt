@@ -1,0 +1,21 @@
+{"label": "race-audience-media", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-audience-like", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-audience-unlike", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-unfriend-media", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-unfriend-like", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-unfriend-unlike", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-block-media", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-block-like", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "race-block-unlike", "pass": false, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-audience-media", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-audience-like", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-audience-unlike", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-unfriend-media", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-unfriend-like", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-unfriend-unlike", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-block-media", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-block-like", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "serial-block-unlike", "pass": true, "exit_codes": {"revoke": 0, "reader": 0}, "harness_error": null}
+{"label": "positive-none-media", "pass": true, "exit_codes": {"reader": 0}, "harness_error": null}
+{"label": "positive-none-like", "pass": true, "exit_codes": {"reader": 0}, "harness_error": null}
+{"label": "positive-none-unlike", "pass": true, "exit_codes": {"reader": 0}, "harness_error": null}
