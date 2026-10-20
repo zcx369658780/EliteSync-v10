@@ -174,7 +174,7 @@ APK、SQL、凭据、JWT、私配、VHDX、真实设备序列／IP、原日志�
 
 | 最终有效 PNG 对照 | 并发 9 项 | 先撤权再请求 9 项 | 合法正例 3 项 | 原始总 exit |
 |---|---|---|---|---|
-| 原两个 Controller（34a0…固定 Blob，PHP prepend 加载） | 9 项均 200，封面字节/正文泄露；like 增行/event/notice，unlike 删除既有 like/event | 全部明确 404、无新副作用 | 全部 200，图片字节/正文及预期互动成功 | 1，12/21 符合安全断言 |
+| 原两个 Controller（34a0…固定 Blob，PHP prepend 加载） | 9 项均 200，封面字节/正文泄露；like 增行/event/notice，unlike 删除既有 like 并新增 event | 全部明确 404、无新副作用 | 全部 200，图片字节/正文及预期互动成功 | 1，12/21 符合安全断言 |
 | R1 Controller | 全部明确 404；无图片/正文，无 like/event/notice 改变 | 全部明确 404，无副作用 | 全部 200，合法读取/like/unlike 保持 | 0，21/21 |
 
 三类撤权分别为 FRIENDS→SELF、解除好友、拉黑；media/like/unlike 各独立覆盖。两轮各 9 个精确锁等待屏障、各 21 个实际 RR 记录均命中。没有把 500、死锁或进程异常当拒绝。原源码现场失败是 Codex 本地合成执行结果，不冒称 Astra 曾现场复现或有真实用户受害。
