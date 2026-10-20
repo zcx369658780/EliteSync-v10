@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "four_fields.py",
+      "sha256": "dd91b85ba6fcd6afbee2d8b5aa5ecf513319f61bfd51307fd836920a977dd5a3",
+      "bytes": 2134,
+      "original_sha256": "dd91b85ba6fcd6afbee2d8b5aa5ecf513319f61bfd51307fd836920a977dd5a3",
+      "original_bytes": 2134,
+      "transformation": "verbatim safe script/aggregate"
+    },
+    {
+      "path": "four-fields-result.json",
+      "sha256": "874aad770b19967dc953df1407187c40c8c25c4745d65c77b767dd9f7c8ceb7f",
+      "bytes": 491,
+      "original_sha256": "874aad770b19967dc953df1407187c40c8c25c4745d65c77b767dd9f7c8ceb7f",
+      "original_bytes": 491,
+      "transformation": "verbatim safe script/aggregate"
+    },
+    {
+      "path": "four-fields-http.stdout",
+      "sha256": "3fd031dafc02b0c20f6299ae012035906a4a144ce8616b229cbf5c6e6bc301f0",
+      "bytes": 391,
+      "original_sha256": "3fd031dafc02b0c20f6299ae012035906a4a144ce8616b229cbf5c6e6bc301f0",
+      "original_bytes": 391,
+      "transformation": "verbatim safe script/aggregate"
+    },
+    {
+      "path": "four-fields-http.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_bytes": 0,
+      "transformation": "verbatim safe script/aggregate"
+    },
+    {
+      "path": "resource-final-after-four-fields.json",
+      "sha256": "93982b68c82b72ef3b73333aa40da002a4d3cc5259298e9f42df736cc863b056",
+      "bytes": 827,
+      "original_sha256": "93982b68c82b72ef3b73333aa40da002a4d3cc5259298e9f42df736cc863b056",
+      "original_bytes": 827,
+      "transformation": "verbatim safe script/aggregate"
+    },
+    {
+      "path": "four-fields-http.command.json",
+      "sha256": "7e28e57bef8e69b7a0d2a4b69572c7a419a4c6fd373840ed35474de361a362f3",
+      "bytes": 151,
+      "original_sha256": "dc8b1816a3b237be53e2c1c3ad96d4f4a1557ef7f7e04c0ff1e644c76ddc002a",
+      "original_bytes": 235,
+      "transformation": "command machine path omitted"
+    }
+  ]
+}
