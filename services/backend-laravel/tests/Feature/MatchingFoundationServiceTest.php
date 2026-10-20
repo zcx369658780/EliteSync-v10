@@ -32,7 +32,7 @@ class MatchingFoundationServiceTest extends TestCase
     private function qualify(User ...$users): void {
         config(['questionnaire.required_answer_count'=>1]);
         $q=QuestionnaireQuestion::firstOrCreate(['question_key'=>'foundation-qualification'],['category'=>'test','content'=>'Foundation valid answer fixture','question_type'=>'single_choice','options'=>[['option_id'=>'A']],'sort_order'=>0,'enabled'=>true,'version'=>1]);
-        foreach($users as $u){$u->verify_status='approved';$u->save();\App\Models\QuestionnaireAnswer::updateOrCreate(['user_id'=>$u->id,'questionnaire_question_id'=>$q->id],['answer_payload'=>['value'=>'A','selected_answer'=>['A']],'version'=>1]);}
+        foreach($users as $u){$u->verify_status='approved';$u->save();\App\Models\QuestionnaireAnswer::updateOrCreate(['user_id'=>$u->id,'questionnaire_question_id'=>$q->id],['answer_payload'=>['value'=>'A','selected_answer'=>['A']],'version'=>1]);app(\App\Services\SlowDatingService::class)->participate((int)$u->id,'opt_in',0,'fixture opt-in');}
     }
 
     public function test_additive_schema_and_legacy_match_coexist(): void
@@ -183,7 +183,10 @@ class MatchingFoundationServiceTest extends TestCase
         $revealed = $rounds->transition($waiting, RoundState::Revealed, $waiting->state_version, 'test', null, OperationAction::Reveal);
         $this->assertSame(RoundState::Revealed, $revealed->state);
         $this->assertDatabaseHas('dating_matches', ['round_id' => $round->id, 'drop_released' => true]);
-        $this->assertSame(2, DatingRoundUserState::query()->where('round_id', $round->id)->where('conversation_eligible', true)->count());
+        $this->assertSame(2, DatingRoundUserState::query()->where('round_id', $round->id)->where('conversation_eligible', false)->count());
+        $this->assertDatabaseCount('match_proposals', 1);
+        $this->assertDatabaseCount('match_proposal_slots', 2);
+        $this->assertDatabaseCount('product_connections', 0);
     }
 
     public function test_all_unmatched_reveals_no_candidate_then_closes_projection(): void

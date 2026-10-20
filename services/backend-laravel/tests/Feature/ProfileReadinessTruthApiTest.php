@@ -78,6 +78,8 @@ class ProfileReadinessTruthApiTest extends TestCase
             ->assertJsonPath('profile_readiness.showcase.review_status', 'pending')
             ->assertJsonPath('profile_readiness.showcase.publication_status', 'not_published')
             ->assertJsonPath('profile_readiness.showcase.affects_matching_eligibility', false);
+        $this->assertFalse(app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists(), 'Readiness alone is not opt-in');
+        app(\App\Services\SlowDatingService::class)->participate((int)$user->id, 'opt_in', 0, 'Explicit fixture opt-in');
         $this->assertTrue(
             app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists()
         );

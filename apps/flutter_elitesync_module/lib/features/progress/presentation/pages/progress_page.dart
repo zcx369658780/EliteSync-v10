@@ -51,35 +51,45 @@ class ProgressPage extends ConsumerWidget {
                 onTap: () => context.go(AppRouteNames.progressConnection),
               ),
             ),
-            Text('三阶段只读摘要', style: Theme.of(context).textTheme.titleMedium),
-            const Text('摘要不授予匹配、连接或消息权限；准备状态未知不会自动撤销已有连接。'),
-            if (summaries.any(
-              (summary) =>
-                  summary.authority ==
-                  HomeProjectionAuthority.syntheticDevelopment,
-            ))
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text('开发演示（Synthetic）· 非正式事实，不代表匹配、连接或消息权限'),
+            Card(
+              child: ListTile(
+                title: const Text('正式恋爱关系'),
+                subtitle: const Text('独立申请与双向确认；真实实人供应商待配置'),
+                leading: const Icon(Icons.favorite_border),
+                onTap: () => context.push('/formal-relationship'),
               ),
-            for (final summary in summaries)
-              Card(
-                key: ValueKey('progress-state-${summary.domain.name}'),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        summary.domain.label,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      Text(_stateLabel(summary)),
-                      Text(_sourceLabel(summary.authority)),
-                    ],
+            ),
+            if (!const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD')) ...[
+              Text('三阶段只读摘要', style: Theme.of(context).textTheme.titleMedium),
+              const Text('摘要不授予匹配、连接或消息权限；准备状态未知不会自动撤销已有连接。'),
+              if (summaries.any(
+                (summary) =>
+                    summary.authority ==
+                    HomeProjectionAuthority.syntheticDevelopment,
+              ))
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  child: Text('开发演示（Synthetic）· 非正式事实，不代表匹配、连接或消息权限'),
+                ),
+              for (final summary in summaries)
+                Card(
+                  key: ValueKey('progress-state-${summary.domain.name}'),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          summary.domain.label,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        Text(_stateLabel(summary)),
+                        Text(_sourceLabel(summary.authority)),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+            ],
             Card(
               child: ListTile(
                 key: const ValueKey('progress-readiness-entry'),

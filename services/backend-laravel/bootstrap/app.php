@@ -26,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(RequestTraceMiddleware::class);
         $middleware->prependToGroup('api', \App\Http\Middleware\PrivateDynamicCharts::class);
         $middleware->appendToGroup('api', QuestionSnapshotLock::class);
+        $middleware->prependToGroup('api', \App\Http\Middleware\JourneyPrivateResponse::class);
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
         $middleware->prependToGroup('api', ForceJsonResponse::class);
         $middleware->alias([

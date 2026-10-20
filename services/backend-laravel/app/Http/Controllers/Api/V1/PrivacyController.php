@@ -19,7 +19,7 @@ final class PrivacyController extends Controller
     {
         $p = DB::table('privacy_preferences')->where('user_id', $r->user()->id)->first();
 
-        return response()->json(['fields' => $p?->fields ? json_decode($p->fields, true) : $this->fields(), 'revision' => (int) ($p->revision ?? 0), 'formal_relationship_available' => false, 'identity' => ['provider' => 'NOT_CONFIGURED', 'status' => 'NOT_VERIFIED']]);
+        return response()->json(['self_profile' => app(SocialPolicy::class)->profile((int)$r->user()->id, (int)$r->user()->id), 'fields' => $p?->fields ? json_decode($p->fields, true) : $this->fields(), 'revision' => (int) ($p->revision ?? 0), 'formal_relationship_available' => true, 'identity' => app(\App\Services\TrustedIdentityService::class)->status((int) $r->user()->id)]);
     }
 
     public function save(Request $r)
@@ -44,7 +44,7 @@ final class PrivacyController extends Controller
         $d = $r->validate(['audience' => 'required|in:self,stranger,friend,partner']);
         $p = $d['audience'] === 'self' ? $policy->profile($r->user()->id, $r->user()->id) : ['public_id' => 'ES-'.$r->user()->id, 'avatar' => null];
 
-        return response()->json(['audience' => $d['audience'], 'projection' => $p, 'formal_relationship_available' => false]);
+        return response()->json(['audience' => $d['audience'], 'projection' => $p, 'formal_relationship_available' => true]);
     }
 
     public function peer(Request $r, int $id, SocialPolicy $policy)

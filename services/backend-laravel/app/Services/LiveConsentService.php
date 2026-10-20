@@ -23,7 +23,7 @@ final class LiveConsentService
         }
         $db = DB::connection();
 
-        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322]], true)
+        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323]], true)
             && $db->getConfig('host') === '127.0.0.1' && ! $db->getConfig('unix_socket')
             && (int) $db->getConfig('port') === (int) config('restoration.port')
             && ! in_array((int) $db->getConfig('port'), [3306, 43316], true);
@@ -39,7 +39,7 @@ final class LiveConsentService
             $users->lockForUpdate();
         }
         $users = $users->get();
-        if ($users->count() !== 2 || $users->contains(fn ($u) => $u->disabled || $u->is_synthetic)) {
+        if ($users->count() !== 2 || $users->contains(fn ($u) => $u->disabled || ($u->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $u->id)))) {
             return null;
         }
         $blocks = UserBlock::where(fn ($q) => $q->where('blocker_id', $actor)->where('blocked_user_id', $peer))
@@ -49,7 +49,7 @@ final class LiveConsentService
         }if ($blocks->get()->isNotEmpty()) {
             return null;
         }
-        $q = DatingMatch::where('drop_released', true)->where(fn ($q) => $q
+        $q = DatingMatch::where('drop_released', true)->whereExists(fn ($p) => $p->selectRaw('1')->from('match_proposals')->whereColumn('match_proposals.dating_match_id', 'dating_matches.id')->where('match_proposals.state', 'MUTUALLY_ACCEPTED'))->where(fn ($q) => $q
             ->where(fn ($q) => $q->where('user_a', $actor)->where('user_b', $peer))
             ->orWhere(fn ($q) => $q->where('user_a', $peer)->where('user_b', $actor)))->orderByDesc('id');
         if ($lock) {

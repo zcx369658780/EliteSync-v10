@@ -35,12 +35,15 @@ class MatchRoundProjectionService
                     $projectionFailureCode = 'current_match_not_released';
                 } else {
                     $peerId = (int) ((int) $match->user_a === $userId ? $match->user_b : $match->user_a);
-                    $peer = User::query()->find($peerId);
+                    $proposal = app(SlowDatingService::class)->proposal($userId);
+                    if (! $proposal || $proposal['match_id'] !== (int)$match->id || ! $proposal['showcase']) {
+                        return $this->envelope('closed', ['reason_code'=>'proposal_unavailable', 'conversation_capability'=>null]);
+                    }
                     $result = [
                         'match_id' => (int) $match->id,
                         'partner_id' => $peerId,
-                        'partner_nickname' => $peer?->name,
-                        'headline' => trim((string) $match->highlights) ?: '本轮匹配已揭晓',
+                        'partner_nickname' => $proposal['showcase']['public_id'],
+                        'headline' => '本轮候选已揭晓，请独立选择',
                     ];
                 }
             } else {
