@@ -1,0 +1,7 @@
+{
+    "peer_generation_old_accept": "409",
+    "frozen_generation_reveal": "409",
+    "single_unresolved_proposal": "409; two slots total",
+    "server_expiry_with_declared_fixture_clock": "EXPIRED persisted; 409; no resurrection",
+    "expiry_reissue_before_relationship_read": "SUSPENDED_REVERIFY; no automatic reopening"
+}

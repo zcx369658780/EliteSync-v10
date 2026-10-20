@@ -1,0 +1,9 @@
+{
+  "isolation": "REPEATABLE-READ",
+  "positive_status": 200,
+  "blocked_reader_observed": true,
+  "revocation_committed": true,
+  "resumed_status": 403,
+  "writer_exit": 0,
+  "private_data_absent": true
+}

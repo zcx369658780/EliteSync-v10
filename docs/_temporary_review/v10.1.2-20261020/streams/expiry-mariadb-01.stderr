@@ -1,0 +1,1 @@
+Illuminate\Database\QueryException:SQLSTATE[42S22]: Column not found: 1054 Unknown column 'requester_id' in 'WHERE' (Connection: mysql, SQL: select count(*) as aggregate from `social_requests` where `requester_id` in (56, 57, 58, 59))

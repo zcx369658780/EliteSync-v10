@@ -1,0 +1,12 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: $WORKTREE\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 65 / 71 ( 91%)
+DDDDDD                                                            71 / 71 (100%)
+
+Time: 00:06.185, Memory: 78.00 MB
+
+OK, but there were issues!
+Tests: 71, Assertions: 713, Deprecations: 2, PHPUnit Deprecations: 2.

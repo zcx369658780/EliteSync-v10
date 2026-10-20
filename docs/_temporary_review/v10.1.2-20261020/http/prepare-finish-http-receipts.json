@@ -1,0 +1,20 @@
+[
+  {
+    "method": "POST",
+    "status": 403,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/admin/matching/rounds"
+  },
+  {
+    "method": "POST",
+    "status": 410,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/relationships"
+  },
+  {
+    "method": "POST",
+    "status": 410,
+    "cache_control": "no-store, private",
+    "route_pattern": "/matches/confirm"
+  }
+]

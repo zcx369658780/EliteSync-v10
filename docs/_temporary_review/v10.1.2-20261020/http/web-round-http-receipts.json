@@ -1,0 +1,24 @@
+[
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/admin/matching prepare"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/admin/matching/rounds"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/admin/matching executionRequest"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey"
+  }
+]

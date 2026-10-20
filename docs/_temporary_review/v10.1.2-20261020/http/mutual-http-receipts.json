@@ -1,0 +1,98 @@
+[
+  {
+    "method": "GET",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey"
+  },
+  {
+    "method": "POST",
+    "status": 404,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "POST",
+    "status": 404,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey/proposals/{identity}/decision"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey/proposals/{identity}/decision"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey/proposals/{identity}/decision"
+  },
+  {
+    "method": "POST",
+    "status": 409,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey/proposals/{identity}/decision"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/journey/proposals/{identity}/decision"
+  },
+  {
+    "method": "POST",
+    "status": 404,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/connections/{id}/connection"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/connections/{id}/connection"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/connections/{id}/consent"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/connections/{id}/consent"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-cache, private",
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "cache_control": "no-store, private",
+    "route_pattern": "/formal-relationships"
+  },
+  {
+    "method": "POST",
+    "status": 403,
+    "cache_control": "no-store, private",
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  }
+]

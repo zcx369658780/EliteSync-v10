@@ -1,0 +1,9 @@
+{
+    "isolation": "REPEATABLE-READ",
+    "clock": "process-local explicit synthetic +169h",
+    "entry": "actual SlowDatingService\/MatchingRoundService\/LiveConsentService",
+    "without_CN": "404; no insert; no private showcase",
+    "existing_CN_MC": "live_send_allowed true after Match expiry",
+    "closed_CN": "404 new lifecycle; same single CN",
+    "result": "PASS"
+}

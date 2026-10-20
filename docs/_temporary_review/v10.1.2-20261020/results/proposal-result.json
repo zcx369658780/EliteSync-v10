@@ -1,0 +1,17 @@
+{
+  "both_innodb_waiters": 3,
+  "results": [
+    {
+      "role": "owner",
+      "status": 409,
+      "message": "stale proposal revision"
+    },
+    {
+      "role": "viewer",
+      "status": 200,
+      "state": "ACCEPTED_BY_ONE"
+    }
+  ],
+  "holder_committed": true,
+  "isolation": "REPEATABLE-READ"
+}

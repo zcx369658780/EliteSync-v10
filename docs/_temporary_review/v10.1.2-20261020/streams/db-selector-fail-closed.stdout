@@ -1,0 +1,1 @@
+APP_DB_CONNECTION mysql over DB_CONNECTION sqlite: rejected before RefreshDatabase / migrations

@@ -1,0 +1,1 @@
+{"innodb_lock_waits": 1, "reader_pending": true, "writer": {"connection_id": 113, "isolation": "REPEATABLE-READ"}, "observed_at": 1792503999.896259}

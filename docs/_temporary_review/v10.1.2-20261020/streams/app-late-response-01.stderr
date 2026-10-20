@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "$LOCAL_EVIDENCE\app_late_response.py", line 23, in <module>
+    root=dump('app-late-signedout-before-release');desc='\n'.join(n.get('content-desc','') for n in root.iter('node'));assert '账号登录' in desc and '代际' not in desc
+                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

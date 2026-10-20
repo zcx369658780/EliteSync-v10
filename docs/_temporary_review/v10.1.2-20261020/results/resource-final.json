@@ -1,0 +1,27 @@
+{
+  "owned_container_stopped": true,
+  "volume_retained": true,
+  "owned_loopback_ports_listening": {
+    "8015": false,
+    "8016": false,
+    "43323": false,
+    "5554": false
+  },
+  "historical_container_count": 27,
+  "historical_running_count": 0,
+  "protected_roots": 4,
+  "protected_head_status_index_exact": true,
+  "owned_adb_reverse_8015_removed": true,
+  "authorized_avd_stopped": true,
+  "phone_operations": "NOT_RUN",
+  "firewall_UDP_DNAT_UAC": "NOT_RUN",
+  "cloud_operations": "NOT_RUN",
+  "backup": {
+    "exit": 0,
+    "bytes": 446735,
+    "sha256": "12306b0d1425536c22b6a4fae680159cc7b2a52ec3ba9372be8e6f06d0148bdb",
+    "database": "elitesync_v10_1_2_dev",
+    "scope": "LOCAL_ONLY synthetic version recovery",
+    "volume_retained": true
+  }
+}

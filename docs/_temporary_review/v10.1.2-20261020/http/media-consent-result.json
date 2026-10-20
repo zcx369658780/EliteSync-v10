@@ -1,0 +1,57 @@
+[
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/media"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/media/{id}/content"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/rtc/calls"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/connections/{id}"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/connections/{id}/consent"
+  },
+  {
+    "method": "POST",
+    "status": 404,
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "POST",
+    "status": 404,
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "GET",
+    "status": 404,
+    "route_pattern": "/media/{id}/content"
+  },
+  {
+    "method": "POST",
+    "status": 403,
+    "route_pattern": "/rtc/calls"
+  },
+  {
+    "method": "GET",
+    "status": 404,
+    "route_pattern": "/rtc/calls/{id}/livekit"
+  }
+]

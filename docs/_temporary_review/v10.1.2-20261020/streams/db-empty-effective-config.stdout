@@ -1,0 +1,12 @@
+{
+    "env": "local",
+    "selector": "mysql",
+    "driver": "mysql",
+    "db": "elitesync_v10_1_2_dev",
+    "host": "127.0.0.1",
+    "port": 43323,
+    "socket": "",
+    "url": null,
+    "tables": [],
+    "isolation": "REPEATABLE-READ"
+}

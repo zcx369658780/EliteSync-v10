@@ -1,0 +1,22 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: $WORKTREE\services\backend-laravel\phpunit.xml
+
+DDDDFDD                                                             7 / 7 (100%)
+
+Time: 00:07.704, Memory: 50.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1012JourneyTest::test_participation_draft_opt_in_pause_and_resume_have_explicit_generations
+Expected response status code [409] but received 422.
+Failed asserting that 422 is identical to 409.
+
+$WORKTREE\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+$WORKTREE\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+$WORKTREE\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:191
+$WORKTREE\services\backend-laravel\tests\Feature\V1012JourneyTest.php:176
+
+FAILURES!
+Tests: 7, Assertions: 97, Failures: 1, Deprecations: 2.

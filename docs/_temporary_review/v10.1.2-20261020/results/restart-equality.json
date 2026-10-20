@@ -1,0 +1,6 @@
+{
+  "database": "elitesync_v10_1_2_dev",
+  "table_count": 14,
+  "every_row_count_and_value_hash_equal": true,
+  "container": "elitesync-v1012-journey-db"
+}

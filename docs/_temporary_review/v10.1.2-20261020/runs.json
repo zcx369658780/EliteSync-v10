@@ -1,0 +1,929 @@
+[
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\add_required_questions.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:40:36.227933+00:00",
+    "label": "add-required-questions"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:31:59.748003+00:00",
+    "label": "apk-ebade521-build"
+  },
+  {
+    "argv": [
+      "adb",
+      "-s",
+      "AUTHORIZED_AVD",
+      "install",
+      "-r",
+      "$LOCAL_EVIDENCE\\EliteSync-v10.1.2-dev-ebade521.apk"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:39:21.632917+00:00",
+    "label": "apk-ebade521-install"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:13:27.742580+00:00",
+    "label": "apk-final-224ab490-build"
+  },
+  {
+    "argv": [
+      "adb",
+      "-s",
+      "AUTHORIZED_AVD",
+      "install",
+      "-r",
+      "app/build/outputs/apk/debug/app-debug.apk"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:16:26.223388+00:00",
+    "label": "apk-final-224ab490-install"
+  },
+  {
+    "argv": [
+      "adb",
+      "-s",
+      "AUTHORIZED_AVD",
+      "install",
+      "-r",
+      "app/build/outputs/apk/debug/app-debug.apk"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:10:15.486216+00:00",
+    "label": "apk-final-install"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:07:49.067799+00:00",
+    "label": "apk-final-source-build"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:39:04.736292+00:00",
+    "label": "apk-preliminary-build-02"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:39:46.382068+00:00",
+    "label": "apk-preliminary-build-03"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:41:11.163047+00:00",
+    "label": "apk-preliminary-build-04"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:46:05.694649+00:00",
+    "label": "apk-preliminary-build-05"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      ".\\gradlew.bat",
+      "assembleDebug",
+      "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "--offline",
+      "--console=plain"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:35:52.813384+00:00",
+    "label": "apk-preliminary-build"
+  },
+  {
+    "argv": [
+      "adb",
+      "-s",
+      "AUTHORIZED_AVD",
+      "install",
+      "-r",
+      "app/build/outputs/apk/debug/app-debug.apk"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:47:02.792596+00:00",
+    "label": "apk-preliminary-install"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\app_late_response.py"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T14:41:17.730669+00:00",
+    "label": "app-late-response-01"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\app_late2_response.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:42:35.377556+00:00",
+    "label": "app-late-response-02"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\app_resume.py"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T14:27:50.758564+00:00",
+    "label": "app-resume-partner-01"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\app_resume_v2.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:29:02.557163+00:00",
+    "label": "app-resume-partner-02"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\closure_negative.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:13:11.755267+00:00",
+    "label": "closure-authority-negative"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\race_fixture.php",
+      "closure"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:13:11.058606+00:00",
+    "label": "closure-fixture-owned"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\db_preflight.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:27:47.437062+00:00",
+    "label": "db-empty-effective-config"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\database_guard_probe.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:08:22.768038+00:00",
+    "label": "db-selector-fail-closed"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\expiry_mariadb.php"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T14:26:46.329265+00:00",
+    "label": "expiry-mariadb-01"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\expiry_mariadb_v2.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:27:19.867434+00:00",
+    "label": "expiry-mariadb-02"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "test_proposal_expiry_removes_new_connection_context",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:21:53.660541+00:00",
+    "label": "expiry-terminal-cn-before-fix"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\question_availability.php",
+      "disable"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:50:15.330264+00:00",
+    "label": "failure-fixture-disable-questions"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\question_availability.php",
+      "enable"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:50:19.939178+00:00",
+    "label": "failure-fixture-restore-questions"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "tests/Feature/V1012JourneyTest.php",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:31:55.117397+00:00",
+    "label": "feature-credential-binding"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:26:53.294506+00:00",
+    "label": "feature-expiry-final-regression"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:02:33.713209+00:00",
+    "label": "feature-final-regression"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 2,
+    "utc": "2026-10-20T13:35:03.319053+00:00",
+    "label": "feature-regression-01"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:36:33.242509+00:00",
+    "label": "feature-regression-02"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 2,
+    "utc": "2026-10-20T13:37:16.217323+00:00",
+    "label": "feature-regression-03"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "--filter",
+      "V1012JourneyTest|V1011SocialTest|V1011AccountSecurityTest|V1011R1AuthorizationTest|V1011RevocationTest|V1011NoticeRevocationTest|MatchingFoundationServiceTest|ProfileReadinessTruthApiTest",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:37:53.450965+00:00",
+    "label": "feature-regression-04"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "tests/Feature/V1012JourneyTest.php",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:53:45.455943+00:00",
+    "label": "feature-review-regressions"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "tests/Feature/V1012JourneyTest.php",
+      "--colors=never"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:29:42.064294+00:00",
+    "label": "feature-v1012-01"
+  },
+  {
+    "argv": [
+      "php",
+      "vendor/phpunit/phpunit/phpunit",
+      "tests/Feature/V1012JourneyTest.php",
+      "--colors=never"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:30:46.805719+00:00",
+    "label": "feature-v1012-02"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "pub",
+      "get",
+      "--offline"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:40:40.699599+00:00",
+    "label": "flutter-offline-generate"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "analyze",
+      "--no-pub",
+      "lib/features/slow_dating_v1012",
+      "lib/app/router/app_router.dart",
+      "lib/main_prod.dart",
+      "lib/features/home/presentation/pages/home_page.dart",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "lib/features/profile/presentation/pages/privacy_settings_page.dart",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:53:32.119094+00:00",
+    "label": "frontend-analyze-final"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "analyze",
+      "--no-pub",
+      "lib/features/slow_dating_v1012",
+      "lib/app/router/app_router.dart",
+      "lib/main_prod.dart",
+      "lib/features/home/presentation/pages/home_page.dart",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "lib/features/profile/presentation/pages/privacy_settings_page.dart",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:02:43.140545+00:00",
+    "label": "frontend-final-analyze-04"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "analyze",
+      "--no-pub",
+      "lib/features/slow_dating_v1012",
+      "lib/app/router/app_router.dart",
+      "lib/main_prod.dart",
+      "lib/features/home/presentation/pages/home_page.dart",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "lib/features/profile/presentation/pages/privacy_settings_page.dart",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:54:41.569797+00:00",
+    "label": "frontend-final-check-02"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "analyze",
+      "--no-pub",
+      "lib/features/slow_dating_v1012",
+      "lib/app/router/app_router.dart",
+      "lib/main_prod.dart",
+      "lib/features/home/presentation/pages/home_page.dart",
+      "lib/features/progress/presentation/pages/progress_page.dart",
+      "lib/features/profile/presentation/pages/privacy_settings_page.dart",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:57:59.766384+00:00",
+    "label": "frontend-final-check-03"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "test",
+      "--no-pub",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:54:45.949636+00:00",
+    "label": "frontend-final-tests-02"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "test",
+      "--no-pub",
+      "test/features/slow_dating_v1012",
+      "test/features/home/presentation/pages/home_page_test.dart",
+      "test/features/progress/presentation/pages/progress_page_test.dart"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:58:09.081081+00:00",
+    "label": "frontend-final-tests-03"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "test",
+      "--no-pub",
+      "test/features/slow_dating_v1012",
+      "test/features/home/presentation/pages/home_page_test.dart",
+      "test/features/progress/presentation/pages/progress_page_test.dart"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:01:24.117832+00:00",
+    "label": "frontend-final-tests-04"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "test",
+      "--no-pub",
+      "test/features/slow_dating_v1012"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:53:39.361090+00:00",
+    "label": "frontend-tests-final"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "mutual"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:57.207380+00:00",
+    "label": "http-mutual"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "prepare"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:39:23.510706+00:00",
+    "label": "http-prepare-01"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "prepare-finish"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:05.572982+00:00",
+    "label": "http-prepare-finish"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "prepare-resume"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:40:37.670554+00:00",
+    "label": "http-prepare-resume"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "relationship"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:42:44.741550+00:00",
+    "label": "http-relationship"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "reveal"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:26.845941+00:00",
+    "label": "http-reveal"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\api_journey.py",
+      "web-round"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:07.341644+00:00",
+    "label": "http-web-round"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\issue.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:42:43.549909+00:00",
+    "label": "issue-test-only"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\edges.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:00:26.030482+00:00",
+    "label": "mariadb-edge-cases-02"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\edges.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:03:59.059147+00:00",
+    "label": "mariadb-edge-cases-03-exact-status"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\edges.php"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:59:33.489028+00:00",
+    "label": "mariadb-edge-cases"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "queue:work",
+      "--queue=v1008-matching",
+      "--once",
+      "--tries=1",
+      "--timeout=180",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:50:19.525308+00:00",
+    "label": "matching-failure-observed"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "queue:work",
+      "--queue=v1008-matching",
+      "--once",
+      "--tries=1",
+      "--timeout=180",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:25.879121+00:00",
+    "label": "matching-owned-consumer"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "queue:work",
+      "--queue=v1008-matching",
+      "--once",
+      "--tries=1",
+      "--timeout=180",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:50:51.893301+00:00",
+    "label": "matching-retry-consumer"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\media_consent.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:01:17.276353+00:00",
+    "label": "media-ws-rtc-consent"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "migrate",
+      "--force",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:00:21.888980+00:00",
+    "label": "migrate-cadence-capacity"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "migrate",
+      "--force",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:31:53.725489+00:00",
+    "label": "migrate-credential-binding"
+  },
+  {
+    "argv": [
+      "php",
+      "artisan",
+      "migrate",
+      "--force",
+      "--no-interaction"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:28:11.363193+00:00",
+    "label": "migrate-owned-v1012"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "pub",
+      "get",
+      "--offline"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:42:43.765873+00:00",
+    "label": "module-regenerate"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\persistent_snapshot.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:09:36.401935+00:00",
+    "label": "persistence-after-restart"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\persistent_snapshot.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:08:23.088037+00:00",
+    "label": "persistence-before-restart"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\persistent_snapshot.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:45:58.505740+00:00",
+    "label": "persistence-final"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "analyze",
+      "--no-pub",
+      "lib/app/router/app_router.dart",
+      "lib/features/me/presentation/pages/me_purpose_pages.dart"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:12:07.237871+00:00",
+    "label": "readiness-route-final-analyze"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\relationship_lifecycle.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:07:42.509175+00:00",
+    "label": "relationship-lifecycle-real-api"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\races.py",
+      "audience",
+      "pause",
+      "credential",
+      "block",
+      "disabled",
+      "session"
+    ],
+    "exit": 1,
+    "utc": "2026-10-20T13:45:53.341644+00:00",
+    "label": "rr-authority-races-01"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\races.py",
+      "block_fixed",
+      "disabled",
+      "session"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:46:39.952400+00:00",
+    "label": "rr-authority-races-02"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\exclusive.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:47:46.287022+00:00",
+    "label": "rr-exclusive-race"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "$LOCAL_EVIDENCE\\proposal_race.py"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T14:03:26.652684+00:00",
+    "label": "rr-proposal-race"
+  },
+  {
+    "argv": [
+      "cmd",
+      "/c",
+      "flutter",
+      "create",
+      "--template=module",
+      "--no-pub",
+      "--project-name=flutter_elitesync_module",
+      "$LOCAL_EVIDENCE\\module_scaffold"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:41:55.049829+00:00",
+    "label": "scaffold-generate"
+  },
+  {
+    "argv": [
+      "php",
+      "$LOCAL_EVIDENCE\\seed.php"
+    ],
+    "exit": 0,
+    "utc": "2026-10-20T13:34:11.851456+00:00",
+    "label": "seed-owned-synthetic"
+  }
+]

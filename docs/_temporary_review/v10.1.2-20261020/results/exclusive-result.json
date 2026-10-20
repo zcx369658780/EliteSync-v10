@@ -1,0 +1,17 @@
+{
+  "both_innodb_waiters": 3,
+  "results": [
+    {
+      "role": "viewer",
+      "status": 409,
+      "message": "active relationship already exists"
+    },
+    {
+      "role": "third",
+      "status": 200,
+      "state": "ACTIVE"
+    }
+  ],
+  "holder_committed": true,
+  "isolation": "REPEATABLE-READ"
+}

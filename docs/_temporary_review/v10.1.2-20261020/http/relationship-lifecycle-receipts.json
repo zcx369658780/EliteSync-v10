@@ -1,0 +1,92 @@
+[
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/connections/{id}"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/connections/{id}/consent"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/connections/{id}/consent"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/formal-relationships"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/profile-peers/{id}"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/connections/{id}"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/profile-peers/{id}"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "GET",
+    "status": 200,
+    "route_pattern": "/connections/{id}"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/messages"
+  },
+  {
+    "method": "POST",
+    "status": 409,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  },
+  {
+    "method": "POST",
+    "status": 200,
+    "route_pattern": "/formal-relationships/{identity}/actions"
+  }
+]
