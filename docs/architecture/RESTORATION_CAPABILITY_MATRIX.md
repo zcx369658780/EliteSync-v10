@@ -1,5 +1,11 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-20 当前版本边界：v10.1.1安全集成接受，v10.1.2冻结未实施
+
+**V10.1.1_FUNCTION_AND_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_FROZEN_PLAN / NOT_STARTED**。上版完整apps/services已安全接入main，见[独立集成验收](../versions/v10.1.1/integration_acceptance.md)；新一版[冻结计划](../versions/v10.1.2/plan.md)只授权后续Owner手动派发受控开发长任务，不表示完整慢约会、正式恋爱或真实实人供应商当前已上线。历史恢复A03、全APP/Web A09、v10.1.0外部Web AC-10.1-08及运行依赖依旧按原证据状态保留。
+
+---
+
 ## 2026-10-20 v10.1.1冻结范围功能接受（不等于完整恢复完成）
 
 **V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。Astra既有功能裁决由Codex按Owner本次转交准确[归档](../versions/v10.1.1/acceptance.md)，B1-A/B关闭；[安全集成报告](../versions/v10.1.1/integration.md)单独登记完整接受apps/services的Git接入和本地代码基线。本版完成的是冻结范围的关系、资料受众、隐私/账号安全及必要管理能力，不把A08总项、A03历史恢复或A09联合终点改成PASS。
