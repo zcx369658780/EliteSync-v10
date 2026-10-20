@@ -103,7 +103,7 @@ final class SlowDatingService
         $out = ['id' => $p->id, 'match_id' => (int) $p->dating_match_id, 'round_id' => (int) $p->round_id, 'run_id' => (int) $p->run_id, 'revision' => (int) $p->revision, 'state' => $p->state, 'decision_me' => $isA ? $p->decision_a : $p->decision_b, 'decision_peer' => $isA ? $p->decision_b : $p->decision_a, 'peer_id' => $peer, 'revealed_at' => $p->revealed_at, 'expires_at' => $p->expires_at, 'showcase' => null, 'explanation' => null, 'connection_eligible' => false];
         $allowed = app(SocialPolicy::class)->pairAllowed($actor, $peer)
             && User::whereIn('id', [$actor, $peer])->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')->count() === 2;
-        if (! $allowed || ! in_array($p->state, ['PENDING','ACCEPTED_BY_ONE','MUTUALLY_ACCEPTED'], true)) { return $out; }
+        if (! $allowed || Carbon::parse($p->expires_at, 'UTC')->lte(now()->utc()) || ! in_array($p->state, ['PENDING','ACCEPTED_BY_ONE','MUTUALLY_ACCEPTED'], true)) { return $out; }
         $publication = DB::table('user_profile_showcase_publications')->where('user_id', $peer)->where('public_display_eligible', true)->lockForUpdate()->first();
         // No raw payload, questions, exact birth inputs, internal scores or Safety facts.
         $payload = $publication ? json_decode($publication->published_payload, true) : [];

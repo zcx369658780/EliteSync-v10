@@ -49,14 +49,25 @@ final class LiveConsentService
         }if ($blocks->get()->isNotEmpty()) {
             return null;
         }
-        $q = DatingMatch::where('drop_released', true)->whereExists(fn ($p) => $p->selectRaw('1')->from('match_proposals')->whereColumn('match_proposals.dating_match_id', 'dating_matches.id')->where('match_proposals.state', 'MUTUALLY_ACCEPTED'))->where(fn ($q) => $q
+        $q = DatingMatch::where('drop_released', true)->where(fn ($q) => $q
             ->where(fn ($q) => $q->where('user_a', $actor)->where('user_b', $peer))
             ->orWhere(fn ($q) => $q->where('user_a', $peer)->where('user_b', $actor)))->orderByDesc('id');
         if ($lock) {
             $q->lockForUpdate();
         }
 
-        return $q->first();
+        foreach ($q->get() as $match) {
+            $proposal = DB::table('match_proposals')->where('dating_match_id', $match->id)
+                ->where('state', 'MUTUALLY_ACCEPTED')->where('expires_at', '>', now()->utc());
+            if ($lock || DB::transactionLevel() > 0) {
+                $proposal->lockForUpdate();
+            }
+            if ($proposal->first()) {
+                return $match;
+            }
+        }
+
+        return null;
     }
 
     public function connection(int $actor, int $peer, bool $lock = false): ?object

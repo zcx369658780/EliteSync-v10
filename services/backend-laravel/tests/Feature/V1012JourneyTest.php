@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
+use App\Services\LiveConsentService;
+use App\Services\SlowDatingService;
 use App\Services\TrustedIdentityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -307,6 +309,52 @@ class V1012JourneyTest extends TestCase
             ->assertJsonMissing(['summary' => 'First published introduction']);
         $this->assertDatabaseCount('journey_commands', 1);
         $this->assertDatabaseHas('match_proposals', ['id' => $id, 'revision' => 2, 'decision_a' => 'ACCEPTED']);
+    }
+
+    public function test_proposal_expiry_removes_new_connection_context_but_preserves_existing_explicit_consents(): void
+    {
+        $a = $this->subject('a'); $b = $this->subject('b');
+        $this->qualify($a, $b);
+        $id = $this->proposalFixture($a, $b);
+        $url = "/api/v1/journey/proposals/$id/decision";
+        $this->actingAs($a, 'sanctum')->postJson($url,
+            ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'accept-a'])->assertOk();
+        $this->actingAs($b, 'sanctum')->postJson($url,
+            ['action' => 'accept', 'revision' => 2, 'idempotency_key' => 'accept-b'])->assertOk()
+            ->assertJsonPath('state', 'MUTUALLY_ACCEPTED')->assertJsonPath('connection_eligible', true);
+        $live = app(LiveConsentService::class);
+        $this->assertNotNull($live->match($a->id, $b->id));
+        $this->assertDatabaseCount('product_connections', 0);
+        foreach (['connection', 'consent'] as $kind) {
+            $this->actingAs($a, 'sanctum')->postJson("/api/v1/connections/{$b->id}/$kind",
+                ['action' => 'request', 'expected_revision' => 0])->assertOk();
+            $this->actingAs($b, 'sanctum')->postJson("/api/v1/connections/{$a->id}/$kind",
+                ['action' => 'accept', 'expected_revision' => 1])->assertOk();
+        }
+        $current = $this->getJson("/api/v1/connections/{$a->id}")->assertOk()
+            ->assertJsonPath('gates.live_read_allowed', true)
+            ->assertJsonPath('gates.live_send_allowed', true)->json('connection');
+        $this->travel(169)->hours();
+        $this->assertNull($live->match($a->id, $b->id));
+        $proposal = app(SlowDatingService::class)->proposal($a->id, $id);
+        $this->assertNull($proposal['showcase']);
+        $this->assertNull($proposal['explanation']);
+        $this->assertFalse($proposal['connection_eligible']);
+        $this->getJson("/api/v1/connections/{$a->id}")->assertOk()
+            ->assertJsonPath('connection.id', $current['id'])
+            ->assertJsonPath('gates.live_read_allowed', true)
+            ->assertJsonPath('gates.live_send_allowed', true);
+        $closed = $this->actingAs($a, 'sanctum')->postJson("/api/v1/connections/{$b->id}/connection",
+            ['action' => 'close', 'expected_revision' => $current['revision'],
+                'expected_connection_id' => $current['id']])->assertOk()
+            ->assertJsonPath('connection.state', 'CN_CLOSED')
+            ->assertJsonPath('gates.live_send_allowed', false)->json('connection');
+        $this->postJson("/api/v1/connections/{$b->id}/connection", ['action' => 'request',
+            'expected_revision' => $closed['revision'], 'expected_connection_id' => $closed['id']])->assertNotFound();
+        $this->assertDatabaseCount('product_connections', 1);
+        $this->assertDatabaseCount('friendships', 0);
+        $this->assertDatabaseCount('social_requests', 0);
+        $this->assertDatabaseHas('product_connections', ['id' => $closed['id'], 'state' => 'CN_CLOSED']);
     }
 
     /** A revealed product proposal, with real foreign-key parents and no matching execution. */
