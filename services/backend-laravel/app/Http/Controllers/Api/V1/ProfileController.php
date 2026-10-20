@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserAstroProfile;
-use App\Services\ChineseZodiacService;
 use App\Services\BaziCanonicalService;
 use App\Services\BirthLocationSolarTimeService;
-use App\Services\PythonAstroRenderService;
+use App\Services\ChineseZodiacService;
+use App\Services\LiveConsentService;
 use App\Services\ProfileReadinessService;
+use App\Services\PythonAstroRenderService;
 use App\Services\UserAstroMirrorService;
 use App\Services\WesternNatalCanonicalService;
 use App\Services\ZiweiCanonicalService;
@@ -18,13 +19,17 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     private const WESTERN_NATAL_ENGINE = 'kerykeion';
+
     private const WESTERN_NATAL_ZODIAC_MODE = 'tropical';
+
     private const WESTERN_NATAL_HOUSE_SYSTEM = 'placidus';
+
     private const WESTERN_NATAL_CONTRACT_VERSION = 'western_natal_v1';
 
     private function normalizeBirthPlace(mixed $value): ?string
     {
         $candidate = trim((string) $value);
+
         return $candidate !== '' ? $candidate : null;
     }
 
@@ -55,8 +60,8 @@ class ProfileController extends Controller
             ?? $this->normalizeBirthTime($existingProfile->birth_time)
             ?? $this->normalizeBirthTime(data_get($user, 'private_natal_chart.true_solar_time'))
             ?? '12:00';
-        $localRestoration = app(\App\Services\LiveConsentService::class)->enabled();
-        $existingNotes = (array)($existingProfile->notes ?? []);
+        $localRestoration = app(LiveConsentService::class)->enabled();
+        $existingNotes = (array) ($existingProfile->notes ?? []);
         $retainedUnknown = in_array('birth_time_input_source:default_noon_unknown', $existingNotes, true)
             || in_array('birth_time_input_source:retained_legacy_time_unverified', $existingNotes, true);
         $birthTimeSource = $this->normalizeBirthTime($request->input('birth_time')) !== null ? 'user_input'
@@ -66,9 +71,9 @@ class ProfileController extends Controller
                         || in_array('birth_time_input_source:retained_profile', $existingNotes, true)
                         ? 'retained_profile' : 'retained_legacy_time_unverified') : 'default_noon_unknown'));
         if ($localRestoration) {
-            $existingNotes = array_values(array_filter($existingNotes, fn($note) => !preg_match(
+            $existingNotes = array_values(array_filter($existingNotes, fn ($note) => ! preg_match(
                 '/^(birth_time_input_source|civil_timezone|location_source|location_shift_minutes|canonical_accuracy|canonical_confidence):/',
-                (string)$note
+                (string) $note
             )));
         }
         $resolvedBirthPlace = $this->normalizeBirthPlace($user->private_birth_place)
@@ -118,7 +123,7 @@ class ProfileController extends Controller
 
         $normalized = $canonical->canonicalize($canonicalPayload);
         if ($localRestoration && in_array($birthTimeSource, ['default_noon_unknown', 'retained_legacy_time_unverified'], true)) {
-            $normalized['confidence'] = min(0.35, (float)($normalized['confidence'] ?? 0.35));
+            $normalized['confidence'] = min(0.35, (float) ($normalized['confidence'] ?? 0.35));
             $normalized['accuracy'] = 'unknown_birth_time_default_noon';
         }
         $ziwei = $ziweiCanonical->canonicalize($canonicalPayload);
@@ -195,6 +200,7 @@ class ProfileController extends Controller
         $rendered = $pythonAstro->render($payload);
         if (! is_array($rendered) || empty($rendered)) {
             $this->persistWesternNatalRenderFailureMarker($user, $payload, $signature, $policy, 'render_failed');
+
             return;
         }
 
@@ -208,6 +214,7 @@ class ProfileController extends Controller
                 $policy,
                 (string) ($rendered['house_truth_status'] ?? data_get($rendered, 'metadata.provenance.house_truth_status') ?? 'not_house_truth')
             );
+
             return;
         }
 
@@ -222,9 +229,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $payload
-     * @param array{value:string,fields:array<string,mixed>} $signature
-     * @param array<string,mixed> $policy
+     * @param  array<string,mixed>  $payload
+     * @param  array{value:string,fields:array<string,mixed>}  $signature
+     * @param  array<string,mixed>  $policy
      */
     private function persistWesternNatalRenderFailureMarker(
         object $user,
@@ -292,7 +299,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $payload
+     * @param  array<string,mixed>  $payload
      * @return array<string,mixed>
      */
     private function westernNatalPolicy(array $payload): array
@@ -312,8 +319,8 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $payload
-     * @param array<string,mixed> $policy
+     * @param  array<string,mixed>  $payload
+     * @param  array<string,mixed>  $policy
      * @return array{value:string,fields:array<string,mixed>}
      */
     private function westernNatalInputSignature(array $payload, array $policy): array
@@ -340,7 +347,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $rendered
+     * @param  array<string,mixed>  $rendered
      * @return array<string,mixed>
      */
     private function withWesternNatalRouteContext(array $rendered): array
@@ -359,10 +366,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $rendered
-     * @param array<string,mixed> $payload
-     * @param array{value:string,fields:array<string,mixed>} $signature
-     * @param array<string,mixed> $policy
+     * @param  array<string,mixed>  $rendered
+     * @param  array<string,mixed>  $payload
+     * @param  array{value:string,fields:array<string,mixed>}  $signature
+     * @param  array<string,mixed>  $policy
      * @return array<string,mixed>
      */
     private function withWesternNatalProvenance(array $rendered, array $payload, array $signature, array $policy): array
@@ -414,8 +421,8 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $payload
-     * @param array<string,mixed> $rendered
+     * @param  array<string,mixed>  $payload
+     * @param  array<string,mixed>  $rendered
      */
     private function westernNatalHouseTruthStatus(array $payload, array $rendered): string
     {
@@ -436,7 +443,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<string,mixed> $rendered
+     * @param  array<string,mixed>  $rendered
      */
     private function hasPersistableWesternNatalHouseTruth(array $rendered): bool
     {
@@ -451,6 +458,7 @@ class ProfileController extends Controller
     private function normalizeWesternNatalTimezone(mixed $value): string
     {
         $candidate = trim((string) ($value ?? ''));
+
         return $candidate !== '' ? $candidate : 'Asia/Shanghai';
     }
 
@@ -468,8 +476,8 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param array<int,string> $current
-     * @param array<int,string> $next
+     * @param  array<int,string>  $current
+     * @param  array<int,string>  $next
      * @return array<int,string>
      */
     private function mergeUniqueStrings(array $current, array $next): array
@@ -525,7 +533,7 @@ class ProfileController extends Controller
             'birth_lng' => $user->private_birth_lng,
             'moderation_status' => $user->moderation_status ?? 'normal',
             'moderation_note' => $user->moderation_note,
-            'realname_verified' => (bool) $user->realname_verified,
+            'realname_verified' => false,
             'profile_readiness' => $readiness->forUser($user),
         ]);
     }
@@ -539,8 +547,7 @@ class ProfileController extends Controller
         ZiweiCanonicalService $ziweiCanonical,
         BirthLocationSolarTimeService $locationResolver,
         PythonAstroRenderService $pythonAstro
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $data = $request->validate([
             'birthday' => ['nullable', 'date_format:Y-m-d'],
             'birth_time' => ['nullable', 'date_format:H:i'],
@@ -605,7 +612,7 @@ class ProfileController extends Controller
                 'birth_lng' => $user->private_birth_lng,
                 'moderation_status' => $user->moderation_status ?? 'normal',
                 'moderation_note' => $user->moderation_note,
-                'realname_verified' => (bool) $user->realname_verified,
+                'realname_verified' => false,
             ],
         ]);
     }

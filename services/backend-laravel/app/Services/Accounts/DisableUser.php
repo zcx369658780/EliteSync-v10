@@ -3,6 +3,7 @@
 namespace App\Services\Accounts;
 
 use App\Models\User;
+use App\Services\SocialPolicy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -24,10 +25,15 @@ final class DisableUser
             }
             $user->remember_token = Str::random(60);
             $user->save();
-            $user->tokens()->delete();
-            if (Schema::hasTable('sessions')) {
-                DB::table('sessions')->where('user_id', $id)->delete();
+            if (Schema::hasTable('device_sessions')) {
+                app(DeviceSessions::class)->revokeAll($user);
+            } else {
+                $user->tokens()->delete();
+                if (Schema::hasTable('sessions')) {
+                    DB::table('sessions')->where('user_id', $id)->delete();
+                }
             }
+            app(SocialPolicy::class)->revokeUser($id);
         });
     }
 }

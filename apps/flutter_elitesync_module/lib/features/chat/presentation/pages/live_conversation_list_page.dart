@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 class LiveConversationListPage extends ConsumerStatefulWidget {
   const LiveConversationListPage({super.key});
@@ -19,10 +22,58 @@ class _LiveConversationListPageState
   bool _busy = false;
   String? _error;
   int _epoch = 0;
+  bool _hiddenOnly = false;
+  late final ProviderSubscription<int> _authoritySubscription;
   @override
   void initState() {
     super.initState();
+    _authoritySubscription = ref.listenManual(
+      relationshipAuthorityEpochProvider,
+      (_, next) {
+        setState(() {
+          _epoch++;
+          _busy = false;
+          _items = [];
+          _error = null;
+        });
+        Future.microtask(_refresh);
+      },
+    );
     Future.microtask(_refresh);
+  }
+
+  @override
+  void dispose() {
+    _authoritySubscription.close();
+    _epoch++;
+    super.dispose();
+  }
+
+  Future<void> _visibility(Map<String, dynamic> item) async {
+    final session = _session;
+    final epoch = _epoch;
+    if (session == null || !_current(session, epoch)) return;
+    final id = _conversationId(item);
+    if (id == null) {
+      setState(() => _error = '服务端未提供会话身份，未执行隐藏。');
+      return;
+    }
+    try {
+      await ref.read(relationshipApiProvider).call(
+        'POST',
+        '/conversations/$id/visibility',
+        {'hidden': !_hiddenOnly},
+      );
+      if (!_current(session, epoch)) return;
+      ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    } catch (e) {
+      if (_current(session, epoch)) setState(() => _error = '$e');
+    }
+  }
+
+  int? _conversationId(Map<String, dynamic> item) {
+    final id = int.tryParse('${item['conversation_id']}');
+    return id != null && id > 0 ? id : null;
   }
 
   bool _current(SessionState session, int epoch) =>
@@ -46,7 +97,13 @@ class _LiveConversationListPageState
       _session = session;
       final response = await ref
           .read(apiClientProvider)
-          .get('/api/v1/conversations');
+          .get(
+            '/api/v1/conversations',
+            query: {'hidden_only': _hiddenOnly ? 1 : 0},
+            options: Options(
+              extra: {requestSessionGuardKey: () => _current(session, epoch)},
+            ),
+          );
       if (!_current(session, epoch)) return;
       if (response is NetworkFailure<Map<String, dynamic>>) {
         throw StateError(
@@ -111,6 +168,20 @@ class _LiveConversationListPageState
         padding: const EdgeInsets.all(16),
         children: [
           const Text('仅显示服务端当前允许读取的会话。连接与消息同意各有独立生命周期，进入聊天后仍逐次验证权限。'),
+          SwitchListTile(
+            title: const Text('查看我隐藏的会话'),
+            subtitle: const Text('隐藏只影响本人入口，不删除消息，也不改变联系授权。'),
+            value: _hiddenOnly,
+            onChanged: _busy
+                ? null
+                : (value) {
+                    setState(() {
+                      _hiddenOnly = value;
+                      _items = [];
+                    });
+                    _refresh();
+                  },
+          ),
           if (_busy) const LinearProgressIndicator(),
           if (_error != null)
             Text(
@@ -125,8 +196,28 @@ class _LiveConversationListPageState
                 (item['name'] ?? '会话对象 ${item['peer_user_id']}').toString(),
               ),
               subtitle: Text((item['last_message'] ?? '').toString()),
-              trailing: Text('未读 ${(item['unread'] as num?)?.toInt() ?? 0}'),
-              onTap: () => context.push('/live-chat/${item['peer_user_id']}'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('未读 ${(item['unread'] as num?)?.toInt() ?? 0}'),
+                  if (_conversationId(item) != null)
+                    PopupMenuButton<String>(
+                      onSelected: (_) => _visibility(item),
+                      itemBuilder: (_) => [
+                        PopupMenuItem(
+                          value: 'visibility',
+                          child: Text(_hiddenOnly ? '找回会话入口' : '仅对我隐藏'),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+              onLongPress: _conversationId(item) == null
+                  ? null
+                  : () => _visibility(item),
+              onTap: _hiddenOnly
+                  ? null
+                  : () => context.push('/live-chat/${item['peer_user_id']}'),
             ),
         ],
       ),

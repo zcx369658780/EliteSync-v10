@@ -16,7 +16,7 @@ class ConversationCapabilityService
     {
         $blocked = UserBlock::query()->where(fn ($q) => $q->where('blocker_id', $actorId)->where('blocked_user_id', $peerId))
             ->orWhere(fn ($q) => $q->where('blocker_id', $peerId)->where('blocked_user_id', $actorId))->exists();
-        $syntheticDenied = !app(MatchingDebugModeService::class)->includeSyntheticUsers()
+        $syntheticDenied = ! app(MatchingDebugModeService::class)->includeSyntheticUsers()
             && (bool) User::query()->whereKey($peerId)->value('is_synthetic');
         $conversation = Conversation::query()
             ->where('room_key', app(ConversationDomainService::class)->roomKey($actorId, $peerId))
@@ -43,17 +43,19 @@ class ConversationCapabilityService
                 ->exists();
         }
 
-        $allowed = !$blocked && !$syntheticDenied && $match !== null && !$departed;
-        if(app(LiveConsentService::class)->enabled())$allowed=$allowed&&(app(LiveConsentService::class)->gates($actorId,$peerId)['live_send_allowed']??false);
+        $allowed = ! $blocked && ! $syntheticDenied && ($match !== null || app(LiveConsentService::class)->connection($actorId, $peerId) !== null) && ! $departed;
+        if (app(LiveConsentService::class)->enabled()) {
+            $allowed = $allowed && (app(LiveConsentService::class)->gates($actorId, $peerId)['live_send_allowed'] ?? false);
+        }
 
         return [
             'allowed' => $allowed,
             'reason_code' => $blocked
                 ? 'moderation_blocked'
-                : ($syntheticDenied || !$match || $departed ? 'relationship_unavailable' : null),
+                : ($syntheticDenied || ! $match || $departed ? 'relationship_unavailable' : null),
             'actor_user_id' => $actorId,
             'peer_user_id' => $peerId,
-            'dating_match_id' => $allowed ? (int) $match->id : null,
+            'dating_match_id' => $allowed && $match ? (int) $match->id : null,
             'conversation_id' => $conversation ? (int) $conversation->id : null,
         ];
     }
@@ -70,16 +72,16 @@ class ConversationCapabilityService
         if ($requiredMatchId !== null) {
             $releasedMatchQuery->whereKey($requiredMatchId);
         }
-        $releasedMatch = $releasedMatchQuery->exists();
-        $syntheticDenied = !app(MatchingDebugModeService::class)->includeSyntheticUsers()
+        $releasedMatch = $releasedMatchQuery->exists() || ($requiredMatchId === null && app(LiveConsentService::class)->connection($actorId, $peerId) !== null);
+        $syntheticDenied = ! app(MatchingDebugModeService::class)->includeSyntheticUsers()
             && (bool) User::query()->whereKey($peerId)->value('is_synthetic');
 
-        $canRead = $conversation !== null || $releasedMatch;
-        $canMutate = !$blocked && !$syntheticDenied && $releasedMatch;
-        if(app(LiveConsentService::class)->enabled()){
-            $gates=app(LiveConsentService::class)->gates($actorId,$peerId);
-            $canRead=$canRead&&($gates['live_read_allowed']??false);
-            $canMutate=$canMutate&&($gates['live_send_allowed']??false);
+        $canRead = ! $blocked && app(SocialPolicy::class)->pairAllowed($actorId, $peerId) && ($conversation !== null || $releasedMatch);
+        $canMutate = ! $blocked && ! $syntheticDenied && $releasedMatch;
+        if (app(LiveConsentService::class)->enabled()) {
+            $gates = app(LiveConsentService::class)->gates($actorId, $peerId);
+            $canRead = $canRead && ($gates['live_read_allowed'] ?? false);
+            $canMutate = $canMutate && ($gates['live_send_allowed'] ?? false);
         }
 
         return [
@@ -88,12 +90,27 @@ class ConversationCapabilityService
             'can_create' => $canMutate,
             'can_send' => $canMutate,
             'can_ws' => $canMutate && $conversation !== null,
-            'reason_code' => $blocked ? 'moderation_blocked' : ($syntheticDenied ? 'relationship_unavailable' : (!$releasedMatch ? 'relationship_unavailable' : null)),
+            'reason_code' => $blocked ? 'moderation_blocked' : ($syntheticDenied ? 'relationship_unavailable' : (! $releasedMatch ? 'relationship_unavailable' : null)),
         ];
     }
 
-    public function canCreate(int $actorId, int $peerId): bool { return $this->evaluate($actorId, $peerId)['can_create']; }
-    public function canRead(int $actorId, int $peerId): bool { return $this->evaluate($actorId, $peerId)['can_read']; }
-    public function canSend(int $actorId, int $peerId): bool { return $this->evaluate($actorId, $peerId)['can_send']; }
-    public function canWebSocket(int $actorId, int $peerId): bool { return $this->evaluate($actorId, $peerId)['can_ws']; }
+    public function canCreate(int $actorId, int $peerId): bool
+    {
+        return $this->evaluate($actorId, $peerId)['can_create'];
+    }
+
+    public function canRead(int $actorId, int $peerId): bool
+    {
+        return $this->evaluate($actorId, $peerId)['can_read'];
+    }
+
+    public function canSend(int $actorId, int $peerId): bool
+    {
+        return $this->evaluate($actorId, $peerId)['can_send'];
+    }
+
+    public function canWebSocket(int $actorId, int $peerId): bool
+    {
+        return $this->evaluate($actorId, $peerId)['can_ws'];
+    }
 }

@@ -67,6 +67,15 @@ void main() {
     '/api/v1/profile/basic',
     '/api/v1/profile/city',
     '/api/v1/auth/refresh',
+    '/api/v1/account/sessions',
+    '/api/v1/auth/account',
+    '/api/v1/auth/logout-all',
+    '/api/v1/connections/2',
+    '/api/v1/social',
+    '/api/v1/profile-peers/2',
+    '/api/v1/privacy',
+    '/api/v1/media/99/content',
+    '/api/v1/notifications',
   ]) {
     test(
       '$path 401 rejects matching token and propagates original response',

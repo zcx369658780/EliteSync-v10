@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Services\ConversationDomainService;
 use App\Services\ConversationCapabilityService;
+use App\Services\ConversationDomainService;
+use App\Services\ConversationVisibility;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,11 @@ class ConversationController extends Controller
             ->filter(fn (array $item) => isset($item['peer_user_id'])
                 && is_int($item['peer_user_id'])
                 && $item['peer_user_id'] > 0
-                && $capabilities->canRead($actorId, $item['peer_user_id']))
+                && $capabilities->canRead($actorId, $item['peer_user_id'])
+                && (! ($item['conversation_id'] ?? null) ? ! $request->boolean('hidden_only') : (app(ConversationVisibility::class)->visible($actorId, (int) $item['conversation_id'], $item['peer_user_id']) !== $request->boolean('hidden_only'))))
             ->map(function (array $item) use ($capabilities, $actorId) {
                 $item['conversation_capability'] = $capabilities->evaluate($actorId, $item['peer_user_id']);
+
                 return $item;
             });
 
@@ -45,14 +48,14 @@ class ConversationController extends Controller
         $eligible = $conversation
             ? $capabilities->canRead($actorId, $peerId)
             : $capabilities->canCreate($actorId, $peerId);
-        if (!$eligible) {
+        if (! $eligible) {
             return response()->json(['message' => 'conversation unavailable'], 404);
         }
 
         $entry = $conversation
             ? $service->summarizeConversation($conversation, $actorId)
             : $service->eligibleMatchForPeer($request->user(), $peerId);
-        if (!$entry) {
+        if (! $entry) {
             return response()->json(['message' => 'conversation unavailable'], 404);
         }
 
@@ -69,7 +72,7 @@ class ConversationController extends Controller
         $conversation = $service->findConversationForParticipant($conversationId, $actorId);
         $peerId = $conversation ? $service->peerUserId($conversation, $actorId) : null;
 
-        if (!$conversation || !$peerId || !$capabilities->canRead($actorId, $peerId)) {
+        if (! $conversation || ! $peerId || ! $capabilities->canRead($actorId, $peerId)) {
             return response()->json(['message' => 'conversation not found'], 404);
         }
 
@@ -83,7 +86,7 @@ class ConversationController extends Controller
     public function showPeer(Request $request, int $peerUserId, ConversationDomainService $service, ConversationCapabilityService $capabilities): JsonResponse
     {
         $actorId = (int) $request->user()->id;
-        if (!$capabilities->canRead($actorId, $peerUserId)) {
+        if (! $capabilities->canRead($actorId, $peerUserId)) {
             return response()->json(['message' => 'conversation not found'], 404);
         }
 
@@ -92,7 +95,7 @@ class ConversationController extends Controller
             ? $service->summarizeConversation($conversation, $actorId)
             : $service->eligibleMatchForPeer($request->user(), $peerUserId);
 
-        if (!$entry) {
+        if (! $entry) {
             return response()->json(['message' => 'conversation not found'], 404);
         }
 

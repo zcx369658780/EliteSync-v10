@@ -21,7 +21,9 @@ final class V1008EligibilityConsentTest extends TestCase
     use RefreshDatabase;
 
     private User $admin;
+
     private User $a;
+
     private User $b;
 
     protected function setUp(): void
@@ -40,7 +42,9 @@ final class V1008EligibilityConsentTest extends TestCase
     public function test_pending_and_rejected_are_excluded_despite_twenty_valid_answers(): void
     {
         $questions = $this->questions();
-        foreach ($questions as $question) { $this->answer($question); }
+        foreach ($questions as $question) {
+            $this->answer($question);
+        }
         $readiness = app(ProfileReadinessService::class);
         foreach (['pending', 'rejected'] as $status) {
             $this->a->forceFill(['verify_status' => $status, 'verify_reason' => '具名运营审核原因'])->save();
@@ -58,7 +62,9 @@ final class V1008EligibilityConsentTest extends TestCase
 
     public function test_independent_match_exclusion_remains_effective_after_restrict_restore(): void
     {
-        foreach ($this->questions() as $question) { $this->answer($question); }
+        foreach ($this->questions() as $question) {
+            $this->answer($question);
+        }
         $this->a->update(['is_match_eligible' => false]);
         $governance = app(UserGovernance::class);
         $sanction = $governance->punish($this->admin, $this->a->id, 'restrict', 'controlled restriction', 0);
@@ -75,7 +81,9 @@ final class V1008EligibilityConsentTest extends TestCase
     public function test_approved_requires_twenty_current_enabled_answers_with_valid_option_identity(): void
     {
         $questions = $this->questions();
-        foreach (array_slice($questions, 0, 19) as $question) { $this->answer($question); }
+        foreach (array_slice($questions, 0, 19) as $question) {
+            $this->answer($question);
+        }
         $readiness = app(ProfileReadinessService::class);
         $this->assertIncomplete($readiness, 19);
         $this->answer($questions[19], 'INVALID_OPTION_ID');
@@ -88,7 +96,9 @@ final class V1008EligibilityConsentTest extends TestCase
     public function test_question_disable_preserves_history_and_requires_supplement_for_future_matching(): void
     {
         $questions = $this->questions(21);
-        foreach (array_slice($questions, 0, 20) as $question) { $this->answer($question); }
+        foreach (array_slice($questions, 0, 20) as $question) {
+            $this->answer($question);
+        }
         QuestionnaireAttempt::create(['user_id' => $this->a->id, 'questionnaire_version' => 'q_v2',
             'bank_version' => 'qb_v1', 'attempt_version' => 'qa_v1', 'answers_count' => 20, 'total_count' => 21,
             'answers_json' => array_map(fn ($q) => ['question_id' => $q->id, 'option_id' => 'fixture_yes'], array_slice($questions, 0, 20)),
@@ -132,24 +142,29 @@ final class V1008EligibilityConsentTest extends TestCase
         $this->assertGates($live, false, false);
         $revoked = DB::table('messaging_consents')->where('generation', 1)->orderBy('id')->get();
         $this->assertCount(2, $revoked);
-        foreach ($revoked as $row) { $this->assertSame('MC_REVOKED', $row->state); }
+        foreach ($revoked as $row) {
+            $this->assertSame('MC_REVOKED', $row->state);
+        }
         $oldSnapshot = json_encode($revoked);
         $current = $live->current($this->a->id, $this->b->id);
         $this->assertSame('MC_REVOKED', $current['consent']['state']);
         $this->assertConflict(fn () => $live->transition($this->a->id, $this->b->id, 'consent', 'request', 0));
         $eventBoundary = (int) DB::table('live_consent_events')->max('id');
-        $pending = $live->transition($this->a->id, $this->b->id, 'consent', 'request', $current['consent']['revision']);
+        $pending = $live->transition($this->a->id, $this->b->id, 'consent', 'request', $current['consent']['revision'], $current['connection']['id'], $current['consent']['id']);
         $this->assertSame('MC_PENDING', $pending['consent']['state']);
         $this->assertSame(1, $pending['consent']['revision']);
         $newRows = DB::table('messaging_consents')->where('generation', 2)->get();
         $this->assertCount(2, $newRows);
-        foreach ($newRows as $row) { $this->assertSame('MC_PENDING', $row->state); }
+        foreach ($newRows as $row) {
+            $this->assertSame('MC_PENDING', $row->state);
+        }
         $this->assertTrue(DB::table('live_consent_events')->where('id', '>', $eventBoundary)->where([
             'kind' => 'consent', 'actor_id' => $this->a->id, 'from_state' => 'MC_NONE',
             'to_state' => 'MC_PENDING', 'revision' => 1])->exists());
         $this->assertGates($live, false, false);
         $this->assertConflict(fn () => $live->transition($this->a->id, $this->b->id, 'consent', 'accept', 1));
-        $accepted = $live->transition($this->b->id, $this->a->id, 'consent', 'accept', 1);
+        $current = $live->current($this->b->id, $this->a->id);
+        $accepted = $live->transition($this->b->id, $this->a->id, 'consent', 'accept', 1, $current['connection']['id'], $current['consent']['id']);
         $this->assertSame('MC_ACTIVE', $accepted['consent']['state']);
         $this->assertGates($live, true, true);
         $this->assertConflict(fn () => $live->transition($this->b->id, $this->a->id, 'consent', 'accept', 2));
@@ -172,6 +187,7 @@ final class V1008EligibilityConsentTest extends TestCase
                 'content' => '虚构资格题 '.$i, 'category' => 'fixture', 'sort_order' => $i, 'enabled' => true,
                 'version' => 1, 'quality_tag' => 'low_drop', 'options' => [['option_id' => 'fixture_yes']]]);
         }
+
         return $questions;
     }
 
@@ -219,6 +235,7 @@ final class V1008EligibilityConsentTest extends TestCase
         foreach (['questionnaire_answers', 'questionnaire_attempts', 'dating_matches'] as $table) {
             $snapshot[$table] = json_encode(DB::table($table)->orderBy('id')->get());
         }
+
         return $snapshot;
     }
 }

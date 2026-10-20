@@ -405,6 +405,8 @@ class _NotificationCenterPageState
         body: RefreshIndicator(
           onRefresh: _refresh,
           child: listAsync.when(
+            skipLoadingOnReload: false,
+            skipLoadingOnRefresh: false,
             loading: () => const AppPresentationStateView(
               state: AppPresentationState.loading(
                 safeTitle: '正在读取通知',
@@ -428,7 +430,7 @@ class _NotificationCenterPageState
             ),
             data: (items) {
               final unread =
-                  unreadAsync.asData?.value ??
+                  (unreadAsync.isLoading ? null : unreadAsync.asData?.value) ??
                   items.where((e) => !e.isRead).length;
               if (items.isEmpty) {
                 const emptyState = AppPresentationState.empty(

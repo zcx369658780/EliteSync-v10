@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import '../../rtc_test_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,6 +72,7 @@ Widget _wrap({
 }) {
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(RtcTestSession.new),
       appEnvProvider.overrideWithValue(
         const AppEnv(
           flavor: AppFlavor.dev,

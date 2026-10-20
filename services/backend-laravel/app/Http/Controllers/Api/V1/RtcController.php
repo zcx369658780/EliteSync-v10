@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\RtcSession;
 use App\Services\LiveKitTokenService;
+use App\Services\RtcAuthorityService;
 use App\Services\RtcSessionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class RtcController extends Controller
             (string) ($data['mode'] ?? 'voice')
         );
 
+        app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
         Log::info('rtc_call_created', [
             'rtc_session_id' => (int) $session->id,
             'call_key' => (string) $session->call_key,
@@ -54,7 +56,10 @@ class RtcController extends Controller
     public function show(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
@@ -67,10 +72,14 @@ class RtcController extends Controller
     public function accept(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
+        app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
         $session = $service->acceptCall($session, (int) $request->user()->id);
 
         return response()->json([
@@ -82,7 +91,10 @@ class RtcController extends Controller
     public function connect(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
@@ -97,7 +109,10 @@ class RtcController extends Controller
     public function heartbeat(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
@@ -120,7 +135,10 @@ class RtcController extends Controller
     public function reject(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
@@ -135,7 +153,10 @@ class RtcController extends Controller
     public function end(Request $request, int $callId, RtcSessionService $service): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 
@@ -150,7 +171,10 @@ class RtcController extends Controller
     public function livekit(Request $request, int $callId, RtcSessionService $service, LiveKitTokenService $tokenService): JsonResponse
     {
         $session = $service->findForUser((int) $request->user()->id, $callId);
-        if (!$session) {
+        if ($session) {
+            app(RtcAuthorityService::class)->bindDevice($session, (int) $request->user()->id, $request->user()->currentAccessToken()?->device_session_id);
+        }
+        if (! $session) {
             return response()->json(['message' => 'call not found'], 404);
         }
 

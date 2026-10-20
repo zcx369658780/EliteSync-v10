@@ -1,3 +1,9 @@
+import 'dart:async';
+import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
+import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
+import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import '../../rtc_test_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +18,7 @@ import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart'
 import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_livekit_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -48,6 +55,9 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   RtcSessionEntity _session;
   int connectRequests = 0;
+  int endRequests = 0;
+  int acceptRequests = 0;
+  Completer<RtcSessionEntity>? pendingFetch;
   int joinRequests = 0;
   bool denySession = false;
   final List<String> requestOrder = [];
@@ -57,6 +67,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
     requestOrder.add('session');
     // Match the real data source: failed HTTP results throw Exception.
     if (denySession) throw Exception('session denied');
+    if (pendingFetch != null) return pendingFetch!.future;
     return _session;
   }
 
@@ -69,6 +80,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   @override
   Future<RtcSessionEntity> acceptCall(int callId) async {
+    acceptRequests++;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'connecting',
@@ -124,6 +136,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
 
   @override
   Future<RtcSessionEntity> endCall(int callId) async {
+    endRequests++;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'ended',
@@ -175,14 +188,46 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   }
 }
 
+class NotifyingLeaveRtcService extends RtcLiveKitService {
+  NotifyingLeaveRtcService(RtcRemoteDataSource rtc)
+    : super(
+        remoteDataSource: rtc,
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'EliteSync',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: true,
+          useLiveKitRtc: true,
+        ),
+      );
+
+  final List<int?> leaves = [];
+  final List<int> connections = [];
+
+  @override
+  Future<void> leave({int? callId}) async {
+    // Service disposal also performs an unscoped cleanup, outside page ownership.
+    if (callId == null) return;
+    leaves.add(callId);
+    notifyListeners();
+  }
+
+  @override
+  Future<void> ensureConnected(int callId) async {
+    connections.add(callId);
+  }
+}
+
 Widget _wrap(
   Widget child, {
   required RtcRemoteDataSource rtc,
   bool liveKit = false,
+  RtcLiveKitService? service,
 }) {
   final telemetry = FakeAppTelemetryService();
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(RtcTestSession.new),
       appEnvProvider.overrideWithValue(
         AppEnv(
           flavor: AppFlavor.dev,
@@ -196,6 +241,8 @@ Widget _wrap(
         FrontendTelemetry(telemetry: telemetry),
       ),
       rtcRemoteDataSourceProvider.overrideWithValue(rtc),
+      if (service != null)
+        rtcLiveKitServiceProvider.overrideWith((ref) => service),
     ],
     child: MaterialApp(
       theme: AppTheme.light,
@@ -207,6 +254,167 @@ Widget _wrap(
 }
 
 void main() {
+  for (final page in ['call', 'incoming', 'result']) {
+    for (final lateResponse in [false, true]) {
+      testWidgets(
+        '$page clears A projection on account change (late=$lateResponse)',
+        (tester) async {
+          await tester.binding.setSurfaceSize(const Size(1000, 2400));
+          addTearDown(() => tester.binding.setSurfaceSize(null));
+          final rtc = FakeRtcRemoteDataSource(
+            RtcSessionEntity.fromJson({
+              'id': 96,
+              'mode': 'voice',
+              'status': page == 'result' ? 'ended' : 'ringing',
+              'title': 'A_PRIVATE_CALL_TITLE',
+              'initiator_name': 'A_PRIVATE_INITIATOR',
+              'peer_name': 'A_PRIVATE_PEER',
+              'initiator_user_id': 1,
+              'peer_user_id': 2,
+              'is_initiator': page != 'incoming',
+              'is_terminal': page == 'result',
+            }),
+          );
+          if (lateResponse) rtc.pendingFetch = Completer<RtcSessionEntity>();
+          final service = NotifyingLeaveRtcService(rtc);
+          final child = switch (page) {
+            'incoming' => const RtcIncomingCallPage(callId: 96),
+            'result' => const RtcCallResultPage(callId: 96),
+            _ => const RtcCallPage(callId: 96, autoConnect: false),
+          };
+          await tester.pumpWidget(_wrap(child, rtc: rtc, service: service));
+          if (lateResponse) {
+            // Loading skeletons animate while the intentionally suspended fetch waits.
+            await tester.pump();
+            await tester.pump(const Duration(milliseconds: 100));
+          } else {
+            await tester.pumpAndSettle();
+          }
+          if (!lateResponse) {
+            expect(
+              find.text(
+                page == 'incoming' ? 'A_PRIVATE_INITIATOR' : 'A_PRIVATE_PEER',
+              ),
+              findsOneWidget,
+            );
+          }
+          final container = ProviderScope.containerOf(
+            tester.element(find.byWidget(child)),
+          );
+          final oldActions = tester
+              .widgetList<AppPrimaryButton>(find.byType(AppPrimaryButton))
+              .where((button) => ['挂断', '接听'].contains(button.label))
+              .map((button) => button.onPressed)
+              .toList();
+          if (!lateResponse && page != 'result') expect(oldActions, isNotEmpty);
+          // B is the other legitimate participant, but cannot inherit A's action.
+          (container.read(sessionProvider.notifier) as RtcTestSession).change(
+            2,
+          );
+          for (final action in oldActions) {
+            action?.call();
+          }
+          await tester.pumpAndSettle();
+          if (lateResponse) {
+            rtc.pendingFetch!.complete(rtc._session);
+            await tester.pumpAndSettle();
+          }
+          expect(find.text('A_PRIVATE_CALL_TITLE'), findsNothing);
+          expect(find.text('A_PRIVATE_INITIATOR'), findsNothing);
+          expect(find.text('A_PRIVATE_PEER'), findsNothing);
+          expect(find.text('登录状态已变化，请重新打开通话'), findsOneWidget);
+          expect(rtc.endRequests, 0);
+          expect(rtc.acceptRequests, 0);
+          expect(service.connections, isEmpty);
+          await tester.pumpWidget(const SizedBox());
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+
+  for (final denied in [false, true]) {
+    testWidgets(
+      'closed call leaves once despite notifications and polling: denied=$denied',
+      (tester) async {
+        final rtc = FakeRtcRemoteDataSource(
+          RtcSessionEntity.fromJson({
+            'id': 93,
+            'mode': 'voice',
+            'status': 'ended',
+            'initiator_user_id': 1,
+            'peer_user_id': 2,
+            'is_terminal': true,
+          }),
+        )..denySession = denied;
+        final service = NotifyingLeaveRtcService(rtc);
+        await tester.pumpWidget(
+          _wrap(
+            const RtcCallPage(callId: 93, autoConnect: false),
+            rtc: rtc,
+            service: service,
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(service.leaves, [93]);
+        service.notifyListeners();
+        await tester.pumpAndSettle();
+        await tester.pump(const Duration(seconds: 8));
+        await tester.pumpAndSettle();
+        expect(service.leaves, [93]);
+        expect(service.connections, isEmpty);
+        await tester.pumpWidget(const SizedBox());
+        expect(service.leaves, [93]);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'new call lifecycle connects and revokes independently of old terminal call',
+    (tester) async {
+      RtcSessionEntity session(int id, String status) =>
+          RtcSessionEntity.fromJson({
+            'id': id,
+            'mode': 'voice',
+            'status': status,
+            'initiator_user_id': 1,
+            'peer_user_id': 2,
+            'is_terminal': status == 'ended',
+          });
+      final rtc = FakeRtcRemoteDataSource(session(94, 'ended'));
+      final service = NotifyingLeaveRtcService(rtc);
+      final callId = ValueNotifier(94);
+      await tester.pumpWidget(
+        _wrap(
+          ValueListenableBuilder<int>(
+            valueListenable: callId,
+            builder: (_, id, _) => RtcCallPage(callId: id, autoConnect: false),
+          ),
+          rtc: rtc,
+          service: service,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.leaves, [94]);
+      rtc._session = session(95, 'in_call');
+      callId.value = 95;
+      await tester.pumpAndSettle();
+      expect(service.connections, [95]);
+      expect(service.leaves, [94]);
+      rtc._session = session(95, 'ended');
+      await tester.pump(const Duration(seconds: 4));
+      await tester.pumpAndSettle();
+      expect(service.leaves, [94, 95]);
+      service.notifyListeners();
+      await tester.pumpAndSettle();
+      await tester.pumpWidget(const SizedBox());
+      expect(service.leaves, [94, 95]);
+      expect(tester.takeException(), isNull);
+      callId.dispose();
+    },
+  );
+
   testWidgets('denied call fetch shows an error instead of retry loading', (
     tester,
   ) async {

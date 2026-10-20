@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChatMessage;
 use App\Models\MediaAsset;
+use App\Models\StatusPost;
+use App\Models\User;
+use App\Services\LiveConsentService;
 use App\Services\MediaAssetService;
+use App\Services\PrivateVideoValidator;
+use App\Services\SocialPolicy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 class MediaController extends Controller
@@ -32,16 +39,16 @@ class MediaController extends Controller
 
     public function store(Request $request, MediaAssetService $service): JsonResponse
     {
-        if (config('media.disk') === 'v1009') {
-            abort_unless(app(\App\Services\LiveConsentService::class)->enabled(), 404);
+        if (in_array(config('media.disk'), ['v1009', 'v1011_relationship'], true)) {
+            abort_unless(app(LiveConsentService::class)->enabled(), 404);
         }
-        if(app(\App\Services\LiveConsentService::class)->enabled()){
-            abort_unless(in_array(config('media.disk'), ['v1007', 'v1009'], true),422,'private media configuration required');
-            $request->validate(['media_type'=>'required|in:image,video', 'file'=>'required|file', 'storage_key'=>'prohibited','public_url'=>'prohibited']);
+        if (app(LiveConsentService::class)->enabled()) {
+            abort_unless(in_array(config('media.disk'), ['v1007', 'v1009', 'v1011_relationship'], true), 422, 'private media configuration required');
+            $request->validate(['media_type' => 'required|in:image,video', 'file' => 'required|file', 'storage_key' => 'prohibited', 'public_url' => 'prohibited']);
             if ($request->input('media_type') === 'video') {
-                abort_unless(config('media.disk') === 'v1009', 422, 'private video configuration required');
+                abort_unless(in_array(config('media.disk'), ['v1009', 'v1011_relationship'], true), 422, 'private video configuration required');
             } else {
-                $request->validate(['file'=>'required|image|max:5120']);
+                $request->validate(['file' => 'required|image|max:5120']);
             }
         }
         $data = $request->validate([
@@ -59,16 +66,16 @@ class MediaController extends Controller
             'metadata' => ['nullable', 'array'],
         ]);
 
-        if (app(\App\Services\LiveConsentService::class)->enabled() && $request->input('media_type') === 'video') {
-            $data = array_merge($data, app(\App\Services\PrivateVideoValidator::class)->validate($request->file('file')));
+        if (app(LiveConsentService::class)->enabled() && $request->input('media_type') === 'video') {
+            $data = array_merge($data, app(PrivateVideoValidator::class)->validate($request->file('file')));
         }
 
         try {
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
-                $private=app(\App\Services\LiveConsentService::class)->enabled();
-                $data['mime_type'] = (string) ($private?$file?->getMimeType():($data['mime_type']??$file?->getMimeType()??''));
-                $data['size_bytes'] = (int) ($private?$file?->getSize():($data['size_bytes']??$file?->getSize()??0));
+                $private = app(LiveConsentService::class)->enabled();
+                $data['mime_type'] = (string) ($private ? $file?->getMimeType() : ($data['mime_type'] ?? $file?->getMimeType() ?? ''));
+                $data['size_bytes'] = (int) ($private ? $file?->getSize() : ($data['size_bytes'] ?? $file?->getSize() ?? 0));
 
                 $asset = $service->registerUploaded($request->user(), $file, $data);
             } else {
@@ -119,7 +126,7 @@ class MediaController extends Controller
             ->where('owner_user_id', $request->user()->id)
             ->find($assetId);
 
-        if (!$asset) {
+        if (! $asset) {
             return response()->json(['message' => 'media asset not found'], 404);
         }
 
@@ -130,16 +137,21 @@ class MediaController extends Controller
         ]);
     }
 
-    public function content(Request $request,int $assetId)
+    public function content(Request $request, int $assetId)
     {
         $asset = MediaAsset::query()->find($assetId);
-        if($asset && in_array($asset->storage_disk, ['v1007', 'v1009'], true))return $this->privateContent($request,$assetId,(int)$asset->owner_user_id);
+        if ($asset && in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+            return $this->privateContent($request, $assetId, (int) $asset->owner_user_id);
+        }
 
-        if (!$asset) {
+        if (! $asset) {
             return response()->json(['message' => 'media asset not found'], 404);
         }
 
-        if (!$asset->isBackingObjectAvailable()) {
+        if ((int) $asset->owner_user_id !== (int) $request->user()?->id) {
+            return response()->json(['message' => 'media asset unavailable'], 404);
+        }
+        if (! $asset->isBackingObjectAvailable()) {
             return response()->json([
                 'message' => 'media asset unavailable',
             ], 404);
@@ -154,14 +166,14 @@ class MediaController extends Controller
                 if (is_string($path) && $path !== '' && is_file($path)) {
                     return response()->file($path, [
                         'Content-Type' => (string) ($asset->mime_type ?? 'application/octet-stream'),
-                        'Cache-Control' => $asset->storage_disk==='v1007'?'private, no-store':'public, max-age=300',
+                        'Cache-Control' => $asset->storage_disk === 'v1007' ? 'private, no-store' : 'private, no-store',
                     ]);
                 }
 
                 if (method_exists($disk, 'response')) {
                     return $disk->response($storageKey, null, [
                         'Content-Type' => (string) ($asset->mime_type ?? 'application/octet-stream'),
-                        'Cache-Control' => 'public, max-age=300',
+                        'Cache-Control' => 'private, no-store',
                     ]);
                 }
             }
@@ -177,30 +189,60 @@ class MediaController extends Controller
         ], 404);
     }
 
-    private function privateContent(Request $request,int $id,int $owner)
+    private function privateContent(Request $request, int $id, int $owner)
     {
-        $viewer=auth('sanctum')->user();$service=app(\App\Services\LiveConsentService::class);
-        if(!$viewer||!$service->enabled())return response()->json(['message'=>'media asset unavailable'],404);
-        return \Illuminate\Support\Facades\DB::transaction(function()use($viewer,$service,$id,$owner){
-            // Discover all trusted participants before taking any user lock.
-            $linked=\App\Models\ChatMessage::whereHas('attachments',fn($q)=>$q->where('media_asset_id',$id))->get(['sender_id','receiver_id']);
-            $participants = $linked->flatMap(fn($m) => [$m->sender_id, $m->receiver_id])
-                ->push($viewer->id, $owner)->unique()->sort()->values()->all();
-            $users=\App\Models\User::whereIn('id',$participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
-            if(!$users->get($viewer->id)||$users->get($viewer->id)->disabled||!$users->get($owner)||$users->get($owner)->disabled)return response()->json(['message'=>'media asset unavailable'],404);
-            $allowed=$linked->isEmpty()&&(int)$viewer->id===$owner;
-            foreach($linked as$m){if((int)$m->sender_id===(int)$viewer->id||(int)$m->receiver_id===(int)$viewer->id){
-                $peer=(int)($m->sender_id==$viewer->id?$m->receiver_id:$m->sender_id);
-                $allowed=$allowed||($service->gates((int)$viewer->id,$peer)['live_read_allowed']??false);
-            }}
-            $asset=MediaAsset::whereKey($id)->lockForUpdate()->first();
-            if(!$allowed||!$asset||!in_array($asset->storage_disk, ['v1007', 'v1009'], true)
-                ||($asset->storage_disk === 'v1009' && $asset->status !== 'ready')||!$asset->isBackingObjectAvailable())return response()->json(['message'=>'media asset unavailable'],404);
-            $response=response()->file(Storage::disk($asset->storage_disk)->path($asset->storage_key),['Content-Type'=>$asset->mime_type,'X-Content-Type-Options'=>'nosniff']);
+        $viewer = auth('sanctum')->user();
+        $service = app(LiveConsentService::class);
+        if (! $viewer || ! $service->enabled()) {
+            return response()->json(['message' => 'media asset unavailable'], 404);
+        }
+
+        // Candidate discovery must not establish this transaction's RR snapshot
+        // before a pending revocation releases its coordinated user locks.
+        $candidates = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
+        $participants = $candidates->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id])
+            ->push((int) $viewer->id, $owner)->unique()->sort()->values()->all();
+
+        return DB::transaction(function () use ($viewer, $service, $id, $owner, $participants) {
+            $users = User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            if (! $users->get($viewer->id) || $users->get($viewer->id)->disabled || ! $users->get($owner) || $users->get($owner)->disabled) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            // Re-read attachment identities only after all candidate users are
+            // locked. New participants require a new request, never late locks.
+            $linked = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
+            $currentParticipants = $linked->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id]);
+            if ($currentParticipants->diff($participants)->isNotEmpty()) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            $asset = MediaAsset::whereKey($id)->lockForUpdate()->first();
+            if (! $asset || (int) $asset->owner_user_id !== $owner) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            $allowed = $linked->isEmpty() && (int) $viewer->id === $owner;
+            if (app(SocialPolicy::class)->pairAllowed((int) $viewer->id, $owner)) {
+                $post = StatusPost::where('cover_media_asset_id', $id)->where('author_user_id', $owner)->where('is_deleted', false)->first();
+                if ($post && ((int) $viewer->id === $owner || ($post->audience === 'FRIENDS' && app(SocialPolicy::class)->friendship((int) $viewer->id, $owner)))) {
+                    $allowed = true;
+                }
+            }
+
+            foreach ($linked as $m) {
+                if ((int) $m->sender_id === (int) $viewer->id || (int) $m->receiver_id === (int) $viewer->id) {
+                    $peer = (int) ($m->sender_id == $viewer->id ? $m->receiver_id : $m->sender_id);
+                    $allowed = $allowed || ($service->gates((int) $viewer->id, $peer)['live_read_allowed'] ?? false);
+                }
+            }
+            if (! $allowed || ! $asset || ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)
+                || (in_array($asset->storage_disk, ['v1009', 'v1011_relationship'], true) && $asset->status !== 'ready') || ! $asset->isBackingObjectAvailable()) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            $response = response()->file(Storage::disk($asset->storage_disk)->path($asset->storage_key), ['Content-Type' => $asset->mime_type, 'X-Content-Type-Options' => 'nosniff']);
             $response->setPrivate();
-            $response->headers->set('Cache-Control','private, no-store, max-age=0');
+            $response->headers->set('Cache-Control', 'private, no-store, max-age=0');
             $response->headers->set('Accept-Ranges', 'bytes');
             $response->headers->set('Vary', 'Authorization, Cookie');
+
             return $response;
         });
     }

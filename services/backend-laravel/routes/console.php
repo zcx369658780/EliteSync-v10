@@ -1,8 +1,10 @@
 <?php
 
+use App\Services\Accounts\AccountClosure;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -53,3 +55,10 @@ Artisan::command('metrics:daily {--days=7}', function () {
 
     return 0;
 })->purpose('Show daily core matching metrics (exposure/confirm/reply/top10 share)');
+
+Artisan::command('accounts:process-closures', function () {
+    $n = app(AccountClosure::class)->processPending();
+    $this->info('Processed closure requests: '.$n);
+});
+
+Schedule::command('accounts:process-closures')->everyMinute()->withoutOverlapping();

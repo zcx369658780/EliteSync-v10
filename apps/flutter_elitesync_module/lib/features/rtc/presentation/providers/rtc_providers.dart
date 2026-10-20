@@ -4,25 +4,40 @@ import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_livekit_service.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 final rtcRemoteDataSourceProvider = Provider<RtcRemoteDataSource>((ref) {
-  return RtcRemoteDataSource(apiClient: ref.watch(apiClientProvider));
+  final session = ref.watch(sessionProvider).asData?.value;
+  return RtcRemoteDataSource(
+    apiClient: ref.watch(apiClientProvider),
+    isCurrent: () =>
+        ref.mounted &&
+        session?.isLoggedIn == true &&
+        identical(ref.read(sessionProvider).asData?.value, session),
+  );
 });
 
 final rtcCallsProvider = FutureProvider<List<RtcSessionEntity>>((ref) async {
-  return ref.read(rtcRemoteDataSourceProvider).fetchCalls();
+  if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) return [];
+  return ref.watch(rtcRemoteDataSourceProvider).fetchCalls();
 });
 
 final rtcCallProvider = FutureProvider.family<RtcSessionEntity, int>(
   (ref, callId) async {
-    return ref.read(rtcRemoteDataSourceProvider).fetchCall(callId);
+    if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) {
+      throw StateError('RTC requires current login');
+    }
+    return ref.watch(rtcRemoteDataSourceProvider).fetchCall(callId);
   },
   // The call page already polls. A second retry loop can hide revoked/unknown
   // authorization behind loading state instead of showing the fail-closed UI.
   retry: (_, _) => null,
 );
 
-final rtcLiveKitServiceProvider = ChangeNotifierProvider<RtcLiveKitService>((ref) {
+final rtcLiveKitServiceProvider = ChangeNotifierProvider<RtcLiveKitService>((
+  ref,
+) {
+  ref.watch(sessionProvider);
   return RtcLiveKitService(
     remoteDataSource: ref.watch(rtcRemoteDataSourceProvider),
     appEnv: ref.watch(appEnvProvider),

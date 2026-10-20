@@ -63,7 +63,20 @@ class AuthInterceptor extends Interceptor {
     }
     final path = err.requestOptions.path;
     final protectedProfile =
-        path.startsWith('/api/v1/profile/') || path == '/api/v1/auth/refresh';
+        path.startsWith('/api/v1/profile/') ||
+        path == '/api/v1/auth/refresh' ||
+        [
+          '/api/v1/account/',
+          '/api/v1/auth/account',
+          '/api/v1/auth/logout',
+          '/api/v1/connections/',
+          '/api/v1/social',
+          '/api/v1/profile-peers/',
+          '/api/v1/privacy',
+          '/api/v1/notifications',
+          '/api/v1/status/',
+          '/api/v1/media/',
+        ].any(path.startsWith);
     final status = err.response?.statusCode;
     final data = err.response?.data;
     final disabled =

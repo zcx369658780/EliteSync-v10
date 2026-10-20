@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\AppNotificationItem;
 use App\Models\ChatMessage;
 use App\Models\Conversation;
+use App\Models\RtcSession;
+use App\Models\StatusPost;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -25,22 +27,54 @@ class NotificationService
     public function presentationForUser(AppNotificationItem $notification, int $viewerId): array
     {
         $payload = (array) ($notification->payload ?? []);
-        if (str_starts_with((string)$notification->kind, 'rtc_call_')) {
-            $safe = ['title'=>'通话通知','body'=>'请打开APP查看当前有权通话','payload'=>[]];
+        if ($notification->kind === 'social_request') {
+            $row = DB::table('social_requests')->find((int) ($payload['social_request_id'] ?? 0));
+            if (! $row || (int) $row->recipient_id !== $viewerId || $row->state !== 'PENDING' || $row->expires_at <= now() || ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $row->sender_id)) {
+                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
+            }
+
+            return ['title' => '有一条新的联系请求', 'body' => '请在关系请求中心查看', 'payload' => ['social_request_id' => $row->id]];
+        }
+        if (str_starts_with((string) $notification->kind, 'rtc_call_')) {
+            $safe = ['title' => '通话通知', 'body' => '请打开APP查看当前有权通话', 'payload' => [], 'available' => false];
             try {
-                $id = (int)($payload['route_args']['call_id'] ?? 0);
-                $call = \App\Models\RtcSession::find($id);
-                if ($call && app(RtcAuthorityService::class)->authorized($call, $viewerId) && in_array($call->status,['calling','ringing','connecting','in_call'],true)) {
-                    $safe['payload'] = ['route_name'=>'rtc_call','route_args'=>['call_id'=>$call->id, 'mode'=>$call->mode]];
+                $id = (int) ($payload['route_args']['call_id'] ?? 0);
+                $call = RtcSession::find($id);
+                if ($call && app(RtcAuthorityService::class)->authorized($call, $viewerId) && in_array($call->status, ['calling', 'ringing', 'connecting', 'in_call'], true)) {
+                    $safe['available'] = true;
+                    $safe['payload'] = ['route_name' => 'rtc_call', 'route_args' => ['call_id' => $call->id, 'mode' => $call->mode]];
                 }
-            } catch (Throwable) {}
+            } catch (Throwable) {
+            }
+
             return $safe;
         }
 
+        if ($notification->kind === 'status_like') {
+            $post = StatusPost::find((int) ($payload['status_post_id'] ?? 0));
+            if (! $post || $post->is_deleted || $post->audience !== 'FRIENDS' || (int) $post->author_user_id !== $viewerId) {
+                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
+            }
+            $actor = (int) ($payload['actor_user_id'] ?? 0);
+            if (! $actor || ! app(SocialPolicy::class)->pairAllowed($viewerId, $actor) || ! app(SocialPolicy::class)->friendship($viewerId, $actor)) {
+                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
+            }
+
+            return ['title' => '动态收到赞', 'body' => '请在当前权限允许时查看', 'payload' => ['status_post_id' => $payload['status_post_id'] ?? null]];
+        }
+        if (($payload['actor_user_id'] ?? null) && ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $payload['actor_user_id'])) {
+            return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
+        }
+        if (($payload['status_post_id'] ?? null)) {
+            $post = StatusPost::find($payload['status_post_id']);
+            if (! $post || $post->is_deleted || ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $post->author_user_id) || ((int) $post->author_user_id !== $viewerId && ($post->audience !== 'FRIENDS' || ! app(SocialPolicy::class)->friendship($viewerId, (int) $post->author_user_id)))) {
+                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
+            }
+        }
         if (! $this->isPrivateMessage((string) $notification->kind, $payload)) {
             return ['title' => $notification->title, 'body' => $notification->body ?? '', 'payload' => $payload];
         }
-        $safe = ['title' => self::MESSAGE_TITLE, 'body' => self::MESSAGE_BODY, 'payload' => []];
+        $safe = ['title' => self::MESSAGE_TITLE, 'body' => self::MESSAGE_BODY, 'payload' => [], 'available' => false];
         $messageId = filter_var($payload['message_id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
         $authority = app(LiveConsentService::class);
         if ((int) $notification->user_id !== $viewerId || ! $messageId || ! $authority->enabled()) {
@@ -59,7 +93,7 @@ class NotificationService
                 }
 
                 // The immutable message binds receiver, peer and room. The payload cannot grant access.
-                return array_replace($safe, ['payload' => ['source' => 'message', 'route_name' => 'chat_room',
+                return array_replace($safe, ['available' => true, 'payload' => ['source' => 'message', 'route_name' => 'chat_room',
                     'route_args' => ['conversation_id' => (string) $conversation->id]]]);
             });
         } catch (Throwable) {
@@ -131,15 +165,24 @@ class NotificationService
             ->where('user_id', $userId)
             ->orderByDesc('id')
             ->limit($limit)
-            ->get();
+            ->get()->filter(function ($n) use ($userId) {
+                $p = $this->presentationForUser($n, $userId);
+
+                return ($p['available'] ?? true) && $p['title'] !== '通知已不可用';
+            })->values();
     }
 
     public function unreadCount(int $userId): int
     {
-        return (int) AppNotificationItem::query()
-            ->where('user_id', $userId)
-            ->whereNull('read_at')
-            ->count();
+        $count = 0;
+        foreach (AppNotificationItem::where('user_id', $userId)->whereNull('read_at')->cursor() as $n) {
+            $p = $this->presentationForUser($n, $userId);
+            if (($p['available'] ?? true) && $p['title'] !== '通知已不可用') {
+                $count++;
+            }
+        }
+
+        return $count;
     }
 
     public function markRead(int $userId, int $notificationId): ?AppNotificationItem
