@@ -108,7 +108,7 @@ Route::prefix('v1')->group(function () {
         Route::put('/journey/participation', [$journey, 'participate']);
         Route::post('/journey/proposals/{id}/decision', [$journey, 'decision'])->whereUuid('id');
         Route::get('/formal-relationships', [$journey, 'relationships']);
-        Route::post('/formal-relationships', [$journey, 'requestRelationship']);
+        Route::post('/formal-relationships', [$journey, 'requestRelationship'])->middleware('throttle:10,1');
         Route::post('/formal-relationships/{id}/actions', [$journey, 'relationshipAction'])->whereUuid('id');
         Route::put('/privacy/resume', [$journey, 'saveResume']);
         Route::get('/privacy/peers/{id}', [PrivacyController::class, 'peer'])->whereNumber('id');

@@ -24,20 +24,9 @@ class _FormalState extends SessionBoundPage<FormalRelationshipPage> {
   }
 
   List<String> _actions(Map<String, dynamic> relation) =>
-      switch (relation['state']) {
-        'PENDING_MUTUAL' => [
-          if (relation['confirmed_me'] != true) 'confirm',
-          'decline',
-          'withdraw',
-          'end',
-        ],
-        'ACTIVE' => ['pause', 'end'],
-        'PAUSED' || 'SUSPENDED_REVERIFY' => [
-          if (relation['confirmed_me'] != true) 'resume',
-          'end',
-        ],
-        _ => [],
-      };
+      relation['allowed_actions'] is List
+      ? (relation['allowed_actions'] as List).whereType<String>().toList()
+      : const [];
 
   @override
   Widget build(BuildContext context) => frame('正式恋爱关系', [
@@ -45,6 +34,9 @@ class _FormalState extends SessionBoundPage<FormalRelationshipPage> {
     if (data != null) ...[
       IdentityGateCard(identity: objectMap(data!['identity'])),
       const Text('开发默认每人同时最多一个ACTIVE关系；服务器事务裁决。未配置真实供应商时，真实账号不可激活。'),
+      const Text(
+        '可在好友与请求中心管理接收请求开关。撤回后重发有24小时冷却；被拒后不能换键重复请求。双方确认、实人核验及字段分享仍分别处理。',
+      ),
       TextField(
         key: const Key('formal-peer'),
         controller: _peer,
@@ -52,7 +44,7 @@ class _FormalState extends SessionBoundPage<FormalRelationshipPage> {
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
           labelText: '对方用户编号',
-          helperText: '申请不会替对方确认或开放资料',
+          helperText: '仅限已有好友或生效连接，且对方已开启接收请求',
         ),
       ),
       FilledButton(

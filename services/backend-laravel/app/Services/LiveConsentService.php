@@ -62,7 +62,8 @@ final class LiveConsentService
             if ($lock || DB::transactionLevel() > 0) {
                 $proposal->lockForUpdate();
             }
-            if ($proposal->first()) {
+            $currentProposal = $proposal->first();
+            if ($currentProposal && app(SlowDatingService::class)->proposalContextActive($currentProposal)) {
                 return $match;
             }
         }

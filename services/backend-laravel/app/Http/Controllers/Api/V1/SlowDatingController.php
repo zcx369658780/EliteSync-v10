@@ -26,7 +26,7 @@ final class SlowDatingController extends Controller
     public function relationships(Request $r, FormalRelationshipService $s) { return response()->json($s->listing((int) $r->user()->id)); }
     public function requestRelationship(Request $r, FormalRelationshipService $s)
     {
-        $d = $r->validate(['peer_id' => 'required|integer|min:1', 'idempotency_key' => 'required|string|max:100', 'verified' => 'prohibited', 'test_only' => 'prohibited']);
+        $d = $r->validate(['peer_id' => 'required|integer|min:1', 'idempotency_key' => 'required|string|max:100', 'verified' => 'prohibited', 'test_only' => 'prohibited', 'actor_id' => 'prohibited', 'requester_id' => 'prohibited']);
         return response()->json($s->request((int) $r->user()->id, $d['peer_id'], $d['idempotency_key']));
     }
     public function relationshipAction(Request $r, string $id, FormalRelationshipService $s)

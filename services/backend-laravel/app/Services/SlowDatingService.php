@@ -32,12 +32,24 @@ final class SlowDatingService
             $state = $p->state ?? 'NOT_ENROLLED'; $generation = (int) ($p->generation ?? 0);
             if ($action === 'opt_in') {
                 abort_unless(app(ProfileReadinessService::class)->forUser(User::findOrFail($id))['matching_eligibility']['eligible'], 422, 'preparation incomplete');
-                if ($state !== 'ACTIVE') { $generation++; }
+                if ($state !== 'ACTIVE') {
+                    foreach ($this->pendingFor($id) as $old) {
+                        $this->expire($old);
+                        abort_if(in_array($old->state, ['PENDING', 'ACCEPTED_BY_ONE'], true), 409, 'withdraw current proposal before new participation generation');
+                    }
+                    $generation++;
+                }
                 $state = 'ACTIVE';
             } elseif ($action === 'pause') { $state = 'PAUSED';
             } elseif ($action === 'exit') { $state = 'EXITED';
             } else { abort_unless($action === 'draft', 422); }
             DB::table('matching_participations')->updateOrInsert(['user_id' => $id], ['state' => $state, 'generation' => $generation, 'revision' => $revision + 1, 'intent' => $intent, 'opted_in_at' => $action === 'opt_in' ? now() : ($p->opted_in_at ?? null), 'created_at' => $p->created_at ?? now(), 'updated_at' => now()]);
+            if ($action === 'exit') {
+                foreach ($this->pendingFor($id) as $old) {
+                    $this->finish($old, 'WITHDRAWN');
+                    app(JourneyStore::class)->audit($id, $old->id, 'PARTICIPATION_EXIT_WITHDRAWAL', ['state' => 'WITHDRAWN', 'revision' => $old->revision]);
+                }
+            }
             app(JourneyStore::class)->audit($id, 'participation:'.$id, $action, ['state' => $state, 'generation' => $generation, 'revision' => $revision + 1]);
             return $this->participation($id);
         });
@@ -54,6 +66,7 @@ final class SlowDatingService
             if ($slot) {
                 $old = DB::table('match_proposals')->where('id', $slot->proposal_id)->lockForUpdate()->first();
                 $this->expire($old);
+                $this->reconcilePending($old);
                 abort_if(DB::table('match_proposal_slots')->where('user_id', $u)->exists(), 409, 'unresolved proposal exists');
             }
         }
@@ -83,6 +96,30 @@ final class SlowDatingService
         }
     }
 
+    private function pendingFor(int $actor): \Illuminate\Support\Collection
+    {
+        return DB::table('match_proposals')->where(fn ($q) => $q->where('user_a', $actor)->orWhere('user_b', $actor))
+            ->whereIn('state', ['PENDING', 'ACCEPTED_BY_ONE'])->orderBy('id')->lockForUpdate()->get();
+    }
+
+    /** Actor User lock serializes EXIT with every pair reader; no peer lock is acquired late. */
+    private function reconcilePending(?object $p): void
+    {
+        if (! $p || ! in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE'], true)) { return; }
+        $a = $this->participation((int) $p->user_a); $b = $this->participation((int) $p->user_b);
+        if ($a['state'] === 'EXITED' || $b['state'] === 'EXITED'
+            || $a['generation'] !== (int) $p->generation_a || $b['generation'] !== (int) $p->generation_b) {
+            $this->finish($p, 'WITHDRAWN');
+            app(JourneyStore::class)->audit(null, $p->id, 'PARTICIPATION_AUTHORITY_INVALIDATED', ['state' => 'WITHDRAWN', 'reason' => 'exit_or_generation_changed', 'revision' => $p->revision]);
+        }
+    }
+
+    public function proposalContextActive(object $p): bool
+    {
+        return $this->enrolled((int) $p->user_a, (int) $p->generation_a)
+            && $this->enrolled((int) $p->user_b, (int) $p->generation_b);
+    }
+
     public function proposal(int $actor, ?string $id = null): ?array
     {
         // Immutable locator only, outside transaction. Revalidated after ordered user locks.
@@ -99,11 +136,16 @@ final class SlowDatingService
 
     public function projectLocked(object $p, int $actor): array
     {
+        $this->expire($p);
+        $this->reconcilePending($p);
         $isA = (int) $p->user_a === $actor; $peer = (int) ($isA ? $p->user_b : $p->user_a);
         $out = ['id' => $p->id, 'match_id' => (int) $p->dating_match_id, 'round_id' => (int) $p->round_id, 'run_id' => (int) $p->run_id, 'revision' => (int) $p->revision, 'state' => $p->state, 'decision_me' => $isA ? $p->decision_a : $p->decision_b, 'decision_peer' => $isA ? $p->decision_b : $p->decision_a, 'peer_id' => $peer, 'revealed_at' => $p->revealed_at, 'expires_at' => $p->expires_at, 'showcase' => null, 'explanation' => null, 'connection_eligible' => false];
+        $pending = in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE'], true);
+        $current = $this->proposalContextActive($p);
+        $out += ['decision_available' => $pending && $current, 'withdraw_available' => $pending, 'availability_reason' => $current ? null : 'participation_paused_or_changed'];
         $allowed = app(SocialPolicy::class)->pairAllowed($actor, $peer)
             && User::whereIn('id', [$actor, $peer])->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')->count() === 2;
-        if (! $allowed || Carbon::parse($p->expires_at, 'UTC')->lte(now()->utc()) || ! in_array($p->state, ['PENDING','ACCEPTED_BY_ONE','MUTUALLY_ACCEPTED'], true)) { return $out; }
+        if (! $allowed || ! $current || Carbon::parse($p->expires_at, 'UTC')->lte(now()->utc()) || ! in_array($p->state, ['PENDING','ACCEPTED_BY_ONE','MUTUALLY_ACCEPTED'], true)) { return $out; }
         $publication = DB::table('user_profile_showcase_publications')->where('user_id', $peer)->where('public_display_eligible', true)->lockForUpdate()->first();
         // No raw payload, questions, exact birth inputs, internal scores or Safety facts.
         $payload = $publication ? json_decode($publication->published_payload, true) : [];

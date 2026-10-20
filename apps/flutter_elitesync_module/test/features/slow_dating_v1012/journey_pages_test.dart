@@ -245,6 +245,8 @@ void main() {
               'id': 22,
               'revision': 4,
               'state': 'PENDING',
+              'decision_available': true,
+              'withdraw_available': true,
               'peer_id': 2,
               'showcase': {'public_id': 'ES-2'},
               'explanation': {
@@ -341,6 +343,7 @@ void main() {
                 'id': 9,
                 'peer_id': 2,
                 'state': 'SUSPENDED_REVERIFY',
+                'allowed_actions': ['resume', 'end'],
                 'revision': 6,
                 'confirmed_me': false,
                 'confirmed_peer': false,

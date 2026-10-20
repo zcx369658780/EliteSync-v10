@@ -29,7 +29,9 @@ final class SocialController extends Controller
         $d = $r->validate(['requests_enabled' => 'required|boolean']);
         DB::transaction(function () use ($r, $d) {
             User::whereKey($r->user()->id)->lockForUpdate()->firstOrFail();
-            DB::table('privacy_preferences')->updateOrInsert(['user_id' => $r->user()->id], ['requests_enabled' => $d['requests_enabled'], 'updated_at' => now(), 'created_at' => now()]);
+            $pref = DB::table('privacy_preferences')->where('user_id', $r->user()->id)->lockForUpdate()->first();
+            $epoch = (int) ($pref->requests_revision ?? 0) + ((bool) ($pref->requests_enabled ?? false) !== (bool) $d['requests_enabled'] ? 1 : 0);
+            DB::table('privacy_preferences')->updateOrInsert(['user_id' => $r->user()->id], ['requests_enabled' => $d['requests_enabled'], 'requests_revision' => $epoch, 'updated_at' => now(), 'created_at' => $pref->created_at ?? now()]);
         });
 
         return response()->json(['requests_enabled' => $d['requests_enabled']]);
@@ -93,6 +95,8 @@ final class SocialController extends Controller
                 }
             }
             $recipients = DB::table('social_requests')->where('sender_id', $actor)->where('created_at', '>', now()->subDay())->distinct()->pluck('recipient_id');
+            $formal = DB::table('formal_relationships')->where('requester_id', $actor)->where('created_at', '>', now()->subDay())->lockForUpdate()->get(['user_a', 'user_b']);
+            $recipients = $recipients->merge($formal->map(fn ($row) => (int) $row->user_a === $actor ? (int) $row->user_b : (int) $row->user_a))->unique();
             abort_if(! $recipients->contains($peer) && $recipients->count() >= config('social.daily_distinct_recipients'), 429, 'request quota');
             if ($invite) {
                 DB::table('social_invitations')->where('id', $invite->id)->update(['sender_id' => $actor, 'updated_at' => now()]);

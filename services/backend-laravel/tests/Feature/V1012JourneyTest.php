@@ -50,6 +50,9 @@ class V1012JourneyTest extends TestCase
 
     private function relationship(User $a, User $b): array
     {
+        // R1 fixture declares independent controlled contact; this is not formal consent.
+        DB::table('friendships')->updateOrInsert(['user_a' => min($a->id, $b->id), 'user_b' => max($a->id, $b->id)], ['state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('privacy_preferences')->updateOrInsert(['user_id' => $b->id], ['requests_enabled' => true]);
         return $this->actingAs($a, 'sanctum')->postJson('/api/v1/formal-relationships',
             ['peer_id' => $b->id, 'idempotency_key' => 'request'])->assertOk()->json();
     }
@@ -91,6 +94,8 @@ class V1012JourneyTest extends TestCase
         $a = $this->subject('a'); $b = $this->subject('b');
         $a->update(['birthday' => '1990-01-02', 'public_zodiac_sign' => 'Capricorn']);
         $r = $this->activate($a, $b);
+        // Established formal sharing survives removal of its independent request source.
+        $this->actingAs($a, 'sanctum')->deleteJson("/api/v1/social/friends/{$b->id}")->assertOk();
         $this->actingAs($a, 'sanctum')->putJson('/api/v1/privacy/resume', ['resume' => 'Synthetic biography'])->assertOk();
         $this->actingAs($b, 'sanctum')->getJson("/api/v1/privacy/peers/{$a->id}")->assertOk()
             ->assertJsonMissingPath('profile.birthday')->assertJsonMissingPath('profile.resume');
@@ -213,6 +218,10 @@ class V1012JourneyTest extends TestCase
         DB::table('matching_participations')->where('user_id', $a->id)->update(['generation' => 2]);
         $this->actingAs($a, 'sanctum')->postJson("/api/v1/journey/proposals/$id/decision",
             ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'old-generation'])->assertConflict();
+        $this->assertDatabaseHas('match_proposals', ['id' => $id, 'state' => 'WITHDRAWN']);
+        $c = $this->subject('expiry-c'); $d = $this->subject('expiry-d');
+        $id = $this->proposalFixture($c, $d);
+        $this->actingAs($c, 'sanctum');
         $this->travel(169)->hours();
         $this->postJson("/api/v1/journey/proposals/$id/decision",
             ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'expired'])->assertConflict();
@@ -271,12 +280,15 @@ class V1012JourneyTest extends TestCase
             ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'accept-a'])->assertOk()
             ->assertJsonPath('state', 'ACCEPTED_BY_ONE');
         $this->putJson('/api/v1/journey/participation', ['action' => 'pause', 'revision' => 1, 'intent' => 'Break'])->assertOk();
+        $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 2, 'intent' => 'Return'])->assertConflict();
+        $this->postJson($url, ['action' => 'withdraw', 'revision' => 2, 'idempotency_key' => 'explicit-withdraw-before-return'])->assertOk()->assertJsonPath('state', 'WITHDRAWN');
         $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 2, 'intent' => 'Return'])->assertOk()
             ->assertJsonPath('state', 'ACTIVE')->assertJsonPath('generation', 2);
         $this->actingAs($b, 'sanctum')->postJson($url,
             ['action' => 'accept', 'revision' => 2, 'idempotency_key' => 'accept-b'])->assertConflict();
-        $this->assertDatabaseHas('match_proposals', ['id' => $id, 'state' => 'ACCEPTED_BY_ONE',
-            'revision' => 2, 'decision_a' => 'ACCEPTED', 'decision_b' => 'PENDING']);
+        $this->assertDatabaseHas('match_proposals', ['id' => $id, 'state' => 'WITHDRAWN',
+            'revision' => 3, 'decision_a' => 'ACCEPTED', 'decision_b' => 'PENDING']);
+        $this->assertDatabaseCount('match_proposal_slots', 0);
         $this->assertDatabaseCount('product_connections', 0);
         $this->assertDatabaseCount('messaging_consents', 0);
     }
@@ -361,12 +373,12 @@ class V1012JourneyTest extends TestCase
     private function proposalFixture(User $a, User $b): string
     {
         $stamp = ['created_at' => now(), 'updated_at' => now()];
-        DB::table('dating_round_channels')->insert(['channel_key' => 'v1012-test'] + $stamp);
+        DB::table('dating_round_channels')->insertOrIgnore(['channel_key' => 'v1012-test'] + $stamp);
         $round = DB::table('dating_rounds')->insertGetId(['round_key' => Str::uuid()->toString(),
-            'channel_key' => 'v1012-test', 'cadence_key' => 'fixture', 'state' => 'revealed',
+            'channel_key' => 'v1012-test', 'cadence_key' => Str::uuid()->toString(), 'state' => 'revealed',
             'created_by_type' => 'test', 'source' => 'test'] + $stamp);
         $run = DB::table('matching_runs')->insertGetId(['round_id' => $round, 'run_key' => Str::uuid()->toString(),
-            'idempotency_key' => 'fixture-run', 'correlation_id' => Str::uuid()->toString(), 'attempt_no' => 1,
+            'idempotency_key' => 'fixture-run-'.Str::uuid()->toString(), 'correlation_id' => Str::uuid()->toString(), 'attempt_no' => 1,
             'state' => 'succeeded', 'trigger_source' => 'test', 'actor_type' => 'test',
             'eligibility_cutoff_at' => now(), 'algorithm_version' => 'test', 'config_version' => 'test'] + $stamp);
         $match = DB::table('dating_matches')->insertGetId(['week_tag' => 'v1012', 'round_id' => $round,

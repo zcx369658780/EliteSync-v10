@@ -114,7 +114,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
                         if (action == 'exit' &&
                             !await confirm(
                               '退出本轮参与？',
-                              '停止未来轮次参与；现有连接与消息同意独立管理。',
+                              '停止未来轮次参与，并撤回当前未决提案；现有连接与消息同意独立管理。',
                             )) {
                           return;
                         }
@@ -139,7 +139,9 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
               ),
           ],
         ),
-        const Text('暂停停止未来轮次纳入；当前未决提案可单独撤回。恢复报名进入新代际，不复活旧提案。'),
+        const Text(
+          '暂停后不再接受候选，可独立撤回当前未决提案；请先撤回再明确重新报名，进入新代际。退出会撤回未决提案，不影响独立连接与消息同意。',
+        ),
         const Divider(),
         Text('当前轮次：${journeyStateLabel(round['state'])}'),
         if (round['reason_code'] != null || round['failure_code'] != null)
@@ -153,6 +155,8 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
           ),
           if (showcase['summary'] != null) Text('${showcase['summary']}'),
           Text('提案状态：${journeyStateLabel(proposal['state'])}'),
+          if (proposal['availability_reason'] != null)
+            const Text('当前参与已暂停、退出或换代际；候选不再提供新的选择或联系资格。未决提案可独立撤回。'),
           Text(
             '我的回应：${decisionLabel(proposal['decision_me'])}；对方回应：${decisionLabel(proposal['decision_peer'])}',
           ),
@@ -170,30 +174,36 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
               spacing: 8,
               children: [
                 for (final action in ['accept', 'decline', 'withdraw'])
-                  OutlinedButton(
-                    key: ValueKey('proposal-$action'),
-                    onPressed: busy
-                        ? null
-                        : () => mutate(
-                            'POST',
-                            '/journey/proposals/${proposal['id']}/decision',
-                            {
-                              'action': action,
-                              'revision': proposal['revision'],
-                              'idempotency_key': requestKey(),
-                            },
-                          ),
-                    child: Text(
-                      {
-                        'accept': '独立接受候选',
-                        'decline': '拒绝候选',
-                        'withdraw': '撤回当前提案',
-                      }[action]!,
+                  if ((action == 'withdraw' &&
+                          proposal['withdraw_available'] == true) ||
+                      (action != 'withdraw' &&
+                          proposal['decision_available'] == true))
+                    OutlinedButton(
+                      key: ValueKey('proposal-$action'),
+                      onPressed: busy
+                          ? null
+                          : () => mutate(
+                              'POST',
+                              '/journey/proposals/${proposal['id']}/decision',
+                              {
+                                'action': action,
+                                'revision': proposal['revision'],
+                                'idempotency_key': requestKey(),
+                              },
+                            ),
+                      child: Text(
+                        {
+                          'accept': '独立接受候选',
+                          'decline': '拒绝候选',
+                          'withdraw': '撤回当前提案',
+                        }[action]!,
+                      ),
                     ),
-                  ),
               ],
             ),
-          if (proposal['state'] == 'MUTUALLY_ACCEPTED' && peer is int)
+          if (proposal['state'] == 'MUTUALLY_ACCEPTED' &&
+              proposal['connection_eligible'] == true &&
+              peer is int)
             FilledButton(
               onPressed: busy
                   ? null

@@ -12,17 +12,22 @@ final class FormalRelationshipService
 
     public function request(int $actor, int $peer, string $key): array
     {
-        abort_if($actor === $peer, 422, 'distinct participants required');
         return DB::transaction(function () use ($actor, $peer, $key) {
-            app(JourneyStore::class)->users([$actor, $peer]);
-            return app(JourneyStore::class)->command($actor, $key, ['relationship_request', $peer], function () use ($actor, $peer) {
+            $contact = app(RelationshipContactPolicy::class);
+            $contact->lockUsers($actor, $peer);
+            $source = $contact->capture($actor, $peer);
+            $result = app(JourneyStore::class)->command($actor, $key, ['relationship_request', $peer], function () use ($actor, $peer, $contact, $source) {
                 $a = min($actor, $peer); $b = max($actor, $peer);
                 abort_if(DB::table('formal_relationships')->where('user_a', $a)->where('user_b', $b)->whereNotIn('state', self::TERMINAL)->lockForUpdate()->exists(), 409, 'relationship lifecycle already open');
+                $contact->throttle($actor, $peer);
                 $id = (string) Str::uuid();
-                DB::table('formal_relationships')->insert(['id' => $id, 'user_a' => $a, 'user_b' => $b, 'requester_id' => $actor, 'state' => 'PENDING_MUTUAL', 'revision' => 1, 'confirmation_generation' => 1, 'confirmed_a' => false, 'confirmed_b' => false, 'test_only' => true, 'created_at' => now(), 'updated_at' => now()]);
-                app(JourneyStore::class)->audit($actor, $id, 'REQUEST', ['state' => 'PENDING_MUTUAL']);
+                DB::table('formal_relationships')->insert(['id' => $id, 'user_a' => $a, 'user_b' => $b, 'requester_id' => $actor, 'state' => 'PENDING_MUTUAL', 'revision' => 1, 'confirmation_generation' => 1, 'confirmed_a' => false, 'confirmed_b' => false, 'test_only' => true, 'created_at' => now(), 'updated_at' => now()] + $source);
+                app(JourneyStore::class)->audit($actor, $id, 'REQUEST', ['state' => 'PENDING_MUTUAL'] + $source);
                 return $this->project(DB::table('formal_relationships')->where('id', $id)->lockForUpdate()->first(), $actor);
             });
+            $current = DB::table('formal_relationships')->where('id', $result['id'])->lockForUpdate()->first();
+            abort_unless($current && $contact->valid($current), 404, 'unavailable');
+            return $this->project($current, $actor);
         });
     }
 
@@ -42,6 +47,8 @@ final class FormalRelationshipService
         $next = null;
         if (! in_array($r->state, self::TERMINAL, true) && ! $allowed) {
             $next = 'ENDED';
+        } elseif (! in_array($r->state, self::TERMINAL, true) && ! $r->activated_at && ! app(RelationshipContactPolicy::class)->valid($r)) {
+            $next = 'WITHDRAWN';
         } elseif (in_array($r->state, ['ACTIVE','PENDING_MUTUAL'], true) && ($r->confirmed_a || $r->confirmed_b) && (! $r->credential_a || ! $r->credential_b || ! app(TrustedIdentityService::class)->valid((int) $r->user_a, $r->credential_a) || ! app(TrustedIdentityService::class)->valid((int) $r->user_b, $r->credential_b))) {
             $next = 'SUSPENDED_REVERIFY';
         }
@@ -55,8 +62,9 @@ final class FormalRelationshipService
     private function change(object $r, string $state, bool $a, bool $b): void
     {
         $r->state = $state; $r->confirmed_a = $a; $r->confirmed_b = $b; $r->revision++;
+        if ($state === 'ACTIVE' && ! $r->activated_at) { $r->activated_at = now()->utc()->format('Y-m-d H:i:s'); }
         if ($state !== 'ACTIVE') { DB::table('formal_relationship_slots')->where('relationship_id', $r->id)->delete(); }
-        DB::table('formal_relationships')->where('id', $r->id)->update(['state' => $state, 'confirmed_a' => $a, 'confirmed_b' => $b, 'revision' => $r->revision, 'confirmation_generation' => $r->confirmation_generation, 'credential_a' => $r->credential_a ?? null, 'credential_b' => $r->credential_b ?? null, 'updated_at' => now()]);
+        DB::table('formal_relationships')->where('id', $r->id)->update(['activated_at' => $r->activated_at, 'state' => $state, 'confirmed_a' => $a, 'confirmed_b' => $b, 'revision' => $r->revision, 'confirmation_generation' => $r->confirmation_generation, 'credential_a' => $r->credential_a ?? null, 'credential_b' => $r->credential_b ?? null, 'updated_at' => now()]);
     }
 
     public function action(int $actor, string $id, string $action, int $revision, string $key): array
@@ -125,7 +133,14 @@ final class FormalRelationshipService
     private function project(object $r, int $actor): array
     {
         $isA = (int) $r->user_a === $actor;
-        return ['id' => $r->id, 'peer_id' => (int) ($isA ? $r->user_b : $r->user_a), 'state' => $r->state, 'revision' => (int) $r->revision, 'confirmation_generation' => (int) $r->confirmation_generation, 'confirmed_me' => (bool) ($isA ? $r->confirmed_a : $r->confirmed_b), 'confirmed_peer' => (bool) ($isA ? $r->confirmed_b : $r->confirmed_a), 'test_only' => (bool) $r->test_only];
+        $mine = (bool) ($isA ? $r->confirmed_a : $r->confirmed_b);
+        $actions = match ($r->state) {
+            'PENDING_MUTUAL' => array_merge($mine ? [] : ['confirm'], [(int) $r->requester_id === $actor ? 'withdraw' : 'decline', 'end']),
+            'ACTIVE' => ['pause', 'end'],
+            'PAUSED', 'SUSPENDED_REVERIFY' => ['resume', 'end'],
+            default => [],
+        };
+        return ['allowed_actions' => $actions, 'id' => $r->id, 'peer_id' => (int) ($isA ? $r->user_b : $r->user_a), 'state' => $r->state, 'revision' => (int) $r->revision, 'confirmation_generation' => (int) $r->confirmation_generation, 'confirmed_me' => (bool) ($isA ? $r->confirmed_a : $r->confirmed_b), 'confirmed_peer' => (bool) ($isA ? $r->confirmed_b : $r->confirmed_a), 'test_only' => (bool) $r->test_only];
     }
 
     public function sharingAllowed(int $a, int $b): bool
