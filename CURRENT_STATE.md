@@ -1,5 +1,11 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-20 v10.1.2首轮独立审阅：CHANGES_REQUIRED／R1待Owner手动派发
+
+**V10.1.2_CHANGES_REQUIRED / NOT_ACCEPTED / R1_TASK_ISSUED / OWNER_MANUAL_DISPATCH_PENDING / NO_PRODUCT_MAIN_INTEGRATION / V10.1.3_NOT_STARTED**。Astra直接审阅候选源码 `ebade52179b6ac7b76ba2f2992d31981fa995a00` 与完整交付 `900942426e965092d3852771c4126d77210677c4`；41个产品路径Blob、后端71/713及Flutter39执行回执等不归零，但发现同版B1正式关系任意peer_id未受控请求/反枚举缺口，B2退出/换报名代际后旧未决提案仍被当成可用投影/占槽的问题。正式[独立审阅与单次R1集中返修](docs/versions/v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)已发布，须由Owner手动交Codex后方可执行。Astra没有在Windows/MariaDB运行这两个新反例，也没有实际用户数据泄露证据。本轮仅文档更新main，产品仍是已接受v10.1.1；禁止合候选main或启动v10.1.3，真实实人供应商继续PENDING。
+
+---
+
 ## 2026-10-20 v10.1.1集成验收完成；v10.1.2冻结待Owner手动派发
 
 **V10.1.1_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / MAIN_PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / V10.1.2_FROZEN_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Astra已直接核验main `9e25756af9e4a969cc631a54d385d84bce18d890`、Root Tree `7b999e4af667b4c85a08cc8846de060e847b8a6c`、apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab`与services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`完整匹配，以及正常父子提交、107个产品路径、正式文档保护。独立终验见[集成验收](docs/versions/v10.1.1/integration_acceptance.md)；本地基线/资源终态仍CODEX_REPORTED/LOCAL_ONLY，运行未重测。Owner批准进入下一版，Astra已发布[冻结v10.1.2计划](docs/versions/v10.1.2/plan.md)及[唯一Codex长任务](docs/versions/v10.1.2/task_order.md)；尚待Owner手动交付本地Codex，当前不是已实施。真实身份供应商仍未选择或授权，正式关系只在隔离合成开发验证中可激活；v10.1.0整版PARTIAL/NOT_ACCEPTED与AC-10.1-08 PARTIAL、既有DB误清事故及历史失败保留。未启动v10.1.3。
