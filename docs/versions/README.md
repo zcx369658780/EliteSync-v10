@@ -1,5 +1,11 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-20 v10.1.2 R1同版返修任务发布（未派发）
+
+**V10.1.2_CHANGES_REQUIRED / NOT_ACCEPTED / R1_TASK_ISSUED / OWNER_MANUAL_DISPATCH_PENDING**。Codex候选 `ebade52179b6ac7b76ba2f2992d31981fa995a00` 的41路径对象已直接核验，后端71/713、Flutter39及本地APK/数据库证据保留；Astra发现B1未受控正式关系请求和B2退出/换代际后的旧提案投影与占槽权限问题，见[正式审阅及单次集中R1任务](v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)。当前尚未自动交Codex或合产品main；v10.1.3不启动，真实实人供应商未配置。
+
+---
+
 ## 2026-10-20 v10.1.2冻结／等待Owner向Codex手动派发
 
 **V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。已接受v10.1.1正式[独立集成验收](v10.1.1/integration_acceptance.md)，功能与main安全集成均ACCEPTED_WITH_OBSERVATIONS。Owner已同意进入v10.1.2，Astra已冻结[完整慢约会与正式关系计划](v10.1.2/plan.md)及[唯一综合长任务单](v10.1.2/task_order.md)；尚未由Owner手动派发本地Codex，软件未实施。计划需双人有效实人验证＋双向确认方可建立正式恋爱关系；真实provider未配置时只能隔离合成测试，真实账号不可假激活。v10.1.0 PARTIAL与原历史观察不变，v10.1.3未开始。
