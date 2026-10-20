@@ -188,3 +188,27 @@ NOT_RUN：数据库/容器/队列/SFU/应用服务启动、数据库连接/迁�
 | A | `services/backend-laravel/tests/Integration/v1011_r1/run.py` | `100644` | `03214dc96a65ce01a1bbffb14d69f10464b94beb` |
 | A | `services/backend-laravel/tests/Integration/v1011_r1/worker.php` | `100644` | `87460fcb56f77e1ca6ee433f4e5d493ad630dd90` |
 | M | `services/backend-laravel/tests/TestCase.php` | `100644` | `1889200bbdfd26c6e3b3d0fd798d2e75a1ba3a76` |
+
+
+## 普通发布、独立回读与本地接续实际结果
+
+首轮普通non-force推送exit0，main为`363f4babbac1592d9aa0525be190fc6bffd68eeb`，Root Tree为`069dfa7ee1109f937e59fccfe1f185b100dcb1ec`。随后从全新bare远端仓（无alternates）独立fetch，验证完整1366条产品path/mode/blob与接受源码相同；107个产品改变文件和9个文档共116份逐文件远端字节回读全部通过，Blob/SHA256与Git对象相同。冻结plan及三个固定归档Blob保持。不是仅检查本机origin引用或推送exit0。
+
+原候选`713e801345c4cb2f996fdf1338eb2d973c810359`、R1候选`dcc3f0ba7cc0b6ac607753a5bea5202fbcff9785`、原审阅`e03b4c44df328ce3ae5656009dcca7a3cba7b262`、R1审阅`33f64ef9a4adcd04f34d51e946cbea35ea9422cb`的远端引用未改；临时审阅目录未进入main。
+
+发布回读后，本地同一专用连续树fetch确认HEAD与origin/main均为`363f4babbac1592d9aa0525be190fc6bffd68eeb`、tracked/untracked状态为空，登记 **CONTINUOUS_CODE_BASELINE_SYNCED / RUNTIME_NOT_RUN**。复用既有树而非重建运行环境；旧基线分支保留，原dirty根的main未移动。本次末尾仅补当前报告的实际结果，后继提交仍不改apps/services；最终main与专用树身份以最终交付消息和独立回读回执为准，不制造报告自引用循环。
+
+本轮保护终检：下表为新任务事前/事后相同的HEAD、index及全untracked status摘要，原始物理清单LOCAL_ONLY。
+
+| 保护对象 | HEAD | index SHA256 | status SHA256 | 结果 |
+|---|---|---|---|---|
+| 原dirty根 | `4bebc8f394248e254c1368a06fbdee5d2c883301` | `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716` | `45a9d01e06e48e4437f7366080030d845838b3137f2503130e58a25151fe0a5a` | unchanged |
+| 旧历史仓（仅Git元数据） | `0f06e895a89629a7f4f0cf0c62b784446ecf515a` | `cc0efd6312ec299f257a8f06544e15114d23386696d652a8399fcb133982cb60` | `3a9fef59b2d08ce18aa9ba743ea3127301b8fbfb344244c49a1a31d2adac9c0e` | unchanged |
+| 既有v10.1.0开发树 | `3ef84dbce8ff927363a1d71f9296b73a3f9442e2` | `eb3d491444a5d64ae91313717ca3ba39db99898c0149a4df236395f4b05a63e7` | `94392950ce588d75dc076f6b38de13ea8eff983e758a652676e3bc556eed162e` | unchanged |
+| R1未提交开发树 | `1bacd5479dc5c8066994ea8b6efb1b585a69d6da` | `bebdda709e3997b6ce237c7544aaaa356493f713b3f01eee0fbb63ee3115673d` | `91b060d245afbb4599662870dcd69b4078cb394e03da9bc925c51fd89b1b7489` | unchanged |
+
+7项具名本地原APK、R1备份/事故SQL/最终SQL及交付回执存在；本轮 metadata核查间大小/时间戳未变。仅为存在与元数据级保护，不重新读取APK/SQL内容，也未运行容器核查SQL卷。本轮未启动、停止、连接或迁移任何产品运行资源；宿主既有进程/全局网络状态未作运行验收。
+
+53个PHP语法检查、Python AST、JSON/XML、lock身份、对象/空白和数据库事故防护静态核对均通过；初版文档扫描误报原历史路径的exit1与原输出保留。没有把静态检查换算成重做功能测试。
+
+本次集中交付终态：**V10.1.1_INTEGRATION_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / V10.1.2_NOT_STARTED**。这不是ASTRA_ACCEPTED；本次集成待Astra独立终裁。完成最终普通发布和回读后停止，不清理原候选/证据或启动后续版本。
