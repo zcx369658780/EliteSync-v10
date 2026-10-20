@@ -197,13 +197,26 @@ class MediaController extends Controller
             return response()->json(['message' => 'media asset unavailable'], 404);
         }
 
-        return DB::transaction(function () use ($viewer, $service, $id, $owner) {
-            // Discover all trusted participants before taking any user lock.
-            $linked = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
-            $participants = $linked->flatMap(fn ($m) => [$m->sender_id, $m->receiver_id])
-                ->push($viewer->id, $owner)->unique()->sort()->values()->all();
+        // Candidate discovery must not establish this transaction's RR snapshot
+        // before a pending revocation releases its coordinated user locks.
+        $candidates = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
+        $participants = $candidates->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id])
+            ->push((int) $viewer->id, $owner)->unique()->sort()->values()->all();
+
+        return DB::transaction(function () use ($viewer, $service, $id, $owner, $participants) {
             $users = User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             if (! $users->get($viewer->id) || $users->get($viewer->id)->disabled || ! $users->get($owner) || $users->get($owner)->disabled) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            // Re-read attachment identities only after all candidate users are
+            // locked. New participants require a new request, never late locks.
+            $linked = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
+            $currentParticipants = $linked->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id]);
+            if ($currentParticipants->diff($participants)->isNotEmpty()) {
+                return response()->json(['message' => 'media asset unavailable'], 404);
+            }
+            $asset = MediaAsset::whereKey($id)->lockForUpdate()->first();
+            if (! $asset || (int) $asset->owner_user_id !== $owner) {
                 return response()->json(['message' => 'media asset unavailable'], 404);
             }
             $allowed = $linked->isEmpty() && (int) $viewer->id === $owner;
@@ -220,7 +233,6 @@ class MediaController extends Controller
                     $allowed = $allowed || ($service->gates((int) $viewer->id, $peer)['live_read_allowed'] ?? false);
                 }
             }
-            $asset = MediaAsset::whereKey($id)->lockForUpdate()->first();
             if (! $allowed || ! $asset || ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)
                 || (in_array($asset->storage_disk, ['v1009', 'v1011_relationship'], true) && $asset->status !== 'ready') || ! $asset->isBackingObjectAvailable()) {
                 return response()->json(['message' => 'media asset unavailable'], 404);

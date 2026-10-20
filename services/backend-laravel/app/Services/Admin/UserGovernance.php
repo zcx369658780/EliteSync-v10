@@ -16,9 +16,13 @@ final class UserGovernance
 
     public function target(User $actor, int $id): User
     {
-        $trusted = User::whereKey($actor->id)->lockForUpdate()->first();
+        // Shared with status deletion/read authorization: never actor-first
+        // when the target may have a lower id.
+        $users = User::whereIn('id', [$actor->id, $id])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+        $trusted = $users->get($actor->id);
         abort_unless(app(AdminAccess::class)->allows($trusted), 403);
-        $user = User::whereKey($id)->lockForUpdate()->firstOrFail();
+        $user = $users->get($id);
+        abort_unless($user, 404);
         abort_unless($user->role === 'user' && $user->id !== $actor->id, 403);
 
         return $user;

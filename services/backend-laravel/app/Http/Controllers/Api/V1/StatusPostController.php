@@ -425,10 +425,22 @@ class StatusPostController extends Controller
         EventLogger $events,
         NotificationService $notifications
     ): JsonResponse {
-        return DB::transaction(function () use ($request, $postId, $liked, $events, $notifications) {
-            $owner = StatusPost::whereKey($postId)->value('author_user_id');
-            User::whereIn('id', [$request->user()->id, $owner])->orderBy('id')->lockForUpdate()->get();
-            $user = $request->user();
+        // Pure candidate lookup outside the transaction: waiting for a user
+        // lock must not preserve a pre-revocation REPEATABLE READ snapshot.
+        $owner = StatusPost::whereKey($postId)->value('author_user_id');
+        if ($owner === null) {
+            return response()->json(['message' => 'status post not found'], 404);
+        }
+
+        return DB::transaction(function () use ($request, $postId, $owner, $liked, $events, $notifications) {
+            $users = User::whereIn('id', [$request->user()->id, $owner])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            $user = $users->get($request->user()->id);
+            $author = $users->get($owner);
+            $current = StatusPost::whereKey($postId)->lockForUpdate()->first();
+            if (! $user || $user->disabled || ! $author || $author->disabled
+                || ! $current || (int) $current->author_user_id !== (int) $owner || $current->is_deleted) {
+                return response()->json(['message' => 'status post not found'], 404);
+            }
             $viewerId = (int) $user->id;
             $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
             if (! $post) {
@@ -574,10 +586,13 @@ class StatusPostController extends Controller
                 'confirm' => ['required', 'accepted'],
             ]);
             abort_if(trim($data['reason']) === '', 422, 'reason required');
-            $post = DB::transaction(function () use ($user, $postId, $data) {
-                $actor = User::query()->whereKey($user->id)->lockForUpdate()->first();
+            $owner = (int) $post->author_user_id;
+            $post = DB::transaction(function () use ($user, $postId, $owner, $data) {
+                $users = User::whereIn('id', [$user->id, $owner])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+                $actor = $users->get($user->id);
                 abort_unless(app(AdminAccess::class)->allows($actor), 403);
                 $locked = StatusPost::query()->whereKey($postId)->lockForUpdate()->firstOrFail();
+                abort_unless((int) $locked->author_user_id === $owner, 404);
                 // This operation only moderates public content. Private authors retain their own delete flow.
                 abort_unless(in_array($locked->visibility, ['public', 'square'], true), 403);
                 // The delete lifecycle is revision 0 (present) -> 1 (soft-deleted).
@@ -595,10 +610,19 @@ class StatusPostController extends Controller
                 return $locked;
             });
         } else {
-            $post->is_deleted = true;
-            $post->deleted_by_user_id = (int) $user->id;
-            $post->deleted_at = now();
-            $post->save();
+            // Serialize owner deletion with cover/interaction authorization,
+            // audience edits, friendship revocation and account closure.
+            $post = DB::transaction(function () use ($user, $postId) {
+                $actor = User::whereKey($user->id)->lockForUpdate()->firstOrFail();
+                abort_if($actor->disabled, 403);
+                $locked = StatusPost::whereKey($postId)->where('author_user_id', $actor->id)->lockForUpdate()->firstOrFail();
+                $locked->is_deleted = true;
+                $locked->deleted_by_user_id = (int) $actor->id;
+                $locked->deleted_at = now();
+                $locked->save();
+
+                return $locked;
+            });
         }
 
         return response()->json([
