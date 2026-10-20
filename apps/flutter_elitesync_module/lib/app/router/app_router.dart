@@ -499,7 +499,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   ),
                   GoRoute(
                     path: AppRouteNames.meReadinessSegment,
-                    builder: (context, state) => const ReadinessPurposePage(),
+                    builder: (context, state) =>
+                        const bool.fromEnvironment(
+                          'ELITESYNC_V1012_LOCAL_BUILD',
+                        )
+                        ? const SlowDatingJourneyPage()
+                        : const ReadinessPurposePage(),
                   ),
                   GoRoute(
                     path: AppRouteNames.meShowcaseSegment,
