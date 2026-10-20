@@ -1,5 +1,11 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-20 v10.1.2开发候选交付，等待Astra独立验收
+
+**V10.1.2_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / REAL_IDENTITY_PROVIDER_PENDING / V10.1.3_NOT_STARTED**。Owner已手动派发本版综合任务；源码`ebade52179b6ac7b76ba2f2992d31981fa995a00`，apps`9344354d0da95f0388aa922b2775b1e8d18f18b7`、services`a0eb88caf5ed65451b56b5363b7af667dadd6fd6`。[唯一实施报告](docs/versions/v10.1.2/IMPLEMENTATION_REPORT.md)及[制品清单](docs/versions/v10.1.2/artifact_manifest.json)。实际APP/Web/API/独立MariaDB及必要RR负例、APK构建安装和非作者复核已记录；身份仅TEST_ONLY，无真实供应商接通。本版专属资源停止、恢复点及原dirty/历史资产保留；未合产品main、未自接受，等待Astra。下方旧“待派发/未实施”为形成时快照，不回写历史。
+
+---
+
 ## 2026-10-20 v10.1.1集成验收完成；v10.1.2冻结待Owner手动派发
 
 **V10.1.1_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / MAIN_PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / V10.1.2_FROZEN_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。Astra已直接核验main `9e25756af9e4a969cc631a54d385d84bce18d890`、Root Tree `7b999e4af667b4c85a08cc8846de060e847b8a6c`、apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab`与services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`完整匹配，以及正常父子提交、107个产品路径、正式文档保护。独立终验见[集成验收](docs/versions/v10.1.1/integration_acceptance.md)；本地基线/资源终态仍CODEX_REPORTED/LOCAL_ONLY，运行未重测。Owner批准进入下一版，Astra已发布[冻结v10.1.2计划](docs/versions/v10.1.2/plan.md)及[唯一Codex长任务](docs/versions/v10.1.2/task_order.md)；尚待Owner手动交付本地Codex，当前不是已实施。真实身份供应商仍未选择或授权，正式关系只在隔离合成开发验证中可激活；v10.1.0整版PARTIAL/NOT_ACCEPTED与AC-10.1-08 PARTIAL、既有DB误清事故及历史失败保留。未启动v10.1.3。

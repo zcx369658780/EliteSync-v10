@@ -1,5 +1,11 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-20 v10.1.2开发候选已交付
+
+**V10.1.2_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / REAL_IDENTITY_PROVIDER_PENDING / V10.1.3_NOT_STARTED**。Owner已手动派发本版综合任务；源码`ebade52179b6ac7b76ba2f2992d31981fa995a00`，apps`9344354d0da95f0388aa922b2775b1e8d18f18b7`、services`a0eb88caf5ed65451b56b5363b7af667dadd6fd6`。[唯一实施报告](v10.1.2/IMPLEMENTATION_REPORT.md)｜[制品清单](v10.1.2/artifact_manifest.json)。实际APP/Web/API/独立MariaDB及必要RR负例、APK构建安装和非作者复核已记录；身份仅TEST_ONLY，无真实供应商接通。本版专属资源停止、恢复点及原dirty/历史资产保留；未合产品main、未自接受，等待Astra。下方旧“待派发/未实施”为形成时快照，不回写历史。
+
+---
+
 ## 2026-10-20 v10.1.2冻结／等待Owner向Codex手动派发
 
 **V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。已接受v10.1.1正式[独立集成验收](v10.1.1/integration_acceptance.md)，功能与main安全集成均ACCEPTED_WITH_OBSERVATIONS。Owner已同意进入v10.1.2，Astra已冻结[完整慢约会与正式关系计划](v10.1.2/plan.md)及[唯一综合长任务单](v10.1.2/task_order.md)；尚未由Owner手动派发本地Codex，软件未实施。计划需双人有效实人验证＋双向确认方可建立正式恋爱关系；真实provider未配置时只能隔离合成测试，真实账号不可假激活。v10.1.0 PARTIAL与原历史观察不变，v10.1.3未开始。

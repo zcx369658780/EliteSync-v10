@@ -1,5 +1,11 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-20 当前入口：v10.1.2候选待独立验收
+
+**V10.1.2_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / REAL_IDENTITY_PROVIDER_PENDING / V10.1.3_NOT_STARTED**。Owner已手动派发本版综合任务；源码`ebade52179b6ac7b76ba2f2992d31981fa995a00`，apps`9344354d0da95f0388aa922b2775b1e8d18f18b7`、services`a0eb88caf5ed65451b56b5363b7af667dadd6fd6`。[唯一实施报告](docs/versions/v10.1.2/IMPLEMENTATION_REPORT.md)｜[固定对象/制品清单](docs/versions/v10.1.2/artifact_manifest.json)。实际APP/Web/API/独立MariaDB及必要RR负例、APK构建安装和非作者复核已记录；身份仅TEST_ONLY，无真实供应商接通。本版专属资源停止、恢复点及原dirty/历史资产保留；未合产品main、未自接受，等待Astra。下方旧“待派发/未实施”为形成时快照，不回写历史。
+
+---
+
 ## 2026-10-20 当前入口：v10.1.2已冻结，等待Owner派发
 
 **V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。上版独立收口：[v10.1.1集成验收](docs/versions/v10.1.1/integration_acceptance.md)，产品main `9e25756af9e4a969cc631a54d385d84bce18d890`，接受产品对象apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab` / services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`。本版唯一[冻结计划](docs/versions/v10.1.2/plan.md)Blob `2ebd2ea05b3d7dae52cc3995de913eeb0fde375e`；[Codex综合长任务](docs/versions/v10.1.2/task_order.md)Blob `4f39db8e003da0889c7d23582652c0787c22bfea`。真实实人身份供应商未获授权，TEST_ONLY合成认证不等于真实用户核验；本版尚未实施。当前上文更新下方原R1待验与规划历史状态，不能倒改过去记录。
