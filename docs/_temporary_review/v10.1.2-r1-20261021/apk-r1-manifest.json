@@ -1,0 +1,11 @@
+{
+  "source_commit": "88ffeccce4042f13ce4edccf7604b835b06c8f2d",
+  "source_tree": "42052f5f9ee596f82cf525884e1f77256fc7727b",
+  "sha256": "d1f5f0850f68016c361c07f54ab7fccf8975def6409e84bc532d131dc057a410",
+  "installed_pull_sha256": "d1f5f0850f68016c361c07f54ab7fccf8975def6409e84bc532d131dc057a410",
+  "bytes": 411524159,
+  "serial": "emulator-5554",
+  "application_id": "com.elitesync.v1012dev",
+  "backend": "same fixed R1 backend / 8015 / elitesync_v10_1_2_dev",
+  "signer_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09"
+}

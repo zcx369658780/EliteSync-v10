@@ -1,0 +1,38 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: <LOCAL_ROOT>\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDEDDDDDDDDDDDDD                         41 / 41 (100%)
+
+Time: 00:02.525, Memory: 72.00 MB
+
+There was 1 error:
+
+1) Tests\Feature\V1012JourneyTest::test_expired_and_previous_generation_proposals_cannot_be_accepted
+Illuminate\Database\UniqueConstraintViolationException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: matching_runs.idempotency_key (Connection: sqlite, SQL: insert into "matching_runs" ("round_id", "run_key", "idempotency_key", "correlation_id", "attempt_no", "state", "trigger_source", "actor_type", "eligibility_cutoff_at", "algorithm_version", "config_version", "created_at", "updated_at") values (2, 5bdcec3c-39e2-4cfd-b17b-47b4b9ff8933, fixture-run, 0ae7aa7c-0409-426b-a084-d898c7f539e7, 1, succeeded, test, test, 2026-10-20 12:00:00, test, test, 2026-10-20 12:00:00, 2026-10-20 12:00:00))
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:820
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:380
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:223
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: matching_runs.idempotency_key
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:380
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:223
+
+ERRORS!
+Tests: 41, Assertions: 527, Errors: 1, Deprecations: 2, PHPUnit Deprecations: 2.

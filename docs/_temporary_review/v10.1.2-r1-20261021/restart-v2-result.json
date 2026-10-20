@@ -1,0 +1,48 @@
+{
+  "tables_equal": {
+    "formal_relationships": {
+      "rows": 22,
+      "sha256": "2c355a032631f853dcab615e7e43f17c53ab04f98b9776f33346dfdb7a461569"
+    },
+    "privacy_preferences": {
+      "rows": 20,
+      "sha256": "52fa1d1173c7c55bf3d30902b4cb2c82d9a090ea51047870a961437bece9a188"
+    },
+    "journey_audits": {
+      "rows": 237,
+      "sha256": "90d9702ed431b4de86be87ff888557e8b8216a90d9cf8ae1c59084bc32069179"
+    },
+    "journey_commands": {
+      "rows": 92,
+      "sha256": "74dee9928596cecc8e71fe37671164b5ec9b6f6c93e270dee22d4fdad9db2ee6"
+    },
+    "match_proposals": {
+      "rows": 18,
+      "sha256": "1e1294309fdbc16d65b5449bb5a619b5ea7edaf94c27d367a8ebeaf7c39e899e"
+    },
+    "match_proposal_slots": {
+      "rows": 10,
+      "sha256": "4e105e37addb863a0cfb15dc5cb0a2b5afe95ab0dc9476d718bd6af41024bec3"
+    },
+    "matching_participations": {
+      "rows": 46,
+      "sha256": "7738998dd3e565ab6f9d111702facd9ae3759f3ccc5a310e84ce64606b4e753e"
+    },
+    "product_connections": {
+      "rows": 4,
+      "sha256": "a6d69f21d5241f933912ff8ad30e01be53c3d2d84521453f932e872bf9a3a299"
+    },
+    "messaging_consents": {
+      "rows": 10,
+      "sha256": "10ffa848e6a622daa70cd251bf739a938022f7162035fba7bc9d51d5a4cc99d6"
+    }
+  },
+  "db_restart_exit": 0,
+  "source": "88ffeccce4042f13ce4edccf7604b835b06c8f2d",
+  "read_after_restart": 200,
+  "proposal_state": "WITHDRAWN",
+  "private_showcase": null,
+  "decision_available": false,
+  "revoked_request_after_restart": 404,
+  "result": "PASS"
+}

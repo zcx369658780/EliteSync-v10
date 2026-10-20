@@ -1,0 +1,12 @@
+[
+  [
+    "180",
+    "179",
+    "8295",
+    "8292",
+    "select * from `users` where `id` in (?, ?) order by `id` asc for update",
+    "`elitesync_v10_1_2_dev`.`users`",
+    "PRIMARY",
+    "94"
+  ]
+]

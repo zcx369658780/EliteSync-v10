@@ -1,0 +1,3 @@
+<?php
+require __DIR__.'/runtime_bootstrap.php';set_exception_handler(function(Throwable $e){fwrite(STDERR,get_class($e).':'.$e->getMessage());exit(1);});
+$f=json_decode(file_get_contents(__DIR__.'/fixture-app01.private.json'),true);$u=App\Models\User::findOrFail($f['users']['A']['id']);if(!$u->is_synthetic||!str_contains($u->name,'app01'))exit(31);$phone='1990000'.str_pad((string)$u->id,4,'0',STR_PAD_LEFT);if(App\Models\User::where('phone',$phone)->exists())exit(32);$u->phone=$phone;$u->save();$f['users']['A']['phone']=$phone;file_put_contents(__DIR__.'/fixture-app-login.private.json',json_encode($f));echo 'registered synthetic AVD login alias only';

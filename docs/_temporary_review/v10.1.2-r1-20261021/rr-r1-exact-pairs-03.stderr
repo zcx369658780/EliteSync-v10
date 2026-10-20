@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<LOCAL_ROOT>\races_v3.py", line 42, in <module>
+    (E/f'race3-{mode}.observed-waits.json').write_text(json.dumps(rows,indent=2));edge=next((x for x in rows if '`users`' in x[4] and str(u['A']['id']) in x[4] and str(peer) in x[4]),None);assert edge and int(edge[1])==held['writer_connection_id'] and not pending.done()
+                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

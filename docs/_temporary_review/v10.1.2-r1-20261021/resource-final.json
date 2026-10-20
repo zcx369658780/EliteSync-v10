@@ -1,0 +1,15 @@
+{
+  "owned_db": "stopped",
+  "volume_retained": [
+    "elitesync-v1012-journey-data-20261020"
+  ],
+  "owned_api": "stopped",
+  "authorized_AVD": "stopped",
+  "adb_reverse_8015": "removed",
+  "phone": "NOT_OPERATED",
+  "WS": "NOT_STARTED",
+  "RTC_UDP_firewall_DNAT_UAC_cloud": "NOT_RUN",
+  "docker_engine": "left running; no global shutdown",
+  "before_backup_sha256": "578dadeaffd3c33c01307f088b62a0575842f6aa07724c85e5973bef62e578a4",
+  "after_backup_sha256": "ee71264137be749803133610add6630b26c9cb55cf76b3cbcb77c354409f6cb0"
+}

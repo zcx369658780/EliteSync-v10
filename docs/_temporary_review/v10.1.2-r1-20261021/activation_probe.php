@@ -1,0 +1,5 @@
+<?php
+require __DIR__.'/runtime_bootstrap.php';use Illuminate\Support\Facades\DB;
+$all=DB::table('formal_relationships')->get();$historical=[];foreach(DB::table('journey_audits')->where('action','CONFIRM')->get() as $a){if((json_decode($a->facts,true)['state']??null)==='ACTIVE')$historical[$a->aggregate_id]=true;}
+$missing=$all->filter(fn($r)=>isset($historical[$r->id])&&!$r->activated_at)->count();$noActive=$all->filter(fn($r)=>$r->confirmation_generation>1&&!isset($historical[$r->id])&&!$r->activated_at)->count();
+$out=['server_audited_ever_active'=>count($historical),'audited_activations_missing_activated_at'=>$missing,'current_active_without_activation_fact'=>$all->where('state','ACTIVE')->whereNull('activated_at')->count(),'historically_active_now_paused_or_suspended_with_activation_fact'=>$all->filter(fn($r)=>isset($historical[$r->id])&&in_array($r->state,['PAUSED','SUSPENDED_REVERIFY'],true)&&$r->activated_at)->count(),'unactivated_generation_above_one_still_without_activation_fact'=>$noActive];echo json_encode($out,JSON_PRETTY_PRINT);if($missing||$out['current_active_without_activation_fact']||!$noActive)exit(1);

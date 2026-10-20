@@ -1,0 +1,23 @@
+{
+  "reader_connection_id": 185,
+  "writer_connection_id": 184,
+  "requesting_trx_id": "8300",
+  "blocking_trx_id": "8297",
+  "target_sorted_synthetic_ids": [
+    92,
+    93
+  ],
+  "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update",
+  "requested_lock_table": "`elitesync_v10_1_2_dev`.`users`",
+  "requested_lock_index": "PRIMARY",
+  "requested_lock_data": "93",
+  "reader_pending": true,
+  "http_sent_at": 1792539407.298416,
+  "wait_observed_at": 1792539407.7319546,
+  "held": {
+    "writer_connection_id": 184,
+    "isolation": "REPEATABLE-READ",
+    "held_at": 1792539407.271411
+  },
+  "exclusive_owned_api_request": "r1-exit"
+}

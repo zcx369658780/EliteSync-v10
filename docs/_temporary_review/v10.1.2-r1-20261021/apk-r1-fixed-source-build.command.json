@@ -1,0 +1,1 @@
+{"argv": ["cmd", "/c", ".\\gradlew.bat", "assembleDebug", "-PflutterDartDefines=ELITESYNC_V1012_LOCAL_BUILD=true", "-PrelationshipDualDeviceBuild=true", "--offline", "--console=plain"], "cwd": "<LOCAL_ROOT>\\apps\\android", "exit": 0, "utc": "2026-10-20T23:39:12.104797+00:00"}

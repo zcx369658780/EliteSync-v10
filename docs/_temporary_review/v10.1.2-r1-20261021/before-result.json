@@ -1,0 +1,25 @@
+{
+  "B1": {
+    "stranger_request": 200,
+    "withdraw_then_new_key": 200,
+    "side_effect_delta": {
+      "formal_relationships": 2,
+      "journey_audits": 3,
+      "notifications": 0,
+      "journey_commands": 3,
+      "moderation_reports": 0
+    }
+  },
+  "B2": {
+    "exit_still_pending": {
+      "state": "PENDING",
+      "revision": 1,
+      "slot_count": 2
+    },
+    "old_showcase_after_exit": true,
+    "new_generation_still_pending": true,
+    "write_after_exit": 409
+  },
+  "isolation": "REPEATABLE-READ",
+  "result": "REPRODUCED_B1_AND_B2"
+}

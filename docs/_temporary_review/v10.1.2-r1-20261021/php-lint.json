@@ -1,0 +1,68 @@
+[
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SlowDatingController.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Http/Controllers/Api/V1/SlowDatingController.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/app/Services/FormalRelationshipService.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Services/FormalRelationshipService.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Services/LiveConsentService.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Services/SlowDatingService.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/routes/api.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/routes/api.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/tests/Feature/V1012JourneyTest.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1012JourneyTest.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/app/Services/RelationshipContactPolicy.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/app/Services/RelationshipContactPolicy.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/database/migrations/2026_10_21_080000_bind_formal_request_authority.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/database/migrations/2026_10_21_080000_bind_formal_request_authority.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/database/migrations/2026_10_21_080100_track_formal_activation_history.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/database/migrations/2026_10_21_080100_track_formal_activation_history.php\n",
+    "stderr": ""
+  },
+  {
+    "path": "services/backend-laravel/tests/Feature/V1012R1BoundaryTest.php",
+    "exit": 0,
+    "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1012R1BoundaryTest.php\n",
+    "stderr": ""
+  }
+]

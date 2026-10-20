@@ -1,0 +1,1 @@
+{"argv": ["php", "vendor/phpunit/phpunit/phpunit", "--filter", "V1012R1BoundaryTest|V1012JourneyTest|V1011SocialTest|MatchingFoundationServiceTest", "--colors=never"], "cwd": "<LOCAL_ROOT>\\services\\backend-laravel", "exit": 1, "utc": "2026-10-20T23:22:20.974058+00:00"}

@@ -1,0 +1,1 @@
+{"argv": ["cmd", "/c", "flutter", "test", "--no-pub", "test/features/slow_dating_v1012"], "cwd": "<LOCAL_ROOT>\\apps\\flutter_elitesync_module", "exit": 0, "utc": "2026-10-20T23:29:50.077574+00:00"}

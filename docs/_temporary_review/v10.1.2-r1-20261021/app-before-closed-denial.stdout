@@ -1,0 +1,1 @@
+{"counts":{"formal_relationships":23,"journey_audits":244,"notifications":54,"journey_commands":93,"moderation_reports":0},"proposal":{"state":"WITHDRAWN","revision":2,"slot_count":0},"participations":[{"user_id":96,"state":"EXITED","generation":1,"revision":3},{"user_id":97,"state":"ACTIVE","generation":1,"revision":1}],"isolation":"REPEATABLE-READ"}

@@ -1,0 +1,7 @@
+import pathlib,json,requests
+E=pathlib.Path(__file__).parent;f=json.loads((E/'fixture-app01.private.json').read_text());u=f['users'];receipts=[]
+def call(a,m,p,b=None,status=200):
+ r=requests.request(m,'http://127.0.0.1:8015/api/v1'+p,json=b,headers={'Accept':'application/json','Authorization':'[REDACTED] '+u[a]['session']['access_token']},timeout=15);assert r.status_code==status,(p,r.status_code);j=r.json();receipts.append({'actor':a,'path':p,'status':r.status_code,'response':j});return j
+pre=json.loads((E/'app-before-uncontrolled.stdout').read_text());post=json.loads((E/'app-after-uncontrolled.stdout').read_text());assert pre['counts']==post['counts'];assert post['proposal']['state']=='WITHDRAWN' and post['proposal']['slot_count']==0
+call('C','POST','/social/preferences',{'requests_enabled':True});i=call('C','POST','/social/invites',{'purpose':'friendship'},201);q=call('A','POST','/social/requests',{'purpose':'friendship','invitation_token':i['token'],'idempotency_key':'app-friend'},201);call('C','POST',f"/social/requests/{q['id']}/accept")
+(E/'app-setup.private.json').write_text(json.dumps(receipts));(E/'app-precondition-result.json').write_text(json.dumps({'app_uncontrolled_no_new_side_effects':True,'app_exit_state':'WITHDRAWN','slot_count':0,'source_created_by_actual_social_invite_request_accept':True},indent=2));print('APP denial zero writes; EXIT slot0; actual Social contact ready')

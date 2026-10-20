@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<LOCAL_ROOT>\races_v2.py", line 33, in <module>
+    waitfile(E/f'race2-{mode}.held');held=json.loads((E/f'race2-{mode}.held').read_text());start=time.time()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<LOCAL_ROOT>\races_v2.py", line 11, in waitfile
+    while not p.exists():assert time.time()<deadline,p.name;time.sleep(.03)
+                                ^^^^^^^^^^^^^^^^^^^^
+AssertionError: race2-contact.held

@@ -1,0 +1,90 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: <LOCAL_ROOT>\services\backend-laravel\phpunit.xml
+
+FDFDFEDE                                                            8 / 8 (100%)
+
+Time: 00:01.515, Memory: 66.00 MB
+
+There were 2 errors:
+
+1) Tests\Feature\V1012R1BoundaryTest::test_exit_withdraws_pending_and_stale_generation_lazily_releases_both_slots
+Illuminate\Database\UniqueConstraintViolationException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: dating_rounds.channel_key, dating_rounds.cadence_key (Connection: sqlite, SQL: insert into "dating_rounds" ("round_key", "channel_key", "cadence_key", "state", "created_by_type", "source", "created_at", "updated_at") values (897ef286-e00e-4976-9104-9361d005ba4a, r1-fixture, fixture, revealed, test, test, 2026-10-21 12:00:00, 2026-10-21 12:00:00))
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:820
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:281
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:139
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: dating_rounds.channel_key, dating_rounds.cadence_key
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:281
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:139
+
+2) Tests\Feature\V1012R1BoundaryTest::test_mutual_history_survives_exit_and_generation_change_without_new_cn_authority
+Illuminate\Database\UniqueConstraintViolationException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: dating_rounds.channel_key, dating_rounds.cadence_key (Connection: sqlite, SQL: insert into "dating_rounds" ("round_key", "channel_key", "cadence_key", "state", "created_by_type", "source", "created_at", "updated_at") values (caf17084-4db6-48ef-92d5-2534d3f91ec5, r1-fixture, fixture, revealed, test, test, 2026-10-21 12:00:00, 2026-10-21 12:00:00))
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:820
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:281
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:176
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: dating_rounds.channel_key, dating_rounds.cadence_key
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:571
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:560
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:524
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3766
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:281
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:176
+
+--
+
+There were 3 failures:
+
+1) Tests\Feature\V1012R1BoundaryTest::test_unavailable_formal_request_targets_have_one_response_and_no_side_effects
+Failed asserting that null is identical to 'unavailable'.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:44
+
+2) Tests\Feature\V1012R1BoundaryTest::test_request_permission_epoch_only_changes_with_flag_and_off_on_cannot_revive_pending
+Failed asserting that null is identical to 'unavailable'.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:78
+
+3) Tests\Feature\V1012R1BoundaryTest::test_terminal_cooldown_and_decline_cannot_be_bypassed_by_changing_request_key
+Expected response status code [409] but received 404.
+Failed asserting that 404 is identical to 409.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:191
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:114
+
+ERRORS!
+Tests: 8, Assertions: 95, Errors: 2, Failures: 3, Deprecations: 2, PHPUnit Deprecations: 2.

@@ -1,0 +1,4 @@
+<?php
+require __DIR__.'/runtime_bootstrap.php';use Illuminate\Support\Facades\DB;
+$f=json_decode(file_get_contents(__DIR__.'/fixture-'.$argv[1].'.private.json'),true);$ids=array_column($f['users'],'id');$p=DB::table('match_proposals')->where('id',$f['proposal']['id'])->first();
+$out=['counts'=>[],'proposal'=>['state'=>$p->state,'revision'=>$p->revision,'slot_count'=>DB::table('match_proposal_slots')->where('proposal_id',$p->id)->count()],'participations'=>DB::table('matching_participations')->whereIn('user_id',$ids)->get(['user_id','state','generation','revision'])->all(),'isolation'=>DB::selectOne('SELECT @@tx_isolation AS isolation_level')->isolation_level];foreach(['formal_relationships','journey_audits','notifications','journey_commands','moderation_reports'] as $table){$out['counts'][$table]=DB::table($table)->count();}echo json_encode($out);

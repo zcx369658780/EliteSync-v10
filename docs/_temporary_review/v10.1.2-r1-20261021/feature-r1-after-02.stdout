@@ -1,0 +1,60 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: <LOCAL_ROOT>\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDFDDDDFDDFDDDDDDDDDD                         41 / 41 (100%)
+
+Time: 00:03.150, Memory: 72.00 MB
+
+There were 3 failures:
+
+1) Tests\Feature\V1012JourneyTest::test_field_sharing_defaults_private_can_be_withdrawn_and_pause_requires_both_again
+Expected response status code [404] but received 200.
+Failed asserting that 200 is identical to 404.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:151
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:112
+
+2) Tests\Feature\V1012JourneyTest::test_expired_and_previous_generation_proposals_cannot_be_accepted
+Failed asserting that a row in the table [match_proposals] matches the attributes {
+    "id": "57e86528-10d6-41f8-8dad-5147ea643311",
+    "state": "EXPIRED"
+}.
+
+Found similar results: [
+    {
+        "id": "57e86528-10d6-41f8-8dad-5147ea643311",
+        "state": "WITHDRAWN"
+    }
+].
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:36
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:222
+
+3) Tests\Feature\V1012JourneyTest::test_peer_cannot_complete_an_old_proposal_after_acceptor_pauses_and_reenrolls
+Failed asserting that a row in the table [match_proposals] matches the attributes {
+    "id": "70786eab-3917-46b9-8838-938a746fd765",
+    "state": "ACCEPTED_BY_ONE",
+    "revision": 2,
+    "decision_a": "ACCEPTED",
+    "decision_b": "PENDING"
+}.
+
+Found similar results: [
+    {
+        "id": "70786eab-3917-46b9-8838-938a746fd765",
+        "state": "WITHDRAWN",
+        "revision": 3,
+        "decision_a": "ACCEPTED",
+        "decision_b": "PENDING"
+    }
+].
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:36
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012JourneyTest.php:283
+
+FAILURES!
+Tests: 41, Assertions: 513, Failures: 3, Deprecations: 2, PHPUnit Deprecations: 2.

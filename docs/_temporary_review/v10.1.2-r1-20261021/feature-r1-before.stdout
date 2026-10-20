@@ -1,0 +1,219 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: <LOCAL_ROOT>\services\backend-laravel\phpunit.xml
+
+FDFFFFFF                                                            8 / 8 (100%)
+
+Time: 00:07.867, Memory: 66.00 MB
+
+There were 7 failures:
+
+1) Tests\Feature\V1012R1BoundaryTest::test_unavailable_formal_request_targets_have_one_response_and_no_side_effects
+Expected response status code [404] but received 422.
+Failed asserting that 422 is identical to 404.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:151
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:43
+
+2) Tests\Feature\V1012R1BoundaryTest::test_request_permission_epoch_only_changes_with_flag_and_off_on_cannot_revive_pending
+Expected response status code [404] but received 200.
+Failed asserting that 200 is identical to 404.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:151
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:78
+
+3) Tests\Feature\V1012R1BoundaryTest::test_pending_request_cannot_substitute_a_new_source_or_restored_source_revision
+Expected response status code [409] but received 200.
+Failed asserting that 200 is identical to 409.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:191
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:100
+
+4) Tests\Feature\V1012R1BoundaryTest::test_terminal_cooldown_and_decline_cannot_be_bypassed_by_changing_request_key
+Expected response status code [409] but received 200.
+Failed asserting that 200 is identical to 409.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:191
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:114
+
+5) Tests\Feature\V1012R1BoundaryTest::test_exit_withdraws_pending_and_stale_generation_lazily_releases_both_slots
+Failed asserting that a row in the table [match_proposals] matches the attributes {
+    "id": "52e51b69-a071-486f-b887-ac6e243d4d14",
+    "state": "WITHDRAWN"
+}.
+
+Found similar results: [
+    {
+        "id": "52e51b69-a071-486f-b887-ac6e243d4d14",
+        "state": "PENDING"
+    }
+].
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:36
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:132
+
+6) Tests\Feature\V1012R1BoundaryTest::test_pause_preserves_pending_allows_withdraw_and_blocks_opt_in_until_resolved
+Failed asserting that null is identical to false.
+
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+<LOCAL_ROOT>\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:159
+
+7) Tests\Feature\V1012R1BoundaryTest::test_mutual_history_survives_exit_and_generation_change_without_new_cn_authority
+Failed asserting that App\Models\DatingMatch Object #2011 (
+    'connection' => 'sqlite',
+    'table' => 'dating_matches',
+    'primaryKey' => 'id',
+    'keyType' => 'int',
+    'incrementing' => true,
+    'with' => Array &0 [],
+    'withCount' => Array &1 [],
+    'preventsLazyLoading' => false,
+    'perPage' => 15,
+    'exists' => true,
+    'wasRecentlyCreated' => false,
+    'escapeWhenCastingToString' => false,
+    'attributes' => Array &2 [
+        'id' => 1,
+        'week_tag' => 'r1',
+        'user_a' => 1,
+        'user_b' => 2,
+        'highlights' => null,
+        'drop_released' => 1,
+        'like_a' => null,
+        'like_b' => null,
+        'created_at' => '2026-10-21 12:00:00',
+        'updated_at' => '2026-10-21 12:00:00',
+        'explanation_tags' => null,
+        'score_base' => null,
+        'score_final' => null,
+        'score_fair' => null,
+        'penalty_factors' => null,
+        'score_bazi' => null,
+        'score_zodiac' => null,
+        'score_constellation' => null,
+        'score_natal_chart' => null,
+        'match_verdict' => null,
+        'match_reasons' => null,
+        'score_personality_total' => null,
+        'score_mbti_total' => null,
+        'score_astro_total' => null,
+        'score_overall' => null,
+        'round_id' => 1,
+        'matching_run_id' => 1,
+        'pair_key' => null,
+        'pair_key_version' => null,
+        'released_at' => null,
+    ],
+    'original' => Array &3 [
+        'id' => 1,
+        'week_tag' => 'r1',
+        'user_a' => 1,
+        'user_b' => 2,
+        'highlights' => null,
+        'drop_released' => 1,
+        'like_a' => null,
+        'like_b' => null,
+        'created_at' => '2026-10-21 12:00:00',
+        'updated_at' => '2026-10-21 12:00:00',
+        'explanation_tags' => null,
+        'score_base' => null,
+        'score_final' => null,
+        'score_fair' => null,
+        'penalty_factors' => null,
+        'score_bazi' => null,
+        'score_zodiac' => null,
+        'score_constellation' => null,
+        'score_natal_chart' => null,
+        'match_verdict' => null,
+        'match_reasons' => null,
+        'score_personality_total' => null,
+        'score_mbti_total' => null,
+        'score_astro_total' => null,
+        'score_overall' => null,
+        'round_id' => 1,
+        'matching_run_id' => 1,
+        'pair_key' => null,
+        'pair_key_version' => null,
+        'released_at' => null,
+    ],
+    'changes' => Array &4 [],
+    'casts' => Array &5 [
+        'drop_released' => 'boolean',
+        'released_at' => 'datetime',
+        'like_a' => 'boolean',
+        'like_b' => 'boolean',
+        'explanation_tags' => 'array',
+        'penalty_factors' => 'array',
+        'match_reasons' => 'array',
+        'score_base' => 'integer',
+        'score_final' => 'integer',
+        'score_fair' => 'integer',
+        'score_personality_total' => 'integer',
+        'score_mbti_total' => 'integer',
+        'score_astro_total' => 'integer',
+        'score_overall' => 'integer',
+        'score_bazi' => 'integer',
+        'score_zodiac' => 'integer',
+        'score_constellation' => 'integer',
+        'score_natal_chart' => 'integer',
+    ],
+    'classCastCache' => Array &6 [],
+    'attributeCastCache' => Array &7 [],
+    'dateFormat' => null,
+    'appends' => Array &8 [],
+    'dispatchesEvents' => Array &9 [],
+    'observables' => Array &10 [],
+    'relations' => Array &11 [],
+    'touches' => Array &12 [],
+    'timestamps' => true,
+    'usesUniqueIds' => false,
+    'hidden' => Array &13 [],
+    'visible' => Array &14 [],
+    'fillable' => Array &15 [
+        0 => 'round_id',
+        1 => 'matching_run_id',
+        2 => 'pair_key',
+        3 => 'pair_key_version',
+        4 => 'week_tag',
+        5 => 'user_a',
+        6 => 'user_b',
+        7 => 'highlights',
+        8 => 'explanation_tags',
+        9 => 'score_base',
+        10 => 'score_final',
+        11 => 'score_fair',
+        12 => 'score_personality_total',
+        13 => 'score_mbti_total',
+        14 => 'score_astro_total',
+        15 => 'score_overall',
+        16 => 'score_bazi',
+        17 => 'score_zodiac',
+        18 => 'score_constellation',
+        19 => 'score_natal_chart',
+        20 => 'match_verdict',
+        21 => 'match_reasons',
+        22 => 'penalty_factors',
+        23 => 'drop_released',
+        24 => 'released_at',
+        25 => 'like_a',
+        26 => 'like_b',
+    ],
+    'guarded' => Array &16 [
+        0 => '*',
+    ],
+) is null.
+
+<LOCAL_ROOT>\services\backend-laravel\tests\Feature\V1012R1BoundaryTest.php:194
+
+FAILURES!
+Tests: 8, Assertions: 57, Failures: 7, Deprecations: 2, PHPUnit Deprecations: 2.
