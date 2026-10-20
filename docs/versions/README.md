@@ -1,5 +1,14 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-20 v10.1.1功能接受；安全集成待独立集成验收
+
+**V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。接受源码`ee2459953146a135ae9b118a1ffe75946efd0183`；[Astra既有功能裁决归档（Codex代录）](v10.1.1/acceptance.md)、[最终R1实施报告](v10.1.1/IMPLEMENTATION_REPORT.md)、[原APK清单](v10.1.1/artifact_manifest.json)、[R1对象清单](v10.1.1/r1_artifact_manifest.json)、[本次唯一集成报告](v10.1.1/integration.md)。未把功能接受写成本次独立集成接受。
+
+下面的R1待验交接、10/19规划表等均为形成时的历史记录；v10.1.1当前状态由本段更新，v10.1.2以后仍仅规划且未启动。v10.1.0 PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL保持。
+
+---
+
+
 ## 2026-10-20 v10.1.1 R1返修待验收
 
 v10.1.1首轮候选当前为**CHANGES_REQUIRED / NOT_ACCEPTED**；Astra已对B1权限竞态签发同版R1集中返修。Codex执行完成后在下一会话继续独立验收，v10.1.2未启动。会话恢复入口：[2026-10-20 R1 pending handoff](../workflow/SESSION_HANDOFF_20261020_V1011_R1_PENDING.md)。

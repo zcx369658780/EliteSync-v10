@@ -1,5 +1,14 @@
 # EliteSync-v10｜APP恢复与Web管理功能台账
 
+## 2026-10-20 v10.1.1冻结范围功能接受（不等于完整恢复完成）
+
+**V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。Astra既有功能裁决由Codex按Owner本次转交准确[归档](../versions/v10.1.1/acceptance.md)，B1-A/B关闭；[安全集成报告](../versions/v10.1.1/integration.md)单独登记完整接受apps/services的Git接入和本地代码基线。本版完成的是冻结范围的关系、资料受众、隐私/账号安全及必要管理能力，不把A08总项、A03历史恢复或A09联合终点改成PASS。
+
+以下保留原时点规划/接受/欠账；旧“新归属均PLANNED”等表述不覆盖上面的v10.1.1后继事实。v10.1.0整版及AC-10.1-08仍PARTIAL；云端、真实供应商、原始历史数据恢复与后续版本未由此次集成授权。
+
+---
+
+
 ## 2026-10-19 恢复欠账对后续规划的归属（非完成声明）
 
 依据[10.x后续路线V1.0](ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)：A03获准历史数据/附件在v10.1.7按具名来源、用途与恢复范围收口，当前UNKNOWN/未恢复仍保留；A08由v10.1.1隐私/必要设置、v10.1.3独立搭子/好友社区、v10.1.5通信/Push/位置等规划承接，未建立的能力不改为PASS；A09完整APP/Web联合、安装/说明/备份与会议评审归v10.1.7，终点顺延而未取消。A07已接受本命/动态切片复用，v10.1.6对解释/分享及具名条件旧扩展作一次范围核查，不虚报Composite或科学认证。

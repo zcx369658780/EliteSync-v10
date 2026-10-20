@@ -1,0 +1,73 @@
+{
+  "source_commit": "ee2459953146a135ae9b118a1ffe75946efd0183",
+  "source_tree": "a25020ce6f11da173aafc5e699a38f3c9b32fec7",
+  "source_parent": "713e801345c4cb2f996fdf1338eb2d973c810359",
+  "branch": "codex/v10.1.1-r1-candidate",
+  "apps": "1ddc864a8f7f8f7e024d6102a36057252bc77bab",
+  "services": "e4ae92d12d0bbac81a8ed7730a061aaec214da13",
+  "changed_files": [
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php",
+      "blob": "484c5e5b49edc165ef6f7497bf8c827823acec07",
+      "executed_raw_sha256": "50c1b2d39378ef4b4e5fb22b7d397246556026ae9f95b28903b4e8e6ccc5a341"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php",
+      "blob": "85bc28a0a3b7a28a01dd651d7511149ebf8de627",
+      "executed_raw_sha256": "a70a73f0d7086e107b49ce0710490aa20f45f5d3ea5afba43ea40d6e819c986f"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/Admin/UserGovernance.php",
+      "blob": "3c073f61e0555dfad2be995bee37470301eed30d",
+      "executed_raw_sha256": "5d2177410f9821db5d458b6060080315bb9701c561ffde2a3ee4a3edb56055d3"
+    },
+    {
+      "path": "services/backend-laravel/phpunit.xml",
+      "blob": "d70aa7b4253895257a9137070704d3782e9b22ae",
+      "executed_raw_sha256": "a5fc319e1b4894c89e95ab05e863f821410a9731fb3054125a7b4a9d89a1a580"
+    },
+    {
+      "path": "services/backend-laravel/tests/TestCase.php",
+      "blob": "1889200bbdfd26c6e3b3d0fd798d2e75a1ba3a76",
+      "executed_raw_sha256": "4f763878418d2234337f4d69bea40f18fef1d70e863360a150810bb8b99d589e"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1011R1AuthorizationTest.php",
+      "blob": "034a474cf2a0063399d765d7a30a7771707ddf7c",
+      "executed_raw_sha256": "0e6587b7213c26a92dcfb1e24b48acb6e1f5d8b5f552919944179027c86bbea8"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v1011_r1/worker.php",
+      "blob": "87460fcb56f77e1ca6ee433f4e5d493ad630dd90",
+      "executed_raw_sha256": "d787c9b19a97e15ff7defcf38fc53eff062d7fe46da0852a16c9bfa97d38b61e"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v1011_r1/run.py",
+      "blob": "03214dc96a65ce01a1bbffb14d69f10464b94beb",
+      "executed_raw_sha256": "9e41d4a96a83a05b2acb22c9b9fe497dc7269a5dd4550a8c927cbf65bb85d099"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v1011_r1/README.md",
+      "blob": "0432d3dffc9ff7f058a08c260709b30eaab9e04e",
+      "executed_raw_sha256": "8b392314647934616428ad62dba7941e589bfc23fef28975967c053c35e54222"
+    }
+  ],
+  "review": {
+    "branch": "review/temporary-evidence-v10.1.1-r1-20261020",
+    "commit": "33f64ef9a4adcd04f34d51e946cbea35ea9422cb",
+    "tree": "433f28170d03d26cecc321185c59b9356d62f4ae",
+    "directory": "docs/_temporary_review/v10.1.1-r1-20261020/"
+  },
+  "original_report_blob": "0dc9209e630f80aae08c19e7a0a653d0d1c7032c",
+  "apk": {
+    "package": "com.elitesync.v10x.relationshipdev",
+    "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+    "bytes": 403852021,
+    "pull_exit": 0,
+    "same_as_original": true
+  },
+  "runtime_provenance": "CODEX_REPORTED / RAW_LOCAL_ONLY",
+  "incident_disclosed": true,
+  "no_product_main_integration": true,
+  "status": "V10.1.1_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED"
+}

@@ -1,5 +1,14 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-20 当前入口：v10.1.1功能接受与安全集成候选
+
+**V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。[Astra既有功能裁决归档（Codex代录）](docs/versions/v10.1.1/acceptance.md)｜[最终R1实施报告](docs/versions/v10.1.1/IMPLEMENTATION_REPORT.md)｜[原制品清单](docs/versions/v10.1.1/artifact_manifest.json)｜[R1对象清单](docs/versions/v10.1.1/r1_artifact_manifest.json)｜[唯一安全集成报告](docs/versions/v10.1.1/integration.md)。完整接受apps/services由Git对象集成，未整体合并旧候选文档；现行Owner决定、路线、冻结计划与历史结论保留。
+
+以下为历次状态和规划的原时点快照。旧“R1待验/1.1仅规划”等表述由本段后继事实更新；v10.1.0整版PARTIAL和AC-10.1-08 PARTIAL仍有效。功能接受、本次Git集成、本地代码基线、运行环境与Astra集成接受分别登记，不启动v10.1.2。
+
+---
+
+
 ## 2026-10-20 当前执行入口：v10.1.1 R1待下一会话验收
 
 **V10.1.1_CHANGES_REQUIRED / R1_TASK_ISSUED / NEXT_CHAT_CONTINUE_ACCEPTANCE / V10.1.2_NOT_STARTED**。首轮候选固定源码`34a0b0ed4209895cebd4ef040519ac13a8054b6c`、完整交付`713e801345c4cb2f996fdf1338eb2d973c810359`；Astra审阅发现B1权限竞态后已发布[审阅/R1任务](docs/versions/v10.1.1/ASTRA_REVIEW_AND_R1_TASK_20261019.md)。Codex当前执行同版返修，返回后在新会话直接验收，不重复派发。Owner决定和10.x路线继续以正式文档为准。完整恢复点：[SESSION_HANDOFF_20261020_V1011_R1_PENDING.md](docs/workflow/SESSION_HANDOFF_20261020_V1011_R1_PENDING.md)。

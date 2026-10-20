@@ -1,5 +1,14 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-20 v10.1.1功能已接受；安全集成候选待Astra独立核验
+
+**V10.1.1_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_OBJECTS_MATCH_ACCEPTED_SOURCE / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。Owner本次手动任务转交了Astra既有功能接受裁决，Codex仅在[正式功能验收归档](docs/versions/v10.1.1/acceptance.md)代录；B1-A/B已关闭。接受源码为`ee2459953146a135ae9b118a1ffe75946efd0183`，完整apps/services通过精确对象接入本次main集成候选，产品提交`6b7d7f47c47b642d453cb496c8556a1b76330add`，唯一parent为实时main`8823fc6244efa0ab6007228c6738b58ce571cc1c`；实际普通发布与远端回读结果见[唯一集成报告](docs/versions/v10.1.1/integration.md)及最终交付身份。尚未获得Astra的本次独立集成接受，不以本地Git核对代替运行环境验证。
+
+v10.1.0仍PARTIAL/NOT_ACCEPTED、AC-10.1-08仍PARTIAL；原R1事故、历史失败与RTC局限继续保留。v10.1.2及后续规划未启动；原dirty根未吸收，无数据库/设备/构建/云服务操作。下方所有旧段落保持其原时点快照（包括R1执行中、1.1未启动等旧状态），不再代表本段之后的当前状态。
+
+---
+
+
 ## 2026-10-20 会话交接：v10.1.1 R1返修执行中／待候选回传
 
 **SESSION_HANDOFF / V10.1.1_CHANGES_REQUIRED / R1_TASK_ISSUED / NEXT_CHAT_CONTINUE_ACCEPTANCE / NO_NEXT_VERSION**。v10.1.1首轮候选已由Astra独立审阅，当前不接受；阻断为AC-10.1.1-04/05内同根因的MariaDB REPEATABLE READ权限竞态，涉及`MediaController::privateContent`和`StatusPostController::toggleLike`。正式R1同版集中返修任务已发布并交由Codex执行，不重复派发、不重开整版、不启动v10.1.2。Owner长期关系、独立搭子、关系/字段最小披露、内部可申诉Safety记录、AI非终裁、消息请求非陌生人直私信、备案延期等决定均已在正式Owner决定和10.x路线中固化。下一会话收到R1候选后直接独立验收。完整会话状态见[2026-10-20交接](docs/workflow/SESSION_HANDOFF_20261020_V1011_R1_PENDING.md)。
