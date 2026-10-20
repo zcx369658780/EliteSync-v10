@@ -196,3 +196,112 @@ APP晚响应专项只读持有本版合成用户锁，发起刷新后通过实�
 - main合并、原候选/审阅分支/备份清理、正式运营发布、v10.1.3启动：NOT_RUN。
 
 v10.1.0整体及AC-10.1-08的PARTIAL、v10.1.1接受/集成观察和DB事故原证保留。尚无生产接入、真实匹配效果、完整真实Showcase审核流程或独立Astra接受结论。交付后停止，下一门仅为Astra独立验收。
+
+
+---
+
+## 11. 2026-10-21 R1 同版集中返修与候选交付
+
+**V10.1.2_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / V10.1.3_NOT_STARTED**。
+
+本节追加在原报告之后，原v10.1.2候选、原通过结果、失败和APK保持历史原样。Astra对原源码的正式裁决是 **V10.1.2_CHANGES_REQUIRED / NOT_ACCEPTED**，不能把前文自测交付状态解释为已接受。本次Owner手动派发Task Blob `75d98dd1be027230d923572be8e4ac94594839dd`，仅处理B1/B2及相关锁等待；不重开全部AC。执行方为Codex，最终接受仍由Astra独立裁决。
+
+### 11.1 固定源码、权限与差异
+
+| 对象 | 固定身份 |
+|---|---|
+| 原候选源码 / 原完整交付 | `ebade52179b6ac7b76ba2f2992d31981fa995a00` / `900942426e965092d3852771c4126d77210677c4` |
+| R1源码 Commit | `88ffeccce4042f13ce4edccf7604b835b06c8f2d` |
+| R1源码 Tree | `42052f5f9ee596f82cf525884e1f77256fc7727b` |
+| apps / services Tree | `365810451b6faad98e041835be6c86f4f81be0a9` / `96b2972a19ec49108cf5c11d144179e5693570a9` |
+| 实时main只读核验 | `7ae2333213458d520bac376a66fd8d6dd8e988e6`；apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab` / services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`，未合产品 |
+| 正式R1任务 | [固定main任务](https://github.com/zcx369658780/EliteSync-v10/blob/7ae2333213458d520bac376a66fd8d6dd8e988e6/docs/versions/v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)；本地完整字节Blob一致 |
+
+准确15个路径及Blob/SHA256/bytes见 [R1制品清单](r1_artifact_manifest.json)。范围是FormalRelationshipService、RelationshipContactPolicy、SlowDatingService、LiveConsentService，SlowDating/Social Controllers及API route，两个增量迁移、两个APP页面及3个测试文件；不整体合并其它未接受分支。`APP_DB_CONNECTION`/SQLite内存测试防误清门保持原Blob，没有改全局隔离级别。
+
+### 11.2 修复前真实复现
+
+独立开发库仍为 `elitesync_v10_1_2_dev`，原本版本专用容器/持久卷，loopback 43323，**MariaDB 10.11 / REPEATABLE-READ**。先核容器ID、卷归属与旧备份，再备份，仅在本版已登记虚构数据中操作。数据库原始SQL、账号与HTTP凭据均LOCAL_ONLY。
+
+- B1：无来源C→B经真实HTTP返回200；撤回后换键再返回200。实际关系+2、journey_audits+3、commands+3，通知0、Safety0。属于受控合成复现，未声称真实用户受损。
+- B2：真实EXIT后，原未决仍PENDING/revision1/双slot2，GET仍可返回旧Showcase，accept却409；PAUSE再opt-in换代际后仍旧未决、旧Showcase。
+- 修复前新增Feature：8 tests / 57 assertions，7 failures，exit1。失败原件保留，不伪造预期红测。
+
+证据：`before-result.json`、`before-http-reproduction-03.*`、`feature-r1-before.*`。旧原源码和完整交付均保持不变。
+
+### 11.3 B1 当前受控来源与反枚举合同
+
+正式请求必须同时具备**当前ACTIVE好友或CN_ACTIVE连接**以及**收件方开启接收请求**；好友/连接不自动授予正式关系、MC、附件或来电。自请求、目标不存在/禁用/注销、Block、缺来源、许可关闭统一404 unavailable；不增加关系、命令、审计、通知或Safety。客户端actor_id/requester_id禁止，实际actor仍来自认证会话。
+
+先取得有序User当前锁，等待后复核会话，再读取收件许可与来源。创建时绑定source kind/id/revision与独立requests_revision；开关off/on、解除好友后重建或换另一个来源不恢复旧申请。requests_revision仅在请求开关实际改变时增加，不与字段受众revision混用。
+
+沿用Social的24小时冷却、每日5个不同收件方共享额度，两类入口都统计Social+Formal历史；正式POST另有10次/分钟路由限流。DECLINED原发起人不能更换键直接重发；接收方主动反向申请仍须合法来源与冷却。合法幂等重放无新增副作用，许可撤销后不能用旧成功键返回成功。
+
+非作者发现“初始申请pause/resume到generation2再撤销来源”可能绕过初始权限检查，已增加**activated_at**：从未真正ACTIVE的非终态持续核原来源；曾经真正成立的正式关系，后续暂停/恢复与原好友/CN独立。旧关系仅以服务端CONFIRM→ACTIVE审计回填，不以代际推断。实库探针14条曾ACTIVE全部回填、当前ACTIVE无缺失、4条历史ACTIVE现PAUSED/SUSPENDED保留事实，1条未成立的高代际仍无成立事实。
+
+两个具名增量迁移：`2026_10_21_080000_bind_formal_request_authority.php`、`2026_10_21_080100_track_formal_activation_history.php`，仅guarded migrate到本版库，均exit0。未fresh、wipe或触及v10.1.1恢复库。深字段分享合同无扩张：正式关系仍需双方逐次确认/有效凭据，逐字段单独授权，既有撤权测试保留。
+
+### 11.4 B2 生命周期、投影及独立权利
+
+EXIT将当前未决置WITHDRAWN/revision+1，释放双slot，记录明确退出撤回审计；不伪造对方拒绝或新增Safety。PAUSE保留未决和本人withdraw，但隐藏Showcase、不提供accept/decline；必须本人明确撤回后才能opt-in进入新代际，未决时返回409。旧EXIT/错代际遗留未决在有序用户锁后懒失效WITHDRAWN、释放slot并审计。
+
+`/journey`、`/matches/current`、当前轮次投影与Match衍生新CN统一核当前participation状态和冻结generation。已MUTUAL历史保留，失效后无新联系资格；已独立双方形成的CN/MC继续，不能混成注销/拉黑/解除好友。
+
+服务端返回decision_available/withdraw_available/availability_reason；APP只在flag==true时给动作，缺失关闭；正式关系按server allowed_actions区分发起人withdraw与收件人decline。有效状态有正向Showcase与真实revealed轮次前置，避免“不在当前轮次”的空过断言。
+
+### 11.5 真实HTTP、MariaDB精确等待和重启
+
+修复后53次HTTP的8组检查均通过：反枚举同404无副作用、真实邀请→好友接受→正式PENDING、合法幂等、off/on不恢复、EXIT三投影/slot0、PAUSE先撤回再gen3、未到期旧slot释放后实际新Round/Run/Reveal成功、MUTUAL历史和独立CN/MC保留。
+
+定向并发主证仅采用 `rr-r1-exact-pairs-04`，exit0。不是全局等待数量：INNODB_LOCK_WAITS精确reader/writer+transaction配对，并join INNODB_LOCKS的表、PRIMARY、peer lock_data。预处理SQL带`?, ?`，没有虚构填入实际参数。Writer先持目标peer用户锁；B2另先持CurrentQuestionnaire锁，撤权通过实际Social Controller或SlowDatingService。Reader走真实已认证HTTP，唯一在途受控请求，明确观察其尚未完成，屏障后才允许提交。
+
+| 场景 | reader/writer | 等待与COMMIT次序 | 结果 |
+|---|---|---|---|
+| B1 正式申请等待，收件方关闭许可 | 180 / 179；trx8295 / 8292；peer PRIMARY94 | HTTP sent 1792539406.417 → 精确等待 .620 → release → writer COMMIT → reader响应 | 404；关系/审计/命令/通知/Safety增量全部0 |
+| B2 GET旅程等待，peer EXIT | 185 / 184；trx8300 / 8297；peer PRIMARY93 | HTTP sent 1792539407.298 → 精确等待 .732 → COMMIT .745 → reader响应 | 200，Showcase=null、decision=false、WITHDRAWN、双slot0；仅正常退出/撤回审计+2 |
+
+原始时间戳及COMMIT回执见exact-wait/committed/result。500、死锁、超时或测试异常均未算通过。
+
+受控DB/API重启后，formal_relationships、privacy_preferences、journey_audits、journey_commands、match_proposals、match_proposal_slots、matching_participations、product_connections、messaging_consents **9表逐行排序摘要及行数相等**；HTTP读取仍200撤回无内容、已撤销请求仍404。初次持久化脚本误写CN/MC表名导致Laravel异常但exit0，该次明确FAILED；修正脚本要求解析JSON与显式异常退出，最终重启结果才是PASS。
+
+### 11.6 必要回归、APK与APP读回
+
+| 检查 | 实际结果 |
+|---|---|
+| 后端相关Feature最终集 | 44 tests / 609 assertions / exit0；2 Deprecations + 2 PHPUnit Deprecations保留 |
+| Flutter本版页面回归 | 13 tests / exit0，包括原9与新增4 |
+| scoped Flutter analyze | exit0 |
+| 改变PHP语法检查 | 11文件，全部exit0 |
+| 最后固定源码离线assembleDebug | exit0；双ABI x86_64 + arm64-v8a |
+| 获准AVD安装及pm path pull | exit0；hash逐字节相同；未操作手机 |
+
+新APK `com.elitesync.v1012dev` / `10.1.2-dev` / `1010201`，411524159 bytes；**SHA256 `d1f5f0850f68016c361c07f54ab7fccf8975def6409e84bc532d131dc057a410`**。开发签名SHA256 `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`。由R1最终Commit88ffeccc/apps36581045构建，与同Commit的backend/services96b2972a及本版库组合。旧APK572868...保持原件，不能用于证明新APP。
+
+实际既有 `elitesync_v1009_a` headless/noaudio/no camera，定向ADB仅emulator-5554：
+- 虚构账号真实登录；有效提案实际显示Showcase、accept/decline/withdraw；PAUSE隐藏内容仅withdraw，未先撤回重新报名拒绝；APP确认EXIT后WITHDRAWN无内容/决定按钮，DB双slot0。
+- APP无来源发正式请求显示Not found且DB全部副作用0；真实Social邀请/接受后由APP创建PENDING，发起人只见confirm/withdraw/end；收件方关闭许可后APP请求再次Not found，无新增副作用。
+- API/MariaDB读回实际APP创建的关系与allowed_actions；截图/XML/设备材料LOCAL_ONLY，脱敏摘要 `app-r1-result.json`。收件人角色APP未另登录，其动作由实际HTTP及Widget回归覆盖。
+
+保留观察：PAUSE重新报名的拒绝沿用通用“Request failed”；旧正式申请动作可能在缓存页中保留直至刷新，但服务端每次核当前来源、不得凭缓存授权。一次UI密码输入错误后重置字段并真实登录成功，初次错误截图保留；既有合成会话退出显示待确认撤销，未声称其服务端响应已确认。这些不冒充本轮功能正例。
+
+### 11.7 原失败、非作者复核与审阅副本
+
+原失败stdout/stderr/真实exit集中见 `exit-ledger.json`，包括：修复前红测exit1，fixture缺source_draft_id/禁用账号发session，各自原失败；Feature前3次因fixture/期望与生命周期旧合同错配exit2/1/2，随后04～06和final通过；Flutter首mock缺allowed_actions失败exit1，补安全fixture后通过；RR01精确筛选失败/Writer timeout、02 marker命名错误、03预处理占位符筛选失败均exit1；fixture-race-03错误cwd exit255、03b成功；首重启runner exit1。没有删除断言、失败或测试护栏追绿。
+
+RR02脚本误复用了race-contact屏障路径，因此原attempt01 held/committed marker不能再证明原时序，不纳入并发通过证据；其原失败命令/stdout/stderr仍保留。主证04使用全新独立命名，完整配对时序已由非作者读取。初Docker未启动导致inspect失败，仅正常隐藏启动Desktop，没有UAC/WSL修复。
+
+[非作者集中复核](https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/non-author-review.md)：独立GPT-6.1 Sol/high只读审查固定源码与留存回执，发现的P1来源代际绕过、P2角色动作和轮次测试空过均已修复。无未关闭B1/B2源码阻断；审稿人未亲自执行DB/API/测试/设备，不冒称独立运行或整版ACCEPTED。
+
+单一独立脱敏审阅Commit `94f41f4ef2455b7c89258437a5162c19cca2f1e8`，Tree `762ab7ee86ad41a5c548cd60ac637f7353a462ee`，branch `review/temporary-evidence-v10.1.2-r1-20261021`。212份必要文本包含脚本、退出码、失败、回执与摘要；[copy-manifest](https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/copy-manifest.json)区分原始私密bytes/SHA与脱敏副本bytes/SHA。只替换秘密和个人路径，91个已知敏感值及JWT/个人路径扫描通过。原私密配置、SQL、完整HTTP/账号、APK、XML/截图和设备日志不公开。公开脚本含LOCAL_ROOT标记，重放须配置受控本地原件，不能宣称网页可直接访问本机。
+
+### 11.8 恢复点、资源终态、发布及NOT_RUN
+
+修复前备份453438 bytes / SHA256 `578dadeaffd3c33c01307f088b62a0575842f6aa07724c85e5973bef62e578a4`；最终备份587201 bytes / `ee71264137be749803133610add6630b26c9cb55cf76b3cbcb77c354409f6cb0`，均exit0、LOCAL_ONLY。原库、所有恢复点、历史审计和备份未删除；仅本版虚构轮次按产品Close服务关闭以形成当前轮次，不删除旧行或清数据。
+
+本轮API停止、DB容器停止、volume `elitesync-v1012-journey-data-20261020`保留、获准AVD停止、本版ADB reverse8015移除；8015/8016/43323/5554均无监听，WS未启动。Docker Desktop正常启动后保留运行，未全局关闭。四保护树HEAD/status/index输出及index文件SHA均与开工相同，历史容器ID/State相同；专用树runtime storage/framework继续未跟踪LOCAL_ONLY，不为“干净”清理。
+
+普通non-force发布独立R1候选和上述审阅分支；原候选90094242与原审阅70e122dd分支保持。远端Commit/Tree、全部15个改变源码Blob、报告/入口/清单及212个审阅文本按固定SHA独立GET/bytes回读；最终回执LOCAL_ONLY，集中交付给出精确最终提交。产品main未合入，发布不代表接受。
+
+本次NOT_RUN：真实身份供应商/证件采集/真实账号正式关系激活；物理手机、RTC/麦克风/相机/人耳听感；任何旧UDP/防火墙/DNAT/提权窗口；阿里云试点、公网/证书/备案、外部供应商或费用；v10.1.1恢复库及旧库写入；实际资料删除/共享记录/审计/备份销毁；全量算法oracle、全部AC、全仓考古、新竞品盘点、Web全套重测（本轮实际HTTP贯通覆盖相关服务，无Web源码变化）；main合并、旧分支清理、v10.1.3。原有效call14/原版其它证据只作为历史复用，未重启媒体。
+
+完成候选集中交付后停止，唯一下一门为Astra独立终验。

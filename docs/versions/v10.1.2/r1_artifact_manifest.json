@@ -1,0 +1,216 @@
+{
+  "status": [
+    "V10.1.2_R1_CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE",
+    "NOT_YET_ACCEPTED",
+    "V10.1.3_NOT_STARTED"
+  ],
+  "task_blob": "75d98dd1be027230d923572be8e4ac94594839dd",
+  "original_source": "ebade52179b6ac7b76ba2f2992d31981fa995a00",
+  "original_delivery": "900942426e965092d3852771c4126d77210677c4",
+  "source": {
+    "commit": "88ffeccce4042f13ce4edccf7604b835b06c8f2d",
+    "tree": "42052f5f9ee596f82cf525884e1f77256fc7727b",
+    "apps": "365810451b6faad98e041835be6c86f4f81be0a9",
+    "services": "96b2972a19ec49108cf5c11d144179e5693570a9"
+  },
+  "review": {
+    "commit": "94f41f4ef2455b7c89258437a5162c19cca2f1e8",
+    "tree": "762ab7ee86ad41a5c548cd60ac637f7353a462ee",
+    "branch": "review/temporary-evidence-v10.1.2-r1-20261021",
+    "files": 212,
+    "copy_manifest_blob": "d187d916bb5f37b35f345c14ca52988d119592f2"
+  },
+  "changed_paths": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/formal_relationship_page.dart",
+      "blob": "32428fe31aa22edb407505bbc4559bd8b7d5a1e4",
+      "sha256": "d7abf6fa8bd4812cd4683aa02736c81f75d60fb1328d65e564a820bcfa1849e1",
+      "bytes": 6000
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+      "blob": "42e34966207f495af731fd49ce57bff6e910c3d7",
+      "sha256": "6796a3050a2c557391fd2192855773644aedabdcd58835af92b4cc216dbf2023",
+      "bytes": 10209
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/slow_dating_v1012/journey_pages_test.dart",
+      "blob": "654e153f1868884898c20466eff2203902b478d1",
+      "sha256": "86853fa44c14efbfb035b71c77fceb7da77843169be3ac3fd76488213fa03e50",
+      "bytes": 13379
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/slow_dating_v1012/r1_journey_gates_test.dart",
+      "blob": "662c9f0f69cff61909d62fef33a08c8da73076a8",
+      "sha256": "6a069e836b1d1b1c8db3e4eda59e936b8d5f6782fb273c54ce673940979cf14b",
+      "bytes": 6221
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SlowDatingController.php",
+      "blob": "a90195419411a0f3e956657dbc5616ce59900a67",
+      "sha256": "1424f2ee0e512fd3b8b8998c15bc79ea99dbf117cfa0c64a1c70fca537218cdb",
+      "bytes": 2666
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php",
+      "blob": "92a28c71201b95852aa6815341a535d54d3f95c3",
+      "sha256": "e7c1f2ddc6ff5a04fc9f0bbe35a5f44284bf3837dc622eb5fca5ff4513923363",
+      "bytes": 11612
+    },
+    {
+      "path": "services/backend-laravel/app/Services/FormalRelationshipService.php",
+      "blob": "581098f7f07cc62e59f706f961147b1e68b12769",
+      "sha256": "d6c2be5b42a6b900cd66c6982539b51a78dbaf09e02440549a68d76c0955717f",
+      "bytes": 11861
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "blob": "0212034958f37fe880121f17572492e1ef6097a1",
+      "sha256": "99f84d91055ec09fc7da847a098d5e17f0a0f07a1ccfc99b776e2c44904f7967",
+      "bytes": 19411
+    },
+    {
+      "path": "services/backend-laravel/app/Services/RelationshipContactPolicy.php",
+      "blob": "d86c575f83deaa81c1c761f11886c5d34580aa20",
+      "sha256": "fa5849092e85bb7769aecf5ffcf1d41bdda6c326feb19686d4549d99be374731",
+      "bytes": 3999
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+      "blob": "cf91a1218f365302c023f44d4039c515c14898d6",
+      "sha256": "86b87f71bfec53e57644d29be18039e178113f7dacf64c49ed6898bed35cb487",
+      "bytes": 14060
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_080000_bind_formal_request_authority.php",
+      "blob": "1fc49eaa5c6b1476ed6cefdc24a414a35728d179",
+      "sha256": "9360e37220afaaa0923bf35166ec06dce44fbf619f22aa5e7596fc911b5d92a0",
+      "bytes": 1041
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_080100_track_formal_activation_history.php",
+      "blob": "b6e156827e4e0c6358126b4bd06518542a684e6a",
+      "sha256": "cedb3489d3bc307829cd386f5b92f9cdedb7aeefbdca412e15e6288b8b4feb31",
+      "bytes": 995
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "blob": "39f8e95cf929ee9dd9e6bb594ec64c6b1b041fb5",
+      "sha256": "c4abb97ddff7abe997e0ad89f0d0adf4b51c3cdffb1d8594e17f9f896d7ce816",
+      "bytes": 21851
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1012JourneyTest.php",
+      "blob": "91665471d1ed5fbed7cad236702a2278b890c392",
+      "sha256": "588d565d7323fbaced5d88b2027ff4e2b61f6f44135b255bfb9d04ea48a578a8",
+      "bytes": 25443
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1012R1BoundaryTest.php",
+      "blob": "23945a7497999a8de9f118757067f2b088f45b49",
+      "sha256": "4cd00d114b5a7106472ec50782d7ee1e64d42819fdc5072ac7a70cf3d66b1a3f",
+      "bytes": 21751
+    }
+  ],
+  "apk": {
+    "source_commit": "88ffeccce4042f13ce4edccf7604b835b06c8f2d",
+    "source_tree": "42052f5f9ee596f82cf525884e1f77256fc7727b",
+    "sha256": "d1f5f0850f68016c361c07f54ab7fccf8975def6409e84bc532d131dc057a410",
+    "installed_pull_sha256": "d1f5f0850f68016c361c07f54ab7fccf8975def6409e84bc532d131dc057a410",
+    "bytes": 411524159,
+    "serial": "emulator-5554",
+    "application_id": "com.elitesync.v1012dev",
+    "backend": "same fixed R1 backend / 8015 / elitesync_v10_1_2_dev",
+    "signer_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09"
+  },
+  "execution": {
+    "backend_final": "44 tests / 609 assertions / exit 0; 2 Deprecations + 2 PHPUnit Deprecations retained",
+    "flutter_final": "13 tests / exit 0",
+    "scoped_analyze": "exit 0",
+    "php_lint": "11 files / exit 0",
+    "exact_RR_pairs": [
+      "180/179",
+      "185/184"
+    ],
+    "raw_originals": "LOCAL_ONLY"
+  },
+  "backups": {
+    "before": {
+      "exit": 0,
+      "bytes": 453438,
+      "sha256": "578dadeaffd3c33c01307f088b62a0575842f6aa07724c85e5973bef62e578a4",
+      "database": "elitesync_v10_1_2_dev",
+      "scope": "retained synthetic v10.1.2 only"
+    },
+    "after": {
+      "exit": 0,
+      "bytes": 587201,
+      "sha256": "ee71264137be749803133610add6630b26c9cb55cf76b3cbcb77c354409f6cb0",
+      "database": "elitesync_v10_1_2_dev",
+      "retained": true
+    }
+  },
+  "evidence": {
+    "before-result.json": {
+      "blob": "67a8eadc6938e942dfe60237fb68a8538476cc33",
+      "sha256": "6a953dc05e6a72b9d6aaac99590208f8a2a5030e39863f565219d6ff4c421198",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/before-result.json"
+    },
+    "after-result.json": {
+      "blob": "a1a7ecdce97f0624fbf71c138441bb6c00484cbd",
+      "sha256": "cac5d97f191b49293fe2c557954909dd2fa7d8fd88f51a283c558a98edb5a897",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/after-result.json"
+    },
+    "race4-contact-result.json": {
+      "blob": "e4a62764dbe4ab1146ab00e61da7cc15505c7653",
+      "sha256": "84b36054b4aedcb6844b63320ed8f2846c4f365fd26b3b8277aff3c1c128c930",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/race4-contact-result.json"
+    },
+    "race4-exit-result.json": {
+      "blob": "f2a672a1aad50ac07d54cd6c5bc667897f0c9ffb",
+      "sha256": "ec1da23853f58da56a5e71db62da7343cad3c83c94e7c8c5cac19dacf154f465",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/race4-exit-result.json"
+    },
+    "race4-contact.exact-wait.json": {
+      "blob": "d81d3e4b2aee8e4d9bd13bd0025a8bca2ca3bf27",
+      "sha256": "d86fc96af4eb4a22d55c01dce9bf2556d00291a38789936f78dda5c53303b28b",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/race4-contact.exact-wait.json"
+    },
+    "race4-exit.exact-wait.json": {
+      "blob": "d2b94a8a5d85b5e46fdb6dae820333ec4cbce2f8",
+      "sha256": "82ab908a7235baf19409ea6fa7aa6fe9570250520fa687bfb7d9a73ad6c38e1c",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/race4-exit.exact-wait.json"
+    },
+    "restart-v2-result.json": {
+      "blob": "2b72a8705d5641f48d71e9d6efd96912dbd1332f",
+      "sha256": "f180f2f44985a590cb871e21da7feab757ac69d975bc0c3da4bc4c441932a57c",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/restart-v2-result.json"
+    },
+    "app-r1-result.json": {
+      "blob": "2e577de1a1f21fe51d1ddc36645bc0f3ec7f4d31",
+      "sha256": "d9ca2efdbacbf0a7344735805548510b4180314653eb76d8ea4a0119a6d4ea2e",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/app-r1-result.json"
+    },
+    "non-author-review.md": {
+      "blob": "14c1801b6794efd2c26bf032acd191fc9e059f17",
+      "sha256": "d852896fa583c7bcb3453d8fc386dd80fd557f505806fa204ba4761f3cdb70dc",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/non-author-review.md"
+    },
+    "resource-final.json": {
+      "blob": "1b1fb879d2166891b30189ae5d28413d64b54f9b",
+      "sha256": "3375a6b37d081d9e7fedbed7d8ffd46764bb96e2a88be2afcc61118b06e34696",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/resource-final.json"
+    },
+    "protection-final.json": {
+      "blob": "130cb65f8907355bceae8ae0f0b4ec734e6a6a5f",
+      "sha256": "9412dc3e2e770b7dd733ebfef6a7bca3c9a03cdec483d8583de9a00ab5528d02",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/protection-final.json"
+    },
+    "exit-ledger.json": {
+      "blob": "7e26fceeace712adeca7139ee6d681ebbe42f9ba",
+      "sha256": "ec6252b4f9199cbf40513bdc9c1eb2ab3c234330b40652270456a86a84c37bae",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/94f41f4ef2455b7c89258437a5162c19cca2f1e8/docs/_temporary_review/v10.1.2-r1-20261021/exit-ledger.json"
+    }
+  }
+}

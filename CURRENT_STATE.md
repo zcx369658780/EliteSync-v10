@@ -1,5 +1,11 @@
 # EliteSync-v10 当前状态
 
+## 2026-10-21 v10.1.2 R1候选待Astra独立终验
+
+**V10.1.2_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / V10.1.3_NOT_STARTED**。原候选经Astra裁决CHANGES_REQUIRED；本次仅B1受控正式请求、B2旧提案生命周期与相关RR返修。固定源码`88ffeccce4042f13ce4edccf7604b835b06c8f2d`，Tree`42052f5f9ee596f82cf525884e1f77256fc7727b`。[唯一报告R1追加](docs/versions/v10.1.2/IMPLEMENTATION_REPORT.md#11-2026-10-21-r1-同版集中返修与候选交付)｜[R1制品清单](docs/versions/v10.1.2/r1_artifact_manifest.json)。后端44/609、Flutter13、真实HTTP/MariaDB精确等待、固定新APK/获准AVD读回及非作者复核已完成；本版资源停止、原候选/备份/dirty及历史保护资产保留，未合main、未自接受。下文仍为历史形成时状态。
+
+---
+
 ## 2026-10-20 v10.1.2开发候选交付，等待Astra独立验收
 
 **V10.1.2_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / NOT_YET_ACCEPTED / REAL_IDENTITY_PROVIDER_PENDING / V10.1.3_NOT_STARTED**。Owner已手动派发本版综合任务；源码`ebade52179b6ac7b76ba2f2992d31981fa995a00`，apps`9344354d0da95f0388aa922b2775b1e8d18f18b7`、services`a0eb88caf5ed65451b56b5363b7af667dadd6fd6`。[唯一实施报告](docs/versions/v10.1.2/IMPLEMENTATION_REPORT.md)及[制品清单](docs/versions/v10.1.2/artifact_manifest.json)。实际APP/Web/API/独立MariaDB及必要RR负例、APK构建安装和非作者复核已记录；身份仅TEST_ONLY，无真实供应商接通。本版专属资源停止、恢复点及原dirty/历史资产保留；未合产品main、未自接受，等待Astra。下方旧“待派发/未实施”为形成时快照，不回写历史。
