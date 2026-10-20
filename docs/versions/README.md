@@ -1,5 +1,11 @@
 # EliteSync-v10 版本登记入口
 
+## 2026-10-20 v10.1.2冻结／等待Owner向Codex手动派发
+
+**V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。已接受v10.1.1正式[独立集成验收](v10.1.1/integration_acceptance.md)，功能与main安全集成均ACCEPTED_WITH_OBSERVATIONS。Owner已同意进入v10.1.2，Astra已冻结[完整慢约会与正式关系计划](v10.1.2/plan.md)及[唯一综合长任务单](v10.1.2/task_order.md)；尚未由Owner手动派发本地Codex，软件未实施。计划需双人有效实人验证＋双向确认方可建立正式恋爱关系；真实provider未配置时只能隔离合成测试，真实账号不可假激活。v10.1.0 PARTIAL与原历史观察不变，v10.1.3未开始。
+
+---
+
 ## 2026-10-20 v10.1.1功能接受；安全集成待独立集成验收
 
 **V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。接受源码`ee2459953146a135ae9b118a1ffe75946efd0183`；[Astra既有功能裁决归档（Codex代录）](v10.1.1/acceptance.md)、[最终R1实施报告](v10.1.1/IMPLEMENTATION_REPORT.md)、[原APK清单](v10.1.1/artifact_manifest.json)、[R1对象清单](v10.1.1/r1_artifact_manifest.json)、[本次唯一集成报告](v10.1.1/integration.md)。未把功能接受写成本次独立集成接受。
