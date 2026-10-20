@@ -1,5 +1,11 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-20 当前入口：v10.1.2已冻结，等待Owner派发
+
+**V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。上版独立收口：[v10.1.1集成验收](docs/versions/v10.1.1/integration_acceptance.md)，产品main `9e25756af9e4a969cc631a54d385d84bce18d890`，接受产品对象apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab` / services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`。本版唯一[冻结计划](docs/versions/v10.1.2/plan.md)Blob `2ebd2ea05b3d7dae52cc3995de913eeb0fde375e`；[Codex综合长任务](docs/versions/v10.1.2/task_order.md)Blob `4f39db8e003da0889c7d23582652c0787c22bfea`。真实实人身份供应商未获授权，TEST_ONLY合成认证不等于真实用户核验；本版尚未实施。当前上文更新下方原R1待验与规划历史状态，不能倒改过去记录。
+
+---
+
 ## 2026-10-20 当前入口：v10.1.1功能接受与安全集成候选
 
 **V10.1.1_ACCEPTED_WITH_OBSERVATIONS / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / V10.1.2_NOT_STARTED**。[Astra既有功能裁决归档（Codex代录）](docs/versions/v10.1.1/acceptance.md)｜[最终R1实施报告](docs/versions/v10.1.1/IMPLEMENTATION_REPORT.md)｜[原制品清单](docs/versions/v10.1.1/artifact_manifest.json)｜[R1对象清单](docs/versions/v10.1.1/r1_artifact_manifest.json)｜[唯一安全集成报告](docs/versions/v10.1.1/integration.md)。完整接受apps/services由Git对象集成，未整体合并旧候选文档；现行Owner决定、路线、冻结计划与历史结论保留。
