@@ -1,5 +1,11 @@
 # EliteSync-v10 动态总目录
 
+## 2026-10-20 当前入口：v10.1.2首轮审阅CHANGES_REQUIRED／同版R1待Owner派发
+
+Astra已直接核验v10.1.2固定源码 `ebade52179b6ac7b76ba2f2992d31981fa995a00`、报告 `900942426e965092d3852771c4126d77210677c4` 和41个产品对象。候选不是已接受版本；[唯一Astra独立审阅与R1任务](docs/versions/v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)记录B1未受控正式关系申请及B2旧代际未决提案继续有效投影两项P1冻结范围缺口，Codex执行回执保留，当前Owner手动派发待完成。main产品仍为v10.1.1已接受对象；v10.1.3未启动。下方v10.1.2冻结待派发段落为形成时快照。
+
+---
+
 ## 2026-10-20 当前入口：v10.1.2已冻结，等待Owner派发
 
 **V10.1.1_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_FROZEN_FUNCTIONAL_PLAN / MANUAL_DISPATCH_PENDING / IMPLEMENTATION_NOT_STARTED**。上版独立收口：[v10.1.1集成验收](docs/versions/v10.1.1/integration_acceptance.md)，产品main `9e25756af9e4a969cc631a54d385d84bce18d890`，接受产品对象apps `1ddc864a8f7f8f7e024d6102a36057252bc77bab` / services `e4ae92d12d0bbac81a8ed7730a061aaec214da13`。本版唯一[冻结计划](docs/versions/v10.1.2/plan.md)Blob `2ebd2ea05b3d7dae52cc3995de913eeb0fde375e`；[Codex综合长任务](docs/versions/v10.1.2/task_order.md)Blob `4f39db8e003da0889c7d23582652c0787c22bfea`。真实实人身份供应商未获授权，TEST_ONLY合成认证不等于真实用户核验；本版尚未实施。当前上文更新下方原R1待验与规划历史状态，不能倒改过去记录。
