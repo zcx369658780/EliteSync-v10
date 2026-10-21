@@ -58,6 +58,12 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8021/') {
+      throw StateError('v10.1.5 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
   if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8019/') {
       throw StateError('v10.1.4 requires its isolated local host.');
@@ -138,6 +144,7 @@ Future<void> main() async {
     ),
   );
   const restoration =
+      bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
@@ -160,6 +167,7 @@ Future<void> main() async {
   );
 
   const rtcRestoration =
+      bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD');
   await runEliteSyncApp(
@@ -170,6 +178,7 @@ Future<void> main() async {
       // boots through main.dart -> main_prod.dart. Keep prod pointed at the
       // verified direct backend entry until the public domain chain is stable.
       apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
+      wsBaseUrl: hostBootstrap['wsBaseUrl'] ?? '',
       useMockData: false,
       useLiveKitRtc: rtcRestoration || !restoration,
       restorationLocalBuild: restoration,

@@ -185,6 +185,9 @@ class NotificationService
             ->orderByDesc('id')
             ->limit($limit)
             ->get()->filter(function ($n) use ($userId) {
+                if (! app(NotificationDeliveryService::class)->categoryEnabled($userId, (string) $n->kind)) {
+                    return false;
+                }
                 $p = $this->presentationForUser($n, $userId);
 
                 return ($p['available'] ?? true) && $p['title'] !== '通知已不可用';
@@ -195,6 +198,9 @@ class NotificationService
     {
         $count = 0;
         foreach (AppNotificationItem::where('user_id', $userId)->whereNull('read_at')->cursor() as $n) {
+            if (! app(NotificationDeliveryService::class)->categoryEnabled($userId, (string) $n->kind)) {
+                continue;
+            }
             $p = $this->presentationForUser($n, $userId);
             if (($p['available'] ?? true) && $p['title'] !== '通知已不可用') {
                 $count++;

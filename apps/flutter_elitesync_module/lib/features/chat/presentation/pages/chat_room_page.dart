@@ -38,6 +38,9 @@ import 'package:flutter_elitesync_module/features/profile/presentation/utils/pro
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/shared/providers/performance_mode_provider.dart';
 import 'package:flutter_elitesync_module/shared/widgets/a5_relationship_understanding_card.dart';
 
@@ -84,7 +87,15 @@ class _AuthorizedChatRoomPage extends ConsumerStatefulWidget {
 }
 
 class _AuthorizedChatRoomPageState
-    extends ConsumerState<_AuthorizedChatRoomPage> {
+    extends ConsumerState<_AuthorizedChatRoomPage>
+    with WidgetsBindingObserver {
+  bool _foreground = true;
+  bool _revalidating = false;
+  String? _openedToken;
+  int _openedEpoch = 0;
+  String? get _sessionToken =>
+      ref.read(sessionProvider).asData?.value.accessToken;
+  int get _authorityEpoch => ref.read(relationshipAuthorityEpochProvider);
   final _controller = TextEditingController();
   final _listController = ScrollController();
   final List<MessageEntity> _localMessages = <MessageEntity>[];
@@ -119,7 +130,10 @@ class _AuthorizedChatRoomPageState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _routeState = widget.routeState;
+    _openedToken = _sessionToken;
+    _openedEpoch = _authorityEpoch;
     _startRealtimeSync();
   }
 
@@ -147,10 +161,53 @@ class _AuthorizedChatRoomPageState
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _stopRealtimeSync();
     _controller.dispose();
     _listController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _revalidateForeground();
+    } else {
+      _stopRealtimeSync();
+      setState(() {
+        _foreground = false;
+        _localMessages.clear();
+        _controller.clear();
+      });
+    }
+  }
+
+  Future<void> _revalidateForeground() async {
+    final token = _sessionToken;
+    final epoch = _authorityEpoch;
+    setState(() {
+      _foreground = true;
+      _revalidating = true;
+    });
+    PrivateCacheService.forStorage(
+      ref.read(secureStorageProvider),
+    ).beginOnlineRevalidation();
+    ref.invalidate(chatRoomMessagesProvider(_messagesRequest));
+    try {
+      await ref.read(chatRoomMessagesProvider(_messagesRequest).future);
+      if (!mounted || token != _sessionToken || epoch != _authorityEpoch) {
+        return;
+      }
+      setState(() {
+        _revalidating = false;
+        _openedEpoch = epoch;
+        _localMessages.clear();
+      });
+      _startRealtimeSync();
+    } catch (_) {
+      // Remain behind the gate; old successful messages must not reappear.
+      if (mounted) setState(() => _revalidating = true);
+    }
   }
 
   void _scheduleScrollToBottom() {
@@ -203,11 +260,27 @@ class _AuthorizedChatRoomPageState
   }
 
   Future<void> _sendMessage() async {
-    if (!_canSend || !_isConversationIdSupported) {
+    if (!_foreground ||
+        _revalidating ||
+        PrivateCacheService.forStorage(
+          ref.read(secureStorageProvider),
+        ).isOffline ||
+        !_canSend ||
+        !_isConversationIdSupported) {
       AppFeedback.showError(context, '消息权限尚未建立，当前不能读取或发送私密消息');
       return;
     }
     final text = _controller.text.trim();
+    final sendingToken = _sessionToken;
+    final sendingEpoch = _authorityEpoch;
+    final sendingRoute = _routeState.stableKey;
+    bool current() =>
+        mounted &&
+        sendingToken == _sessionToken &&
+        sendingEpoch == _authorityEpoch &&
+        sendingRoute == _routeState.stableKey &&
+        _foreground &&
+        !_revalidating;
     final hasReadyAttachment =
         _attachmentStage == AttachmentUploadStage.ready &&
         _selectedAttachmentId != null;
@@ -240,7 +313,7 @@ class _AuthorizedChatRoomPageState
       id: attempt.localMessageId,
       mine: true,
       text: attempt.content,
-      time: '刚刚',
+      time: '发送中，等待服务器确认',
       clientMessageId: attempt.clientMessageId,
       attachments: hasReadyAttachment
           ? [
@@ -294,7 +367,7 @@ class _AuthorizedChatRoomPageState
         _routeState,
         result.conversationId,
       );
-      if (!mounted) return;
+      if (!mounted || !current()) return;
       setState(() {
         _localMessages.removeWhere(
           (message) =>
@@ -338,7 +411,7 @@ class _AuthorizedChatRoomPageState
         _clearAttachmentDraft();
       }
     } catch (error) {
-      if (!mounted) return;
+      if (!mounted || !current()) return;
       final failure = error is ChatSendFailure ? error : null;
       setState(() {
         _localMessages.removeWhere((m) => m.id == optimistic.id);
@@ -355,7 +428,9 @@ class _AuthorizedChatRoomPageState
             ? '消息内容与原发送请求冲突，请修改内容或附件后重新发送'
             : failure?.isConversationIdentityConflict ?? false
             ? '会话身份校验失败，未切换当前会话，请刷新后重试'
-            : '发送失败，已恢复输入框，请稍后重试',
+            : (failure?.statusCode == null)
+            ? '发送结果尚未确认；输入已保留，重试会使用同一个消息编号'
+            : '服务器未接受此消息，已恢复输入框，请检查当前权限后重试',
       );
     } finally {
       if (mounted) {
@@ -1072,6 +1147,22 @@ class _AuthorizedChatRoomPageState
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(sessionProvider);
+    ref.watch(relationshipAuthorityEpochProvider);
+    if (_openedToken != _sessionToken) {
+      return const Scaffold(body: Center(child: Text('会话已切换，请从当前账号重新打开')));
+    }
+    if (!_foreground || _revalidating || _openedEpoch != _authorityEpoch) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('会话权限验证')),
+        body: Center(
+          child: TextButton(
+            onPressed: _foreground ? _revalidateForeground : null,
+            child: const Text('联网重新验证后查看会话'),
+          ),
+        ),
+      );
+    }
     if (!_isConversationIdSupported) {
       return Scaffold(
         appBar: AppBar(

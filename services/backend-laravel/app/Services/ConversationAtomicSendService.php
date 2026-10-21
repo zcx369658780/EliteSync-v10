@@ -79,6 +79,12 @@ class ConversationAtomicSendService
         string $sourcePage,
     ): array {
         return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage) {
+            // No consistent read may precede the pair lock under MariaDB RR.
+            User::whereIn('id', [(int) $sender->id, $receiverId])->orderBy('id')->lockForUpdate()->get();
+            $token = $sender->currentAccessToken();
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+                abort_unless(\Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->exists(), 401, 'SESSION_REVOKED');
+            }
             if ($clientMessageId !== null) {
                 $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint);
                 if ($replay) {

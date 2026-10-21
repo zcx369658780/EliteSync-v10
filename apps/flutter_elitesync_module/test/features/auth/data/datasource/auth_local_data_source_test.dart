@@ -71,9 +71,7 @@ class _InMemoryLocalStorageService extends LocalStorageService {
 
 class _FailingPurgeLocalStorage extends _InMemoryLocalStorageService {
   @override
-  Future<void> purgeLegacyPrivateChatCache() async {
-    throw StateError('Legacy private cache cleanup failed');
-  }
+  Future<bool> purgeLegacyPrivateCache() async => false;
 }
 
 class _InMemorySecureStorageService extends SecureStorageService {
@@ -170,23 +168,29 @@ void main() {
     );
   });
 
-  test('failed purge does not block existing session replacement', () async {
-    final secure = _InMemorySecureStorageService();
-    await secure.write(CacheKeys.accessToken, 'previous token');
-    final dataSource = AuthLocalDataSource(
-      secureStorage: secure,
-      localStorage: _FailingPurgeLocalStorage(),
-    );
-    await dataSource.persistSession(
-      const AuthSession(
-        accessToken: 'new token',
-        refreshToken: 'new refresh',
-        user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
-      ),
-    );
-    expect(await secure.read(CacheKeys.accessToken), 'new token');
-    expect(await secure.read(CacheKeys.refreshToken), 'new refresh');
-  });
+  test(
+    'failed private cleanup blocks publishing a replacement session',
+    () async {
+      final secure = _InMemorySecureStorageService();
+      await secure.write(CacheKeys.accessToken, 'previous token');
+      final dataSource = AuthLocalDataSource(
+        secureStorage: secure,
+        localStorage: _FailingPurgeLocalStorage(),
+      );
+      await expectLater(
+        dataSource.persistSession(
+          const AuthSession(
+            accessToken: 'new token',
+            refreshToken: 'new refresh',
+            user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
+          ),
+        ),
+        throwsStateError,
+      );
+      expect(await secure.read(CacheKeys.accessToken), 'previous token');
+      expect(await secure.read(CacheKeys.refreshToken), isNull);
+    },
+  );
 
   test(
     'logout purges dynamic drafts before existing account cleanup',

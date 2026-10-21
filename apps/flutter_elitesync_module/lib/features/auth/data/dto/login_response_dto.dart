@@ -7,6 +7,7 @@ class LoginResponseDto {
     this.user,
     this.message,
     this.code,
+    this.sessionRetention,
   });
 
   final bool ok;
@@ -16,6 +17,7 @@ class LoginResponseDto {
   final Map<String, dynamic>? user;
   final String? message;
   final String? code;
+  final Map<String, dynamic>? sessionRetention;
 
   factory LoginResponseDto.fromJson(Map<String, dynamic> json) {
     final accessToken =
@@ -30,6 +32,9 @@ class LoginResponseDto {
       user: user,
       message: json['message'] as String?,
       code: json['code'] as String?,
+      sessionRetention: json['session_retention'] is Map
+          ? Map<String, dynamic>.from(json['session_retention'] as Map)
+          : null,
     );
   }
 }

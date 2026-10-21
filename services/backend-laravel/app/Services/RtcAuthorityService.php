@@ -21,7 +21,7 @@ final class RtcAuthorityService
         }
         $db = DB::connection();
 
-        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323]], true) && $db->getConfig('host') === '127.0.0.1';
+        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v1015_dev', 43326]], true) && $db->getConfig('host') === '127.0.0.1';
     }
 
     public function signature(int $a, int $b): ?string
@@ -53,9 +53,11 @@ final class RtcAuthorityService
                 }
                 $call->setRawAttributes($locked->getAttributes(), true);
                 foreach (($call->metadata['device_sessions'] ?? []) as $userId => $family) {
-                    if (! DB::table('device_sessions')->where('id', $family)->where('user_id', $userId)->whereNull('revoked_at')->exists()) {
+                    $device = DB::table('device_sessions')->where('id', $family)->where('user_id', $userId)->whereNull('revoked_at')->first();
+                    if (! $device) {
                         return $this->deny($call, 'device_session_revoked');
                     }
+                    if (app(\App\Services\Accounts\DeviceSessions::class)->onlineDeadline($device) <= now()) return $this->deny($call, 'device_session_expired');
                 }
                 $call = app(RtcSessionService::class)->refreshExpiredSession($call);
                 if ($actor !== null && ! in_array($actor, [(int) $call->initiator_user_id, (int) $call->peer_user_id], true)) {

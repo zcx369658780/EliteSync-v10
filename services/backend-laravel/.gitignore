@@ -8,6 +8,8 @@
 /storage/framework/cache/
 /storage/framework/views/
 /storage/framework/sessions/
+/storage/framework/testing/
+__pycache__/
 /vendor
 .env
 .env.backup

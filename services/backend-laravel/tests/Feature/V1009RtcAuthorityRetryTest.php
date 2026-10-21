@@ -31,6 +31,10 @@ final class V1009RtcAuthorityRetryTest extends TestCase
         $a=User::factory()->create(['phone'=>'19900000931','disabled'=>false,'is_synthetic'=>false]);
         $b=User::factory()->create(['phone'=>'19900000932','disabled'=>false,'is_synthetic'=>false]);
         DatingMatch::create(['week_tag'=>'v1009-retry','user_a'=>$a->id,'user_b'=>$b->id,'drop_released'=>true]);
+        // Since v1012, an arbitrary released Match fixture is not a current
+        // slow-dating proposal. Use the independently valid friendship context
+        // for these transaction/retry tests; do not weaken the Match gate.
+        DB::table('friendships')->insert(['user_a'=>$a->id,'user_b'=>$b->id,'state'=>'ACTIVE','revision'=>1,'created_at'=>now(),'updated_at'=>now()]);
         $consent=app(LiveConsentService::class);
         foreach ([[$a,$b,'connection','request',0],[$b,$a,'connection','accept',1],
             [$a,$b,'consent','request',0],[$b,$a,'consent','accept',1]] as [$actor,$peer,$kind,$action,$revision]) {

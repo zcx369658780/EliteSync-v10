@@ -1,7 +1,15 @@
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/features/auth/domain/entities/auth_session.dart';
+import 'package:uuid/uuid.dart';
+
+class _AuthStorageMutation {
+  int epoch = 0;
+  Future<void> queue = Future.value();
+  Future<String>? deviceId;
+}
 
 class AuthLocalDataSource {
   const AuthLocalDataSource({
@@ -12,12 +20,67 @@ class AuthLocalDataSource {
 
   final SecureStorageService _secureStorage;
   final LocalStorageService _localStorage;
+  static final _mutations = Expando<_AuthStorageMutation>();
+  _AuthStorageMutation get _mutation =>
+      _mutations[_secureStorage] ??= _AuthStorageMutation();
 
-  Future<void> persistSession(AuthSession session) async {
-    await _localStorage.tryPurgeLegacyPrivateChatCache();
+  int beginLoginAttempt() => ++_mutation.epoch;
+  bool isCurrentAttempt(int epoch) => epoch == _mutation.epoch;
+  void cancelPendingLogin() => _mutation.epoch++;
+  Future<String> getOrCreateDeviceId() => _mutation.deviceId ??= () async {
+    final saved = await _secureStorage.read(CacheKeys.privateDeviceBinding);
+    if (saved != null && saved.isNotEmpty) return saved;
+    final created = const Uuid().v4();
+    await _secureStorage.write(CacheKeys.privateDeviceBinding, created);
+    return created;
+  }();
+
+  Future<void> _serialize(Future<void> Function() action) {
+    final next = _mutation.queue.then((_) => action());
+    _mutation.queue = next.catchError((Object _) {});
+    return next;
+  }
+
+  Future<void> persistSession(
+    AuthSession session, {
+    Map<String, dynamic>? retention,
+    int? expectedEpoch,
+    String? expectedDeviceId,
+  }) => _serialize(() async {
+    void checkEpoch() {
+      if (expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) {
+        throw StateError('Login changed; obsolete response was discarded.');
+      }
+    }
+
+    checkEpoch();
+    if (retention != null &&
+        expectedDeviceId != null &&
+        retention['device_id'] != expectedDeviceId) {
+      throw StateError('Login device binding did not match.');
+    }
+    final cache = PrivateCacheService.forStorage(_secureStorage);
+    final cleanup = await cache.clearCurrentAccount();
+    checkEpoch();
+    if (cleanup.status == PrivateCachePurgeStatus.failed ||
+        !await _localStorage.purgeLegacyPrivateCache()) {
+      cache.lock();
+      throw StateError('Private cache cleanup failed; login remains locked.');
+    }
+    checkEpoch();
+    final trusted = await cache.establishLogin(
+      userId: session.user.id,
+      retention: retention,
+    );
+    if (retention != null && !trusted) {
+      throw StateError('Login retention receipt could not be verified.');
+    }
+    checkEpoch();
     await _secureStorage.write(CacheKeys.accessToken, session.accessToken);
     await _secureStorage.write(CacheKeys.refreshToken, session.refreshToken);
+    checkEpoch();
     await _clearAccountScopedCaches();
+    checkEpoch();
     await _localStorage.setJson(CacheKeys.lastKnownProfile, {
       'id': session.user.id,
       'phone': session.user.phone,
@@ -37,13 +100,20 @@ class AuthLocalDataSource {
       'verified': session.user.verified,
       'realname_verified': session.user.verified,
     });
-  }
+    checkEpoch();
+  });
 
-  Future<void> clearSession() async {
-    await _localStorage.tryPurgeLegacyPrivateChatCache();
-    await _secureStorage.delete(CacheKeys.accessToken);
-    await _secureStorage.delete(CacheKeys.refreshToken);
-    await _clearAccountScopedCaches();
+  Future<void> clearSession() {
+    cancelPendingLogin();
+    return _serialize(() async {
+      await PrivateCacheService.forStorage(
+        _secureStorage,
+      ).clearCurrentAccount();
+      await _localStorage.purgeLegacyPrivateCache();
+      await _secureStorage.delete(CacheKeys.accessToken);
+      await _secureStorage.delete(CacheKeys.refreshToken);
+      await _clearAccountScopedCaches();
+    });
   }
 
   Future<void> _clearAccountScopedCaches() async {

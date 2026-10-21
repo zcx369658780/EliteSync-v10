@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_preferences_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -562,6 +563,15 @@ class _NotificationCenterPageState
             IconButton(
               onPressed: _refresh,
               icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+            ),
+            IconButton(
+              tooltip: '通知设置',
+              icon: const Icon(Icons.tune),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const NotificationPreferencesPage(),
+                ),
+              ),
             ),
           ],
         ),

@@ -56,6 +56,25 @@ void main() {
   });
   tearDown(() => container.dispose());
   test(
+    'restart cannot authenticate from persisted token and plaintext profile',
+    () async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+        CacheKeys.lastKnownProfile,
+        '{"id":1001,"nickname":"old private"}',
+      );
+      final restarted = ProviderContainer(
+        overrides: [secureStorageProvider.overrideWithValue(secure)],
+      );
+      final state = await restarted.read(sessionProvider.future);
+      expect(state.status, AuthStatus.unauthenticated);
+      expect(state.accessToken, isNull);
+      expect(state.user, isNull);
+      expect(prefs.containsKey(CacheKeys.lastKnownProfile), isFalse);
+      restarted.dispose();
+    },
+  );
+  test(
     'matching rejected token clears state, credentials and profile snapshots',
     () async {
       final prefs = await SharedPreferences.getInstance();
@@ -149,11 +168,8 @@ void main() {
       expect(container.read(sessionProvider).value?.user?.id, 1002);
       expect(container.read(sessionProvider).value?.user?.city, '新城市');
       final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getString(CacheKeys.lastKnownProfile), contains('1002'));
-      expect(
-        prefs.getString(CacheKeys.lastKnownProfile),
-        isNot(contains('1001')),
-      );
+      // v10.1.5 prohibits persisting either account's identity in plaintext.
+      expect(prefs.containsKey(CacheKeys.lastKnownProfile), isFalse);
     },
   );
   test('late profile completion cannot resurrect rejected session', () async {

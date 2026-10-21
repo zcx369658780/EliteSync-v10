@@ -37,7 +37,9 @@ class _Api extends ApiClient {
     CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
-  }) => pending.future;
+  }) => query?['limit'] == 1
+      ? Future.value(const NetworkSuccess({'items': <Map<String, dynamic>>[]}))
+      : pending.future;
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {

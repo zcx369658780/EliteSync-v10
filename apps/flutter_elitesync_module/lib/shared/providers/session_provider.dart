@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -83,22 +84,11 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
   Future<SessionState> build() async {
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
-
-    final accessToken = await secure.read(CacheKeys.accessToken);
-    final refreshToken = await secure.read(CacheKeys.refreshToken);
-    final profileJson = await local.getJson(CacheKeys.lastKnownProfile);
-
-    if (accessToken == null || accessToken.isEmpty) {
-      return const SessionState(status: AuthStatus.unauthenticated);
-    }
-
-    final user = profileJson == null ? null : UserSummary.fromJson(profileJson);
-    return SessionState(
-      status: AuthStatus.authenticated,
-      user: user,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    );
+    PrivateCacheService.forStorage(secure).lock();
+    // Persisted credentials/profile cannot prove a current online session or a
+    // trustworthy cross-restart clock. Require a successful online login.
+    await local.purgeLegacyPrivateCache();
+    return const SessionState(status: AuthStatus.unauthenticated);
   }
 
   Future<void> setAuthenticated({
@@ -109,7 +99,13 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
 
-    await local.tryPurgeLegacyPrivateChatCache();
+    final cache = PrivateCacheService.forStorage(secure);
+    if (cache.accountId != null && cache.accountId != user?.id) cache.lock();
+    final expectedCacheAccount = cache.accountId;
+    if (!await local.purgeLegacyPrivateCache()) {
+      cache.lock();
+      throw StateError('Private cache cleanup failed; login remains locked.');
+    }
     await _clearAccountSnapshots();
 
     await secure.write(CacheKeys.accessToken, accessToken);
@@ -118,6 +114,13 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     }
     if (user != null) {
       await local.setJson(CacheKeys.lastKnownProfile, user.toJson());
+    }
+
+    if (expectedCacheAccount != null &&
+        cache.accountId != expectedCacheAccount) {
+      throw StateError(
+        'Login changed while private storage was being checked.',
+      );
     }
 
     ref.read(sessionRejectionNoticeProvider.notifier).set(null);
@@ -194,6 +197,9 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
         } catch (_) {
           final current = state.asData?.value;
           if (rejectedToken == null || current?.accessToken == rejectedToken) {
+            PrivateCacheService.forStorage(
+              ref.read(secureStorageProvider),
+            ).lock();
             ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
             state = AsyncData(
               SessionState(status: AuthStatus.unauthenticated, notice: notice),
@@ -203,10 +209,15 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
         }
         if (rejectedToken != null && currentToken != rejectedToken) return;
         ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
+        final cache = PrivateCacheService.forStorage(
+          ref.read(secureStorageProvider),
+        );
+        cache.lock();
         state = AsyncData(
           SessionState(status: AuthStatus.unauthenticated, notice: notice),
         );
-        await ref.read(localStorageProvider).tryPurgeLegacyPrivateChatCache();
+        await cache.clearCurrentAccount();
+        await ref.read(localStorageProvider).purgeLegacyPrivateCache();
         final secure = ref.read(secureStorageProvider);
         await secure.delete(CacheKeys.accessToken);
         await secure.delete(CacheKeys.refreshToken);

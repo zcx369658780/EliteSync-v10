@@ -257,6 +257,14 @@ Route::prefix('v1')->group(function () {
                 ->middleware('throttle:notifications');
         });
 
+        Route::middleware('account.active')->group(function () {
+            $preferences = \App\Http\Controllers\Api\V1\NotificationPreferencesController::class;
+            Route::get('/notification-preferences', [$preferences, 'show']);
+            Route::put('/notification-preferences', [$preferences, 'update']);
+            Route::post('/notification-devices', [$preferences, 'register']);
+            Route::delete('/notification-devices/{deviceId}', [$preferences, 'revoke']);
+        });
+
         Route::prefix('rtc')->middleware([RtcTransaction::class])->group(function () {
             Route::get('/calls', [RtcController::class, 'index']);
             Route::post('/calls', [RtcController::class, 'store']);

@@ -11,6 +11,7 @@ use App\Services\ConversationDomainService;
 use App\Services\ConversationCapabilityService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -121,13 +122,6 @@ class MessageController extends Controller
             return response()->json(['message' => 'cannot message self'], 422);
         }
 
-        if ($clientMessageId !== null) {
-            $replay = $service->replay((int) $user->id, $clientMessageId, (string) $fingerprint);
-            if ($replay !== null) {
-                return $this->sendResponse($replay);
-            }
-        }
-
         if ($content === '' && empty($attachmentIds)) {
             return response()->json([
                 'message' => 'content or attachment_ids is required',
@@ -175,6 +169,19 @@ class MessageController extends Controller
 
     public function list(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
     {
+        $data = $request->validate(['peer_id' => ['required', 'integer', 'min:1']]);
+        return DB::transaction(function () use ($request, $data, $conversationService, $capabilities) {
+            User::whereIn('id', [(int) $request->user()->id, (int) $data['peer_id']])->orderBy('id')->lockForUpdate()->get();
+            $token = $request->user()->currentAccessToken();
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+                abort_unless(\Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->exists(), 401, 'SESSION_REVOKED');
+            }
+            return $this->listAuthorized($request, $conversationService, $capabilities);
+        });
+    }
+
+    private function listAuthorized(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
+    {
         $data = $request->validate([
             'peer_id' => ['required', 'integer', 'min:1'],
             'after_id' => ['nullable', 'integer', 'min:0'],
@@ -217,7 +224,7 @@ class MessageController extends Controller
             ->where('id', '>', $afterId)
             ->orderBy('id')
             ->limit($limit)
-            ->get(['id', 'sender_id', 'receiver_id', 'content', 'is_read', 'created_at']);
+            ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at']);
 
         return response()->json([
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),
