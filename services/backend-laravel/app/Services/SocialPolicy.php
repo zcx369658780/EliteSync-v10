@@ -68,6 +68,7 @@ final class SocialPolicy
         if (! Schema::hasTable('friendships')) {
             return;
         }
+        app(BuddyService::class)->revokePair($a, $b);
         app(FormalRelationshipService::class)->invalidatePair($a, $b);
         DB::table('friendships')->where('user_a', min($a, $b))->where('user_b', max($a, $b))->update(['state' => 'REVOKED', 'revision' => DB::raw('revision+1'), 'updated_at' => now()]);
         DB::table('social_requests')->where('pair_key', min($a, $b).':'.max($a, $b))->whereIn('state', ['PENDING', 'ACCEPTED'])->update(['state' => 'REVOKED', 'updated_at' => now()]);
@@ -80,6 +81,7 @@ final class SocialPolicy
 
     public function revokeUser(int $id): void
     {
+        app(BuddyService::class)->revokeUser($id);
         if (! Schema::hasTable('friendships')) {
             return;
         }

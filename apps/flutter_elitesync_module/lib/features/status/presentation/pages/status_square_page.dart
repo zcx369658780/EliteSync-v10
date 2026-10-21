@@ -52,6 +52,24 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   String? _coverUploadError;
   _CoverUploadStage _coverStage = _CoverUploadStage.idle;
 
+  void _refreshPosts({bool firstPage = false}) {
+    if (firstPage) ref.read(statusPageCursorProvider.notifier).firstPage();
+    ref.invalidate(statusPostPageProvider);
+    ref.invalidate(statusPostsProvider);
+  }
+
+  void _clearLocalAuthority() {
+    _titleController.clear();
+    _bodyController.clear();
+    _locationController.clear();
+    _clearCoverImage();
+    setState(() {
+      _audience = 'SELF';
+      _submitting = false;
+      _prefilledLocation = false;
+    });
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -103,7 +121,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       _titleController.clear();
       _bodyController.clear();
       _clearCoverImage();
-      ref.invalidate(statusPostsProvider);
+      _refreshPosts(firstPage: true);
       if (!mounted) return;
       AppFeedback.showSuccess(
         context,
@@ -123,7 +141,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     final confirmed = await AppConfirmDialog.show(
       context,
       title: '删除状态',
-      message: '确认删除这条状态吗？删除后首页广场将不再展示。',
+      message: '确认删除这条动态吗？删除后当前受众将无法重新读取。',
       confirmLabel: '删除',
       cancelLabel: '取消',
       destructive: true,
@@ -131,7 +149,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     if (!confirmed) return;
     try {
       await ref.read(statusRemoteDataSourceProvider).deleteStatusPost(post.id);
-      ref.invalidate(statusPostsProvider);
+      _refreshPosts();
       if (!mounted) return;
       AppFeedback.showSuccess(context, '状态已删除');
     } catch (e) {
@@ -196,7 +214,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             postId: post.id,
             liked: !post.likedByViewer,
           );
-      ref.invalidate(statusPostsProvider);
+      _refreshPosts();
     } catch (e) {
       if (!mounted) return;
       AppFeedback.showError(context, '操作失败：$e');
@@ -236,15 +254,18 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   }
 
   Future<void> _openLowPressureChatPath(StatusPostEntity post) async {
-    AppFeedback.showInfo(context, '先看看公开资料；只有匹配关系成立后才会进入真实聊天');
+    AppFeedback.showInfo(context, '资料与聊天权限独立；好友或评论不会自动授予消息同意。');
     await _openAuthor(post);
   }
 
   Future<void> _pickAndUploadCoverImage() async {
     if (_submitting || _coverStage == _CoverUploadStage.uploading) return;
     final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
     bool current() =>
-        mounted && token == ref.read(sessionProvider).asData?.value.accessToken;
+        mounted &&
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        epoch == ref.read(relationshipAuthorityEpochProvider);
     ref
         .read(frontendTelemetryProvider)
         .statusImagePickerOpened(sourcePage: 'status_square');
@@ -456,50 +477,55 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
           next.asData?.value.accessToken) {
         return;
       }
-      _titleController.clear();
-      _bodyController.clear();
-      _locationController.clear();
-      _clearCoverImage();
-      setState(() {
-        _audience = 'SELF';
-        _submitting = false;
-        _prefilledLocation = false;
-      });
+      _clearLocalAuthority();
+    });
+    ref.listen(relationshipAuthorityEpochProvider, (previous, next) {
+      if (previous != next) _clearLocalAuthority();
     });
     final t = context.appTokens;
-    final postsAsync = ref.watch(statusPostsProvider);
+    final postsAsync = ref.watch(statusPostPageProvider);
+    final pageCursor = ref.watch(statusPageCursorProvider);
     final profileAsync = ref.watch(profileProvider);
 
-    profileAsync.whenData((state) {
-      final city = state.summary?.city.trim() ?? '';
-      if (!_prefilledLocation &&
-          city.isNotEmpty &&
-          _locationController.text.trim().isEmpty) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted || _prefilledLocation) return;
-          if (_locationController.text.trim().isEmpty) {
-            _locationController.text = city;
-          }
-          _prefilledLocation = true;
-        });
-      }
-    });
+    final prefillIdentity = ref.read(sessionProvider).asData?.value.accessToken;
+    final prefillEpoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!profileAsync.isLoading) {
+      profileAsync.whenData((state) {
+        final city = state.summary?.city.trim() ?? '';
+        if (!_prefilledLocation &&
+            city.isNotEmpty &&
+            _locationController.text.trim().isEmpty) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted ||
+                _prefilledLocation ||
+                prefillIdentity !=
+                    ref.read(sessionProvider).asData?.value.accessToken ||
+                prefillEpoch != ref.read(relationshipAuthorityEpochProvider))
+              return;
+            if (_locationController.text.trim().isEmpty) {
+              _locationController.text = city;
+            }
+            _prefilledLocation = true;
+          });
+        }
+      });
+    }
 
     return AppScaffold(
       appBar: AppTopBar(
-        title: '状态广场',
+        title: '好友可见社区',
         mode: AppTopBarMode.backTitle,
         actions: [
           IconButton(
-            onPressed: () => ref.invalidate(statusPostsProvider),
+            onPressed: () => _refreshPosts(firstPage: true),
             icon: const Icon(Icons.refresh_rounded),
           ),
         ],
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          ref.invalidate(statusPostsProvider);
-          await ref.read(statusPostsProvider.future);
+          _refreshPosts(firstPage: true);
+          await ref.read(statusPostPageProvider.future);
         },
         child: ListView(
           padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.huge),
@@ -520,7 +546,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             SizedBox(height: t.spacing.md),
             AppInfoSectionCard(
               title: '发布状态',
-              subtitle: '轻量发布，进入状态广场预览',
+              subtitle: '仅自己或当前双向好友，按你选择的受众发布',
               leadingIcon: Icons.publish_rounded,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -543,8 +569,8 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                   SizedBox(height: t.spacing.sm),
                   AppTextField(
                     controller: _locationController,
-                    label: '地点',
-                    hint: '默认跟随你的城市，可手动修改',
+                    label: '城市（可留空）',
+                    hint: '只写城市，不填写精确地址或联系方式',
                     maxLength: 60,
                   ),
                   SizedBox(height: t.spacing.sm),
@@ -583,24 +609,37 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             ),
             SizedBox(height: t.spacing.md),
             AppInfoSectionCard(
-              title: '广场最新状态',
-              subtitle: '内测可见状态预览',
+              title: '当前有权读取的好友动态',
+              subtitle: '每页最多20条，明确操作后加载下一页',
               leadingIcon: Icons.dynamic_feed_rounded,
               child: postsAsync.when(
+                skipLoadingOnReload: false,
+                skipLoadingOnRefresh: false,
                 loading: () => const AppLoadingSkeleton(lines: 5),
                 error: (e, _) => AppErrorState(
-                  title: '状态广场加载失败',
-                  description: e.toString(),
-                  retryLabel: '重新加载',
-                  onRetry: () => ref.invalidate(statusPostsProvider),
+                  title: '好友动态读取未完成',
+                  description: '网络或当前受众授权尚未完成，请刷新后重试。',
+                  retryLabel: '重新加载当前页',
+                  onRetry: _refreshPosts,
                 ),
-                data: (posts) {
+                data: (page) {
+                  final posts = page.items;
                   if (posts.isEmpty) {
-                    return AppEmptyState(
-                      title: '还没有当前可见的状态',
-                      description: '先发布一条状态，看看会不会出现在广场里。',
-                      actionLabel: '去发布',
-                      onAction: _publish,
+                    return Column(
+                      children: [
+                        AppEmptyState(
+                          title: '当前没有有权读取的动态',
+                          description: '仅显示本人或当前好友明确分享的内容；空页不代表可查看陌生人。',
+                          actionLabel: '返回首页',
+                          onAction: () => context.go(AppRouteNames.home),
+                        ),
+                        if (pageCursor != null)
+                          OutlinedButton(
+                            key: const Key('community-first-page'),
+                            onPressed: () => _refreshPosts(firstPage: true),
+                            child: const Text('返回社区首屏'),
+                          ),
+                      ],
                     );
                   }
 
@@ -629,6 +668,25 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                                 : null,
                           ),
                         ),
+                      Wrap(
+                        spacing: 8,
+                        children: [
+                          if (pageCursor != null)
+                            OutlinedButton(
+                              key: const Key('community-first-page'),
+                              onPressed: () => _refreshPosts(firstPage: true),
+                              child: const Text('返回社区首屏'),
+                            ),
+                          if (page.hasMore && page.nextCursor != null)
+                            OutlinedButton(
+                              key: const Key('community-next-page'),
+                              onPressed: () => ref
+                                  .read(statusPageCursorProvider.notifier)
+                                  .nextPage(page.nextCursor!),
+                              child: const Text('加载下一页（替换当前页）'),
+                            ),
+                        ],
+                      ),
                     ],
                   );
                 },

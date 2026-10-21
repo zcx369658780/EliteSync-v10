@@ -27,6 +27,15 @@ class NotificationService
     public function presentationForUser(AppNotificationItem $notification, int $viewerId): array
     {
         $payload = (array) ($notification->payload ?? []);
+        if ($notification->kind === 'buddy') {
+            try {$a=app(BuddyService::class)->show($viewerId,(string)($payload['buddy_activity_id']??''));if(($a['subject']??null)!==null&&in_array($a['state'],BuddyService::LIVE,true))return ['title'=>'搭子状态有更新','body'=>'请在应用中查看当前有权状态','payload'=>['buddy_activity_id'=>$a['id']]];}catch(Throwable){}
+            return ['title'=>'通知已不可用','body'=>'','payload'=>[]];
+        }
+        if (in_array($notification->kind,['status_like','status_comment'],true)) {
+            $actor=(int)($payload['actor_user_id']??0);$postId=(int)($payload['status_post_id']??0);
+            try {$safe=app(PostAudience::class)->run($viewerId,$postId,function($p)use($viewerId,$actor,$payload,$notification){if((int)$p->author_user_id!==$viewerId||$p->audience!=='FRIENDS'||!$actor||!app(SocialPolicy::class)->pairAllowed($viewerId,$actor)||!app(SocialPolicy::class)->friendship($viewerId,$actor))return null;if($notification->kind==='status_comment'){$c=DB::table('status_post_comments')->where('id',$payload['status_comment_id']??'')->where('status_post_id',$p->id)->where('author_id',$actor)->where('state','ACTIVE')->lockForUpdate()->first();if(!$c)return null;}return ['title'=>'好友动态有新互动','body'=>'请在当前权限允许时查看','payload'=>['status_post_id'=>$p->id]];},$actor?[$actor]:[],true);if($safe)return $safe;}catch(Throwable){}
+            return ['title'=>'通知已不可用','body'=>'','payload'=>[]];
+        }
         if ($notification->kind === 'social_request') {
             $row = DB::table('social_requests')->find((int) ($payload['social_request_id'] ?? 0));
             if (! $row || (int) $row->recipient_id !== $viewerId || $row->state !== 'PENDING' || $row->expires_at <= now() || ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $row->sender_id)) {

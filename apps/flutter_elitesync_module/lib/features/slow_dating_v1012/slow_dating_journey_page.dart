@@ -1,3 +1,5 @@
+import '../buddy_v1013/buddy_page.dart';
+import '../status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/session_bound_page.dart';
@@ -57,6 +59,18 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
     final explanation = objectMap(proposal['explanation']);
     return frame('慢约会旅程', [
       const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),
+      OutlinedButton(
+        onPressed: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute<void>(builder: (_) => const BuddyPage())),
+        child: const Text('独立吃饭 / 学习搭子'),
+      ),
+      OutlinedButton(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const StatusSquarePage()),
+        ),
+        child: const Text('好友可见社区'),
+      ),
       if (data != null) ...[
         IdentityGateCard(identity: objectMap(data!['identity'])),
         Text(

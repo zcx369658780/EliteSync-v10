@@ -204,6 +204,7 @@ class MediaController extends Controller
             ->push((int) $viewer->id, $owner)->unique()->sort()->values()->all();
 
         return DB::transaction(function () use ($viewer, $service, $id, $owner, $participants) {
+            app(\App\Services\JourneyStore::class)->users($participants,true);
             $users = User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             if (! $users->get($viewer->id) || $users->get($viewer->id)->disabled || ! $users->get($owner) || $users->get($owner)->disabled) {
                 return response()->json(['message' => 'media asset unavailable'], 404);
@@ -222,7 +223,7 @@ class MediaController extends Controller
             $allowed = $linked->isEmpty() && (int) $viewer->id === $owner;
             if (app(SocialPolicy::class)->pairAllowed((int) $viewer->id, $owner)) {
                 $post = StatusPost::where('cover_media_asset_id', $id)->where('author_user_id', $owner)->where('is_deleted', false)->first();
-                if ($post && ((int) $viewer->id === $owner || ($post->audience === 'FRIENDS' && app(SocialPolicy::class)->friendship((int) $viewer->id, $owner)))) {
+                if ($post && app(\App\Services\PostAudience::class)->allowedLocked($post,(int)$viewer->id)) {
                     $allowed = true;
                 }
             }

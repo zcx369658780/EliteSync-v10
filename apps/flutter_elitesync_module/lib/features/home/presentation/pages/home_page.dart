@@ -13,7 +13,8 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD')) {
+    if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
+        const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
       return const SlowDatingHomePage();
     }
     final t = context.appTokens;

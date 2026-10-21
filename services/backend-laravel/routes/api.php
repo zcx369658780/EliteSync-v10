@@ -103,6 +103,26 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['auth:sanctum', 'account.active'])->group(function () {
+        $comments = \App\Http\Controllers\Api\V1\StatusCommentController::class;
+        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class])->group(function () use ($comments) {
+            Route::get('/status-posts/{postId}/comments', [$comments, 'index'])->whereNumber('postId');
+            Route::get('/status-posts/{postId}/comments/{commentId}', [$comments, 'show'])->whereNumber('postId')->whereUuid('commentId');
+            Route::post('/status-posts/{postId}/comments', [$comments, 'store'])->whereNumber('postId')->middleware('throttle:10,1');
+            Route::delete('/status-posts/{postId}/comments/{commentId}', [$comments, 'destroy'])->whereNumber('postId')->whereUuid('commentId');
+            Route::post('/status-posts/{postId}/comments/{commentId}/report', [$comments, 'report'])->whereNumber('postId')->whereUuid('commentId')->middleware('throttle:10,1');
+        });
+        $buddy = \App\Http\Controllers\Api\V1\BuddyController::class;
+        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($buddy) {
+            Route::get('/buddy', [$buddy, 'index']);
+            Route::put('/buddy/preferences', [$buddy, 'preferences']);
+            Route::post('/buddy/activities', [$buddy, 'store']);
+            Route::post('/buddy/redeem', [$buddy, 'redeem']);
+            Route::get('/buddy/{id}', [$buddy, 'show'])->whereUuid('id');
+            Route::post('/buddy/{id}/actions', [$buddy, 'action'])->whereUuid('id');
+            Route::post('/buddy/{id}/invites', [$buddy, 'invite'])->whereUuid('id');
+            Route::post('/buddy/{id}/tokens', [$buddy, 'token'])->whereUuid('id');
+            Route::delete('/buddy/{id}/tokens', [$buddy, 'token'])->whereUuid('id');
+        });
         $journey = \App\Http\Controllers\Api\V1\SlowDatingController::class;
         Route::get('/journey', [$journey, 'show']);
         Route::put('/journey/participation', [$journey, 'participate']);
@@ -279,7 +299,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/feed', [HomeController::class, 'feed']);
         });
 
-        Route::prefix('status')->group(function () {
+        Route::prefix('status')->middleware(\App\Http\Middleware\JourneyPrivateResponse::class)->group(function () {
             Route::get('/posts', [StatusPostController::class, 'index']);
             Route::get('/posts/{postId}', [StatusPostController::class, 'show'])
                 ->whereNumber('postId');

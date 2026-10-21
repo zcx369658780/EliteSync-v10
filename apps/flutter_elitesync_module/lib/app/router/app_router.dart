@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/formal_relationship_page.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +115,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      GoRoute(
+        path: '/buddy-v1013',
+        builder: (context, state) => const BuddyPage(),
+      ),
       GoRoute(
         path: '/formal-relationship',
         builder: (context, state) => const FormalRelationshipPage(),
@@ -500,9 +505,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   GoRoute(
                     path: AppRouteNames.meReadinessSegment,
                     builder: (context, state) =>
-                        const bool.fromEnvironment(
-                          'ELITESYNC_V1012_LOCAL_BUILD',
-                        )
+                        (const bool.fromEnvironment(
+                              'ELITESYNC_V1012_LOCAL_BUILD',
+                            ) ||
+                            const bool.fromEnvironment(
+                              'ELITESYNC_V1013_LOCAL_BUILD',
+                            ))
                         ? const SlowDatingJourneyPage()
                         : const ReadinessPurposePage(),
                   ),

@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
+import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_feedback.dart';
@@ -93,7 +96,93 @@ class _NotificationCenterPageState
     return true;
   }
 
+  String? _controlledTarget(NotificationItemEntity item) {
+    if (item.kind == 'buddy') {
+      final id = item.payload['buddy_activity_id'];
+      if (id is String &&
+          RegExp(
+            r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+          ).hasMatch(id)) {
+        return id;
+      }
+    }
+    if (item.kind == 'status_comment') {
+      final id = int.tryParse(item.payload['status_post_id']?.toString() ?? '');
+      if (id != null && id > 0) return '$id';
+    }
+    return null;
+  }
+
+  bool _currentControlledIntent(String? identity, int epoch) {
+    if (!mounted) return false;
+    final current = ref.read(sessionProvider).asData?.value;
+    return mounted &&
+        identity != null &&
+        current?.isLoggedIn == true &&
+        current?.accessToken == identity &&
+        ref.read(relationshipAuthorityEpochProvider) == epoch;
+  }
+
+  Future<bool> _openControlledNotification(
+    NotificationItemEntity item,
+    String id,
+  ) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final identity = session?.isLoggedIn == true ? session?.accessToken : null;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, epoch)) return false;
+    try {
+      final path = item.kind == 'buddy'
+          ? '/buddy/${Uri.encodeComponent(id)}'
+          : '/status/posts/$id';
+      final result = await ref.read(relationshipApiProvider).call('GET', path);
+      if (!mounted || !_currentControlledIntent(identity, epoch)) return false;
+      if (item.kind == 'buddy') {
+        if (result['id'] != id ||
+            result['subject'] is! String ||
+            !const [
+              'OPEN',
+              'REQUESTED',
+              'CONFIRMED',
+            ].contains(result['state'])) {
+          AppFeedback.showInfo(context, '本次活动已不可访问，请刷新当前状态');
+          return false;
+        }
+        context.push('/buddy-v1013');
+      } else {
+        final post = result['item'];
+        if (post is! Map ||
+            post['id'].toString() != id ||
+            post['body'] is! String) {
+          AppFeedback.showInfo(context, '当前动态已不可访问，请刷新当前状态');
+          return false;
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => Scaffold(
+              appBar: AppBar(title: const Text('好友动态评论')),
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: CommentPanel(postId: int.parse(id)),
+              ),
+            ),
+          ),
+        );
+      }
+      return true;
+    } catch (_) {
+      if (mounted && _currentControlledIntent(identity, epoch)) {
+        AppFeedback.showInfo(context, '当前访问未完成，请检查网络或权限后重试');
+      }
+      return false;
+    }
+  }
+
   Future<bool> _openNotification(NotificationItemEntity item) async {
+    final controlledTarget = _controlledTarget(item);
+    if (controlledTarget != null) {
+      return _openControlledNotification(item, controlledTarget);
+    }
     final routeName = item.routeName.trim();
     if (routeName.isEmpty) {
       AppFeedback.showInfo(context, '这条通知没有可打开页面，可先标记已读');
@@ -204,8 +293,14 @@ class _NotificationCenterPageState
   }
 
   Future<void> _openAndMarkRead(NotificationItemEntity item) async {
+    final controlled = item.kind == 'buddy' || item.kind == 'status_comment';
+    final identity = controlled
+        ? ref.read(sessionProvider).asData?.value.accessToken
+        : null;
+    final epoch = controlled ? ref.read(relationshipAuthorityEpochProvider) : 0;
     final opened = await _openNotification(item);
     if (!opened || !mounted) return;
+    if (controlled && !_currentControlledIntent(identity, epoch)) return;
     await _markRead(item);
   }
 
@@ -216,7 +311,7 @@ class _NotificationCenterPageState
   }
 
   Future<void> _handlePrimaryAction(NotificationItemEntity item) async {
-    if (item.routeName.trim().isEmpty) {
+    if (item.routeName.trim().isEmpty && _controlledTarget(item) == null) {
       await _markReadOnly(item);
       return;
     }
@@ -350,7 +445,8 @@ class _NotificationCenterPageState
                       onPressed: () => _handlePrimaryAction(item),
                       icon: const Icon(Icons.open_in_new_rounded),
                       label: Text(
-                        item.routeName.trim().isEmpty
+                        item.routeName.trim().isEmpty &&
+                                _controlledTarget(item) == null
                             ? '仅标记已读'
                             : privacyPresentation.actionLabel,
                       ),
