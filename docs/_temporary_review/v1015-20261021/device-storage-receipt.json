@@ -1,0 +1,42 @@
+[
+  {
+    "device_label": "A",
+    "scope": "OWNED_V1015_APP_ONLY",
+    "files": [
+      {
+        "file": "FlutterSecureStorage.xml",
+        "bytes": 8625,
+        "sha256": "d53191bef1f026a744b93dd0d8fdb8d31ddd3fecccf5a8d091a259bbd8d8724b",
+        "peer_names_absent": true,
+        "message_plaintext_absent": true
+      },
+      {
+        "file": "FlutterSharedPreferences.xml",
+        "bytes": 149,
+        "sha256": "8ba65f0ef09f271228642b500304377eb53362d9055fad3874e65c1696331d42",
+        "peer_names_absent": true,
+        "message_plaintext_absent": true
+      }
+    ]
+  },
+  {
+    "device_label": "B",
+    "scope": "OWNED_V1015_APP_ONLY",
+    "files": [
+      {
+        "file": "FlutterSecureStorage.xml",
+        "bytes": 8641,
+        "sha256": "9ca111ae2c25e1d934e074f2184ff0d3152dcfff69e78ddb076af1b501851462",
+        "peer_names_absent": true,
+        "message_plaintext_absent": true
+      },
+      {
+        "file": "FlutterSharedPreferences.xml",
+        "bytes": 149,
+        "sha256": "8ba65f0ef09f271228642b500304377eb53362d9055fad3874e65c1696331d42",
+        "peer_names_absent": true,
+        "message_plaintext_absent": true
+      }
+    ]
+  }
+]

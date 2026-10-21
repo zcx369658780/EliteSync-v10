@@ -1,0 +1,98 @@
+{
+  "result": "PASS_TEST_ONLY_SERVER_PERSISTED_BOUNDARIES",
+  "physical_elapsed_15_days": "NOT_CLAIMED",
+  "device_30day_purge": "NOT_RUN",
+  "cases": [
+    {
+      "age_seconds": 1295940,
+      "profile_status": 200,
+      "actual_http_login_receipt_before_fixture": true,
+      "fixture": {
+        "class": "TEST_ONLY_PERSISTED_TIME_FIXTURE",
+        "login_at": "2026-10-06T14:56:50.000000Z",
+        "server_now": "2026-10-21T14:55:50.917274Z"
+      }
+    },
+    {
+      "age_seconds": 1296000,
+      "profile_status": 401,
+      "actual_http_login_receipt_before_fixture": true,
+      "fixture": {
+        "class": "TEST_ONLY_PERSISTED_TIME_FIXTURE",
+        "login_at": "2026-10-06T14:55:51.000000Z",
+        "server_now": "2026-10-21T14:55:51.448292Z"
+      }
+    },
+    {
+      "age_seconds": 1296060,
+      "profile_status": 401,
+      "actual_http_login_receipt_before_fixture": true,
+      "fixture": {
+        "class": "TEST_ONLY_PERSISTED_TIME_FIXTURE",
+        "login_at": "2026-10-06T14:54:52.000000Z",
+        "server_now": "2026-10-21T14:55:52.273077Z"
+      }
+    },
+    {
+      "age_seconds": -3600,
+      "profile_status": 401,
+      "actual_http_login_receipt_before_fixture": true,
+      "fixture": {
+        "class": "TEST_ONLY_PERSISTED_TIME_FIXTURE",
+        "login_at": "2026-10-21T15:55:52.000000Z",
+        "server_now": "2026-10-21T14:55:52.854352Z"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "01445c209bed25a9969caedcb46eebd06041e77e58aebd794081bd13996eba83"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 200,
+      "body_sha256": "71effe316e3479159555c45f08eb528eb206dacd149c10850acb342fc444550e"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "15443205dc2030a5de71cf0e3ac89d01f926a3851d2f6f7f3d2fce4eee1f3c03"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401,
+      "body_sha256": "4e7f13dc51e4a3377134163646b11d9ad44c99bff092ffeea73acf759e5d1612"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "ab361686eb2111c852af8fd6afbdb3f4f3bbc3b39b4f75a09fe55e51e0b7e4cf"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401,
+      "body_sha256": "4e7f13dc51e4a3377134163646b11d9ad44c99bff092ffeea73acf759e5d1612"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "1ea495b0930139efba6c2ffdb8bb9fa47b76e893809bcfe4c05de2091a79b291"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401,
+      "body_sha256": "274514324f193bd47af3fb2a723b757b08acb310284ed7cd2e9fbc4314ee28f3"
+    }
+  ]
+}
+exit=0

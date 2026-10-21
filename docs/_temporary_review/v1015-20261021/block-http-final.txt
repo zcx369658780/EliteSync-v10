@@ -1,0 +1,92 @@
+{
+  "result": "PASS_REAL_BLOCK_CLOSED_CN_OLD_MEDIA_DENIAL",
+  "connection_state_before_block": "CN_CLOSED",
+  "consent_state_before_block": "MC_REVOKED",
+  "permissions_not_restored": true,
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "10792f5954a912e82f4dc1fcac73158e158de1e17895525939b59aa66a1e3811"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "601bb20b6da699e343e814d2119f31951664239b1c82b501b4609caaf550c53a"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/connections/2",
+      "status": 200,
+      "body_sha256": "bdb00c7e38a47758e751b8ca3017b1f049a5926073fec00e94f7622cc566a871"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/moderation/blocks",
+      "status": 200,
+      "body_sha256": "a6f96cc9fe8909778f50831efc1af7aa217b7fa2ea632dcd37415b1db99cdfbd"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=2",
+      "status": 404,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 404,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=1",
+      "status": 404,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 404,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/2/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/2/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/3/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/3/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "status": 200,
+      "body_sha256": "e8255cc3221feae929472b867280798cd828840618405d6baec295bcc558d289"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    }
+  ]
+}

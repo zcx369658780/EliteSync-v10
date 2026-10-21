@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "isolation": "REPEATABLE-READ",
+  "locked": {
+    "writer_locked": 42,
+    "time": 1792592912.611485
+  },
+  "reader": {
+    "reader_started": 43,
+    "time": 1792592912.827871
+  },
+  "exact_wait": {
+    "reader_id": 43,
+    "writer_id": 42,
+    "lock_table": "`elitesync_v1015_dev`.`users`",
+    "lock_index": "PRIMARY",
+    "lock_type": "RECORD"
+  },
+  "commit": {
+    "writer_commit": 42,
+    "time": 1792592913.091371
+  },
+  "denied": {
+    "reader_finished": 43,
+    "status": 401,
+    "time": 1792592913.126774,
+    "body_sha256": "406cda6663589d0538d0e947b4ae65bef873220036c377a642ed0d5ee1a300da",
+    "private_body_absent": true
+  },
+  "writer_exit": 0,
+  "reader_exit": 0
+}
+exit=0

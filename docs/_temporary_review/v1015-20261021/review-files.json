@@ -1,0 +1,87 @@
+[
+  {
+    "file": "block-http-final.txt",
+    "sha256": "6cf398181bc7c9700a27c5a7d57751883bdb3a9c7ef8b65017fb681aa655b811",
+    "bytes": 2889
+  },
+  {
+    "file": "db-restart-result.txt",
+    "sha256": "16ac8f0e98e3884e914b9356230d5d35c0a5be9a088cac829cc9cecbba7d96cd",
+    "bytes": 34
+  },
+  {
+    "file": "db-snapshot-after-restart.json",
+    "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
+    "bytes": 1287
+  },
+  {
+    "file": "db-snapshot-before-restart.json",
+    "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
+    "bytes": 1287
+  },
+  {
+    "file": "device-storage-receipt.json",
+    "sha256": "f9417c5a25114a616f4095bfe397931648504a3462e851bcff6894ecb3c1e8dc",
+    "bytes": 1215
+  },
+  {
+    "file": "final-db-audit.txt",
+    "sha256": "a74fb7eba9db323ae110703422d1d1015a0fbf7f4502a489888ecbf66c325e59",
+    "bytes": 1164
+  },
+  {
+    "file": "gui-protection-summary.json",
+    "sha256": "f917ce729d3c8a988ffff9f1ab31ade58eb7e68123f80100410d027c21664014",
+    "bytes": 1618
+  },
+  {
+    "file": "http-journey-first.txt",
+    "sha256": "d9c802d13157ffe326a88ea7bac5f10b4ef54521992ad72751b02e39b9f7467a",
+    "bytes": 4474
+  },
+  {
+    "file": "non-author-review.md",
+    "sha256": "cb41940237b512497a5d82bc5b01f9327d5ee155d46cb4c1f6d9c728ed967570",
+    "bytes": 1982
+  },
+  {
+    "file": "notification-after-revoke.txt",
+    "sha256": "44c541d2c2fbadecbbaff19347463dade311928fb06a041db2fe74a07ad1d256",
+    "bytes": 505
+  },
+  {
+    "file": "README.md",
+    "sha256": "f0df1449053bac76d4e15ced9b8107d128c35644e61ba658b7df617f915cea1d",
+    "bytes": 880
+  },
+  {
+    "file": "rr-first.txt",
+    "sha256": "83fa90a6e861ee045dabd5e8cc30876da9ee40108a9723dcc9927c8896239dbc",
+    "bytes": 746
+  },
+  {
+    "file": "rtc-control-fixed.txt",
+    "sha256": "ddadedec62d4eb6355a23fc6935acde8e406f91df4699afd0def70439c61e5b4",
+    "bytes": 1906
+  },
+  {
+    "file": "trusted-boundary-http.txt",
+    "sha256": "e18e9690225a1845c9b992ff13d5c1c4cb0e7f3fa3271341b7189f05d5cae97f",
+    "bytes": 2989
+  },
+  {
+    "file": "validation-excerpts.txt",
+    "sha256": "bf87481e2cd815caec35f482db1ed913c0d129dbe3679d178785acdb792c7f4b",
+    "bytes": 16743
+  },
+  {
+    "file": "video-http-positive.txt",
+    "sha256": "f91b90b4aa278d4aa8b9fdfdb1d1e6589969a5d395d29f6cda83d8938c610cf9",
+    "bytes": 2563
+  },
+  {
+    "file": "video-tool-download.json",
+    "sha256": "14290ce75d8d003437c3565c9ca138f4bc7069eeb2289964380ec0da4d4ea7e9",
+    "bytes": 310
+  }
+]

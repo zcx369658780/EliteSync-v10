@@ -1,0 +1,151 @@
+{
+  "result": "PASS",
+  "source": "NEW_RUN_REAL_HTTP_MARIADB",
+  "message_ids": [
+    1,
+    2,
+    3
+  ],
+  "image_asset_id": 1,
+  "image_sha256": "51abe23d55a55a10a51e64b3cde979e24a2ce546e48ffbcb89f381b9163a57f5",
+  "t0_unchanged_after_refresh": true,
+  "websocket_frames": [
+    {
+      "type": "connected",
+      "user_id": 2,
+      "last_seen_id": 1
+    },
+    {
+      "type": "conversation_changed",
+      "id": 2
+    }
+  ],
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "868b567f996400b2ca91f7e5cd50dfe063d304c1900e4995e0cc75fb8bd6d03c"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "1dd0d083fc5c33090b185ebc2d13066bc23975d943dabf28fdb5bdcf212ccbc4"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "0ebf33fd415b0a6a9f7ed8738acf19b02bf90ad14fe50e2d5e9b0f2099c03644"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "a83b162ac54ceed58605a0b8486a149110ec02fcca892467153baed521f5fb76"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "0d43b81839a9fc63b5cefef77be6f60326f502a903354e8ada7e833c244c87d0"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 409,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=1",
+      "status": 200,
+      "body_sha256": "4a900bdb56c266d1e82de9bf79d987850723b31258dfcefcebd94fa9da9a99ac"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=1",
+      "status": 404,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "4c5ec06cd04c45c0da59bebc3d5d417e64144e27a42384213ef981cc70359ba5"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/media",
+      "status": 200,
+      "body_sha256": "0362869d3e686bb97043f6300aacceb254026e827fb39b241e8e7586fd46fb02"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "d3adb9eb5b794cbaec4a356a9657d7bf7677f47312e6e559a25b40e51a0665d3"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "60b994f574e16ff41627f748cc7d7285b791d2755919c2f0802888ed0b10d48a"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/1/content",
+      "status": 200,
+      "body_sha256": "51abe23d55a55a10a51e64b3cde979e24a2ce546e48ffbcb89f381b9163a57f5"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/1/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/notification-devices",
+      "status": 200,
+      "body_sha256": "6341e0901ded68a4d45ffecb28de0480548d01e13efdc847454bc23a7789af59"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/notification-preferences",
+      "status": 200,
+      "body_sha256": "24377fc07c434a29a427c5215ec954de614918e9773b8d905c2451f68a6c7d5d"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "status": 200,
+      "body_sha256": "cb2767e1e2a42d88aa243bdd372b3c8d88557029dc7968040037a4c0249f7271"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/notification-preferences",
+      "status": 200,
+      "body_sha256": "9be07780c2abdf31308f47172961c7aceeb32e7dde906f0e435993cd82cdad14"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "status": 200,
+      "body_sha256": "9b4ba072559277d0f90320823813f79190bde0fb5386fc7effcd3acd7d0878b9"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "status": 200,
+      "body_sha256": "fa6ea5b7b8dc68df67c2ab3cac7471953d43bc164f6e6ab95a05f161fd34d41e"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    }
+  ]
+}

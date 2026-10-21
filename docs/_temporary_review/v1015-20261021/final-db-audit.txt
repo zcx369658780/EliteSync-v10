@@ -1,0 +1,41 @@
+{"identity":{"db":"elitesync_v1015_dev","connection_id":388,"hostname":"d914f0aaad7b","isolation_level":"REPEATABLE-READ"},"tables":93,"restoration":true}
+{
+    "result": "PASS_FINAL_OWNED_DB_AUDIT",
+    "message_count": 6,
+    "attachment_count": 3,
+    "notification_message_id_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+    },
+    "duplicate_message_notice_count": 0,
+    "assets": [
+        {
+            "id": 1,
+            "status": "ready",
+            "sha256": "51abe23d55a55a10a51e64b3cde979e24a2ce546e48ffbcb89f381b9163a57f5"
+        },
+        {
+            "id": 2,
+            "status": "ready",
+            "sha256": "b5fa8d43f3a284c229ab5f35df417e61fbb56402a74b6532c6e418715b3586c4"
+        },
+        {
+            "id": 3,
+            "status": "ready",
+            "sha256": "ee92709753412dd169e70c9205ba51e2b98d2e0e03f674a917b5e8a4781f7584"
+        }
+    ],
+    "connection_states": [
+        "CN_CLOSED"
+    ],
+    "consent_states": [
+        "MC_REVOKED",
+        "MC_REVOKED"
+    ],
+    "block_count": 1,
+    "owned_c_disabled": true
+}

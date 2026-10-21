@@ -1,0 +1,291 @@
+=== auth-green-expanded.txt ===
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+Runtime:       PHP 8.5.3
+Configuration: [LOCAL_PATH_REDACTED]
+DDDDDDDDD                                                           9 / 9 (100%)
+Time: 00:01.224, Memory: 52.00 MB
+OK, but there were issues!
+Tests: 9, Assertions: 42, Deprecations: 2.
+exit=0
+raw_sha256=e992b090fd867b3705d0d71684e2baf9f8fb928b650c3707b4df8ac405ea88fb
+
+=== notification-green-expanded.txt ===
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+Runtime:       PHP 8.5.3
+Configuration: [LOCAL_PATH_REDACTED]
+DDDDDDDD                                                            8 / 8 (100%)
+Time: 00:01.244, Memory: 54.00 MB
+OK, but there were issues!
+Tests: 8, Assertions: 69, Deprecations: 2.
+exit=0
+raw_sha256=a5ff9e6ee2c2f97daf74f5bc95967e4c9ae27bec41ea7a7687010c74d985c23f
+
+=== backend-auth-notification-regression.txt ===
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+Runtime:       PHP 8.5.3
+Configuration: [LOCAL_PATH_REDACTED]
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD                50 / 50 (100%)
+Time: 00:07.768, Memory: 64.00 MB
+OK, but there were issues!
+Tests: 50, Assertions: 286, Deprecations: 2.
+exit=0
+raw_sha256=ae6cb028d8d50879c0c0ffb816d74eb5b102a20e8a98d86eada509983a2e6b6c
+
+=== backend-messaging-rtc-regression.txt ===
+[LOCAL_PATH_REDACTED]
+7) Tests\Feature\V1009RtcAuthorityRetryTest::test_http_raw_pdo_begin_failure_returns_generic_503_without_retry
+Symfony\Component\HttpKernel\Exception\NotFoundHttpException: connection unavailable
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+[LOCAL_PATH_REDACTED]
+ERRORS!
+Tests: 19, Assertions: 159, Errors: 7, Deprecations: 2.
+exit=2
+raw_sha256=4d46e23f4e2d73024372ee60bf2042d4e6b692502db3f72046256763ee09b7d4
+
+=== backend-rtc-current-fixture.txt ===
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+Runtime:       PHP 8.5.3
+Configuration: [LOCAL_PATH_REDACTED]
+DDDDDDD                                                             7 / 7 (100%)
+Time: 00:05.327, Memory: 52.00 MB
+OK, but there were issues!
+Tests: 7, Assertions: 53, Deprecations: 2.
+exit=0
+raw_sha256=5922efa2025c2ed3458f66cfc509ff7c4cddcb731024b7f5e99086acce68b576
+
+=== flutter-targeted-initial.txt ===
+00:07 +168 -1: [LOCAL_PATH_REDACTED]
+00:07 +169 -1: [LOCAL_PATH_REDACTED]
+00:07 +170 -1: [LOCAL_PATH_REDACTED]
+00:07 +171 -1: [LOCAL_PATH_REDACTED]
+00:07 +172 -1: [LOCAL_PATH_REDACTED]
+00:07 +173 -1: [LOCAL_PATH_REDACTED]
+00:07 +174 -1: [LOCAL_PATH_REDACTED]
+00:07 +175 -1: [LOCAL_PATH_REDACTED]
+00:07 +176 -1: [LOCAL_PATH_REDACTED]
+00:08 +177 -1: [LOCAL_PATH_REDACTED]
+00:08 +178 -1: [LOCAL_PATH_REDACTED]
+00:08 +179 -1: [LOCAL_PATH_REDACTED]
+00:08 +180 -1: [LOCAL_PATH_REDACTED]
+00:08 +181 -1: [LOCAL_PATH_REDACTED]
+00:09 +182 -1: Some tests failed.
+COMMAND_EXIT=1
+raw_sha256=329533bc4fec2703f229d37fa9cc5eb397ea38e9168d338e7dcf4464fee715fe
+
+=== flutter-targeted-chatroom-final.txt ===
+00:01 +14: [LOCAL_PATH_REDACTED]
+00:02 +15: [LOCAL_PATH_REDACTED]
+00:02 +16: [LOCAL_PATH_REDACTED]
+00:02 +17: [LOCAL_PATH_REDACTED]
+00:03 +18: [LOCAL_PATH_REDACTED]
+00:03 +19: [LOCAL_PATH_REDACTED]
+00:03 +20: [LOCAL_PATH_REDACTED]
+00:03 +21: [LOCAL_PATH_REDACTED]
+00:03 +22: [LOCAL_PATH_REDACTED]
+00:03 +23: [LOCAL_PATH_REDACTED]
+00:03 +24: [LOCAL_PATH_REDACTED]
+00:04 +25: [LOCAL_PATH_REDACTED]
+00:04 +26: [LOCAL_PATH_REDACTED]
+00:04 +27: [LOCAL_PATH_REDACTED]
+00:04 +28: All tests passed!
+COMMAND_EXIT=0
+raw_sha256=df0eb484d7f93ca39e501f42c60c94bec4057772b9a521bbb8b6f54fe0452d44
+
+=== flutter-targeted-new-safety-fixed2.txt ===
+00:00 +0: loading [LOCAL_PATH_REDACTED]
+00:00 +0: [LOCAL_PATH_REDACTED]
+00:00 +1: [LOCAL_PATH_REDACTED]
+00:00 +2: [LOCAL_PATH_REDACTED]
+00:00 +3: [LOCAL_PATH_REDACTED]
+00:00 +4: [LOCAL_PATH_REDACTED]
+00:01 +5: All tests passed!
+COMMAND_EXIT=0
+raw_sha256=08053698302f90229b273a32fafc010ab89846d339abcd7db83365684aff51cc
+
+=== flutter-targeted-live-cache-expiry.txt ===
+00:00 +0: loading [LOCAL_PATH_REDACTED]
+00:00 +0: actual live list persists encrypted copy, offline is read only, reconnect hides until current HTTP succeeds
+00:00 +1: actual live list 30 day purge deletes owned ciphertext and reports completed
+00:00 +2: actual live list 30 day purge failure locks and retains receipt
+00:00 +3: actual live list clock rollback hides prior online rows and a retry cannot unlock
+00:00 +4: actual live list clears old rows when account changes and restart cannot use persisted copy
+00:00 +5: All tests passed!
+COMMAND_EXIT=0
+raw_sha256=b647b8cbb9d163260dac4043277f55383b58c0dddba6bb8761411cf5a58b00e7
+
+=== flutter-targeted-cache-queue-green.txt ===
+00:00 +0: loading [LOCAL_PATH_REDACTED]
+00:00 +0: [LOCAL_PATH_REDACTED]
+00:00 +1: [LOCAL_PATH_REDACTED]
+00:00 +2: [LOCAL_PATH_REDACTED]
+00:00 +3: [LOCAL_PATH_REDACTED]
+00:00 +4: [LOCAL_PATH_REDACTED]
+00:00 +5: [LOCAL_PATH_REDACTED]
+00:01 +6: [LOCAL_PATH_REDACTED]
+00:01 +7: [LOCAL_PATH_REDACTED]
+00:01 +8: [LOCAL_PATH_REDACTED]
+00:01 +9: [LOCAL_PATH_REDACTED]
+00:01 +10: All tests passed!
+COMMAND_EXIT=0
+raw_sha256=9738fbe0faf644e0a4fff7bfb8e13387aa4120ed3c49c6df84770c889ae049e0
+
+=== flutter-targeted-live-chat-reliability.txt ===
+#4      main.<anonymous closure> (file:///[LOCAL_PATH_REDACTED]
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 3 frames from class _AssertionError and package:stack_trace)
+The test description was:
+  returning from native picker after account switch performs zero uploads
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +5 -2: returning from native picker after account switch performs zero uploads [E]
+  Test failed. See exception logs above.
+  The test description was: returning from native picker after account switch performs zero uploads
+00:01 +5 -2: Some tests failed.
+COMMAND_EXIT=1
+raw_sha256=2698b915100f6f26e5aa00db184a1b1990424c922433c30a41a04b5702f9f6b4
+
+=== flutter-targeted-live-chat-picker-fixed.txt ===
+00:00 +0: loading [LOCAL_PATH_REDACTED]
+00:00 +0: native picker pause resume requires fresh GET limit1 to finish before upload
+00:00 +1: returning from native picker after account switch performs zero uploads
+00:00 +2: All tests passed!
+COMMAND_EXIT=0
+raw_sha256=da42988a2896a88e4c0bc9f6878da009cd2664853e0c73c4121e111e55fdc2e5
+
+=== live-chat-regression-third.txt ===
+00:00 +0: loading [LOCAL_PATH_REDACTED]
+00:00 +0: video attachment waits for real ready upload before message dispatch
+00:00 +1: processing video never becomes a sendable local ready asset
+00:00 +2: session switch during message token await dispatches no message
+00:00 +3: session switch during form preparation sends no upload
+00:00 +4: session switch during async token acquisition cancels before dispatch
+00:00 +5: upload completion after same ID relogin cannot send attachment
+00:00 +6: attachment authorization failure clears whole message projection
+00:00 +7: delayed load cannot restore messages after send authorization rejection
+00:01 +8: same ID relogin invalidates old load identity
+00:01 +9: All tests passed!
+exit=0
+raw_sha256=e0f48f628c704c788e5ead9943eb1c841afbb03cf2f86b1b45e211c80540b8b1
+
+=== analyze-source-fixed.txt ===
+Analyzing flutter_elitesync_module...                           
+   info - Statements in an if should be enclosed in a block - lib\app\router\rtc_invite_coordinator.dart:73:5 - curly_braces_in_flow_control_structures
+   info - Use the null-aware marker '?' rather than a null check via an 'if' - lib\features\status\data\datasource\status_remote_data_source.dart:73:39 - use_null_aware_elements
+   info - Statements in an if should be enclosed in a block - lib\features\status\presentation\pages\status_square_page.dart:504:15 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\features\buddy_v1013\v1013_root_entry_test.dart:42:7 - curly_braces_in_flow_control_structures
+   info - Unnecessary use of multiple underscores - test\features\status\presentation\pages\community_pagination_test.dart:87:44 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - test\features\status\presentation\pages\community_pagination_test.dart:113:46 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - test\features\status\presentation\pages\community_pagination_test.dart:249:26 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - test\features\status\presentation\pages\community_pagination_test.dart:253:26 - unnecessary_underscores
+8 issues found. (ran in 9.3s)
+exit=1
+raw_sha256=df3411b1c3d5731bc4202a58b57739c0c679b165b0815d7b974052dd4ee8f43c
+
+=== build-source-fixed.txt ===
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:mergeDebugNativeLibs
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libapp.so. Run with --info option to learn more.
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
+BUILD SUCCESSFUL in 1m 2s
+38 actionable tasks: 4 executed, 34 up-to-date
+exit=0
+raw_sha256=02a3ff058ec8ec4bfa3296a1ca7c1098a66ebaad4d747ae8f0a398c907283c63
+
+=== final-changed-php-lint.txt ===
+services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php
+services/backend-laravel/app/Services/ConversationAtomicSendService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/ConversationAtomicSendService.php
+services/backend-laravel/app/Services/LiveConsentService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/LiveConsentService.php
+services/backend-laravel/app/Services/NotificationDeliveryService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/NotificationDeliveryService.php
+services/backend-laravel/app/Services/NotificationService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/NotificationService.php
+services/backend-laravel/app/Services/RtcAuthorityService.php exit=0 No syntax errors detected in services/backend-laravel/app/Services/RtcAuthorityService.php
+services/backend-laravel/config/filesystems.php exit=0 No syntax errors detected in services/backend-laravel/config/filesystems.php
+services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php exit=0 No syntax errors detected in services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php
+services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php exit=0 No syntax errors detected in services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php
+services/backend-laravel/routes/api.php exit=0 No syntax errors detected in services/backend-laravel/routes/api.php
+services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php exit=0 No syntax errors detected in services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php
+services/backend-laravel/tests/Feature/V1015MessagingTest.php exit=0 No syntax errors detected in services/backend-laravel/tests/Feature/V1015MessagingTest.php
+services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php exit=0 No syntax errors detected in services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php
+services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php exit=0 No syntax errors detected in services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php
+services/backend-laravel/tests/Integration/v1015/rr.php exit=0 No syntax errors detected in services/backend-laravel/tests/Integration/v1015/rr.php
+services/backend-laravel/tests/Integration/v1015/runtime.php exit=0 No syntax errors detected in services/backend-laravel/tests/Integration/v1015/runtime.php
+raw_sha256=381221ce6ca49443d316d204db0897ba8d00e062a0d6e31d13b5302dd1e7a977
+
+=== diff-check-raw.txt ===
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:568: trailing whitespace.
++              tooltip: '通知设置',
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:569: trailing whitespace.
++              icon: const Icon(Icons.tune),
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:570: trailing whitespace.
++              onPressed: () => Navigator.of(context).push(
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:571: trailing whitespace.
++                MaterialPageRoute<void>(
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:572: trailing whitespace.
++                  builder: (_) => const NotificationPreferencesPage(),
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:573: trailing whitespace.
++                ),
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:574: trailing whitespace.
++              ),
+apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart:575: trailing whitespace.
++            ),
+raw_sha256=0bfc16ea90fb2f17337dbde2b1fd876cf6f0cac37aabb1923d575c2d5d8ff757
+
+=== diff-check-crlf.txt ===
+
+raw_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+=== revoke-http-first.txt ===
+Traceback (most recent call last):
+  File "[LOCAL_PATH_REDACTED]
+    request('POST','/api/v1/messages',ta,expected=403,json={'receiver_id':2,'content':'revoke-must-deny','client_message_id':str(uuid.uuid4())})
+  File "[LOCAL_PATH_REDACTED]
+    assert reply.status_code == expected, (path, reply.status_code, reply.text[:120])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('/api/v1/messages', 404, '{"message":"conversation unavailable"}')
+raw_sha256=153e208cf4cac2a452d85b7d072e0a6ff370e8a3b085cfc0302175f570c88108
+
+=== revoke-http-after-committed-mc.txt ===
+Traceback (most recent call last):
+  File "[LOCAL_PATH_REDACTED]
+    assert state['consent']['state'] == 'REVOKED', state['consent']['state']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: MC_REVOKED
+raw_sha256=7f91c918cda943b50f05eeff9db7c425daf983851e46ac86ce050782eebd9b47
+
+=== revoke-http-final.txt ===
+Traceback (most recent call last):
+  File "[LOCAL_PATH_REDACTED]
+    request('POST','/api/v1/blocks',tb,json={'blocked_user_id':1,'reason_code':'V1015_SYNTHETIC_TEST'})
+  File "[LOCAL_PATH_REDACTED]
+    assert reply.status_code == expected, (path, reply.status_code, reply.text[:120])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('/api/v1/blocks', 404, '{"ok":false,"error":{"code":"http_error","message":"The route api\\/v1\\/blocks could not be found.","details":null}}')
+raw_sha256=e7a8ba7250809b89e788258d31743c326f7e12bddc3670e1170f062e3b96fe22
+
+=== disabled-notification-http.txt ===
+Traceback (most recent call last):
+  File "[LOCAL_PATH_REDACTED]
+    b=login(2,'v1015-old-notification-check');items=request('GET','/api/v1/notifications',b['access_token']).json()['items'];old=[x for x in items if x['kind']=='message'];assert old
+                                                                                                                                                                                   ^^^
+AssertionError
+raw_sha256=9357761397bf1b28e4c5b862a2ef7a83298e93c8a0a3bd8663c6013c3411b98c

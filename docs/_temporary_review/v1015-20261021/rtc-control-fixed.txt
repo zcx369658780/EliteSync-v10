@@ -1,0 +1,66 @@
+{
+  "result": "PASS_CONTROL_ONLY",
+  "call_ids": [
+    3,
+    4
+  ],
+  "sfu_media": "NOT_RUN",
+  "acoustic_aec": "NOT_RUN_DEVICE_PENDING",
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "11c7a0c6fad671c4a2cae799e8746365f8ff89c2446d5874d72a75d07f7b178c"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "39630087db0fd3d033e3f3f5f996404ba73b4dd64de185c198b982b65561ff95"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rtc/calls",
+      "status": 200,
+      "body_sha256": "c09e72ea1dc582f3863079222be6c17b372d8b7a2122d873e0444b2ce09ccad0"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rtc/calls/3/reject",
+      "status": 200,
+      "body_sha256": "d53b83f8e92fe43855799987891230125847928983fce80ac800c0336dde9000"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/rtc/calls/3/livekit",
+      "status": 404,
+      "body_sha256": "fa40f7295563dd7ca83a53155c4c234ec44389d4e055055e3025b62017d7c4bc"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rtc/calls",
+      "status": 200,
+      "body_sha256": "b6677ae6a560fa7a6a78d58e95d977b37a209cd28463c3e4de783a1f8bb66968"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rtc/calls/4/accept",
+      "status": 200,
+      "body_sha256": "8a8f00ab5b9fa1cd7ae115f6ef40f9e4761e58f949bd4244217a2958f0e28f81"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/rtc/calls/4/end",
+      "status": 200,
+      "body_sha256": "dcb6038d297cd43dc9e9e4a33ca08b966db496059581a573a2278f9c80b0fa7d"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/rtc/calls/4/livekit",
+      "status": 404,
+      "body_sha256": "fa40f7295563dd7ca83a53155c4c234ec44389d4e055055e3025b62017d7c4bc"
+    }
+  ]
+}
+exit=0

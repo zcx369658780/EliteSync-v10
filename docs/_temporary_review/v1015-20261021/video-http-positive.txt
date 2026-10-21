@@ -1,0 +1,84 @@
+{
+  "result": "PASS_REAL_HTTP_VIDEO_IMAGE_RANGE",
+  "asset_ids": [
+    2,
+    3
+  ],
+  "video_source_sha256": "ee92709753412dd169e70c9205ba51e2b98d2e0e03f674a917b5e8a4781f7584",
+  "invalid_video_not_ready": true,
+  "same_video_replay_message_id": 6,
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "c561734d5ee5a8cc7e0702d80e77744a829913a217b26f8e2aefbcc416cfdabd"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "dadc8fe04b3b71d761e2ea8060a564726b9874a15633d2c3dc916f63d25fc9a2"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "59eb33191f763d169bc28475f26aff593d708d788948e12ef690759915f17f19"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/2/content",
+      "status": 200,
+      "body_sha256": "b5fa8d43f3a284c229ab5f35df417e61fbb56402a74b6532c6e418715b3586c4"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/2/content",
+      "status": 206,
+      "body_sha256": "54b288f14defd8be317196e004ea8f62d0e6a85b70bb1bbed8ec6cdf89faadbd"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/2/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/3/content",
+      "status": 200,
+      "body_sha256": "ee92709753412dd169e70c9205ba51e2b98d2e0e03f674a917b5e8a4781f7584"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/3/content",
+      "status": 206,
+      "body_sha256": "b1c35f1e6d75af66f96c70ff2572346caa6812dee411ad1134cffb50e33fba5c"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/media/3/content",
+      "status": 404,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=2",
+      "status": 200,
+      "body_sha256": "d90b7a1642f4436d679c5457cb112a5b88bd74ffacd7c7c1c116136e30c3c3ee"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 200,
+      "body_sha256": "014b355a5f4a3d4e93a0bda9daaece8ef4e8161b03a3d9950f0244cbeb88c6c8"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/media",
+      "status": 422,
+      "body_sha256": "115f32a8bcf63bd22ab3e2bebb25c05c65977af7d92b418de9643f6751878358"
+    }
+  ]
+}

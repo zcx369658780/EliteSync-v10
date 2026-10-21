@@ -1,0 +1,39 @@
+{
+  "source": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
+  "overall": "PARTIAL_OPEN_BLOCKERS",
+  "evidence_level": "CODEX_REPORTED_DERIVED_REDACTED_NOT_ASTRA_ACCEPTED",
+  "gui": {
+    "final_same_apk_both_devices_sha256": "60655c9f3440bb3c8aecfcffd88643f2b150e14ec7e92907dbd62961a92f1d97",
+    "text_image_video_send_receive": true,
+    "private_video_play_pause_state": true,
+    "api_down_same_process_readonly_send_disabled": true,
+    "offline_cold_start_no_private_content": true,
+    "os_permission_denied_granted_then_revoked": true,
+    "os_revoke_process_restart_login_gate": true,
+    "message_category_gui_off_persisted": true,
+    "after_db_restart_video_current_reader_replayed": true,
+    "mc_revoke_player_unavailable": true
+  },
+  "protection": {
+    "five_protected_roots_head_branch_index_status_same": true,
+    "preexisting_git_refs_same": true,
+    "private_env_hash_same": true,
+    "history_binary_baseline_hash": "NOT_TAKEN_NO_FULL_ASSET_HASH_CLAIM"
+  },
+  "resource_shutdown": {
+    "owned_db_stopped": true,
+    "volume_preserved": true,
+    "history_cleanup": "NOT_RUN",
+    "owned_reverse_8021_8022_removed": true,
+    "owned_ws_stopped": true,
+    "owned_avds_stopped": true,
+    "owned_api_stopped": true
+  },
+  "open": [
+    "actual_android_trusted_15_30_day_boundary_and_30day_purge_positive_negative",
+    "real_dual_rtc_sfu_reconnect_and_existing_media_stop_within_5_seconds",
+    "aec_human_hearing_device_pending",
+    "full_gui_account_switch_old_notification_and_platform_safety_matrix",
+    "real_push_provider_not_authorized_not_run"
+  ]
+}

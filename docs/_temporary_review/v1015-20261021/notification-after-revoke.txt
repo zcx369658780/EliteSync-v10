@@ -1,0 +1,18 @@
+{
+  "result": "PASS_OLD_MESSAGE_NOTIFICATIONS_HIDDEN_AFTER_REVOKE_BLOCK",
+  "old_message_cards": 0,
+  "receipts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200,
+      "body_sha256": "644c3bc3e14b84821a81942dd67a9a515de1c7714d2072e748bd7778fd46bd43"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "status": 200,
+      "body_sha256": "cb2767e1e2a42d88aa243bdd372b3c8d88557029dc7968040037a4c0249f7271"
+    }
+  ]
+}

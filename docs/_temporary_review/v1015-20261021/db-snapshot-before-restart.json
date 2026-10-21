@@ -1,0 +1,38 @@
+{
+    "users": {
+        "count": 3,
+        "sha256": "6dac7b514cb5378c6649576ca003e03f57f7852dfd546664ca1ff13f024bdb61"
+    },
+    "device_sessions": {
+        "count": 20,
+        "sha256": "d296b13785907df4c0029eba2b0eadac6240dc1fafda57dccb381e8ae86ddc8e"
+    },
+    "chat_messages": {
+        "count": 6,
+        "sha256": "df8f8cda5a2e6754ea365acdc81fce6b8a80b9427045f2b774715a1357cad5de"
+    },
+    "message_attachments": {
+        "count": 3,
+        "sha256": "87ab8720db81ce4a68c362d6147cc5ae61b3111607df218ee5bbd95c2cf0eb7b"
+    },
+    "notifications": {
+        "count": 15,
+        "sha256": "9f1ad6e785adbdeac708a6ae2a68d3a7f0545607e10e6a4f05c86615fda5c885"
+    },
+    "product_connections": {
+        "count": 1,
+        "sha256": "005158f85ac56639bdb05b2d9e5076250701cba9e88f37ea946fba7d9c556eba"
+    },
+    "messaging_consents": {
+        "count": 2,
+        "sha256": "ad1b5797ac3c49b90d3e9e1b95d274df1416966b214a078b6bbdc3df41e5f9c9"
+    },
+    "notification_preferences": {
+        "count": 2,
+        "sha256": "0d999b50dbf96e056cf1f84c2ddfb552a3d6f852d742fdaf3c851d7c4462bcd9"
+    },
+    "notification_devices": {
+        "count": 1,
+        "sha256": "60959d7c068473560f9459cd5cd33b9315270452d9bd19d35ed21d11a861a8d9"
+    }
+}
