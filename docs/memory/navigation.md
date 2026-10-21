@@ -6,6 +6,12 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+## 2026-10-21 当前长期导航（新会话优先读这一段）
+
+**当前单一状态真值：[docs/workflow/ACTIVE_STATE.md](../workflow/ACTIVE_STATE.md)**；以下原2026-10-14长段是历史快照，不能视作最新项目进度。Owner于2026-10-21批准v10.1.2单次安全集成，Astra已独立接受v10.1.2功能候选并直接发布[验收](../versions/v10.1.2/acceptance.md)：B1正式关系受控请求、B2退出/换代际旧提案均关闭。唯一接受源码Commit `88ffeccce4042f13ce4edccf7604b835b06c8f2d`，apps `365810451b6faad98e041835be6c86f4f81be0a9`，services `96b2972a19ec49108cf5c11d144179e5693570a9`；尚未并入main。Owner还批准[轻量交付和项目源同步工作流](../workflow/ACCEPTANCE_INTEGRATION_SOURCE_SYNC_20261021.md)，Codex待Owner手动派发一次综合安全集成，产品代码/本地运行/外部授权分别记录。旧v10.1.0 PARTIAL/AC08、v10.1.1事故及v10.1.2 REAL_IDENTITY_PROVIDER_PENDING继承。ChatGPT项目源ZIP需Owner手动替换，仓库同步不等于用户Project附件已被修改；v10.1.3未启动。
+
+---
+
 ## 2026-10-14 当前检查点：Astra换会话，v10.0.6后续在新会话终验
 
 Owner已要求立即保存当前任务及决策，并由新Astra会话验收最近交付的v10.0.6执行Prompt的结果。[本轮交接正文](../migration/ASTRA_HANDOFF_20261014_V10_0_6.md)是最短恢复入口，不是新任务。旧Astra没有收到本版实施回执或候选；Owner转发及Codex实时运行状态UNKNOWN，若已经执行，不因换顾问中断或重复派发。当前/新Astra会话ID无法取得则UNKNOWN，不重新审projectId或旧会话全部日志。
