@@ -6,6 +6,8 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+**2026-10-21后继更新（覆盖下文当时的“待集成”）：** v10.1.2功能及安全集成都已由Astra独立`ACCEPTED_WITH_OBSERVATIONS`；[集成验收](../versions/v10.1.2/integration_acceptance.md)。已接受完整apps`365810451b6faad98e041835be6c86f4f81be0a9`及services`96b2972a19ec49108cf5c11d144179e5693570a9`已进入main。Owner条件预授权已满足，v10.1.3[计划](../versions/v10.1.3/plan.md)/[长任务](../versions/v10.1.3/task_order.md)已冻结发布，**未手动派发本地Codex、未执行**。Owner表示ChatGPT项目Sources已更新，GitHub的2026-10-21原ZIP精确镜像仍待补；这不是产品接受的阻断。唯一最新入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文旧段为原时点快照。
+
 ## 2026-10-21 当前长期导航（新会话优先读这一段）
 
 **当前单一状态真值：[docs/workflow/ACTIVE_STATE.md](../workflow/ACTIVE_STATE.md)**。v10.1.2功能由Astra直接接受，完整apps/services已按Owner单次任务集成main；[唯一集成报告](../versions/v10.1.2/integration.md)，仍待Astra独立安全集成验收。接受源码 `88ffeccce4042f13ce4edccf7604b835b06c8f2d`，apps `365810451b6faad98e041835be6c86f4f81be0a9` / services `96b2972a19ec49108cf5c11d144179e5693570a9`。本地仅代码基线接续，运行NOT_RUN；项目源ZIP未取得，仅[有界语义候选](../gpt-project-sources/20261021_v1012/README.md)，BYTE_MIRROR_UNVERIFIED，ChatGPT附件/账户Memory未自动修改。原v10.1.0 PARTIAL/AC08、v10.1.1事故及本版历史失败保留；v10.1.3未启动。下方旧段是历史快照，不按其过时状态重派。
