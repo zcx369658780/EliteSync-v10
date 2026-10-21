@@ -15,13 +15,13 @@ final class PlatformEventService
     public const ACTIVE=['INVITED','APPLIED','WAITLISTED','CONFIRMED'];
 
     /** Outside-transaction discovery is only a locator; every identity is rechecked under ordered user locks. */
-    public function run(int $actor,string $id,callable $work,bool $admin=false,array $extra=[]): mixed
+    public function run(int $actor,string $id,callable $work,bool $admin=false,array $extra=[],bool $historical=false): mixed
     {
         app(PlatformAccess::class)->gate();
         $candidate=DB::table('platform_events')->where('id',$id)->first(['organizer_id']);
         abort_unless($candidate,404,'unavailable');
         $expired=false;
-        $result=DB::transaction(function()use($actor,$id,$work,$admin,$extra,$candidate,&$expired){
+        $result=DB::transaction(function()use($actor,$id,$work,$admin,$extra,$candidate,$historical,&$expired){
             if($admin)app(CurrentQuestionnaire::class)->lock();
             app(PlatformAccess::class)->users(array_merge([$actor,(int)$candidate->organizer_id],$extra));
             if($admin)app(PlatformAccess::class)->admin($actor);
@@ -31,7 +31,7 @@ final class PlatformEventService
                 $this->terminate($event,'EXPIRED',null);
                 // Commit the clock-driven terminal fact before rejecting a user's
                 // private projection; throwing here would roll expiry back.
-                if(!$admin){$expired=true;return null;}
+                if(!$admin&&!$historical){$expired=true;return null;}
             }
             return $work($event);
         });
@@ -131,7 +131,11 @@ final class PlatformEventService
     {
         DB::transaction(function()use($actor){app(PlatformAccess::class)->users([$actor]);abort_unless(app(PlatformAccess::class)->available($actor,true),403);});
         $ids=DB::table('platform_event_registrations')->where('user_id',$actor)->orderByDesc('created_at')->limit(30)->pluck('event_id');
-        $items=[];$tickets=[];
+        $items=[];$tickets=[];$reportContexts=[];
+        foreach($ids as $id){
+            $context=$this->run($actor,$id,fn($event)=>app(SafetyParticipation::class)->context($event,$actor),false,[],true);
+            if($context)$reportContexts[]=$context;
+        }
         foreach($ids as $id){try{$items[]=$this->show($actor,$id);}catch(HttpException $e){
             if($e->getStatusCode()!==404)throw $e;
             $ticket=$this->run($actor,$id,function($event)use($actor){
@@ -142,7 +146,7 @@ final class PlatformEventService
             });
             if($ticket)$tickets[]=$ticket;
         }}
-        return ['items'=>$items,'exit_tickets'=>$tickets,'notice'=>'DEV_SYNTHETIC_EVENT / NOT_REAL_BOOKING；无真实费用与出席认定'];
+        return ['items'=>$items,'exit_tickets'=>$tickets,'report_contexts'=>$reportContexts,'notice'=>'DEV_SYNTHETIC_EVENT / NOT_REAL_BOOKING；无真实费用与出席认定'];
     }
 
     public function show(int $actor,string $id): array
@@ -231,7 +235,7 @@ final class PlatformEventService
                     abort_if($reserved->where('state','CONFIRMED')->count()>=(int)$event->capacity,409,'no capacity');
                     DB::table('platform_event_registrations')->where('id',$r->id)->update(['state'=>'CONFIRMED','revision'=>$r->revision+1,'updated_at'=>now()]);
                 }else abort(422);
-                if($action!=='cancel')$this->touch($event,$actor,$action);
+                if($action!=='cancel')$this->touch($event,$actor,$action,$action==='revoke'?['revoked_grant_id'=>$d['grant_id']]:[]);
                 $after=['state'=>$event->state,'revision'=>$event->revision,'simulation_only'=>true];
                 if($action==='budget')$after['budget']=array_intersect_key((array)DB::table('platform_event_budgets')->where('event_id',$event->id)->lockForUpdate()->first(),array_flip(['currency_code','venue_cost','materials_cost','travel_cost','total','state','revision']));
                 OperationAudit::record($actor,'platform_event.'.$action,'platform_event',$event->id,$d['reason'],(int)$d['revision'],$before,$after);
@@ -310,7 +314,7 @@ final class PlatformEventService
             DB::table('platform_event_grants')->where('event_id',$id)->whereIn('recipient_id',[$a,$b])->update(['state'=>'REVOKED','updated_at'=>now()]);
             DB::table('platform_event_registrations')->where('event_id',$id)->whereIn('user_id',[$a,$b])->whereIn('state',self::ACTIVE)
                 ->update(['state'=>'CANCELLED_BY_ORGANIZER','revision'=>DB::raw('revision+1'),'updated_at'=>now()]);
-            $this->touch($event,null,'SOURCE_REVOKED');
+            $this->touch($event,null,'SOURCE_REVOKED',['affected_registration_ids'=>$shared->whereIn('state',self::ACTIVE)->pluck('id')->all()]);
         }
     }
 

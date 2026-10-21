@@ -28,14 +28,20 @@
     <h3>固定版本规则提示</h3>
     <p>{{ $advisory->rule_version }} · {{ $advisory->classification }} · <strong>{{ $advisory->status }}</strong></p>
     <p>{{ $advisory->uncertainty }}</p>
-    <h3>当前合法来源最小核对</h3>
-    <p>以下只证明受控参与事实及来源版本，不能证明线下行为或真实到场。本次访问理由已审计；来源撤权或版本变化后不能继续凭历史权限读取。</p>
+    <h3>限本案的历史参与来源核对</h3>
+    <p>HISTORICAL_AUTHORIZED_FACT 只证明收案时经校验的最小参与记录，不证明当前仍有参与资格、线下行为或真实到场。旧活动、私聊、附件与资料的普通权限不恢复。本次访问目的及当前案卷版本已审计；仅合成开发存证窗口为30天，过期或完整性不足显示 CURRENT_SOURCE_UNAVAILABLE，可具名调查或驳回，不凭历史参与认定违规。</p>
     @foreach ($evidence as $source)
     <dl>
+        <dt>来源状态</dt><dd>{{ $source['status'] }} / {{ $source['current_status'] ?? 'CURRENT_SOURCE_UNAVAILABLE' }}</dd>
+        @if (isset($source['source_id']))
         <dt>来源</dt><dd>{{ $source['source_type'] }} / <code>{{ $source['source_id'] }}</code></dd>
-        <dt>版本及范围</dt><dd>{{ $source['source_revision'] }} / {{ $source['scope'] }}</dd>
+        <dt>版本及用途</dt><dd>{{ $source['source_revision'] }} / {{ $source['scope'] }}</dd>
         <dt>提交时来源hash</dt><dd><code style="overflow-wrap:anywhere">{{ $source['hash'] }}</code></dd>
-        <dt>当前参与事实</dt><dd>{{ $source['participation_state'] }}；到场 {{ $source['attendance'] }}</dd>
+        <dt>留存的历史参与状态</dt><dd>{{ $source['participation_state'] }}；到场 {{ $source['attendance'] }}（不能证明行为）</dd>
+        <dt>合成开发存证读窗截止</dt><dd>{{ $source['retain_until'] }}</dd>
+        @else
+        <dt>调查限制</dt><dd>INSUFFICIENT_EVIDENCE：没有可核验的本案最小历史来源，不显示旧私密资料。</dd>
+        @endif
     </dl>
     @endforeach
     @endif

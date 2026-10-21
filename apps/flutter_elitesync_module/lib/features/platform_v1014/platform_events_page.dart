@@ -317,10 +317,46 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
     ),
   );
 
+  Widget _historyReportCard(Map<String, dynamic> context) => Card(
+    key: ValueKey('platform-report-context-${context['id']}'),
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '本人历史参与安全报告',
+            style: Theme.of(this.context).textTheme.titleMedium,
+          ),
+          const Text('REPORT_ONLY：退出或拉黑不影响限时提交本人最小陈述；此入口不恢复活动详情、他人资料或私人接触。'),
+          Text('合成开发报告窗口截止：${context['report_until'] ?? '以服务器校验为准'}'),
+          if (_reportEvent != 'history:${context['id']}')
+            TextButton(
+              onPressed: busy
+                  ? null
+                  : () => setState(() {
+                      _reportEvent = 'history:${context['id']}';
+                      _reportTarget = null;
+                      _statement.clear();
+                    }),
+              child: const Text('提交历史参与安全疑虑'),
+            ),
+          if (_reportEvent == 'history:${context['id']}') _reportForm(context),
+        ],
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final items = rows(data?['items']);
     final exitTickets = rows(data?['exit_tickets']).where(_validExitTicket);
+    final reportContexts = rows(data?['report_contexts']).where(
+      (e) =>
+          e['scope'] == 'REPORT_ONLY' &&
+          e['id'] is String &&
+          rows(e['participants']).isNotEmpty,
+    );
     return frame('平台合成活动', [
       const Text('仅限受控开发邀请；没有真实招募、预订、费用支付或安全保障承诺。'),
       const Text('报名不建立好友、私信同意、搭子或正式恋爱关系。'),
@@ -344,6 +380,7 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
         const Text('当前没有有权查看的完整活动卡；本人保留报名可通过下方最小入口退出。'),
       ...items.map(_eventCard),
       ...exitTickets.map(_exitTicketCard),
+      ...reportContexts.map(_historyReportCard),
     ]);
   }
 }

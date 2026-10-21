@@ -6,6 +6,7 @@ use App\Services\Admin\OperationAudit;
 use App\Services\Admin\UserGovernance;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 final class SafetyCaseService
@@ -23,14 +24,11 @@ final class SafetyCaseService
         abort_unless($candidate,404,'unavailable');
         return app(PlatformEventService::class)->run($actor,$eventId,function($event)use($actor,$d,$candidate){
             $events=app(PlatformEventService::class);
-            abort_unless($events->readable($event,$actor),404,'unavailable');
+            abort_unless(app(PlatformAccess::class)->available($actor,true),403);
             $own=$events->registration($event,$actor);
             $target=DB::table('platform_event_registrations')->where('id',$d['target_registration_id'])->where('event_id',$event->id)->lockForUpdate()->first();
-            abort_unless($own&&in_array($own->state,['APPLIED','WAITLISTED','CONFIRMED'],true)&&$target
-                &&(int)$target->user_id===(int)$candidate->user_id&&(int)$target->user_id!==$actor
-                &&in_array($target->state,['APPLIED','WAITLISTED','CONFIRMED'],true)
-                &&$events->readable($event,(int)$target->user_id)
-                &&app(SocialPolicy::class)->pairAllowed($actor,(int)$target->user_id),404,'unavailable');
+            abort_unless($own&&$target&&(int)$target->user_id===(int)$candidate->user_id
+                &&app(SafetyParticipation::class)->pair($event,$own,$target),404,'unavailable');
             $old=DB::table('safety_cases')->where('reporter_id',$actor)->where('idempotency_key',$d['idempotency_key'])->lockForUpdate()->first();
             if($old){
                 $report=DB::table('moderation_reports')->where('id',$old->report_id)->lockForUpdate()->first();
@@ -47,15 +45,20 @@ final class SafetyCaseService
                 'subject_id'=>$target->user_id,'reporter_registration_id'=>$own->id,'subject_registration_id'=>$target->id,
                 'category'=>$d['category'],'state'=>'OPEN','revision'=>1,'review_due_at'=>now()->addDays(7),
                 'idempotency_key'=>$d['idempotency_key'],'created_at'=>now(),'updated_at'=>now()]);
-            foreach([$own,$target] as $r)DB::table('safety_case_evidence')->insert(['id'=>(string)Str::uuid(),'case_id'=>$id,
-                'source_type'=>'EVENT_REGISTRATION','source_id'=>$r->id,'source_revision'=>$r->revision,
-                'source_hash'=>$this->sourceHash($r),'scope'=>'CURRENT_EVENT_PARTICIPANT_FACT_ONLY','created_at'=>now(),'updated_at'=>now()]);
+            foreach([$own,$target] as $r){
+                $fact=$this->sourceFact($id,$event,$r,now()->toDateTimeString());$json=json_encode($fact,JSON_THROW_ON_ERROR);
+                DB::table('safety_case_evidence')->insert(['id'=>(string)Str::uuid(),'case_id'=>$id,
+                    'source_type'=>'EVENT_REGISTRATION','source_id'=>$r->id,'source_revision'=>$r->revision,
+                    'source_hash'=>$this->sourceHash($r),'scope'=>'CASE_INVESTIGATION_ONLY','source_fact'=>$json,
+                    'fact_hash'=>hash('sha256',$json),'retain_until'=>now()->addDays(SafetyParticipation::CASE_DAYS),
+                    'created_at'=>now(),'updated_at'=>now()]);
+            }
             DB::table('safety_rule_advisories')->insert(['case_id'=>$id,'rule_version'=>self::RULE_VERSION,
                 'classification'=>$d['category']==='CONDUCT'?'MANUAL_REVIEW_REQUIRED':'UNVERIFIED_SELF_REPORT',
                 'status'=>'ADVISORY_ONLY','uncertainty'=>'参与资格不证明线下行为；陈述、缺席、取消和未回复均非已核实事实。',
                 'created_at'=>now(),'updated_at'=>now()]);
             return $this->ownerShape(DB::table('safety_cases')->where('id',$id)->first(),$actor);
-        },false,[(int)$candidate->user_id]);
+        },false,[(int)$candidate->user_id],true);
     }
 
     private function ownerShape(object $case,int $actor): array
@@ -86,20 +89,15 @@ final class SafetyCaseService
         app(PlatformAccess::class)->gate();
         $candidate=DB::table('safety_cases')->where('id',$id)->first(['event_id','subject_id','reporter_id']);
         abort_unless($candidate&&in_array($actor,[(int)$candidate->subject_id,(int)$candidate->reporter_id],true),404,'unavailable');
-        // The sanctioned subject retains only the private minimum needed to appeal, even after losing activity access.
-        if((int)$candidate->subject_id===$actor){
+        // Case ownership authorizes only the minimum receipt/appeal, not any old social view.
+        {
             return DB::transaction(function()use($actor,$id,$candidate){
                 app(PlatformAccess::class)->users([$actor]);abort_unless(app(PlatformAccess::class)->available($actor,true),403);
-                $c=DB::table('safety_cases')->where('id',$id)->where('subject_id',$actor)->where('event_id',$candidate->event_id)->lockForUpdate()->first();
+                $c=DB::table('safety_cases')->where('id',$id)->where('event_id',$candidate->event_id)
+                    ->where('reporter_id',$candidate->reporter_id)->where('subject_id',$candidate->subject_id)->lockForUpdate()->first();
                 abort_unless($c,404);return $this->ownerShape($c,$actor);
             });
         }
-        return app(PlatformEventService::class)->run($actor,$candidate->event_id,function($event)use($actor,$id,$candidate){
-            abort_unless(app(PlatformEventService::class)->readable($event,$actor)
-                &&app(SocialPolicy::class)->pairAllowed($actor,(int)$candidate->subject_id),404,'unavailable');
-            $c=DB::table('safety_cases')->where('id',$id)->where('reporter_id',$actor)->where('subject_id',$candidate->subject_id)->where('event_id',$event->id)->lockForUpdate()->first();
-            abort_unless($c,404);return $this->ownerShape($c,$actor);
-        },false,[(int)$candidate->subject_id]);
     }
 
     public function runAdmin(int $actor,string $id,callable $work,?string $corroborating=null): mixed
@@ -120,21 +118,50 @@ final class SafetyCaseService
         },true,$extra);
     }
 
+    private function sourceFact(string $caseId,object $event,object $r,string $captured): array
+    {
+        $history=app(SafetyParticipation::class)->history($event,$r);abort_unless($history,404,'audited participation missing');
+        return ['case_id'=>$caseId,'event_id'=>$event->id,'registration_id'=>$r->id,'user_id'=>(int)$r->user_id,
+            'state'=>$r->state,'revision'=>(int)$r->revision,'attendance'=>'UNVERIFIED','participated_at'=>$history['participated_at'],
+            'apply_audit_id'=>$history['apply_audit_id'],'captured_at'=>$captured,'purpose'=>'CASE_INVESTIGATION_ONLY','policy'=>SafetyParticipation::POLICY];
+    }
+
     private function evidence(object $event,object $case): array
     {
         $events=app(PlatformEventService::class);
-        abort_unless($events->readable($event,(int)$case->reporter_id)
+        $live=$events->readable($event,(int)$case->reporter_id)
             &&app(PlatformAccess::class)->available((int)$case->subject_id,true)
-            &&app(SocialPolicy::class)->pairAllowed((int)$case->reporter_id,(int)$case->subject_id),404,'evidence source unavailable');
+            &&app(SocialPolicy::class)->pairAllowed((int)$case->reporter_id,(int)$case->subject_id);
         $rows=DB::table('safety_case_evidence')->where('case_id',$case->id)->orderBy('id')->lockForUpdate()->get();
         abort_unless($rows->count()===2,404,'evidence unavailable');$result=[];
         foreach($rows as $row){
             $r=DB::table('platform_event_registrations')->where('id',$row->source_id)->where('event_id',$event->id)->lockForUpdate()->first();
-            abort_unless($r&&in_array($r->state,['APPLIED','WAITLISTED','CONFIRMED'],true)
-                &&in_array((int)$r->user_id,[(int)$case->reporter_id,(int)$case->subject_id],true)
-                &&(int)$r->revision===(int)$row->source_revision&&hash_equals($row->source_hash,$this->sourceHash($r)),404,'source changed; historical grant does not authorize current evidence');
+            $identity=$r&&in_array($r->id,[$case->reporter_registration_id,$case->subject_registration_id],true)
+                &&(int)$r->user_id===($r->id===$case->reporter_registration_id?(int)$case->reporter_id:(int)$case->subject_id);
+            // Legacy evidence is sealable only by reconstructing an exact existing
+            // source hash plus its server apply audit; never invent a past state.
+            if($identity&&$row->source_fact===null){
+                foreach(['APPLIED','WAITLISTED','CONFIRMED'] as $state){foreach(['UNVERIFIED','SELF_REPORTED'] as $attendance){
+                    $old=clone $r;$old->state=$state;$old->revision=$row->source_revision;$old->attendance=$attendance;
+                    if(hash_equals($row->source_hash,$this->sourceHash($old))){
+                        $fact=$this->sourceFact($case->id,$event,$old,$row->created_at);$json=json_encode($fact,JSON_THROW_ON_ERROR);
+                        DB::table('safety_case_evidence')->where('id',$row->id)->update(['source_fact'=>$json,'fact_hash'=>hash('sha256',$json),'retain_until'=>Carbon::parse($row->created_at)->addDays(SafetyParticipation::CASE_DAYS),'scope'=>'CASE_INVESTIGATION_ONLY']);
+                        $row=DB::table('safety_case_evidence')->where('id',$row->id)->lockForUpdate()->first();break 2;
+                    }
+                }}
+            }
+            $fact=$row->source_fact?json_decode($row->source_fact,true):null;
+            $valid=$identity&&$fact&&$row->fact_hash&&hash_equals($row->fact_hash,hash('sha256',$row->source_fact))
+                &&($fact['case_id']??null)===$case->id&&($fact['event_id']??null)===$event->id
+                &&($fact['registration_id']??null)===$row->source_id&&($fact['user_id']??null)===(int)$r->user_id
+                &&($fact['purpose']??null)==='CASE_INVESTIGATION_ONLY'&&$row->retain_until&&now()->lessThanOrEqualTo(Carbon::parse($row->retain_until));
+            if(!$valid){$result[]=['scope'=>'CASE_INVESTIGATION_ONLY','status'=>'CURRENT_SOURCE_UNAVAILABLE','current_available'=>false,'notice'=>'INSUFFICIENT_EVIDENCE'];continue;}
+            $current=$live&&in_array($r->state,['APPLIED','WAITLISTED','CONFIRMED'],true)
+                &&(int)$r->revision===(int)$row->source_revision&&hash_equals($row->source_hash,$this->sourceHash($r));
             $result[]=['source_type'=>$row->source_type,'source_id'=>$row->source_id,'source_revision'=>$row->source_revision,
-                'hash'=>$row->source_hash,'scope'=>$row->scope,'participation_state'=>$r->state,'attendance'=>'UNVERIFIED'];
+                'hash'=>$row->source_hash,'scope'=>'CASE_INVESTIGATION_ONLY','status'=>'HISTORICAL_AUTHORIZED_FACT',
+                'current_status'=>$current?'CURRENT_SOURCE_AVAILABLE':'CURRENT_SOURCE_UNAVAILABLE','current_available'=>$current,
+                'participation_state'=>$fact['state'],'attendance'=>'UNVERIFIED','historical_fact'=>array_diff_key($fact,['user_id'=>true]),'retain_until'=>$row->retain_until];
         }
         return $result;
     }
@@ -194,7 +221,7 @@ final class SafetyCaseService
             abort_unless(in_array($case->state,$edges[$action]??[],true),409,'invalid case transition');
             // A current, audited minimum source inspection is necessary; a complaint or rule output alone is never a Finding.
             if(in_array($action,['substantiate','restrict','banned'],true)){
-                $this->evidence($event,$case);
+                abort_if(collect($this->evidence($event,$case))->contains(fn($s)=>!$s['current_available']),422,'INSUFFICIENT_EVIDENCE: historical participation is not a conduct finding');
                 abort_unless(DB::table('admin_operation_audits')->where('actor_user_id',$actor)->where('action','safety.evidence.view')
                     ->where('target_id',$case->id)->where('expected_version',$case->revision)->lockForUpdate()->exists(),409,'view current evidence with a reason first');
             }
@@ -202,7 +229,7 @@ final class SafetyCaseService
                 abort_unless($case->category==='CONDUCT'&&$other&&$other->category==='CONDUCT'
                     &&!in_array($other->state,['DISMISSED','CORRECTED'],true)&&($d['evidence_checked']??false)
                     &&mb_strlen(trim((string)($d['manual_finding']??'')))>=20,422,'independent corroboration and explicit human finding required');
-                $this->evidence($event,$other);
+                abort_if(collect($this->evidence($event,$other))->contains(fn($s)=>!$s['current_available']),422,'INSUFFICIENT_EVIDENCE: corroboration source unavailable');
                 abort_unless(DB::table('admin_operation_audits')->where('actor_user_id',$actor)->where('action','safety.evidence.view')
                     ->where('target_id',$other->id)->where('expected_version',$other->revision)->lockForUpdate()->exists(),409,'inspect corroborating current source first');
             }

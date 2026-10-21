@@ -382,10 +382,12 @@ final class V1014PlatformSafetyTest extends TestCase
         $this->evidence($case['id'])->assertOk()->assertJsonCount(2, 'evidence');
         $viewCount = DB::table('admin_operation_audits')->where('action', 'safety.evidence.view')->count();
         $this->userAction($a, $id, 'cancel')->assertOk();
-        $this->evidence($case['id'])->assertNotFound();
-        $this->assertSame($viewCount, DB::table('admin_operation_audits')->where('action', 'safety.evidence.view')->count());
+        $this->evidence($case['id'])->assertOk()->assertJsonPath('evidence.0.scope','CASE_INVESTIGATION_ONLY')
+            ->assertJsonPath('evidence.0.current_available',false)->assertJsonMissingPath('event.title')->assertJsonMissingPath('event.venue');
+        $this->assertSame($viewCount+1, DB::table('admin_operation_audits')->where('action', 'safety.evidence.view')->count());
         $this->getJson('/admin/reports/'.$this->caseRow($case['id'])->report_id)->assertNotFound();
-        $this->actingAs($a, 'sanctum')->getJson('/api/v1/safety/own/'.$case['id'])->assertNotFound();
+        $this->actingAs($a, 'sanctum')->getJson('/api/v1/safety/own/'.$case['id'])->assertOk()
+            ->assertJsonMissingPath('claim')->assertJsonMissingPath('evidence')->assertJsonMissingPath('subject_id');
         // The subject can retain only the private minimum needed for a possible appeal.
         $this->actingAs($b, 'sanctum')->getJson('/api/v1/safety/own/'.$case['id'])->assertOk()
             ->assertJsonMissingPath('claim')->assertJsonMissingPath('evidence')->assertJsonMissingPath('reporter_id');
@@ -401,7 +403,8 @@ final class V1014PlatformSafetyTest extends TestCase
         $case = $this->makeReport($a, $b, $id);
         $this->actingAs($a, 'sanctum')->postJson('/api/v1/moderation/blocks', ['blocked_user_id' => $b->id, 'reason_code' => 'TEST_ONLY'])->assertOk();
         $this->getJson('/api/v1/platform-events/'.$id)->assertNotFound();
-        $this->getJson('/api/v1/safety/own/'.$case['id'])->assertNotFound();
+        $this->getJson('/api/v1/safety/own/'.$case['id'])->assertOk()
+            ->assertJsonMissingPath('claim')->assertJsonMissingPath('evidence')->assertJsonMissingPath('subject_id');
         $this->deleteJson('/api/v1/moderation/blocks/'.$b->id)->assertOk();
         $this->getJson('/api/v1/platform-events/'.$id)->assertNotFound();
         $this->assertDatabaseHas('platform_event_registrations', ['event_id' => $id, 'user_id' => $a->id, 'state' => 'CANCELLED_BY_ORGANIZER']);

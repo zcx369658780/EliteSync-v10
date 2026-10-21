@@ -446,6 +446,118 @@ void main() {
     },
   );
 
+  testWidgets(
+    'report-only target remains selectable beside a live card without old private fields',
+    (tester) async {
+      Map<String, dynamic>? submitted;
+      await _mount(
+        tester,
+        const PlatformEventsPage(),
+        _Api((method, path, body) async {
+          if (method == 'POST') {
+            expect(path, '/platform-events/history-event/reports');
+            submitted = body;
+            return {'id': 'case-receipt', 'state': 'OPEN'};
+          }
+          return {
+            'items': submitted == null
+                ? [
+                    {
+                      ..._event(registrationState: 'APPLIED'),
+                      'id': 'history-event',
+                      'participants': <Map<String, dynamic>>[],
+                    },
+                  ]
+                : <Map<String, dynamic>>[],
+            'report_contexts': submitted == null
+                ? [
+                    {
+                      'id': 'history-event',
+                      'scope': 'REPORT_ONLY',
+                      'report_until': 'TEST_ONLY window',
+                      'title': 'PRIVATE_TITLE_MUST_NOT_RENDER',
+                      'venue': 'PRIVATE_VENUE_MUST_NOT_RENDER',
+                      'participants': [
+                        {
+                          'registration_id': 'history-peer',
+                          'label': '合成参与者 peer',
+                        },
+                      ],
+                    },
+                  ]
+                : <Map<String, dynamic>>[],
+          };
+        }),
+      );
+      expect(find.text('本人历史参与安全报告'), findsOneWidget);
+      expect(find.textContaining('PRIVATE_TITLE'), findsNothing);
+      expect(find.textContaining('PRIVATE_VENUE'), findsNothing);
+      await tester.tap(find.text('提交历史参与安全疑虑'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(DropdownButtonFormField<String>).first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('合成参与者 peer').last);
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('platform-report-statement')),
+        'TEST_ONLY historical safety concern',
+      );
+      await tester.pump();
+      await tester.ensureVisible(find.text('提交关联活动举报'));
+      await tester.tap(find.text('提交关联活动举报'));
+      await tester.pumpAndSettle();
+      expect(submitted?['target_registration_id'], 'history-peer');
+      expect(submitted?['category'], 'CONDUCT');
+      expect(submitted?['statement'], 'TEST_ONLY historical safety concern');
+      expect(submitted?.keys.toSet(), {
+        'target_registration_id',
+        'category',
+        'statement',
+        'idempotency_key',
+      });
+    },
+  );
+
+  testWidgets('late history context cannot cross a session change', (
+    tester,
+  ) async {
+    final sessions = _Sessions();
+    final old = Completer<Map<String, dynamic>>();
+    var reads = 0;
+    await _mount(
+      tester,
+      const PlatformEventsPage(),
+      _Api((method, path, body) {
+        reads++;
+        return reads == 1
+            ? old.future
+            : Future.value({
+                'items': <Map<String, dynamic>>[],
+                'report_contexts': <Map<String, dynamic>>[],
+              });
+      }),
+      sessions: sessions,
+      settle: false,
+    );
+    sessions.change(2);
+    await tester.pumpAndSettle();
+    old.complete({
+      'items': <Map<String, dynamic>>[],
+      'report_contexts': [
+        {
+          'id': 'old-event',
+          'scope': 'REPORT_ONLY',
+          'participants': [
+            {'registration_id': 'old-peer', 'label': 'OLD_HISTORY_PRIVATE'},
+          ],
+        },
+      ],
+    });
+    await tester.pumpAndSettle();
+    expect(find.text('本人历史参与安全报告'), findsNothing);
+    expect(find.text('OLD_HISTORY_PRIVATE'), findsNothing);
+  });
+
   testWidgets('switching account clears a partly written appeal form', (
     tester,
   ) async {
