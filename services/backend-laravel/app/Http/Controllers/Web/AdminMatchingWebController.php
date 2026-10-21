@@ -20,7 +20,7 @@ final class AdminMatchingWebController extends Controller
 {
     public function index()
     {
-        return view('admin.matching', ['rounds' => DatingRound::with('activeRun')->latest('id')->paginate(20), 'channelRevision' => (int) (DatingRoundChannel::where('channel_key', 'v1008')->value('state_version') ?? 1), 'runs' => MatchingRun::latest('id')->limit(30)->get()]);
+        return view('admin.matching', ['rounds' => DatingRound::with('activeRun')->latest('id')->paginate(20), 'channelRevision' => (int) (DatingRoundChannel::where('channel_key', 'default')->value('state_version') ?? 1), 'runs' => MatchingRun::latest('id')->limit(30)->get(), 'journeyAudits' => DB::table('journey_audits')->latest('id')->limit(30)->get(['id','aggregate_id','action','created_at'])]);
     }
 
     public function action(Request $r)

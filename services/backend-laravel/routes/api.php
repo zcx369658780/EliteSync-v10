@@ -103,6 +103,15 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['auth:sanctum', 'account.active'])->group(function () {
+        $journey = \App\Http\Controllers\Api\V1\SlowDatingController::class;
+        Route::get('/journey', [$journey, 'show']);
+        Route::put('/journey/participation', [$journey, 'participate']);
+        Route::post('/journey/proposals/{id}/decision', [$journey, 'decision'])->whereUuid('id');
+        Route::get('/formal-relationships', [$journey, 'relationships']);
+        Route::post('/formal-relationships', [$journey, 'requestRelationship'])->middleware('throttle:10,1');
+        Route::post('/formal-relationships/{id}/actions', [$journey, 'relationshipAction'])->whereUuid('id');
+        Route::put('/privacy/resume', [$journey, 'saveResume']);
+        Route::get('/privacy/peers/{id}', [PrivacyController::class, 'peer'])->whereNumber('id');
         $social = SocialController::class;
         Route::get('/social', [$social, 'index']);
         Route::post('/social/preferences', [$social, 'preferences']);

@@ -27,7 +27,7 @@ class MatchingInputsPurposePage extends StatelessWidget {
   Widget build(BuildContext context) => const _CompatibilityPurposePage(
     title: 'Matching Inputs · 匹配输入',
     description: '这里用于查看或编辑匹配准备输入。填写、修改或完成问卷都不会自动加入匹配。',
-    compatibilityNote: '现阶段暂时使用原有问卷页；必填字段和正式资格规则尚未确定。',
+    compatibilityNote: '使用既有问卷页保存答案；当前必要项与报名资格请在进展中的慢约旅程查看。',
     actionLabel: '打开兼容问卷页',
     actionRoute: AppRouteNames.questionnaire,
   );

@@ -135,7 +135,7 @@ class MatchingRunService
             if ($currentUsers->count() !== count($ids)) {
                 throw new \DomainException('input_changed');
             }
-            $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
+            $roundId = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->value('round_id');
             $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
             if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {
@@ -147,7 +147,7 @@ class MatchingRunService
             foreach ($currentUsers as $user) {
                 $id = (int) $user->id;
                 [$eligibilityVersion, $profileVersion] = $this->sourceVersions($id, $user->updated_at);
-                MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion]);
+                MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion, 'participation_generation' => app(SlowDatingService::class)->participation($id)['generation']]);
             }
             sort($ids, SORT_NUMERIC);
             $key = (string) config('matching.foundation.digest_key');
@@ -166,7 +166,7 @@ class MatchingRunService
             app(CurrentQuestionnaire::class)->lock();
             $suppliedIds = collect($candidateUserIds)->map(fn ($id) => (int) $id)->unique()->sort()->values()->all();
             $currentUsers = User::query()->whereIn('id', $suppliedIds)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
-            $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
+            $roundId = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->value('round_id');
             $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
             if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {
@@ -190,7 +190,7 @@ class MatchingRunService
             $readiness = app(ProfileReadinessService::class);
             foreach ($candidateUserIds as $userId) {
                 $currentUser = $currentUsers->get((int) $userId);
-                if (! $currentUser || ! $readiness->forUser($currentUser)['matching_eligibility']['eligible']) {
+                if (! $currentUser || ! $readiness->forUser($currentUser)['matching_eligibility']['eligible'] || ! app(SlowDatingService::class)->enrolled((int) $userId, (int) ($frozen->get((int) $userId)?->participation_generation ?? -1))) {
                     throw new \DomainException('eligibility_changed');
                 }
                 $candidate = $frozen->get((int) $userId);
@@ -210,6 +210,7 @@ class MatchingRunService
                 if ($a === $b || ! in_array($a, $frozenIds, true) || ! in_array($b, $frozenIds, true)) {
                     throw new \DomainException('pair_outside_frozen_candidates');
                 }
+                if (! app(SocialPolicy::class)->pairAllowed($a, $b)) { throw new \DomainException('pair_blocked'); }
                 if (isset($usedUsers[$a]) || isset($usedUsers[$b])) {
                     throw new \DomainException('candidate_used_more_than_once');
                 }
@@ -235,7 +236,7 @@ class MatchingRunService
     {
         return DB::transaction(function () use ($run, $leaseOwner, $fencingToken, $code, $summary) {
             app(CurrentQuestionnaire::class)->lock();
-            $roundId = MatchingRun::query()->whereKey($run->id)->value('round_id');
+            $roundId = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->value('round_id');
             $round = DatingRound::query()->whereKey($roundId)->lockForUpdate()->firstOrFail();
             $locked = MatchingRun::query()->whereKey($run->id)->lockForUpdate()->firstOrFail();
             if ((int) $round->active_run_id !== (int) $locked->id || $round->state !== RoundState::Preparing) {

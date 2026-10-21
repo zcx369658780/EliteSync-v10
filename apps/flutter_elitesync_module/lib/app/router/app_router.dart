@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/formal_relationship_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +23,6 @@ import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conv
 import 'package:flutter_elitesync_module/features/connection/presentation/pages/connection_page.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/pages/live_connection_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
-import 'package:flutter_elitesync_module/features/match/presentation/pages/live_match_page.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
 import 'package:flutter_elitesync_module/features/home/domain/entities/home_feed_entity.dart';
@@ -113,6 +114,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      GoRoute(
+        path: '/formal-relationship',
+        builder: (context, state) => const FormalRelationshipPage(),
+      ),
       if (env.restorationLocalBuild)
         GoRoute(
           path: '/live-connection',
@@ -455,7 +460,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   GoRoute(
                     path: AppRouteNames.progressMatchSegment,
                     builder: (context, state) => env.restorationLocalBuild
-                        ? const LiveMatchPage()
+                        ? const SlowDatingJourneyPage()
                         : const MatchShellPage(),
                   ),
                   GoRoute(
@@ -494,7 +499,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   ),
                   GoRoute(
                     path: AppRouteNames.meReadinessSegment,
-                    builder: (context, state) => const ReadinessPurposePage(),
+                    builder: (context, state) =>
+                        const bool.fromEnvironment(
+                          'ELITESYNC_V1012_LOCAL_BUILD',
+                        )
+                        ? const SlowDatingJourneyPage()
+                        : const ReadinessPurposePage(),
                   ),
                   GoRoute(
                     path: AppRouteNames.meShowcaseSegment,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_elitesync_module/features/relationships_v1011/privacy_controls.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/relationship_privacy_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/design_system/components/bars/app_top_bar.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
@@ -37,7 +37,7 @@ class PrivacySettingsPage extends StatelessWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) => const ServerPrivacyPage(),
+                builder: (_) => const RelationshipPrivacyPage(),
               ),
             ),
           ),

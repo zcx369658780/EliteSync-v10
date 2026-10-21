@@ -16,9 +16,9 @@ final class SocialPolicy
             return User::whereKey($a)->where('disabled', false)->exists();
         }
 
-        return User::whereIn('id', [$a, $b])->where('disabled', false)->count() === 2
+        return User::whereIn('id', [$a, $b])->where('disabled', false)->orderBy('id')->when(DB::transactionLevel()>0,fn($q)=>$q->lockForUpdate())->get()->count() === 2
             && ! UserBlock::where(fn ($q) => $q->where('blocker_id', $a)->where('blocked_user_id', $b))
-                ->orWhere(fn ($q) => $q->where('blocker_id', $b)->where('blocked_user_id', $a))->exists();
+                ->orWhere(fn ($q) => $q->where('blocker_id', $b)->where('blocked_user_id', $a))->when(DB::transactionLevel()>0,fn($q)=>$q->lockForUpdate())->exists();
     }
 
     public function friendship(int $a, int $b): ?object
@@ -27,7 +27,7 @@ final class SocialPolicy
             return null;
         }
 
-        return DB::table('friendships')->where('user_a', min($a, $b))->where('user_b', max($a, $b))->where('state', 'ACTIVE')->first();
+        return DB::table('friendships')->where('user_a', min($a, $b))->where('user_b', max($a, $b))->where('state', 'ACTIVE')->when(DB::transactionLevel()>0,fn($q)=>$q->lockForUpdate())->first();
     }
 
     public function lockPair(int $a, int $b): void
@@ -38,22 +38,29 @@ final class SocialPolicy
 
     public function profile(int $viewer, int $owner): array
     {
-        abort_unless($this->pairAllowed($viewer, $owner), 404, 'unavailable');
-        $u = User::findOrFail($owner);
-        if ($viewer !== $owner) {
-            $context = $this->friendship($viewer, $owner) || app(LiveConsentService::class)->match($viewer, $owner)
-                || DB::table('social_requests')->where(function ($q) use ($viewer, $owner) {
-                    $q->where(fn ($p) => $p->where('sender_id', $viewer)->where('recipient_id', $owner))->orWhere(fn ($p) => $p->where('sender_id', $owner)->where('recipient_id', $viewer));
-                })->whereIn('state', ['PENDING', 'ACCEPTED'])->where('expires_at', '>', now())->exists();
-            abort_unless($context, 404, 'unavailable');
-        }
-        $result = ['public_id' => 'ES-'.$u->id, 'avatar' => null];
-        if ($viewer === $owner) {
-            $result += ['birthday' => optional($u->birthday)->format('Y-m-d'), 'interests' => $u->public_personality, 'resume' => null, 'zodiac' => $u->public_zodiac_sign];
-        }
-
-        // No formal-relationship writer exists in this version: intention alone cannot disclose deep fields.
-        return $result;
+        return DB::transaction(function () use ($viewer, $owner) {
+            app(JourneyStore::class)->users([$viewer, $owner]);
+            $u = User::whereKey($owner)->lockForUpdate()->firstOrFail();
+            $shared = $viewer !== $owner && app(FormalRelationshipService::class)->sharingAllowed($viewer, $owner);
+            if ($viewer !== $owner) {
+                $context = $shared || $this->friendship($viewer, $owner) || app(LiveConsentService::class)->match($viewer, $owner)
+                    || DB::table('social_requests')->where(function ($q) use ($viewer, $owner) {
+                        $q->where(fn ($p) => $p->where('sender_id', $viewer)->where('recipient_id', $owner))->orWhere(fn ($p) => $p->where('sender_id', $owner)->where('recipient_id', $viewer));
+                    })->whereIn('state', ['PENDING', 'ACCEPTED'])->where('expires_at', '>', now())->lockForUpdate()->exists();
+                abort_unless($context, 404, 'unavailable');
+            }
+            $result = ['public_id' => 'ES-'.$u->id, 'avatar' => null];
+            $values = ['birthday' => optional($u->birthday)->format('Y-m-d'), 'interests' => $u->public_personality, 'resume' => $u->relationship_resume, 'zodiac' => $u->public_zodiac_sign];
+            if ($viewer === $owner) { return $result + $values; }
+            if ($shared) {
+                $pref = DB::table('privacy_preferences')->where('user_id', $owner)->lockForUpdate()->first();
+                $fields = $pref ? json_decode($pref->fields, true) : [];
+                foreach ($values as $field => $value) {
+                    if (($fields[$field] ?? 'SELF') === 'RELATIONSHIP_SHARED' && $value !== null && $value !== '' && $value !== []) { $result[$field] = $value; }
+                }
+            }
+            return $result;
+        });
     }
 
     public function revokePair(int $a, int $b): void
@@ -61,6 +68,7 @@ final class SocialPolicy
         if (! Schema::hasTable('friendships')) {
             return;
         }
+        app(FormalRelationshipService::class)->invalidatePair($a, $b);
         DB::table('friendships')->where('user_a', min($a, $b))->where('user_b', max($a, $b))->update(['state' => 'REVOKED', 'revision' => DB::raw('revision+1'), 'updated_at' => now()]);
         DB::table('social_requests')->where('pair_key', min($a, $b).':'.max($a, $b))->whereIn('state', ['PENDING', 'ACCEPTED'])->update(['state' => 'REVOKED', 'updated_at' => now()]);
         DB::table('social_invitations')->where(fn ($q) => $q->where('recipient_id', $a)->where('sender_id', $b))
@@ -75,6 +83,7 @@ final class SocialPolicy
         if (! Schema::hasTable('friendships')) {
             return;
         }
+        foreach (DB::table('formal_relationships')->where('user_a', $id)->orWhere('user_b', $id)->lockForUpdate()->get() as $r) { app(FormalRelationshipService::class)->invalidatePair((int) $r->user_a, (int) $r->user_b); }
         $peers = DB::table('product_connections')->where('user_a', $id)->orWhere('user_b', $id)->get()
             ->merge(DB::table('friendships')->where('user_a', $id)->orWhere('user_b', $id)->get());
         foreach ($peers as $p) {
