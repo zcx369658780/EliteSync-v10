@@ -24,6 +24,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/matching', [AdminMatchingWebController::class, 'action'])->middleware('matching.operation')->name('matching.action');
         Route::get('/account-security', AccountSecurityAuditController::class)->name('account-security');
         Route::get('/audits', [AdminOperationsController::class, 'audits'])->name('audits');
+        $platform = \App\Http\Controllers\Web\PlatformController::class;
+        Route::get('/platform-events', [$platform, 'index'])->name('platform-events');
+        Route::post('/platform-events', [$platform, 'store']);
+        Route::post('/platform-events/{id}/actions', [$platform, 'action'])->whereUuid('id');
+        Route::get('/safety-cases/{id}', [$platform, 'detail'])->whereUuid('id');
+        Route::get('/safety-cases/{id}/evidence', [$platform, 'evidence'])->whereUuid('id');
+        Route::get('/safety-cases/{id}/appeal-review', [$platform, 'appealWorkspace'])->whereUuid('id');
+        Route::post('/safety-cases/{id}/decisions', [$platform, 'decide'])->whereUuid('id');
+        Route::post('/safety-cases/{id}/reviews', [$platform, 'review'])->whereUuid('id');
         Route::get('/buddy-community', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'index'])->name('buddy-community');
         Route::post('/buddy-community/comments/{reportId}/hide', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'hide'])->whereNumber('reportId')->name('buddy-community.hide');
         Route::get('/questions', [AdminQuestionController::class, 'index'])->name('questions');

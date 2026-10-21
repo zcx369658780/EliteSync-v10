@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
+import 'package:flutter_elitesync_module/features/platform_v1014/platform_events_page.dart';
+import 'package:flutter_elitesync_module/features/platform_v1014/safety_cases_page.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
@@ -97,6 +99,9 @@ class _NotificationCenterPageState
   }
 
   String? _controlledTarget(NotificationItemEntity item) {
+    if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+      return NotificationPrivacyContract.platformControlledTarget(item);
+    }
     if (item.kind == 'buddy') {
       final id = item.payload['buddy_activity_id'];
       if (id is String &&
@@ -123,6 +128,12 @@ class _NotificationCenterPageState
         ref.read(relationshipAuthorityEpochProvider) == epoch;
   }
 
+  void _discardPlatformAuthority() {
+    ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    ref.invalidate(notificationListProvider);
+    ref.invalidate(notificationUnreadCountProvider);
+  }
+
   Future<bool> _openControlledNotification(
     NotificationItemEntity item,
     String id,
@@ -132,12 +143,52 @@ class _NotificationCenterPageState
     final epoch = ref.read(relationshipAuthorityEpochProvider);
     if (!_currentControlledIntent(identity, epoch)) return false;
     try {
-      final path = item.kind == 'buddy'
-          ? '/buddy/${Uri.encodeComponent(id)}'
-          : '/status/posts/$id';
+      final path = switch (item.kind) {
+        'buddy' => '/buddy/${Uri.encodeComponent(id)}',
+        'platform_event' => '/platform-events/${Uri.encodeComponent(id)}',
+        'safety_case' => '/safety/own/${Uri.encodeComponent(id)}',
+        _ => '/status/posts/$id',
+      };
       final result = await ref.read(relationshipApiProvider).call('GET', path);
       if (!mounted || !_currentControlledIntent(identity, epoch)) return false;
-      if (item.kind == 'buddy') {
+      if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+        final valid = item.kind == 'platform_event'
+            ? result['id'] == id &&
+                  result['title'] is String &&
+                  result['marker'] == 'DEV_SYNTHETIC_EVENT' &&
+                  const [
+                    'OPEN',
+                    'CLOSED',
+                    'COMPLETED',
+                  ].contains(result['state'])
+            : result['id'] == id &&
+                  const ['reporter', 'subject'].contains(result['role']) &&
+                  const [
+                    'OPEN',
+                    'TRIAGED',
+                    'INVESTIGATING',
+                    'DISMISSED',
+                    'SUBSTANTIATED',
+                    'ACTIONED',
+                    'CLOSED',
+                    'REOPENED_FOR_APPEAL',
+                    'CORRECTED',
+                  ].contains(result['state']);
+        if (!valid) {
+          _discardPlatformAuthority();
+          AppFeedback.showInfo(context, '当前内容已不可访问，请刷新当前状态');
+          return false;
+        }
+        // Only the current lookup grants navigation. The destination reads its
+        // own projection again and never receives this preflight response.
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => item.kind == 'platform_event'
+                ? const PlatformEventsPage()
+                : const SafetyCasesPage(),
+          ),
+        );
+      } else if (item.kind == 'buddy') {
         if (result['id'] != id ||
             result['subject'] is! String ||
             !const [
@@ -172,6 +223,9 @@ class _NotificationCenterPageState
       return true;
     } catch (_) {
       if (mounted && _currentControlledIntent(identity, epoch)) {
+        if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+          _discardPlatformAuthority();
+        }
         AppFeedback.showInfo(context, '当前访问未完成，请检查网络或权限后重试');
       }
       return false;
@@ -182,6 +236,11 @@ class _NotificationCenterPageState
     final controlledTarget = _controlledTarget(item);
     if (controlledTarget != null) {
       return _openControlledNotification(item, controlledTarget);
+    }
+    if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+      _discardPlatformAuthority();
+      AppFeedback.showInfo(context, '当前通知目标不可用，请刷新当前状态');
+      return false;
     }
     final routeName = item.routeName.trim();
     if (routeName.isEmpty) {
@@ -293,7 +352,10 @@ class _NotificationCenterPageState
   }
 
   Future<void> _openAndMarkRead(NotificationItemEntity item) async {
-    final controlled = item.kind == 'buddy' || item.kind == 'status_comment';
+    final controlled =
+        item.kind == 'buddy' ||
+        item.kind == 'status_comment' ||
+        NotificationPrivacyContract.isPlatformControlledKind(item.kind);
     final identity = controlled
         ? ref.read(sessionProvider).asData?.value.accessToken
         : null;
@@ -311,7 +373,9 @@ class _NotificationCenterPageState
   }
 
   Future<void> _handlePrimaryAction(NotificationItemEntity item) async {
-    if (item.routeName.trim().isEmpty && _controlledTarget(item) == null) {
+    if (item.routeName.trim().isEmpty &&
+        _controlledTarget(item) == null &&
+        !NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
       await _markReadOnly(item);
       return;
     }
@@ -446,7 +510,10 @@ class _NotificationCenterPageState
                       icon: const Icon(Icons.open_in_new_rounded),
                       label: Text(
                         item.routeName.trim().isEmpty &&
-                                _controlledTarget(item) == null
+                                _controlledTarget(item) == null &&
+                                !NotificationPrivacyContract.isPlatformControlledKind(
+                                  item.kind,
+                                )
                             ? '仅标记已读'
                             : privacyPresentation.actionLabel,
                       ),

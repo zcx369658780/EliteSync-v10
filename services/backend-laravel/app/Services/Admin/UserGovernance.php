@@ -90,7 +90,8 @@ final class UserGovernance
                 'applied_state' => $this->encodeState($this->attributes($user),
                     $kind === 'banned' ? $this->disableFingerprint($user) : null),
                 'created_at' => now(), 'updated_at' => now()]);
-            OperationAudit::record($actor->id, 'user.'.$kind, 'user', $id, $reason, $expected,
+            $safety=$report && DB::table('moderation_reports')->where('id',$report)->where('category','platform_event')->exists();
+            OperationAudit::record($actor->id, ($safety?'safety.governance.':'user.').$kind, 'user', $id, $reason, $expected,
                 $before, $this->summary($user) + ['sanction_id' => $sid]);
 
             return $sid;
@@ -108,6 +109,8 @@ final class UserGovernance
             $selected = $active->firstWhere('id', $sanction);
             abort_unless($selected && in_array($selected->kind, ['restrict', 'banned'], true)
                 && ($report === null || (int) $selected->report_id === $report), 409, 'active sanction ownership required');
+            $safety=$selected->report_id && DB::table('moderation_reports')->where('id',$selected->report_id)->where('category','platform_event')->exists();
+            abort_if($safety && $report!==(int)$selected->report_id,422,'Safety sanction requires its named appeal review workspace');
             $prior = $this->baseline($user, $active);
             $before = $this->summary($user);
             $remaining = $active->reject(fn ($row) => (int) $row->id === $sanction);
@@ -137,7 +140,7 @@ final class UserGovernance
             $user->admin_revision = $expected + 1;
             $user->save();
             $this->revokeConsent($id, $actor->id);
-            OperationAudit::record($actor->id, 'user.restore', 'user', $id, $reason, $expected,
+            OperationAudit::record($actor->id, $safety?'safety.governance.restore':'user.restore', 'user', $id, $reason, $expected,
                 $before, $this->summary($user) + ['sanction_id' => $sanction]);
         });
     }

@@ -27,6 +27,16 @@ class NotificationService
     public function presentationForUser(AppNotificationItem $notification, int $viewerId): array
     {
         $payload = (array) ($notification->payload ?? []);
+        if (in_array($notification->kind,['platform_event','safety_case'],true)) {
+            try {
+                if ((int)$notification->user_id !== $viewerId) throw new \RuntimeException('unavailable');
+                $kind=$notification->kind;
+                if ($kind==='platform_event') app(PlatformEventService::class)->show($viewerId,(string)($payload['platform_event_id']??''));
+                else app(SafetyCaseService::class)->owner($viewerId,(string)($payload['safety_case_id']??''));
+                $key=$kind==='platform_event'?'platform_event_id':'safety_case_id';
+                return ['title'=>'本人状态已更新','body'=>'请查看当前有权状态','payload'=>[$key=>$payload[$key]]];
+            } catch (Throwable) { return ['title'=>'通知已不可用','body'=>'','payload'=>[]]; }
+        }
         if ($notification->kind === 'buddy') {
             try {$a=app(BuddyService::class)->show($viewerId,(string)($payload['buddy_activity_id']??''));if(($a['subject']??null)!==null&&in_array($a['state'],BuddyService::LIVE,true))return ['title'=>'搭子状态有更新','body'=>'请在应用中查看当前有权状态','payload'=>['buddy_activity_id'=>$a['id']]];}catch(Throwable){}
             return ['title'=>'通知已不可用','body'=>'','payload'=>[]];

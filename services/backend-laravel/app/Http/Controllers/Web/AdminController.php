@@ -26,6 +26,7 @@ final class AdminController extends Controller
         }
         Auth::guard('web')->login($user);
         $request->session()->regenerate();
+        app(\App\Services\PlatformAccess::class)->recordAdminSession((int)$user->id,$request->session()->getId());
         return redirect()->route('admin.users');
     }
 
@@ -52,6 +53,7 @@ final class AdminController extends Controller
 
     public function logout(Request $request)
     {
+        if ($request->user()) app(\App\Services\PlatformAccess::class)->revokeAdminSession((int)$request->user()->id,$request->session()->getId());
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

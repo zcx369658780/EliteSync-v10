@@ -17,6 +17,7 @@ final class ReportOperations
             app(CurrentQuestionnaire::class)->lock();
             abort_unless(app(AdminAccess::class)->allows($actor), 403);
             $r = ModerationReport::whereKey($id)->lockForUpdate()->firstOrFail();
+            abort_if($r->category === 'platform_event', 422, 'use the versioned Safety case workspace');
             $version = (int) $data['expected_revision'];
             abort_unless((int) $r->admin_revision === $version, 409, 'stale report revision');
             $s = app(UserGovernance::class);
