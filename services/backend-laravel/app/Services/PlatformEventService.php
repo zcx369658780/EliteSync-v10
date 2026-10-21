@@ -47,7 +47,7 @@ final class PlatformEventService
     public function readable(object $event,int $actor): bool
     {
         $access=app(PlatformAccess::class);
-        if(!$access->available($actor)||!$access->available((int)$event->organizer_id)
+        if(!$access->available($actor)||!$access->organizer((int)$event->organizer_id)
             ||!in_array($event->state,['OPEN','CLOSED','COMPLETED'],true)
             ||!app(SocialPolicy::class)->pairAllowed($actor,(int)$event->organizer_id))return false;
         $r=$this->registration($event,$actor);
@@ -136,7 +136,7 @@ final class PlatformEventService
             if($e->getStatusCode()!==404)throw $e;
             $ticket=$this->run($actor,$id,function($event)use($actor){
                 $a=app(PlatformAccess::class);$r=$this->registration($event,$actor);
-                if(!$a->available($actor,true)||$a->available($actor)||!$r||!in_array($r->state,self::ACTIVE,true)
+                if(!$a->available($actor,true)||!$r||!in_array($r->state,self::ACTIVE,true)
                     ||!in_array($event->state,['OPEN','CLOSED'],true))return null;
                 return ['id'=>$event->id,'revision'=>(int)$event->revision,'registration_state'=>$r->state,'allowed_actions'=>['cancel']];
             });
@@ -286,7 +286,7 @@ final class PlatformEventService
         abort_unless($candidate,404,'unavailable');
         return $this->run($actor,$candidate->event_id,function($event)use($actor,$candidate,$token,$key){
             abort_unless($event->state==='OPEN'&&app(PlatformAccess::class)->available($actor)
-                &&app(PlatformAccess::class)->available((int)$event->organizer_id)
+                &&app(PlatformAccess::class)->organizer((int)$event->organizer_id)
                 &&app(SocialPolicy::class)->pairAllowed($actor,(int)$event->organizer_id),404,'unavailable');
             $grant=DB::table('platform_event_grants')->where('id',$candidate->id)->where('event_id',$event->id)->where('token_hash',hash('sha256',$token))->lockForUpdate()->first();
             abort_unless($grant&&$grant->state==='PENDING'&&$grant->recipient_id===null&&$grant->expires_at>now(),404,'unavailable');

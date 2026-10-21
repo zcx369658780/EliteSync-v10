@@ -44,6 +44,13 @@ final class PlatformAccess
         return $user;
     }
 
+    /** The event source needs current organizer authority, not the viewer's Web session. */
+    public function organizer(int $id): bool
+    {
+        $user=User::whereKey($id)->lockForUpdate()->first();
+        return $this->available($id) && app(AdminAccess::class)->allows($user);
+    }
+
     public function recordAdminSession(int $id,string $session): void
     {
         if (!Schema::hasTable('platform_admin_sessions')) return;

@@ -574,4 +574,20 @@ final class V1014PlatformSafetyTest extends TestCase
         $this->assertSame('CANCELLED_BY_USER',$this->registration($id,$a)->state);
         $this->assertDatabaseCount('admin_sanctions',0);
     }
+
+    public function test_organizer_role_revocation_removes_private_cards_and_notices_but_keeps_own_exit(): void
+    {
+        [$a]=$this->people();$this->loginAdmin();$id=$this->openEvent();$this->invite($id,$a);
+        $this->userAction($a,$id,'apply')->assertOk();
+        $this->adminAction($id,'token')->assertRedirect();
+        $this->adminUser->forceFill(['role'=>'user'])->save();
+        $this->actingAs($a,'sanctum')->getJson('/api/v1/platform-events/'.$id)->assertNotFound();
+        $r=$this->getJson('/api/v1/platform-events')->assertOk()->assertJsonCount(0,'items')->assertJsonCount(1,'exit_tickets')
+            ->assertJsonMissingPath('exit_tickets.0.title')->assertJsonMissingPath('exit_tickets.0.venue');
+        $this->getJson('/api/v1/notifications')->assertOk()->assertDontSee($id);
+        $ticket=$r->json('exit_tickets.0');
+        $this->postJson('/api/v1/platform-events/'.$id.'/actions',['action'=>'apply','revision'=>$ticket['revision'],'idempotency_key'=>'demoted-organizer-denied'])->assertNotFound();
+        $this->postJson('/api/v1/platform-events/'.$id.'/actions',['action'=>'cancel','revision'=>$ticket['revision'],'idempotency_key'=>'demoted-organizer-exit'])->assertOk()->assertJsonPath('state','CANCELLED_BY_USER');
+        $this->assertDatabaseCount('admin_sanctions',0);
+    }
 }
