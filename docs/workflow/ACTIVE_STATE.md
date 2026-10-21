@@ -1,6 +1,6 @@
 # EliteSync-v10｜唯一当前状态入口
 
-更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_SAFE_INTEGRATION_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_INTEGRATION_ACCEPTANCE / PRODUCT_MAIN_INTEGRATED / LOCAL_CODE_BASELINE_CODEX_REPORTED / RUNTIME_NOT_RUN / V10.1.4_NOT_STARTED**
+更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_MAIN_INTEGRATED / LOCAL_CODE_BASELINE_CODEX_REPORTED / RUNTIME_NOT_RUN / V10.1.4_NOT_STARTED**
 
 本文件是优先首读的**可更新短状态卡**，不是历史证据覆盖或本地运行通行证。每次开工先实时回读GitHub main；下列固定身份是本次核验结果，而非承诺HEAD永不变化。旧CURRENT_STATE/DOC_INDEX/项目源快照下方早期“当前”均按形成时点保留。
 
@@ -11,18 +11,15 @@
 - 47个产品变更path/mode/Blob完整匹配，集成后继仅18个文档路径。Astra直接核GitHub对象/源码与正式文档；**LOCAL_CODE_BASELINE**由Codex回报本地干净/HEAD相等（`CODEX_REPORTED / LOCAL_ONLY`），**RUNTIME**本轮未重新启动DB/API/APK/RTC，不能宣称重新验收物理运行。
 - 原正式报告与manifest见[集成报告](../versions/v10.1.2/integration.md)。v10.1.0整版`PARTIAL/NOT_ACCEPTED`及AC-10.1-08 PARTIAL，v10.1.1误清库/恢复历史、v10.1.2原失败、RTC/AEC与外部Web缺口保留。`REAL_IDENTITY_PROVIDER_PENDING`，合成`TEST_ONLY`不代表真实实人。
 
-## v10.1.3 功能已接受；单次安全集成候选等待Astra独立验收
+## v10.1.3 功能及安全集成均已独立接受
 
-Astra直接归档[v10.1.3功能接受](../versions/v10.1.3/acceptance.md)：`V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS`。Owner已正式手动派发[单次安全集成任务](../versions/v10.1.3/safe_integration_task_20261021.md)，Codex已完成精确产品集成候选，见唯一[集成报告](../versions/v10.1.3/integration.md)。**本次集成尚未获得Astra第二道独立接受**。
+**两道Astra裁决：**[v10.1.3功能接受](../versions/v10.1.3/acceptance.md) `V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS`；[v10.1.3单次安全集成接受](../versions/v10.1.3/integration_acceptance.md) `V10.1.3_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS`。冻结MEAL/STUDY独立搭子、好友动态一级评论与相关隐私使用点在受控开发范围正式收口；**不等于生产、实名供应商、真实手机或公网已验证**。
 
-- 接受源码 `e27db2012e2c57390c4da179330552a6b64a728d` / Root `cf670270aaac7d641d58939eaea7737c23b89417`；main已接入完整apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`。
-- 已独立GET产品集成里程碑 `3f1c29e56b8d68ebda56c3564f9d4fceb907fd07` / Root `0ab4a87aaefb0a58d9c91db969386c48373c1e19`，唯一Parent为执行时main `05a88fde79a5849d57378d3d701732afe13190fc`；后继仅正式报告/清单/集成报告及本状态卡四条文档路径。含本状态卡的最终main SHA/Root由发布后集中回执固定，不作自身提交的SHA自引用。
-- [原实现报告](../versions/v10.1.3/IMPLEMENTATION_REPORT.md)及[制品清单](../versions/v10.1.3/artifact_manifest.json)从固定最终候选7d19ed5f精确归档；原候选和54项短期审阅分支均保留，临时证据未合main。
-- `SOURCE_OBJECT_MATCH / PRODUCT_MAIN_INTEGRATED / LOCAL_CODE_BASELINE_SYNCED`由Codex回报；本地干净连续代码树接续具名集成分支。五保护根和原SQL/APK/证据保留。**RUNTIME_NOT_RUN**：本次只做Git/静态语法与JSON检查，没有启动DB/服务、运行PHPUnit/Flutter、重建安装APK或操作设备/RTC/云端。
+- 唯一接受源码Commit `e27db2012e2c57390c4da179330552a6b64a728d`／Root `cf670270aaac7d641d58939eaea7737c23b89417`；最终main完整apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024` 与services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`。产品集成Commit `3f1c29e56b8d68ebda56c3564f9d4fceb907fd07`，唯一Parent `05a88fde79a5849d57378d3d701732afe13190fc`，34条产品path/mode/Blob全部一致。独立集成验收核验的最终main `cd5d76a400c19223ca8a6aee60b5947695a81c56`／Tree `fb4e965061cec3933a0920bcefcd5fefc8560087`，其后仅正式Astra验收与短状态文档前进，实时HEAD仍须重新查询。
+- [唯一集成报告](../versions/v10.1.3/integration.md)／[原实施报告](../versions/v10.1.3/IMPLEMENTATION_REPORT.md)／[制品清单](../versions/v10.1.3/artifact_manifest.json)归档原字节。Codex本地代码树HEAD与交付main一致且干净、五保护根和六件SQL/APK不变为`CODEX_REPORTED/LOCAL_ONLY`；本次DB/API/APP/APK/RTC功能重新运行均`NOT_RUN`。
+- 保留真实通知点击GUI未单独验证、Buddy双进程并发不等于双HTTP、原MariaDB旧失败和其他历史限制。v10.1.0 PARTIAL、v10.1.1事故恢复、v10.1.2两P1修复、真实实人供应商PENDING均不清零。
 
-原功能层APP/API/MariaDB/Web与RR、18表重启、开发APK证据继续为CODEX_REPORTED，Astra已核源码及代表性脱敏原证，不等于本次物理重测。通知卡片完整GUI点击、手机/RTC/Push/支付/公共陌生发现原限制不变。
-
-**唯一下一门：Astra独立安全集成验收。** 不自行标INTEGRATION_ACCEPTED、不清理候选/审阅/旧资产、不启动v10.1.4或公开运营。原ZIP精确GitHub镜像仍BYTE_MIRROR_PENDING，不阻断本次产品集成。
+**唯一下一门**：若Owner批准，则进入v10.1.4「平台活动与内部Safety处置」版前冻结；**现在尚未授权该版实现或集成**。不清理原候选/审阅/数据库资产。所有新任务仍要Owner手动派发Codex，不恢复重复GitHub任务中转。
 
 ## 项目源与工作流分层
 
