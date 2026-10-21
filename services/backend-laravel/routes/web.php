@@ -24,6 +24,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/matching', [AdminMatchingWebController::class, 'action'])->middleware('matching.operation')->name('matching.action');
         Route::get('/account-security', AccountSecurityAuditController::class)->name('account-security');
         Route::get('/audits', [AdminOperationsController::class, 'audits'])->name('audits');
+        Route::get('/buddy-community', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'index'])->name('buddy-community');
+        Route::post('/buddy-community/comments/{reportId}/hide', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'hide'])->whereNumber('reportId')->name('buddy-community.hide');
         Route::get('/questions', [AdminQuestionController::class, 'index'])->name('questions');
         Route::post('/questions/preview', [AdminQuestionController::class, 'preview'])->name('questions.preview');
         Route::post('/questions/apply', [AdminQuestionController::class, 'apply'])->name('questions.apply');

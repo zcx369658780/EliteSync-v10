@@ -153,6 +153,7 @@ final class SocialController extends Controller
             $id = (int) $r->user()->id;
             $policy->lockPair($id, $peer);
             DB::table('friendships')->where('user_a', min($id, $peer))->where('user_b', max($id, $peer))->update(['state' => 'REMOVED', 'revision' => DB::raw('revision+1'), 'updated_at' => now()]);
+            app(\App\Services\BuddyService::class)->revokePair($id, $peer, true);
 
             return response()->json(['ok' => true, 'connection_and_consent' => 'UNCHANGED']);
         });

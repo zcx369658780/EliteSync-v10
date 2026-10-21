@@ -8,6 +8,18 @@ import 'package:flutter_elitesync_module/features/status/domain/entities/status_
 import 'package:flutter_elitesync_module/features/status/domain/entities/status_author_entity.dart';
 import 'package:flutter_elitesync_module/mocks/mock_data/status_mock.dart';
 
+/// One bounded server-authorized page; the client never builds an infinite feed.
+class StatusPostPage {
+  const StatusPostPage({
+    required this.items,
+    this.nextCursor,
+    this.hasMore = false,
+  });
+  final List<StatusPostEntity> items;
+  final String? nextCursor;
+  final bool hasMore;
+}
+
 class StatusRemoteDataSource {
   static const Duration _requestTimeout = Duration(seconds: 4);
 
@@ -30,34 +42,63 @@ class StatusRemoteDataSource {
   final ApiClient apiClient;
   final bool useMock;
 
-  Future<List<StatusPostEntity>> fetchStatusPosts({int limit = 20}) async {
-    if (useMock) {
-      return StatusMock.posts
-          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
-          .take(limit)
-          .toList();
-    }
+  Future<List<StatusPostEntity>> fetchStatusPosts({int limit = 20}) async =>
+      (await fetchStatusPage(limit: limit)).items;
 
-    try {
-      final result = await apiClient
-          .get(
-            '/api/v1/status/posts',
-            query: {'limit': limit},
-            options: _options,
-          )
-          .timeout(_requestTimeout);
-      if (result is NetworkSuccess<Map<String, dynamic>>) {
-        final list = result.data['items'] as List<dynamic>? ?? const [];
-        return list
-            .whereType<Map<String, dynamic>>()
-            .map(StatusPostEntity.fromJson)
-            .toList();
-      }
-      final failure = result as NetworkFailure<Map<String, dynamic>>;
-      throw Exception(failure.message);
-    } catch (_) {
-      rethrow;
+  Future<StatusPostPage> fetchStatusPage({
+    int limit = 20,
+    String? cursor,
+  }) async {
+    final pageLimit = limit.clamp(1, 20);
+    final offset = cursor == null ? 0 : int.tryParse(cursor);
+    if (offset == null || offset < 0) {
+      throw ArgumentError('Invalid community page cursor');
     }
+    final startedIdentity = identity?.call();
+    if (useMock) {
+      final all = StatusMock.posts
+          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+      final items = all.skip(offset).take(pageLimit).toList();
+      final more = offset + items.length < all.length;
+      return StatusPostPage(
+        items: items,
+        nextCursor: more ? '${offset + items.length}' : null,
+        hasMore: more,
+      );
+    }
+    final result = await apiClient
+        .get(
+          '/api/v1/status/posts',
+          query: {'limit': pageLimit, if (cursor != null) 'cursor': cursor},
+          options: _options,
+        )
+        .timeout(_requestTimeout);
+    if (identity != null && identity!() != startedIdentity) {
+      throw StateError('Current account or audience changed; discard old page');
+    }
+    if (result is NetworkSuccess<Map<String, dynamic>>) {
+      final list = result.data['items'] as List<dynamic>? ?? const [];
+      final meta = result.data['meta'] is Map
+          ? result.data['meta'] as Map
+          : const {};
+      final candidate = meta['next_cursor']?.toString();
+      final nextOffset = int.tryParse(candidate ?? '');
+      final hasMore =
+          meta['has_more'] == true && nextOffset != null && nextOffset > offset;
+      return StatusPostPage(
+        items: List.unmodifiable(
+          list
+              .whereType<Map<String, dynamic>>()
+              .take(pageLimit)
+              .map(StatusPostEntity.fromJson),
+        ),
+        nextCursor: hasMore ? candidate : null,
+        hasMore: hasMore,
+      );
+    }
+    final failure = result as NetworkFailure<Map<String, dynamic>>;
+    throw Exception(failure.message);
   }
 
   Future<StatusPostEntity> createStatusPost({

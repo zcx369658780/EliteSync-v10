@@ -58,6 +58,12 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8017/') {
+      throw StateError('v10.1.3 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
   if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8015/') {
       throw StateError('v10.1.2 requires its isolated local host.');
@@ -126,6 +132,7 @@ Future<void> main() async {
     ),
   );
   const restoration =
+      bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||

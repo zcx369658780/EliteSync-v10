@@ -206,114 +206,26 @@ class StatusPostController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        $user = $request->user();
-        $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = app(AdminAccess::class)->allows($user);
-        $limit = max(1, min((int) $request->query('limit', 20), 50));
-        $cursor = max(0, (int) $request->query('cursor', 0));
-        $includeHidden = $viewerIsAdmin && $request->boolean('include_hidden', false);
-
-        $query = $this->visibleFeedQuery($viewerId, $viewerIsAdmin, $includeHidden);
-
-        $countQuery = clone $query;
-        $total = $countQuery->count();
-
-        $items = $query
-            ->skip($cursor)
-            ->take($limit)
-            ->get()
-            ->map(fn (StatusPost $post) => $this->shapePost($post, $viewerId, $viewerIsAdmin))
-            ->values();
-
-        $nextCursor = ($cursor + $items->count()) < $total ? (string) ($cursor + $items->count()) : null;
-
-        return response()->json([
-            'items' => $items,
-            'meta' => [
-                'next_cursor' => $nextCursor,
-                'has_more' => $nextCursor !== null,
-                'total' => $total,
-            ],
-        ]);
+        $viewer=(int)$request->user()->id;$limit=max(1,min((int)$request->query('limit',20),20));$cursor=max(0,(int)$request->query('cursor',0));
+        // Only candidate IDs leave this query; bodies are fetched after current user locks.
+        $ids=$this->visibleFeedQuery($viewer,false)->skip($cursor)->take($limit+1)->pluck('id');$items=[];
+        foreach($ids->take($limit) as $id){$value=app(\App\Services\PostAudience::class)->run($viewer,(int)$id,function($p)use($viewer){$post=$this->visibleStatusQueryForPost($p->id,$viewer,false)->first();return $post?$this->shapePost($post,$viewer,false):null;},[],true);if($value)$items[]=$value;}
+        return response()->json(['items'=>$items,'meta'=>['next_cursor'=>$ids->count()>$limit?(string)($cursor+$limit):null,'has_more'=>$ids->count()>$limit,'total'=>count($items)]]);
     }
-
-    public function show(Request $request, int $postId): JsonResponse
+    public function show(Request $request,int $postId): JsonResponse
     {
-        $user = $request->user();
-        $viewerId = $user?->id !== null ? (int) $user->id : null;
-        $viewerIsAdmin = app(AdminAccess::class)->allows($user);
-
-        $post = $this->visibleStatusQueryForPost($postId, $viewerId, $viewerIsAdmin)
-            ->first();
-
-        if (! $post) {
-            return response()->json(['message' => 'status post not found'], 404);
-        }
-
-        return response()->json([
-            'ok' => true,
-            'item' => $this->shapePost($post, $viewerId, $viewerIsAdmin),
-        ]);
+        $viewer=(int)$request->user()->id;return app(\App\Services\PostAudience::class)->run($viewer,$postId,function($p)use($viewer){$post=$this->visibleStatusQueryForPost($p->id,$viewer,false)->firstOrFail();return response()->json(['ok'=>true,'item'=>$this->shapePost($post,$viewer,false)]);});
     }
-
-    public function author(Request $request, int $userId): JsonResponse
+    public function author(Request $request,int $userId): JsonResponse
     {
-        $viewer = $request->user();
-        $viewerId = $viewer?->id !== null ? (int) $viewer->id : null;
-        $viewerIsAdmin = app(AdminAccess::class)->allows($viewer);
-
-        $author = User::query()
-            ->select($this->safeAuthorSelect([
-                'nickname' => '',
-                'city' => '',
-                'relationship_goal' => '',
-                'public_mbti' => '',
-                'public_personality' => null,
-                'role' => 'user',
-                'account_type' => 'normal',
-                'is_synthetic' => false,
-                'is_square_visible' => true,
-            ]))
-            ->find($userId);
-
-        app(SocialPolicy::class)->profile((int) $viewerId, $userId);
-        if (! app(SocialPolicy::class)->pairAllowed((int) $viewerId, $userId)) {
-            return response()->json(['message' => 'author not found'], 404);
-        }
-        if (! $author) {
-            return response()->json(['message' => 'author not found'], 404);
-        }
-
-        if (! $viewerIsAdmin && (bool) $author->disabled) {
-            return response()->json(['message' => 'author not found'], 404);
-        }
-
-        if (! $viewerIsAdmin && $viewerId !== $userId && ! (bool) ($author->is_square_visible ?? true)) {
-            return response()->json(['message' => 'author not found'], 404);
-        }
-
-        $postsQuery = $this->visibleFeedQuery($viewerId, $viewerIsAdmin)
-            ->where('author_user_id', $userId);
-
-        $items = $postsQuery
-            ->orderByDesc('id')
-            ->limit(10)
-            ->get()
-            ->map(fn (StatusPost $post) => $this->shapePost($post, $viewerId, $viewerIsAdmin))
-            ->values();
-
-        return response()->json([
-            'ok' => true,
-            'author' => $this->shapeAuthor($author),
-            'items' => $items,
-            'total' => $items->count(),
-        ]);
+        $viewer=(int)$request->user()->id;return DB::transaction(function()use($viewer,$userId){app(\App\Services\JourneyStore::class)->users([$viewer,$userId]);abort_unless($viewer===$userId||app(SocialPolicy::class)->friendship($viewer,$userId),404,'unavailable');$ids=$this->visibleFeedQuery($viewer,false)->where('author_user_id',$userId)->limit(10)->pluck('id');$items=[];foreach($ids as $id){$p=StatusPost::whereKey($id)->lockForUpdate()->first();if($p&&app(\App\Services\PostAudience::class)->allowedLocked($p,$viewer)){$fresh=$this->visibleStatusQueryForPost($p->id,$viewer,false)->first();if($fresh)$items[]=$this->shapePost($fresh,$viewer,false);}}return response()->json(['ok'=>true,'author'=>['id'=>$userId,'public_id'=>'ES-'.$userId,'name'=>'ES-'.$userId,'avatar'=>null],'items'=>$items,'total'=>count($items)]);},3);
     }
 
     public function store(Request $request): JsonResponse
     {
         return DB::transaction(function () use ($request): JsonResponse {
             $user = User::query()->whereKey($request->user()?->id)->lockForUpdate()->first();
+            app(\App\Services\JourneyStore::class)->users([(int)$request->user()->id],true);
             if (! $user || ($user->disabled ?? false) || in_array(($user?->moderation_status ?? 'normal'), ['banned', 'restricted'], true)) {
                 return response()->json(['message' => 'account blocked'], 403);
             }
@@ -329,7 +241,7 @@ class StatusPostController extends Controller
 
             $location = trim((string) ($data['location_name'] ?? ''));
             if ($location === '') {
-                $location = trim((string) ($user?->city ?? $user?->private_birth_place ?? ''));
+                $location = trim((string) ($user?->city ?? ''));
             }
 
             $coverMediaAssetId = null;
@@ -400,6 +312,7 @@ class StatusPostController extends Controller
 
         return DB::transaction(function () use ($request, $id, $d) {
             User::whereKey($request->user()->id)->lockForUpdate()->firstOrFail();
+            app(\App\Services\JourneyStore::class)->users([(int)$request->user()->id],true);
             $post = StatusPost::whereKey($id)->where('author_user_id', $request->user()->id)->where('is_deleted', false)->lockForUpdate()->firstOrFail();
             $post->audience = $d['audience'];
             $post->save();
@@ -441,6 +354,8 @@ class StatusPostController extends Controller
                 || ! $current || (int) $current->author_user_id !== (int) $owner || $current->is_deleted) {
                 return response()->json(['message' => 'status post not found'], 404);
             }
+            app(\App\Services\JourneyStore::class)->users([(int)$user->id,(int)$owner],true);
+            abort_unless(app(\App\Services\PostAudience::class)->allowedLocked($current,(int)$user->id),404,'unavailable');
             $viewerId = (int) $user->id;
             $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
             if (! $post) {
@@ -477,7 +392,7 @@ class StatusPostController extends Controller
                     userId: (int) $post->author_user_id,
                     kind: 'status_like',
                     title: "{$actorName} 赞了你的动态",
-                    body: trim((string) $post->title) !== '' ? mb_strimwidth(trim((string) $post->title), 0, 60, '…', 'UTF-8') : '你的动态获得了新的互动',
+                    body: '请在当前权限允许时查看',
                     payload: [
                         'route_name' => 'status_author',
                         'route_args' => [
@@ -502,6 +417,7 @@ class StatusPostController extends Controller
 
     public function report(Request $request, int $postId, EventLogger $events): JsonResponse
     {
+        return app(\App\Services\PostAudience::class)->run((int)$request->user()->id,$postId,function()use($request,$postId,$events){
         $user = $request->user();
         $viewerId = (int) $user->id;
         $post = $this->visibleStatusQueryForPost($postId, $viewerId, app(AdminAccess::class)->allows($user))->first();
@@ -545,6 +461,7 @@ class StatusPostController extends Controller
                 'appeal_status' => $report->appeal_status,
             ],
         ]);
+        });
     }
 
     public function destroy(Request $request, int $postId): JsonResponse
@@ -614,6 +531,7 @@ class StatusPostController extends Controller
             // audience edits, friendship revocation and account closure.
             $post = DB::transaction(function () use ($user, $postId) {
                 $actor = User::whereKey($user->id)->lockForUpdate()->firstOrFail();
+                app(\App\Services\JourneyStore::class)->users([(int)$user->id],true);
                 abort_if($actor->disabled, 403);
                 $locked = StatusPost::whereKey($postId)->where('author_user_id', $actor->id)->lockForUpdate()->firstOrFail();
                 $locked->is_deleted = true;

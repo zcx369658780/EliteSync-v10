@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
@@ -131,6 +132,20 @@ class StatusPostCard extends ConsumerWidget {
                 ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
               ),
             ],
+            OutlinedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => Scaffold(
+                    appBar: AppBar(title: const Text('好友动态评论')),
+                    body: SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: CommentPanel(postId: post.id),
+                    ),
+                  ),
+                ),
+              ),
+              child: const Text('一级评论'),
+            ),
             if (showReturnflowActions) ...[
               SizedBox(height: t.spacing.sm),
               Container(

@@ -1,3 +1,5 @@
+import '../buddy_v1013/buddy_page.dart';
+import '../status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +22,18 @@ class _HomeState extends SessionBoundPage<SlowDatingHomePage> {
     final round = objectMap(data?['round']);
     return frame('慢约进展', [
       const Text('按自己的节奏，认真认识一个人。'),
+      OutlinedButton(
+        onPressed: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute<void>(builder: (_) => const BuddyPage())),
+        child: const Text('独立吃饭 / 学习搭子'),
+      ),
+      OutlinedButton(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const StatusSquarePage()),
+        ),
+        child: const Text('好友可见社区'),
+      ),
       if (data != null) ...[
         const SizedBox(height: 24),
         Text('当前参与：${journeyStateLabel(participation['state'])}'),

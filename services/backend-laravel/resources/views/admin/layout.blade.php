@@ -40,7 +40,7 @@
 <header>
     <strong>EliteSync 管理面板</strong>
     @auth
-<nav aria-label="管理模块"><a href="/admin">用户/审核</a> · <a href="/admin/reports">举报</a> · <a href="/admin/matching">匹配运营</a> · <a href="/admin/questions">问卷</a> · <a href="/admin/releases">开发版本</a> · <a href="/admin/audits">审计</a></nav>
+<nav aria-label="管理模块"><a href="/admin">用户/审核</a> · <a href="/admin/reports">举报</a> · <a href="/admin/matching">匹配运营</a> · <a href="/admin/questions">问卷</a> · <a href="/admin/releases">开发版本</a> · <a href="/admin/audits">审计</a> · <a href="/admin/buddy-community">搭子/评论审核</a></nav>
         <form method="post" action="{{ route('admin.logout') }}">
             @csrf
             <button type="submit">退出管理端</button>
