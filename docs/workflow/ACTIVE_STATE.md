@@ -1,6 +1,6 @@
 # EliteSync-v10｜唯一当前状态入口
 
-更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_MAIN_INTEGRATED / LOCAL_CODE_BASELINE_CODEX_REPORTED / RUNTIME_NOT_RUN / V10.1.4_FROZEN_FUNCTIONAL_PLAN / MANUAL_CODEX_DISPATCH_PENDING / V10.1.4_NOT_IMPLEMENTED**
+更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_MAIN_INTEGRATED / LOCAL_CODE_BASELINE_CODEX_REPORTED / RUNTIME_NOT_RUN / V10.1.4_CHANGES_REQUIRED / NOT_ACCEPTED / R1_TASK_ISSUED / OWNER_MANUAL_DISPATCH_PENDING / V10.1.5_NOT_STARTED**
 
 本文件是优先首读的**可更新短状态卡**，不是历史证据覆盖或本地运行通行证。每次开工先实时回读GitHub main；下列固定身份是本次核验结果，而非承诺HEAD永不变化。旧CURRENT_STATE/DOC_INDEX/项目源快照下方早期“当前”均按形成时点保留。
 
@@ -19,14 +19,13 @@
 - [唯一集成报告](../versions/v10.1.3/integration.md)／[原实施报告](../versions/v10.1.3/IMPLEMENTATION_REPORT.md)／[制品清单](../versions/v10.1.3/artifact_manifest.json)归档原字节。Codex本地代码树HEAD与交付main一致且干净、五保护根和六件SQL/APK不变为`CODEX_REPORTED/LOCAL_ONLY`；本次DB/API/APP/APK/RTC功能重新运行均`NOT_RUN`。
 - 保留真实通知点击GUI未单独验证、Buddy双进程并发不等于双HTTP、原MariaDB旧失败和其他历史限制。v10.1.0 PARTIAL、v10.1.1事故恢复、v10.1.2两P1修复、真实实人供应商PENDING均不清零。
 
-## 当前唯一下一门：v10.1.4已冻结，等待Owner手动派发
+## v10.1.4 首轮Astra功能审阅：CHANGES_REQUIRED，R1待Owner手动派发
 
-Owner于2026-10-21已批准进入v10.1.4「平台活动与内部Safety处置」，Astra已发布[本版唯一冻结计划](../versions/v10.1.4/plan.md)（Blob `6f4157eeee47bc8d2fc4bbda5767025de0691347`）和[Codex唯一综合任务](../versions/v10.1.4/task_order.md)（Blob `67f01f8841a7882a907d1782136ff520caed977c`）。这是**受控合成开发范围冻结**，Owner尚未手动转交本地Codex，因此**IMPLEMENTATION_NOT_STARTED**；尚未为本版创建接受候选、运行新版APP/数据库或触碰v10.1.3接受源码。
+Owner已经批准并由Codex完成v10.1.4合成平台活动＋内部Safety首轮开发；固定源码Commit `e7e246dc70f72846a05a31e022efadee0838ab83`、Root `e9ca41a1347fdeebdedca18de6f8eed767b59d5c`、apps `b502d776c8e5f916f2d4074b90a39d0547b896fa`、services `45869d8b765ca8c645a04f747bb67be03a5bd632`，正式完整交付 `4f303bc3674edc599c9602e6704a97deb6dce4ba`，脱敏审阅 `8e639a3f22fe85eaf267f518c7205e4973dd5092`。**产品main尚未集成v10.1.4**，继续以已接受v10.1.3 apps/services为权威。
 
-两条业务线为：虚构平台活动Web创建/预算模拟→APP受控报名/候补/确认/取消/排程完成；现有ModerationReport/SanctionAppeal/AccountGovernance增量实现**举报≠Finding、规则辅助≠人工处罚、具名申诉复核纠错**。不批准真实线下招募/订场/付款、GPS强制签到、向他人公开负面记录、外部AI/真实供应商或费用。v10.1.5未获授权。
+Astra直接核GitHub源码、36产品路径与39脱敏证据目录、运行摘要，发现**同版Safety两项源码可构造P1**：B1用户先退出活动后不能在有限历史范围报告原活动安全事件；B2合法Safety Case在Block/退出撤权后失去人工调查所需最小证据处理通路。该裁决**不是Astra本地MariaDB实跑反例**，尚无真实用户发生的证据。一次[正式独立审阅与R1集中任务](../versions/v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)已经发布，**Owner仍须手动交本地Codex后才能执行**；首轮版本状态 `V10.1.4_CHANGES_REQUIRED/NOT_ACCEPTED`。不得自动把原候选称为接受源码、不合main、不启动v10.1.5。
 
-Codex获得Owner手动派发后才可按固定AC-01～12连续研发、在独立新空合成库完成真实APP/API/Web/DB链并交候选。Astra后续独立功能验收；不自动合产品main、清审阅/备份或进行v10.1.5。
-
+已有有效开发成果保留：51 backend/1182 assertions scoped PASS、Flutter30 scoped PASS（CODEX_REPORTED），两组真实MariaDB RR精确锁等待、87表重启hash、原APK安装回读与虚构多角色Web/APP链。历史共享回归5失败与已接受基线同现、2+2 deprecation、原执行失败原样保留。R1仅需最小修复安全投诉/案卷连续性，**不得恢复Block后已撤销的普通活动卡、私聊、媒体或额外社交权利**。真实活动/金钱/外部AI/认证仍未授权。
 
 ## 项目源与工作流分层
 
