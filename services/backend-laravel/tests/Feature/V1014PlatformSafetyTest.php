@@ -300,6 +300,9 @@ final class V1014PlatformSafetyTest extends TestCase
         $this->adminAction($id, 'close')->assertRedirect('/admin/platform-events');
         $this->adminAction($id, 'complete')->assertRedirect('/admin/platform-events');
         $this->assertSame('COMPLETED', $this->event($id)->state);
+        $this->userAction($a,$id,'cancel')->assertOk()->assertJsonPath('state','CANCELLED_BY_USER');
+        $this->getJson('/api/v1/platform-events/'.$id)->assertNotFound();
+        $this->assertSame('COMPLETED',$this->event($id)->state);
         foreach (['safety_cases', 'safety_case_decisions', 'admin_sanctions'] as $table) $this->assertDatabaseCount($table, 0);
     }
 

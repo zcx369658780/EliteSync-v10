@@ -70,7 +70,7 @@ final class PlatformEventService
         $actions=[];
         if(!$admin&&$r){
             if($event->state==='OPEN'&&$r->state==='INVITED')$actions[]='apply';
-            if(in_array($event->state,['OPEN','CLOSED'],true)&&in_array($r->state,self::ACTIVE,true))$actions[]='cancel';
+            if(in_array($event->state,['OPEN','CLOSED','COMPLETED'],true)&&in_array($r->state,self::ACTIVE,true))$actions[]='cancel';
             if($r->state==='CONFIRMED'&&$r->attendance==='UNVERIFIED'&&in_array($event->state,['OPEN','CLOSED'],true))$actions[]='attendance';
         }
         $result=['id'=>$event->id,'revision'=>(int)$event->revision,'title'=>$event->title,'city'=>$event->city,
@@ -137,7 +137,7 @@ final class PlatformEventService
             $ticket=$this->run($actor,$id,function($event)use($actor){
                 $a=app(PlatformAccess::class);$r=$this->registration($event,$actor);
                 if(!$a->available($actor,true)||!$r||!in_array($r->state,self::ACTIVE,true)
-                    ||!in_array($event->state,['OPEN','CLOSED'],true))return null;
+                    ||!in_array($event->state,['OPEN','CLOSED','COMPLETED'],true))return null;
                 return ['id'=>$event->id,'revision'=>(int)$event->revision,'registration_state'=>$r->state,'allowed_actions'=>['cancel']];
             });
             if($ticket)$tickets[]=$ticket;
@@ -253,7 +253,7 @@ final class PlatformEventService
             else abort_unless($this->readable($event,$actor),404,'unavailable');
             return $this->command($actor,$event,$d,function()use($actor,$event,$d,$r,$cancel){
                 if($cancel){
-                    abort_unless(in_array($r->state,self::ACTIVE,true)&&in_array($event->state,['OPEN','CLOSED'],true),409);
+                    abort_unless(in_array($r->state,self::ACTIVE,true)&&in_array($event->state,['OPEN','CLOSED','COMPLETED'],true),409);
                     $state='CANCELLED_BY_USER';
                     DB::table('platform_event_grants')->where('id',$r->grant_id)->update(['state'=>'REVOKED','updated_at'=>now()]);
                 }elseif($d['action']==='apply'){
