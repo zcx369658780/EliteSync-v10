@@ -26,6 +26,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = uri("../flutter_elitesync_module/build/host/outputs/repo"))
+        maven(url = uri("../flutter_elitesync_module/build/host/r1-retention-probe/outputs/repo")) {
+            content { includeVersionByRegex(".*", ".*", "1\\.0-r1probe-[0-9a-f]{12}") }
+        }
+        maven(url = uri("../flutter_elitesync_module/build/host/v1015-r1/outputs/repo")) {
+            content { includeVersionByRegex(".*", ".*", "1\\.0-v1015r1-[0-9a-f]{12}") }
+        }
 
         val flutterStorageBaseUrl =
             System.getenv("FLUTTER_STORAGE_BASE_URL")

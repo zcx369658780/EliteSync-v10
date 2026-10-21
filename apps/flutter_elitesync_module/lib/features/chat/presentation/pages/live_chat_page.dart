@@ -237,14 +237,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _images = images;
         _error = null;
         _offline = false;
-        if (_attempt != null &&
-            items.any(
-              (m) => m['client_message_id'] == _attempt!.clientMessageId,
-            )) {
-          _sendStatus = '服务器已确认此消息';
-          _attempt = null;
-          _retryAsset = null;
-        }
+        // A current read may observe this message while its POST response is
+        // still pending. Keep the attempt until that POST (or its same-key
+        // retry) acknowledges it; a later timeout must not create a new key
+        // for the unchanged draft.
       });
       _hadTrustedCache = await _cache.saveAuthorized(
         _cacheKey,

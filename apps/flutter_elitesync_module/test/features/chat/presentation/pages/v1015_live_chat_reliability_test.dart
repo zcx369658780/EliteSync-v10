@@ -45,6 +45,9 @@ class _Api extends ApiClient {
   final List<String> events;
   String readMode = 'success';
   bool timeoutFirstSend = false;
+  bool currentReadEchoesPendingSend = false;
+  Completer<NetworkResult<Map<String, dynamic>>>? pendingFirstPost;
+  int successfulPostAcknowledgements = 0;
   Completer<NetworkResult<Map<String, dynamic>>>? preflight;
   final posts = <Map<String, dynamic>>[];
   @override
@@ -69,6 +72,18 @@ class _Api extends ApiClient {
     if (readMode == 'malformed-response') {
       return const NetworkSuccess({'items': 'invalid list'});
     }
+    if (currentReadEchoesPendingSend && posts.isNotEmpty) {
+      return NetworkSuccess({
+        'items': [
+          {
+            'id': 18,
+            'client_message_id': posts.first['client_message_id'],
+            'content': posts.first['content'],
+            'attachments': <dynamic>[],
+          },
+        ],
+      });
+    }
     return const NetworkSuccess({
       'items': [
         {'id': 4, 'content': '此前合法保存的合成私密消息', 'attachments': <dynamic>[]},
@@ -87,12 +102,16 @@ class _Api extends ApiClient {
     events.add('message-post');
     final data = Map<String, dynamic>.from(body as Map);
     posts.add(data);
+    if (posts.length == 1 && pendingFirstPost != null) {
+      return pendingFirstPost!.future;
+    }
     if (timeoutFirstSend && posts.length == 1) {
       return NetworkFailure(
         message: 'synthetic timeout',
         error: TimeoutException('synthetic timeout'),
       );
     }
+    successfulPostAcknowledgements++;
     return NetworkSuccess({
       'id': 18,
       'client_message_id': data['client_message_id'],
@@ -193,6 +212,73 @@ Future<void> _dispose(WidgetTester tester, _Fixture f) async {
 }
 
 void main() {
+  testWidgets(
+    'current-authority read during pending POST cannot replace retry identity before receive timeout',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.pendingFirstPost = Completer();
+      f.api.currentReadEchoesPendingSend = true;
+      const draft = '已入库但POST响应丢失的合成消息';
+      await tester.enterText(find.byType(TextField), draft);
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(1));
+      final originalKey = f.api.posts.single['client_message_id'];
+      expect(originalKey, isA<String>());
+      expect((originalKey as String).isNotEmpty, isTrue);
+      expect(f.api.successfulPostAcknowledgements, 0);
+
+      // A WS-triggered load and this GUI refresh share the same current-read
+      // path. Server storage already contains the original key while its POST
+      // response remains pending. The read must not discard the send attempt.
+      final readsBefore = f.api.events.where((e) => e == 'message-read').length;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      expect(
+        f.api.events.where((e) => e == 'message-read').length,
+        readsBefore + 1,
+      );
+      expect(f.api.pendingFirstPost!.isCompleted, isFalse);
+      expect(find.text('服务器已确认此消息'), findsNothing);
+      expect(find.text('发送中，等待服务器确认'), findsOneWidget);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        draft,
+      );
+
+      f.api.pendingFirstPost!.complete(
+        NetworkFailure(
+          message: 'synthetic receive timeout after server commit',
+          error: DioException(
+            requestOptions: RequestOptions(path: '/api/v1/messages'),
+            type: DioExceptionType.receiveTimeout,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
+      expect(find.text('使用原消息编号重试'), findsOneWidget);
+      expect(f.api.successfulPostAcknowledgements, 0);
+
+      await tester.tap(find.text('使用原消息编号重试'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(2));
+      expect(f.api.posts.last['client_message_id'], originalKey);
+      expect(f.api.posts.last, f.api.posts.first);
+      expect(f.api.successfulPostAcknowledgements, 1);
+      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      expect(find.text('使用原消息编号重试'), findsNothing);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        isEmpty,
+      );
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(2));
+      await _dispose(tester, f);
+    },
+  );
+
   testWidgets(
     'actual chat timeout retries the same logical message ID and confirms only server identity',
     (tester) async {
