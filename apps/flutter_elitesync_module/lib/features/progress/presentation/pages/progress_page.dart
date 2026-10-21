@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
+import 'package:flutter_elitesync_module/features/status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/calm_home_projection_provider.dart';
@@ -15,7 +17,10 @@ class ProgressPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projection = ref.watch(calmHomeProjectionProvider);
+    const v1013 = bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD');
+    final projection = v1013
+        ? CalmHomeProjection.current
+        : ref.watch(calmHomeProjectionProvider);
     final summaries = projection.summaries.where(
       (summary) => summary.domain != HomeProjectedDomain.conversation,
     );
@@ -26,6 +31,37 @@ class ProgressPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            if (v1013) ...[
+              Text('独立活动与社区', style: Theme.of(context).textTheme.titleMedium),
+              const Text('不要求婚恋资料或慢约参与；搭子、好友与消息同意分别确认。'),
+              Card(
+                child: ListTile(
+                  key: const ValueKey('progress-buddy-entry'),
+                  leading: const Icon(Icons.restaurant_outlined),
+                  title: const Text('独立吃饭 / 学习搭子'),
+                  subtitle: const Text('创建或查看受控活动；不会报名慢约或建立正式关系。'),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(builder: (_) => const BuddyPage()),
+                  ),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  key: const ValueKey('progress-community-entry'),
+                  leading: const Icon(Icons.dynamic_feed_outlined),
+                  title: const Text('好友可见社区'),
+                  subtitle: const Text('查看当前有权读取的动态与一级评论。'),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const StatusSquarePage(),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
             Text('当前可用', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 12),
             Card(
@@ -59,7 +95,8 @@ class ProgressPage extends ConsumerWidget {
                 onTap: () => context.push('/formal-relationship'),
               ),
             ),
-            if (!const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD')) ...[
+            if (!const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') &&
+                !v1013) ...[
               Text('三阶段只读摘要', style: Theme.of(context).textTheme.titleMedium),
               const Text('摘要不授予匹配、连接或消息权限；准备状态未知不会自动撤销已有连接。'),
               if (summaries.any(
