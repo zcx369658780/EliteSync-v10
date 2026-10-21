@@ -1,6 +1,6 @@
 # EliteSync-v10｜唯一当前状态入口
 
-更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FROZEN_FUNCTIONAL_PLAN / CODEX_MANUAL_DISPATCH_PENDING / V10.1.3_NOT_IMPLEMENTED**
+更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / MAIN_PRODUCT_INTEGRATION_PENDING_OWNER_APPROVAL / V10.1.4_NOT_STARTED**
 
 本文件是优先首读的**可更新短状态卡**，不是历史证据覆盖或本地运行通行证。每次开工先实时回读GitHub main；下列固定身份是本次核验结果，而非承诺HEAD永不变化。旧CURRENT_STATE/DOC_INDEX/项目源快照下方早期“当前”均按形成时点保留。
 
@@ -11,9 +11,13 @@
 - 47个产品变更path/mode/Blob完整匹配，集成后继仅18个文档路径。Astra直接核GitHub对象/源码与正式文档；**LOCAL_CODE_BASELINE**由Codex回报本地干净/HEAD相等（`CODEX_REPORTED / LOCAL_ONLY`），**RUNTIME**本轮未重新启动DB/API/APK/RTC，不能宣称重新验收物理运行。
 - 原正式报告与manifest见[集成报告](../versions/v10.1.2/integration.md)。v10.1.0整版`PARTIAL/NOT_ACCEPTED`及AC-10.1-08 PARTIAL，v10.1.1误清库/恢复历史、v10.1.2原失败、RTC/AEC与外部Web缺口保留。`REAL_IDENTITY_PROVIDER_PENDING`，合成`TEST_ONLY`不代表真实实人。
 
-## 当前唯一下一门：v10.1.3
+## v10.1.3 功能已接受；安全集成待Owner批准
 
-Owner已条件批准在v10.1.2安全集成独立接受、无产品返修时直接进入；条件已满足。Astra已发布[**v10.1.3冻结功能计划**](../versions/v10.1.3/plan.md)及[**唯一Codex综合任务**](../versions/v10.1.3/task_order.md)。目标是吃饭/学习独立搭子双人真实链＋好友可见有限社区/一级评论；**尚未由Owner手动转交Codex，因此未实施**。未授权的陌生人全局发现／具体个人地点保持关闭，使用当前好友/受控一次性邀请作为开发默认，不改变`Match≠Buddy≠Friendship≠CN≠MC≠正式Relationship`。v10.1.4尚未启动。
+**Astra在2026-10-21独立核验并直接归档**：[v10.1.3功能验收](../versions/v10.1.3/acceptance.md)，裁决`V10.1.3_FUNCTION_ACCEPTED_WITH_OBSERVATIONS`，未发现需同版R1的明确产品阻断；**不等于已安全集成**。接受源码Commit `e27db2012e2c57390c4da179330552a6b64a728d`、Root Tree `cf670270aaac7d641d58939eaea7737c23b89417`；**接受apps** `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、**接受services** `4d637a3fd827e00974887d9ce515a1833a8f3a8a`，候选完整交付 `7d19ed5fe4850b30f80c30775eb637df404a089c`，脱敏审阅固定Commit `a8c234e4b6f3e8837ab2e6978ab29ca43a38d172`。GitHub `main`仍为已接受的v10.1.2产品；本轮只新增Astra验收文档。
+
+已证：独立MEAL/STUDY受控搭子、朋友限定动态及一级评论、Block/撤权/旧token拒绝、MariaDB精确RR等待、18表重启哈希、Android开发APK与Web受控管理的CodeX本地执行回执。**RUNTIME_LAYER=CODEX_REPORTED**，Astra直接核GitHub源码及代表性脱敏原证；不声称亲自运行Windows/AVD/MariaDB。保留：通知卡片完整GUI点击NOT_RUN、Buddy并发双进程服务调用非双HTTP、真实手机/RTC媒体/Push/支付/公共陌生发现未授权。
+
+**唯一下一门**：Owner决定是否批准v10.1.3**单次安全集成**，批准后仍由Owner手动派Codex，精确接入两完整接受产品Tree、保留main及原审阅分支、必要静态验证和本地代码基线接续；待Astra第二道集成验收。不要自动启动v10.1.4，也不因为功能接受就公开运营。
 
 ## 项目源与工作流分层
 
