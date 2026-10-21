@@ -211,9 +211,15 @@
   ],
   "report": {
     "path": "docs/versions/v10.1.4/IMPLEMENTATION_REPORT.md",
-    "bytes": 24106,
-    "SHA256": "2c85768dcf55df1936f900d32654e191d0c26c7c79794231f64ea890da1e8771",
-    "git_blob": "17b859acf31c6ab5e63200fec3ecff5aaea3691b"
+    "bytes": 23942,
+    "SHA256": "9a2a975ba016dc3c151bc4183dd15fccbc5b83b63dff7951d8cfe82d2fe72b82",
+    "git_blob": "17b859acf31c6ab5e63200fec3ecff5aaea3691b",
+    "local_worktree_original": {
+      "bytes": 24106,
+      "SHA256": "2c85768dcf55df1936f900d32654e191d0c26c7c79794231f64ea890da1e8771",
+      "line_endings": "CRLF; normal Git text normalization on add"
+    },
+    "serialization": "Git blob bytes (LF); local working-file CRLF identity recorded separately"
   },
   "APK": {
     "source": {
