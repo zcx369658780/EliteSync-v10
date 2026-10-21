@@ -162,3 +162,86 @@ RR运行源为`7d4bfb1cdd681c056ca3b434fc6178c17928e8f6`，其后`e7e246dc`只�
 NOT_RUN / NOT_AUTHORIZED：真实手机安装/双端通话/麦克风/摄像头；RTC/WS/UDP/防火墙/DNAT/UAC/系统升级；云端阿里试点、公网、证书、备案；真实招募/场地预订/GPS签到/费用或支付；真实实人provider/外部AI/外部Safety供应商；正式Push/真实线下履约；backup restore演练、迁移down、实际账号擦除；所有无关算法oracle；main集成/独立接受/旧资产清理/v10.1.5。
 
 保留前版边界：v10.1.0整版PARTIAL/NOT_ACCEPTED和AC-10.1-08 PARTIAL；v10.1.1误清事故/恢复原证，v10.1.2/1.3原失败；真实身份PROVIDER_PENDING、RTC/AEC和前版通知GUI观察不清零。2026-10-21原项目源ZIP原字节镜像仍BYTE_MIRROR_PENDING，本轮未获得原ZIP、未扩大搜索或重造，未阻断功能交付。最终交付后停止，等待Astra独立功能验收。
+
+
+## R1｜历史最小报告受理与内部案卷连续性（2026-10-21追加）
+
+**V10.1.4_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_ACCEPTANCE / MAIN_PRODUCT_NOT_INTEGRATED / V10.1.5_NOT_STARTED / NOT_YET_ACCEPTED**。本节仅处理Astra所列B1/B2，原报告正文和历史结果逐字保留；原结论中“旧报告/所有证据404”的自测只证明社交撤权，不能再当作Safety连续性通过。以下是Codex执行回报，不构成Astra接受。
+
+### R1固定身份
+
+| 对象 | 身份 |
+|---|---|
+| 唯一R1任务 | `ASTRA_REVIEW_AND_R1_TASK_20261021.md`，Blob `36d6b3549e0fd1dff2fc44f6db72ac62c7d4f0fa` |
+| 本轮live main（开工及源码发布回读） | `c6ef1fef6d03bfaefc9f334b3b5a6c362dc07e01`，Root `14fbc6db1d25c134531daf82d2cfaf796f8580cb`；产品仍为接受v10.1.3，未合本候选 |
+| 原源码／完整交付 | `e7e246dc70f72846a05a31e022efadee0838ab83` / `4f303bc3674edc599c9602e6704a97deb6dce4ba` |
+| 唯一R1源码Commit | `1062603bfd5866eb4c40b4773657343a1eca2af7` |
+| R1源码Root Tree | `aa4c47569d60a5e5638c25e9b0e3c0d7e1760da5` |
+| R1 apps Tree | `3468a3dd97da7accfda2539a0f8d8f68931a6110` |
+| R1 services Tree | `0cb1f9d19659291a462488b3686fd0a07a6698ac` |
+| R1候选分支 | `codex/v10.1.4-r1-safety-continuity` |
+| R1独立审阅Commit／Tree | `d59cb76d41a0a0d81947d584ac6228554c82fda0` / `b1cae2fbc0cc813bf2f2e63e2322b2a41d59004b` |
+| R1审阅分支 | `review/temporary-evidence-v1014-r1-20261021` |
+
+相对原完整交付仅9个产品路径，mode/Blob见新增`artifact_manifest_R1.json`；原`artifact_manifest.json` Blob仍为`107817209f195d183392f3a6fda96d456fd5059f`，未重写。原报告Blob `17b859acf31c6ab5e63200fec3ecff5aaea3691b`作为本文件不可变前缀。源码及36份最小审阅副本已普通non-force发布，并通过独立GitHub REST元信息＋raw HTTPS字节回读。原候选分支仍在4f303bc、原39份审阅分支仍在8e639a3f，均未移动。正式追加报告与R1清单随后只做文档提交，最终交付Commit/Root/文档Blob由发布后回读及最终答复固定。
+
+### B1/B2修复前后真实对照
+
+| 问题 | 原源码真实HTTP／DB反例 | R1结果 |
+|---|---|---|
+| B1先安全退出再报告 | A/B/C经真实服务受邀并实际HTTP报名；A主动取消后私有GET404，最小报告POST也404（期望201）。原报告/证据/决定/通知/处罚/访问审计无新增。 | 同一既有参与事实，退出并被B拉黑后，受限report-only入口POST201；仅OPEN、两条本案最小来源封存，无Finding/制裁。旧私有GET保持404。 |
+| B2既有案卷调查断路 | A合法提交case，具名Web证据GET200；B经实际Block入口拉黑A后，原活动GET404且具名Web证据也404（期望受限调查200）。 | 原已收案可由当前具名管理员读取本案历史最小来源、审计、triage/investigate/dismiss；普通活动、旧资料和私信等权限不恢复。历史来源不足时不能substantiate/restrict。 |
+
+原反例保存在`baseline-HTTP.private.json`；`baseline-summary.json`标明 **BASELINE_FAIL**，runner exit0只表示如实复现404，不表示产品已通过。随后单独两请求前后数据库完整值核验：仅正常Sanctum时间字段可能变，report/evidence/decision/sanction/notification/audit写入均0；无500、死锁或进程异常冒充拒绝。[公开摘要](https://github.com/zcx369658780/EliteSync-v10/blob/d59cb76d41a0a0d81947d584ac6228554c82fda0/docs/_temporary_review/v1014-r1-20261021/baseline-summary.json)／[数据库差异](https://github.com/zcx369658780/EliteSync-v10/blob/d59cb76d41a0a0d81947d584ac6228554c82fda0/docs/_temporary_review/v1014-r1-20261021/baseline-DB-delta.json)。
+
+### 用途、来源与时间合同
+
+**B1：`DEV_SAFETY_HISTORY_7D_V1 / REPORT_ONLY`。** 新SafetyParticipation从服务端既有`apply`审计的actor、registration_id、state及审计顺序重建真实合成参与；只受邀、客户端伪造APPLIED行、任意UUID或他人注册ID均不构成证明。双方必须在同一活动有可证重叠参与。窗口取本人退出／受影响撤权／活动完成或结束等已发生边界与event.end_at的较早值，再加7天，使用服务器时间；后续操作不重开窗口。这只是本版受控合成默认，不是Owner永久运营或法定保留政策。
+
+新撤权审计精确记`affected_registration_ids`或`revoked_grant_id`，只影响对应参与事实；C/D之间Block不截断仍合法的A/B或后来同场参与者。旧无scope的审计不推定全体结束；仅已终止且缺精确收据的本行可按其updated_at保守设界，不能证明的同时间戳重叠拒绝，未撤权的当前参与者不被截断。
+
+`GET /platform-events`增量下发`report_contexts`：仅本人已证范围的event指针、REPORT_ONLY/policy/deadline和同史目标registration_id＋不含身份资料的合成标签，无title/city/venue/头像/账号/媒体/关系。APP历史入口与普通活动卡并存，退出目标不因完整卡仍在而不可选；两种表单状态隔离。POST复用原`/platform-events/{id}/reports`，锁后复核actor/session/event/subject身份与参与来源，严格白名单类别/最小陈述/幂等。重复相同键仅同一case；冲突409，无法通过key跨活动或代替别人写。
+
+**B2：`CASE_INVESTIGATION_ONLY / HISTORICAL_AUTHORIZED_FACT`。** 唯一R1迁移`2026_10_21_200000_add_safety_case_source_seals.php`只对原`safety_case_evidence`增3个nullable字段：`source_fact`、`fact_hash`、`retain_until`，不新增另一个处罚源。收案锁内只封存case/event/registration、内部身份绑定、参与起点apply审计、当时state/revision、捕获时间及用途版本；不复制私聊、证件、照片、精确位置或档案。Web返回还裁掉内部user_id，不向普通用户开放封存事实。
+
+三十天是**合成开发存证读窗**（自原捕获时间），不是自动删除或真实法律保留期限；原记录和审计继续保留。过期、hash不符、跨案替换等只返回`CURRENT_SOURCE_UNAVAILABLE / INSUFFICIENT_EVIDENCE`且无source_id/historical_fact，当前有权管理员仍可进行最小程序性处理。可用封存明确标历史，live来源另标CURRENT_SOURCE_AVAILABLE/UNAVAILABLE，不冒称当前有效参与或危险行为证明。旧case仅在原source_hash可由确切原revision/state/attendance重构，并有服务端apply审计时补封；匹配不了就不造事实。包括SELF_REPORTED的旧hash正向重建已逐条验证，但输出到场仍UNVERIFIED，不证明现实出席。
+
+当前管理员role/phone/account/Web session、case版本和访问理由在事务内复核；访问与理由进入OperationAudit。B1定位仍只在事务外取得身份线索，用户按协调顺序加锁后复核event/registration/audits及当前session，未降低RR。本人case所有权只保留OPEN/调查/驳回等最小收据及申诉，不能拿它读取旧活动、举报原文或他人资料。处罚/申诉原合同独立；历史参与、两条指控或规则建议不直接形成Finding；历史-only来源使认定/处罚返回422，允许具名调查或证据不足驳回。
+
+### 定向执行与实物链
+
+- 新增10项R1 Feature，连同直接相关原平台Safety18项：**28 tests / 1644 assertions / exit0**；原2个PHP和2个PHPUnit deprecation保留。定向平台页面 **15 Widget tests / exit0**，包括历史目标在完整卡旁可选、跨会话晚到不可回填；两文件analyze exit0，7个相关PHP文件lint exit0。没有重跑完整原51后端、原30 Flutter、Buddy/社区、全算法或整套真实预算流程；旧结果保留。
+- 真实HTTP验证B1受理201、相同键同case、冲突409、陌生人/跨活动/随机指针404、客户端source_fact422；旧A/B活动GET仍404、本人最小收据200、陌生人case404。B2历史来源200，具名调查及驳回；同活动两条历史指控不能认定（422）。管理员降普通角色403并finally恢复，真实C设备session撤销后401。所有原sanction完整值不变，原关闭好友/CN/MC/Block事实逐行未变，无正式关系或Buddy复活。
+- 同本版既有独立库`elitesync_v10_1_4_dev`及原专用volume，先留R1前恢复点再迁移；有效APP_DB_CONNECTION及testing/sqlite/:memory:/空URL guard先核，TestCase/phpunit.xml未改。没有初始化其它库或运行migrate:fresh。
+- 最终源码精确RR组：reader **99** / writer **98**，REPEATABLE-READ，locator transaction_level0；writer锁用户`1792577383.69972` → 实际Web首次case读取`1792577384.088857` → users PRIMARY等待`1792577384.310063` → 真实revokeAdminSession COMMIT`1792577384.332325` → HTTP401完成`1792577384.3653078`。只精确Web session撤销表变化，无泄漏及越权report/evidence/audit/notice/sanction副作用。原中间77/76组保留，最终99/98组绑定1062603源码，观察器随后移除。
+- 仅十张直接相关参与/Safety持久表作本轮受控DB/API重启核验，行数与full_value_SHA256完全相等；原87表证明保留，不冒称本轮又验收全部历史功能。重启后的合法APP/Web操作单独记最终快照。
+- R1新APK从固定1062603源码离线重建、签名核验、AVD安装并pull一致。A在APP登录后只见历史report-only入口，无原活动卡；选择原B参与指针并提交实际最小陈述，MariaDB形成精确原event/subject的OPEN case与两条封存，Block仍在，无处罚。Me本人Safety卡读“报告已登记，尚未形成认定”；APP冷启后再次读回。Web实际GUI另开历史案卷，读到用途限制与CURRENT_SOURCE_UNAVAILABLE，填写具名理由完成TRIAGE→INVESTIGATE并读回，audit/reviewer落库。
+
+| R1 APK | 身份 |
+|---|---|
+| appId／版本／ABI | `com.elitesync.v1014dev` / `10.1.4-dev / 1010401` / arm64-v8a＋x86_64 |
+| 构建源 | `1062603bfd5866eb4c40b4773657343a1eca2af7`，apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`，同提交services组合 |
+| 文件bytes | `411786303` |
+| 新APK及安装pull SHA256 | `76e43dc2b9f187ec2824bbc636ae42b32cf30b95c90ea66158b1550182938eec`，二者一致 |
+| 开发签名certificate SHA256 | `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09` |
+| 原APK | `250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7`，保留未覆盖 |
+
+APK、原图/XML、SQL、cookies/tokens、随机合成账号和原始HTTP/日志都保持LOCAL_ONLY，未上传二进制或私密材料。
+
+### 非作者复核、原失败与剩余限制
+
+一次有界独立非作者静态复核及同组关闭检查：原P1“无关撤权误截断所有人”、P1“完整APP卡遮掉历史目标”均修复；对应定向测试及旧hash两来源/SELF_REPORTED、篡改、跨案封存检查已补。复核者只读核对最终Commit/Root/apps/services，无剩余静态阻断；未自行运行测试或物理环境，结论不替代Astra。[完整最小复核记录](https://github.com/zcx369658780/EliteSync-v10/blob/d59cb76d41a0a0d81947d584ac6228554c82fda0/docs/_temporary_review/v1014-r1-20261021/non-author-R1-review.md)。
+
+本轮原失败全部保留：首次26项4失败exit1（旧404合同断言、窗口测试混入仍合法的早期context、多余user_id），实现与断言按新合同修正且加强泄漏断言；新增测试漏必需phone的fixture错误exit2；最后加强来源检查时误用不存在的PHPUnit方法exit2，改为排序后assertSame；最终28/1644过。审阅材料准备已生成独立commit后，误用临时审阅index检查产品状态，导致元信息断言exit1；独立核实际产品index干净、审阅全部字节一致，未重复创建或移动原引用。UTF8逐行显示/具名只读路径查询和旧Git长路径警告均为工具层记录，未作产品权限结果。原首轮及历史5失败等不删除、不改成绿。
+
+七天/三十天边界使用Feature服务器测试时钟验证，**未实际等待七天或三十天**。旧无scope且同时间戳不能证明重叠的历史严格拒绝，未补造过去事实。完整通知GUI、真实手机/摄像头/麦克风、RTC/UDP/防火墙/DNAT/UAC、真实身份/供应商/AI/付款/招募/场地、云试点、公网、全预算实物旅程、备份恢复演练、migration down、账号实际擦除均NOT_RUN或NOT_AUTHORIZED。原ZIP镜像PENDING及真实运营Safety／法定保留／严重事件处置能力未开放。
+
+### R1保护、资源与交付
+
+五保护根HEAD/branch/status/index/配置哈希一致；原v10.1.4证据文件metadata清单、关键两APK及SQL、原候选和原39份review引用均一致。29个其它旧容器稳定元信息未变，未打开其数据库；本版专用MariaDB只在原授权合成范围迁移/写入。最终恢复点`final-r1-backup.private.sql`：285881 bytes，SHA256 `e03e4dc54e63148835c64adc9fc35b4215b85859f6e5e4d461694efad8030576`，dump exit0，未做restore冒称。
+
+本版API STOPPED、DB容器EXITED、volume RETAINED、AVD STOPPED、reverse8019 REMOVED_VERIFIED；8019/8020/43325关闭，WS未启动。全局ADB/WSL/Docker Desktop、真实手机和其它服务未停。所有旧资产、本版恢复点与失败原件保留，无清理。
+
+36份公开安全副本在独立短期review分支，逐件远端raw字节已核，原件／副本bytes和SHA256映射见`redaction-map.json`；本地物理证据仍CODEX_REPORTED。报告只追加本节，原manifest保留，新清单为`artifact_manifest_R1.json`。发布候选与文档后独立回读；不合main、不自接受、不启动v10.1.5，完成后停止等待Astra针对B1/B2独立终验。
+
+R1交付元信息补记：首次追加材料脚本已生成两份文件，但末尾对Git status使用strip裁掉了状态列前导空格，路径断言exit1；保留原失败后以原样porcelain重新核验，确认只追加报告／新增R1清单，未重复生成正文或触碰产品。
