@@ -71,7 +71,7 @@ final class PlatformEventService
         if(!$admin&&$r){
             if($event->state==='OPEN'&&$r->state==='INVITED')$actions[]='apply';
             if(in_array($event->state,['OPEN','CLOSED'],true)&&in_array($r->state,self::ACTIVE,true))$actions[]='cancel';
-            if($r->state==='CONFIRMED'&&in_array($event->state,['OPEN','CLOSED'],true))$actions[]='attendance';
+            if($r->state==='CONFIRMED'&&$r->attendance==='UNVERIFIED'&&in_array($event->state,['OPEN','CLOSED'],true))$actions[]='attendance';
         }
         $result=['id'=>$event->id,'revision'=>(int)$event->revision,'title'=>$event->title,'city'=>$event->city,
             'venue'=>$event->venue,'venue_status'=>'PUBLIC_VENUE_UNVERIFIED','start_at'=>$event->start_at,'end_at'=>$event->end_at,

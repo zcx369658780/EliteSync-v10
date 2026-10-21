@@ -292,7 +292,9 @@ final class V1014PlatformSafetyTest extends TestCase
         $this->invite($id, $a, $b);
         $this->userAction($a, $id, 'apply')->assertOk();
         $this->adminAction($id, 'confirm', ['registration_id' => $this->registration($id, $a)->id])->assertRedirect('/admin/platform-events');
-        $this->userAction($a, $id, 'attendance')->assertOk()->assertJsonPath('registration.attendance', 'SELF_REPORTED');
+        $r=$this->userAction($a, $id, 'attendance')->assertOk()->assertJsonPath('registration.attendance', 'SELF_REPORTED');
+        $this->assertNotContains('attendance',$r->json('allowed_actions'));
+        $this->userAction($a,$id,'attendance')->assertStatus(409);
         $this->userAction($b, $id, 'attendance')->assertStatus(409);
         $this->assertSame('UNVERIFIED', $this->registration($id, $b)->attendance);
         $this->adminAction($id, 'close')->assertRedirect('/admin/platform-events');
