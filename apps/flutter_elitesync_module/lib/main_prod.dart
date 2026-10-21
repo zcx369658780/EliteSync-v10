@@ -59,8 +59,9 @@ String _firstNonEmpty(List<String> values) {
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
   if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
-    if (hostOverride != 'http://127.0.0.1:8019/')
+    if (hostOverride != 'http://127.0.0.1:8019/') {
       throw StateError('v10.1.4 requires its isolated local host.');
+    }
     return hostOverride;
   }
   if (const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
