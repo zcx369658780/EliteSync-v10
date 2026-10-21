@@ -1,6 +1,6 @@
 # EliteSync-v10 当前状态
 
-**2026-10-21唯一当前入口：** [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)。Astra已直接归档[v10.1.2功能接受](docs/versions/v10.1.2/acceptance.md)，Owner批准单次安全集成并允许轻量工作流/项目源更新；Codex尚待手动派发，产品main仍为v10.1.1。下列各个“当前”均为原时点历史快照；以后优先更新ACTIVE_STATE，不再向本文件反复堆叠新当前长段。
+**2026-10-21唯一当前入口：** [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)。v10.1.2已由Astra功能接受，完整接受产品已安全集成main，当前集中候选等待Astra独立集成验收；[唯一集成报告](docs/versions/v10.1.2/integration.md)。项目源ZIP未取得，仅语义候选/BYTE_MIRROR_UNVERIFIED；本轮运行NOT_RUN、v10.1.3未启动。下列各个“当前”均为原时点历史快照，不再堆叠新当前长段。
 
 ## 2026-10-20 v10.1.2首轮独立审阅：CHANGES_REQUIRED／R1待Owner手动派发
 

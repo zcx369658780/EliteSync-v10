@@ -1,0 +1,120 @@
+{
+  "status": "SOURCE_ZIP_NOT_AVAILABLE / BYTE_MIRROR_UNVERIFIED / SEMANTIC_CANDIDATE_ONLY / PROJECT_SOURCE_SYNC_PENDING",
+  "expected_zip": "ELITESYNC_PROJECT_SOURCE_UPDATE_20261021_V1012.zip",
+  "expected_zip_sha256": "6781b7e8319037770780cfb202b6f37071031d8c9cec0bb969e39cf082c65c6f",
+  "actual_zip_sha256": null,
+  "zip_internal_manifest_verified": false,
+  "source_commit": "87fcbc63c5703a20892177183d723640ca894171",
+  "origins": [
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/versions/v10.1.2/acceptance.md",
+      "blob": "392c9506370428db26b1ee9c5ca0f970615e0e1b",
+      "sha256": "76f628a40813aafc0a18f1ef16c65895953cf8aa66015dcd6ce8ff6b9fb22ffb",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/versions/v10.1.2/acceptance.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/versions/v10.1.2/safe_integration_task_20261021.md",
+      "blob": "c2451d1baa9173263b4c6d1337fbb82bc9afc4ef",
+      "sha256": "8174bdfca0e20f7c64b3469342f7bf66bf26075675ad909b76b99b77414eb136",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/versions/v10.1.2/safe_integration_task_20261021.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/workflow/ACCEPTANCE_INTEGRATION_SOURCE_SYNC_20261021.md",
+      "blob": "b2cf29d3fbc612388d4defa7371e78ae70e00017",
+      "sha256": "faff718e0048525efb86aad69784dff560d225c2bb41cc1b22c0f06103063e90",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/workflow/ACCEPTANCE_INTEGRATION_SOURCE_SYNC_20261021.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "blob": "92c28325badfb28db7145c71cb3214e1dc90909e",
+      "sha256": "de33c75fe2356e6db1cc75f0568626b2280c1d548e14d059ffb151cedebe0821",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/workflow/CURRENT_WORKFLOW.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "blob": "e22f76aecbf8e452dcd14bff70bc337a158eaa2d",
+      "sha256": "026e29122721670e31893ce0f6dd00aa15f6422acc996db54e2a0cb062008212",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/workflow/ACTIVE_STATE.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/gpt-project-sources/20261019_10x/01_当前入口与状态.md",
+      "blob": "999f6aa414cd2b62e7c842dbbabbc7f5ef73c345",
+      "sha256": "8b3add7a855d9f2b497426ae790acaa782d787a38dbb58bb9aa46b0a2fd8309c",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/gpt-project-sources/20261019_10x/01_当前入口与状态.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/gpt-project-sources/20261019_10x/03_文档证据索引与覆盖缺口.md",
+      "blob": "981097b64f59b2e2156edfc651cbbea47ee9a5a4",
+      "sha256": "b251a8f62079c176aaed6f2f82ce587798a307e7208ce55b6bf72a419810b8ab",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/gpt-project-sources/20261019_10x/03_文档证据索引与覆盖缺口.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/gpt-project-sources/20261019_10x/04_代理协作与近期路线.md",
+      "blob": "9ddd50238d596ac9c8cb2bf036542d2038017c57",
+      "sha256": "9eb3ae815d068d175b56ff77a30ddbb7cd0a0646244da59cc58b1c82f3c4f031",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/gpt-project-sources/20261019_10x/04_代理协作与近期路线.md"
+    },
+    {
+      "commit": "87fcbc63c5703a20892177183d723640ca894171",
+      "path": "docs/gpt-project-sources/20261019_10x/PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md",
+      "blob": "dcc5fa9a657ca25edcf0c8db02596611c60970d1",
+      "sha256": "a4e258e3acf289537c28457c52e062e46e36993ba144dbc2bb60cc5ea314f344",
+      "url": "https://github.com/zcx369658780/EliteSync-v10/blob/87fcbc63c5703a20892177183d723640ca894171/docs/gpt-project-sources/20261019_10x/PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md"
+    }
+  ],
+  "files": [
+    {
+      "path": "01_当前入口与状态.md",
+      "candidate_sha256": "d79590cb4559e956da8aeccb6d17f7806a978a1035a845d783e3275f4da94ea4",
+      "bytes": 2205,
+      "expected_original_zip_sha256": "207056f53ccdc14cb6f15023b27aad6235e8f6867d340f9034f4b44e6f1f39c4",
+      "byte_mirror_verified": false
+    },
+    {
+      "path": "03_文档证据索引与覆盖缺口.md",
+      "candidate_sha256": "465ae873e6b4c6988c88a9f14e257e7f39ac97883a0390b533bad9b508a2b136",
+      "bytes": 2669,
+      "expected_original_zip_sha256": "faf8297366cb86dde6da1a29fd5ded2f5b137f967f581e8e6a7c04aff2948f61",
+      "byte_mirror_verified": false
+    },
+    {
+      "path": "04_代理协作与近期路线.md",
+      "candidate_sha256": "45b8cb5988ee9d6e098a4535dcef414e41fb422323db24558f8c7d1e3bca3bd1",
+      "bytes": 2369,
+      "expected_original_zip_sha256": "e06623910f95d0ef46277df9fdcc7f942ac7583f3801b6e426886e0b6fd2545a",
+      "byte_mirror_verified": false
+    },
+    {
+      "path": "11_20261021_版本状态与工作流补充.md",
+      "candidate_sha256": "05c69fda672a05d157cf5b81cb878b51d0bbd58747acc995a818246d50292ef2",
+      "bytes": 2108,
+      "expected_original_zip_sha256": "fd09929523242f7b4b2efcac65836881185cc2a39018de07f100eceb1a24c87b",
+      "byte_mirror_verified": false
+    },
+    {
+      "path": "PROJECT_SOURCE_INDEX_ELITESYNC_V10_CHATGPT.md",
+      "candidate_sha256": "41100f0d3d939a319e409e498be43231babfcee2a17466d922aa21cb16d91541",
+      "bytes": 1950,
+      "expected_original_zip_sha256": "dfec1fcaaedb0a7d7b27594e65c836c0f55b34ac46aecc3a452009c3aa51bef3",
+      "byte_mirror_verified": false
+    }
+  ],
+  "project_attachments_updated": false,
+  "account_memory_updated": false,
+  "still_needed": "Owner provide fixed-hash original ZIP for byte mirror and manually replace/upload ChatGPT Project sources if desired",
+  "successor_milestone": {
+    "path": "MILESTONE_AFTER_SAFE_INTEGRATION.md",
+    "sha256": "58178c4aa040ab317fea3c9ba9cfd35950a5c5253d5fd71e0193c128fa33f3b0",
+    "verified_product_main": "fe8081d4de906018736d026bde1a40d956ab223e",
+    "note": "separate successor, not retroactive snapshot or original ZIP bytes"
+  },
+  "candidate_text_encoding": "UTF-8 without BOM, LF; hashes describe Git blob bytes"
+}

@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-**2026-10-21最新：v10.1.2功能[Astra接受](v10.1.2/acceptance.md)；Owner批准[单次安全集成与项目源同步](v10.1.2/safe_integration_task_20261021.md)，等待Codex手动派发；main尚未集成v10.1.2，v10.1.3未启动。** 实时状态详见[唯一ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，后文旧“当前/待验”均为当时记录。
+**2026-10-21最新：v10.1.2功能[Astra接受](v10.1.2/acceptance.md)，完整产品对象已按Owner任务集成main；[唯一集成报告](v10.1.2/integration.md)，等待Astra独立安全集成验收。项目源为ZIP缺位的有界语义候选，运行NOT_RUN，v10.1.3未启动。** 实时状态详见[唯一ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，后文均为形成时记录。
 
 ## 2026-10-20 v10.1.2 R1同版返修任务发布（未派发）
 
