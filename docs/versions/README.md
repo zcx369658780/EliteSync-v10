@@ -1,5 +1,7 @@
 # EliteSync-v10 版本登记入口
 
+**2026-10-21最新：v10.1.4首轮Astra独立审阅为`CHANGES_REQUIRED / NOT_ACCEPTED`。** 候选源码`e7e246dc70f72846a05a31e022efadee0838ab83`、交付`4f303bc3674edc599c9602e6704a97deb6dce4ba`经GitHub身份核验，既有测试与设备证据保留；同版发现B1安全退出后投诉入口关闭、B2合法案卷经Block/撤权后无法继续受控调查。[唯一独立审阅与R1任务](v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)已发布，待Owner手动派发Codex。产品main未集成1.4，1.5未启动；最新首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，后文均是旧形成时快照。
+
 **2026-10-21最新：Owner已批准进入v10.1.4，Astra已冻结[平台虚构活动与内部Safety功能计划](v10.1.4/plan.md)和[唯一Codex长任务](v10.1.4/task_order.md)；等待Owner手动派发，尚未实施。** v10.1.3功能及集成双重ACCEPTED_WITH_OBSERVATIONS，产品main仍等于v10.1.3接受apps/services；v10.1.4无真实招募、支付、AI自动处罚或运营授权，v10.1.5未启动。最新请读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下方旧时点“当前”不得重新派发。
 
 **2026-10-21最新：v10.1.3[Astra功能验收](v10.1.3/acceptance.md)与[单次安全集成独立验收](v10.1.3/integration_acceptance.md)均为`ACCEPTED_WITH_OBSERVATIONS`，完整接受apps/services已集成main；[唯一集成报告](v10.1.3/integration.md)。下一版v10.1.4尚未获Owner实施授权。** 本轮运行NOT_RUN、原项目源ZIP GitHub镜像PENDING、历史风险和限制保留；实时状态以[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)为准，其余旧“当前”按形成时点解释。
