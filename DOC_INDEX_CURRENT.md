@@ -1,5 +1,7 @@
 # EliteSync-v10 动态总目录
 
+**2026-10-21最新事实优先入口：** [单一ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) → [v10.1.2功能接受](docs/versions/v10.1.2/acceptance.md) → [安全集成任务](docs/versions/v10.1.2/safe_integration_task_20261021.md) → [轻量工作流补充](docs/workflow/ACCEPTANCE_INTEGRATION_SOURCE_SYNC_20261021.md)。本文件下方的历史“当前”标题不代表最新状态，未来只更新ACTIVE_STATE与具名报告。
+
 ## 2026-10-20 当前入口：v10.1.2首轮审阅CHANGES_REQUIRED／同版R1待Owner派发
 
 Astra已直接核验v10.1.2固定源码 `ebade52179b6ac7b76ba2f2992d31981fa995a00`、报告 `900942426e965092d3852771c4126d77210677c4` 和41个产品对象。候选不是已接受版本；[唯一Astra独立审阅与R1任务](docs/versions/v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)记录B1未受控正式关系申请及B2旧代际未决提案继续有效投影两项P1冻结范围缺口，Codex执行回执保留，当前Owner手动派发待完成。main产品仍为v10.1.1已接受对象；v10.1.3未启动。下方v10.1.2冻结待派发段落为形成时快照。
