@@ -6,7 +6,7 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
-**2026-10-21后继更新（覆盖下文当时的“待集成”）：** v10.1.2功能及安全集成都已由Astra独立`ACCEPTED_WITH_OBSERVATIONS`；[集成验收](../versions/v10.1.2/integration_acceptance.md)。已接受完整apps`365810451b6faad98e041835be6c86f4f81be0a9`及services`96b2972a19ec49108cf5c11d144179e5693570a9`已进入main。Owner条件预授权已满足，v10.1.3[计划](../versions/v10.1.3/plan.md)/[长任务](../versions/v10.1.3/task_order.md)已冻结发布，**未手动派发本地Codex、未执行**。Owner表示ChatGPT项目Sources已更新，GitHub的2026-10-21原ZIP精确镜像仍待补；这不是产品接受的阻断。唯一最新入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文旧段为原时点快照。
+**2026-10-21当前里程碑（覆盖下文旧“待集成/未派发”）：** v10.1.3[功能](../versions/v10.1.3/acceptance.md)及[单次安全集成](../versions/v10.1.3/integration_acceptance.md)均由Astra独立`ACCEPTED_WITH_OBSERVATIONS`；main接受apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`。Codex本地连续代码基线及原资产保护为CODEX_REPORTED；安全集成运行NOT_RUN；GitHub原ZIP byte mirror仍PENDING，但Owner已报告手动更新ChatGPT Project Sources。下一版v10.1.4未获实施授权；当前唯一真值入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文历史快照不可据此重新派发旧任务。
 
 ## 2026-10-21 当前长期导航（新会话优先读这一段）
 
