@@ -6,6 +6,8 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+**2026-10-21当前后继：** [ACTIVE_STATE](../workflow/ACTIVE_STATE.md)是唯一首读事实。Owner批准进入v10.1.4，Astra已冻结[平台活动与内部Safety计划](../versions/v10.1.4/plan.md)及[Codex综合任务](../versions/v10.1.4/task_order.md)，**须Owner手动转交本地Codex才实施**。基线v10.1.3功能＋集成两道独立验收完成，main apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`；本版只允许合成活动预算/报名、安全举报→人工判定→申诉纠错，真实招募/付款/外部AI未授权。历史PARTIAL/事故/供应商/ZIP镜像缺口继续保留；下方旧“当前”均是形成时快照。
+
 **2026-10-21当前里程碑（覆盖下文旧“待集成/未派发”）：** v10.1.3[功能](../versions/v10.1.3/acceptance.md)及[单次安全集成](../versions/v10.1.3/integration_acceptance.md)均由Astra独立`ACCEPTED_WITH_OBSERVATIONS`；main接受apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`。Codex本地连续代码基线及原资产保护为CODEX_REPORTED；安全集成运行NOT_RUN；GitHub原ZIP byte mirror仍PENDING，但Owner已报告手动更新ChatGPT Project Sources。下一版v10.1.4未获实施授权；当前唯一真值入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文历史快照不可据此重新派发旧任务。
 
 ## 2026-10-21 当前长期导航（新会话优先读这一段）
