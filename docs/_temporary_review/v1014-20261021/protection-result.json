@@ -1,0 +1,12 @@
+{
+  "roots_equal": true,
+  "per_root_equal": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "old_evidence_inventory_equal": true,
+  "old_key_assets_equal": true
+}

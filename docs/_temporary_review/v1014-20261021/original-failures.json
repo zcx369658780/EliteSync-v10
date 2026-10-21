@@ -1,0 +1,102 @@
+[
+  {
+    "label": "setup-owned-environment",
+    "exit": 1,
+    "explanation": "Docker unavailable; original exit1. Normal installed Desktop start then setup-v2 succeeded; no WSL/UAC changes."
+  },
+  {
+    "label": "feature-first",
+    "exit": 1,
+    "explanation": "Feature Cookie transport omission; 15 tests / 14 failures. v2/v3 retained, v4 passed; no assertions removed."
+  },
+  {
+    "label": "feature-v2",
+    "exit": 1,
+    "explanation": "4 remaining failures retained."
+  },
+  {
+    "label": "feature-v3",
+    "exit": 1,
+    "explanation": "1 remaining failure retained; evidence_checked required only for actual substantiate action."
+  },
+  {
+    "label": "shared-permissions-regression",
+    "exit": 1,
+    "explanation": "44 tests / 387 assertions / 5 failures, same failures and assertion count on accepted baseline. Four V1007 consent fixture 404s and one V1008 publish fixture 422. Kept; not candidate regressions."
+  },
+  {
+    "label": "baseline-shared-regression",
+    "exit": 1,
+    "explanation": "Dependency symlink WinError1314; no elevation. Dependency copy then same baseline failures."
+  },
+  {
+    "label": "baseline-shared-regression-v2",
+    "exit": 1,
+    "explanation": "Historical 5 failures reproduced unchanged on accepted baseline."
+  },
+  {
+    "label": "http-session-probe",
+    "exit": 1,
+    "explanation": "Wrong local admin environment field name caused actual login denial; original kept."
+  },
+  {
+    "label": "http-session-probe-v2",
+    "exit": 1,
+    "explanation": "Actual login succeeded; harness expected /admin/users instead of /admin. v3 passed."
+  },
+  {
+    "label": "flutter-analyze-initial",
+    "exit": 1,
+    "explanation": "Full analyze historical eight info messages plus two author brace infos. Author infos fixed; targeted final analyze exit0; historical infos retained."
+  },
+  {
+    "label": "platform-widget-first",
+    "exit": 1,
+    "explanation": "1 of 11 failed: missing pump after field entry tapped disabled old state; added pump and explicit enabled assertion. Final 30 passed."
+  },
+  {
+    "label": "source-whitespace",
+    "exit": 2,
+    "explanation": "exit2 on existing Windows CRLF handling; command-local cr-at-eol recognition passed without changing global Git configuration."
+  },
+  {
+    "label": "rr-event-revoke",
+    "exit": 1,
+    "explanation": "Observer string concatenation error returned 500 / barrier timeout. Not a denial PASS."
+  },
+  {
+    "label": "rr-safety-logout",
+    "exit": 0,
+    "explanation": "Initial instrumentation failure retained, not counted as permission denial."
+  },
+  {
+    "label": "rr-event-revoke-v2",
+    "exit": 1,
+    "explanation": "Actual HTTP404 and lock edge succeeded, verifier omitted Sanctum last_used_at. Raw verifier confirmed only auth timestamps; final rr3 both exit0."
+  },
+  {
+    "label": "role-authority-before-fix",
+    "exit": 1,
+    "explanation": "Actual organizer role removal: user card incorrectly200, Web403; fixed under-lock current organizer authority; repeat404/403."
+  },
+  {
+    "label": "ADB screencap transient",
+    "exit": 4294967295,
+    "explanation": "Retained in LOCAL_ONLY ADB log; next normal UI observation succeeded; no device data clear."
+  },
+  {
+    "label": "APP nested route navigation",
+    "exit": "raw stderr retained",
+    "explanation": "Evidence navigator initially looked for settings inside nested Safety; adjusted navigation Back to Me. Not product success."
+  },
+  {
+    "label": "post-restart screenshot",
+    "exit": "UI observation, not a request verdict",
+    "explanation": "Initial wrong/stale error page retained; correct Home platform route then actual COMPLETED read and voluntary exit succeeded."
+  },
+  {
+    "label": "PowerShell unquoted Git revision",
+    "exit": "native fatal shown during continuation",
+    "explanation": "Read-only HEAD^{tree} was parsed as script syntax by PowerShell; no mutation. Final identity taken using argument-array Git calls."
+  }
+]

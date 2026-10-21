@@ -1,0 +1,19 @@
+{
+  "APK_build_source": {
+    "commit": "3e5afb33c87812ffa2970741c4ea97a4c649da91",
+    "tree": "a1984f36c0b95d1d78f6c34e06937850972b3ebb",
+    "apps": "b502d776c8e5f916f2d4074b90a39d0547b896fa",
+    "services": "4316c195d201b8f31db70e86a7d7710437f28137"
+  },
+  "delivery_backend_source": {
+    "commit": "e7e246dc70f72846a05a31e022efadee0838ab83",
+    "tree": "e9ca41a1347fdeebdedca18de6f8eed767b59d5c",
+    "apps": "b502d776c8e5f916f2d4074b90a39d0547b896fa",
+    "services": "45869d8b765ca8c645a04f747bb67be03a5bd632"
+  },
+  "same_apps_tree": true,
+  "APK_rebuilt_after_backend_only_fixes": false,
+  "APK_SHA256": "250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7",
+  "installed_pull_SHA256": "250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7",
+  "real_APP_after_controlled_restart_and_completed_withdrawal": true
+}

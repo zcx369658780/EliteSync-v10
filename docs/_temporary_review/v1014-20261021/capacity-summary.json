@@ -1,0 +1,1 @@
+{"layer": "two independent MariaDB service processes, not two HTTP requests", "codes": {"capB": 409, "capC": 200}, "fresh_retry": "WAITLISTED", "reserved_seats": 2, "capacity": 2, "single_winner": true}

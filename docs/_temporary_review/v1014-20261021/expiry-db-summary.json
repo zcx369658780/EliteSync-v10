@@ -1,0 +1,6 @@
+{
+    "event": "EXPIRED",
+    "registration": "EXPIRED",
+    "grant": "REVOKED",
+    "first_expired_read_was_user_HTTP": true
+}

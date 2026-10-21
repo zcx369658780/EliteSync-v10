@@ -1,0 +1,79 @@
+{
+  "cases": [
+    {
+      "label": "positive_current_event",
+      "status": 200
+    },
+    {
+      "label": "positive_current_evidence",
+      "status": 200
+    },
+    {
+      "label": "block_commit",
+      "status": 200
+    },
+    {
+      "label": "block_old_event_blocker",
+      "status": 404
+    },
+    {
+      "label": "block_old_event_subject",
+      "status": 404
+    },
+    {
+      "label": "block_old_report",
+      "status": 404
+    },
+    {
+      "label": "block_old_evidence",
+      "status": 404
+    },
+    {
+      "label": "block_old_notices",
+      "status": 200
+    },
+    {
+      "label": "unblock_does_not_regrant",
+      "status": 200
+    },
+    {
+      "label": "unblock_old_event",
+      "status": 404
+    },
+    {
+      "label": "unblock_old_report",
+      "status": 404
+    },
+    {
+      "label": "matrix-disable_old_event",
+      "status": 401
+    },
+    {
+      "label": "matrix-disable_old_safety",
+      "status": 401
+    },
+    {
+      "label": "matrix-disable_fresh_login_denied",
+      "status": 403
+    },
+    {
+      "label": "matrix-closure_old_event",
+      "status": 401
+    },
+    {
+      "label": "matrix-closure_old_safety",
+      "status": 401
+    },
+    {
+      "label": "matrix-closure_fresh_login_denied",
+      "status": 403
+    },
+    {
+      "label": "replayed_old_admin_cookie_after_logout",
+      "status": 401
+    }
+  ],
+  "all_expected": true,
+  "closure_layer": "real account closure service request only; pending, no private erasure worker executed",
+  "phone_touched": false
+}

@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "label": "legitimate_invitee",
+      "status": 200
+    },
+    {
+      "label": "anonymous",
+      "status": 401
+    },
+    {
+      "label": "uninvited_uuid",
+      "status": 404
+    },
+    {
+      "label": "disabled",
+      "status": 401
+    },
+    {
+      "label": "revoked_family",
+      "status": 401
+    },
+    {
+      "label": "revoked_invitation",
+      "status": 404
+    },
+    {
+      "label": "forged_actor",
+      "status": 422
+    },
+    {
+      "label": "old_revision",
+      "status": 409
+    },
+    {
+      "label": "fabricated_evidence",
+      "status": 422
+    },
+    {
+      "label": "bare_foreign_case",
+      "status": 404
+    },
+    {
+      "label": "authenticated_web_missing_csrf",
+      "status": 419
+    }
+  ],
+  "all_expected": true,
+  "private_budget_exposed": false
+}

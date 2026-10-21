@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/api/v1/platform-events",
+    "status": 200,
+    "bytes": 147,
+    "body_sha256": "f56a15a00112e8a8727df02dc1430652376be7aa8660034fb503017872890acd"
+  },
+  {
+    "path": "/api/v1/platform-events/e9de1a1a-8c90-4fa2-a512-b2483562e237",
+    "status": 404,
+    "bytes": 81,
+    "body_sha256": "7c7541794024d30441663826d5932191a83e3a3e78f8a63028c82a9b593ae153"
+  }
+]

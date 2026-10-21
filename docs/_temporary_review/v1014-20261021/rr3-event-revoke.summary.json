@@ -1,0 +1,35 @@
+{
+  "kind": "event-revoke",
+  "isolation": "REPEATABLE-READ",
+  "reader_connection": 220,
+  "writer_connection": 219,
+  "locator_transaction_level": 0,
+  "sequence": [
+    "writer locks user",
+    "actual HTTP locator read completes",
+    "reader waits on users PRIMARY",
+    "writer revoke service COMMIT",
+    "HTTP continues with denial"
+  ],
+  "times": {
+    "locked": 1792572824.732963,
+    "first_read": 1792572824.893353,
+    "wait_observed": 1792572825.159487,
+    "committed": 1792572825.225224,
+    "http_finished": 1792572825.2433732
+  },
+  "status": 404,
+  "changed_tables": [
+    "admin_operation_audits",
+    "personal_access_tokens",
+    "platform_event_audits",
+    "platform_event_commands",
+    "platform_event_grants",
+    "platform_event_registrations",
+    "platform_events"
+  ],
+  "unauthorized_report_notification_sanction_side_effects": 0,
+  "private_response": false,
+  "reader_layer": "actual product HTTP route, normal middleware",
+  "writer_layer": "independent process, real service, same RR database"
+}

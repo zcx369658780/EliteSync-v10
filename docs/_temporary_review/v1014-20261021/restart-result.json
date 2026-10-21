@@ -1,0 +1,21 @@
+{
+  "critical_business_tables": 87,
+  "all_row_counts_and_full_value_SHA256_equal": true,
+  "all_new_tables_and_accounts_reports_sanctions_appeals_notifications_audits_included": true,
+  "excluded_ephemeral_tables": [
+    "cache",
+    "cache_locks",
+    "sessions"
+  ],
+  "owned_volume_identity_unchanged": true,
+  "only_owned_container_restarted": true,
+  "API_restarted_on_same_loopback": true,
+  "isolation": "REPEATABLE-READ",
+  "backup": "pre-restart-backup.private.sql LOCAL_ONLY",
+  "source": {
+    "commit": "e7e246dc70f72846a05a31e022efadee0838ab83",
+    "tree": "e9ca41a1347fdeebdedca18de6f8eed767b59d5c",
+    "apps": "b502d776c8e5f916f2d4074b90a39d0547b896fa",
+    "services": "45869d8b765ca8c645a04f747bb67be03a5bd632"
+  }
+}

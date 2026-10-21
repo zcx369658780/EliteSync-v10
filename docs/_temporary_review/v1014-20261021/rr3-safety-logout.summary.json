@@ -1,0 +1,30 @@
+{
+  "kind": "safety-logout",
+  "isolation": "REPEATABLE-READ",
+  "reader_connection": 226,
+  "writer_connection": 225,
+  "locator_transaction_level": 0,
+  "sequence": [
+    "writer locks user",
+    "actual HTTP locator read completes",
+    "reader waits on users PRIMARY",
+    "writer revoke service COMMIT",
+    "HTTP continues with denial"
+  ],
+  "times": {
+    "locked": 1792572826.564215,
+    "first_read": 1792572826.660364,
+    "wait_observed": 1792572826.883845,
+    "committed": 1792572826.912883,
+    "http_finished": 1792572826.914648
+  },
+  "status": 401,
+  "changed_tables": [
+    "device_sessions",
+    "personal_access_tokens"
+  ],
+  "unauthorized_report_notification_sanction_side_effects": 0,
+  "private_response": false,
+  "reader_layer": "actual product HTTP route, normal middleware",
+  "writer_layer": "independent process, real service, same RR database"
+}

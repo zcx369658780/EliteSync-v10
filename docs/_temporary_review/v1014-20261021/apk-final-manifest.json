@@ -1,0 +1,31 @@
+{
+  "source": {
+    "commit": "3e5afb33c87812ffa2970741c4ea97a4c649da91",
+    "tree": "a1984f36c0b95d1d78f6c34e06937850972b3ebb",
+    "apps": "b502d776c8e5f916f2d4074b90a39d0547b896fa",
+    "services": "4316c195d201b8f31db70e86a7d7710437f28137"
+  },
+  "application_id": "com.elitesync.v1014dev",
+  "version_name": "10.1.4-dev",
+  "version_code": 1010401,
+  "abis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "sha256": "250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7",
+  "installed_pull_sha256": "250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7",
+  "bytes": 411786303,
+  "signer_SHA256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+  "development_signature": true,
+  "command_exits": {
+    "apk-final-badging": 0,
+    "apk-final-signer": 0,
+    "apk-final-install": 0,
+    "apk-installed-path": 0,
+    "apk-installed-pull": 0,
+    "apk-reverse-owned": 0,
+    "apk-start-owned": 0
+  },
+  "backend": "fixed source / loopback8019 / elitesync_v10_1_4_dev",
+  "phone_touched": false
+}

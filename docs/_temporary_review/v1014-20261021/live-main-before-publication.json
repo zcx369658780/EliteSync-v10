@@ -1,0 +1,8 @@
+{
+  "commit": "b7d04f73b60b60baf2ff6e45d8a72d353d96aa01",
+  "tree": "a6e207f8a9c9d0a3dfb7e70cde74b988e3388409",
+  "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+  "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a",
+  "independent_transport": "GitHub REST HTTPS; compared with Git SSH ls-remote",
+  "candidate_not_main": true
+}

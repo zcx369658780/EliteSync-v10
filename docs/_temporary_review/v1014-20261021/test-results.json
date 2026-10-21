@@ -1,0 +1,40 @@
+{
+  "feature_fixed_source": {
+    "command": "php vendor/phpunit/phpunit/phpunit --filter V1014PlatformSafetyTest|V1013BuddyCommunityTest|V1011SocialTest|V1008SanctionAppealTest|V1006AdminWebTest",
+    "label": "feature-candidate-fixed",
+    "exit": 0,
+    "tests": 51,
+    "assertions": 1182,
+    "deprecations": 2,
+    "phpunit_deprecations": 2
+  },
+  "platform_widget": {
+    "command": "flutter test --no-pub test/features/platform_v1014 test/features/notification/presentation/pages/platform_notification_navigation_test.dart test/features/notification/presentation/state/platform_notification_contract_test.dart",
+    "label": "platform-widget-review-fixes",
+    "exit": 0,
+    "tests": 30
+  },
+  "targeted_analyze": {
+    "label": "analyze-final-gates",
+    "exit": 0
+  },
+  "final_php_lint": {
+    "label": "candidate-final-static-and-api",
+    "exit": 0,
+    "PHP_paths": 22
+  },
+  "historical_shared_suite": {
+    "label": "shared-permissions-regression",
+    "exit": 1,
+    "tests": 44,
+    "assertions": 387,
+    "failures": 5,
+    "baseline_same": true
+  },
+  "APK_build": {
+    "label": "android-build-final",
+    "exit": 0,
+    "offline": true
+  },
+  "all_physical_results": "CODEX_REPORTED / LOCAL_ONLY; no independent Astra runtime execution"
+}
