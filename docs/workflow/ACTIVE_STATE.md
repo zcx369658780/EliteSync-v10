@@ -1,6 +1,6 @@
 # EliteSync-v10｜唯一当前状态入口
 
-更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_FROZEN_FUNCTIONAL_PLAN / CODEX_MANUAL_DISPATCH_PENDING / V10.1.3_NOT_IMPLEMENTED**
+更新：2026-10-21。**V10.1.2_FUNCTION_ACCEPTED_WITH_OBSERVATIONS / V10.1.2_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / V10.1.3_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE / V10.1.4_NOT_STARTED**
 
 本文件是优先首读的**可更新短状态卡**，不是历史证据覆盖或本地运行通行证。每次开工先实时回读GitHub main；下列固定身份是本次核验结果，而非承诺HEAD永不变化。旧CURRENT_STATE/DOC_INDEX/项目源快照下方早期“当前”均按形成时点保留。
 
@@ -11,9 +11,13 @@
 - 47个产品变更path/mode/Blob完整匹配，集成后继仅18个文档路径。Astra直接核GitHub对象/源码与正式文档；**LOCAL_CODE_BASELINE**由Codex回报本地干净/HEAD相等（`CODEX_REPORTED / LOCAL_ONLY`），**RUNTIME**本轮未重新启动DB/API/APK/RTC，不能宣称重新验收物理运行。
 - 原正式报告与manifest见[集成报告](../versions/v10.1.2/integration.md)。v10.1.0整版`PARTIAL/NOT_ACCEPTED`及AC-10.1-08 PARTIAL，v10.1.1误清库/恢复历史、v10.1.2原失败、RTC/AEC与外部Web缺口保留。`REAL_IDENTITY_PROVIDER_PENDING`，合成`TEST_ONLY`不代表真实实人。
 
-## 当前唯一下一门：v10.1.3
+## 当前唯一下一门：v10.1.3独立功能验收
 
-Owner已条件批准在v10.1.2安全集成独立接受、无产品返修时直接进入；条件已满足。Astra已发布[**v10.1.3冻结功能计划**](../versions/v10.1.3/plan.md)及[**唯一Codex综合任务**](../versions/v10.1.3/task_order.md)。目标是吃饭/学习独立搭子双人真实链＋好友可见有限社区/一级评论；**尚未由Owner手动转交Codex，因此未实施**。未授权的陌生人全局发现／具体个人地点保持关闭，使用当前好友/受控一次性邀请作为开发默认，不改变`Match≠Buddy≠Friendship≠CN≠MC≠正式Relationship`。v10.1.4尚未启动。
+Owner已正式手动派发冻结版本，Codex完成本版受控开发候选，见唯一[实现报告](../versions/v10.1.3/IMPLEMENTATION_REPORT.md)与[制品清单](../versions/v10.1.3/artifact_manifest.json)。源码 `e27db2012e2c57390c4da179330552a6b64a728d` / Tree `cf670270aaac7d641d58939eaea7737c23b89417`；候选apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`。这些是独立候选，**尚未获Astra接受，未替换main已接受v10.1.2产品**。
+
+实际APP/API/MariaDB两类独立搭子、好友社区/评论、Web具名审核、RR撤权及18表重启回读完成；物理结论为CODEX_REPORTED/LOCAL_ONLY，最终开发APK SHA256 `a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d`。非作者有界工程复核不是Astra接受。独立候选分支 `codex/v10.1.3-buddy-friend-community`；短期脱敏材料只在 `codex/review-v10.1.3-20261021`，不得合产品分支/main。
+
+本版API/DB/AVD已停止，卷与备份保留，四保护根前后指纹全等。手机号/真实设备/RTC/系统网络/供应商/云端均未操作，原项目源精确ZIP镜像仍BYTE_MIRROR_PENDING。终态等待Astra独立功能验收；不自动合main、清历史/短期审阅材料或启动v10.1.4。`Match≠Buddy≠Friendship≠CN≠MC≠正式Relationship`继续。
 
 ## 项目源与工作流分层
 
