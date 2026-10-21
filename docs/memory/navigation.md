@@ -6,6 +6,8 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+**2026-10-21最新交接：** 当前顾问会话已封存[完整Owner决策、版本状态和下一会话入口](../workflow/SESSION_HANDOFF_20261021_V1014_ACCEPTED_V1015_PENDING.md)。v10.1.4功能及安全集成均`ACCEPTED_WITH_OBSERVATIONS`；下一版v10.1.5尚待Owner在新会话授权，**不要据旧快照重复派发验收或自动启动计划**。实时状态以[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)为准。下文较早“当前”仅保留历史证据。
+
 **2026-10-21当前里程碑：** v10.1.4[功能](../versions/v10.1.4/acceptance.md)与[单次安全集成](../versions/v10.1.4/integration_acceptance.md)双重独立`ACCEPTED_WITH_OBSERVATIONS`；已接受 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac` 已进入main，产品集成Commit `759015ad0c897c92516531c2f3a94a3a7ff77c02`以 `6b2cd44065830fb7b38bfaa36a168989da0fb248`为唯一Parent，集成交付main `1390772c8fee62509504b90b5f702582cdc39c4a`。本轮静态集成，DB/APP/APK运行NOT_RUN；本地代码基线/保护仅CODEX_REPORTED。真实活动和安全政策、7天/30天TEST_ONLY、实人供应商及GitHub原ZIP字节镜像仍待定。v10.1.5尚未获Owner授权；首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文旧“待派发”均是形成时的历史。
 
 **2026-10-21最新功能门：** v10.1.4首轮候选已交付但**Astra裁决`CHANGES_REQUIRED / NOT_ACCEPTED`**，两个具名Safety问题需同版R1：[正式审阅与任务](../versions/v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)。B1自愿退出后无法提交最小关联Safety报告，B2合法收案经Block/退出撤权后内部可审计最小案卷不能继续调查。两者为GitHub源码反例，Astra未在Windows本地重跑；其它51/1182、Flutter30、RR、87表及APK成果保留。v10.1.3产品仍是接受main，v10.1.4未合main、v10.1.5未启动。唯一实时入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)覆盖历史“当前”；Owner需要手动派发R1任务。
