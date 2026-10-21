@@ -1,0 +1,7 @@
+{
+  "actual_APP_fresh_logout_login_after_DB_API_restart": true,
+  "active_comment_body_reread": true,
+  "deleted_comment_tombstone": true,
+  "same_final_APK": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+  "result": "PASS"
+}

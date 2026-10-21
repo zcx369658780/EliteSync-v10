@@ -1,0 +1,19 @@
+{
+  "real_HTTP": true,
+  "cases": [
+    {
+      "mode": "disable",
+      "old_post_comment_write_like_media_statuses": [
+        404,
+        404,
+        404,
+        404,
+        404,
+        404
+      ],
+      "feed_excludes_post": true,
+      "denied_counts_equal": true
+    }
+  ],
+  "status": "PASS"
+}

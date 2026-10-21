@@ -1,0 +1,13 @@
+{
+  "source": {
+    "commit": "e27db2012e2c57390c4da179330552a6b64a728d",
+    "tree": "cf670270aaac7d641d58939eaea7737c23b89417",
+    "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+    "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a"
+  },
+  "started_after_source_commit": true,
+  "started_at": "2026-10-21T01:53:50.870587+00:00",
+  "exit": 0,
+  "tracked_product_unchanged_before_after": true,
+  "offline": true
+}

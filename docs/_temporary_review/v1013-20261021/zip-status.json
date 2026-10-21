@@ -1,0 +1,9 @@
+{
+  "status": "BYTE_MIRROR_PENDING",
+  "exact_paths_checked": [
+    "<LOCAL_PATH>",
+    "<LOCAL_PATH>"
+  ],
+  "available": false,
+  "Owner_Project_upload": "reported complete in Astra ACTIVE_STATE; not confused with GitHub mirror"
+}

@@ -1,0 +1,13 @@
+{
+  "source_commit": "48695cf252e1bcd4f58b8f6230c646e7b958a677",
+  "apk_sha256": "2bd2463d67f936726b35d747a619bd6ed08ce3a5d9ca022bbfa63716a1615eee",
+  "actual_AVD_observation": "HomeShellPage showed legacy summary; new Buddy button absent",
+  "UI_assertion": "tap_text(独立吃饭 / 学习搭子) matched 0 nodes",
+  "tool_exit": 1,
+  "screenshots": [
+    "app-A-onboard-skip.png",
+    "app-A-buddy-empty-before.png"
+  ],
+  "cause": "HomePage compile gate recognized only ELITESYNC_V1012_LOCAL_BUILD",
+  "result": "FAILED__FIX_AND_NEW_APK_REQUIRED"
+}

@@ -1,0 +1,10 @@
+{
+  "real_HTTP": true,
+  "synthetic_cover_byte_match": true,
+  "stranger_post_comment_media_denied": true,
+  "SELF_post_comment_like_media_denied": true,
+  "denied_mutation_delta": 0,
+  "deleted_comment_tombstone": true,
+  "notification_has_no_comment_text": true,
+  "reported_target_for_Web": 1
+}

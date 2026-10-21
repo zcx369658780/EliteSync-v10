@@ -1,0 +1,8 @@
+{
+  "tables": 18,
+  "all_rows_all_values_hash_equal": true,
+  "new_owned_database_restarted": true,
+  "API_restarted": true,
+  "isolation": "REPEATABLE-READ",
+  "backup_retained": true
+}

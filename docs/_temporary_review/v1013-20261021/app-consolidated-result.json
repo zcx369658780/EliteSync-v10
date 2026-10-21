@@ -1,0 +1,84 @@
+{
+  "source": {
+    "commit": "e27db2012e2c57390c4da179330552a6b64a728d",
+    "tree": "cf670270aaac7d641d58939eaea7737c23b89417",
+    "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+    "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a"
+  },
+  "APK_SHA256": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+  "same_API_DB_AVD_chain": true,
+  "checks": {
+    "app-meal-result.json": {
+      "same_installed_APK": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+      "actual_APP_roles": [
+        "A creates and explicitly opens and issues token",
+        "B voluntarily redeems in APP",
+        "A explicitly confirms and completes in APP"
+      ],
+      "database_state": "COMPLETED",
+      "all_unrelated_counts": {
+        "friendships": 0,
+        "product_connections": 0,
+        "formal_relationships": 0,
+        "messaging_consents": 0,
+        "conversations": 0
+      },
+      "romantic_questionnaires": 0,
+      "matching_participations": 0,
+      "identity_assertions": 0,
+      "result": "PASS"
+    },
+    "app-study-result.json": {
+      "actual_APP_friend_invite_request_confirm_complete": true,
+      "database_state": "COMPLETED",
+      "source_friendship": "separate actual API invitation/request/accept; APP performs Buddy lifecycle",
+      "no_questionnaire_participation_or_identity": true,
+      "unrelated_counts": {
+        "friendships": 1,
+        "product_connections": 0,
+        "formal_relationships": 0,
+        "messaging_consents": 0,
+        "conversations": 0
+      },
+      "result": "PASS"
+    },
+    "app-offline-result.json": {
+      "actual_owned_API_unreachable": true,
+      "APP_refresh_error_visible": true,
+      "previous_comment_body_cleared_after_request_settled": true,
+      "initial_pending_sample_retained_as_failure": true,
+      "result": "PASS"
+    },
+    "app-relogin-restart-result.json": {
+      "actual_APP_fresh_logout_login_after_DB_API_restart": true,
+      "active_comment_body_reread": true,
+      "deleted_comment_tombstone": true,
+      "same_final_APK": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+      "result": "PASS"
+    },
+    "app-revoked-read-result.json": {
+      "actual_APP_existing_comment_route_refreshed_after_owner_SELF_commit": true,
+      "private_body_absent": true,
+      "distinct_permission_error_visible": true,
+      "final_post_audience": "SELF",
+      "result": "PASS"
+    },
+    "app-related-message-denial-result.json": {
+      "actual_HTTP": true,
+      "pair_has_completed_Buddy_and_friendship": true,
+      "CN": "CN_NONE",
+      "MC": "MC_NONE",
+      "live_send_allowed": false,
+      "ordinary_message_status": 404,
+      "all_counts_equal": true
+    }
+  },
+  "image": {
+    "new_synthetic_72x72": true,
+    "client_transcoded": true,
+    "served_bytes_equal_backing": true
+  },
+  "final_post_audience": "SELF",
+  "phone_not_touched": true,
+  "result": "PASS"
+}

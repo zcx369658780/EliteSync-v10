@@ -1,0 +1,14 @@
+{
+  "actual_APP_friend_invite_request_confirm_complete": true,
+  "database_state": "COMPLETED",
+  "source_friendship": "separate actual API invitation/request/accept; APP performs Buddy lifecycle",
+  "no_questionnaire_participation_or_identity": true,
+  "unrelated_counts": {
+    "friendships": 1,
+    "product_connections": 0,
+    "formal_relationships": 0,
+    "messaging_consents": 0,
+    "conversations": 0
+  },
+  "result": "PASS"
+}

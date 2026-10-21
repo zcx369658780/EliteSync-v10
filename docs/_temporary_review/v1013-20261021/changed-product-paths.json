@@ -1,0 +1,176 @@
+{
+  "baseline": "e4c854453e2d477562e8df2fb1dccf58df8d705d",
+  "source": "e27db2012e2c57390c4da179330552a6b64a728d",
+  "paths": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "mode": "100644",
+      "blob": "947db369df5308792d7a1ab45bd74d62659a19c4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "mode": "100644",
+      "blob": "560ca1a07b7bc06cd36cbcd3912c7d5c69dd7f87"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/buddy_v1013/buddy_page.dart",
+      "mode": "100644",
+      "blob": "7f024859add387d0b703e4e34954982efc8264fe"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/buddy_v1013/comment_panel.dart",
+      "mode": "100644",
+      "blob": "269a80b957714b8710567b83301484e095f77e7b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/pages/home_page.dart",
+      "mode": "100644",
+      "blob": "69828487ee14c4504004d41ca1e9c48d21111c72"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "mode": "100644",
+      "blob": "6701b52b6e17a80175be26eed65c1aebb91012d4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+      "mode": "100644",
+      "blob": "2dec453f2a40f106e65f07696a4ba81eb4f55d92"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_home_page.dart",
+      "mode": "100644",
+      "blob": "ba74add94bcf63b9b21fafe9259b6c861521134a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+      "mode": "100644",
+      "blob": "030a1c0c5400530c8754ae3c102c384f4c24f0eb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/data/datasource/status_remote_data_source.dart",
+      "mode": "100644",
+      "blob": "761202a160297e49649e7b297686c3262c57a6a4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart",
+      "mode": "100644",
+      "blob": "58f29ce00e179a81fee1fecd81d070d2037841d2"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/providers/status_posts_provider.dart",
+      "mode": "100644",
+      "blob": "3aae0bb2b2821d92b8db03c6c8221b61744762fb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_post_card.dart",
+      "mode": "100644",
+      "blob": "2c4bbcd022ad09b60126f82527c74788534b89dd"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+      "mode": "100644",
+      "blob": "8f41c3b906f4ac99db8c0b6912a2b1668e5ae54a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/buddy_pages_test.dart",
+      "mode": "100644",
+      "blob": "549d6049454bc54e42c64c1f731c9f1d3deac99f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart",
+      "mode": "100644",
+      "blob": "8ee7a6f28f8115d26bf08eb899f291e675c74df5"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/status/presentation/pages/community_pagination_test.dart",
+      "mode": "100644",
+      "blob": "588954c4ec36df46cdcc3d240eb95d75be9f1733"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/BuddyController.php",
+      "mode": "100644",
+      "blob": "9e6a82497ff18c55ca7c2820b8a999bfcf258a6b"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php",
+      "mode": "100644",
+      "blob": "916b6bf5247fb9434ebd6b80a67d50126f2ce032"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php",
+      "mode": "100644",
+      "blob": "a8168930baccf0db8a70ce29b6acf2f7472a99a5"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusCommentController.php",
+      "mode": "100644",
+      "blob": "d92721d9bd5450f46bf21019348035c0ef5a61cc"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php",
+      "mode": "100644",
+      "blob": "74d6a2ef39e106ec063e0931d2759c410fd1579f"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Web/BuddyCommunityController.php",
+      "mode": "100644",
+      "blob": "40a4c4b85a2e307984c95877178a491fda7daa43"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/BuddyService.php",
+      "mode": "100644",
+      "blob": "1288e3aa1508f4765cd4cf02d281f1737ed5ed2d"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "mode": "100644",
+      "blob": "f7500f69d1e76daa95873773d3674cb2369333ef"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "mode": "100644",
+      "blob": "2a89bc9f34aeb563a8766671c655060e009fba4c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/PostAudience.php",
+      "mode": "100644",
+      "blob": "39fec15acdc19d941f7c616a60fe7f9e7528a54c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SocialPolicy.php",
+      "mode": "100644",
+      "blob": "e1fc69d84ce4f2b1904a92f9ae70febd20b621a6"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_170000_create_buddy_and_comments.php",
+      "mode": "100644",
+      "blob": "a15e4a8af03e905e802a4aad2b7cf823af123bd5"
+    },
+    {
+      "path": "services/backend-laravel/resources/views/admin/buddy-community.blade.php",
+      "mode": "100644",
+      "blob": "48f6096d388820f1fd9363902d20ee12a8cabb4b"
+    },
+    {
+      "path": "services/backend-laravel/resources/views/admin/layout.blade.php",
+      "mode": "100644",
+      "blob": "0a703370a8de9eebac131388fec0a5e019386e78"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "mode": "100644",
+      "blob": "99f7dbefb6cd790650945408e8bf603d1c5cd250"
+    },
+    {
+      "path": "services/backend-laravel/routes/web.php",
+      "mode": "100644",
+      "blob": "2a9f7bd3f439b4a406add725fec1c4fa7671ad03"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1013BuddyCommunityTest.php",
+      "mode": "100644",
+      "blob": "9ac45cc81c06ce7eb0f3fab772e9ab3ce38dabad"
+    }
+  ]
+}

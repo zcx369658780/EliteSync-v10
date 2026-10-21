@@ -1,0 +1,8 @@
+{
+  "preserved_original_CRLF": [
+    "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart"
+  ],
+  "other_changed_sources": "LF",
+  "whitespace_check_exit": 0,
+  "configuration": "command-local cr-at-eol recognizes original Windows endings; no global change"
+}

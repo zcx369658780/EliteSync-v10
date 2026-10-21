@@ -1,0 +1,20 @@
+{
+  "same_installed_APK": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+  "actual_APP_roles": [
+    "A creates and explicitly opens and issues token",
+    "B voluntarily redeems in APP",
+    "A explicitly confirms and completes in APP"
+  ],
+  "database_state": "COMPLETED",
+  "all_unrelated_counts": {
+    "friendships": 0,
+    "product_connections": 0,
+    "formal_relationships": 0,
+    "messaging_consents": 0,
+    "conversations": 0
+  },
+  "romantic_questionnaires": 0,
+  "matching_participations": 0,
+  "identity_assertions": 0,
+  "result": "PASS"
+}

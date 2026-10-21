@@ -1,0 +1,23 @@
+{
+  "reader_connection_id": 224,
+  "writer_connection_id": 223,
+  "requesting_trx_id": "4443",
+  "blocking_trx_id": "4440",
+  "waiting_query": "select * from `users` where `users`.`id` = ? limit 1 for update",
+  "lock_table": "`elitesync_v10_1_3_dev`.`users`",
+  "lock_index": "PRIMARY",
+  "lock_data": "44",
+  "first_read": {
+    "completed_at": 1792546565.335276,
+    "query": "select * from `users` where `users`.`id` = ? limit 1",
+    "transaction_level": 0,
+    "connection_id": 224
+  },
+  "writer_held": {
+    "writer_connection_id": 223,
+    "isolation": "REPEATABLE-READ",
+    "held_at": 1792546565.282238
+  },
+  "wait_observed_at": 1792546565.5692983,
+  "reader_pending": true
+}

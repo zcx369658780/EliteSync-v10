@@ -1,0 +1,13 @@
+{
+  "real_HTTP": true,
+  "MEAL": "COMPLETED",
+  "unrelated_delta": {
+    "friendships": 0,
+    "product_connections": 0,
+    "messaging_consents": 0,
+    "formal_relationships": 0,
+    "conversations": 0
+  },
+  "no_matching_eligibility": true,
+  "isolation": "REPEATABLE-READ"
+}

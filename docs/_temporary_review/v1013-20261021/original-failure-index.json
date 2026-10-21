@@ -1,0 +1,441 @@
+{
+  "original_nonzero_commands": [
+    {
+      "label": "app-A-meal-save",
+      "exit": 1,
+      "utc": "2026-10-21T01:56:28.723208+00:00",
+      "raw_command_sha256": "a1f3c045450117c4436e0c711eb5aa2871c82cf165e3956896d972040ff11913",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 847,
+        "sha256": "2fa4126df060a67d8c815e7527995f6e28aa4ad052ad7f2b7f8b8a5d9852a223"
+      }
+    },
+    {
+      "label": "app-B-logout",
+      "exit": 1,
+      "utc": "2026-10-21T02:03:46.381971+00:00",
+      "raw_command_sha256": "751a305eaeb4dadc1564e1ce311df7d96b58b9f60380fee70a10c57f3d80b73d",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 2116,
+        "sha256": "02207673ab83b1761499be86ab37e6f5023b189e501acd9b2f13db97f3ea26f4"
+      },
+      "stderr": {
+        "bytes": 803,
+        "sha256": "d64515733f64fac51fa0dbc19c13665919411676a3faa1a322c80f897324f3f3"
+      }
+    },
+    {
+      "label": "app-B-unlike-and-comments",
+      "exit": 1,
+      "utc": "2026-10-21T02:24:32.690601+00:00",
+      "raw_command_sha256": "cc92abf62d8977cd20bf025d90a49c31583ccafe7afa7dc31a8d75cf0514fffd",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 876,
+        "sha256": "acf6f521e12d9d198ff2f2c66103286d16b03f4b871773f2ebbad39256cdc36f"
+      }
+    },
+    {
+      "label": "app-offline-comments",
+      "exit": 1,
+      "utc": "2026-10-21T02:29:28.226199+00:00",
+      "raw_command_sha256": "d421550f4079f7873b76de45e36f171b80737eaeada46ae0d8768b9d41934a67",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 659,
+        "sha256": "9d3b50964d95e76830ac21f990fa5b554654dfb217f713f77e70ff0c3dfbe795"
+      },
+      "stderr": {
+        "bytes": 1063,
+        "sha256": "7abde15a4ac3d04a18d1d26482d4d6e71bc033628463650517fde21b6742a0dd"
+      }
+    },
+    {
+      "label": "buddy-concurrent",
+      "exit": 1,
+      "utc": "2026-10-21T01:33:49.651269+00:00",
+      "raw_command_sha256": "45b0686749cf19432db101c759db1c5c1b10fa917b3bd25e6b009514ce889921",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 579,
+        "sha256": "31601acdeaee1cddabf97ada7b9579bd6075b04db972f2a2c933afa9b4ffe092"
+      }
+    },
+    {
+      "label": "community-helper-widget-01",
+      "exit": 1,
+      "utc": "2026-10-21T01:38:09.910498+00:00",
+      "raw_command_sha256": "3ec3afee5343f559a5347ccd1d88e005ca30c62a55e320c3113a06905a1227da",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 7552,
+        "sha256": "76b36ba62cb152d1299713166beaa76719f230a8cbd74a7116575fe7e948c879"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "community-helper-widget-02",
+      "exit": 1,
+      "utc": "2026-10-21T01:38:36.389699+00:00",
+      "raw_command_sha256": "d603fa4da34298a233c384f8c9692b1fb1f652141325bb01f964ed562e4093c0",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 3493,
+        "sha256": "5b23ae60db2b3f749ace15320301f8fa96a8231eb3ecce905ecf5888ef45a715"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "consolidate-app",
+      "exit": 1,
+      "utc": "2026-10-21T02:37:19.101379+00:00",
+      "raw_command_sha256": "4c6d72197fca90c2cd0c185bea653d76c7bddae5b245b39dfdb5e6edee76d125",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 912,
+        "sha256": "e3cd01b5534f5f34f9f4614f1087e344ce2f06b1b0b1e4200f0c24e85e1a919a"
+      }
+    },
+    {
+      "label": "dart-main-analyze",
+      "exit": 1,
+      "utc": "2026-10-21T01:30:15.034977+00:00",
+      "raw_command_sha256": "97a4fddd8278a345d1a5231c3d6f41bab72bef659ea027e445bbe1e142f534bb",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 195,
+        "sha256": "3e9b74f54633b3fbedca30a3ab9fad8963fdf7489be1f251be82b3e7623224eb"
+      },
+      "stderr": {
+        "bytes": 30,
+        "sha256": "33e5360c594d9a1d0dc54644892e458a978fc6d84a4b9358d4606789c7e71615"
+      }
+    },
+    {
+      "label": "feature-02",
+      "exit": 2,
+      "utc": "2026-10-21T01:16:29.054187+00:00",
+      "raw_command_sha256": "f538a06453af01cb5ff0d8c21745e69f50548c8bd5d32fe630dbd01f6b000e07",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 52690,
+        "sha256": "22a7eed24ba1bbe384743751ab615fbf00d531caa24f022fb9d0b4210e2d686f"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "feature-first",
+      "exit": 255,
+      "utc": "2026-10-21T01:15:00.753953+00:00",
+      "raw_command_sha256": "d9fbbb1cf231469fc0f0e0964463839e66ab89961c5f556e5f305ff693a19dba",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1913,
+        "sha256": "3d6d18229319805983a180057a540aa76d91910c67f34b9d68336683f7101c53"
+      }
+    },
+    {
+      "label": "http-community-v2",
+      "exit": 1,
+      "utc": "2026-10-21T01:25:05.252656+00:00",
+      "raw_command_sha256": "1cefe9ecde1dd18e119f3b0abb1bc596b43f0733fefeb237a2d288d2b6838402",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1142,
+        "sha256": "e13d90ecf3785bbfbdc7f45ad52946ce04d9fe6c5f00be161613854b4922d2a0"
+      }
+    },
+    {
+      "label": "http-community",
+      "exit": 1,
+      "utc": "2026-10-21T01:24:44.180834+00:00",
+      "raw_command_sha256": "93ac7666d468414960994e2a6c22b51c5ee1795d4c7fed0b38f3b80a0e65fef1",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 567,
+        "sha256": "bfc886dd071f9cd2a6b939bd3dc83bcdb98079f6c9abe5726e52442c84ea9700"
+      }
+    },
+    {
+      "label": "http-pagination",
+      "exit": 1,
+      "utc": "2026-10-21T01:51:00.054049+00:00",
+      "raw_command_sha256": "5cf11de793c60b8d37afb4f1df46ff0dc813e1d7c00d17727eb99ee0caffe3cb",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1292,
+        "sha256": "df723d04c62c24628a9dd53c4d9b1e47c4b80e3698c38e8f3ef60e7b7ecd1c22"
+      }
+    },
+    {
+      "label": "http-revocations",
+      "exit": 1,
+      "utc": "2026-10-21T01:36:53.511284+00:00",
+      "raw_command_sha256": "806225bca1277a7e02541379189379d45e7c38203477b1246a6d6ce26ceedb7c",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1691,
+        "sha256": "6b8ae136e6050a77ad20669b4813bdabeb43c0851626055cf13d751911553ddd"
+      }
+    },
+    {
+      "label": "observe-api-v2",
+      "exit": 1,
+      "utc": "2026-10-21T01:26:30.586573+00:00",
+      "raw_command_sha256": "3b7401c62c6420ae30b3a090aa95cbe3aeef6de02f5ccb9426d28ca5ab62872d",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1477,
+        "sha256": "0033137a4622dbde281c33e76880ef29461b09c3fd8bd875f51ae3bd2d3ab4f4"
+      }
+    },
+    {
+      "label": "observe-api-v3",
+      "exit": 1,
+      "utc": "2026-10-21T01:26:48.515803+00:00",
+      "raw_command_sha256": "aa9e422eda9e81697b7b4ea04adf86288d84cfbb0748a051d78791f24a0ee7a5",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1914,
+        "sha256": "8b042c075d22fbbaeeb1608b159e6953d0efc9b7d56c5a3ed0fbabb3a157bfe7"
+      }
+    },
+    {
+      "label": "observe-api",
+      "exit": 1,
+      "utc": "2026-10-21T01:26:09.695486+00:00",
+      "raw_command_sha256": "4ce1fbb35c30c0bc9207deb76edfbad4bb7f88beb081885960c2bfa089b9e88a",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 277,
+        "sha256": "1553d430cbe8abb208384755c2caca636e61732cb1fa5e2251f1ec07bd2f9e60"
+      }
+    },
+    {
+      "label": "rr-three-cases-v2",
+      "exit": 1,
+      "utc": "2026-10-21T01:28:51.552121+00:00",
+      "raw_command_sha256": "8f7c2d214b1d929e9b3ff45e399164bdaa2ddc6a9faf48d9948b348e4045876e",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 608,
+        "sha256": "748a26cb32a1e859fbfebf3003278edffa0a0f802247cbd1f2a478be83a6fded"
+      }
+    },
+    {
+      "label": "rr-three-cases",
+      "exit": 1,
+      "utc": "2026-10-21T01:27:49.347027+00:00",
+      "raw_command_sha256": "f8d86023442c9f6541d79a5415f466b7c4225dbe198c4481420c7913d1e53b5c",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 562,
+        "sha256": "448443e00a4e3cdd56ee308c2edb06fdc8ed879d3a26ae2c938572dee5a93534"
+      }
+    },
+    {
+      "label": "source-root-entry-commit",
+      "exit": 1,
+      "utc": "2026-10-21T01:51:33.535194+00:00",
+      "raw_command_sha256": "0f4380c64a0043271a64e895d34decc52011bc0ae496c8154bf0a559b77ef3b2",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 688,
+        "sha256": "26655c6932074fe0f7cdad1334d18a32b2203f7d8f26f7e7e505f80690812b7c"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "ui-helper-analyze-01",
+      "exit": 1,
+      "utc": "2026-10-21T01:22:52.683064+00:00",
+      "raw_command_sha256": "1f83d309a62a708ed707fb25cd198e23d739aed79d1407fcecc3c8c85d0ecaf4",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 992,
+        "sha256": "684db8b13c1118f80f0c8183bb961733f38d52391665cdf8d18123dd3138d4c8"
+      },
+      "stderr": {
+        "bytes": 31,
+        "sha256": "4d59518e912cac36e399e1dad2abdf87170671d12fe777069f4ce622aeacbd8f"
+      }
+    },
+    {
+      "label": "ui-helper-analyze-02",
+      "exit": 1,
+      "utc": "2026-10-21T01:25:22.544797+00:00",
+      "raw_command_sha256": "a7f2897f003f4013731e6bb553eefc8fbcb03fe0b48466c3e370611f6e1693f0",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 926,
+        "sha256": "1c896cd7c2a3ea0537df9ea472da7631b38392b0cfd630062e7a8847641aeed9"
+      },
+      "stderr": {
+        "bytes": 31,
+        "sha256": "0c4ed14a394c66ea91e80988ea33c40cb6e74c513a76043ff03c2d54dcbd137d"
+      }
+    },
+    {
+      "label": "ui-helper-analyze-03",
+      "exit": 1,
+      "utc": "2026-10-21T01:27:33.314410+00:00",
+      "raw_command_sha256": "e76dd036553a27c285d0784071cecdc543266daafb8bbb05af521b9bf43596b3",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 226,
+        "sha256": "bb6895baaff3fe380e417527944904e15fea8d6e13420cb10b2ef3f2740a941c"
+      },
+      "stderr": {
+        "bytes": 29,
+        "sha256": "10b3d5f958d44c2a2dee4924eb64e456f4c553033a720ee68934d72ad4a575e4"
+      }
+    },
+    {
+      "label": "ui-helper-widget-02",
+      "exit": 1,
+      "utc": "2026-10-21T01:27:38.378092+00:00",
+      "raw_command_sha256": "7f0f6966bd306c528790117206473da2114be35a09d0e5e3af80e8dd50450bc2",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 12044,
+        "sha256": "58f4c87d57e4ea41953571dbd2660e68d53035a68afb6db6fb56b4f54923cedb"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "web-negative-v2",
+      "exit": 1,
+      "utc": "2026-10-21T01:35:09.707319+00:00",
+      "raw_command_sha256": "56eed028af232b07bf30564cbecdf76b4263061d3116ad2de945c258d00a6591",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 770,
+        "sha256": "25764fcdbb4556324b6be4aa7879c107507d30c19215667e791289a83eba6c5d"
+      }
+    },
+    {
+      "label": "web-negative-v3",
+      "exit": 1,
+      "utc": "2026-10-21T01:35:25.104001+00:00",
+      "raw_command_sha256": "fff1d56b054d8f2a200e9b215a7d8ea6f05d744cb7f03039afae57f3d2f98693",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 770,
+        "sha256": "fb6c87cefcd8b01dc8c87d59bfde076fe0f9f2c5db2ca53532c552834bf427f0"
+      }
+    },
+    {
+      "label": "web-negative",
+      "exit": 1,
+      "utc": "2026-10-21T01:34:45.925499+00:00",
+      "raw_command_sha256": "6053b871bff514b5f26d8acc59b698c44ec687daeb76156e896d707146881ab9",
+      "raw_location": "LOCAL_ONLY",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 317,
+        "sha256": "6e134e68027a6d2bfe68067db4ad679837ac2e44196bd98726b30209e4068d32"
+      }
+    }
+  ],
+  "additional_product_failure": "app-entry-initial-failure.json",
+  "raw_streams": "LOCAL_ONLY retained; hashes above bind originals, not sanitized extracts",
+  "rr_three_cases_v2": "overall exit 1; audience and unfriend independently completed; logout observer failed, separately completed by rr-session-v3 exit 0",
+  "original_failure_reasons": {
+    "feature-first": "exit 255: fixture helper post visibility collided with Laravel TestCase public post method",
+    "feature-02": "exit 2: synthetic fixture omitted required users.phone",
+    "buddy-concurrent": "exit 1: expected losing join 404, actual legal revision conflict 409; no 500/deadlock counted as denial",
+    "http-community": "exit 1: harness expected obsolete CN_CONNECTED spelling",
+    "http-community-v2": "exit 1: media fixture had not been bound to current post cover; returned 404",
+    "http-revocations": "exit 1: shared synthetic user reached real comment rate limit 429; distinct synthetic fixtures used subsequently",
+    "rr-three-cases": "exit 1: writer Request user resolver ordering error; rollback, no successful refusal claimed",
+    "rr-three-cases-v2": "exit 1: optional logout observer waited for post-first-read although product path locks users first",
+    "app-offline-comments": "exit 1: sampled pending network request; settled error/clear rechecked without weakening requirement",
+    "consolidate-app": "exit 1: expected unavailable notices in HTTP list, but current service filters them; verified persistent rows, empty current projection and HTTP omission",
+    "app-entry-initial-failure": "actual prior APK Home gate recognized only 1.2; fixed and rebuilt e27 APK",
+    "other_commands": "UI observation/scroll, analyzer/widget fixture, setup dependency/process observation, Web redirect/error-text and staging failures remain in exact exit index; final receipts separately retained"
+  }
+}

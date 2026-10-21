@@ -1,0 +1,7 @@
+{
+  "actual_owned_API_unreachable": true,
+  "APP_refresh_error_visible": true,
+  "previous_comment_body_cleared_after_request_settled": true,
+  "initial_pending_sample_retained_as_failure": true,
+  "result": "PASS"
+}

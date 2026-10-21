@@ -1,0 +1,16 @@
+{
+  "owned_API": "STOPPED",
+  "owned_DB_container": "EXITED",
+  "owned_DB_volume": "RETAINED",
+  "owned_AVD": "STOPPED",
+  "owned_reverse_8017": "REMOVED",
+  "loopback_ports_accepting_connections": {
+    "8017": false,
+    "8018": false,
+    "43324": false
+  },
+  "WS8018": "NOT_STARTED",
+  "phone": "NOT_TOUCHED",
+  "old_containers_volumes": "NOT_OPERATED",
+  "raw_backups": "LOCAL_ONLY_RETAINED"
+}

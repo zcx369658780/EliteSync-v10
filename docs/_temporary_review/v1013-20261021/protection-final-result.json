@@ -1,0 +1,17 @@
+{
+  "protected_roots": 4,
+  "per_root_equal": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "all_equal": true,
+  "checks": [
+    "HEAD output bytes",
+    "full porcelain/untracked output bytes",
+    "index locator bytes",
+    "actual index file SHA256"
+  ],
+  "no_restoration_or_cleanup_attempted": true
+}

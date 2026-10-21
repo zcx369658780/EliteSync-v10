@@ -1,0 +1,22 @@
+{
+  "isolation": "REPEATABLE-READ",
+  "first_read_before_actual_wait": true,
+  "paired_edge": true,
+  "reader_connection_id": 108,
+  "writer_connection_id": 107,
+  "target_user_primary": "13",
+  "COMMIT_before_HTTP_restore": true,
+  "http_status": 404,
+  "private_body_absent": true,
+  "side_effect_delta": {
+    "status_post_comments": 0,
+    "status_post_likes": 0,
+    "notifications": 0,
+    "buddy_commands": 0,
+    "moderation_reports": 0
+  },
+  "writer_exit": 0,
+  "writer_layer": "actual product Controller/service in independent CLI transaction",
+  "reader_layer": "actual HTTP Laravel kernel route",
+  "result": "PASS"
+}

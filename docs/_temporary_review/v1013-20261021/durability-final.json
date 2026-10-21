@@ -1,0 +1,74 @@
+{
+  "buddy_preferences": {
+    "rows": 15,
+    "full_value_sha256": "d08e5b6e7a5ef60962d33ef0b87e1192350d28525faeb5b2d752d8ad84c898ff"
+  },
+  "buddy_activities": {
+    "rows": 18,
+    "full_value_sha256": "484198f9ebe5b74ce32ec95979aa4b3d4860b66d9b9ae3af0d63d27cd8e7ca0f"
+  },
+  "buddy_invitations": {
+    "rows": 11,
+    "full_value_sha256": "84d539929331eb9dbee444d3aafd190dc9c71d93f71879f7836aa8365101534f"
+  },
+  "buddy_slots": {
+    "rows": 9,
+    "full_value_sha256": "27045d753cc95fd3abce9dd41b227122f81f16378ba28e568c6bad38132fc131"
+  },
+  "buddy_commands": {
+    "rows": 62,
+    "full_value_sha256": "7be7380ef2a84862e5a63a89ad9ee4c220e299b9ddfde3ae131e104c8c5cecb6"
+  },
+  "buddy_audits": {
+    "rows": 66,
+    "full_value_sha256": "83ffc51568a1d3e768631cc1d52ae5e16f104cb2684d921cb9c27f888e9b93d4"
+  },
+  "status_posts": {
+    "rows": 42,
+    "full_value_sha256": "bfd0de64200fd76060163c0bb74ab88b906e10c9005c0e67c5b74e3031673d1e"
+  },
+  "status_post_comments": {
+    "rows": 15,
+    "full_value_sha256": "d5257bef6dd717b12a925b26c03f091a53a797bd5fc0113d3c0bcfe0b2f9e8a4"
+  },
+  "status_post_likes": {
+    "rows": 0,
+    "full_value_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "media_assets": {
+    "rows": 15,
+    "full_value_sha256": "a939414fe86a025c7d647e42a221e1a1b8d7b41106e58ef47bc136c88a76a36f"
+  },
+  "friendships": {
+    "rows": 11,
+    "full_value_sha256": "9a5bf4e014d246a8e53bf885918aca638be37f76c554cb7c364402b800f5c590"
+  },
+  "social_requests": {
+    "rows": 13,
+    "full_value_sha256": "0a357e4ff195b155e050b8f1c22ce6499cd8c0efe111c0f2e76f2fb3997d5438"
+  },
+  "product_connections": {
+    "rows": 1,
+    "full_value_sha256": "bff4b62039a6994df0da85226462bc0ba5d5b3a8ff71828564e6b3c2268fdd76"
+  },
+  "messaging_consents": {
+    "rows": 2,
+    "full_value_sha256": "17bd613e5363ed6a696f182027817aa163fb319398ae38b2e87030dad74ece10"
+  },
+  "formal_relationships": {
+    "rows": 0,
+    "full_value_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "notifications": {
+    "rows": 45,
+    "full_value_sha256": "5f4192820243f1a5b86c89daafd306925b9a07c1a01832c1885fa321383276ad"
+  },
+  "moderation_reports": {
+    "rows": 2,
+    "full_value_sha256": "336c404940d04698c97a16c428dd7bcb0d441c058fbf91e8a98e3a50f14f84c7"
+  },
+  "admin_operation_audits": {
+    "rows": 2,
+    "full_value_sha256": "458eae8ea83c67cc82c8676618fcb8653103c1563b7de2a142b506da7a41e8fd"
+  }
+}

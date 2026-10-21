@@ -1,0 +1,23 @@
+{
+  "reader_connection_id": 103,
+  "writer_connection_id": 102,
+  "requesting_trx_id": "4028",
+  "blocking_trx_id": "4025",
+  "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update",
+  "lock_table": "`elitesync_v10_1_3_dev`.`users`",
+  "lock_index": "PRIMARY",
+  "lock_data": "13",
+  "first_read": {
+    "completed_at": 1792546109.204873,
+    "query": "select `author_user_id` from `status_posts` where `status_posts`.`id` = ? limit 1",
+    "transaction_level": 0,
+    "connection_id": 103
+  },
+  "writer_held": {
+    "writer_connection_id": 102,
+    "isolation": "REPEATABLE-READ",
+    "held_at": 1792546109.149407
+  },
+  "wait_observed_at": 1792546109.4351478,
+  "reader_pending": true
+}

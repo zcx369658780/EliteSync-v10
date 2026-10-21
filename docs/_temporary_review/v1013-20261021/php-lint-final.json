@@ -1,0 +1,70 @@
+[
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Services/NotificationService.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Services/SocialPolicy.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/resources/views/admin/layout.blade.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/routes/api.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/routes/web.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/BuddyController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusCommentController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Http/Controllers/Web/BuddyCommunityController.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Services/BuddyService.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/app/Services/PostAudience.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/database/migrations/2026_10_21_170000_create_buddy_and_comments.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/resources/views/admin/buddy-community.blade.php",
+    "exit": 0
+  },
+  {
+    "path": "services/backend-laravel/tests/Feature/V1013BuddyCommunityTest.php",
+    "exit": 0
+  }
+]

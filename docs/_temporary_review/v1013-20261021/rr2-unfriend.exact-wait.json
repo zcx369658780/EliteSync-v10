@@ -1,0 +1,23 @@
+{
+  "reader_connection_id": 108,
+  "writer_connection_id": 107,
+  "requesting_trx_id": "4033",
+  "blocking_trx_id": "4030",
+  "waiting_query": "select * from `users` where `id` in (?, ?) order by `id` asc for update",
+  "lock_table": "`elitesync_v10_1_3_dev`.`users`",
+  "lock_index": "PRIMARY",
+  "lock_data": "13",
+  "first_read": {
+    "completed_at": 1792546110.374727,
+    "query": "select * from `media_assets` where `media_assets`.`id` = ? and `media_assets`.`deleted_at` is null limit 1",
+    "transaction_level": 0,
+    "connection_id": 108
+  },
+  "writer_held": {
+    "writer_connection_id": 107,
+    "isolation": "REPEATABLE-READ",
+    "held_at": 1792546110.28881
+  },
+  "wait_observed_at": 1792546110.5921717,
+  "reader_pending": true
+}

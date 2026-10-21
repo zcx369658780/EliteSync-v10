@@ -1,0 +1,12 @@
+{
+  "real_HTTP": true,
+  "anonymous": 401,
+  "uninvited_scanning": 404,
+  "wrong_revoked_expired_token": 404,
+  "block_unblock_does_not_revive": true,
+  "issuer_epoch_off_on_old_token": 404,
+  "actor_and_address": 422,
+  "no_denied_write_or_notice_side_effect": true,
+  "closure_old_token": 401,
+  "disabled_login": 403
+}

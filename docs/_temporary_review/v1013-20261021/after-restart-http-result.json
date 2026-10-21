@@ -1,0 +1,9 @@
+{
+  "post_body_correct": true,
+  "comment_active_and_tombstone": true,
+  "private_cover_bytes_match_backing": true,
+  "stranger_post_media": 404,
+  "terminal_MEAL_token": 404,
+  "independent_message_gate_still_false": true,
+  "result": "PASS"
+}

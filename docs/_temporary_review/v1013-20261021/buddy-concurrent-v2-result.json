@@ -1,0 +1,45 @@
+{
+  "isolation": "REPEATABLE-READ",
+  "layer": "two independent processes invoking actual Buddy service with authenticated synthetic users; HTTP happy/negative paths separately evidenced",
+  "join_statuses": [
+    409,
+    200
+  ],
+  "slot_statuses": [
+    409,
+    200
+  ],
+  "distinct_connection_ids": true,
+  "one_guest_only": true,
+  "activity_slots": 2,
+  "same_user_live_slots": 3,
+  "raw_child_results": {
+    "join": [
+      {
+        "status": 409,
+        "message": "participant changed; reread",
+        "connection_id": 207
+      },
+      {
+        "status": 200,
+        "state": "REQUESTED",
+        "id": "fec4b8b5-5584-46d9-a61b-ca0509e3cd4e",
+        "connection_id": 206
+      }
+    ],
+    "slot": [
+      {
+        "status": 409,
+        "message": "at most three unfinished Buddy activities",
+        "connection_id": 208
+      },
+      {
+        "status": 200,
+        "state": "DRAFT",
+        "id": "f7a79707-89d7-465f-8274-9afe40b37f40",
+        "connection_id": 209
+      }
+    ]
+  },
+  "result": "PASS"
+}

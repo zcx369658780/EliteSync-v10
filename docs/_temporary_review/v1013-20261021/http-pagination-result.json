@@ -1,0 +1,10 @@
+{
+  "actual_HTTP": true,
+  "requested_limit": 999,
+  "server_cap": 20,
+  "nonzero_next_cursor": "20",
+  "second_page_count": 1,
+  "union_equals_21_created_posts": true,
+  "stranger_nonzero_page_empty": true,
+  "result": "PASS"
+}

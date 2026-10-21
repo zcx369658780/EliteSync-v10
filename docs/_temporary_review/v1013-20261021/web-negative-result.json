@@ -1,0 +1,8 @@
+{
+  "ordinary_login": "302 back to login with permission error; protected route still redirects",
+  "anonymous_route": 302,
+  "missing_CSRF": 419,
+  "stale_replayed_hide": 409,
+  "hidden_comment_body": null,
+  "browser_actual_hide": "separately captured CUA before/after, current state resolved/HIDDEN"
+}
