@@ -111,6 +111,16 @@ Route::prefix('v1')->group(function () {
             Route::delete('/status-posts/{postId}/comments/{commentId}', [$comments, 'destroy'])->whereNumber('postId')->whereUuid('commentId');
             Route::post('/status-posts/{postId}/comments/{commentId}/report', [$comments, 'report'])->whereNumber('postId')->whereUuid('commentId')->middleware('throttle:10,1');
         });
+        $platform = \App\Http\Controllers\Api\V1\PlatformController::class;
+        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($platform) {
+            Route::get('/platform-events', [$platform, 'index']);
+            Route::post('/platform-events/redeem', [$platform, 'redeem']);
+            Route::get('/platform-events/{id}', [$platform, 'show'])->whereUuid('id');
+            Route::post('/platform-events/{id}/actions', [$platform, 'action'])->whereUuid('id');
+            Route::post('/platform-events/{id}/reports', [$platform, 'report'])->whereUuid('id');
+            Route::get('/safety/own', [$platform, 'own']);
+            Route::get('/safety/own/{id}', [$platform, 'ownShow'])->whereUuid('id');
+        });
         $buddy = \App\Http\Controllers\Api\V1\BuddyController::class;
         Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($buddy) {
             Route::get('/buddy', [$buddy, 'index']);

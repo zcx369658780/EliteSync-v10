@@ -510,6 +510,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                             ) ||
                             const bool.fromEnvironment(
                               'ELITESYNC_V1013_LOCAL_BUILD',
+                            ) ||
+                            const bool.fromEnvironment(
+                              'ELITESYNC_V1014_LOCAL_BUILD',
                             ))
                         ? const SlowDatingJourneyPage()
                         : const ReadinessPurposePage(),

@@ -11,6 +11,8 @@ final class SanctionAppeals
 {
     private function currentUser(int $id): User
     {
+        // Recheck a token that could have been revoked while this request waited for the user lock.
+        app(JourneyStore::class)->users([$id], true);
         $user = User::whereKey($id)->lockForUpdate()->firstOrFail();
         abort_unless(! $user->disabled && $user->account_status === 'active'
             && in_array($user->moderation_status, ['normal', 'restricted'], true), 403);
@@ -27,6 +29,7 @@ final class SanctionAppeals
     private function shape(object $appeal): array
     {
         return ['id' => (int) $appeal->id, 'status' => $appeal->status,
+            'outcome' => $appeal->review_outcome ?? null, 'revision' => (int) ($appeal->revision ?? 1),
             'submitted_at' => $appeal->submitted_at, 'note' => $appeal->note];
     }
 
@@ -81,6 +84,7 @@ final class SanctionAppeals
             $actor = User::whereKey($actorId)->lockForUpdate()->first();
             abort_unless(app(AdminAccess::class)->allows($actor), 403);
             $appeals = DB::table('sanction_appeals as a')->join('admin_sanctions as s', 's.id', '=', 'a.sanction_id')
+                ->whereNotExists(fn($q)=>$q->selectRaw('1')->from('moderation_reports as platform_report')->whereColumn('platform_report.id','s.report_id')->where('platform_report.category','platform_event'))
                 ->where('a.user_id', $userId)->where('s.user_id', $userId)->where('s.kind', 'restrict')
                 ->orderByDesc('a.id')->limit(50)
                 ->get(['a.id', 'a.sanction_id', 'a.status', 'a.note', 'a.submitted_at', 's.active', 's.restored_at']);

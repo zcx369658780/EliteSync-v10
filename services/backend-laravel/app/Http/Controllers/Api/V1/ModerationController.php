@@ -97,6 +97,7 @@ class ModerationController extends Controller
             return response()->json(['message' => 'report not found'], 404);
         }
 
+        abort_if($report->category === 'platform_event', 422, 'Safety case status and sanction appeals have separate authority');
         $report->appeal_status = 'submitted';
         $report->appeal_note = $data['appeal_note'];
         $report->appealed_at = now();

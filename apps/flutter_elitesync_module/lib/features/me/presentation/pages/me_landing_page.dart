@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/platform_v1014/safety_cases_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -26,6 +27,16 @@ class MeLandingPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
         children: [
+          if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD'))
+            ListTile(
+              title: const Text('本人处理状态与申诉'),
+              subtitle: const Text('仅本人最小状态，内部Safety不公开'),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const SafetyCasesPage(),
+                ),
+              ),
+            ),
           if (restorationLocalBuild) ...[
             const OperationalStatusCard(),
             const SizedBox(height: 16),

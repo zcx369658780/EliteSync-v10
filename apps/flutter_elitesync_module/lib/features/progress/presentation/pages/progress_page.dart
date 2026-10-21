@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/platform_v1014/platform_events_page.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,8 @@ class ProgressPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const v1013 = bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD');
+    const v1014 = bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD');
+    const v1013 = bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') || v1014;
     final projection = v1013
         ? CalmHomeProjection.current
         : ref.watch(calmHomeProjectionProvider);
@@ -31,6 +33,16 @@ class ProgressPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            if (v1014)
+              ListTile(
+                title: const Text('平台活动 · 合成演练'),
+                subtitle: const Text('受控邀请与报名，不是真实预订或付款'),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const PlatformEventsPage(),
+                  ),
+                ),
+              ),
             if (v1013) ...[
               Text('独立活动与社区', style: Theme.of(context).textTheme.titleMedium),
               const Text('不要求婚恋资料或慢约参与；搭子、好友与消息同意分别确认。'),

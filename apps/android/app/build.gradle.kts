@@ -51,7 +51,8 @@ val flutterDartDefineArgs = flutterDartDefines
     .flatMap { listOf("--dart-define=$it") }
 val isRelationshipDevBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.contains("ELITESYNC_RELATIONSHIP_DEV_BUILD=true")
 val isV1006LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
-    .any { it == "ELITESYNC_V1013_LOCAL_BUILD=true" || it == "ELITESYNC_V1012_LOCAL_BUILD=true" || it == "ELITESYNC_RELATIONSHIP_DEV_BUILD=true" || it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" || it == "ELITESYNC_V1009_LOCAL_BUILD=true" || it == "ELITESYNC_V1010_LOCAL_BUILD=true" || it == "ELITESYNC_V1011_LOCAL_BUILD=true" }
+    .any { it == "ELITESYNC_V1014_LOCAL_BUILD=true" || it == "ELITESYNC_V1013_LOCAL_BUILD=true" || it == "ELITESYNC_V1012_LOCAL_BUILD=true" || it == "ELITESYNC_RELATIONSHIP_DEV_BUILD=true" || it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" || it == "ELITESYNC_V1008_LOCAL_BUILD=true" || it == "ELITESYNC_V1009_LOCAL_BUILD=true" || it == "ELITESYNC_V1010_LOCAL_BUILD=true" || it == "ELITESYNC_V1011_LOCAL_BUILD=true" }
+val isV1014LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.contains("ELITESYNC_V1014_LOCAL_BUILD=true")
 val isV1013LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.contains("ELITESYNC_V1013_LOCAL_BUILD=true")
 val isV1012LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
     .contains("ELITESYNC_V1012_LOCAL_BUILD=true")
@@ -63,7 +64,7 @@ val isV1009LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() 
     .contains("ELITESYNC_V1009_LOCAL_BUILD=true")
 val v1009DualDeviceBuild = providers.gradleProperty("v1009DualDeviceBuild").orNull == "true"
 val relationshipDualDeviceBuild = providers.gradleProperty("relationshipDualDeviceBuild").orNull == "true"
-require(!relationshipDualDeviceBuild || isRelationshipDevBuild || isV1012LocalBuild || isV1013LocalBuild) {
+require(!relationshipDualDeviceBuild || isRelationshipDevBuild || isV1012LocalBuild || isV1013LocalBuild || isV1014LocalBuild) {
     "Relationship dual-device builds require the relationship development gate"
 }
 val dualDeviceBuild = v1009DualDeviceBuild || relationshipDualDeviceBuild
@@ -125,8 +126,8 @@ android {
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
-        versionCode = if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
-        versionName = if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        versionCode = if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
+        versionName = if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
             // Keep ARM ABIs for real-device testing and release publishing.
@@ -159,10 +160,11 @@ android {
             if (isV1011LocalBuild) applicationIdSuffix = ".v1011test"
             if (isRelationshipDevBuild) { applicationIdSuffix = ".v10x.relationshipdev" }
             if (isV1013LocalBuild) { applicationIdSuffix = ".v1013dev" }
+            if (isV1014LocalBuild) { applicationIdSuffix = ".v1014dev" }
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
             buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
-            buildConfigField("String", "API_BASE_URL", if (isV1013LocalBuild) "\"http://127.0.0.1:8017/\"" else if (isV1012LocalBuild) "\"http://127.0.0.1:8015/\"" else if (isRelationshipDevBuild) "\"http://127.0.0.1:8012/\"" else if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
-            buildConfigField("String", "WS_BASE_URL", if (isV1013LocalBuild) "\"ws://127.0.0.1:8018/\"" else if (isV1012LocalBuild) "\"ws://127.0.0.1:8016/\"" else if (isRelationshipDevBuild) "\"ws://127.0.0.1:8013/\"" else if (isV1006LocalBuild) "\"\"" else "\"ws://101.133.161.203:8081/\"")
+            buildConfigField("String", "API_BASE_URL", if (isV1014LocalBuild) "\"http://127.0.0.1:8019/\"" else if (isV1013LocalBuild) "\"http://127.0.0.1:8017/\"" else if (isV1012LocalBuild) "\"http://127.0.0.1:8015/\"" else if (isRelationshipDevBuild) "\"http://127.0.0.1:8012/\"" else if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"http://101.133.161.203/\"")
+            buildConfigField("String", "WS_BASE_URL", if (isV1014LocalBuild) "\"ws://127.0.0.1:8020/\"" else if (isV1013LocalBuild) "\"ws://127.0.0.1:8018/\"" else if (isV1012LocalBuild) "\"ws://127.0.0.1:8016/\"" else if (isRelationshipDevBuild) "\"ws://127.0.0.1:8013/\"" else if (isV1006LocalBuild) "\"\"" else "\"ws://101.133.161.203:8081/\"")
             buildConfigField("String", "BAIDU_MAP_AK", "\"$baiduAkFromProp\"")
             buildConfigField("String", "BAIDU_MAP_SECURITY_CODE", "\"$baiduSecurityCodeFromProp\"")
             buildConfigField("boolean", "ENABLE_BAIDU_NATIVE_SDK", "false")
