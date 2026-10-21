@@ -1,0 +1,17 @@
+00:00 +0: loading CANDIDATE_ROOT/apps/flutter_elitesync_module/test/features/platform_v1014/platform_pages_test.dart
+00:00 +0: current allowed actions are required and internal costs stay hidden
+00:00 +1: voluntary apply sends current event revision and no actor authority
+00:00 +2: waitlist is not a confirmed seat and voluntary attendance stays unverified
+00:00 +3: restricted owner can cancel a current minimal exit ticket without event details
+00:00 +4: an exit locator without current cancel authority cannot create an action
+00:00 +5: failed current refresh removes the previous event card
+00:00 +6: late activity list cannot overwrite the next account
+00:00 +7: sanction appeal uses the existing owner route without outcome flags
+00:01 +8: reviewed appeal displays UPHELD in both own projections
+00:01 +9: reviewed appeal displays OVERTURNED in both own projections
+00:01 +10: reviewed appeal displays CORRECTED in both own projections
+00:01 +11: an unknown outcome cannot fall back to a successful review label
+00:01 +12: report-only target remains selectable beside a live card without old private fields
+00:01 +13: late history context cannot cross a session change
+00:01 +14: switching account clears a partly written appeal form
+00:01 +15: All tests passed!

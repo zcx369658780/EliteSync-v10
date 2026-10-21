@@ -1,0 +1,11 @@
+{
+  "main": "c6ef1fef6d03bfaefc9f334b3b5a6c362dc07e01",
+  "tree": "14fbc6db1d25c134531daf82d2cfaf796f8580cb",
+  "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+  "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a",
+  "task_blob": "36d6b3549e0fd1dff2fc44f6db72ac62c7d4f0fa",
+  "task_SHA256": "2a6d0b24004a57c775b07f0fde03ef360af494e6c3ece1980e9453dbcf9baae2",
+  "original_delivery": "4f303bc3674edc599c9602e6704a97deb6dce4ba",
+  "original_source": "e7e246dc70f72846a05a31e022efadee0838ab83",
+  "old_APK_SHA256": "250497191485fff57eea7eb5f287f69562d07011e726043f272b7f680bd252b7"
+}

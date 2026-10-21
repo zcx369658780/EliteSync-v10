@@ -1,0 +1,28 @@
+{
+  "isolation": "REPEATABLE-READ",
+  "reader_connection": 99,
+  "writer_connection": 98,
+  "locator_transaction_level": 0,
+  "sequence": [
+    "writer locks administrator user",
+    "actual Web HTTP case locator read completed",
+    "reader waiting on same users PRIMARY",
+    "real service revokes exact Web session COMMIT",
+    "HTTP401 resumes without case sources"
+  ],
+  "times": {
+    "writer_locked": 1792577383.69972,
+    "locator_read": 1792577384.088857,
+    "lock_wait_observed": 1792577384.310063,
+    "writer_COMMIT": 1792577384.332325,
+    "HTTP_finished": 1792577384.3653078
+  },
+  "HTTP_status": 401,
+  "private_sources_leaked": false,
+  "changed_tables": [
+    "platform_admin_sessions"
+  ],
+  "unauthorized_case_report_evidence_audit_notification_sanction_writes": 0,
+  "reader": "actual Web product endpoint/middleware",
+  "writer": "independent real PlatformAccess revokeAdminSession service"
+}

@@ -1,0 +1,17 @@
+{
+  "source": "e7e246dc70f72846a05a31e022efadee0838ab83",
+  "B1": {
+    "desired": 201,
+    "actual": 404,
+    "verdict": "BASELINE_FAIL"
+  },
+  "B2": {
+    "lawful_before_block": 200,
+    "desired_after_block": 200,
+    "actual_after_block": 404,
+    "verdict": "BASELINE_FAIL"
+  },
+  "ordinary_private_GET_after_exit_block": 404,
+  "observation_runner_exit": 0,
+  "no_fabricated_500_denial": true
+}

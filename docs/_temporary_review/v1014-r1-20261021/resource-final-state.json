@@ -1,0 +1,19 @@
+{
+  "API": "STOPPED",
+  "database_container": "EXITED",
+  "volume": "RETAINED",
+  "AVD": "STOPPED",
+  "reverse8019": "REMOVED_VERIFIED",
+  "ports_closed": {
+    "8019": true,
+    "8020": true,
+    "43325": true
+  },
+  "WS8020": "NOT_STARTED",
+  "old_container_stable_metadata_equal": true,
+  "old_containers_compared": 29,
+  "old_databases_not_opened": true,
+  "phone_touched": false,
+  "global_ADB_WSL_Docker_Desktop_not_stopped": true,
+  "backups_APKs_original_evidence": "RETAINED_LOCAL_ONLY"
+}

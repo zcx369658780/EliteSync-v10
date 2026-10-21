@@ -1,0 +1,7 @@
+{
+    "new_sanctions": 0,
+    "all_original_sanction_values_unchanged": true,
+    "historical_report_has_no_automatic_findings": true,
+    "R1_reports": 3,
+    "isolation": "REPEATABLE-READ"
+}

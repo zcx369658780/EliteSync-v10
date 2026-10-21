@@ -1,0 +1,58 @@
+{
+  "changed_paths": [
+    "apps/flutter_elitesync_module/lib/features/platform_v1014/platform_events_page.dart",
+    "apps/flutter_elitesync_module/test/features/platform_v1014/platform_pages_test.dart",
+    "services/backend-laravel/app/Services/PlatformEventService.php",
+    "services/backend-laravel/app/Services/SafetyCaseService.php",
+    "services/backend-laravel/app/Services/SafetyParticipation.php",
+    "services/backend-laravel/database/migrations/2026_10_21_200000_add_safety_case_source_seals.php",
+    "services/backend-laravel/resources/views/admin/safety-case.blade.php",
+    "services/backend-laravel/tests/Feature/V1014PlatformSafetyTest.php",
+    "services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php"
+  ],
+  "PHP_lint": [
+    {
+      "path": "services/backend-laravel/app/Services/PlatformEventService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/PlatformEventService.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SafetyCaseService.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/SafetyCaseService.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SafetyParticipation.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/app/Services/SafetyParticipation.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_200000_add_safety_case_source_seals.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/database/migrations/2026_10_21_200000_add_safety_case_source_seals.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/resources/views/admin/safety-case.blade.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/resources/views/admin/safety-case.blade.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1014PlatformSafetyTest.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1014PlatformSafetyTest.php\n",
+      "stderr": ""
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php",
+      "exit": 0,
+      "stdout": "No syntax errors detected in services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php\n",
+      "stderr": ""
+    }
+  ],
+  "test_isolation_and_original_documents_unchanged": true
+}

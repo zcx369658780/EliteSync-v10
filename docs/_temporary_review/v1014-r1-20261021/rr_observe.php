@@ -1,0 +1,4 @@
+<?php
+require __DIR__.'/runtime_bootstrap.php';$env=[];foreach(file(dirname(__DIR__).'/v1014-20261021/db.private.env',FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES) as $line){[$k,$v]=explode('=',$line,2);$env[$k]=$v;}
+$pdo=new PDO('mysql:host=127.0.0.1;port=43325;dbname=elitesync_v10_1_4_dev','root',$env['MARIADB_ROOT_PASSWORD'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$rows=$pdo->query("SELECT w.requesting_trx_id,w.blocking_trx_id,r.trx_mysql_thread_id reader_connection,b.trx_mysql_thread_id writer_connection,l.lock_table,l.lock_index,l.lock_data,l.lock_mode FROM information_schema.INNODB_LOCK_WAITS w JOIN information_schema.INNODB_TRX r ON r.trx_id=w.requesting_trx_id JOIN information_schema.INNODB_TRX b ON b.trx_id=w.blocking_trx_id JOIN information_schema.INNODB_LOCKS l ON l.lock_id=w.requested_lock_id")->fetchAll(PDO::FETCH_ASSOC);echo json_encode(['observed_at'=>microtime(true),'waits'=>$rows]);

@@ -1,0 +1,8 @@
+{
+  "scope": "10 directly related Safety/participation tables only; original 87-table result retained",
+  "all_full_values_and_counts_equal": true,
+  "owned_DB_and_API_restarted": true,
+  "observation_listener_removed": true,
+  "volume_retained": true,
+  "isolation": "REPEATABLE-READ"
+}

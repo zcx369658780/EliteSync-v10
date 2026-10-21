@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "label": "B1-report-contexts",
+      "status": 200
+    },
+    {
+      "label": "B1-after-exit-and-block-report-accepted",
+      "status": 201
+    },
+    {
+      "label": "B1-idempotent-replay",
+      "status": 201
+    },
+    {
+      "label": "cross-event",
+      "status": 404
+    },
+    {
+      "label": "stranger",
+      "status": 404
+    },
+    {
+      "label": "random-pointer",
+      "status": 404
+    },
+    {
+      "label": "client-forged-history",
+      "status": 422
+    },
+    {
+      "label": "idempotency-conflict",
+      "status": 409
+    },
+    {
+      "label": "private-old-event-still-denied",
+      "status": 404
+    },
+    {
+      "label": "private-old-event-still-denied",
+      "status": 404
+    },
+    {
+      "label": "private-old-event-still-denied",
+      "status": 404
+    },
+    {
+      "label": "private-old-event-still-denied",
+      "status": 404
+    },
+    {
+      "label": "own-minimum-after-exit",
+      "status": 200
+    },
+    {
+      "label": "foreign-case-denied",
+      "status": 404
+    },
+    {
+      "label": "B2-restricted-history-evidence",
+      "status": 200
+    },
+    {
+      "label": "B2-named-triage",
+      "status": 200
+    },
+    {
+      "label": "current-case",
+      "status": 200
+    },
+    {
+      "label": "B2-named-investigate",
+      "status": 200
+    },
+    {
+      "label": "current-case",
+      "status": 200
+    },
+    {
+      "label": "B2-historical-claims-not-finding",
+      "status": 422
+    },
+    {
+      "label": "B2-restricted-history-evidence",
+      "status": 200
+    },
+    {
+      "label": "B2-named-triage",
+      "status": 200
+    },
+    {
+      "label": "current-case",
+      "status": 200
+    },
+    {
+      "label": "B2-named-investigate",
+      "status": 200
+    },
+    {
+      "label": "current-case",
+      "status": 200
+    },
+    {
+      "label": "B2-historical-claims-not-finding",
+      "status": 422
+    },
+    {
+      "label": "B2-insufficient-dismiss",
+      "status": 200
+    }
+  ],
+  "B1": "minimal historical intake201; ordinary private GET404",
+  "B2": "case-bound historical sources200; named triage/investigate/dismiss; no automatic finding",
+  "raw": "LOCAL_ONLY"
+}

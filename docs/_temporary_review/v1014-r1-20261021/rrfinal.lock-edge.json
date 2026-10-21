@@ -1,0 +1,1 @@
+{"observed_at": 1792577384.310063, "waits": [{"requesting_trx_id": 5701, "blocking_trx_id": 5700, "reader_connection": 99, "writer_connection": 98, "lock_table": "`elitesync_v10_1_4_dev`.`users`", "lock_index": "PRIMARY", "lock_data": "6", "lock_mode": "X"}]}

@@ -1,0 +1,12 @@
+{
+  "HTTP": [
+    404,
+    404
+  ],
+  "changed_tables": [
+    "personal_access_tokens"
+  ],
+  "private_report_evidence_decision_sanction_notice_audit_writes": 0,
+  "observed_defects": "B1 legitimate intake denied; B2 independent investigation access denied",
+  "runner_exit": 0
+}

@@ -1,0 +1,27 @@
+{
+    "APP_report_case": "4011713b-f736-4abe-9863-8a05f7e4bc66",
+    "APP_report_status": "OPEN",
+    "APP_report_linked_to_exact_prior_participation": true,
+    "minimum_seals": 2,
+    "no_finding_or_sanction": true,
+    "block_still_present": true,
+    "Web_GUI_actions": [
+        "TRIAGE",
+        "INVESTIGATE"
+    ],
+    "original_social_rows_full_values_unchanged": {
+        "friendships": 1,
+        "product_connections": 1,
+        "messaging_consents": 1,
+        "user_blocks": 1,
+        "formal_relationships": 0,
+        "buddy_activities": 0
+    },
+    "original_APK_untouched": true,
+    "source": {
+        "commit": "1062603bfd5866eb4c40b4773657343a1eca2af7",
+        "tree": "aa4c47569d60a5e5638c25e9b0e3c0d7e1760da5",
+        "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    }
+}

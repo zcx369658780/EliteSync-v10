@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "path": "/platform-events/339987a1-95e5-4073-9ce2-63ead8ed6e2c/reports",
+      "status": 201
+    },
+    {
+      "path": "/admin/safety-cases/6615757f-38c1-4163-8fec-f40775dd4272/evidence?reason=TEST_ONLY_RONE_two_historical_claims",
+      "status": 200
+    },
+    {
+      "path": "/admin/safety-cases/fd8936c0-7ce7-4f3d-a229-ad8ae85c001d/evidence?reason=TEST_ONLY_RONE_two_historical_claims",
+      "status": 200
+    },
+    {
+      "path": "/admin/safety-cases/6615757f-38c1-4163-8fec-f40775dd4272/decisions",
+      "status": 422
+    },
+    {
+      "path": "/admin/safety-cases/6615757f-38c1-4163-8fec-f40775dd4272/evidence?reason=TEST_ONLY_RONE_role_negative",
+      "status": 403
+    },
+    {
+      "path": "/safety/own/fd8936c0-7ce7-4f3d-a229-ad8ae85c001d",
+      "status": 401
+    },
+    {
+      "path": "/platform-events",
+      "status": 401
+    }
+  ],
+  "same_event_two_historical_claims_substantiate": 422,
+  "current_admin_role_removed": 403,
+  "revoked_real_C_session": 401,
+  "named_synthetic_admin_role_restored": true
+}

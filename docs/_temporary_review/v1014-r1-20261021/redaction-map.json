@@ -1,0 +1,322 @@
+[
+  {
+    "original_alias": "authority.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 596,
+    "original_SHA256": "87751e48f888c42adf4ef3961e171243262e63ba6101b6db4b561f8527e02594",
+    "public_alias": "authority.json",
+    "public_bytes": 596,
+    "public_SHA256": "87751e48f888c42adf4ef3961e171243262e63ba6101b6db4b561f8527e02594",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "source-identity.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 229,
+    "original_SHA256": "d159d758f0d383c675daae435885bdd8b512b5e224514aefa653b05f28a51c0a",
+    "public_alias": "source-identity.json",
+    "public_bytes": 229,
+    "public_SHA256": "d159d758f0d383c675daae435885bdd8b512b5e224514aefa653b05f28a51c0a",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "baseline-summary.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 416,
+    "original_SHA256": "81753064d93db65cc67ce976226906bfc26aca2e15d87af845f1a95bfb83a02b",
+    "public_alias": "baseline-summary.json",
+    "public_bytes": 416,
+    "public_SHA256": "81753064d93db65cc67ce976226906bfc26aca2e15d87af845f1a95bfb83a02b",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "baseline-DB-delta.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 290,
+    "original_SHA256": "ae592850685c115ab5c2fd49407be9a98d7cbed35ea76f8214b768ac6164946e",
+    "public_alias": "baseline-DB-delta.json",
+    "public_bytes": 290,
+    "public_SHA256": "ae592850685c115ab5c2fd49407be9a98d7cbed35ea76f8214b768ac6164946e",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "after-http-summary.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 2303,
+    "original_SHA256": "6773cc8c6c0c52a61ebcc96b447665a555e701dee8f35c43fbcf09cfe991e095",
+    "public_alias": "after-http-summary.json",
+    "public_bytes": 2303,
+    "public_SHA256": "6773cc8c6c0c52a61ebcc96b447665a555e701dee8f35c43fbcf09cfe991e095",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "extra-negatives-summary.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1095,
+    "original_SHA256": "6ff71e6e592d20f20eee6be040d66c1026fbefc45424e168034ed5f3e82ee14f",
+    "public_alias": "extra-negatives-summary.json",
+    "public_bytes": 1095,
+    "public_SHA256": "6ff71e6e592d20f20eee6be040d66c1026fbefc45424e168034ed5f3e82ee14f",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "runtime-DB-verification.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 192,
+    "original_SHA256": "c85ea3bec442f29d7de79c9774130fa4f93436d97d4e9aef1acc40a1944df7e9",
+    "public_alias": "runtime-DB-verification.json",
+    "public_bytes": 192,
+    "public_SHA256": "c85ea3bec442f29d7de79c9774130fa4f93436d97d4e9aef1acc40a1944df7e9",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal-summary.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 942,
+    "original_SHA256": "7251603d659ea84b3ee7ead52595b1969272632623306a4c52efed43391f0e5b",
+    "public_alias": "rrfinal-summary.json",
+    "public_bytes": 942,
+    "public_SHA256": "7251603d659ea84b3ee7ead52595b1969272632623306a4c52efed43391f0e5b",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal.lock-edge.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 259,
+    "original_SHA256": "fd1da6f79855d9e14beecd7130c6162d345ae26541b05ae448cb998dcaac9ef3",
+    "public_alias": "rrfinal.lock-edge.json",
+    "public_bytes": 259,
+    "public_SHA256": "fd1da6f79855d9e14beecd7130c6162d345ae26541b05ae448cb998dcaac9ef3",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal.writer-locked.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 72,
+    "original_SHA256": "26b2664eb38fe991b7db4ed751f5660453e696046313d64f707a38e6c2aa90eb",
+    "public_alias": "rrfinal.writer-locked.json",
+    "public_bytes": 72,
+    "public_SHA256": "26b2664eb38fe991b7db4ed751f5660453e696046313d64f707a38e6c2aa90eb",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal.writer-commit.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 76,
+    "original_SHA256": "85010b16c5ae69bf062b2a3e516cadb11b08c39f6a949beae243ff66af6bc2a6",
+    "public_alias": "rrfinal.writer-commit.json",
+    "public_bytes": 76,
+    "public_SHA256": "85010b16c5ae69bf062b2a3e516cadb11b08c39f6a949beae243ff66af6bc2a6",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "test-guard.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 104,
+    "original_SHA256": "a245183241780103ab54b41f7337216df124559fee7e93e6c81b75e70f927085",
+    "public_alias": "test-guard.json",
+    "public_bytes": 104,
+    "public_SHA256": "a245183241780103ab54b41f7337216df124559fee7e93e6c81b75e70f927085",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "apk-final-manifest.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1063,
+    "original_SHA256": "7df379d95abee7459f3dcae6070e2996e6b628454206ba1df1eaebb7de0bd351",
+    "public_alias": "apk-final-manifest.json",
+    "public_bytes": 1063,
+    "public_SHA256": "7df379d95abee7459f3dcae6070e2996e6b628454206ba1df1eaebb7de0bd351",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "android-build-final-binding.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 435,
+    "original_SHA256": "bd210b3ab7e06f60f1c1c1ec38ed1761eaec8172393cb57af1acba6e986c65a7",
+    "public_alias": "android-build-final-binding.json",
+    "public_bytes": 435,
+    "public_SHA256": "bd210b3ab7e06f60f1c1c1ec38ed1761eaec8172393cb57af1acba6e986c65a7",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "r1-before-restart.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1518,
+    "original_SHA256": "bba70ad4f4f86409e8c9e7a8e46520f4c252ed27a32dedbf3ce73f118974c3b0",
+    "public_alias": "r1-before-restart.json",
+    "public_bytes": 1518,
+    "public_SHA256": "bba70ad4f4f86409e8c9e7a8e46520f4c252ed27a32dedbf3ce73f118974c3b0",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "r1-after-restart.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1518,
+    "original_SHA256": "bba70ad4f4f86409e8c9e7a8e46520f4c252ed27a32dedbf3ce73f118974c3b0",
+    "public_alias": "r1-after-restart.json",
+    "public_bytes": 1518,
+    "public_SHA256": "bba70ad4f4f86409e8c9e7a8e46520f4c252ed27a32dedbf3ce73f118974c3b0",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "r1-final-safety.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1521,
+    "original_SHA256": "64fbc09a27df42c610461331b7e61933c098f126786e59ffd5d58b82e6ee7747",
+    "public_alias": "r1-final-safety.json",
+    "public_bytes": 1521,
+    "public_SHA256": "64fbc09a27df42c610461331b7e61933c098f126786e59ffd5d58b82e6ee7747",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "r1-restart-result.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 294,
+    "original_SHA256": "ab7d3aa5869b95828a837443e9f3af3d21d128905574b7df3f3632c62a9a41a0",
+    "public_alias": "r1-restart-result.json",
+    "public_bytes": 294,
+    "public_SHA256": "ab7d3aa5869b95828a837443e9f3af3d21d128905574b7df3f3632c62a9a41a0",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "app-web-DB-proof.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 870,
+    "original_SHA256": "1cfbb44e98c6aa3736d0caa9607699dc5a6fd3fa392fe39d97f579a1bbe63d27",
+    "public_alias": "app-web-DB-proof.json",
+    "public_bytes": 870,
+    "public_SHA256": "1cfbb44e98c6aa3736d0caa9607699dc5a6fd3fa392fe39d97f579a1bbe63d27",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "resource-final-state.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 515,
+    "original_SHA256": "55f7e0540b77ce0ba70ee5400666d56e959ec7a4af38b3e572f8fddc6a08ccf3",
+    "public_alias": "resource-final-state.json",
+    "public_bytes": 515,
+    "public_SHA256": "55f7e0540b77ce0ba70ee5400666d56e959ec7a4af38b3e572f8fddc6a08ccf3",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "protection-result.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 153,
+    "original_SHA256": "63cf9760ab44a24b9bdc3251ba1e25168308dc4fa6999347eb7de4b8da041bc2",
+    "public_alias": "protection-result.json",
+    "public_bytes": 153,
+    "public_SHA256": "63cf9760ab44a24b9bdc3251ba1e25168308dc4fa6999347eb7de4b8da041bc2",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "final-r1-backup.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 254,
+    "original_SHA256": "9d17d035b293480d321a310204d78402c07632f2fdb5f91941aea74059c9e095",
+    "public_alias": "final-r1-backup.json",
+    "public_bytes": 254,
+    "public_SHA256": "9d17d035b293480d321a310204d78402c07632f2fdb5f91941aea74059c9e095",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "r1-before-change.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 254,
+    "original_SHA256": "3540ba27981a4318f055de38b0c16a244c859c25d15d5294b393269e21e7a4f9",
+    "public_alias": "r1-before-change.json",
+    "public_bytes": 254,
+    "public_SHA256": "3540ba27981a4318f055de38b0c16a244c859c25d15d5294b393269e21e7a4f9",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "source-checks.json",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 2670,
+    "original_SHA256": "f308760c539aae28061695f189a520b76d6c9a15681112a2292de5dff4a6ca20",
+    "public_alias": "source-checks.json",
+    "public_bytes": 2670,
+    "public_SHA256": "f308760c539aae28061695f189a520b76d6c9a15681112a2292de5dff4a6ca20",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "non-author-R1-review.md",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1776,
+    "original_SHA256": "6a742b6fa3a1e4981207d397428f536d100c5d38335c193bb8477376151bf8d0",
+    "public_alias": "non-author-R1-review.md",
+    "public_bytes": 1776,
+    "public_SHA256": "6a742b6fa3a1e4981207d397428f536d100c5d38335c193bb8477376151bf8d0",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal.py",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 3522,
+    "original_SHA256": "909b4cb09d967e205c4e5c337a228fbc46a58b6400bfb6790c05ee7bb227bd31",
+    "public_alias": "rrfinal.py",
+    "public_bytes": 3522,
+    "public_SHA256": "909b4cb09d967e205c4e5c337a228fbc46a58b6400bfb6790c05ee7bb227bd31",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rrfinal_writer.php",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1039,
+    "original_SHA256": "6fbe01ba7bbe9b70f60e228446a02aa9998e8252e73bf26b96cb38354f063c5b",
+    "public_alias": "rrfinal_writer.php",
+    "public_bytes": 1039,
+    "public_SHA256": "6fbe01ba7bbe9b70f60e228446a02aa9998e8252e73bf26b96cb38354f063c5b",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "rr_observe.php",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 918,
+    "original_SHA256": "af810bb9e9ac76475c4f91550bbddfdb1d077b43a1e473d582d50d1c9e7833a7",
+    "public_alias": "rr_observe.php",
+    "public_bytes": 918,
+    "public_SHA256": "af810bb9e9ac76475c4f91550bbddfdb1d077b43a1e473d582d50d1c9e7833a7",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "runtime_bootstrap.php",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 706,
+    "original_SHA256": "5eaea9187962a5e074381bd760544cb4a2c531dc5e3bacb24ad0b0bf756517fd",
+    "public_alias": "runtime_bootstrap.php",
+    "public_bytes": 706,
+    "public_SHA256": "5eaea9187962a5e074381bd760544cb4a2c531dc5e3bacb24ad0b0bf756517fd",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "safety_snapshot.php",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 880,
+    "original_SHA256": "a65ecfcaa3dac87dea621a6c285e97b203a0a74d0c568b866aad302386d2efc7",
+    "public_alias": "safety_snapshot.php",
+    "public_bytes": 880,
+    "public_SHA256": "a65ecfcaa3dac87dea621a6c285e97b203a0a74d0c568b866aad302386d2efc7",
+    "transformation": "selected nonsecret summary or code; inspected; bytes unchanged"
+  },
+  {
+    "original_alias": "feature-r1-final.stdout",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 435,
+    "original_SHA256": "0e1b48555644e0cc7e29995b2ce1158187eecf14f778bad91dc303a1ee07f3de",
+    "public_alias": "feature-r1-final.stdout",
+    "public_bytes": 374,
+    "public_SHA256": "47c54722d858b89d8dec01e5b4918b8e9fc3b90ed24809833f866f2054c17428",
+    "transformation": "personal filesystem path replaced"
+  },
+  {
+    "original_alias": "r1-widget-review-fixes.stdout",
+    "original_class": "LOCAL_ONLY",
+    "original_bytes": 1331,
+    "original_SHA256": "c78be53ad6ed68db156097220928e193dde087c8f6f0ffb2854e51e71c3ca520",
+    "public_alias": "r1-widget-review-fixes.stdout",
+    "public_bytes": 1270,
+    "public_SHA256": "e0776b1ca18f390b841c67a4e1cc7fd7f2fa348e01f1e9fa7d54138c5121b530",
+    "transformation": "personal filesystem path replaced"
+  }
+]

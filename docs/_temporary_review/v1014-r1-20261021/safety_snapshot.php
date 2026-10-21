@@ -1,0 +1,4 @@
+<?php
+require __DIR__.'/runtime_bootstrap.php';use Illuminate\Support\Facades\DB;$name=$argv[1];if(file_exists(__DIR__.'/'.$name.'.json'))throw new Exception('snapshot exists');$out=[];
+foreach(['platform_event_registrations','platform_event_audits','safety_cases','safety_case_evidence','safety_case_decisions','safety_case_reviews','safety_rule_advisories','moderation_reports','admin_sanctions','sanction_appeals'] as $t){$rows=DB::table($t)->get()->map(fn($x)=>(array)$x)->all();foreach($rows as &$v)ksort($v);unset($v);usort($rows,fn($a,$b)=>strcmp(json_encode($a),json_encode($b)));$out[$t]=['rows'=>count($rows),'full_value_SHA256'=>hash('sha256',json_encode($rows,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE))];}
+file_put_contents(__DIR__.'/'.$name.'.json',json_encode($out,JSON_PRETTY_PRINT));echo '10 directly related Safety/participation persistent table hashes saved';

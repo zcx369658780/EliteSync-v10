@@ -1,0 +1,43 @@
+{
+  "BASELINE_FAIL": {
+    "source": "e7e246dc70f72846a05a31e022efadee0838ab83",
+    "B1": {
+      "desired": 201,
+      "actual": 404,
+      "verdict": "BASELINE_FAIL"
+    },
+    "B2": {
+      "lawful_before_block": 200,
+      "desired_after_block": 200,
+      "actual_after_block": 404,
+      "verdict": "BASELINE_FAIL"
+    },
+    "ordinary_private_GET_after_exit_block": 404,
+    "observation_runner_exit": 0,
+    "no_fabricated_500_denial": true
+  },
+  "test_runs": [
+    {
+      "label": "feature-r1-first",
+      "exit": 1,
+      "result": "26 tests, 4 failures: old minimal receipt404 expectations, window test counted a still-valid earlier event, excess user_id in public history source view. User_id removed; contract assertions strengthened."
+    },
+    {
+      "label": "feature-r1-review-fixes",
+      "exit": 2,
+      "result": "new unrelated-revoke test fixture omitted required synthetic phone; corrected fixture, assertions retained"
+    },
+    {
+      "label": "feature-r1-fixed-source-ready",
+      "exit": 2,
+      "result": "author used nonexistent assertSameCanonicalizing; changed to sorted string IDs with assertSame, both-source and SELF_REPORTED checks retained"
+    },
+    {
+      "label": "feature-r1-final",
+      "exit": 0,
+      "result": "28 tests /1644 assertions; original2 PHP +2 PHPUnit deprecations retained"
+    }
+  ],
+  "original_version_failures": "unchanged original report and original review branch retained",
+  "non_test_observations": "Initial PowerShell line-by-line base64 display split UTF8; exact whole-blob download verified task. Protection Git status emits existing long-path warnings. Incidental wrong-cwd read-only lookups retained in session; no protected mutations."
+}

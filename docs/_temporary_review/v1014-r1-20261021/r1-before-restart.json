@@ -1,0 +1,42 @@
+{
+    "platform_event_registrations": {
+        "rows": 27,
+        "full_value_SHA256": "ffd1c018e21ca3775c24697c4a001af30cc6f7847edba704c42d39e2cc17d578"
+    },
+    "platform_event_audits": {
+        "rows": 99,
+        "full_value_SHA256": "afe6f47cd042286ed0a263ffb06dfcd30bd7c0f65eb72ed08c7a4f123852c2d4"
+    },
+    "safety_cases": {
+        "rows": 9,
+        "full_value_SHA256": "703b60b7833f4c624a95495144dc42dd89475bfd0146c59669a48b21db1c1ee3"
+    },
+    "safety_case_evidence": {
+        "rows": 18,
+        "full_value_SHA256": "00c622e9c27c8186005cdea56d48fc0b1db941f717906ed5e41f6be4503092c0"
+    },
+    "safety_case_decisions": {
+        "rows": 10,
+        "full_value_SHA256": "9deb33a4664d28db3604407917985f08508a99aa67bc9b33df1a024b85bf8132"
+    },
+    "safety_case_reviews": {
+        "rows": 2,
+        "full_value_SHA256": "08a61203026bd555b548d97df8a3ec2e149bebc5a47623944dc238cf9f595596"
+    },
+    "safety_rule_advisories": {
+        "rows": 9,
+        "full_value_SHA256": "d5f7f6429ba9f43a0b6c4e93d6e0e4134a42bae1333ad77ca551c0ca4d6b46ae"
+    },
+    "moderation_reports": {
+        "rows": 9,
+        "full_value_SHA256": "c2294a8fd5ae272a78d0dd49300d9da8326c7b7e0a5776aa3fb3f098e9d2c050"
+    },
+    "admin_sanctions": {
+        "rows": 3,
+        "full_value_SHA256": "1cecd3aea3a5c58b7b8985000be102a2185339ae36d1445bce15c50a489a8415"
+    },
+    "sanction_appeals": {
+        "rows": 1,
+        "full_value_SHA256": "cc5f09f4f601b7cfe48a3b8a2b6374690091f802214f84a6d31c0b189b2d3a06"
+    }
+}
