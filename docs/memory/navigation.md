@@ -6,7 +6,7 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
-**2026-10-21当前里程碑：** v10.1.4两项Safety P1经同版R1闭环，[Astra独立功能接受](../versions/v10.1.4/acceptance.md)`ACCEPTED_WITH_OBSERVATIONS`。**接受产品源码** `1062603bfd5866eb4c40b4773657343a1eca2af7`；apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`；**尚未集成main，待Owner批准单次安全集成**。虚构活动+内部Safety仅受控开发，7天报告/30天案例源读窗非运营法律政策；前版v10.1.3依然是main产品，原失败、旧事故、真实实名供应商及GitHub原ZIP镜像缺口不清零。实时优先[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下方旧时点状态是历史。
+**2026-10-21当前里程碑：** v10.1.4两项Safety P1经同版R1闭环，[Astra独立功能接受](../versions/v10.1.4/acceptance.md)`ACCEPTED_WITH_OBSERVATIONS`。**接受产品源码** `1062603bfd5866eb4c40b4773657343a1eca2af7`；apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`；**尚未集成main；Owner已批准[单次安全集成](../versions/v10.1.4/safe_integration_task_20261021.md)，仍待手动派发本地Codex；Astra第二道集成验收未开始**。虚构活动+内部Safety仅受控开发，7天报告/30天案例源读窗非运营法律政策；前版v10.1.3依然是main产品，原失败、旧事故、真实实名供应商及GitHub原ZIP镜像缺口不清零。实时优先[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下方旧时点状态是历史。
 
 **2026-10-21最新功能门：** v10.1.4首轮候选已交付但**Astra裁决`CHANGES_REQUIRED / NOT_ACCEPTED`**，两个具名Safety问题需同版R1：[正式审阅与任务](../versions/v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)。B1自愿退出后无法提交最小关联Safety报告，B2合法收案经Block/退出撤权后内部可审计最小案卷不能继续调查。两者为GitHub源码反例，Astra未在Windows本地重跑；其它51/1182、Flutter30、RR、87表及APK成果保留。v10.1.3产品仍是接受main，v10.1.4未合main、v10.1.5未启动。唯一实时入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)覆盖历史“当前”；Owner需要手动派发R1任务。
 
