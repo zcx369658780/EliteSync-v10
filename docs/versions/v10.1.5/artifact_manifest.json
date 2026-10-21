@@ -277,7 +277,8 @@
   "report": {
     "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
     "blob": "ae7b8d0cf2a616e198da23ea4db6a8d9e53c5bb6",
-    "sha256": "eb48bdb11ce29e33ff4f7eee2c162ba9bc3464e825a0aca691cf77936185d86e"
+    "sha256": "b51eaeda973e767f4da92266c114a34c49a8e8a28e8d72b66e30e58bbb74cfa4",
+    "hash_basis": "PUBLISHED_GIT_BLOB_BYTES_LF_NORMALIZED_NOT_WORKTREE_CRLF"
   },
   "apk": {
     "availability": "LOCAL_ONLY",
