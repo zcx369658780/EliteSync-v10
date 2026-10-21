@@ -1,5 +1,7 @@
 # EliteSync-v10 当前状态
 
+**2026-10-21唯一当前入口：** [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)。Astra已直接归档[v10.1.2功能接受](docs/versions/v10.1.2/acceptance.md)，Owner批准单次安全集成并允许轻量工作流/项目源更新；Codex尚待手动派发，产品main仍为v10.1.1。下列各个“当前”均为原时点历史快照；以后优先更新ACTIVE_STATE，不再向本文件反复堆叠新当前长段。
+
 ## 2026-10-20 v10.1.2首轮独立审阅：CHANGES_REQUIRED／R1待Owner手动派发
 
 **V10.1.2_CHANGES_REQUIRED / NOT_ACCEPTED / R1_TASK_ISSUED / OWNER_MANUAL_DISPATCH_PENDING / NO_PRODUCT_MAIN_INTEGRATION / V10.1.3_NOT_STARTED**。Astra直接审阅候选源码 `ebade52179b6ac7b76ba2f2992d31981fa995a00` 与完整交付 `900942426e965092d3852771c4126d77210677c4`；41个产品路径Blob、后端71/713及Flutter39执行回执等不归零，但发现同版B1正式关系任意peer_id未受控请求/反枚举缺口，B2退出/换报名代际后旧未决提案仍被当成可用投影/占槽的问题。正式[独立审阅与单次R1集中返修](docs/versions/v10.1.2/ASTRA_REVIEW_AND_R1_TASK_20261020.md)已发布，须由Owner手动交Codex后方可执行。Astra没有在Windows/MariaDB运行这两个新反例，也没有实际用户数据泄露证据。本轮仅文档更新main，产品仍是已接受v10.1.1；禁止合候选main或启动v10.1.3，真实实人供应商继续PENDING。
