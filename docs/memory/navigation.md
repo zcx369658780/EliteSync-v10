@@ -6,6 +6,8 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+**2026-10-21当前里程碑：** v10.1.4两项Safety P1经同版R1闭环，[Astra独立功能接受](../versions/v10.1.4/acceptance.md)`ACCEPTED_WITH_OBSERVATIONS`。**接受产品源码** `1062603bfd5866eb4c40b4773657343a1eca2af7`；apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`；**尚未集成main，待Owner批准单次安全集成**。虚构活动+内部Safety仅受控开发，7天报告/30天案例源读窗非运营法律政策；前版v10.1.3依然是main产品，原失败、旧事故、真实实名供应商及GitHub原ZIP镜像缺口不清零。实时优先[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下方旧时点状态是历史。
+
 **2026-10-21最新功能门：** v10.1.4首轮候选已交付但**Astra裁决`CHANGES_REQUIRED / NOT_ACCEPTED`**，两个具名Safety问题需同版R1：[正式审阅与任务](../versions/v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)。B1自愿退出后无法提交最小关联Safety报告，B2合法收案经Block/退出撤权后内部可审计最小案卷不能继续调查。两者为GitHub源码反例，Astra未在Windows本地重跑；其它51/1182、Flutter30、RR、87表及APK成果保留。v10.1.3产品仍是接受main，v10.1.4未合main、v10.1.5未启动。唯一实时入口[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)覆盖历史“当前”；Owner需要手动派发R1任务。
 
 **2026-10-21当前后继：** [ACTIVE_STATE](../workflow/ACTIVE_STATE.md)是唯一首读事实。Owner批准进入v10.1.4，Astra已冻结[平台活动与内部Safety计划](../versions/v10.1.4/plan.md)及[Codex综合任务](../versions/v10.1.4/task_order.md)，**须Owner手动转交本地Codex才实施**。基线v10.1.3功能＋集成两道独立验收完成，main apps `d4569b330629d74c6e5f3ee1d6438245d7bfd024`、services `4d637a3fd827e00974887d9ce515a1833a8f3a8a`；本版只允许合成活动预算/报名、安全举报→人工判定→申诉纠错，真实招募/付款/外部AI未授权。历史PARTIAL/事故/供应商/ZIP镜像缺口继续保留；下方旧“当前”均是形成时快照。
