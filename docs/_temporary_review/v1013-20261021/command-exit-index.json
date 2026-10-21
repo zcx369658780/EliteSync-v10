@@ -1230,6 +1230,21 @@
     }
   },
   {
+    "label": "delivery-review-prepare",
+    "exit": 0,
+    "utc": "2026-10-21T02:47:11.618757+00:00",
+    "raw_command_sha256": "7b2c4c7d2cf68025e8bdbcbbd367af457c6e62947b37ce5591e9fa2a314df494",
+    "raw_location": "LOCAL_ONLY",
+    "stdout": {
+      "bytes": 59,
+      "sha256": "3ac323363f4808deefa951f7b13ade43b556d84721b197122e16117e0f6dfce9"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
     "label": "feature-02",
     "exit": 2,
     "utc": "2026-10-21T01:16:29.054187+00:00",
@@ -1868,6 +1883,21 @@
     "stdout": {
       "bytes": 257,
       "sha256": "edb93043d9d0e7dd27b006512e803e67060a4bbff8530ad62eb7dfeb545ab517"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "label": "review-commit-create",
+    "exit": 0,
+    "utc": "2026-10-21T02:47:55.003057+00:00",
+    "raw_command_sha256": "89f167027e075d5778b3472fb97c88bdecad3a104685289c3625b7ea5adef8b1",
+    "raw_location": "LOCAL_ONLY",
+    "stdout": {
+      "bytes": 164,
+      "sha256": "bfd07bfe0339ea53e6dc78df36deed9e57e7f8294b1b1c8e67113f10c8f7e355"
     },
     "stderr": {
       "bytes": 0,

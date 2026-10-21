@@ -76,8 +76,8 @@
   },
   {
     "file": "command-exit-index.json",
-    "bytes": 77529,
-    "sha256": "9c71dcfe4cbcf8f400d5d4381237f2e36092f1fa482813ec98f8b13bf33c70ad"
+    "bytes": 78501,
+    "sha256": "efa326a48cec01a6f360657e3b147648ea503b920ba6cfa2132ae57c2f6ac9b4"
   },
   {
     "file": "durability-after-restart.json",
@@ -96,8 +96,8 @@
   },
   {
     "file": "final-check-receipts.json",
-    "bytes": 8033,
-    "sha256": "7c1989d01bb78e678960cc1a1092a78a78920c2f8b7cf7f73655c71f609b0d02"
+    "bytes": 8780,
+    "sha256": "bdb7bae5dc1f5e136c94ed3df4d1f8234eab5a01a23747974ec95d42dc898d83"
   },
   {
     "file": "final-v1013-backup.json",

@@ -10,70 +10,70 @@
     "label": "flutter-affected-final",
     "exit": 0,
     "argv": "cmd /c flutter test --no-pub test/features/status test/app/router/buddy_route_exclusion_test.dart test/features/buddy_v1013/buddy_pages_test.dart test/features/notification/presentation/pages/notification_center_page_test.dart",
-    "stdout_excerpt": "rees/elitesync-main-d49c308/EliteSync-v10/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: known kind with missing route still uses mark read action\n00:06 +52: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: unsupported route does not mark unread notification as read\n00:06 +53: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: notification card body is not a nested tappable container\n00:06 +54: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: card tap on unsupported route does not mark notification as read\n00:06 +55: All tests passed!\n",
+    "stdout_excerpt": "00:05 +48: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: primary action marks unread notification when route is missing\n00:06 +49: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: mark-one failure has no false success and remains retryable\n00:06 +50: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: mark-all failure has no false success and remains retryable\n00:06 +51: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: known kind with missing route still uses mark read action\n00:06 +52: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: unsupported route does not mark unread notification as read\n00:06 +53: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: notification card body is not a nested tappable container\n00:06 +54: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: card tap on unsupported route does not mark notification as read\n00:06 +55: All tests passed!",
     "raw_sha256": "50b88c512b015eedc6ef4f7ceef37773003ebd623029e40444d35915c8996df2"
   },
   {
     "label": "root-entry-widget-01",
     "exit": 0,
     "argv": "<LOCAL_PATH> test --no-pub --dart-define=ELITESYNC_V1013_LOCAL_BUILD=true test/features/buddy_v1013/v1013_root_entry_test.dart --reporter expanded",
-    "stdout_excerpt": "00:00 +0: loading <WORKTREE>/apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart\n00:00 +0: test is compiled with the real v1013 build gate\n00:00 +1: HomePage independently opens BuddyPage without dating readiness\n00:00 +2: HomePage independently opens StatusSquarePage without dating readiness\n00:00 +3: ProgressPage independently opens BuddyPage without dating readiness\n00:00 +4: ProgressPage independently opens StatusSquarePage without dating readiness\n00:01 +5: All tests passed!\n",
+    "stdout_excerpt": "00:00 +0: loading <WORKTREE>/apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart\n00:00 +0: test is compiled with the real v1013 build gate\n00:00 +1: HomePage independently opens BuddyPage without dating readiness\n00:00 +2: HomePage independently opens StatusSquarePage without dating readiness\n00:00 +3: ProgressPage independently opens BuddyPage without dating readiness\n00:00 +4: ProgressPage independently opens StatusSquarePage without dating readiness\n00:01 +5: All tests passed!",
     "raw_sha256": "d40cbd4eae32d525d330ec99d36dcacaa67a2a3eb8de8f3758315032bcb866ec"
   },
   {
     "label": "root-entry-legacy-widget-01",
     "exit": 0,
     "argv": "<LOCAL_PATH> test --no-pub test/features/home/presentation/pages/home_page_test.dart test/features/progress/presentation/pages/progress_page_test.dart --reporter expanded",
-    "stdout_excerpt": "SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed\nPROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0\n00:02 +28: <WORKTREE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.notYetEstablished cannot convert unrecognized codes to success\nAPP_SHELL_INIT\nAPP_SHELL_BUILD index=1\nPROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed\nPROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0\n00:02 +29: <WORKTREE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.unknown cannot convert unrecognized codes to success\nAPP_SHELL_INIT\nAPP_SHELL_BUILD index=1\nPROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed\nPROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0\n00:02 +30: All tests passed!\n",
+    "stdout_excerpt": "PROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed\nPROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0\n00:02 +29: <WORKTREE>/apps/flutter_elitesync_module/test/features/progress/presentation/pages/progress_page_test.dart: HomeProjectionAuthority.unknown cannot convert unrecognized codes to success\nAPP_SHELL_INIT\nAPP_SHELL_BUILD index=1\nPROGRESS_SAFETY externalProviders=0 storageWrites=0 RTC=false; unmounted/disposed\nPROGRESS_HTTP_SENTINEL probe=1 businessHTTP=0\n00:02 +30: All tests passed!",
     "raw_sha256": "1e14d02ecab43893d98ebfa9a0aeb346f5a0f74fdbf3997831d7d63976355994"
   },
   {
     "label": "root-entry-analyze-01",
     "exit": 0,
     "argv": "<LOCAL_PATH> analyze lib/features/home/presentation/pages/home_page.dart lib/features/progress/presentation/pages/progress_page.dart test/features/buddy_v1013/v1013_root_entry_test.dart",
-    "stdout_excerpt": "Analyzing home_page.dart, progress_page.dart, v1013_root_entry_test.dart...\n\n   info - test\\features\\buddy_v1013\\v1013_root_entry_test.dart:42:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures\n\n1 issue found.\n",
+    "stdout_excerpt": "Analyzing home_page.dart, progress_page.dart, v1013_root_entry_test.dart...\n\n   info - test\\features\\buddy_v1013\\v1013_root_entry_test.dart:42:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures\n\n1 issue found.",
     "raw_sha256": "ce1f79608b9f754d29d597d74df569cfb8c445a83b8faa65e6b47f52e8a89006"
   },
   {
     "label": "dart-main-analyze-v2",
     "exit": 0,
     "argv": "cmd /c flutter analyze --no-pub lib/app/router/app_router.dart lib/features/slow_dating_v1012/slow_dating_home_page.dart lib/features/slow_dating_v1012/slow_dating_journey_page.dart lib/features/status/presentation/widgets/status_post_card.dart lib/main_prod.dart",
-    "stdout_excerpt": "Analyzing 5 items...                                            \nNo issues found! (ran in 4.3s)\n",
+    "stdout_excerpt": "Analyzing 5 items...                                            \nNo issues found! (ran in 4.3s)",
     "raw_sha256": "5062e22488db8ba1e824d88670edc881b986e5e1eea2b72ae29101c25231a661"
   },
   {
     "label": "notification-route-analyze-01",
     "exit": 0,
     "argv": "<LOCAL_PATH> analyze lib/features/notification/presentation/pages/notification_center_page.dart test/features/buddy_v1013/buddy_pages_test.dart",
-    "stdout_excerpt": "Analyzing notification_center_page.dart, buddy_pages_test.dart...\nNo issues found!\n",
+    "stdout_excerpt": "Analyzing notification_center_page.dart, buddy_pages_test.dart...\nNo issues found!",
     "raw_sha256": "f05ab36e8a4a29063f367d813a0909cfcfe6fdb21f27af991e8849bfd97eb56d"
   },
   {
     "label": "notification-route-widget-01",
     "exit": 0,
     "argv": "<LOCAL_PATH> test --no-pub test/features/buddy_v1013/buddy_pages_test.dart test/features/notification/presentation/pages/notification_center_page_test.dart --reporter expanded",
-    "stdout_excerpt": "rees/elitesync-main-d49c308/EliteSync-v10/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: known kind with missing route still uses mark read action\n00:01 +29: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: unsupported route does not mark unread notification as read\n00:01 +30: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: notification card body is not a nested tappable container\n00:01 +31: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: card tap on unsupported route does not mark notification as read\n00:02 +32: All tests passed!\n",
+    "stdout_excerpt": "00:01 +25: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: primary action marks unread notification when route is missing\n00:01 +26: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: mark-one failure has no false success and remains retryable\n00:01 +27: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: mark-all failure has no false success and remains retryable\n00:01 +28: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: known kind with missing route still uses mark read action\n00:01 +29: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: unsupported route does not mark unread notification as read\n00:01 +30: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: notification card body is not a nested tappable container\n00:01 +31: <WORKTREE>/apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart: card tap on unsupported route does not mark notification as read\n00:02 +32: All tests passed!",
     "raw_sha256": "51e4bcc09a5a82fb290e0a20ef22e17a75e4b34c233491f299f21f234fb6d265"
   },
   {
     "label": "android-build-final",
     "exit": 0,
     "argv": "python -X utf8 build_final.py",
-    "stdout_excerpt": "{\"build_exit\": 0, \"fixed_commit\": \"e27db2012e2c57390c4da179330552a6b64a728d\"}\n",
+    "stdout_excerpt": "{\"build_exit\": 0, \"fixed_commit\": \"e27db2012e2c57390c4da179330552a6b64a728d\"}",
     "raw_sha256": "be2076c30bb6a37c02afb10e51896a7a845d6dba1b8a0b9f7ad22dab02cc896d"
   },
   {
     "label": "final-backup-resource-stop",
     "exit": 0,
     "argv": "python -X utf8 final_backup_shutdown.py",
-    "stdout_excerpt": "owned API, DB and AVD stopped; volume and backups retained; phone and old resources untouched\n",
+    "stdout_excerpt": "owned API, DB and AVD stopped; volume and backups retained; phone and old resources untouched",
     "raw_sha256": "f1c233c9f0ce196ce1b768c35d0961ea0f3ee4b16749f55713d8c5b8de439de0"
   },
   {
     "label": "protected-roots-final",
     "exit": 0,
     "argv": "python -X utf8 verify_protection.py",
-    "stdout_excerpt": "{\"protected_roots\": 4, \"per_root_equal\": [true, true, true, true], \"all_equal\": true, \"checks\": [\"HEAD output bytes\", \"full porcelain/untracked output bytes\", \"index locator bytes\", \"actual index file SHA256\"], \"no_restoration_or_cleanup_attempted\": true}\n",
+    "stdout_excerpt": "{\"protected_roots\": 4, \"per_root_equal\": [true, true, true, true], \"all_equal\": true, \"checks\": [\"HEAD output bytes\", \"full porcelain/untracked output bytes\", \"index locator bytes\", \"actual index file SHA256\"], \"no_restoration_or_cleanup_attempted\": true}",
     "raw_sha256": "edb93043d9d0e7dd27b006512e803e67060a4bbff8530ad62eb7dfeb545ab517"
   }
 ]
