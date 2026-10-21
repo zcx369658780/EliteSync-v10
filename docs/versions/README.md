@@ -1,6 +1,6 @@
 # EliteSync-v10 版本登记入口
 
-**2026-10-21最新：v10.1.4首轮候选已完成同版R1，Astra已独立[功能接受](v10.1.4/acceptance.md)为`ACCEPTED_WITH_OBSERVATIONS`，B1历史最小投诉、B2撤权后内部案卷连续性已关闭。** 唯一接受源码`1062603bfd5866eb4c40b4773657343a1eca2af7`，apps/services完整接受子Tree已冻结，**尚未集成main**。Owner已批准[单次安全集成](v10.1.4/safe_integration_task_20261021.md)，待Codex手动派发，**产品main尚未集成**；不启动v10.1.5，真实Safety运营/7天30天政策与ZIP字节镜像仍具名待定。最新首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下方旧“NOT_ACCEPTED”仅为形成时历史。
+**2026-10-21最新：v10.1.4已分别通过[Astra功能验收](v10.1.4/acceptance.md)与[单次安全集成独立验收](v10.1.4/integration_acceptance.md)，均为`ACCEPTED_WITH_OBSERVATIONS`。** 接受的完整apps/services已精确集成main，39/39产品路径与原接受Tree一致；[唯一集成报告](v10.1.4/integration.md)原件归档。v10.1.5尚未获Owner授权；真实Safety运营及法定保留期、实人供应商/支付、项目源GitHub原ZIP字节镜像仍是独立待决，最新首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)。下方旧“待派发/未接受”按原时点保留为历史。
 
 **2026-10-21最新：v10.1.4首轮Astra独立审阅为`CHANGES_REQUIRED / NOT_ACCEPTED`。** 候选源码`e7e246dc70f72846a05a31e022efadee0838ab83`、交付`4f303bc3674edc599c9602e6704a97deb6dce4ba`经GitHub身份核验，既有测试与设备证据保留；同版发现B1安全退出后投诉入口关闭、B2合法案卷经Block/撤权后无法继续受控调查。[唯一独立审阅与R1任务](v10.1.4/ASTRA_REVIEW_AND_R1_TASK_20261021.md)已发布，待Owner手动派发Codex。产品main未集成1.4，1.5未启动；最新首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，后文均是旧形成时快照。
 
