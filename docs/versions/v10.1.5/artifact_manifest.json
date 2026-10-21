@@ -1,0 +1,821 @@
+{
+  "schema": "elitesync.v1015.artifact_manifest.v1",
+  "version": "10.1.5",
+  "overall": "PARTIAL",
+  "open_blockers": true,
+  "states": [
+    "V10.1.5_CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
+    "PRODUCT_MAIN_NOT_INTEGRATED",
+    "REAL_PUSH_PROVIDER_PENDING"
+  ],
+  "repository": "zcx369658780/EliteSync-v10",
+  "candidate_branch": "codex/v10.1.5-communication-private-cache",
+  "delivery_commit": "ENCLOSING_GIT_COMMIT_CONTAINS_DOCS_ONLY_AFTER_FIXED_SOURCE",
+  "source": {
+    "commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
+    "unique_parent": "9283b7f6ed7f37971fd9f64c60e9747c7896b09d",
+    "root_tree": "d43b98c77edbb0c4b74ab93a2574b50a0bf3f1c7",
+    "apps_tree": "d0343174cb8587d9e27303f180a37380616b6262",
+    "services_tree": "c32fc724fde29a595084e8c1ec066340d892e8fe",
+    "changed_files": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "blob": "e3d2389fcbf1b0a029e8acb1454e0d7cf6adb719"
+      },
+      {
+        "path": "apps/android/app/src/main/AndroidManifest.xml",
+        "blob": "f0861a32d74a45d6efead330b7604b14ddc215f5"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
+        "blob": "8e7212218199a4992fa2970faa6a7548940b61e6"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart",
+        "blob": "bb0cef4e976096b54e81afad5182b5ade0053168"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart",
+        "blob": "b04ee3a0eb991448ee69c5bc7ffd959bf7b067ae"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/storage/cache_keys.dart",
+        "blob": "61611498ac13752a2351c6ea8ccc933c6c3caf51"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/storage/local_storage_service.dart",
+        "blob": "4974a2863f1675fb8f589b824c78c4a11ec61334"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+        "blob": "6a2e30c3782db3be54efa86c5d806f89b84735d0"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/core/storage/secure_storage_service.dart",
+        "blob": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
+        "blob": "fa5847c656cca6c57fe86a43705bcabbd3fed689"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_request_dto.dart",
+        "blob": "6e0641f3bf84a7acd79372e5147291c568efe5a1"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_response_dto.dart",
+        "blob": "5ddc82e2420f047e5cfa946c864ccdb010acdff1"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
+        "blob": "b39d20d64f23d6d163c501d9f4a55880342e4ffd"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_socket_data_source.dart",
+        "blob": "84c5e18a141eb3c880710d7cf2be0f88f34db97e"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
+        "blob": "a421b468ab2d45181eb98c5efa3771fdf226c0f6"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
+        "blob": "c12d7cdfc3c61ee74b76629c85b605e9a9aacd16"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+        "blob": "ad231a582a3f40b74db59a570a5fb5c95a17921b"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_conversation_list_page.dart",
+        "blob": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
+        "blob": "12d792fd4cd40c5ef253f95a17ff8064de0344f0"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+        "blob": "530aed529e6d43bd6cf3564438406e5e984cbecf"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_preferences_page.dart",
+        "blob": "fbd5ed2ec7960bfc68bcf644c6ebba1ceefdc59e"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+        "blob": "ef19dcc1b93a63cb72385a19efa412a6da1d7b37"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart",
+        "blob": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+        "blob": "abb6adc38c7221080e09be495ff808fb80a99705"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+        "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+        "blob": "39956188db4e361f34e9210890cf6d337f56edf7"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "blob": "592cdcef541751454e951930d2601d58bf92da8c"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+        "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+        "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
+        "blob": "080a1d9f46443f517251b7d8b5cf49289957afb2"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+        "blob": "15098e0de61816bcfd3cd2ffee683a3e5c77086d"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+        "blob": "6be426e6a0a8e0ba49d74c57684ca57c0a9a88e7"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "blob": "e3a03e47263a4919fdfce45c49d259fe954ae992"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "blob": "9a15a7c97ed939335e8720f16f48ab75f2dc8e38"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+        "blob": "db7f09197aec9e30b5bccf64d3e2e56ec96eb568"
+      },
+      {
+        "path": "services/backend-laravel/.gitignore",
+        "blob": "9a46fce80e41f58c8a4be4b0cace4673cb56f82c"
+      },
+      {
+        "path": "services/backend-laravel/app/Console/Commands/ChatWebsocketServerCommand.php",
+        "blob": "486be26a6e44221def9d7aac520ae18856816719"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+        "blob": "f69e06670e6584a02862f965d82fc37dee407224"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+        "blob": "ffbc699589a20016f70c4316564ff8d677ffe56d"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationPreferencesController.php",
+        "blob": "011fecb63606b303671efbc53c913fdf54dc54e6"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
+        "blob": "737a90e2842f386dba4a421b5a65ab303775d131"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php",
+        "blob": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+        "blob": "044c0d00f427a2c4a4d37c0c51f58a1c2deafd06"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php",
+        "blob": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+        "blob": "5fc6d2bc7f3d2d24f15206186dcdf7ae2c668e10"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+        "blob": "d9bbd3aa9fea85f1545bc979267a86a47cf96023"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+        "blob": "c3ebf4824e8fc0feb6a1732da5a0d44ff3936b87"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/NotificationService.php",
+        "blob": "05e3e104a058ad68d8fcc3f6c7b3ef8149cbd598"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+        "blob": "87eb611bc46faafdf5c5dac7caf91b5c1dfd998c"
+      },
+      {
+        "path": "services/backend-laravel/config/filesystems.php",
+        "blob": "b0dfffaf12e1bdba45fe7da83089e87fce0d582e"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php",
+        "blob": "038874c4dd773099cb5e0cff670c2d2fa5732fa7"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php",
+        "blob": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b"
+      },
+      {
+        "path": "services/backend-laravel/routes/api.php",
+        "blob": "932b1ae07c2dd7633ebeae6de4d88a080420c914"
+      },
+      {
+        "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php",
+        "blob": "ff0786418bdb2d6d585422a9d9511fbafb702797"
+      },
+      {
+        "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
+        "blob": "b41e0525d098a6570d4000c6012e98cd4ad5fb34"
+      },
+      {
+        "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
+        "blob": "e88ee2372f318e96c5e4cfa5bdf5eb10d6143206"
+      },
+      {
+        "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
+        "blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/journey.py",
+        "blob": "0cf1fb5c9c8a741a116d702d27339bbfab798e8c"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/rr.php",
+        "blob": "ed481a6ceab8463f6a7986f301e7ef574968778b"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/rr.py",
+        "blob": "6bc13ca307fc3e23a0a2fd543b6a94aeb5bcbfaf"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/rtc_lifecycle.py",
+        "blob": "848d51a98ee46b10758d44d0d1e9047a19b09ff3"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/runtime.php",
+        "blob": "f1ac3ac2846b28d95e12719ea93c99b9111ca0da"
+      }
+    ]
+  },
+  "frozen": {
+    "plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "task_order_blob": "0df56f69712a85541b5f24bef281e2a9a61520a4",
+    "unchanged": true
+  },
+  "report": {
+    "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
+    "blob": "ae7b8d0cf2a616e198da23ea4db6a8d9e53c5bb6",
+    "sha256": "eb48bdb11ce29e33ff4f7eee2c162ba9bc3464e825a0aca691cf77936185d86e"
+  },
+  "apk": {
+    "availability": "LOCAL_ONLY",
+    "source_commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
+    "package": "com.elitesync.v1015dev",
+    "version_name": "10.1.5-dev",
+    "version_code": 1010501,
+    "sha256": "60655c9f3440bb3c8aecfcffd88643f2b150e14ec7e92907dbd62961a92f1d97",
+    "development_signer_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+    "build_exit": 0,
+    "both_owned_avd_installed_bytes_pulled_hash_match": true,
+    "actual_gui_text_image_video": true
+  },
+  "database": {
+    "name": "elitesync_v1015_dev",
+    "owned_volume": "elitesync-v1015-dev-data-20261021",
+    "loopback_port": 43326,
+    "tables": 93,
+    "new_empty_before_migrate": true,
+    "snapshot_9_tables_restart_equal": true,
+    "full_93_table_hash_proof": false,
+    "final_backup": {
+      "file": "final-after-negative.sql",
+      "bytes": 180577,
+      "sha256": "c7141bdeb3c32b278321dd5d87ffc44230cdd82ee16b05d06bc45027c15de02d",
+      "exit": 0
+    },
+    "restore_rehearsal": "NOT_RUN",
+    "stopped_volume_preserved": true
+  },
+  "review": {
+    "branch": "review/temporary-evidence-v1015-20261021",
+    "commit": "7f7a1036e4a4567be7797e41530011b2dbb06684",
+    "root_tree": "b931e43fabe46167cc40cd3c137eb47801798cac",
+    "files": {
+      "docs/_temporary_review/v1015-20261021/block-http-final.txt": "31952e3d5c6ce22e1494e8b1d764029cf962c63f",
+      "docs/_temporary_review/v1015-20261021/db-restart-result.txt": "ee9505794edb9d0f565c807364a874859103b017",
+      "docs/_temporary_review/v1015-20261021/db-snapshot-after-restart.json": "4ecdb968041ef169791669752d46711e6bce8a6c",
+      "docs/_temporary_review/v1015-20261021/db-snapshot-before-restart.json": "4ecdb968041ef169791669752d46711e6bce8a6c",
+      "docs/_temporary_review/v1015-20261021/device-storage-receipt.json": "ad6f237c5639e6451c0770077ea62293e1ae3df5",
+      "docs/_temporary_review/v1015-20261021/final-db-audit.txt": "d208a60e870223c6e20989fc6620d86a3949837f",
+      "docs/_temporary_review/v1015-20261021/gui-protection-summary.json": "82bc2885d73f70cb7a34bb73e8e5f3c3b3d7844c",
+      "docs/_temporary_review/v1015-20261021/http-journey-first.txt": "e5c5e7f266ddc7f35948e4ec4ae4dad0cf0f27d6",
+      "docs/_temporary_review/v1015-20261021/non-author-review.md": "cf43692b214808bbb2d851113472990d1f4120f3",
+      "docs/_temporary_review/v1015-20261021/notification-after-revoke.txt": "490e5438a808a0ffd285a89247b699e9552c692c",
+      "docs/_temporary_review/v1015-20261021/README.md": "3c40359f2a03538b9ece602358542375c0935a9e",
+      "docs/_temporary_review/v1015-20261021/review-files.json": "8ff402bdf283c3eb050c2408cf2f11a35c468802",
+      "docs/_temporary_review/v1015-20261021/rr-first.txt": "d4921d43b4049b50f9d8786d590767b06f2fb662",
+      "docs/_temporary_review/v1015-20261021/rtc-control-fixed.txt": "399509bd0988c80b904a730ef9f2feae7a34aa1c",
+      "docs/_temporary_review/v1015-20261021/trusted-boundary-http.txt": "f6a8f4863b9e89cd89c9200ef412b8a12b40f104",
+      "docs/_temporary_review/v1015-20261021/validation-excerpts.txt": "3cb6775e6ec9e0e63d194c8a5b30a8589794b7fc",
+      "docs/_temporary_review/v1015-20261021/video-http-positive.txt": "90dc9332540aea7581deb465e431ce1e647e4c94",
+      "docs/_temporary_review/v1015-20261021/video-tool-download.json": "146950a7e47425b4bb0153f381fdc5e69e34f655",
+      "docs/_temporary_review/v1015-20261021/video-http.py": "e0d8b15840bb9588cf63f4ca5d443e7492375268",
+      "docs/_temporary_review/v1015-20261021/block-http.py": "e38e09300d532284e87ce9ea0f5f38372bbe1c8b",
+      "docs/_temporary_review/v1015-20261021/notification-after-revoke.py": "40f946fbb0b04ba43d53e92c587d75a10336b1f8",
+      "docs/_temporary_review/v1015-20261021/boundary.php": "6e8aaf7eac6643cad90545845423d47ce9394c04",
+      "docs/_temporary_review/v1015-20261021/boundary.py": "a1b6423336412f0d1280aca97c4b78b9d7a24f3e"
+    }
+  },
+  "non_author_review": {
+    "mode": "BOUNDED_STATIC_SOL_HIGH",
+    "source_commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
+    "unclosed_high_confidence_p1_p2": 0,
+    "six_findings_fixed": true,
+    "runtime_independent_rerun": false,
+    "astra_acceptance": false
+  },
+  "ac_results": {
+    "01": "PASS_WITH_BOUNDED_PROTECTION_PROOF",
+    "02": "PARTIAL_REAL_RESPONSE_LOSS_RETRY_NOT_RUN",
+    "03": "PARTIAL_FULL_GUI_ACCOUNT_EDGE_MATRIX_NOT_RUN",
+    "04": "PASS_BOUNDED_REAL_IMAGE_VIDEO_JOURNEY",
+    "05": "PARTIAL_RTC_MEDIA_5S_AEC_NOT_PROVEN",
+    "06": "PARTIAL_CORE_DEVICE_TIME_NOT_PROVEN",
+    "07": "PARTIAL_CORE_ANDROID_30DAY_PURGE_NOT_PROVEN",
+    "08": "PARTIAL_FULL_GUI_OLD_CARD_SAFETY_MATRIX_NOT_RUN",
+    "09": "PASS_ISOLATION_CONTRACT_REAL_PUSH_NOT_RUN",
+    "10": "PARTIAL_CORE_GAPS_ANALYZE_EXIT1_INFO8",
+    "11": "DELIVERY_WITH_INDEPENDENT_ASTRA_ACCEPTANCE_PENDING"
+  },
+  "validation": {
+    "php_lint": {
+      "files": 23,
+      "failures": 0,
+      "exit": 0
+    },
+    "backend_regression": {
+      "tests": 50,
+      "assertions": 286,
+      "deprecations": 2,
+      "exit": 0
+    },
+    "rtc_retry": {
+      "tests": 7,
+      "assertions": 53,
+      "deprecations": 2,
+      "exit": 0
+    },
+    "flutter_analyze": {
+      "exit": 1,
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8,
+      "all_info_files_unchanged_from_base": true
+    },
+    "whitespace": {
+      "raw_exit": 2,
+      "historic_crlf_rule_exit": 0
+    },
+    "original_failures_preserved": true
+  },
+  "protection": {
+    "five_roots_head_branch_index_status_unchanged": true,
+    "preexisting_refs_unchanged": true,
+    "private_env_hash_same": true,
+    "historical_binary_full_hash_proof": false,
+    "historical_cleanup": "NOT_RUN"
+  },
+  "shutdown": {
+    "owned_db_stopped": true,
+    "volume_preserved": true,
+    "history_cleanup": "NOT_RUN",
+    "owned_reverse_8021_8022_removed": true,
+    "owned_ws_stopped": true,
+    "owned_avds_stopped": true,
+    "owned_api_stopped": true
+  },
+  "evidence_receipts": [
+    {
+      "local_receipt_id": "auth-green-expanded.txt",
+      "sha256": "e992b090fd867b3705d0d71684e2baf9f8fb928b650c3707b4df8ac405ea88fb",
+      "bytes": 417,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "notification-green-expanded.txt",
+      "sha256": "a5ff9e6ee2c2f97daf74f5bc95967e4c9ae27bec41ea7a7687010c74d985c23f",
+      "bytes": 417,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "backend-auth-notification-regression.txt",
+      "sha256": "ae6cb028d8d50879c0c0ffb816d74eb5b102a20e8a98d86eada509983a2e6b6c",
+      "bytes": 419,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "backend-messaging-rtc-regression.txt",
+      "sha256": "4d46e23f4e2d73024372ee60bf2042d4e6b692502db3f72046256763ee09b7d4",
+      "bytes": 13245,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "backend-rtc-current-fixture.txt",
+      "sha256": "5922efa2025c2ed3458f66cfc509ff7c4cddcb731024b7f5e99086acce68b576",
+      "bytes": 417,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-initial.txt",
+      "sha256": "329533bc4fec2703f229d37fa9cc5eb397ea38e9168d338e7dcf4464fee715fe",
+      "bytes": 53579,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-chatroom-final.txt",
+      "sha256": "df0eb484d7f93ca39e501f42c60c94bec4057772b9a521bbb8b6f54fe0452d44",
+      "bytes": 6978,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-new-safety-fixed2.txt",
+      "sha256": "08053698302f90229b273a32fafc010ab89846d339abcd7db83365684aff51cc",
+      "bytes": 1427,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-live-cache-expiry.txt",
+      "sha256": "b647b8cbb9d163260dac4043277f55383b58c0dddba6bb8761411cf5a58b00e7",
+      "bytes": 729,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-cache-queue-red2.txt",
+      "sha256": "6d5a5138f573ee8a53bf63363507f78cd42e8b9b9ca83e94e94e7704ec8d21fb",
+      "bytes": 656,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-cache-queue-green.txt",
+      "sha256": "9738fbe0faf644e0a4fff7bfb8e13387aa4120ed3c49c6df84770c889ae049e0",
+      "bytes": 2820,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "live-chat-regression-third.txt",
+      "sha256": "e0f48f628c704c788e5ead9943eb1c841afbb03cf2f86b1b45e211c80540b8b1",
+      "bytes": 888,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-live-chat-reliability.txt",
+      "sha256": "2698b915100f6f26e5aa00db184a1b1990424c922433c30a41a04b5702f9f6b4",
+      "bytes": 5691,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "flutter-targeted-live-chat-picker-fixed.txt",
+      "sha256": "da42988a2896a88e4c0bc9f6878da009cd2664853e0c73c4121e111e55fdc2e5",
+      "bytes": 418,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "analyze-source-fixed.txt",
+      "sha256": "df3411b1c3d5731bc4202a58b57739c0c679b165b0815d7b974052dd4ee8f43c",
+      "bytes": 1406,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "build-source-fixed.txt",
+      "sha256": "02a3ff058ec8ec4bfa3296a1ca7c1098a66ebaad4d747ae8f0a398c907283c63",
+      "bytes": 3101,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "final-changed-php-lint.txt",
+      "sha256": "381221ce6ca49443d316d204db0897ba8d00e062a0d6e31d13b5302dd1e7a977",
+      "bytes": 4061,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "http-journey-first.txt",
+      "sha256": "d9c802d13157ffe326a88ea7bac5f10b4ef54521992ad72751b02e39b9f7467a",
+      "bytes": 4474,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "rr-first.txt",
+      "sha256": "83fa90a6e861ee045dabd5e8cc30876da9ee40108a9723dcc9927c8896239dbc",
+      "bytes": 746,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "rtc-control-first.txt",
+      "sha256": "6ab644c701152c9c92126a24d1cbae3a5387fcb830454c78f4b6c4680f7b7feb",
+      "bytes": 760,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "rtc-control-fixed.txt",
+      "sha256": "ddadedec62d4eb6355a23fc6935acde8e406f91df4699afd0def70439c61e5b4",
+      "bytes": 1906,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "trusted-boundary-http.txt",
+      "sha256": "e18e9690225a1845c9b992ff13d5c1c4cb0e7f3fa3271341b7189f05d5cae97f",
+      "bytes": 2989,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "video-http-positive.txt",
+      "sha256": "f91b90b4aa278d4aa8b9fdfdb1d1e6589969a5d395d29f6cda83d8938c610cf9",
+      "bytes": 2563,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "revoke-http-first.txt",
+      "sha256": "153e208cf4cac2a452d85b7d072e0a6ff370e8a3b085cfc0302175f570c88108",
+      "bytes": 656,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "revoke-http-after-committed-mc.txt",
+      "sha256": "7f91c918cda943b50f05eeff9db7c425daf983851e46ac86ce050782eebd9b47",
+      "bytes": 304,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "revoke-http-final.txt",
+      "sha256": "e7a8ba7250809b89e788258d31743c326f7e12bddc3670e1170f062e3b96fe22",
+      "bytes": 717,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "block-http-final.txt",
+      "sha256": "6cf398181bc7c9700a27c5a7d57751883bdb3a9c7ef8b65017fb681aa655b811",
+      "bytes": 2889,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "disabled-notification-http.txt",
+      "sha256": "9357761397bf1b28e4c5b862a2ef7a83298e93c8a0a3bd8663c6013c3411b98c",
+      "bytes": 527,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "notification-after-revoke.txt",
+      "sha256": "44c541d2c2fbadecbbaff19347463dade311928fb06a041db2fe74a07ad1d256",
+      "bytes": 505,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "final-db-audit.txt",
+      "sha256": "a74fb7eba9db323ae110703422d1d1015a0fbf7f4502a489888ecbf66c325e59",
+      "bytes": 1164,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "device-storage-receipt.json",
+      "sha256": "f9417c5a25114a616f4095bfe397931648504a3462e851bcff6894ecb3c1e8dc",
+      "bytes": 1215,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "installed-apk-readback.json",
+      "sha256": "2f8e11e54fde051019c647bbf8957bcd45f2b15c14cf18ce5cb6f7cb9b1b3e2d",
+      "bytes": 313,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "db-snapshot-before-restart.json",
+      "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
+      "bytes": 1287,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "db-snapshot-after-restart.json",
+      "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
+      "bytes": 1287,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "db-restart-result.txt",
+      "sha256": "16ac8f0e98e3884e914b9356230d5d35c0a5be9a088cac829cc9cecbba7d96cd",
+      "bytes": 34,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "db-final-snapshot.json",
+      "sha256": "98002e1f455ca24136c53185f5c5c77a23d4a897ae9a6d2b8826636c5bcf40d2",
+      "bytes": 1287,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "db-backup-receipt.json",
+      "sha256": "6d0a132b972e7a4051d4697aa028a2654d05d73c29dd6244f51e8833bd6b35a6",
+      "bytes": 115,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "final-db-backup-receipt.json",
+      "sha256": "927b34e1e5c6fbc9fc8bfc5662b68419d5411ecfc4430d2b4facd651146ebfaf",
+      "bytes": 157,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "owned-resources-shutdown.json",
+      "sha256": "10b51696d55f3a9049f325b555ef5acdc2ead33c7b42a0a37ed2dfcfd30273af",
+      "bytes": 230,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "refs-private-protection-after.json",
+      "sha256": "b3e7368427337c9daf9099bf199625f6eabc44019ec7b14ffe6e88a487ec454c",
+      "bytes": 228,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "protected-before.json",
+      "sha256": "467ae5110c90f8f5555aba2091d1259fb5c48cf0b98fe48ea0422e7afaa47c7d",
+      "bytes": 27696,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "protected-after.json",
+      "sha256": "bb908b7b70ea85fb4dcf6956b3d46753bd18a1a9988d9f0c62f7fcf36f4c6369",
+      "bytes": 890,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "diff-check-raw.txt",
+      "sha256": "0bfc16ea90fb2f17337dbde2b1fd876cf6f0cac37aabb1923d575c2d5d8ff757",
+      "bytes": 1712,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "diff-check-crlf.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "video-tool-download.json",
+      "sha256": "14290ce75d8d003437c3565c9ca138f4bc7069eeb2289964380ec0da4d4ea7e9",
+      "bytes": 310,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "offline-actual-ui-receipt.json",
+      "sha256": "9edd7a57a08f9aaaf136c9e8abf2456608514afaa9674922138064aa4592f734",
+      "bytes": 459,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "non-author-review.md",
+      "sha256": "6f2ad834b62efe767ae680c04017808969b7f5f1cf26b3a68112b30d3d4b94cf",
+      "bytes": 1955,
+      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    },
+    {
+      "local_receipt_id": "shutdown-verified.json",
+      "sha256": "3e9edd355cf869dd8de43be524295d1c13ad948841b764971543611c52af2d20",
+      "bytes": 162,
+      "availability": "LOCAL_ONLY",
+      "authority": "CODEX_REPORTED",
+      "raw_upload": false
+    }
+  ],
+  "authority_levels": [
+    "CODEX_REPORTED",
+    "LOCAL_ONLY",
+    "TEST_ONLY",
+    "REUSED_EVIDENCE_SOURCE_ONLY"
+  ],
+  "astra_direct_acceptance": "NONE",
+  "not_run": [
+    "REAL_PUSH_DELIVERY",
+    "REAL_ANDROID_30DAY_PURGE_POSITIVE_NEGATIVE",
+    "REAL_ANDROID_FULL_15_30_TIMELINE",
+    "DUAL_SFU_MEDIA_RECONNECT_5S_REVOCATION",
+    "REAL_AEC_HUMAN_HEARING",
+    "FULL_GUI_ACCOUNT_SWITCH_DELETION_OLD_CARD_SAFETY_MATRIX",
+    "PRODUCTION_PUBLIC_DEPLOYMENT",
+    "V10_1_6",
+    "MAIN_INTEGRATION"
+  ],
+  "shutdown_verification": {
+    "volume_exists": true,
+    "exit": 0,
+    "verification": "PASS",
+    "owned_emulators_absent": true,
+    "api_ws_listener_count": 0,
+    "db_running": false
+  }
+}

@@ -1,0 +1,109 @@
+# EliteSync v10.1.5 实施与候选交付报告
+
+结论：**PARTIAL / OPEN_BLOCKERS**。状态：`V10.1.5_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE / PRODUCT_MAIN_NOT_INTEGRATED / REAL_PUSH_PROVIDER_PENDING`。这是 Codex 实施交付，不是 Astra ACCEPTED。核心期限清理及 RTC 媒体等缺口未关闭，不以 Push 供应商待定豁免。
+
+## 权威与固定源码
+
+| 项目 | 固定身份 |
+|---|---|
+| 仓库 / 来源 main / 源码唯一 Parent | `zcx369658780/EliteSync-v10` / `9283b7f6ed7f37971fd9f64c60e9747c7896b09d` |
+| plan Blob | `7d3466b3be67135dc641cfee7c7faef78937ba03` |
+| task_order Blob | `0df56f69712a85541b5f24bef281e2a9a61520a4` |
+| 源码 Commit | `6ca68617fd6e18648a9ccd4c923fa1850761fbec` |
+| 源码 Root Tree | `d43b98c77edbb0c4b74ab93a2574b50a0bf3f1c7` |
+| 完整 apps Tree | `d0343174cb8587d9e27303f180a37380616b6262` |
+| 完整 services Tree | `c32fc724fde29a595084e8c1ec066340d892e8fe` |
+| 来源 apps / services | `3468a3dd97da7accfda2539a0f8d8f68931a6110` / `0cb1f9d19659291a462488b3686fd0a07a6698ac` |
+| 候选分支 | `codex/v10.1.5-communication-private-cache` |
+
+冻结文档全文及 Blob 已核，开工与交付前 live main 一致。源码共62文件、4421增加/258删除；报告和 manifest 后继提交只变文档，产品两子 Tree 保持上述身份。报告所在 Git 提交即文档交付身份；避免在文件中递归写入自身提交哈希，实际发布回读身份由交付回执给出。未改 frozen plan/task、旧接受文件、main 或历史候选。
+
+## 入口短矩阵与实现
+
+| 分层 | 已核内容与本版处理 |
+|---|---|
+| 已有且接受 | v10.1.4 apps/services 来源；CN/MC/消息幂等、私有媒体/Range、RTC和通知既有合同复用，不移植旧AC通过结论。 |
+| 已有但缺真实接线 | 15/30天纯策略、明文/全局缓存、WS配置、通知偏好及实际Live页面；本版接线并验证已说明部分。 |
+| 本版新增/修复 | 服务端成功login T0/设备family/15天期限；refresh不续期；锁后当前授权重验；WS仅发conversation_changed指针；未知结果同键重试；安全存储、账户/设备/对象命名空间、进程可信经过时间、启动锁定、离线只读和清理回执；通知类别/静默/权限GUI/TEST_ONLY token生命周期。 |
+| 外部尚未批准/不可用 | 真实Push Provider/Key/费用/远端锁屏送达；新增实体音频设备、麦克风/摄像头、UDP/防火墙及公网。未执行。 |
+
+实际路由为 LiveConversationListPage/LiveChatPage，验证未以备用聊天页面代替。原生picker返回后核原账户、新epoch并做当前HTTP读取，随后才允许上传。缓存排队写入固定调用时账号，防止旧A写入借B会话。时间异常、未知凭据、跨进程启动、校验异常、已知撤权均锁定；只对精确transport故障允许既有授权缓存只读。Bearer敏感调试输出路径已移除。Android禁止备份；应用重启需在线重新核验。
+
+一次旧源定点检查：既有具名图谱中 VoiceMessage/Map 查询未证明来源；当前 LocationContractController 不含地图SDK或实时定位。结论 `NOT_PROVEN / UNKNOWN / OUT_OF_SCOPE`，不能推断旧版绝不存在。未新增语音留言、附近人或地图模块。
+
+## 冻结 AC-10.1.5-01～11
+
+所有实测为 `NEW_RUN / CODEX_REPORTED`，合成数据与时间/transport fixture另标 `TEST_ONLY`。测试数量不替代真实链。
+
+| AC | 结果 | 正例、负例与剩余门禁 |
+|---|---|---|
+| 01 基线/保护 | PASS（核验范围内） | 真实main和两产品Tree、独立空MariaDB/专属volume、有效APP_DB_CONNECTION和测试隔离事前验证。五保护根HEAD/branch/index/status终检一致，全部事前refs和私密.env hash未变。未做历史所有SQL/APK事前逐文件hash，不作全资产一致保证。 |
+| 02 消息幂等/故障恢复 | PARTIAL | 同APK双AVD真实GUI登录、文字/图/视频发送接收；HTTP同键同id、异payload409、附件只绑定一次；最终6消息/3附件/每消息1通知。WS101及最小指针，API中断显示密文只读并禁发送/选图/选视频；前后台恢复后当前HTTP重读新视频。未知结果同键重试有widget回归；实际设备网络“请求已提交但响应丢失”故障注入未跑，故不宣称全部AC闭合。 |
+| 03 授权/迟到响应 | PARTIAL | MariaDB RR精确reader43/writer42 users PRIMARY RECORD锁等待，writer撤销COMMIT后旧reader401、无私密正文，双exit0。真实MC撤销、CN关闭、Block后旧消息/图片/视频/Range均404，新发404；logout旧JWT401。禁用合成C后旧凭据被401/403集合校验拒绝，但脚本后续断言失败，未单独保存精确状态，不冒称该整脚本PASS。切号/迟到响应与缓存跨号队列由本版定向测试覆盖；完整真实GUI切号/账号注销及WS撤权关闭时序矩阵未完成。 |
+| 04 图片/短视频 | PASS（本组受控旅程） | 同版本APP原生picker发送图片/2秒H264视频，B可见图及私有视频播放/暂停状态；视频源hash与DB相同。有权200/206、第三人404、同视频键仍message6；假MP4返回422未READY。专属DB与APP重启后重新GUI登录可读取/播放既有视频；MC撤销后实际播放器“视频不可用”，旧图/视频Range404。无音轨视频不证明音频质量，未重跑全部旧媒体。 |
+| 05 RTC | PARTIAL / OPEN | 实际HTTP创建、拒绝、接听、结束及旧LiveKit入口404；RTC retry定向7/53 exit0。未运行双端SFU媒体、实际重连/撤权5秒停止；AEC/人耳为NOT_RUN/DEVICE_PENDING。控制面不能证明媒体目标。 |
+| 06 可信15/30天 | PARTIAL / CORE_OPEN | 真实login产生账号/设备绑定T0，refresh不续期；持久服务端TEST_ONLY时间fixture：15天前60秒200、15天/后60秒/未来锚401。客户端采用服务端锚+进程Stopwatch，冷启锁定。真实Android15/30天边界及完整同账号期限时序未证，不把纯策略/回填T0等同实际经过时间。 |
+| 07 加密缓存/清理 | PARTIAL / CORE_OPEN | 双AVD真实FlutterSecureStorage密文、SharedPreferences无测试名称/消息明文；同进程API断开只读，发送控件enabled=false；离线冷启登录门无旧私密内容。widget覆盖时间异常/切号/丢密钥/30天清理成功与失败、跨号排队。最终APK无可达可信时钟seam，不能即时证明Android30天到期清理正反例；NOT_RUN/NOT_PROVEN。未修改设备全局时钟，不能把登出清理冒充到期清理。 |
+| 08 通知 | PARTIAL | 真GUI站内入口/类别/静默；消息类别关闭且MariaDB持久为false，silent=1。OS拒绝、允许状态及系统设置撤销可见；撤销导致进程重启回登录门。API偏好过滤、通用文案/最小payload；撤权Block后旧消息通知0条。锁屏文案仅契约，未声称真实远端投递；真实旧卡片点击、完整GUI Safety/禁用矩阵未完成，相关后端有限回归不替代GUI。 |
+| 09 Push隔离 | PASS（隔离合同） / PROVIDER_PENDING | 独立provider接口、token注册/轮换/撤销/去重回执由8/69定向测试与真实HTTP合成登记验证，token仅hash。全部transport为TEST_ONLY；无真实Provider/SDK Key/费用，REAL_PUSH_NOT_RUN。 |
+| 10 运行/回归 | PARTIAL | 固定源码APK双端安装回取hash一致；真实API/MariaDB旅程、精确RR、实际媒体与重启读回。9指定表重启hash全同；PHP23文件lint exit0；后端50/286及RTC7/53 exit0含2 deprecations；Flutter定向通过。analyze exit1，0error/0warning/8info，8条均基线未改文件；未伪称全绿。核心期限及RTC实物缺证仍开放。 |
+| 11 交付/复核 | PASS（交付范围） / AWAITING_ASTRA | 唯一报告/manifest、固定源码和产品Tree、独立短期脱敏审阅分支、非作者有界静态复核。6项发现修复后无未关闭高置信P1/P2；审稿者未跑设备/DB/声学，不是Astra接受。发布与回读后停候选，不main、不v10.1.6。 |
+
+## 实际测试、命令与原始失败
+
+| 本版回执 | stdout / exit |
+|---|---|
+| auth-green-expanded | 9 tests /42 assertions /exit0；2 deprecations |
+| notification-green-expanded | 8/69 /exit0；2 deprecations |
+| backend-auth-notification-regression | 50/286 /exit0；2 deprecations |
+| backend-messaging-rtc-regression | 19/159，7 errors /exit2；旧RTC fixture缺合法friendship |
+| backend-rtc-current-fixture | 仅补合法friendship，7/53 /exit0；2 deprecations，不弱化产品门或删断言 |
+| flutter-targeted-initial → chatroom-final | 首轮182通过/1失败；修正文案后目标组28通过/exit0 |
+| new-safety-fixed2 / live-cache-expiry / cache-queue-green | 5 /5 /10项通过，exit0；队列RED原证保留 |
+| live-chat-regression-third | 9项通过 /exit0 |
+| live-chat-reliability → picker-fixed | 5通过/2生命周期fixture失败；fixture修正后另2通过/exit0，共7独立case |
+| analyze-source-fixed | exit1，8条旧info，0error/0warning |
+| final-changed-php-lint | 23份PHP文件，全部exit0 |
+| assembleDebug离线固定源码构建 | BUILD SUCCESSFUL /exit0 |
+| http-journey-first / rr-first / rtc-control-fixed | 真实HTTP/DB、精确RR、RTC控制面均exit0 |
+| trusted-boundary-http / video-http-positive / block-http-final / notification-after-revoke | 持久时间fixture、图片视频Range、Block后拒绝、旧通知隐藏均exit0 |
+
+可复核命令：`php tests/Integration/v1015/runtime.php {identity,migrate,seed-relations,snapshot}`；`python tests/Integration/v1015/{journey,rr,rtc_lifecycle}.py`；额外视频/Block/边界脚本在独立review分支。PHP定向测试通过phpunit的testing/sqlite/:memory: fail-closed门运行；Flutter定向日志保留完整stdout和exit，公开包给最小尾段。构建命令：`assembleDebug -PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true -PrelationshipDualDeviceBuild=true --offline --console=plain`。回环API为`php -S 127.0.0.1:8021 -t public public/index.php`，WS为`php artisan chat:ws --host=127.0.0.1 --port=8022 --poll=1`。最终lint逐改变文件执行`php -l`。原始空白检查exit2；历史CRLF规则检查exit0，原失败未改写。
+
+其余原失败全部保留：初始seed exit0但stdout为现行Match拒绝，补合法合成friendship后成功；notification初轮缺phone；旧RTC脚本/hangup404后改/end；旧JDK路径猜测失败；缓存队列RED；生命周期fixture失败。补测脚本先误期望403而实际404、误写REVOKED而实际MC_REVOKED、误用/blocks路由404，均非通过回执；不恢复已撤权状态，续接正确状态后最终Block脚本exit0。禁用/旧通知组合脚本要求存在旧卡片而列表已过滤为空，exit1；单独旧通知过滤脚本exit0。GUI类别首次substring误点，后来精确节点操作及DB读回确认；系统撤权重启导致旧页面断言失败。下载首份ZIP截断hash不符，未执行；续传完整hash通过。工具输出/本地原证与失败文件继续保留。
+
+## APK、便携视频工具与实物来源
+
+APK：`com.elitesync.v1015dev` /`10.1.5-dev` /code `1010501`，x86_64+arm64，开发签名SHA256 `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`。固定源码APK SHA256 `60655c9f3440bb3c8aecfcffd88643f2b150e14ec7e92907dbd62961a92f1d97`；两个AVD安装路径回取字节均相同。早期APK另存，不混用最终包。
+
+Owner在本轮明确批准项目记忆无法定位时下载视频工具。仅本版目录便携下载 `https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip`，114768076字节，SHA256 `60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba`，与发布者sha256文件一致（不是数字签名证明）。生成2秒320×240/15fps/H264/yuv420p/无音轨MP4，11508字节，SHA256 `ee92709753412dd169e70c9205ba51e2b98d2e0e03f674a917b5e8a4781f7584`，服务端asset3/message6精确匹配。APP原生图片选择器可能重编码，DB图片asset2 hash为 `b5fa8d43f3a284c229ab5f35df417e61fbb56402a74b6532c6e418715b3586c4`，不声称与选择前PNG原字节相同。
+
+## 数据库恢复、保护与收尾
+
+本版新空库`elitesync_v1015_dev`、新volume `elitesync-v1015-dev-data-20261021`，mysql/127.0.0.1:43326/local；93表，MariaDB10.11，镜像digest `8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008`。每个写入harness先验证effective连接、DB/host/port/env/url/socket；未连接旧3306或旧库。空库恢复点、重启前SQL、负例后最终SQL均LOCAL_ONLY保留。最终SQL180577字节，SHA256 `c7141bdeb3c32b278321dd5d87ffc44230cdd82ee16b05d06bc45027c15de02d`。重启前SQL172632字节，SHA256 `00544ebc456792dcf2eeb0b1700169a838700c628f26203d3b9e9f0cef00ea87`；仅完成dump，未声称另库restore演练通过。
+
+重启对users/device_sessions/chat_messages/message_attachments/notifications/product_connections/messaging_consents/notification_preferences/notification_devices共9表做逐表排序内容hash，前后全同；API/WS及APP当时停止以避免写入噪声。媒体通过重启后真实当前reader及GUI播放另核，并非所有93表hash证明。负例终态CN_CLOSED/MC_REVOKED/Block、合成C禁用保留，未自动复活权限。
+
+五保护根：原dirty根、旧仓及三个历史工作树的HEAD/分支/index hash/status与事前全同；全部事前Git refs不变，私密.env hash不变。ignored仅事前清单，未做全历史SQL/APK逐字节基线，不作超出核验范围的保护保证。连续树构建更新可重建build输出；旧正式归档与备份未操作。全部本版API/WS/AVD停止，只有本版8021/8022 reverse移除；专属DB停止、volume保留。未停全局ADB/Docker/WSL，未历史清理。
+
+## 非作者复核与证据层次
+
+独立非作者Sol/high静态复核固定源码及新增测试：未发现未关闭高置信P1/P2。6项已修：时间异常旧列表、锁后凭据重验、WS正文TOCTOU、非网络错误误启离线、锁定草稿、picker旧epoch。RTC fixture只补合法friendship。审稿者未执行测试/DB/设备/声学；主代理归档简录位于独立review分支。
+
+- `CODEX_REPORTED / LOCAL_ONLY`：实际Windows/AVD/API/MariaDB/密文/截图/XML/原始日志，Astra尚未直接核验。
+- `TEST_ONLY`：全部虚构账户/合成图视频/持久时间fixture/transport替身，不是远端Push送达或物理15/30天。
+- GitHub源码及脱敏文本可直接读取；这不使本地实测自动成为`ASTRA_DIRECT`。
+- `REUSED_EVIDENCE`只用于旧接受合同的来源，不迁移为本版测试PASS。
+
+独立审阅分支 `review/temporary-evidence-v1015-20261021`，固定commit `7f7a1036e4a4567be7797e41530011b2dbb06684`，Root Tree `b931e43fabe46167cc40cd3c137eb47801798cac`，目录`docs/_temporary_review/v1015-20261021/`，23份允许文件及Blob逐项列于manifest。普通non-force发布；不得合并该分支到main/产品候选，未清理。未上传SQL/APK/截图/XML/token/签名密钥/私密配置/设备标识。manifest包含原证hash及来源分级，不能仅凭hash视为Astra已读原件。
+
+断网设备无法即时得知远端撤权；只读资格依赖此前建立的可信上下文，联网后先重验。不能保证抹去对方已下载副本，也不能把离线未知状态解释为当前服务器许可。
+
+## 开放阻断与交付出口
+
+1. `CORE_TRUSTED_DEVICE_TIME_AND_PURGE_NOT_PROVEN`：实际Android15/30边界、可信离线完整时序、30天受控密文清理成功/失败实物回执未完成。现有安全策略为重启锁定；不能用widget或日期回填宣称闭合。
+2. `RTC_MEDIA_5S_NOT_PROVEN / AEC_DEVICE_PENDING`：无本版双端SFU媒体/重连/撤权5秒终止及声学证明。
+3. `REAL_GUI_EDGE_MATRIX_PARTIAL`：实际响应丢失同键重试、切号/注销/旧通知点击/Safety完整GUI矩阵尚缺，相关单测/HTTP仅证明已列部分。
+4. `REAL_PUSH_PROVIDER_PENDING / REAL_PUSH_NOT_RUN`：外部供应商未批准，隔离合同通过不能代替真实投递。
+
+集中提交唯一报告及manifest、固定源码与独立脱敏材料，等待Astra独立功能验收及Owner后续决定。本次不生成acceptance/integration_acceptance，不集成main、不执行v10.1.6，不扩展生产、硬件或历史清理权限。
