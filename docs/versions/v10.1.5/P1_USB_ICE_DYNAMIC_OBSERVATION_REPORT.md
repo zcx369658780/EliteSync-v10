@@ -71,3 +71,35 @@
 公共材料仅含匿名设备别名、状态/协议角色、预期包身份、Git对象与原证hash/bytes；不上传序列号、私人IP、SSID/MAC、JWT/密钥、原candidate/SDP、完整设备日志、SQL/APK或声音。该目录的新设备摘要不含原序列号。旧资产只读取/计算hash，未清理任何工作树、审阅分支、SQL/APK、备份、volume或手机数据。
 
 仅普通nonforce发布本次两文档候选，核验最终Git SHA/Root/Parent、两份Blob和R1完整apps/services子Tree；main不集成。**DEVICE_NOT_PRESENT / READY_AWAITING_PHONE / AWAITING_ASTRA_INDEPENDENT_REVIEW / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / NO_R2 / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED**。
+
+
+## Owner再次手动派发后的唯一观测（2026-10-22 17:30:52 UTC+08）
+
+此节为Owner在上次阻断交付后再次正式派发同一任务的执行记录。上文17:10:08检查与候选 `c84669d91107a16b541457cdf5b6119f14880986` 原样保留；两次ADB清单属于两次明确手动派发，不能合称一次查询。本次单独一次查询，不是后台轮询或自动重试。
+
+重新完整读取任务并确认GitHub固定路径Blob `5957cf95b4d41fc27344de5cb6e56955b1d43a75`；实时main仍为 `7ce7c91d82147db5742a9ea5a543dae754f064b7`。连续工作树开工HEAD为上次候选 `c84669d91107a16b541457cdf5b6119f14880986`，Root `b0415672164abf249d3e8222d4c1621126479478`；工作树干净。apps/services完整Tree仍与固定R1相等，产品代码未改。
+
+**本次G0：DEVICE_NOT_PRESENT / READY_AWAITING_PHONE。** 17:30:52的一次ADB设备清单返回exit0，既定Owner身份未出现；本地封装明确按门禁SystemExit(1)结束。原stdout共28 bytes、SHA256 `bbfcc7239a6f1be3544814ebdc6bcc9b66bf5b1f0b03baa3340808f19265a630`，本次已完整保存LOCAL_ONLY；不是上次未保存的stdout，也不补造上次原件。没有adb -s命令，没有实际安装包/签名/权限核验，没有选其他手机或模拟器。
+
+| 门 | 本次结果 |
+|---|---|
+| G0 Git/历史保护 | 固定任务、实时main、固定R1产品Tree已核；5历史根及983份既有文件建立本次快照。 |
+| G0 手机 | NOT_PRESENT；一次清单，exit0；封装门禁exit1。 |
+| G0 DB/恢复点、SFU镜像、端口 | NOT_RUN_DEVICE_GATE_NOT_MET。 |
+| G1 ICE7891实际listener/Docker目标 | NOT_RUN；REACHABLE_FROM_DOCKER_BACKEND=NOT_ASSESSED。 |
+| G2 单call/Room.connect | NOT_RUN，均0次。 |
+| G3 candidate→check→selected→DTLS→track | 全部NOT_RUN；无新ICE或bind mismatch因果结论。 |
+| G4 非作者复核 | 本次复核结果随交付回填。 |
+| G5 资源收尾 | 本次未启动APP/DB/SFU/Laravel/guard、未创建reverse；无新增运行资源，无stop/kill操作。 |
+
+本次仍未消耗Room.connect尝试。设备/运行时前置不满足，不能用历史APK、DB、镜像或旧ICE候选代替本轮实核。旧JWT首入/重入、same-call真实媒体重连、撤权COMMIT后媒体停止≤5秒以及双APP双向媒体门禁不变，AC05 OPEN。后续仍需Owner让同一授权手机可见并明确继续；无自动轮询、无配置变更、无R2或v10.1.6。
+
+本轮保护检查的范围为五历史根的HEAD/branch/index/status和983份具名既有文件。Git status读取返回exit0，但对历史深层缓存目录产生Windows长路径警告；不将status快照声称为这些不可遍历目录的逐文件保护证明。既有SQL/APK/备份与原证的具名hash核验单独记录。终检和非作者意见见下方追加回执。
+
+本次独立候选分支为 `codex/v10.1.5-p1-usb-ice-observation-resumed`；保留原候选分支及c846固定提交。保护终检已完成：5历史根HEAD/branch/index/status一致、983份具名既有文件bytes/SHA256一致、491个开工refs和private .env不变。第一历史根status exit0保留153条长路径警告，原始警告LOCAL_ONLY；未修改全局Git长路径配置。终检回执SHA256 `7251feddfd8a4f29764ce0e48e49d26fab0901bde654b4a3b8a3c57c35f7c27a`。
+
+本次G4：独立非作者GPT-6.1 Sol/high完成有界静态复核，BOUNDED_STATIC_REVIEW_COMPLETED_NO_CONTENT_BLOCKER；确认两次手动派发分别记账、ADB exit0与门禁封装exit1分层、零connect/资源、APK/DB未实核、AC05 OPEN及R1产品Tree不变。其要求的本轮原证列表、保护/隐私与复核回填已完成；发布身份回读由独立GitHub读取回执承载。复核未读取本轮原始设备清单、未独立重算其hash或983份保护文件；未作动态验收，ACCEPTED=false。
+
+本次公共文件白名单隐私预检通过：无设备序列号、私人IPv4原值、MAC或JWT，无原SDP/ICE内容或私密配置。原始设备清单仅LOCAL_ONLY。最终仍为 DEVICE_NOT_PRESENT / READY_AWAITING_PHONE / AWAITING_ASTRA_INDEPENDENT_REVIEW / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN。
+
+原失败保留：文档隐私回填工具首次用默认GBK读取UTF-8清单触发UnicodeDecodeError，Python exit1；同批后续Git检查exit0使外层批返回0，不能冒称整批通过。修正为显式UTF-8后仅续做文档检查，没有新增设备查询、服务或Room.connect。失败回执LOCAL_ONLY列入清单。
