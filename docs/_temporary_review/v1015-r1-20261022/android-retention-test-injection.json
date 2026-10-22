@@ -1,0 +1,288 @@
+[
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_SERVER_BINDING",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_REFRESH_KEEPS_T0",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_CURRENT_READ_HTTP_200",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_ONLINE_LOGIN_ANCHOR",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_SYNTHETIC_SAVE",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_NATIVE_STORED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_NEW_INSTANCE_LOCKED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D15_MINUS_ONLINE_READ",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D15_ONLINE_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D15_PLUS_ONLINE_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D15_PLUS_OFFLINE_READ_ONLY",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D20_OFFLINE_READ_ONLY",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D30_MINUS_READ_NOT_DUE",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D30_READ_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_D30_PLUS_READ_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "A_ACTUAL_PURGE_SUCCESS",
+    "passed": true,
+    "purge_status": "completed",
+    "deleted_objects": 1,
+    "native_delete_completions": 2,
+    "injected_delete_failures": 0,
+    "native_object_present_after": false,
+    "native_manifest_present_after": false,
+    "locked": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_SERVER_BINDING",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_REFRESH_KEEPS_T0",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_CURRENT_READ_HTTP_200",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_ONLINE_LOGIN_ANCHOR",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_SYNTHETIC_SAVE",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_NATIVE_STORED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_NEW_INSTANCE_LOCKED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D15_MINUS_ONLINE_READ",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D15_ONLINE_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D15_PLUS_ONLINE_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D15_PLUS_OFFLINE_READ_ONLY",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D20_OFFLINE_READ_ONLY",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D30_MINUS_READ_NOT_DUE",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D30_READ_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_D30_PLUS_READ_DENIED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_ACTUAL_PURGE_FAILURE",
+    "passed": true,
+    "purge_status": "failed",
+    "deleted_objects": 0,
+    "native_delete_completions": 0,
+    "injected_delete_failures": 1,
+    "native_object_present_after": true,
+    "native_manifest_present_after": true,
+    "locked": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "B_RESTART_LOCATOR_SAVED",
+    "passed": true
+  },
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "2335c16b-470b-443b-9ffa-749ce3b27258",
+    "stage": "COMPLETE",
+    "passed": true
+  }
+]

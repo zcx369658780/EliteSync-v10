@@ -1,0 +1,67 @@
+{
+  "backend": {
+    "tests": 47,
+    "assertions": 1769,
+    "exit": 0,
+    "deprecations": 2,
+    "phpunit_deprecations": 2,
+    "scope": "V1014 safety/continuity and V1015 auth/notifications/messaging isolated SQLite regression; does not substitute Android or MariaDB evidence"
+  },
+  "backend_first": {
+    "exit": 2,
+    "tests": 47,
+    "errors": 47,
+    "assertions": 0,
+    "reason": "Inherited development env refused by TestCase before-write isolation guard"
+  },
+  "probe_unit": {
+    "tests": 5,
+    "exit": 0
+  },
+  "pending_send_regression": {
+    "tests": 8,
+    "exit": 0
+  },
+  "probe_analyze_exit": 0,
+  "chat_test_analyze_exit": 0,
+  "live_chat_analyze_exit": 0,
+  "release_probe_guard": {
+    "gradle_expected_exit": 1,
+    "outer_guard_verification_exit": 0
+  },
+  "fixed_source_debug_build_exit": 0,
+  "review": {
+    "reviewer": "independent GPT-6.1 Sol high code reviewer",
+    "scope": [
+      "R1 build isolation",
+      "exact local DB safety gates",
+      "retention probe isolation",
+      "response-loss proxy",
+      "live_chat pending POST/current-read race and regression"
+    ],
+    "findings": [
+      {
+        "id": "P2_AAR_COORDINATE_CI_REUSE",
+        "state": "CLOSED",
+        "detail": "Probe/app have independent source-and-defines digest coordinates; CI directory-only skip removed; static check and build receipt inspected."
+      },
+      {
+        "id": "ACTUAL_GUI_RESPONSE_LOSS_KEY_RACE",
+        "state": "FIXED_REVIEWED",
+        "detail": "Current read no longer clears attempt before POST acknowledgement. Same-key retry and stale session guards checked. New regression reviewed; reviewer did not execute device/DB/test."
+      }
+    ],
+    "open_high_confidence_P1_P2": [],
+    "limitation": "Static bounded review is not Astra functional acceptance; original failed cat receipts excluded from success evidence."
+  },
+  "original_failures_retained": [
+    "unsupported flutter build aar target",
+    "wrong AAR output nesting and coordinate cache",
+    "HTTP chunking timeout",
+    "empty conversation 404",
+    "early cat No such file receipts",
+    "UI wrong selection/stale frame assertions",
+    "SFU fail-closed and synthetic audio RPC failures",
+    "WS final assertion failure and missing intermediate serialization"
+  ]
+}

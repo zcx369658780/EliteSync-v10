@@ -1,0 +1,14 @@
+[
+  {
+    "probe": "V1015_R1_RETENTION",
+    "mode": "ANDROID_TEST_INJECTION",
+    "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+    "run_id": "dbf02d90-07d4-4a54-91d8-5e269436af13",
+    "stage": "RESTART_FRESH_SERVICE_LOCKED",
+    "passed": true,
+    "native_object_present": true,
+    "offline_read_denied": true,
+    "locked": true,
+    "anchor_restored": false
+  }
+]

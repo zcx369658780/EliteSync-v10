@@ -1,0 +1,85 @@
+{
+  "main_read_only": "be21598ef8738ab4d8e5dbd20f210f473e0b51f7",
+  "R1_blob": "be3045b206b75b7ccd0d8b28bc366678fc890302",
+  "plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+  "source": {
+    "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "parent": "47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962",
+    "root_tree": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+    "apps_tree": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+    "services_tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "changed_files": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "mode": "100644",
+        "blob": "af797e30bffd5e160c5af7e521aca9eb0ab286dc"
+      },
+      {
+        "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+        "mode": "100644",
+        "blob": "34934d19736d5516ec8fea4f2d47d2cd9b0bbca2"
+      },
+      {
+        "path": "apps/android/settings.gradle.kts",
+        "mode": "100644",
+        "blob": "631355a9a9d3f72ed34f108c18dc75f1be11c2fd"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/dev/v1015_r1_retention_probe.dart",
+        "mode": "100644",
+        "blob": "5dc2104b7f601b361a5ee836b1c5b37dd15291ef"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+        "mode": "100644",
+        "blob": "6aec5b749e954a2e64a1382ae2a5fdfe3c379e46"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+        "mode": "100644",
+        "blob": "46e16f5a201cc9af821d63bebb523c10237ad5c2"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+        "mode": "100644",
+        "blob": "f828eb9a9656df0fa0e666b07e8602f595c87eee"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/dev/v1015_r1_retention_probe_test.dart",
+        "mode": "100644",
+        "blob": "a1ae2efedc11a2bd1304a5b23de22b112839ab79"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "mode": "100644",
+        "blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+        "mode": "100644",
+        "blob": "5dcb6caaecf26ae7b50f021ac0995fb71f4d9e92"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/PlatformAccess.php",
+        "mode": "100644",
+        "blob": "8e818e8ba20015ee84055a590f09f89e853823d5"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+        "mode": "100644",
+        "blob": "7b17b44f28ea585718f8adb96fc8d704fc91bc27"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/r1_fault_proxy.py",
+        "mode": "100644",
+        "blob": "371615b3c6a37f2987f66fd4fc854178e4199773"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/r1_runtime.php",
+        "mode": "100644",
+        "blob": "962ffd89c1c36e7a1c73fae6eca4c9f870614b7c"
+      }
+    ]
+  },
+  "status": "PARTIAL_NOT_ACCEPTED_MAIN_NOT_INTEGRATED"
+}

@@ -1,0 +1,41 @@
+{
+  "fixture": "TEST_ONLY_DIRECT_SAFETY_FIXTURE_NOT_WORKFLOW_ACCEPTANCE",
+  "own_GUI_minimum": {
+    "result": "PASS",
+    "fixture": "TEST_ONLY_DIRECT_SAFETY_FIXTURE_NOT_WORKFLOW_ACCEPTANCE",
+    "GUI_current_lookup_minimum": true,
+    "private_statement_absent": true
+  },
+  "api_negatives": {
+    "fixture": "TEST_ONLY_DIRECT_SAFETY_FIXTURE_NOT_WORKFLOW_ACCEPTANCE",
+    "stranger_case_status": 404,
+    "stranger_own_status": 200,
+    "stranger_own_items": 0,
+    "disabled_D_login": 403,
+    "private_statement_absent": true
+  },
+  "D_oldcard_first": "ALREADY_INVALIDATED_BEFORE_CLICK_NOT_COUNTED_AS_CLICK",
+  "E_actual_oldcard_click_after_disable": {
+    "action": "ACTUAL_TAP_OF_GROUNDED_OLD_NOTIFICATION_AFTER_DISABLE_COMMIT",
+    "tapped_at": 1792627422.4306595,
+    "current_safety_HTTP": 403,
+    "private_content_absent": true
+  },
+  "late_response_switch": {
+    "result": "CURRENT_C_NO_A_PRIVATE_CONTENT",
+    "fault_started": 1792627362.9931948,
+    "logout_confirmed": 1792627377.9157133,
+    "C_visible_at": 1792627403.5013258,
+    "old_response_hold_seconds": 60
+  },
+  "late_response_result": "old_private_response_client_closed after C visible; C remains without A content",
+  "WS_post_revoke": {
+    "post_revoke_http": 404,
+    "first_run": "FINAL_ASSERTION_FAILED_NO_STRUCTURED_RESULT",
+    "MC_NOT_REACTIVATED": true,
+    "clock": 1792627587.1577415,
+    "ws_result": "CONNECTION_CLOSED_BEFORE_HTTP_UPGRADE"
+  },
+  "WS_limit": "Initial comprehensive command final assertion failed; middle result not serialized, so do not claim whole reconnect/active-close timing PASS. MC not reactivated.",
+  "GUI_post_revoke_private_messages_cleared": true
+}

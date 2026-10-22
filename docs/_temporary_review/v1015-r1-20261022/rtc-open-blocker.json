@@ -1,0 +1,38 @@
+{
+  "status": "CORE_OPEN",
+  "owner_authorized": "Existing A/B AVD virtual microphone plus existing Emulator Controller synthetic PCM and loopback TCP SFU only. No physical host mic/camera or new network/system/device/SDK.",
+  "first_call": "GUI ringing observed; missed before successful accept/media",
+  "synthetic_injection": {
+    "start": 1792626814.2289717,
+    "end": 1792626829.2931855,
+    "sources": [
+      {
+        "side": "b",
+        "source_hz": 880,
+        "injection": {
+          "type": "_InactiveRpcError",
+          "code": "StatusCode.UNAVAILABLE",
+          "detail": "IOCP/Socket: Connection reset (An existing connection was forcibly closed by the remote host.\r\n -- 10054)"
+        }
+      },
+      {
+        "side": "a",
+        "source_hz": 440,
+        "injection": {
+          "type": "_InactiveRpcError",
+          "code": "StatusCode.DEADLINE_EXCEEDED",
+          "detail": "Deadline Exceeded"
+        }
+      }
+    ]
+  },
+  "environment_failure": "B AVD process exited; A UI and logcat blocked; causal root not proven.",
+  "SFU_first_failure": "authority_monitor_failed / sfu_fail_closed before successful media",
+  "established_dual_APP_SFU_media": "NOT_VERIFIED",
+  "same_call_reconnect": "NOT_VERIFIED",
+  "old_RTC_JWT_first_reentry_denial": "NOT_VERIFIED",
+  "flowing_media_stop_within_5s": "NOT_VERIFIED",
+  "video": "NO_AUTHORIZED_CAMERA_SOURCE_NOT_RUN",
+  "AEC": "DEVICE_PENDING_NO_HUMAN_AUDIBILITY_CLAIM",
+  "resolution": "Stopped injection; recovered same AVDs only for GUI negatives. No SDK, UDP, firewall, UAC, physical device changes."
+}

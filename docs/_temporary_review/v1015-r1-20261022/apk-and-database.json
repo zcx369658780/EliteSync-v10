@@ -1,0 +1,31 @@
+{
+  "source_commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+  "normal_app": {
+    "package": "com.elitesync.v1015r1dev",
+    "version_code": 1010511,
+    "version_name": "10.1.5-r1-dev",
+    "sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466",
+    "installed_readback_both_match": true,
+    "fixed_source_build_exit": 0
+  },
+  "probe": {
+    "package": "com.elitesync.v1015r1probe",
+    "sha256": "fa7c3ad5233ab98c5b44afaaba29d3fe2156753df3e266f6edaa50778e56de89",
+    "build": "DEBUG_HOST_TEST_TARGET_ONLY",
+    "test_source": "lib/dev/v1015_r1_retention_probe.dart matches final source; earlier probe APK before unrelated live-chat repair, not a rebuilt final ordinary APP"
+  },
+  "database": {
+    "database": "elitesync_v1015_r1_dev",
+    "container_id": "fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407",
+    "image": "sha256:8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008",
+    "volume": "elitesync-v1015-r1-data-20261022",
+    "loopback_port": 43327,
+    "backup_exit": 0,
+    "backup_bytes": 165674,
+    "backup_sha256": "14f266cc8fb75d783eb6fe13d54ee5d37f49176fa1d86d05e531fa00d8435c4d",
+    "SQL": "LOCAL_ONLY",
+    "time": 1792627634.826349,
+    "historical_database_restart": "NOT_RUN_NOT_REQUIRED_FOR_UNCHANGED_SCHEMA"
+  },
+  "raw_binary_SQL_secrets": "LOCAL_ONLY_NOT_PUBLISHED"
+}

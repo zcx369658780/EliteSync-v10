@@ -1,0 +1,11 @@
+{
+  "five_roots_HEAD_branch_index_status_unchanged": true,
+  "first_round_evidence_count": 260,
+  "first_round_mismatch_count": 0,
+  "historical_ref_mismatch_count": 0,
+  "private_env_unchanged": true,
+  "scope_limit": "Root HEAD/branch/index/status plus original first-round 260 file hashes; not an independently prehashed inventory of every historical SQL/APK outside that directory.",
+  "owned_resources_stopped": true,
+  "volumes_SQL_APK_original_evidence_retained": true,
+  "global_ADB_Docker_WSL_not_stopped": true
+}
