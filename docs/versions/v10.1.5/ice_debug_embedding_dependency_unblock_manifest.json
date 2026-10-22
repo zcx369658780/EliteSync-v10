@@ -1,0 +1,534 @@
+{
+  "schemaVersion": 1,
+  "version": "10.1.5",
+  "task": "PINNED_DEBUG_EMBEDDING_DEPENDENCY",
+  "date": "2026-10-22",
+  "status": "PARTIAL",
+  "terminal": [
+    "V10.1.5_DEBUG_EMBEDDING_STILL_BLOCKED",
+    "NO_APK",
+    "PHONE_RUNTIME_NOT_RUN",
+    "AC05_OPEN",
+    "OWNER_DECISION_REQUIRED",
+    "AWAITING_ASTRA_REVIEW"
+  ],
+  "authority": {
+    "taskBlob": "38d83feca11946685d42c9f75b15ad8d207692c5",
+    "reviewBlob": "6c736933e96e32b25e57a4318aa760049e5ed758",
+    "mainAtStart": "0cb38cce0625319a113f043c63b8462dda699e90"
+  },
+  "source": {
+    "commit": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "parent": "62f0cd6d6df80f2f22855c0f75fd67ff52c753a7",
+    "rootTree": "2c656957e1c229ca30f7c07b173bcb1062310d2c",
+    "appsTree": "72c617cf86d5c653dd722accde340b51d2e085eb",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "sourceChanged": false,
+    "deliveryParent": "8bee827c20c26c4ec954b774c011f09238ec59b3"
+  },
+  "SDK": {
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "frameworkRevision": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "deps": {
+      "livekit_client": "2.10.0",
+      "flutter_webrtc": "1.6.0",
+      "webrtc_interface": "1.5.1"
+    },
+    "originalExactEmbeddingMavenDirectoryAbsent": true,
+    "Gradle": "8.14",
+    "AGP": "8.11.1",
+    "Kotlin": "2.2.20",
+    "sdkChanged": false
+  },
+  "officialArtifact": {
+    "coordinate": "io.flutter:flutter_embedding_debug:1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "packaging": "jar",
+    "POMIdentity": "MATCH",
+    "ZIPCRC": "PASS",
+    "entryCount": 436,
+    "binaryEntries": [
+      "io/flutter/embedding/engine/FlutterEngine.class"
+    ],
+    "sidecars": [
+      {
+        "extension": "pom",
+        "SHA256PublisherSidecar": "PUBLISHER_HASH_NOT_AVAILABLE"
+      },
+      {
+        "extension": "jar",
+        "SHA256PublisherSidecar": "PUBLISHER_HASH_NOT_AVAILABLE"
+      }
+    ],
+    "publisherSignature": "NOT_VERIFIED",
+    "provenance": "official HTTPS exact coordinate; storage MD5 verified when provided; computed SHA256 identifies bytes, not publisher signature",
+    "dependencies": [
+      {
+        "group": "androidx.lifecycle",
+        "artifact": "lifecycle-common",
+        "version": "2.7.0"
+      },
+      {
+        "group": "androidx.lifecycle",
+        "artifact": "lifecycle-common-java8",
+        "version": "2.7.0"
+      },
+      {
+        "group": "androidx.lifecycle",
+        "artifact": "lifecycle-process",
+        "version": "2.7.0"
+      },
+      {
+        "group": "androidx.lifecycle",
+        "artifact": "lifecycle-runtime",
+        "version": "2.7.0"
+      },
+      {
+        "group": "androidx.fragment",
+        "artifact": "fragment",
+        "version": "1.7.1"
+      },
+      {
+        "group": "androidx.annotation",
+        "artifact": "annotation",
+        "version": "1.8.1"
+      },
+      {
+        "group": "androidx.tracing",
+        "artifact": "tracing",
+        "version": "1.2.0"
+      },
+      {
+        "group": "androidx.core",
+        "artifact": "core",
+        "version": "1.13.1"
+      },
+      {
+        "group": "androidx.window",
+        "artifact": "window-java",
+        "version": "1.2.0"
+      },
+      {
+        "group": "com.getkeepsafe.relinker",
+        "artifact": "relinker",
+        "version": "1.4.5"
+      },
+      {
+        "group": "androidx.exifinterface",
+        "artifact": "exifinterface",
+        "version": "1.4.1"
+      }
+    ]
+  },
+  "officialHTTPReceipts": [
+    {
+      "url": "https://storage.googleapis.com/download.flutter.io/io/flutter/flutter_embedding_debug/1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab/flutter_embedding_debug-1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab.pom",
+      "redirects": [],
+      "artifactVersion": "1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "HTTPStatus": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 2542,
+      "sha256": "437cf27a8aa1829c07f81f43e0468a5fa05cef7dc21451cabd51b7a6914341ff",
+      "xGoogHash": "crc32c=2E5CTw==",
+      "ETag": "\"efd0c7167a72e971cd4568983211c2c5\"",
+      "networkExit": 0,
+      "storageCRC32CMatch": true,
+      "observedETagEqualsComputedMD5": true,
+      "MD5ResponseField": "NOT_PRESENT",
+      "publisherSHA256": "PUBLISHER_HASH_NOT_AVAILABLE"
+    },
+    {
+      "url": "https://storage.googleapis.com/download.flutter.io/io/flutter/flutter_embedding_debug/1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab/flutter_embedding_debug-1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab.jar",
+      "redirects": [],
+      "artifactVersion": "1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "HTTPStatus": 200,
+      "contentType": "application/java-archive",
+      "bytes": 1541793,
+      "sha256": "f6cb78578df77875f18f4d6c3bd29066288109935007e59d83e53ec85a8ce745",
+      "xGoogHash": "crc32c=cMIBHg==",
+      "ETag": "\"b31d33a8435f1e3bb9029ad2da025a53\"",
+      "networkExit": 0,
+      "storageCRC32CMatch": true,
+      "observedETagEqualsComputedMD5": true,
+      "MD5ResponseField": "NOT_PRESENT",
+      "publisherSHA256": "PUBLISHER_HASH_NOT_AVAILABLE"
+    },
+    {
+      "url": "https://storage.googleapis.com/download.flutter.io/io/flutter/flutter_embedding_debug/1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab/flutter_embedding_debug-1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab.pom.sha256",
+      "redirects": [],
+      "artifactVersion": "1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "HTTPStatus": 404,
+      "networkExit": 1,
+      "error": "NOT_FOUND"
+    },
+    {
+      "url": "https://storage.googleapis.com/download.flutter.io/io/flutter/flutter_embedding_debug/1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab/flutter_embedding_debug-1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab.jar.sha256",
+      "redirects": [],
+      "artifactVersion": "1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "HTTPStatus": 404,
+      "networkExit": 1,
+      "error": "NOT_FOUND"
+    }
+  ],
+  "isolation": {
+    "cache": "LOCAL_ONLY/task-specific ordinary copies, not shared writable links",
+    "originalGlobalCacheFiles": 3184,
+    "originalGlobalCacheUnchanged": true,
+    "initScriptScope": "after Gradle initialization only; cannot constrain wrapper bootstrap",
+    "parseVerified": false
+  },
+  "bootstrapFailure": {
+    "timestamp": 1792675973.4484427,
+    "phase": "DEPENDENCY_PREFLIGHT_BEFORE_UNIQUE_POSITIVE_APK_BUILD",
+    "preflightExit": "1",
+    "positiveAPKBuildAttempts": 0,
+    "diagnosticAPKProduced": false,
+    "requestedUnapprovedURL": "https://services.gradle.org/distributions/gradle-8.14-all.zip",
+    "observed": "wrapper stdout Downloading and thread stack Download.downloadInternal",
+    "rootCause": "implementation sequencing: resolve started before cache-copy completion was confirmed",
+    "onlyTaskProcessStopped": true,
+    "finalRedirectHosts": "NOT_OBSERVED",
+    "downloadedBytesCannotBeClaimedZero": true,
+    "incidentalIsolatedFiles": [
+      {
+        "taskRelativePath": "gradle-user-home/wrapper/dists/gradle-8.14-all/c2qonpi39x1mddn7hk5gh9iqj/gradle-8.14-all.zip",
+        "bytes": 224116304,
+        "sha256": "efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1",
+        "trustedDependency": false,
+        "retainedNotUsed": true,
+        "matchesExistingOriginal": true,
+        "originClass": "INHERITED_CACHE_COPY"
+      },
+      {
+        "taskRelativePath": "gradle-user-home/wrapper/dists/gradle-8.14-all/c2qonpi39x1mddn7hk5gh9iqj/gradle-8.14-all.zip.part",
+        "bytes": 38302288,
+        "sha256": "f99db8eee2a185748c33851b09225335a0f3d040fdd3123468e805074414e53e",
+        "trustedDependency": false,
+        "retainedNotUsed": true,
+        "matchesExistingOriginal": false,
+        "originClass": "UNAPPROVED_WRAPPER_ATTEMPT_PARTIAL"
+      }
+    ],
+    "furtherDependencyResolutionOrBuild": "STOPPED_NO_RETRY",
+    "classification": "OTHER_BUILD_FAILURE_WRAPPER_BOOTSTRAP_OUTSIDE_ALLOWLIST",
+    "officialEmbeddingFetchStatus": "SUCCESS",
+    "sourceChanges": false,
+    "phoneOrServiceOperations": 0
+  },
+  "APK": {
+    "positiveBuildAttempts": 0,
+    "produced": false,
+    "packageId": null,
+    "versionName": null,
+    "debuggable": null,
+    "signerSHA256": null,
+    "SHA256": null,
+    "bytes": null,
+    "classification": "OTHER_BUILD_FAILURE_WRAPPER_BOOTSTRAP_OUTSIDE_ALLOWLIST"
+  },
+  "reusedValidation": {
+    "source": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "diagnosticTests": 20,
+    "ordinaryTests": 93,
+    "negativeBuildCases": 5,
+    "rerunThisTask": false,
+    "ordinaryAPKHash": "7131b57c6c8f755197573e791d4bfa9d5db4ce07862726d24dace445f8b904bd",
+    "ordinaryAPKInstalledThisTask": false
+  },
+  "nonAuthorReview": {
+    "kind": "one non-author bounded static review",
+    "reviewer": "GPT-6.1 Sol/high",
+    "findings": [
+      {
+        "id": "R1",
+        "priority": "BLOCKER",
+        "finding": "Wrapper requested unauthorized distribution; partial 38302288 bytes retained",
+        "assessment": "accurate implementation sequencing failure; must stop without retry; not embedding unavailability or RTC product defect"
+      },
+      {
+        "id": "R2",
+        "priority": "EVIDENCE_LIMIT",
+        "finding": "init script cannot constrain wrapper bootstrap before Gradle initializes",
+        "assessment": "no dependency-resolution/offline-completeness/build PASS; positive APK attempts zero; previous tests/control APK reused only"
+      },
+      {
+        "id": "R3",
+        "priority": "SUPPLY_CHAIN_LIMIT",
+        "finding": "POM/JAR identity and SHA256/ETag-to-MD5 match; publisher SHA256 sidecars 404",
+        "assessment": "no publisher signature verification; storage metadata is not signing proof"
+      }
+    ],
+    "limits": [
+      "static local read only; no network/build/device execution",
+      "ZIPCRC checked via implementation receipt only",
+      "protection-after not yet available at first reviewer read; final hash verification performed by main implementer",
+      "no Astra ACCEPTED"
+    ],
+    "mainVerifierProtection": "1441 assets and 3190 SDK/env/locks/cache records matched; 3184 original cache files and file set unchanged"
+  },
+  "protection": {
+    "registeredHistoricalAssets": 1441,
+    "registeredAssetsEqual": true,
+    "globalDependencyCacheFiles": 3184,
+    "SDKEnvLockAndCacheRecords": 3190,
+    "allRegisteredToolchainRecordsEqual": true,
+    "historicalRoots": [
+      {
+        "alias": 0,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 153
+      },
+      {
+        "alias": 1,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 2,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 3,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 4,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      }
+    ],
+    "originalRefs": 494,
+    "originalRefsUnchanged": true,
+    "warning": "153 existing long-path status warning lines; no coverage claim for unregistered files"
+  },
+  "forbiddenOperations": {
+    "deviceADBOrRuntimeCalls": 0,
+    "APKInstalls": 0,
+    "RoomConnect": 0,
+    "databaseOrProductServices": 0,
+    "SDKUpgrade": false,
+    "productSourceChange": false,
+    "globalCacheChange": false,
+    "mainIntegration": false,
+    "R2P2OrV1016": false
+  },
+  "publication": {
+    "branch": "codex/v10.1.5-ice-debug-embedding",
+    "method": "ordinary non-force docs-only child of 8bee; final object/raw readback stored LOCAL_ONLY",
+    "binaryUploads": false
+  },
+  "reportSHA256": "d38b1f993801b85c737eb8d428b4cd58d75d51309866b4e1579b99d3bb9a413a",
+  "reportHashScope": "canonical Git LF bytes",
+  "localEvidence": [
+    {
+      "alias": "assets-after.json",
+      "bytes": 75,
+      "sha256": "afa977aae140e4727ec83470998479b84c962fdffaf88daf32840559e283ba6c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "assets-before.json",
+      "bytes": 312235,
+      "sha256": "7249130f55569e10c54a3640a29b2115892573d71d8e56918e7e826ff017bd98",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-review.md",
+      "bytes": 9430,
+      "sha256": "dbb4db6b2907fc9e02566d059f872dbcce4b0b317a25eceb878ba03603c29d82",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-task.md",
+      "bytes": 13177,
+      "sha256": "0c0b5babe85cc7f99d646ef55db3d24edbffd291f68cebf54ff1e25a92362084",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "baseline.json",
+      "bytes": 598,
+      "sha256": "35b676ec528d2890a20edf5c4e65238c7eb7b41b63684fb7be07765aa3364b29",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "bootstrap-stop-receipt.json",
+      "bytes": 1760,
+      "sha256": "b1ec54b18fbb5ac679f872b9163cae4088af5313be28ebe52fc366397514f218",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "fetch-exact-official.py",
+      "bytes": 3878,
+      "sha256": "6120cf1de524176ce77c7f4da592efbcff29fecdf3a4d23791ce93d6a7a4d0c9",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "flutter_embedding_debug-validation.json",
+      "bytes": 1985,
+      "sha256": "4288b445381848feb0f0a790f605cbee4fbadf449ef36ddf90064528d584c19e",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "main-before.json",
+      "bytes": 1312,
+      "sha256": "3a5e6698d3839860463135868f702245854052cdf5a1394a71127498d2ac9374",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "non-author-review.json",
+      "bytes": 1427,
+      "sha256": "e4f60b601a0bc3ab2583e39d97e3b1825c807fb90864d8e0b4e29616ee79c11c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "official-downloads.json",
+      "bytes": 2406,
+      "sha256": "2d566e55b28d529eb3e27b89648243e01e4efd55ed05dc3f2ba354b3f53e41a1",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-0-after.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-0-before.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-1-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-1-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-2-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-2-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-3-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-3-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-4-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-4-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protection-after.json",
+      "bytes": 1335,
+      "sha256": "cd360a1e804a8cd75292186c6c655fcafc4ee04fa38be266a5d05347541e1c96",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "refs-before.txt",
+      "bytes": 59296,
+      "sha256": "f9eb393a5e27faceeddcbbe41c86672ebba180dff1d366562c5ea15c77a69a6e",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "resolve-first.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "resolve-first.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "resolve-first.stdout.txt",
+      "bytes": 1990,
+      "sha256": "96f917b1c842385bbe64344d519c8321d5ad28b6b44a8a6c0d779c12c993d4c6",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "resolve-wrapper-thread.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "resolve-wrapper-thread.txt",
+      "bytes": 7092,
+      "sha256": "925b1360d5cd88f7131a025975f46bfab6e8d37080a7671db578fbb114b319d5",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "roots-before.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "sdk-cache-identity.json",
+      "bytes": 433,
+      "sha256": "e3a2eac8b93ba5f7ab521d5bd77073c88ab7e45e7acc2353c8feb9cd0dc58574",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "toolchain-cache-after.json",
+      "bytes": 75,
+      "sha256": "850719d7a8100a87de231d8bd7e54bd110e8f2d02c263cdf349a87981b5b7c5c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "toolchain-cache-before.json",
+      "bytes": 971322,
+      "sha256": "0b780b33c6d9b5293cfd1c5c121345bb34e093be09c3dff21778448380382f3f",
+      "location": "LOCAL_ONLY"
+    }
+  ]
+}
