@@ -1,0 +1,699 @@
+{
+  "schema": "elitesync.v1015.r1.artifact_manifest.v1",
+  "version": "10.1.5",
+  "revision": "R1",
+  "overall": "PARTIAL",
+  "open_core_blockers": true,
+  "states": [
+    "V10.1.5_R1_CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_FUNCTION_REREVIEW",
+    "PRODUCT_MAIN_NOT_INTEGRATED",
+    "NOT_ACCEPTED"
+  ],
+  "delivery_commit": "ENCLOSING_GIT_COMMIT_CONTAINS_R1_REPORT_APPEND_AND_R1_MANIFEST_ONLY_AFTER_FIXED_SOURCE",
+  "repository": "zcx369658780/EliteSync-v10",
+  "candidate_branch": "codex/v10.1.5-r1-bounded",
+  "authority": {
+    "main_at_R1_and_prepublication": "be21598ef8738ab4d8e5dbd20f210f473e0b51f7",
+    "r1_blob": "be3045b206b75b7ccd0d8b28bc366678fc890302",
+    "plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "task_blob": "0df56f69712a85541b5f24bef281e2a9a61520a4",
+    "frozen_AC_modified": false
+  },
+  "source": {
+    "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "parent": "47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962",
+    "root_tree": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+    "apps_tree": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+    "services_tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "changed_files": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "mode": "100644",
+        "blob": "af797e30bffd5e160c5af7e521aca9eb0ab286dc"
+      },
+      {
+        "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+        "mode": "100644",
+        "blob": "34934d19736d5516ec8fea4f2d47d2cd9b0bbca2"
+      },
+      {
+        "path": "apps/android/settings.gradle.kts",
+        "mode": "100644",
+        "blob": "631355a9a9d3f72ed34f108c18dc75f1be11c2fd"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/dev/v1015_r1_retention_probe.dart",
+        "mode": "100644",
+        "blob": "5dc2104b7f601b361a5ee836b1c5b37dd15291ef"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+        "mode": "100644",
+        "blob": "6aec5b749e954a2e64a1382ae2a5fdfe3c379e46"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+        "mode": "100644",
+        "blob": "46e16f5a201cc9af821d63bebb523c10237ad5c2"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+        "mode": "100644",
+        "blob": "f828eb9a9656df0fa0e666b07e8602f595c87eee"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/dev/v1015_r1_retention_probe_test.dart",
+        "mode": "100644",
+        "blob": "a1ae2efedc11a2bd1304a5b23de22b112839ab79"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "mode": "100644",
+        "blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+        "mode": "100644",
+        "blob": "5dcb6caaecf26ae7b50f021ac0995fb71f4d9e92"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/PlatformAccess.php",
+        "mode": "100644",
+        "blob": "8e818e8ba20015ee84055a590f09f89e853823d5"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+        "mode": "100644",
+        "blob": "7b17b44f28ea585718f8adb96fc8d704fc91bc27"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/r1_fault_proxy.py",
+        "mode": "100644",
+        "blob": "371615b3c6a37f2987f66fd4fc854178e4199773"
+      },
+      {
+        "path": "services/backend-laravel/tests/Integration/v1015/r1_runtime.php",
+        "mode": "100644",
+        "blob": "962ffd89c1c36e7a1c73fae6eca4c9f870614b7c"
+      }
+    ]
+  },
+  "first_round_preservation": {
+    "original_source_commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
+    "original_final_candidate": "47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962",
+    "implementation_report_original_blob": "ae7b8d0cf2a616e198da23ea4db6a8d9e53c5bb6",
+    "artifact_manifest_original_blob": "3e82785c0e97c5bffa96f628b2934ca149eeea62",
+    "report_append_only": true,
+    "original_manifest_unchanged": true,
+    "raw_original_evidence_hash_matches": 260
+  },
+  "AC": {
+    "01": "SUPPORTED_WITH_SCOPED_PROTECTION_RECEIPTS",
+    "02": "ACTUAL_COMMITTED_RESPONSE_LOSS_BUG_FIXED_AND_SAME_KEY_RETRY_VERIFIED",
+    "03": "BOUNDED_GUI_SWITCH_LATE_RESULT_SAFETY_AND_CURRENT_DENIAL_SUPPORTED_WS_COMPREHENSIVE_COMMAND_REMAINS_FAILED",
+    "04": "FIRST_ROUND_EVIDENCE_RETAINED_NOT_REPEATED",
+    "05": "PARTIAL_CORE_OPEN_DUAL_SFU_MEDIA_RECONNECT_OLD_RTC_JWT_FLOWING_MEDIA_5S_NOT_VERIFIED",
+    "06": "SUPPORTED_ANDROID_TEST_INJECTION_REAL_PHYSICAL_ELAPSED_NOT_CLAIMED_ASTRA_PENDING",
+    "07": "ACTUAL_ANDROID_OWNED_CIPHERTEXT_PURGE_SUCCESS_DELETE_ERROR_INJECTION_FAIL_CLOSED_AND_RESTART_LOCK",
+    "08": "CURRENT_SAFETY_MINIMUM_AND_REAL_DISABLED_OLD_NOTIFICATION_CLICK_403_SUPPORTED_DIRECT_FIXTURE_ONLY",
+    "09": "FIRST_ROUND_TEST_ONLY_PROVIDER_ISOLATION_REAL_PROVIDER_PENDING",
+    "10": "TARGETED_REGRESSION_AND_REAL_CHAIN_WITH_RECORDED_FAILURES_OVERALL_PARTIAL",
+    "11": "R1_CONSOLIDATED_CANDIDATE_AWAITING_INDEPENDENT_REREVIEW"
+  },
+  "R1": {
+    "B1": {
+      "result": "SUPPORTED_ANDROID_TEST_INJECTION",
+      "checks_passed": 34,
+      "checks_total": 34,
+      "restart_passed": true,
+      "REAL_PHYSICAL_ELAPSED": "NOT_CLAIMED",
+      "failure_model": "DELETE_ERROR_INJECTION_NOT_REAL_OS_FAILURE"
+    },
+    "B2": {
+      "result": "CORE_OPEN",
+      "virtual_audio_permission_authorized": true,
+      "synthetic_audio_injection_exit": 1,
+      "dual_APP_SFU_media": "NOT_VERIFIED",
+      "same_call_reconnect": "NOT_VERIFIED",
+      "old_RTC_JWT_first_reentry": "NOT_VERIFIED",
+      "flowing_media_stop_LE_5s": "NOT_VERIFIED",
+      "video": "NO_AUTHORIZED_CAMERA_SOURCE_NOT_RUN",
+      "AEC": "DEVICE_PENDING"
+    },
+    "B3": {
+      "result": "BOUNDED_REAL_GUI_AND_HTTP_MARIADB_SUPPORTED_WITH_WS_SCRIPT_LIMITATION",
+      "first_real_response_loss": "FOUND_DUPLICATE_SEND_RACE_ORIGINAL_ROWS_RETAINED",
+      "fixed_message_id": 4,
+      "fixed_client_message_id": "c9630ad0-e88b-43cd-977f-07db37860fb5",
+      "fixed_replay": true,
+      "fixed_DB_message_rows": 1,
+      "fixed_DB_notification_rows": 1,
+      "late_response_after_switch": "CLIENT_CLOSED_NO_A_CONTENT_IN_C",
+      "old_notification_E_click_after_disable": "REAL_GUI_SAFETY_GET_403_NO_PRIVATE_CONTENT",
+      "Safety": "TEST_ONLY_DIRECT_SAFETY_FIXTURE_NOT_WORKFLOW_ACCEPTANCE",
+      "WS": "FINAL_ASSERTION_FAILED_WITHOUT_INTERMEDIATE_SERIALIZATION_POST_DENIAL_HTTP404_AND_PRE_UPGRADE_CLOSE_VERIFIED_NO_MC_REACTIVATION"
+    },
+    "B4": {
+      "backend_tests": 47,
+      "backend_assertions": 1769,
+      "backend_exit": 0,
+      "deprecations": 2,
+      "phpunit_deprecations": 2,
+      "first_backend_exit": 2,
+      "probe_unit_tests": 5,
+      "probe_unit_exit": 0,
+      "chat_regression_tests": 8,
+      "chat_regression_exit": 0,
+      "probe_and_chat_test_and_live_chat_analyze_exit": 0,
+      "fixed_source_debug_build_exit": 0,
+      "independent_non_author_review": "NO_NEW_HIGH_CONFIDENCE_P1_P2_AAR_P2_CLOSED_STATIC_ONLY"
+    }
+  },
+  "APK": {
+    "normal": {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-app-final.apk",
+      "bytes": 416357439,
+      "sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466",
+      "package": "com.elitesync.v1015r1dev",
+      "version_code": 1010511,
+      "version_name": "10.1.5-r1-dev",
+      "source_commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+      "installed_readback_both_same_hash": true,
+      "build_defines": [
+        "ELITESYNC_V1015_LOCAL_BUILD=true",
+        "ELITESYNC_V1015_R1_LOCAL_BUILD=true"
+      ],
+      "relationshipDualDeviceBuild": true
+    },
+    "probe": {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-retention-probe-isolated.apk",
+      "sha256": "fa7c3ad5233ab98c5b44afaaba29d3fe2156753df3e266f6edaa50778e56de89",
+      "package": "com.elitesync.v1015r1probe",
+      "classification": "TEST_ONLY_DEBUG_HOST_ANDROID_TEST_INJECTION",
+      "source_timing": "Probe APK built before unrelated live-chat repair; exact probe and retention dependency source unchanged in fixed source. Not claimed rebuilt from final commit.",
+      "release_host_rejected": true
+    }
+  },
+  "database": {
+    "database": "elitesync_v1015_r1_dev",
+    "container_id": "fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407",
+    "image": "sha256:8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008",
+    "volume": "elitesync-v1015-r1-data-20261022",
+    "loopback_port": 43327,
+    "backup_exit": 0,
+    "backup_bytes": 165674,
+    "backup_sha256": "14f266cc8fb75d783eb6fe13d54ee5d37f49176fa1d86d05e531fa00d8435c4d",
+    "SQL": "LOCAL_ONLY",
+    "time": 1792627634.826349,
+    "historical_database_restart": "NOT_RUN_NOT_REQUIRED_FOR_UNCHANGED_SCHEMA"
+  },
+  "protection": {
+    "five_roots_HEAD_branch_index_status_unchanged": true,
+    "first_round_260_files_hash_unchanged": true,
+    "old_refs_unchanged": true,
+    "private_env_hash_unchanged": true,
+    "scope_limit": "Root HEAD/branch/index/status plus original first-round 260 file hashes; not an independently prehashed inventory of every historical SQL/APK outside that directory.",
+    "owned_resources_stopped": true,
+    "volume_SQL_APK_evidence_retained": true,
+    "no_historical_cleanup": true
+  },
+  "review": {
+    "branch": "codex/v10.1.5-r1-review-evidence",
+    "commit": "6e9b7441839954d0d8847399c91482354c61e473",
+    "root_tree": "ad834e85f5fb5ce1e435bbfa3be46446862d35b2",
+    "parent": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/android-restart-lock.json",
+        "mode": "100644",
+        "blob": "7a8a3ae427df134f4fb5b47dd5f5c2e10e7c5317"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/android-retention-test-injection.json",
+        "mode": "100644",
+        "blob": "1ca483268ce895a8f99e4d936c5cea0cec30a616"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/apk-and-database.json",
+        "mode": "100644",
+        "blob": "007a0140ba5a6099f1a207d74f04c23d8bb54908"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/authority-and-source.json",
+        "mode": "100644",
+        "blob": "7379334c60150200b8241b6d71d18b70e7c2511b"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/message-loss-and-retry.json",
+        "mode": "100644",
+        "blob": "e1234cfcc8b9cc1775eaedf724f72a7854d295c2"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/protection-and-shutdown.json",
+        "mode": "100644",
+        "blob": "40fd93c1d6b184ade0ca075289441ecf9ed5a704"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/README.md",
+        "mode": "100644",
+        "blob": "61a17e7446dba491910010f3302ad677070875de"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/rtc-open-blocker.json",
+        "mode": "100644",
+        "blob": "da6faa6c8b6f51472e4ce6c56185d234cf6f5fc5"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/safety-switch-current-authority.json",
+        "mode": "100644",
+        "blob": "57163d842d5fd69143d35e163e3c781e6726f097"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-r1-20261022/tests-and-independent-review.json",
+        "mode": "100644",
+        "blob": "dda217200e7bc50b0e730bfcab3e10a1be036615"
+      }
+    ],
+    "REST_raw_HTTP_readback": "10_OF_10_PATH_MODE_BLOB_AND_RAW_BYTES_MATCH",
+    "readback_receipt": "LOCAL_ONLY:v1015-r1-evidence-20261022/review-rest-raw-readback.json"
+  },
+  "local_evidence": [
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/authority-R1.md",
+      "bytes": 11038,
+      "sha256": "92432d113ed38c225b32c192b49709c82d1718161fc811ef1b1440c98918866b",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/source-identity.json",
+      "bytes": 2861,
+      "sha256": "076550502ebbf50654535ae3d44dda769d776df0227d03502171194f44015273",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-native-after-anchor.json",
+      "bytes": 6995,
+      "sha256": "c6a036c42324085588c80d0bd5e39225d33f838aef74551cef8c26601eeb4fc9",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-native-restart.json",
+      "bytes": 297,
+      "sha256": "70c2e66a23bb4be7326158c9b01a7bed9b6bbd1dc0fb4e4f501b06cddaa05521",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-probe-native-storage-receipt.json",
+      "bytes": 233,
+      "sha256": "de9c907b11dc04a9e8a8cb7b5a24afa491ef8fd5d3a62398cde1f87cab5c370e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-http-timeout.json",
+      "bytes": 207,
+      "sha256": "b2b28837327de5c76b00a838daa8695fd87b5fad64282ae5520b823a7a295fa3",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-empty-conversation-denied.json",
+      "bytes": 585,
+      "sha256": "188e2b2c5c0e54b486d8b8a2ae22faf6a59d6056698252229f9e343f2bd48a24",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-native-receipt-first.json",
+      "bytes": 66,
+      "sha256": "b3e6908483a99d5babd296abc7bcc0464b5cea1b43ecdf060e5e616dffd32647",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/android-retention-native-receipt-actual.json",
+      "bytes": 66,
+      "sha256": "b3e6908483a99d5babd296abc7bcc0464b5cea1b43ecdf060e5e616dffd32647",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/cache-worker-probe-tests-2.txt",
+      "bytes": 570,
+      "sha256": "28e61ceebb5472d288bebef8b6098c93384d39a98a268090fd308725e7ebd6db",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/cache-worker-probe-analyze-3.txt",
+      "bytes": 98,
+      "sha256": "917d8e464c801632e3f9ba0b2455096661307ca4ccc0c91832ed1f6f30f674ef",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/cache-worker-chat-pending-refresh-regression.txt",
+      "bytes": 959,
+      "sha256": "839b16c52c86f454e49cf8fb7ff301641fda3758416a2fdbbcdc96cf0d60a4e6",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/cache-worker-chat-pending-refresh-analyze.txt",
+      "bytes": 70,
+      "sha256": "57492fc9034b31c73bb02109436f57cb0d84c2e9694f47bc53c4a2999e2aa999",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/backend-r1-targeted.txt",
+      "bytes": 44245,
+      "sha256": "b762dfd6b82ed736facd605575b3da36ed4c248bb04ed4883fee499fc0a8f408",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/backend-r1-targeted-isolated.txt",
+      "bytes": 445,
+      "sha256": "3f103d4303feccd0ebc3c5c3f602f9b6e5bdc257aa1921d87926caebd58d45b7",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/php-syntax-tool-transcript.txt",
+      "bytes": 474,
+      "sha256": "47fe04f9efc736b5c6064404823aacb76d976f6c5f0daddd4b697215120a9667",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/live-chat-final-analyze.txt",
+      "bytes": 60,
+      "sha256": "16c1bd2c182fc2d8be862a31df0d052443a1a68bd074c0c1654cf886c8bdac81",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/probe-release-rejected.txt",
+      "bytes": 525,
+      "sha256": "ea9259fd6d9ebfde79fc97095dfd65b964c16da6c33d372061c6f9d7e5adbe16",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/build-probe-first.txt",
+      "bytes": 761,
+      "sha256": "5d6395796d7b41d13dd03d1b0b9e2670f6fbf754feeeed3a8ac7a8ad1d098fa9",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/build-probe-isolated-fixed-path.txt",
+      "bytes": 42784,
+      "sha256": "4a817860bab640ced4b7f4d550f49dc474deff1efd66cc848c445c08a8c7cb77",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/build-r1-app-ci-after-probe.txt",
+      "bytes": 73777,
+      "sha256": "35a24a02532b3ad6022b0e79a96a789788d4eaf3c0164a9e2c663aca192a1df4",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/build-r1-message-race-fixed.txt",
+      "bytes": 74412,
+      "sha256": "a68ff5d9d7ddd27c300d65adf1f33f0d17f576978c2d233dacf66637c5c3d534",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/build-final-fixed-source.txt",
+      "bytes": 2269,
+      "sha256": "e749ecabd05c744f482a483cc0ccba64c72f6000c6f0bdd730330339b0426519",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/final-installed-apk-identities.json",
+      "bytes": 505,
+      "sha256": "a2d84c4870418ffd1f5283bd0dec087930c327dcb20ebba5b67dd6c9f9aae530",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/real-fixed-loss-gui.txt",
+      "bytes": 96,
+      "sha256": "f6ec027a9b8c1e81d2e71f749d666500fbf711b3584ea4d8b3b907ad848d67fd",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/message-race-original-audit.json",
+      "bytes": 405,
+      "sha256": "f45d8660be6d15a88cdd5538a9b186c7ab290fa2f3d5f1d6fc81e5da86454edc",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/message-retry-final-audit.json",
+      "bytes": 483,
+      "sha256": "f371d6d50f60425fc9908631e2a99aff2d7a350edb6e676c3d56a6a555dddc01",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/proxy-fixed.stdout.jsonl",
+      "bytes": 1248,
+      "sha256": "2df307ab96db7dda7a88b010870924f0ff15bb570eb189275b1589994b23be7f",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/proxy-observed.stdout.jsonl",
+      "bytes": 877,
+      "sha256": "c546181d94ad5c7e58b243f079746eedf718812baa9aa96530800a4344b338fd",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/proxy-safety.stdout.jsonl",
+      "bytes": 57308,
+      "sha256": "5caae03e3d750ddc1bf2775fea3ebebfbf1ce51ecf0e0b1440192738f881a105",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/late-response-account-switch-command.txt",
+      "bytes": 651,
+      "sha256": "4aebac8ee7f6fb69f618e6e30b38d47609e5eaddf3d68e490e4ece0713621e82",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/late-response-account-switch-result.json",
+      "bytes": 777,
+      "sha256": "1aeb236b8604166787a7a18d54270fd3e8c952d8f3d5cff84780b08afd60755e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/switch-c-after-late-attempt.json",
+      "bytes": 609,
+      "sha256": "c33df50c9c539184e691b5785934f22f3a42b31e16718e628f371aed80b18c5e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/safety-notice-positive.json",
+      "bytes": 158,
+      "sha256": "4610e54401097b3381b9ea80251f5f8cd493e2908b5c7deeab83261fde9dfe24",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/safety-api-negatives.json",
+      "bytes": 232,
+      "sha256": "067364759e9cec4c06e7c68169a51c8b530f5a304a93eb9f064540f605363199",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/safety-disabled-oldcard-result.json",
+      "bytes": 702,
+      "sha256": "5f0c99905fbfefd35ef33f41f5355c44cafce076a6edb2da7c937a9db0918ca9",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/e-oldcard-click-command.txt",
+      "bytes": 696,
+      "sha256": "c10c54248d41192cb4b615c31272838f2ad158a16ad60d6c96196c94ce3cfb34",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/e-oldcard-click-result.json",
+      "bytes": 839,
+      "sha256": "826cbb158c001e606a3258f59843e33040b3b8321051ef5f1323742a293a08fd",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/disable-owned-e-receipt.jsonl",
+      "bytes": 305,
+      "sha256": "e77b7743211906fddc6a25bb6c812e0157860b7b2e2184d2b3592c1496ca2d99",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/ws-disconnect-current-authority-command.txt",
+      "bytes": 436,
+      "sha256": "e7e6342e140bcdaf30d6ea4e1edddc88e9d4a74bbef62c1bffb5aee29f7a5440",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/ws-post-revoke-denial-command.txt",
+      "bytes": 206,
+      "sha256": "5a8c9d9c3ae15cc1bd1c05e5563b543d834133e1b8991077c486e0fafe25193e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/ws-post-revoke-denial.json",
+      "bytes": 214,
+      "sha256": "413e6b8b0880028dcfb40a324d69bcb5f6302b3234b7e56152eb9522e5dbc4a0",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/ws-gui-after-revoke.json",
+      "bytes": 373,
+      "sha256": "16d918a2143ad877bbfdd1bd07ce40fcf61a3093597377d18871d666e1ec9d44",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-call1-media-command.txt",
+      "bytes": 120,
+      "sha256": "2843a13d1301d31c2b736d4ea5aae5b9cc141f8409cb4b52653bbc9008c5cc97",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-call1-synthetic-receipt.json",
+      "bytes": 604,
+      "sha256": "bed60490ebcb83f293bf05a09e6b5d82aa6f001f699d1f54a7f72cfa1f84d418",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/rtc-audio-runtime-failure.json",
+      "bytes": 626,
+      "sha256": "fd93b3ddf84cc305443be1c27cef9425231a48d5f01770975c18d2fff8689e7e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/grpc-status.json",
+      "bytes": 199,
+      "sha256": "2deaf28fe95ad324ddf4bdd773a2b02c2ceaddb9172a0636723fd56e1c7c0e8b",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/grpc-legacy-tool-failure.txt",
+      "bytes": 246,
+      "sha256": "295bbaceb587e81684188c2426d734718848c710181f4eaa062a13107a8c0d37",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/virtual-microphone-grant.txt",
+      "bytes": 98,
+      "sha256": "4b110fec5b1fe013772e5e3fa1dd6a1d76e436a576dfb5b0fc505f6038ce8601",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/sfu-first-failclosed.log",
+      "bytes": 154,
+      "sha256": "7ea62acde98405e9384601b8f3d23974749d19c8b21e364e44843edc8536affa",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/sfu-final-at-b2-stop.log",
+      "bytes": 154,
+      "sha256": "7ea62acde98405e9384601b8f3d23974749d19c8b21e364e44843edc8536affa",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/owner-virtual-audio-authorization.json",
+      "bytes": 254,
+      "sha256": "ab1781335036d328f80d78b72cbd6bced4ce6ab0d48010ca9d75a72eaa505349",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/non-author-r1-review.json",
+      "bytes": 1013,
+      "sha256": "1a72db7a65209203cfb29d89b21028adadaaafbd8d6f8c952cf92435f8b18291",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/database-final-identity.json",
+      "bytes": 165,
+      "sha256": "e74041da917616fc96de0395f652d1ca47076873f5ce52eb8134e0ab974f874b",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/database-final-snapshot.json",
+      "bytes": 1424,
+      "sha256": "ddb6fbecc8530de52771863545eebc67118ed8ba435205d96334dd6f696e1779",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/db-empty-backup-receipt.json",
+      "bytes": 119,
+      "sha256": "03fd03308177ee149a5bed130a43ee053ba762be876687c56853d213d7d8fc6e",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/database-final-backup-receipt.json",
+      "bytes": 563,
+      "sha256": "d2917d54c56b728e1ce56c8e42e98c785d57a08c60f554f62f42e053891727a5",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/protected-before.json",
+      "bytes": 27696,
+      "sha256": "11acfaa1d3de2b6db4544cfe13dae17c8188a58d4806ec51796b8e25a50d94cc",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/protection-final.json",
+      "bytes": 29464,
+      "sha256": "c986d58feeeb72a08df258f20498cb43c36f461c9d19597cc1e94b357209e38d",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/first-round-evidence-before.json",
+      "bytes": 53306,
+      "sha256": "31609772e2b09ad894e22bd1fd4f7669c3d9bd493a5f6f323a9859562ef84ef8",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/refs-before.txt",
+      "bytes": 34555,
+      "sha256": "9a26dca6354446512b103a3b8c22550ac25ec46a64384f596e8b5a04f1d89a25",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/owned-resource-shutdown.json",
+      "bytes": 700,
+      "sha256": "8aff06d3284e202971ca326e61ec2295148bb760e91274871ee4e94617c3936d",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-git-diff-check.txt",
+      "bytes": 1729,
+      "sha256": "994ebe15fe33d90c3bf7d131d3b392028302cf09f65142de44cec3887bacd233",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/r1-git-diff-check-crlf.txt",
+      "bytes": 695,
+      "sha256": "f203cce55d06cac3add9fe8a4c407a06ba7dab4ba528c5fd9cf68572ec3930af",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-r1-evidence-20261022/review-rest-raw-readback.json",
+      "bytes": 2394,
+      "sha256": "e90a709d462af916115c4934e4cadefd8951df38865f5b5de1d4cbc25f714b64",
+      "classification": "RAW_LOCAL_OR_MINIMIZED_RECEIPT_NOT_ASTRA_EXECUTION"
+    }
+  ],
+  "remaining_blockers": [
+    "R1_B2_DUAL_APP_SFU_MEDIA_NOT_VERIFIED",
+    "R1_B2_SAME_CALL_RECONNECT_NOT_VERIFIED",
+    "R1_B2_OLD_RTC_JWT_FIRST_REENTRY_NOT_VERIFIED",
+    "R1_B2_FLOWING_MEDIA_STOP_LE_5S_NOT_VERIFIED",
+    "VIDEO_CAMERA_SOURCE_NOT_AUTHORIZED",
+    "AEC_PHYSICAL_AUDIBILITY_DEVICE_PENDING",
+    "WS_COMPREHENSIVE_COMMAND_FINAL_ASSERTION_FAILED_NO_INTERMEDIATE_RECEIPT"
+  ],
+  "NOT_RUN": [
+    "PRODUCTION_OR_PUBLIC_DEPLOYMENT",
+    "REAL_PUSH_PROVIDER_KEYS_OR_FEES",
+    "NEW_PHYSICAL_DEVICE_OR_HOST_MIC_CAMERA",
+    "UDP_FIREWALL_UAC_NEW_SDK",
+    "REAL_USERS_PAYMENTS_EXTERNAL_AI",
+    "HISTORICAL_CLEANUP",
+    "MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6"
+  ],
+  "historical_zip_status": "BYTE_MIRROR_PENDING",
+  "publication": {
+    "candidate": "ORDINARY_NON_FORCE_BRANCH_ONLY",
+    "review": "ORDINARY_NON_FORCE_PUBLISHED_AND_READ_BACK",
+    "final_candidate_readback_receipt": "LOCAL_ONLY:v1015-r1-evidence-20261022/candidate-rest-raw-readback.json",
+    "acceptance": "ASTRA_INDEPENDENT_REREVIEW_PENDING"
+  }
+}

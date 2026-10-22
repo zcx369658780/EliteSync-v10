@@ -107,3 +107,96 @@ Owner在本轮明确批准项目记忆无法定位时下载视频工具。仅本
 4. `REAL_PUSH_PROVIDER_PENDING / REAL_PUSH_NOT_RUN`：外部供应商未批准，隔离合同通过不能代替真实投递。
 
 集中提交唯一报告及manifest、固定源码与独立脱敏材料，等待Astra独立功能验收及Owner后续决定。本次不生成acceptance/integration_acceptance，不集成main、不执行v10.1.6，不扩展生产、硬件或历史清理权限。
+
+
+---
+
+## v10.1.5 R1 有界返修集中交付（2026-10-22）
+
+**PARTIAL / OPEN_CORE_BLOCKERS / NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED。** 本节仅追加R1；上文首轮原报告和 `artifact_manifest.json` 保留，原提交与审阅分支不改。Codex没有签署Astra ACCEPTED，不启动R2或v10.1.6。
+
+完成候选交付后的状态：`V10.1.5_R1_CANDIDATE_DELIVERED` / `AWAITING_ASTRA_INDEPENDENT_FUNCTION_REREVIEW`。这里的自测结果不是Astra功能复审。
+
+### R1权威、固定源码与制品
+
+- 只读核验实时main `be21598ef8738ab4d8e5dbd20f210f473e0b51f7`；R1全文Blob `be3045b206b75b7ccd0d8b28bc366678fc890302`。冻结plan Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`、task Blob `0df56f69712a85541b5f24bef281e2a9a61520a4`，原AC未修改。R1正文固定入口：[Astra R1任务](https://github.com/zcx369658780/EliteSync-v10/blob/be21598ef8738ab4d8e5dbd20f210f473e0b51f7/docs/versions/v10.1.5/ASTRA_REVIEW_AND_R1_TASK_20261021.md)。
+- R1源码 `1c5cd2bb7919c435e8486a76959db75e9ccc367f`，唯一Parent `47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962`；Root `165eb1f362db533ca94bfe1db677ff6f7bd477ed`；apps `0784c8aa7b0915a04b83693a45401197e31d93a2`；services `1e1e20bb3500bedb1a521e5f2ddeece915d09424`。从原最终候选安全新建 `codex/v10.1.5-r1-bounded`，没有把当前main覆盖到产品源码，没有更新本地旧main。
+- 14项R1源码路径/mode/Blob见本版新增 `artifact_manifest_R1.json`；其后的交付提交只追加本报告并新增R1 manifest。原产品源码 `6ca68617fd6e18648a9ccd4c923fa1850761fbec` 与原最终候选 `47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962` 均保留。
+- 最终普通开发APK：`r1-app-final.apk`，包 `com.elitesync.v1015r1dev`，versionCode `1010511`，versionName `10.1.5-r1-dev`，SHA256 `2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466`。固定源码构建exit0；A/B已安装包分别pull读回，双端均同哈希（`final-installed-apk-identities.json`）。
+- Android期限专用包：`r1-retention-probe-isolated.apk`，`com.elitesync.v1015r1probe`，SHA256 `fa7c3ad5233ab98c5b44afaaba29d3fe2156753df3e266f6edaa50778e56de89`。它在后续无关聊天竞态修复之前构建/实测；probe入口及期限依赖源码与最终源一致，不能冒称该旧probe APK由最终commit重新构建。普通最终APP没有导入probe入口。
+- Probe需两重local define及宿主debug bootstrap；release宿主任务配置阶段实际拒绝（预期Gradle exit1，验证外层exit0）。probe与普通R1 AAR有独立仓库、源码/defines摘要坐标，移除仅CI目录存在就跳过构建的逻辑；非作者发现的AAR串包P2已关闭。
+
+### R1-B1：Android期限和受控密文清理
+
+**SUPPORTED_ANDROID_TEST_INJECTION / ASTRA_REVIEW_PENDING；REAL_PHYSICAL_ELAPSED=NOT_CLAIMED。** 在既有AVD和独立MariaDB对应真实HTTP成功登录后，真实Android进程委托真实FlutterSecureStorage，完成34/34检查及实际force-stop/relaunch后的锁定检查。成功原证是 `android-retention-native-after-anchor.json` 和 `android-retention-native-restart.json`，不是早期cat失败文件。
+
+检查包括服务端login T0/账户设备绑定、refresh不续期、当前reader HTTP200后保存、15天前/当/后、20天离线只读拒写、30天前/当/后拒读。可信wall/monotonic推进只在测试进程注入；没有修改系统全局时钟、生产T0或正式时间合同，未声称物理经历15/30天。
+
+A对象在30天边界实际删除本版namespace的密文和manifest，native读回均null；回执 `completed / deleted_objects=1 / native_delete_completions=2 / locked=true`。B对象仅对精确测试namespace的委托delete抛受控异常，回执 `failed / injected_delete_failures=1`，真实密文及manifest仍在但锁定。**这是DELETE_ERROR_INJECTION，不是实际OS文件系统故障。** 重启后B密文仍在，但无可信anchor，offline read拒绝且locked。真实SecureStorage文件读回2766bytes、无probe payload/手机号明文（只记录文件身份/扫描结果，不公开prefs密钥值）。
+
+### R1-B2：虚拟音频尝试与核心剩余阻断
+
+**CORE_OPEN；未建立可验收的双端APP/SFU流动媒体。** Owner额外明确批准仅已有A/B AVD的虚拟麦克风权限、既有Emulator Controller合成PCM和既有SFU的loopback TCP；不含宿主真实麦克风/摄像头、手机、UDP、防火墙、UAC或SDK。
+
+实际向R1测试包授予RECORD_AUDIO，核验两端既有gRPC booted。专属SFU复用既存image，未pull/build新镜像，只发布loopback TCP7894/7891，raw SFU不发布；首次发生 `authority_monitor_failed / sfu_fail_closed`，原日志保留。普通修复式恢复同一容器后，GUI观察到呼叫/来电；第一次因自动化接听延迟进入missed，未接通。
+
+合成440/880Hz注入尝试返回 `UNAVAILABLE / connection reset` 与 `DEADLINE_EXCEEDED`（命令exit1），随后B AVD进程退出、A界面dump及logcat阻塞。**这里只报告同次环境故障现象，没有证成RPC是崩溃根因。** 当次没有成功媒体证据；第二次GUI操作未形成完整接通原证。暂停音频注入，仅重启同两AVD完成其它GUI负例，未扩大设备或网络权限。原WAV/指标即使存在也不作为媒体成功或人耳听感证据。
+
+剩余具名门禁：`R1_B2_DUAL_APP_SFU_MEDIA_NOT_VERIFIED`、`R1_B2_SAME_CALL_RECONNECT_NOT_VERIFIED`、`R1_B2_OLD_RTC_JWT_FIRST_REENTRY_NOT_VERIFIED`、`R1_B2_FLOWING_MEDIA_STOP_LE_5S_NOT_VERIFIED`。无授权camera source，视频NOT_RUN；AEC物理听感仍 `DEVICE_PENDING`。HTTP控制面、WS消息门和静态RTC门都不能替代以上门禁。
+
+### R1-B3：真实响应丢失、切号与旧通知
+
+**消息故障原失败已修复且实物复测通过。** 受控loopback代理先读完真实Laravel已提交响应，再抑制HTTP字节24秒，使APP发生真实20秒receive timeout。首测发现 `_load` 的WS/current-read先清attempt但保留draft，超时后重试换key，产生消息id2/3；原重复行和通知不删除。修复为仅由POST/同键重试确认清attempt/current draft，当前read不提前清key；权限拒绝、切号、期限锁定仍清理并递增epoch。
+
+最终APK实测：消息id4第一次POST `client_message_id=c9630ad0-e88b-43cd-977f-07db37860fb5`；界面明确“发送结果尚未确认”和“使用原消息编号重试”；GUI重试复用同key，真实响应 `id=4 / idempotent_replay=true`，MariaDB该消息一行、该消息通知一条，界面转“服务器已确认此消息”。原证 `real-fixed-loss-gui.txt` exit0、`proxy-observed.stdout.jsonl`、`message-retry-final-audit.json`。
+
+有限切号：真实A私密读取HTTP200被代理延迟60秒，APP经实际退出确认（服务端logout200）登录C；C界面读取未授权会话404，无A的消息/对端名。延迟响应随后记录 `old_private_response_client_closed`，再读C GUI仍无A内容。`late-response-account-switch-result.json`、`switch-c-after-late-attempt.json` 与代理日志共同绑定。60秒是LOCAL_ONLY测试代理调度延迟，不是产品超时设置。
+
+Safety使用同一独立库的明确 **TEST_ONLY_DIRECT_SAFETY_FIXTURE_NOT_WORKFLOW_ACCEPTANCE**：D本人GUI和当前通知点击只显示本人最小状态，私密陈述marker不显示；F读取该案404，本人列表空；D禁用后登录403。D首次旧卡片在点击前就已失效，未计为旧点击成功。E的另一条受控旧通知则在禁用提交后约49ms实际tap，当前Safety GET403，APP退出且无私密内容。该fixture不接受完整平台活动/Safety writer工作流。
+
+WS综合脚本已执行断连/重连、pointer和MC撤权，但最后“upgrade后close”断言失败且未在断言前序列化全部中间值；**保留exit1，不宣称整个脚本PASS或精确active-close耗时。** 补充当前拒绝实测：MC不重新激活，HTTP404、WS在HTTP upgrade前关闭，APP真实聊天内容清空。该消息WS结果不能升格为RTC媒体撤权证明。部分UI脚本还保留错选图片按钮、登录框残留输入和未等待新帧的原断言失败；均未作为成功原证。
+
+### R1-B4：定向测试、复核与原失败
+
+| 检查 | 实际结果与限制 |
+|---|---|
+| PHP隔离回归 | 47 tests / 1769 assertions / exit0；2 deprecations及2 PHPUnit deprecations保留，`backend-r1-targeted-isolated.txt`。SQLite只作回归，不代替本版真实MariaDB链。 |
+| 初次PHP回归 | 47 errors / 0 assertions / exit2；继承local环境，被测试写前隔离门拒绝，未削弱保护门。正确命令进程显式设置testing/sqlite/:memory:后才通过。 |
+| Probe单元/分析 | 5项exit0；probe分析exit0，早期testing-only分析警告保留。 |
+| 消息竞态回归 | 8项exit0，新增pending POST→current-read已见同key→receiveTimeout→同body/key retry→单ACK；测试文件分析及生产live_chat分析均exit0。不是物理APP替代证据。 |
+| PHP语法 | 本次3个服务及R1 runtime脚本4份均无语法错误；原证 `php-syntax-tool-transcript.txt`。 |
+| 构建/安装 | probe release拒绝预期；probe后普通CI构建exit0；修复APK构建exit0；固定源码再构建exit0/38项up-to-date，同哈希双端安装读回。Dokka远程package-list下载警告保留，未更换SDK。 |
+| 空白检查 | 原 `git diff --check` exit2保留；历史CRLF规则 `core.whitespace=cr-at-eol` exit0。 |
+| 非作者复核 | 独立GPT-6.1 Sol/high只读，检查构建隔离、期限入口、精确DB门、代理与pending-send竞态；AAR P2关闭，未发现新增高置信P1/P2。不运行设备/DB，也不签Astra接受。 |
+
+可复核命令入口为 `php vendor/bin/phpunit` 的本版定向filter（须testing/sqlite显式隔离）、`flutter test --no-pub test/dev/v1015_r1_retention_probe_test.dart`、`flutter test --no-pub test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart`、`dart analyze lib/features/chat/presentation/pages/live_chat_page.dart`，以及 `gradlew :app:assembleDebug -PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true;ELITESYNC_V1015_R1_LOCAL_BUILD=true -PrelationshipDualDeviceBuild=true --offline --console=plain`（PowerShell中defines须作为一个引号参数）。完整stdout/exit及本地设备脚本在R1原证目录；前述构建不支持target、AAR路径、chunked转发、空会话404、cat错误等原失败不删除。
+
+### 冻结AC-01～11对应（不改合同）
+
+| AC | R1证据状态 |
+|---|---|
+| 01 | 5受保护根、首轮260文件、旧refs与私密env核验无变；新独立库/卷与恢复点具名。 |
+| 02 | 实际响应丢失竞态修复，同键重试及消息/通知唯一实测支持；首轮双端消息成果保留。 |
+| 03 | 有限切号/迟到结果、Safety禁用、当前WS拒绝及APP内容清空支持；综合WS脚本原失败/缺中间序列化保留，不推广为全部矩阵。 |
+| 04 | 首轮图片/无音轨视频/Range与重启成果复用；R1未重复全包验证。 |
+| 05 | **PARTIAL / CORE_OPEN**：双端SFU媒体、同call恢复、旧RTC JWT、流动媒体≤5秒停止缺证；视频与AEC门禁仍开。 |
+| 06 | 真实Android测试进程注入34项轨迹、真实HTTP T0/refresh及重启锁定；物理经过15/30天不作声称，待Astra独立判定。 |
+| 07 | 真SecureStorage受控密文30天边界实际删成功、注入删失败后锁定及重启拒读；非OS故障、非物理30天。 |
+| 08 | 当前Safety通知最小化、真实旧卡片禁用后点击403和切号负例支持；未接受完整Safety writer业务。 |
+| 09 | 首轮TEST_ONLY Provider隔离沿用；真实Push供应商/密钥/费用NOT_RUN。 |
+| 10 | 定向PHP/Flutter与APP/HTTP/MariaDB证据具名；B2及WS脚本限制保留，整体PARTIAL。 |
+| 11 | 固定源码/树、最终APK双端读回、原报告附章、新manifest、非作者复核和脱敏审阅包集中交付；等待Astra独立复审。 |
+
+### 数据库与历史保护回执
+
+本版仅 `elitesync_v1015_r1_dev` / `127.0.0.1:43327`，容器 `fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407`，独立新volume `elitesync-v1015-r1-data-20261022`。迁移前有效APP_DB_CONNECTION/mysql、库/host/port/url/socket、空库及归属已核；空库恢复点1348bytes、SHA256 `4b1ce64e9da8b945ba587d700f1232e13db20b5f1597542e136f5b3ca1efef55`。运行93表；最终SQL `165674` bytes / SHA256 `14f266cc8fb75d783eb6fe13d54ee5d37f49176fa1d86d05e531fa00d8435c4d` / exit0。SQL、APK、WAV、prefs/密钥原值均LOCAL_ONLY，未公开。
+
+保护终检：5根HEAD/branch/index/status与事前一致；首轮260文件hash/bytes全部一致；原本已有heads/tags均未变；连续工作树私密.env hash未变。**该核验覆盖声明的快照与260文件，不声称所有历史目录的每一份SQL/APK都已事前独立hash。** 没有reset/clean/stash/prune、历史文件删除、旧库启动/覆盖或main集成。只停止本版API/WS/proxy/authority/bridge/SFU/DB和所启两AVD，回收本版4个reverse，保留容器/卷与原证；全局ADB/Docker/WSL未停止。R1未改schema，未重复首轮已证明的数据库重启项。
+
+### 脱敏审阅与停止门
+
+最小脱敏审阅分支 `codex/v10.1.5-r1-review-evidence`；Commit `6e9b7441839954d0d8847399c91482354c61e473`，Root `ad834e85f5fb5ce1e435bbfa3be46446862d35b2`，10份文件的path/mode/Blob见R1 manifest。固定入口：[R1脱敏审阅](https://github.com/zcx369658780/EliteSync-v10/tree/6e9b7441839954d0d8847399c91482354c61e473/docs/_temporary_review/v1015-r1-20261022)。原短期review分支保留。候选及审阅材料只普通non-force发布，并以独立REST/Git对象及fixed-SHA raw bytes回读；具体发布身份以包含本附章的Git提交及本地publication receipt为准。
+
+R1原证根 `LOCAL_ONLY:v1015-r1-evidence-20261022`；核心剩余阻断为上述R1-B2媒体/重连/旧JWT/5秒门禁，另保留视频source与AEC设备门、综合WS脚本缺口、真实Provider和历史ZIP `BYTE_MIRROR_PENDING`。没有生产/公网部署、真实Push/用户/支付/外部AI或系统权限扩展。
+
+**交付后停止：V10.1.5_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_FUNCTION_REREVIEW / PARTIAL。** 等待Owner把本次集中候选交给Astra；不得自行ACCEPTED、集成main或启动下一轮/版本。
