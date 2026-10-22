@@ -1,0 +1,1041 @@
+{
+  "schema_version": 1,
+  "task": "v10.1.5_unique_ICE_topology_read_only_audit",
+  "date": "2026-10-22",
+  "status": [
+    "READ_ONLY",
+    "RUNTIME_NOT_RUN",
+    "PHONE_NOT_TOUCHED",
+    "SOURCE_UNCHANGED",
+    "AC05_OPEN",
+    "OWNER_DECISION_REQUIRED",
+    "NO_R2"
+  ],
+  "audit_result": "LOCAL_ORIGINALS_REVIEWED; MISSING_ICE_CANDIDATE_EVIDENCE; NO_VERIFIED_ICE_PATH",
+  "DOCUMENTARY_ONLY": false,
+  "authority_task_blob": "994fdb154c898faf7e6f55f85c5dbd86ff603612",
+  "authority_objects": {
+    "phone_independent_review": {
+      "blob": "fcd62d873ead2ac5e9884ecf2a6db654c138dff4",
+      "bytes": 7933
+    },
+    "owner_plan_a": {
+      "blob": "a5a0ab1f99e0fd76365820e51af6ac3f83bb9a43",
+      "bytes": 3984
+    },
+    "plan": {
+      "blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "bytes": 12749
+    },
+    "main": {
+      "commit": "51154041ed10da582c962c86b30d554cfcd1bb86",
+      "root_tree": "2ca64703fc4a537403885e3395712bf25af03994",
+      "parents": [
+        "c93e1997c7522a55ae8e070831cd7864e94a2682"
+      ],
+      "product_trees": {
+        "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+      }
+    },
+    "r1": {
+      "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+      "root_tree": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+      "parents": [
+        "47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962"
+      ],
+      "product_trees": {
+        "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+        "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+      }
+    },
+    "phone_delivery": {
+      "commit": "fe2e4397e4db894257276238c1a3118ba3c6a5f9",
+      "root_tree": "b7a2dc5c3071e52c57cd14be82d05651975415fb",
+      "parents": [
+        "7a5dc0d85ef82fdfc5db4a098ae4150164e2b999"
+      ],
+      "product_trees": {
+        "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+        "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+      }
+    }
+  },
+  "candidate_parent": "fe2e4397e4db894257276238c1a3118ba3c6a5f9",
+  "candidate_branch": "codex/v10.1.5-ice-topology-audit",
+  "candidate_commit_root_and_document_blobs": "post_commit_readback_receipt; no self_referential hash",
+  "allowed_changed_paths": [
+    "docs/versions/v10.1.5/ICE_TOPOLOGY_READ_ONLY_AUDIT.md",
+    "docs/versions/v10.1.5/ice_topology_read_only_manifest.json"
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "blob": "6495fc64ef49a914ba548142f14f23429a536984"
+    },
+    {
+      "id": "S2",
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/RtcController.php",
+      "blob": "dde50ffa8beb16fb84c5f02f8ceb024afc86ba5e"
+    },
+    {
+      "id": "S3",
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/RtcGuardController.php",
+      "blob": "c02748334e97588452237fd9d5635d1c8c90c333"
+    },
+    {
+      "id": "S4",
+      "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
+      "blob": "7b17b44f28ea585718f8adb96fc8d704fc91bc27"
+    },
+    {
+      "id": "S5",
+      "path": "services/backend-laravel/app/Services/LiveKitTokenService.php",
+      "blob": "b38018c550c0f1cf834b2891c437191fa4f9255c"
+    }
+  ],
+  "source_line_ranges": {
+    "S1": [
+      "260-335",
+      "696-761",
+      "893-955"
+    ],
+    "S2": [
+      "171-194"
+    ],
+    "S3": [
+      "13-49"
+    ],
+    "S4": [
+      "27-88",
+      "117-160"
+    ],
+    "S5": [
+      "13-73"
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "E01",
+      "file": "sfu-complete-local.log",
+      "bytes": 665462,
+      "sha256": "12e381dd233578c88f95cfd34212041bac57188ac88b8ad52b3efefb53774339",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E02",
+      "file": "phone-test-app-pid-only-local.log",
+      "bytes": 381776,
+      "sha256": "84d5594566d05ebb5a96d4df5b5051d7cce5c25662ef64d650ee6856f6de440d",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E03",
+      "file": "sfu-media-observer-local.jsonl",
+      "bytes": 804534,
+      "sha256": "9776a10c69a22e030252d7bf54fd287c27251dd34056c5f2383c022e6a311871",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E04",
+      "file": "sfu-run-args-local.json",
+      "bytes": 767,
+      "sha256": "9e0dfc13f5507ed875a36dbc36050e266b8bc96a52c608bbb50ce560cec1a6df",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E05",
+      "file": "secrets/livekit.yaml",
+      "bytes": 337,
+      "sha256": "bb54444fc2ba3b172266bdd6bdc620b99fbd14c1bbbd2216985646af73574170",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E06",
+      "file": "reverse-created.json",
+      "bytes": 668,
+      "sha256": "7ab8b5b1f0877084a14656f9bd26925a440cc28e6d31dad2b794e57341267314",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E07",
+      "file": "phone-tcp-probe.json",
+      "bytes": 391,
+      "sha256": "2c8bc7a93a0479f1a745495e8b9db0b4f58f6e05dd2a242cb38a096912aa2080",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E08",
+      "file": "listeners-before-reverse.json",
+      "bytes": 391,
+      "sha256": "6ad026f99f153aaa10d2c746b03f841eff9439e65808b7c6e0c28ff85c516cac",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E09",
+      "file": "guard-readiness.json",
+      "bytes": 214,
+      "sha256": "ab55485a12bb5efa11e540dac3a424f3a4da527da874b6ed7826624c84c12eab",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E10",
+      "file": "container-shutdown-identity.json",
+      "bytes": 993,
+      "sha256": "47d012ee21c3c0ec27430df08d6648a70a6fc40c499d35a1ec6560ea4ffc989c",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E11",
+      "file": "device-shutdown-receipt.json",
+      "bytes": 1225,
+      "sha256": "dec3d6f4f1260cc2d28525a24b49917b647a138fe60121a4bf4e4d5e4bc0ef25",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E12",
+      "file": "installed-package-identity.json",
+      "bytes": 334,
+      "sha256": "36ec8fc5084db5b18e8ed482c10dffc61541b72bbd9535821d51ced56cbee598",
+      "status": "READABLE_LOCAL_ONLY"
+    },
+    {
+      "evidence_id": "E13",
+      "file_role": "APP_CONSUMED_JOIN_RESPONSE_URL_FIELD_ONLY",
+      "bytes": 781,
+      "sha256": "93e60ab7f136b2a8ca40871099171065f7f34438928060bec08653f7de2b1066",
+      "status": "READABLE_LOCAL_ONLY_NO_TOKEN_FIELD_ACCESSED"
+    },
+    {
+      "evidence_id": "E14",
+      "file": "rtc-gateway-diagnostic.py",
+      "bytes": 10411,
+      "sha256": "99252d3b007b217843536aae9f9cdf91a07d3e7a59da69fffa212af4f86b80aa",
+      "status": "READABLE_LOCAL_ONLY_STATIC_SCRIPT_NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "E15",
+      "file": "authority-bridge-diagnostic.py",
+      "bytes": 1929,
+      "sha256": "a20a0b179b0e42f87935105aa47b367d7470cc687b061b615490459a352e8105",
+      "status": "READABLE_LOCAL_ONLY_STATIC_SCRIPT_NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "E16",
+      "file": "phone-api-observer.py",
+      "bytes": 6121,
+      "sha256": "d74d7ac4416a0d883a9219a4c207618eebc569ffcfa367cd7d4074a8a9c3a99d",
+      "status": "READABLE_LOCAL_ONLY_STATIC_SCRIPT_NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "E17",
+      "file": "sfu-observer-script.py",
+      "bytes": 1747,
+      "sha256": "cf58355c431e128b31df760f4d86070e7bdb146be1d6cdc90367a10eeeab5d83",
+      "status": "READABLE_LOCAL_ONLY_STATIC_SCRIPT_NOT_EXECUTED"
+    },
+    {
+      "evidence_id": "E18",
+      "file": "sfu-metrics-after-attempt.txt",
+      "bytes": 30961,
+      "sha256": "850966623d00f988840b1df597a3b1bd2effe305c76ccf80a20cd40a90b4c8e7",
+      "status": "READABLE_LOCAL_ONLY_HISTORICAL_RECEIPT"
+    },
+    {
+      "evidence_id": "E19",
+      "file": "owned-processes.json",
+      "bytes": 2561,
+      "sha256": "ca60b4665c4e2d2be9cf9563ae5c9f52feb0d95b1edd344a0e64ea37156a3dab",
+      "status": "READABLE_LOCAL_ONLY_HISTORICAL_RECEIPT"
+    },
+    {
+      "evidence_id": "E20",
+      "file": "owned-ports-final.json",
+      "bytes": 699,
+      "sha256": "a58a7740d166a78d5acb4c089095259a31490a005a2f40ef1df19116dfb0d2d3",
+      "status": "READABLE_LOCAL_ONLY_HISTORICAL_RECEIPT"
+    }
+  ],
+  "actual_SFU_config_allowlist": {
+    "http_port": 7880,
+    "bind_addresses_classes": [
+      "CONTAINER_LOOPBACK"
+    ],
+    "rtc": {
+      "tcp_port": 7891,
+      "udp_port": "NOT_EXPLICITLY_CONFIGURED",
+      "port_range_start": "NOT_EXPLICITLY_CONFIGURED",
+      "port_range_end": "NOT_EXPLICITLY_CONFIGURED",
+      "use_external_ip": false,
+      "force_tcp": true,
+      "enable_loopback_candidate": true,
+      "tcp_read_buffer_size": "NOT_EXPLICITLY_CONFIGURED",
+      "tcp_write_buffer_size": "NOT_EXPLICITLY_CONFIGURED"
+    },
+    "rtc_node_ip_class": "LOOPBACK_LITERAL",
+    "internal_metrics_port": 7889,
+    "published_ports": [
+      {
+        "host_address_class": "HOST_LOOPBACK",
+        "host_port": 7894,
+        "container_port": 7884,
+        "protocol": "tcp"
+      },
+      {
+        "host_address_class": "HOST_LOOPBACK",
+        "host_port": 7891,
+        "container_port": 7891,
+        "protocol": "tcp"
+      }
+    ],
+    "image": "sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e",
+    "raw_sfu_host_publish": false,
+    "real_inner_ICE_listener_snapshot": "MISSING"
+  },
+  "actual_APP_join_URL_allowlist": {
+    "evidence_id": "E13",
+    "private_response_bytes": 781,
+    "private_response_sha256": "93e60ab7f136b2a8ca40871099171065f7f34438928060bec08653f7de2b1066",
+    "URL_scheme": "ws",
+    "URL_host_class": "PHONE_LOOPBACK",
+    "URL_port": 7894,
+    "URL_path_class": "ROOT",
+    "token_field": "NOT_EXTRACTED_OR_DECODED",
+    "confidence": "RUNTIME_RECEIPT_APP_CONSUMED_JOIN_RESPONSE_FIELD",
+    "initial_parser_failure": "escaped JSON slashes not handled; corrected field-only JSON parsing; no runtime access"
+  },
+  "mapping_consistency": {
+    "server_candidate_records": 2,
+    "server_candidate_literal_equals_config_node_ip": true,
+    "server_candidate_port_equals_config_tcp_port": true,
+    "server_candidate_address_literal_equals_join_URL_host": true,
+    "different_network_namespaces_despite_literal_equality": true,
+    "signalling_URL_port": 7894,
+    "ICE_port": 7891,
+    "port_role_separation": true,
+    "actual_ICE_listener_bind_address": "MISSING",
+    "actual_STUN_over_TCP_bytes": "MISSING",
+    "observability_keyword_counts": {
+      "APP": {
+        "DTLS_keyword_lines": 0,
+        "selected_pair_keyword_lines": 0
+      },
+      "SFU": {
+        "DTLS_keyword_lines": 0,
+        "selected_pair_keyword_lines": 0
+      }
+    }
+  },
+  "time_domains": {
+    "android_clock": "device wall epoch from package PID log; same-device interval reliable as logged, no trusted cross-clock calibration",
+    "android_start_epoch": 1792649962.969,
+    "android_fail_epoch": 1792649993.193,
+    "android_elapsed_seconds": 30.224,
+    "SFU_clock": "container UTC wall in LiveKit logs",
+    "SFU_events": [
+      {
+        "source_line": 2024,
+        "SFU_UTC": "2026-10-22T06:19:23.398Z",
+        "event": "starting RTC session",
+        "reason": null,
+        "error": null,
+        "connectionType": null
+      },
+      {
+        "source_line": 2191,
+        "SFU_UTC": "2026-10-22T06:19:38.617Z",
+        "event": "participant closing",
+        "reason": "SIGNAL_SOURCE_CLOSE",
+        "error": null,
+        "connectionType": null
+      },
+      {
+        "source_line": 2192,
+        "SFU_UTC": "2026-10-22T06:19:38.617Z",
+        "event": "removing participant without connection",
+        "reason": "SIGNAL_SOURCE_CLOSE",
+        "error": null,
+        "connectionType": "unknown"
+      },
+      {
+        "source_line": 2196,
+        "SFU_UTC": "2026-10-22T06:19:38.728Z",
+        "event": "could not handle new participant",
+        "reason": null,
+        "error": "could not restart participant",
+        "connectionType": null
+      },
+      {
+        "source_line": 2419,
+        "SFU_UTC": "2026-10-22T06:19:58.335Z",
+        "event": "closing idle room",
+        "reason": "departure timeout",
+        "error": null,
+        "connectionType": null
+      }
+    ],
+    "observer_clock": "container Python time.time; not Windows host simply because output file is on host",
+    "observer_samples": 715,
+    "observer_first_epoch": 1792649874.6283958,
+    "observer_last_epoch": 1792650054.5282998,
+    "explicit_tracks_samples": 60,
+    "explicit_tracks_total": 0,
+    "observer_ice_pair_details": "MISSING",
+    "absolute_epoch_for_empty_TCP_probes": "MISSING_FROM_PROBE_RECEIPT",
+    "cross_clock_offset_calibration": "MISSING",
+    "host_monotonic_comparability": "process-local durations only; cannot align to device/container origins",
+    "five_second_revoke_measurement": "NOT_RUN"
+  },
+  "candidate_matrix": [
+    {
+      "id": "M01",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "SFU_LOCAL",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "TCP",
+      "tcp_type": "NOT_RECORDED",
+      "address_class": "SFU_ADVERTISED_LOOPBACK_LITERAL",
+      "IP_version": 4,
+      "advertised_port": 7891,
+      "listener_role_port": "SFU_ICE_TCP_CONFIGURED_7891; ACTUAL_CONTAINER_INTERFACE_MISSING",
+      "phone_reachability_class": "CONFIGURED_PHONE_LOOPBACK_TO_ADB_TCP_7891; SEPARATE_EMPTY_TCP_PROBE_EXIT0_ONLY",
+      "adb_reverse_match": "YES_TCP_7891_NUMBER_AND_PROTOCOL_ONLY",
+      "docker_publish_match": "YES_HOST_LOOPBACK_7891_TCP_TO_CONTAINER_7891_TCP; INNER_LISTENER_UNPROVEN",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 2,
+      "transport_record_counts": {
+        "PUBLISHER": 1,
+        "SUBSCRIBER": 1
+      },
+      "address_readability": "FULL_VALUE_LOCAL_ONLY"
+    },
+    {
+      "id": "M02",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "UDP",
+      "tcp_type": "NOT_APPLICABLE",
+      "address_class": "PHONE_LAN_PRIVATE",
+      "IP_version": 4,
+      "advertised_port": "EPHEMERAL_LOCAL_ONLY",
+      "listener_role_port": "PHONE_UDP_DYNAMIC_ENDPOINT",
+      "phone_reachability_class": "NOT_CARRIED_BY_RECORDED_USB_TCP_REVERSES",
+      "adb_reverse_match": "NO_UDP_MAPPING",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 4,
+      "transport_record_counts": {
+        "PUBLISHER": 2,
+        "SUBSCRIBER": 2
+      },
+      "address_readability": "FULL_VALUE_LOCAL_ONLY"
+    },
+    {
+      "id": "M03",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "UDP",
+      "tcp_type": "NOT_APPLICABLE",
+      "address_class": "PHONE_LOOPBACK_PREFIX_TRUNCATED",
+      "IP_version": 4,
+      "advertised_port": "EPHEMERAL_LOCAL_ONLY",
+      "listener_role_port": "PHONE_UDP_DYNAMIC_ENDPOINT",
+      "phone_reachability_class": "NOT_CARRIED_BY_RECORDED_USB_TCP_REVERSES",
+      "adb_reverse_match": "NO_UDP_MAPPING",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 2,
+      "transport_record_counts": {
+        "PUBLISHER": 1,
+        "SUBSCRIBER": 1
+      },
+      "address_readability": "SERVER_LOG_TRUNCATED"
+    },
+    {
+      "id": "M04",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "UDP",
+      "tcp_type": "NOT_APPLICABLE",
+      "address_class": "PHONE_NON_LOOPBACK_IPV6_PREFIX_TRUNCATED",
+      "IP_version": 6,
+      "advertised_port": "EPHEMERAL_LOCAL_ONLY",
+      "listener_role_port": "PHONE_UDP_DYNAMIC_ENDPOINT",
+      "phone_reachability_class": "NOT_CARRIED_BY_RECORDED_USB_TCP_REVERSES",
+      "adb_reverse_match": "NO_UDP_MAPPING",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 4,
+      "transport_record_counts": {
+        "PUBLISHER": 2,
+        "SUBSCRIBER": 2
+      },
+      "address_readability": "SERVER_LOG_TRUNCATED"
+    },
+    {
+      "id": "M05",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "UDP",
+      "tcp_type": "NOT_APPLICABLE",
+      "address_class": "PHONE_LOOPBACK",
+      "IP_version": 6,
+      "advertised_port": "EPHEMERAL_LOCAL_ONLY",
+      "listener_role_port": "PHONE_UDP_DYNAMIC_ENDPOINT",
+      "phone_reachability_class": "NOT_CARRIED_BY_RECORDED_USB_TCP_REVERSES",
+      "adb_reverse_match": "NO_UDP_MAPPING",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 2,
+      "transport_record_counts": {
+        "PUBLISHER": 1,
+        "SUBSCRIBER": 1
+      },
+      "address_readability": "FULL_VALUE_LOCAL_ONLY"
+    },
+    {
+      "id": "M06",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "TCP",
+      "tcp_type": "NOT_RECORDED",
+      "address_class": "PHONE_LOOPBACK_PREFIX_TRUNCATED",
+      "IP_version": 4,
+      "advertised_port": "PHONE_LOGGED_PORT_LOCAL_ONLY; ROLE_UNKNOWN",
+      "listener_role_port": "PHONE_RECORDED_TCP_ENDPOINT; ACTUAL_ROLE_NOT_RECORDED",
+      "phone_reachability_class": "CLIENT_INITIATED_ACTIVE_PATH_UNKNOWN; SERVER_TO_PHONE_RECORDED_PORT_ROUTE_NOT_CONFIGURED",
+      "adb_reverse_match": "NO_MAPPING_OF_RECORDED_PHONE_PORTS; ACTIVE_CLIENT_DIAL_MAY_NOT_REQUIRE_ONE",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 3,
+      "transport_record_counts": {
+        "PUBLISHER": 1,
+        "SUBSCRIBER": 2
+      },
+      "address_readability": "SERVER_LOG_TRUNCATED",
+      "tcp_port_class_check": "SIX_RECORDS_NONZERO_HIGH_PORT; NONE_DISCARD9; NO_ALLOCATION_OR_ROLE_INFERENCE"
+    },
+    {
+      "id": "M07",
+      "phase": "CALL3_TRICKLE_CANDIDATES_REPORTED_AT_PARTICIPANT_CLOSE",
+      "side": "PHONE_REMOTE_AS_OBSERVED_BY_SFU",
+      "source_credential_boundary": "LIVEKIT_SESSION_REACHED_VIA_CURRENT_AUTHORITY_GATEWAY; NOT_PAIR_AUTH_PROOF",
+      "candidate_type": "host",
+      "protocol": "TCP",
+      "tcp_type": "NOT_RECORDED",
+      "address_class": "PHONE_LOOPBACK",
+      "IP_version": 6,
+      "advertised_port": "PHONE_LOGGED_PORT_LOCAL_ONLY; ROLE_UNKNOWN",
+      "listener_role_port": "PHONE_RECORDED_TCP_ENDPOINT; ACTUAL_ROLE_NOT_RECORDED",
+      "phone_reachability_class": "CLIENT_INITIATED_ACTIVE_PATH_UNKNOWN; SERVER_TO_PHONE_RECORDED_PORT_ROUTE_NOT_CONFIGURED",
+      "adb_reverse_match": "NO_MAPPING_OF_RECORDED_PHONE_PORTS; ACTIVE_CLIENT_DIAL_MAY_NOT_REQUIRE_ONE",
+      "docker_publish_match": "NOT_APPLICABLE_PHONE_ORIGIN_CANDIDATE",
+      "pair_state": "SELECTED_PAIR_NOT_OBSERVED; SESSION_CONNECTION_TYPE_UNKNOWN",
+      "recorded_error": "CALL_CONTEXT_SIGNAL_SOURCE_CLOSE; APP_MEDIA_CONNECT_EXCEPTION; PER_PAIR_ERROR_MISSING",
+      "evidence_ID": [
+        "E01:L2192",
+        "E02:L2377,L2481",
+        "E04",
+        "E05",
+        "E06",
+        "E07"
+      ],
+      "conclusion_confidence": "CONFIRMED_LOG_ENTRY_CLASS; ICE_FEASIBILITY_UNKNOWN",
+      "record_count": 3,
+      "transport_record_counts": {
+        "PUBLISHER": 1,
+        "SUBSCRIBER": 2
+      },
+      "address_readability": "FULL_VALUE_LOCAL_ONLY",
+      "tcp_port_class_check": "SIX_RECORDS_NONZERO_HIGH_PORT; NONE_DISCARD9; NO_ALLOCATION_OR_ROLE_INFERENCE"
+    }
+  ],
+  "matrix_field_contract": [
+    "phase",
+    "side",
+    "source_credential_boundary",
+    "candidate_type",
+    "protocol",
+    "tcp_type",
+    "address_class",
+    "advertised_port",
+    "listener_role_port",
+    "phone_reachability_class",
+    "adb_reverse_match",
+    "docker_publish_match",
+    "pair_state",
+    "recorded_error",
+    "evidence_ID",
+    "conclusion_confidence"
+  ],
+  "candidate_counts": {
+    "SFU_local_TCP": 2,
+    "PHONE_remote_UDP": 12,
+    "PHONE_remote_TCP": 6,
+    "publisher": 9,
+    "subscriber": 11,
+    "total": 20,
+    "APP_callback_count_only": 18,
+    "callback_identity_mapping": "MISSING"
+  },
+  "claim_ledger": [
+    {
+      "id": "C01",
+      "status": "CONFIRMED",
+      "claim": "join response URL is ws, PHONE_LOOPBACK port7894; signalling is distinct from raw container7880 and configured ICE/TCP7891",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "CONFIG_RECEIPT",
+        "SOURCE_LINE"
+      ],
+      "evidence": [
+        "E13",
+        "E04",
+        "E05",
+        "E14:L137,L181"
+      ]
+    },
+    {
+      "id": "C02",
+      "status": "CONFIRMED",
+      "claim": "two recorded SFU local TCP host candidates advertise loopback7891, matching configured node_ip/tcp_port and historical reverse/published port numbers; namespace and handshake success do not follow",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "CONFIG_RECEIPT"
+      ],
+      "evidence": [
+        "E01:L2192",
+        "E04",
+        "E05",
+        "E06"
+      ]
+    },
+    {
+      "id": "C03",
+      "status": "CONFIRMED",
+      "claim": "12 phone UDP host candidate records cannot be transported as UDP by the four recorded TCP reverses; six phone TCP host candidate records also exist, so UDP mismatch is not a complete cause",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "CONFIG_RECEIPT"
+      ],
+      "evidence": [
+        "E01:L2192",
+        "E06"
+      ]
+    },
+    {
+      "id": "C04",
+      "status": "SUPPORTED",
+      "claim": "one joined participant and legal guard signalling are supported, but neither implies selected ICE pair/DTLS/audio",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "SOURCE_LINE"
+      ],
+      "evidence": [
+        "E01:L2024,L2192",
+        "E03",
+        "E13",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "id": "C05",
+      "status": "CONFIRMED",
+      "claim": "same Android wall clock Room.connect interval30.224s ends MediaConnectException; no cross-clock latency bound asserted",
+      "kind": [
+        "RUNTIME_RECEIPT"
+      ],
+      "evidence": [
+        "E02:L2377,L2481"
+      ]
+    },
+    {
+      "id": "C06",
+      "status": "CONFIRMED",
+      "claim": "715 observer records,60 with explicit track fields all empty,655 without that field; generic packets not attributed audio RTP",
+      "kind": [
+        "RUNTIME_RECEIPT"
+      ],
+      "evidence": [
+        "E03",
+        "E18"
+      ]
+    },
+    {
+      "id": "U01",
+      "status": "UNKNOWN",
+      "claim": "TCP candidate active/passive roles, full SDP, selected pair and ICE check state, DTLS state missing; no failed specific pair may be invented",
+      "kind": [
+        "UNKNOWN"
+      ],
+      "evidence": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "id": "H01",
+      "status": "HYPOTHESIS",
+      "claim": "phone SDK loopback/TCP candidate role or pairing may not form a compatible active client path to advertised IPv4 server endpoint",
+      "kind": [
+        "UNKNOWN",
+        "SOURCE_LINE"
+      ],
+      "evidence": [
+        "E01:L2192",
+        "S1:L728-L761"
+      ],
+      "future_falsifier": "full local/remote SDP tcpType plus per-pair checking/nominated state and STUN request/response for same call"
+    },
+    {
+      "id": "H02",
+      "status": "HYPOTHESIS",
+      "claim": "configured container loopback bind and Docker target path might disagree if the actual ICE listener inherits loopback restriction; scope of bind_addresses on this ICE listener is unproven",
+      "kind": [
+        "CONFIG_RECEIPT",
+        "UNKNOWN"
+      ],
+      "evidence": [
+        "E04",
+        "E05"
+      ],
+      "future_falsifier": "same-epoch internal ICE/TCP real bind interface plus mapping backend accept/ICE-frame evidence; no inference from host front-end TCP accept alone"
+    },
+    {
+      "id": "H03",
+      "status": "HYPOTHESIS",
+      "claim": "UDP or IPv6-only checks could be unusable for the recorded IPv4 TCP USB path, but available logs do not show that these checks were selected or exhausted",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "UNKNOWN"
+      ],
+      "evidence": [
+        "E01:L2192",
+        "E06"
+      ],
+      "future_falsifier": "complete candidate pair set, role/family and per-pair failure reasons; cannot infer from enumeration counts"
+    },
+    {
+      "id": "U02",
+      "status": "UNKNOWN",
+      "claim": "SIGNAL_SOURCE_CLOSE and could not restart participant are observed outcomes; triggering ICE/transport failure and relation to SDK internal retries unproven",
+      "kind": [
+        "RUNTIME_RECEIPT",
+        "UNKNOWN"
+      ],
+      "evidence": [
+        "E01:L2191-L2196"
+      ]
+    }
+  ],
+  "paper_options": [
+    {
+      "id": "P1",
+      "classification": "WITHIN_EXISTING_PERMISSION_THEORETICAL",
+      "name": "USB with host loopback and actual ICE/TCP",
+      "priority": "recommended minimal future diagnostic route; not implemented or selected for execution",
+      "basis": [
+        "C01",
+        "C02"
+      ],
+      "verified_path": false,
+      "topology": "PHONE_LOOPBACK7891/TCP -> selected-device USB reverse -> HOST_LOOPBACK7891/TCP -> owned Docker7891/TCP -> verified actual SFU ICE listener; protected signalling remains7894/TCP",
+      "permission": "No new network/device privilege is inherent in this paper topology, but this read-only task authorizes no runtime; a future explicit bounded dispatch must permit the selected phone/APP, owned SFU/guard/API and exact reverses plus privacy-scoped diagnostics. Any required listener/config fix must be named separately and preserve host-loopback/raw-SFU isolation.",
+      "ports": [
+        "8031/TCP APP API",
+        "8032/TCP only if needed chat signalling",
+        "7894/TCP protected RTC signalling",
+        "7891/TCP ICE"
+      ],
+      "verify_ready_requires": [
+        "actual compatible tcpType/IPv4 candidate pair",
+        "real container ICE listener and backend path confirmed",
+        "same-call STUN/ICE succeeded+nominated and DTLS connected",
+        "phone capture/publish and SFU attributable media counters; no HTTP-only substitute"
+      ],
+      "negative_gates": [
+        "raw SFU7880 remains inaccessible from phone/host",
+        "missing/expired/revoked old JWT denied by gateway",
+        "same-call reconnection and committed revocation media-stop<=5s only after real flowing media"
+      ],
+      "rollback": "future stop only owned APP/services and remove only newly created exact reverses; preserve installed APP/data/volume/evidence"
+    },
+    {
+      "id": "P2",
+      "classification": "NEEDS_OWNER_EXPLICIT_PERMISSION",
+      "name": "single isolated LAN ICE/TCP port; protected signalling may remain USB",
+      "priority": "alternative only if P1 cannot be validated; not implemented",
+      "basis": [
+        "C02",
+        "U01",
+        "H02"
+      ],
+      "verified_path": false,
+      "topology": "PHONE_A selected private interface -> HOST_DEDICATED_PRIVATE_INTERFACE7891/TCP -> owned Docker SFU ICE/TCP; node advertised address must match phone-reachable host interface; raw7880 not published",
+      "permission": "Owner must separately authorize the exact existing phone/network, dedicated private interface,7891/TCP bind/publish and candidate declaration; any device-scoped firewall rule change requires separate explicit approval. No UDP/public listener/new device/TURN/SDK implied.",
+      "ports": [
+        "7891/TCP ICE only on named private interface",
+        "existing protected USB signalling/API if retained"
+      ],
+      "isolation": "single source device allowlist, bounded window, no public or raw API exposure; verify actual LAN and TCP-role compatibility first",
+      "verify_ready_requires": [
+        "Owner names/approves exact interface and device scope",
+        "same-epoch candidate/listener/publish agreement and selected ICE/DTLS",
+        "attributable media before all four AC05 safety gates"
+      ],
+      "negative_gates": [
+        "unapproved source device cannot reach media listener",
+        "no raw SFU/signalling bypass",
+        "revoked JWT reentry denied and real media stops<=5s"
+      ],
+      "rollback": "restore exact prior owned SFU config/port bindings and only specifically authorized firewall delta; preserve all evidence and original snapshots"
+    }
+  ],
+  "second_APP_prerequisite": {
+    "current": "ONE_PHONE_AND_HTTP_ONLY_PEER",
+    "media_APP_count": 1,
+    "second_actual_media_APP": "NOT_AVAILABLE_OR_VERIFIED",
+    "not_authorized_to_select_or_purchase_device": true
+  },
+  "missing_evidence": {
+    "checked_directory": "previous owned phone evidence directory only",
+    "absent_file_extensions": [
+      "pcap",
+      "pcapng",
+      "sdp"
+    ],
+    "unavailable_runtime_fields": [
+      "full_SDP_tcpType",
+      "selected_candidate_pair_ids_and_state",
+      "STUN_ICE_check_request_response",
+      "DTLS_connected",
+      "container_ICE_TCP_real_listener_interface",
+      "trusted_cross_clock_alignment"
+    ],
+    "no_runtime_collection_attempted": true
+  },
+  "non_author_review": {
+    "reviewer": "independent_non_author_GPT_6_1_Sol_high",
+    "scope": "one bounded static review; public documents/fixed source and safe local aggregation only",
+    "result": "NO_CONFIRMED_BLOCKING_FINDING; NONBLOCKING_WORDING_NARROWED",
+    "independently_checked": [
+      "7 matrix groups,16 fields per row,20 records P9/S11",
+      "SFU TCP2,Phone UDP12/TCP6",
+      "715 observations;60 explicit tracks arrays empty;655 without field",
+      "S1-S5 Git Blobs and complete R1 apps/services Trees",
+      "namespace and H02 kept hypothetical; TCP types/pair/time-domain gaps explicit",
+      "second APP requirement and all four unverified RTC gates preserved"
+    ],
+    "wording_change": "PHONE TCP advertised ports recorded LOCAL_ONLY; no inference of ephemeral allocation or active/passive role",
+    "main_followup_check": "6 Phone TCP records nonzero high ports, no discard9; final wording and matrix verified",
+    "limitations": [
+      "reviewer did not read private config originals or secrets/SQL/APK",
+      "final protection comparison based on main agent receipt/report, not independently rerun",
+      "no device/service/DB/API/network/test/write actions by reviewer"
+    ],
+    "acceptance": false
+  },
+  "protection": {
+    "roots": [
+      {
+        "alias": "PROTECTED_ROOT_1",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_2",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_3",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_4",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_5",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      }
+    ],
+    "prior_evidence_files_unchanged": 907,
+    "original_refs_unchanged": 489,
+    "private_env_unchanged": true,
+    "original_evidence_content_changed": false,
+    "status": "PASS_LOCAL_READ_ONLY_BASELINE_COMPARISON",
+    "receipt_sha256": "82b04f4d28cfa913256360c418823d2dc525dcb58b17d2aaceb73cca1d63852e"
+  },
+  "external_references": [
+    {
+      "role": "EXTERNAL_REFERENCE_NOT_PROJECT_EVIDENCE",
+      "url": "https://docs.livekit.io/transport/self-hosting/ports-firewall/"
+    },
+    {
+      "role": "EXTERNAL_REFERENCE_NOT_PROJECT_EVIDENCE",
+      "url": "https://docs.livekit.io/intro/basics/connect/"
+    },
+    {
+      "role": "EXTERNAL_REFERENCE_NOT_PROJECT_EVIDENCE",
+      "url": "https://developer.android.com/develop/ui/views/layout/webapps/access-local-server"
+    }
+  ],
+  "runtime_actions": {
+    "phone_commands": false,
+    "AVD_started": false,
+    "APP_started": false,
+    "SFU_started_or_stopped": false,
+    "DB_started_or_accessed": false,
+    "guard_API_started_or_requested": false,
+    "ADB_commands": false,
+    "new_reverse": false,
+    "connectivity_probe": false,
+    "private_candidate_network_request": false,
+    "network_configuration_change": false,
+    "product_code_change": false,
+    "test_or_build": false
+  },
+  "frozen_contract_gates": {
+    "dual_APP_flowing_audio": "NOT_VERIFIED",
+    "same_call_media_reconnect": "NOT_RUN",
+    "old_JWT_first_or_reentry": "NOT_RUN",
+    "COMMIT_to_media_stop_le_5s": "NOT_RUN"
+  },
+  "public_privacy_validation": {
+    "no_device_serial": true,
+    "no_IPv4_literal": true,
+    "no_JWT": true,
+    "no_MAC_literal": true,
+    "no_raw_candidate_text": true,
+    "no_raw_secret_or_token_fields": true,
+    "no_unresolved_placeholders": true,
+    "JSON_valid": true,
+    "all_16_matrix_fields_each_row": true,
+    "record_count_20": true,
+    "two_paper_options_only": true,
+    "no_runtime_actions": true,
+    "receipt_sha256": "9783500392cf1d298a3c6e2846af7bc61bc57d53f85c25d936600c8e5e7adaea"
+  },
+  "ACCEPTED": false,
+  "main_integration": false,
+  "R2_or_v1016_started": false,
+  "PHONE_TCP_port_reading_limit": {
+    "PHONE_TCP_records": 6,
+    "port_zero_count": 0,
+    "discard_placeholder_9_count": 0,
+    "ports_above_32767_count": 6,
+    "ephemeral_allocation_or_TCP_role_proven": false,
+    "public_label": "PHONE_LOGGED_PORT_LOCAL_ONLY; ROLE_UNKNOWN"
+  },
+  "authority_path_binding": {
+    "main": "51154041ed10da582c962c86b30d554cfcd1bb86",
+    "path": "docs/versions/v10.1.5/OWNER_APPROVED_ICE_TOPOLOGY_READ_ONLY_TASK_20261022.md",
+    "blob": "994fdb154c898faf7e6f55f85c5dbd86ff603612",
+    "path_binding_verified": true
+  },
+  "offline_analysis_limits": {
+    "URL_parser_initial_failure": "escaped slash field parser corrected; original file unmodified; no runtime operation",
+    "raw_IP_or_JWT_printed_in_this_audit": false,
+    "prior_phone_task_output_boundary_incident": "preserved; not erased or reclassified by this audit"
+  }
+}
