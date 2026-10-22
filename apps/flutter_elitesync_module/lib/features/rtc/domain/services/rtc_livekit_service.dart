@@ -10,10 +10,12 @@ import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_liveki
 import 'package:livekit_client/livekit_client.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_android_audio_engine.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_ice_diagnostic.dart';
 
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
-    : _microphonePermission = const PermissionHandlerRtcPermissionService()
+    : _roomFactory = null,
+      _microphonePermission = const PermissionHandlerRtcPermissionService()
           .ensureVoiceCallPermission,
       _cameraPermission =
           const PermissionHandlerRtcPermissionService().ensureCameraPermission;
@@ -25,12 +27,15 @@ class RtcLiveKitService extends ChangeNotifier {
     required Room room,
     required Future<bool> Function() microphonePermission,
     required Future<bool> Function() cameraPermission,
+    Room Function()? roomFactory,
   }) : _room = room,
+       _roomFactory = roomFactory,
        _microphonePermission = microphonePermission,
        _cameraPermission = cameraPermission;
 
   final Future<bool> Function() _microphonePermission;
   final Future<bool> Function() _cameraPermission;
+  final Room Function()? _roomFactory;
 
   final RtcRemoteDataSource remoteDataSource;
   final AppEnv appEnv;
@@ -45,6 +50,7 @@ class RtcLiveKitService extends ChangeNotifier {
   bool _frontCamera = true;
   bool _disposed = false;
   String? _failureMessage;
+  IcePreconnectObserver? _iceDiagnosticObserver;
 
   bool get microphoneEnabled => _microphoneEnabled;
   bool get cameraEnabled => _cameraEnabled;
@@ -75,6 +81,9 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   Future<void> setMicrophoneEnabled(bool enabled) async {
+    if (iceDiagnosticRequested && enabled) {
+      throw StateError('ICE_DIAG_TEST_ONLY_NO_AUDIO');
+    }
     final room = _room;
     final participant = room?.localParticipant;
     final generation = _connectionGeneration;
@@ -96,6 +105,9 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   Future<void> setCameraEnabled(bool enabled) async {
+    if (iceDiagnosticRequested && enabled) {
+      throw StateError('ICE_DIAG_TEST_ONLY_NO_CAMERA');
+    }
     final room = _room;
     final participant = room?.localParticipant;
     final generation = _connectionGeneration;
@@ -117,6 +129,7 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   Future<void> switchCamera() async {
+    if (iceDiagnosticRequested) return;
     final track = localVideoTrack;
     if (track == null) return;
     final nextFront = !_frontCamera;
@@ -696,22 +709,36 @@ class RtcLiveKitService extends ChangeNotifier {
     final requestedGeneration = _connectionGeneration;
     int? generation;
     try {
+      final diagnosticAllowed = iceDiagnosticRequested
+          ? await verifyIceDiagnosticHost(appEnv)
+          : false;
+      if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (iceDiagnosticRequested && !diagnosticAllowed) {
+        throw StateError('ICE_DIAG_GUARD_REJECTED');
+      }
       final info = await _loadJoinInfo(callId);
       if (_disposed || requestedGeneration != _connectionGeneration) return;
       if (!info.isReady) throw StateError('通话服务当前不可用');
-      if (!await _microphonePermission()) {
+      if (diagnosticAllowed && info.mode == 'video') {
+        throw StateError('ICE_DIAG_TEST_ONLY_NO_CAMERA');
+      }
+      if (!diagnosticAllowed && !await _microphonePermission()) {
         throw StateError('需要麦克风权限');
       }
-      if (info.mode == 'video' && !await _cameraPermission()) {
+      if (!diagnosticAllowed &&
+          info.mode == 'video' &&
+          !await _cameraPermission()) {
         throw StateError('需要摄像头权限');
       }
       if (_disposed || requestedGeneration != _connectionGeneration) return;
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      if (!diagnosticAllowed &&
+          !kIsWeb &&
+          defaultTargetPlatform == TargetPlatform.android) {
         await initializeRtcAndroidAudioEngine();
         if (_disposed || requestedGeneration != _connectionGeneration) return;
       }
       _failureMessage = null;
-      _logJoinInfo(callId: callId, info: info);
+      if (!diagnosticAllowed) _logJoinInfo(callId: callId, info: info);
       final expectedAfterLeave = _connectionGeneration + 1;
       await leave();
       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
@@ -725,26 +752,29 @@ class RtcLiveKitService extends ChangeNotifier {
         'forceSpeaker=${AudioManager.instance.isSpeakerOutputForced}',
       );
 
-      final room = Room(
-        roomOptions: const RoomOptions(
-          adaptiveStream: true,
-          dynacast: true,
-          // Keep AEC/NS enabled; AGC is enabled to support quiet speech. Android
-          // engine policy is requested before the first Room is created.
-          // https://docs.livekit.io/reference/client-sdk-flutter/livekit_client/AudioCaptureOptions-class.html
-          defaultAudioCaptureOptions: AudioCaptureOptions(
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true,
-            highPassFilter: true,
-          ),
-          defaultAudioOutputOptions: AudioOutputOptions(speakerOn: true),
-        ),
-      );
+      final room =
+          _roomFactory?.call() ??
+          Room(
+            roomOptions: const RoomOptions(
+              adaptiveStream: true,
+              dynacast: true,
+              // Keep AEC/NS enabled; AGC is enabled to support quiet speech. Android
+              // engine policy is requested before the first Room is created.
+              // https://docs.livekit.io/reference/client-sdk-flutter/livekit_client/AudioCaptureOptions-class.html
+              defaultAudioCaptureOptions: AudioCaptureOptions(
+                echoCancellation: true,
+                noiseSuppression: true,
+                autoGainControl: true,
+                highPassFilter: true,
+              ),
+              defaultAudioOutputOptions: AudioOutputOptions(speakerOn: true),
+            ),
+          );
       _room = room;
       room.addListener(_mediaChanged);
       _startHeartbeat(callId);
       final connectOptions = ConnectOptions(
+        autoSubscribe: !diagnosticAllowed,
         // Explicit empty list prevents the SDK adopting SFU public STUN defaults.
         // Local restoration uses only the Owner-approved host candidate path.
         rtcConfiguration: appEnv.restorationLocalBuild
@@ -887,10 +917,54 @@ class RtcLiveKitService extends ChangeNotifier {
         'RTC_LIVEKIT_ROOM_CONNECT_START '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'room=${info.roomName} '
-        'identity=${info.identity}',
+        'room=${diagnosticAllowed ? "REDACTED" : info.roomName} '
+        'identity=${diagnosticAllowed ? "REDACTED" : info.identity}',
       );
-      await room.connect(info.url, info.token, connectOptions: connectOptions);
+      if (diagnosticAllowed) {
+        _microphoneEnabled = false;
+        _cameraEnabled = false;
+        final observer = IcePreconnectObserver(
+          enabled: true,
+          isCurrent: () =>
+              !_disposed &&
+              generation == _connectionGeneration &&
+              identical(_room, room) &&
+              (remoteDataSource.isCurrent?.call() ?? true),
+          read: (side) async {
+            final pc = side == 'publisher'
+                ? room.engine.publisher?.pc
+                : room.engine.subscriber?.pc;
+            if (pc == null) return null;
+            return IceDiagnosticSnapshot.fromReports(
+              await pc.getStats(),
+              connectionState: pc.connectionState,
+              iceState: pc.iceConnectionState,
+            );
+          },
+          emit: (line) => debugPrint(line),
+        );
+        _iceDiagnosticObserver = observer;
+        try {
+          await observer.during(
+            () => room.connect(
+              info.url,
+              info.token,
+              connectOptions: connectOptions,
+            ),
+          );
+        } finally {
+          observer.stop();
+          if (identical(_iceDiagnosticObserver, observer)) {
+            _iceDiagnosticObserver = null;
+          }
+        }
+      } else {
+        await room.connect(
+          info.url,
+          info.token,
+          connectOptions: connectOptions,
+        );
+      }
       if (generation != _connectionGeneration || !identical(_room, room)) {
         await room.disconnect();
         return;
@@ -899,9 +973,18 @@ class RtcLiveKitService extends ChangeNotifier {
         'RTC_LIVEKIT_ROOM_CONNECT_OK '
         'device=${_platformLabel()} '
         'callId=$callId '
-        'room=${room.name ?? info.roomName} '
+        'room=${diagnosticAllowed ? "REDACTED" : room.name ?? info.roomName} '
         'remoteParticipants=${room.remoteParticipants.length}',
       );
+      if (diagnosticAllowed) {
+        debugPrint('ICE_DIAG_TEST_ONLY {"event":"TEST_ONLY_NO_AUDIO_EXIT"}');
+        try {
+          await remoteDataSource.endCall(callId);
+        } finally {
+          await leave(callId: callId);
+        }
+        return;
+      }
       await _logPeerConnectionSnapshot(
         room,
         callId: callId,
@@ -977,6 +1060,8 @@ class RtcLiveKitService extends ChangeNotifier {
     }
     final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;
     _connectionGeneration += 1;
+    _iceDiagnosticObserver?.stop();
+    _iceDiagnosticObserver = null;
     final room = _room;
     room?.removeListener(_mediaChanged);
     _room = null;

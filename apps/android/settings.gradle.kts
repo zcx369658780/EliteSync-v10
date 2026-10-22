@@ -26,6 +26,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = uri("../flutter_elitesync_module/build/host/outputs/repo"))
+        maven(url = uri("../flutter_elitesync_module/build/host/ice-diagnostic/outputs/repo")) {
+            content { includeVersionByRegex(".*", ".*", "1\\.0-icediag-[0-9a-f]{12}") }
+        }
         maven(url = uri("../flutter_elitesync_module/build/host/r1-retention-probe/outputs/repo")) {
             content { includeVersionByRegex(".*", ".*", "1\\.0-r1probe-[0-9a-f]{12}") }
         }

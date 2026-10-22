@@ -54,6 +54,8 @@ class MainActivity : FlutterActivity() {
                                 "appVersionName" to BuildConfig.VERSION_NAME,
                                 "appVersionCode" to BuildConfig.VERSION_CODE.toString(),
                                 "debugBuild" to BuildConfig.DEBUG.toString(),
+                                "applicationId" to BuildConfig.APPLICATION_ID,
+                                "iceDiagnosticBuild" to (BuildConfig.DEBUG && BuildConfig.ELITESYNC_ICE_DIAG_TEST_ONLY).toString(),
                             ),
                         )
                     }
