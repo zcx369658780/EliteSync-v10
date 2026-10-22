@@ -1,0 +1,987 @@
+{
+  "schemaVersion": 1,
+  "version": "10.1.5",
+  "task": "ICE_PRECONNECT_DIAGNOSTIC_CAPABILITY",
+  "date": "2026-10-22",
+  "status": "PARTIAL",
+  "terminal": [
+    "V10.1.5_ICE_DIAGNOSTIC_CAPABILITY_CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+    "PRODUCT_V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN"
+  ],
+  "authority": {
+    "taskBlob": "45b885c88af755b166c899b1c6a1432b778a413c",
+    "reviewBlob": "2df373a6151d11c68d639ea6669345e22f846093",
+    "main": "0c118ac9ba5b6c275101d63880152f5826330d4e",
+    "R1": "1c5cd2bb7919c435e8486a76959db75e9ccc367f"
+  },
+  "source": {
+    "source": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "parent": "62f0cd6d6df80f2f22855c0f75fd67ff52c753a7",
+    "rootTree": "2c656957e1c229ca30f7c07b173bcb1062310d2c",
+    "appsTree": "72c617cf86d5c653dd722accde340b51d2e085eb",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "changedFiles": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "mode": "100644",
+        "blob": "5a08d63f5f95155ca1f346f9809683f6f35ac7e0"
+      },
+      {
+        "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+        "mode": "100644",
+        "blob": "cec4d142e0cd44a7b17aa9ca02679a98f31cee9d"
+      },
+      {
+        "path": "apps/android/settings.gradle.kts",
+        "mode": "100644",
+        "blob": "0239c07856447b4a30ab395f8aaec97096c80d3d"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/dev/v1015_ice_diag.dart",
+        "mode": "100644",
+        "blob": "49e607ba3697f9b72865e677d037aef76a547e51"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_ice_diagnostic.dart",
+        "mode": "100644",
+        "blob": "6bad6b77b6ee112ce7adeb18f339ddd38be4782e"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+        "mode": "100644",
+        "blob": "66053d78a15a6a28311083bd99c83e6bb1331777"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart",
+        "mode": "100644",
+        "blob": "f470897deeeda48468a7d4ee9167ca9da28ba7ce"
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_test.dart",
+        "mode": "100644",
+        "blob": "8a309f7b73692180000bb212d64a67b4c8627c41"
+      }
+    ],
+    "sourcePublicationScan": {
+      "result": "PASS",
+      "findings": [],
+      "limits": "targeted added-source secret check and manual whitelist review; fixture addresses are documentation-range synthetic values"
+    }
+  },
+  "dependencies": {
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "livekit_client": "2.10.0",
+    "flutter_webrtc": "1.6.0",
+    "webrtc_interface": "1.5.1",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "SDKAndLocksChanged": false
+  },
+  "validation": {
+    "diagnosticTests": {
+      "exit": 0,
+      "passed": 20
+    },
+    "ordinaryRegression": {
+      "exit": 0,
+      "passed": 93
+    },
+    "targetedAnalyzeExit": 0,
+    "negativeBuildCases": [
+      {
+        "GUARD_REJECTED": true,
+        "exit": 1,
+        "case": "release"
+      },
+      {
+        "GUARD_REJECTED": true,
+        "exit": 1,
+        "case": "profile"
+      },
+      {
+        "GUARD_REJECTED": true,
+        "exit": 1,
+        "case": "missing_parent"
+      },
+      {
+        "GUARD_REJECTED": true,
+        "exit": 1,
+        "case": "mixed_v1014"
+      },
+      {
+        "GUARD_REJECTED": true,
+        "exit": 1,
+        "case": "mixed_v1012"
+      }
+    ],
+    "ordinaryBuildExit": 0,
+    "diagnosticBuildExit": 1,
+    "diagnosticBuildBlocker": "OFFLINE_FLUTTER_EMBEDDING_DEBUG_MAVEN_ARTIFACT_MISSING",
+    "diagnosticBuildGuard": "OPEN_POSITIVE_ARTIFACT_UNVERIFIED",
+    "whitespaceOriginalExit": 2,
+    "whitespaceHistoricalCRLFExit": 0
+  },
+  "APK": {
+    "apkSHA256": "7131b57c6c8f755197573e791d4bfa9d5db4ce07862726d24dace445f8b904bd",
+    "bytes": 416357439,
+    "package": "com.elitesync.v1015r1dev",
+    "version": "10.1.5-r1-dev",
+    "kind": "ORDINARY_R1_FLAG_OFF_ISOLATION_CONTROL_NOT_DIAGNOSTIC_APK",
+    "installed": false,
+    "signatureExit": "0",
+    "signerSHA256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+    "AOT": [
+      {
+        "entry": "lib/arm64-v8a/libapp.so",
+        "bytes": 11010992,
+        "sha256": "a3cc7b9856c6d1f60fc223181d5db20c75b0697ce4469b14547b2f362dc4b188",
+        "diagnosticMarkers": {
+          "ICE_DIAG_TEST_ONLY": false,
+          "CONNECT_FAILED": false,
+          "AGGREGATE_ICE_COUNTERS_NOT_PACKET_PROOF": false,
+          "lastSnapshotAgeMs": false,
+          "READ_PENDING": false
+        }
+      },
+      {
+        "entry": "lib/x86_64/libapp.so",
+        "bytes": 11338672,
+        "sha256": "8ce542a83cbbc84c31794d895bc6218f61810de463e1d108ec8cc27df71225b2",
+        "diagnosticMarkers": {
+          "ICE_DIAG_TEST_ONLY": false,
+          "CONNECT_FAILED": false,
+          "AGGREGATE_ICE_COUNTERS_NOT_PACKET_PROOF": false,
+          "lastSnapshotAgeMs": false,
+          "READ_PENDING": false
+        }
+      }
+    ],
+    "diagnosticAPK": "NOT_PRODUCED_MISSING_OFFLINE_DEBUG_EMBEDDING",
+    "diagnosticAPKHash": null
+  },
+  "runtime": {
+    "status": "NOT_RUN",
+    "installs": 0,
+    "callsCreated": 0,
+    "RoomConnectAttempts": 0,
+    "budget": 1,
+    "ADBOperations": 0,
+    "DBOperations": 0,
+    "servicesStarted": 0,
+    "microphoneCapture": false,
+    "camera": false,
+    "fieldRuntimeEvidence": "NOT_RUN",
+    "stunPacketCapture": "NOT_OBSERVABLE"
+  },
+  "protection": {
+    "registeredAssets": 1332,
+    "allBytesAndHashesUnchanged": true,
+    "historicalRoots": [
+      {
+        "rootAlias": 0,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 153
+      },
+      {
+        "rootAlias": 1,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "rootAlias": 2,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "rootAlias": 3,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "rootAlias": 4,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      }
+    ],
+    "originalRefs": 493,
+    "originalRefsUnchanged": true,
+    "privateEnvUnchanged": true,
+    "warning": "153 existing Windows long-path status warning lines; no claim for unregistered caches",
+    "historyCleaned": false
+  },
+  "nonAuthorReview": {
+    "reviewer": "non-author GPT-6.1 Sol/high",
+    "scope": "one bounded static review; no device, DB, API, build or mutation execution",
+    "findings": [
+      {
+        "id": "F1",
+        "priority": "P1",
+        "finding": "diagnostic package suffix overwritten by mixed V1014/V1012 flags",
+        "resolution": "exact diagnostic define allowlist plus suffix assigned last; two real Gradle mixed-flag negatives reject at configuration"
+      },
+      {
+        "id": "F2",
+        "priority": "P2",
+        "finding": "Future.timeout does not cancel native getStats and permits overlap",
+        "resolution": "per-side true underlying future retained until completion; pending status and no second native read; max-one-read test passes"
+      },
+      {
+        "id": "F3",
+        "priority": "P2",
+        "finding": "failure did not include terminal observation metadata",
+        "resolution": "failure terminal NOT_CAPTURED plus monotonic last-snapshot age; no sampling deadline extension; targeted test passes"
+      },
+      {
+        "id": "F4",
+        "priority": "privacy-boundary",
+        "finding": "legacy room/identity logging still reachable in diagnostic build",
+        "resolution": "skip join metadata and redact connect room/identity in diagnostic branch; legacy SDK/PID logs remain LOCAL_ONLY; only ICE_DIAG_TEST_ONLY whitelist eligible for export"
+      }
+    ],
+    "reviewer_limitations": [
+      "static review is not device validation",
+      "diagnostic APK unavailable due missing offline embedding artifact",
+      "no Astra acceptance"
+    ],
+    "repair_verifier": "main implementer; no second non-author review claimed"
+  },
+  "sourceReadback": {
+    "timestamp": 1792670471.844549,
+    "method": "authenticated gh REST plus independent raw HTTP bytes",
+    "source": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "sourceCommitVerified": true,
+    "parentVerified": true,
+    "rootVerified": true,
+    "fullProductTreeEntries": 1926,
+    "fullProductBlobCount": 1449,
+    "fullProductTreeModePathTypeBlobEqual": true,
+    "rawChangedFiles": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "blob": "5a08d63f5f95155ca1f346f9809683f6f35ac7e0",
+        "bytes": 17033,
+        "match": true
+      },
+      {
+        "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+        "blob": "cec4d142e0cd44a7b17aa9ca02679a98f31cee9d",
+        "bytes": 5500,
+        "match": true
+      },
+      {
+        "path": "apps/android/settings.gradle.kts",
+        "blob": "0239c07856447b4a30ab395f8aaec97096c80d3d",
+        "bytes": 2733,
+        "match": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/dev/v1015_ice_diag.dart",
+        "blob": "49e607ba3697f9b72865e677d037aef76a547e51",
+        "bytes": 893,
+        "match": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_ice_diagnostic.dart",
+        "blob": "6bad6b77b6ee112ce7adeb18f339ddd38be4782e",
+        "bytes": 12792,
+        "match": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+        "blob": "66053d78a15a6a28311083bd99c83e6bb1331777",
+        "bytes": 37114,
+        "match": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart",
+        "blob": "f470897deeeda48468a7d4ee9167ca9da28ba7ce",
+        "bytes": 6648,
+        "match": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_test.dart",
+        "blob": "8a309f7b73692180000bb212d64a67b4c8627c41",
+        "bytes": 12113,
+        "match": true
+      }
+    ],
+    "main": "0c118ac9ba5b6c275101d63880152f5826330d4e",
+    "mainUnchanged": true
+  },
+  "publication": {
+    "candidateBranch": "codex/v10.1.5-ice-preconnect-diagnostic",
+    "sourcePublishedNonForce": true,
+    "documentationCommit": "docs-only child of source; final fixed delivery receipt LOCAL_ONLY",
+    "mainIntegrated": false,
+    "R2Started": false,
+    "v1016Started": false
+  },
+  "remainingBlockers": [
+    "diagnostic debug APK not produced; positive artifact/package/signature identity not verified",
+    "same-device installation authorization not requested because build gate open",
+    "all physical ICE field and media observations NOT_RUN",
+    "AC05 remains OPEN"
+  ],
+  "reportSHA256": "38882ad28cd964791cb4f1c27dea87cef018cc02acc305b5dc85817a79b8bb69",
+  "localEvidence": [
+    {
+      "alias": "analyze-delivery.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-delivery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-delivery.stdout.txt",
+      "bytes": 96,
+      "sha256": "ad219bf517ca2728dcdcfa738ca5d72f1f7e1d93b6152e6d438a2a2e6e5038d2",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-final.stdout.txt",
+      "bytes": 96,
+      "sha256": "d3abbd051e16aa89bc3b0ccb22834e845dcb687d7078d3a0a90c2722d1a670fe",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-review-fixes.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-review-fixes.stderr.txt",
+      "bytes": 31,
+      "sha256": "7dcdc856b51fa6632961ea6e3ee5d91473004ae5508884cdac1dfea3b8c939b8",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-review-fixes.stdout.txt",
+      "bytes": 377,
+      "sha256": "eee41b3a7c92e7e2d456b0eb2b674532d8b91134fbed3eb15cab60ca34c02513",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-targeted.stderr.txt",
+      "bytes": 32,
+      "sha256": "b74be231ba5a46cb4971c2cacd2cb05c1967efb7918721326deb3e6a84d6087e",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "analyze-targeted.stdout.txt",
+      "bytes": 992,
+      "sha256": "f7321d640cb315e89d7736a9cf166196f71ae568bf2a1d62d43b44c6f6d5473b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "apk-isolation-receipt.json",
+      "bytes": 1316,
+      "sha256": "9d664c9ece50f6665cc8d08633107b21c39c948056fd594e4b6d0a5eb9f5e213",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-review.md",
+      "bytes": 9247,
+      "sha256": "f8f06a6a7ee65ba2cc3afb2a1a67a6437c22c1b90e1fe9b87aa03fbb0d8a1960",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-task.md",
+      "bytes": 15377,
+      "sha256": "12628989c1031c237638e581427c364c64185d0e8c2f03bac076346d575ea790",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "baseline.json",
+      "bytes": 1243,
+      "sha256": "abe45cecf82f883c4034a5fa3a321aff88318b7f773d2ae94ec50ae4688ae243",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-diag.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-diag.stderr.txt",
+      "bytes": 3872,
+      "sha256": "e03a3925cb648e433a8059a1d61665fa7fe8f41363223b4fd0794f7cfb64e219",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-diag.stdout.txt",
+      "bytes": 3402,
+      "sha256": "487fb83003d66996686a133de10bc5806fd86be008e89e3c1db6a3da223d2e6b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-negative-final.json",
+      "bytes": 415,
+      "sha256": "8c963d9daad5b68b4edd33c635fe70b908beab6397a3bd9b1b4f67eedb727434",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-negative-gates.json",
+      "bytes": 345,
+      "sha256": "5636aa2c6e4e8c65bc0a530ff763afdbebbdede00fead91e4a224c790a5f99e5",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-delivery.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-delivery.stderr.txt",
+      "bytes": 2346,
+      "sha256": "fbef1b1e42d947b30eed217c8e9f2e4744bf3c8e9cd341240b82f8344523f188",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-delivery.stdout.txt",
+      "bytes": 71963,
+      "sha256": "8ac9b723698f2bb980ec5353fdd691160af0d086d15ea4213f7db447de34635b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-r1.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-r1.stderr.txt",
+      "bytes": 2244,
+      "sha256": "667f3c83178eedb082d1c9b26d60b686d2c113f0e6bb8b0f2bba01617881232a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "build-ordinary-r1.stdout.txt",
+      "bytes": 72257,
+      "sha256": "0c7a48f44f4c7935937e15cca3e70f8a4d504196ece3585102199c51ab435ff7",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "compare.json",
+      "bytes": 60313,
+      "sha256": "a399c03301fb15921a1760d0b6a2f9acfe642f9068dd25d4fecd194af0047017",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "connector-readback-receipt.json",
+      "bytes": 278,
+      "sha256": "3644dcd256e8e09228a6b2ea17d9994a790642c0c8fe4a76a5211d17a76b9d7f",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "fixed-source.json",
+      "bytes": 2024,
+      "sha256": "8f9083e9edcf58ee66e8d9d9f69f0e1bfb3bd8919595a6564b203eaffc86feac",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-missing_parent.stderr.txt",
+      "bytes": 516,
+      "sha256": "82337c86b9851d3f77e41c15e20ab16caca5dd239ed272ceba2f77ea64cf530c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-missing_parent.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-mixed_v1012.stderr.txt",
+      "bytes": 518,
+      "sha256": "b4dd8171ebe77102c4f87246ce4c15b105c0ea8efbb515296b6d6c62c57234e6",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-mixed_v1012.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-mixed_v1014.stderr.txt",
+      "bytes": 518,
+      "sha256": "b4dd8171ebe77102c4f87246ce4c15b105c0ea8efbb515296b6d6c62c57234e6",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-mixed_v1014.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-profile.stderr.txt",
+      "bytes": 516,
+      "sha256": "82337c86b9851d3f77e41c15e20ab16caca5dd239ed272ceba2f77ea64cf530c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-profile.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-release.stderr.txt",
+      "bytes": 517,
+      "sha256": "075518e09a0cf43161579d751c0dec33a565a4f4c5c5c8252decb7e8895c6de1",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-final-release.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-missing_parent.stderr.txt",
+      "bytes": 516,
+      "sha256": "06598134fe7dbb7ed119c50900680f206ef16ff1b20c536f5598e6961fc6eecc",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-missing_parent.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-profile.stderr.txt",
+      "bytes": 516,
+      "sha256": "06598134fe7dbb7ed119c50900680f206ef16ff1b20c536f5598e6961fc6eecc",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-profile.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-release.stderr.txt",
+      "bytes": 517,
+      "sha256": "479efeeba4a0b4d0d3cc46641f2cba18adab31fc48161858200061f30384e304",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "guard-release.stdout.txt",
+      "bytes": 282,
+      "sha256": "723ba22145e7077c297e8a602b0385852c889ac559d10c7a653d2fd9dc61ddda",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "main_commit.json",
+      "bytes": 1272,
+      "sha256": "62a005e26063ad284aa55c3db88be5a77786d51ab2a4608229f2b0f80d583979",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "non-author-review-and-repairs.json",
+      "bytes": 1632,
+      "sha256": "0f8fe82ef9c1300997db5ccab9c331924948368cc76548207300a345768b6054",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-badging.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-badging.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-badging.txt",
+      "bytes": 6572,
+      "sha256": "f20e7f592d19c299aa393a5df4f6de421f8aead05ef3d9810a4600c5de890184",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-signature.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-signature.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-apk-signature.txt",
+      "bytes": 311,
+      "sha256": "d8bb43818057efefa512174a2bf8d63ff9cb16c1b54aca4415efd0bab5d81192",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "ordinary-r1-isolation-control.apk",
+      "bytes": 416357439,
+      "sha256": "7131b57c6c8f755197573e791d4bfa9d5db4ce07862726d24dace445f8b904bd",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "prior-evidence-before.json",
+      "bytes": 287603,
+      "sha256": "1b919f317efcac4c68d494ed7d909c1acf6d73bf06ed8550818ccc53e289583d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "private-env-before.json",
+      "bytes": 215,
+      "sha256": "54f4bc4408a422c9fd7ab9b585849504476c457e80e5bad00016d96e3d37558e",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-before.json",
+      "bytes": 13866619,
+      "sha256": "adc921c442cb98a3d4364efa4e324329a34b7a61f715f984c9cc29c3aa996a03",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-0-status-after.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-0-status-before.stderr.txt",
+      "bytes": 48567,
+      "sha256": "80ffca2656815524e03f173cc7a8a992b1839e59c176efbdeaca7b3941bb5352",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-1-status-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-1-status-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-2-status-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-2-status-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-3-status-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-3-status-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-4-status-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protected-root-4-status-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protection-after.json",
+      "bytes": 1227,
+      "sha256": "b2002a18aee2d40fdebdee60b9aed0e7d3b1dbd87ea95250ab0ac895937dd9ce",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "refs-before.txt",
+      "bytes": 59697,
+      "sha256": "acb48cc00377a89fdb7a29b2ad1b86bae8dcf77d8829a13f435c4190c525daaf",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "source-readback-public-rest-failure.json",
+      "bytes": 119,
+      "sha256": "35a09eb02da131fae723933f5d10b66b8e706243c6065cc1a68fddec4a904da2",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "source-remote-readback.json",
+      "bytes": 2112,
+      "sha256": "fd52aca828819ef4dff58f16f0c2963c264c415529f10b22abf373bab071b89a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-final.stdout.txt",
+      "bytes": 6714,
+      "sha256": "f2f9091e21feb4f40edf1a6046448a7dc2a88191e3f161cbaf17a24dedb71964",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-mode.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-mode.stdout.txt",
+      "bytes": 3972,
+      "sha256": "501b5fce7eb1fe5ec7495894a7cfde916e4bca779deccdc767c5a5c7360e8d46",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-success-guard.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-diagnostic-success-guard.stdout.txt",
+      "bytes": 6412,
+      "sha256": "f11c40105daf5c87ffb02301664c2d1cb72a28e182ea1be164a50f06cc6c009c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-helper-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-helper-green.stdout.txt",
+      "bytes": 954,
+      "sha256": "64d3abb7ae470edaaf06b565ffa293a578e581aead280381c9aa7d5f07307b2a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-integrated.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-integrated.stdout.txt",
+      "bytes": 11055,
+      "sha256": "676509390754f0cc6e22c2c23e85e46ec9a403166f6320664db82b275c152a5b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-red.stderr.txt",
+      "bytes": 2422,
+      "sha256": "e45794421bf018382cdd411322a0e43675c40a9f76a4ad595ea54d7b0ff13bff",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-red.stdout.txt",
+      "bytes": 3260,
+      "sha256": "1ca7f35c266f355b20dbf46eafa715a01d835355a459ac3988e2417efecc00e2",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-corrected.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-corrected.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-corrected.stdout.txt",
+      "bytes": 26151,
+      "sha256": "e49422c687a44014f3a866fc6ee4e791e7cf639246ef00aea6b16782c30f41de",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-delivery.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-delivery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-delivery.stdout.txt",
+      "bytes": 26841,
+      "sha256": "36e1784df879930917d8e53c7e6035796c7fb8db6d0b13c6fc9bbee9356a460d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-final.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-regression-final.stdout.txt",
+      "bytes": 24757,
+      "sha256": "b7dbba46d9a4e6fd7b9009e646abe551a36320d58445de393182dfaca3a8b10e",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes-final.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes-final.stdout.txt",
+      "bytes": 7167,
+      "sha256": "2ae4ff8d3396d2ec84c322ee3db464eed3f333a1848c299237604c24dd3daecb",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes.exit.txt",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-review-fixes.stdout.txt",
+      "bytes": 9201,
+      "sha256": "deedbd38a7286e681399be2d8569be387c4cb8dd39a1b1d8e4d37958885ce3f9",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-rtc-regression.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "test-rtc-regression.stdout.txt",
+      "bytes": 25953,
+      "sha256": "bebb636f4dacdd74cd41931ff7fac9049b4517c0490744c3d4684ac52a4f08db",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-crlf.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-crlf.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-crlf.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-original.exit.txt",
+      "bytes": 3,
+      "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-original.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "whitespace-original.stdout.txt",
+      "bytes": 762,
+      "sha256": "2d34b4357b9656455651d9e05079144eb00c492520509cb78d0a9931b41de85b",
+      "location": "LOCAL_ONLY"
+    }
+  ]
+}
