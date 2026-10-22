@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "version": "10.1.5",
+  "date": "2026-10-23",
+  "timezone": "Asia/Shanghai",
+  "status": "PARTIAL",
+  "terminal": [
+    "GRADLE814_LOCAL_BOOTSTRAP_PASS",
+    "RESOLUTION_VERIFICATION_TOOLING_BLOCKED",
+    "NO_APK",
+    "OWNER_DECISION_REQUIRED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+    "PRODUCT_V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN"
+  ],
+  "authority": {
+    "taskBlob": "677a1f7c1709fa3d7778e4edab28bf84b293c7f1",
+    "priorAstraReviewBlob": "6f7f200da8595d52f9da21ee39cd56d7b1164c27",
+    "mainAtStart": "ea551353ec73df01e20f88f1ca01c633590a1344"
+  },
+  "source": {
+    "commit": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "root": "2c656957e1c229ca30f7c07b173bcb1062310d2c",
+    "appsTree": "72c617cf86d5c653dd722accde340b51d2e085eb",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "SOURCE_UNCHANGED": true,
+    "deliveryParent": "73b3b753225f99824081d312a25a7deb170c62d3"
+  },
+  "SDK": {
+    "Flutter": "3.41.7",
+    "Dart": "3.11.5",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "packages": {
+      "livekit_client": "2.10.0",
+      "flutter_webrtc": "1.6.0",
+      "webrtc_interface": "1.5.1"
+    },
+    "projectKotlinPlugin": "2.2.20",
+    "GradleEmbeddedKotlin": "2.0.21",
+    "Gradle": "8.14",
+    "AGP": "8.11.1"
+  },
+  "S0": {
+    "events": [
+      {
+        "gate": "COPY_COMPLETED",
+        "time": 1792710654.6351943,
+        "scope": "full trusted ZIP copied/extracted plus both existing official files; no part copied"
+      },
+      {
+        "gate": "HASH_VERIFIED",
+        "time": 1792710980.6886501,
+        "distributionFilesComparedToArchive": 22425,
+        "zipCRC": "PASS",
+        "officialEmbeddingFiles": 2,
+        "partExcluded": true
+      },
+      {
+        "gate": "GRADLE_BIN_READY",
+        "time": 1792710980.689747,
+        "version": "8.14",
+        "launchClassPresent": true,
+        "executableSHA256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab"
+      },
+      {
+        "gate": "SAFE_OFFLINE_START_ALLOWED",
+        "time": 1792710980.689747,
+        "scope": "standalone --version only, neutral cwd, empty isolated home, no project hooks or init scripts"
+      }
+    ],
+    "trustedZIP": {
+      "bytes": 224116304,
+      "sha256": "efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1"
+    },
+    "allArchiveFilesMatchExtracted": true,
+    "zipEntryCount": 27264,
+    "extractedFileCount": 22425,
+    "sourceFilesOrBuildScriptsChanged": false,
+    "part": {
+      "bytes": 38302288,
+      "sha256": "f99db8eee2a185748c33851b09225335a0f3d040fdd3123468e805074414e53e",
+      "unchanged": true,
+      "copied": false,
+      "usedOrExtracted": false
+    }
+  },
+  "S1": {
+    "stage": "S1",
+    "commandAlias": "<verified-distribution>/bin/gradle.bat --version --offline --no-daemon --console=plain",
+    "executableSHA256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "distributionZIP_SHA256": "efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1",
+    "startTime": 1792710990.0949986,
+    "endTime": 1792710990.6390817,
+    "exit": 0,
+    "result": "GRADLE814_LOCAL_BOOTSTRAP_PASS",
+    "GradleVersion": "8.14",
+    "standaloneNeutralCwd": true,
+    "isolatedHomeEmptyBeforeLaunch": true,
+    "initScriptsUsed": 0,
+    "WrapperInvocations": 0,
+    "projectConfigurations": 0,
+    "dependencyResolutions": 0,
+    "positiveAPKBuilds": 0,
+    "unapprovedPartUsed": false,
+    "outputContainsDownloading": false,
+    "networkEvidenceLimit": "no packet capture; direct trusted CLI version mode, no init/project, offline flag and logs; no claim for all host network",
+    "environment": "session-local Java/Gradle options sanitized; no persistent settings changed"
+  },
+  "S2": {
+    "result": "RESOLUTION_VERIFICATION_TOOLING_BLOCKED",
+    "execution": "NOT_RUN",
+    "attempts": 0,
+    "taskClause": "S2.4 dynamic-only task stop condition",
+    "facts": "only rootProject.tasks.register in old temporary init; no tracked project definition",
+    "semanticLimit": "this is an authorization/tooling condition; dynamic Gradle tasks are technically possible",
+    "newMissingCoordinates": "NOT_OBSERVED_NO_RESOLUTION"
+  },
+  "S3": {
+    "result": "NOT_RUN_UPSTREAM_GATE_NOT_PASS",
+    "attempts": 0,
+    "additionalStaticRisk": "fixed syncFlutterAar Exec invokes inner gradlew.bat; outer direct bin does not remove this path",
+    "productBuildChangesAuthorized": false,
+    "outputPathAdjustmentAuthorized": false
+  },
+  "pinnedEmbedding": {
+    "POM": {
+      "groupId": "io.flutter",
+      "artifactId": "flutter_embedding_debug",
+      "version": "1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "packaging": "jar"
+    },
+    "files": [
+      {
+        "extension": ".pom",
+        "bytes": 2542,
+        "sha256": "437cf27a8aa1829c07f81f43e0468a5fa05cef7dc21451cabd51b7a6914341ff"
+      },
+      {
+        "extension": ".jar",
+        "bytes": 1541793,
+        "sha256": "f6cb78578df77875f18f4d6c3bd29066288109935007e59d83e53ec85a8ce745"
+      }
+    ],
+    "ZIPCRC": "PASS",
+    "ZIPEntries": 436,
+    "FlutterEngineClassPresent": true,
+    "source": "previous task existing official files; no network fetch this task",
+    "publisherSignature": "NOT_VERIFIED",
+    "publisherSHA256Sidecar": "NOT_AVAILABLE_FROM_PRIOR_404_RECEIPT",
+    "newDependencyDownloads": 0
+  },
+  "budgetSpent": {
+    "GradleVersionStarts": 1,
+    "WrapperCalls": 0,
+    "dependencyResolutionAttempts": 0,
+    "positiveAPKBuildAttempts": 0,
+    "deviceOrProductRuntime": 0,
+    "newDependencyDownloads": 0
+  },
+  "APK": {
+    "produced": false,
+    "packageId": null,
+    "versionName": null,
+    "debuggable": null,
+    "ABI": null,
+    "signature": null,
+    "sha256": null,
+    "bytes": null,
+    "actualIdentity": "NOT_VERIFIED_NO_APK"
+  },
+  "reusedValidation": {
+    "source": "24ddf05875d8d4abad7a6b473f882698c9885c2a",
+    "diagnosticTests": 20,
+    "ordinaryRegressionTests": 93,
+    "negativeBuildCases": 5,
+    "rerunThisTask": false
+  },
+  "nonAuthorReview": {
+    "reviewer": "non-author GPT-6.1 Sol/high",
+    "count": 1,
+    "verdict": "No high-confidence factual or interpretation error; proposed stop agrees with the explicit task",
+    "checked": [
+      "actual Gradle bin SHA and path binding",
+      "S0 four-gate ordering and S1 stdout/exit0",
+      "temporary-init-only task and S2.4 stop condition",
+      "fixed preBuild -> syncFlutterAar -> inner Wrapper path",
+      "embedding, part-exclusion and protection receipt scope"
+    ],
+    "limits": [
+      "selected executable hash and static receipts only",
+      "did not rehash all 22425 distribution files or protected assets",
+      "did not execute Gradle, network or devices",
+      "not Astra ACCEPTED"
+    ],
+    "requiredBoundaries": [
+      "S1 standalone bootstrap does not prove project configuration, graph resolution or all host network",
+      "dynamic Gradle tasks are technically possible; this is a task authorization/tooling stop",
+      "S2/S3 remain NOT_RUN; do not change source or bypass target"
+    ]
+  },
+  "protection": {
+    "registeredHistoricalAndExplicitInputs": 1483,
+    "toolchainEnvLockCacheRecords": 3193,
+    "globalMavenFiles": 3184,
+    "allRegisteredBytesAndHashesEqual": true,
+    "globalMavenFileSetEqual": true,
+    "roots": [
+      {
+        "alias": 0,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 153
+      },
+      {
+        "alias": 1,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 2,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 3,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      },
+      {
+        "alias": 4,
+        "headEqual": true,
+        "branchEqual": true,
+        "indexEqual": true,
+        "statusEqual": true,
+        "warningLines": 0
+      }
+    ],
+    "originalRefs": 495,
+    "originalRefsUnchanged": true,
+    "scope": "registered objects only; unregistered cache copies read-only; no whole-disk claim"
+  },
+  "forbiddenOperations": {
+    "WrapperCalls": 0,
+    "newDependencies": 0,
+    "sourceOrBuildScriptChanges": 0,
+    "SDKUpgrade": 0,
+    "deviceADBAPP": 0,
+    "databaseAPI_SFU": 0,
+    "RoomConnect": 0,
+    "networkOrFirewallChange": 0,
+    "mainIntegration": 0,
+    "R2P2v1016": 0
+  },
+  "publication": {
+    "branch": "codex/v10.1.5-gradle814-offline-bootstrap",
+    "method": "ordinary non-force, only two new docs",
+    "finalObjectReadback": "LOCAL_ONLY delivery-remote-readback.json",
+    "binaryUploads": false
+  },
+  "reportSHA256": "dfeafde4e0e89f152cd74c47720762bf9a8f53a65120998a59ecc3383e489dc8",
+  "reportHashScope": "canonical Git LF bytes",
+  "localEvidence": [
+    {
+      "alias": "assets-before.json",
+      "bytes": 321778,
+      "sha256": "374070dafdbec2a14928b5d7900820ab77f2c45d4e8b03417879f472a4842d94",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-review.md",
+      "bytes": 8421,
+      "sha256": "0badd0aca28d77d9098a6e0bb7143766063b86dad0ce6f008e06427fccbf69da",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "authority-task.md",
+      "bytes": 14040,
+      "sha256": "9dc5f888145e99f5cd021a3c1925cd1b0cd4c6c1a1e2ce40f52a0b91176116b5",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "baseline-scope-refinement.json",
+      "bytes": 609,
+      "sha256": "6a30be325ab00ef751578084574fc10e7ec4afd14147401bc64fb1de24f6155c",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "baseline.json",
+      "bytes": 747,
+      "sha256": "95c03afacb5f8179db08366a9c482e2aa98f177d1d75d560287a2b90ce04a2e9",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "distribution-file-manifest.json",
+      "bytes": 5074859,
+      "sha256": "4489aeffca7253ee5a2c6f0cd120b52659cf367129fb39cda10c5e2a4a74136b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "document-save-receipt.json",
+      "bytes": 309,
+      "sha256": "0481853c861b86efb3533ee0dfa55969c9082dc9297c62f8bc5b8a461b76bcf6",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "main-before.json",
+      "bytes": 316,
+      "sha256": "ec2c779d8378b02932c7342268c19a2ce9702f237ed3e00a92109cfa37d56935",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "non-author-static-review.json",
+      "bytes": 929,
+      "sha256": "231e9e253e26adf905701d4e5a8775c9aeea2a0759dd7df12c1fb40ca32b3180",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "pinned-embedding-local-validation.json",
+      "bytes": 812,
+      "sha256": "cf79f5049eed91d91b0d60a6d0f65c4fa6adfaa3cbe307c4c16572da00a8f364",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "prepare-local-distribution.py",
+      "bytes": 4526,
+      "sha256": "6da63db2121251cd0fb7780b79889708adc8558d08f754381c5f10ff73ed3f82",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "protection-after.json",
+      "bytes": 1532,
+      "sha256": "74ac09c1f80e4169e9e8ac1395f6d8be480675c18e21b40458c1f78d175b7a6a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "refs-before.txt",
+      "bytes": 59382,
+      "sha256": "affac5d981882277edd3306e81f85e3f3564afecddad7a822c7f0deb81affaa2",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-0-after.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-0-before.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-1-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-1-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-2-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-2-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-3-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-3-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-4-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "root-4-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "roots-before.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "run-local-version-once.py",
+      "bytes": 3406,
+      "sha256": "797ad4216cf31dd1d8d118e3b45d90205aa1c901d7afddafd73b83d52188b780",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S0-distribution-gates.json",
+      "bytes": 1935,
+      "sha256": "1adc27697336f62f21d85b58b706edf5d5fa2e1d72c66b25d5b32088e9ea9e64",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S0-prepare.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S0-prepare.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S0-prepare.stdout.txt",
+      "bytes": 848,
+      "sha256": "6cb33208cf33849ba083dd12bb4a20e66eff45ee95ac6c3913e5a1a71335523b",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-launcher.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-launcher.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-launcher.stdout.txt",
+      "bytes": 967,
+      "sha256": "caa61e57ab50465e22e68c1492d3e13cdfdc6904ff737b4eb8121f23f16ef5f3",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-version-receipt.json",
+      "bytes": 1180,
+      "sha256": "477ce0c8dc6e6b13ce562e355929115cdcb9cc8d76a4f10deb1e8c7b0a395c30",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-version.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-version.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S1-version.stdout.txt",
+      "bytes": 844,
+      "sha256": "60571c94689511cd766e1dbfaabbca7b63c3387811356e371ab82510ae8d70e0",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "S2-S3-stop-receipt.json",
+      "bytes": 1004,
+      "sha256": "061b15c3708225aea1bf97641c674008bdc78de5c3597cee2945a736368d6561",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "static-later-gate-blockers.json",
+      "bytes": 1089,
+      "sha256": "ff8f1ba0770e854e33ec556671a1633fc353bd17c322b304827386f8f5a6ca26",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "alias": "toolchain-cache-before.json",
+      "bytes": 971964,
+      "sha256": "cba1403143c0bb6fed9f5f19637622e3dc25e418eb97f40040ea3d3d6129c613",
+      "location": "LOCAL_ONLY"
+    }
+  ]
+}
