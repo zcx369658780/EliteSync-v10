@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "task": "v10.1.5_P1_USB_ICE_TCP_minimal_dynamic_observation",
+  "date": "2026-10-22",
+  "terminal": [
+    "DEVICE_NOT_PRESENT",
+    "READY_AWAITING_PHONE",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "result": "PRECONDITION_BLOCKED_AT_G0_DEVICE_GATE",
+  "source_status": "SOURCE_UNCHANGED",
+  "authority": {
+    "main": "7ce7c91d82147db5742a9ea5a543dae754f064b7",
+    "root": "d547e0e6f038f1ca2eb16e26fee8b81a83a40be3",
+    "main_product_trees": {
+      "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    },
+    "task_path_blob": "5957cf95b4d41fc27344de5cb6e56955b1d43a75",
+    "review_blob": "f24e293c59a289fb259a20ae4c5b0e69b8ba3d15"
+  },
+  "R1": {
+    "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "root": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+    "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+    "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+  },
+  "candidate_parent": "7fd2b9f205df7edcf4f713d1374e924e6a6caad6",
+  "candidate_parent_root": "fd50d00e817ceabdbd5fc35b84ebd0dba55cc5a1",
+  "branch": "codex/v10.1.5-p1-usb-ice-observation",
+  "allowed_changed_paths": [
+    "docs/versions/v10.1.5/P1_USB_ICE_DYNAMIC_OBSERVATION_REPORT.md",
+    "docs/versions/v10.1.5/p1_usb_ice_dynamic_observation_manifest.json"
+  ],
+  "candidate_commit_and_root": "post_commit_fixed_object_readback_receipt; no self-referential hash",
+  "G0_device": {
+    "alias": "PHONE_A",
+    "exact_previous_Owner_device_matched": false,
+    "state": "NOT_PRESENT",
+    "ADB_inventory_exit": 0,
+    "other_devices_selected": false,
+    "epoch": 1792660208.5568936,
+    "observed_at_Asia_Shanghai": "2026-10-22T17:10:08.556894+08:00",
+    "package_identity_this_invocation": "NOT_RUN_DEVICE_GATE_NOT_MET",
+    "device_command_count": 1,
+    "room_connect_attempts": 0,
+    "device_followup_attempts": 0
+  },
+  "G0_command": {
+    "command": "adb devices -l; local exact-selected-device identity comparison only",
+    "ADB_exit": 0,
+    "wrapper_exit": 1,
+    "wrapper_reason": "assert READY_AWAITING_PHONE; required G0 stop",
+    "raw_inventory_stdout_persisted": false,
+    "saved_stdout_evidence": "privacy-minimized selected-device match/state JSON; no serial or other-device details",
+    "no_device_specific_command_executed": true,
+    "followup_device_probe": false,
+    "Room_connect_attempts": 0
+  },
+  "expected_APK_identity_not_verified_this_run": {
+    "package": "com.elitesync.v1015r1dev",
+    "version": "10.1.5-r1-dev",
+    "sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466"
+  },
+  "gates": {
+    "G0_device": "DEVICE_NOT_PRESENT",
+    "G0_package": "NOT_RUN",
+    "G0_DB_effective_identity_backup_fixture": "NOT_RUN_DEVICE_GATE_NOT_MET",
+    "G0_ports_image": "NOT_RUN_DEVICE_GATE_NOT_MET",
+    "G1_listener_and_Docker_backend": "NOT_RUN",
+    "G2_Room_connect": "NOT_RUN",
+    "G3_new_ICE_causal_conclusion": "NONE_DEVICE_PRECONDITION_ONLY",
+    "G4_non_author_review": "BOUNDED_STATIC_REVIEW_COMPLETED_NO_CONTENT_BLOCKER",
+    "G5_runtime_shutdown": "NO_NEW_RUNTIME_RESOURCES"
+  },
+  "new_runtime_observation_funnel": {
+    "ICE_listener_interface": "NOT_RUN",
+    "Docker_backend_reachability": "NOT_ASSESSED",
+    "candidate_tcpType_and_role": "NOT_RUN",
+    "pair_checking": "NOT_RUN",
+    "STUN": "NOT_RUN",
+    "nominated_selected": "NOT_RUN",
+    "DTLS": "NOT_RUN",
+    "track_or_media": "NOT_RUN"
+  },
+  "counts": {
+    "ADB_inventory_queries": 1,
+    "device_specific_ADB_commands": 0,
+    "device_followup_probes": 0,
+    "APP_launches": 0,
+    "Room_connect_attempts": 0,
+    "calls_created": 0,
+    "tokens_created": 0,
+    "new_reverse_mappings": 0,
+    "API_or_guard_requests": 0,
+    "SFU_or_DB_starts": 0,
+    "connectivity_probes": 0,
+    "configuration_changes": 0,
+    "product_code_changes": 0
+  },
+  "resource_actions": {
+    "new_resources_started": [],
+    "new_reverse_created": [],
+    "stop_or_kill_commands": [],
+    "global_ADB_Docker_WSL_stopped": false,
+    "APP_installed_uninstalled_or_cleared": false,
+    "phone_personal_data_accessed": false,
+    "microphone_or_camera_started": false
+  },
+  "frozen_AC05": {
+    "dual_APP_flowing_media": "NOT_VERIFIED",
+    "same_call_media_reconnect": "NOT_RUN",
+    "old_JWT_first_and_reentry": "NOT_RUN",
+    "COMMIT_to_flowing_media_stop_le_5s": "NOT_RUN"
+  },
+  "historical_evidence": "preserved; not relabelled as this invocation dynamic evidence",
+  "next_condition": "Owner makes exact previously authorized USB phone visible/trusted then explicitly resumes bounded task; no automatic poll/retry/new window",
+  "P1_configuration_change": "NO_NEW_CAUSAL_FINDING_OR_CHANGE; previous bind hypothesis remains unconfirmed",
+  "P2_LAN_TCP": "NOT_IMPLEMENTED; separate explicit permissions remain required",
+  "protection": {
+    "epoch": 1792660542.1304536,
+    "protected_roots": [
+      {
+        "alias": "PROTECTED_ROOT_1",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_2",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_3",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_4",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      },
+      {
+        "alias": "PROTECTED_ROOT_5",
+        "checks": {
+          "head": true,
+          "branch": true,
+          "status": true,
+          "index_sha256": true
+        }
+      }
+    ],
+    "existing_files_unchanged": 950,
+    "original_refs_unchanged": 490,
+    "private_env_unchanged": true,
+    "new_runtime_resources": [],
+    "new_reverse_mappings": [],
+    "shutdown_commands": [],
+    "device_inventory_queries": 1,
+    "device_specific_commands": 0,
+    "Room_connect_attempts": 0,
+    "status": "PASS_LOCAL_BASELINE_COMPARISON",
+    "receipt_sha256": "a4c43ca0e8674f2bca36883a53038f13b011748f1f02b90895311c9122a21a3d"
+  },
+  "non_author_review": {
+    "reviewer": "independent_non_author_GPT_6_1_Sol_high",
+    "status": "BOUNDED_STATIC_REVIEW_COMPLETED_NO_CONTENT_BLOCKER",
+    "scope": "specified documents, anonymous G0 receipts and local Git objects only",
+    "checked": [
+      "six listed evidence bytes/hashes match",
+      "ADB inventory exit0 vs wrapper gate exit1 correctly separated",
+      "G0 stops after selected phone NOT_PRESENT",
+      "Room.connect0 and no runtime resources or stop action",
+      "expected historical APK/DB identities not relabelled as current checks",
+      "four frozen AC05 gates remain OPEN",
+      "apps/services equal fixed R1"
+    ],
+    "pre_delivery_requirements": [
+      "fill review",
+      "main agent protection/privacy final checks",
+      "postpublication SHA/root/parent/blob/product-tree readback"
+    ],
+    "limitations": [
+      "no dynamic acceptance or device/service/API/network operations",
+      "protection final facts remain main-agent local verification, not independent rehash"
+    ],
+    "ACCEPTED": false
+  },
+  "privacy_validation": {
+    "no_device_serial": true,
+    "no_IPv4_literal": true,
+    "no_JWT": true,
+    "no_MAC_literal": true,
+    "no_raw_candidate": true,
+    "no_raw_secret_fields": true,
+    "JSON_valid": true,
+    "zero_Room_connect": true,
+    "single_inventory_query": true
+  },
+  "evidence": [
+    {
+      "name": "authority-task.md",
+      "bytes": 13869,
+      "sha256": "c4d316f1def76459b66c9a5779a5b38c44ba47c8a3f417a5a3e7e31b1969f1e8",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "authority-independent-review.md",
+      "bytes": 8090,
+      "sha256": "af9938728a4cc93cc42249284988e5476e8382e3f259b87b8b679c8a41bfc3b0",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "authority-identities.json",
+      "bytes": 390,
+      "sha256": "dd300654f42447aa6661cecde301f3532c4573936d36aa79a376ef046b395883",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "device-G0-status.json",
+      "bytes": 198,
+      "sha256": "030d46db6ec27790cf13c5273ed1b4e447c7d16f3af17a3c3cc9baeec1262479",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-terminal-gate.json",
+      "bytes": 431,
+      "sha256": "43e50d56e479f947540f315ef0c368bf1a85a006f452afc84a8a3d1e232329de",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-command-receipt.json",
+      "bytes": 474,
+      "sha256": "6f81dabb11459708a878f5405694a9a2ae19d1080071934b8eaf26ac29ab85ad",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "baseline.json",
+      "bytes": 565,
+      "sha256": "5ae83f7206ebc010a6076d34cfb43bcac5b622ffa80a07a552d9fa9840190ee4",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "protection-final-prepublication.json",
+      "bytes": 1269,
+      "sha256": "a4c43ca0e8674f2bca36883a53038f13b011748f1f02b90895311c9122a21a3d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "non-author-review.json",
+      "bytes": 1009,
+      "sha256": "933b5cbc5ff97307cdf02bfffc05ae103dc43785aac9bac46595c598546ce7cd",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "public-privacy-before-review-final.json",
+      "bytes": 256,
+      "sha256": "c1460bf58c5ce1555bbe2533a26acb0230e8e49d5de17987b64a4b8413744de8",
+      "visibility": "LOCAL_ONLY"
+    }
+  ],
+  "self_ACCEPTED": false,
+  "main_integrated": false,
+  "R2_or_v1016_started": false
+}
