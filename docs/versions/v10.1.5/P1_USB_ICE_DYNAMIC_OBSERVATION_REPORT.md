@@ -103,3 +103,78 @@
 本次公共文件白名单隐私预检通过：无设备序列号、私人IPv4原值、MAC或JWT，无原SDP/ICE内容或私密配置。原始设备清单仅LOCAL_ONLY。最终仍为 DEVICE_NOT_PRESENT / READY_AWAITING_PHONE / AWAITING_ASTRA_INDEPENDENT_REVIEW / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN。
 
 原失败保留：文档隐私回填工具首次用默认GBK读取UTF-8清单触发UnicodeDecodeError，Python exit1；同批后续Git检查exit0使外层批返回0，不能冒称整批通过。修正为显式UTF-8后仅续做文档检查，没有新增设备查询、服务或Room.connect。失败回执LOCAL_ONLY列入清单。
+
+
+## Owner连接手机并明确继续后的实际观测（本报告最新执行结果）
+
+2026-10-22（UTC+08）。**P1_ICE_OBSERVATION_PARTIAL / MISSING_PAIR_OR_STUN_EVIDENCE / SOURCE_UNCHANGED / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_REVIEW**。本节为Owner“刚忘记接入手机，请继续”之后的新执行；此前两次DEVICE_NOT_PRESENT及其原候选均保留，不覆盖或混称本次失败。本轮唯一call是本地合成call 4；一次按钮动作、一次Room.connect、零重连。最终仍不是RTC功能接受。
+
+### 本轮G0：设备、权威、数据库与恢复点
+
+17:45:22唯一一次设备清单确认原Owner手机PHONE_A处于device且精确身份匹配。对该包执行pm path、dumpsys package及只读回取base APK：包 `com.elitesync.v1015r1dev`，versionName `10.1.5-r1-dev` / versionCode `1010511`；实际APK 416357439 bytes、SHA256 `2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466`，与冻结身份相等。现有apksigner验证exit0，证书SHA256 `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`。RECORD_AUDIO原权限为已授；没有安装、清数据、改权限或读取私人资料。G2恢复前另做一次精确设备get-state，仍device；不是第二次ADB枚举。
+
+重新核固定任务全文/Blob，实时main仍 `7ce7c91d82147db5742a9ea5a543dae754f064b7`。开工连续树HEAD `22844b1eaae32d08d3b53705235601696935c250` / Root `80a7390f18a8c3ff56460ed47b621c91715047f7`，干净；本候选以其为唯一Parent。R1固定源码和完整apps/services Tree保持上文身份。新分支 `codex/v10.1.5-p1-usb-ice-observation-connected`，保留前两个候选分支。
+
+五历史根及1047份具名既有文件建立本轮保护基线。Docker Desktop最初未运行，首次inspect exit1；仅启动现有开发工具，server readiness一次exit0，没有安装、提权/UAC、SDK下载或网络配置修改。依精确历史容器ID/image、v1015-r1标签、volume名称/挂载点及loopback43327映射核专用库。历史Mounts只保存Type/Name/Destination/RW四字段，初次错误地与完整inspect结构全等比较触发断言；改按同四字段投影并另外核实volume后通过，不是卷身份变更。
+
+启动前以真实Laravel bootstrap核有效APP_ENV=local、APP_DB_CONNECTION/DB_CONNECTION=mysql、专用R1库、loopback43327、URL/socket为空、无缓存配置覆盖。旧停库恢复点177609 bytes、SHA256 `dae557065fbe7828216b1a7a35edc0b42b3606d3cffb817ad5fcebd78aab765a`核对后复制留存。启动后只读SELECT再核MariaDB实际身份、既有8名合成用户及手机fixture 7/8，未新建用户或恢复旧CN/MC。dump-before exit0（本轮独立写前快照）；所有运行写入只在专用R1库。无迁移、无历史库覆盖。
+
+### 本轮G1：实际listener、namespace和Docker后端
+
+使用原隔离镜像 `sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e`，为保护旧容器与bridge原证，创建本轮专属容器和空bridge目录。复制原配置、gateway.env及既有诊断脚本原字节，不改监听、node_ip、SDK或安全阈值；publish仍仅宿主loopback TCP7894→受保护gateway7884及7891→7891，raw SFU7880未publish。旧SFU容器保持停机、未修改。
+
+Guard初次使用历史初始记录的错误cwd，三次readiness未就绪，Laravel router找不到根目录index.php；原stdout/stderr保留。仅核对并停止本轮PID，cwd改为public后readiness HTTP200，未改源码、guard规则或超时。再启动既有bridge和SFU。
+
+本轮采用容器已有Python读取/proc/net/tcp及tcp6，按7891 LISTEN inode关联livekit-server的fd/PID及同一网络namespace，**实际只有一个IPv6 unspecified监听**；不是只在容器loopback监听。Docker inspect记录bridge非loopback容器后端和精确loopback publish。一条容器内非loopback后端TCP7891连接及一条宿主loopback7891连接均成功，均未发送应用payload。`REACHABLE_FROM_DOCKER_BACKEND=SUPPORTED`只适用于本次G1窗口；两个普通TCP连接不能冒充STUN、候选检查或ICE成功。
+
+因此本次**没有证成bind mismatch**，不能据静态bind配置实施改监听方案。配置中的bind_addresses与ICE7891实际socket行为必须分开陈述；此前loopback-only假设在此运行中不成立，历史运行本身的listener仍未被补证。
+
+### G1与G2的资源窗口及Owner新增有界确认
+
+固定R1服务在Room.connect成功后会自动setMicrophoneEnabled(true)，源码行893与919；本P1原任务要求不采集自然音且不改包，故连接前先停在该边界向Owner确认。等待期间已停止本轮资源、保存首窗口快照。Owner随后明确批准“周围无人声，可继续唯一连接”，仅允许成功后短暂自动启麦，不播放测试音、不录音、不启摄像头。
+
+按此批准，重新核精确设备和数据库身份，恢复**同一个本轮容器、同镜像、同配置字节**以及本轮guard/bridge/API。此为等待授权后的资源恢复，没有多做Room.connect。**G1的/proc inode/namespace和两条TCP探测来自第一个运行实例；G2没有再次取得/proc快照。不得将G1 namespace当作G2同一实例的实物记录。** G2有自身inspect/启动日志及同call日志，完整保存这一证据限制，不在失败后追加探测补齐。
+
+### 本轮G2：唯一call及真实APP连接结果
+
+只为精确手机新增8031、7894、7891三条同机TCP reverse；没有8032/UDP/LAN/TURN/防火墙操作。复用现有固定APP和透明loopback API observer（未启任何故障注入），合成账户通过正常登录、已有会话及语音按钮创建唯一call 4。HTTP-only peer正常accept、heartbeat，不持LiveKit媒体SDK，不是第二APP。APP PID专属日志LOCAL_ONLY；既有只读SFU观察器缩短至60秒、1秒采样，无全局抓包。
+
+| 真实观测 | 结果与来源等级 |
+|---|---|
+| APP Room.connect | DIRECT_RUNTIME：start 1、OK 0、FAIL 1；30.209秒后MediaConnectException，原30秒参数未改。 |
+| Phone peer-connection回调 | DIRECT_RUNTIME：connecting 2、failed 2、closed 2；gathering 2、complete 2。这是聚合PC状态，不是selected pair证明。 |
+| SFU同call关联 | APP room与SFU候选总结一致，匿名room SHA256 `df5745c3ac8d7cb69120a8c1e7b1cbd0d68f49bc939e97abc2b866923c151947`；仅此一call。 |
+| 候选 | DIRECT_RUNTIME：24条记录，publisher9/subscriber15；SFU local TCP2、Phone remote UDP12/TCP10。不是24条唯一物理路径或候选对。 |
+| 端点类别 | SFU TCP2为IPv4 loopback固定7891；Phone UDP4条可解析为IPv4 private nonloopback、2条IPv6 loopback，另6条地址日志字段无法可靠解析；Phone TCP5条IPv6 loopback、另5条地址无法可靠解析。未把这些未知字段猜成IPv6、mDNS或具体网卡。 |
+| tcpType/ICE role | NOT_OBSERVABLE_WITH_CURRENT_TOOLING；日志省略active/passive/so，不能凭TCP端口或候选条数推断。 |
+| checklist/STUN/nominated/selected | NOT_OBSERVABLE_WITH_CURRENT_TOOLING / NOT_OBSERVED；容器既有tcpdump/tshark/dumpcap/ss均不存在，未安装或提权抓包。 |
+| DTLS | NOT_OBSERVABLE_WITH_CURRENT_TOOLING；没有CONNECTED实证。 |
+| track | 60份1秒观察样本中，30份见room、15份见participant，15份participant的tracks明确为空；其余无participant的样本不是缺失track字段的成功样本。无媒体成功证据。 |
+
+时间严格分开：SFU在10:10:33.304Z记录participant初始化，10:10:48.533Z记录SIGNAL_SOURCE_CLOSE并在同一秒输出候选总结、connectionType=unknown；APP在10:11:02.871Z记录30.209秒连接失败。之后才有本轮合法end和API_DELETE收尾。**SIGNAL_SOURCE_CLOSE早于APP最终超时，但这些记录不足以把它认定为唯一ICE失败原因。** 不将HTTP accept/in_call、TCP连接、候选收集或generic PC失败拼接为ICE或媒体成功。
+
+一次失败后立即合法end HTTP200；未点击重新连接或第二次通话。没有Room.connect OK，也没有after_enable_microphone或本地音轨绑定日志，未进入冻结源码的显式启麦分支；本次未开展采音/播放/录制实验，不把权限已授当作实采证据。
+
+### 本轮G3：定位结论与最多两个后续选项
+
+已确认层为：授权设备/安装包与隔离DB有效；G1实际SFU listener和宿主publish前置可达；G2真实APP经guard进入同房间的信令/候选收集；之后PC失败，未见selected/DTLS/track。故障最接近的已见边界是**候选产生后、媒体连接完成前**。仍不知道Phone是否对SFU TCP候选发起STUN/何种角色，也不知道检查失败或未开始的具体环节。不能定性为产品代码缺陷、bind缺陷或必须UDP。
+
+优先P1建议仅一项：未来单独授权一次**连接前及失败时**可导出tcpType、ICE role、candidate-pair/selected/DTLS的定向诊断能力，并默认静音；或使用已批准的专属7891头部计数能力定位Phone→reverse→SFU检查是否真正发出。当前工具未提供这些字段，本次不改APP/SDK、不新装抓包工具，也不实施任何bind修正。新诊断包/观测权限须Owner具名批准，本任务不自动进入新开发轮。
+
+可选P2仍只有原隔离LAN/TCP后备路径：需Owner另行明确允许选定接口、该手机/端口、候选声明以及必要防火墙；本次没有实施，不新增UDP/TURN。
+
+四冻结AC05硬门继续OPEN：双实际APP双向媒体NOT_VERIFIED；same-call媒体重连、旧JWT首次/重入拒绝、撤权COMMIT后真实流动媒体停止≤5秒均NOT_RUN。唯一HTTP控制peer与本次单手机失败不足以关闭任何一项。
+
+### 本轮G5：数据库与资源回执
+
+G1第一窗口结束时dump-before/after原字节相等；G2正常登录、打开既有聊天和唯一call后，库从263行到310行，其中261条旧行原字节保留。两个旧行仅为conversation_members的last_read_at/updated_at以及personal_access_tokens的last_used_at/updated_at更新；CN、MC、consent events以及原3条RTC行完整保留，新增恰一条RTC call。新增正常登录device session/token、通知、app/RTC事件分别列入清单，不冒称全库未变。不恢复旧撤权负例，不迁移、不重置fixture。
+
+本轮最终备份exit0，原SQL及新SQL均LOCAL_ONLY。合法end后停止已启动测试APP，保留安装和数据；三条新增reverse逐条移除，canonical列表恢复原状。两次窗口拥有的guard/bridge、API/observer、PID logcat及SFU observer均已停止/退出，SFU/独立DB均停止。SFU退出1来自本轮SIGTERM supervisor的既有os._exit(1)收尾行为，不冒称观测中fail-closed故障；DB退出0。没有停止全局ADB/Docker/WSL；为运行现有工具启动的Docker Desktop按“不停止全局Docker”边界留运行。旧SFU容器、卷、备份及历史证据保留。
+
+本轮保护、隐私及非作者终检结果在以下追加回执回填；最终仅发布原指定两份文档。保留此前所有失败，以及本轮环境启动、错误cwd、旧GBK JSON读取和离线SQL/候选分类修正的实际失败记录；分析失败没有触发额外设备通话或数据库重跑。
+
+本轮保护终检已完成：5历史根HEAD/branch/index/status一致，1047份具名既有文件bytes/SHA256不变，492个开工refs及private .env不变。第一历史根status exit0仍有153条长路径警告，未声称覆盖全部隐藏缓存。主代理LOCAL_ONLY保护回执SHA256 `9d78223ac3680558e4037aea1eb3d76cae9abb3efe1f1087414d9671e61c1606`；动态SQL变化与资源恢复如上单列，不以静态保护代替它们。
+
+本轮G4最终回执：独立非作者GPT-6.1 Sol/high有界静态复核无阻断性错误；核20份安全回执bytes/hash和11组字段，独立计数24候选P9/S15及11个未知地址字段，核对单call/30.209秒、DB行变化、两文件范围及R1产品Tree。未读取secrets、原设备日志、SQL/APK或受保护原证，未独立重核60观察样本/1047保护文件；不构成动态验收。对shutdown回执原有临时分析文字，在清单另给最终启麦分支结论，原回执字节保留。公共白名单/JSON检查通过；候选固定对象和产品Tree回读由发布后的本地交付回执承载。
+
+最终：P1_ICE_OBSERVATION_PARTIAL / MISSING_PAIR_OR_STUN_EVIDENCE / AWAITING_ASTRA_INDEPENDENT_REVIEW / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN。仅本轮两份文档候选普通nonforce发布，SOURCE_UNCHANGED；不签ACCEPTED，不合main，不启动R2/v10.1.6，不再连接。

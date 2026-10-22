@@ -1,10 +1,10 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "task": "v10.1.5_P1_USB_ICE_TCP_minimal_dynamic_observation",
   "date": "2026-10-22",
   "terminal": [
-    "DEVICE_NOT_PRESENT",
-    "READY_AWAITING_PHONE",
+    "P1_ICE_OBSERVATION_PARTIAL",
+    "MISSING_PAIR_OR_STUN_EVIDENCE",
     "AWAITING_ASTRA_INDEPENDENT_REVIEW",
     "V10.1.5_PARTIAL_NOT_ACCEPTED",
     "AC05_OPEN",
@@ -12,7 +12,7 @@
     "NO_MAIN_PRODUCT_INTEGRATION",
     "V10.1.6_NOT_STARTED"
   ],
-  "result": "PRECONDITION_BLOCKED_AT_G0_DEVICE_GATE",
+  "result": "ONE_APP_ROOM_CONNECT_FAILED_AFTER_30_209_SECONDS",
   "source_status": "SOURCE_UNCHANGED",
   "authority": {
     "main": "7ce7c91d82147db5742a9ea5a543dae754f064b7",
@@ -30,9 +30,9 @@
     "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
     "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
   },
-  "candidate_parent": "c84669d91107a16b541457cdf5b6119f14880986",
-  "candidate_parent_root": "b0415672164abf249d3e8222d4c1621126479478",
-  "branch": "codex/v10.1.5-p1-usb-ice-observation-resumed",
+  "candidate_parent": "22844b1eaae32d08d3b53705235601696935c250",
+  "candidate_parent_root": "80a7390f18a8c3ff56460ed47b621c91715047f7",
+  "branch": "codex/v10.1.5-p1-usb-ice-observation-connected",
   "allowed_changed_paths": [
     "docs/versions/v10.1.5/P1_USB_ICE_DYNAMIC_OBSERVATION_REPORT.md",
     "docs/versions/v10.1.5/p1_usb_ice_dynamic_observation_manifest.json"
@@ -40,82 +40,108 @@
   "candidate_commit_and_root": "post_commit_fixed_object_readback_receipt; no self-referential hash",
   "G0_device": {
     "alias": "PHONE_A",
-    "exact_selected_device_matched": false,
-    "state": "NOT_PRESENT",
+    "matched": true,
+    "state": "device",
     "ADB_exit": 0,
     "inventory_queries": 1,
-    "epoch": 1792661452.0044105,
-    "observed_at": "2026-10-22T17:30:52.004410+08:00",
-    "raw_stdout_sha256": "bbfcc7239a6f1be3544814ebdc6bcc9b66bf5b1f0b03baa3340808f19265a630",
-    "raw_stdout_bytes": 28,
-    "raw_visibility": "LOCAL_ONLY",
-    "room_connect_attempts": 0,
-    "package_identity_this_invocation": "NOT_RUN_DEVICE_GATE_NOT_MET",
-    "device_specific_commands": 0
+    "observed_at": "2026-10-22T17:45:22.346263+08:00",
+    "raw_stdout_sha256": "24a125ca99abc19377f1d9960cffddd9b021085f2c5b2ddb6d11d17d567b5b49",
+    "raw_stdout_bytes": 116,
+    "visibility": "LOCAL_ONLY",
+    "Room_connect_attempts": 0
   },
   "G0_command": {
-    "ADB_command": "adb devices -l",
-    "ADB_exit": 0,
-    "wrapper_exit": 1,
-    "wrapper_reason": "explicit SystemExit(1) at required READY_AWAITING_PHONE gate",
-    "raw_inventory_stdout_persisted": true,
-    "raw_inventory_visibility": "LOCAL_ONLY",
-    "raw_inventory_bytes": 28,
-    "raw_inventory_sha256": "bbfcc7239a6f1be3544814ebdc6bcc9b66bf5b1f0b03baa3340808f19265a630",
-    "device_inventory_queries_this_dispatch": 1,
-    "device_specific_commands": 0,
-    "Room_connect_attempts": 0,
-    "root_status_warnings": "Git status exit0 emitted long-path untracked-directory warnings; index/status snapshots and named-file hashes retained; not a claim of exhaustive hidden-cache file inventory"
-  },
-  "expected_APK_identity_not_verified_this_run": {
-    "package": "com.elitesync.v1015r1dev",
-    "version": "10.1.5-r1-dev",
-    "sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466"
+    "inventory_exit": 0,
+    "inventory_queries": 1,
+    "device_get_state_before_G2": 1,
+    "package_read_commands": 3,
+    "raw_inventory_saved": "LOCAL_ONLY",
+    "APK_signature_verify_exit": 0
   },
   "gates": {
-    "G0_device": "DEVICE_NOT_PRESENT",
-    "G0_package": "NOT_RUN",
-    "G0_DB_effective_identity_backup_fixture": "NOT_RUN_DEVICE_GATE_NOT_MET",
-    "G0_ports_image": "NOT_RUN_DEVICE_GATE_NOT_MET",
-    "G1_listener_and_Docker_backend": "NOT_RUN",
-    "G2_Room_connect": "NOT_RUN",
-    "G3_new_ICE_causal_conclusion": "NONE_DEVICE_PRECONDITION_ONLY",
+    "G0_device_and_APK": "VERIFIED",
+    "G0_DB_volume_effective_Laravel_and_restore_point": "VERIFIED",
+    "G1_listener_and_backend": "SUPPORTED_IN_G1_RUNTIME_WINDOW",
+    "G2_Room_connect": "ONE_FAILURE_30_209s",
+    "G3_causal_boundary": "CANDIDATES_OBSERVED_PAIR_STUN_DTLS_UNKNOWN",
     "G4_non_author_review": "BOUNDED_STATIC_REVIEW_COMPLETED_NO_CONTENT_BLOCKER",
-    "G5_runtime_shutdown": "NO_NEW_RUNTIME_RESOURCES"
+    "G5_resource_shutdown": "COMPLETE"
   },
   "new_runtime_observation_funnel": {
-    "ICE_listener_interface": "NOT_RUN",
-    "Docker_backend_reachability": "NOT_ASSESSED",
-    "candidate_tcpType_and_role": "NOT_RUN",
-    "pair_checking": "NOT_RUN",
-    "STUN": "NOT_RUN",
-    "nominated_selected": "NOT_RUN",
-    "DTLS": "NOT_RUN",
-    "track_or_media": "NOT_RUN"
+    "ICE_listener_interface": "DIRECT_RUNTIME_G1_IPv6_UNSPECIFIED",
+    "Docker_backend_reachability": "SUPPORTED_G1_ONLY",
+    "candidate_tcpType_and_role": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "pair_checking": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "STUN": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "nominated_selected": "NOT_OBSERVED",
+    "DTLS": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "track_or_media": "NO_TRACK_IN_15_PARTICIPANT_SAMPLES"
   },
   "counts": {
     "ADB_inventory_queries": 1,
-    "device_specific_ADB_commands": 0,
-    "device_followup_probes": 0,
-    "APP_launches": 0,
-    "Room_connect_attempts": 0,
-    "calls_created": 0,
-    "tokens_created": 0,
-    "new_reverse_mappings": 0,
-    "API_or_guard_requests": 0,
-    "SFU_or_DB_starts": 0,
-    "connectivity_probes": 0,
+    "selected_device_get_state": 1,
+    "phone_APP_launches": 1,
+    "call_button_actions": 1,
+    "calls_created": 1,
+    "Room_connect_attempts": 1,
+    "Room_connect_OK": 0,
+    "Room_connect_FAIL": 1,
+    "new_reverse_created": 3,
+    "new_reverse_removed": 3,
+    "G1_TCP_connect_probes": 2,
     "configuration_changes": 0,
-    "product_code_changes": 0
+    "product_code_changes": 0,
+    "migrations": 0,
+    "new_fixture_accounts": 0,
+    "reconnects": 0,
+    "control_admin_tokens": "EXISTING_SUPERVISOR_ONLY_COUNT_NOT_MEASURED",
+    "ordinary_login_and_RTC_join_credential_issuance": "NORMAL_GUARDED_APP_FLOW; NO_FAKE_OR_BYPASS_JWT"
   },
   "resource_actions": {
-    "new_resources_started": [],
-    "new_reverse_created": [],
-    "stop_or_kill_commands": [],
+    "epoch": 1792663938.9276981,
+    "owned_containers_stopped": true,
+    "container_exit_codes": {
+      "P1_SFU": 1,
+      "R1_DB": 0
+    },
+    "host_processes": [
+      {
+        "name": "G2_api_observer",
+        "stopped": true
+      },
+      {
+        "name": "G2_api",
+        "stopped": true
+      },
+      {
+        "name": "G2_bridge",
+        "stopped": true
+      },
+      {
+        "name": "G2_guard",
+        "stopped": true
+      },
+      {
+        "name": "G2_phone_logcat",
+        "stopped": true
+      },
+      {
+        "name": "G2_sfu_observer",
+        "already_exited": true
+      }
+    ],
+    "phone_app_stopped": true,
+    "phone_install_and_data_preserved": true,
+    "new_reverse_removed": 3,
+    "original_reverse_restored": true,
+    "Room_connect_attempts": 1,
+    "calls_created": 1,
+    "legal_call_end_HTTP": 200,
     "global_ADB_Docker_WSL_stopped": false,
-    "APP_installed_uninstalled_or_cleared": false,
-    "phone_personal_data_accessed": false,
-    "microphone_or_camera_started": false
+    "remaining_owned_running_resources": [],
+    "DB_protected_fixture_hashes_unchanged": true,
+    "microphone_source_reached": "FINAL_ANALYSIS_NO_ROOM_CONNECT_OK_NO_EXPLICIT_MIC_ENABLE_NO_AUDIO_BIND_LOG; original shutdown receipt retains its provisional wording",
+    "sound_playback_recording_camera": false
   },
   "frozen_AC05": {
     "dual_APP_flowing_media": "NOT_VERIFIED",
@@ -124,11 +150,11 @@
     "COMMIT_to_flowing_media_stop_le_5s": "NOT_RUN"
   },
   "historical_evidence": "preserved; not relabelled as this invocation dynamic evidence",
-  "next_condition": "Owner makes exact previously authorized USB phone visible/trusted then explicitly resumes bounded task; no automatic poll/retry/new window",
-  "P1_configuration_change": "NO_NEW_CAUSAL_FINDING_OR_CHANGE; previous bind hypothesis remains unconfirmed",
+  "next_condition": "Astra independent review of this partial evidence; any further Room.connect/diagnostic build/network operation requires fresh Owner dispatch",
+  "P1_configuration_change": "NO_BIND_FIX_SUPPORTED_BY_G1; FUTURE_PRECONNECT_ROLE_PAIR_STUN_DIAGNOSTIC_CAPABILITY_REQUIRES_OWNER_AUTHORIZATION",
   "P2_LAN_TCP": "NOT_IMPLEMENTED; separate explicit permissions remain required",
   "protection": {
-    "epoch": 1792661597.4429922,
+    "epoch": 1792664678.7755866,
     "protected_roots": [
       {
         "alias": "PROTECTED_ROOT_1",
@@ -139,7 +165,7 @@
           "status_exit": true,
           "index_sha256": true
         },
-        "status_warning_lines": 153
+        "long_path_warning_lines": 153
       },
       {
         "alias": "PROTECTED_ROOT_2",
@@ -150,7 +176,7 @@
           "status_exit": true,
           "index_sha256": true
         },
-        "status_warning_lines": 0
+        "long_path_warning_lines": 0
       },
       {
         "alias": "PROTECTED_ROOT_3",
@@ -161,7 +187,7 @@
           "status_exit": true,
           "index_sha256": true
         },
-        "status_warning_lines": 0
+        "long_path_warning_lines": 0
       },
       {
         "alias": "PROTECTED_ROOT_4",
@@ -172,7 +198,7 @@
           "status_exit": true,
           "index_sha256": true
         },
-        "status_warning_lines": 0
+        "long_path_warning_lines": 0
       },
       {
         "alias": "PROTECTED_ROOT_5",
@@ -183,55 +209,57 @@
           "status_exit": true,
           "index_sha256": true
         },
-        "status_warning_lines": 0
+        "long_path_warning_lines": 0
       }
     ],
-    "existing_files_unchanged": 983,
-    "original_refs_unchanged": 491,
+    "existing_files_unchanged": 1047,
+    "original_refs_unchanged": 492,
     "private_env_unchanged": true,
-    "status": "PASS_LOCAL_BASELINE_COMPARISON_WITH_DISCLOSED_LONG_PATH_STATUS_WARNINGS",
-    "new_runtime_resources": [],
-    "new_reverse_mappings": [],
-    "device_inventory_queries_this_dispatch": 1,
-    "device_specific_commands": 0,
-    "Room_connect_attempts": 0,
-    "stop_or_kill_commands": [],
-    "receipt_sha256": "7251feddfd8a4f29764ce0e48e49d26fab0901bde654b4a3b8a3c57c35f7c27a",
-    "limitation": "Protected root 1 status exit0 emitted 153 historical long-path warnings; named 983 files hashed separately; not exhaustive hidden cache coverage"
+    "DB_fixture_preservation": "all historical CN/MC/consent events and prior3 RTC rows exact; normal synthetic login/read timestamps disclosed separately",
+    "remaining_owned_runtime_resources": [],
+    "original_reverse_restored": true,
+    "phone_install_data_retained_no_clear": true,
+    "status": "PASS_LOCAL_BASELINE_COMPARISON_WITH_LONG_PATH_STATUS_LIMITATION",
+    "limitation": "historical root1 Git status reports long-path directories; 1047 named evidence files checked independently, not exhaustive cache coverage",
+    "receipt_sha256": "9d78223ac3680558e4037aea1eb3d76cae9abb3efe1f1087414d9671e61c1606"
   },
   "non_author_review": {
     "reviewer": "independent_non_author_GPT_6_1_Sol_high",
     "status": "BOUNDED_STATIC_REVIEW_COMPLETED_NO_CONTENT_BLOCKER",
+    "safe_receipt_hashes_verified": 20,
+    "receipt_field_groups_matched": 11,
     "checked": [
-      "separate explicit dispatch and per-dispatch count",
-      "ADB exit0 and gate wrapper exit1",
-      "G0 stop and zero connect/resources",
-      "APK and DB not verified this dispatch",
-      "AC05 remains OPEN",
-      "apps/services match fixed R1 and no worktree product diff"
-    ],
-    "required_before_delivery": [
-      "fill evidence list",
-      "fill review/protection/privacy results",
-      "postpublication fixed Git identity readback"
+      "24 candidate records P9/S15 localTCP2 remoteUDP12/TCP10",
+      "11 address fields kept UNKNOWN",
+      "call4 Room.connect1 failure30.209s",
+      "DB263to310 rows with261 old rows exact",
+      "two changed docs only and R1 product trees unchanged",
+      "G1/G2 runtime-instance boundary disclosed",
+      "HTTP peer control-only and AC05 OPEN"
     ],
     "limitations": [
-      "no raw inventory content read or independent raw hash computation",
-      "no dynamic acceptance",
-      "no independent historic root or 983-file rehash"
+      "did not read secrets/raw device logs/SQL/APK/protected raw evidence",
+      "did not independently recheck raw runtime content or60 observer samples",
+      "did not independently rehash1047 protected files",
+      "no dynamic acceptance"
+    ],
+    "pre_delivery_items": [
+      "fill this review",
+      "add final microphone log-analysis conclusion without changing shutdown raw receipt",
+      "fixed Git object and product-tree remote readback after nonforce publication"
     ],
     "ACCEPTED": false
   },
   "privacy_validation": {
-    "no_selected_device_serial": true,
-    "no_IPv4_literal": true,
-    "no_MAC_literal": true,
+    "status": "FINAL_PUBLIC_ALLOWLIST_SCAN_PASS",
+    "no_device_serial": true,
+    "no_IPv4_literals": true,
+    "no_MAC": true,
     "no_JWT": true,
-    "no_raw_candidate_or_SDP": true,
-    "no_private_config": true,
-    "JSON_valid": true,
-    "single_query_this_explicit_dispatch": true,
-    "Room_connect_zero": true
+    "no_runtime_secrets": true,
+    "no_raw_candidate_SDP_or_device_logs": true,
+    "no_SQL_APK_content": true,
+    "raw_material_visibility": "LOCAL_ONLY"
   },
   "evidence": [
     {
@@ -241,70 +269,641 @@
       "visibility": "LOCAL_ONLY"
     },
     {
-      "name": "G0-device.json",
-      "bytes": 414,
-      "sha256": "4a506166c8657f180cbcf0322fffebcc308d73363737426c2000234a9545d398",
-      "visibility": "LOCAL_ONLY"
-    },
-    {
-      "name": "G0-command-receipt.json",
-      "bytes": 696,
-      "sha256": "28c9187bc3c1a010f629f64fe9297fb4a29683d7b926776b47d32f8ef07e7bdf",
-      "visibility": "LOCAL_ONLY"
-    },
-    {
-      "name": "G0-terminal-gate.json",
-      "bytes": 176,
-      "sha256": "4a1d6e62ca572c30c75eab0acbf66a73fc163c73d924744176c29094108cc506",
-      "visibility": "LOCAL_ONLY"
-    },
-    {
       "name": "baseline.json",
-      "bytes": 763,
-      "sha256": "caaeaa067cfd384b020129050f16bb06390de3a00dd364d1be96ffa2f7d0d6b2",
+      "bytes": 697,
+      "sha256": "a62ffbcf7509f1f9c9e3d84c256a0c4dff8229acc0832fcc2108c0b29b06ee93",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-device.json",
+      "bytes": 351,
+      "sha256": "52e539bcc931cfd8719c4af73f54478659928e1c3266599b2af7a301ccafd2e5",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-installed-package.json",
+      "bytes": 569,
+      "sha256": "c31af7de28b67405f67b6a36c49e11f3817b81a09e821afc26a7c174a762eb0d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-environment-prestart.json",
+      "bytes": 1085,
+      "sha256": "fb52f582e82dd43834032bbec372e018cc219c2c5c0b9f2c4c43f9a3c671eb64",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G0-live-DB-verified.json",
+      "bytes": 969,
+      "sha256": "af05adaf04816ba91b5ee3e16d16770600abcde3fc2123908d3610afc230448a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-before-backup-receipt.json",
+      "bytes": 120,
+      "sha256": "5f5b2791482b27a813d590604e178f28b3b4a32c25757d522e9ce40db3e691aa",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G1-startup-readiness.json",
+      "bytes": 355,
+      "sha256": "48c8c41644f1bdc5e726edcbb136fd1ad352b800f89a50fb1f40b63ac776a251",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G1-listener-readonly.py",
+      "bytes": 1231,
+      "sha256": "3c9ec35f8e06539e2fbc6d51a1c84513b0779bc2d96b107bb2c3fc1731e18ea9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G1-listener-verdict.json",
+      "bytes": 1293,
+      "sha256": "26a4e58b8e4096813d76c0d20de9372610078fb3b7acffdaafe6266e0cbf88d9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G1-backend-probe.stdout.json",
+      "bytes": 104,
+      "sha256": "16fe40daf428469a73310c8ad45efa64cb7b80d84146187916e7077a7dffd67b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G1-postdiagnostic-health.json",
+      "bytes": 363,
+      "sha256": "c72611325f3ccfa5fa383bface978b9009e0a10ef9463f120d37419d20b603c5",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "Owner-G2-automatic-mic-approval.json",
+      "bytes": 371,
+      "sha256": "f02b262af28d17ad2a5139182bc30a673845f73238bdc9f955e287794483ad56",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-only-call-result.json",
+      "bytes": 408,
+      "sha256": "ffe3e485e1358362674dfd2cc5b048c9ccf40d92e6112745c5a85e6324cae488",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-call-timeline.json",
+      "bytes": 2346,
+      "sha256": "fc6692587bf0c39d6bb0b4aac953cbe929f435a6521993238c98d3aa292f6097",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-safe-candidate-matrix.json",
+      "bytes": 10777,
+      "sha256": "f9439be9a57262e78c947766935fd1dbe40c25965d9070d69785dc012c671f49",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-safe-observation-summary.json",
+      "bytes": 4091,
+      "sha256": "6c3d246c60c9cdb36aec958ac40445b051b1ce593738050b1e60916116d913b8",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-existing-observation-tools.json",
+      "bytes": 67,
+      "sha256": "df0ce55e86192583241e5892f908209ae6498e7cefbe867013c98c9304f2ea3f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-row-preservation.json",
+      "bytes": 2163,
+      "sha256": "810f43b41f5d032dccb91e18c8d3394e9389d483895bccdad1196abad684df47",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-database-after-backup-receipt.json",
+      "bytes": 300,
+      "sha256": "804d45c43a8143b8dafc80750e896367aa3c65ba658554df812d12046cd6c744",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-owned-resource-shutdown.json",
+      "bytes": 1107,
+      "sha256": "a23a72d8a0198651e3b4d8e17ffecb54c0432acb7d17620770320f1a196ada30",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "diagnostic-failures-and-corrections.json",
+      "bytes": 2335,
+      "sha256": "49f31fda7b2e33ebcb687c6f2e7ecdbc1581e617bbab145b280ed21e8bf8c90c",
       "visibility": "LOCAL_ONLY"
     },
     {
       "name": "protection-final-prepublication.json",
-      "bytes": 1699,
-      "sha256": "7251feddfd8a4f29764ce0e48e49d26fab0901bde654b4a3b8a3c57c35f7c27a",
+      "bytes": 1944,
+      "sha256": "9d78223ac3680558e4037aea1eb3d76cae9abb3efe1f1087414d9671e61c1606",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/listener-runtime.stdout.json",
+      "bytes": 263,
+      "sha256": "c59befc1a7f84a2eec981fb51873a92f00940e4eb94dbe6e40825a33e4731d4f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/sfu-running-inspect.json",
+      "bytes": 9936,
+      "sha256": "99fe6165a43cd4d400f1e0a620f08fbb638c268e44a1a973fd6b1ce7b098ebeb",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-sfu-before-stop-inspect.stdout.txt",
+      "bytes": 9948,
+      "sha256": "a133aef7719350e83f3910acfd8855cf428ad053dcfe652758c5d3524904fd4d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/G2-app-PID-logcat.log",
+      "bytes": 278084,
+      "sha256": "e91845f3cfb5a716d626463ace1904e53ab355ab3d39274991aa6860d8b1745d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/G2-SFU-observer.jsonl",
+      "bytes": 119007,
+      "sha256": "035ac9854e7790fec0da1b97c8d0688d05e1e30d09e62821bc405124fa37e542",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-sfu-final-before-stop.stdout.txt",
+      "bytes": 26878,
+      "sha256": "7ad570116b5cdc76e117ac8118adf1552f7ede7ffb989feae8f4497dc7e324c9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "G2-sfu-final-before-stop.stderr.txt",
+      "bytes": 586707,
+      "sha256": "4fe1938adc1bedb34261fce54bcd90d4f47c3d76e8042fbf181b058d3d78d265",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/G2-http-peer-accept.json",
+      "bytes": 1181,
+      "sha256": "c4bb1f37821925c666d9ebaeda0aab5f87e0378ba62d5bb926b65e7fd157bdd4",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "secrets/G2-legal-call-end.json",
+      "bytes": 5738,
+      "sha256": "962c3dec26179ff9aeee4dc7672f2d8ffed51ea06f0c58d6d023a76e7f177d8c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-prestart-restoration-point.sql",
+      "bytes": 177609,
+      "sha256": "dae557065fbe7828216b1a7a35edc0b42b3606d3cffb817ad5fcebd78aab765a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-before-p1.sql",
+      "bytes": 166879,
+      "sha256": "7317a103a0f56b103af28fd7361ebaa01ccb7e358b94d720d09f98b30b9bc13d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-after-G2.sql",
+      "bytes": 173269,
+      "sha256": "790fde487404f0c6a3711e9ae0719fe593c12be1d9ca9d8913d72b7ade459b21",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "command-results.json",
+      "bytes": 2820,
+      "sha256": "82fee14ebc9cf15ba4517ade5d7e22142f28dce6a2ab87a91a4691dd328b9511",
       "visibility": "LOCAL_ONLY"
     },
     {
       "name": "non-author-review.json",
-      "bytes": 802,
-      "sha256": "c42039cc633a5ac18b80228c8152d435c12c6bbd6433a29eaf452fa63e7799be",
-      "visibility": "LOCAL_ONLY"
-    },
-    {
-      "name": "document-tool-initial-failure.json",
-      "bytes": 341,
-      "sha256": "a5bdc3fcf7db8ed97215edd301aae7230087406e1e228cae68f80dc8688771f2",
+      "bytes": 1101,
+      "sha256": "af60c9813c31cebb878eabaa74c887070cdbb60e0b9d1f999afdae7ff0988600",
       "visibility": "LOCAL_ONLY"
     }
   ],
   "self_ACCEPTED": false,
   "main_integrated": false,
   "R2_or_v1016_started": false,
-  "dispatch": "Owner explicit repeat dispatch after c84669d91107a16b541457cdf5b6119f14880986; one G0 query in this dispatch",
+  "dispatch": "Owner connected same phone and explicitly resumed; later explicitly approved single successful-connection automatic mic enable in speech-free surroundings",
   "previous_delivery": {
-    "commit": "c84669d91107a16b541457cdf5b6119f14880986",
-    "root": "b0415672164abf249d3e8222d4c1621126479478",
-    "report_blob": "6d48a1b7d08775efa58bc1051a0f96914a120e2d",
-    "manifest_blob": "cc368e03808c2428b01700427a3e0b48dd3ab1b0",
-    "device_inventory_queries": 1,
-    "room_connect_attempts": 0,
-    "evidence_preserved": true
+    "commit": "22844b1eaae32d08d3b53705235601696935c250",
+    "root": "80a7390f18a8c3ff56460ed47b621c91715047f7",
+    "prior_missing_device_results_preserved": true,
+    "prior_document_tool_failure_preserved_in_prior_manifest": true
   },
   "raw_evidence_policy": "ADB inventory raw stdout/stderr stored LOCAL_ONLY; no serial/raw contents in public files",
-  "document_tool_failure": {
-    "stage": "document_privacy_finalization",
-    "python_exit": 1,
-    "outer_PowerShell_batch_exit": 0,
-    "reason": "UnicodeDecodeError: default GBK read of UTF-8 manifest",
-    "correction": "explicit UTF-8 only; continue document checks",
-    "runtime_repeated": false,
-    "additional_device_queries": 0,
-    "Room_connect_attempts": 0
+  "installed_APK_identity_this_continuation": {
+    "alias": "PHONE_A",
+    "package": "com.elitesync.v1015r1dev",
+    "version_name": "10.1.5-r1-dev",
+    "version_code": "1010511",
+    "apk_sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466",
+    "bytes": 416357439,
+    "matches_expected_fixed_APK": true,
+    "signature_verify_exit": 0,
+    "certificate_sha256": [
+      "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09"
+    ],
+    "microphone_permission_previously_granted": true,
+    "package_specific_read_commands": 3,
+    "APP_started": false,
+    "microphone_started": false,
+    "snapshot_stage": "G0-before-APP-launch"
+  },
+  "G0_environment": {
+    "epoch": 1792662743.0641935,
+    "DB_alias": "V1015_R1_ISOLATED_DB",
+    "exact_container_image_mounts_ports_match_prior": true,
+    "mount_comparison": "project exact historical Type/Name/Destination/RW fields; full current mount includes extra metadata",
+    "volume_identity_match": true,
+    "container_initial_state": "exited",
+    "effective_Laravel_config": {
+      "effective_identity_verified": true,
+      "environment": "local",
+      "driver": "mysql",
+      "connection": "mysql",
+      "host_loopback": true,
+      "dedicated_database_verified": true,
+      "port": 43327,
+      "url_and_socket_empty": true,
+      "config_cached": false
+    },
+    "env_selectors_match_prior": true,
+    "restoration_point": {
+      "bytes": 177609,
+      "sha256": "dae557065fbe7828216b1a7a35edc0b42b3606d3cffb817ad5fcebd78aab765a",
+      "source": "prior verified stopped-state database-after-phone.sql"
+    },
+    "SFU_image": "sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e",
+    "prior_SFU_initial_state": "exited",
+    "task_ports_free": true,
+    "runtime_started": false
+  },
+  "G0_live_DB": {
+    "effective_identity_verified": true,
+    "environment": "local",
+    "driver": "mysql",
+    "connection": "mysql",
+    "host_loopback": true,
+    "dedicated_database_verified": true,
+    "port": 43327,
+    "url_and_socket_empty": true,
+    "config_cached": false,
+    "fixture_users_present": 2,
+    "users_count": 8,
+    "calls_count": 3,
+    "protected_fixture_tables": {
+      "product_connections": {
+        "count": 2,
+        "sha256": "9e041025afdb443b2030f9858740e535999b4e94d8b744092826a3672101bef9"
+      },
+      "messaging_consents": {
+        "count": 4,
+        "sha256": "08b0d4c39ae60ff9307817a5171cc8076e009ce4d7e6ff6761cc83d0e77f773c"
+      },
+      "live_consent_events": {
+        "count": 9,
+        "sha256": "61cbaac2544af943cb18997af1f18c90b181d4bf0c997d2f48ca1455460111cd"
+      }
+    },
+    "live_MariaDB_identity_verified": true,
+    "readiness": [
+      {
+        "attempt": 1,
+        "exit": 1
+      },
+      {
+        "attempt": 2,
+        "exit": 0
+      }
+    ]
+  },
+  "Owner_automatic_mic_scope_approval": {
+    "epoch": 1792663492.1005046,
+    "Owner_reply": "Approved this single successful connection automatic microphone enable; Owner confirms no nearby speech",
+    "synthetic_sound_playback": false,
+    "recording": false,
+    "camera": false,
+    "additional_Room_connect_budget": 1,
+    "used_before_reply": 0,
+    "prior_resources_stopped_while_permission_pending": true
+  },
+  "G1": {
+    "epoch": 1792663003.804825,
+    "evidence_level": "DIRECT_RUNTIME",
+    "container_running": true,
+    "frozen_image_verified": true,
+    "config_bytes_identical": true,
+    "network_mode": "bridge",
+    "net_namespace_sha256": "f6787f32997f3bc4439bc980729b661001408ae85c62028950b7c58a69431f6d",
+    "listeners": [
+      {
+        "family": "IPv6",
+        "address_class": "unspecified",
+        "port": 7891,
+        "state": "LISTEN",
+        "owning_process": "livekit-server",
+        "owner_count": 1,
+        "same_network_namespace": true
+      }
+    ],
+    "Docker_publish": {
+      "host_address_class": "loopback",
+      "host_TCP_port": 7891,
+      "container_TCP_port": 7891,
+      "network_backend_address_classes": [
+        "private_nonloopback"
+      ],
+      "raw_SFU_7880_published": false
+    },
+    "REACHABLE_FROM_DOCKER_BACKEND": "SUPPORTED",
+    "verdict": "LISTENER_PRECONDITION_SUPPORTED_NO_BIND_MISMATCH_OBSERVED",
+    "Room_connect_attempts": 0,
+    "call_count": 0,
+    "new_reverse": 0,
+    "APP_started": false,
+    "backend_nonloopback_probe": {
+      "container_nonloopback_TCP7891_connect": true,
+      "bindv6only_default": "0",
+      "application_bytes_sent": 0
+    },
+    "host_loopback_publish_TCP_connect": true,
+    "connectivity_probe_count": 2,
+    "probe_is_not_STUN_or_ICE": true
+  },
+  "G2": {
+    "call_id": 4,
+    "one_call_correlated_APP_and_SFU": true,
+    "room_anonymous_sha256": "df5745c3ac8d7cb69120a8c1e7b1cbd0d68f49bc939e97abc2b866923c151947",
+    "APP_start_epoch": 1792663832.662,
+    "APP_failure_epoch": 1792663862.871,
+    "APP_connect_elapsed_seconds": 30.209,
+    "APP_error_type": "MediaConnectException",
+    "candidate_records": 24,
+    "candidate_count_by_origin_protocol": {
+      "SFU_LOCAL_TCP": 2,
+      "PHONE_REMOTE_UDP": 12,
+      "PHONE_REMOTE_TCP": 10
+    },
+    "candidate_count_by_transport_role": {
+      "PUBLISHER": 9,
+      "SUBSCRIBER": 15
+    },
+    "TCP_tcpType_recorded": false,
+    "client_callback_states": {
+      "onIceConnectionChange": {
+        "line_count": 0,
+        "observed_states": {}
+      },
+      "onConnectionChange": {
+        "line_count": 6,
+        "observed_states": {
+          "connecting": 2,
+          "failed": 2,
+          "closed": 2
+        }
+      },
+      "onSignalingChange": {
+        "line_count": 0,
+        "observed_states": {}
+      },
+      "onIceGatheringChange": {
+        "line_count": 4,
+        "observed_states": {
+          "gathering": 2,
+          "complete": 2
+        }
+      }
+    },
+    "SFU_context_reason": "SIGNAL_SOURCE_CLOSE",
+    "SFU_connectionType": "unknown",
+    "STUN": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "ICE_role_and_pair_checklist": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "nominated_selected_pair": "NOT_OBSERVED",
+    "DTLS_state": "NOT_OBSERVABLE_WITH_CURRENT_TOOLING",
+    "Room_connect_OK": false,
+    "after_enable_microphone_log_present": false,
+    "local_audio_bind_log_present": false,
+    "raw_candidate_source": "same-call SFU participant-close summary; LOCAL_ONLY",
+    "original_context_cause": "SIGNAL_SOURCE_CLOSE is session-close context, not proven unique ICE cause",
+    "candidate_address_groups": {
+      "SFU_LOCAL_TCP_4_loopback": 2,
+      "PHONE_REMOTE_UDP_4_private_nonloopback": 4,
+      "PHONE_REMOTE_UDP_NOT_DETERMINABLE_ADDRESS_UNPARSEABLE_LOCAL_ONLY": 6,
+      "PHONE_REMOTE_UDP_6_loopback": 2,
+      "PHONE_REMOTE_TCP_NOT_DETERMINABLE_ADDRESS_UNPARSEABLE_LOCAL_ONLY": 5,
+      "PHONE_REMOTE_TCP_6_loopback": 5
+    },
+    "phone_TCP_port9_records": 0,
+    "safe_SFU_timeline": [
+      {
+        "timestamp": "2026-10-22T10:10:33.304426210Z",
+        "event": "participant_initialization",
+        "numParticipants": 0
+      },
+      {
+        "timestamp": "2026-10-22T10:10:48.533263585Z",
+        "event": "participant_session_statistics",
+        "reason": "SIGNAL_SOURCE_CLOSE",
+        "sessionDuration": "0s",
+        "sendLeave": false,
+        "isExpectedToResume": false
+      },
+      {
+        "timestamp": "2026-10-22T10:10:48.533496564Z",
+        "event": "other_same_room_context"
+      },
+      {
+        "timestamp": "2026-10-22T10:10:48.534224940Z",
+        "event": "candidate_summary_at_close",
+        "reason": "SIGNAL_SOURCE_CLOSE",
+        "connectionType": "unknown"
+      },
+      {
+        "timestamp": "2026-10-22T10:10:48.643236887Z",
+        "event": "other_same_room_context"
+      },
+      {
+        "timestamp": "2026-10-22T10:11:03.611715183Z",
+        "event": "other_same_room_context"
+      },
+      {
+        "timestamp": "2026-10-22T10:11:03.611724458Z",
+        "event": "other_same_room_context",
+        "reason": "API_DELETE"
+      },
+      {
+        "timestamp": "2026-10-22T10:11:03.611765512Z",
+        "event": "other_same_room_context"
+      },
+      {
+        "timestamp": "2026-10-22T10:11:03.611769599Z",
+        "event": "other_same_room_context"
+      }
+    ],
+    "port_category_counts": {
+      "SFU_FIXED_7891": 2,
+      "EPHEMERAL_OR_OTHER_LOCAL_ONLY": 22
+    },
+    "candidate_parser_correction": "initial colon-only IPv6 inference discarded; explicit endpoint split and ipaddress validation; original derived classification retained LOCAL_ONLY",
+    "runtime_instance_limit": "G1 listener inode/namespace and two TCP probes were captured in initial runtime window; that window stopped while awaiting Owner audio-scope answer; G2 restarted same owned container/image/config after approval. No second /proc listener sample in G2; do not identify G1 socket namespace as G2 socket evidence.",
+    "sfu_authority_monitor_failed_count_before_intentional_stop": 0,
+    "sfu_fail_closed_count_before_intentional_stop": 0
+  },
+  "database_preservation": {
+    "before_nonempty_tables": 21,
+    "after_nonempty_tables": 21,
+    "before_row_count": 263,
+    "after_row_count": 310,
+    "old_rows_exactly_preserved": 261,
+    "changed_tables": {
+      "app_events": {
+        "old_rows": 11,
+        "new_rows": 13,
+        "old_rows_no_longer_byte_identical": 0,
+        "new_or_modified_rows": 2
+      },
+      "conversation_members": {
+        "old_rows": 4,
+        "new_rows": 4,
+        "old_rows_no_longer_byte_identical": 1,
+        "new_or_modified_rows": 1
+      },
+      "device_sessions": {
+        "old_rows": 20,
+        "new_rows": 21,
+        "old_rows_no_longer_byte_identical": 0,
+        "new_or_modified_rows": 1
+      },
+      "notifications": {
+        "old_rows": 14,
+        "new_rows": 17,
+        "old_rows_no_longer_byte_identical": 0,
+        "new_or_modified_rows": 3
+      },
+      "personal_access_tokens": {
+        "old_rows": 38,
+        "new_rows": 40,
+        "old_rows_no_longer_byte_identical": 1,
+        "new_or_modified_rows": 3
+      },
+      "rtc_session_events": {
+        "old_rows": 56,
+        "new_rows": 94,
+        "old_rows_no_longer_byte_identical": 0,
+        "new_or_modified_rows": 38
+      },
+      "rtc_sessions": {
+        "old_rows": 3,
+        "new_rows": 4,
+        "old_rows_no_longer_byte_identical": 0,
+        "new_or_modified_rows": 1
+      }
+    },
+    "original_CN_MC_consent_events_and_3_RTC_rows_preserved": true,
+    "one_new_RTC_call_row": true,
+    "normal_auth_session_and_token_usage_changes_not_hidden": true,
+    "parser": "quote/escape-aware parenthesis scanner; multiline VALUES accepted",
+    "initial_failures": [
+      "literal VALUES-space did not accept multiline VALUES; exit1",
+      "initial replacement whitelist assertion exit1; no database failure or database rerun; actual changed tables disclosed instead of claiming all rows unchanged"
+    ],
+    "replaced_old_row_columns": {
+      "conversation_members": [
+        {
+          "changed_columns": [
+            "last_read_at",
+            "updated_at"
+          ]
+        }
+      ],
+      "personal_access_tokens": [
+        {
+          "changed_columns": [
+            "last_used_at",
+            "updated_at"
+          ]
+        }
+      ]
+    }
+  },
+  "database_final_backup": {
+    "exit": 0,
+    "bytes": 173269,
+    "sha256": "790fde487404f0c6a3711e9ae0719fe593c12be1d9ca9d8913d72b7ade459b21",
+    "calls_before": 3,
+    "calls_after": 4,
+    "new_call_count": 1,
+    "CN_MC_and_consent_events_hashes_unchanged": true,
+    "migrations": 0,
+    "fixture_recovery_or_reset": false
+  },
+  "diagnostic_failures_and_corrections": [
+    {
+      "stage": "initial_DB_inspect",
+      "exit": 1,
+      "reason": "existing Docker Desktop engine not running",
+      "action": "started existing desktop tool without install/UAC/config change; one server readiness check exit0"
+    },
+    {
+      "stage": "DB_mount_projection",
+      "wrapper_exit": 1,
+      "reason": "compared full current Docker Mounts against historical four-field projection",
+      "action": "read exact historical field set and verified identical Type/Name/Destination/RW plus current volume mountpoint; no DB identity drift"
+    },
+    {
+      "stage": "guard_initial_startup",
+      "wrapper_exit": 1,
+      "reason": "initial recorded command used Laravel root cwd; framework router required public/index.php in cwd",
+      "observed_requests": 3,
+      "action": "validated and stopped only owned PID, corrected cwd to public; guard readiness200; no source/security/timeout change"
+    },
+    {
+      "stage": "DB_initial_readiness",
+      "first_exit": 1,
+      "second_exit": 0,
+      "action": "bounded readiness waiting; no DB restart"
+    },
+    {
+      "stage": "source_lookup",
+      "exit": 1,
+      "reason": "one guessed controller path absent; route literal found existing actual controller; read-only, no product mutation"
+    },
+    {
+      "stage": "old_acceptance_JSON_read",
+      "wrapper_exit": 1,
+      "reason": "UTF-8 decode of one historical GBK JSON failed",
+      "action": "did not use corrupted decode; operational flow proceeded using current real API responses; no retry call"
+    },
+    {
+      "stage": "offline_SQL_parser_initial",
+      "wrapper_exit": 1,
+      "reason": "literal space after VALUES omitted multiline INSERT rows",
+      "action": "corrected offline whitespace parser; sanity users count8; no DB rerun"
+    },
+    {
+      "stage": "offline_SQL_replacement_assertion",
+      "wrapper_exit": 1,
+      "reason": "old two replacement rows included normal conversation read timestamps as well as access-token usage",
+      "action": "actual changed column names disclosed; not claimed all old rows unchanged"
+    },
+    {
+      "stage": "offline_candidate_classifier",
+      "reason": "colon-only inference of IP version rejected",
+      "action": "explicit ipaddress validation; 11 unparseable address fields remain UNKNOWN, original derived matrix preserved",
+      "runtime_repeated": false
+    }
+  ],
+  "final_microphone_analysis": {
+    "Room_connect_OK": 0,
+    "after_enable_microphone_log": false,
+    "local_audio_bind_log": false,
+    "frozen_source_explicit_enable_branch_not_reached": true,
+    "permission_grant_is_not_capture_evidence": true,
+    "shutdown_original_bytes_unchanged": true
   }
 }
