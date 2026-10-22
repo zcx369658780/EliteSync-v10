@@ -12,7 +12,7 @@
 - 唯一冻结任务：`docs/versions/v10.1.5/OWNER_APPROVED_P1_USB_ICE_MINIMAL_OBSERVATION_TASK_20261022.md`，Blob `5957cf95b4d41fc27344de5cb6e56955b1d43a75`。上轮ICE只读审计Astra独立裁决Blob `f24e293c59a289fb259a20ae4c5b0e69b8ba3d15`；冻结v10.1.5 AC未更改。
 - R1固定产品源Commit `1c5cd2bb7919c435e8486a76959db75e9ccc367f`、Root `165eb1f362db533ca94bfe1db677ff6f7bd477ed`，完整apps Tree `0784c8aa7b0915a04b83693a45401197e31d93a2`，完整services Tree `1e1e20bb3500bedb1a521e5f2ddeece915d09424`。
 - 本次最终交付Commit **`62f0cd6d6df80f2f22855c0f75fd67ff52c753a7`**，Root **`146c32d866f6986e48b80f7a4e3bd8c1ccc2638a`**，唯一Parent `22844b1eaae32d08d3b53705235601696935c250`。三段连续提交：`7fd2b9f205df7edcf4f713d1374e924e6a6caad6`→`c84669d91107a16b541457cdf5b6119f14880986`（首次无手机）→`22844b1eaae32d08d3b53705235601696935c250`（再次手动派发仍无手机）→本次终交付；前两个无手机失败不是本次一次Room.connect的重试计数。
-- GitHub从上轮只读审计`7fd2...`比较到本次最终交付，ahead3／behind0，变动仅两份docs：`docs/versions/v10.1.5/P1_USB_ICE_DYNAMIC_OBSERVATION_REPORT.md`（Blob **`f3e5282d803afa5c444427de1ab0b81c691c1754`**）和`p1_usb_ice_dynamic_observation_manifest.json`（Blob **`cbbe7ff5c61a0f66b1dee7674f6c5b20bff98b3d`**）。最后交付与上轮原审计的**完整apps/services子Tree相同**，通过Git Tree直接核对`SOURCE_UNCHANGED`。原旧报告、本地原证和main产品未被此次候选替换。
+- GitHub从上轮只读审计`7fd2...`比较到本次最终交付，ahead3／behind0，变动仅两份docs：`docs/versions/v10.1.5/P1_USB_ICE_DYNAMIC_OBSERVATION_REPORT.md`（Blob **`f3e5282d803afa5c444427de1ab0b81c691c1754`**）和`p1_usb_ice_dynamic_observation_manifest.json`（Blob **`6cdb8aded51bc876588f278649c4ee35fa178150`**）。最后交付与上轮原审计的**完整apps/services子Tree相同**，通过Git Tree直接核对`SOURCE_UNCHANGED`。原旧报告、本地原证和main产品未被此次候选替换。
 - 本次报告和清单正文已直接读取；保护快照、Android包回取、SQL/录音未由Astra现场执行。
 
 ## 二、G0—G5分层裁决
