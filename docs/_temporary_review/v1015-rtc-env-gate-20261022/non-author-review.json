@@ -1,0 +1,22 @@
+{
+  "reviewer": "independent non-author GPT-6.1 Sol high",
+  "scope": "R1 gateway/watchdog/bridge versus LOCAL_ONLY diagnostic overlays and g1 RPC isolation harness; observed JSON/log claims",
+  "no_new_high_confidence_security_regression": true,
+  "preserved_static_gates": {
+    "bridge_HTTP_timeout_s": 1.5,
+    "reply_poll_iterations": 200,
+    "reply_poll_sleep_s": 0.01,
+    "ingress_freshness_s": 2.5,
+    "watchdog_no_pulse_s": 3.5,
+    "flowing_media_revoke_contract_s": 5
+  },
+  "limitations": [
+    "Static constants do not prove wall-clock or flowing-media 5 second safety.",
+    "injection_end_epoch includes both post-health checks; not RPC end/duration.",
+    "Expected 0.4s PCM length is generated input only, not injected/playback/receive proof.",
+    "Single-inject A after is ADB identity TimeoutExpired; direct record separately establishes getStatus deadline.",
+    "Underlying emulator blocking cause not proven; not product BUG.",
+    "SFU proof is idle readiness/isolation only; four media gates ENV_BLOCKED/NOT_RUN."
+  ],
+  "execution": "STATIC_ONLY_NO_DEVICE_DB_NETWORK_EXECUTION"
+}

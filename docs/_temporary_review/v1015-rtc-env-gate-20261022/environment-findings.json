@@ -1,0 +1,42 @@
+{
+  "classification": "CODEX_REPORTED_LOCAL_ONLY_REDACTED_COPY",
+  "result": "PARTIAL_ENV_BLOCKED_OR_CORE_OPEN",
+  "G1_non_audio_both_booted": true,
+  "authority_failure": {
+    "phase": "authority_sweep",
+    "safe_reason": "authority denied",
+    "bridge_error": "TimeoutError",
+    "bridge_elapsed_ms": 1531,
+    "HTTP_status_at_timeout": null,
+    "recovery": "Two separate readiness HTTP200 checks then restart same container; no timeout changes",
+    "after_readiness_idle_healthy_samples": 43,
+    "idle_span_seconds": 216.30013751983643,
+    "max_sampled_sweep_ms": 91.601,
+    "raw_host_SFU_reachable": false,
+    "missing_JWT_HTTP": 403,
+    "scope": "IDLE_ONLY_NOT_MEDIA",
+    "historical_R1_RuntimeError_root_cause": "UNKNOWN_NOT_RETROACTIVELY_ATTRIBUTED"
+  },
+  "isolated_PCM": {
+    "target": "A",
+    "other": "B",
+    "before_both_healthy": true,
+    "mode": "MODE_UNSPECIFIED",
+    "format": "48000Hz_MONO_S16_LE",
+    "packets_generated": 20,
+    "expected_input_seconds": 0.4,
+    "RPC_deadline_seconds": 3,
+    "RPC_result": "DEADLINE_EXCEEDED",
+    "post_A_ADB_identity": "TimeoutExpired",
+    "later_direct_A_getStatus": "DEADLINE_EXCEEDED",
+    "later_direct_B_getStatus": "booted=true",
+    "simultaneous_capture": "NOT_RUN",
+    "this_task_RTC_call": "NOT_RUN",
+    "injection_end_epoch_warning": "Contains later health checks; not pure RPC end/duration",
+    "received_or_audible_audio": "NOT_CLAIMED",
+    "root_cause": "Controller audio path/runtime/config blocking narrowed; implementation-level cause not proven; not product BUG"
+  },
+  "installed_emulator": "36.4.10.0",
+  "configuration": "no-audio / camera none / cold boot no snapshot load/save",
+  "documented_no_audio": "Disables all audio support; no safe active synthetic-only alternative verified. No host backend enabled."
+}

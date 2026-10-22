@@ -1,0 +1,30 @@
+{
+  "DUAL_APP_SFU_FLOWING_AUDIO": "ENV_BLOCKED",
+  "SAME_CALL_RECONNECT": "NOT_RUN",
+  "OLD_RTC_JWT_DENIAL": "NOT_RUN",
+  "FLOWING_MEDIA_STOP_LE_5S": "NOT_RUN",
+  "prerequisite": "No flowing dual media; do not promote readiness HTTP403 to old RTC JWT or media stop proof",
+  "AEC": "AEC_HUMAN_HEARING_NOT_RUN",
+  "video": "VIDEO_CAMERA_NOT_RUN",
+  "source": "SOURCE_UNCHANGED",
+  "baseline": {
+    "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "root_tree": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+    "apps_tree": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+    "services_tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "delivery": "6da9a05156fda8b603224fd10e04ac1cc997ad79",
+    "status": "",
+    "main": "4080742585bfdc5a7f376ba7106ede5d05be3b04",
+    "main_apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "main_services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "protection": {
+    "five_roots_unchanged": true,
+    "prior_evidence_files_hash_unchanged": 653,
+    "old_refs_unchanged": true,
+    "private_env_unchanged": true,
+    "SQL_data_unchanged_except_dump_comment": true,
+    "owned_resources_stopped": true
+  },
+  "minimum_next_condition": "A verified synthetic-only emulator audio configuration/runtime compatible with current Controller without host mic/camera. Any SDK/runtime replacement or physical audio requires separate Owner authorization; not assumed to fix it."
+}
