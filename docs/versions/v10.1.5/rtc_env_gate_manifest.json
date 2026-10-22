@@ -1,0 +1,395 @@
+{
+  "schema": "elitesync.v1015.rtc_env_gate.v1",
+  "overall": "PARTIAL",
+  "states": [
+    "V10.1.5_RTC_ENV_GATE_PARTIAL",
+    "ENV_BLOCKED_OR_CORE_OPEN",
+    "OWNER_DECISION_REQUIRED"
+  ],
+  "authority": {
+    "main": "4080742585bfdc5a7f376ba7106ede5d05be3b04",
+    "task_blob": "4839dc276921f36a8fbe3076b9c285fbea36811c",
+    "R1_independent_review_blob": "ff9916e0b227dc0996165b2b6d5024b6199ead17",
+    "plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "task_order_blob": "0df56f69712a85541b5f24bef281e2a9a61520a4"
+  },
+  "source": {
+    "status": "SOURCE_UNCHANGED",
+    "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+    "unique_parent": "47e30a3ef5bc7aacb42b6e32b6bc822dbdbb0962",
+    "root_tree": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+    "apps_tree": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+    "services_tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "changed_product_paths": []
+  },
+  "delivery": {
+    "branch": "codex/v10.1.5-rtc-env-gate",
+    "commit": "ENCLOSING_DOCUMENT_COMMIT",
+    "unique_parent": "6da9a05156fda8b603224fd10e04ac1cc997ad79",
+    "only_paths": [
+      "docs/versions/v10.1.5/RTC_ENV_GATE_EXECUTION_REPORT.md",
+      "docs/versions/v10.1.5/rtc_env_gate_manifest.json"
+    ]
+  },
+  "hard_gates": {
+    "DUAL_APP_SFU_FLOWING_AUDIO": "ENV_BLOCKED",
+    "SAME_CALL_RECONNECT": "NOT_RUN",
+    "OLD_RTC_JWT_DENIAL": "NOT_RUN",
+    "FLOWING_MEDIA_STOP_LE_5S": "NOT_RUN"
+  },
+  "G1": {
+    "non_audio_health_command_exit": 0,
+    "initial_harness_TypeError_exit": 1,
+    "single_PCM_inject_command_exit": 1,
+    "generated_PCM_seconds": 0.4,
+    "actual_injection_or_receive_success": false,
+    "after_injection_A_ADB_identity": "TimeoutExpired",
+    "later_direct_A_getStatus": "DEADLINE_EXCEEDED",
+    "later_direct_B_getStatus": "booted=true",
+    "first_SFU_failure_layer": "bridge_authority_HTTP_read_TimeoutError_1531ms",
+    "guard_readiness_HTTP": [
+      200,
+      200
+    ],
+    "idle_healthy_samples": 43,
+    "idle_span_seconds": 216.30013751983643,
+    "raw_SFU_host_reachable": false,
+    "missing_JWT_HTTP": 403,
+    "not_a_media_or_old_JWT_or_5s_proof": true,
+    "root_cause_limit": "Underlying emulator implementation/config cause and historical R1 RuntimeError not proven"
+  },
+  "static_gates_unchanged": {
+    "bridge_HTTP_timeout_s": 1.5,
+    "reply_poll_iterations": 200,
+    "reply_poll_sleep_s": 0.01,
+    "ingress_freshness_s": 2.5,
+    "watchdog_no_pulse_s": 3.5,
+    "flowing_media_revoke_contract_s": 5
+  },
+  "clock": {
+    "clock": "Host time.time Unix epoch; container log time.time; durations use each process time.monotonic. No global clock changed. No G4 interval measured.",
+    "G0_baseline_file_written_epoch": 1792633673.00291,
+    "inject_begin_epoch": 1792634066.2253702,
+    "inject_return_upper_bound_epoch": 1792634069.2441134,
+    "G5_shutdown_receipt_written_epoch": 1792634387.1923568,
+    "report_recorded_epoch": 1792634795.4059367,
+    "injection_end_epoch_warning": "This raw field includes post-health checks, not RPC duration."
+  },
+  "APK": {
+    "B_package_exit": 0,
+    "B_versionCode": [
+      "1010511"
+    ],
+    "B_versionName": [
+      "10.1.5-r1-dev"
+    ],
+    "B_RECORD_AUDIO": [
+      "true"
+    ],
+    "B_apk_path_exit": 0,
+    "B_installed_APK_sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466",
+    "B_hash_matches_R1": true,
+    "A_live_package_readback": "NOT_RUN_AFTER_AUDIO_RPC_STALL",
+    "client_modified": false,
+    "rebuild_install": "NOT_RUN_SOURCE_UNCHANGED"
+  },
+  "database": {
+    "database": "elitesync_v1015_r1_dev",
+    "container_id": "fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407",
+    "volume": "elitesync-v1015-r1-data-20261022",
+    "port": 43327,
+    "before": {
+      "exit": 0,
+      "bytes": 165674,
+      "sha256": "30ad7385f672c0f4894e37d0012bd17a10f5e19cc8b64b670a5808b49149337d"
+    },
+    "after": {
+      "exit": 0,
+      "bytes": 165674,
+      "sha256": "2765cd0f6803004207cd9db2c152601b6aa448a77aaae1c0d98011aa349d8b40",
+      "unchanged_except_dump_completed_timestamp": true,
+      "prior_SQL_preserved": true,
+      "new_fixtures_or_migrations": "NOT_RUN"
+    },
+    "migrate_seed_new_accounts": "NOT_RUN",
+    "restoration_exercised": false
+  },
+  "protection": {
+    "five_roots_unchanged": true,
+    "prior_hashed_evidence_files_unchanged": 653,
+    "old_refs_private_env_unchanged": true,
+    "owned_resources_stopped": true,
+    "raw_assets_retained": true
+  },
+  "non_author_review": {
+    "reviewer": "independent non-author GPT-6.1 Sol high",
+    "scope": "R1 gateway/watchdog/bridge versus LOCAL_ONLY diagnostic overlays and g1 RPC isolation harness; observed JSON/log claims",
+    "no_new_high_confidence_security_regression": true,
+    "preserved_static_gates": {
+      "bridge_HTTP_timeout_s": 1.5,
+      "reply_poll_iterations": 200,
+      "reply_poll_sleep_s": 0.01,
+      "ingress_freshness_s": 2.5,
+      "watchdog_no_pulse_s": 3.5,
+      "flowing_media_revoke_contract_s": 5
+    },
+    "limitations": [
+      "Static constants do not prove wall-clock or flowing-media 5 second safety.",
+      "injection_end_epoch includes both post-health checks; not RPC end/duration.",
+      "Expected 0.4s PCM length is generated input only, not injected/playback/receive proof.",
+      "Single-inject A after is ADB identity TimeoutExpired; direct record separately establishes getStatus deadline.",
+      "Underlying emulator blocking cause not proven; not product BUG.",
+      "SFU proof is idle readiness/isolation only; four media gates ENV_BLOCKED/NOT_RUN."
+    ],
+    "execution": "STATIC_ONLY_NO_DEVICE_DB_NETWORK_EXECUTION"
+  },
+  "review": {
+    "branch": "codex/v10.1.5-rtc-env-gate-review",
+    "commit": "55c1c30df95918abb8b2e5fcafbafe882a3f9d78",
+    "root_tree": "d68bac49afa06ca3ffe776df36109a4075e06449",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/authority-bridge-diagnostic.py",
+        "mode": "100644",
+        "blob": "feb239f930bd89516703bf91d2d01845725343fc"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/environment-findings.json",
+        "mode": "100644",
+        "blob": "d750d1c99cfd25b615b9084b8385e926added0eb"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/gates-source-protection.json",
+        "mode": "100644",
+        "blob": "13a7e133c80d52fa2e367f2343f429dcc5cb76fa"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/non-author-review.json",
+        "mode": "100644",
+        "blob": "2b4a4472e778765ab6169062ff3f5c7e4c3f7737"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/README.md",
+        "mode": "100644",
+        "blob": "150c34c1ce28fdecb8d30f2b78c3b6db31e07c36"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-rtc-env-gate-20261022/rtc-gateway-diagnostic.py",
+        "mode": "100644",
+        "blob": "7b708c630c2cd9638f99531ffe04d7a7ea550cfd"
+      }
+    ]
+  },
+  "local_evidence": [
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/authority-task.md",
+      "bytes": 12286,
+      "sha256": "b09ba2d085d2099c7dd5ec32adb51c8522e29b5e8d0d038f89e58de93d1495fd"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/baseline.json",
+      "bytes": 499,
+      "sha256": "ff7cfe7a841b8c535886924b83ca0939a5f6d8da2cbd11818610a8d8d5daff7f"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/rtc-code-before.json",
+      "bytes": 2090,
+      "sha256": "0450eb24b03ded2f79afd07210d9eb2b42f1a5a3b568883f1dcd6c8a02c36cf9"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/effective-db-identity.json",
+      "bytes": 162,
+      "sha256": "74bf9561eb284f9924dfa6b68037fe5e70e895fd7b1ea48dd421c2452a0a872b"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/effective-db-selectors.json",
+      "bytes": 370,
+      "sha256": "75dc795c631a9f17a9ee53596816f16643b8668f5a15aa6f520b9549554747dd"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/db-prestart-ownership.json",
+      "bytes": 404,
+      "sha256": "f4ab8a49ec7852d8f7e6a5119f60f0c0495c314fa59e9f7b490bac55b0912a36"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/database-before-backup-receipt.json",
+      "bytes": 118,
+      "sha256": "cf95d3bbf12a3a0c84906bd4a3f5a989ba8385c75fedc36a0021d94a6e46cd16"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/database-after-backup-receipt.json",
+      "bytes": 248,
+      "sha256": "89dd55dc9eb60decce2054aafdbea554550089efc5895d07a58864ebc1a16254"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/owned-avds.json",
+      "bytes": 441,
+      "sha256": "cf4b841892de1e483275764d26f94a2b5196f30842edcf3d1f20dc70a822513d"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/sfu-image-identity.json",
+      "bytes": 184,
+      "sha256": "60afab69cb4962480910d404953344f9d019be38c6f9483d901c80421a5221cc"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/sfu-run-args-local.json",
+      "bytes": 765,
+      "sha256": "6edc7b6c39f902e60f24ae82570922d600b05083d6f6e1359fc0cf634885b70d"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/rtc-gateway-diagnostic.py",
+      "bytes": 10411,
+      "sha256": "99252d3b007b217843536aae9f9cdf91a07d3e7a59da69fffa212af4f86b80aa"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/authority-bridge-diagnostic.py",
+      "bytes": 1929,
+      "sha256": "a20a0b179b0e42f87935105aa47b367d7470cc687b061b615490459a352e8105"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-rpc-isolation.py",
+      "bytes": 3138,
+      "sha256": "91db0af05c2899572cfb6ea14ee9a466cbeaf2d352da910f491506a7ff5e746f"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-rpc-isolation-initial.py",
+      "bytes": 3184,
+      "sha256": "f68647632c87c7084b16c485a66228e07bc4453cb370d5034614fe1cb464951e"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-rpc-health-command.txt",
+      "bytes": 310,
+      "sha256": "d2939741380d7678e3c45baccec83337f652d0c37e600e2f75721422853dd3a7"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-rpc-health-command-fixed.txt",
+      "bytes": 250,
+      "sha256": "ff08a2fe6524a645c64921948a745218f7b694c4fa710a1365ced6187b824e94"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/grpc-non-audio-health.json",
+      "bytes": 334,
+      "sha256": "fcd2706ce971810d94085a7d65821359855c24f8ed17a5d3b9a267807f34c102"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-single-inject-command.txt",
+      "bytes": 869,
+      "sha256": "6134f11ad9dbafe816ce9f7e700e99716f79af5db1dc6660f5b67298a391f175"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/grpc-single-inject.json",
+      "bytes": 1093,
+      "sha256": "29ade52c611abab2f801e2261e53f566e44802fbfd0f059097dff4c07df055b4"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/grpc-direct-after-isolated-inject.json",
+      "bytes": 258,
+      "sha256": "a8d20d3a8f62dff52cc10f2e7e633622b27a32cb7b55b247fdc65b2d841b8740"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/guard-readiness-after-cold-timeout.json",
+      "bytes": 294,
+      "sha256": "5b0e50998819ee50c9eff499e8fec7df06bcb6b3fa34a913e5575a73aa212c1a"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/g1-sfu-idle-isolation-result.json",
+      "bytes": 802,
+      "sha256": "a80c05149932d08153371dbe446d5ec54995017c0c5f432bd3b127a902627737"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/sfu-first-cold-authority-failure.log",
+      "bytes": 264,
+      "sha256": "63440d68ce3b00f45c90507975eac45c1ff07744614360448a3860b23472846f"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/sfu-final-before-owned-shutdown.log",
+      "bytes": 9162,
+      "sha256": "01ff57c178d6474cfd5231a557f683b5cfceacb5f3ee5b66654ebfe59f37401d"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/bridge.stdout.jsonl",
+      "bytes": 140,
+      "sha256": "2ee9be127856c2b325c1a64982876a6709c13a50e8a62e372330e301ef6881b1"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/guard.stderr.txt",
+      "bytes": 102470,
+      "sha256": "19aa96b5df6813355e4d02e6a18b74ca98660c7706bb7c3aa5772aafe847b405"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/installed-audio-backends-help.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/installed-audio-backends-help-with-runtime-path.txt",
+      "bytes": 75,
+      "sha256": "7e240591ccb330ff0913ebb20b53ffe8b3d89af778dccd718f7370fd802055d7"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/help-audio-in.txt",
+      "bytes": 77,
+      "sha256": "651e199cdfddfd394d6388848054437706b1fc117fa244c00e30b7442551706e"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/help-audio-out.txt",
+      "bytes": 78,
+      "sha256": "1dd7fb06987f853d68e528c09bc3197b97d4a882ef8714eb71e58aca409573b2"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/emulator-version.txt",
+      "bytes": 792,
+      "sha256": "425639406045fc01d23a5d6ce572f68b11a17945f9eef7978230ae6938625580"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/app-permission-identities.json",
+      "bytes": 454,
+      "sha256": "704f199f03186d511dcd753279e7d9db0a7c2df793da6fc2ebcce9f67681b2b2"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/non-author-review.json",
+      "bytes": 1129,
+      "sha256": "e5764b0a8a773df47f234fe0389b0684d501889ad516f1abf67922c9eac7eef1"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/event-time-source.json",
+      "bytes": 528,
+      "sha256": "79a7d208e0fb765211382c1a3146b86a92ce1c40e70eb7619e8a86f46ff8120d"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/protection-final.json",
+      "bytes": 1475,
+      "sha256": "92fccc092a11bf30e674db5e9aa6b3cd362014a579229156df39629aabb3d6f3"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/prior-evidence-before.json",
+      "bytes": 136068,
+      "sha256": "b464b7daec49a878310453613f058c9618220f5ac46cd598cfe3a0337a057b63"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/refs-before.txt",
+      "bytes": 34719,
+      "sha256": "536f5e99923715723366a134d65a25835258a784df334a82bae2eed458488000"
+    },
+    {
+      "path": "LOCAL_ONLY:v1015-rtc-env-gate-20261022/owned-resource-shutdown.json",
+      "bytes": 659,
+      "sha256": "d9123cd2d80639869bfebc1d5c1d5cb4d9e28dba82bbcd3b09e23fe02ee22be5"
+    }
+  ],
+  "scope_not_run": [
+    "G1(c)_new_APP_call_state_machine_after_PCM_precondition_failure",
+    "AEC_HUMAN_HEARING_NOT_RUN",
+    "VIDEO_CAMERA_NOT_RUN",
+    "PRODUCT_SOURCE_CHANGE",
+    "NEW_APK_BUILD_OR_INSTALL",
+    "UNRELATED_PHP_FLUTTER_REGRESSION",
+    "B1_B3_MESSAGES_CACHE_PRIVATE_MEDIA_NOTIFICATION_RERUN",
+    "NEW_SDK_IMAGE_OR_TOOLS",
+    "HOST_MIC_CAMERA_PHONE_UDP_FIREWALL_UAC",
+    "MAIN_INTEGRATION_R2_V10.1.6",
+    "HISTORICAL_CLEANUP"
+  ],
+  "minimum_next_condition": "Verified synthetic-only Controller/AVD audio runtime without host mic/camera; separate Owner approval if exact isolated SDK/runtime repair or replacement needed, no presumption it solves the cause.",
+  "evidence_class": "CODEX_REPORTED_LOCAL_ONLY_PUBLIC_COPIES_FOR_GIT_REVIEW_ONLY"
+}
