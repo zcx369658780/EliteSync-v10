@@ -1,0 +1,632 @@
+{
+  "schema_version": 1,
+  "task": "v10.1.5_owner_approved_single_phone_usb_rtc",
+  "date": "2026-10-22",
+  "verdict": "PARTIAL",
+  "terminal": [
+    "PHONE_PREFLIGHT_PARTIAL",
+    "NETWORK_MEDIA_PATH_BLOCKED",
+    "AC05_DUAL_APP_STILL_OPEN",
+    "AWAITING_ASTRA_INDEPENDENT_FUNCTION_REREVIEW"
+  ],
+  "source_status": "SOURCE_UNCHANGED",
+  "authority": {
+    "task": {
+      "expected_blob": "b4d048ac931d66500e8d312fb7d80eb790121216",
+      "actual_blob": "b4d048ac931d66500e8d312fb7d80eb790121216",
+      "bytes": 12400
+    },
+    "plan": {
+      "expected_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "actual_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "bytes": 12749
+    },
+    "HEAD": {
+      "commit": "7a5dc0d85ef82fdfc5db4a098ae4150164e2b999",
+      "root": "129c35a9163f68991dcc7e862e027f571438b13a",
+      "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+      "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+    },
+    "1c5cd2bb7919c435e8486a76959db75e9ccc367f": {
+      "commit": "1c5cd2bb7919c435e8486a76959db75e9ccc367f",
+      "root": "165eb1f362db533ca94bfe1db677ff6f7bd477ed",
+      "apps": "0784c8aa7b0915a04b83693a45401197e31d93a2",
+      "services": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+    },
+    "d161388a53b06bd71b33f85a9fe1df7b110bfba1": {
+      "commit": "d161388a53b06bd71b33f85a9fe1df7b110bfba1",
+      "root": "c936b3fe612bd9bd1b45b47bddb5c9e410dd273b",
+      "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    }
+  },
+  "candidate_parent": "7a5dc0d85ef82fdfc5db4a098ae4150164e2b999",
+  "candidate_branch": "codex/v10.1.5-phone-usb-rtc",
+  "candidate_commit_and_root": "POST_COMMIT_READBACK_RECEIPT_LOCAL_ONLY; no self-referential hash",
+  "allowed_changed_paths": [
+    "docs/versions/v10.1.5/PHONE_USB_RTC_GATE_REPORT.md",
+    "docs/versions/v10.1.5/phone_usb_rtc_gate_manifest.json"
+  ],
+  "P0": "PASS_COMPATIBILITY_INSTALL_SUBGATES_ONLY",
+  "P1": "PARTIAL_SIGNALLING_TCP_SUPPORTED_ICE_BLOCKED",
+  "P2": "ENV_BLOCKED_NO_AUDIO_CAPTURE_OR_PUBLISH_PROOF",
+  "P3": "NOT_RUN_NO_FLOWING_MEDIA",
+  "P4": "SOURCE_UNCHANGED_BOUNDED_NONAUTHOR_REVIEW_FINDING_CORRECTED",
+  "P5": "OWNED_RESOURCES_STOPPED_ASSETS_PRESERVED",
+  "phone": {
+    "alias": "PHONE_A",
+    "android": 16,
+    "API": 36,
+    "ABI": "arm64-v8a",
+    "USB_identity": "host PnP matched exact selected device; serial local only",
+    "package": {
+      "alias": "PHONE_A",
+      "package": "com.elitesync.v1015r1dev",
+      "version_code": "1010511",
+      "version_name": "10.1.5-r1-dev",
+      "installed_apk_sha256": "2c54dcae8d26f85995750b2e45e8d12fa0e5f450c7747fddc76274c7a40d0466",
+      "matches_source_apk": true,
+      "mic_requested_during_install": false,
+      "epoch": 1792649056.8476555
+    },
+    "permissions": {
+      "android.permission.RECORD_AUDIO": "true",
+      "android.permission.CAMERA": "false",
+      "android.permission.ACCESS_FINE_LOCATION": "false"
+    },
+    "installed_app_and_data_preserved": true,
+    "app_force_stopped": true
+  },
+  "apk_certificate_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+  "control_peer": "HTTP_ONLY_NOT_APP_NOT_MEDIA_RECEIVER",
+  "emulators_started": false,
+  "observation": {
+    "verdict": "PARTIAL",
+    "blocker": "NETWORK_MEDIA_PATH_BLOCKED",
+    "call_id": 3,
+    "first_call_id": 2,
+    "first_call_result": "MISSED_BEFORE_ACCEPT",
+    "phone_microphone_permission": "true",
+    "phone_room_connect": "MediaConnectException_after_30s",
+    "signalling_participant_observed": true,
+    "ICE_connection_type": "unknown",
+    "SFU_tracks_observed": 0,
+    "SFU_media_counters_after": [
+      "livekit_node_packet_total{node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",type=\"dropped\"} 0",
+      "livekit_node_packet_total{node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",type=\"out\"} 0",
+      "livekit_packet_bytes{country=\"\",direction=\"incoming\",node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",transmission=\"initial\"} 4102",
+      "livekit_packet_bytes{country=\"\",direction=\"outgoing\",node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",transmission=\"initial\"} 3065",
+      "livekit_packet_total{country=\"\",direction=\"incoming\",node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",transmission=\"initial\"} 26",
+      "livekit_packet_total{country=\"\",direction=\"outgoing\",node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",transmission=\"initial\"} 15",
+      "livekit_participant_total{node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\"} 0",
+      "livekit_room_total{node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\"} 0",
+      "livekit_track_subscribe_counter{error=\"\",node_id=\"ND_RoLrH5WKewPE\",node_type=\"SERVER\",state=\"cancel\"} 0"
+    ],
+    "synthetic_tone_playback_confirmed": false,
+    "phone_audio_frame_capture_confirmed": false,
+    "second_app_present": false,
+    "same_call_media_reconnect": "NOT_RUN",
+    "old_jwt_reentry": "NOT_RUN",
+    "revocation_media_stop_within_5s": "NOT_RUN",
+    "source": "SOURCE_UNCHANGED",
+    "AC05": "OPEN"
+  },
+  "media_observer": {
+    "samples": 715,
+    "first_epoch": 1792649874.6283958,
+    "last_epoch": 1792650054.5282998,
+    "samples_with_explicit_tracks_field": 60,
+    "explicit_track_total": 0,
+    "samples_without_tracks_field": 655,
+    "unclassified_packet_counts_not_audio_RTP": {
+      "incoming": 26,
+      "outgoing": 15,
+      "incoming_bytes": 4102,
+      "outgoing_bytes": 3065
+    }
+  },
+  "SFU_health": {
+    "health_sample_count": 210,
+    "max_sampled_sweep_ms": 138.277,
+    "authority_monitor_failed_count": 0,
+    "sfu_fail_closed_count": 0
+  },
+  "database": {
+    "ownership": {
+      "id": "fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407",
+      "state": "exited",
+      "image": "sha256:8020e05c4c498d06c87f0a1db010eb79bd6f8fb30e9b763d4690c34ce1e61008",
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "elitesync-v1015-r1-data-20261022",
+          "Destination": "/var/lib/mysql",
+          "RW": true
+        }
+      ],
+      "ports": {
+        "3306/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "43327"
+          }
+        ]
+      },
+      "restoration_point_sha256": "2765cd0f6803004207cd9db2c152601b6aa448a77aaae1c0d98011aa349d8b40",
+      "restoration_point_bytes": 165674,
+      "database_started_by_this_task": false
+    },
+    "effective_selectors": {
+      "APP_ENV": "local",
+      "APP_DB_CONNECTION": "mysql",
+      "DB_CONNECTION": "mysql",
+      "APP_DB_HOST": "127.0.0.1",
+      "DB_HOST": "127.0.0.1",
+      "APP_DB_PORT": "43327",
+      "DB_PORT": "43327",
+      "APP_DB_DATABASE": "elitesync_v1015_r1_dev",
+      "DB_DATABASE": "elitesync_v1015_r1_dev",
+      "APP_DB_URL": "",
+      "DB_URL": "",
+      "APP_DB_SOCKET": "",
+      "DB_SOCKET": ""
+    },
+    "before_backup": {
+      "exit": 0,
+      "bytes": 165365,
+      "sha256": "7dc8a17f29c7425dc3ec33126ee610390b691adcceedd646d4cb5b4baefaeb14",
+      "epoch": 1792648964.4723985,
+      "database": "elitesync_v1015_r1_dev",
+      "migration_run": false
+    },
+    "after_backup": {
+      "exit": 0,
+      "bytes": 177609,
+      "sha256": "dae557065fbe7828216b1a7a35edc0b42b3606d3cffb817ad5fcebd78aab765a",
+      "epoch": 1792650253.8561802
+    },
+    "row_preservation": {
+      "valid_for_protection_claim": true,
+      "all_existing_dump_rows_retained_exactly": true,
+      "existing_rows_count": 178,
+      "existing_users_count": 6,
+      "after_users_count": 8,
+      "existing_data_tables": 21,
+      "changed_or_removed_existing_rows": {},
+      "added_rows_by_table": {
+        "app_events": 4,
+        "chat_messages": 1,
+        "conversation_members": 2,
+        "conversations": 1,
+        "device_sessions": 2,
+        "friendships": 1,
+        "live_consent_events": 4,
+        "messaging_consents": 2,
+        "notifications": 5,
+        "personal_access_tokens": 4,
+        "product_connections": 1,
+        "rtc_session_events": 54,
+        "rtc_sessions": 2,
+        "users": 2
+      },
+      "schema_migration_run": false,
+      "comparison": "exact SQL row tuples from multiline INSERT statements; ignores metadata and auto-increment counters"
+    },
+    "fixture": {
+      "synthetic_test_data_only": true,
+      "fixture_only_not_product_acceptance": true,
+      "users": [
+        7,
+        8
+      ],
+      "live_read_allowed": true,
+      "live_send_allowed": true,
+      "DB_is_synthetic_flag": false,
+      "test_issuer_enabled": false
+    },
+    "container_stopped": true,
+    "volume_preserved": true
+  },
+  "reverse_created": [
+    {
+      "device_alias": "PHONE_A",
+      "remote": "tcp:8031",
+      "local": "tcp:8031",
+      "created": true,
+      "exit": 0,
+      "epoch": 1792649264.623307
+    },
+    {
+      "device_alias": "PHONE_A",
+      "remote": "tcp:8032",
+      "local": "tcp:8032",
+      "created": true,
+      "exit": 0,
+      "epoch": 1792649264.647543
+    },
+    {
+      "device_alias": "PHONE_A",
+      "remote": "tcp:7894",
+      "local": "tcp:7894",
+      "created": true,
+      "exit": 0,
+      "epoch": 1792649264.673857
+    },
+    {
+      "device_alias": "PHONE_A",
+      "remote": "tcp:7891",
+      "local": "tcp:7891",
+      "created": true,
+      "exit": 0,
+      "epoch": 1792649264.6897776
+    }
+  ],
+  "reverse_final": "original nonempty mapping entries restored; initial and final empty",
+  "phone_TCP_probe": [
+    {
+      "alias": "PHONE_A",
+      "loopback_tcp_port": 7891,
+      "exit": 0,
+      "elapsed_seconds": 0.062,
+      "application_ICE_proven": false,
+      "probe": "empty_input_connect_only"
+    },
+    {
+      "alias": "PHONE_A",
+      "loopback_tcp_port": 7894,
+      "exit": 0,
+      "elapsed_seconds": 0.052,
+      "application_ICE_proven": false,
+      "probe": "empty_input_connect_only"
+    }
+  ],
+  "device_shutdown": {
+    "actions": [
+      {
+        "role": "PHONE_A_TEST_APP",
+        "action": "force_stop_completed_in_previous_cleanup_command",
+        "exit": 0,
+        "install_and_data_preserved": true
+      },
+      {
+        "role": "OWNED_ADB_REVERSE",
+        "remote": "tcp:8031",
+        "local": "tcp:8031",
+        "action": "exact_created_mapping_removed",
+        "absent_in_final_list": true
+      },
+      {
+        "role": "OWNED_ADB_REVERSE",
+        "remote": "tcp:8032",
+        "local": "tcp:8032",
+        "action": "exact_created_mapping_removed",
+        "absent_in_final_list": true
+      },
+      {
+        "role": "OWNED_ADB_REVERSE",
+        "remote": "tcp:7894",
+        "local": "tcp:7894",
+        "action": "exact_created_mapping_removed",
+        "absent_in_final_list": true
+      },
+      {
+        "role": "OWNED_ADB_REVERSE",
+        "remote": "tcp:7891",
+        "local": "tcp:7891",
+        "action": "exact_created_mapping_removed",
+        "absent_in_final_list": true
+      }
+    ],
+    "reverse_baseline_restored_semantically": true,
+    "initial_raw_text_equality_check": "FAILED_CRLF_SERIALIZATION_ONLY",
+    "APP_uninstalled": false,
+    "APP_data_cleared": false,
+    "ADB_server_stopped": false,
+    "epoch": 1792650253.4930177
+  },
+  "host_shutdown": [
+    {
+      "role": "api",
+      "pid": 4944,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "guard",
+      "pid": 43404,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "observer",
+      "pid": 58384,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "bridge",
+      "pid": 53476,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "websocket",
+      "pid": 6676,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "phone_log_reader",
+      "pid": 39448,
+      "action": "exact_owned_process_stopped"
+    },
+    {
+      "role": "sfu_media_observer",
+      "pid": 39300,
+      "action": "already_exited"
+    },
+    {
+      "role": "peer_heartbeat",
+      "pid": 56244,
+      "action": "already_exited"
+    }
+  ],
+  "protection": {
+    "protected_roots": 5,
+    "prior_files_unchanged": 730,
+    "original_refs_unchanged": 306,
+    "private_env_unchanged": true,
+    "SQL_old_rows_retained": 178
+  },
+  "non_author_review": {
+    "reviewer": "independent_non_author_GPT_6_1_Sol_high",
+    "scope": "one bounded evidence/document/source-identity review, completed narrowly after an output-boundary incident",
+    "result": "ONE_DOCUMENT_STATISTIC_BLOCKER_CORRECTED; no product acceptance",
+    "finding": {
+      "old_samples": 653,
+      "final_samples": 715,
+      "samples_with_explicit_tracks": 60,
+      "explicit_tracks_total": 0,
+      "samples_without_tracks": 655,
+      "correction": "final completed observation file replaces intermediate snapshot; absent field not treated as empty"
+    },
+    "main_post_correction_check": "715 samples and60 explicit track fields verified directly; JSON and privacy checks performed",
+    "independent_protection_review": "receipt fields only; no DB/SQL/device/live service verification by reviewer",
+    "source_review": "only two specified docs untracked and apps/services fixed R1 trees unchanged",
+    "output_boundary_incident": "raw candidate network addresses were output in local tool sessions during extraction/review; no secrets directory/SQL/APK read by reviewer; no raw candidates included in public documents",
+    "scope_actions": "no reviewer device/DB/API/network/service/write actions",
+    "self_ACCEPTED": false,
+    "epoch": 1792650982.7206244
+  },
+  "remaining_gates": {
+    "dual_APP_audio": "OPEN",
+    "phone_capture": "NOT_PROVEN",
+    "phone_publish_SFU": "NOT_PROVEN",
+    "remote_receive": "NOT_RUN",
+    "same_call_media_reconnect": "NOT_RUN",
+    "old_JWT_first_or_reentry": "NOT_RUN",
+    "revocation_commit_to_actual_media_stop_le_5s": "NOT_RUN",
+    "video": "NOT_RUN_NOT_AUTHORIZED",
+    "AEC_human_hearing": "NOT_RUN"
+  },
+  "prohibited_actions_performed": false,
+  "main_integration": false,
+  "self_ACCEPTED": false,
+  "R2_or_v1016_started": false,
+  "raw_evidence": "LOCAL_ONLY; never upload serial, credentials, SQL, APK, network candidates or private waveform",
+  "evidence_inventory": [
+    {
+      "name": "install-result.json",
+      "bytes": 183,
+      "sha256": "80148d1834289dce0dfc0c75687029b08c9609daf2898b3e879c5f4865716203",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "install-retry1-result.json",
+      "bytes": 241,
+      "sha256": "e2d476b5701fbaec01a09a3d9fbc5f82460c254824258a0911069768b23dedf3",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "installed-package-identity.json",
+      "bytes": 334,
+      "sha256": "36ec8fc5084db5b18e8ed482c10dffc61541b72bbd9535821d51ced56cbee598",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "guard-readiness.json",
+      "bytes": 214,
+      "sha256": "ab55485a12bb5efa11e540dac3a424f3a4da527da874b6ed7826624c84c12eab",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "http-peer-accept.json",
+      "bytes": 1638,
+      "sha256": "167e805dd7d886c27d51e47be12c4b55faab88a87a2991836a3c8a849cb49d97",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "normal-call-end.json",
+      "bytes": 13265,
+      "sha256": "311851d7ef3b8274b352bf5a4150b04a3b667d069bc868aab00e77bd5745c764",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "phone-tcp-probe.json",
+      "bytes": 391,
+      "sha256": "2c8bc7a93a0479f1a745495e8b9db0b4f58f6e05dd2a242cb38a096912aa2080",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-media-observer-local.jsonl",
+      "bytes": 804534,
+      "sha256": "9776a10c69a22e030252d7bf54fd287c27251dd34056c5f2383c022e6a311871",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-health-summary.json",
+      "bytes": 141,
+      "sha256": "6b722c1d4d336359974750b18f7d9cc001e8d1069a99afd4a608d5cdf33add61",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-row-preservation.json",
+      "bytes": 820,
+      "sha256": "efb6ace1ae668ff21d9518de08c200543d96fe55304d7cbf63eeb0b3a3b97c4a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "device-shutdown-receipt.json",
+      "bytes": 1225,
+      "sha256": "dec3d6f4f1260cc2d28525a24b49917b647a138fe60121a4bf4e4d5e4bc0ef25",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "host-process-shutdown.json",
+      "bytes": 792,
+      "sha256": "c1c07cdda6f67e7e5dbb8e0034a145b5992f9a6b3b621144d6ff3c7a11b4f8e2",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "protection-final-prepublication.json",
+      "bytes": 27736,
+      "sha256": "ed08158f2501acf901d9dd4206a8e52cee57a121a322ca7c3308ce8e4c793ebf",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "phone-test-app-pid-only-local.log",
+      "bytes": 381776,
+      "sha256": "84d5594566d05ebb5a96d4df5b5051d7cce5c25662ef64d650ee6856f6de440d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-complete-local.log",
+      "bytes": 665462,
+      "sha256": "12e381dd233578c88f95cfd34212041bac57188ac88b8ad52b3efefb53774339",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-metrics-baseline.txt",
+      "bytes": 17739,
+      "sha256": "7dd4bfbdb79ecf43b59aef35521fd02293ed35fc062bd833beb4279113f57535",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-metrics-after-attempt.txt",
+      "bytes": 30961,
+      "sha256": "850966623d00f988840b1df597a3b1bd2effe305c76ccf80a20cd40a90b4c8e7",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "non-author-review.json",
+      "bytes": 1270,
+      "sha256": "20ddc579513683709ae862623b5aca25bd9b1023a73ed0a884d528250470be97",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "sfu-observer-final-summary.json",
+      "bytes": 242,
+      "sha256": "cdf6644261e89d544937ba42cf12e8663f6131473ec91cb399cd147afc14fae6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "diagnostic-failures-and-corrections.json",
+      "bytes": 1030,
+      "sha256": "1c70ab32d3968b4d0ae5498c97e370340673928bfa020e713c02458e0a244453",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "container-shutdown-identity.json",
+      "bytes": 993,
+      "sha256": "47d012ee21c3c0ec27430df08d6648a70a6fc40c499d35a1ec6560ea4ffc989c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "owned-ports-final.json",
+      "bytes": 699,
+      "sha256": "a58a7740d166a78d5acb4c089095259a31490a005a2f40ef1df19116dfb0d2d3",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "name": "database-row-parser-initial-empty.json",
+      "bytes": 463,
+      "sha256": "e7166a33162d773fddccb06106be96feb363ce90644b2332453c941ba54a758a",
+      "visibility": "LOCAL_ONLY"
+    }
+  ],
+  "container_shutdown_identity": [
+    {
+      "name": "elitesync-v1015-phone-rtc",
+      "id": "e5555d5097b5f2200c2fc14a04dffb24b61eec3f5b2627a067e781ad69e3bc6c",
+      "state": "exited",
+      "exit_code": 1,
+      "finished_at": "2026-10-22T06:24:14.156918033Z",
+      "mounts_retained": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/bridge"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/opt/rtc-gateway.py"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/private/livekit.yaml"
+        }
+      ]
+    },
+    {
+      "name": "elitesync-v1015-r1-db",
+      "id": "fa7862c5066e8b037980ce8838cec2f3cc07c0ad2022538fd3139a78e2dad407",
+      "state": "exited",
+      "exit_code": 0,
+      "finished_at": "2026-10-22T06:24:14.22942219Z",
+      "mounts_retained": [
+        {
+          "type": "volume",
+          "name": "elitesync-v1015-r1-data-20261022",
+          "destination": "/var/lib/mysql"
+        }
+      ]
+    }
+  ],
+  "owned_ports_final": {
+    "epoch": 1792650878.7934332,
+    "ports": [
+      {
+        "port": 8030,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 8031,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 8032,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 8033,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 7894,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 7891,
+        "connect_exit": 10035,
+        "accepting": false
+      },
+      {
+        "port": 43327,
+        "connect_exit": 10035,
+        "accepting": false
+      }
+    ]
+  }
+}
