@@ -20,7 +20,7 @@ Owner在Astra对上轮`73b3b753225f99824081d312a25a7deb170c62d3`受阻候选独�
 - Flutter`3.41.7`，Dart`3.11.5`，Flutter engine`59aa584fdf100e6c78c785d8a5b565d1de4b48ab`；Gradle`8.14`、AGP`8.11.1`、Kotlin`2.2.20`；`livekit_client`2.10.0、`flutter_webrtc`1.6.0、`webrtc_interface`1.5.1。开工必须按**本地版本文件与锁**重读确认，出现差异停止。
 - 上轮现有官方同engine`io.flutter:flutter_embedding_debug:1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab`：POM(`packaging=jar`)2542 B，SHA256 `437cf27a8aa1829c07f81f43e0468a5fa05cef7dc21451cabd51b7a6914341ff`；JAR1,541,793 B，SHA256 `f6cb78578df77875f18f4d6c3bd29066288109935007e59d83e53ec85a8ce745`。来自官方`https://storage.googleapis.com/download.flutter.io`的证明为**Codex LOCAL_ONLY回执**，CRC32C/ETag本地对照、两SHA sidecar404，不得冒称有发布者签名。新一轮只用同名同Hash存量文件；**禁止再次网络抓取**。
 - 上轮可信本地Gradle8.14完整分发ZIP快照224,116,304 B、SHA256 `efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1`，报告称与原有分发缓存一致；但**尚未证成隔离目录内正确解压及命令可用**，本轮必须实查。上次未经授权下载留下`gradle-8.14-all.zip.part` 38,302,288 B／SHA256 `f99db8eee2a185748c33851b09225335a0f3d040fdd3123468e805074414e53e`，绝不可作为可信输入/执行或静默删除；只隔离识别/持久保留其hash与失误史。不得把完整旧ZIP与新受权外的part混用。
-- 上轮受限隔离缓存原3148？**不使用此猜测**。正式manifest显示原全局依赖缓存 **3184件**与SDK/env/lock/cache受保护记录 **3190件**，1441份具名历史原证、494原refs、5保护根、第一根153行Windows长路径warning；实际新基线重新盘点，不将旧数当全量上限。
+- 上轮正式manifest记录原全局依赖缓存 **3184件**、SDK/env/lock/cache受保护记录 **3190件**、1441份具名历史原证、494原refs、5保护根，以及第一根153行Windows长路径warning；本轮必须重新盘点实际基线，不将旧统计当作全量上限。
 - 本轮仍冻结AC-10.1.5-05：双实际APP媒体、same-call重连、旧RTC JWT首入/重入拒绝、撤权COMMIT后流动媒体停止≤5秒，全仍OPEN。当前唯一Media APP为一台真机，HTTP peer不算第二媒体APP。
 
 ## 三、唯一连续执行门 S0～S5
