@@ -9,6 +9,54 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// ICE_DIAG_GRADLE_GUARD_BEGIN: read-only tooling validation, also fixture-tested.
+fun validateIceDiagnosticGradle(
+    binProperty: String?, homeProperty: String?, taskRoot: File, trustedDistribution: File,
+    projectRoot: File, activeHome: File, homeEnvironment: String?, outerVersion: String,
+    osName: String,
+): Pair<File, File> {
+    fun rejectUnless(ok: Boolean, reason: String) {
+        require(ok) { "ICE_DIAG_GRADLE_GUARD_REJECTED: $reason" }
+    }
+    rejectUnless(osName.startsWith("Windows", ignoreCase = true), "Windows tooling only")
+    rejectUnless(outerVersion == "8.14", "Gradle version must be 8.14")
+    rejectUnless(!binProperty.isNullOrBlank(), "missing iceDiagGradleBin")
+    rejectUnless(!homeProperty.isNullOrBlank(), "missing iceDiagGradleUserHome")
+    val bin = File(binProperty!!)
+    val home = File(homeProperty!!)
+    rejectUnless(bin.isAbsolute && home.isAbsolute, "absolute tool and home paths required")
+    val expectedBin = File(trustedDistribution, "bin/gradle.bat").canonicalFile
+    val expectedHome = File(taskRoot, "gradle-user-home").canonicalFile
+    rejectUnless(bin.canonicalFile == expectedBin, "unapproved Gradle location or Wrapper alias")
+    rejectUnless(home.canonicalFile == expectedHome && home.isDirectory, "unapproved isolated home")
+    rejectUnless(activeHome.canonicalFile == expectedHome && !homeEnvironment.isNullOrBlank() &&
+        File(homeEnvironment!!).canonicalFile == expectedHome, "Gradle home and environment disagree")
+    rejectUnless(projectRoot.canonicalFile == File(taskRoot, "project/apps/android").canonicalFile,
+        "diagnostic build must use its isolated project copy")
+    val pinned = mapOf(
+        "bin/gradle.bat" to "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+        "lib/gradle-gradle-cli-main-8.14.jar" to "3e21380f278d069ec1fc706b1a3b075250a00d6366dccc1fcf343838a494f20b",
+        "lib/gradle-core-8.14.jar" to "36ee23fbf4082131bbf8758603a7a2019be60f47bc033b283447e107c578427d",
+    )
+    pinned.forEach { (relative, expected) ->
+        val file = File(trustedDistribution, relative)
+        rejectUnless(file.isFile, "pinned Gradle component missing")
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().buffered().use { input ->
+            val buffer = ByteArray(1024 * 1024)
+            while (true) {
+                val count = input.read(buffer)
+                if (count < 0) break
+                digest.update(buffer, 0, count)
+            }
+        }
+        rejectUnless(digest.digest().joinToString("") { "%02x".format(it) } == expected,
+            "pinned Gradle component hash mismatch")
+    }
+    return expectedBin to expectedHome
+}
+// ICE_DIAG_GRADLE_GUARD_END
+
 val localProps = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) {
@@ -66,6 +114,14 @@ require(!isIceDiagnosticBuild || (isV1015R1LocalBuild && isV1015LocalBuild && !i
     gradle.startParameter.taskNames.isNotEmpty() && gradle.startParameter.taskNames.all {
         it.contains("debug", ignoreCase = true) && !it.contains("release", ignoreCase = true) && !it.contains("profile", ignoreCase = true)
     })) { "ICE_DIAG_GUARD_REJECTED: explicit isolated local R1 debug tasks only" }
+val iceDiagnosticTooling = if (isIceDiagnosticBuild) validateIceDiagnosticGradle(
+    providers.gradleProperty("iceDiagGradleBin").orNull,
+    providers.gradleProperty("iceDiagGradleUserHome").orNull,
+    File(System.getProperty("user.home"), ".codex/v1015-gradle-diagnostic-build-chain-20261023"),
+    File(System.getProperty("user.home"), ".codex/v1015-gradle814-offline-bootstrap-20261023/trusted-tools/extracted/gradle-8.14"),
+    rootProject.projectDir, gradle.gradleUserHomeDir, System.getenv("GRADLE_USER_HOME"),
+    org.gradle.util.GradleVersion.current().version, System.getProperty("os.name"),
+) else null
 require(!isV1015R1LocalBuild || isV1015LocalBuild) { "R1 requires the existing v10.1.5 local build gate" }
 require(!isV1015R1RetentionProbe || isV1015R1LocalBuild) { "Retention probe requires the isolated R1 build" }
 require(!isV1015R1RetentionProbe || gradle.startParameter.taskNames.all { it.contains("debug", ignoreCase = true) }) {
@@ -118,16 +174,18 @@ val syncFlutterAar by tasks.registering(Exec::class) {
         // AAR task with an explicit test target; production main stays untouched.
         require(!flutterSdkPath.isNullOrBlank()) { "Probe requires the installed Flutter SDK" }
         workingDir = File(flutterModuleDir, ".android")
-        val wrapper = File(workingDir, if (System.getProperty("os.name").lowercase().contains("windows")) "gradlew.bat" else "gradlew")
+        val aarGradle = if (isIceDiagnosticBuild) iceDiagnosticTooling!!.first.absolutePath else
+            File(workingDir, if (System.getProperty("os.name").lowercase().contains("windows")) "gradlew.bat" else "gradlew").absolutePath
         val encodedDefines = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.filter { it.isNotEmpty() }
             .joinToString(",") { Base64.getEncoder().encodeToString(it.toByteArray(Charsets.UTF_8)) }
-        commandLine(listOf(wrapper.absolutePath,
+        commandLine(listOf(aarGradle,
             "-I=${File(flutterSdkPath, "packages/flutter_tools/gradle/aar_init_script.gradle").absolutePath}",
             "-Pflutter-root=$flutterSdkPath", "-Poutput-dir=${r1AarOutput.parentFile.absolutePath}",
             "-Pis-plugin=false", "-PbuildNumber=$r1AarVersion",
             "-Ptarget=${if (isIceDiagnosticBuild) "lib/dev/v1015_ice_diag.dart" else if (isV1015R1RetentionProbe) "lib/dev/v1015_r1_retention_probe.dart" else "lib/main.dart"}",
             "-Pdart-defines=$encodedDefines", "-Ptarget-platform=android-x64,android-arm64",
-            if (isIceDiagnosticBuild) "assembleAarDebug" else "assembleAarRelease", "--offline", "--console=plain"))
+            if (isIceDiagnosticBuild) "assembleAarDebug" else "assembleAarRelease", "--offline", "--console=plain") +
+            if (isIceDiagnosticBuild) listOf("--no-daemon", "--gradle-user-home", iceDiagnosticTooling!!.second.absolutePath) else emptyList())
     } else commandLine(
         listOf(
             flutterExecutable,
@@ -144,6 +202,11 @@ val syncFlutterAar by tasks.registering(Exec::class) {
     inputs.property("flutterDartDefines", flutterDartDefines)
     inputs.property("v1009DualDeviceBuild", v1009DualDeviceBuild)
     inputs.property("relationshipDualDeviceBuild", relationshipDualDeviceBuild)
+    if (isIceDiagnosticBuild) {
+        environment("GRADLE_USER_HOME", iceDiagnosticTooling!!.second.absolutePath)
+        inputs.property("iceDiagGradleBin", iceDiagnosticTooling!!.first.absolutePath)
+        inputs.property("iceDiagGradleUserHome", iceDiagnosticTooling!!.second.absolutePath)
+    }
     outputs.dir(if (isV1015R1LocalBuild) File(r1AarOutput,
         "repo/com/elitesync/flutter_elitesync_module/${if (isIceDiagnosticBuild) "flutter_debug" else "flutter_release"}/$r1AarVersion") else flutterReleaseAarRepo)
 }
