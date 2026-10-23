@@ -1,0 +1,1215 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "taskBlob": "7dffebddc766abceb4b0f4e0a9e15673f6a0db0c",
+  "astraPrerequisiteReviewBlob": "695c6c2c4875114d2a6c8ce51f5a0dbb1d878aba",
+  "terminal": [
+    "LAUNCHER_RECEIPT_CORRECTED / OFFLINE_RESOLUTION_FIRST_BLOCKER / NO_APK",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_PRODUCT_MAIN_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "identity": {
+    "mainAtStart": "9eb71821593501810623519f4c6ef1fd30570fe1",
+    "mainRootAtStart": "873acfc32dca651af1ff4d452de058a9e4035838",
+    "soleParent": "d45c0fae755fb97e1df9cbdc875965725a88d969",
+    "branch": "codex/v10.1.5-ice-env-receipt-correction-single-resolve",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "allowedNewPaths": [
+      "docs/versions/v10.1.5/ICE_ENV_RECEIPT_CORRECTION_AND_SINGLE_RESOLVE_REPORT.md",
+      "docs/versions/v10.1.5/ice_env_receipt_correction_and_single_resolve_manifest.json"
+    ],
+    "sourceChanged": false,
+    "finalGitObjects": "Post-publication final-readback.json and delivery message; no self reference"
+  },
+  "D0": {
+    "passed": true,
+    "namedFiles": 289350,
+    "historicalNamed": 224486,
+    "reusedCopies": 64785,
+    "generatedBindings": 5,
+    "reusedCopiesNoExtraFiles": true,
+    "oldRefs": 502,
+    "historicalRoots": 5,
+    "root0Warnings": 153,
+    "scope": "Named prior inventory plus reusable isolated copy and prior task evidence; no whole-disk scan",
+    "time": 1792750966.5597796
+  },
+  "D1": {
+    "observation": {
+      "controlledPairCount": 1,
+      "newPreparationHash": "b0374f511b5d78f77b4a00dd178252c0bb4c76a1e63745e4f1c2b2b717592fb8",
+      "newLaunchHash": "74f368bcb4c1510db068347717a6a270d4c249adfdeb4312900b05c227442f48",
+      "rawHashMatched": false,
+      "caseInsensitiveCanonicalHashMatched": false,
+      "differences": [
+        {
+          "name": "CODEX_TOOL_CALL_ID",
+          "kind": "VALUE_DIFFERENT",
+          "source": "inherited parent environment",
+          "valuePublished": false
+        }
+      ],
+      "historicalExpected": "cc513212c588756e00e984fdbc7e443377cd3afb4dd8f6ea26413bf94e550f37",
+      "historicalActual": "UNKNOWN",
+      "historicalDifferenceKeys": "UNKNOWN",
+      "newSamplesAreNotHistoricalObservation": true,
+      "formalInvocations": 0,
+      "parentEnvironmentUnchanged": true,
+      "time": 1792750982.174878
+    },
+    "correction": {
+      "passed": true,
+      "controlledDifference": "CODEX_TOOL_CALL_ID VALUE_DIFFERENT inherited across two separate tool calls",
+      "historicalDifferenceUnknown": true,
+      "correction": "Serialize one complete validated effective dictionary and verify it on handoff; never reconstruct a second inherited dictionary for the digest comparison",
+      "snapshotKeys": 50,
+      "canonicalEnvironmentSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "allKeysIncludingToolCallIdRetained": true,
+      "ignoredKeys": [],
+      "fixedToolAndInputFiles": 43,
+      "sealedFileSha256": "f3d7d26a4fe1111beae025391050a64b60bd4d0871051cfc7fead46260f49f4a",
+      "pinsFileSha256": "3c550b3b1040c4b0fdf28abf99e0b66940eccfddcc122c09e2b01f67a0f05c0f",
+      "localScriptCorrectionCount": 1,
+      "preparationFailurePreserved": true,
+      "oldImplicitInitNotCopiedOrExecuted": true,
+      "actualRepoProvidedByFixedExplicitInit": true,
+      "gradleRuns": 0
+    },
+    "safetyFixture": {
+      "passed": true,
+      "suiteInvocations": 1,
+      "checks": 38,
+      "tests": [
+        {
+          "name": "same_complete_dictionary",
+          "passed": true
+        },
+        {
+          "name": "dictionary_order_canonicalization",
+          "passed": true
+        },
+        {
+          "name": "windows_key_name_canonicalization",
+          "passed": true
+        },
+        {
+          "name": "forbidden_prefs_alias_ANDROID_PREFS_ROOT_empty",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "forbidden_prefs_alias_ANDROID_PREFS_ROOT_set",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "forbidden_prefs_alias_android_prefs_root_empty",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "forbidden_prefs_alias_android_prefs_root_set",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "forbidden_prefs_alias_AnDrOiD_PrEfS_RoOt_empty",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "forbidden_prefs_alias_AnDrOiD_PrEfS_RoOt_set",
+          "passed": true,
+          "rejection": "FORBIDDEN_ANDROID_PREFERENCES_KEY"
+        },
+        {
+          "name": "duplicate_case_alias",
+          "passed": true,
+          "rejection": "WINDOWS_ENV_KEY_COLLISION"
+        },
+        {
+          "name": "critical_ANDROID_USER_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:ANDROID_USER_HOME"
+        },
+        {
+          "name": "critical_JAVA_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:JAVA_HOME"
+        },
+        {
+          "name": "critical_GRADLE_USER_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:GRADLE_USER_HOME"
+        },
+        {
+          "name": "critical_ANDROID_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:ANDROID_HOME"
+        },
+        {
+          "name": "critical_ANDROID_SDK_ROOT",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:ANDROID_SDK_ROOT"
+        },
+        {
+          "name": "critical_FLUTTER_ROOT",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:FLUTTER_ROOT"
+        },
+        {
+          "name": "critical_FLUTTER_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:FLUTTER_HOME"
+        },
+        {
+          "name": "critical_PUB_CACHE",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:PUB_CACHE"
+        },
+        {
+          "name": "critical_FLUTTER_STORAGE_BASE_URL",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:FLUTTER_STORAGE_BASE_URL"
+        },
+        {
+          "name": "critical_PUB_HOSTED_URL",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:PUB_HOSTED_URL"
+        },
+        {
+          "name": "critical_TEMP",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:TEMP"
+        },
+        {
+          "name": "critical_TMP",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:TMP"
+        },
+        {
+          "name": "critical_APPDATA",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:APPDATA"
+        },
+        {
+          "name": "critical_LOCALAPPDATA",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:LOCALAPPDATA"
+        },
+        {
+          "name": "critical_XDG_CONFIG_HOME",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:XDG_CONFIG_HOME"
+        },
+        {
+          "name": "critical_GRADLE_OPTS",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:GRADLE_OPTS"
+        },
+        {
+          "name": "critical_PATH",
+          "passed": true,
+          "rejection": "CRITICAL_ENVIRONMENT_DRIFT:PATH"
+        },
+        {
+          "name": "unrecognized_addition",
+          "passed": true,
+          "rejection": "FULL_ENVIRONMENT_RECEIPT_MISMATCH"
+        },
+        {
+          "name": "tool_call_id_is_not_ignored",
+          "passed": true,
+          "rejection": "FULL_ENVIRONMENT_RECEIPT_MISMATCH"
+        },
+        {
+          "name": "missing_inherited_or_diagnostic_key",
+          "passed": true,
+          "rejection": "FULL_ENVIRONMENT_RECEIPT_MISMATCH"
+        },
+        {
+          "name": "diagnostic_flags_drift",
+          "passed": true,
+          "rejection": "FIXED_ARGUMENT_OR_PROJECT_ROOT_DRIFT"
+        },
+        {
+          "name": "task_root_drift",
+          "passed": true,
+          "rejection": "FIXED_ARGUMENT_OR_PROJECT_ROOT_DRIFT"
+        },
+        {
+          "name": "gradle_bin_path_drift",
+          "passed": true,
+          "rejection": "FIXED_ARGUMENT_OR_PROJECT_ROOT_DRIFT"
+        },
+        {
+          "name": "project_directory_drift",
+          "passed": true,
+          "rejection": "FIXED_ARGUMENT_OR_PROJECT_ROOT_DRIFT"
+        },
+        {
+          "name": "fixed_gradle_binary_digest_drift",
+          "passed": true,
+          "rejection": "FIXED_TOOL_OR_INPUT_IDENTITY_DRIFT"
+        },
+        {
+          "name": "diagnosable_name_only_difference",
+          "passed": true
+        },
+        {
+          "name": "actual_python_child_consumes_exact_full_sealed_environment",
+          "passed": true
+        },
+        {
+          "name": "parent_environment_not_modified",
+          "passed": true
+        }
+      ],
+      "actualChild": {
+        "actualEnvironmentSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+        "keys": 50,
+        "deprecatedPrefsKeyPresent": false,
+        "allKeysIncludingToolCallIdValidated": true,
+        "androidHomeMatches": true
+      },
+      "canonicalEnvironmentSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "receiptPinsSha256": "3c550b3b1040c4b0fdf28abf99e0b66940eccfddcc122c09e2b01f67a0f05c0f",
+      "environmentReceiptSourceSha256": "cd11616a191410c540907f2444b2b57900c88dd3d34d49d1f920dcca7e297aec",
+      "controlledObservationPairCount": 1,
+      "historicalHostOr25FixturesRerun": false,
+      "gradleRuns": 0,
+      "time": 1792751214.0818596
+    },
+    "singleRoutinePreparationCorrection": {
+      "phase": "D1 local preparation only",
+      "exit": 1,
+      "kind": "FileNotFoundError",
+      "source": "prepare_receipt.py line14",
+      "cause": "New script incorrectly mapped every old pinned row to reused copy, including historical implicit init deliberately excluded by original copy receipt",
+      "fix": "Use exact source-to-copy map from immutable stage receipt; verify noncopied historical inputs at originals; actual command retains the fixed explicit init",
+      "samplesRepeated": 0,
+      "gradleInvocations": 0,
+      "sourceRetained": "prepare_receipt.py",
+      "receiptOrigin": "Decoded tool traceback retained as structured text; not raw stderr bytes"
+    },
+    "historicalActual": "UNKNOWN",
+    "historicalDifferenceKeys": "UNKNOWN",
+    "gradleEnvironmentEvidence": "Reviewed full dictionary passed directly to Popen; no independent JVM-side readback"
+  },
+  "D2": {
+    "terminal": "LAUNCHER_RECEIPT_CORRECTED / OFFLINE_RESOLUTION_FIRST_BLOCKER / NO_APK",
+    "passed": false,
+    "attempts": 1,
+    "authorizedCap": 1,
+    "exit": 1,
+    "seconds": 118.18354344367981,
+    "expectedCount": 30,
+    "beginCount": 1,
+    "okCount": 0,
+    "notRunCount": 29,
+    "firstFailedConfiguration": ":flutter:debugCompileClasspath",
+    "configurations": [
+      {
+        "configuration": ":flutter:debugCompileClasspath",
+        "status": "FAILED_FIRST",
+        "files": null
+      },
+      {
+        "configuration": ":flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":connectivity_plus:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":connectivity_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":device_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":device_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_webrtc:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":flutter_webrtc:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":image_picker_android:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":image_picker_android:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":jni:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":jni:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":jni_flutter:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":jni_flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":livekit_client:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":livekit_client:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":package_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":package_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":permission_handler_android:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":permission_handler_android:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":shared_preferences_android:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":shared_preferences_android:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":url_launcher_android:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":url_launcher_android:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":video_player_android:debugCompileClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      },
+      {
+        "configuration": ":video_player_android:debugRuntimeClasspath",
+        "status": "NOT_RUN",
+        "files": null
+      }
+    ],
+    "missingCoordinates": [],
+    "passMarkers": [],
+    "actualTaskLines": [
+      ":gradle:checkKotlinGradlePluginConfigurationErrors",
+      ":gradle:pluginDescriptors",
+      ":gradle:processResources",
+      ":gradle:compileKotlin",
+      ":gradle:compileJava",
+      ":gradle:compileGroovy",
+      ":gradle:classes",
+      ":gradle:jar",
+      ":resolvePinnedDebugInputs"
+    ],
+    "observedCauses": [],
+    "deepestObservedCause": null,
+    "deepestExceptionLimit": "Only raw printed classes; no additional stacktrace run",
+    "failureClass": "PROJECT_VARIANT_SELECTION_AMBIGUITY",
+    "formalResolveActionReached": true,
+    "hostInvocations": 0,
+    "historicalFixtureInvocations": 0,
+    "newSafetyFixtureSuites": 1,
+    "aarInvocations": 0,
+    "assembleInvocations": 0,
+    "newArtifact": "NO_APK",
+    "stopReason": null,
+    "nextRunAuthorized": false,
+    "firstBlocker": {
+      "classification": "PROJECT_VARIANT_SELECTION_AMBIGUITY",
+      "source": "Same single formal run stderr, no replay or supplemental execution",
+      "firstFailedConfiguration": ":flutter:debugCompileClasspath",
+      "firstNamedProject": ":connectivity_plus",
+      "ambiguousProjectsReportedWithinThisOneConfiguration": [
+        ":connectivity_plus",
+        ":device_info_plus",
+        ":flutter_plugin_android_lifecycle",
+        ":flutter_secure_storage",
+        ":flutter_webrtc",
+        ":image_picker_android",
+        ":jni",
+        ":jni_flutter",
+        ":livekit_client",
+        ":package_info_plus",
+        ":permission_handler_android",
+        ":shared_preferences_android",
+        ":url_launcher_android",
+        ":video_player_android"
+      ],
+      "firstProjectReportedVariants": [
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-classes-jar"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-lint"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-lint-local-aar"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-manifest"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-renderscript"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "android-symbol-with-package-name"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "jar"
+        },
+        {
+          "configuration": ":connectivity_plus:debugApiElements",
+          "variant": "r-class-jar"
+        }
+      ],
+      "printedConsumerRequirements": {
+        "category": "library",
+        "usage": "compile-time",
+        "targetJavaEnvironmentPreference": "Android",
+        "AgpVersionAttr": "8.11.1",
+        "BuildTypeAttr": "debug",
+        "kotlinPlatformType": "androidJvm"
+      },
+      "printedVariantSelectionIssue": "Several project debugApiElements artifact variants match; consumer did not ask for artifactType; producer lacks category/target environment/Kotlin platform attributes in printed diagnostic",
+      "missingCoordinateObserved": false,
+      "firstFailureMessage": "Could not resolve all files for configuration ':flutter:debugCompileClasspath': cannot choose between variants of project :connectivity_plus",
+      "deepestExceptionClass": null,
+      "deepestExceptionClassStatus": "NOT_PRINTED_WITHOUT_STACKTRACE; no new run authorized",
+      "environmentReceiptIssueRecurred": false,
+      "androidLocationsExceptionObserved": false,
+      "newGradleRuns": 0,
+      "noRootCauseRepairClaim": true
+    },
+    "stdout": {
+      "bytes": 2620,
+      "sha256": "3c2daa4368a821a9f779c0736dbe6ffc969f3696fe1728dccda8bd75ef617bea"
+    },
+    "stderr": {
+      "bytes": 102148,
+      "sha256": "78894d70ca6600fde5a94f9f2f375411a82d487e57d521fdf69b659382e09ec2"
+    },
+    "daemonLogs": [
+      {
+        "index": 0,
+        "bytes": 152890,
+        "sha256": "e41b408fde7709d881c4e545c54792a2feaacaafa30cb466006ed15e00ca63b1"
+      }
+    ],
+    "validatedPopenEnvironmentSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+    "sameDictionaryObjectPassedToPopen": true
+  },
+  "D3": {
+    "protection": {
+      "passed": true,
+      "namedFiles": 289350,
+      "initialFullHashVerified": true,
+      "finalCheck": "All named size/mtime compared; changed metadata and 8 critical evidence files SHA256 checked; not a second full content hash",
+      "finalRehashed": 9,
+      "contentChanges": [],
+      "missing": [],
+      "normalReusedGradleCacheMetadataChanges": 1,
+      "newReusedTaskRuntimeFiles": 21683,
+      "newFileGroups": {
+        "gradle-home": 21568,
+        "project-derived": 14,
+        "sdk-gradle-generated": 101
+      },
+      "newHistoricalFilesOutsideReusedRuntime": 0,
+      "unexpectedSdkOrArtifactFiles": [],
+      "oldRefs": 502,
+      "oldRefsChangedOrMissing": [],
+      "historicalRootsUnchanged": true,
+      "root0Warnings": 153,
+      "oldOriginalGradleHomeContentChanges": 0,
+      "scope": "Named inventories, approved reusable runtime and five historical roots; not all disk or running DB/phone",
+      "time": 1792751789.4604158
+    },
+    "closure": {
+      "toolchainProcesses": 0,
+      "environmentItems": 24,
+      "passed": true,
+      "time": "2026-10-23T18:34:52.9463848+08:00",
+      "relatedEnvironmentUnchanged": true,
+      "globalStops": 0,
+      "phase": "after"
+    },
+    "independentReview": {
+      "reviewer": "non-author GPT-6.1 Sol",
+      "reasoningEffort": "high",
+      "reviewInvocations": 1,
+      "deliverySupported": true,
+      "scope": "D1 preflight plus same single D2 result/D3 summaries/public document generation logic",
+      "criticalFindings": [],
+      "requiredFindings": [],
+      "terminal": "LAUNCHER_RECEIPT_CORRECTED / OFFLINE_RESOLUTION_FIRST_BLOCKER / NO_APK",
+      "D1": {
+        "all50KeysRetained": true,
+        "onlyNewObservedDifference": "CODEX_TOOL_CALL_ID VALUE_DIFFERENT",
+        "historicalActual": "UNKNOWN",
+        "historicalDifferenceKeys": "UNKNOWN",
+        "fullHashAndSecurityGuardsPreserved": true,
+        "popenSameDictionaryBinding": true,
+        "actualJvmEnvironmentReadback": false,
+        "pythonFixtureIndependentReadback": true,
+        "fixtureChecks": 38,
+        "oneRoutinePreparationCorrectionPreserved": true
+      },
+      "D2": {
+        "attempts": 1,
+        "exit": 1,
+        "seconds": 118.18354344367981,
+        "begin": 1,
+        "ok": 0,
+        "notRun": 29,
+        "firstConfiguration": ":flutter:debugCompileClasspath",
+        "failure": "PROJECT_VARIANT_SELECTION_AMBIGUITY",
+        "firstNamedProject": ":connectivity_plus",
+        "pluginsInSameFirstError": 14,
+        "missingGavObserved": false,
+        "deepestExceptionClass": "NOT_PRINTED"
+      },
+      "D3": {
+        "initialFullHashFiles": 289350,
+        "finalMethod": "size/mtime for all; 9 rehashes including 8 critical original evidence files; not second full content hash",
+        "protectionPassed": true,
+        "oldRefs": 502,
+        "historicalRoots": 5,
+        "existingWarnings": 153,
+        "newDerivedFiles": 21683,
+        "cacheMetadataByteChanges": 1,
+        "rawModuleCacheArtifactAdditions": 0,
+        "relatedEnvironmentHashesUnchanged": 24,
+        "toolchainProcesses": 0,
+        "globalStops": 0,
+        "publicGeneratorNoPrivateValuesOrPaths": true
+      },
+      "limits": {
+        "scriptFixtureGradleExecuted": false,
+        "filesModified": false,
+        "fullAssetHashesIndependentlyRecomputed": false,
+        "finalDocumentEntitiesReviewed": false,
+        "gitPublicationReviewed": false,
+        "remoteReadbackReviewed": false
+      },
+      "productAccepted": false,
+      "astraAccepted": false,
+      "nextGate": "Stop for Astra independent review; no automatic variant correction or next run"
+    },
+    "newFilesClassification": {
+      "gradleHome": 21568,
+      "projectDerived": 14,
+      "sdkGradleGenerated": 101,
+      "newRawModuleCacheArtifacts": 0,
+      "downloadOrUpgradeCommands": 0
+    },
+    "evidenceLayers": {
+      "Git": "Direct fixed objects and remote/raw readback",
+      "PythonGradleWindows": "CODEX_REPORTED_LOCAL_ONLY",
+      "HistoricalHOST": "Astra-supported prior HOST; not rerun",
+      "GradleEnv": "Popen binding; independent Python child readback is separate fixture",
+      "APK": "NOT_BUILT",
+      "RTC_AC05": "OPEN / NOT_RUN"
+    }
+  },
+  "prohibitedActions": {
+    "hostRerun": 0,
+    "old25FixtureRerun": 0,
+    "wrapper": 0,
+    "downloadCommands": 0,
+    "sdkUpgrade": 0,
+    "flutterPubGet": 0,
+    "flutterAar": 0,
+    "syncFlutterAar": 0,
+    "assembleDebug": 0,
+    "apkBuildInstall": 0,
+    "adbPhone": 0,
+    "dbApiSfuRtc": 0,
+    "networkConfigurationChange": 0,
+    "mainIntegration": 0,
+    "historyCleanup": 0
+  },
+  "privacy": {
+    "fullEnvPrivatePathsRawLogsArtifacts": "LOCAL_ONLY",
+    "publishedContent": "Only two sanitized docs"
+  },
+  "evidence": [
+    {
+      "file": "ACTIVE_STATE.md",
+      "bytes": 71680,
+      "sha256": "c0245284e099330272a56c61dc5d7312519accadcf278d254e2a17f975b3738c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "analyze_resolution.py",
+      "bytes": 2976,
+      "sha256": "519bb3c4b31905d9c1a106d2d4c3b2d4758d547c21064fb6f57fa4dfe1bbf292",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "ASTRA_ICE_ENV_RECEIPT_CORRECTION_SINGLE_RESOLVE_TASK_20261023.md",
+      "bytes": 11043,
+      "sha256": "5104d7286ab7aa19ffe6838af7bf35eec8c9178ef06b126bc5713b510fdafe34",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "authority.json",
+      "bytes": 375,
+      "sha256": "5781a32ea02348ad49251cf511688ce03bff3ac8a66f7c32dda154a6cff5879a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.json",
+      "bytes": 376,
+      "sha256": "2864a468518601db3b9b5a1a2d81794de812c0d1f0d2009350171b8c4cfe4c57",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.py",
+      "bytes": 2857,
+      "sha256": "b2421e69a1bbeb915e0897a9ae26f3a41b50e2dba5915831f82c1a9d410fbee1",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate-object.json",
+      "bytes": 1358,
+      "sha256": "b813b9e3719b1e9360fb0376f02533ec4f70395a338c30e7f571e8a5ba80bf9d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate-ref-before.json",
+      "bytes": 532,
+      "sha256": "e65c6e60c5a1a6c5ccdaf0b65aec8068af97812472eefa62d51195e8131d1055",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate-tree.json",
+      "bytes": 5877,
+      "sha256": "a02589349265ae83fb52a55ca247682ca55fcb9981786b65a08c80ecec2eb552",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "check_runtime_preconditions.ps1",
+      "bytes": 1770,
+      "sha256": "890716b1468d77f2f3bc9455c8f8594120bd78d561d756dacca2310570482925",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "classify_derived.py",
+      "bytes": 1528,
+      "sha256": "3d8259fdef62f72c4f7727f375ed1e6f79a03266509ff1a1c273664280b5fcbe",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "classify_first_blocker.py",
+      "bytes": 2160,
+      "sha256": "41264c6398f1b2d62eab2dffe875e2f6d907e9af0d5db4faaa410ea59871b1ef",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "common.py",
+      "bytes": 1661,
+      "sha256": "5fd4718493754e4cb34482b3ab60be84b75118643862496e490784b303293782",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "derived-classification.json",
+      "bytes": 4517,
+      "sha256": "08721e677d775c8fb6c6b59205a8ecdf204c49b2a665255f558b0c09d73432a4",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "env-resource-after.json",
+      "bytes": 209,
+      "sha256": "271576e024c9315e13bf66ccabf3dae35dfa87efd10621607f87019985e1ea42",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "env-resource-before.json",
+      "bytes": 210,
+      "sha256": "8b0b128e572037bf36edbca9732548abd6769c14a6c61935ac8b6418171c6fb6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "env_snapshot.ps1",
+      "bytes": 1861,
+      "sha256": "727e3c04d834c6ecf34336f82bd41f468568f8fbe344574753afffbaf7b41423",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "environment_receipt.py",
+      "bytes": 2899,
+      "sha256": "cd11616a191410c540907f2444b2b57900c88dd3d34d49d1f920dcca7e297aec",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-child.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-child.stdout.txt",
+      "bytes": 218,
+      "sha256": "23b765390f61af0db796949c9e5e0a2e78c4b605e6c55188d461b77c87291d25",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture_child.py",
+      "bytes": 456,
+      "sha256": "929a60007bf1d959d4b1df0ca4638161590e42ab59218296b8f0c169340bf46e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "global-env-after.json",
+      "bytes": 4244,
+      "sha256": "fd362661fb2df2817738949a3de2729db7e1c411af0f21cc7396d2925ce4bef6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "global-env-before.json",
+      "bytes": 4244,
+      "sha256": "4adbd6ae4ed3e0ef1151e2376908e42aab5f9a5af1a5840e957280370103ea12",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "historical-new-files-after.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "host-review-fixed.md",
+      "bytes": 9184,
+      "sha256": "7874e273fe599697b780eb524848022d0649309fcc008bf8f00e182af8ce69d9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "host-review.md",
+      "bytes": 9184,
+      "sha256": "7874e273fe599697b780eb524848022d0649309fcc008bf8f00e182af8ce69d9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "independent-review.json",
+      "bytes": 2166,
+      "sha256": "5d015550b5ae676e50ad07e34ffc233cd6c6d8c2d8624efad650b332fd7b1356",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "index.md",
+      "bytes": 33312,
+      "sha256": "690ee0abcd618f1123466d3a25b0c443285443fdda2479249b866873284464a0",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "intake.py",
+      "bytes": 2266,
+      "sha256": "c3652356ab7b33e8042cfb11e1125bbb0cfa9f98e7f1281d4bbf56ef58c9b2fe",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "local-preparation-failure.json",
+      "bytes": 645,
+      "sha256": "4affb3b45ddaa4ecc0554ba74514a1ef959f6f6d1157589471aa8c9fd38d4a82",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "main-object.json",
+      "bytes": 1432,
+      "sha256": "43ffa27e46e793b8f6ebdc9826e75fbccc1fc6e13e9b158e8f997cbdd7edcf80",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "main-tree.json",
+      "bytes": 5877,
+      "sha256": "b649274ff6b748078080e6f2f2f8b5771da81c5ca20099f022c85c89801dcec0",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "named-files-before.json",
+      "bytes": 99894234,
+      "sha256": "88857f6b58f41275d9cc9fa1bf3fc46b5e2c5d6eac99b55e9174c54ed3f3fe24",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observation-A.json",
+      "bytes": 8551,
+      "sha256": "bbfd8771144142d11308966bce4a40675f458dd2fe3fac5a70a129e314c81f41",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observation-B.json",
+      "bytes": 7463,
+      "sha256": "4b852e2a45ec2bb597bd7ca1709b717fb27da1833106fd247f3a68c6b1de0fa0",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observation-result.json",
+      "bytes": 796,
+      "sha256": "1049f7506d24763ff88154f3c41f60493f4335891ec0e9b9634e0f08f3d0a0c5",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observation-start.json",
+      "bytes": 337,
+      "sha256": "cd4106f9405509a7e0b8bb08f28aa765d1240179875e9483d3330b9e3315984a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observe_compare.py",
+      "bytes": 1539,
+      "sha256": "7ecd2a85e7739a35bc99ad4bfcbd948ca4cb19f1048c2488d7948479f4669ce6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "observe_prepare.py",
+      "bytes": 839,
+      "sha256": "1b1be147ce5a54c3392aa4d3ba99c7a14c1045319f89c160bd63902a1c858992",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "old-task-fixed.md",
+      "bytes": 10877,
+      "sha256": "4cd80248ef8ee52ff93c101ee490ba58961deecc483f5dd51c8602ffbf4291cd",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "prepare_receipt.corrected.py",
+      "bytes": 3141,
+      "sha256": "695d92f7562eb4d518dac3a2dc21d8e9328113e09ad2c949ec9d0f459109b423",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "prepare_receipt.py",
+      "bytes": 2737,
+      "sha256": "8ca378550ab6755e9f10cdcabbf18d5f3442f55d43b5d7c57b4d5955fea6b916",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protect_after.py",
+      "bytes": 4406,
+      "sha256": "c33570935ee317cafc4dbd8daf8eb67d122ef1a2387ea7268b3f7bd61d9b5ff7",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protect_blocked_result.py",
+      "bytes": 3522,
+      "sha256": "8ffacba20038ffffe377f22a158b9654f289f65fa07c6228b17f61a69100ad2e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protection-after.json",
+      "bytes": 895,
+      "sha256": "caa3caf59d1b3ee8dd6d5c351ce6308f9974808baf16653337255701d1e4c55c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "receipt-pins.json",
+      "bytes": 25235,
+      "sha256": "3c550b3b1040c4b0fdf28abf99e0b66940eccfddcc122c09e2b01f67a0f05c0f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "receipt-preparation.json",
+      "bytes": 941,
+      "sha256": "7268deb88ad0c5e6f6a337249f5bd176a2102862db5afc7af0de0352098a8d46",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "refs-before.txt",
+      "bytes": 60550,
+      "sha256": "4a637e56da3ef225eae11e3f02143d0af62bf8e014ffda02a554fb5da9308a88",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution-analysis-sanitized.json",
+      "bytes": 5189,
+      "sha256": "b6422efadd1ade8a01679337bca1362916633d654c0595803b9689a4d19c99e6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution-blocker-sanitized.json",
+      "bytes": 2655,
+      "sha256": "fe428ff2251d6de70f37ce9cf63e2202d570539dcc33fb092693353600e184d1",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution.result.json",
+      "bytes": 2673,
+      "sha256": "84d049485d04d4b7d2295d37c0e404a31be572196f9ec91c698f1327ae470f3d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution.started.json",
+      "bytes": 1923,
+      "sha256": "ca7bbaf999751d940820def3aada0adc8b7e3e49b04f6dc1d3dd790cfcfcaaf8",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution.stderr.txt",
+      "bytes": 102148,
+      "sha256": "78894d70ca6600fde5a94f9f2f375411a82d487e57d521fdf69b659382e09ec2",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resolution.stdout.txt",
+      "bytes": 2620,
+      "sha256": "3c2daa4368a821a9f779c0736dbe6ffc969f3696fe1728dccda8bd75ef617bea",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "review-fixed.md",
+      "bytes": 5238,
+      "sha256": "c19baab50700b9dcf8dd83a22bce99bf1c968810f09130022374e6cfbb70255d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "review-preflight.json",
+      "bytes": 1062,
+      "sha256": "014e2b69cb92e6987e5cbf93d3f53164d260012883dea8e0b60fd0d10acb6163",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "review.md",
+      "bytes": 5238,
+      "sha256": "c19baab50700b9dcf8dd83a22bce99bf1c968810f09130022374e6cfbb70255d",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-0-after.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-0-before.stderr.txt",
+      "bytes": 48414,
+      "sha256": "5e8a98c918052493e53c187280c914174e3e22790b7d34b5c5e778f2d1160eec",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-1-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-1-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-2-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-2-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-3-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-3-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-4-after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "root-4-before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "roots-after.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "roots-before.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "run_resolution_once.corrected.py",
+      "bytes": 3668,
+      "sha256": "00c835397f8d54c4ee071d12c1f049cfae1050e83e138b97eb924dd31b6f401a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "runtime-preconditions.json",
+      "bytes": 4121,
+      "sha256": "b729beb4549b651d9f29ff02303d248d15a1952bfd9559c3b4d15342f9aa4481",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "safety-fixture.json",
+      "bytes": 5883,
+      "sha256": "0e6cfd14754ae1ac7c5d9cb283e30c9c0ad8c175d60fcadafa95ccd770af017e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "safety_fixture.py",
+      "bytes": 3852,
+      "sha256": "d7d02febd8226e059cf6335ba5fb7799835451974c0b6fbdb889b3490d1c0c4e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "sealed-environment.json",
+      "bytes": 7341,
+      "sha256": "f3d7d26a4fe1111beae025391050a64b60bd4d0871051cfc7fead46260f49f4a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "state.md",
+      "bytes": 51644,
+      "sha256": "e2e5e5ad9c5e7e3c0612c3deb42643266b93c4c6b10892eaa00aee8c6abf8907",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "static-control-flow.json",
+      "bytes": 934,
+      "sha256": "2f793b0907a57b1e55620cd2606d3640e89f5c090691be3e5e552770bd361998",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "static_audit.py",
+      "bytes": 1521,
+      "sha256": "88ec6d091d3c808225171cf28f49653526ec2ee4c5cfe3837b53fc1c669ff6fa",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "task-cache-metadata-changes.json",
+      "bytes": 381,
+      "sha256": "09659661f11c7cab044c71b1dd4b9cf8e67817f266421f27dca76a7aa99d700b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "task-fixed.md",
+      "bytes": 11043,
+      "sha256": "5104d7286ab7aa19ffe6838af7bf35eec8c9178ef06b126bc5713b510fdafe34",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "task-runtime-new-files.json",
+      "bytes": 10449086,
+      "sha256": "25f66877c8aa14bd7033aa075472280a6de91a636dca273cfab66a30678fb6e0",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "workflow.md",
+      "bytes": 7774,
+      "sha256": "de33c75fe2356e6db1cc75f0568626b2280c1d548e14d059ffb151cedebe0821",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "write_delivery.py",
+      "bytes": 13464,
+      "sha256": "cebcf85871b19e52b46986cd1e8dba90bf05d3543ddb74f5e3827f35da122000",
+      "visibility": "LOCAL_ONLY"
+    }
+  ]
+}
