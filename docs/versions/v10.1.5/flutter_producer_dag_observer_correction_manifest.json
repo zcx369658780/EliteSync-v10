@@ -1,0 +1,737 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "taskBlob": "7e29ca75ed3d12d72108be45e00ca5ff7597bc82",
+  "astraReviewBlob": "f98867b3450e6fda65e4623aec82df83d2160aab",
+  "terminal": "DAG_OBSERVER_OR_GRAPH_BLOCKED / PRODUCER_NOT_RUN / RESOLVE_NOT_RUN / NO_APK",
+  "preciseTerminalStage": "D1_ACTUAL_DAG_PASS_BUT_D2_OFFLINE_ACTION_CLOSURE_BLOCKED",
+  "identity": {
+    "soleParent": "8861c30464893f11968465fee365e5e5471fa773",
+    "parentRoot": "d1112b5f89a969a466612f85d40e0c623f80d9b5",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "29f23490e9b196c30f9d89c9cca564c51e5eb908",
+    "mainRootAtStart": "bbf08b81e65d1e2c4be248e91834000fe8050912",
+    "mainAcceptedProductTrees": {
+      "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    },
+    "branch": "codex/v10.1.5-flutter-producer-dag-observer-correction",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/FLUTTER_PRODUCER_DAG_OBSERVER_CORRECTION_RESULT.md",
+      "docs/versions/v10.1.5/flutter_producer_dag_observer_correction_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "finalGitIdentity": "Commit/Root/two document Blobs fixed after commit in delivery-git-identity and final-readback receipts and Owner handoff; no self-reference"
+  },
+  "D0": {
+    "authorityPassed": true,
+    "fixedPreviousReportBlob": "ca72fa08a712d88e29ac2b2982769862ecb50ebf",
+    "fixedPreviousManifestBlob": "387b2a448d3b25cd81dd72d8ee0d43b52a0f9b51",
+    "historicalAstraReviewBlob": "1646e3fe9c32e7f294e9e838c65cec9f2745e655",
+    "activeStateReadAtLiveMain": true,
+    "sourceComposition": {
+      "oldObserverSha256": "7a22825edceaf8658df54571ea2452d865503b647512e4e8ddff2768e85270db",
+      "oldCombinedInitSha256": "c5e5293aadd3738d751f492b46bb6d00a237df7b60b7f5c251f6533d84c14175",
+      "inheritedPrefixSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+      "newObserverSha256": "2047d92b5f0a2ee90eca8ca9eead098fa12bb452f5d96cee4c8cabe454dd2346",
+      "newCombinedInitSha256": "aba99fc86063e2bad85cdd286060653836d2deb53a5d497b5595411170dcab07",
+      "prefixByteLength": 5570,
+      "prefixByteIdentical": true,
+      "onlyChanges": [
+        "Receipt path rebound to new task root",
+        "Duplicate moduleRoot declaration replaced with assertion of inherited binding"
+      ],
+      "historicalFilesModified": false
+    },
+    "static": {
+      "passed": true,
+      "compiler": "Groovy 3.0.24",
+      "phase": "CLASS_GENERATION without execution",
+      "scriptExecution": false,
+      "topLevelSymbols": [
+        "selectDiagnosticClassArtifacts",
+        "taskRoot",
+        "moduleRoot",
+        "hostRoot",
+        "approvedRoot",
+        "addExactRepo",
+        "receiptRoot",
+        "runRoot",
+        "expectedTarget"
+      ],
+      "guardAstConstantsChecked": 19,
+      "negativeCases": [
+        {
+          "name": "duplicate_moduleRoot",
+          "rejected": true
+        },
+        {
+          "name": "taskRoot_swap",
+          "rejected": true
+        }
+      ],
+      "compilerProcessInvocations": 2,
+      "initialHelperExit": 1,
+      "finalHelperExit": 0,
+      "initialHelperFailure": "Unavailable ArrayList.single() in new static helper; first raw logs retained; reconstructed initial source explicitly labeled, not original saved bytes",
+      "helperCorrection": "Explicit module count/index and structural AST root bindings",
+      "noGradleInvocationsInStaticStage": true,
+      "scopeLimit": "Compile/AST proof is not runtime DAG or producer action safety"
+    },
+    "preflightReview": {
+      "passed": true,
+      "reviewCount": 1,
+      "reviewer": "Non-author GPT-6.1 Sol/high helper prefs_env_independent_review",
+      "scope": "D0 preflight of same single bounded review; only supports one DAG diagnostic, producer not yet cleared",
+      "requiredChanges": 0,
+      "notes": [
+        "Prefix 5570B preserved; exact two observer changes",
+        "Full Groovy compiler and two AST negatives pass",
+        "Initial helper failure preserved; reconstructed helper source is not original raw saved bytes",
+        "Private AST expressions stay LOCAL_ONLY"
+      ],
+      "sourcePins": {
+        "common.py": "6ae93825b00a68078037b3f8ca6e06476a7c8fea7cbaf3a7c1d9ddb06381be99",
+        "environment_receipt.py": "cd11616a191410c540907f2444b2b57900c88dd3d34d49d1f920dcca7e297aec",
+        "producer.init.gradle": "aba99fc86063e2bad85cdd286060653836d2deb53a5d497b5595411170dcab07",
+        "producer-graph-observer.gradle": "2047d92b5f0a2ee90eca8ca9eead098fa12bb452f5d96cee4c8cabe454dd2346",
+        "resolve-inputs.init.gradle": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+        "selection-policy.gradle": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58",
+        "static_check.groovy": "237e0aded32dba5d0c7be5b3cc9e7a67fb96debcad70176a783c604d44ad24cf",
+        "run_task_graph_once.py": "22dbc2286c54347583b6bf42d6162d15a3511db795084c1d48c6327b44c7e99e",
+        "receipt-pins.json": "a741a69d65db77b34fa3c255537ab27827c8959385b61eb51fa8ddbfc9dea67b",
+        "sealed-environment.json": "f3d7d26a4fe1111beae025391050a64b60bd4d0871051cfc7fead46260f49f4a"
+      }
+    },
+    "protectionBaseline": {
+      "passed": true,
+      "currentNamedScope": 87357,
+      "priorNamedContext": 311653,
+      "metadataInheritedHashes": 87250,
+      "contentRehashed": 107,
+      "method": "Current affected RUN plus named SQL/APK/part/backups, prior original helpers/env/init/raw streams and immediate prior task evidence; selected named metadata and changed-byte hashes, not a new full historical audit",
+      "priorInventorySha256": "16a5d3c44eb3dc4af823d497700f8843f5dc0309767008c9ea830ea4b3972238",
+      "priorFinalProtectionSha256": "7fbfbfb04c27ff4f0cc64645eb5267c3d0479c1253cd94e6e7bdea3e0e320142",
+      "outsideSelectedScope": "Inherited prior evidence and no write authority; not newly content-rehashed",
+      "oldRefs": 505,
+      "historicalRoots": 5,
+      "root0Warnings": 153,
+      "newSdkCopy": false,
+      "time": 1792763521.3576522
+    },
+    "environment": {
+      "sealedKeys": 50,
+      "canonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "androidPrefsRootAbsentAnyCase": true,
+      "androidUserHomeAndCriticalRootsPreserved": true,
+      "validatedInputPinCount": 46,
+      "parentGlobalEnvironmentNotMutated": true
+    },
+    "frozenTools": {
+      "gradle": "8.14",
+      "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+      "flutter": "3.41.7",
+      "dart": "3.11.5",
+      "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "agp": "8.11.1",
+      "kotlin": "2.2.20",
+      "jdk": "17.0.18.8",
+      "versionsUpgraded": false
+    }
+  },
+  "D1": {
+    "passed": true,
+    "attempts": 1,
+    "exit": 0,
+    "seconds": 17.562752962112427,
+    "observerRuntimeGuardsPassed": true,
+    "selectedGraph": {
+      "passed": true,
+      "dryRun": true,
+      "offline": true,
+      "gradleVersion": "8.14",
+      "requested": [
+        ":flutter:packJniLibsflutterBuildDebug"
+      ],
+      "buildMode": "debug",
+      "targetPlatforms": [
+        "android-x64",
+        "android-arm64"
+      ],
+      "targetPath": "lib/main.dart",
+      "dartDefines": null,
+      "outputPreexisted": false,
+      "minSdk": 24,
+      "sourceDir": "project/apps/flutter_elitesync_module",
+      "flutterRoot": "sdk-stage/flutter",
+      "flutterExecutable": "sdk-stage/flutter/bin/flutter.bat",
+      "output": "project/apps/flutter_elitesync_module/.android/Flutter/build/intermediates/flutter/debug/libs.jar",
+      "intermediate": "project/apps/flutter_elitesync_module/.android/Flutter/build/intermediates/flutter/debug",
+      "tasks": [
+        {
+          "path": ":flutter:compileFlutterBuildDebug",
+          "type": "com.flutter.gradle.tasks.FlutterTask_Decorated",
+          "dependencies": [],
+          "outputs": [
+            "project/apps/flutter_elitesync_module/.android/Flutter/build/intermediates/flutter/debug",
+            "project/apps/flutter_elitesync_module/.android/Flutter/build/intermediates/flutter/debug/flutter_build.d"
+          ],
+          "finalizers": []
+        },
+        {
+          "path": ":flutter:packJniLibsflutterBuildDebug",
+          "type": "org.gradle.api.tasks.bundling.Jar_Decorated",
+          "dependencies": [
+            ":flutter:compileFlutterBuildDebug"
+          ],
+          "outputs": [
+            "project/apps/flutter_elitesync_module/.android/Flutter/build/intermediates/flutter/debug/libs.jar"
+          ],
+          "finalizers": []
+        }
+      ]
+    },
+    "mainTaskActionsExecuted": 0,
+    "includedBuildTaskStatuses": [
+      {
+        "task": ":gradle:compileKotlin",
+        "status": "UP-TO-DATE"
+      },
+      {
+        "task": ":gradle:pluginDescriptors",
+        "status": "UP-TO-DATE"
+      },
+      {
+        "task": ":gradle:processResources",
+        "status": "UP-TO-DATE"
+      },
+      {
+        "task": ":gradle:jar",
+        "status": "UP-TO-DATE"
+      }
+    ],
+    "includedBuildOtherStatuses": "checkKotlin configuration SKIPPED; compileJava/compileGroovy NO-SOURCE; classes UP-TO-DATE",
+    "logs": {
+      "stdout": {
+        "bytes": 1465,
+        "sha256": "cb95c2c6fe503e5164676f0ad9d4c2e2f80d5a0139efb6859bf18de837fa366a"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "graphIsNotProofOfFlutterCliOfflineClosure": true
+  },
+  "D2": {
+    "producerAttempts": 0,
+    "conditionalCap": 1,
+    "status": "NOT_RUN_OFFLINE_ACTION_CLOSURE_BLOCKED_AFTER_DAG_PASS",
+    "firstDecisiveSafetyBlocker": "ISOLATED_FLUTTER_UNIVERSAL_CACHE_PACKAGE_FLUTTER_GPU_MISSING",
+    "missingPath": "sdk-stage/flutter/bin/cache/pkg/flutter_gpu",
+    "missingUniversalPackageObserved": true,
+    "cacheContract": "FlutterSdk universal getPackageDirs includes flutter_gpu; EngineCachedArtifact.isUpToDateInner requires it; updateAll can enter updateInner when absent",
+    "offlinePropagation": "BaseFlutterTaskHelper does not pass --offline to Flutter assemble; no assemble offline option; FlutterCommand defaults cache offline=false",
+    "actualNetworkOrDownloadObserved": false,
+    "actualProducerErrorObserved": false,
+    "bootstrapEntireSafetyClosed": false,
+    "otherIosDirectoryChecks": "Windows platform-conditional updateInner returns; not used as evidence of Android or iOS network attempts",
+    "hookInventory": {
+      "moduleBuildHookCount": 1,
+      "observedHooks": [
+        {
+          "package": "objective_c",
+          "kind": "build",
+          "bytes": 7018,
+          "sha256": "aa8cd26a22f3d5f7cb1e769f6de647bae2b485db4576a43743c20f9a34301f7e"
+        }
+      ],
+      "onlyObservedHook": "objective_c build hook source returns for Android before Apple builder; does not repair missing universal SDK package"
+    },
+    "sourceHashes": {
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/commands/assemble.dart": "621d0970685d9ffcd74e509075a9407afe3ee0bf1344e9592d79897f22fe62a9",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/runner/flutter_command.dart": "ae42e10f66ed5b14a62197f952bfeae2a1088bb6c8d6346525e46a01422d108b",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/cache.dart": "eb6d9f130287f48df8c176e346ffa4e7ad00e2686464409277900044e19332fc",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/flutter_cache.dart": "c13208712c908f530fddb38d6142604bb09a05f14d59fbb985a87e3a0940a7c3",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/build_system/targets/android.dart": "176837e21cd7df9a58a35be5305f74e6d44fe7e4b815ce8d6d64f7546e6b17aa",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/build_system/targets/native_assets.dart": "5e6054a6b5250a2ccefd73a63a66007a08caeec66b9b08a8c158ff6763fda18d",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/isolated/native_assets/native_assets.dart": "c9d6974ae75435edff2ba129e9a377f511dc68ba1139466e9aa1c01d3a2f53a6",
+      "sdk-stage/flutter/bin/flutter.bat": "f83bfed7ecd10fd1afd8ce19c0b0119d2c80e24fbf26f4ff4f63c1cc5f75dcd5",
+      "sdk-stage/flutter/bin/internal/shared.bat": "b1b8a1b696ecd1265c0cfdc1408c340f0d8351c0e1624710bb8fbf1ab218d4db"
+    },
+    "actualProducedJar": {
+      "producerRan": false,
+      "preexistedAtThisRoundDAG": false,
+      "bytes": null,
+      "sha256": null,
+      "structure": "NOT_RUN_NO_NEW_PRODUCER_OUTPUT",
+      "contents": "NOT_RUN",
+      "abiVerification": "NOT_RUN",
+      "provenance": "NOT_ESTABLISHED"
+    },
+    "moduleDebugAarRuns": 0,
+    "hostApkRuns": 0,
+    "sourceOrCacheRepairPerformed": false
+  },
+  "D3": {
+    "formalResolveAttempts": 0,
+    "conditionalCap": 1,
+    "actualConfigurationResolveCalled": false,
+    "beginCount": 0,
+    "okCount": 0,
+    "notRunCount": 30,
+    "configurations": [
+      {
+        "configuration": ":flutter:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":connectivity_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":connectivity_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":device_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":device_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_webrtc:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_webrtc:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":image_picker_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":image_picker_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni_flutter:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni_flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":livekit_client:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":livekit_client:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":package_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":package_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":permission_handler_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":permission_handler_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":shared_preferences_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":shared_preferences_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":url_launcher_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":url_launcher_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":video_player_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":video_player_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      }
+    ],
+    "firstFailedConfiguration": null,
+    "initSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "policySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58",
+    "strictPolicyUnchanged": true,
+    "oldHostOrFixtureReruns": 0
+  },
+  "D4": {
+    "protection": {
+      "passed": true,
+      "currentNamedScope": 87357,
+      "priorHistoricalNamedContext": 311653,
+      "finalContentRehashed": 29,
+      "cacheMetadataByteChanges": 6,
+      "runtimeDerivedUpdates": 5,
+      "newRuntimeFiles": 97,
+      "newHistoricalFiles": 0,
+      "oldRefs": 505,
+      "fiveHistoricalRootsUnchanged": true,
+      "root0Warnings": 153,
+      "scope": "Current affected/critical named paths plus unchanged five root Git states; inherited outside-scope history, not full all-history content rehash",
+      "time": 1792764313.6847115
+    },
+    "nonAuthorReview": {
+      "reviewer": "Non-author helper prefs_env_independent_review",
+      "model": "GPT-6.1 Sol",
+      "reasoningEffort": "high",
+      "reviewCount": 1,
+      "phases": "Same bounded review: D0 preflight, D1 actual graph, D1-to-D2 cache safety stop, D4 protection/public generation",
+      "preflightPassed": true,
+      "deliverySupported": true,
+      "severityOrRequiredChangeCount": 0,
+      "DAG": "ACTUAL_PASS",
+      "supportedStop": "D2 offline action closure blocked by missing universal pkg/flutter_gpu; no producer or formal resolution run",
+      "importantLimits": [
+        "Potential acquisition branch only; no network/download observation",
+        "Gradle offline is not Flutter assemble offline",
+        "lib/main.dart and dartDefines=null do not establish diagnostic flags consumed",
+        "Selected critical inventory and metadata/delta rehash are not all-history byte revalidation",
+        "Complete producer actions, offline closure, generated Jar structure/content/ABI and real30 resolution remain unverified"
+      ],
+      "protectionReview": "87357 selected named files,29 final rehash,6 cache metadata changes,5 derived updates,97 runtime new;505 old refs and5roots retained;24 environment pairs unchanged",
+      "privacyReview": "Public logic uses summaries and hashes, not private AST expressions, package roots, machine paths or environment values",
+      "reviewerActions": {
+        "scriptOrGradleRuns": 0,
+        "fileEdits": 0,
+        "fullHistoryRehash": 0,
+        "gitPublication": 0
+      },
+      "finalEntityGitAndReadback": "Main agent responsibility, no second reviewer loop",
+      "doesNotAuthorizeProducerOrSuccessor": true,
+      "doesNotConstituteProductAcceptance": true,
+      "sourcePins": {
+        "common.py": "6ae93825b00a68078037b3f8ca6e06476a7c8fea7cbaf3a7c1d9ddb06381be99",
+        "environment_receipt.py": "cd11616a191410c540907f2444b2b57900c88dd3d34d49d1f920dcca7e297aec",
+        "producer-graph-observer.gradle": "2047d92b5f0a2ee90eca8ca9eead098fa12bb452f5d96cee4c8cabe454dd2346",
+        "producer.init.gradle": "aba99fc86063e2bad85cdd286060653836d2deb53a5d497b5595411170dcab07",
+        "source-composition.json": "acb77fa63309ef69d92311683fd835a1f82481a15a8da88554f0d64a67230f2d",
+        "observer.diff": "e33237183936dc4a956ce4db5e0ca79b8018ecc8dd9497828e668357af367c6b",
+        "static_check.groovy": "237e0aded32dba5d0c7be5b3cc9e7a67fb96debcad70176a783c604d44ad24cf",
+        "static-check.json": "fcbee128a248475dd0b21626a12d29077e1a83cbd5c4cc1e42fb27b822a9a88e",
+        "run_task_graph_once.py": "22dbc2286c54347583b6bf42d6162d15a3511db795084c1d48c6327b44c7e99e",
+        "task-graph.json": "85d38512d8d9d2d88d85e689e0bac15c3ef5b646e274ddbb32e1c1e328620a5b",
+        "task-graph.result.json": "8dcaf97c998cb46b15cce6c16ae7065c2086b978a31d0f4ddaee9c87f5d0ae96",
+        "task-graph.stdout.txt": "cb95c2c6fe503e5164676f0ad9d4c2e2f80d5a0139efb6859bf18de837fa366a",
+        "task-graph.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dag-analysis-sanitized.json": "aaf972b8cc98dbf5e7ca2460c93df03ada613b3fafa2c83b4856426438b54443",
+        "producer-readiness.json": "eadfaf5f51ba5ffd4c4bec063af2a43b19bd6a9d4f78c5fc2f200485bf8215d4",
+        "terminal-analysis.json": "007bbbcac148be2d0065d6183a4139013a6ce1b1ccb5c813057e813aa995a1f2",
+        "protection-after.json": "323741cc77a3bd146222bcbb473e4bc9fdd2095a80b3d4495c2e8e80e1ca2444",
+        "write_delivery.py": "16506691ccf2e57adcd1cf7c95bc72eae65ef312c76b2d89df6a7680fccf6a5f",
+        "commit_publish.py": "2cfccc8e782705d6fc9d5df308acb4bff09ebcf7f6c56051d04cadc1a06e80bb",
+        "verify_readback.py": "a60755dcaa288e633fd2484909324958887297f112debdd80a8d709ad796ac97"
+      },
+      "time": 1792764683.8587904
+    },
+    "relatedGlobalEnvironmentPairsUnchanged": 24,
+    "ownedToolchainProcessesAfter": 0,
+    "globalStops": 0,
+    "newDaemonArchives": 1,
+    "fullHistoricalRehash": false,
+    "sdkRecopy": false,
+    "oldProtectionFirstClassificationFailureRetained": true,
+    "publication": "Only two added docs; ordinary non-force push and complete parent/root/doc byte/product tree readback required before final response"
+  },
+  "prohibitedActions": {
+    "trackedProductEdits": 0,
+    "globalEnvironmentChanges": 0,
+    "toolOrSdkUpgrades": 0,
+    "wrapperInvocations": 0,
+    "dependencyAcquisitionOrDownloads": 0,
+    "moduleAarBuilds": 0,
+    "hostApkBuilds": 0,
+    "deviceAdbAvdActions": 0,
+    "rtcSfuDbApiActions": 0,
+    "networkConfigChanges": 0,
+    "historyCleanupOrForcedGit": 0,
+    "productMainIntegrations": 0,
+    "r2p2v1016Starts": 0
+  },
+  "evidenceLayers": {
+    "githubDirect": "Task/reviews/main and delivered Git/docs identities independently readable",
+    "localReported": "Static compilation, Task DAG, missing SDK package observation, private source closure analysis, environment and protection are CODEX_REPORTED_LOCAL_ONLY",
+    "unrun": "Producer actions, new Jar/AAR, thirty Configuration.resolve calls, host APK and all RTC/device/DB gates"
+  },
+  "privacy": {
+    "rawLogsEnvironmentAbsolutePathsSdkAndBinaries": "LOCAL_ONLY",
+    "public": "Sanitized relative paths, task names, object identities, counts and hashes only",
+    "astSourceExpressionsAndReadinessPackageRootsNotPublished": true
+  },
+  "evidence": [
+    {
+      "name": "task-fixed.md",
+      "bytes": 13434,
+      "sha256": "6d4e0752135cb596c667745ecba7618628e1684cc5b52b3e7fae3c6a17fbe5f9",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "review-fixed.md",
+      "bytes": 5624,
+      "sha256": "8e7ff9ddccdec2b5275710b22b922dc7c5956cb3e200f563133af2df6c1f1dd3",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "authority.json",
+      "bytes": 1633,
+      "sha256": "9e6ff7b037fa74613b6308951c43c907aa438fbc07b1289d1daa69dabf7bb95f",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "baseline.json",
+      "bytes": 805,
+      "sha256": "d769e722dfaf724e11cebb2ba8ecaba729573bfc57494d3d888e697027b343c7",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "source-composition.json",
+      "bytes": 730,
+      "sha256": "acb77fa63309ef69d92311683fd835a1f82481a15a8da88554f0d64a67230f2d",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "observer.diff",
+      "bytes": 1056,
+      "sha256": "e33237183936dc4a956ce4db5e0ca79b8018ecc8dd9497828e668357af367c6b",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "producer-graph-observer.gradle",
+      "bytes": 3702,
+      "sha256": "2047d92b5f0a2ee90eca8ca9eead098fa12bb452f5d96cee4c8cabe454dd2346",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "producer.init.gradle",
+      "bytes": 9273,
+      "sha256": "aba99fc86063e2bad85cdd286060653836d2deb53a5d497b5595411170dcab07",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static_check.groovy",
+      "bytes": 5956,
+      "sha256": "237e0aded32dba5d0c7be5b3cc9e7a67fb96debcad70176a783c604d44ad24cf",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static_check.initial_failed.groovy",
+      "bytes": 4927,
+      "sha256": "33c7140b99297d24d88c072f91776fa316670aeb1e9e239c0dbb11e804e30afd",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-helper-bootstrap-correction.json",
+      "bytes": 552,
+      "sha256": "c7c8600e416c5c4987ac8d3074af2d25757115aced874d3d24037efe557c74b3",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler.result.json",
+      "bytes": 218,
+      "sha256": "9dfeebd9930129af0be576b298d047e0abefbbaa33c7f95ca0a58fad1f077abd",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler.stderr.txt",
+      "bytes": 909,
+      "sha256": "739b0013d4a71cdd1bfb6690e51bdd60fed8f476b022d8ecb5ea09ba12efdbf9",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler-v2.result.json",
+      "bytes": 218,
+      "sha256": "436a19ae7f8c1e9c7e52cbc33de805c659d53b75d10406f227e95521dd3cb0f5",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler-v2.stdout.txt",
+      "bytes": 50,
+      "sha256": "ee14705eeb563bd77b36b0021f4a3ea0860e5f283f5b24de737ee66fa127d5cc",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-compiler-v2.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "static-check.json",
+      "bytes": 6572,
+      "sha256": "fcbee128a248475dd0b21626a12d29077e1a83cbd5c4cc1e42fb27b822a9a88e",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "review-preflight.json",
+      "bytes": 1514,
+      "sha256": "9826ebbd9aeb3111ecae8b54e5729910ac091813052076c79b98c97e9e821538",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "task-graph.started.json",
+      "bytes": 1726,
+      "sha256": "d5d3465fb50cc32f7b877ca81b9539cdb738321d02467f79ac24cfa792eb7259",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "task-graph.result.json",
+      "bytes": 415,
+      "sha256": "8dcaf97c998cb46b15cce6c16ae7065c2086b978a31d0f4ddaee9c87f5d0ae96",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "task-graph.json",
+      "bytes": 2526,
+      "sha256": "85d38512d8d9d2d88d85e689e0bac15c3ef5b646e274ddbb32e1c1e328620a5b",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "task-graph.stdout.txt",
+      "bytes": 1465,
+      "sha256": "cb95c2c6fe503e5164676f0ad9d4c2e2f80d5a0139efb6859bf18de837fa366a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "task-graph.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "dag-analysis-sanitized.json",
+      "bytes": 2673,
+      "sha256": "aaf972b8cc98dbf5e7ca2460c93df03ada613b3fafa2c83b4856426438b54443",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "producer-readiness.json",
+      "bytes": 88889,
+      "sha256": "eadfaf5f51ba5ffd4c4bec063af2a43b19bd6a9d4f78c5fc2f200485bf8215d4",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "terminal-analysis.json",
+      "bytes": 5101,
+      "sha256": "007bbbcac148be2d0065d6183a4139013a6ce1b1ccb5c813057e813aa995a1f2",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "protection-after.json",
+      "bytes": 638,
+      "sha256": "323741cc77a3bd146222bcbb473e4bc9fdd2095a80b3d4495c2e8e80e1ca2444",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "independent-review.json",
+      "bytes": 3644,
+      "sha256": "073dbcaaa76453850c274522f4e2ca8818bf4513337cd245b3f2decb89fa9e71",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "env-resource-before.json",
+      "bytes": 210,
+      "sha256": "9bbe933fd8eb637092b8dd989322464cd931e1c19c258179a33b9b273340c78d",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "env-resource-after.json",
+      "bytes": 209,
+      "sha256": "77776365060f3cb5a027f8abf54a9f6ec40f14d7269e711816cdf02fe09647e3",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "sealed-environment.json",
+      "bytes": 7341,
+      "sha256": "f3d7d26a4fe1111beae025391050a64b60bd4d0871051cfc7fead46260f49f4a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "receipt-pins.json",
+      "bytes": 25808,
+      "sha256": "a741a69d65db77b34fa3c255537ab27827c8959385b61eb51fa8ddbfc9dea67b",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "resolve-inputs.init.gradle",
+      "bytes": 5570,
+      "sha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "selection-policy.gradle",
+      "bytes": 1930,
+      "sha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    },
+    {
+      "name": "new-daemon-archives.json",
+      "bytes": 259,
+      "sha256": "c1aa95e12e7da7949b10e6240f6a4da60fd1e398a6bf92f91f89c236dcf2e48d",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public hash only"
+    }
+  ],
+  "nextGate": "Stop for Astra independent review and Owner decision; no cache fill, bootstrap repair, retry, producer or successor automatically",
+  "inheritedTerminal": "V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PLAN_A_RETAINED / NO_R2 / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / AWAITING_ASTRA_INDEPENDENT_REVIEW"
+}
