@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-23",
+  "status": "PARTIAL",
+  "terminal": [
+    "GRADLE_INIT_DSL_FIXTURE_PASS",
+    "TARGET_RESOLUTION_BLOCKED",
+    "NO_APK",
+    "OWNER_DECISION_REQUIRED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "authority": {
+    "taskBlob": "21b547a3c846326019f5662db984d328f9a34153",
+    "astraReviewBlob": "4283ac288b31fdbd2513cccf8f8d3223ad0a687a",
+    "mainObserved": "b13bdf188e6f6e1b6af7d98289f4bf2bf1d11814",
+    "taskRawBlobVerified": true,
+    "reviewRawBlobVerified": true
+  },
+  "git": {
+    "startAndSoleParent": "7f059385f5fc4f6d17a87ce421e0ed4b3d976cc4",
+    "startRootTree": "3d62ff21846396a34be63b605e9b4dc3425b6f1c",
+    "fixedDiagnosticBuildSource": "5354ba679e24dbf972cea74e8fd0f60c51a2eca0",
+    "fixedSourceRootTree": "766b43530a606a60e1e55f7f4721857c14d5a28a",
+    "fixedBuildScriptBlob": "d588562d5fce8a161c2bef8c879a2597b940010f",
+    "appsTree": "8011c1909444c689c45a23d4c20e1bef85694966",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "trackedProductChanges": [],
+    "branch": "codex/v10.1.5-init-repository-dsl-fix",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/ICE_INIT_REPOSITORY_DSL_OFFLINE_RESOLUTION_REPORT.md",
+      "docs/versions/v10.1.5/ice_init_repository_dsl_offline_resolution_manifest.json"
+    ],
+    "deliveryIdentity": "containing Git commit; exact commit/root/docs blobs resolved post-commit in LOCAL_ONLY delivery-readback.json and Owner handoff",
+    "publication": "ordinary non-force then REST/raw/full product tree readback"
+  },
+  "toolchain": {
+    "gradle": "8.14",
+    "jdk": "17.0.18.8",
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "agp": "8.11.1",
+    "projectKotlin": "2.2.20",
+    "pins": {
+      "bin/gradle.bat": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+      "lib/gradle-gradle-cli-main-8.14.jar": "3e21380f278d069ec1fc706b1a3b075250a00d6366dccc1fcf343838a494f20b",
+      "lib/gradle-core-8.14.jar": "36ee23fbf4082131bbf8758603a7a2019be60f47bc033b283447e107c578427d"
+    },
+    "gradleZip": {
+      "bytes": 224116304,
+      "sha256": "efe9a3d147d948d7528a9887fa35abcf24ca1a43ad06439996490f77569b02d1"
+    },
+    "separateVersionInvocations": 0,
+    "fixtureVersionReported": "8.14",
+    "newSdkComponentsAdded": false,
+    "stagedFiles": 28558,
+    "stageCompletedAndHashedBeforeFormalRun": true,
+    "sdkScope": "configuration-only; no full APK compiler readiness claim"
+  },
+  "init": {
+    "old": {
+      "bytes": 3366,
+      "sha256": "bca437d1a485a81981df14e97bea478f7615193789795377d2d0a8034031b1f9"
+    },
+    "candidate": {
+      "bytes": 3362,
+      "sha256": "5dad6fe912efab85e20b8c1fe2d0b3b81c3984dc68a1ef6704496a94288fa43b"
+    },
+    "changesOnly": [
+      "explicit RepositoryHandler repos.maven receiver",
+      "task-local root relocation"
+    ],
+    "sameHelperExtractedVerbatimAfterNewlineNormalization": true,
+    "helper": {
+      "bytes": 331,
+      "sha256": "a3d31cf1decc11aea2d64cd8865ec99f54935d687d4cce07fa5d015d7570261f"
+    },
+    "fixtureBuild": {
+      "bytes": 4362,
+      "sha256": "73fde4374c74d343c5e5d0f9dad92286a812fbc420e6779a1e04482bf65866d1"
+    },
+    "fixtureSettings": {
+      "bytes": 85,
+      "sha256": "a7dec1cdcf57fd581db35ba53b73b20c687f6b42814b94f5405640523303b606"
+    },
+    "negativeControlScope": "fixture mirror only; official artifact unchanged; no new dependency"
+  },
+  "officialEmbedding": {
+    "coordinate": "io.flutter:flutter_embedding_debug:1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "sourceOfPriorOriginal": "https://storage.googleapis.com/download.flutter.io",
+    "downloadedThisTask": false,
+    "packaging": "jar",
+    "pom": {
+      "bytes": 2542,
+      "sha256": "437cf27a8aa1829c07f81f43e0468a5fa05cef7dc21451cabd51b7a6914341ff"
+    },
+    "jar": {
+      "bytes": 1541793,
+      "sha256": "f6cb78578df77875f18f4d6c3bd29066288109935007e59d83e53ec85a8ce745"
+    },
+    "publisherSignatureOrOfficialShaSidecar": "NOT_VERIFIED"
+  },
+  "fixture": {
+    "status": "PASS",
+    "attempts": 1,
+    "allowedMax": 2,
+    "secondAllowedOnlyForSameDslFailure": true,
+    "secondAttemptUsed": false,
+    "exit": 0,
+    "seconds": 5.665172576904297,
+    "checksPassed": 8,
+    "realRepositoryRegistered": true,
+    "exactJarAndPomResolvedAndHashMatched": true,
+    "nonFlutterExistingControlDenied": true,
+    "unfilteredControlProvesArtifactPresent": true,
+    "wrongReceiverAndNullFailClosed": true,
+    "transitive": false,
+    "androidOrFlutterPluginsUsed": false,
+    "initialGradleHomeEmpty": true,
+    "remoteRepositoryDeclarations": 0,
+    "formalDependencyProof": false,
+    "helperIdentity": "same candidate helper after newline normalization; not raw whole-file byte equality",
+    "negativeControl": "fixture.denied:repo-probe:1.0 only in fixture mirror; never in formal repository/project"
+  },
+  "formalResolution": {
+    "status": "BLOCKED",
+    "failureClass": "MISSING_DEPENDENCY_COORDINATE",
+    "attempts": 1,
+    "allowedMax": 1,
+    "exit": 1,
+    "seconds": 96.49812746047974,
+    "command": "<TRUSTED_GRADLE>/bin/gradle.bat resolvePinnedDebugInputs --offline --no-daemon --console=plain --max-workers=2 -Ptarget-platform=android-x64,android-arm64",
+    "initBytes": 3362,
+    "initSha256": "5dad6fe912efab85e20b8c1fe2d0b3b81c3984dc68a1ef6704496a94288fa43b",
+    "candidateInitInstalledMatchesPinnedHash": true,
+    "targets": [
+      ":flutter",
+      ":connectivity_plus",
+      ":device_info_plus",
+      ":flutter_plugin_android_lifecycle",
+      ":flutter_secure_storage",
+      ":flutter_webrtc",
+      ":image_picker_android",
+      ":jni",
+      ":jni_flutter",
+      ":livekit_client",
+      ":package_info_plus",
+      ":permission_handler_android",
+      ":shared_preferences_android",
+      ":url_launcher_android",
+      ":video_player_android"
+    ],
+    "configurations": [
+      "debugCompileClasspath",
+      "debugRuntimeClasspath"
+    ],
+    "expectedConfigurationCount": 30,
+    "began": [
+      ":flutter:debugCompileClasspath"
+    ],
+    "ok": [],
+    "passMarkers": [],
+    "notStarted": [
+      ":flutter:debugRuntimeClasspath",
+      ":connectivity_plus:debugCompileClasspath",
+      ":connectivity_plus:debugRuntimeClasspath",
+      ":device_info_plus:debugCompileClasspath",
+      ":device_info_plus:debugRuntimeClasspath",
+      ":flutter_plugin_android_lifecycle:debugCompileClasspath",
+      ":flutter_plugin_android_lifecycle:debugRuntimeClasspath",
+      ":flutter_secure_storage:debugCompileClasspath",
+      ":flutter_secure_storage:debugRuntimeClasspath",
+      ":flutter_webrtc:debugCompileClasspath",
+      ":flutter_webrtc:debugRuntimeClasspath",
+      ":image_picker_android:debugCompileClasspath",
+      ":image_picker_android:debugRuntimeClasspath",
+      ":jni:debugCompileClasspath",
+      ":jni:debugRuntimeClasspath",
+      ":jni_flutter:debugCompileClasspath",
+      ":jni_flutter:debugRuntimeClasspath",
+      ":livekit_client:debugCompileClasspath",
+      ":livekit_client:debugRuntimeClasspath",
+      ":package_info_plus:debugCompileClasspath",
+      ":package_info_plus:debugRuntimeClasspath",
+      ":permission_handler_android:debugCompileClasspath",
+      ":permission_handler_android:debugRuntimeClasspath",
+      ":shared_preferences_android:debugCompileClasspath",
+      ":shared_preferences_android:debugRuntimeClasspath",
+      ":url_launcher_android:debugCompileClasspath",
+      ":url_launcher_android:debugRuntimeClasspath",
+      ":video_player_android:debugCompileClasspath",
+      ":video_player_android:debugRuntimeClasspath"
+    ],
+    "graphPassed": false,
+    "missingCoordinates": [
+      "io.flutter:arm64_v8a_debug:1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "io.flutter:x86_64_debug:1.0.0-59aa584fdf100e6c78c785d8a5b565d1de4b48ab"
+    ],
+    "missingPackagingBytesAndHashes": "NOT_VERIFIED_NO_REMOTE_REQUEST",
+    "expectedPublisher": "Flutter official Maven",
+    "remoteAvailability": "NOT_VERIFIED",
+    "oldDslFailureCleared": true,
+    "initLine37Meaning": "call site of Configuration.resolve(), not repository DSL failure",
+    "includedToolPluginCompileTasks": 4,
+    "retryCount": 0
+  },
+  "apk": {
+    "assembleAttempts": 0,
+    "allowedMax": 1,
+    "status": "NOT_RUN_G2_FAILED",
+    "artifact": null,
+    "observedPackageId": null,
+    "observedVersion": null,
+    "observedDebuggable": null,
+    "signature": null,
+    "sha256": null,
+    "bytes": null,
+    "abi": null,
+    "diagnosticAarVariant": null,
+    "runtimeInstall": "NOT_RUN",
+    "independentStaticPreconditions": [
+      "BUILD_PATH_IDENTITY_BLOCKED by fixed old task project/home root",
+      "SDK_STAGE_INCOMPLETE for a full APK build"
+    ],
+    "sourceRootOrHashBypass": false
+  },
+  "review": {
+    "nonAuthor": "GPT-6.1 Sol/high helper",
+    "scope": "candidate delta, fixture evidence, one real result and protection index/receipts",
+    "independentFullHashReaudit": false,
+    "independentGradleDeviceNetworkExecution": false,
+    "acceptanceAuthority": "Astra; not exercised by Codex"
+  },
+  "protection": {
+    "registeredFiles": 68303,
+    "priorTaskFiles": 35685,
+    "priorTaskFileSetAddedOrRemoved": [],
+    "changedFiles": [],
+    "oldRefs": 497,
+    "historicalRoots": 5,
+    "root0WarningsRetained": 153,
+    "globalGradleModuleRecordsIncludingLock": 3185,
+    "passed": true,
+    "scope": "named registered files and five roots, no whole-disk/phone/live DB audit",
+    "untrustedPart": {
+      "bytes": 38302288,
+      "sha256": "f99db8eee2a185748c33851b09225335a0f3d040fdd3123468e805074414e53e",
+      "preserved": true,
+      "copiedExtractedOrUsed": false
+    }
+  },
+  "boundaries": {
+    "trackedAppsServicesEdits": 0,
+    "wrapperInvocations": 0,
+    "newDependencyDownloads": 0,
+    "sdkOrDependencyVersionChanges": 0,
+    "globalCacheChangesDetected": 0,
+    "allGradleInvocationsOffline": true,
+    "hostWideIndependentPacketCapture": false,
+    "fixtureInvocations": 1,
+    "formalInvocations": 1,
+    "assembleInvocations": 0,
+    "taskSingleUseDaemonsClosed": 2,
+    "globalStopCommands": 0,
+    "deviceAdbAvdDbApiSfuRoomConnectOperations": 0,
+    "networkConfigChanges": 0,
+    "mainIntegrated": false,
+    "accepted": false,
+    "R2P2OrV1016Started": false
+  },
+  "productState": {
+    "v1015": "PARTIAL_NOT_ACCEPTED",
+    "ac05": "OPEN",
+    "allFourMediaHardGates": "NOT_RUN",
+    "plan": "A_RETAINED",
+    "acceptedMainProduct": "v10.1.4"
+  },
+  "publicEvidencePolicy": {
+    "allowed": [
+      "Git identity",
+      "sanitized commands and errors",
+      "call/test counts",
+      "Maven coordinates",
+      "artifact and evidence hashes"
+    ],
+    "rawInitLogsBinariesPrivatePathsAndIdentifiers": "LOCAL_ONLY"
+  },
+  "evidence": [
+    {
+      "file": "authority-task.md",
+      "bytes": 15230,
+      "sha256": "d54660e79857c83ccd9795c816fd88ba904d96a235df3ecfb35b36a27deaf7fe",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "authority-review.md",
+      "bytes": 9797,
+      "sha256": "11cbcfcb83c56a681a978d4cd54f5177abe5489fb9d07228bf51ad5d5726149c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.json",
+      "bytes": 679,
+      "sha256": "f062931350f34458b0ae0d47b8d6904909cb74ee2984333b091d2123c5780f67",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protected-files-before.json",
+      "bytes": 20156239,
+      "sha256": "a446a569d8176799959435f32d46377627373c6f60028311a31a1727849d292e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "roots-before.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "refs-before.txt",
+      "bytes": 60067,
+      "sha256": "6f476eeeaff4bdf2c5d3f2216a85b6445af566ff5f910f368583f582cf8d1f5b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "old-init-original.gradle",
+      "bytes": 3366,
+      "sha256": "bca437d1a485a81981df14e97bea478f7615193789795377d2d0a8034031b1f9",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "prior-resolution.stdout.txt",
+      "bytes": 1555,
+      "sha256": "2785d8a35f79f31db9e4d16ff1da34bec407727b702a6df41730db5c1b908b18",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "prior-resolution.stderr.txt",
+      "bytes": 722,
+      "sha256": "4d0963e9750e56ba84353c27d98e78e2cf81686695d0e3759a361a62eab0fce5",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "prior-resolution.result.json",
+      "bytes": 891,
+      "sha256": "d4bbba0d15ae5527e761da731b359149a04d3a242c911ee0bb0adb16e6427c1b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate-init.gradle",
+      "bytes": 3362,
+      "sha256": "5dad6fe912efab85e20b8c1fe2d0b3b81c3984dc68a1ef6704496a94288fa43b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "script-identity.json",
+      "bytes": 909,
+      "sha256": "f7c10da15d059c0af943e1d967954fde4b2bac98ab158246f4df689da2305d0a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture/build.gradle",
+      "bytes": 4362,
+      "sha256": "73fde4374c74d343c5e5d0f9dad92286a812fbc420e6779a1e04482bf65866d1",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture/settings.gradle",
+      "bytes": 85,
+      "sha256": "a7dec1cdcf57fd581db35ba53b73b20c687f6b42814b94f5405640523303b606",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-1.started.json",
+      "bytes": 620,
+      "sha256": "de6c62f2c0c88d08a963bd20ff30c01ff2dd7b9adf38c5379819c0f9c4dc413e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-1.stdout.txt",
+      "bytes": 1957,
+      "sha256": "247cf5241ef1605dfbcca022ff1128e4427bf6933978d51ad00a2a9cd04efe0f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "fixture-1.result.json",
+      "bytes": 738,
+      "sha256": "8b4172e11d2588120dd5809e4fbba573a6f033027c16a3750965f0cf74191384",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stage-receipt.json",
+      "bytes": 14486689,
+      "sha256": "26bcba75acaec76fd6e55bcc8867fd4e61a6c1aa64fcb483d9846b4c92dc2fc3",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "project-resolution.started.json",
+      "bytes": 738,
+      "sha256": "8a4a3a10d1ed0be71a9803d7354e5839ec4ea373403ea0675b150e8e3b986644",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "project-resolution.stdout.txt",
+      "bytes": 2481,
+      "sha256": "cd7d5d48d8cb546770829a4f66643fb8941fcd2782c40c7269420fd07f9d3c5c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "project-resolution.stderr.txt",
+      "bytes": 5582,
+      "sha256": "9ee90995f6e6ade974dd97e80e3de331b7ae152e54ad633a77360bc12eae5db3",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "project-resolution.result.json",
+      "bytes": 1201,
+      "sha256": "15a4e3b7f512da25a905a1878a027834f471f6505d8296c62167740d7fea67f6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "build-precondition.json",
+      "bytes": 706,
+      "sha256": "580dc76436c6dd4887457cab09e47af486db0e7a8b6cb9b61ec69c37102556c6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resource-stop-receipt.json",
+      "bytes": 465,
+      "sha256": "9f5423be11be470db2b8f70762c1f54ce133b5275d6bc6839e9e15d2430ef9dd",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protection-after.json",
+      "bytes": 884,
+      "sha256": "429dfc3b337320d2f3d718885fc0994d556d504d4f313e3951696efc3bf67d59",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "independent-review.txt",
+      "bytes": 1219,
+      "sha256": "d58aecc58f6b1dab656c7d932b9082144dbef5522d6a00dd4623f1e1b8150cad",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "make_fixture.py",
+      "bytes": 6891,
+      "sha256": "6c76016e42d2f569f15dc6576251e28e3abb86188569f419d6e32ded7a699c78",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "run_fixture.py",
+      "bytes": 2320,
+      "sha256": "f25a865e9ec91b260c3d2bd0d089dec51c82180a9d5d997b678888d009565d65",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stage.py",
+      "bytes": 2980,
+      "sha256": "855242b9e010f124709da97946e5c420e354bd5b29222a0635315e2099c3df1e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "run_project_resolution.py",
+      "bytes": 4651,
+      "sha256": "82d372a5ae8579ef61d260e315916a95973f97a6c4689fb605f73d0b37b7845f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "check_protection.py",
+      "bytes": 3008,
+      "sha256": "bf895756bde50eb339e13c937fd6222c20ea3a3cc1f1ef5817d16848bbb8e7d5",
+      "visibility": "LOCAL_ONLY"
+    }
+  ]
+}
