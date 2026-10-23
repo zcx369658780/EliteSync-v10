@@ -6,6 +6,12 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+## Owner任务单启动 Prompt 格式（2026-10-23）
+
+Owner于2026-10-23明确要求：**每次Astra发布供Owner手动派发给本地Codex的综合任务单时，给Owner的最终回复必须同时提供一个可直接复制的Markdown代码框启动Prompt；不能只给GitHub路径或按钮。** 历史`docs/migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md`已经记录原有格式偏好：**单一代码框；不用“PROMPT开始/结束”包装标记；启动Prompt内部不嵌套多重反引号代码框**。这是交付展示规则，不改变Owner/Codex实际权限。
+
+推荐顺序：简短结果和固定Git身份／任务链接 → **一个独立的三反引号纯文本代码框**（可直接整体复制到Codex）→ 必要的停止边界提示。启动Prompt至少包括：项目与本地仓库身份、**任务单的实际固定路径与Blob**、优先完整读取的权威入口、仅执行该任务的范围／上限及STOP门禁、保护资产及不能擅自变更的权限、集中交付与等待Astra审阅。**不得把代码框中的摘要当作完整任务单**，以已发布固定Blob的任务正文为执行合同。Owner仍负责手动派发；Astra提供启动词不意味着任务已执行或获取新的系统／设备／供应商权限。新会话首读本导航时应继承该格式偏好，除非Owner明确改动。
+
 **2026-10-21最新交接：** 当前顾问会话已封存[完整Owner决策、版本状态和下一会话入口](../workflow/SESSION_HANDOFF_20261021_V1014_ACCEPTED_V1015_PENDING.md)。v10.1.4功能及安全集成均`ACCEPTED_WITH_OBSERVATIONS`；下一版v10.1.5尚待Owner在新会话授权，**不要据旧快照重复派发验收或自动启动计划**。实时状态以[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)为准。下文较早“当前”仅保留历史证据。
 
 **2026-10-21当前里程碑：** v10.1.4[功能](../versions/v10.1.4/acceptance.md)与[单次安全集成](../versions/v10.1.4/integration_acceptance.md)双重独立`ACCEPTED_WITH_OBSERVATIONS`；已接受 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac` 已进入main，产品集成Commit `759015ad0c897c92516531c2f3a94a3a7ff77c02`以 `6b2cd44065830fb7b38bfaa36a168989da0fb248`为唯一Parent，集成交付main `1390772c8fee62509504b90b5f702582cdc39c4a`。本轮静态集成，DB/APP/APK运行NOT_RUN；本地代码基线/保护仅CODEX_REPORTED。真实活动和安全政策、7天/30天TEST_ONLY、实人供应商及GitHub原ZIP字节镜像仍待定。v10.1.5尚未获Owner授权；首读[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)，下文旧“待派发”均是形成时的历史。
