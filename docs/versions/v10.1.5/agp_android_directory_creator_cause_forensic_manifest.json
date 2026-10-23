@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "task": "OWNER_APPROVED_AGP_ANDROID_DIRECTORY_CREATOR_CAUSE_FORENSIC_TASK_20261023",
+  "forensicStatus": "COMPLETE_DIRECT_CAUSE_OBSERVED_NO_FIX",
+  "terminal": [
+    "AGP_ONE_STACKTRACE_CAPTURED",
+    "DIRECT_CAUSE_OBSERVED",
+    "NO_FIX_PERFORMED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+    "PRODUCT_V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "DIAGNOSTIC_APK_NOT_BUILT",
+    "TARGET_RESOLUTION_NOT_RUN",
+    "PLAN_A_RETAINED",
+    "NO_AUTO_R2",
+    "NO_P2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "authority": {
+    "taskBlob": "df05c9684b580e994c49473b06a8ecb7465d356b",
+    "previousAstraReviewBlob": "4bb7d44c1e4dcba291ce0752fefb5c8ff883be1a",
+    "liveMainAtExecution": "def08dbff21bb71ee7ea0080939488b38994aea4",
+    "candidateBaseAndFinalSoleParent": "98c2e4e9f548ee924f4e244e23e7b307fb3afe72",
+    "candidateBaseRoot": "bba25cedc58a57c174ae241f0a9aa1b36d26e350",
+    "fixedSource": "1522466faf798b719ccff281de7584f043946437",
+    "fixedSourceRoot": "09a4041a7bdca9eb0ffd9e92a724fe8eeb0d17cf",
+    "buildScriptBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d"
+  },
+  "delivery": {
+    "branch": "codex/v10.1.5-agp-directory-cause-forensic",
+    "soleParent": "98c2e4e9f548ee924f4e244e23e7b307fb3afe72",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "productSourceChanged": false,
+    "allowedNewPaths": [
+      "docs/versions/v10.1.5/AGP_ANDROID_DIRECTORY_CREATOR_CAUSE_FORENSIC_REPORT.md",
+      "docs/versions/v10.1.5/agp_android_directory_creator_cause_forensic_manifest.json"
+    ],
+    "selfReferencePolicy": "Actual final commit/root/two document Blobs are recorded in post-publication readback receipts, not embedded into their own object bytes"
+  },
+  "D0": {
+    "protectedFiles": 223496,
+    "priorTaskFiles": 68146,
+    "oldRefs": 499,
+    "historicalRoots": 5,
+    "root0Warnings": 153,
+    "inheritedIdentityDrift": [],
+    "pinnedInputCount": 41,
+    "pinnedInputChecksPassed": true
+  },
+  "D1": {
+    "chainStatus": "CHAIN_INCOMPLETE",
+    "oldEvidenceFixedHashesMatched": true,
+    "oldRelevantDaemonCausedByCount": 0,
+    "sufficientForDirectCause": false,
+    "oldGradleExit": 1,
+    "shutdownTailExcludedAsPrimaryCause": {
+      "observedType": "java.lang.IllegalStateException",
+      "message": "Cannot start managing file contention because this handler has been closed.",
+      "timestamp": "2026-10-23T11:27:26.887+0800",
+      "afterBuildFailed": true,
+      "attributableAsDirectoryCreatorCause": false
+    },
+    "oldLogIdentity": [
+      {
+        "file": "host-config-check.gradle",
+        "bytes": 1822,
+        "sha256": "32adbf68a6a7d2e20880ba1c95b601b57d8d38fcfd42b9e3b508b7448ddbc9b6",
+        "matchesFixedIdentity": true
+      },
+      {
+        "file": "host-config-diag.stdout.txt",
+        "bytes": 913,
+        "sha256": "eea59d430e3242d9e455976178f3f5c12f11838441880523f6933173a9111e8a",
+        "matchesFixedIdentity": true
+      },
+      {
+        "file": "host-config-diag.stderr.txt",
+        "bytes": 1014,
+        "sha256": "59c8df2eb881e321015bcfb3974faed470102c966c71ed4d061e961b5ddde326",
+        "matchesFixedIdentity": true
+      },
+      {
+        "file": "host-config-diag.result.json",
+        "bytes": 2549,
+        "sha256": "82a177f2c9ff446513078ccdbff0fb026e2d5de041bf63dbdefcf99ae346f22d",
+        "matchesFixedIdentity": true
+      },
+      {
+        "file": "daemon-16556.out.log",
+        "bytes": 50391,
+        "sha256": "e63ab9444c837700b5f9bbac18865d5e3120b42cb632e54dbcf0c7df3189d0ef",
+        "identityType": "new read-only registration; PID/time/request/cwd linked, not an invented prior hash"
+      }
+    ],
+    "oldRequestIdentity": "LOCAL_ONLY matched request/cwd/PID/time; not published"
+  },
+  "D2": {
+    "authorizedConditionalCap": 1,
+    "actualInvocations": 1,
+    "oldArgvPreservedExcept": [
+      "--stacktrace"
+    ],
+    "oldEnvironmentHelperHash": "4a40266ae988fbeaa079892aa0654f3555f62f415391463f5d13e3cebd846a8a",
+    "oldChildIsolationEqual": true,
+    "sameRootSameHomeSameCwd": true,
+    "offline": true,
+    "wrapperInvocations": 0,
+    "stdout": {
+      "bytes": 913,
+      "sha256": "eea59d430e3242d9e455976178f3f5c12f11838441880523f6933173a9111e8a"
+    },
+    "stderr": {
+      "bytes": 30548,
+      "sha256": "68c08bcdf33a8a0c4ef5c985eaaef08bd89f8850109e66632fdf23a5e21393cd"
+    },
+    "seconds": 7.071151256561279,
+    "exit": 1,
+    "stopReason": null,
+    "daemonLogsCaptured": 1,
+    "existingBuildOutputsBefore": 0,
+    "activeLocksOrProcessesBefore": 0,
+    "initialReadOnlyLockChecks": 18,
+    "formalResolutionAuthorized": false,
+    "formalResolutionInvocations": 0,
+    "aarBuildInvocations": 0,
+    "assembleDebugAuthorized": false,
+    "assembleDebugInvocations": 0,
+    "newSdkOrMavenDownloads": 0,
+    "largeToolchainCopies": 0,
+    "retries": 0
+  },
+  "D3": {
+    "terminal": "AGP_ONE_STACKTRACE_CAPTURED / DIRECT_CAUSE_OBSERVED / NO_FIX_PERFORMED",
+    "newRuns": 1,
+    "exit": 1,
+    "seconds": 7.071151256561279,
+    "continuity": "EXACT_SAME_FAILURE_CHAIN_AT_PREVIOUSLY_OBSERVED_LAYERS",
+    "oldDeepestCause": "NOT_OBSERVED_IN_OLD_LOG",
+    "directCauseObserved": {
+      "exceptionClass": "com.android.prefs.AndroidLocationsException",
+      "message": "Several environment variables and/or system properties contain different paths to the Android Preferences folder.",
+      "operation": "Determine and validate the effective Android Preferences location during AGP value-source creation",
+      "reportedInputs": {
+        "ANDROID_PREFS_ROOT": "<RUN>/android-user-home",
+        "ANDROID_USER_HOME": "<RUN>/android-user-home"
+      },
+      "configuredEnvironment": {
+        "ANDROID_PREFS_ROOT": "<RUN>/android-user-home",
+        "ANDROID_USER_HOME": "<RUN>/android-user-home"
+      },
+      "configuredValuesEqual": true,
+      "componentReportedLocationConflict": true,
+      "effectiveExpansionInRawMessage": "NOT_PRINTED; do not infer expanded paths from the input listing alone",
+      "sdkRecommendation": "It is recommended to use ANDROID_USER_HOME as other methods are deprecated"
+    },
+    "causes": [
+      {
+        "line": 191,
+        "exceptionClass": "org.gradle.api.internal.plugins.PluginApplicationException",
+        "message": "Failed to apply plugin 'com.android.internal.application'."
+      },
+      {
+        "line": 221,
+        "exceptionClass": "org.gradle.api.services.internal.ServiceLifecycleException",
+        "message": "Failed to create service 'com.android.build.gradle.internal.services.AndroidLocationsBuildService_<id>'."
+      },
+      {
+        "line": 252,
+        "exceptionClass": "org.gradle.api.reflect.ObjectInstantiationException",
+        "message": "Could not create an instance of type com.android.build.gradle.internal.services.AndroidLocationsBuildService."
+      },
+      {
+        "line": 258,
+        "exceptionClass": "org.gradle.api.GradleException",
+        "message": "Could not create provider for value source AndroidLocationsBuildService.AndroidDirectoryCreator."
+      },
+      {
+        "line": 270,
+        "exceptionClass": "com.android.prefs.AndroidLocationsException",
+        "message": "Several environment variables and/or system properties contain different paths to the Android Preferences folder."
+      }
+    ],
+    "selectedFrames": [
+      {
+        "line": 261,
+        "frame": "com.android.build.gradle.internal.services.AndroidLocationsBuildService.<init>(AndroidLocationsBuildService.kt:77)"
+      },
+      {
+        "line": 262,
+        "frame": "com.android.build.gradle.internal.services.AndroidLocationsBuildService$Inject.<init>(Unknown Source)"
+      },
+      {
+        "line": 277,
+        "frame": "com.android.prefs.PathLocator.singlePathOf(AbstractAndroidLocations.kt:311)"
+      },
+      {
+        "line": 278,
+        "frame": "com.android.prefs.AbstractAndroidLocations.computeAndroidFolder(AbstractAndroidLocations.kt:145)"
+      },
+      {
+        "line": 279,
+        "frame": "com.android.build.gradle.internal.services.AndroidLocationsBuildService$androidLocations$1$1.execute(AndroidLocationsBuildService.kt:78)"
+      },
+      {
+        "line": 280,
+        "frame": "com.android.build.gradle.internal.services.AndroidLocationsBuildService$androidLocations$1$1.execute(AndroidLocationsBuildService.kt:77)"
+      }
+    ],
+    "sourceOfInjection": {
+      "file": "previous-task/runner.py",
+      "function": "environment",
+      "line": 18,
+      "sameHelperSha256": "4a40266ae988fbeaa079892aa0654f3555f62f415391463f5d13e3cebd846a8a",
+      "isProductOrSdkSource": false
+    },
+    "attributionLimits": [
+      "Direct cause observed in this sole reproduction; old missing deepest cause is not retroactively a raw observation",
+      "Does not prove whether the suggested environment repair will make configuration pass",
+      "Does not show SDK corruption, permission failure, actual AGP version null, version incompatibility or RTC defect"
+    ],
+    "phases": {
+      "hostPluginConfiguration": "FAILED",
+      "validateIceDiagnosticGradle": "NOT_REACHED",
+      "verifyIcePathDebugAction": "NOT_REACHED",
+      "formalResolution": "NOT_RUN",
+      "syncFlutterAar": "NOT_RUN",
+      "assembleDebug": "NOT_RUN",
+      "APK": "NO_APK"
+    },
+    "proposals": [
+      {
+        "id": "P1",
+        "status": "PROPOSAL_NOT_AUTHORIZED",
+        "namedSource": "test-only environment injector in previous-task/runner.py::environment",
+        "change": "Use only ANDROID_USER_HOME; remove deprecated ANDROID_PREFS_ROOT from the diagnostic child environment",
+        "ownerPermissionRequired": "Bounded edit of test-only child environment and one next lightweight offline host configuration; no product or SDK edit",
+        "ordinaryAppRisk": "No direct source change to ordinary APP; risk limited to any other local diagnostic helper reusing this environment definition",
+        "rollback": "Restore exact archived environment dictionary/helper hash; no global environment change",
+        "minimalFutureTest": "One original offline verifyIcePathDebug configuration with full trace under newly authorized corrected environment, stop on next distinct blocker"
+      }
+    ],
+    "analysisDraftCorrection": {
+      "preservedDraft": "analyze_trace.assumption-draft.py",
+      "correction": "Removed an unsupported assumption that raw message prints .android-expanded preference path; both listed raw input strings are equal",
+      "newGradleRunForCorrection": false
+    },
+    "rawStacktraceVisibility": "LOCAL_ONLY",
+    "publicSanitization": "Allowlisted exception classes/messages, selected library file/line frames, and relative <RUN> location aliases only"
+  },
+  "D4": {
+    "passed": true,
+    "protectedFiles": 223496,
+    "immutableChanged": [],
+    "missing": [],
+    "priorTaskFilesBefore": 68146,
+    "priorTaskRemoved": [],
+    "normalGradleCacheMetadataChanges": [
+      {
+        "relative": "gradle-user-home\\caches\\8.14\\fileHashes\\fileHashes.bin",
+        "beforeBytes": 280319,
+        "beforeSha256": "9798d862e738ab8eac35215fe87643e08276bbc0b130501adc759aeb2559c575",
+        "afterBytes": 526791,
+        "afterSha256": "822ecb206b7c77a45dba0fc84a78deae4d3eaa573913ecc349b8f1772063f864"
+      },
+      {
+        "relative": "gradle-user-home\\caches\\8.14\\fileHashes\\fileHashes.lock",
+        "beforeBytes": 17,
+        "beforeSha256": "8657164d9aa3236c2a6e5dc4c381b2a8060e747c82fc67ea706ce723525c9c97",
+        "afterBytes": 17,
+        "afterSha256": "d6ea3d098b6664f7def3efcb32650b5235f3fb23622b3017954508c77392d68a"
+      },
+      {
+        "relative": "gradle-user-home\\caches\\journal-1\\file-access.bin",
+        "beforeBytes": 68340,
+        "beforeSha256": "0b0267e3dfe3cb9741dcd879ccbb43b5e2a69e6ec22d690c008514cc51295ea4",
+        "afterBytes": 68340,
+        "afterSha256": "b3c9a7b984ecf08cd2ca0689c953980312f0989a66730c245f1c40c9720ef686"
+      },
+      {
+        "relative": "gradle-user-home\\caches\\journal-1\\journal-1.lock",
+        "beforeBytes": 17,
+        "beforeSha256": "7d4e22ac60ddb8c674ae0f208d5754fb9b942a634bd2d3e50825d715a4c06245",
+        "afterBytes": 17,
+        "afterSha256": "451c97185d8e7c918be4ea959a05da6f24489e18e4c1b9bcbe4dc75ccaa7eec2"
+      },
+      {
+        "relative": "gradle-user-home\\caches\\modules-2\\modules-2.lock",
+        "beforeBytes": 17,
+        "beforeSha256": "dac856698d388301908a1de5ba90c3df3f0b02ca35c9c263843699b5dd96101f",
+        "afterBytes": 17,
+        "afterSha256": "257caba21b89817e302a41925172bd30726bb63a7ba2fcdcfe300ec4b14a6913"
+      },
+      {
+        "relative": "gradle-user-home\\daemon\\8.14\\registry.bin.lock",
+        "beforeBytes": 17,
+        "beforeSha256": "f02a3901bcd581e0c7f804b7a85aabde636d8c3b49f1b4699df059fe67da61ed",
+        "afterBytes": 17,
+        "afterSha256": "eb789b2beba1ee0c2317df642b9f10d10736c1a69527f3660fa9b27d8b1a328f"
+      }
+    ],
+    "normalNewGradleFiles": [
+      {
+        "relative": "build-run\\gradle-user-home\\daemon\\8.14\\daemon-43640.out.log",
+        "bytes": 81187,
+        "sha256": "70e0077c4ccd23911dd995a9e5aac4c7340093da6c06c2d670f05bad3aec2f32"
+      }
+    ],
+    "unexpectedNewPriorTaskFiles": [],
+    "historicalRootsUnchanged": true,
+    "historicalRootCount": 5,
+    "root0Warnings": 153,
+    "oldRefs": 499,
+    "oldRefsChangedOrMissing": [],
+    "pinnedInputsChanged": [],
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "trackedProductDiff": [],
+    "scope": "all named baseline records, previous-task file set, selected tool inputs and five historical roots; ordinary task-owned cache/lock state changes listed, not hidden as zero writes",
+    "time": 1792737348.2109225,
+    "rawPathLabelCount": 223497
+  },
+  "independentReview": {
+    "reviewer": "non-author GPT-6.1 Sol",
+    "reasoningEffort": "high",
+    "reviewCompleted": true,
+    "deliverySupported": true,
+    "highConfidenceCorrectionsRequired": [],
+    "scope": [
+      "sanitized causal evidence and log attribution/hash",
+      "one-shot counts and phase boundaries",
+      "protection summary and inventory case correction",
+      "authority D1-D5"
+    ],
+    "rawTraceOrPrivateEnvironmentReviewed": false,
+    "independentRuntimeReproduction": false,
+    "protectionHashesIndependentlyRecomputed": false,
+    "finalGitHubPublicationIndependentlyReviewed": false,
+    "causalConclusion": "Direct Android Preferences location conflict observed; equal raw values do not prove expanded-path semantics",
+    "oldShutdownExceptionIsRootCause": false,
+    "continuity": "Only previously observed upper layers matched; old unseen direct cause not retroactively observed",
+    "stacktraceCalls": "1/1",
+    "repairPerformed": false,
+    "formalResolutionAarApkMedia": "NOT_RUN",
+    "normalMetadataChangesSupported": 6,
+    "normalNewDaemonFilesSupported": 1,
+    "uniqueBaselineFiles": 223496,
+    "proposalStatus": "PROPOSAL_NOT_AUTHORIZED",
+    "astraAccepted": false,
+    "product": "PARTIAL_NOT_ACCEPTED",
+    "ac05": "OPEN"
+  },
+  "processClosure": {
+    "ownedToolchainProcesses": 0,
+    "globalProcessStops": 0
+  },
+  "newArtifact": "NO_APK",
+  "protectionInterpretation": "Old raw evidence/source/SDK/pinned dependencies immutable. D4-permitted task-owned daemon/cache lock metadata deltas are enumerated; not a zero-write or whole-disk claim.",
+  "privacy": {
+    "rawStacktrace": "LOCAL_ONLY",
+    "publicFields": "allowlisted structured cause messages, library source-file/line references, relative aliases, counts and hashes",
+    "privateMachinePathsTokensEnvironmentDump": "NOT_PUBLISHED",
+    "privateRequestIdsPids": "LOCAL_ONLY",
+    "sourcesUnchanged": true,
+    "twoDocumentsOnly": true
+  },
+  "evidence": [
+    {
+      "file": "authority-task.md",
+      "bytes": 14696,
+      "sha256": "8afa09b800a989a2891b20786d97a1ad373904cbec24c9388e32257c6e896d00",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "authority-review.md",
+      "bytes": 11189,
+      "sha256": "33a34415d181280f8cd8e865b0bfdb74e0a66bfb027f1c50e6e5fc6815efa7b5",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "authority-identity.json",
+      "bytes": 891,
+      "sha256": "f88369fc706e0c3923c0e273c8987b8c611f5265c5c828daacbd54782fe1087f",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.json",
+      "bytes": 547,
+      "sha256": "52e9ee457d82d19ef4a6a15af898a9dc5457b91c82798fdd6144976282fa7398",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.final.json",
+      "bytes": 713,
+      "sha256": "da881e2f1a2332f4ed8ea2a56f0b86b5d5e001c7698756298a5399e75774372e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protected-files-before.json",
+      "bytes": 67782049,
+      "sha256": "f6efe2db720bc88a3a6ed018c9bfb42e4318736a7359b615144c5e83912035c2",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protected-files-canonical.json",
+      "bytes": 67781759,
+      "sha256": "d424661870e115bf67054b174d483b2166738d6d0cfb3b24372e54c6cce935a8",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "refs-before.txt",
+      "bytes": 60253,
+      "sha256": "010417002c358ec95712438376f335ab9023338c7b1b6d5e379ea74f68a927a8",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "roots-before.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "old-evidence.json",
+      "bytes": 3174,
+      "sha256": "5334915da2c42f0d3d71c62acca0a4f6c83e388980e74e79d66f7df366867704",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "pinned-inputs.json",
+      "bytes": 15338,
+      "sha256": "96d573109591ff3cc8b665eff638d324f786a3dfebff745d0fa24d9d1f580c7c",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "reuse-lock-output-check.json",
+      "bytes": 3574,
+      "sha256": "5553e98964e115015af0988a2c0dd2eead2558f6df9f4ffaaf33c8ee90e71f65",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stacktrace.started.json",
+      "bytes": 1991,
+      "sha256": "1752b01aeac680025c8658a90e4b2e191879e4e3b149e7333958d648bd7167c2",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stacktrace.result.json",
+      "bytes": 2647,
+      "sha256": "606935666997338a5a272df1a5ef5140428b6a2a8e8df456decb88c245bd99cf",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stacktrace.stdout.txt",
+      "bytes": 913,
+      "sha256": "eea59d430e3242d9e455976178f3f5c12f11838441880523f6933173a9111e8a",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "stacktrace.stderr.txt",
+      "bytes": 30548,
+      "sha256": "68c08bcdf33a8a0c4ef5c985eaaef08bd89f8850109e66632fdf23a5e21393cd",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "causal-analysis-sanitized.json",
+      "bytes": 5706,
+      "sha256": "dabc149d0206adba69c66b146c1bee7feed7e7e96e7310390b08d905435f1840",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "cause-lines-sanitized.json",
+      "bytes": 1666,
+      "sha256": "c278cfb378d8f2ed92ece3273ce6ea01867782e82aa714c0258880936b3cade6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "analyze_trace.assumption-draft.py",
+      "bytes": 6442,
+      "sha256": "9452b3ff1a752ba2179529c3e73f7de0016348b65aa2d3076c9c7f90ac6ce8b3",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "analyze_trace.py",
+      "bytes": 5863,
+      "sha256": "3395148b452d2626389d6bcb49de47d16b4583d40f02c0d74cfc6d59620adb64",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "independent-review.txt",
+      "bytes": 1107,
+      "sha256": "6872bed1bc85c70842967c3fc5c5bae67a902f78e488c47179ebe0b860d60778",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "independent-review.json",
+      "bytes": 1182,
+      "sha256": "be3704d9fdffb5bfb03f916bd6bda0eb3bc4f3f784c3c99523e21ce02d648927",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protection-after.json",
+      "bytes": 3152,
+      "sha256": "02585fe1a481bd407fa5680bfb9d338be936b2584d4ba5035812d26ab21608ae",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "protection-after.final.json",
+      "bytes": 3013,
+      "sha256": "ed87fee4f07841c12c406a00a1234f09489d720617be9bc68169750e34b0b1ba",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "inventory-case-correction.json",
+      "bytes": 633,
+      "sha256": "aa5ac4fc7c26921a24c1c9568aff1e6dc8194e3bbb333c129c92723433a99517",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "correct_inventory_case.py",
+      "bytes": 2936,
+      "sha256": "bbaa2ce48ff01211918d787c78efc64fd1e1ed95bbf3fa57f220f5bac69c99d6",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "roots-after.json",
+      "bytes": 13866617,
+      "sha256": "d34b4afb962ef5f1cc7dbd3c87f3925786ed1b5bdc1b134b357802d9c4f6529b",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "resource-receipt.json",
+      "bytes": 208,
+      "sha256": "c29081c4fcc6a40e5754c72c838db3c47829020cd44b62672638509ff5d3e237",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "common.py",
+      "bytes": 1721,
+      "sha256": "23cb7fd2207c7cae6c15f468daab79eac61a5fd4acef0534c7abd33e30258515",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "baseline.py",
+      "bytes": 2627,
+      "sha256": "749a8fe596ff896fdeda064dee05adbdd773d41967764c70aa631ea139e49a89",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "read_old_evidence.py",
+      "bytes": 4335,
+      "sha256": "ed76cd00f274ee1902bb8dd17b21cc1c1ab71f28efdef7dbdaec5cb4685ad20e",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "check_reuse.ps1",
+      "bytes": 2350,
+      "sha256": "efa3eb3a3e85458cb34fb102406e025bbae3b45b44a0899cdd9c7c384aa7ba69",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "check_pinned_inputs.py",
+      "bytes": 3206,
+      "sha256": "92cb0664dbf1462ed8e833bc18f035896db33ddf414934984cd3297972a2f645",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "run_single_stacktrace.py",
+      "bytes": 4285,
+      "sha256": "11e6daaa4cb8b988ee7f6fc317eb20b7997577170ee427b8f3df637ade12dd11",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "check_protection.py",
+      "bytes": 4276,
+      "sha256": "1565fbdf9522214b080bfc6f2dd0ed4d56fd878247b3dd0f0df9e42b4be65511",
+      "visibility": "LOCAL_ONLY"
+    },
+    {
+      "file": "new-daemon-local-only/daemon-1.out.log",
+      "bytes": 81187,
+      "sha256": "70e0077c4ccd23911dd995a9e5aac4c7340093da6c06c2d670f05bad3aec2f32",
+      "visibility": "LOCAL_ONLY"
+    }
+  ]
+}
