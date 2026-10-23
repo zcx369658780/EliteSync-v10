@@ -3,6 +3,8 @@ import java.io.File
 import java.util.Properties
 import java.util.Base64
 import java.security.MessageDigest
+import java.nio.file.Files
+import java.nio.file.Path
 
 plugins {
     id("com.android.application")
@@ -11,35 +13,78 @@ plugins {
 
 // ICE_DIAG_GRADLE_GUARD_BEGIN: read-only tooling validation, also fixture-tested.
 fun validateIceDiagnosticGradle(
-    binProperty: String?, homeProperty: String?, taskRoot: File, trustedDistribution: File,
-    projectRoot: File, activeHome: File, homeEnvironment: String?, outerVersion: String,
-    osName: String,
+    binProperty: String?, homeProperty: String?, taskRootProperty: String?, trustedRootProperty: String?,
+    approvedContainer: File, projectRoot: File, moduleRoot: File, flutterRoot: File?,
+    activeHome: File, outerDistribution: File?, homeEnvironment: String?,
+    flutterEnvironment: String?, flutterHomeEnvironment: String?, outerVersion: String,
+    outerOffline: Boolean, osName: String,
 ): Pair<File, File> {
     fun rejectUnless(ok: Boolean, reason: String) {
         require(ok) { "ICE_DIAG_GRADLE_GUARD_REJECTED: $reason" }
     }
     rejectUnless(osName.startsWith("Windows", ignoreCase = true), "Windows tooling only")
     rejectUnless(outerVersion == "8.14", "Gradle version must be 8.14")
-    rejectUnless(!binProperty.isNullOrBlank(), "missing iceDiagGradleBin")
-    rejectUnless(!homeProperty.isNullOrBlank(), "missing iceDiagGradleUserHome")
-    val bin = File(binProperty!!)
-    val home = File(homeProperty!!)
-    rejectUnless(bin.isAbsolute && home.isAbsolute, "absolute tool and home paths required")
-    val expectedBin = File(trustedDistribution, "bin/gradle.bat").canonicalFile
-    val expectedHome = File(taskRoot, "gradle-user-home").canonicalFile
-    rejectUnless(bin.canonicalFile == expectedBin, "unapproved Gradle location or Wrapper alias")
-    rejectUnless(home.canonicalFile == expectedHome && home.isDirectory, "unapproved isolated home")
-    rejectUnless(activeHome.canonicalFile == expectedHome && !homeEnvironment.isNullOrBlank() &&
-        File(homeEnvironment!!).canonicalFile == expectedHome, "Gradle home and environment disagree")
-    rejectUnless(projectRoot.canonicalFile == File(taskRoot, "project/apps/android").canonicalFile,
-        "diagnostic build must use its isolated project copy")
+    rejectUnless(outerOffline, "diagnostic Gradle must be offline")
+    listOf("iceDiagGradleBin" to binProperty, "iceDiagGradleUserHome" to homeProperty,
+        "iceDiagTaskRoot" to taskRootProperty, "iceDiagTrustedGradleRoot" to trustedRootProperty).forEach { (name, value) ->
+        rejectUnless(!value.isNullOrBlank(), "missing $name")
+        val path = File(value!!).toPath()
+        rejectUnless(path.isAbsolute && path == path.normalize(), "absolute canonical property required: $name")
+    }
+    fun checkedPath(file: File, label: String): File {
+        rejectUnless(file.isAbsolute && file.exists(), "missing absolute path: $label")
+        val path = file.toPath().normalize()
+        var cursor: Path? = path
+        while (cursor != null) {
+            rejectUnless(!Files.isSymbolicLink(cursor), "symbolic link forbidden: $label")
+            cursor = cursor.parent
+        }
+        rejectUnless(path.toRealPath() == path, "redirected or noncanonical path: $label")
+        return path.toFile()
+    }
+    val expectedRoot = File(approvedContainer, "build-run").absoluteFile
+    val taskRoot = File(taskRootProperty!!)
+    rejectUnless(taskRoot == expectedRoot, "unapproved task root")
+    checkedPath(approvedContainer.absoluteFile, "approved container")
+    checkedPath(taskRoot, "task root")
+    val trusted = File(trustedRootProperty!!)
+    rejectUnless(trusted == File(taskRoot, "trusted-tools/gradle-8.14"), "unapproved trusted distribution")
+    checkedPath(trusted, "trusted distribution")
+    val expectedBin = File(trusted, "bin/gradle.bat")
+    val expectedHome = File(taskRoot, "gradle-user-home")
+    rejectUnless(File(binProperty!!) == expectedBin, "unapproved Gradle location or Wrapper alias")
+    checkedPath(expectedBin, "Gradle bin")
+    rejectUnless(File(homeProperty!!) == expectedHome, "unapproved isolated home")
+    checkedPath(expectedHome, "Gradle user home")
+    fun normalized(file: File) = file.toPath().normalize().toFile()
+    rejectUnless(activeHome.isAbsolute && normalized(activeHome) == expectedHome &&
+        !homeEnvironment.isNullOrBlank() && File(homeEnvironment!!) == expectedHome,
+        "Gradle home and environment disagree")
+    checkedPath(activeHome, "active home")
+    checkedPath(File(homeEnvironment!!), "home environment")
+    rejectUnless(outerDistribution != null && outerDistribution!!.isAbsolute && normalized(outerDistribution) == trusted,
+        "outer Gradle distribution mismatch")
+    checkedPath(outerDistribution!!, "outer distribution")
+    rejectUnless(projectRoot.isAbsolute && normalized(projectRoot) == File(taskRoot, "project/apps/android") &&
+        moduleRoot.isAbsolute && normalized(moduleRoot) == File(taskRoot, "project/apps/flutter_elitesync_module/.android"),
+        "project and module must belong to the approved task root")
+    checkedPath(projectRoot, "Android project")
+    checkedPath(moduleRoot, "Flutter module")
+    val expectedFlutter = File(taskRoot, "sdk-stage/flutter")
+    rejectUnless(flutterRoot != null && flutterRoot!!.isAbsolute && normalized(flutterRoot) == expectedFlutter &&
+        !flutterEnvironment.isNullOrBlank() && File(flutterEnvironment!!) == expectedFlutter &&
+        !flutterHomeEnvironment.isNullOrBlank() && File(flutterHomeEnvironment!!) == expectedFlutter,
+        "Flutter SDK and environment disagree")
+    checkedPath(flutterRoot!!, "Flutter SDK")
+    checkedPath(File(flutterEnvironment!!), "FLUTTER_ROOT")
+    checkedPath(File(flutterHomeEnvironment!!), "FLUTTER_HOME")
     val pinned = mapOf(
         "bin/gradle.bat" to "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
         "lib/gradle-gradle-cli-main-8.14.jar" to "3e21380f278d069ec1fc706b1a3b075250a00d6366dccc1fcf343838a494f20b",
         "lib/gradle-core-8.14.jar" to "36ee23fbf4082131bbf8758603a7a2019be60f47bc033b283447e107c578427d",
     )
     pinned.forEach { (relative, expected) ->
-        val file = File(trustedDistribution, relative)
+        val file = checkedPath(File(trusted, relative), "pinned Gradle component")
         rejectUnless(file.isFile, "pinned Gradle component missing")
         val digest = MessageDigest.getInstance("SHA-256")
         file.inputStream().buffered().use { input ->
@@ -117,10 +162,13 @@ require(!isIceDiagnosticBuild || (isV1015R1LocalBuild && isV1015LocalBuild && !i
 val iceDiagnosticTooling = if (isIceDiagnosticBuild) validateIceDiagnosticGradle(
     providers.gradleProperty("iceDiagGradleBin").orNull,
     providers.gradleProperty("iceDiagGradleUserHome").orNull,
-    File(System.getProperty("user.home"), ".codex/v1015-gradle-diagnostic-build-chain-20261023"),
-    File(System.getProperty("user.home"), ".codex/v1015-gradle814-offline-bootstrap-20261023/trusted-tools/extracted/gradle-8.14"),
-    rootProject.projectDir, gradle.gradleUserHomeDir, System.getenv("GRADLE_USER_HOME"),
-    org.gradle.util.GradleVersion.current().version, System.getProperty("os.name"),
+    providers.gradleProperty("iceDiagTaskRoot").orNull,
+    providers.gradleProperty("iceDiagTrustedGradleRoot").orNull,
+    File(System.getProperty("user.home"), ".codex/v1015-pinned-arch-debug-build-env-20261023"),
+    rootProject.projectDir, File(flutterModuleDir, ".android"), flutterSdkPath?.let { File(it) },
+    gradle.gradleUserHomeDir, gradle.gradleHomeDir, System.getenv("GRADLE_USER_HOME"),
+    System.getenv("FLUTTER_ROOT"), System.getenv("FLUTTER_HOME"),
+    org.gradle.util.GradleVersion.current().version, gradle.startParameter.isOffline, System.getProperty("os.name"),
 ) else null
 require(!isV1015R1LocalBuild || isV1015LocalBuild) { "R1 requires the existing v10.1.5 local build gate" }
 require(!isV1015R1RetentionProbe || isV1015R1LocalBuild) { "Retention probe requires the isolated R1 build" }
@@ -206,6 +254,8 @@ val syncFlutterAar by tasks.registering(Exec::class) {
         environment("GRADLE_USER_HOME", iceDiagnosticTooling!!.second.absolutePath)
         inputs.property("iceDiagGradleBin", iceDiagnosticTooling!!.first.absolutePath)
         inputs.property("iceDiagGradleUserHome", iceDiagnosticTooling!!.second.absolutePath)
+        inputs.property("iceDiagTaskRoot", providers.gradleProperty("iceDiagTaskRoot").get())
+        inputs.property("iceDiagTrustedGradleRoot", providers.gradleProperty("iceDiagTrustedGradleRoot").get())
     }
     outputs.dir(if (isV1015R1LocalBuild) File(r1AarOutput,
         "repo/com/elitesync/flutter_elitesync_module/${if (isIceDiagnosticBuild) "flutter_debug" else "flutter_release"}/$r1AarVersion") else flutterReleaseAarRepo)
