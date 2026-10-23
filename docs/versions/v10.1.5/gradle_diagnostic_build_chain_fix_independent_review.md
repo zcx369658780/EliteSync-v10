@@ -35,7 +35,7 @@
 | G3安全测试与非作者 | `CODEX_REPORTED_31_FIXTURE_PASS / 6_ISOLATION_CHECK_PASS` | 测试包含property缺失/版本Hash/Wrapper别名/路径、普通路径与diag变体，突变测试正确拒绝。静态非作者复核发现的target-platform与启动环境问题据Codex回执修正；**该审查没有预见真实init Groovy closure错误**，不自动等于全链无故障。上轮20诊断和93回归为`REUSED_VALIDATION`，不是此次重新运行。 |
 | G4真实预检 | **`EXIT1_AT_INIT_REPOSITORY_CLOSURE / TARGET_RESOLVE_CALLS_0`** | 运行40.733秒，包含Flutter工具插件4个构建任务；因此不应说进程“完全没有任何依赖活动”，但专门要验证的`debugCompileClasspath/debugRuntimeClasspath`的`resolve()`为0，目标依赖图`NOT_VERIFIED`。 |
 | 诊断APK | **`NO_APK / POSITIVE_ASSEMBLE_DEBUG_0_OF_1`** | 不曾触发真实AAR/宿主APK构建，因此versionName、应用包名、签名、debuggable、产物ABI及Flutter诊断入口未经过产物证明。 |
-| 安全停机与保护 | `CODEX_REPORTED_PASS_WITH_LIMITATIONS` | 不联网抓依赖，不调用外/内Wrapper，不动手机/DB/API/SFU；152?等旧计数不可虚构，实际本轮为1531份具名原证、3253条工具链/cache记录、496 refs／5根，第一历史根153条Windows长路径warning，未登记目录不宣称覆盖。 |
+| 安全停机与保护 | `CODEX_REPORTED_PASS_WITH_LIMITATIONS` | 不联网抓依赖，不调用外/内Wrapper，不动手机/DB/API/SFU；本轮主代理报告保护1531份具名原证、3253条工具链/cache记录、496 refs／5根，第一历史根153条Windows长路径warning，未登记目录不宣称覆盖。 |
 
 **唯一真正的新阻断非常具体**：临时`exact-flutter-repo.gradle`中的仓库`exclusiveContent`闭包把`maven()`调用送到了`ExclusiveContentRepositorySpec`接收对象，出现`Could not find method maven()`，在init脚本第9行结束。该脚本为本轮LOCAL_ONLY临时工具，非Git跟踪生产源码；**不等于新Flutter依赖坐标缺失，更不是ICE媒体根因**。报告和清单支持`PINNED_RESOLVE_BEGIN/OK/PASS=0`、target resolution0、APK构建0/1。静态审查遗漏运行时DSL行为是**本轮真实预检发现的有效限制**，不可改写为“Gradle链已全部修好”。
 
