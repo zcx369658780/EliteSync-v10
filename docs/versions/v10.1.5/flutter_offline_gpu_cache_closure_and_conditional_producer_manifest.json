@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "taskBlob": "9e6e4a16c5d3d8d05f9701c601901f897e58f424",
+  "astraReviewBlob": "5210b59f3ef9edb5299c95ccb7fa0a755f167da3",
+  "terminal": "OFFLINE_FLUTTER_CLI_CLOSURE_NOT_PROVEN / PRODUCER_NOT_RUN / RESOLVE_NOT_RUN / NO_APK",
+  "additionalStatus": "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+  "identity": {
+    "soleParent": "df2bf34302fd65d0f69c0ea34a269eba03dc6a67",
+    "parentRoot": "1781dbbacf0f2314786cadbe853660353787f4c5",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "83c16824df948bc6a7a5786d9e3a7d12b55b763e",
+    "mainRootAtStart": "07d1e78b75667ac037f7614a2935a656ccef1d80",
+    "mainAcceptedTrees": {
+      "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    },
+    "completeCandidateMapsAtIntake": {
+      "apps": {
+        "sha": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "completeMapMatched": true
+      },
+      "services": {
+        "sha": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "completeMapMatched": true
+      }
+    },
+    "branch": "codex/v10.1.5-flutter-offline-gpu-cache-closure-conditional-producer",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/FLUTTER_OFFLINE_GPU_CACHE_CLOSURE_AND_CONDITIONAL_PRODUCER_REPORT.md",
+      "docs/versions/v10.1.5/flutter_offline_gpu_cache_closure_and_conditional_producer_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "finalGitIdentity": "Commit/Root/two docs Blob recorded after commit in delivery-git-identity/final-readback and Owner handoff; no self-reference"
+  },
+  "D0": {
+    "authorityPassed": true,
+    "fixedPreviousReportBlob": "fd3d6c6646f9f174ff5d0df52cc7e538817475fb",
+    "fixedPreviousManifestBlob": "51bec69ca8f6958cb0679795561c4444b9bb9ef7",
+    "previousTaskBlob": "7e29ca75ed3d12d72108be45e00ca5ff7597bc82",
+    "activeStateReadAtLiveMain": true,
+    "boundedSourceChecks": [
+      {
+        "sourceClass": "registered-original-sdk",
+        "frameworkVersion": "3.41.7",
+        "frameworkRevision": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+        "engineRevision": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+        "matchesFrozenVersionEngine": true,
+        "probes": [
+          {
+            "relative": "bin/cache/pkg/flutter_gpu",
+            "exists": true,
+            "isDirectory": true
+          },
+          {
+            "relative": "packages/flutter_gpu",
+            "exists": false,
+            "isDirectory": false
+          },
+          {
+            "relative": "engine/src/flutter/lib/gpu",
+            "exists": true,
+            "isDirectory": true
+          }
+        ]
+      },
+      {
+        "sourceClass": "registered-prior-sdk-stage",
+        "frameworkVersion": "3.41.7",
+        "frameworkRevision": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+        "engineRevision": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+        "matchesFrozenVersionEngine": true,
+        "probes": [
+          {
+            "relative": "bin/cache/pkg/flutter_gpu",
+            "exists": false,
+            "isDirectory": false
+          },
+          {
+            "relative": "packages/flutter_gpu",
+            "exists": false,
+            "isDirectory": false
+          },
+          {
+            "relative": "engine/src/flutter/lib/gpu",
+            "exists": false,
+            "isDirectory": false
+          }
+        ]
+      },
+      {
+        "sourceClass": "registered-current-sdk-stage",
+        "frameworkVersion": "3.41.7",
+        "frameworkRevision": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+        "engineRevision": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+        "matchesFrozenVersionEngine": true,
+        "probes": [
+          {
+            "relative": "bin/cache/pkg/flutter_gpu",
+            "exists": false,
+            "isDirectory": false
+          },
+          {
+            "relative": "packages/flutter_gpu",
+            "exists": false,
+            "isDirectory": false
+          },
+          {
+            "relative": "engine/src/flutter/lib/gpu",
+            "exists": false,
+            "isDirectory": false
+          }
+        ]
+      }
+    ],
+    "scope": "Exactly3 registered SDK roots at3 named relative package locations and registered Pub hosted directory name match only; no whole-disk/new clone/network search",
+    "pubCacheMatchingPackageNames": [],
+    "sourcePackageVerified": true,
+    "initialSourceVerification": {
+      "initialScriptExit": 1,
+      "initialScriptUnchanged": true,
+      "initialAssumption": "Raw case-sensitive cache/source checkout maps must equal",
+      "observed": "Cached files use LF; source checkout has legitimate CRLF and two BUILD.gn name-case differences; compare all34 cached files directly to fixed Git blob bytes with collision-free Windows path mapping",
+      "noHistoricalBytesRewritten": true,
+      "noPackageCopiedBeforeInitialFailure": true,
+      "runtimeBudgetsUsed": 0
+    },
+    "protectionBaseline": {
+      "passed": true,
+      "namedFiles": 864,
+      "contentHashed": 864,
+      "method": "All current critical named originals/tool pins/raw receipts/SQL APK part backups/source package files actually hashed; immediate previous task evidence; no full historical SDK inventory",
+      "sourcePackageMetadataObservedBeforeCopy": "Original source package files and version metadata were separately captured before copy;2 extra copied metadata identities were checked at copy time",
+      "noRuntimeBeforeOrAfterBaseline": true,
+      "oldRefs": 506,
+      "historicalRoots": 5,
+      "root0Warnings": 153,
+      "priorContextScope": 87357,
+      "priorProtectionReceiptSha256": "323741cc77a3bd146222bcbb473e4bc9fdd2095a80b3d4495c2e8e80e1ca2444",
+      "outsideNamedScope": "Prior protected evidence inherited, no write authority, not newly byte-audited",
+      "sdkCopyBytesLimitedToComponent": true
+    },
+    "frozenTools": {
+      "gradle": "8.14",
+      "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+      "flutter": "3.41.7",
+      "dart": "3.11.5",
+      "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "jdk": "17.0.18.8",
+      "agp": "8.11.1",
+      "kotlin": "2.2.20",
+      "allInputPinsValidated": 47
+    },
+    "sealedEnvironment": {
+      "keys": 50,
+      "canonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "androidPrefsRootAbsentAnyCase": true,
+      "androidUserHomeOriginalLocationPreserved": true,
+      "allCriticalPathsAndValuesPreserved": true
+    }
+  },
+  "D1": {
+    "packageSourceAndIndependentStage": {
+      "sourceVerified": true,
+      "sourceClass": "Registered original SDK cache, complete Windows path map and exact cached bytes matched same SDK tracked engine/src/flutter/lib/gpu at fixed framework Git commit",
+      "frameworkVersion": "3.41.7",
+      "frameworkCommit": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+      "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+      "sourceOrigin": "https://github.com/flutter/flutter.git",
+      "sourceGitPath": "engine/src/flutter/lib/gpu",
+      "sourceGitStatusCleanAtNamedPath": true,
+      "all34CachedPackageFilesExactGitBlobBytes": true,
+      "all34SourceCheckoutFilesMatchGitAfterCrlfNormalizationInMemory": true,
+      "pathIdentityRule": "Windows case-insensitive paths; reject casefold collisions; original cache names retained, two BUILD.gn case differences explicitly mapped; no source bytes normalized or rewritten",
+      "packageName": "flutter_gpu",
+      "packageFiles": [
+        {
+          "relative": "analysis_options.yaml",
+          "bytes": 208,
+          "sha256": "e1d3f021cf7326e1fff413b98f5f1f33a9bc2561f7daeb0ec591b21da1dbb5d1",
+          "gitBlob": "ee294d5a344daa5600b7f4f16ba0e5ccb745eacb",
+          "gitRelative": "analysis_options.yaml"
+        },
+        {
+          "relative": "build.gn",
+          "bytes": 1973,
+          "sha256": "2fa5106fde41a1454591cb0c0749bc5d37a220329843b96e728c6c1006708dc1",
+          "gitBlob": "d094d8ef287728546c515929278285d5872ca3f0",
+          "gitRelative": "BUILD.gn"
+        },
+        {
+          "relative": "command_buffer.cc",
+          "bytes": 4782,
+          "sha256": "b2ad5c76182bfe9672078eb08c29abf8c486730aed72f20f50cf4de2e0ee1ed1",
+          "gitBlob": "0569b27a0cd10c810cf8bb29027dc57daeeec962",
+          "gitRelative": "command_buffer.cc"
+        },
+        {
+          "relative": "command_buffer.h",
+          "bytes": 1815,
+          "sha256": "1f22e3e049de404200450ce5787f8ab33264d80a4b0c9beb7bb2fb980ac24cca",
+          "gitBlob": "57a61a7f34602fee3a39d7c038c28d4c4ae38c34",
+          "gitRelative": "command_buffer.h"
+        },
+        {
+          "relative": "context.cc",
+          "bytes": 4374,
+          "sha256": "20b3672111cfb1e6eb8c9b8708b5b3af2e3a9f98c42901e063e636e6fb5b2590",
+          "gitBlob": "36a715608a62964beee566b540c254b083c5309d",
+          "gitRelative": "context.cc"
+        },
+        {
+          "relative": "context.h",
+          "bytes": 2486,
+          "sha256": "37c3f7de11c4d900178c39b4d8efed19ca118bb308ab30760568c94b0ca37dda",
+          "gitBlob": "3c915827cc98abc868961f80db9adaaf79b1a8b6",
+          "gitRelative": "context.h"
+        },
+        {
+          "relative": "device_buffer.cc",
+          "bytes": 3686,
+          "sha256": "79e069a72eef80239d2785724c8044ce5653db9d753551c7bf81aa2cb5186298",
+          "gitBlob": "1304d9b26927475037d2f7dc682f251cd8215b24",
+          "gitRelative": "device_buffer.cc"
+        },
+        {
+          "relative": "device_buffer.h",
+          "bytes": 1941,
+          "sha256": "0465341faaeb74674581d6a934dfff811705ba21aa7cf479be337a2a89da4330",
+          "gitBlob": "af8c8b0c9d1b5cd9d47d3b39e211701b6be9ff7d",
+          "gitRelative": "device_buffer.h"
+        },
+        {
+          "relative": "dist/build.gn",
+          "bytes": 1286,
+          "sha256": "a2bcddd9f02183bb6508cdfaf3263d5c3dcbb23531e5bf0f3c398dcb3898a1a8",
+          "gitBlob": "c8ea07f21641256d7f4a243735845078af9571e0",
+          "gitRelative": "dist/BUILD.gn"
+        },
+        {
+          "relative": "export.cc",
+          "bytes": 251,
+          "sha256": "71a7cb13749c82bf7bf42ab0fbd0ab8c91f5a00b176d2f0ae90e9aaea4d6065c",
+          "gitBlob": "43ecb08ef8715fc09b02faa9b4e21de20a0a93a1",
+          "gitRelative": "export.cc"
+        },
+        {
+          "relative": "export.h",
+          "bytes": 484,
+          "sha256": "ccbf7379833737d0c91167deb0c9ccb85931c434d3e8a0bdd25726ad849d497b",
+          "gitBlob": "e4fa421ca9919ee91050a2bdc6b94c76a132c3b1",
+          "gitRelative": "export.h"
+        },
+        {
+          "relative": "formats.cc",
+          "bytes": 288,
+          "sha256": "86470ae103df96f30bd1011770ce0076b0de5ce280ec04589f3626d75edfd0f9",
+          "gitBlob": "07f1f6b17fbd56d7620ee64981c215fa409dd389",
+          "gitRelative": "formats.cc"
+        },
+        {
+          "relative": "formats.h",
+          "bytes": 18384,
+          "sha256": "f0a32fd609c9599061abe32145a7335549451e2e8ed3dac103955594a4a019da",
+          "gitBlob": "eef3d0fbc3f80b21f2a7ba96eeba0c0ed589179f",
+          "gitRelative": "formats.h"
+        },
+        {
+          "relative": "lib/gpu.dart",
+          "bytes": 1108,
+          "sha256": "b6975cc557246e55f73d5dbda36184e02fdf6620757cc784830bfadec0878cc1",
+          "gitBlob": "1c57d9f466fb5f78239f96d08cfc1429c40aa050",
+          "gitRelative": "lib/gpu.dart"
+        },
+        {
+          "relative": "lib/src/buffer.dart",
+          "bytes": 10449,
+          "sha256": "917ece47b6f6786d2be30825129f7f7c3b9925c5331af19c192b8122777709a9",
+          "gitBlob": "59da03408cb8fcc12b2102e0dd845144134814da",
+          "gitRelative": "lib/src/buffer.dart"
+        },
+        {
+          "relative": "lib/src/command_buffer.dart",
+          "bytes": 1170,
+          "sha256": "7aa937f7d233f7d1961bf8f0865f4f1007f5068e3c18c1511a18e77cc5d9e436",
+          "gitBlob": "4d4a24ee70ea3f9e9b06cff61f63aff55ab65fd9",
+          "gitRelative": "lib/src/command_buffer.dart"
+        },
+        {
+          "relative": "lib/src/context.dart",
+          "bytes": 6508,
+          "sha256": "f4767bd0c736b8edf4195950516e0ec0e96b0c7c7c6a90b9762ac06237a0b737",
+          "gitBlob": "91d1ffad4341fdcd248e8823db7611f3c053ae6f",
+          "gitRelative": "lib/src/context.dart"
+        },
+        {
+          "relative": "lib/src/formats.dart",
+          "bytes": 4422,
+          "sha256": "429e7e91ba9a9dc2cce37552d83cd05e35822fea3da7040b56f277fb134ce461",
+          "gitBlob": "93fe7a5585e6b39b28c08490f4b20f3a1d910599",
+          "gitRelative": "lib/src/formats.dart"
+        },
+        {
+          "relative": "lib/src/render_pass.dart",
+          "bytes": 17939,
+          "sha256": "c28a24fbcfcfb184f48cd22548342016c107db81bc2f35e69be9d4b0c9e1a444",
+          "gitBlob": "86a7fadbefa43936b64dd12dcdb4dccb1f9552f5",
+          "gitRelative": "lib/src/render_pass.dart"
+        },
+        {
+          "relative": "lib/src/render_pipeline.dart",
+          "bytes": 1003,
+          "sha256": "304b97575585dc3b300042ef945ad73646f459954aa517ca302ddda60b56e4b8",
+          "gitBlob": "0086d0de9849430dab4bd48bd3636f45156c6908",
+          "gitRelative": "lib/src/render_pipeline.dart"
+        },
+        {
+          "relative": "lib/src/shader.dart",
+          "bytes": 1725,
+          "sha256": "209bf813fde15d52e39951f0ae0f10669285b2a137406b03eb3032e7d9066673",
+          "gitBlob": "526bf927536ab3b66bb8413b33441c0ed3e53a71",
+          "gitRelative": "lib/src/shader.dart"
+        },
+        {
+          "relative": "lib/src/shader_library.dart",
+          "bytes": 1661,
+          "sha256": "03f116a2616efb406ed444130edb59178fa70d49298a8e409dc52bfe54de3913",
+          "gitBlob": "b4c41f08bf70e5421caf540bbfb52d8a8436809b",
+          "gitRelative": "lib/src/shader_library.dart"
+        },
+        {
+          "relative": "lib/src/texture.dart",
+          "bytes": 4654,
+          "sha256": "d5452882c3253efcd72f5052e6da0cb11a85926ac3f9ea974ccd3ee8d639da17",
+          "gitBlob": "ceb462b97cf9aa5e7789bb6f5398d131fae70223",
+          "gitRelative": "lib/src/texture.dart"
+        },
+        {
+          "relative": "pubspec.yaml",
+          "bytes": 641,
+          "sha256": "c9e7bcb2ece2f6e60d5f6bfad26f719a882723a8d97be023461060f2617fff29",
+          "gitBlob": "ec24f6b03d3ba7850bb12852f4bdcf3334d3788e",
+          "gitRelative": "pubspec.yaml"
+        },
+        {
+          "relative": "render_pass.cc",
+          "bytes": 23119,
+          "sha256": "e3855471267c76a7ade68ee02b6864cfa074db97533f1353e088a87e78b16cb6",
+          "gitBlob": "c4c98b42e743dfcda0b20042970cbd5593d27b6c",
+          "gitRelative": "render_pass.cc"
+        },
+        {
+          "relative": "render_pass.h",
+          "bytes": 8622,
+          "sha256": "da0acbe17e4019304153dc3b00815e23a6ed3557c6cc413662dc4afdcb67c376",
+          "gitBlob": "6ee78bd611cfa7c0bdb7dd49386d6d6936e89227",
+          "gitRelative": "render_pass.h"
+        },
+        {
+          "relative": "render_pipeline.cc",
+          "bytes": 2185,
+          "sha256": "8fa1a6e2cbb6730bb88cad68221b28216940137b4dcd88255f540d8f3e1847f7",
+          "gitBlob": "fc60ba813a34fdb0260bab537d2bff15698513ae",
+          "gitRelative": "render_pipeline.cc"
+        },
+        {
+          "relative": "render_pipeline.h",
+          "bytes": 1574,
+          "sha256": "c56ae74f1f5f24c9de1e42bd3891c41779774dc08937de756202133748b2200d",
+          "gitBlob": "8d52e70ee601ab86c8be32fb81557ccd06822307",
+          "gitRelative": "render_pipeline.h"
+        },
+        {
+          "relative": "shader.cc",
+          "bytes": 4785,
+          "sha256": "45d8d5c0dfd23af2995ff9eb9a92a780738e16920237b3a37ec76588d0aeb6ce",
+          "gitBlob": "d0b45da23bf4afc064c3a784bcb972c868fd7241",
+          "gitRelative": "shader.cc"
+        },
+        {
+          "relative": "shader.h",
+          "bytes": 3276,
+          "sha256": "4db460c179b558fc6b7455a0af5966d6750fed655809f4691e8310a46bcfc335",
+          "gitBlob": "afa69c93c7f94a5a9bbcc08c588e6aca8f873a1f",
+          "gitRelative": "shader.h"
+        },
+        {
+          "relative": "shader_library.cc",
+          "bytes": 15006,
+          "sha256": "f5228d4d2fa26840cfd2f7bdc7925ca940de8a7ab11ea547116e8993626d9cf0",
+          "gitBlob": "2387bdaada9e0d15acd6fbb97d87bcfefef3ea4c",
+          "gitRelative": "shader_library.cc"
+        },
+        {
+          "relative": "shader_library.h",
+          "bytes": 2528,
+          "sha256": "4b4807ab512b4f9023f99332b408bd34c1ba5d7c31e6d2d8364a33a3e40cf9b6",
+          "gitBlob": "55eaec4d0a64fcf4376a72a0e7f88dd523acba67",
+          "gitRelative": "shader_library.h"
+        },
+        {
+          "relative": "texture.cc",
+          "bytes": 6104,
+          "sha256": "4a5bb1bb4ff968ca79ab0960c84a0572ad3442d51450910e2d7f2fb13adaf05a",
+          "gitBlob": "56852164ced9d30d9dcb7d9e87a0b75ff7876d8e",
+          "gitRelative": "texture.cc"
+        },
+        {
+          "relative": "texture.h",
+          "bytes": 2229,
+          "sha256": "e5b0a0a682348d38233d0644c592341a4a72aa2fbac9e208c060fe870be7753f",
+          "gitBlob": "4a7c6296de1685eb4acb911990efe3ab7397825e",
+          "gitRelative": "texture.h"
+        }
+      ],
+      "fileCount": 34,
+      "totalBytes": 162666,
+      "fileManifestSha256": "417491e869a583b46e6c4782656d47ac5fd13a07ba89b2a9775127a28e23696c",
+      "necessaryMetadataCopiedVerbatim": [
+        {
+          "relative": "bin/cache/flutter.version.json",
+          "bytes": 559,
+          "sha256": "f170ed630dcc291fe6f632656d976bf09de59ab940160c67a314344eec842c1e"
+        },
+        {
+          "relative": "bin/cache/engine.stamp",
+          "bytes": 42,
+          "sha256": "3ce516e27ae7b2af9d72a1acc03a6969c07cf2260fad4096761b67af9890537f"
+        },
+        {
+          "relative": "bin/cache/engine-dart-sdk.stamp",
+          "bytes": 42,
+          "sha256": "3ce516e27ae7b2af9d72a1acc03a6969c07cf2260fad4096761b67af9890537f"
+        },
+        {
+          "relative": "bin/cache/flutter_sdk.stamp",
+          "bytes": 40,
+          "sha256": "e5e816c87ccf0ff60d38b02417cfa06771d422527c2e7b7a9de5e1dae1dadf90"
+        },
+        {
+          "relative": "bin/internal/engine.version",
+          "bytes": 42,
+          "sha256": "3ce516e27ae7b2af9d72a1acc03a6969c07cf2260fad4096761b67af9890537f"
+        }
+      ],
+      "newStageRelativeRoot": "sdk-stage/flutter",
+      "packageBefore": "ABSENT in new task-owned SDK component Stage",
+      "packageAfter": "34 exact real files; lib/gpu.dart and Dart source present",
+      "copyMethod": "copy2 actual files; no links; no whole-SDK copy",
+      "oldSDKAndOldStagesModified": false,
+      "publisherArchiveOrSignatureNewlyVerified": false,
+      "provenanceLimit": "Trusted named local checkout/cache byte equivalence to fixed Git objects, not newly authenticated upstream archive download",
+      "stageStatus": "PACKAGE_COMPONENT_ONLY_NOT_EXECUTABLE_OR_COMPLETE_SDK",
+      "cacheReadinessAtNewStage": "NOT_READY_FULL_SDK; other required SDK/tool inputs not copied",
+      "oldExecutionStageCachePatched": false,
+      "gradleRuns": 0,
+      "flutterRuns": 0,
+      "producerRuns": 0,
+      "formalResolveRuns": 0,
+      "time": 1792766241.13647,
+      "linkAuditScope": "Enumerated actual source/copied files, copy2 created no links; three named ancestor chains checked, not a full SDK reparse audit"
+    },
+    "fullOfflineClosurePassed": false,
+    "newStageIsPackageComponentOnly": true,
+    "newStageExecutableSdkReady": false,
+    "actualExistingProducerBindingsStillPriorStage": true,
+    "oldStagePackagePatched": false,
+    "processTreeNetworkDenial": "NOT_ESTABLISHED_OR_VERIFIED",
+    "guardImplementedOrVerified": false,
+    "controlFlow": [
+      {
+        "stage": "Windows launcher/shared.bat",
+        "potentialAcquisition": "Optional bootstrap; engine-Dart SDK stamp mismatch can enter SDK update; missing/stale snapshot or newer tool pubspec can enter pub upgrade",
+        "currentEvidence": "Frozen launcher/snapshot/input hashes and earlier bootstrap audit inherited; no new Flutter process started; no process-level network deny proof"
+      },
+      {
+        "stage": "FlutterCommand.verifyThenRunCommand",
+        "potentialAcquisition": "universal cache update then platform requiredArtifacts; assemble has no offline option, effective cache offline=false",
+        "currentEvidence": "Gradle --offline not forwarded by BaseFlutterTaskHelper; file-scheme storage/Pub settings alone are not a process network-denial guarantee"
+      },
+      {
+        "stage": "FlutterSdk universal / EngineCachedArtifact",
+        "potentialAcquisition": "sky_engine/flutter_gpu package directories checked; absent package makes isUpToDateInner false and updateInner has zip acquisition entry",
+        "currentEvidence": "Authentic package copied only to new component Stage; frozen actual CLI still points to protected old Stage, whose known gap has not been patched"
+      },
+      {
+        "stage": "PubDependencies cache artifact",
+        "potentialAcquisition": "Invalid tool package_config or missing package root can cause pub.get with inherited cache offline flag",
+        "currentEvidence": "Previous named package-root observation retained; no pub get or pub upgrade run this task; no blanket all-branches-closed claim"
+      },
+      {
+        "stage": "Normal assemble pub/regeneration",
+        "potentialAcquisition": "Normal pub and platform regeneration are gated by shouldRunPub",
+        "currentEvidence": "Assemble does not call usesPubOption; shouldRunPub false, regeneratePlatformSpecificToolingIfApplicable returns; not a new producer execution"
+      },
+      {
+        "stage": "DartBuildForNative / native hooks",
+        "potentialAcquisition": "Nested build/link hooks can launch their own subprocess actions",
+        "currentEvidence": "Inherited actual package config had only objective_c build hook returning early on Android; package existence does not certify all CLI/bootstrap branches"
+      },
+      {
+        "stage": "iOS USB cache entries",
+        "potentialAcquisition": "Platform-conditional update methods",
+        "currentEvidence": "Windows non-macOS branch returns; missing Apple directories not treated as Android required download or observed external request"
+      },
+      {
+        "stage": "Gradle selected producer chain",
+        "potentialAcquisition": "Gradle dependency acquisition constrained by --offline; included build cache metadata possible",
+        "currentEvidence": "Previous real two-task DAG PASS inherited without rerun; Flutter CLI action inside compile task is a separate safety boundary"
+      }
+    ],
+    "inheritedFrozenExecutionStageSourceHashes": {
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/commands/assemble.dart": "621d0970685d9ffcd74e509075a9407afe3ee0bf1344e9592d79897f22fe62a9",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/runner/flutter_command.dart": "ae42e10f66ed5b14a62197f952bfeae2a1088bb6c8d6346525e46a01422d108b",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/cache.dart": "eb6d9f130287f48df8c176e346ffa4e7ad00e2686464409277900044e19332fc",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/flutter_cache.dart": "c13208712c908f530fddb38d6142604bb09a05f14d59fbb985a87e3a0940a7c3",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/build_system/targets/android.dart": "176837e21cd7df9a58a35be5305f74e6d44fe7e4b815ce8d6d64f7546e6b17aa",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/build_system/targets/native_assets.dart": "5e6054a6b5250a2ccefd73a63a66007a08caeec66b9b08a8c158ff6763fda18d",
+      "sdk-stage/flutter/packages/flutter_tools/lib/src/isolated/native_assets/native_assets.dart": "c9d6974ae75435edff2ba129e9a377f511dc68ba1139466e9aa1c01d3a2f53a6",
+      "sdk-stage/flutter/bin/flutter.bat": "f83bfed7ecd10fd1afd8ce19c0b0119d2c80e24fbf26f4ff4f63c1cc5f75dcd5",
+      "sdk-stage/flutter/bin/internal/shared.bat": "b1b8a1b696ecd1265c0cfdc1408c340f0d8351c0e1624710bb8fbf1ab218d4db"
+    },
+    "sourceHashLocationWarning": "These relative source keys refer to frozen prior execution Stage, NOT this new39-file component Stage",
+    "runtimeNetworkCapture": "NOT_RUN",
+    "actualProducerNetworkOrDownloadObservation": false,
+    "stopRule": "Task D1.3 requires proven task-process-tree fail-closed guarantee; missing guarantee blocks producer even though local package source passes",
+    "diagnosticContract": {
+      "inheritedActualTargetPath": "lib/main.dart",
+      "inheritedActualDartDefines": null,
+      "outerFlagsDoNotProveFlutterTaskConsumption": true,
+      "status": "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+      "ordinaryDebugJarBoundedMeaning": "If future producer/source/ABI/output checks pass, a standard module JNI Jar can establish classpath artifact availability only; cannot prove ICE diagnostic entry/defines or device media behavior. This task did not generate any Jar or resolve configuration.",
+      "trackedBuildScriptsChanged": false,
+      "unknownBusinessSwitchesInjected": false
+    }
+  },
+  "D2": {
+    "producerAttempts": 0,
+    "conditionalCap": 1,
+    "status": "NOT_RUN_OFFLINE_CLI_CLOSURE_NOT_PROVEN",
+    "inheritedActualDAG": {
+      "passed": true,
+      "attemptsInPreviousTask": 1,
+      "exit": 0,
+      "seconds": 17.562752962112427,
+      "edge": ":flutter:compileFlutterBuildDebug -> :flutter:packJniLibsflutterBuildDebug",
+      "rerunsThisTask": 0,
+      "scope": "Previous task CODEX_REPORTED_LOCAL_ONLY proof accepted with observations by Astra"
+    },
+    "realLibsJar": {
+      "generatedThisTask": false,
+      "bytes": null,
+      "sha256": null,
+      "crcStructureContentAbi": "NOT_RUN",
+      "provenance": "NOT_ESTABLISHED_BY_A_REAL_PRODUCER_THIS_TASK"
+    },
+    "moduleAarAttempts": 0,
+    "hostApkAttempts": 0
+  },
+  "D3": {
+    "formalResolveAttempts": 0,
+    "conditionalCap": 1,
+    "actualConfigurationResolveCalls": 0,
+    "beginCount": 0,
+    "okCount": 0,
+    "notRunCount": 30,
+    "configurations": [
+      {
+        "configuration": ":flutter:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":connectivity_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":connectivity_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":device_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":device_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_plugin_android_lifecycle:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_secure_storage:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_webrtc:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":flutter_webrtc:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":image_picker_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":image_picker_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni_flutter:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":jni_flutter:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":livekit_client:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":livekit_client:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":package_info_plus:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":package_info_plus:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":permission_handler_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":permission_handler_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":shared_preferences_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":shared_preferences_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":url_launcher_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":url_launcher_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":video_player_android:debugCompileClasspath",
+        "status": "NOT_RUN"
+      },
+      {
+        "configuration": ":video_player_android:debugRuntimeClasspath",
+        "status": "NOT_RUN"
+      }
+    ],
+    "firstFailedConfiguration": null,
+    "strictInitSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "strictPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58",
+    "strictSemanticsUnchanged": true
+  },
+  "D4": {
+    "protection": {
+      "passed": true,
+      "namedOriginalsContentHashed": 864,
+      "oldRefs": 506,
+      "fiveHistoricalRootsUnchanged": true,
+      "originalSdkScopedGitIdentityAndIndexUnchanged": true,
+      "originalPackageFilesUnchanged": true,
+      "oldStageMissingPackageStillUnmodified": true,
+      "newTaskStageFiles": 39,
+      "newTaskStageBytes": 163391,
+      "packageFiles": 34,
+      "metadataFiles": 5,
+      "oldRuntimeCacheMetadataChangesObservedInNamedScope": 0,
+      "newGradleDaemons": 0,
+      "root0Warnings": 153,
+      "scope": "Critical named originals plus exact source/stage component bytes and five historical root Git state; not entire disk or all historical SDK files",
+      "time": 1792766628.1042056
+    },
+    "independentReview": {
+      "reviewer": "Non-author helper prefs_env_independent_review",
+      "model": "GPT-6.1 Sol",
+      "reasoningEffort": "high",
+      "reviewCount": 1,
+      "deliverySupported": true,
+      "requiredChanges": 0,
+      "preconditionsPassed": false,
+      "producerAuthorized": false,
+      "reviewerActions": {
+        "scriptGradleFlutterRuns": 0,
+        "fileEdits": 0,
+        "fullHistoryRehash": 0,
+        "gitPublication": 0
+      },
+      "scopeLimits": [
+        "Only supports blocked delivery, not runtime gate PASS",
+        "New39-file Stage is a package component, not full SDK READY",
+        "Task process-tree network denial not established",
+        "Actual producer, realJar,30resolves,ICE defines andRTC gates unverified",
+        "Protection covers named critical scope, not whole history",
+        "Final document entities, Git publication and byte readback are main-agent responsibility"
+      ],
+      "sourceAuditConclusion": "Supports34 real cached files162666B exact fixed framework GitBlob bytes, explicit CRLF/case mapping; no newly authenticated publisher archive/signature",
+      "privacyConclusion": "PublicBaseline/PublicReview explicit field whitelists close raw embedding concern; relative old execution Stage source labels explicit"
+    },
+    "relatedEnvironmentPairsUnchanged": 24,
+    "ownedToolchainProcessesBeforeAfter": 0,
+    "globalStops": 0,
+    "newGradleDaemons": 0,
+    "historicalWholeSdkRecopy": false,
+    "fullHistoricalAuditRepeated": false,
+    "allOldFailuresRetained": true,
+    "publication": "Ordinary non-force push of only2docs; parent/root/newdocs raw bytes/full product tree map readback required before final response"
+  },
+  "prohibitedActions": {
+    "trackedProductOrBuildEdits": 0,
+    "globalSdkOrOldStageEdits": 0,
+    "globalEnvironmentChanges": 0,
+    "toolsUpgraded": 0,
+    "dagReruns": 0,
+    "flutterPrecachePubGetOrUpgrade": 0,
+    "dependencyOrSdkNetworkAcquisition": 0,
+    "wrapperInvocations": 0,
+    "moduleAarExtraTasks": 0,
+    "hostApkBuildInstall": 0,
+    "deviceAdbRtcSfuDbApi": 0,
+    "networkProxyFirewallHostsChanges": 0,
+    "historyCleanupOrForceGit": 0,
+    "mainIntegration": 0,
+    "r2p2v1016Starts": 0
+  },
+  "evidenceLayers": {
+    "githubDirect": "Fixed authority/reviews and published Git object/docs identities",
+    "localSource": "Registered original SDK cache exact34 Git-Blob bytes under fixed framework/engine; not newly authenticated publisher archive/signature",
+    "localReported": "Source/Stage copies, control-flow analysis, fixed env checks and bounded protection are CODEX_REPORTED_LOCAL_ONLY",
+    "unproven": "Complete runnable independent SDK, task process-tree network denial, real producer/realJar/30configs/ICE flags and RTC gates"
+  },
+  "privacy": {
+    "sourcePathsRawPackageSdkEnvLogs": "LOCAL_ONLY",
+    "public": "Source category, official Git identity, relative package paths, file hashes, bounded conclusions and counts",
+    "packageOrBinaryUploaded": false
+  },
+  "evidence": [
+    {
+      "name": "task-fixed.md",
+      "bytes": 13697,
+      "sha256": "fd9722f585581b2204d774a4032332b8df1038112d7ecaf07b7c42e64a4e1457",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "review-fixed.md",
+      "bytes": 7310,
+      "sha256": "983fb3f7a8a902175d43598cb3ad9a776d11e05a7ef274cd964b4a9718645e54",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "authority.json",
+      "bytes": 1175,
+      "sha256": "67175f67129e9b32277c34a2cf7825c61ba4071c7c221b4d410bcfa11910997c",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "local-source-observation.json",
+      "bytes": 29408,
+      "sha256": "9f4e3452d2883eae2a07066d4b44d2103490112001cc338265006afa20d8dd08",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "source-files-before.json",
+      "bytes": 17834,
+      "sha256": "366312f8ae0892b75baad068a7287d80847d976385fcfe95b060c79a9c4844a8",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "source-byte-classification.json",
+      "bytes": 11556,
+      "sha256": "95f9985665d4e6c84c69d6adeda2ab5dcdcddf41629464cddd70def361a215b9",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "source-check-correction.json",
+      "bytes": 480,
+      "sha256": "308e2ffcd5a1bbc7bd5085869ab7ae93f5507f5374fd30fde759cf8be41a553a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "verify_and_stage_package.py",
+      "bytes": 4811,
+      "sha256": "4f9e7de8c6d6ddd8fd4e3a24d8c40d8fab47063c0326773f2d05d14759f2ac73",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "verify_and_stage_package_v2.py",
+      "bytes": 5569,
+      "sha256": "f1b64956d0880e7ad2b6bfc33932430130496f6a04ef68ddb87695d9b8520d3e",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "package-source-and-stage.json",
+      "bytes": 11757,
+      "sha256": "757b7cc371013af7291ef4d7e5dc28b76b0aff1b869e2b84ed5efd1c6607b7b7",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "original-sdk-git-before.json",
+      "bytes": 219,
+      "sha256": "5ccba5c1834fae7422b311b80321fd30145c2011412477b712eb537febee220a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "original-sdk-git-after.json",
+      "bytes": 219,
+      "sha256": "5ccba5c1834fae7422b311b80321fd30145c2011412477b712eb537febee220a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "source-stage-ancestor-check.json",
+      "bytes": 1398,
+      "sha256": "444c0c16da952408aba3e106c72a5db181aa32f2931299217dfa35a07ebb6c2e",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "closure-assessment.json",
+      "bytes": 6074,
+      "sha256": "b5ee818e88bc2cd2d15d6af7a9b7aac78f6e632426c17697fd40e3aa96787ffe",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "frozen-closure-sources-current.json",
+      "bytes": 1487,
+      "sha256": "b4ac2e6688df3fae6a0e5211b782d7e9534d662dc8d38b62622b58985090f1f2",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "terminal-analysis.json",
+      "bytes": 4096,
+      "sha256": "f6bfbf7b968cd0a35b93c89178c5e3c20fe487c1f16f73292c2a5f036229ae1e",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "baseline.json",
+      "bytes": 895,
+      "sha256": "32fc7548201d4f10ffd3b00e1803589492e4bb0e6f5990fecbad6b859c93425b",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "named-files-before.json",
+      "bytes": 227629,
+      "sha256": "52fab13e441f30adab60f5046f91a0cbd37d55c366c552b5379ecdeb15ad3c01",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "protection-after.json",
+      "bytes": 758,
+      "sha256": "801ddc37ea06eac965daa6719daca1f405b1dfffab7552cfdc30105b63ab2b42",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "stage-files-after.json",
+      "bytes": 6761,
+      "sha256": "00d45128e9717949fe31857748da96a92b9afb4a742b3deeb3f65ab0013adedb",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "independent-review.json",
+      "bytes": 2166,
+      "sha256": "8325cee3b6a0983ab39c1744721d97dc2eec470f5224f16b36a91b9ca16c52b4",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "env-resource-before.json",
+      "bytes": 210,
+      "sha256": "6f900e5b0622f26b493893bde4318d3067ab9a9a333669cee3aed759a05305fa",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "env-resource-after.json",
+      "bytes": 209,
+      "sha256": "962cf405c716955e92eca1b9db3cd5da9c4e8aa71cce4ebef57b17de01a5fa14",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "sealed-environment.json",
+      "bytes": 7341,
+      "sha256": "f3d7d26a4fe1111beae025391050a64b60bd4d0871051cfc7fead46260f49f4a",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "receipt-pins.json",
+      "bytes": 26022,
+      "sha256": "919afc037bd93c69bb432fe9c9b83068266ef85d424a7732ef1e4d47441e81a2",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "resolve-inputs.init.gradle",
+      "bytes": 5570,
+      "sha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    },
+    {
+      "name": "selection-policy.gradle",
+      "bytes": 1930,
+      "sha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58",
+      "layer": "CODEX_REPORTED_LOCAL_ONLY; public identity/hash only"
+    }
+  ],
+  "nextGate": "Astra independent review and Owner decision; no automatic process sandbox/config change, Stage rebinding, producer, resolver or successor",
+  "inheritedTerminal": "V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PLAN_A_RETAINED / NO_R2 / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / AWAITING_ASTRA_INDEPENDENT_REVIEW"
+}
