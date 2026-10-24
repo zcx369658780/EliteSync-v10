@@ -1,0 +1,808 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "date": "2026-10-24",
+  "taskBlob": "9bf4c9d1ee603a58ab8f9f029050aff4d4d89e81",
+  "astraReviewBlob": "daa51c855078bed5f97b7a9c1839d926fbb38e43",
+  "activeStateBlob": "b6234b369122d503a0ad1dc3e46bf888e257ecfb",
+  "terminal": "SOURCE_PROVENANCE_INSUFFICIENT / AGGREGATE_CYCLE_PATH_NOT_PROVEN / WRITER_FIXTURE_NOT_PASS / SANDBOX_NOT_RUN",
+  "identity": {
+    "branch": "codex/v10.1.5-aggregate-source-provenance-conditional-sdk",
+    "soleParent": "0ef15686104e0260c3abb34071b8c731f577094a",
+    "parentRoot": "89e21c47f10451b63883ea68ea9e11fc62578dee",
+    "parentSoleParent": "d0c1a00218ca68b92c6acf3338e292f956b023cf",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "d3fe0afddef6d58ea35a5b95489bcbaa7766b71c",
+    "mainRootAtStart": "5acf1b884b5ecd8b4daf9e94203f3529dc060d43",
+    "fullProductMaps": {
+      "candidate_apps": {
+        "tree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "fullMapMatched": true
+      },
+      "candidate_services": {
+        "tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "fullMapMatched": true
+      },
+      "main_apps": {
+        "tree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "entries": 1116,
+        "fullMapMatched": true
+      },
+      "main_services": {
+        "tree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+        "entries": 776,
+        "fullMapMatched": true
+      }
+    },
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/AGGREGATE_SOURCE_PROVENANCE_AND_CONDITIONAL_SDK_REPORT.md",
+      "docs/versions/v10.1.5/aggregate_source_provenance_and_conditional_sdk_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "finalGitIdentity": "Postcommit exact identity/docs Blob/raw UTF8/fullTree readback in LOCAL_ONLY delivery-git-identity.json and final-readback.json and Owner handoff; no self-reference"
+  },
+  "D0A": {
+    "mode": "STATIC_SOURCE_ONLY",
+    "originalObject": "ORIGINAL_AGGREGATE_OBJECT_NOT_PERSISTED",
+    "provenanceVerdict": "SOURCE_PROVENANCE_INSUFFICIENT",
+    "targetCreatorAndClosedEntryChainProven": false,
+    "originalRuntimeFieldTypesObservedThisTask": false,
+    "fieldProvenance": {
+      "mode": "STATIC_TEXT_ONLY_NO_ORIGINAL_CODE_EXECUTION",
+      "originalObject": "ORIGINAL_AGGREGATE_OBJECT_NOT_PERSISTED",
+      "bodyFieldCount": 13,
+      "bodyFields": [
+        {
+          "path": "$.runId",
+          "sourceExpression": "$RunId",
+          "producer": "typed script parameter",
+          "source": "fixture.ps1",
+          "lines": [
+            1,
+            95
+          ],
+          "expectedTypeFromSource": "System.String",
+          "assignmentChain": [
+            "param([string]$RunId)",
+            "$body.runId=$RunId"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "runtimeObjectRisk": "No visible target-type producer; exact original ETS/wrapper state unavailable",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.passed",
+          "sourceExpression": "$passed",
+          "producer": "literal false, then true only after case-set check",
+          "source": "fixture.ps1",
+          "lines": [
+            40,
+            91,
+            92,
+            93,
+            94,
+            95
+          ],
+          "expectedTypeFromSource": "System.Boolean",
+          "assignmentChain": [
+            "$passed=$false",
+            "case-set equality check",
+            "$passed=$true on completion; catch leaves prior state",
+            "$body.passed=$passed"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Boolean",
+          "runtimeObjectRisk": "Value source boolean; original completion state was not persisted",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.expectedCount",
+          "sourceExpression": "$expected.count",
+          "producer": "trusted fixture-plan JSON parsed by ConvertFrom-Json",
+          "source": "fixture.ps1",
+          "lines": [
+            9,
+            95
+          ],
+          "expectedTypeFromSource": "JSON integer property",
+          "assignmentChain": [
+            "Get-Content fixture-plan.json | ConvertFrom-Json -> $expected",
+            "$expected.count -> body.expectedCount"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Int32",
+          "runtimeObjectRisk": "PowerShell note-property access; no target producer assignment shown",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.actualCount",
+          "sourceExpression": "$cases.Count",
+          "producer": "List[object] count",
+          "source": "fixture.ps1",
+          "lines": [
+            9,
+            29,
+            38,
+            55,
+            78,
+            84,
+            90,
+            95
+          ],
+          "expectedTypeFromSource": "System.Int32",
+          "assignmentChain": [
+            "new List[object] -> $cases",
+            "case summary Add calls",
+            "$cases.Count -> body.actualCount"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Int32",
+          "runtimeObjectRisk": "Collection count, not a case verdict or target runtime object",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.cases",
+          "sourceExpression": "$cases.ToArray()",
+          "producer": "List[object] of explicit ordered result summaries",
+          "source": "fixture.ps1",
+          "lines": [
+            9,
+            29,
+            38,
+            55,
+            78,
+            84,
+            90,
+            95
+          ],
+          "expectedTypeFromSource": "System.Object[] of OrderedDictionary summaries",
+          "assignmentChain": [
+            "Positive/Negative and inline cases create explicit summaries",
+            "$cases.Add(summary)",
+            "$cases.ToArray() -> body.cases"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Object[]",
+          "runtimeObjectRisk": "Nested result values may carry PowerShell wrappers; no direct value/parsed/ErrorRecord input inserted",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.started",
+          "sourceExpression": "$started",
+          "producer": "Get-Date -Format o result",
+          "source": "fixture.ps1",
+          "lines": [
+            2,
+            95
+          ],
+          "expectedTypeFromSource": "formatted string output",
+          "assignmentChain": [
+            "Get-Date -Format o -> $started",
+            "$body.started=$started"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Management.Automation.PSObject",
+          "runtimeObjectRisk": "Prior minimal synthetic observation is PSObject wrapping String; does not prove target metadata chain or original state",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.finished",
+          "sourceExpression": "(Get-Date -Format o)",
+          "producer": "Get-Date at body construction",
+          "source": "fixture.ps1",
+          "lines": [
+            95
+          ],
+          "expectedTypeFromSource": "formatted string output",
+          "assignmentChain": [
+            "Get-Date -Format o -> body.finished"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Management.Automation.PSObject",
+          "runtimeObjectRisk": "Prior minimal synthetic observation is PSObject wrapping String; target creation/loop not observed",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.childElapsedSeconds",
+          "sourceExpression": "$suiteClock.Elapsed.TotalSeconds",
+          "producer": "Stopwatch property chain",
+          "source": "fixture.ps1",
+          "lines": [
+            2,
+            95
+          ],
+          "expectedTypeFromSource": "System.Double",
+          "assignmentChain": [
+            "Stopwatch.StartNew -> $suiteClock",
+            "$suiteClock.Elapsed.TotalSeconds -> body.childElapsedSeconds"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Double",
+          "runtimeObjectRisk": "Only numeric property chain is visible; no target producer shown",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.currentCase",
+          "sourceExpression": "$script:currentCase",
+          "producer": "Fresh([string]$name)",
+          "source": "fixture.ps1",
+          "lines": [
+            10,
+            12,
+            26,
+            32,
+            52,
+            73,
+            79,
+            85,
+            95
+          ],
+          "expectedTypeFromSource": "System.String or null if no case began",
+          "assignmentChain": [
+            "case id -> Fresh typed name",
+            "$script:currentCase=$name",
+            "body.currentCase reads script variable"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "runtimeObjectRisk": "Does not reference input value or exception object; exact wrapper unavailable",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.failureType",
+          "sourceExpression": "$failureType",
+          "producer": "null init or Exception.GetType().FullName",
+          "source": "fixture.ps1",
+          "lines": [
+            40,
+            94,
+            95
+          ],
+          "expectedTypeFromSource": "null or System.String",
+          "assignmentChain": [
+            "$failureType=$null",
+            "catch -> $_.Exception.GetType().FullName",
+            "body.failureType reads variable"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "NULL",
+          "runtimeObjectRisk": "Only type-name value stored, not ErrorRecord; actual catch status unknown",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.failureCode",
+          "sourceExpression": "$failureCode",
+          "producer": "null init or Exception.Message",
+          "source": "fixture.ps1",
+          "lines": [
+            40,
+            94,
+            95
+          ],
+          "expectedTypeFromSource": "null or System.String",
+          "assignmentChain": [
+            "$failureCode=$null",
+            "catch -> $_.Exception.Message",
+            "body.failureCode reads variable"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "NULL",
+          "runtimeObjectRisk": "Only message result stored, not entire exception; original message and wrapper not persisted",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.runtimeProcessesStarted",
+          "sourceExpression": "0",
+          "producer": "integer literal",
+          "source": "fixture.ps1",
+          "lines": [
+            95
+          ],
+          "expectedTypeFromSource": "System.Int32",
+          "assignmentChain": [
+            "literal0 -> body.runtimeProcessesStarted"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Int32",
+          "runtimeObjectRisk": "No visible target producer",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        },
+        {
+          "path": "$.jobsStarted",
+          "sourceExpression": "0",
+          "producer": "integer literal",
+          "source": "fixture.ps1",
+          "lines": [
+            95
+          ],
+          "expectedTypeFromSource": "System.Int32",
+          "assignmentChain": [
+            "literal0 -> body.jobsStarted"
+          ],
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Int32",
+          "runtimeObjectRisk": "No visible target producer",
+          "targetPSParameterizedPropertyCreationOrAssignmentProven": false,
+          "safeProjectionAssessment": "Only declared primitive/bounded shape is a design candidate; not authorized or runtime-verified because target provenance gate is unproven."
+        }
+      ],
+      "caseSummaryUnionFieldCount": 9,
+      "caseSummaryFields": [
+        {
+          "path": "$.cases[*].case",
+          "sourceExpression": "$id or literal case id",
+          "producer": "typed Positive/Negative parameter or inline literal",
+          "source": "fixture.ps1",
+          "lines": [
+            25,
+            29,
+            31,
+            38,
+            55,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "String",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].kind",
+          "sourceExpression": "'positive'/'negative'",
+          "producer": "literal",
+          "source": "fixture.ps1",
+          "lines": [
+            29,
+            38,
+            55,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "String",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].passed",
+          "sourceExpression": "$true",
+          "producer": "literal after assertions",
+          "source": "fixture.ps1",
+          "lines": [
+            29,
+            38,
+            55,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "Boolean",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Boolean",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].receipt",
+          "sourceExpression": "$receipt / $fail[0].Name / phase filename",
+          "producer": "typed parameter, selected file name, or literal",
+          "source": "fixture.ps1",
+          "lines": [
+            25,
+            29,
+            31,
+            34,
+            38,
+            55,
+            76,
+            78,
+            82,
+            84,
+            88,
+            90
+          ],
+          "expectedTypeFromSource": "String",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].sha256",
+          "sourceExpression": "Receipt-Hash $raw",
+          "producer": "SHA256 of receipt bytes, helper returns hex text",
+          "source": "fixture.ps1",
+          "lines": [
+            27,
+            29,
+            36,
+            38,
+            55,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "String",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.String",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].bytes",
+          "sourceExpression": "$raw.Length",
+          "producer": "byte array length",
+          "source": "fixture.ps1",
+          "lines": [
+            27,
+            29,
+            36,
+            38,
+            55,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "Int32/Int64",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "System.Int32",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].readyDenied",
+          "sourceExpression": "$true",
+          "producer": "literal after negative assertions",
+          "source": "fixture.ps1",
+          "lines": [
+            38,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "Boolean",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "NOT_OBSERVED_IN_PRIOR_MINIMAL_SYNTHETIC_GRAPH",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].independentFailureValid",
+          "sourceExpression": "$true",
+          "producer": "literal after failure receipt schema/hash checks",
+          "source": "fixture.ps1",
+          "lines": [
+            38,
+            78,
+            84,
+            90
+          ],
+          "expectedTypeFromSource": "Boolean",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "NOT_OBSERVED_IN_PRIOR_MINIMAL_SYNTHETIC_GRAPH",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        },
+        {
+          "path": "$.cases[*].originalHash",
+          "sourceExpression": "$hash",
+          "producer": "Receipt-Hash of first valid receipt",
+          "source": "fixture.ps1",
+          "lines": [
+            85,
+            87,
+            90
+          ],
+          "expectedTypeFromSource": "String",
+          "originalLiveRuntimeTypeObserved": false,
+          "priorSyntheticObservedType": "NOT_OBSERVED_IN_PRIOR_MINIMAL_SYNTHETIC_GRAPH",
+          "targetCreationProven": false,
+          "noRawInputReferenceAssigned": true
+        }
+      ],
+      "helpers": [
+        {
+          "source": "receipt_writer.ps1",
+          "lines": [
+            31,
+            32,
+            33,
+            34
+          ],
+          "chain": "Load System.Web.Extensions -> new JavaScriptSerializer -> set MaxJsonLength/RecursionLimit -> return $parser",
+          "proof": "Serializer factory is explicit; implementation property-discovery/PowerShell adaptation path is not provided by these source files."
+        },
+        {
+          "source": "receipt_writer.ps1",
+          "lines": [
+            35,
+            36,
+            37
+          ],
+          "chain": "Receipt-Hash byte[] -> SHA256 ComputeHash -> BitConverter hex -> replace/lowercase -> returned String",
+          "proof": "Case hash producer is text; this task only reads source, calls none of these original methods."
+        },
+        {
+          "source": "fixture.ps1",
+          "lines": [
+            59,
+            60,
+            61,
+            62
+          ],
+          "chain": "Negative input runtime object/scriptblock/deep map/self-reference -> local $v passed to Write-Receipt -> guarded failure -> explicit summary Add at38",
+          "proof": "Input $v/$x is not a field in the case-summary literal, so direct aggregate reference leakage is not established by this negative."
+        },
+        {
+          "source": "fixture.ps1",
+          "lines": [
+            95,
+            96,
+            97,
+            98,
+            99
+          ],
+          "chain": "explicit ordered $body -> direct Serialize($body) -> only after successful serialization create/write/readback temp -> Move",
+          "proof": "Aggregate is not routed through Copy-ReceiptValue or Write-Receipt. Prior failure occurs before body temp write."
+        }
+      ],
+      "targetTypeLiteralOrConstructorMatches": [],
+      "originalRuntimeFieldSnapshotsAvailable": false,
+      "priorSyntheticEvidenceIsNotOriginalTypeEvidence": true,
+      "scope": "Exact pinned fixture.ps1 and receipt_writer.ps1, plan/schema as named inputs and prior graph metadata; no engine internals archaeology, new runtime sample or DLL decompilation."
+    },
+    "sourceLimit": "No creation/discovery of PSParameterizedProperty and complete assignment chain into body supplied by the named scripts. External serializer/PowerShell adaptation behavior cannot be guessed from exception type or primitive-wrapper observations.",
+    "noTargetLiteralIsNotProofOfNoIndirectLeakage": true,
+    "runtimeOrFixtureCalls": 0,
+    "priorDiagnosticPins": {
+      "SafeAggregateGraph.cs": "4e0eac0b810b6b1e845cb21f3547d4212e6514db49d70a89b34f014015e8a536",
+      "diagnose_once.ps1": "cbd898fd1ea71516bbd56881bd91ffe6e24f96cbf35b5ccef697e07b07e3b621",
+      "run_diagnosis_once.py": "ff981c09fb24c1758ddf73c7c9644334f3b6686b41f7069b243c474cb42565e0"
+    },
+    "priorFailedWriterPins": {
+      "fixture.ps1": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61",
+      "fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "run_fixture_once.py": "1cdcef296e1dd56c6d8eee8eb20400fd3b4bcd9487b8503728a2fec02a976dd6",
+      "receipt_writer.ps1": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a",
+      "receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "writer-correction.json": "c60fe26a6048c9825ec3e35e781ddd8a20f32c54b2de86c558df0a478f8e51df"
+    }
+  },
+  "D0B_D0D": {
+    "sameSourceReproductionRuns": 0,
+    "reproductionCap": 1,
+    "reproductionHardLimitSeconds": 15,
+    "projectionImplemented": false,
+    "aggregatePositiveNegativeFixtureRuns": 0,
+    "targetFixtureCap": 1,
+    "targetFixtureHardLimitSeconds": 15,
+    "full37CaseSuiteRuns": 0,
+    "fullSuiteCap": 1,
+    "fullSuiteHardLimitSeconds": 60,
+    "newCaseVerdicts": 0,
+    "writerFixturePass": false,
+    "stageStatus": "NOT_RUN because source gate failed; no new aggregate object constructed"
+  },
+  "D1": {
+    "newSandboxInstances": 0,
+    "cap": 1,
+    "newNetworkingGitHeadToolsSdkChecks": "NOT_RUN",
+    "flutterCliRuns": 0,
+    "sdkReady": false,
+    "sdk600SecondWindowUsed": false,
+    "sdkHostCopies": 0,
+    "oldGuestStatus": "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS"
+  },
+  "D2": {
+    "producerRuns": 0,
+    "cap": 1,
+    "target": ":flutter:packJniLibsflutterBuildDebug",
+    "compileDependency": ":flutter:compileFlutterBuildDebug",
+    "newRealLibsJarGenerated": false,
+    "sourcePathHashZipCrcJniAbiChecks": "NOT_RUN"
+  },
+  "D3": {
+    "formalResolveRuns": 0,
+    "cap": 1,
+    "configurationResolveCalls": 0,
+    "expected": 30,
+    "begin": 0,
+    "ok": 0,
+    "failed": 0,
+    "notRun": 30,
+    "strictResolverSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "artifactPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58"
+  },
+  "inheritedFixedTools": {
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "frameworkHead": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "gradle": "8.14",
+    "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "jdk": "17.0.18.8",
+    "agp": "8.11.1",
+    "kgp": "2.2.20",
+    "base50CanonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+    "runtime53CanonicalSha256": "6468110fb2cd275115774ae4813aa769415d2f3d14bcb297ab9d0867457a9723",
+    "androidPrefsRoot": "Absent from inherited approved diagnostic env, not re-run",
+    "androidUserHome": "Inherited approved ownership unchanged, not re-run",
+    "newActualToolChecks": "NOT_RUN"
+  },
+  "history": {
+    "originalBody": "NOT_PERSISTED",
+    "priorRestrictedSyntheticGraph": "8nodes,0observedcycles,3cuts,0targetedges; not original acyclicity or root cause proof",
+    "priorCaseArtifacts": "37directories38JSON20failure; not37PASS",
+    "priorControllerActual0": "No case body to validate, not0actualcases",
+    "historicalSdkCutoff": "2026-10-24T15:13:39.026+08:00",
+    "lateSdkException": "2026-10-24T15:18:08.1167661+08:00, about269seconds later PSInvalidCast in Write-Receipt/framework-identity",
+    "decimalObservation": "Saved replay $.seconds System.Decimal, distinct evidence; not repeated",
+    "sameCauseProven": false
+  },
+  "D4": {
+    "nonAuthorReviewCount": 1,
+    "reviewer": "Same bounded GPT-6.1 Sol/high read-only source/terminal/final-doc review; no runtime by reviewer",
+    "sourceGateStopSupported": true,
+    "protection": {
+      "uniqueNamedOriginals": 22094,
+      "unchanged": 22094,
+      "changedFiles": [],
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "refsAtStart": 514,
+      "oldRefsMissingOrChanged": [],
+      "historicalInitSourcesUnchanged": {
+        "producer.init.gradle": true,
+        "resolve-inputs.init.gradle": true,
+        "selection-policy.gradle": true
+      },
+      "priorFailedWriterPinsUnchanged": true,
+      "priorDiagnosticSourcePinsUnchanged": true,
+      "hostRelatedEnvironment24Unchanged": true,
+      "hostGitEnvironment21Unchanged": true,
+      "environmentSnapshotScope": "D4 snapshots after static provenance verdict; no fixture or original script runtime in this task. Not a pre-D0 environment snapshot.",
+      "networkParsedStateEqual": true,
+      "networkRecordedStateHashEqual": true,
+      "networkRawFileHashesEqual": false,
+      "hostRelatedJavaDartProcesses": 0,
+      "prior38JsonPreserved": true,
+      "sdkHostCopies": 0,
+      "newGuestDerivedFiles": 0,
+      "scope": "Named historical originals, prior failed scripts/logs/38JSON, selected readonly SDK/cache assets and five root Git states; not full disk/live DB audit.",
+      "time": 1792844424.981205,
+      "passed": true
+    },
+    "ordinaryNonforceOnlyTwoDocs": true,
+    "independentAstraAcceptance": false
+  },
+  "evidenceLayers": {
+    "GITHUB_DIRECT": "Task/review/state and live main/candidate/full product objects, then exact remote identity/bytes/fullTree readback",
+    "CODEX_REPORTED_LOCAL_ONLY": "Pinned source text and field-by-field provenance matrix with original/live type limitations, protection receipts",
+    "NON_AUTHOR_REVIEW": "Read-only source/file/hash review only",
+    "HISTORICAL_SYNTHETIC_GRAPH": "Previous task observations, no new graph execution",
+    "LATE_GUEST_EVIDENCE": "Original late error separate from600sec cutoff and other observations",
+    "NOT_RUN": "Same-source reproduction/projection/aggregate fixtures/full37suite/newSDK/Flutter/producer/Jar/formal30/APK/RTC/DB/main"
+  },
+  "evidence": {
+    "authority.json": {
+      "sha256": "661d75fb5a19a5e5ec00aca6735ec0675782baf5441cbb8515dff9fe3e351006",
+      "bytes": 2267,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "field-source-provenance.json": {
+      "sha256": "454de2afb7ce79da7c2bbee5189afbe52873026cfe2df0428e4f4542357adb06",
+      "bytes": 18882,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "source-provenance-verdict.json": {
+      "sha256": "30b307608209264de5178305658fd1876184aaed3dc5fafebbb3fecc2ef5afc7",
+      "bytes": 895,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture.numbered.source.txt": {
+      "sha256": "460745200541f6d08201266545777cb96bf2f775a41fdc669d64dffeeebdba93",
+      "bytes": 11987,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "writer.numbered.source.txt": {
+      "sha256": "00cd767677a6430f8d8bca8e919358337a21834bab3ee353bdb89106a38afe85",
+      "bytes": 9936,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "trace_sources.py": {
+      "sha256": "75a10168577894e74a41de30719efdbeda65331b64bc0d0c5f3c7cde033c5d73",
+      "bytes": 9555,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "non-author-source-review.json": {
+      "sha256": "e36153f7e93bc8b9d07b186f4ac0f1651aaa73b2242905232423fb57bdb4c653",
+      "bytes": 1186,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "protection-after.json": {
+      "sha256": "988057be89683b3d6629dab97fbb5515eb75fefc8b280d4fe444e7d77345724a",
+      "bytes": 1162,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "terminal.json": {
+      "sha256": "f4832c92478c5147717c6c7e53e77da24a06aa6b986d448ea2e3b506e1903323",
+      "bytes": 1226,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "historical-sdk-timeout-stop.json": {
+      "sha256": "8446f9f7174169d3ccee421560d8855d6eb69a32af9a5dc95c3c54124dcaaf1d",
+      "bytes": 781,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "historical-late-failure-timeline.json": {
+      "sha256": "49d8eb9844ae58f0d11acc6577268ce44ca3b65c5c41eeb2a63c3565fa8edec9",
+      "bytes": 783,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "historical-session-failure.json": {
+      "sha256": "4a0e3a7808c99d13ddf1a5072aec7f42926592906995c1f27f66965a2afa0b3b",
+      "bytes": 1061,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "host-network-before.json": {
+      "sha256": "af568bf5a0e66c65ef77054d7b1da078f94f0732f0731670755e34eab4c46000",
+      "bytes": 5112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-after.json": {
+      "sha256": "c49bae379fed5d0e980eb31354251b5b5129f0ca49ee6c748388bc16b83f5f6b",
+      "bytes": 5111,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    }
+  },
+  "prohibitedActions": {
+    "newOriginalOrSyntheticAggregateObjectConstruction": 0,
+    "originalCodeOrSerializerExecution": 0,
+    "unknownGettersObjectToStringOrExpandedTraversal": 0,
+    "oldDecimalGraphHostDagGpuOrSdkReruns": 0,
+    "downloads": 0,
+    "globalGitEnvNetworkAclOwnerChanges": 0,
+    "sdkHostCopies": 0,
+    "unknownGuestProcessActions": 0,
+    "hostApkExtraAarDeviceAdbRtcSfuDbApiActions": 0,
+    "productChanges": 0,
+    "mainIntegration": 0,
+    "forceGit": 0,
+    "successorStarts": 0
+  },
+  "privacy": "Raw private paths/run IDs/PIDs, original scripts/logs, env and SDK/JAR/APK stay LOCAL_ONLY; public source excerpts are variable/field expressions, types and line references only, without actual sensitive values.",
+  "additionalStatus": [
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "nextGate": "Stop after ordinary publication and exact readback; await Astra. No reproduction or runtime based on insufficient source provenance; no automatic successor."
+}
