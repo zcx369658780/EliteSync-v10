@@ -6,7 +6,7 @@
 
 专项任务Blob：`38667356cb487acc4d8fc0994f894eabf3fb82e0`。原正式任务单仍为 `docs/versions/v10.1.5/ASTRA_SOURCE_FAITHFUL_AGGREGATE_SERIALIZER_DIAGNOSTIC_AND_CONDITIONAL_SDK_TASK_20261024.md` Blob `009a12cae75ef3b714f0156d4edbca2db1660719`；前置Astra复审Blob `7eae0044f8c1621a5e6fdf8a8f637462b1596385`；前次阻断交付Astra复核Blob `8f627cf0d442f935f756435d4d7d97890bcfdb71`。候选分支续接预期从 `a9bb54d78e357ce15bf673a654baa849e264a32f` 远端HEAD继续，但Codex开工必须重新核验，禁止force/reset或覆盖分支。
 
-当前main在本次任务单发布后回读：`9298d6e39521a2f4ef8e57799821841b92acc231`；Root Tree：`83083b4fbc2fe18640f6f99f004ddfcadf759500`。产品接受状态不变：v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍 `PARTIAL_NOT_ACCEPTED`，AC05仍OPEN；ICE诊断标志未证明、旧guest状态未知、无Host APK、无main产品集成、v10.1.6未启动。
+任务单首次发布后、此状态卡同步前的回读快照：main `9298d6e39521a2f4ef8e57799821841b92acc231`、Root Tree `83083b4fbc2fe18640f6f99f004ddfcadf759500`。随后本状态卡更新会再推进main；该SHA仅是中间检查点，不是本次同步后的live HEAD。Codex开工必须fresh回读main与Root Tree。产品接受状态不变：v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍 `PARTIAL_NOT_ACCEPTED`，AC05仍OPEN；ICE诊断标志未证明、旧guest状态未知、无Host APK、无main产品集成、v10.1.6未启动。
 
 本任务发布不等于Codex已派发或执行。Owner仍是最终授权主体；GitHub仅保存版本化任务与脱敏证据，不恢复Issue/branch/人工prompt-result中转工作流。平台Daybreak提示无实际命令拒绝证据，不作为产品安全缺陷或运行失败，也不得通过绕过安全机制继续。
 
