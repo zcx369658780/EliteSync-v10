@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "date": "2026-10-24",
+  "taskBlob": "ce270b0ffe1e95eb5f63a628eb9429fefd66c081",
+  "astraReviewBlob": "c9bcb7f019acfcba9a5f7c468323da2100d47dcd",
+  "activeStateBlob": "385b7dec9129b97c21d4e5132dfda1f7b7d799a0",
+  "terminal": "ISOLATED_SDK_RUNTIME_PRECONDITION_BLOCKED / PRODUCER_NOT_RUN / RESOLVE_NOT_RUN",
+  "identity": {
+    "soleParent": "7292a8c39cec2e0bbb611436686828263129614b",
+    "parentRoot": "270adcd0c7934b974be7f820f1fd063a52e63285",
+    "baseSoleParent": "29eced7453d876ca3d229341241b518e80b82635",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "mainAtStart": "9e69b78aff49f1712a0184e65d82f2eab31e391f",
+    "mainRootAtStart": "e738c45e3b1eae8f9aedd0c3216b5b3924500714",
+    "fullProductMaps": {
+      "candidate_apps": {
+        "tree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "fullMapMatched": true
+      },
+      "candidate_services": {
+        "tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "fullMapMatched": true
+      },
+      "main_apps": {
+        "tree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "entries": 1116,
+        "fullMapMatched": true
+      },
+      "main_services": {
+        "tree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+        "entries": 776,
+        "fullMapMatched": true
+      }
+    },
+    "branch": "codex/v10.1.5-owner-sandbox-scoped-cleanup-sdk-producer",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/OWNER_SANDBOX_SCOPED_SESSION_CLEANUP_AND_SDK_PRODUCER_REPORT.md",
+      "docs/versions/v10.1.5/owner_sandbox_scoped_session_cleanup_and_sdk_producer_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "postCommitIdentity": "Commit/Root/new document Blobs and actual remote raw-byte readback recorded after commit in LOCAL_ONLY delivery-git-identity.json/final-readback.json plus Owner handoff; no document self-reference"
+  },
+  "D0": {
+    "currentRawSnapshotPreserved": true,
+    "rawSnapshotIncludesTimeCommandScopeAndArrays": true,
+    "totalVirtualizationRows": 2,
+    "sandboxNamedMatches": 0,
+    "oldTaskWsbMatches": 0,
+    "genericVmRowsNotAttributedOrClosed": 2,
+    "genericVmPathSignatureLimit": "ExecutablePath and CommandLine unavailable for generic rows; no ownership inference or termination",
+    "oldGuestStatus": "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "oldGuestClosedPass": false,
+    "hcsListCalls": 1,
+    "hcsExit": -2143878885,
+    "hcsExitHex": "0x8037011B",
+    "hcsUsableGuestList": false,
+    "hcsErrorCause": "UNKNOWN; not diagnosed",
+    "normalCloseRequests": 0,
+    "singleProcessTerminations": 0,
+    "immediatePrelaunchProcessGuardPassed": true,
+    "newInstanceAdmission": "NEW_INSTANCE_ISOLATION_PRECONDITION_PASS",
+    "reason": "No current task-origin active conflict observed; new runId/WSB/output root, all historic seeds read-only and guest-private writable view; Owner explicitly permits attempt despite HCSUNKNOWN"
+  },
+  "D1": {
+    "sdkInstanceAttempts": 1,
+    "cap": 1,
+    "seconds": 75.14216423034668,
+    "launcherExit": 0,
+    "sdkPreflightPassed": false,
+    "sdkRuntimeReady": false,
+    "boundary": {
+      "passed": true,
+      "scope": "This exact current instance, runId/config/child-script bound; not host-wide proof or old guest closure",
+      "parentAndChildDirectConnectTests": 4,
+      "ipv4AndIpv6Error": 10051,
+      "dnsHttpTlsOrApplicationPayload": false,
+      "activeAdapters": 0,
+      "connectedNonLoopback": 0,
+      "defaultRoutes": 0,
+      "childExit": 0,
+      "guestOs": "Windows10.0.26100"
+    },
+    "mapping": {
+      "folders": 22,
+      "hostWritableRootsOnlyCurrentTask": true,
+      "allHistoricalSourcesReadOnly": true,
+      "hostSdkCopies": 0,
+      "guestPrivateSeedCopies": 17898,
+      "guestPrivateSeedBytes": 1630967264,
+      "seedHashesMatched": true,
+      "artifactStoreInputsExpected": 2149,
+      "artifactCopyCompletionSeparateReceipt": false,
+      "artifactAndPinChecks": "Execution reached tool_identity after strict artifact-copy/hash,41runtimePins+2pluginJarPins and package-root guards; no separate per-file guest export",
+      "noWholeHistoricalSdkHostCopy": true
+    },
+    "actualNativeResults": {
+      "java-version": {
+        "runs": 1,
+        "exit": 0,
+        "version": "Temurin17.0.18+8"
+      },
+      "dart-version": {
+        "runs": 1,
+        "exit": 0,
+        "version": "3.11.5"
+      },
+      "gradle-version": {
+        "runs": 1,
+        "exit": 0,
+        "version": "8.14",
+        "embeddedKotlin": "2.0.21",
+        "projectKotlinPlugin": "2.2.20 artifact pin only, not loaded by project configuration"
+      },
+      "framework-head": {
+        "runs": 1,
+        "exit": 128,
+        "seconds": 0.40501109999999996,
+        "headObtained": false
+      },
+      "flutter-version": {
+        "runs": 0,
+        "status": "NOT_RUN"
+      }
+    },
+    "launcherEnvironment": {
+      "keys": 50,
+      "canonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "fourNativeLauncherReceiptsMatch": true,
+      "androidPrefsRootKeyAbsent": true,
+      "androidUserHome": "Approved original logical path, new private guest backing",
+      "scope": "Actual ProcessStartInfo dictionary passed to four native launchers; not a claim that every later child environment was identical"
+    },
+    "firstBlocker": {
+      "phase": "tool_identity",
+      "stage": "framework-head",
+      "exit": 128,
+      "message": "Git detected dubious ownership inside the mapped guest repository",
+      "observedRepositoryOwner": "SYSTEM in guest view",
+      "observedCurrentUser": "WDAGUtilityAccount",
+      "nativeFailureClass": "Git fatal safety check; wrapper System.Management.Automation.RuntimeException",
+      "hostOwnershipChangedClaim": false,
+      "sdkCorruptionOrWrongHeadClaim": false,
+      "safeDirectoryOrGlobalGitChanges": 0,
+      "ownershipRepairs": 0,
+      "retries": 0
+    },
+    "lifecycleAfterFailure": {
+      "guestDriverFinally": "Normal shutdown path in verified disposable guest only, no force/service action",
+      "shutdownExitSeparateReceipt": false,
+      "hostRelatedSandboxProcessesObservedAfter": 0,
+      "newGuestExitConfirmed": false,
+      "oldGuestStatus": "UNKNOWN retained; post-process absence not a guest-state proof"
+    }
+  },
+  "D2": {
+    "producerRuns": 0,
+    "cap": 1,
+    "tasks": [
+      ":flutter:compileFlutterBuildDebug",
+      ":flutter:packJniLibsflutterBuildDebug"
+    ],
+    "dagReruns": 0,
+    "newLibsJarGenerated": false,
+    "jarHash": null,
+    "jarStructureCrcContentAbiChecks": "NOT_RUN",
+    "jarAbsenceGateAtSdkReady": "NOT_REACHED; static source seed had no target Jar and producer never launched"
+  },
+  "D3": {
+    "formalResolveRuns": 0,
+    "cap": 1,
+    "configurationResolveCalled": false,
+    "expected": 30,
+    "begin": 0,
+    "ok": 0,
+    "failed": 0,
+    "notRun": 30,
+    "status": "RESOLVE_NOT_RUN",
+    "strictInitSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "artifactPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58"
+  },
+  "D4": {
+    "nonAuthorReviewCount": 1,
+    "reviewer": "Same bounded GPT-6.1 Sol/high review covers preflight, actual blocker and final docs/protection",
+    "protection": {
+      "namedFiles": 1189,
+      "namedUnchanged": 1189,
+      "preparedAndReadonlyAssets": 20268,
+      "preparedAndReadonlyUnchanged": 20268,
+      "oldRefs": 509,
+      "oldRefsMissingOrChanged": [],
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "currentTaskInitSourcesUnchanged": true,
+      "relatedEnvironmentUnchanged": true,
+      "hostRelatedToolProcesses": 0,
+      "hostNetworkStateUnchanged": true,
+      "hostNetworkRawReceiptHashesEqual": false,
+      "hostNetworkCanonicalStateSha256": "406c5b6b3cf037a4a917b421b8f6a2bb32d45f5d4c5d08a6a0d369a4087b07e7",
+      "sdkHostCopies": 0,
+      "historicalWriteMappings": 0,
+      "scope": "Current named originals, all selected prepared/readonly source bytes, five root Git state and old refs; not full disk/live DB audit. Guest-private derived cache/tool writes are distinct from historical host bytes. Network state comparison uses parsed structure to avoid hashtable key-order artifacts.",
+      "time": 1792810465.197176,
+      "passed": true
+    },
+    "runtimeAfterFirstBlocker": false,
+    "publication": "Ordinary nonforce branch publication with exact remote readback required; actual receipt recorded post-commit"
+  },
+  "inheritedFixedTools": {
+    "flutter": "3.41.7 source identity only, CLI not run",
+    "dart": "3.11.5 actual",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab fixed source",
+    "frameworkHead": "cc0734ac716fbb8b90f3f9db8020958b1553afa7 inherited source; guest HEAD not obtained",
+    "gradle": "8.14 actual",
+    "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "jdk": "17.0.18+8 actual",
+    "agp": "8.11.1 artifact bytes only",
+    "projectKotlin": "2.2.20 artifact bytes only"
+  },
+  "evidenceLayers": {
+    "GITHUB_DIRECT": "Live main and candidate object identities, fixed task/review/state bytes and full product maps",
+    "CODEX_REPORTED_LOCAL_ONLY": "Raw current process/guest query, actual mapped SDK-instance boundary/copy/version/failure receipts and bounded protection",
+    "NON_AUTHOR_STATIC_RECEIPT_REVIEW": "Read-only technical and result cross-check, no guest execution or Astra onsite test",
+    "INHERITED_NOT_RERUN": "GPU source provenance, accepted originalDAG, previous standalone probe; old missing snapshot and failed closures remain historical facts",
+    "NOT_RUN": "Flutter CLI, real producer/Jar, project config resolve, host APK/AAR/device/RTC/SFU/DB/API"
+  },
+  "evidence": {
+    "authority.json": {
+      "sha256": "3d0f58a75882bdb976d75aca85374f7a012add8595c248e8d8832107678525fd",
+      "bytes": 1395,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "process-snapshot.raw.json": {
+      "sha256": "66a585b95b589b2ef6a1d98dcd519c941f717a0d5bc8ae2159cbae3b67f8e7f0",
+      "bytes": 1666,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "hcs-query.result.json": {
+      "sha256": "4cb2d38dbebbc88cdecd86feef6998482bc326575616fd2b8c3a286bd2c66076",
+      "bytes": 351,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "hcs-query.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "hcs-query.stderr.txt": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "bytes": 2,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "process-snapshot.prelaunch.json": {
+      "sha256": "e5c1ff3903f24f1e84cdb166279702e9a63015a3f2c7e132e872fb2a64d25871",
+      "bytes": 458,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "new-instance-admission.json": {
+      "sha256": "5371e44e22520ff155db36107e4a75e9fbdfc341e24ea6d3472fa3dcce406b8f",
+      "bytes": 986,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-plan.json": {
+      "sha256": "a1c54213abba0ca8f3e74a9041ad1b3879e45668e98abbd6666f04eadb2c488d",
+      "bytes": 11391,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-review-preflight.json": {
+      "sha256": "d12c92bb49c33fdb7c4fee645b72cc09890adbc5c33860c3828c1cd3bf56d6a5",
+      "bytes": 2768,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "longpath-static-correction.json": {
+      "sha256": "c4ab508c5c62e7088b61c6d14d6ee72e3ee94f76eed729d1a218f255c25eb428",
+      "bytes": 455,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "longpath-read-semantic-check.json": {
+      "sha256": "08e5eb0d0f4d667fb63db5832fc49eac20c0601d308fd48a0662c2557c837b0b",
+      "bytes": 1460,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "package-root-static-closure.json": {
+      "sha256": "c500a267242d5bacee8ef43abce7e7279060258238b75d882006e589b0eeaeae",
+      "bytes": 36675,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "sdk-instance.started.json": {
+      "sha256": "60464173ed4883efbef82cc8b6cdef9405bf50dab07e757af738ad030dec3fce",
+      "bytes": 693,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "sdk-instance.launcher.json": {
+      "sha256": "9b491d0c99617734f62bc860eb7b5df827b3689b2de38cfe2a0d41dfcf90da0c",
+      "bytes": 50,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "sdk-instance.preflight-result.json": {
+      "sha256": "a797ea14aef8b43d66fc6d654e8253cc34816b7f1c38de9c21cfd82715569c83",
+      "bytes": 1811,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/runtime-boundary.json": {
+      "sha256": "59d286f9e11b72bd8c898006d92b4936012490545aa02d2022bc2d928c92ad60",
+      "bytes": 8666,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/probe/child.json": {
+      "sha256": "2db6ae1f612145158051de83bca3d380b4c6385298a40a859c3140dfa6471c55",
+      "bytes": 4257,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/guest-private-seed-copy.json": {
+      "sha256": "3237f3e1808f99ebab7d42e826d26b02cb12493e5ceaebfaef4f6cf273c3f62a",
+      "bytes": 221,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/java-version.started.json": {
+      "sha256": "a9f7be20b946528870f873641ed844d3c87cda92f92d0d921d545925add14ee8",
+      "bytes": 2658,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/java-version.result.json": {
+      "sha256": "43b32a0a6bbd490cd28f2c8d375716c631b2afa9ac6745da46a820a9882db290",
+      "bytes": 319,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/java-version.stdout.txt": {
+      "sha256": "3309a3ee89d757c44c148721e6649b08bc4a5cc535269f8e3f4658ce6b44fdfe",
+      "bytes": 176,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/dart-version.started.json": {
+      "sha256": "0b0e13aa396b1eab27bbfce4dc74e7af8ac0ac9a0505ce9c2f42ae01e3ae9460",
+      "bytes": 2726,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/dart-version.result.json": {
+      "sha256": "f03d7b8362db143721dcadf4b2c1798891417a65ef8950004b9530c232d18e17",
+      "bytes": 319,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/dart-version.stdout.txt": {
+      "sha256": "3d01f0b826dc29952dee301268932f27a7bc4662f40d2748152af40f638746e4",
+      "bytes": 85,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/gradle-version.started.json": {
+      "sha256": "199dcc9bf951fabc43f1d6f0d080785a804c1a9ffb2a33f666bec4bc074be14f",
+      "bytes": 2824,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/gradle-version.result.json": {
+      "sha256": "79f8f945e85a938f2de0942f5c93bc238688c5de584ae517fcf3303718912120",
+      "bytes": 309,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/gradle-version.stdout.txt": {
+      "sha256": "9a7d04c9b1b426dda007ac6709f60106fcf0a3ca54f64ffae563ae6a86eabc9e",
+      "bytes": 847,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/framework-head.started.json": {
+      "sha256": "257d82dfdd02055a2d310183fe2b7b5db4cbef31748370358299ea5f275e44aa",
+      "bytes": 2850,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/framework-head.result.json": {
+      "sha256": "6820151afd0baea2f1d492588899e8f94c2415ddade018bb25626fda827c4d3e",
+      "bytes": 321,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/framework-head.stderr.txt": {
+      "sha256": "1587f708e8af92c52981c4d73506139d7509d073d49d78867f3c8b8c98c8b047",
+      "bytes": 598,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session/output/session-failure.json": {
+      "sha256": "775a8525275a2aa634f099d637d72f7ed44a5a51d73260e8ba6ba1ba9a6e3bbb",
+      "bytes": 1027,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "protection-after.json": {
+      "sha256": "9dc0e14ca85ccb2ce220f5690360979e4078885a132bebc6ec7bbc1b483b653c",
+      "bytes": 978,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "session-after.raw.json": {
+      "sha256": "222fb0439a991fa009d1efcd727daf6dd30127f65e3955a52b90e88ef41b727b",
+      "bytes": 467,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-before.json": {
+      "sha256": "2960be1a26be9208bb745052252542a03809453f134d8f4a145db0483182eff1",
+      "bytes": 5112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-after.json": {
+      "sha256": "71366ed55023b767c4014e6119b09fe0a8058da3d77f44209196bd740ab1cbf4",
+      "bytes": 5111,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "env-resource-after.json": {
+      "sha256": "61c6179bb9ca6f4d1828d9e50e007869ce9e3e5d35c5e3972275af74c44f196e",
+      "bytes": 209,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "terminal.json": {
+      "sha256": "2b25d37e649766acde199cd0eec650e3e88b4e66f54ed33e594a178a65cb9264",
+      "bytes": 1066,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "intake-state-assertion-first-failure.json": {
+      "sha256": "247c2513c6f48a6139313cb06aefec740d6607816f59461c3125d1da67d3c92e",
+      "bytes": 511,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    }
+  },
+  "privacy": "All raw PIDs/SIDs/VM identifiers, full paths, config/WSB mappings, environment values, original stdout/stderr and binaries remain LOCAL_ONLY; only decision summary and hashes public",
+  "prohibitedActions": {
+    "downloads": 0,
+    "elevation": 0,
+    "globalGitConfigChanges": 0,
+    "ownerAclChanges": 0,
+    "forceKills": 0,
+    "systemOrServiceRestarts": 0,
+    "networkConfigChanges": 0,
+    "globalEnvironmentChanges": 0,
+    "trackedProductEdits": 0,
+    "oldSdkOrCacheWrites": 0,
+    "hostSdkCopies": 0,
+    "hostApkBuilds": 0,
+    "extraFlutterAarBuilds": 0,
+    "deviceAdbRtcSfuDbApiActions": 0,
+    "mainIntegrations": 0,
+    "forceGitOperations": 0,
+    "successorTasks": 0
+  },
+  "additionalStatus": [
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "nextGate": "Stop after publication/readback and await Astra. Guest Git trust/ownership mapping is a new observed prerequisite blocker; do not execute stderr global-safe.directory suggestion or any automatic repair/retry."
+}
