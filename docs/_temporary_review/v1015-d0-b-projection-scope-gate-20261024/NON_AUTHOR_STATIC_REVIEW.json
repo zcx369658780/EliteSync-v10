@@ -1,0 +1,63 @@
+{
+  "reviewer": "GPT-6.1 Sol/high independent non-author",
+  "reviewKind": "INDEPENDENT_NON_AUTHOR_STATIC_ONLY",
+  "taskBlob": "38667356cb487acc4d8fc0994f894eabf3fb82e0",
+  "findings": [],
+  "checks": {
+    "twoFieldScope": {
+      "status": "PASS",
+      "evidence": "revised/receipt_writer.ps1:130-139",
+      "reason": "入口仅枚举 $.started、$.finished；先拒绝缺字段、null、非 String 及非 String BaseObject。仅在验证后复制字符构造 String，无新增 ToString、通用解包或递归投影。"
+    },
+    "otherElevenFieldsAndCases": {
+      "status": "PASS",
+      "evidence": "revised/fixture.ps1:95；revised/receipt_writer.ps1:142-144",
+      "reason": "13字段 body 构造逐字节不变；仅两个具名 setter，其他11个字段及 cases 未遍历、转换或替换，原 body 直接进入 Serialize。"
+    },
+    "schemaAndBusinessContracts": {
+      "status": "PASS",
+      "evidence": "fixture.ps1:7,91-100；receipt_writer.ps1:31-122；receipt-schema.json；fixture-plan.json",
+      "reason": "schema、37案例计划逐字节相同，Writer 原有9326字节前缀完全保留。runID、count、cases、fallback、UTF-8、Hash读回及原子发布代码未放宽。新增验证失败发生于序列化和文件发布之前。"
+    },
+    "actualWriterCallChain": {
+      "status": "PASS",
+      "evidence": "revised/fixture.ps1:8,95,96 → revised/receipt_writer.ps1:127,130,142-144 → New-ReceiptParser:32-33",
+      "reason": "同目录 Writer 被既有 dot-source 加载；实际 aggregate 调用替换为 Write-Aggregate；受限替换后的同一 body 是既有 JavaScriptSerializer.Serialize 的实际参数。"
+    },
+    "nativeLoadingAndTypeBoundary": {
+      "status": "PASS",
+      "evidence": "revised/receipt_writer.ps1:127-144；original/AggregatePrimitive.cs",
+      "reason": "使用现有 PowerShell 原生加载路径，没有新增编译链或引用孤立 C# 类。String 类型和 BaseObject 类型在转换前检查，Dictionary[string,string] 保存重建字符串，再经 .NET set_Item 写回；两字段验证均完成后才开始替换。此结论为源码调用及类型合同证明，不是运行观察。"
+    },
+    "minimalDiffAndProductIsolation": {
+      "status": "PASS",
+      "evidence": "diffs/fixture.ps1.diff；diffs/receipt_writer.ps1.diff；候选工作树只读 Git 核验",
+      "reason": "fixture 仅一处 Serialize 调用替换；Writer 仅追加受限函数。候选 HEAD=a9bb54d78e357ce15bf673a654baa849e264a32f，分支符合预期；status及apps/services diff为空，命令退出码均为0。",
+      "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+      "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424"
+    },
+    "publicSafeMinimalPackage": {
+      "status": "PASS",
+      "evidence": "review-package/ 全部10文件",
+      "reason": "实际包内容与审阅源码逐字节一致，Manifest Hash一致；未发现个人绝对路径、凭据、真实PID、环境快照或业务数据。fixture:50的C盘Unicode路径为合成测试字面量。未包含原始intake、私密日志、历史C#草稿或输出数据。"
+    }
+  },
+  "independentlyComputedSha256": {
+    "original/fixture.ps1": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61",
+    "revised/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+    "original/receipt_writer.ps1": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a",
+    "revised/receipt_writer.ps1": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+    "originalAndRevised/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+    "originalAndRevised/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+    "original/AggregatePrimitive.cs": "c6469958b98b50c9f6d4e07b2cbce3ac5987ced635306e3d6d612b6047353c83",
+    "static-source-evidence.json": "c37dd093d7858a119b8518e47f9189c107cc5735420251628d5f76b823af276d",
+    "intake.json": "8fd283129784b228ea37432288f72b85633a6c55d45178e1cf6aed8fcb347573",
+    "review-package/minimal.diff": "9f46299f41132463bd781f5e06bf04a2b5942ca64c8164edf19e55765268a951",
+    "review-package/SOURCE_MANIFEST.json": "003f3fd6bf8189422a5cf76efe3961255bd389a156fe25893d56ad4982265787"
+  },
+  "concernsAndMissingChecks": [
+    "投影后实际运行时对象类型、Serialize成功及Writer运行结果均未观察；本审查没有加载、编译或执行任何被审源码，也未运行fixture或测试。这是任务规定的边界，不构成本次静态Gate 1缺项。",
+    "审阅分支及后继候选尚待主代理按正式任务发布并回读Commit、Tree、Blob和字节；本结果仅绑定以上准确源码Hash。"
+  ],
+  "recommendation": "必需静态审查项全部PASS，未发现需修改的源码缺口；可据此继续完成Gate 1证据交付。此建议不构成主代理终态、Astra独立验收或Gate 2授权。"
+}

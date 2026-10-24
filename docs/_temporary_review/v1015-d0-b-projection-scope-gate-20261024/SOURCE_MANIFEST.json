@@ -1,0 +1,51 @@
+{
+  "taskBlob": "38667356cb487acc4d8fc0994f894eabf3fb82e0",
+  "scope": "STATIC_SOURCE_ONLY_NOT_RUNTIME",
+  "files": [
+    {
+      "path": "fixture-plan.json",
+      "bytes": 1302,
+      "sha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
+    },
+    {
+      "path": "minimal.diff",
+      "bytes": 2770,
+      "sha256": "9f46299f41132463bd781f5e06bf04a2b5942ca64c8164edf19e55765268a951"
+    },
+    {
+      "path": "original/fixture.ps1",
+      "bytes": 11387,
+      "sha256": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61"
+    },
+    {
+      "path": "original/receipt_writer.ps1",
+      "bytes": 9326,
+      "sha256": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2209,
+      "sha256": "1423c5b2c1892c8622f8d44dd3e9b0b97a0c0e86f72522031421d571c8f335ed"
+    },
+    {
+      "path": "receipt-schema.json",
+      "bytes": 10867,
+      "sha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652"
+    },
+    {
+      "path": "revised/fixture.ps1",
+      "bytes": 11372,
+      "sha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2"
+    },
+    {
+      "path": "revised/receipt_writer.ps1",
+      "bytes": 10636,
+      "sha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4"
+    },
+    {
+      "path": "STATIC_SOURCE_EVIDENCE.json",
+      "bytes": 2587,
+      "sha256": "c37dd093d7858a119b8518e47f9189c107cc5735420251628d5f76b823af276d"
+    }
+  ]
+}

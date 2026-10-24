@@ -1,0 +1,88 @@
+{
+  "verificationKind": "STATIC_TEXT_AND_BYTES_ONLY_NO_POWERSHELL_SOURCE_LOADED",
+  "checks": {
+    "writerOriginalPrefixByteIdentical": true,
+    "fixtureOnlySerializerCallChanged": true,
+    "schemaByteIdentical": true,
+    "planByteIdentical": true,
+    "noRecursiveProjectionAdded": true,
+    "noAddedToStringCoercion": true
+  },
+  "files": {
+    "fixture.ps1": {
+      "originalSha256": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61",
+      "revisedSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "originalBytes": 11387,
+      "revisedBytes": 11372
+    },
+    "receipt_writer.ps1": {
+      "originalSha256": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a",
+      "revisedSha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+      "originalBytes": 9326,
+      "revisedBytes": 10636
+    },
+    "receipt-schema.json": {
+      "originalSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "revisedSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "originalBytes": 10867,
+      "revisedBytes": 10867
+    },
+    "fixture-plan.json": {
+      "originalSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "revisedSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "originalBytes": 1302,
+      "revisedBytes": 1302
+    }
+  },
+  "callChain": {
+    "fixtureDotSource": [
+      8
+    ],
+    "fixtureBodyConstruction": [
+      95
+    ],
+    "fixtureActualAggregateCall": [
+      96
+    ],
+    "writerDefinition": [
+      127
+    ],
+    "exactPathList": [
+      130
+    ],
+    "onlyStartedMutation": [
+      142
+    ],
+    "onlyFinishedMutation": [
+      143
+    ],
+    "serializerInput": [
+      144
+    ]
+  },
+  "rootKeysUnchanged": [
+    "runId",
+    "passed",
+    "expectedCount",
+    "actualCount",
+    "cases",
+    "started",
+    "finished",
+    "childElapsedSeconds",
+    "currentCase",
+    "failureType",
+    "failureCode",
+    "runtimeProcessesStarted",
+    "jobsStarted"
+  ],
+  "typeContract": {
+    "$.started": "non-null string / PSObject-backed String -> new System.String; reject other types",
+    "$.finished": "non-null string / PSObject-backed String -> new System.String; reject other types",
+    "otherFields": "same aggregate dictionary entries; no projection reads or writes"
+  },
+  "runtimeTypesAfterProjection": "NOT_OBSERVED",
+  "newProjectionCompiledOrExecuted": false,
+  "targetedFixtureRuns": 0,
+  "full37SuiteRuns": 0,
+  "diagnosticReruns": 0
+}

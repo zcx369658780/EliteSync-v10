@@ -1,0 +1,40 @@
+--- original/fixture.ps1
++++ revised/fixture.ps1
+@@ -93,7 +93,7 @@
+  $passed=$true
+ }catch{$failureType=$_.Exception.GetType().FullName;$failureCode=$_.Exception.Message}
+ $body=[ordered]@{runId=$RunId;passed=$passed;expectedCount=$expected.count;actualCount=$cases.Count;cases=$cases.ToArray();started=$started;finished=(Get-Date -Format o);childElapsedSeconds=$suiteClock.Elapsed.TotalSeconds;currentCase=$script:currentCase;failureType=$failureType;failureCode=$failureCode;runtimeProcessesStarted=0;jobsStarted=0}
+-$json=(New-ReceiptParser).Serialize($body);$temp=Join-Path $root 'fixture-body.tmp';$final=Join-Path $root 'fixture-body.json'
++$json=Write-Aggregate $body;$temp=Join-Path $root 'fixture-body.tmp';$final=Join-Path $root 'fixture-body.json'
+ [IO.File]::WriteAllText($temp,$json,[Text.UTF8Encoding]::new($false,$true));$read=[IO.File]::ReadAllBytes($temp)
+ if((Receipt-Hash ([Text.Encoding]::UTF8.GetBytes($json))) -cne (Receipt-Hash $read)){throw 'BODY_HASH_MISMATCH'}
+ [void](New-ReceiptParser).DeserializeObject([Text.Encoding]::UTF8.GetString($read));[IO.File]::Move($temp,$final)
+--- original/receipt_writer.ps1
++++ revised/receipt_writer.ps1
+@@ -120,3 +120,26 @@
+  $script:phaseSequence++;$name='phase-'+$script:phaseSequence.ToString('D2')+'-'+$phase+'.json'
+  Write-Receipt $name ([ordered]@{runId=$control.runId;time=(Get-Date -Format o);phase=$phase;status=$status;sequence=[long]$script:phaseSequence})
+ }
++
++
++# Aggregate-only boundary; this helper is loaded by the existing dot-source.
++# It never calls Copy-ReceiptValue and never walks cases or other body fields.
++function Write-Aggregate($body){
++ if($null -eq $body -or $body.GetType() -ne [Collections.Specialized.OrderedDictionary]){throw 'AGGREGATE_BODY_TYPE_REJECTED'}
++ $projected=[Collections.Generic.Dictionary[string,string]]::new([StringComparer]::Ordinal)
++ foreach($fieldPath in @('$.started','$.finished')){
++  if($fieldPath -ceq '$.started'){$fieldName='started'}
++  elseif($fieldPath -ceq '$.finished'){$fieldName='finished'}
++  else{throw 'AGGREGATE_PROJECTION_PATH_REJECTED'}
++  if(-not $body.Contains($fieldName)){throw 'AGGREGATE_TIMESTAMP_REQUIRED'}
++  $value=$body[$fieldName]
++  if($null -eq $value -or $value.GetType() -ne [string]){throw 'AGGREGATE_TIMESTAMP_TYPE_REJECTED'}
++  $baseValue=$value.PSObject.BaseObject
++  if($null -eq $baseValue -or $baseValue.GetType() -ne [string]){throw 'AGGREGATE_TIMESTAMP_BASE_TYPE_REJECTED'}
++  $projected.Add($fieldName,[string]::new($baseValue.ToCharArray()))
++ }
++ # Validate both before either replacement; .NET setters receive typed strings.
++ $body.set_Item('started',$projected['started'])
++ $body.set_Item('finished',$projected['finished'])
++ return (New-ReceiptParser).Serialize($body)
++}
