@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "taskBlob": "38667356cb487acc4d8fc0994f894eabf3fb82e0",
+  "sameTaskFocusedContinuation": true,
+  "terminal": "D0_B_GATE1_PASS",
+  "disposition": "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+  "scope": "STATIC_GATE1_ONLY",
+  "authority": {
+    "mainAtIntake": "b101bf9680b5b46eda3c66ed93780af1ee5bc9d5",
+    "mainRootAtIntake": "3fd90baf39bddd4e87d1213af565bc0994be0ece",
+    "activeStateBlob": "02f973f674b0461a361332880a5aee09dda737a8",
+    "priorAstraReviewBlob": "8f627cf0d442f935f756435d4d7d97890bcfdb71",
+    "originalTaskBlob": "009a12cae75ef3b714f0156d4edbca2db1660719",
+    "predecessorAstraReviewBlob": "7eae0044f8c1621a5e6fdf8a8f637462b1596385"
+  },
+  "candidate": {
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "soleParent": "a9bb54d78e357ce15bf673a654baa849e264a32f",
+    "parentRoot": "fd3c38b1d5e8a11b2ae5f31f33a2d52437a8d7b0",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/D0_B_TWO_FIELD_PROJECTION_SCOPE_GATE_REPORT.md",
+      "docs/versions/v10.1.5/d0_b_two_field_projection_scope_gate_manifest.json"
+    ],
+    "finalCommitRootDocumentBlobs": "Fixed after commit in separate LOCAL_ONLY delivery-git-identity.json and final-readback.json to avoid self-reference"
+  },
+  "product": {
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "appsEntries": 1133,
+    "servicesEntries": 791,
+    "trackedProductChanges": 0,
+    "mainAcceptedVersion": "v10.1.4",
+    "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "sourceFiles": {
+    "fixture.ps1": {
+      "originalSha256": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61",
+      "revisedSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "originalBytes": 11387,
+      "revisedBytes": 11372
+    },
+    "receipt_writer.ps1": {
+      "originalSha256": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a",
+      "revisedSha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+      "originalBytes": 9326,
+      "revisedBytes": 10636
+    },
+    "receipt-schema.json": {
+      "originalSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "revisedSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "originalBytes": 10867,
+      "revisedBytes": 10867
+    },
+    "fixture-plan.json": {
+      "originalSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "revisedSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "originalBytes": 1302,
+      "revisedBytes": 1302
+    }
+  },
+  "historicalCsharpDraft": {
+    "sha256": "c6469958b98b50c9f6d4e07b2cbce3ac5987ced635306e3d6d612b6047353c83",
+    "bytes": 12489,
+    "originalPreserved": true,
+    "snapshotPreserved": true,
+    "usedInNewCallChain": false,
+    "compiled": false,
+    "executed": false
+  },
+  "projection": {
+    "language": "PowerShell native",
+    "function": "Write-Aggregate",
+    "paths": [
+      "$.started",
+      "$.finished"
+    ],
+    "onlyMutationLines": [
+      142,
+      143
+    ],
+    "otherFieldsTraversed": false,
+    "otherFieldsConvertedOrReassigned": false,
+    "nullOrNonStringOrUnexpectedBase": "THROW_BEFORE_SERIALIZATION_AND_PUBLICATION",
+    "schemaAndPlanByteIdentical": true,
+    "originalWriterPrefixBytesUnchanged": 9326,
+    "fixtureChanges": "Only actual aggregate serializer invocation at line 96",
+    "newToStringCoercion": false,
+    "postProjectionRuntimeTypes": "NOT_OBSERVED",
+    "typeContract": {
+      "$.started": "non-null string / PSObject-backed String -> new System.String; reject other types",
+      "$.finished": "non-null string / PSObject-backed String -> new System.String; reject other types",
+      "otherFields": "same aggregate dictionary entries; no projection reads or writes"
+    },
+    "callChain": {
+      "fixtureDotSource": [
+        8
+      ],
+      "fixtureBodyConstruction": [
+        95
+      ],
+      "fixtureActualAggregateCall": [
+        96
+      ],
+      "writerDefinition": [
+        127
+      ],
+      "exactPathList": [
+        130
+      ],
+      "onlyStartedMutation": [
+        142
+      ],
+      "onlyFinishedMutation": [
+        143
+      ],
+      "serializerInput": [
+        144
+      ]
+    }
+  },
+  "nonAuthorReview": {
+    "reviewer": "GPT-6.1 Sol/high independent non-author",
+    "kind": "INDEPENDENT_NON_AUTHOR_STATIC_ONLY",
+    "checks": {
+      "twoFieldScope": "PASS",
+      "otherElevenFieldsAndCases": "PASS",
+      "schemaAndBusinessContracts": "PASS",
+      "actualWriterCallChain": "PASS",
+      "nativeLoadingAndTypeBoundary": "PASS",
+      "minimalDiffAndProductIsolation": "PASS",
+      "publicSafeMinimalPackage": "PASS"
+    },
+    "findings": [],
+    "sha256": "7cdd870d1d8abeebfc5289cb1e58f0b1179854c27459b172c8e9120990128da0",
+    "runtimeRevalidation": false
+  },
+  "reviewPublication": {
+    "branch": "review/temporary-evidence-v1015-d0-b-projection-scope-gate-20261024",
+    "commit": "841555d5e9f3314098190198d89ab2044c9b2cd9",
+    "root": "401bb07a553931dbeb5b19ac29b04039cf3af3dc",
+    "soleParent": "a9bb54d78e357ce15bf673a654baa849e264a32f",
+    "files": [
+      {
+        "path": "fixture-plan.json",
+        "sha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+        "gitBlob": "bda0b3b50789b9d84cae63d19bde88fab82d548e",
+        "bytes": 1302,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "minimal.diff",
+        "sha256": "9f46299f41132463bd781f5e06bf04a2b5942ca64c8164edf19e55765268a951",
+        "gitBlob": "5bd502937714980ae2c305bd08eca29be2b7fe48",
+        "bytes": 2770,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "NON_AUTHOR_STATIC_REVIEW.json",
+        "sha256": "7cdd870d1d8abeebfc5289cb1e58f0b1179854c27459b172c8e9120990128da0",
+        "gitBlob": "9177970421a4bfcf526fc6e25b4fd8bb1d7cd4ed",
+        "bytes": 4975,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "original/fixture.ps1",
+        "sha256": "146d2e159dcac6bc773fffe4571d6ec5ec5729ad365e3e4118a2f4e4cea86c61",
+        "gitBlob": "27cef53b7af321f4c7cec8f4a23c7531818e8ba3",
+        "bytes": 11387,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "original/receipt_writer.ps1",
+        "sha256": "8930af018f129f00ac27cc141df5e7f662a77c2d88f5a61dd7ed9a330e74ba1a",
+        "gitBlob": "ce0bdba8f0fdd78cf62536f60734679addf03c04",
+        "bytes": 9326,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "README.md",
+        "sha256": "1423c5b2c1892c8622f8d44dd3e9b0b97a0c0e86f72522031421d571c8f335ed",
+        "gitBlob": "75371faf18de75e06d7dbf71aaebd832b2411685",
+        "bytes": 2209,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "receipt-schema.json",
+        "sha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+        "gitBlob": "c01cf7d259168102e5d9c4f2078b07833d6ada5e",
+        "bytes": 10867,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/fixture.ps1",
+        "sha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+        "gitBlob": "0eaf0f7c3a79ef89530d051de14a811cb61b8b04",
+        "bytes": 11372,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/receipt_writer.ps1",
+        "sha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+        "gitBlob": "ce0a03e965be56a6b2c0c62025de010ee41369ae",
+        "bytes": 10636,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "SOURCE_MANIFEST.json",
+        "sha256": "003f3fd6bf8189422a5cf76efe3961255bd389a156fe25893d56ad4982265787",
+        "gitBlob": "1dbc664d001a1af5766f0e9ea0b81da3330b60ca",
+        "bytes": 1518,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "STATIC_SOURCE_EVIDENCE.json",
+        "sha256": "c37dd093d7858a119b8518e47f9189c107cc5735420251628d5f76b823af276d",
+        "gitBlob": "03d3966da687975700c2d7ee7806fb77095ef548",
+        "bytes": 2587,
+        "rawBytesMatched": true
+      }
+    ],
+    "identityReadbackPassed": true,
+    "productTreesPreserved": true,
+    "rawBytesMatched": true,
+    "publication": "ordinary new branch; no force; not merged",
+    "administrativeExtractionIssuePreserved": "review-readback-extraction-error.json; not runtime failure"
+  },
+  "budgets": {
+    "diagnosticAlreadyConsumed": {
+      "attempts": 1,
+      "serializeAttempts": 15,
+      "secondsApprox": 0.688,
+      "exit": 0,
+      "exitConfirmed": true
+    },
+    "diagnosticRerunsThisTask": 0,
+    "budgetsReset": false,
+    "projectionCompiles": 0,
+    "projectionExecutions": 0,
+    "targetedFixtureRuns": 0,
+    "full37SuiteRuns": 0,
+    "sandboxOperations": 0,
+    "flutterGradleProducerRuns": 0,
+    "libsJarGeneratedOrValidated": false,
+    "formalResolveRuns": 0,
+    "configsNotRun": 30,
+    "fixtureStatus": "NOT_RUN",
+    "writerStatus": "RUNTIME_NOT_PROVEN",
+    "sdkStatus": "NOT_READY_NOT_RUN"
+  },
+  "scienceAndHistoryBoundary": {
+    "original37AggregateObjectRecovered": false,
+    "historicalPSInvalidCastRootCause": "UNKNOWN",
+    "runtimeTypesAfterProjection": "NOT_OBSERVED"
+  },
+  "protection": {
+    "scope": "Named protected files and five historical Git roots; checked before candidate publication; not global configuration or live database audit",
+    "namedFiles": 22294,
+    "unchangedFiles": 22294,
+    "changedFiles": [],
+    "historicalRootsUnchanged": true,
+    "oldRefsBeforePublication": 516,
+    "allRefsUnchangedBeforePublication": true,
+    "candidateProductFullMapsUnchanged": {
+      "apps": true,
+      "services": true
+    },
+    "original38JsonCount": 38,
+    "passed": true
+  },
+  "retained": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "localOnlyEvidence": {
+    "intake.json": {
+      "sha256": "8fd283129784b228ea37432288f72b85633a6c55d45178e1cf6aed8fcb347573",
+      "bytes": 984
+    },
+    "static-source-evidence.json": {
+      "sha256": "c37dd093d7858a119b8518e47f9189c107cc5735420251628d5f76b823af276d",
+      "bytes": 2587
+    },
+    "non-author-static-review.json": {
+      "sha256": "7cdd870d1d8abeebfc5289cb1e58f0b1179854c27459b172c8e9120990128da0",
+      "bytes": 4975
+    },
+    "preservation-before-publication.json": {
+      "sha256": "f06a018948ab130df29f05a3539bec15c058c0420b18285585e845eee523b614",
+      "bytes": 489
+    },
+    "review-remote-readback.json": {
+      "sha256": "904ae8cdfbe03c0ad8ad7d296b273394237817555e89aa131c419fca5a3d0329",
+      "bytes": 3261
+    },
+    "disclosure-scan.json": {
+      "sha256": "edcbd36025879b4d5b3675bfa9e9601501723b89e3851635c1d787bad88d0d66",
+      "bytes": 265
+    },
+    "review-readback-extraction-error.json": {
+      "sha256": "c0402bfc780932b93a8b778e3c67b4418c178b8b75b48f2dec7a769946d8db01",
+      "bytes": 603
+    }
+  },
+  "administrativeObservation": "An initial remote byte-readback controller assumed raw Git blob JSON, while the connector returned normalized decoded content. Extraction errors were preserved and the already-published files were successfully read through explicit base64 file retrieval. No source/runtime/fixture execution or test retry occurred.",
+  "nextGate": "Stop after publication/readback; await Astra independent review. No automatic Gate2."
+}
