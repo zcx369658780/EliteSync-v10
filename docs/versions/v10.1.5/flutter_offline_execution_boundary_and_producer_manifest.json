@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "date": "2026-10-24",
+  "taskBlob": "f02853ee72d65ac36674f9fb8d6071a3d0bfbb0b",
+  "astraReviewBlob": "b34db972b2db6ea65bd196d0c93195acdde5b133",
+  "terminal": "ISOLATED_SDK_RUNTIME_PRECONDITION_BLOCKED / PRODUCER_NOT_RUN / RESOLVE_NOT_RUN / NO_APK",
+  "identity": {
+    "soleParent": "c1a6cba30f7c18ad8d0f5252436a40ea760437d6",
+    "parentRoot": "e30e58438b8e6b78fa33a62fa5d9cf9b96eef19c",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "bda789155505fcdb071e6a359d930fe5abc6429e",
+    "mainRootAtStart": "8b3b78142340a87119eee6467ce1efda435713d7",
+    "mainAcceptedTrees": {
+      "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    },
+    "completeCandidateMapsAtIntake": {
+      "apps": {
+        "sha": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "completeMapMatched": true
+      },
+      "services": {
+        "sha": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "completeMapMatched": true
+      }
+    },
+    "branch": "codex/v10.1.5-offline-execution-boundary-conditional-producer",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/FLUTTER_OFFLINE_EXECUTION_BOUNDARY_AND_PRODUCER_REPORT.md",
+      "docs/versions/v10.1.5/flutter_offline_execution_boundary_and_producer_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "finalGitIdentity": "Commit/Root/two docs Blob recorded after commit in LOCAL_ONLY delivery-git-identity.json and final-readback.json plus Owner handoff; excluded from self-referential documents"
+  },
+  "D0": {
+    "existingPlatform": "Preinstalled Windows Sandbox, signed current-user application, no elevation or feature changes",
+    "boundary": "Networking Disable at instance virtual network boundary; parent and one child each failed IPv4/IPv6 TCP connect with10051; no active adapters, connected nonloopback interfaces or default routes",
+    "endpoints": "Literal1.1.1.1:443 and2606:4700:4700::1111:443; no DNS/HTTP/TLS/application payload",
+    "fixtureLaunches": 1,
+    "fixtureSeconds": 87.1489098072052,
+    "fixtureExit": 0,
+    "childExit": 0,
+    "passed": true,
+    "proofScope": "Only tested credential-free instance and pinned NetworkingDisable config, not host tools or unstarted SDK-mapped instance",
+    "residualUi": "D0 launcher exited0 and guest script requested own shutdown; associated RemoteSession UI remained; no current guest-state inference"
+  },
+  "D1": {
+    "status": "ISOLATED_SDK_RUNTIME_PRECONDITION_BLOCKED",
+    "sdkRuntimeReady": false,
+    "hostSdkStandalone": false,
+    "sdkRuntimeInstanceLaunches": 0,
+    "flutterCliLaunches": 0,
+    "copiedFiles": 17907,
+    "copiedBytes": 1630986306,
+    "sdkCopyOperations": 3302,
+    "distinctSdkDestinationFiles": 3297,
+    "gpuSourceReverificationRuns": 0,
+    "metadata": "Previously verified34 GPU files and5 genuine metadata copied; no fabricated stamps",
+    "mapping": "22 planned mappings; writable host backings only new task-owned paths, historical/tool sources read-only; no SDK-mapped instance started",
+    "canonicalEnvironmentSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+    "staticProcessStartInfoKeys": 50,
+    "androidPrefsRootKeyAbsent": true,
+    "androidUserHome": "Original approved logical path, new task-owned planned physical backing",
+    "staticCanonicalCheckPassed": true,
+    "actualToolChildEnvironment": "NOT_RUN; static dictionary check is not all-descendant environment observation",
+    "staticCorrectionsBeforeAnySdkLaunch": [
+      "Rename PowerShell automatic HOME temporary variable; retain original",
+      "Reject stale producer/resolve requests and repeated SDK-instance marker; retain original"
+    ],
+    "reviewStaticSupported": true,
+    "runtimeLaunchAuthorized": false,
+    "blocker": {
+      "phase": "Owned completed D0 UI normal close before new SDK-instance preflight",
+      "identityMatched": true,
+      "closeMainWindowReturned": true,
+      "exitConfirmedWithin10000ms": false,
+      "normalCloseAttempts": 1,
+      "subsequentReadStillPresent": true,
+      "forceStops": 0,
+      "cause": "UNKNOWN; no desktop/UI observation, no guest-running inference, no retry"
+    },
+    "sdkCacheClosure": "NOT_PROVEN_AT_RUNTIME; selected local inputs prepared, not full running SDK validation",
+    "diagnosticFlavor": "STANDARD_DEBUG_LIBRARY_ONLY planned; actual inherited DAG lib/main.dart and dartDefines=null"
+  },
+  "D2": {
+    "producerRuns": 0,
+    "cap": 1,
+    "tasks": [
+      ":flutter:compileFlutterBuildDebug",
+      ":flutter:packJniLibsflutterBuildDebug"
+    ],
+    "dagReruns": 0,
+    "newLibsJarGenerated": false,
+    "jarHash": null,
+    "jarCrcStructureContentAbiValidation": "NOT_RUN",
+    "targetAbis": [
+      "x86_64",
+      "arm64-v8a"
+    ]
+  },
+  "D3": {
+    "formalResolveRuns": 0,
+    "cap": 1,
+    "configurationResolveActuallyCalled": false,
+    "expectedConfigurations": 30,
+    "begin": 0,
+    "ok": 0,
+    "failedConfigurations": 0,
+    "notRun": 30,
+    "status": "RESOLVE_NOT_RUN",
+    "strictResolverSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "selectionPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58"
+  },
+  "D4": {
+    "nonAuthorReviews": 1,
+    "reviewer": "Same non-author GPT-6.1 Sol/high prefs_env_independent_review; preflight and actual blocker evidence within one bounded review",
+    "protection": {
+      "namedFiles": 990,
+      "namedUnchanged": 990,
+      "copyAndReadOnlySourceFiles": 20226,
+      "copyAndReadOnlySourcesUnchanged": 20226,
+      "fixedOriginalPins": 47,
+      "fixedOriginalPinsUnchanged": true,
+      "oldSdkIndexUnchanged": true,
+      "oldRefs": 507,
+      "oldRefsMissingOrChanged": [],
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "hostNetworkStateUnchanged": true,
+      "relatedEnvironmentUnchanged": true,
+      "hostRelatedToolProcesses": 0,
+      "scope": "Named touched sources and inherited critical originals only; not an all-disk or live-database content audit",
+      "time": 1792801981.2022545,
+      "passed": true
+    },
+    "publication": "Ordinary nonforce branch push and post-commit remote object/raw-byte readback required; actual receipt stays LOCAL_ONLY and in final handoff"
+  },
+  "toolchain": {
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "frameworkHead": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "gradle": "8.14",
+    "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "jdk": "17.0.18.8",
+    "agp": "8.11.1",
+    "kotlin": "2.2.20",
+    "actualIsolatedVersions": "NOT_RUN"
+  },
+  "evidenceLayers": {
+    "GITHUB_DIRECT": "Task/review/state, fixed candidate/main objects and complete product maps; post-delivery remote object/raw readback",
+    "CODEX_REPORTED_LOCAL_ONLY": "Actual Sandbox receipts, network negative tests, source hashes, copy/runtime preparation, owned UI close result and protection",
+    "NON_AUTHOR_LOCAL_STATIC_REVIEW": "Read-only source/receipt cross-check; reviewer did not run or independently observe guest tools/network",
+    "INHERITED_NOT_RERUN": "Prior accepted GPU provenance and Gradle DAG",
+    "NOT_RUN": "SDK-mapped runtime, Flutter CLI, producer, Jar validation, formal30 resolve, host APK and device/media gates"
+  },
+  "privacy": "Only white-listed summary, immutable identities and hashes public; raw logs/scripts, mappings, env values, binary files, real private paths remain LOCAL_ONLY",
+  "evidence": {
+    "authority.json": {
+      "sha256": "bc1ad1c05f8c0e814f8f7e6bfdade0cc81566191053b07e05e3626d8d2d163fc",
+      "bytes": 1932,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "baseline.json": {
+      "sha256": "0852f504bd03008c5a8f8892b9626b4af9829d9c5acde31cdbff9834e4827357",
+      "bytes": 658,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "sandbox-readiness.json": {
+      "sha256": "758396d2198fdc971c1c6645c0c126978ad8abca3416cde32ced2757049201c6",
+      "bytes": 813,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "boundary-fixture-plan.json": {
+      "sha256": "22b0fd9588bfd4eefde5c9622b94a8a14278f9216dac58aad86e3df231f51556",
+      "bytes": 1710,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "review-preflight.json": {
+      "sha256": "0cf2a9174ca91676d85084cf50d4cd9a8b815574e33237888128ad93e66ad78a",
+      "bytes": 1551,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "boundary-probe.result.json": {
+      "sha256": "ee6e269d8cef1ef8054d20668473a27ccebe0f2f7570f02d5ff98d0ed84384b1",
+      "bytes": 777,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "isolation-probe/output/boundary-result.json": {
+      "sha256": "e1e4206298e4630c0eb6e32be80091d1f76834fc763c139be278ca5a0d6ea495",
+      "bytes": 11976,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "isolation-probe/output/parent.json": {
+      "sha256": "eb0ca132b62c10206184ae7645f0f512a2a6a7cf6647b6698cba8936f31910d7",
+      "bytes": 4258,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "isolation-probe/output/child.json": {
+      "sha256": "99de7065752a33335bcd086140364b21842a5a411840a65db4dc9f99352c8cfa",
+      "bytes": 4257,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-before.json": {
+      "sha256": "7a7991c2ec43a09cb9761f37b11987174e7274671d89f024c2644f8a0648a99b",
+      "bytes": 5112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-after.json": {
+      "sha256": "3552a0fcd6c4e489eecd34ca2e380453e4bab45efa44dd64517ae7688eb3077f",
+      "bytes": 5111,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "isolated-sdk-preparation.json": {
+      "sha256": "d8df65601c3595b3a860687afaa8eef961ab1279d10d25665ba472be8a4ac059",
+      "bytes": 1005,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "isolated-sdk-copied-files.json": {
+      "sha256": "a4696056e88cc7da107f989eadf44f910d034e92604014d8b46ee14501054ef7",
+      "bytes": 12460448,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "sdk-launcher-identity.json": {
+      "sha256": "900f9c8ae363a5ce44bf7be448c9e8851c21d6f441c1a445fe6ece5fd5c21bbc",
+      "bytes": 1593,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-session-plan.json": {
+      "sha256": "5e342fb0bb51f4af258d8e8b53695cf048db4afad62840053844fcc2f30e2866",
+      "bytes": 8368,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-static-variable-correction.json": {
+      "sha256": "88830f0231946ec258c89ae42370f0686fe146c46c51e3086217c4d3c4400eb4",
+      "bytes": 388,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-authority-start-gate-correction.json": {
+      "sha256": "5b2e497e26997d05699a04db943c753071f1b66127859221b32e6d6b118c28c6",
+      "bytes": 232,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-static-semantic-check.json": {
+      "sha256": "4dec6d7c3a0d40d4d1b0d910a773aea05412bd82ee0c651f1ff29b37300446e1",
+      "bytes": 322,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-review-preflight.json": {
+      "sha256": "29a1b1a60eb5399e2ab789feca24debcbdfac2f3888bb6f4f2dbe77e88989fdd",
+      "bytes": 2315,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "post-boundary-sandbox-residual.json": {
+      "sha256": "ff1e40679bb53189997a568c049f39295b52591cb286bb09a3ec26b79cfa439f",
+      "bytes": 587,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "owned-boundary-ui-close.json": {
+      "sha256": "d8f1040215fda3109e57ae544f56567c4c91495e0c399528192756036cde2d5e",
+      "bytes": 283,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "readonly-sdk-git-before.json": {
+      "sha256": "498ee602da6ea11c6d4690614d7d63358b4cad8f943f0b8115a3a01b594a59bd",
+      "bytes": 49093,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "runtime-artifact-source-protection.json": {
+      "sha256": "26e53652bf614cb95d09fa57c8c16110463e90f6058b804b41e9e86b38346a1b",
+      "bytes": 486,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "named-files-after-check.json": {
+      "sha256": "3568e81f0c9833ff2f1db84c3e6807cb40941c9e8cdf3f28292fe8dd4c73f345",
+      "bytes": 148651,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "copy-readonly-sources-after-check.json": {
+      "sha256": "aa97c70c36fb7341cb5061b414dd1f3ad7f8cf9bf9e35675ccc7ccbc87f22062",
+      "bytes": 4838197,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "protection-after.json": {
+      "sha256": "8f2598af157141d7b221c071204dd3c6a9d5a3cb772828aa0bfa6c2d0fb56ea4",
+      "bytes": 636,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "env-resource-after.json": {
+      "sha256": "f9f9ae999ddcfacc863439a8490982fcffbdb24b71b57a2ae86ebeb4688ce8f4",
+      "bytes": 209,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "terminal-evidence.json": {
+      "sha256": "c9cb456743f438d891cb3ba9d127b0820baf445f223ff66ece69495909f94f2c",
+      "bytes": 876,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    }
+  },
+  "prohibitedActions": {
+    "newDownloads": 0,
+    "globalEnvironmentChanges": 0,
+    "hostNetworkConfigChanges": 0,
+    "featureInstallOrEnable": 0,
+    "elevationRequests": 0,
+    "historicalSdkStageWrites": 0,
+    "trackedProductEdits": 0,
+    "hostApkBuilds": 0,
+    "extraFlutterAarBuilds": 0,
+    "deviceAdbRtcSfuDbApiOperations": 0,
+    "forceGitOperations": 0,
+    "mainProductIntegrations": 0,
+    "successorTasks": 0
+  },
+  "additionalStatus": [
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "nextGate": "Stop after nonforce publication/readback and await Astra. Existing isolation was proven in D0; new SDK-instance prerequisite remains unmet. No new admin/network permission presumed necessary or granted; future session disposition requires Owner/Astra authorization, no autonomous retry."
+}
