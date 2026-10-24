@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "date": "2026-10-24",
+  "taskBlob": "8ec8ad6c1d76de7bd295101ffebe5e3ea69e15aa",
+  "astraReviewBlob": "706ae77e7292ce104fcafc8ef0af18c72d0fb1f6",
+  "activeStateBlob": "c8d1fcabef63fd417a4b2f5c5d83b80954af26af",
+  "terminal": "SDK_RECEIPT_WRITER_NOT_PROVEN / SDK_NOT_RUN / PRODUCER_NOT_RUN / RESOLVE_NOT_RUN",
+  "identity": {
+    "branch": "codex/v10.1.5-sandbox-sdk-receipt-correction",
+    "soleParent": "a219fbb45edd0c746dce92af2f6abf661091bab4",
+    "parentRoot": "e1e0c3a8f7996e3d07ac4ec8960e1287f39f10c5",
+    "parentSoleParent": "dd9b4eb9df9101adf4c0d980135081fd902c656a",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "e2d8b1fa18fb9524a9c92bcf87b59547a36c3a02",
+    "mainRootAtStart": "778ad830858a5dd1d2363cc09e5f68321228ccfa",
+    "fullProductMaps": {
+      "candidate_apps": {
+        "tree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "fullMapMatched": true
+      },
+      "candidate_services": {
+        "tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "fullMapMatched": true
+      },
+      "main_apps": {
+        "tree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "entries": 1116,
+        "fullMapMatched": true
+      },
+      "main_services": {
+        "tree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+        "entries": 776,
+        "fullMapMatched": true
+      }
+    },
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/SANDBOX_SDK_RECEIPT_CORRECTION_AND_CONDITIONAL_PRODUCER_REPORT.md",
+      "docs/versions/v10.1.5/sandbox_sdk_receipt_correction_and_conditional_producer_manifest.json"
+    ],
+    "finalGitIdentity": "Postcommit Commit/Root/docs Blob and byte/fullTree readback in LOCAL_ONLY delivery-git-identity.json and final-readback.json, also Owner handoff; no self-reference"
+  },
+  "D0": {
+    "writerStatus": "ATTEMPTED_NOT_PROVEN",
+    "historicalSpecificCause": "SPECIFIC_PS_CAST_MECHANISM_UNKNOWN",
+    "historicalInputsLiveObjectsSaved": false,
+    "proposedBoundary": "Primitive ordered schema, string reconstruction, max depth6, bounded key/size set, temp file + readback/hash + atomic Move for normal receipts; fallback incomplete",
+    "sourcePins": {
+      "receipt_writer.ps1": "f9318882881b2058cada4e923354198d41b812a3f6d34ecced6b3ed0996ca024",
+      "receipt-schema.json": "d6d6838fdc7e7b6cd6416bbb351a16bdeb5d24b4eb836efc00c7bd4ae31173b5",
+      "fixture.ps1": "1f3dc2ff3814f6dbdc4da175cdfdfc8aa5221d3b619c34443e3dcd75bbcff468",
+      "guest_runtime_driver.ps1": "65a56d01efbc000b8de83867f767e9f3c627420ee2c89daf0433be097eea14ed",
+      "driver.diff.txt": "1a51bc84547f87a73c6c3830b6c6364906e2e4cf1a8a450424a56f8aa4aa9cbe"
+    },
+    "fixture": {
+      "suiteRuns": 1,
+      "exit": 1,
+      "aggregatePass": false,
+      "specificTerminal": "RECEIPT_TYPE_REJECTED",
+      "location": "receipt_writer.ps1 line27",
+      "rejectedValueType": "UNKNOWN; not captured in failing stdout/stderr",
+      "failureReceiptCount": 0,
+      "fixtureResultReceived": false,
+      "syntheticPositiveReceiptFiles": [
+        {
+          "path": "fixture/identity/framework-identity.json",
+          "bytes": 388,
+          "sha256": "e2492b11f9ac119f747887a0e6d37b219d404ab49690c8ab0de831198c63bb4a",
+          "createdUnix": 1792833906.567757,
+          "mtimeUnix": 1792833906.57682,
+          "runId": "fixture",
+          "isSynthetic": true
+        },
+        {
+          "path": "fixture/phase/phase-01-seed-copy.json",
+          "bytes": 112,
+          "sha256": "6c8bea68110b19e05fa8ca200f4f553c9453138a18f015b69a3bd7b3601e193c",
+          "createdUnix": 1792833906.6283016,
+          "mtimeUnix": 1792833906.6283016,
+          "runId": "fixture",
+          "isSynthetic": true
+        },
+        {
+          "path": "fixture/unicode/framework-identity.json",
+          "bytes": 320,
+          "sha256": "3f0ef1374fc29bc8a5203e9d99f3bfeaa13ea21444aced244fe1fb78181548d6",
+          "createdUnix": 1792833906.6461625,
+          "mtimeUnix": 1792833906.6461625,
+          "runId": "fixture",
+          "isSynthetic": true
+        }
+      ],
+      "negativeCoverageProven": false,
+      "reconstructionOutcomePersisted": false,
+      "originalMechanism": "SPECIFIC_PS_CAST_MECHANISM_UNKNOWN",
+      "overallFixtureCapProven": false,
+      "time": 1792834130.8697937
+    },
+    "review": {
+      "reviewCount": 1,
+      "reviewer": "GPT-6.1 Sol/high, same non-author bounded review before admission and final evidence check",
+      "preflightVerdict": "D0_NOT_PROVEN / SANDBOX_NOT_AUTHORIZED_TO_START",
+      "sourcePins": {
+        "receipt_writer.ps1": "f9318882881b2058cada4e923354198d41b812a3f6d34ecced6b3ed0996ca024",
+        "receipt-schema.json": "d6d6838fdc7e7b6cd6416bbb351a16bdeb5d24b4eb836efc00c7bd4ae31173b5",
+        "fixture.ps1": "1f3dc2ff3814f6dbdc4da175cdfdfc8aa5221d3b619c34443e3dcd75bbcff468",
+        "guest_runtime_driver.ps1": "65a56d01efbc000b8de83867f767e9f3c627420ee2c89daf0433be097eea14ed",
+        "driver.diff.txt": "1a51bc84547f87a73c6c3830b6c6364906e2e4cf1a8a450424a56f8aa4aa9cbe"
+      },
+      "findings": [
+        {
+          "severity": "P1",
+          "finding": "Wait-Job six-second timeout is not whole-suite cap; Stop-Job/Receive-Job/Remove-Job closure was not bounded."
+        },
+        {
+          "severity": "P1",
+          "finding": "Fallback failure receipt lacks required UTF8 JSON/schema/hash readback before atomic Move."
+        },
+        {
+          "severity": "MISSING_COVERAGE",
+          "finding": "No full SDK schema/type/nested actualFlutter positive fixture; negatives did not complete."
+        }
+      ],
+      "updatedActualObservation": "Only one suite, exit1 RECEIPT_TYPE_REJECTED, three synthetic positive receipts, no aggregate result or failure JSON. The fixture calls Copy-ReceiptValue before entering Write-Receipt for replay, so no failure JSON does not prove fallback failed.",
+      "specificRejectedType": "UNKNOWN",
+      "scriptChangesAfterFailure": false,
+      "independentAstraAcceptance": false,
+      "reviewerExecutedRuntimeOrFixture": false,
+      "onlyReadOnlyFileAndHashTools": true
+    },
+    "phasesPrepared": [
+      "boundary START/PASS",
+      "seed-copy START/PASS",
+      "cache-copy START/PASS",
+      "cache-identity START/PASS",
+      "tools START/PASS",
+      "git-identity START/PASS",
+      "flutter-cli START/PASS",
+      "sdk READY"
+    ],
+    "actualGuestPhaseReceipts": 0,
+    "stageReceiptsTestedOnlySynthetic": true,
+    "fixtureRetryCount": 0,
+    "correctionsAfterFixtureFirstFailure": 0
+  },
+  "D1": {
+    "sandboxStarts": 0,
+    "cap": 1,
+    "newInstanceIsolation": "NOT_RUN",
+    "newInstanceGitTrust": "NOT_RUN",
+    "newInstanceFrameworkHead": "NOT_RUN",
+    "frameworkFrozenSha": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "flutterCliRuns": 0,
+    "sdkReady": false,
+    "sdkReadyReceipt": "NOT_RUN",
+    "sdk600SecondWindowUsed": false,
+    "sdkHostCopies": 0,
+    "preparedMappings": 22,
+    "preparedInputsNotRuntimePass": true,
+    "environment": {
+      "passed": true,
+      "actualNewChildEnvironmentExecuted": false,
+      "baseKeys": 50,
+      "runtimeKeys": 53,
+      "baseValuesUnchangedInPreparedCopy": true,
+      "baseCanonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+      "runtimeCanonicalSha256": "6468110fb2cd275115774ae4813aa769415d2f3d14bcb297ab9d0867457a9723",
+      "extraKeys": [
+        "GIT_CONFIG_COUNT",
+        "GIT_CONFIG_KEY_0",
+        "GIT_CONFIG_VALUE_0"
+      ],
+      "androidPrefsRootAbsent": true,
+      "androidUserHomeUnchanged": true,
+      "globalWrites": 0
+    },
+    "oldGuestStatus": "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "oldGuestClosedPass": false,
+    "processObservation": "No new guest; generic background VM process observed and untouched. Task-only serializer child later absent; no termination requests. No HCS query."
+  },
+  "D2": {
+    "producerRuns": 0,
+    "cap": 1,
+    "target": ":flutter:packJniLibsflutterBuildDebug",
+    "compileDependency": ":flutter:compileFlutterBuildDebug",
+    "newLibsJarGenerated": false,
+    "hashCrcJniContentAbiChecks": "NOT_RUN"
+  },
+  "D3": {
+    "formalResolveRuns": 0,
+    "cap": 1,
+    "configurationResolveCalls": 0,
+    "expected": 30,
+    "begin": 0,
+    "ok": 0,
+    "failed": 0,
+    "notRun": 30,
+    "strictResolverSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "artifactPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58"
+  },
+  "history": {
+    "prior600SecondCutoff": "2026-10-24T15:13:39.026+08:00",
+    "priorElapsedSeconds": 600.1118972301483,
+    "priorLateFailureTime": "2026-10-24T15:18:08.1167661+08:00",
+    "secondsAfterPriorCutoff": 269.0905497074127,
+    "lateException": "System.Management.Automation.PSInvalidCastException at framework-identity Write-Receipt/ConvertTo-Json",
+    "preciseHistoricalCastAndDelayCause": "UNKNOWN",
+    "lateEvidenceDoesNotBackfillDeadline": true,
+    "ownerWindowCloseDoesNotProveGuestShutdown": true,
+    "historicalGitTrustAndFrozenHeadPassPreserved": true
+  },
+  "D4": {
+    "nonAuthorReviewCount": 1,
+    "preflight": "NOT_PROVEN; downstream gate closed",
+    "protection": {
+      "uniqueNamedOriginals": 21704,
+      "unchanged": 21704,
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "refsAtIntake": 511,
+      "oldRefsMissingOrChanged": [],
+      "initSourcesUnchanged": {
+        "producer.init.gradle": true,
+        "resolve-inputs.init.gradle": true,
+        "selection-policy.gradle": true
+      },
+      "environmentItems": 24,
+      "hostGitEnvironmentItems": 21,
+      "hostEnvironmentSnapshotValuesUnchanged": true,
+      "hostGitEnvironmentSnapshotValuesUnchanged": true,
+      "environmentSnapshotScope": "First snapshot at17:25 during D0 fixture, second after; not a pre-D0 snapshot. Source-only review found no global environment writes.",
+      "networkParsedStateEqual": true,
+      "networkRecordedHashEqual": true,
+      "networkRawFileHashesEqual": false,
+      "hostRelatedJavaDartProcesses": 0,
+      "preparedEnvironmentOnlyAudit": true,
+      "sdkHostCopies": 0,
+      "historicalWrites": 0,
+      "scope": "Deduplicated named original files, prepared/mapped readonly inputs and five historical Git roots; not whole disk, live DB or HCS audit. No new guest was launched.",
+      "time": 1792834188.0503662,
+      "passed": true
+    },
+    "publication": "Only two docs, ordinary nonforce branch push; actual fixed identity and remote readback recorded postcommit"
+  },
+  "evidenceLayers": {
+    "GITHUB_DIRECT": "Task/review/state fixed objects, live main and candidate; final remote object/raw-byte/full maps after commit",
+    "CODEX_REPORTED_LOCAL_ONLY": "Actual single failed fixture and protection receipts, scripts and sealed environment",
+    "NON_AUTHOR_REVIEW": "Read-only bounded static and fixture evidence review; no independent execution",
+    "LATE_GUEST_EVIDENCE": "Prior15:18:08 receipt; separately preserved from prior600sec cutoff",
+    "NOT_RUN": "New Sandbox/Git HEAD/SDK runtime/Flutter/producer/Jar/formal30/hostAPK/RTC/DB/main"
+  },
+  "evidence": {
+    "authority.json": {
+      "sha256": "ef7fa3803fd74aed1458fecf58c6f569bccd4d2bb5d128d6a01eec6ac0b584c4",
+      "bytes": 1303,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "source-inspection.json": {
+      "sha256": "5a8c932c07ebd83000c1db5bc7fa7947d5204e143fe7c4fe30b0a8839c15f6e1",
+      "bytes": 1450,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture-terminal.json": {
+      "sha256": "a9210d46290d61f3da2efbbaaa7c71ac049ecfed30ceda276025174bad312567",
+      "bytes": 1487,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture.exit.txt": {
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture.stderr.txt": {
+      "sha256": "dec3f4ce64d75f585bb61fba2ef1a063882cd718200b7923e38b49474102633f",
+      "bytes": 372,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture-owned-child-stop.json": {
+      "sha256": "a36a09bd97dea85999f6db0f2d3bdcc00498e33aebace7aa62ecad849171c9d2",
+      "bytes": 275,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture-live-observation.json": {
+      "sha256": "18b50b8aac44e4c16ac82f687a0f439353743e276456e74738317264339dc603",
+      "bytes": 1224,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "environment-static-audit.json": {
+      "sha256": "3f74d7f16fe0e927494eafd7a7f908e6a10a5f5cb4d2a56618f54183bf39ecfe",
+      "bytes": 541,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "non-author-preflight-review.json": {
+      "sha256": "66d1850ed7be80275f77830b70d9d5d7b2d964b4bb05c66ebdc31c0a0aa9104a",
+      "bytes": 1694,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "protection-after.json": {
+      "sha256": "a06c4556bc7a845f1e7c6097ba31e710c6a19072e32fbb9f0c4fdfda9b5754de",
+      "bytes": 1130,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "terminal.json": {
+      "sha256": "8941fc543da9d10ff02b4ddf77946c844c3019f1397948b83d497354dbe275cc",
+      "bytes": 779,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "receipt_writer.ps1": {
+      "sha256": "f9318882881b2058cada4e923354198d41b812a3f6d34ecced6b3ed0996ca024",
+      "bytes": 6361,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "receipt-schema.json": {
+      "sha256": "d6d6838fdc7e7b6cd6416bbb351a16bdeb5d24b4eb836efc00c7bd4ae31173b5",
+      "bytes": 15271,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture.ps1": {
+      "sha256": "1f3dc2ff3814f6dbdc4da175cdfdfc8aa5221d3b619c34443e3dcd75bbcff468",
+      "bytes": 7736,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "guest_runtime_driver.ps1": {
+      "sha256": "65a56d01efbc000b8de83867f767e9f3c627420ee2c89daf0433be097eea14ed",
+      "bytes": 32822,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "driver.diff.txt": {
+      "sha256": "1a51bc84547f87a73c6c3830b6c6364906e2e4cf1a8a450424a56f8aa4aa9cbe",
+      "bytes": 17858,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "historical-sdk-timeout-stop.json": {
+      "sha256": "8446f9f7174169d3ccee421560d8855d6eb69a32af9a5dc95c3c54124dcaaf1d",
+      "bytes": 781,
+      "layer": "LATE_GUEST_EVIDENCE_OR_HISTORICAL_CUTOFF_SEPARATELY_LABELED"
+    },
+    "historical-late-failure-timeline.json": {
+      "sha256": "49d8eb9844ae58f0d11acc6577268ce44ca3b65c5c41eeb2a63c3565fa8edec9",
+      "bytes": 783,
+      "layer": "LATE_GUEST_EVIDENCE_OR_HISTORICAL_CUTOFF_SEPARATELY_LABELED"
+    },
+    "historical-session-failure.json": {
+      "sha256": "73bdc7b2d4d52053ddbf8b425555e683a76a85de8f70f080f08521ae8ffd15e3",
+      "bytes": 1016,
+      "layer": "LATE_GUEST_EVIDENCE_OR_HISTORICAL_CUTOFF_SEPARATELY_LABELED"
+    },
+    "fixture/identity/framework-identity.json": {
+      "sha256": "e2492b11f9ac119f747887a0e6d37b219d404ab49690c8ab0de831198c63bb4a",
+      "bytes": 388,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture/phase/phase-01-seed-copy.json": {
+      "sha256": "6c8bea68110b19e05fa8ca200f4f553c9453138a18f015b69a3bd7b3601e193c",
+      "bytes": 112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "fixture/unicode/framework-identity.json": {
+      "sha256": "3f0ef1374fc29bc8a5203e9d99f3bfeaa13ea21444aced244fe1fb78181548d6",
+      "bytes": 320,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-before.json": {
+      "sha256": "0aa703eafba2707176fb884f82a332d23c95810faebf309fd615085de80cd856",
+      "bytes": 5112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-after.json": {
+      "sha256": "7fd594094f7295de1e2164f2c358d9525fe97461b7ae70f3b1cce8b54e7916fd",
+      "bytes": 5111,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    }
+  },
+  "prohibitedActions": {
+    "newSandboxLaunches": 0,
+    "downloads": 0,
+    "globalGitConfigWrites": 0,
+    "sharedDotGitAclOwnerWrites": 0,
+    "systemNetworkOrEnvironmentChanges": 0,
+    "sdkHostCopies": 0,
+    "processTerminationRequests": 0,
+    "hostApkOrExtraAarBuilds": 0,
+    "deviceAdbRtcSfuDbApiActions": 0,
+    "productChanges": 0,
+    "mainIntegrations": 0,
+    "forceGitActions": 0,
+    "historicalHostDagGpuFixtureReruns": 0,
+    "successorTaskStarts": 0
+  },
+  "privacy": "Raw scripts/logs/env, WSB, exact SDK paths, process identifiers and original receipts remain LOCAL_ONLY; only decisions, counts and content hashes public.",
+  "additionalStatus": [
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "nextGate": "Stop after normal publication and readback. Await Astra independent acceptance and a new explicit Owner dispatch; do not repair or rerun this spent fixture."
+}
