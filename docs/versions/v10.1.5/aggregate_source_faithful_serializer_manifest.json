@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "taskBlob": "009a12cae75ef3b714f0156d4edbca2db1660719",
+  "astraReviewBlob": "7eae0044f8c1621a5e6fdf8a8f637462b1596385",
+  "sameTaskContinuation": true,
+  "authority": {
+    "initialMain": "1375e41c7a603c8e1e7f74337b768a32cbf883e6",
+    "continuationMain": "597570e2191d448bcc64da64ce1a56edeba479ed",
+    "continuationMainRoot": "a7c7118074acfd423f4dbc7bf2af6868f6e70ca0",
+    "handoffBlob": "0b5ebcecda7958440cb7c70e09f222664556f4cc",
+    "activeStateBlob": "15d2f903df8a8ae83a5d3a16df1eb3d68e6e7a04"
+  },
+  "git": {
+    "soleParent": "0d18a2362cedfc545c17bf4c4bc207a8cbb2cfc5",
+    "parentRoot": "bba458cf1f054276f6ee519ceede25f0636ec8ea",
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "deliveryCommitRootAndDocumentBlobs": "Recorded in separate LOCAL_ONLY delivery-git-identity.json and final-readback.json after commit to avoid self-reference",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/AGGREGATE_SOURCE_FAITHFUL_SERIALIZER_REPORT.md",
+      "docs/versions/v10.1.5/aggregate_source_faithful_serializer_manifest.json"
+    ]
+  },
+  "product": {
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "appsEntries": 1133,
+    "servicesEntries": 791,
+    "trackedSourceChanges": 0
+  },
+  "diagnostic": {
+    "label": "SOURCE_FAITHFUL_MINIMAL_RECONSTRUCTION",
+    "originalAggregateObjectPersisted": false,
+    "original37CaseObjectRecovered": false,
+    "attemptCount": 1,
+    "serializeAttempts": 15,
+    "limitAttempts": 32,
+    "hardLimitSeconds": 15,
+    "elapsedIncludingReadbackAndExitSeconds": 0.6879999999655411,
+    "subprocessExit": 0,
+    "processExitConfirmed": true,
+    "minimumFailingSets": [
+      [
+        "$.started"
+      ],
+      [
+        "$.finished"
+      ]
+    ],
+    "otherSingleFieldsPass": 11,
+    "emptyControl": "PASS",
+    "completeMinimalBody": "TARGET_FAIL",
+    "exceptionTypes": [
+      "System.Management.Automation.MethodInvocationException",
+      "System.InvalidOperationException"
+    ],
+    "safeSummary": "PSPARAMETERIZEDPROPERTY_CIRCULAR_REFERENCE",
+    "historicalPSInvalidCastCause": "UNKNOWN",
+    "originalSerializerInternalMemberDiscoveryChain": "NOT_PROVEN"
+  },
+  "projection": {
+    "file": "AggregatePrimitive.cs",
+    "sha256": "c6469958b98b50c9f6d4e07b2cbce3ac5987ced635306e3d6d612b6047353c83",
+    "bytes": 12489,
+    "compiled": false,
+    "executed": false,
+    "callsiteIntegrated": false,
+    "fieldTypesAfterProjection": "NOT_OBSERVED",
+    "staticGatePassed": false,
+    "reasons": [
+      "PSObject String unwrap has no path restriction to $.started and $.finished",
+      "No actual compile or WriteAggregate callsite integration evidence"
+    ],
+    "codeModificationsAndTestsStopped": true,
+    "fullSourceAndNewFileDiff": "LOCAL_ONLY intake report and snapshots"
+  },
+  "execution": {
+    "terminal": "D0_B_STATIC_SCOPE_BLOCKED",
+    "sameTaskContinuation": true,
+    "diagnosis": "SOURCE_FAITHFUL_REPRODUCER_IDENTIFIED",
+    "originalAggregate": "ORIGINAL_AGGREGATE_OBJECT_NOT_PERSISTED",
+    "historicalPSInvalidCastCause": "UNKNOWN",
+    "projection": "DRAFT_NOT_COMPILED_NOT_EXECUTED_NOT_INTEGRATED",
+    "targetedFixture": "NOT_RUN",
+    "writerFixture": "NOT_PASS_NOT_RUN_THIS_TASK",
+    "sdk": "NOT_RUN_NOT_READY",
+    "producer": "NOT_RUN",
+    "libsJar": "NOT_GENERATED_THIS_TASK",
+    "formalResolve": "NOT_RUN",
+    "runs": {
+      "diagnostic": 1,
+      "serializeAttempts": 15,
+      "targetedFixture": 0,
+      "full37Suite": 0,
+      "sandbox": 0,
+      "flutterCli": 0,
+      "producer": 0,
+      "formalResolve": 0
+    },
+    "resolvedConfigs": 0,
+    "notRunConfigs": 30,
+    "gateBudgetsNotReset": true,
+    "platformUiPrompt": "NOT_A_RUNTIME_OR_PRODUCT_FAILURE",
+    "actualEnvironmentRefusalObserved": false,
+    "retained": [
+      "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+      "NO_HOST_APK",
+      "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+      "V10.1.5_PARTIAL_NOT_ACCEPTED",
+      "AC05_OPEN",
+      "PLAN_A_RETAINED",
+      "NO_R2",
+      "NO_MAIN_PRODUCT_INTEGRATION",
+      "V10.1.6_NOT_STARTED",
+      "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+    ]
+  },
+  "nonAuthorReview": {
+    "reviewerRole": "GPT-6.1 Sol/high non-author bounded review",
+    "gate1Supported": false,
+    "diagnosticEvidenceReviewed": true,
+    "finalDeliveryReview": "Required before commit; exact document hashes bound in separate LOCAL_ONLY final review",
+    "runtimeRevalidationByReviewer": false
+  },
+  "protection": {
+    "namedFiles": 22227,
+    "unchangedFiles": 22227,
+    "changedFiles": [],
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefs": 515,
+    "oldRefsMissingOrChanged": [],
+    "environment24Unchanged": true,
+    "gitEnvironment21Unchanged": true,
+    "networkParsedStateUnchanged": true,
+    "environmentNetworkScope": "Two D4 snapshots after static stop only; not pre-D0-A coverage or global configuration audit.",
+    "appsServicesFullLocalMapsUnchanged": {
+      "apps": true,
+      "services": true
+    },
+    "original38JsonCount": 38,
+    "preservedScope": "Named files and five Git roots only; not full disk or live database audit.",
+    "time": 1792850236.5264904,
+    "passed": true
+  },
+  "evidence": {
+    "diagnosis-result.json": {
+      "sha256": "aabc937bfbd0766a22902b2091193be9be631056596a1e73bc56b8098b00acf0",
+      "bytes": 5081,
+      "tier": "LOCAL_ONLY"
+    },
+    "diagnosis-controller-complete.json": {
+      "sha256": "3ddd24d63aeaab30a7ff7f8918dc7fa86d64d94b3a13a71213538c36d8e61277",
+      "bytes": 320,
+      "tier": "LOCAL_ONLY"
+    },
+    "diagnosis-process.json": {
+      "sha256": "9361be4101316d1d639e96271e5b044e6c7dc6f41a7294b23527aca5849efd09",
+      "bytes": 556,
+      "tier": "LOCAL_ONLY"
+    },
+    "serializer-attempts.txt": {
+      "sha256": "f8ea10ad1b218443608d1ee613921ae271572780bcfe9ff745fc3bf1f44a0b2b",
+      "bytes": 4174,
+      "tier": "LOCAL_ONLY"
+    },
+    "serializer-summary.txt": {
+      "sha256": "36df55e5aea0786cbbb0f057b723b79fde09db6a0841ddb535022b431130c076",
+      "bytes": 362,
+      "tier": "LOCAL_ONLY"
+    },
+    "non-author-diagnostic-preflight.json": {
+      "sha256": "18409cf6834766c932619296fbc0dd62114b39a1f45f7ffef481d9e368ad4b7f",
+      "bytes": 815,
+      "tier": "LOCAL_ONLY"
+    },
+    "AggregatePrimitive.cs": {
+      "sha256": "c6469958b98b50c9f6d4e07b2cbce3ac5987ced635306e3d6d612b6047353c83",
+      "bytes": 12489,
+      "tier": "LOCAL_ONLY"
+    },
+    "continuation-intake.json": {
+      "sha256": "71196c19bebde3ecc50b4b5b65a56a8b037c28cfffe4106b2fa97021bb5b33d2",
+      "bytes": 2167,
+      "tier": "LOCAL_ONLY"
+    },
+    "AGGREGATE_PRIMITIVE_CONTINUATION_INTAKE.md": {
+      "sha256": "8068db7527e9210cb3ea65613975941101c67286d9f4434745e19e6ced0cbbaf",
+      "bytes": 27197,
+      "tier": "LOCAL_ONLY"
+    },
+    "continuation-intake/AggregatePrimitive.initial.diff.txt": {
+      "sha256": "ba06996cd18133ccaec484b01aa534f05107f6148684da8189f813c0c10f31b0",
+      "bytes": 12826,
+      "tier": "LOCAL_ONLY"
+    },
+    "non-author-static-gate-review.json": {
+      "sha256": "f6fad2e3e33c9801184feda1c8b063ad90153e1904807e9160e4249afc3e028e",
+      "bytes": 613,
+      "tier": "LOCAL_ONLY"
+    },
+    "terminal.json": {
+      "sha256": "f29e4a6370e048dbf6af35e4160e858af99621d7d27e9a61df82e5aeb0ed8e4f",
+      "bytes": 1247,
+      "tier": "LOCAL_ONLY"
+    },
+    "closeout-authority.json": {
+      "sha256": "92e29b91b57da450236a9d7732fe82abf409da77409706d5cbaf7b78e86da0c0",
+      "bytes": 443,
+      "tier": "LOCAL_ONLY"
+    },
+    "continuation-protection-before.json": {
+      "sha256": "9ac52b5e1b2865bbf3285dfe2340066dd55c6d1dd4db455c152298bc5ce3afc4",
+      "bytes": 286,
+      "tier": "LOCAL_ONLY"
+    },
+    "closeout-protection-after.json": {
+      "sha256": "b799e98abec60cfdfeec3975ce01ff37d0701e0310c58508e1a91b06d428683d",
+      "bytes": 702,
+      "tier": "LOCAL_ONLY"
+    }
+  },
+  "evidenceLayers": {
+    "public": "This report and manifest: sanitized findings and hashes",
+    "localOnly": "Raw scripts, stdout/stderr, process receipts, full draft/diff, environment/network snapshots and byte maps",
+    "notRun": "Target fixture, full37 suite, Sandbox SDK, CLI, producer, libs.jar validation, formal30 resolve, APK, RTC, database"
+  },
+  "publicationPolicy": "Ordinary non-force candidate branch only; verify remote commit/parent/root, document blobs/raw UTF-8 bytes and complete apps/services maps; stop for Astra. No main integration or successor."
+}
