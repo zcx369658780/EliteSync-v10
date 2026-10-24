@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "version": "v10.1.5",
+  "date": "2026-10-24",
+  "taskBlob": "8292d6ae1281852bb6dedd46d602456d40e45ab1",
+  "astraReviewBlob": "0bea4cea935de96c8471997142df3ce31eb0d999",
+  "activeStateBlob": "f2fc2ea7f7ae0f0d62004579f8ed67e1f0ac73e1",
+  "terminal": "AGGREGATE_CYCLE_PATH_NOT_PROVEN / WRITER_FIXTURE_NOT_PASS / SANDBOX_NOT_RUN",
+  "identity": {
+    "branch": "codex/v10.1.5-aggregate-primitive-projection-conditional-producer",
+    "soleParent": "d0c1a00218ca68b92c6acf3338e292f956b023cf",
+    "parentRoot": "7fa7fc58b6b6ef3e6939f6111f6f23607b195f59",
+    "parentSoleParent": "f3fbc2c58615095a9065afd11cc2369f7241343f",
+    "fixedProductSource": "1522466faf798b719ccff281de7584f043946437",
+    "appBuildBlob": "bdb8e241d3e0defd1793c90b5f730c2facd7433d",
+    "mainAtStart": "531ec9c22f471fecd030380120551e4bd3bc8f73",
+    "mainRootAtStart": "94df5664928cb6b82dee9bc830dd3adfd9a32d2e",
+    "fullProductMaps": {
+      "candidate_apps": {
+        "tree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+        "entries": 1133,
+        "fullMapMatched": true
+      },
+      "candidate_services": {
+        "tree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+        "entries": 791,
+        "fullMapMatched": true
+      },
+      "main_apps": {
+        "tree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+        "entries": 1116,
+        "fullMapMatched": true
+      },
+      "main_services": {
+        "tree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+        "entries": 776,
+        "fullMapMatched": true
+      }
+    },
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/AGGREGATE_PRIMITIVE_PROJECTION_AND_CONDITIONAL_SDK_PRODUCER_REPORT.md",
+      "docs/versions/v10.1.5/aggregate_primitive_projection_and_conditional_sdk_producer_manifest.json"
+    ],
+    "authorAndCommitter": "zcx369658780 <zcxvegeta@126.com>",
+    "finalGitIdentity": "Exact postcommit Commit/sole Parent/Root/two docs Blob/raw UTF8/fullTree readback in LOCAL_ONLY delivery-git-identity.json and final-readback.json plus Owner handoff; no self-reference"
+  },
+  "D0A": {
+    "originalObject": "ORIGINAL_AGGREGATE_OBJECT_NOT_PERSISTED",
+    "originalSourceScope": "Named prior fixture-body.json and fixture-body.tmp absent; no saved original live object snapshot supplied",
+    "reconstruction": "Same explicit ordered body and List[object].ToArray shape with one synthetic case; expected37, actual1, passedfalse. Not original37case state or error reproduction.",
+    "diagnosticAttempts": 1,
+    "hardLimitSeconds": 15,
+    "elapsedIncludingReadbackAndResultSeconds": 0.6410000000032596,
+    "subprocessExit": 31,
+    "subprocessExitMeaning": "No raw cycle observed in permitted traversal",
+    "supervisorMechanismCompletedWithinBound": true,
+    "supervisorExitDoesNotMeanTargetGatePass": true,
+    "processExitConfirmed": true,
+    "targetPathProven": false,
+    "syntheticRawCycleObserved": false,
+    "candidateTargetCycleAssociationObserved": false,
+    "graphObservations": {
+      "nodes": 8,
+      "observedCycles": 0,
+      "cutCount": 3,
+      "targetParameterizedPropertyEdges": 0,
+      "wrapperPaths": [
+        "$.started",
+        "$.finished"
+      ],
+      "underlyingStringFieldPaths": [
+        "$.started.#immediateBaseObject",
+        "$.finished.#immediateBaseObject"
+      ],
+      "cutPaths": [
+        "$.started.#_typeTable",
+        "$.started.#lockObject",
+        "$.finished.#lockObject"
+      ],
+      "sharedReferenceNotCycle": true,
+      "onlyRestrictedSyntheticGraph": true
+    },
+    "unknownGettersObjectToStringOrSerializerCalls": 0,
+    "referenceIdentity": "ReferenceEquals/RuntimeHelpers identity with active ancestor and finished sets; shared references distinguished from cycles",
+    "bounds": "Max384 nonprimitive nodes,depth14,arrays128,maps64,internal7sec graph guard plus15sec total supervisor",
+    "observedScope": "Restricted synthetic graph only; zero observed cycles does not prove full runtime graph acyclic",
+    "reviewedSourcePins": {
+      "SafeAggregateGraph.cs": "4e0eac0b810b6b1e845cb21f3547d4212e6514db49d70a89b34f014015e8a536",
+      "diagnose_once.ps1": "cbd898fd1ea71516bbd56881bd91ffe6e24f96cbf35b5ccef697e07b07e3b621",
+      "run_diagnosis_once.py": "ff981c09fb24c1758ddf73c7c9644334f3b6686b41f7069b243c474cb42565e0"
+    },
+    "runtimeSourceEditsOrRerunsAfterDiagnostic": 0,
+    "projectionImplemented": false,
+    "decimalBranchRecapturedOrChanged": false
+  },
+  "D0B": {
+    "aggregatePositiveNegativeFixtureRuns": 0,
+    "cap": 1,
+    "hardLimitSeconds": 15,
+    "status": "NOT_RUN; cycle target path gate not proven"
+  },
+  "D0C": {
+    "full37CaseSuiteRuns": 0,
+    "cap": 1,
+    "hardLimitSeconds": 60,
+    "newCaseVerdicts": 0,
+    "newFullSuiteAggregate": "NOT_RUN",
+    "prior37Directories38JsonPreserved": true,
+    "priorArtifactPresenceNotPass": true
+  },
+  "D1": {
+    "newSandboxInstances": 0,
+    "cap": 1,
+    "newNetworkBoundaryGitHeadSdkChecks": "NOT_RUN",
+    "flutterCliRuns": 0,
+    "sdkReady": false,
+    "sdk600SecondWindowUsed": false,
+    "sdkHostCopies": 0,
+    "newSdkStagePrepared": false,
+    "oldGuestStatus": "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS"
+  },
+  "D2": {
+    "producerRuns": 0,
+    "cap": 1,
+    "target": ":flutter:packJniLibsflutterBuildDebug",
+    "compileDependency": ":flutter:compileFlutterBuildDebug",
+    "newRealLibsJarGenerated": false,
+    "sourcePathHashZipCrcJniAbiChecks": "NOT_RUN"
+  },
+  "D3": {
+    "formalResolveRuns": 0,
+    "cap": 1,
+    "configurationResolveCalls": 0,
+    "expected": 30,
+    "begin": 0,
+    "ok": 0,
+    "failed": 0,
+    "notRun": 30,
+    "strictResolverSha256": "2e97394f0dffd7818058e587cda8eaf0ec5ff747198d6a60e9872b14b96e1a6f",
+    "artifactPolicySha256": "bfb7633a037f84e7e7c41060563841add01648387ecafbd34a7e7d8e142e5c58"
+  },
+  "inheritedFixedTools": {
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "engine": "59aa584fdf100e6c78c785d8a5b565d1de4b48ab",
+    "frameworkHead": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "gradle": "8.14",
+    "gradleBinSha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "jdk": "17.0.18.8",
+    "agp": "8.11.1",
+    "kgp": "2.2.20",
+    "base50CanonicalSha256": "78b730a3ddbdfda3a908138fc67a0352ba80bb9d0bb14ad4c0e684309c64db52",
+    "runtime53CanonicalSha256": "6468110fb2cd275115774ae4813aa769415d2f3d14bcb297ab9d0867457a9723",
+    "androidPrefsRoot": "Absent from inherited approved subprocess dictionary; no new SDK subprocess test",
+    "androidUserHome": "Approved inherited ownership unchanged; no new SDK environment run",
+    "actualToolChecksThisTask": "NOT_RUN"
+  },
+  "history": {
+    "decimalSavedReplayCapture": "Prior task observed $.seconds System.Decimal; not repeated or corrected this task",
+    "previousAggregateError": "Prior fixture.ps1:96 Serialize(body) PSParameterizedProperty circular-reference message, original object not persisted",
+    "previousControllerCounts": "expected37/actual0/checks[] denotes no case body validated, not actual0 cases or37PASS",
+    "sdkCutoff": "2026-10-24T15:13:39.026+08:00",
+    "lateSdkException": "2026-10-24T15:18:08.1167661+08:00, about269seconds later PSInvalidCast in framework-identity Write-Receipt",
+    "sameCauseOrFullDelayProven": false,
+    "lateEvidenceNotDeadlinePass": true
+  },
+  "D4": {
+    "nonAuthorReviewCount": 1,
+    "reviewer": "Same GPT-6.1 Sol/high bounded static/actual-edge/final-doc read-only review; no runtime rerun by reviewer",
+    "targetGateNotPassed": true,
+    "protection": {
+      "uniqueNamedOriginals": 21999,
+      "unchanged": 21999,
+      "changedFiles": [],
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "refsAtStart": 513,
+      "oldRefsMissingOrChanged": [],
+      "historicalInitSourcesUnchanged": {
+        "producer.init.gradle": true,
+        "resolve-inputs.init.gradle": true,
+        "selection-policy.gradle": true
+      },
+      "priorFailedWriterPinsUnchanged": true,
+      "diagnosisSourcePinsUnchanged": true,
+      "hostRelatedEnvironment24Unchanged": true,
+      "hostGitEnvironment21Unchanged": true,
+      "environmentSnapshotScope": "Both snapshots are after the sole graph diagnosis, during D4 delivery only. Do not claim pre-D0 coverage; source review found no global/parent environment writes.",
+      "networkParsedStateEqual": true,
+      "networkRecordedStateHashEqual": true,
+      "networkRawFileHashesEqual": false,
+      "hostRelatedJavaDartProcesses": 0,
+      "prior38JsonPreserved": true,
+      "sdkHostCopies": 0,
+      "newGuestDerivedFiles": 0,
+      "scope": "Named historical originals and selected readonly SDK/cache assets, prior failed source/log/38JSON and five root Git states; not full disk, live DB or full runtime graph audit.",
+      "time": 1792841648.388369,
+      "passed": true
+    },
+    "ordinaryNonforceOnlyTwoDocs": true,
+    "independentAstraAcceptance": false
+  },
+  "evidenceLayers": {
+    "GITHUB_DIRECT": "Task/review/state and live main/candidate/product objects; postpublish exact identity/bytes/fullTree readback",
+    "CODEX_REPORTED_LOCAL_ONLY": "One bounded same-source synthetic graph diagnosis, source pins and protection receipts",
+    "NON_AUTHOR_REVIEW": "One reviewer static and edge-by-edge read-only checks, no diagnosis/SDK run",
+    "HISTORICAL_LATE_GUEST_EVIDENCE": "Original15:18:08 error separate from600sec cutoff",
+    "NOT_RUN": "Projection/targeted aggregate fixture/full37suite/newSandbox/SDK/Flutter/producer/Jar/formal30/hostAPK/RTC/DB/main"
+  },
+  "evidence": {
+    "authority.json": {
+      "sha256": "b647932c6c0a1ad17ee76c3ab8ba47219fefd82c58fcf46a7fcf641c1227bd56",
+      "bytes": 2001,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "source-inspection.json": {
+      "sha256": "4525a53a0856541c0701f51364016a81e33e8c3b563a58ac30f615fea0d6f4b5",
+      "bytes": 1440,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "SafeAggregateGraph.cs": {
+      "sha256": "4e0eac0b810b6b1e845cb21f3547d4212e6514db49d70a89b34f014015e8a536",
+      "bytes": 5232,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnose_once.ps1": {
+      "sha256": "cbd898fd1ea71516bbd56881bd91ffe6e24f96cbf35b5ccef697e07b07e3b621",
+      "bytes": 1542,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "run_diagnosis_once.py": {
+      "sha256": "ff981c09fb24c1758ddf73c7c9644334f3b6686b41f7069b243c474cb42565e0",
+      "bytes": 4135,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "non-author-diagnosis-preflight.json": {
+      "sha256": "8675da23c8d14d2f6e2ea97959653ffa34b73ced96abb4cc97e5d7cbd9fef54f",
+      "bytes": 637,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis-started.json": {
+      "sha256": "0b6ff964fbabf1d9063232cee71abcbc653f63baa8a6f09b036d45359a85afca",
+      "bytes": 659,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis-process.json": {
+      "sha256": "2adc12b97312c26b526178593aba22f7cb533cf0b79f00f4e2ef0159cd8c1017",
+      "bytes": 570,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis-result.json": {
+      "sha256": "d01662394befe1f4eaa085fb8d7a089d33e2d8aa48c6ce7aa1ab566b24de0e4f",
+      "bytes": 1179,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis-controller-complete.json": {
+      "sha256": "452e37f1b3dd2f32dd084f254a489ab9bcb4eae5a6fb96137ba08f02317eaefa",
+      "bytes": 312,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "object-graph.txt": {
+      "sha256": "81ef34a5ddafbed8e6a29114ce936aa9e15c686a10020b9deeeb3e8f05b7e212",
+      "bytes": 3607,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "graph-summary.txt": {
+      "sha256": "9e8973e95ba8a4433fc6c0991f99c3155ae7ba88d758f136719749a53c50a503",
+      "bytes": 178,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "diagnosis.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "graph-observations.json": {
+      "sha256": "fd77f3a128a626e679caff532a04992fcb7b073d5b3ccd3707806acb0f10635e",
+      "bytes": 474,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "non-author-graph-review.json": {
+      "sha256": "ea50ded58dd2b8326c9522154ccd5949df4e72b321ba2dd3657cf4c6c04e5f41",
+      "bytes": 747,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "protection-after.json": {
+      "sha256": "a8b433eef9cd9ee11cef233bda1add29791762ef895ce1d5cc8b1a425410f89e",
+      "bytes": 1210,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "terminal.json": {
+      "sha256": "316b699036d31e1d8ab59d1f7470ab47bfe6ad209cf9a1b4accb6573a5dcf7f3",
+      "bytes": 1792,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "historical-sdk-timeout-stop.json": {
+      "sha256": "8446f9f7174169d3ccee421560d8855d6eb69a32af9a5dc95c3c54124dcaaf1d",
+      "bytes": 781,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "historical-late-failure-timeline.json": {
+      "sha256": "49d8eb9844ae58f0d11acc6577268ce44ca3b65c5c41eeb2a63c3565fa8edec9",
+      "bytes": 783,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "historical-session-failure.json": {
+      "sha256": "4a0e3a7808c99d13ddf1a5072aec7f42926592906995c1f27f66965a2afa0b3b",
+      "bytes": 1061,
+      "layer": "HISTORICAL_CUTOFF_OR_LATE_GUEST_EVIDENCE"
+    },
+    "host-network-before.json": {
+      "sha256": "a3dd777bfafbec90b93f2e244343a35e36dd49c6c4f4491052ebe7128200e3af",
+      "bytes": 5112,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    },
+    "host-network-after.json": {
+      "sha256": "7322ab32c3da59acee3427856b3ed75f2f27aaf79b5a334413eb519ec282f313",
+      "bytes": 5111,
+      "layer": "CODEX_REPORTED_LOCAL_ONLY"
+    }
+  },
+  "prohibitedActions": {
+    "oldDecimalOrSuiteReruns": 0,
+    "serializerWriterCopyCallsInDiagnosis": 0,
+    "unknownGettersOrObjectToString": 0,
+    "sensitiveValueLogging": 0,
+    "downloads": 0,
+    "globalGitOrEnvChanges": 0,
+    "sharedDotGitAclOwnerChanges": 0,
+    "systemNetworkChanges": 0,
+    "sdkHostCopies": 0,
+    "processTerminationOrCloseRequests": 0,
+    "hostApkOrExtraAarBuilds": 0,
+    "deviceAdbRtcSfuDbApiActions": 0,
+    "productChanges": 0,
+    "mainIntegration": 0,
+    "forceGit": 0,
+    "successorStarts": 0
+  },
+  "privacy": "Exact run IDs/PIDs, full graph/source/logs, paths/env/WSB and original artifacts remain LOCAL_ONLY; public only bounded non-sensitive field/type summaries, counts and evidence hashes.",
+  "additionalStatus": [
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "AWAITING_ASTRA_INDEPENDENT_REVIEW"
+  ],
+  "nextGate": "Stop after ordinary publication and exact readback; await Astra. Do not expand graph access, repair/retry diagnosis, implement projection or start downstream task."
+}
