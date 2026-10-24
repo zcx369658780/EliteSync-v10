@@ -41,7 +41,7 @@ Astra已独立复审上轮`dd9b4eb9df9101adf4c0d980135081fd902c656a`的**新SDK 
 
 按先前真实DAG，在同一禁外联guest、同一SDK/项目/Gradle home与产物root上，最多一次执行`:flutter:packJniLibsflutterBuildDebug`及其compile依赖。保留可信本地Gradle8.14`--offline --no-daemon --console=plain --max-workers=2`、双ABI、严格原SDK与50键关键环境；对继承Git trust的环境扩展保持D0最小限定，不能污染父进程/宿主。无需新DAG、旧GPU搜源、HOST或旧25/38/11 fixture。必须证明没有外联、没有新下载、SDK工具与缓存没越权写原保护路径。
 
-produer（producer）失败即STOP；成功时核目标`libs.jar`真正由当次`packJniLibsflutterBuildDebug`产生，区分JNI jar非Java类jar，逐字节hash、ZIP结构与CRC、实际native条目/对应ABI`x86_64`、`arm64-v8a`来源以及task归属；空/占位/历史copy不能过门。未建立上述证据则后继正式解析0次。
+producer失败即STOP；成功时核目标`libs.jar`真正由当次`packJniLibsflutterBuildDebug`产生，区分JNI jar非Java类jar，逐字节hash、ZIP结构与CRC、实际native条目/对应ABI`x86_64`、`arm64-v8a`来源以及task归属；空/占位/历史copy不能过门。未建立上述证据则后继正式解析0次。
 
 ## 5. D3｜真实文件解析最多一次（D2全部PASS才可执行）
 
