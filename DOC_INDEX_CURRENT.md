@@ -183,3 +183,11 @@ v10.1.0仍PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL；R1接受不扩大为整版
 
 
 **2026-10-25长任务模式恢复与Gate 2环境阻断：** Owner确认v10.x回归长任务单+中途无监督模式，Codex在冻结范围内自主实现/测试/修复，Astra集中验收；A-D仅为发布闭环。Gate 2一次PowerShell启动被ExecutionPolicy拒绝，正负例NOT_RUN，一次性预算已消费，禁止自行重试。见[现行工作流](docs/workflow/CURRENT_WORKFLOW.md)第8节、[协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)和[Astra复核](docs/versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)。
+## 2026-10-25 Astra会话交接：v10.1.5候选 7773b989
+
+- 交接：[SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md](docs/workflow/SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md)
+- 唯一状态入口：[ACTIVE_STATE.md](docs/workflow/ACTIVE_STATE.md)
+- 最新候选 `7773b98986d9c9395841623e6ef244379fddc865`；Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`；Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。
+- 报告Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；Manifest Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`。
+- 状态 `V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / AWAITING_ASTRA_CENTRAL_REVIEW`。Gate2新启动/Writer/Serializer为0；两次历史启动预算0.375秒与0.390秒已消费。撤权后停止媒体上界10.125秒，不新增5秒PASS；AEC未证明，真实15/30天等待，旧通知点击NOT_RUN，真实Push PENDING。
+- 当前下一步仅为Astra集中验收该候选；不创建下一任务、不启动Codex、不合并main、不启动v10.1.6。Owner的长任务单+中途无监督模式持续生效。
