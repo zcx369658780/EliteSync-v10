@@ -6,6 +6,15 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
+## Owner任务下达闭环与长期记忆（2026-10-25）
+
+Owner已明确批准A-D任务下达闭环，规范正文：[TASK_DISPATCH_CLOSURE_PROTOCOL](../workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)。每次发布Codex任务：A核对授权/原任务/ACTIVE_STATE/live main与Root/禁止事项/预算；B创建唯一任务文件并按Blob读回正文；C更新ACTIVE_STATE并重新核验live main、Root、任务Blob/正文与状态Blob；D在同一条回复交付任务链接、Blob SHA、当前状态、停止门禁及单一可复制启动Prompt代码框。
+
+关键失败规则：创建失败不得声称发布；任务创建成功但正文未读回，不算发布闭环；状态同步或最终回读失败必须明确报告部分完成，不静默结束、不盲目重复创建。Owner手动派发Codex；发布不等于派发/执行。启动Prompt单一代码框，无开始/结束包装标记、不嵌套代码框，不得扩大任务授权。A-D为前瞻规则，不追溯改变冻结任务权限/预算/验收。
+
+项目源同步规则：GitHub治理文档、ChatGPT Project Sources附件与模型记忆不是自动互相同步。Owner要求更新项目源时，创建日期化增量目录/ZIP，记录清单与SHA-256；完成生成后明确告知Owner需手动上传Project Sources，不能声称附件已自动替换。
+
+
 ## Owner任务单启动 Prompt 格式（2026-10-23）
 
 Owner于2026-10-23明确要求：**每次Astra发布供Owner手动派发给本地Codex的综合任务单时，给Owner的最终回复必须同时提供一个可直接复制的Markdown代码框启动Prompt；不能只给GitHub路径或按钮。** 历史`docs/migration/ASTRA_HANDOFF_20261018_V10_0_10_K08_APPROVED_PENDING.md`已经记录原有格式偏好：**单一代码框；不用“PROMPT开始/结束”包装标记；启动Prompt内部不嵌套多重反引号代码框**。这是交付展示规则，不改变Owner/Codex实际权限。
