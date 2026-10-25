@@ -2,7 +2,7 @@
 
 **2026-10-25当前执行状态：V10.1.5_LONG_TASK_PUBLISHED / OWNER_MANUAL_DISPATCH_REQUIRED / GATE2_ENVIRONMENT_BLOCKED / AWAITING_CODEX_LONG_TASK.** Owner要求恢复v10.x原定的“一份冻结计划、一份综合长任务、中途无监督执行、一次集中候选与独立验收”。已更新现有唯一综合任务 `docs/versions/v10.1.5/task_order.md`，不创建重复微任务。Codex在冻结范围内可自主调查、实现、集成、构建、测试、调试、修复普通失败并集中交付；A-D只保证任务发布闭环，不是逐步骤审批。
 
-**当前唯一版本任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，最新Blob `20a01f1792571a9446869ada638bf857a085d169`。新增F节明确当前Gate 2环境阻断处理、任务内自治权限、可独立推进的v10.1.5功能、条件式SDK依赖及集中交付要求。Owner须手动将完整任务单交给Codex；本次状态更新不启动Codex。
+**当前唯一版本任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，最新Blob `d737c3a813d81ada7a9ca9a60aa310e9e14e0960`。新增F节明确当前Gate 2环境阻断处理、任务内自治权限、可独立推进的v10.1.5功能、条件式SDK依赖及集中交付要求。Owner须手动将完整任务单交给Codex；本次状态更新不启动Codex。
 
 **Gate 2历史事实：** 唯一一次旧入口因PowerShell执行策略拒绝，`SecurityError / UnauthorizedAccess`，exit 1、退出已确认、监督耗时0.375秒；正负例、Writer、Serializer、fallback均`NOT_RUN`，无receipt。旧一次性预算已消费，不重写为未消费、不重试原入口、不修改策略或绕过安全限制。新综合任务允许Codex调查受支持且当前权限已允许的合法执行方式；若无可用方式，只阻断依赖该门的SDK链，继续其它可独立推进的v10.1.5功能。若存在合规方式，可按新任务明示的新运行预算执行一次真实定点验证。
 
