@@ -1,19 +1,22 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25当前执行状态：V10.1.5_LONG_TASK_PUBLISHED / OWNER_MANUAL_DISPATCH_REQUIRED / GATE2_ENVIRONMENT_BLOCKED / AWAITING_CODEX_LONG_TASK.** Owner要求恢复v10.x原定的“一份冻结计划、一份综合长任务、中途无监督执行、一次集中候选与独立验收”。已更新现有唯一综合任务 `docs/versions/v10.1.5/task_order.md`，不创建重复微任务。Codex在冻结范围内可自主调查、实现、集成、构建、测试、调试、修复普通失败并集中交付；A-D只保证任务发布闭环，不是逐步骤审批。
+**2026-10-25最新状态：V10.1.5_CANDIDATE_DELIVERED / ASTRA_BOUNDED_RTC_FIX_ACCEPTED_WITH_OBSERVATIONS / OVERALL_PARTIAL_AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已独立复核候选 `c445554f01fbd8c9aef641302f3f090900703786` 中的RTC连接取消、迟到诊断endCall及旧heartbeat竞态修复，接受此范围内的源码逻辑与定向单测报告。整版仍未接受，AC05仍OPEN；当前候选未集成main。
 
-**当前唯一版本任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，最新Blob `d737c3a813d81ada7a9ca9a60aa310e9e14e0960`。新增F节明确当前Gate 2环境阻断处理、任务内自治权限、可独立推进的v10.1.5功能、条件式SDK依赖及集中交付要求。Owner须手动将完整任务单交给Codex；本次状态更新不启动Codex。
+**Astra裁决：** [D0-C RTC取消/迟到回调竞态独立复核](../versions/v10.1.5/D0_C_RTC_CANCELLATION_RACE_FIX_ASTRA_REVIEW_20261025.md)，Blob `d66c5b0ce1c4999698e56d2075e9f43b23d698c5`。本次接受仅限RTC竞态修复，不代表新APK、真实SFU媒体、物理AEC或整版功能已接受。
 
-**Gate 2历史事实：** 唯一一次旧入口因PowerShell执行策略拒绝，`SecurityError / UnauthorizedAccess`，exit 1、退出已确认、监督耗时0.375秒；正负例、Writer、Serializer、fallback均`NOT_RUN`，无receipt。旧一次性预算已消费，不重写为未消费、不重试原入口、不修改策略或绕过安全限制。新综合任务允许Codex调查受支持且当前权限已允许的合法执行方式；若无可用方式，只阻断依赖该门的SDK链，继续其它可独立推进的v10.1.5功能。若存在合规方式，可按新任务明示的新运行预算执行一次真实定点验证。
+**当前候选与交付：** [Commit c445554f](https://github.com/zcx369658780/EliteSync-v10/commit/c445554f01fbd8c9aef641302f3f090900703786)，唯一Parent `67f83b053096b181ff64366f3eaad0e5e44815f8`，Root `a964881253000ed86601978d136dfba5820606fc`。候选apps Tree `e9ed3a1dee4c892840831b0e31f6f96669fa17d5`，services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；报告Blob `521b1d5e7851a40e98361887b8fe8117a51c5305`，Manifest Blob `90a0da0c305016be742d8a131356b368fab10121`。Dart源码Blob `1abe844a83eb6f48e0718ac361778df73127ca00`，RTC测试Blob `e23a875d0a04044c4c0227868b0f46f8e86b5a14`，ICE诊断测试Blob `6a125584204890209f60716b8264c9f7710d92f6`。
 
-**产品基线：** 接受产品仍v10.1.4；apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`，services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍`PARTIAL_NOT_ACCEPTED`，AC05 `OPEN`；ICE诊断标志未证明、旧guest状态未知、无Host APK、无main产品集成、v10.1.6未启动。不得将文档任务单发布误认为产品代码已接受或集成。
+**测试证据等级：** Codex报告RTC/路由普通测试95项通过、ICE诊断开关11项通过、三文件分析exit0；四项在普通与诊断运行间重叠，不重复计数。Astra直接静态核验attempt身份、generation/Room/callId heartbeat guard与迟到诊断endCall清理条件；未直接执行本地测试、未构建/安装当前APK，未运行真实SFU媒体或物理AEC。AC-10.1.5-05保持`PARTIAL_CORE_OPEN`。
 
-**路线图目标与估时：** 权威路线为 [ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)，Blob `d8d34ccf229254e7e064be00590ba509071cf749`。当前工作仍属v10.1.5；v10.1.6和v10.1.7尚未开始。到v10.1.7开发评审版粗估3–6个月（兼职节奏，低至中等置信度），最大风险为执行环境/SDK门禁、通信与离线真实端到端验证和联合验收返修。v10.2.0及之后为条件阶段，不计入当前终点。
+**Gate 2仍阻断：** 最近报告的PowerShell 7启动在Writer调用前因`System.TypeLoadException`缺少`System.Web.UI.WebResourceAttribute`失败，耗时0.390秒；旧Windows PowerShell执行策略拒绝耗时0.375秒。两次预算都保持已消费；正负例、Writer、Serializer、fallback均`NOT_RUN`，无receipt。不得重试原入口、修改系统策略或绕过限制。完整37案例suite、Sandbox SDK、Producer、`libs.jar`与30项`Configuration.resolve()`均未运行。
 
-**当前GitHub状态：** 任务单与本状态入口更新会推进main；所有写入完成后的最终live main/Root应以本轮最后一次远端回读为准，不将历史写入前快照视为当前HEAD。
+**当前唯一综合任务单：** [v10.1.5 task_order.md](../versions/v10.1.5/task_order.md)，Blob `d737c3a813d81ada7a9ca9a60aa310e9e14e0960`。继续遵循一份长任务单＋中途无监督模式：Codex可在冻结范围内推进与Gate 2无依赖的功能、测试与普通修复；Astra在整版集中交付时一次性验收。不创建重复微任务、不自动集成main、不启动v10.1.6。
+
+**产品基线保持：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍`PARTIAL_NOT_ACCEPTED`，AC05 `OPEN`；ICE诊断标志未证明、旧guest状态未知、无当前候选APK验收、无main产品集成、v10.1.6未启动。
+
+**写入前live main：** `62413870a36b878f7da77f1f28f83078c30ae504` / Root `477e9a02edc7b52146a82164261d247516993c84`。本次ACTIVE_STATE更新会推进main；最终live身份以本轮最后一次回读为准。
 
 ## 已独立核验的产品和集成
-
 
 - **v10.1.2已完成双重接受**：[Astra功能独立验收](../versions/v10.1.2/acceptance.md)＋[Astra单次安全集成独立验收](../versions/v10.1.2/integration_acceptance.md)。B1未受控正式关系请求、B2退出/换代际旧提案两个P1在同版R1关闭；无需R2与另一次集成。
 - 受控开发接受源码Commit `88ffeccce4042f13ce4edccf7604b835b06c8f2d`，Root Tree `42052f5f9ee596f82cf525884e1f77256fc7727b`；**v10.1.2历史main接受产品apps** `365810451b6faad98e041835be6c86f4f81be0a9`，**services** `96b2972a19ec49108cf5c11d144179e5693570a9`。产品集成Commit `fe8081d4de906018736d026bde1a40d956ab223e`，唯一Parent `87fcbc63c5703a20892177183d723640ca894171`。独立集成验收使用的最终main `418dd43acb2ef7a3bd279c40fc3821c4a0a234e2` / Tree `15ec973a95106cfbda7d297e9a2e6aa805b55fce`；该版本之后的历史文档与接受原件保留。
