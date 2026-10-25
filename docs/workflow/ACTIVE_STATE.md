@@ -1,20 +1,22 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_RTC_MEDIA_AND_RECONNECT_ACCEPTED_WITH_OBSERVATIONS / SDK_CLEANUP_EXCEPTION_OPEN / AC05_OPEN / PARTIAL_NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选`2204c7439cca344795a9a4cc5e9c4d3e27b30d12`的集中独立复核，接受本轮有界真实双向RTP、视频解码、同call手动重连和撤权后native停止事件证据，以及对应源码/测试修复；不接受整版。
+**2026-10-25最新状态：V10.1.5_PCM_CAPTURE_CLEANUP_REPAIR_ACCEPTED_WITH_OBSERVATIONS / AC05_OPEN / PARTIAL_NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`的独立复核，接受应用自有LiveKit 2.10.0 PCM capture清理竞态修复及有界回归/真机后续连接证据；不接受整版。
 
-**Astra独立复核：** [ICE媒体与同call重连复核](../versions/v10.1.5/ICE_MEDIA_RECONNECT_ASTRA_REVIEW_20261025.md)，Blob `221809532229947ae298ca76f84bd98690c94bfa`。交付报告Blob `01aff46f9c69c4cd45c7ae2e5950926298913d22`；Manifest Blob `e3da252a4fa46b5c5222c5560febe68b3f4fc5b6`。真机RTP、APK/DB和原始日志属于Codex报告及LOCAL_ONLY证据，Astra未亲自运行设备/测试或读取原始二进制。
+**Astra复核报告：** [PCM capture清理竞态复核](../versions/v10.1.5/PCM_CAPTURE_CLEANUP_ASTRA_REVIEW_20261025.md)，Blob `327ca8f7c68bf469c412a24129dc4d83c7742fe5`。最新实施报告Blob `a2327eeb14532c711213a96290b08c53824c2895`；Manifest Blob `74bb3b2b6a74344ddca9156a2bc08912d6701c4e`。测试、APK与真机结果来自Codex报告和LOCAL_ONLY证据；Astra直接核验GitHub源码、patch、来源/许可文件、Hash清单、依赖锁、构建输入、报告与Manifest，未亲自运行本地测试或真机。
 
-**本轮新增接受范围：** 最终候选APK回取Hash与构建Hash一致；同一call10手动重连后音频/视频RTP计数跨约64秒的17批采样持续增长，入站视频framesDecoded由90增至1369；撤权后同一测试会话的native peer/audio/camera stop事件均在从transition调用前起算的保守0.790秒上界内可见。Owner反馈同call合成音在测试结束后停止，但无客观波形计时，不能证明AEC或语音质量。
+**本轮接受依据：** 原版SDK六例中1通过/5失败，修复后原六例及新增八例通过；最终48项相关Flutter检查exit0，Dart analyzer exit0。修复同步转移capture group快照、通过对象身份保护替换组、对group stop做Future幂等化，并等待track级在途清理。新APK安装回取Hash一致；Codex报告清理后再次真实连接未再观察到该异常。首次真机harness的UI_IDLE_NOT_OBTAINED exit1已保留，call1通过服务API finally结束；后续call2脚本exit0，结束仍是服务API路径。
 
-**仍开放：** SDK remote PCM capture清理仍出现一次`ConcurrentModificationError`，需在同一v10.1.5长任务内处理；`Room.dispose()`整体返回成功未独立证明。AC-10.1.5-05仍`PARTIAL_CORE_OPEN`，AEC/真实语音质量、成功媒体token的旧JWT重新入房负例、物理双手机端到端体验未全部证明。15/30天实际设备期限与清理、部分GUI边界及真实Push仍开放。
+**供应商代码维护边界：** 候选以应用自有path dependency形式固定现有LiveKit 2.10.0，保留297个runtime文件、LICENSE/NOTICE、逐文件上游Hash和完整两文件patch；报告称295件上游文件字节不变。未来升级必须重新核验来源与patch。该副本没有改共享SDK/缓存。Astra没有独立重取全部297个上游原始文件字节，未声称完成逐文件外部来源复验。
 
-**Gate 2状态不变：** WinPS执行策略拒绝0.375秒与PowerShell7/.NET10 `TypeLoadException`启动失败0.390秒两次预算均已消费；本轮未重试、无新预算、Writer/Serializer调用0。完整37案例suite、条件Sandbox SDK、Producer、`libs.jar`及30项解析均`NOT_RUN`。
+**仍开放：** SDK native start/stop故障恢复、native PCM handle全量清点、Room.dispose所有返回路径仍未证明；AEC/客观波形/语音质量未运行。AC05仍OPEN；实际15/30天设备期限、旧guest/HCS状态、ICE诊断旗标、真实Push Provider和Gate 2后继仍开放。
 
-**当前唯一综合长任务：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式，在原授权范围内自主处理SDK清理异常、剩余RTC质量/权限边界及与Gate 2无依赖的工作；不创建微任务、不自动合并main、不启动v10.1.6。
+**Gate 2不变：** WinPS执行策略拒绝0.375秒与PowerShell 7 TypeLoadException启动失败0.390秒两次预算均已消费。本轮新Gate 2启动0、Writer/Serializer调用0；37案例suite、条件Sandbox SDK、Producer、libs.jar与30项Configuration.resolve均NOT_RUN。
 
-**产品基线：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。本候选源码Commit `80f6292a2c3726716ab82152f36428812f23058f` / Root `5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2`，候选apps `a0ca61faf9e1264f7ae4b638c78ebeae257ea002`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；文档候选`2204c7439cca344795a9a4cc5e9c4d3e27b30d12`未集成main。
+**当前唯一综合任务：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式，Codex可在原冻结范围内推进SDK清理剩余观察与其它可独立完成的v10.1.5工作；不创建微任务、不自动合并main、不启动v10.1.6。
 
-**写入前 live main：** `b08d6f9143e5233db25d2398308c8ff9faf1e67c` / Root `14b11892354a957c61fda8a1ba425f02d344342a`。本次ACTIVE_STATE更新将推进main；最终HEAD以本轮最后回读为准。
+**产品基线与候选：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码Commit `1f9d1483268e957f7184625483ff6406071c1867` / Root `9beff929abf3939ac863cd4096ee9fb09a64a48d`，候选apps `a5c6182ea9e064db4ef73e1627a6e38591c953cc`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。交付候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`未合并产品main。
+
+**写入前live main：** `9fa69d47cddd209cbedec446807e83cb39aa5705` / Root `de909f01b9846549e67712a06d9cb43acd18e98b`。本次ACTIVE_STATE更新会推进main；最终HEAD以最后回读为准。
 
 ## 已独立核验的产品和集成
 
