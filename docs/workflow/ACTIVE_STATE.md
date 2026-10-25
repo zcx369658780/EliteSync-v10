@@ -2,7 +2,7 @@
 
 **2026-10-25最新状态：D0_C_GATE2_TARGETED_BLOCKED / BUDGET_CONSUMPTION_REPORTED / FULL_37_CASE_SUITE_NOT_RUN / AWAITING_OWNER_DIRECTION。** Gate 2唯一一次启动被Windows PowerShell脚本执行策略拒绝，原始错误为`SecurityError / UnauthorizedAccess`；子进程exit 1、退出已确认，监督耗时0.375秒。正例、负例、Writer、Serializer和fallback均`NOT_RUN`，没有receipt。一次性启动预算已消费，不重试、不改策略、不换入口、不申请额外权限。此为真实环境启动阻断，不是Writer运行FAIL，也不证明产品安全缺陷。
 
-阻断候选Commit `f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff`，唯一Parent `7b8b9959c9e53994ec5c52736d1fb3ca00ba4239`，Root `d42fcdecb26cea24e65648a6d747329785132109`。报告Blob `a18904743a412f82e5a5a358246eafe9295071d6`；Manifest Blob `e004f9928a9e5ae3eaa7d955c6b16a7c0e88c340`。详见[Gate 2 Astra独立复核](../versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)，其Blob为后续回读值。
+阻断候选Commit `f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff`，唯一Parent `7b8b9959c9e53994ec5c52736d1fb3ca00ba4239`，Root `d42fcdecb26cea24e65648a6d747329785132109`。报告Blob `a18904743a412f82e5a5a358246eafe9295071d6`；Manifest Blob `e004f9928a9e5ae3eaa7d955c6b16a7c0e88c340`。详见[Gate 2 Astra独立复核](../versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)，其Blob `398610e8d482097d2098f2185af05ae307c4249a`。
 
 **Owner再次确认并要求恢复v10.x默认长任务单+中途无监督模式。** 现行规则：[CURRENT_WORKFLOW.md](CURRENT_WORKFLOW.md)第8节、[TASK_DISPATCH_CLOSURE_PROTOCOL.md](TASK_DISPATCH_CLOSURE_PROTOCOL.md)“默认任务形态”、[AGENTS.md](../../AGENTS.md)“默认长任务模式”。A-D只保证任务下达完整，不代表逐步骤审批。Codex在冻结范围内可自主调查、实现、构建、测试、调试及普通返修；仅超范围/方向性、生产/真实用户数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人和不可逆风险需要停下。真实环境拒绝如实记录，不伪造、不绕过、不擅改策略；明确一次性预算不自动重试。
 
