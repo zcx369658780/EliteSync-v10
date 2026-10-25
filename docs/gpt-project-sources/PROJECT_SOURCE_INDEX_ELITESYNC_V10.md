@@ -23,3 +23,8 @@
 最新治理增量：[20261025_task_dispatch_closure/README.md](20261025_task_dispatch_closure/README.md)。Owner已批准A-D任务下达闭环，正文见[Task Dispatch Closure Protocol](../workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)。本增量同步GitHub正式工作流、AGENTS、记忆导航与当前状态入口；Owner手动派发Codex、正式任务与启动Prompt同回复交付、未完成必须报告部分完成均为长期规则。ZIP仅包含本次治理增量及必要当前状态快照，不替换旧历史项目源，也不会自动更新ChatGPT Project Sources附件；生成后由Owner手动上传。
 
 本次GitHub同步回执和当前main以实时[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)与[动态总目录](../../DOC_INDEX_CURRENT.md)为准。
+## 2026-10-25 Long-task Mode Restoration 增量
+
+Owner再次明确：v10.x默认恢复“一份冻结计划、一份综合长任务、一次集中候选与独立验收”；Codex在授权范围内中途无监督地自主调查、实现、构建、测试、调试和普通返修。A-D任务下达闭环仅保证任务发布完整，不是逐步骤审批。只有超范围/方向性、生产/真实用户数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人或不可逆风险才暂停请求Owner。
+
+当前Gate 2一次PowerShell启动被执行策略拒绝，正负例NOT_RUN，一次性启动预算已消费；不重试、不改策略、不换入口。见[Astra独立复核](../versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)及[日期化项目源增量](20261025_long_task_mode_restoration/README.md)。本增量不授权重新启动测试；下一步需Owner明确新的合规执行方案。
