@@ -21,3 +21,9 @@ Owner保留方向/风险取舍；Astra规划、最终独立验收、复盘；Cod
 ## 审阅材料临时交付（2026-10-16 Owner补充）
 
 Codex需要向Astra交付本地脚本、测试与原始退出证明时，按[短期脱敏审阅与清理协议](docs/workflow/TEMP_REVIEW_EVIDENCE_PROTOCOL.md)执行。GitHub无法读取本地未跟踪目录；允许仅将**公开安全的最小审阅副本**提交到独立临时审阅分支，Astra审阅后组织精确清理，**不合main或产品分支**。真实设备/家庭网络/凭据/语音及其它敏感证据保持LOCAL_ONLY；已推送的Git对象不能保证随分支删除而彻底消失。不改变冻结计划、Owner的系统操作权限和版本验收门。
+
+## Owner任务下达闭环（2026-10-25）
+
+发布任何Codex正式任务必须遵循[Task Dispatch Closure Protocol](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)的A-D阶段：先核对明确授权、原任务、当前状态、live main/Root、禁止事项与预算；创建唯一任务文件并读取核验Blob/正文；更新ACTIVE_STATE并重新回读main、Root、任务与状态；最终同一条回复交付任务链接、Blob SHA、状态/停止门禁和单一可复制启动Prompt代码框。
+
+没有任务创建成功及正文读回，不得声称任务已下达；状态更新或最终回读失败必须报告部分完成，不静默结束、不盲目重复创建。Owner仍手动派发Codex；发布不代表执行，启动Prompt不扩大正式任务授权。不得自动运行Codex、创建后继任务、合并产品或越级放行下一Gate。
