@@ -1,5 +1,22 @@
 # EliteSync-v10｜唯一当前状态入口
 
+**2026-10-25最新状态：D0_C_GATE2_TARGETED_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / GATE2_NOT_RUN / 15S_BUDGET_UNCONSUMED_UNTIL_DISPATCH。** Owner已明确重新放行一次总计15秒的定点aggregate正负例测试。正式任务单已创建并读回核验；等待Owner手动派发Codex。只允许一次正负例定点测试，不允许完整37案例suite或任何后续SDK/Producer阶段。
+
+正式任务单：[D0_C_GATE2_TARGETED_AGGREGATE_POSITIVE_NEGATIVE_TEST_TASK_20261025.md](../versions/v10.1.5/D0_C_GATE2_TARGETED_AGGREGATE_POSITIVE_NEGATIVE_TEST_TASK_20261025.md)，Blob `420f372b74893bcb11abba2bcb957aa5a43eee28`。原综合任务Blob `009a12cae75ef3b714f0156d4edbca2db1660719`；Gate 1 Astra复核Blob `d377b19756eebeaf4f01c3f69d6fd2326ed89780`；D0-C fallback wiring Astra复核Blob `f8ce12a81bf303cf5fba37bb708927a3e2791b4b`。本任务是在已接受D0-C静态修订上运行一次真实Writer正负例，不重跑D0-A、不重置历史预算。
+
+硬门禁：正负例共享总计15秒硬时限，只在任务自有LOCAL_ONLY副本中运行定点入口；不得运行完整`fixture.ps1`主流程或37案例suite。正例验证真实Writer序列化、UTF-8/schema/Run ID/count/逐项状态、Hash读回及同目录原子发布。负例必须让真实Serializer抛错，经`Write-Aggregate`进入`Write-IndependentFailure`，验证`RECEIPT_SERIALIZATION_FAILURE`、`ready=false`、metadata Hash、fallback原子发布与原异常重抛。禁止harness手工补造receipt。任何超时、回执缺失、进程退出不明、Hash/schema错误或假PASS立即STOP，不重跑。
+
+交付后停止等待Astra独立验收。即使Gate 2通过，完整37案例suite仍需Astra复核及Owner另行明确放行；Sandbox、Flutter/Gradle、Producer、libs.jar及30项Configuration.resolve()均未获本次授权。产品状态继续v10.1.4 accepted；v10.1.5 `PARTIAL_NOT_ACCEPTED`，AC05 `OPEN`，ICE标志未证明、旧guest状态未知、无Host APK、无main产品集成、v10.1.6未启动。
+
+## 当前10.x路线图进度（2026-10-25评估）
+
+权威路线：[ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)，Blob `d8d34ccf229254e7e064be00590ba509071cf749`。阶段终点为v10.1.7开发评审版（可安装APK＋真实后端＋持久数据库＋独立Web后台＋对应说明/演示材料）；v10.2.0之后均为条件阶段，不计入当前开发评审版终点。
+
+按实际接受状态而非旧路线表的历史PENDING文字：v10.1.1、v10.1.2、v10.1.3、v10.1.4的功能包已在后续版本记录中完成限定接受/集成；v10.1.5仍PARTIAL_NOT_ACCEPTED，当前还在Serializer/SDK条件诊断与其后通信质量、离线/会话、通知缺口收口；v10.1.6真实计算呈现、关系解释与自愿AI辅助尚未开始；v10.1.7全APP/Web联合质量、最终评审APK与材料尚未开始。不要按版本数量计算完成率。
+
+规划估时（Astra粗估，非路线图承诺）：Gate 2定点测试与独立复核若一次通过，约1–3个工作日；其后完整37案例suite、一次Sandbox SDK、Producer与30项配置解析仍是多个独立门禁，顺利约1–3周，若环境/SDK/Writer出现新阻断则约3–6周或更长。v10.1.5剩余通信质量/离线/Push边界、v10.1.6、v10.1.7整体预计再需约8–16周（全职连续投入、外部供应商/真实运营门禁不计入；以每周实际交付校准）。以当前教师兼职节奏/额度与可能反复的运行门禁估算，较稳妥窗口为3–6个月。此估计置信度低至中，最大的未知是Writer/SDK门禁是否暴露新缺陷、真实双端媒体与离线验证范围、最终APK/后端/DB/Web联合缺口。真实Push供应商、实人认证、付费、真实活动与公开运营属于条件阶段，不纳入开发评审版工期。
+
+以上估时只是规划推断；路线图自身声明版本不是固定工期、外部资格独立门禁、未冻结功能需版前再冻结。
 **2026-10-25工作流规则已固化：** Owner批准A-D任务下达闭环。权威协议：[TASK_DISPATCH_CLOSURE_PROTOCOL.md](TASK_DISPATCH_CLOSURE_PROTOCOL.md)，工作流摘要见[CURRENT_WORKFLOW.md](CURRENT_WORKFLOW.md)，项目源增量见[20261025_task_dispatch_closure](../gpt-project-sources/20261025_task_dispatch_closure/README.md)。此规则不改变下方D0-C与Gate 2技术状态。
 
 **2026-10-25最新状态：D0_C_FALLBACK_WIRING_STATIC_ACCEPTED / GATE2_NOT_RUN / GATE2_BUDGET_UNCONSUMED / AWAITING_OWNER_DIRECTION。** Astra已独立复核D0-C真实Writer Serializer异常到既有独立fallback的静态调用链，接受静态接线交付；没有执行PowerShell、加载/编译Writer、调用Serializer或运行fixture。此接受不是运行时PASS，也不自动授权Gate 2。
