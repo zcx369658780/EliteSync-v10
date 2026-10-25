@@ -41,6 +41,7 @@ class RtcLiveKitService extends ChangeNotifier {
   final AppEnv appEnv;
 
   Room? _room;
+  Future<void>? _roomTeardown;
   int? _connectedCallId;
   Object? _connectionAttempt;
   int? _pendingCallId;
@@ -660,6 +661,7 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   void _refreshRemoteAudioTrack(Room room, {String reason = 'unknown'}) {
+    if (!identical(_room, room)) return;
     AudioTrack? nextTrack;
     String? nextParticipant;
     for (final participant in room.remoteParticipants.values) {
@@ -719,6 +721,11 @@ class RtcLiveKitService extends ChangeNotifier {
     final requestedGeneration = _connectionGeneration;
     int? generation;
     try {
+      final teardown = _roomTeardown;
+      if (teardown != null) {
+        await teardown;
+        if (_disposed || requestedGeneration != _connectionGeneration) return;
+      }
       final diagnosticAllowed = iceDiagnosticRequested
           ? await verifyIceDiagnosticHost(appEnv)
           : false;
@@ -806,8 +813,12 @@ class RtcLiveKitService extends ChangeNotifier {
         })
         ..on<RoomReconnectingEvent>((event) {
           _logLifecycle(callId, 'room_reconnecting');
-          // The trusted server gateway also re-authorizes every WS reconnect.
-          unawaited(_sendHeartbeat(callId));
+          if (!identical(_room, room)) return;
+          // Full restart can reuse native tracks disposed with the old PC.
+          // Close that room; the existing reconnect action fetches current
+          // authority and creates a fresh room/tracks for this same call.
+          _failureMessage = '网络连接已中断，请重新连接通话';
+          unawaited(leave(callId: callId));
         })
         ..on<RoomReconnectedEvent>((event) {
           _logLifecycle(callId, 'room_reconnected');
@@ -824,6 +835,7 @@ class RtcLiveKitService extends ChangeNotifier {
           _refreshRemoteAudioTrack(room, reason: 'participant_disconnected');
         })
         ..on<TrackSubscribedEvent>((event) {
+          if (!identical(_room, room)) return;
           if (event.track is AudioTrack) {
             _remoteAudioTrack = event.track as AudioTrack;
             _remoteAudioTrackFromEvent = true;
@@ -853,6 +865,7 @@ class RtcLiveKitService extends ChangeNotifier {
           _logRoomSnapshot(room, callId: callId, reason: 'track_subscribed');
         })
         ..on<TrackUnsubscribedEvent>((event) {
+          if (!identical(_room, room)) return;
           if (_remoteAudioTrack?.mediaStreamTrack.id ==
               event.track.mediaStreamTrack.id) {
             _remoteAudioTrack = null;
@@ -862,6 +875,7 @@ class RtcLiveKitService extends ChangeNotifier {
           _refreshRemoteAudioTrack(room, reason: 'track_unsubscribed');
         })
         ..on<TrackPublishedEvent>((event) {
+          if (!identical(_room, room)) return;
           _refreshRemoteAudioTrack(room, reason: 'track_published');
           unawaited(
             _bindLocalAudioTrackDiagnostics(
@@ -1086,6 +1100,8 @@ class RtcLiveKitService extends ChangeNotifier {
     _iceDiagnosticObserver?.stop();
     _iceDiagnosticObserver = null;
     final room = _room;
+    final teardown = room == null ? null : Completer<void>();
+    if (teardown != null) _roomTeardown = teardown.future;
     room?.removeListener(_mediaChanged);
     _room = null;
     _cameraEnabled = false;
@@ -1097,14 +1113,23 @@ class RtcLiveKitService extends ChangeNotifier {
     unawaited(_unbindLocalAudioTrackDiagnostics());
     _mediaChanged();
     if (room == null) {
+      await _roomTeardown;
       _logLifecycle(leavingCallId, 'leave_complete');
       return;
     }
     try {
       await room.disconnect();
-      await room.dispose();
     } catch (_) {
       // leave should be best-effort only.
+    } finally {
+      try {
+        await room.dispose();
+      } catch (_) {
+        // Still release waiters after best-effort native cleanup.
+      } finally {
+        teardown!.complete();
+        if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
+      }
     }
     _logLifecycle(leavingCallId, 'leave_complete');
   }

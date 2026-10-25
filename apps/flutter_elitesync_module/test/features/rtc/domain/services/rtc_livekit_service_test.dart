@@ -86,7 +86,10 @@ class _MediaParticipant implements LocalParticipant {
 class _MediaRoom implements Room {
   _MediaRoom(this.localParticipant);
   Completer<void>? disconnectPending;
+  Object? disconnectError;
+  Completer<void>? disposePending;
   final disconnectStarted = Completer<void>();
+  final disposeStarted = Completer<void>();
   @override
   final LocalParticipant localParticipant;
   @override
@@ -95,15 +98,89 @@ class _MediaRoom implements Room {
   Future<void> disconnect() async {
     if (!disconnectStarted.isCompleted) disconnectStarted.complete();
     await disconnectPending?.future;
+    if (disconnectError != null) throw disconnectError!;
   }
 
   @override
-  Future<bool> dispose() async => true;
+  Future<bool> dispose() async {
+    if (!disposeStarted.isCompleted) disposeStarted.complete();
+    await disposePending?.future;
+    return true;
+  }
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 void main() {
+  test('disconnect failure still waits for room disposal', () async {
+    final room = _MediaRoom(_MediaParticipant())
+      ..disconnectError = StateError('disconnect timeout')
+      ..disposePending = Completer<void>();
+    final service = RtcLiveKitService.mediaControlTest(
+      remoteDataSource: _DeniedRtcSource(),
+      appEnv: const AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'Media teardown test',
+        apiBaseUrl: 'http://127.0.0.1',
+        useMockData: false,
+      ),
+      room: room,
+      microphonePermission: () async => true,
+      cameraPermission: () async => true,
+    );
+    var closed = false;
+    final closing = service.leave().then((_) => closed = true);
+    await Future<void>.delayed(Duration.zero);
+    try {
+      expect(room.disposeStarted.isCompleted, true);
+      expect(closed, false);
+    } finally {
+      room.disposePending!.complete();
+      await closing;
+      service.dispose();
+    }
+    expect(closed, true);
+  });
+
+  test(
+    'reconnect waits for detached room teardown before loading credentials',
+    () async {
+      final room = _MediaRoom(_MediaParticipant())
+        ..disconnectPending = Completer<void>();
+      final source = _QueuedRtcSource();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: source,
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Media teardown test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+          useLiveKitRtc: true,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+      );
+      final closing = service.leave();
+      await room.disconnectStarted.future;
+      final reconnect = service.ensureConnected(19);
+      try {
+        expect(source.callIds, isEmpty);
+      } finally {
+        // Cancellation while teardown is pending must not start a new join.
+        service.dispose();
+        for (final reply in source.replies) {
+          reply.complete(RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}));
+        }
+        room.disconnectPending!.complete();
+        await closing;
+        await reconnect;
+      }
+      expect(source.callIds, isEmpty);
+    },
+  );
+
   for (final nextCall in [19, 20]) {
     for (final lateResult in ['unavailable', 'error']) {
       test(
