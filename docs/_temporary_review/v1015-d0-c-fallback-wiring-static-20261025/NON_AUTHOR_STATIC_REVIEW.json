@@ -1,0 +1,69 @@
+{
+  "reviewer": "GPT-6.1 Sol/high independent non-author",
+  "reviewKind": "INDEPENDENT_NON_AUTHOR_STATIC_ONLY",
+  "taskBlob": "99862cba631dbb5569049bb7f71c7632e195bfa0",
+  "findings": [],
+  "checks": [
+    {
+      "item": 1,
+      "status": "PASS",
+      "evidence": "fixture.ps1:8,95-96；revised/receipt_writer.ps1:144-151",
+      "reason": "真实Serialize调用位于try内，实际异常由catch捕获并调用既有Write-IndependentFailure；不是harness替代路径。"
+    },
+    {
+      "item": 2,
+      "status": "PASS",
+      "evidence": "receipt_writer.ps1:96-105,82-95",
+      "reason": "fallback手工构造独立failure JSON，经Write-AtomicReceiptJson发布；仅DeserializeObject校验，不递归Write-Aggregate、aggregate Serialize或同body Write-Receipt。"
+    },
+    {
+      "item": 3,
+      "status": "PASS",
+      "evidence": "receipt_writer.ps1:127-143",
+      "reason": "Serialize前全部源码逐字节保持；两字段投影、null/非字符串/基础类型拒绝保持且仍在新增try之外。不能宣称这些投影拒绝也会写fallback。"
+    },
+    {
+      "item": 4,
+      "status": "PASS",
+      "evidence": "fixture.ps1:7,91-100；receipt-schema.json；fixture-plan.json",
+      "reason": "fixture、schema、37案例plan逐字节不变；其余11字段、cases、13字段构造及业务合同未改。fixture:7与95分别将control.runId和body.runId绑定同一RunId。"
+    },
+    {
+      "item": 5,
+      "status": "PASS",
+      "evidence": "receipt_writer.ps1:61,71-74,82-105,147-158；fixture.ps1:2,7,12",
+      "reason": "保留status=RECEIPT_SERIALIZATION_FAILURE、ready=false、control.runId、最小元数据及Hash；沿用既有outputRoot和UTF-8/schema/读回Hash/同目录Move/发布后Hash。fallback成功后158行bare throw仍处于外层catch，重抛原错；fallback失败时155行以显式Exception[]构造AggregateException，原aggregate异常在前、fallback异常在后，两条路径均不返回成功。"
+    },
+    {
+      "item": 6,
+      "status": "PASS",
+      "evidence": "diffs/receipt_writer.ps1.diff；候选工作树只读Git核验",
+      "reason": "唯一源码变化为原Serialize语句外围的失败处理；正常Receipt及既有fallback函数未改。候选HEAD符合预期，status为空，apps/services diff为空，三个Git命令退出码均0。新增代码没有全局配置、SDK或历史资产操作；此结论限源码及具名候选范围，不是全系统审计。"
+    },
+    {
+      "item": 7,
+      "status": "PASS",
+      "evidence": "review-package实际9文件；SOURCE_MANIFEST.json；STATIC_CONTRACT_EVIDENCE.json",
+      "reason": "包内源码、diff、静态清单与任务副本逐字节一致，Manifest全部条目Hash和字节数匹配。未发现个人绝对路径、凭据、真实PID、环境快照或私密运行原证；C盘Unicode字面量为既有合成测试值。"
+    }
+  ],
+  "independentlyComputedSha256": {
+    "original/receipt_writer.ps1": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+    "revised/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+    "originalAndRevised/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+    "originalAndRevised/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+    "originalAndRevised/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+    "diffs/receipt_writer.ps1.diff": "a5708b3990a53d16661841b499c1d0b3d4c5b4baa89005e2e13b9694ad6249d6",
+    "static-contract-evidence.json": "2f9b2013a8ab13b59493370e2b8458f2d1f00422da91ec8fa060580df1efc8e9",
+    "intake.json": "ef556c44592ba34a9bbd4067018bb78a52ccfdc28aa99fb2b38bc6b9252c6e86",
+    "review-package/SOURCE_MANIFEST.json": "5e3593635862f620d5c09c898f193c8090b8518e1daa28ed1746c021d4720dca"
+  },
+  "candidate": {
+    "head": "5dabe5de0a3a7f37ae0aa4e9a0ccf3e250b64298",
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "clean": true
+  },
+  "evidenceBoundary": "七项均为静态PASS。未加载、编译或执行任何被审源码，未调用Serializer或运行测试。异常传播、有效failure receipt和实际原子IO均未运行观察；Gate2及后续运行仍NOT_RUN。",
+  "recommendation": "未发现静态阻断，可据此完成本专项证据交付并等待Astra独立复核。主代理保留终态裁决；本审查不接受产品、不授权Gate2。"
+}

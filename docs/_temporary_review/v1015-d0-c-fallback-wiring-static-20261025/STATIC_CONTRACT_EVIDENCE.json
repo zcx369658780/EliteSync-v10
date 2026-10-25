@@ -1,0 +1,99 @@
+{
+  "verificationKind": "STATIC_BYTES_AND_SOURCE_ONLY_NO_SOURCE_LOADING_OR_EXECUTION",
+  "files": {
+    "receipt_writer.ps1": {
+      "originalSha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+      "revisedSha256": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+      "originalBytes": 10636,
+      "revisedBytes": 11229,
+      "changed": true
+    },
+    "fixture.ps1": {
+      "originalSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "revisedSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "originalBytes": 11372,
+      "revisedBytes": 11372,
+      "changed": false
+    },
+    "receipt-schema.json": {
+      "originalSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "revisedSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "originalBytes": 10867,
+      "revisedBytes": 10867,
+      "changed": false
+    },
+    "fixture-plan.json": {
+      "originalSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "revisedSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "originalBytes": 1302,
+      "revisedBytes": 1302,
+      "changed": false
+    }
+  },
+  "callChain": {
+    "fixtureLoadsWriter": 8,
+    "fixtureBodyConstruction": 95,
+    "fixtureActualWriteAggregateCall": 96,
+    "writeAggregateDefinition": [
+      127
+    ],
+    "serializer": [
+      145
+    ],
+    "aggregateExceptionCapture": [
+      147
+    ],
+    "aggregateFailureMetadataField": [
+      108,
+      149
+    ],
+    "actualIndependentFallbackCall": [
+      151
+    ],
+    "fallbackDualFailureThrow": [
+      155
+    ],
+    "writeIndependentFailureDefinition": 96,
+    "failureSemantics": 103,
+    "independentAtomicPublisherCall": 105,
+    "failureSchemaAndRunIdValidation": [
+      61,
+      71,
+      72,
+      73,
+      74
+    ],
+    "atomicUtf8SchemaReadbackHashMoveAndFinalHash": [
+      82,
+      83,
+      85,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+    ]
+  },
+  "unchangedContracts": {
+    "twoFieldProjectionAndTypeRejectionsByteIdentical": true,
+    "originalWriterBeforeSerializerByteIdentical": true,
+    "fixtureByteIdentical": true,
+    "schemaByteIdentical": true,
+    "planByteIdentical": true,
+    "normalReceiptAndExistingFallbackByteIdentical": true
+  },
+  "failurePath": "Write-Aggregate Serialize -> catch -> Write-IndependentFailure -> manual failure JSON -> Write-AtomicReceiptJson (DeserializeObject only, no Serialize) -> schema/runId/metadataHash + UTF8/readbackHash/atomicMove/finalHash -> rethrow original aggregate error",
+  "doubleFailure": "AggregateException.InnerExceptions[0] = original aggregate exception; [1] = fallback exception. No success return.",
+  "scopeNotes": [
+    "Only Serializer/factory errors enter the added catch. Existing two-field type rejection paths stay outside it and remain unchanged.",
+    "Failure receipt uses existing configured outputRoot. The unchanged fixture binds control.runId and body.runId to RunId.",
+    "No runtime behavior, receipt, object type, serialization success or double-failure execution is claimed."
+  ],
+  "compiled": false,
+  "loaded": false,
+  "executed": false,
+  "gate2Runs": 0,
+  "diagnosticReruns": 0
+}

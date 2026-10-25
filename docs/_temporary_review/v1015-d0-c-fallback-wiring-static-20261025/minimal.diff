@@ -1,0 +1,24 @@
+--- original/receipt_writer.ps1
++++ revised/receipt_writer.ps1
+@@ -141,5 +141,20 @@
+  # Validate both before either replacement; .NET setters receive typed strings.
+  $body.set_Item('started',$projected['started'])
+  $body.set_Item('finished',$projected['finished'])
+- return (New-ReceiptParser).Serialize($body)
++ try{
++  return (New-ReceiptParser).Serialize($body)
++ }catch{
++  $aggregateFailure=$_
++  try{
++   $script:lastReceiptField='$'
++   $script:lastReceiptType=$body.GetType().FullName
++   [void](Write-IndependentFailure 'fixture-body.json' $aggregateFailure.Exception.GetType().FullName)
++  }catch{
++   $fallbackFailure=$_
++   # Preserve the aggregate first cause, then the independent fallback failure.
++   throw [AggregateException]::new('AGGREGATE_SERIALIZATION_AND_FALLBACK_FAILURE',[Exception[]]@($aggregateFailure.Exception,$fallbackFailure.Exception))
++  }
++  # A published failure receipt is never an aggregate success.
++  throw
++ }
+ }
