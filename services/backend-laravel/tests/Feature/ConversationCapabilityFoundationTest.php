@@ -96,22 +96,22 @@ class ConversationCapabilityFoundationTest extends TestCase
         $this->assertDatabaseCount('conversations', 0);
     }
 
-    public function test_block_denies_mutation_but_preserves_historical_read(): void
+    public function test_block_denies_current_read_and_mutation_without_deleting_history(): void
     {
         $a = User::factory()->create(['phone' => 'cap-a']); $b = User::factory()->create(['phone' => 'cap-b']);
         DatingMatch::query()->create(['week_tag' => 'legacy', 'user_a' => $a->id, 'user_b' => $b->id, 'drop_released' => true]);
         $conversation = app(ConversationDomainService::class)->ensureDirectConversation($a->id, $b->id);
         UserBlock::query()->create(['blocker_id' => $a->id, 'blocked_user_id' => $b->id]);
         $capability = app(ConversationCapabilityService::class)->evaluate($a->id, $b->id);
-        $this->assertTrue($capability['can_read']);
+        $this->assertFalse($capability['can_read']);
         $this->assertFalse($capability['can_send']);
         $this->assertFalse($capability['can_ws']);
         Sanctum::actingAs($a);
         $this->getJson('/api/v1/conversations/'.$conversation->id)
-            ->assertOk()
-            ->assertJsonPath('conversation.entry_kind', 'stored_conversation')
-            ->assertJsonPath('conversation.conversation_id', $conversation->id)
-            ->assertJsonPath('conversation.peer_user_id', $b->id);
+            ->assertNotFound()
+            ->assertJsonMissing(['peer_user_id' => $b->id]);
+        $this->assertDatabaseHas('conversations', ['id' => $conversation->id]);
+        $this->assertDatabaseCount('conversation_members', 2);
         $this->postJson('/api/v1/messages', ['receiver_id' => $b->id, 'content' => 'not persisted'])->assertNotFound();
         $this->assertDatabaseMissing('chat_messages', ['sender_id' => $a->id, 'receiver_id' => $b->id]);
     }

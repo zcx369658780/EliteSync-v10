@@ -15,7 +15,7 @@ final class PlatformAccess
         $testing=app()->environment('testing') && $db->getDriverName()==='sqlite' && $db->getDatabaseName()===':memory:';
         $local=app()->environment('local') && in_array($db->getDriverName(),['mysql','mariadb'],true)
             && in_array([$db->getDatabaseName(),(int)$db->getConfig('port')],
-                [['elitesync_v10_1_4_dev',43325],['elitesync_v1015_r1_dev',43327]],true)
+                [['elitesync_v10_1_4_dev',43325],['elitesync_v1015_r1_dev',43327],['elitesync_v1015_long_dev',43328]],true)
             && $db->getConfig('host')==='127.0.0.1' && !$db->getConfig('url') && !$db->getConfig('unix_socket');
         abort_unless($testing || $local,404,'unavailable');
     }

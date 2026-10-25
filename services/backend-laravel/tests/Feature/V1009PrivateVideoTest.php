@@ -118,6 +118,8 @@ final class V1009PrivateVideoTest extends TestCase
         $b = User::factory()->create(['phone' => '19900000922', 'disabled' => false, 'is_synthetic' => false]);
         $outsider = User::factory()->create(['phone' => '19900000923', 'disabled' => false, 'is_synthetic' => false]);
         DatingMatch::create(['week_tag' => 'v1009-media', 'user_a' => $a->id, 'user_b' => $b->id, 'drop_released' => true]);
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $a->id, 'user_b' => $b->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         foreach ([[$a, $b, 'connection', 'request', 0], [$b, $a, 'connection', 'accept', 1],
             [$a, $b, 'consent', 'request', 0], [$b, $a, 'consent', 'accept', 1]] as [$actor, $peer, $kind, $action, $revision]) {
             Sanctum::actingAs($actor);

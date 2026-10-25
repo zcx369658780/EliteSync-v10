@@ -36,6 +36,8 @@ final class V1009RtcAuthorityTest extends TestCase
 
     private function active(): void
     {
+        DB::table('friendships')->insert(['user_a' => $this->a->id, 'user_b' => $this->b->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         $s = app(LiveConsentService::class);
         $s->transition($this->a->id, $this->b->id, 'connection', 'request', 0);
         $s->transition($this->b->id, $this->a->id, 'connection', 'accept', 1);

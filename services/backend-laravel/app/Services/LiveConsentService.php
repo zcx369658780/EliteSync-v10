@@ -23,7 +23,7 @@ final class LiveConsentService
         }
         $db = DB::connection();
 
-        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v10_1_3_dev', 43324], ['elitesync_v10_1_4_dev', 43325], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327]], true)
+        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v10_1_3_dev', 43324], ['elitesync_v10_1_4_dev', 43325], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327], ['elitesync_v1015_long_dev', 43328]], true)
             && $db->getConfig('host') === '127.0.0.1' && ! $db->getConfig('unix_socket')
             && (int) $db->getConfig('port') === (int) config('restoration.port')
             && ! in_array((int) $db->getConfig('port'), [3306, 43316], true);

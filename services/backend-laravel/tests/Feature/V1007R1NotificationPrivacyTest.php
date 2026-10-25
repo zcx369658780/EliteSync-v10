@@ -32,6 +32,8 @@ final class V1007R1NotificationPrivacyTest extends TestCase
         $this->sender = User::factory()->create(['phone' => '19900000791', 'name' => 'PRIVATE SENDER IDENTITY', 'disabled' => false, 'is_synthetic' => false]);
         $this->recipient = User::factory()->create(['phone' => '19900000792', 'disabled' => false, 'is_synthetic' => false]);
         DatingMatch::create(['week_tag' => 'r1-notification', 'user_a' => $this->sender->id, 'user_b' => $this->recipient->id, 'drop_released' => true]);
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $this->sender->id, 'user_b' => $this->recipient->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         $s = app(LiveConsentService::class);
         $s->transition($this->sender->id, $this->recipient->id, 'connection', 'request', 0);
         $s->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);

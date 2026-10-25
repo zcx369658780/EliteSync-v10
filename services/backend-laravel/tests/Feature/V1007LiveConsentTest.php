@@ -41,15 +41,26 @@ final class V1007LiveConsentTest extends TestCase
 
     private function active(): void
     {
+        $this->friendshipContext();
         $this->act('connection', 'request', 0, $this->a)->assertOk()->assertJsonPath('connection.state', 'CN_PENDING');
         $this->act('connection', 'accept', 1, $this->b)->assertOk()->assertJsonPath('connection.state', 'CN_ACTIVE');
         $this->act('consent', 'request', 0, $this->a)->assertOk()->assertJsonPath('consent.state', 'MC_PENDING');
         $this->act('consent', 'accept', 1, $this->b)->assertOk()->assertJsonPath('consent.state', 'MC_ACTIVE');
     }
 
-    public function test_match_alone_and_single_party_do_not_grant_messages(): void
+    private function friendshipContext(): void
+    {
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => min($this->a->id, $this->b->id),
+            'user_b' => max($this->a->id, $this->b->id), 'state' => 'ACTIVE', 'revision' => 1,
+            'created_at' => now(), 'updated_at' => now()]);
+    }
+
+    public function test_bare_match_is_unavailable_and_single_party_consent_cannot_grant_messages(): void
     {
         $this->getJson('/api/v1/messages?peer_id='.$this->b->id)->assertNotFound();
+        $this->act('connection', 'request', 0, $this->a)->assertNotFound();
+        $this->assertDatabaseCount('product_connections', 0);
+        $this->friendshipContext();
         $this->act('connection', 'request', 0, $this->a)->assertOk();
         $this->act('connection', 'accept', 1, $this->a)->assertStatus(409);
         $this->act('connection', 'accept', 0, $this->b)->assertStatus(409);

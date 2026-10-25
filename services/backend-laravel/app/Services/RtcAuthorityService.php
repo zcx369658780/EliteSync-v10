@@ -21,7 +21,7 @@ final class RtcAuthorityService
         }
         $db = DB::connection();
 
-        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327]], true) && $db->getConfig('host') === '127.0.0.1';
+        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327], ['elitesync_v1015_long_dev', 43328]], true) && $db->getConfig('host') === '127.0.0.1';
     }
 
     public function signature(int $a, int $b): ?string

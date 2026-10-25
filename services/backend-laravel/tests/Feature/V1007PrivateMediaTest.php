@@ -33,6 +33,9 @@ final class V1007PrivateMediaTest extends TestCase
         $this->sender = User::factory()->create(['id' => $identity, 'phone' => '19900000751', 'disabled' => false, 'is_synthetic' => false]);
         $this->recipient = User::factory()->create(['phone' => '19900000752', 'disabled' => false, 'is_synthetic' => false]);
         DatingMatch::create(['week_tag' => 'v1007-private-media', 'user_a' => $this->sender->id, 'user_b' => $this->recipient->id, 'drop_released' => true]);
+        // A released legacy Match alone is no longer current relationship authority.
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $this->sender->id, 'user_b' => $this->recipient->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         $service = app(LiveConsentService::class);
         $service->transition($this->sender->id, $this->recipient->id, 'connection', 'request', 0);
         $service->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);
@@ -71,7 +74,9 @@ final class V1007PrivateMediaTest extends TestCase
         auth('sanctum')->forgetUser();
         auth('web')->forgetUser();
         $this->app['auth']->forgetGuards();
-        $this->get($path)->assertNotFound();
+        // Authentication middleware rejects before the private-media reader.
+        $unauthenticated = $this->get($path)->assertUnauthorized();
+        $this->assertStringNotContainsString(base64_decode(self::PNG), $unauthenticated->getContent());
         app(LiveConsentService::class)->transition($this->recipient->id, $this->sender->id, 'consent', 'revoke', 2);
         Sanctum::actingAs($this->recipient);
         $this->get($path)->assertNotFound();
