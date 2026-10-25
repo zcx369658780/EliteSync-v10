@@ -1,22 +1,20 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_PCM_CAPTURE_CLEANUP_REPAIR_ACCEPTED_WITH_OBSERVATIONS / AC05_OPEN / PARTIAL_NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`的独立复核，接受应用自有LiveKit 2.10.0 PCM capture清理竞态修复及有界回归/真机后续连接证据；不接受整版。
+**2026-10-25最新状态：V10.1.5_PCM_CLEANUP_REPAIR_ACCEPTED_WITH_OBSERVATIONS / REMAINING_ACCEPTANCE_LONG_TASK_PUBLISHED / OWNER_MANUAL_DISPATCH_REQUIRED / AC05_OPEN / GATE2_NOT_AUTHORIZED_IN_NEW_TASK / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`的PCM capture清理竞态局部验收；新建并发布v10.1.5剩余验收综合长任务。Codex未启动，需Owner手动派发。
 
-**Astra复核报告：** [PCM capture清理竞态复核](../versions/v10.1.5/PCM_CAPTURE_CLEANUP_ASTRA_REVIEW_20261025.md)，Blob `327ca8f7c68bf469c412a24129dc4d83c7742fe5`。最新实施报告Blob `a2327eeb14532c711213a96290b08c53824c2895`；Manifest Blob `74bb3b2b6a74344ddca9156a2bc08912d6701c4e`。测试、APK与真机结果来自Codex报告和LOCAL_ONLY证据；Astra直接核验GitHub源码、patch、来源/许可文件、Hash清单、依赖锁、构建输入、报告与Manifest，未亲自运行本地测试或真机。
+**最新局部Astra复核：** [PCM capture清理竞态复核](../versions/v10.1.5/PCM_CAPTURE_CLEANUP_ASTRA_REVIEW_20261025.md)，Blob `327ca8f7c68bf469c412a24129dc4d83c7742fe5`。最新已交付实施报告Blob `a2327eeb14532c711213a96290b08c53824c2895`；Manifest Blob `74bb3b2b6a74344ddca9156a2bc08912d6701c4e`。接受范围限于应用自有LiveKit 2.10.0 PCM capture清理竞态修复及有界测试/真机后续连接证据，不是整版接受。
 
-**本轮接受依据：** 原版SDK六例中1通过/5失败，修复后原六例及新增八例通过；最终48项相关Flutter检查exit0，Dart analyzer exit0。修复同步转移capture group快照、通过对象身份保护替换组、对group stop做Future幂等化，并等待track级在途清理。新APK安装回取Hash一致；Codex报告清理后再次真实连接未再观察到该异常。首次真机harness的UI_IDLE_NOT_OBTAINED exit1已保留，call1通过服务API finally结束；后续call2脚本exit0，结束仍是服务API路径。
+**当前唯一后续任务单：** [V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md](../versions/v10.1.5/V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md)，Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。该任务是整版剩余验收综合任务，不是微任务；Codex在Owner手动派发后，可自主推进PCM/RTC剩余观察、真机路径、离线边界和其它与Gate2无依赖的AC，普通缺陷在任务内修复与重测，最后集中更新报告/Manifest并普通non-force发布候选。
 
-**供应商代码维护边界：** 候选以应用自有path dependency形式固定现有LiveKit 2.10.0，保留297个runtime文件、LICENSE/NOTICE、逐文件上游Hash和完整两文件patch；报告称295件上游文件字节不变。未来升级必须重新核验来源与patch。该副本没有改共享SDK/缓存。Astra没有独立重取全部297个上游原始文件字节，未声称完成逐文件外部来源复验。
+**Gate 2权限边界：** WinPS执行策略拒绝0.375秒与PowerShell 7 TypeLoadException启动失败0.390秒两次历史预算均已消费。新任务只授权只读分析与准备合规方案，不授权新的Gate 2启动或预算；Writer/Serializer、完整37案例suite、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve仍NOT_RUN。需要Owner另行明确授权后才能运行该Gate。不得改执行策略、使用Bypass或重跑D0-A。
 
-**仍开放：** SDK native start/stop故障恢复、native PCM handle全量清点、Room.dispose所有返回路径仍未证明；AEC/客观波形/语音质量未运行。AC05仍OPEN；实际15/30天设备期限、旧guest/HCS状态、ICE诊断旗标、真实Push Provider和Gate 2后继仍开放。
+**仍开放的整版问题：** AC05仍OPEN。AEC/客观波形/语音质量、Room.dispose全部返回路径、native PCM handle全量清点、成功媒体token的旧JWT重新入房负例、部分GUI边界、实际15/30天经过时间与物理30天清理、真实Push Provider、ICE诊断旗标及旧guest/HCS状态仍未全部闭合。真实日历时间不得由时钟模拟冒充。
 
-**Gate 2不变：** WinPS执行策略拒绝0.375秒与PowerShell 7 TypeLoadException启动失败0.390秒两次预算均已消费。本轮新Gate 2启动0、Writer/Serializer调用0；37案例suite、条件Sandbox SDK、Producer、libs.jar与30项Configuration.resolve均NOT_RUN。
+**候选与产品基线：** 最近交付候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`，唯一Parent `1f9d1483268e957f7184625483ff6406071c1867`，Root `97fc729f68fe8d0b4bd1fc2f7dfb7cb0b2bad100`；候选源码Commit `1f9d1483268e957f7184625483ff6406071c1867` / Root `9beff929abf3939ac863cd4096ee9fb09a64a48d`，候选apps `a5c6182ea9e064db4ef73e1627a6e38591c953cc`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。接受产品仍v10.1.4：apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。无产品main集成，v10.1.6未启动。
 
-**当前唯一综合任务：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式，Codex可在原冻结范围内推进SDK清理剩余观察与其它可独立完成的v10.1.5工作；不创建微任务、不自动合并main、不启动v10.1.6。
+**Project Sources快照说明：** 已核验上传的`EliteSync_v10_Task_Dispatch_Closure_Project_Source_20261025.zip`完整性（SHA-256 `4dd3c7afb2312c5aae86db3e43e03a398920168b55340492dfd4da93e00346ef`，5成员CRC/长度/清单均通过），但其Manifest main快照为`71b8f6632b4fd6e7c86f144d9f17b380c9a5efce`，早于当前开发/验收状态。因此该ZIP仅作为治理规则增量，不作为实时状态权威；以本入口和GitHub live main为准。此次未修改Project Sources附件。
 
-**产品基线与候选：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码Commit `1f9d1483268e957f7184625483ff6406071c1867` / Root `9beff929abf3939ac863cd4096ee9fb09a64a48d`，候选apps `a5c6182ea9e064db4ef73e1627a6e38591c953cc`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。交付候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`未合并产品main。
-
-**写入前live main：** `9fa69d47cddd209cbedec446807e83cb39aa5705` / Root `de909f01b9846549e67712a06d9cb43acd18e98b`。本次ACTIVE_STATE更新会推进main；最终HEAD以最后回读为准。
+**写入前live main：** `2fd59a578c84b5baf5d366fb2d96c12129fa012c` / Root `f24137ab4658f70e7661c123bfe8265a07d76ce2`。本次ACTIVE_STATE更新将推进main；最终HEAD以最后一次回读为准。
 
 ## 已独立核验的产品和集成
 
