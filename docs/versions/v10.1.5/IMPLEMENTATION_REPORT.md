@@ -358,3 +358,73 @@ RTC凭据请求未完成时离开，原 `_connecting` 要等旧Future结束才�
 审阅分支 `codex/v10.1.5-loader-rtc-review-20261025`，Commit `76b6ea718ed030415a406bf07c22aaaf5a2473fb`、唯一Parent `67f83b053096b181ff64366f3eaad0e5e44815f8`、Root `d9ffa27054b5faac649445f50aa52afe8230bd48`；六件Blob及原字节已回读。[固定审阅包](https://github.com/zcx369658780/EliteSync-v10/tree/76b6ea718ed030415a406bf07c22aaaf5a2473fb/docs/_temporary_review/v1015-loader-rtc-20261025)。原两个审阅分支、报告前缀、manifest来源对象、SQL/APK/refs/dirty根、旧budget原件保留；新原证根只用LOCAL_ONLY标签 `v1015-long-resume-loader-20261025`，不上传整目录/私密原件。
 
 原候选分支普通non-force后继发布后核Commit/Parent/Root、完整产品双Tree、两文档Blob及原始字节；交付提交自身身份由最终回读回执提供。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_HOST_APK / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED**。集中交付后停止等待Astra；未改变main、系统安全设置、真实供应商或未知guest。
+
+
+## 2026-10-25 同一综合长任务：Owner授权USB真机续接（最新）
+
+**PARTIAL / OPEN_BLOCKERS / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE。** 本章为当前结论，历史正文53,303字节原样作为前缀保留。没有新版本、微任务或预算重置；本次只更新运行证据与集中交付文档，没有修改产品源码。旧章节的`NO_HOST_APK`是历史状态；最新G节授权下已取得普通开发APK实物，不能据此升级ICE诊断标志或条件SDK门。
+
+### Fresh权威与真实源码
+
+开工重新全文读取唯一task_order（含F/G，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`）、冻结plan `7d3466b3be67135dc641cfee7c7faef78937ba03`、ACTIVE_STATE `6b443e19e968b610c795cf37ca993a9d8e60aa4d`，原字节核Git Blob。live main为`a391398fdc6a0547ba4b4354fc300def6da9acb5`、Root `85359b9dfb80f24eb083096006ce4b3f58758884`；接受v10.1.4产品仍apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。Astra局部RTC取消竞态复核Blob `d66c5b0ce1c4999698e56d2075e9f43b23d698c5`仅支持其限定范围，AC05仍OPEN。
+
+连续候选/实际构建输入为`c445554f01fbd8c9aef641302f3f090900703786`，唯一Parent `67f83b053096b181ff64366f3eaad0e5e44815f8`，Root `a964881253000ed86601978d136dfba5820606fc`。完整apps仍`e9ed3a1dee4c892840831b0e31f6f96669fa17d5`，services仍`21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；底层实现即上一已局部复核源码67f83b。**735件tracked apps文件在连续工作树与实际隔离构建副本逐项SHA256相同，构建后再次一致**；本次产品Tree未变化。完整源码pins及实际工具/命令路径仅留LOCAL_ONLY，摘要给出pins文件Hash。
+
+### 当前APK、设备与操作边界
+
+唯一USB目标为Xiaomi `25060RK16C`、Android16/API36、arm64-v8a。最初unauthorized，无RSA提示；一次针对目标的普通transport reconnect后成为device，未换密钥或USB策略。后续手机锁屏时仅读取焦点/锁屏状态并等待Owner手动解锁，未读取通知内容或锁屏凭据。已有目标开发包和签名核对一致，旧APK先保存，未clear/uninstall。
+
+使用既有Flutter3.41.7/Dart3.11.5、JDK17、Gradle8.14及Android36/既有NDK缓存；源码、Flutter SDK及Gradle/Pub缓存复制至任务自有隔离构建目录。普通`:app:assembleDebug --offline`，仅`ELITESYNC_V1015_LOCAL_BUILD=true,ELITESYNC_V1015_R1_LOCAL_BUILD=true`、main.dart，未启ICE_DIAG或retention probe。**构建exit0，392.437秒，进程退出确认**；Kotlin增量缓存错误经编译器回退完成，deprecation与native符号strip告警保留。offline依赖解析不等于整进程树NO_NETWORK证明；未下载安装新工具/SDK。
+
+- 包名`com.elitesync.v1015r1dev`，versionCode `1010511`，versionName `10.1.5-r1-dev`。
+- APK 405,007,373 bytes，SHA256 `8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582`；`install -r`后回取APK字节SHA相同，旧用户数据保留。
+- 开发签名证书SHA256 `9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`，与已有开发包一致。
+- 普通Flutter AAR `1.0-v1015r1-7b05bcf44b8a`，SHA256 `ca6b3ed40864d864654648ca85ddb22d27e7c23bb118a760fff8dffe7d0f75c2`。这是本次普通APK依赖实物，不是原条件式Sandbox SDK/Producer/libs.jar验收。
+
+仅使用合成账号、合成文字和任务专属本地会话。未读取个人照片/视频、短信、通讯录或其他应用内容；相机未启用，没有录制原始私人音视频。手机序列号、JWT/凭据、原始日志、UI XML、APK与SQL均LOCAL_ONLY，未上传整目录。
+
+### 真机新证据、失败与限制
+
+| 新执行 | 结果与证据边界 |
+|---|---|
+| 实际UI文字 | 服务端确认提示、对端真实API读回同一message id1/client_message_id，当前库仅1条，重启后仍1条。先前控制脚本误点/键盘动画断言失败原件保留，按可见UI操作完成后核无重复。 |
+| 来电/呼出/拒绝/挂断 | 实际呼出call3、来电提示并拒绝call5；call7等待接听时挂断，call9/10来电接听后取消，均有UI及实际API/DB终态。不能把`in_call`或RoomConnected事件当媒体成功。 |
+| 取消连接后再呼叫 | call9等待媒体连接时挂断，leave后call10再次出现真实Room.connect start；两次UI挂断均ended。未人为延迟真实endCall/heartbeat，也未运行同call重试；相应精确竞态仍引用原95/11测试，不简单相加为106个互异案例。 |
+| 未过期旧JWT撤权 | call12旧JWT在撤权HTTP成功返回后剩余约118.8秒；撤权前validate200，之后validate403、首次撤权后WS403，拒绝在撤权HTTP成功响应收到后约0.360秒观察，未测精确DB COMMIT时点；当前join/聊天读写/详情404，guarded新库确认call ended、active0、消息仍1条。该JWT此前未承载媒体，不能声称成功通话的媒体重入或≤5秒停止。 |
+| 冷启动 | 实际APP重启回到登录页，无旧合成联系人/消息；这不等于15/30天离线读取或新的物理30天清理实验。 |
+| 通知GUI/权限 | 静默true、message类别false经真实UI持久到新库；系统通知授予后显示已允许。撤销使Android重启应用并锁回登录，PM确认denied、旧私密文本不显示，原denied状态恢复。没有执行原生授权弹窗“拒绝”，没有真实Push送达。 |
+| 持久化/退出 | 本轮新独立容器/volume、迁移前0表及dump；手机/服务退出与测试账号会话撤销后，十表规范快照在该新容器重启前后完全相同。不是异库restore证明。 |
+
+RTC传输仍有**实际阻断**：当前回环TCP7891路径上，真机Room.connect最终出现MediaConnectException；合成PC SDK对端也超时，无nominated pair或RTP。普通TCP socket可建立不代表ICE配对成功。初始PC预检采用服务端默认ICE配置并产生srflx，未抓包，因此不能声称其全程无公网STUN/进程树NO_NETWORK；停止后明确空ICE服务器列表，后续仍未连通。手机源码原已有空列表，未改共享SDK、系统策略、防火墙、路由或浏览器安全限制。精确ICE根因仍未解决，未转用LAN/UDP/公网或另一物理设备。
+
+因此**双向真实音视频、同call媒体重连、流动媒体≤5秒停止、实际麦克风/摄像头媒体启停和物理AEC仍NOT_RUN/NOT_PROVEN**。没有用单测、模拟器、轨道事件、控制面或单条合成文字替代媒体证据。
+
+普通失败均原样保留：SFU第一次冷启动超时而fail-closed；补足本轮RTC环境开关并预热后重启。首个撤权harness错误期待已失权通话详情200，实际404导致exit1；修正仅测试断言/取证方式，用新call重测并记录全部HTTP状态及guarded DB终态，exit0。通知harness错误期待撤销权限后页面原地恢复而exit1；保留真实锁回登录行为，另以当前PM/登录页/DB正确定义后置条件核验exit0。未放宽产品权限或删除失败来取得绿灯。
+
+### 原Gate 2与固定预算
+
+D0-A保持原15次Serialize、约0.688秒；旧WinPS Restricted启动0.375秒exit1、PS7/.NET10依赖TypeLoad启动0.390秒exit1均仍已消费且Writer/Serializer未运行。本次没有重试原入口、没有新Gate2预算、没有运行Writer或Serialize；此前原依赖/宿主元数据根因分析复用。Gate2仍ENVIRONMENT_BLOCKED，完整37案例、条件Sandbox SDK、Producer/libs.jar及30项Configuration.resolve()均NOT_RUN。
+
+### 当前AC逐项结果
+
+| AC-10.1.5 | 当前结论 | 来源及实质限制 |
+|---|---|---|
+| 01 | `SUPPORTED_BOUNDED_PROTECTION` | NEW_READONLY_AND_DEVICE_NEW_RUN；live main/Root/两产品Tree、43任务Blob；新空库0表、专属volume、迁移前dump；22,482文件、五历史根和受保护旧refs保持。 |
+| 02 | `SUPPORTED_BOUNDED_DEVICE_TEXT_AND_REUSED_FAILURE_MATRIX` | DEVICE_NEW_RUN + REUSED_EVIDENCE；本机真实UI发送合成文字，界面服务器确认、对端真实API读回唯一id/client_message_id，数据库重启后仍1条；去重/丢响应/409与旧WS矩阵复用原证，不声称本轮双APP全量旅程。 |
+| 03 | `SUPPORTED_BOUNDED_DEVICE_AND_GUARD_NEGATIVES` | DEVICE_NEW_RUN + NEW_HTTP_GUARD + REUSED_EVIDENCE；撤权后当前RTC join、聊天读写及通话详情404；未过期旧JWT validate/首次撤权后WS均403；原精确MariaDB并发与迟到HTTP/切号回归复用。 |
+| 04 | `REUSED_MEDIA_EVIDENCE_CURRENT_DEVICE_NOT_RUN` | REUSED_EVIDENCE / CURRENT_DEVICE_NOT_RUN；原图片/视频/Range/撤权/持久读回保留；本次新手机未选择图库、未重做图片或视频发送播放。 |
+| 05 | `PARTIAL_CORE_OPEN` | DEVICE_NEW_RUN_CONTROL + MEDIA_NOT_ESTABLISHED；实际呼出、来电提示、拒绝、接听、挂断、取消后再呼叫及撤权拒绝；双方ICE媒体连接未成功，双向RTP、同call媒体重连、流动媒体≤5秒停止、麦克风/摄像头媒体启停及物理AEC仍未证明。 |
+| 06 | `REUSED_T0_BOUNDARIES_WITH_LIMITS` | REUSED_EVIDENCE；此前真实login/refresh T0与15/30边界及Android受控注入保持；本轮合成登录不是新的物理15/30天实测。 |
+| 07 | `SUPPORTED_DEVICE_COLD_LOCK_WITH_REUSED_RETENTION` | DEVICE_NEW_RUN + REUSED_EVIDENCE；本轮冷启动、OS权限撤销重启均锁回登录页，不显示旧合成联系人/消息；既有原生密文/受控30天删除复用，未把本轮冷启当完整离线或实际30天清理验收。 |
+| 08 | `SUPPORTED_BOUNDED_DEVICE_NOTIFICATION_PRIVACY` | DEVICE_NEW_RUN + REUSED_EVIDENCE；真机静默/消息类别开关持久到本轮MariaDB；通知权限授予显示已允许，撤销后锁回登录、PM确认denied且恢复原态；原生权限弹窗拒绝NOT_RUN，旧RTC卡片在撤权后无当前可读提醒。 |
+| 09 | `REAL_PUSH_PROVIDER_PENDING` | REUSED_TEST_ONLY / REAL_PUSH_NOT_RUN；未接真实Push Provider/SDK/Key/生产服务；本轮账户notification_devices为0，不把OS权限授予当远端投递。 |
+| 10 | `PARTIAL_MEDIA_OPEN_CURRENT_APK_VERIFIED` | DEVICE_NEW_RUN + BUILD_NEW_RUN + REUSED_TESTS；本候选普通R1 main.dart APK构建exit0、更新安装及回取字节一致；新DB十表重启一致、手机消息仍1条；原后端92/717、Flutter152及RTC95/11为复用，媒体/条件SDK链仍未通过。 |
+| 11 | `CONSOLIDATED_DELIVERY_AWAITING_ASTRA` | CODEX_REPORTED / BOUNDED_NON_AUTHOR_REVIEW；唯一报告/manifest、当前产品Tree、最小脱敏审阅包和LOCAL_ONLY原证Hash；非作者静态结果另列，不代替Astra独立功能接受。 |
+
+### 恢复点、非作者复核与集中出口
+
+最终本轮独立库SQL `185561` bytes / `6420a4292c281b9f4d514e0099457a2e3b259dfd86524091f603b3bf124938af`，连同事前空库dump、重启前备份、原始Hash/命令/退出/耗时留LOCAL_ONLY。所有本轮合成账号session family与access token已撤销，activeCalls=0；手机APP进程已退出、开发包保留。API/WS/authority/bridge、SFU、合成浏览器及自有Gradle daemon已停；七个本轮端口释放，四个本轮ADB reverse移除并恢复先前空列表。专属容器/volume与旧资产保留；全局adb/Docker daemon未擅自关闭。
+
+22,482具名保护文件、五历史根、516旧refs中的受保护项再核保持；此结论不等于整盘或其它应用/设备状态审计。最小审阅包为派生脱敏摘要与具名原证Hash，原始字节不外传。非作者只读审查状态：**SUPPORTED_BOUNDED_EVIDENCE_REVIEW**；范围及Hash以其单列回执为准，不代表Astra运行或接受。`codex/v10.1.5-usb-device-review-20261025`，Commit `0eada1acbbf834fdcdcb3777f55c972daad5d643`、唯一Parent `c445554f01fbd8c9aef641302f3f090900703786`、Root `38fc229033c4f6a7a8df2ac7f3453185c67dfa73`；7件原始字节/Blob另经回读。
+
+本次普通non-force候选后继只提交唯一报告和manifest，最终Commit/Parent/Root、两文档Blob/原始字节及完整产品双Tree由最终远端回读回执给出，避免自引用。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / HOST_APK_BUILT_INSTALLED_BYTE_VERIFIED / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING。** 完成交付即停止，等待Astra一次性独立验收。
