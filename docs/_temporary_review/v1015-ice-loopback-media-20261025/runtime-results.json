@@ -1,0 +1,215 @@
+{
+  "source": {
+    "commit": "80f6292a2c3726716ab82152f36428812f23058f",
+    "parent": "08df5042378a5887f36e9a1033ff654d993cc38a",
+    "root": "5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2",
+    "apps": "a0ca61faf9e1264f7ae4b638c78ebeae257ea002",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "allTrackedAppsFilesMatched": 735,
+    "pinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311"
+  },
+  "evidenceOwnership": "CODEX_REPORTED / DEVICE_NEW_RUN / SYNTHETIC_PC_PEER_TEST_ONLY",
+  "apk": {
+    "sha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+    "bytes": 416357439,
+    "elapsedSeconds": 198.329000000027,
+    "exit": 0,
+    "processExitConfirmed": true
+  },
+  "installed": {
+    "package": "com.elitesync.v1015r1dev",
+    "versionCode": 1010511,
+    "versionName": "10.1.5-r1-dev",
+    "buildSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+    "installedReadbackSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+    "byteIdentityMatched": true,
+    "signerMatched": true,
+    "dataPreserved": true,
+    "sourceCommit": "80f6292a2c3726716ab82152f36428812f23058f"
+  },
+  "device": {
+    "model": "Xiaomi 25060RK16C",
+    "android": 16,
+    "api": 36,
+    "abi": "arm64-v8a",
+    "serial": "NOT_PUBLISHED"
+  },
+  "callId": 10,
+  "sameCallFreshJoinInfoCount": 2,
+  "afterManualReconnectRtp": {
+    "inbound_audio": {
+      "firstBatch": {
+        "epoch": 1792916699.591,
+        "bytesSum": 20192,
+        "packetsSum": 224,
+        "reports": 1,
+        "firstRawLine": 2493,
+        "lastRawLine": 2493,
+        "framesDecodedSum": 0
+      },
+      "lastBatch": {
+        "epoch": 1792916763.561,
+        "bytesSum": 302552,
+        "packetsSum": 3421,
+        "reports": 1,
+        "firstRawLine": 3248,
+        "lastRawLine": 3248,
+        "framesDecodedSum": 0
+      },
+      "batches": 17,
+      "separatedInTimeAndCounterSumGrew": true
+    },
+    "outbound_audio": {
+      "firstBatch": {
+        "epoch": 1792916699.557,
+        "bytesSum": 18462,
+        "packetsSum": 168,
+        "reports": 1,
+        "firstRawLine": 2486,
+        "lastRawLine": 2486,
+        "framesDecodedSum": 0
+      },
+      "lastBatch": {
+        "epoch": 1792916763.539,
+        "bytesSum": 356708,
+        "packetsSum": 3093,
+        "reports": 1,
+        "firstRawLine": 3243,
+        "lastRawLine": 3243,
+        "framesDecodedSum": 0
+      },
+      "batches": 17,
+      "separatedInTimeAndCounterSumGrew": true
+    },
+    "inbound_video": {
+      "firstBatch": {
+        "epoch": 1792916699.591,
+        "bytesSum": 417259,
+        "packetsSum": 406,
+        "reports": 1,
+        "firstRawLine": 2494,
+        "lastRawLine": 2494,
+        "framesDecodedSum": 90
+      },
+      "lastBatch": {
+        "epoch": 1792916763.561,
+        "bytesSum": 6422343,
+        "packetsSum": 6187,
+        "reports": 1,
+        "firstRawLine": 3249,
+        "lastRawLine": 3249,
+        "framesDecodedSum": 1369
+      },
+      "batches": 17,
+      "separatedInTimeAndCounterSumGrew": true
+    },
+    "outbound_video": {
+      "firstBatch": {
+        "epoch": 1792916699.557,
+        "bytesSum": 1036651,
+        "packetsSum": 1068,
+        "reports": 3,
+        "firstRawLine": 2487,
+        "lastRawLine": 2489,
+        "framesDecodedSum": 0
+      },
+      "lastBatch": {
+        "epoch": 1792916763.539,
+        "bytesSum": 19498097,
+        "packetsSum": 19047,
+        "reports": 3,
+        "firstRawLine": 3244,
+        "lastRawLine": 3246,
+        "framesDecodedSum": 0
+      },
+      "batches": 17,
+      "separatedInTimeAndCounterSumGrew": true
+    }
+  },
+  "outboundVideoCounters": "Per-poll sums of reported video RTP streams establish a temporal trend; not a claim of exact on-wire byte accounting.",
+  "sameCallReconnect": "SUPPORTED_REAL_DEVICE_MANUAL_RECONNECT_AFTER_TASK_OWNED_SFU_RESTART",
+  "micCameraToggle": "Actual remote muted/unmuted tracks verified on earlier call4 / APK8a11; unchanged toggle code reused, not rerun on final APK.",
+  "background": "Call4 lifecycle deliberately disabled microphone/camera on pause; not an automatic background capture/resume PASS.",
+  "revocation": {
+    "callId": 10,
+    "path": "EXACT_OWNED_SYNTHETIC_FIXTURE_REAL_CONSENT_SERVICE",
+    "consentStates": [
+      "MC_REVOKED",
+      "MC_REVOKED"
+    ],
+    "newPhoneLeaveCompleteObserved": true,
+    "observedStopUpperBoundSecondsFromBeforeTransition": 0.7900035381317139,
+    "fromCommit": "Conservative bound from before real transition; COMMIT occurs inside this interval, not directly instrumented",
+    "peerConnectionAfterRevoke": "disconnected",
+    "priorFlowingMedia": "Same final APK call10, bidirectional RTP after fresh manual reconnect",
+    "physicalLastAudibleWaveformStop": "NOT_MEASURED",
+    "oldJwtHandshake": "NOT_RUN_THIS_SCENARIO; prior accepted negative reused",
+    "rejectedCombinedScriptReplayed": false,
+    "leaveReceiptWithin5Seconds": true,
+    "nativeAssessment": {
+      "callId": 10,
+      "source": "New exact-app-PID native events in after snapshot, absent from before snapshot; both raw files hashed in index",
+      "nativeEvents": {
+        "peerConnectionClosed": [
+          {
+            "rawLine": 3274,
+            "deviceEpoch": 1792916765.73,
+            "event": "peerConnectionClosed"
+          },
+          {
+            "rawLine": 3287,
+            "deviceEpoch": 1792916765.916,
+            "event": "peerConnectionClosed"
+          }
+        ],
+        "audioRecordingStopDone": [
+          {
+            "rawLine": 3278,
+            "deviceEpoch": 1792916765.865,
+            "event": "audioRecordingStopDone"
+          }
+        ],
+        "audioPlaybackStopDone": [
+          {
+            "rawLine": 3292,
+            "deviceEpoch": 1792916765.929,
+            "event": "audioPlaybackStopDone"
+          }
+        ],
+        "cameraDeviceReleased": [
+          {
+            "rawLine": 3303,
+            "deviceEpoch": 1792916765.938,
+            "event": "cameraDeviceReleased"
+          }
+        ]
+      },
+      "upperBoundSecondsFromBeforeRealTransitionToSnapshotReceipt": 0.7900035381317139,
+      "allEventsObservedByThatHostReceipt": true,
+      "mediaTransportAndAudioCameraStopObservedWithin5Seconds": true,
+      "peerState": "disconnected",
+      "roomDisposeOverallReturnSuccess": "NOT_INDEPENDENTLY_PROVEN; leave_complete is best-effort and cannot alone prove cleanup success",
+      "supersedes": "Original derived phoneNativeTeardownObservedWithin5Seconds boolean was too broad if based only on leave_complete; raw original receipt retained, assessment adds independent native event predicates.",
+      "execution": "Existing evidence read only; no new test, app run or service restart."
+    }
+  },
+  "humanFeedback": {
+    "callId": 10,
+    "source": "Direct user reply in same chat",
+    "heardSyntheticToneAfterReconnect": true,
+    "toneStoppedAfterTestEnded": true,
+    "stopSecondsFromHuman": "NOT_MEASURED",
+    "AECOrVoiceQuality": "NOT_PROVEN",
+    "notStitchedToCall4": true
+  },
+  "remainingSdkObservation": {
+    "type": "ConcurrentModificationError during SDK remote PCM capture cleanup",
+    "countInFinalPhonePid": 1,
+    "rawLines": [
+      2182
+    ],
+    "freshMediaAndTeardownStillObserved": true,
+    "sharedSdkModified": false
+  },
+  "aecAndSpeechQuality": "NOT_RUN / NOT_PROVEN; tone audibility is not AEC or speech intelligibility."
+}

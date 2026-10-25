@@ -1,0 +1,236 @@
+{
+  "rootLabel": "v1015-ice-loopback-continuation-20261025 / LOCAL_ONLY",
+  "rawEvidencePublished": false,
+  "files": [
+    {
+      "name": "intake-identity.json",
+      "bytes": 999,
+      "sha256": "06153c69a8018340d1062614d4a496c7a90dd5953c1abc98865a9b964882a2ee"
+    },
+    {
+      "name": "intake-protection.json",
+      "bytes": 538,
+      "sha256": "9c1556de2649ebf68d00a6718e4a3be23767645453f635d799fc88879510a720"
+    },
+    {
+      "name": "interface-filter-applied.json",
+      "bytes": 503,
+      "sha256": "e92f9517d97729cd5b0db6a2e70a226db3593b4e251aa60d9a42c7c6ce5480b7"
+    },
+    {
+      "name": "interface-filter-experiment-result.json",
+      "bytes": 573,
+      "sha256": "f0d3b5ad75be26ff85de3088ef518a8e619439ff59027cad61742c62cbaf0633"
+    },
+    {
+      "name": "sfu-ice-boundary-summary.json",
+      "bytes": 95069,
+      "sha256": "a24da22c60e37bedfb8e431b0ab60a9b13bd05c4416d201377831bb69614f84e"
+    },
+    {
+      "name": "reference-source/identity-complete.json",
+      "bytes": 3070,
+      "sha256": "6973fee7031d361476bdd21b2922fb074c86e807b9b9b5b4775e3e2f5cb227bb"
+    },
+    {
+      "name": "pc-filter-controller.json",
+      "bytes": 93,
+      "sha256": "9a54f630314364b7a8faa59a4af6d5f94de221ab766fafb980eb48226ab381dc"
+    },
+    {
+      "name": "call4-media-result.json",
+      "bytes": 3146,
+      "sha256": "54776c3b87b820183e3fca72960815963477bd1adb3fc97296b4a13897f25b2d"
+    },
+    {
+      "name": "build-result.json",
+      "bytes": 1043,
+      "sha256": "5ad4cbda54e5008df6139f26dead788d3a54edbf4df1a4dd0e69274709e020dd"
+    },
+    {
+      "name": "new-apk-install-result.json",
+      "bytes": 438,
+      "sha256": "8d11ecd1b7999e89fc32273b0e52e4b858f5c6d9206c6b58005754cdb1baf841"
+    },
+    {
+      "name": "second-build-result.json",
+      "bytes": 1052,
+      "sha256": "bad11f744a8bc4010658464546ec274c504fb9c42a8ad09639cb8a9a32018c99"
+    },
+    {
+      "name": "final-apk-install-result.json",
+      "bytes": 438,
+      "sha256": "786c29c97bb845e9b31c7514e9c4f62d830720d1ad0dcc0cab6d00c63e67626d"
+    },
+    {
+      "name": "second-build-source-identity.json",
+      "bytes": 409,
+      "sha256": "0b54748d91aa158a7f3dbd34a62a12ac1bb975d176afda56e6df5684efb1a63a"
+    },
+    {
+      "name": "post-build-source-identity.json",
+      "bytes": 409,
+      "sha256": "0b54748d91aa158a7f3dbd34a62a12ac1bb975d176afda56e6df5684efb1a63a"
+    },
+    {
+      "name": "rtc-teardown-red.json",
+      "bytes": 443,
+      "sha256": "35b67e12812271cc821c4b7d0130e5619339af96b6994c1bd4306689320f1307"
+    },
+    {
+      "name": "rtc-disconnect-red.json",
+      "bytes": 410,
+      "sha256": "6cf3f02990b15c1cd8b471e602f9de1276941aefe92ffb3ba2f9ebf5e93752bf"
+    },
+    {
+      "name": "rtc-refresh-red.json",
+      "bytes": 414,
+      "sha256": "6636b2166d2b104c8ace70fd52393f6ffd88099d187ccd7d112027d249b72fcc"
+    },
+    {
+      "name": "rtc-refresh-green.json",
+      "bytes": 490,
+      "sha256": "dc45bcbee755c338cb914f2efe4b25cd37c0c1c2d9cfc82f33a6243eff66af9d"
+    },
+    {
+      "name": "rtc-final-dart-analyze.json",
+      "bytes": 201,
+      "sha256": "6ae4dcf018e5090e1c1cf7da8924b03394cc2cde681176afcfb2c4c6c2465cb3"
+    },
+    {
+      "name": "rtc-page-analyze.json",
+      "bytes": 208,
+      "sha256": "7bdfd8a845f82dfa82e055b05667bce92dfbd3bd818805bc5bc3971c8d11103a"
+    },
+    {
+      "name": "final-apk-call10-after-reconnect.stdout.txt",
+      "bytes": 393331,
+      "sha256": "ded0c9b04e4e67b1272248a269c444f8141fe8db96f24a5f788655145cf1ddd7"
+    },
+    {
+      "name": "call10-stop-before-log.stdout.txt",
+      "bytes": 550649,
+      "sha256": "84d8a8fbe2eed0aee282f52494793a36972a338681b4cd21c05085f5971b7e3b"
+    },
+    {
+      "name": "call10-stop-after-log.stdout.txt",
+      "bytes": 558528,
+      "sha256": "dfb83d4c0231d003b959d3b6ffabaf1e583dae72d6d25636cd44f1494a415339"
+    },
+    {
+      "name": "call10-owned-service-revoke.stdout.txt",
+      "bytes": 264,
+      "sha256": "b15a3016ebf9202de860da4ad6836e44140f1057e466c4d4e5507a9a17655d72"
+    },
+    {
+      "name": "call10-media-stop-result.json",
+      "bytes": 774,
+      "sha256": "9bb3412815458c68ddc5547696735ab6e9c522b06e876a54f13c945041e94e72"
+    },
+    {
+      "name": "owner-feedback-call10.json",
+      "bytes": 262,
+      "sha256": "a0ecd17427e7b6a75cb635780acd890411703dcd69531054383a96ad309334b8"
+    },
+    {
+      "name": "call10-current-join-denied.json",
+      "bytes": 277,
+      "sha256": "31e23e8f9eb8290a46a7a93433ab2b1bf59d4502a98bd9e435f1eb4c318bfc68"
+    },
+    {
+      "name": "new-apk-video-result.json",
+      "bytes": 601,
+      "sha256": "821aef3f8dfc72b136409dfeac0bb41643fdff37e26ddc29be889f6d99a33a30"
+    },
+    {
+      "name": "new-apk-video-playback-result.json",
+      "bytes": 1016,
+      "sha256": "d0f99f0c06f10b25f0e98726520860982ed572aaa2b29fd5d99af263678cd51d"
+    },
+    {
+      "name": "picker-image-result.json",
+      "bytes": 605,
+      "sha256": "864c0d60d88726694164a930a7167ce4904fb8f8401886f9788e46287cf8216f"
+    },
+    {
+      "name": "native-notification-decline-result.json",
+      "bytes": 547,
+      "sha256": "99d71dda3cdbb3975c783a0ba87adfa327e04ef47575bc7e6fd016eaa9ccd1f2"
+    },
+    {
+      "name": "device-db-before-restart.stdout.txt",
+      "bytes": 1662,
+      "sha256": "c4342f44e9e99380adcab21ef5c7a5e63f8c6920019a1e6feb1c1b322146fc3f"
+    },
+    {
+      "name": "device-db-after-restart.stdout.txt",
+      "bytes": 1662,
+      "sha256": "c4342f44e9e99380adcab21ef5c7a5e63f8c6920019a1e6feb1c1b322146fc3f"
+    },
+    {
+      "name": "runtime-final.json",
+      "bytes": 1669,
+      "sha256": "fa1eb44af0e144a602509d65772eabdb28fb37f1360d731fdd251b0bcbe2bfe6"
+    },
+    {
+      "name": "protection-after-runtime.json",
+      "bytes": 538,
+      "sha256": "9c1556de2649ebf68d00a6718e4a3be23767645453f635d799fc88879510a720"
+    },
+    {
+      "name": "observe_owned_call10_media_stop.py",
+      "bytes": 2239,
+      "sha256": "e8132e4cc715dbbca0b882bab29cde9d2a5bc0ed8f05875c2379fcb084a416b6"
+    },
+    {
+      "name": "owned_call10_consent_revoke.php",
+      "bytes": 2861,
+      "sha256": "73dfb88683fa484491764262b5ad29f1352e030c949dee61d8cb6f9c1ec315e0"
+    },
+    {
+      "name": "bounded_final_samecall10_journey.py",
+      "bytes": 2381,
+      "sha256": "7f4c03e4163dc8753e161f4ae17092664d39919a152e759eefa22bfff6904509"
+    },
+    {
+      "name": "finish_runtime.py",
+      "bytes": 5246,
+      "sha256": "968192236368c32844909cb226209541ffdc0d009c5800f7f550130009a7a579"
+    },
+    {
+      "name": "configure_owned_video_probe.py",
+      "bytes": 1700,
+      "sha256": "924bcb1762f8c21041d319fbab41425aeb84ce543a0beebaceaa6943aa1f9151"
+    },
+    {
+      "name": "phone.py",
+      "bytes": 2303,
+      "sha256": "e4e7537171a5f094519302e2ebca1fbaa64912410ede6883f3f6189a90dc7f2f"
+    },
+    {
+      "name": "call10-media-stop-assessment.json",
+      "bytes": 1634,
+      "sha256": "36021c3db785f3c43db6d46b00e228e69e0f6b38ee45ffa17e6cf5ee35a33cea"
+    },
+    {
+      "name": "bind_existing_native_stop_evidence.py",
+      "bytes": 4663,
+      "sha256": "ebd430b5ad29219e7d1fc548af9017258b2f3eebec81eb3077f2e5eba51607e5"
+    },
+    {
+      "name": "final-apk-cold-entry-result.json",
+      "bytes": 435,
+      "sha256": "31ae46b62dca26c3797870f3a64eadcefe1100f34ec93c9ce823a40c85b14b95"
+    },
+    {
+      "name": "final-apk-entry.xml",
+      "bytes": 9322,
+      "sha256": "450ded3810527cbe2f55a579dee16083b9837dc2efd1732ebee80be26cba3a35"
+    },
+    {
+      "name": "final-apk-launch.json",
+      "bytes": 248,
+      "sha256": "5bbd60f915131e444d1d3780078ba56cc4139a56a62138915785fc8f8f6aa537"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "image": {
+    "messageId": 1,
+    "assetId": 2,
+    "serverConfirmed": true,
+    "peerAuthorizedHttp": 200,
+    "readSha256": "13dad9ddff762c27f6ff16bcfd17f4e95cfa2400a209389320f03a7ff5061c80",
+    "bytes": 1320,
+    "source": "Owner selected exact generated blue test PNG through actual system picker",
+    "pickerTranscoded": "PNG blue input became JPEG payload; not claiming original byte equality",
+    "imageFormat": "JPEG",
+    "width": 320,
+    "height": 240,
+    "onlyBlueSyntheticPixelsVerified": true,
+    "apkSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
+    "elapsedSeconds": 0.125
+  },
+  "video": {
+    "messageId": 2,
+    "assetId": 3,
+    "source": "Owner exact synthetic 2s H264 test video through real picker on APK f26bb08f",
+    "status": "ready",
+    "durationMs": 2000,
+    "dimensions": [
+      320,
+      240
+    ],
+    "contentHttp": 200,
+    "rangeHttp": 206,
+    "rangeContentMatches": true,
+    "sha256": "91efa89716d27ca5528cf2b8182b2719d756c24f3fdc34ce50753fc160e25852",
+    "sourceAndReadbackBytesIdentical": true,
+    "bytes": 158923,
+    "previousVideoAttempt": "No video message; current task API lacked explicit existing ffprobe path; first attempt not counted PASS",
+    "noTranscode": true
+  },
+  "videoPlayback": {
+    "result": "BOUNDED_REAL_DEVICE_SYNTHETIC_VIDEO_FRAME_CHANGE",
+    "apkSha256": "f26bb08f627e6f6f4ee9b22f5ce3f8ddfce5dc1d43162d4d3390a496f3b13102",
+    "frames": [
+      {
+        "index": 0,
+        "cropSha256": "dc0346afb18c338eb7a74ef23c1ff251178f86e8776f5b08b3829686a857678a",
+        "pixelSha256": "db7ff01c0425d82a465658a71633cc68521ee7f14fb66efcfeaadc974d27c185",
+        "onlyVerifiedSyntheticMediaRegion": true
+      },
+      {
+        "index": 1,
+        "cropSha256": "48a9888691277f57f473c28798900e0a742327d0c147c990b67bc9525c689a7f",
+        "pixelSha256": "7cc9022a4f0f2f31324a01f6a38b57fa065700dc80e0e0e131dd53308ba00ed3",
+        "onlyVerifiedSyntheticMediaRegion": true
+      },
+      {
+        "index": 2,
+        "cropSha256": "52728ecbc21fd6c38f5b80c1a9cc8eedf55a44ba0f22e7f0d7c2e9dbb3cbf67f",
+        "pixelSha256": "44946476067fff8c29cf05a5b71660d017192b387bf24a9abd745100339e6d2f",
+        "onlyVerifiedSyntheticMediaRegion": true
+      }
+    ],
+    "privateMediaRead": false,
+    "notAudioOrRtcProof": true
+  },
+  "nativeNotificationDecline": {
+    "result": "SUPPORTED_BOUNDED_NATIVE_PERMISSION_DECLINE",
+    "package": "com.elitesync.v1015r1dev",
+    "requestViaActualAppButton": true,
+    "nativePromptObserved": true,
+    "declineTapped": true,
+    "permissionAfterDecline": false,
+    "appStayedUsable": true,
+    "privatePushDelivery": "NOT_RUN_PROVIDER_PENDING",
+    "staleNotificationClick": "NOT_RUN_NO_CURRENT_READABLE_CARD",
+    "evidence": [
+      "phone-notify-native-prompt.xml",
+      "phone-notify-native-decline-settled.xml",
+      "phone-notify-native-package-state.stdout.txt"
+    ]
+  },
+  "binaryBoundary": "Image and native decline ran on APK8a11; video ran on APKf26b. Final APKcbe8 changes only RTC service/page/tests. These are current-task reused evidence for unchanged media/notification code, not falsely relabeled final-APK runs.",
+  "afterRevoke": {
+    "currentJoinHttp": 404,
+    "imageFullAndRangeHttp": 404,
+    "videoFullAndRangeHttp": 404
+  },
+  "persistence": {
+    "tables": 12,
+    "rowsEqualAcrossOwnedDatabaseRestart": true,
+    "messages": 2,
+    "messageAttachments": 2
+  },
+  "realPush": "PROVIDER_PENDING / NOT_RUN",
+  "finalApkColdEntry": {
+    "result": "FINAL_APK_FIRST_LAUNCH_REQUIRES_LOGIN",
+    "apkSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+    "loginUiObserved": true,
+    "oldPeerAndMessageNotVisible": true,
+    "scope": "First launch after data-preserving update; not physical15/30-day/offline authorization proof",
+    "evidence": [
+      "final-apk-install-result.json",
+      "final-apk-launch.json",
+      "final-apk-entry.xml"
+    ]
+  }
+}

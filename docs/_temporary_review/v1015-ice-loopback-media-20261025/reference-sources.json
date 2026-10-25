@@ -1,0 +1,79 @@
+{
+  "sources": [
+    {
+      "repository": "livekit/ice",
+      "ref": "v4.4.0-warp.3",
+      "path": "tcp_mux.go",
+      "blob": "418e8a7d702f0d226a072219e2773617c26b51bb",
+      "url": "https://github.com/livekit/ice/blob/v4.4.0-warp.3/tcp_mux.go"
+    },
+    {
+      "repository": "livekit/ice",
+      "ref": "v4.4.0-warp.3",
+      "path": "tcp_packet_conn.go",
+      "blob": "68071c79b90d90fa3ce4f251d7cca00fce75ef00",
+      "url": "https://github.com/livekit/ice/blob/v4.4.0-warp.3/tcp_packet_conn.go"
+    },
+    {
+      "repository": "livekit/ice",
+      "ref": "v4.4.0-warp.3",
+      "path": "agent_handlers.go",
+      "blob": "0f96cd771e58bc795eacc737be9cf60f8a65aa5a",
+      "url": "https://github.com/livekit/ice/blob/v4.4.0-warp.3/agent_handlers.go"
+    },
+    {
+      "repository": "livekit/ice",
+      "ref": "v4.4.0-warp.3",
+      "path": "agent.go",
+      "blob": "ba07c675d3798a652ed4ca31c98d8ab4fb0ace89",
+      "url": "https://github.com/livekit/ice/blob/v4.4.0-warp.3/agent.go"
+    },
+    {
+      "repository": "livekit/ice",
+      "ref": "v4.4.0-warp.3",
+      "path": "gather.go",
+      "blob": "b357e066f33d14be31f8579aa8199d9f91dabd2a",
+      "url": "https://github.com/livekit/ice/blob/v4.4.0-warp.3/gather.go"
+    },
+    {
+      "repository": "livekit/livekit",
+      "ref": "v1.13.10",
+      "path": "pkg/config/config.go",
+      "localFile": "livekit-config.go",
+      "blob": "872f780d1ad24115769073e96e183f14f9e9ded6",
+      "sha256": "bd3ff9842ddcb84aa6a4992d7b9a8cc6a24265e255e154c6fbd6e51b3783e47a",
+      "url": "https://github.com/livekit/livekit/blob/v1.13.10/pkg/config/config.go"
+    },
+    {
+      "repository": "livekit/livekit",
+      "ref": "v1.13.10",
+      "path": "go.mod",
+      "localFile": "livekit-go.mod",
+      "blob": "806263a4ad7f7bfdfa854d9e850916f3ab087114",
+      "sha256": "6521db4db45f8b0a1f8b2a314b89c4d35c2db3fd72a417036a374eec6829b2b5",
+      "url": "https://github.com/livekit/livekit/blob/v1.13.10/go.mod"
+    },
+    {
+      "repository": "livekit/mediatransportutil",
+      "ref": "f234b534b095",
+      "path": "pkg/rtcconfig/config.go",
+      "localFile": "mediatransport-config.go",
+      "blob": "8b5416b295a1212327deb16a2bd5e068be63b026",
+      "sha256": "9ee3e62387fd102bc993c7cd85f9f2218dc3b9541b1a015c0b595cba6a7594ac",
+      "url": "https://github.com/livekit/mediatransportutil/blob/f234b534b095/pkg/rtcconfig/config.go"
+    },
+    {
+      "repository": "livekit/mediatransportutil",
+      "ref": "f234b534b095",
+      "path": "pkg/rtcconfig/webrtc_config.go",
+      "localFile": "mediatransport-webrtc-config.go",
+      "blob": "80f1bf204aa77051caf5f6a880727077a41aff28",
+      "sha256": "9314905fef010cb6d647d153d66365e56d2e894d4b845ee3b24d058a77248e16",
+      "url": "https://github.com/livekit/mediatransportutil/blob/f234b534b095/pkg/rtcconfig/webrtc_config.go"
+    }
+  ],
+  "runtimeMapping": "binary self reports1.13.10; exact tag-to-binary byte provenance NOT_PROVEN",
+  "interfaceFilterIsNotListenerBinding": true,
+  "experimentalConclusion": "Single authorized interface filter restored actual STUN responses, nominated pairs and phone/PC media. Original-interface TCPMux key mismatch is consistent with source/observations; exact original orphan queue reader state was not directly instrumented.",
+  "scope": "Existing image/binary self reports1.13.10; no byte-exact upstream tag-to-binary provenance. Interface filter is not a listener binding; published host ports independently remained loopback-only."
+}

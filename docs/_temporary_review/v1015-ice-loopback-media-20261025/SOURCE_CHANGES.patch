@@ -1,0 +1,351 @@
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+index 1abe844a..0929531d 100644
+--- a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
++++ b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+@@ -41,6 +41,7 @@ class RtcLiveKitService extends ChangeNotifier {
+   final AppEnv appEnv;
+ 
+   Room? _room;
++  Future<void>? _roomTeardown;
+   int? _connectedCallId;
+   Object? _connectionAttempt;
+   int? _pendingCallId;
+@@ -660,6 +661,7 @@ class RtcLiveKitService extends ChangeNotifier {
+   }
+ 
+   void _refreshRemoteAudioTrack(Room room, {String reason = 'unknown'}) {
++    if (!identical(_room, room)) return;
+     AudioTrack? nextTrack;
+     String? nextParticipant;
+     for (final participant in room.remoteParticipants.values) {
+@@ -719,6 +721,11 @@ class RtcLiveKitService extends ChangeNotifier {
+     final requestedGeneration = _connectionGeneration;
+     int? generation;
+     try {
++      final teardown = _roomTeardown;
++      if (teardown != null) {
++        await teardown;
++        if (_disposed || requestedGeneration != _connectionGeneration) return;
++      }
+       final diagnosticAllowed = iceDiagnosticRequested
+           ? await verifyIceDiagnosticHost(appEnv)
+           : false;
+@@ -806,8 +813,12 @@ class RtcLiveKitService extends ChangeNotifier {
+         })
+         ..on<RoomReconnectingEvent>((event) {
+           _logLifecycle(callId, 'room_reconnecting');
+-          // The trusted server gateway also re-authorizes every WS reconnect.
+-          unawaited(_sendHeartbeat(callId));
++          if (!identical(_room, room)) return;
++          // Full restart can reuse native tracks disposed with the old PC.
++          // Close that room; the existing reconnect action fetches current
++          // authority and creates a fresh room/tracks for this same call.
++          _failureMessage = '网络连接已中断，请重新连接通话';
++          unawaited(leave(callId: callId));
+         })
+         ..on<RoomReconnectedEvent>((event) {
+           _logLifecycle(callId, 'room_reconnected');
+@@ -824,6 +835,7 @@ class RtcLiveKitService extends ChangeNotifier {
+           _refreshRemoteAudioTrack(room, reason: 'participant_disconnected');
+         })
+         ..on<TrackSubscribedEvent>((event) {
++          if (!identical(_room, room)) return;
+           if (event.track is AudioTrack) {
+             _remoteAudioTrack = event.track as AudioTrack;
+             _remoteAudioTrackFromEvent = true;
+@@ -853,6 +865,7 @@ class RtcLiveKitService extends ChangeNotifier {
+           _logRoomSnapshot(room, callId: callId, reason: 'track_subscribed');
+         })
+         ..on<TrackUnsubscribedEvent>((event) {
++          if (!identical(_room, room)) return;
+           if (_remoteAudioTrack?.mediaStreamTrack.id ==
+               event.track.mediaStreamTrack.id) {
+             _remoteAudioTrack = null;
+@@ -862,6 +875,7 @@ class RtcLiveKitService extends ChangeNotifier {
+           _refreshRemoteAudioTrack(room, reason: 'track_unsubscribed');
+         })
+         ..on<TrackPublishedEvent>((event) {
++          if (!identical(_room, room)) return;
+           _refreshRemoteAudioTrack(room, reason: 'track_published');
+           unawaited(
+             _bindLocalAudioTrackDiagnostics(
+@@ -1086,6 +1100,8 @@ class RtcLiveKitService extends ChangeNotifier {
+     _iceDiagnosticObserver?.stop();
+     _iceDiagnosticObserver = null;
+     final room = _room;
++    final teardown = room == null ? null : Completer<void>();
++    if (teardown != null) _roomTeardown = teardown.future;
+     room?.removeListener(_mediaChanged);
+     _room = null;
+     _cameraEnabled = false;
+@@ -1097,14 +1113,23 @@ class RtcLiveKitService extends ChangeNotifier {
+     unawaited(_unbindLocalAudioTrackDiagnostics());
+     _mediaChanged();
+     if (room == null) {
++      await _roomTeardown;
+       _logLifecycle(leavingCallId, 'leave_complete');
+       return;
+     }
+     try {
+       await room.disconnect();
+-      await room.dispose();
+     } catch (_) {
+       // leave should be best-effort only.
++    } finally {
++      try {
++        await room.dispose();
++      } catch (_) {
++        // Still release waiters after best-effort native cleanup.
++      } finally {
++        teardown!.complete();
++        if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
++      }
+     }
+     _logLifecycle(leavingCallId, 'leave_complete');
+   }
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart b/apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart
+index 7fd739a4..5fac14d3 100644
+--- a/apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart
++++ b/apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart
+@@ -684,7 +684,9 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
+         ),
+         body: sessionAsync.when(
+           skipLoadingOnReload: false,
+-          skipLoadingOnRefresh: false,
++          // Polling keeps the current call controls and scroll position stable.
++          // Actions still fetch fresh authority; real errors close media below.
++          skipLoadingOnRefresh: true,
+           loading: () => const AppLoadingSkeleton(lines: 6),
+           error: (e, _) {
+             WidgetsBinding.instance.addPostFrameCallback((_) {
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+index e23a875d..16fd2c1e 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+@@ -86,7 +86,10 @@ class _MediaParticipant implements LocalParticipant {
+ class _MediaRoom implements Room {
+   _MediaRoom(this.localParticipant);
+   Completer<void>? disconnectPending;
++  Object? disconnectError;
++  Completer<void>? disposePending;
+   final disconnectStarted = Completer<void>();
++  final disposeStarted = Completer<void>();
+   @override
+   final LocalParticipant localParticipant;
+   @override
+@@ -95,15 +98,89 @@ class _MediaRoom implements Room {
+   Future<void> disconnect() async {
+     if (!disconnectStarted.isCompleted) disconnectStarted.complete();
+     await disconnectPending?.future;
++    if (disconnectError != null) throw disconnectError!;
+   }
+ 
+   @override
+-  Future<bool> dispose() async => true;
++  Future<bool> dispose() async {
++    if (!disposeStarted.isCompleted) disposeStarted.complete();
++    await disposePending?.future;
++    return true;
++  }
++
+   @override
+   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+ }
+ 
+ void main() {
++  test('disconnect failure still waits for room disposal', () async {
++    final room = _MediaRoom(_MediaParticipant())
++      ..disconnectError = StateError('disconnect timeout')
++      ..disposePending = Completer<void>();
++    final service = RtcLiveKitService.mediaControlTest(
++      remoteDataSource: _DeniedRtcSource(),
++      appEnv: const AppEnv(
++        flavor: AppFlavor.dev,
++        appName: 'Media teardown test',
++        apiBaseUrl: 'http://127.0.0.1',
++        useMockData: false,
++      ),
++      room: room,
++      microphonePermission: () async => true,
++      cameraPermission: () async => true,
++    );
++    var closed = false;
++    final closing = service.leave().then((_) => closed = true);
++    await Future<void>.delayed(Duration.zero);
++    try {
++      expect(room.disposeStarted.isCompleted, true);
++      expect(closed, false);
++    } finally {
++      room.disposePending!.complete();
++      await closing;
++      service.dispose();
++    }
++    expect(closed, true);
++  });
++
++  test(
++    'reconnect waits for detached room teardown before loading credentials',
++    () async {
++      final room = _MediaRoom(_MediaParticipant())
++        ..disconnectPending = Completer<void>();
++      final source = _QueuedRtcSource();
++      final service = RtcLiveKitService.mediaControlTest(
++        remoteDataSource: source,
++        appEnv: const AppEnv(
++          flavor: AppFlavor.dev,
++          appName: 'Media teardown test',
++          apiBaseUrl: 'http://127.0.0.1',
++          useMockData: false,
++          useLiveKitRtc: true,
++        ),
++        room: room,
++        microphonePermission: () async => true,
++        cameraPermission: () async => true,
++      );
++      final closing = service.leave();
++      await room.disconnectStarted.future;
++      final reconnect = service.ensureConnected(19);
++      try {
++        expect(source.callIds, isEmpty);
++      } finally {
++        // Cancellation while teardown is pending must not start a new join.
++        service.dispose();
++        for (final reply in source.replies) {
++          reply.complete(RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}));
++        }
++        room.disconnectPending!.complete();
++        await closing;
++        await reconnect;
++      }
++      expect(source.callIds, isEmpty);
++    },
++  );
++
+   for (final nextCall in [19, 20]) {
+     for (final lateResult in ['unavailable', 'error']) {
+       test(
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart b/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart
+index c3f6625e..23134d69 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart
+@@ -2,6 +2,7 @@ import 'dart:async';
+ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
+ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
+ import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
++import 'package:flutter_elitesync_module/design_system/components/states/app_loading_skeleton.dart';
+ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+ import '../../rtc_test_session.dart';
+ import 'package:dio/dio.dart';
+@@ -254,6 +255,112 @@ Widget _wrap(
+ }
+ 
+ void main() {
++  for (final refresh in ['poll', 'invalidate']) {
++    testWidgets(
++      '$refresh preserves call controls and scroll during refresh then fails closed on error',
++      (tester) async {
++        final session = RtcSessionEntity.fromJson({
++          'id': 97,
++          'mode': 'voice',
++          'status': 'in_call',
++          'title': 'REFRESH_CALL',
++          'peer_name': 'REFRESH_PEER',
++          'initiator_user_id': 1,
++          'peer_user_id': 2,
++          'is_initiator': true,
++          'is_active': true,
++        });
++        final rtc = FakeRtcRemoteDataSource(session);
++        final service = NotifyingLeaveRtcService(rtc);
++        const page = RtcCallPage(callId: 97, autoConnect: false);
++        await tester.pumpWidget(
++          _wrap(page, rtc: rtc, service: service, liveKit: true),
++        );
++        await tester.pumpAndSettle();
++        expect(service.connections, [97]);
++        expect(service.leaves, isEmpty);
++        await tester.ensureVisible(find.text('挂断'));
++        await tester.pumpAndSettle();
++        final list = tester.element(find.byType(ListView));
++        final scrollable = tester.state<ScrollableState>(
++          find.descendant(
++            of: find.byType(ListView),
++            matching: find.byType(Scrollable),
++          ),
++        );
++        final offset = scrollable.position.pixels;
++        expect(offset, greaterThan(0));
++        final container = ProviderScope.containerOf(
++          tester.element(find.byWidget(page)),
++        );
++
++        Future<void> beginRefresh() async {
++          rtc.pendingFetch = Completer<RtcSessionEntity>();
++          final requests = rtc.requestOrder.length;
++          if (refresh == 'poll') {
++            await tester.pump(const Duration(seconds: 4));
++          } else {
++            container.invalidate(rtcCallProvider(97));
++          }
++          await tester.pump();
++          await tester.pump(const Duration(milliseconds: 100));
++          expect(rtc.requestOrder.length, requests + 1);
++          // Exercise the real FutureProvider seam, retaining its previous value.
++          final pending = container.read(rtcCallProvider(97));
++          expect(pending.isLoading, isTrue);
++          expect(pending.isRefreshing, isTrue);
++          expect(pending.hasValue, isTrue);
++        }
++
++        void expectRetainedContent() {
++          expect(find.byType(AppLoadingSkeleton), findsNothing);
++          expect(find.text('挂断'), findsOneWidget);
++          expect(tester.element(find.byType(ListView)), same(list));
++          expect(scrollable.position.pixels, closeTo(offset, 0.01));
++          expect(service.connections, [97]);
++          expect(service.leaves, isEmpty);
++        }
++
++        await beginRefresh();
++        expectRetainedContent();
++        rtc.pendingFetch!.complete(session);
++        await tester.pumpAndSettle();
++        expectRetainedContent();
++
++        // A completed authorization/network error must override the cached value.
++        await beginRefresh();
++        expectRetainedContent();
++        rtc.pendingFetch!.completeError(Exception('session denied'));
++        await tester.pumpAndSettle();
++        expect(container.read(rtcCallProvider(97)).hasError, isTrue);
++        expect(find.text('通话加载失败'), findsOneWidget);
++        expect(find.text('挂断'), findsNothing);
++        expect(find.text('REFRESH_PEER'), findsNothing);
++        expect(find.byType(AppLoadingSkeleton), findsNothing);
++        expect(service.leaves, [97]);
++        expect(service.connections, [97]);
++
++        // Refreshing an error must not resurrect the last authorized projection.
++        rtc.pendingFetch = Completer<RtcSessionEntity>();
++        container.invalidate(rtcCallProvider(97));
++        await tester.pump();
++        await tester.pump(const Duration(milliseconds: 100));
++        expect(container.read(rtcCallProvider(97)).isLoading, isTrue);
++        expect(find.text('挂断'), findsNothing);
++        expect(find.text('REFRESH_PEER'), findsNothing);
++        expect(find.text('重新连接'), findsNothing);
++        expect(service.leaves, [97]);
++        expect(service.connections, [97]);
++        rtc.pendingFetch!.completeError(Exception('session still denied'));
++        await tester.pumpAndSettle();
++        expect(find.text('通话加载失败'), findsOneWidget);
++        await tester.pumpWidget(const SizedBox());
++        expect(service.leaves, [97]);
++        expect(tester.takeException(), isNull);
++      },
++    );
++  }
++
+   for (final page in ['call', 'incoming', 'result']) {
+     for (final lateResponse in [false, true]) {
+       testWidgets(

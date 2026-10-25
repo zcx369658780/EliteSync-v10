@@ -1,0 +1,35 @@
+{
+  "scope": "Independent non-author static source review; no device/build/test execution by reviewer",
+  "verdict": "NO_NEW_BLOCKING_FINDINGS_STATIC",
+  "files": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "sha256": "8be42f0b2d36e01f6e9a1b7c4473bace2caa8dfcab068f0b38422be3b60b019f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+      "sha256": "debf215a19dcf3c2f7724c6cb7885f7d175b0701e65c8e71497406a76b3d6aab"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
+      "sha256": "dde7ee3e5781e0f9a12eb5373ffb77f44db44f0047efbfffa8148697f9fb55da"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart",
+      "sha256": "254d6190422d66d54ea56a2a804c51f921c8856eda68f53bd55db71cd3edeab6"
+    }
+  ],
+  "closedFindings": [
+    "P2 detached old-room native teardown overlapping fresh join",
+    "P2 disconnect error skipping dispose"
+  ],
+  "pageRefresh": "Keeps refresh data and scroll; identity check precedes rendering; reload and actual-error close branches unchanged; fresh current call and join authority still required.",
+  "mainExecutedTests": {
+    "teardownRed": 1,
+    "disconnectRed": 1,
+    "refreshRed": 2,
+    "finalRelatedFlutterTests": 40,
+    "finalExit": 0
+  },
+  "acceptance": "NOT_ASTRA_ACCEPTANCE; runtime evidence remains CODEX_REPORTED."
+}

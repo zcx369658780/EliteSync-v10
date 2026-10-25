@@ -1,0 +1,53 @@
+{
+  "runtime": {
+    "phoneAppProcessAbsent": true,
+    "activeCalls": 0,
+    "activeTestSessionFamilies": 0,
+    "testAccessTokens": 0,
+    "sfUStopped": true,
+    "ownedDatabaseStopped": true,
+    "volumeAndContainersRetained": true,
+    "twelveTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
+    "sameDeviceMessageCountAfterRestart": 2,
+    "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
+    "ownedGradleStopExit": 0,
+    "portsReleased": [
+      43328,
+      8051,
+      8052,
+      8053,
+      8054,
+      7891,
+      7894
+    ],
+    "appKeptInstalled": true,
+    "otherAppsAndOldAssetsUntouched": true,
+    "globalAdbAndDockerDaemonsKept": true,
+    "utc": "2026-10-25T08:28:45.249583+00:00",
+    "ownedProcessExitCount": 4,
+    "backups": [
+      {
+        "exit": 0,
+        "elapsedSeconds": 0.39000000001396984,
+        "bytes": 220060,
+        "sha256": "e0de03caaae92cc138d5e24c638d5247e2653b939f57f9a7b57aeba4358fe121"
+      },
+      {
+        "exit": 0,
+        "elapsedSeconds": 0.34399999998277053,
+        "bytes": 220060,
+        "sha256": "de1c1241dea02a219a68fc4d041aefa8dd988dad94801de3021e4aa28e02a370"
+      }
+    ]
+  },
+  "protection": {
+    "protectedFileCount": 22482,
+    "allNamedProtectedFilesUnchanged": true,
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 519,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  }
+}

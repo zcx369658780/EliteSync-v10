@@ -1,0 +1,11 @@
+--- task-owned SFU RTC configuration (before)
++++ task-owned SFU RTC configuration (Owner-authorized experiment)
+@@
+ rtc:
+   node_ip: "127.0.0.1"
+   use_external_ip: false
+   tcp_port: 7891
+   force_tcp: true
+   enable_loopback_candidate: true
++  interfaces:
++    includes: ["eth0"]
