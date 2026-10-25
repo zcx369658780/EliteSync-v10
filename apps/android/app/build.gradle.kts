@@ -175,6 +175,35 @@ require(!isV1015R1RetentionProbe || isV1015R1LocalBuild) { "Retention probe requ
 require(!isV1015R1RetentionProbe || gradle.startParameter.taskNames.all { it.contains("debug", ignoreCase = true) }) {
     "The retention test entry may only be packaged by explicit debug tasks"
 }
+// Ordinary local debug builds use the same verified distribution at both levels.
+// --offline is a resolver option; it cannot constrain Wrapper bootstrap.
+val localOfflineGradleBin = providers.gradleProperty("localOfflineGradleBin").orNull?.let { path ->
+    require(isV1015R1LocalBuild && !isIceDiagnosticBuild && !isV1015R1RetentionProbe) {
+        "OFFLINE_DEBUG_REJECTED: ordinary R1 debug only"
+    }
+    require(gradle.startParameter.isOffline && org.gradle.util.GradleVersion.current().version == "8.14") {
+        "OFFLINE_DEBUG_REJECTED: offline Gradle 8.14 required"
+    }
+    val bin = File(path)
+    val home = gradle.gradleHomeDir ?: error("OFFLINE_DEBUG_REJECTED: no distribution")
+    require(bin.isAbsolute && bin.isFile && bin.canonicalFile == File(home, "bin/gradle.bat").canonicalFile) {
+        "OFFLINE_DEBUG_REJECTED: explicit local binary must match active distribution"
+    }
+    val pinned = mapOf(
+        "bin/gradle.bat" to "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+        "lib/gradle-gradle-cli-main-8.14.jar" to "3e21380f278d069ec1fc706b1a3b075250a00d6366dccc1fcf343838a494f20b",
+        "lib/gradle-core-8.14.jar" to "36ee23fbf4082131bbf8758603a7a2019be60f47bc033b283447e107c578427d",
+    )
+    pinned.forEach { (relative, expected) ->
+        val file = File(home, relative)
+        require(file.isFile && MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+            .joinToString("") { "%02x".format(it) } == expected) { "OFFLINE_DEBUG_REJECTED: runtime hash $relative" }
+    }
+    bin
+}
+require(!isV1015R1LocalBuild || isIceDiagnosticBuild || localOfflineGradleBin != null) {
+    "OFFLINE_DEBUG_REJECTED: use scripts/offline_debug.py; no Wrapper fallback"
+}
 val isV1014LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.contains("ELITESYNC_V1014_LOCAL_BUILD=true")
 val isV1013LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.contains("ELITESYNC_V1013_LOCAL_BUILD=true")
 val isV1012LocalBuild = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }
@@ -225,17 +254,22 @@ val syncFlutterAar by tasks.registering(Exec::class) {
         require(!flutterSdkPath.isNullOrBlank()) { "Probe requires the installed Flutter SDK" }
         workingDir = File(flutterModuleDir, ".android")
         val aarGradle = if (isIceDiagnosticBuild) iceDiagnosticTooling!!.first.absolutePath else
-            File(workingDir, if (System.getProperty("os.name").lowercase().contains("windows")) "gradlew.bat" else "gradlew").absolutePath
+            localOfflineGradleBin!!.absolutePath
         val encodedDefines = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.filter { it.isNotEmpty() }
             .joinToString(",") { Base64.getEncoder().encodeToString(it.toByteArray(Charsets.UTF_8)) }
+        if (!isIceDiagnosticBuild) logger.lifecycle("OFFLINE_DEBUG_INNER_DIRECT_GRADLE version=8.14 wrapper=false")
         commandLine(listOf(aarGradle,
             "-I=${File(flutterSdkPath, "packages/flutter_tools/gradle/aar_init_script.gradle").absolutePath}",
+            *if (!isIceDiagnosticBuild) arrayOf("-I=${rootProject.file("scripts/offline_debug.init.gradle").absolutePath}") else emptyArray(),
             "-Pflutter-root=$flutterSdkPath", "-Poutput-dir=${r1AarOutput.parentFile.absolutePath}",
             "-Pis-plugin=false", "-PbuildNumber=$r1AarVersion",
             "-Ptarget=${if (isIceDiagnosticBuild) "lib/dev/v1015_ice_diag.dart" else if (isV1015R1RetentionProbe) "lib/dev/v1015_r1_retention_probe.dart" else "lib/main.dart"}",
             "-Pdart-defines=$encodedDefines", "-Ptarget-platform=android-x64,android-arm64",
             if (isIceDiagnosticBuild) "assembleAarDebug" else "assembleAarRelease", "--offline", "--console=plain") +
-            if (isIceDiagnosticBuild) listOf("--no-daemon", "--gradle-user-home", iceDiagnosticTooling!!.second.absolutePath) else emptyList())
+            if (isIceDiagnosticBuild) listOf("--no-daemon", "--gradle-user-home", iceDiagnosticTooling!!.second.absolutePath) else
+                listOf("--no-daemon", "--max-workers=2", "--gradle-user-home", gradle.gradleUserHomeDir.absolutePath,
+                    "-Dorg.gradle.java.installations.auto-download=false", "-Porg.gradle.java.installations.auto-download=false",
+                    "-Porg.gradle.java.installations.auto-detect=false"))
     } else commandLine(
         listOf(
             flutterExecutable,

@@ -1,0 +1,16 @@
+// This init script is loaded AFTER Flutter's aar_init_script.gradle.
+// A private ordinary APK build needs runtime AARs, not published Javadocs.
+// AGP's Dokka external-documentation resolver is independent of Gradle offline.
+// Remove only the javadoc publication artifact so it cannot add that network path.
+gradle.projectsEvaluated {
+    if (!gradle.startParameter.offline) {
+        throw new GradleException('OFFLINE_DEBUG_REJECTED: nested resolver must be offline')
+    }
+    allprojects { project ->
+        if (project.plugins.hasPlugin('maven-publish')) {
+            project.publishing.publications.each { publication ->
+                publication.artifacts.removeAll { artifact -> artifact.classifier == 'javadoc' }
+            }
+        }
+    }
+}
