@@ -1,5 +1,7 @@
 # EliteSync-v10｜唯一当前状态入口
 
+**2026-10-25工作流规则已固化：** Owner批准A-D任务下达闭环。权威协议：[TASK_DISPATCH_CLOSURE_PROTOCOL.md](TASK_DISPATCH_CLOSURE_PROTOCOL.md)，工作流摘要见[CURRENT_WORKFLOW.md](CURRENT_WORKFLOW.md)，项目源增量见[20261025_task_dispatch_closure](../gpt-project-sources/20261025_task_dispatch_closure/README.md)。此规则不改变下方D0-C与Gate 2技术状态。
+
 **2026-10-25最新状态：D0_C_FALLBACK_WIRING_STATIC_ACCEPTED / GATE2_NOT_RUN / GATE2_BUDGET_UNCONSUMED / AWAITING_OWNER_DIRECTION。** Astra已独立复核D0-C真实Writer Serializer异常到既有独立fallback的静态调用链，接受静态接线交付；没有执行PowerShell、加载/编译Writer、调用Serializer或运行fixture。此接受不是运行时PASS，也不自动授权Gate 2。
 
 正式Astra独立复核：[D0_C_AGGREGATE_FAILURE_FALLBACK_WIRING_ASTRA_INDEPENDENT_REVIEW_20261025.md](../versions/v10.1.5/D0_C_AGGREGATE_FAILURE_FALLBACK_WIRING_ASTRA_INDEPENDENT_REVIEW_20261025.md)，Blob `f8ce12a81bf303cf5fba37bb708927a3e2791b4b`。正式D0-C报告：[D0_C_AGGREGATE_FAILURE_FALLBACK_WIRING_STATIC_REPORT.md](../versions/v10.1.5/D0_C_AGGREGATE_FAILURE_FALLBACK_WIRING_STATIC_REPORT.md)，Blob `ab359238eed516374396a52db972a18eb6e220de`；Manifest `d0_c_aggregate_failure_fallback_wiring_static_manifest.json` Blob `a22a6c5880a5c0bd6f2cf4d994c2bb9c033b25f1`。专项任务Blob `99862cba631dbb5569049bb7f71c7632e195bfa0`；原综合任务Blob `009a12cae75ef3b714f0156d4edbca2db1660719`。
