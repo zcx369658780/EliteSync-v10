@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "taskBlob": "99862cba631dbb5569049bb7f71c7632e195bfa0",
+  "scope": "D0_C_FALLBACK_WIRING_STATIC_ONLY",
+  "terminal": "D0_C_FALLBACK_WIRING_STATIC_PASS",
+  "disposition": "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+  "gate2": "NOT_RUN",
+  "authority": {
+    "mainAtIntake": "f4f1227be892292a10e6490b866d49f8501d18d9",
+    "mainRootAtIntake": "5f68df5a1816a2a09a753a8a14601b4b38e97b2f",
+    "activeStateBlob": "4e7c4a76957ae21b2a652eccbb50f5198367a84c",
+    "originalTaskBlob": "009a12cae75ef3b714f0156d4edbca2db1660719",
+    "gate1AstraReviewBlob": "d377b19756eebeaf4f01c3f69d6fd2326ed89780",
+    "gate2PreflightAstraReviewBlob": "b4e640323bf73985872dcb95ff9cc6f00d691e0d"
+  },
+  "candidate": {
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "soleParent": "5dabe5de0a3a7f37ae0aa4e9a0ccf3e250b64298",
+    "parentRoot": "260d7d0ef1586016105c7c9509089bd6c6956d94",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/D0_C_AGGREGATE_FAILURE_FALLBACK_WIRING_STATIC_REPORT.md",
+      "docs/versions/v10.1.5/d0_c_aggregate_failure_fallback_wiring_static_manifest.json"
+    ],
+    "finalCommitRootBlobs": "Fixed after commit in separate LOCAL_ONLY delivery-git-identity.json and final-readback.json to avoid self-reference"
+  },
+  "sourceFiles": {
+    "receipt_writer.ps1": {
+      "originalSha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+      "revisedSha256": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+      "originalBytes": 10636,
+      "revisedBytes": 11229,
+      "changed": true
+    },
+    "fixture.ps1": {
+      "originalSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "revisedSha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "originalBytes": 11372,
+      "revisedBytes": 11372,
+      "changed": false
+    },
+    "receipt-schema.json": {
+      "originalSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "revisedSha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "originalBytes": 10867,
+      "revisedBytes": 10867,
+      "changed": false
+    },
+    "fixture-plan.json": {
+      "originalSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "revisedSha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+      "originalBytes": 1302,
+      "revisedBytes": 1302,
+      "changed": false
+    }
+  },
+  "callChain": {
+    "fixtureLoadsWriter": 8,
+    "fixtureBodyConstruction": 95,
+    "fixtureActualWriteAggregateCall": 96,
+    "writeAggregateDefinition": [
+      127
+    ],
+    "serializer": [
+      145
+    ],
+    "aggregateExceptionCapture": [
+      147
+    ],
+    "aggregateFailureMetadataField": [
+      108,
+      149
+    ],
+    "actualIndependentFallbackCall": [
+      151
+    ],
+    "fallbackDualFailureThrow": [
+      155
+    ],
+    "writeIndependentFailureDefinition": 96,
+    "failureSemantics": 103,
+    "independentAtomicPublisherCall": 105,
+    "failureSchemaAndRunIdValidation": [
+      61,
+      71,
+      72,
+      73,
+      74
+    ],
+    "atomicUtf8SchemaReadbackHashMoveAndFinalHash": [
+      82,
+      83,
+      85,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+    ]
+  },
+  "unchangedContracts": {
+    "twoFieldProjectionAndTypeRejectionsByteIdentical": true,
+    "originalWriterBeforeSerializerByteIdentical": true,
+    "fixtureByteIdentical": true,
+    "schemaByteIdentical": true,
+    "planByteIdentical": true,
+    "normalReceiptAndExistingFallbackByteIdentical": true
+  },
+  "fallback": {
+    "actualWriterCatchLines": [
+      144,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151
+    ],
+    "existingIndependentFunctionLines": [
+      96,
+      105
+    ],
+    "existingAtomicPublisherLines": [
+      82,
+      95
+    ],
+    "serializesAggregateAgain": false,
+    "usesSameBodyWriteReceipt": false,
+    "receiptStatus": "RECEIPT_SERIALIZATION_FAILURE",
+    "ready": false,
+    "runIdSource": "Existing control.runId; unchanged fixture line7 binds it to same RunId as body line95",
+    "fieldMetadata": "$",
+    "inputTypeMetadata": "Actual aggregate dictionary GetType().FullName",
+    "exceptionMetadata": "Original caught exception GetType().FullName",
+    "hashAndPublication": "Existing metadata SHA256, strict UTF8, schema/runId checks, readback SHA256, same-directory atomic Move and final SHA256 retained byte-for-byte",
+    "successfulFallback": "Original aggregate error rethrown at line158; no successful return",
+    "failedFallback": "AggregateException at line155 contains original aggregate exception first and fallback exception second; no successful return",
+    "projectionRejections": "Unchanged, outside added Serializer try/catch; no claim that these paths publish fallback",
+    "runtimeObservation": "NOT_RUN"
+  },
+  "product": {
+    "appsTree": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "servicesTree": "1e1e20bb3500bedb1a521e5f2ddeece915d09424",
+    "appsEntries": 1133,
+    "servicesEntries": 791,
+    "trackedSourceChanges": 0,
+    "mainAcceptedVersion": "v10.1.4",
+    "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "nonAuthorReview": {
+    "reviewer": "GPT-6.1 Sol/high independent non-author",
+    "kind": "INDEPENDENT_NON_AUTHOR_STATIC_ONLY",
+    "checks": [
+      {
+        "item": 1,
+        "status": "PASS",
+        "evidence": "fixture.ps1:8,95-96；revised/receipt_writer.ps1:144-151",
+        "reason": "真实Serialize调用位于try内，实际异常由catch捕获并调用既有Write-IndependentFailure；不是harness替代路径。"
+      },
+      {
+        "item": 2,
+        "status": "PASS",
+        "evidence": "receipt_writer.ps1:96-105,82-95",
+        "reason": "fallback手工构造独立failure JSON，经Write-AtomicReceiptJson发布；仅DeserializeObject校验，不递归Write-Aggregate、aggregate Serialize或同body Write-Receipt。"
+      },
+      {
+        "item": 3,
+        "status": "PASS",
+        "evidence": "receipt_writer.ps1:127-143",
+        "reason": "Serialize前全部源码逐字节保持；两字段投影、null/非字符串/基础类型拒绝保持且仍在新增try之外。不能宣称这些投影拒绝也会写fallback。"
+      },
+      {
+        "item": 4,
+        "status": "PASS",
+        "evidence": "fixture.ps1:7,91-100；receipt-schema.json；fixture-plan.json",
+        "reason": "fixture、schema、37案例plan逐字节不变；其余11字段、cases、13字段构造及业务合同未改。fixture:7与95分别将control.runId和body.runId绑定同一RunId。"
+      },
+      {
+        "item": 5,
+        "status": "PASS",
+        "evidence": "receipt_writer.ps1:61,71-74,82-105,147-158；fixture.ps1:2,7,12",
+        "reason": "保留status=RECEIPT_SERIALIZATION_FAILURE、ready=false、control.runId、最小元数据及Hash；沿用既有outputRoot和UTF-8/schema/读回Hash/同目录Move/发布后Hash。fallback成功后158行bare throw仍处于外层catch，重抛原错；fallback失败时155行以显式Exception[]构造AggregateException，原aggregate异常在前、fallback异常在后，两条路径均不返回成功。"
+      },
+      {
+        "item": 6,
+        "status": "PASS",
+        "evidence": "diffs/receipt_writer.ps1.diff；候选工作树只读Git核验",
+        "reason": "唯一源码变化为原Serialize语句外围的失败处理；正常Receipt及既有fallback函数未改。候选HEAD符合预期，status为空，apps/services diff为空，三个Git命令退出码均0。新增代码没有全局配置、SDK或历史资产操作；此结论限源码及具名候选范围，不是全系统审计。"
+      },
+      {
+        "item": 7,
+        "status": "PASS",
+        "evidence": "review-package实际9文件；SOURCE_MANIFEST.json；STATIC_CONTRACT_EVIDENCE.json",
+        "reason": "包内源码、diff、静态清单与任务副本逐字节一致，Manifest全部条目Hash和字节数匹配。未发现个人绝对路径、凭据、真实PID、环境快照或私密运行原证；C盘Unicode字面量为既有合成测试值。"
+      }
+    ],
+    "findings": [],
+    "sha256": "4b0b0af547f7204a69494ce358dea1a5a4e2654f68c8ab29bda90341409b3099",
+    "runtimeRevalidation": false
+  },
+  "reviewPublication": {
+    "branch": "review/temporary-evidence-v1015-d0-c-fallback-wiring-static-20261025",
+    "commit": "5bd6963ef58cd91401cd980bcb2775412cf70b7e",
+    "root": "3d8062fb8e33e5d886d0c11d611017e58232d890",
+    "soleParent": "5dabe5de0a3a7f37ae0aa4e9a0ccf3e250b64298",
+    "files": [
+      {
+        "path": "minimal.diff",
+        "gitBlob": "444ef18a15a5215c41aae24c1849cc9f130da51e",
+        "sha256": "a5708b3990a53d16661841b499c1d0b3d4c5b4baa89005e2e13b9694ad6249d6",
+        "bytes": 976,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "NON_AUTHOR_STATIC_REVIEW.json",
+        "gitBlob": "d7413755b5891b0508ab608d897248fdfac590bc",
+        "sha256": "4b0b0af547f7204a69494ce358dea1a5a4e2654f68c8ab29bda90341409b3099",
+        "bytes": 4540,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "original/receipt_writer.ps1",
+        "gitBlob": "ce0a03e965be56a6b2c0c62025de010ee41369ae",
+        "sha256": "4c1c9da462e07533f2db1d79bfeaf3acc1d88f2c8afd2147f7b68e2726aca4e4",
+        "bytes": 10636,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "README.md",
+        "gitBlob": "15c6829ff1db26e1f50523a1a6a04b8704a59698",
+        "sha256": "621570a55dc4df86a768b76a3da7f6b9ca5dda19796b9ba25b596943d6739af0",
+        "bytes": 2650,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/fixture-plan.json",
+        "gitBlob": "bda0b3b50789b9d84cae63d19bde88fab82d548e",
+        "sha256": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e",
+        "bytes": 1302,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/fixture.ps1",
+        "gitBlob": "0eaf0f7c3a79ef89530d051de14a811cb61b8b04",
+        "sha256": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+        "bytes": 11372,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/receipt-schema.json",
+        "gitBlob": "c01cf7d259168102e5d9c4f2078b07833d6ada5e",
+        "sha256": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+        "bytes": 10867,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "revised/receipt_writer.ps1",
+        "gitBlob": "a521201e2274927ebf0743c4d79811bb7ecf27ba",
+        "sha256": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+        "bytes": 11229,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "SOURCE_MANIFEST.json",
+        "gitBlob": "7f2c1df61895b188bb3ba4daeed842b3c25426b2",
+        "sha256": "5e3593635862f620d5c09c898f193c8090b8518e1daa28ed1746c021d4720dca",
+        "bytes": 1375,
+        "rawBytesMatched": true
+      },
+      {
+        "path": "STATIC_CONTRACT_EVIDENCE.json",
+        "gitBlob": "bdcdd592691d32a6ed61d3af56854d43ff41b6e0",
+        "sha256": "2f9b2013a8ab13b59493370e2b8458f2d1f00422da91ec8fa060580df1efc8e9",
+        "bytes": 3336,
+        "rawBytesMatched": true
+      }
+    ],
+    "totalBytes": 58283,
+    "identityReadbackPassed": true,
+    "rawBytesMatched": true,
+    "productTreesPreserved": true,
+    "ordinaryNewBranch": true,
+    "notMerged": true
+  },
+  "protection": {
+    "scope": "Named protected files and five historical Git roots; checked before candidate publication; not global configuration or live database audit",
+    "namedFiles": 22369,
+    "unchangedFiles": 22369,
+    "changedFiles": [],
+    "historicalRootsUnchanged": true,
+    "oldRefsBeforePublication": 516,
+    "allRefsUnchangedBeforePublication": true,
+    "candidateProductFullMapsUnchanged": {
+      "apps": true,
+      "services": true
+    },
+    "original38JsonCount": 38,
+    "passed": true
+  },
+  "budgets": {
+    "d0AAlreadyConsumed": {
+      "diagnosticAttempts": 1,
+      "serializeAttempts": 15,
+      "secondsApprox": 0.688,
+      "exit": 0,
+      "exitConfirmed": true
+    },
+    "d0AReruns": 0,
+    "gate2Runs": 0,
+    "gate2BudgetConsumed": false,
+    "budgetsReset": false,
+    "writerCompiles": 0,
+    "writerLoads": 0,
+    "writerExecutions": 0,
+    "targetedFixtureRuns": 0,
+    "full37SuiteRuns": 0,
+    "sandboxOperations": 0,
+    "flutterGradleProducerRuns": 0,
+    "libsJarGeneratedOrValidated": false,
+    "formalResolveRuns": 0,
+    "notRunConfigurations": 30
+  },
+  "historicalEvidence": {
+    "original37AggregateRecovered": false,
+    "historicalPSInvalidCastRootCause": "UNKNOWN",
+    "originalCsharpDraftPreserved": true
+  },
+  "localOnlyEvidence": {
+    "intake.json": {
+      "sha256": "ef556c44592ba34a9bbd4067018bb78a52ccfdc28aa99fb2b38bc6b9252c6e86",
+      "bytes": 1575
+    },
+    "static-contract-evidence.json": {
+      "sha256": "2f9b2013a8ab13b59493370e2b8458f2d1f00422da91ec8fa060580df1efc8e9",
+      "bytes": 3336
+    },
+    "non-author-static-review.json": {
+      "sha256": "4b0b0af547f7204a69494ce358dea1a5a4e2654f68c8ab29bda90341409b3099",
+      "bytes": 4540
+    },
+    "preservation-before-publication.json": {
+      "sha256": "0414d0ec5f611072145153eb26b89a1de9fde89483c93989a8f06045255400b1",
+      "bytes": 489
+    },
+    "review-remote-readback.json": {
+      "sha256": "4b55e5b97d7cf30cc97080a070d20008de9c3645f31ef3e7d4c8b5d9b474c837",
+      "bytes": 2937
+    },
+    "disclosure-review.json": {
+      "sha256": "bb154e5d793550dabf4c491bce626220d94bc6666619b546bdddc6ef103eff6a",
+      "bytes": 215
+    }
+  },
+  "retained": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "nextGate": "STOP after publication/readback; Astra independent static review, then separate explicit Owner release before any Gate2 run"
+}
