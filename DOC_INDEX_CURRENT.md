@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+**2026-10-25 Owner确认长任务模式恢复：** v10.x默认“一份冻结计划、一份综合长任务、一次集中候选与独立验收”；Codex在冻结范围内中途无监督地自主开发、构建、测试和普通返修。A-D仅为任务发布闭环，不是逐步骤审批。详见[现行工作流第8节](docs/workflow/CURRENT_WORKFLOW.md)、[Task Dispatch Closure Protocol](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)及[Astra Gate 2执行策略阻断复核](docs/versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)。一次PowerShell启动已因真实执行策略拒绝而消费预算，正负例NOT_RUN；本次治理更新不授权重试。
+
+
 **2026-10-25工作流治理最新增量：** [A-D任务下达闭环协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md) → [现行工作流](docs/workflow/CURRENT_WORKFLOW.md) → [唯一当前状态](docs/workflow/ACTIVE_STATE.md) → [2026-10-25项目源增量](docs/gpt-project-sources/20261025_task_dispatch_closure/README.md)。Owner已批准：正式任务必须创建并读回唯一任务文件、同步ACTIVE_STATE并重新核验live main/Root/Blob，最终同一条回复附任务链接、Blob SHA和单一可复制启动Prompt。Owner手动派发Codex；失败须报告部分完成，发布不等于执行。Project Sources附件不自动更新，项目源ZIP须由Owner手动上传。
 
 
