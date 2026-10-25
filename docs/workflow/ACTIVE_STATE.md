@@ -1,18 +1,16 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_R1_BOUNDED_REPAIR_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成R1候选 `d45cd08f939f6dfc6b4efe2420f4a117efc99e68` 的集中独立复核。接受本次重复call-scoped leave等待既有Room teardown的有界修复、指定native/lifecycle停止时序，以及在原未变通知APK上实际可见失效卡片的可访问性点击结果；整版仍不接受，AC05仍开放。
+**2026-10-25最新状态：V10.1.5_R1_BOUNDED_REPAIR_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / FOCUSED_BUILD_APP_TASK_PREPARED / OWNER_MANUAL_DISPATCH_REQUIRED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已对R1候选 `d45cd08f939f6dfc6b4efe2420f4a117efc99e68` 完成有界独立复核；整版仍不接受，AC05保持开放。Owner现在要求下一份小范围任务只处理：（1）Android构建入口意外触发Gradle下载的fail-closed离线保护；（2）APP侧RTC清理残余native警告的复现、归因与必要最小修复。任务单已准备，等待Owner手动派发Codex，尚未派发或执行。
 
-**R1正式复核记录：** [R1_REPAIR_ASTRA_REVIEW_20261025.md](../versions/v10.1.5/R1_REPAIR_ASTRA_REVIEW_20261025.md)，当前复核草案分支 `astra/v10.1.5-r1-review-20261025`，记录提交 `801a4f6f431fb2c34f092f5bc96e7537777be9a1`。该分支只包含审查/状态文档，不包含候选产品代码；尚未合入main。
+**小范围任务单：** [V10_1_5_BUILD_APP_CLEANUP_FOCUSED_TASK_20261025.md](../versions/v10.1.5/V10_1_5_BUILD_APP_CLEANUP_FOCUSED_TASK_20261025.md)，位于分支 `owner/v10.1.5-build-app-hardening-task-20261025`，创建任务文档的提交 `faa84767cde4a34ade020249d87f31535b11d4cf`。该分支只用于任务/状态文档，不合入产品main；创建任务单不等于向Codex派发。
 
-**最新交付候选：** `d45cd08f939f6dfc6b4efe2420f4a117efc99e68`，唯一Parent `e7cbbe6030b033c5c9244c599bd42fcff312a8c6`，Root `9a2997eacbbc386f48d2a2dc259221a2319997dd`。源码Commit `e7cbbe6030b033c5c9244c599bd42fcff312a8c6` / Root `3871583648176b69a2d0ebb1053b23a07770fec5`；apps Tree `0581a5286300d8c39fd7ffaf3dce37af0257419e` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。候选源码仍不是产品main。
+**最近R1候选：** `d45cd08f939f6dfc6b4efe2420f4a117efc99e68`，唯一Parent `e7cbbe6030b033c5c9244c599bd42fcff312a8c6`，Root `9a2997eacbbc386f48d2a2dc259221a2319997dd`。源码Commit `e7cbbe6030b033c5c9244c599bd42fcff312a8c6` / Root `3871583648176b69a2d0ebb1053b23a07770fec5`；apps Tree `0581a5286300d8c39fd7ffaf3dce37af0257419e` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。最新报告 Blob `741ebb72c7f42cf9f0463d6b406e6485798716e3`；Manifest Blob `36ba70056e2d46371aceb66ec8cc16935ede1156`。冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03` 不变。
 
-**最新报告/Manifest：** [IMPLEMENTATION_REPORT.md](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)，Blob `741ebb72c7f42cf9f0463d6b406e6485798716e3`；[artifact_manifest.json](../versions/v10.1.5/artifact_manifest.json)，Blob `36ba70056e2d46371aceb66ec8cc16935ede1156`。冻结计划未变，Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。实时main仍为 `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；产品接受基线仍为v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。
+**两项任务范围：** Gradle部分要求项目拥有的本地离线debug入口，直接验证并调用已存在的Gradle 8.14，不调用会bootstrap下载的Wrapper；工具/依赖不满足时须在启动构建前fail-closed。保留R1首次wrapper下载尝试及7,941,328字节partial的LOCAL_ONLY原证，不得声称全程无网络。APP部分只调查R1记录的camera close code4/5与trackDispose-null警告，使用同call/同PID新鲜证据区分APP缺陷、正常幂等关闭和SDK/native行为；若没有可证明的APP-owned缺陷，不吞异常、不屏蔽警告、不改vendor SDK。R1重复leave修复及22+27项定向通过证据保留，不重做无关测试。
 
-**R1新增有界结果：** call-scoped重复leave在Room已分离但清理仍在途时等待现有teardown Future；22项service和27项关联页面检查报告exit0，定向Dart分析无问题。新call的GO前置真实撤权，指定native/lifecycle端点保守上界为 `0.90625s`，含31.25ms时钟量化余量；这不是精确COMMIT打点，不证明最后可闻波形或AEC。原通知APK上的实际可见失效卡片执行Android可访问性ACTION_CLICK，出现阻断反馈、未显示私密正文且已读事实不变；不声称物理触屏或HTTP 403。
+**仍有效的边界：** Gate2两次历史启动预算已消费，本任务新启动/Writer/Serializer调用必须为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve仍NOT_RUN。AEC、最后可闻波形、实际15/30天及物理30天清理、真实Push仍未闭合。不合并产品main、不启动v10.1.6、不接入生产服务或真实Push、不清理历史备份/旧refs/SQL/APK/LOCAL_ONLY证据。任务文档准备完毕后等待Owner明确手动派发。
 
-**必须保留的观察与门禁：** 首次APK构建的内层Gradle wrapper尝试下载，已中止并保留7,941,328字节partial及Hash；修正后使用既有本地Gradle构建成功。不得声称全程无下载。AEC/真实语音质量和最后可闻波形仍未证明；真实经过15/30天与物理30天清理仍 `WAITING_ELAPSED_TIME / NOT_RUN`；真实Push仍PENDING。Gate2两次历史启动预算均已消费，本轮新启动/Writer/Serializer调用为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。
-
-**Owner下一步：** 本轮R1已完成有界接受与观察记录。等待Owner明确下一步，不自动创建后继任务或再次派发Codex。继续禁止合并产品main、启动v10.1.6、运行未授权Gate2、接入真实Push/生产服务，或清理历史备份、旧refs、SQL、APK和LOCAL_ONLY证据。
+**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码树仍不是产品main。
 
 ## 已独立核验的产品和集成
 
