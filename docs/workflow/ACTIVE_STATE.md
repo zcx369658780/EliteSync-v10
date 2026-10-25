@@ -1,5 +1,22 @@
 # EliteSync-v10｜唯一当前状态入口
 
+**2026-10-25最新状态：D0_C_GATE2_TARGETED_BLOCKED / BUDGET_CONSUMPTION_REPORTED / FULL_37_CASE_SUITE_NOT_RUN / AWAITING_OWNER_DIRECTION。** Gate 2唯一一次启动被Windows PowerShell脚本执行策略拒绝，原始错误为`SecurityError / UnauthorizedAccess`；子进程exit 1、退出已确认，监督耗时0.375秒。正例、负例、Writer、Serializer和fallback均`NOT_RUN`，没有receipt。一次性启动预算已消费，不重试、不改策略、不换入口、不申请额外权限。此为真实环境启动阻断，不是Writer运行FAIL，也不证明产品安全缺陷。
+
+阻断候选Commit `f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff`，唯一Parent `7b8b9959c9e53994ec5c52736d1fb3ca00ba4239`，Root `d42fcdecb26cea24e65648a6d747329785132109`。报告Blob `a18904743a412f82e5a5a358246eafe9295071d6`；Manifest Blob `e004f9928a9e5ae3eaa7d955c6b16a7c0e88c340`。详见[Gate 2 Astra独立复核](../versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)，其Blob为后续回读值。
+
+**Owner再次确认并要求恢复v10.x默认长任务单+中途无监督模式。** 现行规则：[CURRENT_WORKFLOW.md](CURRENT_WORKFLOW.md)第8节、[TASK_DISPATCH_CLOSURE_PROTOCOL.md](TASK_DISPATCH_CLOSURE_PROTOCOL.md)“默认任务形态”、[AGENTS.md](../../AGENTS.md)“默认长任务模式”。A-D只保证任务下达完整，不代表逐步骤审批。Codex在冻结范围内可自主调查、实现、构建、测试、调试及普通返修；仅超范围/方向性、生产/真实用户数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人和不可逆风险需要停下。真实环境拒绝如实记录，不伪造、不绕过、不擅改策略；明确一次性预算不自动重试。
+
+当前没有自动发布新测试任务，也没有重新放行Gate 2。因为一次性启动预算已消费，任何后续执行方式需Owner明确授权；本状态同步本身不创建Codex任务、不运行命令。
+
+产品状态不变：接受产品v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍`PARTIAL_NOT_ACCEPTED`，AC05 `OPEN`；ICE诊断标志未证明、旧guest状态未知、无Host APK、无main产品集成、v10.1.6未启动。
+
+## 2026-10-25路线图当前状态
+
+权威路线：[ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)，Blob `d8d34ccf229254e7e064be00590ba509071cf749`。v10.1.1–v10.1.4按后续接受记录已完成限定接受；v10.1.5仍在通信/Serializer/SDK门禁与剩余通信质量功能；v10.1.6、v10.1.7尚未开始。目标仍是v10.1.7开发评审版，不包含条件阶段的公开运营承诺。
+
+估时是Astra规划推断而非路线图承诺：当前执行策略阻断先需Owner决定合规的后续环境方案；若恢复后Gate 2与完整37案例/SDK门禁顺利，当前工程链约2–6周；v10.1.5剩余功能、v10.1.6和v10.1.7联合交付整体仍粗估3–6个月，最大不确定性为执行环境、SDK/Producer、通信与离线端到端验证和联合验收返修。
+
+
 **2026-10-25最新状态：D0_C_GATE2_TARGETED_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / GATE2_NOT_RUN / 15S_BUDGET_UNCONSUMED_UNTIL_DISPATCH。** Owner已明确重新放行一次总计15秒的定点aggregate正负例测试。正式任务单已创建并读回核验；等待Owner手动派发Codex。只允许一次正负例定点测试，不允许完整37案例suite或任何后续SDK/Producer阶段。
 
 正式任务单：[D0_C_GATE2_TARGETED_AGGREGATE_POSITIVE_NEGATIVE_TEST_TASK_20261025.md](../versions/v10.1.5/D0_C_GATE2_TARGETED_AGGREGATE_POSITIVE_NEGATIVE_TEST_TASK_20261025.md)，Blob `420f372b74893bcb11abba2bcb957aa5a43eee28`。原综合任务Blob `009a12cae75ef3b714f0156d4edbca2db1660719`；Gate 1 Astra复核Blob `d377b19756eebeaf4f01c3f69d6fd2326ed89780`；D0-C fallback wiring Astra复核Blob `f8ce12a81bf303cf5fba37bb708927a3e2791b4b`。本任务是在已接受D0-C静态修订上运行一次真实Writer正负例，不重跑D0-A、不重置历史预算。
