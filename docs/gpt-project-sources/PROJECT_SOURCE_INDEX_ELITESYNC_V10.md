@@ -17,3 +17,9 @@
 索引不是自动同步，也不自动取得权限。GitHub工具/访问不可用、路径未发布或资料LOCAL_ONLY时，报告具体缺口并使用Owner提供的对应文件/提交快照，不声称已读。网页不能假定能调用本机QMD/Basic Memory或读C:/D:；必要私有原证由Owner脱敏提供。仅能读取GitHub时生成精确更新内容交Owner人工提交，不改回Work、不建自动写入桥。
 
 只有仓库、发布分支或入口路径改变时通常需要重新上传此文件。当前状态、环境版本、每日进度与未来文件由动态总目录维护，不写入本稳定索引。
+
+## 2026-10-25 任务下达闭环增量项目源
+
+最新治理增量：[20261025_task_dispatch_closure/README.md](20261025_task_dispatch_closure/README.md)。Owner已批准A-D任务下达闭环，正文见[Task Dispatch Closure Protocol](../workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)。本增量同步GitHub正式工作流、AGENTS、记忆导航与当前状态入口；Owner手动派发Codex、正式任务与启动Prompt同回复交付、未完成必须报告部分完成均为长期规则。ZIP仅包含本次治理增量及必要当前状态快照，不替换旧历史项目源，也不会自动更新ChatGPT Project Sources附件；生成后由Owner手动上传。
+
+本次GitHub同步回执和当前main以实时[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)与[动态总目录](../../DOC_INDEX_CURRENT.md)为准。
