@@ -11,6 +11,7 @@ import 'package:livekit_client/livekit_client.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_android_audio_engine.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_ice_diagnostic.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_audio_signal_metrics.dart';
 
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
@@ -28,7 +29,9 @@ class RtcLiveKitService extends ChangeNotifier {
     required Future<bool> Function() microphonePermission,
     required Future<bool> Function() cameraPermission,
     Room Function()? roomFactory,
+    CancelListenFunc? rendererCancel,
   }) : _room = room,
+       _cancelLocalAudioRenderer = rendererCancel,
        _roomFactory = roomFactory,
        _microphonePermission = microphonePermission,
        _cameraPermission = cameraPermission;
@@ -42,6 +45,8 @@ class RtcLiveKitService extends ChangeNotifier {
 
   Room? _room;
   Future<void>? _roomTeardown;
+  bool? _lastCleanupSucceeded;
+  bool? get lastCleanupSucceeded => _lastCleanupSucceeded;
   int? _connectedCallId;
   Object? _connectionAttempt;
   int? _pendingCallId;
@@ -406,7 +411,10 @@ class RtcLiveKitService extends ChangeNotifier {
       return;
     }
 
-    await _unbindLocalAudioTrackDiagnostics();
+    if (!await _unbindLocalAudioTrackDiagnostics()) {
+      _failureMessage = '媒体资源清理失败，请退出通话后重试';
+      return;
+    }
     _boundLocalAudioTrackId = nextTrackId;
     debugPrint(
       'RTC_LIVEKIT_LOCAL_AUDIO_BIND '
@@ -442,6 +450,7 @@ class RtcLiveKitService extends ChangeNotifier {
                         .fold<double>(0.0, math.max) /
                     32768.0;
           {
+            final tones = rtcAudioToneDiagnostics(samples, frame.sampleRate);
             debugPrint(
               'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
               'device=${_platformLabel()} '
@@ -452,7 +461,9 @@ class RtcLiveKitService extends ChangeNotifier {
               'channels=${frame.channels} '
               'bytes=${frame.data.lengthInBytes} '
               'absAvg=${absAvg.toStringAsFixed(4)} '
-              'peak=${peak.toStringAsFixed(4)}',
+              'peak=${peak.toStringAsFixed(4)} '
+              'tone440=${tones.tone440.toStringAsFixed(4)} '
+              'tone880=${tones.tone880.toStringAsFixed(4)}',
             );
           }
         },
@@ -474,17 +485,22 @@ class RtcLiveKitService extends ChangeNotifier {
     }
   }
 
-  Future<void> _unbindLocalAudioTrackDiagnostics() async {
+  Future<bool> _unbindLocalAudioTrackDiagnostics() async {
     final cancel = _cancelLocalAudioRenderer;
     _cancelLocalAudioRenderer = null;
     _boundLocalAudioTrackId = null;
     if (cancel != null) {
       try {
         await cancel();
-      } catch (_) {
-        // best-effort only
+      } catch (error) {
+        debugPrint(
+          'RTC_CLEANUP stage=renderer_cancel outcome=failed '
+          'errorType=${error.runtimeType}',
+        );
+        return false;
       }
     }
+    return true;
   }
 
   Future<void> _logRemoteAudioStats(int callId) async {
@@ -726,6 +742,9 @@ class RtcLiveKitService extends ChangeNotifier {
         await teardown;
         if (_disposed || requestedGeneration != _connectionGeneration) return;
       }
+      if (_lastCleanupSucceeded == false) {
+        throw StateError('Previous media cleanup failed');
+      }
       final diagnosticAllowed = iceDiagnosticRequested
           ? await verifyIceDiagnosticHost(appEnv)
           : false;
@@ -759,6 +778,9 @@ class RtcLiveKitService extends ChangeNotifier {
       final expectedAfterLeave = _connectionGeneration + 1;
       await _leave(preserveAttempt: attempt);
       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
+      if (_lastCleanupSucceeded == false) {
+        throw StateError('Previous media cleanup failed');
+      }
       generation = _connectionGeneration;
       _connectedCallId = callId;
       debugPrint(
@@ -1100,7 +1122,8 @@ class RtcLiveKitService extends ChangeNotifier {
     _iceDiagnosticObserver?.stop();
     _iceDiagnosticObserver = null;
     final room = _room;
-    final teardown = room == null ? null : Completer<void>();
+    final hasRenderer = _cancelLocalAudioRenderer != null;
+    final teardown = room == null && !hasRenderer ? null : Completer<void>();
     if (teardown != null) _roomTeardown = teardown.future;
     room?.removeListener(_mediaChanged);
     _room = null;
@@ -1110,28 +1133,56 @@ class RtcLiveKitService extends ChangeNotifier {
     _remoteAudioTrackFromEvent = false;
     _stopHeartbeat();
     _stopAudioStatsTimer();
-    unawaited(_unbindLocalAudioTrackDiagnostics());
     _mediaChanged();
-    if (room == null) {
+    if (teardown == null) {
       await _roomTeardown;
-      _logLifecycle(leavingCallId, 'leave_complete');
+      _logLifecycle(
+        leavingCallId,
+        _lastCleanupSucceeded == false ? 'leave_failed' : 'leave_complete',
+      );
       return;
     }
+    var succeeded = true;
     try {
-      await room.disconnect();
-    } catch (_) {
-      // leave should be best-effort only.
-    } finally {
-      try {
-        await room.dispose();
-      } catch (_) {
-        // Still release waiters after best-effort native cleanup.
-      } finally {
-        teardown!.complete();
-        if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
+      succeeded = await _unbindLocalAudioTrackDiagnostics();
+      _logLifecycle(
+        leavingCallId,
+        succeeded ? 'renderer_cancel_complete' : 'renderer_cancel_failed',
+      );
+      if (room != null) {
+        try {
+          _logLifecycle(leavingCallId, 'room_disconnect_start');
+          await room.disconnect();
+          _logLifecycle(leavingCallId, 'room_disconnect_complete');
+        } catch (error) {
+          succeeded = false;
+          debugPrint(
+            'RTC_CLEANUP callId=$leavingCallId stage=disconnect '
+            'outcome=failed errorType=${error.runtimeType}',
+          );
+        }
+        try {
+          _logLifecycle(leavingCallId, 'room_dispose_start');
+          await room.dispose();
+          _logLifecycle(leavingCallId, 'room_dispose_complete');
+        } catch (error) {
+          succeeded = false;
+          debugPrint(
+            'RTC_CLEANUP callId=$leavingCallId stage=dispose '
+            'outcome=failed errorType=${error.runtimeType}',
+          );
+          _logLifecycle(leavingCallId, 'room_dispose_failed');
+        }
       }
+    } finally {
+      _lastCleanupSucceeded = succeeded;
+      if (!succeeded) {
+        _failureMessage = '媒体资源清理失败，请退出通话后重试';
+      }
+      teardown.complete();
+      if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
     }
-    _logLifecycle(leavingCallId, 'leave_complete');
+    _logLifecycle(leavingCallId, succeeded ? 'leave_complete' : 'leave_failed');
   }
 
   Future<RtcLiveKitJoinInfoEntity> _loadJoinInfo(int callId) =>

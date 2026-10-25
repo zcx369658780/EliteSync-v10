@@ -1,4 +1,5 @@
 // Copyright 2024 LiveKit, Inc.
+// Modified by EliteSync on 2026-10-25: dispose events even when track stop fails.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -71,9 +72,11 @@ abstract class Track extends DisposableChangeNotifier with EventsEmittable<Track
 
     onDispose(() async {
       logger.fine('${objectId} onDispose()');
-      await stop();
-      // dispose events
-      await events.dispose();
+      try {
+        await stop();
+      } finally {
+        await events.dispose();
+      }
     });
   }
 

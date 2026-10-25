@@ -1,3 +1,211 @@
+--- upstream/lib/src/core/room.dart
++++ elitesync/lib/src/core/room.dart
+@@ -1,4 +1,5 @@
+ // Copyright 2024 LiveKit, Inc.
++// Modified by EliteSync on 2026-10-25: awaitable, failure-reporting Room cleanup.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+ // you may not use this file except in compliance with the License.
+@@ -59,6 +60,23 @@
+ import 'participant_collection.dart';
+ import 'pending_track_queue.dart';
+ 
++// Attempt every owned Room cleanup stage, then report the first failure with its
++// original stack. A failed early stage must not skip engine/listener disposal.
++Future<void> _runRoomCleanupSteps(List<Future<void> Function()> steps) async {
++  Object? firstError;
++  StackTrace? firstStack;
++  for (final step in steps) {
++    try {
++      await step();
++    } catch (error, stack) {
++      logger.warning('Room cleanup stage failed (${error.runtimeType})');
++      firstError ??= error;
++      firstStack ??= stack;
++    }
++  }
++  if (firstError != null) Error.throwWithStackTrace(firstError, firstStack!);
++}
++
+ /// Room is the primary construct for LiveKit conferences. It contains a
+ /// group of [Participant]s, each publishing and subscribing to [Track]s.
+ /// Notifies changes to its state via two ways, by assigning a delegate, or using
+@@ -69,6 +87,27 @@
+ /// * active speakers are different
+ /// {@category Room}
+ class Room extends DisposableChangeNotifier with EventsEmittable<RoomEvent> {
++  Future<bool>? _roomDisposeFuture;
++  Object? _roomDisposeError;
++  StackTrace? _roomDisposeStack;
++
++  @override
++  Future<bool> dispose() async {
++    final pending = _roomDisposeFuture;
++    if (pending != null) return pending;
++    final completion = Completer<bool>();
++    _roomDisposeFuture = completion.future;
++    try {
++      final result = await super.dispose();
++      final error = _roomDisposeError;
++      if (error != null) Error.throwWithStackTrace(error, _roomDisposeStack!);
++      completion.complete(result);
++    } catch (error, stack) {
++      completion.completeError(error, stack);
++    }
++    return completion.future;
++  }
++
+   // expose engine's params
+   /// connection state of the room
+   ConnectionState get connectionState => engine.connectionState;
+@@ -203,22 +242,24 @@
+     preConnectAudioBuffer = PreConnectAudioBuffer(this);
+ 
+     onDispose(() async {
+-      // clean up routine
+-      await _cleanUp();
+-      // reject any in-flight RPC calls
+-      _rpcClientManager.dispose();
+-      // dispose preConnectAudioBuffer
+-      await preConnectAudioBuffer.dispose();
+-      // dispose events
+-      await events.dispose();
+-      // dispose local participant
+-      await localParticipant?.dispose();
+-      // dispose all listeners for SignalClient
+-      await _signalListener.dispose();
+-      // dispose all listeners for Engine
+-      await _engineListener.dispose();
+-      // dispose the engine
+-      await this.engine.dispose();
++      try {
++        await _runRoomCleanupSteps([
++          () => _cleanUp(),
++          () async { _rpcClientManager.dispose(); },
++          () async { await preConnectAudioBuffer.dispose(); },
++          () async { await events.dispose(); },
++          () async { await localParticipant?.dispose(); },
++          () async { await _signalListener.dispose(); },
++          () async { await _engineListener.dispose(); },
++          () async { await this.engine.dispose(); },
++        ]);
++      } catch (error, stack) {
++        // The generic SDK disposer retains its best-effort contract. Room
++        // records its own failure so its awaiters can observe it afterwards.
++        _roomDisposeError = error;
++        _roomDisposeStack = stack;
++        rethrow;
++      }
+     });
+   }
+ 
+@@ -1033,38 +1074,60 @@
+ 
+     // clean up RemoteParticipants
+     final participants = _remoteParticipants.toList();
++    // Publication disposal is generically best-effort. Retain direct track and
++    // publication ownership before remove/unpublish can erase these references.
++    final remoteResources = {
++      for (final participant in participants)
++        participant: [
++          for (final publication in participant.trackPublications.values)
++            (publication: publication, track: publication.track),
++        ],
++    };
++    final local = localParticipant;
++    final localResources = [
++      if (local != null)
++        for (final publication in local.trackPublications.values)
++          (publication: publication, track: publication.track),
++    ];
+     _remoteParticipants.clear();
+-    for (final participant in participants) {
+-      await participant.removeAllPublishedTracks(notify: false);
+-      // RemoteParticipant is responsible for disposing resources
+-      await participant.dispose();
+-    }
+     _pendingTrackQueue.clear();
+-
+-    // clean up LocalParticipant
+-    await localParticipant?.unpublishAllTracks();
+-
+-    if (disposeLocalParticipant) {
+-      await localParticipant?.dispose();
+-      _localParticipant = null;
+-    }
+-
+-    _activeSpeakers.clear();
+-
+-    await preConnectAudioBuffer.reset();
+-
+-    // clean up engine
+-    await engine.cleanUp();
+-
+-    await NativeAudioManagement.stop();
+-
+-    // reset params
+-    _roomInfo = null;
+-    _name = null;
+-    _metadata = null;
+-    _isRecording = false;
+-    _serverVersion = null;
+-    _serverRegion = null;
++    await _runRoomCleanupSteps([
++      for (final participant in participants) ...[
++        () => participant.removeAllPublishedTracks(notify: false),
++        for (final resource in remoteResources[participant]!) ...[
++          () async { await resource.track?.dispose(); },
++          () async { await resource.publication.dispose(); },
++        ],
++        () async { await participant.dispose(); },
++      ],
++      () async { await local?.unpublishAllTracks(); },
++      for (final resource in localResources) ...[
++        () async {
++          if (roomOptions.stopLocalTrackOnUnpublish) {
++            await resource.track?.dispose();
++          } else {
++            await resource.track?.stopCapture();
++          }
++        },
++        () async { await resource.publication.dispose(); },
++      ],
++      if (disposeLocalParticipant) ...[
++        () async { await local?.dispose(); },
++        () async { _localParticipant = null; },
++      ],
++      () async { _activeSpeakers.clear(); },
++      () => preConnectAudioBuffer.reset(),
++      () => engine.cleanUp(),
++      () => NativeAudioManagement.stop(),
++      () async {
++        _roomInfo = null;
++        _name = null;
++        _metadata = null;
++        _isRecording = false;
++        _serverVersion = null;
++        _serverRegion = null;
++      },
++    ]);
+   }
+ 
+   /// Applies room info from server. Skips metadata event on first join
+--- upstream/lib/src/support/native.dart
++++ elitesync/lib/src/support/native.dart
+@@ -1,4 +1,5 @@
+ // Copyright 2024 LiveKit, Inc.
++// Modified by EliteSync on 2026-10-25: report PCM renderer stop failures.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+ // you may not use this file except in compliance with the License.
+@@ -362,6 +363,7 @@
+       );
+     } catch (error) {
+       logger.warning('stopAudioRenderer did throw $error');
++      rethrow;
+     }
+   }
+ 
 --- upstream/lib/src/track/local/local.dart
 +++ elitesync/lib/src/track/local/local.dart
 @@ -1,4 +1,5 @@
@@ -6,15 +214,29 @@
  //
  // Licensed under the Apache License, Version 2.0 (the "License");
  // you may not use this file except in compliance with the License.
-@@ -67,6 +68,7 @@
+@@ -67,6 +68,11 @@
  /// Used to group [LocalAudioTrack] and [RemoteAudioTrack].
  mixin AudioTrack on Track {
    final Map<AudioRendererOptions, _AudioCaptureGroup> _captureGroups = {};
 +  Future<void>? _captureStopFuture;
++  Object? _captureStopError;
++  StackTrace? _captureStopStack;
++  Future<bool>? _captureDisposeFuture;
++  bool _captureDisposing = false;
  
    /// Register a callback to receive raw PCM audio frames from this track.
    ///
-@@ -89,8 +91,11 @@
+@@ -80,6 +86,9 @@
+     required AudioFrameCallback onFrame,
+     AudioRendererOptions options = const AudioRendererOptions(),
+   }) {
++    if (_captureDisposing || isDisposed || _captureStopError != null) {
++      throw StateError('Cannot add an audio renderer to a disposing track');
++    }
+     final group = _captureGroups.putIfAbsent(
+       options,
+       () => _AudioCaptureGroup(track: mediaStreamTrack, options: options),
+@@ -89,8 +98,11 @@
      return () async {
        group.renderers.remove(onFrame);
        if (group.renderers.isEmpty) {
@@ -28,7 +250,7 @@
        }
      };
    }
-@@ -101,12 +106,27 @@
+@@ -101,12 +113,69 @@
    }
  
    @override
@@ -47,20 +269,62 @@
 +
 +  Future<void> _stopCaptureGroups(List<_AudioCaptureGroup> groups) {
 +    final previous = _captureStopFuture;
-+    if (groups.isEmpty) return previous ?? Future<void>.value();
++    final rememberedError = _captureStopError;
++    if (groups.isEmpty) {
++      return previous ?? (rememberedError == null
++          ? Future<void>.value()
++          : Future<void>.error(rememberedError, _captureStopStack));
++    }
 +    late final Future<void> stopping;
 +    stopping = Future.wait<void>([
 +      if (previous != null) previous,
++      if (previous == null && rememberedError != null)
++        Future<void>.error(rememberedError, _captureStopStack),
 +      for (final group in groups) group.stop(),
-+    ]).then<void>((_) {}).whenComplete(() {
++    ]).then<void>((_) {}).catchError((Object error, StackTrace stack) {
++      // Removing a group must not turn a failed native stop into a later
++      // successful track disposal merely because the map is now empty.
++      _captureStopError ??= error;
++      _captureStopStack ??= stack;
++      Error.throwWithStackTrace(_captureStopError!, _captureStopStack!);
++    }).whenComplete(() {
 +      if (identical(_captureStopFuture, stopping)) _captureStopFuture = null;
 +    });
 +    _captureStopFuture = stopping;
 +    return stopping;
++  }
++
++  @override
++  Future<bool> dispose() async {
++    final pending = _captureDisposeFuture;
++    if (pending != null) return pending;
++    if (isDisposed) return false;
++    _captureDisposing = true;
++    // Repeated callers observe the same completion or failure, including after
++    // the base disposer has marked the track disposed.
++    final completion = Completer<bool>();
++    _captureDisposeFuture = completion.future;
++    try {
++      Object? captureError;
++      StackTrace? captureStack;
++      try {
++        // Capture can exist before Track.start marks this track active.
++        await stopCapture();
++      } catch (error, stack) {
++        captureError = error;
++        captureStack = stack;
++      }
++      final result = await super.dispose();
++      if (captureError != null) Error.throwWithStackTrace(captureError, captureStack!);
++      completion.complete(result);
++    } catch (error, stack) {
++      completion.completeError(error, stack);
++    }
++    return completion.future;
    }
  }
  
-@@ -115,6 +135,7 @@
+@@ -115,6 +184,7 @@
    late final Future<void> _startFuture;
    AudioFrameCapture? _capture;
    StreamSubscription? _subscription;
@@ -68,7 +332,7 @@
  
    _AudioCaptureGroup({
      required rtc.MediaStreamTrack track,
-@@ -147,7 +168,12 @@
+@@ -147,7 +217,12 @@
      });
    }
  
@@ -82,6 +346,29 @@
      await _startFuture;
      await _subscription?.cancel();
      _subscription = null;
+--- upstream/lib/src/track/track.dart
++++ elitesync/lib/src/track/track.dart
+@@ -1,4 +1,5 @@
+ // Copyright 2024 LiveKit, Inc.
++// Modified by EliteSync on 2026-10-25: dispose events even when track stop fails.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+ // you may not use this file except in compliance with the License.
+@@ -71,9 +72,11 @@
+ 
+     onDispose(() async {
+       logger.fine('${objectId} onDispose()');
+-      await stop();
+-      // dispose events
+-      await events.dispose();
++      try {
++        await stop();
++      } finally {
++        await events.dispose();
++      }
+     });
+   }
+ 
 --- upstream/pubspec.yaml
 +++ elitesync/pubspec.yaml
 @@ -12,10 +12,11 @@
@@ -93,7 +380,7 @@
  description: Flutter Client SDK for LiveKit. Build real-time video and audio
    into your apps. Supports iOS, Android, and Web.
 -version: 2.10.0
-+version: 2.10.0+elitesync.1
++version: 2.10.0+elitesync.2
  homepage: https://github.com/livekit/client-sdk-flutter
  
  # Test fixture keys for certificate pinning tests, not real secrets.

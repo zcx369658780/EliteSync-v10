@@ -1,4 +1,5 @@
 // Copyright 2024 LiveKit, Inc.
+// Modified by EliteSync on 2026-10-25: report PCM renderer stop failures.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -362,6 +363,7 @@ class Native {
       );
     } catch (error) {
       logger.warning('stopAudioRenderer did throw $error');
+      rethrow;
     }
   }
 

@@ -69,6 +69,10 @@ mixin VideoTrack on Track {
 mixin AudioTrack on Track {
   final Map<AudioRendererOptions, _AudioCaptureGroup> _captureGroups = {};
   Future<void>? _captureStopFuture;
+  Object? _captureStopError;
+  StackTrace? _captureStopStack;
+  Future<bool>? _captureDisposeFuture;
+  bool _captureDisposing = false;
 
   /// Register a callback to receive raw PCM audio frames from this track.
   ///
@@ -82,6 +86,9 @@ mixin AudioTrack on Track {
     required AudioFrameCallback onFrame,
     AudioRendererOptions options = const AudioRendererOptions(),
   }) {
+    if (_captureDisposing || isDisposed || _captureStopError != null) {
+      throw StateError('Cannot add an audio renderer to a disposing track');
+    }
     final group = _captureGroups.putIfAbsent(
       options,
       () => _AudioCaptureGroup(track: mediaStreamTrack, options: options),
@@ -117,16 +124,58 @@ mixin AudioTrack on Track {
 
   Future<void> _stopCaptureGroups(List<_AudioCaptureGroup> groups) {
     final previous = _captureStopFuture;
-    if (groups.isEmpty) return previous ?? Future<void>.value();
+    final rememberedError = _captureStopError;
+    if (groups.isEmpty) {
+      return previous ?? (rememberedError == null
+          ? Future<void>.value()
+          : Future<void>.error(rememberedError, _captureStopStack));
+    }
     late final Future<void> stopping;
     stopping = Future.wait<void>([
       if (previous != null) previous,
+      if (previous == null && rememberedError != null)
+        Future<void>.error(rememberedError, _captureStopStack),
       for (final group in groups) group.stop(),
-    ]).then<void>((_) {}).whenComplete(() {
+    ]).then<void>((_) {}).catchError((Object error, StackTrace stack) {
+      // Removing a group must not turn a failed native stop into a later
+      // successful track disposal merely because the map is now empty.
+      _captureStopError ??= error;
+      _captureStopStack ??= stack;
+      Error.throwWithStackTrace(_captureStopError!, _captureStopStack!);
+    }).whenComplete(() {
       if (identical(_captureStopFuture, stopping)) _captureStopFuture = null;
     });
     _captureStopFuture = stopping;
     return stopping;
+  }
+
+  @override
+  Future<bool> dispose() async {
+    final pending = _captureDisposeFuture;
+    if (pending != null) return pending;
+    if (isDisposed) return false;
+    _captureDisposing = true;
+    // Repeated callers observe the same completion or failure, including after
+    // the base disposer has marked the track disposed.
+    final completion = Completer<bool>();
+    _captureDisposeFuture = completion.future;
+    try {
+      Object? captureError;
+      StackTrace? captureStack;
+      try {
+        // Capture can exist before Track.start marks this track active.
+        await stopCapture();
+      } catch (error, stack) {
+        captureError = error;
+        captureStack = stack;
+      }
+      final result = await super.dispose();
+      if (captureError != null) Error.throwWithStackTrace(captureError, captureStack!);
+      completion.complete(result);
+    } catch (error, stack) {
+      completion.completeError(error, stack);
+    }
+    return completion.future;
   }
 }
 

@@ -1,10 +1,51 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart';
+import 'package:livekit_client/livekit_client.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
+
+class _AudioMediaTrack extends Fake implements rtc.MediaStreamTrack {
+  @override
+  String get id => 'synthetic-spectrum-track';
+}
+
+class _SpectrumTrack extends Fake implements AudioTrack {
+  AudioFrameCallback? frame;
+  @override
+  rtc.MediaStreamTrack get mediaStreamTrack => _AudioMediaTrack();
+  @override
+  TrackType get kind => TrackType.AUDIO;
+  @override
+  CancelListenFunc addAudioRenderer({required AudioFrameCallback onFrame,
+      AudioRendererOptions options = const AudioRendererOptions()}) {
+    frame = onFrame;
+    return () async { frame = null; };
+  }
+}
 
 void main() {
+  testWidgets('live PCM updates retain one stable accessible audio label', (tester) async {
+    final semantics = tester.ensureSemantics();
+    final track = _SpectrumTrack();
+    await tester.pumpWidget(MaterialApp(theme: AppTheme.light,
+        home: Scaffold(body: RtcAudioSpectrumBar(audioTrack: track))));
+    await tester.pump();
+    for (var i = 0; i < 6; i++) {
+      track.frame!(AudioFrame(sampleRate: 24000, channels: 1,
+          format: AudioFormat.Int16, data: Uint8List.fromList([1, 0, 20, 0])));
+      await tester.pump(const Duration(milliseconds: 20));
+      expect(find.bySemanticsLabel('远端音频活动'), findsOneWidget);
+      expect(find.bySemanticsLabel(RegExp('frames=|最近帧|synthetic-spectrum-track')), findsNothing);
+    }
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(track.frame, isNull);
+    semantics.dispose();
+  });
+
   test('PCM diagnostics distinguish synthetic 440 and 880 Hz blocks', () {
     for (final frequency in [440, 880]) {
       const sampleRate = 24000;
@@ -50,5 +91,9 @@ void main() {
 
     expect(find.text('等待远端音轨…'), findsOneWidget);
     expect(find.byType(RtcAudioSpectrumBar), findsOneWidget);
+    final semantics = tester.ensureSemantics();
+    expect(find.bySemanticsLabel('等待远端音轨'), findsOneWidget);
+    expect(find.bySemanticsLabel(RegExp('暂无音频帧')), findsNothing);
+    semantics.dispose();
   });
 }

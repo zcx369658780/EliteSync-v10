@@ -6,51 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:livekit_client/livekit_client.dart';
 
-// Only aggregate one PCM block; never retain samples or treat this as playback proof.
-@visibleForTesting
-({int zeroCrossings, double tone440, double tone880}) rtcAudioToneDiagnostics(
-  List<int> samples,
-  int sampleRate,
-) {
-  if (samples.length < 2 || sampleRate <= 0) {
-    return (zeroCrossings: 0, tone440: 0, tone880: 0);
-  }
-  final mean =
-      samples.fold<double>(0, (sum, sample) => sum + sample) / samples.length;
-  var energy = 0.0;
-  var crossings = 0;
-  var previous = samples.first - mean;
-  for (final sample in samples) {
-    final centered = sample - mean;
-    energy += centered * centered;
-    if ((previous < 0 && centered >= 0) || (previous >= 0 && centered < 0)) {
-      crossings += 1;
-    }
-    previous = centered;
-  }
-  double toneFraction(double hz) {
-    if (energy == 0 || hz >= sampleRate / 2) return 0;
-    final coefficient = 2 * math.cos(2 * math.pi * hz / sampleRate);
-    var previous = 0.0;
-    var beforePrevious = 0.0;
-    for (final sample in samples) {
-      final current = sample - mean + coefficient * previous - beforePrevious;
-      beforePrevious = previous;
-      previous = current;
-    }
-    final power =
-        previous * previous +
-        beforePrevious * beforePrevious -
-        coefficient * previous * beforePrevious;
-    return (2 * power / (samples.length * energy)).clamp(0.0, 1.0);
-  }
-
-  return (
-    zeroCrossings: crossings,
-    tone440: toneFraction(440),
-    tone880: toneFraction(880),
-  );
-}
+export '../../domain/services/rtc_audio_signal_metrics.dart'
+    show rtcAudioToneDiagnostics;
+import '../../domain/services/rtc_audio_signal_metrics.dart';
 
 class RtcAudioSpectrumBar extends StatefulWidget {
   const RtcAudioSpectrumBar({super.key, required this.audioTrack});
@@ -294,90 +252,98 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
     final t = context.appTokens;
     final track = widget.audioTrack;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(t.spacing.md),
-          decoration: BoxDecoration(
-            color: t.secondarySurface,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: t.browseBorder),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    track == null
-                        ? Icons.graphic_eq_outlined
-                        : Icons.graphic_eq,
-                    color: track == null ? t.textTertiary : t.brandPrimary,
-                    size: 20,
-                  ),
-                  SizedBox(width: t.spacing.xs),
-                  Expanded(
-                    child: Text(
-                      _frameCount > 0 && _lastPeak <= _silentThreshold
-                          ? '远端音轨已接入但无声'
-                          : _status,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: t.textPrimary,
-                        fontWeight: FontWeight.w700,
+    // Keep rapidly changing PCM counters/bars out of the accessibility tree;
+    // callers can still navigate the stable call controls during live media.
+    return Semantics(
+      container: true,
+      label: track == null ? '等待远端音轨' : '远端音频活动',
+      excludeSemantics: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(t.spacing.md),
+            decoration: BoxDecoration(
+              color: t.secondarySurface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: t.browseBorder),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      track == null
+                          ? Icons.graphic_eq_outlined
+                          : Icons.graphic_eq,
+                      color: track == null ? t.textTertiary : t.brandPrimary,
+                      size: 20,
+                    ),
+                    SizedBox(width: t.spacing.xs),
+                    Expanded(
+                      child: Text(
+                        _frameCount > 0 && _lastPeak <= _silentThreshold
+                            ? '远端音轨已接入但无声'
+                            : _status,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: t.textPrimary,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    _lastFrameLabel(),
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
-                  ),
-                ],
-              ),
-              SizedBox(height: t.spacing.sm),
-              SizedBox(
-                height: 40,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(_barCount, (index) {
-                    final level = _levels[index].clamp(0.0, 1.0);
-                    final height = 6.0 + (level * 34.0);
-                    return AnimatedContainer(
-                      duration: const Duration(milliseconds: 120),
-                      curve: Curves.easeOutCubic,
-                      width: 12,
-                      height: height,
-                      decoration: BoxDecoration(
-                        color: track == null
-                            ? t.textTertiary.withValues(alpha: 0.28)
-                            : t.brandPrimary.withValues(alpha: 0.85),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                    );
-                  }),
+                    Text(
+                      _lastFrameLabel(),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                SizedBox(height: t.spacing.sm),
+                SizedBox(
+                  height: 40,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(_barCount, (index) {
+                      final level = _levels[index].clamp(0.0, 1.0);
+                      final height = 6.0 + (level * 34.0);
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 120),
+                        curve: Curves.easeOutCubic,
+                        width: 12,
+                        height: height,
+                        decoration: BoxDecoration(
+                          color: track == null
+                              ? t.textTertiary.withValues(alpha: 0.28)
+                              : t.brandPrimary.withValues(alpha: 0.85),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: t.spacing.xs),
-        Text(
-          track == null
-              ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
-              : _frameCount == 0
-              ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
-              : _lastPeak <= _silentThreshold
-              ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
-              : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
-        ),
-      ],
+          SizedBox(height: t.spacing.xs),
+          Text(
+            track == null
+                ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
+                : _frameCount == 0
+                ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
+                : _lastPeak <= _silentThreshold
+                ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
+                : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: t.textSecondary,
+              height: 1.35,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

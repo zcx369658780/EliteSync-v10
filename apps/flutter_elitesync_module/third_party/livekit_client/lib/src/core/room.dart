@@ -1,4 +1,5 @@
 // Copyright 2024 LiveKit, Inc.
+// Modified by EliteSync on 2026-10-25: awaitable, failure-reporting Room cleanup.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,6 +60,23 @@ import 'engine.dart';
 import 'participant_collection.dart';
 import 'pending_track_queue.dart';
 
+// Attempt every owned Room cleanup stage, then report the first failure with its
+// original stack. A failed early stage must not skip engine/listener disposal.
+Future<void> _runRoomCleanupSteps(List<Future<void> Function()> steps) async {
+  Object? firstError;
+  StackTrace? firstStack;
+  for (final step in steps) {
+    try {
+      await step();
+    } catch (error, stack) {
+      logger.warning('Room cleanup stage failed (${error.runtimeType})');
+      firstError ??= error;
+      firstStack ??= stack;
+    }
+  }
+  if (firstError != null) Error.throwWithStackTrace(firstError, firstStack!);
+}
+
 /// Room is the primary construct for LiveKit conferences. It contains a
 /// group of [Participant]s, each publishing and subscribing to [Track]s.
 /// Notifies changes to its state via two ways, by assigning a delegate, or using
@@ -69,6 +87,27 @@ import 'pending_track_queue.dart';
 /// * active speakers are different
 /// {@category Room}
 class Room extends DisposableChangeNotifier with EventsEmittable<RoomEvent> {
+  Future<bool>? _roomDisposeFuture;
+  Object? _roomDisposeError;
+  StackTrace? _roomDisposeStack;
+
+  @override
+  Future<bool> dispose() async {
+    final pending = _roomDisposeFuture;
+    if (pending != null) return pending;
+    final completion = Completer<bool>();
+    _roomDisposeFuture = completion.future;
+    try {
+      final result = await super.dispose();
+      final error = _roomDisposeError;
+      if (error != null) Error.throwWithStackTrace(error, _roomDisposeStack!);
+      completion.complete(result);
+    } catch (error, stack) {
+      completion.completeError(error, stack);
+    }
+    return completion.future;
+  }
+
   // expose engine's params
   /// connection state of the room
   ConnectionState get connectionState => engine.connectionState;
@@ -203,22 +242,24 @@ class Room extends DisposableChangeNotifier with EventsEmittable<RoomEvent> {
     preConnectAudioBuffer = PreConnectAudioBuffer(this);
 
     onDispose(() async {
-      // clean up routine
-      await _cleanUp();
-      // reject any in-flight RPC calls
-      _rpcClientManager.dispose();
-      // dispose preConnectAudioBuffer
-      await preConnectAudioBuffer.dispose();
-      // dispose events
-      await events.dispose();
-      // dispose local participant
-      await localParticipant?.dispose();
-      // dispose all listeners for SignalClient
-      await _signalListener.dispose();
-      // dispose all listeners for Engine
-      await _engineListener.dispose();
-      // dispose the engine
-      await this.engine.dispose();
+      try {
+        await _runRoomCleanupSteps([
+          () => _cleanUp(),
+          () async { _rpcClientManager.dispose(); },
+          () async { await preConnectAudioBuffer.dispose(); },
+          () async { await events.dispose(); },
+          () async { await localParticipant?.dispose(); },
+          () async { await _signalListener.dispose(); },
+          () async { await _engineListener.dispose(); },
+          () async { await this.engine.dispose(); },
+        ]);
+      } catch (error, stack) {
+        // The generic SDK disposer retains its best-effort contract. Room
+        // records its own failure so its awaiters can observe it afterwards.
+        _roomDisposeError = error;
+        _roomDisposeStack = stack;
+        rethrow;
+      }
     });
   }
 
@@ -1033,38 +1074,60 @@ extension RoomPrivateMethods on Room {
 
     // clean up RemoteParticipants
     final participants = _remoteParticipants.toList();
+    // Publication disposal is generically best-effort. Retain direct track and
+    // publication ownership before remove/unpublish can erase these references.
+    final remoteResources = {
+      for (final participant in participants)
+        participant: [
+          for (final publication in participant.trackPublications.values)
+            (publication: publication, track: publication.track),
+        ],
+    };
+    final local = localParticipant;
+    final localResources = [
+      if (local != null)
+        for (final publication in local.trackPublications.values)
+          (publication: publication, track: publication.track),
+    ];
     _remoteParticipants.clear();
-    for (final participant in participants) {
-      await participant.removeAllPublishedTracks(notify: false);
-      // RemoteParticipant is responsible for disposing resources
-      await participant.dispose();
-    }
     _pendingTrackQueue.clear();
-
-    // clean up LocalParticipant
-    await localParticipant?.unpublishAllTracks();
-
-    if (disposeLocalParticipant) {
-      await localParticipant?.dispose();
-      _localParticipant = null;
-    }
-
-    _activeSpeakers.clear();
-
-    await preConnectAudioBuffer.reset();
-
-    // clean up engine
-    await engine.cleanUp();
-
-    await NativeAudioManagement.stop();
-
-    // reset params
-    _roomInfo = null;
-    _name = null;
-    _metadata = null;
-    _isRecording = false;
-    _serverVersion = null;
-    _serverRegion = null;
+    await _runRoomCleanupSteps([
+      for (final participant in participants) ...[
+        () => participant.removeAllPublishedTracks(notify: false),
+        for (final resource in remoteResources[participant]!) ...[
+          () async { await resource.track?.dispose(); },
+          () async { await resource.publication.dispose(); },
+        ],
+        () async { await participant.dispose(); },
+      ],
+      () async { await local?.unpublishAllTracks(); },
+      for (final resource in localResources) ...[
+        () async {
+          if (roomOptions.stopLocalTrackOnUnpublish) {
+            await resource.track?.dispose();
+          } else {
+            await resource.track?.stopCapture();
+          }
+        },
+        () async { await resource.publication.dispose(); },
+      ],
+      if (disposeLocalParticipant) ...[
+        () async { await local?.dispose(); },
+        () async { _localParticipant = null; },
+      ],
+      () async { _activeSpeakers.clear(); },
+      () => preConnectAudioBuffer.reset(),
+      () => engine.cleanUp(),
+      () => NativeAudioManagement.stop(),
+      () async {
+        _roomInfo = null;
+        _name = null;
+        _metadata = null;
+        _isRecording = false;
+        _serverVersion = null;
+        _serverRegion = null;
+      },
+    ]);
   }
 
   /// Applies room info from server. Skips metadata event on first join

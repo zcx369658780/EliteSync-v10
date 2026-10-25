@@ -87,6 +87,7 @@ class _MediaRoom implements Room {
   _MediaRoom(this.localParticipant);
   Completer<void>? disconnectPending;
   Object? disconnectError;
+  Object? disposeError;
   Completer<void>? disposePending;
   final disconnectStarted = Completer<void>();
   final disposeStarted = Completer<void>();
@@ -105,6 +106,7 @@ class _MediaRoom implements Room {
   Future<bool> dispose() async {
     if (!disposeStarted.isCompleted) disposeStarted.complete();
     await disposePending?.future;
+    if (disposeError != null) throw disposeError!;
     return true;
   }
 
@@ -113,6 +115,95 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  test(
+    'leave waits for renderer cancellation before disconnect and dispose',
+    () async {
+      final room = _MediaRoom(_MediaParticipant());
+      final gate = Completer<void>();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Cleanup test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        rendererCancel: () => gate.future,
+      );
+      final first = service.leave();
+      var secondCompleted = false;
+      final second = service.leave().then((_) => secondCompleted = true);
+      await Future<void>.delayed(Duration.zero);
+      expect(room.disconnectStarted.isCompleted, isFalse);
+      expect(room.disposeStarted.isCompleted, isFalse);
+      expect(secondCompleted, isFalse);
+      gate.complete();
+      await Future.wait([first, second]);
+      expect(room.disconnectStarted.isCompleted, isTrue);
+      expect(room.disposeStarted.isCompleted, isTrue);
+      expect(service.lastCleanupSucceeded, isTrue);
+      service.dispose();
+    },
+  );
+
+  test(
+    'renderer cancel failure still disposes room and prevents a new join',
+    () async {
+      final room = _MediaRoom(_MediaParticipant());
+      final source = _QueuedRtcSource();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: source,
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Cleanup test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+          useLiveKitRtc: true,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        rendererCancel: () async => throw StateError('injected cancel failure'),
+      );
+      await service.leave();
+      expect(room.disposeStarted.isCompleted, isTrue);
+      expect(service.lastCleanupSucceeded, isFalse);
+      expect(service.failureMessage, isNotNull);
+      await expectLater(service.ensureConnected(19), throwsStateError);
+      expect(source.callIds, isEmpty);
+      service.dispose();
+    },
+  );
+
+  test(
+    'room disposal failure is observable instead of successful leave',
+    () async {
+      final room = _MediaRoom(_MediaParticipant())
+        ..disposeError = StateError('injected room failure');
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Cleanup test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+      );
+      await service.leave();
+      expect(service.lastCleanupSucceeded, isFalse);
+      expect(service.failureMessage, contains('清理失败'));
+      await service.leave();
+      expect(service.lastCleanupSucceeded, isFalse);
+      service.dispose();
+    },
+  );
+
   test('disconnect failure still waits for room disposal', () async {
     final room = _MediaRoom(_MediaParticipant())
       ..disconnectError = StateError('disconnect timeout')
