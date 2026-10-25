@@ -6,7 +6,10 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 记忆导航
 
-## Owner任务下达闭环与长期记忆（2026-10-25）
+## Owner任务下达闭环与长期记忆（2026-10-25）## 长任务单与中途无监督原则（Owner再次确认，2026-10-25）
+
+EliteSync v10.x原定并继续采用长任务单+中途无监督模式。默认一个冻结版本对应一份综合长任务，授权Codex在范围内自主调查、实现、构建、测试、调试与普通返修；完成后由Astra集中独立验收。不要将每个普通动作、测试失败或普通修复拆成需要Owner逐次放行的小任务。只有超范围/方向性决策、生产/真实用户数据、敏感外传、真实费用、系统级安全配置、供应商/实人或不可逆风险才需要暂停。环境拒绝如实报告，不伪造、不绕过、不擅改策略；预算明确为一次性时不可自行重试。A-D是发布闭环，不是逐步审批。
+
 
 Owner已明确批准A-D任务下达闭环，规范正文：[TASK_DISPATCH_CLOSURE_PROTOCOL](../workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)。每次发布Codex任务：A核对授权/原任务/ACTIVE_STATE/live main与Root/禁止事项/预算；B创建唯一任务文件并按Blob读回正文；C更新ACTIVE_STATE并重新核验live main、Root、任务Blob/正文与状态Blob；D在同一条回复交付任务链接、Blob SHA、当前状态、停止门禁及单一可复制启动Prompt代码框。
 
