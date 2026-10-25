@@ -1,0 +1,159 @@
+{
+  "tests": {
+    "disposal-red": {
+      "exit": 1,
+      "elapsedSeconds": 25.968999999924563,
+      "processExitConfirmed": true,
+      "stdoutSha256": "3a2b0b805e192aeddc0f0868d91ddc6b0a8dfe827759848e1b5c8125d2daea67",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "capture-failure-red": {
+      "exit": 1,
+      "elapsedSeconds": 2.702999999979511,
+      "processExitConfirmed": true,
+      "stdoutSha256": "0af375a0ec331e13425bc35c6f5079a92c9a90a91ce555fd8bdf7b66c92a02e9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "publication-red": {
+      "exit": 1,
+      "elapsedSeconds": 2.75,
+      "processExitConfirmed": true,
+      "stdoutSha256": "1f71a26f9ea1b90799c99bca925c84465dda71332e573a07d9a4355ede57de87",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final67-reviewed": {
+      "exit": 0,
+      "elapsedSeconds": 6.077999999979511,
+      "processExitConfirmed": true,
+      "stdoutSha256": "a5472688c1053e6280f315dc222a945d8fbbac7738ac897445797d7757f48bc8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "totalCases": 67
+    },
+    "ice-guard-tests": {
+      "exit": 0,
+      "elapsedSeconds": 3.4380000000819564,
+      "processExitConfirmed": true,
+      "stdoutSha256": "69f768500a8a3d8590970b2a9a482b1745838404db7870d51b42add0cfdfce33",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "totalCases": 17,
+      "deviceFlagsProven": false
+    }
+  },
+  "analyzer": {
+    "analyzerExit": 0,
+    "errors": 0,
+    "warnings": 0,
+    "unchangedUpstreamStyleInfos": [
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 288,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 392,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 441,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 736,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 740,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 895,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 899,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1073,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1418,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1434,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1556,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1572,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1593,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1616,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/core/room.dart",
+        "line": 1644,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/support/native.dart",
+        "line": 380,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/support/native.dart",
+        "line": 418,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/support/native.dart",
+        "line": 427,
+        "unchangedUpstreamLine": true
+      },
+      {
+        "path": "third_party/livekit_client/lib/src/track/track.dart",
+        "line": 74,
+        "unchangedUpstreamLine": true
+      }
+    ],
+    "count": 19
+  },
+  "build": {
+    "startedUtc": "2026-10-25T10:55:42.549678+00:00",
+    "ordinaryR1MainDart": true,
+    "iceDiagnostic": false,
+    "offlineDependencyResolution": true,
+    "processTreeNoNetwork": "NOT_PROVEN",
+    "exit": 0,
+    "elapsedSeconds": 320.0,
+    "processExitConfirmed": true,
+    "bytes": 405007373,
+    "sha256": "68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717"
+  },
+  "testScope": "SDK track/Room/publication algorithms are real; native transport and controlled Engine lifecycle boundaries are replaced; APP/UI checks use explicit fixtures; not a physical handle census",
+  "countsNotSummedAcrossIntermediateRuns": true
+}

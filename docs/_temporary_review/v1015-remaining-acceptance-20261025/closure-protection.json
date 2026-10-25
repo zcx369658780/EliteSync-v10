@@ -1,0 +1,102 @@
+{
+  "closure": {
+    "closureInitialScriptExit": 1,
+    "closureInitialFailure": "PORT_REBIND_CHECK_FAILED_AFTER_ALL_STOP_AND_BACKUP_STAGES; TIME_WAIT_PRESENT",
+    "supplement": "READ_ONLY_STATE_EXIT_AND_CONNECT_REFUSAL_VERIFICATION; NO_REPEATED_STOP_OR_TEST",
+    "ownedProcessesStopped": [
+      {
+        "label": "api",
+        "originalOwnedPidAbsentOrExited": true
+      },
+      {
+        "label": "ws",
+        "originalOwnedPidAbsentOrExited": true
+      },
+      {
+        "label": "authority",
+        "originalOwnedPidAbsentOrExited": true
+      },
+      {
+        "label": "bridge",
+        "originalOwnedPidAbsentOrExited": true
+      },
+      {
+        "label": "peer",
+        "originalOwnedPidAbsentOrExited": true
+      }
+    ],
+    "phoneAppProcessAbsent": true,
+    "activeCalls": 0,
+    "activeTestSessionFamilies": 0,
+    "testAccessTokens": 0,
+    "containers": [
+      {
+        "label": "SFU",
+        "running": false,
+        "exitCode": 1
+      },
+      {
+        "label": "DATABASE",
+        "running": false,
+        "exitCode": 0
+      }
+    ],
+    "volumeAndContainersRetained": true,
+    "backupBefore": {
+      "label": "device-owned-before-restart",
+      "bytes": 188049,
+      "sha256": "f58d05a67094a8e525f933ae2b0dc47d1728cee37f2e09e614a44f206f13c925",
+      "rawPublished": false
+    },
+    "backupFinal": {
+      "label": "device-owned-final",
+      "bytes": 188049,
+      "sha256": "1e8fe52a679fd41f0e2940c0b2e7715a700f555004d65906c3987ac4a3749435",
+      "rawPublished": false
+    },
+    "twelveTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
+    "sameDeviceMessageCountAfterRestart": 1,
+    "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
+    "ownedGradleStopExit": 0,
+    "portsWithoutListeners": [
+      43328,
+      8051,
+      8052,
+      8053,
+      8054,
+      7891,
+      7894
+    ],
+    "portsConnectionRefused": [
+      43328,
+      8051,
+      8052,
+      8053,
+      8054,
+      7891,
+      7894
+    ],
+    "remainingPortStates": {
+      "TIME_WAIT": 189
+    },
+    "appKeptInstalled": true,
+    "otherAppsAndOldAssetsUntouched": true,
+    "globalAdbAndDockerDaemonsKept": true,
+    "utc": "2026-10-25T11:32:36.885651+00:00"
+  },
+  "protection": {
+    "protectedFileCount": 24510,
+    "allNamedProtectedFilesUnchanged": true,
+    "changedNamedFiles": [],
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 521,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "ownCandidateRefsExcluded": [
+      "refs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+      "refs/remotes/origin/codex/v10.1.5-source-faithful-serializer-conditional-sdk"
+    ],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  }
+}

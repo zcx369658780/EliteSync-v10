@@ -1,0 +1,153 @@
+{
+  "authority": [
+    {
+      "label": "task",
+      "blob": "fec31d6318524a40b9ff8f0dab49b60aa7fa3490"
+    },
+    {
+      "label": "plan",
+      "blob": "7d3466b3be67135dc641cfee7c7faef78937ba03"
+    },
+    {
+      "label": "originalTask",
+      "blob": "43b2396b2fba046d5c0ab00bea87293783d1c2fd"
+    },
+    {
+      "label": "active",
+      "blob": "fdfbb4177c9c3b7272e01833914b2105845d5c22"
+    }
+  ],
+  "astraPcmReviewBlob": "327ca8f7c68bf469c412a24129dc4d83c7742fe5",
+  "source": {
+    "commit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+    "parent": "1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c",
+    "root": "21243e8f60dccae5106d9d04bd739ef587d05646",
+    "apps": "db3a2936ee37bf9610053fb8fd67b360fc377a94",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f"
+  },
+  "changedPaths": [
+    "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart",
+    "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+    "apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart",
+    "apps/flutter_elitesync_module/pubspec.lock",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart",
+    "apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart",
+    "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff",
+    "apps/flutter_elitesync_module/third_party/livekit_client/README.elitesync.md",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/core/room.dart",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/support/native.dart",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/track.dart",
+    "apps/flutter_elitesync_module/third_party/livekit_client/pubspec.yaml",
+    "apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart"
+  ],
+  "keySources": [
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/core/room.dart",
+      "sha256": "57c2bd316219801754fc89d73ec4d863c1664dbbc38a9347dddc62122307d048",
+      "gitBlob": "03a8afdfb37fad70ec6dc09bc96b30a8155d8ce7"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+      "sha256": "3dbe222c423cd0a7bd48fca9699069fc8664fd5cadd6e8141f5fe5442066d279",
+      "gitBlob": "591eb355d45dde0a46ca0c6c8ded8d1b8149c750"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/support/native.dart",
+      "sha256": "94051e21e3344a8779c9956fc70d15aae669a43f1419d944b21ce2fa999d075b",
+      "gitBlob": "32cbe9a947440471a23f18735303c570a145b072"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/track.dart",
+      "sha256": "8b4a87f9401642e3dc3b8e8093b363f44c51e29cac1bc75ac080257aeb396b79",
+      "gitBlob": "25fb811bd84c25be08dab15077e003952f7e124a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "sha256": "9c2a4f1741eb355820972fa9128a2f90309d8b78add6265d7dbf03b0d6c1ea0b",
+      "gitBlob": "ba497a929a9903eb269aae81ddf31a5c102af07c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart",
+      "sha256": "6c6bb4622efdf8d58d6ff8d459eebb20680124eb1425d5d707739aa80f016265",
+      "gitBlob": "3035bc0136c2042b5099384507f5d925067ab2fe"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart",
+      "sha256": "f00949579df4cac336af34a468a3e43f40af2aff93e132bd49b42503958d2116",
+      "gitBlob": "df776e54b77cab1b2bb252691ad4674a5ae7e4e1"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart",
+      "sha256": "06b63b3d4aeb49ea637ce8de892e3f359cdd889ed1122ccdd329163e411d2c3c",
+      "gitBlob": "63139d34f53450f943b024806d506d9b1d3143e5"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart",
+      "sha256": "e33efe8c6ccca34564c4e71e17885ce702068b86cb29dea1c3187b70011e0c5d",
+      "gitBlob": "dfb60ac1d59cf573215760487487232924466537"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart",
+      "sha256": "fda139cae1d7890bd9a896f81baad285784c45fcb180dc376c7236b99dcb031a",
+      "gitBlob": "9fd94eda52ca77831881a6632359f23709157706"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart",
+      "sha256": "6d4438eba042aa03b121c1934c61fcd82c26edc2a9d54d4a3d5661c0bdd7d133",
+      "gitBlob": "42e56970e90feab14e6ed624e4db0b98ed31a479"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+      "sha256": "791e8601dd3be51607a703284cda26dfabcbddf2e5b655625bd3e8bf79e5107b",
+      "gitBlob": "75aff64e4c092215895eabab1881afeb5e79eace"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart",
+      "sha256": "8286984bfe1688626afadd6beddba2191274d1bc8abef45ae2c97bc882e0a644",
+      "gitBlob": "10dc07bdad3f5450d419ce57dd125f481626792f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff",
+      "sha256": "efcc15ab09e2b29f0796636c2d3066af19dc761a943d5ca9fe02ed076d79d534",
+      "gitBlob": "0bd521514f626c78cf2e795e2937b240780c4bc1"
+    }
+  ],
+  "inputVerification": {
+    "source": {
+      "commit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+      "parent": "1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c",
+      "root": "21243e8f60dccae5106d9d04bd739ef587d05646",
+      "apps": "db3a2936ee37bf9610053fb8fd67b360fc377a94",
+      "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f"
+    },
+    "trackedAppsInputCount": 1040,
+    "sourceAndActualBuildBytesMatchBeforeAndAfterBuild": true,
+    "allReviewedHashesStillMatch": true,
+    "livekitPackageRootIsOwnedPath": true,
+    "upstreamFiles": 297,
+    "unchangedUpstreamFiles": 292,
+    "locallyAuthoredSdkPackageTests": 1,
+    "genericDisposableUnchanged": true
+  },
+  "vendor": {
+    "upstreamFiles": 297,
+    "byteIdenticalUpstreamFiles": 292,
+    "changedUpstreamFiles": [
+      "lib/src/core/room.dart",
+      "lib/src/support/native.dart",
+      "lib/src/track/local/local.dart",
+      "lib/src/track/track.dart",
+      "pubspec.yaml"
+    ],
+    "patchSha256": "efcc15ab09e2b29f0796636c2d3066af19dc761a943d5ca9fe02ed076d79d534",
+    "upstreamArchiveSha256": "9160950ff87d1946959e4911c16236ea7a3e74ac1987990b258132fd4ed0fca9",
+    "genericDisposableChanged": false,
+    "localVersion": "2.10.0+elitesync.2",
+    "sourceFiles": 1040
+  },
+  "unattributedChanges": "Original unknown-author additions retained; Owner confirmed no other session. Reviewed and regressed; no authorship assertion."
+}

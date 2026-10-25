@@ -1,0 +1,444 @@
+{
+  "evidenceClass": "CODEX_REPORTED / DEVICE_NEW_RUN / SYNTHETIC_ONLY",
+  "source": {
+    "commit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+    "parent": "1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c",
+    "root": "21243e8f60dccae5106d9d04bd739ef587d05646",
+    "apps": "db3a2936ee37bf9610053fb8fd67b360fc377a94",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f"
+  },
+  "apk": {
+    "package": "com.elitesync.v1015r1dev",
+    "versionCode": 1010511,
+    "versionName": "10.1.5-r1-dev",
+    "buildSha256": "68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717",
+    "installedReadbackSha256": "68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717",
+    "byteIdentityMatched": true,
+    "signerMatched": true,
+    "dataPreserved": true,
+    "sourceCommit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c"
+  },
+  "device": {
+    "model": "Xiaomi 25060RK16C",
+    "android": "16",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "identifier": "LOCAL_ONLY_NOT_PUBLISHED"
+  },
+  "call3": {
+    "scriptExit": 1,
+    "failure": "RECONNECT_CONTROL_ONLY_12_VISIBLE_PIXELS_CLICK_DID_NOT_INVOKE_RECONNECT",
+    "mediaControls": {
+      "initial": {
+        "connection": "connected",
+        "tracks": [
+          {
+            "kind": "AUDIO",
+            "subscribed": true,
+            "muted": false
+          },
+          {
+            "kind": "VIDEO",
+            "subscribed": true,
+            "muted": false
+          }
+        ]
+      },
+      "off": {
+        "connection": "connected",
+        "tracks": [
+          {
+            "kind": "AUDIO",
+            "subscribed": true,
+            "muted": true
+          },
+          {
+            "kind": "VIDEO",
+            "subscribed": true,
+            "muted": true
+          }
+        ]
+      },
+      "on": {
+        "connection": "connected",
+        "tracks": [
+          {
+            "kind": "AUDIO",
+            "subscribed": true,
+            "muted": false
+          },
+          {
+            "kind": "VIDEO",
+            "subscribed": true,
+            "muted": false
+          }
+        ]
+      },
+      "background": {
+        "connection": "connected",
+        "tracks": [
+          {
+            "kind": "AUDIO",
+            "subscribed": true,
+            "muted": true
+          },
+          {
+            "kind": "VIDEO",
+            "subscribed": true,
+            "muted": true
+          }
+        ]
+      },
+      "resume": {
+        "connection": "connected",
+        "tracks": [
+          {
+            "kind": "AUDIO",
+            "subscribed": true,
+            "muted": false
+          },
+          {
+            "kind": "VIDEO",
+            "subscribed": true,
+            "muted": false
+          }
+        ]
+      }
+    },
+    "ending": "REAL_API_FINALLY_NOT_UI",
+    "wholeJourneyPass": false
+  },
+  "call4": {
+    "scriptExit": 0,
+    "uiResult": {
+      "callId": 4,
+      "sourceCommit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+      "actualUiHangup": true,
+      "sameCallManualReconnect": true,
+      "roomDisposeAwaitCompleted": true,
+      "noNewDisposalFailure": true,
+      "priorCall3MediaControls": "SUPPORTED_PARTIAL_JOURNEY_SEPARATE_CALL_NOT_STITCHED",
+      "noRawAudioVideoStored": true
+    },
+    "postLastReconnectRtp": {
+      "outbound_audio": {
+        "samples": 7,
+        "first": {
+          "time": 1792927567.874,
+          "bytes": 8693,
+          "packets": 90,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927591.879,
+          "bytes": 124300,
+          "packets": 1194,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 115607,
+        "packetGrowth": 1104,
+        "intervalSeconds": 24.005
+      },
+      "outbound_video": {
+        "samples": 7,
+        "first": {
+          "time": 1792927567.874,
+          "bytes": 774361,
+          "packets": 872,
+          "framesDecoded": null,
+          "reportedStreams": 3
+        },
+        "last": {
+          "time": 1792927591.879,
+          "bytes": 7773982,
+          "packets": 7239,
+          "framesDecoded": null,
+          "reportedStreams": 3
+        },
+        "byteGrowth": 6999621,
+        "packetGrowth": 6367,
+        "intervalSeconds": 24.005
+      },
+      "inbound_audio": {
+        "samples": 7,
+        "first": {
+          "time": 1792927567.892,
+          "bytes": 21689,
+          "packets": 233,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927591.892,
+          "bytes": 133341,
+          "packets": 1433,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 111652,
+        "packetGrowth": 1200,
+        "intervalSeconds": 24.0
+      },
+      "inbound_video": {
+        "samples": 7,
+        "first": {
+          "time": 1792927567.892,
+          "bytes": 448694,
+          "packets": 432,
+          "framesDecoded": 94,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927591.892,
+          "bytes": 2701073,
+          "packets": 2602,
+          "framesDecoded": 574,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 2252379,
+        "packetGrowth": 2170,
+        "intervalSeconds": 24.0
+      }
+    },
+    "postUiHangupNewLifecycleEvents": {
+      "renderer_cancel_complete": {
+        "beforeUiHangupCount": 1,
+        "afterUiHangupCount": 2
+      },
+      "room_disconnect_complete": {
+        "beforeUiHangupCount": 1,
+        "afterUiHangupCount": 2
+      },
+      "room_dispose_complete": {
+        "beforeUiHangupCount": 1,
+        "afterUiHangupCount": 2
+      },
+      "leave_complete": {
+        "beforeUiHangupCount": 3,
+        "afterUiHangupCount": 4
+      }
+    },
+    "roomDisposeAwaitCompletion": "OBSERVED_REAL_APP_LOG_NOT_NATIVE_HANDLE_CENSUS"
+  },
+  "call5": {
+    "scriptExit": 0,
+    "newConnectionAfterCall4UiCleanup": true,
+    "flowingMediaBeforeRevocation": {
+      "outbound_audio": {
+        "samples": 2,
+        "first": {
+          "time": 1792927624.878,
+          "bytes": 12997,
+          "packets": 157,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927628.869,
+          "bytes": 25259,
+          "packets": 295,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 12262,
+        "packetGrowth": 138,
+        "intervalSeconds": 3.991
+      },
+      "outbound_video": {
+        "samples": 2,
+        "first": {
+          "time": 1792927624.878,
+          "bytes": 791532,
+          "packets": 874,
+          "framesDecoded": null,
+          "reportedStreams": 3
+        },
+        "last": {
+          "time": 1792927628.869,
+          "bytes": 2106289,
+          "packets": 2075,
+          "framesDecoded": null,
+          "reportedStreams": 3
+        },
+        "byteGrowth": 1314757,
+        "packetGrowth": 1201,
+        "intervalSeconds": 3.991
+      },
+      "inbound_audio": {
+        "samples": 2,
+        "first": {
+          "time": 1792927624.892,
+          "bytes": 19798,
+          "packets": 226,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927628.881,
+          "bytes": 38561,
+          "packets": 426,
+          "framesDecoded": null,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 18763,
+        "packetGrowth": 200,
+        "intervalSeconds": 3.989
+      },
+      "inbound_video": {
+        "samples": 2,
+        "first": {
+          "time": 1792927624.892,
+          "bytes": 293058,
+          "packets": 295,
+          "framesDecoded": 89,
+          "reportedStreams": 1
+        },
+        "last": {
+          "time": 1792927628.881,
+          "bytes": 630911,
+          "packets": 633,
+          "framesDecoded": 169,
+          "reportedStreams": 1
+        },
+        "byteGrowth": 337853,
+        "packetGrowth": 338,
+        "intervalSeconds": 3.989
+      }
+    },
+    "oldSuccessfulTokenFirstReentry": {
+      "callId": 5,
+      "sameTokenAsSuccessfulSdkMedia": true,
+      "tokenSha256": "443624063adb342e74cec6765fb3cf098205946ad579333bd4569488d8ffc131",
+      "tokenSecondsRemainingBeforeRevoke": 107.48682475090027,
+      "tokenSecondsRemainingAfterReentry": 97.58442902565002,
+      "firstPostRevokeReentryAttempts": 1,
+      "httpUpgradeStatus": 403,
+      "bodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newTokenMinted": false,
+      "entry": "REAL_LOOPBACK_GUARDED_WEBSOCKET_HANDSHAKE",
+      "newRequestRejectionDistinctFromExistingMediaStop": true,
+      "hostObservationUpperBoundSeconds": 10.125,
+      "boundStart": "BEFORE_PHP_TRANSITION_PROCESS_START_NOT_EXACT_COMMIT",
+      "roomDisposeAndLeaveCompletionObserved": true,
+      "timingVerdict": "NOT_NEW_FIVE_SECOND_PASS_HOST_BOUND_10_125_SECONDS",
+      "nativeCrossClockEvidence": {
+        "peerConnectionClosed": {
+          "observed": true,
+          "count": 2,
+          "firstDeviceEpoch": 1792927640.237
+        },
+        "audioRecordStopped": {
+          "observed": true,
+          "count": 1,
+          "firstDeviceEpoch": 1792927640.392
+        },
+        "audioTrackStopped": {
+          "observed": true,
+          "count": 2,
+          "firstDeviceEpoch": 1792927640.455
+        },
+        "cameraReleased": {
+          "observed": true,
+          "count": 1,
+          "firstDeviceEpoch": 1792927640.484
+        }
+      },
+      "serverTransitionSeconds": 0.185629,
+      "crossClockNativeDifferencesNotAValidatedDuration": true,
+      "nativeWarnings": {
+        "cameraDeviceErrorDuringCloseCode4Or5": 7,
+        "trackDisposeTrackNull": 4,
+        "interpretation": "Observed warnings retained; release/close and Room completion were observed, not an all-native-handles census or proof of every platform path."
+      }
+    }
+  },
+  "finiteSignal": {
+    "status": "LIMITED_SYNTHETIC_SIGNAL_OBSERVATION_ONLY",
+    "callId": 5,
+    "localMetrics": {
+      "absAvg": {
+        "loggedSamples": 20,
+        "min": 0.0,
+        "max": 0.0208
+      },
+      "peak": {
+        "loggedSamples": 20,
+        "min": 0.0001,
+        "max": 0.05
+      },
+      "tone440": {
+        "loggedSamples": 20,
+        "min": 0.032,
+        "max": 0.5189
+      },
+      "tone880": {
+        "loggedSamples": 20,
+        "min": 0.0009,
+        "max": 0.0684
+      }
+    },
+    "remoteMetricsSameActiveInterval": {
+      "absAvg": {
+        "loggedSamples": 19,
+        "min": 0.0067,
+        "max": 0.095
+      },
+      "peak": {
+        "loggedSamples": 19,
+        "min": 0.015,
+        "max": 0.195
+      },
+      "tone440": {
+        "loggedSamples": 19,
+        "min": 0.0018,
+        "max": 0.3122
+      },
+      "tone880": {
+        "loggedSamples": 19,
+        "min": 0.0007,
+        "max": 0.0068
+      }
+    },
+    "rawPcmRetained": false,
+    "hardwareProcessingRequested": false,
+    "engineWasAlreadyInitialized": true,
+    "effectiveMode": "UNVERIFIED",
+    "aecOffOnComparator": "NOT_RUN",
+    "physicalAEC": "NOT_PROVEN",
+    "humanSpeechQuality": "NOT_RUN",
+    "acousticCalibration": "NOT_RUN",
+    "lastAudibleWaveformTiming": "NOT_RUN"
+  },
+  "newNotificationBoundary": {
+    "status": "STALE_CARD_REMOVED_BY_CURRENT_AUTHORITY_BEFORE_CLICK",
+    "realMessageCreated": true,
+    "syntheticMessageId": 1,
+    "notificationId": 15,
+    "cardLoadedBeforeRevocation": true,
+    "cachedCardStillVisibleInFirstAfterRevokeSnapshot": true,
+    "cardAbsentBySecondCurrentSnapshot": true,
+    "actualStaleCardClick": "NOT_RUN_CONTROL_NO_LONGER_VISIBLE",
+    "privateMessageBodyNotShownInNotificationCenter": true,
+    "notificationAndMessageReadFactsUnchanged": true,
+    "notificationReadAt": null,
+    "requestViaTrueConsentService": true,
+    "noFakeUiClickPass": true
+  },
+  "capturedProcessErrorStringCounts": {
+    "ConcurrentModificationError": 0,
+    "Unhandled Exception": 0,
+    "PlatformException": 0,
+    "MediaConnectException": 0,
+    "StateError": 0
+  },
+  "initialDeviceHarnessFailures": [
+    "call1 UI idle timeout",
+    "call2 repeated UI queries timed out",
+    "call3 clipped reconnect control; all real finally API endings retained"
+  ],
+  "newFiveSecondRevocationPass": false,
+  "priorAstraAcceptedNativeStopBoundSeconds": 0.79,
+  "rawPrivateEvidencePublished": false
+}

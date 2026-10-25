@@ -1,0 +1,32 @@
+{
+  "status": "NO_NEW_BLOCKING_FINDINGS_STATIC",
+  "reviewScope": "Room/track/publication PCM cleanup, failure propagation, application teardown, stable accessibility and aggregate-only signal diagnostics",
+  "execution": "READ_ONLY_NO_TEST_BUILD_OR_DEVICE_EXECUTION",
+  "closedFindings": [
+    "Permanent disposal memoization preserves failed completion instead of later false success",
+    "Real publication generic disposer can hide track failure: Room snapshots and directly awaits both track and publication",
+    "Additional local direct step uses stopCapture for false ownership option; upstream false-option behavior is not newly claimed"
+  ],
+  "limits": [
+    "Not Astra acceptance",
+    "No native handle census or complete platform fault recovery proof",
+    "Unattributed initial diff retained and independently reviewed after Owner confirmed no other session; authorship remains unconfirmed",
+    "Application uses default stopLocalTrackOnUnpublish=true; unchanged upstream publication logic does not prove complete false-option ownership semantics"
+  ],
+  "sha256": {
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/core/room.dart": "57c2bd316219801754fc89d73ec4d863c1664dbbc38a9347dddc62122307d048",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart": "3dbe222c423cd0a7bd48fca9699069fc8664fd5cadd6e8141f5fe5442066d279",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/support/native.dart": "94051e21e3344a8779c9956fc70d15aae669a43f1419d944b21ce2fa999d075b",
+    "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/track.dart": "8b4a87f9401642e3dc3b8e8093b363f44c51e29cac1bc75ac080257aeb396b79",
+    "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart": "9c2a4f1741eb355820972fa9128a2f90309d8b78add6265d7dbf03b0d6c1ea0b",
+    "apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart": "6c6bb4622efdf8d58d6ff8d459eebb20680124eb1425d5d707739aa80f016265",
+    "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart": "f00949579df4cac336af34a468a3e43f40af2aff93e132bd49b42503958d2116",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart": "06b63b3d4aeb49ea637ce8de892e3f359cdd889ed1122ccdd329163e411d2c3c",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart": "e33efe8c6ccca34564c4e71e17885ce702068b86cb29dea1c3187b70011e0c5d",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart": "fda139cae1d7890bd9a896f81baad285784c45fcb180dc376c7236b99dcb031a",
+    "apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart": "6d4438eba042aa03b121c1934c61fcd82c26edc2a9d54d4a3d5661c0bdd7d133",
+    "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart": "791e8601dd3be51607a703284cda26dfabcbddf2e5b655625bd3e8bf79e5107b",
+    "apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart": "8286984bfe1688626afadd6beddba2191274d1bc8abef45ae2c97bc882e0a644",
+    "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff": "efcc15ab09e2b29f0796636c2d3066af19dc761a943d5ca9fe02ed076d79d534"
+  }
+}

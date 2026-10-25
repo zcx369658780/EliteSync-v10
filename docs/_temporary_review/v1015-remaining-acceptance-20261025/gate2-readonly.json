@@ -1,0 +1,82 @@
+{
+  "mode": "READ_ONLY_PE_METADATA_AND_REGISTRY_VALUES_NO_ASSEMBLY_LOAD",
+  "components": {
+    "PS7_Core_SystemWeb": {
+      "name": "System.Web.dll",
+      "bytes": 15144,
+      "sha256": "88650d1871b5bac043665f06610799862b66303794fb76de0db5e58c86e1b1d9",
+      "definedTypeCountExcludingModule": 0,
+      "hasSystemWebUiWebResourceAttributeDefinition": false,
+      "loadedOrExecuted": false
+    },
+    "Framework48_SystemWeb": {
+      "name": "System.Web.dll",
+      "bytes": 5401912,
+      "sha256": "e1a243ba2f0df06770be1e2ff24379a5063d483e8b1c96f926921c1f489861cd",
+      "definedTypeCountExcludingModule": 2715,
+      "hasSystemWebUiWebResourceAttributeDefinition": true,
+      "loadedOrExecuted": false
+    },
+    "Framework48_SystemWebExtensions": {
+      "name": "System.Web.Extensions.dll",
+      "bytes": 1832288,
+      "sha256": "6f2545e5ba378f6836ea0fed1067d089181e27dbd3c81e9db418c8bb32e6af51",
+      "definedTypeCountExcludingModule": 395,
+      "hasSystemWebUiWebResourceAttributeDefinition": false,
+      "loadedOrExecuted": false
+    }
+  },
+  "policyRegistryObservations": [
+    {
+      "hive": "HKCU",
+      "key": "SOFTWARE\\Microsoft\\PowerShell\\1\\ShellIds\\Microsoft.PowerShell",
+      "readOnly": true,
+      "values": {},
+      "keyPresent": false
+    },
+    {
+      "hive": "HKCU",
+      "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell",
+      "readOnly": true,
+      "values": {},
+      "keyPresent": false
+    },
+    {
+      "hive": "HKCU",
+      "key": "SOFTWARE\\Microsoft\\PowerShellCore\\ShellIds\\Microsoft.PowerShell",
+      "readOnly": true,
+      "values": {},
+      "keyPresent": false
+    },
+    {
+      "hive": "HKLM",
+      "key": "SOFTWARE\\Microsoft\\PowerShell\\1\\ShellIds\\Microsoft.PowerShell",
+      "readOnly": true,
+      "values": {}
+    },
+    {
+      "hive": "HKLM",
+      "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell",
+      "readOnly": true,
+      "values": {},
+      "keyPresent": false
+    },
+    {
+      "hive": "HKLM",
+      "key": "SOFTWARE\\Microsoft\\PowerShellCore\\ShellIds\\Microsoft.PowerShell",
+      "readOnly": true,
+      "values": {},
+      "keyPresent": false
+    }
+  ],
+  "noNewGate2Budget": true,
+  "writerCalls": 0,
+  "serializerCalls": 0,
+  "historicalStartsStillConsumed": [
+    0.375,
+    0.39
+  ],
+  "plan": "A future Owner-authorized run requires an already permitted file-entry host AND the full Framework implementation. No new compliant intersection is demonstrated here. Do not copy Framework DLLs into Core, replace the serializer, change policy, use bypass, or run an alternate command/eval entry.",
+  "status": "GATE2_ENVIRONMENT_BLOCKED_NOT_RUN",
+  "effectivePolicyCaveat": "Registry observations are evidence only; they do not establish all precedence scopes or authorize a process entry."
+}

@@ -1,0 +1,1940 @@
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart
+new file mode 100644
+index 00000000..df776e54
+--- /dev/null
++++ b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_audio_signal_metrics.dart
+@@ -0,0 +1,46 @@
++import 'dart:math' as math;
++
++// Only aggregate one PCM block; never retain samples or treat this as playback proof.
++({int zeroCrossings, double tone440, double tone880}) rtcAudioToneDiagnostics(
++  List<int> samples,
++  int sampleRate,
++) {
++  if (samples.length < 2 || sampleRate <= 0) {
++    return (zeroCrossings: 0, tone440: 0, tone880: 0);
++  }
++  final mean =
++      samples.fold<double>(0, (sum, sample) => sum + sample) / samples.length;
++  var energy = 0.0;
++  var crossings = 0;
++  var previous = samples.first - mean;
++  for (final sample in samples) {
++    final centered = sample - mean;
++    energy += centered * centered;
++    if ((previous < 0 && centered >= 0) || (previous >= 0 && centered < 0)) {
++      crossings += 1;
++    }
++    previous = centered;
++  }
++  double toneFraction(double hz) {
++    if (energy == 0 || hz >= sampleRate / 2) return 0;
++    final coefficient = 2 * math.cos(2 * math.pi * hz / sampleRate);
++    var previous = 0.0;
++    var beforePrevious = 0.0;
++    for (final sample in samples) {
++      final current = sample - mean + coefficient * previous - beforePrevious;
++      beforePrevious = previous;
++      previous = current;
++    }
++    final power =
++        previous * previous +
++        beforePrevious * beforePrevious -
++        coefficient * previous * beforePrevious;
++    return (2 * power / (samples.length * energy)).clamp(0.0, 1.0);
++  }
++
++  return (
++    zeroCrossings: crossings,
++    tone440: toneFraction(440),
++    tone880: toneFraction(880),
++  );
++}
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+index 0929531d..ba497a92 100644
+--- a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
++++ b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+@@ -11,6 +11,7 @@ import 'package:livekit_client/livekit_client.dart';
+ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
+ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_android_audio_engine.dart';
+ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_ice_diagnostic.dart';
++import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_audio_signal_metrics.dart';
+ 
+ class RtcLiveKitService extends ChangeNotifier {
+   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
+@@ -28,7 +29,9 @@ class RtcLiveKitService extends ChangeNotifier {
+     required Future<bool> Function() microphonePermission,
+     required Future<bool> Function() cameraPermission,
+     Room Function()? roomFactory,
++    CancelListenFunc? rendererCancel,
+   }) : _room = room,
++       _cancelLocalAudioRenderer = rendererCancel,
+        _roomFactory = roomFactory,
+        _microphonePermission = microphonePermission,
+        _cameraPermission = cameraPermission;
+@@ -42,6 +45,8 @@ class RtcLiveKitService extends ChangeNotifier {
+ 
+   Room? _room;
+   Future<void>? _roomTeardown;
++  bool? _lastCleanupSucceeded;
++  bool? get lastCleanupSucceeded => _lastCleanupSucceeded;
+   int? _connectedCallId;
+   Object? _connectionAttempt;
+   int? _pendingCallId;
+@@ -406,7 +411,10 @@ class RtcLiveKitService extends ChangeNotifier {
+       return;
+     }
+ 
+-    await _unbindLocalAudioTrackDiagnostics();
++    if (!await _unbindLocalAudioTrackDiagnostics()) {
++      _failureMessage = '媒体资源清理失败，请退出通话后重试';
++      return;
++    }
+     _boundLocalAudioTrackId = nextTrackId;
+     debugPrint(
+       'RTC_LIVEKIT_LOCAL_AUDIO_BIND '
+@@ -442,6 +450,7 @@ class RtcLiveKitService extends ChangeNotifier {
+                         .fold<double>(0.0, math.max) /
+                     32768.0;
+           {
++            final tones = rtcAudioToneDiagnostics(samples, frame.sampleRate);
+             debugPrint(
+               'RTC_LIVEKIT_LOCAL_AUDIO_FRAME '
+               'device=${_platformLabel()} '
+@@ -452,7 +461,9 @@ class RtcLiveKitService extends ChangeNotifier {
+               'channels=${frame.channels} '
+               'bytes=${frame.data.lengthInBytes} '
+               'absAvg=${absAvg.toStringAsFixed(4)} '
+-              'peak=${peak.toStringAsFixed(4)}',
++              'peak=${peak.toStringAsFixed(4)} '
++              'tone440=${tones.tone440.toStringAsFixed(4)} '
++              'tone880=${tones.tone880.toStringAsFixed(4)}',
+             );
+           }
+         },
+@@ -474,17 +485,22 @@ class RtcLiveKitService extends ChangeNotifier {
+     }
+   }
+ 
+-  Future<void> _unbindLocalAudioTrackDiagnostics() async {
++  Future<bool> _unbindLocalAudioTrackDiagnostics() async {
+     final cancel = _cancelLocalAudioRenderer;
+     _cancelLocalAudioRenderer = null;
+     _boundLocalAudioTrackId = null;
+     if (cancel != null) {
+       try {
+         await cancel();
+-      } catch (_) {
+-        // best-effort only
++      } catch (error) {
++        debugPrint(
++          'RTC_CLEANUP stage=renderer_cancel outcome=failed '
++          'errorType=${error.runtimeType}',
++        );
++        return false;
+       }
+     }
++    return true;
+   }
+ 
+   Future<void> _logRemoteAudioStats(int callId) async {
+@@ -726,6 +742,9 @@ class RtcLiveKitService extends ChangeNotifier {
+         await teardown;
+         if (_disposed || requestedGeneration != _connectionGeneration) return;
+       }
++      if (_lastCleanupSucceeded == false) {
++        throw StateError('Previous media cleanup failed');
++      }
+       final diagnosticAllowed = iceDiagnosticRequested
+           ? await verifyIceDiagnosticHost(appEnv)
+           : false;
+@@ -759,6 +778,9 @@ class RtcLiveKitService extends ChangeNotifier {
+       final expectedAfterLeave = _connectionGeneration + 1;
+       await _leave(preserveAttempt: attempt);
+       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
++      if (_lastCleanupSucceeded == false) {
++        throw StateError('Previous media cleanup failed');
++      }
+       generation = _connectionGeneration;
+       _connectedCallId = callId;
+       debugPrint(
+@@ -1100,7 +1122,8 @@ class RtcLiveKitService extends ChangeNotifier {
+     _iceDiagnosticObserver?.stop();
+     _iceDiagnosticObserver = null;
+     final room = _room;
+-    final teardown = room == null ? null : Completer<void>();
++    final hasRenderer = _cancelLocalAudioRenderer != null;
++    final teardown = room == null && !hasRenderer ? null : Completer<void>();
+     if (teardown != null) _roomTeardown = teardown.future;
+     room?.removeListener(_mediaChanged);
+     _room = null;
+@@ -1110,28 +1133,56 @@ class RtcLiveKitService extends ChangeNotifier {
+     _remoteAudioTrackFromEvent = false;
+     _stopHeartbeat();
+     _stopAudioStatsTimer();
+-    unawaited(_unbindLocalAudioTrackDiagnostics());
+     _mediaChanged();
+-    if (room == null) {
++    if (teardown == null) {
+       await _roomTeardown;
+-      _logLifecycle(leavingCallId, 'leave_complete');
++      _logLifecycle(
++        leavingCallId,
++        _lastCleanupSucceeded == false ? 'leave_failed' : 'leave_complete',
++      );
+       return;
+     }
++    var succeeded = true;
+     try {
+-      await room.disconnect();
+-    } catch (_) {
+-      // leave should be best-effort only.
++      succeeded = await _unbindLocalAudioTrackDiagnostics();
++      _logLifecycle(
++        leavingCallId,
++        succeeded ? 'renderer_cancel_complete' : 'renderer_cancel_failed',
++      );
++      if (room != null) {
++        try {
++          _logLifecycle(leavingCallId, 'room_disconnect_start');
++          await room.disconnect();
++          _logLifecycle(leavingCallId, 'room_disconnect_complete');
++        } catch (error) {
++          succeeded = false;
++          debugPrint(
++            'RTC_CLEANUP callId=$leavingCallId stage=disconnect '
++            'outcome=failed errorType=${error.runtimeType}',
++          );
++        }
++        try {
++          _logLifecycle(leavingCallId, 'room_dispose_start');
++          await room.dispose();
++          _logLifecycle(leavingCallId, 'room_dispose_complete');
++        } catch (error) {
++          succeeded = false;
++          debugPrint(
++            'RTC_CLEANUP callId=$leavingCallId stage=dispose '
++            'outcome=failed errorType=${error.runtimeType}',
++          );
++          _logLifecycle(leavingCallId, 'room_dispose_failed');
++        }
++      }
+     } finally {
+-      try {
+-        await room.dispose();
+-      } catch (_) {
+-        // Still release waiters after best-effort native cleanup.
+-      } finally {
+-        teardown!.complete();
+-        if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
++      _lastCleanupSucceeded = succeeded;
++      if (!succeeded) {
++        _failureMessage = '媒体资源清理失败，请退出通话后重试';
+       }
++      teardown.complete();
++      if (identical(_roomTeardown, teardown.future)) _roomTeardown = null;
+     }
+-    _logLifecycle(leavingCallId, 'leave_complete');
++    _logLifecycle(leavingCallId, succeeded ? 'leave_complete' : 'leave_failed');
+   }
+ 
+   Future<RtcLiveKitJoinInfoEntity> _loadJoinInfo(int callId) =>
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart b/apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart
+index 2d207226..3035bc01 100644
+--- a/apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart
++++ b/apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart
+@@ -6,51 +6,9 @@ import 'package:flutter/material.dart';
+ import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
+ import 'package:livekit_client/livekit_client.dart';
+ 
+-// Only aggregate one PCM block; never retain samples or treat this as playback proof.
+-@visibleForTesting
+-({int zeroCrossings, double tone440, double tone880}) rtcAudioToneDiagnostics(
+-  List<int> samples,
+-  int sampleRate,
+-) {
+-  if (samples.length < 2 || sampleRate <= 0) {
+-    return (zeroCrossings: 0, tone440: 0, tone880: 0);
+-  }
+-  final mean =
+-      samples.fold<double>(0, (sum, sample) => sum + sample) / samples.length;
+-  var energy = 0.0;
+-  var crossings = 0;
+-  var previous = samples.first - mean;
+-  for (final sample in samples) {
+-    final centered = sample - mean;
+-    energy += centered * centered;
+-    if ((previous < 0 && centered >= 0) || (previous >= 0 && centered < 0)) {
+-      crossings += 1;
+-    }
+-    previous = centered;
+-  }
+-  double toneFraction(double hz) {
+-    if (energy == 0 || hz >= sampleRate / 2) return 0;
+-    final coefficient = 2 * math.cos(2 * math.pi * hz / sampleRate);
+-    var previous = 0.0;
+-    var beforePrevious = 0.0;
+-    for (final sample in samples) {
+-      final current = sample - mean + coefficient * previous - beforePrevious;
+-      beforePrevious = previous;
+-      previous = current;
+-    }
+-    final power =
+-        previous * previous +
+-        beforePrevious * beforePrevious -
+-        coefficient * previous * beforePrevious;
+-    return (2 * power / (samples.length * energy)).clamp(0.0, 1.0);
+-  }
+-
+-  return (
+-    zeroCrossings: crossings,
+-    tone440: toneFraction(440),
+-    tone880: toneFraction(880),
+-  );
+-}
++export '../../domain/services/rtc_audio_signal_metrics.dart'
++    show rtcAudioToneDiagnostics;
++import '../../domain/services/rtc_audio_signal_metrics.dart';
+ 
+ class RtcAudioSpectrumBar extends StatefulWidget {
+   const RtcAudioSpectrumBar({super.key, required this.audioTrack});
+@@ -294,90 +252,98 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
+     final t = context.appTokens;
+     final track = widget.audioTrack;
+ 
+-    return Column(
+-      crossAxisAlignment: CrossAxisAlignment.start,
+-      children: [
+-        Container(
+-          width: double.infinity,
+-          padding: EdgeInsets.all(t.spacing.md),
+-          decoration: BoxDecoration(
+-            color: t.secondarySurface,
+-            borderRadius: BorderRadius.circular(16),
+-            border: Border.all(color: t.browseBorder),
+-          ),
+-          child: Column(
+-            crossAxisAlignment: CrossAxisAlignment.start,
+-            children: [
+-              Row(
+-                children: [
+-                  Icon(
+-                    track == null
+-                        ? Icons.graphic_eq_outlined
+-                        : Icons.graphic_eq,
+-                    color: track == null ? t.textTertiary : t.brandPrimary,
+-                    size: 20,
+-                  ),
+-                  SizedBox(width: t.spacing.xs),
+-                  Expanded(
+-                    child: Text(
+-                      _frameCount > 0 && _lastPeak <= _silentThreshold
+-                          ? '远端音轨已接入但无声'
+-                          : _status,
+-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+-                        color: t.textPrimary,
+-                        fontWeight: FontWeight.w700,
++    // Keep rapidly changing PCM counters/bars out of the accessibility tree;
++    // callers can still navigate the stable call controls during live media.
++    return Semantics(
++      container: true,
++      label: track == null ? '等待远端音轨' : '远端音频活动',
++      excludeSemantics: true,
++      child: Column(
++        crossAxisAlignment: CrossAxisAlignment.start,
++        children: [
++          Container(
++            width: double.infinity,
++            padding: EdgeInsets.all(t.spacing.md),
++            decoration: BoxDecoration(
++              color: t.secondarySurface,
++              borderRadius: BorderRadius.circular(16),
++              border: Border.all(color: t.browseBorder),
++            ),
++            child: Column(
++              crossAxisAlignment: CrossAxisAlignment.start,
++              children: [
++                Row(
++                  children: [
++                    Icon(
++                      track == null
++                          ? Icons.graphic_eq_outlined
++                          : Icons.graphic_eq,
++                      color: track == null ? t.textTertiary : t.brandPrimary,
++                      size: 20,
++                    ),
++                    SizedBox(width: t.spacing.xs),
++                    Expanded(
++                      child: Text(
++                        _frameCount > 0 && _lastPeak <= _silentThreshold
++                            ? '远端音轨已接入但无声'
++                            : _status,
++                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
++                          color: t.textPrimary,
++                          fontWeight: FontWeight.w700,
++                        ),
+                       ),
+                     ),
++                    Text(
++                      _lastFrameLabel(),
++                      style: Theme.of(
++                        context,
++                      ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
++                    ),
++                  ],
++                ),
++                SizedBox(height: t.spacing.sm),
++                SizedBox(
++                  height: 40,
++                  child: Row(
++                    crossAxisAlignment: CrossAxisAlignment.end,
++                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
++                    children: List.generate(_barCount, (index) {
++                      final level = _levels[index].clamp(0.0, 1.0);
++                      final height = 6.0 + (level * 34.0);
++                      return AnimatedContainer(
++                        duration: const Duration(milliseconds: 120),
++                        curve: Curves.easeOutCubic,
++                        width: 12,
++                        height: height,
++                        decoration: BoxDecoration(
++                          color: track == null
++                              ? t.textTertiary.withValues(alpha: 0.28)
++                              : t.brandPrimary.withValues(alpha: 0.85),
++                          borderRadius: BorderRadius.circular(999),
++                        ),
++                      );
++                    }),
+                   ),
+-                  Text(
+-                    _lastFrameLabel(),
+-                    style: Theme.of(
+-                      context,
+-                    ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
+-                  ),
+-                ],
+-              ),
+-              SizedBox(height: t.spacing.sm),
+-              SizedBox(
+-                height: 40,
+-                child: Row(
+-                  crossAxisAlignment: CrossAxisAlignment.end,
+-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+-                  children: List.generate(_barCount, (index) {
+-                    final level = _levels[index].clamp(0.0, 1.0);
+-                    final height = 6.0 + (level * 34.0);
+-                    return AnimatedContainer(
+-                      duration: const Duration(milliseconds: 120),
+-                      curve: Curves.easeOutCubic,
+-                      width: 12,
+-                      height: height,
+-                      decoration: BoxDecoration(
+-                        color: track == null
+-                            ? t.textTertiary.withValues(alpha: 0.28)
+-                            : t.brandPrimary.withValues(alpha: 0.85),
+-                        borderRadius: BorderRadius.circular(999),
+-                      ),
+-                    );
+-                  }),
+                 ),
+-              ),
+-            ],
++              ],
++            ),
+           ),
+-        ),
+-        SizedBox(height: t.spacing.xs),
+-        Text(
+-          track == null
+-              ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
+-              : _frameCount == 0
+-              ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
+-              : _lastPeak <= _silentThreshold
+-              ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
+-              : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
+-          style: Theme.of(
+-            context,
+-          ).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
+-        ),
+-      ],
++          SizedBox(height: t.spacing.xs),
++          Text(
++            track == null
++                ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
++                : _frameCount == 0
++                ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
++                : _lastPeak <= _silentThreshold
++                ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
++                : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
++            style: Theme.of(context).textTheme.bodySmall?.copyWith(
++              color: t.textSecondary,
++              height: 1.35,
++            ),
++          ),
++        ],
++      ),
+     );
+   }
+ }
+diff --git a/apps/flutter_elitesync_module/pubspec.lock b/apps/flutter_elitesync_module/pubspec.lock
+index 2f494e02..0b587674 100644
+--- a/apps/flutter_elitesync_module/pubspec.lock
++++ b/apps/flutter_elitesync_module/pubspec.lock
+@@ -606,7 +606,7 @@ packages:
+       path: "third_party/livekit_client"
+       relative: true
+     source: path
+-    version: "2.10.0+elitesync.1"
++    version: "2.10.0+elitesync.2"
+   logger:
+     dependency: transitive
+     description:
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+index 16fd2c1e..75aff64e 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+@@ -87,6 +87,7 @@ class _MediaRoom implements Room {
+   _MediaRoom(this.localParticipant);
+   Completer<void>? disconnectPending;
+   Object? disconnectError;
++  Object? disposeError;
+   Completer<void>? disposePending;
+   final disconnectStarted = Completer<void>();
+   final disposeStarted = Completer<void>();
+@@ -105,6 +106,7 @@ class _MediaRoom implements Room {
+   Future<bool> dispose() async {
+     if (!disposeStarted.isCompleted) disposeStarted.complete();
+     await disposePending?.future;
++    if (disposeError != null) throw disposeError!;
+     return true;
+   }
+ 
+@@ -113,6 +115,95 @@ class _MediaRoom implements Room {
+ }
+ 
+ void main() {
++  test(
++    'leave waits for renderer cancellation before disconnect and dispose',
++    () async {
++      final room = _MediaRoom(_MediaParticipant());
++      final gate = Completer<void>();
++      final service = RtcLiveKitService.mediaControlTest(
++        remoteDataSource: _DeniedRtcSource(),
++        appEnv: const AppEnv(
++          flavor: AppFlavor.dev,
++          appName: 'Cleanup test',
++          apiBaseUrl: 'http://127.0.0.1',
++          useMockData: false,
++        ),
++        room: room,
++        microphonePermission: () async => true,
++        cameraPermission: () async => true,
++        rendererCancel: () => gate.future,
++      );
++      final first = service.leave();
++      var secondCompleted = false;
++      final second = service.leave().then((_) => secondCompleted = true);
++      await Future<void>.delayed(Duration.zero);
++      expect(room.disconnectStarted.isCompleted, isFalse);
++      expect(room.disposeStarted.isCompleted, isFalse);
++      expect(secondCompleted, isFalse);
++      gate.complete();
++      await Future.wait([first, second]);
++      expect(room.disconnectStarted.isCompleted, isTrue);
++      expect(room.disposeStarted.isCompleted, isTrue);
++      expect(service.lastCleanupSucceeded, isTrue);
++      service.dispose();
++    },
++  );
++
++  test(
++    'renderer cancel failure still disposes room and prevents a new join',
++    () async {
++      final room = _MediaRoom(_MediaParticipant());
++      final source = _QueuedRtcSource();
++      final service = RtcLiveKitService.mediaControlTest(
++        remoteDataSource: source,
++        appEnv: const AppEnv(
++          flavor: AppFlavor.dev,
++          appName: 'Cleanup test',
++          apiBaseUrl: 'http://127.0.0.1',
++          useMockData: false,
++          useLiveKitRtc: true,
++        ),
++        room: room,
++        microphonePermission: () async => true,
++        cameraPermission: () async => true,
++        rendererCancel: () async => throw StateError('injected cancel failure'),
++      );
++      await service.leave();
++      expect(room.disposeStarted.isCompleted, isTrue);
++      expect(service.lastCleanupSucceeded, isFalse);
++      expect(service.failureMessage, isNotNull);
++      await expectLater(service.ensureConnected(19), throwsStateError);
++      expect(source.callIds, isEmpty);
++      service.dispose();
++    },
++  );
++
++  test(
++    'room disposal failure is observable instead of successful leave',
++    () async {
++      final room = _MediaRoom(_MediaParticipant())
++        ..disposeError = StateError('injected room failure');
++      final service = RtcLiveKitService.mediaControlTest(
++        remoteDataSource: _DeniedRtcSource(),
++        appEnv: const AppEnv(
++          flavor: AppFlavor.dev,
++          appName: 'Cleanup test',
++          apiBaseUrl: 'http://127.0.0.1',
++          useMockData: false,
++        ),
++        room: room,
++        microphonePermission: () async => true,
++        cameraPermission: () async => true,
++      );
++      await service.leave();
++      expect(service.lastCleanupSucceeded, isFalse);
++      expect(service.failureMessage, contains('清理失败'));
++      await service.leave();
++      expect(service.lastCleanupSucceeded, isFalse);
++      service.dispose();
++    },
++  );
++
+   test('disconnect failure still waits for room disposal', () async {
+     final room = _MediaRoom(_MediaParticipant())
+       ..disconnectError = StateError('disconnect timeout')
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart
+index a5b6c394..63139d34 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart
+@@ -10,6 +10,9 @@ class _Stream extends Fake implements rtc.MediaStream {}
+ class _Track extends Fake implements rtc.MediaStreamTrack {
+   @override
+   String get id => 'pcm-cleanup-track';
++
++  @override
++  Future<void> stop() async {}
+ }
+ 
+ // Only the native transport is replaced. Capture grouping, subscriptions,
+@@ -37,7 +40,9 @@ class _NativeAudio {
+           starts.add(args);
+           final name = eventChannel(id);
+           channels.add(name);
+-          messenger.setMockMethodCallHandler(MethodChannel(name), (event) async {
++          messenger.setMockMethodCallHandler(MethodChannel(name), (
++            event,
++          ) async {
+             switch (event.method) {
+               case 'listen':
+                 listening.add(id);
+@@ -68,9 +73,9 @@ class _NativeAudio {
+ 
+   Future<void> frame(String id, {bool expectListening = true}) async {
+     if (expectListening) expect(listening, contains(id));
+-    final format = starts.firstWhere(
+-      (start) => start['rendererId'] == id,
+-    )['format'] as Map;
++    final format =
++        starts.firstWhere((start) => start['rendererId'] == id)['format']
++            as Map;
+     final delivered = Completer<void>();
+     messenger.handlePlatformMessage(
+       eventChannel(id),
+@@ -135,195 +140,383 @@ void main() {
+     native.uninstall();
+   });
+ 
+-  test('last renderer cancel during stopCapture does not mutate live iteration',
+-      () async {
+-    final cancel = track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    native.stopGate = Completer<void>();
+-    final stopping = _outcome(track.stopCapture());
+-    await native.firstStop.future;
+-    final cancelling = _outcome(cancel());
+-    await _drain();
+-    native.release();
+-    final results = await Future.wait([stopping, cancelling]);
+-    expect(results, everyElement(isNull));
+-    expect(native.stops, [native.idAt(0)]);
+-  });
++  test(
++    'last renderer cancel during stopCapture does not mutate live iteration',
++    () async {
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final stopping = _outcome(track.stopCapture());
++      await native.firstStop.future;
++      final cancelling = _outcome(cancel());
++      await _drain();
++      native.release();
++      final results = await Future.wait([stopping, cancelling]);
++      expect(results, everyElement(isNull));
++      expect(native.stops, [native.idAt(0)]);
++    },
++  );
+ 
+-  test('concurrent stopCapture requests stop each native renderer once', () async {
+-    track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    native.stopGate = Completer<void>();
+-    final first = _outcome(track.stopCapture());
+-    await native.firstStop.future;
+-    var secondCompleted = false;
+-    final second = _outcome(track.stopCapture()).then((result) {
+-      secondCompleted = true;
+-      return result;
+-    });
+-    await _drain();
+-    expect(secondCompleted, isFalse,
+-        reason: 'A second stop must await the pending native cleanup');
+-    native.release();
+-    expect(await Future.wait([first, second]), everyElement(isNull));
+-    expect(secondCompleted, isTrue);
+-    expect(native.stops, [native.idAt(0)]);
+-  });
++  test(
++    'concurrent stopCapture requests stop each native renderer once',
++    () async {
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final first = _outcome(track.stopCapture());
++      await native.firstStop.future;
++      var secondCompleted = false;
++      final second = _outcome(track.stopCapture()).then((result) {
++        secondCompleted = true;
++        return result;
++      });
++      await _drain();
++      expect(
++        secondCompleted,
++        isFalse,
++        reason: 'A second stop must await the pending native cleanup',
++      );
++      native.release();
++      expect(await Future.wait([first, second]), everyElement(isNull));
++      expect(secondCompleted, isTrue);
++      expect(native.stops, [native.idAt(0)]);
++    },
++  );
+ 
+-  test('stopCapture awaits a group already removed by last renderer cancel',
+-      () async {
+-    final cancel = track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    native.stopGate = Completer<void>();
+-    final cancelling = _outcome(cancel());
+-    await native.firstStop.future;
+-    var stopCompleted = false;
+-    final stopping = _outcome(track.stopCapture()).then((result) {
+-      stopCompleted = true;
+-      return result;
+-    });
+-    await _drain();
+-    expect(stopCompleted, isFalse,
+-        reason: 'Removing a group must not lose its in-flight cleanup');
+-    native.release();
+-    expect(await Future.wait([cancelling, stopping]), everyElement(isNull));
+-    expect(stopCompleted, isTrue);
+-    expect(native.stops, [native.idAt(0)]);
+-  });
++  test(
++    'stopCapture awaits a group already removed by last renderer cancel',
++    () async {
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final cancelling = _outcome(cancel());
++      await native.firstStop.future;
++      var stopCompleted = false;
++      final stopping = _outcome(track.stopCapture()).then((result) {
++        stopCompleted = true;
++        return result;
++      });
++      await _drain();
++      expect(
++        stopCompleted,
++        isFalse,
++        reason: 'Removing a group must not lose its in-flight cleanup',
++      );
++      native.release();
++      expect(await Future.wait([cancelling, stopping]), everyElement(isNull));
++      expect(stopCompleted, isTrue);
++      expect(native.stops, [native.idAt(0)]);
++    },
++  );
+ 
+-  test('stopCapture awaits both different-format groups and stops frame delivery',
+-      () async {
+-    var firstFrames = 0;
+-    var secondFrames = 0;
+-    track.addAudioRenderer(
+-      onFrame: (_) => firstFrames++,
+-      options: const AudioRendererOptions(sampleRate: 24000),
+-    );
+-    track.addAudioRenderer(
+-      onFrame: (_) => secondFrames++,
+-      options: const AudioRendererOptions(sampleRate: 48000),
+-    );
+-    await _drain();
+-    expect(native.starts, hasLength(2));
+-    final firstId = native.idAt(0);
+-    final secondId = native.idAt(1);
+-    expect(firstId, isNot(secondId));
+-    await native.frame(firstId);
+-    await native.frame(secondId);
+-    expect([firstFrames, secondFrames], [1, 1]);
+-    native.stopGates[firstId] = Completer<void>();
+-    native.stopGates[secondId] = Completer<void>();
+-    var stopCompleted = false;
+-    final stopping = _outcome(track.stopCapture()).then((result) {
+-      stopCompleted = true;
+-      return result;
+-    });
+-    await native.firstStop.future;
+-    await _drain();
+-    expect(native.stops, unorderedEquals([firstId, secondId]));
+-    expect(stopCompleted, isFalse);
+-    native.stopGates[firstId]!.complete();
+-    await _drain();
+-    expect(stopCompleted, isFalse,
+-        reason: 'The other format still has a pending native stop');
+-    expect(native.listening, isEmpty);
+-    // Inject late native packets through the real EventChannel transport after
+-    // subscription cancellation, rather than bypassing SDK frame dispatch.
+-    await native.frame(firstId, expectListening: false);
+-    await native.frame(secondId, expectListening: false);
+-    expect([firstFrames, secondFrames], [1, 1]);
+-    native.stopGates[secondId]!.complete();
+-    expect(await stopping, isNull);
+-    expect(stopCompleted, isTrue);
+-    await native.frame(firstId, expectListening: false);
+-    await native.frame(secondId, expectListening: false);
+-    expect([firstFrames, secondFrames], [1, 1]);
+-    expect(native.stops, unorderedEquals([firstId, secondId]));
+-  });
++  test(
++    'stopCapture awaits both different-format groups and stops frame delivery',
++    () async {
++      var firstFrames = 0;
++      var secondFrames = 0;
++      track.addAudioRenderer(
++        onFrame: (_) => firstFrames++,
++        options: const AudioRendererOptions(sampleRate: 24000),
++      );
++      track.addAudioRenderer(
++        onFrame: (_) => secondFrames++,
++        options: const AudioRendererOptions(sampleRate: 48000),
++      );
++      await _drain();
++      expect(native.starts, hasLength(2));
++      final firstId = native.idAt(0);
++      final secondId = native.idAt(1);
++      expect(firstId, isNot(secondId));
++      await native.frame(firstId);
++      await native.frame(secondId);
++      expect([firstFrames, secondFrames], [1, 1]);
++      native.stopGates[firstId] = Completer<void>();
++      native.stopGates[secondId] = Completer<void>();
++      var stopCompleted = false;
++      final stopping = _outcome(track.stopCapture()).then((result) {
++        stopCompleted = true;
++        return result;
++      });
++      await native.firstStop.future;
++      await _drain();
++      expect(native.stops, unorderedEquals([firstId, secondId]));
++      expect(stopCompleted, isFalse);
++      native.stopGates[firstId]!.complete();
++      await _drain();
++      expect(
++        stopCompleted,
++        isFalse,
++        reason: 'The other format still has a pending native stop',
++      );
++      expect(native.listening, isEmpty);
++      // Inject late native packets through the real EventChannel transport after
++      // subscription cancellation, rather than bypassing SDK frame dispatch.
++      await native.frame(firstId, expectListening: false);
++      await native.frame(secondId, expectListening: false);
++      expect([firstFrames, secondFrames], [1, 1]);
++      native.stopGates[secondId]!.complete();
++      expect(await stopping, isNull);
++      expect(stopCompleted, isTrue);
++      await native.frame(firstId, expectListening: false);
++      await native.frame(secondId, expectListening: false);
++      expect([firstFrames, secondFrames], [1, 1]);
++      expect(native.stops, unorderedEquals([firstId, secondId]));
++    },
++  );
+ 
+-  test('concurrent repeated renderer cancellation stops native capture once',
+-      () async {
+-    final cancel = track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    native.stopGate = Completer<void>();
+-    final first = _outcome(cancel());
+-    await native.firstStop.future;
+-    final second = _outcome(cancel());
+-    await _drain();
+-    native.release();
+-    expect(await Future.wait([first, second]), everyElement(isNull));
+-    expect(native.stops, [native.idAt(0)]);
+-  });
++  test(
++    'concurrent repeated renderer cancellation stops native capture once',
++    () async {
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final first = _outcome(cancel());
++      await native.firstStop.future;
++      final second = _outcome(cancel());
++      await _drain();
++      native.release();
++      expect(await Future.wait([first, second]), everyElement(isNull));
++      expect(native.stops, [native.idAt(0)]);
++    },
++  );
+ 
+-  test('late old cancel cannot detach a new same-format capture group', () async {
+-    final oldCancel = track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    await track.stopCapture();
+-    var frames = 0;
+-    final newCancel = track.addAudioRenderer(onFrame: (_) => frames++);
+-    await _drain();
+-    expect(native.starts, hasLength(2));
+-    final newId = native.idAt(1);
+-    await oldCancel();
+-    await native.frame(newId);
+-    expect(frames, 1);
+-    await track.stopCapture();
+-    // The new group must still belong to the track and be cleaned up by it.
+-    final stoppedByTrack = List<String>.of(native.stops);
+-    await newCancel();
+-    expect(stoppedByTrack, [native.idAt(0), newId]);
+-    expect(native.stops, stoppedByTrack);
+-  });
++  test(
++    'late old cancel cannot detach a new same-format capture group',
++    () async {
++      final oldCancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      await track.stopCapture();
++      var frames = 0;
++      final newCancel = track.addAudioRenderer(onFrame: (_) => frames++);
++      await _drain();
++      expect(native.starts, hasLength(2));
++      final newId = native.idAt(1);
++      await oldCancel();
++      await native.frame(newId);
++      expect(frames, 1);
++      await track.stopCapture();
++      // The new group must still belong to the track and be cleaned up by it.
++      final stoppedByTrack = List<String>.of(native.stops);
++      await newCancel();
++      expect(stoppedByTrack, [native.idAt(0), newId]);
++      expect(native.stops, stoppedByTrack);
++    },
++  );
+ 
+-  test('equal-format renderers share capture until the last renderer cancels',
+-      () async {
+-    var firstFrames = 0;
+-    var secondFrames = 0;
+-    final first = track.addAudioRenderer(
+-      onFrame: (_) => firstFrames++,
+-      options: const AudioRendererOptions(sampleRate: 24000),
+-    );
+-    final second = track.addAudioRenderer(
+-      onFrame: (_) => secondFrames++,
+-      options: const AudioRendererOptions(sampleRate: 24000),
+-    );
+-    await _drain();
+-    expect(native.starts, hasLength(1));
+-    expect(native.starts.single['trackId'], 'pcm-cleanup-track');
+-    expect(native.starts.single['format'], {
+-      'commonFormat': 'int16',
+-      'sampleRate': 24000,
+-      'channels': 1,
+-    });
+-    final id = native.idAt(0);
+-    await native.frame(id);
+-    expect([firstFrames, secondFrames], [1, 1]);
+-    await first();
+-    expect(native.stops, isEmpty);
+-    await native.frame(id);
+-    expect([firstFrames, secondFrames], [1, 2]);
+-    await second();
+-    expect(native.stops, [id]);
+-    expect(native.listening, isEmpty);
+-  });
++  test(
++    'equal-format renderers share capture until the last renderer cancels',
++    () async {
++      var firstFrames = 0;
++      var secondFrames = 0;
++      final first = track.addAudioRenderer(
++        onFrame: (_) => firstFrames++,
++        options: const AudioRendererOptions(sampleRate: 24000),
++      );
++      final second = track.addAudioRenderer(
++        onFrame: (_) => secondFrames++,
++        options: const AudioRendererOptions(sampleRate: 24000),
++      );
++      await _drain();
++      expect(native.starts, hasLength(1));
++      expect(native.starts.single['trackId'], 'pcm-cleanup-track');
++      expect(native.starts.single['format'], {
++        'commonFormat': 'int16',
++        'sampleRate': 24000,
++        'channels': 1,
++      });
++      final id = native.idAt(0);
++      await native.frame(id);
++      expect([firstFrames, secondFrames], [1, 1]);
++      await first();
++      expect(native.stops, isEmpty);
++      await native.frame(id);
++      expect([firstFrames, secondFrames], [1, 2]);
++      await second();
++      expect(native.stops, [id]);
++      expect(native.listening, isEmpty);
++    },
++  );
+ 
+-  test('stop and last cancel while native start is pending settle once', () async {
+-    native.startGate = Completer<bool>();
+-    native.stopGate = Completer<void>();
+-    final cancel = track.addAudioRenderer(onFrame: (_) {});
+-    await _drain();
+-    expect(native.starts, hasLength(1));
+-    expect(native.listening, isEmpty);
+-    final stopping = _outcome(track.stopCapture());
+-    final cancelling = _outcome(cancel());
+-    await _drain();
+-    expect(native.stops, isEmpty);
+-    native.startGate!.complete(true);
+-    await native.firstStop.future;
+-    await _drain();
+-    native.release();
+-    expect(await Future.wait([stopping, cancelling]), everyElement(isNull));
+-    expect(native.stops, [native.idAt(0)]);
+-    expect(native.listening, isEmpty);
+-  });
++  test(
++    'inactive track dispose awaits native capture cleanup exactly once',
++    () async {
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      expect(track.isActive, isFalse);
++      expect(native.starts, hasLength(1));
++      final id = native.idAt(0);
++      expect(native.listening, contains(id));
++      native.stopGate = Completer<void>();
++      var disposeCompleted = false;
++      final disposing = _outcome(
++        track.dispose().timeout(const Duration(seconds: 2)).then<void>((_) {
++          disposeCompleted = true;
++        }),
++      );
++      await _drain();
++      // Do not await firstStop: the broken inactive stop path never calls it.
++      expect(native.stops, [id]);
++      expect(
++        disposeCompleted,
++        isFalse,
++        reason: 'dispose must await the pending native capture stop',
++      );
++      expect(native.listening, isEmpty);
++      native.release();
++      expect(await disposing, isNull);
++      expect(disposeCompleted, isTrue);
++      expect(native.stops, [id]);
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'dispose during pending capture start awaits start then native stop',
++    () async {
++      native.startGate = Completer<bool>();
++      native.stopGate = Completer<void>();
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      expect(track.isActive, isFalse);
++      expect(native.starts, hasLength(1));
++      expect(native.listening, isEmpty);
++      var disposeCompleted = false;
++      final disposing = _outcome(
++        track.dispose().timeout(const Duration(seconds: 2)).then<void>((_) {
++          disposeCompleted = true;
++        }),
++      );
++      await _drain();
++      expect(
++        disposeCompleted,
++        isFalse,
++        reason: 'dispose cannot finish while capture start is pending',
++      );
++      expect(native.stops, isEmpty);
++      native.startGate!.complete(true);
++      await _drain();
++      expect(native.stops, [native.idAt(0)]);
++      expect(
++        disposeCompleted,
++        isFalse,
++        reason: 'dispose must also await native stop after start completes',
++      );
++      expect(native.listening, isEmpty);
++      native.stopGate!.complete();
++      expect(await disposing, isNull);
++      expect(disposeCompleted, isTrue);
++      expect(native.stops, [native.idAt(0)]);
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'disposed track rejects a new renderer without starting native capture',
++    () async {
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      await track.dispose().timeout(const Duration(seconds: 2));
++      expect(track.isDisposed, isTrue);
++      final startsBefore = native.starts.length;
++      expect(() => track.addAudioRenderer(onFrame: (_) {}), throwsStateError);
++      await _drain();
++      expect(native.starts, hasLength(startsBefore));
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'stop and last cancel while native start is pending settle once',
++    () async {
++      native.startGate = Completer<bool>();
++      native.stopGate = Completer<void>();
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      expect(native.starts, hasLength(1));
++      expect(native.listening, isEmpty);
++      final stopping = _outcome(track.stopCapture());
++      final cancelling = _outcome(cancel());
++      await _drain();
++      expect(native.stops, isEmpty);
++      native.startGate!.complete(true);
++      await native.firstStop.future;
++      await _drain();
++      native.release();
++      expect(await Future.wait([stopping, cancelling]), everyElement(isNull));
++      expect(native.stops, [native.idAt(0)]);
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'inactive track dispose closes renderer without a manual stopCapture',
++    () async {
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      expect(track.isActive, isFalse);
++      expect(native.listening, hasLength(1));
++      await track.dispose();
++      expect(native.stops, [native.idAt(0)]);
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'inactive track dispose waits for native stop already in progress',
++    () async {
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final cancelling = _outcome(cancel());
++      await native.firstStop.future;
++      var disposed = false;
++      final disposing = track.dispose().then((_) => disposed = true);
++      await _drain();
++      expect(disposed, isFalse);
++      native.release();
++      expect(await cancelling, isNull);
++      await disposing;
++      expect(disposed, isTrue);
++      expect(native.stops, [native.idAt(0)]);
++    },
++  );
++
++  test(
++    'inactive track dispose waits for pending capture start and last cancel',
++    () async {
++      native.startGate = Completer<bool>();
++      native.stopGate = Completer<void>();
++      final cancel = track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      var disposed = false;
++      final disposing = track.dispose().then((_) => disposed = true);
++      final cancelling = _outcome(cancel());
++      await _drain();
++      expect(disposed, isFalse);
++      native.startGate!.complete(true);
++      await native.firstStop.future;
++      await _drain();
++      expect(disposed, isFalse);
++      native.release();
++      expect(await cancelling, isNull);
++      await disposing;
++      expect(native.stops, [native.idAt(0)]);
++      expect(native.listening, isEmpty);
++    },
++  );
++
++  test(
++    'inactive track dispose prohibits a new renderer during and after cleanup',
++    () async {
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      native.stopGate = Completer<void>();
++      final disposing = track.dispose();
++      expect(() => track.addAudioRenderer(onFrame: (_) {}), throwsStateError);
++      native.release();
++      await disposing;
++      expect(() => track.addAudioRenderer(onFrame: (_) {}), throwsStateError);
++      expect(native.starts, hasLength(1));
++    },
++  );
+ }
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart
+new file mode 100644
+index 00000000..dfb60ac1
+--- /dev/null
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_failure_test.dart
+@@ -0,0 +1,231 @@
++import 'dart:async';
++
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
++import 'package:livekit_client/livekit_client.dart';
++
++class _Stream extends Fake implements rtc.MediaStream {}
++
++class _Track extends Fake implements rtc.MediaStreamTrack {
++  @override
++  String get id => 'pcm-failure-track';
++}
++
++const _deadline = Duration(seconds: 2);
++const _nativeChannel = MethodChannel('livekit_client');
++const _codec = StandardMethodCodec();
++
++Matcher get _stopFailure => isA<PlatformException>().having(
++  (error) => error.code,
++  'code',
++  'PCM_STOP_FAILURE',
++);
++
++Future<Object?> _outcome(Future<dynamic> operation) async {
++  try {
++    await operation.timeout(_deadline);
++    return null;
++  } catch (error) {
++    return error;
++  }
++}
++
++Future<void> _drain() => Future<void>.delayed(Duration.zero);
++
++// Only transport replies are simulated. The RemoteAudioTrack, capture groups,
++// AudioFrameCaptureNative, EventChannel and disposal algorithm remain real.
++class _NativeReplies {
++  final messenger =
++      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++  bool startSucceeds = true;
++  bool stopFails = false;
++  final starts = <String>[];
++  final stops = <String>[];
++  final listens = <String>[];
++  final activeListeners = <String>{};
++  final firstStop = Completer<void>();
++  Completer<void>? stopGate;
++
++  String eventName(String id) => 'io.livekit.audio.renderer/channel-$id';
++
++  void install() {
++    messenger.setMockMethodCallHandler(_nativeChannel, (call) async {
++      final args = Map<String, dynamic>.from(call.arguments as Map);
++      final id = args['rendererId'] as String;
++      switch (call.method) {
++        case 'startAudioRenderer':
++          starts.add(id);
++          messenger.setMockMethodCallHandler(MethodChannel(eventName(id)), (
++            event,
++          ) async {
++            switch (event.method) {
++              case 'listen':
++                listens.add(id);
++                activeListeners.add(id);
++                break;
++              case 'cancel':
++                activeListeners.remove(id);
++                break;
++              default:
++                throw StateError('Unexpected event method: ${event.method}');
++            }
++            return null;
++          });
++          return startSucceeds;
++        case 'stopAudioRenderer':
++          stops.add(id);
++          if (!firstStop.isCompleted) firstStop.complete();
++          if (stopGate != null) await stopGate!.future;
++          if (stopFails) {
++            throw PlatformException(
++              code: 'PCM_STOP_FAILURE',
++              message: 'Injected native stop failure',
++            );
++          }
++          return null;
++        default:
++          throw StateError('Unexpected native method: ${call.method}');
++      }
++    });
++  }
++
++  Future<void> emitFrame(String id) async {
++    final delivered = Completer<void>();
++    messenger.handlePlatformMessage(
++      eventName(id),
++      _codec.encodeSuccessEnvelope({
++        'commonFormat': 'int16',
++        'sampleRate': 24000,
++        'channels': 1,
++        'data': Uint8List.fromList([1, 0]),
++      }),
++      (_) => delivered.complete(),
++    );
++    await delivered.future.timeout(_deadline);
++    await _drain();
++  }
++
++  void release() {
++    if (stopGate != null && !stopGate!.isCompleted) stopGate!.complete();
++  }
++
++  void uninstall() {
++    messenger.setMockMethodCallHandler(_nativeChannel, null);
++    for (final id in starts) {
++      messenger.setMockMethodCallHandler(MethodChannel(eventName(id)), null);
++    }
++  }
++}
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++  late _NativeReplies native;
++  late RemoteAudioTrack track;
++  late bool expectDisposalFailure;
++
++  setUp(() {
++    native = _NativeReplies()..install();
++    track = RemoteAudioTrack(TrackSource.microphone, _Stream(), _Track());
++    expectDisposalFailure = false;
++  });
++
++  tearDown(() async {
++    native.release();
++    try {
++      final error = await _outcome(track.dispose());
++      if (expectDisposalFailure) {
++        expect(
++          error,
++          _stopFailure,
++          reason: 'Negative-case cleanup must retain the expected stop error',
++        );
++      } else {
++        expect(error, isNull);
++      }
++      expect(track.events.isDisposed, isTrue);
++      expect(native.activeListeners, isEmpty);
++    } finally {
++      native.uninstall();
++    }
++  });
++
++  test(
++    'failed native start creates no subscription or frames and no fake stop',
++    () async {
++      native.startSucceeds = false;
++      var frames = 0;
++      track.addAudioRenderer(onFrame: (_) => frames++);
++      await _drain();
++      expect(native.starts, hasLength(1));
++      expect(native.listens, isEmpty);
++      await native.emitFrame(native.starts.single);
++      expect(frames, 0);
++      expect(await _outcome(track.dispose()), isNull);
++      expect(native.stops, isEmpty);
++      expect(native.listens, isEmpty);
++      expect(track.events.isDisposed, isTrue);
++    },
++  );
++
++  for (final operation in ['cancel', 'stopCapture']) {
++    test(
++      '$operation failure remains visible to later dispose after group removal',
++      () async {
++        native.stopFails = true;
++        expectDisposalFailure = true;
++        final cancel = track.addAudioRenderer(onFrame: (_) {});
++        await _drain();
++        expect(native.listens, [native.starts.single]);
++        final stopError = await _outcome(
++          operation == 'cancel' ? cancel() : track.stopCapture(),
++        );
++        // Drain completion callbacks so dispose cannot pass merely by observing
++        // the previous stop future before its in-flight entry has been cleared.
++        await _drain();
++        final disposeError = await _outcome(track.dispose());
++        final repeatError = await _outcome(track.dispose());
++        expect(stopError, _stopFailure);
++        expect(disposeError, same(stopError));
++        expect(repeatError, same(disposeError));
++        expect(native.stops, [native.starts.single]);
++        expect(native.activeListeners, isEmpty);
++        expect(track.events.isDisposed, isTrue);
++      },
++    );
++  }
++
++  test(
++    'concurrent and completed dispose calls retain the same native stop error',
++    () async {
++      native.stopFails = true;
++      expectDisposalFailure = true;
++      native.stopGate = Completer<void>();
++      track.addAudioRenderer(onFrame: (_) {});
++      await _drain();
++      var firstCompleted = false;
++      var secondCompleted = false;
++      final first = _outcome(track.dispose()).then((error) {
++        firstCompleted = true;
++        return error;
++      });
++      await native.firstStop.future.timeout(_deadline);
++      final second = _outcome(track.dispose()).then((error) {
++        secondCompleted = true;
++        return error;
++      });
++      await _drain();
++      expect(firstCompleted, isFalse);
++      expect(secondCompleted, isFalse);
++      native.release();
++      final errors = await Future.wait([first, second]);
++      final afterCompletion = await _outcome(track.dispose());
++      expect(errors.first, _stopFailure);
++      expect(errors.last, same(errors.first));
++      expect(afterCompletion, same(errors.first));
++      expect(native.stops, [native.starts.single]);
++      expect(native.activeListeners, isEmpty);
++      expect(track.events.isDisposed, isTrue);
++    },
++  );
++}
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart
+new file mode 100644
+index 00000000..9fd94eda
+--- /dev/null
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_room_disposal_test.dart
+@@ -0,0 +1,200 @@
++import 'dart:async';
++
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:livekit_client/livekit_client.dart';
++import 'package:livekit_client/src/core/engine.dart';
++
++// Retain the real Engine, SignalClient and event listeners. Only the Engine
++// lifecycle boundary exposed to Room is paused or made to fail by these tests.
++class _ControlledEngine extends Engine {
++  _ControlledEngine()
++    : super(
++        connectOptions: const ConnectOptions(),
++        roomOptions: const RoomOptions(),
++      );
++
++  final cleanupEntered = Completer<void>();
++  Completer<void>? cleanupGate;
++  StateError? cleanupError;
++  StateError? disposalError;
++  int roomCleanupRequests = 0;
++  int disposalRequests = 0;
++  bool _insideEngineDisposal = false;
++
++  @override
++  Future<void> cleanUp() async {
++    // Engine's own disposer also invokes cleanUp. Delegate that call to its
++    // real implementation without reinjecting a Room-boundary failure/gate.
++    if (_insideEngineDisposal) {
++      await super.cleanUp();
++      return;
++    }
++    roomCleanupRequests++;
++    if (!cleanupEntered.isCompleted) cleanupEntered.complete();
++    if (cleanupGate != null) await cleanupGate!.future;
++    if (cleanupError != null) throw cleanupError!;
++    await super.cleanUp();
++  }
++
++  @override
++  Future<bool> dispose() async {
++    disposalRequests++;
++    _insideEngineDisposal = true;
++    try {
++      final result = await super.dispose();
++      if (disposalError != null) throw disposalError!;
++      return result;
++    } finally {
++      _insideEngineDisposal = false;
++    }
++  }
++
++  void release() {
++    if (cleanupGate != null && !cleanupGate!.isCompleted) {
++      cleanupGate!.complete();
++    }
++  }
++
++  Future<void> finishFixture() async {
++    release();
++    cleanupError = null;
++    disposalError = null;
++    // Bypass the instrumented dispose entry when cleaning a failing fixture;
++    // otherwise teardown would change the counts asserted by the test.
++    _insideEngineDisposal = true;
++    try {
++      await super.dispose();
++    } finally {
++      _insideEngineDisposal = false;
++    }
++  }
++}
++
++const _deadline = Duration(seconds: 2);
++
++Future<Object?> _disposeOutcome(
++  Room room, {
++  void Function()? onComplete,
++}) async {
++  try {
++    await room.dispose().timeout(_deadline);
++    return null;
++  } catch (error) {
++    return error;
++  } finally {
++    onComplete?.call();
++  }
++}
++
++Future<void> _drain() => Future<void>.delayed(Duration.zero);
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++  const nativeChannel = MethodChannel('livekit_client');
++  final messenger =
++      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++  late _ControlledEngine engine;
++  late Room room;
++  late List<String> nativeStops;
++
++  setUp(() {
++    nativeStops = [];
++    messenger.setMockMethodCallHandler(nativeChannel, (call) async {
++      if (call.method != 'stopAndroidAudioSession') {
++        throw StateError('Unexpected native call: ${call.method}');
++      }
++      nativeStops.add(call.method);
++      return null;
++    });
++    engine = _ControlledEngine();
++    room = Room(engine: engine);
++    // Fail fixture construction here, before any asserted disposal behavior.
++    expect(engine.events.isDisposed, isFalse);
++  });
++
++  tearDown(() async {
++    engine.release();
++    await _disposeOutcome(room);
++    await engine.finishFixture().timeout(_deadline);
++    await room.events.dispose().timeout(_deadline);
++    messenger.setMockMethodCallHandler(nativeChannel, null);
++  });
++
++  test('concurrent Room dispose calls both await the first cleanup', () async {
++    engine.cleanupGate = Completer<void>();
++    var firstCompleted = false;
++    var secondCompleted = false;
++    final first = _disposeOutcome(
++      room,
++      onComplete: () => firstCompleted = true,
++    );
++    await engine.cleanupEntered.future.timeout(_deadline);
++    final second = _disposeOutcome(
++      room,
++      onComplete: () => secondCompleted = true,
++    );
++    await _drain();
++    expect(firstCompleted, isFalse);
++    expect(
++      secondCompleted,
++      isFalse,
++      reason: 'Repeated Room.dispose must wait for in-flight cleanup',
++    );
++    expect(engine.roomCleanupRequests, 1);
++    expect(engine.disposalRequests, 0);
++    expect(nativeStops, isEmpty);
++    engine.release();
++    expect(await Future.wait([first, second]), everyElement(isNull));
++    expect(engine.roomCleanupRequests, 1);
++    expect(engine.disposalRequests, 1);
++    // Android makes one native session stop; desktop makes none. In either
++    // platform branch a repeated Room disposal must not repeat native teardown.
++    expect(nativeStops.length, lessThanOrEqualTo(1));
++    final stopsAfterDispose = List<String>.of(nativeStops);
++    expect(await _disposeOutcome(room), isNull);
++    expect(nativeStops, stopsAfterDispose);
++    expect(engine.disposalRequests, 1);
++    expect(engine.events.isDisposed, isTrue);
++  });
++
++  test(
++    'Room attempts engine disposal after cleanup fails and propagates error',
++    () async {
++      final failure = StateError('room cleanup failure');
++      engine.cleanupError = failure;
++      engine.disposalError = StateError('later engine disposal failure');
++      final result = await _disposeOutcome(room);
++      expect(engine.roomCleanupRequests, 1);
++      expect(
++        engine.disposalRequests,
++        1,
++        reason: 'Cleanup failure must not skip engine disposal',
++      );
++      expect(result, same(failure));
++      expect(engine.events.isDisposed, isTrue);
++    },
++  );
++
++  test(
++    'Room repeats the same engine disposal failure without repeating teardown',
++    () async {
++      final failure = StateError('engine disposal failure');
++      engine.disposalError = failure;
++      final first = await _disposeOutcome(room);
++      final cleanupAfterFirst = engine.roomCleanupRequests;
++      final stopsAfterFirst = List<String>.of(nativeStops);
++      final second = await _disposeOutcome(room);
++      final third = await _disposeOutcome(room);
++      expect(first, same(failure));
++      expect(second, same(failure));
++      expect(third, same(failure));
++      expect(engine.disposalRequests, 1);
++      expect(cleanupAfterFirst, 1);
++      expect(engine.roomCleanupRequests, cleanupAfterFirst);
++      expect(nativeStops, stopsAfterFirst);
++      expect(nativeStops.length, lessThanOrEqualTo(1));
++      expect(engine.events.isDisposed, isTrue);
++    },
++  );
++}
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart b/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart
+index c502f9eb..10dc07bd 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/presentation/widgets/rtc_audio_spectrum_bar_test.dart
+@@ -1,10 +1,51 @@
+ import 'dart:math' as math;
++import 'dart:typed_data';
+ import 'package:flutter/material.dart';
+ import 'package:flutter_test/flutter_test.dart';
+ import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
+ import 'package:flutter_elitesync_module/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart';
++import 'package:livekit_client/livekit_client.dart';
++import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
++
++class _AudioMediaTrack extends Fake implements rtc.MediaStreamTrack {
++  @override
++  String get id => 'synthetic-spectrum-track';
++}
++
++class _SpectrumTrack extends Fake implements AudioTrack {
++  AudioFrameCallback? frame;
++  @override
++  rtc.MediaStreamTrack get mediaStreamTrack => _AudioMediaTrack();
++  @override
++  TrackType get kind => TrackType.AUDIO;
++  @override
++  CancelListenFunc addAudioRenderer({required AudioFrameCallback onFrame,
++      AudioRendererOptions options = const AudioRendererOptions()}) {
++    frame = onFrame;
++    return () async { frame = null; };
++  }
++}
+ 
+ void main() {
++  testWidgets('live PCM updates retain one stable accessible audio label', (tester) async {
++    final semantics = tester.ensureSemantics();
++    final track = _SpectrumTrack();
++    await tester.pumpWidget(MaterialApp(theme: AppTheme.light,
++        home: Scaffold(body: RtcAudioSpectrumBar(audioTrack: track))));
++    await tester.pump();
++    for (var i = 0; i < 6; i++) {
++      track.frame!(AudioFrame(sampleRate: 24000, channels: 1,
++          format: AudioFormat.Int16, data: Uint8List.fromList([1, 0, 20, 0])));
++      await tester.pump(const Duration(milliseconds: 20));
++      expect(find.bySemanticsLabel('远端音频活动'), findsOneWidget);
++      expect(find.bySemanticsLabel(RegExp('frames=|最近帧|synthetic-spectrum-track')), findsNothing);
++    }
++    await tester.pumpWidget(const SizedBox.shrink());
++    await tester.pump();
++    expect(track.frame, isNull);
++    semantics.dispose();
++  });
++
+   test('PCM diagnostics distinguish synthetic 440 and 880 Hz blocks', () {
+     for (final frequency in [440, 880]) {
+       const sampleRate = 24000;
+@@ -50,5 +91,9 @@ void main() {
+ 
+     expect(find.text('等待远端音轨…'), findsOneWidget);
+     expect(find.byType(RtcAudioSpectrumBar), findsOneWidget);
++    final semantics = tester.ensureSemantics();
++    expect(find.bySemanticsLabel('等待远端音轨'), findsOneWidget);
++    expect(find.bySemanticsLabel(RegExp('暂无音频帧')), findsNothing);
++    semantics.dispose();
+   });
+ }
+diff --git a/apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart b/apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart
+new file mode 100644
+index 00000000..42e56970
+--- /dev/null
++++ b/apps/flutter_elitesync_module/third_party/livekit_client/test/elitesync_room_publication_cleanup_test.dart
+@@ -0,0 +1,212 @@
++import 'dart:async';
++
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
++import 'package:livekit_client/livekit_client.dart';
++import 'package:livekit_client/src/core/engine.dart';
++import 'package:livekit_client/src/internal/events.dart';
++import 'package:livekit_client/src/proto/livekit_models.pb.dart' as models;
++import 'package:livekit_client/src/proto/livekit_rtc.pb.dart' as protocol;
++
++class _Stream extends Fake implements rtc.MediaStream {}
++
++class _MediaTrack extends Fake implements rtc.MediaStreamTrack {
++  @override
++  String get id => 'publication-pcm-track';
++}
++
++class _CleanupEngine extends Engine {
++  _CleanupEngine()
++      : super(
++          connectOptions: const ConnectOptions(),
++          roomOptions: const RoomOptions(),
++        );
++
++  final cleanupEntered = Completer<void>();
++  final cleanupGate = Completer<void>();
++  int disposalRequests = 0;
++  bool _insideDisposal = false;
++
++  @override
++  Future<void> cleanUp() async {
++    if (!_insideDisposal) {
++      if (!cleanupEntered.isCompleted) cleanupEntered.complete();
++      await cleanupGate.future;
++    }
++    await super.cleanUp();
++  }
++
++  @override
++  Future<bool> dispose() async {
++    disposalRequests++;
++    _insideDisposal = true;
++    try {
++      return await super.dispose();
++    } finally {
++      _insideDisposal = false;
++    }
++  }
++
++  void release() {
++    if (!cleanupGate.isCompleted) cleanupGate.complete();
++  }
++
++  Future<void> finishFixture() async {
++    release();
++    _insideDisposal = true;
++    try {
++      await super.dispose();
++      await signalClient.dispose();
++    } finally {
++      _insideDisposal = false;
++    }
++  }
++}
++
++const _deadline = Duration(seconds: 2);
++
++Future<Object?> _outcome(Future<dynamic> operation) async {
++  try {
++    await operation.timeout(_deadline);
++    return null;
++  } catch (error) {
++    return error;
++  }
++}
++
++Matcher get _pcmStopFailure => isA<PlatformException>().having(
++      (error) => error.code,
++      'code',
++      'PCM_STOP_FAILURE',
++    );
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++
++  test('Room propagates inactive published track PCM stop failure and finishes cleanup',
++      () async {
++    final messenger =
++        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
++    const native = MethodChannel('livekit_client');
++    final starts = <String>[];
++    final stops = <String>[];
++    final listeners = <String>{};
++    final engine = _CleanupEngine();
++    final room = Room(engine: engine);
++    RemoteAudioTrack? fixtureTrack;
++    RemoteTrackPublication<RemoteAudioTrack>? fixturePublication;
++    RemoteParticipant? fixtureParticipant;
++
++    addTearDown(() async {
++      engine.release();
++      try {
++        await _outcome(room.dispose());
++        final track = fixtureTrack;
++        Object? trackFailure;
++        if (track != null) {
++          trackFailure = await _outcome(track.dispose());
++        }
++        await fixturePublication?.dispose().timeout(_deadline);
++        await fixtureParticipant?.dispose().timeout(_deadline);
++        await engine.finishFixture().timeout(_deadline);
++        await room.events.dispose().timeout(_deadline);
++        if (track != null) expect(trackFailure, _pcmStopFailure);
++      } finally {
++        messenger.setMockMethodCallHandler(native, null);
++        for (final id in starts) {
++          messenger.setMockMethodCallHandler(
++            MethodChannel('io.livekit.audio.renderer/channel-$id'),
++            null,
++          );
++        }
++      }
++    });
++
++    messenger.setMockMethodCallHandler(native, (call) async {
++      if (call.method == 'stopAndroidAudioSession') return null;
++      final args = Map<String, dynamic>.from(call.arguments as Map);
++      final id = args['rendererId'] as String;
++      switch (call.method) {
++        case 'startAudioRenderer':
++          starts.add(id);
++          messenger.setMockMethodCallHandler(
++            MethodChannel('io.livekit.audio.renderer/channel-$id'),
++            (event) async {
++              if (event.method == 'listen') {
++                listeners.add(id);
++              } else if (event.method == 'cancel') {
++                listeners.remove(id);
++              } else {
++                throw StateError('Unexpected EventChannel method: ${event.method}');
++              }
++              return null;
++            },
++          );
++          return true;
++        case 'stopAudioRenderer':
++          stops.add(id);
++          throw PlatformException(code: 'PCM_STOP_FAILURE');
++        default:
++          throw StateError('Unexpected native method: ${call.method}');
++      }
++    });
++
++    // Exercise Room's real join listener to populate its private collection.
++    // This test belongs to the livekit_client package, where these named
++    // internal SDK events are legal; no runtime fixture API or dynamic bypass.
++    final joined = room.events.waitFor<RoomConnectedEvent>(duration: _deadline);
++    engine.events.emit(EngineJoinResponseEvent(
++      response: protocol.JoinResponse(
++        room: models.Room(sid: 'RM_cleanup', name: 'cleanup'),
++        participant: models.ParticipantInfo(sid: 'PA_local', identity: 'local'),
++        otherParticipants: [
++          models.ParticipantInfo(sid: 'PA_remote', identity: 'remote'),
++        ],
++      ),
++    ));
++    await joined;
++    final registeredParticipant = room.remoteParticipants['remote'];
++    expect(registeredParticipant, isA<RemoteParticipant>());
++    final participant = registeredParticipant!;
++    fixtureParticipant = participant;
++    final track = RemoteAudioTrack(TrackSource.microphone, _Stream(), _MediaTrack());
++    fixtureTrack = track;
++    final publication = RemoteTrackPublication<RemoteAudioTrack>(
++      participant: participant,
++      info: models.TrackInfo(
++        sid: 'TR_pcm',
++        type: models.TrackType.AUDIO,
++        source: models.TrackSource.MICROPHONE,
++      ),
++      track: track,
++    );
++    fixturePublication = publication;
++    participant.addTrackPublication(publication);
++    track.addAudioRenderer(onFrame: (_) {});
++    await Future<void>.delayed(Duration.zero);
++    // Fixture assertions precede the disposal regression under test.
++    expect(participant.trackPublications['TR_pcm'], same(publication));
++    expect(publication.track, same(track));
++    expect(track.isActive, isFalse);
++    expect(starts, hasLength(1));
++    expect(listeners, contains(starts.single));
++
++    var roomCompleted = false;
++    final disposing = _outcome(room.dispose()).then((error) {
++      roomCompleted = true;
++      return error;
++    });
++    await engine.cleanupEntered.future.timeout(_deadline);
++    expect(roomCompleted, isFalse);
++    engine.release();
++    final failure = await disposing;
++    expect(failure, _pcmStopFailure,
++        reason: 'Room must observe the error hidden by publication disposal');
++    expect(engine.disposalRequests, 1);
++    expect(track.events.isDisposed, isTrue);
++    expect(publication.isDisposed, isTrue);
++    expect(stops, [starts.single]);
++    expect(listeners, isEmpty);
++  });
++}

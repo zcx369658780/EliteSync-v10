@@ -1,0 +1,156 @@
+{
+  "rootLabel": "v1015-remaining-acceptance-continuation-20261025",
+  "files": [
+    {
+      "localLabel": "disposal-red.stdout.txt",
+      "bytes": 9927,
+      "sha256": "3a2b0b805e192aeddc0f0868d91ddc6b0a8dfe827759848e1b5c8125d2daea67",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "disposal-red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "capture-failure-red.stdout.txt",
+      "bytes": 4206,
+      "sha256": "0af375a0ec331e13425bc35c6f5079a92c9a90a91ce555fd8bdf7b66c92a02e9",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "publication-red.stdout.txt",
+      "bytes": 884,
+      "sha256": "1f71a26f9ea1b90799c99bca925c84465dda71332e573a07d9a4355ede57de87",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final67-reviewed.stdout.txt",
+      "bytes": 24375,
+      "sha256": "a5472688c1053e6280f315dc222a945d8fbbac7738ac897445797d7757f48bc8",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final67-reviewed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "analyze-reviewed.stdout.txt",
+      "bytes": 3782,
+      "sha256": "ffcf27c3d4a321b04c1bd056ecf3c6c0e57a298dfa8dba6af6986ddcc36f82aa",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stdout.txt",
+      "bytes": 53840,
+      "sha256": "d7dc1b59b0ebbda76a74146ae252d255f4a60ee15e305f0959f2710dc9d38bc3",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stderr.txt",
+      "bytes": 2821,
+      "sha256": "114d5cc8f83b8be820b60c27b675db333392df82c98111d571b6391d514bf866",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-apk-install-result.json",
+      "bytes": 438,
+      "sha256": "6a870185e9d0351e1d20f3ef318c281329d2d089cd3a7fb5f61a571f42e979b2",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "device-ui-v3.console.txt",
+      "bytes": 11185,
+      "sha256": "ca1ee3cbbdc72a793a541184ee631ef520228c1cc22e1e52d91959b417f969d8",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "device-ui-call4.console.txt",
+      "bytes": 7652,
+      "sha256": "963e0a743803a197176c76f48176cbabfe6c6cc26dda5b833ce44a0e6332b907",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "ui4-call-ended-log.stdout.txt",
+      "bytes": 730580,
+      "sha256": "1e81bee02ab7a31331c20184ada7d2b87f2b972c80eee1eae07817704b844f84",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "successful-token-call5.console.txt",
+      "bytes": 1613,
+      "sha256": "371b56b48de37fc4e2f281cb89971de3e5f138e040db9ef1e67f348ac7b3efe3",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "successful-token-media-log.stdout.txt",
+      "bytes": 781503,
+      "sha256": "bfb1a4f5d6a07bb9d6809525e363d591680e0e130faa389d5824284c2a92a053",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "successful-token-post-revoke-0.stdout.txt",
+      "bytes": 811583,
+      "sha256": "ac3a518d15025eef7836e2bc8f49195c07b5e7135786ce9cac2c043bf9292692",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-gui-boundary.console.txt",
+      "bytes": 490,
+      "sha256": "4131c8dd3ad238ab9e7816d9957bcfd7f94c6b7d14a1a505403238aaa7fad926",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-gui-boundary-v2.console.txt",
+      "bytes": 4186,
+      "sha256": "66083db030311c826354ab6a648b1deb490b6e71e82ec5eb3a291186e602f565",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-stale-card-after-revoke.xml",
+      "bytes": 4154,
+      "sha256": "7ed64997a980dbd6f6c3bbe6b117d9df6f8643d1654931c43719bdd4ebea489b",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-stale-card-open-view-0.xml",
+      "bytes": 3417,
+      "sha256": "8839a868580d3ce5b57ee86d66cb04b86a40c3e1787041f899854fafedbef30c",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "runtime-closure.console.txt",
+      "bytes": 967,
+      "sha256": "c7d18e35185de73cf50a0088daaa2c4d6332bdf805f7c05ebe2041e6c09d0e57",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "runtime-final.json",
+      "bytes": 2103,
+      "sha256": "1878774afe35acc8039094820562039e1069a3b8e8e6e31497092d82cdc6d81b",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "post-runtime-protection.json",
+      "bytes": 538,
+      "sha256": "7856f6b4815327130d43b1945b8eb02eae18f51336b3e64c769d64b40d5e0bdc",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "device-owned-final.sql",
+      "bytes": 188049,
+      "sha256": "1e8fe52a679fd41f0e2940c0b2e7715a700f555004d65906c3987ac4a3749435",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "gate2-readonly-components.json",
+      "bytes": 2888,
+      "sha256": "2fd3b655fd4efcae47dd91cba312d4ec94eae732594e3183716394fdabac8f91",
+      "rawPublished": false
+    }
+  ],
+  "rawPrivacy": "Raw APK, SQL, private tokens, serials, UI trees and device logs remain LOCAL_ONLY; no raw PCM samples saved."
+}
