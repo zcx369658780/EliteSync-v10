@@ -1,5 +1,8 @@
 # EliteSync-v10 动态总目录
 
+**2026-10-25工作流治理最新增量：** [A-D任务下达闭环协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md) → [现行工作流](docs/workflow/CURRENT_WORKFLOW.md) → [唯一当前状态](docs/workflow/ACTIVE_STATE.md) → [2026-10-25项目源增量](docs/gpt-project-sources/20261025_task_dispatch_closure/README.md)。Owner已批准：正式任务必须创建并读回唯一任务文件、同步ACTIVE_STATE并重新核验live main/Root/Blob，最终同一条回复附任务链接、Blob SHA和单一可复制启动Prompt。Owner手动派发Codex；失败须报告部分完成，发布不等于执行。Project Sources附件不自动更新，项目源ZIP须由Owner手动上传。
+
+
 **2026-10-21最新事实优先入口：** [单一ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) → [v10.1.2功能接受](docs/versions/v10.1.2/acceptance.md) → [唯一安全集成报告](docs/versions/v10.1.2/integration.md) → [增量项目源状态](docs/gpt-project-sources/20261021_v1012/README.md)。完整接受产品已入main，等待Astra独立集成验收；源ZIP未取得、字节镜像未核验。下方历史标题不代表最新状态。
 
 ## 2026-10-20 当前入口：v10.1.2首轮审阅CHANGES_REQUIRED／同版R1待Owner派发
