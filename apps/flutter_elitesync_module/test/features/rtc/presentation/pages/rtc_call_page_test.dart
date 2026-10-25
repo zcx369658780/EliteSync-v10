@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
+import 'package:flutter_elitesync_module/design_system/components/states/app_loading_skeleton.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import '../../rtc_test_session.dart';
 import 'package:dio/dio.dart';
@@ -254,6 +255,112 @@ Widget _wrap(
 }
 
 void main() {
+  for (final refresh in ['poll', 'invalidate']) {
+    testWidgets(
+      '$refresh preserves call controls and scroll during refresh then fails closed on error',
+      (tester) async {
+        final session = RtcSessionEntity.fromJson({
+          'id': 97,
+          'mode': 'voice',
+          'status': 'in_call',
+          'title': 'REFRESH_CALL',
+          'peer_name': 'REFRESH_PEER',
+          'initiator_user_id': 1,
+          'peer_user_id': 2,
+          'is_initiator': true,
+          'is_active': true,
+        });
+        final rtc = FakeRtcRemoteDataSource(session);
+        final service = NotifyingLeaveRtcService(rtc);
+        const page = RtcCallPage(callId: 97, autoConnect: false);
+        await tester.pumpWidget(
+          _wrap(page, rtc: rtc, service: service, liveKit: true),
+        );
+        await tester.pumpAndSettle();
+        expect(service.connections, [97]);
+        expect(service.leaves, isEmpty);
+        await tester.ensureVisible(find.text('挂断'));
+        await tester.pumpAndSettle();
+        final list = tester.element(find.byType(ListView));
+        final scrollable = tester.state<ScrollableState>(
+          find.descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          ),
+        );
+        final offset = scrollable.position.pixels;
+        expect(offset, greaterThan(0));
+        final container = ProviderScope.containerOf(
+          tester.element(find.byWidget(page)),
+        );
+
+        Future<void> beginRefresh() async {
+          rtc.pendingFetch = Completer<RtcSessionEntity>();
+          final requests = rtc.requestOrder.length;
+          if (refresh == 'poll') {
+            await tester.pump(const Duration(seconds: 4));
+          } else {
+            container.invalidate(rtcCallProvider(97));
+          }
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 100));
+          expect(rtc.requestOrder.length, requests + 1);
+          // Exercise the real FutureProvider seam, retaining its previous value.
+          final pending = container.read(rtcCallProvider(97));
+          expect(pending.isLoading, isTrue);
+          expect(pending.isRefreshing, isTrue);
+          expect(pending.hasValue, isTrue);
+        }
+
+        void expectRetainedContent() {
+          expect(find.byType(AppLoadingSkeleton), findsNothing);
+          expect(find.text('挂断'), findsOneWidget);
+          expect(tester.element(find.byType(ListView)), same(list));
+          expect(scrollable.position.pixels, closeTo(offset, 0.01));
+          expect(service.connections, [97]);
+          expect(service.leaves, isEmpty);
+        }
+
+        await beginRefresh();
+        expectRetainedContent();
+        rtc.pendingFetch!.complete(session);
+        await tester.pumpAndSettle();
+        expectRetainedContent();
+
+        // A completed authorization/network error must override the cached value.
+        await beginRefresh();
+        expectRetainedContent();
+        rtc.pendingFetch!.completeError(Exception('session denied'));
+        await tester.pumpAndSettle();
+        expect(container.read(rtcCallProvider(97)).hasError, isTrue);
+        expect(find.text('通话加载失败'), findsOneWidget);
+        expect(find.text('挂断'), findsNothing);
+        expect(find.text('REFRESH_PEER'), findsNothing);
+        expect(find.byType(AppLoadingSkeleton), findsNothing);
+        expect(service.leaves, [97]);
+        expect(service.connections, [97]);
+
+        // Refreshing an error must not resurrect the last authorized projection.
+        rtc.pendingFetch = Completer<RtcSessionEntity>();
+        container.invalidate(rtcCallProvider(97));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(container.read(rtcCallProvider(97)).isLoading, isTrue);
+        expect(find.text('挂断'), findsNothing);
+        expect(find.text('REFRESH_PEER'), findsNothing);
+        expect(find.text('重新连接'), findsNothing);
+        expect(service.leaves, [97]);
+        expect(service.connections, [97]);
+        rtc.pendingFetch!.completeError(Exception('session still denied'));
+        await tester.pumpAndSettle();
+        expect(find.text('通话加载失败'), findsOneWidget);
+        await tester.pumpWidget(const SizedBox());
+        expect(service.leaves, [97]);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   for (final page in ['call', 'incoming', 'result']) {
     for (final lateResponse in [false, true]) {
       testWidgets(

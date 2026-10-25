@@ -684,7 +684,9 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         ),
         body: sessionAsync.when(
           skipLoadingOnReload: false,
-          skipLoadingOnRefresh: false,
+          // Polling keeps the current call controls and scroll position stable.
+          // Actions still fetch fresh authority; real errors close media below.
+          skipLoadingOnRefresh: true,
           loading: () => const AppLoadingSkeleton(lines: 6),
           error: (e, _) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
