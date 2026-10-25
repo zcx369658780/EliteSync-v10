@@ -200,3 +200,87 @@ WS综合脚本已执行断连/重连、pointer和MC撤权，但最后“upgrade�
 R1原证根 `LOCAL_ONLY:v1015-r1-evidence-20261022`；核心剩余阻断为上述R1-B2媒体/重连/旧JWT/5秒门禁，另保留视频source与AEC设备门、综合WS脚本缺口、真实Provider和历史ZIP `BYTE_MIRROR_PENDING`。没有生产/公网部署、真实Push/用户/支付/外部AI或系统权限扩展。
 
 **交付后停止：V10.1.5_R1_CANDIDATE_DELIVERED / AWAITING_ASTRA_INDEPENDENT_FUNCTION_REREVIEW / PARTIAL。** 等待Owner把本次集中候选交给Astra；不得自行ACCEPTED、集成main或启动下一轮/版本。
+
+
+## 2026-10-25 综合长任务续接：当前集中交付
+
+**当前结论：PARTIAL / OPEN_BLOCKERS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE。** 本末章及当前 `artifact_manifest.json` 表示最新集中交付；前文首轮/R1原始叙述逐字节保留为历史，不把旧NOT_RUN迁移为本轮PASS，也不重签Astra结论。
+
+### 权威、来源与精确源码
+
+完整读取当前唯一task_order及F节，固定Blob `d737c3a813d81ada7a9ca9a60aa310e9e14e0960`；plan仍为 `7d3466b3be67135dc641cfee7c7faef78937ba03`。从live main原始base64内容解码后，Git原字节Blob精确核对；连续候选中的旧任务文件未被改写，当前执行合同引用main上该固定Blob。ACTIVE_STATE Blob `2b9ab05eebc21712070065c75f9f0b1aae90d571`。已读v10.1.4双接受、原综合任务、Gate1/D0-C接受及历史失败。R1 Astra复审Blob `ff9916e0b227dc0996165b2b6d5024b6199ead17` 已重新读取，其B1/B3限定支持与RTC核心OPEN均保留。
+
+| 对象 | 身份 |
+|---|---|
+| 核验live main / Root | `a6c321a85ec6433a2cfc5eda56e72178e688b47a` / `087adc701c36de429a53470f386fcf26d882ed3d` |
+| 已接受main完整apps / services | `3468a3dd97da7accfda2539a0f8d8f68931a6110` / `0cb1f9d19659291a462488b3686fd0a07a6698ac` |
+| 连续候选起点 / 本次源码唯一Parent | `f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff` |
+| 本次源码Commit / Root | `3e20809f5b91f18545047f05a52164f1d59d6455` / `957ac75c9ae19e19aa4ea7eaacdaa80e4f196022` |
+| 本次完整apps / services Tree | `785822ca072943c5bfefa3ccc37ede01c2af5164` / `21eebf69bbc6397b1562d40f8cd9ebd7b246720f` |
+| 连续候选分支 | `codex/v10.1.5-source-faithful-serializer-conditional-sdk` |
+
+当前apps Tree未改变；十项源码/测试差异在services。三个Service仅给本轮新专属库 `elitesync_v1015_long_dev` / loopback端口43328增加精确pair；local/testing、loopback、socket及原端口检查保留。PlatformAccess继续单独拒绝URL；**LiveConsent/Rtc既有代码没有独立URL拒绝，testing分支仅检查sqlite，不能把PlatformAccess或测试runner更严格的规则泛化给它们。** 实际受控harness在任何迁移/seed前另核完整effective配置与URL/socket，测试runner锁定testing/sqlite/:memory:。
+
+六个旧Feature测试的夹具/断言与当前已接受合同对齐，另新增配置选择器正负例测试：bare released Match不再被伪装成有效关系，合法CN/MC先建立独立ACTIVE Friendship；bare Match、单方同意拒绝仍有明确负例。Block后当前read404但历史row不删；未认证媒体请求由真实认证中间件先返回401且无原媒体字节。RTC Friendship只在active()加入，纯match-alone负例保持。未增加middleware豁免，旧Foundation测试原有豁免不作真实middleware贯通证据。
+
+| 入口分层 | 本轮处理 |
+|---|---|
+| 已有且已接受 | v10.1.4主线双Tree保持；原CN/MC/媒体/隐私合同复用，未重集成。 |
+| 已有而仍需实物证明 | RTC流动媒体/同call重连/旧JWT入房/≤5秒停止，当前完整apps新APK仍未证。 |
+| 本轮修正并新验证 | 专属开发库精确允许项、旧回归夹具及断言、真实WS全序列证据与逐步落盘、当前API/DB/媒体重启。 |
+| 外部或前置门未满足 | 真实Push、实体AEC/新增设备权限；Gate2加载不兼容导致37/条件SDK/Producer/30解析未运行。 |
+
+### Gate 2：新预算已消费，Writer仍未运行
+
+历史WinPS入口有效Restricted，原0.375秒SecurityError预算保持已消费，未重试。现有PowerShell7.6.6有效RemoteSigned/FullLanguage；按其已允许的普通本地 `pwsh -NoProfile -NonInteractive -File` 入口建立独立新预算 `LONG_F3_GATE2_PWSH7_20261025`，总限15秒。未修改策略、ACL或系统配置，未用Bypass/内容执行桥。独立非作者静态比较仅host变化、其余七文件逐字节相同，绑定八项pins。
+
+唯一新启动实际 **exit1，进程退出确认，控制器总耗时0.390秒**。阶段为startup，`System.TypeLoadException`：现有.NET10宿主加载既有.NET Framework程序集时缺少 `System.Web.UI.WebResourceAttribute`。先前类型可解析只证明元数据可见，不证明运行兼容。原child结果的 `status=FAIL` 是启动失败记录；**正例/负例、Write-Aggregate、Serializer实际调用、fallback均NOT_RUN、调用数0、receipt0**，不能报Writer或Serializer运行FAIL。控制器保存的stdout/stderr、Run ID、监督结果/退出确认与Hash均LOCAL_ONLY，摘要在独立审阅包。
+
+D0-A仍原一次15次Serialize、约0.688秒；本轮0次。Gate2没有通过，因此完整37案例suite、Sandbox SDK、Producer、libs.jar及30项Configuration.resolve()均NOT_RUN，未重置任何预算。当前Host APK/ICE标志实物仍未证明，未借旧R1包冒充新完整apps Tree构建。未对未知guest作HCS处置。
+
+### 新运行、普通失败修复与持久化
+
+| 运行 | 真实结果与范围 |
+|---|---|
+| 后端核心定向 | 31 tests / 245 assertions，exit0；保留2项PHP与2项PHPUnit deprecation。 |
+| 后端关联回归 | 修正后61 / 472，exit0；最后RTC Friendship移至active()后该类12 / 94再次exit0，不重复计为额外独立用例。 |
+| Flutter定向 | 任务自有精确源码副本，缓存工具、no-pub：55及97 tests passed，均exit0；不是设备/SFU实测。 |
+| Dart分析/PHP语法 | RTC services、storage、auth interceptor、LiveChat四项均exit0且No issues；十改变PHP文件lint及CRLF规则diff检查exit0。 |
+| HTTP/MariaDB | 真登录/refresh不续T0、消息同键同id、异payload409、私有图片字节、通知偏好/TEST_ONLY登记均通过。 |
+| 精确MariaDB并发 | REPEATABLE-READ；reader54等待writer53的users PRIMARY RECORD；writer撤销session提交在前，reader随后401且私密正文缺失，双exit0。 |
+| 实际WebSocket | 初连/断开/重连、最小conversation_changed指针通过；MC撤权后0.735秒当前连接关闭；旧token重连实测InvalidMessage（未收到合法握手/connected），未猜具体HTTP拒绝码；旧HTTP404。按当前API恢复MC后继续独立测试。 |
+| 私有短视频 | 合成1秒H264无音轨MP4，非摄像头录制；有权200及Range206字节/Content-Range匹配、第三方404、MC撤权后全量/Range404、假视频422。API层证据不等于本轮APP播放。 |
+| RTC控制面 | 新库真实创建/拒绝/接听/结束、旧join入口404，exit0；仅CONTROL_ONLY，无SFU流动媒体。 |
+| DB重启 | 本任务专属容器重启，9表规范快照完全相同，同token消息响应字节相同、视频Hash相同；有dump，未声称异库restore。 |
+
+普通失败均留原证：初次backend cache Windows绝对路径被框架拼接，20 error/0 assertion，修正任务自有相对cache路径并核selector JSON；首次扩大旧回归52/197、16error/6fail；旧fixture与Block合同不符，修正后剩61/468一条未认证期望404，按真实认证401且无媒体修正后通过。没有靠产品放权、跳过/删除测试取得绿灯。Flutter副本初缺package_graph，补复制已有元数据后通过，无pub/download；第一次Dart文件路径错误exit64，修正后四项干净。初次HTTP媒体配置422、RTC开关404是本轮启动配置问题，分别改为既有私有disk与本地RTC guard后运行；不隐去失败。
+
+新库/专属volume是本轮创建前不存在的资产，端口43328/API8041/WS8042开始前核空闲；没有使用旧3306、旧数据库或未知原生mysqld。空库0表身份与SQL事前恢复点已保存，迁移/seed后仅写本轮合成账号/媒体。最终SQL **172222 bytes / `546a4a8f10b3f034e33b5b61b8d0a919a985dd9938ae23c8f3d70195bf687a05`** LOCAL_ONLY。API/WS两个归属进程已按身份关闭并确认退出，本任务容器已stop、volume与恢复点保留，旧容器未启动/删除。Docker Desktop及adb server在工具可用性检查中启动并保持可用；本轮无AVD/手机/宿主麦克风/摄像头操作、没有主动修改共享SDK源码、全局配置或下载升级；工具缓存副作用未作全SDK逐字节验收。
+
+### 当前冻结AC逐项结果
+
+| AC | 当前结论 | 证据与限制 |
+|---|---|---|
+| AC-10.1.5-01 | `SUPPORTED_BOUNDED_PROTECTION` | NEW_RUN；新独立空MariaDB/volume、有效选择器与迁移前恢复点；22,482具名历史文件、五保护根及受保护旧refs一致。 |
+| AC-10.1.5-02 | `SUPPORTED_BACKEND_AND_REUSED_GUI` | NEW_RUN + REUSED_EVIDENCE；真实HTTP幂等回放/409、WS断开重连与最小指针通过；R1已支持的GUI丢响应同键重试证据保留。本轮没有当前完整apps Tree的新APK/GUI旅程。 |
+| AC-10.1.5-03 | `SUPPORTED_BOUNDED_NEGATIVES` | NEW_RUN + REUSED_EVIDENCE；MariaDB reader54等待writer53的users PRIMARY RECORD锁；COMMIT撤权后旧reader401，双exit0。当前WS撤权关闭/旧token拒绝和HTTP404通过；切号/迟到结果与Safety旧卡片GUI复用R1限定证据，未声称全矩阵新跑。 |
+| AC-10.1.5-04 | `SUPPORTED_API_MEDIA_AND_REUSED_APP` | NEW_RUN + REUSED_EVIDENCE；真实图片与H264短视频持久读回、200/206、撤权/第三方404、假视频422；新库重启后视频Hash一致。APP播放为既有版本证据，非本轮新GUI。 |
+| AC-10.1.5-05 | `PARTIAL_CORE_OPEN` | NEW_RUN_CONTROL_ONLY / MEDIA_NOT_RUN；RTC创建/拒绝/接听/结束及旧入口404通过；双APP有效SFU媒体、同call重连、旧RTC JWT首次重入拒绝、流动媒体≤5秒停止仍未证。AEC/视频源设备门保留。 |
+| AC-10.1.5-06 | `SUPPORTED_TEST_INJECTION_WITH_LIMITS` | NEW_RUN + REUSED_EVIDENCE；真实login/refresh T0不续期及后端期限回归通过；R1 Android 34/34受控注入时序由Astra限定支持，非真实物理30天。相关期限源码未在本次修改。 |
+| AC-10.1.5-07 | `SUPPORTED_NATIVE_INJECTION_WITH_LIMITS` | REUSED_EVIDENCE + NEW_RUN_TESTS；R1真实FlutterSecureStorage到期删除成功/失败及冷启锁定证据保留；新55项缓存/晚响应/通知与97项RTC/期限测试通过，不能代替新设备演练或现实删除完备性。 |
+| AC-10.1.5-08 | `SUPPORTED_BOUNDED_PRIVACY` | NEW_RUN + REUSED_EVIDENCE；本轮真实API类别/静默/最小通知及旧权限负例、Flutter点击重验回归通过；GUI权限/旧通知/Safety限定证据复用R1，完整Safety业务与新GUI未重跑。 |
+| AC-10.1.5-09 | `PASS_TEST_ONLY_ISOLATION` | NEW_RUN / REAL_PUSH_NOT_RUN；合成transport token登记及已有生命周期正反回归通过；真实Push供应商/SDK/Key/费用和后台锁屏远端送达仍PROVIDER_PENDING。 |
+| AC-10.1.5-10 | `PARTIAL_CURRENT_HOST_AND_RTC_OPEN` | NEW_RUN + REUSED_EVIDENCE；后端31/245和61/472、最终RTC夹具12/94、Flutter55+97、四项分析、真实API/持久DB重启通过；当前完整apps Tree未构建安装，新Host APK与条件SDK链未运行。 |
+| AC-10.1.5-11 | `DELIVERY_SUPPORTED_AWAITING_ASTRA` | STATIC_REVIEW + CODEX_REPORTED；唯一报告/当前manifest、固定源码双Tree、十文件非作者复核和最小独立审阅分支；尚非Astra功能接受，不合main。 |
+
+B7只复用原具名旧源检查：语音留言/地图来源仍NOT_PROVEN/UNKNOWN，不把RTC当语音留言；本轮未重复架构规划或增加新模块。R1的Android34/34期限/清理注入与GUI丢响应/切号/旧通知支持严格标REUSED_EVIDENCE，相关非RTC源码在当前apps中未发生变化；新纯测试与API运行不会升级为当前完整APP现场结果。
+
+### 非作者复核、公开材料与停止
+
+非作者Sol/high对十项diff、准确工作树SHA256/行号、上述保存回执做只读复核，当前无未关闭发现。其结论仅SUPPORTED_STATIC_REVIEW，没有独立执行设备/DB；源文件Git规范化SHA256与实际执行工作树SHA256均列manifest，差异仅Git的CRLF→LF，未混淆两套字节。另一次只读文本筛查对最小公开包无泄漏删减发现，原凭据/SQL/APK/设备和进程日志不上传。
+
+独立审阅分支 `codex/v10.1.5-long-continuation-review-20261025`，Commit `9e240a1f622ba179b696184a23d45c5dd38a360e`、唯一Parent `3e20809f5b91f18545047f05a52164f1d59d6455`、Root `9a49ef77aa72cded42568eb1b702d2ca182aa130`，8件path/mode/Blob列manifest。[固定审阅入口](https://github.com/zcx369658780/EliteSync-v10/tree/9e240a1f622ba179b696184a23d45c5dd38a360e/docs/_temporary_review/v1015-long-continuation-20261025)。WS公开脚本只是去凭据派生副本，未执行；原harness实际运行Hash单列，不声称公开派生件与原件字节相同。短期包不进入产品候选或main，未清理任何旧审阅分支。
+
+保护核验：22,482具名历史文件Hash/字节、五历史根HEAD/branch/index/status、516个旧refs中的受保护项保持；仅本次自有候选ref允许前进。其范围不等于全盘或所有活设备逐字节验收。历史失败、原D0预算、旧SQL/APK/refs及原dirty根保留。原报告字节作为本文件前缀不变；旧manifest可从来源commit精确取得，R1 manifest文件未修改。
+
+普通non-force发布连续候选并回读Commit/Parent/Root、双Tree、报告/manifest Blob和原字节；文档交付提交自身身份由最终回读回执提供，避免文件内自引用。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_HOST_APK / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED。** 完成集中交付后停止，等待Astra一次性独立验收；不自动恢复37/SDK链或后继版本。

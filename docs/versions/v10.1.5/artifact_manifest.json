@@ -1,822 +1,544 @@
 {
-  "schema": "elitesync.v1015.artifact_manifest.v1",
   "version": "10.1.5",
-  "overall": "PARTIAL",
-  "open_blockers": true,
-  "states": [
-    "V10.1.5_CANDIDATE_DELIVERED",
-    "AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
-    "PRODUCT_MAIN_NOT_INTEGRATED",
-    "REAL_PUSH_PROVIDER_PENDING"
-  ],
-  "repository": "zcx369658780/EliteSync-v10",
-  "candidate_branch": "codex/v10.1.5-communication-private-cache",
-  "delivery_commit": "ENCLOSING_GIT_COMMIT_CONTAINS_DOCS_ONLY_AFTER_FIXED_SOURCE",
+  "delivery": "20261025-long-task-continuation",
+  "status": "PARTIAL / OPEN_BLOCKERS / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
+  "authority": {
+    "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+    "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "activeBlob": "2b9ab05eebc21712070065c75f9f0b1aae90d571",
+    "r1AstraReviewBlob": "ff9916e0b227dc0996165b2b6d5024b6199ead17",
+    "main": "a6c321a85ec6433a2cfc5eda56e72178e688b47a",
+    "mainRoot": "087adc701c36de429a53470f386fcf26d882ed3d",
+    "acceptedApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "acceptedServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
   "source": {
-    "commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
-    "unique_parent": "9283b7f6ed7f37971fd9f64c60e9747c7896b09d",
-    "root_tree": "d43b98c77edbb0c4b74ab93a2574b50a0bf3f1c7",
-    "apps_tree": "d0343174cb8587d9e27303f180a37380616b6262",
-    "services_tree": "c32fc724fde29a595084e8c1ec066340d892e8fe",
-    "changed_files": [
-      {
-        "path": "apps/android/app/build.gradle.kts",
-        "blob": "e3d2389fcbf1b0a029e8acb1454e0d7cf6adb719"
-      },
-      {
-        "path": "apps/android/app/src/main/AndroidManifest.xml",
-        "blob": "f0861a32d74a45d6efead330b7604b14ddc215f5"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
-        "blob": "8e7212218199a4992fa2970faa6a7548940b61e6"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart",
-        "blob": "bb0cef4e976096b54e81afad5182b5ade0053168"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart",
-        "blob": "b04ee3a0eb991448ee69c5bc7ffd959bf7b067ae"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/storage/cache_keys.dart",
-        "blob": "61611498ac13752a2351c6ea8ccc933c6c3caf51"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/storage/local_storage_service.dart",
-        "blob": "4974a2863f1675fb8f589b824c78c4a11ec61334"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
-        "blob": "6a2e30c3782db3be54efa86c5d806f89b84735d0"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/core/storage/secure_storage_service.dart",
-        "blob": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
-        "blob": "fa5847c656cca6c57fe86a43705bcabbd3fed689"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_request_dto.dart",
-        "blob": "6e0641f3bf84a7acd79372e5147291c568efe5a1"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_response_dto.dart",
-        "blob": "5ddc82e2420f047e5cfa946c864ccdb010acdff1"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
-        "blob": "b39d20d64f23d6d163c501d9f4a55880342e4ffd"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_socket_data_source.dart",
-        "blob": "84c5e18a141eb3c880710d7cf2be0f88f34db97e"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
-        "blob": "a421b468ab2d45181eb98c5efa3771fdf226c0f6"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
-        "blob": "c12d7cdfc3c61ee74b76629c85b605e9a9aacd16"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
-        "blob": "ad231a582a3f40b74db59a570a5fb5c95a17921b"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_conversation_list_page.dart",
-        "blob": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
-        "blob": "12d792fd4cd40c5ef253f95a17ff8064de0344f0"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
-        "blob": "530aed529e6d43bd6cf3564438406e5e984cbecf"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_preferences_page.dart",
-        "blob": "fbd5ed2ec7960bfc68bcf644c6ebba1ceefdc59e"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
-        "blob": "ef19dcc1b93a63cb72385a19efa412a6da1d7b37"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart",
-        "blob": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
-        "blob": "abb6adc38c7221080e09be495ff808fb80a99705"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
-        "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
-        "blob": "39956188db4e361f34e9210890cf6d337f56edf7"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
-        "blob": "592cdcef541751454e951930d2601d58bf92da8c"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
-        "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
-        "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
-        "blob": "080a1d9f46443f517251b7d8b5cf49289957afb2"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
-        "blob": "15098e0de61816bcfd3cd2ffee683a3e5c77086d"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
-        "blob": "6be426e6a0a8e0ba49d74c57684ca57c0a9a88e7"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
-        "blob": "e3a03e47263a4919fdfce45c49d259fe954ae992"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
-        "blob": "9a15a7c97ed939335e8720f16f48ab75f2dc8e38"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
-        "blob": "db7f09197aec9e30b5bccf64d3e2e56ec96eb568"
-      },
-      {
-        "path": "services/backend-laravel/.gitignore",
-        "blob": "9a46fce80e41f58c8a4be4b0cace4673cb56f82c"
-      },
-      {
-        "path": "services/backend-laravel/app/Console/Commands/ChatWebsocketServerCommand.php",
-        "blob": "486be26a6e44221def9d7aac520ae18856816719"
-      },
-      {
-        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
-        "blob": "f69e06670e6584a02862f965d82fc37dee407224"
-      },
-      {
-        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
-        "blob": "ffbc699589a20016f70c4316564ff8d677ffe56d"
-      },
-      {
-        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationPreferencesController.php",
-        "blob": "011fecb63606b303671efbc53c913fdf54dc54e6"
-      },
-      {
-        "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
-        "blob": "737a90e2842f386dba4a421b5a65ab303775d131"
-      },
-      {
-        "path": "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php",
-        "blob": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5"
-      },
-      {
-        "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
-        "blob": "044c0d00f427a2c4a4d37c0c51f58a1c2deafd06"
-      },
-      {
-        "path": "services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php",
-        "blob": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c"
-      },
-      {
-        "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
-        "blob": "5fc6d2bc7f3d2d24f15206186dcdf7ae2c668e10"
-      },
+    "commit": "3e20809f5b91f18545047f05a52164f1d59d6455",
+    "parent": "f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff",
+    "root": "957ac75c9ae19e19aa4ea7eaacdaa80e4f196022",
+    "apps": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "files": [
       {
         "path": "services/backend-laravel/app/Services/LiveConsentService.php",
-        "blob": "d9bbd3aa9fea85f1545bc979267a86a47cf96023"
+        "gitBlob": "a0b26e798cf7492fbdf41bb24e752cb812a8d815",
+        "gitCanonicalSha256": "9da05990c0b3e237381f30152d614ee59ff8a1aa497ca8f5b78df6eb73e65a9b",
+        "executedWorktreeSha256": "415ba9fa1f24562ea6c86119ed2f5798010e6536c16a1ced501be715a42712b4",
+        "onlyGitLineEndingNormalization": true
       },
       {
-        "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
-        "blob": "c3ebf4824e8fc0feb6a1732da5a0d44ff3936b87"
-      },
-      {
-        "path": "services/backend-laravel/app/Services/NotificationService.php",
-        "blob": "05e3e104a058ad68d8fcc3f6c7b3ef8149cbd598"
+        "path": "services/backend-laravel/app/Services/PlatformAccess.php",
+        "gitBlob": "96ed10d43a34ee74ba83f05e9ec5ee122cdb39c4",
+        "gitCanonicalSha256": "60d38e8fbdd960264a36eaa7fc13b16a487918501d3dce240f87e09bffc335dc",
+        "executedWorktreeSha256": "60d38e8fbdd960264a36eaa7fc13b16a487918501d3dce240f87e09bffc335dc",
+        "onlyGitLineEndingNormalization": false
       },
       {
         "path": "services/backend-laravel/app/Services/RtcAuthorityService.php",
-        "blob": "87eb611bc46faafdf5c5dac7caf91b5c1dfd998c"
+        "gitBlob": "0457e60936359602923119bb42978b162d2519e0",
+        "gitCanonicalSha256": "ef2025dc6f8d4951b8169dea6c24b15992e668d2100177e9e95b364f059c7a2e",
+        "executedWorktreeSha256": "4ffac4a773947c94499c516442286516f75b3a84604da669447b81af667a04a2",
+        "onlyGitLineEndingNormalization": true
       },
       {
-        "path": "services/backend-laravel/config/filesystems.php",
-        "blob": "b0dfffaf12e1bdba45fe7da83089e87fce0d582e"
+        "path": "services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php",
+        "gitBlob": "7084a2eb1f58b99c251236933439ac79f678ca7f",
+        "gitCanonicalSha256": "dc29cc8befff1398f3aaacfb6eb7779aad8432bc870ee9b297b39d5b80bb01c3",
+        "executedWorktreeSha256": "dc29cc8befff1398f3aaacfb6eb7779aad8432bc870ee9b297b39d5b80bb01c3",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php",
-        "blob": "038874c4dd773099cb5e0cff670c2d2fa5732fa7"
+        "path": "services/backend-laravel/tests/Feature/V1007LiveConsentTest.php",
+        "gitBlob": "a5b06b1ba2fa67906fd73f77ca680de46f2b34ff",
+        "gitCanonicalSha256": "35d98019ca8b7fdcdc1143d22bf25c539b8f2fefbca3ebd4935f6e8a066c7084",
+        "executedWorktreeSha256": "35d98019ca8b7fdcdc1143d22bf25c539b8f2fefbca3ebd4935f6e8a066c7084",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php",
-        "blob": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b"
+        "path": "services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php",
+        "gitBlob": "2221a015965924dfb7cfd102fdfaea04fb536cf5",
+        "gitCanonicalSha256": "a899e22bd5bf13fa537801305bd549178615814567b11115328204ad0e453aa1",
+        "executedWorktreeSha256": "a899e22bd5bf13fa537801305bd549178615814567b11115328204ad0e453aa1",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/routes/api.php",
-        "blob": "932b1ae07c2dd7633ebeae6de4d88a080420c914"
+        "path": "services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php",
+        "gitBlob": "0a3452c726d3b0350f809f8f75cbede0a4d28fa7",
+        "gitCanonicalSha256": "bbef58f1e1196d01d384218d3be7a561763945fbb611f16c69d723cfc17cfcd8",
+        "executedWorktreeSha256": "bbef58f1e1196d01d384218d3be7a561763945fbb611f16c69d723cfc17cfcd8",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php",
-        "blob": "ff0786418bdb2d6d585422a9d9511fbafb702797"
+        "path": "services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php",
+        "gitBlob": "e7c5e6b5e1b25df84ba9e90d3d8d01cc1556babb",
+        "gitCanonicalSha256": "841330ed8c77c281f0684474a97c17b619ccd1cb1a5d154d36a15854212f3f69",
+        "executedWorktreeSha256": "841330ed8c77c281f0684474a97c17b619ccd1cb1a5d154d36a15854212f3f69",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
-        "blob": "b41e0525d098a6570d4000c6012e98cd4ad5fb34"
+        "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php",
+        "gitBlob": "fc8fe6b364a03c450b9630c2937032f0baf4a795",
+        "gitCanonicalSha256": "d36c279c0c1719418f66a6ba5ae687400c1906f7585e02d94e31412e355f2059",
+        "executedWorktreeSha256": "d36c279c0c1719418f66a6ba5ae687400c1906f7585e02d94e31412e355f2059",
+        "onlyGitLineEndingNormalization": false
       },
       {
-        "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
-        "blob": "e88ee2372f318e96c5e4cfa5bdf5eb10d6143206"
+        "path": "services/backend-laravel/tests/Feature/V1015LocalEnvironmentTest.php",
+        "gitBlob": "c0397d46b68ad07ead682534530d368f538fb8d9",
+        "gitCanonicalSha256": "ed17db261b428f4f13a609580b28cde671399afbb5207db8afc02663b2b856ed",
+        "executedWorktreeSha256": "ed17db261b428f4f13a609580b28cde671399afbb5207db8afc02663b2b856ed",
+        "onlyGitLineEndingNormalization": false
+      }
+    ],
+    "appsChangedThisContinuation": false
+  },
+  "acResults": [
+    {
+      "ac": "AC-10.1.5-01",
+      "status": "SUPPORTED_BOUNDED_PROTECTION",
+      "evidenceClass": "NEW_RUN",
+      "detail": "新独立空MariaDB/volume、有效选择器与迁移前恢复点；22,482具名历史文件、五保护根及受保护旧refs一致。"
+    },
+    {
+      "ac": "AC-10.1.5-02",
+      "status": "SUPPORTED_BACKEND_AND_REUSED_GUI",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "真实HTTP幂等回放/409、WS断开重连与最小指针通过；R1已支持的GUI丢响应同键重试证据保留。本轮没有当前完整apps Tree的新APK/GUI旅程。"
+    },
+    {
+      "ac": "AC-10.1.5-03",
+      "status": "SUPPORTED_BOUNDED_NEGATIVES",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "MariaDB reader54等待writer53的users PRIMARY RECORD锁；COMMIT撤权后旧reader401，双exit0。当前WS撤权关闭/旧token拒绝和HTTP404通过；切号/迟到结果与Safety旧卡片GUI复用R1限定证据，未声称全矩阵新跑。"
+    },
+    {
+      "ac": "AC-10.1.5-04",
+      "status": "SUPPORTED_API_MEDIA_AND_REUSED_APP",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "真实图片与H264短视频持久读回、200/206、撤权/第三方404、假视频422；新库重启后视频Hash一致。APP播放为既有版本证据，非本轮新GUI。"
+    },
+    {
+      "ac": "AC-10.1.5-05",
+      "status": "PARTIAL_CORE_OPEN",
+      "evidenceClass": "NEW_RUN_CONTROL_ONLY / MEDIA_NOT_RUN",
+      "detail": "RTC创建/拒绝/接听/结束及旧入口404通过；双APP有效SFU媒体、同call重连、旧RTC JWT首次重入拒绝、流动媒体≤5秒停止仍未证。AEC/视频源设备门保留。"
+    },
+    {
+      "ac": "AC-10.1.5-06",
+      "status": "SUPPORTED_TEST_INJECTION_WITH_LIMITS",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "真实login/refresh T0不续期及后端期限回归通过；R1 Android 34/34受控注入时序由Astra限定支持，非真实物理30天。相关期限源码未在本次修改。"
+    },
+    {
+      "ac": "AC-10.1.5-07",
+      "status": "SUPPORTED_NATIVE_INJECTION_WITH_LIMITS",
+      "evidenceClass": "REUSED_EVIDENCE + NEW_RUN_TESTS",
+      "detail": "R1真实FlutterSecureStorage到期删除成功/失败及冷启锁定证据保留；新55项缓存/晚响应/通知与97项RTC/期限测试通过，不能代替新设备演练或现实删除完备性。"
+    },
+    {
+      "ac": "AC-10.1.5-08",
+      "status": "SUPPORTED_BOUNDED_PRIVACY",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "本轮真实API类别/静默/最小通知及旧权限负例、Flutter点击重验回归通过；GUI权限/旧通知/Safety限定证据复用R1，完整Safety业务与新GUI未重跑。"
+    },
+    {
+      "ac": "AC-10.1.5-09",
+      "status": "PASS_TEST_ONLY_ISOLATION",
+      "evidenceClass": "NEW_RUN / REAL_PUSH_NOT_RUN",
+      "detail": "合成transport token登记及已有生命周期正反回归通过；真实Push供应商/SDK/Key/费用和后台锁屏远端送达仍PROVIDER_PENDING。"
+    },
+    {
+      "ac": "AC-10.1.5-10",
+      "status": "PARTIAL_CURRENT_HOST_AND_RTC_OPEN",
+      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
+      "detail": "后端31/245和61/472、最终RTC夹具12/94、Flutter55+97、四项分析、真实API/持久DB重启通过；当前完整apps Tree未构建安装，新Host APK与条件SDK链未运行。"
+    },
+    {
+      "ac": "AC-10.1.5-11",
+      "status": "DELIVERY_SUPPORTED_AWAITING_ASTRA",
+      "evidenceClass": "STATIC_REVIEW + CODEX_REPORTED",
+      "detail": "唯一报告/当前manifest、固定源码双Tree、十文件非作者复核和最小独立审阅分支；尚非Astra功能接受，不合main。"
+    }
+  ],
+  "gate2": {
+    "budgetId": "LONG_F3_GATE2_PWSH7_20261025",
+    "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+    "attempts": 1,
+    "existingHost": "PowerShell 7.6.6 / .NET 10.0.12 / effective RemoteSigned",
+    "noPolicyOverride": true,
+    "newProcessExit": 1,
+    "processExitConfirmed": true,
+    "totalControllerSeconds": 0.39000000001396984,
+    "failureStage": "startup",
+    "exceptionType": "System.TypeLoadException",
+    "missingType": "System.Web.UI.WebResourceAttribute",
+    "positive": "NOT_RUN",
+    "negative": "NOT_RUN",
+    "writerCalls": 0,
+    "serializerCalls": 0,
+    "fallbackCalls": 0,
+    "receiptsProduced": 0,
+    "oldWindowsPowerShellAttempt": "CONSUMED / SecurityError / exit1 / 0.375sec / NOT_RETRIED",
+    "d0AReruns": 0,
+    "full37Suite": "NOT_RUN",
+    "sandboxSdk": "NOT_RUN",
+    "producer": "NOT_RUN",
+    "configurationResolve30": "NOT_RUN",
+    "sourcePins": {
+      "gate2_once.ps1": "500933d8688176854a7729fd94dd8389a450b45cbb6607e1c46d1555e5700a20",
+      "run_gate2_once.py": "f5c807c9507a205789be445dd2edf2368bfe596d28239870fe3f148b3f441412",
+      "positive-publication-fragment.ps1": "d07da132a9c14d07327ddf00847a7321e319a2c0a8ac9f3cb15948f1bbd90bdb",
+      "targeted-input-plan.json": "c6e88ae711548abb8c9eadf9f154fb6149aad2e6944d2baa3a3fdbf8a69426d5",
+      "source/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+      "source/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "source/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "source/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
+    },
+    "rawEvidenceHashes": {
+      "gate2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gate2.stderr.txt": "5e9e6ff57d67203afdc8679be456da960eaf7597673e14d53b08229a68316d12",
+      "gate2-child-result.json": "f3e11d4dab38cb9fae86f39cf7410eb552c7021b208a79f7100f663c54ac45d0",
+      "gate2-supervisor-result.json": "af4e8f6b00926b456263911bc8a530f4d7ae68e23f7b8b10fc9d5108332f2b40",
+      "gate2-controller-complete.json": "3145e3d23951c0ac40c6fa5869bcb7ecb46c40cdb31dbd3a30949d939902740e"
+    },
+    "meaning": "Environment/framework compatibility failure before Writer invocation; not a Writer or Serializer runtime failure."
+  },
+  "review": {
+    "branch": "codex/v10.1.5-long-continuation-review-20261025",
+    "commit": "9e240a1f622ba179b696184a23d45c5dd38a360e",
+    "parent": "3e20809f5b91f18545047f05a52164f1d59d6455",
+    "root": "9a49ef77aa72cded42568eb1b702d2ca182aa130",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/gate2-startup.json",
+        "mode": "100644",
+        "blob": "2fb131d8b725c77ecc2dea24bfe646598c94a407",
+        "sha256": "94cdd9972484a340ce70bfab6a984da5df288914110d989baa8733ee9dd7775e",
+        "bytes": 2300
       },
       {
-        "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
-        "blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/non-author-review.json",
+        "mode": "100644",
+        "blob": "c69cbacf3cb0993846274b08ae8ae94ef02c2779",
+        "sha256": "a39b9e87d15399c0a201dd7db61dc41bbabb1f5f58c6ca79ddd656cc781ecebf",
+        "bytes": 2380
       },
       {
-        "path": "services/backend-laravel/tests/Integration/v1015/journey.py",
-        "blob": "0cf1fb5c9c8a741a116d702d27339bbfab798e8c"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/protection-summary.json",
+        "mode": "100644",
+        "blob": "cb0911c77e062e41ead1f933933b2ab659db7558",
+        "sha256": "a48cf1c2dfd18d082819a54cf2053c0e6f507bddfe108069309ae1c8217037a5",
+        "bytes": 303
       },
       {
-        "path": "services/backend-laravel/tests/Integration/v1015/rr.php",
-        "blob": "ed481a6ceab8463f6a7986f301e7ef574968778b"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/README.md",
+        "mode": "100644",
+        "blob": "05018e59617740b12b07783ab32e1f711d150207",
+        "sha256": "1663131742f88f28b523bda316b0b9eb01a903708efaaab5c0ade920ca37764b",
+        "bytes": 2079
       },
       {
-        "path": "services/backend-laravel/tests/Integration/v1015/rr.py",
-        "blob": "6bc13ca307fc3e23a0a2fd543b6a94aeb5bcbfaf"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/review-provenance.json",
+        "mode": "100644",
+        "blob": "1d4381f084e173ec824f6a3ab2bd7c8b1e5710a4",
+        "sha256": "11a84bd6a25fef2a990915c1dd9af028c8ac067df2a7c0709e8c1e261ad28ed9",
+        "bytes": 449
       },
       {
-        "path": "services/backend-laravel/tests/Integration/v1015/rtc_lifecycle.py",
-        "blob": "848d51a98ee46b10758d44d0d1e9047a19b09ff3"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/runtime-results.json",
+        "mode": "100644",
+        "blob": "782a23d9a27c6e76746377aea8a97917124146c1",
+        "sha256": "5d515a7df04f851fc4afd4a30e6d119161a0f12ac285e11f32859e9e72653f70",
+        "bytes": 5301
       },
       {
-        "path": "services/backend-laravel/tests/Integration/v1015/runtime.php",
-        "blob": "f1ac3ac2846b28d95e12719ea93c99b9111ca0da"
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/source-diff.patch",
+        "mode": "100644",
+        "blob": "3057906a7a41d9e2bfd80d8b784262e67c74d667",
+        "sha256": "c7a264a5574881da9705170d79afafc6ebb251f98a83f190863a5cee2e46fa06",
+        "bytes": 12305
+      },
+      {
+        "path": "docs/_temporary_review/v1015-long-continuation-20261025/ws-authority-redacted.py",
+        "mode": "100644",
+        "blob": "b63a1d022b57797e387ad9c5f8159f9574a9b145",
+        "sha256": "e7253ed1bc2481945051b650a08b2b3e1acb258312b5823eb2c04e6be713557c",
+        "bytes": 3933
+      }
+    ],
+    "remoteReadback": {
+      "commitParentRootVerified": true,
+      "fileCount": 8,
+      "blobAndRawBytesVerified": true
+    }
+  },
+  "nonAuthorReview": {
+    "verdict": "SUPPORTED_STATIC_REVIEW",
+    "findings": [],
+    "independentExecution": false,
+    "pathOnReviewBranch": "docs/_temporary_review/v1015-long-continuation-20261025/non-author-review.json"
+  },
+  "protection": {
+    "protectedFileCount": 22482,
+    "allNamedProtectedFilesUnchanged": true,
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 516,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  },
+  "runtimeOwnership": {
+    "database": "elitesync_v1015_long_dev",
+    "port": 43328,
+    "container": "elitesync-v1015-long-db-20261025",
+    "volume": "elitesync-v1015-long-data-20261025",
+    "finalBackupBytes": 172222,
+    "finalBackupSha256": "546a4a8f10b3f034e33b5b61b8d0a919a985dd9938ae23c8f3d70195bf687a05",
+    "ownedProcessesExitConfirmed": true,
+    "ownedContainerStopped": true,
+    "oldContainersPreserved": true,
+    "newAvdStarted": false
+  },
+  "localOnly": {
+    "rootLabel": "v1015-long-continuation-20261025",
+    "rawPrivacy": "SQL/APK/media/credentials/device/process logs remain LOCAL_ONLY",
+    "evidence": [
+      {
+        "path": "authority.json",
+        "bytes": 979,
+        "sha256": "646812e46257c3c494368efe7b60cc245e37b613679d3ca34b82053c23b2443e"
+      },
+      {
+        "path": "owned-resources.json",
+        "bytes": 407,
+        "sha256": "ee060044a1d3592e3dc31c6a31246745a8efa88b9389bfce448379addb113f0d"
+      },
+      {
+        "path": "owned-db-empty-selector.stdout.txt",
+        "bytes": 159,
+        "sha256": "6afe5ec07e2bc6c374dcf58e3a5eedc222005a4175ecb79bb25cd40ecf7c4b40"
+      },
+      {
+        "path": "owned-empty-before.sql",
+        "bytes": 1577,
+        "sha256": "2050a6e952c1370af99a2eb51a2f28ea43feeb003fa08c7ae2d203b904f7eed7"
+      },
+      {
+        "path": "owned-before-restart.sql",
+        "bytes": 172222,
+        "sha256": "944f0820e191e994885376729e61511a571dd37094e2b89fba2a531c320d847c"
+      },
+      {
+        "path": "owned-final.sql",
+        "bytes": 172222,
+        "sha256": "546a4a8f10b3f034e33b5b61b8d0a919a985dd9938ae23c8f3d70195bf687a05"
+      },
+      {
+        "path": "owned-runtime-final.json",
+        "bytes": 760,
+        "sha256": "d4ac742eb3b0157b4e13a83717c81fc0ce28bbacca37390753a32ee25d6baa00"
+      },
+      {
+        "path": "backend-effective-selector-v2.stdout.txt",
+        "bytes": 273,
+        "sha256": "de41ecc57d1d849cec9a1bb29f7a1cfe3d214060f7ca54d8b9474e96ce3ce4cb"
+      },
+      {
+        "path": "backend-initial-targeted.stdout.txt",
+        "bytes": 54398,
+        "sha256": "3aeee36c2524c90abbd7d6570f629f0fdcd377d54aa6fdfe83b45c421facb4a9"
+      },
+      {
+        "path": "backend-targeted-v2.stdout.txt",
+        "bytes": 434,
+        "sha256": "bb1208161d1da014b70bbb17b030386eb1c330d7996dc1fd17a38b6850577831"
+      },
+      {
+        "path": "backend-related-regression.stdout.txt",
+        "bytes": 61671,
+        "sha256": "d8b5275322e9519042d647837d119c4face706e1a73c41f1ddf0c05d01a8c789"
+      },
+      {
+        "path": "backend-related-regression-fixed.stdout.txt",
+        "bytes": 34375,
+        "sha256": "55c70a6a2239d21d585048b437e52cf6ed18477eab4111c9c2b91c2f17c3a3cf"
+      },
+      {
+        "path": "backend-related-regression-final.stdout.txt",
+        "bytes": 434,
+        "sha256": "c55ceb31c035a6b7047dbfc052555bf9227feb5ed9857069638c851b9cc722b3"
+      },
+      {
+        "path": "backend-rtc-fixture-final.stdout.txt",
+        "bytes": 433,
+        "sha256": "448c2a04392f75477d51747f7e7412f8a7d04b20f9d8c785d942065ce027fa23"
+      },
+      {
+        "path": "flutter-targeted.json",
+        "bytes": 1346,
+        "sha256": "6c8214db0529b353d4ab6ba146b959ba958b9291e812f215b26aae5da2589734"
+      },
+      {
+        "path": "flutter-targeted-v2.json",
+        "bytes": 116,
+        "sha256": "5a0c3e784bca981258a4d0b7ead41ecd5c97b1c2b7162429a654548e0d9da77e"
+      },
+      {
+        "path": "flutter-targeted-v2.stdout.txt",
+        "bytes": 12947,
+        "sha256": "acdfd9243332f031e2c073f5534ea75722634f2a24bbe8abe45e4bbedf789401"
+      },
+      {
+        "path": "flutter-related.json",
+        "bytes": 110,
+        "sha256": "17d65d5ee909b488d55b7194e3f6f1cf746ee06771f0bfe22e182d0c3060198c"
+      },
+      {
+        "path": "flutter-related.stdout.txt",
+        "bytes": 24577,
+        "sha256": "98aca716e4904baf5a51ec4047759499e6def39757f98fe374cc796e6a929951"
+      },
+      {
+        "path": "dart-targeted-analyze-v2.json",
+        "bytes": 423,
+        "sha256": "0f687fab18455a6f2cc4359c653f718a5bf255baf20c2b62cd65089b97d9229d"
+      },
+      {
+        "path": "dart-targeted-analyze-v2.stdout.txt",
+        "bytes": 338,
+        "sha256": "5fb4be00c1755fcebc8f20411e5ed9feb4510abaee1f3565d6ffd38d08f4f0dc"
+      },
+      {
+        "path": "real-http-mariadb-journey-v3.stdout.txt",
+        "bytes": 4474,
+        "sha256": "3762faf0fbade26cf5b3d6000be72a21f522bc8e6dc89950e34a4278ac365643"
+      },
+      {
+        "path": "real-mariadb-rr.stdout.txt",
+        "bytes": 743,
+        "sha256": "4bc32d67b41052b96360da535248b0c3abfd3b65b65ee3be4bb580b3061b80df"
+      },
+      {
+        "path": "real-rtc-api-lifecycle-v2.stdout.txt",
+        "bytes": 1898,
+        "sha256": "9a7a7b31b5f86cbc4859ae53a38c0ecb6056c4926df7d8e7d6c9f5658b619ba0"
+      },
+      {
+        "path": "ws-authority-events.jsonl",
+        "bytes": 1202,
+        "sha256": "1c659e330184abeab6e44b7064c0a91e93f252682ba9960cb91c23103ddfec32"
+      },
+      {
+        "path": "ws-authority-result.json",
+        "bytes": 298,
+        "sha256": "22c6fd79921bac353bef0000cfc4a9cbf0188dfefff0326f1e8c507299aa2368"
+      },
+      {
+        "path": "real-media-authority-result.json",
+        "bytes": 2895,
+        "sha256": "978065966cba0a9f70048901da5e5d87b3691c0518f7a8fec64a99477f58393f"
+      },
+      {
+        "path": "owned-recovery-result.json",
+        "bytes": 407,
+        "sha256": "97fb73213174a0ae7392a30677c5b441e220be7f6d29250b5988165bda745d75"
+      },
+      {
+        "path": "protection-final.json",
+        "bytes": 538,
+        "sha256": "fa163eda58360997ff28238ab319f9f936d78867e2716adfa82d4aaa8bce70ae"
+      },
+      {
+        "path": "non-author-final-review.json",
+        "bytes": 2380,
+        "sha256": "a39b9e87d15399c0a201dd7db61dc41bbabb1f5f58c6ca79ddd656cc781ecebf"
+      },
+      {
+        "path": "gate2-pwsh7-once/intake.json",
+        "bytes": 1943,
+        "sha256": "7dd30d05120c7825bc4b66e82b8e31691323aad3776f5c136dc7589ea02d4afd"
+      },
+      {
+        "path": "gate2-pwsh7-once/source-pins.json",
+        "bytes": 784,
+        "sha256": "9040c2f130db978a6ad2fe9bb7d741826e8615d99958efd02950b79ddd045a48"
+      },
+      {
+        "path": "gate2-pwsh7-once/non-author-preflight-review.json",
+        "bytes": 1415,
+        "sha256": "22067fb51d58c5dcc69b541b11b9d0ffc19c8af44d5a4cf4a5e423b3bd6b81f6"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2-started.json",
+        "bytes": 1297,
+        "sha256": "073da676db27f8419fd5a982c7638a548da0072c321452a7c2d58b888c6d78f2"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2-process.json",
+        "bytes": 250,
+        "sha256": "a9360f12616ce7a791d5f210501e2045259d70089116f3110d0e7c13e2cb6e37"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2.stderr.txt",
+        "bytes": 188,
+        "sha256": "5e9e6ff57d67203afdc8679be456da960eaf7597673e14d53b08229a68316d12"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2-child-result.json",
+        "bytes": 501,
+        "sha256": "f3e11d4dab38cb9fae86f39cf7410eb552c7021b208a79f7100f663c54ac45d0"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2-supervisor-result.json",
+        "bytes": 1127,
+        "sha256": "af4e8f6b00926b456263911bc8a530f4d7ae68e23f7b8b10fc9d5108332f2b40"
+      },
+      {
+        "path": "gate2-pwsh7-once/gate2-controller-complete.json",
+        "bytes": 282,
+        "sha256": "3145e3d23951c0ac40c6fa5869bcb7ecb46c40cdb31dbd3a30949d939902740e"
       }
     ]
   },
-  "frozen": {
-    "plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
-    "task_order_blob": "0df56f69712a85541b5f24bef281e2a9a61520a4",
-    "unchanged": true
+  "historicalManifests": {
+    "priorCandidate": "f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff",
+    "initialManifestBlob": "3e82785c0e97c5bffa96f628b2934ca149eeea62",
+    "initialManifestSha256": "c6267eb9e907ef63c33b24694c31a7a97dd1fb421ce1840dce8c6e31f1f13643",
+    "r1ManifestBlobUnchanged": "fab9d9b54be295f1451a73f39b0daf00fadb703b"
   },
   "report": {
     "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
-    "blob": "ae7b8d0cf2a616e198da23ea4db6a8d9e53c5bb6",
-    "sha256": "b51eaeda973e767f4da92266c114a34c49a8e8a28e8d72b66e30e58bbb74cfa4",
-    "hash_basis": "PUBLISHED_GIT_BLOB_BYTES_LF_NORMALIZED_NOT_WORKTREE_CRLF"
+    "sha256": "fe73ad7b9476a46a86a458dfbe608758f7b30f1c7e99ac8568a618c8be30d886",
+    "historicalPrefixBytes": 30538,
+    "historicalPrefixSha256": "4746fb6a11af43560d3a6ca9f12712e8e9ef0d7d005d9e66c193511fbcec4aba"
   },
-  "apk": {
-    "availability": "LOCAL_ONLY",
-    "source_commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
-    "package": "com.elitesync.v1015dev",
-    "version_name": "10.1.5-dev",
-    "version_code": 1010501,
-    "sha256": "60655c9f3440bb3c8aecfcffd88643f2b150e14ec7e92907dbd62961a92f1d97",
-    "development_signer_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
-    "build_exit": 0,
-    "both_owned_avd_installed_bytes_pulled_hash_match": true,
-    "actual_gui_text_image_video": true
-  },
-  "database": {
-    "name": "elitesync_v1015_dev",
-    "owned_volume": "elitesync-v1015-dev-data-20261021",
-    "loopback_port": 43326,
-    "tables": 93,
-    "new_empty_before_migrate": true,
-    "snapshot_9_tables_restart_equal": true,
-    "full_93_table_hash_proof": false,
-    "final_backup": {
-      "file": "final-after-negative.sql",
-      "bytes": 180577,
-      "sha256": "c7141bdeb3c32b278321dd5d87ffc44230cdd82ee16b05d06bc45027c15de02d",
-      "exit": 0
-    },
-    "restore_rehearsal": "NOT_RUN",
-    "stopped_volume_preserved": true
-  },
-  "review": {
-    "branch": "review/temporary-evidence-v1015-20261021",
-    "commit": "7f7a1036e4a4567be7797e41530011b2dbb06684",
-    "root_tree": "b931e43fabe46167cc40cd3c137eb47801798cac",
-    "files": {
-      "docs/_temporary_review/v1015-20261021/block-http-final.txt": "31952e3d5c6ce22e1494e8b1d764029cf962c63f",
-      "docs/_temporary_review/v1015-20261021/db-restart-result.txt": "ee9505794edb9d0f565c807364a874859103b017",
-      "docs/_temporary_review/v1015-20261021/db-snapshot-after-restart.json": "4ecdb968041ef169791669752d46711e6bce8a6c",
-      "docs/_temporary_review/v1015-20261021/db-snapshot-before-restart.json": "4ecdb968041ef169791669752d46711e6bce8a6c",
-      "docs/_temporary_review/v1015-20261021/device-storage-receipt.json": "ad6f237c5639e6451c0770077ea62293e1ae3df5",
-      "docs/_temporary_review/v1015-20261021/final-db-audit.txt": "d208a60e870223c6e20989fc6620d86a3949837f",
-      "docs/_temporary_review/v1015-20261021/gui-protection-summary.json": "82bc2885d73f70cb7a34bb73e8e5f3c3b3d7844c",
-      "docs/_temporary_review/v1015-20261021/http-journey-first.txt": "e5c5e7f266ddc7f35948e4ec4ae4dad0cf0f27d6",
-      "docs/_temporary_review/v1015-20261021/non-author-review.md": "cf43692b214808bbb2d851113472990d1f4120f3",
-      "docs/_temporary_review/v1015-20261021/notification-after-revoke.txt": "490e5438a808a0ffd285a89247b699e9552c692c",
-      "docs/_temporary_review/v1015-20261021/README.md": "3c40359f2a03538b9ece602358542375c0935a9e",
-      "docs/_temporary_review/v1015-20261021/review-files.json": "8ff402bdf283c3eb050c2408cf2f11a35c468802",
-      "docs/_temporary_review/v1015-20261021/rr-first.txt": "d4921d43b4049b50f9d8786d590767b06f2fb662",
-      "docs/_temporary_review/v1015-20261021/rtc-control-fixed.txt": "399509bd0988c80b904a730ef9f2feae7a34aa1c",
-      "docs/_temporary_review/v1015-20261021/trusted-boundary-http.txt": "f6a8f4863b9e89cd89c9200ef412b8a12b40f104",
-      "docs/_temporary_review/v1015-20261021/validation-excerpts.txt": "3cb6775e6ec9e0e63d194c8a5b30a8589794b7fc",
-      "docs/_temporary_review/v1015-20261021/video-http-positive.txt": "90dc9332540aea7581deb465e431ce1e647e4c94",
-      "docs/_temporary_review/v1015-20261021/video-tool-download.json": "146950a7e47425b4bb0153f381fdc5e69e34f655",
-      "docs/_temporary_review/v1015-20261021/video-http.py": "e0d8b15840bb9588cf63f4ca5d443e7492375268",
-      "docs/_temporary_review/v1015-20261021/block-http.py": "e38e09300d532284e87ce9ea0f5f38372bbe1c8b",
-      "docs/_temporary_review/v1015-20261021/notification-after-revoke.py": "40f946fbb0b04ba43d53e92c587d75a10336b1f8",
-      "docs/_temporary_review/v1015-20261021/boundary.php": "6e8aaf7eac6643cad90545845423d47ce9394c04",
-      "docs/_temporary_review/v1015-20261021/boundary.py": "a1b6423336412f0d1280aca97c4b78b9d7a24f3e"
-    }
-  },
-  "non_author_review": {
-    "mode": "BOUNDED_STATIC_SOL_HIGH",
-    "source_commit": "6ca68617fd6e18648a9ccd4c923fa1850761fbec",
-    "unclosed_high_confidence_p1_p2": 0,
-    "six_findings_fixed": true,
-    "runtime_independent_rerun": false,
-    "astra_acceptance": false
-  },
-  "ac_results": {
-    "01": "PASS_WITH_BOUNDED_PROTECTION_PROOF",
-    "02": "PARTIAL_REAL_RESPONSE_LOSS_RETRY_NOT_RUN",
-    "03": "PARTIAL_FULL_GUI_ACCOUNT_EDGE_MATRIX_NOT_RUN",
-    "04": "PASS_BOUNDED_REAL_IMAGE_VIDEO_JOURNEY",
-    "05": "PARTIAL_RTC_MEDIA_5S_AEC_NOT_PROVEN",
-    "06": "PARTIAL_CORE_DEVICE_TIME_NOT_PROVEN",
-    "07": "PARTIAL_CORE_ANDROID_30DAY_PURGE_NOT_PROVEN",
-    "08": "PARTIAL_FULL_GUI_OLD_CARD_SAFETY_MATRIX_NOT_RUN",
-    "09": "PASS_ISOLATION_CONTRACT_REAL_PUSH_NOT_RUN",
-    "10": "PARTIAL_CORE_GAPS_ANALYZE_EXIT1_INFO8",
-    "11": "DELIVERY_WITH_INDEPENDENT_ASTRA_ACCEPTANCE_PENDING"
-  },
-  "validation": {
-    "php_lint": {
-      "files": 23,
-      "failures": 0,
-      "exit": 0
-    },
-    "backend_regression": {
-      "tests": 50,
-      "assertions": 286,
-      "deprecations": 2,
-      "exit": 0
-    },
-    "rtc_retry": {
-      "tests": 7,
-      "assertions": 53,
-      "deprecations": 2,
-      "exit": 0
-    },
-    "flutter_analyze": {
-      "exit": 1,
-      "errors": 0,
-      "warnings": 0,
-      "infos": 8,
-      "all_info_files_unchanged_from_base": true
-    },
-    "whitespace": {
-      "raw_exit": 2,
-      "historic_crlf_rule_exit": 0
-    },
-    "original_failures_preserved": true
-  },
-  "protection": {
-    "five_roots_head_branch_index_status_unchanged": true,
-    "preexisting_refs_unchanged": true,
-    "private_env_hash_same": true,
-    "historical_binary_full_hash_proof": false,
-    "historical_cleanup": "NOT_RUN"
-  },
-  "shutdown": {
-    "owned_db_stopped": true,
-    "volume_preserved": true,
-    "history_cleanup": "NOT_RUN",
-    "owned_reverse_8021_8022_removed": true,
-    "owned_ws_stopped": true,
-    "owned_avds_stopped": true,
-    "owned_api_stopped": true
-  },
-  "evidence_receipts": [
-    {
-      "local_receipt_id": "auth-green-expanded.txt",
-      "sha256": "e992b090fd867b3705d0d71684e2baf9f8fb928b650c3707b4df8ac405ea88fb",
-      "bytes": 417,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "notification-green-expanded.txt",
-      "sha256": "a5ff9e6ee2c2f97daf74f5bc95967e4c9ae27bec41ea7a7687010c74d985c23f",
-      "bytes": 417,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "backend-auth-notification-regression.txt",
-      "sha256": "ae6cb028d8d50879c0c0ffb816d74eb5b102a20e8a98d86eada509983a2e6b6c",
-      "bytes": 419,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "backend-messaging-rtc-regression.txt",
-      "sha256": "4d46e23f4e2d73024372ee60bf2042d4e6b692502db3f72046256763ee09b7d4",
-      "bytes": 13245,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "backend-rtc-current-fixture.txt",
-      "sha256": "5922efa2025c2ed3458f66cfc509ff7c4cddcb731024b7f5e99086acce68b576",
-      "bytes": 417,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-initial.txt",
-      "sha256": "329533bc4fec2703f229d37fa9cc5eb397ea38e9168d338e7dcf4464fee715fe",
-      "bytes": 53579,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-chatroom-final.txt",
-      "sha256": "df0eb484d7f93ca39e501f42c60c94bec4057772b9a521bbb8b6f54fe0452d44",
-      "bytes": 6978,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-new-safety-fixed2.txt",
-      "sha256": "08053698302f90229b273a32fafc010ab89846d339abcd7db83365684aff51cc",
-      "bytes": 1427,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-live-cache-expiry.txt",
-      "sha256": "b647b8cbb9d163260dac4043277f55383b58c0dddba6bb8761411cf5a58b00e7",
-      "bytes": 729,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-cache-queue-red2.txt",
-      "sha256": "6d5a5138f573ee8a53bf63363507f78cd42e8b9b9ca83e94e94e7704ec8d21fb",
-      "bytes": 656,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-cache-queue-green.txt",
-      "sha256": "9738fbe0faf644e0a4fff7bfb8e13387aa4120ed3c49c6df84770c889ae049e0",
-      "bytes": 2820,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "live-chat-regression-third.txt",
-      "sha256": "e0f48f628c704c788e5ead9943eb1c841afbb03cf2f86b1b45e211c80540b8b1",
-      "bytes": 888,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-live-chat-reliability.txt",
-      "sha256": "2698b915100f6f26e5aa00db184a1b1990424c922433c30a41a04b5702f9f6b4",
-      "bytes": 5691,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "flutter-targeted-live-chat-picker-fixed.txt",
-      "sha256": "da42988a2896a88e4c0bc9f6878da009cd2664853e0c73c4121e111e55fdc2e5",
-      "bytes": 418,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "analyze-source-fixed.txt",
-      "sha256": "df3411b1c3d5731bc4202a58b57739c0c679b165b0815d7b974052dd4ee8f43c",
-      "bytes": 1406,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "build-source-fixed.txt",
-      "sha256": "02a3ff058ec8ec4bfa3296a1ca7c1098a66ebaad4d747ae8f0a398c907283c63",
-      "bytes": 3101,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "final-changed-php-lint.txt",
-      "sha256": "381221ce6ca49443d316d204db0897ba8d00e062a0d6e31d13b5302dd1e7a977",
-      "bytes": 4061,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "http-journey-first.txt",
-      "sha256": "d9c802d13157ffe326a88ea7bac5f10b4ef54521992ad72751b02e39b9f7467a",
-      "bytes": 4474,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "rr-first.txt",
-      "sha256": "83fa90a6e861ee045dabd5e8cc30876da9ee40108a9723dcc9927c8896239dbc",
-      "bytes": 746,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "rtc-control-first.txt",
-      "sha256": "6ab644c701152c9c92126a24d1cbae3a5387fcb830454c78f4b6c4680f7b7feb",
-      "bytes": 760,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "rtc-control-fixed.txt",
-      "sha256": "ddadedec62d4eb6355a23fc6935acde8e406f91df4699afd0def70439c61e5b4",
-      "bytes": 1906,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "trusted-boundary-http.txt",
-      "sha256": "e18e9690225a1845c9b992ff13d5c1c4cb0e7f3fa3271341b7189f05d5cae97f",
-      "bytes": 2989,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "video-http-positive.txt",
-      "sha256": "f91b90b4aa278d4aa8b9fdfdb1d1e6589969a5d395d29f6cda83d8938c610cf9",
-      "bytes": 2563,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "revoke-http-first.txt",
-      "sha256": "153e208cf4cac2a452d85b7d072e0a6ff370e8a3b085cfc0302175f570c88108",
-      "bytes": 656,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "revoke-http-after-committed-mc.txt",
-      "sha256": "7f91c918cda943b50f05eeff9db7c425daf983851e46ac86ce050782eebd9b47",
-      "bytes": 304,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "revoke-http-final.txt",
-      "sha256": "e7a8ba7250809b89e788258d31743c326f7e12bddc3670e1170f062e3b96fe22",
-      "bytes": 717,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "block-http-final.txt",
-      "sha256": "6cf398181bc7c9700a27c5a7d57751883bdb3a9c7ef8b65017fb681aa655b811",
-      "bytes": 2889,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "disabled-notification-http.txt",
-      "sha256": "9357761397bf1b28e4c5b862a2ef7a83298e93c8a0a3bd8663c6013c3411b98c",
-      "bytes": 527,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "notification-after-revoke.txt",
-      "sha256": "44c541d2c2fbadecbbaff19347463dade311928fb06a041db2fe74a07ad1d256",
-      "bytes": 505,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "final-db-audit.txt",
-      "sha256": "a74fb7eba9db323ae110703422d1d1015a0fbf7f4502a489888ecbf66c325e59",
-      "bytes": 1164,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "device-storage-receipt.json",
-      "sha256": "f9417c5a25114a616f4095bfe397931648504a3462e851bcff6894ecb3c1e8dc",
-      "bytes": 1215,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "installed-apk-readback.json",
-      "sha256": "2f8e11e54fde051019c647bbf8957bcd45f2b15c14cf18ce5cb6f7cb9b1b3e2d",
-      "bytes": 313,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "db-snapshot-before-restart.json",
-      "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
-      "bytes": 1287,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "db-snapshot-after-restart.json",
-      "sha256": "c2daa07b67a9afecde843a1ec5ca50df161e4094870f09b00a66b05bf8476503",
-      "bytes": 1287,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "db-restart-result.txt",
-      "sha256": "16ac8f0e98e3884e914b9356230d5d35c0a5be9a088cac829cc9cecbba7d96cd",
-      "bytes": 34,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "db-final-snapshot.json",
-      "sha256": "98002e1f455ca24136c53185f5c5c77a23d4a897ae9a6d2b8826636c5bcf40d2",
-      "bytes": 1287,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "db-backup-receipt.json",
-      "sha256": "6d0a132b972e7a4051d4697aa028a2654d05d73c29dd6244f51e8833bd6b35a6",
-      "bytes": 115,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "final-db-backup-receipt.json",
-      "sha256": "927b34e1e5c6fbc9fc8bfc5662b68419d5411ecfc4430d2b4facd651146ebfaf",
-      "bytes": 157,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "owned-resources-shutdown.json",
-      "sha256": "10b51696d55f3a9049f325b555ef5acdc2ead33c7b42a0a37ed2dfcfd30273af",
-      "bytes": 230,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "refs-private-protection-after.json",
-      "sha256": "b3e7368427337c9daf9099bf199625f6eabc44019ec7b14ffe6e88a487ec454c",
-      "bytes": 228,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "protected-before.json",
-      "sha256": "467ae5110c90f8f5555aba2091d1259fb5c48cf0b98fe48ea0422e7afaa47c7d",
-      "bytes": 27696,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "protected-after.json",
-      "sha256": "bb908b7b70ea85fb4dcf6956b3d46753bd18a1a9988d9f0c62f7fcf36f4c6369",
-      "bytes": 890,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "diff-check-raw.txt",
-      "sha256": "0bfc16ea90fb2f17337dbde2b1fd876cf6f0cac37aabb1923d575c2d5d8ff757",
-      "bytes": 1712,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "diff-check-crlf.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "video-tool-download.json",
-      "sha256": "14290ce75d8d003437c3565c9ca138f4bc7069eeb2289964380ec0da4d4ea7e9",
-      "bytes": 310,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "offline-actual-ui-receipt.json",
-      "sha256": "9edd7a57a08f9aaaf136c9e8abf2456608514afaa9674922138064aa4592f734",
-      "bytes": 459,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "non-author-review.md",
-      "sha256": "6f2ad834b62efe767ae680c04017808969b7f5f1cf26b3a68112b30d3d4b94cf",
-      "bytes": 1955,
-      "availability": "LOCAL_ONLY_OR_REDACTED_COPY_ON_REVIEW_BRANCH",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    },
-    {
-      "local_receipt_id": "shutdown-verified.json",
-      "sha256": "3e9edd355cf869dd8de43be524295d1c13ad948841b764971543611c52af2d20",
-      "bytes": 162,
-      "availability": "LOCAL_ONLY",
-      "authority": "CODEX_REPORTED",
-      "raw_upload": false
-    }
+  "permanent": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
   ],
-  "authority_levels": [
-    "CODEX_REPORTED",
-    "LOCAL_ONLY",
-    "TEST_ONLY",
-    "REUSED_EVIDENCE_SOURCE_ONLY"
+  "notRun": [
+    "FULL_37_CASE_SUITE",
+    "SANDBOX_SDK",
+    "PRODUCER",
+    "LIBS_JAR",
+    "CONFIGURATION_RESOLVE_30",
+    "CURRENT_FULL_APPS_TREE_HOST_APK",
+    "NEW_APP_GUI",
+    "SFU_FLOWING_MEDIA",
+    "PHYSICAL_AEC",
+    "REAL_PUSH_PROVIDER"
   ],
-  "astra_direct_acceptance": "NONE",
-  "not_run": [
-    "REAL_PUSH_DELIVERY",
-    "REAL_ANDROID_30DAY_PURGE_POSITIVE_NEGATIVE",
-    "REAL_ANDROID_FULL_15_30_TIMELINE",
-    "DUAL_SFU_MEDIA_RECONNECT_5S_REVOCATION",
-    "REAL_AEC_HUMAN_HEARING",
-    "FULL_GUI_ACCOUNT_SWITCH_DELETION_OLD_CARD_SAFETY_MATRIX",
-    "PRODUCTION_PUBLIC_DEPLOYMENT",
-    "V10_1_6",
-    "MAIN_INTEGRATION"
-  ],
-  "shutdown_verification": {
-    "volume_exists": true,
-    "exit": 0,
-    "verification": "PASS",
-    "owned_emulators_absent": true,
-    "api_ws_listener_count": 0,
-    "db_running": false
-  }
+  "publication": "Ordinary non-force candidate successor; final commit/root/blob/raw readback in LOCAL_ONLY final-readback.json and final handoff; no main integration"
 }
