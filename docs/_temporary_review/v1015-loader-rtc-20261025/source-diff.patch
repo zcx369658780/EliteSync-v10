@@ -1,0 +1,259 @@
+diff --git a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+index 66053d78..1abe844a 100644
+--- a/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
++++ b/apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart
+@@ -45 +45 @@ class RtcLiveKitService extends ChangeNotifier {
+-  bool _connecting = false;
++  Object? _connectionAttempt;
+@@ -164 +164 @@ class RtcLiveKitService extends ChangeNotifier {
+-  bool get isConnecting => _connecting;
++  bool get isConnecting => _connectionAttempt != null;
+@@ -240,0 +241,7 @@ class RtcLiveKitService extends ChangeNotifier {
++    final generation = _connectionGeneration;
++    final room = _room;
++    bool current() =>
++        !_disposed &&
++        generation == _connectionGeneration &&
++        identical(_room, room) &&
++        _connectedCallId == callId;
+@@ -242,0 +250 @@ class RtcLiveKitService extends ChangeNotifier {
++      if (!current()) return;
+@@ -253,0 +262 @@ class RtcLiveKitService extends ChangeNotifier {
++      if (!current()) return;
+@@ -263 +272 @@ class RtcLiveKitService extends ChangeNotifier {
+-      _heartbeatInFlight = false;
++      if (current()) _heartbeatInFlight = false;
+@@ -706,2 +715,3 @@ class RtcLiveKitService extends ChangeNotifier {
+-    if (_connecting) return;
+-    _connecting = true;
++    if (_connectionAttempt != null) return;
++    final attempt = Object();
++    _connectionAttempt = attempt;
+@@ -743 +753 @@ class RtcLiveKitService extends ChangeNotifier {
+-      await leave();
++      await _leave(preserveAttempt: attempt);
+@@ -984 +994,3 @@ class RtcLiveKitService extends ChangeNotifier {
+-          await leave(callId: callId);
++          if (identical(_connectionAttempt, attempt)) {
++            await leave(callId: callId);
++          }
+@@ -1039,0 +1052,2 @@ class RtcLiveKitService extends ChangeNotifier {
++      // A cancelled request cannot report failure or tear down a later attempt.
++      if (!identical(_connectionAttempt, attempt)) return;
+@@ -1050,2 +1064,4 @@ class RtcLiveKitService extends ChangeNotifier {
+-      _connecting = false;
+-      _pendingCallId = null;
++      if (identical(_connectionAttempt, attempt)) {
++        _connectionAttempt = null;
++        _pendingCallId = null;
++      }
+@@ -1055 +1071,3 @@ class RtcLiveKitService extends ChangeNotifier {
+-  Future<void> leave({int? callId}) async {
++  Future<void> leave({int? callId}) => _leave(callId: callId);
++
++  Future<void> _leave({int? callId, Object? preserveAttempt}) async {
+@@ -1061,0 +1080,5 @@ class RtcLiveKitService extends ChangeNotifier {
++    if (preserveAttempt == null ||
++        !identical(_connectionAttempt, preserveAttempt)) {
++      _connectionAttempt = null;
++      _pendingCallId = null;
++    }
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart
+index f470897d..6a125584 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart
+@@ -38,0 +39,2 @@ class _DiagnosticSource extends RtcRemoteDataSource {
++  final endStarted = Completer<void>();
++  Completer<RtcSessionEntity>? pendingEnd;
+@@ -52,0 +55,4 @@ class _DiagnosticSource extends RtcRemoteDataSource {
++    if (!endStarted.isCompleted) endStarted.complete();
++    final pending = pendingEnd;
++    pendingEnd = null;
++    if (pending != null) return pending.future;
+@@ -60,0 +67,11 @@ class _DiagnosticSource extends RtcRemoteDataSource {
++class _QueuedHeartbeatSource extends _DiagnosticSource {
++  final heartbeats = <Completer<RtcSessionEntity>>[];
++
++  @override
++  Future<RtcSessionEntity> heartbeatCall(int id) {
++    final reply = Completer<RtcSessionEntity>();
++    heartbeats.add(reply);
++    return reply.future;
++  }
++}
++
+@@ -135,0 +153,111 @@ void main() {
++    for (final lateHeartbeat in ['terminal', 'error']) {
++      test('old heartbeat $lateHeartbeat cannot end same-call retry', () async {
++        messenger.setMockMethodCallHandler(
++          channel,
++          (_) async => {
++            'debugBuild': 'true',
++            'iceDiagnosticBuild': 'true',
++            'applicationId': 'com.elitesync.v1015icediag',
++            'apiBaseUrl': env.apiBaseUrl,
++          },
++        );
++        final source = _QueuedHeartbeatSource();
++        final firstRoom = _DiagnosticRoom();
++        final nextRoom = _DiagnosticRoom();
++        var rooms = 0;
++        final service = RtcLiveKitService.mediaControlTest(
++          remoteDataSource: source,
++          appEnv: env,
++          room: _DiagnosticRoom(),
++          roomFactory: () => rooms++ == 0 ? firstRoom : nextRoom,
++          microphonePermission: () async => false,
++          cameraPermission: () async => false,
++        );
++        addTearDown(service.dispose);
++        final first = service.ensureConnected(55);
++        await firstRoom.started.future;
++        await service.leave(callId: 55);
++        firstRoom.connected.complete();
++        await first;
++        final next = service.ensureConnected(55);
++        await nextRoom.started.future;
++        expect(source.heartbeats, hasLength(2));
++        if (lateHeartbeat == 'error') {
++          source.heartbeats.first.completeError(
++            StateError('old heartbeat failed'),
++          );
++        } else {
++          source.heartbeats.first.complete(
++            RtcSessionEntity.fromJson({
++              'id': 55,
++              'status': 'ended',
++              'is_terminal': true,
++            }),
++          );
++        }
++        await Future<void>.delayed(Duration.zero);
++        expect(service.isConnecting, true);
++        expect(service.connectedCallId, 55);
++        expect(service.failureMessage, isNull);
++        source.heartbeats.last.complete(
++          RtcSessionEntity.fromJson({'id': 55, 'status': 'connecting'}),
++        );
++        nextRoom.connected.complete();
++        await next;
++        expect(service.connectedCallId, isNull);
++      });
++    }
++
++    for (final lateEnd in ['success', 'error']) {
++      test(
++        'late diagnostic end $lateEnd cannot close same-call retry',
++        () async {
++          messenger.setMockMethodCallHandler(
++            channel,
++            (_) async => {
++              'debugBuild': 'true',
++              'iceDiagnosticBuild': 'true',
++              'applicationId': 'com.elitesync.v1015icediag',
++              'apiBaseUrl': env.apiBaseUrl,
++            },
++          );
++          final endReply = Completer<RtcSessionEntity>();
++          final source = _DiagnosticSource()..pendingEnd = endReply;
++          final firstRoom = _DiagnosticRoom();
++          final nextRoom = _DiagnosticRoom();
++          var rooms = 0;
++          final service = RtcLiveKitService.mediaControlTest(
++            remoteDataSource: source,
++            appEnv: env,
++            room: _DiagnosticRoom(),
++            roomFactory: () => rooms++ == 0 ? firstRoom : nextRoom,
++            microphonePermission: () async => false,
++            cameraPermission: () async => false,
++          );
++          addTearDown(service.dispose);
++          final first = service.ensureConnected(55);
++          await firstRoom.started.future;
++          firstRoom.connected.complete();
++          await source.endStarted.future;
++          await service.leave(callId: 55);
++          final next = service.ensureConnected(55);
++          await nextRoom.started.future;
++          if (lateEnd == 'error') {
++            endReply.completeError(StateError('old diagnostic end failed'));
++          } else {
++            endReply.complete(
++              RtcSessionEntity.fromJson({'id': 55, 'status': 'ended'}),
++            );
++          }
++          await first;
++          expect(service.isConnecting, true);
++          expect(service.connectedCallId, 55);
++          nextRoom.connected.complete();
++          await next;
++          expect(service.isConnecting, false);
++          expect(service.connectedCallId, isNull);
++          expect(source.ends, 2);
++        },
++      );
++    }
++
+diff --git a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+index f6996c00..e23a875d 100644
+--- a/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
++++ b/apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart
+@@ -35,0 +36,13 @@ class _PendingRtcSource extends _DeniedRtcSource {
++class _QueuedRtcSource extends _DeniedRtcSource {
++  final callIds = <int>[];
++  final replies = <Completer<RtcLiveKitJoinInfoEntity>>[];
++
++  @override
++  Future<RtcLiveKitJoinInfoEntity> fetchLiveKitJoinInfo(int callId) {
++    callIds.add(callId);
++    final reply = Completer<RtcLiveKitJoinInfoEntity>();
++    replies.add(reply);
++    return reply.future;
++  }
++}
++
+@@ -93,0 +107,44 @@ void main() {
++  for (final nextCall in [19, 20]) {
++    for (final lateResult in ['unavailable', 'error']) {
++      test(
++        'cancelled credential request cannot block or clear call $nextCall after late $lateResult',
++        () async {
++          final source = _QueuedRtcSource();
++          final service = _service(source);
++          addTearDown(service.dispose);
++          final oldConnection = service.ensureConnected(19);
++          expect(source.callIds, [19]);
++          await service.leave(callId: 19);
++          expect(service.isConnecting, false);
++
++          final nextConnection = service.ensureConnected(nextCall);
++          final nextFailure = expectLater(nextConnection, throwsStateError);
++          expect(source.callIds, [19, nextCall]);
++          if (lateResult == 'error') {
++            source.replies.first.completeError(
++              StateError('old request denied'),
++            );
++          } else {
++            source.replies.first.complete(
++              RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}),
++            );
++          }
++          await oldConnection;
++          expect(service.isConnecting, true);
++          expect(service.failureMessage, isNull);
++          await service.ensureConnected(21);
++          expect(source.callIds, [19, nextCall]);
++
++          source.replies.last.complete(
++            RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}),
++          );
++          await nextFailure;
++          expect(service.isConnecting, false);
++          expect(service.isConnected, false);
++          expect(service.connectedCallId, isNull);
++          expect(service.failureMessage, isNotNull);
++        },
++      );
++    }
++  }
++

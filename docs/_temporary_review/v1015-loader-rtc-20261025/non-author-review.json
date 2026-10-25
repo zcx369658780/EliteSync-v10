@@ -1,0 +1,20 @@
+{
+ "verdict":"SUPPORTED_STATIC_REVIEW",
+ "reviewer":"/root/gate1_non_author_review (Sol/high; non-author)",
+ "findings":[],
+ "closedFindings":[
+  {"issue":"Late ICE endCall cleanup cancelled a same-call retry","lines":"989-997","fix":"Cleanup checks original attempt ownership","red":"7 passed / 2 failed; exit1","green":"Covered by final flag-enabled 11 passed; exit0"},
+  {"issue":"Old heartbeat response/error/finally affected new same-call attempt","lines":"237-272","fix":"Success/error/finally check disposed, generation, room and callId","red":"New terminal/error regressions failed; exit1","green":"Covered by final flag-enabled 11 passed; exit0"}
+ ],
+ "otherChecks":"Catch/finally operate only on owned connection attempt; external leave cancels immediately; internal room replacement preserves attempt; wrong-call leave still rejected; no ICE configuration or permission relaxation.",
+ "sha256Base":"apps/flutter_elitesync_module/",
+ "sha256":{
+  "lib/features/rtc/domain/services/rtc_livekit_service.dart":"d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+  "test/features/rtc/domain/services/rtc_livekit_service_test.dart":"c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+  "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart":"a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1"
+ },
+ "finalDiffSha256":"978c4cb2052ff028f030c5553620d0d2d45e71bf973bf11405c1a29354b0137d",
+ "runtimeEvidence":"Saved final 95-test and flag-enabled 11-test receipts bind all three exact worktree/copy hashes; reviewer did not execute tests.",
+ "analysisLimit":"Reviewer final response did not independently verify the separately named analyze-final output; main agent verified the three-file No issues/exit0 receipt.",
+ "limits":["Room, remote source and native channel are controlled test doubles", "No real device, ICE network, SFU media or hearing result", "Not Astra acceptance"]
+}

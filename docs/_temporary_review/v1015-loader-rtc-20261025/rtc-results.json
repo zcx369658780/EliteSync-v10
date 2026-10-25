@@ -1,0 +1,152 @@
+{
+  "source": "CODEX_REPORTED / NEW_RUN / UNIT_ONLY_NO_DEVICE_SFU",
+  "stages": {
+    "red": {
+      "exit": 1,
+      "elapsedSeconds": 15.65600000001723,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6c3f4033c8113fc4d8cc40b2fd43fbca83f38b75d9cc81c9c491f93abf6a2447",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "green": {
+      "exit": 0,
+      "elapsedSeconds": 2.39000000001397,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "regression": {
+      "exit": 0,
+      "elapsedSeconds": 10.21899999998277,
+      "targets": [
+        "test/features/rtc",
+        "test/app/router/rtc_invite_bootstrap_test.dart",
+        "test/app/router/app_shell_rtc_invite_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "ice-red": {
+      "exit": 1,
+      "elapsedSeconds": 9.23399999999674,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "ice-green": {
+      "exit": 0,
+      "elapsedSeconds": 2.3119999999762513,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6b3a5d9445940b81c3896b05c5510914625bd2a1f70ca6d4bf91d4b07e479ede",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "ice-heartbeat-red": {
+      "exit": 1,
+      "elapsedSeconds": 2.375,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6b3a5d9445940b81c3896b05c5510914625bd2a1f70ca6d4bf91d4b07e479ede",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "ced95abf6640dbc91040ccc0a1ee579eccc3f44de36b91a9634a386d3ed137ed"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "ice-final": {
+      "exit": 0,
+      "elapsedSeconds": 2.375,
+      "targets": [
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    },
+    "final-regression": {
+      "exit": 0,
+      "elapsedSeconds": 5.98399999999674,
+      "targets": [
+        "test/features/rtc",
+        "test/app/router/rtc_invite_bootstrap_test.dart",
+        "test/app/router/app_shell_rtc_invite_test.dart"
+      ],
+      "sourcePins": {
+        "lib/features/rtc/domain/services/rtc_livekit_service.dart": "d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+        "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1"
+      },
+      "noPub": true,
+      "writerCalls": 0,
+      "testOnlyNoDeviceOrSfu": true
+    }
+  },
+  "counts": {
+    "credentialRed": "11 pass / 4 fail",
+    "credentialGreen": "15 pass",
+    "iceEndRed": "7 pass / 2 fail",
+    "iceHeartbeatRed": "9 pass / 2 fail",
+    "finalOrdinary": "95 pass",
+    "finalFlagEnabled": "11 pass; 4 shared cases overlap with ordinary run"
+  },
+  "analysis": {
+    "files": 3,
+    "exit": 0,
+    "result": "No issues found"
+  },
+  "boundaries": [
+    "No current host APK build/install",
+    "No real ICE diagnostic",
+    "No microphone/camera/SFU media",
+    "AC05 remains open"
+  ],
+  "rawEvidenceHashes": {
+    "red.stdout.txt": "6c82bb400e9c262c7438e3ae453301cc27a913c870da7957e6a7d589c37c015b",
+    "green.stdout.txt": "6d1a991e54b7443b5faa1a505db1daa23206a4dffe9088e26a658de12e8b5268",
+    "ice-red.stdout.txt": "d5187755e7c66257cae0ea0de8a199c04c0aab0a26a50c1cb7caabcd41586805",
+    "ice-heartbeat-red.stdout.txt": "67054039c27844477e9e3f6b3f97724972e8de0a14ada3354de201ccb94e163a",
+    "ice-final.stdout.txt": "8c7844d97e701f9dcecf3c80febcd9b147632269eb46dcf39baa25d188afaf11",
+    "final-regression.stdout.txt": "da26ad8303e2386ff660c66c420aff1c3a2a12dfd3fcb685aa32689eb1eac257",
+    "analyze-final.stdout.txt": "a377c293357b1993260cdb984e519c82b98724e2abc4698370743859a567b068"
+  }
+}

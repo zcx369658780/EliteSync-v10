@@ -1,0 +1,22 @@
+{
+  "historical": {
+    "protectedFileCount": 22482,
+    "allNamedProtectedFilesUnchanged": true,
+    "changedNamedFiles": [],
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 516,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "ownCandidateRefsExcluded": [
+      "refs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+      "refs/remotes/origin/codex/v10.1.5-source-faithful-serializer-conditional-sdk"
+    ],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  },
+  "previousLongTaskRawEvidence": {
+    "priorRawEvidenceFiles": 40,
+    "allUnchanged": true,
+    "previousCandidate": "079ea1097788c533a57f5909e1e2348e0cf9e724"
+  }
+}

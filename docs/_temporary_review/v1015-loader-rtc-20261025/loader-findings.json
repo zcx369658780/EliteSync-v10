@@ -1,0 +1,130 @@
+{
+  "result": "GATE2_ENVIRONMENT_BLOCKED_IN_INSPECTED_HOSTS",
+  "authority": {
+    "main": "9b574425d59f00903192ca7a6db450bf6c3af688",
+    "root": "f9c4bb7b35e86282cf4a61fdaedc8638b36d334f",
+    "products": [
+      {
+        "path": "apps",
+        "sha": "3468a3dd97da7accfda2539a0f8d8f68931a6110"
+      },
+      {
+        "path": "services",
+        "sha": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+      }
+    ],
+    "documents": [
+      {
+        "path": "docs/versions/v10.1.5/task_order.md",
+        "blob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+        "rawVerified": true
+      },
+      {
+        "path": "docs/versions/v10.1.5/plan.md",
+        "blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+        "rawVerified": true
+      },
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "blob": "659eebbc773d1fc85e60d5c70a7c3ac5255ca29b",
+        "rawVerified": true
+      }
+    ],
+    "base": "079ea1097788c533a57f5909e1e2348e0cf9e724",
+    "baseRoot": "d078ac6a0b0a611151d530bce7774acf179c6ec1",
+    "baseApps": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+    "baseServices": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f"
+  },
+  "writerSha256": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+  "newWriterCalls": 0,
+  "newSerializerConstructionOrCalls": 0,
+  "newGate2Attempts": 0,
+  "d0AReruns": 0,
+  "hosts": [
+    {
+      "host": "Windows PowerShell 5.1 x64",
+      "framework": ".NET Framework 4.8.10008.0",
+      "effectivePolicy": "Restricted",
+      "frameworkAttributeDefined": true,
+      "inspection": "ReflectionOnly"
+    },
+    {
+      "host": "Windows PowerShell 5.1 x86",
+      "framework": ".NET Framework 4.8.10008.0",
+      "effectivePolicy": "Restricted",
+      "frameworkAttributeDefined": true,
+      "inspection": "ReflectionOnly"
+    },
+    {
+      "host": "PowerShell 7.6.6",
+      "framework": ".NET 10.0.12",
+      "effectivePolicy": "RemoteSigned",
+      "systemWebDefinedTypes": [],
+      "systemWebForwardedTypes": [
+        "System.Web.HttpUtility"
+      ],
+      "requiredAttributeAvailable": false
+    }
+  ],
+  "assemblyFiles": [
+    {
+      "fileLabel": "pwsh.exe",
+      "bytes": 301368,
+      "sha256": "bfb46af89433268872ddb43d1ca7a3f433452ee91ed356a9786940f90118e285"
+    },
+    {
+      "fileLabel": "System.Web.dll",
+      "bytes": 15144,
+      "sha256": "88650d1871b5bac043665f06610799862b66303794fb76de0db5e58c86e1b1d9"
+    },
+    {
+      "fileLabel": "System.Web.Extensions.dll",
+      "bytes": 1832288,
+      "sha256": "6f2545e5ba378f6836ea0fed1067d089181e27dbd3c81e9db418c8bb32e6af51"
+    },
+    {
+      "fileLabel": "System.Web.dll",
+      "bytes": 5401912,
+      "sha256": "e1a243ba2f0df06770be1e2ff24379a5063d483e8b1c96f926921c1f489861cd"
+    }
+  ],
+  "dependency": "Original Writer references System.Web.Extensions / JavaScriptSerializer; its Framework dependency is System.Web v4. PS7 System.Web facade forwards HttpUtility only and lacks WebResourceAttribute.",
+  "throwLocationLimit": "Historical stderr has no stacktrace; cannot distinguish exact top-level load/type binding/constructor/first Deserialize expression. No Serialize was reached.",
+  "metadataHarnessFailure": "Initial native host commands inherited Core module discovery and failed to autoload Security module; subsequent metadata query used existing native PSHOME Modules in child process only. No policy change or Writer launch.",
+  "toolShellQueryLimit": "An initial requested shell selector still reported PS7; not used as native-host authority. Explicit subprocess executable paths established native identities.",
+  "notChosen": [
+    "Re-executing refused old entry",
+    "Changing execution policy",
+    "Policy override or script-content execution bridge",
+    "Replacing original Serializer or copying Framework System.Web into Core host"
+  ],
+  "budgetLedger": [
+    {
+      "attempt": "original WinPS",
+      "elapsedSeconds": 0.375,
+      "exit": 1,
+      "stage": "policy rejection",
+      "consumed": true
+    },
+    {
+      "attempt": "LONG_F3_GATE2_PWSH7_20261025",
+      "elapsedSeconds": 0.39000000001396984,
+      "exit": 1,
+      "stage": "startup TypeLoadException",
+      "consumed": true
+    }
+  ],
+  "references": [
+    "https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.web.script.serialization.javascriptserializer?view=netframework-4.8.1"
+  ],
+  "rawEvidenceHashes": {
+    "winps64.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "winps64.stderr.txt": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f",
+    "winps32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "winps32.stderr.txt": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f",
+    "winps64-native-modules.stdout.txt": "0671ff51ac50bbc871ca7295adf259d73c5e91aa252f0c11bd351969fe448276",
+    "winps32-native-modules.stdout.txt": "bdb86b6c09004197b24ad3995d866a6cdfe7f2459b1d2aa5d200e8beea989aa4",
+    "pwsh7.stdout.txt": "7c216c725cbd9380baaa46dd33ad0cca0f39f2240cce66bf853649cb8bfbed14"
+  }
+}
