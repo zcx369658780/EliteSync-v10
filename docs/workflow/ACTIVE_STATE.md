@@ -10,7 +10,7 @@
 
 **路线图目标与估时：** 权威路线为 [ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md](../architecture/ELITESYNC_10X_POST_RESTORATION_ROADMAP_20261019_V1_0.md)，Blob `d8d34ccf229254e7e064be00590ba509071cf749`。当前工作仍属v10.1.5；v10.1.6和v10.1.7尚未开始。到v10.1.7开发评审版粗估3–6个月（兼职节奏，低至中等置信度），最大风险为执行环境/SDK门禁、通信与离线真实端到端验证和联合验收返修。v10.2.0及之后为条件阶段，不计入当前终点。
 
-**当前GitHub（写入前核验）：** main `82d79c3581b0bc279a95fda79cd3e6fefe74c791` / Root `c1e0bd162d9bd9ddf3d1705fceb8f187a1b23123`。本次随后更新ACTIVE_STATE会推进main；最终HEAD以最后回读为准。
+**当前GitHub状态：** 任务单与本状态入口更新会推进main；所有写入完成后的最终live main/Root应以本轮最后一次远端回读为准，不将历史写入前快照视为当前HEAD。
 
 ## 已独立核验的产品和集成
 
