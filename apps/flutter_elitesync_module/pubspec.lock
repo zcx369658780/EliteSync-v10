@@ -603,11 +603,10 @@ packages:
   livekit_client:
     dependency: "direct main"
     description:
-      name: livekit_client
-      sha256: "9160950ff87d1946959e4911c16236ea7a3e74ac1987990b258132fd4ed0fca9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.10.0"
+      path: "third_party/livekit_client"
+      relative: true
+    source: path
+    version: "2.10.0+elitesync.1"
   logger:
     dependency: transitive
     description:

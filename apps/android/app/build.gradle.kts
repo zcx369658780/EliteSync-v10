@@ -202,7 +202,9 @@ val flutterReleaseAarRepo =
     File(flutterModuleDir, "build/host/outputs/repo/com/elitesync/flutter_elitesync_module/flutter_release/1.0")
 val r1Digest = MessageDigest.getInstance("SHA-256").apply {
     update(flutterDartDefines.toByteArray(Charsets.UTF_8))
-    fileTree(File(flutterModuleDir, "lib")).matching { include("**/*.dart") }.files.sortedBy { it.absolutePath }.forEach {
+    fileTree(flutterModuleDir).matching {
+        include("lib/**/*.dart", "pubspec.yaml", "pubspec.lock", "third_party/livekit_client/**")
+    }.files.sortedBy { it.relativeTo(flutterModuleDir).invariantSeparatorsPath }.forEach {
         update(it.relativeTo(flutterModuleDir).invariantSeparatorsPath.toByteArray(Charsets.UTF_8))
         update(it.readBytes())
     }
@@ -247,6 +249,8 @@ val syncFlutterAar by tasks.registering(Exec::class) {
     )
     inputs.dir(File(flutterModuleDir, "lib"))
     inputs.file(File(flutterModuleDir, "pubspec.yaml"))
+    inputs.file(File(flutterModuleDir, "pubspec.lock"))
+    inputs.dir(File(flutterModuleDir, "third_party/livekit_client"))
     inputs.property("flutterDartDefines", flutterDartDefines)
     inputs.property("v1009DualDeviceBuild", v1009DualDeviceBuild)
     inputs.property("relationshipDualDeviceBuild", relationshipDualDeviceBuild)
