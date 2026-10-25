@@ -284,3 +284,77 @@ B7只复用原具名旧源检查：语音留言/地图来源仍NOT_PROVEN/UNKNOW
 保护核验：22,482具名历史文件Hash/字节、五历史根HEAD/branch/index/status、516个旧refs中的受保护项保持；仅本次自有候选ref允许前进。其范围不等于全盘或所有活设备逐字节验收。历史失败、原D0预算、旧SQL/APK/refs及原dirty根保留。原报告字节作为本文件前缀不变；旧manifest可从来源commit精确取得，R1 manifest文件未修改。
 
 普通non-force发布连续候选并回读Commit/Parent/Root、双Tree、报告/manifest Blob和原字节；文档交付提交自身身份由最终回读回执提供，避免文件内自引用。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_HOST_APK / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED。** 完成集中交付后停止，等待Astra一次性独立验收；不自动恢复37/SDK链或后继版本。
+
+
+## 2026-10-25 同一长任务继续：加载根因与RTC异步取消修复（最新）
+
+**PARTIAL / OPEN_BLOCKERS / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE。** 本末章与当前manifest更新上一集中交付；前面44,070字节及历史失败原件不改。没有新版本、微任务派发、预算重置或自签接受。
+
+### Fresh权威和源码
+
+重新全文读取task_order（Blob `d737c3a813d81ada7a9ca9a60aa310e9e14e0960`，含F节）、冻结plan（`7d3466b3be67135dc641cfee7c7faef78937ba03`）与ACTIVE_STATE（`659eebbc773d1fc85e60d5c70a7c3ac5255ca29b`），三文档均从固定live main原始字节核Git Blob。live main已为 `9b574425d59f00903192ca7a6db450bf6c3af688`，Root `f9c4bb7b35e86282cf4a61fdaedc8638b36d334f`；接受产品仍v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。连续候选实时起点 `079ea1097788c533a57f5909e1e2348e0cf9e724`，开工工作树干净，未reset旧SHA。
+
+| 本次身份 | 固定对象 |
+|---|---|
+| 源码Commit / 唯一Parent | `67f83b053096b181ff64366f3eaad0e5e44815f8` / `079ea1097788c533a57f5909e1e2348e0cf9e724` |
+| 源码Root | `444d558e0ba6912501c3ef94a03b11625d4e89ca` |
+| 完整apps Tree | `e9ed3a1dee4c892840831b0e31f6f96669fa17d5` |
+| 完整services Tree | `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`（本次未改后端） |
+| 连续候选分支 | `codex/v10.1.5-source-faithful-serializer-conditional-sdk` |
+
+### TypeLoadException：已核验的实际依赖差异
+
+原D0-C Writer实际SHA256仍 `9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512`，其余七项pins亦由只读核验确认。Writer明确以 `System.Web.Extensions` 的原JavaScriptSerializer构造parser；真正aggregate Serialize在Write-Aggregate，未更换Serializer、投影或fallback。
+
+本轮以明确子进程可执行文件身份查询现有三个宿主，**没有构造Serializer、Deserialize、Serialize或启动Writer**：
+
+| 已检查宿主 | 依赖/策略事实 |
+|---|---|
+| PowerShell7.6.6 / .NET10.0.12 | 有效RemoteSigned；默认加载的System.Web v4为15,144字节facade，无DefinedTypes，仅转发HttpUtility，缺少WebResourceAttribute。 |
+| Windows PowerShell5.1 x64 / .NET Framework4.8.10008 | ReflectionOnly读取原Extensions引用System.Web v4；完整Framework System.Web中存在该属性；所有策略scope Undefined，有效Restricted。 |
+| Windows PowerShell5.1 x86 / .NET Framework4.8.10008 | 同样ReflectionOnly确认所需类型存在，有效Restricted；未执行原被拒绝脚本入口。 |
+
+这支持上一启动TypeLoadException来自Core宿主与Framework API依赖不兼容，不能用“GAC类型可解析”替代可运行性证明。原失败没有异常栈，**仍不能精确区分顶层assembly load、类型绑定、构造或首次Deserialize表达式的throw点**；不能猜成Serialize运行失败。当前核验仅覆盖上述具名宿主，不宣称全机不存在其它未知入口。
+
+最初native元数据命令继承了Core模块搜索路径，Security模块autoload失败；保留exit1原stdout/stderr，随后仅在元数据子进程把PSModulePath指向已有原生PSHOME Modules后查询成功。它没有改变策略/ACL/global配置，也没有执行Writer。另一次工具shell选择仍报告PS7，该结果不作为native宿主身份，最终以显式子进程路径、版本与进程自身路径核实。未复制Framework DLL进入Core宿主、未用Bypass/脚本内容执行桥、未替换原Serializer。微软[宿主运行时差异](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell)与[JavaScriptSerializer定义](https://learn.microsoft.com/en-us/dotnet/api/system.web.script.serialization.javascriptserializer?view=netframework-4.8.1)作为依赖背景，实际结论来自本机记录。
+
+**历史0.375秒WinPS策略拒绝与0.390秒PS7 TypeLoad启动失败两预算均保持已消费，本轮Gate2新增启动0、Writer调用0、D0-A重跑0。** 在已核宿主中尚未找到同时满足原依赖和当前脚本策略的入口，Gate2仍ENVIRONMENT_BLOCKED。正负例仍NOT_RUN，不重试被拒绝入口，不重置或再铸造一次性预算；37案例、条件Sandbox SDK、Producer/libs.jar及30解析仍NOT_RUN。
+
+### 独立推进的真实软件缺陷及修复
+
+RTC凭据请求未完成时离开，原 `_connecting` 要等旧Future结束才清除，可能挡住下一呼叫；旧catch/finally又可能影响同call的新attempt。用唯一attempt对象替代重复bool状态：外部leave立即取消所属attempt，内部换room保留当前attempt，迟到成功/错误/清理只能处理所属attempt。没有新权限或新RTC协议。
+
+非作者复核发现诊断分支迟到endCall的finally，以及旧heartbeat终态/错误/finally还会影响同call重试；在同一任务内补回归复现后修复。诊断退出清理检查attempt；heartbeat以generation、room、callId及disposed检查成功、错误与inFlight清理的归属。错callId leave、授权拒绝、ICE native guard及音视频禁令保持。
+
+| 新执行证据 | 结果 |
+|---|---|
+| 凭据取消回归RED | 旧11通过＋新4失败，exit1；修复后15通过。覆盖同call/不同call、迟到不可用/错误。 |
+| 诊断迟到结束RED | 7通过＋2失败，exit1；修复后通过。 |
+| 旧心跳RED | 9通过＋2失败，exit1；终态/错误均复现关闭同call新attempt。 |
+| 最终RTC＋路由 | **95通过 / exit0**，全部三文件与实际测试副本SHA逐字节绑定。 |
+| 最终诊断开关测试 | **11通过 / exit0**，含四项与普通运行重叠的基础用例，不能把95＋11当106个互异案例。 |
+| 最终静态检查 | 三文件Dart analyze No issues / exit0，格式及CRLF规则diff检查通过。 |
+
+诊断测试使用受控Room、source和native MethodChannel替身及三Dart编译开关；**未运行真实ICE、设备、SFU或麦克风/摄像头，不证明宿主ICE标志**。本轮APP源码改变，当前APK构建/安装与真实媒体测试未完成，不能把源码/单测修复当AC05闭合。条件Producer链依赖仍不越过；未把所有其它普通构建方式笼统宣称不可能。原API/MariaDB/GUI/Android期限证据可复用的部分严格标REUSED_EVIDENCE，本轮不重复无关后端/数据库测试。
+
+### 当前AC与保护、集中出口
+
+| AC-10.1.5 | 当前结果 |
+|---|---|
+| 01 | Fresh main/Root/双Tree及三权威Blob核验；22,482历史文件、五根与受保护旧refs保持，上一长任务40件具名原证Hash再核一致。 |
+| 02 | REUSED_EVIDENCE：此前真实幂等/丢响应GUI/WS支持保留，非本轮新GUI。 |
+| 03 | REUSED_EVIDENCE：此前MariaDB精确锁等待→COMMIT→401、WS撤权与切号/迟到响应限定结果保留。 |
+| 04 | REUSED_EVIDENCE：此前真实图片/视频/Range/撤权及重启支持保留，当前新APP播放NOT_RUN。 |
+| 05 | **PARTIAL_CORE_OPEN**；新增RTC取消/迟到回调缺陷有回归修复。双端流动媒体、同call真实重连、旧RTC JWT重新入房拒绝、≤5秒停止及AEC仍未证。 |
+| 06 | REUSED_EVIDENCE：真正login/refresh及Android受控注入支持保留，未虚称物理30天。 |
+| 07 | REUSED_EVIDENCE：原生密文/期限清理及冷启锁定支持保留，本轮未操作旧密文。 |
+| 08 | REUSED_EVIDENCE：通知偏好、current-read及限定GUI支持保留，未重验完整Safety流程。 |
+| 09 | 原TEST_ONLY隔离支持保留，REAL_PUSH_PROVIDER_PENDING / REAL_PUSH_NOT_RUN。 |
+| 10 | PARTIAL；新增95/11及三文件分析通过；原后端92例/717断言与真实API/DB重启为复用，新APK/媒体未跑。 |
+| 11 | 当前报告/manifest及准确源码对象、三文件非作者复核、六件最小独立审阅包；仍待Astra功能接受。 |
+
+非作者Sol/high静态复核关闭上述两个发现，最终无未关闭finding，三文件完整Hash及证据限制在审阅包。其最终回复未独立读取单列的三文件analyze-final输出，主代理已核该exit0原件；不扩大其审查范围。六件公开包另经只读隐私筛查无删减项。
+
+审阅分支 `codex/v10.1.5-loader-rtc-review-20261025`，Commit `76b6ea718ed030415a406bf07c22aaaf5a2473fb`、唯一Parent `67f83b053096b181ff64366f3eaad0e5e44815f8`、Root `d9ffa27054b5faac649445f50aa52afe8230bd48`；六件Blob及原字节已回读。[固定审阅包](https://github.com/zcx369658780/EliteSync-v10/tree/76b6ea718ed030415a406bf07c22aaaf5a2473fb/docs/_temporary_review/v1015-loader-rtc-20261025)。原两个审阅分支、报告前缀、manifest来源对象、SQL/APK/refs/dirty根、旧budget原件保留；新原证根只用LOCAL_ONLY标签 `v1015-long-resume-loader-20261025`，不上传整目录/私密原件。
+
+原候选分支普通non-force后继发布后核Commit/Parent/Root、完整产品双Tree、两文档Blob及原始字节；交付提交自身身份由最终回读回执提供。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_HOST_APK / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED**。集中交付后停止等待Astra；未改变main、系统安全设置、真实供应商或未知guest。

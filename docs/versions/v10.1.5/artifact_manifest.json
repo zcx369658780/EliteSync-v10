@@ -1,18 +1,433 @@
 {
   "version": "10.1.5",
-  "delivery": "20261025-long-task-continuation",
+  "delivery": "20261025-long-task-loader-and-rtc-continuation",
   "status": "PARTIAL / OPEN_BLOCKERS / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
   "authority": {
     "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
     "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
-    "activeBlob": "2b9ab05eebc21712070065c75f9f0b1aae90d571",
-    "r1AstraReviewBlob": "ff9916e0b227dc0996165b2b6d5024b6199ead17",
-    "main": "a6c321a85ec6433a2cfc5eda56e72178e688b47a",
-    "mainRoot": "087adc701c36de429a53470f386fcf26d882ed3d",
+    "activeBlob": "659eebbc773d1fc85e60d5c70a7c3ac5255ca29b",
+    "main": "9b574425d59f00903192ca7a6db450bf6c3af688",
+    "mainRoot": "f9c4bb7b35e86282cf4a61fdaedc8638b36d334f",
     "acceptedApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
-    "acceptedServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    "acceptedServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+    "r1AstraReviewBlob": "ff9916e0b227dc0996165b2b6d5024b6199ead17"
   },
   "source": {
+    "commit": "67f83b053096b181ff64366f3eaad0e5e44815f8",
+    "parent": "079ea1097788c533a57f5909e1e2348e0cf9e724",
+    "root": "444d558e0ba6912501c3ef94a03b11625d4e89ca",
+    "apps": "e9ed3a1dee4c892840831b0e31f6f96669fa17d5",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "files": [
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+        "gitBlob": "1abe844a83eb6f48e0718ac361778df73127ca00",
+        "gitCanonicalSha256": "3f8ae0c875d5dee7d0327f301d5546fd3f83121b65323b4e4749881a43269035",
+        "executedWorktreeSha256": "d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+        "onlyGitLineEndingNormalization": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+        "gitBlob": "e23a875d0a04044c4c0227868b0f46f8e86b5a14",
+        "gitCanonicalSha256": "ef0b6e0cc3fe03e4c6c377310f0263c1a2d710cc923c57db66b2d03509f56115",
+        "executedWorktreeSha256": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+        "onlyGitLineEndingNormalization": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart",
+        "gitBlob": "6a125584204890209f60716b8264c9f7710d92f6",
+        "gitCanonicalSha256": "92d3022953a88e046386e50dc11245c0114d53fa6d017760bd1518e7f0c7da78",
+        "executedWorktreeSha256": "a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1",
+        "onlyGitLineEndingNormalization": true
+      }
+    ],
+    "appsChangedThisContinuation": true,
+    "servicesChangedThisContinuation": false
+  },
+  "acResults": [
+    {
+      "ac": "AC-10.1.5-01",
+      "status": "SUPPORTED_BOUNDED_PROTECTION",
+      "evidenceClass": "NEW_READONLY_INTAKE_AND_PROTECTION",
+      "detail": "上一阶段建立独立空库/volume、有效选择器和迁移前恢复点；本次只读重新核验live main/Root/双Tree/三权威Blob、22,482具名历史文件、五保护根、受保护旧refs及上一阶段40件原证。"
+    },
+    {
+      "ac": "AC-10.1.5-02",
+      "status": "SUPPORTED_BACKEND_AND_REUSED_GUI",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：真实HTTP幂等回放/409、WS断开重连与最小指针通过；R1已支持的GUI丢响应同键重试证据保留。该阶段没有当前完整apps Tree的新APK/GUI旅程。"
+    },
+    {
+      "ac": "AC-10.1.5-03",
+      "status": "SUPPORTED_BOUNDED_NEGATIVES",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：MariaDB reader54等待writer53的users PRIMARY RECORD锁；COMMIT撤权后旧reader401，双exit0。当前WS撤权关闭/旧token拒绝和HTTP404通过；切号/迟到结果与Safety旧卡片GUI复用R1限定证据，未声称全矩阵新跑。"
+    },
+    {
+      "ac": "AC-10.1.5-04",
+      "status": "SUPPORTED_API_MEDIA_AND_REUSED_APP",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：真实图片与H264短视频持久读回、200/206、撤权/第三方404、假视频422；新库重启后视频Hash一致。APP播放为既有版本证据，非该阶段新GUI。"
+    },
+    {
+      "ac": "AC-10.1.5-05",
+      "status": "PARTIAL_CORE_OPEN",
+      "evidenceClass": "NEW_UNIT_RUN + REUSED_CONTROL_ONLY",
+      "detail": "上一阶段RTC真实API控制面结果复用；本次修复取消凭据、迟到诊断endCall及旧heartbeat影响新连接的竞态，95普通回归与11诊断开关单测通过。双APP有效SFU媒体、同call真实重连、旧RTC JWT首次重入拒绝、流动媒体≤5秒停止及AEC仍未证。"
+    },
+    {
+      "ac": "AC-10.1.5-06",
+      "status": "SUPPORTED_TEST_INJECTION_WITH_LIMITS",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：真实login/refresh T0不续期及后端期限回归通过；R1 Android 34/34受控注入时序由Astra限定支持，非真实物理30天。相关期限源码未在本次修改。"
+    },
+    {
+      "ac": "AC-10.1.5-07",
+      "status": "SUPPORTED_NATIVE_INJECTION_WITH_LIMITS",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：R1真实FlutterSecureStorage到期删除成功/失败及冷启锁定证据保留；该阶段55项缓存/晚响应/通知与97项RTC/期限测试通过，不能代替新设备演练或现实删除完备性。"
+    },
+    {
+      "ac": "AC-10.1.5-08",
+      "status": "SUPPORTED_BOUNDED_PRIVACY",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：该阶段真实API类别/静默/最小通知及旧权限负例、Flutter点击重验回归通过；GUI权限/旧通知/Safety限定证据复用R1，完整Safety业务与新GUI未重跑。"
+    },
+    {
+      "ac": "AC-10.1.5-09",
+      "status": "PASS_TEST_ONLY_ISOLATION",
+      "evidenceClass": "REUSED_EVIDENCE_FROM_079ea109",
+      "detail": "上一集中交付记录（本轮复用，未重新运行）：合成transport token登记及已有生命周期正反回归通过；真实Push供应商/SDK/Key/费用和后台锁屏远端送达仍PROVIDER_PENDING。"
+    },
+    {
+      "ac": "AC-10.1.5-10",
+      "status": "PARTIAL_CURRENT_HOST_AND_RTC_OPEN",
+      "evidenceClass": "NEW_RTC_TESTS_ANALYSIS / REUSED_BACKEND_DB",
+      "detail": "上一集中交付的后端31/245与61/472、RTC12/94、Flutter55+97及真实API/DB重启证据复用。当前apps已变化；本次95项RTC/路由、11项诊断开关测试及三文件分析通过，四基础案例重叠不重复计数；当前新APK构建/安装和SFU媒体仍NOT_RUN。"
+    },
+    {
+      "ac": "AC-10.1.5-11",
+      "status": "DELIVERY_SUPPORTED_AWAITING_ASTRA",
+      "evidenceClass": "NEW_DELIVERY / STATIC_REVIEW",
+      "detail": "当前唯一报告/manifest、新源码双Tree、三文件非作者静态复核和六件公开审阅包；仍待Astra。"
+    }
+  ],
+  "gate2": {
+    "budgetId": "LONG_F3_GATE2_PWSH7_20261025",
+    "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+    "attempts": 1,
+    "existingHost": "PowerShell 7.6.6 / .NET 10.0.12 / effective RemoteSigned",
+    "noPolicyOverride": true,
+    "newProcessExit": 1,
+    "processExitConfirmed": true,
+    "totalControllerSeconds": 0.39000000001396984,
+    "failureStage": "startup",
+    "exceptionType": "System.TypeLoadException",
+    "missingType": "System.Web.UI.WebResourceAttribute",
+    "positive": "NOT_RUN",
+    "negative": "NOT_RUN",
+    "writerCalls": 0,
+    "serializerCalls": 0,
+    "fallbackCalls": 0,
+    "receiptsProduced": 0,
+    "oldWindowsPowerShellAttempt": "CONSUMED / SecurityError / exit1 / 0.375sec / NOT_RETRIED",
+    "d0AReruns": 0,
+    "full37Suite": "NOT_RUN",
+    "sandboxSdk": "NOT_RUN",
+    "producer": "NOT_RUN",
+    "configurationResolve30": "NOT_RUN",
+    "sourcePins": {
+      "gate2_once.ps1": "500933d8688176854a7729fd94dd8389a450b45cbb6607e1c46d1555e5700a20",
+      "run_gate2_once.py": "f5c807c9507a205789be445dd2edf2368bfe596d28239870fe3f148b3f441412",
+      "positive-publication-fragment.ps1": "d07da132a9c14d07327ddf00847a7321e319a2c0a8ac9f3cb15948f1bbd90bdb",
+      "targeted-input-plan.json": "c6e88ae711548abb8c9eadf9f154fb6149aad2e6944d2baa3a3fdbf8a69426d5",
+      "source/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+      "source/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "source/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "source/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
+    },
+    "rawEvidenceHashes": {
+      "gate2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gate2.stderr.txt": "5e9e6ff57d67203afdc8679be456da960eaf7597673e14d53b08229a68316d12",
+      "gate2-child-result.json": "f3e11d4dab38cb9fae86f39cf7410eb552c7021b208a79f7100f663c54ac45d0",
+      "gate2-supervisor-result.json": "af4e8f6b00926b456263911bc8a530f4d7ae68e23f7b8b10fc9d5108332f2b40",
+      "gate2-controller-complete.json": "3145e3d23951c0ac40c6fa5869bcb7ecb46c40cdb31dbd3a30949d939902740e"
+    },
+    "meaning": "Environment/framework compatibility failure before Writer invocation; not a Writer or Serializer runtime failure."
+  },
+  "review": {
+    "branch": "codex/v10.1.5-loader-rtc-review-20261025",
+    "commit": "76b6ea718ed030415a406bf07c22aaaf5a2473fb",
+    "parent": "67f83b053096b181ff64366f3eaad0e5e44815f8",
+    "root": "d9ffa27054b5faac649445f50aa52afe8230bd48",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/loader-findings.json",
+        "blob": "aa03435f4bcf93854825f2a5f0cdc39c80279cd1",
+        "mode": "100644",
+        "bytes": 5159,
+        "sha256": "87559be6b29b20adf773071d556fa501b165996ae8605c465e913ad874572939",
+        "rawBytesVerified": true
+      },
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/non-author-review.json",
+        "blob": "a21b6291a78cd6fe3e1a6bc70d6089e3eaf76829",
+        "mode": "100644",
+        "bytes": 1945,
+        "sha256": "6a8bd4bb2d8049ad320d3b48fe063f5d30b09ba53bd776fd801f919fbb03c4a3",
+        "rawBytesVerified": true
+      },
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/protection-summary.json",
+        "blob": "8069f18b11c0bb76920ac01f560141566cbc0f3b",
+        "mode": "100644",
+        "bytes": 740,
+        "sha256": "cfe8c02523c6bf63cd9baffd26044d62f51c1935db49243768a3f8ed529b5824",
+        "rawBytesVerified": true
+      },
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/README.md",
+        "blob": "e8b81617fd8191d06d640329de2bcf70855e1c31",
+        "mode": "100644",
+        "bytes": 864,
+        "sha256": "1d683ef17c3e9a342a1e54a2fe6662b7328df73d2f44a376050814f3035e24c9",
+        "rawBytesVerified": true
+      },
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/rtc-results.json",
+        "blob": "c9e344e9c4109db2e59a2ef43bb814a1be0270a2",
+        "mode": "100644",
+        "bytes": 6522,
+        "sha256": "02479eb0b43e1a973711a600d5f4408679d3a3e2ec7afc6d0c8fc70df0d70f2e",
+        "rawBytesVerified": true
+      },
+      {
+        "path": "docs/_temporary_review/v1015-loader-rtc-20261025/source-diff.patch",
+        "blob": "e1728f6f59ee22e2005c9cd0b33a5d226b5b1cf8",
+        "mode": "100644",
+        "bytes": 10965,
+        "sha256": "e50f613a4f02b55342f3a6e5044a2fc605cb859e146cbf02ceff8d770c615e64",
+        "rawBytesVerified": true
+      }
+    ],
+    "remoteParentRootVerified": true
+  },
+  "nonAuthorReview": {
+    "verdict": "SUPPORTED_STATIC_REVIEW",
+    "findings": [],
+    "closedFindings": 2,
+    "independentExecution": false,
+    "pathOnReviewBranch": "docs/_temporary_review/v1015-loader-rtc-20261025/non-author-review.json"
+  },
+  "protection": {
+    "protectedFileCount": 22482,
+    "allNamedProtectedFilesUnchanged": true,
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 516,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  },
+  "runtimeOwnership": {
+    "database": "elitesync_v1015_long_dev",
+    "port": 43328,
+    "container": "elitesync-v1015-long-db-20261025",
+    "volume": "elitesync-v1015-long-data-20261025",
+    "finalBackupBytes": 172222,
+    "finalBackupSha256": "546a4a8f10b3f034e33b5b61b8d0a919a985dd9938ae23c8f3d70195bf687a05",
+    "ownedProcessesExitConfirmed": true,
+    "ownedContainerStopped": true,
+    "oldContainersPreserved": true,
+    "newAvdStarted": false
+  },
+  "localOnly": {
+    "rootLabel": "v1015-long-resume-loader-20261025",
+    "rawPrivacy": "Complete host/process logs and all private artifacts stay LOCAL_ONLY",
+    "evidence": [
+      {
+        "path": "authority.json",
+        "bytes": 1008,
+        "sha256": "ace4e638ffc137ec98495756156ed9e78ec2120e9c2af8bd9eb365afbaf536d2"
+      },
+      {
+        "path": "host-file-pins.json",
+        "bytes": 834,
+        "sha256": "8af1b330d06967b28c6ff8bb676050776f8fa05d1518a989b46a78d7771c7370"
+      },
+      {
+        "path": "winps64.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "winps64.stderr.txt",
+        "bytes": 1091,
+        "sha256": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f"
+      },
+      {
+        "path": "winps32.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "winps32.stderr.txt",
+        "bytes": 1091,
+        "sha256": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f"
+      },
+      {
+        "path": "winps64-native-modules.stdout.txt",
+        "bytes": 3552,
+        "sha256": "0671ff51ac50bbc871ca7295adf259d73c5e91aa252f0c11bd351969fe448276"
+      },
+      {
+        "path": "winps32-native-modules.stdout.txt",
+        "bytes": 3552,
+        "sha256": "bdb86b6c09004197b24ad3995d866a6cdfe7f2459b1d2aa5d200e8beea989aa4"
+      },
+      {
+        "path": "pwsh7.stdout.txt",
+        "bytes": 455,
+        "sha256": "7c216c725cbd9380baaa46dd33ad0cca0f39f2240cce66bf853649cb8bfbed14"
+      },
+      {
+        "path": "red.stdout.txt",
+        "bytes": 4793,
+        "sha256": "6c82bb400e9c262c7438e3ae453301cc27a913c870da7957e6a7d589c37c015b"
+      },
+      {
+        "path": "red.json",
+        "bytes": 509,
+        "sha256": "b196a7e640d03c93b4922d0fd657f2b923533e1a670f3f10ee7fa788e55e0f5f"
+      },
+      {
+        "path": "green.stdout.txt",
+        "bytes": 3775,
+        "sha256": "6d1a991e54b7443b5faa1a505db1daa23206a4dffe9088e26a658de12e8b5268"
+      },
+      {
+        "path": "green.json",
+        "bytes": 508,
+        "sha256": "aacafd7d4a6b6914a27c9fc69ffa2f53c5708de89a1abb31da0d98b1f157d812"
+      },
+      {
+        "path": "ice-red.stdout.txt",
+        "bytes": 7717,
+        "sha256": "d5187755e7c66257cae0ea0de8a199c04c0aab0a26a50c1cb7caabcd41586805"
+      },
+      {
+        "path": "ice-red.json",
+        "bytes": 512,
+        "sha256": "286a4a201d0f26bd25450f6689d5b0f5a8029d0cd37e8ab6c9a2ff672b557a7b"
+      },
+      {
+        "path": "ice-heartbeat-red.stdout.txt",
+        "bytes": 11459,
+        "sha256": "67054039c27844477e9e3f6b3f97724972e8de0a14ada3354de201ccb94e163a"
+      },
+      {
+        "path": "ice-heartbeat-red.json",
+        "bytes": 644,
+        "sha256": "c77e48f7dc181b8f696baa15c9f9d23daa63e87cc0b5026b95c546f229dbc3a1"
+      },
+      {
+        "path": "ice-final.stdout.txt",
+        "bytes": 11523,
+        "sha256": "8c7844d97e701f9dcecf3c80febcd9b147632269eb46dcf39baa25d188afaf11"
+      },
+      {
+        "path": "ice-final.json",
+        "bytes": 644,
+        "sha256": "5ccf1df98095337f0d375189625fd2e8aa64aafb42de052a3be5163fcd760569"
+      },
+      {
+        "path": "final-regression.stdout.txt",
+        "bytes": 25859,
+        "sha256": "da26ad8303e2386ff660c66c420aff1c3a2a12dfd3fcb685aa32689eb1eac257"
+      },
+      {
+        "path": "final-regression.json",
+        "bytes": 713,
+        "sha256": "ec97b1ddb8c0b5eeaf4dde8c057f774855fe7e034c9a6f4e482aa972fd54554a"
+      },
+      {
+        "path": "analyze-final.stdout.txt",
+        "bytes": 121,
+        "sha256": "a377c293357b1993260cdb984e519c82b98724e2abc4698370743859a567b068"
+      },
+      {
+        "path": "analyze-final.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analyze-final-exit.txt",
+        "bytes": 1,
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+      },
+      {
+        "path": "source-pins.json",
+        "bytes": 412,
+        "sha256": "b3f43d5db3854ba768d6a339c0d6c23507610f631f5a004d650ff3b28a9b509d"
+      },
+      {
+        "path": "non-author-review.json",
+        "bytes": 1945,
+        "sha256": "6a8bd4bb2d8049ad320d3b48fe063f5d30b09ba53bd776fd801f919fbb03c4a3"
+      },
+      {
+        "path": "prior-evidence-protection.json",
+        "bytes": 125,
+        "sha256": "34f00eb01fb2a79a02ad5ef075700c0510b108acb9c2ad5ff49d13bc86faf54b"
+      },
+      {
+        "path": "protection-before-publication.json",
+        "bytes": 538,
+        "sha256": "fa163eda58360997ff28238ab319f9f936d78867e2716adfa82d4aaa8bce70ae"
+      },
+      {
+        "path": "rtc-fix-final.diff",
+        "bytes": 14037,
+        "sha256": "978c4cb2052ff028f030c5553620d0d2d45e71bf973bf11405c1a29354b0137d"
+      }
+    ]
+  },
+  "historicalManifests": {
+    "priorCandidate": "f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff",
+    "initialManifestBlob": "3e82785c0e97c5bffa96f628b2934ca149eeea62",
+    "initialManifestSha256": "c6267eb9e907ef63c33b24694c31a7a97dd1fb421ce1840dce8c6e31f1f13643",
+    "r1ManifestBlobUnchanged": "fab9d9b54be295f1451a73f39b0daf00fadb703b"
+  },
+  "report": {
+    "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
+    "sha256": "e271f644fbb95565f5bafb08598092c9d69114ae5a9935285d6338b4674d6658",
+    "historicalPrefixBytes": 44070,
+    "historicalPrefixSha256": "fe73ad7b9476a46a86a458dfbe608758f7b30f1c7e99ac8568a618c8be30d886"
+  },
+  "permanent": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "notRun": [
+    "FULL_37_CASE_SUITE",
+    "SANDBOX_SDK",
+    "PRODUCER",
+    "LIBS_JAR",
+    "CONFIGURATION_RESOLVE_30",
+    "CURRENT_FULL_APPS_TREE_HOST_APK",
+    "NEW_APP_GUI",
+    "SFU_FLOWING_MEDIA",
+    "PHYSICAL_AEC",
+    "REAL_PUSH_PROVIDER"
+  ],
+  "publication": "Ordinary non-force successor; final commit/root/blob/raw-byte readback recorded in LOCAL_ONLY final-readback.json; no history rewrite/main integration",
+  "inheritedSource": {
     "commit": "3e20809f5b91f18545047f05a52164f1d59d6455",
     "parent": "f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff",
     "root": "957ac75c9ae19e19aa4ea7eaacdaa80e4f196022",
@@ -93,118 +508,7 @@
     ],
     "appsChangedThisContinuation": false
   },
-  "acResults": [
-    {
-      "ac": "AC-10.1.5-01",
-      "status": "SUPPORTED_BOUNDED_PROTECTION",
-      "evidenceClass": "NEW_RUN",
-      "detail": "新独立空MariaDB/volume、有效选择器与迁移前恢复点；22,482具名历史文件、五保护根及受保护旧refs一致。"
-    },
-    {
-      "ac": "AC-10.1.5-02",
-      "status": "SUPPORTED_BACKEND_AND_REUSED_GUI",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "真实HTTP幂等回放/409、WS断开重连与最小指针通过；R1已支持的GUI丢响应同键重试证据保留。本轮没有当前完整apps Tree的新APK/GUI旅程。"
-    },
-    {
-      "ac": "AC-10.1.5-03",
-      "status": "SUPPORTED_BOUNDED_NEGATIVES",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "MariaDB reader54等待writer53的users PRIMARY RECORD锁；COMMIT撤权后旧reader401，双exit0。当前WS撤权关闭/旧token拒绝和HTTP404通过；切号/迟到结果与Safety旧卡片GUI复用R1限定证据，未声称全矩阵新跑。"
-    },
-    {
-      "ac": "AC-10.1.5-04",
-      "status": "SUPPORTED_API_MEDIA_AND_REUSED_APP",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "真实图片与H264短视频持久读回、200/206、撤权/第三方404、假视频422；新库重启后视频Hash一致。APP播放为既有版本证据，非本轮新GUI。"
-    },
-    {
-      "ac": "AC-10.1.5-05",
-      "status": "PARTIAL_CORE_OPEN",
-      "evidenceClass": "NEW_RUN_CONTROL_ONLY / MEDIA_NOT_RUN",
-      "detail": "RTC创建/拒绝/接听/结束及旧入口404通过；双APP有效SFU媒体、同call重连、旧RTC JWT首次重入拒绝、流动媒体≤5秒停止仍未证。AEC/视频源设备门保留。"
-    },
-    {
-      "ac": "AC-10.1.5-06",
-      "status": "SUPPORTED_TEST_INJECTION_WITH_LIMITS",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "真实login/refresh T0不续期及后端期限回归通过；R1 Android 34/34受控注入时序由Astra限定支持，非真实物理30天。相关期限源码未在本次修改。"
-    },
-    {
-      "ac": "AC-10.1.5-07",
-      "status": "SUPPORTED_NATIVE_INJECTION_WITH_LIMITS",
-      "evidenceClass": "REUSED_EVIDENCE + NEW_RUN_TESTS",
-      "detail": "R1真实FlutterSecureStorage到期删除成功/失败及冷启锁定证据保留；新55项缓存/晚响应/通知与97项RTC/期限测试通过，不能代替新设备演练或现实删除完备性。"
-    },
-    {
-      "ac": "AC-10.1.5-08",
-      "status": "SUPPORTED_BOUNDED_PRIVACY",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "本轮真实API类别/静默/最小通知及旧权限负例、Flutter点击重验回归通过；GUI权限/旧通知/Safety限定证据复用R1，完整Safety业务与新GUI未重跑。"
-    },
-    {
-      "ac": "AC-10.1.5-09",
-      "status": "PASS_TEST_ONLY_ISOLATION",
-      "evidenceClass": "NEW_RUN / REAL_PUSH_NOT_RUN",
-      "detail": "合成transport token登记及已有生命周期正反回归通过；真实Push供应商/SDK/Key/费用和后台锁屏远端送达仍PROVIDER_PENDING。"
-    },
-    {
-      "ac": "AC-10.1.5-10",
-      "status": "PARTIAL_CURRENT_HOST_AND_RTC_OPEN",
-      "evidenceClass": "NEW_RUN + REUSED_EVIDENCE",
-      "detail": "后端31/245和61/472、最终RTC夹具12/94、Flutter55+97、四项分析、真实API/持久DB重启通过；当前完整apps Tree未构建安装，新Host APK与条件SDK链未运行。"
-    },
-    {
-      "ac": "AC-10.1.5-11",
-      "status": "DELIVERY_SUPPORTED_AWAITING_ASTRA",
-      "evidenceClass": "STATIC_REVIEW + CODEX_REPORTED",
-      "detail": "唯一报告/当前manifest、固定源码双Tree、十文件非作者复核和最小独立审阅分支；尚非Astra功能接受，不合main。"
-    }
-  ],
-  "gate2": {
-    "budgetId": "LONG_F3_GATE2_PWSH7_20261025",
-    "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
-    "attempts": 1,
-    "existingHost": "PowerShell 7.6.6 / .NET 10.0.12 / effective RemoteSigned",
-    "noPolicyOverride": true,
-    "newProcessExit": 1,
-    "processExitConfirmed": true,
-    "totalControllerSeconds": 0.39000000001396984,
-    "failureStage": "startup",
-    "exceptionType": "System.TypeLoadException",
-    "missingType": "System.Web.UI.WebResourceAttribute",
-    "positive": "NOT_RUN",
-    "negative": "NOT_RUN",
-    "writerCalls": 0,
-    "serializerCalls": 0,
-    "fallbackCalls": 0,
-    "receiptsProduced": 0,
-    "oldWindowsPowerShellAttempt": "CONSUMED / SecurityError / exit1 / 0.375sec / NOT_RETRIED",
-    "d0AReruns": 0,
-    "full37Suite": "NOT_RUN",
-    "sandboxSdk": "NOT_RUN",
-    "producer": "NOT_RUN",
-    "configurationResolve30": "NOT_RUN",
-    "sourcePins": {
-      "gate2_once.ps1": "500933d8688176854a7729fd94dd8389a450b45cbb6607e1c46d1555e5700a20",
-      "run_gate2_once.py": "f5c807c9507a205789be445dd2edf2368bfe596d28239870fe3f148b3f441412",
-      "positive-publication-fragment.ps1": "d07da132a9c14d07327ddf00847a7321e319a2c0a8ac9f3cb15948f1bbd90bdb",
-      "targeted-input-plan.json": "c6e88ae711548abb8c9eadf9f154fb6149aad2e6944d2baa3a3fdbf8a69426d5",
-      "source/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
-      "source/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
-      "source/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
-      "source/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
-    },
-    "rawEvidenceHashes": {
-      "gate2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "gate2.stderr.txt": "5e9e6ff57d67203afdc8679be456da960eaf7597673e14d53b08229a68316d12",
-      "gate2-child-result.json": "f3e11d4dab38cb9fae86f39cf7410eb552c7021b208a79f7100f663c54ac45d0",
-      "gate2-supervisor-result.json": "af4e8f6b00926b456263911bc8a530f4d7ae68e23f7b8b10fc9d5108332f2b40",
-      "gate2-controller-complete.json": "3145e3d23951c0ac40c6fa5869bcb7ecb46c40cdb31dbd3a30949d939902740e"
-    },
-    "meaning": "Environment/framework compatibility failure before Writer invocation; not a Writer or Serializer runtime failure."
-  },
-  "review": {
+  "inheritedReview": {
     "branch": "codex/v10.1.5-long-continuation-review-20261025",
     "commit": "9e240a1f622ba179b696184a23d45c5dd38a360e",
     "parent": "3e20809f5b91f18545047f05a52164f1d59d6455",
@@ -273,35 +577,7 @@
       "blobAndRawBytesVerified": true
     }
   },
-  "nonAuthorReview": {
-    "verdict": "SUPPORTED_STATIC_REVIEW",
-    "findings": [],
-    "independentExecution": false,
-    "pathOnReviewBranch": "docs/_temporary_review/v1015-long-continuation-20261025/non-author-review.json"
-  },
-  "protection": {
-    "protectedFileCount": 22482,
-    "allNamedProtectedFilesUnchanged": true,
-    "historicalRoots": 5,
-    "historicalRootsUnchanged": true,
-    "oldRefCount": 516,
-    "protectedOldRefsUnchanged": true,
-    "refDrift": [],
-    "scope": "Named historical files and five root identities, not whole-disk byte audit"
-  },
-  "runtimeOwnership": {
-    "database": "elitesync_v1015_long_dev",
-    "port": 43328,
-    "container": "elitesync-v1015-long-db-20261025",
-    "volume": "elitesync-v1015-long-data-20261025",
-    "finalBackupBytes": 172222,
-    "finalBackupSha256": "546a4a8f10b3f034e33b5b61b8d0a919a985dd9938ae23c8f3d70195bf687a05",
-    "ownedProcessesExitConfirmed": true,
-    "ownedContainerStopped": true,
-    "oldContainersPreserved": true,
-    "newAvdStarted": false
-  },
-  "localOnly": {
+  "inheritedLocalOnly": {
     "rootLabel": "v1015-long-continuation-20261025",
     "rawPrivacy": "SQL/APK/media/credentials/device/process logs remain LOCAL_ONLY",
     "evidence": [
@@ -507,38 +783,292 @@
       }
     ]
   },
-  "historicalManifests": {
-    "priorCandidate": "f9d281d03d1f9ad7a3f7b0b3f3e85582c8580dff",
-    "initialManifestBlob": "3e82785c0e97c5bffa96f628b2934ca149eeea62",
-    "initialManifestSha256": "c6267eb9e907ef63c33b24694c31a7a97dd1fb421ce1840dce8c6e31f1f13643",
-    "r1ManifestBlobUnchanged": "fab9d9b54be295f1451a73f39b0daf00fadb703b"
+  "previousDelivery": {
+    "commit": "079ea1097788c533a57f5909e1e2348e0cf9e724",
+    "root": "d078ac6a0b0a611151d530bce7774acf179c6ec1",
+    "manifestBlob": "82f0f63600d7d81971d72846825b63b37350dfff",
+    "manifestSha256": "b35cd1e386ebc44285a1d107c5ff78fc3e12a401d538aacca0c409794877692b"
   },
-  "report": {
-    "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
-    "sha256": "fe73ad7b9476a46a86a458dfbe608758f7b30f1c7e99ac8568a618c8be30d886",
-    "historicalPrefixBytes": 30538,
-    "historicalPrefixSha256": "4746fb6a11af43560d3a6ca9f12712e8e9ef0d7d005d9e66c193511fbcec4aba"
+  "gate2Investigation": {
+    "result": "GATE2_ENVIRONMENT_BLOCKED_IN_INSPECTED_HOSTS",
+    "authority": {
+      "main": "9b574425d59f00903192ca7a6db450bf6c3af688",
+      "root": "f9c4bb7b35e86282cf4a61fdaedc8638b36d334f",
+      "products": [
+        {
+          "path": "apps",
+          "sha": "3468a3dd97da7accfda2539a0f8d8f68931a6110"
+        },
+        {
+          "path": "services",
+          "sha": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/versions/v10.1.5/task_order.md",
+          "blob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+          "rawVerified": true
+        },
+        {
+          "path": "docs/versions/v10.1.5/plan.md",
+          "blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+          "rawVerified": true
+        },
+        {
+          "path": "docs/workflow/ACTIVE_STATE.md",
+          "blob": "659eebbc773d1fc85e60d5c70a7c3ac5255ca29b",
+          "rawVerified": true
+        }
+      ],
+      "base": "079ea1097788c533a57f5909e1e2348e0cf9e724",
+      "baseRoot": "d078ac6a0b0a611151d530bce7774acf179c6ec1",
+      "baseApps": "785822ca072943c5bfefa3ccc37ede01c2af5164",
+      "baseServices": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f"
+    },
+    "writerSha256": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+    "newWriterCalls": 0,
+    "newSerializerConstructionOrCalls": 0,
+    "newGate2Attempts": 0,
+    "d0AReruns": 0,
+    "hosts": [
+      {
+        "host": "Windows PowerShell 5.1 x64",
+        "framework": ".NET Framework 4.8.10008.0",
+        "effectivePolicy": "Restricted",
+        "frameworkAttributeDefined": true,
+        "inspection": "ReflectionOnly"
+      },
+      {
+        "host": "Windows PowerShell 5.1 x86",
+        "framework": ".NET Framework 4.8.10008.0",
+        "effectivePolicy": "Restricted",
+        "frameworkAttributeDefined": true,
+        "inspection": "ReflectionOnly"
+      },
+      {
+        "host": "PowerShell 7.6.6",
+        "framework": ".NET 10.0.12",
+        "effectivePolicy": "RemoteSigned",
+        "systemWebDefinedTypes": [],
+        "systemWebForwardedTypes": [
+          "System.Web.HttpUtility"
+        ],
+        "requiredAttributeAvailable": false
+      }
+    ],
+    "assemblyFiles": [
+      {
+        "fileLabel": "pwsh.exe",
+        "bytes": 301368,
+        "sha256": "bfb46af89433268872ddb43d1ca7a3f433452ee91ed356a9786940f90118e285"
+      },
+      {
+        "fileLabel": "System.Web.dll",
+        "bytes": 15144,
+        "sha256": "88650d1871b5bac043665f06610799862b66303794fb76de0db5e58c86e1b1d9"
+      },
+      {
+        "fileLabel": "System.Web.Extensions.dll",
+        "bytes": 1832288,
+        "sha256": "6f2545e5ba378f6836ea0fed1067d089181e27dbd3c81e9db418c8bb32e6af51"
+      },
+      {
+        "fileLabel": "System.Web.dll",
+        "bytes": 5401912,
+        "sha256": "e1a243ba2f0df06770be1e2ff24379a5063d483e8b1c96f926921c1f489861cd"
+      }
+    ],
+    "dependency": "Original Writer references System.Web.Extensions / JavaScriptSerializer; its Framework dependency is System.Web v4. PS7 System.Web facade forwards HttpUtility only and lacks WebResourceAttribute.",
+    "throwLocationLimit": "Historical stderr has no stacktrace; cannot distinguish exact top-level load/type binding/constructor/first Deserialize expression. No Serialize was reached.",
+    "metadataHarnessFailure": "Initial native host commands inherited Core module discovery and failed to autoload Security module; subsequent metadata query used existing native PSHOME Modules in child process only. No policy change or Writer launch.",
+    "toolShellQueryLimit": "An initial requested shell selector still reported PS7; not used as native-host authority. Explicit subprocess executable paths established native identities.",
+    "notChosen": [
+      "Re-executing refused old entry",
+      "Changing execution policy",
+      "Policy override or script-content execution bridge",
+      "Replacing original Serializer or copying Framework System.Web into Core host"
+    ],
+    "budgetLedger": [
+      {
+        "attempt": "original WinPS",
+        "elapsedSeconds": 0.375,
+        "exit": 1,
+        "stage": "policy rejection",
+        "consumed": true
+      },
+      {
+        "attempt": "LONG_F3_GATE2_PWSH7_20261025",
+        "elapsedSeconds": 0.39000000001396984,
+        "exit": 1,
+        "stage": "startup TypeLoadException",
+        "consumed": true
+      }
+    ],
+    "references": [
+      "https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.web.script.serialization.javascriptserializer?view=netframework-4.8.1"
+    ],
+    "rawEvidenceHashes": {
+      "winps64.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "winps64.stderr.txt": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f",
+      "winps32.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "winps32.stderr.txt": "03dbfbb011662c55d9d961330961742fea2b70871e0f97196c205f2ef1db984f",
+      "winps64-native-modules.stdout.txt": "0671ff51ac50bbc871ca7295adf259d73c5e91aa252f0c11bd351969fe448276",
+      "winps32-native-modules.stdout.txt": "bdb86b6c09004197b24ad3995d866a6cdfe7f2459b1d2aa5d200e8beea989aa4",
+      "pwsh7.stdout.txt": "7c216c725cbd9380baaa46dd33ad0cca0f39f2240cce66bf853649cb8bfbed14"
+    }
   },
-  "permanent": [
-    "V10.1.5_PARTIAL_NOT_ACCEPTED",
-    "AC05_OPEN",
-    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
-    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
-    "NO_HOST_APK",
-    "NO_MAIN_PRODUCT_INTEGRATION",
-    "V10.1.6_NOT_STARTED"
-  ],
-  "notRun": [
-    "FULL_37_CASE_SUITE",
-    "SANDBOX_SDK",
-    "PRODUCER",
-    "LIBS_JAR",
-    "CONFIGURATION_RESOLVE_30",
-    "CURRENT_FULL_APPS_TREE_HOST_APK",
-    "NEW_APP_GUI",
-    "SFU_FLOWING_MEDIA",
-    "PHYSICAL_AEC",
-    "REAL_PUSH_PROVIDER"
-  ],
-  "publication": "Ordinary non-force candidate successor; final commit/root/blob/raw readback in LOCAL_ONLY final-readback.json and final handoff; no main integration"
+  "newRuntimeResults": {
+    "source": "CODEX_REPORTED / NEW_RUN / UNIT_ONLY_NO_DEVICE_SFU",
+    "stages": {
+      "red": {
+        "exit": 1,
+        "elapsedSeconds": 15.65600000001723,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6c3f4033c8113fc4d8cc40b2fd43fbca83f38b75d9cc81c9c491f93abf6a2447",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "green": {
+        "exit": 0,
+        "elapsedSeconds": 2.39000000001397,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "regression": {
+        "exit": 0,
+        "elapsedSeconds": 10.21899999998277,
+        "targets": [
+          "test/features/rtc",
+          "test/app/router/rtc_invite_bootstrap_test.dart",
+          "test/app/router/app_shell_rtc_invite_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "688c2251152d0c7a51f246163f931ce6e02d45e71f1e53594f2314b071097f3b"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "ice-red": {
+        "exit": 1,
+        "elapsedSeconds": 9.23399999999674,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "16625c6a82587cfc5f5c408ed8a1f3e99159ce679bb1112725148b9f109db07c",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "ice-green": {
+        "exit": 0,
+        "elapsedSeconds": 2.3119999999762513,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6b3a5d9445940b81c3896b05c5510914625bd2a1f70ca6d4bf91d4b07e479ede",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "ice-heartbeat-red": {
+        "exit": 1,
+        "elapsedSeconds": 2.375,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "6b3a5d9445940b81c3896b05c5510914625bd2a1f70ca6d4bf91d4b07e479ede",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "ced95abf6640dbc91040ccc0a1ee579eccc3f44de36b91a9634a386d3ed137ed"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "ice-final": {
+        "exit": 0,
+        "elapsedSeconds": 2.375,
+        "targets": [
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      },
+      "final-regression": {
+        "exit": 0,
+        "elapsedSeconds": 5.98399999999674,
+        "targets": [
+          "test/features/rtc",
+          "test/app/router/rtc_invite_bootstrap_test.dart",
+          "test/app/router/app_shell_rtc_invite_test.dart"
+        ],
+        "sourcePins": {
+          "lib/features/rtc/domain/services/rtc_livekit_service.dart": "d4bab03fbde5f1be94a47f0931d519eba6188b4cf07420fe8004a260d2f45882",
+          "test/features/rtc/domain/services/rtc_livekit_service_test.dart": "c8d9be063a5fbd18d06c2e1cce4d1ab56bedadfdc5ea4546c486fb49efe3a449",
+          "test/features/rtc/domain/services/rtc_ice_diagnostic_mode_test.dart": "a194e2fe162d7d4956774d09dacc92179090e7f1cc3305f06155045da7acbfe1"
+        },
+        "noPub": true,
+        "writerCalls": 0,
+        "testOnlyNoDeviceOrSfu": true
+      }
+    },
+    "counts": {
+      "credentialRed": "11 pass / 4 fail",
+      "credentialGreen": "15 pass",
+      "iceEndRed": "7 pass / 2 fail",
+      "iceHeartbeatRed": "9 pass / 2 fail",
+      "finalOrdinary": "95 pass",
+      "finalFlagEnabled": "11 pass; 4 shared cases overlap with ordinary run"
+    },
+    "analysis": {
+      "files": 3,
+      "exit": 0,
+      "result": "No issues found"
+    },
+    "boundaries": [
+      "No current host APK build/install",
+      "No real ICE diagnostic",
+      "No microphone/camera/SFU media",
+      "AC05 remains open"
+    ],
+    "rawEvidenceHashes": {
+      "red.stdout.txt": "6c82bb400e9c262c7438e3ae453301cc27a913c870da7957e6a7d589c37c015b",
+      "green.stdout.txt": "6d1a991e54b7443b5faa1a505db1daa23206a4dffe9088e26a658de12e8b5268",
+      "ice-red.stdout.txt": "d5187755e7c66257cae0ea0de8a199c04c0aab0a26a50c1cb7caabcd41586805",
+      "ice-heartbeat-red.stdout.txt": "67054039c27844477e9e3f6b3f97724972e8de0a14ada3354de201ccb94e163a",
+      "ice-final.stdout.txt": "8c7844d97e701f9dcecf3c80febcd9b147632269eb46dcf39baa25d188afaf11",
+      "final-regression.stdout.txt": "da26ad8303e2386ff660c66c420aff1c3a2a12dfd3fcb685aa32689eb1eac257",
+      "analyze-final.stdout.txt": "a377c293357b1993260cdb984e519c82b98724e2abc4698370743859a567b068"
+    }
+  }
 }
