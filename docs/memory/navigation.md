@@ -71,3 +71,13 @@ Astra长期规划/独立终验/复盘；Codex手动派发后的冻结模块内�
 - 图谱D-EliteSync-v10未命中时直接读取已确认的工作树源码，不推导文件不存在。不涉及HANK/Zotero等其它项目。
 
 [交接前导航](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/docs/memory/navigation.md)保留原冻结时环境与身份；旧Astra未收到候选不证明Codex未运行。新Astra入场先确认读取，再接收Owner转来的候选或具体阻塞，不新建版本、重复同步或恢复旧监督。
+
+## 2026-10-25 当前会话交接：v10.1.5剩余验收候选 7773b989
+
+当前唯一状态入口必须先读：[ACTIVE_STATE.md](../workflow/ACTIVE_STATE.md)。会话交接正文：[SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md](../workflow/SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md)。该文档保存候选/源码/报告/Manifest身份、AC状态、Owner授权、Gate2预算与新会话首要检查项。
+
+最新Codex集中候选 `7773b98986d9c9395841623e6ef244379fddc865`，Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。报告Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；Manifest Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`。整版仍`V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN`，当前下一步是Astra集中独立验收，不派发下一任务。
+
+关键限制：Gate2本轮新启动/Writer/Serializer均0；两次历史启动预算0.375秒/0.390秒已消费。旧成功媒体token撤权后首次重入403有新证据，但本轮撤权停止媒体host上界10.125秒，不新增5秒PASS。AEC/真实语音质量未证明，旧通知点击NOT_RUN，真实15/30天等待经过时间，真实Push PENDING。
+
+Owner长期工作流继续生效：长任务单+中途无监督，Codex在冻结范围内自主实现/测试/普通返修；A-D只保证发布闭环。不得自动合并main、启动v10.1.6或在本轮验收前创建后继任务。
