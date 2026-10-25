@@ -1,16 +1,20 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_DEVICE_VALIDATION_ACCEPTED_WITH_OBSERVATIONS / OVERALL_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成`dad5d8fe36874095c90e25f651775796bfeba7eb`的集中独立验收：接受有界真机测试证据与报告一致性，但不接受整版。APK构建/安装与字节回取一致；真机文字发送、呼叫控制、撤权拒绝、冷启动锁定、通知偏好/OS权限及专属DB重启读回有界支持。
+**2026-10-25最新状态：V10.1.5_RTC_MEDIA_AND_RECONNECT_ACCEPTED_WITH_OBSERVATIONS / SDK_CLEANUP_EXCEPTION_OPEN / AC05_OPEN / PARTIAL_NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选`2204c7439cca344795a9a4cc5e9c4d3e27b30d12`的集中独立复核，接受本轮有界真实双向RTP、视频解码、同call手动重连和撤权后native停止事件证据，以及对应源码/测试修复；不接受整版。
 
-**Astra独立复核：** [DAD5D8FE USB真机交付复核](../versions/v10.1.5/DAD5D8FE_USB_DEVICE_VALIDATION_ASTRA_REVIEW_20261025.md)，Blob `ca03fefe53946784adba0fd94f80507fee656fd1`。交付报告Blob `26fecfc4a703201ce7ca5f64384785e0b90302c8`；Manifest Blob `997f2c709e8a636ee317562bb1ab17804ad737f7`。Codex的本地测试、APK/DB和设备原始证据未由Astra直接执行或读取，已在复核中区分证据来源。
+**Astra独立复核：** [ICE媒体与同call重连复核](../versions/v10.1.5/ICE_MEDIA_RECONNECT_ASTRA_REVIEW_20261025.md)，Blob `221809532229947ae298ca76f84bd98690c94bfa`。交付报告Blob `01aff46f9c69c4cd45c7ae2e5950926298913d22`；Manifest Blob `e3da252a4fa46b5c5222c5560febe68b3f4fc5b6`。真机RTP、APK/DB和原始日志属于Codex报告及LOCAL_ONLY证据，Astra未亲自运行设备/测试或读取原始二进制。
 
-**核心开放项：** RTC ICE媒体未建立，双向音视频、同call媒体重连、流动媒体≤5秒停止、真实麦克风/摄像头媒体启停及物理AEC仍`NOT_RUN / NOT_PROVEN`；AC-10.1.5-05仍`PARTIAL_CORE_OPEN`。15/30天实际设备期限与清理、部分GUI边界及真实Push仍开放。Gate 2旧WinPS执行策略拒绝0.375秒与PowerShell7 TypeLoad启动失败0.390秒两次预算均已消费；本轮未重试，Writer/Serializer正负例仍`NOT_RUN`，37案例suite、Sandbox SDK、Producer、`libs.jar`及30项解析均未运行。
+**本轮新增接受范围：** 最终候选APK回取Hash与构建Hash一致；同一call10手动重连后音频/视频RTP计数跨约64秒的17批采样持续增长，入站视频framesDecoded由90增至1369；撤权后同一测试会话的native peer/audio/camera stop事件均在从transition调用前起算的保守0.790秒上界内可见。Owner反馈同call合成音在测试结束后停止，但无客观波形计时，不能证明AEC或语音质量。
 
-**当前唯一综合长任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式：Codex在冻结范围内自主推进与ICE/Writer门无依赖的功能、测试和普通返修；不拆微任务。当前真机已完成本轮验证，测试APP与服务已停止，APK保留；不自行更换网络/ICE配置、改防火墙或启动公网媒体测试。
+**仍开放：** SDK remote PCM capture清理仍出现一次`ConcurrentModificationError`，需在同一v10.1.5长任务内处理；`Room.dispose()`整体返回成功未独立证明。AC-10.1.5-05仍`PARTIAL_CORE_OPEN`，AEC/真实语音质量、成功媒体token的旧JWT重新入房负例、物理双手机端到端体验未全部证明。15/30天实际设备期限与清理、部分GUI边界及真实Push仍开放。
 
-**版本与产品边界：** v10.1.5仍`PARTIAL_NOT_ACCEPTED / AC05_OPEN`。候选文档提交`dad5d8fe36874095c90e25f651775796bfeba7eb`仅为源码候选`c445554f01fbd8c9aef641302f3f090900703786`的报告/Manifest子提交；未集成main。接受产品仍v10.1.4：apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.6未启动。
+**Gate 2状态不变：** WinPS执行策略拒绝0.375秒与PowerShell7/.NET10 `TypeLoadException`启动失败0.390秒两次预算均已消费；本轮未重试、无新预算、Writer/Serializer调用0。完整37案例suite、条件Sandbox SDK、Producer、`libs.jar`及30项解析均`NOT_RUN`。
 
-**写入前 live main：** `7baa7bca87b759c56d883466404152a6a2855857` / Root `687e6c90f26d297817951159bcd2c543508ed02b`。本次ACTIVE_STATE更新将推进main；最终HEAD以本轮最后一次回读为准。
+**当前唯一综合长任务：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式，在原授权范围内自主处理SDK清理异常、剩余RTC质量/权限边界及与Gate 2无依赖的工作；不创建微任务、不自动合并main、不启动v10.1.6。
+
+**产品基线：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。本候选源码Commit `80f6292a2c3726716ab82152f36428812f23058f` / Root `5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2`，候选apps `a0ca61faf9e1264f7ae4b638c78ebeae257ea002`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；文档候选`2204c7439cca344795a9a4cc5e9c4d3e27b30d12`未集成main。
+
+**写入前 live main：** `b08d6f9143e5233db25d2398308c8ff9faf1e67c` / Root `14b11892354a957c61fda8a1ba425f02d344342a`。本次ACTIVE_STATE更新将推进main；最终HEAD以本轮最后回读为准。
 
 ## 已独立核验的产品和集成
 
