@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "taskBlob": "420f372b74893bcb11abba2bcb957aa5a43eee28",
+  "terminal": "D0_C_GATE2_TARGETED_BLOCKED",
+  "budgetStatus": "BUDGET_CONSUMPTION_REPORTED",
+  "disposition": "AWAITING_OWNER_DIRECTION",
+  "full37Suite": "FULL_37_CASE_SUITE_NOT_RUN",
+  "authority": {
+    "mainAtIntake": "2e6a9fb63769fabab69e5eb8f6d76e3012e3dedc",
+    "mainRootAtIntake": "6bcfba5ec41e3e075060dfd1ece4b2aedf984613",
+    "activeStateBlob": "018ed198b8b5f573dbdfa664e393ae4eadffe28c",
+    "originalTaskBlob": "009a12cae75ef3b714f0156d4edbca2db1660719",
+    "gate1ReviewBlob": "d377b19756eebeaf4f01c3f69d6fd2326ed89780",
+    "d0cReviewBlob": "f8ce12a81bf303cf5fba37bb708927a3e2791b4b"
+  },
+  "candidate": {
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "soleParent": "7b8b9959c9e53994ec5c52736d1fb3ca00ba4239",
+    "parentRoot": "8b51a383eebfc60e221b6b2936d17f398bb61e16",
+    "onlyAddedPaths": [
+      "docs/versions/v10.1.5/D0_C_GATE2_TARGETED_AGGREGATE_POSITIVE_NEGATIVE_TEST_REPORT.md",
+      "docs/versions/v10.1.5/d0_c_gate2_targeted_aggregate_positive_negative_test_manifest.json"
+    ],
+    "finalCommitRootBlobs": "Fixed after commit in separate LOCAL_ONLY delivery-git-identity.json and final-readback.json to avoid self-reference"
+  },
+  "fixedSource": {
+    "writerBlob": "a521201e2274927ebf0743c4d79811bb7ecf27ba",
+    "sourcePins": {
+      "gate2_once.ps1": "500933d8688176854a7729fd94dd8389a450b45cbb6607e1c46d1555e5700a20",
+      "run_gate2_once.py": "781f08c9a5c9cc46f46b758e11edd1ff7f2999e281312e520d0a22e469f3451b",
+      "positive-publication-fragment.ps1": "d07da132a9c14d07327ddf00847a7321e319a2c0a8ac9f3cb15948f1bbd90bdb",
+      "targeted-input-plan.json": "c6e88ae711548abb8c9eadf9f154fb6149aad2e6944d2baa3a3fdbf8a69426d5",
+      "source/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+      "source/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+      "source/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+      "source/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
+    },
+    "acceptedWriterModified": false,
+    "sourceHashesMatchedBeforeAndAfter": true,
+    "plannedCallChain": "Targeted entry -> actual Write-Aggregate -> accepted New-ReceiptParser Serialize; actual negative path -> Write-IndependentFailure -> existing atomic publisher -> original rethrow",
+    "actualCallChainEntered": false,
+    "positivePublisherSource": "Accepted fixture lines96-99 plus prepublication validation; main fixture never executed"
+  },
+  "execution": {
+    "entryDescription": "Fixed Windows PowerShell executable -NoProfile -NonInteractive -File task-owned gate2_once.ps1 -RunId synthetic UUID; no ExecutionPolicy override",
+    "runId": "985d9dd3-ef81-4d76-88fb-789090768e92",
+    "runStartUnix": 1792894189.898897,
+    "runStartAsiaShanghai": "2026-10-25T10:09:49.898897+08:00",
+    "nativePowerShellExit": 1,
+    "supervisorCommandExit": 1,
+    "processExitConfirmed": true,
+    "overallPass": false,
+    "timedOut": false,
+    "ownedChildTerminated": false,
+    "supervisorFinalElapsedSeconds": 0.375,
+    "outerCommandWallSeconds": 0.7072825,
+    "stdoutBytes": 0,
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 413,
+    "stderrSha256": "4e1bff4603e22f4e99ac7459faceb5fbe7367f5249e77e4fabeec044fce25bdd",
+    "childResultExists": false,
+    "positiveDirectoryExists": false,
+    "negativeDirectoryExists": false,
+    "receiptFiles": []
+  },
+  "blocker": {
+    "kind": "POWERSHELL_SCRIPT_EXECUTION_POLICY_REFUSAL",
+    "category": "SecurityError",
+    "fullyQualifiedErrorId": "UnauthorizedAccess",
+    "safeMessage": "The Windows PowerShell script loader refused the entry because script execution is disabled by execution policy.",
+    "actualCommandRefusal": true,
+    "platformUiPromptUsedAsEvidence": false,
+    "effectivePolicyValue": "NOT_QUERIED",
+    "policyChangeOrOverride": false,
+    "alternateEntryOrRetry": false,
+    "writerRuntimeDefectEstablished": false
+  },
+  "positive": {
+    "status": "NOT_RUN",
+    "actualWriteAggregateCalls": 0,
+    "serializerSchemaUtf8RunIdCountStateHashAtomicValidation": "NOT_RUN",
+    "receipt": "NOT_GENERATED"
+  },
+  "negative": {
+    "status": "NOT_RUN",
+    "actualWriteAggregateCalls": 0,
+    "serializerExceptionFallbackReceiptOriginalRethrowValidation": "NOT_RUN",
+    "receipt": "NOT_GENERATED"
+  },
+  "budgets": {
+    "authorizationLaunchAttemptsConsumed": 1,
+    "allowedLaunchAttempts": 1,
+    "sharedHardLimitSeconds": 15,
+    "timerIncluded": "Process launch, bounded wait and exit confirmation, necessary result readback and completion evidence",
+    "remainingTimeDoesNotAuthorizeRetry": true,
+    "budgetReset": false,
+    "d0ADiagnosticReruns": 0,
+    "d0AHistoricalSerializeAttempts": 15,
+    "full37SuiteRuns": 0,
+    "sandboxOperations": 0,
+    "flutterGradleProducerRuns": 0,
+    "libsJarGeneratedOrValidated": false,
+    "formalResolveRuns": 0,
+    "notRunConfigurations": 30
+  },
+  "preLaunchPreparation": {
+    "firstControllerStaticReview": "BLOCKED for unexecuted controller cleanup gap",
+    "controllerV1Sha256": "fe3cf0fc5254bf77471de9214b2ca5cd15ae461a60c8e4709fff4b7bdf5287d2",
+    "controllerFinalSha256": "781f08c9a5c9cc46f46b758e11edd1ff7f2999e281312e520d0a22e469f3451b",
+    "finalPreflightSupported": true,
+    "initialReviewAndControllerPreserved": true,
+    "noTrialRun": true,
+    "acceptedWriterUnchanged": true
+  },
+  "nonAuthorEvidenceReview": {
+    "classificationSupported": true,
+    "runtimeRevalidation": false,
+    "sha256": "7d10589ac5529787815db923e3e8a816d6f4952badb1a8af636882dc4a616b6c",
+    "scope": "Read original local receipts/hashes; supports startup environment block and NOT_RUN, not product acceptance"
+  },
+  "protection": {
+    "scope": "Named protected files and five historical Git roots; checked before candidate publication; not global configuration or live database audit",
+    "namedFiles": 22428,
+    "unchangedFiles": 22428,
+    "changedFiles": [],
+    "historicalRootsUnchanged": true,
+    "oldRefsBeforePublication": 516,
+    "allRefsUnchangedBeforePublication": true,
+    "candidateProductFullMapsUnchanged": {
+      "apps": true,
+      "services": true
+    },
+    "original38JsonCount": 38,
+    "passed": true
+  },
+  "rawEvidence": {
+    "gate2.stdout.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2.stderr.txt": {
+      "bytes": 413,
+      "sha256": "4e1bff4603e22f4e99ac7459faceb5fbe7367f5249e77e4fabeec044fce25bdd",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2.stderr.decoded-utf8.txt": {
+      "bytes": 453,
+      "sha256": "a8fe43e94d46be8bf4c50016c6f960ce4b5a61515d8b2a1e40125cca175945b1",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2-started.json": {
+      "bytes": 1358,
+      "sha256": "78eafa951fa1fbafb5a9cdbef2e3f6421c4f7b99d3ad130c4ed117f7f7eed690",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2-process.json": {
+      "bytes": 270,
+      "sha256": "411ca184fe895fad6fa9f9f412f872efaec405fbefeacfef5138dbdf51c71ca7",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2-supervisor-result.json": {
+      "bytes": 568,
+      "sha256": "79c3ea39750cda554d6cde2f065182babb965134c4b2c6526dbecae88d339463",
+      "tier": "LOCAL_ONLY"
+    },
+    "gate2-controller-complete.json": {
+      "bytes": 268,
+      "sha256": "be7009de9a480b8f1016d033807492062499aecdcf16f7b70c773dcabefd7208",
+      "tier": "LOCAL_ONLY"
+    },
+    "supervisor-command-tool-receipt.json": {
+      "bytes": 391,
+      "sha256": "7808009c99cdde02feaf22f7316d0d4f3515824a286317103a9d7dd906938450",
+      "tier": "LOCAL_ONLY"
+    },
+    "non-author-preflight-first.json": {
+      "bytes": 1351,
+      "sha256": "be5cca9c560a2b5e1d4a3468d67eac933fb01a5d0a1e943180efa2beed9b6b3b",
+      "tier": "LOCAL_ONLY"
+    },
+    "run_gate2_once.preflight-v1.py": {
+      "bytes": 6369,
+      "sha256": "fe3cf0fc5254bf77471de9214b2ca5cd15ae461a60c8e4709fff4b7bdf5287d2",
+      "tier": "LOCAL_ONLY"
+    },
+    "non-author-preflight-review.json": {
+      "bytes": 1423,
+      "sha256": "a9a2ec84cb135d4f530041866f41bdd92fd62df3b9ddb1ce5d180db15c964ab7",
+      "tier": "LOCAL_ONLY"
+    }
+  },
+  "localOnlyEvidence": {
+    "intake.json": {
+      "bytes": 1310,
+      "sha256": "b53595f11254a0bff371477ea23b9300d16ac419cd99e1018d5ccdb6c6391086"
+    },
+    "raw-evidence-inventory.json": {
+      "bytes": 1807,
+      "sha256": "4422548ba686eac5ff93fb1d2c593e3e9a3190ec30f6db0bb57c0a94b7e616ea"
+    },
+    "stopped-run-summary.json": {
+      "bytes": 4582,
+      "sha256": "434d0ef2966268dc4e3cf27e80281c218135a18eb615557889894d0de1022158"
+    },
+    "non-author-preflight-first.json": {
+      "bytes": 1351,
+      "sha256": "be5cca9c560a2b5e1d4a3468d67eac933fb01a5d0a1e943180efa2beed9b6b3b"
+    },
+    "non-author-preflight-review.json": {
+      "bytes": 1423,
+      "sha256": "a9a2ec84cb135d4f530041866f41bdd92fd62df3b9ddb1ce5d180db15c964ab7"
+    },
+    "non-author-evidence-review.json": {
+      "bytes": 2194,
+      "sha256": "7d10589ac5529787815db923e3e8a816d6f4952badb1a8af636882dc4a616b6c"
+    },
+    "preservation-before-publication.json": {
+      "bytes": 489,
+      "sha256": "f6509c165b00a7de570e11283a785904284b014e8cf72677eb5f3be24b5acc3a"
+    }
+  },
+  "publicationScope": "Only this sanitized report and manifest. No raw logs, private paths, PID, runtime files or source bundle uploaded. No new review branch.",
+  "retained": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_HOST_APK",
+    "PLAN_A_RETAINED",
+    "NO_R2",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED"
+  ],
+  "nextAuthority": "STOP and await Owner/Astra. No policy change, alternate entry, retry or later gate is authorized."
+}
