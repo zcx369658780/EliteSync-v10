@@ -28,3 +28,6 @@
 Owner再次明确：v10.x默认恢复“一份冻结计划、一份综合长任务、一次集中候选与独立验收”；Codex在授权范围内中途无监督地自主调查、实现、构建、测试、调试和普通返修。A-D任务下达闭环仅保证任务发布完整，不是逐步骤审批。只有超范围/方向性、生产/真实用户数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人或不可逆风险才暂停请求Owner。
 
 当前Gate 2一次PowerShell启动被执行策略拒绝，正负例NOT_RUN，一次性启动预算已消费；不重试、不改策略、不换入口。见[Astra独立复核](../versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)及[日期化项目源增量](20261025_long_task_mode_restoration/README.md)。本增量不授权重新启动测试；下一步需Owner明确新的合规执行方案。
+
+
+长任务规则全文快照：[LONG_TASK_MODE_RULES.md](20261025_long_task_mode_restoration/LONG_TASK_MODE_RULES.md)，与[长期记忆增量](20261025_long_task_mode_restoration/PROJECT_MEMORY_ADDENDUM.md)和[当前阻断状态快照](20261025_long_task_mode_restoration/CURRENT_STATE_SNAPSHOT.md)共同构成可手动上传的项目源更新。
