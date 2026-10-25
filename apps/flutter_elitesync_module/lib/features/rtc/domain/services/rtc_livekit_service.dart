@@ -1110,6 +1110,9 @@ class RtcLiveKitService extends ChangeNotifier {
     if (callId != null &&
         _connectedCallId != callId &&
         _pendingCallId != callId) {
+      // The first leave detaches its Room before awaiting native cleanup.
+      // Repeated call-scoped callers must still await that cleanup barrier.
+      await _roomTeardown;
       return;
     }
     final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;

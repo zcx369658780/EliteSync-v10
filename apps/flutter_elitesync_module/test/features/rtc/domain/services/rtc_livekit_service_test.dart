@@ -115,6 +115,54 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  for (final failure in [false, true]) {
+    test(
+      'call-scoped repeated leave waits for detached cleanup (failure=$failure)',
+      () async {
+        final room = _MediaRoom(_MediaParticipant())
+          ..disposePending = Completer<void>()
+          ..disposeError = failure ? StateError('disposal failed') : null;
+        final source = _QueuedRtcSource();
+        final service = RtcLiveKitService.mediaControlTest(
+          remoteDataSource: source,
+          appEnv: const AppEnv(
+            flavor: AppFlavor.dev,
+            appName: 'Call-scoped teardown test',
+            apiBaseUrl: 'http://127.0.0.1',
+            useMockData: false,
+            useLiveKitRtc: true,
+          ),
+          room: room,
+          microphonePermission: () async => true,
+          cameraPermission: () async => true,
+        );
+        final first = service.leave();
+        await room.disposeStarted.future;
+        var repeatedCompleted = false;
+        final repeated = service.leave(callId: 19).then((_) {
+          repeatedCompleted = true;
+        });
+        try {
+          await Future<void>.delayed(Duration.zero);
+          expect(
+            repeatedCompleted,
+            isFalse,
+            reason: 'A detached Room is still being disposed',
+          );
+        } finally {
+          room.disposePending!.complete();
+          await Future.wait([first, repeated]);
+        }
+        expect(service.lastCleanupSucceeded, !failure);
+        if (failure) {
+          await expectLater(service.ensureConnected(19), throwsStateError);
+          expect(source.callIds, isEmpty);
+        }
+        service.dispose();
+      },
+    );
+  }
+
   test(
     'leave waits for renderer cancellation before disconnect and dispose',
     () async {
