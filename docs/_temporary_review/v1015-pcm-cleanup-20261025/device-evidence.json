@@ -29,7 +29,6 @@
     "endPath": "REAL_SERVICE_API_NOT_UI_HANGUP",
     "bothCallsEnded": true,
     "noConcurrentModificationErrorInCurrentProcessLog": true,
-    "postStopNativeEvidenceRequiresSeparateExtraction": true,
     "mediaAudibility": "NOT_NEWLY_MEASURED",
     "AEC": "NOT_RUN",
     "rendererNativeHandleCensus": "NOT_INSTRUMENTED",
@@ -220,5 +219,6 @@
     "Room.dispose overall success and all platform failure recovery are not independently proven",
     "First journey script exited 1 on UI_IDLE_NOT_OBTAINED; real service finally ended that call; followup script exited 0",
     "No new revocation timing or successful-media-token JWT reentry test; prior accepted evidence is reused"
-  ]
+  ],
+  "nativeExtractionStage": "Completed after the raw journey receipt; native counts are listed separately. Raw receipt preserved LOCAL_ONLY."
 }

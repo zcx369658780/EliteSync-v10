@@ -39,5 +39,20 @@
     "apps/flutter_elitesync_module/pubspec.lock": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
     "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
     "apps/android/app/build.gradle.kts": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb"
+  },
+  "deliveryEvidenceCrossCheck": {
+    "status": "NO_NEW_BLOCKING_CONTRADICTIONS_IN_FIVE_SANITIZED_FILES",
+    "files": [
+      "README.md",
+      "device-evidence.json",
+      "tests-build.json",
+      "closure-protection.json",
+      "source-reference.json"
+    ],
+    "firstJourneyExit1Preserved": true,
+    "realDeviceAndMockTransportSeparated": true,
+    "priorRevocationAndAECBoundariesExplicit": true,
+    "rawEvidenceNotIndependentlyReadOrRerun": true,
+    "clarification": "Removed obsolete raw-journey native-extraction phase flag only from public projection; raw receipt unchanged"
   }
 }
