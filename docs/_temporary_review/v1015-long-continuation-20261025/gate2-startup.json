@@ -1,0 +1,43 @@
+{
+  "budgetId": "LONG_F3_GATE2_PWSH7_20261025",
+  "taskBlob": "d737c3a813d81ada7a9ca9a60aa310e9e14e0960",
+  "attempts": 1,
+  "existingHost": "PowerShell 7.6.6 / .NET 10.0.12 / effective RemoteSigned",
+  "noPolicyOverride": true,
+  "newProcessExit": 1,
+  "processExitConfirmed": true,
+  "totalControllerSeconds": 0.39000000001396984,
+  "failureStage": "startup",
+  "exceptionType": "System.TypeLoadException",
+  "missingType": "System.Web.UI.WebResourceAttribute",
+  "positive": "NOT_RUN",
+  "negative": "NOT_RUN",
+  "writerCalls": 0,
+  "serializerCalls": 0,
+  "fallbackCalls": 0,
+  "receiptsProduced": 0,
+  "oldWindowsPowerShellAttempt": "CONSUMED / SecurityError / exit1 / 0.375sec / NOT_RETRIED",
+  "d0AReruns": 0,
+  "full37Suite": "NOT_RUN",
+  "sandboxSdk": "NOT_RUN",
+  "producer": "NOT_RUN",
+  "configurationResolve30": "NOT_RUN",
+  "sourcePins": {
+    "gate2_once.ps1": "500933d8688176854a7729fd94dd8389a450b45cbb6607e1c46d1555e5700a20",
+    "run_gate2_once.py": "f5c807c9507a205789be445dd2edf2368bfe596d28239870fe3f148b3f441412",
+    "positive-publication-fragment.ps1": "d07da132a9c14d07327ddf00847a7321e319a2c0a8ac9f3cb15948f1bbd90bdb",
+    "targeted-input-plan.json": "c6e88ae711548abb8c9eadf9f154fb6149aad2e6944d2baa3a3fdbf8a69426d5",
+    "source/receipt_writer.ps1": "9b494ac7e45b4a27dfaaef73b48bb6c9b60d25dc6521c32a968b80f5e3297512",
+    "source/fixture.ps1": "27d8f702ef8aa22219f462ac328d77cade2c65fc5f5cb4d9950776a60d5675d2",
+    "source/receipt-schema.json": "1d0f85833a30bac04e1647b4ba66e560794932872bed7d6bf9e091bb3edba652",
+    "source/fixture-plan.json": "bc9f413fa6f612687762b6419217623e4b83818225080feebf6608b576f26b5e"
+  },
+  "rawEvidenceHashes": {
+    "gate2.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gate2.stderr.txt": "5e9e6ff57d67203afdc8679be456da960eaf7597673e14d53b08229a68316d12",
+    "gate2-child-result.json": "f3e11d4dab38cb9fae86f39cf7410eb552c7021b208a79f7100f663c54ac45d0",
+    "gate2-supervisor-result.json": "af4e8f6b00926b456263911bc8a530f4d7ae68e23f7b8b10fc9d5108332f2b40",
+    "gate2-controller-complete.json": "3145e3d23951c0ac40c6fa5869bcb7ecb46c40cdb31dbd3a30949d939902740e"
+  },
+  "meaning": "Environment/framework compatibility failure before Writer invocation; not a Writer or Serializer runtime failure."
+}

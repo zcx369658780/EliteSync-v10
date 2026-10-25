@@ -1,0 +1,7 @@
+{
+  "wsHarnessRawSha256": "44dc4462bbccd6da8244b7cb0f6fd5012172e0a78fcedbe22bd7cda2f4f80579",
+  "publicDerivativeSha256": "e7253ed1bc2481945051b650a08b2b3e1acb258312b5823eb2c04e6be713557c",
+  "transform": "Only login() synthetic credentials replaced by required LOCAL_ONLY input file. Public derivative was not executed; runtime used pinned raw source.",
+  "localOnlyRawRootLabel": "v1015-long-continuation-20261025",
+  "noPrivateRawUpload": true
+}

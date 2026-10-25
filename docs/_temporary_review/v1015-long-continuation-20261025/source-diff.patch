@@ -1,0 +1,170 @@
+diff --git a/services/backend-laravel/app/Services/LiveConsentService.php b/services/backend-laravel/app/Services/LiveConsentService.php
+index 5dcb6caa..a0b26e79 100644
+--- a/services/backend-laravel/app/Services/LiveConsentService.php
++++ b/services/backend-laravel/app/Services/LiveConsentService.php
+@@ -26 +26 @@ public function enabled(): bool
+-        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v10_1_3_dev', 43324], ['elitesync_v10_1_4_dev', 43325], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327]], true)
++        return in_array($db->getDriverName(), ['mysql', 'mariadb'], true) && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1007_dev', 43317], ['elitesync_v1008_dev', 43318], ['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v10_1_3_dev', 43324], ['elitesync_v10_1_4_dev', 43325], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327], ['elitesync_v1015_long_dev', 43328]], true)
+diff --git a/services/backend-laravel/app/Services/PlatformAccess.php b/services/backend-laravel/app/Services/PlatformAccess.php
+index 8e818e8b..96ed10d4 100644
+--- a/services/backend-laravel/app/Services/PlatformAccess.php
++++ b/services/backend-laravel/app/Services/PlatformAccess.php
+@@ -18 +18 @@ public function gate(): void
+-                [['elitesync_v10_1_4_dev',43325],['elitesync_v1015_r1_dev',43327]],true)
++                [['elitesync_v10_1_4_dev',43325],['elitesync_v1015_r1_dev',43327],['elitesync_v1015_long_dev',43328]],true)
+diff --git a/services/backend-laravel/app/Services/RtcAuthorityService.php b/services/backend-laravel/app/Services/RtcAuthorityService.php
+index 7b17b44f..0457e609 100644
+--- a/services/backend-laravel/app/Services/RtcAuthorityService.php
++++ b/services/backend-laravel/app/Services/RtcAuthorityService.php
+@@ -24 +24 @@ public function enabled(): bool
+-        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327]], true) && $db->getConfig('host') === '127.0.0.1';
++        return app(LiveConsentService::class)->enabled() && in_array([$db->getDatabaseName(), (int) $db->getConfig('port')], [['elitesync_v1009_dev', 43319], ['elitesync_v10_1_1_dev', 43322], ['elitesync_v10_1_2_dev', 43323], ['elitesync_v1015_dev', 43326], ['elitesync_v1015_r1_dev', 43327], ['elitesync_v1015_long_dev', 43328]], true) && $db->getConfig('host') === '127.0.0.1';
+diff --git a/services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php b/services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php
+index 241f0bf6..7084a2eb 100644
+--- a/services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php
++++ b/services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php
+@@ -99 +99 @@ public function test_unmatched_creation_is_opaque_and_released_match_can_create(
+-    public function test_block_denies_mutation_but_preserves_historical_read(): void
++    public function test_block_denies_current_read_and_mutation_without_deleting_history(): void
+@@ -106 +106 @@ public function test_block_denies_mutation_but_preserves_historical_read(): void
+-        $this->assertTrue($capability['can_read']);
++        $this->assertFalse($capability['can_read']);
+@@ -111,4 +111,4 @@ public function test_block_denies_mutation_but_preserves_historical_read(): void
+-            ->assertOk()
+-            ->assertJsonPath('conversation.entry_kind', 'stored_conversation')
+-            ->assertJsonPath('conversation.conversation_id', $conversation->id)
+-            ->assertJsonPath('conversation.peer_user_id', $b->id);
++            ->assertNotFound()
++            ->assertJsonMissing(['peer_user_id' => $b->id]);
++        $this->assertDatabaseHas('conversations', ['id' => $conversation->id]);
++        $this->assertDatabaseCount('conversation_members', 2);
+diff --git a/services/backend-laravel/tests/Feature/V1007LiveConsentTest.php b/services/backend-laravel/tests/Feature/V1007LiveConsentTest.php
+index 47acb225..a5b06b1b 100644
+--- a/services/backend-laravel/tests/Feature/V1007LiveConsentTest.php
++++ b/services/backend-laravel/tests/Feature/V1007LiveConsentTest.php
+@@ -43,0 +44 @@ private function active(): void
++        $this->friendshipContext();
+@@ -50 +51,8 @@ private function active(): void
+-    public function test_match_alone_and_single_party_do_not_grant_messages(): void
++    private function friendshipContext(): void
++    {
++        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => min($this->a->id, $this->b->id),
++            'user_b' => max($this->a->id, $this->b->id), 'state' => 'ACTIVE', 'revision' => 1,
++            'created_at' => now(), 'updated_at' => now()]);
++    }
++
++    public function test_bare_match_is_unavailable_and_single_party_consent_cannot_grant_messages(): void
+@@ -52,0 +61,3 @@ public function test_match_alone_and_single_party_do_not_grant_messages(): void
++        $this->act('connection', 'request', 0, $this->a)->assertNotFound();
++        $this->assertDatabaseCount('product_connections', 0);
++        $this->friendshipContext();
+diff --git a/services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php b/services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php
+index 08e3e3ea..2221a015 100644
+--- a/services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php
++++ b/services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php
+@@ -35,0 +36,3 @@ protected function setUp(): void
++        // A released legacy Match alone is no longer current relationship authority.
++        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $this->sender->id, 'user_b' => $this->recipient->id,
++            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+@@ -74 +77,3 @@ public function test_private_attachment_download_requires_current_participant_co
+-        $this->get($path)->assertNotFound();
++        // Authentication middleware rejects before the private-media reader.
++        $unauthenticated = $this->get($path)->assertUnauthorized();
++        $this->assertStringNotContainsString(base64_decode(self::PNG), $unauthenticated->getContent());
+diff --git a/services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php b/services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php
+index 67f8b3ad..0a3452c7 100644
+--- a/services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php
++++ b/services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php
+@@ -34,0 +35,2 @@ protected function setUp(): void
++        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $this->sender->id, 'user_b' => $this->recipient->id,
++            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+diff --git a/services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php b/services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php
+index 85c9652d..e7c5e6b5 100644
+--- a/services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php
++++ b/services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php
+@@ -120,0 +121,2 @@ public function test_current_permission_is_checked_for_video_and_range_after_rev
++        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $a->id, 'user_b' => $b->id,
++            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+diff --git a/services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php b/services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php
+index 7bc57c3c..fc8fe6b3 100644
+--- a/services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php
++++ b/services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php
+@@ -38,0 +39,2 @@ private function active(): void
++        DB::table('friendships')->insert(['user_a' => $this->a->id, 'user_b' => $this->b->id,
++            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+diff --git a/services/backend-laravel/tests/Feature/V1015LocalEnvironmentTest.php b/services/backend-laravel/tests/Feature/V1015LocalEnvironmentTest.php
+new file mode 100644
+index 00000000..c0397d46
+--- /dev/null
++++ b/services/backend-laravel/tests/Feature/V1015LocalEnvironmentTest.php
+@@ -0,0 +1,70 @@
++<?php
++
++namespace Tests\Feature;
++
++use App\Services\LiveConsentService;
++use App\Services\PlatformAccess;
++use App\Services\RtcAuthorityService;
++use Illuminate\Database\Connection;
++use Illuminate\Support\Facades\DB;
++use Mockery;
++use PHPUnit\Framework\Attributes\DataProvider;
++use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
++use Tests\TestCase;
++
++/** Configuration-only guard tests: never connect to a simulated database. */
++final class V1015LocalEnvironmentTest extends TestCase
++{
++    public static function selectors(): array
++    {
++        return [
++            'owned exact pair' => [[], 'local', true, true],
++            'unknown database' => [['database' => 'unowned'], 'local', false, false],
++            'wrong pair port' => [['port' => 43329], 'local', false, false],
++            'old server port' => [['port' => 3306], 'local', false, false],
++            'non loopback' => [['host' => '192.0.2.1'], 'local', false, false],
++            'socket supplied' => [['unix_socket' => 'unowned.sock'], 'local', false, false],
++            'production environment' => [[], 'production', false, false],
++            'restoration port mismatch' => [[], 'local', false, true, 43329],
++        ];
++    }
++
++    #[DataProvider('selectors')]
++    public function test_exact_owned_selector_and_rejection_boundaries(array $changes, string $environment,
++        bool $liveAllowed, bool $platformAllowed, int $restorationPort = 43328): void
++    {
++        $selector = array_replace(['driver' => 'mysql', 'database' => 'elitesync_v1015_long_dev',
++            'port' => 43328, 'host' => '127.0.0.1', 'url' => null, 'unix_socket' => ''], $changes);
++        $connection = Mockery::mock(Connection::class);
++        $connection->shouldReceive('getDriverName')->andReturn($selector['driver']);
++        $connection->shouldReceive('getDatabaseName')->andReturn($selector['database']);
++        $connection->shouldReceive('getConfig')->andReturnUsing(fn ($key) => $selector[$key] ?? null);
++        DB::shouldReceive('connection')->andReturn($connection);
++        $this->app['env'] = $environment;
++        config(['restoration.enabled' => true, 'restoration.port' => $restorationPort, 'rtc_guard.enabled' => true]);
++
++        $this->assertSame($liveAllowed, app(LiveConsentService::class)->enabled());
++        $this->assertSame($liveAllowed, app(RtcAuthorityService::class)->enabled());
++        try {
++            app(PlatformAccess::class)->gate();
++            $this->assertTrue($platformAllowed);
++        } catch (HttpExceptionInterface $error) {
++            $this->assertFalse($platformAllowed);
++            $this->assertSame(404, $error->getStatusCode());
++        }
++    }
++
++    public function test_platform_url_override_is_rejected(): void
++    {
++        $connection = Mockery::mock(Connection::class);
++        $connection->shouldReceive('getDriverName')->andReturn('mysql');
++        $connection->shouldReceive('getDatabaseName')->andReturn('elitesync_v1015_long_dev');
++        $connection->shouldReceive('getConfig')->andReturnUsing(fn ($key) => [
++            'port' => 43328, 'host' => '127.0.0.1', 'url' => 'mysql://invalid.example/unowned', 'unix_socket' => '',
++        ][$key] ?? null);
++        DB::shouldReceive('connection')->andReturn($connection);
++        $this->app['env'] = 'local';
++        $this->expectException(HttpExceptionInterface::class);
++        app(PlatformAccess::class)->gate();
++    }
++}

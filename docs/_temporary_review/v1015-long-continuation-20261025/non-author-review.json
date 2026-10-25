@@ -1,0 +1,22 @@
+{
+ "verdict":"SUPPORTED_STATIC_REVIEW",
+ "reviewer":"/root/gate1_non_author_review (Sol/high; non-author)",
+ "findings":[],
+ "verified":"Three exact local database selectors; valid Friendship fixture preconditions; bare-Match and unilateral-consent denials retained; Block denies current read while rows persist; unauthenticated media denies 401 without bytes; configuration-only negative selectors; saved runtime/test evidence reviewed.",
+ "limits":["Read-only review, no independent runtime execution", "Legacy ConversationCapability tests retain pre-existing middleware exemption and do not prove live middleware", "LiveConsent/Rtc do not independently reject URL nor enforce testing :memory:; do not generalize PlatformAccess guards", "WS InvalidMessage proves no connected/private frame observed; no exact HTTP denial code claimed", "API media evidence is not new APP playback or RTC media proof", "9-table restart equality is not a restore into another database"],
+ "sha256Base":"services/backend-laravel/",
+ "sha256":{
+ "app/Services/LiveConsentService.php":"415ba9fa1f24562ea6c86119ed2f5798010e6536c16a1ced501be715a42712b4",
+ "app/Services/PlatformAccess.php":"60d38e8fbdd960264a36eaa7fc13b16a487918501d3dce240f87e09bffc335dc",
+ "app/Services/RtcAuthorityService.php":"4ffac4a773947c94499c516442286516f75b3a84604da669447b81af667a04a2",
+ "tests/Feature/ConversationCapabilityFoundationTest.php":"dc29cc8befff1398f3aaacfb6eb7779aad8432bc870ee9b297b39d5b80bb01c3",
+ "tests/Feature/V1007LiveConsentTest.php":"35d98019ca8b7fdcdc1143d22bf25c539b8f2fefbca3ebd4935f6e8a066c7084",
+ "tests/Feature/V1007PrivateMediaTest.php":"a899e22bd5bf13fa537801305bd549178615814567b11115328204ad0e453aa1",
+ "tests/Feature/V1007R1NotificationPrivacyTest.php":"bbef58f1e1196d01d384218d3be7a561763945fbb611f16c69d723cfc17cfcd8",
+ "tests/Feature/V1009PrivateVideoTest.php":"841330ed8c77c281f0684474a97c17b619ccd1cb1a5d154d36a15854212f3f69",
+ "tests/Feature/V1009RtcAuthorityTest.php":"d36c279c0c1719418f66a6ba5ae687400c1906f7585e02d94e31412e355f2059",
+ "tests/Feature/V1015LocalEnvironmentTest.php":"ed17db261b428f4f13a609580b28cde671399afbb5207db8afc02663b2b856ed"
+ },
+ "sourceLineEvidence":["V1007LiveConsentTest:42-70","ConversationCapabilityFoundationTest:99-116","V1007PrivateMediaTest:74-82","V1009RtcAuthorityTest:37-45,61-64","V1015LocalEnvironmentTest:18-68"],
+ "notAstraAcceptance":true
+}

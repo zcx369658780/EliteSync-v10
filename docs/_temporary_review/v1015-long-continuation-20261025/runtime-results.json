@@ -1,0 +1,145 @@
+{
+  "sourceClass": "CODEX_REPORTED / NEW_RUN; raw SQL, media, tokens and process logs LOCAL_ONLY",
+  "ws": {
+    "result": "PASS",
+    "source": "NEW_RUN_REAL_HTTP_MARIADB_WS",
+    "initialAndReconnect": true,
+    "minimalPointer": true,
+    "activeCloseSeconds": 0.7349999999860302,
+    "revokedReconnectDenied": true,
+    "wireOutcome": "InvalidMessage",
+    "oldHttpDenied": 404,
+    "notRtcMediaProof": true
+  },
+  "mariadbConcurrency": {
+    "result": "PASS",
+    "isolation": "REPEATABLE-READ",
+    "locked": {
+      "writer_locked": 53,
+      "time": 1792900838.484688
+    },
+    "reader": {
+      "reader_started": 54,
+      "time": 1792900838.686526
+    },
+    "exact_wait": {
+      "reader_id": 54,
+      "writer_id": 53,
+      "lock_table": "`elitesync_v1015_long_dev`.`users`",
+      "lock_index": "PRIMARY",
+      "lock_type": "RECORD"
+    },
+    "commit": {
+      "writer_commit": 53,
+      "time": 1792900838.908402
+    },
+    "denied": {
+      "reader_finished": 54,
+      "status": 401,
+      "time": 1792900838.934101,
+      "body_sha256": "406cda6663589d0538d0e947b4ae65bef873220036c377a642ed0d5ee1a300da",
+      "private_body_absent": true
+    },
+    "writer_exit": 0,
+    "reader_exit": 0
+  },
+  "media": {
+    "result": "PASS_API_MEDIA_ONLY",
+    "source": "NEW_RUN_REAL_HTTP_MARIADB",
+    "videoId": 2,
+    "messageId": 9,
+    "videoSha256": "5f97b08b388e115090c5b22b34ba5c773d693e1cd891f22dde5fc5001dd94409",
+    "bytes": 2246,
+    "readbackSameBytes": true,
+    "range206Verified": true,
+    "afterRevokeFullAndRange": 404,
+    "stranger": 404,
+    "invalidVideo": 422,
+    "appPlayback": "REUSED_EVIDENCE_NOT_NEW_RUN"
+  },
+  "recovery": {
+    "result": "PASS",
+    "source": "NEW_RUN_REAL_MARIADB_RESTART",
+    "tableSnapshotCount": 9,
+    "snapshotsExactlyEqual": true,
+    "sameTokenMessagesIdenticalBytes": true,
+    "privateVideoHashAfterRestart": "5f97b08b388e115090c5b22b34ba5c773d693e1cd891f22dde5fc5001dd94409",
+    "backupSha256": "944f0820e191e994885376729e61511a571dd37094e2b89fba2a531c320d847c",
+    "restoreIntoOtherDatabase": "NOT_RUN"
+  },
+  "backendInitial": {
+    "tests": 31,
+    "assertions": 245,
+    "exit": 0,
+    "deprecations": 2,
+    "phpunitDeprecations": 2
+  },
+  "backendRelated": {
+    "tests": 61,
+    "assertions": 472,
+    "exit": 0,
+    "deprecations": 2,
+    "phpunitDeprecations": 2
+  },
+  "rtcFixtureFinal": {
+    "tests": 12,
+    "assertions": 94,
+    "exit": 0,
+    "reason": "Friendship fixture moved into active() to preserve bare-Match negative"
+  },
+  "flutterTargets": {
+    "tests": 55,
+    "exit": 0
+  },
+  "flutterRelated": {
+    "tests": 97,
+    "exit": 0
+  },
+  "dartAnalyze": [
+    {
+      "path": "lib/features/rtc/domain/services",
+      "exit": 0
+    },
+    {
+      "path": "lib/core/storage",
+      "exit": 0
+    },
+    {
+      "path": "lib/core/network/interceptors/auth_interceptor.dart",
+      "exit": 0
+    },
+    {
+      "path": "lib/features/chat/presentation/pages/live_chat_page.dart",
+      "exit": 0
+    }
+  ],
+  "rtcApiLifecycle": {
+    "result": "PASS_CONTROL_ONLY",
+    "exit": 0,
+    "sfuMedia": "NOT_RUN",
+    "acousticAec": "NOT_RUN_DEVICE_PENDING"
+  },
+  "priorFailuresRetained": {
+    "backendCacheBootstrap": "20 errors / 0 assertions, before test execution",
+    "backendLegacyFixtures": "52 tests / 197 assertions / 16 errors / 6 failures, then 61 / 468 / 1 failure; corrected without changing product authority",
+    "flutterCopyMetadata": "package_graph.json missing before test execution; copied existing metadata without pub/download",
+    "dartAnalyzeBadPath": "exit64 before analysis; corrected exact path then four clean analyses",
+    "httpInitialMediaConfiguration": "422; corrected owned launch environment to MEDIA_STORAGE_DISK=v1009",
+    "rtcInitialConfiguration": "404; enabled existing local RTC guard in owned launch environment"
+  },
+  "rawEvidenceHashes": {
+    "backend-targeted-v2.stdout.txt": "bb1208161d1da014b70bbb17b030386eb1c330d7996dc1fd17a38b6850577831",
+    "backend-related-regression.stdout.txt": "d8b5275322e9519042d647837d119c4face706e1a73c41f1ddf0c05d01a8c789",
+    "backend-related-regression-fixed.stdout.txt": "55c70a6a2239d21d585048b437e52cf6ed18477eab4111c9c2b91c2f17c3a3cf",
+    "backend-related-regression-final.stdout.txt": "c55ceb31c035a6b7047dbfc052555bf9227feb5ed9857069638c851b9cc722b3",
+    "backend-rtc-fixture-final.stdout.txt": "448c2a04392f75477d51747f7e7412f8a7d04b20f9d8c785d942065ce027fa23",
+    "flutter-targeted-v2.stdout.txt": "acdfd9243332f031e2c073f5534ea75722634f2a24bbe8abe45e4bbedf789401",
+    "flutter-related.stdout.txt": "98aca716e4904baf5a51ec4047759499e6def39757f98fe374cc796e6a929951",
+    "dart-targeted-analyze-v2.stdout.txt": "5fb4be00c1755fcebc8f20411e5ed9feb4510abaee1f3565d6ffd38d08f4f0dc",
+    "ws-authority-events.jsonl": "1c659e330184abeab6e44b7064c0a91e93f252682ba9960cb91c23103ddfec32",
+    "real-http-mariadb-journey-v3.stdout.txt": "3762faf0fbade26cf5b3d6000be72a21f522bc8e6dc89950e34a4278ac365643",
+    "real-mariadb-rr.stdout.txt": "4bc32d67b41052b96360da535248b0c3abfd3b65b65ee3be4bb580b3061b80df",
+    "real-rtc-api-lifecycle-v2.stdout.txt": "9a7a7b31b5f86cbc4859ae53a38c0ecb6056c4926df7d8e7d6c9f5658b619ba0",
+    "owned-recovery-result.json": "97fb73213174a0ae7392a30677c5b441e220be7f6d29250b5988165bda745d75"
+  }
+}
