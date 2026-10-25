@@ -36,6 +36,8 @@ class _DiagnosticRoom extends lk.Room {
 class _DiagnosticSource extends RtcRemoteDataSource {
   _DiagnosticSource() : super(apiClient: ApiClient(dio: Dio()));
   int ends = 0;
+  final endStarted = Completer<void>();
+  Completer<RtcSessionEntity>? pendingEnd;
   @override
   Future<RtcLiveKitJoinInfoEntity> fetchLiveKitJoinInfo(int id) async =>
       RtcLiveKitJoinInfoEntity.fromJson({
@@ -50,11 +52,26 @@ class _DiagnosticSource extends RtcRemoteDataSource {
   @override
   Future<RtcSessionEntity> endCall(int id) async {
     ends++;
+    if (!endStarted.isCompleted) endStarted.complete();
+    final pending = pendingEnd;
+    pendingEnd = null;
+    if (pending != null) return pending.future;
     return RtcSessionEntity.fromJson({
       'id': id,
       'status': 'ended',
       'is_terminal': true,
     });
+  }
+}
+
+class _QueuedHeartbeatSource extends _DiagnosticSource {
+  final heartbeats = <Completer<RtcSessionEntity>>[];
+
+  @override
+  Future<RtcSessionEntity> heartbeatCall(int id) {
+    final reply = Completer<RtcSessionEntity>();
+    heartbeats.add(reply);
+    return reply.future;
   }
 }
 
@@ -133,6 +150,117 @@ void main() {
   );
 
   if (iceDiagnosticRequested) {
+    for (final lateHeartbeat in ['terminal', 'error']) {
+      test('old heartbeat $lateHeartbeat cannot end same-call retry', () async {
+        messenger.setMockMethodCallHandler(
+          channel,
+          (_) async => {
+            'debugBuild': 'true',
+            'iceDiagnosticBuild': 'true',
+            'applicationId': 'com.elitesync.v1015icediag',
+            'apiBaseUrl': env.apiBaseUrl,
+          },
+        );
+        final source = _QueuedHeartbeatSource();
+        final firstRoom = _DiagnosticRoom();
+        final nextRoom = _DiagnosticRoom();
+        var rooms = 0;
+        final service = RtcLiveKitService.mediaControlTest(
+          remoteDataSource: source,
+          appEnv: env,
+          room: _DiagnosticRoom(),
+          roomFactory: () => rooms++ == 0 ? firstRoom : nextRoom,
+          microphonePermission: () async => false,
+          cameraPermission: () async => false,
+        );
+        addTearDown(service.dispose);
+        final first = service.ensureConnected(55);
+        await firstRoom.started.future;
+        await service.leave(callId: 55);
+        firstRoom.connected.complete();
+        await first;
+        final next = service.ensureConnected(55);
+        await nextRoom.started.future;
+        expect(source.heartbeats, hasLength(2));
+        if (lateHeartbeat == 'error') {
+          source.heartbeats.first.completeError(
+            StateError('old heartbeat failed'),
+          );
+        } else {
+          source.heartbeats.first.complete(
+            RtcSessionEntity.fromJson({
+              'id': 55,
+              'status': 'ended',
+              'is_terminal': true,
+            }),
+          );
+        }
+        await Future<void>.delayed(Duration.zero);
+        expect(service.isConnecting, true);
+        expect(service.connectedCallId, 55);
+        expect(service.failureMessage, isNull);
+        source.heartbeats.last.complete(
+          RtcSessionEntity.fromJson({'id': 55, 'status': 'connecting'}),
+        );
+        nextRoom.connected.complete();
+        await next;
+        expect(service.connectedCallId, isNull);
+      });
+    }
+
+    for (final lateEnd in ['success', 'error']) {
+      test(
+        'late diagnostic end $lateEnd cannot close same-call retry',
+        () async {
+          messenger.setMockMethodCallHandler(
+            channel,
+            (_) async => {
+              'debugBuild': 'true',
+              'iceDiagnosticBuild': 'true',
+              'applicationId': 'com.elitesync.v1015icediag',
+              'apiBaseUrl': env.apiBaseUrl,
+            },
+          );
+          final endReply = Completer<RtcSessionEntity>();
+          final source = _DiagnosticSource()..pendingEnd = endReply;
+          final firstRoom = _DiagnosticRoom();
+          final nextRoom = _DiagnosticRoom();
+          var rooms = 0;
+          final service = RtcLiveKitService.mediaControlTest(
+            remoteDataSource: source,
+            appEnv: env,
+            room: _DiagnosticRoom(),
+            roomFactory: () => rooms++ == 0 ? firstRoom : nextRoom,
+            microphonePermission: () async => false,
+            cameraPermission: () async => false,
+          );
+          addTearDown(service.dispose);
+          final first = service.ensureConnected(55);
+          await firstRoom.started.future;
+          firstRoom.connected.complete();
+          await source.endStarted.future;
+          await service.leave(callId: 55);
+          final next = service.ensureConnected(55);
+          await nextRoom.started.future;
+          if (lateEnd == 'error') {
+            endReply.completeError(StateError('old diagnostic end failed'));
+          } else {
+            endReply.complete(
+              RtcSessionEntity.fromJson({'id': 55, 'status': 'ended'}),
+            );
+          }
+          await first;
+          expect(service.isConnecting, true);
+          expect(service.connectedCallId, 55);
+          nextRoom.connected.complete();
+          await next;
+          expect(service.isConnecting, false);
+          expect(service.connectedCallId, isNull);
+          expect(source.ends, 2);
+        },
+      );
+    }
+
     for (final leaveEarly in [false, true]) {
       test(
         'diagnostic connect ${leaveEarly ? 'cancelled' : 'success'} never requests media and exits legally',

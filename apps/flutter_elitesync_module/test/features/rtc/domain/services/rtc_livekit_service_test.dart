@@ -33,6 +33,19 @@ class _PendingRtcSource extends _DeniedRtcSource {
       reply.future;
 }
 
+class _QueuedRtcSource extends _DeniedRtcSource {
+  final callIds = <int>[];
+  final replies = <Completer<RtcLiveKitJoinInfoEntity>>[];
+
+  @override
+  Future<RtcLiveKitJoinInfoEntity> fetchLiveKitJoinInfo(int callId) {
+    callIds.add(callId);
+    final reply = Completer<RtcLiveKitJoinInfoEntity>();
+    replies.add(reply);
+    return reply.future;
+  }
+}
+
 RtcLiveKitService _service(_DeniedRtcSource source, {bool enabled = true}) =>
     RtcLiveKitService(
       remoteDataSource: source,
@@ -91,6 +104,50 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  for (final nextCall in [19, 20]) {
+    for (final lateResult in ['unavailable', 'error']) {
+      test(
+        'cancelled credential request cannot block or clear call $nextCall after late $lateResult',
+        () async {
+          final source = _QueuedRtcSource();
+          final service = _service(source);
+          addTearDown(service.dispose);
+          final oldConnection = service.ensureConnected(19);
+          expect(source.callIds, [19]);
+          await service.leave(callId: 19);
+          expect(service.isConnecting, false);
+
+          final nextConnection = service.ensureConnected(nextCall);
+          final nextFailure = expectLater(nextConnection, throwsStateError);
+          expect(source.callIds, [19, nextCall]);
+          if (lateResult == 'error') {
+            source.replies.first.completeError(
+              StateError('old request denied'),
+            );
+          } else {
+            source.replies.first.complete(
+              RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}),
+            );
+          }
+          await oldConnection;
+          expect(service.isConnecting, true);
+          expect(service.failureMessage, isNull);
+          await service.ensureConnected(21);
+          expect(source.callIds, [19, nextCall]);
+
+          source.replies.last.complete(
+            RtcLiveKitJoinInfoEntity.fromJson({'enabled': false}),
+          );
+          await nextFailure;
+          expect(service.isConnecting, false);
+          expect(service.isConnected, false);
+          expect(service.connectedCallId, isNull);
+          expect(service.failureMessage, isNotNull);
+        },
+      );
+    }
+  }
+
   test(
     'dispose during old room disconnect cannot create a new media room',
     () async {

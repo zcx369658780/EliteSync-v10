@@ -42,7 +42,7 @@ class RtcLiveKitService extends ChangeNotifier {
 
   Room? _room;
   int? _connectedCallId;
-  bool _connecting = false;
+  Object? _connectionAttempt;
   int? _pendingCallId;
   int _connectionGeneration = 0;
   bool _microphoneEnabled = true;
@@ -161,7 +161,7 @@ class RtcLiveKitService extends ChangeNotifier {
   }
 
   bool get isEnabled => appEnv.useLiveKitRtc;
-  bool get isConnecting => _connecting;
+  bool get isConnecting => _connectionAttempt != null;
   bool get isConnected =>
       _room?.connectionState == ConnectionState.connected &&
       _connectedCallId != null;
@@ -238,8 +238,16 @@ class RtcLiveKitService extends ChangeNotifier {
     if (!isEnabled || _connectedCallId != callId) return;
     if (_heartbeatInFlight) return;
     _heartbeatInFlight = true;
+    final generation = _connectionGeneration;
+    final room = _room;
+    bool current() =>
+        !_disposed &&
+        generation == _connectionGeneration &&
+        identical(_room, room) &&
+        _connectedCallId == callId;
     try {
       final session = await remoteDataSource.heartbeatCall(callId);
+      if (!current()) return;
       debugPrint(
         'RTC_LIVEKIT_HEARTBEAT '
         'device=${_platformLabel()} '
@@ -251,6 +259,7 @@ class RtcLiveKitService extends ChangeNotifier {
         await leave(callId: callId);
       }
     } catch (error) {
+      if (!current()) return;
       debugPrint(
         'RTC_LIVEKIT_HEARTBEAT_FAIL '
         'device=${_platformLabel()} '
@@ -260,7 +269,7 @@ class RtcLiveKitService extends ChangeNotifier {
       _failureMessage = '通话授权暂不可验证，媒体已关闭';
       await leave(callId: callId);
     } finally {
-      _heartbeatInFlight = false;
+      if (current()) _heartbeatInFlight = false;
     }
   }
 
@@ -703,8 +712,9 @@ class RtcLiveKitService extends ChangeNotifier {
   Future<void> ensureConnected(int callId) async {
     if (_disposed || !isEnabled || callId <= 0) return;
     if (_connectedCallId == callId && _room != null) return;
-    if (_connecting) return;
-    _connecting = true;
+    if (_connectionAttempt != null) return;
+    final attempt = Object();
+    _connectionAttempt = attempt;
     _pendingCallId = callId;
     final requestedGeneration = _connectionGeneration;
     int? generation;
@@ -740,7 +750,7 @@ class RtcLiveKitService extends ChangeNotifier {
       _failureMessage = null;
       if (!diagnosticAllowed) _logJoinInfo(callId: callId, info: info);
       final expectedAfterLeave = _connectionGeneration + 1;
-      await leave();
+      await _leave(preserveAttempt: attempt);
       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
       generation = _connectionGeneration;
       _connectedCallId = callId;
@@ -981,7 +991,9 @@ class RtcLiveKitService extends ChangeNotifier {
         try {
           await remoteDataSource.endCall(callId);
         } finally {
-          await leave(callId: callId);
+          if (identical(_connectionAttempt, attempt)) {
+            await leave(callId: callId);
+          }
         }
         return;
       }
@@ -1037,6 +1049,8 @@ class RtcLiveKitService extends ChangeNotifier {
       _startAudioStatsTimer(callId);
       _mediaChanged();
     } catch (error) {
+      // A cancelled request cannot report failure or tear down a later attempt.
+      if (!identical(_connectionAttempt, attempt)) return;
       _failureMessage ??= '通话连接失败，请检查权限及网络后重试';
       await leave(callId: callId);
       debugPrint(
@@ -1047,18 +1061,27 @@ class RtcLiveKitService extends ChangeNotifier {
       );
       rethrow;
     } finally {
-      _connecting = false;
-      _pendingCallId = null;
+      if (identical(_connectionAttempt, attempt)) {
+        _connectionAttempt = null;
+        _pendingCallId = null;
+      }
     }
   }
 
-  Future<void> leave({int? callId}) async {
+  Future<void> leave({int? callId}) => _leave(callId: callId);
+
+  Future<void> _leave({int? callId, Object? preserveAttempt}) async {
     if (callId != null &&
         _connectedCallId != callId &&
         _pendingCallId != callId) {
       return;
     }
     final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;
+    if (preserveAttempt == null ||
+        !identical(_connectionAttempt, preserveAttempt)) {
+      _connectionAttempt = null;
+      _pendingCallId = null;
+    }
     _connectionGeneration += 1;
     _iceDiagnosticObserver?.stop();
     _iceDiagnosticObserver = null;
