@@ -1,18 +1,16 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_LONG_TASK_CONTINUATION / OWNER_AUTHORIZED_CONNECTED_ANDROID_DEVICE / WAITING_OWNER_MANUAL_CODEX_DISPATCH / PARTIAL_AC05_OPEN。** Owner已明确授权使用其已通过USB调试连接开发PC的Android手机，作为当前唯一v10.1.5综合长任务中的真机测试设备。任务单已更新，包含当前设备安装、真实RTC旅程、撤权/重连、麦克风/摄像头和AEC观察的范围与隐私边界。Codex仍需Owner手动派发完整任务单；本次状态更新未启动本地测试。
+**2026-10-25最新状态：V10.1.5_DEVICE_VALIDATION_ACCEPTED_WITH_OBSERVATIONS / OVERALL_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成`dad5d8fe36874095c90e25f651775796bfeba7eb`的集中独立验收：接受有界真机测试证据与报告一致性，但不接受整版。APK构建/安装与字节回取一致；真机文字发送、呼叫控制、撤权拒绝、冷启动锁定、通知偏好/OS权限及专属DB重启读回有界支持。
 
-**当前唯一综合任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。冻结plan Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`保持不变。新增G节授权当前已连接设备，不创建微任务；Codex可在同一长任务内自主构建、安装、运行、调试、修复和重测。
+**Astra独立复核：** [DAD5D8FE USB真机交付复核](../versions/v10.1.5/DAD5D8FE_USB_DEVICE_VALIDATION_ASTRA_REVIEW_20261025.md)，Blob `ca03fefe53946784adba0fd94f80507fee656fd1`。交付报告Blob `26fecfc4a703201ce7ca5f64384785e0b90302c8`；Manifest Blob `997f2c709e8a636ee317562bb1ab17804ad737f7`。Codex的本地测试、APK/DB和设备原始证据未由Astra直接执行或读取，已在复核中区分证据来源。
 
-**最新局部Astra裁决：** [RTC取消/迟到回调竞态修复复核](../versions/v10.1.5/D0_C_RTC_CANCELLATION_RACE_FIX_ASTRA_REVIEW_20261025.md)，Blob `d66c5b0ce1c4999698e56d2075e9f43b23d698c5`。仅接受候选源码逻辑与定向单测证据；AC-10.1.5-05仍`PARTIAL_CORE_OPEN`。当前候选 `c445554f01fbd8c9aef641302f3f090900703786`，Root `a964881253000ed86601978d136dfba5820606fc`，未集成main。
+**核心开放项：** RTC ICE媒体未建立，双向音视频、同call媒体重连、流动媒体≤5秒停止、真实麦克风/摄像头媒体启停及物理AEC仍`NOT_RUN / NOT_PROVEN`；AC-10.1.5-05仍`PARTIAL_CORE_OPEN`。15/30天实际设备期限与清理、部分GUI边界及真实Push仍开放。Gate 2旧WinPS执行策略拒绝0.375秒与PowerShell7 TypeLoad启动失败0.390秒两次预算均已消费；本轮未重试，Writer/Serializer正负例仍`NOT_RUN`，37案例suite、Sandbox SDK、Producer、`libs.jar`及30项解析均未运行。
 
-**真机测试要求：** 只使用Owner已连接的这台手机、现有USB/ADB、当前已授权开发环境和测试后端/SFU。允许安装本版开发APK、操作合成测试账号、按测试呼叫需要启用麦克风/摄像头、验证连接/重连/挂断/撤权后媒体停止。禁止读取或上传个人照片、短信、通讯录或其它应用数据；原始设备序列号、私人音视频、令牌与日志留LOCAL_ONLY。不得清空手机数据、卸载其它应用、修改系统/全局安全设置或下载工具。缺少SFU/测试账号时继续设备UI与可独立验证项目，并准确记录依赖项NOT_RUN。
+**当前唯一综合长任务单：** [task_order.md](../versions/v10.1.5/task_order.md)，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`。继续长任务单+中途无监督模式：Codex在冻结范围内自主推进与ICE/Writer门无依赖的功能、测试和普通返修；不拆微任务。当前真机已完成本轮验证，测试APP与服务已停止，APK保留；不自行更换网络/ICE配置、改防火墙或启动公网媒体测试。
 
-**Gate 2状态不变：** 旧Windows PowerShell策略拒绝0.375秒、PowerShell 7 `System.TypeLoadException`启动失败0.390秒，两次一次性预算均已消费；正负例、Writer、Serializer、fallback仍`NOT_RUN`，无receipt。不得重试原入口、修改执行策略或绕过限制。完整37案例suite、Sandbox SDK、Producer、`libs.jar`与30项配置解析均未运行。与Gate 2无依赖的v10.1.5工作应继续。
+**版本与产品边界：** v10.1.5仍`PARTIAL_NOT_ACCEPTED / AC05_OPEN`。候选文档提交`dad5d8fe36874095c90e25f651775796bfeba7eb`仅为源码候选`c445554f01fbd8c9aef641302f3f090900703786`的报告/Manifest子提交；未集成main。接受产品仍v10.1.4：apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.6未启动。
 
-**产品与版本边界：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍`PARTIAL_NOT_ACCEPTED`，AC05 `OPEN`；当前候选APK/真实SFU媒体尚未验收；无main产品集成，v10.1.6未启动。完成整版后由Astra集中验收，不自动合并main。
-
-**写入前live main：** `26827a666d290b4763f90db117778e8f45e554d5` / Root `01ea1bc46b114a52cb5843beadaeabce5b7d8db2`。本次ACTIVE_STATE写入将推进main；最终HEAD以最后一次回读为准。
+**写入前 live main：** `7baa7bca87b759c56d883466404152a6a2855857` / Root `687e6c90f26d297817951159bcd2c543508ed02b`。本次ACTIVE_STATE更新将推进main；最终HEAD以本轮最后一次回读为准。
 
 ## 已独立核验的产品和集成
 
