@@ -180,3 +180,6 @@ v10.1.0仍PARTIAL/NOT_ACCEPTED、AC-10.1-08 PARTIAL；R1接受不扩大为整版
 [本轮交接前目录](https://github.com/zcx369658780/EliteSync-v10/blob/dbe02b9ba603b79820f77ee28663787e405ccc4f/DOC_INDEX_CURRENT.md)与[路线调整前目录](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/DOC_INDEX_CURRENT.md)保留旧入口，历史冻结计划/原验收/失败不修改，不扫描全部Markdown或sessions。
 
 当前会话交接不赋予本机访问、不说明Codex已完成或尚未运行、不更新其本地技术起点。原3306、生产、敏感备份内容、真实账号和额外不可逆操作仍受保护；本版已经由计划涵盖且随Owner派发生效的开发HTTP、数据库、依锁依赖及AVD操作不能被旧synthetic小版本禁令覆盖。
+
+
+**2026-10-25长任务模式恢复与Gate 2环境阻断：** Owner确认v10.x回归长任务单+中途无监督模式，Codex在冻结范围内自主实现/测试/修复，Astra集中验收；A-D仅为发布闭环。Gate 2一次PowerShell启动被ExecutionPolicy拒绝，正负例NOT_RUN，一次性预算已消费，禁止自行重试。见[现行工作流](docs/workflow/CURRENT_WORKFLOW.md)第8节、[协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)和[Astra复核](docs/versions/v10.1.5/D0_C_GATE2_EXECUTION_POLICY_BLOCKED_ASTRA_REVIEW_20261025.md)。
