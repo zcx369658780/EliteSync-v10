@@ -1,0 +1,45 @@
+{
+  "status": "SUPPORTED_BOUNDED_EVIDENCE_REVIEW",
+  "reviewer": "independent non-author /root/gate1_non_author_review",
+  "openFindings": [],
+  "closedFindings": [
+    {
+      "priority": "P2",
+      "source": "old_token_revoke_final.py:16-17,23,30",
+      "issue": "Legacy field names implied exact DB COMMIT timing; actual clocks began after successful revoke HTTP response.",
+      "resolution": "Derived public/manifest fields and report now explicitly use after-revoke-HTTP-response timing for 0.360 seconds and about118.8 seconds remaining; DB COMMIT time not measured. Original local result and hash retained; no rerun."
+    }
+  ],
+  "verified": [
+    "735-file and product-tree summary agrees with build/install receipts; reviewer did not inspect all735 files or APK bytes directly.",
+    "Ordinary APK is distinct from ICE diagnostic/conditional SDK acceptance.",
+    "call7 calling-state cancellation and call9/10 accepted-call cancellation distinguished; no control-state-as-media claim.",
+    "Old JWT negative does not prove successful-call reconnect or flowing-media five-second stop.",
+    "Initial default ICE/srflx, NO_NETWORK unproven, original exit1 and permission-revoke restart disclosed.",
+    "Historical Gate2 budgets consumed; no new budget, 11AC remain PARTIAL/AC05_OPEN.",
+    "Six public materials contain no observed literal serial/JWT/credentials/private paths; original53303-byte report prefix retained."
+  ],
+  "inputSha256": {
+    "report": "b5d5d3de8aa5eef623db893d024b2e49c597ccecd2c3d95d55900f498b209a8d",
+    "manifest": "951fec791745f3469a110aae6e04d4156cc89739273fc4aa65fdd270426ddd2f",
+    "publicDeviceResults": "90edbba81c50e1d818ede72e02b91ced11abeef9e05b723a0fbf15cfb8ff569f",
+    "negativeHarness": "9b9c6f56e62f60b2249fd4d62af3b4bedf2339935bd5c2ed3842c2b49d3bd241",
+    "originalNegativeResult": "633514bdb75c32e544d352dbe7c7ba5ef8409355313a08c46f1e59955fe14a69"
+  },
+  "reviewedReportAndManifestStage": "Before inserting this review result and publication identity; subsequent edits restricted to those metadata additions.",
+  "scope": "Latest report/manifest, six public materials, explicitly permitted result summaries and three harness sources; static cross-check only.",
+  "notPerformed": [
+    "script execution",
+    "device/DB/API/service/test/Git operations",
+    "reading APK/SQL/raw device logs/credentials/private media"
+  ],
+  "notAccepted": [
+    "whole version",
+    "real media",
+    "audibility",
+    "same-call media reconnect",
+    "five-second flowing media stop",
+    "AEC"
+  ],
+  "astraAcceptance": false
+}

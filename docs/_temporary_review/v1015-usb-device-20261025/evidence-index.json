@@ -1,0 +1,235 @@
+{
+  "localOnlyRootLabel": "v1015-usb-device-continuation-20261025",
+  "files": [
+    {
+      "path": "build-invocation.json",
+      "bytes": 748,
+      "sha256": "4d7644c45118e60b8ddc4e2ef276593abcb98e69d30544ec403a5aa47e53002e",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "build-result.json",
+      "bytes": 1060,
+      "sha256": "d4f7c57677d027e719b5d7c50133131d3e772cfdad7ab697d2e7c2fa6e8dbd4f",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "build.stdout.txt",
+      "bytes": 217867,
+      "sha256": "e559e996da7db18180254078f99c0955587bae8bea6b995b138f0f28c0b0223d",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "build.stderr.txt",
+      "bytes": 166091,
+      "sha256": "6d32534bb08e860893548273dcf4d1217b447e70f4ef4d077282921fc646cd11",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "build-source-pins.json",
+      "bytes": 223917,
+      "sha256": "83e32628d68931632ddb2e85828c4a7abec34aba0b93d73e173d59f0eb4909ec",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "final-source-check.json",
+      "bytes": 726,
+      "sha256": "fb5bec98153d3b1d96330f782786d40ddfea66a22ed85c632480431ab16eb1d9",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "install-result.json",
+      "bytes": 421,
+      "sha256": "aaf9b78bd2e33cc5f14c0183d6429612fc47315251e031df04b75dca63b0bc90",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "candidate-install.json",
+      "bytes": 250,
+      "sha256": "663f223166ea8f57c2786befcd20292e26be6317901f5533a7f6e174c3cae877",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "candidate-installed-pull.json",
+      "bytes": 340,
+      "sha256": "7ac89d7c91f7a87431956975f26565d9a8663dd60e585be8dc8ac16424938d9b",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "candidate-apk-signature.stdout.txt",
+      "bytes": 311,
+      "sha256": "d8bb43818057efefa512174a2bf8d63ff9cb16c1b54aca4415efd0bab5d81192",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "candidate-apk-package.stdout.txt",
+      "bytes": 6572,
+      "sha256": "f20e7f592d19c299aa393a5df4f6de421f8aead05ef3d9810a4600c5de890184",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-message-result.json",
+      "bytes": 357,
+      "sha256": "d4fe03368ce981a660554813c8ef59c32e9493b061222f2a8d9029511af5b3c9",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-cancel-new-call-result.json",
+      "bytes": 569,
+      "sha256": "dd37b4e26da4386222f7ca6c2337c32ec3625cc7bfc6403b68da11b47c217110",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "old-token-revoke-result.json",
+      "bytes": 739,
+      "sha256": "633514bdb75c32e544d352dbe7c7ba5ef8409355313a08c46f1e59955fe14a69",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-cold-start-result.json",
+      "bytes": 225,
+      "sha256": "1893751320d210326b7d4c40aab18b4a84f6f92b843790b475fbe658862c780d",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-notification-result.json",
+      "bytes": 670,
+      "sha256": "ec34df261bc9121a152f844376ab9dafd7efeacb12f26afb0b759ec52579aad3",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-rtc-final-before-coldstart.stdout.txt",
+      "bytes": 681474,
+      "sha256": "acf14fa88559941791d2c6d9e51e709b450444723641f8d69b312b0f41c5d8b8",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-cancel-journey.stdout.txt",
+      "bytes": 8145,
+      "sha256": "e234cb6158d7f3e1082b7185b7567cca6e8e6e55e0bedb9475f62bc5954cb331",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-cancel-journey.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "old-token-revoke-final.stdout.txt",
+      "bytes": 786,
+      "sha256": "10447552d37fb59498b8dd9cd2bfdb0b1ea9e9db4cb62b2d61b77887636d5ad2",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "old-token-revoke-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-notification-journey.stdout.txt",
+      "bytes": 6554,
+      "sha256": "d2782c21371f2cfe5c3b066f0c66b1682a9ad1476d96bc4d86d4a0e5762473e1",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone-notification-journey.stderr.txt",
+      "bytes": 523,
+      "sha256": "6a5ee2c1711f484a3663fd8be890d5e27c14fceac35674203f228733d9b6f590",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "runtime-final.json",
+      "bytes": 1650,
+      "sha256": "0f34709b358101c50d59eba9c3d47091feb28360967dbb256636e902854d7e71",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "owned-test-session-logout.stdout.txt",
+      "bytes": 83,
+      "sha256": "25cf75de166d48711d4ff43c3f5bfdf95cc55bbc45a6282fcb7c766f007c63b3",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "device-db-before-restart.stdout.txt",
+      "bytes": 1384,
+      "sha256": "626102638a87b98146d524d1ed6fbbf2e44eea078bf0aa8ead42c23a6ae82fb7",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "device-db-after-restart.stdout.txt",
+      "bytes": 1384,
+      "sha256": "626102638a87b98146d524d1ed6fbbf2e44eea078bf0aa8ead42c23a6ae82fb7",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "intake-protection.json",
+      "bytes": 538,
+      "sha256": "fa163eda58360997ff28238ab319f9f936d78867e2716adfa82d4aaa8bce70ae",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "protection-before-delivery.json",
+      "bytes": 538,
+      "sha256": "fa163eda58360997ff28238ab319f9f936d78867e2716adfa82d4aaa8bce70ae",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "task-order-live.md",
+      "bytes": 23956,
+      "sha256": "9a6acaa2efd34cb70de6efd3d630bcf4b4cd9cc16f863c35ad316c56ca9c98fa",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "plan-canonical.md",
+      "bytes": 12749,
+      "sha256": "beab309903b2ebdb3daa3e04ad3c9c4021ac0141baae11982dc70b1204890a68",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "active-state-live.md",
+      "bytes": 10915,
+      "sha256": "5d23b96bdf47e58311d8cb6899dd7b32a1c72e05b1722d52b94a844863b259f2",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "astra-rtc-review-live.md",
+      "bytes": 5890,
+      "sha256": "d6cb09935901b3abf6e3605b3081b4d4f9a2be45496dd04a22898834fecdda4f",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "phone_cancel_reconnect_journey.py",
+      "bytes": 1785,
+      "sha256": "444f4f5a15109fda0b881a1d3577ffd4df9cf127bf4771684afe631ffadfde80",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "old_token_revoke_final.py",
+      "bytes": 3331,
+      "sha256": "9b9c6f56e62f60b2249fd4d62af3b4bedf2339935bd5c2ed3842c2b49d3bd241",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "finalize_notification.py",
+      "bytes": 1585,
+      "sha256": "151003c90e3f9609245ae5ff03a6a897ae5c8ac1d1ef4ac9fcd4b6e21abb056b",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "synthetic_peer_runner.py",
+      "bytes": 5536,
+      "sha256": "5d69bdcefa8352c6411ab92ec09393cc7f58669d3a6db19acd40a786efda2099",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    },
+    {
+      "path": "preflight_local.py",
+      "bytes": 822,
+      "sha256": "6e3055c712172d6ebad0e0b241cc7432d1555506f22440e19ae50f3406286a86",
+      "level": "LOCAL_ONLY_ORIGINAL_NOT_UPLOADED"
+    }
+  ],
+  "fullDirectoryUploaded": false,
+  "privateDeviceIdCredentialsSqlApkAndRawMediaExcluded": true
+}

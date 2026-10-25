@@ -1,0 +1,113 @@
+{
+  "phoneAppProcessAbsent": true,
+  "activeCalls": 0,
+  "activeTestSessionFamilies": 0,
+  "testAccessTokens": 0,
+  "sfUStopped": true,
+  "ownedDatabaseStopped": true,
+  "volumeAndContainersRetained": true,
+  "backupBefore": {
+    "label": "device-owned-before-restart",
+    "exit": 0,
+    "elapsedSeconds": 0.375,
+    "bytes": 185561,
+    "sha256": "f5c27549df4427786ab4655068c819c9d51af1fca35bc1bf99b84c714e76f41e"
+  },
+  "backupFinal": {
+    "label": "device-owned-final",
+    "exit": 0,
+    "elapsedSeconds": 0.3279999999795109,
+    "bytes": 185561,
+    "sha256": "6420a4292c281b9f4d514e0099457a2e3b259dfd86524091f603b3bf124938af"
+  },
+  "tenTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
+  "sameDeviceMessageCountAfterRestart": 1,
+  "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
+  "ownedGradleStopExit": 0,
+  "portsReleased": [
+    43328,
+    8051,
+    8052,
+    8053,
+    8054,
+    7891,
+    7894
+  ],
+  "appKeptInstalled": true,
+  "otherAppsAndOldAssetsUntouched": true,
+  "globalAdbAndDockerDaemonsKept": true,
+  "utc": "2026-10-25T06:37:19.405981+00:00",
+  "ownedProcessExitConfirmations": [
+    {
+      "label": "api",
+      "identityVerified": true,
+      "exitConfirmed": true
+    },
+    {
+      "label": "ws",
+      "identityVerified": true,
+      "exitConfirmed": true
+    },
+    {
+      "label": "authority",
+      "identityVerified": true,
+      "exitConfirmed": true
+    },
+    {
+      "label": "bridge",
+      "identityVerified": true,
+      "exitConfirmed": true
+    }
+  ],
+  "databaseBeforeMigration": {
+    "tables": 0,
+    "db": "elitesync_v1015_long_dev",
+    "port": 43328,
+    "newContainer": "elitesync-v1015-usb-db-20261025",
+    "newVolume": "elitesync-v1015-usb-data-20261025",
+    "isolatedAppStorageAndCache": true,
+    "allSelectorsGuardedBeforeMigration": true
+  },
+  "tableSnapshots": {
+    "users": {
+      "count": 3,
+      "sha256": "9b84795bc42fc7bcbe1f332d18668fb8ca545c04698d5f6e43c08a949f2ed636"
+    },
+    "device_sessions": {
+      "count": 8,
+      "sha256": "dcad7798cdb8a7db818fce141901844a2ba0dcecbf6084e000a002568c5cbdb8"
+    },
+    "chat_messages": {
+      "count": 1,
+      "sha256": "110a68bc59cdbb84fb2605f38c4f76f4ba1fd59ea3ab187429e73b7303bef6b0"
+    },
+    "message_attachments": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "notifications": {
+      "count": 31,
+      "sha256": "d2dcee5107fdbc7212630e6819338f0a531891cff9a18d3279bec070680c7ed3"
+    },
+    "product_connections": {
+      "count": 1,
+      "sha256": "cd4476222351a911e444158aa22169e4e7b12708bcc7db625d8b917c5c27e559"
+    },
+    "messaging_consents": {
+      "count": 4,
+      "sha256": "ed80ef331f55e03d6cafaf4fbcbc26df672fd1d77891700f32b0d04d1bbf0c26"
+    },
+    "notification_preferences": {
+      "count": 1,
+      "sha256": "ba0b0fe913d5ca8c6c1123c076c73292641f623f0a70d805a6b538b87ae1c00f"
+    },
+    "notification_devices": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "rtc_sessions": {
+      "count": 12,
+      "sha256": "3f6f5d473671936e71f3b5f5f248d98220c304e608fdec3db8bc37d2bd1e69be"
+    }
+  }
+}

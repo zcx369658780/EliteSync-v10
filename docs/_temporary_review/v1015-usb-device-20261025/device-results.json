@@ -1,0 +1,151 @@
+{
+  "authority": {
+    "candidate": "c445554f01fbd8c9aef641302f3f090900703786",
+    "parent": "67f83b053096b181ff64366f3eaad0e5e44815f8",
+    "root": "a964881253000ed86601978d136dfba5820606fc",
+    "apps": "e9ed3a1dee4c892840831b0e31f6f96669fa17d5",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "worktreeClean": true,
+    "remoteRefs": "c445554f01fbd8c9aef641302f3f090900703786\trefs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk\na391398fdc6a0547ba4b4354fc300def6da9acb5\trefs/heads/main",
+    "taskBlob": "43b2396b2fba046d5c0ab00bea87293783d1c2fd",
+    "activeBlob": "6b443e19e968b610c795cf37ca993a9d8e60aa4d",
+    "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03"
+  },
+  "authorityMainRoot": "85359b9dfb80f24eb083096006ce4b3f58758884",
+  "acceptedMainApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "acceptedMainServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+  "sourceCheck": {
+    "trackedAppFiles": 735,
+    "worktreeAndActuallyBuiltCopyHashesMatch": true,
+    "changedSourcePaths": [],
+    "apkBuildLocalAndInstalledReadbackHashMatch": true,
+    "apkSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
+    "aarVersion": "1.0-v1015r1-7b05bcf44b8a",
+    "aarSha256": "ca6b3ed40864d864654648ca85ddb22d27e7c23bb118a760fff8dffe7d0f75c2",
+    "aarBytes": 9738432,
+    "sourcePinsSha256": "83e32628d68931632ddb2e85828c4a7abec34aba0b93d73e173d59f0eb4909ec",
+    "apps": "e9ed3a1dee4c892840831b0e31f6f96669fa17d5",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "productSourceChangesThisContinuation": false,
+    "unitTestsThisContinuation": "REUSED_NO_PRODUCT_SOURCE_CHANGED"
+  },
+  "device": {
+    "ro.product.model": "25060RK16C",
+    "ro.product.manufacturer": "Xiaomi",
+    "ro.build.version.release": "16",
+    "ro.build.version.sdk": "36",
+    "ro.product.cpu.abilist": "arm64-v8a",
+    "targetPackage": "com.elitesync.v1015r1dev",
+    "targetPackageAlreadyPresent": true
+  },
+  "build": {
+    "startedUtc": "2026-10-25T05:53:04.753584+00:00",
+    "ordinaryR1MainDart": true,
+    "iceDiagnostic": false,
+    "offlineDependencyResolution": true,
+    "processTreeNoNetwork": "NOT_PROVEN",
+    "exit": 0,
+    "elapsedSeconds": 392.43699999997625,
+    "processExitConfirmed": true,
+    "bytes": 405007373,
+    "sha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582"
+  },
+  "buildArgumentsSanitized": [
+    ":app:assembleDebug",
+    "--offline",
+    "--console=plain",
+    "--no-daemon",
+    "--max-workers=2",
+    "-Dorg.gradle.java.installations.auto-download=false",
+    "-PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true,ELITESYNC_V1015_R1_LOCAL_BUILD=true",
+    "-PrelationshipDualDeviceBuild=true"
+  ],
+  "install": {
+    "package": "com.elitesync.v1015r1dev",
+    "versionCode": 1010511,
+    "versionName": "10.1.5-r1-dev",
+    "apkSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
+    "installedReadbackSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
+    "byteIdentityMatched": true,
+    "signerMatched": true,
+    "keptExistingData": true,
+    "activity": "com.elitesync.MainActivity"
+  },
+  "message": {
+    "result": "PASS_DEVICE_UI_AND_REAL_PEER_API",
+    "messageId": 1,
+    "clientMessageId": "71845d97-03a4-4113-ad11-beeffe92980b",
+    "rowsWithExactContent": 1,
+    "contentCategory": "EXPLICIT_SYNTHETIC_MARKER",
+    "peerReadbackHttp": 200,
+    "sameCandidateApk": true,
+    "uiServerConfirmationObserved": true,
+    "priorHarnessMissedClickPreserved": true
+  },
+  "cancelNextCall": {
+    "result": "PASS_BOUNDED_UI_CANCEL_AND_NEXT_CALL",
+    "calls": [
+      {
+        "callId": 9,
+        "before": "in_call",
+        "after": "ended",
+        "failureCode": null,
+        "elapsedFromStart": 10.53100000001723
+      },
+      {
+        "callId": 10,
+        "before": "in_call",
+        "after": "ended",
+        "failureCode": null,
+        "elapsedFromStart": 21.25
+      }
+    ],
+    "mediaTransport": "NOT_ESTABLISHED",
+    "sameCallRetry": "NOT_EXERCISED",
+    "deliberatelyDelayedEndOrHeartbeat": "NOT_EXERCISED",
+    "sourceRaceUnitEvidence": "REUSED_95_AND_11"
+  },
+  "oldToken": {
+    "result": "PASS_BOUNDED_ACTUAL_AUTHORITY_NEGATIVE",
+    "callId": 12,
+    "jwtSha256": "27c5f12430d5c291f5451313778649a3bb70c4cc36337d1bb208205c5b0e7f74",
+    "preRevokeValidateHttp": 200,
+    "postRevokeValidateHttp": 403,
+    "firstPostRevokeWebsocketHttp": 403,
+    "callEndedFromOwnedDatabase": true,
+    "activeCalls": 0,
+    "persistedMessages": 1,
+    "currentJoinAndChatReadSendHttp": 404,
+    "jwtPriorMediaJoin": "NOT_RUN_FOR_THIS_TOKEN",
+    "flowingMediaStopWithin5Seconds": "NOT_PROVEN_NO_ESTABLISHED_STREAM",
+    "receiptCategory": "DEVICE_SESSION_PLUS_REAL_HTTP_SFU_GUARD",
+    "previousHarnessExit1Preserved": true,
+    "guardRejectionSecondsAfterRevokeHttpResponse": 0.35999999998603016,
+    "jwtSecondsRemainingAfterRevokeHttpResponse": 118.81017422676086,
+    "timingDefinition": "Starts after successful revoke HTTP response is received; exact database COMMIT timestamp is not measured. Original LOCAL_ONLY result keeps its legacy field name unchanged."
+  },
+  "coldStart": {
+    "result": "PASS_BOUNDED_COLD_START_FAIL_CLOSED",
+    "loginRequired": true,
+    "syntheticPeerOrMessageNotExposed": true,
+    "offline15To30DayRead": "NOT_RUN",
+    "actual30DayCleanup": "REUSED_PRIOR_TEST_INJECTION_ONLY"
+  },
+  "notification": {
+    "result": "PASS_BOUNDED_GUI_PREFS_OS_GRANT_AND_FAIL_CLOSED_REVOKE",
+    "silentPersisted": true,
+    "messageCategoryFalsePersisted": true,
+    "permissionGrantedDisplayed": true,
+    "permissionRevokedConfirmedInPackageManager": true,
+    "revocationRestartedAppAtLogin": true,
+    "oldPrivateContentAbsent": true,
+    "permissionTestMethod": "EXISTING_ADB_PER_APP_RUNTIME_PERMISSION_API",
+    "nativePermissionPromptDecline": "NOT_RUN",
+    "initialPermissionRestored": "DENIED",
+    "registeredNotificationDevices": 0,
+    "realPush": "NOT_RUN_PROVIDER_PENDING",
+    "firstHarnessIncorrectResumeExpectationExit1Preserved": true,
+    "freshPostconditionVerificationExit": 0
+  },
+  "classification": "DEVICE_NEW_RUN / CODEX_REPORTED; PC_PEER_TEST_ONLY; NOT_ASTRA_ACCEPTANCE"
+}
