@@ -1,0 +1,183 @@
+{
+  "tests": {
+    "call-scoped-red": {
+      "command": [
+        "<OWNED_BUILD_ROOT>\\flutter\\bin\\flutter.bat",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+        "--plain-name",
+        "call-scoped repeated leave"
+      ],
+      "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\flutter_elitesync_module",
+      "exit": 1,
+      "elapsedSeconds": 71.57799999997951,
+      "processExitConfirmed": true,
+      "completedUtc": "2026-10-25T13:52:46.115108+00:00",
+      "stdoutSha256": "bf87444ff58cb6a806e2a9566b3c179290fdb00dfbf9b3f22e2cde947261f1e4",
+      "stderrSha256": "4619502f132b578947089540ed50877c730d62e1b4e443f8edea50e3901887d2",
+      "passedCases": null,
+      "expectedRegressionFailures": 2
+    },
+    "call-scoped-green": {
+      "command": [
+        "<OWNED_BUILD_ROOT>\\flutter\\bin\\flutter.bat",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+      ],
+      "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\flutter_elitesync_module",
+      "exit": 0,
+      "elapsedSeconds": 2.6709999999729916,
+      "processExitConfirmed": true,
+      "completedUtc": "2026-10-25T13:54:04.399021+00:00",
+      "stdoutSha256": "b0d0552ab6596ef82f326e41fa012175c8ed161668b1b27a4f3bd1a08c49c689",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passedCases": 22
+    },
+    "rtc-page-associated": {
+      "command": [
+        "<OWNED_BUILD_ROOT>\\flutter\\bin\\flutter.bat",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/features/rtc/presentation/pages/rtc_call_page_test.dart",
+        "test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart",
+        "test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart"
+      ],
+      "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\flutter_elitesync_module",
+      "exit": 1,
+      "elapsedSeconds": 4.938000000081956,
+      "processExitConfirmed": true,
+      "completedUtc": "2026-10-25T13:54:40.771276+00:00",
+      "stdoutSha256": "4fcf4d982a26218df778a783ad41afc04b00e8a32241706aaec321ff43703910",
+      "stderrSha256": "97cdae765cded3c7d61514c5e1b722d5117974359c70964c87b46a24ed4ce04f",
+      "passedCases": null
+    },
+    "rtc-page-associated-restored": {
+      "command": [
+        "<OWNED_BUILD_ROOT>\\flutter\\bin\\flutter.bat",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/features/rtc/presentation/pages/rtc_call_page_test.dart",
+        "test/features/rtc/presentation/pages/rtc_incoming_call_page_test.dart",
+        "test/features/rtc/presentation/pages/rtc_navigation_back_to_messages_test.dart"
+      ],
+      "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\flutter_elitesync_module",
+      "exit": 0,
+      "elapsedSeconds": 4.516000000061467,
+      "processExitConfirmed": true,
+      "completedUtc": "2026-10-25T13:55:40.762901+00:00",
+      "stdoutSha256": "02af9f8eb270c3ecf851831358b09832c248c64deceb8336aabd04de93ea3a8b",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passedCases": 27
+    }
+  },
+  "analyzer": {
+    "exit": 0,
+    "command": [
+      "dart",
+      "analyze",
+      "lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+    ],
+    "result": "No issues found",
+    "processExitConfirmed": true,
+    "stdoutSha256": "745fc6d29df2e5800adcc3066988a8fd4f45f038c6edebee0f3a972be56254be",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "correctedBuild": {
+    "command": [
+      "<OWNED_BUILD_ROOT>\\gradle-home\\wrapper\\dists\\gradle-8.14-all\\5vwl8burbouivoo2kromnbp2p\\gradle-8.14\\bin\\gradle.bat",
+      ":app:assembleDebug",
+      "--offline",
+      "--console=plain",
+      "--no-daemon",
+      "--max-workers=2",
+      "-Dorg.gradle.java.installations.auto-download=false",
+      "-PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true,ELITESYNC_V1015_R1_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true"
+    ],
+    "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\android",
+    "startedUtc": "2026-10-25T14:01:14.086164+00:00",
+    "ordinaryR1MainDart": true,
+    "iceDiagnostic": false,
+    "offlineDependencyResolution": true,
+    "processTreeNoNetwork": "NOT_PROVEN",
+    "exit": 0,
+    "elapsedSeconds": 288.96899999992456,
+    "processExitConfirmed": true,
+    "apk": "<OWNED_BUILD_ROOT>\\project\\apps\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "bytes": 405007373,
+    "sha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+    "stdoutSha256": "04ec0cfe93e2ccac688f6e2fe80290f933d6c201b614d544b0da1d32a2d7bef5",
+    "stderrSha256": "d7681f59e6746ee357b78b675afa368540d610405887da1d1000f0460589b1bb"
+  },
+  "abortedBuild": {
+    "command": [
+      "<OWNED_BUILD_ROOT>\\gradle-home\\wrapper\\dists\\gradle-8.14-all\\5vwl8burbouivoo2kromnbp2p\\gradle-8.14\\bin\\gradle.bat",
+      ":app:assembleDebug",
+      "--offline",
+      "--console=plain",
+      "--no-daemon",
+      "--max-workers=2",
+      "-Dorg.gradle.java.installations.auto-download=false",
+      "-PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true,ELITESYNC_V1015_R1_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true"
+    ],
+    "cwd": "<OWNED_BUILD_ROOT>\\project\\apps\\android",
+    "startedUtc": "2026-10-25T13:57:18.386615+00:00",
+    "ordinaryR1MainDart": true,
+    "iceDiagnostic": false,
+    "offlineDependencyResolution": true,
+    "processTreeNoNetwork": "NOT_PROVEN",
+    "exit": 1,
+    "elapsedSeconds": 85.96899999992456,
+    "processExitConfirmed": true,
+    "stdoutSha256": "bf11d38417297aa75c1c928aad5a0c772dde156859926590098c3f3d5fdc3305",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reason": "INNER_WRAPPER_ATTEMPTED_TOOL_DOWNLOAD_DESPITE_OUTER_OFFLINE; MAIN_AGENT_TERMINATED_OWN_BUILD_TREE",
+    "partialToolDownloadOccurred": true,
+    "safetyBoundaryDeviationAcknowledged": true
+  },
+  "localWrapperCorrection": {
+    "scope": "TASK_OWNED_IGNORED_BUILD_WRAPPER_ONLY",
+    "gradleVersion": "8.14",
+    "copiedRuntimeFilesMatched": 314,
+    "localBinarySha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+    "wrapperSha256": "1df5103ae80f01adbcc46a2db0939d84bf1aa0b75e225002e96a02972f98d582",
+    "noNetworkFallbackEntry": true,
+    "oldRootsModified": false,
+    "abortedDownloadPartialRetained": {
+      "bytes": 7941328,
+      "sha256": "b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4"
+    }
+  },
+  "installedApk": {
+    "package": "com.elitesync.v1015r1dev",
+    "versionCode": 1010511,
+    "versionName": "10.1.5-r1-dev",
+    "buildSha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+    "installedReadbackSha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+    "byteIdentityMatched": true,
+    "signerMatched": true,
+    "dataPreserved": true,
+    "sourceCommit": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6"
+  },
+  "counts": "22 service plus 27 distinct associated page tests; intermediate runs not added; earlier 67/17 reused at original identity, not rerun",
+  "remainingFailuresPreserved": [
+    "initial Java compiler encoding failure",
+    "initial login helper sent BACK without keyboard",
+    "initial build copy stopped during unused docs",
+    "initial page-test dependency copy omitted lib/test",
+    "aborted inner Gradle download; partial retained"
+  ],
+  "gate2NewStarts": 0
+}

@@ -1,0 +1,23 @@
+{
+  "notificationId": 1,
+  "messageId": 1,
+  "testedApkSha256": "68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717",
+  "testedSourceCommit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+  "notificationSourceUnchangedInR1": true,
+  "singleCurrentCardConfirmedBeforeRevoke": true,
+  "realServiceTransitionRevoked": true,
+  "uiActionOutcome": "CLICK_DISPATCHED",
+  "actualClick": true,
+  "status": "SUPPORTED_BOUNDED_REAL_STALE_CARD_CLICK",
+  "privateSyntheticBodyAbsentAfterAttempt": true,
+  "readFactsUnchanged": true,
+  "stayedAtNotificationCenter": true,
+  "rawDeviceEvidence": "LOCAL_ONLY",
+  "textAndContentDescriptionChecked": true,
+  "blockedConversationFeedbackObserved": true,
+  "uiActionKind": "ANDROID_ACCESSIBILITY_ACTION_CLICK_ON_CURRENT_VISIBLE_NODE",
+  "physicalTouch": "NOT_CLAIMED",
+  "individualHttpStatus": "NOT_CAPTURED_BY_EXISTING_SERVICE_LOGGER",
+  "postClickXmlSha256": "1249db6ebf0651e78b9c0ed3dc27d6639b55e674db31e53b723bbbf440d95c85",
+  "supplement": "READ_ONLY_EXISTING_XML_NO_CLICK_RETRY"
+}

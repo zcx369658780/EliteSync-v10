@@ -1,0 +1,43 @@
+{
+  "source": {
+    "commit": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6",
+    "parent": "7773b98986d9c9395841623e6ef244379fddc865",
+    "root": "3871583648176b69a2d0ebb1053b23a07770fec5",
+    "apps": "0581a5286300d8c39fd7ffaf3dce37af0257419e",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "changedPaths": [
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart"
+    ],
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "trackedAppsInputs": 1040,
+    "allBuildSourceBytesMatched": true,
+    "vendorRuntimeChangedInR1": false,
+    "backendTreeChangedInR1": false
+  },
+  "intakeMain": "4df2e7f0f36cc7b80258faa73e80dad682cff6c5",
+  "intakeMainRoot": "03b0ecfcc360e38a462539dd50690c64b663a21e",
+  "frozenPlanBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+  "originalRemainingTaskBlob": "fec31d6318524a40b9ff8f0dab49b60aa7fa3490",
+  "R1Authority": "Owner manually dispatched the complete same-version R1 repair instruction in the current chat; no new task created",
+  "previousAstraBoundedReviewBlob": "5e5851cc54185d488490706e99deaed57cb67802",
+  "nonAuthorSourceReview": {
+    "sourceCommit": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6",
+    "role": "NON_AUTHOR_GPT_6_1_SOL_HIGH_READ_ONLY",
+    "productDiffVerdict": "NO_NEW_BLOCKING_FINDINGS_STATIC",
+    "scope": "Only two changed RTC service/test files; no device, test, build or service execution by reviewer",
+    "regressionCheck": "Main agent observed original two RED failures then GREEN; reviewer read code, not a local execution witness",
+    "measurementMethod": "READY/GO conservative bracket, fixed PID and new same-call native/lifecycle ordering reviewed; no precise commit or acoustic/AEC claim",
+    "initialFixtureFindings": [
+      "Refresh native baseline after READY",
+      "Fix PID and prove RTP/decode growth",
+      "Check notification text as well as description"
+    ],
+    "findingsAddressed": true,
+    "doesNotReplaceAstra": true,
+    "sourceHashes": {
+      "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart": "f40a0123d4be5bb24cff5489d4957fa52bd2daa9ccdd77af312507cbf0f0933e",
+      "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart": "f22e7cc684a2004956581db553263aa8edd4a13b039b818e4f9b64bea00282df"
+    }
+  }
+}

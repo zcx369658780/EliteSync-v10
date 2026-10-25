@@ -1,0 +1,170 @@
+{
+  "timing": {
+    "callId": 1,
+    "clock": "ONE_HOST_MONOTONIC_NS",
+    "definition": "GO_SENT_BEFORE_REAL_TRANSITION_TO_HOST_RECEIPT_OF_NEW_SAME_PID_NATIVE_AND_CALL_COMPLETION_EVENTS",
+    "bootstrapExcludedByReadyBarrier": true,
+    "commitBracketAfterGoSeconds": [
+      0,
+      0.062
+    ],
+    "phpTransitionElapsedSeconds": 0.0600585,
+    "clockAssociation": "No phone/server clock subtraction; logcat retrieval overhead is included in the conservative upper bound",
+    "nativeAndLifecycleObservations": {
+      "rendererCancelComplete": {
+        "hostObservedAfterGoSeconds": 0.312,
+        "newEventCount": 1
+      },
+      "peerConnectionClosed": {
+        "hostObservedAfterGoSeconds": 0.625,
+        "newEventCount": 2
+      },
+      "audioRecordStopped": {
+        "hostObservedAfterGoSeconds": 0.625,
+        "newEventCount": 1
+      },
+      "audioTrackStopped": {
+        "hostObservedAfterGoSeconds": 0.625,
+        "newEventCount": 2
+      },
+      "cameraReleased": {
+        "hostObservedAfterGoSeconds": 0.625,
+        "newEventCount": 1
+      },
+      "roomDisconnectComplete": {
+        "hostObservedAfterGoSeconds": 0.875,
+        "newEventCount": 1
+      },
+      "roomDisposeComplete": {
+        "hostObservedAfterGoSeconds": 0.875,
+        "newEventCount": 1
+      },
+      "leaveComplete": {
+        "hostObservedAfterGoSeconds": 0.875,
+        "newEventCount": 1
+      }
+    },
+    "allRequiredEventsObserved": true,
+    "conservativePostCommitStopUpperBoundSeconds": 0.875,
+    "fiveSecondBoundSupported": true,
+    "exactCommitTimestampMeasured": false,
+    "lastAudibleWaveformStop": "NOT_MEASURED",
+    "aec": "NOT_PROVEN",
+    "nativeHandleCensus": "NOT_PERFORMED",
+    "rawPublished": false,
+    "hostClockImplementation": "GetTickCount64()",
+    "hostClockResolutionSeconds": 0.015625,
+    "endpointQuantizationAllowanceSeconds": 0.03125,
+    "conservativeUpperBoundIncludingClockAllowanceSeconds": 0.90625,
+    "measurementScope": "Specified same-call native/lifecycle completion endpoints only; not last audible waveform, AEC or all native handles",
+    "phoneClockUse": "Ordering within same-PID log only; no cross-clock duration subtraction",
+    "commitBracketUpperIncludingClockAllowanceSeconds": 0.09325,
+    "samePidVerifiedEveryRead": true,
+    "baselineRefreshedAfterReady": true,
+    "preGoCallDisconnectNotStarted": true,
+    "nativeEventsOrderedAfterNewSameCallDisconnectMarker": true,
+    "postprocessingOnlyNoDeviceRerun": true,
+    "fiveSecondBoundSupportedIncludingClockAllowance": true,
+    "sampledNativeWarnings": {
+      "cameraCloseCode4Or5": 6,
+      "trackDisposeNull": 5,
+      "scope": "Captured same-PID window; original warning history remains preserved"
+    },
+    "sampledExceptions": {
+      "ConcurrentModificationError": 0,
+      "Unhandled Exception": 0,
+      "PlatformException": 0,
+      "MediaConnectException": 0,
+      "StateError": 0
+    },
+    "observationLog": {
+      "localLabel": "r1-post-revoke-2.stdout.txt",
+      "sha256": "1ae98ee2b5599637e379a4a7d312eff322141c96ecea0d118b4e59f42023ed8f",
+      "rawPublished": false
+    }
+  },
+  "flow": {
+    "callId": 1,
+    "samePid": true,
+    "first": {
+      "outbound-audio": {
+        "bytes": 19678,
+        "packets": 204,
+        "framesDecoded": 0
+      },
+      "outbound-video": {
+        "bytes": 805482,
+        "packets": 966,
+        "framesDecoded": 0
+      },
+      "inbound-audio": {
+        "bytes": 14915,
+        "packets": 179,
+        "framesDecoded": 0
+      },
+      "inbound-video": {
+        "bytes": 157155,
+        "packets": 170,
+        "framesDecoded": 66
+      }
+    },
+    "second": {
+      "outbound-audio": {
+        "bytes": 56480,
+        "packets": 537,
+        "framesDecoded": 0
+      },
+      "outbound-video": {
+        "bytes": 3128641,
+        "packets": 3076,
+        "framesDecoded": 0
+      },
+      "inbound-audio": {
+        "bytes": 51789,
+        "packets": 578,
+        "framesDecoded": 0
+      },
+      "inbound-video": {
+        "bytes": 861853,
+        "packets": 853,
+        "framesDecoded": 226
+      }
+    },
+    "fourDirectionsAndDecodedVideoGrew": true
+  },
+  "reusedOldToken": {
+    "sourceCommit": "a25e7c1012bce3f2a2d7048f284f17ebd8a0915c",
+    "candidate": "7773b98986d9c9395841623e6ef244379fddc865",
+    "astraReviewBlob": "5e5851cc54185d488490706e99deaed57cb67802",
+    "acceptedScope": "successful-media-old-token-first-real-upgrade-403-only",
+    "newTimingNotInferred": true,
+    "oldApkSha256": "68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717",
+    "sameTokenUsedBySuccessfulSdkMedia": true,
+    "firstAndOnlyPostRevokeAttempt": 1,
+    "newTokenMinted": false,
+    "tokenExpiryAfterReentrySeconds": 97.5844,
+    "originalLogs": [
+      {
+        "localLabel": "successful-token-call5.console.txt",
+        "sha256": "371b56b48de37fc4e2f281cb89971de3e5f138e040db9ef1e67f348ac7b3efe3",
+        "matchesHistoricalManifest": true,
+        "rawPublished": false
+      },
+      {
+        "localLabel": "successful-token-media-log.stdout.txt",
+        "sha256": "bfb1a4f5d6a07bb9d6809525e363d591680e0e130faa389d5824284c2a92a053",
+        "matchesHistoricalManifest": true,
+        "rawPublished": false
+      },
+      {
+        "localLabel": "successful-token-post-revoke-0.stdout.txt",
+        "sha256": "ac3a518d15025eef7836e2bc8f49195c07b5e7135786ce9cac2c043bf9292692",
+        "matchesHistoricalManifest": true,
+        "rawPublished": false
+      }
+    ],
+    "R1AuthorizationTokenAndUpgradePathsUnchanged": true
+  },
+  "currentDeviceSource": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6",
+  "currentApkSha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12"
+}

@@ -1,0 +1,181 @@
+{
+  "rootLabel": "v1015-r1-remaining-repair-20261025",
+  "files": [
+    {
+      "localLabel": "call-scoped-red.stdout.txt",
+      "bytes": 2203,
+      "sha256": "bf87444ff58cb6a806e2a9566b3c179290fdb00dfbf9b3f22e2cde947261f1e4",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "call-scoped-red.stderr.txt",
+      "bytes": 52,
+      "sha256": "4619502f132b578947089540ed50877c730d62e1b4e443f8edea50e3901887d2",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "call-scoped-green.stdout.txt",
+      "bytes": 11080,
+      "sha256": "b0d0552ab6596ef82f326e41fa012175c8ed161668b1b27a4f3bd1a08c49c689",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "call-scoped-green.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "rtc-page-associated.stdout.txt",
+      "bytes": 6515,
+      "sha256": "4fcf4d982a26218df778a783ad41afc04b00e8a32241706aaec321ff43703910",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "rtc-page-associated-restored.stdout.txt",
+      "bytes": 7322,
+      "sha256": "02af9f8eb270c3ecf851831358b09832c248c64deceb8336aabd04de93ea3a8b",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "analyze-r1.stdout.txt",
+      "bytes": 86,
+      "sha256": "745fc6d29df2e5800adcc3066988a8fd4f45f038c6edebee0f3a972be56254be",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stdout.txt",
+      "bytes": 784,
+      "sha256": "bf11d38417297aa75c1c928aad5a0c772dde156859926590098c3f3d5fdc3305",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "corrected-build.stdout.txt",
+      "bytes": 52895,
+      "sha256": "04ec0cfe93e2ccac688f6e2fe80290f933d6c201b614d544b0da1d32a2d7bef5",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "corrected-build.stderr.txt",
+      "bytes": 2923,
+      "sha256": "d7681f59e6746ee357b78b675afa368540d610405887da1d1000f0460589b1bb",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "ui-helper-r1click-compile.stderr.txt",
+      "bytes": 864,
+      "sha256": "90d650b7e32819c0cf01aaefb6073ede4f7ec099e05d406486c6983a7799ceae",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-login-home-focus.txt",
+      "bytes": 247,
+      "sha256": "8a21bcd6b8b0527177fb46429fdf0dc39e8ee03abebb5b1a06a36680f287f0ed",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "rtc-revoke-measurement.console.txt",
+      "bytes": 2775,
+      "sha256": "2e01cd5ba2841daca4affc73ed331596f3f604dee9131437d27fa7298ffdb8f5",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "revoke-barrier.stdout.txt",
+      "bytes": 195,
+      "sha256": "9b95ed08850cd40eaa19b7344641ada80b42e47dee2d7cc3cb6a4df5e3b78758",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-pre-go-baseline.stdout.txt",
+      "bytes": 405238,
+      "sha256": "a8bbd214445fbce4230e708f10cdaf3d142cf182d8203382569fbd076efa3ea8",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-post-revoke-2.stdout.txt",
+      "bytes": 413329,
+      "sha256": "1ae98ee2b5599637e379a4a7d312eff322141c96ecea0d118b4e59f42023ed8f",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-media-first.stdout.txt",
+      "bytes": 363188,
+      "sha256": "d6d936823d93b92a7a10975b0479522a4971696199516ec6d17cfcad24553525",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-media-second.stdout.txt",
+      "bytes": 401171,
+      "sha256": "4b04216ba552dd2acd3f39d8c4e979eeefa982114e6e2f04dda16160ad9b6226",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-click.stdout.txt",
+      "bytes": 384,
+      "sha256": "e188e3699af4b33e8790c98f0ca7ff6a1c47938581125da205575d529a307f23",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-notification-before-revoke.xml",
+      "bytes": 4154,
+      "sha256": "f32fbd1fbf1a4f1aaf9616753a6f19f469ae19384ab692af36a0db21f82f65ae",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-notification-after-attempt.xml",
+      "bytes": 4357,
+      "sha256": "1249db6ebf0651e78b9c0ed3dc27d6639b55e674db31e53b723bbbf440d95c85",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-before.stdout.txt",
+      "bytes": 2151,
+      "sha256": "590c024c5f4980566cae49f4258f59affc2e15acaa1f03c8b65add77141d69d6",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "notification-after.stdout.txt",
+      "bytes": 2196,
+      "sha256": "720429867fb4061c7892a978d36aa966b263f2c2496126c075a71cc8a0e6b2c9",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "runtime-closure.console.txt",
+      "bytes": 1433,
+      "sha256": "0734b55a697d5e5fa4b48aeb749de67a16bb689581a8232532bb3a08300d9cca",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "runtime-final.json",
+      "bytes": 1340,
+      "sha256": "ff1703da4c826eb3b5e4522682969745318821b6c9be1fa025ad3b82e2e76fa2",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "r1-owned-final.sql",
+      "bytes": 151058,
+      "sha256": "1e9fa88549fb26a56ed53a30a805558c471e52c9ae9ac442e7a692d14862a4a6",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-candidate.apk",
+      "bytes": 405007373,
+      "sha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-installed-readback.apk",
+      "bytes": 405007373,
+      "sha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+      "rawPublished": false
+    }
+  ],
+  "noPrivateRawMediaSaved": true,
+  "rawDeviceLogsUiTreesApkSqlAndCredentials": "LOCAL_ONLY"
+}

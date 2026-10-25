@@ -1,0 +1,78 @@
+{
+  "runtime": {
+    "ownedServicesStopped": [
+      {
+        "label": "api",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "ws",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "authority",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "bridge",
+        "identityVerified": true,
+        "exitConfirmed": true
+      }
+    ],
+    "phoneProcessAbsent": true,
+    "activeCalls": 0,
+    "activeTestSessionFamilies": 0,
+    "testAccessTokens": 0,
+    "containers": [
+      {
+        "label": "SFU",
+        "running": false,
+        "exitCode": 1
+      },
+      {
+        "label": "DATABASE",
+        "running": false,
+        "exitCode": 0
+      }
+    ],
+    "portsWithoutListeners": [
+      43328,
+      8051,
+      8052,
+      8053,
+      8054,
+      7891,
+      7894
+    ],
+    "adbReverseRestoredOriginalEmptyState": true,
+    "appKeptInstalled": true,
+    "volumeAndContainersRetained": true,
+    "ownedGradleStopExit": 0,
+    "globalAdbAndDockerDaemonsKept": true,
+    "databaseRestartThisRound": "NOT_RUN_BACKEND_UNCHANGED_REUSED_PRIOR_IDENTITY",
+    "finalSql": {
+      "bytes": 151058,
+      "sha256": "1e9fa88549fb26a56ed53a30a805558c471e52c9ae9ac442e7a692d14862a4a6",
+      "rawPublished": false
+    },
+    "utc": "2026-10-25T14:09:32.064884+00:00"
+  },
+  "protection": {
+    "protectedFileCount": 25609,
+    "allNamedProtectedFilesUnchanged": true,
+    "changedNamedFiles": [],
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 522,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "ownCandidateRefsExcluded": [
+      "refs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+      "refs/remotes/origin/codex/v10.1.5-source-faithful-serializer-conditional-sdk"
+    ],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  }
+}
