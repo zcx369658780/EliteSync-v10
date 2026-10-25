@@ -1,6 +1,6 @@
 # EliteSync v10.1.5｜通信可靠性＋可信离线私有缓存＋通知隐私｜Codex唯一综合长任务
 
-2026-10-21，Astra签发。**LONG_TASK_READY / PLAN_FROZEN / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / IMPLEMENTATION_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING**。
+2026-10-21签发；2026-10-25 Owner授权续接。**LONG_TASK_READY / PLAN_FROZEN / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / V10.1.5_LONG_TASK_CONTINUATION_AUTHORIZED / IMPLEMENTATION_NOT_STARTED_UNTIL_DISPATCH / GATE2_ENVIRONMENT_BLOCKED / REAL_PUSH_PROVIDER_PENDING**。
 
 Owner已在新会话明确要求下发下一版任务。本文件是**给本地Codex的唯一综合长任务**；只有Owner手动把它完整交给Codex，才授权下述受控开发实施。请勿再次进行一轮plan提案、仓库无界考古或微任务来回。Codex可在已冻结范围内自主调查、编码、修复、定点测试、非作者有界复核与集中交付，不逐步骤要求Owner转发。Astra独立功能验收、可能一次R1及后续单次安全集成**尚未预先批准**。
 
