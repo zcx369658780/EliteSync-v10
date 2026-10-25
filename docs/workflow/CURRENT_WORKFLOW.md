@@ -49,3 +49,16 @@ GitHub集成须基于真实main差异、接受范围与固定源码身份，保�
 未来需要Astra实际读取Codex的源码、测试和原始退出证据时，优先将最小的**已脱敏审阅副本**发布到独立短期GitHub审阅分支，由Astra审阅并在完成后主动发起精确清理，不再要求Owner手工转发大量本地文件。原LOCAL_ONLY与本地未跟踪/忽略目录不入Git；**GitHub无法显示未被Git跟踪的目录**，远端审阅副本只在临时分支短暂跟踪，严禁合并main或产品分支。仓库公开，任何曾推送的证据不能保证清除历史，禁止上传密钥、私网信息、设备标识和其它敏感原证。完整发布、验收和删除分支步骤见[临时审阅材料交付与清理协议](TEMP_REVIEW_EVIDENCE_PROTOCOL.md)。此工作流不扩大Owner的系统/设备/网络操作授权，不改变冻结AC及版本验收顺序。
 
 [调整前完整工作流](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/docs/workflow/CURRENT_WORKFLOW.md)仅作历史证据。当前目标决定见[PRODUCT_DECISIONS](../../PRODUCT_DECISIONS.md)。
+
+## 7. Owner授权后的任务下达闭环（2026-10-25生效）
+
+正式任务发布统一遵循[A-D Task Dispatch Closure Protocol](TASK_DISPATCH_CLOSURE_PROTOCOL.md)：
+
+- **A 授权与冻结**：核对Owner明确授权、原任务、ACTIVE_STATE、live main/Root、候选HEAD、禁止事项和预算。授权明确即执行，不重复提问；不明确才询问。
+- **B 唯一任务单**：创建唯一正式任务文件，取得Blob SHA并立即按路径读回，确认正文、目标、预算与STOP条件一致。没有成功创建和正文读回，不得称任务已发布。
+- **C 状态同步与验证**：更新ACTIVE_STATE，再fresh回读live main、Root、任务Blob/正文和状态Blob；必要时核对产品Tree。任何步骤失败，明确报告部分完成状态，不静默结束，不盲目重复创建。
+- **D 一次性交付**：同一条回复提供任务链接、Blob SHA、最终回读的main/Root/ACTIVE_STATE Blob、当前状态、停止门禁，以及单一可复制Markdown代码框启动Prompt。Prompt不含开始/结束包装标记、不嵌套代码框。
+
+任务发布不是Codex派发或执行。Owner仍手动派发；Codex只执行正式任务单明确范围。交付后等待Astra独立复核，不自动派发后继、合并产品或越级放行下一Gate。若任务单已创建但状态同步/回读失败，必须使用`TASK_PUBLISHED_STATE_SYNC_INCOMPLETE`或`PUBLISHED_READBACK_UNVERIFIED`等部分完成状态准确报告。
+
+Owner于2026-10-25批准该规则；仅前瞻生效，不追溯改变已冻结任务的权限、预算与验收结果。
