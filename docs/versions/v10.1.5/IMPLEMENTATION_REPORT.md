@@ -494,3 +494,65 @@ D0-A保持15次 Serialize、约0.688秒；WinPS策略拒绝0.375秒、PS7 TypeLo
 LOCAL_ONLY 原证根标签 `v1015-ice-loopback-continuation-20261025`；原始日志、SDP、令牌、SQL、APK、UI及截图不上传。曾有控件裁图包含预览边缘，该图和原图均不进入公开包。最小脱敏审阅包见 `https://github.com/zcx369658780/EliteSync-v10/tree/2f238f8b72558ee965a1d628f937fd3f19eb7df3/docs/_temporary_review/v1015-ice-loopback-media-20261025`，Commit `2f238f8b72558ee965a1d628f937fd3f19eb7df3` / Parent `80f6292a2c3726716ab82152f36428812f23058f` / Root `113352597d2d4fd82373700aac4df369f20f3d9b`，十件文件逐项 Blob/原字节回读。候选随后仅追加本报告和Manifest，普通non-force发布；精确Commit/Parent/Root/Blob/原字节/产品双Tree见独立最终回读。
 
 保持 `V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING`。本次未自行宣布Astra或整版接受，集中交付后停止。
+
+## 2026-10-25｜PCM capture 清理返修集中交付（最新）
+
+**SDK_CLEANUP_REPAIR_CANDIDATE / PARTIAL_NOT_ACCEPTED / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_REVIEW。** 本章继续同一综合长任务。修复前已用真实 SDK 复现异常，修复后定向检查与受影响真机路径获得有界支持；没有自行关闭 Astra 的观察项或接受整版。此前 78699 字节报告原样作为前缀保留。
+
+### 实时权威、源码与最小改动
+
+开工及发布前重新核验 live main `2d5467e8de5b5a87d086e0767b31318109e5c1cb` / Root `9fb331e395179f64380985afd27578bcb784f5e3`，冻结 task Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`（含 F/G）、plan `7d3466b3be67135dc641cfee7c7faef78937ba03`、ACTIVE_STATE `635dbb2d5741fee941eadfef4f32b5ddf9cae252`、最新 Astra 复核 `221809532229947ae298ca76f84bd98690c94bfa`。接受产品仍 v10.1.4：apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。
+
+连续候选远端开工为 `2204c7439cca344795a9a4cc5e9c4d3e27b30d12`；源码后继 **`1f9d1483268e957f7184625483ff6406071c1867`**，唯一 Parent `2204c7439cca344795a9a4cc5e9c4d3e27b30d12`，Root `9beff929abf3939ac863cd4096ee9fb09a64a48d`，完整 apps `a5c6182ea9e064db4ef73e1627a6e38591c953cc` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。后端源码未随本轮改变。最终隔离构建全部 **1036 件 tracked apps 输入**与该连续工作树逐项 SHA256 相同，构建后再次核验；原 dirty 根保持。源码查询图谱没有当前工作树索引，本轮使用具名源码和精确 diff，不把旧图谱当当前身份。
+
+原 LiveKit 2.10.0 的 `AudioTrack.stopCapture` 在 await native stop 时遍历 live Map；页面 renderer cancel 同时移除组，触发 ConcurrentModificationError。还确认重复 native stop 与旧 cancel 删除替换组的问题。remote participant 的停止顺序使 APP 的 TrackUnsubscribed 事件无法可靠提前串行化这段 SDK 私有清理。
+
+因此将**既有缓存的 2.10.0 运行源码**纳入 `apps/flutter_elitesync_module/third_party/livekit_client`，使用应用自有 path 依赖 `2.10.0+elitesync.1`，没有下载升级或修改共享 SDK。原包 archive SHA256 `9160950ff87d1946959e4911c16236ea7a3e74ac1987990b258132fd4ed0fca9` 保留；具名上游 local.dart Blob `3a3cea8c67d7ea5985df7e80f0791ba5664892dc` 与原缓存原字节一致。297 件原运行文件中 **295 件完全不变**，仅 local.dart 和 pubspec.yaml 有明确修改；LICENSE/NOTICE/版权头保留，两个修改文件均加修改声明。另三件文件说明来源、297 文件原 Hash 和完整两文件最小 upstream diff。Dart 示例/测试/顶层 fixtures 未复制；平台目录内 native tests 原样保留。
+
+行为仅为：同步 snapshot 并清空 Map 后再 await；旧 cancel 只移除自己仍拥有的组；每组 stop 共享单次 Future 并同步停止回调；track 等待包括 cancel 在内的所有在途清理。真实 PCM 频谱保持。APP pubspec/lock 仅改该依赖，其余版本和原 lock 校验值保留。Android AAR digest 和 Gradle inputs 加入 lock 与自有 SDK，避免依赖变化复用旧 AAR。除应用依赖接线、构建输入、八例测试及 vendored runtime 外无新产品功能。
+
+关键最终源码 SHA256：local.dart `bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686`；八例测试 `0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4`；完整 upstream patch `8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf`。其余文件路径、行号、Git Blob 与实际 Hash 见审阅包 source-reference/non-author-review。APP pubspec 沿用工作树 CRLF、Git 规范 LF，两种 Hash 分别标注；297 件 vendor 文件 Git Blob 与实际原字节全部相同。
+
+### 原始失败、定向回归与构建
+
+- **RED：原版 SDK 六例 1 通过 / 5 失败，exit1，24.969 秒**；真实复现 ConcurrentModificationError、重复 native stop、旧 cancel 丢失新组归属。原 stdout/stderr 保留。
+- 修复后六例通过；新增等待完成、多格式和迟到帧边界后八例通过。最终源码上的 **48 项相关 Flutter 检查 exit0，26.422 秒，退出确认**，包含八例新 PCM 边界与既有 40 项 RTC service/page/spectrum；中间计数不重复累加为独立案例。
+- 测试直接执行真实 RemoteAudioTrack、grouping、订阅、cancel 和 stopCapture，仅替换 MethodChannel/EventChannel 的 native 传输；不是复制清理算法。Native start/stop 原有错误处理未改变，不能因此宣称平台故障均可恢复。
+- 定向 Dart analyzer 最终 exit0、No issues found。最初未使用 import 的 info 已移除；未改变行为。非作者只读静态复核为 NO_NEW_BLOCKING_FINDINGS_STATIC，许可证逐文件修改声明及 README 范围问题已修正；另核五件脱敏材料，未发现将失败、单测或旧证据冒称新真机 PASS 的矛盾。复核没有亲自执行测试或读取原始设备日志，不代替 Astra。
+- 中间普通构建 exit0，335.563 秒；纳入最终构建指纹/许可证声明后，**最终普通 `:app:assembleDebug --offline` exit0，197.953 秒，退出确认**。既有 deprecation/工具告警原字节保留。未启 ICE_DIAG/retention probe，使用 R1 main.dart；离线依赖解析不等于整个进程树 NO_NETWORK 证明。
+
+### 新 APK 与有界真机清理验证
+
+同一授权 Xiaomi 25060RK16C / Android16 API36 / arm64-v8a 手机现装旧包先回取，仍为前次已验 `cbe80dff...`。手机曾临时拔离，未连接时不安装、不改 USB；Owner 接回后再次核对。新包 `com.elitesync.v1015r1dev` / code1010511 / name10.1.5-r1-dev，**416357439 bytes，SHA256 `83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678`**，原开发签名一致，`install -r` 保留数据，回取 APK 字节 Hash 相同。首次启动锁在登录页，随后仅登录本轮新空库中的合成账号。序列号、令牌、原始日志/UI/APK/SQL 均 LOCAL_ONLY，没有拍录或上传私人音视频。
+
+在新专属库/volume、原有回环服务、获准的既有 eth0 过滤 SFU 配置与合成 PC 对端中，仅补受影响路径。**call1 实际接听、媒体连接→仅重启本任务 SFU→实际同 call 页面重新连接→新媒体持续流动。** 重连后的四类音视频收发 RTP 各有约16秒的计数增长，真机视频解码增长。随后 harness 为找挂断控件执行 uiautomator 时未获得 UI idle，**脚本 exit1，不能称该脚本整段 PASS**；finally 通过真实服务 API 结束当前 call、关闭对端，原始失败完整保留，没有重新跑已接受旅程。
+
+清理后仅补 **call2 的新连接**：实际接听，真实双向 RTP/解码继续增长，对端两条轨道已订阅未静音；再通过真实 service API 结束，补测脚本 exit0。本轮两次结束均不是新的 UI 挂断验收，也不是新撤权时间实验。两个 call 的八类分组计数全部增长；同一新进程日志有六次 PeerConnection CLOSED、三次 AudioRecord stop done、三次 AudioTrack stop done、三次 camera release（重启、call1结束、call2结束），没有 ConcurrentModificationError/Unhandled Exception/PlatformException/MediaConnectException/StateError 字符串。**这些是限定日志窗口内的观察，不是全平台零异常或 native PCM handle 全量普查。**
+
+既有 Astra 接受的同 call10 媒体、约64秒17批采样和撤权保守0.790秒 native 停止证据全部保留为 REUSED_ACCEPTED_EVIDENCE；未重测、未改写为本轮结果。本轮没有新的人耳听感/AEC/波形停止计时，没有独立证明 Room.dispose 整体成功、所有平台错误恢复或成功媒体 token 的旧 JWT 重入负例。
+
+### AC-10.1.5-01～11（本章为最新汇总）
+
+| AC | 当前结果 | 来源与限制 |
+|---|---|---|
+| 01 | `SUPPORTED_BOUNDED_PROTECTION` | NEW_READONLY_AND_NEW_OWNED_DB；Fresh authority, accepted v10.1.4 trees, new empty owned DB/volume; 1036 app input pins; 24005 named files, five roots and protected old refs unchanged. |
+| 02 | `REUSED_ACCEPTED_MESSAGE_EVIDENCE` | REUSED_EVIDENCE；Prior text/idempotency/timeout/retry and media message evidence retained; this focused PCM run sends no new messages. |
+| 03 | `REUSED_ACCEPTED_AUTHORIZATION_WITH_LIMITS` | REUSED_EVIDENCE；Prior revocation/old JWT/current-read and race evidence retained. No new successful-media-token JWT reentry or revocation timing test. |
+| 04 | `REUSED_ACCEPTED_DEVICE_MEDIA_WITH_BINARY_LIMITS` | REUSED_UNCHANGED_MEDIA_CODE；Prior synthetic picker/player/200/206/404 evidence retained at its original APK identities; not relabeled as a new final-APK journey. |
+| 05 | `PARTIAL_AC05_OPEN_PCM_REPAIR_CANDIDATE` | DEVICE_NEW_RUN_AND_REUSED_ASTRA_ACCEPTED_MEDIA；Real same-call restart/rejoin and followup real audio/video after cleanup; counters and decode grow; no CME in captured process log. Both endings are service API paths. No new AEC, human hearing or exhaustive native handle census. Repair awaits Astra. |
+| 06 | `REUSED_T0_BOUNDARIES_WITH_LIMITS` | REUSED_EVIDENCE_AND_NEW_SYNTHETIC_LOGIN；Previous real login/refresh T0 and boundary tests retained; physical elapsed 15/30 days NOT_RUN. |
+| 07 | `SUPPORTED_NEW_COLD_LOCK_WITH_REUSED_RETENTION` | NEW_DEVICE_ENTRY_AND_REUSED_EVIDENCE；New APK first entry requires login; prior ciphertext and controlled purge retained; physical 15-30 day offline read and actual 30 elapsed day cleanup NOT_RUN. |
+| 08 | `REUSED_NOTIFICATION_PRIVACY_WITH_GUI_LIMITS` | REUSED_EVIDENCE；Prior permission decline/revoke/preferences retained at original identities; no new stale-card GUI scenario or push delivery. |
+| 09 | `REAL_PUSH_PROVIDER_PENDING` | REUSED_TEST_ONLY_REAL_PUSH_NOT_RUN；Provider transport/token seam retained; no real supplier, credentials or external delivery. |
+| 10 | `SUPPORTED_TARGETED_PCM_BUILD_DEVICE_DB_WITH_OPEN_GATES` | NEW_BUILD_DEVICE_DB_AND_REUSED_BACKEND；Final 48 related Flutter checks, targeted analysis, source-matched APK install/pull and twelve-table owned DB restart snapshot equality. Old backend tests reused; Gate2 dependencies NOT_RUN. |
+| 11 | `CONSOLIDATED_PARTIAL_CANDIDATE_AWAITING_ASTRA` | SOURCE_STATIC_REVIEW_AND_SANITIZED_READBACK；One appended report/manifest, source commit and nine-file review branch; raw evidence local. No self acceptance, main integration or successor. |
+
+### 预算、恢复点、发布与停止
+
+D0-A 仍为15次 Serialize/约0.688秒；WinPS策略拒绝0.375秒、PS7 TypeLoad启动失败0.390秒两历史预算已消费。**本轮新 Gate2 启动0、Writer/Serializer调用0**；37案例、条件 Sandbox SDK、Producer/libs.jar/30解析均 NOT_RUN。普通 Flutter SDK 修复与这条条件 SDK 链不混淆。
+
+本轮测试结束后 activeCalls/session families/access tokens 均0，手机APP进程退出，合成浏览器、API/WS/authority/bridge、SFU、DB及任务 Gradle 均停；四条专属 ADB reverse 恢复先前空状态，七个本轮端口释放，容器/volume 保留。新库12表规范化快照重启前后相同，本轮 chat_messages=0；不是重跑旧消息旅程。最终 SQL 155947 bytes / SHA256 `6926afa77402b23446d929b173fe989fe63c0d8a504dcf0442b32d5ae761516d` 及前置空库、重启前备份均保留 LOCAL_ONLY；两个 dump 的原字节 Hash 不相同，不冒称 dump 字节相同。24005具名保护文件、五历史根及520开工 refs 中受保护项保持；不是整盘审计。
+
+LOCAL_ONLY 根标签 `v1015-pcm-cleanup-continuation-20261025`。最小脱敏审阅包为九件文件，普通 non-force 分支 `codex/v10.1.5-pcm-cleanup-review-20261025`，最终 Commit `d2ff4693000c774f50d09eee5396d7b7a6bbc4f8` / Parent `b1efcfb5f13dd78279f4aafbdb78424037595aac` / Root `2b0b49595af683e4442809304fb8e277bbb6d8aa`，source base `1f9d1483268e957f7184625483ff6406071c1867`；初始审阅提交保留。九件文件 Blob/原始字节及审阅 Commit/Parent/Root 已远端回读。地址：https://github.com/zcx369658780/EliteSync-v10/tree/d2ff4693000c774f50d09eee5396d7b7a6bbc4f8/docs/_temporary_review/v1015-pcm-cleanup-20261025 。原始设备/DB/凭据证据不上传；审阅派生结果去掉已过时的阶段标记，原始回执未改。
+
+候选原分支普通 non-force 发布上述源码及本章报告/Manifest；最终 Commit/Parent/Root、两文档 Blob/原字节与产品双 Tree 由独立远端回读绑定，避免自引用。保持 **V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / SDK_CLEANUP_REPAIR_CANDIDATE_AWAITING_ASTRA / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING**。集中交付后停止等待 Astra，不自行接受、合 main 或启动下一 Gate。

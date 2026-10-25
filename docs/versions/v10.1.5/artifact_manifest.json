@@ -1,123 +1,906 @@
 {
-  "version": "10.1.5",
-  "delivery": "20261025-ice-loopback-media-continuation",
-  "status": "PARTIAL / OPEN_OBSERVATIONS / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
+  "version": "v10.1.5",
+  "delivery": "20261025-pcm-cleanup-continuation",
+  "status": "PARTIAL_NOT_ACCEPTED / AC05_OPEN / SDK_CLEANUP_REPAIR_CANDIDATE / AWAITING_ASTRA_INDEPENDENT_REVIEW",
   "authority": {
-    "taskPath": "docs/versions/v10.1.5/task_order.md",
     "taskBlob": "43b2396b2fba046d5c0ab00bea87293783d1c2fd",
     "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
-    "activeStateBlob": "5867eb97b59d97bd60490cc77fb07e2838888d27",
-    "priorAstraUsbReviewBlob": "ca03fefe53946784adba0fd94f80507fee656fd1",
-    "liveMain": "bee04025237ea099b2b274d06a12cfa2bab5b5e1",
-    "liveMainRoot": "683d8fe2268adbeca05da0ce31224b67d042223c",
-    "ownerAdditionalAuthorization": "One task-owned SFU rtc.interfaces.includes eth0 experiment; direct human reply in current session"
+    "activeBlob": "635dbb2d5741fee941eadfef4f32b5ddf9cae252",
+    "priorAstraMediaAcceptanceBlob": "221809532229947ae298ca76f84bd98690c94bfa",
+    "freshMain": "2d5467e8de5b5a87d086e0767b31318109e5c1cb",
+    "freshMainRoot": "9fb331e395179f64380985afd27578bcb784f5e3"
   },
   "source": {
-    "commit": "80f6292a2c3726716ab82152f36428812f23058f",
-    "parent": "08df5042378a5887f36e9a1033ff654d993cc38a",
-    "root": "5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2",
-    "apps": "a0ca61faf9e1264f7ae4b638c78ebeae257ea002",
+    "commit": "1f9d1483268e957f7184625483ff6406071c1867",
+    "parent": "2204c7439cca344795a9a4cc5e9c4d3e27b30d12",
+    "root": "9beff929abf3939ac863cd4096ee9fb09a64a48d",
+    "apps": "a5c6182ea9e064db4ef73e1627a6e38591c953cc",
     "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
-    "allTrackedAppsFilesMatched": 735,
-    "pinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311",
-    "implementationCommits": [
-      "08df5042378a5887f36e9a1033ff654d993cc38a",
-      "80f6292a2c3726716ab82152f36428812f23058f"
-    ],
+    "worktreeClean": true,
     "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
-    "productSourceChangedThisContinuation": true,
-    "changedProductPaths": [
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
-        "sha256": "8be42f0b2d36e01f6e9a1b7c4473bace2caa8dfcab068f0b38422be3b60b019f"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
-        "sha256": "debf215a19dcf3c2f7724c6cb7885f7d175b0701e65c8e71497406a76b3d6aab"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
-        "sha256": "dde7ee3e5781e0f9a12eb5373ffb77f44db44f0047efbfffa8148697f9fb55da"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart",
-        "sha256": "254d6190422d66d54ea56a2a804c51f921c8856eda68f53bd55db71cd3edeab6"
-      }
-    ],
-    "actualBuildCopyMatchesSource": true,
+    "allTrackedAppsFilesMatched": 1036,
+    "sourcePinsSha256": "534fdbe0a754dfe4a899dd363086516035be6b15c52c7f277b57e90550ab3e30",
+    "postBuildInputVerification": {
+      "trackedAppsInputCount": 1036,
+      "allWorktreeAndBuildBytesStillIdentical": true,
+      "allReviewHashesStillMatch": true,
+      "all297VendoredRuntimeGitBlobsEqualActualSourceBytes": true,
+      "upstreamRetainedFiles": 297,
+      "upstreamByteUnchangedFiles": 295,
+      "changedUpstreamFiles": [
+        "lib/src/track/local/local.dart",
+        "pubspec.yaml"
+      ],
+      "sourceReferences": [
+        {
+          "path": "apps/flutter_elitesync_module/third_party/livekit_client/README.elitesync.md",
+          "worktreeSha256": "cc5bed4eecab1e783c00aa127364fd4c31c6b27767e3c39a17fab30bc59803b9",
+          "gitBlobSha256": "cc5bed4eecab1e783c00aa127364fd4c31c6b27767e3c39a17fab30bc59803b9",
+          "gitBlob": "4c5e994f145646d60d479d701f6b072872053432",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff",
+          "worktreeSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf",
+          "gitBlobSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf",
+          "gitBlob": "6d69607c6507c20ea8f861501c800ce5651883e6",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/third_party/livekit_client/UPSTREAM_FILES.sha256",
+          "worktreeSha256": "3837abe3de8dc8356eec929558ea575ce5c85b34cf96fa9737946a8557b90a64",
+          "gitBlobSha256": "3837abe3de8dc8356eec929558ea575ce5c85b34cf96fa9737946a8557b90a64",
+          "gitBlob": "312433ff02b1986f4a2c03be955b746c2af0a8a4",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+          "worktreeSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+          "gitBlobSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+          "gitBlob": "aa993c7dae22bf1adb59f5b3670f586b5032f82e",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/third_party/livekit_client/pubspec.yaml",
+          "worktreeSha256": "913a08ac25abbac435b9c9d4738f42e3a85d01e7f1fecb1467a49367c6b01c0d",
+          "gitBlobSha256": "913a08ac25abbac435b9c9d4738f42e3a85d01e7f1fecb1467a49367c6b01c0d",
+          "gitBlob": "ce9b98fe03bad011b9b2f1af9bcdd3e8a3e7fdbf",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/pubspec.yaml",
+          "worktreeSha256": "e562611d1960353fa625b2a39a58a5b37017d9ef232a62de0e870249b8c3172e",
+          "gitBlobSha256": "b9c88f5cd6cc6f6a9e0c68c4f0f10f9182f29dd624e8ef690cfee75bb6de8c79",
+          "gitBlob": "8a3197de38e6db06ed2a776ec3679c1470cd1656",
+          "worktreeBytesEqualGitBlob": false
+        },
+        {
+          "path": "apps/flutter_elitesync_module/pubspec.lock",
+          "worktreeSha256": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
+          "gitBlobSha256": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
+          "gitBlob": "2f494e02c4ff659a28715c23e68cc6c6913e7e1a",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart",
+          "worktreeSha256": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
+          "gitBlobSha256": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
+          "gitBlob": "a5b6c394b52eea643d86d7a3cca79bec2a0bfd3a",
+          "worktreeBytesEqualGitBlob": true
+        },
+        {
+          "path": "apps/android/app/build.gradle.kts",
+          "worktreeSha256": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb",
+          "gitBlobSha256": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb",
+          "gitBlob": "d856611aae9a3361d06469837732b526131ee1a0",
+          "worktreeBytesEqualGitBlob": true
+        }
+      ],
+      "textConversionNote": "Application pubspec.yaml uses the existing CRLF worktree representation; its normalized Git blob SHA is recorded separately."
+    },
     "acceptedProductBaseline": "v10.1.4",
     "acceptedMainApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
     "acceptedMainServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "vendor": {
+    "upstreamFiles": 297,
+    "byteIdenticalFiles": 295,
+    "changedUpstreamFiles": [
+      "lib/src/track/local/local.dart",
+      "pubspec.yaml"
+    ],
+    "allOtherDependenciesAndLockHashesPreserved": true,
+    "upstreamLocalSha256": "bc9e6527dd03b373aca3267be2a686eb26b4109e8e5fe8a10671c2a68db21ece",
+    "patchedLocalSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+    "minimalPatchSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf"
   },
   "acResults": [
     {
       "ac": "AC-10.1.5-01",
       "status": "SUPPORTED_BOUNDED_PROTECTION",
-      "evidenceClass": "NEW_READONLY",
-      "detail": "New empty owned DB/volume, selectors,735 source pins,22482 named protected files,five roots,519 prior refs protected items unchanged."
+      "evidenceClass": "NEW_READONLY_AND_NEW_OWNED_DB",
+      "detail": "Fresh authority, accepted v10.1.4 trees, new empty owned DB/volume; 1036 app input pins; 24005 named files, five roots and protected old refs unchanged."
     },
     {
       "ac": "AC-10.1.5-02",
-      "status": "SUPPORTED_MESSAGES_WITH_REUSE",
-      "evidenceClass": "DEVICE_NEW_RUN_AND_REUSED_ACCEPTED_USB_TEXT",
-      "detail": "Image/video each one confirmed row. Prior text/idempotency/timeout/retry remains reused; no new final-APK text journey."
+      "status": "REUSED_ACCEPTED_MESSAGE_EVIDENCE",
+      "evidenceClass": "REUSED_EVIDENCE",
+      "detail": "Prior text/idempotency/timeout/retry and media message evidence retained; this focused PCM run sends no new messages."
     },
     {
       "ac": "AC-10.1.5-03",
-      "status": "SUPPORTED_BOUNDED_REVOKE_AND_REUSED_AUTH_NEGATIVES",
-      "evidenceClass": "NEW_SERVICE_FIXTURE_AND_REUSED_SECURITY",
-      "detail": "Call10 current join/private full/Range404 after actual product consent service. Prior accepted old-JWT handshake negative reused; successful call10 JWT handshake NOT_RUN."
+      "status": "REUSED_ACCEPTED_AUTHORIZATION_WITH_LIMITS",
+      "evidenceClass": "REUSED_EVIDENCE",
+      "detail": "Prior revocation/old JWT/current-read and race evidence retained. No new successful-media-token JWT reentry or revocation timing test."
     },
     {
       "ac": "AC-10.1.5-04",
-      "status": "SUPPORTED_DEVICE_PICKER_PLAYER_RANGE_WITH_BINARY_LIMITS",
-      "evidenceClass": "CURRENT_TASK_INTERMEDIATE_APK_REUSED_UNCHANGED_MEDIA_CODE",
-      "detail": "8a11 image,picker-transcoded blue JPEG;f26b exact H264 video/read/player;finalcbe8 differs only RTC files. Not relabeled final-APK media journey."
+      "status": "REUSED_ACCEPTED_DEVICE_MEDIA_WITH_BINARY_LIMITS",
+      "evidenceClass": "REUSED_UNCHANGED_MEDIA_CODE",
+      "detail": "Prior synthetic picker/player/200/206/404 evidence retained at its original APK identities; not relabeled as a new final-APK journey."
     },
     {
       "ac": "AC-10.1.5-05",
-      "status": "PARTIAL_MEDIA_NOW_SUPPORTED_AC05_OPEN",
-      "evidenceClass": "FINAL_APK_DEVICE_NEW_RUN",
-      "detail": "Call10 fresh manual same-call join,17 batches64s four RTP directions,video decode,native close/audio stop/camera release observed by0.790s host receipt. Tone heard/stopped same call. AEC/speech quality and SDK cleanup observation remain open."
+      "status": "PARTIAL_AC05_OPEN_PCM_REPAIR_CANDIDATE",
+      "evidenceClass": "DEVICE_NEW_RUN_AND_REUSED_ASTRA_ACCEPTED_MEDIA",
+      "detail": "Real same-call restart/rejoin and followup real audio/video after cleanup; counters and decode grow; no CME in captured process log. Both endings are service API paths. No new AEC, human hearing or exhaustive native handle census. Repair awaits Astra."
     },
     {
       "ac": "AC-10.1.5-06",
       "status": "REUSED_T0_BOUNDARIES_WITH_LIMITS",
-      "evidenceClass": "REUSED_EVIDENCE_AND_NEW_LOGIN",
-      "detail": "Actual login new; prior boundary tests reused. Physical15/30-day elapsed time NOT_RUN."
+      "evidenceClass": "REUSED_EVIDENCE_AND_NEW_SYNTHETIC_LOGIN",
+      "detail": "Previous real login/refresh T0 and boundary tests retained; physical elapsed 15/30 days NOT_RUN."
     },
     {
       "ac": "AC-10.1.5-07",
-      "status": "SUPPORTED_COLD_ENTRY_WITH_REUSED_RETENTION",
-      "evidenceClass": "NEW_FINAL_APK_FIRST_LAUNCH_AND_REUSED_RETENTION",
-      "detail": "Final cbe8 update launch requires login; prior ciphertext/controlled30-day purge reused. Not physical15-30-day offline read proof."
+      "status": "SUPPORTED_NEW_COLD_LOCK_WITH_REUSED_RETENTION",
+      "evidenceClass": "NEW_DEVICE_ENTRY_AND_REUSED_EVIDENCE",
+      "detail": "New APK first entry requires login; prior ciphertext and controlled purge retained; physical 15-30 day offline read and actual 30 elapsed day cleanup NOT_RUN."
     },
     {
       "ac": "AC-10.1.5-08",
-      "status": "SUPPORTED_NATIVE_PERMISSION_DECLINE_WITH_REUSE",
-      "evidenceClass": "DEVICE_NEW_RUN_ON_8A11_AND_REUSED_PREFS",
-      "detail": "Native decline,OS false,core app usable; prior preference/revoke evidence reused. Stale card click NOT_RUN_NO_CURRENT_READABLE_CARD."
+      "status": "REUSED_NOTIFICATION_PRIVACY_WITH_GUI_LIMITS",
+      "evidenceClass": "REUSED_EVIDENCE",
+      "detail": "Prior permission decline/revoke/preferences retained at original identities; no new stale-card GUI scenario or push delivery."
     },
     {
       "ac": "AC-10.1.5-09",
       "status": "REAL_PUSH_PROVIDER_PENDING",
       "evidenceClass": "REUSED_TEST_ONLY_REAL_PUSH_NOT_RUN",
-      "detail": "Existing transport/token seam only; no approved real supplier."
+      "detail": "Provider transport/token seam retained; no real supplier, credentials or external delivery."
     },
     {
       "ac": "AC-10.1.5-10",
-      "status": "SUPPORTED_BUILD_MEDIA_PERSISTENCE_WITH_OPEN_GATES",
+      "status": "SUPPORTED_TARGETED_PCM_BUILD_DEVICE_DB_WITH_OPEN_GATES",
       "evidenceClass": "NEW_BUILD_DEVICE_DB_AND_REUSED_BACKEND",
-      "detail": "Final build/install/pull same bytes;40 Flutter tests and targeted Dart analysis;12 owned DB table snapshots equal after restart. Prior backend tests reused;Gate2 dependencies NOT_RUN."
+      "detail": "Final 48 related Flutter checks, targeted analysis, source-matched APK install/pull and twelve-table owned DB restart snapshot equality. Old backend tests reused; Gate2 dependencies NOT_RUN."
     },
     {
       "ac": "AC-10.1.5-11",
       "status": "CONSOLIDATED_PARTIAL_CANDIDATE_AWAITING_ASTRA",
-      "evidenceClass": "SOURCE_AND_EVIDENCE_STATIC_REVIEW",
-      "detail": "Two-source-commit chain,one appended report,one manifest,ten-file minimal reviewed branch;ordinary non-force candidate publication and remote byte readback. No self-accept/main/v10.1.6."
+      "evidenceClass": "SOURCE_STATIC_REVIEW_AND_SANITIZED_READBACK",
+      "detail": "One appended report/manifest, source commit and nine-file review branch; raw evidence local. No self acceptance, main integration or successor."
     }
   ],
   "deviceNewRun": {
+    "scope": "CODEX_REPORTED / DEVICE_NEW_RUN / synthetic isolated test; not Astra rerun",
+    "device": {
+      "model": "Xiaomi 25060RK16C",
+      "android": "16/API36",
+      "abi": "arm64-v8a",
+      "serial": "LOCAL_ONLY_NOT_PUBLISHED"
+    },
+    "apk": {
+      "package": "com.elitesync.v1015r1dev",
+      "versionCode": 1010511,
+      "versionName": "10.1.5-r1-dev",
+      "buildSha256": "83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678",
+      "installedReadbackSha256": "83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678",
+      "byteIdentityMatched": true,
+      "signerMatched": true,
+      "dataPreserved": true,
+      "sourceCommit": "1f9d1483268e957f7184625483ff6406071c1867"
+    },
+    "journey": {
+      "status": "BOUNDED_PCM_DEVICE_CLEANUP_REGRESSION_SUPPORTED",
+      "sourceCommit": "1f9d1483268e957f7184625483ff6406071c1867",
+      "firstCallId": 1,
+      "firstCallSameCallManualReconnect": true,
+      "firstHarnessExit": 1,
+      "firstHarnessFailure": "UI_IDLE_NOT_OBTAINED at attempted hangup; finally ended real call through service API",
+      "followupCallId": 2,
+      "followupRealMediaAfterPriorCleanup": true,
+      "endPath": "REAL_SERVICE_API_NOT_UI_HANGUP",
+      "bothCallsEnded": true,
+      "noConcurrentModificationErrorInCurrentProcessLog": true,
+      "mediaAudibility": "NOT_NEWLY_MEASURED",
+      "AEC": "NOT_RUN",
+      "rendererNativeHandleCensus": "NOT_INSTRUMENTED",
+      "utc": "2026-10-25T09:37:08.316034+00:00"
+    },
+    "media": [
+      {
+        "callId": 1,
+        "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+        "direction": "inbound",
+        "kind": "audio",
+        "sampleBatches": 5,
+        "spanSeconds": 15.997,
+        "first": {
+          "bytes": 20717,
+          "packets": 225
+        },
+        "last": {
+          "bytes": 94835,
+          "packets": 1025
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 1,
+        "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+        "direction": "inbound",
+        "kind": "video",
+        "sampleBatches": 5,
+        "spanSeconds": 15.997,
+        "first": {
+          "bytes": 469322,
+          "packets": 452,
+          "framesDecoded": 92,
+          "framesReceived": 92,
+          "framesPerSecond": 20
+        },
+        "last": {
+          "bytes": 1825894,
+          "packets": 1787,
+          "framesDecoded": 412,
+          "framesReceived": 412,
+          "framesPerSecond": 20
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 1,
+        "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+        "direction": "outbound",
+        "kind": "audio",
+        "sampleBatches": 5,
+        "spanSeconds": 15.999,
+        "first": {
+          "bytes": 1148,
+          "packets": 28
+        },
+        "last": {
+          "bytes": 21609,
+          "packets": 328
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 1,
+        "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+        "direction": "outbound",
+        "kind": "video",
+        "sampleBatches": 7,
+        "spanSeconds": 15.999,
+        "first": {
+          "bytes": 191799,
+          "packets": 206,
+          "framesEncoded": 62,
+          "framesPerSecond": 17
+        },
+        "last": {
+          "bytes": 5697047,
+          "packets": 5431,
+          "framesEncoded": 958,
+          "framesPerSecond": 50
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 2,
+        "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+        "direction": "inbound",
+        "kind": "audio",
+        "sampleBatches": 2,
+        "spanSeconds": 4.007,
+        "first": {
+          "bytes": 17890,
+          "packets": 215
+        },
+        "last": {
+          "bytes": 36450,
+          "packets": 415
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 2,
+        "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+        "direction": "inbound",
+        "kind": "video",
+        "sampleBatches": 2,
+        "spanSeconds": 4.007,
+        "first": {
+          "bytes": 129589,
+          "packets": 155,
+          "framesDecoded": 84,
+          "framesReceived": 84,
+          "framesPerSecond": 20
+        },
+        "last": {
+          "bytes": 292626,
+          "packets": 329,
+          "framesDecoded": 164,
+          "framesReceived": 164,
+          "framesPerSecond": 20
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 2,
+        "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+        "direction": "outbound",
+        "kind": "audio",
+        "sampleBatches": 2,
+        "spanSeconds": 3.999,
+        "first": {
+          "bytes": 2951,
+          "packets": 54
+        },
+        "last": {
+          "bytes": 3517,
+          "packets": 72
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      },
+      {
+        "callId": 2,
+        "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+        "direction": "outbound",
+        "kind": "video",
+        "sampleBatches": 3,
+        "spanSeconds": 4.0,
+        "first": {
+          "bytes": 772452,
+          "packets": 821,
+          "framesEncoded": 180,
+          "framesPerSecond": 49
+        },
+        "last": {
+          "bytes": 1931863,
+          "packets": 1843,
+          "framesEncoded": 254,
+          "framesPerSecond": 34
+        },
+        "countersGrow": true,
+        "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+      }
+    ],
+    "nativeStopEventCountsInSamePid": {
+      "peerConnectionClosed": 6,
+      "audioRecordStopDone": 3,
+      "audioTrackStopDone": 3,
+      "cameraRelease": 3
+    },
+    "exceptionStringCountsInCapturedSamePidLog": {
+      "ConcurrentModificationError": 0,
+      "Unhandled Exception": 0,
+      "PlatformException": 0,
+      "MediaConnectException": 0,
+      "StateError": 0
+    },
+    "limits": [
+      "No new AEC, human audibility or waveform timing measurement",
+      "No native PCM handle census; native audio/camera stop events are bounded corroboration",
+      "Room.dispose overall success and all platform failure recovery are not independently proven",
+      "First journey script exited 1 on UI_IDLE_NOT_OBTAINED; real service finally ended that call; followup script exited 0",
+      "No new revocation timing or successful-media-token JWT reentry test; prior accepted evidence is reused"
+    ]
+  },
+  "testsBuild": {
+    "tests": {
+      "pcm-red": {
+        "exit": 1,
+        "elapsedSeconds": 24.96899999998277,
+        "processExitConfirmed": true,
+        "stdoutSha256": "1933bafb90c339225376629bb721bb9425c69b626f7abcae8f9478715d151112",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lastSummary": "00:00 +1 -5: Some tests failed.",
+        "meaning": "Original real SDK: 1 passed / 5 failed; ConcurrentModificationError reproduced; original log retained"
+      },
+      "pcm-green": {
+        "exit": 0,
+        "elapsedSeconds": 2.75,
+        "processExitConfirmed": true,
+        "stdoutSha256": "a2c92aedf5d3fa2b01c5d44605ad0d20e457ecb48359f15302f16ec235d7fd4e",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lastSummary": "00:00 +6: All tests passed!"
+      },
+      "pcm-green-expanded": {
+        "exit": 0,
+        "elapsedSeconds": 2.6410000000032596,
+        "processExitConfirmed": true,
+        "stdoutSha256": "c99ae2ac61648a405bed00e1a6f3463b8534574df16956c562c496a6cb953605",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lastSummary": "00:00 +8: All tests passed!"
+      },
+      "rtc-regression": {
+        "exit": 0,
+        "elapsedSeconds": 7.1560000000172295,
+        "processExitConfirmed": true,
+        "stdoutSha256": "6a5802bbd7da0a50a1fae3296b9f491e142775d6e2a1e86745d7af92a6a0675c",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lastSummary": "00:02 +40: All tests passed!"
+      },
+      "final48": {
+        "exit": 0,
+        "elapsedSeconds": 26.42200000002049,
+        "processExitConfirmed": true,
+        "stdoutSha256": "b0eaad7aea6c352e73bf59e49f97995467513ddf9e78957405320b139a208153",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "lastSummary": "00:04 +48: All tests passed!",
+        "meaning": "48 total related cases, including the eight PCM boundaries; previous intermediate counts are not additional unique cases"
+      },
+      "analyzer": {
+        "exit": 0,
+        "result": "No issues found",
+        "stdoutSha256": "07407880163f0d1a53a15f3c9906b3a9dab2631bd96c60bd7d07e9ac14ce680b",
+        "earlierUnnecessaryImportInfo": "REMOVED_NO_BEHAVIOR_CHANGE"
+      }
+    },
+    "builds": {
+      "build": {
+        "exit": 0,
+        "elapsedSeconds": 335.56300000002375,
+        "processExitConfirmed": true,
+        "bytes": 405007373,
+        "sha256": "e52ee8ffac5ad0cf824a2ab6c02fee79aa29c91544fba5e6166c24045b5e27ba",
+        "ordinaryR1MainDart": true,
+        "iceDiagnostic": false,
+        "offlineDependencyResolution": true,
+        "processTreeNoNetwork": "NOT_PROVEN"
+      },
+      "final-build": {
+        "exit": 0,
+        "elapsedSeconds": 197.95300000003772,
+        "processExitConfirmed": true,
+        "bytes": 416357439,
+        "sha256": "83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678",
+        "ordinaryR1MainDart": true,
+        "iceDiagnostic": false,
+        "offlineDependencyResolution": true,
+        "processTreeNoNetwork": "NOT_PROVEN",
+        "ordinaryCommand": ":app:assembleDebug --offline --console=plain --no-daemon --max-workers=2; current R1 main.dart defines; auto-download=false"
+      }
+    },
+    "firstJourneyHarnessExit": 1,
+    "firstJourneyFailure": "UI_IDLE_NOT_OBTAINED; finally real service end; no PASS assigned",
+    "followupJourneyExit": 0
+  },
+  "runtime": {
+    "closure": {
+      "ownedProcessesStopped": [
+        {
+          "label": "api",
+          "identityVerified": true,
+          "exitConfirmed": true
+        },
+        {
+          "label": "ws",
+          "identityVerified": true,
+          "exitConfirmed": true
+        },
+        {
+          "label": "authority",
+          "identityVerified": true,
+          "exitConfirmed": true
+        },
+        {
+          "label": "bridge",
+          "identityVerified": true,
+          "exitConfirmed": true
+        }
+      ],
+      "phoneAppProcessAbsent": true,
+      "activeCalls": 0,
+      "activeTestSessionFamilies": 0,
+      "testAccessTokens": 0,
+      "sfUStopped": true,
+      "ownedDatabaseStopped": true,
+      "volumeAndContainersRetained": true,
+      "backupBefore": {
+        "label": "device-owned-before-restart",
+        "exit": 0,
+        "elapsedSeconds": 0.34399999998277053,
+        "bytes": 155947,
+        "sha256": "c1672bac03e1a982068df3f70401a5a91d19c64a279f72fd84440aef30b767dc"
+      },
+      "backupFinal": {
+        "label": "device-owned-final",
+        "exit": 0,
+        "elapsedSeconds": 0.3279999999795109,
+        "bytes": 155947,
+        "sha256": "6926afa77402b23446d929b173fe989fe63c0d8a504dcf0442b32d5ae761516d"
+      },
+      "twelveTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
+      "sameDeviceMessageCountAfterRestart": 0,
+      "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
+      "ownedGradleStopExit": 0,
+      "appKeptInstalled": true,
+      "otherAppsAndOldAssetsUntouched": true,
+      "globalAdbAndDockerDaemonsKept": true,
+      "utc": "2026-10-25T09:38:13.620799+00:00"
+    },
+    "protection": {
+      "protectedFileCount": 24005,
+      "allNamedProtectedFilesUnchanged": true,
+      "changedNamedFiles": [],
+      "historicalRoots": 5,
+      "historicalRootsUnchanged": true,
+      "oldRefCount": 520,
+      "protectedOldRefsUnchanged": true,
+      "refDrift": [],
+      "ownCandidateRefsExcluded": [
+        "refs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+        "refs/remotes/origin/codex/v10.1.5-source-faithful-serializer-conditional-sdk"
+      ],
+      "scope": "Named historical files and five root identities, not whole-disk byte audit"
+    },
+    "noNewGate2Budget": true,
+    "writerSerializerCalls": 0,
+    "full37Cases": "NOT_RUN",
+    "conditionalSandboxSdkProducerLibsJarAnd30Resolves": "NOT_RUN"
+  },
+  "gate2": {
+    "newBudget": false,
+    "newStarts": 0,
+    "writerCalls": 0,
+    "serializerCalls": 0,
+    "historicalStarts": [
+      {
+        "kind": "WinPS_POLICY_REJECTED",
+        "elapsedSeconds": 0.375,
+        "budget": "CONSUMED",
+        "writer": "NOT_RUN"
+      },
+      {
+        "kind": "PS7_TYPELOAD_START_FAILURE",
+        "elapsedSeconds": 0.39,
+        "budget": "CONSUMED",
+        "writer": "NOT_RUN"
+      }
+    ],
+    "D0_A": {
+      "serializeCalls": 15,
+      "elapsedSecondsApprox": 0.688,
+      "notRepeated": true
+    },
+    "full37Suite": "NOT_RUN",
+    "conditionalSandboxSdkProducerLibsJarAnd30ConfigurationResolves": "NOT_RUN"
+  },
+  "reusedEvidence": {
+    "priorAcceptedMediaReviewBlob": "221809532229947ae298ca76f84bd98690c94bfa",
+    "priorAcceptedUsbReviewBlob": "ca03fefe53946784adba0fd94f80507fee656fd1",
+    "priorMediaSourceCommit": "80f6292a2c3726716ab82152f36428812f23058f",
+    "revocationNativeBoundSeconds": 0.79,
+    "newRevocationTimingTest": false,
+    "messageMediaNotificationRetentionAndBackendEvidence": "REUSED_AT_ORIGINAL_IDENTITIES_NOT_NEW_FINAL_APK_EXECUTION"
+  },
+  "nonAuthorReview": {
+    "status": "NO_NEW_BLOCKING_FINDINGS_STATIC",
+    "reviewer": "independent_non_author_code_review_helper",
+    "scope": "PCM cleanup patch, application path dependency and lock, eight real-SDK boundary tests, build fingerprint and task inputs",
+    "execution": "READ_ONLY_NO_TEST_BUILD_OR_DEVICE_EXECUTION",
+    "closedFindings": [
+      "Apache 2 section 4(b): each changed upstream file now carries an EliteSync modification notice; original license headers retained.",
+      "README now distinguishes omitted Dart tests/examples from retained native platform tests."
+    ],
+    "findings": [
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+        "lines": "91-128,171-181",
+        "conclusion": "Synchronous map ownership transfer, identity-checked old cancellation, memoized per-group stop, track-level wait for all pending cleanup; errors propagated after all operations settle."
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart",
+        "lines": "138-328",
+        "conclusion": "Real RemoteAudioTrack grouping/subscriptions/cancel paths; only native channel transport replaced; eight boundary cases."
+      },
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "lines": "203-210,250-254",
+        "conclusion": "Dependency lock and vendored source covered by stable relative-path digest and Gradle task inputs."
+      }
+    ],
+    "limitations": [
+      "Not Astra acceptance",
+      "Reviewer did not independently verify all 297 original vendored file bytes",
+      "Existing native start/stop exception handling unchanged; platform failure recovery is not proven"
+    ],
+    "sha256": {
+      "apps/flutter_elitesync_module/third_party/livekit_client/README.elitesync.md": "cc5bed4eecab1e783c00aa127364fd4c31c6b27767e3c39a17fab30bc59803b9",
+      "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf",
+      "apps/flutter_elitesync_module/third_party/livekit_client/UPSTREAM_FILES.sha256": "3837abe3de8dc8356eec929558ea575ce5c85b34cf96fa9737946a8557b90a64",
+      "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+      "apps/flutter_elitesync_module/third_party/livekit_client/pubspec.yaml": "913a08ac25abbac435b9c9d4738f42e3a85d01e7f1fecb1467a49367c6b01c0d",
+      "apps/flutter_elitesync_module/pubspec.yaml": "e562611d1960353fa625b2a39a58a5b37017d9ef232a62de0e870249b8c3172e",
+      "apps/flutter_elitesync_module/pubspec.lock": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
+      "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
+      "apps/android/app/build.gradle.kts": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb"
+    },
+    "deliveryEvidenceCrossCheck": {
+      "status": "NO_NEW_BLOCKING_CONTRADICTIONS_IN_FIVE_SANITIZED_FILES",
+      "files": [
+        "README.md",
+        "device-evidence.json",
+        "tests-build.json",
+        "closure-protection.json",
+        "source-reference.json"
+      ],
+      "firstJourneyExit1Preserved": true,
+      "realDeviceAndMockTransportSeparated": true,
+      "priorRevocationAndAECBoundariesExplicit": true,
+      "rawEvidenceNotIndependentlyReadOrRerun": true,
+      "clarification": "Removed obsolete raw-journey native-extraction phase flag only from public projection; raw receipt unchanged"
+    }
+  },
+  "reviewBranch": {
+    "branch": "codex/v10.1.5-pcm-cleanup-review-20261025",
+    "commit": "d2ff4693000c774f50d09eee5396d7b7a6bbc4f8",
+    "parent": "b1efcfb5f13dd78279f4aafbdb78424037595aac",
+    "sourceCommit": "1f9d1483268e957f7184625483ff6406071c1867",
+    "root": "2b0b49595af683e4442809304fb8e277bbb6d8aa",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/APP_WIRING.diff",
+        "blob": "4e28ace6bed0e443adfbcefbaf7f60e6536df331",
+        "mode": "100644",
+        "bytes": 2656,
+        "sha256": "a9a23c2186b8d6d6ba2ca0130b8f42d1352067766ad461b2e619d82562a46c46"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/closure-protection.json",
+        "blob": "9286e27a80bb76bd60b2a68aadc7b42c90deefe7",
+        "mode": "100644",
+        "bytes": 2271,
+        "sha256": "92e8fe9c2bc9824162e98c8af881b0417c431234c8f074542c2c96638dab4aeb"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/device-evidence.json",
+        "blob": "a640be83d72e743a5f689ce7f7f23d89350d6cb4",
+        "mode": "100644",
+        "bytes": 6487,
+        "sha256": "b80c297dfc80b11289d047b8acbb3d24635037bbc845b03bcc0c2904f5c2d013"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/local-evidence-index.json",
+        "blob": "7a767c4e810c442623871a0f046fe40e63856980",
+        "mode": "100644",
+        "bytes": 2873,
+        "sha256": "b5eca557edb1b7e7ffc6aa4cc95f9545d7b36bbdb8bf31ae8e51bbef09e9b09f"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/non-author-review.json",
+        "blob": "78250beb13a5308088f56087daee588b09db31ee",
+        "mode": "100644",
+        "bytes": 3599,
+        "sha256": "56d00e1a60723ee7389415b6aa028f9d98070388c0d5e777d544c713ef464d12"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/PCM_UPSTREAM_PATCH.diff",
+        "blob": "6d69607c6507c20ea8f861501c800ce5651883e6",
+        "mode": "100644",
+        "bytes": 3295,
+        "sha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/README.md",
+        "blob": "b862df169d1f57d0c0684ac88b02800a3c485dd9",
+        "mode": "100644",
+        "bytes": 1647,
+        "sha256": "eb13c1dcc8b8902175fd4d1490c5a552f4325efbb104d7612cd03ff324c163b7"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/source-reference.json",
+        "blob": "ba2607345aac904ba19b2260565b69e6deec8347",
+        "mode": "100644",
+        "bytes": 5264,
+        "sha256": "1a7165f2a67cc133bbe279b95c037299a4ce85e7eda99803ae86fd1636c07b95"
+      },
+      {
+        "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/tests-build.json",
+        "blob": "3647e5c636626060bd0eaf1a9e62c22ae61c6ca4",
+        "mode": "100644",
+        "bytes": 3374,
+        "sha256": "b5fb1c6d0591779361ddf391dc9b5f746f285dd83ab8da6ed749c989b8a16256"
+      }
+    ],
+    "force": false,
+    "initialReviewCommitPreserved": "b1efcfb5f13dd78279f4aafbdb78424037595aac",
+    "remoteReadback": {
+      "commitParentRootMatched": true,
+      "fileCount": 9,
+      "allFileBlobAndRawBytesMatched": true,
+      "files": [
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/APP_WIRING.diff",
+          "blob": "4e28ace6bed0e443adfbcefbaf7f60e6536df331",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/closure-protection.json",
+          "blob": "9286e27a80bb76bd60b2a68aadc7b42c90deefe7",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/device-evidence.json",
+          "blob": "a640be83d72e743a5f689ce7f7f23d89350d6cb4",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/local-evidence-index.json",
+          "blob": "7a767c4e810c442623871a0f046fe40e63856980",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/non-author-review.json",
+          "blob": "78250beb13a5308088f56087daee588b09db31ee",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/PCM_UPSTREAM_PATCH.diff",
+          "blob": "6d69607c6507c20ea8f861501c800ce5651883e6",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/README.md",
+          "blob": "b862df169d1f57d0c0684ac88b02800a3c485dd9",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/source-reference.json",
+          "blob": "ba2607345aac904ba19b2260565b69e6deec8347",
+          "bytesAndHashMatched": true
+        },
+        {
+          "path": "docs/_temporary_review/v1015-pcm-cleanup-20261025/tests-build.json",
+          "blob": "3647e5c636626060bd0eaf1a9e62c22ae61c6ca4",
+          "bytesAndHashMatched": true
+        }
+      ]
+    }
+  },
+  "report": {
+    "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
+    "bytes": 91517,
+    "sha256": "d539cd5a855981c081e7913734736cac7d41561f8ad7e48fdaf79198a89ca42c",
+    "priorPrefixBytes": 78699,
+    "priorPrefixSha256": "9661e387b4dcabf5793c25f8a0136f6f988a7c8448ec4ae2360c21f841395307",
+    "priorPrefixPreserved": true
+  },
+  "localOnly": {
+    "rootLabel": "v1015-pcm-cleanup-continuation-20261025",
+    "files": [
+      {
+        "localLabel": "pcm-red.stdout.txt",
+        "bytes": 3860,
+        "sha256": "1933bafb90c339225376629bb721bb9425c69b626f7abcae8f9478715d151112",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "pcm-red.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "final48.stdout.txt",
+        "bytes": 14258,
+        "sha256": "b0eaad7aea6c352e73bf59e49f97995467513ddf9e78957405320b139a208153",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "final48.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "analyze-final.txt",
+        "bytes": 78,
+        "sha256": "07407880163f0d1a53a15f3c9906b3a9dab2631bd96c60bd7d07e9ac14ce680b",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "final-build.stdout.txt",
+        "bytes": 48937,
+        "sha256": "dd1c2066d5ff66d3219a6d9407e2f1177502f35b2cfdd47b9c72e414a817421a",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "final-build.stderr.txt",
+        "bytes": 1632,
+        "sha256": "4a3e179f30ce70cf42ea315ee6d347a41e27eb2ac33b16de023d4fb17a89aea0",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "final-build-source-pins.json",
+        "bytes": 227530,
+        "sha256": "534fdbe0a754dfe4a899dd363086516035be6b15c52c7f277b57e90550ab3e30",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "pcm-device-journey.console.txt",
+        "bytes": 3466,
+        "sha256": "cff6e67ea32357e0c5831a14bf159f96608d21bd501551fa502cc11606c5a512",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "pcm-followup.console.txt",
+        "bytes": 2105,
+        "sha256": "dc60f95bfdf753217260df6f2ac5f3ebc917b277ce64abe9ca4bd930f4328101",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "pcm-final-process-log.stdout.txt",
+        "bytes": 551602,
+        "sha256": "a71a2e080a01d1e91e0c737c89f62028c51a3795abf9a149c0da3339f5e9d5cc",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "device-owned-final.sql",
+        "bytes": 155947,
+        "sha256": "6926afa77402b23446d929b173fe989fe63c0d8a504dcf0442b32d5ae761516d",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "post-build-input-verification.json",
+        "bytes": 4038,
+        "sha256": "b621d580500ff5bc243052e69ecf95c9d32717767f5776ababe192fb17d31afd",
+        "rawPublished": false
+      },
+      {
+        "localLabel": "runtime-final.json",
+        "bytes": 1667,
+        "sha256": "e1eba6baf7475333d65c2705347dcb5b80d64673eee361583b11a2e61a4f6453",
+        "rawPublished": false
+      }
+    ],
+    "rawPrivacy": "APK, SQL, credentials, serial, full device/UI/media logs remain LOCAL_ONLY"
+  },
+  "terminalFlags": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "SDK_CLEANUP_REPAIR_CANDIDATE_AWAITING_ASTRA",
+    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+    "NO_MAIN_PRODUCT_INTEGRATION",
+    "V10.1.6_NOT_STARTED",
+    "REAL_PUSH_PROVIDER_PENDING"
+  ],
+  "candidateSelfIdentity": "Final immutable GitHub readback binds the documentation commit, parent, root, blobs and original bytes; not self-referenced here.",
+  "previousDelivery": {
+    "version": "10.1.5",
+    "delivery": "20261025-ice-loopback-media-continuation",
+    "status": "PARTIAL / OPEN_OBSERVATIONS / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
+    "authority": {
+      "taskPath": "docs/versions/v10.1.5/task_order.md",
+      "taskBlob": "43b2396b2fba046d5c0ab00bea87293783d1c2fd",
+      "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "activeStateBlob": "5867eb97b59d97bd60490cc77fb07e2838888d27",
+      "priorAstraUsbReviewBlob": "ca03fefe53946784adba0fd94f80507fee656fd1",
+      "liveMain": "bee04025237ea099b2b274d06a12cfa2bab5b5e1",
+      "liveMainRoot": "683d8fe2268adbeca05da0ce31224b67d042223c",
+      "ownerAdditionalAuthorization": "One task-owned SFU rtc.interfaces.includes eth0 experiment; direct human reply in current session"
+    },
     "source": {
       "commit": "80f6292a2c3726716ab82152f36428812f23058f",
       "parent": "08df5042378a5887f36e9a1033ff654d993cc38a",
@@ -125,147 +908,331 @@
       "apps": "a0ca61faf9e1264f7ae4b638c78ebeae257ea002",
       "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
       "allTrackedAppsFilesMatched": 735,
-      "pinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311"
-    },
-    "evidenceOwnership": "CODEX_REPORTED / DEVICE_NEW_RUN / SYNTHETIC_PC_PEER_TEST_ONLY",
-    "apk": {
-      "sha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
-      "bytes": 416357439,
-      "elapsedSeconds": 198.329000000027,
-      "exit": 0,
-      "processExitConfirmed": true
-    },
-    "installed": {
-      "package": "com.elitesync.v1015r1dev",
-      "versionCode": 1010511,
-      "versionName": "10.1.5-r1-dev",
-      "buildSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
-      "installedReadbackSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
-      "byteIdentityMatched": true,
-      "signerMatched": true,
-      "dataPreserved": true,
-      "sourceCommit": "80f6292a2c3726716ab82152f36428812f23058f"
-    },
-    "device": {
-      "model": "Xiaomi 25060RK16C",
-      "android": 16,
-      "api": 36,
-      "abi": "arm64-v8a",
-      "serial": "NOT_PUBLISHED"
-    },
-    "callId": 10,
-    "sameCallFreshJoinInfoCount": 2,
-    "afterManualReconnectRtp": {
-      "inbound_audio": {
-        "firstBatch": {
-          "epoch": 1792916699.591,
-          "bytesSum": 20192,
-          "packetsSum": 224,
-          "reports": 1,
-          "firstRawLine": 2493,
-          "lastRawLine": 2493,
-          "framesDecodedSum": 0
-        },
-        "lastBatch": {
-          "epoch": 1792916763.561,
-          "bytesSum": 302552,
-          "packetsSum": 3421,
-          "reports": 1,
-          "firstRawLine": 3248,
-          "lastRawLine": 3248,
-          "framesDecodedSum": 0
-        },
-        "batches": 17,
-        "separatedInTimeAndCounterSumGrew": true
-      },
-      "outbound_audio": {
-        "firstBatch": {
-          "epoch": 1792916699.557,
-          "bytesSum": 18462,
-          "packetsSum": 168,
-          "reports": 1,
-          "firstRawLine": 2486,
-          "lastRawLine": 2486,
-          "framesDecodedSum": 0
-        },
-        "lastBatch": {
-          "epoch": 1792916763.539,
-          "bytesSum": 356708,
-          "packetsSum": 3093,
-          "reports": 1,
-          "firstRawLine": 3243,
-          "lastRawLine": 3243,
-          "framesDecodedSum": 0
-        },
-        "batches": 17,
-        "separatedInTimeAndCounterSumGrew": true
-      },
-      "inbound_video": {
-        "firstBatch": {
-          "epoch": 1792916699.591,
-          "bytesSum": 417259,
-          "packetsSum": 406,
-          "reports": 1,
-          "firstRawLine": 2494,
-          "lastRawLine": 2494,
-          "framesDecodedSum": 90
-        },
-        "lastBatch": {
-          "epoch": 1792916763.561,
-          "bytesSum": 6422343,
-          "packetsSum": 6187,
-          "reports": 1,
-          "firstRawLine": 3249,
-          "lastRawLine": 3249,
-          "framesDecodedSum": 1369
-        },
-        "batches": 17,
-        "separatedInTimeAndCounterSumGrew": true
-      },
-      "outbound_video": {
-        "firstBatch": {
-          "epoch": 1792916699.557,
-          "bytesSum": 1036651,
-          "packetsSum": 1068,
-          "reports": 3,
-          "firstRawLine": 2487,
-          "lastRawLine": 2489,
-          "framesDecodedSum": 0
-        },
-        "lastBatch": {
-          "epoch": 1792916763.539,
-          "bytesSum": 19498097,
-          "packetsSum": 19047,
-          "reports": 3,
-          "firstRawLine": 3244,
-          "lastRawLine": 3246,
-          "framesDecodedSum": 0
-        },
-        "batches": 17,
-        "separatedInTimeAndCounterSumGrew": true
-      }
-    },
-    "outboundVideoCounters": "Per-poll sums of reported video RTP streams establish a temporal trend; not a claim of exact on-wire byte accounting.",
-    "sameCallReconnect": "SUPPORTED_REAL_DEVICE_MANUAL_RECONNECT_AFTER_TASK_OWNED_SFU_RESTART",
-    "micCameraToggle": "Actual remote muted/unmuted tracks verified on earlier call4 / APK8a11; unchanged toggle code reused, not rerun on final APK.",
-    "background": "Call4 lifecycle deliberately disabled microphone/camera on pause; not an automatic background capture/resume PASS.",
-    "revocation": {
-      "callId": 10,
-      "path": "EXACT_OWNED_SYNTHETIC_FIXTURE_REAL_CONSENT_SERVICE",
-      "consentStates": [
-        "MC_REVOKED",
-        "MC_REVOKED"
+      "pinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311",
+      "implementationCommits": [
+        "08df5042378a5887f36e9a1033ff654d993cc38a",
+        "80f6292a2c3726716ab82152f36428812f23058f"
       ],
-      "newPhoneLeaveCompleteObserved": true,
-      "observedStopUpperBoundSecondsFromBeforeTransition": 0.7900035381317139,
-      "fromCommit": "Conservative bound from before real transition; COMMIT occurs inside this interval, not directly instrumented",
-      "peerConnectionAfterRevoke": "disconnected",
-      "priorFlowingMedia": "Same final APK call10, bidirectional RTP after fresh manual reconnect",
-      "physicalLastAudibleWaveformStop": "NOT_MEASURED",
-      "oldJwtHandshake": "NOT_RUN_THIS_SCENARIO; prior accepted negative reused",
-      "rejectedCombinedScriptReplayed": false,
-      "leaveReceiptWithin5Seconds": true,
-      "nativeAssessment": {
+      "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+      "productSourceChangedThisContinuation": true,
+      "changedProductPaths": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+          "sha256": "8be42f0b2d36e01f6e9a1b7c4473bace2caa8dfcab068f0b38422be3b60b019f"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+          "sha256": "debf215a19dcf3c2f7724c6cb7885f7d175b0701e65c8e71497406a76b3d6aab"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
+          "sha256": "dde7ee3e5781e0f9a12eb5373ffb77f44db44f0047efbfffa8148697f9fb55da"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart",
+          "sha256": "254d6190422d66d54ea56a2a804c51f921c8856eda68f53bd55db71cd3edeab6"
+        }
+      ],
+      "actualBuildCopyMatchesSource": true,
+      "acceptedProductBaseline": "v10.1.4",
+      "acceptedMainApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+      "acceptedMainServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+    },
+    "acResults": [
+      {
+        "ac": "AC-10.1.5-01",
+        "status": "SUPPORTED_BOUNDED_PROTECTION",
+        "evidenceClass": "NEW_READONLY",
+        "detail": "New empty owned DB/volume, selectors,735 source pins,22482 named protected files,five roots,519 prior refs protected items unchanged."
+      },
+      {
+        "ac": "AC-10.1.5-02",
+        "status": "SUPPORTED_MESSAGES_WITH_REUSE",
+        "evidenceClass": "DEVICE_NEW_RUN_AND_REUSED_ACCEPTED_USB_TEXT",
+        "detail": "Image/video each one confirmed row. Prior text/idempotency/timeout/retry remains reused; no new final-APK text journey."
+      },
+      {
+        "ac": "AC-10.1.5-03",
+        "status": "SUPPORTED_BOUNDED_REVOKE_AND_REUSED_AUTH_NEGATIVES",
+        "evidenceClass": "NEW_SERVICE_FIXTURE_AND_REUSED_SECURITY",
+        "detail": "Call10 current join/private full/Range404 after actual product consent service. Prior accepted old-JWT handshake negative reused; successful call10 JWT handshake NOT_RUN."
+      },
+      {
+        "ac": "AC-10.1.5-04",
+        "status": "SUPPORTED_DEVICE_PICKER_PLAYER_RANGE_WITH_BINARY_LIMITS",
+        "evidenceClass": "CURRENT_TASK_INTERMEDIATE_APK_REUSED_UNCHANGED_MEDIA_CODE",
+        "detail": "8a11 image,picker-transcoded blue JPEG;f26b exact H264 video/read/player;finalcbe8 differs only RTC files. Not relabeled final-APK media journey."
+      },
+      {
+        "ac": "AC-10.1.5-05",
+        "status": "PARTIAL_MEDIA_NOW_SUPPORTED_AC05_OPEN",
+        "evidenceClass": "FINAL_APK_DEVICE_NEW_RUN",
+        "detail": "Call10 fresh manual same-call join,17 batches64s four RTP directions,video decode,native close/audio stop/camera release observed by0.790s host receipt. Tone heard/stopped same call. AEC/speech quality and SDK cleanup observation remain open."
+      },
+      {
+        "ac": "AC-10.1.5-06",
+        "status": "REUSED_T0_BOUNDARIES_WITH_LIMITS",
+        "evidenceClass": "REUSED_EVIDENCE_AND_NEW_LOGIN",
+        "detail": "Actual login new; prior boundary tests reused. Physical15/30-day elapsed time NOT_RUN."
+      },
+      {
+        "ac": "AC-10.1.5-07",
+        "status": "SUPPORTED_COLD_ENTRY_WITH_REUSED_RETENTION",
+        "evidenceClass": "NEW_FINAL_APK_FIRST_LAUNCH_AND_REUSED_RETENTION",
+        "detail": "Final cbe8 update launch requires login; prior ciphertext/controlled30-day purge reused. Not physical15-30-day offline read proof."
+      },
+      {
+        "ac": "AC-10.1.5-08",
+        "status": "SUPPORTED_NATIVE_PERMISSION_DECLINE_WITH_REUSE",
+        "evidenceClass": "DEVICE_NEW_RUN_ON_8A11_AND_REUSED_PREFS",
+        "detail": "Native decline,OS false,core app usable; prior preference/revoke evidence reused. Stale card click NOT_RUN_NO_CURRENT_READABLE_CARD."
+      },
+      {
+        "ac": "AC-10.1.5-09",
+        "status": "REAL_PUSH_PROVIDER_PENDING",
+        "evidenceClass": "REUSED_TEST_ONLY_REAL_PUSH_NOT_RUN",
+        "detail": "Existing transport/token seam only; no approved real supplier."
+      },
+      {
+        "ac": "AC-10.1.5-10",
+        "status": "SUPPORTED_BUILD_MEDIA_PERSISTENCE_WITH_OPEN_GATES",
+        "evidenceClass": "NEW_BUILD_DEVICE_DB_AND_REUSED_BACKEND",
+        "detail": "Final build/install/pull same bytes;40 Flutter tests and targeted Dart analysis;12 owned DB table snapshots equal after restart. Prior backend tests reused;Gate2 dependencies NOT_RUN."
+      },
+      {
+        "ac": "AC-10.1.5-11",
+        "status": "CONSOLIDATED_PARTIAL_CANDIDATE_AWAITING_ASTRA",
+        "evidenceClass": "SOURCE_AND_EVIDENCE_STATIC_REVIEW",
+        "detail": "Two-source-commit chain,one appended report,one manifest,ten-file minimal reviewed branch;ordinary non-force candidate publication and remote byte readback. No self-accept/main/v10.1.6."
+      }
+    ],
+    "deviceNewRun": {
+      "source": {
+        "commit": "80f6292a2c3726716ab82152f36428812f23058f",
+        "parent": "08df5042378a5887f36e9a1033ff654d993cc38a",
+        "root": "5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2",
+        "apps": "a0ca61faf9e1264f7ae4b638c78ebeae257ea002",
+        "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+        "allTrackedAppsFilesMatched": 735,
+        "pinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311"
+      },
+      "evidenceOwnership": "CODEX_REPORTED / DEVICE_NEW_RUN / SYNTHETIC_PC_PEER_TEST_ONLY",
+      "apk": {
+        "sha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+        "bytes": 416357439,
+        "elapsedSeconds": 198.329000000027,
+        "exit": 0,
+        "processExitConfirmed": true
+      },
+      "installed": {
+        "package": "com.elitesync.v1015r1dev",
+        "versionCode": 1010511,
+        "versionName": "10.1.5-r1-dev",
+        "buildSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+        "installedReadbackSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+        "byteIdentityMatched": true,
+        "signerMatched": true,
+        "dataPreserved": true,
+        "sourceCommit": "80f6292a2c3726716ab82152f36428812f23058f"
+      },
+      "device": {
+        "model": "Xiaomi 25060RK16C",
+        "android": 16,
+        "api": 36,
+        "abi": "arm64-v8a",
+        "serial": "NOT_PUBLISHED"
+      },
+      "callId": 10,
+      "sameCallFreshJoinInfoCount": 2,
+      "afterManualReconnectRtp": {
+        "inbound_audio": {
+          "firstBatch": {
+            "epoch": 1792916699.591,
+            "bytesSum": 20192,
+            "packetsSum": 224,
+            "reports": 1,
+            "firstRawLine": 2493,
+            "lastRawLine": 2493,
+            "framesDecodedSum": 0
+          },
+          "lastBatch": {
+            "epoch": 1792916763.561,
+            "bytesSum": 302552,
+            "packetsSum": 3421,
+            "reports": 1,
+            "firstRawLine": 3248,
+            "lastRawLine": 3248,
+            "framesDecodedSum": 0
+          },
+          "batches": 17,
+          "separatedInTimeAndCounterSumGrew": true
+        },
+        "outbound_audio": {
+          "firstBatch": {
+            "epoch": 1792916699.557,
+            "bytesSum": 18462,
+            "packetsSum": 168,
+            "reports": 1,
+            "firstRawLine": 2486,
+            "lastRawLine": 2486,
+            "framesDecodedSum": 0
+          },
+          "lastBatch": {
+            "epoch": 1792916763.539,
+            "bytesSum": 356708,
+            "packetsSum": 3093,
+            "reports": 1,
+            "firstRawLine": 3243,
+            "lastRawLine": 3243,
+            "framesDecodedSum": 0
+          },
+          "batches": 17,
+          "separatedInTimeAndCounterSumGrew": true
+        },
+        "inbound_video": {
+          "firstBatch": {
+            "epoch": 1792916699.591,
+            "bytesSum": 417259,
+            "packetsSum": 406,
+            "reports": 1,
+            "firstRawLine": 2494,
+            "lastRawLine": 2494,
+            "framesDecodedSum": 90
+          },
+          "lastBatch": {
+            "epoch": 1792916763.561,
+            "bytesSum": 6422343,
+            "packetsSum": 6187,
+            "reports": 1,
+            "firstRawLine": 3249,
+            "lastRawLine": 3249,
+            "framesDecodedSum": 1369
+          },
+          "batches": 17,
+          "separatedInTimeAndCounterSumGrew": true
+        },
+        "outbound_video": {
+          "firstBatch": {
+            "epoch": 1792916699.557,
+            "bytesSum": 1036651,
+            "packetsSum": 1068,
+            "reports": 3,
+            "firstRawLine": 2487,
+            "lastRawLine": 2489,
+            "framesDecodedSum": 0
+          },
+          "lastBatch": {
+            "epoch": 1792916763.539,
+            "bytesSum": 19498097,
+            "packetsSum": 19047,
+            "reports": 3,
+            "firstRawLine": 3244,
+            "lastRawLine": 3246,
+            "framesDecodedSum": 0
+          },
+          "batches": 17,
+          "separatedInTimeAndCounterSumGrew": true
+        }
+      },
+      "outboundVideoCounters": "Per-poll sums of reported video RTP streams establish a temporal trend; not a claim of exact on-wire byte accounting.",
+      "sameCallReconnect": "SUPPORTED_REAL_DEVICE_MANUAL_RECONNECT_AFTER_TASK_OWNED_SFU_RESTART",
+      "micCameraToggle": "Actual remote muted/unmuted tracks verified on earlier call4 / APK8a11; unchanged toggle code reused, not rerun on final APK.",
+      "background": "Call4 lifecycle deliberately disabled microphone/camera on pause; not an automatic background capture/resume PASS.",
+      "revocation": {
+        "callId": 10,
+        "path": "EXACT_OWNED_SYNTHETIC_FIXTURE_REAL_CONSENT_SERVICE",
+        "consentStates": [
+          "MC_REVOKED",
+          "MC_REVOKED"
+        ],
+        "newPhoneLeaveCompleteObserved": true,
+        "observedStopUpperBoundSecondsFromBeforeTransition": 0.7900035381317139,
+        "fromCommit": "Conservative bound from before real transition; COMMIT occurs inside this interval, not directly instrumented",
+        "peerConnectionAfterRevoke": "disconnected",
+        "priorFlowingMedia": "Same final APK call10, bidirectional RTP after fresh manual reconnect",
+        "physicalLastAudibleWaveformStop": "NOT_MEASURED",
+        "oldJwtHandshake": "NOT_RUN_THIS_SCENARIO; prior accepted negative reused",
+        "rejectedCombinedScriptReplayed": false,
+        "leaveReceiptWithin5Seconds": true,
+        "nativeAssessment": {
+          "callId": 10,
+          "source": "New exact-app-PID native events in after snapshot, absent from before snapshot; both raw files hashed in index",
+          "nativeEvents": {
+            "peerConnectionClosed": [
+              {
+                "rawLine": 3274,
+                "deviceEpoch": 1792916765.73,
+                "event": "peerConnectionClosed"
+              },
+              {
+                "rawLine": 3287,
+                "deviceEpoch": 1792916765.916,
+                "event": "peerConnectionClosed"
+              }
+            ],
+            "audioRecordingStopDone": [
+              {
+                "rawLine": 3278,
+                "deviceEpoch": 1792916765.865,
+                "event": "audioRecordingStopDone"
+              }
+            ],
+            "audioPlaybackStopDone": [
+              {
+                "rawLine": 3292,
+                "deviceEpoch": 1792916765.929,
+                "event": "audioPlaybackStopDone"
+              }
+            ],
+            "cameraDeviceReleased": [
+              {
+                "rawLine": 3303,
+                "deviceEpoch": 1792916765.938,
+                "event": "cameraDeviceReleased"
+              }
+            ]
+          },
+          "upperBoundSecondsFromBeforeRealTransitionToSnapshotReceipt": 0.7900035381317139,
+          "allEventsObservedByThatHostReceipt": true,
+          "mediaTransportAndAudioCameraStopObservedWithin5Seconds": true,
+          "peerState": "disconnected",
+          "roomDisposeOverallReturnSuccess": "NOT_INDEPENDENTLY_PROVEN; leave_complete is best-effort and cannot alone prove cleanup success",
+          "supersedes": "Original derived phoneNativeTeardownObservedWithin5Seconds boolean was too broad if based only on leave_complete; raw original receipt retained, assessment adds independent native event predicates.",
+          "execution": "Existing evidence read only; no new test, app run or service restart."
+        }
+      },
+      "humanFeedback": {
+        "callId": 10,
+        "source": "Direct user reply in same chat",
+        "heardSyntheticToneAfterReconnect": true,
+        "toneStoppedAfterTestEnded": true,
+        "stopSecondsFromHuman": "NOT_MEASURED",
+        "AECOrVoiceQuality": "NOT_PROVEN",
+        "notStitchedToCall4": true
+      },
+      "remainingSdkObservation": {
+        "type": "ConcurrentModificationError during SDK remote PCM capture cleanup",
+        "countInFinalPhonePid": 1,
+        "rawLines": [
+          2182
+        ],
+        "freshMediaAndTeardownStillObserved": true,
+        "sharedSdkModified": false
+      },
+      "aecAndSpeechQuality": "NOT_RUN / NOT_PROVEN; tone audibility is not AEC or speech intelligibility."
+    },
+    "transport": {
+      "ownerApprovedInterfaceFilter": {
+        "rtc.interfaces.includes": [
+          "eth0"
+        ]
+      },
+      "systemNetworkFirewallPolicyChanged": false,
+      "publishedHostPortsRemainLoopback": true,
+      "sfuBinaryReportedVersion": "1.13.10",
+      "upstreamExactBuildProvenance": "NOT_PROVEN",
+      "sameCall10MediaAndManualReconnect": "SUPPORTED_BOUNDED_DEVICE_EVIDENCE",
+      "nativeStop": {
         "callId": 10,
         "source": "New exact-app-PID native events in after snapshot, absent from before snapshot; both raw files hashed in index",
         "nativeEvents": {
@@ -310,430 +1277,353 @@
         "roomDisposeOverallReturnSuccess": "NOT_INDEPENDENTLY_PROVEN; leave_complete is best-effort and cannot alone prove cleanup success",
         "supersedes": "Original derived phoneNativeTeardownObservedWithin5Seconds boolean was too broad if based only on leave_complete; raw original receipt retained, assessment adds independent native event predicates.",
         "execution": "Existing evidence read only; no new test, app run or service restart."
+      },
+      "aecAndSpeechQuality": "NOT_RUN_NOT_PROVEN",
+      "sdkCleanupExceptionObservation": {
+        "type": "ConcurrentModificationError during SDK remote PCM capture cleanup",
+        "countInFinalPhonePid": 1,
+        "rawLines": [
+          2182
+        ],
+        "freshMediaAndTeardownStillObserved": true,
+        "sharedSdkModified": false
       }
     },
-    "humanFeedback": {
-      "callId": 10,
-      "source": "Direct user reply in same chat",
-      "heardSyntheticToneAfterReconnect": true,
-      "toneStoppedAfterTestEnded": true,
-      "stopSecondsFromHuman": "NOT_MEASURED",
-      "AECOrVoiceQuality": "NOT_PROVEN",
-      "notStitchedToCall4": true
-    },
-    "remainingSdkObservation": {
-      "type": "ConcurrentModificationError during SDK remote PCM capture cleanup",
-      "countInFinalPhonePid": 1,
-      "rawLines": [
-        2182
-      ],
-      "freshMediaAndTeardownStillObserved": true,
-      "sharedSdkModified": false
-    },
-    "aecAndSpeechQuality": "NOT_RUN / NOT_PROVEN; tone audibility is not AEC or speech intelligibility."
-  },
-  "transport": {
-    "ownerApprovedInterfaceFilter": {
-      "rtc.interfaces.includes": [
-        "eth0"
-      ]
-    },
-    "systemNetworkFirewallPolicyChanged": false,
-    "publishedHostPortsRemainLoopback": true,
-    "sfuBinaryReportedVersion": "1.13.10",
-    "upstreamExactBuildProvenance": "NOT_PROVEN",
-    "sameCall10MediaAndManualReconnect": "SUPPORTED_BOUNDED_DEVICE_EVIDENCE",
-    "nativeStop": {
-      "callId": 10,
-      "source": "New exact-app-PID native events in after snapshot, absent from before snapshot; both raw files hashed in index",
-      "nativeEvents": {
-        "peerConnectionClosed": [
+    "runtime": {
+      "runtime": {
+        "phoneAppProcessAbsent": true,
+        "activeCalls": 0,
+        "activeTestSessionFamilies": 0,
+        "testAccessTokens": 0,
+        "sfUStopped": true,
+        "ownedDatabaseStopped": true,
+        "volumeAndContainersRetained": true,
+        "twelveTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
+        "sameDeviceMessageCountAfterRestart": 2,
+        "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
+        "ownedGradleStopExit": 0,
+        "portsReleased": [
+          43328,
+          8051,
+          8052,
+          8053,
+          8054,
+          7891,
+          7894
+        ],
+        "appKeptInstalled": true,
+        "otherAppsAndOldAssetsUntouched": true,
+        "globalAdbAndDockerDaemonsKept": true,
+        "utc": "2026-10-25T08:28:45.249583+00:00",
+        "ownedProcessExitCount": 4,
+        "backups": [
           {
-            "rawLine": 3274,
-            "deviceEpoch": 1792916765.73,
-            "event": "peerConnectionClosed"
+            "exit": 0,
+            "elapsedSeconds": 0.39000000001396984,
+            "bytes": 220060,
+            "sha256": "e0de03caaae92cc138d5e24c638d5247e2653b939f57f9a7b57aeba4358fe121"
           },
           {
-            "rawLine": 3287,
-            "deviceEpoch": 1792916765.916,
-            "event": "peerConnectionClosed"
-          }
-        ],
-        "audioRecordingStopDone": [
-          {
-            "rawLine": 3278,
-            "deviceEpoch": 1792916765.865,
-            "event": "audioRecordingStopDone"
-          }
-        ],
-        "audioPlaybackStopDone": [
-          {
-            "rawLine": 3292,
-            "deviceEpoch": 1792916765.929,
-            "event": "audioPlaybackStopDone"
-          }
-        ],
-        "cameraDeviceReleased": [
-          {
-            "rawLine": 3303,
-            "deviceEpoch": 1792916765.938,
-            "event": "cameraDeviceReleased"
+            "exit": 0,
+            "elapsedSeconds": 0.34399999998277053,
+            "bytes": 220060,
+            "sha256": "de1c1241dea02a219a68fc4d041aefa8dd988dad94801de3021e4aa28e02a370"
           }
         ]
       },
-      "upperBoundSecondsFromBeforeRealTransitionToSnapshotReceipt": 0.7900035381317139,
-      "allEventsObservedByThatHostReceipt": true,
-      "mediaTransportAndAudioCameraStopObservedWithin5Seconds": true,
-      "peerState": "disconnected",
-      "roomDisposeOverallReturnSuccess": "NOT_INDEPENDENTLY_PROVEN; leave_complete is best-effort and cannot alone prove cleanup success",
-      "supersedes": "Original derived phoneNativeTeardownObservedWithin5Seconds boolean was too broad if based only on leave_complete; raw original receipt retained, assessment adds independent native event predicates.",
-      "execution": "Existing evidence read only; no new test, app run or service restart."
-    },
-    "aecAndSpeechQuality": "NOT_RUN_NOT_PROVEN",
-    "sdkCleanupExceptionObservation": {
-      "type": "ConcurrentModificationError during SDK remote PCM capture cleanup",
-      "countInFinalPhonePid": 1,
-      "rawLines": [
-        2182
-      ],
-      "freshMediaAndTeardownStillObserved": true,
-      "sharedSdkModified": false
-    }
-  },
-  "runtime": {
-    "runtime": {
-      "phoneAppProcessAbsent": true,
-      "activeCalls": 0,
-      "activeTestSessionFamilies": 0,
-      "testAccessTokens": 0,
-      "sfUStopped": true,
-      "ownedDatabaseStopped": true,
-      "volumeAndContainersRetained": true,
-      "twelveTableSnapshotsEqualAfterOwnedDatabaseRestart": true,
-      "sameDeviceMessageCountAfterRestart": 2,
-      "ownedAdbReverseRemovedAndOriginalEmptyStateRestored": true,
-      "ownedGradleStopExit": 0,
-      "portsReleased": [
-        43328,
-        8051,
-        8052,
-        8053,
-        8054,
-        7891,
-        7894
-      ],
-      "appKeptInstalled": true,
-      "otherAppsAndOldAssetsUntouched": true,
-      "globalAdbAndDockerDaemonsKept": true,
-      "utc": "2026-10-25T08:28:45.249583+00:00",
-      "ownedProcessExitCount": 4,
-      "backups": [
-        {
-          "exit": 0,
-          "elapsedSeconds": 0.39000000001396984,
-          "bytes": 220060,
-          "sha256": "e0de03caaae92cc138d5e24c638d5247e2653b939f57f9a7b57aeba4358fe121"
-        },
-        {
-          "exit": 0,
-          "elapsedSeconds": 0.34399999998277053,
-          "bytes": 220060,
-          "sha256": "de1c1241dea02a219a68fc4d041aefa8dd988dad94801de3021e4aa28e02a370"
-        }
-      ]
-    },
-    "protection": {
-      "protectedFileCount": 22482,
-      "allNamedProtectedFilesUnchanged": true,
-      "historicalRoots": 5,
-      "historicalRootsUnchanged": true,
-      "oldRefCount": 519,
-      "protectedOldRefsUnchanged": true,
-      "refDrift": [],
-      "scope": "Named historical files and five root identities, not whole-disk byte audit"
-    }
-  },
-  "reusedEvidence": {
-    "priorManifestCommit": "c445554f01fbd8c9aef641302f3f090900703786",
-    "priorManifestBlob": "90a0da0c305016be742d8a131356b368fab10121",
-    "priorManifestSha256": "d6ed92534ba3f4227ba2d698980cc9e054d8ed46fe71306e9024446d9ebdb585",
-    "backend": "92 tests / 717 assertions prior run",
-    "flutterOther": "152 prior run",
-    "rtc": "Historical prior-snapshot accounting:95 normal /11 diagnostic log counts retained, not106 distinct cases. Current continuation changed RTC source and ran40 related Flutter tests NEW_RUN exit0; historical95/11 suites were not rerun in full.",
-    "retention": "Prior Android34/34 controlled injection; not physical30 days",
-    "priorUsbDeliveryManifestBlob": "997f2c709e8a636ee317562bb1ab17804ad737f7",
-    "scope": "Historical snapshots retained by their exact prior identities; current-source execution is reported separately in deviceNewRun and acResults."
-  },
-  "gate2": {
-    "currentRun": "NOT_RUN",
-    "newBudget": false,
-    "d0ARepeated": false,
-    "oldWinPsBudget": "CONSUMED_STARTUP_RESTRICTED_0.375_SECONDS_EXIT1",
-    "oldPs7Budget": "CONSUMED_STARTUP_TYPELOAD_0.390_SECONDS_EXIT1",
-    "writerSerializationCallsThisContinuation": 0,
-    "full37": "NOT_RUN",
-    "conditionalSandboxSdkProducerLibsJar30Resolutions": "NOT_RUN",
-    "newStartsThisContinuation": 0,
-    "writerSerializerInvocationsThisContinuation": 0
-  },
-  "localOnly": {
-    "rootLabel": "v1015-ice-loopback-continuation-20261025",
-    "rawPublished": false,
-    "evidenceIndexSha256": "2a09e6ea7c0db5dbfd95305e34bb55459b62e800aa9433799de3b365232ac7c1",
-    "finalApkSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
-    "finalApkBytes": 416357439,
-    "postBuildSourcePinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311",
-    "previousRawEvidencePreserved": true
-  },
-  "nonAuthorReview": {
-    "scope": "Independent non-author static source review; no device/build/test execution by reviewer",
-    "verdict": "NO_NEW_BLOCKING_FINDINGS_STATIC",
-    "files": [
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
-        "sha256": "8be42f0b2d36e01f6e9a1b7c4473bace2caa8dfcab068f0b38422be3b60b019f"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
-        "sha256": "debf215a19dcf3c2f7724c6cb7885f7d175b0701e65c8e71497406a76b3d6aab"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
-        "sha256": "dde7ee3e5781e0f9a12eb5373ffb77f44db44f0047efbfffa8148697f9fb55da"
-      },
-      {
-        "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart",
-        "sha256": "254d6190422d66d54ea56a2a804c51f921c8856eda68f53bd55db71cd3edeab6"
+      "protection": {
+        "protectedFileCount": 22482,
+        "allNamedProtectedFilesUnchanged": true,
+        "historicalRoots": 5,
+        "historicalRootsUnchanged": true,
+        "oldRefCount": 519,
+        "protectedOldRefsUnchanged": true,
+        "refDrift": [],
+        "scope": "Named historical files and five root identities, not whole-disk byte audit"
       }
-    ],
-    "closedFindings": [
-      "P2 detached old-room native teardown overlapping fresh join",
-      "P2 disconnect error skipping dispose"
-    ],
-    "pageRefresh": "Keeps refresh data and scroll; identity check precedes rendering; reload and actual-error close branches unchanged; fresh current call and join authority still required.",
-    "mainExecutedTests": {
-      "teardownRed": 1,
-      "disconnectRed": 1,
-      "refreshRed": 2,
-      "finalRelatedFlutterTests": 40,
-      "finalExit": 0
     },
-    "acceptance": "NOT_ASTRA_ACCEPTANCE; runtime evidence remains CODEX_REPORTED.",
-    "deliveryReview": "BOUNDED_STATIC_REVIEW_NO_NEW_BLOCKING_FINDINGS",
-    "closedDeliveryFindings": [
-      "leave_complete alone insufficient: supplemented with existing native close/audio stop/camera release events",
-      "final APK first-login UI now hash-bound"
-    ],
-    "limits": "Reviewer did not execute tests or read raw device media/logs/XML; no Astra acceptance"
-  },
-  "reviewBranch": {
-    "branch": "codex/v10.1.5-ice-loopback-media-review-20261025",
-    "commit": "2f238f8b72558ee965a1d628f937fd3f19eb7df3",
-    "parent": "80f6292a2c3726716ab82152f36428812f23058f",
-    "root": "113352597d2d4fd82373700aac4df369f20f3d9b",
-    "files": [
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/closure-and-protection.json",
-        "blob": "e69e7f240e57cfaa7988ac2b2fb7012542ab948c",
-        "mode": "100644",
-        "bytes": 1555,
-        "sha256": "83d0d51348e79ad9966fa101fea44ac82b59d568ec96e3625c1bb5fee9e29c6d"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/evidence-index.json",
-        "blob": "d38999a9a288dcc31754f9ea339ab78d5c7df10c",
-        "mode": "100644",
-        "bytes": 7840,
-        "sha256": "2a09e6ea7c0db5dbfd95305e34bb55459b62e800aa9433799de3b365232ac7c1"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/failures-and-limits.md",
-        "blob": "1d06543e4abe5c8bd5aee4f381baaf48e2a88d2d",
-        "mode": "100644",
-        "bytes": 3436,
-        "sha256": "6592cc3c176a2cd75bc9a814dd7fee49babbf06d43b5af2775c7273127a678b1"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/media-and-notification.json",
-        "blob": "c6de740914cbad581430346cc8433ecb6000e50e",
-        "mode": "100644",
-        "bytes": 4054,
-        "sha256": "9ef0abaf6eaeb1371c692da25f61fc91daedd44bcbf0b71710715b490fac339a"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/non-author-review.json",
-        "blob": "41e08f2c271b6ce833bc0c5c230027c40795a6f7",
-        "mode": "100644",
-        "bytes": 1576,
-        "sha256": "0539bc98ceb3c4e95c5af30822fa6451f377f316334c7e3407c823555e21771e"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/README.md",
-        "blob": "8dc9f2d6eff47eb012d7d517beacd0fd8e28e5ab",
-        "mode": "100644",
-        "bytes": 1446,
-        "sha256": "b5c11a86c9c9881f87a4bb1c90d2b3c56924844b6aa0e6e5c4d9dda5f019b3f6"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/reference-sources.json",
-        "blob": "2c1b6e93dd547ab78b052da65013e5f3f4575b4f",
-        "mode": "100644",
-        "bytes": 3568,
-        "sha256": "d444bf7b7f303503b94605e2f90f0433895847c82bb9b58f60687e13b8f3380e"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/runtime-results.json",
-        "blob": "6a338eb806f2ebc85984b1c17645dab8c3b0b9e8",
-        "mode": "100644",
-        "bytes": 7653,
-        "sha256": "56cecb1487ed7aea167ed199407d7dfffec4158cc3348f37c245526198d2038e"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/SFU_INTERFACE_FILTER.patch",
-        "blob": "9d889703ebc51ba9edf88a64fba017a076d88832",
-        "mode": "100644",
-        "bytes": 294,
-        "sha256": "2904220e0d180d2d3af3f100002ee012224bdaadba41e631d3e0d3ad26dfabbb"
-      },
-      {
-        "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/SOURCE_CHANGES.patch",
-        "blob": "cde33518045e79dbafa14843a305f5715703c41f",
-        "mode": "100644",
-        "bytes": 15140,
-        "sha256": "87ecc4f863ff3e00df48bee24c250441187d754f654e6bec4804f9e1f8688f81"
-      }
-    ],
-    "force": false,
-    "url": "https://github.com/zcx369658780/EliteSync-v10/tree/2f238f8b72558ee965a1d628f937fd3f19eb7df3/docs/_temporary_review/v1015-ice-loopback-media-20261025",
-    "remoteCommitParentRootProductTreesAndAllTenFileBytesVerified": true
-  },
-  "report": {
-    "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
-    "bytes": 78699,
-    "sha256": "9661e387b4dcabf5793c25f8a0136f6f988a7c8448ec4ae2360c21f841395307",
-    "priorPrefixBytes": 65594,
-    "priorPrefixSha256": "ca4b7c8ed8d2fa4514a21f61fe4319cec53bb4027decf51a9fc0855f252fd8b6",
-    "priorPrefixPreserved": true
-  },
-  "terminalFlags": [
-    "V10.1.5_PARTIAL_NOT_ACCEPTED",
-    "AC05_OPEN",
-    "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
-    "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
-    "HOST_APK_BUILT_INSTALLED_BYTE_VERIFIED",
-    "NO_MAIN_PRODUCT_INTEGRATION",
-    "V10.1.6_NOT_STARTED",
-    "REAL_PUSH_PROVIDER_PENDING"
-  ],
-  "candidateSelfIdentity": "Bound by separate final immutable GitHub remote readback; no self-referential commit hash in its own files.",
-  "previousDelivery": {
-    "commit": "dad5d8fe36874095c90e25f651775796bfeba7eb",
-    "reportBlob": "26fecfc4a703201ce7ca5f64384785e0b90302c8",
-    "manifestBlob": "997f2c709e8a636ee317562bb1ab17804ad737f7",
-    "boundedAstraAcceptance": "V10.1.5_DEVICE_VALIDATION_ACCEPTED_WITH_OBSERVATIONS"
-  },
-  "mediaAndNotification": {
-    "image": {
-      "messageId": 1,
-      "assetId": 2,
-      "serverConfirmed": true,
-      "peerAuthorizedHttp": 200,
-      "readSha256": "13dad9ddff762c27f6ff16bcfd17f4e95cfa2400a209389320f03a7ff5061c80",
-      "bytes": 1320,
-      "source": "Owner selected exact generated blue test PNG through actual system picker",
-      "pickerTranscoded": "PNG blue input became JPEG payload; not claiming original byte equality",
-      "imageFormat": "JPEG",
-      "width": 320,
-      "height": 240,
-      "onlyBlueSyntheticPixelsVerified": true,
-      "apkSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
-      "elapsedSeconds": 0.125
+    "reusedEvidence": {
+      "priorManifestCommit": "c445554f01fbd8c9aef641302f3f090900703786",
+      "priorManifestBlob": "90a0da0c305016be742d8a131356b368fab10121",
+      "priorManifestSha256": "d6ed92534ba3f4227ba2d698980cc9e054d8ed46fe71306e9024446d9ebdb585",
+      "backend": "92 tests / 717 assertions prior run",
+      "flutterOther": "152 prior run",
+      "rtc": "Historical prior-snapshot accounting:95 normal /11 diagnostic log counts retained, not106 distinct cases. Current continuation changed RTC source and ran40 related Flutter tests NEW_RUN exit0; historical95/11 suites were not rerun in full.",
+      "retention": "Prior Android34/34 controlled injection; not physical30 days",
+      "priorUsbDeliveryManifestBlob": "997f2c709e8a636ee317562bb1ab17804ad737f7",
+      "scope": "Historical snapshots retained by their exact prior identities; current-source execution is reported separately in deviceNewRun and acResults."
     },
-    "video": {
-      "messageId": 2,
-      "assetId": 3,
-      "source": "Owner exact synthetic 2s H264 test video through real picker on APK f26bb08f",
-      "status": "ready",
-      "durationMs": 2000,
-      "dimensions": [
-        320,
-        240
-      ],
-      "contentHttp": 200,
-      "rangeHttp": 206,
-      "rangeContentMatches": true,
-      "sha256": "91efa89716d27ca5528cf2b8182b2719d756c24f3fdc34ce50753fc160e25852",
-      "sourceAndReadbackBytesIdentical": true,
-      "bytes": 158923,
-      "previousVideoAttempt": "No video message; current task API lacked explicit existing ffprobe path; first attempt not counted PASS",
-      "noTranscode": true
+    "gate2": {
+      "currentRun": "NOT_RUN",
+      "newBudget": false,
+      "d0ARepeated": false,
+      "oldWinPsBudget": "CONSUMED_STARTUP_RESTRICTED_0.375_SECONDS_EXIT1",
+      "oldPs7Budget": "CONSUMED_STARTUP_TYPELOAD_0.390_SECONDS_EXIT1",
+      "writerSerializationCallsThisContinuation": 0,
+      "full37": "NOT_RUN",
+      "conditionalSandboxSdkProducerLibsJar30Resolutions": "NOT_RUN",
+      "newStartsThisContinuation": 0,
+      "writerSerializerInvocationsThisContinuation": 0
     },
-    "videoPlayback": {
-      "result": "BOUNDED_REAL_DEVICE_SYNTHETIC_VIDEO_FRAME_CHANGE",
-      "apkSha256": "f26bb08f627e6f6f4ee9b22f5ce3f8ddfce5dc1d43162d4d3390a496f3b13102",
-      "frames": [
+    "localOnly": {
+      "rootLabel": "v1015-ice-loopback-continuation-20261025",
+      "rawPublished": false,
+      "evidenceIndexSha256": "2a09e6ea7c0db5dbfd95305e34bb55459b62e800aa9433799de3b365232ac7c1",
+      "finalApkSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+      "finalApkBytes": 416357439,
+      "postBuildSourcePinsSha256": "d99c99773499aae5a7c158e69f1dd3ad9fcd73f0de8063bcfaee306448ac4311",
+      "previousRawEvidencePreserved": true
+    },
+    "nonAuthorReview": {
+      "scope": "Independent non-author static source review; no device/build/test execution by reviewer",
+      "verdict": "NO_NEW_BLOCKING_FINDINGS_STATIC",
+      "files": [
         {
-          "index": 0,
-          "cropSha256": "dc0346afb18c338eb7a74ef23c1ff251178f86e8776f5b08b3829686a857678a",
-          "pixelSha256": "db7ff01c0425d82a465658a71633cc68521ee7f14fb66efcfeaadc974d27c185",
-          "onlyVerifiedSyntheticMediaRegion": true
+          "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+          "sha256": "8be42f0b2d36e01f6e9a1b7c4473bace2caa8dfcab068f0b38422be3b60b019f"
         },
         {
-          "index": 1,
-          "cropSha256": "48a9888691277f57f473c28798900e0a742327d0c147c990b67bc9525c689a7f",
-          "pixelSha256": "7cc9022a4f0f2f31324a01f6a38b57fa065700dc80e0e0e131dd53308ba00ed3",
-          "onlyVerifiedSyntheticMediaRegion": true
+          "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_livekit_service_test.dart",
+          "sha256": "debf215a19dcf3c2f7724c6cb7885f7d175b0701e65c8e71497406a76b3d6aab"
         },
         {
-          "index": 2,
-          "cropSha256": "52728ecbc21fd6c38f5b80c1a9cc8eedf55a44ba0f22e7f0d7c2e9dbb3cbf67f",
-          "pixelSha256": "44946476067fff8c29cf05a5b71660d017192b387bf24a9abd745100339e6d2f",
-          "onlyVerifiedSyntheticMediaRegion": true
+          "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
+          "sha256": "dde7ee3e5781e0f9a12eb5373ffb77f44db44f0047efbfffa8148697f9fb55da"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/rtc/presentation/pages/rtc_call_page_test.dart",
+          "sha256": "254d6190422d66d54ea56a2a804c51f921c8856eda68f53bd55db71cd3edeab6"
         }
       ],
-      "privateMediaRead": false,
-      "notAudioOrRtcProof": true
+      "closedFindings": [
+        "P2 detached old-room native teardown overlapping fresh join",
+        "P2 disconnect error skipping dispose"
+      ],
+      "pageRefresh": "Keeps refresh data and scroll; identity check precedes rendering; reload and actual-error close branches unchanged; fresh current call and join authority still required.",
+      "mainExecutedTests": {
+        "teardownRed": 1,
+        "disconnectRed": 1,
+        "refreshRed": 2,
+        "finalRelatedFlutterTests": 40,
+        "finalExit": 0
+      },
+      "acceptance": "NOT_ASTRA_ACCEPTANCE; runtime evidence remains CODEX_REPORTED.",
+      "deliveryReview": "BOUNDED_STATIC_REVIEW_NO_NEW_BLOCKING_FINDINGS",
+      "closedDeliveryFindings": [
+        "leave_complete alone insufficient: supplemented with existing native close/audio stop/camera release events",
+        "final APK first-login UI now hash-bound"
+      ],
+      "limits": "Reviewer did not execute tests or read raw device media/logs/XML; no Astra acceptance"
     },
-    "nativeNotificationDecline": {
-      "result": "SUPPORTED_BOUNDED_NATIVE_PERMISSION_DECLINE",
-      "package": "com.elitesync.v1015r1dev",
-      "requestViaActualAppButton": true,
-      "nativePromptObserved": true,
-      "declineTapped": true,
-      "permissionAfterDecline": false,
-      "appStayedUsable": true,
-      "privatePushDelivery": "NOT_RUN_PROVIDER_PENDING",
-      "staleNotificationClick": "NOT_RUN_NO_CURRENT_READABLE_CARD",
-      "evidence": [
-        "phone-notify-native-prompt.xml",
-        "phone-notify-native-decline-settled.xml",
-        "phone-notify-native-package-state.stdout.txt"
-      ]
+    "reviewBranch": {
+      "branch": "codex/v10.1.5-ice-loopback-media-review-20261025",
+      "commit": "2f238f8b72558ee965a1d628f937fd3f19eb7df3",
+      "parent": "80f6292a2c3726716ab82152f36428812f23058f",
+      "root": "113352597d2d4fd82373700aac4df369f20f3d9b",
+      "files": [
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/closure-and-protection.json",
+          "blob": "e69e7f240e57cfaa7988ac2b2fb7012542ab948c",
+          "mode": "100644",
+          "bytes": 1555,
+          "sha256": "83d0d51348e79ad9966fa101fea44ac82b59d568ec96e3625c1bb5fee9e29c6d"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/evidence-index.json",
+          "blob": "d38999a9a288dcc31754f9ea339ab78d5c7df10c",
+          "mode": "100644",
+          "bytes": 7840,
+          "sha256": "2a09e6ea7c0db5dbfd95305e34bb55459b62e800aa9433799de3b365232ac7c1"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/failures-and-limits.md",
+          "blob": "1d06543e4abe5c8bd5aee4f381baaf48e2a88d2d",
+          "mode": "100644",
+          "bytes": 3436,
+          "sha256": "6592cc3c176a2cd75bc9a814dd7fee49babbf06d43b5af2775c7273127a678b1"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/media-and-notification.json",
+          "blob": "c6de740914cbad581430346cc8433ecb6000e50e",
+          "mode": "100644",
+          "bytes": 4054,
+          "sha256": "9ef0abaf6eaeb1371c692da25f61fc91daedd44bcbf0b71710715b490fac339a"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/non-author-review.json",
+          "blob": "41e08f2c271b6ce833bc0c5c230027c40795a6f7",
+          "mode": "100644",
+          "bytes": 1576,
+          "sha256": "0539bc98ceb3c4e95c5af30822fa6451f377f316334c7e3407c823555e21771e"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/README.md",
+          "blob": "8dc9f2d6eff47eb012d7d517beacd0fd8e28e5ab",
+          "mode": "100644",
+          "bytes": 1446,
+          "sha256": "b5c11a86c9c9881f87a4bb1c90d2b3c56924844b6aa0e6e5c4d9dda5f019b3f6"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/reference-sources.json",
+          "blob": "2c1b6e93dd547ab78b052da65013e5f3f4575b4f",
+          "mode": "100644",
+          "bytes": 3568,
+          "sha256": "d444bf7b7f303503b94605e2f90f0433895847c82bb9b58f60687e13b8f3380e"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/runtime-results.json",
+          "blob": "6a338eb806f2ebc85984b1c17645dab8c3b0b9e8",
+          "mode": "100644",
+          "bytes": 7653,
+          "sha256": "56cecb1487ed7aea167ed199407d7dfffec4158cc3348f37c245526198d2038e"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/SFU_INTERFACE_FILTER.patch",
+          "blob": "9d889703ebc51ba9edf88a64fba017a076d88832",
+          "mode": "100644",
+          "bytes": 294,
+          "sha256": "2904220e0d180d2d3af3f100002ee012224bdaadba41e631d3e0d3ad26dfabbb"
+        },
+        {
+          "path": "docs/_temporary_review/v1015-ice-loopback-media-20261025/SOURCE_CHANGES.patch",
+          "blob": "cde33518045e79dbafa14843a305f5715703c41f",
+          "mode": "100644",
+          "bytes": 15140,
+          "sha256": "87ecc4f863ff3e00df48bee24c250441187d754f654e6bec4804f9e1f8688f81"
+        }
+      ],
+      "force": false,
+      "url": "https://github.com/zcx369658780/EliteSync-v10/tree/2f238f8b72558ee965a1d628f937fd3f19eb7df3/docs/_temporary_review/v1015-ice-loopback-media-20261025",
+      "remoteCommitParentRootProductTreesAndAllTenFileBytesVerified": true
     },
-    "binaryBoundary": "Image and native decline ran on APK8a11; video ran on APKf26b. Final APKcbe8 changes only RTC service/page/tests. These are current-task reused evidence for unchanged media/notification code, not falsely relabeled final-APK runs.",
-    "afterRevoke": {
-      "currentJoinHttp": 404,
-      "imageFullAndRangeHttp": 404,
-      "videoFullAndRangeHttp": 404
+    "report": {
+      "path": "docs/versions/v10.1.5/IMPLEMENTATION_REPORT.md",
+      "bytes": 78699,
+      "sha256": "9661e387b4dcabf5793c25f8a0136f6f988a7c8448ec4ae2360c21f841395307",
+      "priorPrefixBytes": 65594,
+      "priorPrefixSha256": "ca4b7c8ed8d2fa4514a21f61fe4319cec53bb4027decf51a9fc0855f252fd8b6",
+      "priorPrefixPreserved": true
     },
-    "persistence": {
-      "tables": 12,
-      "rowsEqualAcrossOwnedDatabaseRestart": true,
-      "messages": 2,
-      "messageAttachments": 2
+    "terminalFlags": [
+      "V10.1.5_PARTIAL_NOT_ACCEPTED",
+      "AC05_OPEN",
+      "ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN",
+      "OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS",
+      "HOST_APK_BUILT_INSTALLED_BYTE_VERIFIED",
+      "NO_MAIN_PRODUCT_INTEGRATION",
+      "V10.1.6_NOT_STARTED",
+      "REAL_PUSH_PROVIDER_PENDING"
+    ],
+    "candidateSelfIdentity": "Bound by separate final immutable GitHub remote readback; no self-referential commit hash in its own files.",
+    "previousDelivery": {
+      "commit": "dad5d8fe36874095c90e25f651775796bfeba7eb",
+      "reportBlob": "26fecfc4a703201ce7ca5f64384785e0b90302c8",
+      "manifestBlob": "997f2c709e8a636ee317562bb1ab17804ad737f7",
+      "boundedAstraAcceptance": "V10.1.5_DEVICE_VALIDATION_ACCEPTED_WITH_OBSERVATIONS"
     },
-    "realPush": "PROVIDER_PENDING / NOT_RUN",
-    "finalApkColdEntry": {
-      "result": "FINAL_APK_FIRST_LAUNCH_REQUIRES_LOGIN",
-      "apkSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
-      "loginUiObserved": true,
-      "oldPeerAndMessageNotVisible": true,
-      "scope": "First launch after data-preserving update; not physical15/30-day/offline authorization proof",
-      "evidence": [
-        "final-apk-install-result.json",
-        "final-apk-launch.json",
-        "final-apk-entry.xml"
-      ]
+    "mediaAndNotification": {
+      "image": {
+        "messageId": 1,
+        "assetId": 2,
+        "serverConfirmed": true,
+        "peerAuthorizedHttp": 200,
+        "readSha256": "13dad9ddff762c27f6ff16bcfd17f4e95cfa2400a209389320f03a7ff5061c80",
+        "bytes": 1320,
+        "source": "Owner selected exact generated blue test PNG through actual system picker",
+        "pickerTranscoded": "PNG blue input became JPEG payload; not claiming original byte equality",
+        "imageFormat": "JPEG",
+        "width": 320,
+        "height": 240,
+        "onlyBlueSyntheticPixelsVerified": true,
+        "apkSha256": "8a11cee98402bd64e04593374b9dfa06efa1a78686a7865147c93e5ae4c35582",
+        "elapsedSeconds": 0.125
+      },
+      "video": {
+        "messageId": 2,
+        "assetId": 3,
+        "source": "Owner exact synthetic 2s H264 test video through real picker on APK f26bb08f",
+        "status": "ready",
+        "durationMs": 2000,
+        "dimensions": [
+          320,
+          240
+        ],
+        "contentHttp": 200,
+        "rangeHttp": 206,
+        "rangeContentMatches": true,
+        "sha256": "91efa89716d27ca5528cf2b8182b2719d756c24f3fdc34ce50753fc160e25852",
+        "sourceAndReadbackBytesIdentical": true,
+        "bytes": 158923,
+        "previousVideoAttempt": "No video message; current task API lacked explicit existing ffprobe path; first attempt not counted PASS",
+        "noTranscode": true
+      },
+      "videoPlayback": {
+        "result": "BOUNDED_REAL_DEVICE_SYNTHETIC_VIDEO_FRAME_CHANGE",
+        "apkSha256": "f26bb08f627e6f6f4ee9b22f5ce3f8ddfce5dc1d43162d4d3390a496f3b13102",
+        "frames": [
+          {
+            "index": 0,
+            "cropSha256": "dc0346afb18c338eb7a74ef23c1ff251178f86e8776f5b08b3829686a857678a",
+            "pixelSha256": "db7ff01c0425d82a465658a71633cc68521ee7f14fb66efcfeaadc974d27c185",
+            "onlyVerifiedSyntheticMediaRegion": true
+          },
+          {
+            "index": 1,
+            "cropSha256": "48a9888691277f57f473c28798900e0a742327d0c147c990b67bc9525c689a7f",
+            "pixelSha256": "7cc9022a4f0f2f31324a01f6a38b57fa065700dc80e0e0e131dd53308ba00ed3",
+            "onlyVerifiedSyntheticMediaRegion": true
+          },
+          {
+            "index": 2,
+            "cropSha256": "52728ecbc21fd6c38f5b80c1a9cc8eedf55a44ba0f22e7f0d7c2e9dbb3cbf67f",
+            "pixelSha256": "44946476067fff8c29cf05a5b71660d017192b387bf24a9abd745100339e6d2f",
+            "onlyVerifiedSyntheticMediaRegion": true
+          }
+        ],
+        "privateMediaRead": false,
+        "notAudioOrRtcProof": true
+      },
+      "nativeNotificationDecline": {
+        "result": "SUPPORTED_BOUNDED_NATIVE_PERMISSION_DECLINE",
+        "package": "com.elitesync.v1015r1dev",
+        "requestViaActualAppButton": true,
+        "nativePromptObserved": true,
+        "declineTapped": true,
+        "permissionAfterDecline": false,
+        "appStayedUsable": true,
+        "privatePushDelivery": "NOT_RUN_PROVIDER_PENDING",
+        "staleNotificationClick": "NOT_RUN_NO_CURRENT_READABLE_CARD",
+        "evidence": [
+          "phone-notify-native-prompt.xml",
+          "phone-notify-native-decline-settled.xml",
+          "phone-notify-native-package-state.stdout.txt"
+        ]
+      },
+      "binaryBoundary": "Image and native decline ran on APK8a11; video ran on APKf26b. Final APKcbe8 changes only RTC service/page/tests. These are current-task reused evidence for unchanged media/notification code, not falsely relabeled final-APK runs.",
+      "afterRevoke": {
+        "currentJoinHttp": 404,
+        "imageFullAndRangeHttp": 404,
+        "videoFullAndRangeHttp": 404
+      },
+      "persistence": {
+        "tables": 12,
+        "rowsEqualAcrossOwnedDatabaseRestart": true,
+        "messages": 2,
+        "messageAttachments": 2
+      },
+      "realPush": "PROVIDER_PENDING / NOT_RUN",
+      "finalApkColdEntry": {
+        "result": "FINAL_APK_FIRST_LAUNCH_REQUIRES_LOGIN",
+        "apkSha256": "cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c",
+        "loginUiObserved": true,
+        "oldPeerAndMessageNotVisible": true,
+        "scope": "First launch after data-preserving update; not physical15/30-day/offline authorization proof",
+        "evidence": [
+          "final-apk-install-result.json",
+          "final-apk-launch.json",
+          "final-apk-entry.xml"
+        ]
+      }
     }
   }
 }
