@@ -428,3 +428,69 @@ D0-A保持原15次Serialize、约0.688秒；旧WinPS Restricted启动0.375秒exi
 22,482具名保护文件、五历史根、516旧refs中的受保护项再核保持；此结论不等于整盘或其它应用/设备状态审计。最小审阅包为派生脱敏摘要与具名原证Hash，原始字节不外传。非作者只读审查状态：**SUPPORTED_BOUNDED_EVIDENCE_REVIEW**；范围及Hash以其单列回执为准，不代表Astra运行或接受。`codex/v10.1.5-usb-device-review-20261025`，Commit `0eada1acbbf834fdcdcb3777f55c972daad5d643`、唯一Parent `c445554f01fbd8c9aef641302f3f090900703786`、Root `38fc229033c4f6a7a8df2ac7f3453185c67dfa73`；7件原始字节/Blob另经回读。
 
 本次普通non-force候选后继只提交唯一报告和manifest，最终Commit/Parent/Root、两文档Blob/原始字节及完整产品双Tree由最终远端回读回执给出，避免自引用。**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / HOST_APK_BUILT_INSTALLED_BYTE_VERIFIED / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING。** 完成交付即停止，等待Astra一次性独立验收。
+
+## 2026-10-25｜ICE 与媒体续接集中交付（最新）
+
+**PARTIAL / OPEN_OBSERVATIONS / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE。** 本章接续同一综合长任务；本次已有真实双向媒体及同 call 手动重连证据，仍不自行接受整版。此前报告 `65594` 字节原样作为前缀保留，原 USB 交付、Astra 有界接受和所有失败均不倒改。
+
+### 权威、实时身份与本次源码
+
+开工全文核对 task_order（含 F/G，Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`）、冻结 plan `7d3466b3be67135dc641cfee7c7faef78937ba03`、ACTIVE_STATE `5867eb97b59d97bd60490cc77fb07e2838888d27` 和 Astra USB 复核 `ca03fefe53946784adba0fd94f80507fee656fd1`。开工及发布前 live main 均为 `bee04025237ea099b2b274d06a12cfa2bab5b5e1` / Root `683d8fe2268adbeca05da0ce31224b67d042223c`；接受 v10.1.4 产品仍为 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。本轮没有集成产品 main。
+
+连续分支开工及写入前远端为 `dad5d8fe36874095c90e25f651775796bfeba7eb`。本次两个源码提交为 `08df5042378a5887f36e9a1033ff654d993cc38a` → `80f6292a2c3726716ab82152f36428812f23058f`，前者唯一 Parent 为 dad5d8fe，后者唯一 Parent 为 08df5042。**最终待验源码 80f6292a / Root `5dbb0ae4c64bb7cce6db0e4be03625bfa678aed2` / apps `a0ca61faf9e1264f7ae4b638c78ebeae257ea002` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。** 仅 RTC service、page 及其两份测试改变；后端未随本轮源码提交改变。735 件 tracked apps 文件在最终构建副本与实际工作树逐项 SHA256 相同，构建后再次核对一致。
+
+### ICE 定位、单项授权与普通源码返修
+
+同配置复现先证明实际 TCP 连接和 STUN 已到 SFU mux，而没有 STUN 响应或 nominated pair。不能沿用“浏览器根本没到监听器”的旧中间推断；宿主 source-bind socket 失败也不能独自充当 RTC 根因。LiveKit/Pion 对应公开源码表明候选注册使用原始接口 IP，接收路径按 socket 本地 IP 查队列；重复映射为回环地址的候选及实际接收地址与该错配假说一致，但未直接观测原 orphan queue 的 reader 状态。
+
+ACTIVE_STATE 明确限制自行更改 ICE 配置，因此本轮就一项具体试验取得 Owner 直接授权：**仅在本轮自有 SFU 的 rtc 中增加 `interfaces.includes: ["eth0"]`**。node_ip、端口、回环入口、guard、凭据及其它 ICE 参数不变；宿主发布端口再次核实全为 127.0.0.1。接口过滤本身不是监听地址限制；容器内 TCP listener 仍可监听通配地址。既有 image 固定为 `sha256:32d59377b1bd55507719fced7c63efaf441423ab208fc080af0e17bdcfe7276e`，binary 自报 1.13.10；公开 tag 到运行 binary 的逐字节构建映射未证明。无工具下载、共享 SDK 修改、系统网络/防火墙/路由/执行策略变化或公网媒体测试。
+
+单变量试验后真实 SDK 在 1.437 秒连接并产生 STUN 响应与成功提名；该控制脚本随后因 IPC JSON 文件写入尚未完成而 exit1，finally 已结束通话，原件保留，不能称整个控制脚本 PASS。修正证据读取后，手机与合成 PC 对端实际建立双向 RTP。call4 还验证了 mic/camera 开关在对端变为 muted/unmuted，但 SFU 全量重启暴露 native `addTransceiver(): track is null`，手机出站 publication 消失；call4 的重连不能标通过。
+
+08df5042 在全量重连事件时关闭旧 room，通过现有同 call “重新连接”重新读取当前通话和 join 权限并创建新轨道；轻量 resume 事件独立，不被该处理拦截。旧 room 完整 disconnect/dispose 的 Future 屏障阻止新 room 过早启动；disconnect 抛错仍尝试并等待 dispose。旧 room 的 track 事件不能污染新 room。两处清理竞态都先由新测试复现 RED，再修复。
+
+真机返修复测又发现定时刷新用 skeleton 替换内容导致滚动位置丢失。80f6292a 仅保留 refresh 期间的现有内容和控件，reload、身份改变及真实 error 的关闭分支保持；重连操作仍 fresh fetchCall + fresh join。两个真实 AsyncLoading widget 回归先 RED，修复后 **40 项相关 Flutter 检查 exit0**，含错误后再次 pending 不恢复旧内容、取消/迟到响应及终止态边界。Dart 定向静态检查 exit0。一次 Flutter analyze 因隔离 SDK 副本未包含 dev 目录而工具崩溃，保留原 exit1；随后使用该副本自带的受支持 Dart analyzer 完成检查，没有修改全局 SDK。
+
+### APK、同 call 真机媒体与停止时序
+
+在任务自有隔离构建目录使用既有工具/缓存，普通 `:app:assembleDebug --offline`；未启 ICE_DIAG 或 retention probe。两次新构建均 exit0、退出确认，耗时分别 329.625 / 198.329 秒；编译告警原件保留。离线依赖解析不等于整个进程树 NO_NETWORK 证明。
+
+最终包仍为 `com.elitesync.v1015r1dev` / versionCode `1010511` / versionName `10.1.5-r1-dev`，**416,357,439 字节，SHA256 `cbe80dff68fad1a0734557af434cd1d959e194d30b7a1f10969c7ff13f96f59c`**。更新安装保留数据，签名相符；从授权 Xiaomi 25060RK16C、Android16/API36、arm64-v8a 手机回取的 APK 字节 Hash 与构建产物一致。序列号只保留 LOCAL_ONLY。中间包 f26bb08f 原字节保留；最终包 ZIP entry 集合相同、无重复 entry，仅两 ABI libapp 内容改变，额外文件长度属于容器布局/间隙，不能说新增了依赖或混入另一 APP。
+
+**最终 APK 的 call10**：接听后有真实音频/视频双向 RTP；仅重启本任务 SFU，媒体关闭后用实际页面按钮手动重连同一 callId。两次 join-info 读取、旧 room 清理结束、新轨道发布及对端两条已订阅未静音轨道相互对应。重连后四类 RTP 报告均有相隔约64秒的17批采样，计数增长；手机 inbound video 有实际 framesDecoded。视频多 SSRC 按每批报告求和看趋势，不冒精确 wire-byte 计费或唯一流数。没有将新 call 冒称同 call，也未将 `in_call` 或 RoomConnected 单独当媒体证据。
+
+撤权采用**仅限新隔离库、三个精确合成账号、call10 的真实 LiveConsentService::transition**，不是手工设置假回执。先前包含旧 JWT 握手的组合脚本被自动审批拒绝、未执行，没有换入口重试该组合；本次获工具允许的收窄方法不包含 JWT 签发或 WebSocket 负例。两项 MC 变为 MC_REVOKED；同 call 手机产生新的 native leave_complete，对端 disconnected。**从产品服务 transition 前到收到手机清理完成日志的保守上界为 0.790 秒**；COMMIT 位于区间内但未直接打点，不能误称“COMMIT 后精确0.790秒”。清理成功不能仅凭 best-effort 的 leave_complete：现有同一 PID 的新原证另有两次 peerConnection CLOSED、AudioRecord stop done、AudioTrack stop done、camera release，均已在这次上界内收到；不独立宣称整个 Room.dispose 的返回成功。这是 TEST_ONLY 服务层撤权夹具，未宣称本次走了 HTTP/UI 撤权入口。当前 join API、图片/视频完整与 Range 读取随后均404，APP显示无旧详情的通话加载失败。
+
+Owner 对 **同 call10** 直接反馈“听到滴声，结束后已停止”。这是这次合成音的有界听感，不拼接 call4，不是物理 AEC、双人语音可懂度或最后扬声器波形停止计量。**SDK remote PCM capture 清理仍记录一次 ConcurrentModificationError**；本次 fresh 双向媒体和最终清理均已观测，未隐瞒该异常、未声称零异常或修改共享 SDK。该观察项保持开放，交 Astra 判断。
+
+### 独立媒体/通知及证据复用边界
+
+Owner 只选择本轮生成、Hash 固定的纯蓝 PNG 和2秒 H264 彩色测试 MP4；未浏览或导出私人图库。真实 APP 图片发送被服务器确认，对端读取校验为蓝色320×240 JPEG：picker 重压缩，不能声称原 PNG 字节相同。视频首轮未形成消息；本轮 API 进程缺少现有 ffprobe 显式路径，原失败 HTTP 响应未抓到，故不虚构422原证。只补任务 API 进程配置后重新选择，视频 ready/200/206、原文件与完整读回 SHA256 `91efa89716d27ca5528cf2b8182b2719d756c24f3fdc34ce50753fc160e25852` 相同，实际私有播放器显示了变化的合成帧。另一个早期同蓝资产未绑定消息，保留原状；最终仅一条图片和一条视频消息。
+
+真实通知授权弹窗已明确点击拒绝，系统权限仍 false，应用消息和安全入口可用；没有强清 user-fixed 标记或接入真实 Push。旧通知没有当前可读卡片，未冒称已验证不存在卡片的点击路径。图片/原生通知拒绝发生在此前8a11包，视频在中间 f26b 包；最终 cbe8 只改变 RTC 文件，这些作为同任务中未变代码的复用证据，**不重标为最终 APK 上新执行**。最终包冷启动回登录为新证据；实际15/30天经过时间、AEC/真实语音质量仍未运行。
+
+### AC-10.1.5-01～11（本章为最新汇总）
+
+| AC | 结果与证据边界 |
+|---|---|
+| 01 | NEW_RUN：实时权威/Root/双 Tree、全新独立空库与 volume/有效选择器、22,482具名保护文件、五根及519旧 refs 中保护项保持。不是整盘审计。 |
+| 02 | REUSED_ACCEPTED_USB_TEXT + NEW_DEVICE_MEDIA：旧真机文字、幂等/冲突/重试证据复用；本轮新图片/视频各一条，未声称新增文字重试测试。 |
+| 03 | NEW_SERVICE_REVOCATION + REUSED_SECURITY：call10当前 join/媒体拒绝和旧room隔离回归；原 Astra 已接受旧 JWT/握手拒绝复用，本次成功媒体 token 的旧 JWT 握手 NOT_RUN。 |
+| 04 | NEW_DEVICE_PICKER_PLAYER_RANGE + REUSED_FINAL_BINARY_UNCHANGED_CODE：合成图片/视频真实选择/发送/读回/播放、200/206与撤权404；中间包边界如上，不能当最终包重跑。 |
+| 05 | PARTIAL_MEDIA_NOW_SUPPORTED / AC05_OPEN：最终包同call10双向RTP、解码、手动重连、保守0.790秒native退出上界、同call滴声停止反馈；AEC/双人语音品质未证明，SDK清理异常观察仍开放。 |
+| 06 | REUSED_T0_BOUNDARIES_WITH_LIMITS + NEW_LOGIN：真正在线登录/T0旧边界测试复用；不把新登录当实际经过15/30天。 |
+| 07 | NEW_FINAL_COLD_LOCK + REUSED_RETENTION：最终安装启动锁回登录；原设备密文/受控30天清理复用；物理15～30天离线只读及实际经过30天未运行。 |
+| 08 | NEW_NATIVE_PERMISSION_DECLINE + REUSED_PREFS：原生拒绝及仍可用的新证据，旧偏好/撤销证据复用；无旧可读卡片的点击仍NOT_RUN。 |
+| 09 | REAL_PUSH_PROVIDER_PENDING / REAL_PUSH_NOT_RUN；原隔离 transport/token 生命周期为REUSED_TEST_ONLY。 |
+| 10 | NEW_BUILD_INSTALL_MEDIA_DB + REUSED_BACKEND：最终包构建/回取同Hash、735输入一致、40项Flutter定向检查；本轮DB12表重启一致；旧后端检查复用；Gate2链未运行。 |
+| 11 | 集中报告/Manifest、源码四文件最小diff、非作者源码与有界证据复核、脱敏短期审阅及普通候选发布；最终身份由独立远端回读绑定，不自行Astra接受。 |
+
+### 历史预算、收尾与交付
+
+D0-A保持15次 Serialize、约0.688秒；WinPS策略拒绝0.375秒、PS7 TypeLoad启动失败0.390秒两预算已消费。本轮新 Gate2启动0、Writer/Serializer调用0；37案例suite、条件 Sandbox SDK、Producer/libs.jar和30项解析仍NOT_RUN，不能与40项Flutter检查混淆。
+
+测试账号全部撤销，activeCalls/active session families/access tokens 均0；手机APP进程、合成PC浏览器/8054、本任务PHP/bridge、SFU和DB已停止，专属ADB reverse恢复开工空状态，任务Gradle进程停止。容器/volume、SQL/APK、原 dirty 根、历史 refs/失败保持。12张业务/媒体表规范化快照在专属DB重启前后完全相同，两条消息/两附件保持；SQL dump本身含时间等差异，未声称两dump原始字节相同。物理设备未清数据、未卸载其他APP，测试包与合成测试素材保留。
+
+LOCAL_ONLY 原证根标签 `v1015-ice-loopback-continuation-20261025`；原始日志、SDP、令牌、SQL、APK、UI及截图不上传。曾有控件裁图包含预览边缘，该图和原图均不进入公开包。最小脱敏审阅包见 `https://github.com/zcx369658780/EliteSync-v10/tree/2f238f8b72558ee965a1d628f937fd3f19eb7df3/docs/_temporary_review/v1015-ice-loopback-media-20261025`，Commit `2f238f8b72558ee965a1d628f937fd3f19eb7df3` / Parent `80f6292a2c3726716ab82152f36428812f23058f` / Root `113352597d2d4fd82373700aac4df369f20f3d9b`，十件文件逐项 Blob/原字节回读。候选随后仅追加本报告和Manifest，普通non-force发布；精确Commit/Parent/Root/Blob/原字节/产品双Tree见独立最终回读。
+
+保持 `V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING`。本次未自行宣布Astra或整版接受，集中交付后停止。
