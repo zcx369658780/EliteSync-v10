@@ -2,19 +2,19 @@
 
 **2026-10-25最新状态：V10.1.5_REMAINING_ACCEPTANCE_ACCEPTED_WITH_OBSERVATIONS / AC05_OPEN / PARTIAL_NOT_ACCEPTED / GATE2_NOT_RUN / PRODUCT_MAIN_NOT_INTEGRATED。** 已完成候选 `7773b98986d9c9395841623e6ef244379fddc865` 的Astra集中独立复核；详见 `docs/versions/v10.1.5/REMAINING_ACCEPTANCE_7773B989_ASTRA_REVIEW_20261025.md`。当前长任务已交付并验收，不自动创建后继任务。
 
-**最新局部Astra复核：** [PCM capture清理竞态复核](../versions/v10.1.5/PCM_CAPTURE_CLEANUP_ASTRA_REVIEW_20261025.md)，Blob `327ca8f7c68bf469c412a24129dc4d83c7742fe5`。最新已交付实施报告Blob `a2327eeb14532c711213a96290b08c53824c2895`；Manifest Blob `74bb3b2b6a74344ddca9156a2bc08912d6701c4e`。接受范围限于应用自有LiveKit 2.10.0 PCM capture清理竞态修复及有界测试/真机后续连接证据，不是整版接受。
+**最新Astra复核：** [剩余验收综合交付复核](../versions/v10.1.5/REMAINING_ACCEPTANCE_7773B989_ASTRA_REVIEW_20261025.md)，Blob `5e5851cc54185d488490706e99deaed57cb67802`。实施报告Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；Manifest Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`。本轮接受范围限于有界PCM/Room清理修复、受影响回归、call4真实UI挂断与同call重连、call5清理后新媒体连接和成功媒体token撤权后首次重新入房403；不代表整版接受。
 
-**当前唯一后续任务单：** [V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md](../versions/v10.1.5/V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md)，Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。该任务是整版剩余验收综合任务，不是微任务；Codex在Owner手动派发后，可自主推进PCM/RTC剩余观察、真机路径、离线边界和其它与Gate2无依赖的AC，普通缺陷在任务内修复与重测，最后集中更新报告/Manifest并普通non-force发布候选。
+**最近完成的综合长任务：** [V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md](../versions/v10.1.5/V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md)，Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。该任务已交付并完成Astra复核；不自动创建后继任务。
 
-**Gate 2权限边界：** WinPS执行策略拒绝0.375秒与PowerShell 7 TypeLoadException启动失败0.390秒两次历史预算均已消费。新任务只授权只读分析与准备合规方案，不授权新的Gate 2启动或预算；Writer/Serializer、完整37案例suite、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve仍NOT_RUN。需要Owner另行明确授权后才能运行该Gate。不得改执行策略、使用Bypass或重跑D0-A。
+**Gate 2权限边界：** WinPS执行策略拒绝0.375秒与PowerShell 7 TypeLoadException启动失败0.390秒两次历史预算均已消费。本轮新Gate 2预算/启动/Writer/Serializer调用为0；Writer/Serializer正负例、完整37案例suite、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均`NOT_RUN`。当前任务不授权新的Gate 2运行；须由Owner另行明确授权。不得改执行策略、使用Bypass或重跑D0-A。
 
-**仍开放的整版问题：** AC05仍OPEN。AEC/客观波形/语音质量、Room.dispose全部返回路径、native PCM handle全量清点、成功媒体token的旧JWT重新入房负例、部分GUI边界、实际15/30天经过时间与物理30天清理、真实Push Provider、ICE诊断旗标及旧guest/HCS状态仍未全部闭合。真实日历时间不得由时钟模拟冒充。
+**仍开放的整版问题：** AC05仍OPEN。AEC/客观波形/真实语音质量、native PCM handle全量清点和所有平台故障恢复未证明；本轮撤权host保守上界10.125秒，不构成新5秒PASS，旧0.790秒只复用原接受证据。实际15/30天经过时间与物理30天清理仍`WAITING_ELAPSED_TIME`；旧通知卡片实际点击未运行；真实Push Provider未接入；ICE诊断旗标及旧guest/HCS状态仍未证明。
 
-**候选与产品基线：** 最近交付候选`1a3a9ff9daa315fe5e688f6f0aab8e378e1db97c`，唯一Parent `1f9d1483268e957f7184625483ff6406071c1867`，Root `97fc729f68fe8d0b4bd1fc2f7dfb7cb0b2bad100`；候选源码Commit `1f9d1483268e957f7184625483ff6406071c1867` / Root `9beff929abf3939ac863cd4096ee9fb09a64a48d`，候选apps `a5c6182ea9e064db4ef73e1627a6e38591c953cc`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。接受产品仍v10.1.4：apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。无产品main集成，v10.1.6未启动。
+**候选与产品基线：** 最终候选`7773b98986d9c9395841623e6ef244379fddc865`，Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`；源码Commit `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c` / Root `21243e8f60dccae5106d9d04bd739ef587d05646`；候选apps `db3a2936ee37bf9610053fb8fd67b360fc377a94`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。接受产品仍v10.1.4：apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。无产品main集成，v10.1.6未启动。
 
 **Project Sources快照说明：** 已核验上传的`EliteSync_v10_Task_Dispatch_Closure_Project_Source_20261025.zip`完整性（SHA-256 `4dd3c7afb2312c5aae86db3e43e03a398920168b55340492dfd4da93e00346ef`，5成员CRC/长度/清单均通过），但其Manifest main快照为`71b8f6632b4fd6e7c86f144d9f17b380c9a5efce`，早于当前开发/验收状态。因此该ZIP仅作为治理规则增量，不作为实时状态权威；以本入口和GitHub live main为准。此次未修改Project Sources附件。
 
-**写入前live main：** `2fd59a578c84b5baf5d366fb2d96c12129fa012c` / Root `f24137ab4658f70e7661c123bfe8265a07d76ce2`。本次ACTIVE_STATE更新将推进main；最终HEAD以最后一次回读为准。
+**当前live main（状态更新前）：** `3c76b76b34556b1a94a8b03d51974586e6b69da6` / Root `d783f6e287af4c1c7563b429295175760b53e216`。最终HEAD以本轮最后一次回读为准。
 
 ## 已独立核验的产品和集成
 
