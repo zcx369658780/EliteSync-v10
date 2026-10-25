@@ -628,3 +628,67 @@ D0-A仍15次Serialize/约0.688秒，WinPS策略拒绝0.375秒与PS7 TypeLoad启�
 LOCAL_ONLY根标签 `v1015-remaining-acceptance-continuation-20261025`。十件最小脱敏审阅包：分支 `codex/v10.1.5-remaining-acceptance-review-20261025` / Commit `fd3320712f82b312e524854c596740b728f16202` / Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c` / Root `385d01449f8d8cc9b68e23064919d6a8d92c3288`；source base `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，十件Blob及原字节已远端回读。地址：https://github.com/zcx369658780/EliteSync-v10/tree/fd3320712f82b312e524854c596740b728f16202/docs/_temporary_review/v1015-remaining-acceptance-20261025 。非作者另核脱敏陈述边界，不代替Astra。
 
 原连续候选分支普通non-force发布源码和本报告/Manifest；最终文档Commit/Parent/Root/Blob/原字节与完整产品双Tree由独立远端回读绑定，避免自引用。保持 **V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN / OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS / NO_MAIN_PRODUCT_INTEGRATION / V10.1.6_NOT_STARTED / REAL_PUSH_PROVIDER_PENDING**。当前可执行范围集中交付后停止，等待Astra；不合产品main、不启动下一Gate或v10.1.6。
+
+
+## 2026-10-25｜同版本 R1 集中返修交付（最新状态；等待 Astra）
+
+**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / R1_REPAIR_CANDIDATE_AWAITING_ASTRA。** Owner在当前会话完整手动派发R1返修任务；这是本次执行依据，不是v10.1.6或产品main集成。原107310字节报告原样保留。远端既有Astra复核Blob `5e5851cc54185d488490706e99deaed57cb67802`的正文是有界接受/整版PARTIAL；未把它改写成整版接受或另一个历史裁决。当前Owner明确返修方向按本次派发执行。
+
+### 实时权威与源码身份
+
+开工fresh main `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；正式剩余任务Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`与冻结plan `7d3466b3be67135dc641cfee7c7faef78937ba03`保持。已接受产品仍v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。
+
+本轮源码Commit **`e7cbbe6030b033c5c9244c599bd42fcff312a8c6`** / 唯一Parent `7773b98986d9c9395841623e6ef244379fddc865` / Root `3871583648176b69a2d0ebb1053b23a07770fec5`，apps `0581a5286300d8c39fd7ffaf3dce37af0257419e` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。仅改变RTC service与对应test两文件；应用自有LiveKit 2.10.0+elitesync.2的runtime、LICENSE/NOTICE、297上游Hash清单及最小patch原字节保持，后端/授权/token/Upgrade源码不变。1040件tracked apps在构建输入副本与连续源码逐项匹配；构建后再次核验一致。最终候选Commit/Parent/Root、报告/Manifest Blob与原字节在提交后由外部final-readback绑定，避免自引用。
+
+### 已修复缺陷与定向检查
+
+首个leave在native清理前撤销Room/call身份；此时带callId的重复leave会走身份不匹配早退，提前报告其Future完成。现在该早退分支先等待已有`_roomTeardown`，不触碰新Room/代际/连接状态。两个新增成功/失败用例在原代码均因提前完成RED，exit1；修复后完整service **22项exit0**，三份关联RTC页面 **27项exit0**，两个改变Dart文件分析exit0、No issues found。失败路径继续确认清理失败后不得请求新join凭据。非作者只读源码审查未见新增阻断问题；没有由审阅者运行测试或设备。SDK清理交错、Room并发/错误传播及disconnect失败仍继续dispose沿用已有证据，未无谓重跑原67项和17项ICE检查。
+
+普通debug构建修正后exit0、288.969秒；最终APK `com.elitesync.v1015r1dev` / code1010511 / name10.1.5-r1-dev，**405007373 bytes / SHA256 `30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12`**。install-r保留数据、签名一致，回取Hash相同；新APK冷启动先锁登录，随后仅用任务合成账号登录。
+
+构建保护偏差如实保留：初次隔离复制停在大量无用Gradle文档，副本保留；缩小复制遗漏依赖包lib/test引起页面编译失败，补回既有本地原件后27项通过，未改断言。首次APK构建虽外层offline，内层wrapper仍尝试下载Gradle；主代理发现后终止自有进程树，exit1，**7941328字节partial及Hash保留**，不能声称本轮全程无下载。随后仅在本轮ignored构建副本内让wrapper直接调用已存在、314件运行文件字节一致的Gradle 8.14，无网络fallback，并监测再次下载入口；修正构建通过。共享工具/全局网络/系统安全策略和产品源码未因此修改。Java夹具默认编码与登录脚本BACK误退的原失败也保留；普通修复未降低检查门槛。
+
+### R1根call1：真实撤权与有界停止时序
+
+这是独立的新call，不与旧call3/4/5拼接。新APK同一PID下，两批四方向RTP bytes/packets均增长，入站视频decode **66→226**。outbound视频是同批次simulcast计数之和，不冒称线缆精确字节。真实guarded `LiveConsentService::transition`在独立新空开发库执行，PHP先完成bootstrap与精确三合成账号/call归属核验，输出READY后等待GO。主机在发送GO前打单调时钟，PHP收到GO才能进入真实transition/commit，COMMITTED输出确认transactionLevel0。
+
+READY后再次取得同PID基线，并确认本call尚无disconnect_start；每次日志读取固定/核对该PID。native事件必须在同一手机日志时钟中位于本call新disconnect_start之后；手机时间只排序，不与server/host做时差相减。主机收到COMMITTED在原始区间0～0.062秒内；这不是精确COMMIT打点。renderer cancel原始观察0.312秒，PeerConnection两次CLOSED、AudioRecord stop done、AudioTrack stop done与camera release在0.625秒内可见，disconnect/Room.dispose/leave完成在0.875秒内可见。
+
+Python monotonic实现为GetTickCount64，分辨率15.625ms；额外加入两端合计**31.25ms**量化余量。最终保守上界 **0.90625秒**（含日志获取/调度开销）；COMMIT区间含余量上界0.09325秒，仍不声称精确提交时间。该结果仅支持**此次指定native/生命周期端点在撤权后5秒内可见**，不证明最后可闻波形停止、AEC、所有native handle或所有平台路径。限定同PID采样窗口保留camera close code4/5计数6与trackDispose-null计数5；五种异常字符串计数0仅限该窗口，不宣称全平台零警告。
+
+旧call3整体exit1、call4真实UI重连/挂断、call5成功媒体旧token首次403、旧10.125秒及历史0.790秒分别按原Commit/APK保留。call5三个原始日志Hash再次匹配；本次未改token/consent/Upgrade路径，只复用旧成功token首次重入拒绝命题，未冒作新APK重新运行。AEC仍NOT_PROVEN；hardwareProcessingRequested=false/engine already initialized/effectiveMode unverified不是有效AEC证明，未补做声学对照或私人语音采集。
+
+### 通知旧卡片：实际UI action与限制
+
+通知代码未改；本轮在回取Hash核验过的原APK `68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717` / 源码a25e7c上执行独立场景，不写成新APK全量重测。三合成账号真实消息API创建一条通知；确认唯一卡片后，经真实服务撤权。预先就绪的本轮UIAutomator辅助程序在GO后取得**当前仍可见的所属页面控件**，执行真实Android可访问性ACTION_CLICK，平台返回成功，JUnit OK(1 test)。这不是物理触屏声明，也不是tap空坐标。
+
+点击后仍在通知中心，出现“暂时无法打开这段会话，请稍后重试”反馈；对既有XML只读同时核text与content-desc，均无合成消息正文。通知read_at、消息read_at/is_read、conversation last_read_message_id前后保持。既有服务logger未记录这次单独HTTP状态，故**不声称通知点击返回403**。本轮结论为有界真实失效卡片点击后未打开私密路由；旧卡片提前消失导致NOT_RUN的历史未重写。
+
+### AC-01～11及未关闭门禁
+
+| AC | 当前结论 | 证据类别 | 限制 |
+|---|---|---|---|
+| 01 | `SUPPORTED_BOUNDED_PROTECTION` | NEW_READONLY | Live main product still v10.1.4; 1040 build inputs, 25609 named files, five roots and protected old refs unchanged. |
+| 02 | `REUSED_ACCEPTED_MESSAGE_RELIABILITY` | REUSED_ACCEPTED / NEW_NOTIFICATION_FIXTURE | Unchanged reliability path reused at original identities. New real synthetic message for notification test, not a repeated full reliability journey. |
+| 03 | `SUPPORTED_BOUNDED_NATIVE_STOP_PLUS_REUSED_TOKEN_REENTRY` | DEVICE_NEW_RUN / REUSED_ACCEPTED | R1 call1 bounded native/lifecycle stop <=0.90625s incl clock allowance. Prior call5 first successful-media-token Upgrade 403 reused separately; no new token-negative run. |
+| 04 | `REUSED_ACCEPTED_MEDIA_AT_ORIGINAL_IDENTITIES` | REUSED_ACCEPTED | No new image/video picker/player/Range journey. |
+| 05 | `PARTIAL_AC05_OPEN_BOUNDED_NATIVE_LIFECYCLE_5S_SUPPORTED` | DEVICE_NEW_RUN / TEST_ONLY / REUSED_ACCEPTED | Three-line repeated call-scoped leave fix; 22+27 checks; R1 call1 flow and eight completion endpoints. AEC, last audible waveform and native handle census not proven. |
+| 06 | `WAITING_ELAPSED_TIME` | REUSED_EVIDENCE / NOT_RUN | Trusted T0/refresh reused; actual 15/30 days not elapsed/proven; no system-clock changes. |
+| 07 | `WAITING_ELAPSED_TIME_PHYSICAL_PURGE_NOT_RUN` | REUSED_TEST_ONLY / DEVICE_NEW_RUN | Current APK cold entry locks. Actual offline 15-30 days and physical 30-day purge not run. |
+| 08 | `SUPPORTED_BOUNDED_REAL_STALE_CARD_ACCESSIBILITY_CLICK` | DEVICE_NEW_RUN_ON_PRIOR_UNCHANGED_NOTIFICATION_SOURCE | Original APK 68e9...; real visible-node ACTION_CLICK after service revoke; blocked feedback, no body in text/description, read facts unchanged. No physical-tap or individual HTTP-status claim. |
+| 09 | `REAL_PUSH_PROVIDER_PENDING` | NOT_RUN / REUSED_TEST_ONLY | No provider/SDK/credentials/fees/external delivery. |
+| 10 | `SUPPORTED_TARGETED_TEST_BUILD_INSTALL_WITH_OPEN_GATES` | NEW_RUN / REUSED_BACKEND | 22 service +27 distinct page checks exit0, scoped analyzer0, corrected build/install hash match. Initial wrapper tool-download deviation preserved. Backend restart evidence reused, no new DB restart or Gate2. |
+| 11 | `R1_CANDIDATE_AWAITING_ASTRA` | STATIC_REVIEW / SANITIZED_REVIEW / REMOTE_READBACK | One appended report and one manifest, ten sanitized review files. Raw local evidence retained. No main integration/successor. |
+
+实际15/30天与物理30天清理仍WAITING_ELAPSED_TIME/NOT_RUN；可信T0/加密缓存/受控边界与旧DB重启快照按原身份复用，未改系统时钟或冒充自然时间经过。真实Push继续PENDING/NOT_RUN。ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN、OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS保持。
+
+Gate2无新授权：WinPS策略拒绝0.375秒、PS7 TypeLoad启动失败0.390秒预算均保持已消费，D0-A仍15次Serialize/约0.688秒。本轮Gate2启动/Writer/Serializer调用均0，37案例、条件Sandbox SDK、Producer/libs.jar/30配置解析全部NOT_RUN；没有Bypass、策略变更、Framework DLL复制或替换Serializer。
+
+### 资源、保护与交付
+
+任务进程、手机APP进程和合成PC已停，活动call/session families/access tokens均0；SFU stopped exit1与DB stopped exit0分别记录，不写成所有child exit0。四条专属ADB reverse恢复开工空状态，七端口无listener，任务Gradle停止；APK安装、容器/volume、SQL和原始日志保留。新最终SQL 151058 bytes / SHA256 `1e9fa88549fb26a56ed53a30a805558c471e52c9ae9ac442e7a692d14862a4a6`保持LOCAL_ONLY；本轮未重复DB重启旅程。25609具名保护文件、5历史根及522开工refs中的受保护项保持；不是整盘审计。
+
+LOCAL_ONLY根标签`v1015-r1-remaining-repair-20261025`。十件最小脱敏审阅包分支`codex/v10.1.5-remaining-r1-review-20261025`，Commit `220e29b148dd0994d3a2798a98a79e2943a099d4` / 唯一Parent `e7cbbe6030b033c5c9244c599bd42fcff312a8c6` / Root `d6b45cf2df417365cb5517f0bae046d19925ad50`；公开安全派生摘要与静态夹具副本不包含原始设备/UI日志、APK、SQL、私人音视频、凭据或标识。
+地址：https://github.com/zcx369658780/EliteSync-v10/tree/220e29b148dd0994d3a2798a98a79e2943a099d4/docs/_temporary_review/v1015-remaining-r1-20261025 。报告/Manifest原字节及完整apps/services Tree和候选身份在普通non-force发布后集中回读，最终结果见本轮final-readback。
+
+保持 **V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_REVIEW / NO_PRODUCT_MAIN_INTEGRATION / V10.1.6_NOT_STARTED**。候选交付后停止；未改冻结合同、未合main、未自行接受或启动下一Gate。
