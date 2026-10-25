@@ -78,3 +78,39 @@
 ## 7. 交接完成标准
 
 新会话确认已读取此文档与最新ACTIVE_STATE后继续；如GitHub HEAD已经前进，以实时读取为准，保留此文档作为历史交接证据，不将旧SHA当作最新状态。
+
+## 8. 本会话最终交接检查点（2026-10-25，Asia/Singapore）
+
+Owner要求：当前会话过长，先将当前进度与Owner决策写入GitHub正式文档，再提供新会话交接Prompt。Owner明确说明：**最新任务单将在新会话继续交接**。本节只封存状态，不创建新任务、不启动Codex、不重跑测试、不启动Gate 2。
+
+### 最终已确认的状态
+
+- 当前live main（本检查点写入前fresh read）：`f91ae8177a6f30f2fbdc430c636d4dfbf90fc2ca`；Root `b746f18b6194cb4548039ea883d51d2421698969`。该值是本检查点写入前状态；本次更新会使HEAD继续前进，新会话必须重新读取。
+- 当前交付候选仍是`7773b98986d9c9395841623e6ef244379fddc865`，唯一Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。候选只在普通non-force模式下发布用于审查，未合并产品main。
+- 最新候选实施报告Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；Manifest Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`；冻结plan Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`；原综合task_order Blob `43b2396b2fba046d5c0ab00bea87293783d1c2fd`；剩余验收长任务Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。
+- 已接受产品仍为v10.1.4：apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`；services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码apps/services Tree是未接受候选，不是产品main。
+- 当前状态：`V10.1.5_REMAINING_ACCEPTANCE_CANDIDATE_PUBLISHED / AWAITING_ASTRA_CENTRAL_REVIEW / PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED`。
+
+### 当前候选的重要新增证据和必须保留的限制
+
+- 67项相关Flutter检查与17项ICE guard检查由Codex报告exit0；Dart分析0错误、0警告、19条既有上游info；debug离线构建exit0。不得把84项误认为Gate 2的37案例suite。
+- 最终debug APK `com.elitesync.v1015r1dev` / versionCode `1010511` / versionName `10.1.5-r1-dev`；SHA256 `68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717`，405,007,373 bytes，安装回取hash一致、签名一致、数据保留。以上来自Codex报告/LOCAL_ONLY。
+- call4有真实UI同call重连、UI挂断、四方向RTP增长及入站视频framesDecoded 94→574；call5在新连接建立媒体后复用成功媒体token，撤权后首次且仅一次WebSocket Upgrade重入返回403。
+- call3媒体开关/前后台有界证据，但重连按钮仅露12px、未实际触发，整段脚本exit1，finally通过服务API结束；不得把整段标PASS。
+- call5撤权停止host保守上界10.125秒（从PHP进程启动前计，含约9.750秒引导/服务调用），不新增5秒内停止PASS。此前0.790秒native停止证据仅按原身份复用，不混合跨时钟计时。
+- 有限合成信号不证明AEC或真实语音质量；hardwareProcessingRequested=false、engineWasAlreadyInitialized=true、effectiveMode=unverified。通知旧卡片在第二次当前快照前消失，实际旧卡片点击`NOT_RUN`。真实经过15/30天及物理30天清理`WAITING_ELAPSED_TIME / NOT_RUN`；真实Push仍PENDING。
+- PCM capture/Room.dispose清理及错误传播路径已在本轮修复，保留原始RED、UIAutomator失败、端口TIME_WAIT脚本失败和首次界面取证失败。原始失败不得删改或改写成PASS。
+
+### Owner长期决策与授权边界（持续有效）
+
+- 工作流：一份冻结计划、一份综合长任务、中途无监督执行、一次集中候选与Astra独立验收。普通代码修改、失败分析、范围内修复与重测由Codex自主处理，不拆微任务、不逐步骤审批。
+- Owner是产品方向与不可逆决策最终authority；Codex只在Owner手动派发正式任务后执行；Astra负责顾问、规划、独立验收和当前状态管理。
+- 当前剩余验收综合长任务已执行并集中交付，下一步应先由Astra对候选`7773b989...`进行集中独立验收。不要误认为之前的`fec31...`任务仍未派发，也不要自动新建下一任务单。
+- Gate 2当前无新运行授权：D0-A历史15次Serialize/约0.688秒不重跑；WinPS策略拒绝0.375秒与PS7/.NET TypeLoadException启动失败0.390秒两次预算已消费。本轮新Gate2启动/Writer/Serializer调用均0。37案例、条件Sandbox SDK、Producer、libs.jar、30项Configuration.resolve均NOT_RUN。不得修改策略、使用Bypass或重跑D0-A；要运行Gate 2需Owner另行明确授权。
+- 不自动合并main、不启动v10.1.6、不接真实Push/外部供应商、不产生真实费用、不访问生产服务、不修改系统/全局安全设置或ACL，不清理历史备份、refs、SQL、APK和LOCAL_ONLY证据。
+
+### 新会话首要动作
+
+先读本交接文档与live `ACTIVE_STATE.md`，重新核验live main/Root、候选commit Parent/Root、候选报告/Manifest Blob与冻结plan。然后对候选`7773b989...`作Astra集中独立验收，尤其核对AC-01～11矩阵、源码变更、PCM/Room.dispose错误传播、call4 UI重连/挂断、call5成功媒体token撤权后重入403、10.125秒停止限制、AEC未证明、通知旧卡片点击未运行、真实15/30天未经过以及Gate 2预算/授权。区分GitHub直接读取与Codex/LOCAL_ONLY证据。若有缺陷，给出集中返修清单并沿用原综合任务，不创建微任务。当前先不创建新任务、不派发Codex、不运行测试、不启动Gate 2、不合并main、不启动v10.1.6。
+
+本检查点不改变产品合同、冻结计划、历史预算、测试事实或先前局部接受结论。
