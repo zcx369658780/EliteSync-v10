@@ -1,0 +1,90 @@
+{
+  "rootLabel": "v1015-pcm-cleanup-continuation-20261025",
+  "files": [
+    {
+      "localLabel": "pcm-red.stdout.txt",
+      "bytes": 3860,
+      "sha256": "1933bafb90c339225376629bb721bb9425c69b626f7abcae8f9478715d151112",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "pcm-red.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final48.stdout.txt",
+      "bytes": 14258,
+      "sha256": "b0eaad7aea6c352e73bf59e49f97995467513ddf9e78957405320b139a208153",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final48.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "analyze-final.txt",
+      "bytes": 78,
+      "sha256": "07407880163f0d1a53a15f3c9906b3a9dab2631bd96c60bd7d07e9ac14ce680b",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stdout.txt",
+      "bytes": 48937,
+      "sha256": "dd1c2066d5ff66d3219a6d9407e2f1177502f35b2cfdd47b9c72e414a817421a",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build.stderr.txt",
+      "bytes": 1632,
+      "sha256": "4a3e179f30ce70cf42ea315ee6d347a41e27eb2ac33b16de023d4fb17a89aea0",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "final-build-source-pins.json",
+      "bytes": 227530,
+      "sha256": "534fdbe0a754dfe4a899dd363086516035be6b15c52c7f277b57e90550ab3e30",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "pcm-device-journey.console.txt",
+      "bytes": 3466,
+      "sha256": "cff6e67ea32357e0c5831a14bf159f96608d21bd501551fa502cc11606c5a512",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "pcm-followup.console.txt",
+      "bytes": 2105,
+      "sha256": "dc60f95bfdf753217260df6f2ac5f3ebc917b277ce64abe9ca4bd930f4328101",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "pcm-final-process-log.stdout.txt",
+      "bytes": 551602,
+      "sha256": "a71a2e080a01d1e91e0c737c89f62028c51a3795abf9a149c0da3339f5e9d5cc",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "device-owned-final.sql",
+      "bytes": 155947,
+      "sha256": "6926afa77402b23446d929b173fe989fe63c0d8a504dcf0442b32d5ae761516d",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "post-build-input-verification.json",
+      "bytes": 4038,
+      "sha256": "b621d580500ff5bc243052e69ecf95c9d32717767f5776ababe192fb17d31afd",
+      "rawPublished": false
+    },
+    {
+      "localLabel": "runtime-final.json",
+      "bytes": 1667,
+      "sha256": "e1eba6baf7475333d65c2705347dcb5b80d64673eee361583b11a2e61a4f6453",
+      "rawPublished": false
+    }
+  ],
+  "rawPrivacy": "APK, SQL, credentials, serial, full device/UI/media logs remain LOCAL_ONLY"
+}

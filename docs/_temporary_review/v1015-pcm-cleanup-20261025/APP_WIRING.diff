@@ -1,0 +1,58 @@
+diff --git a/apps/android/app/build.gradle.kts b/apps/android/app/build.gradle.kts
+index bdb8e241..d856611a 100644
+--- a/apps/android/app/build.gradle.kts
++++ b/apps/android/app/build.gradle.kts
+@@ -202,7 +202,9 @@ val flutterReleaseAarRepo =
+     File(flutterModuleDir, "build/host/outputs/repo/com/elitesync/flutter_elitesync_module/flutter_release/1.0")
+ val r1Digest = MessageDigest.getInstance("SHA-256").apply {
+     update(flutterDartDefines.toByteArray(Charsets.UTF_8))
+-    fileTree(File(flutterModuleDir, "lib")).matching { include("**/*.dart") }.files.sortedBy { it.absolutePath }.forEach {
++    fileTree(flutterModuleDir).matching {
++        include("lib/**/*.dart", "pubspec.yaml", "pubspec.lock", "third_party/livekit_client/**")
++    }.files.sortedBy { it.relativeTo(flutterModuleDir).invariantSeparatorsPath }.forEach {
+         update(it.relativeTo(flutterModuleDir).invariantSeparatorsPath.toByteArray(Charsets.UTF_8))
+         update(it.readBytes())
+     }
+@@ -247,6 +249,8 @@ val syncFlutterAar by tasks.registering(Exec::class) {
+     )
+     inputs.dir(File(flutterModuleDir, "lib"))
+     inputs.file(File(flutterModuleDir, "pubspec.yaml"))
++    inputs.file(File(flutterModuleDir, "pubspec.lock"))
++    inputs.dir(File(flutterModuleDir, "third_party/livekit_client"))
+     inputs.property("flutterDartDefines", flutterDartDefines)
+     inputs.property("v1009DualDeviceBuild", v1009DualDeviceBuild)
+     inputs.property("relationshipDualDeviceBuild", relationshipDualDeviceBuild)
+diff --git a/apps/flutter_elitesync_module/pubspec.lock b/apps/flutter_elitesync_module/pubspec.lock
+index 1c57adc0..2f494e02 100644
+--- a/apps/flutter_elitesync_module/pubspec.lock
++++ b/apps/flutter_elitesync_module/pubspec.lock
+@@ -603,11 +603,10 @@ packages:
+   livekit_client:
+     dependency: "direct main"
+     description:
+-      name: livekit_client
+-      sha256: "9160950ff87d1946959e4911c16236ea7a3e74ac1987990b258132fd4ed0fca9"
+-      url: "https://pub.dev"
+-    source: hosted
+-    version: "2.10.0"
++      path: "third_party/livekit_client"
++      relative: true
++    source: path
++    version: "2.10.0+elitesync.1"
+   logger:
+     dependency: transitive
+     description:
+diff --git a/apps/flutter_elitesync_module/pubspec.yaml b/apps/flutter_elitesync_module/pubspec.yaml
+index b0af6620..8a3197de 100644
+--- a/apps/flutter_elitesync_module/pubspec.yaml
++++ b/apps/flutter_elitesync_module/pubspec.yaml
+@@ -37,7 +37,8 @@ dependencies:
+   image_picker: ^1.1.2
+   video_player: any
+   permission_handler: ^11.4.0
+-  livekit_client: ^2.7.0
++  livekit_client:
++    path: third_party/livekit_client
+   flutter_webrtc: 1.6.0
+ 
+ dev_dependencies:

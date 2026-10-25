@@ -1,0 +1,99 @@
+--- upstream/lib/src/track/local/local.dart
++++ elitesync/lib/src/track/local/local.dart
+@@ -1,4 +1,5 @@
+ // Copyright 2024 LiveKit, Inc.
++// Modified by EliteSync on 2026-10-25: application-owned PCM cleanup race fix.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+ // you may not use this file except in compliance with the License.
+@@ -67,6 +68,7 @@
+ /// Used to group [LocalAudioTrack] and [RemoteAudioTrack].
+ mixin AudioTrack on Track {
+   final Map<AudioRendererOptions, _AudioCaptureGroup> _captureGroups = {};
++  Future<void>? _captureStopFuture;
+ 
+   /// Register a callback to receive raw PCM audio frames from this track.
+   ///
+@@ -89,8 +91,11 @@
+     return () async {
+       group.renderers.remove(onFrame);
+       if (group.renderers.isEmpty) {
+-        _captureGroups.remove(options);
+-        await group.stop();
++        // A late cancellation must not remove a replacement capture group.
++        if (identical(_captureGroups[options], group)) {
++          _captureGroups.remove(options);
++        }
++        await _stopCaptureGroups([group]);
+       }
+     };
+   }
+@@ -101,12 +106,27 @@
+   }
+ 
+   @override
+-  Future<void> stopCapture() async {
++  Future<void> stopCapture() {
+     logger.fine('AudioTrack.stopCapture()');
+-    for (final group in _captureGroups.values) {
+-      await group.stop();
+-    }
++    // Transfer ownership before awaiting native cleanup. Renderer cancellation
++    // may otherwise mutate the live map while stopCapture is suspended.
++    final groups = List<_AudioCaptureGroup>.of(_captureGroups.values);
+     _captureGroups.clear();
++    return _stopCaptureGroups(groups);
++  }
++
++  Future<void> _stopCaptureGroups(List<_AudioCaptureGroup> groups) {
++    final previous = _captureStopFuture;
++    if (groups.isEmpty) return previous ?? Future<void>.value();
++    late final Future<void> stopping;
++    stopping = Future.wait<void>([
++      if (previous != null) previous,
++      for (final group in groups) group.stop(),
++    ]).then<void>((_) {}).whenComplete(() {
++      if (identical(_captureStopFuture, stopping)) _captureStopFuture = null;
++    });
++    _captureStopFuture = stopping;
++    return stopping;
+   }
+ }
+ 
+@@ -115,6 +135,7 @@
+   late final Future<void> _startFuture;
+   AudioFrameCapture? _capture;
+   StreamSubscription? _subscription;
++  Future<void>? _stopFuture;
+ 
+   _AudioCaptureGroup({
+     required rtc.MediaStreamTrack track,
+@@ -147,7 +168,12 @@
+     });
+   }
+ 
+-  Future<void> stop() async {
++  Future<void> stop() {
++    renderers.clear();
++    return _stopFuture ??= _stop();
++  }
++
++  Future<void> _stop() async {
+     await _startFuture;
+     await _subscription?.cancel();
+     _subscription = null;
+--- upstream/pubspec.yaml
++++ elitesync/pubspec.yaml
+@@ -12,10 +12,11 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
++# Modified by EliteSync on 2026-10-25: local version for the PCM cleanup patch.
+ name: livekit_client
+ description: Flutter Client SDK for LiveKit. Build real-time video and audio
+   into your apps. Supports iOS, Android, and Web.
+-version: 2.10.0
++version: 2.10.0+elitesync.1
+ homepage: https://github.com/livekit/client-sdk-flutter
+ 
+ # Test fixture keys for certificate pinning tests, not real secrets.

@@ -1,0 +1,224 @@
+{
+  "scope": "CODEX_REPORTED / DEVICE_NEW_RUN / synthetic isolated test; not Astra rerun",
+  "device": {
+    "model": "Xiaomi 25060RK16C",
+    "android": "16/API36",
+    "abi": "arm64-v8a",
+    "serial": "LOCAL_ONLY_NOT_PUBLISHED"
+  },
+  "apk": {
+    "package": "com.elitesync.v1015r1dev",
+    "versionCode": 1010511,
+    "versionName": "10.1.5-r1-dev",
+    "buildSha256": "83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678",
+    "installedReadbackSha256": "83f622f301803d92ccb92650b614334914db97f75ac1dffe5eb5a057257fd678",
+    "byteIdentityMatched": true,
+    "signerMatched": true,
+    "dataPreserved": true,
+    "sourceCommit": "1f9d1483268e957f7184625483ff6406071c1867"
+  },
+  "journey": {
+    "status": "BOUNDED_PCM_DEVICE_CLEANUP_REGRESSION_SUPPORTED",
+    "sourceCommit": "1f9d1483268e957f7184625483ff6406071c1867",
+    "firstCallId": 1,
+    "firstCallSameCallManualReconnect": true,
+    "firstHarnessExit": 1,
+    "firstHarnessFailure": "UI_IDLE_NOT_OBTAINED at attempted hangup; finally ended real call through service API",
+    "followupCallId": 2,
+    "followupRealMediaAfterPriorCleanup": true,
+    "endPath": "REAL_SERVICE_API_NOT_UI_HANGUP",
+    "bothCallsEnded": true,
+    "noConcurrentModificationErrorInCurrentProcessLog": true,
+    "postStopNativeEvidenceRequiresSeparateExtraction": true,
+    "mediaAudibility": "NOT_NEWLY_MEASURED",
+    "AEC": "NOT_RUN",
+    "rendererNativeHandleCensus": "NOT_INSTRUMENTED",
+    "utc": "2026-10-25T09:37:08.316034+00:00"
+  },
+  "media": [
+    {
+      "callId": 1,
+      "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+      "direction": "inbound",
+      "kind": "audio",
+      "sampleBatches": 5,
+      "spanSeconds": 15.997,
+      "first": {
+        "bytes": 20717,
+        "packets": 225
+      },
+      "last": {
+        "bytes": 94835,
+        "packets": 1025
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 1,
+      "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+      "direction": "inbound",
+      "kind": "video",
+      "sampleBatches": 5,
+      "spanSeconds": 15.997,
+      "first": {
+        "bytes": 469322,
+        "packets": 452,
+        "framesDecoded": 92,
+        "framesReceived": 92,
+        "framesPerSecond": 20
+      },
+      "last": {
+        "bytes": 1825894,
+        "packets": 1787,
+        "framesDecoded": 412,
+        "framesReceived": 412,
+        "framesPerSecond": 20
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 1,
+      "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+      "direction": "outbound",
+      "kind": "audio",
+      "sampleBatches": 5,
+      "spanSeconds": 15.999,
+      "first": {
+        "bytes": 1148,
+        "packets": 28
+      },
+      "last": {
+        "bytes": 21609,
+        "packets": 328
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 1,
+      "segment": "AFTER_MANUAL_SAME_CALL_RECONNECT",
+      "direction": "outbound",
+      "kind": "video",
+      "sampleBatches": 7,
+      "spanSeconds": 15.999,
+      "first": {
+        "bytes": 191799,
+        "packets": 206,
+        "framesEncoded": 62,
+        "framesPerSecond": 17
+      },
+      "last": {
+        "bytes": 5697047,
+        "packets": 5431,
+        "framesEncoded": 958,
+        "framesPerSecond": 50
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 2,
+      "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+      "direction": "inbound",
+      "kind": "audio",
+      "sampleBatches": 2,
+      "spanSeconds": 4.007,
+      "first": {
+        "bytes": 17890,
+        "packets": 215
+      },
+      "last": {
+        "bytes": 36450,
+        "packets": 415
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 2,
+      "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+      "direction": "inbound",
+      "kind": "video",
+      "sampleBatches": 2,
+      "spanSeconds": 4.007,
+      "first": {
+        "bytes": 129589,
+        "packets": 155,
+        "framesDecoded": 84,
+        "framesReceived": 84,
+        "framesPerSecond": 20
+      },
+      "last": {
+        "bytes": 292626,
+        "packets": 329,
+        "framesDecoded": 164,
+        "framesReceived": 164,
+        "framesPerSecond": 20
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 2,
+      "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+      "direction": "outbound",
+      "kind": "audio",
+      "sampleBatches": 2,
+      "spanSeconds": 3.999,
+      "first": {
+        "bytes": 2951,
+        "packets": 54
+      },
+      "last": {
+        "bytes": 3517,
+        "packets": 72
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    },
+    {
+      "callId": 2,
+      "segment": "FOLLOWUP_AFTER_PRIOR_CLEANUP",
+      "direction": "outbound",
+      "kind": "video",
+      "sampleBatches": 3,
+      "spanSeconds": 4.0,
+      "first": {
+        "bytes": 772452,
+        "packets": 821,
+        "framesEncoded": 180,
+        "framesPerSecond": 49
+      },
+      "last": {
+        "bytes": 1931863,
+        "packets": 1843,
+        "framesEncoded": 254,
+        "framesPerSecond": 34
+      },
+      "countersGrow": true,
+      "multiSsrcAggregation": "SUM_WITHIN_SAME_LOG_TIMESTAMP"
+    }
+  ],
+  "nativeStopEventCountsInSamePid": {
+    "peerConnectionClosed": 6,
+    "audioRecordStopDone": 3,
+    "audioTrackStopDone": 3,
+    "cameraRelease": 3
+  },
+  "exceptionStringCountsInCapturedSamePidLog": {
+    "ConcurrentModificationError": 0,
+    "Unhandled Exception": 0,
+    "PlatformException": 0,
+    "MediaConnectException": 0,
+    "StateError": 0
+  },
+  "limits": [
+    "No new AEC, human audibility or waveform timing measurement",
+    "No native PCM handle census; native audio/camera stop events are bounded corroboration",
+    "Room.dispose overall success and all platform failure recovery are not independently proven",
+    "First journey script exited 1 on UI_IDLE_NOT_OBTAINED; real service finally ended that call; followup script exited 0",
+    "No new revocation timing or successful-media-token JWT reentry test; prior accepted evidence is reused"
+  ]
+}

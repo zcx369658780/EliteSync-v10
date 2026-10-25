@@ -1,0 +1,106 @@
+{
+  "authority": {
+    "taskBlob": "43b2396b2fba046d5c0ab00bea87293783d1c2fd",
+    "planBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "activeBlob": "635dbb2d5741fee941eadfef4f32b5ddf9cae252",
+    "astraReviewBlob": "221809532229947ae298ca76f84bd98690c94bfa"
+  },
+  "source": {
+    "commit": "1f9d1483268e957f7184625483ff6406071c1867",
+    "parent": "2204c7439cca344795a9a4cc5e9c4d3e27b30d12",
+    "root": "9beff929abf3939ac863cd4096ee9fb09a64a48d",
+    "apps": "a5c6182ea9e064db4ef73e1627a6e38591c953cc",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "worktreeClean": true
+  },
+  "sourceInputVerification": {
+    "trackedAppsInputCount": 1036,
+    "allWorktreeAndBuildBytesStillIdentical": true,
+    "allReviewHashesStillMatch": true,
+    "all297VendoredRuntimeGitBlobsEqualActualSourceBytes": true,
+    "upstreamRetainedFiles": 297,
+    "upstreamByteUnchangedFiles": 295,
+    "changedUpstreamFiles": [
+      "lib/src/track/local/local.dart",
+      "pubspec.yaml"
+    ],
+    "sourceReferences": [
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/README.elitesync.md",
+        "worktreeSha256": "cc5bed4eecab1e783c00aa127364fd4c31c6b27767e3c39a17fab30bc59803b9",
+        "gitBlobSha256": "cc5bed4eecab1e783c00aa127364fd4c31c6b27767e3c39a17fab30bc59803b9",
+        "gitBlob": "4c5e994f145646d60d479d701f6b072872053432",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/ELITESYNC_PATCH.diff",
+        "worktreeSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf",
+        "gitBlobSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf",
+        "gitBlob": "6d69607c6507c20ea8f861501c800ce5651883e6",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/UPSTREAM_FILES.sha256",
+        "worktreeSha256": "3837abe3de8dc8356eec929558ea575ce5c85b34cf96fa9737946a8557b90a64",
+        "gitBlobSha256": "3837abe3de8dc8356eec929558ea575ce5c85b34cf96fa9737946a8557b90a64",
+        "gitBlob": "312433ff02b1986f4a2c03be955b746c2af0a8a4",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+        "worktreeSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+        "gitBlobSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+        "gitBlob": "aa993c7dae22bf1adb59f5b3670f586b5032f82e",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/third_party/livekit_client/pubspec.yaml",
+        "worktreeSha256": "913a08ac25abbac435b9c9d4738f42e3a85d01e7f1fecb1467a49367c6b01c0d",
+        "gitBlobSha256": "913a08ac25abbac435b9c9d4738f42e3a85d01e7f1fecb1467a49367c6b01c0d",
+        "gitBlob": "ce9b98fe03bad011b9b2f1af9bcdd3e8a3e7fdbf",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/pubspec.yaml",
+        "worktreeSha256": "e562611d1960353fa625b2a39a58a5b37017d9ef232a62de0e870249b8c3172e",
+        "gitBlobSha256": "b9c88f5cd6cc6f6a9e0c68c4f0f10f9182f29dd624e8ef690cfee75bb6de8c79",
+        "gitBlob": "8a3197de38e6db06ed2a776ec3679c1470cd1656",
+        "worktreeBytesEqualGitBlob": false
+      },
+      {
+        "path": "apps/flutter_elitesync_module/pubspec.lock",
+        "worktreeSha256": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
+        "gitBlobSha256": "c9c48d1fda237dfcfd79ee5dbf837f073849cd4244d406a8961d7c52bb4540b9",
+        "gitBlob": "2f494e02c4ff659a28715c23e68cc6c6913e7e1a",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/rtc/domain/services/rtc_pcm_capture_cleanup_test.dart",
+        "worktreeSha256": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
+        "gitBlobSha256": "0da1a9b412766d13850ceabd4ec53015296b2dfb5dbfd7a12ecdd84b800fc4f4",
+        "gitBlob": "a5b6c394b52eea643d86d7a3cca79bec2a0bfd3a",
+        "worktreeBytesEqualGitBlob": true
+      },
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "worktreeSha256": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb",
+        "gitBlobSha256": "711a4d9371852b6680614087f10beb68f0ac79dd1a9d62e894153889526d0dbb",
+        "gitBlob": "d856611aae9a3361d06469837732b526131ee1a0",
+        "worktreeBytesEqualGitBlob": true
+      }
+    ],
+    "textConversionNote": "Application pubspec.yaml uses the existing CRLF worktree representation; its normalized Git blob SHA is recorded separately."
+  },
+  "vendor": {
+    "upstreamFiles": 297,
+    "byteIdenticalFiles": 295,
+    "changedUpstreamFiles": [
+      "lib/src/track/local/local.dart",
+      "pubspec.yaml"
+    ],
+    "allOtherDependenciesAndLockHashesPreserved": true,
+    "upstreamLocalSha256": "bc9e6527dd03b373aca3267be2a686eb26b4109e8e5fe8a10671c2a68db21ece",
+    "patchedLocalSha256": "bcee035a699ba345e84291a5c8cc246a5e93cad9624d4c4110ce435c848a3686",
+    "minimalPatchSha256": "8e746f1508bc33fb223f809eb5344f0e6c9a4870c2645339d7eb8ca955d9eecf"
+  }
+}
