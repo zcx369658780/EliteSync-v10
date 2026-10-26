@@ -1,24 +1,18 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_REMAINING_ACCEPTANCE_CANDIDATE_PUBLISHED / AWAITING_ASTRA_CENTRAL_REVIEW / PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Codex已完成当前剩余验收综合长任务的可执行范围并停止等待Astra。最新候选`7773b98986d9c9395841623e6ef244379fddc865`，唯一Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。当前下一步是Astra对该候选集中独立验收；不立即创建后继任务或启动Gate2。
+**2026-10-26最新状态：UDP_OBSERVER_SEMANTICS_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选 `7674b5e60a219cb76aba387dd2cee85cae67bd0a` 的窄范围独立验收。接受UDP/TCP/下载日志/观察器故障分类的证据语义修正、保守停止策略和31项隔离测试/静态检查的Codex报告证据。实际构建仍未完成：前次真实构建因UDP endpoint停止，未重跑、无新APK；本轮不证明实际发包或绝对无网络。
 
-**本轮交接入口：** [SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md](SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md)，Blob `d44e92d656fc7adcbebeb60764c25e7f7d85c709`。交接记录已保存当前候选身份、AC逐项状态、Owner决策、证据等级、历史预算和新会话首要检查事项。
+**正式Astra复核记录：** [UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md](../versions/v10.1.5/UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md)，位于分支 `astra/v10.1.5-udp-observer-review-20261026`。该分支仅含审查/状态文档，未合入main。
 
-**当前剩余验收长任务单：** [V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md](../versions/v10.1.5/V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md)，Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。此任务已执行并集中交付候选7773b989；当前先进行Astra集中独立验收，不创建下一任务。
+**最终候选：** `7674b5e60a219cb76aba387dd2cee85cae67bd0a`，唯一Parent `018c0d95ef7cf79ee458448aa40c4bfd9af48bd4`，Root `66929e9c4af27a8249fa3c14776360e7ced9f4f6`。实际源码Commit `c1055f3cf5dcb80d0ec003de1846b940b5186aad` / Parent `825344124313c4d88690983809a6fb95a05551f4` / Root `5684d0d5785fe9304379e5d2cf24b4e8992bcee3`；apps Tree `df307a66c5d725aa9733de0746d58405e3702e3f` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。报告Blob `978176687efa914767115c5014939c11a489a8ea`；Manifest Blob `7ab43f3cd6df3e05ba1fa6c92e92fb46bc5442f7`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。
 
-**最新报告/Manifest：** [IMPLEMENTATION_REPORT.md](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)，Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；[artifact_manifest.json](../versions/v10.1.5/artifact_manifest.json)，Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`。候选源码Commit `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c` / Root `21243e8f60dccae5106d9d04bd739ef587d05646`，候选apps `db3a2936ee37bf9610053fb8fd67b360fc377a94` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。这些是未接受候选树，不是产品main。
+**当前结论：** 31项隔离Python测试exit0，真实进程/socket/DLL审计事件报告为0；Astra未亲自运行本地测试。UDP endpoint仍触发保守停止，标签不再声称已证明发包。前次真实构建exit90/Gradle exit1、57次采样、无重试、无新APK、嵌套AAR未到达；原日志与7,941,328字节partial及Hash保留。ACTUAL_BUILD_NOT_COMPLETED持续有效。
 
-**主要新证据：** 67项相关Flutter检查与17项ICE guard检查报告exit0；最终APK SHA256 `68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717`，安装回取Hash一致；真机call4同call重连与真实UI挂断成功，四方向RTP增长且视频解码94→574；call5新连接后，复用成功媒体token在撤权后首次WebSocket Upgrade重入返回403。PCM清理/Room.dispose修复与错误传播测试在任务内完成。
+**APP RTC观察项不变：** camera code4/5与trackDispose-null仍未完全归因；没有新证据支持APP源码修复。AEC、最后可闻波形、native handle完整清点、实际15/30天与物理30天清理、真实Push仍未闭合。
 
-**必须保留的限制：** call3媒体开关/前后台旅程整体exit1（重连按钮仅12px未触发，finally走服务API）；call5撤权后媒体停止host保守上界10.125秒，不新增5秒PASS；AEC/真实语音质量未证明；有限合成信号不是AEC验收。通知旧卡片在第二次权威快照前消失，实际旧卡片点击`NOT_RUN`。实际经过15/30天与物理30天清理`WAITING_ELAPSED_TIME / NOT_RUN`；真实Push仍PENDING。
+**持续门禁：** Gate2两次历史启动预算已消费，本轮新启动/Writer/Serializer为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。不得自动重跑真实构建；需Owner另行明确授权。不合并产品main、不启动v10.1.6、不接入生产服务或真实Push，不清理历史备份/旧refs/SQL/APK/LOCAL_ONLY证据。
 
-**Gate2与Owner授权：** D0-A历史15次Serialize/约0.688秒不重跑。WinPS策略拒绝0.375秒和PS7/.NET TypeLoadException启动失败0.390秒两次预算已消费；本轮新Gate2启动/Writer/Serializer调用均0。只读PE信息显示PS7 Core System.Web.dll没有WebResourceAttribute，而Framework 4.8实现包含该类型；未加载程序集，且没有证明已允许入口与完整Framework实现同时可用。最新任务仅授权只读分析，不授权Gate2新预算/执行；37案例、Sandbox SDK、Producer、libs.jar、30项Configuration.resolve均NOT_RUN。
-
-**Owner长期决策继续生效：** v10.x使用“一份冻结计划、一份综合长任务、中途无监督、一次集中验收”。普通修复与测试失败由Codex在授权范围内自主处理；A-D是任务发布闭环，不是逐步审批。当前不创建下一任务、不启动Codex、不合并产品main、不启动v10.1.6。
-
-**产品基线：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍`PARTIAL_NOT_ACCEPTED / AC05_OPEN`，ICE诊断旗标未证明，旧guest/HCS状态未知，真实Push Provider未接入。
-
-**本次状态同步写入前live main：** `3aee49522687b3aa4b0d99db48f11ecf790f3c65` / Root `5cfa329c60d9733b64f19a5f6162e9faaecfb4a7`。本次ACTIVE_STATE更新会推进main；最终HEAD以最后一次回读为准。
+**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码树不是产品main。
 
 ## 已独立核验的产品和集成
 
