@@ -1,18 +1,18 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-26最新状态：UDP_OBSERVER_SEMANTICS_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选 `7674b5e60a219cb76aba387dd2cee85cae67bd0a` 的窄范围独立验收。接受UDP/TCP/下载日志/观察器故障分类的证据语义修正、保守停止策略和31项隔离测试/静态检查的Codex报告证据。实际构建仍未完成：前次真实构建因UDP endpoint停止，未重跑、无新APK；本轮不证明实际发包或绝对无网络。
+**2026-10-26最新状态：ONE_REAL_OFFLINE_BUILD_ATTEMPT_AUTHORIZED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Owner已明确授权一次真实普通Debug构建重新验证。授权只限最多一次真实构建启动；不得失败后自动重试。当前仅准备任务单，Codex尚未派发/执行。
 
-**正式Astra复核记录：** [UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md](../versions/v10.1.5/UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md)，位于分支 `astra/v10.1.5-udp-observer-review-20261026`。该分支仅含审查/状态文档，未合入main。
+**单次构建任务单：** [V10_1_5_SINGLE_OFFLINE_BUILD_REVALIDATION_TASK_20261026.md](../versions/v10.1.5/V10_1_5_SINGLE_OFFLINE_BUILD_REVALIDATION_TASK_20261026.md)，位于分支 `owner/v10.1.5-single-offline-build-revalidation-20261026`，任务文档提交 `ad9edf72c2a4a7cf55c24fd4616860d67bf87c5e`。此分支仅包含任务/状态文档，不合入产品main。文档写入不等于Codex已启动。
 
-**最终候选：** `7674b5e60a219cb76aba387dd2cee85cae67bd0a`，唯一Parent `018c0d95ef7cf79ee458448aa40c4bfd9af48bd4`，Root `66929e9c4af27a8249fa3c14776360e7ced9f4f6`。实际源码Commit `c1055f3cf5dcb80d0ec003de1846b940b5186aad` / Parent `825344124313c4d88690983809a6fb95a05551f4` / Root `5684d0d5785fe9304379e5d2cf24b4e8992bcee3`；apps Tree `df307a66c5d725aa9733de0746d58405e3702e3f` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。报告Blob `978176687efa914767115c5014939c11a489a8ea`；Manifest Blob `7ab43f3cd6df3e05ba1fa6c92e92fb46bc5442f7`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。
+**已接受的窄范围观察器语义修正候选：** `7674b5e60a219cb76aba387dd2cee85cae67bd0a`，源码Commit `c1055f3cf5dcb80d0ec003de1846b940b5186aad`，apps Tree `df307a66c5d725aa9733de0746d58405e3702e3f` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。报告Blob `978176687efa914767115c5014939c11a489a8ea`；Manifest Blob `7ab43f3cd6df3e05ba1fa6c92e92fb46bc5442f7`；Astra复核记录Blob `7dab2d315c4e9ea48fa901ed737ebefdda2c6369`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。这些历史SHA在执行前必须fresh读取验证。
 
-**当前结论：** 31项隔离Python测试exit0，真实进程/socket/DLL审计事件报告为0；Astra未亲自运行本地测试。UDP endpoint仍触发保守停止，标签不再声称已证明发包。前次真实构建exit90/Gradle exit1、57次采样、无重试、无新APK、嵌套AAR未到达；原日志与7,941,328字节partial及Hash保留。ACTUAL_BUILD_NOT_COMPLETED持续有效。
+**单次构建授权的安全边界：** 前次唯一真实构建因观察到UDP endpoint而停止，exit90/Gradle exit1，无新APK、未到达嵌套AAR。UDP endpoint仅证明本地endpoint存在，未证明实际发包。新任务允许在预检/隔离测试通过后，UDP endpoint单独记录为未知目的地观察而不阻断唯一一次构建；下载日志、非loopback TCP、观察器失效、Hash/缓存/工具不匹配仍立即停止。直接调用已验证本地Gradle 8.14，不使用Wrapper或下载fallback，Gradle offline且关闭工具链自动下载。该授权不证明绝对无网络；任何强停止条件触发后立即停止并保留证据，不重试。
 
-**APP RTC观察项不变：** camera code4/5与trackDispose-null仍未完全归因；没有新证据支持APP源码修复。AEC、最后可闻波形、native handle完整清点、实际15/30天与物理30天清理、真实Push仍未闭合。
+**持续状态：** v10.1.5仍 `PARTIAL_NOT_ACCEPTED / AC05_OPEN`。真实构建当前尚未完成，只有后续实际exit0、APK生成与Hash核验才能更新构建状态；构建通过也不等于整版接受或关闭AC05。AEC、最后可闻波形、实际15/30天与物理30天清理、真实Push仍未闭合。Gate2两次历史启动预算已消费；本任务Gate2新启动/Writer/Serializer必须0。37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve继续NOT_RUN。
 
-**持续门禁：** Gate2两次历史启动预算已消费，本轮新启动/Writer/Serializer为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。不得自动重跑真实构建；需Owner另行明确授权。不合并产品main、不启动v10.1.6、不接入生产服务或真实Push，不清理历史备份/旧refs/SQL/APK/LOCAL_ONLY证据。
+**禁止事项：** 不得第二次启动真实构建、自动重试、调用Gradle Wrapper或下载工具/依赖、修改系统网络/防火墙/全局配置、合并产品main、启动v10.1.6、接入真实Push/生产服务或清理历史备份、旧refs、SQL、APK、partial和LOCAL_ONLY证据。
 
-**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码树不是产品main。
+**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码Tree不是产品main。
 
 ## 已独立核验的产品和集成
 
