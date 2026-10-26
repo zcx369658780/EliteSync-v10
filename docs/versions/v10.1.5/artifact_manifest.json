@@ -668,7 +668,7 @@
     "realBuildDeviceOrNetworkInvocation": false,
     "retained": "Tool transcript plus this explicit note; not rewritten as a passed command"
   },
-  "candidateIdentity": "Unique parent is source.commit; Commit/Root/two document Blob and original bytes bound externally after commit in LOCAL_ONLY final-readback.json",
+  "candidateIdentity": "Final ordinary correction candidate has unique parent 018c0d95ef7cf79ee458448aa40c4bfd9af48bd4; runtime/source commit remains source.commit. Only report/manifest differ from source across the two ordinary document commits. Final identity bound externally in final-readback.json.",
   "previousDocumentBytes": {
     "report": {
       "bytes": 129841,
@@ -881,7 +881,7 @@
         "elapsedSeconds": 534.265000000014,
         "processExitConfirmed": true,
         "command": [
-          "<LOCAL_PYTHON_3_11>",
+          "C:\\Users\\zcxve\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
           "<OWNED_BUILD_ROOT>\\project\\apps\\android\\scripts\\offline_debug.py",
           "--manifest",
           "<LOCAL_ONLY_ROOT>\\trusted-build-inventory.json",
@@ -6492,5 +6492,13 @@
         "blob": "36ba70056e2d46371aceb66ec8cc16935ede1156"
       }
     }
+  },
+  "deliveryCorrection": {
+    "initialCandidateRetained": "018c0d95ef7cf79ee458448aa40c4bfd9af48bd4",
+    "initialReadbackExit": 1,
+    "cause": "Generic clean() recursively normalized historical continuity-worktree paths in embedded copy",
+    "corrected": "Embed exact prior JSON object without applying new normalization; historical original blobs/bytes remain unchanged",
+    "sourceUnchanged": "c1055f3cf5dcb80d0ec003de1846b940b5186aad",
+    "noNewTestBuildOrDeviceRun": true
   }
 }

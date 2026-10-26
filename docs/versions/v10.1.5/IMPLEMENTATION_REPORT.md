@@ -819,3 +819,10 @@ Owner在本会话明确确认正式派发。任务分支 `owner/v10.1.5-udp-obse
 Gate2启动/Writer/Serializer保持0；旧0.375/0.390秒预算和D0-A15次/约0.688秒不重置。37案例/条件Sandbox SDK/Producer/libs.jar/30配置解析NOT_RUN。RTC关闭警告SDK_FRAMEWORK_CLOSE_WINDOW_UNRESOLVED、AEC、最后可闻波形、handle census、实际15/30天/物理30天、真实Push、ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN及OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS均不因本轮脚本单测而关闭。
 
 普通non-force候选发布后核验Commit/Parent/Root、两文档Blob/原字节和完整apps/services Tree，完整绑定保留在LOCAL_ONLY `v1015-udp-observer-semantics-20261026/final-readback.json`。随后停止等待Astra集中独立验收；不合产品main、不启动v10.1.6、不请求或推定真实构建重跑授权。
+
+
+### UDP交付回读修正记录（同一任务，普通追加）
+
+首次发布018c0d95ef7cf79ee458448aa40c4bfd9af48bd4 / Root3047235ba517c3e188e6f4c421da8158cbf83fa6的源码/文档原字节及产品Tree匹配；嵌入历史Manifest对象身份检查exit1：通用脱敏函数递归替换了历史对象中的工作树路径。首次发布的新Manifest Blob36c97d82079aea50edc5152b81dda0537bf31f4d包含该嵌入偏差；前候选82534412的原Manifest Blobc0a7338316c4f4210579881249fe2bd7545fcc2f、248555原字节以及129841字节报告前缀均未改。不能把首次整体回读写成PASS。
+
+修正仅使previousDelivery与前原Manifest JSON对象完全相同，不再对该历史嵌入应用新路径规范化；首次发布及失败记录保留，普通non-force追加，不amend/force/reset。最终候选的直接唯一Parent为018c0d95ef7cf79ee458448aa40c4bfd9af48bd4，实际源码仍c1055f3cf5dcb80d0ec003de1846b940b5186aad；从源码到最终候选累计仍仅报告与Manifest两路径变化。源码31项最终测试/静态结果不变，无单测重跑、真实入口、设备或网络观察器运行。最终远端身份/原字节及历史对象一致性重新只读核验后绑定final-readback。
