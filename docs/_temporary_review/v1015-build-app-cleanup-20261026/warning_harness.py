@@ -29,13 +29,13 @@ def warnings(lines):
 try:
  baseline=fixed_logs('focus-before-call-baseline')
  call=request('focus-call-create','POST','/api/v1/rtc/calls',token,json={'peer_user_id':1,'mode':'video'})['session']['id'];assert call==1
- time.sleep(1.5);click('focus-call-accept','鎺ュ惉',False)
+ time.sleep(1.5);click('focus-call-accept','接听',False)
  assert bind('focus-peer-bind',call)['success'];time.sleep(6)
  peer_media('focus-peer-state-first');first=rtp_sample(fixed_logs('focus-media-first'))
  time.sleep(5);peer_media('focus-peer-state-second');preEnd=fixed_logs('focus-before-ui-end');second=rtp_sample(preEnd)
  assert all(second[k]['bytes']>first[k]['bytes'] and second[k]['packets']>first[k]['packets'] for k in first)
  assert second['inbound-video']['framesDecoded']>first['inbound-video']['framesDecoded']
- click('focus-real-ui-hangup','鎸傛柇');time.sleep(1)
+ click('focus-real-ui-hangup','挂断');time.sleep(1)
  for i in range(5):
   post=fixed_logs('focus-post-ui-end-'+str(i))
   if 'callId=1 event=room_dispose_complete ' in post and 'callId=1 event=leave_complete ' in post:break

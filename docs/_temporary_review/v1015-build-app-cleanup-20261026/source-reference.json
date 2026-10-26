@@ -75,6 +75,10 @@
       "allNamedPidsAbsent": true,
       "queryExit": 0,
       "scope": "Fresh named PID census only; does not prove every short-lived descendant was observed"
-    }
+    },
+    "deliveryCopyFindingsCorrected": [
+      "Explicit UTF-8 decoding for derived static harness; original executed source unchanged; no device rerun",
+      "Report source-reference wording restricted to locations and evidence Hash index"
+    ]
   }
 }
