@@ -223,6 +223,29 @@ class ObservationClassificationTests(unittest.TestCase):
         sockets = [{'protocol': 'TCP', 'remote': '::1'}, {'protocol': 'UDP', 'remote': None}]
         self.assertEqual(entry.observation_stop_reason(sockets, ''), 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE')
 
+    def test_authorized_udp_policy_records_signal_without_stopping(self):
+        signal = entry.observation_stop_reason([{'protocol': 'UDP', 'remote': None}], '')
+        self.assertEqual(signal, 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE')
+        self.assertIsNone(entry.policy_stop_reason(signal, single_attempt_authorized=True))
+        self.assertEqual(entry.policy_stop_reason(signal), signal)
+
+    def test_udp_cannot_hide_non_loopback_tcp(self):
+        sockets = [{'protocol': 'UDP', 'remote': None}, {'protocol': 'TCP', 'remote': '203.0.113.1'}]
+        signal = entry.observation_stop_reason(sockets, '')
+        self.assertEqual(signal, 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED')
+        self.assertEqual(entry.policy_stop_reason(signal, single_attempt_authorized=True), signal)
+
+    def test_udp_cannot_hide_download_log(self):
+        signal = entry.observation_stop_reason([{'protocol': 'UDP', 'remote': None}], 'Downloading https://example.invalid/tool.zip')
+        self.assertEqual(signal, 'DOWNLOAD_ATTEMPT_OBSERVED')
+        self.assertEqual(entry.policy_stop_reason(signal, single_attempt_authorized=True), signal)
+
+    def test_invalid_udp_row_still_fails_closed(self):
+        self.assertEqual(entry.observation_stop_reason([{'protocol': 'UDP'}], ''), 'OBSERVER_FAILED')
+
+    def test_unknown_policy_signal_fails_closed(self):
+        self.assertEqual(entry.policy_stop_reason('UNRECOGNIZED', single_attempt_authorized=True), 'OBSERVER_FAILED')
+
 
 @unittest.skipUnless(sys.platform == 'win32', 'Windows entry lifecycle; all runtime collaborators mocked')
 class MockLifecycleTests(unittest.TestCase):
@@ -235,9 +258,13 @@ class MockLifecycleTests(unittest.TestCase):
             path.mkdir()
         self.config = {'knownCompleteCacheProvenance': 'isolated lifecycle fixture, no real runtime'}
 
-    def run_case(self, sockets=None, error=None, at_exit=False, log='', capability_error=None):
+    def run_case(self, sockets=None, error=None, at_exit=False, log='', capability_error=None, authorized=False):
+        if authorized:
+            self.config['singleAttemptAuthorization'] = {
+                'taskBlob': entry.SINGLE_ATTEMPT_TASK_BLOB, 'maxStarts': 1, 'testsExit': 0, 'staticExit': 0}
         process = Mock(pid=1234)
-        process.poll.side_effect = [0] if at_exit else [None, 0 if isinstance(error, ProcessLookupError) else None]
+        continue_udp = authorized and sockets == [{'protocol': 'UDP', 'remote': None}] and not log
+        process.poll.side_effect = [0] if at_exit else [None, 0 if isinstance(error, ProcessLookupError) or continue_udp else None]
         process.wait.return_value = 0
         samples = [capability_error or ([], []), error or ([], sockets or [])]
         observer = types.SimpleNamespace(known={1234}, sample=Mock(side_effect=samples))
@@ -260,7 +287,7 @@ class MockLifecycleTests(unittest.TestCase):
                 spawn.assert_not_called()
                 stop.assert_not_called()
                 return
-            code = entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'receipt')
+            code = entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'receipt', single_attempt_authorized=authorized)
         result = json.loads((self.root / 'receipt/result.json').read_text())
         self.assertEqual(code, 90)
         spawn.assert_called_once()
@@ -303,6 +330,90 @@ class MockLifecycleTests(unittest.TestCase):
         self.assertEqual(result['stopReason'], 'DOWNLOAD_ATTEMPT_OBSERVED')
         stop.assert_not_called()
         sleep.assert_not_called()
+
+    def test_authorized_udp_is_recorded_and_mock_child_continues(self):
+        result, stop, sleep = self.run_case([{'protocol': 'UDP', 'remote': None}], authorized=True)
+        self.assertEqual(result['stopReason'], 'BUILD_ARTIFACT_MISSING')  # mock exits, no APK is fabricated
+        self.assertEqual(result['samplesWithUdpEndpoints'], 1)
+        self.assertEqual(result['udpEndpointObservations'], 1)
+        observations = [json.loads(x) for x in (self.root / 'receipt/process-network-private.jsonl').read_text().splitlines()]
+        self.assertEqual(observations[0]['classification'], 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE')
+        self.assertIsNone(observations[0]['stopReason'])
+        self.assertTrue((self.root / entry.SINGLE_ATTEMPT_MARKER).is_file())
+        stop.assert_not_called()
+        sleep.assert_called_once_with(.1)
+
+    def test_authorized_udp_plus_tcp_stops_once_without_retry(self):
+        result, stop, sleep = self.run_case([
+            {'protocol': 'UDP', 'remote': None}, {'protocol': 'TCP', 'remote': '203.0.113.1'}], authorized=True)
+        self.assertEqual(result['stopReason'], 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED')
+        stop.assert_called_once()
+        sleep.assert_not_called()
+
+    def test_authorized_udp_plus_download_stops_once_without_retry(self):
+        result, stop, sleep = self.run_case([{'protocol': 'UDP', 'remote': None}], authorized=True,
+                                           log='Downloading https://example.invalid/tool.zip')
+        self.assertEqual(result['stopReason'], 'DOWNLOAD_ATTEMPT_OBSERVED')
+        stop.assert_called_once()
+        sleep.assert_not_called()
+
+    def test_failed_validation_never_claims_or_starts(self):
+        self.config['singleAttemptAuthorization'] = {
+            'taskBlob': entry.SINGLE_ATTEMPT_TASK_BLOB, 'maxStarts': 1, 'testsExit': 1, 'staticExit': 0}
+        observer = types.SimpleNamespace(known=set(), sample=lambda _: ([], []))
+        with patch.object(entry, 'preflight', return_value=(self.config, self.roots, self.root)), \
+                patch.object(entry.subprocess, 'Popen') as spawn, patch.object(entry.subprocess, 'run') as stop, \
+                patch.dict(sys.modules, {'windows_build_observer': types.SimpleNamespace(Observer=lambda: observer)}):
+            with self.assertRaisesRegex(entry.PreflightError, 'SINGLE_BUILD_VALIDATION'):
+                entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'receipt', single_attempt_authorized=True)
+            spawn.assert_not_called()
+            stop.assert_not_called()
+        self.assertFalse((self.root / entry.SINGLE_ATTEMPT_MARKER).exists())
+
+    def test_budget_cannot_be_claimed_twice_or_bypassed_by_default_mode(self):
+        authorization = {'taskBlob': entry.SINGLE_ATTEMPT_TASK_BLOB, 'maxStarts': 1, 'testsExit': 0, 'staticExit': 0}
+        entry.claim_single_build(self.root, authorization)
+        with self.assertRaisesRegex(entry.PreflightError, 'SINGLE_BUILD_BUDGET_ALREADY_CLAIMED'):
+            entry.claim_single_build(self.root, authorization)
+        observer = types.SimpleNamespace(known=set(), sample=lambda _: ([], []))
+        with patch.object(entry, 'preflight', return_value=(self.config, self.roots, self.root)), \
+                patch.object(entry.subprocess, 'Popen') as spawn, patch.object(entry.subprocess, 'run') as stop, \
+                patch.dict(sys.modules, {'windows_build_observer': types.SimpleNamespace(Observer=lambda: observer)}):
+            with self.assertRaisesRegex(entry.PreflightError, 'SINGLE_BUILD_BUDGET_ALREADY_CLAIMED'):
+                entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'second-receipt')
+            spawn.assert_not_called()
+            stop.assert_not_called()
+
+    def test_authorized_mode_rejects_preexisting_apk_before_claim(self):
+        observer = types.SimpleNamespace(known=set(), sample=lambda _: ([], []))
+        apk = self.roots['project'] / 'apps/android/app/build/outputs/apk/debug/app-debug.apk'
+        original_exists = Path.exists
+        with patch.object(entry, 'preflight', return_value=(self.config, self.roots, self.root)), \
+                patch.object(entry.subprocess, 'Popen') as spawn, patch.object(entry.subprocess, 'run') as stop, \
+                patch.object(Path, 'exists', autospec=True, side_effect=lambda path: path == apk or original_exists(path)), \
+                patch.dict(sys.modules, {'windows_build_observer': types.SimpleNamespace(Observer=lambda: observer)}):
+            with self.assertRaisesRegex(entry.PreflightError, 'PREEXISTING_APK'):
+                entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'receipt', single_attempt_authorized=True)
+            spawn.assert_not_called()
+            stop.assert_not_called()
+        self.assertFalse(apk.exists())  # only exists() was mocked; no APK fixture generated
+        self.assertFalse((self.root / entry.SINGLE_ATTEMPT_MARKER).exists())
+
+    def test_failed_mock_spawn_retains_claim_and_blocks_second_entry(self):
+        self.config['singleAttemptAuthorization'] = {
+            'taskBlob': entry.SINGLE_ATTEMPT_TASK_BLOB, 'maxStarts': 1, 'testsExit': 0, 'staticExit': 0}
+        observer = types.SimpleNamespace(known=set(), sample=lambda _: ([], []))
+        with patch.object(entry, 'preflight', return_value=(self.config, self.roots, self.root)), \
+                patch.object(entry.subprocess, 'Popen', side_effect=OSError('synthetic spawn failure')) as spawn, \
+                patch.object(entry.subprocess, 'run') as stop, \
+                patch.dict(sys.modules, {'windows_build_observer': types.SimpleNamespace(Observer=lambda: observer)}):
+            with self.assertRaisesRegex(OSError, 'synthetic spawn failure'):
+                entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'first-receipt', single_attempt_authorized=True)
+            self.assertTrue((self.root / entry.SINGLE_ATTEMPT_MARKER).is_file())
+            with self.assertRaisesRegex(entry.PreflightError, 'SINGLE_BUILD_BUDGET_ALREADY_CLAIMED'):
+                entry.execute(self.root / 'mock-manifest', '0' * 64, self.root / 'second-receipt')
+            spawn.assert_called_once()
+            stop.assert_not_called()
 
 
 if __name__ == '__main__':

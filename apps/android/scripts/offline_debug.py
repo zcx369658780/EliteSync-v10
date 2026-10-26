@@ -17,6 +17,8 @@ import zipfile
 
 ROOT_NAMES = {'gradle', 'cache', 'flutter', 'pub', 'java', 'android', 'project'}
 PINNED_BIN = 'af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab'
+SINGLE_ATTEMPT_TASK_BLOB = '6c09cca14b120cb0eb39cc2909e84a7203d252ed'
+SINGLE_ATTEMPT_MARKER = 'single-offline-build-20261026.claim.json'
 
 
 class PreflightError(ValueError):
@@ -102,8 +104,9 @@ def observation_stop_reason(sockets, log, *, observer_failed=False):
 
     UDP owner-PID rows expose no remote destination and do not prove that a
     datagram was sent.
-    TCP remote/state rows likewise do not prove payload transfer. Both retain
-    the conservative stop policy; None means only no signal in this sample.
+    TCP remote/state rows likewise do not prove payload transfer. The separate
+    policy keeps default stops and the Owner's explicit one-attempt exception.
+    None means only no signal in this sample.
     """
     if observer_failed:
         return 'OBSERVER_FAILED'
@@ -111,6 +114,8 @@ def observation_stop_reason(sockets, log, *, observer_failed=False):
     try:
         for endpoint in sockets:
             if endpoint['protocol'] == 'UDP':
+                if endpoint['remote'] is not None:
+                    return 'OBSERVER_FAILED'
                 udp_endpoint = True
             elif endpoint['protocol'] == 'TCP':
                 non_loopback_tcp |= external_tcp(endpoint['remote'])
@@ -118,20 +123,51 @@ def observation_stop_reason(sockets, log, *, observer_failed=False):
                 return 'OBSERVER_FAILED'
     except (KeyError, TypeError, ValueError):
         return 'OBSERVER_FAILED'
-    if udp_endpoint:
-        return 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE'
-    if non_loopback_tcp:
-        return 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED'
     if download_observed(log):
         return 'DOWNLOAD_ATTEMPT_OBSERVED'
+    if non_loopback_tcp:
+        return 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED'
+    if udp_endpoint:
+        return 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE'
     return None
+
+
+def policy_stop_reason(signal, *, single_attempt_authorized=False):
+    """Only this explicitly authorized mode permits an unknown UDP signal alone."""
+    if signal is None or (signal == 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE' and single_attempt_authorized):
+        return None
+    if signal in {'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE', 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED',
+                  'DOWNLOAD_ATTEMPT_OBSERVED', 'OBSERVER_FAILED'}:
+        return signal
+    return 'OBSERVER_FAILED'
+
+
+def claim_single_build(work, authorization):
+    """Consume the task's single reservation atomically before starting Gradle.
+
+    The independently pinned caller manifest declares the Owner task and passed
+    validation. This is a local replay guard, not authentication of the Owner.
+    A failed spawn also retains the reservation; it never permits a retry.
+    """
+    require(isinstance(authorization, dict) and authorization.get('taskBlob') == SINGLE_ATTEMPT_TASK_BLOB
+            and type(authorization.get('maxStarts')) is int and authorization['maxStarts'] == 1
+            and type(authorization.get('testsExit')) is int and authorization['testsExit'] == 0
+            and type(authorization.get('staticExit')) is int and authorization['staticExit'] == 0,
+            'SINGLE_BUILD_VALIDATION')
+    marker = work / SINGLE_ATTEMPT_MARKER
+    try:
+        with marker.open('x', encoding='utf-8') as stream:
+            json.dump({'taskBlob': SINGLE_ATTEMPT_TASK_BLOB, 'reservedStarts': 1, 'entryPid': os.getpid()}, stream)
+    except FileExistsError as error:
+        raise PreflightError('SINGLE_BUILD_BUDGET_ALREADY_CLAIMED') from error
+    return marker
 
 
 def accepted_exit(code, reason, log):
     return code == 0 and reason is None and not download_observed(log)
 
 
-def execute(manifest, expected_sha256, receipt_dir):
+def execute(manifest, expected_sha256, receipt_dir, *, single_attempt_authorized=False):
     config, roots, work = preflight(manifest, expected_sha256)
     if os.name != 'nt':
         raise PreflightError('WINDOWS_ONLY')
@@ -142,6 +178,10 @@ def execute(manifest, expected_sha256, receipt_dir):
     except Exception as error:
         raise PreflightError('OBSERVER_FAILED:' + type(error).__name__) from error
     observer.known.clear()
+    require(not (work / SINGLE_ATTEMPT_MARKER).exists(), 'SINGLE_BUILD_BUDGET_ALREADY_CLAIMED')
+    apk = roots['project'] / 'apps/android/app/build/outputs/apk/debug/app-debug.apk'
+    if single_attempt_authorized:
+        require(not apk.exists(), 'PREEXISTING_APK')
     output = Path(receipt_dir)
     output.mkdir(parents=True, exist_ok=False)
     env = os.environ.copy()
@@ -166,9 +206,15 @@ def execute(manifest, expected_sha256, receipt_dir):
     record = {'command': command, 'manifestSha256': expected_sha256, 'gradleVersion': '8.14',
               'preflightPassed': True, 'ordinaryDebug': True, 'wrapperFallback': False,
               'networkClaim': 'SAMPLED_TASK_TCP_UDP_ONLY_ABSOLUTE_NO_NETWORK_NOT_PROVEN',
+              'singleAttemptAuthorized': single_attempt_authorized,
+              'udpPolicy': 'OBSERVE_ONLY' if single_attempt_authorized else 'STOP',
               'cacheProvenance': config['knownCompleteCacheProvenance']}
+    if single_attempt_authorized:
+        marker = claim_single_build(work, config.get('singleAttemptAuthorization'))
+        record.update({'singleAttemptReservation': str(marker), 'reservedStarts': 1})
     (output / 'invocation.json').write_text(json.dumps(record, indent=2))
     started = time.monotonic(); reason = None; samples = 0; observer_failure_detail = None
+    udp_samples = udp_observations = 0
     with (output / 'stdout.txt').open('xb') as stdout, (output / 'stderr.txt').open('xb') as stderr, \
             (output / 'process-network-private.jsonl').open('x', encoding='utf-8') as observations:
         process = subprocess.Popen(command, cwd=roots['project'] / 'apps/android', env=env,
@@ -178,10 +224,14 @@ def execute(manifest, expected_sha256, receipt_dir):
             while process.poll() is None:
                 before = time.monotonic()
                 processes, sockets = observer.sample(process.pid)
-                observations.write(json.dumps({'hostMonotonic': before, 'processes': processes, 'sockets': sockets}) + '\n')
-                observations.flush(); samples += 1
                 log = (output / 'stdout.txt').read_text(errors='replace') + (output / 'stderr.txt').read_text(errors='replace')
-                reason = observation_stop_reason(sockets, log)
+                signal = observation_stop_reason(sockets, log)
+                reason = policy_stop_reason(signal, single_attempt_authorized=single_attempt_authorized)
+                udp_count = sum(isinstance(x, dict) and x.get('protocol') == 'UDP' for x in sockets)
+                udp_samples += bool(udp_count); udp_observations += udp_count
+                observations.write(json.dumps({'hostMonotonic': before, 'processes': processes, 'sockets': sockets,
+                                              'classification': signal, 'stopReason': reason, 'udpEndpointCount': udp_count}) + '\n')
+                observations.flush(); samples += 1
                 if reason is None and before - started > 1200:
                     reason = 'BUILD_TIMEOUT'
                 if reason:
@@ -203,14 +253,14 @@ def execute(manifest, expected_sha256, receipt_dir):
     if download_observed(final_log):
         reason = reason or observation_stop_reason([], final_log)
     record.update({'exit': code, 'stopReason': reason, 'networkSamples': samples,
+                   'samplesWithUdpEndpoints': udp_samples, 'udpEndpointObservations': udp_observations,
                    'observerFailureDetail': observer_failure_detail,
                    'downloadLogObserved': download_observed(final_log),
                    'observedTaskPids': sorted(observer.known),
                    'elapsedSeconds': time.monotonic() - started, 'processExitConfirmed': True,
                    'stdoutSha256': sha256(output / 'stdout.txt'), 'stderrSha256': sha256(output / 'stderr.txt'),
                    'observationsSha256': sha256(output / 'process-network-private.jsonl'),
-                   'samplingLimit':'Short-lived/failed attempts between samples and non-socket networking are not excluded; UDP destination is unavailable and any observed task UDP stops this run.'})
-    apk = roots['project'] / 'apps/android/app/build/outputs/apk/debug/app-debug.apk'
+                   'samplingLimit':'Short-lived/failed attempts between samples and non-socket networking are not excluded; UDP destination and datagram transmission are unproven. Only the explicit single-attempt mode records UDP alone without stopping.'})
     if accepted_exit(code, reason, final_log):
         if not apk.is_file():
             reason = 'BUILD_ARTIFACT_MISSING'
@@ -228,9 +278,12 @@ if __name__ == '__main__':
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--sha256', required=True)
     parser.add_argument('--receipt-dir', type=Path, required=True)
+    parser.add_argument('--single-attempt-authorized', action='store_true',
+                        help='Owner task 20261026 only: reserve one build; record UDP alone without stopping')
     args = parser.parse_args()
     try:
-        raise SystemExit(execute(args.manifest, args.sha256, args.receipt_dir))
+        raise SystemExit(execute(args.manifest, args.sha256, args.receipt_dir,
+                                 single_attempt_authorized=args.single_attempt_authorized))
     except PreflightError as error:
         print(json.dumps({'stage': 'PREFLIGHT_REJECTED', 'reason': str(error), 'buildProcessesStarted': 0}))
         raise SystemExit(2)

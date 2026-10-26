@@ -45,7 +45,7 @@ log stops/fails the owned build tree. These are separate evidence classes:
 | `OBSERVER_FAILED` | Observation failed or the root process was not observable; fail closed even if the child has since exited. Details are recorded separately. Capability failure before launch rejects preflight with the same category prefix. |
 | `None` | No classified signal in this sample, not proof of no network. |
 
-UDP and non-loopback TCP still stop the owned tree; renaming evidence does not
+In default mode, UDP and non-loopback TCP still stop the owned tree; renaming evidence does not
 permit continuation or a retry. Loopback Gradle IPC is permitted. Final
 stdout/stderr are scanned again after process exit. There is no automatic retry.
 Raw process/network observations may contain local identifiers and stay LOCAL_ONLY.
@@ -60,3 +60,28 @@ They do not substitute for real build or device evidence. The 2026-10-26 UDP
 semantics task authorizes only these isolated checks/static review: no real entry,
 Gradle/Flutter/AAR/Kotlin/APK/device run. The earlier actual build remains stopped
 and incomplete; its original labels, logs, exit codes and partial are retained.
+
+## Owner's 2026-10-26 single-build revalidation
+
+Only the separately dispatched task with Blob
+`6c09cca14b120cb0eb39cc2909e84a7203d252ed` authorizes one ordinary build using
+`--single-attempt-authorized`. Default behavior above remains conservative.
+The independently pinned manifest must declare `singleAttemptAuthorization`
+with that `taskBlob`, integer `maxStarts: 1`, `testsExit: 0`, `staticExit: 0`.
+The caller first verifies the actual isolated/static receipts and source hashes;
+this declaration is a local attestation, not authentication of Owner authority.
+
+In that mode, UDP endpoint observations alone are recorded and counted without
+stopping; destination/datagram transmission remain unproven. Download logs and
+non-loopback TCP have priority over UDP, and observation failures/malformed rows
+still fail closed. Private samples retain the classification and stop decision.
+Counters count sampled endpoint rows, not unique sockets, packets or datagrams.
+
+Before Popen, the entry exclusively creates
+`<workRoot>/single-offline-build-20261026.claim.json`. A second claim or reuse of
+that work root via default mode is rejected. A failed spawn retains the claim;
+it never authorizes a retry. Failed validation/preflight does not start Gradle.
+A preexisting APK is rejected in this mode to avoid mistaking an old artifact
+for the newly generated result. Do not delete the marker or change roots to
+repeat a spent authorization. The authorized nested AAR work belongs to the
+same one outer assembleDebug attempt; it is not another authorized root attempt.
