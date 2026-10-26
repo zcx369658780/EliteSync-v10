@@ -1,0 +1,84 @@
+{
+  "runtime": {
+    "ownedServicesStopped": [
+      {
+        "label": "api",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "ws",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "authority",
+        "identityVerified": true,
+        "exitConfirmed": true
+      },
+      {
+        "label": "bridge",
+        "identityVerified": true,
+        "exitConfirmed": true
+      }
+    ],
+    "phoneProcessAbsent": true,
+    "activeCalls": 0,
+    "activeTestSessionFamilies": 0,
+    "testAccessTokens": 0,
+    "containers": [
+      {
+        "label": "SFU",
+        "running": false,
+        "exitCode": 1
+      },
+      {
+        "label": "DATABASE",
+        "running": false,
+        "exitCode": 0
+      }
+    ],
+    "portsWithoutListeners": [
+      43328,
+      8051,
+      8052,
+      8053,
+      8054,
+      7891,
+      7894
+    ],
+    "adbReverseRestoredOriginalEmptyState": true,
+    "appKeptInstalled": true,
+    "volumeAndContainersRetained": true,
+    "ownedGradleStopExit": 0,
+    "globalAdbAndDockerDaemonsKept": true,
+    "databaseRestartThisRound": "NOT_RUN_BACKEND_UNCHANGED_REUSED_PRIOR_IDENTITY",
+    "finalSql": {
+      "bytes": 153219,
+      "sha256": "320ac08d7b2594f8ebc8f9ee48b19e00121424a4d8f7dac3f940a0948edc29bf",
+      "rawPublished": false
+    },
+    "utc": "2026-10-26T00:08:36.211152+00:00"
+  },
+  "protection": {
+    "protectedFileCount": 26228,
+    "allNamedProtectedFilesUnchanged": true,
+    "changedNamedFiles": [],
+    "historicalRoots": 5,
+    "historicalRootsUnchanged": true,
+    "oldRefCount": 523,
+    "protectedOldRefsUnchanged": true,
+    "refDrift": [],
+    "ownCandidateRefsExcluded": [
+      "refs/heads/codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+      "refs/remotes/origin/codex/v10.1.5-source-faithful-serializer-conditional-sdk"
+    ],
+    "scope": "Named historical files and five root identities, not whole-disk byte audit"
+  },
+  "namedPidCensus": {
+    "allNamedPidsAbsent": true,
+    "buildPidCount": 3,
+    "peerPidCount": 1,
+    "scope": "Fresh named PID census only; does not prove every short-lived descendant was observed"
+  }
+}

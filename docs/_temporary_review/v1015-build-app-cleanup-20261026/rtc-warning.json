@@ -1,0 +1,159 @@
+{
+  "rootLabel": "v1015-build-app-cleanup-focused-20261026",
+  "callId": 1,
+  "samePidThroughout": true,
+  "fourDirectionRtpGrew": true,
+  "first": {
+    "outbound-audio": {
+      "bytes": 20176,
+      "packets": 188,
+      "framesDecoded": 0
+    },
+    "outbound-video": {
+      "bytes": 1237266,
+      "packets": 1256,
+      "framesDecoded": 0
+    },
+    "inbound-audio": {
+      "bytes": 15918,
+      "packets": 189,
+      "framesDecoded": 0
+    },
+    "inbound-video": {
+      "bytes": 166946,
+      "packets": 179,
+      "framesDecoded": 70
+    }
+  },
+  "second": {
+    "outbound-audio": {
+      "bytes": 42445,
+      "packets": 374,
+      "framesDecoded": 0
+    },
+    "outbound-video": {
+      "bytes": 2446822,
+      "packets": 2416,
+      "framesDecoded": 0
+    },
+    "inbound-audio": {
+      "bytes": 34344,
+      "packets": 389,
+      "framesDecoded": 0
+    },
+    "inbound-video": {
+      "bytes": 514454,
+      "packets": 521,
+      "framesDecoded": 148
+    }
+  },
+  "videoDecodeGrew": true,
+  "endPath": "REAL_APP_UI_HANGUP",
+  "serverStatus": "ended",
+  "newLifecycleSequence": [
+    "renderer_cancel_complete",
+    "room_disconnect_start",
+    "room_disconnected",
+    "room_disconnect_complete",
+    "room_dispose_start",
+    "room_dispose_complete",
+    "leave_complete"
+  ],
+  "newLifecycleCounts": {
+    "renderer_cancel_complete": 1,
+    "room_disconnect_start": 1,
+    "room_disconnected": 1,
+    "room_disconnect_complete": 1,
+    "room_dispose_start": 1,
+    "room_dispose_complete": 1,
+    "leave_complete": 1
+  },
+  "newNativeEndpoints": {
+    "peerConnectionClosed": 2,
+    "audioRecordStopped": 1,
+    "audioTrackStopped": 2,
+    "cameraReleased": 1
+  },
+  "beforeCallWarnings": {
+    "cameraCode4": 0,
+    "cameraCode5": 0,
+    "trackDisposeNull": 0,
+    "cameraLevels": {},
+    "nullLevels": {}
+  },
+  "duringMediaWarnings": {
+    "cameraCode4": 0,
+    "cameraCode5": 0,
+    "trackDisposeNull": 0,
+    "cameraLevels": {},
+    "nullLevels": {}
+  },
+  "afterHangupWarnings": {
+    "cameraCode4": 3,
+    "cameraCode5": 4,
+    "trackDisposeNull": 5,
+    "cameraLevels": {
+      "W": 7
+    },
+    "nullLevels": {
+      "D": 5
+    }
+  },
+  "exceptionsInPostEndDelta": {
+    "ConcurrentModificationError": 0,
+    "Unhandled Exception": 0,
+    "PlatformException": 0,
+    "MediaConnectException": 0,
+    "StateError": 0
+  },
+  "appRoomDisconnectSequenceOnce": true,
+  "appRoomDisposeSequenceOnce": true,
+  "aec": "NOT_PROVEN",
+  "lastAudibleWaveform": "NOT_MEASURED",
+  "nativeHandleCensus": "NOT_PERFORMED",
+  "rawPublished": false,
+  "command": "python warning_call.py",
+  "exit": 0,
+  "evidenceClass": "DEVICE_NEW_RUN_ON_RETAINED_R1_APK",
+  "apkIdentity": {
+    "package": "com.elitesync.v1015r1dev",
+    "sha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+    "bytes": 405007373,
+    "sameAsR1InstalledApk": true,
+    "newInstallThisTask": false,
+    "runtimeSourceCommit": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6",
+    "appAndVendorSourcesUnchangedInFocusedSource": true
+  },
+  "attribution": {
+    "trackNull": "SDK LocalTrack.stop calls super.stop then mediaStreamTrack.stop again; flutter_webrtc stop sends trackDispose each time; native missing-track branch logs D and returns. Explains a possible idempotent second stop, not a one-to-one proof for all five logs.",
+    "camera": "Observed W CameraDevice-JV-1 code4 x3/code5 x4 after UI hangup only. Existing Android36 reference source has same string under DEBUG Log.d; not byte matched to phone firmware and differs in observed log level. Numeric code mapping and normal abort vs platform defect remain unresolved. Do not equate raw 4/5 with StateCallback 4/5.",
+    "app": "One disconnect/dispose sequence and completion; no evidence supporting an APP-owned repeated close defect in this bounded call. No APP/vendor changes made.",
+    "limits": "No fresh revocation timing, last audible waveform, AEC, complete handle census or cross-call PASS."
+  },
+  "sourceReferences": [
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/track.dart",
+      "line": 123
+    },
+    {
+      "path": "apps/flutter_elitesync_module/third_party/livekit_client/lib/src/track/local/local.dart",
+      "line": 291
+    },
+    {
+      "path": "flutter_webrtc-1.6.0/lib/src/native/media_stream_track_impl.dart",
+      "line": 125
+    },
+    {
+      "path": "flutter_webrtc-1.6.0/android/src/main/java/com/cloudwebrtc/webrtc/MethodCallHandlerImpl.java",
+      "line": 1802
+    },
+    {
+      "path": "android-36/android/hardware/camera2/impl/CameraDeviceImpl.java",
+      "line": 2159
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+      "line": 1145
+    }
+  ]
+}

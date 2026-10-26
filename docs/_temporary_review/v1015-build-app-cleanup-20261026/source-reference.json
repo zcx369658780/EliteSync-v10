@@ -1,0 +1,80 @@
+{
+  "authority": {
+    "focusedTaskBranch": "owner/v10.1.5-build-app-hardening-task-20261025",
+    "focusedTaskHead": "5fd7e853943e14a087f5a3a90544904a39609f0c",
+    "focusedTaskBlob": "bbda6d136e19271d4a377a7cfe48b0069f16c1fa",
+    "frozenPlanBlob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+    "R1AstraReviewBlob": "c2ab5035b84985b5e8a87e32fc34d2fe9352c31e",
+    "manualDispatch": "Owner explicitly dispatched focused task in this chat",
+    "liveMain": "4df2e7f0f36cc7b80258faa73e80dad682cff6c5",
+    "liveMainRoot": "03b0ecfcc360e38a462539dd50690c64b663a21e",
+    "acceptedProductApps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "acceptedProductServices": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "source": {
+    "commit": "02fac2b20da52e56b373f6ae8ae2da838fd51901",
+    "parent": "d45cd08f939f6dfc6b4efe2420f4a117efc99e68",
+    "root": "2b975e3b90d6844d51500726ebee1516cefaf5b2",
+    "apps": "81a86b9dc9c2fc68edecb60a742b911539c68f3c",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "branch": "codex/v10.1.5-source-faithful-serializer-conditional-sdk",
+    "changedFiles": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "sha256": "c357a1859f55cb4928dab3dcce2d46b4dc89ab01004b88bac39a284ffda0f567",
+        "bytes": 26508,
+        "blob": "60bc9261948437832d28fa0fb68f7975f68b4515"
+      },
+      {
+        "path": "apps/android/scripts/.gitignore",
+        "sha256": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+        "bytes": 13,
+        "blob": "c18dd8d83ceed1806b50b0aaa46beb7e335fff13"
+      },
+      {
+        "path": "apps/android/scripts/README.md",
+        "sha256": "d00b34a51b409ed973e15d284da6304e6380c0062a037809b60cf1ebb3426cca",
+        "bytes": 2871,
+        "blob": "421aa9c0a29577f6d7c0edff8fdd24d7c86951f3"
+      },
+      {
+        "path": "apps/android/scripts/offline_debug.init.gradle",
+        "sha256": "750e685737e090826753792c427914d25aaf747c687bdd23d3d0267d3f534aee",
+        "bytes": 761,
+        "blob": "22f77c23e84ebfdcaeb7d7352b920388621058a5"
+      },
+      {
+        "path": "apps/android/scripts/offline_debug.py",
+        "sha256": "fa59afcc9e658ce3f699e66e95837e2990188389a5ada15190a46787a3fabac6",
+        "bytes": 10973,
+        "blob": "9c9bdb4113c8dd11abd134875e77e851bb864bfd"
+      },
+      {
+        "path": "apps/android/scripts/test_offline_debug.py",
+        "sha256": "06e8369f74ef16a9a5550e9357f93aac55095f01e8324fe289f3e0f0205a3cb6",
+        "bytes": 6767,
+        "blob": "d3f2c500d0d73bbe28da525cacf1ca662edb2ee4"
+      },
+      {
+        "path": "apps/android/scripts/windows_build_observer.py",
+        "sha256": "fb4372c249e58c6a6556d5e30035b2e729b71728b5f85a7eced28a83ecf7ca6e",
+        "bytes": 5502,
+        "blob": "e8eee7796d10d56d9a870eee902969e65d180ec8"
+      }
+    ],
+    "buildInputsVerified": 1046,
+    "appDartVendorAndBackendUnchanged": true,
+    "retainedApkRuntimeSource": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6"
+  },
+  "nonAuthorReview": {
+    "sourceReview": "Bounded non-author static review of guard/entry source; four findings corrected before final tests; no remaining source blocker reported",
+    "resultReview": "Derived summaries checked only; A is incomplete, B bounded, camera attribution unresolved",
+    "reviewerDidNotRunTestsBuildOrDevice": true,
+    "closureFinding": "Named build and peer PIDs required separate final receipt",
+    "closureResolution": {
+      "allNamedPidsAbsent": true,
+      "queryExit": 0,
+      "scope": "Fresh named PID census only; does not prove every short-lived descendant was observed"
+    }
+  }
+}

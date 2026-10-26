@@ -1,0 +1,236 @@
+{
+  "unitRuns": [
+    {
+      "label": "entry-red",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 1,
+        "stage": "RED_ENTRY_NOT_IMPLEMENTED",
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "3f7590435ec2ff93c2fc5adc8ee9cc526f96cf684f0ab3dea2728fe7f24ac5b1"
+    },
+    {
+      "label": "entry-green",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 1,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "7b4f93b90e78ced8b010bdaeddaf746851f9cd58a6a9cfec5aa4a16897c46cdc"
+    },
+    {
+      "label": "entry-green-v2",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 1,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "88e41e2e4cdd69cb776597b4c55684f1afccf51570bbc82182d8199ffa4741f7"
+    },
+    {
+      "label": "entry-green-v3",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 0,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "9a5c0fc4100dc98dd8efc96abd31f17cd7a63d59eeb81bb992fa64d0973df0f2"
+    },
+    {
+      "label": "entry-reviewed",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 0,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "22015566d330ac2c7d6d297bed6655a30c9c987f0158298385659def063dc4d0"
+    },
+    {
+      "label": "entry-final-tests",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 0,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "dfffa7dfaade543f0ec67d7e96887dc538622d6d07dfbcb1c14747413d8239ae",
+      "stderrSha256": "fe448378520af2114a47222ccc45ccd6fb96681157fbcd584a0394cde1b1474c"
+    },
+    {
+      "label": "entry-final-v2",
+      "command": [
+        "python",
+        "<CONTINUITY_WORKTREE>\\apps\\android\\scripts\\test_offline_debug.py"
+      ],
+      "receipt": {
+        "exit": 0,
+        "processExitConfirmed": true
+      },
+      "stdoutSha256": "061e8c8c433a392680070400cca51dcba8ebae70a74d48857ee04fd36286aabd",
+      "stderrSha256": "397ac2818bfaea5f44a4063970db5634b8b46d612af0e33215f6abf3a2403639"
+    }
+  ],
+  "finalUnitCount": 15,
+  "negativeCliProbes": [
+    {
+      "label": "missing-cache-file",
+      "exit": 2,
+      "elapsedSeconds": 0.25,
+      "result": {
+        "stage": "PREFLIGHT_REJECTED",
+        "reason": "MISSING_FILE:gradle/MISSING_CALLER_DECLARED_CACHE_FILE",
+        "buildProcessesStarted": 0
+      },
+      "stdoutSha256": "904bce6bcc2fb26b34e414dbee5e588a66b1965e24601c1aa46dc574546b23ca",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "processExitConfirmed": true
+    },
+    {
+      "label": "wrong-manifest-hash",
+      "exit": 2,
+      "elapsedSeconds": 0.1559999999590218,
+      "result": {
+        "stage": "PREFLIGHT_REJECTED",
+        "reason": "MANIFEST_HASH",
+        "buildProcessesStarted": 0
+      },
+      "stdoutSha256": "109085ffd1fcc10570fc941e7971e15eb38cd4986a46824add507cc115ba3097",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "processExitConfirmed": true
+    }
+  ],
+  "entry": {
+    "exit": 90,
+    "elapsedSeconds": 534.265000000014,
+    "processExitConfirmed": true,
+    "command": [
+      "C:\\Users\\zcxve\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "<OWNED_BUILD_ROOT>\\project\\apps\\android\\scripts\\offline_debug.py",
+      "--manifest",
+      "<LOCAL_ONLY_ROOT>\\trusted-build-inventory.json",
+      "--sha256",
+      "ad08b37917d289bb90b9919c03b277528618751d39420e188a2e25774a19e49f",
+      "--receipt-dir",
+      "<LOCAL_ONLY_ROOT>\\ordinary-debug-run"
+    ]
+  },
+  "actualBuild": {
+    "command": [
+      "<OWNED_BUILD_ROOT>\\gradle-home\\wrapper\\dists\\gradle-8.14-all\\5vwl8burbouivoo2kromnbp2p\\gradle-8.14\\bin\\gradle.bat",
+      ":app:assembleDebug",
+      "--offline",
+      "--console=plain",
+      "--no-daemon",
+      "--max-workers=2",
+      "--gradle-user-home",
+      "<OWNED_BUILD_ROOT>\\gradle-home",
+      "-Dorg.gradle.java.installations.auto-download=false",
+      "-Porg.gradle.java.installations.auto-download=false",
+      "-Porg.gradle.java.installations.auto-detect=false",
+      "-PflutterDartDefines=ELITESYNC_V1015_LOCAL_BUILD=true,ELITESYNC_V1015_R1_LOCAL_BUILD=true",
+      "-PrelationshipDualDeviceBuild=true",
+      "-PlocalOfflineGradleBin=<OWNED_BUILD_ROOT>\\gradle-home\\wrapper\\dists\\gradle-8.14-all\\5vwl8burbouivoo2kromnbp2p\\gradle-8.14\\bin\\gradle.bat"
+    ],
+    "manifestSha256": "ad08b37917d289bb90b9919c03b277528618751d39420e188a2e25774a19e49f",
+    "gradleVersion": "8.14",
+    "preflightPassed": true,
+    "ordinaryDebug": true,
+    "wrapperFallback": false,
+    "networkClaim": "SAMPLED_TASK_TCP_UDP_ONLY_ABSOLUTE_NO_NETWORK_NOT_PROVEN",
+    "cacheProvenance": {
+      "candidate": "d45cd08f939f6dfc6b4efe2420f4a117efc99e68",
+      "source": "e7cbbe6030b033c5c9244c599bd42fcff312a8c6",
+      "successfulBuild": "R1 corrected-build exit0 / 288.969s",
+      "oldApkSha256": "30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12",
+      "compatibility": "Same dependency declarations and runtime sources; only local build guard/entry and documentation artifact omission changed; snapshot pinned by authorized caller, no self-bootstrap."
+    },
+    "exit": 1,
+    "stopReason": "NETWORK_ATTEMPT_OBSERVED",
+    "networkSamples": 57,
+    "observedTaskPids": [
+      14100,
+      33000,
+      59032
+    ],
+    "elapsedSeconds": 9.952999999979511,
+    "processExitConfirmed": true,
+    "stdoutSha256": "74db0edd1fc9509d2da9123bcd08f2156c2414b2c371f88848b24894529b9076",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observationsSha256": "2e9a5d59996cc3ce220e6df523b9d2bbf8ac2a021bdb46fcb71c635cbd45cdb4",
+    "samplingLimit": "Short-lived/failed attempts between samples and non-socket networking are not excluded; UDP destination is unavailable and any observed task UDP stops this run.",
+    "buildProcessesStarted": 1,
+    "stage": "BUILD_FAILED_OR_STOPPED"
+  },
+  "networkTrigger": {
+    "samples": 57,
+    "endpointClasses": [
+      {
+        "protocol": "UDP",
+        "addressClass": "UNKNOWN_DESTINATION",
+        "tcpState": null,
+        "count": 2
+      }
+    ],
+    "imageNames": [
+      "cmd.exe",
+      "conhost.exe",
+      "java.exe"
+    ],
+    "eventOwnerImages": [
+      "java.exe"
+    ],
+    "noRetry": true
+  },
+  "inventory": {
+    "sha256": "ad08b37917d289bb90b9919c03b277528618751d39420e188a2e25774a19e49f",
+    "files": 94573,
+    "definitions": 23,
+    "scopes": {
+      "gradle": 314,
+      "cache": 52675,
+      "flutter": 3468,
+      "pub": 11738,
+      "java": 492,
+      "android": 22177,
+      "project": 3709
+    },
+    "wrapperTrapSha256": "3eea3ceb095086fea2727994b09c9517eab4da7016d829c7f435fc8ac56bf8c1",
+    "trackedAppsInputs": 1046
+  },
+  "acceptance": "INCOMPLETE_ACTUAL_DEBUG_BUILD_STOPPED_NO_RETRY",
+  "newApk": "NOT_GENERATED",
+  "newInstall": "NOT_RUN",
+  "nestedAarExecution": "NOT_REACHED",
+  "gradleKotlinCompilation": "NOT_PROVEN",
+  "wrapperTrap": "NOT_TRIGGERED_BUT_NESTED_STAGE_NOT_REACHED",
+  "absoluteNoNetwork": "NOT_PROVEN",
+  "originalR1DownloadPartial": {
+    "bytes": 7941328,
+    "sha256": "b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4",
+    "source": "REUSED_ORIGINAL_LOCAL_ONLY",
+    "retainedAndIntakeVerified": true
+  }
+}

@@ -1,0 +1,1184 @@
+[
+  {
+    "localLabel": "adb-after-owner-connected.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "adb-after-owner-connected.stdout.txt",
+    "bytes": 116,
+    "sha256": "24a125ca99abc19377f1d9960cffddd9b021085f2c5b2ddb6d11d17d567b5b49",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "adb-intake.stderr.txt",
+    "bytes": 79,
+    "sha256": "1ac362b61180a2afbeeabec06aed462ae82740149358c7a2ec926be3e1b1ecff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "adb-intake.stdout.txt",
+    "bytes": 28,
+    "sha256": "bbfcc7239a6f1be3544814ebdc6bcc9b66bf5b1f0b03baa3340808f19265a630",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "api.stderr.txt",
+    "bytes": 18216,
+    "sha256": "d68f9302443d71235085b7d9063123e87fa6e9bc154b93f4cd1c55017874a7e1",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "api.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "authority.stderr.txt",
+    "bytes": 53133,
+    "sha256": "c46c0af8253763d7dc7672b488766549a55d172af1ba730d58de67180a08ad5e",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "authority.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "bridge.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "bridge.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "closure-pid-query.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "closure-pid-query.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-final-tests.stderr.txt",
+    "bytes": 119,
+    "sha256": "fe448378520af2114a47222ccc45ccd6fb96681157fbcd584a0394cde1b1474c",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-final-tests.stdout.txt",
+    "bytes": 1599,
+    "sha256": "dfffa7dfaade543f0ec67d7e96887dc538622d6d07dfbcb1c14747413d8239ae",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-final-v2.stderr.txt",
+    "bytes": 119,
+    "sha256": "397ac2818bfaea5f44a4063970db5634b8b46d612af0e33215f6abf3a2403639",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-final-v2.stdout.txt",
+    "bytes": 1623,
+    "sha256": "061e8c8c433a392680070400cca51dcba8ebae70a74d48857ee04fd36286aabd",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green-v2.stderr.txt",
+    "bytes": 1045,
+    "sha256": "88e41e2e4cdd69cb776597b4c55684f1afccf51570bbc82182d8199ffa4741f7",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green-v2.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green-v3.stderr.txt",
+    "bytes": 116,
+    "sha256": "9a5c0fc4100dc98dd8efc96abd31f17cd7a63d59eeb81bb992fa64d0973df0f2",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green-v3.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green.stderr.txt",
+    "bytes": 1110,
+    "sha256": "7b4f93b90e78ced8b010bdaeddaf746851f9cd58a6a9cfec5aa4a16897c46cdc",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-green.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-invocation.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-invocation.stdout.txt",
+    "bytes": 2200,
+    "sha256": "02497dc3f08d2e0495940e0b270f661c7201f87d8122e3e19eedb4e522c39cb8",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-red.stderr.txt",
+    "bytes": 627,
+    "sha256": "3f7590435ec2ff93c2fc5adc8ee9cc526f96cf684f0ab3dea2728fe7f24ac5b1",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-red.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-reviewed.stderr.txt",
+    "bytes": 117,
+    "sha256": "22015566d330ac2c7d6d297bed6655a30c9c987f0158298385659def063dc4d0",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "entry-reviewed.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "finish_r1_runtime.py",
+    "bytes": 5202,
+    "sha256": "0f44bf95cc87af9d7ef284de4347b309d3b436e8c3a52a456d8af5988081a2dc",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-after-relaunch-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-after-relaunch-dump.stdout.txt",
+    "bytes": 313,
+    "sha256": "599544083b779183d59d68cffe0563cb2db31f84497532e0766e87e2f63f3249",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-after-relaunch-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-after-relaunch-read.stdout.txt",
+    "bytes": 4313,
+    "sha256": "1172fdd427f02b50cfc834f1d19a787a8106cfb51fb3a198dfcff49cc859001a",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-call-baseline-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-call-baseline-pid.stdout.txt",
+    "bytes": 7,
+    "sha256": "f8f460b49632c5f75f3aa8f728ba2607abafec0696892484df488dde42d91dff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-call-baseline.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-call-baseline.stdout.txt",
+    "bytes": 1863144,
+    "sha256": "f49c46c7073b71fc73d163d7240e986a32e4abcfc31db6542056f654c3fa7ff1",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-ui-end-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-ui-end-pid.stdout.txt",
+    "bytes": 7,
+    "sha256": "f8f460b49632c5f75f3aa8f728ba2607abafec0696892484df488dde42d91dff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-ui-end.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-before-ui-end.stdout.txt",
+    "bytes": 1925882,
+    "sha256": "89e4a29633587ebd5bce6d618b21fb7677e0b4fcf766dbefc40bd3d703eddda6",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-press.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-press.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-view-0-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-view-0-dump.stdout.txt",
+    "bytes": 313,
+    "sha256": "1ddf381f420ca54d2440587e5e539527d4911fbfd8a630bc17717dcaf6c35b19",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-view-0-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-call-accept-view-0-read.stdout.txt",
+    "bytes": 3684,
+    "sha256": "7e7ec20b1cf01462ac148c617fd4801377a6b709f5edbc413308d54b4227b74e",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-cold-login-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-cold-login-dump.stdout.txt",
+    "bytes": 312,
+    "sha256": "903194e37874a9acdf718c710f63da20ed9e73c7ec0b34d559397c91d9715253",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-cold-login-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-cold-login-read.stdout.txt",
+    "bytes": 4313,
+    "sha256": "1172fdd427f02b50cfc834f1d19a787a8106cfb51fb3a198dfcff49cc859001a",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-agree.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-agree.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-home-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-home-dump.stdout.txt",
+    "bytes": 313,
+    "sha256": "7c2cb4072fc62b91b79a5df750069e12160be2c0995f360e49cd18cee4f7acd6",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-home-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-home-read.stdout.txt",
+    "bytes": 4381,
+    "sha256": "dfff7f852965c05e27dba8d25f66e11d9924227ef25b2b3f5b53cec875704294",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-focus.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-focus.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-hide.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-hide.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-text.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-password-text.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-focus.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-focus.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-hide.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-hide.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-select.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-select.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-text.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-phone-text.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-submit.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login-submit.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-correct-login.console.txt",
+    "bytes": 2051,
+    "sha256": "dcde810fb4eec923d499e507e5a7e52bbedec68e43b6373420a64e69db918c74",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-agree.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-agree.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-focus.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-focus.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-hide.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-hide.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-ime-state.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-ime-state.stdout.txt",
+    "bytes": 64,
+    "sha256": "aa0160713c266a08522417a565635fb4e7bdfb1551eabc3ff9819e440b004138",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-text.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-password-text.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-focus.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-focus.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-hide.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-hide.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-ime-state.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-ime-state.stdout.txt",
+    "bytes": 65,
+    "sha256": "2f0533b909adbab51a9fda0727ca54d4842aa9f6a7b33f33c7963b32605955d5",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-select.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-select.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-text.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-phone-text.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-submit.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-final-login-submit.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-fixed-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-fixed-pid.stdout.txt",
+    "bytes": 7,
+    "sha256": "f8f460b49632c5f75f3aa8f728ba2607abafec0696892484df488dde42d91dff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-login-recovery-launch.stderr.txt",
+    "bytes": 115,
+    "sha256": "086d8630b093b0667c149aff99e974c907eff4e1cbfbfe39e1c8a07ae9109cff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-login-recovery-launch.stdout.txt",
+    "bytes": 86,
+    "sha256": "6530e700b795ce9abe921c08683eb15b3505c62460b1014e67b73965705071aa",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-media-first-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-media-first-pid.stdout.txt",
+    "bytes": 7,
+    "sha256": "f8f460b49632c5f75f3aa8f728ba2607abafec0696892484df488dde42d91dff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-media-first.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-media-first.stdout.txt",
+    "bytes": 1911388,
+    "sha256": "dd0a9a63e51b448e47b0152c8fd5cd6edf7b577c67eabb257aa06113e6dc42ab",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-owned-app-launch.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-owned-app-launch.stdout.txt",
+    "bytes": 213,
+    "sha256": "a958094dc7710eec60d47b4f3e198d5d304129d2973b8eb6c6496a89d84e515d",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-owned-relaunch-correct.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-owned-relaunch-correct.stdout.txt",
+    "bytes": 213,
+    "sha256": "cc26c266f225050660d87b69858a1e3694289883c93f07b189e8014db4e2a1be",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-post-ui-end-0-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-post-ui-end-0-pid.stdout.txt",
+    "bytes": 7,
+    "sha256": "f8f460b49632c5f75f3aa8f728ba2607abafec0696892484df488dde42d91dff",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-post-ui-end-0.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-post-ui-end-0.stdout.txt",
+    "bytes": 1887181,
+    "sha256": "8338356ac887deb999d40e2fdb3567b7d1254a089e7474270e32f6ee1d7ea327",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-press.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-press.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-reveal-0.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-reveal-0.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-0-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-0-dump.stdout.txt",
+    "bytes": 314,
+    "sha256": "3d22bde75cc5c925488372673987ee7e38565e729e2fffacae8fffa7e755d4d3",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-0-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-0-read.stdout.txt",
+    "bytes": 3900,
+    "sha256": "e6a060af4fd2d855983ba36a339d0a4b8cc7fdb48ef83b05d96a41d31c31a72f",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-1-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-1-dump.stdout.txt",
+    "bytes": 314,
+    "sha256": "54f7bb8dd28e7584064425a11265a1156b02eac0c30d33107676d7af5899670e",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-1-read.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "focus-real-ui-hangup-view-1-read.stdout.txt",
+    "bytes": 6472,
+    "sha256": "0af3f9753297fa554d3cb9ba6318eebcc9717be0573bfc113f75a75868e3b937",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "media_stats.py",
+    "bytes": 925,
+    "sha256": "3e96e68a582ac4d4ff36b396e723bd0ce19a46985adebc8dbf72e780ed2d2044",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "negative-missing-cache-file.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "negative-missing-cache-file.stdout.txt",
+    "bytes": 129,
+    "sha256": "904bce6bcc2fb26b34e414dbee5e588a66b1965e24601c1aa46dc574546b23ca",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "negative-wrong-manifest-hash.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "negative-wrong-manifest-hash.stdout.txt",
+    "bytes": 88,
+    "sha256": "109085ffd1fcc10570fc941e7971e15eb38cd4986a46824add507cc115ba3097",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "ordinary-debug-run/stop.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "ordinary-debug-run/stop.stdout.txt",
+    "bytes": 279,
+    "sha256": "cb7163ba83fe6213fbb300821e6691ac859e87c575b893b0c9529ebf14eb78a9",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-create.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-create.stdout.txt",
+    "bytes": 65,
+    "sha256": "d7826207f3a99b219756708e344350e04d26f8d82d31eb8a09af2fdf39f386ca",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-empty-selector.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-empty-selector.stdout.txt",
+    "bytes": 158,
+    "sha256": "0d6974e764162c50c75fb03553ae0dfaabf633abb6c32ab7cff1ba01f7e792d4",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-migrate.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-migrate.stdout.txt",
+    "bytes": 9312,
+    "sha256": "ee404c2b4dbdd9a416cf73923234257dbef84941b8b7ebbd5b76fb745c63d224",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-seed.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-db-seed.stdout.txt",
+    "bytes": 2044,
+    "sha256": "c2eb24ecbd0f0f6e8afa505f605254062a41261bd87b004f961a51567995dda0",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-empty-before.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-volume-create.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "owned-volume-create.stdout.txt",
+    "bytes": 36,
+    "sha256": "30e3882ac185ad5471b04c0445a38bc15a1e5b84e13cd49cd72e54c2035c6847",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "peer.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "peer.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-7891.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-7891.stdout.txt",
+    "bytes": 6,
+    "sha256": "ef25285675aa50dfe8f6f544525881c893161778a7659ccaeaffc5ac9de0c297",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-7894.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-7894.stdout.txt",
+    "bytes": 6,
+    "sha256": "3f61b50df7b66c23502392366ef076aa40a0c2284d4071b92ddccef8a4e43ba0",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-8031.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-8031.stdout.txt",
+    "bytes": 6,
+    "sha256": "cdc8468a7c286394aad00c5490b828eb8123ec782750f918b9baeca340ec65e7",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-8032.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-owned-reverse-8032.stdout.txt",
+    "bytes": 6,
+    "sha256": "6ff12167fd254a5c495926f604ea69d4d171c48c10b8d2c990cbecad723c798e",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-reverse-baseline.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "phone-reverse-baseline.stdout.txt",
+    "bytes": 2,
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-final-db-snapshot.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-final-db-snapshot.stdout.txt",
+    "bytes": 1659,
+    "sha256": "33107dab7bd46e8bd57c8aa1eb90ea748f9fbbaf6bf3da87916e170c552df16a",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-gradle-stop.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-gradle-stop.stdout.txt",
+    "bytes": 32,
+    "sha256": "9506a3843eb1d5f4ed7f6bc87fe61055d213e2b3fbbfb86a9c5b5bd04fef88a6",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-owned-db-stop.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-owned-db-stop.stdout.txt",
+    "bytes": 34,
+    "sha256": "339b980ef8643aefd149956c67237f7929e02081013d947cc46dd84c920070ca",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-owned-final-dump.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-owned-session-logout.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-owned-session-logout.stdout.txt",
+    "bytes": 83,
+    "sha256": "25cf75de166d48711d4ff43c3f5bfdf95cc55bbc45a6282fcb7c766f007c63b3",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-phone-final-pid.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-phone-final-pid.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-phone-final-stop.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-phone-final-stop.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-before-close.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-before-close.stdout.txt",
+    "bytes": 106,
+    "sha256": "9ee92f23c453dd550f03d6bdc00fba633dcec39a73d170e7afae7dac7902c790",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-final.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-final.stdout.txt",
+    "bytes": 2,
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-7891.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-7891.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-7894.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-7894.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-8031.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-8031.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-8032.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-reverse-remove-8032.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-sfu-final-log.stderr.txt",
+    "bytes": 1802182,
+    "sha256": "40bc88dfc1400cb86d6e304e855495e5c786c610c885fa9d157adbed22edf518",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-sfu-final-log.stdout.txt",
+    "bytes": 120,
+    "sha256": "27454578592bd5877edd549de226ba420db31bc632385db536bc00070580654d",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-sfu-stop.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "r1-sfu-stop.stdout.txt",
+    "bytes": 35,
+    "sha256": "2e263b6a45a29640c67547b2a201cd85b125b258a31b21eb3a41c58742423924",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "retained-apk-path.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "retained-apk-path.stdout.txt",
+    "bytes": 105,
+    "sha256": "f31192aca89fd82acacbde0aae8a84e02aaa8135021fe55a60fbc4331eddd0e0",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "retained-apk-pull.stderr.txt",
+    "bytes": 162,
+    "sha256": "d8111240b2056ea4d2e84324511d1c39bf6327be2afdfb36ad46ac2283217b26",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "retained-apk-pull.stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "retained-apk.console.txt",
+    "bytes": 72,
+    "sha256": "b7e2bb6177653041a86e5877df8aac1f04d1130977769a56fd6ca4e17af50d9f",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "run_entry.py",
+    "bytes": 1150,
+    "sha256": "836788d187f53abf75a3b2c1bfeff0f4820aa6a541f5485322be0266c9eae7f1",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "runtime-close.console.txt",
+    "bytes": 1432,
+    "sha256": "7dc61ffcf1aa02edb9431a3504d8160dcc0c683585fe8837f60a5e3a1dfe4ebc",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "sfu-create.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "sfu-create.stdout.txt",
+    "bytes": 65,
+    "sha256": "6def5ab4b84cc569689780caa40990a842f8e93add50ef90f8382cbff504f4f9",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "verify_process_closure.py",
+    "bytes": 1201,
+    "sha256": "df167cb50b9cc1623bdb6292a1cae55139af568675eea1b70444f576ba5b7893",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "warning-call.console.txt",
+    "bytes": 8080,
+    "sha256": "36c5ff9f8f5d5f649fa8aea7b830d9754da56adce8da25ee1fc2010da7c2e2e5",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "warning_call.py",
+    "bytes": 4385,
+    "sha256": "ada5abe088b7fbec81060f2054e9e550ad4c817bf0bdca1ecb19c91f4d857a48",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "ws.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  },
+  {
+    "localLabel": "ws.stdout.txt",
+    "bytes": 617,
+    "sha256": "f546001c275ebf2ab5597be8121aa54f23a1675a81f6cccf188fe8d0e675bb9f",
+    "classification": "LOCAL_ONLY_RAW_OR_HARNESS_HASH_ONLY"
+  }
+]
