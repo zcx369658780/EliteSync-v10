@@ -17,7 +17,7 @@ Astra未在本轮执行本地Python测试、未运行Gradle、未安装或操作
 - 源码Commit：`02fac2b20da52e56b373f6ae8ae2da838fd51901`，唯一Parent `d45cd08f939f6dfc6b4efe2420f4a117efc99e68`，Root `2b975e3b90d6844d51500726ebee1516cefaf5b2`。
 - 源码apps Tree：`81a86b9dc9c2fc68edecb60a742b911539c68f3c`；services Tree：`21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。
 - 实施报告Blob：`1639609a27cd25ee6a2a02d510110660023b287a`；Manifest Blob：`c0a7338316c4f4210579881249fe2bd7545fcc2f`；冻结计划仍为 `7d3466b3be67135dc641cfee7c7faef78937ba03`。
-- 完整候选Root Tree递归读取661?项并未截断；GitHub tree API返回完整计数为6621，apps/services子树与Manifest源码身份一致。源码差异仅为7个构建入口/观察/测试/说明文件，及 `apps/android/app/build.gradle.kts`；APP Dart、LiveKit vendor和后端没有改动。
+- 完整候选Root Tree递归读取6621项且未截断，apps/services子树与Manifest源码身份一致。源码差异仅为7个构建入口/观察/测试/说明文件，及 `apps/android/app/build.gradle.kts`；APP Dart、LiveKit vendor和后端没有改动。
 - 候选相对源码提交只追加实施报告与Manifest。产品接受基线仍为v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；没有产品main集成。
 
 ## 3. A：Gradle离线入口——代码与守卫有界接受，实际构建未通过
