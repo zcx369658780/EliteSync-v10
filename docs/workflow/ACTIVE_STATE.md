@@ -1,14 +1,16 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-26最新状态：FOCUSED_TASK_PARTIAL / CHANGES_REQUIRED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选 `825344124313c4d88690983809a6fb95a05551f4` 的独立复核。构建入口的15项守卫测试和两个fail-closed CLI负例有界支持；但唯一真实debug构建因采样到UDP endpoint被停止，exit90/Gradle exit1、无新APK、未到达嵌套AAR，因此构建验收未完成。Windows UDP owner-PID表只提供本地endpoint信息，没有远端目的地；将任意UDP endpoint标为已观察到网络尝试证据不足。APP侧新call与UI挂断有界支持；camera code4/5与trackDispose-null仍未完全归因，没有证据支持新APP源码修复。聚焦任务整体为CHANGES_REQUIRED，未派发后继任务。
+**2026-10-26最新状态：UDP_OBSERVER_SEMANTICS_TASK_PREPARED / OWNER_MANUAL_DISPATCH_REQUIRED / NO_REAL_BUILD_RERUN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Owner同意准备一份更窄的任务，只修正Windows UDP endpoint观察的证据语义并增加隔离单元测试。任务单已写入独立文档分支，尚未派发Codex、尚未修改产品源码、尚未运行测试。
 
-**Astra正式复核记录：** [BUILD_APP_CLEANUP_ASTRA_REVIEW_20261026.md](../versions/v10.1.5/BUILD_APP_CLEANUP_ASTRA_REVIEW_20261026.md)，当前审查草案分支 `astra/v10.1.5-build-app-cleanup-review-20261026`。该分支仅含审查/状态文档，尚未合入main。
+**窄范围任务单：** [V10_1_5_UDP_OBSERVER_SEMANTICS_FOCUSED_TASK_20261026.md](../versions/v10.1.5/V10_1_5_UDP_OBSERVER_SEMANTICS_FOCUSED_TASK_20261026.md)，位于分支 `owner/v10.1.5-udp-observer-semantics-task-20261026`，任务文档提交 `2af96725057b45411af40996d172230cf5b4e831`。本分支只用于任务/状态文档，不合并产品main；写入任务单不等于派发。
 
-**最新候选：** `825344124313c4d88690983809a6fb95a05551f4`，唯一Parent `02fac2b20da52e56b373f6ae8ae2da838fd51901`，Root `a13bb45df8d01dffacfce6395b5ae34ef68fafb5`。源码Commit `02fac2b20da52e56b373f6ae8ae2da838fd51901` / Root `2b975e3b90d6844d51500726ebee1516cefaf5b2`；apps Tree `81a86b9dc9c2fc68edecb60a742b911539c68f3c` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。实施报告Blob `1639609a27cd25ee6a2a02d510110660023b287a`；Manifest Blob `c0a7338316c4f4210579881249fe2bd7545fcc2f`；冻结计划仍为 `7d3466b3be67135dc641cfee7c7faef78937ba03`。
+**最新已交付候选：** `825344124313c4d88690983809a6fb95a05551f4`，唯一Parent `02fac2b20da52e56b373f6ae8ae2da838fd51901`，Root `a13bb45df8d01dffacfce6395b5ae34ef68fafb5`。源码Commit `02fac2b20da52e56b373f6ae8ae2da838fd51901` / Root `2b975e3b90d6844d51500726ebee1516cefaf5b2`；apps Tree `81a86b9dc9c2fc68edecb60a742b911539c68f3c` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。实施报告Blob `1639609a27cd25ee6a2a02d510110660023b287a`；Manifest Blob `c0a7338316c4f4210579881249fe2bd7545fcc2f`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。
 
-**下一步边界：** 不自动重跑真实构建。先由Owner决定是否授权一次窄范围的观察器修正/验证；将UDP endpoint与实际出站流量区分，添加测试，保留fail-closed保护。RTC警告继续作为未完全归因的观察项，除非出现支持APP-owned缺陷的新证据，否则不改APP或vendor。R1原始partial、日志、APK和LOCAL_ONLY证据保留。
+**当前发现：** 离线入口15项守卫测试有界支持，但唯一真实debug构建已因UDP endpoint观察触发停止，exit90/Gradle exit1，无新APK且未到达嵌套AAR。Windows UDP owner-PID表没有远端目的地，任意UDP endpoint不能被描述为已证明发包；仍保持保守停止，不因修正标签自动继续构建。新任务仅抽取分类逻辑并增加mock/纯函数单元测试，不运行真实入口、Gradle/Wrapper、Flutter、设备或网络，也不生成/安装APK。此前7,941,328字节partial及Hash和停止证据继续保留。
 
-**持续门禁：** Gate2两次历史启动预算已消费，本轮新启动/Writer/Serializer调用为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。AEC、最后可闻波形、实际15/30天与物理30天清理、真实Push仍未闭合。不得合并产品main、启动v10.1.6、接入真实Push/生产服务或清理历史备份、旧refs、SQL、APK和LOCAL_ONLY证据。
+**APP RTC结果：** 新call同PID媒体与UI挂断有界支持；camera code4/5和trackDispose-null仍未完全归因。未发现足够证据支持APP-owned源码修复，保持观察项，不改APP/vendor。R1重复leave修复与22+27项通过证据按原身份复用。
+
+**持续门禁：** Gate2两次历史启动预算已消费；本任务Gate2启动/Writer/Serializer均0。37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。AEC、最后可闻波形、实际15/30天与物理30天清理、真实Push仍未闭合。不合并产品main、不启动v10.1.6、不接入生产服务或真实Push，不清理历史备份/旧refs/SQL/APK/LOCAL_ONLY证据。
 
 **产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码树不是产品main。
 
