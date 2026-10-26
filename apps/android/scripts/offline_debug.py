@@ -97,6 +97,36 @@ def download_observed(log):
     return re.search(r'(?im)^\s*(?:Downloading\b|Fetching packages\b|Could not (?:GET|HEAD) [\'\"]?https?://)', log) is not None
 
 
+def observation_stop_reason(sockets, log, *, observer_failed=False):
+    """Classify sampled evidence, not packet transmission or absolute safety.
+
+    UDP owner-PID rows expose no remote destination and do not prove that a
+    datagram was sent.
+    TCP remote/state rows likewise do not prove payload transfer. Both retain
+    the conservative stop policy; None means only no signal in this sample.
+    """
+    if observer_failed:
+        return 'OBSERVER_FAILED'
+    udp_endpoint = non_loopback_tcp = False
+    try:
+        for endpoint in sockets:
+            if endpoint['protocol'] == 'UDP':
+                udp_endpoint = True
+            elif endpoint['protocol'] == 'TCP':
+                non_loopback_tcp |= external_tcp(endpoint['remote'])
+            else:
+                return 'OBSERVER_FAILED'
+    except (KeyError, TypeError, ValueError):
+        return 'OBSERVER_FAILED'
+    if udp_endpoint:
+        return 'UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE'
+    if non_loopback_tcp:
+        return 'NON_LOOPBACK_TCP_ENDPOINT_OBSERVED'
+    if download_observed(log):
+        return 'DOWNLOAD_ATTEMPT_OBSERVED'
+    return None
+
+
 def accepted_exit(code, reason, log):
     return code == 0 and reason is None and not download_observed(log)
 
@@ -105,9 +135,12 @@ def execute(manifest, expected_sha256, receipt_dir):
     config, roots, work = preflight(manifest, expected_sha256)
     if os.name != 'nt':
         raise PreflightError('WINDOWS_ONLY')
-    from windows_build_observer import Observer
-    observer = Observer()
-    observer.sample(os.getpid())  # Verify read capability before launching Gradle.
+    try:
+        from windows_build_observer import Observer
+        observer = Observer()
+        observer.sample(os.getpid())  # Verify read capability before launching Gradle.
+    except Exception as error:
+        raise PreflightError('OBSERVER_FAILED:' + type(error).__name__) from error
     observer.known.clear()
     output = Path(receipt_dir)
     output.mkdir(parents=True, exist_ok=False)
@@ -135,7 +168,7 @@ def execute(manifest, expected_sha256, receipt_dir):
               'networkClaim': 'SAMPLED_TASK_TCP_UDP_ONLY_ABSOLUTE_NO_NETWORK_NOT_PROVEN',
               'cacheProvenance': config['knownCompleteCacheProvenance']}
     (output / 'invocation.json').write_text(json.dumps(record, indent=2))
-    started = time.monotonic(); reason = None; samples = 0
+    started = time.monotonic(); reason = None; samples = 0; observer_failure_detail = None
     with (output / 'stdout.txt').open('xb') as stdout, (output / 'stderr.txt').open('xb') as stderr, \
             (output / 'process-network-private.jsonl').open('x', encoding='utf-8') as observations:
         process = subprocess.Popen(command, cwd=roots['project'] / 'apps/android', env=env,
@@ -148,20 +181,18 @@ def execute(manifest, expected_sha256, receipt_dir):
                 observations.write(json.dumps({'hostMonotonic': before, 'processes': processes, 'sockets': sockets}) + '\n')
                 observations.flush(); samples += 1
                 log = (output / 'stdout.txt').read_text(errors='replace') + (output / 'stderr.txt').read_text(errors='replace')
-                if any(x['protocol'] == 'UDP' or external_tcp(x['remote']) for x in sockets):
-                    reason = 'NETWORK_ATTEMPT_OBSERVED'
-                elif download_observed(log):
-                    reason = 'DOWNLOAD_ATTEMPT_OBSERVED'
-                elif before - started > 1200:
+                reason = observation_stop_reason(sockets, log)
+                if reason is None and before - started > 1200:
                     reason = 'BUILD_TIMEOUT'
                 if reason:
                     break
                 time.sleep(.1)
         except ProcessLookupError:
-            if process.poll() is None:
-                reason = 'OBSERVER_FAILED:ROOT_PROCESS_NOT_OBSERVABLE'
+            reason = observation_stop_reason([], '', observer_failed=True)
+            observer_failure_detail = 'ROOT_PROCESS_NOT_OBSERVABLE'
         except Exception as error:
-            reason = 'OBSERVER_FAILED:' + type(error).__name__
+            reason = observation_stop_reason([], '', observer_failed=True)
+            observer_failure_detail = type(error).__name__
         finally:
             if reason and process.poll() is None:
                 stopped = subprocess.run(['taskkill', '/PID', str(process.pid), '/T', '/F'], capture_output=True)
@@ -170,8 +201,10 @@ def execute(manifest, expected_sha256, receipt_dir):
             code = process.wait(timeout=30)
     final_log = (output / 'stdout.txt').read_text(errors='replace') + (output / 'stderr.txt').read_text(errors='replace')
     if download_observed(final_log):
-        reason = reason or 'DOWNLOAD_ATTEMPT_OBSERVED_AT_EXIT'
+        reason = reason or observation_stop_reason([], final_log)
     record.update({'exit': code, 'stopReason': reason, 'networkSamples': samples,
+                   'observerFailureDetail': observer_failure_detail,
+                   'downloadLogObserved': download_observed(final_log),
                    'observedTaskPids': sorted(observer.known),
                    'elapsedSeconds': time.monotonic() - started, 'processExitConfirmed': True,
                    'stdoutSha256': sha256(output / 'stdout.txt'), 'stderrSha256': sha256(output / 'stderr.txt'),

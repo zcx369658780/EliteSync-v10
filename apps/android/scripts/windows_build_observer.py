@@ -1,4 +1,9 @@
-"""Read-only task-process/TCP/UDP sampling. No firewall, ETW or global changes."""
+"""Read-only task-process/TCP/UDP endpoint sampling, not packet observation.
+
+UDP owner-PID tables provide local endpoint ownership only; remote=None cannot
+prove datagram transmission. TCP remote/state rows do not prove payload transfer.
+No firewall, ETW or global changes.
+"""
 import ctypes as c
 from ctypes import wintypes as w
 import ipaddress

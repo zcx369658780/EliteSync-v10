@@ -35,11 +35,28 @@ The project-owned init runs after Flutter's AAR init. Vendor source is unchanged
 
 On Windows, the entry samples its process descendants and their TCP/UDP tables.
 Observed non-loopback TCP, any task UDP endpoint, observer failure or download
-log stops/fails the owned build tree. Loopback Gradle IPC is permitted. Final
+log stops/fails the owned build tree. These are separate evidence classes:
+
+| Stop reason | Supported observation |
+|---|---|
+| `UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE` | Task PID owns a UDP endpoint. Remote destination and actual datagram transmission are unproven. |
+| `NON_LOOPBACK_TCP_ENDPOINT_OBSERVED` | Sampled TCP remote endpoint/state is non-loopback. Payload transfer is unproven. |
+| `DOWNLOAD_ATTEMPT_OBSERVED` | A log matches the current download-attempt recognition rules, including final logs after exit. |
+| `OBSERVER_FAILED` | Observation failed or the root process was not observable; fail closed even if the child has since exited. Details are recorded separately. Capability failure before launch rejects preflight with the same category prefix. |
+| `None` | No classified signal in this sample, not proof of no network. |
+
+UDP and non-loopback TCP still stop the owned tree; renaming evidence does not
+permit continuation or a retry. Loopback Gradle IPC is permitted. Final
 stdout/stderr are scanned again after process exit. There is no automatic retry.
 Raw process/network observations may contain local identifiers and stay LOCAL_ONLY.
 Sampling can miss short-lived/failed attempts between snapshots; **absolute
 process-tree no-network is NOT_PROVEN**, even when no attempt was observed.
 
 Run guard/lifecycle unit tests with `python apps/android/scripts/test_offline_debug.py`.
-They do not substitute for the one real build or device evidence.
+They use pure classification functions, temporary byte fixtures and fully mocked
+observer/Popen/taskkill collaborators. A process-local audit hook rejects real
+process, socket and native DLL access, including escapes caught by tested code.
+They do not substitute for real build or device evidence. The 2026-10-26 UDP
+semantics task authorizes only these isolated checks/static review: no real entry,
+Gradle/Flutter/AAR/Kotlin/APK/device run. The earlier actual build remains stopped
+and incomplete; its original labels, logs, exit codes and partial are retained.
