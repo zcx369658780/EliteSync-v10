@@ -753,3 +753,69 @@ APP只有一次disconnect/dispose序列并完成，重复leave/new join等待bar
 集中候选交付后停止，等待Astra；**没有产品main集成、v10.1.6、Gate2、生产/真实Push/新增费用或历史清理**。
 
 最终脱敏审阅包Commit `ad2206ba3b9a6d65e8265e0aef5277b92d50de3f` / Parent `67db5e91c17ea1b42cc6baabfb5ccaf4cbba4733` / Root `db135b18d2922a89b65a8a86edb5dcc052b0fa1e`；初始审阅提交保留在普通追加链中。
+
+
+## 2026-10-26 Owner手动派发：UDP观察器证据语义窄修正
+
+**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / AWAITING_ASTRA**。本轮仅分类修正、隔离单元测试和静态检查，不获得真实构建重跑授权。
+
+### 权威、实时身份与受限差异
+
+Owner在本会话明确确认正式派发。任务分支 `owner/v10.1.5-udp-observer-semantics-task-20261026` fresh HEAD `8fd8f9dd360c373259003e7a485a8adf8164e1b5`，任务Blob `cca9cf539370325ea2827cf914ffe7b83d18305e`，ACTIVE_STATE Blob `2d8fdd64fcc130a9cd692b89945c6a52a42d9d89`；前次Astra复核Blob `53a91243fe1e7155e71e5a44cb65238e13964574` 的CHANGES_REQUIRED已读取。冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`未改。
+
+开工与交付前live main `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；产品接受仍v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。前候选825344124313c4d88690983809a6fb95a05551f4 / 唯一Parent02fac2b20da52e56b373f6ae8ae2da838fd51901 / Roota13bb45df8d01dffacfce6395b5ae34ef68fafb5，报告Blob1639609a27cd25ee6a2a02d510110660023b287a、Manifest Blobc0a7338316c4f4210579881249fe2bd7545fcc2f重新核验。
+
+本轮源码 `c1055f3cf5dcb80d0ec003de1846b940b5186aad` / 唯一Parent `825344124313c4d88690983809a6fb95a05551f4` / Root `5684d0d5785fe9304379e5d2cf24b4e8992bcee3`；apps `df307a66c5d725aa9733de0746d58405e3702e3f` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。仅4个白名单路径改动，build.gradle.kts、APP Dart、LiveKit vendor、后端/token/consent/Upgrade均未改。候选仅在本源码上追加报告与Manifest；候选Commit/Root/两文档Blob及原字节发布后外部绑定，不在文档内制造自引用Hash。
+
+| 变更文件 | Git Blob | SHA256 |
+|---|---|---|
+| apps/android/scripts/offline_debug.py | `38c0306ad931b8599ea4b2273704814f87655e0a` | `274535109001034af044bcefa8dcf14264e0136c9292e7730fc4a4040b705d74` |
+| apps/android/scripts/windows_build_observer.py | `a6c4eebe690402a8e240c692d8670143c788af4d` | `2e146c48dbf6d90aee0e0a36a54188d14cc8db39deea845fde40523ccea13a72` |
+| apps/android/scripts/test_offline_debug.py | `75c291384dc11c1c50fe881aba0251734b34245a` | `8a220294e993e6327d4ec1da068eb4d0fea7887a0e489f9b40132801df4adfe0` |
+| apps/android/scripts/README.md | `e7d0a99b59e4d0daecdbb7aca58de3730b030b4b` | `128c76f6802d6fd4e82fd9017f1a4bef11985866a2697d8e0695e538e877b8fa` |
+
+### 分类语义与保持的停止边界
+
+抽取纯函数observation_stop_reason：UDP owner-PID表只证明任务拥有本地endpoint，remote不可得且不证明实际发出数据报，分类 `UDP_ENDPOINT_OBSERVED_REMOTE_UNAVAILABLE`，仍停止；非loopback TCP只证明采样到远端socket/state，不证明payload传输，分类 `NON_LOOPBACK_TCP_ENDPOINT_OBSERVED`，仍停止。日志规则明确匹配为 `DOWNLOAD_ATTEMPT_OBSERVED`；观察器故障/无法读取/缺根进程/异常socket为 `OBSERVER_FAILED`。None只表示当前采样未观察到已分类信号，不是绝对无网络。
+
+分类接回原停止分支，没有跳过UDP、改变loopback策略或自动重试。根进程不可观测时，即使随后child已退出也不再返回安全完成；启动前观察能力失败以OBSERVER_FAILED前缀拒绝、构建子进程不启动。运行时异常细节另列observerFailureDetail；退出后最终下载日志仍扫描并单列downloadLogObserved。优先级保持保守：故障/异常、UDP、非回环TCP、下载；最终下载日志匹配另有字段，不抹去已有停止原因。没有独立实际出站流量证据，所以不生成已证实outbound attempt标签。
+
+### 本轮纯函数/mock测试与静态检查
+
+运行命令为本地Python3.11 `python -B apps/android/scripts/test_offline_debug.py`（-B仅禁止pyc）。原实现对31项隔离测试出现RED，exit1，unittest原摘要failures5/errors17（包含subtest），原stdout/stderr完整保留；这不是实际构建失败。实现后31项GREEN，非作者提出两处文字/隔离修正后最终 **31项exit0、无skip**。最终stdout SHA256 `069dcc56ced8c4863327cca60204d2a361e7f2e1c91af7b9b2edcf2d6082aeb0`，stderr SHA256 `9115881c08e325df27ae213618862afb6c33dcb5cfc316a88f6ae5498029a9e7`；RED/GREEN/FINAL全部命令、退出码和Hash见Manifest.unitRuns，不覆盖原始RED。
+
+8项新分类方法覆盖UDP remote=None、非loopback TCP的多种state、IPv4/IPv6 loopback、下载日志、无信号、观察失败、异常字段、UDP与loopback共存。6项新增完全mock生命周期验证UDP/TCP触发后只停止一次、无重试/无继续sleep、观察器读失败、根不可见且child已退出、启动前能力失败、退出后下载日志。另加2项调用execute但在预检即拒绝的负例：缺缓存/错误Manifest，断言Observer和Popen均未调用。原15项均保留；共31方法，逐项模式和源码行号在Manifest.isolation.testModes。
+
+测试入口在导入被测模块前安装**仅本测试进程**的audit hook，拒绝真实subprocess.Popen、os.system/exec/spawn/startfile、socket.*和ctypes.dlopen；即使被测代码捕获阻断异常，tearDownModule仍因事件计数非0失败。所有执行生命周期用例的Observer/sample、Popen、taskkill/run、poll/wait均完全mock；没有导入/调用真实Windows观察器或网络表。最终stdout明确audit真实process/socket/native-DLL事件 **0**。临时夹具仅本地字节和ZIP receipt，不是Gradle或APK；mock stdout中的PID1234、buildProcessesStarted1及Gradle命令字符串只是夹具输出，不能当作真实启动证据。
+
+静态检查用compile(source bytes, filename, 'exec')仅生成内存代码对象，不执行模块、不产生pyc；三份Python源码通过，git diff --check exit0，白名单4路径一致。静态stdout SHA256 `3e9f66380784051fd44280ae0c6fd6ace0ee3d36203c4d024cd34456c737c104` / stderr SHA256 `e0b960b260823b0b2aab962db5a75cd4f4e3ef05ce267f600742b1fe337a76d8`。一次额外只读git diff --stat误在LOCAL_ONLY目录执行返回exit1/Not a git repository，原工具输出和具名note保留；独立静态检查exit0，不把该命令误报通过。没有因此重跑任何真实工具。
+
+### 前次停止原证保持，真实构建仍未完成
+
+前次唯一真实构建仍outer exit90/Gradle child exit1、57次采样、9.953秒，原label NETWORK_ATTEMPT_OBSERVED原样保存。stdout Hash `74db0edd1fc9509d2da9123bcd08f2156c2414b2c371f88848b24894529b9076`，stderr Hash `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`，采样Hash `2e9a5d59996cc3ce220e6df523b9d2bbf8ac2a021bdb46fcb71c635cbd45cdb4`。其可支持事实仅为java拥有两个UDP端点、目的地不可见；本次语义修正不把它改写成已发包或新运行，也不据此证明无联网。此前嵌套AAR未到达、Kotlin DSL与完整debug未证明，无新APK/安装；**ACTUAL_BUILD_NOT_COMPLETED**保持。原R1 7941328字节partial / SHA256b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4原件不变，前根197件索引Hash只读复核全匹配。
+
+本任务真实构建入口、Gradle/Wrapper、Flutter/AAR/Kotlin、APK生成/安装、设备、RTC/服务启动、实际网络观察器均0。纯函数/mock测试未访问真实网络；GitHub权威读取、正常Git发布与远端回读是交付所需的治理网络操作，单独区分，不声称宿主机所有无关流量为0。没有调用ADB、修改共享工具/系统网络/防火墙/管理员策略或全局环境变量；测试只修改传给假Popen的环境副本。前次资源关闭仅历史引用，本轮未作当前手机/系统资源普查，不将旧0活动call结论冒作新设备运行。
+
+### AC状态、保护与非作者复核
+
+| AC | 状态 | 证据类别 | 限制 |
+|---|---|---|---|
+| 01 | SUPPORTED_BOUNDED_PROTECTION | NEW_READONLY | 26688 named protected files, five historical roots, protected old refs; product main remains v10.1.4. |
+| 02 | REUSED_ACCEPTED | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | No message reliability source change or new full journey. |
+| 03 | REUSED_R1_BOUNDED_STOP_AND_PRIOR_TOKEN | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | R1 <=0.90625s bounded native endpoints and older call5 first token Upgrade403 remain separate; no new revoke timing. |
+| 04 | REUSED_ACCEPTED | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | Picker/player/Range unchanged; not re-run. |
+| 05 | PARTIAL_AC05_OPEN | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | RTC diagnostics and R1 evidence reused unchanged; no APP/device/observer/RTC run in this task. SDK/framework camera warnings unresolved, AEC/waveform/handles unproven. |
+| 06 | WAITING_ELAPSED_TIME | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | No new proof of actual 15/30 days; no system clock changes. |
+| 07 | WAITING_ELAPSED_TIME_PHYSICAL_PURGE_NOT_RUN | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | Prior controlled tests retained; physical 30-day purge not newly proven. |
+| 08 | REUSED_R1_BOUNDED_STALE_CARD_CLICK | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | R1 real accessibility ACTION_CLICK retained at original APK/source; not a new notification test. |
+| 09 | REAL_PUSH_PROVIDER_PENDING | REUSED_PRIOR_CANDIDATE_AT_ORIGINAL_IDENTITIES | No provider, keys, production or new fees. |
+| 10 | PARTIAL_ACTUAL_BUILD_NOT_COMPLETED | NEW_PURE_MOCK_TESTS_AND_STATIC_PLUS_REUSED_FAILURE | 31 final isolated Python tests exit0; compile/diff0. No real Gradle/Flutter/AAR/Kotlin/APK/device/network validation; prior real build remains stopped. |
+| 11 | UDP_SEMANTICS_CANDIDATE_AWAITING_ASTRA | STATIC_NON_AUTHOR_REVIEW_AND_REMOTE_READBACK | One appended report, one manifest preserving previous delivery; candidate ordinary non-force; stop for Astra. |
+
+本轮保护范围26688份具名历史文件（包含前根原证、APK、SQL、partial）、5历史dirty/工作根、524开工refs中的受保护项；开工及源码后核验一致，候选自身本地/远端refs是具名允许前进项，非整盘审计。前报告129841字节前缀逐字节保留，原Manifest248555字节对应Blob在历史提交保留，并完整嵌入新Manifest.previousDelivery。D盘dirty根不写入；不删除任何历史原件或refs。
+
+非作者GPT-6.1 Sol/high只读审查4路径diff，发现并修正“prove no datagram”措辞和旧mock用例遗漏显式run mock两处，终末 `NO_NEW_BLOCKING_FINDINGS_STATIC`。31项执行/audit0/静态检查是主代理观察，审阅者没有运行测试、观察器、构建、设备或网络，不替代Astra验收。无需新的独立审阅分支：公开代码、逐项模式、Hash和派生摘要集中放入本报告与Manifest；原始测试日志/路径和历史设备/SQL/APK等仍LOCAL_ONLY。
+
+Gate2启动/Writer/Serializer保持0；旧0.375/0.390秒预算和D0-A15次/约0.688秒不重置。37案例/条件Sandbox SDK/Producer/libs.jar/30配置解析NOT_RUN。RTC关闭警告SDK_FRAMEWORK_CLOSE_WINDOW_UNRESOLVED、AEC、最后可闻波形、handle census、实际15/30天/物理30天、真实Push、ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN及OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS均不因本轮脚本单测而关闭。
+
+普通non-force候选发布后核验Commit/Parent/Root、两文档Blob/原字节和完整apps/services Tree，完整绑定保留在LOCAL_ONLY `v1015-udp-observer-semantics-20261026/final-readback.json`。随后停止等待Astra集中独立验收；不合产品main、不启动v10.1.6、不请求或推定真实构建重跑授权。
