@@ -87,6 +87,6 @@ Gate 2新启动、Writer、Serializer调用均为0；两次历史启动预算仍
 
 最终项目状态继续为：
 
-**`V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED**。
+**`V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED`**。
 
 本复核不创建或派发后继任务。不得自动重跑真实构建、合并产品main、启动v10.1.6、运行未授权Gate 2、接入真实Push/生产服务或清理历史证据。后续真实构建需要Owner另行明确授权。
