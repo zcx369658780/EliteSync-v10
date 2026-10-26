@@ -692,3 +692,64 @@ LOCAL_ONLY根标签`v1015-r1-remaining-repair-20261025`。十件最小脱敏审�
 地址：https://github.com/zcx369658780/EliteSync-v10/tree/220e29b148dd0994d3a2798a98a79e2943a099d4/docs/_temporary_review/v1015-remaining-r1-20261025 。报告/Manifest原字节及完整apps/services Tree和候选身份在普通non-force发布后集中回读，最终结果见本轮final-readback。
 
 保持 **V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / AWAITING_ASTRA_INDEPENDENT_REVIEW / NO_PRODUCT_MAIN_INTEGRATION / V10.1.6_NOT_STARTED**。候选交付后停止；未改冻结合同、未合main、未自行接受或启动下一Gate。
+
+
+## 2026-10-26 Owner派发：构建离线入口与APP RTC清理聚焦交付
+
+状态：**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / FOCUSED_CANDIDATE_AWAITING_ASTRA**。本次仅执行Owner具名聚焦任务，不自行接受整版。冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`未修改；任务分支HEAD `5fd7e853943e14a087f5a3a90544904a39609f0c` / 任务Blob `bbda6d136e19271d4a377a7cfe48b0069f16c1fa` / Astra R1复核Blob `c2ab5035b84985b5e8a87e32fc34d2fe9352c31e`。R1有界接受与其未完成项分别保留，不把候选树当产品main。
+
+### 实时身份与源码
+
+开工及交付前fresh main `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；产品apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`仍v10.1.4。前候选d45cd08f939f6dfc6b4efe2420f4a117efc99e68，唯一Parent e7cbbe6030b033c5c9244c599bd42fcff312a8c6、Root9a2997eacbbc386f48d2a2dc259221a2319997dd，两旧文档Blob和118904/169748原字节按身份保留。
+
+本轮源码 `02fac2b20da52e56b373f6ae8ae2da838fd51901` / 唯一Parent `d45cd08f939f6dfc6b4efe2420f4a117efc99e68` / Root `2b975e3b90d6844d51500726ebee1516cefaf5b2`，apps `81a86b9dc9c2fc68edecb60a742b911539c68f3c` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。仅7个项目构建入口/guard/observer/测试/说明路径变化，1046份已复制apps输入逐文件Hash再次对应；**APP Dart、LiveKit vendor及后端未改**。文件Hash见Manifest.source.changedFiles。新候选只在本源码上追加本报告和一个Manifest，远端Commit/Parent/Root/Blob与原字节在发布后另行回读绑定。
+
+### A：入口已实现，实际普通debug构建未通过并停止
+
+项目入口offline_debug.py要求调用方独立pin的兼容完整缓存inventory；核对本地Gradle8.14运行文件、版本receipt、bin Hash、依赖定义和各缓存scope。缺少工具/依赖、Hash错误或路径不安全在启动Gradle前拒绝，不退回Wrapper。外层和内层AAR静态调用本地Gradle；禁用JVM工具链自动下载，固定普通R1 debug参数，无ICE/retention扩展。项目init仅去除私有AAR发布的Javadoc classifier以免Dokka独立外链，不更改vendor/runtime artifact。继承Java opts等被清理。
+
+`python apps/android/scripts/test_offline_debug.py`：入口不存在的原RED exit1；两次10项夹具失败由选取inventory[0]不确定导致，原始stdout/stderr/exit全部保留，明确选择目标root后恢复，未降低断言。随后12/13/15项阶段检查通过，最终15项exit0。真实CLI负例缺缓存和错误manifest pin均exit2 / PREFLIGHT_REJECTED / buildProcessesStarted0。
+
+唯一实际构建使用inventory SHA256 `ad08b37917d289bb90b9919c03b277528618751d39420e188a2e25774a19e49f`；94573个具名文件/23个定义，来源为原R1成功兼容缓存，非未知缓存自证。preflight通过后直接调用已存在Gradle8.14 `:app:assembleDebug --offline --console=plain --no-daemon --max-workers=2`并固定本地参数。真实构建9.953秒、57次采样后观测任务java.exe两个UDP端点，触发保守stop；**outer exit90 / Gradle exit1 / NETWORK_ATTEMPT_OBSERVED / 无重试**。端点目的地未知；未观测non-loopback TCP且无下载日志，既不能断言已外联，也不能证明没有联网。有限进程/TCP/UDP采样不证明绝对无网络。已终止自有树，已观测3个PID与合成对端PID的独立终末只读查询均不存在。
+
+构建验收的普通debug exit0 **未满足**，不与历史成功拼接。没有新APK或本轮安装；尚未到达内层AAR，Kotlin DSL实际编译和内层直接Gradle调用**未证明**。Wrapper trap未触发只限已到达窗口，不能冒作完整链通过。完整命令/退出码/stdout、stderr与采样Hash见Manifest.build。本次构建stdout SHA256 `74db0edd1fc9509d2da9123bcd08f2156c2414b2c371f88848b24894529b9076`，stderr为空Hash，observation SHA256 `2e9a5d59996cc3ce220e6df523b9d2bbf8ac2a021bdb46fcb71c635cbd45cdb4`。首次R1误下载的7941328字节partial / SHA256 b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4原件保护不变。本次保护触发后没有放宽规则/重发构建。
+
+### B：新call1复现与有界归因，无APP修复
+
+Owner接回原手机并启动原有Docker引擎后，复用已存在镜像/工具（pull=never），在任务独立合成数据库/服务上观察。现装R1 APK回取405007373字节，SHA256 `30ca72ab1e53c55ff324ee2763d84ceab7867a7c54617e5b76bcbaa83c966a12`一致；运行源码e7cbbe，不称本任务新构建。登录辅助BACK误退及一次错误Activity具名启动失败原证保留；改用既有正确Activity和既有登录流程后进入，无APP修改。初次Docker未运行的准备失败也保留。
+
+聚焦LOCAL_ONLY根的独立call1：同PID，四方向RTP bytes/packets均增长，入站视频decode70→148；执行真实APP UI挂断，服务端ended。新日志delta中renderer_cancel_complete、disconnect_start/complete、dispose_start/complete、leave_complete各一次，PeerConnection CLOSED2、AudioRecord stop done1、AudioTrack stop done2、camera release1均在该次结束后可见。挂断前基线/媒体窗口无指定警告；挂断后camera raw code4×3/code5×4共7条**W**，trackDispose-null5条**D**。五种指定异常字符串计数0只限该窗口，不代表所有日志无错误，也不代表native handle全部释放。
+
+APP只有一次disconnect/dispose序列并完成，重复leave/new join等待barrier保持原R1修复；源码未变，因此复用R1两个RED→GREEN、22+27检查，不无谓重跑。未发现本次可证明的APP重复close缺陷，不因警告计数修改APP或vendor。LiveKit Track.stop→mediaStreamTrack.stop后，LocalTrack.stop仍再调用同一stop；flutter_webrtc每次stop均发送trackDispose，native localTracks缺项时D日志后返回。这是SDK幂等二次关闭的可解释路径，**不是每一条null日志的排他归因**。
+
+相机观察来自CameraDevice-JV-1的W日志。现有Android36参考源码在onDeviceError含同一字面量但为DEBUG下Log.d，与设备日志级别不同；未取得设备固件字节匹配源码或数字常量映射，不能把raw code4/5等同StateCallback CAMERA_DEVICE/SERVICE。正常abort与平台问题仍未充分区分，归于SDK/framework关闭窗口观察，保留未定项；不宣称正常无害，不消日志、不改SDK。引用位置见脱敏rtc-warning摘要，原始运行证据Hash见索引。
+
+本call仅证明指定生命周期/native端点可见，未做撤权新计时，不证明最后可闻波形、AEC或完整handle census。R1撤权保守上界0.90625秒仅历史复用；更早10.125秒、0.790秒及旧call3/4/5分别保留，不拼接成完整旅程。通知R1实际可见卡片ACTION_CLICK有界证据按原APK复用，非本轮新跑。
+
+### AC-01～11与证据类别
+
+| AC | 状态 | 证据类别 | 限制 |
+|---|---|---|---|
+| 01 | SUPPORTED_BOUNDED_PROTECTION | NEW_READONLY | 26228 named files, five roots and protected old refs unchanged; product main remains accepted v10.1.4. |
+| 02 | REUSED_ACCEPTED | REUSED | No message reliability source change or new full journey. |
+| 03 | REUSED_R1_BOUNDED_STOP_AND_PRIOR_TOKEN | REUSED | R1 <=0.90625s bounded native endpoints and older call5 first token Upgrade403 remain separate; no new revoke timing. |
+| 04 | REUSED_ACCEPTED | REUSED | Picker/player/Range unchanged; not re-run. |
+| 05 | PARTIAL_AC05_OPEN | DEVICE_NEW_RUN_PLUS_REUSED | Focused call1 RTP/UI hangup; warnings reproduced; no APP-owned fix supported; AEC/waveform/handles unproven. |
+| 06 | WAITING_ELAPSED_TIME | REUSED_NOT_RUN | No new proof of actual 15/30 days; no system clock changes. |
+| 07 | WAITING_ELAPSED_TIME_PHYSICAL_PURGE_NOT_RUN | REUSED_NOT_RUN | Prior controlled tests retained; physical 30-day purge not newly proven. |
+| 08 | REUSED_R1_BOUNDED_STALE_CARD_CLICK | REUSED | R1 real accessibility ACTION_CLICK retained at original APK/source; not a new notification test. |
+| 09 | REAL_PUSH_PROVIDER_PENDING | NOT_RUN | No provider, keys, production or new fees. |
+| 10 | PARTIAL_BUILD_STOPPED | NEW_TEST_AND_FAILED_BUILD_PLUS_REUSED | 15 final guard tests exit0, two negative CLI probes exit2 before children; real build UDP stop, outer90/child1/no new APK; R1 22+27 checks reused. |
+| 11 | FOCUSED_CANDIDATE_AWAITING_ASTRA | STATIC_REVIEW_AND_REMOTE_READBACK | Consolidated report/manifest, sanitized review package, normal candidate and fresh raw-byte readback required. |
+
+真实15/30天与物理30天清理仍WAITING_ELAPSED_TIME/NOT_RUN，无新自然时间证明；真实Push PENDING/NOT_RUN，AEC NOT_PROVEN，ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN、OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS保持。Gate2新启动/Writer/Serializer均0；0.375/0.390秒已消费，历史D0-A15次/约0.688秒不重跑。37案例、条件Sandbox SDK、Producer/libs.jar、30配置解析均NOT_RUN。
+
+### 资源、保护、非作者复核与集中交付
+
+任务进程/合成对端/手机APP已停；活动call/session families/token均0，7端口无listener，4条ADB reverse恢复开工空状态；本任务Gradle stop exit0，具名观测PID终末查询全部不存在。SFU stopped exit1、DB stopped exit0分别保留。Owner启动的全局Docker/ADB保持，APK、容器/volume、原始失败、SQL与LOCAL_ONLY不删除。最终SQL153219字节/Hash320ac08d7b2594f8ebc8f9ee48b19e00121424a4d8f7dac3f940a0948edc29bf仅LOCAL_ONLY。26228份具名保护文件、5历史根及523开工refs中受保护项一致，不称整盘审计；D盘dirty根未改。
+
+非作者只读复核入口源码和脱敏派生摘要，4项入口问题已修正且最终15项通过；后补具名进程关闭回执。派生静态脚本副本曾因默认编码把中文动作字符串写坏，非作者发现后以显式UTF-8重生成并核对原执行源一致；初始审阅Commit67db5e91c17ea1b42cc6baabfb5ccaf4cbba4733保留，通过普通non-force追加提交修正，原执行源/设备证据不变、不重跑。复核者没有执行本地测试/构建/设备操作，不替代Astra独立验收。原始设备/UI日志、APK、SQL、凭据、标识不上传；仅7件最小脱敏审阅包和Hash索引，分支codex/v10.1.5-build-app-cleanup-review-20261026，路径docs/_temporary_review/v1015-build-app-cleanup-20261026/。外部Commit/Root及两文档Blob/原字节、apps/services完整Tree在普通non-force发布后核验，最终绑定在LOCAL_ONLY `v1015-build-app-cleanup-focused-20261026/final-readback.json`。
+
+集中候选交付后停止，等待Astra；**没有产品main集成、v10.1.6、Gate2、生产/真实Push/新增费用或历史清理**。
+
+最终脱敏审阅包Commit `ad2206ba3b9a6d65e8265e0aef5277b92d50de3f` / Parent `67db5e91c17ea1b42cc6baabfb5ccaf4cbba4733` / Root `db135b18d2922a89b65a8a86edb5dcc052b0fa1e`；初始审阅提交保留在普通追加链中。
