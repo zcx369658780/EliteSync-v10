@@ -1,18 +1,16 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-26最新状态：UDP_OBSERVER_SEMANTICS_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已完成候选 `7674b5e60a219cb76aba387dd2cee85cae67bd0a` 的窄范围独立验收。接受UDP/TCP/下载日志/观察器故障分类的证据语义修正、保守停止策略和31项隔离测试/静态检查的Codex报告证据。实际构建仍未完成：前次真实构建因UDP endpoint停止，未重跑、无新APK；本轮不证明实际发包或绝对无网络。
+**2026-10-27状态：TCP_STATIC_LOG_READONLY_DIAGNOSIS_TASK_PREPARED / OWNER_MANUAL_DISPATCH_REQUIRED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Owner同意先做纯只读源码与既有LOCAL_ONLY构建日志的联合根因调查，不再重复尝试Gradle构建。当前任务单已准备、GitHub原字节回读通过，但尚未交付本地Codex执行；没有启动本地程序、Gradle、设备或网络观察器。
 
-**正式Astra复核记录：** [UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md](../versions/v10.1.5/UDP_OBSERVER_SEMANTICS_ASTRA_REVIEW_20261026.md)，位于分支 `astra/v10.1.5-udp-observer-review-20261026`。该分支仅含审查/状态文档，未合入main。
+**唯一诊断任务单（独立文档分支）：** [V10_1_5_TCP_STATIC_LOG_ROOTCAUSE_LONG_TASK_20261027.md](../versions/v10.1.5/V10_1_5_TCP_STATIC_LOG_ROOTCAUSE_LONG_TASK_20261027.md)，Blob `a67c7c37e3cea6d779cd1fd5f5571e16c7f840db`；创建文档Commit `963b3ce1ed6e89437531de2c30e2dfe2d21cc113`；分支 `owner/v10.1.5-tcp-static-log-rootcause-20261027`。任务仅授权读取已存在的进程/socket和Gradle stdout/stderr日志、校验Hash、重建TCP触发前后时间线、分析PID创建时间/归属与构建阶段，不改产品源码/日志、不跑真实构建。不能从当前公开脱敏摘要直接推断具体TCP远端/端口或插件归属。
 
-**最终候选：** `7674b5e60a219cb76aba387dd2cee85cae67bd0a`，唯一Parent `018c0d95ef7cf79ee458448aa40c4bfd9af48bd4`，Root `66929e9c4af27a8249fa3c14776360e7ced9f4f6`。实际源码Commit `c1055f3cf5dcb80d0ec003de1846b940b5186aad` / Parent `825344124313c4d88690983809a6fb95a05551f4` / Root `5684d0d5785fe9304379e5d2cf24b4e8992bcee3`；apps Tree `df307a66c5d725aa9733de0746d58405e3702e3f` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。报告Blob `978176687efa914767115c5014939c11a489a8ea`；Manifest Blob `7ab43f3cd6df3e05ba1fa6c92e92fb46bc5442f7`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。
+**最近交付候选身份：** `cfddecc944a043b1d85361a954a692be0dd4ce23`，唯一Parent `12d4e284feea609935eab12c973f5fd2efbc2992`，Root `a0bdf4a3cec27a21293abad9a35f11981b0d5c48`；源码Commit `12d4e284feea609935eab12c973f5fd2efbc2992` / Root `1fbd4a7a2de6dc56b42b0e3a51f7d74f712d7250`。候选apps Tree `cea01309fa9da5f99ccc9829654c6ec279c8c343`，services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。实施报告Blob `71e039051ba0c6205f496444bc466d71f11a6fff`；Manifest Blob `d91a50d3653ef6304b4f45e53ddb4a242dbce284`；冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。最近回读live main为 `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`。执行前需要重新GET。
 
-**当前结论：** 31项隔离Python测试exit0，真实进程/socket/DLL审计事件报告为0；Astra未亲自运行本地测试。UDP endpoint仍触发保守停止，标签不再声称已证明发包。前次真实构建exit90/Gradle exit1、57次采样、无重试、无新APK、嵌套AAR未到达；原日志与7,941,328字节partial及Hash保留。ACTUAL_BUILD_NOT_COMPLETED持续有效。
+**当前阻断：** 最新一次真实构建在Gradle启动后92.375秒、734次采样中观察到Java PID非loopback IPv4 TCP state5 endpoint，按既有强停止条件终止；入口exit90、Gradle child exit1、无新APK。仅本地日志能够进一步判断该PID是否属于同一构建进程实例、对应任务与连接类别。已有公开摘要未记录远端端口，且观察器known PID集合持久增长缺创建时间交叉验证，属于待核风险而非已确定实际PID误归属。Gradle依赖offline并不等同整个进程树绝对无网络。
 
-**APP RTC观察项不变：** camera code4/5与trackDispose-null仍未完全归因；没有新证据支持APP源码修复。AEC、最后可闻波形、native handle完整清点、实际15/30天与物理30天清理、真实Push仍未闭合。
+**禁止门禁：** 真实构建预算1/1已消费，剩余0；不能重跑、重新认领或改写claim。Gate2两次历史启动预算仍已消费；Writer/Serializer与37案例、Sandbox SDK、Producer/libs.jar/30 Configuration.resolve均NOT_RUN。不得运行Windows实时网络观察器、Gradle/Wrapper/Flutter/AAR、设备RTC、ADB/Docker、生产服务或Push；不得合并产品main、启动v10.1.6、清理原日志/下载partial/SQL/APK/旧refs/LOCAL_ONLY证据。
 
-**持续门禁：** Gate2两次历史启动预算已消费，本轮新启动/Writer/Serializer为0；37案例、条件Sandbox SDK、Producer、libs.jar和30项Configuration.resolve均NOT_RUN。不得自动重跑真实构建；需Owner另行明确授权。不合并产品main、不启动v10.1.6、不接入生产服务或真实Push，不清理历史备份/旧refs/SQL/APK/LOCAL_ONLY证据。
-
-**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。候选源码树不是产品main。
+**产品接受基线仍为v10.1.4：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5继续 `PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED`；AEC、最后可闻波形、完整native handle、真实15/30天/物理30天清理及真实Push均未闭合。
 
 ## 已独立核验的产品和集成
 
