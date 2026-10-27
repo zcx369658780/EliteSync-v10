@@ -1,3 +1,21 @@
+# EliteSync v10｜2026-10-27 Owner新授权的综合源码加固任务（当前入口）
+
+**`V10.1.5_SOURCE_HARDENING_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / BA77_BOUNDED_READONLY_ROOTCAUSE_REVIEW_ACCEPTED_WITH_OBSERVATIONS / ZERO_GRADLE_AUTHORIZED_FOR_THIS_TASK / G_SPENT_1_OF_1 / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_SPENT_1_OF_1 / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Owner于2026-10-27明确批准：沿Astra已独立有界接受的ba77定点根因报告，**正式发布一份综合零Gradle源码/观察器加固任务**。Astra正式任务：[V10_1_5_OWNED_INIT_SCOPE_AND_OBSERVER_FAIL_CLOSED_SOURCE_HARDENING_TASK_20261027.md](../versions/v10.1.5/V10_1_5_OWNED_INIT_SCOPE_AND_OBSERVER_FAIL_CLOSED_SOURCE_HARDENING_TASK_20261027.md)，**Blob `ddcc4e7e74b4e2aeaf1651aa20f51a0749c7f28a`**。该任务已发布并按原文回读，但**必须Owner手动派发Codex**；当前不表示本地已执行。
+
+**最新前置验收**：Astra独立裁决 `BA77_BOUNDED_READONLY_ROOTCAUSE_REVIEW_ACCEPTED_WITH_OBSERVATIONS`，归档于 `astra/v10.1.5-ba77-readonly-rootcause-review-20261027`；验收报告Blob `7f864c7e17b81acccb24cf0655de6b3a911a66f9`、审查分支HEAD最近回读 `417c2c8d704996624afb70d0f703eb20f274c2f2`。待修复基线 `ba77a3c840c36550a7ec3aa5a6475b69d874004f`、唯一Parent `fd0da9cce87c5eb84aec96dd11ea37aecd7aefff`、Root `8817729f4804d364e11c1ecb477e1e46a1cf9152`、apps `e6bff4bc8e359e6afe80c02f25212ee8b6195eab`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`（未接受产品候选，不能冒充已合main）。
+
+**本次冻结范围**：仅在新隔离候选中修复项目自有Flutter AAR init的root/included上下文安全守卫，随动保持来源/许可/Hash/消费pin与纯静态/mock测试；对任务自有observer/runner副本补充失败前的WinAPI阶段/错误码/进程实例证据记录，仍必须fail-closed。没有Gradle/JVM真实配置、G/A、APK、设备、真实进程/socket、Gate2、Push、数据库、网络下载、缓存删除、升级/卸载授权；旧预算G 1/1、完整APK 1/1已耗，A 0/1因G失败门禁关闭。既有Owner条件性缓存重建和工具链版本维护授权**不在本任务内执行**。
+
+**产品main**仍仅接受v10.1.4，完整apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。持续`GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING`及AEC、最后可闻波形、native handle、真实15/30天与物理清理等原观察。
+
+**下一唯一动作**：Owner手动派发正式任务；Codex在冻结范围内集中实施并发布有来源的源码候选，停止等待Astra独立验收。不得凭任务创建立即启动Codex、合并产品main、执行后继构建或启动v10.1.6。
+
+以下为先前状态的原文字节，属于历史时点；其中ROOTCAUSE_READONLY_TASK_PUBLISHED/仍待ba77审查不再是本入口当前任务，不得覆盖以上最新条款。
+
+---
+
 # EliteSync-v10｜2026-10-27 最新 Owner 授权与正式任务入口
 
 **最新：`V10.1.5_ROOTCAUSE_READONLY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / FD0_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / G_GRAPH_NOT_PROVEN / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / G_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED`**
