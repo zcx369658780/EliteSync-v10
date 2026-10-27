@@ -1,24 +1,18 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-25最新状态：V10.1.5_REMAINING_ACCEPTANCE_CANDIDATE_PUBLISHED / AWAITING_ASTRA_CENTRAL_REVIEW / PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Codex已完成当前剩余验收综合长任务的可执行范围并停止等待Astra。最新候选`7773b98986d9c9395841623e6ef244379fddc865`，唯一Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。当前下一步是Astra对该候选集中独立验收；不立即创建后继任务或启动Gate2。
+**2026-10-27审查分支最新状态：STATIC_DEPENDENCY_REVIEW_ACCEPTED_WITH_LIMITATIONS / STATIC_MECHANISM_SUPPORTED_WITH_SOURCE_BOUNDARY / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已对 `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` 进行独立只读验收，仅有界接受静态机制、报告的证据分层和两条未实施候选方案；没有将Dokka确认为TCP发起者，未关闭整版。
 
-**本轮交接入口：** [SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md](SESSION_HANDOFF_20261025_V1015_REMAINING_ACCEPTANCE_CANDIDATE_7773B989.md)，Blob `d44e92d656fc7adcbebeb60764c25e7f7d85c709`。交接记录已保存当前候选身份、AC逐项状态、Owner决策、证据等级、历史预算和新会话首要检查事项。
+**正式Astra独立复核：** [AAR_DOKKA_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/AAR_DOKKA_ASTRA_REVIEW_20261027.md)，保存于文档审查分支 `astra/v10.1.5-aar-dokka-static-review-20261027`，初始审核提交 `18222d4f039d72165ec187c855d136f0adcff6e6`。这是独立审查和状态文档，不包含产品源码修改，尚未合main。
 
-**当前剩余验收长任务单：** [V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md](../versions/v10.1.5/V10_1_5_REMAINING_ACCEPTANCE_LONG_TASK_20261025.md)，Blob `fec31d6318524a40b9ff8f0dab49b60aa7fa3490`。此任务已执行并集中交付候选7773b989；当前先进行Astra集中独立验收，不创建下一任务。
+**候选身份：** `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` / 唯一Parent `7abea213feacc52a1e43c6ed58a40c83009c74df` / Root `5f0dbe066ba64b1b8ab05c1698a9c48c19fb9553`。唯一新增报告 [AAR_DOKKA_STATIC_DEPENDENCY_REVIEW_20261027.md](../versions/v10.1.5/AAR_DOKKA_STATIC_DEPENDENCY_REVIEW_20261027.md) Blob `96b7bc41e10eeed1ce385c218b4038ca280bf5c2`；完整Root Tree 6623项未截断，apps `cea01309fa9da5f99ccc9829654c6ec279c8c343` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。前冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`，原实施报告Blob `71e039051ba0c6205f496444bc466d71f11a6fff`、Manifest Blob `d91a50d3653ef6304b4f45e53ddb4a242dbce284` 原字节保留。
 
-**最新报告/Manifest：** [IMPLEMENTATION_REPORT.md](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)，Blob `8c7184384be6c8f8fef76b9c27df9385131de304`；[artifact_manifest.json](../versions/v10.1.5/artifact_manifest.json)，Blob `bb8f5023f102b38268ed78e1821a7aa02362cb36`。候选源码Commit `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c` / Root `21243e8f60dccae5106d9d04bd739ef587d05646`，候选apps `db3a2936ee37bf9610053fb8fd67b360fc377a94` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。这些是未接受候选树，不是产品main。
+**静态机制和限制：** Flutter AAR init在条件允许时请求`withJavadocJar()`；AGP为文档输出注册Generation/Jar任务；Gradle的SoftwareComponent/Module Metadata可能在MavenPublication主artifact移除后仍持有文档变体的构建依赖。因此项目当前 `offline_debug.init.gradle` 的事后removeAll不足以证明Dokka任务不再进入图。具体当次调度边 `EDGE_NOT_PROVEN`，当次加载AGP版本与TCP调用栈/源组件未证明，`DOKKA_TCP_CAUSALITY_NOT_PROVEN`。两条可选最小方案均未实施，需Owner另行授权，不能跳过必要AAR/POM/runtime依赖或关监控。
 
-**主要新证据：** 67项相关Flutter检查与17项ICE guard检查报告exit0；最终APK SHA256 `68e9bc37c785976713a7fbe0d18f82c1dcde0d1bbfe2641e26558e71f8cb2717`，安装回取Hash一致；真机call4同call重连与真实UI挂断成功，四方向RTP增长且视频解码94→574；call5新连接后，复用成功媒体token在撤权后首次WebSocket Upgrade重入返回403。PCM清理/Room.dispose修复与错误传播测试在任务内完成。
+**验收边界：** Astra直接核验GitHub提交/Tree/仓库Gradle声明，未直接反汇编本地AGP/Dokka/Gradle Jar、读取LOCAL_ONLY原日志或执行本地测试。缓存类字节与任务日志事实属于Codex报告的本地只读证据；不能称Astra复算。Codex报告本轮Gradle/设备/观察器/Gate2/Writer/Serializer执行0。
 
-**必须保留的限制：** call3媒体开关/前后台旅程整体exit1（重连按钮仅12px未触发，finally走服务API）；call5撤权后媒体停止host保守上界10.125秒，不新增5秒PASS；AEC/真实语音质量未证明；有限合成信号不是AEC验收。通知旧卡片在第二次权威快照前消失，实际旧卡片点击`NOT_RUN`。实际经过15/30天与物理30天清理`WAITING_ELAPSED_TIME / NOT_RUN`；真实Push仍PENDING。
+**持续禁止事项：** 真实构建预算1/1已消耗，剩余0，不新启动或重试，不修改源码/缓存/工具/系统策略，不运行Gate2、37案例、Sandbox SDK、Producer/libs.jar/30 Configuration.resolve，亦不接入真实Push/生产服务。历史partial 7,941,328字节、SQL/APK/旧refs/LOCAL_ONLY保留；不得合并产品main、启动v10.1.6或自动派发后继任务。AEC、最后可闻波形、native handle普查、真实15/30天/物理30天清理和真实Push持续开放。
 
-**Gate2与Owner授权：** D0-A历史15次Serialize/约0.688秒不重跑。WinPS策略拒绝0.375秒和PS7/.NET TypeLoadException启动失败0.390秒两次预算已消费；本轮新Gate2启动/Writer/Serializer调用均0。只读PE信息显示PS7 Core System.Web.dll没有WebResourceAttribute，而Framework 4.8实现包含该类型；未加载程序集，且没有证明已允许入口与完整Framework实现同时可用。最新任务仅授权只读分析，不授权Gate2新预算/执行；37案例、Sandbox SDK、Producer、libs.jar、30项Configuration.resolve均NOT_RUN。
-
-**Owner长期决策继续生效：** v10.x使用“一份冻结计划、一份综合长任务、中途无监督、一次集中验收”。普通修复与测试失败由Codex在授权范围内自主处理；A-D是任务发布闭环，不是逐步审批。当前不创建下一任务、不启动Codex、不合并产品main、不启动v10.1.6。
-
-**产品基线：** 已接受产品仍v10.1.4，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍`PARTIAL_NOT_ACCEPTED / AC05_OPEN`，ICE诊断旗标未证明，旧guest/HCS状态未知，真实Push Provider未接入。
-
-**本次状态同步写入前live main：** `3aee49522687b3aa4b0d99db48f11ecf790f3c65` / Root `5cfa329c60d9733b64f19a5f6162e9faaecfb4a7`。本次ACTIVE_STATE更新会推进main；最终HEAD以最后一次回读为准。
+**产品已接受基线仍为v10.1.4：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。最近独立读取main仍为 `4df2e7f0f36cc7b80258faa73e80dad682cff6c5`。
 
 ## 已独立核验的产品和集成
 
