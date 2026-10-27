@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "option": "A_TRACKED_DERIVATIVE",
+  "scope": "v10.1.5-ordinary-r1-runtime",
+  "upstream": {
+    "repository": "https://github.com/flutter/flutter",
+    "path": "packages/flutter_tools/gradle/aar_init_script.gradle",
+    "sha256": "b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2",
+    "versionReceiptFrameworkVersion": "3.41.7",
+    "versionReceiptFrameworkRevision": "cc0734ac716fbb8b90f3f9db8020958b1553afa7",
+    "versionBoundary": "Local installed SDK receipt, not a newly downloaded upstream snapshot"
+  },
+  "license": {
+    "spdx": "BSD-3-Clause",
+    "file": "FLUTTER_LICENSE",
+    "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+  },
+  "ownedSha256": "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d",
+  "patchSha256": "d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947",
+  "changes": [
+    "Add attribution and fail-closed scope preamble",
+    "Remove exactly one withJavadocJar request in flavor branch",
+    "Remove exactly one withJavadocJar request in no-flavor branch"
+  ],
+  "preserved": [
+    "Original CRLF body bytes except the two exact removed lines",
+    "withSourcesJar in both branches",
+    "maven-publish",
+    "from component",
+    "finalizedBy publish",
+    "Flutter and plugin AAR dependency relation"
+  ],
+  "runtimeStatus": "PUBLISH_GRAPH_NOT_EXECUTED / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN",
+  "inventoryStatus": "NEW_BUILD_INPUTS_REQUIRE_NEW_TRUSTED_INVENTORY"
+}

@@ -14,6 +14,7 @@ import re
 import subprocess
 import time
 import zipfile
+from owned_aar_init import OwnedInitError, verify_inventory as verify_owned_inventory
 
 ROOT_NAMES = {'gradle', 'cache', 'flutter', 'pub', 'java', 'android', 'project'}
 PINNED_BIN = 'af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab'
@@ -88,6 +89,10 @@ def preflight(manifest, expected_sha256):
     except (zipfile.BadZipFile, KeyError, UnicodeError) as error:
         raise PreflightError('GRADLE_RUNTIME_VERSION') from error
     require(config.get('knownCompleteCacheProvenance'), 'CACHE_PROVENANCE')
+    try:
+        verify_owned_inventory(config, roots)
+    except (OwnedInitError, OSError) as error:
+        raise PreflightError(str(error)) from error
     return config, roots, work
 
 

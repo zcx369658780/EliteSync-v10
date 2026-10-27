@@ -115,7 +115,7 @@ class PreflightTests(unittest.TestCase):
         self.assertFalse(entry.external_tcp('::1'))
         self.assertTrue(entry.external_tcp('203.0.113.1'))
 
-    def test_valid_attested_inventory_is_read_only(self):
+    def complete_inventory_fixture(self):
         core = Path(self.config['roots']['gradle'], 'lib/gradle-core-8.14.jar')
         core.parent.mkdir(); core.write_bytes(b'fixture runtime')
         self.config['inventory'].append({'root': 'gradle', 'path': 'lib/gradle-core-8.14.jar', 'sha256': entry.sha256(core)})
@@ -124,12 +124,35 @@ class PreflightTests(unittest.TestCase):
             archive.writestr('org/gradle/build-receipt.properties', 'versionNumber=8.14\n')
         self.config['inventory'].append({'root': 'gradle', 'path': 'lib/gradle-base-services-8.14.jar', 'sha256': entry.sha256(receipt)})
         self.config['knownCompleteCacheProvenance'] = 'Unit fixture, not a real runtime'
+        from test_owned_aar_init import make_owned_fixture, fixture_contract
+        roots = {key: Path(value) for key, value in self.config['roots'].items()}
+        make_owned_fixture(roots['project'], roots['flutter'])
+        owned = fixture_contract(roots['project'])
+        self.config['ownedAarInitContract'] = owned['ownedAarInitContract']
+        self.config['inventory'].extend(owned['inventory'])
+        self.config['definitions'].extend(owned['definitions'])
+
+    def test_valid_attested_inventory_is_read_only(self):
+        self.complete_inventory_fixture()
         expected = self.save()
         pin = entry.sha256(Path(self.config['roots']['gradle'], 'bin/gradle.bat'))
         with patch.object(entry, 'PINNED_BIN', pin), patch.object(entry.subprocess, 'Popen') as spawn:
             config, roots, work = entry.preflight(self.manifest, expected)
             self.assertEqual(work, self.root)
             self.assertEqual(set(roots), entry.ROOT_NAMES)
+            spawn.assert_not_called()
+
+    def test_old_inventory_rejected_before_observer_or_process(self):
+        self.complete_inventory_fixture()
+        del self.config['ownedAarInitContract']
+        expected = self.save()
+        pin = entry.sha256(Path(self.config['roots']['gradle'], 'bin/gradle.bat'))
+        observer = Mock(side_effect=AssertionError('must not observe'))
+        with patch.object(entry, 'PINNED_BIN', pin), patch.object(entry.subprocess, 'Popen') as spawn, \
+                patch.dict(sys.modules, {'windows_build_observer': types.SimpleNamespace(Observer=observer)}):
+            with self.assertRaisesRegex(entry.PreflightError, 'NEW_BUILD_INPUTS_REQUIRE_NEW_TRUSTED_INVENTORY'):
+                entry.execute(self.manifest, expected, self.root / 'no-receipt')
+            observer.assert_not_called()
             spawn.assert_not_called()
 
     def test_changed_build_definition_never_spawns(self):

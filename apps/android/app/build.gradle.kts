@@ -5,6 +5,8 @@ import java.util.Base64
 import java.security.MessageDigest
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.LinkOption
+import java.nio.file.attribute.BasicFileAttributes
 
 plugins {
     id("com.android.application")
@@ -242,6 +244,45 @@ val r1AarVersion = if (isIceDiagnosticBuild) "1.0-icediag-$r1Digest" else if (is
 val r1AarOutput = File(flutterModuleDir, if (isIceDiagnosticBuild) "build/host/ice-diagnostic/outputs" else if (isV1015R1RetentionProbe)
     "build/host/r1-retention-probe/outputs" else "build/host/v1015-r1/outputs")
 
+// OWNED_R1_AAR_INIT_BEGIN: fixed project copy; no generation or fallback here.
+fun validateOwnedRuntimeAarInit(projectRoot: File, flutterRoot: File): File {
+    fun checkedFile(root: File, relative: String): File {
+        val base = root.toPath().toAbsolutePath()
+        val candidate = root.resolve(relative).toPath().toAbsolutePath()
+        require(base.none { it.toString() == ".." } && candidate.none { it.toString() == ".." } &&
+            candidate.normalize().startsWith(base.normalize()) && Files.isRegularFile(candidate)) {
+            "OWNED_AAR_INIT_REJECTED: missing or escaped input"
+        }
+        var current: Path? = candidate
+        while (current != null) {
+            val item = current
+            require(!Files.isSymbolicLink(item) &&
+                !Files.readAttributes(item, BasicFileAttributes::class.java, LinkOption.NOFOLLOW_LINKS).isOther) {
+                "OWNED_AAR_INIT_REJECTED: redirected input"
+            }
+            current = item.parent
+        }
+        require(candidate.toRealPath() == candidate.normalize()) { "OWNED_AAR_INIT_REJECTED: redirected path" }
+        return candidate.toFile()
+    }
+    fun pinned(root: File, relative: String, expected: String): File {
+        val file = checkedFile(root, relative)
+        require(MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+            .joinToString("") { "%02x".format(it) } == expected) { "OWNED_AAR_INIT_REJECTED: input hash $relative" }
+        return file
+    }
+    pinned(flutterRoot, "packages/flutter_tools/gradle/aar_init_script.gradle",
+        "b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2")
+    pinned(flutterRoot, "LICENSE", "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9")
+    val directory = "scripts/owned_flutter_aar_init/"
+    pinned(projectRoot, directory + "FLUTTER_LICENSE", "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9")
+    pinned(projectRoot, directory + "SOURCE.json", "0f14efe7ed1a2d84be53f2a76a70a343a8bece8dc42f34b368c637c9b17a5f51")
+    pinned(projectRoot, directory + "UPSTREAM.patch", "d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947")
+    return pinned(projectRoot, directory + "aar_runtime.init.gradle",
+        "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d")
+}
+// OWNED_R1_AAR_INIT_END
+
 val syncFlutterAar by tasks.registering(Exec::class) {
     group = "build"
     description = "Build latest Flutter module AAR before Android preBuild"
@@ -257,15 +298,25 @@ val syncFlutterAar by tasks.registering(Exec::class) {
             localOfflineGradleBin!!.absolutePath
         val encodedDefines = flutterDartDefines.split(Regex("[;,]")).map { it.trim() }.filter { it.isNotEmpty() }
             .joinToString(",") { Base64.getEncoder().encodeToString(it.toByteArray(Charsets.UTF_8)) }
+        val ordinaryR1Runtime = isV1015R1LocalBuild && !isIceDiagnosticBuild && !isV1015R1RetentionProbe
+        val aarInit = if (ordinaryR1Runtime) validateOwnedRuntimeAarInit(rootProject.projectDir, File(flutterSdkPath))
+            else File(flutterSdkPath, "packages/flutter_tools/gradle/aar_init_script.gradle")
+        if (ordinaryR1Runtime) {
+            inputs.files(aarInit, rootProject.file("scripts/owned_flutter_aar_init/FLUTTER_LICENSE"),
+                rootProject.file("scripts/owned_flutter_aar_init/SOURCE.json"),
+                rootProject.file("scripts/owned_flutter_aar_init/UPSTREAM.patch"))
+            inputs.property("ownedRuntimeAarInitScope", "v10.1.5-ordinary-r1-runtime")
+        }
         if (!isIceDiagnosticBuild) logger.lifecycle("OFFLINE_DEBUG_INNER_DIRECT_GRADLE version=8.14 wrapper=false")
         commandLine(listOf(aarGradle,
-            "-I=${File(flutterSdkPath, "packages/flutter_tools/gradle/aar_init_script.gradle").absolutePath}",
+            "-I=${aarInit.absolutePath}",
             *if (!isIceDiagnosticBuild) arrayOf("-I=${rootProject.file("scripts/offline_debug.init.gradle").absolutePath}") else emptyArray(),
             "-Pflutter-root=$flutterSdkPath", "-Poutput-dir=${r1AarOutput.parentFile.absolutePath}",
             "-Pis-plugin=false", "-PbuildNumber=$r1AarVersion",
             "-Ptarget=${if (isIceDiagnosticBuild) "lib/dev/v1015_ice_diag.dart" else if (isV1015R1RetentionProbe) "lib/dev/v1015_r1_retention_probe.dart" else "lib/main.dart"}",
             "-Pdart-defines=$encodedDefines", "-Ptarget-platform=android-x64,android-arm64",
             if (isIceDiagnosticBuild) "assembleAarDebug" else "assembleAarRelease", "--offline", "--console=plain") +
+            (if (ordinaryR1Runtime) listOf("-PelitesyncOwnedAarInit=v10.1.5-ordinary-r1-runtime") else emptyList()) +
             if (isIceDiagnosticBuild) listOf("--no-daemon", "--gradle-user-home", iceDiagnosticTooling!!.second.absolutePath) else
                 listOf("--no-daemon", "--max-workers=2", "--gradle-user-home", gradle.gradleUserHomeDir.absolutePath,
                     "-Dorg.gradle.java.installations.auto-download=false", "-Porg.gradle.java.installations.auto-download=false",
