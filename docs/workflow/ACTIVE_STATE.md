@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-27 G2最小依赖Seed/SDK写入边界任务（最新入口）
+
+**`MINIMAL_SEED_AND_SDK_WRITE_BOUNDARY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE_THIS_TASK / NO_G2_CLAIM_THIS_TASK / G2_CONDITIONAL_BUDGET_0_OF_1_CODEX_REPORTED / WRITE_ISOLATION_STILL_BLOCKED / G2_INVENTORY_CLOSURE_BLOCKED / GRAPH_NOT_PROVEN / SOURCE_LEVEL_ONLY / OLD_APK_AND_G_EXHAUSTED_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner 2026-10-27最新任务授权：** Astra已正式发布并按路径回读唯一任务：[V10_1_5_G2_MINIMAL_DEPENDENCY_SEED_AND_SDK_WRITE_BOUNDARY_TASK_20261027.md](../versions/v10.1.5/V10_1_5_G2_MINIMAL_DEPENDENCY_SEED_AND_SDK_WRITE_BOUNDARY_TASK_20261027.md)，精确Git Blob `465eb13f8cb290bfab4061b03edf51629e90ca87`。本任务是下一项**聚焦、零Gradle的Gradle modules-2最小依赖seed精确静态闭合/空间方案 + Flutter/Android SDK剩余写入UNKNOWN定点排查**，不是重复广谱mock、不是实际G2运行放行。任务已正式发布，**须Owner在本地手动派发Codex**；本会话目前尚无该新任务执行证据。
+
+**最新Astra独立验收前提：** `68FEEE04_BOUNDED_BLOCKED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS`，报告 `astra/v10.1.5-68feee04-write-isolation-review-20261027:docs/versions/v10.1.5/68FEEE04_G2_WRITE_ISOLATION_ASTRA_REVIEW_20261027.md`，Blob `40a772e4a86f248b04b49bfb245d8f671e3ec751`；审查分支HEAD `7a99bc408e1de7c9bca43508917061f6c001509f`。待续未接受源码/文档候选 `68feee0443991696385337c318348ead5306e1ef` / sole Parent `286eb20d1d6af2e76423cfbd3253880f47c9ae16` / Root `93fc0d1837ff807bf40fc6c4cb55e9d8bb89b847`，完整apps `5af7a9d0042be19437616e969e260658b67e9353`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`，均**未并入main**。68fe本地报告107项可变/衍生状态、18族矩阵、1098个副本共8,277,854 bytes、56项完全mock exit0；Gradle modules-2全旧sealed集合1,362,106,905 bytes超过当前512MiB限额，但**不证明不能存在更小闭合子集**。
+
+**本任务范围和门禁：** Codex可在任务独有隔离工作面只读解析已pin Gradle8.14/现有modules-2 metadata、plugin marker/implementation、variant/POM/BOM/transitive/缓存索引，计算seed必要文件Hash及容量上下界，并对SDK/NDK/plugin隐式写入逐项注明已证/UNKNOWN和可能的OS隔离方案。允许纯静态Python/mock及少量任务独有、≤512MiB的私有小文件；**不可真实Gradle/JVM/Flutter/Job/observer/socket、不能创建/修改G2.claim、不能下载/删缓存/升级、不能把1.36GB全cache复制到任务根、不能更改原受保护根或产品main**。旧正式G2仅1次的单独授权合同 Blob `796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`继续冻结。Codex前轮LOCAL_ONLY报告G2`reservedStarts=0/Popen=0/claim absent`，为**条件性未消耗预算，不是本任务运行许可**；旧APK/G 1/1已耗尽、旧A因G门禁封闭、Gate2/真正AAR/APK/设备/生产未授权。
+
+**状态仍开放：** `WRITE_ISOLATION_STILL_BLOCKED / INVENTORY_RUNTIME_CLOSURE_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / DOKKA_TASK_SELECTED_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING / AC05_OPEN / V10.1.5_PARTIAL_NOT_ACCEPTED / V10.1.6_NOT_STARTED`，以及历史AEC、最后可闻波形、native handle、真实15/30天和物理清理缺口。
+
+**已接受产品仍v10.1.4**：main完整apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` 与services `0cb1f9d19659291a462488b3686fd0a07a6698ac`不变。当前下一步仅Owner手动派发本次任务，由Codex集中提交精确依赖/容量/SDK风险决策报告和脱敏索引，完成后STOP等待Astra独立验收。**不自动延伸为G2、产品合并、扩容或后继任务。**
+
+以下是main此前正文，属于历史时点；其“写隔离任务待派发”不覆盖本轮68fe已获验收与新的任务发布。
+
+---
+
 # EliteSync v10.1.5｜2026-10-27 Owner G2 缓存/SDK写隔离闭合任务（最新入口）
 
 **`WRITE_ISOLATION_CLOSURE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / G2_NOT_RUN_INPUT_CLOSURE_BLOCKED / G2_CONDITIONAL_BUDGET_0_OF_1_CODEX_REPORTED / G2_CLAIM_ABSENT_CODEX_REPORTED / ZERO_GRADLE_AUTHORIZED_THIS_TASK / G2_GRAPH_NOT_PROVEN / SOURCE_LEVEL_ONLY / OLD_APK_1_OF_1_SPENT / OLD_G_1_OF_1_SPENT / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
