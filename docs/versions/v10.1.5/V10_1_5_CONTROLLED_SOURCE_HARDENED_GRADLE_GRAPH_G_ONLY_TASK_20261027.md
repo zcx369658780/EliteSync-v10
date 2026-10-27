@@ -71,7 +71,7 @@ Owner在Astra对源码候选`6ca09a66c0ef9619df7a3d7d4b089516f409954f`作出`SOU
 1. 新可信库存闭合状态、schema2合同与新旧差异、Gradle/JDK/Flutter/SDK工具和各plugin输入实际映射；未闭合就`G2_NOT_RUN_INPUT_CLOSURE_BLOCKED`。
 2. G2授权`MAX1`及唯一claim是否已原子创建、`reservedStarts`、Popen实际发生与否、完整真实命令Hash、root/userhome/cwd身份、Gradle退出及stopReason、观察样本数、强停/API失败、Job最终清空回执、所有input/输出SHA。
 3. Dry-run真实selected任务逐行的脱敏可核验摘要；Flutter及插件publication/metadata/POM/sources/文档类任务逐类`REGISTERED/SELECTED/EXECUTED`与缺失；对于任何失败精准保留失败阶段与已知/未知。
-4. 旧partial仍7,941,328 bytes/SHA256 `b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4`、旧APK claim SHA256 `07820a04f5f7bb5fccea83a5372340af33b224269bc6f89b476b637230140f8c8`、旧G claim SHA256 `0a9a2835ea4b1805977a81808ec787fa5070a35f5c4f504c69eb7b37ed091316`、A claim不存在等具名历史原证**按可触达范围首尾只读校验**；老26784保护集合、108附证、525历史refs和旧100453库存没逐项重算不能冒称本轮又全量通过。
+4. 旧partial仍7,941,328 bytes/SHA256 `b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4`、旧APK claim SHA256 `07820a04f5f7bb5fccea83a5372340af33b224269bcf89b476b637230140f8c8`、旧G claim SHA256 `0a9a2835ea4b1805977a81808ec787fa5070a35f5c4f504c69eb7b37ed091316`、A claim不存在等具名历史原证**按可触达范围首尾只读校验**；老26784保护集合、108附证、525历史refs和旧100453库存没逐项重算不能冒称本轮又全量通过。
 5. 任务拥有工作树、实际空间增量、可追踪GitHub候选Commit/唯一Parent/Root、完整apps/services Tree、报告/索引Blob原字节远端回读；main接受产品树不变。原源码`6ca`及其Astra验收原证永久保留，绝不合main。
 6. `CODEX_REPORTED_LOCAL_EXECUTION`、`DIRECT_GITHUB_READBACK`、`LOCAL_ONLY_RAW`与`ASTRA_DIRECT_GITHUB_STATIC`各自来源分层；不得以Codex自查取代未来Astra独立验收。
 
