@@ -1,18 +1,16 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-27审查分支状态：READONLY_ROOTCAUSE_DIAGNOSIS_ACCEPTED_WITH_LIMITATIONS / ROOT_CAUSE_NOT_PROVEN / INSTANCE_IDENTITY_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已对只读文档候选 `7abea213feacc52a1e43c6ed58a40c83009c74df` 完成集中独立复核，接受调查报告的有界交付和不武断归因的结论。Astra没有亲自读取LOCAL_ONLY原JSONL、daemon日志或运行本地程序。
+**2026-10-27状态：AAR_DOKKA_STATIC_INVESTIGATION_TASK_PREPARED / OWNER_MANUAL_DISPATCH_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / ROOT_CAUSE_NOT_PROVEN / SINGLE_REAL_BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Owner已经同意针对 Flutter AAR / Dokka 文档生成任务的依赖链展开单次静态调查。Astra已只读检查仓库脚本：外层`syncFlutterAar`直接调用嵌套`assembleAarRelease`；当前`offline_debug.init.gradle`只移除javadoc发布artifact，不禁用Dokka task。先前历史日志出现`connectivity_plus:javaDocReleaseGeneration`，但不能据此判定Dokka发起非回环TCP。本轮没有真实构建、设备/网络观察器或源码修复授权。
 
-**Astra正式复核记录：** [TCP_OFFLINE_BUILD_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/TCP_OFFLINE_BUILD_ASTRA_REVIEW_20261027.md)，存于独立分支 `astra/v10.1.5-tcp-readonly-review-20261027`，首次复核文档提交 `f8c3a6898b6c4cad9952c931df6ad08c34056f2f`。该分支仅有审查文档/状态草案，不合入main，不接受产品版本。
+**唯一静态调查任务单：** [V10_1_5_AAR_DOKKA_STATIC_DEPENDENCY_INVESTIGATION_TASK_20261027.md](../versions/v10.1.5/V10_1_5_AAR_DOKKA_STATIC_DEPENDENCY_INVESTIGATION_TASK_20261027.md)，Blob `516eb555c26a13bb82e24e16d371826170ec9559`，所在独立分支 `owner/v10.1.5-aar-dokka-static-investigation-20261027`，创建任务文档Commit `32a3ac9ff65e805ec3de4aa4ecc3858350aa5ee8`。待Owner手动派发Codex；建档不等于Codex任务已执行。本分支只含文档/状态，不合入产品main。
 
-**本轮只读交付：** 文档候选 `7abea213feacc52a1e43c6ed58a40c83009c74df` / 唯一Parent `cfddecc944a043b1d85361a954a692be0dd4ce23` / Root `8a7775c97f3161f2f6f54d6499deba584349f307`。唯一新增报告 [TCP_OFFLINE_BUILD_READONLY_ROOTCAUSE_REPORT_20261027.md](../versions/v10.1.5/TCP_OFFLINE_BUILD_READONLY_ROOTCAUSE_REPORT_20261027.md) Blob `72975510872fbe3251caf1b8ddbd687761165d88`；候选完整Root Tree为6622项、未截断；apps Tree `cea01309fa9da5f99ccc9829654c6ec279c8c343` / services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。旧实施报告Blob `71e039051ba0c6205f496444bc466d71f11a6fff`、Manifest Blob `d91a50d3653ef6304b4f45e53ddb4a242dbce284` 和冻结plan Blob `7d3466b3be67135dc641cfee7c7faef78937ba03` 均不变。
+**上一轮已接受有界只读报告：** 文档候选 `7abea213feacc52a1e43c6ed58a40c83009c74df` / Parent `cfddecc944a043b1d85361a954a692be0dd4ce23` / Root `8a7775c97f3161f2f6f54d6499deba584349f307`。新增报告Blob `72975510872fbe3251caf1b8ddbd687761165d88`，Astra复核Blob `6a7dc815eadd6950d793727b1d2679026411d5bf`。apps Tree `cea01309fa9da5f99ccc9829654c6ec279c8c343`，services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；源码未变。冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`。上一轮live main `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`，开工前必须fresh GET。
 
-**有界发现：** Codex只读原证报告TCP_OWNER PID在462连续样本中存在且触发时父链回溯ROOT；但没有进程创建时间/原子关联，**同一进程实例未证明**。嵌套Gradle Flutter AAR及Dokka任务出现于旧日志，不代表已证明Dokka或任一特定插件发起非回环TCP。源码 `Observer.known` 仅积累PID而缺少创建时间身份校验，理论PID复用风险仍在；本次发生PID复用未获证明。根因保留 `ROOT_CAUSE_NOT_PROVEN`。
+**当前关键未知：** 旧原证支持TCP owner PID的父链回溯构建根并连续出现，但同一进程实例/具体组件未证明；Dokka是否由Flutter AAR publication finalizer/dependency引入仍需沿实际缓存中的Gradle插件源码与任务输出做静态分析。即使发现依赖路径，也不能据此把Dokka认定为TCP发起者。
 
-**门禁与预算：** 原真实构建预算 `1/1` 已全部消耗，当前剩余0。本轮诊断Codex报告没有构建、设备、实时观察器、Gate2/Writer/Serializer运行；Astra未做本地复算。构建 `ACTUAL_BUILD_NOT_COMPLETED`、无新APK；原Gradle下载partial 7,941,328字节及Hash、旧SQL/APK/refs/LOCAL_ONLY原证不清理。Gate2两次启动预算继续已消费，37案例suite、条件Sandbox SDK、Producer/libs.jar和30项Configuration.resolve均NOT_RUN。AEC、最后可闻波形、native handle普查、真实15/30天/物理30天清理、真实Push仍未闭合。
+**绝对停止线：** 已用的真实构建预算1/1不重置；不运行Gradle/Wrapper/Flutter/AAR/Kotlin、`gradle tasks`、`--dry-run`、实时观察器、设备/ADB、Docker、RTC、Gate2/Writer/Serializer，也不改动源码/系统策略/依赖缓存。历史partial 7,941,328字节及Hash、旧refs、SQL/APK、LOCAL_ONLY原证保留。不得自动发布下一修复任务、重跑构建、合并产品main或启动v10.1.6。AEC、最后可闻波形、native handle普查、真实15/30天与物理30天清理和真实Push持续开放。
 
-**下一步：** 等待Owner决定是否批准局限于静态分析的构建链调查或新的观察器设计；不得自动新增任务、重跑真实构建、强行放宽非回环TCP策略、合并产品main、启动v10.1.6或接入生产/真实Push服务。
-
-**已接受产品基线仍为v10.1.4：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`；main上产品未集成新的v10.1.5源码。
+**产品接受基线：** v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5为未接受候选而非产品main。
 
 ## 已独立核验的产品和集成
 
