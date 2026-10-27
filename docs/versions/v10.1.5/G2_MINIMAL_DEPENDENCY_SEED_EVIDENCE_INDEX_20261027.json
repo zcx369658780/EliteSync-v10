@@ -1,0 +1,1906 @@
+{
+  "schema": 1,
+  "taskBlob": "465eb13f8cb290bfab4061b03edf51629e90ca87",
+  "executionDate": "2026-10-28",
+  "status": "MINIMAL_SEED_CLOSURE_NOT_PROVEN",
+  "additionalStatus": "BLOCKED_DISK_OR_ISOLATION",
+  "G2_READY_FOR_POPEN": false,
+  "parent": "68feee0443991696385337c318348ead5306e1ef",
+  "source68Root": "93fc0d1837ff807bf40fc6c4cb55e9d8bb89b847",
+  "source6caRoot": "3bf735ab1c8e394844db80be35d86d2250390c82",
+  "candidateAppsTree": "5af7a9d0042be19437616e969e260658b67e9353",
+  "candidateServicesTree": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+  "intakeLiveMain": "599a44d99c928c8052a0a7edfb783e79fe63513c",
+  "intakeLiveMainRoot": "3494eb3956c9529d1714c9b2c15bf982a9857b69",
+  "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+  "finalObjectAndOwnBlobIdentity": "LOCAL_ONLY final-readback.json; no self-referential object claims",
+  "analysisSummary": {
+    "status": "MINIMAL_SEED_CLOSURE_NOT_PROVEN",
+    "sourceFiles": 44,
+    "nativePluginRoots": 14,
+    "sealedModuleFilesFreshRehashed": 3183,
+    "fullSealedModules2LogicalBytes": 1362106905,
+    "fullCacheNodes": 1013,
+    "cachedPoms": 1013,
+    "cachedGradleModuleMetadata": 301,
+    "rootDeclarations": 84,
+    "configurationRoots": [
+      "com.android.library:com.android.library.gradle.plugin:8.11.1",
+      "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:2.2.20",
+      "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:1.9.20",
+      "com.android.tools.build:gradle:8.12.1",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0",
+      "com.android.tools.build:gradle:8.13.1",
+      "com.android.tools.build:gradle:8.5.1",
+      "com.android.tools.build:gradle:8.1.0",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20",
+      "com.android.tools.build:gradle:8.3.1",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22",
+      "com.android.tools.build:gradle:8.0.0",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0",
+      "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin:5.2.0",
+      "androidx.annotation:annotation-jvm:1.9.1",
+      "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0",
+      "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0",
+      "com.android.tools.build:gradle:8.11.1"
+    ],
+    "possibleActionRootCount": 25,
+    "configEnvelope": {
+      "contentNodesCached": 715,
+      "requestedReachableNodes": 933,
+      "logicalBytes": 880792638,
+      "contentBytes": 877110567,
+      "dependencyMetadataBytes": 3682071
+    },
+    "actionEnvelope": {
+      "contentNodesCached": 851,
+      "requestedReachableNodes": 1331,
+      "logicalBytes": 951221175,
+      "contentBytes": 947539104,
+      "dependencyMetadataBytes": 3682071
+    },
+    "configurationEdgeCount": 5908,
+    "configurationIssuesByCode": {
+      "GRADLE_VARIANT_SELECTION_NOT_EMULATED": 135,
+      "COMPONENT_CONTENT_NOT_CACHED": 218,
+      "MULTI_VERSION_WINNER_NOT_PROVEN": 160,
+      "EXCLUSIONS_NOT_APPLIED_TO_ENVELOPE": 207,
+      "OPTIONAL_EDGE_INCLUDED_CONSERVATIVELY": 149,
+      "MAVEN_PROFILE_ACTIVATION_UNKNOWN": 81,
+      "EFFECTIVE_PARENT_MODEL_NOT_GRADLE_RESOLVED": 145,
+      "PARENT_OVERRIDE_EFFECTIVE_VERSION_UNKNOWN": 108,
+      "BOM_UNRESOLVED": 2,
+      "DEPENDENCY_VERSION_UNRESOLVED": 56,
+      "CLASSIFIER_SELECTION_REQUIRED": 12
+    },
+    "actionIssuesByCode": {
+      "GRADLE_VARIANT_SELECTION_NOT_EMULATED": 223,
+      "COMPONENT_CONTENT_NOT_CACHED": 480,
+      "GRADLE_RICH_VERSION_UNKNOWN": 9,
+      "MODULE_DEPENDENCY_VERSION_UNKNOWN": 9,
+      "MULTI_VERSION_WINNER_NOT_PROVEN": 236,
+      "EXCLUSIONS_NOT_APPLIED_TO_ENVELOPE": 212,
+      "OPTIONAL_EDGE_INCLUDED_CONSERVATIVELY": 149,
+      "MAVEN_PROFILE_ACTIVATION_UNKNOWN": 82,
+      "EFFECTIVE_PARENT_MODEL_NOT_GRADLE_RESOLVED": 147,
+      "DEPENDENCY_VERSION_UNRESOLVED": 82,
+      "PARENT_OVERRIDE_EFFECTIVE_VERSION_UNKNOWN": 108,
+      "BOM_UNRESOLVED": 2,
+      "CLASSIFIER_SELECTION_REQUIRED": 12
+    },
+    "knownMetadataIndexFiles": [
+      {
+        "path": "caches/modules-2/metadata-2.107/module-artifact.bin",
+        "bytes": 206568,
+        "sha256": "872c205a3de7d6b14cb7a091bc208e13aa0427bccf175238c4da252048d2b1f3"
+      },
+      {
+        "path": "caches/modules-2/metadata-2.107/module-metadata.bin",
+        "bytes": 111976,
+        "sha256": "45a122a5c7b536edd56fb5a4b54fe8c1a5f6327c7cab82656a5e88f711ea3dc5"
+      },
+      {
+        "path": "caches/modules-2/metadata-2.107/resource-at-url.bin",
+        "bytes": 881745,
+        "sha256": "d5135413337cf2eece8b0b0a1cc05a127348c32b2dba1d9a88981aa8ead99ac5"
+      }
+    ],
+    "metadataDescriptorCount": 1031,
+    "rootMarkerPomContentBytes": 4068,
+    "rootMarkerPomBytesAreNecessaryEvidenceNotStrictRuntimeLowerBound": true,
+    "unconditionalRuntimeByteLowerBound": 0,
+    "minimalityProven": false,
+    "selectedVariantOrVersionProven": false,
+    "repositoryIdentityAndBinaryIndexClosure": "NOT_PROVEN",
+    "G2_READY_FOR_POPEN": false,
+    "runtimeStarts": 0,
+    "coreOnlyScenarioLogicalBytes": 315205052,
+    "coreOnlyScenarioIsNotComplete": true,
+    "includedBuildLoaderExternalMarkerRequiredBySource": false,
+    "includedBuildLoaderActualGradleProviderSelection": "NOT_PROVEN"
+  },
+  "capacityDecision": {
+    "currentCap": 536870912,
+    "models": {
+      "coreContentOnly": 315205052,
+      "configObserved": 880792638,
+      "withActionObserved": 951221175,
+      "fullAvailableSealed": 1362106905
+    },
+    "oneSeedPlan": {
+      "seedBytes": 1362106905,
+      "existingSmallSkeletonLogicalBytesReusedOrCopied": 8277854,
+      "privateWriteReserveNotProvenMaximum": 536870912,
+      "metadataAndAllocationPlanningAllowanceNotProvenBound": 67108864,
+      "planningPeakBytes": 1974364535,
+      "suggestedCapRequiresOwner": 2147483648,
+      "spareUnderSuggestedCap": 173119113,
+      "rollback": "Retain original cache untouched; stop using new seed, no second full new copy required"
+    },
+    "twoSeedRollbackPlan": {
+      "planningPeakBytes": 3336471440,
+      "exceeds2GiB": true,
+      "requiresSeparateApproval": true
+    },
+    "trueMinimumByteLowerBound": 0,
+    "trueCompleteSeedUpperBound": "UNKNOWN_NOT_PROVEN_BY_CONTENT_ENVELOPES",
+    "guaranteesRuntimeClosure": false,
+    "capChanged": false,
+    "copiedDependencySeedBytes": 0
+  },
+  "markerDeclarations": [
+    {
+      "marker": "dev.flutter.flutter-plugin-loader:dev.flutter.flutter-plugin-loader.gradle.plugin:1.0.0",
+      "provider": "PINNED_SOURCE_INCLUDED_BUILD_PROVIDER_CANDIDATE",
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "settingsSha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "localPropertiesSha256": "adcd93f3676cf5c4a5da6bb5c251345cd8588a014e85e329dfd8588a1485163b",
+      "implementationClass": "com.flutter.gradle.FlutterAppPluginLoaderPlugin",
+      "externalMarkerRequiredBySource": false,
+      "actualGradleProviderSelection": "NOT_PROVEN"
+    },
+    {
+      "marker": "com.android.library:com.android.library.gradle.plugin:8.11.1",
+      "markerCached": true,
+      "implementationEdges": [
+        {
+          "kind": "pom-compile",
+          "to": "com.android.tools.build:gradle:8.11.1",
+          "optional": "",
+          "classifier": "",
+          "exclusions": [],
+          "fromNode": "com.android.library:com.android.library.gradle.plugin:8.11.1",
+          "evidence": "LIMITED_STATIC_POM_MODEL_EDGE_NOT_SELECTED_EDGE"
+        }
+      ],
+      "note": "Marker request declaration is not proof of actual repository/plugin-classpath winner",
+      "literalPomDependencyDeclarations": [
+        "com.android.tools.build:gradle:8.11.1"
+      ],
+      "declarationEvidence": "PROVEN_STATIC_LITERAL_XML_NOT_SELECTED_GRADLE_EDGE",
+      "pom": {
+        "path": "caches/modules-2/files-2.1/com.android.library/com.android.library.gradle.plugin/8.11.1/368f271a098e4b1de7b7f1c2a8ce64d1ac7bae43/com.android.library.gradle.plugin-8.11.1.pom",
+        "bytes": 1322,
+        "sha256": "8756c2c802cda5d2220963e99db960380da688fa4bacff140847575520d3df7c"
+      }
+    },
+    {
+      "marker": "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:2.2.20",
+      "markerCached": true,
+      "implementationEdges": [
+        {
+          "kind": "pom-compile",
+          "to": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.20",
+          "optional": "",
+          "classifier": "",
+          "exclusions": [],
+          "fromNode": "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:2.2.20",
+          "evidence": "LIMITED_STATIC_POM_MODEL_EDGE_NOT_SELECTED_EDGE"
+        }
+      ],
+      "note": "Marker request declaration is not proof of actual repository/plugin-classpath winner",
+      "literalPomDependencyDeclarations": [
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.20"
+      ],
+      "declarationEvidence": "PROVEN_STATIC_LITERAL_XML_NOT_SELECTED_GRADLE_EDGE",
+      "pom": {
+        "path": "caches/modules-2/files-2.1/org.jetbrains.kotlin.android/org.jetbrains.kotlin.android.gradle.plugin/2.2.20/86c7f45f1d76526f3dc83d8b332706c54b19cc46/org.jetbrains.kotlin.android.gradle.plugin-2.2.20.pom",
+        "bytes": 1392,
+        "sha256": "f7d69db41c842aba78cae53750cf2e545ef7ebde6eddde8ee3ed9a00637eb64f"
+      }
+    },
+    {
+      "marker": "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:1.9.20",
+      "markerCached": true,
+      "implementationEdges": [
+        {
+          "kind": "pom-compile",
+          "to": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20",
+          "optional": "",
+          "classifier": "",
+          "exclusions": [],
+          "fromNode": "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:1.9.20",
+          "evidence": "LIMITED_STATIC_POM_MODEL_EDGE_NOT_SELECTED_EDGE"
+        }
+      ],
+      "note": "Marker request declaration is not proof of actual repository/plugin-classpath winner",
+      "literalPomDependencyDeclarations": [
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20"
+      ],
+      "declarationEvidence": "PROVEN_STATIC_LITERAL_XML_NOT_SELECTED_GRADLE_EDGE",
+      "pom": {
+        "path": "caches/modules-2/files-2.1/org.jetbrains.kotlin.jvm/org.jetbrains.kotlin.jvm.gradle.plugin/1.9.20/2c94e9071bbd72a82b3873b360d0de9f4503d172/org.jetbrains.kotlin.jvm.gradle.plugin-1.9.20.pom",
+        "bytes": 673,
+        "sha256": "8a66a9ecd1d2de82f70e280bbcf5eea0a54a7af63a36567ddea5ac1cf7f19b68"
+      }
+    },
+    {
+      "marker": "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin:5.2.0",
+      "markerCached": true,
+      "implementationEdges": [
+        {
+          "kind": "pom-compile",
+          "to": "org.gradle.kotlin:gradle-kotlin-dsl-plugins:5.2.0",
+          "optional": "",
+          "classifier": "",
+          "exclusions": [],
+          "fromNode": "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin:5.2.0",
+          "evidence": "LIMITED_STATIC_POM_MODEL_EDGE_NOT_SELECTED_EDGE"
+        }
+      ],
+      "note": "Marker request declaration is not proof of actual repository/plugin-classpath winner",
+      "literalPomDependencyDeclarations": [
+        "org.gradle.kotlin:gradle-kotlin-dsl-plugins:5.2.0"
+      ],
+      "declarationEvidence": "PROVEN_STATIC_LITERAL_XML_NOT_SELECTED_GRADLE_EDGE",
+      "pom": {
+        "path": "caches/modules-2/files-2.1/org.gradle.kotlin.kotlin-dsl/org.gradle.kotlin.kotlin-dsl.gradle.plugin/5.2.0/819bbeb3eb50c7ba90ff6c9f203d024a3855cd9a/org.gradle.kotlin.kotlin-dsl.gradle.plugin-5.2.0.pom",
+        "bytes": 681,
+        "sha256": "a57bb439ba4260a256f2d608471d7081189077a0a4ddfb028dd1817be5bc1237"
+      }
+    }
+  ],
+  "scriptRequests": [
+    {
+      "coordinate": "dev.flutter.flutter-plugin-loader:dev.flutter.flutter-plugin-loader.gradle.plugin:1.0.0",
+      "source": "module/settings.gradle",
+      "line": 22,
+      "sourceSha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "scope": "plugin-marker",
+      "evidence": "PROVEN_STATIC_PLUGIN_MARKER_REQUEST"
+    },
+    {
+      "coordinate": "com.android.library:com.android.library.gradle.plugin:8.11.1",
+      "source": "module/settings.gradle",
+      "line": 23,
+      "sourceSha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "scope": "plugin-marker",
+      "evidence": "PROVEN_STATIC_PLUGIN_MARKER_REQUEST"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin:2.2.20",
+      "source": "module/settings.gradle",
+      "line": 24,
+      "sourceSha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "scope": "plugin-marker",
+      "evidence": "PROVEN_STATIC_PLUGIN_MARKER_REQUEST"
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat:1.0.2",
+      "source": "module/app/build.gradle",
+      "line": 38,
+      "sourceSha256": "880e8f96916520df0854aeca56e63650ac58c344d5f9eb8144875e11911d1fc7",
+      "scope": "implementation",
+      "raw": "androidx.appcompat:appcompat:1.0.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.constraintlayout:constraintlayout:1.1.3",
+      "source": "module/app/build.gradle",
+      "line": 39,
+      "sourceSha256": "880e8f96916520df0854aeca56e63650ac58c344d5f9eb8144875e11911d1fc7",
+      "scope": "implementation",
+      "raw": "androidx.constraintlayout:constraintlayout:1.1.3",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin:1.9.20",
+      "source": "tooling/build.gradle.kts",
+      "line": 11,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "plugin-marker",
+      "evidence": "PROVEN_STATIC_KOTLIN_JVM_MARKER_REQUEST"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "source": "tooling/build.gradle.kts",
+      "line": 54,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "compileOnly",
+      "raw": "androidx.annotation:annotation-jvm:1.9.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0",
+      "source": "tooling/build.gradle.kts",
+      "line": 55,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "implementation",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0",
+      "source": "tooling/build.gradle.kts",
+      "line": 60,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "implementation",
+      "raw": "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.11.1",
+      "source": "tooling/build.gradle.kts",
+      "line": 65,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "compileOnly",
+      "raw": "com.android.tools.build:gradle:8.11.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.11.1",
+      "source": "tooling/build.gradle.kts",
+      "line": 68,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "testImplementation",
+      "raw": "com.android.tools.build:gradle:8.11.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.8.0",
+      "source": "tooling/build.gradle.kts",
+      "line": 69,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.8.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "io.mockk:mockk:1.13.16",
+      "source": "tooling/build.gradle.kts",
+      "line": 70,
+      "sourceSha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "scope": "testImplementation",
+      "raw": "io.mockk:mockk:1.13.16",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.12.1",
+      "source": "plugin/connectivity_plus/android/build.gradle",
+      "line": 11,
+      "sourceSha256": "e43e962b5f4e8975bcac35073840136ccd4a1a7a790e6f340f5863d2e110623b",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.12.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.core:core:1.18.0",
+      "source": "plugin/connectivity_plus/android/build.gradle",
+      "line": 42,
+      "sourceSha256": "e43e962b5f4e8975bcac35073840136ccd4a1a7a790e6f340f5863d2e110623b",
+      "scope": "implementation",
+      "raw": "androidx.core:core:1.18.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.12.1",
+      "source": "plugin/device_info_plus/android/build.gradle",
+      "line": 12,
+      "sourceSha256": "21a89e2e96af054d9fc95d9da5af2f8d779cf2704115c8342c51645dc2f23295",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.12.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0",
+      "source": "plugin/device_info_plus/android/build.gradle",
+      "line": 13,
+      "sourceSha256": "21a89e2e96af054d9fc95d9da5af2f8d779cf2704115c8342c51645dc2f23295",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.2.0",
+      "source": "plugin/device_info_plus/android/build.gradle",
+      "line": 50,
+      "sourceSha256": "21a89e2e96af054d9fc95d9da5af2f8d779cf2704115c8342c51645dc2f23295",
+      "scope": "implementation",
+      "raw": "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.13.1",
+      "source": "plugin/flutter_plugin_android_lifecycle/android/build.gradle.kts",
+      "line": 11,
+      "sourceSha256": "dd6b424f03f08a6d91799199e89b67a95011b7122edcdc90a920acbf06be9b0f",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.13.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation:1.10.0",
+      "source": "plugin/flutter_plugin_android_lifecycle/android/build.gradle.kts",
+      "line": 48,
+      "sourceSha256": "dd6b424f03f08a6d91799199e89b67a95011b7122edcdc90a920acbf06be9b0f",
+      "scope": "implementation",
+      "raw": "androidx.annotation:annotation:1.10.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/flutter_plugin_android_lifecycle/android/build.gradle.kts",
+      "line": 67,
+      "sourceSha256": "dd6b424f03f08a6d91799199e89b67a95011b7122edcdc90a920acbf06be9b0f",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.23.0",
+      "source": "plugin/flutter_plugin_android_lifecycle/android/build.gradle.kts",
+      "line": 68,
+      "sourceSha256": "dd6b424f03f08a6d91799199e89b67a95011b7122edcdc90a920acbf06be9b0f",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.23.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.5.1",
+      "source": "plugin/flutter_secure_storage/android/build.gradle",
+      "line": 11,
+      "sourceSha256": "fd69c260d8c1af9ed6baa65928d32ba396fff05c3071cab02b29ab81cd4ce535",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.5.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.security:security-crypto:1.1.0-alpha06",
+      "source": "plugin/flutter_secure_storage/android/build.gradle",
+      "line": 47,
+      "sourceSha256": "fd69c260d8c1af9ed6baa65928d32ba396fff05c3071cab02b29ab81cd4ce535",
+      "scope": "implementation",
+      "raw": "androidx.security:security-crypto:1.1.0-alpha06",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.google.crypto.tink:tink-android:1.9.0",
+      "source": "plugin/flutter_secure_storage/android/build.gradle",
+      "line": 50,
+      "sourceSha256": "fd69c260d8c1af9ed6baa65928d32ba396fff05c3071cab02b29ab81cd4ce535",
+      "scope": "implementation",
+      "raw": "com.google.crypto.tink:tink-android:1.9.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.1.0",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 12,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.1.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 13,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "io.github.webrtc-sdk:android:144.7559.09",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 78,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "implementation",
+      "raw": "io.github.webrtc-sdk:android:144.7559.09",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.github.davidliu:audioswitch:039a35aefab7747c557242fa216c9ea11743b604",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 79,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "implementation",
+      "raw": "com.github.davidliu:audioswitch:039a35aefab7747c557242fa216c9ea11743b604",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation:1.1.0",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 80,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "implementation",
+      "raw": "androidx.annotation:annotation:1.1.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/flutter_webrtc/android/build.gradle",
+      "line": 81,
+      "sourceSha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.13.1",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 14,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.13.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 15,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.core:core:1.18.0",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 53,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "implementation",
+      "raw": "androidx.core:core:1.18.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 54,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "implementation",
+      "raw": "androidx.annotation:annotation:1.9.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.exifinterface:exifinterface:1.4.2",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 55,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "implementation",
+      "raw": "androidx.exifinterface:exifinterface:1.4.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.activity:activity:1.12.4",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 56,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "implementation",
+      "raw": "androidx.activity:activity:1.12.4",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 58,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.23.0",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 59,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.23.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.test:core:1.7.0",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 60,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "testImplementation",
+      "raw": "androidx.test:core:1.7.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.robolectric:robolectric:4.16",
+      "source": "plugin/image_picker_android/android/build.gradle.kts",
+      "line": 61,
+      "sourceSha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "scope": "testImplementation",
+      "raw": "org.robolectric:robolectric:4.16",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.1.0",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 12,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.1.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 13,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.0.0",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 62,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.0.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "io.github.webrtc-sdk:android:144.7559.09",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 63,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "implementation",
+      "raw": "io.github.webrtc-sdk:android:144.7559.09",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "io.livekit:noise:2.0.0",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 64,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "implementation",
+      "raw": "io.livekit:noise:2.0.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.github.davidliu:audioswitch:039a35aefab7747c557242fa216c9ea11743b604",
+      "source": "plugin/livekit_client/android/build.gradle",
+      "line": 67,
+      "sourceSha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "scope": "implementation",
+      "raw": "com.github.davidliu:audioswitch:039a35aefab7747c557242fa216c9ea11743b604",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.3.1",
+      "source": "plugin/package_info_plus/android/build.gradle",
+      "line": 13,
+      "sourceSha256": "10beba354a1777db5e436060e98fa1b7732f41eae1a436cad7c1faae5115b482",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.3.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22",
+      "source": "plugin/package_info_plus/android/build.gradle",
+      "line": 14,
+      "sourceSha256": "10beba354a1777db5e436060e98fa1b7732f41eae1a436cad7c1faae5115b482",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:1.7.22",
+      "source": "plugin/package_info_plus/android/build.gradle",
+      "line": 52,
+      "sourceSha256": "10beba354a1777db5e436060e98fa1b7732f41eae1a436cad7c1faae5115b482",
+      "scope": "implementation",
+      "raw": "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.0.0",
+      "source": "plugin/permission_handler_android/android/build.gradle",
+      "line": 11,
+      "sourceSha256": "a7eb30be9254f9b4be2ab15d7ec4377432bf2906c65ea81ba2eb0bbda87ef967",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.0.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.13.1",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 14,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.13.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 15,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore:1.1.7",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 65,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "implementation",
+      "raw": "androidx.datastore:datastore:1.1.7",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences:1.1.7",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 66,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "implementation",
+      "raw": "androidx.datastore:datastore-preferences:1.1.7",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.preference:preference:1.2.1",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 67,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "implementation",
+      "raw": "androidx.preference:preference:1.2.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 68,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.test:core-ktx:1.7.0",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 69,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "androidx.test:core-ktx:1.7.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.test.ext:junit-ktx:1.3.0",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 70,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "androidx.test.ext:junit-ktx:1.3.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.robolectric:robolectric:4.16",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 71,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "org.robolectric:robolectric:4.16",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-inline:5.2.0",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 72,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-inline:5.2.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "io.mockk:mockk:1.14.9",
+      "source": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "line": 73,
+      "sourceSha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "scope": "testImplementation",
+      "raw": "io.mockk:mockk:1.14.9",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.13.1",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 14,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.13.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 15,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.core:core:1.17.0",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 78,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "implementation",
+      "raw": "androidx.core:core:1.17.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 79,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "implementation",
+      "raw": "androidx.annotation:annotation:1.9.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.browser:browser:1.9.0",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 80,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "implementation",
+      "raw": "androidx.browser:browser:1.9.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 81,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.23.0",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 82,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.23.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.test:core:1.7.0",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 83,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "testImplementation",
+      "raw": "androidx.test:core:1.7.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.robolectric:robolectric:4.16",
+      "source": "plugin/url_launcher_android/android/build.gradle.kts",
+      "line": 84,
+      "sourceSha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "scope": "testImplementation",
+      "raw": "org.robolectric:robolectric:4.16",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.13.1",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 14,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "classpath",
+      "raw": "com.android.tools.build:gradle:8.13.1",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 15,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "classpath",
+      "raw": "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-exoplayer:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 60,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "implementation",
+      "raw": "androidx.media3:media3-exoplayer:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-exoplayer-hls:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 61,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "implementation",
+      "raw": "androidx.media3:media3-exoplayer-hls:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-exoplayer-dash:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 62,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "implementation",
+      "raw": "androidx.media3:media3-exoplayer-dash:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-exoplayer-rtsp:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 63,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "implementation",
+      "raw": "androidx.media3:media3-exoplayer-rtsp:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-exoplayer-smoothstreaming:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 64,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "implementation",
+      "raw": "androidx.media3:media3-exoplayer-smoothstreaming:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 65,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "testImplementation",
+      "raw": "junit:junit:4.13.2",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.test:core:1.7.0",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 66,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "testImplementation",
+      "raw": "androidx.test:core:1.7.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.mockito:mockito-core:5.23.0",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 67,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "testImplementation",
+      "raw": "org.mockito:mockito-core:5.23.0",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "org.robolectric:robolectric:4.16",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 68,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "testImplementation",
+      "raw": "org.robolectric:robolectric:4.16",
+      "evidence": "PROVEN_STATIC_LITERAL_DECLARATION"
+    },
+    {
+      "coordinate": "androidx.media3:media3-test-utils:1.9.2",
+      "source": "plugin/video_player_android/android/build.gradle.kts",
+      "line": 69,
+      "sourceSha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "scope": "testImplementation",
+      "raw": "androidx.media3:media3-test-utils:${exoplayerVersion}",
+      "evidence": "STATIC_LOCAL_PROPERTY_SUBSTITUTION"
+    },
+    {
+      "coordinate": "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin:5.2.0",
+      "source": "gradle/KotlinDependencyExtensions.kt",
+      "sourceSha256": "0a3e5e82931049989b42f835d591167ca866592e0458136d204520c5af8eb095",
+      "scope": "plugin-marker",
+      "evidence": "PROVEN_STATIC_GRADLE_DSL_DECLARATION"
+    }
+  ],
+  "configurationSources": [
+    {
+      "label": "module/settings.gradle",
+      "bytes": 926,
+      "sha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "role": "configuration"
+    },
+    {
+      "label": "module/build.gradle",
+      "bytes": 361,
+      "sha256": "5a611dadb1c89e576bd50d964efeb52b0ac9883fb4773e594bf75c37979ab760",
+      "role": "configuration"
+    },
+    {
+      "label": "module/gradle.properties",
+      "bytes": 140,
+      "sha256": "1888df8f168eb770ca0f540b7bf84091e6b31b0d5ac55e4de518590b8f7ed8e5",
+      "role": "configuration"
+    },
+    {
+      "label": "module/Flutter/build.gradle",
+      "bytes": 1320,
+      "sha256": "d01309040bd46eab30baad16ec9fe1c198304a920da80842b8f68d763acb1251",
+      "role": "configuration"
+    },
+    {
+      "label": "module/app/build.gradle",
+      "bytes": 1162,
+      "sha256": "880e8f96916520df0854aeca56e63650ac58c344d5f9eb8144875e11911d1fc7",
+      "role": "configuration"
+    },
+    {
+      "label": "tooling/settings.gradle.kts",
+      "bytes": 172,
+      "sha256": "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37",
+      "role": "configuration"
+    },
+    {
+      "label": "tooling/build.gradle.kts",
+      "bytes": 2798,
+      "sha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/connectivity_plus/android/build.gradle",
+      "bytes": 862,
+      "sha256": "e43e962b5f4e8975bcac35073840136ccd4a1a7a790e6f340f5863d2e110623b",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/connectivity_plus/android/settings.gradle",
+      "bytes": 34,
+      "sha256": "51de563de119e5e42b7bc33f696a8acdfd3c235b193fee5d01fdea09d6191258",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/connectivity_plus/android/gradle.properties",
+      "bytes": 84,
+      "sha256": "f4c746b640de7c7f401199e50e1d4b7be1ead892f17d9fc4a96aa13f81c20196",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/device_info_plus/android/build.gradle",
+      "bytes": 1100,
+      "sha256": "21a89e2e96af054d9fc95d9da5af2f8d779cf2704115c8342c51645dc2f23295",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/device_info_plus/android/settings.gradle",
+      "bytes": 33,
+      "sha256": "26e94e4f9e41a9c22f0e4b5fad6483f901cc5cb343de0c4a8c99bc671b98166c",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/device_info_plus/android/gradle.properties",
+      "bytes": 29,
+      "sha256": "034fd3f15ac7a699cf7393150e318cd3e0afb51826b0decc69a548db53fa1116",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_plugin_android_lifecycle/android/build.gradle.kts",
+      "bytes": 1628,
+      "sha256": "dd6b424f03f08a6d91799199e89b67a95011b7122edcdc90a920acbf06be9b0f",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_plugin_android_lifecycle/android/settings.gradle.kts",
+      "bytes": 54,
+      "sha256": "5e1f38acf596f1b1040f969b0bc2f51ea2ff9994ee6c2de4dd4d7f23df2a842f",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_secure_storage/android/build.gradle",
+      "bytes": 932,
+      "sha256": "fd69c260d8c1af9ed6baa65928d32ba396fff05c3071cab02b29ab81cd4ce535",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_secure_storage/android/settings.gradle",
+      "bytes": 44,
+      "sha256": "b5fb1df0485dcc39fb62a5d323d02af51a27ba387ba7d297fcbb12594a271e14",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_secure_storage/android/gradle.properties",
+      "bytes": 29,
+      "sha256": "034fd3f15ac7a699cf7393150e318cd3e0afb51826b0decc69a548db53fa1116",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_webrtc/android/build.gradle",
+      "bytes": 2458,
+      "sha256": "88e98751759e607c3b9e00c62732bc8e28223e837ca8d75b08e887eb1a4c63f8",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_webrtc/android/settings.gradle",
+      "bytes": 28,
+      "sha256": "9105117799f36567266c8daae357444ccb10452fd1fb7bfa79e621d1cb3115d9",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/flutter_webrtc/android/gradle.properties",
+      "bytes": 166,
+      "sha256": "20c411ebbe5162992d16d170656ee19a9ffe0571e6c4d4c5a5314bb06da0a672",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/image_picker_android/android/build.gradle.kts",
+      "bytes": 2140,
+      "sha256": "7bdf38d4b24d0f469d9704c3eb318cda2f66d108064ea040ce9816e5b6ce9859",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/image_picker_android/android/settings.gradle.kts",
+      "bytes": 42,
+      "sha256": "66438c10cc93f35ab471d6bb88c4c3889f12b2cb8eef8c8a7f2e4c5a8b638aee",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/image_picker_android/android/gradle.properties",
+      "bytes": 64,
+      "sha256": "622a3c6053f7d1429ef926700e2859ddcf2da8e58581de4621b5b601074508ba",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/jni/android/build.gradle",
+      "bytes": 1967,
+      "sha256": "d69d3d6ddca300453c7a222451a268bd157cc93b2de4fc385d60b94656c6e008",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/jni/android/settings.gradle",
+      "bytes": 25,
+      "sha256": "d91b05de12e9bb05305cc346abc1125ca09c0817da14f3951a2ba6e941ea1356",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/jni_flutter/android/build.gradle",
+      "bytes": 796,
+      "sha256": "de116770599698bb122e0b19be9bbd1ffe80291ef500660288d03eeae0d4d194",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/jni_flutter/android/settings.gradle",
+      "bytes": 33,
+      "sha256": "394f5957375b4cec4a82294b3f69afa1fc1b34da3853d87fc08c712759aa673c",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/livekit_client/android/build.gradle",
+      "bytes": 2896,
+      "sha256": "4dcd64394c34a8be868753e5053e2aea6d76d64e278467fbd2c5b2eef2bd1a7c",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/livekit_client/android/settings.gradle",
+      "bytes": 29,
+      "sha256": "0200e2431f97cfc02a9a9ba469fe6a322a57d2aefe960e6a3353f59e432d7b5a",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/livekit_client/android/gradle.properties",
+      "bytes": 54,
+      "sha256": "284d2e2db67de29a1fb4a05228dbdaa797a46c1c8caca5d7d43955f803ea644c",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/package_info_plus/android/build.gradle",
+      "bytes": 1056,
+      "sha256": "10beba354a1777db5e436060e98fa1b7732f41eae1a436cad7c1faae5115b482",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/package_info_plus/android/settings.gradle",
+      "bytes": 39,
+      "sha256": "131f7a5eca63e71fd6f6b4f8107039a0dbcc3f88ceb26639375be38c8d0a879b",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/package_info_plus/android/gradle.properties",
+      "bytes": 29,
+      "sha256": "034fd3f15ac7a699cf7393150e318cd3e0afb51826b0decc69a548db53fa1116",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/permission_handler_android/android/build.gradle",
+      "bytes": 723,
+      "sha256": "a7eb30be9254f9b4be2ab15d7ec4377432bf2906c65ea81ba2eb0bbda87ef967",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/permission_handler_android/android/settings.gradle",
+      "bytes": 40,
+      "sha256": "498e62f65c668b5686d078f4be72cf9f1ee833dc20554cb40f25c7724ac581a9",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/shared_preferences_android/android/build.gradle.kts",
+      "bytes": 2469,
+      "sha256": "da70c2c309867579219fcf6e9d5ed206a66e261792906271903900dc49693e78",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/shared_preferences_android/android/settings.gradle.kts",
+      "bytes": 48,
+      "sha256": "e32bb28ef85cb9620d9397d0e152ae062fdc9f9149b2e06396525996e919339d",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/shared_preferences_android/android/gradle.properties",
+      "bytes": 51,
+      "sha256": "d9dee78fe96651a3552d9084b0e9fa91b8a8889af91f9a39cb7a7becc1cfd547",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/url_launcher_android/android/build.gradle.kts",
+      "bytes": 2120,
+      "sha256": "7c14db00b9b95ba783d9cc0c939467211a78695c2eee3a1360d134b3fe660c47",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/url_launcher_android/android/settings.gradle.kts",
+      "bytes": 42,
+      "sha256": "48899388be4a4df328b6cfc308b756829bb09f9d286bbb5ec3957b8f85654a32",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/video_player_android/android/build.gradle.kts",
+      "bytes": 2868,
+      "sha256": "b488058f52b34df7aaa074c3c2ceb1f1c43d265af837d89877f25247e37d885e",
+      "role": "configuration"
+    },
+    {
+      "label": "plugin/video_player_android/android/settings.gradle.kts",
+      "bytes": 42,
+      "sha256": "1df579c8b33c4ba967d52f389cf2f48bd3ad948e0f07943a8d9e21d898c28407",
+      "role": "configuration"
+    },
+    {
+      "label": "gradle/KotlinDependencyExtensions.kt",
+      "bytes": 4141,
+      "sha256": "0a3e5e82931049989b42f835d591167ca866592e0458136d204520c5af8eb095",
+      "role": "gradle-dsl-plugin-version"
+    }
+  ],
+  "sourceAnchors": [
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/ModuleMetadataStore.java",
+      "bytes": 4249,
+      "sha256": "7cb8cf634278840ff62d68fbfde14668a81cd123a7009a2c012f7e3974c668da"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/AbstractModuleMetadataCache.java",
+      "bytes": 3488,
+      "sha256": "94b949572e1ef560f5174a7c94cf2872401d4f3da7b228f2ac4e062081238483"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/dynamicversions/DefaultModuleVersionsCache.java",
+      "bytes": 4575,
+      "sha256": "df46df51a11576aca9e942930459d8395fd604c3d495d75fa0246bd7c55307c7"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/artifacts/DefaultModuleArtifactsCache.java",
+      "bytes": 5719,
+      "sha256": "d338141a4169631d3412b2396c0e4b512bcfbe000bb7378c321aa4586ab2acfb"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/artifacts/DefaultModuleArtifactCache.java",
+      "bytes": 8437,
+      "sha256": "690d7968e3ce2ed92705d7c19eb50a4b5a7dd8be21a5f561a73e0c69508b8a43"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/DependencyManagementBuildTreeScopeServices.java",
+      "bytes": 20799,
+      "sha256": "d4d3337fbb25b282f9ff7369dd4b752c109d2f83c78ccdf69c8d7e52463a3362"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/internal/resource/cached/TwoStageByUrlCachedExternalResourceIndex.java",
+      "bytes": 2236,
+      "sha256": "ac72eb61f21d7911e28205f71a8a372fe186c95cff141ff62a2d43031172fa96"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/ivyresolve/CachingModuleComponentRepository.java",
+      "bytes": 29272,
+      "sha256": "25e10dbd285614ac1117a1722efc2bfa919f0c9b6d8eafb06cf47559df0591fb"
+    },
+    {
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/repositories/metadata/DefaultGradleModuleMetadataSource.java",
+      "bytes": 7350,
+      "sha256": "0bcfd711180f08bbeb157ac6d2c6119cdca823adbbf0a04a20789608a540942d"
+    },
+    {
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterPlugin.kt",
+      "bytes": 42405,
+      "sha256": "1eeb49a1e17859b150e8ed5109c9af0932fafacb06810d2a02bc688a69387313"
+    },
+    {
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterPluginUtils.kt",
+      "bytes": 35995,
+      "sha256": "e0eb454157e67127b7677d697e924eb6b0556c8a4e51405045bc5e7f77798fd0"
+    },
+    {
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterExtension.kt",
+      "bytes": 3362,
+      "sha256": "cdb7c4e296c353dcbebd409157759cc552dd1a041603f79f9ed81618c8b44ea5"
+    },
+    {
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/module_plugin_loader.gradle",
+      "bytes": 2057,
+      "sha256": "169b243692655ef740aab29795e4c4202a7b43b9a5e53ef713da307211145913"
+    },
+    {
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/tasks/FlutterTask.kt",
+      "bytes": 1874,
+      "sha256": "018145e27f13790bf089f8430355e15c5852ca7eac5d0d39ce1deb5858729dbf"
+    }
+  ],
+  "sdkInstalledMetadata": [
+    {
+      "path": "ndk/28.2.13676358/source.properties",
+      "bytes": 108,
+      "sha256": "c00aa236fdb205e9be9edd9e2169763e48aca52735efff4e16f34205d49783b5",
+      "evidence": "PINNED_INSTALLED_METADATA_PRESENCE_NOT_SDK_WRITE_SAFETY"
+    },
+    {
+      "path": "cmake/3.22.1/source.properties",
+      "bytes": 70,
+      "sha256": "3f61a0382a6c9d14b1d2bbef580f5c058b9281babbc0d36b18e5c36aa9a0b5dc",
+      "evidence": "PINNED_INSTALLED_METADATA_PRESENCE_NOT_SDK_WRITE_SAFETY"
+    },
+    {
+      "path": "platforms/android-36/source.properties",
+      "bytes": 257,
+      "sha256": "72291ff6611dbfc46fdfb6de2821c4a62c87befa5200713847eda426e3a501c2",
+      "evidence": "PINNED_INSTALLED_METADATA_PRESENCE_NOT_SDK_WRITE_SAFETY"
+    },
+    {
+      "path": "build-tools/36.0.0/source.properties",
+      "bytes": 62,
+      "sha256": "7dee6632e9ad6cb111da2bb99d747211e27927061b1276d040bb1d71fded5ebb",
+      "evidence": "PINNED_INSTALLED_METADATA_PRESENCE_NOT_SDK_WRITE_SAFETY"
+    }
+  ],
+  "issueExamples": {
+    "GRADLE_VARIANT_SELECTION_NOT_EMULATED": [
+      {
+        "code": "GRADLE_VARIANT_SELECTION_NOT_EMULATED",
+        "node": "com.android.tools.build:gradle:8.12.1",
+        "detail": "apiElements,runtimeElements,javadocElements,sourcesElements"
+      },
+      {
+        "code": "GRADLE_VARIANT_SELECTION_NOT_EMULATED",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0",
+        "detail": "sourcesElements,javadocElements,runtimeElementsWithFixedAttribute,apiElementsWithFixedAttribute,gradle80JavadocElements,gradle80SourcesElements,gradle80ApiElements,gradle80RuntimeElements,gradle81JavadocElements,gradle81SourcesElements,gradle81ApiElements,gradle81RuntimeElements,gradle82JavadocElements,gradle82SourcesElements,gradle82ApiElements,gradle82RuntimeElements,gradle85JavadocElements,gradle85SourcesElements,gradle85ApiElements,gradle85RuntimeElements,gradle86JavadocElements,gradle86SourcesElements,gradle86ApiElements,gradle86RuntimeElements,gradle88JavadocElements,gradle88SourcesElements,gradle88ApiElements,gradle88RuntimeElements,gradle811JavadocElements,gradle811SourcesElements,gradle811ApiElements,gradle811RuntimeElements,gradle813JavadocElements,gradle813SourcesElements,gradle813ApiElements,gradle813RuntimeElements"
+      }
+    ],
+    "COMPONENT_CONTENT_NOT_CACHED": [
+      {
+        "code": "COMPONENT_CONTENT_NOT_CACHED",
+        "node": "org.jetbrains.kotlin:kotlin-stdlib:1.9.24"
+      },
+      {
+        "code": "COMPONENT_CONTENT_NOT_CACHED",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin-idea:1.8.0"
+      }
+    ],
+    "MULTI_VERSION_WINNER_NOT_PROVEN": [
+      {
+        "code": "MULTI_VERSION_WINNER_NOT_PROVEN",
+        "node": "io.netty:netty-transport-native-unix-common",
+        "detail": "4.1.110.Final,4.1.93.Final"
+      },
+      {
+        "code": "MULTI_VERSION_WINNER_NOT_PROVEN",
+        "node": "com.google.guava:failureaccess",
+        "detail": "1.0.1,1.0.2"
+      }
+    ],
+    "EXCLUSIONS_NOT_APPLIED_TO_ENVELOPE": [
+      {
+        "code": "EXCLUSIONS_NOT_APPLIED_TO_ENVELOPE",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0",
+        "detail": "org.jetbrains.kotlin:kotlin-gradle-plugin-api:2.2.0"
+      },
+      {
+        "code": "EXCLUSIONS_NOT_APPLIED_TO_ENVELOPE",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0",
+        "detail": "org.jetbrains.kotlin:kotlin-gradle-plugin-model:2.2.0"
+      }
+    ],
+    "OPTIONAL_EDGE_INCLUDED_CONSERVATIVELY": [
+      {
+        "code": "OPTIONAL_EDGE_INCLUDED_CONSERVATIVELY",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22",
+        "detail": "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.7.22"
+      },
+      {
+        "code": "OPTIONAL_EDGE_INCLUDED_CONSERVATIVELY",
+        "node": "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22",
+        "detail": "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.7.22"
+      }
+    ],
+    "MAVEN_PROFILE_ACTIVATION_UNKNOWN": [
+      {
+        "code": "MAVEN_PROFILE_ACTIVATION_UNKNOWN",
+        "node": "org.apache:apache:18",
+        "detail": ""
+      },
+      {
+        "code": "MAVEN_PROFILE_ACTIVATION_UNKNOWN",
+        "node": "org.apache.httpcomponents:httpcomponents-parent:10",
+        "detail": ""
+      }
+    ],
+    "EFFECTIVE_PARENT_MODEL_NOT_GRADLE_RESOLVED": [
+      {
+        "code": "EFFECTIVE_PARENT_MODEL_NOT_GRADLE_RESOLVED",
+        "node": "org.apache.httpcomponents:httpcomponents-parent:10",
+        "detail": "org.apache:apache:18"
+      },
+      {
+        "code": "EFFECTIVE_PARENT_MODEL_NOT_GRADLE_RESOLVED",
+        "node": "org.apache.httpcomponents:httpcomponents-client:4.5.6",
+        "detail": "org.apache.httpcomponents:httpcomponents-parent:10"
+      }
+    ],
+    "PARENT_OVERRIDE_EFFECTIVE_VERSION_UNKNOWN": [
+      {
+        "code": "PARENT_OVERRIDE_EFFECTIVE_VERSION_UNKNOWN",
+        "node": "org.apache.commons:commons-parent:69",
+        "detail": "org.junit:junit-bom"
+      },
+      {
+        "code": "PARENT_OVERRIDE_EFFECTIVE_VERSION_UNKNOWN",
+        "node": "org.apache.commons:commons-parent:69",
+        "detail": "org.junit:junit-bom"
+      }
+    ],
+    "BOM_UNRESOLVED": [
+      {
+        "code": "BOM_UNRESOLVED",
+        "node": "org.apache.commons:commons-parent:69",
+        "detail": "org.junit:junit-bom:"
+      },
+      {
+        "code": "BOM_UNRESOLVED",
+        "node": "org.apache.commons:commons-parent:58",
+        "detail": "org.junit:junit-bom:"
+      }
+    ],
+    "DEPENDENCY_VERSION_UNRESOLVED": [
+      {
+        "code": "DEPENDENCY_VERSION_UNRESOLVED",
+        "node": "commons-io:commons-io:2.16.1",
+        "detail": "org.junit.jupiter:junit-jupiter:"
+      },
+      {
+        "code": "DEPENDENCY_VERSION_UNRESOLVED",
+        "node": "commons-io:commons-io:2.16.1",
+        "detail": "net.bytebuddy:byte-buddy:"
+      }
+    ],
+    "CLASSIFIER_SELECTION_REQUIRED": [
+      {
+        "code": "CLASSIFIER_SELECTION_REQUIRED",
+        "node": "io.netty:netty-codec-http2:4.1.110.Final",
+        "detail": "${os.detected.classifier}"
+      },
+      {
+        "code": "CLASSIFIER_SELECTION_REQUIRED",
+        "node": "io.netty:netty-transport-native-unix-common:4.1.110.Final",
+        "detail": "sources"
+      }
+    ]
+  },
+  "modelFileCounts": {
+    "config": 2505,
+    "withAction": 2815
+  },
+  "exactLocalOnlyHashIndexes": [
+    {
+      "id": "analysis-summary.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 4284,
+      "sha256": "6e224b6eaac7907633337b4cfcc5b4ed1f9994e322547341d5226227dfc063ba"
+    },
+    {
+      "id": "root-requests-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 39168,
+      "sha256": "78077c1200dfa5042faaf96cae9d8231ecd82c4733d0a8e711dc4c63a0ac15fc"
+    },
+    {
+      "id": "configuration-sources-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 15158,
+      "sha256": "f0024ef307c6c8a41440bdce9c77ad96adc1cb29d8aaf978ac982faa5fbf2579"
+    },
+    {
+      "id": "edges-configuration-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 5033403,
+      "sha256": "ca6618c6f9cb434750a716b85e4053cd4f530f851d967bce47f60958b0f3af11"
+    },
+    {
+      "id": "edges-including-possible-task-action-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 6645331,
+      "sha256": "6390f7786fc3af7c063c093f471ed977b0143d73ec0b883d0765797b880b0c8a"
+    },
+    {
+      "id": "candidate-content-configuration-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 1429696,
+      "sha256": "02cee3d782cc604ee2c87371dac05490a17e50bcad47da97a1391563574635e2"
+    },
+    {
+      "id": "candidate-content-with-action-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 1605233,
+      "sha256": "12918bbbe235062e8bdea40e3bad8dd625b96de9a2ac9ce5343a45b17471b505"
+    },
+    {
+      "id": "core-only-scenario-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 3128439,
+      "sha256": "1b6ed02ee7f5b5022d35732cff0cbebba73be2a084012f6532b1c960f8a038d9"
+    },
+    {
+      "id": "root-plugin-jar-metadata-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 128953,
+      "sha256": "7cc361115ba69f546fadb9d65619e7d2b392d8acbb4925936133d7c4fff04577"
+    },
+    {
+      "id": "source-sdk-anchors-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 6371,
+      "sha256": "88c028ebf8c3bb22cc7b5cedbb60d994f29faf02a74f2beca4468ec06b179c0a"
+    },
+    {
+      "id": "sdk-installed-metadata.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 1545,
+      "sha256": "b1c13bc80d874695157ff112b93150893a91b695493e02a9efcb0c53d57cb5bb"
+    },
+    {
+      "id": "source-pin-audit.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 261,
+      "sha256": "de1ad461a881f22a94ebc94eee4bfc335ab6a7b5b155a1c2bd602a663ff2f708"
+    },
+    {
+      "id": "capacity-decision.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 1021,
+      "sha256": "495ebf51c8c38845070d98593137cd530f60ba669845fe0dc530c53759a0535a"
+    },
+    {
+      "id": "protected-before-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 20730,
+      "sha256": "a6b8245989c47f989eec7e656873f207473a008b5f0bfc1ae1f0f57475d194e1"
+    },
+    {
+      "id": "roots-before-private.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 1992,
+      "sha256": "1e66eb983a189d8edd396f64f3db4a22e10c927284f47cc52d7796deb9aaf466"
+    },
+    {
+      "id": "refs-before.txt",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 62655,
+      "sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3"
+    },
+    {
+      "id": "budget-intake.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 246,
+      "sha256": "f2fee42a05c3d07da12e94f1e0553feb57937c1be6ababde49ee1b31be34edb0"
+    },
+    {
+      "id": "protection-prepublish.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 579,
+      "sha256": "3491601f78564f70a9720c1c5311eececf4cf12f8925085a2877979c648ba853"
+    },
+    {
+      "id": "tests-reviewed-result.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 171,
+      "sha256": "b86867240292e96bd035da77da9ff1a9dd12e87bab7c4b1ffb6c3f49e80eab49"
+    },
+    {
+      "id": "space-before.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 447,
+      "sha256": "c24c92b8b6732519874cfc50671336ae9fa76edbfceb59eb827d40b04cce24fa"
+    },
+    {
+      "id": "space-analysis.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 449,
+      "sha256": "3abaabf4f08d956f7f470f32888b1b40ff5b5a3233a27d164527bc153cd2db40"
+    },
+    {
+      "id": "space-delivery.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 441,
+      "sha256": "5f6bd67bc8637b3443c146538b4f7bd0a116a6d1ae53f52b1a7ba573f16d29b3"
+    },
+    {
+      "id": "fsutil-readonly-denial-note.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 385,
+      "sha256": "dd9aaaf9df6378cba31a0a6e91172356613e30aa145b58b45e4dd17291cc1c12"
+    },
+    {
+      "id": "seed_static_before_review.py.txt",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 9233,
+      "sha256": "2f0d156fe41f27afccbdedf4b93e70000c3cdf62c17b9ee5b91b414946261fbf"
+    },
+    {
+      "id": "analysis-v1-summary.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 3951,
+      "sha256": "5ac4fb9e46b96d13d633bb1d23bc7855654c00f2f052625f5a167d7bd927a88e"
+    },
+    {
+      "id": "analysis-v2-summary.json",
+      "classification": "CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW",
+      "bytes": 4044,
+      "sha256": "de46a82b338a7c28412a8d99b2b1fa8bc67177b9a6bd9a5b045a22fb36b79ca6"
+    }
+  ],
+  "commandsAndLogs": [
+    {
+      "command": "python -X utf8 -B intake.py",
+      "files": [
+        {
+          "localOnlyName": "intake.stdout.txt",
+          "bytes": 119,
+          "sha256": "95262cdded24e5bdeb6810c5006d176ffaeb7c93c4faac05b0b502c3b750db48"
+        },
+        {
+          "localOnlyName": "intake.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "intake.exit.txt",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ],
+      "exit": 0
+    },
+    {
+      "command": "python -X utf8 -B analyze.py (reviewed model)",
+      "files": [
+        {
+          "localOnlyName": "analysis-reviewed.stdout.txt",
+          "bytes": 4209,
+          "sha256": "b975cb862cc340465ee2b38cf6eb5fc12905af827dde2f2963aab462197c4b2f"
+        },
+        {
+          "localOnlyName": "analysis-reviewed.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "analysis-reviewed.exit.txt",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ],
+      "exit": 0
+    },
+    {
+      "command": "python -X utf8 -B source_sdk_evidence.py",
+      "files": [
+        {
+          "localOnlyName": "source-sdk.stdout.txt",
+          "bytes": 115,
+          "sha256": "2af57fc546fc700cbea78b73e9157de3e3608167650efb4b08f433cb6806a5da"
+        },
+        {
+          "localOnlyName": "source-sdk.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "source-sdk.exit.txt",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ],
+      "exit": 0
+    },
+    {
+      "command": "python -X utf8 -B run_tests.py -reviewed",
+      "files": [
+        {
+          "localOnlyName": "tests-reviewed.stdout.txt",
+          "bytes": 149,
+          "sha256": "079ad97e8765e4cb1868dc2415845621e48c31bd9825afcf256514bd10fc7796"
+        },
+        {
+          "localOnlyName": "tests-reviewed.stderr.txt",
+          "bytes": 2234,
+          "sha256": "71276bc1f283dd0b12505ffa4d4f7a248720c0fc4b497945a7a0957b6d2ff43f"
+        },
+        {
+          "localOnlyName": "tests-reviewed.exit.txt",
+          "bytes": 1,
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        }
+      ],
+      "exit": 0
+    },
+    {
+      "command": "python -X utf8 -B check_final.py prepublish",
+      "files": [
+        {
+          "localOnlyName": "protection-prepublish.stdout.txt",
+          "bytes": 521,
+          "sha256": "9d0e124c1745a0513f9edda5773d744c6e2fc38ce3120a06aeed556890389f7c"
+        },
+        {
+          "localOnlyName": "protection-prepublish.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "protection-prepublish.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ],
+      "exit": 0
+    }
+  ],
+  "tests": {
+    "kind": "PURE_STATIC_XML_JSON_FIXTURES_AND_MOCK_GATES",
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skip": 0,
+    "forbiddenAuditEvents": [],
+    "exit": 0
+  },
+  "protection": {
+    "stage": "prepublish",
+    "targetedProtectedOriginals": 84,
+    "historicalRootsUnchanged": 5,
+    "localRefsUnchanged": 527,
+    "source286HeadAndCleanUnchanged": true,
+    "configurationSourcesMatched": 44,
+    "sourceAnchorsMatched": 14,
+    "cacheAndGradleFilesRehashed": 3497,
+    "sdkInstalledMetadataMatched": 4,
+    "taskFilesSingleLinkNoReparse": true,
+    "G2ClaimAbsent": true,
+    "oldAClaimAbsent": true,
+    "G2ReservedStarts": 0,
+    "G2Popen": 0,
+    "G2_READY_FOR_POPEN": false,
+    "oldApkAndG": "SPENT_1_OF_1",
+    "runtimeStarts": 0,
+    "testReruns": 0,
+    "exit": 0
+  },
+  "spaceBefore": {
+    "method": "Read-only FILE_STANDARD_INFO AllocationSize, per file and directory; no SDK/runtime/observer/Job invocation",
+    "files": 18,
+    "logicalBytes": 4671302,
+    "allocatedBytes": 4706304,
+    "volumeFreeBytes": 505784033280,
+    "volumeTotalBytes": 998949736448,
+    "capBytes": 536870912,
+    "limits": "Snapshot excludes later receipt bytes, MFT/volume journal/system-wide metadata; volume free space includes unrelated host activity"
+  },
+  "spaceAnalysis": {
+    "method": "Read-only FILE_STANDARD_INFO AllocationSize, per file and directory; no SDK/runtime/observer/Job invocation",
+    "files": 82,
+    "logicalBytes": 23004418,
+    "allocatedBytes": 23141224,
+    "volumeFreeBytes": 505724960768,
+    "volumeTotalBytes": 998949736448,
+    "capBytes": 536870912,
+    "limits": "Snapshot excludes later receipt bytes, MFT/volume journal/system-wide metadata; volume free space includes unrelated host activity"
+  },
+  "spaceDeliveryBeforeReportAndIndex": {
+    "method": "Read-only FILE_STANDARD_INFO AllocationSize, per file and directory; no SDK/runtime/observer/Job invocation",
+    "files": 100,
+    "logicalBytes": 27290418,
+    "allocatedBytes": 27443448,
+    "volumeFreeBytes": 505697419264,
+    "volumeTotalBytes": 998949736448,
+    "capBytes": 536870912,
+    "limits": "Snapshot excludes later receipt bytes, MFT/volume journal/system-wide metadata; volume free space includes unrelated host activity"
+  },
+  "staticFiles": [
+    {
+      "path": "docs/versions/v10.1.5/G2_MINIMAL_DEPENDENCY_SEED_DECISION_REPORT_20261027.md",
+      "mode": "100644",
+      "bytes": 27083,
+      "sha256": "819197f52f2fc852a5035cfe1c6d8ab88383630fb88325b68e755ffb14858268",
+      "blob": "b0912b629c0d0f9021788e6a5177c63720605d1f"
+    },
+    {
+      "path": "docs/versions/v10.1.5/g2_minimal_seed_static/seed_static.py",
+      "mode": "100644",
+      "bytes": 9952,
+      "sha256": "c0f3b0a83b6ccf9f087a73d8de459dcb82eb20279748fe197d7cf94c94766ff0",
+      "blob": "f0374f502f2f45e9f4d945fbbce8e6b1a1afd94d"
+    },
+    {
+      "path": "docs/versions/v10.1.5/g2_minimal_seed_static/test_seed_static.py",
+      "mode": "100644",
+      "bytes": 5823,
+      "sha256": "995f855e9c95a0b7697849b3486a6f843d2b284b6c295619ccf87d8e00f3bc2b",
+      "blob": "023bdd0ddf609f7ffe2f70516cebe66dc56e3871"
+    }
+  ],
+  "historicalTests": "56/140 NOT_RUN_THIS_TASK",
+  "budgets": {
+    "thisTaskRuntimeBudget": 0,
+    "oldApk": "SPENT_1_OF_1",
+    "oldG": "SPENT_1_OF_1",
+    "oldA": "NOT_RUN_GATE_CLOSED",
+    "G2OriginalMax": 1,
+    "G2ReservedStarts": 0,
+    "G2Popen": 0,
+    "G2ClaimAbsent": true,
+    "Gate2": "NOT_AUTHORIZED"
+  },
+  "evidenceClasses": [
+    "DIRECT_GITHUB_READBACK",
+    "CODEX_REPORTED_LOCAL_EXECUTION",
+    "LOCAL_ONLY_RAW",
+    "ASTRA_DIRECT_GITHUB_STATIC"
+  ],
+  "notProven": [
+    "GRADLE_RESOLUTION_RUNTIME_NOT_PROVEN",
+    "INVENTORY_RUNTIME_CLOSURE_NOT_PROVEN",
+    "GRAPH_NOT_PROVEN",
+    "DOKKA_TASK_SELECTED_NOT_PROVEN",
+    "AAR_POM_RUNTIME_NOT_PROVEN",
+    "ACTUAL_BUILD_NOT_COMPLETED"
+  ],
+  "stop": "AFTER_CANDIDATE_READBACK_WAIT_ASTRA"
+}
