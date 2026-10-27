@@ -893,3 +893,82 @@ Gradle stdout SHA256 `0fbc2c233ab87dd83f152c23e23f7ed58ddf59ee79481a3f2f7822d47f
 Gate2新启动/Writer/Serializer0；旧0.375/0.390秒已耗、D0-A15次/约0.688秒不重置，37suite/条件Sandbox SDK/Producer/libs.jar/30配置解析NOT_RUN。AEC、最后可闻波形、完整native handle、真实15/30天/物理30天、真实Push、SDK_FRAMEWORK_CLOSE_WINDOW_UNRESOLVED、ICE_DIAGNOSTIC_FLAGS_NOT_PROVEN、OLD_GUEST_STATUS_UNVERIFIED_FROM_HCS不闭合。没有产品main集成、v10.1.6、生产/真实Push/费用或历史清理。
 
 普通non-force候选发布并远端核验Commit/Parent/Root、完整apps/services Tree及两文档Blob/原字节后停止；LOCAL_ONLY完整绑定为 `v1015-single-offline-build-20261026/final-readback.json`。本次构建预算已经耗尽，不自动请求新预算或派发后继任务，等待Astra集中独立验收。
+
+
+## 2026-10-27 Owner方案一：项目自有AAR init源级修复候选（零真实构建）
+
+**V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / SOURCE_LEVEL_JAVADOC_REQUEST_REMOVED_BOUNDED / PUBLISH_GRAPH_NOT_EXECUTED / AAR_POM_RUNTIME_NOT_PROVEN / ACTUAL_BUILD_NOT_COMPLETED / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / AWAITING_ASTRA**。本轮是Owner正式派发后的最小源码修复和Python隔离回归，不是新构建授权。没有真实Gradle/Wrapper/Flutter/AAR/Kotlin/JVM、任务图查询、APK、设备、服务或实时观察器运行；旧构建预算已耗1/1、剩余0。
+
+### 权威、源码和交付身份
+
+任务分支 `owner/v10.1.5-scheme1-aar-init-javadoc-source-repair-20261027` fresh HEAD `836b0ad12be91400c7638a1982c2bcd1383ddc3e` / Root `b99412cdaf43003b165fe529ba9ec9d7c57ecf23`；正式任务Blob `f2f12b5ab2d766090d66e5d221e6a30658acc483`，ACTIVE_STATE Blob `8efa7a34d735e23ca642c762b6d1e38c90b9ec50`。冻结plan `7d3466b3be67135dc641cfee7c7faef78937ba03`不改；Astra上轮静态接受Blob `74b369ee8d64de9db72651e005484a5b0c5271f8`已读，仍保留根因与具体边未证明。
+
+fresh main `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；接受产品仍v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。新候选不是产品main。此前静态报告候选3d0c656d59e8621ffa6a935313b5cd4c860a16b1 / Parent7abea213feacc52a1e43c6ed58a40c83009c74df / Root5f0dbe066ba64b1b8ab05c1698a9c48c19fb9553保持原分支/Blob。
+
+连续工作树干净核验后，从最新静态候选建立新分支 `codex/v10.1.5-scheme1-owned-aar-init-20261027`，未reset/stash/amend/force，原源码分支cdf候选不移动。源码Commit `50d79396195ed8b4b86c218584ab59864ad600be` / 唯一Parent `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` / Root `d3c8e2cfbe28e3a1a4e13ac217b868f5cbb7ae20`；apps `e6bff4bc8e359e6afe80c02f25212ee8b6195eab` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。源码提交仅11条白名单路径，最终候选在此基础上只追加本报告和一个Manifest；最终Commit/Parent/Root/Blob及原字节外部绑定LOCAL_ONLY final-readback，避免文档自引用Hash。
+
+### 方案A、许可与最小差异
+
+选择A（跟踪受控衍生副本），因已核验的Flutter BSD-3-Clause许可允许保留声明后的源码再分发，文件仅数KB。没有用方案B运行时生成或替换共享SDK。来源为既有库存定位的Flutter SDK `packages/flutter_tools/gradle/aar_init_script.gradle`：原SHA256 `b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2`。源、原LICENSE与安装版本回执在实施前后只读Hash一致；版本回执为3.41.7 / frameworkRevision cc0734ac716fbb8b90f3f9db8020958b1553afa7，这是本地安装回执，不冒称本轮从上游重新验证的tag或下载来源。
+
+项目拥有目录 `apps/android/scripts/owned_flutter_aar_init/`包含衍生init、原字节FLUTTER_LICENSE、SOURCE.json、UPSTREAM.patch及局部.gitattributes。许可证SHA256 `a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9`，副本SHA256 `364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d`（7851字节），provenance SHA256 `0f14efe7ed1a2d84be53f2a76a70a343a8bece8dc42f34b368c637c9b17a5f51`，补丁SHA256 `d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947`。版权/许可与原Hash可审查；没有打包其它SDK、字体或个人数据。
+
+从原始字节使用两组唯一上下文（带对应缩进的withSourcesJar/withJavadocJar相邻行）删除flavor和无flavor分支各一处请求，添加版权及显式scope fail-closed前缀。原源为190个CRLF行；除两条删除行外原body字节均保留。首次准备工具误用LF上下文，检查exit1后保留tool transcript，改为原字节CRLF精确匹配；不是源Hash漂移或真实构建。反向恢复的源Hash仍精确等于原件。局部Git属性防止审计字节在checkout/index被自动改换行，同时保留正常whitespace规则并识别CRLF；没有改全局Git配置。
+
+`withSourcesJar()`两处、singleVariants已有配置guard、maven-publish、from component、AAR注册、finalizedBy publish、插件AAR依赖和其余上游body均保留。没有禁用javaDoc任务、GenerateModuleMetadata、publish/POM或必要runtime产物。**字节保留是静态证据，不等于发布图/产物已通过。**
+
+### 消费路径、Hash与新库存门
+
+Kotlin `syncFlutterAar`在普通R1且非ICE、非retention时选择固定项目副本，并传入 `elitesyncOwnedAarInit=v10.1.5-ordinary-r1-runtime`；scope只是执行合同，不是Owner运行授权。其它R1分支仍选择原SDK init，非R1原Flutter CLI路径未改。已存在的其它模式限制/拒绝行为也未被修复或绕过，本轮不声称这些模式可运行。
+
+新路径在消费前核验原SDK source/LICENSE、项目LICENSE/SOURCE.json/patch/init固定Hash；路径必须在固定项目/SDKroot中，无穿越、符号链接、reparse/other属性或realpath重定向。失败抛出且没有fallback。受控init含scope guard；副本和来源文件被声明为Gradle任务inputs，不能仅因旧AAR目录存在就复用同步任务。旧本地Gradle8.14、offline、无Wrapper fallback与工具链禁下载参数保持。
+
+Python `owned_aar_init.py`执行纯字节推导/验证，不写SDK或生成执行副本。`offline_debug.py`在Observer和任何构建子进程前要求新 `ownedAarInitContract`，以及六个REQUIRED_PROJECT_INPUTS同时出现在inventory与definitions并匹配当前Hash。旧库存不能悄悄证明新图：**NEW_BUILD_INPUTS_REQUIRE_NEW_TRUSTED_INVENTORY**。本轮没有创建新的生产可信构建库存；隔离测试中的小清单只是合成fixture，更没有新构建预算。
+
+### 隔离RED/GREEN、关联回归和静态检查
+
+先运行新源码合同RED：3项、exit1、failures3，原stdout/stderr与退出回执保留。实现后新套件37项exit0；既有关联入口加一项旧库存不能越过新门的回归，共44项exit0，无skip。**这37项是新的Python受控init检查，不是未授权的历史Gate2/Serializer 37-case suite。** 两套测试进程process/socket/native-DLL审计事件均0。新套件使用真实临时字节/路径fixture验证来源、许可证、复制Hash、唯一定位、flavor/无flavor、路径/重定向、来源漂移和新清单；8种模式组合从实际Kotlin选择器提取为受限布尔AST检查，不运行Kotlin。关联44项仍保留UDP/TCP分类、下载/故障强停、Popen失败保留claim和不可重试等mock生命周期断言。
+
+| 运行 | 命令 | case/exit | stdout SHA256 | stderr SHA256 |
+|---|---|---|---|---|
+| owned-red | `python -B apps/android/scripts/test_owned_aar_init.py` | 3 / 1 | `317a0056618902f5d4de18524791a5667a3ab84181892c18102447db279184e7` | `fa0693650f60daba59f7824d5a5bbdc36c5b8346a9a93664f8a923e52e258cad` |
+| owned-green | `python -B apps/android/scripts/test_owned_aar_init.py` | 37 / 0 | `317a0056618902f5d4de18524791a5667a3ab84181892c18102447db279184e7` | `a5e6eadd0e3e966a86c102250dfca9e7dc15aff9361c8efd85c01d14e0421d4e` |
+| offline-associated | `python -B apps/android/scripts/test_offline_debug.py` | 44 / 0 | `679ef1f92cbe51cba0332160ca6535c80259b63f2bd03bd4f25eafd37baf645b` | `c381d5bb6c28c2c9fede7a213d4af3008a065338787f3bc0dc72924be925a421` |
+
+本轮LOCAL_ONLY交付准备器首次因多行字符串引号错误SyntaxError/exit1，在写出任何报告前失败；修正后完成。原工具transcript保留，不将它称为产品测试或构建结果，不补造stdout/stderr Hash。
+
+四份修改/新增Python源码用compile(bytes, filename, 'exec')只在内存检查语法，不执行或生成pyc；git diff --cached --check exit0，staged原始字节逐文件与worktree匹配。Kotlin/Groovy只读源码合同和有界非作者静态复核，**未用Gradle/Kotlin/Groovy/JVM解析或编译**；不能写成真实配置/依赖图PASS。Git曾提示未来普通文本换行转换的原警告保留；受控副本/许可/patch的原字节通过局部属性精确跟踪。
+
+非作者GPT-6.1 Sol/high只读白名单diff、受控来源/许可/Hash、测试定义和README，NO_NEW_BLOCKING_FINDINGS_STATIC。审阅者没有执行本地测试、构建、设备或原始日志读取，不替代Astra验收。81项Python执行和Hash为主代理本地回执。
+
+### 源码文件身份
+
+| 路径 | Git Blob | SHA256 |
+|---|---|---|
+| apps/android/app/build.gradle.kts | `92a2147843756f3ff2c9217250e04cdb2856b9cd` | `0ab0fb3de880ba70d4c3a3e964bcae7d305bbf31676222296f70997493741aee` |
+| apps/android/scripts/README.md | `eede4c149250727d267238d9a1dc3b9607bb454a` | `b0f89df727d4e6b2d07c9bf8191b76b2a990a978ff17af2c09dbcc82cbbf7172` |
+| apps/android/scripts/offline_debug.py | `635ab8e8dd719db95a2a347e9212d57563a64d45` | `7a854f4723aab8e2fd026f17e63c16abdc1cd33e1f9672d064599eb4bbb154ab` |
+| apps/android/scripts/owned_aar_init.py | `526bdcf4764b677a496861328ed2b7f2706e4ead` | `4857b3613aa5762be27a98f34823cb2369c86ac91c68ec0c4c176f3d890d4c0a` |
+| apps/android/scripts/owned_flutter_aar_init/.gitattributes | `3067bf834be8e4882a55762d583fff336f199005` | `807fd4a1b5c6ef61391b958edba1d6c87eaf4f3428001ef81d541a9dbb8fb693` |
+| apps/android/scripts/owned_flutter_aar_init/FLUTTER_LICENSE | `af093156acc618463cd3f5a502ec6481482897bc` | `a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9` |
+| apps/android/scripts/owned_flutter_aar_init/SOURCE.json | `3a39b994c2ef705bf0247c57ae77fb331fd9b1bc` | `0f14efe7ed1a2d84be53f2a76a70a343a8bece8dc42f34b368c637c9b17a5f51` |
+| apps/android/scripts/owned_flutter_aar_init/UPSTREAM.patch | `1cf1b5de415a0a9aa6190b324f9cb5ae4f1f40c3` | `d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947` |
+| apps/android/scripts/owned_flutter_aar_init/aar_runtime.init.gradle | `7654d90a8b2cc3fd31fafcb18fe589624486a3a2` | `364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d` |
+| apps/android/scripts/test_offline_debug.py | `e8ba5aaf47e0d6245101a5fc54fa0f50e9e4c88f` | `0aaab4bfa091c69f3939130132c81795529eeabe238b0c7d6e85b3ac59429ff7` |
+| apps/android/scripts/test_owned_aar_init.py | `8175888c112acb0b59039ff35d802396107ea496` | `b0a1820f0cb03fe782ec798a6ff32d6540df7e117c711100c96694b8f6e18f60` |
+
+### 资源、保护、剩余AC与终态
+
+结束保护读取器首次因新Manifest预算字段名与旧schema不同发生KeyError/exit1；只修改新任务拥有的读取器，改与原final-readback的固定旧ledger pin核对，再做只读核验。没有改写旧Manifest、claim或保护资产；该工具错误原transcript保留。
+
+开工核验26784具名保护文件、5个历史Git根与524个开工refs中的既有项一致；本轮结束按同一具名范围核验，并核原source/LICENSE/版本回执3文件、52项旧根证据及旧claim。新分支为新ref，原候选/审阅/Owner/main分支不移动；这不是整盘、所有共享SDK或全缓存审计。受保护dirty根不写入，旧SQL/APK、历史失败与LOCAL_ONLY原证不清理。7941328字节partial及SHA256 b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4保留，旧claim Hash07820a04f5f7bb5fccea83a5372340af33b224269bcf89b476b637230140f8c8不改。
+
+只启动已结束的Python隔离检查/纯文件准备与Git治理进程；没有服务/设备/RTC/认证/DB操作，未创建本任务call/session/token，不冒称新的全局DB零计数或手机/端口普查。SDK/cache未写入。没有新APK、安装或回取Hash，旧APK安装状态未被本任务改变。
+
+AC01～11沿用原证各自身份，未受影响项目未重新运行；AC05_OPEN不关闭。AC10本轮只增加源级修复及隔离证据，真实构建仍ACTUAL_BUILD_NOT_COMPLETED；AC11是待Astra验收的集中候选。Dokka/TCP因果ROOT_CAUSE_NOT_PROVEN、具体历史EDGE_NOT_PROVEN均保留，不能声称文档任务已从真实解析图消失或TCP已消除。AEC、最后可闻波形、完整native handle、真实15/30天与物理30天、真实Push及其它历史限制继续保留，call3/4/5和不同APK不拼接。
+
+Gate2/Writer/Serializer新调用0；旧0.375/0.390秒及D0-A15次/约0.688秒不重置；历史37suite、条件Sandbox SDK、Producer/libs.jar、30配置解析NOT_RUN。产品main未集成、v10.1.6未启动、无生产/真实Push/费用或系统安全策略变更。
+
+证据分为NEW_ISOLATED_PYTHON_RUN、CODEX_REPORTED_STATIC_SOURCE_AND_BYTES、DIRECT_GITHUB_READBACK、REUSED_PRIOR_IDENTITY_ONLY、LOCAL_ONLY_RAW；不把旧实际构建/PID日志写成本轮新运行，不把Codex本地Hash提升为Astra亲验。旧报告155137字节原前缀不改，旧Manifest343530字节/Blob在历史与LOCAL_ONLY保留，新previousDelivery与旧原JSON对象深比较一致，不对历史对象重新脱敏改写。
+
+普通non-force发布一个同版本候选并完成远端Commit/唯一Parent/Root、完整apps/services Tree、全部变更Blob和原字节回读后停止等待Astra。本轮不申请、不运行下一次真实构建，不创建后继任务，不自行接受产品或整版。
