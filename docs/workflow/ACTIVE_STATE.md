@@ -1,3 +1,15 @@
+# EliteSync v10.1.5｜2026-10-27 Astra fd0 独立验收后状态（本审查分支）
+
+**`FD0DA9CC_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / GRAPH_NOT_PROVEN / A_NOT_RUN / G_SPENT_1_OF_1 / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / AAR_POM_RUNTIME_NOT_PROVEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Astra本轮直接读取2026-10-27交接全文、GitHub live main、候选fd0 commit/唯一Parent/Root、6633项未截断的递归Tree、完整apps/services Tree、两份脱敏候选、Owner正式任务、方案一Astra前置复核及相关源码/测试定义。两份纯文档交付及失败如实披露在有界范围接受；**绝非G/Gradle运行成功或产品版接受**。100453库存、37+44+17测试、G/Job执行及具名保护原证仍按 `CODEX_REPORTED_LOCAL_EXECUTION / LOCAL_ONLY_RAW` 分层，不冒称Astra亲验本地运行。
+
+**正式独立复核：** [FD0_GA_CONTROLLED_VERIFICATION_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/FD0_GA_CONTROLLED_VERIFICATION_ASTRA_REVIEW_20261027.md)；候选原报告/索引只能在固定 `fd0da9cce87c5eb84aec96dd11ea37aecd7aefff` commit读取，不属于本独立审查分支产品源码。G报告观察器路径读取失败而fail-closed；任务图0已解析，Dokka选中状态未证明，A门禁关闭。禁止自动重跑G、启动A、重置预算、外层APK、修改observer安全强停止/共享SDK/网络策略、合main、启动v10.1.6或清理历史原证。
+
+**下一动作：** 暂停等待Owner决定。仅建议另获Owner明确批准的零Gradle定点根因审查；本验收没有自动发布/派发任务或新预算。下文为**交接时点归档原文**，其 `FD0DA9CC_ASTRA_REVIEW_PENDING` 已被本页顶部新裁决更新，不应当作本分支的当前待办。
+
+---
+
 # EliteSync-v10｜唯一当前状态入口
 
 **2026-10-27交接状态：SESSION_HANDOFF_ARCHIVED / FD0DA9CC_ASTRA_REVIEW_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / G_GRAPH_NOT_PROVEN / G_SPENT_1_OF_1 / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_EXHAUSTED / GATE2_NOT_AUTHORIZED / MAIN_NOT_INTEGRATED。**
