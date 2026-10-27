@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-27 Owner新授权 G2受控发布图探测（当前入口）
+
+**`V10.1.5_G2_GRAPH_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_G2_MAX1_DRY_RUN_NOT_YET_STARTED / NEW_AAR_EXECUTION_NOT_AUTHORIZED / OLD_G_SPENT_1_OF_1 / OLD_APK_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / SOURCE_HARDENING_ACCEPTED_WITH_OBSERVATIONS / SOURCE_LEVEL_ONLY / GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**新正式任务单：** [V10_1_5_CONTROLLED_SOURCE_HARDENED_GRADLE_GRAPH_G_ONLY_TASK_20261027.md](../versions/v10.1.5/V10_1_5_CONTROLLED_SOURCE_HARDENED_GRADLE_GRAPH_G_ONLY_TASK_20261027.md)，准确Git Blob **`796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`**。2026-10-27 Owner同意Astra建议的**仅一次全新、可信库存先决、强监测Gradle8.14 `assembleAarRelease --dry-run`真实发布图探测**。任务已在GitHub main作为文档发布并回读，**尚未由Owner手动派发Codex**，因此新G2仍`NOT_RUN / reservedStarts=0 / available=1`（正式本地claim仍需Codex接单后核验；不能把未读本地账本当作Astra直接验证）。若preflight/库存闭合失败，G2=NOT_RUN；如果已原子claim则预算1/1耗尽，哪怕启动失败也不能退款或重试。
+
+**绝对区分旧新预算：** 旧`APK 1/1`、旧`G 1/1`都已耗尽；旧A实际未执行但旧G门禁失败而始终封闭。新授权**仅G2=MAX1**，**AAR/POM真实执行=0、外层APP/APK=0、Gate2=0、设备/RTC=0、真实Push/生产=0**。不能通过runner解锁旧历史claim。新runner默认`NO_RUNTIME_AUTHORIZATION`；仅允许本任务专有G2单入口在专有账本、输入闭合和受控observer fail-closed保障下探测一次。源码守卫如真实配置失败，保留新失败原证并STOP，不在同任务修复后重启Gradle。
+
+**最新已完成Astra裁决：** 6ca源码加固独立接受 `SOURCE_HARDENING_ACCEPTED_WITH_OBSERVATIONS / SOURCE_LEVEL_ONLY`，归档审查报告 `astra/v10.1.5-6ca09a66-source-hardening-review-20261027:docs/versions/v10.1.5/6CA09A66_SOURCE_HARDENING_ASTRA_REVIEW_20261027.md` Blob `6d5ee056409de7373e635cd5e75b6aed52396bbd`，审查HEAD `b7215a6fd80918fff725b54f327cfa096d2a6ef1`。新真实验证唯一候选来源 `6ca09a66c0ef9619df7a3d7d4b089516f409954f`，唯一Parent `71ab58533270dd8b3a1270a3452a82b4f426e361`，Root `3bf735ab1c8e394844db80be35d86d2250390c82`，候选apps `5af7a9d0042be19437616e969e260658b67e9353` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。它们均**未接受进入main**。
+
+**最新main产品基线仍v10.1.4：** apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。保持`GRAPH_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / DOKKA_TASK_SELECTED_NOT_PROVEN`与AEC/最后可闻波形/native handle、真实15/30天、物理30天清理和真实Push未关闭。Owner条件维护许可（有证据才定点刷新Gradle缓存/软件升级与安全旧版清理）继续有效，但**本次无下载/更新/删缓存授权**。
+
+**唯一下一动作：** Owner在本地手动派发G2任务，Codex按冻结条件集中交付脱敏候选，随后STOP等待Astra独立验收；没有自动G2执行、后继AAR任务、产品main合并或v10.1.6启动。
+
+以下为截至本状态更新前的历史原文，旧`SOURCE_HARDENING_TASK_PUBLISHED`是过去时点，不覆盖新的G2授权和预算。
+
+---
+
 # EliteSync v10｜2026-10-27 Owner新授权的综合源码加固任务（当前入口）
 
 **`V10.1.5_SOURCE_HARDENING_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / BA77_BOUNDED_READONLY_ROOTCAUSE_REVIEW_ACCEPTED_WITH_OBSERVATIONS / ZERO_GRADLE_AUTHORIZED_FOR_THIS_TASK / G_SPENT_1_OF_1 / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_SPENT_1_OF_1 / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
