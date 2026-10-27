@@ -1,18 +1,18 @@
 # EliteSync-v10｜唯一当前状态入口
 
-**2026-10-27审查分支最新状态：STATIC_DEPENDENCY_REVIEW_ACCEPTED_WITH_LIMITATIONS / STATIC_MECHANISM_SUPPORTED_WITH_SOURCE_BOUNDARY / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Astra已对 `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` 进行独立只读验收，仅有界接受静态机制、报告的证据分层和两条未实施候选方案；没有将Dokka确认为TCP发起者，未关闭整版。
+**2026-10-27最新状态：SCHEME1_OWNED_AAR_INIT_SOURCE_REPAIR_TASK_PREPARED / OWNER_APPROVED_SOURCE_REPAIR / OWNER_MANUAL_CODEX_DISPATCH_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / BUILD_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Owner已明确同意实施**方案一**：以项目拥有、许可/来源/Hash完整保留的Flutter AAR init副本，在仅限v10.1.5普通R1本地runtime AAR路径中条件取消 `withJavadocJar()` 请求，保留AAR、POM、sources和插件运行时依赖。此次授权只包含最小源码修复、纯本地隔离测试及集中候选交付；**不自动给予真实Gradle/Flutter/AAR/APK构建预算**。
 
-**正式Astra独立复核：** [AAR_DOKKA_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/AAR_DOKKA_ASTRA_REVIEW_20261027.md)，保存于文档审查分支 `astra/v10.1.5-aar-dokka-static-review-20261027`，初始审核提交 `18222d4f039d72165ec187c855d136f0adcff6e6`。这是独立审查和状态文档，不包含产品源码修改，尚未合main。
+**方案一正式Codex任务单：** [V10_1_5_SCHEME1_OWNED_AAR_INIT_JAVADOC_SOURCE_REPAIR_TASK_20261027.md](../versions/v10.1.5/V10_1_5_SCHEME1_OWNED_AAR_INIT_JAVADOC_SOURCE_REPAIR_TASK_20261027.md)，Blob `f2f12b5ab2d766090d66e5d221e6a30658acc483`；准备分支 `owner/v10.1.5-scheme1-aar-init-javadoc-source-repair-20261027`；任务文档提交 `eb7440de5101ed01b809a97a28e19a6e63b291b2`。任务单已写入，但尚未由本次对话启动本地Codex或修改产品源码。本分支只用于方案指令/当前状态文档，不合并main。
 
-**候选身份：** `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` / 唯一Parent `7abea213feacc52a1e43c6ed58a40c83009c74df` / Root `5f0dbe066ba64b1b8ab05c1698a9c48c19fb9553`。唯一新增报告 [AAR_DOKKA_STATIC_DEPENDENCY_REVIEW_20261027.md](../versions/v10.1.5/AAR_DOKKA_STATIC_DEPENDENCY_REVIEW_20261027.md) Blob `96b7bc41e10eeed1ce385c218b4038ca280bf5c2`；完整Root Tree 6623项未截断，apps `cea01309fa9da5f99ccc9829654c6ec279c8c343` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。前冻结计划Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`，原实施报告Blob `71e039051ba0c6205f496444bc466d71f11a6fff`、Manifest Blob `d91a50d3653ef6304b4f45e53ddb4a242dbce284` 原字节保留。
+**已接受静态依赖报告：** 候选 `3d0c656d59e8621ffa6a935313b5cd4c860a16b1` / Parent `7abea213feacc52a1e43c6ed58a40c83009c74df` / Root `5f0dbe066ba64b1b8ab05c1698a9c48c19fb9553`。新增报告Blob `96b7bc41e10eeed1ce385c218b4038ca280bf5c2`，Astra独立静态复核Blob `74b369ee8d64de9db72651e005484a5b0c5271f8`；apps Tree `cea01309fa9da5f99ccc9829654c6ec279c8c343`、services Tree `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`。产品接受基线仍为v10.1.4 apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。
 
-**静态机制和限制：** Flutter AAR init在条件允许时请求`withJavadocJar()`；AGP为文档输出注册Generation/Jar任务；Gradle的SoftwareComponent/Module Metadata可能在MavenPublication主artifact移除后仍持有文档变体的构建依赖。因此项目当前 `offline_debug.init.gradle` 的事后removeAll不足以证明Dokka任务不再进入图。具体当次调度边 `EDGE_NOT_PROVEN`，当次加载AGP版本与TCP调用栈/源组件未证明，`DOKKA_TCP_CAUSALITY_NOT_PROVEN`。两条可选最小方案均未实施，需Owner另行授权，不能跳过必要AAR/POM/runtime依赖或关监控。
+**本次源码实施边界：** 项目自有副本应从具名原Flutter SDK `aar_init_script.gradle` 的固定SHA256 `b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2` 派生并保留许可与补丁，fail-closed核验。在普通R1模式下，嵌套AAR执行入口必须真正改指向该副本，不能只创建没有消费者的文件；其它ICE/retention/旧版本路径不变。不能禁用publish/POM/Module Metadata、删除runtime/plugin AAR或修改共享Flutter SDK。新的源文件与输入需生成新的可信依赖清单/Hash身份，**不得复用旧库存证明已验证新构建**。
 
-**验收边界：** Astra直接核验GitHub提交/Tree/仓库Gradle声明，未直接反汇编本地AGP/Dokka/Gradle Jar、读取LOCAL_ONLY原日志或执行本地测试。缓存类字节与任务日志事实属于Codex报告的本地只读证据；不能称Astra复算。Codex报告本轮Gradle/设备/观察器/Gate2/Writer/Serializer执行0。
+**证据边界和禁令：** 静态分析支持Flutter请求Javadoc/AGP注册/SoftwareComponent文档变体继续依赖的候选机制，但当次任务调度边 `EDGE_NOT_PROVEN`，Dokka导致TCP `ROOT_CAUSE_NOT_PROVEN`。本轮不执行Gradle/Wrapper/Flutter/AAR/Kotlin、Gradle dry-run/tasks、APK/设备/RTC/实时网络观察器，也不运行Gate2/Writer/Serializer。真实构建历史预算 `1/1` 已耗尽，剩余0，不重置claim/ledger、不运行新构建。历史partial 7,941,328字节及原Hash、SQL/APK/旧refs/LOCAL_ONLY原证不清理。
 
-**持续禁止事项：** 真实构建预算1/1已消耗，剩余0，不新启动或重试，不修改源码/缓存/工具/系统策略，不运行Gate2、37案例、Sandbox SDK、Producer/libs.jar/30 Configuration.resolve，亦不接入真实Push/生产服务。历史partial 7,941,328字节、SQL/APK/旧refs/LOCAL_ONLY保留；不得合并产品main、启动v10.1.6或自动派发后继任务。AEC、最后可闻波形、native handle普查、真实15/30天/物理30天清理和真实Push持续开放。
+**后续：** Owner手动派发完整任务单给本地Codex；实施/纯隔离测试完成后提交一个普通non-force同版本代码+文档候选，Astra集中独立验收。本状态不等于源码已修好、Dokka已不运行或真实构建已PASS。不合并产品main、不启动v10.1.6/Push或生产服务。AEC、最后可闻波形、全部native handle普查、真实15/30天与物理30天清理等仍开放。
 
-**产品已接受基线仍为v10.1.4：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`。最近独立读取main仍为 `4df2e7f0f36cc7b80258faa73e80dad682cff6c5`。
+**main最近回读：** `4df2e7f0f36cc7b80258faa73e80dad682cff6c5` / Root `03b0ecfcc360e38a462539dd50690c64b663a21e`；开工须fresh GET。
 
 ## 已独立核验的产品和集成
 
