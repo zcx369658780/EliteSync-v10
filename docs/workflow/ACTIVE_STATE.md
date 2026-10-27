@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-27 Owner G2 缓存/SDK写隔离闭合任务（最新入口）
+
+**`WRITE_ISOLATION_CLOSURE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / G2_NOT_RUN_INPUT_CLOSURE_BLOCKED / G2_CONDITIONAL_BUDGET_0_OF_1_CODEX_REPORTED / G2_CLAIM_ABSENT_CODEX_REPORTED / ZERO_GRADLE_AUTHORIZED_THIS_TASK / G2_GRAPH_NOT_PROVEN / SOURCE_LEVEL_ONLY / OLD_APK_1_OF_1_SPENT / OLD_G_1_OF_1_SPENT / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Owner于2026-10-27明确批准Astra在`286eb20d`独立审查之后继续，**只发布一份缓存/SDK可写域隔离的静态与完全mock综合任务**。正式任务：[V10_1_5_G2_CACHE_SDK_WRITE_ISOLATION_CLOSURE_TASK_20261027.md](../versions/v10.1.5/V10_1_5_G2_CACHE_SDK_WRITE_ISOLATION_CLOSURE_TASK_20261027.md)，**Git Blob `b6519b415d827232a9dd5f9760b322ec1a7fdaaf`**。任务发布及全文回读完成；**须Owner在本地手动派发Codex**，任务发布不是Codex已执行。
+
+**前置独立验收：** Astra `G2_PRECHECK_BLOCKED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS` 已归档 `astra/v10.1.5-286eb20d-g2-precheck-review-20261027:docs/versions/v10.1.5/286EB20D_G2_INPUT_CLOSURE_ASTRA_REVIEW_20261027.md`（Blob `ce7250d9e4cfe42bd62c4607632eb84ac53bae5b`，review branch历史HEAD `3fdf635ca73fdc911027761bb3888aa31b043155`）。独立核实286候选 `286eb20d1d6af2e76423cfbd3253880f47c9ae16`、唯一Parent `6ca09a66c0ef9619df7a3d7d4b089516f409954f`、Root `4177d75aec1eae6f33cd28ec45c88dce8496274a`、apps `5af7a9d0042be19437616e969e260658b67e9353`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；只追加2文档，产品源码未变。
+
+**明确阻断：** schema2七项固定输入核验通过，但完整运行库存及历史Gradle user-home、Flutter SDK tooling included-build`.gradle`等写面隔离没有证明。Codex上轮本地称96736项fresh hash中96734旧pin匹配、仅`fileHashes.bin`与`file-access.bin`两运行状态metadata漂移；103份额外生成缓存与2份Flutter tooling`buildOutputCleanup`状态文件未被旧sealed库存覆盖。**这不是缓存损坏/版本冲突证明；不授权删除/重新下载/升级。**
+
+**本次被冻结的边界：** G2目前按Codex既有本地回执 `0/1`、无claim/无Popen，仍属**条件性未消耗额度，不是本任务运行许可**。任务只允许静态/Hash/路径与完全mock及有界独有写面准备（≤512MiB原则，严格记录磁盘增量），禁止真实Gradle/JVM/Flutter/observer/Job/Socket、新G2.claim、AAR/APK/Gate2或旧预算复用。继续保留原任务正式G2合同 Blob `796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`；新写隔离合同不得解除其运行前置门。只有后续Astra审查和Owner明确决定才能考虑G2继续。
+
+**已接受产品仍为v10.1.4，main apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。** `GRAPH_NOT_PROVEN / DOKKA_TASK_SELECTED_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING`及AEC、可闻波形、native handle、真实15/30天与物理清理继续开放。
+
+**唯一下一动作**：Owner手动派发本次写隔离任务；Codex在范围内自主完成一份有审计证据的报告及最小索引并STOP等待Astra独立审查；不发布新实际Gradle任务、不合产品main、不启动v10.1.6。以下先前main状态保留为历史记录，不得用旧`G2_GRAPH_TASK_PUBLISHED`时态覆盖本次已完成预检审查及新授权。
+
+---
+
 # EliteSync v10.1.5｜2026-10-27 Owner新授权 G2受控发布图探测（当前入口）
 
 **`V10.1.5_G2_GRAPH_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_G2_MAX1_DRY_RUN_NOT_YET_STARTED / NEW_AAR_EXECUTION_NOT_AUTHORIZED / OLD_G_SPENT_1_OF_1 / OLD_APK_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / SOURCE_HARDENING_ACCEPTED_WITH_OBSERVATIONS / SOURCE_LEVEL_ONLY / GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
