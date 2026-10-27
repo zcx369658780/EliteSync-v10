@@ -1,0 +1,736 @@
+{
+  "schema": 1,
+  "taskBlob": "796c9ad2d5d91b3d375cea6c079e9e6121e0be4c",
+  "verdict": "G2_NOT_RUN_INPUT_CLOSURE_BLOCKED / G2_GRAPH_NOT_PROVEN",
+  "deliveryBranch": "codex/v10.1.5-g2-graph-20261027",
+  "deliveryUniqueParent": "6ca09a66c0ef9619df7a3d7d4b089516f409954f",
+  "source": {
+    "candidate": "6ca09a66c0ef9619df7a3d7d4b089516f409954f",
+    "uniqueParent": "71ab58533270dd8b3a1270a3452a82b4f426e361",
+    "root": "3bf735ab1c8e394844db80be35d86d2250390c82",
+    "apps": "5af7a9d0042be19437616e969e260658b67e9353",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "canonicalAffectedSource": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "mode": "100644",
+        "blob": "ec58832c88aa41d8ce005c9fe8b036ccf5bf3c3c",
+        "bytes": 30483,
+        "sha256": "a23e9002d04dd182b6e99456bd369bb943063aec3361ad1804fd34dc63a5680f"
+      },
+      {
+        "path": "apps/android/scripts/controlled_runner_hardened.py",
+        "mode": "100644",
+        "blob": "0d8da8a44268c12e7593b13aa8c5b41337a3f2df",
+        "bytes": 19784,
+        "sha256": "7cc0a4ab2291b79b73326b72abab6cf0158ed00081c97223294c55d0af26cffb"
+      },
+      {
+        "path": "apps/android/scripts/owned_aar_init.py",
+        "mode": "100644",
+        "blob": "c2b59d849a1388f88d889973c66e03c2a6e07c00",
+        "bytes": 8964,
+        "sha256": "742de359859622bdbddebb5abb3edb6b6bf578cff03ecb890d485df5e33336d1"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/.gitattributes",
+        "mode": "100644",
+        "blob": "586a92c15b368b698e17af617f6e01eb54516406",
+        "bytes": 193,
+        "sha256": "fb351120d33219a16da303ab68f8f4ac78a64fb14a0ca63d022085bdf5baf55c"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/SOURCE.json",
+        "mode": "100644",
+        "blob": "6ccd167b2408ac406c723cae4394b528d59707ee",
+        "bytes": 2682,
+        "sha256": "ff4d82097e80239fb9d9861a68731573079d4120a2026aeddc5d4615c456942f"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/UPSTREAM.patch",
+        "mode": "100644",
+        "blob": "2a19fc61745ab35cdf527d026973bc4ac50cb220",
+        "bytes": 6624,
+        "sha256": "80966f8ea92f72137473911531882dd6394cc72da9ceaf0b697cedd7e5a0f240"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/aar_runtime.init.gradle",
+        "mode": "100644",
+        "blob": "42e7d45840559fa0444f305d23203b78e7658787",
+        "bytes": 13156,
+        "sha256": "28c407c4fb95a7de690ff9a1455faf33bb62c28b365281dc6c2dfd20a61bb1a9"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/context_guard.gradle",
+        "mode": "100644",
+        "blob": "65835140b9b6fb1f824ab47537848bf6bec64b01",
+        "bytes": 5506,
+        "sha256": "159a20ea2d7233b6e11d114cfa744a5edbdb9c230ffbf938d26fc231af380604"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/tooling_fixtures/README.md",
+        "mode": "100644",
+        "blob": "62ecdbea91e4ce7043a0422c6bf030c7ed2c2be7",
+        "bytes": 203,
+        "sha256": "2f3dd1ac078b0b6962cfbceef8be29240b460ee883903ad8bd0cb61b0017fede"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/tooling_fixtures/build.gradle.kts",
+        "mode": "100644",
+        "blob": "cd869002163ac72761e4f54f1bbc152f9de8fbcb",
+        "bytes": 2798,
+        "sha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/tooling_fixtures/settings.gradle.kts",
+        "mode": "100644",
+        "blob": "4a18f6886531b85c58531124fb49043df068e798",
+        "bytes": 172,
+        "sha256": "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/tooling_fixtures/src/main/kotlin/FlutterAppPluginLoaderPlugin.kt",
+        "mode": "100644",
+        "blob": "463770e272a570f70d204e3a71dea66dc68ef579",
+        "bytes": 2878,
+        "sha256": "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1"
+      },
+      {
+        "path": "apps/android/scripts/test_controlled_runner_hardened.py",
+        "mode": "100644",
+        "blob": "c1e79efaed9b1d148c3fbfda0c080d5a59e6c31c",
+        "bytes": 9467,
+        "sha256": "085abfeb77687f6a8c5c3d32411ec0c5bb76e090443a287a620a70338fb8d42a"
+      },
+      {
+        "path": "apps/android/scripts/test_owned_aar_context.py",
+        "mode": "100644",
+        "blob": "877a70c831d81227d942308594a5243910c63af9",
+        "bytes": 8989,
+        "sha256": "741b5b14032aaefa0bc5340126b3add7be6df9a59258cb9a40b5a653e4296ab1"
+      },
+      {
+        "path": "apps/android/scripts/test_owned_aar_init.py",
+        "mode": "100644",
+        "blob": "21296268bc77adb3866e7eb586b52d1523789a43",
+        "bytes": 17324,
+        "sha256": "1e37eada136c65d92b612b8b63315846c8dba3112711b0ecac2d93de4ef9238a"
+      },
+      {
+        "path": "apps/android/scripts/test_windows_build_observer.py",
+        "mode": "100644",
+        "blob": "0d2f40af021a3116940b5296d40c1c4d638e7473",
+        "bytes": 7871,
+        "sha256": "5b17a98326c01e34e08b468aa06ea4b75abc133b896d95f773eac404b2e43cc4"
+      },
+      {
+        "path": "apps/android/scripts/windows_build_observer.py",
+        "mode": "100644",
+        "blob": "e3be0bc3ce7189faf0bc58ec12782a913c7efe06",
+        "bytes": 13120,
+        "sha256": "f81b91215d35ea388fc9b4d996c6b6637d1857990c2a72e42f49d522dd08b1b3"
+      }
+    ]
+  },
+  "liveMainAtIntake": {
+    "commit": "2da6cfe68a6b0f6d3227f52d8b860ad7ad34c330",
+    "root": "dc8896144a4178a36ffe1d1a8135b1a3000f0b34",
+    "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "schema2PartialOnly": {
+    "ownedAarInitContract": {
+      "schema": 2,
+      "contextPolicy": "strict-parent-root-and-exact-tooling-v2",
+      "scope": "v10.1.5-ordinary-r1-runtime",
+      "contextGuardSha256": "159a20ea2d7233b6e11d114cfa744a5edbdb9c230ffbf938d26fc231af380604",
+      "toolingPins": {
+        "build.gradle.kts": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+        "settings.gradle.kts": "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37",
+        "src/main/kotlin/FlutterAppPluginLoaderPlugin.kt": "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1"
+      },
+      "sourceSha256": "b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2",
+      "ownedSha256": "28c407c4fb95a7de690ff9a1455faf33bb62c28b365281dc6c2dfd20a61bb1a9",
+      "licenseSha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9",
+      "provenanceSha256": "ff4d82097e80239fb9d9861a68731573079d4120a2026aeddc5d4615c456942f"
+    },
+    "definitions": [
+      {
+        "path": "apps/android/app/build.gradle.kts",
+        "sha256": "a10bd79918bb9b899a305b865fabe8ed70e5e2d8caa103cf3e1a5c259e63d954"
+      },
+      {
+        "path": "apps/android/scripts/owned_aar_init.py",
+        "sha256": "ff4be5e437206adbccd78d0d6196befc9f74ca52e21b39c11e94ba5d21bf7232"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/aar_runtime.init.gradle",
+        "sha256": "28c407c4fb95a7de690ff9a1455faf33bb62c28b365281dc6c2dfd20a61bb1a9"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/FLUTTER_LICENSE",
+        "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/SOURCE.json",
+        "sha256": "ff4d82097e80239fb9d9861a68731573079d4120a2026aeddc5d4615c456942f"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/UPSTREAM.patch",
+        "sha256": "80966f8ea92f72137473911531882dd6394cc72da9ceaf0b697cedd7e5a0f240"
+      },
+      {
+        "path": "apps/android/scripts/owned_flutter_aar_init/context_guard.gradle",
+        "sha256": "159a20ea2d7233b6e11d114cfa744a5edbdb9c230ffbf938d26fc231af380604"
+      }
+    ],
+    "trustedRuntimeInventory": false,
+    "inheritedManifestSha256": "2fa1227a56a90a2225f35ff61306a327e23fde1a0cb5a4c3c961c48f5b4ff9fd",
+    "freshComparisons": [
+      {
+        "root": "gradle",
+        "checked": 314,
+        "matching": 314,
+        "mismatches": 0,
+        "bytes": 152076669
+      },
+      {
+        "root": "java",
+        "checked": 492,
+        "matching": 492,
+        "mismatches": 0,
+        "bytes": 317293526
+      },
+      {
+        "root": "flutter",
+        "checked": 6270,
+        "matching": 6270,
+        "mismatches": 0,
+        "bytes": 3197194733
+      },
+      {
+        "root": "pub",
+        "checked": 14931,
+        "matching": 14931,
+        "mismatches": 0,
+        "bytes": 154784334
+      },
+      {
+        "root": "cache",
+        "checked": 52551,
+        "matching": 52549,
+        "mismatches": 2,
+        "bytes": 5109377046
+      },
+      {
+        "root": "android",
+        "checked": 22178,
+        "matching": 22178,
+        "mismatches": 0,
+        "bytes": 2567331818
+      }
+    ],
+    "sourceAndToolPinsValid": true,
+    "uncoveredGeneratedCacheFiles": 103,
+    "changedOperationalMetadataFiles": 2,
+    "flutterToolsOperationalFilesOutsideSealedInventory": 2,
+    "packageReferences": 272,
+    "pluginReferences": 74,
+    "writeIsolationProven": false,
+    "referenceGapClassification": "One flutter_tools reference tree contains two operational .gradle state files outside the old sealed set; no production-source directory missing was established."
+  },
+  "g2": {
+    "maxReservations": 1,
+    "reservedStarts": 0,
+    "popenCalls": 0,
+    "claimExists": false,
+    "status": "NOT_RUN_INPUT_CLOSURE_BLOCKED"
+  },
+  "runtime": {
+    "command": null,
+    "commandSha256": null,
+    "environmentPolicySha256": null,
+    "gradleExit": null,
+    "runtimeStopReason": null,
+    "preflightStopReason": "INPUT_CLOSURE_NOT_PROVEN",
+    "networkSamples": 0,
+    "jobCreated": false,
+    "finalJobActiveProcesses": null,
+    "jobCleanup": "NOT_APPLICABLE_NO_JOB_CREATED",
+    "proposedCommandSha256": "38f0632e4b0313f5ca69ec25d41addb3498842e9c6ec86f136eedaab5d92ee65",
+    "proposedCommandIsRealInvocation": false,
+    "registeredTasks": null,
+    "selectedTasks": null,
+    "graph": "GRAPH_NOT_PROVEN",
+    "documentationTaskSelected": "NOT_PROVEN",
+    "aarPomMetadataApk": "NOT_RUN",
+    "targets": [
+      {
+        "module": "flutter",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "connectivity_plus",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "device_info_plus",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "flutter_plugin_android_lifecycle",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "flutter_secure_storage",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "flutter_webrtc",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "image_picker_android",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "jni",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "jni_flutter",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "livekit_client",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "package_info_plus",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "permission_handler_android",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "shared_preferences_android",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "url_launcher_android",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      },
+      {
+        "module": "video_player_android",
+        "publicationKinds": [
+          "AAR",
+          "POM",
+          "module metadata",
+          "sources",
+          "publish",
+          "Javadoc/Dokka"
+        ],
+        "registered": "NOT_PROVEN",
+        "selected": "NOT_RUN",
+        "executed": "NOT_RUN"
+      }
+    ]
+  },
+  "newChecks": {
+    "type": "Python byte/path/static evidence checks only; no new mock suite or runtime observer/runner test",
+    "commands": [
+      {
+        "script": "intake.py",
+        "args": [
+          "-X",
+          "utf8",
+          "-B"
+        ],
+        "exit": 0,
+        "result": "STATIC_CHECK_COMPLETED"
+      },
+      {
+        "script": "verify_inherited.py",
+        "args": [
+          "-X",
+          "utf8",
+          "-B"
+        ],
+        "exit": 0,
+        "result": "STATIC_CHECK_COMPLETED"
+      },
+      {
+        "script": "prepare_project_inputs.py",
+        "args": [
+          "-X",
+          "utf8",
+          "-B"
+        ],
+        "exit": 0,
+        "result": "STATIC_CHECK_COMPLETED"
+      },
+      {
+        "script": "audit_input_graph.py",
+        "args": [
+          "-X",
+          "utf8",
+          "-B"
+        ],
+        "exit": 0,
+        "result": "STATIC_CHECK_COMPLETED_GATE_BLOCKED"
+      },
+      {
+        "script": "check_delivery_inputs.py",
+        "args": [
+          "-X",
+          "utf8",
+          "-B"
+        ],
+        "exit": 0,
+        "result": "STATIC_CHECK_COMPLETED"
+      }
+    ],
+    "terminalStdoutSha256": "ee3f21444f61eaf6cf9140a96c5dc9eeea9639b0918de7dcdde2e079d3e71f72",
+    "terminalStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "historical140Tests": "HISTORICAL_REUSE_NOT_RERUN"
+  },
+  "protection": {
+    "checkType": "STATIC_EVIDENCE_AND_TARGETED_PROTECTION_ONLY",
+    "exit": 0,
+    "newSchema2RequiredInputsVerified": 7,
+    "freshInheritedFilesRehashed": 96736,
+    "matchingHistoricalPins": 96734,
+    "changedOperationalMetadata": 2,
+    "cacheFileSetExtras": 103,
+    "packageReferences": 272,
+    "pluginReferences": 74,
+    "referenceCoverageGaps": 1,
+    "targetedProtectedFiles": 57,
+    "allTargetedFilesUnchanged": true,
+    "fiveRootsUnchanged": true,
+    "oldRefsUnchanged": 526,
+    "onlyNewCandidateRef": true,
+    "old6caWorktreeClean": true,
+    "canonicalSourceBlobsUnchanged": 17,
+    "newWorktreeProductTreeUnchanged": true,
+    "G2": {
+      "maxReservations": 1,
+      "reservedStarts": 0,
+      "popenCalls": 0,
+      "claimExists": false,
+      "status": "NOT_RUN_INPUT_CLOSURE_BLOCKED"
+    },
+    "oldApk": "1_OF_1_SPENT",
+    "oldG": "1_OF_1_SPENT",
+    "oldA": "NOT_RUN_GATE_CLOSED",
+    "newAarApkGate2DeviceRtcObserverStarts": 0,
+    "newFileBytes": {
+      "worktree": 184279228,
+      "outbox": 6640508
+    },
+    "bytesAccounting": "File logical lengths in owned directories, not allocated disk blocks or common Git storage",
+    "runtimeJob": "NOT_CREATED",
+    "runtimeProcessCleanup": "NOT_APPLICABLE_NO_TASK_RUNTIME_PROCESSES_CREATED",
+    "terminal": "STOP_FOR_ASTRA_NO_SUCCESSOR"
+  },
+  "historicalBudgets": {
+    "APK": "SPENT_1_OF_1",
+    "G": "SPENT_1_OF_1",
+    "A": "NOT_RUN_GATE_CLOSED",
+    "Gate2": "NOT_AUTHORIZED"
+  },
+  "oldEvidencePins": {
+    "partialBytes": 7941328,
+    "partialSha256": "b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4",
+    "apkClaimSha256": "07820a04f5f7bb5fccea83a5372340af33b224269bcf89b476b637230140f8c8",
+    "gClaimSha256": "0a9a2835ea4b1805977a81808ec787fa5070a35f5c4f504c69eb7b37ed091316",
+    "AClaimAbsent": true
+  },
+  "evidenceLevels": [
+    "CODEX_REPORTED_LOCAL_EXECUTION",
+    "DIRECT_GITHUB_READBACK",
+    "LOCAL_ONLY_RAW",
+    "ASTRA_DIRECT_GITHUB_STATIC_PRIOR_6CA_REVIEW"
+  ],
+  "localOnlyEvidence": [
+    {
+      "label": "intake.py",
+      "bytes": 3881,
+      "sha256": "e6e8aca45a48327dac969226a63791b9c347f9a506f1695e73bb956d3b375c54",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "verify_inherited.py",
+      "bytes": 1888,
+      "sha256": "125ef39afba40db6cd79a0e6180180bb101c92e815a2350812ccfa2449d3c390",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepare_project_inputs.py",
+      "bytes": 4260,
+      "sha256": "854253d01636360ad717223011adde966763c4c5fc68400fc9f1413ec67f4299",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "audit_input_graph.py",
+      "bytes": 6501,
+      "sha256": "88421e28fa1b10660d41ce92172b9f35c1dab8153854fe47fea2ac203e2db0a0",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "check_delivery_inputs.py",
+      "bytes": 3932,
+      "sha256": "0bff040ccdeecbc2c4e886561896d84d4644aaa7b743c5fb1525809a6e897d9e",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "protection-before.json",
+      "bytes": 237,
+      "sha256": "36e2f82789f80ab2f2150c28e4d30ba4db008fea14b2bd9be3e7b89e5d612d1c",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "protected-targets-private.json",
+      "bytes": 13949,
+      "sha256": "3dcc69890c637e11eef28c7eba7fc782edc582b585891484b64a0611ee361b60",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "roots-before-private.json",
+      "bytes": 1992,
+      "sha256": "1e66eb983a189d8edd396f64f3db4a22e10c927284f47cc52d7796deb9aaf466",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "refs-before.txt",
+      "bytes": 62571,
+      "sha256": "43aedadb22ba47d0dfd9f21952b45c5300111026ba2a580508567a72c78f5267",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "source-before.json",
+      "bytes": 6104,
+      "sha256": "9d42e1c214ed90843b907262257a619b006887bf5ad12bb28002e41d4900cd2d",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "historical-inventory-survey-private.json",
+      "bytes": 1659,
+      "sha256": "45a1b7a3974321f7fd033c0855e9cdb5967aefdd3c934cf411dee355d901c504",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "inherited-comparison-private.json",
+      "bytes": 1865,
+      "sha256": "759314d3ca9214fd2373be3a60ff8ab0b7b58f347346d72c9352b34b5eec633b",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "schema2-partial-inventory-private.json",
+      "bytes": 4647,
+      "sha256": "0e69ae738362c5f21e041fc196af167421e86c3388559c3b5bf2f9090840985b",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "generated-project-inputs-private.json",
+      "bytes": 1538922,
+      "sha256": "18801f506365d7dfcc960f815c9241a9f33fcb894f2418590d78a3707090bfe8",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "proposed-command-private.json",
+      "bytes": 2038,
+      "sha256": "3b1654ca11656aa3775a8cbc2730ffbf52fced3f26a008330870b608edf4978d",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "input-closure-audit-private.json",
+      "bytes": 175363,
+      "sha256": "a1df77b28ebb89991b091ec107c49e2585fbc0d802250195897c2633b5b8c1d1",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "tool-identities-private.json",
+      "bytes": 3304,
+      "sha256": "66336539a41e7389b9d4ab4712eaeca6629053d2343980de151b718b25cca59a",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "terminal-prepublication.json",
+      "bytes": 1286,
+      "sha256": "31d769fba50cdd488a6dee6cc7f5c59fe2be7acf7953e323e2831cf6eb2e7c77",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "terminal-check.stdout.txt",
+      "bytes": 1288,
+      "sha256": "ee3f21444f61eaf6cf9140a96c5dc9eeea9639b0918de7dcdde2e079d3e71f72",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "terminal-check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "terminal-check.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "storage": "LOCAL_ONLY_RAW"
+    }
+  ],
+  "report": {
+    "path": "G2_SOURCE_HARDENED_GRAPH_VERIFICATION_REPORT_20261027.md",
+    "bytes": 11253,
+    "sha256": "ffe14d7290768b178be330bd936990e5dbac460136567d6c3223873bac5b79e1"
+  },
+  "terminal": "STOP_AWAITING_ASTRA_NO_AUTOMATIC_SUCCESSOR",
+  "boundedNonAuthorReview": {
+    "scope": "Read-only report/index consistency and redaction; targeted source mapping only",
+    "noRuntimeOrTestsExecutedByReviewer": true,
+    "finding": "No misleading runtime success or cache-corruption claim or host-data leak identified",
+    "isAstraAcceptance": false
+  }
+}
