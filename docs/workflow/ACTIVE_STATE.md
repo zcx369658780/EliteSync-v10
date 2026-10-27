@@ -1,3 +1,17 @@
+# EliteSync v10｜2026-10-27 Astra ba77定点只读根因审查后状态（本审查分支）
+
+**`BA77_BOUNDED_READONLY_ROOTCAUSE_REVIEW_ACCEPTED_WITH_OBSERVATIONS / SCOPE_ACTUAL_ROOT_CAUSE_NOT_PROVEN / OBSERVER_FAILING_INSTANCE_NOT_PROVEN / CACHE_CORRUPTION_NOT_PROVEN / TOOLCHAIN_VERSION_CONFLICT_NOT_PROVEN / G_GRAPH_NOT_PROVEN / A_NOT_RUN_GATE_CLOSED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / G_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Astra直接核验候选`ba77a3c840c36550a7ec3aa5a6475b69d874004f`唯一Parent`fd0da9cce87c5eb84aec96dd11ea37aecd7aefff`、Root`8817729f4804d364e11c1ecb477e1e46a1cf9152`、未截断6635项递归Tree、两新增报告/索引与原任务，以及对应GitHub项目源码。**本次接受仅是只读根因报告及静态解释的有界交付，不是G/Gradle/AAR/APK验收或整版接受。**
+
+审查正文：[BA77_SCOPE_OBSERVER_READONLY_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/BA77_SCOPE_OBSERVER_READONLY_ASTRA_REVIEW_20261027.md)。候选报告Blob`8c4947c5b4155ce495eae25b799b8c053a96ea94`、索引Blob`5817f409b6d5a3cb5fa5540306135a201d9e396c`，位于**独立Codex候选Commit**，不是产品main。Scope included build参数不继承的静态机制有证据，但当次唯一失败Gradle对象未存；observer路径不可读的合并异常源码已确认，失败PID/API错误码未存。没有具名缓存损坏或工具版本冲突证据，因此不执行清缓存/重装升级。
+
+**下一步建议（未授权）：** 合并同一有界任务中进行项目自有init的context合同修复与任务私有observer/runner的失败前诊断证据增强，要求零Gradle、保持fail-closed，静态+mock核验；再独立验收，之后另求Owner新G预算。原G 1/1、旧APK 1/1耗尽，A因G门禁失败保持NOT_RUN；不能跳过。产品main v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`/services `0cb1f9d19659291a462488b3686fd0a07a6698ac`不变。本次无修复、无新任务派发、无构建。等待Owner决定。
+
+以下是main截至本审查分支创建时的**原历史正文**，原`ROOTCAUSE_READONLY_TASK_PUBLISHED`描述本审查前状态，不能取代本页顶部裁决。
+
+---
+
 # EliteSync-v10｜2026-10-27 最新 Owner 授权与正式任务入口
 
 **最新：`V10.1.5_ROOTCAUSE_READONLY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / FD0_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / G_GRAPH_NOT_PROVEN / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / G_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED`**
