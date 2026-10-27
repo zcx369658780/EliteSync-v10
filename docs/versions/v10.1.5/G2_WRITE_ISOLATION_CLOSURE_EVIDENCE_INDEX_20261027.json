@@ -1,0 +1,948 @@
+{
+  "schema": 1,
+  "taskBlob": "b6519b415d827232a9dd5f9760b322ec1a7fdaaf",
+  "verdict": "WRITE_ISOLATION_STILL_BLOCKED / G2_INVENTORY_CLOSURE_BLOCKED / RUNTIME_NOT_PROVEN",
+  "branch": "codex/v10.1.5-g2-write-isolation-20261027",
+  "uniqueParent": "286eb20d1d6af2e76423cfbd3253880f47c9ae16",
+  "source": {
+    "commit": "286eb20d1d6af2e76423cfbd3253880f47c9ae16",
+    "parent": "6ca09a66c0ef9619df7a3d7d4b089516f409954f",
+    "root": "4177d75aec1eae6f33cd28ec45c88dce8496274a",
+    "apps": "5af7a9d0042be19437616e969e260658b67e9353",
+    "services": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+    "astraReviewBlob": "ce7250d9e4cfe42bd62c4607632eb84ac53bae5b",
+    "sixCaAcceptance": "SOURCE_LEVEL_ONLY"
+  },
+  "liveMainAtIntake": {
+    "commit": "fdf7812d07006503b81a88020e4d7f03a6b33743",
+    "root": "4a4ca4a1328f97baa3b21510aefd7e8a4a73e456",
+    "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "sourceRegistry": [
+    {
+      "id": "S1",
+      "root": "gradle",
+      "path": "src/core-api/org/gradle/StartParameter.java",
+      "bytes": 36201,
+      "sha256": "42ac74ccccd2f191f1c8973ceed1a16b2f04e9ede05b01f2b4f712b394eceb9b"
+    },
+    {
+      "id": "S2",
+      "root": "gradle",
+      "path": "src/core/org/gradle/api/internal/BuildDefinition.java",
+      "bytes": 5402,
+      "sha256": "488090b2b7ee92a589ebc165984569463943bd2b49d775655074bd224a462b18"
+    },
+    {
+      "id": "S3",
+      "root": "gradle",
+      "path": "src/core/org/gradle/cache/internal/BuildScopeCacheDir.java",
+      "bytes": 2316,
+      "sha256": "956865af25f63901448a81e6d03d9feb1cb489004d1cec3b4bf545e792f2d36a"
+    },
+    {
+      "id": "S4",
+      "root": "gradle",
+      "path": "src/core/org/gradle/api/internal/changedetection/state/DefaultFileAccessTimeJournal.java",
+      "bytes": 3932,
+      "sha256": "4388cf78dbce35959c5f84b2061b69ffafbcddeaa28b0d7fe58e57130654b1b4"
+    },
+    {
+      "id": "S5",
+      "root": "gradle",
+      "path": "src/core/org/gradle/api/internal/changedetection/state/CrossBuildFileHashCache.java",
+      "bytes": 2768,
+      "sha256": "a1defe8b9fbaf0b7b4012dc7a23ccfb72c9ca3babe1427fa20c12a0253789d65"
+    },
+    {
+      "id": "S6",
+      "root": "gradle",
+      "path": "src/core/org/gradle/internal/service/scopes/ExecutionBuildServices.java",
+      "bytes": 12132,
+      "sha256": "b333e6754eb279d427940b3f7f165e627b82a69b707cd2d7781a38892caf6086"
+    },
+    {
+      "id": "S7",
+      "root": "gradle",
+      "path": "src/core/org/gradle/internal/service/scopes/VirtualFileSystemServices.java",
+      "bytes": 21050,
+      "sha256": "a5469b85c2af63633c01ea4964eeb5bd5c5730989ae7c3c75928316375947aa0"
+    },
+    {
+      "id": "S8",
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/DefaultArtifactCaches.java",
+      "bytes": 8191,
+      "sha256": "33f8f4470868ed5e90ab492064527d5d78c249f45c791149bde4ce25c80fe38c"
+    },
+    {
+      "id": "S9",
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/ReadOnlyArtifactCacheLockingAccessCoordinator.java",
+      "bytes": 6109,
+      "sha256": "08b9903f6590eef7b8659bce5e7cb9024c1623054f5f272dd31d28bfe69dcd11"
+    },
+    {
+      "id": "S10",
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/modulecache/ReadOnlyModuleMetadataCache.java",
+      "bytes": 3466,
+      "sha256": "321797e0457a928c98a8c8321e14bdaf29f2ae02fe13819fbf65a02859413731"
+    },
+    {
+      "id": "S11",
+      "root": "gradle",
+      "path": "docs/userguide/dependency_caching.html",
+      "bytes": 188467,
+      "sha256": "8f4a7e8d8a4b4a284dda6eb3de1880966853c9f83b4d191bab1ee2603ded9027"
+    },
+    {
+      "id": "S12",
+      "root": "gradle",
+      "path": "docs/userguide/command_line_interface.html",
+      "bytes": 223166,
+      "sha256": "77b331ab56c9d749a868e87aa145d959e5176917a4d30412d77ab35ee0c984dc"
+    },
+    {
+      "id": "S13",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/build.gradle.kts",
+      "bytes": 2798,
+      "sha256": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1"
+    },
+    {
+      "id": "S14",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/settings.gradle.kts",
+      "bytes": 172,
+      "sha256": "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37"
+    },
+    {
+      "id": "S15",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/module_plugin_loader.gradle",
+      "bytes": 2057,
+      "sha256": "169b243692655ef740aab29795e4c4202a7b43b9a5e53ef713da307211145913"
+    },
+    {
+      "id": "S16",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterPlugin.kt",
+      "bytes": 42405,
+      "sha256": "1eeb49a1e17859b150e8ed5109c9af0932fafacb06810d2a02bc688a69387313"
+    },
+    {
+      "id": "S17",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterPluginUtils.kt",
+      "bytes": 35995,
+      "sha256": "e0eb454157e67127b7677d697e924eb6b0556c8a4e51405045bc5e7f77798fd0"
+    },
+    {
+      "id": "S18",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/kotlin/FlutterAppPluginLoaderPlugin.kt",
+      "bytes": 2878,
+      "sha256": "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1"
+    },
+    {
+      "id": "S19",
+      "root": "flutter",
+      "path": "packages/flutter_tools/gradle/src/main/scripts/native_plugin_loader.gradle.kts",
+      "bytes": 6843,
+      "sha256": "aac04dbd690b5358b0690e200e4381e0089a3e9b04987c57d676d17ef86b4a20"
+    },
+    {
+      "id": "S20",
+      "root": "gradle",
+      "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/DefaultArtifactCacheMetadata.java",
+      "bytes": 2345,
+      "sha256": "ade97a0d41ec002c0a8a3a77466fd92af3151b64001dd9200215ee3edbb2e107"
+    },
+    {
+      "id": "S21",
+      "root": "gradle",
+      "path": "src/core/org/gradle/internal/service/scopes/GradleUserHomeScopeServices.java",
+      "bytes": 14516,
+      "sha256": "1f96a395913d33667e3f5e2029a04844659177a1d3ec80e6ddf9654ad4a4a937"
+    },
+    {
+      "id": "S22",
+      "root": "gradle",
+      "path": "src/core/org/gradle/api/internal/StartParameterInternal.java",
+      "bytes": 9918,
+      "sha256": "843c741af0dc1c79c44326a9ab70e218f42a07b2c9cd7c133718a905dc02d616"
+    }
+  ],
+  "readWriteMatrix": [
+    {
+      "family": "distribution",
+      "logicalRole": "Fixed Gradle 8.14 bin/lib; no Wrapper",
+      "readWriteEvidence": "PINNED_READ_SOURCE",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S8",
+        "S12"
+      ],
+      "plannedPrivateWriteRelative": "none",
+      "estimatedBytesOrBound": 152076669,
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Installation writes or injected global init scripts remain forbidden"
+    },
+    {
+      "family": "dependency-seed",
+      "logicalRole": "modules-2 immutable dependency metadata/artifacts",
+      "readWriteEvidence": "PROVEN_STATIC_SCOPE_LIMIT",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S8",
+        "S9",
+        "S11"
+      ],
+      "plannedPrivateWriteRelative": "readonly-seed/modules-2",
+      "estimatedBytesOrBound": 1362106905,
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Whole seed exceeds cap; subset completeness and OS read-only state unproven"
+    },
+    {
+      "family": "writable-dependencies",
+      "logicalRole": "Gradle second-level modules-2 cache",
+      "readWriteEvidence": "PROVEN_STATIC",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S8",
+        "S9"
+      ],
+      "plannedPrivateWriteRelative": "home/caches/modules-2",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Missing offline dependencies must fail; no download fallback"
+    },
+    {
+      "family": "hash-journal",
+      "logicalRole": "fileHashes, checksums and journal-1/file-access",
+      "readWriteEvidence": "PROVEN_STATIC",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S4",
+        "S5",
+        "S7"
+      ],
+      "plannedPrivateWriteRelative": "home/caches",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Fresh private state only; never re-pin the old mutable state as immutable"
+    },
+    {
+      "family": "compiled-scripts",
+      "logicalRole": "groovy-dsl, jars-9, Kotlin DSL, transforms",
+      "readWriteEvidence": "PROVEN_STATIC_WITH_UNENUMERATED_OUTPUTS",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S7",
+        "S8"
+      ],
+      "plannedPrivateWriteRelative": "home/caches",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "103 historical derived files not inherited as authoritative source; new unexpected paths rejected"
+    },
+    {
+      "family": "daemon-native",
+      "logicalRole": "Single-use daemon, native services, registry and locks",
+      "readWriteEvidence": "REASONABLE_RISK",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S1"
+      ],
+      "plannedPrivateWriteRelative": "home + tmp + profile",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "No-daemon does not prevent single-use daemon; complete implicit outputs not proven"
+    },
+    {
+      "family": "root-project-cache",
+      "logicalRole": "Root build project cache",
+      "readWriteEvidence": "PROVEN_STATIC",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S1",
+        "S3",
+        "S12"
+      ],
+      "plannedPrivateWriteRelative": "project/apps/flutter_elitesync_module/.android/.gradle",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Explicit project-cache-dir proposal is root-only; command difference disclosed"
+    },
+    {
+      "family": "included-tooling-cache",
+      "logicalRole": "Flutter included build .gradle/buildOutputCleanup",
+      "readWriteEvidence": "PROVEN_STATIC",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S1",
+        "S2",
+        "S3",
+        "S6"
+      ],
+      "plannedPrivateWriteRelative": "flutter/packages/flutter_tools/gradle/.gradle",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "newBuild omits projectCacheDir; private physical tooling root encloses default location"
+    },
+    {
+      "family": "included-tooling-build",
+      "logicalRole": "Plugin Kotlin/Groovy/JAR/build outputs",
+      "readWriteEvidence": "REASONABLE_RISK",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S13",
+        "S14"
+      ],
+      "plannedPrivateWriteRelative": "flutter/packages/flutter_tools/gradle/build",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Default buildDirectory private by copied root; third-party compiler custom outputs unknown"
+    },
+    {
+      "family": "module-input-output",
+      "logicalRole": "settings/plugin loader, Flutter build/.cxx, local Maven output-dir",
+      "readWriteEvidence": "PROVEN_STATIC_PARTIAL",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S15",
+        "S16",
+        "S17"
+      ],
+      "plannedPrivateWriteRelative": "project/apps/flutter_elitesync_module",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Only templates and seven owned inputs copied; full module/runtime source graph not materialized"
+    },
+    {
+      "family": "native-plugin-source",
+      "logicalRole": "14 native plugin roots; remaining 74-platform references not all build inputs",
+      "readWriteEvidence": "PROVEN_STATIC_PARTIAL",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S15",
+        "S18",
+        "S19"
+      ],
+      "plannedPrivateWriteRelative": "plugins/<name>",
+      "estimatedBytesOrBound": 8207451,
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Independent full selected-package copies; complete Dart package-config closure not rebuilt"
+    },
+    {
+      "family": "native-plugin-output",
+      "logicalRole": "Module loader redirects plugin buildDirectory",
+      "readWriteEvidence": "PROVEN_STATIC",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S15"
+      ],
+      "plannedPrivateWriteRelative": "project/apps/flutter_elitesync_module/.android/plugins_build_output",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Plugin-specific projectDir writes may remain; copied roots protect historical packages but unknown paths still deny"
+    },
+    {
+      "family": "flutter-sdk-read",
+      "logicalRole": "Tooling, license, engine stamps; bin/cache/artifacts and Dart SDK",
+      "readWriteEvidence": "UNKNOWN_COMPLETE_SET",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S16",
+        "S17"
+      ],
+      "plannedPrivateWriteRelative": "flutter",
+      "estimatedBytesOrBound": 364731,
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Minimal tooling/stamps copied, not a complete SDK; root source pins alone do not prove read closure"
+    },
+    {
+      "family": "android-sdk",
+      "logicalRole": "Android platforms/build-tools/NDK/CMake",
+      "readWriteEvidence": "UNKNOWN_WRITES",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S16",
+        "S17"
+      ],
+      "plannedPrivateWriteRelative": "UNRESOLVED",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "forceNdkDownload config wires native build; SDK package installation/metadata/cache writes not ruled out by offline"
+    },
+    {
+      "family": "jdk",
+      "logicalRole": "JDK17 installation, JVM user-home/java.io.tmpdir/service state",
+      "readWriteEvidence": "REASONABLE_RISK",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S1"
+      ],
+      "plannedPrivateWriteRelative": "profile + tmp",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Installation is read candidate; Java/daemon temp preferences need future pinned environment/OS observation"
+    },
+    {
+      "family": "pub",
+      "logicalRole": "Dart package sources and Pub cache/generated state",
+      "readWriteEvidence": "UNKNOWN_COMPLETE_SET",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S18",
+        "S19"
+      ],
+      "plannedPrivateWriteRelative": "pub-writable and selected plugins",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "No Flutter/pub tool may run now; 272 historical package mappings are reused, not complete new closure"
+    },
+    {
+      "family": "profile-temp",
+      "logicalRole": "HOME/USERPROFILE/APPDATA/LOCALAPPDATA/TEMP/TMP and Android user",
+      "readWriteEvidence": "REASONABLE_RISK",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [
+        "S1"
+      ],
+      "plannedPrivateWriteRelative": "profile + tmp + android-user",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Proposal only; Java user.home difference explicit, actual environment and defaults not sampled"
+    },
+    {
+      "family": "unknown-output",
+      "logicalRole": "Anything outside declared family/root, redirected or identity unknown",
+      "readWriteEvidence": "UNKNOWN_REJECT",
+      "readSource": "Bound to local source registry, frozen 6ca/286 identities and named copy map; private paths only in LOCAL_ONLY",
+      "sourceAnchors": [],
+      "plannedPrivateWriteRelative": "DENY",
+      "estimatedBytesOrBound": "UNKNOWN",
+      "detection": "Preflight canonical/hash/file-id checks plus mock declared-route rejection only; actual out-of-task writes NOT_OBSERVED/NOT_ENFORCED",
+      "rollback": "Original roots untouched; retain task-owned copies and logs; no deletion performed",
+      "missingValidation": "Static policy rejects; no OS interception/ACL/TOCTOU enforcement has run"
+    }
+  ],
+  "unresolvedWriteSurfaces": [
+    "DEPENDENCY_SEED_EXCEEDS_CAP_IF_FULL_COPY",
+    "MINIMAL_SEED_COMPLETE_DEPENDENCY_SET_NOT_PROVEN",
+    "OS_READ_ONLY_SEED_PROTECTION_NOT_IMPLEMENTED",
+    "FULL_FLUTTER_AND_DART_READ_SET_NOT_ESTABLISHED",
+    "ANDROID_SDK_WRITES_NOT_CLOSED",
+    "IMPLICIT_OUTPUTS_AND_REAL_PATH_IDENTITY_RACES_NOT_PROVEN",
+    "INITIAL_PREPARATION_ALLOCATED_DISK_DELTA_UNAVAILABLE"
+  ],
+  "stateClassification": {
+    "namedFiles": 107,
+    "mutableMetadata": 2,
+    "derivedGroovy": 64,
+    "derivedJars9": 39,
+    "toolingBuildOutputCleanup": 2,
+    "allClassifiedAndRetained": true,
+    "writerTimeCorruptionOrDownloadProven": false,
+    "sealedAsImmutable": false
+  },
+  "localSourceProvenance": {
+    "existingLocalDistributionMatchesAllPinnedRuntimeFiles": 314,
+    "localSrcDocsAnchoredToSameDistribution": true,
+    "newlyVerifiedUpstreamSignature": false
+  },
+  "skeleton": {
+    "copyPairs": 1098,
+    "logicalBytes": 8277854,
+    "targetFileIdsIndependent": true,
+    "targetHardlinkCount": 1,
+    "nativePluginRoots": 14,
+    "ownedSchema2InputsVerified": 7,
+    "wholeSdkOrCacheCopies": 0,
+    "fullSdkReadClosure": false,
+    "roSeed": "EMPTY_PLACEHOLDER",
+    "completeRuntimeInventory": false,
+    "initialOwnedPartialLogicalBytes": 5200449,
+    "resumedVolumeFreeSpaceDecreaseBytes": 11603968,
+    "volumeDeltaIncludesOtherHostActivity": true,
+    "fullRoundAllocatedDiskIncrease": "NOT_PROVEN_FIRST_PREPARATION_BASELINE_NOT_PERSISTED",
+    "capBytes": 536870912,
+    "fullModules2SeedLogicalBytes": 1362106905,
+    "fullModules2FilesSizeCheckedOnly": 3183
+  },
+  "testResult": {
+    "testKind": "FULL_MOCK_WINDOWS_PATH_FACTS_AND_STATIC_POLICY_ONLY",
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "forbiddenRuntimeAuditEvents": [],
+    "seconds": 0.030999999959021807,
+    "exit": 0
+  },
+  "testLimits": [
+    "Mock facts are caller declarations, not Windows handle validation",
+    "No real links or process/socket/DLL calls used",
+    "Task token comparison is not Owner/process authentication",
+    "Command/environment models compare given values and do not bind real launcher state"
+  ],
+  "commands": [
+    {
+      "script": "intake.py",
+      "exit": 0
+    },
+    {
+      "script": "collect_sources.py",
+      "exit": 0
+    },
+    {
+      "script": "prepare_skeleton_v1.py",
+      "exit": 1,
+      "failure": "StopIteration in explicit LiveKit historical/current root mapping",
+      "rawFailureRetained": true
+    },
+    {
+      "script": "prepare_skeleton.py",
+      "exit": 0
+    },
+    {
+      "script": "audit_skeleton.py",
+      "exit": 0
+    },
+    {
+      "script": "run_mock_tests.py -delivery",
+      "argsPrefix": [
+        "-X",
+        "utf8",
+        "-B"
+      ],
+      "exit": 0,
+      "tests": 56
+    },
+    {
+      "script": "check_protection.py prepublish",
+      "exit": 0
+    }
+  ],
+  "historicalEvidenceNotRerun": [
+    "140 prior mock tests",
+    "96736 prior tool/cache hashes",
+    "26784 protected-object set",
+    "108 attachments",
+    "100453 old inventory"
+  ],
+  "proposedOnly": {
+    "status": "PROPOSED_NOT_EXECUTED",
+    "commandSha256": "ae69e374ff7d4c36e33c731e4fb7fdf15bc6dc2e1fdcfb2e3fba67a55c739b4a",
+    "environmentPolicySha256": "5973aff6465721e10c7df98ba5e59790f09b1636713a947a7e05827e208cec61",
+    "fullSourceBuildNumberRecomputed": false,
+    "realCommandHash": null,
+    "realGradleExit": null,
+    "selectedGraph": null,
+    "observerSamples": 0,
+    "jobCleanup": "NOT_RUN_NO_JOB_CREATED",
+    "readyForPopen": false
+  },
+  "budget": {
+    "thisTaskRuntimeAuthorization": 0,
+    "oldApk": "SPENT_1_OF_1",
+    "oldG": "SPENT_1_OF_1",
+    "oldA": "NOT_RUN_GATE_CLOSED",
+    "G2ReservedStarts": 0,
+    "G2PopenCalls": 0,
+    "G2ClaimCreatedOrModified": false,
+    "Gate2": "NOT_AUTHORIZED"
+  },
+  "protection": {
+    "stage": "prepublish-v2",
+    "status": "WRITE_ISOLATION_STILL_BLOCKED",
+    "targetedProtectedOriginals": 79,
+    "namedStateFilesUnchanged": 107,
+    "sourceAnchorsUnchanged": 22,
+    "fiveHistoricalRootsUnchanged": true,
+    "allLocalRefsUnchanged": 527,
+    "source286HeadAndCleanUnchanged": true,
+    "privateCopyPairsChecked": 1098,
+    "sourceTargetHashesAndIndependentIds": true,
+    "schema2RequiredInputs": 7,
+    "modules2FilesSizeCheckedOnly": 3183,
+    "modules2ActualLogicalBytes": 1362106905,
+    "mockTests": 56,
+    "forbiddenAuditEvents": 0,
+    "G2ClaimAbsent": true,
+    "oldAClaimAbsent": true,
+    "oldApkAndG": "SPENT_1_OF_1",
+    "G2ReservedStarts": 0,
+    "newRuntimeStarts": 0,
+    "skeletonLogicalBytes": 8277854,
+    "exit": 0
+  },
+  "protectedPins": {
+    "partialBytes": 7941328,
+    "partialSha256": "b6fd9e325eaf2b1d785efdd9e32baad65e85c6a577be7c28c970a80158a679d4",
+    "oldApkClaimSha256": "07820a04f5f7bb5fccea83a5372340af33b224269bcf89b476b637230140f8c8",
+    "oldGClaimSha256": "0a9a2835ea4b1805977a81808ec787fa5070a35f5c4f504c69eb7b37ed091316",
+    "AClaimAbsent": true,
+    "G2ClaimAbsent": true
+  },
+  "publicStaticSources": [
+    {
+      "path": "docs/versions/v10.1.5/write_isolation_static_20261027/isolation_contract.py",
+      "mode": "100644",
+      "bytes": 6039,
+      "sha256": "56fe56aa1597d27469b4c77da97a1f6aac956a97455843d40ad472a9d016f80c"
+    },
+    {
+      "path": "docs/versions/v10.1.5/write_isolation_static_20261027/test_isolation_contract.py",
+      "mode": "100644",
+      "bytes": 9406,
+      "sha256": "23222ac7acdeb17a8aab722b021a70e2ea6d1264eb7e4fb67ca8b1d88aa82911"
+    }
+  ],
+  "rawEvidence": [
+    {
+      "label": "intake.py",
+      "bytes": 3862,
+      "sha256": "925bca43f6606f49b42345cf0f9852887b9c746600837a320acd211381a946d1",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "intake.stdout.txt",
+      "bytes": 271,
+      "sha256": "97b7ea16016deebcf6f35f94bcdbb68d9c21f55aa0fa7f606c8b89fd935f5898",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "intake.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "intake.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "collect_sources.py",
+      "bytes": 4570,
+      "sha256": "8f5d2f536b264c4563a5b355d1fd28bdee8a130e429c5c11d5db47ff54e5570f",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "sources.stdout.txt",
+      "bytes": 339,
+      "sha256": "593ef4801f4048153bc202efedb66c0ae22c1d650209b1c2f3aaf4e4c3eea4b4",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "sources.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "sources.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "state-classification-private.json",
+      "bytes": 47756,
+      "sha256": "627ff970c60fdadbe55283a6afa2bbabcb19ca67462ef13ca236cd145cbb341c",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "source-evidence-private.json",
+      "bytes": 7631,
+      "sha256": "642ab4440d2bdbf2cdf3f7f9d21b31677bb72c87aea3571ec0c7e97ff8545d27",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "additional-source-evidence-private.json",
+      "bytes": 1321,
+      "sha256": "6bce61c588ce1612de77fd79695a88f7da2b3876d3d2888274d4fb5c1212987a",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "static-findings.json",
+      "bytes": 394,
+      "sha256": "557c6356ced5a9e6995bdb93590eb8fce5c0f9d5d8788ac9a2df1a3afc3d1c8b",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "gradle-local-source-anchor-private.json",
+      "bytes": 49204,
+      "sha256": "aec97548af9808b0a1935ab7140d6f8c9ef120d6b9c19fd079e6ef9eeec3c207",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "capacity-estimates-private.json",
+      "bytes": 268,
+      "sha256": "40f31ef2d1890b878e986df9fbad2b7b013de4ce5f24b958f321282ed8706eba",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepare_skeleton_v1.py",
+      "bytes": 5067,
+      "sha256": "0a3d0a191dfef325cd6f2a51332115308b2a2c059748052794e41b2f45fd6899",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v1.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v1.stderr.txt",
+      "bytes": 423,
+      "sha256": "3b1bf70ea425daad4a31e71e639fbc51b11c437eef0e8cb5bbd439fb1213071b",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v1.exit.txt",
+      "bytes": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepare_skeleton.py",
+      "bytes": 5966,
+      "sha256": "b5f06ecc56614389177635e63c731e0788939010ef293fbae924078f7f28a1cc",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v2.stdout.txt",
+      "bytes": 1140,
+      "sha256": "4a56e342214197236a368daa41013883675b054c59d1fd26112fcd73053de8f5",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v2.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-v2.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-result-private.json",
+      "bytes": 1138,
+      "sha256": "f46c55a2924a3adab95bdf68e450d2f7cce573607a5a79d3345513e499ac4b1d",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "copy-map-final-private.json",
+      "bytes": 743661,
+      "sha256": "d1600ac6fefd5156a80192a459cd6c3425b62d89bbe40c73bd0335fb72d8822d",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "plugin-map-private.json",
+      "bytes": 5683,
+      "sha256": "9497ad7774f766312a5ff39e672bbeaa5234c0b671848529c3066cfada453139",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "audit_skeleton.py",
+      "bytes": 4459,
+      "sha256": "2020c42ba0c65bd35071f2df0ce6da72b566469cd306f509144f8090924cc47b",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-audit.json",
+      "bytes": 568,
+      "sha256": "1fc456e77a397b7fd9ad4ae030bbd0e43d4741b114291b799f023348f5515f50",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-audit.stdout.txt",
+      "bytes": 510,
+      "sha256": "740af7cc855309f3bef19191abfcc8cbd24c0ee986e66874b5dfa36898b060a2",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-audit.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "skeleton-audit.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "private-project-schema2-partial.json",
+      "bytes": 3996,
+      "sha256": "61eb481e8bdf059b0e9a842551df2a7bdca5523bf987bf5242bf00a552d12e1f",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "future-proposal-private.json",
+      "bytes": 3840,
+      "sha256": "6f321040c598ae59e9d90e13dd0da6f0fd5c2d00e3f40352dbc2e55a8f20e4a4",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "matrix-and-source-index.json",
+      "bytes": 22116,
+      "sha256": "5b434f39aab43b769bda2098ceda14d92522dfcae4f191a93aa74f200e1f19b3",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "run_mock_tests.py",
+      "bytes": 1116,
+      "sha256": "a52b36fdfb6e95df81fa1ef7c9634d92a0a8d42709acd6e4ee2a3664d95ff58e",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-result.json",
+      "bytes": 228,
+      "sha256": "d996165aeaa5adf203f00971fc9b3d3d3083d05c78f053ab4d9b56ef91815ea9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-final-result.json",
+      "bytes": 227,
+      "sha256": "c9535c8ccaf50bf7bb689b555bc911d09e2d9a02327fad821cb6b9363e41bae9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-delivery-result.json",
+      "bytes": 228,
+      "sha256": "982f6063c3a340ba72052187c24282386b9a82f6be3e74dad29b97ba8ba9c70f",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-delivery.stdout.txt",
+      "bytes": 203,
+      "sha256": "5993996367b87c1c776ef0cb2ddda85f05a673b570073d8819c3725ff0b73159",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-delivery.stderr.txt",
+      "bytes": 5588,
+      "sha256": "0e8d2bfe416d131759018b71d133d72f615e590adbc1a2dac132a3def8e0e967",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "mock-delivery.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "check_protection.py",
+      "bytes": 3788,
+      "sha256": "61882b64f0aab7badc92d275ecc1dd829d737fb1c382cafc90560616eb0940df",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "protection-prepublish.json",
+      "bytes": 738,
+      "sha256": "c343c1f32584ae552212395e2fc961b30d375e36fa2980dedc2b3955fc21823b",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish.stdout.txt",
+      "bytes": 740,
+      "sha256": "a82ee1d00efa3cdb32500d6a1bcaf32469ca6c8f9372a5619fbf96415745ece0",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "redaction-check-note.json",
+      "bytes": 545,
+      "sha256": "34c8873f12dc8e5f34887716ea987cb5822349f888bb4bef896b41e9da77e2db",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "protection-prepublish-v2.json",
+      "bytes": 741,
+      "sha256": "14b82496c6eadecc2ce3d04117c0ed735b0e70a24889dea9577db8336f70288e",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish-v2.stdout.txt",
+      "bytes": 743,
+      "sha256": "35c7273bf3522f57cfa7be90635c847c235becbc8e81259616aa0373c2ab884f",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish-v2.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "level": "LOCAL_ONLY_RAW"
+    },
+    {
+      "label": "prepublish-v2.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "level": "LOCAL_ONLY_RAW"
+    }
+  ],
+  "report": {
+    "path": "G2_WRITE_ISOLATION_CLOSURE_REPORT_20261027.md",
+    "bytes": 17900,
+    "sha256": "65a6f2fb8a0b77fec5a6914f16c0ea199b77afdf1c5bbd523c165754fbdc2d4b"
+  },
+  "evidenceLevels": [
+    "DIRECT_GITHUB_READBACK",
+    "CODEX_REPORTED_LOCAL_EXECUTION",
+    "LOCAL_ONLY_RAW",
+    "ASTRA_DIRECT_GITHUB_STATIC_PRIOR_REVIEW"
+  ],
+  "boundedHelperReview": {
+    "gradleSourceAndPolicyReview": "READ_ONLY_STATIC",
+    "reviewerExecutedRuntimeOrTests": false,
+    "flutterHelperInheritedSummaryIsFreshEvidence": false,
+    "isAstraAcceptance": false
+  },
+  "terminal": "STOP_AWAITING_ASTRA_NO_AUTOMATIC_G2_OR_SUCCESSOR",
+  "redactionHeuristicInitialFailure": {
+    "exit": 1,
+    "reason": "Boolean field name matched overly broad file-ID substring rule",
+    "isActualSensitiveDataDisclosure": false,
+    "evidenceKind": "TOOL_RESULT_TRANSCRIPTION_NOT_RAW_STDERR"
+  }
+}
