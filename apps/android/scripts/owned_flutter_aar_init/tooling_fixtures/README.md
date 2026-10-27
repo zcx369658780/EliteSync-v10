@@ -1,0 +1,1 @@
+Exact small BSD-3-Clause Flutter tooling source fixtures. See ../SOURCE.json toolingPins and ../FLUTTER_LICENSE. Used only by isolated byte/path policy tests; never a replacement SDK or Gradle runtime.

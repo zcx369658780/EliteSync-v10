@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "option": "A_TRACKED_DERIVATIVE",
   "scope": "v10.1.5-ordinary-r1-runtime",
   "upstream": {
@@ -15,15 +15,16 @@
     "file": "FLUTTER_LICENSE",
     "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
   },
-  "ownedSha256": "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d",
-  "patchSha256": "d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947",
+  "ownedSha256": "28c407c4fb95a7de690ff9a1455faf33bb62c28b365281dc6c2dfd20a61bb1a9",
+  "patchSha256": "80966f8ea92f72137473911531882dd6394cc72da9ceaf0b697cedd7e5a0f240",
   "changes": [
-    "Add attribution and fail-closed scope preamble",
+    "Add strict root/direct-tooling context guard; no broad included-build exemption",
     "Remove exactly one withJavadocJar request in flavor branch",
-    "Remove exactly one withJavadocJar request in no-flavor branch"
+    "Remove exactly one withJavadocJar request in no-flavor branch",
+    "Return before publication mutations only for exact validated Flutter tooling included context"
   ],
   "preserved": [
-    "Original CRLF body bytes except the two exact removed lines",
+    "Original CRLF AAR body bytes except the two exact removed lines; LF attribution/context preamble",
     "withSourcesJar in both branches",
     "maven-publish",
     "from component",
@@ -31,5 +32,20 @@
     "Flutter and plugin AAR dependency relation"
   ],
   "runtimeStatus": "PUBLISH_GRAPH_NOT_EXECUTED / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN",
-  "inventoryStatus": "NEW_BUILD_INPUTS_REQUIRE_NEW_TRUSTED_INVENTORY"
+  "inventoryStatus": "NEW_BUILD_INPUTS_REQUIRE_NEW_TRUSTED_INVENTORY",
+  "contextPolicy": "strict-parent-root-and-exact-tooling-v2",
+  "previousOwnedSha256": "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d",
+  "contextGuard": {
+    "file": "context_guard.gradle",
+    "sha256": "159a20ea2d7233b6e11d114cfa744a5edbdb9c230ffbf938d26fc231af380604",
+    "root": "Explicit project root/scope, ordinary runtime inputs, exact AAR task and init source/order",
+    "included": "Direct parent is validated root, exact canonical pinned Flutter tooling directory; early return before AAR mutation",
+    "unknown": "Reject including nested buildSrc/other paths and conflicting properties",
+    "runtimeStatus": "RUNTIME_NOT_PROVEN"
+  },
+  "toolingPins": {
+    "build.gradle.kts": "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1",
+    "settings.gradle.kts": "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37",
+    "src/main/kotlin/FlutterAppPluginLoaderPlugin.kt": "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1"
+  }
 }

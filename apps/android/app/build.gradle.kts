@@ -274,12 +274,16 @@ fun validateOwnedRuntimeAarInit(projectRoot: File, flutterRoot: File): File {
     pinned(flutterRoot, "packages/flutter_tools/gradle/aar_init_script.gradle",
         "b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2")
     pinned(flutterRoot, "LICENSE", "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9")
+    pinned(flutterRoot, "packages/flutter_tools/gradle/build.gradle.kts", "8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1")
+    pinned(flutterRoot, "packages/flutter_tools/gradle/settings.gradle.kts", "106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37")
+    pinned(flutterRoot, "packages/flutter_tools/gradle/src/main/kotlin/FlutterAppPluginLoaderPlugin.kt", "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1")
     val directory = "scripts/owned_flutter_aar_init/"
+    pinned(projectRoot, directory + "context_guard.gradle", "159a20ea2d7233b6e11d114cfa744a5edbdb9c230ffbf938d26fc231af380604")
     pinned(projectRoot, directory + "FLUTTER_LICENSE", "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9")
-    pinned(projectRoot, directory + "SOURCE.json", "0f14efe7ed1a2d84be53f2a76a70a343a8bece8dc42f34b368c637c9b17a5f51")
-    pinned(projectRoot, directory + "UPSTREAM.patch", "d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947")
+    pinned(projectRoot, directory + "SOURCE.json", "ff4d82097e80239fb9d9861a68731573079d4120a2026aeddc5d4615c456942f")
+    pinned(projectRoot, directory + "UPSTREAM.patch", "80966f8ea92f72137473911531882dd6394cc72da9ceaf0b697cedd7e5a0f240")
     return pinned(projectRoot, directory + "aar_runtime.init.gradle",
-        "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d")
+        "28c407c4fb95a7de690ff9a1455faf33bb62c28b365281dc6c2dfd20a61bb1a9")
 }
 // OWNED_R1_AAR_INIT_END
 
@@ -304,7 +308,8 @@ val syncFlutterAar by tasks.registering(Exec::class) {
         if (ordinaryR1Runtime) {
             inputs.files(aarInit, rootProject.file("scripts/owned_flutter_aar_init/FLUTTER_LICENSE"),
                 rootProject.file("scripts/owned_flutter_aar_init/SOURCE.json"),
-                rootProject.file("scripts/owned_flutter_aar_init/UPSTREAM.patch"))
+                rootProject.file("scripts/owned_flutter_aar_init/UPSTREAM.patch"),
+                rootProject.file("scripts/owned_flutter_aar_init/context_guard.gradle"))
             inputs.property("ownedRuntimeAarInitScope", "v10.1.5-ordinary-r1-runtime")
         }
         if (!isIceDiagnosticBuild) logger.lifecycle("OFFLINE_DEBUG_INNER_DIRECT_GRADLE version=8.14 wrapper=false")
@@ -316,7 +321,8 @@ val syncFlutterAar by tasks.registering(Exec::class) {
             "-Ptarget=${if (isIceDiagnosticBuild) "lib/dev/v1015_ice_diag.dart" else if (isV1015R1RetentionProbe) "lib/dev/v1015_r1_retention_probe.dart" else "lib/main.dart"}",
             "-Pdart-defines=$encodedDefines", "-Ptarget-platform=android-x64,android-arm64",
             if (isIceDiagnosticBuild) "assembleAarDebug" else "assembleAarRelease", "--offline", "--console=plain") +
-            (if (ordinaryR1Runtime) listOf("-PelitesyncOwnedAarInit=v10.1.5-ordinary-r1-runtime") else emptyList()) +
+            (if (ordinaryR1Runtime) listOf("-PelitesyncOwnedAarInit=v10.1.5-ordinary-r1-runtime",
+                "-PelitesyncOwnedAarProjectRoot=${rootProject.projectDir.parentFile.parentFile.absolutePath}") else emptyList()) +
             if (isIceDiagnosticBuild) listOf("--no-daemon", "--gradle-user-home", iceDiagnosticTooling!!.second.absolutePath) else
                 listOf("--no-daemon", "--max-workers=2", "--gradle-user-home", gradle.gradleUserHomeDir.absolutePath,
                     "-Dorg.gradle.java.installations.auto-download=false", "-Porg.gradle.java.installations.auto-download=false",

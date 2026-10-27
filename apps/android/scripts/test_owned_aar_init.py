@@ -55,6 +55,16 @@ def make_owned_fixture(project, flutter):
     source.parent.mkdir(parents=True, exist_ok=True)
     source.write_bytes(source_fixture())
     (flutter / 'LICENSE').write_bytes((SCRIPTS / 'owned_flutter_aar_init/FLUTTER_LICENSE').read_bytes())
+    for relative, pin in owned.TOOLING_PINS.items():
+        target = flutter / 'packages/flutter_tools/gradle' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes((SCRIPTS / 'owned_flutter_aar_init/tooling_fixtures' / relative).read_bytes())
+        assert owned.digest(target.read_bytes()) == pin
+    for relative, pin in owned.TOOLING_PINS.items():
+        target = flutter / 'packages/flutter_tools/gradle' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes((SCRIPTS / 'owned_flutter_aar_init/tooling_fixtures' / relative).read_bytes())
+        assert owned.digest(target.read_bytes()) == pin
     return source
 
 
@@ -297,7 +307,9 @@ class KotlinSourceContractTests(unittest.TestCase):
         self.assertIn('inputs.property("ownedRuntimeAarInitScope",', code)
         init = (SCRIPTS / 'owned_flutter_aar_init/aar_runtime.init.gradle').read_bytes()
         self.assertTrue(init.startswith(owned.PREAMBLE))
-        self.assertIn(b"projectProperties['elitesyncOwnedAarInit'] != '" + owned.SCOPE.encode() + b"'", init)
+        self.assertIn(b"rootProperties['elitesyncOwnedAarInit'] == ownedScope", init)
+        self.assertIn(b'OWNED_CONTEXT_TOOLING', init)
+        self.assertIn(b'elitesyncOwnedAarProjectRoot', init)
 
     def test_no_publication_or_generation_tasks_disabled(self):
         code = BUILD.read_text(encoding='utf-8')

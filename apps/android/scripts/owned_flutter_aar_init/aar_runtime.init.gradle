@@ -1,8 +1,82 @@
 // Copyright 2014 The Flutter Authors. All rights reserved.
 // SPDX-License-Identifier: BSD-3-Clause; see FLUTTER_LICENSE and SOURCE.json.
 // EliteSync owned derivative: two Javadoc requests removed; sources/runtime publication retained.
-if (gradle.startParameter.projectProperties['elitesyncOwnedAarInit'] != 'v10.1.5-ordinary-r1-runtime') {
-    throw new GradleException('OWNED_AAR_INIT_REJECTED: explicit ordinary R1 scope required')
+// Copyright 2026 EliteSync contributors. BSD-3-Clause; see FLUTTER_LICENSE.
+// SOURCE_LEVEL_ONLY: Gradle object behavior still requires separately authorized verification.
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.nio.file.attribute.BasicFileAttributes
+import java.security.MessageDigest
+
+def rejectOwned = { boolean ok, String reason ->
+    if (!ok) throw new GradleException('OWNED_AAR_INIT_REJECTED: ' + reason)
+}
+def checkedOwnedPath = { Object value ->
+    rejectOwned(value != null && !value.toString().isEmpty(), 'missing absolute context path')
+    File file = new File(value.toString())
+    def path = file.toPath()
+    rejectOwned(file.isAbsolute() && path == path.normalize() && Files.exists(path), 'unsafe context path')
+    for (def part = path; part != null; part = part.parent) {
+        def attributes = Files.readAttributes(part, BasicFileAttributes, LinkOption.NOFOLLOW_LINKS)
+        rejectOwned(!Files.isSymbolicLink(part) && !attributes.isOther(), 'redirected context path')
+    }
+    rejectOwned(path.toRealPath() == path.normalize(), 'noncanonical context path')
+    file
+}
+def pinnedOwnedFile = { File root, String relative, String expected ->
+    File file = checkedOwnedPath(new File(root, relative).absolutePath)
+    rejectOwned(file.isFile(), 'missing pinned context file')
+    def digest = MessageDigest.getInstance('SHA-256').digest(file.bytes)
+        .collect { String.format('%02x', it & 0xff) }.join()
+    rejectOwned(digest == expected, 'pinned context file mismatch')
+}
+def ownedScope = 'v10.1.5-ordinary-r1-runtime'
+def ownedDefines = 'RUxJVEVTWU5DX1YxMDE1X0xPQ0FMX0JVSUxEPXRydWU=,RUxJVEVTWU5DX1YxMDE1X1IxX0xPQ0FMX0JVSUxEPXRydWU='
+def contextParent = gradle.parent
+def rootContext = contextParent == null ? gradle : contextParent
+rejectOwned(rootContext.parent == null, 'only one direct tooling child is authorized')
+def rootProperties = rootContext.startParameter.projectProperties
+rejectOwned(rootProperties['elitesyncOwnedAarInit'] == ownedScope, 'explicit ordinary R1 root scope required')
+File projectContext = checkedOwnedPath(rootProperties['elitesyncOwnedAarProjectRoot'])
+File flutterContext = checkedOwnedPath(rootProperties['flutter-root'])
+File moduleContext = checkedOwnedPath(new File(projectContext, 'apps/flutter_elitesync_module/.android').absolutePath)
+File toolingContext = checkedOwnedPath(new File(flutterContext, 'packages/flutter_tools/gradle').absolutePath)
+rejectOwned(checkedOwnedPath(rootContext.startParameter.currentDir.absolutePath) == moduleContext,
+    'root module identity mismatch')
+rejectOwned(rootContext.gradleVersion == '8.14' && rootContext.startParameter.offline &&
+    gradle.gradleVersion == '8.14' && gradle.startParameter.offline, 'offline Gradle 8.14 context required')
+rejectOwned(rootContext.startParameter.taskNames == ['assembleAarRelease'], 'exact root AAR task required')
+rejectOwned(rootProperties['target'] == 'lib/main.dart' && rootProperties['is-plugin'] == 'false' &&
+    rootProperties['dart-defines'] == ownedDefines &&
+    rootProperties['target-platform'] == 'android-x64,android-arm64' &&
+    (rootProperties['buildNumber'] ==~ /1\.0-v1015r1-[0-9a-f]{12}/), 'ordinary runtime inputs required')
+def requiredInit = [new File(projectContext, 'apps/android/scripts/owned_flutter_aar_init/aar_runtime.init.gradle'),
+                    new File(projectContext, 'apps/android/scripts/offline_debug.init.gradle')]
+def rootInit = rootContext.startParameter.initScripts.collect { checkedOwnedPath(it.absolutePath) }
+def currentInit = gradle.startParameter.initScripts.collect { checkedOwnedPath(it.absolutePath) }
+rejectOwned(rootInit == requiredInit && currentInit == rootInit, 'exact owned init order required')
+rejectOwned(checkedOwnedPath(initscript.sourceFile.absolutePath) == requiredInit[0], 'executing init identity mismatch')
+pinnedOwnedFile(flutterContext, 'packages/flutter_tools/gradle/aar_init_script.gradle',
+    'b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2')
+pinnedOwnedFile(flutterContext, 'LICENSE', 'a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9')
+pinnedOwnedFile(toolingContext, 'build.gradle.kts', '8d83640366f1f78c9db70f771d0c6e4a9c0d9e4858aa6eee30891e86fed323b1')
+pinnedOwnedFile(toolingContext, 'settings.gradle.kts', '106ea06cbc2bf28234443b8a74e7ec4e32a817b4d279d122a650c073daad4d37')
+pinnedOwnedFile(toolingContext, 'src/main/kotlin/FlutterAppPluginLoaderPlugin.kt', '8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1')
+if (contextParent != null) {
+    // OWNED_CONTEXT_TOOLING: no Maven/AAR mutation of the tooling build itself.
+    rejectOwned(checkedOwnedPath(gradle.startParameter.currentDir.absolutePath) == toolingContext,
+        'unknown included build identity')
+    def childProperties = gradle.startParameter.projectProperties
+    rejectOwned(!childProperties.containsKey('elitesyncOwnedAarInit') ||
+        childProperties['elitesyncOwnedAarInit'] == ownedScope, 'conflicting included scope')
+    rejectOwned(!childProperties.containsKey('elitesyncOwnedAarProjectRoot') ||
+        checkedOwnedPath(childProperties['elitesyncOwnedAarProjectRoot']) == projectContext,
+        'conflicting included project root')
+    ['target', 'dart-defines', 'is-plugin', 'target-platform', 'buildNumber', 'flutter-root'].each { name ->
+        rejectOwned(!childProperties.containsKey(name) || childProperties[name] == rootProperties[name],
+            'conflicting included runtime input')
+    }
+    return
 }
 
 // This script is used to initialize the build in a module or plugin project.
