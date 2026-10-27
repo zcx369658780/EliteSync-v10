@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "taskBlob": "71d11e24c4d5b16d6d662f2684fc665750a7c154",
+  "status": "BOUNDED_ROOTCAUSE_EVIDENCE_DELIVERED",
+  "mainAtIntake": "82c19cf6a52618dff935263d296696afffec466e",
+  "candidateParent": "fd0da9cce87c5eb84aec96dd11ea37aecd7aefff",
+  "sourceCommit": "50d79396195ed8b4b86c218584ab59864ad600be",
+  "appsTree": "e6bff4bc8e359e6afe80c02f25212ee8b6195eab",
+  "servicesTree": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+  "report": {
+    "bytes": 20066,
+    "sha256": "7a2875ea8ad1f1314afa468693e10549fa65eaefbe6022e98404e9057af95db8"
+  },
+  "classifications": {
+    "scopeStaticMechanism": "PROVEN_IN_LOCAL_BUNDLED_SOURCE",
+    "scopeActualUniqueCause": "NOT_PROVEN",
+    "includedBuildPropagation": "HYPOTHESIS_STRONGLY_STATIC_SUPPORTED",
+    "rootArgvDiscrepancy": "HYPOTHESIS_WITH_NO_POSITIVE_RUNTIME_EVIDENCE",
+    "observerThrowBranch": "PROVEN",
+    "observerFailingInstanceAndApiCode": "NOT_PROVEN",
+    "cacheCorruption": "NOT_PROVEN",
+    "toolchainVersionConflict": "NOT_PROVEN",
+    "dokkaTaskSelected": "NOT_PROVEN",
+    "dokkaTcpCausality": "NOT_PROVEN"
+  },
+  "sourceFiles": [
+    {
+      "label": "owned_init",
+      "logicalPath": "apps/android/scripts/owned_flutter_aar_init/aar_runtime.init.gradle",
+      "bytes": 7851,
+      "sha256": "364295d4d861d81ca3113d25acf6e45dd422ebce64b412ef9baf20e02d32c48d",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "observer",
+      "logicalPath": "apps/android/scripts/windows_build_observer.py",
+      "bytes": 5698,
+      "sha256": "2e146c48dbf6d90aee0e0a36a54188d14cc8db39deea845fde40523ccea13a72",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "settings",
+      "logicalPath": "apps/flutter_elitesync_module/.android/settings.gradle",
+      "bytes": 926,
+      "sha256": "58ed6cf1a5ff74237dba2c0dbbd19669aeeea145c2f442462b04c20541a8f609",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "plugin_loader",
+      "logicalPath": "flutter-sdk/packages/flutter_tools/gradle/src/main/kotlin/FlutterAppPluginLoaderPlugin.kt",
+      "bytes": 2878,
+      "sha256": "8f0cff54afa2bc47a463f8bdec32ee2163c365d980e8f461a8941f02ace96be1",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "module_loader",
+      "logicalPath": "flutter-sdk/packages/flutter_tools/gradle/module_plugin_loader.gradle",
+      "bytes": 2057,
+      "sha256": "169b243692655ef740aab29795e4c4202a7b43b9a5e53ef713da307211145913",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "kotlin_entry",
+      "logicalPath": "apps/android/app/build.gradle.kts",
+      "bytes": 29695,
+      "sha256": "0ab0fb3de880ba70d4c3a3e964bcae7d305bbf31676222296f70997493741aee",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "owned_contract",
+      "logicalPath": "apps/android/scripts/owned_aar_init.py",
+      "bytes": 4966,
+      "sha256": "4857b3613aa5762be27a98f34823cb2369c86ac91c68ec0c4c176f3d890d4c0a",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "gradle_bat",
+      "logicalPath": "LOCAL_ONLY/gradle.bat",
+      "bytes": 3014,
+      "sha256": "af54a72a16af280335da698b17e61c850100bacbc425519b97527ed6d9ad19ab",
+      "priorPinMatched": true,
+      "provenance": "FINAL_G_INVENTORY_PIN"
+    },
+    {
+      "label": "runner",
+      "logicalPath": "LOCAL_ONLY/controlled_runner.py",
+      "bytes": 16744,
+      "sha256": "ce765a33fbae04fa0febee69ce8005dbbaec65d7a47d33f430d5c795e8861985",
+      "priorPinMatched": true,
+      "provenance": "FD_INDEX_PIN"
+    },
+    {
+      "label": "provenance",
+      "logicalPath": "apps/android/scripts/owned_flutter_aar_init/SOURCE.json",
+      "bytes": 1507,
+      "sha256": "0f14efe7ed1a2d84be53f2a76a70a343a8bece8dc42f34b368c637c9b17a5f51",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "patch",
+      "logicalPath": "apps/android/scripts/owned_flutter_aar_init/UPSTREAM.patch",
+      "bytes": 1168,
+      "sha256": "d07b565e23003351d1f9d92df9f50183d8d095b86de026784de1e1267c53b947",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "license",
+      "logicalPath": "apps/android/scripts/owned_flutter_aar_init/FLUTTER_LICENSE",
+      "bytes": 1544,
+      "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "StartParameter",
+      "logicalPath": "gradle-8.14-src/core-api/org/gradle/StartParameter.java",
+      "bytes": 36201,
+      "sha256": "42ac74ccccd2f191f1c8973ceed1a16b2f04e9ede05b01f2b4f712b394eceb9b",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "BuildDefinition",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/api/internal/BuildDefinition.java",
+      "bytes": 5402,
+      "sha256": "488090b2b7ee92a589ebc165984569463943bd2b49d775655074bd224a462b18",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "IncludedBuildSpec",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/initialization/IncludedBuildSpec.java",
+      "bytes": 4101,
+      "sha256": "117b8753b1cb510bcd373031293b70eb3bf895421023c938d0ac83df63ccc595",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "DefaultBuildIncluder",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/internal/composite/DefaultBuildIncluder.java",
+      "bytes": 4348,
+      "sha256": "60b8c9f6a63473c4cdb6c57bc08d5858aa98fe97975cd19441b1a079e9b19104",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "DefaultPluginManagementSpec",
+      "logicalPath": "gradle-8.14-src/plugin-use/org/gradle/plugin/management/internal/DefaultPluginManagementSpec.java",
+      "bytes": 4819,
+      "sha256": "6868d5c5b8bd06d9aba91c0b5648fdcdf3e469ef900beffb758df7305564ccb4",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "InitScriptHandlingSettingsLoader",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/initialization/InitScriptHandlingSettingsLoader.java",
+      "bytes": 1270,
+      "sha256": "1bd2b95887c92d4e37a4a87561a91b58b8146a70903252dcd72030ee05f7899f",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "InitScriptHandler",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/initialization/InitScriptHandler.java",
+      "bytes": 2796,
+      "sha256": "3c3a11e87e6ebf12b226490f6c834624192e0bcbff95635929f1415d7335b8ac",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "StartParameterConverter",
+      "logicalPath": "gradle-8.14-src/launcher/org/gradle/launcher/cli/converter/StartParameterConverter.java",
+      "bytes": 3911,
+      "sha256": "8eae1555ce5750763eed588a77a8da682568062f9bbb1f95c74da50d228da515",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "ProjectPropertiesCommandLineConverter",
+      "logicalPath": "gradle-8.14-src/cli/org/gradle/cli/ProjectPropertiesCommandLineConverter.java",
+      "bytes": 1091,
+      "sha256": "10744a2a88ffdc8125fa17d9effa1bc62178371400e805d1e966b3807b448f94",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "AbstractPropertiesCommandLineConverter",
+      "logicalPath": "gradle-8.14-src/cli/org/gradle/cli/AbstractPropertiesCommandLineConverter.java",
+      "bytes": 1804,
+      "sha256": "a329deb5e5f9992a967cf599231de9be5bb8f67642acb520b056a133b52fb751",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "CommandLineParser",
+      "logicalPath": "gradle-8.14-src/cli/org/gradle/cli/CommandLineParser.java",
+      "bytes": 21561,
+      "sha256": "149b8f5007ecaf049655c4119662cea23a151292d9e2bd4490bc13f08332bf00",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "BuildStateFactory",
+      "logicalPath": "gradle-8.14-src/composite-builds/org/gradle/composite/internal/BuildStateFactory.java",
+      "bytes": 5399,
+      "sha256": "2098591caa156db37c0e6dd69d0227244b8db924bc4cdc7b9b69aae700d03abe",
+      "priorPinMatched": null,
+      "provenance": "LOCAL_BUNDLED_SOURCE_FIRST_HASH_IN_THIS_TASK"
+    },
+    {
+      "label": "StartParameterInternal",
+      "logicalPath": "gradle-8.14-src/core/org/gradle/api/internal/StartParameterInternal.java",
+      "bytes": 9918,
+      "sha256": "843c741af0dc1c79c44326a9ab70e218f42a07b2c9cd7c133718a905dc02d616",
+      "priorPinMatched": null,
+      "provenance": "FIRST_TARGETED_HASH_THIS_TASK"
+    },
+    {
+      "label": "FlutterExistingVersionReceipt",
+      "logicalPath": "flutter-sdk/bin/cache/flutter.version.json",
+      "bytes": 559,
+      "sha256": "f170ed630dcc291fe6f632656d976bf09de59ab940160c67a314344eec842c1e",
+      "priorPinMatched": null,
+      "provenance": "FIRST_TARGETED_HASH_THIS_TASK"
+    }
+  ],
+  "existingSampleDerivedSummary": {
+    "retainedRows": 37,
+    "rootBaselines": 1,
+    "runtimeSamples": 36,
+    "persistedMonotonicSpanSeconds": 4.561999999918044,
+    "processPidGroups": [
+      {
+        "alias": "P1",
+        "identityBasis": "PID_GROUP_NOT_UNIQUE_INSTANCE",
+        "recordedNames": [
+          "cmd.exe"
+        ],
+        "persistedRows": 37,
+        "firstRow": 0,
+        "lastRow": 36,
+        "allPersistedPathsNonEmpty": true,
+        "childCreationTimeRecorded": false
+      },
+      {
+        "alias": "P2",
+        "identityBasis": "PID_GROUP_NOT_UNIQUE_INSTANCE",
+        "recordedNames": [
+          "conhost.exe"
+        ],
+        "persistedRows": 36,
+        "firstRow": 1,
+        "lastRow": 36,
+        "allPersistedPathsNonEmpty": true,
+        "childCreationTimeRecorded": false
+      },
+      {
+        "alias": "P3",
+        "identityBasis": "PID_GROUP_NOT_UNIQUE_INSTANCE",
+        "recordedNames": [
+          "java.exe"
+        ],
+        "persistedRows": 35,
+        "firstRow": 2,
+        "lastRow": 36,
+        "allPersistedPathsNonEmpty": true,
+        "childCreationTimeRecorded": false
+      },
+      {
+        "alias": "P4",
+        "identityBasis": "PID_GROUP_NOT_UNIQUE_INSTANCE",
+        "recordedNames": [
+          "java.exe"
+        ],
+        "persistedRows": 30,
+        "firstRow": 7,
+        "lastRow": 36,
+        "allPersistedPathsNonEmpty": true,
+        "childCreationTimeRecorded": false
+      },
+      {
+        "alias": "P5",
+        "identityBasis": "PID_GROUP_NOT_UNIQUE_INSTANCE",
+        "recordedNames": [
+          "conhost.exe"
+        ],
+        "persistedRows": 5,
+        "firstRow": 7,
+        "lastRow": 11,
+        "allPersistedPathsNonEmpty": true,
+        "childCreationTimeRecorded": false
+      }
+    ],
+    "rootTimestampIsNotChildTimestamp": true,
+    "failingSamplePersisted": false,
+    "failingPidOrApiErrorCodeRecorded": false,
+    "udpEndpointRows": 110,
+    "tcpEndpointRows": 46,
+    "nonLoopbackTcpRows": 0,
+    "signalDoesNotProvePacketTransmission": true,
+    "newRuntimeObservation": false
+  },
+  "scopeCommandAnalysis": {
+    "commandCopiesEqual": true,
+    "commandHashMatchesGResult": true,
+    "commandSha256": "9227a175845025bf0a74d33875af39df6d23d2467dbeb18b2d083fb3ef10a02d",
+    "scopeArgumentCount": 1,
+    "scopeArgumentAfterTask": true,
+    "standaloneDoubleDashPresent": false,
+    "claimFields": [
+      "inventorySha256",
+      "oldApkBudgetRestored",
+      "parentPid",
+      "reservedStarts",
+      "stage",
+      "taskBlob"
+    ],
+    "claimContainsCommandHash": false,
+    "claimBindingLocation": "G.result.commandSha256 and G.result.claimSha256, not inside claim",
+    "osActualArgvOrRejectedGradleProjectPropertiesRecorded": false,
+    "cwdIsExpectedModuleAndroid": true
+  },
+  "budget": {
+    "oldApk": "EXHAUSTED_1_OF_1",
+    "G": "EXHAUSTED_1_OF_1",
+    "A": "NOT_RUN_GATE_CLOSED",
+    "gate2": "NOT_AUTHORIZED",
+    "newGradleFlutterDeviceObserverStarts": 0
+  },
+  "protection": {
+    "selectedCriticalSourceAndSqlApkFiles": 43,
+    "selectedMatching": 43,
+    "priorGOriginalFiles": 14,
+    "priorGOriginalMatches": 14,
+    "fiveRootMetadataMatches": 5,
+    "intakeRefs": 525,
+    "allIntakeRefsExact": true,
+    "AClaimAbsent": true,
+    "newGradleFlutterJvmDeviceObserverGate2Starts": 0,
+    "historicalScopesNotRescanned": [
+      "26784-file protection set",
+      "108-file prior added evidence set",
+      "100453-input inventory per-file scan"
+    ],
+    "scope": "Targeted files plus five existing Git root metadata only; not whole disk or all dirty-file bytes"
+  },
+  "localOnlyEvidence": [
+    {
+      "label": "additional-targeted-source-identities-private.json",
+      "bytes": 846,
+      "sha256": "d7437493e3e89296f81687f91bdd52c9804208d3564960c5857fbc6c920ec2c2",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "analysis-lookup-failure.json",
+      "bytes": 497,
+      "sha256": "3d2152a52999ba76a45985e115e85a742888d1c2997313046ba07d9da43d9695",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "analysis.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "analysis.stdout.txt",
+      "bytes": 159,
+      "sha256": "9fe1dffd61c390cb1e7a2a69aa2ded55d0a247bacf195352ca549ddb388ec1c8",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "analyze_existing.py",
+      "bytes": 9113,
+      "sha256": "2b60405cbc92ddeae846f1e3c8c2ef602dd183394225a6e9f77963fdc6f7640c",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "budget-confirmed.json",
+      "bytes": 171,
+      "sha256": "89075bee7659e621af5eff989bc178bcfc51511f3bcf7b7516d958bcacf5af54",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "critical-protection-before-private.json",
+      "bytes": 2377,
+      "sha256": "a11d2a3fe7a8ed39989d5fe20d454cf2d54c0202635e24e970ec653714e722e3",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "existing-sample-analysis.json",
+      "bytes": 1985,
+      "sha256": "2aca7ab83d1897e8b8a32b65c0ab7f02887e7cba44cf643eaf7ef3a167ed43b6",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "five-roots-before-private.json",
+      "bytes": 1802,
+      "sha256": "34b175c8199d8743493c63769f9a2b46cb950a8e9e076061e5f89e86bbe08f10",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "intake_readonly.py",
+      "bytes": 4351,
+      "sha256": "3564703a1abde49bea2baa721c45bc3785728a9c91f365e0245a2b2482160169",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "prepare_report.py",
+      "bytes": 23061,
+      "sha256": "f3ab5201ef13316fc86cebbe0ae2998867f5afd311fce6f1e25c3ec35245d55c",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "process-aliases-private.json",
+      "bytes": 871,
+      "sha256": "ec3a9f680253fba3bc9307ac208a1128d94b5745cd472bbac90c5d3ca7d25bf4",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "protection-final.json",
+      "bytes": 579,
+      "sha256": "7d264a7f8e48686155163d223a310565759dd6101d328f145532612718c4b35c",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "protection-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "protection-final.stdout.txt",
+      "bytes": 525,
+      "sha256": "9b7f9dedd1fb65241a380b8c66bab7124949e37f1689b392b9cc1c9d91150b6e",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "protection_targeted.py",
+      "bytes": 3145,
+      "sha256": "8086b3a51679484983d0e1db41b2cff83eabb3019d8c736ddf60e5e5bd500f3f",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "refs-before.txt",
+      "bytes": 62471,
+      "sha256": "0a322f8b91af2972271f319b92ed2b1d8c7a830ed5bfb9129755689440d0b9c6",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-active.raw",
+      "bytes": 15073,
+      "sha256": "c71d98694c1226ddfb25b03b4e91c9c29dc353ac1300af9ebb68f5b48cd2c27b",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-byte-identities.json",
+      "bytes": 2607,
+      "sha256": "ccaf33a3192227d729ae163ad8ef0fd26b134e98f6dfe376033746832a1e3b1c",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-documents.json",
+      "bytes": 1488,
+      "sha256": "ed69b5fea9ea164c1bfbf8bb93654d8e2c95209a746c6e9b366795032401fce1",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-fd-index.raw",
+      "bytes": 21502,
+      "sha256": "73d818d8f7fab63a778946e5ceb194c60dba5a521960fd48abeb0418bec09161",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-fd-report.raw",
+      "bytes": 12283,
+      "sha256": "30737178ed91f7b8fcdae8e9cf94616c2113ac1f5009345cfd3fddb074da01dd",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-fdTree.json",
+      "bytes": 1907999,
+      "sha256": "7bf6756295f8f9f58c9f24556973e31f6bfd9f7136909eab1e6880a641e793ed",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-handoff-active.raw",
+      "bytes": 9879,
+      "sha256": "582db45c5d5b3900f51243a94a0b748fa2bf8ecc53a88b6f012f1a846332dc3e",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-handoff.raw",
+      "bytes": 16540,
+      "sha256": "f6796740a74304e3ff8961da4a611c8e39b551c7bd2fe325ef026d053adde98f",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-handoffTree.json",
+      "bytes": 1785200,
+      "sha256": "f4714379a43d45e4e275b213c5c429489ecd0bc7dfc40873e5b4d7bbf7f37d56",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-mainTree.json",
+      "bytes": 1785216,
+      "sha256": "31239f763362bb80bdd6fc1a3f18f027d86a2fbdd64b004e6ba7e4300aa437ce",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-plan.raw",
+      "bytes": 12749,
+      "sha256": "beab309903b2ebdb3daa3e04ad3c9c4021ac0141baae11982dc70b1204890a68",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-review.raw",
+      "bytes": 8563,
+      "sha256": "dc3cbb6ff1f47d59b4d55e3fae4c2240278139aba05f4866dbeed7cbd89d47d1",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "remote-task.raw",
+      "bytes": 14495,
+      "sha256": "dc4919bb61edf0fe8b87c25ea341c87850cddc8a09c5f9d8ecfa159a8d16a92e",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "report-preparation.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "report-preparation.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "scope-command-analysis.json",
+      "bytes": 654,
+      "sha256": "94210e4e4c81c371e64312c75a4b9c83981c2427fdd297d296f595f418c89d07",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "source-locators.json",
+      "bytes": 9714,
+      "sha256": "eaf26ab1024cc5cd4db93d2f2c5e8c81171793887ce411b66caffe39136fe937",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "space-observation-private.json",
+      "bytes": 423,
+      "sha256": "332238c3b51fa353849c6529246e36756abe61c08a7fdb45ddf08cd2c5f94437",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "sql-apk-targets-before-private.json",
+      "bytes": 1260,
+      "sha256": "2f01e4ad835057e9b82bba2e4c142c2046b1dd1b7b674bd4fcd4dc5bc2e55a71",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "targeted-evidence-intake.json",
+      "bytes": 2695,
+      "sha256": "c41e4f56a3b2ecbb31d13d2b7b601d2da4fcd422f69b96edcaa987a7915ce780",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "targeted-source-identities-private.json",
+      "bytes": 9687,
+      "sha256": "c30c41cdc9cc51ffaa70997d556ba002ca7a18a740584483c13ca4fe8105bcd9",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "targeted-version-evidence.json",
+      "bytes": 762,
+      "sha256": "7e285eb4518f03c1439295cb60887236ca5b8ab2d241f75b95bcf07c19154ad4",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "fresh-git-authority.json",
+      "bytes": 4389,
+      "sha256": "191a6afaeb8d1956347ffc23f822b18e8718b9c8509c9d323d1c12b0f7f21d88",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "non-author-review.json",
+      "bytes": 459,
+      "sha256": "57bae60c78968a9eaef111736be78e43e99d823e029f7f0963b11792e0fae12e",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "report-preparation.stdout.txt",
+      "bytes": 153,
+      "sha256": "902fa1513b5ecb1c2d46d638bea6a66ceec517546c882ff6fc660758a7769ec6",
+      "storage": "LOCAL_ONLY"
+    },
+    {
+      "label": "report-preparation.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": "LOCAL_ONLY"
+    }
+  ],
+  "privacy": "No raw path/PID/IP/socket/user/token/SQL/APK contents published",
+  "previousAstraVerdict": "FD0DA9CC_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS",
+  "newReviewNotAstraAcceptance": true,
+  "nonAuthorReview": {
+    "kind": "BOUNDED_NON_AUTHOR_STATIC_REVIEW",
+    "finding": "No concrete issue found in evidence classification, scope context distinction, observer identity limits, or budget gates",
+    "readScope": [
+      "SCOPE_OBSERVER_ROOT_CAUSE_READONLY_REPORT_20261027.md",
+      "SCOPE_OBSERVER_ROOT_CAUSE_EVIDENCE_INDEX_20261027.json",
+      "source-locators.json"
+    ],
+    "executedScriptsTestsToolchainsObserver": false,
+    "isAstraIndependentAcceptance": false
+  }
+}
