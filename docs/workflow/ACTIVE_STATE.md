@@ -1,3 +1,19 @@
+# EliteSync-v10｜2026-10-27 最新 Owner 授权与正式任务入口
+
+**最新：`V10.1.5_ROOTCAUSE_READONLY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / FD0_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / G_GRAPH_NOT_PROVEN / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / G_BUDGET_EXHAUSTED_1_OF_1 / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED`**
+
+Owner于2026-10-27在fd0 Astra独立验收后批准：**先开展scope guard与观察器image-path不可读的零Gradle/零修复定点静态根因调查**。Astra已发布正式任务：[V10_1_5_SCOPE_OBSERVER_ROOT_CAUSE_READONLY_TASK_20261027.md](../versions/v10.1.5/V10_1_5_SCOPE_OBSERVER_ROOT_CAUSE_READONLY_TASK_20261027.md)，**Blob `71d11e24c4d5b16d6d662f2684fc665750a7c154`**；任务发布不等于Owner已手动派发或Codex已开始执行。Codex执行前应重读当前live main、任务、交接、fd0独立复核并核验LOCAL_ONLY。
+
+**Owner新增受控维护授权（2026-10-27）：** 若具名证据证实Gradle缓存损坏，可由Astra发布限定范围的Codex缓存修复/可信来源重新下载任务；若具名证据证实其他工具版本/兼容性问题，可由Astra发布相应更新任务；新版本通过兼容/回滚验证、确认其他项目无依赖且新旧保留范围明确后，可有界卸载旧版本以节约磁盘。**该授权不是当前只读任务可立即下载、清空缓存、更新或卸载的许可**，更不自动放行真实Gradle、G/A、APK或Gate2预算。旧受保护Gradle下载partial、claim/ledger、SQL、APK、LOCAL_ONLY失败日志及历史refs/dirty不得当作普通缓存清理；全局安全配置、新费用、生产与跨项目不可逆操作仍需具名授权。完整边界见正式任务第5节。
+
+**fd0正式Astra审查：** [独立验收](https://github.com/zcx369658780/EliteSync-v10/blob/bcd20e9bf30aba97f7e35ac7278fe8bdc1c95028/docs/versions/v10.1.5/FD0_GA_CONTROLLED_VERIFICATION_ASTRA_REVIEW_20261027.md)，Blob `31c711e29bb32dad1e6d30c82dd08cd0b3526c32`；只接受受阻交付和A强制门禁，不接受G图/AAR/POM或整版。交接分支 `handoff/v1015-20261027` 的原始会话交接及ACTIVE_STATE记录仍独立保留，未合入main。候选 `fd0da9cce87c5eb84aec96dd11ea37aecd7aefff` / Parent `da5ce628a499c97e916e780e2cf795353745c147` / Root `b1f6fd9de8083f017e342fe82149874a66ff815a`，仍为未接受产品源码候选。
+
+已接受产品仅v10.1.4：apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`，services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。仍保持`V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`及RTC/AEC、15/30天清理等未完成项。
+
+以下保留旧main ACTIVE_STATE全文，**2026-10-25“最新/下一步/v10.1.5未启动”均为历史时点**，不能覆盖以上2026-10-27授权、交接与验收。
+
+---
+
 # EliteSync-v10｜唯一当前状态入口
 
 **2026-10-25最新状态：V10.1.5_REMAINING_ACCEPTANCE_CANDIDATE_PUBLISHED / AWAITING_ASTRA_CENTRAL_REVIEW / PARTIAL_NOT_ACCEPTED / AC05_OPEN / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED。** Codex已完成当前剩余验收综合长任务的可执行范围并停止等待Astra。最新候选`7773b98986d9c9395841623e6ef244379fddc865`，唯一Parent `a25e7c1012bce3f2a2d7048f284f17ebd8a0915c`，Root `fcef280b0f07bb047f8f57b3c5490e8beee7d29d`。当前下一步是Astra对该候选集中独立验收；不立即创建后继任务或启动Gate2。
