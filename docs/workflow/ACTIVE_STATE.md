@@ -1,3 +1,17 @@
+# EliteSync v10.1.5｜2026-10-27 Astra 6ca源码级验收后状态（独立审查分支）
+
+**`SOURCE_HARDENING_ACCEPTED_WITH_OBSERVATIONS / SOURCE_LEVEL_ONLY / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / ACTUAL_BUILD_NOT_COMPLETED / GRAPH_NOT_PROVEN / DOKKA_TASK_SELECTED_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / OLD_APK_BUDGET_EXHAUSTED_1_OF_1 / G_BUDGET_EXHAUSTED_1_OF_1 / A_NOT_RUN_GATE_CLOSED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Astra直接审查归档：** [6CA09A66_SOURCE_HARDENING_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/6CA09A66_SOURCE_HARDENING_ASTRA_REVIEW_20261027.md)。独立核验6ca候选唯一Parent `71ab58533270dd8b3a1270a3452a82b4f426e361`、Root `3bf735ab1c8e394844db80be35d86d2250390c82`、6650项递归Tree未截断、17/17源码 path/mode/Blob及2新增报告/索引文档。候选apps `5af7a9d0042be19437616e969e260658b67e9353`、services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`；均属于**未集成main**的源码候选，绝不能写作已接受产品Tree。
+
+**限定接受**：项目自有Flutter AAR init的严格root/精确tooling子上下文门禁、来源/License/pin同步和observer/任务自有runner失败前诊断机制在**静态源码范围**已形成；Codex报告140项静态/mock检查exit0、0 skip，Astra没有运行它们。Groovy Gradle配置、真实Windows API、任务选图、Dokka、AAR/POM、外层APK及TCP归因仍未证明。历史原G退出和保护原证不倒改。Owner此前条件允许**有据缓存重建/工具更新/旧版清理**，本候选没有证明缓存损坏或工具版本冲突，故目前不触发。
+
+**下一门**：待Owner对**全新、有预算、有独立claim、保留observer fail-closed的新Gradle受控运行验证**作出明确授权。旧APK 1/1、G 1/1均已消耗；旧A即使未用仍不能跳过G启动；Gate2/真实Push/生产未授权。无自动后继任务、无产品main合并、无卸载/清理、无v10.1.6启动。
+
+以下保留独立分支创建时的原main ACTIVE_STATE正文作为历史信息；其中仍标记上一SOURCE_HARDENING_TASK_PUBLISHED，不代表本次审查未完成。
+
+---
+
 # EliteSync v10｜2026-10-27 Owner新授权的综合源码加固任务（当前入口）
 
 **`V10.1.5_SOURCE_HARDENING_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / BA77_BOUNDED_READONLY_ROOTCAUSE_REVIEW_ACCEPTED_WITH_OBSERVATIONS / ZERO_GRADLE_AUTHORIZED_FOR_THIS_TASK / G_SPENT_1_OF_1 / A_NOT_RUN_GATE_CLOSED / OLD_APK_BUDGET_SPENT_1_OF_1 / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
