@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-27 Astra 286eb20d G2预检阻断审查（独立分支最新入口）
+
+**`G2_PRECHECK_BLOCKED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / G2_NOT_RUN_INPUT_CLOSURE_BLOCKED / G2_CONDITIONAL_BUDGET_0_OF_1 / G2_CLAIM_NOT_CREATED_CODEX_REPORTED / GRADLE_POPEN_0_CODEX_REPORTED / GRAPH_NOT_PROVEN / WRITE_ISOLATION_NOT_PROVEN / SOURCE_LEVEL_ONLY / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / OLD_APK_SPENT_1_OF_1 / OLD_G_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Astra独立审查（正式归档）：** [286EB20D_G2_INPUT_CLOSURE_ASTRA_REVIEW_20261027.md](../versions/v10.1.5/286EB20D_G2_INPUT_CLOSURE_ASTRA_REVIEW_20261027.md)。直接GitHub核验交付候选 `286eb20d1d6af2e76423cfbd3253880f47c9ae16` 唯一Parent `6ca09a66c0ef9619df7a3d7d4b089516f409954f`，Root `4177d75aec1eae6f33cd28ec45c88dce8496274a`，Root递归6652项未截断；apps `5af7a9d0042be19437616e969e260658b67e9353` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f` 完全等于6ca未接受源码候选。两份新增报告/索引原字节Git Blob `f4c80b4bbab70485188a31daf2e36d75d0f7c7ba` / `8850d02049255c6e566e2ae5e90a6eb66eb95515`；17份来源源码path/mode/Blob符合清单。
+
+**阻断原因与正确门禁：** Codex报告新schema2七项输入合同通过；历史96736个工具/缓存条目新鲜计算有96734匹配、两份运行状态metadata变化；缓存集合额外103个生成文件、Flutter tooling引用根额外2个`.gradle/buildOutputCleanup`状态文件。更关键的是新任务**尚未证明私有可写Gradle user-home/Flutter included-build缓存与输出同受保护历史SDK/缓存可严格分离**，故完整可信运行库存`NOT_VERIFIED`，Gradle必须`NOT_RUN`。这些状态变化**不证明缓存损坏或版本冲突**，不批准清空缓存/下载/升级。上述96736项Hash、G2.claim不存在、57原证与526 refs保护等均属`CODEX_REPORTED_LOCAL_ONLY`，不是Astra直接本地核验。
+
+**预算与当前效果：** Codex声称G2并未原子claim、未Popen、未建Job，保持有条件的`G2=0/1`，**仅在新可信库存及写入隔离、runner/监测前置均合格后方可使用**；它不是再次发布一个新预算。旧APK1/1、旧G1/1继续耗尽，旧A因G gate关闭不得用；实际AAR/APK/Gate2/生产未获新授权。未观察到真实Gradle选图，`DOKKA_TASK_SELECTED=NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN`，无v10.1.5整版验收。
+
+**建议下一步（尚未发布/派发）：** 聚焦历史缓存可读消费与G2任务私有可写Gradle user-home、Flutter tooling included-build状态/锁/输出完全隔离的**有界静态/模拟 write-isolation closure**；不得盲目复制/清除整套SDK和Gradle缓存。形成有Hash、路径、真实消费与写入面、空间上限及回滚的证据后重新评估原G2合同。Astra本次未创建后继任务、未启动Gradle或软件维护、未合并产品main；等待Owner决定。
+
+**实时main截至本轮核验：** `2da6cfe68a6b0f6d3227f52d8b860ad7ad34c330` / Root `dc8896144a4178a36ffe1d1a8135b1a3000f0b34`；仍已接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。以下原main ACTIVE_STATE为历史时点，不再将此前`G2_GRAPH_TASK_PUBLISHED`误认为本次预检尚未完成。
+
+---
+
 # EliteSync v10.1.5｜2026-10-27 Owner新授权 G2受控发布图探测（当前入口）
 
 **`V10.1.5_G2_GRAPH_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_G2_MAX1_DRY_RUN_NOT_YET_STARTED / NEW_AAR_EXECUTION_NOT_AUTHORIZED / OLD_G_SPENT_1_OF_1 / OLD_APK_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / SOURCE_HARDENING_ACCEPTED_WITH_OBSERVATIONS / SOURCE_LEVEL_ONLY / GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
