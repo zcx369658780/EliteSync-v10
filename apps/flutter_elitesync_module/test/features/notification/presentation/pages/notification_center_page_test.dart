@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +18,13 @@ import 'package:flutter_elitesync_module/features/notification/domain/entities/n
 import 'package:flutter_elitesync_module/features/notification/presentation/pages/notification_center_page.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:go_router/go_router.dart';
+
+class _CurrentSession extends SessionNotifier {
+  @override
+  Future<SessionState> build() async => const SessionState(
+    status: AuthStatus.authenticated, accessToken: 'synthetic-notification-session',
+  );
+}
 
 class FakeAppTelemetryService extends AppTelemetryService {
   FakeAppTelemetryService()
@@ -48,6 +57,10 @@ class FakeNotificationRemoteDataSource extends NotificationRemoteDataSource {
         useMock: false,
       );
 
+  late Future<NotificationItemEntity> Function(int) lookup;
+  @override
+  Future<NotificationItemEntity> fetchNotification(int id) => lookup(id);
+
   final List<int> markedReadIds = <int>[];
   bool failMarkRead = false;
   bool failMarkAllRead = false;
@@ -70,7 +83,7 @@ class FakeNotificationRemoteDataSource extends NotificationRemoteDataSource {
 
 Widget _wrap(Widget child, {List<dynamic> overrides = const []}) {
   return ProviderScope(
-    overrides: overrides.cast(),
+    overrides: [sessionProvider.overrideWith(_CurrentSession.new), ...overrides.cast()],
     child: MaterialApp(
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -138,10 +151,14 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: FakeAppTelemetryService()),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -208,10 +225,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: FakeAppTelemetryService()),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -289,12 +310,14 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
             frontendTelemetryProvider.overrideWithValue(
               FrontendTelemetry(telemetry: FakeAppTelemetryService()),
             ),
-            notificationRemoteDataSourceProvider.overrideWithValue(
-              notifications,
-            ),
+            notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
             notificationListProvider.overrideWith(
               (ref) async => [
                 NotificationItemEntity(
@@ -385,12 +408,14 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
             frontendTelemetryProvider.overrideWithValue(
               FrontendTelemetry(telemetry: FakeAppTelemetryService()),
             ),
-            notificationRemoteDataSourceProvider.overrideWithValue(
-              notifications,
-            ),
+            notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
             notificationListProvider.overrideWith(
               (ref) async => [
                 NotificationItemEntity(
@@ -444,6 +469,7 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
@@ -471,6 +497,7 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
@@ -541,6 +568,7 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
@@ -586,6 +614,7 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
@@ -621,6 +650,7 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
@@ -660,12 +690,14 @@ void main() {
         _wrap(
           const NotificationCenterPage(),
           overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
             frontendTelemetryProvider.overrideWithValue(
               FrontendTelemetry(telemetry: telemetry),
             ),
-            notificationRemoteDataSourceProvider.overrideWithValue(
-              notifications,
-            ),
+            notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
             notificationListProvider.overrideWith(
               (ref) async => [
                 NotificationItemEntity(
@@ -715,10 +747,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -772,10 +808,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -821,10 +861,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -869,10 +913,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -919,10 +967,14 @@ void main() {
       _wrap(
         const NotificationCenterPage(),
         overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: telemetry),
           ),
-          notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+          notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
           notificationListProvider.overrideWith(
             (ref) async => [
               NotificationItemEntity(
@@ -969,12 +1021,14 @@ void main() {
         _wrap(
           const NotificationCenterPage(),
           overrides: [
+          sessionProvider.overrideWith(_CurrentSession.new),
             frontendTelemetryProvider.overrideWithValue(
               FrontendTelemetry(telemetry: telemetry),
             ),
-            notificationRemoteDataSourceProvider.overrideWithValue(
-              notifications,
-            ),
+            notificationRemoteDataSourceProvider.overrideWith((ref) {
+              notifications.lookup = (id) async => (await ref.read(notificationListProvider.future)).firstWhere((item) => item.id == id);
+              return notifications;
+            }),
             notificationListProvider.overrideWith(
               (ref) async => [
                 NotificationItemEntity(

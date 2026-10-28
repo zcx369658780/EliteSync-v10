@@ -131,19 +131,15 @@ class ChatWebsocketServerCommand extends Command
                             ->where('id', '>', (int) ($connection->lastSeenId ?? 0))
                             ->orderBy('id')
                             ->limit(50)
-                            ->get(['id', 'sender_id', 'receiver_id', 'content', 'created_at']);
+                            ->get(['id']);
                     } catch (Throwable) {
                         continue;
                     }
 
                     foreach ($messages as $message) {
                         $connection->send(json_encode([
-                            'type' => 'message',
+                            'type' => 'conversation_changed',
                             'id' => $message->id,
-                            'sender_id' => $message->sender_id,
-                            'receiver_id' => $message->receiver_id,
-                            'content' => $message->content,
-                            'created_at' => optional($message->created_at)->toIso8601String(),
                         ], JSON_UNESCAPED_UNICODE));
                         $connection->lastSeenId = $message->id;
                     }

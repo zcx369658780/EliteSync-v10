@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use App\Services\Accounts\DeviceSessions;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,9 +50,14 @@ final class EnsureAccountActive
             $current = PersonalAccessToken::query()->find($token->getKey());
             abort_unless($current && (int) $current->tokenable_id === (int) $user->id
                 && $current->tokenable_type === $user->getMorphClass(), 401, 'SESSION_REVOKED');
+            abort_if(! $current->created_at || $current->created_at->greaterThan(now('UTC'))
+                || $current->created_at->copy()->addDays(15)->lessThanOrEqualTo(now('UTC'))
+                || ($current->expires_at && $current->expires_at->lessThanOrEqualTo(now('UTC'))), 401, 'ONLINE_LOGIN_EXPIRED');
             if ($current->device_session_id) {
-                abort_unless(Schema::hasTable('device_sessions') && DB::table('device_sessions')
-                    ->where('id', $current->device_session_id)->where('user_id', $user->id)->whereNull('revoked_at')->exists(), 401, 'SESSION_REVOKED');
+                $family = Schema::hasTable('device_sessions') ? DB::table('device_sessions')
+                    ->where('id', $current->device_session_id)->where('user_id', $user->id)->whereNull('revoked_at')->first() : null;
+                abort_unless($family, 401, 'SESSION_REVOKED');
+                abort_if(app(DeviceSessions::class)->onlineDeadline($family)->lessThanOrEqualTo(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
             }
             abort_unless($current->can('*') || ($request->is('api/v1/auth/refresh', 'api/v1/auth/logout')
                 && $current->can('session:refresh')), 403, 'TOKEN_PURPOSE_RESTRICTED');

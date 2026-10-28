@@ -1,0 +1,871 @@
+{
+  "schema": "elitesync.v1015.software-integration.v1",
+  "taskBlob": "b8553497a6e98f524550c4f6e89d8ccdccb79e62",
+  "openingMain": "6a90c05538d1de8d648e645693ef9b1bf23b78f0",
+  "soleParent": "6a90c05538d1de8d648e645693ef9b1bf23b78f0",
+  "branch": "codex/v10.1.5-messaging-offline-notification-software-20261028",
+  "status": "DELIVERED_PARTIAL_WITH_EXPLICIT_BLOCKERS",
+  "acceptance": "AWAITING_ASTRA_INDEPENDENT_REVIEW",
+  "acceptedProductBaseline": {
+    "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "referenceCandidate": "ce3e278eae6872179153243ca3060a18f68abcfd",
+  "referenceCandidateAccepted": false,
+  "wholeReferenceMerged": false,
+  "SOURCE_PROVENANCE": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
+      "mode": "100644",
+      "sha": "8e7212218199a4992fa2970faa6a7548940b61e6",
+      "bytes": 1622,
+      "mainBlob": "53864daac635952fcd8cbd91cdfcab1d4430629a",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart",
+      "mode": "100644",
+      "sha": "bb0cef4e976096b54e81afad5182b5ade0053168",
+      "bytes": 2024,
+      "mainBlob": "3c8426f1503eab187fce1530bb0eaa18e22d951d",
+      "referenceBlob": "bb0cef4e976096b54e81afad5182b5ade0053168",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart",
+      "mode": "100644",
+      "sha": "b04ee3a0eb991448ee69c5bc7ffd959bf7b067ae",
+      "bytes": 5563,
+      "mainBlob": "e3aaa8fdc1ca52152e364a04630dd2abf096606e",
+      "referenceBlob": "b04ee3a0eb991448ee69c5bc7ffd959bf7b067ae",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/cache_keys.dart",
+      "mode": "100644",
+      "sha": "61611498ac13752a2351c6ea8ccc933c6c3caf51",
+      "bytes": 3564,
+      "mainBlob": "b1881756c063b18fe8d403afd592e5368d2499ee",
+      "referenceBlob": "61611498ac13752a2351c6ea8ccc933c6c3caf51",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/local_storage_service.dart",
+      "mode": "100644",
+      "sha": "4974a2863f1675fb8f589b824c78c4a11ec61334",
+      "bytes": 4552,
+      "mainBlob": "c6be5824c3cebd0cdb7fe043610fb14f2fd054c5",
+      "referenceBlob": "4974a2863f1675fb8f589b824c78c4a11ec61334",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+      "mode": "100644",
+      "sha": "ea23fcf79a2a20f26377620575eba94356194f25",
+      "bytes": 13305,
+      "mainBlob": null,
+      "referenceBlob": "6a2e30c3782db3be54efa86c5d806f89b84735d0",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/secure_storage_service.dart",
+      "mode": "100644",
+      "sha": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55",
+      "bytes": 708,
+      "mainBlob": "c2d6c84ac40868c5c854da57936c039c1fd66f03",
+      "referenceBlob": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
+      "mode": "100644",
+      "sha": "6fd3ccc8b98dc1a5574c3170e8475325eab9bc2c",
+      "bytes": 7338,
+      "mainBlob": "315d682361389136ff5ec7bb65af9c86f01cab5d",
+      "referenceBlob": "fa5847c656cca6c57fe86a43705bcabbd3fed689",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_request_dto.dart",
+      "mode": "100644",
+      "sha": "6e0641f3bf84a7acd79372e5147291c568efe5a1",
+      "bytes": 364,
+      "mainBlob": "fae39a797217c4a55951cc530e1b909f7931232e",
+      "referenceBlob": "6e0641f3bf84a7acd79372e5147291c568efe5a1",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_response_dto.dart",
+      "mode": "100644",
+      "sha": "5ddc82e2420f047e5cfa946c864ccdb010acdff1",
+      "bytes": 1212,
+      "mainBlob": "eb89e23e29613ade4bbc23bedfb95d7e0ee8235a",
+      "referenceBlob": "5ddc82e2420f047e5cfa946c864ccdb010acdff1",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
+      "mode": "100644",
+      "sha": "b39d20d64f23d6d163c501d9f4a55880342e4ffd",
+      "bytes": 3070,
+      "mainBlob": "1925c1e9a95f07a453c26f9c1c263241b9c8b110",
+      "referenceBlob": "b39d20d64f23d6d163c501d9f4a55880342e4ffd",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/login_form_provider.dart",
+      "mode": "100644",
+      "sha": "3f6730982709af3abecbe82a2c55bf5117fb5221",
+      "bytes": 3298,
+      "mainBlob": "9641499249a0aa6cf26581cbb10d7357230d014a",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_socket_data_source.dart",
+      "mode": "100644",
+      "sha": "84c5e18a141eb3c880710d7cf2be0f88f34db97e",
+      "bytes": 7147,
+      "mainBlob": "afa90445767349b69c933cc37939266b200eeb31",
+      "referenceBlob": "84c5e18a141eb3c880710d7cf2be0f88f34db97e",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
+      "mode": "100644",
+      "sha": "4f623383d052c8e80a29e256c83e8d1ec4f65196",
+      "bytes": 59659,
+      "mainBlob": "aa5df26269df848a91cd166fa22e8f636e34a979",
+      "referenceBlob": "a421b468ab2d45181eb98c5efa3771fdf226c0f6",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
+      "mode": "100644",
+      "sha": "c12d7cdfc3c61ee74b76629c85b605e9a9aacd16",
+      "bytes": 34298,
+      "mainBlob": "f809be2690935604a1104b55c5d7059f4ee50fd5",
+      "referenceBlob": "c12d7cdfc3c61ee74b76629c85b605e9a9aacd16",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+      "mode": "100644",
+      "sha": "76745e44e53b27c26f97b7365f8232892920ab07",
+      "bytes": 22383,
+      "mainBlob": "fb4838b1be9bf3651c06726790edab777609629e",
+      "referenceBlob": "6aec5b749e954a2e64a1382ae2a5fdfe3c379e46",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_conversation_list_page.dart",
+      "mode": "100644",
+      "sha": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee",
+      "bytes": 14722,
+      "mainBlob": "a3ee7a6cdc55966516bb8c850cc886e64866786e",
+      "referenceBlob": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
+      "mode": "100644",
+      "sha": "12d792fd4cd40c5ef253f95a17ff8064de0344f0",
+      "bytes": 6198,
+      "mainBlob": "68788783eea53649056725b74f21d692fceda0a9",
+      "referenceBlob": "12d792fd4cd40c5ef253f95a17ff8064de0344f0",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+      "mode": "100644",
+      "sha": "46e16f5a201cc9af821d63bebb523c10237ad5c2",
+      "bytes": 7147,
+      "mainBlob": "c56778b0cbafdc7b91b9703d8d78dedb0367087c",
+      "referenceBlob": "46e16f5a201cc9af821d63bebb523c10237ad5c2",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/notification_remote_data_source.dart",
+      "mode": "100644",
+      "sha": "5ed57e7c583dc71546b464b573f064e65aec60c7",
+      "bytes": 3444,
+      "mainBlob": "a261efe7d77bfd90f4c8391d6aa6d911d2283189",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "mode": "100644",
+      "sha": "505282bb436c814140c3f3354d2d608c8b75a619",
+      "bytes": 29746,
+      "mainBlob": "2be21dce1e85486932a6b1f66f33d667ce0fc55f",
+      "referenceBlob": "530aed529e6d43bd6cf3564438406e5e984cbecf",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_preferences_page.dart",
+      "mode": "100644",
+      "sha": "8ce0d4c2a6e72703a442a55f0b86f6d5edd55021",
+      "bytes": 5850,
+      "mainBlob": null,
+      "referenceBlob": "fbd5ed2ec7960bfc68bcf644c6ebba1ceefdc59e",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart",
+      "mode": "100644",
+      "sha": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c",
+      "bytes": 2813,
+      "mainBlob": "c3fd4fcee86ec1933a33c734440296b5c0659bc7",
+      "referenceBlob": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+      "mode": "100644",
+      "sha": "e58bad5195292e2ef568d43637fabd8023c6223d",
+      "bytes": 9309,
+      "mainBlob": "433e598c4328b6bbadcd9d50c72dfa23f31706e3",
+      "referenceBlob": "abb6adc38c7221080e09be495ff808fb80a99705",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+      "mode": "100644",
+      "sha": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+      "bytes": 4041,
+      "mainBlob": null,
+      "referenceBlob": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+      "mode": "100644",
+      "sha": "39956188db4e361f34e9210890cf6d337f56edf7",
+      "bytes": 6619,
+      "mainBlob": null,
+      "referenceBlob": "39956188db4e361f34e9210890cf6d337f56edf7",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
+      "mode": "100644",
+      "sha": "3cfc33004a579114cce96a778452fa78edfeabcb",
+      "bytes": 8963,
+      "mainBlob": "8ee664ff6857e3e2816417536dd8ebb132dab48d",
+      "referenceBlob": "592cdcef541751454e951930d2601d58bf92da8c",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+      "mode": "100644",
+      "sha": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+      "bytes": 4763,
+      "mainBlob": null,
+      "referenceBlob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+      "mode": "100644",
+      "sha": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+      "bytes": 5966,
+      "mainBlob": null,
+      "referenceBlob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
+      "mode": "100644",
+      "sha": "50938ed830cf4d273337a2ea83461d8ed14a741b",
+      "bytes": 40178,
+      "mainBlob": "c49afe5ecbcc477f3b503592652e1b8c0b538803",
+      "referenceBlob": "080a1d9f46443f517251b7d8b5cf49289957afb2",
+      "decision": "MAIN_PLUS_CURRENT_TASK_WITH_REFERENCE_REVIEW_ONLY",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+      "mode": "100644",
+      "sha": "15098e0de61816bcfd3cd2ffee683a3e5c77086d",
+      "bytes": 10555,
+      "mainBlob": null,
+      "referenceBlob": "15098e0de61816bcfd3cd2ffee683a3e5c77086d",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+      "mode": "100644",
+      "sha": "5b32d7e272769bf568552a1abbcc6e810bf3d4ad",
+      "bytes": 14162,
+      "mainBlob": "d5dd613638ae545f43bdc78d431d74f2bcc3b7fd",
+      "referenceBlob": "6be426e6a0a8e0ba49d74c57684ca57c0a9a88e7",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+      "mode": "100644",
+      "sha": "e3a03e47263a4919fdfce45c49d259fe954ae992",
+      "bytes": 11003,
+      "mainBlob": null,
+      "referenceBlob": "e3a03e47263a4919fdfce45c49d259fe954ae992",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+      "mode": "100644",
+      "sha": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+      "bytes": 15813,
+      "mainBlob": null,
+      "referenceBlob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+      "mode": "100644",
+      "sha": "293d84df69b1e699991a67eeb2dc18d4b76c8787",
+      "bytes": 39075,
+      "mainBlob": "1b8ee6a75bd53996b0b79ca5c8c008794231c7cd",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+      "mode": "100644",
+      "sha": "87ab0f0230963d80cd2f8847c46d465708cd10ee",
+      "bytes": 13307,
+      "mainBlob": "cc4de42868c5204c306eafcfe7d8d305f24179e5",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+      "mode": "100644",
+      "sha": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab",
+      "bytes": 9507,
+      "mainBlob": "50b307ac93efcfef0ffe0a9b42f760476b9e856f",
+      "referenceBlob": "db7f09197aec9e30b5bccf64d3e2e56ec96eb568",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "services/backend-laravel/app/Console/Commands/ChatWebsocketServerCommand.php",
+      "mode": "100644",
+      "sha": "486be26a6e44221def9d7aac520ae18856816719",
+      "bytes": 5903,
+      "mainBlob": "b315fc8fc43edbaacbcdefce1bfeb6e64bf012e5",
+      "referenceBlob": "486be26a6e44221def9d7aac520ae18856816719",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingReplayContract.php",
+      "mode": "100644",
+      "sha": "55b757fff40588f572251a776503e2a6074a3c20",
+      "bytes": 1179,
+      "mainBlob": null,
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/NotificationDeliveryContract.php",
+      "mode": "100644",
+      "sha": "3173eb35e174612139f5b68c85821c7bccf1d434",
+      "bytes": 1532,
+      "mainBlob": null,
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/TrustedLoginTimeContract.php",
+      "mode": "100644",
+      "sha": "a710bbc673f4bb5f030e3661dd42e95b9bc3548e",
+      "bytes": 1095,
+      "mainBlob": null,
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+      "mode": "100644",
+      "sha": "f69e06670e6584a02862f965d82fc37dee407224",
+      "bytes": 6352,
+      "mainBlob": "9a3bfbcd2cdae86ff6d18dd84728e22a80e2b817",
+      "referenceBlob": "f69e06670e6584a02862f965d82fc37dee407224",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+      "mode": "100644",
+      "sha": "892adcb18b45750579bc71fec2b53a9841ed542d",
+      "bytes": 11143,
+      "mainBlob": "e4166fa6c4b5ef6ffc34ccef7c3ad9345836a9bd",
+      "referenceBlob": "ffbc699589a20016f70c4316564ff8d677ffe56d",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+      "mode": "100644",
+      "sha": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+      "bytes": 3911,
+      "mainBlob": "6271cb8ecc45b525ff86689ea9a9a5ed9ee313f0",
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationPreferencesController.php",
+      "mode": "100644",
+      "sha": "011fecb63606b303671efbc53c913fdf54dc54e6",
+      "bytes": 2241,
+      "mainBlob": null,
+      "referenceBlob": "011fecb63606b303671efbc53c913fdf54dc54e6",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
+      "mode": "100644",
+      "sha": "737a90e2842f386dba4a421b5a65ab303775d131",
+      "bytes": 3522,
+      "mainBlob": "8eb33d864572ffbe226be7ba6517630c4cd29075",
+      "referenceBlob": "737a90e2842f386dba4a421b5a65ab303775d131",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php",
+      "mode": "100644",
+      "sha": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5",
+      "bytes": 3426,
+      "mainBlob": "bd15a3558336e117450266e2172838939a2299eb",
+      "referenceBlob": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+      "mode": "100644",
+      "sha": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+      "bytes": 6854,
+      "mainBlob": "6ed72abb06a2d2158ad989883a3e00a0234af2aa",
+      "referenceBlob": "044c0d00f427a2c4a4d37c0c51f58a1c2deafd06",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php",
+      "mode": "100644",
+      "sha": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c",
+      "bytes": 2830,
+      "mainBlob": "042ed6982c0395cd385fd71e1d262035562c0815",
+      "referenceBlob": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "mode": "100644",
+      "sha": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+      "bytes": 13160,
+      "mainBlob": "a6196e5fdd268d7bd27c3026d21d65dc8ad1158e",
+      "referenceBlob": "5fc6d2bc7f3d2d24f15206186dcdf7ae2c668e10",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "mode": "100644",
+      "sha": "a0b26e798cf7492fbdf41bb24e752cb812a8d815",
+      "bytes": 19583,
+      "mainBlob": "5d3d09533bdcca15374140fee75a4e7ddbae6886",
+      "referenceBlob": "a0b26e798cf7492fbdf41bb24e752cb812a8d815",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+      "mode": "100644",
+      "sha": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+      "bytes": 10555,
+      "mainBlob": null,
+      "referenceBlob": "c3ebf4824e8fc0feb6a1732da5a0d44ff3936b87",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "mode": "100644",
+      "sha": "9e45e8988d2aefbbec667cfea3fc975ab949dc4c",
+      "bytes": 12537,
+      "mainBlob": "6dad47ad1a7b2d13258f5a862139fcf2cd614470",
+      "referenceBlob": "05e3e104a058ad68d8fcc3f6c7b3ef8149cbd598",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php",
+      "mode": "100644",
+      "sha": "038874c4dd773099cb5e0cff670c2d2fa5732fa7",
+      "bytes": 699,
+      "mainBlob": null,
+      "referenceBlob": "038874c4dd773099cb5e0cff670c2d2fa5732fa7",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php",
+      "mode": "100644",
+      "sha": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b",
+      "bytes": 1781,
+      "mainBlob": null,
+      "referenceBlob": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "mode": "100644",
+      "sha": "fcb4d81338b6ec4b908ba16d1e729d76f98ca101",
+      "bytes": 25145,
+      "mainBlob": "2fb22267a726c42035b70d6f5d458fc6f3c88fa6",
+      "referenceBlob": "932b1ae07c2dd7633ebeae6de4d88a080420c914",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "PRODUCTION_SOURCE"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
+      "mode": "100644",
+      "sha": "1cdaa400d7b8e4ba57eab49a2245f7edbd6ec3b5",
+      "bytes": 4934,
+      "mainBlob": null,
+      "referenceBlob": "b41e0525d098a6570d4000c6012e98cd4ad5fb34",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
+      "mode": "100644",
+      "sha": "e54e3c125c99f7ddc811d8e16c80c0f7414a8be2",
+      "bytes": 12701,
+      "mainBlob": null,
+      "referenceBlob": "e88ee2372f318e96c5e4cfa5bdf5eb10d6143206",
+      "decision": "SCOPED_REFERENCE_REWORKED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
+      "mode": "100644",
+      "sha": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4",
+      "bytes": 8668,
+      "mainBlob": null,
+      "referenceBlob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4",
+      "decision": "SCOPED_REFERENCE_ADOPTED",
+      "evidence": "SOURCE_ONLY"
+    },
+    {
+      "path": "services/backend-laravel/tests/Pure/SoftwareIntegrationContractsTest.php",
+      "mode": "100644",
+      "sha": "e502e9f4488804aa641c81011ddc58fc2d255af8",
+      "bytes": 3507,
+      "mainBlob": null,
+      "referenceBlob": null,
+      "decision": "CURRENT_TASK_IMPLEMENTATION",
+      "evidence": "SOURCE_ONLY"
+    }
+  ],
+  "productTrees": {
+    "apps": "61c0dd9a70fcd56af00053f1d055884cecf052f0",
+    "services": "cc61686579f4a89ac092f3f557ba1f8191471528"
+  },
+  "productFileCount": 1440,
+  "report": {
+    "path": "docs/versions/v10.1.5/SOFTWARE_INTEGRATION_IMPLEMENTATION_REPORT_20261028.md",
+    "blob": "b7b79462fea3f860dfe6c1685f641cdab8eb6529",
+    "sha256": "7247e989c50953518443e5a99bf9e3f279855957a9fb2fb3e45a5744ca16ab5f"
+  },
+  "sourceVerification": {
+    "checks": [
+      {
+        "prefix": "apps",
+        "count": 720,
+        "expected": 720,
+        "ok": true
+      },
+      {
+        "prefix": "services",
+        "count": 700,
+        "expected": 700,
+        "ok": true
+      }
+    ],
+    "selectedReferencePaths": 53,
+    "referencePathsVerified": true
+  },
+  "tests": [
+    {
+      "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+      "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 2
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+      "blob": "39956188db4e361f34e9210890cf6d337f56edf7",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 5
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
+      "blob": "3cfc33004a579114cce96a778452fa78edfeabcb",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 5
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+      "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 2
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+      "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 2
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
+      "blob": "50938ed830cf4d273337a2ea83461d8ed14a741b",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 24
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+      "blob": "15098e0de61816bcfd3cd2ffee683a3e5c77086d",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 2
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+      "blob": "5b32d7e272769bf568552a1abbcc6e810bf3d4ad",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 10
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+      "blob": "e3a03e47263a4919fdfce45c49d259fe954ae992",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 4
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+      "blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 7
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+      "blob": "293d84df69b1e699991a67eeb2dc18d4b76c8787",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 16
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+      "blob": "87ab0f0230963d80cd2f8847c46d465708cd10ee",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 7
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+      "blob": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 11
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
+      "blob": "1cdaa400d7b8e4ba57eab49a2245f7edbd6ec3b5",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 4
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
+      "blob": "e54e3c125c99f7ddc811d8e16c80c0f7414a8be2",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 10
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
+      "blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4",
+      "status": "NOT_RUN_ENV_GATE_CLOSED",
+      "sourceOnlyTestDeclarations": 9
+    },
+    {
+      "path": "services/backend-laravel/tests/Pure/SoftwareIntegrationContractsTest.php",
+      "blob": "e502e9f4488804aa641c81011ddc58fc2d255af8",
+      "status": "PASS_PURE_OFFLINE_31_CHECKS",
+      "sourceOnlyTestDeclarations": 0
+    }
+  ],
+  "TEST_CASES": [
+    {
+      "id": "F1-01",
+      "trigger": "提交已成功但响应丢失，点击重试",
+      "contract": "同clientMessageId、同接收方/正文/附件顺序；返回原持久化消息，不新增附件关联或站内通知",
+      "evidence": "PHP pure fingerprint/replay PASS；V1015MessagingTest 和客户端 widget 源码 NOT_RUN"
+    },
+    {
+      "id": "F1-02",
+      "trigger": "同键改正文、接收方或附件顺序",
+      "contract": "当前授权先检查；不同payload冲突409；不发布假成功",
+      "evidence": "纯契约 PASS；API/DB NOT_RUN"
+    },
+    {
+      "id": "F1-03",
+      "trigger": "已提交消息的附件后来变成failed",
+      "contract": "先回读已提交事实；只有新提交进入附件锁定预检；实际媒体内容仍经当前权限接口",
+      "evidence": "新增 Feature 源码 NOT_RUN"
+    },
+    {
+      "id": "F1-04",
+      "trigger": "Block/Connection/MC撤销、成员离开、账号禁用、token注销后重试",
+      "contract": "同键回读也需要当前完整发送授权；旧token/旧WS/晚响应不能污染新页面",
+      "evidence": "纯撤权布尔契约 PASS；交易锁并发/WS/客户端源码 NOT_RUN"
+    },
+    {
+      "id": "F1-05",
+      "trigger": "发送收到502、408、429或无可用确认",
+      "contract": "保留原attempt和payload，显示未知；手动同键确认；echo身份不符不得成功",
+      "evidence": "LiveChat/ChatRoom 回归源码 NOT_RUN"
+    },
+    {
+      "id": "F2-01",
+      "trigger": "真实密码登录成功；失败密码/注册/refresh",
+      "contract": "只有成功登录提供可用T0；refresh保持原T0及15/30天截止，不续期",
+      "evidence": "纯UTC绝对时刻/不续期规则 PASS；登录API/DB NOT_RUN"
+    },
+    {
+      "id": "F2-02",
+      "trigger": "同进程断网，合成时间跨15天至30天",
+      "contract": "既有账号/设备/对象读grant下只读；在线保存和发送关闭；到30天锁定并精确清理",
+      "evidence": "PrivateCache 注入时钟测试源码 NOT_RUN；真实经过15/30天 NOT_PROVEN"
+    },
+    {
+      "id": "F2-03",
+      "trigger": "重启、时间回拨/跳变、坏密文、换号、登出",
+      "contract": "不以持久化token/SDDL/设备墙钟恢复信任；重启锁定；坏记录锁定；精确namespace清理失败保持不可读",
+      "evidence": "客户端测试源码 NOT_RUN；物理加密/删除 NOT_PROVEN"
+    },
+    {
+      "id": "F3-01",
+      "trigger": "更改分类偏好、静默、拒绝或撤销OS权限",
+      "contract": "不阻断消息/匹配；偏好由当前账号API保存；系统权限仅显示当前状态，不制造provider注册或送达",
+      "evidence": "纯分类/资格规则 PASS；客户端/Feature 源码 NOT_RUN"
+    },
+    {
+      "id": "F3-02",
+      "trigger": "TEST_ONLY token轮换、换号、logout、过期家族",
+      "contract": "哈希token，账号/设备/session/generation绑定，去重；撤销和当前资格先于既有投影回执",
+      "evidence": "纯guard与最小正文 PASS；持久化/并发 NOT_RUN"
+    },
+    {
+      "id": "F3-03",
+      "trigger": "点击旧通知：已过期/被Block/已撤权/换号中",
+      "contract": "先按当前owner查通知，再由当前presentation与目的地API授权；空payload不得导航；异步切号响应丢弃",
+      "evidence": "新 GET owner-only 及平台/安全旧入口测试源码 NOT_RUN"
+    }
+  ],
+  "execution": {
+    "classification": "CODEX_REPORTED_LOCAL_EXECUTION",
+    "standalonePhpChecks": 31,
+    "standaloneFailures": 0,
+    "standaloneExit": 0,
+    "phpLintFiles": 23,
+    "phpLintFailures": 0,
+    "phpExeSha256": "e120479f40a9b7b90e779cb845d1d13a9a4e7923e7681cbb851f41bc139f3971",
+    "isolation": [
+      "task-owned cwd/home/temp/appdata/cache",
+      "php -n",
+      "open_basedir task root",
+      "process and socket functions disabled",
+      "no Laravel bootstrap/vendor/DB/network"
+    ],
+    "dartCompileOrTests": "NOT_RUN_ENV_GATE_CLOSED",
+    "laravelFeatureOrDb": "NOT_RUN_ENV_GATE_CLOSED",
+    "realAppApiDbE2E": "NOT_RUN",
+    "physical15and30DayOrCleanup": "NOT_PROVEN",
+    "realPush": "PENDING_NOT_RUN"
+  },
+  "exclusions": [
+    "pubspec/RTC vendor dependency change",
+    "PlatformAccess environment allowlist broadening",
+    "live DB environment test",
+    "unrelated tools/build/SDK/OS changes"
+  ],
+  "budget": {
+    "limitLogicalBytes": 268435456,
+    "limitAllocatedBytes": 268435456,
+    "observedLogicalBytes": 136871626,
+    "observedAllocatedBytes": 139835928,
+    "continuousPeakMonitoring": false,
+    "aclWrites": 0,
+    "fixtures": 0,
+    "restrictedOrControlChildren": 0,
+    "g2PopenOrClaim": 0,
+    "historicalLedgerWrites": 0,
+    "gradleJvmFlutterCli": 0,
+    "realDbApiServer": 0,
+    "deviceRtcPush": 0,
+    "mainIntegration": 0
+  },
+  "retainedHistory": [
+    "PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT",
+    "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN",
+    "OS_ENFORCEMENT_NOT_PROVEN",
+    "G2_READY_FOR_POPEN_FALSE",
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN"
+  ],
+  "rawEvidencePolicy": "LOCAL_ONLY_RAW_NOT_UPLOADED",
+  "stop": "STOP_AFTER_SINGLE_CANDIDATE_FOR_ASTRA"
+}
