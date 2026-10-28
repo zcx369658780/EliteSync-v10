@@ -1,0 +1,772 @@
+{
+  "schema": 1,
+  "taskBlob": "19a25f1446e08ff875d1533f78b8cf2726c2d795",
+  "status": "RESTORATION_BLOCKED_WITH_ORIGINAL_EVIDENCE",
+  "earlyDiagnosticStatus": "EARLY_STARTUP_DIAGNOSTIC_BOUNDED_NO_RELAUNCH",
+  "childInitRootCause": "NOT_PROVEN",
+  "G2_READY_FOR_POPEN": false,
+  "restrictedIdentityGate": "BLOCKED",
+  "authority": {
+    "main": "5dc7e1752e62454acd0d9e4bfdec58c25e602e19",
+    "mainRoot": "611f05ab3312b5a639b8144f51ee3fc2ce24abf4",
+    "mainTreeEntries": 6234,
+    "candidate": "8186cebc94661bcdc229ee5b62b31871dc784a4c",
+    "parent": "76e46d9966dcb29c9e7dea72f41a1cd59fe0e6d7",
+    "root": "1d9ec83dbfe6c211d95f713d5aa4ab93f69d8bf7",
+    "candidateTreeEntries": 6666,
+    "protectedFiles": 122,
+    "oldSeedHashFileIdsChecked": 3183,
+    "oldFixturesRegisteredReadOnly": 18,
+    "localRefs": 527,
+    "oldWriteGateClosedDueToSourceCompleteness": true,
+    "newRestrictedLaunches": 0
+  },
+  "candidateSoleParent": "8186cebc94661bcdc229ee5b62b31871dc784a4c",
+  "candidateAppsTree": "5af7a9d0042be19437616e969e260658b67e9353",
+  "candidateServicesTree": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+  "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+  "selfIdentity": "LOCAL_ONLY final-readback.json after publication",
+  "earlyEvents": {
+    "status": "NO_CORRELATED_EVENT_AVAILABLE",
+    "queryCount": 1,
+    "readOnlyChannel": "Application",
+    "exactProviderAndEvent": true,
+    "exactPidAndImageServerFilter": true,
+    "timeWindowSeconds": 4.027047157287598,
+    "eventCount": 0,
+    "sameInstanceCorrelated": false,
+    "childCreationTimeWasCapturedHistorically": false,
+    "rootCause": "CHILD_INIT_ROOT_CAUSE_NOT_PROVEN",
+    "settingsOrProviderChanges": 0,
+    "newChildLaunches": 0,
+    "G2_READY_FOR_POPEN": false,
+    "queryHandlesClosed": true
+  },
+  "futureCaptureDesign": {
+    "kind": "DESIGN_ONLY_NO_LAUNCHER_IMPLEMENTED",
+    "newChildLaunches": 0,
+    "parentDurableBeforeLaunch": [
+      "unique attemptId",
+      "task/source hashes",
+      "exact application and args hash",
+      "environment policy hash",
+      "only task-owned diagnostic destinations",
+      "UTC and monotonic timestamps with clock/error scope"
+    ],
+    "nativeReturnImmediatelyPersist": [
+      "success vs failure",
+      "GetLastError only when native call fails",
+      "PID and actual creation FILETIME from returned process handle",
+      "token source/non-elevation qualification without exporting raw identities",
+      "resume return and timing"
+    ],
+    "earliestIoProposal": [
+      "Explicit STARTUPINFOEX handle allowlist for only task-owned stdio handles; no broad handle inheritance fallback",
+      "Parent drains and flushes bounded stdout/stderr buffers; distinguish empty, absent, unavailable and truncation",
+      "A loader failure before runtime initialization may never emit stderr; stdio alone cannot prove DLL cause",
+      "Correlate only already-existing passive events by actual process creation identity and unique attempt binding; no enabling ETW/provider or debugger"
+    ],
+    "childWhenActuallyEntered": [
+      "flush first minimal native/bootstrap frame before broad imports",
+      "record frame stage, source hash, OS error domain and instance binding; never export raw identities"
+    ],
+    "terminationAndCleanup": [
+      "Wait on returned owned process handle; do not search/kill by reused PID",
+      "No descriptor rollback or stronger permissions before confirmed child exit",
+      "Any receipt flush, identity, bounded-output or cleanup failure remains FAIL_CLOSED"
+    ],
+    "notImplementedThisTask": [
+      "new launch",
+      "CreatePipe/STARTUPINFOEX execution",
+      "ETW activation",
+      "debugger/ProcMon",
+      "shared ACL change",
+      "new token or profile experiment"
+    ],
+    "remainingUnknown": [
+      "failing DLL or exact init stage",
+      "whether stderr could exist for this failure class",
+      "availability of same-instance passive events",
+      "safe restrictive identity inheritance into real engineering tools"
+    ],
+    "G2_READY_FOR_POPEN": false
+  },
+  "designMock": {
+    "kind": "PURE_EARLY_RECEIPT_DESIGN_MOCK_NOT_OS_VALIDATION",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "forbiddenAuditEvents": [],
+    "newChildLaunches": 0,
+    "G2_READY_FOR_POPEN": false,
+    "exit": 0
+  },
+  "newFixtures": {
+    "newFixturesCreated": 2,
+    "rows": [
+      {
+        "label": "N01",
+        "kind": "file",
+        "mutationCalls": 1,
+        "restoreCalls": 1,
+        "reproduced8404To8004": true,
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "afterMutationControl": [
+          32772,
+          1
+        ],
+        "afterRestoreControl": [
+          33796,
+          1
+        ],
+        "strictFlags7BinarySddlControlAndIdentityRestored": true,
+        "checks": {
+          "descriptorViewFlags": true,
+          "binarySha256": true,
+          "sddlUtf8Sha256": true,
+          "control": true,
+          "daclRevision": true,
+          "daclPresent": true,
+          "contentSha256": true,
+          "saclState": true
+        },
+        "allCapturedFieldsComparedIncludingPrivateFields": true,
+        "win32Error": null,
+        "exception": null,
+        "handlesClosed": true
+      },
+      {
+        "label": "N02",
+        "kind": "directory",
+        "mutationCalls": 1,
+        "restoreCalls": 1,
+        "reproduced8404To8004": true,
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "afterMutationControl": [
+          32772,
+          1
+        ],
+        "afterRestoreControl": [
+          33796,
+          1
+        ],
+        "strictFlags7BinarySddlControlAndIdentityRestored": true,
+        "checks": {
+          "descriptorViewFlags": true,
+          "binarySha256": true,
+          "sddlUtf8Sha256": true,
+          "control": true,
+          "daclRevision": true,
+          "daclPresent": true,
+          "contentSha256": true,
+          "saclState": true
+        },
+        "allCapturedFieldsComparedIncludingPrivateFields": true,
+        "win32Error": null,
+        "exception": null,
+        "handlesClosed": true
+      }
+    ],
+    "allPlannedObjectClassesPassedCapturedView": true,
+    "fullSaclOrHistoricalBinaryProof": false,
+    "oldRestoreAttempts": 0,
+    "oldGate": "CLOSED_BY_HISTORICAL_SOURCE_COMPLETENESS",
+    "status": "RESTORATION_BLOCKED_WITH_ORIGINAL_EVIDENCE",
+    "newChildLaunches": 0,
+    "G2_READY_FOR_POPEN": false
+  },
+  "oldSourceGate": {
+    "oldObjects": 18,
+    "originalSddlSourceHashBoundTo8186Index": true,
+    "allFileIdsContentAndCurrentKnownStateMatched": true,
+    "originalBinaryDescriptorCaptured": false,
+    "originalSaclCaptured": false,
+    "saclReadabilityTested": false,
+    "historicalFullDescriptorBinaryEqualityProvable": false,
+    "fullSourceAndReferenceGateComplete": false,
+    "oldFixtureWriteGate": "CLOSED; full historical descriptor/binary/SACL and complete reference proof unavailable",
+    "oldRestoreAttempts": 0,
+    "doNotRelaxToAceOrOgdOnlyEquality": true,
+    "G2_READY_FOR_POPEN": false,
+    "capturedOgdSddlIsReliable": true,
+    "notClaimingOriginalEvidenceForged": true,
+    "knownOgdSemanticRestorationMayBeTechnicallyPossible": true,
+    "historicalFullDescriptorAndBinaryClaimNotSupported": true,
+    "nonemptyHistoricalDirectoryInheritancePropagationAndRollbackProven": false,
+    "absenceOfOtherWorkReferencesProven": false,
+    "newFileAndEmptyDirectorySuccessDoesNotProveOldTreePropagationSafety": true
+  },
+  "oldPerObjectResults": [
+    {
+      "label": "F001",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F002",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F003",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F004",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F005",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F006",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F007",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F008",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F009",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F010",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F011",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F012",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F013",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F014",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F015",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F016",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F017",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    },
+    {
+      "label": "F018",
+      "currentControl": [
+        32772,
+        1
+      ],
+      "identityContentAndCurrentViewUnchanged": true,
+      "restoreAttempts": 0,
+      "result": "NOT_RUN_UNMET_SOURCE_AND_PROPAGATION_GATES"
+    }
+  ],
+  "protection": {
+    "stage": "prepublish",
+    "previous101Preserved": true,
+    "additionalPriorTaskOriginals": 21,
+    "totalNamedProtectedHashSizeIdsMatched": 122,
+    "fiveRootsUnchanged": true,
+    "localRefsUnchanged": 527,
+    "worktreeRegistryUnchanged": true,
+    "source286CleanHeadUnchanged": true,
+    "oldSeedReadOnlyHashAndIdChecks": 3183,
+    "old18CurrentDescriptorBytesControlIdsContentUnchanged": true,
+    "oldRestoreAttempts": 0,
+    "newFixtureCount": 2,
+    "newAclRoundsEach": 1,
+    "newCapturedFlags7ViewStrictlyRestored": 2,
+    "newRestrictedChildLaunches": 0,
+    "engineeringRuntimeStarts": 0,
+    "G2ClaimAbsent": true,
+    "oldAClaimAbsent": true,
+    "G2Popen": 0,
+    "G2ReservedStarts": 0,
+    "sharedAclChanges": 0,
+    "newDDriveScansOrCleanups": 0,
+    "G2_READY_FOR_POPEN": false,
+    "status": "RESTORATION_BLOCKED_WITH_ORIGINAL_EVIDENCE",
+    "exit": 0
+  },
+  "budgetReadonly": {
+    "newRestrictedChildLaunches": 0,
+    "engineeringRuntimeStarts": 0,
+    "oldApk": "SPENT_1_OF_1",
+    "oldG": "SPENT_1_OF_1",
+    "oldA": "GATE_CLOSED",
+    "G2Max": 1,
+    "G2ReservedStarts": 0,
+    "G2Popen": 0,
+    "G2ClaimAbsent": true,
+    "newFixtureMax": 2,
+    "eachNewFixtureAclRoundsMax": 1,
+    "oldPerObjectRestoreMax": 1,
+    "oldWritesGateClosed": true,
+    "Gate2": "NOT_AUTHORIZED",
+    "G2_READY_FOR_POPEN": false
+  },
+  "spaceBefore": {
+    "stage": "before",
+    "logicalBytes": 8231524,
+    "allocatedBytes": 8273920,
+    "files": 18,
+    "directories": 1,
+    "volumeFreeBytes": 506736386048,
+    "capBytes": 67108864,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "spacePostNewFixtures": {
+    "stage": "post-new-fixtures",
+    "logicalBytes": 11392210,
+    "allocatedBytes": 11510272,
+    "files": 61,
+    "directories": 2,
+    "volumeFreeBytes": 506486800384,
+    "capBytes": 67108864,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "spaceBeforeDocs": {
+    "stage": "delivery",
+    "logicalBytes": 11432498,
+    "allocatedBytes": 11573072,
+    "files": 79,
+    "directories": 2,
+    "volumeFreeBytes": 506422652928,
+    "capBytes": 67108864,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "commandsAndLogHashes": [
+    {
+      "command": "python -X utf8 -B intake.py",
+      "exit": 1,
+      "artifacts": [
+        {
+          "localOnlyName": "intake.stdout.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "intake.stderr.txt",
+          "bytes": 2219,
+          "sha256": "1115bbd35f79d7400d5ae1296d899f4e3f4f9ae5c7eff9683250e1da3ac90aa5"
+        },
+        {
+          "localOnlyName": "intake.exit.txt",
+          "bytes": 3,
+          "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B finish_intake.py",
+      "exit": 1,
+      "artifacts": [
+        {
+          "localOnlyName": "intake-v2.stdout.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "intake-v2.stderr.txt",
+          "bytes": 884,
+          "sha256": "71431a070e8d5a0de89e0bca7369bff626a45df90300971537bfcf09d79a025b"
+        },
+        {
+          "localOnlyName": "intake-v2.exit.txt",
+          "bytes": 3,
+          "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B read_early_events.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "early-events.stdout.txt",
+          "bytes": 467,
+          "sha256": "6c047f187a0270d8232c3b2b31a12e6c63acb944ce98ac743944d3934f24cbc3"
+        },
+        {
+          "localOnlyName": "early-events.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "early-events.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B new_fixture_rounds.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "new-fixtures.stdout.txt",
+          "bytes": 1461,
+          "sha256": "ba9650e15cb62738fb2d6dda7d6385cba5e48555feb1fd8c45ac2ef845509c76"
+        },
+        {
+          "localOnlyName": "new-fixtures.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "new-fixtures.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B early_diag_design_mock.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "design-mock.stdout.txt",
+          "bytes": 206,
+          "sha256": "e3a663fdf74a832130804ff1e831217810f39112e5f7c29b436b3924e8e40afd"
+        },
+        {
+          "localOnlyName": "design-mock.stderr.txt",
+          "bytes": 1142,
+          "sha256": "ad5c628f2ce4b825eb424e03ee2b6982533993928ebcf8b157d02eb424ec1db3"
+        },
+        {
+          "localOnlyName": "design-mock.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B check_protection.py prepublish",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "protection-prepublish.stdout.txt",
+          "bytes": 780,
+          "sha256": "250a7c1fba3b681772cdc9f4451b00fe95342e622a0fb2e08b759a743db1e738"
+        },
+        {
+          "localOnlyName": "protection-prepublish.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "protection-prepublish.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    }
+  ],
+  "localOnlyEvidence": [
+    {
+      "id": "protected-before-private.json",
+      "bytes": 56236,
+      "sha256": "f5d7eb3fa28edcdf4e12d361e5799836c79de7182ef781bb53572c60c89c7f29",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "roots-before-private.json",
+      "bytes": 1992,
+      "sha256": "1e66eb983a189d8edd396f64f3db4a22e10c927284f47cc52d7796deb9aaf466",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "refs-before.txt",
+      "bytes": 62655,
+      "sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "worktrees-before-private.txt",
+      "bytes": 43506,
+      "sha256": "cbc679643eb340edbbd794a403f2cb744bd6b5100a502a5b440b1c18cd97f5a6",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "old-seed-readonly-check-private.json",
+      "bytes": 1358211,
+      "sha256": "062d174776a31f97576561304535d7663c5ba5444816b929f6dddb734ad34e17",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "old-fixture-before-private.json",
+      "bytes": 1195025,
+      "sha256": "db7b151c2414603392b62e307c18353df56a83f0023eab5321b57aeda8c51aa0",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "old-restore-source-gate.json",
+      "bytes": 977,
+      "sha256": "1906b3f28b69695044ad58389e1fb19075ecdd8ef798869bc297177481605262",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "event-query-private.json",
+      "bytes": 1173,
+      "sha256": "cbf621522ed6ca518e88070a5d2270fe550466e83f6ba8153d2785d842dd946a",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "early-event-summary.json",
+      "bytes": 510,
+      "sha256": "1e32146db610f355599d339188da6204ae7ffe58c1e7a428d537eb1802cb8030",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-plan.json",
+      "bytes": 834,
+      "sha256": "8c68e67a594f8781fe684fd71dc6c73d6e8baa8a0f3e23ee9894aabcd3a8bf24",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-1-mutation-attempt.json",
+      "bytes": 373,
+      "sha256": "f6859cc5ba195b68fd92730a7e6cbf7d4a4119f2f1b99f464c590a44cebf1a82",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-1-restore-attempt.json",
+      "bytes": 250,
+      "sha256": "ed65a754b8e87a40aa0fa01fd46f9768f5651ba1f23bb1ae22a5661ebe467753",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-1-result-private.json",
+      "bytes": 103804,
+      "sha256": "fe3ae4dc4a1f0d7c5ce32026eded43a35688ba0986734c7d722ef9e5556e3427",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-2-mutation-attempt.json",
+      "bytes": 373,
+      "sha256": "c3edf1824a99087adba48bd891800ff38e7398f54453874cfc9b596028e1ca06",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-2-restore-attempt.json",
+      "bytes": 250,
+      "sha256": "70bcfa8cba68a67017f61e98e93aab26e0fc7542726eaf38a51a4337e28e1008",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-2-result-private.json",
+      "bytes": 199932,
+      "sha256": "9e5bd9740a55c45770d2b0548a2e118a276a06d6de85749a013797f8f099d7dc",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new-fixture-summary.json",
+      "bytes": 2038,
+      "sha256": "41eaab801e7d9b05c1d7b5fa284b9aa085ebc1179f4c68229d50c25233b40460",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "future-capture-design.json",
+      "bytes": 2200,
+      "sha256": "9728baf2d3f8c18360de81688ae090020aafe4d0e9692b107c2c3429ab554376",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "design-mock-result.json",
+      "bytes": 234,
+      "sha256": "e6fbde26d27fc946d9e55bbab1b1e35c4cbb1bcde3571cddb935d3507f96642c",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "readonly-intake-failures-note.json",
+      "bytes": 713,
+      "sha256": "f002a90daad0b2a126bcf9db5e2d447a7e88ab97b89a474a52291ef315e2019d",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "protection-prepublish.json",
+      "bytes": 856,
+      "sha256": "d4f2bffcfe11449cf8ee19aabc585e1d752b902d35608d7b9157c9108c247652",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake.py",
+      "bytes": 9205,
+      "sha256": "95ae999f568d6677fda34811a4ad898d7dae127827a3170aa878b9fdc421dc82",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "finish_intake.py",
+      "bytes": 4834,
+      "sha256": "1dd78fa3b348522e112eca7f2e9af847957daf87d0d3c65ba8605ae8acc61acd",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "read_early_events.py",
+      "bytes": 3674,
+      "sha256": "8f9cacc40ec02618f7ef7f430ebb81dcfa6c390ffd8a8fae1af29252a96e4cc4",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "new_fixture_rounds.py",
+      "bytes": 6995,
+      "sha256": "47823a16461052cc0b1b14d4df88dcb6bc001d2b52dec2ffde2b3fa064571af7",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "filemeta.py",
+      "bytes": 3715,
+      "sha256": "bc4b38847b49601a7825fa1d3786057fc03954358b1cde995fffb780cd6544fb",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "check_protection.py",
+      "bytes": 4241,
+      "sha256": "2702f77d377b5291006f0bf36cf9550f2d55759f67e40e87fed9f52fece3a5ff",
+      "class": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    }
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/G2_RESTRICTED_CHILD_EARLY_DIAG_AND_EXACT_SD_RECOVERY_REPORT_20261028.md",
+    "mode": "100644",
+    "bytes": 16056,
+    "sha256": "d853be85d957215d5c0c053f02dd0c5f3a5d6704c2e3895bdab7b389003858c6",
+    "blob": "edc910819c6614cfdd8f0db02274ebfd8f9166f3"
+  },
+  "safeMockSource": {
+    "path": "docs/versions/v10.1.5/restricted_child_early_diag_design_mock.py",
+    "mode": "100644",
+    "bytes": 3676,
+    "sha256": "fe998b51fcb16dfef468b837036d5cc76faf21cfe8e0982fbc9b5b77c3a09226"
+  },
+  "terminal": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW"
+}
