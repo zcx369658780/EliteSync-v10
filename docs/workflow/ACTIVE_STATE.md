@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-28 Owner启动期诊断与18份Fixture精确描述符恢复任务（最新入口）
+
+**`EARLY_CHILD_DIAGNOSTIC_AND_SD_RECOVERY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_NEW_RESTRICTED_CHILD_LAUNCH / ZERO_GRADLE / ZERO_G2_CLAIM / RESTRICTED_IDENTITY_GATE_BLOCKED / CHILD_ACCESS_MATRIX_NOT_RUN_14_OF_14 / FIXTURE_EXACT_SD_RECOVERY_BLOCKED_18_OF_18 / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / OLD_APK_G_EXHAUSTED_1_OF_1 / OLD_A_GATE_CLOSED / D_DRIVE_CLEANUP_DEFERRED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Owner于2026-10-28在Astra独立审查8186cebc后明确同意推进**主线仅两项阻断**：受限子进程`0xC0000142`启动期只读取证与未来首事件/错误回执捕获设计，以及18件上一任务fixture的**精确安全描述符恢复资格/严格条件性定点修复**。唯一正式任务：[V10_1_5_RESTRICTED_CHILD_EARLY_DIAG_AND_EXACT_FIXTURE_SD_RECOVERY_TASK_20261028.md](../versions/v10.1.5/V10_1_5_RESTRICTED_CHILD_EARLY_DIAG_AND_EXACT_FIXTURE_SD_RECOVERY_TASK_20261028.md)，已发布并全文回读，Git Blob **`19a25f1446e08ff875d1533f78b8cf2726c2d795`**。须由Owner**本地手动派发Codex**；此状态仅`PUBLISHED`而非已执行。**本轮不批准任何新受限子进程launch、Gradle、G2 Popen、G2.claim或真实权限矩阵再运行**。
+
+**来源与审查：** 前置Astra裁决 `8186_BOUNDED_BLOCKED_DELIVERY_ACCEPTED_WITH_REQUIRED_OBSERVATIONS` 已归档 `astra/v10.1.5-8186-restricted-identity-blocked-review-20261028:docs/versions/v10.1.5/8186_RESTRICTED_IDENTITY_OS_GATE_ASTRA_REVIEW_20261028.md` Blob `a6a01ad4d56633cf2ab0aeed66658067c2fc42ed`，当时审查分支HEAD `b2a554990bf6ca7424df3b49b85acf67b2a75f41`。8186候选 `8186cebc94661bcdc229ee5b62b31871dc784a4c`、唯一Parent `76e46d9966dcb29c9e7dea72f41a1cd59fe0e6d7`、Root `1d9ec83dbfe6c211d95f713d5aa4ab93f69d8bf7`，候选apps `5af7a9d0042be19437616e969e260658b67e9353` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`未并入产品main。8186两份证据Blob `e773c0139dc4c0d6c91abad7553508382975d4e0` / `0cfc46b50f092b5c1c10df7ea4e065af3141144a`。
+
+**阻断不可降级：** Codex本地仅一次受限CreateProcessAsUser child创建，退出`0xC0000142`（STATUS_DLL_INIT_FAILED错误类别），没有child首事件/stdout/stderr或14项访问检查回执，`CHILD_ACCESS_MATRIX_NOT_RUN_14_OF_14`；特定DLL/profile/desktop成因均UNKNOWN。18件旧任务私有fixture原安全描述符control `0x8404`、上轮恢复后 `0x8004`（差 `0x0400`）且严格恢复0/18，虽ACE、owner/group、FileId及字节未见差异，但**不得假称原状已恢复**。新任务必须先保留本地原始状态与证据，再在新建可丢弃fixture≤2件、每件1轮上验证**原样恢复**；只有完全通过、18旧对象原件/身份/原SDDL/引用状态匹配后，允许针对旧18件**每件最多一次**具名定点恢复，并在第一次失败立即STOP。任何不明/平台拒绝均停止，不提权或改系统安全策略；不修改旧Seed/共享SDK/保护五根。任务新增本地占用上限**64MiB**，不复制1.3GiB旧Seed。
+
+**预算/保护：** 老APP APK、老G各1/1耗尽，旧A因历史G门禁关闭。原独立G2按Codex LOCAL_ONLY仍`max1/reserved0/Popen0/claim absent`，本轮仅只读核实，不创建claim或运行，`G2_READY_FOR_POPEN=FALSE`。禁止Gradle/JVM/Flutter、工程观察器/网络/Gate2/设备、D盘历史目录清理。SDK/插件写入、Dokka选择、AAR/POM/真实APK、AEC/native handle/elapsed天数与Push均未完成。已接受产品仍v10.1.4，main完整apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`保持。
+
+**唯一下一步：** Owner手动派发本正式任务，Codex定点调查和任务自有fixture定点恢复、集中候选交付后STOP等待Astra独立验收；不自动开展第二轮restricted child、不继续真实G2/构建、不合并产品main、不删除D盘旧目录。以下原main状态正文为历史时点，不能覆盖本任务最新冻结边界。
+
+---
+
 # EliteSync v10.1.5｜2026-10-28 Owner主线优先：受限身份OS写隔离资格与SDK残余写面（唯一当前入口）
 
 **`MAINLINE_RESTRICTED_IDENTITY_OS_WRITE_GATE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE / ZERO_G2_POPEN / NO_G2_CLAIM / OS_ENFORCEMENT_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / D_DRIVE_CLEANUP_DEFERRED / OLD_APK_AND_G_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
