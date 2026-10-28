@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-28 Astra ba7df19a 最小依赖Seed决策验收（独立审查分支最新入口）
+
+**`BA7DF19A_BOUNDED_STATIC_DECISION_ACCEPTED_WITH_OBSERVATIONS / MINIMAL_SEED_CLOSURE_NOT_PROVEN / BLOCKED_DISK_OR_ISOLATION / G2_READY_FOR_POPEN_FALSE / INVENTORY_RUNTIME_CLOSURE_NOT_PROVEN / GRADLE_RESOLUTION_RUNTIME_NOT_PROVEN / G2_NOT_RUN / G2_CONDITIONAL_BUDGET_0_OF_1_CODEX_REPORTED / G2_CLAIM_ABSENT_CODEX_REPORTED / GRAPH_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / OLD_APK_AND_G_EXHAUSTED_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Astra 独立审查：** [BA7DF19A_MINIMAL_SEED_ASTRA_REVIEW_20261028.md](../versions/v10.1.5/BA7DF19A_MINIMAL_SEED_ASTRA_REVIEW_20261028.md)，Git Blob `fd7e7ed3162143bfe257383566563501e2131b25`。公开ba7交付Commit `ba7df19accd3df22b8e06cdfd65a6466cf4ecc53`，唯一Parent `68feee0443991696385337c318348ead5306e1ef`，Root `8aa1345fcc5f2297169296339065abe604379539`，递归Tree 6662项未截断、仅4份安全文档/静态模型与测试文件。apps `5af7a9d0042be19437616e969e260658b67e9353` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f` 均为**未集成产品候选**，与68fe精确相同；新报告Blob `b0912b629c0d0f9021788e6a5177c63720605d1f`，索引Blob `b5f1825520e502995e431a571277f04cf4a824c0`。Astra读取报告、索引及模型/mock定义，但**未亲自运行本地测试或Hash全部LOCAL_ONLY输入**。
+
+**结论：** Codex报告44份配置源、84条声明、3183份modules-2旧sealed文件重Hash、5908条仅声明模型边、25项fixture/mock exit0，静态报告识别Gradle resolver真实variant/version/metadata index/repository identity不可模拟、完整闭包未证。不同现有内容集合约315.2MB(core)、880.8MB(config模型)、951.2MB(包含possible action)、1362.1MB(full sealed)，**均不是实际G2完整Seed的必需字节量**。不能证明512MiB精简seed可用，也不能证明必然不可能。SDK/NDK/plugin隐式写入、OS有效隔离及TOCTOU仍UNKNOWN。
+
+**容量决策尚未授权：** 报告给出的2GiB单一Seed+私有write规划峰值1974364535 bytes、余量173119113 bytes只是一份**有算术依据但未验证足够的备选方案**；双新Seed共存峰值规划3336471440 bytes已超2GiB。Owner尚未批准把现有512MiB cap扩大、复制cache、改变OS ACL或开真实Gradle。保留Owner此前“确实损坏才允许受控清理/更新”的条件维护授权，本轮没有损坏/版本冲突证明。
+
+**严格门禁：** 旧APP APK=1/1耗尽、旧G=1/1耗尽、旧A=NOT_RUN_GATE_CLOSED；Codex报G2仍reserved=0、Popen=0、claim不存在，是**有条件的未消耗额度**，不是新一轮现成运行许可。当前G2仍不可启动，`DOKKA_TASK_SELECTED_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN`继续。无后继任务自动派发、无main合并、无v10.1.6。
+
+**唯一待Owner决策：** 在继续保持BLOCKED与**具名批准新的最多2GiB静态Seed快照+OS只读隔离资格工作（仍零Gradle，不保证2GiB足够）**之间作方向选择。不要不加新证据重复低价值的静态模型任务；共享ACL/提权/跨项目不可逆变更依然需要对象级许可。已接受main产品仍v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。最近直接回读main `599a44d99c928c8052a0a7edfb783e79fe63513c` / Root `3494eb3956c9529d1714c9b2c15bf982a9857b69`。完成后STOP等待Owner。
+
+以下保留从main继承的ACTIVE_STATE历史正文，其中仍称最小Seed任务“待手动派发”，不能覆盖该任务已经交付且Astra完成验收的2026-10-28记录。
+
+---
+
 # EliteSync v10.1.5｜2026-10-27 G2最小依赖Seed/SDK写入边界任务（最新入口）
 
 **`MINIMAL_SEED_AND_SDK_WRITE_BOUNDARY_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE_THIS_TASK / NO_G2_CLAIM_THIS_TASK / G2_CONDITIONAL_BUDGET_0_OF_1_CODEX_REPORTED / WRITE_ISOLATION_STILL_BLOCKED / G2_INVENTORY_CLOSURE_BLOCKED / GRAPH_NOT_PROVEN / SOURCE_LEVEL_ONLY / OLD_APK_AND_G_EXHAUSTED_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
