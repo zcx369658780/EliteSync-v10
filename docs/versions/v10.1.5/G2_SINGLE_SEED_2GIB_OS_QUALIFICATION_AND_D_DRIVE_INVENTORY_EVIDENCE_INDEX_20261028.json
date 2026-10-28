@@ -1,0 +1,3050 @@
+{
+  "schema": 1,
+  "taskBlob": "722f24d7a2ea1c3aee1e0adea7b9fa0c0a955762",
+  "status": "SINGLE_SEED_OR_OS_QUALIFICATION_BLOCKED",
+  "snapshotStatus": "SINGLE_SEED_SNAPSHOT_CREATED_AND_PINNED",
+  "fixtureStatus": "TASK_OWNED_FIXTURE_ACCESS_TESTED",
+  "OS_ENFORCEMENT_NOT_PROVEN": true,
+  "G2_READY_FOR_POPEN": false,
+  "source": {
+    "main": "dfa1e7828a46284617876bbd729e8b884649039e",
+    "mainRoot": "e8e30f90f5a7351666a01e3b06081afb8b5ffac8",
+    "mainTreeEntries": 6232,
+    "candidate": "ba7df19accd3df22b8e06cdfd65a6466cf4ecc53",
+    "parent": "68feee0443991696385337c318348ead5306e1ef",
+    "root": "8aa1345fcc5f2297169296339065abe604379539",
+    "candidateTreeEntries": 6662,
+    "protectedFiles": 91,
+    "historicalRoots": 5,
+    "localRefs": 527,
+    "schema2RequiredInputs": 7,
+    "sourceAnchorsMatched": 14,
+    "runtimeStarts": 0
+  },
+  "sourceAppsTree": "5af7a9d0042be19437616e969e260658b67e9353",
+  "sourceServicesTree": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+  "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+  "candidateSoleParent": "ba7df19accd3df22b8e06cdfd65a6466cf4ecc53",
+  "candidateSelfIdentity": "LOCAL_ONLY final-readback.json after publication; report/index avoid self-reference",
+  "seed": {
+    "status": "SINGLE_SEED_SNAPSHOT_CREATED_AND_PINNED",
+    "files": 3183,
+    "logicalBytes": 1362106905,
+    "sourceAndTargetHashesMatched": 3183,
+    "independentFileIds": 3183,
+    "targetLinkCountsAllOne": true,
+    "sourceFileReadLocksHeldThroughVerification": true,
+    "sourceDirectoriesNoDeleteHandles": 6253,
+    "singleSeedOnly": true,
+    "layout": "GRADLE_RO_DEP_CACHE=<task>/readonly-dependency-cache containing modules-2/files-2.1 and modules-2/metadata-2.107",
+    "readOnlyDaclNotAppliedYet": true,
+    "GRADLE_INDEX_REPOSITORY_IDENTITY_VERIFIED": false,
+    "OFFLINE_VARIANT_RESOLUTION_PROVEN": false,
+    "G2_READY_FOR_POPEN": false,
+    "exit": 0,
+    "sumPerFilePrecloseAllocationsNotSimultaneousPeak": 1635970640,
+    "settledFileAllocationBytes": 1367920208
+  },
+  "capacityPlan": {
+    "capBytes": 2147483648,
+    "sourceFiles": 3183,
+    "sourceLogicalBytes": 1362106905,
+    "targetExpectedDataAllocationBytes": 1370021888,
+    "allocationUnitBytes": 4096,
+    "helperAndReceiptReserveIncludedBytes": 16777216,
+    "privateWriteReserveBytesNotAllocated": 536870912,
+    "metadataReserveBytesNotStrictFilesystemBound": 67108864,
+    "plannedPeakBytes": 1999664808,
+    "fullSeedCopiesMax": 1,
+    "copyMethod": "ReadFile via held read-only CRT streams, ordinary new target byte writes; no filesystem clone/link API",
+    "sourceLock": "Every selected source file opened without FILE_SHARE_WRITE/DELETE before hashing; ancestor handles omit SHARE_DELETE; all retained through copy",
+    "G2_READY_FOR_POPEN": false
+  },
+  "settledOsAudit": {
+    "files": 3183,
+    "hashAndIdentityPairsMatched": 3183,
+    "seedLogicalBytes": 1362106905,
+    "settledSeedFileAllocationBytes": 1367920208,
+    "sumOfPerFilePrecloseAllocationsNotSimultaneousPeak": 1635970640,
+    "largestObservedSingleFileAllocationShrinkAfterClose": 14393344,
+    "reconstructedCopyDataOnlyHighWaterUpperUsingFinalPrefixAndPrecloseValues": 1367920208,
+    "thisIsNotAnExactVolumeFilesystemPeak": true,
+    "sourceTargetFileIdsIndependent": true,
+    "targetLinksOneNoSparseCompressionReparse": true,
+    "ancestorIdentityRecords": 6249,
+    "seedOwnerCanOpenWriteDac": true,
+    "privateRootAndSeedParentDeleteRenameRisk": true,
+    "sharedDaclOrWriteProbeCount": 0,
+    "seedDaclChanged": false,
+    "fixtureOnlyAclDenyThenExactRestore": true,
+    "OS_ENFORCEMENT_NOT_PROVEN": true,
+    "status": "SINGLE_SEED_OR_OS_QUALIFICATION_BLOCKED",
+    "snapshotStatus": "SINGLE_SEED_SNAPSHOT_CREATED_AND_PINNED",
+    "fixtureStatus": "TASK_OWNED_FIXTURE_ACCESS_TESTED",
+    "G2_READY_FOR_POPEN": false,
+    "remainingEngineeringWriteClosure": "UNKNOWN",
+    "exit": 0,
+    "largestMeasuredTaskAllocationSnapshotAtSettledStage": 1394524616,
+    "taskAllocationPlanningUpperWith64MiBAllowanceAtSettledStage": 1461633480
+  },
+  "fixture": {
+    "taskOwnedOnly": true,
+    "denyWriteWin32LowWord": 5,
+    "expectedDenial": true,
+    "allowedWritableFile": true,
+    "aclRestorationVerified": true,
+    "seedDaclChanged": false,
+    "sharedDaclChanged": false,
+    "fullOsBarrierProven": false
+  },
+  "spaceBefore": {
+    "stage": "before",
+    "logicalBytes": 8450399,
+    "allocatedBytes": 8511496,
+    "files": 25,
+    "directories": 2,
+    "volumeFreeBytes": 508353523712,
+    "capBytes": 2147483648,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "spacePostcopy": {
+    "stage": "postcopy",
+    "logicalBytes": 1381397124,
+    "allocatedBytes": 1389804848,
+    "files": 3249,
+    "directories": 6255,
+    "volumeFreeBytes": 506261823488,
+    "capBytes": 2147483648,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "spaceBeforeDeliveryDocuments": {
+    "stage": "delivery",
+    "logicalBytes": 1386700032,
+    "allocatedBytes": 1395169224,
+    "files": 3293,
+    "directories": 6257,
+    "volumeFreeBytes": 506223042560,
+    "capBytes": 2147483648,
+    "measurement": "FILE_STANDARD_INFO + BY_HANDLE_FILE_INFORMATION; all task paths; no other owned root",
+    "limitations": "Snapshot excludes later receipts and shared filesystem MFT/journal metadata; volume free includes unrelated activity"
+  },
+  "directoryCounts": {
+    "rootDirectoryCount": 348,
+    "selectedRootDirectoryCount": 219,
+    "unrelatedDirectoriesRecursed": 0,
+    "rootFileNamesPublished": false
+  },
+  "dDrive": {
+    "status": "D_DRIVE_ELITESYNC_INVENTORY_DELIVERED_READONLY",
+    "logicalBytes": 40888539333,
+    "fileAllocationBytes": 42072746936,
+    "directoryAllocationBytes": 242884608,
+    "allocationTotalBytes": 42315631544,
+    "fileCount": 749691,
+    "categories": {
+      "KEEP_PROTECTED_OR_EVIDENCE": {
+        "directories": 2,
+        "logicalBytes": 11626660169,
+        "fileAllocationBytes": 11735406504,
+        "directoryAllocationBytes": 38694912
+      },
+      "KEEP_ACTIVE_OR_REFERENCED": {
+        "directories": 214,
+        "logicalBytes": 29215311360,
+        "fileAllocationBytes": 30290693720,
+        "directoryAllocationBytes": 204165120
+      },
+      "UNKNOWN_MORE_EVIDENCE_REQUIRED": {
+        "directories": 3,
+        "logicalBytes": 46567804,
+        "fileAllocationBytes": 46646712,
+        "directoryAllocationBytes": 24576
+      }
+    },
+    "cleanupCandidateCount": 0,
+    "supportedSafeReclaimBytes": [
+      0,
+      0
+    ],
+    "deletionsMovesRenames": 0,
+    "noReparseOrMultiLinkOrReadErrorsObserved": true,
+    "twoSnapshotsNotAtomic": true,
+    "rows": [
+      {
+        "label": "D001",
+        "classification": "KEEP_PROTECTED_OR_EVIDENCE",
+        "logicalBytes": 11626311524,
+        "fileAllocationBytes": 11735000192,
+        "directoryAllocationBytes": 38682624,
+        "files": 147445,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D002",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95235606,
+        "fileAllocationBytes": 97997024,
+        "directoryAllocationBytes": 528384,
+        "files": 1487,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "177c4dfc97ce034222e03fb3a57dbd73b60097a3",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D003",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95247735,
+        "fileAllocationBytes": 98013408,
+        "directoryAllocationBytes": 528384,
+        "files": 1489,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b81f866f866148ba4bbb1b292a98d91260d99843",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D004",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95259111,
+        "fileAllocationBytes": 98029792,
+        "directoryAllocationBytes": 528384,
+        "files": 1491,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "78f41bdfbad596ebcb5b1e681aeab644c2821728",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D005",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95275343,
+        "fileAllocationBytes": 98050272,
+        "directoryAllocationBytes": 528384,
+        "files": 1493,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4f408b864ce5e11bec86f01e69dfbd576cd63ecc",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D006",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96126080,
+        "fileAllocationBytes": 99102952,
+        "directoryAllocationBytes": 593920,
+        "files": 1587,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d140868de4ac8becdd4520d4ff6508c39ab96542",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D007",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 2140928923,
+        "fileAllocationBytes": 2148835784,
+        "directoryAllocationBytes": 1564672,
+        "files": 4576,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "38cbf300fc24ccdf6fbde8bcbbf5d86b5b82efd5",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D008",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96212301,
+        "fileAllocationBytes": 99201240,
+        "directoryAllocationBytes": 593920,
+        "files": 1594,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8217eca0d920a1f6f722921f6905fd299d32a849",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D009",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96280538,
+        "fileAllocationBytes": 99279064,
+        "directoryAllocationBytes": 593920,
+        "files": 1597,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d553240dabcab327921f8da624494b03a2af76cf",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D010",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96309044,
+        "fileAllocationBytes": 99315928,
+        "directoryAllocationBytes": 593920,
+        "files": 1601,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9c3473d75585ac2402349cded435f8efd9ff7f14",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D011",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96346305,
+        "fileAllocationBytes": 99356888,
+        "directoryAllocationBytes": 593920,
+        "files": 1606,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f307c052bd8899c9cd663690fab0424c6b9885ff",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D012",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96383764,
+        "fileAllocationBytes": 99406040,
+        "directoryAllocationBytes": 593920,
+        "files": 1612,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "ce95c248b3f33e4b3cf4fa6f3b7d7b4a8ce40900",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D013",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96470841,
+        "fileAllocationBytes": 99521560,
+        "directoryAllocationBytes": 659456,
+        "files": 1633,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "57885a241a460307dcba67ff2f313b0bec764c60",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D014",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96520751,
+        "fileAllocationBytes": 99591504,
+        "directoryAllocationBytes": 659456,
+        "files": 1641,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6e66ac2903d37cd10fb4a5cb17f69f92cfcf1f0c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D015",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96544835,
+        "fileAllocationBytes": 99624272,
+        "directoryAllocationBytes": 659456,
+        "files": 1645,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f83036cb0336c36bbd02d4f0093e3ed2aba0a3d0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D016",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96577824,
+        "fileAllocationBytes": 99682080,
+        "directoryAllocationBytes": 659456,
+        "files": 1656,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e18956bb47fca8636aa7ce875d6d64a61d718fc5",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D017",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96611483,
+        "fileAllocationBytes": 99731248,
+        "directoryAllocationBytes": 659456,
+        "files": 1663,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c9bd67c30a2404dd5f7740fa8ccada0b10f8f45c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D018",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96390048,
+        "fileAllocationBytes": 99506384,
+        "directoryAllocationBytes": 659456,
+        "files": 1658,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b830a65345a2a6b734e7deef9529ef841857e8ce",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D019",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96393313,
+        "fileAllocationBytes": 99514584,
+        "directoryAllocationBytes": 655360,
+        "files": 1661,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "183a291c2fe3141a6139b4a7fa30f1c05dabc63d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D020",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96409405,
+        "fileAllocationBytes": 99535064,
+        "directoryAllocationBytes": 655360,
+        "files": 1663,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0b3121bb272571b7614e00115e9d6fd9d60fb862",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D021",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96410354,
+        "fileAllocationBytes": 99526872,
+        "directoryAllocationBytes": 655360,
+        "files": 1659,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "94c0cfbfbcf8af623faf1b1e37cdba10f3a4e7f6",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D022",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95559494,
+        "fileAllocationBytes": 98394352,
+        "directoryAllocationBytes": 593920,
+        "files": 1521,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "09b605c7a367380b1c93848343197ef6e03935b3",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D023",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95804308,
+        "fileAllocationBytes": 98697440,
+        "directoryAllocationBytes": 593920,
+        "files": 1550,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f07ccc7a0e576e7f03b89839f6dfa0a40045cd2c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D024",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95819017,
+        "fileAllocationBytes": 98717920,
+        "directoryAllocationBytes": 593920,
+        "files": 1552,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6b4488a3817f7ae6ef6d633c2ccda66f93f3a460",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D025",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95839685,
+        "fileAllocationBytes": 98746592,
+        "directoryAllocationBytes": 593920,
+        "files": 1555,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "91e2811cffa8f39ac091a3d85ec3996284c38d03",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D026",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95857452,
+        "fileAllocationBytes": 98767072,
+        "directoryAllocationBytes": 593920,
+        "files": 1557,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9d25aeff289a2f14991836ebe4a1841d629842b2",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D027",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95489563,
+        "fileAllocationBytes": 98312440,
+        "directoryAllocationBytes": 593920,
+        "files": 1515,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a4e01dda34cd86ddf4ac5306bab64026ba2a8179",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D028",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95576646,
+        "fileAllocationBytes": 98414840,
+        "directoryAllocationBytes": 593920,
+        "files": 1523,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "798900b0f40fa2303888571403632de7ee11e19e",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D029",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95517366,
+        "fileAllocationBytes": 98345200,
+        "directoryAllocationBytes": 593920,
+        "files": 1517,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "52b3c784f0243ab4f298d94dcfc8e0efdc0beaa2",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D030",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95541935,
+        "fileAllocationBytes": 98373864,
+        "directoryAllocationBytes": 593920,
+        "files": 1519,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c14bdeba71113da2dc766e3e04ac0801e2a2f04b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D031",
+        "classification": "UNKNOWN_MORE_EVIDENCE_REQUIRED",
+        "logicalBytes": 410581,
+        "fileAllocationBytes": 418032,
+        "directoryAllocationBytes": 4096,
+        "files": 9,
+        "registeredWorktree": false,
+        "gitHeadAnchorNotCompleteBackup": null,
+        "completeBackupProven": false
+      },
+      {
+        "label": "D032",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96803890,
+        "fileAllocationBytes": 100006104,
+        "directoryAllocationBytes": 655360,
+        "files": 1703,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f0d47a4cc3317a3739487dfb5f809b97b274463f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D033",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96996759,
+        "fileAllocationBytes": 100231376,
+        "directoryAllocationBytes": 655360,
+        "files": 1720,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "56f0ee0a4cc2cb435bbda0c6bab8728ed24747ae",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D034",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97035950,
+        "fileAllocationBytes": 100276432,
+        "directoryAllocationBytes": 655360,
+        "files": 1723,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6fd936a657ee270845cacef85fa83ef22e9f1139",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D035",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97107455,
+        "fileAllocationBytes": 100358352,
+        "directoryAllocationBytes": 655360,
+        "files": 1727,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "22ff277ca5495391d1fe8a8cd7e5473617075c1e",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D036",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97173030,
+        "fileAllocationBytes": 100428000,
+        "directoryAllocationBytes": 655360,
+        "files": 1730,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "55eeeb3baad719d8b022c0066766c8c75a288f41",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D037",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96888341,
+        "fileAllocationBytes": 100104400,
+        "directoryAllocationBytes": 655360,
+        "files": 1711,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0493e282d7dce06791d91b7a4189ee82a64dd809",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D038",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96837675,
+        "fileAllocationBytes": 100047048,
+        "directoryAllocationBytes": 655360,
+        "files": 1707,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f20849c51aef722334b7bef526e7bd932e4aa018",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D039",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96955414,
+        "fileAllocationBytes": 100182224,
+        "directoryAllocationBytes": 655360,
+        "files": 1716,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e522326b8b9dd38bbc9817210809606c63730a21",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D040",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97235219,
+        "fileAllocationBytes": 100493544,
+        "directoryAllocationBytes": 655360,
+        "files": 1733,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d4637607f278073ac311f53c31b70ceec88d4349",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D041",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97303690,
+        "fileAllocationBytes": 100575456,
+        "directoryAllocationBytes": 655360,
+        "files": 1736,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "bc1ec61efe83be48cb5e9b803436585b84807541",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D042",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97279265,
+        "fileAllocationBytes": 100550880,
+        "directoryAllocationBytes": 655360,
+        "files": 1737,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "cfb9637ec766228d0d70f695e725ec80111f679c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D043",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95790401,
+        "fileAllocationBytes": 98676976,
+        "directoryAllocationBytes": 593920,
+        "files": 1548,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "43041b00c8bfc7983ed698e293933f89b9e9d936",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D044",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95870872,
+        "fileAllocationBytes": 98787568,
+        "directoryAllocationBytes": 593920,
+        "files": 1559,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "25a4a70690014f167d5e9f9bdab15223621364eb",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D045",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 101326691,
+        "fileAllocationBytes": 105101552,
+        "directoryAllocationBytes": 802816,
+        "files": 1988,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "615e57d77e4d979c48eb7915b18edf0d30a379ae",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D046",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96047804,
+        "fileAllocationBytes": 99008760,
+        "directoryAllocationBytes": 593920,
+        "files": 1581,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d13de3e6bf21357bb85fe17c36a9349e9cb04160",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D047",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 159662008,
+        "fileAllocationBytes": 162724704,
+        "directoryAllocationBytes": 626688,
+        "files": 1676,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b2a3800690171c0817b4eb0d1324a539afbf3371",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D048",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96014675,
+        "fileAllocationBytes": 98971888,
+        "directoryAllocationBytes": 593920,
+        "files": 1577,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "86925a24872d5c7a77bc296879eb718b40f558cf",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D049",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95905043,
+        "fileAllocationBytes": 98832624,
+        "directoryAllocationBytes": 593920,
+        "files": 1563,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5adcb2cbca7377c9b6598adccbc0bfa92097a760",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D050",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95924386,
+        "fileAllocationBytes": 98853128,
+        "directoryAllocationBytes": 593920,
+        "files": 1565,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5e547c8d9a989e405f5e0a30c9644c93778cf06f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D051",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 2111210011,
+        "fileAllocationBytes": 2118965856,
+        "directoryAllocationBytes": 1716224,
+        "files": 5195,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "921f68f1992409d8f5ac37ececaad15aed6febce",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D052",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95941120,
+        "fileAllocationBytes": 98877696,
+        "directoryAllocationBytes": 593920,
+        "files": 1567,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "81577e3e1b900b5a70e732e4aefc7bd4c180c7a1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D053",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 2051429679,
+        "fileAllocationBytes": 2059128824,
+        "directoryAllocationBytes": 1708032,
+        "files": 5165,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "311d539763fa229da747b50f93c1dadbf9a40787",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D054",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95646191,
+        "fileAllocationBytes": 98500872,
+        "directoryAllocationBytes": 593920,
+        "files": 1531,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "ac791d0571737664e39c7fac0d0b0cbc47011727",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D055",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95659359,
+        "fileAllocationBytes": 98517256,
+        "directoryAllocationBytes": 593920,
+        "files": 1533,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "390d127ae13e43b47443c60f558ee93780f242fb",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D056",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95690693,
+        "fileAllocationBytes": 98562312,
+        "directoryAllocationBytes": 593920,
+        "files": 1537,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4c282327c62dd28ab72038a386aae1a071a59e33",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D057",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95596461,
+        "fileAllocationBytes": 98435328,
+        "directoryAllocationBytes": 593920,
+        "files": 1525,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f25b403c66efb47f3fcb881c653b784e3975849c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D058",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95632657,
+        "fileAllocationBytes": 98480376,
+        "directoryAllocationBytes": 593920,
+        "files": 1529,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9777f678176a210ef42bc18641dad5ab208de24a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D059",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95617646,
+        "fileAllocationBytes": 98459912,
+        "directoryAllocationBytes": 593920,
+        "files": 1527,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "fef3b6cc509571ffe5f0761c9bb92147065146cc",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D060",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156019281,
+        "fileAllocationBytes": 159075176,
+        "directoryAllocationBytes": 626688,
+        "files": 1672,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3c3acd2d1b921930ee61e525ddcde775056a43d0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D061",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95982679,
+        "fileAllocationBytes": 98926832,
+        "directoryAllocationBytes": 593920,
+        "files": 1573,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "78b7f2f66aceb845e20b713e424b9eaa748891e1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D062",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97477386,
+        "fileAllocationBytes": 100767968,
+        "directoryAllocationBytes": 655360,
+        "files": 1744,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "2d3f1aa2ef827f770f55540262bee459f56030f0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D063",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97576976,
+        "fileAllocationBytes": 100878560,
+        "directoryAllocationBytes": 655360,
+        "files": 1747,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9df3f4f2fad11f5a828275fed22bd8a70704ab80",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D064",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97673699,
+        "fileAllocationBytes": 100980960,
+        "directoryAllocationBytes": 655360,
+        "files": 1750,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c2dd438d58a919e1c8ca5e90aa649857144179ce",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D065",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97765169,
+        "fileAllocationBytes": 101075168,
+        "directoryAllocationBytes": 655360,
+        "files": 1753,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8f1e0d65c90e47d8077485592a3b47336d1e4455",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D066",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97830981,
+        "fileAllocationBytes": 101148912,
+        "directoryAllocationBytes": 655360,
+        "files": 1756,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b484b4f009a1ce640b4f1f6482a7035b7e3e7231",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D067",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97893817,
+        "fileAllocationBytes": 101214424,
+        "directoryAllocationBytes": 655360,
+        "files": 1759,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "69271af8b165c7b83062826eac096940ab733e06",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D068",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97968350,
+        "fileAllocationBytes": 101292256,
+        "directoryAllocationBytes": 655360,
+        "files": 1762,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4773cdde220851740873b5834441c711249d84c0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D069",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98049866,
+        "fileAllocationBytes": 101378280,
+        "directoryAllocationBytes": 655360,
+        "files": 1765,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "ad79c7852c2e0b32f10d7662d633f89fbf8e0c6f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D070",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98182682,
+        "fileAllocationBytes": 101517544,
+        "directoryAllocationBytes": 655360,
+        "files": 1768,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e0e523bf78f0b2ba92364da83867a6c74578f761",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D071",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98311512,
+        "fileAllocationBytes": 101648608,
+        "directoryAllocationBytes": 786432,
+        "files": 1771,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "996128a5a2213d0e1e05bb99de3abb561dbae931",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D072",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98491210,
+        "fileAllocationBytes": 101837024,
+        "directoryAllocationBytes": 786432,
+        "files": 1777,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6ebb52178cffdb9dcfe3f785e0accd7edad777bf",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D073",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98519764,
+        "fileAllocationBytes": 101869800,
+        "directoryAllocationBytes": 786432,
+        "files": 1780,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "ca989a2d8ab5dd8943595f7ae3ba1d81661ae87a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D074",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98559008,
+        "fileAllocationBytes": 101910752,
+        "directoryAllocationBytes": 786432,
+        "files": 1783,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "acae179a9e72017507c678380afd75ba10557213",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D075",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98594713,
+        "fileAllocationBytes": 101955808,
+        "directoryAllocationBytes": 786432,
+        "files": 1786,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "173b39af744d59b0d52f2440b538ee5aee87157d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D076",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98636845,
+        "fileAllocationBytes": 102004960,
+        "directoryAllocationBytes": 786432,
+        "files": 1789,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "1e703e8363958053bd66a4800c9d1db947fd5338",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D077",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155304784,
+        "fileAllocationBytes": 173026712,
+        "directoryAllocationBytes": 3145728,
+        "files": 10289,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c64d93f7edd5d001eb7bfcf445d5624ebfac7bc3",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D078",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98706251,
+        "fileAllocationBytes": 102090976,
+        "directoryAllocationBytes": 786432,
+        "files": 1795,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9b9cb94e714f6993d918c6fa7a682c2b737db3c1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D079",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155386819,
+        "fileAllocationBytes": 173133216,
+        "directoryAllocationBytes": 3145728,
+        "files": 10297,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "daf2a51f596b0fda7345ad638735f4da66818805",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D080",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155468301,
+        "fileAllocationBytes": 173227424,
+        "directoryAllocationBytes": 3145728,
+        "files": 10304,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f1523229b87b06506cbb793d51bf8984d2dcaa8d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D081",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155531421,
+        "fileAllocationBytes": 173305248,
+        "directoryAllocationBytes": 3145728,
+        "files": 10309,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "55cdcd4b2a063ddea478c62c4892c49c46e6d2d0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D082",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155606817,
+        "fileAllocationBytes": 173391264,
+        "directoryAllocationBytes": 3149824,
+        "files": 10314,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c04d2c902b6bc95f05f3be593e7546c3fc99c605",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D083",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155692488,
+        "fileAllocationBytes": 173485488,
+        "directoryAllocationBytes": 3153920,
+        "files": 10319,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f9299e2fd815fecb670829f7fbab43171adcb305",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D084",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155748827,
+        "fileAllocationBytes": 173551000,
+        "directoryAllocationBytes": 3153920,
+        "files": 10324,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c04c5c580eb73c7cbe19377dd05475ccc553e78b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D085",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155806152,
+        "fileAllocationBytes": 173620648,
+        "directoryAllocationBytes": 3153920,
+        "files": 10329,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6b5ae487747a1aafc12d6d317b48d534e7cac768",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D086",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155871918,
+        "fileAllocationBytes": 173686192,
+        "directoryAllocationBytes": 3153920,
+        "files": 10334,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3dadf62b31327867360abaa0b086556ca198ee72",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D087",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 155957806,
+        "fileAllocationBytes": 173788576,
+        "directoryAllocationBytes": 3153920,
+        "files": 10340,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "751c545bb8b63a1b4cb0502d7d2930ae55918891",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D088",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156017439,
+        "fileAllocationBytes": 173858224,
+        "directoryAllocationBytes": 3153920,
+        "files": 10345,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9fab1acd3251d5808662e8358521160a4f5608f2",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D089",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156017429,
+        "fileAllocationBytes": 173858200,
+        "directoryAllocationBytes": 3153920,
+        "files": 10345,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9fab1acd3251d5808662e8358521160a4f5608f2",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D090",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99400019,
+        "fileAllocationBytes": 102893808,
+        "directoryAllocationBytes": 794624,
+        "files": 1851,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0ee96f110ee91c5d084904d1eef4a472341d4c59",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D091",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156118327,
+        "fileAllocationBytes": 173972912,
+        "directoryAllocationBytes": 3153920,
+        "files": 10354,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "10fc898c577044d70b27b5898806a7ea0b0d8b93",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D092",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156186785,
+        "fileAllocationBytes": 174050760,
+        "directoryAllocationBytes": 3153920,
+        "files": 10359,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9bb2cb55751b43a346fe6b2a0425831220a68c91",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D093",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156262173,
+        "fileAllocationBytes": 174140864,
+        "directoryAllocationBytes": 3153920,
+        "files": 10364,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0739e71943cdfd6d3ef7f46c24ddd1c75e35b88c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D094",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99655441,
+        "fileAllocationBytes": 103188720,
+        "directoryAllocationBytes": 794624,
+        "files": 1869,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "34d1c21c1075128b0e189ca431840af9169c2469",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D095",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156379106,
+        "fileAllocationBytes": 174284192,
+        "directoryAllocationBytes": 3153920,
+        "files": 10375,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8820d2cb4050b231449248ff7beba56647be0c51",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D096",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156382658,
+        "fileAllocationBytes": 174288288,
+        "directoryAllocationBytes": 3153920,
+        "files": 10375,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8820d2cb4050b231449248ff7beba56647be0c51",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D097",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99749785,
+        "fileAllocationBytes": 103307496,
+        "directoryAllocationBytes": 794624,
+        "files": 1878,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "671a0e00011705317c5d229a3b7e539af0c4ca19",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D098",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99779221,
+        "fileAllocationBytes": 103344368,
+        "directoryAllocationBytes": 794624,
+        "files": 1881,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5d04629861741f48eea99cc806f456b2ba7eafa9",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D099",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100414034,
+        "fileAllocationBytes": 104077568,
+        "directoryAllocationBytes": 794624,
+        "files": 1931,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6c6d886eec8f0ee0ccd3cd0fddc893b1100be4d8",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D100",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 157157659,
+        "fileAllocationBytes": 175185320,
+        "directoryAllocationBytes": 3153920,
+        "files": 10433,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8e665a145dfa773d82f4e0637e6b6cab89e028e1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D101",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 157267564,
+        "fileAllocationBytes": 175300024,
+        "directoryAllocationBytes": 3141632,
+        "files": 10438,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c18d79c968dddf3a26c4d189f783a1354a4fca86",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D102",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100572636,
+        "fileAllocationBytes": 104249592,
+        "directoryAllocationBytes": 798720,
+        "files": 1940,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "bce051c914e766317f00df7fbb37b8fe647f0b9f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D103",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 157282970,
+        "fileAllocationBytes": 175316400,
+        "directoryAllocationBytes": 3158016,
+        "files": 10439,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4e02f6837ebeceb4b0a57b81d0f8e443871af6a4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D104",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100729556,
+        "fileAllocationBytes": 104421624,
+        "directoryAllocationBytes": 798720,
+        "files": 1948,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a9fb2ded0dd5d4da009a1774eca69ee887098a22",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D105",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 157499547,
+        "fileAllocationBytes": 175566256,
+        "directoryAllocationBytes": 3166208,
+        "files": 10454,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5d6e51d94fdd6e9416510eb09de229381f88dcfc",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D106",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100865325,
+        "fileAllocationBytes": 104569080,
+        "directoryAllocationBytes": 802816,
+        "files": 1956,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "96a8417138f601f7400736d8d79df9f88e3f5654",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D107",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100881198,
+        "fileAllocationBytes": 104585472,
+        "directoryAllocationBytes": 802816,
+        "files": 1958,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c3ae6b8d272ac4ba8be6eb0490cfc836534e112a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D108",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100939045,
+        "fileAllocationBytes": 104651008,
+        "directoryAllocationBytes": 802816,
+        "files": 1961,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5494bf6835134ef1af69d5ebe32aa28ef62fc92e",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D109",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100965750,
+        "fileAllocationBytes": 104679688,
+        "directoryAllocationBytes": 802816,
+        "files": 1963,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c678b79e485c2f538fac7b00928949aff168d00c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D110",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 101037369,
+        "fileAllocationBytes": 104761600,
+        "directoryAllocationBytes": 802816,
+        "files": 1966,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6af50b3cdf82ac8bc285bd160f773b48b29f1328",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D111",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 101134044,
+        "fileAllocationBytes": 104884504,
+        "directoryAllocationBytes": 802816,
+        "files": 1975,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0b6aa452254bb7662b7a233c0f6a40d94a6e03f0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D112",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 157827899,
+        "fileAllocationBytes": 175943072,
+        "directoryAllocationBytes": 3162112,
+        "files": 10476,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "18bec94d22062b69e780a07ef747a40289c52005",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D113",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 158063424,
+        "fileAllocationBytes": 176201136,
+        "directoryAllocationBytes": 3162112,
+        "files": 10486,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "64dd8f8dccbbb3582656f98a70b1e36c6449fe0b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D114",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 158111663,
+        "fileAllocationBytes": 176250272,
+        "directoryAllocationBytes": 3162112,
+        "files": 10490,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5cdf32090e95b7f6161ce89448b75de9c93f68f9",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D115",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99814364,
+        "fileAllocationBytes": 103385344,
+        "directoryAllocationBytes": 794624,
+        "files": 1884,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "790dc7fa5aa2eff6d06fa3f076bca4dcf22c11b4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D116",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99851517,
+        "fileAllocationBytes": 103426296,
+        "directoryAllocationBytes": 794624,
+        "files": 1887,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a139278c3361e01b0241cb5ce158eb3046b59650",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D117",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 99896196,
+        "fileAllocationBytes": 103479544,
+        "directoryAllocationBytes": 794624,
+        "files": 1890,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3476f9f19524d50c21c155bbe3517af6c6ea23bd",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D118",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156642337,
+        "fileAllocationBytes": 174587312,
+        "directoryAllocationBytes": 3153920,
+        "files": 10393,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d2acd8d656c2e26a97b5c4102ec02b5caeefc5f1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D119",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100085837,
+        "fileAllocationBytes": 103696624,
+        "directoryAllocationBytes": 794624,
+        "files": 1903,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "79c6b1f788cd4d8f0eb825f915ade41b71f56ba5",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D120",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100098049,
+        "fileAllocationBytes": 103713008,
+        "directoryAllocationBytes": 794624,
+        "files": 1905,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e27d7c881ba28442099dd8661afc518fa3895328",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D121",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100072691,
+        "fileAllocationBytes": 103676160,
+        "directoryAllocationBytes": 794624,
+        "files": 1901,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b80c6ea9f9a920bcf489afbbf05ebebae86c9faa",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D122",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100175849,
+        "fileAllocationBytes": 103807224,
+        "directoryAllocationBytes": 794624,
+        "files": 1913,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "41b0d4df9618506d7bb9e280c8ba61baaab48865",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D123",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156850474,
+        "fileAllocationBytes": 174845360,
+        "directoryAllocationBytes": 3153920,
+        "files": 10412,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "47d5d474e361d5c6694ecfc453734d7df855c8c9",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D124",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156856960,
+        "fileAllocationBytes": 174857656,
+        "directoryAllocationBytes": 3153920,
+        "files": 10413,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a2b5cfc2bac17950ce60c6ebf99b7c0da0502b69",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D125",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156840928,
+        "fileAllocationBytes": 174833064,
+        "directoryAllocationBytes": 3153920,
+        "files": 10411,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "cf8f0fda26ed2735811e55388fa90fc4d6d909ea",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D126",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 156841101,
+        "fileAllocationBytes": 174833064,
+        "directoryAllocationBytes": 3153920,
+        "files": 10411,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "cf8f0fda26ed2735811e55388fa90fc4d6d909ea",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D127",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100147677,
+        "fileAllocationBytes": 103774456,
+        "directoryAllocationBytes": 794624,
+        "files": 1910,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0497a56c54e0ce56c368195b292ab07dda7463e8",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D128",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100285342,
+        "fileAllocationBytes": 103934192,
+        "directoryAllocationBytes": 794624,
+        "files": 1923,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "591ea5071915e81d4a14b85a7b23fc9a0ae1f662",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D129",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100333992,
+        "fileAllocationBytes": 103987456,
+        "directoryAllocationBytes": 794624,
+        "files": 1926,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b03966d09e91430a31a03eecf5d3b8575602357d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D130",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 100354691,
+        "fileAllocationBytes": 104012040,
+        "directoryAllocationBytes": 794624,
+        "files": 1928,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "897fbb496fd6872fc1b0d7c63e26fedac0d2f401",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D131",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93865709,
+        "fileAllocationBytes": 96342256,
+        "directoryAllocationBytes": 462848,
+        "files": 1361,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "65e8c1ea3f685cb97473ac6fc97b0046d528ed11",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D132",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93871551,
+        "fileAllocationBytes": 96346344,
+        "directoryAllocationBytes": 462848,
+        "files": 1361,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d4c90b44c22a4e81300c668c24fc0afd675ebde0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D133",
+        "classification": "KEEP_PROTECTED_OR_EVIDENCE",
+        "logicalBytes": 348645,
+        "fileAllocationBytes": 406312,
+        "directoryAllocationBytes": 12288,
+        "files": 30,
+        "registeredWorktree": false,
+        "gitHeadAnchorNotCompleteBackup": null,
+        "completeBackupProven": false
+      },
+      {
+        "label": "D134",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94279186,
+        "fileAllocationBytes": 96858344,
+        "directoryAllocationBytes": 528384,
+        "files": 1403,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "20b243fe1c87db9f27c902ee6a1be27450c6d291",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D135",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94299835,
+        "fileAllocationBytes": 96882920,
+        "directoryAllocationBytes": 528384,
+        "files": 1405,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "2f56a9c1b0cdda16170076241a059104fd15af8d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D136",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95769885,
+        "fileAllocationBytes": 98652416,
+        "directoryAllocationBytes": 593920,
+        "files": 1545,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "2bcd8de6956f3d669eae994454afb30a0ca5d228",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D137",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96458732,
+        "fileAllocationBytes": 99592416,
+        "directoryAllocationBytes": 655360,
+        "files": 1667,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b8f00446e86db8c3afb77f3e9f6f9932a9570ad1",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D138",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96748611,
+        "fileAllocationBytes": 99944664,
+        "directoryAllocationBytes": 655360,
+        "files": 1700,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "98a1e0c5f08e633652a05be47ca9b4fc9d1cc39f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D139",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96509704,
+        "fileAllocationBytes": 99645656,
+        "directoryAllocationBytes": 655360,
+        "files": 1670,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "adc6f67ab706fade4413ccf104b3a27e8512b3db",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D140",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 185073132,
+        "fileAllocationBytes": 188347104,
+        "directoryAllocationBytes": 688128,
+        "files": 1782,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "df1a504dedc8ba0a554ab803f1fba9542163c4be",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D141",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 173433551,
+        "fileAllocationBytes": 176710368,
+        "directoryAllocationBytes": 688128,
+        "files": 1785,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "44b91f1c0325fef6bb06029277d1886689a91ae0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D142",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 173873745,
+        "fileAllocationBytes": 177160928,
+        "directoryAllocationBytes": 688128,
+        "files": 1788,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f28d82e8c5081d5812e39edac8ffac986fe57caa",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D143",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 191012149,
+        "fileAllocationBytes": 194306784,
+        "directoryAllocationBytes": 688128,
+        "files": 1791,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "92f9d9686beb05b36b572631d54a1617efd59680",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D144",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 191161885,
+        "fileAllocationBytes": 194462432,
+        "directoryAllocationBytes": 688128,
+        "files": 1794,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6e1b9d217db476cd0ce396c8dc4ccc80a58b5666",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D145",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 190998079,
+        "fileAllocationBytes": 194249440,
+        "directoryAllocationBytes": 688128,
+        "files": 1770,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "38fcbf78fdbb346a6650ca157d650003c920e80b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D146",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96569310,
+        "fileAllocationBytes": 99719376,
+        "directoryAllocationBytes": 655360,
+        "files": 1676,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0c295423e4277e8fe88cf0acd7bd9b04656e19e8",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D147",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 190901465,
+        "fileAllocationBytes": 194167528,
+        "directoryAllocationBytes": 688128,
+        "files": 1776,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4b76981ad369c0596f0a934e73b7d18bd20c478b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D148",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 191032691,
+        "fileAllocationBytes": 194302696,
+        "directoryAllocationBytes": 688128,
+        "files": 1779,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9f05818ea844c5cbf2f03199580de86bb7a300bd",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D149",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92934983,
+        "fileAllocationBytes": 95224032,
+        "directoryAllocationBytes": 397312,
+        "files": 1261,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "eccd54af2b9c67202d6b37ff10997cee1ea28244",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D150",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92946581,
+        "fileAllocationBytes": 95240424,
+        "directoryAllocationBytes": 397312,
+        "files": 1263,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "cf98896cad11e486070ae12e27c62667e0ebc538",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D151",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93231186,
+        "fileAllocationBytes": 95600864,
+        "directoryAllocationBytes": 430080,
+        "files": 1300,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "6101e39181f29a231fedc243635085d6a0a21e04",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D152",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93249245,
+        "fileAllocationBytes": 95621344,
+        "directoryAllocationBytes": 430080,
+        "files": 1302,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "bbe4142d6d2e2a45580623e9ff74d865efba1f8d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D153",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93038537,
+        "fileAllocationBytes": 95367416,
+        "directoryAllocationBytes": 397312,
+        "files": 1278,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "122ebc331dbd000d5a6c086109416789a19a2ca3",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D154",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93045318,
+        "fileAllocationBytes": 95375616,
+        "directoryAllocationBytes": 397312,
+        "files": 1279,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b8872c515ac29fe3258a2d59ab9affcdebbf3e39",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D155",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93018197,
+        "fileAllocationBytes": 95338736,
+        "directoryAllocationBytes": 397312,
+        "files": 1275,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d85109dc7e573dffca12800f8c7d40a1904a71fe",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D156",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93028482,
+        "fileAllocationBytes": 95355120,
+        "directoryAllocationBytes": 397312,
+        "files": 1277,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "bf483f4ab02a6e08e3d5d3587ce5de2753d7da61",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D157",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93049906,
+        "fileAllocationBytes": 95383784,
+        "directoryAllocationBytes": 430080,
+        "files": 1280,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b7e417267439216bf813854c780ff33ccf65a131",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D158",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92974242,
+        "fileAllocationBytes": 95277288,
+        "directoryAllocationBytes": 397312,
+        "files": 1267,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3c4f0924d5fbbc1d41e8f9f84a994518298852fb",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D159",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92977240,
+        "fileAllocationBytes": 95281392,
+        "directoryAllocationBytes": 397312,
+        "files": 1268,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "08e56ebfee327a19fcf65ef71cf2224bf2d88ef6",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D160",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93102166,
+        "fileAllocationBytes": 95445240,
+        "directoryAllocationBytes": 430080,
+        "files": 1286,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "fe81c318c78ecd385bf0750fa4099e1884ff4309",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D161",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93138398,
+        "fileAllocationBytes": 95490296,
+        "directoryAllocationBytes": 430080,
+        "files": 1290,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4a316a906881c292b0dae77db02b8ea5fbd050db",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D162",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93122310,
+        "fileAllocationBytes": 95469824,
+        "directoryAllocationBytes": 430080,
+        "files": 1288,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0976c551588339d7542a1a21aeee34e0a8165af4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D163",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93122578,
+        "fileAllocationBytes": 95469824,
+        "directoryAllocationBytes": 430080,
+        "files": 1288,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0976c551588339d7542a1a21aeee34e0a8165af4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D164",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93159421,
+        "fileAllocationBytes": 95514880,
+        "directoryAllocationBytes": 430080,
+        "files": 1292,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d45205dd475efbb9223b3bd8c4673373b6d3d72f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D165",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93159568,
+        "fileAllocationBytes": 95514872,
+        "directoryAllocationBytes": 430080,
+        "files": 1292,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d45205dd475efbb9223b3bd8c4673373b6d3d72f",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D166",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93196882,
+        "fileAllocationBytes": 95559928,
+        "directoryAllocationBytes": 430080,
+        "files": 1296,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "01100aa4f98c12492444a7507dfd5ea5b197d530",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D167",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93196792,
+        "fileAllocationBytes": 95559920,
+        "directoryAllocationBytes": 430080,
+        "files": 1296,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "01100aa4f98c12492444a7507dfd5ea5b197d530",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D168",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93180490,
+        "fileAllocationBytes": 95539448,
+        "directoryAllocationBytes": 430080,
+        "files": 1294,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e22b04013fbca484ce882e6469557e7436336286",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D169",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93180694,
+        "fileAllocationBytes": 95539448,
+        "directoryAllocationBytes": 430080,
+        "files": 1294,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "e22b04013fbca484ce882e6469557e7436336286",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D170",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93213651,
+        "fileAllocationBytes": 95580392,
+        "directoryAllocationBytes": 430080,
+        "files": 1298,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a045187bff97ff52e0aeaba829f1d1a65179f7a0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D171",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93138474,
+        "fileAllocationBytes": 95490272,
+        "directoryAllocationBytes": 430080,
+        "files": 1290,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4a316a906881c292b0dae77db02b8ea5fbd050db",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D172",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93138475,
+        "fileAllocationBytes": 95490272,
+        "directoryAllocationBytes": 430080,
+        "files": 1290,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "4a316a906881c292b0dae77db02b8ea5fbd050db",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D173",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93007777,
+        "fileAllocationBytes": 95322360,
+        "directoryAllocationBytes": 397312,
+        "files": 1273,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "512b51459cfed37b812d8910beedf65573e4546a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D174",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93005319,
+        "fileAllocationBytes": 95318272,
+        "directoryAllocationBytes": 397312,
+        "files": 1272,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9398acfadd57227461d63aa0ab24c51217e536cd",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D175",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92989776,
+        "fileAllocationBytes": 95297784,
+        "directoryAllocationBytes": 397312,
+        "files": 1270,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "70cec62323bf5c5cde7d01f505fa898aeef203d6",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D176",
+        "classification": "UNKNOWN_MORE_EVIDENCE_REQUIRED",
+        "logicalBytes": 46084102,
+        "fileAllocationBytes": 46134472,
+        "directoryAllocationBytes": 16384,
+        "files": 46,
+        "registeredWorktree": false,
+        "gitHeadAnchorNotCompleteBackup": null,
+        "completeBackupProven": false
+      },
+      {
+        "label": "D177",
+        "classification": "UNKNOWN_MORE_EVIDENCE_REQUIRED",
+        "logicalBytes": 73121,
+        "fileAllocationBytes": 94208,
+        "directoryAllocationBytes": 4096,
+        "files": 9,
+        "registeredWorktree": false,
+        "gitHeadAnchorNotCompleteBackup": null,
+        "completeBackupProven": false
+      },
+      {
+        "label": "D178",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92870836,
+        "fileAllocationBytes": 95150304,
+        "directoryAllocationBytes": 397312,
+        "files": 1254,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "2850abc80720766a127fbdf0dd12092a9eeb4a5a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D179",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92905842,
+        "fileAllocationBytes": 95187176,
+        "directoryAllocationBytes": 397312,
+        "files": 1257,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b1d44320dc0a42fe1d324815071aae3dfb41c682",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D180",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92902254,
+        "fileAllocationBytes": 95183072,
+        "directoryAllocationBytes": 397312,
+        "files": 1256,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "39c5e786677fc486e94b11776715d326d23bf2b0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D181",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 97371062,
+        "fileAllocationBytes": 100653280,
+        "directoryAllocationBytes": 655360,
+        "files": 1741,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "343f039291abb8bbc70a4c4c4aa42bbb0df9a3dc",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D182",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92914602,
+        "fileAllocationBytes": 95199464,
+        "directoryAllocationBytes": 397312,
+        "files": 1259,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5ad157b349e55797faee1cece0fd33aed2ac65e7",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D183",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 98437990,
+        "fileAllocationBytes": 101779696,
+        "directoryAllocationBytes": 786432,
+        "files": 1774,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "adc7efc65fbda2e7ac09740bd07adb412169b2d4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D184",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93083992,
+        "fileAllocationBytes": 95424744,
+        "directoryAllocationBytes": 430080,
+        "files": 1284,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3426165f02321a55639eb1d07bcf47da9f86939c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D185",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93066300,
+        "fileAllocationBytes": 95404272,
+        "directoryAllocationBytes": 430080,
+        "files": 1282,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "45b4310b4cb692a15517370952d218b87b1fa00d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D186",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 92960627,
+        "fileAllocationBytes": 95260912,
+        "directoryAllocationBytes": 397312,
+        "files": 1265,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3376f75d4202ec1ad34c1bf2e53cadc1154cc67b",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D187",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96421151,
+        "fileAllocationBytes": 99451920,
+        "directoryAllocationBytes": 659456,
+        "files": 1621,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "904c44821fb190941d3c496103902257bb35db52",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D188",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95678933,
+        "fileAllocationBytes": 98545920,
+        "directoryAllocationBytes": 593920,
+        "files": 1535,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "91ee5d54ac5571a043eca865ed2dff138b9b6bd6",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D189",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 159986072,
+        "fileAllocationBytes": 163064648,
+        "directoryAllocationBytes": 626688,
+        "files": 1682,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "058ffc7c7175318beda30f43de7e6f19866cb852",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D190",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96064537,
+        "fileAllocationBytes": 99029232,
+        "directoryAllocationBytes": 593920,
+        "files": 1583,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "3ab76dd74f1eb6ce80f1ccdeb104f3a54f4c5453",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D191",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 96439091,
+        "fileAllocationBytes": 99472440,
+        "directoryAllocationBytes": 659456,
+        "files": 1624,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "a101cc918509e616d6556e3f12b019458a5d27f6",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D192",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93912965,
+        "fileAllocationBytes": 96403696,
+        "directoryAllocationBytes": 462848,
+        "files": 1367,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c7b5e8230e90908bbc07a81fb5fe9a0e27e857a8",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D193",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93894024,
+        "fileAllocationBytes": 96379120,
+        "directoryAllocationBytes": 462848,
+        "files": 1365,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8ba681ef6a34c7006ab85e519229ff2b3eb8372c",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D194",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93931199,
+        "fileAllocationBytes": 96428280,
+        "directoryAllocationBytes": 462848,
+        "files": 1369,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d53ee4bd1ff5a3007b76b63fd49547de06e0d9fa",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D195",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93963761,
+        "fileAllocationBytes": 96465160,
+        "directoryAllocationBytes": 462848,
+        "files": 1373,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "f463361338f7933e9b03dab7d58e895691733106",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D196",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93948021,
+        "fileAllocationBytes": 96448768,
+        "directoryAllocationBytes": 462848,
+        "files": 1371,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "13ed14cd644ddb769e50cb3d41ee0a425f130f21",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D197",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94057468,
+        "fileAllocationBytes": 96583920,
+        "directoryAllocationBytes": 462848,
+        "files": 1383,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "8b118261f2e4ec1b698bd25ce35db935034074f0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D198",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94036562,
+        "fileAllocationBytes": 96559344,
+        "directoryAllocationBytes": 462848,
+        "files": 1381,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "90f3b52917c96871722ac58b017800645608bded",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D199",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94020076,
+        "fileAllocationBytes": 96538864,
+        "directoryAllocationBytes": 462848,
+        "files": 1379,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5ed1c04b822b72327864e9c6de63a80a77e88eb4",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D200",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94097844,
+        "fileAllocationBytes": 96637184,
+        "directoryAllocationBytes": 462848,
+        "files": 1387,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "41b26bf4610075198a28c4d3dd4884d35a205d7a",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D201",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93981654,
+        "fileAllocationBytes": 96489720,
+        "directoryAllocationBytes": 462848,
+        "files": 1375,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "455071a8f0f0d7038d71f71ec355060ece3e5215",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D202",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94075508,
+        "fileAllocationBytes": 96608504,
+        "directoryAllocationBytes": 462848,
+        "files": 1385,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c437345d9bf906b33641fde11050a80f8068da75",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D203",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93851484,
+        "fileAllocationBytes": 96321760,
+        "directoryAllocationBytes": 462848,
+        "files": 1359,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "ec326b6145c8978cd99f70736135de019ee9e88d",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D204",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94002755,
+        "fileAllocationBytes": 96514280,
+        "directoryAllocationBytes": 462848,
+        "files": 1377,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "81dec98abc5764791bbf848a06eacaed410f7548",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D205",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94157883,
+        "fileAllocationBytes": 96710904,
+        "directoryAllocationBytes": 528384,
+        "files": 1393,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "841d31e353a634b1a44f7c7aa16fe7a35ad40883",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D206",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94134780,
+        "fileAllocationBytes": 96682232,
+        "directoryAllocationBytes": 528384,
+        "files": 1391,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "701e0ad03b5fc22694d8fcef18250580e4549e82",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D207",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94135262,
+        "fileAllocationBytes": 96686344,
+        "directoryAllocationBytes": 528384,
+        "files": 1391,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "9d6acf750fe2abeaedfcb4239e3ee356ca9e4c76",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D208",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 94117601,
+        "fileAllocationBytes": 96661752,
+        "directoryAllocationBytes": 462848,
+        "files": 1389,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "b019b10e795080710d8486469202939120ef95ee",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D209",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93880492,
+        "fileAllocationBytes": 96362728,
+        "directoryAllocationBytes": 462848,
+        "files": 1363,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0521b339d7294b0896683efc0d8c954bad78b228",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D210",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93655645,
+        "fileAllocationBytes": 96088296,
+        "directoryAllocationBytes": 462848,
+        "files": 1339,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "0bc33bd33deff83e3205bd09efc1a7b7fbb6a700",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D211",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93613099,
+        "fileAllocationBytes": 96043232,
+        "directoryAllocationBytes": 430080,
+        "files": 1335,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "88f3b75b91943c5250400ac57ae51df762acb075",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D212",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93632480,
+        "fileAllocationBytes": 96063712,
+        "directoryAllocationBytes": 430080,
+        "files": 1337,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "37996bb256de16f01335a13fc8802d4bafc05277",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D213",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93676995,
+        "fileAllocationBytes": 96112864,
+        "directoryAllocationBytes": 462848,
+        "files": 1341,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c009a376b4130f4afb4f30b00ac8c32b592d36f7",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D214",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93573035,
+        "fileAllocationBytes": 95998176,
+        "directoryAllocationBytes": 430080,
+        "files": 1331,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "91323aa1326d3a81c77386931a909af3a1bf9be5",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D215",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93692396,
+        "fileAllocationBytes": 96133352,
+        "directoryAllocationBytes": 462848,
+        "files": 1343,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "c57556473bf578944e0ee1840b40319455e8c5d0",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D216",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93693521,
+        "fileAllocationBytes": 96133360,
+        "directoryAllocationBytes": 462848,
+        "files": 1343,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "d381f4120a3b57727420768433868d6ce892fd31",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D217",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 93595007,
+        "fileAllocationBytes": 96022752,
+        "directoryAllocationBytes": 430080,
+        "files": 1333,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "5f51ce44ce717175ce5d6702f7dacdc4c0647122",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D218",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95732412,
+        "fileAllocationBytes": 98611432,
+        "directoryAllocationBytes": 593920,
+        "files": 1541,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "42180fc7a27d93cdf423e9e8f1cc90b22ec38b7e",
+        "completeBackupProven": false
+      },
+      {
+        "label": "D219",
+        "classification": "KEEP_ACTIVE_OR_REFERENCED",
+        "logicalBytes": 95755186,
+        "fileAllocationBytes": 98636032,
+        "directoryAllocationBytes": 593920,
+        "files": 1543,
+        "registeredWorktree": true,
+        "gitHeadAnchorNotCompleteBackup": "bc05b89766bb73d6ade36c47dad7c21709920c73",
+        "completeBackupProven": false
+      }
+    ]
+  },
+  "budget": {
+    "taskRuntimeBudget": 0,
+    "oldApk": "SPENT_1_OF_1",
+    "oldG": "SPENT_1_OF_1",
+    "oldA": "NOT_RUN_GATE_CLOSED",
+    "G2Max": 1,
+    "G2ReservedStarts": 0,
+    "G2Popen": 0,
+    "G2ClaimAbsent": true,
+    "G2_READY_FOR_POPEN": false,
+    "Gate2": "NOT_AUTHORIZED"
+  },
+  "protection": {
+    "stage": "prepublish",
+    "protectedOriginalsHashSizeAndFileIdMatched": 91,
+    "historicalRootsMetadataMatched": 5,
+    "existingLocalRefsUnchanged": 527,
+    "worktreeRegistryUnchanged": true,
+    "source286CleanHeadUnchanged": true,
+    "sourceSdkAnchorsMatched": 14,
+    "schema2SevenInputsIntakeVerified": true,
+    "seedSourceTargetHashFileIdPairsMatched": 3183,
+    "fixtureAclRestored": true,
+    "G2ClaimAbsent": true,
+    "oldAClaimAbsent": true,
+    "G2ReservedStarts": 0,
+    "G2Popen": 0,
+    "G2_READY_FOR_POPEN": false,
+    "engineeringRuntimeStarts": 0,
+    "sharedDaclChanges": 0,
+    "historicalDirectoriesDeletedMovedRenamed": 0,
+    "gradleLayoutSourcePins": [
+      {
+        "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/DefaultArtifactCaches.java",
+        "sha256": "33f8f4470868ed5e90ab492064527d5d78c249f45c791149bde4ce25c80fe38c"
+      },
+      {
+        "path": "src/dependency-management/org/gradle/api/internal/artifacts/ivyservice/DefaultArtifactCacheMetadata.java",
+        "sha256": "ade97a0d41ec002c0a8a3a77466fd92af3151b64001dd9200215ee3edbb2e107"
+      }
+    ],
+    "exit": 0
+  },
+  "commandsAndLogHashes": [
+    {
+      "command": "python -X utf8 -B intake.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "intake.stdout.txt",
+          "bytes": 466,
+          "sha256": "b3b98c96092baa2d884ce4be0a24ef6de2187698fac44b9a43a3bd6f479f4cdb"
+        },
+        {
+          "localOnlyName": "intake.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "intake.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B create_seed.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "copy.stdout.txt",
+          "bytes": 6443,
+          "sha256": "da2a05055f480cfb8405d7e7c38a0e76c36b1cfe362c4fbdab1b9df5fa26c5e3"
+        },
+        {
+          "localOnlyName": "copy.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "copy.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "PowerShell ./os_fixture.ps1",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "os-fixture.stdout.txt",
+          "bytes": 223,
+          "sha256": "4a1d1155a7f7a86d16cff94ae6debe7391e7ab4a75b3749d2b41ca399bc97fd1"
+        },
+        {
+          "localOnlyName": "os-fixture.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "os-fixture.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B audit_seed.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "audit-seed.stdout.txt",
+          "bytes": 1111,
+          "sha256": "0e713c0c40b734229cd6652abca2766c3a1f222aa77a8e841df8742732afd887"
+        },
+        {
+          "localOnlyName": "audit-seed.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "audit-seed.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B classify_inventory.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "inventory-decision.stdout.txt",
+          "bytes": 311,
+          "sha256": "e91f851314727c614dd3b35905cddf91fd82f78c2ee95840da23d34ce4d3a87a"
+        },
+        {
+          "localOnlyName": "inventory-decision.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "inventory-decision.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B check_protection.py prepublish",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "protection-prepublish.stdout.txt",
+          "bytes": 1008,
+          "sha256": "511220801831f7a19ff056f5c8babab983c1b4f7d99595da3fb4045640d6825c"
+        },
+        {
+          "localOnlyName": "protection-prepublish.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "protection-prepublish.exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B inventory-helper/inventory.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "inventory-helper/stdout.txt",
+          "bytes": 876,
+          "sha256": "42e862f773f7a36c6313607f358e713d1ced217ab85c0097cac1c79f9d6fb08a"
+        },
+        {
+          "localOnlyName": "inventory-helper/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "inventory-helper/exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    },
+    {
+      "command": "python -X utf8 -B inventory-helper/allocation-measure.py",
+      "exit": 0,
+      "artifacts": [
+        {
+          "localOnlyName": "inventory-helper/allocation-stdout.txt",
+          "bytes": 424,
+          "sha256": "50a933fd93412187b032b238ffd53eaaefbc6ac637bf781202b72626275b7847"
+        },
+        {
+          "localOnlyName": "inventory-helper/allocation-stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "localOnlyName": "inventory-helper/allocation-exit.txt",
+          "bytes": 3,
+          "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+        }
+      ]
+    }
+  ],
+  "localOnlyEvidence": [
+    {
+      "id": "authority-summary.json",
+      "bytes": 506,
+      "sha256": "c4a9aac928ca9e35f2dad775cece32825a6168296df7890f5a7fad4fec266062",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "budget-intake.json",
+      "bytes": 266,
+      "sha256": "606c8025e3b9cc83580bec951504414e1e1e9de01e803d4436cdd856a9213652",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "protected-before-private.json",
+      "bytes": 42393,
+      "sha256": "81ce23c6c13d123502653c1ab417195a78f7cc2efb50e09e9cc264396f4377e1",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "roots-before-private.json",
+      "bytes": 1992,
+      "sha256": "1e66eb983a189d8edd396f64f3db4a22e10c927284f47cc52d7796deb9aaf466",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "refs-before.txt",
+      "bytes": 62655,
+      "sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "worktrees-before-private.txt",
+      "bytes": 43506,
+      "sha256": "cbc679643eb340edbbd794a403f2cb744bd6b5100a502a5b440b1c18cd97f5a6",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "copy-plan.json",
+      "bytes": 724,
+      "sha256": "64c3d8f85a399e0f0edf51b306efee476d7d22cdf6261c79369753c31a5aba88",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "source-verified-private.json",
+      "bytes": 2258089,
+      "sha256": "dc67977d29b74db3d7e5e999d7282c727143e2bcfde1ed475d9d108dd4701875",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "copy-events-private.jsonl",
+      "bytes": 3795964,
+      "sha256": "1de9251ad0030378a554993436d3170d7dce2097b5393d6ed98348ce9e0d1ddf",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "seed-copy-manifest-private.json",
+      "bytes": 4432567,
+      "sha256": "68b404520f9239a944d21e03984655bc58f49f0522c79a1257826de355dc3e71",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "seed-copy-result.json",
+      "bytes": 694,
+      "sha256": "83f35cbb958d7fcfcdf6be8ec4202ad735c7103b08c9d6a22e083b7d80dcabe5",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "settled-seed-private.json",
+      "bytes": 1828277,
+      "sha256": "927a5262268f6560e7b81132892cf06ae7e248a9cb292ee3e761603754b3db35",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "ancestor-identities-private.json",
+      "bytes": 2647621,
+      "sha256": "0721aa8728953c767c56aaa0a2551eb781556621dd3b5b9189a4e0a30af8720a",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "access-rights-private.json",
+      "bytes": 2862,
+      "sha256": "65033d9ffb4ccbad458d186fc4801796b09c8eb41ac599ca9dddca4cdfb7d2c1",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "os-fixture-private.json",
+      "bytes": 24201,
+      "sha256": "03105b5c76173e2d885edc6720fa5b07ca775b3e3d04a62da7935885c5d62da8",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "acl-ancestors-private.json",
+      "bytes": 65452,
+      "sha256": "d3096cb0e14ccf960cd78b5ed1caf067a9d5337e61d80515282a653e95f6f136",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "token-private.stdout.csv",
+      "bytes": 2054,
+      "sha256": "ac65dac11391b48489d43fa1208448445f0e3ebfadd02491b396c3e2f73d95c0",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "token-private.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "token-private.exit.txt",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "seed-os-summary.json",
+      "bytes": 1187,
+      "sha256": "4e8ce6c374bc56a2c6db9f893c41068141de10653ef41225803130bed6aa5318",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-classification-private.json",
+      "bytes": 271457,
+      "sha256": "d99e26d6a04b7ad71d189234a36f4e23956adaf8907ad96f2f3030b2eafde38f",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/metadata-index.private.json",
+      "bytes": 141120,
+      "sha256": "4aaad49dd63aec354ef6c59da4a6cf357b4ef19a4145fdebbc5b9a86a6f3bc32",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/allocation-index.private.json",
+      "bytes": 92995,
+      "sha256": "55c0c156b2539c2f1bfa847f588605798240a14b3f99faa54660a3da2878685d",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/public-summary.json",
+      "bytes": 874,
+      "sha256": "c163e757f1de7ad6cfe24aa1ff351ca914a47d1b40a6ed17f9f4d622d9c2fb79",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/allocation-summary.public.json",
+      "bytes": 84303,
+      "sha256": "e51cc5fb228e29b0f9d56472773b46d572c0adca154d01566a30ef586faf8330",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "protection-prepublish.json",
+      "bytes": 1126,
+      "sha256": "a7008bfc053907b7999c03c4b41d24894ea87019c2326297fa90daa3693b4f5e",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "static-source-result.json",
+      "bytes": 150,
+      "sha256": "e027f5fdb3d51fcb6d8049cabac11d8a3d662c8644088db8d21e19d27a03c551",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "filemeta.py",
+      "bytes": 3717,
+      "sha256": "11751d0cd20e1ef5f1af734aec662da2577575e61b5dfb413a9a46588117a623",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake.py",
+      "bytes": 5375,
+      "sha256": "bebe70c66f68bb06cfab2a696e6c3c48cb81e06243abb21f10dbd19e5b306956",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "create_seed.py",
+      "bytes": 7655,
+      "sha256": "a890f94b341f3367cbbc560604ff8f1bf2037ccc76cd43c1ddf562c0ac86f7c3",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "os_fixture.ps1",
+      "bytes": 4385,
+      "sha256": "31716228dfd1dff3347ff2036d6d6a11a2241f0cceeac3e40317474f996c0060",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "audit_seed.py",
+      "bytes": 3811,
+      "sha256": "a8bb9040c708af010f086d21d2c7ba51b567cd7bcba03d4e7583d1e4ea2f4ff5",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "classify_inventory.py",
+      "bytes": 4414,
+      "sha256": "1fc6cbfca9d5a31c67fd8fec73d0698d5aed5c54e554a7b1f950a649152734a5",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "check_protection.py",
+      "bytes": 3985,
+      "sha256": "49441bd54ee2bee381cb7f352f1f447e8c92df43f0ce5d24eea64baebfa97c06",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/inventory.py",
+      "bytes": 5898,
+      "sha256": "a1e2be8787aefe26cac088418a21694ded0a55f25e3fbdd4197dc5197749562c",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "inventory-helper/allocation-measure.py",
+      "bytes": 6460,
+      "sha256": "497979ecf102040b72de156dd683703039c88bde49b5067d3f9977cd389a32bf",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    }
+  ],
+  "staticParse": {
+    "pureAstParsedPythonSources": 8,
+    "syntaxFailures": 0,
+    "historical25_56_140Suites": "NOT_RUN_THIS_TASK",
+    "engineeringRuntimeStarts": 0
+  },
+  "evidenceClasses": [
+    "SOURCE_STATIC",
+    "CODEX_REPORTED_LOCAL_EXECUTION",
+    "LOCAL_ONLY_RAW",
+    "ASTRA_DIRECT_GITHUB_STATIC",
+    "DIRECT_GITHUB_READBACK",
+    "NOT_PROVEN",
+    "BLOCKED"
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/G2_SINGLE_SEED_2GIB_OS_QUALIFICATION_AND_D_DRIVE_INVENTORY_REPORT_20261028.md",
+    "mode": "100644",
+    "bytes": 16613,
+    "sha256": "e5c535a1004a413e5f5aa065066a504499504ac4268b843f94cabda6a1656e45",
+    "blob": "83e9067101e60945da2db35d3829555029a74bdd"
+  },
+  "terminal": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW",
+  "largestKnownTaskAllocationSnapshotBeforePublication": 1395448192,
+  "boundedNonAuthorReview": {
+    "scope": "Report/index against small result receipts only; no code/tests/build/device/Git/permission operations",
+    "findingsCorrected": [
+      "Preclose nonsimultaneous allocation sum separated from settled allocation",
+      "Snapshot maxima explicitly limited to their measurement stage"
+    ],
+    "notAstraAcceptance": true
+  }
+}
