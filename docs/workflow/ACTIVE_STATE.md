@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-28 Owner批准定向Flutter/Dart及隔离MariaDB/Laravel真实验证（最新入口）
+
+**`V10.1.5_TARGETED_FLUTTER_MARIADB_VALIDATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_EXECUTED_BY_ASTRA / E2258152_BOUNDED_SOURCE_DELIVERY_ACCEPTED_WITH_REQUIRED_VALIDATION / ISOLATED_FLUTTER_DART_AND_SYNTHETIC_MARIADB_TESTING_CONDITIONALLY_AUTHORIZED / G2_GRADLE_APK_DEVICE_AND_REAL_PUSH_NOT_AUTHORIZED / HISTORICAL_ACL_BUDGET_OVERRUN_RETAINED / OLD18_READ_ONLY_NO_RESTORATION / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / AAR_POM_RUNTIME_NOT_PROVEN / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner最新决定（2026-10-28，本会话）：** 收到Astra对e2258152软件源码的有界接受及“可信隔离Flutter/Dart定向测试＋独立合成MariaDB/Laravel Feature/HTTP正反验证、范围内必要同版修复”下一门推荐后，明确回复“可以我同意，请继续”，正式授权**一次综合真实软件测试及同版修复任务**。本次新批准的实际测试严格限于任务内私有工作面、无需外网的可信Flutter/Dart工具与任务独立MariaDB空库、固定回环端口及Laravel合成数据；**不等于G2、Gradle、共享SDK隐式写、APK、真机、真实Push或现网DB授权**。若工具/环境证明不足，则相应测试`NOT_RUN_ENV_GATE_CLOSED`而不是强行运行。
+
+**唯一正式任务（已发布并回读全文）：** [V10_1_5_TARGETED_FLUTTER_MARIADB_SOFTWARE_VALIDATION_AND_BOUNDED_REPAIR_TASK_20261028.md](../versions/v10.1.5/V10_1_5_TARGETED_FLUTTER_MARIADB_SOFTWARE_VALIDATION_AND_BOUNDED_REPAIR_TASK_20261028.md)，Git Blob **`2bc7369a4c52afc687a5de79697ba9ee48214afa`**。新增任务总产物logical/allocated分别≤1GiB，独立MariaDB服务最多2个Popen、独立localhost PHP API server最多2个Popen（含失败、跨所有同任务会话累计），本次选定本机loopback测试端口43329/43339；必须在任何Popen前建立持久`execution_ledger`并跨生成/会话中断继续核账，不自动重置次数。DB必须全新task-owned空数据目录及独立配置，只允许合成匿名数据与具名依赖迁移。Flutter工具须证明SDK/cache全程隔离且不下载依赖；否则跳过该工具分支。任务由Owner**本地手动派发**，GitHub发单≠Codex运行。
+
+**源码与最新独立裁决：** 未接受整版的实际待验证软件候选`e22581525a934377e094820e57bfc608ecdfc395`，唯一Parent `6a90c05538d1de8d648e645693ef9b1bf23b78f0`，Root `573382c8bca9c9d84e8a85bb72135399ced5b3e6`，候选apps Tree `61c0dd9a70fcd56af00053f1d055884cecf052f0`、services Tree `cc61686579f4a89ac092f3f557ba1f8191471528`。最新Astra审查报告 `astra/v10.1.5-e2258152-software-source-review-20261028:docs/versions/v10.1.5/E2258152_SOFTWARE_INTEGRATION_ASTRA_SOURCE_REVIEW_20261028.md` Blob `ebab2e765a88f900c8fd66ae13f8a18f495a7b25`，审查HEAD `5c6a1fc49bf282077cfd29ac9506935f80a7c790`。接受的是源码交付，不是Flutter编译、Laravel DB/Feature、物理离线或AC05。**本轮单候选以e225为唯一研发Parent**；main继续只含已接受v10.1.4产品，不擅自合并未接受版本。
+
+**历史事故与当前风险持续：** Owner已将`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`封存为历史事故且终止继续调查，两棵原ACL新树/6后代、父变更与恢复各2次的超限不得清除、重算或退款；旧18原control残留与历史full binary/SACL不可证状态持续。旧122具名原证、五保护根、527refs、旧Seed及claims/dirty roots不能清理/修改。真实OS restricted child/14矩阵、G2、Gradle/SDK隐式写面、完整APK/AAR/POM、RTC AEC/native handle、真实15/30天经过/物理加密清理、Push供应商、AC05全部保持开放。旧APK/G各1/1耗尽，旧A gate closed；条件G2回执0/1无claim只是历史状态，本任务`G2_POPEN=0/G2_CLAIM_WRITES=0`，不得越级授权。
+
+**唯一停止点：** Codex集中交付定向真实测试与有界修复候选、测试证据/失败/NOT_RUN矩阵及固定Git回读后STOP，等待Astra独立验收；不得自行合main、启动v10.1.6、自动开下一任务或删除旧原证。以下原main状态正文完整保留，仅历史发布快照不推翻本最新状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-28 Owner历史ACL事故封存与软件综合开发授权（最新状态入口）
 
 **`OWNER_INCIDENT_DISPOSITION_CONFIRMED_AND_HISTORICAL_EVIDENCE_PRESERVED / PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT_RETAINED / INTERRUPTED_ATTEMPT_INVESTIGATION_CLOSED_BY_OWNER_FOR_NOW / V10.1.5_MESSAGING_OFFLINE_NOTIFICATION_SOFTWARE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODING_NOT_YET_EXECUTED_BY_ASTRA / EXISTING_V10.1.4_PRODUCT_MAIN_UNCHANGED / NO_NEW_OS_ACL_CHILD_G2_BUILD_OR_LIVE_DB_BUDGET / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
