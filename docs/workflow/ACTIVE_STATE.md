@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-28 Owner主线优先：受限身份OS写隔离资格与SDK残余写面（唯一当前入口）
+
+**`MAINLINE_RESTRICTED_IDENTITY_OS_WRITE_GATE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE / ZERO_G2_POPEN / NO_G2_CLAIM / OS_ENFORCEMENT_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / D_DRIVE_CLEANUP_DEFERRED / OLD_APK_AND_G_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+Owner于2026-10-28在Astra完成76e Seed与D盘盘点的独立验收后明确批准**继续且主线优先**：一份有界Windows受限身份/OS级写入隔离**资格实验**与Flutter/Android SDK/NDK/插件写面定点调查。正式任务：[V10_1_5_RESTRICTED_IDENTITY_OS_WRITE_GATE_AND_SDK_SURFACES_TASK_20261028.md](../versions/v10.1.5/V10_1_5_RESTRICTED_IDENTITY_OS_WRITE_GATE_AND_SDK_SURFACES_TASK_20261028.md)，准确Git Blob **`f11cef5f3b729ae20120a184fc5a4ea085d6f5e0`**，已发布并读回；仍需Owner**手动派发Codex**。不将发布称为本地OS实验已完成，也不把任务内容扩为真实Gradle运行。
+
+**前置独立裁决：** `76E46D99_BOUNDED_DELIVERY_ACCEPTED_WITH_OBSERVATIONS / SINGLE_SEED_OR_OS_QUALIFICATION_BLOCKED`，Astra报告见 `astra/v10.1.5-76e46d99-single-seed-d-inventory-review-20261028:docs/versions/v10.1.5/76E46D99_SINGLE_SEED_OS_AND_D_DRIVE_ASTRA_REVIEW_20261028.md`，Blob `fcbfcdf0b8fd5ba941ed7d0d030efb3612019fcb`，先前审查HEAD `1ee5e0e572a6624306684729ad3e284bbcb4cd69`。候选 `76e46d9966dcb29c9e7dea72f41a1cd59fe0e6d7`、唯一Parent `ba7df19accd3df22b8e06cdfd65a6466cf4ecc53`、Root `3799152e9fa348d412cabe6468a30f81f2714598`、apps `5af7a9d0042be19437616e969e260658b67e9353` / services `21eebf69bbc6397b1562d40f8cd9ebd7b246720f`仍未并入main。
+
+**主线阻断：** Codex报告的3183文件单Seed已具名复制/Hash/独立FileId，但同一账户对该Seed仍可取得WRITE_DAC、父目录仍可能delete/rename；局部fixture写拒绝Error5仅证明该局部操作有效，`OS_ENFORCEMENT_NOT_PROVEN`且Flutter/Android/plugin隐式写入及Gradle resolver索引迁移均未闭合。**本任务允许的唯一真实OS动作**是对本次新建、任务拥有的小型fixture以非管理员受限身份执行的短时本地文件权限验证；如果不能安全创建受限身份或进程，记录BLOCKED并STOP，不提权、不安装或修改全局策略/共享ACL，也不对原Seed或共享SDK尝试写权限。任务新增空间**≤256MiB**；禁止再次复制1.3GiB Seed。真实Gradle/JVM/Flutter、G2 Popen、G2.claim创建、AAR/APK/设备/Gate2/网络实验预算均0。历史旧APK/G各1/1消耗、旧A关闭；G2前次LOCAL_ONLY记录仍0/1且无claim，但**不可在当前任务中使用**。
+
+**D盘治理暂停**：上轮只读盘点219个匹配根目录，214个Git注册引用、2个历史保护、3个未知、**0个具备证据的清理候选**；总allocated 42,315,631,544 bytes不等于可回收空间。Owner同意主线优先，本次**不继续D盘复核、更不会删除、移动、清理worktree、refs或归档**。副线仍需以后单独授权。
+
+**产品/全局状态**：已接受产品仅v10.1.4，main apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`未变。持续`V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / GRAPH_NOT_PROVEN / DOKKA_TASK_SELECTED_NOT_PROVEN / AAR_POM_RUNTIME_NOT_PROVEN / ACTUAL_BUILD_NOT_COMPLETED / ROOT_CAUSE_NOT_PROVEN / EDGE_NOT_PROVEN / DOKKA_TCP_CAUSALITY_NOT_PROVEN / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`及AEC、最后可闻波形、native handle、真实15/30天和物理清理历史未决。
+
+**唯一下一步**：Owner本地手动派发以上正式任务，Codex在冻结范围内一次集中实施受限OS微型fixture与SDK写面定点验证，发布有来源候选后STOP等待Astra独立验收。**不自动恢复G2、不创建claim、不新增真实构建任务或D盘清理任务**。
+
+以下保留原main ACTIVE_STATE完整历史正文；旧单Seed任务“待派发”等内容均为历史时点，不得替代上述已验收的76e结果与本轮正式授权。
+
+---
+
 # EliteSync v10.1.5｜2026-10-28 Owner 2GiB单Seed/OS资格与D盘历史目录只读盘点（当前入口）
 
 **`SINGLE_SEED_2GIB_OS_QUALIFICATION_TASK_PUBLISHED / D_DRIVE_INVENTORY_READONLY_AUTHORIZED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE_THIS_TASK / NO_G2_CLAIM_THIS_TASK / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / G2_READY_FOR_POPEN_FALSE / MINIMAL_SEED_CLOSURE_NOT_PROVEN / BLOCKED_DISK_OR_ISOLATION / GRAPH_NOT_PROVEN / OLD_APK_1_OF_1_SPENT / OLD_G_1_OF_1_SPENT / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
