@@ -1,0 +1,1810 @@
+{
+  "schema": 1,
+  "taskBlob": "86adf8d774379b6a7b5a90d416a01f35ae7ce35c",
+  "status": [
+    "CAPTURED_VIEW_RECOVERY_BOUNDARY_DEFINED",
+    "NONEMPTY_PROPAGATION_BOUNDED_SUPPORTED_ON_NEW_FIXTURE",
+    "OLD18_READONLY_NO_RESTORATION"
+  ],
+  "candidateSoleParent": "cfca26beb6e3710b46f9c3559cce706c332a61b9",
+  "candidateAppsTree": "5af7a9d0042be19437616e969e260658b67e9353",
+  "candidateServicesTree": "21eebf69bbc6397b1562d40f8cd9ebd7b246720f",
+  "main": "7d5c60eb331dae145c025e89decd7705a7d605f9",
+  "mainRoot": "f7d77a49afdac0266161b3c39bb1359dadfcbe9c",
+  "mainAppsTree": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "mainServicesTree": "0cb1f9d19659291a462488b3686fd0a07a6698ac",
+  "matrix": [
+    {
+      "label": "F001",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "8373cb10579558399eb6ab50b461370b4e583946e2b03603a22f064133505714",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 5,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 4,
+      "visibleDescendants": 17,
+      "descendantLabels": [
+        "F002",
+        "F003",
+        "F006",
+        "F004",
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013",
+        "F005",
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018"
+      ],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "CHILD_PROPAGATION_UNPROVEN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F002",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "458ad4418db09703d477a9b64e2d6612c84ba46925f788890a4534cff79b77b5",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 6,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F003",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "277fa0c5f8f7acf4742ef55fe0b2e268088efe38aebd3a85bb5d9f05bfe8683b",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 6,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 1,
+      "visibleDescendants": 1,
+      "descendantLabels": [
+        "F006"
+      ],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "CHILD_PROPAGATION_UNPROVEN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F004",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "0671185dfbec0df531b8cabbf88701018c02b35661f409f517a8d35e46f19026",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 6,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 7,
+      "visibleDescendants": 7,
+      "descendantLabels": [
+        "F007",
+        "F008",
+        "F009",
+        "F010",
+        "F011",
+        "F012",
+        "F013"
+      ],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "CHILD_PROPAGATION_UNPROVEN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F005",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "d4d8aaef121a87ce7914a7e7bc29a164f1abf7cacbd5ab3d077e592aef7e565d",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 6,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 5,
+      "visibleDescendants": 5,
+      "descendantLabels": [
+        "F014",
+        "F015",
+        "F016",
+        "F017",
+        "F018"
+      ],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "CHILD_PROPAGATION_UNPROVEN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F006",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "77e2e4699693da2cdc337aa1b9ebf08781415e914361f4b250c428e071d4fc99",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F007",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "29220e103b1e5231d098636759981c7db4bc70f8cdc922a85ec89451397fafb2",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F008",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "06a4369180f66845fc8c61afd29b0ee053371531202a857c0de9b0187e98bcb3",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F009",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "f28bcfafdf9acc78420dcc85285e683fe2f236afc9c561cdbb3f3028470caf28",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F010",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "8d247e540dc3fd8d91e625d4c72b664a5f0985374594b81d8d8ed4f19c5e8f66",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F011",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "55a773b267768d261c40c7cbb5a281f1d2b43644e706fec9d8b5a7c92d956120",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F012",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "8f15ced8aa0a5876e997008f100fe6171abe598acdb687eac2000fb77126170b",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F013",
+      "kind": "file",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "05ba1ecccdf24adb327ba5ba2f91869549b55405208a22ef559a718e5618b83d",
+      "currentSddlSha256": "98ca7645359e1a5e91fcd645fee668c2f90b765df779b2986cbb2c0d7808ad69",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 112,
+      "daclRevision": 2,
+      "inheritedAceCount": 112,
+      "daclProtected": false,
+      "identityDigest": "62d54a391261f4066d355cf700d9b5802e2edc7e730ec8b3c8719f8c29670ec4",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F014",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "930299d07d84e316844207a2998c2a78ad6dc124aea3f82dd4df39941ebdb0bf",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F015",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "0e0d7032b45cdda293de253064153f1d345d8268cab46aff147fd43b4d55d535",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F016",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "3496f8449e6e2f7478c0e94f7ca9e6e8b58d58db4ad2ab8e755a2cdc89a78355",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F017",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "b6db5e8510bc0c2646d052ae1a1721ed17409c36125a0e79e3a12abba6871b2c",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    },
+    {
+      "label": "F018",
+      "kind": "directory",
+      "historicalSourceBlob": "0cfc46b50f092b5c1c10df7ea4e065af3141144a",
+      "historicalOriginalSourceSha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "historicalCaptureFlags": 7,
+      "historicalNativeCaptureTimestamp": "NOT_CAPTURED; file mtime is not API time",
+      "historicalSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+      "historicalControl": [
+        33796,
+        1
+      ],
+      "currentControl": [
+        32772,
+        1
+      ],
+      "currentFlags7BinarySha256": "1d46ebf8043c31e8d843e1c1ef7f9c37a1ec2750019fb10c32d9e86ce7592d91",
+      "currentSddlSha256": "a548a77362c99d14f7beac8ee91034d4e3780fae9ae8e5b24a85e1198cf7130d",
+      "historicalFullBinaryCaptured": false,
+      "historicalSaclCaptured": false,
+      "orderedAceOwnerGroupContentAndIdMatched": true,
+      "aceCount": 218,
+      "daclRevision": 2,
+      "inheritedAceCount": 218,
+      "daclProtected": false,
+      "identityDigest": "be55fd493c8409346b00f6e6a26e1efbf79aa9e412c2c11a6287d4d616adab85",
+      "volumeAndFileIdMatched": true,
+      "links": 1,
+      "reparse": false,
+      "ancestorCount": 7,
+      "ancestorIdsMatchPrevious": true,
+      "visibleDirectChildren": 0,
+      "visibleDescendants": 0,
+      "descendantLabels": [],
+      "visibleEnumerationCompleteWithinBound": true,
+      "parentDeleteChildCandidateAceCount": 217,
+      "effectiveDeleteRenamePermission": "NOT_PROVEN; ACE masks are not AccessCheck",
+      "deleteRenameProbe": "NOT_RUN",
+      "references": {
+        "exactPathStringInPinnedRefs": false,
+        "exactPathStringInPinnedWorktreeRegistry": false,
+        "hardlinkOrReparseObserved": false,
+        "externalProcessOrUnenumeratedReferenceAbsence": "NOT_PROVEN"
+      },
+      "recoveryLayers": [
+        "HISTORICAL_OGD_CONTROL_EVIDENCED",
+        "CURRENT_FLAGS7_VIEW_VERIFIED",
+        "CAPTURED_VIEW_RESTORATION_CANDIDATE_NOT_EXECUTED",
+        "HISTORICAL_FULL_SD_BINARY_OR_SACL_UNPROVABLE"
+      ],
+      "restorationScope": "CAPTURED_FIELDS_COMPARABLE_ONLY; NO_RESTORATION",
+      "propagation": "NO_VISIBLE_DESCENDANTS; OLD_OS_EFFECT_NOT_RUN",
+      "rollback": "ROLLBACK_NOT_GUARANTEED",
+      "referencesVerdict": "REFERENCES_NOT_EXCLUDED",
+      "oldAclWriteRestoreDeleteMoveRecreateCalls": 0,
+      "result": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN"
+    }
+  ],
+  "newExperiment": {
+    "parentMutationCalls": 1,
+    "parentRestoreCalls": 1,
+    "descendantAclWriteCalls": 0,
+    "old18WriteCalls": 0,
+    "fixtureObjectsCreated": 4,
+    "status": "NONEMPTY_PROPAGATION_BOUNDED_SUPPORTED_ON_NEW_FIXTURE",
+    "sourceSha256": "eaf71416a6a1474160b6bc5c9cb359239f7df636c6eab77a72603fa23b564166",
+    "handlesClosed": true,
+    "mutationApi": "SUCCESS_NO_LAST_ERROR_CLAIM",
+    "expectedMutationByObject": {
+      "P": true,
+      "D1": true,
+      "D2": true,
+      "D3": true
+    },
+    "restoreApi": "SUCCESS_NO_LAST_ERROR_CLAIM",
+    "allCapturedFieldsRestored": true,
+    "mutationChangedAllFourAcls": true,
+    "identityOwnerGroupContentStableDuringMutation": true,
+    "rows": [
+      {
+        "label": "P",
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "mutationControl": [
+          33796,
+          1
+        ],
+        "restoreControl": [
+          33796,
+          1
+        ],
+        "beforeBinarySha256": "86649600e76106aac3655b7661758bd8f5e1fc2217f7e26227764397acb27eda",
+        "mutationBinarySha256": "e18e510712676fc4d1f4e195cbab17cddb15b23975d5b119b24eeeef9252daf1",
+        "restoreBinarySha256": "86649600e76106aac3655b7661758bd8f5e1fc2217f7e26227764397acb27eda",
+        "beforeSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+        "mutationSddlSha256": "cde2ba63c2bbc47c8f99bbd02b5eab017dfa496d7607b39ef3323ca9ceb6674b",
+        "restoreSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+        "aclChanged": true,
+        "exactCapturedViewRestored": true,
+        "allPrivateFieldsAlsoCompared": true,
+        "comparedFields": [
+          "binary",
+          "SDDL",
+          "control",
+          "DACL revision/ordered ACE",
+          "owner/group",
+          "Volume/FileId/link/attributes",
+          "content"
+        ],
+        "saclRequested": false
+      },
+      {
+        "label": "D1",
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "mutationControl": [
+          33796,
+          1
+        ],
+        "restoreControl": [
+          33796,
+          1
+        ],
+        "beforeBinarySha256": "7a565e48aaf70be9d5b2a263600f86370938bd205e021788ee09fb53bb1ea156",
+        "mutationBinarySha256": "726dcdc8710eba9b545f6ff2ccf4cafb07588de4e66fd443b159f88be5e75305",
+        "restoreBinarySha256": "7a565e48aaf70be9d5b2a263600f86370938bd205e021788ee09fb53bb1ea156",
+        "beforeSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+        "mutationSddlSha256": "b75eaf03c6faeaf12ac7ff26fa4e3b3ff640deb2d4866db8d82553eb3d0576b8",
+        "restoreSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+        "aclChanged": true,
+        "exactCapturedViewRestored": true,
+        "allPrivateFieldsAlsoCompared": true,
+        "comparedFields": [
+          "binary",
+          "SDDL",
+          "control",
+          "DACL revision/ordered ACE",
+          "owner/group",
+          "Volume/FileId/link/attributes",
+          "content"
+        ],
+        "saclRequested": false
+      },
+      {
+        "label": "D2",
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "mutationControl": [
+          33796,
+          1
+        ],
+        "restoreControl": [
+          33796,
+          1
+        ],
+        "beforeBinarySha256": "86649600e76106aac3655b7661758bd8f5e1fc2217f7e26227764397acb27eda",
+        "mutationBinarySha256": "5f4aabe589af7b3d20265068be7c662399b858e954611f36cc809f98d057c88a",
+        "restoreBinarySha256": "86649600e76106aac3655b7661758bd8f5e1fc2217f7e26227764397acb27eda",
+        "beforeSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+        "mutationSddlSha256": "ce105d90be1b89ada24d69fd9c5b4f4981796e8218e05b56c9fa57afba148d91",
+        "restoreSddlSha256": "c4c63c50f93c36fcf26af5be33d40bb70e4ec5172d430debfdeeddc16ab9029b",
+        "aclChanged": true,
+        "exactCapturedViewRestored": true,
+        "allPrivateFieldsAlsoCompared": true,
+        "comparedFields": [
+          "binary",
+          "SDDL",
+          "control",
+          "DACL revision/ordered ACE",
+          "owner/group",
+          "Volume/FileId/link/attributes",
+          "content"
+        ],
+        "saclRequested": false
+      },
+      {
+        "label": "D3",
+        "beforeControl": [
+          33796,
+          1
+        ],
+        "mutationControl": [
+          33796,
+          1
+        ],
+        "restoreControl": [
+          33796,
+          1
+        ],
+        "beforeBinarySha256": "7a565e48aaf70be9d5b2a263600f86370938bd205e021788ee09fb53bb1ea156",
+        "mutationBinarySha256": "726dcdc8710eba9b545f6ff2ccf4cafb07588de4e66fd443b159f88be5e75305",
+        "restoreBinarySha256": "7a565e48aaf70be9d5b2a263600f86370938bd205e021788ee09fb53bb1ea156",
+        "beforeSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+        "mutationSddlSha256": "b75eaf03c6faeaf12ac7ff26fa4e3b3ff640deb2d4866db8d82553eb3d0576b8",
+        "restoreSddlSha256": "2e9bc0d8fb2364ac76dab9df1889a2ed5d45089d47150b03705294aab965e473",
+        "aclChanged": true,
+        "exactCapturedViewRestored": true,
+        "allPrivateFieldsAlsoCompared": true,
+        "comparedFields": [
+          "binary",
+          "SDDL",
+          "control",
+          "DACL revision/ordered ACE",
+          "owner/group",
+          "Volume/FileId/link/attributes",
+          "content"
+        ],
+        "saclRequested": false
+      }
+    ]
+  },
+  "old18Restoration": "NOT_PROVEN; zero writes",
+  "references": "REFERENCES_NOT_EXCLUDED",
+  "rollback": "OLD_TREE_ROLLBACK_NOT_GUARANTEED",
+  "historicalSourcePins": [
+    {
+      "id": "fixture-original-private.json",
+      "sha256": "ac4083a2fcde8b197b3dc5a26f7080f0a111502c092a38a98b2dac39a7901485",
+      "bytes": 224834,
+      "mtimeUtc": "2026-10-28T01:54:30.795366+00:00"
+    },
+    {
+      "id": "fixture-acl-normalized-readonly-private.json",
+      "sha256": "611c8f05f48e85dd3c22afba905c725e0114ce65d11f857457e0075d9a17de49",
+      "bytes": 937211,
+      "mtimeUtc": "2026-10-28T02:06:39.982335+00:00"
+    },
+    {
+      "id": "fixture-restoration-private.json",
+      "sha256": "2cbad30a4bfb7053b59d2d2053f21c4eb0e9d4b084c807035b9b3fdb6289ca33",
+      "bytes": 3336,
+      "mtimeUtc": "2026-10-28T01:54:30.855372+00:00"
+    },
+    {
+      "id": "restricted_parent.py",
+      "sha256": "2750c8e9628ea588f35c6ec4c473ca3823bd957e50dbb0e074fb6ee06d0b5aa5",
+      "bytes": 12098,
+      "mtimeUtc": "2026-10-28T01:52:49.766158+00:00"
+    },
+    {
+      "id": "pywin32-b311-source-readback.json",
+      "sha256": "2b7d5f5093779ddb64eb25512a50879c24333bbb95364e4ac8fcd7eb6b75c717",
+      "bytes": 374732,
+      "mtimeUtc": "2026-10-28T01:51:57.821209+00:00"
+    },
+    {
+      "id": "old-fixture-before-private.json",
+      "sha256": "db7b151c2414603392b62e307c18353df56a83f0023eab5321b57aeda8c51aa0",
+      "bytes": 1195025,
+      "mtimeUtc": "2026-10-28T03:23:25.731410+00:00"
+    },
+    {
+      "id": "old-restore-source-gate.json",
+      "sha256": "1906b3f28b69695044ad58389e1fb19075ecdd8ef798869bc297177481605262",
+      "bytes": 977,
+      "mtimeUtc": "2026-10-28T03:36:43.413725+00:00"
+    }
+  ],
+  "staticReview": {
+    "reviewKind": "BOUNDED_NONAUTHOR_STATIC_ONLY_NOT_ASTRA_ACCEPTANCE",
+    "preExecutionNoBlockingFindings": true,
+    "sourceSha256": "eaf71416a6a1474160b6bc5c9cb359239f7df636c6eab77a72603fa23b564166",
+    "commonSha256": "c6a3d349c63cdbc00e2f188b70da8f884de06820cba688c659ba46dff6014a4b",
+    "initialFindings": [
+      "Propagation classifier too broad",
+      "Exceptional observation could skip rollback",
+      "Installed ACL AddAce unavailable",
+      "Review not bound to source",
+      "Creation counting and close failure status"
+    ],
+    "resolution": "All resolved before any fixture creation or ACL call; source hashes bound",
+    "budgetObservation": "Final receipts must be counted or bounded"
+  },
+  "newMock": {
+    "tests": 6,
+    "failures": 0,
+    "kind": "PURE_SYNTHETIC_CLASSIFIER_ONLY",
+    "osAclCalls": 0,
+    "old18Writes": 0
+  },
+  "protectionBefore": {
+    "stage": "before",
+    "protectedOriginalsMatched": 122,
+    "fiveRootsMatched": 5,
+    "refsMatched": 527,
+    "worktreeRegistryMatched": true,
+    "seedHashFileIdsMatched": 3183,
+    "G2ClaimAbsentAtNamedLocations": true,
+    "oldAClaimAbsent": true,
+    "oldFixtureWrites": 0,
+    "newEngineeringStarts": 0
+  },
+  "protectionFinal": {
+    "stage": "final",
+    "protectedOriginalsMatched": 122,
+    "fiveRootsMatched": 5,
+    "refsMatched": 527,
+    "worktreeRegistryMatched": true,
+    "seedHashFileIdsMatched": 3183,
+    "G2ClaimAbsentAtNamedLocations": true,
+    "oldAClaimAbsent": true,
+    "oldFixtureWrites": 0,
+    "newEngineeringStarts": 0
+  },
+  "budget": {
+    "newParent": 1,
+    "newDescendants": 3,
+    "parentDaclMutationCalls": 1,
+    "parentDaclRestoreCalls": 1,
+    "descendantExplicitAclCalls": 0,
+    "old18AllMutationRestoreDeleteMoveRecreate": 0,
+    "newChildLaunches": 0,
+    "engineeringStarts": 0,
+    "G2Popen": 0,
+    "G2ReservedStarts": 0,
+    "G2ClaimWrites": 0,
+    "historicalBudgetWrites": 0,
+    "G2ClaimAbsentAtNamedLocations": true,
+    "oldApk": "SPENT_1_OF_1",
+    "oldG": "SPENT_1_OF_1",
+    "oldA": "CLOSED",
+    "capLogicalAndAllocatedEach": 33554432
+  },
+  "spaceBeforeDocs": {
+    "stage": "delivery-before-docs",
+    "logicalBytes": 6563591,
+    "allocatedBytes": 6674312,
+    "files": 70,
+    "directories": 3,
+    "capBytes": 33554432,
+    "utc": "2026-10-28T09:29:14.939255+00:00",
+    "limitations": "Snapshot excludes later small receipts and shared filesystem metadata; not a continuous peak measurement"
+  },
+  "originalFailures": [
+    "Tool-only patch format refusal before writes",
+    "intake.py before exit1 evidence serialization size guard; original logs preserved; ACL0",
+    "Helper name collision and JS report preparation syntax error were tool-only, no fabricated process outputs"
+  ],
+  "localOnlyEvidence": [
+    {
+      "id": "A-candidate-meta.json",
+      "bytes": 1357,
+      "sha256": "0a4ff0c7fdffc74eb5c58ec5faeab0bc056c948ee9f4e3299f9e3a99fddca4a5",
+      "classification": "DIRECT_GITHUB_READBACK_ARCHIVE"
+    },
+    {
+      "id": "A-source-tree.json",
+      "bytes": 2063139,
+      "sha256": "199e6c35be3a55128d8fa7ca38e2f9df923445c0159f1efc137732674f98a86d",
+      "classification": "DIRECT_GITHUB_READBACK_ARCHIVE"
+    },
+    {
+      "id": "ancestors-before-private.json",
+      "bytes": 389662,
+      "sha256": "2f3ab4057fac9de2cb8d239eea5563fa1b07863fda171d4eddd1ae02d3f83e75",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "ancestors-final-private.json",
+      "bytes": 389662,
+      "sha256": "2f3ab4057fac9de2cb8d239eea5563fa1b07863fda171d4eddd1ae02d3f83e75",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "authority-inputs.json",
+      "bytes": 218061,
+      "sha256": "20d56e833375b79a7f658c72bab6f456476891f381f18434627e09c9c4048c0b",
+      "classification": "DIRECT_GITHUB_READBACK_ARCHIVE"
+    },
+    {
+      "id": "classifier-mock-result.json",
+      "bytes": 117,
+      "sha256": "9366d904883c62bfddf839f770cc190c99e1dbf7e427492ef71c540110d3c07d",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "classifier-mock.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "classifier-mock.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "classifier-mock.stdout.txt",
+      "bytes": 106,
+      "sha256": "200c80416c888fc7fb7fee562ce017ead17e4739cb65f287f1ee3c379a7ea0ae",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "classifier_mock.py",
+      "bytes": 1501,
+      "sha256": "f65166887cb66333ec9190fbd1f3da4c0b70ce91b02de76478b42234c5ef9899",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "close_manifest.py",
+      "bytes": 1642,
+      "sha256": "b677fd5f23d407feb97c58562733fd0fa4971b471235bd3a9b41af816030f91d",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "common.py",
+      "bytes": 4833,
+      "sha256": "c6a3d349c63cdbc00e2f188b70da8f884de06820cba688c659ba46dff6014a4b",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "finish-matrix.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "finish-matrix.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "finish-matrix.stdout.txt",
+      "bytes": 554,
+      "sha256": "15f6d38d8938c6a6852f70039a7dc6a56ddf5d063e4cd193b7c09ba7f2a9bf7d",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "finish_matrix.py",
+      "bytes": 613,
+      "sha256": "5af78eba2f397cd126757372dfe89b57d5db53483b952da14365cd279fe4bab4",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-after-mutation-private.json",
+      "bytes": 193845,
+      "sha256": "a951bf76d9aafbe08859ff65ea5f77481760b4fb4e6b045e191078cea3757f54",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-after-restore-private.json",
+      "bytes": 192792,
+      "sha256": "407b433b5ba4a5d6335bc564d2c87716ccc443e8fe1413b0238403ebd201efcb",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-before-private.json",
+      "bytes": 205697,
+      "sha256": "b58e7e7eaf860967e8a2908899bdcd450d9a4460a09c9d4766549d5322fee148",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-plan.json",
+      "bytes": 927,
+      "sha256": "b39c5b249cdb62ebc46b0b0a25da435ac9ed7c89c28202f94d601ae99aefc84e",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-result-private.json",
+      "bytes": 5186,
+      "sha256": "1a46c892a061c64bc5664e3ff4c7f30e55a495fcf9646b1b90fa90994b10fed0",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "fixture-result-public.json",
+      "bytes": 5141,
+      "sha256": "ec11a8e48347542d26112fd5a8ca6339a276ea65f56605bf56643e7ffab79f25",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "historical-source-pins.json",
+      "bytes": 1454,
+      "sha256": "831da3525305cf3e0979dec461573600d5ea634792af8f3e6185f6fd6a6b0005",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-before-failure-private.json",
+      "bytes": 148,
+      "sha256": "8fe9c4904502709697055fa3dac8153e83c74856a9507a9184af81718ca22bd4",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-before-summary.json",
+      "bytes": 617,
+      "sha256": "9d17b8b084b37c58e9757dae10994f6c4dd3c8c99b49030a17d20401e5d579af",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-before.exit.txt",
+      "bytes": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-before.stderr.txt",
+      "bytes": 798,
+      "sha256": "0178238f6a40aef15ae24eeaf93212ec31662a8bf51153c89674ac3e517b6958",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-before.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-final-summary.json",
+      "bytes": 557,
+      "sha256": "42ccfd926d0d08648dccef5cdbe94220d3ca69c141f41c3588102696f0f5cb86",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-final.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-final.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake-final.stdout.txt",
+      "bytes": 494,
+      "sha256": "631ef01e80dcf5e3dab87702419c43e98de6a7625c8c0435e295b9863bfa7808",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "intake.py",
+      "bytes": 9448,
+      "sha256": "b1563541437e8e52bb4d8b532926380cfd7f235108a605e13149c73926907eb8",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "mutation-D1-private.json",
+      "bytes": 30990,
+      "sha256": "c69cc592610c2fbd84bd28902342ad0eb36fc0a4c0805a854f38e55a4e052cf7",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "mutation-D2-private.json",
+      "bytes": 60491,
+      "sha256": "57160c69787ce54d0a2bc6954708e499cc245e66bf561be640c59f2e2f39191a",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "mutation-D3-private.json",
+      "bytes": 30990,
+      "sha256": "ad00bd7b593ae68b72e1727d8e12aaa3a4856b88dc53c2e37500fedfbc466ac6",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "mutation-P-private.json",
+      "bytes": 60488,
+      "sha256": "4828b167338ea61bd6745785b3de0b4101e9a2a71996e9210e6ce8598b561ce9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "mutation-validation.json",
+      "bytes": 58,
+      "sha256": "a130fe05eff6467d8863b3cb8f69a1cb988f48513a5ce33e54851f81e1bcfd55",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "nonempty-experiment.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "nonempty-experiment.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "nonempty-experiment.stdout.txt",
+      "bytes": 4166,
+      "sha256": "00eed224d7c8ecb5c47845aa57013a04a53eaa6e8c3458a459e65acd2dd7f6d7",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "nonempty_experiment.py",
+      "bytes": 12136,
+      "sha256": "eaf71416a6a1474160b6bc5c9cb359239f7df636c6eab77a72603fa23b564166",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "old18-before-private.json",
+      "bytes": 1235609,
+      "sha256": "38527875b600071c47abfed24ea1564c1edd0c046b1bf615361be859b7851070",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "old18-final-private.json",
+      "bytes": 1235609,
+      "sha256": "38527875b600071c47abfed24ea1564c1edd0c046b1bf615361be859b7851070",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "parent-mutation-attempt.json",
+      "bytes": 277,
+      "sha256": "bd277d33fd84db4add42b3d8cd60a447657fa0454825bded6e3d7f49ca10a207",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "parent-restore-attempt.json",
+      "bytes": 277,
+      "sha256": "5ec5807d28514d0aaeee0e07849d27bce5effe7da6449a0d75249a440c794a69",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "prepare-report.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "prepare-report.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "prepare-report.stdout.txt",
+      "bytes": 215,
+      "sha256": "1cee1d222ba930a7f283e3fa5461142ea5178b9f0ef3b674280343cfbec2fc73",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "prepare_report.py",
+      "bytes": 16235,
+      "sha256": "f805b57f71c0aa91b07edc79365f341423c1bf42bd3e6e6eee6b0e6459e8efd6",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "protection-before.json",
+      "bytes": 298,
+      "sha256": "01809997d51fc668e0a666c3c59d19e747b5b9e1d7e619ed49f15f360c5e8267",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "protection-final.json",
+      "bytes": 297,
+      "sha256": "4b193f3a09481efa06ec5d579fb4b92a820379a5205f16bdcc601704f4e63874",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "restored-D1-private.json",
+      "bytes": 30744,
+      "sha256": "6c0d4f46790e32c987d564f0d4d8bf19bc771f0cee006d7c1376bf52cca3d965",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "restored-D2-private.json",
+      "bytes": 60241,
+      "sha256": "910c6f43c69b8b1e8602a37ade8d14e829ad51e96f598ce376ed829e4a7dfde2",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "restored-D3-private.json",
+      "bytes": 30744,
+      "sha256": "18dafa66fac4985db9226cec5c3362a7a6df3ffcb5592d89ee6404ff51123edf",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "restored-P-private.json",
+      "bytes": 60241,
+      "sha256": "69ceed8c3486e992a3621fff9f742b15294c8a7fa6e36b5bcf93b6cb92ccdb85",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "roots-before-private.json",
+      "bytes": 1822,
+      "sha256": "918df05de88113facd1b8839d0b519c61c392887d8306e7f680538e46bd93d9f",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "roots-final-private.json",
+      "bytes": 1822,
+      "sha256": "918df05de88113facd1b8839d0b519c61c392887d8306e7f680538e46bd93d9f",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-after-documents.json",
+      "bytes": 318,
+      "sha256": "02ad4566f0e109ff8a1b3a765a733761f80dad997b36096a157fed6b16c93ca4",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-delivery-before-docs.json",
+      "bytes": 323,
+      "sha256": "c27d839d8aab0599308725f8e1ae061f841f92325792fd3820f63ef837b12d82",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-post-before.json",
+      "bytes": 314,
+      "sha256": "c4a172e26746e5d6c5dbbfaadb5c2b256693c025669ff71e9ba00cfc1f3e492f",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-post-final.json",
+      "bytes": 313,
+      "sha256": "2c7271ba744be6447bb0d60e9cfbf913aa57331b5e0449acc62b87c48b844671",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-post-fixture.json",
+      "bytes": 315,
+      "sha256": "465e8a248865267e95f3f8097af80bfe7831e2eca780fd04dcaec583c7e4af73",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-pre-acl.json",
+      "bytes": 310,
+      "sha256": "9cf8bf47c604e5a200fe2f1ce99bfdbaea904cafa9f83279bd7cb2f0a965b67c",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-pre-before.json",
+      "bytes": 310,
+      "sha256": "b7711125b4bba53bd1ec3d254318282ae216b67fcd755b0d6583d898f9217a96",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-pre-final.json",
+      "bytes": 312,
+      "sha256": "b0211aaf21051e944c4536ca3d3a48c7555da72a2aba431d553958cf7befe992",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "space-pre-fixture.json",
+      "bytes": 314,
+      "sha256": "c4ebe3d2e1dacc38262fa65c9b35cf43938d4a19bd46b87f1e6f8d5a8c78077c",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "static-parse.exit.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "static-parse.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "static-parse.stdout.txt",
+      "bytes": 88,
+      "sha256": "f22ec973775f2bedb7b5dd69e52f038af699384e301c1cf1cf7b9ff4fe0ca488",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "static-review-decision.json",
+      "bytes": 633,
+      "sha256": "2672a35d865ae62474b78894f35605197d062e9c73a6548b37a57090b468f546",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    },
+    {
+      "id": "tool-failures.json",
+      "bytes": 374,
+      "sha256": "4b4c60bbc39fb573683f65e7b080da9ae372eaad71a5053fa079a84a41da082c",
+      "classification": "LOCAL_ONLY_RAW / CODEX_REPORTED_LOCAL_EXECUTION"
+    }
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/OLD18_CAPTURED_VIEW_AND_NONEMPTY_PROPAGATION_QUALIFICATION_REPORT_20261028.md",
+    "bytes": 11592,
+    "sha256": "249b41750e3e8af3e22e8ab7a039461badcd2f520b89d3f7f1bdb70d987491dd"
+  },
+  "G2_READY_FOR_POPEN": false,
+  "restrictedIdentityGate": "BLOCKED",
+  "old18Status": "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN",
+  "version": "PARTIAL_NOT_ACCEPTED",
+  "AC05": "OPEN",
+  "terminal": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW",
+  "artifactManifestState": "CLOSED_AFTER_REPORT_GENERATOR_EXIT; subsequent publication/readback receipts tracked separately"
+}
