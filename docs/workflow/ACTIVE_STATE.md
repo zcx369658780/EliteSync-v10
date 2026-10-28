@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-28 Astra 8186受限OS身份微型实验受阻验收（独立审查分支最新入口）
+
+**`8186_BOUNDED_BLOCKED_DELIVERY_ACCEPTED_WITH_REQUIRED_OBSERVATIONS / RESTRICTED_IDENTITY_GATE_BLOCKED / CHILD_EXIT_STATUS_DLL_INIT_FAILED_CLASS_ONLY / CHILD_ACCESS_MATRIX_NOT_RUN_14_OF_14 / FIXTURE_EXACT_SECURITY_DESCRIPTOR_RESTORATION_FAILED_18_OF_18 / OS_ENFORCEMENT_NOT_PROVEN / SDK_WRITE_CLOSURE_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / G2_CLAIM_ABSENT_CODEX_REPORTED / OLD_APK_G_EXHAUSTED / OLD_A_GATE_CLOSED / D_DRIVE_CLEANUP_DEFERRED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**最新Astra独立裁决：** [8186_RESTRICTED_IDENTITY_OS_GATE_ASTRA_REVIEW_20261028.md](../versions/v10.1.5/8186_RESTRICTED_IDENTITY_OS_GATE_ASTRA_REVIEW_20261028.md)，Git Blob `a6a01ad4d56633cf2ab0aeed66658067c2fc42ed`。直接GitHub回读候选`8186cebc94661bcdc229ee5b62b31871dc784a4c`，唯一Parent`76e46d9966dcb29c9e7dea72f41a1cd59fe0e6d7`、Root`1d9ec83dbfe6c211d95f713d5aa4ab93f69d8bf7`、6666项递归Tree未截断，完整apps`5af7a9d0042be19437616e969e260658b67e9353`/services`21eebf69bbc6397b1562d40f8cd9ebd7b246720f`仍是**未接受候选产品Tree**。仅追加脱敏报告Blob`e773c0139dc4c0d6c91abad7553508382975d4e0`、索引Blob`0cfc46b50f092b5c1c10df7ea4e065af3141144a`两文档，产品main未集成。
+
+**实际阻断：** Codex本地报告单次CreateRestrictedToken和CreateProcessAsUser成功，但受限child以`0xC0000142`（Windows STATUS_DLL_INIT_FAILED**错误类别**）退出，没有captured child stdout/stderr或首事件；14项权限访问检查**全部NOT_RUN**，不得说拒写验证通过，失败DLL或desktop因果均NOT_PROVEN。18个任务私有fixture的原安全描述符control由`0x8404`变为`0x8004`，差值`0x0400=SE_DACL_AUTO_INHERITED`，虽然ACE/owner/group/FileId/内容相同，**精确恢复0/18通过**；须作为下次权限实验前的显式修复/保护门，不能忽略或擅自修改旧Seed及共享ACL。Codex声称子进程与本轮句柄已退出/关闭，本轮没有另行尝试，Astra未直接Windows现场核验。
+
+**SDK写面：** 静态确认Flutter native-plugin output`module_plugin_loader.gradle`潜在config阶段`mkdirs`及buildDir设置，但具体canonical输出路径/动态条件未运行；Android SDK/NDK/CMake、Flutter bin/cache、tooling included Gradle、插件自选输出与环境fallback仍有UNKNOWN。真实Gradle/JVM/Flutter/G2/observer/设备/网络实验均未运行，source-only仍不等于G2可执行。
+
+**预算与保护：** 本任务新增上限256MiB，Codex公开报告交付文档前allocated=12,095,240 bytes，最终本机receipt如有额外测量仍属LOCAL_ONLY。本轮新工程运行0，旧APK/G各1/1耗尽，旧A Gate关闭；G2按Codex`max1/reserved0/Popen0/claim absent`为**条件性未使用**，但不能启动。旧Seed3183份原件与101件保护、五历史根/527refs不变均为Codex本地报告，Astra只独立核验GitHub两文档身份。D盘治理仍暂停且无删除授权。AEC/last-audible/native handle/真实15和30天/清理及Push持续开放。
+
+**下一步（需Owner另批准）：** 先定点解决本任务fixture控制标志未恢复、child`0xC0000142`初始化缺少错误采集的阻断，并严格限制权限/launch动作；不能在描述符残留未处理前直接重复权限矩阵，更不能直接发真实G2。当前没有自动后继任务、共享权限改动、产品main合并或v10.1.6启动。
+
+**最新main直接核验**：`34b06e3c6dd9ae09cd767468052f1828a5a5ced0` / Root`0c54cb1201afe960fd8d8007db2f37849a44a86c`；已接受v10.1.4 apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`/services`0cb1f9d19659291a462488b3686fd0a07a6698ac`，产品Tree未变。STOP等待Owner。
+
+以下保留原main ACTIVE_STATE正文，其中上轮任务仍显示`PUBLISHED_OWNER_MANUAL_DISPATCH_REQUIRED`为历史发布时点，不能覆盖8186任务已经交付并完成此独立审阅的记录。
+
+---
+
 # EliteSync v10.1.5｜2026-10-28 Owner主线优先：受限身份OS写隔离资格与SDK残余写面（唯一当前入口）
 
 **`MAINLINE_RESTRICTED_IDENTITY_OS_WRITE_GATE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / ZERO_GRADLE / ZERO_G2_POPEN / NO_G2_CLAIM / OS_ENFORCEMENT_NOT_PROVEN / G2_READY_FOR_POPEN_FALSE / INPUT_CLOSURE_NOT_PROVEN / GRAPH_NOT_PROVEN / G2_CONDITIONAL_0_OF_1_CODEX_REPORTED / D_DRIVE_CLEANUP_DEFERRED / OLD_APK_AND_G_SPENT_1_OF_1 / OLD_A_GATE_CLOSED / GATE2_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
