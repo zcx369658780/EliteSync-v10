@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-29 长会话交接归档，最新主线研发任务留待下会话接续（CURRENT ENTRY）
+
+**`SESSION_HANDOFF_SAVED / LATEST_MAINLINE_TASK_ALREADY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NO_CODEX_NEW_RESULT_FOR_MAINLINE_TASK_IN_THIS_SESSION / NO_NEW_PRODUCT_EXECUTION / HISTORICAL_FLUTTER_6_OF_6_MARIADB_2_OF_2_EXHAUSTED / G2_READY_FOR_POPEN_FALSE / HISTORICAL_ACL_OVERRUN_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner最新指示（2026-10-29，本会话最后）：** “当前会话太长，请立即在github端文档中保存当前会话的任务进度、Owner决策等信息，然后给我当前会话的交接prompt。最新的任务单将在下个会话继续交接。”本更新严格仅是**保存会话记录与设置新会话入口**，不是新研发任务、不撤销前面“回归主线”的Owner决定、不自动派发Codex、不增加运行预算、不合产品main。下一会话需要直接延续已经发布的那一份主线综合任务。
+
+**唯一当前交接正文（已在main按路径全文回读）：** [SESSION_HANDOFF_20261029_V1015_MAINLINE_TASK_PENDING_V1.md](SESSION_HANDOFF_20261029_V1015_MAINLINE_TASK_PENDING_V1.md)，Git Blob **`616149b858d2e5f7a97bfbe2ea5e87d7c7c30f55`**，保存本长会话全部重要Owner授权/工作流决策、e225→955→15b→5aa→fd85→0577的有界裁决、AC矩阵状态、历史ACL原证及旧预算、当前产品和待接续任务身份。此文档为新会话第一阅读入口之一。
+
+**唯一待接续且已正式发布的真实研发任务（**不重新生成**）：** [V10_1_5_APP_API_DB_MAINLINE_PRODUCT_INTEGRATION_AND_E2E_HARNESS_TASK_20261029.md](../versions/v10.1.5/V10_1_5_APP_API_DB_MAINLINE_PRODUCT_INTEGRATION_AND_E2E_HARNESS_TASK_20261029.md)，Git Blob **`1db7fc7eaadcea172cc52016904836bd71a0b90d`**。Owner已经决定重回产品主线，任务围绕F1消息、F3离线、F4通知的真实Flutter/Laravel源码与APP→API→MariaDB同源E2E场景harness，允许安全源码和纯契约检查、512MiB新工作面；**尚未授权新Flutter/Dart、MariaDB/API、G2/Gradle/APK/设备/RTC/Push真实运行**。截至本会话未收到Codex对此最新任务的执行候选，下一会话先fresh GitHub查其状态再视Owner派发/交付处理，不可把旧已PASS的23 Feature/77 Widget冒充本任务新运行。
+
+**固定研发入口：** 最新未接受候选Parent `0577f030f6e3bbecae611433daa226719a7cc4b0` / Root `4d024bb4d931a346f237614efa7940451a39678e` / apps `798049a15eb33fec16acdd37d83a07af0ed181b5` / services `9bba2938aa41ad3eaee501ef88bfeecdee797591`。main唯一已接受v10.1.4产品apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。历史各证据/原Owner决定详见交接文档与先前ACTIVE_STATE全文。
+
+**冻结状态：** `AC-10.1.5-01～11`为10PARTIAL/AC05 RTC OPEN；`V10.1.5_PARTIAL_NOT_ACCEPTED / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`。历史ACL跨尝试超限 `PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`和旧18、两ACL实验根、122原证/五根/527refs/3183 Seed、旧失败/ledger/dirty根永久保留。Flutter旧6/6、MariaDB旧2/2、旧G/APK各1/1已耗尽，API1/2余额不构成新权限，G2当前`G2_READY_FOR_POPEN_FALSE`，非生产Hook虽然64位Hash更正但`PATCH_INPUT_NOT_QUALIFIED / PREPARE_NOT_RUN / EXECUTE_NOT_RUN`。
+
+**本次交接STOP：** 保存新交接MD、同步本状态并回读Commit/Blob/Root和产品Tree后交付**完整交接Prompt**。不发新微任务、不运行最新任务、不发布“任务已被Codex执行”结论、不合main、不放行G2/Gradle、不开v10.1.6。以下原main `ACTIVE_STATE.md`全文保留，时间上较早的“待派发”记录仅为历史阶段状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner决定回归实际产品主线：APP→API→MariaDB整链源码收口和E2E场景（最新入口）
 
 **`MAINLINE_V10_1_5_PRODUCT_SOURCE_AND_E2E_HARNESS_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / PRODUCT_CODE_AND_TEST_HARNESS_IMPLEMENTATION_AUTHORIZED / REAL_APP_DB_BUILD_DEVICE_RUN_NOT_YET_AUTHORIZED / NO_EXTRA_FLUTTER_DART_MARIADB_API_RUNTIME_BUDGET / HISTORICAL_FLUTTER_6_OF_6_MARIADB_2_OF_2_G_APK_1_OF_1_EXHAUSTED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / HISTORICAL_ACL_OVERBUDGET_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
