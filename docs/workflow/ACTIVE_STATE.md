@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-29 Owner批准Flutter可复现测试入口固化＋AC01-11验收差距收口（最新入口）
+
+**`REPRODUCIBLE_FLUTTER_TEST_ENTRY_AND_AC_GAP_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_STARTED_BY_ASTRA / NONPRODUCTION_TOOLING_IMPLEMENTATION_AUTHORIZED / NO_NEW_FLUTTER_OR_MARIADB_RUNTIME_BUDGET / AC01_11_EVIDENCE_MATRIX_REQUIRED / F2_RTC_F3_OFFLINE_F4_NOTIFICATION_FROZEN_NUMBERING / 5AA3_BOUNDED_WIDGET_PRIVATE_PATCH_ACCEPTED_WITH_OBSERVATIONS / PRIOR_FLUTTER_BATCH_6_OF_6_EXHAUSTED / PRIOR_MARIADB_SERVER_2_OF_2_EXHAUSTED / G2_READY_FOR_POPEN_FALSE / HISTORICAL_ACL_OVERRUN_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner本会话最新授权：** 根据Astra对`5aa3fc631dd7b450888c794182a1a8b35d57ec0a`的有界Widget运行验收，批准**一次非生产可复现Flutter测试工具入口实现与v10.1.5功能AC验收差距集中收口综合任务**。包括真实可审的测试工具脚本/守卫/私有补丁复现输入检查、文档与合成自检源码，以及按冻结`AC-10.1.5-01～11`逐项引用权威报告、代码Blob、环境、风险、真实缺口、Owner另批条件和下一最小有界任务组合。此授权**不**包含新的Flutter/Dart真实执行、MariaDB/PHP API服务、SDK下载/全局升级、设备/Gradle/G2/RTC/Push或主产品main集成。旧耗尽预算不退款。工具必须默认`DRY_RUN_ONLY`与`EXECUTE_DISABLED`，不把此前LOCAL_ONLY第三方runner补丁复制到公共生产代码。
+
+**正式任务（已在main发布并按路径全文回读）：** [V10_1_5_REPRODUCIBLE_FLUTTER_TEST_ENTRY_AND_AC_GAP_CLOSURE_TASK_20261029.md](../versions/v10.1.5/V10_1_5_REPRODUCIBLE_FLUTTER_TEST_ENTRY_AND_AC_GAP_CLOSURE_TASK_20261029.md)，Git Blob **`0854b37fdc9f11c55088ed2d2f93816a27bc2fa9`**。建议在固定候选基础上`tools/v1015/flutter_widget_test_entry/`输出非生产安全入口、`REPRODUCIBLE_FLUTTER_TEST_ENTRY_AND_AC_GAP_CLOSURE_REPORT_20261029.md`、`ac01_11_gap_matrix_20261029.json`、`flutter_test_entry_artifact_manifest_20261029.json`。任务空间logical/allocated各≤256MiB，新任务在任务私有工作面实施后形成唯一non-force候选，Owner手动派发；本发布没有启动Codex或任何工具链。
+
+**源身份和上轮裁决：** 新研发唯一Parent`5aa3fc631dd7b450888c794182a1a8b35d57ec0a`，Root`2db8c8c509ffebb3b02169c23b99b34261f0424a`，其apps Tree`798049a15eb33fec16acdd37d83a07af0ed181b5`、services Tree`9bba2938aa41ad3eaee501ef88bfeecdee797591`；Astra报告 `astra/v10.1.5-5aa3fc63-flutter-private-widget-review-20261029:docs/versions/v10.1.5/5AA3FC63_FLUTTER_WIDGET_PRIVATE_PATCHED_RUNNER_ASTRA_REVIEW_20261029.md` Blob`715bc340042675df86a0c791c49eb1852bb9b5ce`。原前轮已记录MariaDB10.11.19 23 Feature/152断言、Flutter私有修改runner下11文件77/77、Flutter analyze，通过的是**有界且Codex本地执行证据**，不是原版SDK/设备/系统软件全PASS。当前main仍只接受v10.1.4产品apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`，新候选不合main。
+
+**冻结AC与长期保护：** 原`docs/versions/v10.1.5/plan.md` Blob`7d3466b3be67135dc641cfee7c7faef78937ba03`定义F1消息、F2 RTC、F3离线、F4通知、F5旧资产范围，AC01–11不可凭测试数量自动收口，尤其`AC05_OPEN`为RTC质量/保护门。历史`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`超限永久保留；旧18/两实验树/122原证/五根/527refs/3183 Seed/旧账本与失败保护。旧APK/G 1/1耗尽、旧A关闭，G2未授权；RTC AEC、设备Keystore/物理15/30天和清理、真实Push、G2/Gradle/APK仍`NOT_RUN/NOT_PROVEN`。
+
+**停止点：** Codex只在Owner手动派发后按已发布正式任务完成一次非生产工具实现＋完整AC证据矩阵，读取固定Git源与任务账本，提交普通non-force候选、完整GitHub回读后STOP等待Astra独立验收。不创建后继任务、不启动DB/Flutter真实测试、不合main、不宣布AC05或v10.1.5功能接受、不进入v10.1.6。以下旧main ACTIVE_STATE全文作为历史保留。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner批准Windows hooks_runner私有适配与Flutter Widget真实验证（最新状态）
 
 **`FLUTTER_WINDOWS_HOOK_PRIVATE_WIDGET_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_STARTED_THIS_TASK_BY_ASTRA / 15B23D8C_BOUNDED_MARIADB_RUNTIME_ACCEPTED_FLUTTER_ANALYZE_ACCEPTED_WIDGET_BLOCKED_WITH_OBSERVATIONS / FLUTTER_WIDGET_11_FILES_ZERO_EXECUTED_BEFORE_NEW_TASK / TASK_PRIVATE_HOOK_ADAPTATION_CONDITIONALLY_AUTHORIZED / NO_SYSTEM_SHELL_OR_GUARD_BYPASS / MARIADB_SERVER_PREVIOUS_TASK_EXHAUSTED_2_OF_2 / G2_READY_FOR_POPEN_FALSE / PRIOR_ACL_OVERRUN_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
