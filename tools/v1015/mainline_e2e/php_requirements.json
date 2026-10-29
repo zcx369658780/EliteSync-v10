@@ -1,17 +1,18 @@
 {
   "schema": 1,
-  "profile": "PHP_8_5_3_NTS_WIN_X64_LOCKED_VENDOR_WITH_DEV",
-  "candidate_parent": "3bed366233a39472f8a9e905021788b8d29e12b3",
+  "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_SUPPLY_PENDING",
+  "candidate_parent": "be7ebd1faa0fd3cb45bd88bd24af15ea9e805631",
   "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
-  "php_version": "8.5.3",
+  "php_version": "8.5.12",
   "thread_safe": false,
-  "reference_executable_sha256": "e120479f40a9b7b90e779cb845d1d13a9a4e7923e7681cbb851f41bc139f3971",
+  "reference_executable_sha256": null,
   "source_documents": {
-    "composer.json": "e7cf18fbe91494ec3ef12fa5815cd7723613bc55162f965e81a41a54596ca3f6",
+    "composer.json": "21631cc3c211933098be4bb3caa0efcd23d8ee8ced71ce512f97c9243a1d233a",
     "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a"
   },
   "required_modules": [
     "ctype",
+    "curl",
     "dom",
     "fileinfo",
     "filter",
@@ -31,29 +32,33 @@
     "xmlwriter"
   ],
   "required_shared_modules": [
+    "curl",
     "fileinfo",
     "mbstring",
     "openssl",
     "pdo_mysql"
   ],
   "functions": [
-    "mb_substr",
-    "mb_strlen",
-    "finfo_open",
-    "mime_content_type",
-    "openssl_encrypt",
-    "openssl_random_pseudo_bytes",
     "ctype_alnum",
+    "curl_exec",
+    "curl_init",
+    "curl_version",
     "filter_var",
+    "finfo_open",
+    "fsync",
     "hash",
     "iconv",
     "json_encode",
+    "libxml_use_internal_errors",
+    "mb_strlen",
+    "mb_substr",
+    "mime_content_type",
+    "openssl_encrypt",
+    "openssl_random_pseudo_bytes",
     "preg_match",
     "session_start",
     "token_get_all",
-    "libxml_use_internal_errors",
-    "xml_parser_create",
-    "fsync"
+    "xml_parser_create"
   ],
   "classes": [
     "PDO",
@@ -296,17 +301,82 @@
       "function": "mb_substr"
     }
   ],
-  "optional_modules": {
-    "curl": "Not a hard require in locked packages; selected curl transport must declare/hash its extension and native dependencies."
-  },
-  "current_state": "REQUIREMENTS_ONLY_LIVE_MODULE_LOAD_NOT_RUN",
+  "optional_modules": {},
+  "current_state": "SOURCE_MIGRATION_ONLY_RUNTIME_FORBIDDEN",
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
     "128fa1f7746ee73ee6d52d2d693715b003a4ec13",
+    "1ade4e5a89116eeba329311ed274229823aafd17",
     "1db7fc7eaadcea172cc52016904836bd71a0b90d",
     "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
+    "8b6bd9233a08a7f4d0986d6f592eb114dec63e04",
     "a0eec472b58d53bc25084a395efc0748779d73f8",
     "a307391e3872ff5367d84ddb7da86e53e531445e"
-  ]
+  ],
+  "composer_lock_state": "LOCK_RESOLUTION_PENDING",
+  "runtime_qualification_state": "DEPENDENCY_SUPPLY_PENDING",
+  "target_distribution": {
+    "version": "8.5.12-1",
+    "runtime_version": "8.5.12",
+    "architecture": "x64",
+    "toolset_family": "VS17",
+    "thread_safe": false,
+    "published_utc": "2026-10-26T13:05:05Z",
+    "url": "https://downloads.php.net/~windows/releases/php-8.5.12-1-nts-Win32-vs17-x64.zip",
+    "archive_sha256": "2a36a2edcb7a5b9252f638fd5e4cf84d7f6e066092654220dc0b63e5cf4e9723",
+    "archive_size_display": "34.63 MB",
+    "metadata_source": "https://www.php.net/downloads.php?os=windows&version=8.5",
+    "sbom_source": "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-nts-Win32-vs17-x64.zip.spdx.json",
+    "byte_verification": "NOT_ACQUIRED_NOT_VERIFIED"
+  },
+  "vc_runtime": {
+    "state": "REDISTRIBUTABLE_NOT_QUALIFIED",
+    "architecture": "x64",
+    "minimum_rule": "runtime version >= exact PHP build-tool version; both require authoritative evidence",
+    "minimum_version": null,
+    "source_receipt_sha256": null,
+    "license_receipt_sha256": null,
+    "forbidden_legacy_versions": [
+      "14.38.33126.1"
+    ],
+    "signature_alone_qualifies": false
+  },
+  "framework": {
+    "target_major": 12,
+    "php_constraint": "~8.5.12",
+    "future_major": 13,
+    "future_mode": "EVALUATION_ONLY",
+    "security_support_until": "2027-02-24",
+    "framework_package": "laravel/framework",
+    "carbon_major": 3
+  },
+  "composer_evidence_scope": "HISTORICAL_LARAVEL11_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+  "deployment_required_modules": [
+    "ctype",
+    "curl",
+    "dom",
+    "fileinfo",
+    "filter",
+    "hash",
+    "mbstring",
+    "openssl",
+    "pcre",
+    "pdo",
+    "session",
+    "tokenizer",
+    "xml"
+  ],
+  "project_required_modules": [
+    "pdo_mysql"
+  ],
+  "dev_required_modules": [
+    "iconv",
+    "json",
+    "libxml",
+    "phar",
+    "xmlwriter"
+  ],
+  "deployment_source": "https://laravel.com/docs/12.x/deployment",
+  "native_inventory_state": "TARGET_EXTENSION_DLL_PE_IMPORTS_HASHES_LICENSES_PENDING_NO_HISTORICAL_INHERITANCE"
 }

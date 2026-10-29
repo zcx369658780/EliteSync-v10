@@ -1,16 +1,16 @@
 {
   "schema": 1,
   "platform": "windows-x64",
-  "php_version": "8.5.3",
+  "php_version": "8.5.12",
   "thread_safe": false,
-  "candidate_parent": "3bed366233a39472f8a9e905021788b8d29e12b3",
+  "candidate_parent": "be7ebd1faa0fd3cb45bd88bd24af15ea9e805631",
   "source_binding": {
     "commit": null,
     "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
     "services_tree": null,
     "apk_sha256": null
   },
-  "requirements_sha256": "56c921e1631b9c4c39e9354761e6abcde3f4262f43e503b3e1c87c42ef4bf927",
+  "requirements_sha256": "6377ae4cfca87afad643b68df6c23e12532341d6fbe3b70acd9006f404b55c57",
   "php_distribution_inventory_sha256": null,
   "executable": "bin/php.exe",
   "extension_directory": "bin/ext",
@@ -19,10 +19,12 @@
     "fileinfo": "bin/ext/php_fileinfo.dll",
     "mbstring": "bin/ext/php_mbstring.dll",
     "openssl": "bin/ext/php_openssl.dll",
-    "pdo_mysql": "bin/ext/php_pdo_mysql.dll"
+    "pdo_mysql": "bin/ext/php_pdo_mysql.dll",
+    "curl": "bin/ext/php_curl.dll"
   },
   "files": [],
   "state": "INPUT_REQUIRED_NOT_QUALIFIED",
   "windows_system_modules": {},
-  "windows_os_image_policy": null
+  "windows_os_image_policy": null,
+  "status": "TEMPLATE_ONLY_DEPENDENCY_SUPPLY_PENDING_NOT_EXECUTABLE"
 }

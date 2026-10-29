@@ -130,7 +130,7 @@ untrusted grants just to make cross-restart offline reads appear successful.
 
 No automatic main merge, AC05 closure, G2 release, successor or v10.1.6.
 
-## R1: private PHP dependency qualification (2026-10-29)
+## Private PHP dependency qualification (R1 design, updated by Owner B)
 
 R1 task `a307391e3872ff5367d84ddb7da86e53e531445e` grants **source and pure
 checks only**. Current state: `PHP_LARAVEL_BOOTSTRAP_NOT_RUN /
@@ -140,11 +140,13 @@ claimed. The existing F1 fix, three Widget sources and 15-scenario catalog remai
 
 The prior two-extension command is superseded by a shared frozen profile:
 `php_requirements.json` binds composer.json/lock byte hashes, the selected
-PHP8.5.3 NTS x64 executable hash, 18 required modules and required functions/classes.
+PHP8.5.12 NTS x64 target, required modules and required functions/classes. The
+executable hash is intentionally null until separately supplied bytes are verified.
 It includes the selected locked vendor-with-dev requirements (XML/XMLWriter/Phar);
-it does not silently assume a runtime-only vendor tree. cURL is optional in this
-lock; selecting an optional shared extension still requires its complete binary
-and native import closure. Existing named PHP reference files were read as PE
+it does not silently assume a runtime-only vendor tree. cURL is required by
+Laravel deployment and by the current root Composer contract, even though the
+preserved Laravel11 lock did not require it. Its complete binary/native import
+closure is pending; no optional-cURL exception remains. Existing named PHP reference files were read as PE
 bytes only; the reference inventory is incomplete and is **not** a launch profile.
 
 Create a new LOCAL_ONLY `php_runtime_manifest` from trusted existing sources only
@@ -157,7 +159,7 @@ No binaries or actual security/system image inventory belong in public Git.
 
 Static qualification seals all exe/DLL files, verifies AMD64 PE32+ headers,
 ordinary/delay import dependencies and direct-exe-directory native dependencies,
-rejects missing mbstring/fileinfo/openssl/pdo_mysql, path escape/reparse/hardlink,
+rejects missing curl/mbstring/fileinfo/openssl/pdo_mysql, path escape/reparse/hardlink,
 changed hashes, mixed distributions and undeclared binary files. Unsupported PE
 forms fail closed. This reaches `STATIC_PRECONDITION_OK / LIVE_MODULE_LOAD_NOT_RUN`
 only. The static parser is not a Windows loader or proof of every runtime import.
@@ -166,8 +168,9 @@ Config additionally supplies `php_runtime_root`, `php_runtime_manifest` and its
 raw SHA256, `php_requirements`, and `api_router`. New grant fields include identical
 `php_cli_manifest_sha256` and `php_api_manifest_sha256`,
 `php_requirements_file_sha256`, PHP/bridge/router hashes, and the existing
-source/config/instance/budget fields. Both languages reject the same six historical
-zero-runtime task Blobs. Current/R1 task names do not confer a fresh run budget.
+source/config/instance/budget fields. Both languages reject the same tracked set of closed
+runtime task Blobs, including this migration and the ended native task. No old
+or current task name confers a fresh run budget.
 
 Both entries use the same argv constructor: `-n`, absolute extension DLLs, private
 extension/include/write scope, no auto prepend/append, disabled dl, private PATH,
@@ -226,4 +229,37 @@ The no-DB action uses `assertProbeContext`; it cannot read DB credentials, boots
 Laravel or invoke seed. DB/API routes retain `assertContext`, all existing instance
 checks and explicit refusal of this no-DB-only task. The previous controlled-runtime
 task is now closed in both language policies. Candidate lineage pins refer to the
-fixed 3bed parent; PHP/Dart/Hook versions and binary hashes have not been changed.
+fixed be7 parent for Owner B; the PHP target is now 8.5.12-1 and all new
+executable/extension/native pins are pending. Flutter/Dart/Hook are unchanged.
+The historical no-DB task and its unused budget are closed.
+
+
+## Owner B Laravel12 / PHP8.5 migration (2026-10-30)
+
+The backend root now requires `laravel/framework:^12.0`, `php:~8.5.12` and all
+Laravel deployment extensions plus `pdo_mysql`. Existing Sanctum4/Tinker2/Pail1/
+Collision8/PHPUnit11 constraints remain; their locked versions admit Laravel12,
+but this is not a complete solver result. Carbon is already locked to 3.11.3.
+`composer.lock` is deliberately the unchanged Laravel11 original:
+`LOCK_RESOLUTION_PENDING`. Do not install it as a Laravel12 vendor closure.
+
+`migration_contract.py <source-root>` is read-only and needs no PHP, Composer,
+network or database. It audits only the bounded target contract and lock version
+inputs, not the full Composer schema or dependency SAT problem. A synthetic
+version match never reports solver completion or runtime readiness.
+
+The official PHP 8.5.12-1 archive URL/hash are source metadata, not the hash of
+php.exe. `reference_executable_sha256` stays null. Both Python qualification and
+PHP pre-bootstrap checks fail closed while `DEPENDENCY_SUPPLY_PENDING` or
+`LOCK_RESOLUTION_PENDING` remains. Microsoft runtime source/license/minimum
+build-tool evidence is required; legacy 14.38 is not a dynamic default.
+All cURL extension and dependent DLL byte hashes, architecture, PE imports and
+notices must be obtained from the same separately authorized official package;
+SBOM source metadata alone does not prove Windows loaded-module closure.
+
+This task authorizes source/static/synthetic work only: no prepare/execute,
+extension loading, Laravel/vendor bootstrap, Composer plugins/scripts, database,
+API, Flutter or device launch. Existing OS/private-path guards and all business
+CN/MC/Block, session, T0 and notification gates remain. The new
+`Laravel12CompatibilityTest.php` is test source, NOT_RUN here; do not bypass
+its existing test-database qualification guard to execute it.

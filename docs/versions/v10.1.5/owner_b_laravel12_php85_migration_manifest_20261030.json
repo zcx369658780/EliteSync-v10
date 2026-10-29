@@ -1,0 +1,245 @@
+{
+  "schema": 1,
+  "task_id": "V1015_OWNER_B_LARAVEL12_PHP85_20261030",
+  "attempt_id": "attempt-0001",
+  "task_blob": "1ade4e5a89116eeba329311ed274229823aafd17",
+  "sole_parent": "be7ebd1faa0fd3cb45bd88bd24af15ea9e805631",
+  "parent_root": "db2725ee513816f430002265e19c0f96ec21325f",
+  "status": "OWNER_B_LARAVEL12_SOURCE_MIGRATION_CANDIDATE_DELIVERED_WITH_DEPENDENCY_GATES",
+  "apps_tree_unchanged": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+  "source_provenance": [
+    {
+      "path": "services/backend-laravel/composer.json",
+      "mode": "100644",
+      "base_blob": "64af0a69ce68e0d4c1b1213cd6efb1acdfb080a1",
+      "blob": "d30ee1bb2af2bafb0416fa07b6005d53d6ab4f56",
+      "sha256": "21631cc3c211933098be4bb3caa0efcd23d8ee8ced71ce512f97c9243a1d233a",
+      "bytes": 2813
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/PhpRuntimeQualification.php",
+      "mode": "100644",
+      "base_blob": "774153ad28d6deeba7fb1be82dd45e6d6aec4f0f",
+      "blob": "96266bab5c97015f9e5fa73cacb00cabbb456231",
+      "sha256": "30646305b28edb027e0293e5f5f54c8445a220dbcf1491206c96e507c575fc7b",
+      "bytes": 11294
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/Laravel12CompatibilityTest.php",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "575eeb747fa696765a8bdb3b6989001de4ca7662",
+      "sha256": "78a9ccb793eabc800e392ff0ff32849955afe2c141ea5c5d6ff0c51c8d01ab51",
+      "bytes": 1868
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/README.md",
+      "mode": "100644",
+      "base_blob": "aa71f51835977efdb6bad512c076aaaf5e90ead6",
+      "blob": "64d13d0bc5c27c703318facbb3fd2ca41b915986",
+      "sha256": "30c586542d3a90c57d10e263984710b05c6a7ab5f5581a9e39c5f8e8ca5e930c",
+      "bytes": 16442
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/migration_contract.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "31b307ff3a7a12cbe0a2aa8d485d96d9d63b97be",
+      "sha256": "82681e2e06bcd83035cc4a0fe9c4c28124b5c6ce12677b896ee358edd97b1e87",
+      "bytes": 4045
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_requirements.json",
+      "mode": "100644",
+      "base_blob": "d367cdf79f8c8d3507fec2c097d8906b6758dd3e",
+      "blob": "43a7a4e222646b3dc5e805e2c314b47f563d39d0",
+      "sha256": "41159b7ce23ba5ad81ba8a81570f484da67a88f1a9c9906c3caf520648dc414b",
+      "bytes": 8823
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime.py",
+      "mode": "100644",
+      "base_blob": "a78157f20a1101d4ade1cd47ff2bc1805580b7c0",
+      "blob": "2875cec40644ae2fd9b7b5176d543c3b6a108d62",
+      "sha256": "07608dbc783d91d2e38237188bab4dff4204a90bca1865c20e7eaa45508ccf80",
+      "bytes": 9330
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime_manifest.example.json",
+      "mode": "100644",
+      "base_blob": "95e7630707f253851730df1b7752c5c985d278a2",
+      "blob": "c0818b8880d7acf53aea2b16868bbc56c4cccc2e",
+      "sha256": "f2da6582d77db211eb8763320a1864fd0e21514553f90a0bc30c4887d71448b1",
+      "bytes": 985
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_migration_contract.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "c628fe2e36914d5e810739ee11932fa7dbde2716",
+      "sha256": "9f35abf1a29cb618d114158c8f4276c9343ff11456ed0981cd55b6301be10249",
+      "bytes": 7669
+    }
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/OWNER_B_LARAVEL12_PHP85_COMPATIBILITY_MIGRATION_RESULT_20261030.md",
+    "blob": "10a098f9829008aff9c76170f298f004a9ffc81e",
+    "sha256": "dbbfc4b4685e8a770912d75c061fffc7a3bbaccde3185803cf4f19e971c7771b"
+  },
+  "self": {
+    "path": "docs/versions/v10.1.5/owner_b_laravel12_php85_migration_manifest_20261030.json",
+    "blob": "EXTERNAL_POST_PUBLICATION_READBACK_TO_AVOID_SELF_REFERENCE"
+  },
+  "source_import": {
+    "files": 741,
+    "parent_blob_verified": true
+  },
+  "checks": [
+    {
+      "batch": 1,
+      "exit": 1,
+      "error": "UnicodeDecodeError",
+      "raw_sha256": "d8da955eba781df449632eb7325cd6c14d5db17b7e799254436b1d094ff14bdd"
+    },
+    {
+      "batch": 2,
+      "classification": "CODEX_REPORTED_LOCAL_TEST",
+      "executed": 116,
+      "passed": 116,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit": 0,
+      "php_lint": 0,
+      "composer_resolution": 0,
+      "real_runtime": 0,
+      "raw_sha256": "76d15afa2a5eedee6771355d51ee9dbd2783354735f9c394e371ffe1f0b94923"
+    },
+    {
+      "batch": 3,
+      "classification": "CODEX_REPORTED_LOCAL_TEST",
+      "executed": 119,
+      "passed": 119,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit": 0,
+      "php_lint": 0,
+      "composer_resolution": 0,
+      "real_runtime": 0,
+      "raw_sha256": "e4c15dfdcf2eea432e5ee3289ade749f5de2b149a17a8c8db3dc003b5a2dcf85"
+    },
+    {
+      "batch": 4,
+      "exit": 1,
+      "error": "STATIC_SCAN_FALSE_POSITIVE_HTTPS_SCHEMA_URL",
+      "executed": 0,
+      "passed": 0,
+      "raw_sha256": "ff598d75d2026d60b745ca072bd8ecc81ead12c6c12221b173eae64824ff587d"
+    }
+  ],
+  "budget": {
+    "pure_batches_used": 5,
+    "limit": 8,
+    "php_lint_used": 0,
+    "php_lint_limit": 12,
+    "composer_resolution_used": 0,
+    "composer_resolution_limit": 2,
+    "all_business_runtime_starts": 0,
+    "space_limit_each": 4294967296,
+    "space_snapshot": {
+      "logical": 13953390,
+      "allocated": 16970304,
+      "reserve": 16777216
+    },
+    "seconds_limit": 5400
+  },
+  "dependency_gates": {
+    "php_lint": "NOT_RUN_NO_NEW_TASK_PRIVATE_TRUSTED_LINT_NATIVE_CLOSURE",
+    "composer_resolution": "NOT_RUN_NAMED_CACHE_ONLY_LARAVEL11_FRAMEWORK",
+    "redist": "REDISTRIBUTABLE_NOT_QUALIFIED_NO_NAMED_VS2022_REDIST_DIRECTORY",
+    "php_probe": "NOT_RUN_NOT_AUTHORIZED",
+    "api_db": "NOT_RUN_NOT_AUTHORIZED"
+  },
+  "cache_metadata_only": [
+    {
+      "package": "laravel/framework",
+      "sha256": "f87209e97e4ff502a5e66b1dd960e9dccace9133133ef368bdebb31926a037d4",
+      "framework_version": "11.48.0"
+    },
+    {
+      "package": "laravel/sanctum",
+      "sha256": "dbd767480dbebdc8226e8885ba68692947ea21c13ebad56771e36245a771b98e",
+      "framework_version": null
+    },
+    {
+      "package": "laravel/tinker",
+      "sha256": "d084e680fffc97b0d0a2d60d0ed1a0f3dedc783854c908d0ae00dcd621533dfd",
+      "framework_version": null
+    },
+    {
+      "package": "laravel/pail",
+      "sha256": "afa9f7cba580a82ee9cac45fcdd578e511a2f6a6089e6098bdfd810fe61c06c0",
+      "framework_version": null
+    },
+    {
+      "package": "laravel/pint",
+      "sha256": "a8a0d6d48b6090b565d8b0cdc30deb8482ec8728304844daa8e28bf13b91cb92",
+      "framework_version": null
+    },
+    {
+      "package": "laravel/sail",
+      "sha256": "9d551932acefbfc697ee956ea8d0af0833a32642ce99ac87a0c3dea5c619fe91",
+      "framework_version": null
+    },
+    {
+      "package": "nunomaduro/collision",
+      "sha256": "32d31c72224336c9d63f81bfe66e5c0866e8781e5f8934ea72032a68f9aa7710",
+      "framework_version": null
+    },
+    {
+      "package": "phpunit/phpunit",
+      "sha256": "854d330bede3c288433eda7907f854ccf556e56e219986301e9c7d967c3d7c32",
+      "framework_version": null
+    },
+    {
+      "package": "nesbot/carbon",
+      "sha256": "cc982a4ae5e30f26b3d7f1e578608a004c43417eae70e50d01e98856c0322b06",
+      "framework_version": null
+    },
+    {
+      "package": "workerman/workerman",
+      "sha256": "75d103a60b4cf5ca46b6dbec4e11749a20da9c5a8e08201c6b74e5a822560b7e",
+      "framework_version": null
+    },
+    {
+      "package": "6tail/lunar-php",
+      "sha256": "bc5088543466ab99ec035a3ac17db4e231b21c79e0ad413b06087f132258cb53",
+      "framework_version": null
+    }
+  ],
+  "protection": {
+    "dirty_status_sha256": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+    "refs_sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+    "refs_count": 527,
+    "old_ledger_sha256": "615b952bc62c8e84e226ea92b0a0d00abb17a6f5f6d53a3bda788f19db376144",
+    "unchanged": true,
+    "old_fixture_or_seed_reaudit": false
+  },
+  "evidence_classes": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN_GATE_CLOSED",
+    "NOT_PROVEN"
+  ],
+  "next": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW",
+  "final_artifact_check": {
+    "batch": 5,
+    "classification": "FINAL_ARTIFACT_STATIC_CHECK_ONLY",
+    "exit": 0,
+    "paths": 11,
+    "preserved_imported_files": 735,
+    "no_new_business_runtime": true
+  }
+}

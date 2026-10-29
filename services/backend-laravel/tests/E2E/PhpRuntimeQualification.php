@@ -3,10 +3,23 @@ declare(strict_types=1);
 /** Nonproduction pre-bootstrap capability checks; no Laravel/PDO construction. */
 final class PhpRuntimeQualification
 {
-    public const CLOSED_TASKS = ["128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
+    public const CLOSED_TASKS = ["8b6bd9233a08a7f4d0986d6f592eb114dec63e04", "1ade4e5a89116eeba329311ed274229823aafd17", "128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
     public static function assertTask(string $task,array $policy): void {
         $closed=$policy['closed_runtime_task_blobs']??[];$expected=self::CLOSED_TASKS;sort($closed);sort($expected);
         MainlineEnvironment::need($closed===$expected && preg_match('/^[a-f0-9]{40}$/D',$task)===1 && !in_array($task,$closed,true),'Closed task has no PHP runtime grant');
+    }
+    public static function assertRuntimePolicy(array $policy): void {
+        // A new package archive hash is not an executable or resolved-vendor hash.
+        MainlineEnvironment::need(($policy['runtime_qualification_state']??'')==='QUALIFIED_FOR_NEW_OWNER_RUNTIME_TASK'
+            && ($policy['composer_lock_state']??'')==='RESOLVED'
+            && is_string($policy['reference_executable_sha256']??null)
+            && preg_match('/^[a-f0-9]{64}$/D',$policy['reference_executable_sha256'])===1,
+            'PHP dependency supply/Composer lock pending; runtime forbidden');
+        MainlineEnvironment::need(($policy['vc_runtime']['state']??'')==='QUALIFIED'
+            && is_string($policy['vc_runtime']['minimum_version']??null)
+            && preg_match('/^[a-f0-9]{64}$/D',$policy['vc_runtime']['source_receipt_sha256']??'')===1
+            && preg_match('/^[a-f0-9]{64}$/D',$policy['vc_runtime']['license_receipt_sha256']??'')===1,
+            'PHP VC source/license/minimum-version qualification pending');
     }
     public static function capabilities(array $facts,array $manifest,array $policy): void {
         MainlineEnvironment::need(($facts['version']??'')===$policy['php_version'] && ($facts['int_size']??0)===8 && ($facts['zts']??null)===$policy['thread_safe'],'PHP version/architecture/ABI');
@@ -46,6 +59,7 @@ final class PhpRuntimeQualification
         $policyPath=MainlineEnvironment::path($c['php_requirements'],$root);
         $policyBytes=file_get_contents($policyPath);$policy=json_decode($policyBytes,true,512,JSON_THROW_ON_ERROR);
         self::assertTask($g['task_blob'],$policy);
+        self::assertRuntimePolicy($policy);
         MainlineEnvironment::need(hash('sha256',$policyBytes)===($g['php_requirements_file_sha256']??null) && hash('sha256',MainlineEnvironment::canonical($policy))===$manifest['requirements_sha256'],'PHP requirements identity differs');
         MainlineEnvironment::need(($manifest['candidate_parent']??null)===$policy['candidate_parent'] && ($manifest['source_binding']??null)===$c['source_binding'] && ($manifest['source_binding']['apps_tree']??null)===$policy['apps_tree'],'PHP candidate differs');
         $runtime=MainlineEnvironment::path($c['php_runtime_root'],$root);

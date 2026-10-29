@@ -3,10 +3,11 @@ import json,os,re
 from pathlib import Path
 from contracts import Gate,need,local,digest,canonical,validate_authority,validate_probe_authority
 from pe_dependencies import pe_info
+from migration_contract import require_runtime_policy
 
 POLICY=Path(__file__).with_name("php_requirements.json")
 OS_DLLS=frozenset(("kernel32 kernelbase ntdll advapi32 user32 gdi32 ws2_32 ole32 oleaut32 shell32 shlwapi crypt32 bcrypt secur32 dnsapi winmm iphlpapi psapi rpcrt4 version normaliz comdlg32 msvcrt ucrtbase winhttp wldap32 userenv netapi32 mpr").split())
-ZERO_TASKS=frozenset(("128fa1f7746ee73ee6d52d2d693715b003a4ec13","1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8"))
+ZERO_TASKS=frozenset(("128fa1f7746ee73ee6d52d2d693715b003a4ec13","1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8","8b6bd9233a08a7f4d0986d6f592eb114dec63e04","1ade4e5a89116eeba329311ed274229823aafd17"))
 def sha_ok(s):return isinstance(s,str) and re.fullmatch("[0-9a-f]{64}",s) is not None
 def relative(value):
     need(isinstance(value,str) and value and not value.startswith("/") and "\\" not in value and ":" not in value,"PHP_RELATIVE_PATH")
@@ -16,6 +17,7 @@ def os_import(name):
     return name[:-4] in OS_DLLS or re.fullmatch("(?:api|ext)-ms-win-[a-z0-9-]+[.]dll",name) is not None
 def validate_manifest(manifest,root,policy):
     """Internal pure/static validator; execution callers cannot inject a test policy."""
+    need(sha_ok(policy.get("reference_executable_sha256")),"PHP_TARGET_EXECUTABLE_HASH_PENDING")
     root=local(root)
     need(manifest.get("schema")==1 and manifest.get("platform")=="windows-x64" and manifest.get("php_version")==policy["php_version"],"PHP_VERSION_ARCH")
     need(manifest.get("thread_safe") is policy["thread_safe"],"PHP_ABI_MISMATCH")
@@ -73,6 +75,7 @@ def _qualify_config(config,grant,authority):
     task_root=authority(config,grant)
     need(grant["task_blob"] not in ZERO_TASKS,"CLOSED_TASK_RUNTIME_ZERO")
     policy=json.loads(POLICY.read_bytes())
+    require_runtime_policy(policy)
     need(set(policy["closed_runtime_task_blobs"])==ZERO_TASKS,"PHP_CLOSED_TASK_POLICY_CHANGED")
     source=manifest_path=local(config["php_runtime_manifest"],task_root)
     raw=source.read_bytes();value=digest(raw)
