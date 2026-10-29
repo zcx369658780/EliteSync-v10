@@ -19,7 +19,15 @@ final class LiveConsentService
             return false;
         }
         if (app()->environment('testing')) {
-            return DB::connection()->getDriverName() === 'sqlite';
+            if (DB::connection()->getDriverName() === 'sqlite') {
+                return true;
+            }
+            if (getenv('ELITESYNC_TASK_DB_QUALIFICATION')) {
+                // Only the frozen task's live, private MariaDB may enter tests.
+                \App\Support\PrivateMariaDbQualification::assertApplication(app());
+                return true;
+            }
+            return false;
         }
         $db = DB::connection();
 

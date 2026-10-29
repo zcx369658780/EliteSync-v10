@@ -194,7 +194,9 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     await local.setJson(CacheKeys.lastKnownProfile, merged.toJson());
     if (intent != _authenticationIntent ||
         state.asData?.value.accessToken != current.accessToken ||
-        state.asData?.value.isLoggedIn != true) return;
+        state.asData?.value.isLoggedIn != true) {
+      return;
+    }
     state = AsyncData(current.copyWith(user: merged));
   });
 

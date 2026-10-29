@@ -361,7 +361,9 @@ class _NotificationCenterPageState
     try {
       item = await ref.read(notificationRemoteDataSourceProvider).fetchNotification(item.id);
     } catch (_) {
-      if (_currentControlledIntent(identity, intentEpoch)) AppFeedback.showInfo(context, '当前通知已不可访问，请刷新后重试');
+      if (mounted && _currentControlledIntent(identity, intentEpoch)) {
+        AppFeedback.showInfo(context, '当前通知已不可访问，请刷新后重试');
+      }
       return;
     }
     if (!_currentControlledIntent(identity, intentEpoch)) return;

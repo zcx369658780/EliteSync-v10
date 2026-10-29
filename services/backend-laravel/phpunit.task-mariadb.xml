@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="false" cacheDirectory=".phpunit.task-cache">
+  <testsuites><testsuite name="V1015TaskMariaDB">
+    <file>tests/Feature/V1015MessagingTest.php</file>
+    <file>tests/Feature/V1015TrustedLoginTest.php</file>
+    <file>tests/Feature/V1015NotificationDeliveryTest.php</file>
+    <file>tests/Unit/PrivateMariaDbQualificationTest.php</file>
+  </testsuite></testsuites>
+  <php>
+    <env name="APP_ENV" value="testing" force="true"/>
+    <env name="APP_DB_CONNECTION" value="mariadb" force="true"/>
+    <env name="DB_CONNECTION" value="mariadb" force="true"/>
+    <env name="DB_HOST" value="127.0.0.1" force="true"/>
+    <env name="DB_PORT" value="43329" force="true"/>
+    <env name="DB_DATABASE" value="elitesync_v1015_verify_20261029" force="true"/>
+    <env name="DB_URL" value="" force="true"/>
+    <env name="APP_DB_URL" value="" force="true"/>
+    <env name="APP_CACHE_STORE" value="array" force="true"/>
+    <env name="APP_SESSION_DRIVER" value="array" force="true"/>
+    <env name="QUEUE_CONNECTION" value="sync" force="true"/>
+    <env name="MAIL_MAILER" value="array" force="true"/>
+  </php>
+</phpunit>
