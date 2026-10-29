@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-29 Owner决定回归实际产品主线：APP→API→MariaDB整链源码收口和E2E场景（最新入口）
+
+**`MAINLINE_V10_1_5_PRODUCT_SOURCE_AND_E2E_HARNESS_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / PRODUCT_CODE_AND_TEST_HARNESS_IMPLEMENTATION_AUTHORIZED / REAL_APP_DB_BUILD_DEVICE_RUN_NOT_YET_AUTHORIZED / NO_EXTRA_FLUTTER_DART_MARIADB_API_RUNTIME_BUDGET / HISTORICAL_FLUTTER_6_OF_6_MARIADB_2_OF_2_G_APK_1_OF_1_EXHAUSTED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / HISTORICAL_ACL_OVERBUDGET_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner最新明确决定（2026-10-29，本会话）：** 在`0577f030f6e3bbecae611433daa226719a7cc4b0` Hook原Hash单字段勘误获得Astra独立有界验收后，Owner回复“可以，既然错误已经解决，让我们回到开发主线上来”。Astra不再为Hash/工具环境发布重复治理微任务，恢复v10.1.5真实产品研发。**本次授权**包括在固定未接受候选中开展消息可靠性F1、可信T0/离线密文F3、通知最小披露及当前鉴权F4的**真正Flutter/Laravel产品源码定点修复和同源APP→API→MariaDB E2E场景/合成夹具实现**，以及冻结AC02/03/04/06/07/08/09/10逐项目标与缺口收口；不允许编造bug、不以测试脚本或mock假冒已获得完整E2E PASS。RTC F2 / AC05属于本版开放门，真实性能与5秒停声/音质需另行真实媒体/设备授权，本轮未获批准。
+
+**唯一已发布正式任务：** [V10_1_5_APP_API_DB_MAINLINE_PRODUCT_INTEGRATION_AND_E2E_HARNESS_TASK_20261029.md](../versions/v10.1.5/V10_1_5_APP_API_DB_MAINLINE_PRODUCT_INTEGRATION_AND_E2E_HARNESS_TASK_20261029.md)，Git Blob **`1db7fc7eaadcea172cc52016904836bd71a0b90d`**，已在main创建并按路径全文回读。Codex由Owner**手动派发**，任务根为task-owned唯一独立源码工作面，新产物logical/allocated各≤512MiB，持久执行ledger，允许安全纯源码/纯契约检查；**本发布没有启动Codex、Flutter/Dart、MariaDB、API、Gradle/G2、APK或真机，也没有增加这些实际运行预算**。下一真实整链测试条件必须由Codex交付`FOLLOWUP_OWNER_AUTHORIZATION_SPEC`，Owner之后明确授权，不能自动执行。
+
+**研发唯一Parent：** `0577f030f6e3bbecae611433daa226719a7cc4b0`，Root`4d024bb4d931a346f237614efa7940451a39678e`；产品apps Tree `798049a15eb33fec16acdd37d83a07af0ed181b5`（729 Blob）、services Tree`9bba2938aa41ad3eaee501ef88bfeecdee797591`（716 Blob）。最新Astra `0577`独立报告 Blob `9a2df55a6ea3846c8bec6711a6fee0f57663d34f`（审查HEAD`e5c06b1e08d1088f172e1e902608cbfbed5e3574`）。在前轮已接受的有界证据：真实合成MariaDB 23 Feature/152断言、两连接/HTTP；私有patched Flutter runner下77/77 Mock Widget和analyze，均不能直接代替同一版本APP/API/DB实物贯通。主线现仍只接受v10.1.4 apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`，不合main。
+
+**长期保护与冻结AC：** AC-10.1.5-01～11保持10PARTIAL/1OPEN（AC05 RTC），冻结计划F1消息、F2 RTC、F3离线、F4通知、F5旧资产；真实APP/API/DB/WS/媒体200/206/离线实际设备密文与物理15/30日、RTC/AEC真实5秒停声、真实Push与Gradle/G2仍未获本轮权限。已封存`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`：旧18、两ACL实验树、122原证/五保护根/527refs/3183 Seed/旧fails/ledger/dirty根不可改变；旧Flutter6/6、MariaDB2/2、旧G和APK各1/1耗尽，API历史1/2未用余量不是本次授权；G2条件0/1不能调用。原Hash62→64纠正后工具依然`PATCH_INPUT_NOT_QUALIFIED / PREPARE_NOT_RUN / EXECUTE_NOT_RUN`，不得因本轮代码任务偷启。
+
+**STOP：** Codex在本版真实产品源码/测试harness范围内自主完成一份集中候选及可核GitHub回读，未获运行预算的整链证据必须明确`NOT_RUN_GATE_CLOSED`，不得自行合main、宣称整版功能接受或关闭AC05、放行G2/Gradle/设备/Push、启动v10.1.6或再建后继小任务。完成后等Astra独立审查和Owner后续运行许可。以下历史main状态全文保留作为过去阶段快照。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner正式授权 Hook SHA-256 合同单字段勘误与非生产锁定纠正（最新状态）
 
 **`HOOK_SOURCE_SHA256_AUTHORITY_ERRATUM_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_STARTED_THIS_TASK_BY_ASTRA / HISTORICAL_62_HEX_HASH_REJECTED / CORRECTED_64_HEX_REFERENCE_FROZEN / ONE_FIELD_AUTHORITY_ERRATUM_ONLY / FD85_TOOLING_LOCK_CORRECTION_AUTHORIZED / NO_NEW_FLUTTER_DART_DB_API_G2_GRADLE_DEVICE_RUNTIME / PRIOR_FLUTTER_BATCH_6_OF_6_EXHAUSTED / PRIOR_MARIADB_SERVER_2_OF_2_EXHAUSTED / AC01_11_10_PARTIAL_1_OPEN / HISTORICAL_ACL_OVERRUN_RETAINED / G2_READY_FOR_POPEN_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
