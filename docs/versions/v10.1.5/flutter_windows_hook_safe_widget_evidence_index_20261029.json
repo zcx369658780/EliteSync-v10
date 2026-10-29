@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": 1,
+  "taskId": "V1015_WINDOWS_HOOKS_WIDGET_RECOVERY_20261029",
+  "attemptId": "attempt-0001",
+  "taskBlob": "02018a930428bb6417c9fcdd811a6c1350b03988",
+  "openingMain": "519672942e3697d8b3c7918d95619600feed658a",
+  "openingRoot": "3b06491b8c1d95ba1be9dd5e2151a16d51fb816f",
+  "activeBlob": "b9d0c40b34e1895789e445d91fa7ea2bad6ace9f",
+  "soleParent": "15b23d8cacfa1429f6f77b8d57a86fff6b827673",
+  "parentRoot": "025af603a46550721d863d354246e76d9bd072b0",
+  "priorAstraReviewBlob": "dc5a6d21e9c22f8e28b81cec7317aa740c9bd8db",
+  "classification": "TEST_PASSED_UNDER_TASK_PRIVATE_PATCHED_RUNNER",
+  "evidenceClasses": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN",
+    "NOT_PROVEN"
+  ],
+  "sourceProvenance": [
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+      "parentBlob": "293d84df69b1e699991a67eeb2dc18d4b76c8787",
+      "candidateBlob": "6ec6e0fd50982c4123141bffc888ff3141c8b953",
+      "mode": "100644",
+      "sha256": "b535e08e9c95aa39dee9108b2e6f13c29423ffaad3a82837acd8fc7ce17412d3",
+      "bytes": 40053
+    }
+  ],
+  "candidateProducts": {
+    "apps": {
+      "tree": "798049a15eb33fec16acdd37d83a07af0ed181b5",
+      "blobs": 729
+    },
+    "services": {
+      "tree": "9bba2938aa41ad3eaee501ef88bfeecdee797591",
+      "blobs": 716
+    }
+  },
+  "privateRunner": {
+    "package": "hooks_runner-1.0.1",
+    "beforeSha256": "f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d4d08c393dad9",
+    "afterSha256": "7d04fa44ccd94549ea2011997d3b1053ae6e72716e9b9fc0cc4d7c7e202244bc",
+    "diffSha256": "9d7f7883e34bbe451d364b89b03d4acab6c30d00d1f4d9081f562708b6e7f119",
+    "sourceEntry": "flutter_private/packages/flutter_tools/bin/flutter_tools.dart",
+    "oldSnapshotUsedForPatchedRuns": false,
+    "absoluteVerifiedExeAndCwd": true,
+    "fixedCompileAndHookArgumentShapes": true,
+    "environmentCaseNormalized": true,
+    "shellRequested": false,
+    "exactExtensionlessAliasOnly": true,
+    "behaviorChecks": 19,
+    "behaviorActualStarts": 5,
+    "negativeRejectedBeforePopen": 10,
+    "actualObjectiveCHookCompileAndRun": true,
+    "notProductToolchainModification": true,
+    "generalHostileCodeOsSandbox": "NOT_PROVEN"
+  },
+  "tests": {
+    "finalUniqueTests": 77,
+    "finalExecuted": 77,
+    "finalPassed": 77,
+    "finalFailed": 0,
+    "finalSkipped": 0,
+    "files": {
+      "test/core/storage/private_cache_service_test.dart": {
+        "found": 5,
+        "executed": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+        "found": 5,
+        "executed": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/auth/data/datasource/auth_private_storage_test.dart": {
+        "found": 2,
+        "executed": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/core/network/v1015_late_response_test.dart": {
+        "found": 3,
+        "executed": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/chat/data/datasource/v1015_socket_contract_test.dart": {
+        "found": 2,
+        "executed": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart": {
+        "found": 8,
+        "executed": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/chat/presentation/pages/conversation_private_cache_test.dart": {
+        "found": 2,
+        "executed": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart": {
+        "found": 5,
+        "executed": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+        "found": 20,
+        "executed": 20,
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/features/notification/presentation/pages/platform_notification_navigation_test.dart": {
+        "found": 14,
+        "executed": 14,
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      },
+      "test/session_rejection_test.dart": {
+        "found": 11,
+        "executed": 11,
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "hiddenInfrastructureEvents": 1
+      }
+    },
+    "caseResults": [
+      {
+        "id": 3,
+        "name": "old account save queued before a new login cannot write into the new context",
+        "file": "test/core/storage/private_cache_service_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 4,
+        "name": "no login or process restart cannot unlock saved private content",
+        "file": "test/core/storage/private_cache_service_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 5,
+        "name": "15 day offline window is read only and 30 day actual purge verifies deletion",
+        "file": "test/core/storage/private_cache_service_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 6,
+        "name": "silent delete failure remains locked and reports failed purge",
+        "file": "test/core/storage/private_cache_service_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 7,
+        "name": "wrong account, time rollback, and corrupt ciphertext fail closed",
+        "file": "test/core/storage/private_cache_service_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 11,
+        "name": "logout queues behind a late login write and removes both obsolete credentials",
+        "file": "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 12,
+        "name": "persistSession clears previous account scoped caches",
+        "file": "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 13,
+        "name": "failed private cleanup blocks publishing a replacement session",
+        "file": "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 14,
+        "name": "logout purges dynamic drafts before existing account cleanup",
+        "file": "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 15,
+        "name": "failed purge does not block existing logout token deletion",
+        "file": "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 19,
+        "name": "real local adapter removes legacy plaintext and persists profile only through bound secure cache",
+        "file": "test/features/auth/data/datasource/auth_private_storage_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 20,
+        "name": "obsolete login and mismatched device cannot replace stored credentials",
+        "file": "test/features/auth/data/datasource/auth_private_storage_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 24,
+        "name": "HTTP200 response in the same session is accepted",
+        "file": "test/core/network/v1015_late_response_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 25,
+        "name": "HTTP200 response after account switch is rejected",
+        "file": "test/core/network/v1015_late_response_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 26,
+        "name": "account switch while obtaining credentials prevents transport dispatch",
+        "file": "test/core/network/v1015_late_response_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 30,
+        "name": "configured gateway 8022 and peer scope are preserved instead of legacy 8081",
+        "file": "test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 31,
+        "name": "minimal conversation_changed frame causes current HTTP readback without displaying frame body",
+        "file": "test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 35,
+        "name": "current-authority read during pending POST cannot replace retry identity before receive timeout",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 36,
+        "name": "actual chat timeout retries the same logical message ID and confirms only server identity",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 37,
+        "name": "actual chat non-network-failure cannot fall back to saved private messages",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 38,
+        "name": "actual chat malformed-response cannot fall back to saved private messages",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 39,
+        "name": "actual chat typed draft and old messages disappear on trusted clock anomaly",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 40,
+        "name": "actual chat known authority invalidation clears typed draft before a future read",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 41,
+        "name": "native picker pause resume requires fresh GET limit1 to finish before upload",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 42,
+        "name": "returning from native picker after account switch performs zero uploads",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 46,
+        "name": "online success is hidden after clock rollback and cannot be restored by a mere retry",
+        "file": "test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 47,
+        "name": "encrypted list survives same-process offline only, reconnect hides before current read, 30 days actually purges",
+        "file": "test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 51,
+        "name": "actual live list persists encrypted copy, offline is read only, reconnect hides until current HTTP succeeds",
+        "file": "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 52,
+        "name": "actual live list 30 day purge deletes owned ciphertext and reports completed",
+        "file": "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 53,
+        "name": "actual live list 30 day purge failure locks and retains receipt",
+        "file": "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 54,
+        "name": "actual live list clock rollback hides prior online rows and a retry cannot unlock",
+        "file": "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 55,
+        "name": "actual live list clears old rows when account changes and restart cannot use persisted copy",
+        "file": "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 59,
+        "name": "chat notification resolves stored ID before marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 60,
+        "name": "chat resolution failure stays unread and retryable",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 61,
+        "name": "chat notification rejects missing resolved ID without marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 62,
+        "name": "chat notification rejects different resolved ID without marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 63,
+        "name": "chat notification rejects legacy entry kind without marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 64,
+        "name": "chat notification rejects eligible entry kind without marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 65,
+        "name": "chat notification rejects unknown entry kind without marking read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 66,
+        "name": "status author notification fails closed without using payload identity",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 67,
+        "name": "notification center sanitizes load failure",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 68,
+        "name": "notification center renders notifications and unread count",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 69,
+        "name": "notification center renders slow date reminder type",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 70,
+        "name": "notification center empty state stays user-facing",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 71,
+        "name": "notification center neutralizes abnormal unread count",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 72,
+        "name": "primary action marks unread notification when route is missing",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 73,
+        "name": "mark-one failure has no false success and remains retryable",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 74,
+        "name": "mark-all failure has no false success and remains retryable",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 75,
+        "name": "known kind with missing route still uses mark read action",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 76,
+        "name": "unsupported route does not mark unread notification as read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 77,
+        "name": "notification card body is not a nested tappable container",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 78,
+        "name": "card tap on unsupported route does not mark notification as read",
+        "file": "test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 82,
+        "name": "old notification lookup failure cannot open or mark read",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 83,
+        "name": "account switch during current notification lookup discards response",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 84,
+        "name": "platform_event preflights current target then destination reads again",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 85,
+        "name": "platform_event revoked preflight clears authority and stays unread",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 86,
+        "name": "platform_event unavailable projection cannot authorize a destination",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 87,
+        "name": "platform_event late preflight cannot cross identity change",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 88,
+        "name": "platform_event late preflight cannot cross authority change",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 89,
+        "name": "platform_event malformed target cannot fall through to cached route",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 90,
+        "name": "safety_case preflights current target then destination reads again",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 91,
+        "name": "safety_case revoked preflight clears authority and stays unread",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 92,
+        "name": "safety_case unavailable projection cannot authorize a destination",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 93,
+        "name": "safety_case late preflight cannot cross identity change",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 94,
+        "name": "safety_case late preflight cannot cross authority change",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 95,
+        "name": "safety_case malformed target cannot fall through to cached route",
+        "file": "test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 99,
+        "name": "restart cannot authenticate from persisted token and plaintext profile",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 100,
+        "name": "matching rejected token clears state, credentials and profile snapshots",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 101,
+        "name": "stale response cannot clear newer login token or profile",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 102,
+        "name": "storage delete failure stays locked with a visible incomplete-cleanup notice",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 103,
+        "name": "rejection cleanup serializes before simultaneous new login",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 104,
+        "name": "old account profile completion cannot contaminate newer login",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 105,
+        "name": "late profile completion cannot resurrect rejected session",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 106,
+        "name": "credential verification read failure remains visibly locked",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 107,
+        "name": "logout waits for a held visible-credential write before deleting it",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 108,
+        "name": "logout invalidates a delayed login before it can publish",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "id": 109,
+        "name": "account replacement without refresh removes previous refresh credential",
+        "file": "test/session_rejection_test.dart",
+        "hidden": false,
+        "result": "success",
+        "skipped": false
+      }
+    ],
+    "hiddenInfrastructureEventsExcluded": true,
+    "finalOperation": "2e75fac543dd4da397c18773873a0ef4",
+    "finalStdoutSha256": "e847bb301a53674b65a4e386bfa7561822d4fee05dbf8c5383b3b02aa9fe0d49",
+    "finalStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "batches": [
+      {
+        "number": 1,
+        "operation": "2ab64d258e534887ae6cd7b4aa166665",
+        "exit": 1,
+        "seconds": 8.922000000020489,
+        "startedUtc": "2026-10-29T06:06:28.200050+00:00",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "7e3d8a7872bf8ecbe174551ba209131b1b2ce717d874f0359cf2a3574456408e",
+        "kind": "Widget/unit",
+        "byFile": {
+          "test/core/storage/private_cache_service_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/auth/data/datasource/auth_private_storage_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/core/network/v1015_late_response_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/chat/data/datasource/v1015_socket_contract_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/chat/presentation/pages/conversation_private_cache_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/features/notification/presentation/pages/platform_notification_navigation_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          },
+          "test/session_rejection_test.dart": {
+            "found": 0,
+            "executed": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 0
+          }
+        },
+        "totals": {
+          "found": 0,
+          "executed": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "success": false
+      },
+      {
+        "number": 2,
+        "operation": "3affffb1d82b4778bdea106b435b3ba8",
+        "exit": 1,
+        "seconds": 31.45299999997951,
+        "startedUtc": "2026-10-29T06:08:32.866568+00:00",
+        "stdoutSha256": "a1942479f3e0a197513acd8dde0166fcf9313b83bd84b9f0cce27e6fa4d4f15f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kind": "Widget/unit",
+        "byFile": {
+          "test/core/storage/private_cache_service_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_private_storage_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/core/network/v1015_late_response_test.dart": {
+            "found": 3,
+            "executed": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/data/datasource/v1015_socket_contract_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart": {
+            "found": 8,
+            "executed": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/conversation_private_cache_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+            "found": 20,
+            "executed": 20,
+            "passed": 0,
+            "failed": 20,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/platform_notification_navigation_test.dart": {
+            "found": 14,
+            "executed": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/session_rejection_test.dart": {
+            "found": 11,
+            "executed": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          }
+        },
+        "totals": {
+          "found": 77,
+          "executed": 77,
+          "passed": 57,
+          "failed": 20,
+          "skipped": 0
+        },
+        "success": false
+      },
+      {
+        "number": 3,
+        "operation": "ca4cf940af0a4ac684dcde095732942a",
+        "exit": 1,
+        "seconds": 12.562999999965541,
+        "startedUtc": "2026-10-29T06:11:22.931211+00:00",
+        "stdoutSha256": "5366d3717102576a5d21da2c801e898579d343c0408917f54d90cce9d06349f0",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kind": "Widget/unit",
+        "byFile": {
+          "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+            "found": 20,
+            "executed": 20,
+            "passed": 14,
+            "failed": 6,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          }
+        },
+        "totals": {
+          "found": 20,
+          "executed": 20,
+          "passed": 14,
+          "failed": 6,
+          "skipped": 0
+        },
+        "success": false
+      },
+      {
+        "number": 4,
+        "operation": "7a890d912b62440e99ab8aee53123e7e",
+        "exit": 0,
+        "seconds": 22.484000000054948,
+        "startedUtc": "2026-10-29T06:13:26.944746+00:00",
+        "stdoutSha256": "cacd79d4df825f6de7312740a31797ab53d2dd19a784fa2a9472b948fc417930",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kind": "Widget/unit",
+        "byFile": {
+          "test/core/storage/private_cache_service_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_private_storage_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/core/network/v1015_late_response_test.dart": {
+            "found": 3,
+            "executed": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/data/datasource/v1015_socket_contract_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart": {
+            "found": 8,
+            "executed": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/conversation_private_cache_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+            "found": 20,
+            "executed": 20,
+            "passed": 20,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/platform_notification_navigation_test.dart": {
+            "found": 14,
+            "executed": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/session_rejection_test.dart": {
+            "found": 11,
+            "executed": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          }
+        },
+        "totals": {
+          "found": 77,
+          "executed": 77,
+          "passed": 77,
+          "failed": 0,
+          "skipped": 0
+        },
+        "success": true
+      },
+      {
+        "number": 5,
+        "operation": "f9c2c0e1f3ac4095a9a2c1e4bd9ff004",
+        "exit": 0,
+        "seconds": 20.64000000001397,
+        "startedUtc": "2026-10-29T06:15:47.893247+00:00",
+        "stdoutSha256": "6f0e4084f07a4dd661c6f45e8e869fb383597bfd3ef9d847ec23a4e77989d65f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kind": "analyze",
+        "scope": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "success": true
+      },
+      {
+        "number": 6,
+        "operation": "2e75fac543dd4da397c18773873a0ef4",
+        "exit": 0,
+        "seconds": 24.29700000002049,
+        "startedUtc": "2026-10-29T06:16:44.303059+00:00",
+        "stdoutSha256": "e847bb301a53674b65a4e386bfa7561822d4fee05dbf8c5383b3b02aa9fe0d49",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "kind": "Widget/unit",
+        "byFile": {
+          "test/core/storage/private_cache_service_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_local_data_source_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/auth/data/datasource/auth_private_storage_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/core/network/v1015_late_response_test.dart": {
+            "found": 3,
+            "executed": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/data/datasource/v1015_socket_contract_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart": {
+            "found": 8,
+            "executed": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/conversation_private_cache_test.dart": {
+            "found": 2,
+            "executed": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart": {
+            "found": 5,
+            "executed": 5,
+            "passed": 5,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/notification_center_page_test.dart": {
+            "found": 20,
+            "executed": 20,
+            "passed": 20,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/features/notification/presentation/pages/platform_notification_navigation_test.dart": {
+            "found": 14,
+            "executed": 14,
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          },
+          "test/session_rejection_test.dart": {
+            "found": 11,
+            "executed": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "hiddenInfrastructureEvents": 1
+          }
+        },
+        "totals": {
+          "found": 77,
+          "executed": 77,
+          "passed": 77,
+          "failed": 0,
+          "skipped": 0
+        },
+        "success": true
+      }
+    ],
+    "analyzeScope": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+    "analyzeExit": 0,
+    "syntheticClocksNotElapsedTime": true
+  },
+  "budget": {
+    "SDK_MIRROR": {
+      "used": 1,
+      "limit": 1,
+      "remaining": 0
+    },
+    "PUB_MIRROR": {
+      "used": 1,
+      "limit": 1,
+      "remaining": 0
+    },
+    "SOURCE_IMPORT": {
+      "used": 1,
+      "limit": 1,
+      "remaining": 0
+    },
+    "FLUTTER_BATCH": {
+      "used": 6,
+      "limit": 6,
+      "remaining": 0
+    },
+    "MARIADB_SERVER": {
+      "used": 0,
+      "limit": 0,
+      "remaining": 0
+    },
+    "PHP_API": {
+      "used": 0,
+      "limit": 0,
+      "remaining": 0
+    },
+    "DB_CONNECTION": {
+      "used": 0,
+      "limit": 0,
+      "remaining": 0
+    }
+  },
+  "executionTimeline": [
+    {
+      "operation": null,
+      "kind": "BOOTSTRAP_TASK_HELPERS",
+      "preparedUtc": "2026-10-29T05:51:06.8637918Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "421a927fe6bc4896b3d3f67b544f42f3",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T05:51:56.7863588Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "22f0c875c5a26e60b38a35bf8fa4dbb864e7af3c7fbcbfccfb7381a0417bc1d1",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "6766155786783a99baa7f8ac9bd0752b4f54543d159c30e9b70e9351430990a8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "7c84611be2cc41ab8996354fb2752e56",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T05:52:17.2909541Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "7d5c410f2c8ae61ec54c2ca4f4beb6b14edea13b784c74c52b3f41a0ab89de97",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "ca2ddefa2cbe5a2fcdd17358af246c1c30a919dd634650d570113c79d45e5ea2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "75e5e50dfe7948adb8eebba97b596f1c",
+      "kind": "SDK_MIRROR",
+      "preparedUtc": "2026-10-29T05:52:17.476834+00:00",
+      "reservation": 1,
+      "limit": 1,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_PREPARATION_HELPERS",
+      "preparedUtc": "2026-10-29T05:54:04.4263408Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": null,
+      "kind": "LEDGER_READER_NORMALIZATION",
+      "preparedUtc": "2026-10-29T05:54:56.5058016Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "111c704d5583472093db6443f996e9d6",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T05:56:08.7939306Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "be6653411edf37565c2a82bb1f0b6bcc2cea3b8947627cafe631eff454799680",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "e19a118d269b367990838169f0abb7001c5d3fd81969a2c7c7dd983aab6e78cc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "800635dd7dae475d93a040fac78ac810",
+      "kind": "PUB_MIRROR",
+      "preparedUtc": "2026-10-29T05:56:08.981156+00:00",
+      "reservation": 1,
+      "limit": 1,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_ADAPTER_STATIC_CORRECTION",
+      "preparedUtc": "2026-10-29T05:58:11.5991198Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_ADAPTER_REVIEW_REPAIR",
+      "preparedUtc": "2026-10-29T06:01:04.5121105Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "9b50d3db62754999aa1a9a77cc45ca43",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:01:55.4311956Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "b186da522a2e135103035ad45ac635f54758560f673e4e74c2b46b11e0588b86",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "95010f22654783da83d8e740c21e3fc5857aa14d979abde94d633d8fc4ca3b53",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "36fa7215d6bc4c6d94d16486cb6097ae",
+      "kind": "SOURCE_IMPORT",
+      "preparedUtc": "2026-10-29T06:01:55.621897+00:00",
+      "reservation": 1,
+      "limit": 1,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "cf3351235cec443bb64ed811afeb0547",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:02:54.3439105Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "994b9975475a459704d5fe090c76a6b03e612266424d4d3c24b02ebaa46cac5d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "15b09fd460893c5a1e0d078cbdb41d30f62c657d07c194e00164747c3fd50b81",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "f58798115b5d48be95eacd2802236ed9",
+      "kind": "PRIVATE_RUNTIME_REBIND",
+      "preparedUtc": "2026-10-29T06:02:54.526797+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "f7f7ca32d6a84e35a526b1d7e244373c",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:03:11.4499456Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "bddc7f48cb09995b68010b591324d0113383376b5c31288243fd697b4fc3bc84",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "46eff26746d6901f74213f39122aa381c8568547dde57b8ff32f7e899b090be4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "b4e2097b4d94404386f3815e05edff94",
+      "kind": "PRIVATE_HOOK_RUNNER_PATCH",
+      "preparedUtc": "2026-10-29T06:03:11.632831+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "c66084fd4de54624b300428e939a1083",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:03:21.1661787Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "77c82e714bbbc2a50bfefbd9e70e03885188d41ca918f8c740f5e1b439e2acb2",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "e4081611037d4a9aa02b3ab535f17bc6",
+      "kind": "RUNNER_BEHAVIOR_FIXTURE_WRITE",
+      "preparedUtc": "2026-10-29T06:03:21.345594+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "755fca46ca0243c8902f43059d1c7482",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:03:34.0982487Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 1,
+      "stdoutSha256": "964999d3d4d60729d685d3b38e0cb5be34ab9b65c547a05f73020837890d42fb",
+      "stderrSha256": "d89fe7d9ad102e18297f6811f354d30e517f61b7e3df25b4076e8e46c591d79e"
+    },
+    {
+      "operation": "a4890d32d9ea4528825fd6e3010a7026",
+      "kind": "RUNNER_BEHAVIOR",
+      "preparedUtc": "2026-10-29T06:03:34.279688+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": "1afdb0107710cdc2fed30bf3a9be6292b1e9ceca59f205c3e54a66c13b352891",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 255,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "c95cee826923b282e326932777939d4f75b6a76774a5939ab00ab1706a556599"
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_PROBE_ENCODING_DIAGNOSTIC",
+      "preparedUtc": "2026-10-29T06:04:18.8169797Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "16b77eee229540199120a8271964632e",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:04:18.9573893Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 1,
+      "stdoutSha256": "8b8e37936fb28ff819bc1c11a01dcee9f6bc1e920cb6119e99ae656e4ce986bf",
+      "stderrSha256": "d89fe7d9ad102e18297f6811f354d30e517f61b7e3df25b4076e8e46c591d79e"
+    },
+    {
+      "operation": "56a4bd555e1846e58f28dd2c8a76f329",
+      "kind": "RUNNER_BEHAVIOR",
+      "preparedUtc": "2026-10-29T06:04:19.135569+00:00",
+      "reservation": 2,
+      "limit": null,
+      "commandSha256": "1afdb0107710cdc2fed30bf3a9be6292b1e9ceca59f205c3e54a66c13b352891",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 255,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "fe149741c619bbde7d5dfc860875af9d993b6198e6eda7d8b23a9cad4a86afd8"
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_PROBE_CANONICAL_ASSERTION_REPAIR",
+      "preparedUtc": "2026-10-29T06:04:48.4077837Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "b03b15709e954e8a88bbede86a63c4c7",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:04:48.5464437Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 1,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "40a699ae957c1ecfe9072db8edc0859208027e937ae1097a8210c0037a35b058"
+    },
+    {
+      "operation": null,
+      "kind": "RUNNER_AUDIT_UTF8_READER_FIX",
+      "preparedUtc": "2026-10-29T06:05:09.2831994Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "ad39f35c72b443b38f7dbd1c10b910d5",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:05:09.4214048Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 1,
+      "stdoutSha256": "8b8e37936fb28ff819bc1c11a01dcee9f6bc1e920cb6119e99ae656e4ce986bf",
+      "stderrSha256": "de52f8a46f2707e00fda58c3ae4190e2c041bf25af1a1b49a389ede0893cbbf0"
+    },
+    {
+      "operation": "f84b808de2ea4fa8b1f7d6144d1f3f42",
+      "kind": "RUNNER_BEHAVIOR",
+      "preparedUtc": "2026-10-29T06:05:09.597267+00:00",
+      "reservation": 3,
+      "limit": null,
+      "commandSha256": "1afdb0107710cdc2fed30bf3a9be6292b1e9ceca59f205c3e54a66c13b352891",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 255,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "fe149741c619bbde7d5dfc860875af9d993b6198e6eda7d8b23a9cad4a86afd8"
+    },
+    {
+      "operation": "c388866802f54958bda21d09c1f1daa0",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:05:32.6448289Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "3bfd64587551c8454ed36bc6691afc35527282dfb8a435385a7e3d074f29665f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "7cf2b1f3458240e9872e03c847a77ff0",
+      "kind": "RUNNER_BEHAVIOR",
+      "preparedUtc": "2026-10-29T06:05:32.836222+00:00",
+      "reservation": 4,
+      "limit": null,
+      "commandSha256": "1afdb0107710cdc2fed30bf3a9be6292b1e9ceca59f205c3e54a66c13b352891",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "aab94be522fe58c0f7652fe6f350456596b24c87ee913418cb79f68218de7936",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "1e2913fa9ae94af197035786eb5b2701",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:05:54.6615309Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "02501f9c7f68bce49d44563eaf23770b1d48726f9d6092b90a4e1127bc4bcbd5",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "4b30468e6831ae75b45f22b8889951f8bdf9614971447df5aaeeaf0d12cb7172",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "6029cd2b9dc245b69c2676a1de01ac0f",
+      "kind": "DART_METADATA",
+      "preparedUtc": "2026-10-29T06:05:54.971225+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": "b45929b18df1c62a24c3cff5bb26d47d615e38201255a96ab5146489258df876",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "f4f4c9c8599ce1e03653292682cc459522b84f13d234e95fe5db095d5973b541",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "5895ad82c4154431986dc57777273bbf",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:06:27.9063643Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "630da47db51d11170d81c22051a0917375585a8305c886f20c60a326908502a6",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "9bdabe61ab521d06074896a5b1c1023e7146fcdc5d02777a4ec519d13e353e0f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "2ab64d258e534887ae6cd7b4aa166665",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:06:28.200050+00:00",
+      "reservation": 1,
+      "limit": 6,
+      "commandSha256": "10e1256bbaf42d7220de2835d14f83919e55d39626dcf9cce8b45877a68b1c7f",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 1,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "7e3d8a7872bf8ecbe174551ba209131b1b2ce717d874f0359cf2a3574456408e"
+    },
+    {
+      "operation": null,
+      "kind": "PRIVATE_RUNNER_EXTENSIONLESS_EXACT_ALIAS",
+      "preparedUtc": "2026-10-29T06:08:07.4659299Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "7f5b7485b7b44331b0f74ef8de27336d",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:08:07.9770998Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "77b085a6a8dfefe5fbf89c47a876d8e8f923a46972b08f7693212eb4ab8367e0",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "6fb5ba856cbaf065c5181629a496a0ac38e36892817e91f6fc8e319ccd2167a6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "7cf66dcd5e754687900b515a85cee4b2",
+      "kind": "PRIVATE_RUNNER_EXACT_WINDOWS_ALIAS",
+      "preparedUtc": "2026-10-29T06:08:08.171893+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "84700391fd294c2c99fad96efe9ef3e4",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:08:18.4521983Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "3880ce5fe307d9b9c8e3e8c3a98dd5e3c9375b8bb8c694d6b50d786b613d5f9d",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "3bfd64587551c8454ed36bc6691afc35527282dfb8a435385a7e3d074f29665f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "5c715dfef92b4b4b8733d2c1e78b17bf",
+      "kind": "RUNNER_BEHAVIOR",
+      "preparedUtc": "2026-10-29T06:08:18.653579+00:00",
+      "reservation": 5,
+      "limit": null,
+      "commandSha256": "1afdb0107710cdc2fed30bf3a9be6292b1e9ceca59f205c3e54a66c13b352891",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "aab94be522fe58c0f7652fe6f350456596b24c87ee913418cb79f68218de7936",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "f60d238ab9df4fd8abe5474a2668a427",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:08:32.5792684Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "630da47db51d11170d81c22051a0917375585a8305c886f20c60a326908502a6",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "9170750d31b290b5c2cc892efdefe0e80908777cdf8dc30b90763b42c5ba8c70",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "3affffb1d82b4778bdea106b435b3ba8",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:08:32.866568+00:00",
+      "reservation": 2,
+      "limit": 6,
+      "commandSha256": "10e1256bbaf42d7220de2835d14f83919e55d39626dcf9cce8b45877a68b1c7f",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 1,
+      "stdoutSha256": "a1942479f3e0a197513acd8dde0166fcf9313b83bd84b9f0cce27e6fa4d4f15f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": null,
+      "kind": "BOUNDED_CLIENT_TEST_REPAIR",
+      "preparedUtc": "2026-10-29T06:11:22.1719466Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "ebad593f7adb41f8819fc808b019fafe",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:11:22.6618801Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "7e0061f3bd73390ad96ed56021107916e19d6946f4f38cccc1b8876b96f87971",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "ab504973fd5c07c82f7059ec51d672f7b2ab54060208a2e2711c71281f6dca53",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "ca4cf940af0a4ac684dcde095732942a",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:11:22.931211+00:00",
+      "reservation": 3,
+      "limit": 6,
+      "commandSha256": "28761763b3ee5f5e7dfc39f61c7f140ec678329df3e28841839c45f1c99344fd",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 1,
+      "stdoutSha256": "5366d3717102576a5d21da2c801e898579d343c0408917f54d90cce9d06349f0",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": null,
+      "kind": "BOUNDED_CLIENT_TEST_REPAIR",
+      "preparedUtc": "2026-10-29T06:12:58.3201059Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "f6d45d6c117d4b77ae81c38133bd3e0d",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:12:58.8126875Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "9b57b6cd9c6e6988d816dd869faedbff46b86356cf12d479a683ef2556cd4ec0",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "3d357abe47f33e2f8bedf663f63f14b0e5416c256f9edb2d0b5338f1900aa495",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "8230e837382842359962f105cb6e9467",
+      "kind": "FORMAT_SINGLE_AUTHORIZED_TEST",
+      "preparedUtc": "2026-10-29T06:12:58.979858+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": "ACTION_ENDED",
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "08e46c5f48e940c3b6454b1b7435b70f",
+      "kind": "DART_FORMAT",
+      "preparedUtc": "2026-10-29T06:12:58.990176+00:00",
+      "reservation": 1,
+      "limit": null,
+      "commandSha256": "0fb0bea031d51234690da6d90a8e44904e9e0fe69b2224aabe4565e4a0c3cf01",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "0c9437600c316bcf60ca849fb30210e888b5f3a7d6ac82782a5103ceffdc2383",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "00d32ab4bbcb47a18434d412ff68c36c",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:13:26.6793756Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "630da47db51d11170d81c22051a0917375585a8305c886f20c60a326908502a6",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "cb543f0e5eb299e386692334ba886a7b3bb958f7bf4912c0f573f0e34e1e3e63",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "7a890d912b62440e99ab8aee53123e7e",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:13:26.944746+00:00",
+      "reservation": 4,
+      "limit": 6,
+      "commandSha256": "10e1256bbaf42d7220de2835d14f83919e55d39626dcf9cce8b45877a68b1c7f",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "cacd79d4df825f6de7312740a31797ab53d2dd19a784fa2a9472b948fc417930",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": null,
+      "kind": "BOUNDED_CLIENT_TEST_STYLE_AND_ANALYZE_SCOPE",
+      "preparedUtc": "2026-10-29T06:15:47.0823560Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "dafdba1fc6e148a18dc5e5a8cfa47a8d",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:15:47.6058194Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "941308ff56f80dee3c630ae84ee958f85d54aee39010874494fd519987650d15",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "4d7746cfa7fdaaef1ed2eb6544a965434b86468d1801f3b7d6c4e922e7bcd292",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "f9c2c0e1f3ac4095a9a2c1e4bd9ff004",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:15:47.893247+00:00",
+      "reservation": 5,
+      "limit": 6,
+      "commandSha256": "814fd7d2d64b5d33f1ab6affe6260d18cafd0ae4b7da925f9c93cd03abfd7406",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "6f0e4084f07a4dd661c6f45e8e869fb383597bfd3ef9d847ec23a4e77989d65f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "0bb4994194664b4080153504dbf8ba2d",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:16:44.0235467Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "630da47db51d11170d81c22051a0917375585a8305c886f20c60a326908502a6",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "95ed9521ef1e8033c972277f8a1eb7bbf665c2b673204e869fe3ab9c4b94b11f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "2e75fac543dd4da397c18773873a0ef4",
+      "kind": "FLUTTER_BATCH",
+      "preparedUtc": "2026-10-29T06:16:44.303059+00:00",
+      "reservation": 6,
+      "limit": 6,
+      "commandSha256": "10e1256bbaf42d7220de2835d14f83919e55d39626dcf9cce8b45877a68b1c7f",
+      "toolSha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "endEvent": "ACTION_ENDED",
+      "exit": 0,
+      "stdoutSha256": "e847bb301a53674b65a4e386bfa7561822d4fee05dbf8c5383b3b02aa9fe0d49",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": null,
+      "kind": "FINAL_PRESERVATION_HELPER",
+      "preparedUtc": "2026-10-29T06:18:08.4780537Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "2e7b3f8edaf140cf867a9b5e643c170f",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:18:27.9802518Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "8c2097094695e82a00f650129c435de4ca9426f1fc9446cc5ed31775c82b7629",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": "ENDED",
+      "exit": 0,
+      "stdoutSha256": "382c6061153fdcff4fc85d5946891d4ec7afbd37a869da72d44577079c19c893",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": null,
+      "kind": "CONSOLIDATED_DELIVERY_BUILDER",
+      "preparedUtc": "2026-10-29T06:21:27.3316567Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": null,
+      "kind": "PUBLIC_INDEX_PRIVACY_FILTER",
+      "preparedUtc": "2026-10-29T06:22:00.0394026Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": null,
+      "toolSha256": null,
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    },
+    {
+      "operation": "027c28d91981481abc13ec24cbcead10",
+      "kind": "TOOL",
+      "preparedUtc": "2026-10-29T06:22:00.2072569Z",
+      "reservation": null,
+      "limit": null,
+      "commandSha256": "aa91217af84e460540fbd32e60ecee51a4ef46826d6fa3fb6332f0ced7e3a131",
+      "toolSha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+      "endEvent": null,
+      "exit": null,
+      "stdoutSha256": null,
+      "stderrSha256": null
+    }
+  ],
+  "preservation": {
+    "priorTaskLedgerSha256": "ffe2ab16d6542c8ae7b0b1197721614af65b455e6022a35221121018cb4d37fb",
+    "priorReceiptSha256": "7ccaaff324ecb13418317f50b643c7651f5c3c158d9c0c2555fbb5ddbfff23cb",
+    "sourceMetadataStable": {
+      "sdk_mirror": 18000,
+      "pub_mirror": 23816
+    },
+    "criticalOriginalHashCount": 4,
+    "oldSourcePostRunFullByteRehash": false,
+    "historicalEvidence": "NO_TOUCH; not a new full ACL/old18/refs/Seed identity audit",
+    "sharedSdkOrCacheWrites": 0,
+    "dirtyRootWrites": 0
+  },
+  "processes": {
+    "observedImageCounts": {
+      "flutter_private\\bin\\cache\\dart-sdk\\bin\\dart.exe": 37,
+      "Windows OS conhost": 96,
+      "flutter_private\\bin\\cache\\dart-sdk\\bin\\dartvm.exe": 31,
+      "flutter_private\\bin\\cache\\dart-sdk\\bin\\dartaotruntime.exe": 9,
+      "os_tools\\where.exe": 14,
+      "flutter_private\\bin\\cache\\artifacts\\engine\\windows-x64\\impellerc.exe": 2,
+      "flutter_private\\bin\\cache\\artifacts\\engine\\windows-x64\\flutter_tester.exe": 34
+    },
+    "knownOsConhostAllowedAsOsHost": true,
+    "systemShellObserved": 0,
+    "processSamplingMilliseconds": 10,
+    "transientProcessCompleteness": "NOT_PROVEN; runner direct-call prelaunch validation supplements sampling"
+  },
+  "space": {
+    "limitEach": 8589934592,
+    "maxObservedLogical": 3912048419,
+    "maxObservedAllocated": 3998870168,
+    "continuousPeakMeasured": false
+  },
+  "forbidden": {
+    "dbStart": 0,
+    "dbConnections": 0,
+    "apiStart": 0,
+    "dependencyDownloads": 0,
+    "aclWrites": 0,
+    "restrictedChild": 0,
+    "g2": 0,
+    "gradleJvmAndroid": 0,
+    "apkAdbDevice": 0,
+    "rtc": 0,
+    "realPush": 0,
+    "mainIntegration": 0
+  },
+  "review": {
+    "nonAuthor": "Sol/high read-only helper; not Astra acceptance",
+    "expectExpressionsUnchanged": 97,
+    "testWidgetDeclarationsRetained": 16,
+    "negativeAssertionsWeakened": false
+  },
+  "originalFailuresRetained": [
+    "Probe Unicode decoder assertion: retained original systemEncoding; child ASCII code-unit receipt proves Unicode argv",
+    "Probe raw versus canonical config-path assertion",
+    "UTF8 audit reader preparation error; no Dart start for that helper error",
+    "One PREPARE record double JSON encoded; original bytes retained and parsed explicitly; no count reset",
+    "Batch1 failed before test discovery: exact absolute dart alias lacked exe extension",
+    "Batch2 77 executed /57 pass /20 fail: notification fixture setup",
+    "Batch3 20 executed /14 pass /6 fail: remaining direct router fixtures"
+  ],
+  "limitations": [
+    "Private patched runner result, not standard untouched Flutter runtime PASS",
+    "No real API/DB/device/Push/RTC/Android/G2 execution in this task",
+    "Mock/unit/widget permission evidence is not real server or device end-to-end",
+    "Physical15/30days, platform Keystore and physical cleanup NOT_PROVEN",
+    "Private guard assumes fixed outer-qualified code/config; not a general sandbox against arbitrary hostile Dart or JSON-relative imports"
+  ],
+  "ledgerCheckpoint": {
+    "bytes": 149192,
+    "sha256": "161573a997ff297ab7a10e26f924151bd4bd29c2394b782063fdcb5f7f6191b7",
+    "scope": "prepublication; publication/readback events append to same ledger"
+  },
+  "localRawArtifacts": [
+    {
+      "alias": "widget-run-2ab64d258e534887ae6cd7b4aa166665-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 5111,
+      "sha256": "def4473064e76a2dcf7ed36b71133e42777da03fcfcdebfd6602705f893aeb5f"
+    },
+    {
+      "alias": "widget-run-2e75fac543dd4da397c18773873a0ef4-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 58847,
+      "sha256": "8e1e9babba6c2d31b31732d759a587594c8100deed9be977b7e776ede0852e3e"
+    },
+    {
+      "alias": "widget-run-3affffb1d82b4778bdea106b435b3ba8-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 217724,
+      "sha256": "bbd396be0f6c428de70d36bdf8124dd7c2483a33c2715e81126e579789955024"
+    },
+    {
+      "alias": "widget-run-7a890d912b62440e99ab8aee53123e7e-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 58838,
+      "sha256": "01a9289e27ab2218938c0729c9d25b536cfbc2ffd2de9633f96e126b48ea39dd"
+    },
+    {
+      "alias": "widget-run-ca4cf940af0a4ac684dcde095732942a-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 26577,
+      "sha256": "0d6195e0ae64416e6d1a3a2b3ebf96fa5ee0e9d7427033a81268e6bc679c8093"
+    },
+    {
+      "alias": "widget-summary-2ab64d258e534887ae6cd7b4aa166665.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 2765,
+      "sha256": "8f47191d972f7bf1d7ed9dc6bc3c248a4bc4904119f1cc8dfe09f56647b9142a"
+    },
+    {
+      "alias": "widget-summary-2e75fac543dd4da397c18773873a0ef4.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 28135,
+      "sha256": "c5d8af1d773ae3001f2a5fe28e846020a537fd4c1c049c7438312cf13742c902"
+    },
+    {
+      "alias": "widget-summary-3affffb1d82b4778bdea106b435b3ba8.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 33488,
+      "sha256": "acdad0b72a155a9f51402f23dfc6617cd85d43767be9c5f469f976eeef46f507"
+    },
+    {
+      "alias": "widget-summary-7a890d912b62440e99ab8aee53123e7e.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 28135,
+      "sha256": "a5f7f51896de47a7768fad9d8bcf778979e94d6e1976c73045af4281b602b4d0"
+    },
+    {
+      "alias": "widget-summary-ca4cf940af0a4ac684dcde095732942a.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 8268,
+      "sha256": "102cce7b43ff2731e2a0a7c92372571e7762408478a041c14ed031a298fb2f99"
+    },
+    {
+      "alias": "analyze-f9c2c0e1f3ac4095a9a2c1e4bd9ff004-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 433,
+      "sha256": "fe17c4fc8aa24b0242f911d0f5a5695e31520ca5e63b0cc0773add2bb5d0dddb"
+    },
+    {
+      "alias": "runner-behavior-56a4bd555e1846e58f28dd2c8a76f329.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 660,
+      "sha256": "6c0a9e7a96d587db5306f2707e01ce6938005f7cbe1da389fd077cd73995f7ed"
+    },
+    {
+      "alias": "runner-behavior-5c715dfef92b4b4b8733d2c1e78b17bf.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 382,
+      "sha256": "8dd23f67d55ca8a2f86503ab672daea05e93ba6dcd99492b0d386d1208a07e0c"
+    },
+    {
+      "alias": "runner-behavior-7cf2b1f3458240e9872e03c847a77ff0.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 382,
+      "sha256": "62e4fb8484bc8cabcfef84b3cd791dc479783b08ed6353e27fd8622cb4c105fb"
+    },
+    {
+      "alias": "runner-behavior-a4890d32d9ea4528825fd6e3010a7026.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 661,
+      "sha256": "e9f06e616cd09b459c6a2cc89b1980a19082d36cc609506c3b0738de93102bc9"
+    },
+    {
+      "alias": "runner-behavior-f84b808de2ea4fa8b1f7d6144d1f3f42.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 661,
+      "sha256": "741dc0979f50b1d41faa18ce81c1f9f5f9cf88d3f673d700e3d8143b502c68bd"
+    },
+    {
+      "alias": "runner-behavior-qualified.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 749,
+      "sha256": "055e9a4de894f7c76a0e2270551594139e6824940899f9997762008b6c027e0c"
+    },
+    {
+      "alias": "runner-patch-lock-before-exact-alias.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 519,
+      "sha256": "cfc9736c1d0057745d5d36710adea743d3f62f169e7b5f379c69f8615abb9a0e"
+    },
+    {
+      "alias": "runner-patch-lock.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 573,
+      "sha256": "610a32e9685ec1046e3a824638cdf620fe16d1acf18165fcfd5eecf00657f7ef"
+    },
+    {
+      "alias": "pub_mirror-source-manifest-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 7798787,
+      "sha256": "17878154d2c09fe95ba313ee8cb54910b006609a52dbbdae60ba2f27a5e398bc"
+    },
+    {
+      "alias": "sdk_mirror-source-manifest-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 5704967,
+      "sha256": "e6c1a32a2f2445e8318e4ca7daaca75c1ea782747743094fdd2947938d9e66e1"
+    },
+    {
+      "alias": "runtime-qualification-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 971,
+      "sha256": "8dd563689ebf14be5e629fff593cc212c53806b953cb59337c1d45d6f6811b8c"
+    },
+    {
+      "alias": "preservation-final-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 1099,
+      "sha256": "067a8a93efac3837ebbee6d4fb9e0073ba5ce3f8d52fbbaec1125adf8cad6d58"
+    },
+    {
+      "alias": "inputs-lock-LOCAL_ONLY.json",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 545,
+      "sha256": "d433b2d3277dcb97fe19b8abe26a07b6e9784673efeb7d66a4e4cc7c876bd202"
+    },
+    {
+      "alias": "runner-child-audit-LOCAL_ONLY.jsonl",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 17007,
+      "sha256": "2a72105db1777061d2ab2ba926855f65e7cfdb0a6f5e267320a8c6aab9b97ba3"
+    },
+    {
+      "alias": "runner-patch-LOCAL_ONLY.diff",
+      "category": "LOCAL_ONLY_RAW",
+      "bytes": 8569,
+      "sha256": "a8f471db65209c3125943834f96d7c74ab736d96b1b727b820e4db93e51ec9bd"
+    }
+  ],
+  "finalReadbackContract": "After publishing: commit/soleParent/root, all3 changed raw UTF8 blobs, full apps/services path-mode-blob tuples and fresh main; persisted in final-readback.json",
+  "terminal": "CANDIDATE_DELIVERY_AWAITING_ASTRA_REVIEW_STOP",
+  "retainedStatus": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PRODUCT_MAIN_NOT_INTEGRATED",
+    "G2_READY_FOR_POPEN_FALSE",
+    "V10.1.6_NOT_STARTED",
+    "PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT",
+    "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN",
+    "RESTRICTED_IDENTITY_GATE_BLOCKED",
+    "OS_ENFORCEMENT_NOT_PROVEN",
+    "REAL_PUSH_PROVIDER_PENDING",
+    "ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN",
+    "RTC_AEC_NOT_CLOSED"
+  ]
+}
