@@ -3,14 +3,14 @@
   "platform": "windows-x64",
   "php_version": "8.5.3",
   "thread_safe": false,
-  "candidate_parent": "0d28e89f71c9a4ea15d8fd5fdb33bc7b9fdd0e6f",
+  "candidate_parent": "3bed366233a39472f8a9e905021788b8d29e12b3",
   "source_binding": {
     "commit": null,
-    "apps_tree": "03ba3602a7dc807bf963264e24f33eed01c231c8",
+    "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
     "services_tree": null,
     "apk_sha256": null
   },
-  "requirements_sha256": "796a11db48022fbbe7684ac316c9f1add66a0c4df3fc020a8ef8528f36f196c8",
+  "requirements_sha256": "56c921e1631b9c4c39e9354761e6abcde3f4262f43e503b3e1c87c42ef4bf927",
   "php_distribution_inventory_sha256": null,
   "executable": "bin/php.exe",
   "extension_directory": "bin/ext",
@@ -23,5 +23,6 @@
   },
   "files": [],
   "state": "INPUT_REQUIRED_NOT_QUALIFIED",
-  "windows_system_modules": {}
+  "windows_system_modules": {},
+  "windows_os_image_policy": null
 }

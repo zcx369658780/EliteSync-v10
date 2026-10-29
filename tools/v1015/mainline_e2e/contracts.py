@@ -4,6 +4,8 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 CURRENT_TASK = "1db7fc7eaadcea172cc52016904836bd71a0b90d"
+NO_DB_TASK = "8b6bd9233a08a7f4d0986d6f592eb114dec63e04"
+NO_DB_PARENT = "3bed366233a39472f8a9e905021788b8d29e12b3"
 DATABASE = "elitesync_v1015_mainline_e2e_20261029"
 API = "http://127.0.0.1:43359/api/v1"
 class Gate(Exception): pass
@@ -29,6 +31,7 @@ def validate_authority(config, grant, now=None):
     now=now or datetime.now(timezone.utc)
     need(isinstance(grant,dict) and grant.get("owner_authorized") is True,"OWNER_NEW_RUNTIME_AUTHORIZATION_REQUIRED")
     need(re.fullmatch("[0-9a-f]{40}",grant.get("task_blob","")) and grant["task_blob"] != CURRENT_TASK,"CURRENT_TASK_RUNTIME_ZERO")
+    need(grant['task_blob']!=NO_DB_TASK,'NO_DB_TASK_HAS_NO_DB_RUNTIME')
     need(grant.get("action")=="mainline_api_db_e2e" and grant.get("new_instance_qualified") is True,"SCOPE_OR_INSTANCE_NOT_QUALIFIED")
     need(datetime.fromisoformat(grant["not_before"])<=now<datetime.fromisoformat(grant["expires_at"]),"GRANT_EXPIRED")
     need(config["api"]==API and config["database"]==DATABASE and config["db_port"]==43349,"WRONG_ENDPOINT")
@@ -41,6 +44,28 @@ def validate_authority(config, grant, now=None):
     need(1<=grant.get("http_operations",0)<=160 and 1<=grant.get("php_operations",0)<=48,"BUDGET_REQUIRED")
     need(0<config.get("max_bytes",0)<=8589934592 and config["max_bytes"]==grant.get("max_bytes"),"SPACE_BUDGET_REQUIRED")
     return root
+def validate_probe_authority(config,grant,now=None):
+    """Static, explicitly DB-free grant. Does not qualify a database or process."""
+    now=now or datetime.now(timezone.utc)
+    need(isinstance(grant,dict) and grant.get('owner_authorized') is True,'OWNER_NEW_RUNTIME_AUTHORIZATION_REQUIRED')
+    need(grant.get('task_blob')==NO_DB_TASK and grant.get('action')=='php_native_no_db_probe','NO_DB_PROBE_TASK_OR_ACTION')
+    need(datetime.fromisoformat(grant['not_before'])<=now<datetime.fromisoformat(grant['expires_at']),'GRANT_EXPIRED')
+    need(grant.get('probe_operations')==1 and 0<grant.get('probe_seconds',0)<=30,'NO_DB_PROBE_BUDGET')
+    need(grant.get('new_instance_qualified') in (None,False) and grant.get('db_operations')==0 and grant.get('network_operations')==0 and grant.get('laravel_bootstrap_allowed') is False,'NO_DB_SCOPE_REQUIRED')
+    need(not set(config)&{'api','database','db_port','db_username','db_password','datadir','server_id','fixture_password','app_key'},'NO_DB_CONFIG_FIELDS_REJECTED')
+    root=local(config['task_root']);need(root.is_dir() and root.name=='v1015-native-three-issues-20261029','NO_DB_TASK_ROOT')
+    need(config.get('source_binding')==grant.get('source_binding'),'SOURCE_BINDING_MISMATCH')
+    b=config['source_binding'];need(b.get('commit')==NO_DB_PARENT and b.get('apps_tree')=='8cd9b6df8e744c8fc9d4217412edce31795a318d' and b.get('services_tree')=='eb47fe58d1167b1795224d4c748fb046042b9c92','NO_DB_SOURCE_IDENTITY')
+    need(digest(canonical(config))==grant.get('config_sha256'),'CONFIG_CHANGED')
+    need(0<config.get('max_bytes',0)<=1073741824 and config['max_bytes']==grant.get('max_bytes'),'SPACE_BUDGET_REQUIRED')
+    source=local(config['source_root'],root);files=config.get('source_files',{})
+    required={'tests/E2E/php_runtime_probe.php','tests/E2E/MainlineEnvironment.php','tests/E2E/PhpRuntimeQualification.php','composer.json','composer.lock'}
+    need(required<=set(files),'PROBE_SOURCE_CLOSURE_REQUIRED')
+    for rel,expected in files.items():
+        need(isinstance(rel,str) and not Path(rel).is_absolute() and '..' not in Path(rel).parts and ':' not in rel,'PROBE_SOURCE_PATH')
+        p=local(source/rel,root);need(p.is_file() and digest(p.read_bytes())==expected,'PROBE_SOURCE_BYTES_CHANGED')
+    return root
+
 def check_login(receipt, user_id, device_id):
     need(receipt["user_id"]==user_id and receipt["device_id"]==device_id,"LOGIN_IDENTITY")
     dates={k:datetime.fromisoformat(receipt[k].replace("Z","+00:00")) for k in ("login_at","server_now","online_expires_at","purge_at")}

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "profile": "PHP_8_5_3_NTS_WIN_X64_LOCKED_VENDOR_WITH_DEV",
-  "candidate_parent": "0d28e89f71c9a4ea15d8fd5fdb33bc7b9fdd0e6f",
-  "apps_tree": "03ba3602a7dc807bf963264e24f33eed01c231c8",
+  "candidate_parent": "3bed366233a39472f8a9e905021788b8d29e12b3",
+  "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
   "php_version": "8.5.3",
   "thread_safe": false,
   "reference_executable_sha256": "e120479f40a9b7b90e779cb845d1d13a9a4e7923e7681cbb851f41bc139f3971",
@@ -303,6 +303,7 @@
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
+    "128fa1f7746ee73ee6d52d2d693715b003a4ec13",
     "1db7fc7eaadcea172cc52016904836bd71a0b90d",
     "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
     "a0eec472b58d53bc25084a395efc0748779d73f8",

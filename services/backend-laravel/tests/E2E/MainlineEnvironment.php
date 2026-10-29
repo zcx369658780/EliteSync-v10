@@ -37,9 +37,35 @@ final class MainlineEnvironment
         }
         return $p;
     }
+    public static function assertSourceContext(array $ctx): void {
+        $c=$ctx['config'];$g=$ctx['grant'];
+        self::need(($g['owner_authorized']??false)===true,'Owner runtime grant required');
+        self::need(strtotime($g['not_before'])<=time() && time()<strtotime($g['expires_at']),'Grant expired');
+        self::need(hash_equals($g['config_sha256'],hash('sha256',self::canonical($c))),'Config changed');
+        self::need(($c['source_binding']??null)===($g['source_binding']??null),'Source mismatch');
+        self::need(!empty($c['source_files']),'Hashed source closure missing');
+        foreach($c['source_files'] as $rel=>$expected) {
+            self::need(!str_contains($rel,'..') && !str_starts_with($rel,'/') && !str_contains($rel,':'),'Unsafe source manifest');
+            $p=self::path($c['source_root'].DIRECTORY_SEPARATOR.$rel,$c['task_root']);
+            self::need(hash_equals($expected,hash_file('sha256',$p)),'Source bytes changed');
+        }
+    }
+    public static function assertProbeContext(array $ctx): void {
+        self::assertSourceContext($ctx);$c=$ctx['config'];$g=$ctx['grant'];
+        self::need(($g['task_blob']??'')==='8b6bd9233a08a7f4d0986d6f592eb114dec63e04' && ($g['action']??'')==='php_native_no_db_probe','No-DB probe action/task required');
+        self::need(($g['probe_operations']??0)===1 && ($g['probe_seconds']??0)>0 && $g['probe_seconds']<=30,'No-DB probe budget');
+        self::need(($g['new_instance_qualified']??false)===false && ($g['db_operations']??null)===0 && ($g['network_operations']??null)===0 && ($g['laravel_bootstrap_allowed']??null)===false,'No-DB scope required');
+        foreach(['api','database','db_port','db_username','db_password','datadir','server_id','fixture_password','app_key'] as $key)self::need(!array_key_exists($key,$c),'DB configuration forbidden in probe');
+        self::need(basename($c['task_root'])==='v1015-native-three-issues-20261029','No-DB task root');
+        self::need(($c['source_binding']['commit']??'')==='3bed366233a39472f8a9e905021788b8d29e12b3' && ($c['source_binding']['apps_tree']??'')==='8cd9b6df8e744c8fc9d4217412edce31795a318d' && ($c['source_binding']['services_tree']??'')==='eb47fe58d1167b1795224d4c748fb046042b9c92','No-DB frozen source binding');
+        self::need(($c['max_bytes']??0)>0 && $c['max_bytes']<=1073741824 && $c['max_bytes']===($g['max_bytes']??null),'No-DB space budget');
+        foreach(['tests/E2E/php_runtime_probe.php','tests/E2E/MainlineEnvironment.php','tests/E2E/PhpRuntimeQualification.php','composer.json','composer.lock'] as $rel)self::need(isset($c['source_files'][$rel]),'Probe source closure missing');
+    }
     public static function assertContext(array $ctx): void {
+        self::assertSourceContext($ctx);
         $c=$ctx['config'];$g=$ctx['grant'];
         self::need(($g['owner_authorized']??false)===true && preg_match('/^[a-f0-9]{40}$/D',$g['task_blob']??'')===1 && $g['task_blob']!==self::CURRENT_TASK, 'New Owner runtime grant required');
+        self::need($g['task_blob']!=='8b6bd9233a08a7f4d0986d6f592eb114dec63e04','No-DB task cannot authorize DB/API/seed');
         self::need(($g['action']??'')==='mainline_api_db_e2e' && ($g['new_instance_qualified']??false)===true,'Scope/qualification missing');
         $now=time();self::need(strtotime($g['not_before'])<=$now && $now<strtotime($g['expires_at']),'Grant expired');
         self::need(hash_equals($g['config_sha256'],hash('sha256',self::canonical($c))),'Config changed');

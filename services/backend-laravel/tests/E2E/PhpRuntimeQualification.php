@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Nonproduction pre-bootstrap capability checks; no Laravel/PDO construction. */
 final class PhpRuntimeQualification
 {
-    public const CLOSED_TASKS = ["02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
+    public const CLOSED_TASKS = ["128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
     public static function assertTask(string $task,array $policy): void {
         $closed=$policy['closed_runtime_task_blobs']??[];$expected=self::CLOSED_TASKS;sort($closed);sort($expected);
         MainlineEnvironment::need($closed===$expected && preg_match('/^[a-f0-9]{40}$/D',$task)===1 && !in_array($task,$closed,true),'Closed task has no PHP runtime grant');
@@ -81,6 +81,10 @@ final class PhpRuntimeQualification
         $deadline=microtime(true)+10;
         while(!is_file($receipt)){MainlineEnvironment::need(microtime(true)<$deadline,'Native image observation timeout');usleep(20000);}
         $native=json_decode(file_get_contents(MainlineEnvironment::path($receipt,$root)),true,512,JSON_THROW_ON_ERROR);
+        $osPolicy=$manifest['windows_os_image_policy']??[];
+        MainlineEnvironment::need(($osPolicy['purpose']??'')==='READONLY_LOADED_WINDOWS_OS_IMAGES' && strtolower(str_replace('\\','/',$osPolicy['system_root']['path']??''))===strtolower(str_replace('\\','/',$native['system_directory']??'')),'OS image policy/system root mismatch');
+        foreach($manifest['windows_system_modules'] as $name=>$imageHash)MainlineEnvironment::need(($osPolicy['images'][$name]['sha256']??null)===$imageHash,'OS image policy hash mismatch');
+
         $expected=[];
         foreach($manifest['files'] as $entry) {
             $p=MainlineEnvironment::path($runtime.'/'.$entry['path'],$root);

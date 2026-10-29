@@ -204,3 +204,26 @@ closure and private environment must receive fresh qualification and Owner budge
 If a trusted private dependency is unavailable, record the blocker without
 downloading, upgrading, installing or searching the system for a replacement.
 Pure fixtures and successful lint do not make this harness runtime ready.
+
+
+## Consolidated native boundary and DB-free probe (2026-10-29)
+
+The new `php_probe_entry.py` defaults to `inspect`; no PHP process or files are created.
+`plan` is static qualification only. `execute` requires the exact separately granted
+`php_native_no_db_probe` task, its persistent ledger, <=30 seconds, qualified legal
+runtime provenance/private-copy receipt and observed pinned OS policy. No such legal
+runtime receipt was established by this delivery: `PHP_PROBE_NOT_RUN_GATE_CLOSED`.
+
+`contracts.local` and every private DLL/manifest path still reject hardlinks and
+reparse paths. `os_images` is a separate read-only loaded-image boundary: the actual
+System32 API root, exact canonical path, source class, signature qualification,
+SHA256, FileId/Volume/size/link pin and one read-only handle are required. It cannot
+qualify a write destination or a private extension. Real PHP children additionally
+bind the retained Popen handle/creation identity and wait state; this child path
+has pure tests but no live PHP observation in this delivery.
+
+The no-DB action uses `assertProbeContext`; it cannot read DB credentials, bootstrap
+Laravel or invoke seed. DB/API routes retain `assertContext`, all existing instance
+checks and explicit refusal of this no-DB-only task. The previous controlled-runtime
+task is now closed in both language policies. Candidate lineage pins refer to the
+fixed 3bed parent; PHP/Dart/Hook versions and binary hashes have not been changed.

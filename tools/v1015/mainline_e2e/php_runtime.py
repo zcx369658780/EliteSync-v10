@@ -1,12 +1,12 @@
 """Static private PHP preconditions. No module loading, Popen or network on import/inspect."""
 import json,os,re
 from pathlib import Path
-from contracts import Gate,need,local,digest,canonical,validate_authority
+from contracts import Gate,need,local,digest,canonical,validate_authority,validate_probe_authority
 from pe_dependencies import pe_info
 
 POLICY=Path(__file__).with_name("php_requirements.json")
 OS_DLLS=frozenset(("kernel32 kernelbase ntdll advapi32 user32 gdi32 ws2_32 ole32 oleaut32 shell32 shlwapi crypt32 bcrypt secur32 dnsapi winmm iphlpapi psapi rpcrt4 version normaliz comdlg32 msvcrt ucrtbase winhttp wldap32 userenv netapi32 mpr").split())
-ZERO_TASKS=frozenset(("1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8"))
+ZERO_TASKS=frozenset(("128fa1f7746ee73ee6d52d2d693715b003a4ec13","1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8"))
 def sha_ok(s):return isinstance(s,str) and re.fullmatch("[0-9a-f]{64}",s) is not None
 def relative(value):
     need(isinstance(value,str) and value and not value.startswith("/") and "\\" not in value and ":" not in value,"PHP_RELATIVE_PATH")
@@ -63,7 +63,14 @@ def validate_manifest(manifest,root,policy):
     return dict(state="STATIC_PRECONDITION_OK",live="LIVE_MODULE_LOAD_NOT_RUN",executable=str(exe[1]),extension_directory=str(ext_dir),extension_paths=ext_paths,expected_modules=sorted(set(builtins)|set(modules)),manifest=manifest,root=str(root))
 def qualify_config(config,grant):
     """Always uses the tracked policy and new Owner authority; never returns runtime PASS."""
-    task_root=validate_authority(config,grant)
+    return _qualify_config(config,grant,validate_authority)
+
+def qualify_probe_config(config,grant):
+    """Same private manifest/source checks, separate explicit DB-free authority."""
+    return _qualify_config(config,grant,validate_probe_authority)
+
+def _qualify_config(config,grant,authority):
+    task_root=authority(config,grant)
     need(grant["task_blob"] not in ZERO_TASKS,"CLOSED_TASK_RUNTIME_ZERO")
     policy=json.loads(POLICY.read_bytes())
     need(set(policy["closed_runtime_task_blobs"])==ZERO_TASKS,"PHP_CLOSED_TASK_POLICY_CHANGED")

@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "task_blob": "8b6bd9233a08a7f4d0986d6f592eb114dec63e04",
+  "opening_main": "1e00aa6229ef13f26eaec7594b24f8303afac8d2",
+  "opening_root": "e83fe18d2c6a8edf313d9146e98c56eb6d24bd50",
+  "active_blob": "525e63fc3ef16998ed3349071080cd636e7f7043",
+  "sole_parent": "3bed366233a39472f8a9e905021788b8d29e12b3",
+  "parent_root": "ce901ec23e06e29552677afe34abe257012cdf89",
+  "astra_blob": "940d82b4367b75f81f5fd0555775a14e881b1b49",
+  "products": {
+    "apps": {
+      "tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+      "blobs": 729
+    },
+    "services": {
+      "tree": "dd552af956733514977cdd4bc82207c062792a96",
+      "blobs": 722
+    }
+  },
+  "files": [
+    {
+      "path": "services/backend-laravel/tests/E2E/MainlineEnvironment.php",
+      "mode": "100644",
+      "parent_blob": "69f246157dd31f4a0f1c092a079291ccbacde03c",
+      "final_blob": "455aa1afd8877d0bc6fbdd17cfcd755c861360f6",
+      "sha256": "d6fa30bad83a63353c9ece05640d21c660a6ef66bb1436110d77267546d15dde",
+      "bytes": 10324
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/php_runtime_probe.php",
+      "mode": "100644",
+      "parent_blob": "fadb6f76b451e5dbf49a320e1405885a43e66185",
+      "final_blob": "9613bcb9f8c2c3dd19dbd0771e999010a9a05aa7",
+      "sha256": "f8d87298269220c08bfc2555c6c27f63a15c99beb8d9c6d577fc1e50d5db3e7c",
+      "bytes": 631
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/PhpRuntimeQualification.php",
+      "mode": "100644",
+      "parent_blob": "8969964b8a51c2797fd81179d1412bd0f62e7916",
+      "final_blob": "774153ad28d6deeba7fb1be82dd45e6d6aec4f0f",
+      "sha256": "0442f28c9eedc3b9769aa6d7435e9cc2ba9a233275467eb582b5fa60cd495c89",
+      "bytes": 10136
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/contracts.py",
+      "mode": "100644",
+      "parent_blob": "a95abeed0d523464750578e7299bfbf4e69fefb8",
+      "final_blob": "d7a127f28a9b5909afce050b15f37ba81e3f4a68",
+      "sha256": "63de358b4a5f58dc3efbf585ee1981b5ff467322069e504b1573c837edc4d3f3",
+      "bytes": 8145
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/os_images.py",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "119cd7365fd5218a2249d8aacdae639bb3dd144b",
+      "sha256": "aad5c67d7161d1eb51e257a9a9246a627e79a4135b195cf77a982316387bc3f7",
+      "bytes": 9221
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_native.py",
+      "mode": "100644",
+      "parent_blob": "b1da91ff246b3b90d24980dc94336cf6034ac57a",
+      "final_blob": "0b642ba96bc96cb938566f08c5650ea7dd884b2a",
+      "sha256": "2600a532f6e56e36e64f847fc171790a6db0a9adce6a2a80aaf8913df70e7d3b",
+      "bytes": 6477
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_probe_entry.py",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "2b540a79a5ef9d64f1e02294713e2e08c7fde187",
+      "sha256": "7f0cb01465a3a973e4a34d6447f598fca652edcfaaed70e7b8b573fc3dd966ad",
+      "bytes": 4749
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_requirements.json",
+      "mode": "100644",
+      "parent_blob": "beff6c93247890dbd6ba0953ff5bbd5d779d6afb",
+      "final_blob": "d367cdf79f8c8d3507fec2c097d8906b6758dd3e",
+      "sha256": "46664b6a9885780025dda7a4d588e86fd0e0a88cf480a5dcf1bf6194e1a6e028",
+      "bytes": 6733
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime.py",
+      "mode": "100644",
+      "parent_blob": "e00afd8e076acadf97bf82c69ac38793401e132a",
+      "final_blob": "a78157f20a1101d4ade1cd47ff2bc1805580b7c0",
+      "sha256": "cf8f80a3ada63a4f346efaca7318068340ee0458e6b1529f3a7a5a2300fca17d",
+      "bytes": 9058
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime_manifest.example.json",
+      "mode": "100644",
+      "parent_blob": "89086a3b394c830ea2430963a649ac18488bc7c6",
+      "final_blob": "95e7630707f253851730df1b7752c5c985d278a2",
+      "sha256": "ad788374a6404a58a50a384a2552a936a765a00b42b44492e33b9f2ab84af224",
+      "bytes": 878
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/README.md",
+      "mode": "100644",
+      "parent_blob": "0150b27152b51e34c5d18d40d23ede3cc86f7e14",
+      "final_blob": "aa71f51835977efdb6bad512c076aaaf5e90ead6",
+      "sha256": "e0835dedb5b9e5dfaf55ce043fe5e0194a6deb0cdf1349194e3b3ef4c79f2cdd",
+      "bytes": 14184
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_native_unblock.py",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "49c5c09318bcc577e1f8a195328849ab20deac8f",
+      "sha256": "34d4d55f2c9dd83edc496f82562cc62a96338c36297595198b0e3b2cf93a6f53",
+      "bytes": 9941
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_php_runtime.py",
+      "mode": "100644",
+      "parent_blob": "bcbf5d9f63ef31200248d2f67abe14094ec42394",
+      "final_blob": "5f4c3a27b80f2c34063024f6a8652cf8f2066818",
+      "sha256": "84e9bce2c9a62a228eab24529ac47f58143497824431c1ddedd7d239541d8970",
+      "bytes": 12344
+    },
+    {
+      "path": "docs/versions/v10.1.5/PHP_NATIVE_THREE_ISSUE_UNBLOCK_RESULT_20261029.md",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "02c2d6e82715915735e33f2b2316a684eaad9a4d",
+      "sha256": "ab58b187daa30da3007f373f07158fa2235ec47c15b3e650a08d515009a13c18",
+      "bytes": 12084
+    },
+    {
+      "path": "docs/versions/v10.1.5/php_native_three_issue_unblock_manifest_20261029.json",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": null,
+      "self_identity": "Resolved by final GitHub readback; no circular self signature"
+    }
+  ],
+  "pure": {
+    "classification": "PURE_SYNTHETIC_GRANT_AND_OS_FACTS_ONLY",
+    "executed": 96,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit": 0
+  },
+  "php_lint": [
+    {
+      "file": "MainlineEnvironment.php",
+      "exit": 0
+    },
+    {
+      "file": "PhpRuntimeQualification.php",
+      "exit": 0
+    },
+    {
+      "file": "php_runtime_probe.php",
+      "exit": 0
+    }
+  ],
+  "source_observation": {
+    "first_basename": "ntdll.dll",
+    "first_hash": "651ac9041af8e6b5ebd331d53163244c0a27d36d1433f0f15cac1f28c5f2e82c",
+    "first_links": 2,
+    "module_count": 31,
+    "qualified_windows_module_count": 22,
+    "second": "READONLY_OS_BOUNDARY_OBSERVED",
+    "observed_os_images_source_sha256": "33c138fb1c397dedb0a696613f5c043e44469f651f4b5514059397ff842e0adb",
+    "post_observation_child_identity_hardening": "PURE_TESTED_NOT_LIVE_PHP"
+  },
+  "redist": {
+    "name": "vcruntime140.dll",
+    "version": "14.38.33126.1",
+    "machine": "AMD64",
+    "sha256": "4d292623516f65c80482081e62d5dadb759dc16e851de5db24c3cbb57b87db83",
+    "bytes": 119192,
+    "signature": "Valid Microsoft",
+    "export_count": 71,
+    "required_named_symbols": 17,
+    "missing_named_exports": 0,
+    "php_linker": [
+      14,
+      44
+    ],
+    "legal": "NOT_QUALIFIED",
+    "compatibility": "NOT_PROVEN"
+  },
+  "budgets": {
+    "os_observation": {
+      "used": 2,
+      "limit": 2
+    },
+    "redist_copy": {
+      "used": 0,
+      "limit": 1
+    },
+    "php_probe": {
+      "used": 0,
+      "limit": 1,
+      "seconds": 30
+    },
+    "php_lint": 3,
+    "window": {
+      "observed_elapsed_seconds": 1941.047,
+      "limit": 2700
+    },
+    "space_each": 1073741824,
+    "all_other_runtime": 0,
+    "old_budgets": "UNCHANGED"
+  },
+  "check_receipts": [
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "ed3f3c1e34d64e0587934c07857f537f",
+      "exit": 0,
+      "stdout_sha256": "80a5059b28066858eab691427ac7869625e194f8b5f134aa6bf4569ce32fbe3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "e0e3597c9a264436a5c6fc7e54eed1ca",
+      "exit": 0,
+      "stdout_sha256": "f44376666e15ebfc8e462f01acc265085671dbc5292b1f0e0c227ab0e9f6d064",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "af5960c2408247a298ef06c783667129",
+      "exit": 0,
+      "stdout_sha256": "8e27beb13025a1df0a5099ade29ef54c2c11dc576e7991be9fc93d89837a8f56",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "d9b82b9313e04d90a240cb8c39374c83",
+      "exit": 0,
+      "stdout_sha256": "d22f74270bfd23845083a850f6c2921703fe9cf7f7f5a22b1a64b90fd61083c0",
+      "stderr_sha256": "d3cbe08123424ab1f81c760121496cba5c5724101b1da855f48aea0d162fec87"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "ebe817700bdf4761854dd628d886b8a7",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e7aa964b19ed974bfc1b08c432b477635f649e1f15645883bdd10e74995b75bc"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "1a8cd76364444d2e82de39bf432cb937",
+      "exit": 0,
+      "stdout_sha256": "8ba416d79c4af7d531ceb464e18c1942d97b3e8e78a8b685c67c5550ded322ad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "402731ec19ad4ef98f6819d5c652ac33",
+      "exit": 0,
+      "stdout_sha256": "8f7563e3c353d929dfbc7890b06ec1b276a7aac85372919c3e348d17f1d347d3",
+      "stderr_sha256": "a599472b72c6ce25cfa1b1f600f593436702e50c604b4bab84912e3f73e458b5"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "3fc8d82e1a37441a9902febef34b1d9d",
+      "exit": 0,
+      "stdout_sha256": "0ea953fb0c7ad47507a5b5abd3a0b8985f1ecbb48c813c2404220d1692291e2c",
+      "stderr_sha256": "011d5ee6021410ad4fd7aa2912de0ebb48b9dbec91b2d07d9443faf266cfd41d"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "7748f2a1e8d948bd9f5ce1ec7a48dc5c",
+      "exit": 0,
+      "stdout_sha256": "2f5765849870c9fe7275f900fba0338f883d959c72b051441758338adc88ebc2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PHP_LINT_ENDED",
+      "operation": "b79d4a1d3bf8429cb421331e5e469427",
+      "exit": 0,
+      "stdout_sha256": "ceeb110b071223de09989f7cac81dd888872ca28ac2b542c2b3dbdc4f4f32a64",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PHP_LINT_ENDED",
+      "operation": "040a66f1f13647b88f9c8ec4ce30c41f",
+      "exit": 0,
+      "stdout_sha256": "3e4b80dadac3baeed1d51fdb32a0eccf37e666b66c039fa71f5512be3b1462ad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PHP_LINT_ENDED",
+      "operation": "a766bbe126464c00b454d62665d688f5",
+      "exit": 0,
+      "stdout_sha256": "505fb2deb8e02ffa9055a0a6651b566e93ed682360b189a4c8337e835bb0c050",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "9351d0cf5c1141beaad93e2a36eb22a4",
+      "exit": 0,
+      "stdout_sha256": "97e423e52f22ebfd1dab218e4f8bbe5bffef2ceaf12d85e1e91240e4f794a23b",
+      "stderr_sha256": "8daa32235eaafbc2c4922c488d49f57145d928b05d350798d095feb434ada6c0"
+    },
+    {
+      "event": "PYTHON_ENDED",
+      "operation": "6afba2c1a6f54064be4e5b4e4a9ad7ed",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "98abc183179905a8eb6e7bd0d74011553724b7da7814ce24e04f0e2fa4b20cba"
+    }
+  ],
+  "preparation_failures": [
+    {
+      "operation": "ebe817700bdf4761854dd628d886b8a7",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e7aa964b19ed974bfc1b08c432b477635f649e1f15645883bdd10e74995b75bc"
+    },
+    {
+      "operation": "6afba2c1a6f54064be4e5b4e4a9ad7ed",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "98abc183179905a8eb6e7bd0d74011553724b7da7814ce24e04f0e2fa4b20cba"
+    }
+  ],
+  "protection": {
+    "named_roots": 3,
+    "old_ledgers_receipts_unchanged": true,
+    "refs": 527,
+    "dirty": 43,
+    "scope": "Refs/dirty versus previous fixed snapshot; no new full old18/122/Seed/five-root audit"
+  },
+  "runtime": "PHP_PROBE_NOT_RUN_GATE_CLOSED",
+  "terminal": "V10.1.5_THREE_ISSUE_UNBLOCK_PARTIAL_WITH_GATES",
+  "next": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW"
+}

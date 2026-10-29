@@ -104,6 +104,13 @@ class PhpRuntimeContracts(unittest.TestCase):
     def native(self):
         p=self.validate();system=self.root/"System32";system.mkdir();dll=system/"kernel32.dll";dll.write_bytes(b"INERT_OS_FIXTURE")
         self.manifest["windows_system_modules"]["kernel32.dll"]=digest(dll.read_bytes())
+        # Pure synthetic OS facts/pins; these do not qualify this temp path as Windows.
+        rootfact=dict(path=str(system),file_id=100,volume=7,from_system_directory_api=True,reparse=False)
+        fact=dict(path=str(dll),canonical_path=str(dll),readonly_handle=True,from_loaded_module_api=True,sha256=digest(dll.read_bytes()),file_id=101,volume=7,links=2,bytes=len(dll.read_bytes()),reparse=False)
+        pin=dict(fact,signature_status='Valid',windows_publisher_verified=True,signer_thumbprint='a'*40,source_class='WINDOWS_SYSTEM_IMAGE')
+        self.manifest['windows_os_image_policy']=dict(schema=1,purpose='READONLY_LOADED_WINDOWS_OS_IMAGES',system_root=rootfact,images={'kernel32.dll':pin})
+        self.enterContext(patch('php_native.system_root_fact',return_value=rootfact))
+        self.enterContext(patch('php_native.readonly_fact',return_value=fact))
         images=[dict(path=str(self.runtime/x["path"]),sha256=x["sha256"]) for x in self.manifest["files"]]+[dict(path=str(dll),sha256=digest(dll.read_bytes()))]
         return p,system,images
     def test_synthetic_native_map_matches_declared_inputs_only(self):
