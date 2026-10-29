@@ -211,6 +211,12 @@ Future<void> _dispose(WidgetTester tester, _Fixture f) async {
   f.container.dispose();
 }
 
+// Flutter 3.41's tooltip finder may select RawTooltip. Inspect the actual
+// IconButton so disabled-media assertions keep checking its callback.
+Finder _mediaButton(String tooltip) => find.byWidgetPredicate(
+      (widget) => widget is IconButton && widget.tooltip == tooltip,
+    );
+
 void main() {
   testWidgets(
     'pending POST survives pause and resume with the same immutable retry',
@@ -257,8 +263,8 @@ void main() {
       final input = tester.widget<TextField>(find.byType(TextField));
       expect(input.readOnly, isTrue);
       expect(tester.widget<TextButton>(find.widgetWithText(TextButton, '发送')).onPressed, isNull);
-      expect(tester.widget<IconButton>(find.byTooltip('发送图片')).onPressed, isNull);
-      expect(tester.widget<IconButton>(find.byTooltip('发送短视频')).onPressed, isNull);
+      expect(tester.widget<IconButton>(_mediaButton('发送图片')).onPressed, isNull);
+      expect(tester.widget<IconButton>(_mediaButton('发送短视频')).onPressed, isNull);
       // Simulate a programmatic controller write that bypasses the read-only UI.
       input.controller!.text = '不得取代未确认尝试';
       await tester.tap(find.text('使用原消息编号重试'));
@@ -282,7 +288,7 @@ void main() {
       expect(f.gateway.uploads, 1);
       final original = Map<String, dynamic>.from(f.api.posts.single);
       expect(original['attachment_ids'], [31]);
-      expect(tester.widget<IconButton>(find.byTooltip('发送图片')).onPressed, isNull);
+      expect(tester.widget<IconButton>(_mediaButton('发送图片')).onPressed, isNull);
       tester.widget<TextField>(find.byType(TextField)).controller!.text = '不得替换附件请求';
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();

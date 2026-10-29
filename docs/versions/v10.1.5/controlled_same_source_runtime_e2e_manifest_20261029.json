@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "task_blob": "128fa1f7746ee73ee6d52d2d693715b003a4ec13",
+  "opening_main": "40657361e78e12ae0095183106159941c49ab573",
+  "opening_root": "3c54e2f19578557cb1b55693d037ea20fe516c52",
+  "active_blob": "f1ff64cc3f3bc68c18598dac24d2593bfa3691d4",
+  "sole_parent": "ad25903e05ab5c0a4d88fe96c41df7963b565c1c",
+  "parent_root": "1ef1269c72a708155acc9ab1a00985819244bc71",
+  "astra_blob": "89c1fa6f42f5b1d215532acff69180aa11e902fc",
+  "products": {
+    "apps": {
+      "tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+      "blobs": 729
+    },
+    "services": {
+      "tree": "eb47fe58d1167b1795224d4c748fb046042b9c92",
+      "blobs": 722
+    }
+  },
+  "files": [
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+      "mode": "100644",
+      "parent_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+      "final_blob": "36f3d7a6a260f731df068a3aed2891b51fc2510e",
+      "sha256": "fa08857fa0ea579e6f5198cba62f211727e83bfa0ba50cef71f77efef65aad9d",
+      "bytes": 19959
+    },
+    {
+      "path": "docs/versions/v10.1.5/controlled_same_source_runtime_e2e_evidence_20261029.json",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "5b1338d0abc4f1a902372b6d49622abd973d16c4",
+      "sha256": "43b3b1ddbecbb502631d29dfa8694bc056b01ded5683ab955e4dce9debb712c5",
+      "bytes": 17187
+    },
+    {
+      "path": "docs/versions/v10.1.5/CONTROLLED_SAME_SOURCE_SOFTWARE_RUNTIME_AND_E2E_RESULT_20261029.md",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "e6477d07fe98de86d8a07a6555801c0abf180c6f",
+      "sha256": "7cd4b4ebf3a72e81a5fe017a8971158c0f3ccf7d761cfbdc551c4fa15690c556",
+      "bytes": 11235
+    },
+    {
+      "path": "docs/versions/v10.1.5/controlled_same_source_runtime_e2e_manifest_20261029.json",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": null,
+      "self_identity": "Resolved by final GitHub readback; no circular self hash"
+    }
+  ],
+  "source_repair": {
+    "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+    "parent_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+    "final_blob": "36f3d7a6a260f731df068a3aed2891b51fc2510e",
+    "sha256": "fa08857fa0ea579e6f5198cba62f211727e83bfa0ba50cef71f77efef65aad9d",
+    "reason": "REPRODUCED_RAW_TOOLTIP_IS_NOT_ICONBUTTON_TEST_FINDER",
+    "test_cases_unchanged": 11,
+    "expectations_unchanged": 67,
+    "production_source_changed": false
+  },
+  "budget": {
+    "mariadb": {
+      "used": 0,
+      "limit": 2
+    },
+    "php_api": {
+      "used": 0,
+      "limit": 2
+    },
+    "http": {
+      "used": 0,
+      "limit": 160
+    },
+    "php_cli": {
+      "used": 0,
+      "limit": 48
+    },
+    "php_probe": {
+      "used": 0,
+      "limit": 2
+    },
+    "migration": {
+      "used": 0,
+      "limit": 1
+    },
+    "seed": {
+      "used": 0,
+      "limit": 1
+    },
+    "flutter": {
+      "used": 3,
+      "limit": 3,
+      "runner_qualification_batches": 1,
+      "widget_batches": 2,
+      "analyze_batches": 0
+    },
+    "window": {
+      "start_utc": "2026-10-29T12:20:09.2277230Z",
+      "observed_elapsed_seconds": 1651.562,
+      "limit_seconds": 5400,
+      "not_reset": true
+    },
+    "downloads": 0,
+    "installations": 0,
+    "old_budgets": "UNCHANGED"
+  },
+  "runtime_batch_receipts": [
+    {
+      "operation_id": "2eba003666f34d37b56db3d47e928960",
+      "exit": 0,
+      "seconds": 11.983999999938533,
+      "stdout_sha256": "aab94be522fe58c0f7652fe6f350456596b24c87ee913418cb79f68218de7936",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "command_sha256": "0a215c78871ba6af7da3c26c29646e9360ad82bb2704658e82d0c5f69295b937",
+      "cwd": "TASK_PRIVATE_APP_ROOT",
+      "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG TASK_RUNNER_BEHAVIOR.dart"
+    },
+    {
+      "operation_id": "0a34e57686cc4108b15e241ed4cd1591",
+      "exit": 1,
+      "seconds": 31.094000000040978,
+      "stdout_sha256": "9a9913ccb829b176caa8a77e7c551a4373085d1db79d5ca20960100151b1821f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "command_sha256": "cc7031150b49988473c5919595e91f94c7ea2fd1a60b7934fc3338573cdfaff0",
+      "cwd": "TASK_PRIVATE_APP_ROOT",
+      "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG PRIVATE_FLUTTER_TOOLS --suppress-analytics --no-version-check test --no-pub --reporter json --concurrency 1 test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart"
+    },
+    {
+      "operation_id": "c96d71ff8d9e445e9fa61804be97c185",
+      "exit": 0,
+      "seconds": 24.516000000061467,
+      "stdout_sha256": "59f00b446809fa7fae57e314a7209a5e35ace38311130f9646b39bf2d8c167b5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "command_sha256": "cc7031150b49988473c5919595e91f94c7ea2fd1a60b7934fc3338573cdfaff0",
+      "cwd": "TASK_PRIVATE_APP_ROOT",
+      "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG PRIVATE_FLUTTER_TOOLS --suppress-analytics --no-version-check test --no-pub --reporter json --concurrency 1 test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart"
+    }
+  ],
+  "stage_a": "PHP_NATIVE_GATE_CLOSED_PRELAUNCH_HARDLINK_REJECTED",
+  "stage_b": "NOT_RUN_GATE_CLOSED",
+  "stage_c": "TEST_PASSED_UNDER_TASK_PRIVATE_PATCHED_RUNNER",
+  "initial_widget": {
+    "executed": 11,
+    "passed": 9,
+    "failed": 2,
+    "exit": 1
+  },
+  "final_widget": {
+    "executed": 11,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "exit": 0
+  },
+  "analyze": "NOT_RUN_BUDGET_EXHAUSTED",
+  "e2e_pass": false,
+  "history": "PRESERVED",
+  "terminal": "V10.1.5_CONTROLLED_RUNTIME_PARTIAL_WITH_EXPLICIT_GATES",
+  "next": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW"
+}

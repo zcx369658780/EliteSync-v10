@@ -1,0 +1,515 @@
+{
+  "schema": 1,
+  "task_blob": "128fa1f7746ee73ee6d52d2d693715b003a4ec13",
+  "sole_parent": "ad25903e05ab5c0a4d88fe96c41df7963b565c1c",
+  "parent_root": "1ef1269c72a708155acc9ab1a00985819244bc71",
+  "source_binding": {
+    "parent_commit": "ad25903e05ab5c0a4d88fe96c41df7963b565c1c",
+    "parent_apps": "03ba3602a7dc807bf963264e24f33eed01c231c8",
+    "parent_services": "eb47fe58d1167b1795224d4c748fb046042b9c92",
+    "tested_file_parent_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+    "tested_file_final_blob": "36f3d7a6a260f731df068a3aed2891b51fc2510e",
+    "product_trees": {
+      "apps": {
+        "tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+        "blobs": 729
+      },
+      "services": {
+        "tree": "eb47fe58d1167b1795224d4c748fb046042b9c92",
+        "blobs": 722
+      }
+    }
+  },
+  "stages": {
+    "A": {
+      "state": "PHP_NATIVE_GATE_CLOSED",
+      "observer_prelaunch": "GUARD_REJECTED_CURRENT_CONTROLLER_PID_NO_PHP",
+      "reason": "HARDLINK_REJECTED",
+      "private_reference_files_matched": 8,
+      "missing_private_reference_dependency_count": 1,
+      "existing_candidate": "MICROSOFT_SIGNED_EXISTING_TOOL_REDISTRIBUTABLE_CANDIDATE_NOT_QUALIFIED_OR_COPIED",
+      "php_started": 0,
+      "actual_extension_load": "NOT_RUN_GATE_CLOSED",
+      "exact_rejected_image_path": "NOT_RECORDED_NOT_PROVEN",
+      "separate_named_os_metadata": "STANDARD_OS_MODULE_HAS_TWO_LINKS_NO_WRITE"
+    },
+    "B": {
+      "state": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "http": 0,
+      "database_counts": "NOT_OBSERVED",
+      "transactions": 0,
+      "migrations": 0,
+      "restart": "NOT_RUN",
+      "e2e_pass": false
+    },
+    "C": {
+      "state": "TARGETED_FLUTTER_TEST_OBSERVED",
+      "classification": "TEST_PASSED_UNDER_TASK_PRIVATE_PATCHED_RUNNER",
+      "runner": {
+        "passResult": true,
+        "checks": 19,
+        "actualChildStarts": 5,
+        "negativeRejected": 10,
+        "privatePatchedHash": "7d04fa44ccd94549ea2011997d3b1053ae6e72716e9b9fc0cc4d7c7e202244bc"
+      },
+      "first_widget": {
+        "source_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "exit": 1,
+        "executed": 11,
+        "passed": 9,
+        "failed": 2,
+        "skipped": 0,
+        "records": [
+          {
+            "name": "pending POST survives pause and resume with the same immutable retry",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "unknown result keeps immutable payload even if the controller is changed",
+            "result": "error",
+            "skipped": false
+          },
+          {
+            "name": "unknown media result retries the same attachment without another upload",
+            "result": "error",
+            "skipped": false
+          },
+          {
+            "name": "current-authority read during pending POST cannot replace retry identity before receive timeout",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat timeout retries the same logical message ID and confirms only server identity",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat non-network-failure cannot fall back to saved private messages",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat malformed-response cannot fall back to saved private messages",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat typed draft and old messages disappear on trusted clock anomaly",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat known authority invalidation clears typed draft before a future read",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "native picker pause resume requires fresh GET limit1 to finish before upload",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "returning from native picker after account switch performs zero uploads",
+            "result": "success",
+            "skipped": false
+          }
+        ],
+        "done": [
+          {
+            "success": false,
+            "type": "done",
+            "time": 9613
+          }
+        ],
+        "errors": [
+          {
+            "testID": 4,
+            "error": "Test failed. See exception logs above.\nThe test description was: unknown result keeps immutable payload even if the controller is changed",
+            "stackTrace": "",
+            "isFailure": false,
+            "type": "error",
+            "time": 8767
+          },
+          {
+            "testID": 5,
+            "error": "Test failed. See exception logs above.\nThe test description was: unknown media result retries the same attachment without another upload",
+            "stackTrace": "",
+            "isFailure": false,
+            "type": "error",
+            "time": 8921
+          }
+        ],
+        "stdout_sha256": "9a9913ccb829b176caa8a77e7c551a4373085d1db79d5ca20960100151b1821f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "classification": "FAILED_UNDER_TASK_PRIVATE_PATCHED_RUNNER"
+      },
+      "final_widget": {
+        "source_blob": "36f3d7a6a260f731df068a3aed2891b51fc2510e",
+        "file": "test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "exit": 0,
+        "executed": 11,
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "records": [
+          {
+            "name": "pending POST survives pause and resume with the same immutable retry",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "unknown result keeps immutable payload even if the controller is changed",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "unknown media result retries the same attachment without another upload",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "current-authority read during pending POST cannot replace retry identity before receive timeout",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat timeout retries the same logical message ID and confirms only server identity",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat non-network-failure cannot fall back to saved private messages",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat malformed-response cannot fall back to saved private messages",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat typed draft and old messages disappear on trusted clock anomaly",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "actual chat known authority invalidation clears typed draft before a future read",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "native picker pause resume requires fresh GET limit1 to finish before upload",
+            "result": "success",
+            "skipped": false
+          },
+          {
+            "name": "returning from native picker after account switch performs zero uploads",
+            "result": "success",
+            "skipped": false
+          }
+        ],
+        "done": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 3296
+          }
+        ],
+        "errors": [],
+        "stdout_sha256": "59f00b446809fa7fae57e314a7209a5e35ace38311130f9646b39bf2d8c167b5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "classification": "TEST_PASSED_UNDER_TASK_PRIVATE_PATCHED_RUNNER"
+      },
+      "new_regressions_passed": [
+        "pending POST survives pause and resume with the same immutable retry",
+        "unknown result keeps immutable payload even if the controller is changed",
+        "unknown media result retries the same attachment without another upload"
+      ],
+      "analyze": "NOT_RUN_BUDGET_EXHAUSTED",
+      "batch_receipts": [
+        {
+          "operation_id": "2eba003666f34d37b56db3d47e928960",
+          "exit": 0,
+          "seconds": 11.983999999938533,
+          "stdout_sha256": "aab94be522fe58c0f7652fe6f350456596b24c87ee913418cb79f68218de7936",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+          "command_sha256": "0a215c78871ba6af7da3c26c29646e9360ad82bb2704658e82d0c5f69295b937",
+          "cwd": "TASK_PRIVATE_APP_ROOT",
+          "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG TASK_RUNNER_BEHAVIOR.dart"
+        },
+        {
+          "operation_id": "0a34e57686cc4108b15e241ed4cd1591",
+          "exit": 1,
+          "seconds": 31.094000000040978,
+          "stdout_sha256": "9a9913ccb829b176caa8a77e7c551a4373085d1db79d5ca20960100151b1821f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+          "command_sha256": "cc7031150b49988473c5919595e91f94c7ea2fd1a60b7934fc3338573cdfaff0",
+          "cwd": "TASK_PRIVATE_APP_ROOT",
+          "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG PRIVATE_FLUTTER_TOOLS --suppress-analytics --no-version-check test --no-pub --reporter json --concurrency 1 test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart"
+        },
+        {
+          "operation_id": "c96d71ff8d9e445e9fa61804be97c185",
+          "exit": 0,
+          "seconds": 24.516000000061467,
+          "stdout_sha256": "59f00b446809fa7fae57e314a7209a5e35ace38311130f9646b39bf2d8c167b5",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tool_sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+          "command_sha256": "cc7031150b49988473c5919595e91f94c7ea2fd1a60b7934fc3338573cdfaff0",
+          "cwd": "TASK_PRIVATE_APP_ROOT",
+          "command_template": "PRIVATE_DART --packages=PRIVATE_SDK_CONFIG PRIVATE_FLUTTER_TOOLS --suppress-analytics --no-version-check test --no-pub --reporter json --concurrency 1 test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart"
+        }
+      ]
+    },
+    "D": {
+      "app": "NOT_RUN_GATE_CLOSED",
+      "rtc": "NOT_RUN",
+      "push": "NOT_RUN",
+      "physical_elapsed_15_30_days": "NOT_PROVEN",
+      "keystore": "NOT_RUN"
+    }
+  },
+  "budget": {
+    "mariadb": {
+      "used": 0,
+      "limit": 2
+    },
+    "php_api": {
+      "used": 0,
+      "limit": 2
+    },
+    "http": {
+      "used": 0,
+      "limit": 160
+    },
+    "php_cli": {
+      "used": 0,
+      "limit": 48
+    },
+    "php_probe": {
+      "used": 0,
+      "limit": 2
+    },
+    "migration": {
+      "used": 0,
+      "limit": 1
+    },
+    "seed": {
+      "used": 0,
+      "limit": 1
+    },
+    "flutter": {
+      "used": 3,
+      "limit": 3,
+      "runner_qualification_batches": 1,
+      "widget_batches": 2,
+      "analyze_batches": 0
+    },
+    "window": {
+      "start_utc": "2026-10-29T12:20:09.2277230Z",
+      "observed_elapsed_seconds": 1651.562,
+      "limit_seconds": 5400,
+      "not_reset": true
+    },
+    "downloads": 0,
+    "installations": 0,
+    "old_budgets": "UNCHANGED"
+  },
+  "scenarios15": [
+    {
+      "id": "message_unknown_retry",
+      "ac": [
+        "AC02",
+        "AC03"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "image_failed_replay",
+      "ac": [
+        "AC02",
+        "AC04"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "private_video_range",
+      "ac": [
+        "AC04"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "revocation_block",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "revocation_mc",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "revocation_cn",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "revocation_disabled",
+      "ac": [
+        "AC03"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "trusted_login_refresh",
+      "ac": [
+        "AC06"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "notification_privacy_preferences",
+      "ac": [
+        "AC08",
+        "AC09"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "unknown_edit_retry",
+      "ac": [
+        "AC02"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "account_switch_late_http_ws",
+      "ac": [
+        "AC03"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "media_picker_player",
+      "ac": [
+        "AC04"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "offline_restart_readonly",
+      "ac": [
+        "AC06",
+        "AC07"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "cleanup_failure",
+      "ac": [
+        "AC07"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    },
+    {
+      "id": "old_notification_navigation",
+      "ac": [
+        "AC08"
+      ],
+      "api_db": "NOT_RUN_GATE_CLOSED_STAGE_A_PREREQUISITE",
+      "actual_app": "NOT_RUN_GATE_CLOSED",
+      "e2e_pass": false
+    }
+  ],
+  "preparation_failures": [
+    {
+      "operation": "8d579b2546c4427783ac4e2ccf88e21f",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e2b4df4427df2aac85cbdb0f3c1a6ab97a5ae12c3d5f48072362c5e4710716cf"
+    },
+    {
+      "operation": "df7c58494ec04f5f88255830d552d3b6",
+      "exit": 1,
+      "stdout_sha256": "68d2a2401e7cb58a80dec512adc885a3c35058559c0f4b6f5a00a4a8b512efac",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "operation": "6105a4f69e604fcd932a346549ccddf6",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d29bd42026fb7bf560a9501c1e6c4f45db813887572d41c7b4b4c514b5834b5a"
+    }
+  ],
+  "preservation": {
+    "old_task_root_identities": 8,
+    "old_task_ledgers_receipts_hashes_unchanged": true,
+    "copied_source_metadata_unchanged": {
+      "flutter_private": 18000,
+      "pub_private": 23816
+    },
+    "named_historical_records_verified": 122,
+    "historical_records_match": true,
+    "dirty_paths_unchanged": 43,
+    "refs_unchanged": 527,
+    "five_historical_head_branch_checked": 5,
+    "five_historical_heads_match": true,
+    "old18_acl_writes": 0,
+    "old18_full_sd_fresh_reread": false,
+    "seed3183_fresh_rehash": false,
+    "scope": "Current start/end protected roots+old ledger hashes+source metadata; terminal 122 fixed identities and five historic HEAD/branch; no continuous monitoring or repeated ACL/Seed audit"
+  },
+  "evidence_classes": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN_GATE_CLOSED",
+    "NOT_PROVEN"
+  ],
+  "e2e_pass": false
+}
