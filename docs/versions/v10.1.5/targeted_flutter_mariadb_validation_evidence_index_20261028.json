@@ -1,0 +1,346 @@
+{
+  "schema": "elitesync.v1015.targeted-validation.v1",
+  "executionDate": "2026-10-29",
+  "taskBlob": "2bc7369a4c52afc687a5de79697ba9ee48214afa",
+  "taskId": "V1015_TARGETED_FLUTTER_MARIADB_20261028",
+  "attemptId": "attempt-0001",
+  "sourceParent": "e22581525a934377e094820e57bfc608ecdfc395",
+  "sourceRoot": "573382c8bca9c9d84e8a85bb72135399ced5b3e6",
+  "openingMain": "2696cfe1d85fbbb32babb6d07d8a4596030be832",
+  "openingMainRoot": "fa349b132764d15a4fa7985c26c41690859d8504",
+  "activeBlob": "a8a7284dca7823251c93adeb1af5c48f6f26887e",
+  "reviewBlob": "ebab2e765a88f900c8fd66ae13f8a18f495a7b25",
+  "status": "DELIVERED_PARTIAL_WITH_EXPLICIT_ENV_OR_TEST_BLOCKERS",
+  "sourceProducts": {
+    "apps": {
+      "sha": "61c0dd9a70fcd56af00053f1d055884cecf052f0",
+      "files": 729,
+      "truncated": false
+    },
+    "services": {
+      "sha": "cc61686579f4a89ac092f3f557ba1f8191471528",
+      "files": 711,
+      "truncated": false
+    }
+  },
+  "changedProductFiles": 0,
+  "productTreesUnchanged": true,
+  "flutter": {
+    "gate": "FLUTTER_TOOLCHAIN_ISOLATION_BLOCKED",
+    "frameworkVersionFromMetadata": "3.41.7",
+    "dartVersionFromFile": "3.11.5",
+    "actualVersionCommandRun": false,
+    "resolvedSharedPackageCount": 170,
+    "privateDependencyClosureProven": false,
+    "tests": [
+      {
+        "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+        "blob": "39956188db4e361f34e9210890cf6d337f56edf7",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
+        "blob": "3cfc33004a579114cce96a778452fa78edfeabcb",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+        "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+        "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+        "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+        "blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+        "blob": "15098e0de61816bcfd3cd2ffee683a3e5c77086d",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "blob": "e3a03e47263a4919fdfce45c49d259fe954ae992",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+        "blob": "293d84df69b1e699991a67eeb2dc18d4b76c8787",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+        "blob": "87ab0f0230963d80cd2f8847c46d465708cd10ee",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      },
+      {
+        "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+        "blob": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab",
+        "status": "NOT_RUN_ENV_GATE_CLOSED",
+        "testCount": null,
+        "exit": null
+      }
+    ],
+    "analyze": "NOT_RUN_ENV_GATE_CLOSED",
+    "toolPopen": 0
+  },
+  "mariadb": {
+    "gate": "DB_ENV_GATE_BLOCKED",
+    "namedProductFound": "MySQL Server",
+    "version": "9.6.0.0",
+    "mariaDbFoundInBoundedLocations": false,
+    "globalAbsenceProven": false,
+    "ports": [
+      43329,
+      43339
+    ],
+    "observedListeners": 0,
+    "database": "elitesync_v1015_verify_20261028",
+    "instanceCreated": false,
+    "connectionMade": false,
+    "migrationsRun": 0,
+    "httpRequests": 0,
+    "beforeCounts": null,
+    "afterCounts": null,
+    "transactions": null,
+    "httpStatuses": null
+  },
+  "tools": [
+    {
+      "label": "mysqld.exe",
+      "bytes": 55393920,
+      "sha256": "c4489d69b1997bfe1508aab311a9b1a4d4097e4bd3970a5e24a7d3cbdbaeaac2",
+      "version": "9.6.0.0",
+      "product": "MySQL Server"
+    },
+    {
+      "label": "php.exe",
+      "bytes": 185856,
+      "sha256": "e120479f40a9b7b90e779cb845d1d13a9a4e7923e7681cbb851f41bc139f3971",
+      "version": "8.5.3",
+      "product": "PHP"
+    },
+    {
+      "label": "flutter.bat",
+      "bytes": 3080,
+      "sha256": "f83bfed7ecd10fd1afd8ce19c0b0119d2c80e24fbf26f4ff4f63c1cc5f75dcd5",
+      "version": null,
+      "product": null
+    },
+    {
+      "label": "shared.bat",
+      "bytes": 10433,
+      "sha256": "b1b8a1b696ecd1265c0cfdc1408c340f0d8351c0e1624710bb8fbf1ab218d4db",
+      "version": null,
+      "product": null
+    },
+    {
+      "label": "flutter_tools.snapshot",
+      "bytes": 43747920,
+      "sha256": "e494c265ba9c38a6a5679842703d3041df0d2d86c83bfc55df56c3bd0df8e808",
+      "version": null,
+      "product": null
+    },
+    {
+      "label": "flutter_tools.stamp",
+      "bytes": 5,
+      "sha256": "ddb3294927205743c48171559ed38f0a6230b17f10ca2f431b77da3597a43d66",
+      "version": null,
+      "product": null
+    },
+    {
+      "label": "dart.exe",
+      "bytes": 5277696,
+      "sha256": "44328b98b6bf981d8307f72ef38acbb37b8067394916953caa48b8b444525152",
+      "version": null,
+      "product": null
+    },
+    {
+      "label": "package_config.json",
+      "bytes": 35587,
+      "sha256": "a0397a29c470252b6dba62e8e8d3d341209a93944debf6b666fcf70917882ca1",
+      "version": null,
+      "product": null
+    }
+  ],
+  "TEST_CASES": [
+    {
+      "id": "F1-IDEMPOTENCY",
+      "contract": "同key同payload原消息/附件/通知唯一；异payload409",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F1-CONCURRENT",
+      "contract": "两个连接并发同键、唯一约束与锁顺序",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F1-LOST-RESPONSE",
+      "contract": "真实提交后丢响应，再同key确认与DB前后计数",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F1-REVOCATION",
+      "contract": "Block/Connection/MC/退出成员/token撤销前后权限",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F1-ATTACHMENT",
+      "contract": "ready转failed后仍回读原提交事实",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F1-CLIENT",
+      "contract": "未知结果同key、旧会话响应与WS失效信号",
+      "result": "FLUTTER_DART_TEST_NOT_RUN",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F2-T0",
+      "contract": "真实持久T0、register/旧family/失败登录不能伪造",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F2-REFRESH",
+      "contract": "refresh不续期、15天合成边界、session/family撤销",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F2-QUEUE",
+      "contract": "登出/切号及两类异步凭据晚写与清理失败",
+      "result": "FLUTTER_DART_TEST_NOT_RUN",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F2-OFFLINE",
+      "contract": "只读、合成15/30天、损坏密文、异常时钟/重启锁定",
+      "result": "FLUTTER_DART_TEST_NOT_RUN",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F3-PREFS",
+      "contract": "账号分类/静默偏好及过期/类别关闭当前presentation",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F3-DEVICE",
+      "contract": "TEST_ONLY token hash/device/session/generation、换号与revoke",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F3-CLICK",
+      "contract": "旧通知owner-only GET、撤权/禁用/换号、隐私最小正文",
+      "result": "MARIADB_LARAVEL_REAL_TEST_NOT_RUN_ENV_GATE_CLOSED",
+      "actualTests": 0,
+      "exit": null
+    },
+    {
+      "id": "F3-ASYNC",
+      "contract": "旧通知当前鉴权与异步导航切号阻断",
+      "result": "FLUTTER_DART_TEST_NOT_RUN",
+      "actualTests": 0,
+      "exit": null
+    }
+  ],
+  "ledgerCheckpoint": {
+    "sha256": "25f71325dced1b2469f7817fd09d9391ea60cf6957989c913992153da304af13",
+    "bytes": 6234,
+    "classification": "LOCAL_ONLY_RAW",
+    "prefixNotTerminal": true,
+    "mariadbUsed": 0,
+    "mariadbLimit": 2,
+    "apiUsed": 0,
+    "apiLimit": 2,
+    "refundsOrResets": 0
+  },
+  "budget": {
+    "logicalBytes": 140742,
+    "allocatedBytes": 151944,
+    "fileCount": 15,
+    "limitEachBytes": 1073741824,
+    "remainingReserveBytes": 16777216
+  },
+  "protectedGitObservation": {
+    "refCount": 527,
+    "refsSha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+    "trackedDirtyEntries": 43,
+    "trackedDirtySha256": "da18a3668ac49206a645f456652b3312bfcf0cd9005f607bab34980cded9f57c",
+    "localHead": "4bebc8f394248e254c1368a06fbdee5d2c883301"
+  },
+  "protectionScope": "Read-only metadata; no fresh old18/Seed/122 descriptor qualification",
+  "actualTestEvidence": [],
+  "evidenceClasses": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST (none this task)",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN",
+    "NOT_PROVEN"
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/TARGETED_FLUTTER_MARIADB_VALIDATION_AND_REPAIR_REPORT_20261028.md",
+    "blob": "56eb994c71df95077e1c74b74371f7d75d070184",
+    "sha256": "311e1c1db30f4575c47822e22c0e999a2f58a08934cd04641f7a19fb451f97be"
+  },
+  "repairs": [],
+  "negativeAssertionsWeakened": false,
+  "substitutedMysqlOrSqliteOrPureChecks": false,
+  "sourceWorkfaceMaterialized": false,
+  "retained": [
+    "V10.1.5_PARTIAL_NOT_ACCEPTED",
+    "AC05_OPEN",
+    "PRODUCT_MAIN_NOT_INTEGRATED",
+    "G2_READY_FOR_POPEN_FALSE"
+  ],
+  "stop": "STOP_AWAITING_ASTRA_INDEPENDENT_REVIEW"
+}
