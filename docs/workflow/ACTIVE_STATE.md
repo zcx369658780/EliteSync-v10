@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Owner选定方案B：Laravel12＋PHP8.5兼容迁移（CURRENT ENTRY）
+
+**`OWNER_SELECTED_PLAN_B / LARAVEL12_PRIMARY_TARGET / LARAVEL13_FOLLOWUP_EVALUATION_ONLY / PHP85_WINDOWS_OFFICIAL_MAINTENANCE_TARGET / COMPATIBILITY_SOURCE_MIGRATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / NO_NEW_DOWNLOAD_INSTALL_RUNTIME_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN / V10.1.6_NOT_STARTED`**
+
+**Owner最新产品/技术决定（2026-10-30）：** 在Astra对Laravel11.48.0＋PHP8.5.3和旧vcruntime140.dll14.38的独立官方兼容性审查后，Owner明确选定“方案B，请继续”。本任务冻结**Laravel12作为真实源码迁移第一目标**、**PHP8.5的官方Windows VS17 x64 NTS维护版本**（当前官方8.5.12-1作为身份待核的目标候选）、官方v14 VC运行库及cURL/其它Laravel12必需扩展作为完整依赖闭包。Laravel13支持PHP8.5、安全维护期更长，当前仅对照升级成本，未来是否实施需Owner另作版本决定。Laravel12官方安全支持到2027-02-24，只作为当前兼容迁移桥梁。
+
+**唯一最新Owner正式综合任务：** [V10_1_5_OWNER_B_LARAVEL12_PHP85_COMPATIBILITY_MIGRATION_AND_E2E_PRECONDITION_TASK_20261030.md](../versions/v10.1.5/V10_1_5_OWNER_B_LARAVEL12_PHP85_COMPATIBILITY_MIGRATION_AND_E2E_PRECONDITION_TASK_20261030.md)，Git Blob **`1ade4e5a89116eeba329311ed274229823aafd17`**，任务创建Commit `646ef83b29b7a4daa31838b0b89cddfae67528f9`，正文已按固定Commit完全回读。**Owner须手动派发Codex**；发布不等于任何本地PHP/Composer/MariaDB/Flutter运行，没有发起源码研发候选。
+
+**唯一新研发Parent：** `be7ebd1faa0fd3cb45bd88bd24af15ea9e805631`，Root `db2725ee513816f430002265e19c0f96ec21325f`，apps Tree `8cd9b6df8e744c8fc9d4217412edce31795a318d`，services Tree `dd552af956733514977cdd4bc82207c062792a96`。Parent sole Parent `3bed366233a39472f8a9e905021788b8d29e12b3`。前次Astra候选审查Blob `e918c651b7c44b83c1a60e979aad065ac30e7632`；本次官方静态兼容性审查Blob `fc96469622517436d1d7a316dff7545e1dc912a9`，对应独立审查分支不作为研发Parent。
+
+**这次的允许范围与不可变安全界：** 新task-owned源码面logical/allocated分别≤4GiB、总工作窗口90分钟、单一持久ledger；在固定Parent上真正修改Laravel12版本约束、必要受影响源码和PHP官方扩展/运行库政策；可信已有的离线Composer依赖求解最多2次，纯合成/静态检查最多8批、可信PHP仅`-n -l`最多12次。原Laravel11 composer.lock只有实际合法离线解析成新lock时才可更新，不可伪造。无新外网下载/全局install/升级、OS设置/ACL/System32/WinSxS/环境写入，也没有新Laravel/bootstrap、PHP动态能力Probe、MariaDB、API/HTTP、Flutter、Gradle/G2/APK、ADB/设备/RTC/Push实际运行许可；必要供应链和真实运行须集中列NEXT_OWNER_SUPPLY_CHAIN_AUTHORIZATION_SPEC，不自动派发。旧3bed Flutter3/3、历史6/6、MariaDB2/2及G/APK各1/1全部保持不退款。
+
+**当前产品状态：** main只接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍**10 PARTIAL / 1 OPEN（AC05 RTC）**。冻结业务CN/MC/Block、消息同键重试、T0/离线、Push待定及所有之前Astra有界接受，不自动合并main，不关闭AC05，不开启v10.1.6。永久保留`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`及旧18、两ACL树、122原证、五根、527 refs、3183 Seed、所有旧失败/ledger/claims与dirty根。
+
+**唯一下一步：** Owner手动派发以上方案B任务单；Codex在单一Task内集中完成实际源码兼容改造、离线可用验证/负例、官方来源/剩余供给审计，形成sole Parent=be7候选、脱敏结果与Manifest、GitHub直接回读后STOP交Astra独立验收。不得自动发起API/DB真实测试、下载、安装或后继合并。
+
+以下保留2026-10-29之前CURRENT ENTRY、三项PHP原生阻断、旧版本/风险门禁的原始历史原文；过往待派发状态仅为当时记录，不覆盖本段。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner批准三项PHP原生阻断合并解除（CURRENT ENTRY）
 
 **`THREE_ISSUE_PHP_NATIVE_UNBLOCK_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / BOUNDED_READONLY_OS_DIAGNOSTICS_AUTHORIZED / CONDITIONAL_ONE_DB_FREE_PHP_PROBE_ONLY / LARAVEL_MARIADB_API_FLUTTER_RUNTIME_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN / V10.1.6_NOT_STARTED`**
