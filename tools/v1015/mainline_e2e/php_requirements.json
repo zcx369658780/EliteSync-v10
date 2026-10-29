@@ -1,0 +1,311 @@
+{
+  "schema": 1,
+  "profile": "PHP_8_5_3_NTS_WIN_X64_LOCKED_VENDOR_WITH_DEV",
+  "candidate_parent": "0d28e89f71c9a4ea15d8fd5fdb33bc7b9fdd0e6f",
+  "apps_tree": "03ba3602a7dc807bf963264e24f33eed01c231c8",
+  "php_version": "8.5.3",
+  "thread_safe": false,
+  "reference_executable_sha256": "e120479f40a9b7b90e779cb845d1d13a9a4e7923e7681cbb851f41bc139f3971",
+  "source_documents": {
+    "composer.json": "e7cf18fbe91494ec3ef12fa5815cd7723613bc55162f965e81a41a54596ca3f6",
+    "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a"
+  },
+  "required_modules": [
+    "ctype",
+    "dom",
+    "fileinfo",
+    "filter",
+    "hash",
+    "iconv",
+    "json",
+    "libxml",
+    "mbstring",
+    "openssl",
+    "pcre",
+    "pdo",
+    "pdo_mysql",
+    "phar",
+    "session",
+    "tokenizer",
+    "xml",
+    "xmlwriter"
+  ],
+  "required_shared_modules": [
+    "fileinfo",
+    "mbstring",
+    "openssl",
+    "pdo_mysql"
+  ],
+  "functions": [
+    "mb_substr",
+    "mb_strlen",
+    "finfo_open",
+    "mime_content_type",
+    "openssl_encrypt",
+    "openssl_random_pseudo_bytes",
+    "ctype_alnum",
+    "filter_var",
+    "hash",
+    "iconv",
+    "json_encode",
+    "preg_match",
+    "session_start",
+    "token_get_all",
+    "libxml_use_internal_errors",
+    "xml_parser_create",
+    "fsync"
+  ],
+  "classes": [
+    "PDO",
+    "DOMDocument",
+    "XMLWriter",
+    "Phar"
+  ],
+  "composer_evidence": [
+    {
+      "group": "packages",
+      "package": "guzzlehttp/guzzle",
+      "version": "7.10.0",
+      "modules": {
+        "json": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "laravel/framework",
+      "version": "v11.48.0",
+      "modules": {
+        "ctype": "*",
+        "filter": "*",
+        "hash": "*",
+        "mbstring": "*",
+        "openssl": "*",
+        "session": "*",
+        "tokenizer": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "laravel/prompts",
+      "version": "v0.3.14",
+      "modules": {
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "laravel/sanctum",
+      "version": "v4.3.1",
+      "modules": {
+        "json": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "league/commonmark",
+      "version": "2.8.1",
+      "modules": {
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "league/flysystem-local",
+      "version": "3.31.0",
+      "modules": {
+        "fileinfo": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "league/mime-type-detection",
+      "version": "1.16.0",
+      "modules": {
+        "fileinfo": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "league/uri-interfaces",
+      "version": "7.8.0",
+      "modules": {
+        "filter": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "nesbot/carbon",
+      "version": "3.11.3",
+      "modules": {
+        "json": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "nikic/php-parser",
+      "version": "v5.7.0",
+      "modules": {
+        "ctype": "*",
+        "json": "*",
+        "tokenizer": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "nunomaduro/termwind",
+      "version": "v2.4.0",
+      "modules": {
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "psy/psysh",
+      "version": "v0.12.21",
+      "modules": {
+        "json": "*",
+        "tokenizer": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "symfony/polyfill-mbstring",
+      "version": "v1.33.0",
+      "modules": {
+        "iconv": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "tijsverkoyen/css-to-inline-styles",
+      "version": "v2.4.0",
+      "modules": {
+        "dom": "*",
+        "libxml": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "vlucas/phpdotenv",
+      "version": "v5.6.3",
+      "modules": {
+        "pcre": "*"
+      }
+    },
+    {
+      "group": "packages",
+      "package": "workerman/workerman",
+      "version": "v5.1.9",
+      "modules": {
+        "json": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "laravel/pail",
+      "version": "v1.2.6",
+      "modules": {
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "laravel/pint",
+      "version": "v1.28.0",
+      "modules": {
+        "json": "*",
+        "mbstring": "*",
+        "tokenizer": "*",
+        "xml": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "phar-io/manifest",
+      "version": "2.0.4",
+      "modules": {
+        "dom": "*",
+        "libxml": "*",
+        "phar": "*",
+        "xmlwriter": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "phpunit/php-code-coverage",
+      "version": "11.0.12",
+      "modules": {
+        "dom": "*",
+        "libxml": "*",
+        "xmlwriter": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "phpunit/phpunit",
+      "version": "11.5.55",
+      "modules": {
+        "dom": "*",
+        "json": "*",
+        "libxml": "*",
+        "mbstring": "*",
+        "xml": "*",
+        "xmlwriter": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "sebastian/comparator",
+      "version": "6.3.3",
+      "modules": {
+        "dom": "*",
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "sebastian/exporter",
+      "version": "6.3.2",
+      "modules": {
+        "mbstring": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "staabm/side-effects-detector",
+      "version": "1.0.5",
+      "modules": {
+        "tokenizer": "*"
+      }
+    },
+    {
+      "group": "packages-dev",
+      "package": "theseer/tokenizer",
+      "version": "1.3.1",
+      "modules": {
+        "dom": "*",
+        "tokenizer": "*",
+        "xmlwriter": "*"
+      }
+    }
+  ],
+  "source_call_evidence": [
+    {
+      "path": "app/Services/Accounts/DeviceSessions.php",
+      "blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+      "function": "mb_substr"
+    }
+  ],
+  "optional_modules": {
+    "curl": "Not a hard require in locked packages; selected curl transport must declare/hash its extension and native dependencies."
+  },
+  "current_state": "REQUIREMENTS_ONLY_LIVE_MODULE_LOAD_NOT_RUN",
+  "closed_runtime_task_blobs": [
+    "02018a930428bb6417c9fcdd811a6c1350b03988",
+    "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
+    "1db7fc7eaadcea172cc52016904836bd71a0b90d",
+    "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
+    "a0eec472b58d53bc25084a395efc0748779d73f8",
+    "a307391e3872ff5367d84ddb7da86e53e531445e"
+  ]
+}

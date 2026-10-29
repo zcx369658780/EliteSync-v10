@@ -16,11 +16,12 @@ def local(path, root=None):
     need(isinstance(value,str) and not value.replace("\\","/").startswith("//"),"LOCAL_PATH_REQUIRED")
     p=Path(value)
     need(p.is_absolute() and ".." not in p.parts, "ABSOLUTE_PATH_REQUIRED")
+    import stat
     for q in (p,*p.parents):
-        if q.exists():
-            s=q.lstat()
-            need(not q.is_symlink() and not getattr(s,"st_file_attributes",0)&0x400,"LINK_REJECTED")
-            if q.is_file(): need(s.st_nlink==1,"HARDLINK_REJECTED")
+        try: st=q.lstat()
+        except FileNotFoundError: continue
+        need(not stat.S_ISLNK(st.st_mode) and not getattr(st,"st_file_attributes",0)&0x400,"LINK_REJECTED")
+        if stat.S_ISREG(st.st_mode): need(st.st_nlink==1,"HARDLINK_REJECTED")
     p=p.resolve()
     if root is not None: need(p.is_relative_to(root),"PATH_OUTSIDE_NEW_TASK")
     return p

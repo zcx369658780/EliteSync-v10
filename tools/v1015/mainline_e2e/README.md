@@ -129,3 +129,78 @@ F3 cold-start locks until new online verification by design. Do not persist
 untrusted grants just to make cross-restart offline reads appear successful.
 
 No automatic main merge, AC05 closure, G2 release, successor or v10.1.6.
+
+## R1: private PHP dependency qualification (2026-10-29)
+
+R1 task `a307391e3872ff5367d84ddb7da86e53e531445e` grants **source and pure
+checks only**. Current state: `PHP_LARAVEL_BOOTSTRAP_NOT_RUN /
+ACTUAL_EXTENSION_LOAD_NOT_RUN / E2E_NOT_RUN_GATE_CLOSED`.
+No newly loaded extension, native observer, API, DB, Flutter or device result is
+claimed. The existing F1 fix, three Widget sources and 15-scenario catalog remain.
+
+The prior two-extension command is superseded by a shared frozen profile:
+`php_requirements.json` binds composer.json/lock byte hashes, the selected
+PHP8.5.3 NTS x64 executable hash, 18 required modules and required functions/classes.
+It includes the selected locked vendor-with-dev requirements (XML/XMLWriter/Phar);
+it does not silently assume a runtime-only vendor tree. cURL is optional in this
+lock; selecting an optional shared extension still requires its complete binary
+and native import closure. Existing named PHP reference files were read as PE
+bytes only; the reference inventory is incomplete and is **not** a launch profile.
+
+Create a new LOCAL_ONLY `php_runtime_manifest` from trusted existing sources only
+under a separately approved runtime task. The example has no hashes and cannot
+pass. Record every private exe/DLL relative path, SHA256, source SHA and frozen
+source-inventory identity. PHP distribution members must share the same source
+inventory. A manifest assertion is not publisher-signature verification: the
+trusted operator must independently establish the source inventory and authority.
+No binaries or actual security/system image inventory belong in public Git.
+
+Static qualification seals all exe/DLL files, verifies AMD64 PE32+ headers,
+ordinary/delay import dependencies and direct-exe-directory native dependencies,
+rejects missing mbstring/fileinfo/openssl/pdo_mysql, path escape/reparse/hardlink,
+changed hashes, mixed distributions and undeclared binary files. Unsupported PE
+forms fail closed. This reaches `STATIC_PRECONDITION_OK / LIVE_MODULE_LOAD_NOT_RUN`
+only. The static parser is not a Windows loader or proof of every runtime import.
+
+Config additionally supplies `php_runtime_root`, `php_runtime_manifest` and its
+raw SHA256, `php_requirements`, and `api_router`. New grant fields include identical
+`php_cli_manifest_sha256` and `php_api_manifest_sha256`,
+`php_requirements_file_sha256`, PHP/bridge/router hashes, and the existing
+source/config/instance/budget fields. Both languages reject the same six historical
+zero-runtime task Blobs. Current/R1 task names do not confer a fresh run budget.
+
+Both entries use the same argv constructor: `-n`, absolute extension DLLs, private
+extension/include/write scope, no auto prepend/append, disabled dl, private PATH,
+HOME/TEMP/AppData and empty private ini directories. No global php.ini, copied
+system DLL, PATH lookup or implicit new extension is a fallback.
+PHP checks actual version/ABI/SAPI, loaded module set, functions/classes/PDO driver
+**before** a connection or Laravel bootstrap. It then binds a native-image receipt
+to process PID, fresh nonce and profile hash. The future Windows parent observer
+must match loaded private images and separately qualified Windows System32 hashes;
+unknown/global images stop the process. This observer/handshake is source only,
+NOT_RUN here; pre-bootstrap snapshots are not whole-lifetime OS isolation.
+
+The explicit API source wrapper is now provided; do not launch a manual PHP server
+with guessed extension flags. Commands below are templates, not permission:
+
+```text
+python -I -B <tool>/php_api_entry.py inspect
+python -I -B <tool>/php_api_entry.py plan --config <private-config> --grant <new-grant>
+python -I -B <tool>/php_api_entry.py execute --config <private-config> --grant <new-grant>
+python -I -B <tool>/run.py execute --config <same-config> --grant <same-grant>
+```
+
+API execute additionally requires an explicit php_api_launches budget <=2 and
+bounded api_max_seconds <=5400. It writes/flushes its reservation before Popen,
+uses no shell, watches qualification-failure markers and kills on failure/window
+limit. CLI startup consumes its existing operation reservation before Popen.
+No automatic retry occurs; an existing attempt/ledger needs Owner reconciliation.
+API and driver use exclusive `raw/api` and `raw/driver` namespaces; their parent
+may coexist. PID/profile/nonce receipts are LOCAL_ONLY and cannot be reused from
+another process. The original service/HTTP limits and source/DB guards remain.
+
+Actual Windows module loading, native import/OS image provenance, process/path
+closure and private environment must receive fresh qualification and Owner budget.
+If a trusted private dependency is unavailable, record the blocker without
+downloading, upgrading, installing or searching the system for a replacement.
+Pure fixtures and successful lint do not make this harness runtime ready.

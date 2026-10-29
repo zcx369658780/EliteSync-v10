@@ -57,7 +57,10 @@ final class MainlineEnvironment
         }
     }
     public static function connect(array $ctx): PDO {
-        self::assertContext($ctx);self::$context=$ctx;$c=$ctx['config'];
+        self::assertContext($ctx);
+        require_once __DIR__.'/PhpRuntimeQualification.php';
+        PhpRuntimeQualification::assertCurrent($ctx);
+        self::$context=$ctx;$c=$ctx['config'];
         $pdo=new PDO('mysql:host=127.0.0.1;port=43349;dbname='.self::DB.';charset=utf8mb4',$c['db_username'],$c['db_password'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_TIMEOUT=>3]);
         $live=$pdo->query('SELECT @@version AS version, @@port AS port, @@datadir AS datadir, @@server_id AS server_id, DATABASE() AS db, CURRENT_USER() AS actor')->fetch(PDO::FETCH_ASSOC);
         self::need(str_starts_with($live['version'],'10.11.19-MariaDB') && (int)$live['port']===43349 && realpath($live['datadir'])===realpath($c['datadir']) && (int)$live['server_id']===$c['server_id'] && $live['db']===self::DB && $live['actor']==='v1015_e2e@127.0.0.1','Live database identity mismatch');

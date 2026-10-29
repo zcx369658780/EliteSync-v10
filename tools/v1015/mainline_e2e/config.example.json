@@ -25,5 +25,10 @@
   "app_receipts": null,
   "max_bytes": 0,
   "execute": "NEW_OWNER_AUTHORIZATION_REQUIRED",
-  "note": "LOCAL_ONLY config only. Private source/vendor/runtime and future instance must be qualified before execution. No services/builds/devices are started by run.py."
+  "note": "LOCAL_ONLY config only. Private source/vendor/runtime and future instance must be qualified before execution. No services/builds/devices are started by run.py.",
+  "php_runtime_manifest": null,
+  "php_runtime_manifest_sha256": null,
+  "php_runtime_root": null,
+  "php_requirements": null,
+  "api_router": null
 }

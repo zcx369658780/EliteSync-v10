@@ -16,6 +16,15 @@ try {
     $request=Illuminate\Http\Request::capture();$response=$kernel->handle($request);
     $response->send();$kernel->terminate($request,$response);
 } catch(Throwable $e) {
+    // Signal the explicit private API launcher to stop a failed qualification.
+    try {
+        $failure=(string)getenv('ELITESYNC_PHP_FAILURE_RECEIPT');$ownerRoot=(string)getenv('ELITESYNC_MAINLINE_TASK_ROOT');$nonce=(string)getenv('ELITESYNC_PHP_START_NONCE');
+        if($failure && $ownerRoot && preg_match('/^[a-f0-9]{32}$/D',$nonce)===1) {
+            MainlineEnvironment::path(dirname($failure),$ownerRoot);
+            MainlineEnvironment::need(basename($failure)==='php-'.$nonce.'.failure.json','Failure receipt path');
+            if(!file_exists($failure)){$f=fopen($failure,'xb');fwrite($f,json_encode(['pid'=>getmypid(),'nonce'=>$nonce,'state'=>'QUALIFICATION_FAILED'],JSON_THROW_ON_ERROR));fflush($f);fsync($f);fclose($f);}
+        }
+    } catch(Throwable) {}
     error_log('MAINLINE_E2E_GATE: '.$e->getMessage());
     http_response_code(503);header('Content-Type: application/json');
     echo '{"error":"MAINLINE_E2E_QUALIFICATION_FAILED"}';

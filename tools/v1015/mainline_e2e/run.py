@@ -4,6 +4,8 @@ sys.dont_write_bytecode=True
 import argparse,base64,json,os,subprocess,uuid,urllib.request,urllib.error
 from pathlib import Path
 from contracts import *
+from php_runtime import qualify_config, launch_arguments, private_environment
+from php_native import cli as qualified_php_cli
 PNG=base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l9sAAAAASUVORK5CYII=")
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,*a,**kw): raise Gate("HTTP_REDIRECT_REJECTED")
@@ -24,8 +26,10 @@ class Ledger:
         return self.counts[kind]
 class Runner:
     def __init__(self,c,g,root):
-        self.c=c;self.g=g;self.root=root;self.ledger=Ledger(root,g,c["max_bytes"])
-        self.raw=root/"raw";need(not self.raw.exists(),"RAW_DESTINATION_EXISTS");self.raw.mkdir()
+        self.c=c;self.g=g;self.root=root;self.php_profile=qualify_config(c,g)
+        self.ledger=Ledger(root,g,c["max_bytes"])
+        parent=local(root/"raw",root);parent.mkdir(exist_ok=True)
+        self.raw=local(parent/"driver",root);need(not self.raw.exists(),"RAW_DESTINATION_EXISTS");self.raw.mkdir()
         self.results=[];self.tokens={};self.fixture=None
     def http(self,method,path,token=None,body=None,status=(200,),headers=None,upload=None,discard=False):
         need(method in ("GET","POST","PUT","DELETE") and path.startswith("/") and "://" not in path,"HTTP_PATTERN")
@@ -54,15 +58,15 @@ class Runner:
         return None if discard else value
     def php(self,mode,**args):
         need(mode in ("seed","snapshot","fail_asset","disable","projection"),"PHP_MODE")
-        exe=local(self.c["php"],self.root);script=local(self.c["bridge"],self.root)
-        need(exe.name.lower()=="php.exe" and digest(exe.read_bytes())==self.g["php_sha256"] and digest(script.read_bytes())==self.g["bridge_sha256"],"PHP_SOURCE_IDENTITY")
+        profile=qualify_config(self.c,self.g)
+        script=local(self.c["bridge"],self.root)
+        need(digest(script.read_bytes())==self.g["bridge_sha256"],"PHP_BRIDGE_SOURCE_IDENTITY")
         n=self.ledger.reserve("php")
         context=dict(config=self.c,grant=self.g,mode=mode,args=args,fixture=self.fixture)
-        env={k:v for k,v in os.environ.items() if k in ("SystemRoot","WINDIR")}
-        env.update(HOME=str(self.root/"home"),TEMP=str(self.root/"tmp"),TMP=str(self.root/"tmp"),APP_ENV="testing")
-        command=[str(exe),"-n","-d","extension_dir="+str(local(self.c["php_extension_dir"],self.root)),"-d","extension=pdo_mysql","-d","extension=openssl",str(script)]
+        env=private_environment(profile,self.root,os.environ.get("SystemRoot",""))
+        command=launch_arguments(profile,self.root)+[str(script)]
         # CLI operation only; never php -S, a daemon, shell, database or device launcher.
-        reply=subprocess.run(command,input=canonical(context),stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=self.root,env=env,timeout=30,shell=False)
+        reply=qualified_php_cli(profile,command,canonical(context),env,self.root,timeout=30)
         (self.raw/("php-"+str(n)+".stdout")).write_bytes(reply.stdout);(self.raw/("php-"+str(n)+".stderr")).write_bytes(reply.stderr)
         self.ledger.record("PHP_ENDED",number=n,exit=reply.returncode,stdout_sha256=digest(reply.stdout),stderr_sha256=digest(reply.stderr))
         need(reply.returncode==0,"PHP_BRIDGE_FAILED")
@@ -153,7 +157,7 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__);p.add_argument("action",choices=("inspect","execute"),nargs="?",default="inspect");p.add_argument("--config");p.add_argument("--grant");a=p.parse_args(argv)
     if a.action=="inspect":
         cases=json.loads(Path(__file__).with_name("scenarios.json").read_bytes())
-        print(json.dumps(dict(state="NOT_RUN_GATE_CLOSED",execute="DISABLED_WITHOUT_NEW_OWNER_AUTHORITY",scenarios=cases)));return 0
+        print(json.dumps(dict(state="NOT_RUN_GATE_CLOSED",execute="DISABLED_WITHOUT_NEW_OWNER_AUTHORITY",php_runtime="STATIC_INPUT_REQUIRED_LIVE_MODULE_LOAD_NOT_RUN",scenarios=cases)));return 0
     config=json.loads(local(a.config).read_bytes());grant=json.loads(local(a.grant).read_bytes());root=validate_authority(config,grant)
     lock=root/".mainline-running";handle=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY);os.close(handle)
     try:print(json.dumps(Runner(config,grant,root).run()));return 0
