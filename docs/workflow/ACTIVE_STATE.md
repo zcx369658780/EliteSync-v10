@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-29 Owner批准三项PHP原生阻断合并解除（CURRENT ENTRY）
+
+**`THREE_ISSUE_PHP_NATIVE_UNBLOCK_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / BOUNDED_READONLY_OS_DIAGNOSTICS_AUTHORIZED / CONDITIONAL_ONE_DB_FREE_PHP_PROBE_ONLY / LARAVEL_MARIADB_API_FLUTTER_RUNTIME_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN / V10.1.6_NOT_STARTED`**
+
+**Owner当前授权（2026-10-29）：** 已收到Astra对于3bed3662受控交付独立验收，批准“开始处理这三个问题”：追踪实际`HARDLINK_REJECTED`的已加载映像与System32只读硬链接边界；核查现有Microsoft签名运行库的合法来源/适用许可/版本与PHP ABI；将无DB PHP能力Probe从实际数据库实例资格解耦。**当前不是重跑已通过的Flutter11/11**，不是旧任务续跑，亦不授权任何系统/全局改动、未证明许可的DLL复制、下载或新的MariaDB/API/Flutter运行。
+
+**唯一正式新任务（已在main创建并全文回读）：** [V10_1_5_PHP_NATIVE_HARDLINK_REDISTRIBUTABLE_AND_DB_FREE_PROBE_CONSOLIDATED_TASK_20261029.md](../versions/v10.1.5/V10_1_5_PHP_NATIVE_HARDLINK_REDISTRIBUTABLE_AND_DB_FREE_PROBE_CONSOLIDATED_TASK_20261029.md)，Git Blob **`8b6bd9233a08a7f4d0986d6f592eb114dec63e04`**，任务创建Commit `643711ea1e6d1f1122c51d2555063330d26c74c2`。Codex需由Owner手动派发；本轮无任何本地任务执行、无新预算消费或研发候选。
+
+**唯一研发Parent：** `3bed366233a39472f8a9e905021788b8d29e12b3`，Root `ce901ec23e06e29552677afe34abe257012cdf89`，apps `8cd9b6df8e744c8fc9d4217412edce31795a318d`，services `eb47fe58d1167b1795224d4c748fb046042b9c92`。固定独立验收审查Blob `940d82b4367b75f81f5fd0555775a14e881b1b49`，审查Commit `7e11cabb7a9be8374ee8f5d5aeece80153057c13`。审查分支不是研发Parent。
+
+**本轮授权边界：** 单新task-owned受控根logical/allocated各≤1GiB、45分钟、同一ledger；只对当前控制进程自己的PID做最多2次只读加载映像定位；Microsoft原生候选来自上轮已具名LOCAL_ONLY来源，只有证明许可允许、准确Hash/版本/ABI/合规后才允许最多1次未改字节的私有副本，无证明则0次并STOP；仅在同样合格的私有PHP闭包和已修复OS只读观测下，允许最多1次、≤30秒**不接数据库、不启动Laravel/vendor/API**的PHP原生能力probe。纯Python/AST、合成负例及允许的PHP lint可有界执行。不许再启动Flutter/Widget/analyze，前轮3/3已耗尽；上轮A/B未用预算不延续。本轮不启动MariaDB/seed/迁移/HTTP API、G2/Gradle/APK/真机/RTC/Push，不修改系统ACL/安全策略/System32/WinSxS/PATH/php.ini，不下载/安装。
+
+**仍须保护与保持：** main唯一正式接受产品v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍`10 PARTIAL / 1 OPEN(AC05 RTC)`，没有整版功能接受、没有合main。旧Flutter6/6、3bed Flutter3/3、旧MariaDB2/2、G/APK各1/1与旧API余数不构成本任务运行额度；历史`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`和旧18、两ACL树、122原证、五根、527refs、3183 Seed、全部旧账本失败/dirty保持封存。
+
+**下一动作：** Owner手动将本正式三项合并任务交给Codex，在固定3bed sole Parent上集中修源码/仅按条件做有限观察，提交唯一非force候选、脱敏报告/manifest、回读GitHub后STOP交Astra独立验收。不可自行扩大至真正DB/E2E、重造授权、合并main或v10.1.6。
+
+下文为此前受控运行任务及更早主线/R1的完整历史当前态快照；旧“新任务尚未执行”等状态仅代表历史时点，以本段为准。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner批准进入同源受控软件真实验证（CURRENT ENTRY）
 
 **`CONTROLLED_PHP_MARIADB_API_E2E_AND_TARGETED_FLUTTER_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_BOUNDED_SYNTHETIC_SOFTWARE_RUNTIME_CONDITIONALLY_AUTHORIZED / NO_CODEX_RESULT_FOR_NEW_TASK / PHP_PRIVATE_DEPENDENCY_SOURCE_UNQUALIFIED / NO_DOWNLOAD_OR_GLOBAL_SYSTEM_CHANGE / APK_G2_GRADLE_DEVICE_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN / V10.1.6_NOT_STARTED`**
