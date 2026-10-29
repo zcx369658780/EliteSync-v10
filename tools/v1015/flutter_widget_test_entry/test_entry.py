@@ -20,6 +20,8 @@ import runtime
 
 LOCKS = json.loads(Path(__file__).with_name("locks.json").read_bytes())
 ORIGINAL = b"before\n"
+HISTORICAL_MALFORMED = "f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d08c393dad9"
+ERRATUM_REFERENCE = "f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d4d08c393dad9"
 PATCH = b"--- original\n+++ patched\n@@ -1 +1 @@\n-before\n+after\n"
 
 
@@ -85,11 +87,20 @@ class PureEntryTests(unittest.TestCase):
         before = list(self.root.rglob("*")); out = io.StringIO()
         self.assertEqual(0, entry.main([], out))
         self.assertIn("EXECUTE_DISABLED", out.getvalue())
-        self.assertIn("CONTRACT_SOURCE_HASH_MALFORMED", out.getvalue())
+        self.assertIn("LOCK_REFERENCE_FORMAT_VALID", out.getvalue())
+        self.assertIn("PATCH_INPUT_NOT_QUALIFIED", out.getvalue())
+        self.assertIn("SOURCE_BYTES_NOT_VERIFIED_THIS_TASK", out.getvalue())
+        self.assertIn("RUNTIME_NOT_AUTHORIZED", out.getvalue())
+        self.assertNotIn("CONTRACT_SOURCE_HASH_MALFORMED", out.getvalue())
         self.assertEqual(before, list(self.root.rglob("*")))
 
     def test_strict_contract_and_no_reference_hash_substitution(self):
-        self.rejects("CONTRACT_SOURCE_HASH_MALFORMED", lambda: core.validate_pins(LOCKS))
+        self.assertEqual(ERRATUM_REFERENCE, LOCKS["hook_original_sha256"])
+        self.assertEqual(64, len(LOCKS["hook_original_sha256"]))
+        core.validate_pins(LOCKS)
+        historical = dict(LOCKS, hook_original_sha256=HISTORICAL_MALFORMED)
+        self.assertEqual(62, len(historical["hook_original_sha256"]))
+        self.rejects("CONTRACT_SOURCE_HASH_MALFORMED", lambda: core.validate_pins(historical))
 
     def test_exact_diff_and_target(self):
         self.assertEqual(b"after\n", core.reproduce(ORIGINAL, PATCH, self.pins))
@@ -322,6 +333,31 @@ class PureEntryTests(unittest.TestCase):
         with self.assertRaises(RuntimeError): runtime.execute(self.target, grant, self.pins, launcher=fake)
         self.rejects("UNCERTAIN_RUNTIME_CONSUMED_NO_RETRY", lambda: runtime.execute(self.target, grant, self.pins, launcher=fake))
         self.assertEqual([1], calls)
+
+
+    def test_historical_malformed_inspect_still_reports_rejection(self):
+        from unittest.mock import patch
+        historical = dict(LOCKS, hook_original_sha256=HISTORICAL_MALFORMED)
+        out = io.StringIO()
+        with patch.object(Path, "read_bytes", return_value=core.canonical_json(historical)):
+            self.assertEqual(0, entry.main([], out))
+        self.assertIn("CONTRACT_SOURCE_HASH_MALFORMED", out.getvalue())
+        self.assertIn("LOCK_REFERENCE_INVALID", out.getvalue())
+        self.assertIn("EXECUTE_DISABLED", out.getvalue())
+
+    def test_missing_private_patch_cannot_prepare(self):
+        grant = self.grant()
+        Path(self.config["patch_diff"]).unlink()
+        self.rejects("INPUT_MISSING", lambda: core.prepare(self.config, grant, self.pins))
+        self.assertFalse(self.target.exists())
+
+    def test_zero_runtime_budget_is_not_a_grant(self):
+        plan = self.plan(); grant = self.grant(plan); grant["runtime_batches"] = 0
+        self.rejects("EXECUTE_DISABLED", lambda: core.grant_check(grant, plan["sha256"], "execute", self.pins))
+
+    def test_valid_hash_format_does_not_qualify_actual_source(self):
+        core.validate_pins(LOCKS)
+        self.rejects("SOURCE_HASH_MISMATCH", lambda: core.reproduce(ORIGINAL, PATCH, LOCKS))
 
 
 if __name__ == "__main__":

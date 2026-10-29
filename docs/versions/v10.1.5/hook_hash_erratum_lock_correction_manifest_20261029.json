@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "taskId": "V1015_HOOK_HASH_AUTHORITY_ERRATUM_20261029",
+  "attemptId": "attempt-0001",
+  "taskBlob": "a0eec472b58d53bc25084a395efc0748779d73f8",
+  "soleParent": "fd85ac2546afab61aaf51cdfac796cfb9bed31ac",
+  "parentRoot": "2aee0011e6279a44bdf71063edd659cb58a718b7",
+  "openingMain": "7b33f685df3704a384a3cf1f34c3f810e741aeac",
+  "openingMainRoot": "fc5ef9921d954ac4cd0ffc75cf698efe5a1318ed",
+  "activeBlob": "5d86c737194c7cc07521b690465a6a24f8eb645f",
+  "states": [
+    "ERRATUM_PUBLISHED",
+    "LOCK_FIELD_CORRECTED",
+    "PURE_TEST_PASS",
+    "PATCH_INPUT_NOT_QUALIFIED",
+    "PREPARE_NOT_RUN",
+    "EXECUTE_NOT_RUN"
+  ],
+  "sourceCheck": {
+    "taskBlob": "a0eec472b58d53bc25084a395efc0748779d73f8",
+    "oldLockBlob": "130b9fe79d326ae701bc0fad27096e6413508a6d",
+    "oldValue": "f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d08c393dad9",
+    "oldLength": 62,
+    "correctValue": "f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d4d08c393dad9",
+    "correctLength": 64,
+    "indexBlob": "657deb5e748a7d0d216b5b1c589ed3b86254734f",
+    "astraBlob": "715bc340042675df86a0c791c49eb1852bb9b5ce",
+    "agreement": true,
+    "localSourceBytesVerified": false
+  },
+  "lockFieldChanges": [
+    "hook_original_sha256"
+  ],
+  "allOtherLockValuesIdentical": true,
+  "sourceBytesVerifiedThisTask": false,
+  "privatePatchProvided": false,
+  "privatePatchUploaded": false,
+  "prepareReal": false,
+  "executeReal": false,
+  "tests": {
+    "classification": "PURE_TEST_PASS",
+    "executed": 42,
+    "passed": 42,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit": 0,
+    "preservedOriginalTestMethods": 38,
+    "astIdenticalOriginalMethods": 36,
+    "updatedForErratumMethods": [
+      "test_default_inspect_has_no_writes_or_process",
+      "test_strict_contract_and_no_reference_hash_substitution"
+    ],
+    "addedTestMethods": [
+      "test_historical_malformed_inspect_still_reports_rejection",
+      "test_missing_private_patch_cannot_prepare",
+      "test_valid_hash_format_does_not_qualify_actual_source",
+      "test_zero_runtime_budget_is_not_a_grant"
+    ],
+    "networkAndProcessApisRejected": true,
+    "coreRuntimeUnchanged": true,
+    "lockChangedFields": [
+      "hook_original_sha256"
+    ],
+    "sourceBytesVerified": false,
+    "patchInput": "PATCH_INPUT_NOT_QUALIFIED",
+    "prepare": "PREPARE_NOT_RUN",
+    "execute": "EXECUTE_NOT_RUN",
+    "syntax": [
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/config.example.json",
+        "blob": "6665e661910266b378eee55c278ab9e7030e838d",
+        "sha256": "dd445af5e28f19fd91a91d0724efa945e39d9791817eed2f7f6a4f14e4c08672",
+        "bytes": 583
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/core.py",
+        "blob": "d066d2587ba54cfa64a67de731d4cf14c3ca39f0",
+        "sha256": "8b4c3cbbd7f2db30e3fc4a6fbed72e7aa4fa0bbca6bfbd7f0acd5c35bb251652",
+        "bytes": 19938
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/entry.py",
+        "blob": "79e2bdb83e79d3b554039586f9e33fda1abd5228",
+        "sha256": "98cd55cf80ed984d7c9fbcdd905b1a2cebd1836783aaa17be3596fa0109b223c",
+        "bytes": 3228
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/locks.json",
+        "blob": "8268c95fba859aed2bfd13c88fc6d000ac78f0b2",
+        "sha256": "f0a25e98e305ebb4aedeed8a1979a94010d8a90728986c34c2bb64e90595f13b",
+        "bytes": 2711
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/README.md",
+        "blob": "2d039b98c1c0f5c3cf31be1c553491c1f6efeca4",
+        "sha256": "dad30a96b1065f5662f38f6b786042b7452aa1820703ca47b8495eeb8d3cf4a3",
+        "bytes": 9147
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/receipt.template.json",
+        "blob": "3237aedc6cd5396dbf1f004e1bd8ebc2ae45fe57",
+        "sha256": "191cc081b7a63577420fb268f8e09aacc930231c6deba06f6347406aa3ec47b5",
+        "bytes": 873
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/runtime.py",
+        "blob": "21257aaf0dfde45027b9040f975fedea168aac90",
+        "sha256": "23ac386dc06be795126f6c3f931114b55e175ea238938c0b3880d0f18fb18014",
+        "bytes": 11142
+      },
+      {
+        "path": "tools/v1015/flutter_widget_test_entry/test_entry.py",
+        "blob": "af42da2019e27d394609dcd86fa045fbfde3c0fc",
+        "sha256": "af5c004860a3eac852e2dbf442427bea94e0d1d65d9e6a75b932116fb107cdfe",
+        "bytes": 20777
+      }
+    ]
+  },
+  "originalFailure": {
+    "helperExit": 1,
+    "helperTests": 0,
+    "firstSuiteExecuted": 42,
+    "firstSuitePassed": 21,
+    "firstSuiteErrors": 21,
+    "firstSuiteExit": 1,
+    "rawRetained": "LOCAL_ONLY_RAW",
+    "failureReceiptSha256": "00d99d02d1035e7f15aa2396806f1a0f73ac6e8be412879f9d05dd0af011e516"
+  },
+  "files": [
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/config.example.json",
+      "mode": "100644",
+      "parent_blob": "49de964f5490502ef92a9ae7627fed7dba7083f8",
+      "final_blob": "6665e661910266b378eee55c278ab9e7030e838d",
+      "sha256": "dd445af5e28f19fd91a91d0724efa945e39d9791817eed2f7f6a4f14e4c08672",
+      "bytes": 583,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/entry.py",
+      "mode": "100644",
+      "parent_blob": "51ebf14655499ebb7462bbcf12e4f41a5402b8a2",
+      "final_blob": "79e2bdb83e79d3b554039586f9e33fda1abd5228",
+      "sha256": "98cd55cf80ed984d7c9fbcdd905b1a2cebd1836783aaa17be3596fa0109b223c",
+      "bytes": 3228,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/locks.json",
+      "mode": "100644",
+      "parent_blob": "130b9fe79d326ae701bc0fad27096e6413508a6d",
+      "final_blob": "8268c95fba859aed2bfd13c88fc6d000ac78f0b2",
+      "sha256": "f0a25e98e305ebb4aedeed8a1979a94010d8a90728986c34c2bb64e90595f13b",
+      "bytes": 2711,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/README.md",
+      "mode": "100644",
+      "parent_blob": "6056f57cd2b5ec21bfc5b6ad9236e028b185b79e",
+      "final_blob": "2d039b98c1c0f5c3cf31be1c553491c1f6efeca4",
+      "sha256": "dad30a96b1065f5662f38f6b786042b7452aa1820703ca47b8495eeb8d3cf4a3",
+      "bytes": 9147,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/receipt.template.json",
+      "mode": "100644",
+      "parent_blob": "b697770021d01b814154df02635a1256196e4514",
+      "final_blob": "3237aedc6cd5396dbf1f004e1bd8ebc2ae45fe57",
+      "sha256": "191cc081b7a63577420fb268f8e09aacc930231c6deba06f6347406aa3ec47b5",
+      "bytes": 873,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "tools/v1015/flutter_widget_test_entry/test_entry.py",
+      "mode": "100644",
+      "parent_blob": "6ea243bd7c3acbbf488c6a4f40fc5446acbaf930",
+      "final_blob": "af42da2019e27d394609dcd86fa045fbfde3c0fc",
+      "sha256": "af5c004860a3eac852e2dbf442427bea94e0d1d65d9e6a75b932116fb107cdfe",
+      "bytes": 20777,
+      "provenance": "FD85_EXACT_SOURCE_WITH_OWNER_ONE_FIELD_ERRATUM_RELATED_CHANGE"
+    },
+    {
+      "path": "docs/versions/v10.1.5/HOOK_SOURCE_HASH_AUTHORITY_ERRATUM_AND_LOCK_CORRECTION_REPORT_20261029.md",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": "0291ea5b873e0bef0c9798eee8ef8e8d74c1b29d",
+      "sha256": "78ea92f61bf355b439d63910233e5b834b1317eff06d954038eaed3bd461e7f3",
+      "bytes": 9026,
+      "provenance": "NEW_SANITIZED_ERRATUM_REPORT"
+    },
+    {
+      "path": "docs/versions/v10.1.5/hook_hash_erratum_lock_correction_manifest_20261029.json",
+      "mode": "100644",
+      "parent_blob": null,
+      "final_blob": null,
+      "identityResolution": "Self Blob supplied by independent final GitHub readback; no recursive self signature"
+    }
+  ],
+  "products": {
+    "appsTree": "798049a15eb33fec16acdd37d83a07af0ed181b5",
+    "appsBlobs": 729,
+    "servicesTree": "9bba2938aa41ad3eaee501ef88bfeecdee797591",
+    "servicesBlobs": 716,
+    "changed": false
+  },
+  "historicalReferences": {
+    "fd85Astra": "fefc0efb9c826e8136dfdf94f2fef08d4e1b8fc8",
+    "widgetIndex": "657deb5e748a7d0d216b5b1c589ed3b86254734f",
+    "widgetAstra": "715bc340042675df86a0c791c49eb1852bb9b5ce",
+    "oldContract": "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
+    "oldLock": "130b9fe79d326ae701bc0fad27096e6413508a6d",
+    "oldReport": "c736354f6d9f574fdce9fd5a908a70c46eea1ed0",
+    "oldManifest": "6a24e9fc084f58ba94499fca4199f5976e444cfa"
+  },
+  "budget": {
+    "realRuntime": 0,
+    "logicalLimit": 268435456,
+    "allocatedLimit": 268435456,
+    "historicalFlutter": "6/6 exhausted",
+    "historicalMariaDb": "2/2 exhausted",
+    "historicalApi": "1/2; no authorization"
+  },
+  "terminal": "V10.1.5_HOOK_HASH_ERRATUM_LOCK_CORRECTED_AWAITING_ASTRA_REVIEW",
+  "currentVersion": "PARTIAL_NOT_ACCEPTED / AC05_OPEN / NO_MAIN_INTEGRATION"
+}

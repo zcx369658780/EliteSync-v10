@@ -26,7 +26,9 @@ def main(argv=None, output=None):
             except Rejected as error:
                 problems.append(error.code)
             result = dict(state="INSPECT_ONLY_OR_PATCH_INPUT_REQUIRED", default="DRY_RUN_ONLY", execute="EXECUTE_DISABLED",
-                          diagnostics=problems, private_patch_source="LOCAL_ONLY_INPUT_REQUIRED", versions={k: pins[k] for k in ("flutter", "dart", "hooks_runner")})
+                          diagnostics=problems, lock_state="LOCK_REFERENCE_FORMAT_VALID" if not problems else "LOCK_REFERENCE_INVALID",
+                          patch_state="PATCH_INPUT_NOT_QUALIFIED", source_bytes="SOURCE_BYTES_NOT_VERIFIED_THIS_TASK",
+                          prepare="PREPARE_NOT_RUN", runtime_authority="RUNTIME_NOT_AUTHORIZED", private_patch_source="LOCAL_ONLY_INPUT_REQUIRED", versions={k: pins[k] for k in ("flutter", "dart", "hooks_runner")})
         elif args.command == "recover":
             plan, entries = recover(args.root)
             result = dict(state="RECOVERED_NO_LAUNCH", plan_sha256=plan["sha256"], entries=len(entries))

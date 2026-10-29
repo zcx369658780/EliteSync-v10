@@ -8,20 +8,32 @@ with `-I -B`. Run the script by its explicit local path, never through shell ali
 ## Current capability and blocker
 
 `INSPECT_ONLY_OR_PATCH_INPUT_REQUIRED / STATIC_OR_PURE_SELFTEST_ONLY`.
-The signed-off task text (Git Blob `0854b37fdc9f11c55088ed2d2f93816a27bc2fa9`)
-contains a **62-character** original Hook SHA256. `locks.json` deliberately preserves
-that contract value. `validate_pins` rejects it as `CONTRACT_SOURCE_HASH_MALFORMED`;
-neither prepare nor execute can use the shipped locks. A future corrected authority
-and independent review must resolve this discrepancy; do not silently substitute
-the separate 64-character accepted-reference field to obtain PASS.
+Owner erratum Git Blob `a0eec472b58d53bc25084a395efc0748779d73f8` supersedes
+**only the original Hook source SHA256 field** of historical task
+`0854b37fdc9f11c55088ed2d2f93816a27bc2fa9`:
+`SUPERSEDED_BY_OWNER_ERRATUM_FOR_HOOK_SOURCE_SHA256_ONLY`.
+The old 62-character value remains rejected and retained in immutable history:
+`f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d08c393dad9`.
+The corrected 64-character reference in `hook_original_sha256` is:
+`f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d4d08c393dad9`.
+It agrees with 5aa3 evidence index Blob `657deb5e748a7d0d216b5b1c589ed3b86254734f`,
+Astra Blob `715bc340042675df86a0c791c49eb1852bb9b5ce`, and the unchanged
+`accepted_reference_original_sha256`. All other lock fields, versions, permissions,
+closed-task lists and batch limits are unchanged. `contract_blob` deliberately still
+identifies the original contract; this later erratum is its one-field authority.
 
-The known local reference bytes were strictly reproduced **in memory only** against
-the separately accepted full reference hash. That proof is not a successful prepare
-or runtime qualification of this entry. The vendor patch is not included. Operators
-must supply the previously reviewed LOCAL_ONLY original and exact LF canonical diff;
-if unavailable, report `PRIVATE_PATCH_SOURCE_NOT_AVAILABLE`. The raw historical CRLF
-diff and explicit LF canonical representation have different hashes, both recorded
-in locks. No implicit newline conversion occurs in `reproduce`.
+Validating reference format is **not** source or patch qualification. Current state:
+`PATCH_INPUT_NOT_QUALIFIED / SOURCE_BYTES_NOT_VERIFIED_THIS_TASK /
+PREPARE_NOT_RUN / EXECUTE_NOT_RUN / RUNTIME_NOT_AUTHORIZED`.
+No historical LOCAL_ONLY source or patch bytes were read or reproduced in this
+erratum task. The prior memory-only reference-byte proof is historical evidence.
+The vendor patch is not included; supply the exact previously reviewed LOCAL_ONLY
+original plus canonical LF diff under a future authorized task. If unavailable,
+report `PRIVATE_PATCH_SOURCE_NOT_AVAILABLE`; a supplied missing path fails closed
+with `INPUT_MISSING`. Never manufacture or substitute a merely equivalent patch.
+The CRLF raw and LF canonical hashes remain distinct. Only a complete actual input
+hash chain can establish `SOURCE_AND_PATCH_INPUT_QUALIFIED`, and that would still
+not authorize prepare, real Flutter execution or functional acceptance.
 
 ## Interfaces
 
@@ -44,7 +56,7 @@ python -I -B <tool>/entry.py execute --root <same-prepared-root> --grant <new-gr
 - `prepare`: requires a new authority, explicit logical/allocated budget and absent
   task-owned target. Copy listed input bytes, apply strict single-file diff only to
   the private Hook copy, verify target hash, flush per-action ledger and manifests.
-  No real SDK preparation was performed under the present malformed contract.
+  No real SDK preparation was performed under this zero-runtime erratum authority.
 - `recover`: read the same root and ledger. Reject a copied/moved root, task mismatch,
   modified artifacts, broken chain or incomplete prepare. It never resumes copying
   or launches a process automatically. Incomplete/uncertain execution requires

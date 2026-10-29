@@ -9,5 +9,5 @@
   "max_allocated": 0,
   "patch_diff": null,
   "artifacts": [],
-  "note": "LOCAL_ONLY operator config: never commit real absolute paths. No download, package upgrade, or pub get fallback. Current source-hash contract is malformed; inspect explains the blocked state."
+  "note": "LOCAL_ONLY operator config: never commit real absolute paths. No download, package upgrade, or pub get fallback. One-field Owner erratum a0eec472b58d53bc25084a395efc0748779d73f8 corrects the reference hash only. Actual source and patch inputs remain unqualified; prepare/execute are not authorized by this task."
 }
