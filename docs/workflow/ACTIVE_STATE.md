@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-29 Owner正式授权 Hook SHA-256 合同单字段勘误与非生产锁定纠正（最新状态）
+
+**`HOOK_SOURCE_SHA256_AUTHORITY_ERRATUM_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_STARTED_THIS_TASK_BY_ASTRA / HISTORICAL_62_HEX_HASH_REJECTED / CORRECTED_64_HEX_REFERENCE_FROZEN / ONE_FIELD_AUTHORITY_ERRATUM_ONLY / FD85_TOOLING_LOCK_CORRECTION_AUTHORIZED / NO_NEW_FLUTTER_DART_DB_API_G2_GRADLE_DEVICE_RUNTIME / PRIOR_FLUTTER_BATCH_6_OF_6_EXHAUSTED / PRIOR_MARIADB_SERVER_2_OF_2_EXHAUSTED / AC01_11_10_PARTIAL_1_OPEN / HISTORICAL_ACL_OVERRUN_RETAINED / G2_READY_FOR_POPEN_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Owner最新决定（2026-10-29，本会话）：** 收到Astra对`fd85ac2546afab61aaf51cdfac796cfb9bed31ac`非生产Flutter入口/AC矩阵有界接受但因原Hook源码Hash只有62位而正确阻断的独立裁决后，明确同意一次**零真实Flutter/数据库/设备启动的权威单字段勘误、工具`locks.json`相应修复及纯逻辑回归**。旧正式任务和原错误Blob永久保留。本轮勘误是独立、后来授权的权威合同，仅覆盖原任务对`hooks_runner-1.0.1`的`hook_original_sha256`规范值，不扩大实际工具运行许可。旧62位值`f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d08c393dad9`更正为64位`f17707405ce4ba5b41feefecd5c54e9767971e27dbc0d3f5740d4d08c393dad9`；该值已与5aa前轮Astra报告/索引和fd85`accepted_reference_original_sha256`交叉核源，不冒充本轮现场重新hash本地原文件。
+
+**唯一正式任务（已在main创建、按路径读回）：** [V10_1_5_HOOK_SOURCE_SHA256_AUTHORITY_ERRATUM_AND_NONPRODUCTION_LOCK_CORRECTION_TASK_20261029.md](../versions/v10.1.5/V10_1_5_HOOK_SOURCE_SHA256_AUTHORITY_ERRATUM_AND_NONPRODUCTION_LOCK_CORRECTION_TASK_20261029.md)，Git Blob **`a0eec472b58d53bc25084a395efc0748779d73f8`**。独立task-owned目录与单一ledger；只可在`fd85`后继候选的`tools/v1015/flutter_widget_test_entry/`相关锁定/合成测试/说明中做与勘误直接相关的小修及有界纯逻辑回归，附两份脱敏报告/manifest，logical和allocated各≤256MiB；**不授权实际prepare SDK、execute、Flutter/Dart/analyze/test、DB/API、Gradle/G2、APK/真机、真实Push或系统/旧ACL实验**。工具必须继续默认`EXECUTE_DISABLED`，后续`SOURCE_AND_PATCH_INPUT_QUALIFIED`须真实独立验证LOCAL_ONLY源/补丁，不得由修正Hash长度自动推定。
+
+**固定源与审查：** 唯一研发Parent `fd85ac2546afab61aaf51cdfac796cfb9bed31ac`，Root `2aee0011e6279a44bdf71063edd659cb58a718b7`，apps `798049a15eb33fec16acdd37d83a07af0ed181b5`、services `9bba2938aa41ad3eaee501ef88bfeecdee797591`。最新Astra报告`astra/v10.1.5-fd85ac25-tooling-ac-gap-independent-review-20261029:docs/versions/v10.1.5/FD85AC25_REPRODUCIBLE_FLUTTER_ENTRY_AND_AC_GAP_ASTRA_REVIEW_20261029.md` Git Blob `fefc0efb9c826e8136dfdf94f2fef08d4e1b8fc8`，审查HEAD `4b6af5ff39344bce2f962c0ec023ff96991b63e0`。main唯一已接受产品仍v10.1.4 apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5各AC仍10PARTIAL/1OPEN（AC05 RTC），不是完成率。
+
+**持续冻结历史边界：** 已封存`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`跨尝试ACL事故和旧18、两实验根、122原证、五根、527refs、3183 Seed/旧failure/claims/ledger/dirty根全部不可变；旧Flutter6/6、MariaDB2/2耗尽，API历史1/2余额无本任务许可；旧APK/G各1/1耗尽、旧A关闭，G2仍未授权。RTC/AEC、真实15/30天物理经过/密文清理、Keystore、Push、同源APP/API/DB、Gradle/G2/设备/系统权限仍`NOT_RUN/NOT_PROVEN`，不得借Hash勘误自动关闭整版或`AC05_OPEN`。
+
+**唯一STOP：** Owner手动派发任务，Codex从真实新Owner勘误及固定fd85 Parent开工，单一候选交付非生产Hash/说明/自检修复和两份报告/manifest，GitHub回读完整身份后STOP等待Astra独立验收。发布文档不是派发/执行，也不自动授权后继任务、main合并、G2或者v10.1.6。以下历史main状态全文保持，只是过往阶段快照。
+
+---
+
 # EliteSync v10.1.5｜2026-10-29 Owner批准Flutter可复现测试入口固化＋AC01-11验收差距收口（最新入口）
 
 **`REPRODUCIBLE_FLUTTER_TEST_ENTRY_AND_AC_GAP_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_STARTED_BY_ASTRA / NONPRODUCTION_TOOLING_IMPLEMENTATION_AUTHORIZED / NO_NEW_FLUTTER_OR_MARIADB_RUNTIME_BUDGET / AC01_11_EVIDENCE_MATRIX_REQUIRED / F2_RTC_F3_OFFLINE_F4_NOTIFICATION_FROZEN_NUMBERING / 5AA3_BOUNDED_WIDGET_PRIVATE_PATCH_ACCEPTED_WITH_OBSERVATIONS / PRIOR_FLUTTER_BATCH_6_OF_6_EXHAUSTED / PRIOR_MARIADB_SERVER_2_OF_2_EXHAUSTED / G2_READY_FOR_POPEN_FALSE / HISTORICAL_ACL_OVERRUN_RETAINED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
