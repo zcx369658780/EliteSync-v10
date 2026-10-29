@@ -26,7 +26,7 @@
 
 ### 必须在下一次真实运行前同版修复的有界问题（R1-01）
 
-`tools/v1015/mainline_e2e/run.py`的`Runner.php()`使用`php.exe -n`，只显式加载`pdo_mysql`、`openssl`；但它启动真正的Laravel并通过`tests/E2E/bridge.php`走`LiveConsentService::transition`及`DeviceSessions::issue`。后者本候选源码明确使用`mb_substr`；Laravel12运行需求包括`Mbstring`、`Fileinfo`、`DOM`、`XML`、`cURL`等扩展。PHP `-n`忽略php.ini，当前驱动没有确保这些非默认扩展已启用。**因此不能以纯PHP语法/模拟资格通过判定这个Windows CLI桥接入口可成功bootstrap/seed。** 这是源到运行合同的物质缺口，不是此前Hook/ACL历史事故，也不等于已实际观察到CLI失败。
+`tools/v1015/mainline_e2e/run.py`的`Runner.php()`使用`php.exe -n`，只显式加载`pdo_mysql`、`openssl`；但它启动真正的Laravel并通过`tests/E2E/bridge.php`走`LiveConsentService::transition`及`DeviceSessions::issue`。后者本候选源码明确使用`mb_substr`；本仓`composer.json`要求Laravel `^11.31`；其运行依赖包括`Mbstring`、`Fileinfo`、`DOM`、`XML`、`cURL`等扩展。PHP `-n`忽略php.ini，当前驱动没有确保这些非默认扩展已启用。**因此不能以纯PHP语法/模拟资格通过判定这个Windows CLI桥接入口可成功bootstrap/seed。** 这是源到运行合同的物质缺口，不是此前Hook/ACL历史事故，也不等于已实际观察到CLI失败。
 
 修复限定：在当前任务已有E2E工具及必要非生产文档/纯契约测试范围，明确私有PHP二进制、所需扩展/DLL、实际加载状态和Hash/路径校验，保持`-n`的无隐式全局配置原则；为启动前的扩展闭包建立fail-closed的资格检验，且保证CLI与PHP API进程使用兼容的已核环境。不可偷偷放宽Source/DB/Owner真实运行门禁，不得据此启动PHP/Laravel/服务或创建新运行预算。该单项与任何从安全定点复查找到的直接回归合并为**一次同版有界R1**，无需另一轮纯环境治理或全部历史测试。
 
