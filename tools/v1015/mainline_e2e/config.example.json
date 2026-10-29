@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "task_root": null,
+  "api": "http://127.0.0.1:43359/api/v1",
+  "database": "elitesync_v1015_mainline_e2e_20261029",
+  "db_port": 43349,
+  "db_username": "v1015_e2e",
+  "db_password": null,
+  "datadir": null,
+  "server_id": null,
+  "source_root": null,
+  "source_files": {},
+  "source_binding": {
+    "commit": null,
+    "apps_tree": null,
+    "services_tree": null,
+    "apk_sha256": null
+  },
+  "fixture_password": null,
+  "app_key": null,
+  "php": null,
+  "php_extension_dir": null,
+  "bridge": null,
+  "synthetic_mp4": null,
+  "app_receipts": null,
+  "max_bytes": 0,
+  "execute": "NEW_OWNER_AUTHORIZATION_REQUIRED",
+  "note": "LOCAL_ONLY config only. Private source/vendor/runtime and future instance must be qualified before execution. No services/builds/devices are started by run.py."
+}

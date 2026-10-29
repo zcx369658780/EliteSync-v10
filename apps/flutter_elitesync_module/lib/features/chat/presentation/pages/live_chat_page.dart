@@ -112,7 +112,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _socket?.cancel();
       _socket = null;
       _foreground = false;
-      _reject('返回应用后需联网重新验证会话。', preserveAttempt: _picking);
+      // Cancellation does not prove that the server did not commit this POST.
+      _reject('返回应用后需联网重新验证会话。',
+          preserveAttempt: _picking || _attempt != null);
     }
   }
 
@@ -275,22 +277,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   Future<void> _post(SessionState session, int epoch, {int? asset}) async {
     if (!_current(session, epoch) || _offline) return;
-    final text = _text.text.trim();
-    if (text.isEmpty && asset == null) return;
-    final attachments = asset == null ? <int>[] : [asset];
-    final attempt =
-        _attempt?.hasSamePayload(
-              peerUserId: widget.peerId,
-              content: text,
-              attachmentIds: attachments,
-            ) ==
-            true
-        ? _attempt!
-        : ChatSendAttempt.create(
-            peerUserId: widget.peerId,
-            content: text,
-            attachmentIds: attachments,
-          );
+    // An unconfirmed POST owns its immutable payload and idempotency key.
+    // A changed controller value must never replace that logical attempt.
+    final attempt = _attempt ?? ChatSendAttempt.create(
+      peerUserId: widget.peerId,
+      content: _text.text.trim(),
+      attachmentIds: asset == null ? <int>[] : [asset],
+    );
+    if (attempt.content.isEmpty && attempt.attachmentIds.isEmpty) return;
     _attempt = attempt;
     _retryAsset = asset;
     setState(() => _sendStatus = '发送中，等待服务器确认');
@@ -303,10 +297,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             extra: {requestSessionGuardKey: () => _current(session, epoch)},
           ),
           body: {
-            'receiver_id': widget.peerId,
-            'content': text,
+            'receiver_id': attempt.peerUserId,
+            'content': attempt.content,
             'client_message_id': attempt.clientMessageId,
-            if (asset != null) 'attachment_ids': [asset],
+            if (attempt.attachmentIds.isNotEmpty)
+              'attachment_ids': attempt.attachmentIds,
           },
         );
     if (!_current(session, epoch)) return;
@@ -370,7 +365,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   Future<void> _video() => _attachment(ChatAttachmentKind.video);
 
   Future<void> _attachment(ChatAttachmentKind kind) async {
-    if (_busy || !mounted || _offline || _sessionChanged || _timeLocked) return;
+    if (_busy || _attempt != null || !mounted || _offline || _sessionChanged || _timeLocked) return;
     final session = ref.read(sessionProvider).asData?.value;
     if (session == null || !session.isLoggedIn) {
       _reject('附件上传或处理未完成，仅支持25MiB内、30秒内的MP4/H.264视频或图片。');
@@ -590,24 +585,24 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             child: Row(
               children: [
                 IconButton(
-                  onPressed: _busy || _offline || _timeLocked ? null : _picture,
+                  onPressed: _busy || _attempt != null || _offline || _timeLocked ? null : _picture,
                   icon: const Icon(Icons.image),
                   tooltip: '发送图片',
                 ),
                 IconButton(
-                  onPressed: _busy || _offline || _timeLocked ? null : _video,
+                  onPressed: _busy || _attempt != null || _offline || _timeLocked ? null : _video,
                   icon: const Icon(Icons.video_library_outlined),
                   tooltip: '发送短视频',
                 ),
                 Expanded(
                   child: TextField(
-                    readOnly: _offline || _timeLocked,
+                    readOnly: _busy || _attempt != null || _offline || _timeLocked,
                     controller: _text,
                     decoration: const InputDecoration(hintText: '输入消息'),
                   ),
                 ),
                 TextButton(
-                  onPressed: _busy || _offline || _timeLocked
+                  onPressed: _busy || _attempt != null || _offline || _timeLocked
                       ? null
                       : () => _send(),
                   child: const Text('发送'),

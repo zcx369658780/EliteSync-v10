@@ -1,0 +1,20 @@
+{
+  "scenario": "unknown_edit_retry",
+  "origin": "ACTUAL_APP_OBSERVATION",
+  "source_binding": {
+    "commit": null,
+    "apps_tree": null,
+    "services_tree": null,
+    "apk_sha256": null
+  },
+  "status": "NOT_RUN_GATE_CLOSED",
+  "artifact": null,
+  "artifact_sha256": null,
+  "observed_account_id": null,
+  "client_message_id": null,
+  "observed_state": null,
+  "online_permission_result": null,
+  "clock_evidence": "NOT_PROVEN",
+  "physical_cleanup": "NOT_PROVEN",
+  "no_private_payload_in_public_receipt": true
+}

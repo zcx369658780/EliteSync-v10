@@ -19,6 +19,12 @@ final class LiveConsentService
             return false;
         }
         if (app()->environment('testing')) {
+            // Only the explicit E2E test bootstrap installs this live-instance
+            // qualifier. Public runtime and every business authorization stay unchanged.
+            if (app()->bound('v1015.mainline-e2e.instance-qualified')) {
+                $qualifier = app('v1015.mainline-e2e.instance-qualified');
+                return is_callable($qualifier) && $qualifier() === true;
+            }
             if (DB::connection()->getDriverName() === 'sqlite') {
                 return true;
             }

@@ -1,0 +1,432 @@
+{
+  "schema": 1,
+  "task_blob": "1db7fc7eaadcea172cc52016904836bd71a0b90d",
+  "parent": "0577f030f6e3bbecae611433daa226719a7cc4b0",
+  "products": {
+    "apps": {
+      "tree": "03ba3602a7dc807bf963264e24f33eed01c231c8",
+      "blobs": 729
+    },
+    "services": {
+      "tree": "32229dce88cf497fea43904fea3dbb69a9410b8f",
+      "blobs": 720
+    }
+  },
+  "rows": [
+    {
+      "ac_id": "AC-10.1.5-02",
+      "modules": [
+        "F1"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+          "parent_blob": "76745e44e53b27c26f97b7365f8232892920ab07",
+          "final_blob": "a55c358c0d2b674e67c88ab9df834436fc2a6f35",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+          "parent_blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+          "final_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "parent_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "final_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+          "parent_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "final_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "message_unknown_retry",
+        "unknown_edit_retry"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Current-source real APP retry/status and response-loss journey NOT_RUN; local ack suppression is not packet loss.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-03",
+      "modules": [
+        "F1",
+        "F3",
+        "F4"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+          "parent_blob": "76745e44e53b27c26f97b7365f8232892920ab07",
+          "final_blob": "a55c358c0d2b674e67c88ab9df834436fc2a6f35",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+          "parent_blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+          "final_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "parent_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "final_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+          "parent_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "final_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "parent_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "final_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+          "parent_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "final_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+          "parent_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "final_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+          "parent_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "final_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+          "parent_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "final_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+          "parent_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "final_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "revocation_block",
+        "revocation_mc",
+        "revocation_cn",
+        "revocation_disabled",
+        "account_switch_late_http_ws"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Real APP switch/late response and actual WS are not executed; current WS backend route is a stub.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-04",
+      "modules": [
+        "F1"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+          "parent_blob": "76745e44e53b27c26f97b7365f8232892920ab07",
+          "final_blob": "a55c358c0d2b674e67c88ab9df834436fc2a6f35",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+          "parent_blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+          "final_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "parent_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "final_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+          "parent_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "final_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "image_failed_replay",
+        "private_video_range",
+        "media_picker_player"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Real picker/player/range/restart NOT_RUN; qualified MP4 must be supplied, never fake READY.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-06",
+      "modules": [
+        "F3"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "parent_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "final_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+          "parent_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "final_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+          "parent_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "final_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "trusted_login_refresh",
+        "offline_restart_readonly"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Synthetic/receipt boundaries do not prove physical15/30 elapsed time.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-07",
+      "modules": [
+        "F3"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "parent_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "final_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+          "parent_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "final_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+          "parent_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "final_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "offline_restart_readonly",
+        "cleanup_failure"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Actual Keystore/ciphertext and owned physical deletion/failure remain NOT_PROVEN.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-08",
+      "modules": [
+        "F4"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+          "parent_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "final_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+          "parent_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "final_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+          "parent_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "final_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "notification_privacy_preferences",
+        "old_notification_navigation"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Actual OS permission and async navigation remain NOT_RUN; no cached navigation grant.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-09",
+      "modules": [
+        "F4"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+          "parent_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "final_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+          "parent_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "final_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+          "parent_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "final_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "notification_privacy_preferences"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "TEST_ONLY is not system background or lockscreen delivery; REAL_PUSH_PROVIDER_PENDING.",
+      "owner_new_runtime_required": true
+    },
+    {
+      "ac_id": "AC-10.1.5-10",
+      "modules": [
+        "F1",
+        "F3",
+        "F4"
+      ],
+      "source": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+          "parent_blob": "76745e44e53b27c26f97b7365f8232892920ab07",
+          "final_blob": "a55c358c0d2b674e67c88ab9df834436fc2a6f35",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+          "parent_blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+          "final_blob": "f7ba9db3f901ae3dc84479a7a90dbd55dcac596d",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "parent_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "final_blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+          "parent_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "final_blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "parent_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "final_blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+          "parent_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "final_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+          "parent_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "final_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "mode": "100644"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+          "parent_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "final_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+          "parent_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "final_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "mode": "100644"
+        },
+        {
+          "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+          "parent_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "final_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+          "mode": "100644"
+        }
+      ],
+      "scenarios": [
+        "message_unknown_retry",
+        "image_failed_replay",
+        "private_video_range",
+        "revocation_block",
+        "revocation_mc",
+        "revocation_cn",
+        "revocation_disabled",
+        "trusted_login_refresh",
+        "notification_privacy_preferences",
+        "unknown_edit_retry",
+        "account_switch_late_http_ws",
+        "media_picker_player",
+        "offline_restart_readonly",
+        "cleanup_failure",
+        "old_notification_navigation"
+      ],
+      "source_review": "BOUNDED_SOURCE_AND_HARNESS_IMPLEMENTED",
+      "pure_checks": "15_PYTHON_AND_14_PHP_CONTRACT_ONLY",
+      "historical": "MariaDB23/152 and private-runner77 accepted under prior fixed identities; not rerun",
+      "same_source_e2e": "NOT_RUN_GATE_CLOSED",
+      "current_status": "PARTIAL",
+      "unproven": "Same-source APK/API/DB whole journey and build/restart not executed; G2/Gradle remain closed.",
+      "owner_new_runtime_required": true
+    }
+  ],
+  "rtc_ac05": "OPEN",
+  "f5": "UNKNOWN_OR_OUT_OF_SCOPE",
+  "no_false_e2e_pass": true
+}

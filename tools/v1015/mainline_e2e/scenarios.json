@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "source_parent": "0577f030f6e3bbecae611433daa226719a7cc4b0",
+  "no_false_e2e_pass": true,
+  "cases": [
+    {
+      "id": "message_unknown_retry",
+      "ac": [
+        "AC02",
+        "AC03"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Same key and payload; suppressed local ack; replay identity, 409 changed payload and unique persistence. No physical packet loss claim.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "image_failed_replay",
+      "ac": [
+        "AC02",
+        "AC04"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Upload task-owned 1px PNG, link once, fail owned asset, replay original message; denied content.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "private_video_range",
+      "ac": [
+        "AC04"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Qualified synthetic <=128KiB MP4 supplied by future operator; actual upload/ready, GET Range206 and actual APP player observation required.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "revocation_block",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Block recipient: no replay, old media denied and notification presentation unavailable.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "revocation_mc",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Consent revoke with current revision; same-key replay/media/old notice fail closed.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "revocation_cn",
+      "ac": [
+        "AC03",
+        "AC04",
+        "AC08"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Connection close revokes downstream consent; replay/media/current notice denied.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "revocation_disabled",
+      "ac": [
+        "AC03"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "Disable fixture sender, refuse old token and current recipient media.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "trusted_login_refresh",
+      "ac": [
+        "AC06"
+      ],
+      "requires": [
+        "API",
+        "DB"
+      ],
+      "contract": "Actual password login T0 and 15/30-day receipt; refresh keeps identity/deadlines, old access token rejected. No elapsed-time claim.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "notification_privacy_preferences",
+      "ac": [
+        "AC08",
+        "AC09"
+      ],
+      "requires": [
+        "API",
+        "DB",
+        "APP"
+      ],
+      "contract": "TEST_ONLY device registration, exact minimal projection, category/silent suppression, permission-denied422 does not block profile.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "unknown_edit_retry",
+      "ac": [
+        "AC02"
+      ],
+      "requires": [
+        "APP"
+      ],
+      "contract": "Actual unresolved send: editor/attachment/send locked, original key/payload retried, confirmed only by current API acknowledgement.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "account_switch_late_http_ws",
+      "ac": [
+        "AC03"
+      ],
+      "requires": [
+        "APP",
+        "API"
+      ],
+      "contract": "Hold old HTTP/WS response, change account/revoke epoch, release; no old data/navigation. Current WS HTTP endpoint is stub501/503; real WS transport not provided by this harness.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "media_picker_player",
+      "ac": [
+        "AC04"
+      ],
+      "requires": [
+        "APP",
+        "API",
+        "DB"
+      ],
+      "contract": "Same version picker/upload/player/read after restart; actual screenshot/trace and200/206/denial.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "offline_restart_readonly",
+      "ac": [
+        "AC06",
+        "AC07"
+      ],
+      "requires": [
+        "APP",
+        "device"
+      ],
+      "contract": "Current cold-start lock intentional; verified same-process offline readonly, no send/write; trusted T0. Physical15/30 days still unproven.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "cleanup_failure",
+      "ac": [
+        "AC07"
+      ],
+      "requires": [
+        "APP",
+        "device"
+      ],
+      "contract": "Only new sample ciphertext; Keystore and actual deletion/failure receipt. PURGE_DUE is not completion.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "old_notification_navigation",
+      "ac": [
+        "AC08"
+      ],
+      "requires": [
+        "APP",
+        "API"
+      ],
+      "contract": "Current notice and destination authorization before and after await; account switch prevents navigation.",
+      "current_result": "NOT_RUN_GATE_CLOSED"
+    }
+  ]
+}

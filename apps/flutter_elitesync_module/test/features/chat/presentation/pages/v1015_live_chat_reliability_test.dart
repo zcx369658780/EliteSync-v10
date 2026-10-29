@@ -213,6 +213,88 @@ Future<void> _dispose(WidgetTester tester, _Fixture f) async {
 
 void main() {
   testWidgets(
+    'pending POST survives pause and resume with the same immutable retry',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.pendingFirstPost = Completer();
+      await tester.enterText(find.byType(TextField), '暂停前发送的合成消息');
+      await tester.tap(find.text('发送'));
+      await tester.pump();
+      final original = Map<String, dynamic>.from(f.api.posts.single);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pump();
+      expect(find.byType(TextField), findsNothing);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      f.api.pendingFirstPost!.complete(NetworkFailure(
+        message: 'synthetic response lost after pause',
+        error: TimeoutException('synthetic'),
+      ));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('使用原消息编号重试'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(2));
+      expect(f.api.posts.last, original);
+      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      await _dispose(tester, f);
+    },
+  );
+
+
+  testWidgets(
+    'unknown result keeps immutable payload even if the controller is changed',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.timeoutFirstSend = true;
+      await tester.enterText(find.byType(TextField), '原始合成消息');
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      final original = Map<String, dynamic>.from(f.api.posts.single);
+      final input = tester.widget<TextField>(find.byType(TextField));
+      expect(input.readOnly, isTrue);
+      expect(tester.widget<TextButton>(find.widgetWithText(TextButton, '发送')).onPressed, isNull);
+      expect(tester.widget<IconButton>(find.byTooltip('发送图片')).onPressed, isNull);
+      expect(tester.widget<IconButton>(find.byTooltip('发送短视频')).onPressed, isNull);
+      // Simulate a programmatic controller write that bypasses the read-only UI.
+      input.controller!.text = '不得取代未确认尝试';
+      await tester.tap(find.text('使用原消息编号重试'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(2));
+      expect(f.api.posts.last, original);
+      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
+      await _dispose(tester, f);
+    },
+  );
+
+  testWidgets(
+    'unknown media result retries the same attachment without another upload',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.timeoutFirstSend = true;
+      f.gateway.picked.complete(const ChatPickedMedia(path: 'synthetic.png', name: 'synthetic.png'));
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      expect(f.gateway.uploads, 1);
+      final original = Map<String, dynamic>.from(f.api.posts.single);
+      expect(original['attachment_ids'], [31]);
+      expect(tester.widget<IconButton>(find.byTooltip('发送图片')).onPressed, isNull);
+      tester.widget<TextField>(find.byType(TextField)).controller!.text = '不得替换附件请求';
+      await tester.tap(find.text('使用原消息编号重试'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(2));
+      expect(f.api.posts.last, original);
+      expect(f.gateway.uploads, 1);
+      await _dispose(tester, f);
+    },
+  );
+
+
+  testWidgets(
     'current-authority read during pending POST cannot replace retry identity before receive timeout',
     (tester) async {
       final f = await _mount(tester);
