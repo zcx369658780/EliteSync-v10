@@ -1,0 +1,705 @@
+{
+  "schema": 1,
+  "task_blob": "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
+  "source_parent": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+  "source_root": "2db8c8c509ffebb3b02169c23b99b34261f0424a",
+  "apps_tree": "798049a15eb33fec16acdd37d83a07af0ed181b5",
+  "services_tree": "9bba2938aa41ad3eaee501ef88bfeecdee797591",
+  "frozen_modules": {
+    "F1": "消息可靠性",
+    "F2": "RTC稳定性与音质",
+    "F3": "可信登录时间、离线密文和清理",
+    "F4": "通知偏好、权限与Push预留",
+    "F5": "具名旧资产判断"
+  },
+  "evidence_catalog": {
+    "plan": {
+      "blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "kind": "FROZEN_ACCEPTANCE_CONTRACT"
+    },
+    "widget": {
+      "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+      "report_blob": "f85cddc77ec32c60ffd4726e59bb1e4dc6de1530",
+      "index_blob": "657deb5e748a7d0d216b5b1c589ed3b86254734f",
+      "astra_blob": "715bc340042675df86a0c791c49eb1852bb9b5ce",
+      "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+      "result": "11 files / 77 unique executed / 77 passed / 0 failed / 0 skipped; private patched runner; prior task only",
+      "scope": "Flutter engine unit/widget with Mock business boundaries; Astra source/index review, no independent Windows rerun"
+    },
+    "mariadb": {
+      "commit": "15b23d8cacfa1429f6f77b8d57a86fff6b827673",
+      "report_blob": "5ec34d508f0e28c887b7527edc166aaf085d530b",
+      "index_blob": "cc534ec2d621e7e6e40ca957b65dab6b1d255fec",
+      "astra_blob": "dc5a6d21e9c22f8e28b81cec7317aa740c9bd8db",
+      "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+      "result": "MariaDB 10.11.19; 23 Feature / 152 assertions; two connections and loopback HTTP; prior task only",
+      "scope": "Real isolated synthetic DB/API; not APP E2E, physical elapsed time or observable lock wait"
+    },
+    "software": {
+      "blob": "b7b79462fea3f860dfe6c1685f641cdab8eb6529",
+      "kind": "PRIOR_SOFTWARE_IMPLEMENTATION_REPORT",
+      "evidence_class": "DIRECT_GITHUB_OBJECT"
+    },
+    "rtc": {
+      "commit": "7773b98986d9c9395841623e6ef244379fddc865",
+      "astra_blob": "5e5851cc54185d488490706e99deaed57cb67802",
+      "report_blob": "8c7184384be6c8f8fef76b9c27df9385131de304",
+      "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+      "scope": "Historical different apps Tree db3a2936ee37bf9610053fb8fd67b360fc377a94; bounded actual phone plus synthetic PC peer, no transfer to current candidate"
+    },
+    "rtc_race": {
+      "astra_blob": "d66c5b0ce1c4999698e56d2075e9f43b23d698c5",
+      "evidence_class": "DIRECT_GITHUB_OBJECT",
+      "scope": "Historical cancellation race source/test review; not current APK media proof"
+    }
+  },
+  "rows": [
+    {
+      "ac_id": "AC-10.1.5-01",
+      "frozen_endpoint": "真实main/两子Tree来源、受控开发树、独立空库/卷/有效DB选择器与事前后保护对象身份可核；无历史数据误清或隐私原件发布。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Support/PrivateMariaDbQualification.php",
+          "mode": "100644",
+          "blob": "a4682f9c9870b1a4cdaa6a9bdfd24f551a07c48f",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget",
+        "plan"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Current candidate immutable Parent/Root/products fixed; accepted main products remain v10.1.4.",
+        "Prior empty task-owned MariaDB selector/live identity/grants qualification accepted. This task writes tools/docs only in one new ledger-owned root."
+      ],
+      "unproven_real_behaviors": [
+        "No new full identity/ACL re-audit of old 18, 122 items, five roots, 527 refs or Seed3183. No production DB/device qualification.",
+        "No-touch plus named old receipt hashes is not whole-disk absence-of-side-effects proof. Protected evidence cannot become test fixtures."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "No-touch plus named old receipt hashes is not whole-disk absence-of-side-effects proof. Protected evidence cannot become test fixtures.",
+      "external_gate": false,
+      "next_minimum_legal_verification": "Before any later real run, bind that new task root, port/datadir/selector and input manifest to immutable source; inspect only specifically authorized roots.",
+      "proposed_new_budget": "Fresh scoped qualification only; no historical DB/Flutter attempt refund.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-02",
+      "frozen_endpoint": "两虚构有权账号在实际APP/API/DB走消息发收、重试/相同键回放/不同payload冲突/重复通知、超时与重连；服务端每逻辑消息至多一次，用户看到的状态可解释，不以mock代替。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "mode": "100644",
+          "blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
+          "mode": "100644",
+          "blob": "1cdaa400d7b8e4ba57eab49a2245f7edbd6ec3b5",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+          "mode": "100644",
+          "blob": "4b6943fc16baa72e37ebe130f8063f4ddc6b1b35",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Real MariaDB same-key/same-payload replay, differing payload409, unique message/notification and two-connection same-key200 supported.",
+        "Flutter unknown-result/manual retry and late confirmation paths have Mock Widget evidence."
+      ],
+      "unproven_real_behaviors": [
+        "Same current APP to real API to DB retry/timeout/reconnect journey not bound. Discarded received HTTP response is not physical packet-loss proof.",
+        "Two connections do not prove measured lock waiting/serialization timings; message/attachment/notification and displayed status must be checked in the same journey to avoid false send success."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Two connections do not prove measured lock waiting/serialization timings; message/attachment/notification and displayed status must be checked in the same journey to avoid false send success.",
+      "external_gate": false,
+      "next_minimum_legal_verification": "After separately qualified build and fresh isolated runtime authority: one synthetic sender/receiver journey, response suppression at controlled boundary, same key retry, payload409, DB counts and UI state bound to one source/APK.",
+      "proposed_new_budget": "Propose one scoped DB/API instance and one journey plus one fail-closed negative; exact launch limits require new frozen task.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-03",
+      "frozen_endpoint": "Block/MC撤权/CN关闭/禁用、旧JWT/旧room/media URL、用户切换、掉线旧结果及并发失败均fail-closed，无新消息或附件越权、旧资料重显；必要受影响真实MariaDB并发验权有精确时序。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1",
+        "F2",
+        "F3",
+        "F4"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Services/ConversationCapabilityService.php",
+          "mode": "100644",
+          "blob": "e2ab7e3abc542b061c98d379e8e2d8570ff4d972",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+          "mode": "100644",
+          "blob": "e2863033c03549cad40c5fdf9cbe7b2d5f9ad8b5",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+          "mode": "100644",
+          "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+          "mode": "100644",
+          "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+          "mode": "100644",
+          "blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget",
+        "rtc"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "DB/API Block/MC revoke/CN close replay/read denials; old token and owner isolation tested.",
+        "Widget session/token/epoch late-response, old socket signal and account-switch protections accepted as Mock evidence."
+      ],
+      "unproven_real_behaviors": [
+        "Current APP/API/DB/WS concurrency during Block/disable/revoke/account switch lacks a single observed timeline. Old media/room tokens require current source-specific use-point reauthorization.",
+        "Exact lock timing and no old private data redisplay across real account transition remain unproven; historical RTC403 applies only to its fixed old media token identity."
+      ],
+      "risk_severity": "CRITICAL",
+      "privacy_authorization_impact": "Exact lock timing and no old private data redisplay across real account transition remain unproven; historical RTC403 applies only to its fixed old media token identity.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "Use synthetic accounts, pause one in-flight response, revoke/switch, resume, inspect visible UI plus fresh API and committed counts; separately schedule real RTC token timing only under explicit device/media authority.",
+      "proposed_new_budget": "New DB/API/WS and possibly build/device grants required; do not repeat all existing pure/Feature tests.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-04",
+      "frozen_endpoint": "已授权相同版本客户端发送/持久重读/受控重启；媒体200/206、撤权后的404/403等实际响应及错误提示相符，失败素材不可假READY；不重跑全部v10.0.9。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1"
+      ],
+      "current_sources": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/media/media_url_resolver.dart",
+          "mode": "100644",
+          "blob": "dd110fc66bf744e9e85b7736c1138b4c7d10049d",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/data/gateway/chat_media_gateway.dart",
+          "mode": "100644",
+          "blob": "223ead3224bcf601873968361686c243f52c3e81",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+          "mode": "100644",
+          "blob": "40abdfdaaa6f17fdc850183d519ae60eb348c16a",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "software",
+        "rtc"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Fixed source uses current-authorized private media gateway and attachment-aware idempotent send. Backend replay after attachment ready-to-failed transition has bounded evidence.",
+        "Old image/video/Range evidence exists only under historical APK identity."
+      ],
+      "unproven_real_behaviors": [
+        "Current same-version APP picker/player upload, persistent read/restart and actual200/206 vs revoked403/404 are not jointly proven.",
+        "Failed/transcoding/cancelled media must not appear READY; current attachment ownership and content authorization cannot be inferred from send replay alone."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Failed/transcoding/cancelled media must not appear READY; current attachment ownership and content authorization cannot be inferred from send replay alone.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "With new bounded APK/media API authority, use one synthetic image and short video; capture200/206, denied read after revocation, DB link, restart read and visible failure.",
+      "proposed_new_budget": "One device/build path plus fresh isolated API/DB and bounded owned synthetic assets; no historical media rescan.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-05",
+      "frozen_endpoint": "既有有权通话/拒绝/挂断/重连/撤权的一组真实可用受控链，旧令牌不重新入房；AEC/回声按设备与可观察音质实际分级，缺真机条件则`NOT_RUN`，不得宣称声音已实测达标。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F2"
+      ],
+      "current_sources": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+          "mode": "100644",
+          "blob": "6495fc64ef49a914ba548142f14f23429a536984",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/app/Services/RtcSessionService.php",
+          "mode": "100644",
+          "blob": "a26b9ea78f10687f344713e25ea93e6bd78bf667",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "rtc",
+        "rtc_race",
+        "plan"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Historical call4 same-call reconnect/actual UI hangup; call5 followup media and successful old token first reentry403 were bounded accepted.",
+        "Historical cleanup/race tests supported specified source; historical call3 overall failed and remains failed."
+      ],
+      "unproven_real_behaviors": [
+        "Current candidate differs from historical RTC apps Tree; no same-source current APK/SFU journey transfer. Media-stop new conservative upper bound10.125s cannot pass<=5s; old0.790s has separate old identity.",
+        "AEC on/off, human intelligibility, calibrated waveform timing, native resource completeness and current-device permission protection remain open."
+      ],
+      "risk_severity": "CRITICAL",
+      "privacy_authorization_impact": "AEC on/off, human intelligibility, calibrated waveform timing, native resource completeness and current-device permission protection remain open.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "Owner choose available approved devices/peer and a single fixed-call lifecycle with observer times; preserve failure, measure<=5s at meaningful media boundary and separately classify AEC/human hearing.",
+      "proposed_new_budget": "Requires explicit APK/device/RTC/network/microphone/camera grant and exact call/window budget; zero here.",
+      "owner_new_authorization_required": true,
+      "current_status": "OPEN"
+    },
+    {
+      "ac_id": "AC-10.1.5-06",
+      "frozen_endpoint": "真实成功登录产生可核T0且账户/设备绑定；refresh/重启不续期；按15天/30天前后边界和服务端受权路径验证，不能用任意本地时钟或纯策略测试冒真实有效期。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F3"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+          "mode": "100644",
+          "blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
+          "mode": "100644",
+          "blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/chat/domain/offline_private_retention_policy.dart",
+          "mode": "100644",
+          "blob": "4ab8b579745d3340b1e2880fe6b760b0efe5445a",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "mode": "100644",
+          "blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Real DB successful-login T0, account/device/session binding, refresh not extending anchor and family revoke accepted.",
+        "Exact15-day synthetic DB boundary and Widget synthetic15/30-day/abnormal-clock checks accepted."
+      ],
+      "unproven_real_behaviors": [
+        "Physical15/30-day elapsed lifetime has not occurred/proven for current controlled sample; injected clock is not elapsed-time proof.",
+        "Cross-process restart and trusted clock continuity cannot infer permission from persisted token/profile; incorrect T0 could extend private access."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Cross-process restart and trusted clock continuity cannot infer permission from persisted token/profile; incorrect T0 could extend private access.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "Register a source-bound synthetic login receipt and owned sample, plan actual elapsed checkpoints without changing clocks; test restart lock separately under device authority.",
+      "proposed_new_budget": "New physical-time observation/device authorization; no broad rerun of existing synthetic clock tests.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-07",
+      "frozen_endpoint": "真正APP持久密文、重启/切号/离线/超期演练；未在线核验前不显示旧私密缓存；只读不发/不改；30天受控本版密文实际清理回执，失败/时间异常/旧明文残留有处理；不得损害历史原证。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F3"
+      ],
+      "current_sources": [
+        {
+          "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+          "mode": "100644",
+          "blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
+          "mode": "100644",
+          "blob": "6fd3ccc8b98dc1a5574c3170e8475325eab9bc2c",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+          "mode": "100644",
+          "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+          "mode": "100644",
+          "blob": "39956188db4e361f34e9210890cf6d337f56edf7",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "widget",
+        "software",
+        "rtc"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Widget account/device namespace, bad envelope, logout credentials queue, readonly, synthetic expiry and cleanup-failure branches accepted.",
+        "Historical cold-start lock evidence belongs to old APK. Current software starts locked until online verification."
+      ],
+      "unproven_real_behaviors": [
+        "Actual platform Keystore/ciphertext at rest, current APP restart/switch/offline and physical30-day owned-data deletion+readback remain unproven.",
+        "A PURGE_DUE decision is not PURGE_COMPLETED. Device deletion failure, old plaintext leftovers and per-account isolation need real owned-artifact receipts without touching historical data."
+      ],
+      "risk_severity": "CRITICAL",
+      "privacy_authorization_impact": "A PURGE_DUE decision is not PURGE_COMPLETED. Device deletion failure, old plaintext leftovers and per-account isolation need real owned-artifact receipts without touching historical data.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "On one newly authorized device/profile with only task-owned synthetic values: inspect persisted cipher, restart lock, readonly, switch/logout, owned cleanup success/failure receipt; leave real30-day observation explicitly pending.",
+      "proposed_new_budget": "New device/storage permission and bounded owned data; no historical SQL/cache/Seed access.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-08",
+      "frozen_endpoint": "站内通知/类别偏好/系统权限拒绝和撤销、锁屏通用正文契约、当前状态点击重验；原message/Buddy/status/platform_event/Safety越权、禁用与旧路由测试无泄漏。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F4"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Services/NotificationService.php",
+          "mode": "100644",
+          "blob": "9e45e8988d2aefbbec667cfea3fc975ab949dc4c",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+          "mode": "100644",
+          "blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/notification_remote_data_source.dart",
+          "mode": "100644",
+          "blob": "5ed57e7c583dc71546b464b573f064e65aec60c7",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+          "mode": "100644",
+          "blob": "6ec6e0fd50982c4123141bffc888ff3141c8b953",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Actual private API preference/category/owner/token negatives and minimal projection; Widget current notification/destination reauthorization and async switch navigation supported.",
+        "Fixed prior test97 expect expressions retained; passing count is not real OS permission evidence."
+      ],
+      "unproven_real_behaviors": [
+        "Current OS grant/deny/revoke/resume, lockscreen privacy and old real card click require device receipts; current APP/API/Safety/platform activity route journey not yet bound.",
+        "Notification and deeplink must not revive Block/MC/CN/account/Safety permission or expose sender/body/relationship details."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Notification and deeplink must not revive Block/MC/CN/account/Safety permission or expose sender/body/relationship details.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "New device UI run for deny/revoke/category mute; click a prior owned notification after synthetic revoke/account switch and verify current API refusal and no async navigation.",
+      "proposed_new_budget": "Scoped device plus isolated API authorization; real provider not necessary for in-app subset.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-09",
+      "frozen_endpoint": "无已获准供应商时provider接口、token生命周期可用受控替身测试；真实Push状态严格`PENDING/NOT_RUN`，不声称后台真实投递；需要SDK/密钥/费用时停该项等Owner。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F4"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+          "mode": "100644",
+          "blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
+          "mode": "100644",
+          "blob": "e54e3c125c99f7ddc811d8e16c80c0f7414a8be2",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget",
+        "plan"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "TEST_ONLY device token hash, user/device/session/generation binding, revoke/expiry/dedup/minimal payload contracts tested.",
+        "Supplier boundary remains explicit; no real provider integration or charge."
+      ],
+      "unproven_real_behaviors": [
+        "REAL_PUSH_PROVIDER_PENDING / DELIVERY_NOT_VERIFIED; real background/lockscreen delivery, OS device binding and provider receipts NOT_RUN.",
+        "TEST_ONLY projection or mock success cannot claim actual push delivery or bypass current owner/session permission."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "TEST_ONLY projection or mock success cannot claim actual push delivery or bypass current owner/session permission.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "Owner first decide provider/SDK/credentials/data flow/cost policy; only then freeze minimal synthetic token registration, revoke and delivery trial.",
+      "proposed_new_budget": "Separate provider/credential/cost/device approval; no external call permitted now.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-10",
+      "frozen_endpoint": "同一开发APK/后端/持久库的目标流程，重启前后指定权威业务事实不变；Flutter/PHP及相关静态检查有完整exit/stdout。仅运行受影响CN/MC/Activity/Safety/RTC有限回归，旧失败不删。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1",
+        "F2",
+        "F3",
+        "F4"
+      ],
+      "current_sources": [
+        {
+          "path": "services/backend-laravel/phpunit.task-mariadb.xml",
+          "mode": "100644",
+          "blob": "3e70b2942b789e72721890b25120093a5175ce82",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        },
+        {
+          "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+          "mode": "100644",
+          "blob": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab",
+          "commit": "5aa3fc631dd7b450888c794182a1a8b35d57ec0a",
+          "evidence_class": "DIRECT_GITHUB_OBJECT"
+        }
+      ],
+      "evidence_refs": [
+        "mariadb",
+        "widget",
+        "rtc"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "Prior real MariaDB Feature/HTTP plus private Flutter analyze and patched-runner Widget have independent bounded acceptance.",
+        "No old failed run erased; prior Flutter6/6 and MariaDB2/2 remain consumed."
+      ],
+      "unproven_real_behaviors": [
+        "Same current APK/backend/persistent DB restart and limited affected runtime regression not closed. Current tools Windows execute path only static/synthetic tested.",
+        "Gradle/G2 dependency/build/install gates remain closed; no current candidate APK/hash/device chain or standard unpatched Flutter runner PASS."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Gradle/G2 dependency/build/install gates remain closed; no current candidate APK/hash/device chain or standard unpatched Flutter runner PASS.",
+      "external_gate": true,
+      "next_minimum_legal_verification": "First resolve tool contract hash by published authority and qualification. Separately freeze build/G2/device gates, then one version-bound APP/API/DB restart journey deduplicating already accepted software tests.",
+      "proposed_new_budget": "New tool runtime and build/device/DB grants, independently budgeted; no inheritance of old unused API attempt.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    },
+    {
+      "ac_id": "AC-10.1.5-11",
+      "frozen_endpoint": "一份`IMPLEMENTATION_REPORT.md`、一个`artifact_manifest.json`，固定源码Commit/Root/apps/services、测试/设备/本地证据分层、APK build/install及hash（若APP变）、必要脱敏审阅材料与非作者有界复核。Codex停在候选，不自行ACCEPTED、不合main、不派发v10.1.6。",
+      "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+      "modules": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "current_sources": [],
+      "evidence_refs": [
+        "plan",
+        "mariadb",
+        "widget"
+      ],
+      "this_task_retested": false,
+      "evidence_classes": [
+        "DIRECT_GITHUB_OBJECT",
+        "CODEX_REPORTED_LOCAL_TEST",
+        "LOCAL_ONLY_RAW",
+        "NOT_RUN",
+        "NOT_PROVEN"
+      ],
+      "met_subcontracts": [
+        "This candidate supplies tracked nonproduction tools, synthetic tests, Markdown/JSON matrix, consolidated report and manifest.",
+        "GitHub final identity/changed bytes/products are verified separately in terminal receipt; helper code review is not Astra acceptance."
+      ],
+      "unproven_real_behaviors": [
+        "Current consolidated candidate still awaits Astra. No whole-version FUNCTION_ACCEPTED, current APK identity or Owner integration authorization.",
+        "Documentation completion cannot close core privacy/authorization AC or authorize main merge/G2/successor."
+      ],
+      "risk_severity": "HIGH",
+      "privacy_authorization_impact": "Documentation completion cannot close core privacy/authorization AC or authorize main merge/G2/successor.",
+      "external_gate": false,
+      "next_minimum_legal_verification": "Astra independently review this fixed candidate and exact evidence levels; Owner then choose one minimum authorization bundle, not automatic successor.",
+      "proposed_new_budget": "Independent read-only acceptance; any later product operation needs separate explicit authority.",
+      "owner_new_authorization_required": true,
+      "current_status": "PARTIAL"
+    }
+  ],
+  "f5": {
+    "status": "UNKNOWN_OR_OUT_OF_SCOPE",
+    "source": "Frozen plan 7d3466b3be67135dc641cfee7c7faef78937ba03 plus named prior implementation report b7b79462fea3f860dfe6c1685f641cdab8eb6529",
+    "conclusion": "Voice messages/other old attachments and map/place need named accepted provenance. Current fixed media/RTC code does not prove voice-message or map restoration. No new old-asset search, location feature or product addition performed.",
+    "owner_decision_required": true
+  },
+  "new_real_runtime": 0,
+  "whole_version": "PARTIAL_NOT_ACCEPTED",
+  "ac05": "OPEN"
+}

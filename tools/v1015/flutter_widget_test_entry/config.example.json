@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "task_id": "NEW_OWNER_FROZEN_TASK_REQUIRED",
+  "target": null,
+  "owned_parent": null,
+  "approved_input_roots": [],
+  "complete_offline_manifest": false,
+  "max_logical": 0,
+  "max_allocated": 0,
+  "patch_diff": null,
+  "artifacts": [],
+  "note": "LOCAL_ONLY operator config: never commit real absolute paths. No download, package upgrade, or pub get fallback. Current source-hash contract is malformed; inspect explains the blocked state."
+}
