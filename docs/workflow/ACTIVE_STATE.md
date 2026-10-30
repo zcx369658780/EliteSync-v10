@@ -1,3 +1,25 @@
+# EliteSync v10.1.5｜2026-10-30 Owner批准一次性隔离Linux工具链及Laravel批量迁移（CURRENT ENTRY）
+
+**`ONE_SHOT_LINUX_TOOLCHAIN_FRAMEWORK_BATCH_MIGRATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_TASK_NOT_EXECUTED / WINDOWS_PHP_NATIVE_LINE_STOPPED_AS_HISTORICAL / LARAVEL13_PHP84_CANDIDATE_AND_LARAVEL12_PHP84_FALLBACK / LINUX_EXECUTOR_AVAILABILITY_NOT_YET_PROVEN / NO_HOST_SYSTEM_INSTALL_AUTHORIZED / NO_PRODUCT_MAIN_INTEGRATION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新明确技术路线决定（2026-10-30）：** Astra已独立有界审查`8941323808ce0cdfc68b9f0c3796f86400a75d43`；尽管官方Windows PHP、VC与OS信任调查取得大量静态证据，API-set`E_NOTIMPL`之后仍没有任何实际PHP/Composer/Laravel12/API/MariaDB启动。Owner主动提出“将开发软件一次性升级到相对稳定版本，让Codex批量迁移，不要一个一个试错”，并授权继续。Astra据此**废止按Windows DLL/API-set缺口连续发微任务作为默认推进路线**，改为**已有隔离Linux执行器优先→整套版本统一→一次Composer/框架批量迁移→真实PHP/后端/新空MariaDB集中测试**。历史Windows原证/门禁均保留，不将Linux PASS当Windows旧门的通过。
+
+**唯一最新正式任务：** [V10_1_5_UNIFIED_LINUX_TOOLCHAIN_BULK_FRAMEWORK_MIGRATION_AND_API_DB_E2E_TASK_20261030.md](../versions/v10.1.5/V10_1_5_UNIFIED_LINUX_TOOLCHAIN_BULK_FRAMEWORK_MIGRATION_AND_API_DB_E2E_TASK_20261030.md)，**任务Git Blob `03c40a831ed37d8610c9a9aa2760c9a94e17269b`**；创建Commit `5bfda1af822e0f5d31406b6337e00b308a596f9b`，已按固定Commit全文回读。**Owner仍需手动派发Codex**，本轮Astra只发布文档，未安装、下载、运行或消耗新任务预算。
+
+**唯一新研发Parent：** `8941323808ce0cdfc68b9f0c3796f86400a75d43`，Root `6808c706f4b2f03b641975f71315c241ce6e435a`，apps `8cd9b6df8e744c8fc9d4217412edce31795a318d`，services `521cafbb463e0099271618c22cafd1ed6218bea2`。此前Astra审查分支`astra/v10.1.5-89413238-api-set-raw-first-independent-review-20261030`，Commit `483d66326fb5f5c13e23bafb519c9aba99d38f9e`，Blob `c1b5577728f16077b416c73d82901ba94fa43335`；该审查分支不能作为研发Parent。
+
+**推荐候选技术组合与保留门禁：** 先使用**现有且可合法访问**的WSL2/OCI执行器及隔离Ubuntu 24.04 LTS兼容运行面，Linux PHP8.4当前受支持patch、Composer官方稳定2.x、MariaDB10.11 LTS/必要Redis。批量迁移主候选Laravel13＋PHP8.4、按真实求解缺口回退Laravel12＋PHP8.4；**Laravel13只是Owner待独立验收的方向候选**，不改已接受产品基线或生产Laravel11。当前composer.json仍声明Laravel`^12.0`与PHP`~8.5.12`，旧锁仍Laravel11.48.0；先真正解算才有新lock/vendor。Codex不能将"当前主机有WSL/Docker"当作既定事实；若只读inventory证实没有可用Linux执行器，则静态预包＋一次性Owner系统安装授权需求，不能私自安装WSL/Docker/Hyper-V/修改宿主全局OS。
+
+**新综合任务总预算：** 一个新task-owned根/attempt-0001与单一持久ledger，logical/native allocated各≤16GiB，单调窗口≤240分钟；官方受信镜像/依赖响应体≤2GiB、HTTP请求≤500、具名OCI镜像Digest≤8、容器build≤3、Composer求解≤3、私有vendor install≤2、完整服务组启动≤4、PHP CLI≤120、Feature/Unit≤5批、业务HTTP≤240、合成迁移/seed各≤2。全部失败/重试和下载前PREPARE+fsync，既有Windows与历史Flutter/DB/G2/APK预算不退款。新容器/DB仅任务私有专属volume/空库/回环端口/虚构用户，禁止旧端口/旧库/共享容器/Docker Socket/生产/真实用户访问。安装或激活Windows WSL/Docker Desktop、Windows/Ubuntu宿主全局升级和注册表/ACL/服务等系统更改不授权。
+
+**永久产品与历史门：** main唯一已接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍AC01–11=10 PARTIAL/1 OPEN，AC05 RTC OPEN、PRODUCT_MAIN_NOT_INTEGRATED、G2_READY_FOR_POPEN_FALSE、REAL_PUSH_PROVIDER_PENDING、RTC_AEC_NOT_CLOSED、ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN、OS_ENFORCEMENT_NOT_PROVEN、V10.1.6_NOT_STARTED。历史`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`，旧18、两ACL树、122原证、五保护根、527 refs、3183 Seed与全部原始失败/claims/dirty/ledger永久保留；不重走原API-set调查、不改产品main、不关闭AC05或放行设备。
+
+**唯一下一动作：** Owner手动派发正式任务。Codex在固定894 sole Parent上批量整理Linux工具链＋依赖/框架＋回归，一次提交non-force候选和报告/Manifest，GitHub readback后STOP交Astra独立验收。即使Laravel13候选成功也不自动签整版FUNCTION_ACCEPTED、不合产品main、不启动v10.1.6。
+
+下文旧CURRENT ENTRY/原先待派发与Windows兼容修复路线为历史时点快照，不再覆盖此最新策略。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner授权API-set原始字节先归档及真实宿主验证（CURRENT ENTRY）
 
 **`API_SET_RAW_FIRST_REAL_HOST_L12_COMPREHENSIVE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / NEW_BOUNDED_API_SET_SCHEMA_OBSERVATION / CONDITIONAL_PHP_COMPOSER_LARAVEL12_API_DB / NO_WINDOWS_GLOBAL_WRITES / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
