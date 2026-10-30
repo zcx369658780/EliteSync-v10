@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-31 Owner已手动拉取Docker镜像，原综合任务派发前修订为本地containerd验真优先（CURRENT ENTRY）
+
+**`OWNER_PULLED_PHP_AND_MARIADB_JAMMY_DOCKER_IMAGES_REPORTED / NEW_DOCKER_CONTAINERD_IDENTITY_SEMANTICS_ACKNOWLEDGED / PRE_DISPATCH_TASK_REVISED_IN_PLACE / LOCAL_IMAGE_VERIFY_BEFORE_ANY_RUNTIME / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / DOWNLOADS_RAW_FILES_OPTIONAL / NO_DOCKER_ACTION_EXECUTED_BY_ASTRA / LOCAL_L13_MAIN_RUNTIME_NOT_RUN / MAIN_PRODUCT_NOT_INTEGRATED / OLD_VERSION_NOT_DELETED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner新报告及纠正：** 已自己执行`docker pull php:8.4.27-cli-bookworm`，显示官方OCI Index Digest `sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76`、inspect `linux/amd64`/`.Id`同值；另已下载`mariadb:10.11.19-ubi9`但它不是此任务要用的Jammy版本。Owner现在又提供`docker image inspect mariadb:10.11.19-jammy`：`linux/amd64`、`.Id=sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2`，要求继续修改正式任务。Docker Engine29的containerd存储的`image inspect .Id`可能为Index target Digest，**不可以把.Id恒等于config SHA256作为门禁**。该owner报告不等于Astra本机直接核验，Codex必须重新从本机校来源/平台/配置/diffIDs。
+
+**同一正式任务派发前v1.1修订并回读：** [V10_1_5_OWNER_STAGED_IMMUTABLE_OCI_IMPORT_AND_LARAVEL13_MAIN_SAFE_RUNTIME_INTEGRATION_TASK_20261031.md](../versions/v10.1.5/V10_1_5_OWNER_STAGED_IMMUTABLE_OCI_IMPORT_AND_LARAVEL13_MAIN_SAFE_RUNTIME_INTEGRATION_TASK_20261031.md)，正式**新Git Blob `30c993d6a350ba79f62dddea6ddbeb420854ddec`**，修订Commit `1ed15748ff0cb696f2e3955b5c51fb74d835df65`。上一个预发布Blob `ff6a33189984956ec39bf038cb5e7b1d4204b267` **SUPERSEDED_PRE_DISPATCH，不得再用旧Blob派发**；同task_id、预算、唯一root/attempt-0001、目标合成集成合同仍维持，仅优化Owner供应输入验真路径。Owner仍尚未手动派发Codex；没有本轮Docker save/pull/import、PHP/Composer/API/MariaDB运行。
+
+**更新的官方下载/镜像验真指南：** [OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md](../versions/v10.1.5/OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md)，新Blob `7722a26ede33b7af0c8b4b39d112f4d0805a9645`，修订Commit `dca8bc2de7db3fe9de106d0abd79cd8494d37f35`；旧Blob `47aad6d1ad89f9c6e680af53cd42623874060c47`被替代。原Downloads目录`C:\Users\zcxve\Downloads`为后备OCI输入根，不再要求`owner-download-manifest.json`作为主路径，也不要求再次运行下载脚本。
+
+**镜像准入对照：** PHP index `54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76`、冻结linux/amd64 manifest `dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851`和config `12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff`须内部关联；MariaDB先前官方index `d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae`及amd64 manifest `6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea`保留历史来源；现Owner index `7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2`与Docker Hub相应平台manifest `dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c`仅为**新增具名官方候选**，其config/diffID不得借用旧镜像数值，也不能凭tag或inspect .Id判通过。Owner拉取的UBI9镜像保留但不作为该任务源。若官方元数据和本地已存镜像无法建立可核闭环，STOP并报告，**不自动重下/私自调低验收要求**。
+
+**原任务其他硬规则一字不放松：** 开工fresh main/Root/ACTIVE_STATE与任务Blob；安全集成研发候选唯一Parent必须是当时最新main、产品双Tree仍v10.1.4。精选f407的10项Laravel13后端兼容路径而非9b更宽未接受的F1/F3/F4业务；新task私有根/ledger/隔离空MariaDB、Composer/HTTP/安全负例定向验证、有限预算、独立候选交付和Astra最终验收。旧backup 11,066件（Codex报告全hash及恢复试读），旧目录/dirty/vendor/STOP/历史风险保持不动，不删除旧版本、不合main、不启动生产/真机/RTC/Push；v10.1.5仍10 PARTIAL/1 OPEN、AC05 OPEN、G2 false、v10.1.6 NOT_STARTED。
+
+**唯一下一动作：** Owner在确认已经下载的两份本地Docker镜像留存后，可由Owner手动向本地Codex派发上述**新Blob的同一份正式任务**。Codex先只读验真并决定是否合规继续真实后端测试；这不是Astra自动启动或新预算已消耗。若运行资格不成立只交集中BLOCKED并STOP。早期只读回执缺口、Windows E_NOTIMPL、四项历史事故和所有旧任务STOP永久保留。
+
+以下为v1.1修订前的ACTIVE_STATE完整历史，旧`DOWNLOAD_PENDING`与旧任务Blob状态属于过时记录，已由本条覆盖。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner同意手动下载官方OCI材料，统一安全集成任务已发布、待下载后派发（CURRENT ENTRY）
 
 **`OWNER_APPROVED_MANUAL_OFFICIAL_OCI_STAGING / DOWNLOAD_DESTINATION_FIXED / NEW_L13_MAIN_RUNTIME_INTEGRATION_TASK_PUBLISHED / OWNER_DOWNLOAD_PENDING / OWNER_MANUAL_CODEX_DISPATCH_AFTER_DOWNLOAD_ONLY / NO_LOCAL_ACTION_EXECUTED_BY_ASTRA / OLD_VERSION_BACKUP_PRESERVED / LARAVEL13_DEV_BASELINE_OWNER_SELECTED / STATIC_CANDIDATE_ACCEPTED_ONLY / MAIN_PRODUCT_NOT_INTEGRATED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
