@@ -72,6 +72,7 @@ class MigrationContracts(unittest.TestCase):
         with self.assertRaisesRegex(Gate, 'SUPPLY_PENDING'): require_runtime_policy(self.policy)
 
     def test_changing_state_without_executable_pin_is_not_enough(self):
+        self.policy['reference_executable_sha256'] = None
         self.policy.update(runtime_qualification_state='QUALIFIED_FOR_NEW_OWNER_RUNTIME_TASK', composer_lock_state='RESOLVED')
         with self.assertRaisesRegex(Gate, 'EXECUTABLE_HASH_PENDING'): require_runtime_policy(self.policy)
 
@@ -80,11 +81,13 @@ class MigrationContracts(unittest.TestCase):
         with self.assertRaisesRegex(Gate, 'VC_SOURCE_LICENSE_VERSION'): require_runtime_policy(self.policy)
 
     def test_null_executable_pin_rejected_even_if_manifest_matches_null(self):
+        self.policy['reference_executable_sha256'] = None
         with self.assertRaisesRegex(Gate, 'EXECUTABLE_HASH_PENDING'):
             validate_manifest({}, self.root, self.policy)
 
     def test_distribution_hash_is_not_executable_hash(self):
-        self.assertIsNone(self.policy['reference_executable_sha256'])
+        self.assertEqual('5ee83565e8095339936bfead69b50830c85cda422ab18cbdf7a9982f43070e65', self.policy['reference_executable_sha256'])
+        self.assertNotEqual(self.policy['target_distribution']['archive_sha256'], self.policy['reference_executable_sha256'])
         self.assertEqual('2a36a2edcb7a5b9252f638fd5e4cf84d7f6e066092654220dc0b63e5cf4e9723', self.policy['target_distribution']['archive_sha256'])
 
     def test_composer_source_checksums_bound(self):

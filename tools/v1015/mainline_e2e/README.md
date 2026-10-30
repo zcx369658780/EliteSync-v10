@@ -141,7 +141,8 @@ claimed. The existing F1 fix, three Widget sources and 15-scenario catalog remai
 The prior two-extension command is superseded by a shared frozen profile:
 `php_requirements.json` binds composer.json/lock byte hashes, the selected
 PHP8.5.12 NTS x64 target, required modules and required functions/classes. The
-executable hash is intentionally null until separately supplied bytes are verified.
+executable hash now identifies the officially acquired PHP archive member; this
+does not qualify missing VC native dependencies or grant any execution.
 It includes the selected locked vendor-with-dev requirements (XML/XMLWriter/Phar);
 it does not silently assume a runtime-only vendor tree. cURL is required by
 Laravel deployment and by the current root Composer contract, even though the
@@ -249,7 +250,7 @@ inputs, not the full Composer schema or dependency SAT problem. A synthetic
 version match never reports solver completion or runtime readiness.
 
 The official PHP 8.5.12-1 archive URL/hash are source metadata, not the hash of
-php.exe. `reference_executable_sha256` stays null. Both Python qualification and
+php.exe. `reference_executable_sha256` now pins only the acquired member bytes. Both Python qualification and
 PHP pre-bootstrap checks fail closed while `DEPENDENCY_SUPPLY_PENDING` or
 `LOCK_RESOLUTION_PENDING` remains. Microsoft runtime source/license/minimum
 build-tool evidence is required; legacy 14.38 is not a dynamic default.
@@ -263,3 +264,27 @@ API, Flutter or device launch. Existing OS/private-path guards and all business
 CN/MC/Block, session, T0 and notification gates remain. The new
 `Laravel12CompatibilityTest.php` is test source, NOT_RUN here; do not bypass
 its existing test-database qualification guard to execute it.
+
+
+## Trusted supply attempt (2026-10-30, ended with native gates)
+
+The PHP8.5.12-1 official archive was acquired once and its publisher SHA256
+verified. Thirteen required native members were hashed as x64 PE files; the
+ordinary/delay-import graph still lacks `vcruntime140.dll`. The official Microsoft
+14.51.36247.0 package was acquired once and passed offline cached signature trust;
+the installer was not executed and no DLL was extracted or copied. Exact PHP
+compiler minimum and specific app-local license/source evidence remain unqualified.
+No adverse legal conclusion is inferred; generic use rights and distribution
+restrictions are distinct from this task's required deployment proof.
+
+`supply_preconditions.py` describes a separate source-only SUPPLY_ONLY_COMPOSER
+precondition. It does not require an already resolved Laravel12 lock, avoiding a
+dependency cycle, but it still requires independent PHP/VC/process/Composer source
+qualification. It returns only a static input status, never launches a process,
+loads a plugin, installs vendor, changes a lock or grants business runtime.
+Positive synthetic facts are not real source/license qualification.
+
+This ended supply task is closed in both language runtime policies. Do not reuse
+its unspent attempts. Composer resolution/vendor install, PHP Probe/Feature,
+MariaDB/API/HTTP and all client/device runtime are NOT_RUN. The original
+Laravel11 lock and all historical business negative tests remain unchanged.

@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_SUPPLY_PENDING",
-  "candidate_parent": "be7ebd1faa0fd3cb45bd88bd24af15ea9e805631",
+  "candidate_parent": "e93ef51401f4e25916149cca104f09debc32bc78",
   "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
   "php_version": "8.5.12",
   "thread_safe": false,
-  "reference_executable_sha256": null,
+  "reference_executable_sha256": "5ee83565e8095339936bfead69b50830c85cda422ab18cbdf7a9982f43070e65",
   "source_documents": {
     "composer.json": "21631cc3c211933098be4bb3caa0efcd23d8ee8ced71ce512f97c9243a1d233a",
     "composer.lock": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a"
@@ -302,7 +302,7 @@
     }
   ],
   "optional_modules": {},
-  "current_state": "SOURCE_MIGRATION_ONLY_RUNTIME_FORBIDDEN",
+  "current_state": "OFFICIAL_PHP_ARCHIVE_OBSERVED_RUNTIME_SUPPLY_PENDING",
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
@@ -310,6 +310,7 @@
     "1ade4e5a89116eeba329311ed274229823aafd17",
     "1db7fc7eaadcea172cc52016904836bd71a0b90d",
     "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
+    "5f1c709e31af0d4f2c1c93363c147942db7116c5",
     "8b6bd9233a08a7f4d0986d6f592eb114dec63e04",
     "a0eec472b58d53bc25084a395efc0748779d73f8",
     "a307391e3872ff5367d84ddb7da86e53e531445e"
@@ -323,12 +324,13 @@
     "toolset_family": "VS17",
     "thread_safe": false,
     "published_utc": "2026-10-26T13:05:05Z",
-    "url": "https://downloads.php.net/~windows/releases/php-8.5.12-1-nts-Win32-vs17-x64.zip",
+    "url": "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-nts-Win32-vs17-x64.zip",
     "archive_sha256": "2a36a2edcb7a5b9252f638fd5e4cf84d7f6e066092654220dc0b63e5cf4e9723",
     "archive_size_display": "34.63 MB",
     "metadata_source": "https://www.php.net/downloads.php?os=windows&version=8.5",
     "sbom_source": "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-nts-Win32-vs17-x64.zip.spdx.json",
-    "byte_verification": "NOT_ACQUIRED_NOT_VERIFIED"
+    "byte_verification": "ARCHIVE_HASH_VERIFIED_IN_THIS_TASK_NATIVE_RUNTIME_NOT_QUALIFIED",
+    "spdx_sha256": "5e80c4aa29a39f7825aab34d7fde76c3a277645d47bee21bb00a1af51b3e3cfd"
   },
   "vc_runtime": {
     "state": "REDISTRIBUTABLE_NOT_QUALIFIED",
@@ -340,7 +342,32 @@
     "forbidden_legacy_versions": [
       "14.38.33126.1"
     ],
-    "signature_alone_qualifies": false
+    "signature_alone_qualifies": false,
+    "observed_official_package": {
+      "state": "REDISTRIBUTABLE_NOT_QUALIFIED",
+      "package_sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "file_version": "14.51.36247.0",
+      "signature_offline": {
+        "status_hex": "0x00000000",
+        "cache_only_url_retrieval": true,
+        "online_revocation": false,
+        "valid_offline_trust": true
+      },
+      "signer_organization": "Microsoft Corporation",
+      "official_download_chain": [
+        "https://aka.ms/vc14/vc_redist.x64.exe",
+        "https://aka.ms/vs/18/release/vc_redist.x64.exe",
+        "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/VC_redist.x64.exe"
+      ],
+      "license_document_sha256": "08651651a7602fc7c0e2763de0fde1ff9f868df2780597cd1775ee9d6441c783",
+      "license_url": "https://visualstudio.microsoft.com/wp-content/uploads/2025/10/Visual-C-V14-License-Redistributable_and_Runtime_ENU.docx",
+      "internal_install_use_clause_observed": true,
+      "distribution_restrictions_observed": true,
+      "app_local_specific_rights": "NOT_PROVEN",
+      "exact_php_compiler_minimum": "NOT_PROVEN",
+      "payload_dlls_extracted": 0,
+      "installer_executed": false
+    }
   },
   "framework": {
     "target_major": 12,
@@ -378,5 +405,101 @@
     "xmlwriter"
   ],
   "deployment_source": "https://laravel.com/docs/12.x/deployment",
-  "native_inventory_state": "TARGET_EXTENSION_DLL_PE_IMPORTS_HASHES_LICENSES_PENDING_NO_HISTORICAL_INHERITANCE"
+  "native_inventory_state": "13_PHP_REQUIRED_NATIVE_MEMBERS_OBSERVED_VCRUNTIME140_MISSING",
+  "verified_archive_members": [
+    {
+      "path": "ext/php_pdo_mysql.dll",
+      "sha256": "3059312f0f5bd99773909e3d436ae6a36f3ba40e2973d17d3543dbcb6537d191",
+      "bytes": 38400,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "php8.dll",
+      "sha256": "7f9c2ab08b1668426e4ee0cd571b7012030dad1f99ff435a9efd7b8161c7b086",
+      "bytes": 13923840,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "ext/php_openssl.dll",
+      "sha256": "cfe5488a6e6e10856df886bc4d0d8b516179ff9874447d0cf524191b0cdef9b8",
+      "bytes": 173056,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "libssl-3-x64.dll",
+      "sha256": "7574fc9816458b44dbc61d3a28b2b2200084472765bb995775f671aac19d1972",
+      "bytes": 1294336,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "libcrypto-3-x64.dll",
+      "sha256": "43e20b8c6e3d0d38f184329eacea180be6bdbbdc89871626f1e05c11cbb70fe4",
+      "bytes": 7044608,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "ext/php_mbstring.dll",
+      "sha256": "d7e2cdf80f21fb7a17f76755a6a7cc2e7ad5d6068a9890d77ed3f57917a1c5a0",
+      "bytes": 1624064,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "ext/php_fileinfo.dll",
+      "sha256": "ea85fa94a289146f52abd34c3673f4f3be075c338f1174a0d614448dc241d1ca",
+      "bytes": 10466304,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "ext/php_curl.dll",
+      "sha256": "00b3274ed4d77833fc1d78a995a5fdc98640819bd6a54260fad30056d6ad5436",
+      "bytes": 1094656,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "nghttp2.dll",
+      "sha256": "4bee6c3aa3270c49395ff528db1ebd1e3d78c211503a7b9ea6c23aa9ad2dec85",
+      "bytes": 227840,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "libssh2.dll",
+      "sha256": "7dc5903164aec91f4cff6f7f6d56ed5f43e91e5dc3c14ec81c18d63253f6ecfc",
+      "bytes": 419840,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "brotlidec.dll",
+      "sha256": "3ff248840797380f91573c26f072b1173de3ac29bc2565c96b73c68c8d9d386f",
+      "bytes": 92160,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "brotlicommon.dll",
+      "sha256": "f9b7155a0a965fe6e07aa32034329f25abdfcd420f61acb2361609794665293f",
+      "bytes": 188416,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    },
+    {
+      "path": "php.exe",
+      "sha256": "5ee83565e8095339936bfead69b50830c85cda422ab18cbdf7a9982f43070e65",
+      "bytes": 186368,
+      "architecture": "x64",
+      "linker_version": "14.44"
+    }
+  ],
+  "native_missing_dependencies": [
+    "vcruntime140.dll"
+  ]
 }

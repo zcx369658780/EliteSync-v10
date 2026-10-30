@@ -3,14 +3,14 @@
   "platform": "windows-x64",
   "php_version": "8.5.12",
   "thread_safe": false,
-  "candidate_parent": "be7ebd1faa0fd3cb45bd88bd24af15ea9e805631",
+  "candidate_parent": "e93ef51401f4e25916149cca104f09debc32bc78",
   "source_binding": {
     "commit": null,
     "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
     "services_tree": null,
     "apk_sha256": null
   },
-  "requirements_sha256": "6377ae4cfca87afad643b68df6c23e12532341d6fbe3b70acd9006f404b55c57",
+  "requirements_sha256": "36e8e29864d77033b0e8414d15637852da4ed8668114edc098f35769e3f3f6b6",
   "php_distribution_inventory_sha256": null,
   "executable": "bin/php.exe",
   "extension_directory": "bin/ext",
@@ -26,5 +26,5 @@
   "state": "INPUT_REQUIRED_NOT_QUALIFIED",
   "windows_system_modules": {},
   "windows_os_image_policy": null,
-  "status": "TEMPLATE_ONLY_DEPENDENCY_SUPPLY_PENDING_NOT_EXECUTABLE"
+  "status": "TEMPLATE_ONLY_REDIST_AND_LOCK_PENDING_NOT_EXECUTABLE"
 }

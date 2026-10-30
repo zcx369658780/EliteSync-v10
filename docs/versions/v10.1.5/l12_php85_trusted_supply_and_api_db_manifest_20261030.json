@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "task_id": "V1015_L12_PHP85_SUPPLY_AND_API_DB_20261030",
+  "attempt_id": "attempt-0001",
+  "task_blob": "5f1c709e31af0d4f2c1c93363c147942db7116c5",
+  "sole_parent": "e93ef51401f4e25916149cca104f09debc32bc78",
+  "parent_root": "5941573199ea340a11691ce45cf3ed96282ab5a1",
+  "apps_tree_unchanged": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+  "status": "PARTIAL_WITH_EXPLICIT_DEPENDENCY_OR_RUNTIME_GATES",
+  "source_provenance": [
+    {
+      "path": "services/backend-laravel/tests/E2E/PhpRuntimeQualification.php",
+      "mode": "100644",
+      "base_blob": "96266bab5c97015f9e5fa73cacb00cabbb456231",
+      "blob": "96df0787ad75fd53a6de91b5451ab9a44ea29c5f",
+      "sha256": "84159cde8bce12e343190ad279ba8cb1a6daf3ebe73d4792a32bfb9ef38ead86",
+      "bytes": 11338
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/README.md",
+      "mode": "100644",
+      "base_blob": "64d13d0bc5c27c703318facbb3fd2ca41b915986",
+      "blob": "4db1ba6ecf956a6d77be856a4dad855e37e10dc9",
+      "sha256": "3845a4a0b8bacad3913c2f466afff50340ab6c257a34ff517029a4f1f681b02e",
+      "bytes": 18009
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_requirements.json",
+      "mode": "100644",
+      "base_blob": "43a7a4e222646b3dc5e805e2c314b47f563d39d0",
+      "blob": "4816503c471963cb46e89ff0ed23afe252c9d62e",
+      "sha256": "a11483bdaad8da34d13493774f6378bca9dd98c99907a2bd92163c2d2a8adcbb",
+      "bytes": 13263
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime.py",
+      "mode": "100644",
+      "base_blob": "2875cec40644ae2fd9b7b5176d543c3b6a108d62",
+      "blob": "847c0d6e41a9e0120498e4c9ce2850d346d15622",
+      "sha256": "2f8d0c8e6d6bf4062555f800b77076713863a6eda57791af5297ce6234a47d4c",
+      "bytes": 9373
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime_manifest.example.json",
+      "mode": "100644",
+      "base_blob": "c0818b8880d7acf53aea2b16868bbc56c4cccc2e",
+      "blob": "b33c9e76405e53e27253a29f1d740fab5b79e7fd",
+      "sha256": "b0e7f774930ecb6a65f58c18fe2cf4b784e8a7450d1774575e09245d335c759d",
+      "bytes": 983
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/supply_preconditions.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "b1b8be10f44a36151172c69b3657f762a2d5042a",
+      "sha256": "0290845f006eac0a6e8fa0edb6afbbf3b5fd747724f27d803896523a7f97b497",
+      "bytes": 3607
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_migration_contract.py",
+      "mode": "100644",
+      "base_blob": "c628fe2e36914d5e810739ee11932fa7dbde2716",
+      "blob": "bb88c4c791c2bd8d1c995afaae90e249ece09cb5",
+      "sha256": "c034c32335541b77661f682a02302995a65c325c3dad423c228a5c017a3635f2",
+      "bytes": 7978
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_supply_preconditions.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "db6af71ee54958d67e0e14f5eb6e43b6ace2a5f9",
+      "sha256": "f0a9a846eeddeed1ca882cd7abed1d9b45accd2a0b9dd539004040590c25fe41",
+      "bytes": 5396
+    }
+  ],
+  "official_supply": {
+    "schema": 1,
+    "task_blob": "5f1c709e31af0d4f2c1c93363c147942db7116c5",
+    "parent": "e93ef51401f4e25916149cca104f09debc32bc78",
+    "php": {
+      "state": "OFFICIAL_ARCHIVE_HASH_VERIFIED_STATIC_MEMBERS_OBSERVED",
+      "url": "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-nts-Win32-vs17-x64.zip",
+      "archive_sha256": "2a36a2edcb7a5b9252f638fd5e4cf84d7f6e066092654220dc0b63e5cf4e9723",
+      "bytes": 36310917,
+      "executable_sha256": "5ee83565e8095339936bfead69b50830c85cda422ab18cbdf7a9982f43070e65",
+      "file_version": "8.5.12.0",
+      "required_members": [
+        {
+          "path": "ext/php_pdo_mysql.dll",
+          "sha256": "3059312f0f5bd99773909e3d436ae6a36f3ba40e2973d17d3543dbcb6537d191",
+          "bytes": 38400,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "php8.dll",
+          "sha256": "7f9c2ab08b1668426e4ee0cd571b7012030dad1f99ff435a9efd7b8161c7b086",
+          "bytes": 13923840,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "ext/php_openssl.dll",
+          "sha256": "cfe5488a6e6e10856df886bc4d0d8b516179ff9874447d0cf524191b0cdef9b8",
+          "bytes": 173056,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "libssl-3-x64.dll",
+          "sha256": "7574fc9816458b44dbc61d3a28b2b2200084472765bb995775f671aac19d1972",
+          "bytes": 1294336,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "libcrypto-3-x64.dll",
+          "sha256": "43e20b8c6e3d0d38f184329eacea180be6bdbbdc89871626f1e05c11cbb70fe4",
+          "bytes": 7044608,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "ext/php_mbstring.dll",
+          "sha256": "d7e2cdf80f21fb7a17f76755a6a7cc2e7ad5d6068a9890d77ed3f57917a1c5a0",
+          "bytes": 1624064,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "ext/php_fileinfo.dll",
+          "sha256": "ea85fa94a289146f52abd34c3673f4f3be075c338f1174a0d614448dc241d1ca",
+          "bytes": 10466304,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "ext/php_curl.dll",
+          "sha256": "00b3274ed4d77833fc1d78a995a5fdc98640819bd6a54260fad30056d6ad5436",
+          "bytes": 1094656,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "nghttp2.dll",
+          "sha256": "4bee6c3aa3270c49395ff528db1ebd1e3d78c211503a7b9ea6c23aa9ad2dec85",
+          "bytes": 227840,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "libssh2.dll",
+          "sha256": "7dc5903164aec91f4cff6f7f6d56ed5f43e91e5dc3c14ec81c18d63253f6ecfc",
+          "bytes": 419840,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "brotlidec.dll",
+          "sha256": "3ff248840797380f91573c26f072b1173de3ac29bc2565c96b73c68c8d9d386f",
+          "bytes": 92160,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "brotlicommon.dll",
+          "sha256": "f9b7155a0a965fe6e07aa32034329f25abdfcd420f61acb2361609794665293f",
+          "bytes": 188416,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        },
+        {
+          "path": "php.exe",
+          "sha256": "5ee83565e8095339936bfead69b50830c85cda422ab18cbdf7a9982f43070e65",
+          "bytes": 186368,
+          "architecture": "x64",
+          "linker_version": "14.44"
+        }
+      ],
+      "missing_native": [
+        "vcruntime140.dll"
+      ],
+      "runtime_probe": "NOT_RUN"
+    },
+    "vc": {
+      "state": "REDISTRIBUTABLE_NOT_QUALIFIED",
+      "package_sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+      "file_version": "14.51.36247.0",
+      "signature_offline": {
+        "status_hex": "0x00000000",
+        "cache_only_url_retrieval": true,
+        "online_revocation": false,
+        "valid_offline_trust": true
+      },
+      "signer_organization": "Microsoft Corporation",
+      "official_download_chain": [
+        "https://aka.ms/vc14/vc_redist.x64.exe",
+        "https://aka.ms/vs/18/release/vc_redist.x64.exe",
+        "https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/VC_redist.x64.exe"
+      ],
+      "license_document_sha256": "08651651a7602fc7c0e2763de0fde1ff9f868df2780597cd1775ee9d6441c783",
+      "license_url": "https://visualstudio.microsoft.com/wp-content/uploads/2025/10/Visual-C-V14-License-Redistributable_and_Runtime_ENU.docx",
+      "internal_install_use_clause_observed": true,
+      "distribution_restrictions_observed": true,
+      "app_local_specific_rights": "NOT_PROVEN",
+      "exact_php_compiler_minimum": "NOT_PROVEN",
+      "payload_dlls_extracted": 0,
+      "installer_executed": false
+    },
+    "composer": {
+      "state": "NOT_RUN_NATIVE_GATE_CLOSED",
+      "resolution": 0,
+      "vendor_install": 0,
+      "lock": "LOCK_RESOLUTION_PENDING"
+    },
+    "native_gate": {
+      "app_local_license_evidence_sha256": null,
+      "compiler_minimum_evidence_sha256": null,
+      "vc_payload_inventory_sha256": null,
+      "native_process_boundary_qualified": false,
+      "composer_phar_source_qualified": false
+    },
+    "runtime": {
+      "php_cli": 0,
+      "php_probe": 0,
+      "features": 0,
+      "mariadb": 0,
+      "api": 0,
+      "http": 0,
+      "migration": 0,
+      "seed": 0
+    }
+  },
+  "account": {
+    "requests": 12,
+    "body_bytes": 55751164,
+    "request_basis": "HTTP_REQUESTS_INCLUDING_RECORDED_REDIRECTS_AND_FAILURES",
+    "byte_basis": "ACTUAL_RESPONSE_BODY_BYTES_NOT_TLS_OR_HTTP_HEADER_OVERHEAD",
+    "families": {
+      "php_meta": {
+        "requests": 2,
+        "body_bytes": 241885
+      },
+      "php_zip": {
+        "requests": 1,
+        "body_bytes": 36310917
+      },
+      "ms_doc": {
+        "requests": 8,
+        "body_bytes": 466506
+      },
+      "vc_package": {
+        "requests": 1,
+        "body_bytes": 18731856
+      },
+      "composer": {
+        "requests": 0,
+        "body_bytes": 0
+      }
+    },
+    "runtime": {
+      "php_cli": 0,
+      "php_probe": 0,
+      "composer_resolution": 0,
+      "vendor_install": 0,
+      "feature_batches": 0,
+      "mariadb": 0,
+      "api": 0,
+      "http": 0,
+      "migration": 0,
+      "seed": 0
+    },
+    "space_snapshot": {
+      "logical": 172451738,
+      "allocated": 175660424,
+      "reserve": 67108864
+    }
+  },
+  "pure_tests": {
+    "classification": "CODEX_REPORTED_LOCAL_TEST_PURE_SYNTHETIC_ONLY",
+    "executed": 132,
+    "passed": 132,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit": 0,
+    "php_cli": 0,
+    "composer_resolution": 0,
+    "business_runtime": 0,
+    "output_sha256": "917668195c9a4bbf8b9c21cea946d2f412d54502ed30bfc9b9dcf7c26ee78b50"
+  },
+  "old_composer_lock_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+  "lock_state": "LOCK_RESOLUTION_PENDING",
+  "business_source_changes": 0,
+  "report": {
+    "path": "docs/versions/v10.1.5/L12_PHP85_TRUSTED_SUPPLY_AND_CONTROLLED_API_DB_RESULT_20261030.md",
+    "blob": "917baca1de522e0e8c1fa57e5c67232c974f7922",
+    "sha256": "7fcca1a964ac2cb427687afdb62fcd5907359bd18c817c0b76f7771872bcbbf6"
+  },
+  "self": {
+    "path": "docs/versions/v10.1.5/l12_php85_trusted_supply_and_api_db_manifest_20261030.json",
+    "blob": "FINAL_DIRECT_GITHUB_READBACK_EXTERNAL_TO_AVOID_SELF_REFERENCE"
+  },
+  "source_import_files": 744,
+  "protection": {
+    "unchanged": true,
+    "refs": 527,
+    "dirty_status_sha256": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+    "refs_sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+    "old_roots_receipts_hashes_unchanged": true,
+    "historical_asset_reaudit": false
+  },
+  "limits": {
+    "space_each": 8589934592,
+    "window_seconds": 7200,
+    "network_bytes": 402653184,
+    "php_zip": 1,
+    "php_metadata": 3,
+    "vc_package": 1,
+    "composer_http": 240,
+    "composer_bytes": 268435456,
+    "composer_resolution": 2,
+    "vendor_install": 1,
+    "php_cli": 60,
+    "php_probe": 2,
+    "features": 3,
+    "mariadb": 2,
+    "api": 2,
+    "http": 160,
+    "migration": 1,
+    "seed": 1
+  },
+  "evidence_classes": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN_GATE_CLOSED",
+    "NOT_PROVEN"
+  ],
+  "next": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW",
+  "final_artifact_check": {
+    "exit": 0,
+    "classification": "ARTIFACT_STATIC_ONLY",
+    "paths": 10,
+    "preserved_imported_files": 738,
+    "product_business_runtime": 0
+  }
+}
