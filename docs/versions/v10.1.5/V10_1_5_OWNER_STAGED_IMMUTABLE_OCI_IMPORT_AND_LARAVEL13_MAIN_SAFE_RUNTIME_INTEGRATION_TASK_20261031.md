@@ -1,16 +1,18 @@
-# EliteSync v10.1.5｜Owner已备下载材料验真＋固定OCI离线导入＋Laravel13目标main真实回归＋安全集成｜综合Codex任务
+# EliteSync v10.1.5｜Owner本地Docker官方镜像验真优先＋Laravel13目标main真实回归＋安全集成｜综合Codex任务（2026-10-31 v1.1，派发前修订）
 
-**状态：OWNER_APPROVED_FORMAL_TASK_PUBLICATION / AWAITING_OWNER_DOWNLOAD_BEFORE_MANUAL_CODEX_DISPATCH / NOT_EXECUTED / ONE_COMPREHENSIVE_TASK / OLD_VERSION_BACKUP_RETAINED / NO_PRODUCT_MAIN_MERGE_BEFORE_ASTRA**
+**状态：OWNER_APPROVED_PRE_DISPATCH_REVISION / OWNER_PULLED_LOCAL_DOCKER_IMAGES_REPORTED / NEW_CONTAINERD_IMAGE_ID_SEMANTICS_ACKNOWLEDGED / AWAITING_OWNER_MANUAL_CODEX_DISPATCH / NOT_EXECUTED / ONE_CONSOLIDATED_TASK_SAME_TASK_ID / OLD_VERSION_BACKUP_RETAINED / NO_PRODUCT_MAIN_MERGE_BEFORE_ASTRA**
 
 签发：2026-10-31 Asia/Singapore。Authority：`zcx369658780/EliteSync-v10`。
 
-## 0. Owner单次综合授权与派发顺序
+## 0. Owner单次综合授权、派发顺序与修订权威
 
-Owner明确批准下一阶段手动官方下载材料与离线验真路线：“可以我同意，我会将下载的文件放在`C:\Users\zcxve\Downloads`，并且下载好后才给Codex启动prompt。请你下达任务单。”
+Owner起初批准“手动下载官方镜像材料、再手动派发Codex”；现在已经亲自执行`docker pull php:8.4.27-cli-bookworm`、`docker pull mariadb:10.11.19-ubi9`，并报告`docker image inspect mariadb:10.11.19-jammy`结果。两种本地`linux/amd64`镜像来源事实已由Owner给出，但**尚未由Codex独立验证实际Registry平台Manifest、配置及diffID**。Owner明确要求“继续修改任务单”。因此本**同一尚未派发的正式任务ID**于2026-10-31进行v1.1派发前修订；旧任务Git Blob `ff6a33189984956ec39bf038cb5e7b1d4204b267`被本次新Blob正式取代，旧Git历史只供审计、不能再作为Codex启动authority。
 
-因此本任务**现在只正式发布，不等于下载已经完成，不等于派发Codex或启动Docker**。Owner先下载、暂存在Downloads；待Owner确信文件已完成，再亲自把最新本任务的精准Blob与唯一启动Prompt交给Codex。Codex不可在Owner手动派发前预执行，Astra不替Owner操作Windows。
+**修订后第一输入源改为Owner已经pull、存于Docker Desktop本地containerd内容存储的指定官方镜像，不要求Owner再次下载ZIP/TAR，也不要求Downloads中必须有`owner-download-manifest.json`。** `C:\Users\zcxve\Downloads`仍是Owner仅在本地镜像无法完成可信资格核验时可选的原始OCI文件备选，绝不默认扫描该目录。下载/拉取已经由Owner在新任务派发前完成，新任务明确记为`OWNER_EXTERNAL_DOCKER_PULL`，不能将其归为新task代理的供应消耗0。
 
-范围是**一次**：Owner staged官方immutable OCI文件 → 新task-owned隔离验真/导入 → 在**选择性main产品源码候选**完成真实PHP8.4+Laravel13+Composer锁/vendor+独立空MariaDB/HTTP和权限正反例 → 单一候选交付 → Astra独立安全集成验收。若正常框架兼容问题出现，Codex在本任务内集中修；不得另行发布十多个微任务。产品main、默认本地开发入口、旧版/备份均维持不动，直至Astra后续独立接受并确定集成授权。
+仍然严格保持：**现在只正式发布修订任务，不自动启动Codex或运行本机Docker/PHP/DB**。只有Owner稍后手动复制本任务最新SHA对应的启动Prompt后，Codex才可以先验镜像、必要时从官方注册表受控读取manifest/config元数据，资格通过后在一个新独立任务中完成Laravel13目标main的合成验证；不自动拉取、更新、删除Owner镜像或共享容器/卷。本任务不是已STOP f407任务的续跑，不能复用其余额/任务根。
+
+**镜像Id不能等同Config Digest：** Docker Engine29 containerd image store可能把Index target digest显示为`docker image inspect .Id`。PHP本地`.Id=sha256:54b467...`与冻Index吻合，不因其与旧config`sha256:12f6...`不同判错。MariaDB本地`.Id=sha256:7db293...`与旧Index `d769e379...`不符，但官方Hub确有另一个10.11.19-jammy index候选；必须明确分辨两个immutable来源，不能按tag或Id直接PASS。
 
 ## 1. 冻结Authority、Parent与来源
 
@@ -19,17 +21,32 @@ Owner明确批准下一阶段手动官方下载材料与离线验真路线：“
 - 以前运行过真实Linux Laravel13/DB回归的较宽候选 `9b74ca6fef89e2507f966870c1f0d04f4fe09ba6`，Root`3b9690c1cdd6313d8f192c0ca4105352b8b40188`，Astra仅有界合成接受；其中F1/F3/F4未正式整版接受业务源码不可整树合并。新的目标是**f407的main选定代码**与当前冻结v10.1.4业务，不准借旧9b的258测试/3071断言直接宣称新候选已验证。
 - 最新Astra f407独立审查：`docs/versions/v10.1.5/F407E543_LOCAL_BACKUP_STATIC_L13_INTEGRATION_ASTRA_REVIEW_20261030.md` 在Review Commit`347423ee36e5c719827df784826fb400a2892269`，Blob`f6b816e4839b491abb68a3478b5406afd4f94aa6`，裁决`STATIC_SELECTION_ACCEPTED_WITH_OBSERVATIONS / BACKUP_VERIFIED_CODEX_REPORTED / DYNAMIC_SUPPLY_BLOCKED`。
 - 正式先行任务`V10_1_5_L13_PHP84_BASELINE_SAFE_INTEGRATION_AND_PREMIGRATION_LOCAL_BACKUP_TASK_20261030.md` Blob`63712dba26ec1c24539bec7082dd4f0c557df583`永久STOP；不得续其旧账本/预算和OCI task tag。
-- 新手动下载权威指南：`docs/versions/v10.1.5/OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md`，Blob`47aad6d1ad89f9c6e680af53cd42623874060c47`。Owner Downloads取件是预备操作，任何LOCAL_ONLY配置、完整供应体、个人下载目录内容不上传公开仓库。
+- 新手动下载权威指南：`docs/versions/v10.1.5/OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md`，Blob`7722a26ede33b7af0c8b4b39d112f4d0805a9645`。Owner Downloads取件是预备操作，任何LOCAL_ONLY配置、完整供应体、个人下载目录内容不上传公开仓库。
 - 新任务开工必须fresh读取main/Root/ACTIVE_STATE/CURRENT_WORKFLOW Blob`42ffd18810a3808c7a5852ec57e1daff5da6f9b4`/TASK_DISPATCH_CLOSURE_PROTOCOL Blob`0f62532a71fb9753811fafa9e03819a46422f4bf`、冻结v10.1.5 plan Blob`7d3466b3be67135dc641cfee7c7faef78937ba03`、AC01–11及既有15场景和所有历史事故门禁。任何不一致先分类而不猜测/覆盖。
 
-## 2. Owner预下载文件与严格验真入口
+## 2. Owner已拉取Docker本地镜像的核验优先；Downloads为非强制备选
 
-- 固定本机 Owner 文件输入根：`C:\Users\zcxve\Downloads`；建议清晰子目录 `C:\Users\zcxve\Downloads\EliteSync-v1015-OCI-20261031`，下有`php/`、`mariadb/`与`owner-download-manifest.json`。也允许文件直接放Downloads根，但必须提供**明确相对路径清单**，以固定Digest/安全规范识别，禁止Codex全目录递归枚举或接触其它用户下载文件。若Owner只提供部分文件/Manifest或文件过期，不自行回收旧task资产补位，集中BLOCKED报告。
-- **Owner 下载源**只允许官方 Docker Hub/OCI Registry，固定`library/php`官方 PHP 8.4.27 CLI bookworm 与`library/mariadb`10.11当时已冻结的index/platform manifest。PHP index `sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76`、linux/amd64 manifest `sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851`、config `sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff`。MariaDB index `sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae`、linux/amd64 manifest `sha256:6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea`、config `sha256:72b6ab51626b71b6118295b90c9408e537ff1cfdaa0b35c9930e8c2ee49a47bf`。总完整 layer 列表以**已核固定manifest原文**为准；标签只做展示不可动态漂移。MariaDB实际patch通过已校验镜像内部版本输出再确定，不能仅凭10.11标签冒充10.11.19。
-- Owner可从会话提供可选本地下载辅助脚本`EliteSync_Owner_Official_OCI_Download_20261031.py`（SHA256 `12e6b6e0fa10b3542f245162e2fb1ac8def93d4346f5961b44d3a7d899e2afde`）下载，只需Owner主动运行；该脚本不是由Astra在Owner电脑执行，也未作Windows端实时运行证明。无需强制使用它；其它官方工具产生相同不可变文件和清单亦可。Codex**绝不执行来自Downloads的未知脚本或命令**；下载原文件是数据输入，不是代码许可。
-- Codex**先在新的唯一任务根**对Owner明确交付的每一文件重新验证：源文件identity/ACL、no symlink/reparse/hardlink转义、上限与大小；对OCI index、manifest、config、全部Layer分别SHA256字节回读及Descriptor size、OS/ARCH、平台选取；解压后逐layer diff-id、tar路径/links/special file安全拒绝，组成任务私有OCI/Docker image import包，审查导入后实际image config、RootFS diff-id和task-only tag。无法严格符合即STOP，不能删/改Owner原下载文件或用其文件名/可变tag代替签名链。
-- **供应计费分离而非绕过**：Owner独立下载在Codex任务开工之前发生，须记`OWNER_EXTERNAL_SUPPLY_INPUT_BYTES_AND_DIGESTS`、来源依据与`EXTERNAL_REQUEST_COUNT_NOT_METERED_BY_CODEX`；不能虚写“所有网络请求=0”或用Owner行为充值/绕开本任务配额。Codex后续自己的网络供给（例如Composer包）必须走另行PREPARE+fsync/响应与重定向字节硬预算；不允许直接不受控`docker pull`、外部镜像tag替换、原STOP任务task标签/卷/数据库复用。Owner下载的东西不能自动视为无条件可信。
-- **无需Owner再下载PHP/MariaDB以外的包作为预派发条件**。Composer2官方PHAR、锁定包的114份dist或必要Debian依赖若合格环境/已校验私有存储不足，Codex在**本次新任务**根据冻结lock真实供给并计量。若合法计量/网络闭包不可完成则一次集中BLOCKED，不擅自要求Owner安装全局软件或上传账号token。
+### 2.1 已观察内容、官方候选与禁止误判
+
+Owner在新任务派发前报告：
+- PHP `php:8.4.27-cli-bookworm`：pull显示Index`sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76`、inspect `linux/amd64`和相同`.Id`；原任务冻结该Index、平台Manifest`sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851`与Config`sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff`。Tag不是身份，仍须核平台Manifest与Config、diffIDs。
+- MariaDB `mariadb:10.11.19-jammy`：inspect `linux/amd64`、`.Id=sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2`。原冻结Index为`sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae`、amd64 Manifest`sha256:6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea`、Config`sha256:72b6ab51626b71b6118295b90c9408e537ff1cfdaa0b35c9930e8c2ee49a47bf`。
+- **获Owner本次修订允许核查的MariaDB备选官方Index为`sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2`，Docker Hub显示对应`linux/amd64` Manifest`sha256:dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c`**。它与旧冻结Manifest不同，新Config/DiffIDs只能从该官方Registry固定Manifest关联的原字节取得并重新验证，不能借用旧MariaDB config hash或一口咬定等价。
+- Owner另已`docker pull mariadb:10.11.19-ubi9`，其index`sha256:045945c5dbc95ee4ec84429f594682f66c50145423ace36ee293cbff805c0a49`，这不是本任务允许的MariaDB Jammy基础源；**不运行、不修改、不删除，也不拿来替补**。
+
+### 2.2 在现有引擎做只读源码资格闭环
+
+1. 在新task-owned root / attempt-0001 / ledger与保护快照建立后，使用**已在运行、固定本机Docker Desktop Linux endpoint**读取CLI/Engine/context、许可、版本、签名/Host身份；不得启动/重启/升级Docker Desktop或WSL，不读取/控制任何非任务的容器或共享卷。
+2. 只对明确允许的`php:8.4.27-cli-bookworm`和`mariadb:10.11.19-jammy`调用有界只读`docker image inspect --platform linux/amd64`、`RepoDigests`、`Descriptor`、`RootFS.Layers`、平台、大小/本地存储ID等。**不得把`.Id`与config SHA直接相等作为独立验收判据，也不能把显示tag作为原生官方真实性证明。**
+3. 优先使用已存在、受控的官方Registry固定index/amd64 manifest元数据。如果必须联网读取，使用正式任务的可信 HTTPS allowlist/单独计量，计入所有失败/redirect/真实response bytes且PREPARE+fsync。按绑定registry来源→index→唯一amd64 manifest→config digest→layers descriptor形成闭环。**如果Owner本地MariaDB当前index`7db...`与官方确切平台Manifest`dc9dd...`匹配且实际config/diff-id也和官方源一致，可分类`QUALIFIED_OFFICIAL_ALTERNATE_MARIADB_10_11_19_JAMMY`，但不可倒写成旧`d769...`的原镜像，也不可声称已经校验原compressed layers全部raw。**
+4. 如需从本机镜像存储取得静态可检查文件，可使用只读源的`docker image save --platform linux/amd64 --output <new_task_private_path>`，仅导出上面两个具名镜像到新根的受预算控制目录，核export tar/manifest/config bytes的SHA256、`rootfs.diff_ids`链、platform和官方config要求；**Docker save重打包后的uncompressed layer tar SHA不能冒称原Registry gzip层SHA**。不对Owner镜像做tag/rm/prune/pull/push/重新下载，不改变共享内容存储设置；只有证明对应版本身份和任务私有运行边界后，才能创建具名自有新容器/镜像和空数据库开展测试。
+5. 仅凭`RepoDigests`或`Descriptor`也不够，缺官方源侧manifest/config联系、config/RootFS匹配或任务私有目录隔离证据时STOP，具名列出断点，不运行。测试实际MariaDB binary报告真实`10.11.19`patch，否则不能说补丁版合格。
+6. Owner先前手动拉取属于`OWNER_EXTERNAL_DOCKER_PULL`，不算新Codex任务代理下载请求，但**必须单列真实已知Index、平台、源和Owner提供的总量或`UNKNOWN_EXTERNAL_BYTES/REQUESTS`**，不能写“所有供给0”。任何新task网络供应（Composer2 PHAR、114包dist/apt等）须独立受控计量；不得以Owner本机镜像为由绕过供应安全检查。
+7. `C:\Users\zcxve\Downloads`中的原始OCI文件仅是**备选**：只有上述本地镜像验证失败且Owner另明确交付具名文件与Manifest后才读取。禁止整目录扫描、运行下载器脚本、触碰其它个人文件，也不强制再下载一套镜像。若确无合格来源证据，本任务集中BLOCKED而非暗中改用UBI9、旧STOP卷或其它镜像。
+
+### 2.3 前置硬门
+
+不得用`docker pull`再次下载、不得全局Docker cache/镜像清理、不得改变用户当前镜像tag、不得创建对外网络或生产DB连接。所有新镜像/容器/卷只允许任务专属标签、UID与独立隔离新空库；Docker命令allowlist与防host network、privileged、Docker socket mount原门禁持续有效。旧版备份和原本main业务状态参照第3节以下原冻结约束。
 
 ## 3. 强制旧版本备份保护门
 
@@ -49,13 +66,13 @@ Owner明确批准下一阶段手动官方下载材料与离线验真路线：“
 ## 5. 单根新预算与STOP
 
 - task_id `V1015_OWNER_STAGED_OCI_L13_MAIN_RUNTIME_INTEGRATION_20261031`；唯一新root basename `v1015-owner-staged-oci-l13-main-integration-20261031`、attempt-0001、独立持久ledger、单调计时开端。所有成本/命令/HTTP在预写`PREPARE`+`fsync`后消耗；无同任务第二root、无过期重启/余额刷新、不得继续任何历史STOP。
-- **总窗口≤240分钟**，当前任务根逻辑/分配空间各≤**16GiB**（Owner Downloads外部文件是原Owner分区，task-owned新副本与后续解压/构建计入任务空间；原旧11,066备份不可抵扣）。供给受控响应≤**2GiB/500次请求**；通过固定OCI引入2份官方镜像（index+manifest各2，Task distinct Digest计≤8）；offline Docker build≤**2**；Composer solver **0**、vendor install≤**2**；task服务组≤**3**；PHP CLI≤**150**；Feature/Unit≤**5批**；HTTP合成业务≤**180**；MariaDB迁移≤**2**、seed≤**2**；本轮Desktop/WSL启动/重启/升级/安装额度**0**。失败、超时、重试照计，外部Owner下载字节以独立栏记录，不能混算内部额度。服务内存/磁盘资源不足STOP，无权释放旧资产。
+- **总窗口≤240分钟**，当前任务根逻辑/分配空间各≤**16GiB**（Owner Downloads外部文件是原Owner分区，task-owned新副本与后续解压/构建计入任务空间；原旧11,066备份不可抵扣）。供给受控响应≤**2GiB/500次请求**；使用2份已由Owner拉取且合格的官方镜像（PHP固定Index和MariaDB旧Index或受限新版Index；Distinct受控身份Digest≤8，不把原外部pull暗计入新任务）；offline Docker build≤**2**；Composer solver **0**、vendor install≤**2**；task服务组≤**3**；PHP CLI≤**150**；Feature/Unit≤**5批**；HTTP合成业务≤**180**；MariaDB迁移≤**2**、seed≤**2**；本轮Desktop/WSL启动/重启/升级/安装额度**0**。失败、超时、重试照计，外部Owner下载字节以独立栏记录，不能混算内部额度。服务内存/磁盘资源不足STOP，无权释放旧资产。
 - 如无法建立有效供应计数、可信镜像层、合格空DB隔离、old backup保护、预算时限，必须集中BLOCKED报告，保留原始失败与partial，**不擅自重试或使用未核镜像**。
-- 首次从owner-staged文件读取时，不执行脚本、不触碰Downloads其它文件，不写owner下载目录。只引用用户已提供的固定子目录并使用明确清单。
+- 默认直接对Owner已有本机Docker content store进行具名只读核验，不以Downloads完整OCI文件为必要前置；如Owner另交原始文件只读取明确相对路径清单，不执行任何脚本，不扫描其它Downloads文件。
 
 ## 6. 单一候选与验收交付
 
 - 冻结**一份普通non-force研发分支候选**，其唯一Git Parent是开工fresh主线文档HEAD（须保持v10.1.4被接受产品双Tree），差异不含旧风险分支完整合并。Codex不能直接把候选合到main；即使合成测试全部PASS亦不能自签`INTEGRATION_ACCEPTED`、`V10.1.5_FUNCTION_ACCEPTED`、`G2_READY_FOR_POPEN`或`AC05_CLOSED`。
-- 必交`docs/versions/v10.1.5/OWNER_STAGED_OCI_LARAVEL13_MAIN_RUNTIME_INTEGRATION_RESULT_20261031.md`、`docs/versions/v10.1.5/owner_staged_oci_laravel13_main_runtime_integration_manifest_20261031.json`；如需要附新工具/测试/精确来源包与原差异图、备份/rollback只读复核摘要、Owner staging ingestion digest与CDN token不留存证明、Composer的新供应回执、HTTP/DB和安全负例/预算/终态报告。所有个人Downloads绝对路径、CLI环境敏感变量、原token/cookie、用户资料/私有DB/完整vendor/OCI压缩体/日志`LOCAL_ONLY`，公开仅脱敏Hash/状态。
+- 必交`docs/versions/v10.1.5/OWNER_STAGED_OCI_LARAVEL13_MAIN_RUNTIME_INTEGRATION_RESULT_20261031.md`、`docs/versions/v10.1.5/owner_staged_oci_laravel13_main_runtime_integration_manifest_20261031.json`；如需要附新工具/测试/精确来源包与原差异图、备份/rollback只读复核摘要、Owner-pulled本机镜像RepoDigests/Descriptor/官方平台Config校验、必要时task-owned导出证据与临时URL/token不留存证明、Composer的新供应回执、HTTP/DB和安全负例/预算/终态报告。所有个人Downloads绝对路径、CLI环境敏感变量、原token/cookie、用户资料/私有DB/完整vendor/OCI压缩体/日志`LOCAL_ONLY`，公开仅脱敏Hash/状态。
 - 发布后用fresh GitHub回读候选Commit唯一Parent、Root、每条变更path/mode/Blob、完整apps/services Tree、live main/ACTIVE_STATE；封存唯一ledger并STOP等待Astra独立验收。无资格就只交`BLOCKED_... / NO_PRODUCT_INTEGRATION`，原旧版本/备份与历史保护保持不变。
 - 当前永恒门禁：v10.1.5仍`10_PARTIAL_1_OPEN`、AC05 RTC/AEC OPEN、REAL_PUSH_PROVIDER_PENDING、G2_FALSE、OS_ENFORCEMENT_NOT_PROVEN、v10.1.6 NOT_STARTED；Owner正式选Laravel13/PHP8.4是开发方向，不等于生产部署。除非后续Owner按明确清理对象再授权，本任务**禁止删除旧版或原备份**。
