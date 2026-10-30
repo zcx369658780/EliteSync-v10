@@ -1,3 +1,27 @@
+# EliteSync v10.1.5｜2026-10-31 Owner同意手动下载官方OCI材料，统一安全集成任务已发布、待下载后派发（CURRENT ENTRY）
+
+**`OWNER_APPROVED_MANUAL_OFFICIAL_OCI_STAGING / DOWNLOAD_DESTINATION_FIXED / NEW_L13_MAIN_RUNTIME_INTEGRATION_TASK_PUBLISHED / OWNER_DOWNLOAD_PENDING / OWNER_MANUAL_CODEX_DISPATCH_AFTER_DOWNLOAD_ONLY / NO_LOCAL_ACTION_EXECUTED_BY_ASTRA / OLD_VERSION_BACKUP_PRESERVED / LARAVEL13_DEV_BASELINE_OWNER_SELECTED / STATIC_CANDIDATE_ACCEPTED_ONLY / MAIN_PRODUCT_NOT_INTEGRATED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner本轮最新明确批准：** “可以我同意，我会将下载的文件放在`C:\Users\zcxve\Downloads`，并且下载好后才给Codex启动prompt。请你下达任务单。”因此Astra已**现在发布**下一份正式综合任务，但**未派发/未执行Codex，也未声称Owner已经下载**。Owner下载完成后才手动使用本任务启动Prompt；旧已STOP任务账本不可复活、任何旧额度不可结转。
+
+**新唯一正式综合任务：** [V10_1_5_OWNER_STAGED_IMMUTABLE_OCI_IMPORT_AND_LARAVEL13_MAIN_SAFE_RUNTIME_INTEGRATION_TASK_20261031.md](../versions/v10.1.5/V10_1_5_OWNER_STAGED_IMMUTABLE_OCI_IMPORT_AND_LARAVEL13_MAIN_SAFE_RUNTIME_INTEGRATION_TASK_20261031.md)，Git Blob `ff6a33189984956ec39bf038cb5e7b1d4204b267`，正式最终改正/固定Commit `86cfc77717161102e82781aad389634eb6f048b3`，已完成GitHub正文固定回读。任务内容为：Owner既定Downloads目录中的固定官方php/mariadb linux/amd64 OCI index、manifest、config、layers → Codex新task-owned根自行校hash/来源及diff-id → 安全离线构建/隔离MariaDB和Laravel13 composer/vendor → **基于f407选择性主线**的真实PHP/Feature/HTTP/DB/安全与持久化合成回归 → 唯一non-force候选 STOP → Astra独立验收。**不自动直接合产品main/修改用户默认开发根/生产或删除任何旧版**。
+
+**Owner官方下载权威指南：** [OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md](../versions/v10.1.5/OWNER_MANUAL_OFFICIAL_OCI_DOWNLOAD_GUIDE_20261031.md)，Git Blob `47aad6d1ad89f9c6e680af53cd42623874060c47`，首次发布Commit `3a17241baec6cd41a4f1d67f36cfae624192ecbd`。建议用户放入`C:\Users\zcxve\Downloads\EliteSync-v1015-OCI-20261031`子目录，仅作为Owner staging输入，不允许扫描Downloads其他内容。Owner自行可运行标准库下载辅助文件`EliteSync_Owner_Official_OCI_Download_20261031.py`，SHA256 `12e6b6e0fa10b3542f245162e2fb1ac8def93d4346f5961b44d3a7d899e2afde`，固定官方OCI Docker Registry不可变Digest；该脚本在Astra当前沙盒静态编译/格式校验，不代表Owner本机实际网络下载成功或任何安装。Docker官方Hub页面不是单个完整镜像压缩文件直链，Registry bearer token/307 CDN应由标准流程安全处理，不公开临时token。
+
+**固定来源锚：** PHP`library/php` index `sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76`，linux/amd64 manifest `sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851`；MariaDB`library/mariadb` index `sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae`，linux/amd64 manifest `sha256:6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea`。Owner端下载仅是资料供应，新Codex任务仍必须独立核每层sha/size/config/diff-id与私有容器身份；Owner外部流量与Codex内部预算独立记录、不虚记总下载0。官方文件不合格则STOP，绝不执行未知Downloads脚本或无界网络拉取。
+
+**当前源码与备份Authority不变：** 最新f407静态选择候选 `f407e543e1d6bcd3f9f7f341d876d97dc7228ac1`，Root `976bde38f80720bb9ac44c1a5808e6cc62c686e1`，apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0d1a1e9b1c1064e7746051fb1e939e63c2b70891`；仅10项Laravel13静态源引入已有Astra限定接受，**该次PHP/Composer/API/DB全NOT_RUN**。f407 Astra Review Commit `347423ee36e5c719827df784826fb400a2892269`、Blob `f6b816e4839b491abb68a3478b5406afd4f94aa6`。Owner旧开发版本本机备份Codex报告11,066文件、240,617,393 bytes、逐文件哈希与恢复试读通过；备份Manifest SHA256 `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`，目录/私有证据LOCAL_ONLY；未由Astra本机重算。旧代码、原dirty、旧vendor、旧STOP、所有旧历史证据保留，旧版本清理需新单独Owner按项授权。
+
+**派发权威与门禁：** Codex在Owner完成手动下载后fresh读取main/Root/ACTIVE_STATE和本任务精确Blob。研发候选唯一Parent为其开工时fresh main**（须双Tree仍是正式v10.1.4）**，f407只作选择性源码来源，Astra Review不作Parent。独立新root/attempt-0001/ledger，窗口≤240分钟，task空间≤16GiB，供应≤2GiB/500请求，2 Docker镜像Digest计数≤8、build≤2、solver0、vendor≤2、服务组≤3、PHP CLI≤150、Feature≤5、HTTP≤180、migration/seed≤2；用户下载的外部文件字节另列不抵扣受控验真与导入空间。任何镜像Hash/隔离/预算/脚本安全不能证明立即fail-closed，不擅自重启Docker/WSL/安装软件/签许可/生产DB写入。
+
+**不可变产品结果：** main仍仅v10.1.4接受并集成：apps`3468a3dd97da7accfda2539a0f8d8f68931a6110`、services`0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5`10 PARTIAL/1 OPEN`、AC05 RTC/AEC OPEN、真实Push Pending、G2 false、v10.1.6 NOT_STARTED，Windows E_NOTIMPL及四项历史事故与早期只读回执缺口永久保留。**没有旧版删除或main合入授权。**
+
+**当前唯一下一动作：** Owner在本地下载、校验/保存`owner-download-manifest.json`后，再把已正式发布任务按固定Blob手动派发Codex。现在无Codex执行、无Docker/Composer/PHP/DB活动、无本机默认版本切换，也不承诺任何自动异步工作。
+
+以下保留上一时点CURRENT ENTRY及所有既有历史原始内容；旧“等待是否发布手动下载任务”现已被本条正式发布所取代。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Astra有界验收f407e543：旧版备份已报验证、Laravel13选择性源码候选接受、OCI供应受阻STOP（CURRENT ENTRY）
 
 **`F407E543_LOCAL_BACKUP_VERIFIED_CODEX_REPORTED / FRAMEWORK_SOURCE_SELECTION_STATIC_ACCEPTED_WITH_OBSERVATIONS / OFFICIAL_OCI_SUPPLY_TRUNCATED_STOP / TARGET_MAIN_LARAVEL13_RUNTIME_NOT_RUN / SAFE_INTEGRATION_NOT_ACCEPTED / OWNER_MANUAL_DOWNLOAD_OPTION_RECORDED / MAIN_PRODUCT_NOT_INTEGRATED / LOCAL_DEV_BASELINE_NOT_ACTIVE / OLD_VERSION_DELETION_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
