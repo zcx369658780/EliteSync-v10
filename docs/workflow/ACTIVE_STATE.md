@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Astra独立有界接受Laravel13 Linux后端合成API/DB候选（CURRENT ENTRY）
+
+**`LARAVEL13_LINUX_BACKEND_SYNTHETIC_API_DB_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS / ASTRA_REVIEW_PUBLISHED / LARAVEL13_PRODUCT_BASELINE_OWNER_DECISION_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / PRODUCT_MAIN_NOT_INTEGRATED / REAL_PUSH_PROVIDER_PENDING / OS_ENFORCEMENT_NOT_PROVEN / V10.1.6_NOT_STARTED`**
+
+**唯一最新研发候选（已完成Codex提交与STOP）：** `9b74ca6fef89e2507f966870c1f0d04f4fe09ba6`，sole Parent `debe4a11d19f25179efef1d90d04e346980c2867`、Root `3b9690c1cdd6313d8f192c0ca4105352b8b40188`，候选 apps Tree `8cd9b6df8e744c8fc9d4217412edce31795a318d`、services Tree `9427d6deba3be2d44fce94122661a21668976e20`。38项path/mode/Blob经Astra直接GitHub对象核验38/38。Result Blob `f7e83f4062f49def6e86cc4fc88a1026dbd1eb63`、Manifest Blob `500e4c78f6876f048b138e0c223b6288b376e70e`；正式任务仍为`V10_1_5_RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_API_DB_CONTINUATION_TASK_20261030.md` Blob `a1cbc75afe406e3e05712c6c51fb63c86bad928d`，已执行且永久STOP，不再次派发或复用预算。
+
+**Astra正式独立审查已发布并回读：** [9B74CA6F_LARAVEL13_LINUX_API_DB_ASTRA_INDEPENDENT_REVIEW_20261030.md](https://github.com/zcx369658780/EliteSync-v10/blob/9026a5bb04bbb23358eb8c6f61afba66ae4f2318/docs/versions/v10.1.5/9B74CA6F_LARAVEL13_LINUX_API_DB_ASTRA_INDEPENDENT_REVIEW_20261030.md)，Review Commit `9026a5bb04bbb23358eb8c6f61afba66ae4f2318`、Review Blob `456c8d47ec98e815c467e9d5f38ea3b4ddf12680`。裁决：`9B74CA6F_LARAVEL13_LINUX_BACKEND_SYNTHETIC_API_DB_ACCEPTED_WITH_OBSERVATIONS`。该Review分支不是下一研发Parent，不合并产品main。
+
+**已确认GitHub源码事实：** 新`composer.json` Blob `130793decf84ff8ab93faa0300117b7fab9d1826`，新`composer.lock` Blob `e236fbc960c1dd08c1fecb9aeed4926b4cab3933`，锁住Laravel`v13.39.0`、Tinker`v3.0.2`、PHPUnit`12.5.42`，114包，不再是旧Laravel11 lock。业务源码及受影响测试经Astra静态审阅，未见故意移除重要CN/MC/Block/媒体授权负例；合成HTTP任务专属driver使用Laravel路由+独立MariaDB，不是模拟成功响应。但候选未合main，仍需Owner决定是否采用Laravel13为后续长期基线。
+
+**Codex本地运行证据的界限：** 报告Linux PHP8.4.27/Composer2.11/MariaDB10.11.19，solver1/vendor1成功、258tests/3071assertions最终exit0、HTTP100尝试/99响应、75迁移、同新空卷重启保持4消息/4附件/4通知、真实正反鉴权和撤权回归。Codex报告预算合格（快照≤16GiB/240min、供应317请求/336590677bytes、服务组4/4、migration2/2、seed2/2），Owner报告最终封存约147分钟；原完整ledger/budget-terminal/completion与私有vendor/DB卷仅LOCAL_ONLY，Astra没有在本机重跑或重算最终账本。**早期只读检查回执缺口永久保持`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`，不得倒填通过。** 旧Laravel11生成真实二进制Cookie未测，只测试合成PHP序列化夹具；H264 video206、APP/Flutter/Gradle/G2/APK/ADB/真机RTC/AEC、真实Push及物理15/30天仍NOT_RUN。Windows E_NOTIMPL和所有历史事故/保护门禁不动。
+
+**当前已接受产品main唯一基线不变：** v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍`10 PARTIAL / 1 OPEN`、AC05 RTC/AEC OPEN、G2 false、PRODUCT_MAIN_NOT_INTEGRATED、REAL_PUSH_PROVIDER_PENDING、v10.1.6 NOT_STARTED。所有旧18/两ACL树/122原证/五根/527refs/3183 Seed、dirty/ledger/claims/预算事故继续保护，本轮不清理、不重置。
+
+**唯一下一Owner决策：** 是否确认`Laravel13 + PHP8.4`作为**未来开发技术基线**；若确认，仅授权Astra据此制定一次具名安全集成/必要有界验证任务，仍需Owner按正式任务手动派发Codex与Astra后续独立集成验收；不自动更改生产框架、把新后端候选合main或放行整版。若Owner选择先补真实旧Cookie/设备证据，可按界限在后续许可内安排；不得因未测旧Cookie倒改本次合成后端的有限接受。
+
+以下为之前的ACTIVE_STATE全文，旧`AWAITING_ASTRA`、未执行及Docker受阻状态属于当时已保存里程碑，不覆盖当前已审查候选事实。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Docker引擎已响应后接续综合任务正式发布（CURRENT ENTRY）
 
 **`RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_API_DB_CONTINUATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_TASK_NOT_EXECUTED / OWNER_REPORTED_ENGINE_LINUX_AMD64_EXIT0 / NEW_ENGINE_IDENTITY_AND_LICENSE_REQUALIFICATION_REQUIRED / NO_DESKTOP_REACTIVATION / FRESH_TASK_ROOT_AND_BUDGET_ONLY / LARAVEL13_FIRST_LARAVEL12_FALLBACK / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
