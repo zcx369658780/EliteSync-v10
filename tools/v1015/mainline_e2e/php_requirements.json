@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_OS_APISET_PENDING",
-  "candidate_parent": "14e6cde7b714c5bacdeedeb87233345d36a435c5",
+  "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_RAW_ARCHIVED_HOST_QUERY_CLOSED",
+  "candidate_parent": "d33845e62f1aa5eb82e0a4bf443b0396f2eb8b1a",
   "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
   "php_version": "8.5.12",
   "thread_safe": false,
@@ -302,7 +302,7 @@
     }
   ],
   "optional_modules": {},
-  "current_state": "CATALOG_23_CONCRETE_OS_QUALIFIED_APISET_NATIVE_GATE_CLOSED",
+  "current_state": "API_SET_SIGNED_RAW_ARCHIVED_ONLY_HOST_QUERY_E_NOTIMPL_NATIVE_GATE_CLOSED",
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
@@ -310,6 +310,7 @@
     "1ade4e5a89116eeba329311ed274229823aafd17",
     "1db7fc7eaadcea172cc52016904836bd71a0b90d",
     "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
+    "5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0",
     "5f1c709e31af0d4f2c1c93363c147942db7116c5",
     "8b6bd9233a08a7f4d0986d6f592eb114dec63e04",
     "960a738505054ac97a8cb85df660bf4f0b6decc9",
@@ -533,7 +534,14 @@
     "observation_task_blob": "960a738505054ac97a8cb85df660bf4f0b6decc9",
     "evidence_scope": "PRIOR_ACCEPTED_CENTRAL_TRUST_ONLY_NO_NEW_CENTRAL_OBSERVATION"
   },
-  "native_probe_task_blob": "5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0",
-  "new_task_os_observations_used": 2,
-  "new_task_os_observation_limit": 2
+  "native_probe_task_blob": "8faa3733369f714fb331e43c1da56762c589aa6b",
+  "api_set_current_task": {
+    "schema_observations_used": 2,
+    "schema_observation_limit": 2,
+    "raw_archive": "DURABLE_READBACK_VERIFIED_LOCAL_ONLY",
+    "schema_sha256": "568c72f6216d83a716d6fa9bec59ae8d93e6728062d969ac362013f3910c0007",
+    "host_closure": "NOT_PROVEN",
+    "supported_query_hresult": "0x80004001",
+    "php_native": "NOT_RUN"
+  }
 }

@@ -21,7 +21,7 @@ class ApiSetParser(unittest.TestCase):
         with self.assertRaises(Gate):parse_schema(raw)
     def test_out_of_bounds_string_rejected(self):
         raw=bytearray(inert_schema());struct.pack_into('<I',raw,512+28+4,999999)
-        with self.assertRaises(Gate):parse_schema(raw)
+        with self.assertRaises(Gate):resolve(parse_schema(raw),'api-ms-inert-l1-1-0.dll','php.exe')
     def test_host_path_rejected(self):
         raw=bytearray(inert_schema());host='../bad.dll'.encode('utf-16-le');raw[712:712+len(host)]=host;struct.pack_into('<I',raw,512+52+16,len(host))
         with self.assertRaises(Gate):resolve(parse_schema(raw),'api-ms-inert-l1-1-0.dll','php.exe')
@@ -64,3 +64,20 @@ class ApiSetParser(unittest.TestCase):
         from pathlib import Path
         with self.assertRaisesRegex(Gate,'ARCHIVE_PATH'):
             validate_api_set_closure(Path('C:/INERT'),dict(api_set_schema=dict(archived_relative_path='../schema.bin')),dict(ordinary_edges=[]))
+
+    def revision_schema(self,published=2,hashed=True):
+        raw=bytearray(inert_schema());name=('api-ms-inert-l1-1-'+str(published)).encode('utf-16-le')
+        raw[612:612+len(name)]=name
+        struct.pack_into('<I',raw,512+28+8,len(name))
+        struct.pack_into('<I',raw,512+28+12,len('api-ms-inert-l1-1'.encode('utf-16-le')) if hashed else len(name))
+        return bytes(raw)
+    def test_signed_hashed_prefix_maps_older_revision_without_host_guess(self):
+        schema=parse_schema(self.revision_schema())
+        self.assertEqual('inert.dll',resolve(schema,'api-ms-inert-l1-1-0.dll','php.exe'))
+        self.assertEqual('api-ms-inert-l1-1-2',schema.selected_entries['api-ms-inert-l1-1-0']['published'])
+    def test_newer_request_not_silently_aliased(self):
+        with self.assertRaises(Gate):resolve(parse_schema(self.revision_schema()),'api-ms-inert-l1-1-3.dll','php.exe')
+    def test_other_major_family_not_aliased(self):
+        with self.assertRaises(Gate):resolve(parse_schema(self.revision_schema()),'api-ms-inert-l2-1-0.dll','php.exe')
+    def test_compatibility_requires_explicit_signed_hashed_prefix(self):
+        with self.assertRaises(Gate):resolve(parse_schema(self.revision_schema(hashed=False)),'api-ms-inert-l1-1-0.dll','php.exe')

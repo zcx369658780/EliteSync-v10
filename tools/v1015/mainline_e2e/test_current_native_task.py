@@ -32,3 +32,12 @@ class CurrentProbeContracts(unittest.TestCase):
     def test_db_configuration_rejected(self):self.config['db_port']=43349;self.rehash();self.reject()
     def test_config_mutation_rejected(self):self.config['max_bytes']+=1;self.reject()
     def test_space_limit_rejected(self):self.config['max_bytes']=8589934593;self.grant['max_bytes']=8589934593;self.rehash();self.reject()
+
+    def test_stopped_probe_rejects_before_manifest_system_sources(self):
+        from unittest.mock import patch
+        import json
+        from current_native_task import qualify,PARENT
+        rows=[dict(task_id='V1015_API_SET_RAW_FIRST_L12_E2E_20261030',task_blob=TASK,sole_parent=PARENT),dict(action='DYNAMIC_PHASE_STOP_AFTER_SCHEMA_BUDGET_EXHAUSTED')]
+        (self.root/'execution_ledger.jsonl').write_text('\n'.join(json.dumps(x) for x in rows)+'\n')
+        with patch('php_runtime.validate_manifest',side_effect=AssertionError('NO_MANIFEST_SYSTEM_READ')),patch('central_vc_loader.verify_current',side_effect=AssertionError('NO_SYSTEM_SOURCE')):
+            with self.assertRaisesRegex(Gate,'ALREADY_STOPPED'):qualify(self.config,self.grant)

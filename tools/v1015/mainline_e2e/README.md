@@ -387,3 +387,47 @@ References:
 - https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-authenticode_ts_extra_cert_chain_policy_para
 - https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-apisets
 - https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Security/CodeSigning/cpp/codesigning.cpp
+
+
+## Current delivery: API-set raw-first task (2026-10-30)
+
+The authoritative task Blob is 8faa3733369f714fb331e43c1da56762c589aa6b;
+sole Parent is d33845e6. `schema_capture_entry.py` is the real observation entry,
+with default inert inspection. Observation requires this task's exact context,
+source closure, original ledger/workspace identity and remaining 120-minute/2
+observation budget. It is not an execution grant for a future task.
+
+The real entry calls `Journal.bytes` directly: exclusive creation, file fsync,
+actual task-directory FlushFileBuffers, readback hash/size and private file identity
+are mandatory before the parser consumes archived bytes. There is no configurable
+no-op persistence callback. Mid-read failure/growth retains a clearly partial raw
+prefix; complete archived schema, signature and parser/qualification failures are
+never removed or overwritten. Old source trust is reused by exact hash/identity.
+
+The schema parser decodes value records only for selected ordinary contracts.
+Signed hashed-prefix/revision matching produces a CANDIDATE, not loader authority.
+A candidate must match a successful supported running-schema query, and required
+host imports/exports/forwarders must be present and bound. Query calls use only the
+already-loaded pinned KernelBase module and verified function-owner addresses;
+no LoadLibrary is used. Import/export/forwarder checks are pure PE analysis, not
+PHP runtime proof. Private hardlink/reparse guards and extra/unknown-image denial
+remain in force.
+
+Actual result: the signed 204152-byte schema is durably archived. Observation 1
+retained an exact-name lookup failure. Observation 2 reused that input and recorded
+HRESULT 0x80004001 (E_NOTIMPL), empty host, for api-ms-win-crt-heap-l1-1-0.dll.
+The API carrier availability check does not establish a successful host query.
+The original raw receipt's availability field is preserved; later source separates
+interface availability from lookup success. The result was always rejected by
+HRESULT. Both observations are spent; no third query/read or PHP Popen occurred.
+The complete host closure, PHP loading, Composer lock/vendor and API/DB are NOT_RUN
+or NOT_PROVEN as appropriate. The original Laravel11 lock is unchanged.
+
+The probe qualifier checks the task's STOP before manifest validation can re-read
+system sources, and again before launch. Archived query receipts are mandatory;
+PASS labels and missing provider/pin fields cannot replace evidence. This task is
+STOPPED after delivery. New authority must rebind all task-specific inputs.
+
+References:
+- https://learn.microsoft.com/en-us/windows/win32/api/apiquery2/nf-apiquery2-getapisetmodulebasename
+- https://learn.microsoft.com/en-us/windows/win32/apiindex/api-set-loader-operation

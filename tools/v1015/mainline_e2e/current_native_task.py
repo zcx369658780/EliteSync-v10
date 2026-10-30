@@ -1,14 +1,14 @@
 """Current task native-only qualification. Default import performs no observation/launch.
 The business qualifier still requires the resolved Laravel12 lock/vendor.
 """
-import json
+import json,re
 from datetime import datetime, timezone
 from pathlib import Path
 from contracts import need, local, digest, canonical
-TASK='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0'
-PARENT='14e6cde7b714c5bacdeedeb87233345d36a435c5'
-BINDING=dict(commit=PARENT,apps_tree='8cd9b6df8e744c8fc9d4217412edce31795a318d',services_tree='4dbf710d64cf12ca513c4747bf53b7d73d5cfe1a')
-ROOT_NAME='v1015-os-catalog-minimal-l12-20261030'
+TASK='8faa3733369f714fb331e43c1da56762c589aa6b'
+PARENT='d33845e62f1aa5eb82e0a4bf443b0396f2eb8b1a'
+BINDING=dict(commit=PARENT,apps_tree='8cd9b6df8e744c8fc9d4217412edce31795a318d',services_tree='bc44baa6f04ce57a8a6dc331be12c67a79e6e0da')
+ROOT_NAME='v1015-api-set-raw-first-l12-20261030'
 
 
 def probe_authority(config, grant, now=None):
@@ -35,7 +35,7 @@ def probe_authority(config, grant, now=None):
 
 def qualify(config,grant):
     from php_runtime import POLICY, validate_manifest
-    root=probe_authority(config,grant);policy=json.loads(POLICY.read_bytes())
+    root=probe_authority(config,grant);reject_stopped_ledger(root);policy=json.loads(POLICY.read_bytes())
     need(policy.get('candidate_parent')==PARENT and policy.get('native_probe_task_blob')==TASK,'CURRENT_NATIVE_POLICY')
     path=local(config['php_runtime_manifest'],root);raw=path.read_bytes();h=digest(raw)
     need(h==config.get('php_runtime_manifest_sha256')==grant.get('php_cli_manifest_sha256')==grant.get('php_api_manifest_sha256'),'PHP_CLI_API_CLOSURE_MISMATCH')
@@ -62,9 +62,9 @@ def execution_gate(root, profile, grant):
     root=local(root);need(root.name==ROOT_NAME,'CURRENT_NATIVE_ROOT')
     ledger=local(root/'execution_ledger.jsonl',root)
     rows=[json.loads(x) for x in ledger.read_bytes().splitlines()]
-    need(rows and rows[0].get('task_id')=='V1015_OS_CATALOG_MINIMAL_IMPORT_L12_E2E_20261030'
+    need(rows and rows[0].get('task_id')=='V1015_API_SET_RAW_FIRST_L12_E2E_20261030'
          and rows[0].get('task_blob')==TASK and rows[0].get('sole_parent')==PARENT,'CURRENT_LEDGER_TASK')
-    need(not any('TERMINAL_STOP' in str(x.get('action',x.get('event',''))) or x.get('action')=='DYNAMIC_PHASE_STOP_AFTER_OS_BUDGET_EXHAUSTED' for x in rows),'CURRENT_TASK_ALREADY_STOPPED')
+    need(not any('TERMINAL_STOP' in str(x.get('action',x.get('event',''))) or x.get('action') in ('DYNAMIC_PHASE_STOP_AFTER_OS_BUDGET_EXHAUSTED','DYNAMIC_PHASE_STOP_AFTER_SCHEMA_BUDGET_EXHAUSTED') for x in rows),'CURRENT_TASK_ALREADY_STOPPED')
     count=lambda name:sum(x.get('action',x.get('event'))==name for x in rows)
     need(count('PREPARE_PHP_DB_FREE_PROBE')<2,'PROBE_BUDGET_EXHAUSTED')
     need(count('PREPARE_PHP_CLI_START')<60,'PHP_CLI_BUDGET_EXHAUSTED')
@@ -114,6 +114,7 @@ def validate_api_set_closure(root,policy,graph):
     fact=readonly_fact(evidence['file']['path'])
     need(all(fact[k]==evidence['file'][k] for k in ['sha256','file_id','volume','bytes','links']),'API_SET_SCHEMA_CURRENT_IDENTITY')
     need(isinstance(policy.get('ordinary_import_paths'),list) and policy['ordinary_import_paths'],'OS_ORDINARY_EDGES_REQUIRED')
+    queries=load_archived_queries(root,policy)
     # Rebuild recursive ordinary imports from the actually pinned OS bytes.
     # A supplied list is checked for completeness, never trusted as the graph.
     from pe_dependencies import pe_info
@@ -121,7 +122,14 @@ def validate_api_set_closure(root,policy,graph):
     queue=list(graph['ordinary_edges']);seen=set();actual_edges=set()
     while queue:
         edge=queue.pop(0);target=edge['target'];importer=edge['importer']
-        if target.startswith(('api-ms-','ext-ms-')):target=resolve(schema,target,importer)
+        if target.startswith(('api-ms-','ext-ms-')):
+            requested=target;target=resolve(schema,target,importer)
+            from api_set_query import validate_query
+            need(requested in queries,'API_SET_QUERY_RECEIPT_MISSING')
+            validate_query(target,queries[requested])
+            provider=queries[requested].get('provider_file',{});pin=policy.get('images',{}).get('kernelbase.dll',{})
+            validate_query_provider(provider,pin)
+            validate_os_source(readonly_fact(Path(system['path'])/'kernelbase.dll'),policy,system)
         if target=='vcruntime140.dll' or target in private:continue
         need(Path(target).name==target and target.endswith('.dll'),'OS_ORDINARY_TARGET_NAME')
         if target in seen:continue
@@ -141,3 +149,32 @@ def validate_declared_os_edges(policy,actual_edges,actual_names):
     supplied={(x['importer'],x['target']) for x in policy['ordinary_import_paths']}
     need(supplied==set(actual_edges),'OS_ORDINARY_EDGES_INCOMPLETE')
     need(set(policy.get('required_ordinary_imports',[]))==set(actual_names),'OS_ORDINARY_MODULE_SET_INCOMPLETE')
+
+
+def load_archived_queries(root,policy):
+    value=policy.get('api_set_query_archive',{})
+    need(isinstance(value,dict) and value.get('path'),'API_SET_QUERY_ARCHIVE_REQUIRED')
+    rel=value['path'];need(isinstance(rel,str) and rel.startswith('raw/') and '..' not in rel and ':' not in rel and '\\' not in rel,'API_SET_QUERY_ARCHIVE_PATH')
+    path=local(root/rel,root);st=path.stat();raw=path.read_bytes()
+    need(st.st_ino==value.get('file_id') and st.st_dev==value.get('volume') and len(raw)==value.get('bytes') and digest(raw)==value.get('sha256'),'API_SET_QUERY_ARCHIVE_IDENTITY')
+    rows=json.loads(raw);need(isinstance(rows,list) and rows,'API_SET_QUERY_ARCHIVE_EMPTY')
+    found={}
+    for row in rows:
+        key=row['contract'];need(key not in found,'API_SET_QUERY_ARCHIVE_DUPLICATE');found[key]=row
+    return found
+
+
+def validate_query_provider(provider,pin):
+    need(isinstance(provider,dict) and isinstance(pin,dict) and pin.get('trust_schema')==2 and pin.get('source_class')=='WINDOWS_SYSTEM_IMAGE','API_SET_QUERY_PROVIDER_SOURCE_REQUIRED')
+    need(all(type(provider.get(k)) is int and provider[k]>0 and type(pin.get(k)) is int and pin[k]>0 for k in ['file_id','volume','bytes','links']),'API_SET_QUERY_PROVIDER_SOURCE_REQUIRED')
+    need(isinstance(provider.get('sha256'),str) and re.fullmatch('[a-f0-9]{64}',provider['sha256']) is not None and provider.get('readonly_handle') is True,'API_SET_QUERY_PROVIDER_SOURCE_REQUIRED')
+    from os_images import norm
+    need(norm(provider['path'])==norm(pin['path']) and norm(provider['canonical_path'])==norm(pin['path']),'API_SET_QUERY_PROVIDER_SOURCE_CHANGED')
+    need(all(provider[k]==pin[k] for k in ['sha256','file_id','volume','bytes','links']),'API_SET_QUERY_PROVIDER_SOURCE_CHANGED')
+
+
+def reject_stopped_ledger(root):
+    """Called before manifest validation can re-read any system source."""
+    rows=[json.loads(x) for x in local(root/'execution_ledger.jsonl',root).read_bytes().splitlines()]
+    need(rows and rows[0].get('task_id')=='V1015_API_SET_RAW_FIRST_L12_E2E_20261030' and rows[0].get('task_blob')==TASK and rows[0].get('sole_parent')==PARENT,'CURRENT_LEDGER_TASK')
+    need(not any(x.get('action',x.get('event')) in ['TERMINAL_STOP','DYNAMIC_PHASE_STOP_AFTER_SCHEMA_BUDGET_EXHAUSTED','DYNAMIC_PHASE_STOP_AFTER_OS_BUDGET_EXHAUSTED'] for x in rows),'CURRENT_TASK_ALREADY_STOPPED')

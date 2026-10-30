@@ -52,11 +52,11 @@ final class MainlineEnvironment
     }
     public static function assertProbeContext(array $ctx): void {
         self::assertSourceContext($ctx);$c=$ctx['config'];$g=$ctx['grant'];
-        if(($g['task_blob']??'')==='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0') {
+        if(($g['task_blob']??'')==='8faa3733369f714fb331e43c1da56762c589aa6b') {
             self::need(($g['action']??'')==='php_native_no_db_probe' && ($g['probe_operations']??0)===2 && ($g['probe_seconds']??0)>0 && $g['probe_seconds']<=30,'Current no-DB scope/budget');
             self::need(($g['new_instance_qualified']??null)===false && ($g['db_operations']??null)===0 && ($g['network_operations']??null)===0 && ($g['laravel_bootstrap_allowed']??null)===false,'Current no-DB boundary');
             foreach(['api','database','db_port','db_username','db_password','datadir','server_id','fixture_password','app_key'] as $key)self::need(!array_key_exists($key,$c),'DB configuration forbidden in probe');
-            self::need(basename($c['task_root'])==='v1015-os-catalog-minimal-l12-20261030' && ($c['source_binding']['commit']??'')==='14e6cde7b714c5bacdeedeb87233345d36a435c5' && ($c['source_binding']['apps_tree']??'')==='8cd9b6df8e744c8fc9d4217412edce31795a318d' && ($c['source_binding']['services_tree']??'')==='4dbf710d64cf12ca513c4747bf53b7d73d5cfe1a','Current native source/root');
+            self::need(basename($c['task_root'])==='v1015-api-set-raw-first-l12-20261030' && ($c['source_binding']['commit']??'')==='d33845e62f1aa5eb82e0a4bf443b0396f2eb8b1a' && ($c['source_binding']['apps_tree']??'')==='8cd9b6df8e744c8fc9d4217412edce31795a318d' && ($c['source_binding']['services_tree']??'')==='bc44baa6f04ce57a8a6dc331be12c67a79e6e0da','Current native source/root');
             self::need(($c['max_bytes']??0)>0 && $c['max_bytes']<=8589934592 && $c['max_bytes']===($g['max_bytes']??null),'Current no-DB space');
             foreach(['tests/E2E/php_runtime_probe.php','tests/E2E/MainlineEnvironment.php','tests/E2E/PhpRuntimeQualification.php','composer.json','composer.lock'] as $rel)self::need(isset($c['source_files'][$rel]),'Probe source closure missing');
             return;

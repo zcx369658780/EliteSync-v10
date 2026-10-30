@@ -31,21 +31,42 @@ def parse_schema(pe):
     def text(offset,length):
         need(length%2==0 and 0<=offset<=len(raw)-length and length<=1024,'API_SCHEMA_TEXT_BOUNDS')
         return raw[offset:offset+length].decode('utf-16-le').lower()
-    result={}
-    for i in range(count):
-        f,no,nl,hashed,vo,vc=read('<6I',entries+24*i)
-        name=text(no,nl);need(bool(name) and '\0' not in name and name not in result,'API_SCHEMA_NAME')
-        need(0<vc<=32 and vo+20*vc<=size,'API_SCHEMA_VALUES')
-        values=[]
-        for j in range(vc):
-            vf,alias_offset,alias_length,host_offset,host_length=read('<5I',vo+20*j)
-            alias=text(alias_offset,alias_length);host=text(host_offset,host_length)
-            # Do not reject unrelated schema entries (e.g. kernel-mode hosts).
-            # No host is trusted/used until the exact ordinary contract is selected.
-            need('\0' not in alias and '\0' not in host,'API_SCHEMA_TEXT_NUL')
-            values.append(dict(alias=alias,host=host))
-        result[name]=values
-    return result
+    # Keep an index of bounded namespace entries, but do not decode/validate
+    # unrelated hosts. Only get() of an actually selected ordinary contract
+    # reads its value records. Duplicate selected contracts are rejected.
+    class SelectedNamespace(dict):
+        def get(self,key,default=None):
+            if dict.__contains__(self,key):return dict.get(self,key)
+            selected=[];compatible=[]
+            revision=re.fullmatch(r'((?:api|ext)-[a-z0-9-]+-l[0-9]+-[0-9]+)-([0-9]+)',key)
+            for i in range(count):
+                f,no,nl,hashed,vo,vc=read('<6I',entries+24*i)
+                exact_length=nl==len(key.encode('utf-16-le'))
+                prefix_candidate=revision is not None and hashed==len(revision[1].encode('utf-16-le'))
+                if not exact_length and not prefix_candidate:continue
+                if no>len(raw)-nl or no<0:continue
+                try:name=text(no,nl)
+                except (UnicodeError,ValueError):continue
+                if name==key:selected.append((vo,vc,name,'EXACT'))
+                elif prefix_candidate:
+                    published=re.fullmatch(re.escape(revision[1])+r'-([0-9]+)',name)
+                    # Use the signed entry's explicit hashed-prefix length; no
+                    # hardcoded host/family alias. Never accept a newer request.
+                    if published and int(revision[2])<=int(published[1]):
+                        compatible.append((vo,vc,name,'SIGNED_HASHED_PREFIX_REVISION_COMPATIBILITY'))
+            if not selected:selected=compatible
+            if not selected:return default
+            need(len(selected)==1,'API_SCHEMA_SELECTED_DUPLICATE')
+            vo,vc,published,method=selected[0];self.selected_entries[key]=dict(requested=key,published=published,method=method)
+            need(0<vc<=32 and vo+20*vc<=size,'API_SCHEMA_VALUES')
+            values=[]
+            for j in range(vc):
+                vf,ao,al,ho,hl=read('<5I',vo+20*j)
+                alias=text(ao,al);host=text(ho,hl)
+                need('\0' not in alias and '\0' not in host,'API_SCHEMA_TEXT_NUL')
+                values.append(dict(alias=alias,host=host))
+            dict.__setitem__(self,key,values);return values
+    result=SelectedNamespace();result.selected_entries={};return result
 
 
 def resolve(schema,contract,importer):
