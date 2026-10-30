@@ -1,3 +1,27 @@
+# EliteSync v10.1.5｜2026-10-30 Astra有界验收f407e543：旧版备份已报验证、Laravel13选择性源码候选接受、OCI供应受阻STOP（CURRENT ENTRY）
+
+**`F407E543_LOCAL_BACKUP_VERIFIED_CODEX_REPORTED / FRAMEWORK_SOURCE_SELECTION_STATIC_ACCEPTED_WITH_OBSERVATIONS / OFFICIAL_OCI_SUPPLY_TRUNCATED_STOP / TARGET_MAIN_LARAVEL13_RUNTIME_NOT_RUN / SAFE_INTEGRATION_NOT_ACCEPTED / OWNER_MANUAL_DOWNLOAD_OPTION_RECORDED / MAIN_PRODUCT_NOT_INTEGRATED / LOCAL_DEV_BASELINE_NOT_ACTIVE / OLD_VERSION_DELETION_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Astra独立验收归档：** [F407E543_LOCAL_BACKUP_STATIC_L13_INTEGRATION_ASTRA_REVIEW_20261030.md](https://github.com/zcx369658780/EliteSync-v10/blob/347423ee36e5c719827df784826fb400a2892269/docs/versions/v10.1.5/F407E543_LOCAL_BACKUP_STATIC_L13_INTEGRATION_ASTRA_REVIEW_20261030.md)；Review Commit `347423ee36e5c719827df784826fb400a2892269`、Git Blob `f6b816e4839b491abb68a3478b5406afd4f94aa6`，Review分支以候选为Parent，仅作记录，**不允许充当下一正式集成Parent或合并main**。裁决仅`STATIC_SELECTION_ACCEPTED_WITH_OBSERVATIONS / BACKUP_VERIFIED_CODEX_REPORTED / DYNAMIC_SUPPLY_BLOCKED`，不是安全集成通过。
+
+**本轮唯一Codex候选已提交并STOP：** Commit `f407e543e1d6bcd3f9f7f341d876d97dc7228ac1`，唯一Parent `7a4595c60ac2fced957cd3bffd132daa23b4db74`、Root `976bde38f80720bb9ac44c1a5808e6cc62c686e1`；18项变更（10个后端路径与8个安全文档）Git Blob/mode 18/18核验；apps Tree仍 `3468a3dd97da7accfda2539a0f8d8f68931a6110`，候选services Tree `0d1a1e9b1c1064e7746051fb1e939e63c2b70891`。Result Blob `5aced9d9550d660cf3c1f9f9bbbc45a7c4b0c1af`、Manifest Blob `c88f2413351701bb408236e8b26838d50c081d96`、静态差异表 Blob `0845d8594de13d5f668bcb784bf336fda0843c4b`。本任务正式合同`V10_1_5_L13_PHP84_BASELINE_SAFE_INTEGRATION_AND_PREMIGRATION_LOCAL_BACKUP_TASK_20261030.md` Blob `63712dba26ec1c24539bec7082dd4f0c557df583`，已STOP，不能继续旧账本或回收额度。
+
+**备份已由Codex本机报告验证：** 本地独立隔离受限目录11,066文件、240,617,393 bytes，11,066份全部SHA256读回及相同数量的隔离恢复试读，恢复接受产品apps/services双Tree精确匹配，备份Manifest SHA256 `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`。真实路径、FileID、ACL、Manifest/原始SHA文件仅LOCAL_ONLY，**Astra未亲自访问本机备份二进制、未独立重算11,066件**；是`CODEX_REPORTED_LOCAL_TEST`，不包括旧生产DB或异盘硬件容灾。旧本机dirty、vendor、所有历史保护根和备份未删。
+
+**静态安全选择结果：** 52项候选与已接受main差异已分类，只选择10项必要的composer.json/lock/session和7项测试兼容修改；没有F1/F3/F4未整版接受业务代码带入，apps Tree及正式main业务源码原样保留。Laravel13目标lock `e236fbc960c1dd08c1fecb9aeed4926b4cab3933`，但**本次PHP/Composer validate/vendor、Feature、HTTP/API/MariaDB及重启持久测试均NOT_RUN**，无正式安全集成接受或新版本生效。旧Cookie真实迁移、package:discover/dev脚本关闭后的启动/依赖行为、Guzzle/Workerman/lunar-php随锁升级兼容仍待验证。
+
+**本次STOP原因与预算分级：** Codex报告官方OCI PHP镜像层一次提前EOF，受限重取PHP闭包成功；随后MariaDB层报告29,752,488 bytes仅收19,119,531 bytes再次截断，因此停止所有新动态启动。前次HTTP状态/长度未记录，保留NOT_RECORDED不补造。供应37请求、4个具名Digest、成功body186,327,053 bytes + 两笔512MiB最坏预留，计量总1,260,068,877/2GiB；其他服务/build/solver/vendor/PHP/Feature/HTTP/DB均0；结束快照未超16GiB/240min，Owner称最终约118.67分钟，原ledger/terminal/completion仅LOCAL_ONLY。所有余量因STOP不可复用。
+
+**Owner新补充的操作偏好：** “如果下载有问题，你可以给我下载链接，我手动下载后让codex安装也行”。后续允许规划`OWNER_MANUAL_DOWNLOAD_AND_LOCAL_VERIFIED_IMPORT`：仅按官方PHP/MariaDB来源及已固定linux/amd64镜像Manifest、config、所有layer SHA/大小制定明确下载清单，Owner自行存放独立本地文件，Codex在**新的、Owner手动派发且单独计量的正式任务**中重新核来源/hash再受控导入；不伪造有token短时效直链，不因手动下载跳过信任/预算，不复用旧STOP资源。此补充**不自动授予本次下载/导入新任务**，待下一步Owner明确选择。
+
+**原产品与不可变门：** Owner选定Laravel13＋PHP8.4**开发技术方向**仍有效，但main只正式集成v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5`10 PARTIAL/1 OPEN`、AC05 RTC/AEC OPEN、G2 false、Push PENDING、v10.1.6 NOT_STARTED，旧Windows E_NOTIMPL与四项事故状态以及`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`保留。**旧版清理/备份删除授权始终为0**，不得以静态候选或旧9b运行PASS替代新主线的动态通过。
+
+**唯一下一步：** Astra已审查并停止；等待Owner是否授权新的**手动下载可靠供给＋合成目标main安全回归＋单次安全集成**综合任务，不能自动派发、启动Docker、上传LOCAL_ONLY或合main。新任务仍由Astra在Owner授权后正式发布，Owner手动派发Codex，一个候选统一交付与Astra独立集成验收。
+
+以下旧CURRENT ENTRY原字节保留，旧任务待Astra审查、Laravel13尚未选方向等为历史时点，不覆盖当前状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner确定Laravel13/PHP8.4开发基线，旧版本先本地备份，单次安全集成任务已发布（CURRENT ENTRY）
 
 **`OWNER_SELECTED_LARAVEL13_PHP84_DEVELOPMENT_BASELINE / PREMIGRATION_LOCAL_BACKUP_MANDATORY / LARAVEL13_SAFE_INTEGRATION_TASK_FORMALLY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / LOCAL_BACKUP_NOT_YET_EXECUTED / MAIN_PRODUCT_NOT_YET_INTEGRATED / OLD_VERSION_DELETION_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
