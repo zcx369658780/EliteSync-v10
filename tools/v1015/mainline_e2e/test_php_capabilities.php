@@ -24,7 +24,7 @@ $x=$facts;$x['auto_prepend']='GLOBAL_PREPEND_NOT_ALLOWED';$reject($x);
 $x=$facts;$x['enable_dl']='1';$reject($x);
 $h=str_repeat('1',64);$pid=123;$nonce=str_repeat('a',32);$exe='/INERT/bin/php.exe';$ext='/INERT/bin/ext/php_mbstring.dll';
 $nativeManifest=['_absolute_executable'=>$exe,'_absolute_extensions'=>[$ext],'windows_system_modules'=>[]];
-$expected=[strtolower($exe)=>$h,strtolower($ext)=>$h];$receipt=['pid'=>$pid,'nonce'=>$nonce,'manifest_sha256'=>$h,'system_directory'=>'/INERT/System32','images'=>[['path'=>$exe,'sha256'=>$h],['path'=>$ext,'sha256'=>$h]]];
+$expected=[strtolower($exe)=>$h,strtolower($ext)=>$h];$receipt=['pid'=>$pid,'nonce'=>$nonce,'manifest_sha256'=>$h,'system_directory'=>'/INERT/System32','images'=>[['path'=>$exe,'sha256'=>$h,'source_class'=>'TASK_PRIVATE_BINARY'],['path'=>$ext,'sha256'=>$h,'source_class'=>'TASK_PRIVATE_BINARY']]];
 PhpRuntimeQualification::nativeReceipt($receipt,$nativeManifest,$expected,$pid,$nonce,$h);$count++;
 foreach(['pid','nonce','manifest_sha256'] as $key){
     $bad=$receipt;$bad[$key]=$key==='pid'?124:'wrong';

@@ -52,6 +52,15 @@ final class MainlineEnvironment
     }
     public static function assertProbeContext(array $ctx): void {
         self::assertSourceContext($ctx);$c=$ctx['config'];$g=$ctx['grant'];
+        if(($g['task_blob']??'')==='960a738505054ac97a8cb85df660bf4f0b6decc9') {
+            self::need(($g['action']??'')==='php_native_no_db_probe' && ($g['probe_operations']??0)===2 && ($g['probe_seconds']??0)>0 && $g['probe_seconds']<=30,'Current no-DB scope/budget');
+            self::need(($g['new_instance_qualified']??null)===false && ($g['db_operations']??null)===0 && ($g['network_operations']??null)===0 && ($g['laravel_bootstrap_allowed']??null)===false,'Current no-DB boundary');
+            foreach(['api','database','db_port','db_username','db_password','datadir','server_id','fixture_password','app_key'] as $key)self::need(!array_key_exists($key,$c),'DB configuration forbidden in probe');
+            self::need(basename($c['task_root'])==='v1015-vc-chain-real-loader-20261030' && ($c['source_binding']['commit']??'')==='28994ea486eccc5191985c57952a61f6f7ab3d38' && ($c['source_binding']['apps_tree']??'')==='8cd9b6df8e744c8fc9d4217412edce31795a318d' && ($c['source_binding']['services_tree']??'')==='4c01326cbf44b4705548e97221e3336e0448406f','Current native source/root');
+            self::need(($c['max_bytes']??0)>0 && $c['max_bytes']<=8589934592 && $c['max_bytes']===($g['max_bytes']??null),'Current no-DB space');
+            foreach(['tests/E2E/php_runtime_probe.php','tests/E2E/MainlineEnvironment.php','tests/E2E/PhpRuntimeQualification.php','composer.json','composer.lock'] as $rel)self::need(isset($c['source_files'][$rel]),'Probe source closure missing');
+            return;
+        }
         self::need(($g['task_blob']??'')==='8b6bd9233a08a7f4d0986d6f592eb114dec63e04' && ($g['action']??'')==='php_native_no_db_probe','No-DB probe action/task required');
         self::need(($g['probe_operations']??0)===1 && ($g['probe_seconds']??0)>0 && $g['probe_seconds']<=30,'No-DB probe budget');
         self::need(($g['new_instance_qualified']??false)===false && ($g['db_operations']??null)===0 && ($g['network_operations']??null)===0 && ($g['laravel_bootstrap_allowed']??null)===false,'No-DB scope required');

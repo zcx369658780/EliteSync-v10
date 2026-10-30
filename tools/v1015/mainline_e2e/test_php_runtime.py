@@ -111,10 +111,16 @@ class PhpRuntimeContracts(unittest.TestCase):
         self.manifest['windows_os_image_policy']=dict(schema=1,purpose='READONLY_LOADED_WINDOWS_OS_IMAGES',system_root=rootfact,images={'kernel32.dll':pin})
         self.enterContext(patch('php_native.system_root_fact',return_value=rootfact))
         self.enterContext(patch('php_native.readonly_fact',return_value=fact))
-        images=[dict(path=str(self.runtime/x["path"]),sha256=x["sha256"]) for x in self.manifest["files"]]+[dict(path=str(dll),sha256=digest(dll.read_bytes()))]
+        images=[dict(path=str(self.runtime/x["path"]),sha256=x["sha256"],source_class="TASK_PRIVATE_BINARY") for x in self.manifest["files"]]+[dict(path=str(dll),sha256=digest(dll.read_bytes()),source_class="WINDOWS_SYSTEM_IMAGE")]
         return p,system,images
     def test_synthetic_native_map_matches_declared_inputs_only(self):
         p,s,images=self.native();self.assertEqual("NATIVE_IMAGE_MAP_INPUT_MATCHED",validate_images(images,p,s)["state"])
+    def test_private_class_cannot_be_relabelled_as_system(self):
+        p,s,images=self.native();images[0]['source_class']='WINDOWS_SYSTEM_IMAGE'
+        with self.assertRaisesRegex(Gate,'PRIVATE_SOURCE_CLASS'):validate_images(images,p,s)
+    def test_system_class_cannot_be_relabelled_as_private(self):
+        p,s,images=self.native();images[-1]['source_class']='TASK_PRIVATE_BINARY'
+        with self.assertRaisesRegex(Gate,'OS_SOURCE_CLASS'):validate_images(images,p,s)
     def test_global_extension_image_rejected(self):
         p,s,images=self.native();bad=self.root/"global_mbstring.dll";bad.write_bytes(b"INERT")
         images.append(dict(path=str(bad),sha256=digest(bad.read_bytes())));self.rejects(lambda:validate_images(images,p,s))

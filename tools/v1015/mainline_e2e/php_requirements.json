@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_SUPPLY_PENDING",
-  "candidate_parent": "f16d4cda817282d935cb53ce399d26a7850381a1",
+  "candidate_parent": "28994ea486eccc5191985c57952a61f6f7ab3d38",
   "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
   "php_version": "8.5.12",
   "thread_safe": false,
@@ -302,7 +302,7 @@
     }
   ],
   "optional_modules": {},
-  "current_state": "CENTRAL_VC_NOT_QUALIFIED_RUNTIME_NOT_RUN",
+  "current_state": "CENTRAL_VC_EVIDENCE_QUALIFIED_NATIVE_LOAD_NOT_PROVEN",
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
@@ -506,9 +506,9 @@
   "central_runtime": {
     "schema": 1,
     "source_class": "MICROSOFT_CENTRAL_V14_RUNTIME",
-    "state": "CENTRAL_VC_NOT_QUALIFIED",
+    "state": "CENTRAL_VC_EVIDENCE_QUALIFIED",
     "observations_used": 2,
-    "observation_limit": 2,
+    "observation_limit": 3,
     "named_file": "vcruntime140.dll",
     "installed_file_present": true,
     "architecture": "x64",
@@ -518,16 +518,17 @@
     "offline_trust": true,
     "offline_status": "0x00000000",
     "online_revocation": false,
-    "publisher_chain_evidence": "NOT_CAPTURED_TO_QUALIFICATION_STANDARD",
+    "publisher_chain_evidence": "SUPPORTED_WINDOWS_AUTHENTICODE_APPLICATION_ROOT_POLICY",
     "current_control_loaded_matches_central": false,
     "current_control_is_php": false,
     "php_actual_load": "NOT_RUN",
     "exact_compiler_minimum": "NOT_PROVEN",
     "dll_copied": 0,
     "installer_executed": 0,
-    "reason": "OBSERVED_SIGNER_DISPLAY_NAME_NOT_ACCEPTED_BY_EXACT_NAME_CHECK_COMPLETE_PUBLISHER_CHAIN_NOT_CAPTURED",
+    "reason": "NATIVE_PHP_LOAD_STILL_REQUIRED",
     "system_damage": "NOT_PROVEN",
     "installation_necessity": "NOT_PROVEN",
     "runtime_grant": false
-  }
+  },
+  "native_probe_task_blob": "960a738505054ac97a8cb85df660bf4f0b6decc9"
 }

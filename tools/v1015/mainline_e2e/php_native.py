@@ -3,7 +3,8 @@ import ctypes,json,os,time,uuid,subprocess
 from pathlib import Path
 from contracts import Gate,need,local,digest,canonical
 from php_runtime import os_import
-from os_images import image_map,readonly_fact,system_root_fact,validate_os_fact,norm
+from os_images import image_map,readonly_fact,system_root_fact,validate_os_fact,norm,process_identity
+from central_vc_loader import verify_current,check_loaded_receipt
 
 def validate_handshake(value,pid,nonce,manifest_sha256):
     need(type(pid) is int and pid>0 and value.get('pid')==pid and value.get('nonce')==nonce and value.get('manifest_sha256')==manifest_sha256,'PHP_HANDSHAKE_IDENTITY')
@@ -14,7 +15,11 @@ def validate_images(images,profile,system_directory):
     need(isinstance(images,list) and images,"PHP_NATIVE_IMAGE_MAP_MISSING")
     for image in images:
         raw=image['path']
-        if norm(str(Path(raw).parent))==norm(str(system)):
+        if Path(raw).name.lower()=='vcruntime140.dll':
+            central=manifest.get('central_runtime');need(central is not None,'CENTRAL_LOADED_POLICY_REQUIRED')
+            fact=verify_current(central,raw);check_loaded_receipt(image,central)
+            p=Path(raw);actual=fact['sha256']
+        elif norm(str(Path(raw).parent))==norm(str(system)):
             policy=manifest.get('windows_os_image_policy');need(isinstance(policy,dict),'OS_IMAGE_SOURCE_NOT_QUALIFIED')
             live_system=system_root_fact();need(norm(live_system['path'])==norm(str(system)),'OS_IMAGE_WRONG_SYSTEM_ROOT')
             fact=readonly_fact(raw);fact['from_loaded_module_api']=True
@@ -27,20 +32,27 @@ def validate_images(images,profile,system_directory):
             actual=digest(p.read_bytes())
         key=str(p).casefold();need(key not in seen,"PHP_NATIVE_DUPLICATE_IMAGE");seen.add(key)
         need(actual==image["sha256"],"PHP_NATIVE_IMAGE_CHANGED")
-        if key in private:need(actual==private[key],"PHP_NATIVE_PRIVATE_HASH")
+        if key in private:
+            need(image.get("source_class")=="TASK_PRIVATE_BINARY","PHP_NATIVE_PRIVATE_SOURCE_CLASS")
+            need(actual==private[key],"PHP_NATIVE_PRIVATE_HASH")
+        elif p.name.lower()=='vcruntime140.dll':
+            check_loaded_receipt(image,manifest['central_runtime'])
         else:
+            need(image.get("source_class")=="WINDOWS_SYSTEM_IMAGE","PHP_NATIVE_OS_SOURCE_CLASS")
             need(norm(str(p.parent))==norm(str(system)),"PHP_NATIVE_IMAGE_OUTSIDE_CLOSURE")
             need(manifest.get("windows_system_modules",{}).get(p.name.lower())==actual,"PHP_NATIVE_OS_HASH_NOT_QUALIFIED")
     required={str(Path(profile["executable"])).casefold(),*(str(Path(p)).casefold() for p in profile["extension_paths"])}
+    if manifest.get('central_runtime') is not None:
+        required.add(str(Path(manifest['central_runtime']['file']['path'])).casefold())
     need(required<=seen,"PHP_NATIVE_REQUIRED_IMAGE_NOT_LOADED")
     return dict(state="NATIVE_IMAGE_MAP_INPUT_MATCHED",images=images)
 def captured_path_set(images):
     # image_map already applied OS-specific or strict-private qualification.
     return {norm(image['path']) for image in images}
 
-def capture_images(pid,expected_pid=None,os_policy=None,source_handle=None):
+def capture_images(pid,expected_pid=None,os_policy=None,source_handle=None,central_policy=None):
     need(expected_pid==pid,'OS_OBSERVER_UNKNOWN_PROCESS')
-    return image_map(pid,expected_pid,os_policy,source_handle)
+    return image_map(pid,expected_pid,os_policy,source_handle,central_policy)
 
 def native_paths(root,nonce,kind="driver"):
     need(kind in ("driver","api"),"PHP_RAW_NAMESPACE")
@@ -63,10 +75,21 @@ def cli(profile,command,data,env,root,timeout=30):
         while not ready.exists():
             need(process.poll() is None,"PHP_EXIT_BEFORE_CAPABILITY_HANDSHAKE");need(time.monotonic()<deadline,"PHP_HANDSHAKE_TIMEOUT");time.sleep(.02)
         value=json.loads(ready.read_bytes());validate_handshake(value,process.pid,nonce,profile['manifest_sha256'])
-        images,system=capture_images(process.pid,process.pid,profile['manifest'].get('windows_os_image_policy'),int(process._handle));validate_images(images,profile,system)
-        write_receipt(receipt,dict(pid=process.pid,nonce=nonce,manifest_sha256=profile["manifest_sha256"],system_directory=system,images=images))
+        images,system=capture_images(process.pid,process.pid,profile['manifest'].get('windows_os_image_policy'),int(process._handle),profile['manifest'].get('central_runtime'));validate_images(images,profile,system)
+        write_receipt(receipt,dict(pid=process.pid,nonce=nonce,manifest_sha256=profile["manifest_sha256"],system_directory=system,images=images,process_identity=process_identity(int(process._handle))))
         out,err=process.communicate(timeout=max(1,timeout-(time.monotonic()-started)))
         return subprocess.CompletedProcess(command,process.returncode,out,err)
+    except BaseException as exc:
+        # Retain actual startup/guard failure streams; do not replace them with
+        # the parent exception or a fabricated normal exit receipt.
+        if process is not None:
+            if process.poll() is None:process.kill()
+            if process.stdin is not None:
+                process.stdin.close();process.stdin=None
+            out,err=process.communicate(timeout=5)
+            exc.returncode=process.returncode
+            exc.native_stdout=out;exc.native_stderr=err
+        raise
     finally:
         if process is not None and process.poll() is None:process.kill();process.wait()
 def api(profile,command,env,root,ledger):
@@ -81,13 +104,13 @@ def api(profile,command,env,root,ledger):
         deadline=time.monotonic()+10
         while True:
             need(process.poll() is None,"API_EXIT_BEFORE_MODULE_LOAD")
-            images,system=capture_images(process.pid,process.pid,profile['manifest'].get('windows_os_image_policy'),int(process._handle))
+            images,system=capture_images(process.pid,process.pid,profile['manifest'].get('windows_os_image_policy'),int(process._handle),profile['manifest'].get('central_runtime'))
             loaded=captured_path_set(images)
             required={norm(profile['executable']),*(norm(p) for p in profile['extension_paths'])}
             if required<=loaded:break
             need(time.monotonic()<deadline,"API_MODULE_LOAD_TIMEOUT");time.sleep(.02)
         validate_images(images,profile,system)
-        write_receipt(receipt,dict(pid=process.pid,nonce=nonce,manifest_sha256=profile["manifest_sha256"],system_directory=system,images=images))
+        write_receipt(receipt,dict(pid=process.pid,nonce=nonce,manifest_sha256=profile["manifest_sha256"],system_directory=system,images=images,process_identity=process_identity(int(process._handle))))
         process.qualification_failure_file=failure
         ledger("API_STARTED",pid=process.pid,nonce=nonce)
         return process

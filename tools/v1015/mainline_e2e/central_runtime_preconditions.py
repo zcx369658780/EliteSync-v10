@@ -74,7 +74,8 @@ def check_central_loaded_facts(loaded, pin, expected_process):
 
 def inspect_policy(policy):
     central = policy.get('central_runtime', {})
-    return dict(state=central.get('state', 'CENTRAL_VC_NOT_QUALIFIED'),
+    return dict(state='SOURCE_POLICY_REFERENCE_ONLY',
+                recorded_central_evidence=central.get('state', 'CENTRAL_VC_NOT_QUALIFIED'),
                 installed_file_present=central.get('installed_file_present'),
                 observations_used=central.get('observations_used'),
                 php='NOT_RUN_GATE_CLOSED', execute='NOT_AVAILABLE_IN_THIS_SOURCE_ONLY_ENTRY',

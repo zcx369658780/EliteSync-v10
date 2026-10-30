@@ -9,14 +9,21 @@ def norm(path):
     return path.replace('\\','/').rstrip('/').casefold()
 
 def validate_os_fact(fact,policy,system):
-    """Pure validation of evidence; synthetic PASS is never live qualification."""
+    """Post-start validation requires an actual loaded-module observation."""
+    validate_os_source(fact,policy,system)
+    need(fact.get('from_loaded_module_api') is True,'OS_IMAGE_NOT_LOADED_READONLY')
+    return {'state':'QUALIFIED_READONLY_OS_IMAGE','path':fact['path'],'sha256':fact['sha256']}
+
+
+def validate_os_source(fact,policy,system):
+    """Static source pin check; does not claim that an image is loaded."""
     need(ntpath.basename(fact['path']).lower()!='vcruntime140.dll','CENTRAL_RUNTIME_REQUIRES_SEPARATE_QUALIFICATION')
     need(policy.get('schema')==1 and policy.get('purpose')=='READONLY_LOADED_WINDOWS_OS_IMAGES','OS_IMAGE_SOURCE_NOT_QUALIFIED')
     root=system['path'];need(norm(policy['system_root']['path'])==norm(root),'OS_IMAGE_WRONG_SYSTEM_ROOT')
     need(policy['system_root']['file_id']==system['file_id'] and policy['system_root']['volume']==system['volume'],'OS_IMAGE_ROOT_IDENTITY')
     need(system.get('from_system_directory_api') is True and not system.get('reparse'),'OS_IMAGE_ROOT_NOT_SYSTEM_API')
     path=norm(fact['path']);need(norm(ntpath.dirname(fact['path']))==norm(root),'OS_IMAGE_OUTSIDE_SYSTEM32')
-    need(fact.get('from_loaded_module_api') is True and fact.get('readonly_handle') is True,'OS_IMAGE_NOT_LOADED_READONLY')
+    need(fact.get('readonly_handle') is True,'OS_IMAGE_NOT_LOADED_READONLY')
     need(not fact.get('reparse') and norm(fact['canonical_path'])==path,'OS_IMAGE_ALIAS_OR_REPARSE')
     name=ntpath.basename(fact['path']).lower();pin=policy.get('images',{}).get(name)
     need(isinstance(pin,dict) and norm(pin['path'])==path,'OS_IMAGE_UNEXPECTED_MODULE')
@@ -26,7 +33,7 @@ def validate_os_fact(fact,policy,system):
         need(fact.get(key)==pin.get(key),'OS_IMAGE_IDENTITY_OR_HASH_CHANGED')
     need(all(type(fact.get(k)) is int and fact[k]>0 for k in ('links','file_id','volume','bytes')) and fact['volume']==system['volume'],'OS_IMAGE_LINK_OR_VOLUME')
     need(re.fullmatch('[0-9a-f]{64}',fact['sha256']) is not None,'OS_IMAGE_HASH_FORMAT')
-    return {'state':'QUALIFIED_READONLY_OS_IMAGE','path':fact['path'],'sha256':fact['sha256']}
+    return {'state':'STATIC_OS_SOURCE_PIN_MATCHED_ONLY','path':fact['path'],'sha256':fact['sha256']}
 
 def _api():
     need(os.name=='nt','WINDOWS_READONLY_IMAGE_REQUIRED')
@@ -108,19 +115,25 @@ def loaded_module_paths(pid,expected_identity=None):
         return paths
     finally:k.CloseHandle(handle)
 
-def image_map(pid,expected_pid,os_policy=None,source_handle=None):
+def image_map(pid,expected_pid,os_policy=None,source_handle=None,central_policy=None):
     need(pid==expected_pid and isinstance(pid,int) and pid>0,'OS_OBSERVER_UNKNOWN_PROCESS')
     need(pid==os.getpid() or source_handle is not None,'OS_OBSERVER_SOURCE_HANDLE_REQUIRED')
     identity=process_identity(source_handle) if source_handle is not None else None
     if identity is not None:validate_process_identity(identity,dict(identity,pid=pid,running=True))
     system=system_root_fact();rows=[]
     for path in loaded_module_paths(pid,identity):
+        name=ntpath.basename(path).lower()
+        if name=='vcruntime140.dll':
+            from central_vc_loader import verify_current
+            need(central_policy is not None,'CENTRAL_LOADED_POLICY_REQUIRED')
+            rows.append(verify_current(central_policy,path));continue
+        need(not name.startswith(('vcruntime','msvcp','concrt')),'UNQUALIFIED_ADDITIONAL_VC_MODULE')
         if norm(ntpath.dirname(path))==norm(system['path']):
             fact=readonly_fact(path);fact['from_loaded_module_api']=True
             need(os_policy is not None,'OS_IMAGE_SOURCE_NOT_QUALIFIED')
-            validate_os_fact(fact,os_policy,system);rows.append(dict(path=path,sha256=fact['sha256']))
+            validate_os_fact(fact,os_policy,system);rows.append(dict(path=path,sha256=fact['sha256'],source_class='WINDOWS_SYSTEM_IMAGE'))
         else:
             p=local(path) # All non-system/private rules remain strict.
-            rows.append(dict(path=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+            rows.append(dict(path=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),source_class='TASK_PRIVATE_BINARY'))
     if identity is not None:validate_process_identity(process_identity(source_handle),identity)
     return rows,system['path']

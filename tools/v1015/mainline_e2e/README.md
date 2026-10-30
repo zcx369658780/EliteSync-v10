@@ -313,3 +313,37 @@ The Python hosting process's already loaded private runtime is not the candidate
 central file and does not establish what a future PHP process would load. Default
 inspect remains read-only. All business runtime gates remain closed; this ended
 task is in both language closed-task sets. Existing Laravel11 lock is unchanged.
+# 2026-10-30 central trust and native loader delivery
+
+`windows_vc_trust.py` uses cache-only WinVerifyTrust and supported certificate
+chain policies. The Microsoft SDK application-root flag is `0x00020000`.
+Display names, issuer strings and thumbprints do not grant central VC trust.
+No test-root or error-ignore flag is accepted. Certificate DER remains local.
+
+The Python runtime/observer and PHP receipt consumer independently distinguish
+`MICROSOFT_CENTRAL_V14_RUNTIME`, `WINDOWS_SYSTEM_IMAGE` and
+`TASK_PRIVATE_BINARY`. They bind the exact SystemDirectory, file identity, hash,
+original child handle, process generation, nonce and manifest. Private files
+retain strict hardlink/reparse/path rejection. Unknown loaded images are denied.
+
+The probe entry defaults to side-effect-free inspection. Its current-task native
+qualification is independent of the business Composer lock. Execution additionally
+checks the original persistent ledger, deadline, budgets and current direct OS
+source pins before launching. A native-only grant cannot authorize Laravel, PDO,
+network, Composer supply or a business endpoint. Future tasks cannot inherit it.
+Business qualification retains the resolved Laravel12 lock/vendor and DB gates.
+
+This delivery observed central-file trust, not PHP loading. Some direct ordinary
+OS imports still lack qualified signature/time evidence, so PHP, Composer,
+Feature, API and MariaDB were NOT_RUN_GATE_CLOSED. Composer supply remains
+conditional; the historical supply fact contract is not an executable supplier.
+The Laravel11 lock is unchanged. PHP synthetic test source was updated but NOT_RUN.
+Python process doubles never start PHP. Future authorized startup failures retain
+their original stdout, stderr and actual exit status in the private raw namespace.
+
+Official references:
+- https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/nf-wincrypt-certverifycertificatechainpolicy
+- https://github.com/microsoft/win32metadata/blob/main/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h
+- https://github.com/microsoft/msix-packaging/blob/master/src/msix/PAL/Signature/Win32/SignatureValidator.cpp
+- https://support.microsoft.com/en-us/servicing/os/windows/docs/2026/08/next-generation-code-signing
+

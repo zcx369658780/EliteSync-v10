@@ -109,7 +109,8 @@ class CentralRuntimeFacts(unittest.TestCase):
         output=io.StringIO()
         with patch('subprocess.Popen',side_effect=AssertionError('NO_PROCESS')), patch('os_images.system_root_fact',side_effect=AssertionError('NO_OBSERVATION')), patch.object(Path,'write_bytes',side_effect=AssertionError('NO_WRITE')), redirect_stdout(output):
             central_runtime_preconditions.main()
-        self.assertEqual('CENTRAL_VC_NOT_QUALIFIED',json.loads(output.getvalue())['state'])
+        self.assertEqual('SOURCE_POLICY_REFERENCE_ONLY',json.loads(output.getvalue())['state'])
+        self.assertEqual('NOT_RUN_GATE_CLOSED',json.loads(output.getvalue())['php'])
 
 
 if __name__ == '__main__':

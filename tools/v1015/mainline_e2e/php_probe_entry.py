@@ -6,6 +6,9 @@ from php_runtime import qualify_probe_config,launch_arguments,private_environmen
 from php_native import cli
 
 def execution_gate(root,profile,grant):
+    if grant.get('task_blob')=='960a738505054ac97a8cb85df660bf4f0b6decc9':
+        from current_native_task import execution_gate as current_gate
+        return current_gate(root,profile,grant)
     ledger=local(root/'execution_ledger.jsonl',root)
     rows=[json.loads(line) for line in ledger.read_bytes().splitlines()]
     need(rows and rows[0].get('task_id')=='V1015_NATIVE_UNBLOCK_THREE_ISSUES_20261029' and rows[0].get('task_blob')==NO_DB_TASK,'PROBE_LEDGER_TASK')
@@ -40,11 +43,20 @@ def main(argv=None):
     script=local(Path(c['source_root'])/'tests/E2E/php_runtime_probe.php',root)
     need(digest(script.read_bytes())==c['source_files']['tests/E2E/php_runtime_probe.php'],'PROBE_SOURCE_CHANGED')
     command=launch_arguments(profile,root)+[str(script)];env=private_environment(profile,root,os.environ['SystemRoot'])
-    record(ledger,'PREPARE_PROBE_RAW_DIRECTORY',flushed_before_action=True);(root/'raw/driver').mkdir(parents=True,exist_ok=False)
-    record(ledger,'PREPARE_PHP_DB_FREE_PROBE',number=1,limit=1,command_sha256=digest(canonical(command)),php_sha256=digest(Path(profile['executable']).read_bytes()),source_sha256=digest(script.read_bytes()),timeout=min(g['probe_seconds'],30),flushed_before_action=True)
-    result=cli(profile,command,canonical(ctx),env,root,timeout=min(g['probe_seconds'],30))
+    record(ledger,'PREPARE_PROBE_RAW_DIRECTORY',flushed_before_action=True);(root/'raw/driver').mkdir(parents=True,exist_ok=True)
+    record(ledger,'PREPARE_PHP_DB_FREE_PROBE',number=1+sum(json.loads(x).get('event')=='PREPARE_PHP_DB_FREE_PROBE' for x in ledger.read_bytes().splitlines()),limit=g['probe_operations'],command_sha256=digest(canonical(command)),php_sha256=digest(Path(profile['executable']).read_bytes()),source_sha256=digest(script.read_bytes()),timeout=min(g['probe_seconds'],30),flushed_before_action=True)
+    record(ledger,'PREPARE_PHP_CLI_START',kind='NO_DB_PROBE',flushed_before_action=True)
+    try:result=cli(profile,command,canonical(ctx),env,root,timeout=min(g['probe_seconds'],30))
+    except BaseException as exc:
+        record(ledger,'PREPARE_FAILED_NATIVE_STREAMS',flushed_before_action=True)
+        for stream in ['stdout','stderr']:
+            raw=getattr(exc,'native_'+stream,b'')
+            with (root/'raw/driver'/('failure-'+str(len(ledger.read_bytes().splitlines()))+'.'+stream)).open('xb') as f:
+                f.write(raw);f.flush();os.fsync(f.fileno())
+        record(ledger,'PHP_DB_FREE_PROBE_FAILED',error=str(exc),exit=getattr(exc,'returncode',None))
+        raise
     record(ledger,'PREPARE_PROBE_RESULT_FILES',flushed_before_action=True)
-    (root/'raw/driver/probe.stdout').write_bytes(result.stdout);(root/'raw/driver/probe.stderr').write_bytes(result.stderr)
+    (root/'raw/driver'/('probe-'+str(sum(json.loads(x).get('event')=='PREPARE_PHP_DB_FREE_PROBE' for x in ledger.read_bytes().splitlines()))+'.stdout')).write_bytes(result.stdout);(root/'raw/driver'/('probe-'+str(sum(json.loads(x).get('event')=='PREPARE_PHP_DB_FREE_PROBE' for x in ledger.read_bytes().splitlines()))+'.stderr')).write_bytes(result.stderr)
     record(ledger,'PHP_DB_FREE_PROBE_ENDED',exit=result.returncode,stdout_sha256=digest(result.stdout),stderr_sha256=digest(result.stderr))
     need(result.returncode==0,'PHP_DB_FREE_PROBE_FAILED')
     value=json.loads(result.stdout);need(value.get('state')=='CAPABILITIES_MATCHED_WITHOUT_LARAVEL' and value.get('laravel_bootstrap') is False and value.get('pdo_connection') is False,'PHP_PROBE_RESULT_SCOPE')

@@ -42,6 +42,15 @@ class OsImageContracts(unittest.TestCase):
     def reject(self):
         with self.assertRaises(Gate):self.check()
     def test_signed_pinned_os_two_links_readonly_is_input_match_only(self):self.assertEqual('QUALIFIED_READONLY_OS_IMAGE',self.check()['state'])
+    def test_static_source_check_does_not_claim_loaded_observation(self):
+        from os_images import validate_os_source
+        self.fact['from_loaded_module_api']=False
+        self.assertEqual('STATIC_OS_SOURCE_PIN_MATCHED_ONLY',validate_os_source(self.fact,self.policy,self.system)['state'])
+        with self.assertRaisesRegex(Gate,'NOT_LOADED'):self.check()
+    def test_static_invalid_signature_rejected_before_process(self):
+        from os_images import validate_os_source
+        self.pin['signature_status']='NotSigned'
+        with self.assertRaisesRegex(Gate,'SIGNATURE'):validate_os_source(self.fact,self.policy,self.system)
     def test_unknown_module_rejected(self):self.policy['images']={};self.reject()
     def test_fake_os_directory_rejected(self):self.fact['path']='C:/fake/System32/kernel32.dll';self.reject()
     def test_winsxs_alias_rejected(self):self.fact['path']='C:/Windows/WinSxS/kernel32.dll';self.reject()

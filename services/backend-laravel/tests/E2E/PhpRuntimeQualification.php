@@ -40,13 +40,28 @@ final class PhpRuntimeQualification
         foreach($receipt['images'] as $image) {
             $key=strtolower(str_replace('\\','/',$image['path']));
             MainlineEnvironment::need(!isset($seen[$key]),'Duplicate native image');$seen[$key]=true;
-            if(isset($expected[$key]))MainlineEnvironment::need($image['sha256']===$expected[$key],'Private native image differs');
+            if(isset($expected[$key]))MainlineEnvironment::need(($image['source_class']??'')==='TASK_PRIVATE_BINARY' && $image['sha256']===$expected[$key],'Private native image/source differs');
             else {
                 $name=strtolower(basename(str_replace('\\','/',$image['path'])));
-                MainlineEnvironment::need(strtolower(str_replace('\\','/',dirname($image['path'])))===strtolower(str_replace('\\','/',$receipt['system_directory'])) && isset($manifest['windows_system_modules'][$name]) && $image['sha256']===$manifest['windows_system_modules'][$name],'Native dependency outside approved image closure');
+                if($name==='vcruntime140.dll') {
+                    $central=$manifest['central_runtime']??[];$pin=$central['file']??[];
+                    MainlineEnvironment::need(($central['source_class']??'')==='MICROSOFT_CENTRAL_V14_RUNTIME'
+                        && ($central['qualification']['state']??'')==='CENTRAL_VC_EVIDENCE_QUALIFIED'
+                        && ($image['source_class']??'')==='MICROSOFT_CENTRAL_V14_RUNTIME'
+                        && strtolower(str_replace('\\','/',$image['path']))===strtolower(str_replace('\\','/',$pin['path']??'')), 'Central VC path/source differs');
+                    foreach(['sha256','file_id','volume','links','file_version'] as $key)
+                        MainlineEnvironment::need(($image[$key]??null)===($pin[$key]??null),'Central VC image identity differs');
+                    MainlineEnvironment::need(($image['trust_evidence_sha256']??null)===($central['trust_evidence_sha256']??'')
+                        && ($receipt['process_identity']['pid']??null)===$pid
+                        && ($receipt['process_identity']['creation']??0)>0
+                        && ($receipt['process_identity']['running']??false)===true,'Central VC process/trust binding differs');
+                    continue;
+                }
+                MainlineEnvironment::need(($image['source_class']??'')==='WINDOWS_SYSTEM_IMAGE' && strtolower(str_replace('\\','/',dirname($image['path'])))===strtolower(str_replace('\\','/',$receipt['system_directory'])) && isset($manifest['windows_system_modules'][$name]) && $image['sha256']===$manifest['windows_system_modules'][$name],'Native dependency outside approved image closure');
             }
         }
         MainlineEnvironment::need(isset($seen[strtolower(str_replace('\\','/',$manifest['_absolute_executable']))]),'PHP image not observed');
+        if(isset($manifest['central_runtime']))MainlineEnvironment::need(isset($seen[strtolower(str_replace('\\','/',$manifest['central_runtime']['file']['path']))]),'Central VC image not observed');
         foreach($manifest['_absolute_extensions'] as $p)MainlineEnvironment::need(isset($seen[strtolower(str_replace('\\','/',$p))]),'PHP extension image not observed');
     }
     public static function assertCurrent(array $ctx): void {
@@ -59,7 +74,11 @@ final class PhpRuntimeQualification
         $policyPath=MainlineEnvironment::path($c['php_requirements'],$root);
         $policyBytes=file_get_contents($policyPath);$policy=json_decode($policyBytes,true,512,JSON_THROW_ON_ERROR);
         self::assertTask($g['task_blob'],$policy);
-        self::assertRuntimePolicy($policy);
+        if(($g['task_blob']??'')==='960a738505054ac97a8cb85df660bf4f0b6decc9' && ($g['action']??'')==='php_native_no_db_probe') {
+            MainlineEnvironment::assertProbeContext($ctx);
+            MainlineEnvironment::need(($policy['native_probe_task_blob']??'')===$g['task_blob'] && ($policy['candidate_parent']??'')==='28994ea486eccc5191985c57952a61f6f7ab3d38' && ($manifest['central_runtime']['qualification']['state']??'')==='CENTRAL_VC_EVIDENCE_QUALIFIED','Current native policy/central source');
+            foreach($manifest['files'] as $entry)MainlineEnvironment::need(($entry['origin']??'')==='TRUSTED_EXISTING_PHP_DISTRIBUTION','Private redistributable forbidden');
+        } else self::assertRuntimePolicy($policy);
         MainlineEnvironment::need(hash('sha256',$policyBytes)===($g['php_requirements_file_sha256']??null) && hash('sha256',MainlineEnvironment::canonical($policy))===$manifest['requirements_sha256'],'PHP requirements identity differs');
         MainlineEnvironment::need(($manifest['candidate_parent']??null)===$policy['candidate_parent'] && ($manifest['source_binding']??null)===$c['source_binding'] && ($manifest['source_binding']['apps_tree']??null)===$policy['apps_tree'],'PHP candidate differs');
         $runtime=MainlineEnvironment::path($c['php_runtime_root'],$root);

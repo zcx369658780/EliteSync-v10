@@ -4,6 +4,7 @@ from pathlib import Path
 from contracts import Gate,need,local,digest,canonical,validate_authority,validate_probe_authority
 from pe_dependencies import pe_info
 from migration_contract import require_runtime_policy
+from central_vc_loader import validate_snapshot, verify_current
 
 POLICY=Path(__file__).with_name("php_requirements.json")
 OS_DLLS=frozenset(("kernel32 kernelbase ntdll advapi32 user32 gdi32 ws2_32 ole32 oleaut32 shell32 shlwapi crypt32 bcrypt secur32 dnsapi winmm iphlpapi psapi rpcrt4 version normaliz comdlg32 msvcrt ucrtbase winhttp wldap32 userenv netapi32 mpr").split())
@@ -25,9 +26,12 @@ def validate_manifest(manifest,root,policy):
     need(sha_ok(manifest.get("php_distribution_inventory_sha256")),"PHP_DISTRIBUTION_IDENTITY_REQUIRED")
     need(manifest.get("candidate_parent")==policy["candidate_parent"] and manifest.get("source_binding",{}).get("apps_tree")==policy["apps_tree"],"PHP_CANDIDATE_LINEAGE")
     files=manifest.get("files",[]);need(isinstance(files,list) and files,"PHP_FILES_REQUIRED")
+    central=manifest.get("central_runtime")
+    if central is not None:verify_current(central)
     by_path={};by_name={}
     for item in files:
         rel=relative(item["path"]);name=Path(rel).name.lower()
+        need(name!="vcruntime140.dll","CENTRAL_RUNTIME_PRIVATE_COPY_FORBIDDEN")
         need(rel.casefold() not in by_path and name not in by_name,"PHP_DUPLICATE_BINARY")
         need(sha_ok(item.get("sha256")) and item.get("source_sha256")==item["sha256"] and sha_ok(item.get("source_inventory_sha256")),"PHP_SOURCE_PROVENANCE_REQUIRED")
         need(item.get("origin") in ("TRUSTED_EXISTING_PHP_DISTRIBUTION","TRUSTED_EXISTING_REDISTRIBUTABLE"),"PHP_SOURCE_UNAPPROVED")
@@ -59,6 +63,8 @@ def validate_manifest(manifest,root,policy):
         ext_paths.append(str(p))
     for item,p,info in by_name.values():
         for name in info["imports"]:
+            if name=="vcruntime140.dll":
+                need(central is not None,"CENTRAL_RUNTIME_QUALIFICATION_REQUIRED");validate_snapshot(central);continue
             if os_import(name):continue
             need(name in by_name,"PHP_NATIVE_DEPENDENCY_MISSING")
             need(by_name[name][1].parent==exe[1].parent,"PHP_NATIVE_LOADER_LOCATION")
@@ -69,6 +75,9 @@ def qualify_config(config,grant):
 
 def qualify_probe_config(config,grant):
     """Same private manifest/source checks, separate explicit DB-free authority."""
+    if grant.get('task_blob')=='960a738505054ac97a8cb85df660bf4f0b6decc9':
+        from current_native_task import qualify
+        return qualify(config,grant)
     return _qualify_config(config,grant,validate_probe_authority)
 
 def _qualify_config(config,grant,authority):
