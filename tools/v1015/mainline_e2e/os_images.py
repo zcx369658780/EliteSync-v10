@@ -10,6 +10,7 @@ def norm(path):
 
 def validate_os_fact(fact,policy,system):
     """Pure validation of evidence; synthetic PASS is never live qualification."""
+    need(ntpath.basename(fact['path']).lower()!='vcruntime140.dll','CENTRAL_RUNTIME_REQUIRES_SEPARATE_QUALIFICATION')
     need(policy.get('schema')==1 and policy.get('purpose')=='READONLY_LOADED_WINDOWS_OS_IMAGES','OS_IMAGE_SOURCE_NOT_QUALIFIED')
     root=system['path'];need(norm(policy['system_root']['path'])==norm(root),'OS_IMAGE_WRONG_SYSTEM_ROOT')
     need(policy['system_root']['file_id']==system['file_id'] and policy['system_root']['volume']==system['volume'],'OS_IMAGE_ROOT_IDENTITY')

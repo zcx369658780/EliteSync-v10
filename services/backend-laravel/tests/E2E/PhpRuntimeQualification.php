@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Nonproduction pre-bootstrap capability checks; no Laravel/PDO construction. */
 final class PhpRuntimeQualification
 {
-    public const CLOSED_TASKS = ["5f1c709e31af0d4f2c1c93363c147942db7116c5", "8b6bd9233a08a7f4d0986d6f592eb114dec63e04", "1ade4e5a89116eeba329311ed274229823aafd17", "128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
+    public const CLOSED_TASKS = ["d048f7f8fee97a93f8bf8c52293f60762fff0bda", "5f1c709e31af0d4f2c1c93363c147942db7116c5", "8b6bd9233a08a7f4d0986d6f592eb114dec63e04", "1ade4e5a89116eeba329311ed274229823aafd17", "128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
     public static function assertTask(string $task,array $policy): void {
         $closed=$policy['closed_runtime_task_blobs']??[];$expected=self::CLOSED_TASKS;sort($closed);sort($expected);
         MainlineEnvironment::need($closed===$expected && preg_match('/^[a-f0-9]{40}$/D',$task)===1 && !in_array($task,$closed,true),'Closed task has no PHP runtime grant');

@@ -288,3 +288,28 @@ This ended supply task is closed in both language runtime policies. Do not reuse
 its unspent attempts. Composer resolution/vendor install, PHP Probe/Feature,
 MariaDB/API/HTTP and all client/device runtime are NOT_RUN. The original
 Laravel11 lock and all historical business negative tests remain unchanged.
+
+
+## Existing central v14 qualification attempt (2026-10-30)
+
+The named API-derived system-directory file exists as x64/single-link, version
+14.51.36247.0. Offline cached trust succeeded, but this attempt's exact signer
+display-name check did not accept the observed name, and the observer did not
+capture a complete publisher-chain record. Both allowed observations were spent.
+This is an evidence/observer qualification gap, not proof of a damaged system DLL
+or proof that reinstalling the current version would fix it. No third observation,
+installer/repair, app-local copy, PHP process, Composer or DB/API was launched.
+
+`central_runtime_preconditions.py` adds static fact contracts separating
+MICROSOFT_CENTRAL_V14_RUNTIME from WINDOWS_SYSTEM_IMAGE and TASK_PRIVATE_BINARY.
+It rejects aliases/reparse/hardlinks and requires named source/identity/signature/
+version-evidence pins. Signature display text alone never grants eligibility.
+The pure loaded-image fact check additionally binds process generation and nonce;
+synthetic matching is not an observed PHP load. These are source-only contracts,
+not a completed central-runtime launcher, native observer or Composer executor.
+The old general os_import exception is unchanged and does not include vcruntime.
+
+The Python hosting process's already loaded private runtime is not the candidate
+central file and does not establish what a future PHP process would load. Default
+inspect remains read-only. All business runtime gates remain closed; this ended
+task is in both language closed-task sets. Existing Laravel11 lock is unchanged.

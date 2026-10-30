@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "task_id": "V1015_CENTRAL_VC_L12_COMPOSER_API_DB_20261030",
+  "attempt_id": "attempt-0001",
+  "task_blob": "d048f7f8fee97a93f8bf8c52293f60762fff0bda",
+  "sole_parent": "f16d4cda817282d935cb53ce399d26a7850381a1",
+  "parent_root": "eb4045b343749b7f3fceb46121100fa946b92329",
+  "status": "CENTRAL_VC_NOT_QUALIFIED_OBSERVATION_BUDGET_EXHAUSTED_PHP_COMPOSER_DB_NOT_RUN",
+  "apps_tree_unchanged": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+  "source_provenance": [
+    {
+      "path": "services/backend-laravel/tests/E2E/PhpRuntimeQualification.php",
+      "mode": "100644",
+      "base_blob": "96df0787ad75fd53a6de91b5451ab9a44ea29c5f",
+      "blob": "5ad2dbe3677a5a75491f8f63685bec6c56030f05",
+      "sha256": "2de36168ebcb23e30c8ff9fc450189048c8e5b07b8d75760e434dd4af5bbd0ee",
+      "bytes": 11382
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/README.md",
+      "mode": "100644",
+      "base_blob": "4db1ba6ecf956a6d77be856a4dad855e37e10dc9",
+      "blob": "b241f67f862fbf3d3b1e40d22e7b8400ee7478d6",
+      "sha256": "31d597dabac7324c9736d32f379b68e00d4abf90e64872c052fe0302f312bf2a",
+      "bytes": 19598
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/central_runtime_preconditions.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "f07d17c7f855eb971761c0e6b0dfc491c5760825",
+      "sha256": "9290eb49a9786f8953f7c7b5d48821954827709db8e9a58db61173dc537e4a00",
+      "bytes": 4421
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/os_images.py",
+      "mode": "100644",
+      "base_blob": "119cd7365fd5218a2249d8aacdae639bb3dd144b",
+      "blob": "6d31c90d5911741bdb199533a60d3ff4fbde1210",
+      "sha256": "3a56d72940cf42ff56afb4ba9c96bd59142ceafc1401401dcea92209322f7ae2",
+      "bytes": 9339
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_requirements.json",
+      "mode": "100644",
+      "base_blob": "4816503c471963cb46e89ff0ed23afe252c9d62e",
+      "blob": "945de044f389ca18a56b1e273ba26f7950c6b5f7",
+      "sha256": "3389cc482957328494d141e6b0b077dd7282abe1eecbadb433c3335985fcb2d9",
+      "bytes": 14340
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime.py",
+      "mode": "100644",
+      "base_blob": "847c0d6e41a9e0120498e4c9ce2850d346d15622",
+      "blob": "29a038a4f2d5d116789075a78c0c0231cf8c27a9",
+      "sha256": "823d6c96a3387c54d941cfb95a597175cf9661c266b1b998eecbdc27d18f9176",
+      "bytes": 9416
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime_manifest.example.json",
+      "mode": "100644",
+      "base_blob": "b33c9e76405e53e27253a29f1d740fab5b79e7fd",
+      "blob": "37c4240136a281ade4b7a3af97243f5cbb8c7810",
+      "sha256": "74fe11d8e871ccd6d466076a1c88e28cd170ff5363a633a4ff344fb27aeb52e9",
+      "bytes": 984
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_central_runtime_preconditions.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "e576df715655d6254d77e6959352a8734fe50d83",
+      "sha256": "8b219f2ac3b00d8ce48290c02d8fd051bc442c8bde73fdcc3e1260728768c3d7",
+      "bytes": 6163
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_supply_preconditions.py",
+      "mode": "100644",
+      "base_blob": "db6af71ee54958d67e0e14f5eb6e43b6ace2a5f9",
+      "blob": "1ba91e48b4520af8a122c3a5a493e94291e4a659",
+      "sha256": "01e25b3c89dfb2297d013b0b4af5669967ee982a4d1ab2573bcc382088a98cda",
+      "bytes": 5534
+    }
+  ],
+  "central_evidence": {
+    "schema": 1,
+    "source_class": "MICROSOFT_CENTRAL_V14_RUNTIME",
+    "state": "CENTRAL_VC_NOT_QUALIFIED",
+    "observations_used": 2,
+    "observation_limit": 2,
+    "named_file": "vcruntime140.dll",
+    "installed_file_present": true,
+    "architecture": "x64",
+    "file_version": "14.51.36247.0",
+    "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7",
+    "links": 1,
+    "offline_trust": true,
+    "offline_status": "0x00000000",
+    "online_revocation": false,
+    "publisher_chain_evidence": "NOT_CAPTURED_TO_QUALIFICATION_STANDARD",
+    "current_control_loaded_matches_central": false,
+    "current_control_is_php": false,
+    "php_actual_load": "NOT_RUN",
+    "exact_compiler_minimum": "NOT_PROVEN",
+    "dll_copied": 0,
+    "installer_executed": 0,
+    "reason": "OBSERVED_SIGNER_DISPLAY_NAME_NOT_ACCEPTED_BY_EXACT_NAME_CHECK_COMPLETE_PUBLISHER_CHAIN_NOT_CAPTURED",
+    "system_damage": "NOT_PROVEN",
+    "installation_necessity": "NOT_PROVEN",
+    "runtime_grant": false
+  },
+  "qualification_gap": "OBSERVER_EXACT_DISPLAY_NAME_REJECTION_AND_INCOMPLETE_PUBLISHER_CHAIN_CAPTURE_NOT_WINDOWS_LOAD_FAILURE",
+  "source_implementation": {
+    "central_fact_contract": true,
+    "central_actual_php_loader": false,
+    "composer_actual_launcher": false
+  },
+  "pure_checks": [
+    {
+      "classification": "CODEX_REPORTED_LOCAL_TEST_PURE_SYNTHETIC_ONLY",
+      "executed": 148,
+      "passed": 148,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit": 0,
+      "php_cli": 0,
+      "composer_resolution": 0,
+      "business_runtime": 0,
+      "output_sha256": "0d52bf1e6f72f2a9a3a15a10d6865fa2655dd296d3e7c074780560433455b373"
+    },
+    {
+      "classification": "CODEX_REPORTED_LOCAL_TEST_PURE_SYNTHETIC_ONLY",
+      "executed": 149,
+      "passed": 149,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit": 0,
+      "php_cli": 0,
+      "composer_resolution": 0,
+      "business_runtime": 0,
+      "output_sha256": "8ae5504a370b712149dfc33ec722e8ee6b5fe9df5bd902e4b7b9a74d77c5f1e4"
+    }
+  ],
+  "account": {
+    "central_observations": 2,
+    "central_limit": 2,
+    "php_cli": 0,
+    "php_probe": 0,
+    "composer_phar_requests": 0,
+    "composer_package_http": 0,
+    "composer_supply_bytes": 0,
+    "composer_resolution": 0,
+    "vendor_install": 0,
+    "feature_batches": 0,
+    "mariadb_starts": 0,
+    "api_starts": 0,
+    "business_http": 0,
+    "migration": 0,
+    "seed": 0,
+    "php_zip_copies": 0,
+    "system_dll_copies": 0,
+    "installer_runs": 0,
+    "space_snapshot": {
+      "logical": 13906689,
+      "allocated": 16928848,
+      "reserve": 67108864
+    }
+  },
+  "source_import_files": 746,
+  "lock": {
+    "state": "LOCK_RESOLUTION_PENDING",
+    "blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+    "actual_new_lock_generated": false
+  },
+  "report": {
+    "path": "docs/versions/v10.1.5/CENTRAL_VC_L12_COMPOSER_API_DB_RUNTIME_RESULT_20261030.md",
+    "blob": "aa732ad41990d310c71e991ddaba01cadee5ce30",
+    "sha256": "96031d82fde9fb8ebf5224866171bcc48c5b590000918e03183fb84d9167ad13"
+  },
+  "self": {
+    "path": "docs/versions/v10.1.5/central_vc_l12_composer_api_db_runtime_manifest_20261030.json",
+    "blob": "EXTERNAL_FINAL_GITHUB_READBACK_TO_AVOID_SELF_REFERENCE"
+  },
+  "protection": {
+    "unchanged": true,
+    "refs_count": 527,
+    "dirty_status_sha256": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+    "refs_sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+    "old_raw_preserved": true,
+    "historical_asset_reaudit": false
+  },
+  "limits": {
+    "space_each": 8589934592,
+    "window_seconds": 7200,
+    "central_observations": 2,
+    "composer_phar_bytes": 8388608,
+    "composer_package_bytes": 268435456,
+    "composer_http": 240,
+    "composer_resolution": 2,
+    "vendor_install": 1,
+    "php_cli": 60,
+    "php_probe": 2,
+    "features": 3,
+    "mariadb": 2,
+    "api": 2,
+    "business_http": 160,
+    "migration": 1,
+    "seed": 1
+  },
+  "evidence_classes": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN_GATE_CLOSED",
+    "NOT_PROVEN"
+  ],
+  "installation_necessity": "NOT_PROVEN_OWNER_SPECIFIC_AUTHORIZATION_REQUIRED_IF_CHOSEN",
+  "next": "STOP_WAIT_ASTRA_INDEPENDENT_REVIEW",
+  "artifact_check": {
+    "classification": "ARTIFACT_STATIC_ONLY",
+    "paths": 11,
+    "preserved_imported_files": 739,
+    "exit": 0,
+    "central_observations_added": 0,
+    "php_processes": 0
+  }
+}

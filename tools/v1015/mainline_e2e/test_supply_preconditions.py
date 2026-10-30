@@ -14,6 +14,8 @@ from supply_preconditions import check_supply_only_facts, inspect_policy, NATIVE
 class SupplyFacts(unittest.TestCase):
     def setUp(self):
         self.policy = json.loads(Path(__file__).with_name('php_requirements.json').read_bytes())
+        # This is the ended supplier contract's synthetic frozen input, not a new grant.
+        self.policy['candidate_parent'] = PARENT
         self.config = dict(scripts=False, plugins=False, business_bootstrap=False,
                            metadata_origin='https://repo.packagist.org',
                            registered_distribution_sources_only=True, automatic_redirects=False)
