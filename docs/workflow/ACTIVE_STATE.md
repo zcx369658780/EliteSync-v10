@@ -1,3 +1,25 @@
+# EliteSync v10.1.5｜2026-10-30 Owner授权中央VC信任证据修复＋真实PHP加载及条件式Laravel12贯通（CURRENT ENTRY）
+
+**`MS_VC_CHAIN_AND_REAL_LOADER_L12_COMPREHENSIVE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / NEW_BOUNDED_OS_SIGNATURE_OBSERVATION_AUTHORIZED / CONDITIONAL_COMPOSER_PHP_PROBE_LARAVEL12_API_DB / NO_WINDOWS_VC_INSTALL_OR_REPAIR_AUTHORIZED / NO_PRODUCT_MAIN_INTEGRATION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新明确授权：** 在Astra对 `28994ea486eccc5191985c57952a61f6f7ab3d38`的独立裁决后，Owner明确同意集中修复微软中央VC签名者/证书链取证、实现真正的PHP原生中央VC加载资格分支，并仅在上述合法来源、进程闭包真实成立后继续Laravel12 Composer锁、无DB PHP Probe、Feature和独立合成MariaDB/API回归。该同意**不允许**Windows全局VC installer/repair、UAC提权、System32/WinSxS/ACL/注册表/PATH/php.ini写入，也不恢复Flutter/G2/APK或生产/真实用户数据授权。
+
+**唯一最新正式任务（GitHub main发布并已全文回读）：** [V10_1_5_MS_VC_TRUST_CHAIN_CENTRAL_LOADER_LARAVEL12_COMPOSER_E2E_CONSOLIDATED_TASK_20261030.md](../versions/v10.1.5/V10_1_5_MS_VC_TRUST_CHAIN_CENTRAL_LOADER_LARAVEL12_COMPOSER_E2E_CONSOLIDATED_TASK_20261030.md)，**最终Git Blob `960a738505054ac97a8cb85df660bf4f0b6decc9`**，任务首次创建Commit `38e53cc16680006d375e90b78b773d760a075f94`，最终审校Commit `4d58d0e0cd0bde504cee2d51776902a056acd69d`。**Owner须手动派发**；Astra本轮只发布任务和同步状态，未启动Codex、下载或消耗任何本次预算。
+
+**唯一研发Parent：** `28994ea486eccc5191985c57952a61f6f7ab3d38`、Root `ad7150eeb6996adbdf22ea4f4560d58afb9c71d4`；apps Tree `8cd9b6df8e744c8fc9d4217412edce31795a318d`、services Tree `4c01326cbf44b4705548e97221e3336e0448406f`。其sole Parent `f16d4cda817282d935cb53ce399d26a7850381a1`。最新Astra独立审查分支 `astra/v10.1.5-28994ea4-central-vc-independent-review-20261030`、Commit `72cede0f7658b2dc7f5bb8fe0ac472641f69a357`、报告Blob `c3af499789923013c7237bdeb81ff291a6059c9c`。审查分支不是研发Parent。
+
+**本任务合同核心：** 首先使用既有LOCAL_ONLY两轮只读原证并优先修正“只比较`Microsoft Corporation`显示名称”的错误策略，按Microsoft 2026-08官方指南通过WinVerifyTrust及受支持的证书链API取得可信签名及微软发布者来源证据；不能因显示名似Microsoft就宽松放行。再真正修改`php_runtime.validate_manifest`、`php_native`和PHP侧native receipt，将唯一具名central `vcruntime140.dll`与普通系统映像、严格private DLL分离，并从真实PHP子进程PID/nonce/创建代际/Hash/直接System32路径验证加载结果。中央OS信任和真实模块符合时才进入Composer lock/Feature/API DB。旧2/2已耗观察绝不退款。
+
+**独立预算：** 1个新task-owned私有root、单持久ledger、logical/native allocated各≤8GiB、总单调窗口≤120分钟；中央VC新只读观察≤3次（失败亦计数）。优先只读复用官方PHP8.5.12-1旧ZIP/Hash，禁止重新下载PHP或VC installer；允许Composer PHAR≤8MiB、官方Composer包/元数据≤256MiB和240 HTTP请求、最多2次Composer真实求解/1次私有vendor安装，scripts/plugins禁止；无DB PHP Probe≤2次每次≤30秒，Laravel12 Feature≤3批，PHP CLI总Popen≤60，独立MariaDB≤2次、回环PHP API≤2次、业务HTTP≤160次、迁移/合成seed各≤1。所有动作预记ledger，未达信任/系统身份/来源/隔离/lock资格即STOP风险项，不能用静态Mock代替动态观察。
+
+**产品与历史不可变：** main仍唯一接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍10 PARTIAL/1 OPEN（AC05 RTC），产品未合main，G2不可Popen，v10.1.6未启动。旧Flutter6/6与3bed3/3、MariaDB2/2、G/APK各1/1以及历史OS观察和ACL事故不退款；`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`、旧18/两ACL树/122原证/五根/527refs/3183 Seed/所有旧失败/ledger/claims/dirty均不可更改。
+
+**唯一下一动作：** Owner手动派发本任务全文给Codex；Codex在固定28994 sole Parent上提交唯一non-force候选、脱敏报告/Manifest与真实回执，GitHub回读后STOP等待Astra独立验收。不得自动合并产品main、签整版FUNCTION_ACCEPTED、关闭AC05、放行G2/设备或启动v10.1.6。
+
+下文为此前CURRENT ENTRY和历史时点完整原文；旧“待派发/当前”标签不覆盖本段。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner批准既有VC系统运行库优先的综合软件验证（CURRENT ENTRY）
 
 **`CENTRAL_VC_L12_COMPOSER_API_DB_CONSOLIDATED_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NO_CODEX_RESULT_YET / EXISTING_SYSTEM_VC_READONLY_ELIGIBILITY_FIRST / NO_SYSTEM_INSTALL_AUTHORITY / CONDITIONALLY_AUTHORIZED_COMPOSER_LOCK_PHP_PROBE_API_DB / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / V10.1.6_NOT_STARTED`**
