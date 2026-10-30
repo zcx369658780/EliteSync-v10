@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "task_id": "V1015_EXISTING_DOCKER_LINUX_BATCH_MIGRATION_20261030",
+  "task_blob": "7bd4323e8f3f31a3404657b3eab6690e2710fc89",
+  "status": "BLOCKED_EXISTING_DOCKER_ACTIVATION_OR_RUNTIME_GATE",
+  "installed_observations": {
+    "docker_desktop": {
+      "version": "4.95.0.242831",
+      "signature": "VALID_DOCKER_INC",
+      "sha256": "deace3aaf8cac2c3d9bf21c23f6989440d408e660b662edbf6d106e0b5f964fa"
+    },
+    "explicit_installed_docker_cli": {
+      "version": "29.8.2",
+      "git_commit": "7fc2dff",
+      "platform": "windows/amd64",
+      "signature": "VALID_DOCKER_INC",
+      "sha256": "6c699720bb9523dedb9eb5d22a49951ea9210dbdb1314a3554029eee9be76896"
+    },
+    "wsl": "2.6.3.0",
+    "registered_relevant_distros": {
+      "Ubuntu-24.04": {
+        "version": 2,
+        "after_attempt": "Stopped"
+      },
+      "docker-desktop": {
+        "version": 2,
+        "after_attempt": "Stopped"
+      }
+    },
+    "desktop_configuration": {
+      "existing_license_terms_version": 2,
+      "wsl_engine_enabled": true,
+      "auto_start": false
+    },
+    "license_use": "OWNER_CONFIRMED_SMALL_BUSINESS_UNDER_BOTH_FREE_TIER_THRESHOLDS",
+    "protected_shared_autostart": "OWNER_CONFIRMED_NONE",
+    "explicit_endpoint": "LOCAL_DOCKER_DESKTOP_LINUX_NAMED_PIPE",
+    "daemon_exit": 1,
+    "server": null,
+    "classification": "CODEX_REPORTED_LOCAL_TEST"
+  },
+  "qualified_linux_runtime": {
+    "engine": null,
+    "kernel": null,
+    "architecture": null,
+    "distro_release": null,
+    "php": null,
+    "php_extensions": null,
+    "composer": null,
+    "composer_phar_sha256": null,
+    "mariadb": null,
+    "oci_image_digests": [],
+    "status": "NOT_RUN_GATE_CLOSED"
+  },
+  "target_series_not_runtime_locks": {
+    "php": "8.4",
+    "composer": "2.x",
+    "mariadb": "10.11",
+    "primary": "Laravel13/PHP8.4",
+    "fallback": "Laravel12/PHP8.4"
+  },
+  "source_inputs": {
+    "composer_json_blob": "d30ee1bb2af2bafb0416fa07b6005d53d6ab4f56",
+    "composer_lock_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+    "old_locked_framework": "Laravel11.48.0",
+    "old_lock_package_count": 114,
+    "new_lock": false,
+    "real_vendor": false
+  },
+  "supply_meter_qualified": false,
+  "activation_attempts": 1,
+  "activation_limit": 1,
+  "manual_shared_state_repair": false
+}

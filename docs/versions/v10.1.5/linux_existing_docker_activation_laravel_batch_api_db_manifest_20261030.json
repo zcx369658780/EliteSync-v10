@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "task_id": "V1015_EXISTING_DOCKER_LINUX_BATCH_MIGRATION_20261030",
+  "attempt": "attempt-0001",
+  "task_blob": "7bd4323e8f3f31a3404657b3eab6690e2710fc89",
+  "status": "BLOCKED_EXISTING_DOCKER_ACTIVATION_OR_RUNTIME_GATE",
+  "sole_parent": "7e9cdc6cbcbd013964824626db52eaf56ce9cbfb",
+  "parent_root": "c72a09a6cd803d5cbe184830416a0802a6f8ed55",
+  "candidate_identity": {
+    "commit": null,
+    "root": null,
+    "reason": "Self-containing Git hashes cannot be embedded without a cycle. Resolve containing commit, sole parent and tree using fresh native GitHub objects; final local readback binds this manifest Blob.",
+    "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+    "services_tree": "1b1100808cf275d881a6dd8dde9c0155a7fc2a32"
+  },
+  "source_changes": [
+    {
+      "path": "docs/versions/v10.1.5/LINUX_EXISTING_DOCKER_TOOLCHAIN_LOCK_20261030.json",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "df05d9f7bb10f3a996cc474084ab0ecea9b884c3",
+      "sha256": "be682c5150c04abd14a98970ce69a344e1a1bc70eccd2bbb82ee304946883fda",
+      "bytes": 2302
+    },
+    {
+      "path": "docs/versions/v10.1.5/LINUX_EXISTING_DOCKER_ACTIVATION_LARAVEL_BATCH_API_DB_RESULT_20261030.md",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "ec705096262efe6cc2a39a79d984dca787ce830d",
+      "sha256": "415ea338681dd217927c1c487eb3c9e6a77a204646dcba2561c0741d3e161f65",
+      "bytes": 10557
+    }
+  ],
+  "exact_delta_paths": [
+    "docs/versions/v10.1.5/LINUX_EXISTING_DOCKER_TOOLCHAIN_LOCK_20261030.json",
+    "docs/versions/v10.1.5/LINUX_EXISTING_DOCKER_ACTIVATION_LARAVEL_BATCH_API_DB_RESULT_20261030.md",
+    "docs/versions/v10.1.5/linux_existing_docker_activation_laravel_batch_api_db_manifest_20261030.json"
+  ],
+  "manifest_self_blob": "NOT_SELF_EMBEDDED",
+  "runtime_gate": {
+    "status": "BLOCKED_EXISTING_DOCKER_ACTIVATION_OR_RUNTIME_GATE",
+    "desktop_launch_exit": 0,
+    "daemon_final_exit": 1,
+    "server_available": false,
+    "direct_failure": "Docker backend failed initializing Secrets Engine: engine.sock rename to engine.sock.stale reported The file cannot be accessed by the system",
+    "activation_attempts": 1,
+    "ubuntu_start_attempts": 0,
+    "socket_or_acl_repair_attempts": 0,
+    "gui_error_dialog_verified": false,
+    "gui_observation_limit": "AX empty; screenshot capture showed occluding unrelated application; no UI input sent",
+    "license_use_qualification": "OWNER_CONFIRMED_FREE_SMALL_BUSINESS",
+    "shared_protected_autostart": "OWNER_CONFIRMED_NONE",
+    "desktop_own_shared_state_effects": "Backend logs report automatic relocation of pre-existing stale socket run directories; no agent cleanup/move/delete",
+    "raw_logs": "LOCAL_ONLY",
+    "public_supply_meter": "NOT_IMPLEMENTED_NOT_QUALIFIED",
+    "public_supply_actions": 0
+  },
+  "budget": {
+    "desktop_activation": {
+      "used": 1,
+      "limit": 1,
+      "remaining": 0
+    },
+    "ubuntu_start": {
+      "used": 0,
+      "limit": 1,
+      "remaining": 1
+    },
+    "agent_initiated_supply_body_bytes": {
+      "used": 0,
+      "limit": 2147483648
+    },
+    "agent_initiated_supply_requests": {
+      "used": 0,
+      "limit": 500
+    },
+    "image_digests": {
+      "used": 0,
+      "limit": 8
+    },
+    "docker_build": {
+      "used": 0,
+      "limit": 3
+    },
+    "composer_solver": {
+      "used": 0,
+      "limit": 3
+    },
+    "vendor_install": {
+      "used": 0,
+      "limit": 2
+    },
+    "php_cli": {
+      "used": 0,
+      "limit": 120
+    },
+    "feature_unit_batches": {
+      "used": 0,
+      "limit": 5
+    },
+    "task_service_groups": {
+      "used": 0,
+      "limit": 4
+    },
+    "business_http": {
+      "used": 0,
+      "limit": 240
+    },
+    "migration": {
+      "used": 0,
+      "limit": 2
+    },
+    "seed": {
+      "used": 0,
+      "limit": 2
+    },
+    "host_install_or_global_settings_changes_by_agent": 0,
+    "pure_test_batches": 0,
+    "historical_budget_modifications": 0,
+    "physical_all_process_network_total": "NOT_PROVEN",
+    "supply_meter": "NOT_IMPLEMENTED_NOT_QUALIFIED_NO_SUPPLY_INITIATED",
+    "snapshot": {
+      "elapsed_seconds": 748.875,
+      "space": {
+        "logical": 838785,
+        "allocated": 935392,
+        "reserve": 67108864
+      }
+    },
+    "max_seconds": 14400,
+    "max_logical_bytes": 17179869184,
+    "max_allocated_bytes": 17179869184,
+    "remaining_dynamic_budget": "UNUSABLE_AFTER_RUNTIME_GATE_AND_TERMINAL_STOP"
+  },
+  "source_mutations": false,
+  "new_lock": false,
+  "new_vendor": false,
+  "framework_primary": "LARAVEL13_PHP84_NOT_ATTEMPTED",
+  "framework_fallback": "LARAVEL12_PHP84_NOT_ATTEMPTED",
+  "runtime_matrix": {
+    "PHP": "NOT_RUN_GATE_CLOSED",
+    "COMPOSER_VALIDATE": "NOT_RUN_GATE_CLOSED",
+    "SOLVER": "NOT_RUN_GATE_CLOSED",
+    "VENDOR": "NOT_RUN_GATE_CLOSED",
+    "LINT": "NOT_RUN_GATE_CLOSED",
+    "FEATURE_UNIT": "NOT_RUN_GATE_CLOSED",
+    "HTTP": "NOT_RUN_GATE_CLOSED",
+    "MARIADB": "NOT_RUN_GATE_CLOSED",
+    "MIGRATION": "NOT_RUN_GATE_CLOSED",
+    "SEED": "NOT_RUN_GATE_CLOSED",
+    "RESTART_PERSISTENCE": "NOT_RUN_GATE_CLOSED",
+    "SESSION_COOKIE_AUTH_CONTINUITY": "NOT_RUN_GATE_CLOSED"
+  },
+  "tests": {
+    "business": {
+      "executed": 0,
+      "result": "NOT_RUN_GATE_CLOSED"
+    },
+    "pure": {
+      "executed": 0,
+      "result": "NOT_RUN"
+    },
+    "prior_34_of_34": "HISTORICAL_NOT_RERUN"
+  },
+  "protection": {
+    "named_roots": 8,
+    "dirty_status_items": 252,
+    "refs": 527,
+    "index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+    "old_receipts": "PRESERVED_CHECK_FINAL_LOCAL_READBACK",
+    "legacy_full_rescan": false,
+    "docker_own_startup_side_effects": "Automatic stale socket directory relocations reported; agent performed no cleanup/move/delete"
+  },
+  "evidence_levels": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN",
+    "NOT_PROVEN"
+  ],
+  "main_integrated": false,
+  "function_accepted": false,
+  "ac05": "OPEN",
+  "g2_ready_for_popen": false,
+  "v1016": "NOT_STARTED",
+  "next_authority": "ASTRA_INDEPENDENT_REVIEW_THEN_OWNER_NAMED_DOCKER_SOCKET_HANDLING_DECISION"
+}
