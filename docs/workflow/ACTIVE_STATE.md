@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30长会话迁移：Linux批量迁移已发布、待下个会话接续（CURRENT ENTRY）
+
+**`SESSION_HANDOFF_GITHUB_PERSISTED / NEW_SESSION_HANDOFF_READY / ONE_SHOT_LINUX_TOOLCHAIN_BATCH_MIGRATION_TASK_ALREADY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_LINUX_TASK_NOT_YET_REPORTED / LARAVEL13_PHP84_CANDIDATE_NOT_ACCEPTED / LARAVEL12_PHP84_FALLBACK / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner明确要求：** 当前会话太长，先把会话任务进度与Owner决策保存到GitHub，再交付新的GPT会话交接Prompt；**最新已发布任务仅在下个会话接续，不在本次再派发或执行**。本条是会话交接状态，不产生新的Codex任务、研发Parent、额外授权或预算。
+
+**永久会话交接资料（已创建且Blob回读）：** [SESSION_HANDOFF_20261030_LINUX_TOOLCHAIN_BULK_MIGRATION_PENDING.md](SESSION_HANDOFF_20261030_LINUX_TOOLCHAIN_BULK_MIGRATION_PENDING.md)，**Git Blob `8f66a46d1acfcf1b8b486b2799577a2d15f3c010`**，创建Commit `10b8b02a2983adc3c4e24170b80b0ed8cc166047`。它覆盖2026-10-30五个有界审查候选、Owner从逐项Windows原生修复迁移到一次性隔离Linux工具链＋框架批量升级的技术决定、当前产品accepted state、全部保护与预算、下个会话应如何接续。须以GitHub正文为权威而非丢失的旧聊天上下文。
+
+**唯一最新正式综合任务（已发表、未执行）：** [V10_1_5_UNIFIED_LINUX_TOOLCHAIN_BULK_FRAMEWORK_MIGRATION_AND_API_DB_E2E_TASK_20261030.md](../versions/v10.1.5/V10_1_5_UNIFIED_LINUX_TOOLCHAIN_BULK_FRAMEWORK_MIGRATION_AND_API_DB_E2E_TASK_20261030.md)，任务Blob `03c40a831ed37d8610c9a9aa2760c9a94e17269b`，创建Commit `5bfda1af822e0f5d31406b6337e00b308a596f9b`。唯一研发Parent `8941323808ce0cdfc68b9f0c3796f86400a75d43`，Root `6808c706f4b2f03b641975f71315c241ce6e435a`；apps Tree `8cd9b6df8e744c8fc9d4217412edce31795a318d`、services Tree `521cafbb463e0099271618c22cafd1ed6218bea2`。最新Astra独立审查Commit `483d66326fb5f5c13e23bafb519c9aba99d38f9e`、Blob `c1b5577728f16077b416c73d82901ba94fa43335`，其分支绝非研发Parent。
+
+**当前最新Owner技术方向：** 以现成合格Linux/WSL2/OCI执行器的只读核查为起点，优先在隔离Ubuntu 24.04兼容环境使用Linux PHP8.4、Composer2、MariaDB10.11；Laravel13＋PHP8.4仅作**优先候选**，Laravel12＋PHP8.4作同任务回退；Codex一个综合任务内真实Composer求解、批量改源码及回归。不继续发布逐个Windows VC/Catalog/API-set研究小任务；既有Windows `E_NOTIMPL`不视为修复。当前是否有WSL/容器仍未证明；没有则由Owner另批准系统安装，**不擅自启用Windows功能或全局软件**。
+
+**不可变状态：** main仍仅正式接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍10 PARTIAL/1 OPEN，AC05 RTC OPEN、G2关闭、未集成main、v10.1.6未开。历史18、两ACL树、122原证、五根、527 refs、3183 Seed、所有旧失败/claims/ledger/dirty、四项事故状态不变。最新任务预算独立16GiB、240分钟、下载2GiB、Composer3次/Feature5批/API HTTP240等，以正式任务全文为准；没有运行新预算，不复用旧余额。禁止生产/真实用户数据、全局系统安装/升级、Flutter/设备/G2/RTC/Push和擅自main集成。
+
+**新会话唯一接续：** 先fresh查GitHub main及Root，阅读本条、完整交接文件和**已发表**的正式任务全文（校Blob）；仅根据Owner下一步明确意图，继续原任务的手动Codex派发或收到Codex后审查，不重复发布任务或自动改基线。即使将来Laravel13候选通过也必须Astra独立review＋Owner最终决定。所有历史CURRENT ENTRY保留但不覆盖本条。
+
+下文是2026-10-30此前CURRENT ENTRY及历史决策的完整原文；旧“当前/待派发”属于当时状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner批准一次性隔离Linux工具链及Laravel批量迁移（CURRENT ENTRY）
 
 **`ONE_SHOT_LINUX_TOOLCHAIN_FRAMEWORK_BATCH_MIGRATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_TASK_NOT_EXECUTED / WINDOWS_PHP_NATIVE_LINE_STOPPED_AS_HISTORICAL / LARAVEL13_PHP84_CANDIDATE_AND_LARAVEL12_PHP84_FALLBACK / LINUX_EXECUTOR_AVAILABILITY_NOT_YET_PROVEN / NO_HOST_SYSTEM_INSTALL_AUTHORIZED / NO_PRODUCT_MAIN_INTEGRATION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
