@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "task_blob": "03c40a831ed37d8610c9a9aa2760c9a94e17269b",
+  "sole_parent": "8941323808ce0cdfc68b9f0c3796f86400a75d43",
+  "state": "BLOCKED_LINUX_EXECUTOR_NOT_AVAILABLE",
+  "reason": "EXISTING_LOCAL_ENGINE_NOT_QUALIFIED",
+  "activation_request": "LINUX_EXECUTOR_INSTALL_AUTHORIZATION_REQUIRED",
+  "not_a_completed_runtime_lock": true,
+  "inventory": {
+    "used": 6,
+    "limit": 6,
+    "wsl": {
+      "launcher_version": "2.6.3.0",
+      "kernel_version": "6.6.87.2-1",
+      "ubuntu_registration": "Ubuntu-24.04",
+      "registered_wsl_generation": 2,
+      "state": "STOPPED",
+      "distro_os_release": "NOT_RUN",
+      "distro_architecture": "NOT_PROVEN"
+    },
+    "docker": {
+      "client_version": "29.3.0",
+      "client_build": "5927d80",
+      "server_version": null,
+      "local_daemon": "PIPE_NOT_FOUND",
+      "desktop_package_version": "NOT_PROVEN",
+      "desktop_license_eligibility": "OWNER_CONFIRMATION_REQUIRED"
+    },
+    "podman": "NOT_FOUND_BY_COMMAND_RESOLUTION",
+    "resources": {
+      "total_memory_bytes": 33804922880,
+      "available_memory_bytes": 10691604480,
+      "task_disk_free_bytes": 494498279424,
+      "cpu_count": 20,
+      "vm_global_settings_changed": false
+    }
+  },
+  "targets": {
+    "linux": {
+      "host_compatibility": "UBUNTU24_04_LTS_TARGET_NOT_RUNTIME_VERIFIED",
+      "container_userland": "NOT_SELECTED_NO_DEBIAN_AS_UBUNTU_CLAIM",
+      "platform": "linux/amd64_TARGET_NOT_OBSERVED"
+    },
+    "php": {
+      "family": "8.4_SUPPORTED_MAINTENANCE_PATCH",
+      "actual_version": null,
+      "image_digest": null,
+      "status": "BLOCKED_EXECUTOR",
+      "extensions": "ROOT_REQUIREMENTS_AND_REAL_SOLVER_PLATFORM_CHECK_REQUIRED"
+    },
+    "composer": {
+      "family": "OFFICIAL_STABLE_2_X",
+      "actual_version": null,
+      "phar_sha256": null,
+      "image_digest": null,
+      "status": "NOT_RUN"
+    },
+    "mariadb": {
+      "family": "10.11_LTS",
+      "preferred_available_patch": "10.11.19_IF_QUALIFIED",
+      "actual_version": null,
+      "image_digest": null,
+      "status": "NOT_RUN"
+    },
+    "redis": {
+      "status": "NOT_REQUIRED_FOR_INITIAL_SYNC_FILE_CACHE_GROUP"
+    },
+    "nginx": {
+      "status": "NOT_REQUIRED_FOR_INITIAL_LOOPBACK_API_GROUP"
+    }
+  },
+  "isolation_blueprint": {
+    "executable": false,
+    "container_uid": "UNRESOLVED_PIN_PER_IMAGE",
+    "memory_per_group_max_bytes": 4294967296,
+    "code_mount": "READ_ONLY_TASK_SOURCE",
+    "write_surfaces": [
+      "TASK_SOURCE_STAGING",
+      "TASK_VENDOR",
+      "TASK_COMPOSER_HOME_CACHE",
+      "TASK_STORAGE",
+      "TASK_DATADIR",
+      "TASK_LOGS"
+    ],
+    "network": "TASK_EXCLUSIVE_NO_HOST_NETWORK_NO_DOCKER_SOCKET",
+    "supply": "SEPARATE_COUNTED_EGRESS_ADAPTER_NOT_IMPLEMENTED",
+    "business_runtime_egress": "DENY",
+    "database": "NEW_EMPTY_SYNTHETIC_MARIADB_MINIMUM_ACTOR",
+    "api_loopback_port": null,
+    "db_loopback_port": null,
+    "ports_state": "NOT_PROBED_OR_RESERVED_NO_SERVICE_STARTED",
+    "forbidden_historical_ports": [
+      43349,
+      43359
+    ],
+    "privileged": false,
+    "global_host_changes": false
+  },
+  "documentation_metadata": [
+    {
+      "id": "skeleton13",
+      "status": "READONLY_METADATA_SNAPSHOT",
+      "sha256": "dc30862e917de4ddf6866056c83eeabcac72c078e5ed604ddcecc73147a1ceaa",
+      "git_blob": "9b8fbd5d4dcf8535e1342196f5619187bf17bbed",
+      "scope": "DOCUMENTATION_NOT_RESOLVED_ARTIFACT_OR_RELEASE_LOCK"
+    },
+    {
+      "id": "framework13",
+      "status": "READONLY_METADATA_SNAPSHOT",
+      "sha256": "bb3b4d6c00f90fa5b9b26b503dff9128e0259776fa01593c5eb06a6f26d2e344",
+      "git_blob": "e99b2edea8da6e82198b686ca3857564b049928d",
+      "scope": "DOCUMENTATION_NOT_RESOLVED_ARTIFACT_OR_RELEASE_LOCK"
+    },
+    {
+      "id": "sanctum",
+      "status": "READONLY_METADATA_SNAPSHOT",
+      "sha256": "dd8a88c806a2a6fe70c151c9a15e9948eaf688e9819c2942842df237082df4f2",
+      "git_blob": "044c4fbae131b1ae6458be7558c8d4b246ce0ad6",
+      "scope": "DOCUMENTATION_NOT_RESOLVED_ARTIFACT_OR_RELEASE_LOCK"
+    },
+    {
+      "id": "collision",
+      "status": "FETCH_FAILED_PRESERVED_LOCAL_ONLY",
+      "sha256": null,
+      "git_blob": null,
+      "scope": "DOCUMENTATION_NOT_RESOLVED_ARTIFACT_OR_RELEASE_LOCK"
+    }
+  ]
+}

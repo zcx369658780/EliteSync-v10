@@ -1,0 +1,3438 @@
+{
+  "schema": 1,
+  "task_blob": "03c40a831ed37d8610c9a9aa2760c9a94e17269b",
+  "sole_parent": "8941323808ce0cdfc68b9f0c3796f86400a75d43",
+  "state": "STATIC_MIGRATION_PREPACKAGE_ONLY",
+  "actual_framework_migration": "NOT_RUN",
+  "decision": {
+    "fallback": "LARAVEL12_PHP84_NOT_ATTEMPTED",
+    "owner_final_direction": "PENDING_ASTRA_AND_OWNER",
+    "primary": "LARAVEL13_PHP84_UNRESOLVED"
+  },
+  "source": {
+    "composer_blob": "d30ee1bb2af2bafb0416fa07b6005d53d6ab4f56",
+    "composer_sha256": "21631cc3c211933098be4bb3caa0efcd23d8ee8ced71ce512f97c9243a1d233a",
+    "lock_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+    "lock_sha256": "278bdf54d52effa2a8886cefccf31af107767535dd4f7ddf359e087cb324b74a",
+    "locked_framework": "v11.48.0"
+  },
+  "primary_constraints": {
+    "6tail/lunar-php": "^1.4",
+    "ext-ctype": "*",
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-filter": "*",
+    "ext-hash": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*",
+    "ext-pcre": "*",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-session": "*",
+    "ext-tokenizer": "*",
+    "ext-xml": "*",
+    "laravel/framework": "^13.0",
+    "laravel/sanctum": "^4.0",
+    "laravel/tinker": "^3.0",
+    "php": "~8.4.0",
+    "workerman/workerman": "^5.1"
+  },
+  "primary_dev_constraints": {
+    "fakerphp/faker": "^1.23",
+    "laravel/pail": "^1.1",
+    "laravel/pint": "^1.13",
+    "laravel/sail": "^1.26",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.6",
+    "phpunit/phpunit": "^12.0"
+  },
+  "fallback_constraints": {
+    "6tail/lunar-php": "^1.4",
+    "ext-ctype": "*",
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-filter": "*",
+    "ext-hash": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*",
+    "ext-pcre": "*",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-session": "*",
+    "ext-tokenizer": "*",
+    "ext-xml": "*",
+    "laravel/framework": "^12.0",
+    "laravel/sanctum": "^4.0",
+    "laravel/tinker": "^2.9",
+    "php": "~8.4.0",
+    "workerman/workerman": "^5.1"
+  },
+  "fallback_dev_constraints": {
+    "fakerphp/faker": "^1.23",
+    "laravel/pail": "^1.1",
+    "laravel/pint": "^1.13",
+    "laravel/sail": "^1.26",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.1",
+    "phpunit/phpunit": "^11.0.1"
+  },
+  "all_old_locked_packages": [
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "1443e795c132d63333c358a330117cfe18b1b560",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/6tail/lunar-php/zipball/1443e795c132d63333c358a330117cfe18b1b560"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.4.0",
+      "name": "6tail/lunar-php",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=5.3"
+      },
+      "root_constraint": "^1.4",
+      "source": {
+        "reference": "1443e795c132d63333c358a330117cfe18b1b560",
+        "type": "git",
+        "url": "https://github.com/6tail/lunar-php.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "63422359a44b7f06cae63c3b429b59e8efcc0629",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/brick/math/zipball/63422359a44b7f06cae63c3b429b59e8efcc0629"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "0.14.8",
+      "name": "brick/math",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "63422359a44b7f06cae63c3b429b59e8efcc0629",
+        "type": "git",
+        "url": "https://github.com/brick/math.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "doctrine/dbal": "<4.0.0 || >=5.0.0"
+      },
+      "dist": {
+        "reference": "18ba5ddfec8976260ead6e866180bd5d2f71aa1d",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/18ba5ddfec8976260ead6e866180bd5d2f71aa1d"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.2.0",
+      "name": "carbonphp/carbon-doctrine-types",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "18ba5ddfec8976260ead6e866180bd5d2f71aa1d",
+        "type": "git",
+        "url": "https://github.com/CarbonPHP/carbon-doctrine-types.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "a23a2bf4f31d3518f3ecb38660c95715dfead60f",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/a23a2bf4f31d3518f3ecb38660c95715dfead60f"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.0.3",
+      "name": "dflydev/dot-access-data",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.1 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "a23a2bf4f31d3518f3ecb38660c95715dfead60f",
+        "type": "git",
+        "url": "https://github.com/dflydev/dflydev-dot-access-data.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "6d6c96277ea252fc1304627204c3d5e6e15faa3b",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/inflector/zipball/6d6c96277ea252fc1304627204c3d5e6e15faa3b"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.1.0",
+      "name": "doctrine/inflector",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "6d6c96277ea252fc1304627204c3d5e6e15faa3b",
+        "type": "git",
+        "url": "https://github.com/doctrine/inflector.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "31ad66abc0fc9e1a1f2d9bc6a42668d2fbbcd6dd",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/doctrine/lexer/zipball/31ad66abc0fc9e1a1f2d9bc6a42668d2fbbcd6dd"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.0.1",
+      "name": "doctrine/lexer",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "31ad66abc0fc9e1a1f2d9bc6a42668d2fbbcd6dd",
+        "type": "git",
+        "url": "https://github.com/doctrine/lexer.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/d61a8a9604ec1f8c3d150d09db6ce98b32675013"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.6.0",
+      "name": "dragonmantank/cron-expression",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.2|^8.3|^8.4|^8.5"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013",
+        "type": "git",
+        "url": "https://github.com/dragonmantank/cron-expression.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "4.0.4",
+      "name": "egulias/email-validator",
+      "old_lock_section": "packages",
+      "require": {
+        "doctrine/lexer": "^2.0 || ^3.0",
+        "php": ">=8.1",
+        "symfony/polyfill-intl-idn": "^1.26"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+        "type": "git",
+        "url": "https://github.com/egulias/EmailValidator.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "fzaninotto/faker": "*"
+      },
+      "dist": {
+        "reference": "e0ee18eb1e6dc3cda3ce9fd97e5a0689a88a64b5",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/e0ee18eb1e6dc3cda3ce9fd97e5a0689a88a64b5"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.24.1",
+      "name": "fakerphp/faker",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": "^7.4 || ^8.0",
+        "psr/container": "^1.0 || ^2.0",
+        "symfony/deprecation-contracts": "^2.2 || ^3.0"
+      },
+      "root_constraint": "^1.23",
+      "source": {
+        "reference": "e0ee18eb1e6dc3cda3ce9fd97e5a0689a88a64b5",
+        "type": "git",
+        "url": "https://github.com/FakerPHP/Faker.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d2102955e48b9fd9ab24280a7ad12ed552752c4d",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/filp/whoops/zipball/d2102955e48b9fd9ab24280a7ad12ed552752c4d"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.18.4",
+      "name": "filp/whoops",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": "^7.1 || ^8.0",
+        "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d2102955e48b9fd9ab24280a7ad12ed552752c4d",
+        "type": "git",
+        "url": "https://github.com/filp/whoops.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "38aaa6c3fd4c157ffe2a4d10aa8b9b16ba8de379",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/fruitcake/php-cors/zipball/38aaa6c3fd4c157ffe2a4d10aa8b9b16ba8de379"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.4.0",
+      "name": "fruitcake/php-cors",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.1",
+        "symfony/http-foundation": "^5.4|^6.4|^7.3|^8"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "38aaa6c3fd4c157ffe2a4d10aa8b9b16ba8de379",
+        "type": "git",
+        "url": "https://github.com/fruitcake/php-cors.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "e01f4a821471308ba86aa202fed6698b6b695e3b",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/GrahamCampbell/Result-Type/zipball/e01f4a821471308ba86aa202fed6698b6b695e3b"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.1.4",
+      "name": "graham-campbell/result-type",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2.5 || ^8.0",
+        "phpoption/phpoption": "^1.9.5"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "e01f4a821471308ba86aa202fed6698b6b695e3b",
+        "type": "git",
+        "url": "https://github.com/GrahamCampbell/Result-Type.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b51ac707cfa420b7bfd4e4d5e510ba8008e822b4",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b51ac707cfa420b7bfd4e4d5e510ba8008e822b4"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "7.10.0",
+      "name": "guzzlehttp/guzzle",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-json": "*",
+        "guzzlehttp/promises": "^2.3",
+        "guzzlehttp/psr7": "^2.8",
+        "php": "^7.2.5 || ^8.0",
+        "psr/http-client": "^1.0",
+        "symfony/deprecation-contracts": "^2.2 || ^3.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b51ac707cfa420b7bfd4e4d5e510ba8008e822b4",
+        "type": "git",
+        "url": "https://github.com/guzzle/guzzle.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "481557b130ef3790cf82b713667b43030dc9c957",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/guzzle/promises/zipball/481557b130ef3790cf82b713667b43030dc9c957"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.3.0",
+      "name": "guzzlehttp/promises",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2.5 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "481557b130ef3790cf82b713667b43030dc9c957",
+        "type": "git",
+        "url": "https://github.com/guzzle/promises.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "7d0ed42f28e42d61352a7a79de682e5e67fec884",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/guzzle/psr7/zipball/7d0ed42f28e42d61352a7a79de682e5e67fec884"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.9.0",
+      "name": "guzzlehttp/psr7",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2.5 || ^8.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.1 || ^2.0",
+        "ralouphie/getallheaders": "^3.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "7d0ed42f28e42d61352a7a79de682e5e67fec884",
+        "type": "git",
+        "url": "https://github.com/guzzle/psr7.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "4f4bbd4e7172148801e76e3decc1e559bdee34e1",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/guzzle/uri-template/zipball/4f4bbd4e7172148801e76e3decc1e559bdee34e1"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.0.5",
+      "name": "guzzlehttp/uri-template",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2.5 || ^8.0",
+        "symfony/polyfill-php80": "^1.24"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "4f4bbd4e7172148801e76e3decc1e559bdee34e1",
+        "type": "git",
+        "url": "https://github.com/guzzle/uri-template.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "v2.1.1",
+      "name": "hamcrest/hamcrest-php",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": "^7.4|^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
+        "type": "git",
+        "url": "https://github.com/hamcrest/hamcrest-php.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "tightenco/collect": "<5.5.33"
+      },
+      "dist": {
+        "reference": "5b23ab29087dbcb13077e5c049c431ec4b82f236",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/framework/zipball/5b23ab29087dbcb13077e5c049c431ec4b82f236"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v11.48.0",
+      "name": "laravel/framework",
+      "old_lock_section": "packages",
+      "require": {
+        "brick/math": "^0.9.3|^0.10.2|^0.11|^0.12|^0.13|^0.14",
+        "composer-runtime-api": "^2.2",
+        "doctrine/inflector": "^2.0.5",
+        "dragonmantank/cron-expression": "^3.4",
+        "egulias/email-validator": "^3.2.1|^4.0",
+        "ext-ctype": "*",
+        "ext-filter": "*",
+        "ext-hash": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "ext-session": "*",
+        "ext-tokenizer": "*",
+        "fruitcake/php-cors": "^1.3",
+        "guzzlehttp/guzzle": "^7.8.2",
+        "guzzlehttp/uri-template": "^1.0",
+        "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
+        "laravel/serializable-closure": "^1.3|^2.0",
+        "league/commonmark": "^2.7",
+        "league/flysystem": "^3.25.1",
+        "league/flysystem-local": "^3.25.1",
+        "league/uri": "^7.5.1",
+        "monolog/monolog": "^3.0",
+        "nesbot/carbon": "^2.72.6|^3.8.4",
+        "nunomaduro/termwind": "^2.0",
+        "php": "^8.2",
+        "psr/container": "^1.1.1|^2.0.1",
+        "psr/log": "^1.0|^2.0|^3.0",
+        "psr/simple-cache": "^1.0|^2.0|^3.0",
+        "ramsey/uuid": "^4.7",
+        "symfony/console": "^7.0.3",
+        "symfony/error-handler": "^7.0.3",
+        "symfony/finder": "^7.0.3",
+        "symfony/http-foundation": "^7.2.0",
+        "symfony/http-kernel": "^7.0.3",
+        "symfony/mailer": "^7.0.3",
+        "symfony/mime": "^7.0.3",
+        "symfony/polyfill-php83": "^1.31",
+        "symfony/process": "^7.0.3",
+        "symfony/routing": "^7.0.3",
+        "symfony/uid": "^7.0.3",
+        "symfony/var-dumper": "^7.0.3",
+        "tijsverkoyen/css-to-inline-styles": "^2.2.5",
+        "vlucas/phpdotenv": "^5.6.1",
+        "voku/portable-ascii": "^2.0.2"
+      },
+      "root_constraint": "^12.0",
+      "source": {
+        "reference": "5b23ab29087dbcb13077e5c049c431ec4b82f236",
+        "type": "git",
+        "url": "https://github.com/laravel/framework.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "aa71a01c309e7f66bc2ec4fb1a59291b82eb4abf",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/pail/zipball/aa71a01c309e7f66bc2ec4fb1a59291b82eb4abf"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.2.6",
+      "name": "laravel/pail",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-mbstring": "*",
+        "illuminate/console": "^10.24|^11.0|^12.0|^13.0",
+        "illuminate/contracts": "^10.24|^11.0|^12.0|^13.0",
+        "illuminate/log": "^10.24|^11.0|^12.0|^13.0",
+        "illuminate/process": "^10.24|^11.0|^12.0|^13.0",
+        "illuminate/support": "^10.24|^11.0|^12.0|^13.0",
+        "nunomaduro/termwind": "^1.15|^2.0",
+        "php": "^8.2",
+        "symfony/console": "^6.0|^7.0|^8.0"
+      },
+      "root_constraint": "^1.1",
+      "source": {
+        "reference": "aa71a01c309e7f66bc2ec4fb1a59291b82eb4abf",
+        "type": "git",
+        "url": "https://github.com/laravel/pail.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "1feae84bf9c1649d99ba8f7b8193bf0f09f04cc9",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/pint/zipball/1feae84bf9c1649d99ba8f7b8193bf0f09f04cc9"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.28.0",
+      "name": "laravel/pint",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-tokenizer": "*",
+        "ext-xml": "*",
+        "php": "^8.2.0"
+      },
+      "root_constraint": "^1.13",
+      "source": {
+        "reference": "1feae84bf9c1649d99ba8f7b8193bf0f09f04cc9",
+        "type": "git",
+        "url": "https://github.com/laravel/pint.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "illuminate/console": ">=10.17.0 <10.25.0",
+        "laravel/framework": ">=10.17.0 <10.25.0"
+      },
+      "dist": {
+        "reference": "9f0e371244eedfe2ebeaa72c79c54bb5df6e0176",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/prompts/zipball/9f0e371244eedfe2ebeaa72c79c54bb5df6e0176"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v0.3.14",
+      "name": "laravel/prompts",
+      "old_lock_section": "packages",
+      "require": {
+        "composer-runtime-api": "^2.2",
+        "ext-mbstring": "*",
+        "php": "^8.1",
+        "symfony/console": "^6.2|^7.0|^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "9f0e371244eedfe2ebeaa72c79c54bb5df6e0176",
+        "type": "git",
+        "url": "https://github.com/laravel/prompts.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "e340eaa2bea9b99192570c48ed837155dbf24fbb",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/sail/zipball/e340eaa2bea9b99192570c48ed837155dbf24fbb"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.53.0",
+      "name": "laravel/sail",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "illuminate/console": "^9.52.16|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/contracts": "^9.52.16|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/support": "^9.52.16|^10.0|^11.0|^12.0|^13.0",
+        "php": "^8.0",
+        "symfony/console": "^6.0|^7.0|^8.0",
+        "symfony/yaml": "^6.0|^7.0|^8.0"
+      },
+      "root_constraint": "^1.26",
+      "source": {
+        "reference": "e340eaa2bea9b99192570c48ed837155dbf24fbb",
+        "type": "git",
+        "url": "https://github.com/laravel/sail.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "e3b85d6e36ad00e5db2d1dcc27c81ffdf15cbf76",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/sanctum/zipball/e3b85d6e36ad00e5db2d1dcc27c81ffdf15cbf76"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v4.3.1",
+      "name": "laravel/sanctum",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-json": "*",
+        "illuminate/console": "^11.0|^12.0|^13.0",
+        "illuminate/contracts": "^11.0|^12.0|^13.0",
+        "illuminate/database": "^11.0|^12.0|^13.0",
+        "illuminate/support": "^11.0|^12.0|^13.0",
+        "php": "^8.2",
+        "symfony/console": "^7.0|^8.0"
+      },
+      "root_constraint": "^4.0",
+      "source": {
+        "reference": "e3b85d6e36ad00e5db2d1dcc27c81ffdf15cbf76",
+        "type": "git",
+        "url": "https://github.com/laravel/sanctum.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "870fc81d2f879903dfc5b60bf8a0f94a1609e669",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/870fc81d2f879903dfc5b60bf8a0f94a1609e669"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v2.0.10",
+      "name": "laravel/serializable-closure",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "870fc81d2f879903dfc5b60bf8a0f94a1609e669",
+        "type": "git",
+        "url": "https://github.com/laravel/serializable-closure.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "c9f80cc835649b5c1842898fb043f8cc098dd741",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/tinker/zipball/c9f80cc835649b5c1842898fb043f8cc098dd741"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v2.11.1",
+      "name": "laravel/tinker",
+      "old_lock_section": "packages",
+      "require": {
+        "illuminate/console": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "php": "^7.2.5|^8.0",
+        "psy/psysh": "^0.11.1|^0.12.0",
+        "symfony/var-dumper": "^4.3.4|^5.0|^6.0|^7.0|^8.0"
+      },
+      "root_constraint": "^2.9",
+      "source": {
+        "reference": "c9f80cc835649b5c1842898fb043f8cc098dd741",
+        "type": "git",
+        "url": "https://github.com/laravel/tinker.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "84b1ca48347efdbe775426f108622a42735a6579",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/84b1ca48347efdbe775426f108622a42735a6579"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "2.8.1",
+      "name": "league/commonmark",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-mbstring": "*",
+        "league/config": "^1.1.1",
+        "php": "^7.4 || ^8.0",
+        "psr/event-dispatcher": "^1.0",
+        "symfony/deprecation-contracts": "^2.1 || ^3.0",
+        "symfony/polyfill-php80": "^1.16"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "84b1ca48347efdbe775426f108622a42735a6579",
+        "type": "git",
+        "url": "https://github.com/thephpleague/commonmark.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/config/zipball/754b3604fb2984c71f4af4a9cbe7b57f346ec1f3"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "v1.2.0",
+      "name": "league/config",
+      "old_lock_section": "packages",
+      "require": {
+        "dflydev/dot-access-data": "^3.0.1",
+        "nette/schema": "^1.2",
+        "php": "^7.4 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
+        "type": "git",
+        "url": "https://github.com/thephpleague/config.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "async-aws/core": "<1.19.0",
+        "async-aws/s3": "<1.14.0",
+        "aws/aws-sdk-php": "3.209.31 || 3.210.0",
+        "guzzlehttp/guzzle": "<7.0",
+        "guzzlehttp/ringphp": "<1.1.1",
+        "phpseclib/phpseclib": "3.0.15",
+        "symfony/http-client": "<5.2"
+      },
+      "dist": {
+        "reference": "254b1595b16b22dbddaaef9ed6ca9fdac4956725",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/254b1595b16b22dbddaaef9ed6ca9fdac4956725"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.32.0",
+      "name": "league/flysystem",
+      "old_lock_section": "packages",
+      "require": {
+        "league/flysystem-local": "^3.0.0",
+        "league/mime-type-detection": "^1.0.0",
+        "php": "^8.0.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "254b1595b16b22dbddaaef9ed6ca9fdac4956725",
+        "type": "git",
+        "url": "https://github.com/thephpleague/flysystem.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2f669db18a4c20c755c2bb7d3a7b0b2340488079",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/2f669db18a4c20c755c2bb7d3a7b0b2340488079"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.31.0",
+      "name": "league/flysystem-local",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-fileinfo": "*",
+        "league/flysystem": "^3.0.0",
+        "league/mime-type-detection": "^1.0.0",
+        "php": "^8.0.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2f669db18a4c20c755c2bb7d3a7b0b2340488079",
+        "type": "git",
+        "url": "https://github.com/thephpleague/flysystem-local.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/2d6702ff215bf922936ccc1ad31007edc76451b9"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.16.0",
+      "name": "league/mime-type-detection",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-fileinfo": "*",
+        "php": "^7.4 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9",
+        "type": "git",
+        "url": "https://github.com/thephpleague/mime-type-detection.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "league/uri-schemes": "^1.0"
+      },
+      "dist": {
+        "reference": "4436c6ec8d458e4244448b069cc572d088230b76",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/uri/zipball/4436c6ec8d458e4244448b069cc572d088230b76"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "7.8.0",
+      "name": "league/uri",
+      "old_lock_section": "packages",
+      "require": {
+        "league/uri-interfaces": "^7.8",
+        "php": "^8.1",
+        "psr/http-factory": "^1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "4436c6ec8d458e4244448b069cc572d088230b76",
+        "type": "git",
+        "url": "https://github.com/thephpleague/uri.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "c5c5cd056110fc8afaba29fa6b72a43ced42acd4",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/c5c5cd056110fc8afaba29fa6b72a43ced42acd4"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "7.8.0",
+      "name": "league/uri-interfaces",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-filter": "*",
+        "php": "^8.1",
+        "psr/http-message": "^1.1 || ^2.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "c5c5cd056110fc8afaba29fa6b72a43ced42acd4",
+        "type": "git",
+        "url": "https://github.com/thephpleague/uri-interfaces.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "phpunit/phpunit": "<8.0"
+      },
+      "dist": {
+        "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/mockery/mockery/zipball/1f4efdd7d3beafe9807b08156dfcb176d18f1699"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "1.6.12",
+      "name": "mockery/mockery",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "hamcrest/hamcrest-php": "^2.0.1",
+        "lib-pcre": ">=7.0",
+        "php": ">=7.3"
+      },
+      "root_constraint": "^1.6",
+      "source": {
+        "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699",
+        "type": "git",
+        "url": "https://github.com/mockery/mockery.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b321dd6749f0bf7189444158a3ce785cc16d69b0",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b321dd6749f0bf7189444158a3ce785cc16d69b0"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.10.0",
+      "name": "monolog/monolog",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1",
+        "psr/log": "^2.0 || ^3.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b321dd6749f0bf7189444158a3ce785cc16d69b0",
+        "type": "git",
+        "url": "https://github.com/Seldaek/monolog.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "doctrine/collections": "<1.6.8",
+        "doctrine/common": "<2.13.3 || >=3 <3.2.2"
+      },
+      "dist": {
+        "reference": "07d290f0c47959fd5eed98c95ee5602db07e0b6a",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/07d290f0c47959fd5eed98c95ee5602db07e0b6a"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.13.4",
+      "name": "myclabs/deep-copy",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": "^7.1 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "07d290f0c47959fd5eed98c95ee5602db07e0b6a",
+        "type": "git",
+        "url": "https://github.com/myclabs/DeepCopy.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "6a7e652845bb018c668220c2a545aded8594fbbf",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/6a7e652845bb018c668220c2a545aded8594fbbf"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.11.3",
+      "name": "nesbot/carbon",
+      "old_lock_section": "packages",
+      "require": {
+        "carbonphp/carbon-doctrine-types": "<100.0",
+        "ext-json": "*",
+        "php": "^8.1",
+        "psr/clock": "^1.0",
+        "symfony/clock": "^6.3.12 || ^7.0 || ^8.0",
+        "symfony/polyfill-mbstring": "^1.0",
+        "symfony/translation": "^4.4.18 || ^5.2.1 || ^6.0 || ^7.0 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "6a7e652845bb018c668220c2a545aded8594fbbf",
+        "type": "git",
+        "url": "https://github.com/CarbonPHP/carbon.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/nette/schema/zipball/f0ab1a3cda782dbc5da270d28545236aa80c4002"
+      },
+      "license": [
+        "BSD-3-Clause",
+        "GPL-2.0-only",
+        "GPL-3.0-only"
+      ],
+      "locked_version": "v1.3.5",
+      "name": "nette/schema",
+      "old_lock_section": "packages",
+      "require": {
+        "nette/utils": "^4.0",
+        "php": "8.1 - 8.5"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002",
+        "type": "git",
+        "url": "https://github.com/nette/schema.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "nette/finder": "<3",
+        "nette/schema": "<1.2.2"
+      },
+      "dist": {
+        "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/nette/utils/zipball/bb3ea637e3d131d72acc033cfc2746ee893349fe"
+      },
+      "license": [
+        "BSD-3-Clause",
+        "GPL-2.0-only",
+        "GPL-3.0-only"
+      ],
+      "locked_version": "v4.1.3",
+      "name": "nette/utils",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "8.2 - 8.5"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe",
+        "type": "git",
+        "url": "https://github.com/nette/utils.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "dca41cd15c2ac9d055ad70dbfd011130757d1f82",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dca41cd15c2ac9d055ad70dbfd011130757d1f82"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "v5.7.0",
+      "name": "nikic/php-parser",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-ctype": "*",
+        "ext-json": "*",
+        "ext-tokenizer": "*",
+        "php": ">=7.4"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "dca41cd15c2ac9d055ad70dbfd011130757d1f82",
+        "type": "git",
+        "url": "https://github.com/nikic/PHP-Parser.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "laravel/framework": "<11.48.0 || >=14.0.0",
+        "phpunit/phpunit": "<11.5.50 || >=14.0.0"
+      },
+      "dist": {
+        "reference": "a1ed3fa530fd60bc515f9303e8520fcb7d4bd935",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/nunomaduro/collision/zipball/a1ed3fa530fd60bc515f9303e8520fcb7d4bd935"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.9.1",
+      "name": "nunomaduro/collision",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "filp/whoops": "^2.18.4",
+        "nunomaduro/termwind": "^2.4.0",
+        "php": "^8.2.0",
+        "symfony/console": "^7.4.4 || ^8.0.4"
+      },
+      "root_constraint": "^8.1",
+      "source": {
+        "reference": "a1ed3fa530fd60bc515f9303e8520fcb7d4bd935",
+        "type": "git",
+        "url": "https://github.com/nunomaduro/collision.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "712a31b768f5daea284c2169a7d227031001b9a8",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/712a31b768f5daea284c2169a7d227031001b9a8"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v2.4.0",
+      "name": "nunomaduro/termwind",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-mbstring": "*",
+        "php": "^8.2",
+        "symfony/console": "^7.4.4 || ^8.0.4"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "712a31b768f5daea284c2169a7d227031001b9a8",
+        "type": "git",
+        "url": "https://github.com/nunomaduro/termwind.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "54750ef60c58e43759730615a392c31c80e23176",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/phar-io/manifest/zipball/54750ef60c58e43759730615a392c31c80e23176"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "2.0.4",
+      "name": "phar-io/manifest",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-phar": "*",
+        "ext-xmlwriter": "*",
+        "phar-io/version": "^3.0.1",
+        "php": "^7.2 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "54750ef60c58e43759730615a392c31c80e23176",
+        "type": "git",
+        "url": "https://github.com/phar-io/manifest.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/phar-io/version/zipball/4f7fd7836c6f332bb2933569e566a0d6c4cbed74"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "3.2.1",
+      "name": "phar-io/version",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": "^7.2 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+        "type": "git",
+        "url": "https://github.com/phar-io/version.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "75365b91986c2405cf5e1e012c5595cd487a98be",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/75365b91986c2405cf5e1e012c5595cd487a98be"
+      },
+      "license": [
+        "Apache-2.0"
+      ],
+      "locked_version": "1.9.5",
+      "name": "phpoption/phpoption",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2.5 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "75365b91986c2405cf5e1e012c5595cd487a98be",
+        "type": "git",
+        "url": "https://github.com/schmittjoh/php-option.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2c1ed04922802c15e1de5d7447b4856de949cf56",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2c1ed04922802c15e1de5d7447b4856de949cf56"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "11.0.12",
+      "name": "phpunit/php-code-coverage",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "ext-xmlwriter": "*",
+        "nikic/php-parser": "^5.7.0",
+        "php": ">=8.2",
+        "phpunit/php-file-iterator": "^5.1.0",
+        "phpunit/php-text-template": "^4.0.1",
+        "sebastian/code-unit-reverse-lookup": "^4.0.1",
+        "sebastian/complexity": "^4.0.1",
+        "sebastian/environment": "^7.2.1",
+        "sebastian/lines-of-code": "^3.0.1",
+        "sebastian/version": "^5.0.2",
+        "theseer/tokenizer": "^1.3.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2c1ed04922802c15e1de5d7447b4856de949cf56",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/php-code-coverage.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2f3a64888c814fc235386b7387dd5b5ed92ad903",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/2f3a64888c814fc235386b7387dd5b5ed92ad903"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "5.1.1",
+      "name": "phpunit/php-file-iterator",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2f3a64888c814fc235386b7387dd5b5ed92ad903",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/php-file-iterator.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "c1ca3814734c07492b3d4c5f794f4b0995333da2",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-invoker/zipball/c1ca3814734c07492b3d4c5f794f4b0995333da2"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "5.0.1",
+      "name": "phpunit/php-invoker",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "c1ca3814734c07492b3d4c5f794f4b0995333da2",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/php-invoker.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "3e0404dc6b300e6bf56415467ebcb3fe4f33e964",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/3e0404dc6b300e6bf56415467ebcb3fe4f33e964"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "4.0.1",
+      "name": "phpunit/php-text-template",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "3e0404dc6b300e6bf56415467ebcb3fe4f33e964",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/php-text-template.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "3b415def83fbcb41f991d9ebf16ae4ad8b7837b3",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3b415def83fbcb41f991d9ebf16ae4ad8b7837b3"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "7.0.1",
+      "name": "phpunit/php-timer",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "3b415def83fbcb41f991d9ebf16ae4ad8b7837b3",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/php-timer.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "adc7262fccc12de2b30f12a8aa0b33775d814f00",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/adc7262fccc12de2b30f12a8aa0b33775d814f00"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "11.5.55",
+      "name": "phpunit/phpunit",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-xml": "*",
+        "ext-xmlwriter": "*",
+        "myclabs/deep-copy": "^1.13.4",
+        "phar-io/manifest": "^2.0.4",
+        "phar-io/version": "^3.2.1",
+        "php": ">=8.2",
+        "phpunit/php-code-coverage": "^11.0.12",
+        "phpunit/php-file-iterator": "^5.1.1",
+        "phpunit/php-invoker": "^5.0.1",
+        "phpunit/php-text-template": "^4.0.1",
+        "phpunit/php-timer": "^7.0.1",
+        "sebastian/cli-parser": "^3.0.2",
+        "sebastian/code-unit": "^3.0.3",
+        "sebastian/comparator": "^6.3.3",
+        "sebastian/diff": "^6.0.2",
+        "sebastian/environment": "^7.2.1",
+        "sebastian/exporter": "^6.3.2",
+        "sebastian/global-state": "^7.0.2",
+        "sebastian/object-enumerator": "^6.0.1",
+        "sebastian/recursion-context": "^6.0.3",
+        "sebastian/type": "^5.1.3",
+        "sebastian/version": "^5.0.2",
+        "staabm/side-effects-detector": "^1.0.5"
+      },
+      "root_constraint": "^11.0.1",
+      "source": {
+        "reference": "adc7262fccc12de2b30f12a8aa0b33775d814f00",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/phpunit.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/clock/zipball/e41a24703d4560fd0acb709162f73b8adfc3aa0d"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.0.0",
+      "name": "psr/clock",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.0 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+        "type": "git",
+        "url": "https://github.com/php-fig/clock.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.0.2",
+      "name": "psr/container",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.4.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+        "type": "git",
+        "url": "https://github.com/php-fig/container.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/dbefd12671e8a14ec7f180cab83036ed26714bb0"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.0.0",
+      "name": "psr/event-dispatcher",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
+        "type": "git",
+        "url": "https://github.com/php-fig/event-dispatcher.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.0.3",
+      "name": "psr/http-client",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.0 || ^8.0",
+        "psr/http-message": "^1.0 || ^2.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
+        "type": "git",
+        "url": "https://github.com/php-fig/http-client.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/http-factory/zipball/2b4765fddfe3b508ac62f829e852b1501d3f6e8a"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.1.0",
+      "name": "psr/http-factory",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.1",
+        "psr/http-message": "^1.0 || ^2.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+        "type": "git",
+        "url": "https://github.com/php-fig/http-factory.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.0",
+      "name": "psr/http-message",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^7.2 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+        "type": "git",
+        "url": "https://github.com/php-fig/http-message.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.0.2",
+      "name": "psr/log",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+        "type": "git",
+        "url": "https://github.com/php-fig/log.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.0.0",
+      "name": "psr/simple-cache",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.0.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+        "type": "git",
+        "url": "https://github.com/php-fig/simple-cache.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/console": "4.4.37 || 5.3.14 || 5.3.15 || 5.4.3 || 5.4.4 || 6.0.3 || 6.0.4"
+      },
+      "dist": {
+        "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4821fab5b7cd8c49a673a9fd5754dc9162bb9e97"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v0.12.21",
+      "name": "psy/psysh",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-json": "*",
+        "ext-tokenizer": "*",
+        "nikic/php-parser": "^5.0 || ^4.0",
+        "php": "^8.0 || ^7.4",
+        "symfony/console": "^8.0 || ^7.0 || ^6.0 || ^5.0 || ^4.0 || ^3.4",
+        "symfony/var-dumper": "^8.0 || ^7.0 || ^6.0 || ^5.0 || ^4.0 || ^3.4"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
+        "type": "git",
+        "url": "https://github.com/bobthecow/psysh.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "120b605dfeb996808c31b6477290a714d356e822",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "3.0.3",
+      "name": "ralouphie/getallheaders",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=5.6"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "120b605dfeb996808c31b6477290a714d356e822",
+        "type": "git",
+        "url": "https://github.com/ralouphie/getallheaders.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/ramsey/collection/zipball/344572933ad0181accbf4ba763e85a0306a8c5e2"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.1.1",
+      "name": "ramsey/collection",
+      "old_lock_section": "packages",
+      "require": {
+        "php": "^8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "344572933ad0181accbf4ba763e85a0306a8c5e2",
+        "type": "git",
+        "url": "https://github.com/ramsey/collection.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "8429c78ca35a09f27565311b98101e2826affde0",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/ramsey/uuid/zipball/8429c78ca35a09f27565311b98101e2826affde0"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "4.9.2",
+      "name": "ramsey/uuid",
+      "old_lock_section": "packages",
+      "require": {
+        "brick/math": "^0.8.16 || ^0.9 || ^0.10 || ^0.11 || ^0.12 || ^0.13 || ^0.14",
+        "php": "^8.0",
+        "ramsey/collection": "^1.2 || ^2.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "8429c78ca35a09f27565311b98101e2826affde0",
+        "type": "git",
+        "url": "https://github.com/ramsey/uuid.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "15c5dd40dc4f38794d383bb95465193f5e0ae180",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/15c5dd40dc4f38794d383bb95465193f5e0ae180"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "3.0.2",
+      "name": "sebastian/cli-parser",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "15c5dd40dc4f38794d383bb95465193f5e0ae180",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/cli-parser.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "54391c61e4af8078e5b276ab082b6d3c54c9ad64",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/54391c61e4af8078e5b276ab082b6d3c54c9ad64"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "3.0.3",
+      "name": "sebastian/code-unit",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "54391c61e4af8078e5b276ab082b6d3c54c9ad64",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/code-unit.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "183a9b2632194febd219bb9246eee421dad8d45e",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/183a9b2632194febd219bb9246eee421dad8d45e"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "4.0.1",
+      "name": "sebastian/code-unit-reverse-lookup",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "183a9b2632194febd219bb9246eee421dad8d45e",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2c95e1e86cb8dd41beb8d502057d1081ccc8eca9",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2c95e1e86cb8dd41beb8d502057d1081ccc8eca9"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "6.3.3",
+      "name": "sebastian/comparator",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-dom": "*",
+        "ext-mbstring": "*",
+        "php": ">=8.2",
+        "sebastian/diff": "^6.0",
+        "sebastian/exporter": "^6.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2c95e1e86cb8dd41beb8d502057d1081ccc8eca9",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/comparator.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "ee41d384ab1906c68852636b6de493846e13e5a0",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/ee41d384ab1906c68852636b6de493846e13e5a0"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "4.0.1",
+      "name": "sebastian/complexity",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "nikic/php-parser": "^5.0",
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "ee41d384ab1906c68852636b6de493846e13e5a0",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/complexity.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b4ccd857127db5d41a5b676f24b51371d76d8544",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/b4ccd857127db5d41a5b676f24b51371d76d8544"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "6.0.2",
+      "name": "sebastian/diff",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b4ccd857127db5d41a5b676f24b51371d76d8544",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/diff.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "a5c75038693ad2e8d4b6c15ba2403532647830c4",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/a5c75038693ad2e8d4b6c15ba2403532647830c4"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "7.2.1",
+      "name": "sebastian/environment",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "a5c75038693ad2e8d4b6c15ba2403532647830c4",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/environment.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "70a298763b40b213ec087c51c739efcaa90bcd74",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/70a298763b40b213ec087c51c739efcaa90bcd74"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "6.3.2",
+      "name": "sebastian/exporter",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-mbstring": "*",
+        "php": ">=8.2",
+        "sebastian/recursion-context": "^6.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "70a298763b40b213ec087c51c739efcaa90bcd74",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/exporter.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "3be331570a721f9a4b5917f4209773de17f747d7",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/3be331570a721f9a4b5917f4209773de17f747d7"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "7.0.2",
+      "name": "sebastian/global-state",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2",
+        "sebastian/object-reflector": "^4.0",
+        "sebastian/recursion-context": "^6.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "3be331570a721f9a4b5917f4209773de17f747d7",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/global-state.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d36ad0d782e5756913e42ad87cb2890f4ffe467a",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/lines-of-code/zipball/d36ad0d782e5756913e42ad87cb2890f4ffe467a"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "3.0.1",
+      "name": "sebastian/lines-of-code",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "nikic/php-parser": "^5.0",
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d36ad0d782e5756913e42ad87cb2890f4ffe467a",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/lines-of-code.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f5b498e631a74204185071eb41f33f38d64608aa",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/f5b498e631a74204185071eb41f33f38d64608aa"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "6.0.1",
+      "name": "sebastian/object-enumerator",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2",
+        "sebastian/object-reflector": "^4.0",
+        "sebastian/recursion-context": "^6.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f5b498e631a74204185071eb41f33f38d64608aa",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/object-enumerator.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "6e1a43b411b2ad34146dee7524cb13a068bb35f9",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/6e1a43b411b2ad34146dee7524cb13a068bb35f9"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "4.0.1",
+      "name": "sebastian/object-reflector",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "6e1a43b411b2ad34146dee7524cb13a068bb35f9",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/object-reflector.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f6458abbf32a6c8174f8f26261475dc133b3d9dc",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/f6458abbf32a6c8174f8f26261475dc133b3d9dc"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "6.0.3",
+      "name": "sebastian/recursion-context",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f6458abbf32a6c8174f8f26261475dc133b3d9dc",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/recursion-context.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f77d2d4e78738c98d9a68d2596fe5e8fa380f449",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/f77d2d4e78738c98d9a68d2596fe5e8fa380f449"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "5.1.3",
+      "name": "sebastian/type",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f77d2d4e78738c98d9a68d2596fe5e8fa380f449",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/type.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "c687e3387b99f5b03b6caa64c74b63e2936ff874",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/c687e3387b99f5b03b6caa64c74b63e2936ff874"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "5.0.2",
+      "name": "sebastian/version",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "c687e3387b99f5b03b6caa64c74b63e2936ff874",
+        "type": "git",
+        "url": "https://github.com/sebastianbergmann/version.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d8334211a140ce329c13726d4a715adbddd0a163",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/staabm/side-effects-detector/zipball/d8334211a140ce329c13726d4a715adbddd0a163"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "1.0.5",
+      "name": "staabm/side-effects-detector",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-tokenizer": "*",
+        "php": "^7.4 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d8334211a140ce329c13726d4a715adbddd0a163",
+        "type": "git",
+        "url": "https://github.com/staabm/side-effects-detector.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "832119f9b8dbc6c8e6f65f30c5969eca1e88764f",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/clock/zipball/832119f9b8dbc6c8e6f65f30c5969eca1e88764f"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.0",
+      "name": "symfony/clock",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.4",
+        "psr/clock": "^1.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "832119f9b8dbc6c8e6f65f30c5969eca1e88764f",
+        "type": "git",
+        "url": "https://github.com/symfony/clock.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/dependency-injection": "<6.4",
+        "symfony/dotenv": "<6.4",
+        "symfony/event-dispatcher": "<6.4",
+        "symfony/lock": "<6.4",
+        "symfony/process": "<6.4"
+      },
+      "dist": {
+        "reference": "e1e6770440fb9c9b0cf725f81d1361ad1835329d",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/console/zipball/e1e6770440fb9c9b0cf725f81d1361ad1835329d"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.7",
+      "name": "symfony/console",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/deprecation-contracts": "^2.5|^3",
+        "symfony/polyfill-mbstring": "~1.0",
+        "symfony/service-contracts": "^2.5|^3",
+        "symfony/string": "^7.2|^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "e1e6770440fb9c9b0cf725f81d1361ad1835329d",
+        "type": "git",
+        "url": "https://github.com/symfony/console.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "2a178bf80f05dbbe469a337730eba79d61315262",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/css-selector/zipball/2a178bf80f05dbbe469a337730eba79d61315262"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.6",
+      "name": "symfony/css-selector",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.4"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "2a178bf80f05dbbe469a337730eba79d61315262",
+        "type": "git",
+        "url": "https://github.com/symfony/css-selector.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/63afe740e99a13ba87ec199bb07bbdee937a5b62"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.6.0",
+      "name": "symfony/deprecation-contracts",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
+        "type": "git",
+        "url": "https://github.com/symfony/deprecation-contracts.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/deprecation-contracts": "<2.5",
+        "symfony/http-kernel": "<6.4"
+      },
+      "dist": {
+        "reference": "8da531f364ddfee53e36092a7eebbbd0b775f6b8",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/error-handler/zipball/8da531f364ddfee53e36092a7eebbbd0b775f6b8"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.4",
+      "name": "symfony/error-handler",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "psr/log": "^1|^2|^3",
+        "symfony/polyfill-php85": "^1.32",
+        "symfony/var-dumper": "^6.4|^7.0|^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "8da531f364ddfee53e36092a7eebbbd0b775f6b8",
+        "type": "git",
+        "url": "https://github.com/symfony/error-handler.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/security-http": "<7.4",
+        "symfony/service-contracts": "<2.5"
+      },
+      "dist": {
+        "reference": "99301401da182b6cfaa4700dbe9987bb75474b47",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/99301401da182b6cfaa4700dbe9987bb75474b47"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.4",
+      "name": "symfony/event-dispatcher",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.4",
+        "symfony/event-dispatcher-contracts": "^2.5|^3"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "99301401da182b6cfaa4700dbe9987bb75474b47",
+        "type": "git",
+        "url": "https://github.com/symfony/event-dispatcher.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "59eb412e93815df44f05f342958efa9f46b1e586",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/59eb412e93815df44f05f342958efa9f46b1e586"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.6.0",
+      "name": "symfony/event-dispatcher-contracts",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1",
+        "psr/event-dispatcher": "^1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "59eb412e93815df44f05f342958efa9f46b1e586",
+        "type": "git",
+        "url": "https://github.com/symfony/event-dispatcher-contracts.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "8655bf1076b7a3a346cb11413ffdabff50c7ffcf",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/finder/zipball/8655bf1076b7a3a346cb11413ffdabff50c7ffcf"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.6",
+      "name": "symfony/finder",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "8655bf1076b7a3a346cb11413ffdabff50c7ffcf",
+        "type": "git",
+        "url": "https://github.com/symfony/finder.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "doctrine/dbal": "<3.6",
+        "symfony/cache": "<6.4.12|>=7.0,<7.1.5"
+      },
+      "dist": {
+        "reference": "f94b3e7b7dafd40e666f0c9ff2084133bae41e81",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/http-foundation/zipball/f94b3e7b7dafd40e666f0c9ff2084133bae41e81"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.7",
+      "name": "symfony/http-foundation",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/deprecation-contracts": "^2.5|^3",
+        "symfony/polyfill-mbstring": "^1.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f94b3e7b7dafd40e666f0c9ff2084133bae41e81",
+        "type": "git",
+        "url": "https://github.com/symfony/http-foundation.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/browser-kit": "<6.4",
+        "symfony/cache": "<6.4",
+        "symfony/config": "<6.4",
+        "symfony/console": "<6.4",
+        "symfony/dependency-injection": "<6.4",
+        "symfony/doctrine-bridge": "<6.4",
+        "symfony/flex": "<2.10",
+        "symfony/form": "<6.4",
+        "symfony/http-client": "<6.4",
+        "symfony/http-client-contracts": "<2.5",
+        "symfony/mailer": "<6.4",
+        "symfony/messenger": "<6.4",
+        "symfony/translation": "<6.4",
+        "symfony/translation-contracts": "<2.5",
+        "symfony/twig-bridge": "<6.4",
+        "symfony/validator": "<6.4",
+        "symfony/var-dumper": "<6.4",
+        "twig/twig": "<3.12"
+      },
+      "dist": {
+        "reference": "3b3fcf386c809be990c922e10e4c620d6367cab1",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3b3fcf386c809be990c922e10e4c620d6367cab1"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.7",
+      "name": "symfony/http-kernel",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "psr/log": "^1|^2|^3",
+        "symfony/deprecation-contracts": "^2.5|^3",
+        "symfony/error-handler": "^6.4|^7.0|^8.0",
+        "symfony/event-dispatcher": "^7.3|^8.0",
+        "symfony/http-foundation": "^7.4|^8.0",
+        "symfony/polyfill-ctype": "^1.8"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "3b3fcf386c809be990c922e10e4c620d6367cab1",
+        "type": "git",
+        "url": "https://github.com/symfony/http-kernel.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/http-client-contracts": "<2.5",
+        "symfony/http-kernel": "<6.4",
+        "symfony/messenger": "<6.4",
+        "symfony/mime": "<6.4",
+        "symfony/twig-bridge": "<6.4"
+      },
+      "dist": {
+        "reference": "b02726f39a20bc65e30364f5c750c4ddbf1f58e9",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/mailer/zipball/b02726f39a20bc65e30364f5c750c4ddbf1f58e9"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.6",
+      "name": "symfony/mailer",
+      "old_lock_section": "packages",
+      "require": {
+        "egulias/email-validator": "^2.1.10|^3|^4",
+        "php": ">=8.2",
+        "psr/event-dispatcher": "^1",
+        "psr/log": "^1|^2|^3",
+        "symfony/event-dispatcher": "^6.4|^7.0|^8.0",
+        "symfony/mime": "^7.2|^8.0",
+        "symfony/service-contracts": "^2.5|^3"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b02726f39a20bc65e30364f5c750c4ddbf1f58e9",
+        "type": "git",
+        "url": "https://github.com/symfony/mailer.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "egulias/email-validator": "~3.0.0",
+        "phpdocumentor/reflection-docblock": "<5.2|>=7",
+        "phpdocumentor/type-resolver": "<1.5.1",
+        "symfony/mailer": "<6.4",
+        "symfony/serializer": "<6.4.3|>7.0,<7.0.3"
+      },
+      "dist": {
+        "reference": "da5ab4fde3f6c88ab06e96185b9922f48b677cd1",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/mime/zipball/da5ab4fde3f6c88ab06e96185b9922f48b677cd1"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.7",
+      "name": "symfony/mime",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/deprecation-contracts": "^2.5|^3",
+        "symfony/polyfill-intl-idn": "^1.10",
+        "symfony/polyfill-mbstring": "^1.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "da5ab4fde3f6c88ab06e96185b9922f48b677cd1",
+        "type": "git",
+        "url": "https://github.com/symfony/mime.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/a3cc8b044a6ea513310cbd48ef7333b384945638"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-ctype",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-ctype.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "380872130d3a5dd3ace2f4010d95125fde5d5c70",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/380872130d3a5dd3ace2f4010d95125fde5d5c70"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-intl-grapheme",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "380872130d3a5dd3ace2f4010d95125fde5d5c70",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-intl-grapheme.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "9614ac4d8061dc257ecc64cba1b140873dce8ad3",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/9614ac4d8061dc257ecc64cba1b140873dce8ad3"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-intl-idn",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2",
+        "symfony/polyfill-intl-normalizer": "^1.10"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "9614ac4d8061dc257ecc64cba1b140873dce8ad3",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-intl-idn.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "3833d7255cc303546435cb650316bff708a1c75c",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/3833d7255cc303546435cb650316bff708a1c75c"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-intl-normalizer",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "3833d7255cc303546435cb650316bff708a1c75c",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-intl-normalizer.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6d857f4d76bd4b343eac26d6b539585d2bc56493"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-mbstring",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-iconv": "*",
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-mbstring.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "0cc9dd0f17f61d8131e7df6b84bd344899fe2608",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/0cc9dd0f17f61d8131e7df6b84bd344899fe2608"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-php80",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "0cc9dd0f17f61d8131e7df6b84bd344899fe2608",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-php80.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/17f6f9a6b1735c0f163024d959f700cfbc5155e5"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-php83",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-php83.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-php85",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-php85.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "21533be36c24be3f4b1669c4725c7d1d2bab4ae2",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/polyfill-uuid/zipball/21533be36c24be3f4b1669c4725c7d1d2bab4ae2"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.33.0",
+      "name": "symfony/polyfill-uuid",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "21533be36c24be3f4b1669c4725c7d1d2bab4ae2",
+        "type": "git",
+        "url": "https://github.com/symfony/polyfill-uuid.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "608476f4604102976d687c483ac63a79ba18cc97",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/process/zipball/608476f4604102976d687c483ac63a79ba18cc97"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.5",
+      "name": "symfony/process",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "608476f4604102976d687c483ac63a79ba18cc97",
+        "type": "git",
+        "url": "https://github.com/symfony/process.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/config": "<6.4",
+        "symfony/dependency-injection": "<6.4",
+        "symfony/yaml": "<6.4"
+      },
+      "dist": {
+        "reference": "238d749c56b804b31a9bf3e26519d93b65a60938",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/routing/zipball/238d749c56b804b31a9bf3e26519d93b65a60938"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.6",
+      "name": "symfony/routing",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/deprecation-contracts": "^2.5|^3"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "238d749c56b804b31a9bf3e26519d93b65a60938",
+        "type": "git",
+        "url": "https://github.com/symfony/routing.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "ext-psr": "<1.1|>=2"
+      },
+      "dist": {
+        "reference": "45112560a3ba2d715666a509a0bc9521d10b6c43",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/service-contracts/zipball/45112560a3ba2d715666a509a0bc9521d10b6c43"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.6.1",
+      "name": "symfony/service-contracts",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1",
+        "psr/container": "^1.1|^2.0",
+        "symfony/deprecation-contracts": "^2.5|^3"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "45112560a3ba2d715666a509a0bc9521d10b6c43",
+        "type": "git",
+        "url": "https://github.com/symfony/service-contracts.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/translation-contracts": "<2.5"
+      },
+      "dist": {
+        "reference": "6c9e1108041b5dce21a9a4984b531c4923aa9ec4",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/string/zipball/6c9e1108041b5dce21a9a4984b531c4923aa9ec4"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.6",
+      "name": "symfony/string",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.4",
+        "symfony/polyfill-ctype": "^1.8",
+        "symfony/polyfill-intl-grapheme": "^1.33",
+        "symfony/polyfill-intl-normalizer": "^1.0",
+        "symfony/polyfill-mbstring": "^1.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "6c9e1108041b5dce21a9a4984b531c4923aa9ec4",
+        "type": "git",
+        "url": "https://github.com/symfony/string.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "nikic/php-parser": "<5.0",
+        "symfony/http-client-contracts": "<2.5",
+        "symfony/service-contracts": "<2.5"
+      },
+      "dist": {
+        "reference": "13ff19bcf2bea492d3c2fbeaa194dd6f4599ce1b",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/translation/zipball/13ff19bcf2bea492d3c2fbeaa194dd6f4599ce1b"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.6",
+      "name": "symfony/translation",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.4",
+        "symfony/polyfill-mbstring": "^1.0",
+        "symfony/translation-contracts": "^3.6.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "13ff19bcf2bea492d3c2fbeaa194dd6f4599ce1b",
+        "type": "git",
+        "url": "https://github.com/symfony/translation.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "65a8bc82080447fae78373aa10f8d13b38338977",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/65a8bc82080447fae78373aa10f8d13b38338977"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v3.6.1",
+      "name": "symfony/translation-contracts",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "65a8bc82080447fae78373aa10f8d13b38338977",
+        "type": "git",
+        "url": "https://github.com/symfony/translation-contracts.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "7719ce8aba76be93dfe249192f1fbfa52c588e36",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/uid/zipball/7719ce8aba76be93dfe249192f1fbfa52c588e36"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.4",
+      "name": "symfony/uid",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/polyfill-uuid": "^1.15"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "7719ce8aba76be93dfe249192f1fbfa52c588e36",
+        "type": "git",
+        "url": "https://github.com/symfony/uid.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/console": "<6.4"
+      },
+      "dist": {
+        "reference": "045321c440ac18347b136c63d2e9bf28a2dc0291",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/var-dumper/zipball/045321c440ac18347b136c63d2e9bf28a2dc0291"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v7.4.6",
+      "name": "symfony/var-dumper",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.2",
+        "symfony/deprecation-contracts": "^2.5|^3",
+        "symfony/polyfill-mbstring": "~1.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "045321c440ac18347b136c63d2e9bf28a2dc0291",
+        "type": "git",
+        "url": "https://github.com/symfony/var-dumper.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "symfony/console": "<7.4"
+      },
+      "dist": {
+        "reference": "5f006c50a981e1630bbb70ad409c5d85f9a716e0",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/yaml/zipball/5f006c50a981e1630bbb70ad409c5d85f9a716e0"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v8.0.6",
+      "name": "symfony/yaml",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "php": ">=8.4",
+        "symfony/polyfill-ctype": "^1.8"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "5f006c50a981e1630bbb70ad409c5d85f9a716e0",
+        "type": "git",
+        "url": "https://github.com/symfony/yaml.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b7489ce515e168639d17feec34b8847c326b0b3c",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/theseer/tokenizer/zipball/b7489ce515e168639d17feec34b8847c326b0b3c"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "1.3.1",
+      "name": "theseer/tokenizer",
+      "old_lock_section": "packages-dev",
+      "require": {
+        "ext-dom": "*",
+        "ext-tokenizer": "*",
+        "ext-xmlwriter": "*",
+        "php": "^7.2 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b7489ce515e168639d17feec34b8847c326b0b3c",
+        "type": "git",
+        "url": "https://github.com/theseer/tokenizer.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "f0292ccf0ec75843d65027214426b6b163b48b41",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/f0292ccf0ec75843d65027214426b6b163b48b41"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "v2.4.0",
+      "name": "tijsverkoyen/css-to-inline-styles",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "php": "^7.4 || ^8.0",
+        "symfony/css-selector": "^5.4 || ^6.0 || ^7.0 || ^8.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "f0292ccf0ec75843d65027214426b6b163b48b41",
+        "type": "git",
+        "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "955e7815d677a3eaa7075231212f2110983adecc",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/955e7815d677a3eaa7075231212f2110983adecc"
+      },
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "locked_version": "v5.6.3",
+      "name": "vlucas/phpdotenv",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-pcre": "*",
+        "graham-campbell/result-type": "^1.1.4",
+        "php": "^7.2.5 || ^8.0",
+        "phpoption/phpoption": "^1.9.5",
+        "symfony/polyfill-ctype": "^1.26",
+        "symfony/polyfill-mbstring": "^1.26",
+        "symfony/polyfill-php80": "^1.26"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "955e7815d677a3eaa7075231212f2110983adecc",
+        "type": "git",
+        "url": "https://github.com/vlucas/phpdotenv.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/voku/portable-ascii/zipball/b1d923f88091c6bf09699efcd7c8a1b1bfd7351d"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "2.0.3",
+      "name": "voku/portable-ascii",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=7.0.0"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
+        "type": "git",
+        "url": "https://github.com/voku/portable-ascii.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {},
+      "dist": {
+        "reference": "b60e44267b90d398dbfa7a320f3e97b46357ac9f",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/workerman-php/coroutine/zipball/b60e44267b90d398dbfa7a320f3e97b46357ac9f"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v1.1.5",
+      "name": "workerman/coroutine",
+      "old_lock_section": "packages",
+      "require": {
+        "php": ">=8.1",
+        "workerman/workerman": "^5.1"
+      },
+      "root_constraint": null,
+      "source": {
+        "reference": "b60e44267b90d398dbfa7a320f3e97b46357ac9f",
+        "type": "git",
+        "url": "https://github.com/workerman-php/coroutine.git"
+      }
+    },
+    {
+      "candidate_status": "OLD_LOCK_ONLY_NOT_TARGET_RESOLUTION",
+      "conflict": {
+        "ext-swow": "<v1.0.0"
+      },
+      "dist": {
+        "reference": "fff0954628f8ceeccfe29d3e817f0fad87cfdbf2",
+        "shasum": "",
+        "type": "zip",
+        "url": "https://api.github.com/repos/walkor/workerman/zipball/fff0954628f8ceeccfe29d3e817f0fad87cfdbf2"
+      },
+      "license": [
+        "MIT"
+      ],
+      "locked_version": "v5.1.9",
+      "name": "workerman/workerman",
+      "old_lock_section": "packages",
+      "require": {
+        "ext-json": "*",
+        "php": ">=8.1",
+        "workerman/coroutine": "^1.1 || dev-main"
+      },
+      "root_constraint": "^5.1",
+      "source": {
+        "reference": "fff0954628f8ceeccfe29d3e817f0fad87cfdbf2",
+        "type": "git",
+        "url": "https://github.com/walkor/workerman.git"
+      }
+    }
+  ],
+  "static_touchpoints": [
+    {
+      "blob": "486be26a6e44221def9d7aac520ae18856816719",
+      "lines": [
+        153
+      ],
+      "path": "app/Console/Commands/ChatWebsocketServerCommand.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "workerman_entry"
+    },
+    {
+      "blob": "4e3949d43a0961ced9dc67119129d2f4b4bb25d9",
+      "lines": [
+        266
+      ],
+      "path": "app/Console/Commands/DevSyntheticUsersCommand.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "mysql_mariadb_upsert"
+    },
+    {
+      "blob": "c1b2400c5b034226d10867873433db3c765a2a57",
+      "lines": [
+        23
+      ],
+      "path": "app/Services/MatchingDebugModeService.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "cache_serialization"
+    },
+    {
+      "blob": "d3f57c81796888b06fc81644bf70f53a7b11876c",
+      "lines": [
+        17
+      ],
+      "path": "app/Services/MediaCacheService.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "cache_serialization"
+    },
+    {
+      "blob": "44527d684a6d917d62beeafa3d0f836f56cbe02d",
+      "lines": [
+        81
+      ],
+      "path": "config/sanctum.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "csrf_legacy_alias"
+    },
+    {
+      "blob": "0424114bd380fd32c350e76dc53b83b396f6ed8f",
+      "lines": [
+        8,
+        69,
+        80,
+        133
+      ],
+      "path": "tests/Feature/V1006AdminWebTest.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "csrf_legacy_alias"
+    },
+    {
+      "blob": "ad7f01eb267ebbdc8a82d4fe0289a25a5270a50b",
+      "lines": [
+        11,
+        34,
+        271
+      ],
+      "path": "tests/Feature/V1008MatchingOperationsWebTest.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "csrf_legacy_alias"
+    },
+    {
+      "blob": "8085ee4da23e8bf7e313e85fa29e67986d38a5a2",
+      "lines": [
+        6,
+        20,
+        167
+      ],
+      "path": "tests/Feature/V1008SessionWebTest.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "csrf_legacy_alias"
+    },
+    {
+      "blob": "bbc187dff4dbb9f6c3b738f323abca9d7af4e2d7",
+      "lines": [
+        7,
+        474,
+        487
+      ],
+      "path": "tests/Feature/V1014SafetyContinuityR1Test.php",
+      "result": "STATIC_TOUCHPOINT_NOT_RUNTIME_FAILURE",
+      "surface": "csrf_legacy_alias"
+    }
+  ],
+  "applicable_migration_actions": [
+    {
+      "area": "SESSION",
+      "change": "EXPLICIT_PHP_SERIALIZATION_COMPATIBILITY_PIN",
+      "path": "services/backend-laravel/config/session.php",
+      "evidence": "STATIC_SOURCE_AND_NOT_RUN_FEATURE_SOURCE",
+      "limitations": "ARRAY_STORE_TEST_DOES_NOT_PROVE_HTTP_COOKIE_OR_AUTH_CONTINUITY"
+    },
+    {
+      "area": "TEST_FRAMEWORK_VERSION_ASSERTION",
+      "change": "DEFER_UNTIL_REAL_SOLVER_SELECTS_12_OR_13",
+      "path": "services/backend-laravel/tests/Feature/Laravel12CompatibilityTest.php",
+      "limitations": "Existing assertion still requires12; do not silently delete it or claim13 passes"
+    },
+    {
+      "area": "GENERIC_TEST_DB_GUARD",
+      "change": "PRESERVED",
+      "path": "services/backend-laravel/tests/TestCase.php",
+      "limitations": "Generic tests intentionally SQLite-only; real MariaDB requires separately qualified entry"
+    },
+    {
+      "area": "NATIVE_WINDOWS_E2E",
+      "change": "PRESERVED_NOT_A_LINUX_GRANT",
+      "path": "services/backend-laravel/tests/E2E/MainlineEnvironment.php",
+      "limitations": "Separate Linux instance/process/source receipt adapter still needed"
+    },
+    {
+      "area": "AUTH_F1_F3_F4_PRIVATE_MEDIA",
+      "change": "NO_UNPROVEN_BUSINESS_REWRITE",
+      "limitations": "All existing safety assertions preserved; real regression NOT_RUN"
+    }
+  ],
+  "runtime_matrix": {
+    "API": "NOT_RUN_GATE_CLOSED",
+    "COMPOSER_VALIDATE": "NOT_RUN_GATE_CLOSED",
+    "FEATURE_UNIT": "NOT_RUN_GATE_CLOSED",
+    "HTTP": "NOT_RUN_GATE_CLOSED",
+    "LINT": "NOT_RUN_GATE_CLOSED",
+    "MARIADB": "NOT_RUN_GATE_CLOSED",
+    "MIGRATION": "NOT_RUN_GATE_CLOSED",
+    "PHP": "NOT_RUN_GATE_CLOSED",
+    "RESTART_PERSISTENCE": "NOT_RUN_GATE_CLOSED",
+    "SEED": "NOT_RUN_GATE_CLOSED",
+    "SOLVER": "NOT_RUN_GATE_CLOSED",
+    "VENDOR": "NOT_RUN_GATE_CLOSED"
+  },
+  "frozen_scenarios": {
+    "original_file": "tools/v1015/mainline_e2e/scenarios.json",
+    "blob": "5a7d2300c225385226b6140c351565cc38850439",
+    "count": 15,
+    "all_current_results": "NOT_RUN_GATE_CLOSED",
+    "app_device_rows": "OUTSIDE_THIS_TASK_AUTHORIZATION"
+  },
+  "ac_status": {
+    "AC01": "PARTIAL",
+    "AC02": "PARTIAL",
+    "AC03": "PARTIAL",
+    "AC04": "PARTIAL",
+    "AC05": "OPEN",
+    "AC06": "PARTIAL",
+    "AC07": "PARTIAL",
+    "AC08": "PARTIAL",
+    "AC09": "PARTIAL",
+    "AC10": "PARTIAL",
+    "AC11": "PARTIAL"
+  }
+}

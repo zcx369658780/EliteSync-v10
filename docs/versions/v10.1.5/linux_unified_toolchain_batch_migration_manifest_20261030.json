@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "task_id": "V1015_LINUX_TOOLCHAIN_BATCH_MIGRATION_20261030",
+  "attempt_id": "attempt-0001",
+  "task_blob": "03c40a831ed37d8610c9a9aa2760c9a94e17269b",
+  "sole_parent": "8941323808ce0cdfc68b9f0c3796f86400a75d43",
+  "parent_root": "6808c706f4b2f03b641975f71315c241ce6e435a",
+  "opening_main": "7f83763fa0aa7bb30dadb04bd2465313ecd340cf",
+  "opening_root": "7c1306b0de3f9a63e3c97531dd00ec5b74e88fef",
+  "opening_active_state": "6fb2e88d2f25860b019838a19882b31ee1efbb24",
+  "astra_review_blob": "c1b5577728f16077b416c73d82901ba94fa43335",
+  "pre_publication_main": "c89b00a3b6b6e03485a76d5ec73dff4e3eb079b5",
+  "pre_publication_root": "502af5ef8b5a02ff71e1ecb2942cb4969bddebab",
+  "pre_publication_active_state": "d379666bfa7f2305aff203ea2b920f2f5d1f4ed6",
+  "handoff_blob": "8f66a46d1acfcf1b8b486b2799577a2d15f3c010",
+  "status": "BLOCKED_LINUX_EXECUTOR_NOT_AVAILABLE",
+  "prepackage_state": "SOURCE_ONLY_NOT_FRAMEWORK_MIGRATED",
+  "source_changes": [
+    {
+      "path": "docs/versions/v10.1.5/LINUX_DEV_TOOLCHAIN_LOCK_20261030.json",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "7199415f6ffc8448738fbb603ef5864c957686c2",
+      "sha256": "e45c6dbc7e8c8745c078d5e52f87dd57224c468f4cba36b6c65e16a83d1fafae",
+      "bytes": 4251
+    },
+    {
+      "path": "docs/versions/v10.1.5/LINUX_FRAMEWORK_MIGRATION_MATRIX_20261030.json",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "1c5dc0d7f6385bcde1ef4067b811b68e3dcedc1f",
+      "sha256": "00eeb1cbb233a95bdc008c5198ae9c9dcd855cb494f578bff969e0a60b12fc5d",
+      "bytes": 108125
+    },
+    {
+      "path": "services/backend-laravel/config/session.php",
+      "mode": "100644",
+      "base_blob": "7036d0a4140b419fd35005b84bcef12f16449f34",
+      "blob": "dbcb582d0afbab3a0dc95576797730555ce3cd8d",
+      "sha256": "9c71027403f12aca8929365e83524188ca160718b4f832cf28d2e8e9bfa3ae3c",
+      "bytes": 8332
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/FrameworkSessionCompatibilityTest.php",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "b43bdc530389f509c1290a77e940767ed3aba2a8",
+      "sha256": "846400b22a438a9ef3b3166afe4b715896d416a6e36feb23b591b083615ff9e6",
+      "bytes": 1079
+    },
+    {
+      "path": "tools/v1015/linux_backend/ENVIRONMENT_AUTHORIZATION_REQUIREMENT.md",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "e1a0901c34fe38a38c0227885c3ec11b7d362ac0",
+      "sha256": "e690f6f63d4922ac5274508bad27a4d75f1406dc28bb0dd525d002cf60c88e63",
+      "bytes": 2946
+    },
+    {
+      "path": "tools/v1015/linux_backend/README.md",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "4e12b5976da530afe60a391751bcc8e5edd6105b",
+      "sha256": "e96d890ea31ef83fbc92d81858fd17e26227ae29d540fc518e9429e134d64d42",
+      "bytes": 6151
+    },
+    {
+      "path": "tools/v1015/linux_backend/prepackage.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "8dbb5e2f807390bd0f7177cc1f6415a88205c428",
+      "sha256": "99c9fd99757124b31c31f3a692c7f779da74a5e0dc27fd64480cdeb6a2612162",
+      "bytes": 13357
+    },
+    {
+      "path": "tools/v1015/linux_backend/profiles/laravel12-php84.composer.input.json",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "a0452dc313ed2895bb55e0aec89735a094662179",
+      "sha256": "4f45b8db75a0588a4ccf16f8d10e916bb24e037d6936be113359cda07b2a5ae1",
+      "bytes": 1527
+    },
+    {
+      "path": "tools/v1015/linux_backend/profiles/laravel13-php84.composer.input.json",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "130793decf84ff8ab93faa0300117b7fab9d1826",
+      "sha256": "f1373dd107b83e310a84d587f9411b0f8074dec94f126190917d7cf7689e85a6",
+      "bytes": 1525
+    },
+    {
+      "path": "tools/v1015/linux_backend/test_prepackage.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "567723a0d0a2774a3b565df9354861f8dd6c9b8b",
+      "sha256": "f5183a522bfa2a37519edd09066a22fe95e142dfdbb6944b7af9880c4bf483a6",
+      "bytes": 14656
+    }
+  ],
+  "pure_test": {
+    "batch": 3,
+    "classification": "CODEX_REPORTED_LOCAL_TEST_PURE_ONLY",
+    "executed": 34,
+    "passed": 34,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit": 0,
+    "output_sha256": "0f896a8b6b9c7e1102a4261f1a993a9a76c91ec0b36882b9d6d0e4a8675d87aa",
+    "php_cli": 0,
+    "solver": 0,
+    "services": 0
+  },
+  "budget": {
+    "inventory_used": 6,
+    "inventory_limit": 6,
+    "registered_distro_activations": 0,
+    "docker_desktop_activations": 0,
+    "dependency_download_bytes": 0,
+    "dependency_network_requests": 0,
+    "image_digests_pulled": 0,
+    "container_build": 0,
+    "composer_solver": 0,
+    "vendor_install": 0,
+    "php_cli": 0,
+    "feature_unit_batches": 0,
+    "service_groups": 0,
+    "business_http": 0,
+    "migration": 0,
+    "seed": 0,
+    "pure_python_batches": 3,
+    "host_system_modifications": 0,
+    "old_budget_modifications": 0,
+    "elapsed_seconds": 1501.11,
+    "space": {
+      "logical": 21224039,
+      "allocated": 24409496,
+      "reserve": 67108864
+    }
+  },
+  "composer_lock": "LOCK_RESOLUTION_PENDING_ORIGINAL_LARAVEL11_RETAINED",
+  "composer_solver_attempts": 0,
+  "real_vendor": false,
+  "framework_primary": "LARAVEL13_PHP84_UNRESOLVED",
+  "framework_fallback": "LARAVEL12_PHP84_NOT_ATTEMPTED",
+  "runtime_matrix": {
+    "API": "NOT_RUN_GATE_CLOSED",
+    "COMPOSER_VALIDATE": "NOT_RUN_GATE_CLOSED",
+    "FEATURE_UNIT": "NOT_RUN_GATE_CLOSED",
+    "HTTP": "NOT_RUN_GATE_CLOSED",
+    "LINT": "NOT_RUN_GATE_CLOSED",
+    "MARIADB": "NOT_RUN_GATE_CLOSED",
+    "MIGRATION": "NOT_RUN_GATE_CLOSED",
+    "PHP": "NOT_RUN_GATE_CLOSED",
+    "RESTART_PERSISTENCE": "NOT_RUN_GATE_CLOSED",
+    "SEED": "NOT_RUN_GATE_CLOSED",
+    "SOLVER": "NOT_RUN_GATE_CLOSED",
+    "VENDOR": "NOT_RUN_GATE_CLOSED"
+  },
+  "production_change_scope": "SESSION_FORMAT_COMPATIBILITY_PIN_ONLY",
+  "php_feature_source": "NOT_RUN",
+  "source_only_prepackage": {
+    "packages": 114,
+    "touchpoints": 9,
+    "execute_enabled": false,
+    "output_readback_matches_final_generator": true
+  },
+  "report": {
+    "path": "docs/versions/v10.1.5/LINUX_UNIFIED_TOOLCHAIN_BATCH_MIGRATION_RESULT_20261030.md",
+    "blob": "7338574d9914d58dc6dbae5a530bfec86d3397b7",
+    "sha256": "d6822a203e1841d2fb402df5e0089dd9efc88cd26fa1ebfba093a734197a12db"
+  },
+  "protection": {
+    "dirty_unchanged": true,
+    "dirty_items": 252,
+    "refs_unchanged": true,
+    "refs": 527,
+    "prior_roots_receipts_unchanged": 7,
+    "full_old_object_rescan": false,
+    "old_acl_or_seed_writes": 0
+  },
+  "main_integrated": false,
+  "function_accepted": false,
+  "ac05": "OPEN",
+  "g2_ready_for_popen": false,
+  "v1016": "NOT_STARTED",
+  "next_authority": "ASTRA_REVIEW_THEN_OWNER_LINUX_ACTIVATION_AND_FRAMEWORK_CHOICE"
+}
