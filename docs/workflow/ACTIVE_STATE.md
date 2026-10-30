@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Owner授权API-set原始字节先归档及真实宿主验证（CURRENT ENTRY）
+
+**`API_SET_RAW_FIRST_REAL_HOST_L12_COMPREHENSIVE_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / NEW_BOUNDED_API_SET_SCHEMA_OBSERVATION / CONDITIONAL_PHP_COMPOSER_LARAVEL12_API_DB / NO_WINDOWS_GLOBAL_WRITES / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新授权（2026-10-30）：** Astra已经独立审阅候选`d33845e62f1aa5eb82e0a4bf443b0396f2eb8b1a`，有界接受23个具名普通OS文件来源观察（embedded 19/Catalog 4）与最小普通导入源码，但其第二次API-set schema解析发生`API_SCHEMA_HOST_PATH`失败，**没有先保存真实schema原始字节**，因此无法重放当次触发输入；旧2/2 OS观察已耗尽、PHP/Composer/Laravel12/API/DB均未运行。Owner明确同意下一集中任务：**在新的极小具名来源观察内完成真实schema原字节先存/flush/fsync/回读Hash，然后解析被实际普通PE合约选中的宿主并核其来源；通过全部native门后才允许PHP Probe、Laravel12真实Composer lock和隔离API/MariaDB合成回归。** 不再重复23件OS/Central VC完整调查、官方PHP下载或系统安装。
+
+**唯一最新正式任务：** [V10_1_5_API_SET_SCHEMA_RAW_FIRST_REAL_HOST_AND_CONDITIONAL_L12_E2E_TASK_20261030.md](../versions/v10.1.5/V10_1_5_API_SET_SCHEMA_RAW_FIRST_REAL_HOST_AND_CONDITIONAL_L12_E2E_TASK_20261030.md)，Blob **`8faa3733369f714fb331e43c1da56762c589aa6b`**，任务创建Commit `ea81979c741591dbc30b8349565673242e60aee9`；已于固定提交完整回读。**Owner须手动派发给Codex；发布不等于执行**，本轮Astra没有本地OS/Composer/PHP/DB启动或消耗新额度。
+
+**唯一研发Parent：** `d33845e62f1aa5eb82e0a4bf443b0396f2eb8b1a`，Root `89665b425cd6c2bc9d32f49e300e35614abfe4e8`，apps `8cd9b6df8e744c8fc9d4217412edce31795a318d`，services `bc44baa6f04ce57a8a6dc331be12c67a79e6e0da`。其sole Parent `14e6cde7b714c5bacdeedeb87233345d36a435c5`；最新Astra审查分支`astra/v10.1.5-d33845e6-os-catalog-api-set-independent-review-20261030`、Commit `48c618d65fd23831040ec0f86a5bae095392dcc2`、Blob `0e8f3475a1950f7fe5338dff881cb9cfc9cf73c2`，不作为研发Parent。
+
+**本次独立预算与安全：** 一个全新task-owned root、attempt-0001、唯一持久ledger；logical/native allocated各≤8GiB，总单调窗口≤120分钟；具名API-set schema只读完整观察≤2次，读前PREPARE＋fsync，真实原字节先持久归档并回读Hash，再解析/验证签名与宿主。失败照计次。若全部原生来源、宿主与进程隔离资格合格，PHP无DB Probe≤2次每次30秒、Composer官方PHAR≤8MiB、包/metadata≤256MiB及240 HTTP请求、Composer求解≤2、私有vendor安装≤1、PHP CLI总启动≤60、Laravel12 Feature≤3批、独立MariaDB/API启动各≤2、业务HTTP≤160、migration/合成seed各≤1；只有合格后才能进入后阶段，未执行余额不自动跨任务续用。
+
+**产品main与永久历史：** v10.1.4仍为唯一已接受产品，apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍10 PARTIAL/1 OPEN（AC05 RTC），产品未合并、G2仍关闭、v10.1.6未启动。禁VC/Windows install/repair、UAC、System32/WinSxS/ACL/注册表/PATH/php.ini/根证书更新、其它全局系统写、Flutter/Gradle/G2/APK/ADB/真机/RTC/Push、真实用户/生产数据库、历史原证删除与旧预算退款。保留`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`及旧18/两ACL树/122原证/五根/527refs/3183 Seed/全部历史失败/ledger/dirty。
+
+**唯一下一步：** Owner手动派发正式任务全文；Codex以固定d338唯一Parent提交一个non-force综合候选及脱敏报告/Manifest，按真实资格/预算执行并GitHub回读，STOP待Astra独立验收。不得自动合并产品main、签整版FUNCTION_ACCEPTED、关闭AC05、放行G2或开启v10.1.6。
+
+以下保留全部此前CURRENT ENTRY和历史快照的原文；旧“当前/待派发”仅为当时历史。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner批准OS Catalog信任及最小导入闭包综合任务（CURRENT ENTRY）
 
 **`OS_CATALOG_MINIMAL_IMPORT_L12_CONSOLIDATED_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_YET_REPORTED / NEW_BOUNDED_OS_READONLY_OBSERVATION_AUTHORIZED / CONDITIONALLY_AUTHORIZED_PHP_COMPOSER_LARAVEL12_API_DB / NO_GLOBAL_WINDOWS_CHANGES / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
