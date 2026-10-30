@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Owner确定Laravel13/PHP8.4开发基线，旧版本先本地备份，单次安全集成任务已发布（CURRENT ENTRY）
+
+**`OWNER_SELECTED_LARAVEL13_PHP84_DEVELOPMENT_BASELINE / PREMIGRATION_LOCAL_BACKUP_MANDATORY / LARAVEL13_SAFE_INTEGRATION_TASK_FORMALLY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / LOCAL_BACKUP_NOT_YET_EXECUTED / MAIN_PRODUCT_NOT_YET_INTEGRATED / OLD_VERSION_DELETION_NOT_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新决定（2026-10-30）：** 对Astra刚完成有界独立验收的Laravel13/PHP8.4隔离Linux后端候选，Owner明确回答“可以我确定”，**正式选择Laravel13＋PHP8.4作为EliteSync后续开发技术基线**；附加要求“在本地硬盘上备份一下当前旧版本内容，如果迁移新版本成功后再删除（多一道保险）”。该决定批准生成一次安全集成长任务并把备份作为强制前置条件，**不是生产运行升级、立即main合并或无条件批量删除旧版资产授权**。先本机核归属备份、Hash/恢复试读，再候选精确安全集成与必要回归；已接受和仍未整版接受的产品变更分层，不得盲套整个candidate services Tree。任何旧版本删除须Astra接受安全集成及回退证据后单列清单由Owner按具体路径明确批准。
+
+**最新唯一正式任务（已经创建并按固定Commit全文回读）：** [V10_1_5_L13_PHP84_BASELINE_SAFE_INTEGRATION_AND_PREMIGRATION_LOCAL_BACKUP_TASK_20261030.md](../versions/v10.1.5/V10_1_5_L13_PHP84_BASELINE_SAFE_INTEGRATION_AND_PREMIGRATION_LOCAL_BACKUP_TASK_20261030.md)，Git Blob `63712dba26ec1c24539bec7082dd4f0c557df583`；创建Commit `40e98b6a70df56823be5882d605988ee6de08bba`。**PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED**。任务发布并没有触碰Windows、本地磁盘、Docker、DB、生产环境，也没有产生任何备份；后续只有Owner手动把现有正式任务交给Codex才可执行。任务根为新task-owned root/attempt-0001，旧STOP预算不复用。
+
+**本次研发及安全集成Source Authority：** 当前经Astra有界接受的Laravel13候选Commit `9b74ca6fef89e2507f966870c1f0d04f4fe09ba6`，Root `3b9690c1cdd6313d8f192c0ca4105352b8b40188`，apps `8cd9b6df8e744c8fc9d4217412edce31795a318d` / services `9427d6deba3be2d44fce94122661a21668976e20`。Astra Review Commit `9026a5bb04bbb23358eb8c6f61afba66ae4f2318`、Blob `456c8d47ec98e815c467e9d5f38ea3b4ddf12680`，仅`LARAVEL13_LINUX_BACKEND_SYNTHETIC_API_DB_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS`。**本次集成候选的唯一Parent必须是Codex开工时fresh最新main（须保持已接受v10.1.4双产品Tree）**，不能以审查分支或已STOP研发候选作为Git Parent。经GitHub比较，候选services相对已接受main有52个不同文件；含历史未整版接受的v10.1.5业务代码与E2E任务工具，禁止无归属整树合入。
+
+**备份/安全硬门：** 旧版备份仅指经只读盘点实际将被开发迁移触及的旧代码、composer及必要开发配置；至少含已接受v10.1.4 main的apps/services快照与本地真实旧工作版本可合法复制的材料，区分原dirty/未提交改动；新本地备份目录、目录身份、SHA256全局/逐文件与隔离恢复试读，私有证据/凭据严格LOCAL_ONLY，不读/拷公开真实DB。**备份不能凭GitHub存在宣称完成**；未备份成功不得更改本地旧根或继续集成。备份留存，旧工作树/原失败/账本不删。独立新集成候选只接已允许Laravel13开发兼容变更；历史未接受的产品功能不得顺手提权。需Owner再批准具名删除路径后才可在未来独立清理。
+
+**独立任务预算与STOP：** 单一task根/attempt-0001、单调窗口≤240分钟、新备份+任务logical/allocated各≤16GiB；供应下载≤2GiB、请求≤500、镜像Digest≤8、build≤2、Composer solver 0（保持已审查的新lock身份）、vendor install≤1、服务组≤2、PHP CLI≤100、Feature/Unit≤3批、HTTP≤120、migration/seed各≤1；成本先PREPARE+fsync，失败/重试占额度。Docker/WSL不得未经授权启动、安装或重启，禁止Windows全局软件、旧版本清理、生产/真实数据及Flutter/Gradle/G2/APK/ADB/RTC/AEC/真实Push。历史18/两ACL/122原证/五根/527refs/3183 Seed及dirty/ledger/claims、四个事故状态与`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`永久保留。
+
+**产品现况与唯一下一动作：** main正式接受仍仅到v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`，v10.1.5`10 PARTIAL / 1 OPEN`、AC05 RTC/AEC OPEN、真实Push PENDING、G2 false，v10.1.6 NOT_STARTED。Owner手动向本地Codex派发**已发布的唯一新任务**；Codex先本机备份并核验，后在授权范围做有界独立安全集成，交付一个non-force候选并STOP，由Astra随后独立验收。**没有新Laravel13产品源码自动进入main，没有删除旧版本，生产环境不变**。
+
+以下为本次Owner决定前的ACTIVE_STATE原有全文；历史`LARAVEL13_PRODUCT_BASELINE_OWNER_DECISION_PENDING`只代表其记录时点，不可覆盖上面已确认的当前决策。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Astra独立有界接受Laravel13 Linux后端合成API/DB候选（CURRENT ENTRY）
 
 **`LARAVEL13_LINUX_BACKEND_SYNTHETIC_API_DB_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS / ASTRA_REVIEW_PUBLISHED / LARAVEL13_PRODUCT_BASELINE_OWNER_DECISION_PENDING / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / PRODUCT_MAIN_NOT_INTEGRATED / REAL_PUSH_PROVIDER_PENDING / OS_ENFORCEMENT_NOT_PROVEN / V10.1.6_NOT_STARTED`**
