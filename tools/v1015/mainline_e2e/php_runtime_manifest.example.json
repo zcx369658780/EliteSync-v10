@@ -3,14 +3,14 @@
   "platform": "windows-x64",
   "php_version": "8.5.12",
   "thread_safe": false,
-  "candidate_parent": "28994ea486eccc5191985c57952a61f6f7ab3d38",
+  "candidate_parent": "14e6cde7b714c5bacdeedeb87233345d36a435c5",
   "source_binding": {
     "commit": null,
     "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
     "services_tree": null,
     "apk_sha256": null
   },
-  "requirements_sha256": "9c92a7738b48d1ec60121c2736d92ad0bb8ed7dc90ad5d4f91c65aa21c8dcebc",
+  "requirements_sha256": "c1d9a0fb27e1e139c297c3d6641c6904cf1f7705d692d5a879cd6af58560df00",
   "php_distribution_inventory_sha256": null,
   "executable": "bin/php.exe",
   "extension_directory": "bin/ext",
@@ -26,6 +26,6 @@
   "state": "INPUT_REQUIRED_NOT_QUALIFIED",
   "windows_system_modules": {},
   "windows_os_image_policy": null,
-  "status": "TEMPLATE_ONLY_FULL_NATIVE_CLOSURE_NOT_QUALIFIED_NOT_EXECUTABLE",
+  "status": "TEMPLATE_ONLY_APISET_NATIVE_GATE_CLOSED_NOT_EXECUTABLE",
   "central_runtime": null
 }

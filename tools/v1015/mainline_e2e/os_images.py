@@ -33,6 +33,14 @@ def validate_os_source(fact,policy,system):
         need(fact.get(key)==pin.get(key),'OS_IMAGE_IDENTITY_OR_HASH_CHANGED')
     need(all(type(fact.get(k)) is int and fact[k]>0 for k in ('links','file_id','volume','bytes')) and fact['volume']==system['volume'],'OS_IMAGE_LINK_OR_VOLUME')
     need(re.fullmatch('[0-9a-f]{64}',fact['sha256']) is not None,'OS_IMAGE_HASH_FORMAT')
+    if pin.get('trust_schema')==2:
+        from windows_os_trust import evaluate_file
+        from contracts import digest,canonical
+        evidence=pin.get('signature_evidence',{})
+        evaluate_file(evidence)
+        need(norm(evidence.get('system_root',{}).get('path',''))==norm(system['path']) and all(evidence.get('system_root',{}).get(k)==system[k] for k in ['file_id','volume']),'OS_SIGNATURE_RECEIPT_ROOT_BINDING')
+        need(pin.get('signature_evidence_sha256')==digest(canonical(evidence)),'OS_SIGNATURE_RECEIPT_HASH')
+        need(all(evidence.get('file',{}).get(key)==fact.get(key) for key in ['sha256','file_id','volume','bytes','links']),'OS_SIGNATURE_RECEIPT_FILE_BINDING')
     return {'state':'STATIC_OS_SOURCE_PIN_MATCHED_ONLY','path':fact['path'],'sha256':fact['sha256']}
 
 def _api():
@@ -127,7 +135,7 @@ def image_map(pid,expected_pid,os_policy=None,source_handle=None,central_policy=
             from central_vc_loader import verify_current
             need(central_policy is not None,'CENTRAL_LOADED_POLICY_REQUIRED')
             rows.append(verify_current(central_policy,path));continue
-        need(not name.startswith(('vcruntime','msvcp','concrt')),'UNQUALIFIED_ADDITIONAL_VC_MODULE')
+        need(name=='msvcp_win.dll' or not name.startswith(('vcruntime','msvcp','concrt')),'UNQUALIFIED_ADDITIONAL_VC_MODULE')
         if norm(ntpath.dirname(path))==norm(system['path']):
             fact=readonly_fact(path);fact['from_loaded_module_api']=True
             need(os_policy is not None,'OS_IMAGE_SOURCE_NOT_QUALIFIED')

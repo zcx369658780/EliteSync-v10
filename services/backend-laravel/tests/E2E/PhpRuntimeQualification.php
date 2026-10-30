@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Nonproduction pre-bootstrap capability checks; no Laravel/PDO construction. */
 final class PhpRuntimeQualification
 {
-    public const CLOSED_TASKS = ["d048f7f8fee97a93f8bf8c52293f60762fff0bda", "5f1c709e31af0d4f2c1c93363c147942db7116c5", "8b6bd9233a08a7f4d0986d6f592eb114dec63e04", "1ade4e5a89116eeba329311ed274229823aafd17", "128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
+    public const CLOSED_TASKS = ["960a738505054ac97a8cb85df660bf4f0b6decc9", "d048f7f8fee97a93f8bf8c52293f60762fff0bda", "5f1c709e31af0d4f2c1c93363c147942db7116c5", "8b6bd9233a08a7f4d0986d6f592eb114dec63e04", "1ade4e5a89116eeba329311ed274229823aafd17", "128fa1f7746ee73ee6d52d2d693715b003a4ec13", "02018a930428bb6417c9fcdd811a6c1350b03988", "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9", "1db7fc7eaadcea172cc52016904836bd71a0b90d", "48d3670ac26b1959c1b59ffb4871109cef09a4c8", "a0eec472b58d53bc25084a395efc0748779d73f8", "a307391e3872ff5367d84ddb7da86e53e531445e"];
     public static function assertTask(string $task,array $policy): void {
         $closed=$policy['closed_runtime_task_blobs']??[];$expected=self::CLOSED_TASKS;sort($closed);sort($expected);
         MainlineEnvironment::need($closed===$expected && preg_match('/^[a-f0-9]{40}$/D',$task)===1 && !in_array($task,$closed,true),'Closed task has no PHP runtime grant');
@@ -74,9 +74,9 @@ final class PhpRuntimeQualification
         $policyPath=MainlineEnvironment::path($c['php_requirements'],$root);
         $policyBytes=file_get_contents($policyPath);$policy=json_decode($policyBytes,true,512,JSON_THROW_ON_ERROR);
         self::assertTask($g['task_blob'],$policy);
-        if(($g['task_blob']??'')==='960a738505054ac97a8cb85df660bf4f0b6decc9' && ($g['action']??'')==='php_native_no_db_probe') {
+        if(($g['task_blob']??'')==='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0' && ($g['action']??'')==='php_native_no_db_probe') {
             MainlineEnvironment::assertProbeContext($ctx);
-            MainlineEnvironment::need(($policy['native_probe_task_blob']??'')===$g['task_blob'] && ($policy['candidate_parent']??'')==='28994ea486eccc5191985c57952a61f6f7ab3d38' && ($manifest['central_runtime']['qualification']['state']??'')==='CENTRAL_VC_EVIDENCE_QUALIFIED','Current native policy/central source');
+            MainlineEnvironment::need(($policy['native_probe_task_blob']??'')===$g['task_blob'] && ($policy['candidate_parent']??'')==='14e6cde7b714c5bacdeedeb87233345d36a435c5' && ($manifest['central_runtime']['qualification']['state']??'')==='CENTRAL_VC_EVIDENCE_QUALIFIED','Current native policy/central source');
             foreach($manifest['files'] as $entry)MainlineEnvironment::need(($entry['origin']??'')==='TRUSTED_EXISTING_PHP_DISTRIBUTION','Private redistributable forbidden');
         } else self::assertRuntimePolicy($policy);
         MainlineEnvironment::need(hash('sha256',$policyBytes)===($g['php_requirements_file_sha256']??null) && hash('sha256',MainlineEnvironment::canonical($policy))===$manifest['requirements_sha256'],'PHP requirements identity differs');

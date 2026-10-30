@@ -347,3 +347,43 @@ Official references:
 - https://github.com/microsoft/msix-packaging/blob/master/src/msix/PAL/Signature/Win32/SignatureValidator.cpp
 - https://support.microsoft.com/en-us/servicing/os/windows/docs/2026/08/next-generation-code-signing
 
+
+
+## Current delivery: 2026-10-30 OS catalog and minimum import task
+
+The new task is bound to Parent 14e6cde7 and its own task Blob/ledger. The previous
+central VC evidence is reused without new central trust observations or runtime
+claims. Ordinary and delay imports are separate parser outputs. The fixed PHP
+archive yields 13 private members and 13 ordinary named OS import seeds. Recursive
+ordinary imports qualified 23 concrete Windows files; 405 OS delay-import edges
+were recorded but not queried as mandatory dependencies. Actual loaded modules
+remain independently checked and unknown modules remain denied.
+
+`windows_os_trust.py` implements embedded and SHA256 catalog-member WinTrust
+paths, readonly member/catalog identity binding, signing-purpose/root policies,
+trusted provider times/countersigner policy, and strict cache-only revocation.
+It does not accept certificate display names, guessed trust, or ignored expiry.
+`msvcp_win.dll` is a separately pinned ordinary Windows image; the exception does
+not accept private copies or other unqualified VC modules.
+
+API sets are contracts resolved by the device schema, not DLL filenames. This
+round's second observation qualified the named schema signature but stopped at
+API_SCHEMA_HOST_PATH. Its raw schema bytes were not archived before parsing.
+The exact offending value is NOT_PROVEN. New source separates selected-host path
+validation from unrelated schema records, persists raw bytes before parsing, and
+requires recursive OS ordinary/API edges to be rebuilt from pinned actual bytes.
+These source fixes have synthetic evidence only, not a new system observation.
+An incomplete schema/archive/host mapping cannot be replaced by a PASS label.
+A recorded phase STOP rejects execution before any system read or child launch.
+
+Both OS observations are spent. PHP/Composer/Feature/API/MariaDB remain NOT_RUN.
+No additional system reads or probes are authorized by this document. The old
+Laravel11 lock remains unchanged and Laravel12 resolution is still pending.
+
+References:
+- https://learn.microsoft.com/en-us/windows/win32/api/mscat/nf-mscat-cryptcatadminenumcatalogfromhash
+- https://learn.microsoft.com/en-us/windows/win32/api/wintrust/ns-wintrust-wintrust_catalog_info
+- https://learn.microsoft.com/en-us/windows/win32/api/wintrust/ns-wintrust-crypt_provider_sgnr
+- https://learn.microsoft.com/en-us/windows/win32/api/wincrypt/ns-wincrypt-authenticode_ts_extra_cert_chain_policy_para
+- https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-apisets
+- https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Security/CodeSigning/cpp/codesigning.cpp

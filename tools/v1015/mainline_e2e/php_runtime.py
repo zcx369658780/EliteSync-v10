@@ -8,7 +8,7 @@ from central_vc_loader import validate_snapshot, verify_current
 
 POLICY=Path(__file__).with_name("php_requirements.json")
 OS_DLLS=frozenset(("kernel32 kernelbase ntdll advapi32 user32 gdi32 ws2_32 ole32 oleaut32 shell32 shlwapi crypt32 bcrypt secur32 dnsapi winmm iphlpapi psapi rpcrt4 version normaliz comdlg32 msvcrt ucrtbase winhttp wldap32 userenv netapi32 mpr").split())
-ZERO_TASKS=frozenset(("128fa1f7746ee73ee6d52d2d693715b003a4ec13","1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8","8b6bd9233a08a7f4d0986d6f592eb114dec63e04","1ade4e5a89116eeba329311ed274229823aafd17","5f1c709e31af0d4f2c1c93363c147942db7116c5","d048f7f8fee97a93f8bf8c52293f60762fff0bda"))
+ZERO_TASKS=frozenset(("960a738505054ac97a8cb85df660bf4f0b6decc9","128fa1f7746ee73ee6d52d2d693715b003a4ec13","1db7fc7eaadcea172cc52016904836bd71a0b90d","a307391e3872ff5367d84ddb7da86e53e531445e","a0eec472b58d53bc25084a395efc0748779d73f8","0854b37fdc9f11c55088ed2d2f93816a27bc2fa9","02018a930428bb6417c9fcdd811a6c1350b03988","48d3670ac26b1959c1b59ffb4871109cef09a4c8","8b6bd9233a08a7f4d0986d6f592eb114dec63e04","1ade4e5a89116eeba329311ed274229823aafd17","5f1c709e31af0d4f2c1c93363c147942db7116c5","d048f7f8fee97a93f8bf8c52293f60762fff0bda"))
 def sha_ok(s):return isinstance(s,str) and re.fullmatch("[0-9a-f]{64}",s) is not None
 def relative(value):
     need(isinstance(value,str) and value and not value.startswith("/") and "\\" not in value and ":" not in value,"PHP_RELATIVE_PATH")
@@ -75,7 +75,7 @@ def qualify_config(config,grant):
 
 def qualify_probe_config(config,grant):
     """Same private manifest/source checks, separate explicit DB-free authority."""
-    if grant.get('task_blob')=='960a738505054ac97a8cb85df660bf4f0b6decc9':
+    if grant.get('task_blob')=='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0':
         from current_native_task import qualify
         return qualify(config,grant)
     return _qualify_config(config,grant,validate_probe_authority)

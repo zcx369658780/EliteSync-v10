@@ -5,10 +5,10 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from contracts import need, local, digest, canonical
-TASK='960a738505054ac97a8cb85df660bf4f0b6decc9'
-PARENT='28994ea486eccc5191985c57952a61f6f7ab3d38'
-BINDING=dict(commit=PARENT,apps_tree='8cd9b6df8e744c8fc9d4217412edce31795a318d',services_tree='4c01326cbf44b4705548e97221e3336e0448406f')
-ROOT_NAME='v1015-vc-chain-real-loader-20261030'
+TASK='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0'
+PARENT='14e6cde7b714c5bacdeedeb87233345d36a435c5'
+BINDING=dict(commit=PARENT,apps_tree='8cd9b6df8e744c8fc9d4217412edce31795a318d',services_tree='4dbf710d64cf12ca513c4747bf53b7d73d5cfe1a')
+ROOT_NAME='v1015-os-catalog-minimal-l12-20261030'
 
 
 def probe_authority(config, grant, now=None):
@@ -62,9 +62,9 @@ def execution_gate(root, profile, grant):
     root=local(root);need(root.name==ROOT_NAME,'CURRENT_NATIVE_ROOT')
     ledger=local(root/'execution_ledger.jsonl',root)
     rows=[json.loads(x) for x in ledger.read_bytes().splitlines()]
-    need(rows and rows[0].get('task_id')=='V1015_CENTRAL_VC_TRUST_CHAIN_L12_E2E_20261030'
+    need(rows and rows[0].get('task_id')=='V1015_OS_CATALOG_MINIMAL_IMPORT_L12_E2E_20261030'
          and rows[0].get('task_blob')==TASK and rows[0].get('sole_parent')==PARENT,'CURRENT_LEDGER_TASK')
-    need(not any('TERMINAL_STOP' in str(x.get('action',x.get('event',''))) for x in rows),'CURRENT_TASK_ALREADY_STOPPED')
+    need(not any('TERMINAL_STOP' in str(x.get('action',x.get('event',''))) or x.get('action')=='DYNAMIC_PHASE_STOP_AFTER_OS_BUDGET_EXHAUSTED' for x in rows),'CURRENT_TASK_ALREADY_STOPPED')
     count=lambda name:sum(x.get('action',x.get('event'))==name for x in rows)
     need(count('PREPARE_PHP_DB_FREE_PROBE')<2,'PROBE_BUDGET_EXHAUSTED')
     need(count('PREPARE_PHP_CLI_START')<60,'PHP_CLI_BUDGET_EXHAUSTED')
@@ -81,9 +81,63 @@ def execution_gate(root, profile, grant):
     # Unknown actually loaded modules are STILL rejected by the post-Popen guard.
     from os_images import system_root_fact, readonly_fact, validate_os_source
     system=system_root_fact()
-    for row in profile['manifest']['files']:
-        for name in pe_info(local(Path(profile['root'])/row['path'],Path(profile['root'])).read_bytes())['imports']:
-            if os_import(name) and not name.startswith(('api-ms-','ext-ms-')):
-                need(name in policy.get('images',{}),'NATIVE_OS_IMPORT_NOT_QUALIFIED:'+name)
-                validate_os_source(readonly_fact(Path(system['path'])/name),policy,system)
+    from minimal_imports import minimum_private_graph
+    members={row['path']:local(Path(profile['root'])/row['path'],Path(profile['root'])).read_bytes() for row in profile['manifest']['files']}
+    roots=['php.exe']+['php_'+m+'.dll' for m in profile['manifest']['shared_modules']]
+    graph=minimum_private_graph(members,roots)
+    validate_api_set_closure(root,policy,graph)
+    for name in graph['mandatory_os']:
+        pin=policy.get('images',{}).get(name)
+        need(isinstance(pin,dict) and pin.get('trust_schema')==2,'NATIVE_OS_IMPORT_NOT_QUALIFIED:'+name)
+        validate_os_source(readonly_fact(Path(system['path'])/name),policy,system)
     return ledger
+
+
+def validate_api_set_closure(root,policy,graph):
+    """A concrete DLL-only graph cannot authorize unresolved API-set imports.
+
+    Require exact archived schema bytes, signed-file identity and all ordinary
+    contract-to-host mappings. No success label can replace these checks.
+    """
+    from api_set_schema import parse_schema,resolve
+    from windows_os_trust import evaluate_file
+    value=policy.get('api_set_schema',{})
+    need(isinstance(value,dict) and value.get('archived_relative_path'),'API_SET_SCHEMA_ARCHIVE_REQUIRED')
+    rel=value['archived_relative_path']
+    need(isinstance(rel,str) and rel.startswith('raw/') and '..' not in rel and ':' not in rel and '\\' not in rel,'API_SET_ARCHIVE_PATH')
+    raw=local(root/rel,root).read_bytes();evidence=value.get('signature_evidence',{})
+    need(digest(raw)==value.get('sha256')==evidence.get('file',{}).get('sha256'),'API_SET_SCHEMA_ARCHIVE_HASH')
+    evaluate_file(evidence);schema=parse_schema(raw)
+    from os_images import readonly_fact,system_root_fact,validate_os_source,norm
+    system=system_root_fact()
+    need(norm(evidence['file']['path'])==norm(str(Path(system['path'])/'apisetschema.dll')) and all(evidence.get('system_root',{}).get(k)==system[k] for k in ['file_id','volume']),'API_SET_SCHEMA_CURRENT_PATH')
+    fact=readonly_fact(evidence['file']['path'])
+    need(all(fact[k]==evidence['file'][k] for k in ['sha256','file_id','volume','bytes','links']),'API_SET_SCHEMA_CURRENT_IDENTITY')
+    need(isinstance(policy.get('ordinary_import_paths'),list) and policy['ordinary_import_paths'],'OS_ORDINARY_EDGES_REQUIRED')
+    # Rebuild recursive ordinary imports from the actually pinned OS bytes.
+    # A supplied list is checked for completeness, never trusted as the graph.
+    from pe_dependencies import pe_info
+    private={Path(p).name.lower() for p in graph['private_members']}
+    queue=list(graph['ordinary_edges']);seen=set();actual_edges=set()
+    while queue:
+        edge=queue.pop(0);target=edge['target'];importer=edge['importer']
+        if target.startswith(('api-ms-','ext-ms-')):target=resolve(schema,target,importer)
+        if target=='vcruntime140.dll' or target in private:continue
+        need(Path(target).name==target and target.endswith('.dll'),'OS_ORDINARY_TARGET_NAME')
+        if target in seen:continue
+        seen.add(target);need(len(seen)<=64,'OS_ORDINARY_CLOSURE_BOUND')
+        pin=policy.get('images',{}).get(target)
+        need(isinstance(pin,dict) and pin.get('trust_schema')==2,'API_SET_HOST_SOURCE_NOT_QUALIFIED:'+target)
+        path=Path(system['path'])/target;fact=readonly_fact(path);validate_os_source(fact,policy,system)
+        data=path.read_bytes();need(digest(data)==fact['sha256'],'OS_PE_INPUT_HASH_CHANGED')
+        need(readonly_fact(path)==fact,'OS_PE_IDENTITY_CHANGED')
+        for child in pe_info(data,system_image=True)['ordinary_imports']:
+            actual_edges.add((target,child));queue.append(dict(importer=target,target=child))
+    validate_declared_os_edges(policy,actual_edges,seen)
+
+
+def validate_declared_os_edges(policy,actual_edges,actual_names):
+    need(isinstance(policy.get('ordinary_import_paths'),list) and policy['ordinary_import_paths'],'OS_ORDINARY_EDGES_REQUIRED')
+    supplied={(x['importer'],x['target']) for x in policy['ordinary_import_paths']}
+    need(supplied==set(actual_edges),'OS_ORDINARY_EDGES_INCOMPLETE')
+    need(set(policy.get('required_ordinary_imports',[]))==set(actual_names),'OS_ORDINARY_MODULE_SET_INCOMPLETE')

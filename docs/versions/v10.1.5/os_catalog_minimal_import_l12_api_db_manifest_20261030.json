@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "task_id": "V1015_OS_CATALOG_MINIMAL_IMPORT_L12_E2E_20261030",
+  "attempt_id": "attempt-0001",
+  "task_blob": "5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0",
+  "sole_parent": "14e6cde7b714c5bacdeedeb87233345d36a435c5",
+  "parent_root": "d716ca18fac3ea2e992346355eabf64b4bfb4043",
+  "opening_main": "24e5a96e7b2c1fc0437aa76417ff08e6aae3ab06",
+  "opening_root": "3b10f72a78eb320caaf4e54c916a1eafa76dabf8",
+  "opening_active_state": "68022cd6af4c32562931805c9c52856b9a4678db",
+  "astra_review_blob": "4393e0bb295884d6882be16da163e2c63854282b",
+  "state": "PARTIAL_WITH_EXPLICIT_OS_CATALOG_OR_NATIVE_GATES",
+  "source_changes": [
+    {
+      "path": "services/backend-laravel/tests/E2E/MainlineEnvironment.php",
+      "mode": "100644",
+      "base_blob": "69441d9247c18184e6a3688089290f45d049f5df",
+      "blob": "1200f970f48f4901e931d2f7caac56bd08a1537f",
+      "sha256": "d16413d50b400adda5108563ccb56a09bcf86cfd1bf1f124ecce5ad4094a9879",
+      "bytes": 11843
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/PhpRuntimeQualification.php",
+      "mode": "100644",
+      "base_blob": "e267877595a611b09b677845c6ecf85eeabcf511",
+      "blob": "297b383fcf6f4f65c208da05b022eb5f60566310",
+      "sha256": "842242a72cdff380016af0b91790e3eb410a34740dd2406b1c2cce46f9d496bd",
+      "bytes": 13716
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/README.md",
+      "mode": "100644",
+      "base_blob": "2582be1ec6a5f6f0dfceb08051c5e8b459d2a15c",
+      "blob": "ddb7bfab0f0a2241070485f166f73270a9bb22e3",
+      "sha256": "5461b4b7b28cd5870e5ac4143bd1adaa87c5e3faee5e113989cb45f56b0edacd",
+      "bytes": 24479
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/api_set_schema.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "84bc3ded06a3f9def16b8c9c5595e9b75447fc92",
+      "sha256": "b02985ba748f5068b66851d5a1ecdde7925ef3931f3a8902fd6a3d74eb00d104",
+      "bytes": 3661
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/current_native_task.py",
+      "mode": "100644",
+      "base_blob": "af070f41ea6b8eaebde8456ceeb61af9b109fbea",
+      "blob": "9a092b078fe93bcac1ab2a424340f307288de04b",
+      "sha256": "0b71eea190a08336492f74d8fda8c2ca24a1fffecf9adbfa08ad4f95dff1c05f",
+      "bytes": 10562
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/minimal_imports.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "00d8d26cabaf02d206e3210a5f91ec1737e3ccc5",
+      "sha256": "6a44c44f3ac75aeb9a0d3086f5ed4cb2cf776f47fde67acee71a368ae2da414b",
+      "bytes": 1710
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/os_images.py",
+      "mode": "100644",
+      "base_blob": "7949c647e50d3ab68b9162b8cc7887aa68b90375",
+      "blob": "fce2f5388ca9e8e9a12cf8f2c6ea6fcd5c4a1e89",
+      "sha256": "c156e0b250f861c9a5a1f79925a4c65e09efee5ba170cf85cc7e344b8b283e3f",
+      "bytes": 10833
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/pe_dependencies.py",
+      "mode": "100644",
+      "base_blob": "c379dd5b377c39e3b9b1f4aaeb3521d309a0259d",
+      "blob": "adc3dce21faa3dc96d8fd9acbc23ef10a5d1f5bc",
+      "sha256": "5518e6ababce2bd0c6bac3d65d4af0a99526176885107f099236f484fc9d375a",
+      "bytes": 2610
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_probe_entry.py",
+      "mode": "100644",
+      "base_blob": "d4fbf158a92058ac746ac6a3e9e899b799c12e33",
+      "blob": "b1c866180b0a27f25c44b50bf4a5b15f9624c136",
+      "sha256": "7cb78ee3edda8d3e8c3cca17474f799ab54a4d8c2fc27f07b2a7aed9c58df41e",
+      "bytes": 5894
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_requirements.json",
+      "mode": "100644",
+      "base_blob": "5e83e7382ea1c7867861a5c78aa25337b36796ec",
+      "blob": "3fa2d2e4442fd26e09119647ba86d1c2e46ee890",
+      "sha256": "e16ea81f4bc68ec968577aed3bf2479baababe3684d46d0fb30faf64d9438024",
+      "bytes": 14668
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime.py",
+      "mode": "100644",
+      "base_blob": "72c7a89f7136bc13cfc4ffb86760551501888bee",
+      "blob": "4f704667d5832f3661157948dbad84a29c7cc471",
+      "sha256": "e3c3dc7c26acc4eabfe9a238ed18edb5e46b8e2f2ca004cf0c37043002897725",
+      "bytes": 10018
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/php_runtime_manifest.example.json",
+      "mode": "100644",
+      "base_blob": "bbb4b9321c6aae16a086d719042069eac4a0e41c",
+      "blob": "232fb430da17d1ad71583f2caec60d9f26eb1173",
+      "sha256": "1497ca4605ed19497c65aa91c5a1de792e2f286571a3e60776bb7e90b92aa4a5",
+      "bytes": 1012
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_api_set_schema.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "1b6cd057f2a1ec6243d56331f2c694212efd69f3",
+      "sha256": "6ffd96f1af9ef34f9eb7ff2e6ec7998f1feeb28a7b313be890c6e4561dbb859d",
+      "bytes": 4088
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_native_minimum_closed_gate.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "d212df529f58a32a6d242a060cc39737351d3725",
+      "sha256": "0b08cf9dadc0f77db654d5c83ffe48e0791da9b8908cded0ef83ccc3528aa176",
+      "bytes": 3323
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_os_catalog_api_doubles.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "0fa2d443b8f7779074f7e85f40a1cb18ac15d362",
+      "sha256": "4cc5e621670e05ab4e9c21a4339afac06ef09424c388cbb5f40f6a35e22d0588",
+      "bytes": 4756
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/test_os_catalog_minimal.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "d2ad99d9ec1b879fa76308ba804b9bb29cfe511d",
+      "sha256": "f801548b17b70fb3c710c60d8d8a373a2dd250f604017a3d441f7c34f442aa15",
+      "bytes": 6681
+    },
+    {
+      "path": "tools/v1015/mainline_e2e/windows_os_trust.py",
+      "mode": "100644",
+      "base_blob": null,
+      "blob": "bbffd828370178166c17cd0363c2de3d6a6d10c4",
+      "sha256": "39165e3fda7635bf1fb9718513183705d4a2c521e9aedca4e16d2f2fcd1a2f6d",
+      "bytes": 20025
+    }
+  ],
+  "pure_test": {
+    "classification": "CODEX_REPORTED_LOCAL_TEST_PURE_SYNTHETIC_ONLY",
+    "executed": 247,
+    "passed": 247,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit": 0,
+    "php_cli": 0,
+    "composer_resolution": 0,
+    "business_runtime": 0,
+    "output_sha256": "fa0fe8a037e97cfd02ef61fd735e32a27d5847e197b561708546028bd9a3e6a6"
+  },
+  "budget": {
+    "os_observations": 2,
+    "os_observation_limit": 2,
+    "new_central_trust_observations": 0,
+    "php_cli": 0,
+    "php_probe": 0,
+    "composer_phar_bytes": 0,
+    "composer_package_bytes": 0,
+    "composer_package_http": 0,
+    "composer_resolution": 0,
+    "vendor_install": 0,
+    "feature_batches": 0,
+    "mariadb_starts": 0,
+    "api_starts": 0,
+    "business_http": 0,
+    "migration": 0,
+    "seed": 0,
+    "php_downloads": 0,
+    "private_php_members_copied": 13,
+    "system_binary_copies": 0,
+    "installer_runs": 0,
+    "elapsed_seconds": 1871.453,
+    "space": {
+      "logical": 52038320,
+      "allocated": 55203840,
+      "reserve": 67108864
+    }
+  },
+  "observations": [
+    {
+      "number": 1,
+      "concrete_os_required": 23,
+      "concrete_os_qualified": 23,
+      "embedded": 19,
+      "catalog_members": 4,
+      "delay_edges_not_queried": 405,
+      "full_api_set_closure": "NOT_PROVEN"
+    },
+    {
+      "number": 2,
+      "schema_signature": "QUALIFIED_LOCAL_ONLY",
+      "parser": "API_SCHEMA_HOST_PATH",
+      "raw_schema_bytes_archived_before_parse": false,
+      "required_host_mapping": "NOT_PROVEN"
+    }
+  ],
+  "actual_php_load": "NOT_PROVEN",
+  "composer_lock_state": "LOCK_RESOLUTION_PENDING",
+  "runtime_matrix": {
+    "PHP": "NOT_RUN_GATE_CLOSED",
+    "PHP_SYNTAX": "NOT_RUN_GATE_CLOSED",
+    "COMPOSER": "NOT_RUN_GATE_CLOSED",
+    "LARAVEL_FEATURE": "NOT_RUN_GATE_CLOSED",
+    "MARIADB": "NOT_RUN_GATE_CLOSED",
+    "API": "NOT_RUN_GATE_CLOSED",
+    "BUSINESS_HTTP": "NOT_RUN_GATE_CLOSED",
+    "MIGRATION": "NOT_RUN_GATE_CLOSED",
+    "SEED": "NOT_RUN_GATE_CLOSED"
+  },
+  "raw_evidence": [
+    {
+      "evidence_id": "LOCAL_ONLY_001",
+      "bytes": 17752,
+      "sha256": "4882dfcb6d50f1d411712c37a4813df6c4e1c374b299ded44584a68579ca8020"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_002",
+      "bytes": 17855,
+      "sha256": "9a2d74b8e6ab3b96e1aee91c4edde78fc3e9554b539fb7856554d222dacaa841"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_003",
+      "bytes": 17767,
+      "sha256": "6925bb3afa6be3547ae9557e440fed5334016292c32575abc49a9d925c05dcbd"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_004",
+      "bytes": 17742,
+      "sha256": "abd8d16150925e33699f6703d57b1fbdd8b6e5309b02705f39faff9a88cf82ba"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_005",
+      "bytes": 17774,
+      "sha256": "8c53baa47f7fccfcd463bda3b18332c1aa63838757945d5ef8003404f29fe839"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_006",
+      "bytes": 20052,
+      "sha256": "c7c6154d4c2ffcd99813e15952b780d640df384bb421b63dd5f37443e864d101"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_007",
+      "bytes": 17705,
+      "sha256": "35749f8f95cef4c9abdaf67a1df25fc7c2cfef3147e80a29668f998977dfd051"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_008",
+      "bytes": 17725,
+      "sha256": "cd6f5454deffd521b4fee5c23ea7f545a138e5e69be205bce95d191d697c6c6d"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_009",
+      "bytes": 17845,
+      "sha256": "a11eb8ca3fc363a12ff8748407ff78859b4944bfe356fd786df0297098bf67dd"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_010",
+      "bytes": 17864,
+      "sha256": "53856d552d992bd11b7fc79bc2e1a33cbd8077273ccaab00de2aabc99c90b11b"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_011",
+      "bytes": 17879,
+      "sha256": "7a0c554e17ea58110187c30c2c973d7a496d7bc2094ace8275b1cb941759ae9a"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_012",
+      "bytes": 17880,
+      "sha256": "78404c1b8ecba56703570905535906a525de30d98617e8410b70b337bfb400ab"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_013",
+      "bytes": 20021,
+      "sha256": "ac1deeb93693b9079f9b430048ebb3bbba7088d436d84987c34c2d52482ed8a0"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_014",
+      "bytes": 17886,
+      "sha256": "20ba4c3462ad111c25c2fa4c15c4e06a997a9ee632c99e2f80e234d9871f11fc"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_015",
+      "bytes": 17752,
+      "sha256": "2c28ae17a9f0a7866b4193b56cab9bea97c9d3b4a8c8f704f342d29890a31924"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_016",
+      "bytes": 17878,
+      "sha256": "806cdee1adfed79069d64fce9d761c03088739729ee676f13745794863efe9f6"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_017",
+      "bytes": 17863,
+      "sha256": "c1b9a6931c2bfb307ed47826e44b4003786d021cfde5199a7ddbdf6c884c2f2e"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_018",
+      "bytes": 20073,
+      "sha256": "585cf743eee84275bc70270564cc7711f399f90fdc551a641db66c20c699b299"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_019",
+      "bytes": 17733,
+      "sha256": "c1293bcb77538db01660fba245681ed3132ff1fb2f0347018bc11b8a66f7500a"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_020",
+      "bytes": 17766,
+      "sha256": "d5ef3531c416489b0494c45a49dadb3ed2c28be847029a9964d712a5852a4d62"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_021",
+      "bytes": 17905,
+      "sha256": "6f6304cfaec784cdfb3f402675aae4689f04f10d70c6127b1be67eece067c0e3"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_022",
+      "bytes": 20090,
+      "sha256": "ffb17a442de294828cc6bdf2facf9f0b78e15d6214052b55c414798429a863e8"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_023",
+      "bytes": 17860,
+      "sha256": "24db48984a590d4894dc77f0c01acb90925202dd8b0b1e9bfc8a69ca046582d0"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_024",
+      "bytes": 17684,
+      "sha256": "1333484835df7d58d280d2cafe25e5b5f53b5bd1f2c1b654010022d4c7ac4eac"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_025",
+      "bytes": 938,
+      "sha256": "6960639dcc9aed8bc1da5362b677883c8dab5511fcd75301d0b98809ac31bfd6"
+    },
+    {
+      "evidence_id": "LOCAL_ONLY_026",
+      "bytes": 687348,
+      "sha256": "69e0b4ce19f9b71d980b7a3fadbdafeb301ea8d2b700995d949f3dcb2a5c8113"
+    }
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.5/OS_CATALOG_MINIMAL_IMPORT_L12_API_DB_RESULT_20261030.md",
+    "blob": "a152cc65b361ef8b390188588a1807d757823903",
+    "sha256": "b9e607d958e665924757e51a975a47ef46f1dd6598a7c2f58f5ca1c044a4530c"
+  },
+  "protection": {
+    "dirty_unchanged": true,
+    "refs_unchanged": true,
+    "ref_count": 527,
+    "prior_roots_receipts_unchanged": 5,
+    "old18_writes": 0,
+    "seed_writes": 0,
+    "scope": "NAMED_PRIOR_RECEIPTS_NOT_FULL_LEGACY_OBJECT_RESCAN"
+  },
+  "acceptance": "AWAITING_ASTRA_NOT_FUNCTION_ACCEPTED"
+}

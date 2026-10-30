@@ -6,7 +6,7 @@ from php_runtime import qualify_probe_config,launch_arguments,private_environmen
 from php_native import cli
 
 def execution_gate(root,profile,grant):
-    if grant.get('task_blob')=='960a738505054ac97a8cb85df660bf4f0b6decc9':
+    if grant.get('task_blob')=='5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0':
         from current_native_task import execution_gate as current_gate
         return current_gate(root,profile,grant)
     ledger=local(root/'execution_ledger.jsonl',root)

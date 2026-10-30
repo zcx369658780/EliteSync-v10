@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_SUPPLY_PENDING",
-  "candidate_parent": "28994ea486eccc5191985c57952a61f6f7ab3d38",
+  "profile": "LARAVEL12_PHP_8_5_12_1_NTS_VS17_WIN_X64_OS_APISET_PENDING",
+  "candidate_parent": "14e6cde7b714c5bacdeedeb87233345d36a435c5",
   "apps_tree": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
   "php_version": "8.5.12",
   "thread_safe": false,
@@ -302,7 +302,7 @@
     }
   ],
   "optional_modules": {},
-  "current_state": "CENTRAL_VC_EVIDENCE_QUALIFIED_NATIVE_LOAD_NOT_PROVEN",
+  "current_state": "CATALOG_23_CONCRETE_OS_QUALIFIED_APISET_NATIVE_GATE_CLOSED",
   "closed_runtime_task_blobs": [
     "02018a930428bb6417c9fcdd811a6c1350b03988",
     "0854b37fdc9f11c55088ed2d2f93816a27bc2fa9",
@@ -312,6 +312,7 @@
     "48d3670ac26b1959c1b59ffb4871109cef09a4c8",
     "5f1c709e31af0d4f2c1c93363c147942db7116c5",
     "8b6bd9233a08a7f4d0986d6f592eb114dec63e04",
+    "960a738505054ac97a8cb85df660bf4f0b6decc9",
     "a0eec472b58d53bc25084a395efc0748779d73f8",
     "a307391e3872ff5367d84ddb7da86e53e531445e",
     "d048f7f8fee97a93f8bf8c52293f60762fff0bda"
@@ -528,7 +529,11 @@
     "reason": "NATIVE_PHP_LOAD_STILL_REQUIRED",
     "system_damage": "NOT_PROVEN",
     "installation_necessity": "NOT_PROVEN",
-    "runtime_grant": false
+    "runtime_grant": false,
+    "observation_task_blob": "960a738505054ac97a8cb85df660bf4f0b6decc9",
+    "evidence_scope": "PRIOR_ACCEPTED_CENTRAL_TRUST_ONLY_NO_NEW_CENTRAL_OBSERVATION"
   },
-  "native_probe_task_blob": "960a738505054ac97a8cb85df660bf4f0b6decc9"
+  "native_probe_task_blob": "5ac1777d3f9cac6e414208a9a9e1a9bbb36a61b0",
+  "new_task_os_observations_used": 2,
+  "new_task_os_observation_limit": 2
 }

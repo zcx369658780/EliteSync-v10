@@ -1,7 +1,7 @@
 """Bounded PE import inspection only. Never loads a DLL or executable."""
 import struct
 from contracts import Gate, need
-def pe_info(data):
+def pe_info(data,system_image=False):
     def read(fmt,offset):
         size=struct.calcsize(fmt);need(0<=offset<=len(data)-size,"PE_TRUNCATED")
         return struct.unpack_from(fmt,data,offset)
@@ -24,14 +24,14 @@ def pe_info(data):
             delta=rva-start
             if 0<=delta and delta+size<=length:return raw+delta
         raise Gate("PE_RVA_UNMAPPED")
-    def name(rva):
+    def name(rva,delay=False):
         p=offset(rva);end=data.find(b"\0",p,min(len(data),p+260))
         need(end>p,"PE_IMPORT_NAME")
         try:value=data[p:end].decode("ascii").lower()
         except UnicodeError:raise Gate("PE_IMPORT_NAME")
-        need(value.endswith(".dll") and all(x.isalnum() or x in "._-" for x in value),"PE_IMPORT_PATH_REJECTED")
+        need((value.endswith(".dll") or (system_image and delay and value.endswith(".exe"))) and all(x.isalnum() or x in "._-" for x in value),"PE_IMPORT_PATH_REJECTED")
         return value
-    imports=set()
+    imports=set();ordinary=set();delayed=set()
     for index,stride in ((1,20),(13,32)):
         if count<=index:continue
         rva,size=read("<II",opt+112+8*index)
@@ -41,8 +41,9 @@ def pe_info(data):
         for n in range(min(size//stride,4096)):
             p=offset(rva+n*stride,stride);row=read("<"+"I"*(stride//4),p)
             if not any(row):ended=True;break
-            if index==1:imports.add(name(row[3]))
+            if index==1:
+                value=name(row[3]);imports.add(value);ordinary.add(value)
             else:
-                need(row[0]&1==1,"PE_DELAY_IMPORT_VA_UNSUPPORTED");imports.add(name(row[1]))
+                need(row[0]&1==1,"PE_DELAY_IMPORT_VA_UNSUPPORTED");value=name(row[1],delay=True);imports.add(value);delayed.add(value)
         need(ended,"PE_IMPORT_TERMINATOR")
-    return dict(machine="x64",imports=sorted(imports))
+    return dict(machine="x64",imports=sorted(imports),ordinary_imports=sorted(ordinary),delay_imports=sorted(delayed))
