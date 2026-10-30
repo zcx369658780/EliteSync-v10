@@ -1,0 +1,48 @@
+{
+  "stage": "DYNAMIC_STOP_SOURCE_CANDIDATE_BEFORE_PUBLICATION",
+  "limits": {
+    "seconds": 14400,
+    "logical": 17179869184,
+    "allocated": 17179869184,
+    "supply_bytes": 2147483648,
+    "supply_requests": 500,
+    "digests": 8,
+    "build": 2,
+    "solver": 0,
+    "vendor": 1,
+    "service_groups": 2,
+    "php_cli": 100,
+    "feature_batches": 3,
+    "http": 120,
+    "migration": 1,
+    "seed": 1,
+    "activation": 0,
+    "wsl_start": 0
+  },
+  "used": {
+    "supply_requests": 37,
+    "digests": 4,
+    "build": 0,
+    "solver": 0,
+    "vendor": 0,
+    "service_groups": 0,
+    "php_cli": 0,
+    "feature_batches": 0,
+    "http": 0,
+    "migration": 0,
+    "seed": 0,
+    "activation": 0,
+    "wsl_start": 0,
+    "supply_bytes": 1260068877
+  },
+  "elapsed_seconds": 5603.328,
+  "space_task_plus_backup": {
+    "logical": 4381656319,
+    "allocated": 4434054160,
+    "reserve": 67108864
+  },
+  "failed_body_maximum_charges_kept": 1073741824,
+  "new_service_groups_started": 0,
+  "all_runtime_tests": "NOT_RUN",
+  "reusable_balance_after_terminal": false
+}

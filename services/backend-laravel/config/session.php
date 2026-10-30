@@ -20,6 +20,11 @@ return [
 
     'driver' => env('APP_SESSION_DRIVER', 'file'),
 
+    // Preserve the existing wire format; Laravel13 skeleton's json default would
+    // invalidate active PHP-serialized sessions if copied during migration.
+    // https://laravel.com/framework/docs/13.x/upgrade#session-serialization-configuration
+    'serialization' => 'php',
+
     /*
     |--------------------------------------------------------------------------
     | Session Lifetime

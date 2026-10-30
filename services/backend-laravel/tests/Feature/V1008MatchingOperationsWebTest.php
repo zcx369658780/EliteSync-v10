@@ -8,7 +8,7 @@ use App\Models\MatchingRun;
 use App\Models\User;
 use App\Services\MatchingRoundService;
 use App\Services\MatchingRunService;
-use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery as ValidateCsrfToken;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;

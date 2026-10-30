@@ -1,0 +1,171 @@
+{
+  "evidence": "CODEX_REPORTED_LOCAL_TEST_AND_LOCAL_ONLY_RAW",
+  "backup_public_receipt": "laravel13_safe_integration_backup_verification_20261030.json",
+  "process_receipts": [
+    {
+      "name": "premigration-backup-and-isolated-restore",
+      "log_base": "premigration-backup-and-isolated-restore-1547",
+      "exit": 0,
+      "stdout_sha256": "2d87a430517025b0ba569d591a028e82df83b2de55946c8ac8f33cc29d5ee829",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "fresh-main-native-worktree-materialize",
+      "log_base": "fresh-main-native-worktree-materialize-2535",
+      "exit": 0,
+      "stdout_sha256": "ef2085f84a56c4a0b7af63a9e327488435bd8601aa37889562d55549d3038b68",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "fresh-toolchain-supply-and-offline-build",
+      "log_base": "fresh-toolchain-supply-and-offline-build-2611",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "95300298b9a88b6fc2d221f5631e7926ae754b1f46cb5fbb0a369f52ddd18c52"
+    },
+    {
+      "name": "fresh-toolchain-official-transfer-retry1",
+      "log_base": "fresh-toolchain-official-transfer-retry1-2689",
+      "exit": 1,
+      "stdout_sha256": "ecfa539081a58c48bb5afae2e26253a083d6b0242321d90c1703034846d0289c",
+      "stderr_sha256": "da6878ba03842c9200e06c4afd20d5df8eac62b41a24093e9788caa400f24a0a"
+    },
+    {
+      "name": "integration-selective-status-source-proof",
+      "log_base": "integration-selective-status-source-proof-3845",
+      "exit": 0,
+      "stdout_sha256": "f1c29a99c9ab378756c5f72f779e2e5cb43858e03910c4ebc6940f41481e5184",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "static_scope_check": {
+    "status": "PASS_STATIC_OBJECT_AND_SCOPE_CHECK_ONLY",
+    "selected_paths": 10,
+    "unchanged_main_product_paths": 1411,
+    "main_business_app_files_exact": 254,
+    "apps_tree_preserved": true,
+    "target_lock_exact": "e236fbc960c1dd08c1fecb9aeed4926b4cab3933",
+    "target_composer_json_exact": "130793decf84ff8ab93faa0300117b7fab9d1826",
+    "checkout_EOL_and_new_index_stat_cache_repaired_only_in_task_worktree": true,
+    "php_lint": "NOT_RUN",
+    "runtime": "NOT_RUN_SUPPLY_BLOCKED",
+    "new_f1_f3_f4_business_imported": false
+  },
+  "non_author_static_review": {
+    "level": "CODEX_REPORTED_LOCAL_READONLY_HELPER_REVIEW",
+    "scope": "10 selected file identities and changes only; no runtime review or acceptance",
+    "findings": [
+      "10/10 actual selected Blob identities match; nine exact candidate sources and V1006 only CSRF alias",
+      "Existing assertions kept; legacy personal-token refresh test still present",
+      "Fixed composer.json empties lifecycle scripts including package:discover and composer dev, and empties plugin allowlist",
+      "Lock also changes lunar-php1.4.0->1.4.7, Workerman5.1.9->5.2.3, Guzzle7->8; not only framework major",
+      "PHP/Composer/Feature/API/DB NOT_RUN; array-store session test does not prove real Laravel11 cookie continuity"
+    ],
+    "runtime_or_independent_astra_acceptance": false
+  },
+  "static_stop_guard_checks": {
+    "status": "PASS",
+    "checks": [
+      {
+        "guard": "cost",
+        "denied_before_charge": true
+      },
+      {
+        "guard": "body",
+        "denied_before_charge": true
+      },
+      {
+        "guard": "engine_mutation",
+        "denied_before_native_process": true
+      }
+    ],
+    "native_docker_or_php_invoked": false,
+    "cost_counter_delta": 0
+  },
+  "runtime_blocker": {
+    "status": "DYNAMIC_STOP_BLOCKED_OFFICIAL_OCI_SUPPLY_INCOMPLETE",
+    "reason": "Official PHP layer transfer truncated once; one bounded re-transfer completed PHP image, then MariaDB layer transfer also truncated. No complete MariaDB source closure.",
+    "failures": [
+      {
+        "seq": 2681,
+        "request_id": 2652,
+        "error_type": "RuntimeError",
+        "received_count": 25738667,
+        "status": "NOT_RECORDED",
+        "expected_length": "NOT_RECORDED"
+      },
+      {
+        "seq": 3099,
+        "request_id": 3076,
+        "error_type": "RuntimeError",
+        "received_count": 19119531,
+        "status": 200,
+        "expected_length": 29752488
+      }
+    ],
+    "incomplete_body_reservations_kept": [
+      {
+        "reservation_seq": 2653,
+        "maximum_charged": 536870912,
+        "request_id": 2652
+      },
+      {
+        "reservation_seq": 3077,
+        "maximum_charged": 536870912,
+        "request_id": 3076
+      }
+    ],
+    "supply_bytes_charged_upper_bound": 1260068877,
+    "success_body_bytes": 186327053,
+    "supply_requests": 37,
+    "php_input_image_verified": true,
+    "mariadb_image_imported": false,
+    "build": 0,
+    "solver": 0,
+    "vendor_install": 0,
+    "php_cli": 0,
+    "feature_batches": 0,
+    "http": 0,
+    "migration": 0,
+    "seed": 0,
+    "service_groups": 0,
+    "old_task_private_resources_used": false,
+    "next_action": "Publish only the explicit selective source candidate and backup/restore/blocker evidence; no further supply or runtime operations in this task."
+  },
+  "runtime_checks": {
+    "php_version_modules_lint": "NOT_RUN",
+    "composer_validate": "NOT_RUN",
+    "vendor_install": "NOT_RUN",
+    "feature_unit": "NOT_RUN",
+    "api_http": "NOT_RUN",
+    "mariadb_migration_seed": "NOT_RUN",
+    "authorization_negatives": "NOT_RUN",
+    "runtime_persistence_restart": "NOT_RUN",
+    "real_legacy_l11_cookie": "NOT_RUN"
+  },
+  "observations": [
+    "Initial Windows PowerShell ACL module failed; no ACL evidence inferred from empty result; existing pwsh native ACL readback then succeeded for the new backup directory only",
+    "Windows default GBK rejected Unicode Git metadata before worktree creation; explicit UTF8 corrected, no old source overwritten",
+    "New sparse checkout inherited line-ending/stat-cache conversion; only the task-owned repository was fixed to raw native main blobs and identical index entries, final status exactly10 selected paths",
+    "First OCI failure did not record HTTP status/Content-Length; partial bytes and full maximum reservation retained, no retroactive success/header reconstruction",
+    "Second official OCI transfer truncated; no further retry or substitution of prior STOP resources",
+    "No PHP/Composer/services/DB executed; previous source9b74 test counts are not current integration evidence"
+  ],
+  "acceptance": {
+    "INTEGRATION_ACCEPTED": false,
+    "FUNCTION_ACCEPTED": false,
+    "MAIN_PRODUCT_INTEGRATED": false,
+    "LOCAL_DEV_BASELINE_ACTIVE": false,
+    "RUNTIME_VERIFIED": false
+  },
+  "final_protection": {
+    "backup_trial_hashes": 22132,
+    "original_source_hash_match": true,
+    "dirty_entries": 252,
+    "refs": 527,
+    "index_unchanged": true,
+    "historical_seals_readonly_checked": 10,
+    "historical_raw_assets_full_rescan": "NOT_CLAIMED",
+    "old_version_deletions": 0
+  }
+}

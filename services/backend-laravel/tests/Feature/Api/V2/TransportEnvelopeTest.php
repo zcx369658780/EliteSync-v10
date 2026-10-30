@@ -367,7 +367,7 @@ final class TransportEnvelopeTest extends TestCase
             'request_identity' => $requestIdentity,
             'family' => TransportNeutralApplicationRequestResponseContract::FAMILY_PROJECTION_RETRIEVAL,
             'semantic_payload' => [
-                'query' => $this->query(),
+                'query' => $this->transportQueryFixture(),
                 'request_bindings' => $this->projectionBindings(),
             ],
         ];
@@ -387,7 +387,7 @@ final class TransportEnvelopeTest extends TestCase
             'request_identity' => $requestIdentity,
             'family' => TransportNeutralApplicationRequestResponseContract::FAMILY_PROTECTED_REVALIDATION,
             'semantic_payload' => [
-                'query' => $this->query(),
+                'query' => $this->transportQueryFixture(),
                 'required_bindings' => $requiredBindings,
                 'source_evidence' => CommonAuthorityEvidenceContract::evidence(
                     $record['bindings'],
@@ -472,7 +472,7 @@ final class TransportEnvelopeTest extends TestCase
     }
 
     /** @return array<string, mixed> */
-    private function query(): array
+    private function transportQueryFixture(): array
     {
         return [
             'record_family' => 'SYNTHETIC-HTTP-TRANSPORT-FAMILY',
