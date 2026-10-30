@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Owner批准既有VC系统运行库优先的综合软件验证（CURRENT ENTRY）
+
+**`CENTRAL_VC_L12_COMPOSER_API_DB_CONSOLIDATED_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NO_CODEX_RESULT_YET / EXISTING_SYSTEM_VC_READONLY_ELIGIBILITY_FIRST / NO_SYSTEM_INSTALL_AUTHORITY / CONDITIONALLY_AUTHORIZED_COMPOSER_LOCK_PHP_PROBE_API_DB / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / V10.1.6_NOT_STARTED`**
+
+**Owner 2026-10-30最新决定：** Astra独立审查f16d4cda官方PHP ZIP/微软VC原始包供应与源码，认定有界供给接受但app-local DLL权利及工具链仍未合格，Laravel12锁/动态运行全未执行；Owner接受“集中处理VC部署路线、Composer真实锁与后续PHP/API/DB”并回复“可以我同意，请继续”。这一概括同意**不表示已批准安装微软官方Redistributable或提权/修改全局Windows**。已选择无需系统改动的第一受控路径：**仅核已安装central Microsoft v14 runtime的只读身份/版本/签名与PHP加载闭包**；存在且完整合格则在同一合同内继续真正Composer锁、PHP Probe、Laravel12 Feature及独立MariaDB/API，缺失则STOP并提交准确一次性Owner安装许可要求，不再继续旧app-local微任务。
+
+**唯一当前正式综合任务：** [V10_1_5_EXISTING_SYSTEM_VC_AND_LARAVEL12_COMPOSER_RUNTIME_E2E_CONSOLIDATED_TASK_20261030.md](../versions/v10.1.5/V10_1_5_EXISTING_SYSTEM_VC_AND_LARAVEL12_COMPOSER_RUNTIME_E2E_CONSOLIDATED_TASK_20261030.md)，Git Blob **`d048f7f8fee97a93f8bf8c52293f60762fff0bda`**；任务创建Commit `cf3c26a39bacadfbae2c32d3e95d54ef0e75fa2b`；已按固定Commit全文回读。**Owner需手动派发Codex，文档发布不启动本地执行，也未消耗任务预算**。
+
+**唯一新研发Parent：** `f16d4cda817282d935cb53ce399d26a7850381a1`，Root `eb4045b343749b7f3fceb46121100fa946b92329`；apps `8cd9b6df8e744c8fc9d4217412edce31795a318d`，services `120177c9f35905190972be7bbcb3dfdda95ba776`。Astra上一正式审查 `astra/v10.1.5-f16d4cda-private-supply-independent-review-20261030`，审查Commit `0aec79a8a336708ddfdefc3217e28e33a0c877df`，Blob `34e2f0d6a80109188cc32fa85b34d0a2574c70c1`，审查分支不是研发Parent。历史报告/Manifest与上一供应工作根/预算一律不改。
+
+**本任务预算和STOP：** 唯一新task-owned根，logical/native allocated各≤8GiB、120分钟，同一持久ledger；具名只读中央VC映像观察≤2次，不授权执行VC安装器、app-local提取/复制或全局系统/ACL/注册表/PATH/php.ini改动；仅在现存VC合格且官方PHP8.5.12-1/Composer PHAR来源完整的条件下，Composer官方来源≤256MiB包与元数据/240请求、另PHAR≤8MiB、2次求解/1次私有vendor安装；PHP无DB Probe≤2次各30秒，Laravel12 Feature≤3批，PHP CLI总启动≤60、独立MariaDB≤2、API≤2、HTTP≤160、迁移/合成seed各≤1。旧PHP ZIP和VC installer已经在前轮任务归档，不允许重新下载或改源，复用仅经只读Hash验证的新任务私有副本；失败全部记账，不重建ledger、不能动旧环境。Flutter/Dart/Widget/analyze、Gradle/G2/APK、ADB/真机、RTC/AEC/Push、生产/真实用户数据仍无本任务权限。
+
+**当前accepted state不可变：** main只接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。v10.1.5仍10 PARTIAL/1 OPEN（AC05 RTC），产品未集成；不签整版，G2不可Popen，v10.1.6未启动。永久保留`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT / OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN / RESTRICTED_IDENTITY_GATE_BLOCKED / OS_ENFORCEMENT_NOT_PROVEN`及旧18、两ACL树、122原证、五根、527refs、3183 Seed、全部失败/ledger/claims/dirty。旧Flutter6/6和3bed3/3、MariaDB2/2、G/APK各1/1以及前轮已耗观察不退款。
+
+**下一动作：** Owner手动派发正式任务；Codex在唯一固定f16 sole Parent上有界集中实施，留真实来源/运行及保护回执，发布一个非force候选并STOP等Astra独立验收。不自动合产品main、扩大系统授权、开启G2或新版本。
+
+以下全文为历史CURRENT ENTRY与前期授权/验收快照；旧头部“待派发”仅代表当时状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Laravel12可信供给与同源API/DB条件式真实验证任务已发布（CURRENT ENTRY）
 
 **`OWNER_APPROVED_TRUSTED_SUPPLY_AND_CONDITIONAL_RUNTIME / FORMAL_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_YET_REPORTED / GITHUB_TASK_READBACK_CONFIRMED / LOCK_RESOLUTION_PENDING / PHP_VC_LICENSE_AND_NATIVE_RUNTIME_PENDING / NO_PRODUCT_MAIN_INTEGRATION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
