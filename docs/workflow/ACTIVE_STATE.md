@@ -1,3 +1,27 @@
+# EliteSync v10.1.5｜2026-10-30 Owner授权现有Docker受控激活及Laravel批量迁移｜正式综合任务已发布（CURRENT ENTRY）
+
+**`NEW_EXISTING_DOCKER_LINUX_BATCH_LARAVEL_API_DB_TASK_FORMAL_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / EXISTING_DOCKER_ACTIVATION_APPROVED_BOUNDED_NOT_EXECUTED / NO_HOST_INSTALL_OR_GLOBAL_CHANGE / LARAVEL13_CANDIDATE_NOT_OWNER_FINAL / LARAVEL12_FALLBACK / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新授权（2026-10-30）：** Astra完成前轮 `7e9cdc6c` Linux受阻静态交付独立审查并明确下一动作需Owner批准“受控启动已存在Docker Desktop WSL2 Linux后端→资格核验→新综合任务内Laravel13优先/Laravel12回退及真实API/独立数据库集中回归”后，Owner回复“好的我授权，请继续”。Astra按现行A-D闭环**只发布**一份新综合任务；不得把本轮发布当作Owner已手动派发或Codex实际启动。
+
+**唯一新正式综合任务（已发布）：** [V10_1_5_EXISTING_DOCKER_LINUX_ACTIVATION_BATCH_LARAVEL_API_DB_E2E_TASK_20261030.md](../versions/v10.1.5/V10_1_5_EXISTING_DOCKER_LINUX_ACTIVATION_BATCH_LARAVEL_API_DB_E2E_TASK_20261030.md)，Git Blob `7bd4323e8f3f31a3404657b3eab6690e2710fc89`，创建Commit `14876a99cc99920e2bf793205ba97fc4b0668e50`。任务全文已按该固定Commit回读。它**不是前轮STOP task续跑**，新task_id、单一新root/attempt-0001、全新独立账本与预算，不得复用前轮余额。
+
+**新研发唯一sole Parent：** `7e9cdc6cbcbd013964824626db52eaf56ce9cbfb`（Astra已接受的静态BLOCKED预包候选），Root `c72a09a6cd803d5cbe184830416a0802a6f8ed55`，apps `8cd9b6df8e744c8fc9d4217412edce31795a318d`、services `1b1100808cf275d881a6dd8dde9c0155a7fc2a32`。Astra前轮Review Commit `a448e74bd554857def827738fd699c56df2c100d`、Blob `4f1615d0f27f94cbaa011ea213b6544770ac3471`；审查/任务main文档提交均**不是**研发Parent。
+
+**允许范围：** 先核已有Docker Desktop/WSL2当前状态、订阅许可、共享后台影响与资源；若不涉及新EULA/费用/登录或全局权限，Owner批准最多一次用户级激活已有Docker Linux后端及最多一次既有Ubuntu release/arch探针；合格后，同一个综合任务冻结可信镜像和PHP8.4/Composer2/MariaDB10.11真实版本，真实Laravel13第一选择与Laravel12兼容回退、Composer solver+lock/vendor、批量后端源码迁移、合成HTTP→Laravel→空MariaDB权限/持久重启回归。普通失败不拆微任务。
+
+**禁止与停止门：** 不授权Docker/WSL重装更新、启用Hyper-V、UAC、系统级服务/注册表/PATH/VM调整、同意新收费许可、购买/敏感外传/生产/真实用户数据；保护所有原dirty/old18/ACL/122原证/五根/527refs/3183 Seed/旧ledger。Docker用户级启动若触碰他项目自动启动/不确定共享影响，或首次许可、增费、系统权限必须STOP；无法计量镜像下载/Composer供应请求/字节也必须STOP动态供给。仍禁Flutter/Gradle/G2/APK/ADB/RTC/真实Push、物理15/30天、产品main集成。
+
+**独立预算（非旧任务结余）：** 单新root/attempt-0001、logical/allocated各≤16GiB、单调窗口≤240分钟；供给下载≤2GiB、请求≤500、镜像Digest≤8、build≤3、Composer solver≤3、vendor≤2、服务组≤4、PHP CLI≤120、Feature/Unit≤5批、真实业务HTTP≤240、migration/seed各≤2。失败/超时计数、每个成本执行前PREPARE+fsync。细项以正式任务全文为准。
+
+**当前产品仍不变：** main只有v10.1.4正式接受并集成，apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5 `10 PARTIAL / 1 OPEN`、AC05 RTC/AEC OPEN、真实Push Pending、OS ENFORCEMENT NOT_PROVEN、G2 false、v10.1.6 NOT_STARTED。旧Windows E_NOTIMPL历史、前轮受阻交付和预算封存均不因本授权消失。
+
+**唯一下一动作：** Owner把上述**已有正式任务单**及其准确Blob手动派发给本地Codex。Codex在新任务预算和权限内一轮综合实施，发布唯一sole-parent研发候选并STOP；Astra随后独立审核。**本次没有**启动Docker/WSL、运行PHP/Composer/API/DB、新建候选、自动派发或合main。
+
+以下是Owner此授权以前的旧ACTIVE_STATE全文。旧“仍等待Owner激活决定”属于那时的保存状态，不得覆盖本CURRENT ENTRY。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Astra独立接受7e9cdc6c受阻交付与静态Linux迁移预包（CURRENT ENTRY）
 
 **`7E9CDC6C_BLOCKED_DELIVERY_AND_STATIC_PREPACKAGE_ACCEPTED_WITH_OBSERVATIONS / LINUX_EXECUTOR_NOT_QUALIFIED / LARAVEL13_OR12_NOT_RESOLVED / PHP_COMPOSER_API_DB_NOT_RUN / OWNER_LINUX_ACTIVATION_DECISION_REQUIRED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
