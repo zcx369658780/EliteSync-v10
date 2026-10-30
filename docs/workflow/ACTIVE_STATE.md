@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-30 Laravel12可信供给与同源API/DB条件式真实验证任务已发布（CURRENT ENTRY）
+
+**`OWNER_APPROVED_TRUSTED_SUPPLY_AND_CONDITIONAL_RUNTIME / FORMAL_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NOT_YET_REPORTED / GITHUB_TASK_READBACK_CONFIRMED / LOCK_RESOLUTION_PENDING / PHP_VC_LICENSE_AND_NATIVE_RUNTIME_PENDING / NO_PRODUCT_MAIN_INTEGRATION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新明确同意：** 在Astra对e93ef514候选的有界验收后，Owner接受下一阶段一次性推进Laravel12/PHP8.5可信官方依赖供给、合法VC运行库、真实Composer锁求解以及条件成立后的无DB PHP能力Probe、Laravel12 Feature和独立MariaDB/API合成业务测试。随后Owner要求由Astra通过已经连接的GitHub正式发布任务。上轮试图发布的长正文曾被工具安全检查拦截（非GitHub权限错误）；本轮使用正式GitHub文件创建接口已成功创建并按Git Blob回读。**没有执行任何本地软件、下载或测试**。
+
+**唯一最新正式任务：** [V10_1_5_LARAVEL12_PHP85_TRUSTED_SUPPLY_LOCK_AND_CONTROLLED_API_DB_E2E_TASK_20261030.md](../versions/v10.1.5/V10_1_5_LARAVEL12_PHP85_TRUSTED_SUPPLY_LOCK_AND_CONTROLLED_API_DB_E2E_TASK_20261030.md)，任务Git Blob **`5f1c709e31af0d4f2c1c93363c147942db7116c5`**，创建Commit **`0ba23d7e087353c25f5f84fd84554377eccdcda7`**。正式合同是该GitHub正文；此前LOCAL_ONLY草案状态`DRAFT_NOT_PUBLISHED`只是历史时点，绝不能作为当前任务权威。
+
+**唯一新研发Parent：** `e93ef51401f4e25916149cca104f09debc32bc78`，Root `5941573199ea340a11691ce45cf3ed96282ab5a1`；apps Tree `8cd9b6df8e744c8fc9d4217412edce31795a318d`；services Tree `91611699217d6e9fae7b2ebe03e6023c90e23bbc`。此前e93 Astra独立审查Commit `1c91ad4f20aeded44ebe5433b734d0271ab6b9b3`，Blob `158659dc0b0f6b08caeb49dc7978cc298afd23ea`；审查分支不是研发Parent。
+
+**条件式预算：** 唯一新task-owned根，logical/native allocated各≤8GiB，单调窗口≤120分钟；官方PHP包最多一次≤64MiB及3小元数据请求，Composer最多256MiB/240请求/2次求解/1次私有vendor安装，微软官方VC原始包最多一次≤64MiB，总网络字节≤384MiB。只有法律许可、发行Hash、原生依赖/环境及源码/锁完整合格后，才允许无DB Probe≤2次各30秒、Laravel12 Feature≤3批、独立MariaDB服务启动≤2、PHP API启动≤2、所有PHP CLI≤60、HTTP≤160、迁移≤1、合成seed≤1。失败计数，ledger必须持久，严禁跨任务借用额度；未达资格时立即STOP相应阶段。仅任务私有文件写入，不授权全局install/Visual Studio或Redist安装、System32/WinSxS/ACL/注册表/PATH/php.ini修改、真实用户/生产数据或外部费用。
+
+**持续硬门：** Flutter/Dart/Widget/analyze无新权限（历史6/6与3bed3/3耗尽），G2/Gradle/JVM/APK/ADB/真机/RTC/AEC/Push、物理15/30天无授权。当前main唯一已接受v10.1.4 apps `3468a3dd97da7accfda2539a0f8d8f68931a6110` / services `0cb1f9d19659291a462488b3686fd0a07a6698ac`；v10.1.5仍10 PARTIAL/1 OPEN（AC05 RTC），产品未集成。旧ACL非合规实验、`PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT`、`OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN`、`RESTRICTED_IDENTITY_GATE_BLOCKED`、`OS_ENFORCEMENT_NOT_PROVEN`与旧18、两ACL树、122件原证、五根、527 refs、3183 Seed、所有历史失败/ledger/claims/dirty不可变。
+
+**唯一下一动作：** Owner手动将正式任务全文交给Codex。Codex仅以e93为sole Parent形成一个非force集中候选和脱敏报告/Manifest，按真实权限/预算执行、逐步保留失败和来源证据，fresh GitHub回读后STOP交Astra独立验收；不得合产品main、签整版FUNCTION_ACCEPTED、关闭AC05或开启v10.1.6。
+
+下文保留之前CURRENT ENTRY和全部历史记录；旧“等待发布”“仍待派发”的字句只表示当时事实。
+
+---
+
 # EliteSync v10.1.5｜2026-10-30 Owner选定方案B：Laravel12＋PHP8.5兼容迁移（CURRENT ENTRY）
 
 **`OWNER_SELECTED_PLAN_B / LARAVEL12_PRIMARY_TARGET / LARAVEL13_FOLLOWUP_EVALUATION_ONLY / PHP85_WINDOWS_OFFICIAL_MAINTENANCE_TARGET / COMPATIBILITY_SOURCE_MIGRATION_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_NEW_TASK_NOT_YET_REPORTED / NO_NEW_DOWNLOAD_INSTALL_RUNTIME_AUTHORIZED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / PRODUCT_MAIN_NOT_INTEGRATED / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / RTC_AEC_NOT_CLOSED / ELAPSED_TIME_AND_PHYSICAL_CLEANUP_NOT_PROVEN / V10.1.6_NOT_STARTED`**
