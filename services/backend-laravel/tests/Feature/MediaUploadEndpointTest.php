@@ -173,6 +173,7 @@ class MediaUploadEndpointTest extends TestCase
             'processed_at' => now(),
         ]);
 
+        Sanctum::actingAs($user);
         $this->get("/api/v1/media/{$asset->id}/content")
             ->assertOk()
             ->assertHeader('Content-Type', 'image/png');
@@ -201,6 +202,7 @@ class MediaUploadEndpointTest extends TestCase
 
         $this->assertFalse($asset->isBackingObjectAvailable());
         $this->assertSame('', $asset->public_url);
+        Sanctum::actingAs($user);
         $this->get("/api/v1/media/{$asset->id}/content")
             ->assertNotFound()
             ->assertExactJson(['message' => 'media asset unavailable']);

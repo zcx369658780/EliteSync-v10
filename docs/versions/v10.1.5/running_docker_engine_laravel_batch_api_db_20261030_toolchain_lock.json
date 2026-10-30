@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "task_id": "V1015_RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_20261030",
+  "task_blob": "a1cbc75afe406e3e05712c6c51fb63c86bad928d",
+  "sole_parent": "debe4a11d19f25179efef1d90d04e346980c2867",
+  "evidence": "CODEX_REPORTED_LOCAL_TEST",
+  "desktop": "4.97.0.244584",
+  "client": "29.9.2",
+  "engine": "29.9.2",
+  "platform": "linux/amd64",
+  "license": "OWNER_REPORTED_BOTH_SMALL_BUSINESS_FREE_THRESHOLDS; existing TermsVersion2; no acceptance/login/fee",
+  "host_activation": 0,
+  "wsl_start": 0,
+  "php": "8.4.27",
+  "php_userland": "Debian12 bookworm",
+  "composer": {
+    "version": "2.11.0",
+    "sha256": "9674f12a2a181100d889ebfd0b4510805b3e94cea57869b14b383753d602599b",
+    "official_url": "https://getcomposer.org/download/2.11.0/composer.phar",
+    "bytes": 3786815
+  },
+  "mariadb": "10.11.19-MariaDB-ubu2204",
+  "mariadb_userland": "Ubuntu22.04",
+  "ubuntu24_running": "NOT_PROVEN_NOT_CLAIMED",
+  "laravel": "13.39.0",
+  "tinker": "3.0.2",
+  "phpunit": "12.5.42",
+  "unzip": {
+    "version": "6.0-28",
+    "sha256": "b3d9529c34382cc8d2e6cc8299a18536504edbc284b9133ffbe522704865068e",
+    "filename": "pool/main/u/unzip/unzip_6.0-28_amd64.deb",
+    "source_index_sha256": "6777ea16514725f9427f48c240d92e0a6b8496138e37a1491d8597e66774e309",
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa"
+  },
+  "php_runtime": {
+    "image_id": "sha256:1ab3428f24a668abe8327edbea4a56db2c7236dac7399292f4ffab332cd653bb",
+    "task_tag": "elitesync-v1015-running-20261030/php:runtime"
+  },
+  "installed_binary_hashes": [
+    {
+      "installation_file": "Docker Desktop.exe",
+      "sha256": "9b4fe5cd76d273a959556bf628b5c1572bbbd548e19050e15fedd3e311ffaa17",
+      "bytes": 15712176,
+      "file_id": 562949958181102,
+      "mtime_ns": 1793353680778729300
+    },
+    {
+      "installation_file": "docker.exe",
+      "sha256": "17cbf2f5f5f7693bbeda46e35dc930050b40aff06f41f9f5a69e4e2dd7fc12aa",
+      "bytes": 44922800,
+      "file_id": 844424934891487,
+      "mtime_ns": 1793353696624084900
+    },
+    {
+      "installation_file": "com.docker.backend.exe",
+      "sha256": "c6d31c243ab9789eaf68748367dc42b19d2629eb3233ecedf70459a877167257",
+      "bytes": 156664240,
+      "file_id": 844424934891472,
+      "mtime_ns": 1793353689453074500
+    }
+  ],
+  "php_build_reserved": 30,
+  "php_build_observed": 9,
+  "images": {
+    "php": {
+      "repository": "library/php",
+      "tag_observation": "8.4-cli-bookworm",
+      "index_digest": "sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76",
+      "manifest_digest": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+      "image_id": "sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff",
+      "layers": [
+        {
+          "digest": "sha256:3c5439d0ae62993af4cc4e21b8c777297e81bc40e200d4633c85a3e0f977a3bc",
+          "compressed": 28247437,
+          "uncompressed": 77946880,
+          "diff_id": "sha256:44a87794b739d471ec360bec56cc0ceac640d06bbf579ee7d9061a0b88d09818"
+        },
+        {
+          "digest": "sha256:521f906de6f3fda4a5cd63892a9fac65456276165212adbb6b58cfbfcf8f3807",
+          "compressed": 227,
+          "uncompressed": 3584,
+          "diff_id": "sha256:55752bf73d2784972589a07b70e28660d3a64bf008f4f2603f7c5ece41abb7f5"
+        },
+        {
+          "digest": "sha256:46825504d7db5d96b76369f2224045b60a02760420f74d74024be4a2bb4f9809",
+          "compressed": 104156230,
+          "uncompressed": 319482368,
+          "diff_id": "sha256:1ab2dc9f84fcc64b67fa994c46f5fa57f01d617da8ac8af6d8e295edf1dcd93a"
+        },
+        {
+          "digest": "sha256:2cf351c8e236b3c373336d155d46b0ce5fcc0a5cb4dd878f7a5fa691ea1af7ba",
+          "compressed": 227,
+          "uncompressed": 5120,
+          "diff_id": "sha256:bcd2a7fad0e8a8ae58fa2f1fcbce0c572e634ff2e12819bf74b2dd4d92b122ba"
+        },
+        {
+          "digest": "sha256:c50c8419d5e5f91fd134d3613e15ef5cb87a02fd917883bc93952c3d1bfad195",
+          "compressed": 13973088,
+          "uncompressed": 14304256,
+          "diff_id": "sha256:3be7496c8a62eb4f0af4c061527a8e88b3510ce44732c27cb9a41a05fe5370dd"
+        },
+        {
+          "digest": "sha256:63e631e020cf4dd2066e28f16888d657b1e0bfac71a1271594c0c016486839fa",
+          "compressed": 491,
+          "uncompressed": 4096,
+          "diff_id": "sha256:74189fdb51851f53bac99a2d8e28997ae42c1a238c349b1fc5505c8a853354e8"
+        },
+        {
+          "digest": "sha256:000aa038b17de8a8f35a82ff6db11c34704c34697c3220730c660daa7eddb15b",
+          "compressed": 39886151,
+          "uncompressed": 138507264,
+          "diff_id": "sha256:7403aaaa6a22c9d38251f656bf7b34583f038d65d2c4dd29c030791ed3469691"
+        },
+        {
+          "digest": "sha256:aa91feabb77b87ad6ceafca1cc5a1cad5b092e1e5548c0b199bff31c6fac2d04",
+          "compressed": 2451,
+          "uncompressed": 12800,
+          "diff_id": "sha256:3d2b2122575cdc7490c09e54825ab35d736f8194a69fffb4557ebc4c614db56c"
+        },
+        {
+          "digest": "sha256:be9432be2130d053d50b9f0c49eda6246be5cdc677eb6b918aaa74ddae68ee02",
+          "compressed": 249,
+          "uncompressed": 4608,
+          "diff_id": "sha256:1040ad5d2f02f20413948b6074079c432040b42a8440b53982c632a53dbca7ba"
+        },
+        {
+          "digest": "sha256:797518a68278cddce8959cb1dbda780ccd2feb21a95661dcf8fe9c608a0d292e",
+          "compressed": 244,
+          "uncompressed": 4608,
+          "diff_id": "sha256:c500804b237fb07c047f910dbfdf58c4fea695253d2964b55d93ba4aaf8c3deb"
+        }
+      ],
+      "task_tag": "elitesync-v1015-running-20261030/php:input",
+      "uncompressed_bytes": 550275584,
+      "loaded": {
+        "source_manifest_digest": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+        "source_config_digest": "sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff",
+        "engine_image_id": "sha256:18fe2042e1a80b52c20b988ccf4f4c12e5d254d22f9cc81b83c1175d39d3be94",
+        "descriptor": {
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "digest": "sha256:18fe2042e1a80b52c20b988ccf4f4c12e5d254d22f9cc81b83c1175d39d3be94",
+          "size": 1843,
+          "annotations": {
+            "io.containerd.image.name": "docker.io/elitesync-v1015-running-20261030/php:input",
+            "org.opencontainers.image.ref.name": "input"
+          }
+        },
+        "exported_config_verified": true,
+        "complete_diff_ids_match": true,
+        "size_observed": 1120375906
+      }
+    },
+    "mariadb": {
+      "repository": "library/mariadb",
+      "tag_observation": "10.11",
+      "index_digest": "sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae",
+      "manifest_digest": "sha256:6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea",
+      "image_id": "sha256:72b6ab51626b71b6118295b90c9408e537ff1cfdaa0b35c9930e8c2ee49a47bf",
+      "layers": [
+        {
+          "digest": "sha256:0626d3cc316c9fea3d4891e2ec19b8f371fe22ffb915622f6072a2ee2ca9017f",
+          "compressed": 29752488,
+          "uncompressed": 80647168,
+          "diff_id": "sha256:297a592b66593a3dddc39e7970a718cc1cbb04c8a9b904009b33eb623dafc588"
+        },
+        {
+          "digest": "sha256:536322dd74de886c6500fa4188d13945194afc25153a0a076786795fe5902bc9",
+          "compressed": 1722,
+          "uncompressed": 337920,
+          "diff_id": "sha256:c0f7c997f4de0929002af4282edc57c99be914d6612313aad6fc324775f562c2"
+        },
+        {
+          "digest": "sha256:de40d00b8e671b46e4026a781e8f6ed8e2a324e20544ebdd7943bee430175846",
+          "compressed": 5566059,
+          "uncompressed": 15999488,
+          "diff_id": "sha256:0d45c66019c252783437f5bf7789c8acdfa08b024dbc00d870cce7d55e7a8e8d"
+        },
+        {
+          "digest": "sha256:7528e84ca4dd4adb89599f70391e1089f840c99f2d270828e289b72cd0645bef",
+          "compressed": 116,
+          "uncompressed": 1536,
+          "diff_id": "sha256:0a16cf157b260855badb268217f29006813d43c152a00fd86e1f4ca0bab576b3"
+        },
+        {
+          "digest": "sha256:af16160e392f10807871603d28219514931c98e6b895751c4075b567eb0b2b03",
+          "compressed": 333,
+          "uncompressed": 5120,
+          "diff_id": "sha256:8333d4d8796953c731d03d7edad2f4311f740739995cfe8027ad4b91b8eb3cc7"
+        },
+        {
+          "digest": "sha256:044c87576b95da7670f9b86b03ef98af3f84f0d5cd3d83a32d61a2c023f1e182",
+          "compressed": 68825348,
+          "uncompressed": 236018176,
+          "diff_id": "sha256:97707411541afbe4303246380750320ae0dd33697520148c2bfd2a557413297e"
+        },
+        {
+          "digest": "sha256:9b636ac29379f27d0bda5f85238c0b2b3d825225b7128496a85a89cda5b46f30",
+          "compressed": 4016,
+          "uncompressed": 13824,
+          "diff_id": "sha256:f132e70a11cb522c2ddf03895fcc8c4f77ff9240745b34917f8d91bb34d063aa"
+        },
+        {
+          "digest": "sha256:5c77366076d85597d4a3e05c275fc89863a86fea94f52fa06651207c0ca745ba",
+          "compressed": 8460,
+          "uncompressed": 30208,
+          "diff_id": "sha256:8ee245e068770fdef0eb0bb1669db6d7a11220a09a9d35bc9ce0606fc3f88e48"
+        }
+      ],
+      "task_tag": "elitesync-v1015-running-20261030/mariadb:input",
+      "uncompressed_bytes": 333053440,
+      "loaded": {
+        "source_manifest_digest": "sha256:6c65a843396dc6c78dd0da19eccaa0a91d25d9d26a4c2afcb75010ac3f59f5ea",
+        "source_config_digest": "sha256:72b6ab51626b71b6118295b90c9408e537ff1cfdaa0b35c9930e8c2ee49a47bf",
+        "engine_image_id": "sha256:717811ad578a018df748c6904caa3363058668e04dcb15bc0e458d53d9cecd82",
+        "descriptor": {
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "digest": "sha256:717811ad578a018df748c6904caa3363058668e04dcb15bc0e458d53d9cecd82",
+          "size": 1529,
+          "annotations": {
+            "io.containerd.image.name": "docker.io/elitesync-v1015-running-20261030/mariadb:input",
+            "org.opencontainers.image.ref.name": "input"
+          }
+        },
+        "exported_config_verified": true,
+        "complete_diff_ids_match": true,
+        "size_observed": 682784333
+      }
+    }
+  }
+}

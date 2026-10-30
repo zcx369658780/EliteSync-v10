@@ -80,7 +80,7 @@ class ConversationAtomicSendService
             foreach ([(int) $sender->id, $receiverId] as $id) {
                 $current = $pair->get($id);
                 if (!$current || $current->disabled || ($current->account_status ?? 'active') !== 'active') {
-                    return ['ok'=>false,'status'=>404,'code'=>'conversation_unavailable'];
+                    return ['ok'=>false,'status'=>404,'message'=>'chat unavailable'];
                 }
             }
             $token = $sender->currentAccessToken();

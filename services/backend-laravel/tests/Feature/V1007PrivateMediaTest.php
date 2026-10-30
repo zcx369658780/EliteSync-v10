@@ -32,7 +32,8 @@ final class V1007PrivateMediaTest extends TestCase
         Storage::fake('v1007');
         $this->sender = User::factory()->create(['id' => $identity, 'phone' => '19900000751', 'disabled' => false, 'is_synthetic' => false]);
         $this->recipient = User::factory()->create(['phone' => '19900000752', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'v1007-private-media', 'user_a' => $this->sender->id, 'user_b' => $this->recipient->id, 'drop_released' => true]);
+        // A bare legacy match is not a current accepted proposal; use an active friendship.
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a'=>min($this->sender->id,$this->recipient->id), 'user_b'=>max($this->sender->id,$this->recipient->id), 'state'=>'ACTIVE', 'revision'=>1, 'created_at'=>now(), 'updated_at'=>now()]);
         $service = app(LiveConsentService::class);
         $service->transition($this->sender->id, $this->recipient->id, 'connection', 'request', 0);
         $service->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);
@@ -71,7 +72,8 @@ final class V1007PrivateMediaTest extends TestCase
         auth('sanctum')->forgetUser();
         auth('web')->forgetUser();
         $this->app['auth']->forgetGuards();
-        $this->get($path)->assertNotFound();
+        // Anonymous requests are rejected by the authenticated route before asset lookup.
+        $this->get($path)->assertUnauthorized();
         app(LiveConsentService::class)->transition($this->recipient->id, $this->sender->id, 'consent', 'revoke', 2);
         Sanctum::actingAs($this->recipient);
         $this->get($path)->assertNotFound();

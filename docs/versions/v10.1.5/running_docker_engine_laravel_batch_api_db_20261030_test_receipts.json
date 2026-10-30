@@ -1,0 +1,2039 @@
+{
+  "task_id": "V1015_RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_20261030",
+  "level": "CODEX_REPORTED_LOCAL_TEST",
+  "independent_acceptance": false,
+  "process_receipts": [
+    {
+      "name": "composer-final-validate",
+      "log_base": "composer-final-validate-7079",
+      "exit": 0,
+      "stdout_sha256": "43add299dc97ecbd90ec2dc456ef5a0bd824bb9abdae2a3d7cdb520e21f8e86d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "composer-offline-vendor-install",
+      "log_base": "composer-offline-vendor-install-7071",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c34f8d5429e1ac0541c6c9b558e7f48b870066b3fe976b9eb90e96938f33b4f6"
+    },
+    {
+      "name": "composer-platform-reqs",
+      "log_base": "composer-platform-reqs-7085",
+      "exit": 0,
+      "stdout_sha256": "b6b6ade4d423ba22a1cbf5c44259840db289421adf16a98814f240425efb78f3",
+      "stderr_sha256": "a9064f2083fb53a99cf60a987a8345fc6b38eb63485a02b8766e4d8d8c312030"
+    },
+    {
+      "name": "laravel13-feature-batch1",
+      "log_base": "laravel13-feature-batch1-7092",
+      "exit": 255,
+      "stdout_sha256": "4cf3e26dd8ef9d89bfb857c660d2a32f5bf238150ff0924cc7749570e313f459",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "laravel13-feature-batch2",
+      "log_base": "laravel13-feature-batch2-7121",
+      "exit": 2,
+      "stdout_sha256": "6cd1794a4b157ecfac3029210c775d6ce8c8b96cfd989e4f2bc23f4a811e8aad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "laravel13-feature-batch3",
+      "log_base": "laravel13-feature-batch3-7138",
+      "exit": 1,
+      "stdout_sha256": "d47af0c0df64947bd3aed440d9446f0c9fd0efc24bc7780ac396b93bc40eb306",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "laravel13-feature-batch4",
+      "log_base": "laravel13-feature-batch4-7193",
+      "exit": 0,
+      "stdout_sha256": "3a96d5005a02d25af0dea22ec13a34c4f6568892ce133322306f74d2ecfc5234",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "mariadb-migrate",
+      "log_base": "mariadb-migrate-7171",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6f090506e90bd8cc0f8df22159181652adc8cd79db7c7568af8470e28e6bf68a"
+    },
+    {
+      "name": "mariadb-migrate-qualified",
+      "log_base": "mariadb-migrate-qualified-7196",
+      "exit": 0,
+      "stdout_sha256": "f79933d6cebb5652b0e8d8d66548297b288f74b37f3114f6e848f2caba525516",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "mariadb-seed-qualified",
+      "log_base": "mariadb-seed-qualified-7204",
+      "exit": 124,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "mariadb-seed-qualified-batch2",
+      "log_base": "mariadb-seed-qualified-batch2-7219",
+      "exit": 0,
+      "stdout_sha256": "04a9dffc3885d08df545708e37c65057c601154d52a22a46ddac5d72bac78c1d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "native-journal-expiry-budget",
+      "log_base": "native-journal-expiry-budget-2714",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b3c651c8e41c6cf549bce3b8570caf1aef8f9945c71ac2199013430166f55bad"
+    },
+    {
+      "name": "native-journal-integration",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "663a81fd645b6ad8bf76e3b7f01896c8f9e7ff3ae53d1082107f64c197150deb"
+    },
+    {
+      "name": "native-stop-intent-regression",
+      "log_base": "native-stop-intent-regression-2719",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "06091827fc18bf8a35648538b52bf128ca396603fe5bde175670ec60251442c4"
+    },
+    {
+      "name": "php-runtime-build",
+      "exit": 0,
+      "stdout_sha256": "3c1ce63aa2e5994586ba7d33e5dc83676e66abb68aca996f22acf6548ed120ca",
+      "stderr_sha256": "d86cb49dd44ce17a9da506b4e732433d5755f98bac9a709da0462523638defc5"
+    },
+    {
+      "name": "php84-final-lint-1",
+      "log_base": "php84-final-lint-1-7663",
+      "exit": 0,
+      "stdout_sha256": "fc8c962b7a4368aad5ac245cde5e11e2c60ba390fe3be19d19318c6dcef9cd8f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-10",
+      "log_base": "php84-final-lint-10-7717",
+      "exit": 0,
+      "stdout_sha256": "22802ffafb070ffe785050e62d0610d0b4bc672609ec2cefe1c5b44bd0a3cd7a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-11",
+      "log_base": "php84-final-lint-11-7723",
+      "exit": 0,
+      "stdout_sha256": "d123ef6970c7ead380504be18dc93fc445acc561ad6133a117e4c21700fc8ccb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-12",
+      "log_base": "php84-final-lint-12-7729",
+      "exit": 0,
+      "stdout_sha256": "660e0bd54eb90c18e5e57f6ae63ea573d34573d1dd8c162ca9185bd5bbcd45d4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-13",
+      "log_base": "php84-final-lint-13-7735",
+      "exit": 0,
+      "stdout_sha256": "2a0c3a43c7397e281b87d62dac3b9a88584559c712ab87f5b95f98d837b152b2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-2",
+      "log_base": "php84-final-lint-2-7669",
+      "exit": 0,
+      "stdout_sha256": "5e1e9d4d516750b3f5b7b6ecd351f36806e2a94fa2e0a7f54d8bcd34953c3fe2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-3",
+      "log_base": "php84-final-lint-3-7675",
+      "exit": 0,
+      "stdout_sha256": "0dae1dace91abf919774f48f4534803fc3cb62584cba0188f3957cc0b81b757b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-4",
+      "log_base": "php84-final-lint-4-7681",
+      "exit": 0,
+      "stdout_sha256": "199708393cbcc7bc1592a504cb0b2d41557a807e77b654bcf10656837ea1bd3e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-5",
+      "log_base": "php84-final-lint-5-7687",
+      "exit": 0,
+      "stdout_sha256": "09331a622269ac2d24c3efae41c97fc282fde0f5b946f8a36cfae0036ea98537",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-6",
+      "log_base": "php84-final-lint-6-7693",
+      "exit": 0,
+      "stdout_sha256": "07995cb97fed314b7ebd9b09cada83bae2386267870af48a09883bd55c512e6f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-7",
+      "log_base": "php84-final-lint-7-7699",
+      "exit": 0,
+      "stdout_sha256": "9b898a2940de9ed0571a85d73f38044c1658f7207a2c8193ee0c4dd787ce3e21",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-8",
+      "log_base": "php84-final-lint-8-7705",
+      "exit": 0,
+      "stdout_sha256": "74dc724c4c65b3b8e2067df2e2518dce1d61b324736dd93cc40de2bbfbba2f60",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-final-lint-9",
+      "log_base": "php84-final-lint-9-7711",
+      "exit": 0,
+      "stdout_sha256": "7c0ef1d829c938278dfcccc87927f6c27d17ec6d25e96e816765ebb0a998e116",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "php84-source-parse",
+      "log_base": "php84-source-parse-7140",
+      "exit": 0,
+      "stdout_sha256": "5f01fee8d321f225ed3a6eb0f91b86905bbf3f017a6c4057eb63e1ce14371fd2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "real-http-admin-and-session",
+      "log_base": "real-http-admin-and-session-7583",
+      "exit": 0,
+      "stdout_sha256": "37e307c19ed8930c1520646d344bd4df3336916693f26a6a10343d90c0300130",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "real-http-persistence-phase2",
+      "log_base": "real-http-persistence-phase2-7800",
+      "exit": 0,
+      "stdout_sha256": "ead7dda2bd5af805526b2f103da1c6be6151327cd38f1778ebc650b1c062e0a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "real-http-phase1",
+      "log_base": "real-http-phase1-7227",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "33df3c158ba3da94f0249aa0df1df4d8694b7d5dfc2099831f61263d1c71a509"
+    },
+    {
+      "name": "real-http-phase1-loopback",
+      "log_base": "real-http-phase1-loopback-7261",
+      "exit": 1,
+      "stdout_sha256": "4dc740ab377b6fc9da99b47300912ae751e26376967cdf3f1d43d81b17712777",
+      "stderr_sha256": "3d250d5c65e6d87af73660fa37c0e7b12f8274ce413c2704ef42556db420f84f"
+    },
+    {
+      "name": "real-http-phase1-resume",
+      "log_base": "real-http-phase1-resume-7337",
+      "exit": 1,
+      "stdout_sha256": "a253d1ecb10abcb288620022d8022ddabd27e390886202b268f8ecb8499ce1c7",
+      "stderr_sha256": "657e87c5ee990d6d4d51e7b1cb99c36f2437d212fa25c0f716241ce104551cf8"
+    },
+    {
+      "name": "supply-and-engine-pure-final",
+      "log_base": "supply-and-engine-pure-final-7464",
+      "exit": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "deed6f6c70732168c40d9d9ccc299905ca16ac036e79e45ff83dc3edd87ff0bf"
+    },
+    {
+      "name": "composer-laravel13-solver",
+      "log_base": "composer-laravel13-solver-2735",
+      "exit": 0,
+      "stdout_sha256": "dac04dda7966b04d2eb83ba22b729e4025f820bba102192effa983b1fa377af8",
+      "stderr_sha256": "6a728c23fca31eebe9786e718ea272a7dcbd1de3c953a9ea97ce3724427ccd23"
+    }
+  ],
+  "http_attempts": 100,
+  "http_responses": 99,
+  "http_transport": {
+    "actual_http_endpoint": "http://127.0.0.1:8081",
+    "client_location": "same task-owned API container",
+    "protocol": "REAL_HTTP_PHP_CURL",
+    "host_port_forwarding": "UNAVAILABLE_ON_INTERNAL_NETWORK",
+    "external_listener_added": false,
+    "outbound_network_added": false
+  },
+  "http_responses_sanitized": [
+    {
+      "seq": 7265,
+      "name": "login-base-a",
+      "status": 200,
+      "response_bytes": 920,
+      "body_sha256": "07fe721d9af429f6ccd7afde21667c263b8f3a58b1c4890ecbbd7ab405b5dcdd"
+    },
+    {
+      "seq": 7270,
+      "name": "login-base-b",
+      "status": 200,
+      "response_bytes": 920,
+      "body_sha256": "833157dc5605134329cff1991e370cf2fc396a85c7827fbf7f269a5d666730c2"
+    },
+    {
+      "seq": 7275,
+      "name": "login-block-a",
+      "status": 200,
+      "response_bytes": 922,
+      "body_sha256": "fd9ba67b7bf69899e9cffa967fed56f9b61403a1ccdb8a95c63c875350c6af9f"
+    },
+    {
+      "seq": 7280,
+      "name": "login-block-b",
+      "status": 200,
+      "response_bytes": 922,
+      "body_sha256": "c1819604dd426e3f90620d439bced815ebff1ac4998ca6841dbd84f6b975eeac"
+    },
+    {
+      "seq": 7285,
+      "name": "login-mc-a",
+      "status": 200,
+      "response_bytes": 917,
+      "body_sha256": "debe2c2dec615807e4a373fc56123e08ee78c9f919ee753519d059bf16b3da8e"
+    },
+    {
+      "seq": 7290,
+      "name": "login-mc-b",
+      "status": 200,
+      "response_bytes": 918,
+      "body_sha256": "1a5879991099e41d0d7dab446c96cd501ef67386cdb8207b912099aca4dd35fc"
+    },
+    {
+      "seq": 7295,
+      "name": "login-cn-a",
+      "status": 200,
+      "response_bytes": 918,
+      "body_sha256": "0eb57b37df838d3e32b6e1d92cec923b07f4222936f48462b3a0517353c466f2"
+    },
+    {
+      "seq": 7300,
+      "name": "login-cn-b",
+      "status": 200,
+      "response_bytes": 920,
+      "body_sha256": "5781f81e0857e3947b7379018acf7b4833e4a47d29db384a25d234cdc30added"
+    },
+    {
+      "seq": 7305,
+      "name": "login-disabled-a",
+      "status": 200,
+      "response_bytes": 932,
+      "body_sha256": "ad4bda8b9037892fc39446be9aa36fdf746eabd25b143a477a10363f2a27265a"
+    },
+    {
+      "seq": 7310,
+      "name": "login-disabled-b",
+      "status": 200,
+      "response_bytes": 932,
+      "body_sha256": "da2e08a9dc9b8aede8d2f655bccf271d7a9101daa26812c584e18887c642f5ed"
+    },
+    {
+      "seq": 7315,
+      "name": "refresh-valid",
+      "status": 200,
+      "response_bytes": 922,
+      "body_sha256": "d694f9c8d040e6e7fddfabe146918a8393af248732ec95d5884717eb0ce9f119"
+    },
+    {
+      "seq": 7319,
+      "name": "refresh-old-denied",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "seq": 7323,
+      "name": "access-old-denied",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "seq": 7328,
+      "name": "upload-base",
+      "status": 422,
+      "response_bytes": 106,
+      "body_sha256": "f8684399be044029313196163ec1e77ed4c507ab1e7c1d38cfc5d18e92c646ef"
+    },
+    {
+      "seq": 7341,
+      "name": "upload-base",
+      "status": 200,
+      "response_bytes": 893,
+      "body_sha256": "09d4f1f92fe7a357253cecb1ef7c52d88b3a4032238bcf4ff21878b8661a3ed3"
+    },
+    {
+      "seq": 7345,
+      "name": "message-first-base",
+      "status": 200,
+      "response_bytes": 1081,
+      "body_sha256": "58a0085fdee084b59684ed44492af976386ccb7890948bb26cecbbc67100a40f"
+    },
+    {
+      "seq": 7350,
+      "name": "message-replay-base",
+      "status": 200,
+      "response_bytes": 1080,
+      "body_sha256": "50075d6ec156b041073ed2ce30aeae9826128c185c860a041d3e17a783ea27b2"
+    },
+    {
+      "seq": 7354,
+      "name": "message-conflict-base",
+      "status": 409,
+      "response_bytes": 92,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "seq": 7358,
+      "name": "message-read-base",
+      "status": 200,
+      "response_bytes": 993,
+      "body_sha256": "2380f00d2ea1cb22788814f6248ec58033ef3e7bb7b4c9c7cb768ab1cd222137"
+    },
+    {
+      "seq": 7362,
+      "name": "image-read-base",
+      "status": 200,
+      "response_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "seq": 7366,
+      "name": "image-third-party-base",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7370,
+      "name": "upload-block",
+      "status": 200,
+      "response_bytes": 893,
+      "body_sha256": "253777d1c4d7be19e049e7780ec30c7d8f8fffd4fbe4eb199a158e3de8c5fa9d"
+    },
+    {
+      "seq": 7374,
+      "name": "message-first-block",
+      "status": 200,
+      "response_bytes": 1082,
+      "body_sha256": "abcdca567909728592ca9269bd2c746ab0246f956d1fd66c26d236e59ca3d011"
+    },
+    {
+      "seq": 7380,
+      "name": "message-replay-block",
+      "status": 200,
+      "response_bytes": 1081,
+      "body_sha256": "17cf3222a608ca19c5b3a063c0a01cffdee49b37a9a76f0cc1694020c52225ed"
+    },
+    {
+      "seq": 7384,
+      "name": "message-conflict-block",
+      "status": 409,
+      "response_bytes": 92,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "seq": 7388,
+      "name": "message-read-block",
+      "status": 200,
+      "response_bytes": 994,
+      "body_sha256": "1bf8b8da9c78001eace08efd8d41d63497f816cdce64fac3c133f5c18519986d"
+    },
+    {
+      "seq": 7392,
+      "name": "image-read-block",
+      "status": 200,
+      "response_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "seq": 7396,
+      "name": "image-third-party-block",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7400,
+      "name": "block-commit",
+      "status": 200,
+      "response_bytes": 48,
+      "body_sha256": "616e63f20f9eee6864a237d9534bcdecceece349da7aeacdb104bf807f9f1138"
+    },
+    {
+      "seq": 7404,
+      "name": "revoked-replay-block",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7408,
+      "name": "revoked-new-block",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7412,
+      "name": "revoked-message-read-block",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7416,
+      "name": "revoked-media-read-block",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7420,
+      "name": "upload-mc",
+      "status": 200,
+      "response_bytes": 893,
+      "body_sha256": "4df1f7cd94ab94a4688f32284532b6b9d4ab9f1415905a88f7262b25f3be28a5"
+    },
+    {
+      "seq": 7424,
+      "name": "message-first-mc",
+      "status": 200,
+      "response_bytes": 1079,
+      "body_sha256": "33da7e0fe2d834be1986a1ccbcfdacced1ab32e35445e9fa9204e5b1bdc0005c"
+    },
+    {
+      "seq": 7429,
+      "name": "message-replay-mc",
+      "status": 200,
+      "response_bytes": 1078,
+      "body_sha256": "06bdd227590fd4e7b5d284f73a966d29643b2f0164a49a13fa99845bfefc50b1"
+    },
+    {
+      "seq": 7433,
+      "name": "message-conflict-mc",
+      "status": 409,
+      "response_bytes": 92,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "seq": 7437,
+      "name": "message-read-mc",
+      "status": 200,
+      "response_bytes": 991,
+      "body_sha256": "f57bb1deee48cd656b0ece9ce54cff9b4d6a905a2ff001a7e91f11987cb770b6"
+    },
+    {
+      "seq": 7441,
+      "name": "image-read-mc",
+      "status": 200,
+      "response_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "seq": 7445,
+      "name": "image-third-party-mc",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7452,
+      "name": "current-mc",
+      "status": 200,
+      "response_bytes": 2182,
+      "body_sha256": "d749c1996054c41fa3c3b5c6d29e05d9e394479d74ab61a2e5b195ef57da7579"
+    },
+    {
+      "seq": 7456,
+      "name": "revoke-mc",
+      "status": 200,
+      "response_bytes": 2229,
+      "body_sha256": "cf99da8a901c383dbf038afca5c74c5b7d1100bd2ee0a50970b0c5e4acf31597"
+    },
+    {
+      "seq": 7460,
+      "name": "revoked-replay-mc",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7470,
+      "name": "revoked-new-mc",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7474,
+      "name": "revoked-message-read-mc",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7478,
+      "name": "revoked-media-read-mc",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7482,
+      "name": "upload-cn",
+      "status": 200,
+      "response_bytes": 893,
+      "body_sha256": "a3e70fb97385634a3cf9cc7e1dcadcfe9675ce5c15d51483003597cb62a58920"
+    },
+    {
+      "seq": 7486,
+      "name": "message-first-cn",
+      "status": 200,
+      "response_bytes": 1081,
+      "body_sha256": "d74fd86476015319c98fda9c494c440b73cb1e1f002497d0e58a2739858e0fb8"
+    },
+    {
+      "seq": 7491,
+      "name": "message-replay-cn",
+      "status": 200,
+      "response_bytes": 1080,
+      "body_sha256": "f7f40a8777c910ca985a7c9a95d0ffcb3fb6d506fbe06488af6e577064743f0e"
+    },
+    {
+      "seq": 7495,
+      "name": "message-conflict-cn",
+      "status": 409,
+      "response_bytes": 92,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "seq": 7499,
+      "name": "message-read-cn",
+      "status": 200,
+      "response_bytes": 993,
+      "body_sha256": "b104f65bbddc2dbdb926421695a23a82191d8c7dcc10d9f5f042531d0674ea6d"
+    },
+    {
+      "seq": 7503,
+      "name": "image-read-cn",
+      "status": 200,
+      "response_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "seq": 7507,
+      "name": "image-third-party-cn",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7511,
+      "name": "current-cn",
+      "status": 200,
+      "response_bytes": 2188,
+      "body_sha256": "f6b776b91c4b8c357ecb6d6516acaf75be42780396d3239fda0f2e1c0f5218ae"
+    },
+    {
+      "seq": 7515,
+      "name": "revoke-cn",
+      "status": 200,
+      "response_bytes": 2332,
+      "body_sha256": "de875876fa8f596caff508664397c37ba95b4be4b2ce8baf9443d562338b5d34"
+    },
+    {
+      "seq": 7519,
+      "name": "revoked-replay-cn",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7523,
+      "name": "revoked-new-cn",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7527,
+      "name": "revoked-message-read-cn",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7531,
+      "name": "revoked-media-read-cn",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7535,
+      "name": "notifications-present",
+      "status": 200,
+      "response_bytes": 535,
+      "body_sha256": "c7b2a2215146a71e17e441dcca09c17118dbed66d7b7e051f773d98d1bc93c06"
+    },
+    {
+      "seq": 7539,
+      "name": "preferences-silent",
+      "status": 200,
+      "response_bytes": 199,
+      "body_sha256": "24377fc07c434a29a427c5215ec954de614918e9773b8d905c2451f68a6c7d5d"
+    },
+    {
+      "seq": 7543,
+      "name": "notification-device-test-only",
+      "status": 200,
+      "response_bytes": 127,
+      "body_sha256": "024f155e744324fb1702b90ce85a33323fee3064f9acedae849114001847620a"
+    },
+    {
+      "seq": 7547,
+      "name": "notification-unapproved-provider",
+      "status": 422,
+      "response_bytes": 158,
+      "body_sha256": "d037c21b79ab8a62570db02bf607e5d6b20ffe73e6908edfb9abe85e8a9119fe"
+    },
+    {
+      "seq": 7551,
+      "name": "notification-device-delete",
+      "status": 200,
+      "response_bytes": 101,
+      "body_sha256": "c334fee57549700999480f341ef476f581125143536821377ecc0d79f65ac709"
+    },
+    {
+      "seq": 7556,
+      "name": "activity-opaque-locator",
+      "status": 404,
+      "response_bytes": 81,
+      "body_sha256": "7c7541794024d30441663826d5932191a83e3a3e78f8a63028c82a9b593ae153"
+    },
+    {
+      "seq": 7560,
+      "name": "admin-login-form",
+      "status": 200,
+      "response_bytes": 3363,
+      "body_sha256": "d27861343a706c977b224f35981b92aa8b002c4700c6408a815779f0ab933997"
+    },
+    {
+      "seq": 7564,
+      "name": "admin-authenticate",
+      "status": 302,
+      "response_bytes": 358,
+      "body_sha256": "e4cc331d69be1a38a4de07c47d073adc933e7856f141e918c749dde031af1529"
+    },
+    {
+      "seq": 7568,
+      "name": "admin-positive",
+      "status": 200,
+      "response_bytes": 17144,
+      "body_sha256": "91ae23b9b823ed55961b9f6a2bc200e9b5ffd04438a1be69eee3c4a6906c5116"
+    },
+    {
+      "seq": 7572,
+      "name": "disable-owned-user",
+      "status": 302,
+      "response_bytes": 358,
+      "body_sha256": "e4cc331d69be1a38a4de07c47d073adc933e7856f141e918c749dde031af1529"
+    },
+    {
+      "seq": 7577,
+      "name": "disabled-old-access",
+      "status": 200,
+      "response_bytes": 49,
+      "body_sha256": "cb2767e1e2a42d88aa243bdd372b3c8d88557029dc7968040037a4c0249f7271"
+    },
+    {
+      "seq": 7588,
+      "name": "admin-login-form",
+      "status": 200,
+      "response_bytes": 3363,
+      "body_sha256": "f51f2bd7e8408b771dfe045b1d4a6c6a81e3757095dab2752a8e2a7379e67bbc"
+    },
+    {
+      "seq": 7593,
+      "name": "admin-authenticate",
+      "status": 302,
+      "response_bytes": 358,
+      "body_sha256": "e4cc331d69be1a38a4de07c47d073adc933e7856f141e918c749dde031af1529"
+    },
+    {
+      "seq": 7598,
+      "name": "admin-positive",
+      "status": 200,
+      "response_bytes": 17144,
+      "body_sha256": "e2893ae01ca223b3b94935a8c42ced77273c2a6dbdf042b7496f5fe02929433a"
+    },
+    {
+      "seq": 7603,
+      "name": "admin-missing-csrf",
+      "status": 419,
+      "response_bytes": 6592,
+      "body_sha256": "ed0403292b91ada9b7e1dc7159467c5083e76977944d83daad889d7f1c19549e"
+    },
+    {
+      "seq": 7608,
+      "name": "disable-owned-user-confirmed",
+      "status": 302,
+      "response_bytes": 358,
+      "body_sha256": "e4cc331d69be1a38a4de07c47d073adc933e7856f141e918c749dde031af1529"
+    },
+    {
+      "seq": 7613,
+      "name": "disabled-old-access",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "seq": 7618,
+      "name": "disabled-old-refresh",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "seq": 7623,
+      "name": "admin-logout",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7628,
+      "name": "admin-old-cookie-denied",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7640,
+      "name": "legacy-php-session-positive",
+      "status": 200,
+      "response_bytes": 16429,
+      "body_sha256": "deddbee9567e85524932011e798daf93cfa079d736e94540270546e38ef7fa0b"
+    },
+    {
+      "seq": 7645,
+      "name": "legacy-php-session-logout",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7650,
+      "name": "legacy-php-session-denied",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7812,
+      "name": "restart-message-read",
+      "status": 200,
+      "response_bytes": 993,
+      "body_sha256": "2380f00d2ea1cb22788814f6248ec58033ef3e7bb7b4c9c7cb768ab1cd222137"
+    },
+    {
+      "seq": 7817,
+      "name": "restart-same-key",
+      "status": 200,
+      "response_bytes": 1104,
+      "body_sha256": "60e7ffac939863c20467ab1f02d2c3987eed895bcec76b317d5bf3b3c766284b"
+    },
+    {
+      "seq": 7822,
+      "name": "restart-image-bytes",
+      "status": 200,
+      "response_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "seq": 7827,
+      "name": "restart-notification-prefs",
+      "status": 200,
+      "response_bytes": 199,
+      "body_sha256": "24377fc07c434a29a427c5215ec954de614918e9773b8d905c2451f68a6c7d5d"
+    },
+    {
+      "seq": 7832,
+      "name": "restart-revoked-message-block",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7837,
+      "name": "restart-revoked-media-block",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7842,
+      "name": "restart-revoked-message-mc",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7847,
+      "name": "restart-revoked-media-mc",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7852,
+      "name": "restart-revoked-message-cn",
+      "status": 404,
+      "response_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "seq": 7857,
+      "name": "restart-revoked-media-cn",
+      "status": 404,
+      "response_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "seq": 7862,
+      "name": "restart-legacy-session-positive",
+      "status": 200,
+      "response_bytes": 16429,
+      "body_sha256": "4ea314b75bce3a26bcda8cfb0172eeeaf5e30220a0bf59865c55fb81afe74f4c"
+    },
+    {
+      "seq": 7867,
+      "name": "restart-legacy-session-logout",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7872,
+      "name": "restart-legacy-session-denied",
+      "status": 302,
+      "response_bytes": 382,
+      "body_sha256": "a8ea48ef688696b969d1f4fa2f3feeb0aafecad9dd26b0f51f92d54df2452d3e"
+    },
+    {
+      "seq": 7877,
+      "name": "restart-disabled-login",
+      "status": 403,
+      "response_bytes": 56,
+      "body_sha256": "e8c3e059c34d1c8ef8a91f89a8dee95ab185d8d2f74c5d87a258f524f3ae276e"
+    },
+    {
+      "seq": 7882,
+      "name": "api-logout",
+      "status": 200,
+      "response_bytes": 38,
+      "body_sha256": "e8255cc3221feae929472b867280798cd828840618405d6baec295bcc558d289"
+    },
+    {
+      "seq": 7887,
+      "name": "api-logout-old-access",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "seq": 7892,
+      "name": "api-logout-old-refresh",
+      "status": 401,
+      "response_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    }
+  ],
+  "http_phase1": {
+    "status": "PASS",
+    "messages": 4,
+    "attachments": 4,
+    "notifications": 4,
+    "legacy_wire_format": "PHP_SERIALIZED_SYNTHETIC_LEGACY",
+    "old_laravel11_binary_cookie": "NOT_RUN"
+  },
+  "http_phase2": {
+    "status": "PASS",
+    "same_message_facts_after_restart": true,
+    "messages": 4,
+    "attachments": 4,
+    "notifications": 4,
+    "migrations": 75,
+    "legacy_wire_session_survived": true,
+    "revoked_permissions_remain_denied": true,
+    "desktop_wsl_activation_count": 0
+  },
+  "restart": {
+    "before": {
+      "db": "2026-10-30T11:48:02.768669764Z",
+      "api": "2026-10-30T11:48:03.037803626Z"
+    },
+    "after": {
+      "db": "2026-10-30T12:05:56.756210373Z",
+      "api": "2026-10-30T12:05:56.948169579Z"
+    },
+    "same_owned_containers": true,
+    "same_new_task_volume": "elitesync-v1015-running-20261030-dbdata",
+    "desktop_wsl_restart": false
+  },
+  "vendor_install": {
+    "exit": 0,
+    "installed_json_sha256": "487f64a7a658fe1200506923023ad3825590c3c7397a6c7e97bc6e77b3040b25",
+    "lock_sha256": "de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3",
+    "network_disabled": true,
+    "scripts_plugins_disabled": true
+  },
+  "vendor_closure": {
+    "file_count": 9161,
+    "bytes": 50475450,
+    "sorted_path_sha256_chain": "d11b146ef4b6911705867f1aa84ca62fa8cac0b934ff006dfa9d05d6d36d76b3",
+    "lock_sha256": "de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3",
+    "installed_json_sha256": "487f64a7a658fe1200506923023ad3825590c3c7397a6c7e97bc6e77b3040b25",
+    "status": "LOCAL_ONLY_REAL_VENDOR",
+    "git_vendor_committed": false
+  },
+  "package_dist": [
+    {
+      "name": "6tail/lunar-php",
+      "version": "1.4.7",
+      "source_reference": "394d9f5afc78d3364456a6bb1369dbbb6f3ba88a",
+      "sha256": "0cc3e0574ddde77271130eb694acb9334569a9bd28aa1ae71041f7289f03d58a",
+      "bytes": 147383,
+      "uncompressed_size_checked": 502203
+    },
+    {
+      "name": "brick/math",
+      "version": "1.0.0",
+      "source_reference": "2effe05d2177c451b86c6a073196a4034c02f211",
+      "sha256": "12d3ac536b11ff0295c3e18a486adb52914433b8999538d03823d48644ce6b60",
+      "bytes": 66469,
+      "uncompressed_size_checked": 266551
+    },
+    {
+      "name": "carbonphp/carbon-doctrine-types",
+      "version": "3.2.1",
+      "source_reference": "5fa5eacafd9ef47c8c6ab9143fc901ba0194d3dc",
+      "sha256": "b5e2fbc7474135637f2d69715ec5f3d234ef6d6c2fdfbdc08954b6624c2c0628",
+      "bytes": 6939,
+      "uncompressed_size_checked": 8414
+    },
+    {
+      "name": "dflydev/dot-access-data",
+      "version": "v3.0.3",
+      "source_reference": "a23a2bf4f31d3518f3ecb38660c95715dfead60f",
+      "sha256": "d400abe06f0fe14a8e20e87f5dd0b90c31199f15aeccf63c0041d9eb34f71948",
+      "bytes": 10528,
+      "uncompressed_size_checked": 23072
+    },
+    {
+      "name": "doctrine/inflector",
+      "version": "2.1.1",
+      "source_reference": "46351b6812b7b6d52b82c3efa5dfb786a198ec88",
+      "sha256": "a27c6366235b703716f97b7afda4060b371f3e8d372f8611392aacfeb2f3e31d",
+      "bytes": 38359,
+      "uncompressed_size_checked": 91643
+    },
+    {
+      "name": "doctrine/lexer",
+      "version": "3.0.3",
+      "source_reference": "71d305eaa6480d3d3460c7d053d1da7749fa9cca",
+      "sha256": "d93e23fc64e4d2e41d4f9efd442202219368e8a8769ad8136b8801710e861fde",
+      "bytes": 6182,
+      "uncompressed_size_checked": 13249
+    },
+    {
+      "name": "dragonmantank/cron-expression",
+      "version": "v3.6.1",
+      "source_reference": "4189372ffeff09bf14f731f67a9de90c7b413ebe",
+      "sha256": "5a6842e306a1492c3845e56fca30a2647be5fafe76c316287284375ce879189b",
+      "bytes": 24430,
+      "uncompressed_size_checked": 71345
+    },
+    {
+      "name": "egulias/email-validator",
+      "version": "4.0.4",
+      "source_reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+      "sha256": "76ab413a7b2a4331245bbc2a9bc447a3712ebdea969e6f7cd8dce4eff5c63f02",
+      "bytes": 56251,
+      "uncompressed_size_checked": 97964
+    },
+    {
+      "name": "fruitcake/php-cors",
+      "version": "v1.4.0",
+      "source_reference": "38aaa6c3fd4c157ffe2a4d10aa8b9b16ba8de379",
+      "sha256": "4c94fa9889a830620302d0392cbbc22da98a4f1daef4c01e35f95b182b1fcbf6",
+      "bytes": 6640,
+      "uncompressed_size_checked": 17155
+    },
+    {
+      "name": "graham-campbell/result-type",
+      "version": "v1.2.0",
+      "source_reference": "adccca3324eece92ca35463648c12b9e6293c05b",
+      "sha256": "e9535148589eae0ff67965163a21f35a0cb672cb75dc0f5a423b914a4417f9ba",
+      "bytes": 4100,
+      "uncompressed_size_checked": 7837
+    },
+    {
+      "name": "guzzlehttp/guzzle",
+      "version": "8.3.1",
+      "source_reference": "7d9b1f430bb65ac664e120af227bf9a795ad6333",
+      "sha256": "1fb3281e4d3926b4f07dd06974768eb951e4a7c699dfc7e7bd0de42d3cc7b62c",
+      "bytes": 267570,
+      "uncompressed_size_checked": 1040978
+    },
+    {
+      "name": "guzzlehttp/promises",
+      "version": "3.1.0",
+      "source_reference": "094d0ec418eb3b1411ea271a180ec95cae6ae933",
+      "sha256": "1b963c5ed6c88938959d8e3755bfc4e8d182f2d46a0196389005792ebad5124f",
+      "bytes": 41903,
+      "uncompressed_size_checked": 114476
+    },
+    {
+      "name": "guzzlehttp/psr7",
+      "version": "3.2.0",
+      "source_reference": "cdc139396207a5eba10c242d241fb014cb098390",
+      "sha256": "ee322c519cb0077a6b3369296a011edd004601df6f0299d0e72b364508588012",
+      "bytes": 150582,
+      "uncompressed_size_checked": 482379
+    },
+    {
+      "name": "guzzlehttp/uri-template",
+      "version": "v2.0.1",
+      "source_reference": "7a466ad606491eb6528c717482f7cca77f1851f3",
+      "sha256": "92ef39e1bb85a2bdb85812220f38fb54038bcaff81a27d75f05676c5a58795e2",
+      "bytes": 34525,
+      "uncompressed_size_checked": 113191
+    },
+    {
+      "name": "laravel/framework",
+      "version": "v13.39.0",
+      "source_reference": "d52c3b3129e4c8e213c97cdc68f94b0b7d27f181",
+      "sha256": "363dbbe8fba8c8f3662c61401ee6477adbd14fd487fd65a1ef4a72b76354425d",
+      "bytes": 2504659,
+      "uncompressed_size_checked": 8647473
+    },
+    {
+      "name": "laravel/prompts",
+      "version": "v0.3.26",
+      "source_reference": "2d1e9bf6bab8d3f383c254db7f2b4ea8816d55e0",
+      "sha256": "7fd37245b53456308bec6b5a836a285476b8da93c33412bd2ab864ffd09598dd",
+      "bytes": 90926,
+      "uncompressed_size_checked": 258598
+    },
+    {
+      "name": "laravel/sanctum",
+      "version": "v4.3.3",
+      "source_reference": "fee27a573d1a013af3721d86153a65e0b11927e6",
+      "sha256": "8fa63ffad9fb24d6fbdb5d6ecf7d14997f7621d41e5476f7120a231984af32af",
+      "bytes": 23503,
+      "uncompressed_size_checked": 44383
+    },
+    {
+      "name": "laravel/serializable-closure",
+      "version": "v2.1.0",
+      "source_reference": "2d5869a838bbcf37e0d8b0568fc41914e81374b5",
+      "sha256": "4f17ba83c9b01f53cd791bf166ce0216d6b002ea2f641c3337d3456d863cbf42",
+      "bytes": 22206,
+      "uncompressed_size_checked": 95698
+    },
+    {
+      "name": "laravel/tinker",
+      "version": "v3.0.2",
+      "source_reference": "4faba77764bd33411735936acdf30446d058c78b",
+      "sha256": "1ea1997d4079179103f484cdbf17ac5c83143796018e484ef6c5310aabde86b3",
+      "bytes": 8427,
+      "uncompressed_size_checked": 19986
+    },
+    {
+      "name": "league/commonmark",
+      "version": "2.10.4",
+      "source_reference": "40821b7606d8d946bac57dbd2290076c722e3a65",
+      "sha256": "7831c6344f81e2c32010435b051f20514c68594800b9726a453652600fe0c4db",
+      "bytes": 346229,
+      "uncompressed_size_checked": 708474
+    },
+    {
+      "name": "league/config",
+      "version": "v1.2.0",
+      "source_reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
+      "sha256": "1ad93a2858d4479e29d29b88d0d3e4ac4221631b06959454ae4061d058414b7a",
+      "bytes": 14803,
+      "uncompressed_size_checked": 26627
+    },
+    {
+      "name": "league/flysystem",
+      "version": "3.36.0",
+      "source_reference": "f7fb152932f30072d573510cbd4dd657d6475b25",
+      "sha256": "bfc414966ecdab46d18e64975a6344f7574a409afef5774f4e182d3e60792fe1",
+      "bytes": 40006,
+      "uncompressed_size_checked": 85941
+    },
+    {
+      "name": "league/flysystem-local",
+      "version": "3.35.3",
+      "source_reference": "a099b24dce160f3b2239043d13d47c4a1a214ea4",
+      "sha256": "07fbe87a87563bcf4e3403fbf301855b3a46b8d23b03d420bc92b1341e26e971",
+      "bytes": 5344,
+      "uncompressed_size_checked": 18787
+    },
+    {
+      "name": "league/mime-type-detection",
+      "version": "1.17.0",
+      "source_reference": "f5f47eff7c48ed1003069a2ca67f316fb4021c76",
+      "sha256": "660321223c2dc58b27e4d038f5bc54da98ca862d096c725735696ba1ea4f8905",
+      "bytes": 29099,
+      "uncompressed_size_checked": 118777
+    },
+    {
+      "name": "league/uri",
+      "version": "7.9.1",
+      "source_reference": "40403f5c3141457a61f7f1aba6706e8fa4a0ece5",
+      "sha256": "7938044ef3c5deb8f5b1776ee554a79fe0e324a8db741f0d96dc875e023c67b6",
+      "bytes": 80174,
+      "uncompressed_size_checked": 304935
+    },
+    {
+      "name": "league/uri-interfaces",
+      "version": "7.9.1",
+      "source_reference": "994300a79e17f179112dc259f8df0c4de982f736",
+      "sha256": "4313c6779a0c68091193f6fc71e054359ddcfcc6eb9e5aeece0d5a490d7f8bae",
+      "bytes": 64598,
+      "uncompressed_size_checked": 193412
+    },
+    {
+      "name": "monolog/monolog",
+      "version": "3.12.1",
+      "source_reference": "d7059e4c691d05ea1222b5124bed0f961be46e15",
+      "sha256": "a8ea5681c77cdf47c1412da8c9278be5927adc123710d382ec654342b23729a9",
+      "bytes": 212976,
+      "uncompressed_size_checked": 555979
+    },
+    {
+      "name": "nesbot/carbon",
+      "version": "3.15.1",
+      "source_reference": "ce0e5636fae7d1e99856eb70cae4c719a284aa08",
+      "sha256": "fa9b196195d27a0c58a5f96c3c378a709f2c29a03b82b4dcb95b6790cd2b8e81",
+      "bytes": 843298,
+      "uncompressed_size_checked": 3178400
+    },
+    {
+      "name": "nette/schema",
+      "version": "v1.4.0",
+      "source_reference": "af9fa8a86bfca9b02b10346220db26e62ef942ec",
+      "sha256": "8784c9919c98e2b3e29872d95ad96153b493bf0d13e4f1fafc4b8ba3073053ed",
+      "bytes": 41102,
+      "uncompressed_size_checked": 104181
+    },
+    {
+      "name": "nette/utils",
+      "version": "v4.1.6",
+      "source_reference": "6bf24518accf32cf845bca305e0b92078700fd01",
+      "sha256": "dd5ccd466c07720f936360e1a47766ebc19dc297120221ff0cfbdc85b2116d7b",
+      "bytes": 76177,
+      "uncompressed_size_checked": 228351
+    },
+    {
+      "name": "nikic/php-parser",
+      "version": "v5.9.0",
+      "source_reference": "9e33da9553fe7786f0962b35f4e4ecf01be89def",
+      "sha256": "c307260c466a105f12460f1866dc3600938ef4f7f8665e86f0d743a544848846",
+      "bytes": 279652,
+      "uncompressed_size_checked": 991602
+    },
+    {
+      "name": "nunomaduro/termwind",
+      "version": "v2.4.0",
+      "source_reference": "712a31b768f5daea284c2169a7d227031001b9a8",
+      "sha256": "2d36d755b4f0a4d635f4907fd23d8e5eb5d84227d27419447ca517f9e4646263",
+      "bytes": 36803,
+      "uncompressed_size_checked": 102282
+    },
+    {
+      "name": "phpoption/phpoption",
+      "version": "1.10.0",
+      "source_reference": "67b192b6a42ec03944b972d6e633ddec78ad2c6d",
+      "sha256": "04ebc516388b87905f4daa42b21c4fa817afcc65b995155e52cf4805a2a706a3",
+      "bytes": 12791,
+      "uncompressed_size_checked": 37432
+    },
+    {
+      "name": "psr/clock",
+      "version": "1.0.0",
+      "source_reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+      "sha256": "72a2682083efc51108e5d7d0e880d45d85236100692c86d093c3f6f9205ae573",
+      "bytes": 3020,
+      "uncompressed_size_checked": 3432
+    },
+    {
+      "name": "psr/container",
+      "version": "2.0.2",
+      "source_reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+      "sha256": "3111f5b69d3a0f690f5f92d7aeacfb247f5ebd3c175088cce4b098e5d1b06ad7",
+      "bytes": 3631,
+      "uncompressed_size_checked": 3803
+    },
+    {
+      "name": "psr/event-dispatcher",
+      "version": "1.0.0",
+      "source_reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
+      "sha256": "4d6a674cfd89a9957ead82e31ee4df785b2b1d215693add73184729a9a66d116",
+      "bytes": 4270,
+      "uncompressed_size_checked": 4014
+    },
+    {
+      "name": "psr/http-client",
+      "version": "1.0.3",
+      "source_reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
+      "sha256": "5d3fc583e721d451a0cc2073680476236199cd1680a0d9da1756e8152496deb5",
+      "bytes": 4428,
+      "uncompressed_size_checked": 4781
+    },
+    {
+      "name": "psr/http-factory",
+      "version": "1.1.0",
+      "source_reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+      "sha256": "a3c397252b6c1c15e60ad6fae927d61edbf4059f3473080bb1b3b40deabf80d2",
+      "bytes": 5608,
+      "uncompressed_size_checked": 7262
+    },
+    {
+      "name": "psr/http-message",
+      "version": "2.0",
+      "source_reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+      "sha256": "d561d2c36e2e3c0ee8b54e0e9652b3bfa13cd763e5e6f93400969001f3a7968d",
+      "bytes": 21950,
+      "uncompressed_size_checked": 65727
+    },
+    {
+      "name": "psr/log",
+      "version": "3.0.2",
+      "source_reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+      "sha256": "1e8dcf2df933fc3440b29146c5ca4e93ece51c5c7a9ac9653d926ec971c90892",
+      "bytes": 6811,
+      "uncompressed_size_checked": 10578
+    },
+    {
+      "name": "psr/simple-cache",
+      "version": "3.0.0",
+      "source_reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+      "sha256": "e899e363a85c26b3f1a621182b6eed2a37a71d823410ac949a1cbfd4b655ec41",
+      "bytes": 4589,
+      "uncompressed_size_checked": 7779
+    },
+    {
+      "name": "psy/psysh",
+      "version": "v0.12.24",
+      "source_reference": "ca0fdcf8a7617afa3adfdf1b5fef573dffb69ca1",
+      "sha256": "eeb0730d48f146848b83f443714deae605921a2aaa0d56ebd940314608a5cef8",
+      "bytes": 656432,
+      "uncompressed_size_checked": 1921187
+    },
+    {
+      "name": "ramsey/collection",
+      "version": "2.1.1",
+      "source_reference": "344572933ad0181accbf4ba763e85a0306a8c5e2",
+      "sha256": "a9d0d7949173c4fb8735a019f0052d3f1910d58fb10ed19e8003cab70f462c72",
+      "bytes": 42395,
+      "uncompressed_size_checked": 103165
+    },
+    {
+      "name": "ramsey/uuid",
+      "version": "4.9.4",
+      "source_reference": "75d73f48d02797c2c285a7e9f348fadc0102ffe2",
+      "sha256": "5c0350909d4cc04f49259753684b88e715358a196b942444a1c0946f59f5d05d",
+      "bytes": 129929,
+      "uncompressed_size_checked": 315229
+    },
+    {
+      "name": "symfony/clock",
+      "version": "v8.1.9",
+      "source_reference": "945ea3b64d6da9c1c2c354fe5c07b27455df6442",
+      "sha256": "c954a84555dcb011e9e2ff0d40f69ce7b3b542aba5af1d36623642a4d188867e",
+      "bytes": 11602,
+      "uncompressed_size_checked": 21874
+    },
+    {
+      "name": "symfony/console",
+      "version": "v8.1.10",
+      "source_reference": "5b6d9b127ec27bc6db59bf65e2e37b6fe5b00083",
+      "sha256": "0bc131c32bc8221ad7aeac14be743e34d10fa86e7a0cf44b67f4cd29dc502ba9",
+      "bytes": 276195,
+      "uncompressed_size_checked": 809955
+    },
+    {
+      "name": "symfony/css-selector",
+      "version": "v8.1.10",
+      "source_reference": "9cfd588b8b07cf83e3426b030dbafd2291c132d9",
+      "sha256": "7b713d551ed8be87f230065f17be2e310d841690a6b3fd48fd7bec241a3a0bbb",
+      "bytes": 58031,
+      "uncompressed_size_checked": 134147
+    },
+    {
+      "name": "symfony/deprecation-contracts",
+      "version": "v3.7.1",
+      "source_reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d",
+      "sha256": "3d91410609aa4f579406a4908e2960155fc3efd6c643884869f875aa73f9687d",
+      "bytes": 3345,
+      "uncompressed_size_checked": 4272
+    },
+    {
+      "name": "symfony/error-handler",
+      "version": "v8.1.10",
+      "source_reference": "84c6d73f990ae22dbd45625c056d7ff99ca6810d",
+      "sha256": "77de0c65965cd5b6cc00045c29fcc567f580158f7a02b9fc95c1294c539ab4d5",
+      "bytes": 95000,
+      "uncompressed_size_checked": 296265
+    },
+    {
+      "name": "symfony/event-dispatcher",
+      "version": "v8.1.5",
+      "source_reference": "7458da64220376b2e0dc2d8451bf43382c1ad297",
+      "sha256": "902632b570b9cf74686d9767685012e9929e397279889d023b43bb127f763333",
+      "bytes": 19363,
+      "uncompressed_size_checked": 57634
+    },
+    {
+      "name": "symfony/event-dispatcher-contracts",
+      "version": "v3.7.1",
+      "source_reference": "c7de7a00ffb67842132da02ea92988a39ccd9f4e",
+      "sha256": "cd447f381c65803dbd3fdc94146b2f4c88f921e783ad3a12feb14417d54b7b6d",
+      "bytes": 4069,
+      "uncompressed_size_checked": 5075
+    },
+    {
+      "name": "symfony/finder",
+      "version": "v8.1.10",
+      "source_reference": "2f4c0f26106520d82e1b71759d2fb8d32d8b7a43",
+      "sha256": "f8b2c0f05bb4453cba596bfc747e1cdacd667cd09fd6ad0971472006de22d6e4",
+      "bytes": 32947,
+      "uncompressed_size_checked": 85488
+    },
+    {
+      "name": "symfony/http-foundation",
+      "version": "v8.1.10",
+      "source_reference": "79325f87c3a2acc7564ddce9f457046e980e7255",
+      "sha256": "2c7673f9f10fca10dc527491778ed3d5c50adcedad3bea2672a254fc849368ed",
+      "bytes": 180075,
+      "uncompressed_size_checked": 500312
+    },
+    {
+      "name": "symfony/http-kernel",
+      "version": "v8.1.10",
+      "source_reference": "924974dbdcdf4cc40d7bb2c65ae83bb6dc67cff1",
+      "sha256": "b405e5d8eec77a545994143b12357a9e89a4ac65c09ea364e0f94f82be691c13",
+      "bytes": 237078,
+      "uncompressed_size_checked": 606793
+    },
+    {
+      "name": "symfony/mailer",
+      "version": "v8.1.10",
+      "source_reference": "4ba81a8f04fbf0bb1691f7bff760b301f1956fd7",
+      "sha256": "4101d60dda45f9ad018328a4786ea47ccd41eb3b36be3a842921104f94035753",
+      "bytes": 68025,
+      "uncompressed_size_checked": 143513
+    },
+    {
+      "name": "symfony/mime",
+      "version": "v8.1.10",
+      "source_reference": "8d1232052c9cdef170ed9608b3147bca4f61ff69",
+      "sha256": "e609d2647990faaeb49b58477572b468720a31809aacecf69686c76bcd2deb0f",
+      "bytes": 117021,
+      "uncompressed_size_checked": 383852
+    },
+    {
+      "name": "symfony/polyfill-ctype",
+      "version": "v1.37.0",
+      "source_reference": "141046a8f9477948ff284fa65be2095baafb94f2",
+      "sha256": "922b0c6b24d1bcb6447d051edc1fc4526bcca5f88ddc4a27d885507872ceecc1",
+      "bytes": 4807,
+      "uncompressed_size_checked": 12258
+    },
+    {
+      "name": "symfony/polyfill-intl-grapheme",
+      "version": "v1.43.3",
+      "source_reference": "5a8f33c87aeecffce24e721b5064fab05f4becf8",
+      "sha256": "6e2ffe9c281ab91182be8df23d7d5e753fe740e8162cb92294fdd3ad51921bfd",
+      "bytes": 12238,
+      "uncompressed_size_checked": 34148
+    },
+    {
+      "name": "symfony/polyfill-intl-idn",
+      "version": "v1.43.0",
+      "source_reference": "533d68cf99c8f8ee2e8893c59ed59192e92cfd74",
+      "sha256": "4a6f95617e8d7cf2b62990c7f390bcb925781ad07b20da1bdcbd5c8d12224996",
+      "bytes": 65848,
+      "uncompressed_size_checked": 324549
+    },
+    {
+      "name": "symfony/polyfill-intl-normalizer",
+      "version": "v1.43.0",
+      "source_reference": "ebd57ccc7edb93d632e184efbe7693d2517bab3b",
+      "sha256": "e7bb394e4d67b5c50ce78bb408ffe26f774a3fc39c8cd08b8bf1f5265a31f3fc",
+      "bytes": 72193,
+      "uncompressed_size_checked": 261030
+    },
+    {
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.43.3",
+      "source_reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a",
+      "sha256": "560bc33ca56b79d9c285d9a2f14058ac489b6e6341df75c4e49cf87434c6e3ce",
+      "bytes": 38177,
+      "uncompressed_size_checked": 145333
+    },
+    {
+      "name": "symfony/polyfill-php80",
+      "version": "v1.43.0",
+      "source_reference": "9c6a5d6b01ca51d486c813e9a9c0ed55f208bb74",
+      "sha256": "51579864c52acda1b834811f2f7f9818301641329387492c33d2a29de4d54bc5",
+      "bytes": 8258,
+      "uncompressed_size_checked": 12636
+    },
+    {
+      "name": "symfony/polyfill-php82",
+      "version": "v1.43.0",
+      "source_reference": "843bbe8b2a7934307b749751eede0f111f5d1cfc",
+      "sha256": "ab96ee62e8db90679222c8fcfd40a0557de830f46e0950ddb1e0bf4d91d4e22f",
+      "bytes": 13861,
+      "uncompressed_size_checked": 23422
+    },
+    {
+      "name": "symfony/polyfill-php84",
+      "version": "v1.43.0",
+      "source_reference": "22c6548499cbe5c5bb072fc0c42312dff062a015",
+      "sha256": "58d40920f17c547ae016928216ed33432598074521f3646ab6835cb4f5a85152",
+      "bytes": 21754,
+      "uncompressed_size_checked": 58352
+    },
+    {
+      "name": "symfony/polyfill-php85",
+      "version": "v1.43.0",
+      "source_reference": "86a42cbcc07adc331481a5ab310a4024bfc227f6",
+      "sha256": "16276b9ee895e9953b71dd55107bddb5aada6411280077581f1968a5c4fc08cc",
+      "bytes": 9724,
+      "uncompressed_size_checked": 14918
+    },
+    {
+      "name": "symfony/polyfill-php86",
+      "version": "v1.43.0",
+      "source_reference": "8840df45b24f33a49dc419fa18dc0057231ae1d8",
+      "sha256": "b2122b5bd79a676be2b524aab4aeebeb918009855cd9a665c5eefb827b2c3730",
+      "bytes": 5223,
+      "uncompressed_size_checked": 6769
+    },
+    {
+      "name": "symfony/polyfill-time",
+      "version": "v1.42.0",
+      "source_reference": "ac9f1ed802dd58f37e720388130c088434aa09fc",
+      "sha256": "b860d31c6189c197a2cb782f63aee6b8fd5a528558c8b5c990f6f67bc62a65e4",
+      "bytes": 7160,
+      "uncompressed_size_checked": 20504
+    },
+    {
+      "name": "symfony/polyfill-uuid",
+      "version": "v1.43.0",
+      "source_reference": "b23ff8245cc5c4479ea2be3d0132d2e6dd433993",
+      "sha256": "2127286b5ffac783a9c1d5ab08852e42a76e4b7fed1962184f52c979633ce422",
+      "bytes": 8562,
+      "uncompressed_size_checked": 30058
+    },
+    {
+      "name": "symfony/process",
+      "version": "v8.1.10",
+      "source_reference": "08aa69fa0998bb65a089f9e148a2c0f8b391398e",
+      "sha256": "cad4dc3637628c44b0285b8b373a0ee1002038a8d992ed9afdeecafca8f4e4ea",
+      "bytes": 40438,
+      "uncompressed_size_checked": 115635
+    },
+    {
+      "name": "symfony/routing",
+      "version": "v8.1.10",
+      "source_reference": "41b32d2c5d907abe2c3ffaa7a112dd7492353822",
+      "sha256": "0402bb5691b9efc99f1f3308141f8533a185d5c36f34dfdce35ab077d2130656",
+      "bytes": 105600,
+      "uncompressed_size_checked": 286488
+    },
+    {
+      "name": "symfony/service-contracts",
+      "version": "v3.7.3",
+      "source_reference": "15e6a07ec2a2c75ceb1b21dd98105ee8456d2257",
+      "sha256": "ec305155895d781bc8bec81011a35dea55c88f849b2a6a2e0b689195f4b0f66d",
+      "bytes": 14630,
+      "uncompressed_size_checked": 26215
+    },
+    {
+      "name": "symfony/string",
+      "version": "v8.1.10",
+      "source_reference": "6c6110979c0150393bbb336170e286d51ab4d76c",
+      "sha256": "5b9965885191148fa0ef1455f6f82a73c87c07432c22232e33cd43da2d964f3e",
+      "bytes": 46754,
+      "uncompressed_size_checked": 169030
+    },
+    {
+      "name": "symfony/translation",
+      "version": "v8.1.10",
+      "source_reference": "8fbbb32f4bbbece5079acb01ab648fd20583fc93",
+      "sha256": "23c8ad9c5df936cf2ad229a38ee3e18c034fde0dc192c9b98b4148f4a7287ebe",
+      "bytes": 139222,
+      "uncompressed_size_checked": 445811
+    },
+    {
+      "name": "symfony/translation-contracts",
+      "version": "v3.7.1",
+      "source_reference": "ccb206b98faccc511ebae8e5fad50f2dc0b30621",
+      "sha256": "a56c767440ea61bf22d16b2bc8102b1cf07c635da7a47bc809b4d4699a741820",
+      "bytes": 10720,
+      "uncompressed_size_checked": 30878
+    },
+    {
+      "name": "symfony/uid",
+      "version": "v8.1.9",
+      "source_reference": "cb487cf30380f0b0b090973bb9c0588193c06685",
+      "sha256": "a253bde2f562792cc596d2a27553dadeb8775019a34386b0ec83392cb2841021",
+      "bytes": 36736,
+      "uncompressed_size_checked": 87521
+    },
+    {
+      "name": "symfony/var-dumper",
+      "version": "v8.1.10",
+      "source_reference": "3412a5af7d34a19515a77890fc804fe8e50d1a4f",
+      "sha256": "027ca73eaed2e363802e45156142b4b5a3b9a8f98067022889354e7ad6a6168e",
+      "bytes": 115582,
+      "uncompressed_size_checked": 329355
+    },
+    {
+      "name": "tijsverkoyen/css-to-inline-styles",
+      "version": "v2.4.0",
+      "source_reference": "f0292ccf0ec75843d65027214426b6b163b48b41",
+      "sha256": "714bf4832c54e936a503e3853b0a5c52626b044783a52ee49d7a4040c5c9dcab",
+      "bytes": 10038,
+      "uncompressed_size_checked": 24104
+    },
+    {
+      "name": "vlucas/phpdotenv",
+      "version": "v5.8.0",
+      "source_reference": "96149103e62ac67e915f6d2ef59b72dee2e011e0",
+      "sha256": "9d6834f05b7922b2f1dce9b85cf8ad607ddd0985ceb424273a9d6bc673f9b5a2",
+      "bytes": 36204,
+      "uncompressed_size_checked": 87918
+    },
+    {
+      "name": "voku/portable-ascii",
+      "version": "2.1.1",
+      "source_reference": "8e1051fe39379367aecf014f41744ce7539a856f",
+      "sha256": "a6902aa7b789eb440a9374fc6e65da15c6cdd00064aeba8f389ef3e5e0e42799",
+      "bytes": 168363,
+      "uncompressed_size_checked": 546120
+    },
+    {
+      "name": "workerman/coroutine",
+      "version": "v1.1.7",
+      "source_reference": "68a905d50f7ec1efcedc1ec317a75dcc3dea3f0f",
+      "sha256": "2257f11e1f4b8029c2eb833b64793fc74c17af9412b2feb658e8721cba6a2948",
+      "bytes": 49081,
+      "uncompressed_size_checked": 151180
+    },
+    {
+      "name": "workerman/workerman",
+      "version": "v5.2.3",
+      "source_reference": "8fd5c148ff7dcd7bbc88621e1712eeb1f66b7f56",
+      "sha256": "a858ce1b4690d5b4ed918ca79d34bbbe28ca034951385b9b8bbf77d599bb40c1",
+      "bytes": 92797,
+      "uncompressed_size_checked": 377749
+    },
+    {
+      "name": "fakerphp/faker",
+      "version": "v1.24.1",
+      "source_reference": "e0ee18eb1e6dc3cda3ce9fd97e5a0689a88a64b5",
+      "sha256": "5d0df81d9791ff4da28d3dfb1c4e451a9a623ad0a34d888ad5c639e120d09252",
+      "bytes": 3522251,
+      "uncompressed_size_checked": 10092814
+    },
+    {
+      "name": "filp/whoops",
+      "version": "2.18.7",
+      "source_reference": "50670ba239926c50f2073e868f6672f775cd57ec",
+      "sha256": "95a6f703cab22864bfc734e1bd73aaa8a677ec91361498ea310e492a5c8b139a",
+      "bytes": 78442,
+      "uncompressed_size_checked": 210600
+    },
+    {
+      "name": "hamcrest/hamcrest-php",
+      "version": "v3.0.0",
+      "source_reference": "b61cd040da1a4925bc90a51c074f5297e7c0fa52",
+      "sha256": "c17a1a19b79468364d3a78ff2e62e6107c9c74470e3a3dcf36213a7e90f8a993",
+      "bytes": 80891,
+      "uncompressed_size_checked": 190306
+    },
+    {
+      "name": "laravel/pail",
+      "version": "v1.2.7",
+      "source_reference": "2f7d27dada8effc48b8c424445a69cca7007daaa",
+      "sha256": "17f226a856ffca79295e130f232990ec62351bc54d4b5c51572c67b7e612d0f4",
+      "bytes": 16374,
+      "uncompressed_size_checked": 37233
+    },
+    {
+      "name": "laravel/pint",
+      "version": "v1.32.1",
+      "source_reference": "006bd7825eb01daf92959d060b89cd9514fe4253",
+      "sha256": "6ed66dc3bc789a118c69e8aa524af47a12c9f2fb9487226718ef6e48bf9ed1e4",
+      "bytes": 3417701,
+      "uncompressed_size_checked": 3779408
+    },
+    {
+      "name": "laravel/sail",
+      "version": "v1.69.0",
+      "source_reference": "3587ac9d68e8f2eaf36bd9fb003a4555861dca9d",
+      "sha256": "4ce6555b57a49681186921dda29066ecbde4ebaa67c67719d2eb407ebe23121c",
+      "bytes": 42089,
+      "uncompressed_size_checked": 87456
+    },
+    {
+      "name": "mockery/mockery",
+      "version": "1.6.15",
+      "source_reference": "967a801bd188989a5669bd280f252d51c0fdc9ee",
+      "sha256": "ff83086cb5af969611de33bc2a457388dac7a5e28058d38b93c6d782e22f0b98",
+      "bytes": 124460,
+      "uncompressed_size_checked": 340899
+    },
+    {
+      "name": "myclabs/deep-copy",
+      "version": "1.14.0",
+      "source_reference": "8680aa248f8e07bc8fb43f56f0f5fc77a0c96aae",
+      "sha256": "56bd5cff0d8ac15818301fcc26712dfeffef322d2120bb4f4d67dca8089e6380",
+      "bytes": 22727,
+      "uncompressed_size_checked": 37280
+    },
+    {
+      "name": "nunomaduro/collision",
+      "version": "v8.9.5",
+      "source_reference": "fb53eacd509a1d303858e2d20cfebf2d630254ec",
+      "sha256": "46bc0f0d3c562d848075a5a4c46f490ab0c13f0bc3efe7142d4cabdac41be27e",
+      "bytes": 50447,
+      "uncompressed_size_checked": 157044
+    },
+    {
+      "name": "phar-io/manifest",
+      "version": "2.0.4",
+      "source_reference": "54750ef60c58e43759730615a392c31c80e23176",
+      "sha256": "b4368b44d24c60a0561e1e1284daa8743dfb2fd78dafeaec84849b264f045a75",
+      "bytes": 46290,
+      "uncompressed_size_checked": 89342
+    },
+    {
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "source_reference": "4f7fd7836c6f332bb2933569e566a0d6c4cbed74",
+      "sha256": "4f6f4fab8bfeac95934cec75be23743e38b6d864876f52dcdd5b54e003fcab55",
+      "bytes": 18552,
+      "uncompressed_size_checked": 32535
+    },
+    {
+      "name": "phpunit/php-code-coverage",
+      "version": "12.5.8",
+      "source_reference": "7440368d94738d54f2c1de24dbd3871793bbb0dd",
+      "sha256": "9275a73d52a1c5ef32d2f4b02fa1cf449bb067731a0cc5711d21475be0a2feb9",
+      "bytes": 438955,
+      "uncompressed_size_checked": 1428506
+    },
+    {
+      "name": "phpunit/php-file-iterator",
+      "version": "6.0.2",
+      "source_reference": "a248d1640ab059b075f53a2ef0f9856e864e06b5",
+      "sha256": "9aee244d9e54c796475a1f93ea309448fe8df73c8dcb8cb3096ce9f45525b155",
+      "bytes": 10869,
+      "uncompressed_size_checked": 26380
+    },
+    {
+      "name": "phpunit/php-invoker",
+      "version": "6.0.0",
+      "source_reference": "12b54e689b07a25a9b41e57736dfab6ec9ae5406",
+      "sha256": "ae7b79930eede6270ffcff312fa782520a8e37873b0bd4c0a10b7396fe1aeb10",
+      "bytes": 7532,
+      "uncompressed_size_checked": 11450
+    },
+    {
+      "name": "phpunit/php-text-template",
+      "version": "5.0.1",
+      "source_reference": "babab73b7ef9fae406f2eb3ee11323a61caa63d5",
+      "sha256": "3af1ad153f464999ec028d5c1841b3f7ab163f5754ba1f3fbb210c7c3f1aeabf",
+      "bytes": 7644,
+      "uncompressed_size_checked": 12156
+    },
+    {
+      "name": "phpunit/php-timer",
+      "version": "8.0.0",
+      "source_reference": "f258ce36aa457f3aa3339f9ed4c81fc66dc8c2cc",
+      "sha256": "d74e75de7ba9a8ff1e3779ac46253190efb051145a93deb7d88c4453cfe82ef6",
+      "bytes": 10230,
+      "uncompressed_size_checked": 19110
+    },
+    {
+      "name": "phpunit/phpunit",
+      "version": "12.5.42",
+      "source_reference": "1d6dbe748c079e5d2b03bca1be69d0f4cc52a578",
+      "sha256": "07822f2f5aa1760a4fab1752b3ea910cea09d7d65cda716e1f44667d1ccf884b",
+      "bytes": 1095096,
+      "uncompressed_size_checked": 3070874
+    },
+    {
+      "name": "sebastian/cli-parser",
+      "version": "4.2.1",
+      "source_reference": "7d05781b13f7dec9043a629a21d086ed74582a15",
+      "sha256": "2b22108c4c0fef57209bf7d285db27d059356c695fa718e9a237e646dbeeaa6b",
+      "bytes": 9860,
+      "uncompressed_size_checked": 18264
+    },
+    {
+      "name": "sebastian/comparator",
+      "version": "7.1.8",
+      "source_reference": "7c65c1e79836812819705b473a90c12399542485",
+      "sha256": "86841e308bb2a2fcdba30b86e9027576d0a57fdbe96863cec9ee0a5c14e8ea3a",
+      "bytes": 27366,
+      "uncompressed_size_checked": 68506
+    },
+    {
+      "name": "sebastian/complexity",
+      "version": "5.0.0",
+      "source_reference": "bad4316aba5303d0221f43f8cee37eb58d384bbb",
+      "sha256": "16dfbb06ea7137cab56a35ab417e2b0db532d91e406572fd5456e0567f41fca4",
+      "bytes": 11910,
+      "uncompressed_size_checked": 21711
+    },
+    {
+      "name": "sebastian/diff",
+      "version": "7.0.1",
+      "source_reference": "cd4cabe39f8a4e8ee6818ba99f10a05561ea4ad6",
+      "sha256": "425ea46a59dda488a0fca06c98d2c321761dd344b232913e8a865b1be30386bd",
+      "bytes": 24821,
+      "uncompressed_size_checked": 64871
+    },
+    {
+      "name": "sebastian/environment",
+      "version": "8.1.2",
+      "source_reference": "9d32c685773823b1983e256ae4ecd48a10d6e439",
+      "sha256": "1684e7b30ffaf77f405ccb27703839abb16880e476ed7024006ed9c339dc9d0a",
+      "bytes": 11754,
+      "uncompressed_size_checked": 33666
+    },
+    {
+      "name": "sebastian/exporter",
+      "version": "7.0.3",
+      "source_reference": "c5e21b5de653ce0a769fb36f5cdfcb5e7a32cf23",
+      "sha256": "c207456be013cfe14d890896cb0a15290ca07d39c9ea7794b9154574e8bda84f",
+      "bytes": 9077,
+      "uncompressed_size_checked": 24560
+    },
+    {
+      "name": "sebastian/global-state",
+      "version": "8.0.3",
+      "source_reference": "b164d3274d6537ab462591c5755f76a8f5b1aae9",
+      "sha256": "1965cc5dc7f865815d1e17e42e34a750ec0c8dbdc2650a284b237d12ad225019",
+      "bytes": 12087,
+      "uncompressed_size_checked": 33255
+    },
+    {
+      "name": "sebastian/lines-of-code",
+      "version": "4.0.1",
+      "source_reference": "d543b8ef219dcd8da262cbb958639a96bedba10e",
+      "sha256": "9dfad7a8811c332c387130bc09f29f3c489dfa07e562e7fa61ae1aecb778bf11",
+      "bytes": 9305,
+      "uncompressed_size_checked": 16230
+    },
+    {
+      "name": "sebastian/object-enumerator",
+      "version": "7.0.0",
+      "source_reference": "1effe8e9b8e068e9ae228e542d5d11b5d16db894",
+      "sha256": "333401d87207e65ba744ac35caee2af443ebe6d29d274a71dc96a6a5fa754a5b",
+      "bytes": 5848,
+      "uncompressed_size_checked": 10671
+    },
+    {
+      "name": "sebastian/object-reflector",
+      "version": "5.0.0",
+      "source_reference": "4bfa827c969c98be1e527abd576533293c634f6a",
+      "sha256": "1756e28a0bbd0835ab20bbe0ed642cf97dd15c4268977347ea70976359e2b192",
+      "bytes": 5518,
+      "uncompressed_size_checked": 9051
+    },
+    {
+      "name": "sebastian/recursion-context",
+      "version": "7.0.1",
+      "source_reference": "0b01998a7d5b1f122911a66bebcb8d46f0c82d8c",
+      "sha256": "3c6202ef78a9c4e5c5ecbdee442e9ecfda5a5e03201f807930851827c7514f1e",
+      "bytes": 6194,
+      "uncompressed_size_checked": 12397
+    },
+    {
+      "name": "sebastian/type",
+      "version": "6.0.4",
+      "source_reference": "82ff822c2edc46724be9f7411d3163021f602773",
+      "sha256": "301c822219ed505cd1e38dbdbb095e22f1a4aae8cf00de06856481a037b1c664",
+      "bytes": 23900,
+      "uncompressed_size_checked": 55820
+    },
+    {
+      "name": "sebastian/version",
+      "version": "6.0.1",
+      "source_reference": "9e935a16187e14f39b0e79910dabd614972cdb26",
+      "sha256": "476663cc7690258c55b81e7f3c145d657ba3591761412541e1b8df7bfb22e7fe",
+      "bytes": 6283,
+      "uncompressed_size_checked": 12250
+    },
+    {
+      "name": "staabm/side-effects-detector",
+      "version": "1.0.5",
+      "source_reference": "d8334211a140ce329c13726d4a715adbddd0a163",
+      "sha256": "90d82ccadb62ce54331fc8d9f10bd0ed53011411d48451f9b0ccbecb9ffb7b12",
+      "bytes": 15679,
+      "uncompressed_size_checked": 103563
+    },
+    {
+      "name": "symfony/yaml",
+      "version": "v8.1.10",
+      "source_reference": "9de4ff9874dd18b738b9f248398c3e36ef15a1d2",
+      "sha256": "722a901c506516c1fa6585b6afa9f6783ad3c63afc9776cebb549b5088673872",
+      "bytes": 40000,
+      "uncompressed_size_checked": 156068
+    },
+    {
+      "name": "theseer/tokenizer",
+      "version": "2.0.1",
+      "source_reference": "7989e43bf381af0eac72e4f0ca5bcbfa81658be4",
+      "sha256": "97cd673fdcf90b2f151bc6a21c71a595f55b70e6d48308ed968b7a6952d719b4",
+      "bytes": 13338,
+      "uncompressed_size_checked": 31690
+    }
+  ],
+  "php_lint": [
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-1-7663",
+      "blob": "0152f24226ad821ade592a7e0f0e540c962a0fa0"
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/RunningDockerEnvironment.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-2-7669",
+      "blob": "a5c5b9021285b719c6e91e8c26eee30e623a5ccb"
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/running_docker_fixture.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-3-7675",
+      "blob": "9052fafbe3756ab3e4afb0e8c0f1766414aba2c6"
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/running_docker_router.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-4-7681",
+      "blob": "b1a6fdee75c6336426a0e0087520f81b92e3bc3c"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/Api/V2/TransportEnvelopeTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-5-7687",
+      "blob": "e1cb4b09d88afdbea4ac4e641db70094b2bf2211"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-6-7693",
+      "blob": "be05eb2c7b0c3bb598d96b4807ecb68fb6ec9cc5"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/MediaUploadEndpointTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-7-7699",
+      "blob": "745980a60f1cd3b7319cde375113b694518f75bf"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1006AdminWebTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-8-7705",
+      "blob": "ba9bc580140c0d975b79c7be76f51e520ff5e851"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-9-7711",
+      "blob": "5f9e288537aafb162e8a74d63f93df483e02fd2b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008MatchingOperationsWebTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-10-7717",
+      "blob": "edf9ad8811898bfa2d39cedf63f5cc93e274f254"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008SessionWebTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-11-7723",
+      "blob": "80754a18a09d679a0d14309ea8b171c67ca13e65"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-12-7729",
+      "blob": "acbc201e312c40b9c9970867df771a64591a9e91"
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php",
+      "exit": 0,
+      "log_base": "php84-final-lint-13-7735",
+      "blob": "b024d4d043e57ac71d1c8562f991ea3dd6be339e"
+    }
+  ],
+  "final_container_states": {
+    "worker": "exited",
+    "supply": "exited",
+    "db": "exited",
+    "api": "exited"
+  },
+  "db_volume_size": {
+    "observed_du_allocated_bytes": 234901504,
+    "conservative_budget_upper_bound_bytes": 1073741824
+  },
+  "retained_failures": [
+    "json-file inherited compress option rejected first group; created never-running task containers renamed and retained",
+    "Feature1 query() visibility collision stopped discovery; Feature2 4 errors/5 failures; Feature3 2 failures; final Feature4 258/3071 PASS",
+    "migration1 stopped before SQL by escaped-schema grant guard; migration2 75 actual migrations PASS",
+    "seed1 90-second timeout rolled transaction back; seed2 source-closure-per-request cache, empty check, 5 pairs and admin PASS",
+    "host loopback publish unavailable on internal network; 1 connection failure counted; fixed in-container loopback HTTP transport, no egress added",
+    "first upload selected default public disk:422; task bootstrap now explicitly selects private local fixture disk",
+    "admin request lacked confirmation/revision/reason, redirect did not disable; corrected actual form and 401/403 token/login denial proved",
+    "Host receipt parsing used locale GBK after solver exit0; recovered receipt with UTF8 without repeating solver."
+  ],
+  "limitations": [
+    "H264 video206 NOT_RUN",
+    "old Laravel11 binary-generated cookie NOT_RUN; synthetic PHP wire-format only",
+    "real Push/provider delivery NOT_RUN",
+    "APP/device/RTC/AEC/physical15/30-day NOT_RUN",
+    "OS_ENFORCEMENT_NOT_PROVEN"
+  ],
+  "solver": {
+    "exit": 0,
+    "composer_lock_sha256": "de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3",
+    "lock_blob": "e236fbc960c1dd08c1fecb9aeed4926b4cab3933",
+    "packages": 114,
+    "framework": "v13.39.0",
+    "audit": "No security vulnerability advisories found"
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "schema": 1,
+  "status": "LARAVEL13_BACKEND_SYNTHETIC_API_DB_PASS_ASTRA_REVIEW_PENDING",
+  "task_id": "V1015_RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_20261030",
+  "task_blob": "a1cbc75afe406e3e05712c6c51fb63c86bad928d",
+  "attempt": "attempt-0001",
+  "sole_parent": "debe4a11d19f25179efef1d90d04e346980c2867",
+  "parent_root": "5cc585d5344e9a8e00b7512863e3169f662ad52b",
+  "parent_apps": "8cd9b6df8e744c8fc9d4217412edce31795a318d",
+  "parent_services": "1b1100808cf275d881a6dd8dde9c0155a7fc2a32",
+  "apps_changed": false,
+  "main_integrated": false,
+  "candidate_identity": "Resolve the containing native Git commit/root; post-publication final-readback binds actual Commit/Parent/Root plus this manifest Blob. No circular self hash.",
+  "branch": "codex/v10.1.5-running-docker-laravel-batch-20261030",
+  "payload_paths_excluding_this_manifest": [
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0152f24226ad821ade592a7e0f0e540c962a0fa0",
+      "sha256": "405be9417be12f49266a33cf96a30a1e57cb427532fe9ea8cf35d92080689444",
+      "size": 13155
+    },
+    {
+      "path": "services/backend-laravel/composer.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "130793decf84ff8ab93faa0300117b7fab9d1826",
+      "sha256": "f1373dd107b83e310a84d587f9411b0f8074dec94f126190917d7cf7689e85a6",
+      "size": 1525
+    },
+    {
+      "path": "services/backend-laravel/composer.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e236fbc960c1dd08c1fecb9aeed4926b4cab3933",
+      "sha256": "de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3",
+      "size": 321059
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/Api/V2/TransportEnvelopeTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1cb4b09d88afdbea4ac4e641db70094b2bf2211",
+      "sha256": "95369b92e767c86a25b8e8abc51cfd6a383a3a7a4f24d9467b4df029ad017b5f",
+      "size": 24057
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be05eb2c7b0c3bb598d96b4807ecb68fb6ec9cc5",
+      "sha256": "d149adbcb70aa8f6c7f34980e4a4d96cfe4ee493ba927e8e396fd1dc646c80a2",
+      "size": 17514
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/MediaUploadEndpointTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "745980a60f1cd3b7319cde375113b694518f75bf",
+      "sha256": "4a4d26fc2cbb355e87b5a30f2edd2b3232a38ba9471f2216b0df4ae55cacb4d7",
+      "size": 6936
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1006AdminWebTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba9bc580140c0d975b79c7be76f51e520ff5e851",
+      "sha256": "092ce751a3a372dc8da3453565bd587ad1ff31a40ed5ce5f74b63d5334f83d4e",
+      "size": 7357
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f9e288537aafb162e8a74d63f93df483e02fd2b",
+      "sha256": "5e7435669308d441c56258650b693682430633ad94bf55fef792fbb2ebde38f1",
+      "size": 6329
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008MatchingOperationsWebTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edf9ad8811898bfa2d39cedf63f5cc93e274f254",
+      "sha256": "67ae477ef4fce968d5b39d4e10b97e8c00c86605e67ccb168a10b81e52d8baa7",
+      "size": 13941
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008SessionWebTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80754a18a09d679a0d14309ea8b171c67ca13e65",
+      "sha256": "27416802920f61602e96577d5ff8eb3c1e79fed0440491e55a0c7e6bf9ea93a7",
+      "size": 7601
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acbc201e312c40b9c9970867df771a64591a9e91",
+      "sha256": "5e73c7ce6d8eeb1e0c6d0e1f7a11d7f1a2bd2bd488210b7969fcfc71d4b5d592",
+      "size": 26841
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b024d4d043e57ac71d1c8562f991ea3dd6be339e",
+      "sha256": "ec8becf6de6b68dc3568a8898f93371cdf21379eaa7d838ab98ffd81353cdee5",
+      "size": 38343
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/RunningDockerEnvironment.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5c5b9021285b719c6e91e8c26eee30e623a5ccb",
+      "sha256": "5bb26edfe9c2363b36677fca79b755bfeafcd0071ea67336f82cb8f4bc53e8c3",
+      "size": 6788
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/running_docker_fixture.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9052fafbe3756ab3e4afb0e8c0f1766414aba2c6",
+      "sha256": "d8c3c21bc379585af0df9da700ef40aa3f72b96e0e0c53172a6d03182fe1d310",
+      "size": 4931
+    },
+    {
+      "path": "services/backend-laravel/tests/E2E/running_docker_router.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1a6fdee75c6336426a0e0087520f81b92e3bc3c",
+      "sha256": "7d0b833f52a7a5809f95dfa331ded500de4cbaf52379c81c7d3317d6212e42cd",
+      "size": 540
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/broker.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e9d71e8da37a6d9a67f51376008f31a64a88474",
+      "sha256": "ecc8089a8703ab527bbb52e6c348ff940fce73b87d384a7d30594e73cc7b234a",
+      "size": 1788
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/broker.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad975b66fb7e14d739b3d4d881d171a6c7103f7b",
+      "sha256": "bbc08418b48c142ab0fd60f590adae3d905ca4fe1f08ce3b900886b37c612e7a",
+      "size": 4966
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/Dockerfile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2216547611d137d637160a0160a1502e07d89a8d",
+      "sha256": "9ed562da5299b510a595d50a8afbbb7688f57ac145c2e933e81060590ee7932c",
+      "size": 799
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5afcefac7ede318a9309193f879fcb1a5284be0",
+      "sha256": "5985003ac7a4ceade250464150dc18f34f92f9713c74bb6d0ec039ee21baaade",
+      "size": 8080
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/http_e2e.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f14dda7e23af034fcf72bf96d75605c541adf8e",
+      "sha256": "68d42166ff2a121f0fb152c982b02f30c4ae8afb0905d7e91cebbe3c7c7d6781",
+      "size": 5556
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/http_phase1.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "704b938a007f871f8da93865ffd52adef187cbc9",
+      "sha256": "7cf4e2d991bb7cdb7a7ffd787e892315d70f20bc54023e2d55dad9e1ec630a17",
+      "size": 7127
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/http_phase2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e928f8608e1cb98300db4fced1fe51a2bc0f37d8",
+      "sha256": "beffb7785444567a8c90cf1e92fb08dd9d34739a7c27110eb03fc764ec1c412f",
+      "size": 3002
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/http_relay.php",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23bd32f12cb78ca6419927a129563693a88614b8",
+      "sha256": "dcbf57cb9ff17e73e1bf3df7631f8e41abf55eb59cbaafbfab21c74534c05e3d",
+      "size": 1857
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/oci.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a357e14595d469b2d5784db1bb71b5cbeb626a8",
+      "sha256": "990adaee3715b13dae50c1bffd56d43c96b61509fc45d676b2f7e2aa1832f0d2",
+      "size": 6110
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/owned.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faf58c54f155198427e4694b9f799cc4acaab84e",
+      "sha256": "4c7e913bb5b2b852dba20eb4db904f8c0e502c04dc3b54cd4c894940a28a6608",
+      "size": 6990
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/php-build-meter.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a10261866c5a3d5c1b8d37b8e33608565f1c690e",
+      "sha256": "cf61b8e122f41c9b8e65563854957e1191c2bdd6220759e8e5fabc3c0073924c",
+      "size": 682
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/pump.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02baead9b704b00fd4c65f982b710ede56861e97",
+      "sha256": "8f5989c58905468bf011b0bf70e848298f9335916fb4d1bbd61766eceff7f12e",
+      "size": 765
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "369e711f39269ecbf265bd2bf2ed75664105213f",
+      "sha256": "8925aaefe5429ccc86e2b200b97fc9b8947e6cb7f6b4a094b46e4cd54243006d",
+      "size": 3494
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/supply.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b484540250aa998fc604a5e888adbfc40ac29f3c",
+      "sha256": "277d22b52d814a5758d0e26e6e3edd266bff17da0114c3355f2473272f4f0b0a",
+      "size": 6025
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/test_engine_policy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae4b752201aa8480266669f5da59b1b5b4255d27",
+      "sha256": "92600afc00ce50463dc16d9380551fca7e9c95505c2875f703f7716a0eedc5bb",
+      "size": 912
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/test_native_journal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "978284868d34ea373bd3efe4a3e37b20ffcbe1c5",
+      "sha256": "2ee6efc2f9bf94940e8e145e6a9ecca4bae970020f09ce698a25c379ac6b9857",
+      "size": 3800
+    },
+    {
+      "path": "tools/v1015/linux_backend/running_engine/test_supply.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "065b9ccd1df5dada87856f3c30d69a43d750add0",
+      "sha256": "7f382c433912f9a5d745fe3489b7ca739910646376e9ea74f1753c82632bfd0c",
+      "size": 5619
+    },
+    {
+      "path": "docs/versions/v10.1.5/running_docker_engine_laravel_batch_api_db_20261030_budget.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78547838b3d616b67751301585a398c360bfcf2e",
+      "sha256": "c8bb288fd3c1d5c9c75d822cd27a4eaec1721e0086c9658ba3b4779c3bd4678d",
+      "size": 1274
+    },
+    {
+      "path": "docs/versions/v10.1.5/running_docker_engine_laravel_batch_api_db_20261030_dependency_matrix.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ec73da64d1d07ec918f4e7fb4e8315978e11d5b",
+      "sha256": "c7b78b427e75eeee01bbdc70fa11b9268bc4fcd45c8713339900df86c53ba217",
+      "size": 17127
+    },
+    {
+      "path": "docs/versions/v10.1.5/running_docker_engine_laravel_batch_api_db_20261030_test_receipts.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4df52a1294a3522f79e203f396b2984658c77864",
+      "sha256": "3e1d15e6cfe55d9253e22eeaa44a6eb93fed934b12cafe142081eee42b5022d7",
+      "size": 71614
+    },
+    {
+      "path": "docs/versions/v10.1.5/running_docker_engine_laravel_batch_api_db_20261030_toolchain_lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79e082c8bbc782691f2d50dc68a5a7e20dc4e711",
+      "sha256": "922d2ecc66d4d8c3561b8be86f690b1fd7aa9a1597067e41b0582e66436fd89f",
+      "size": 10158
+    },
+    {
+      "path": "docs/versions/v10.1.5/RUNNING_DOCKER_ENGINE_LARAVEL_BATCH_API_DB_RESULT_20261030.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7e83f4062f49def6e86cc4fc88a1026dbd1eb63",
+      "sha256": "1c9e362127d2926e3107dae638b46421edae1f421cdadf3dee869c3ea44613b4",
+      "size": 8683
+    }
+  ],
+  "evidence_levels": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_TEST",
+    "OWNER_REPORTED_POST_STOP",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN",
+    "NOT_PROVEN"
+  ],
+  "toolchain": {
+    "php": "8.4.27",
+    "composer": "2.11.0",
+    "mariadb": "10.11.19",
+    "laravel": "13.39.0",
+    "phpunit": "12.5.42",
+    "fallback12": "NOT_TRIGGERED",
+    "final_long_term_baseline": "ASTRA_AND_OWNER_PENDING"
+  },
+  "checks": {
+    "feature_tests": 258,
+    "assertions": 3071,
+    "feature_batch": 4,
+    "feature_exit": 0,
+    "actual_changed_php_lint_files": 13,
+    "whole_source_token_parse_files": 581,
+    "pure_supply_engine_checks": 14,
+    "http_attempts": 100,
+    "http_responses": 99,
+    "migrations": 75,
+    "persistent_messages": 4,
+    "persistent_attachments": 4,
+    "persistent_notifications": 4,
+    "controlled_owned_db_api_restart": "PASS",
+    "synthetic_php_serialized_session": "PASS",
+    "old_laravel11_binary_cookie": "NOT_RUN"
+  },
+  "budget_snapshot": {
+    "stage": "DYNAMIC_WORK_COMPLETE_BEFORE_GITHUB_PUBLICATION",
+    "limits": {
+      "seconds": 14400,
+      "logical": 17179869184,
+      "allocated": 17179869184,
+      "activation": 0,
+      "wsl_start": 0,
+      "supply_bytes": 2147483648,
+      "supply_requests": 500,
+      "digests": 8,
+      "build": 3,
+      "solver": 3,
+      "vendor": 2,
+      "service_groups": 4,
+      "php_cli": 120,
+      "feature_batches": 5,
+      "http": 240,
+      "migration": 2,
+      "seed": 2
+    },
+    "used": {
+      "activation": 0,
+      "wsl_start": 0,
+      "supply_requests": 317,
+      "digests": 4,
+      "build": 1,
+      "solver": 1,
+      "vendor": 1,
+      "service_groups": 4,
+      "php_cli": 79,
+      "feature_batches": 4,
+      "http": 100,
+      "migration": 2,
+      "seed": 2,
+      "supply_bytes": 336590677,
+      "elapsed_seconds": 7156.859,
+      "space": {
+        "logical": 10361638395,
+        "allocated": 10386729472,
+        "reserve": 67108864
+      }
+    },
+    "php_build_reserved": 30,
+    "php_build_observed": 9,
+    "space_daemon_accounting": "conservative additive upper bound for task image/build/DB bytes; Windows root native allocation measured",
+    "ledger_prefix_sha256": "eb17f4f531ecf2c8e62d3938006aa46ac0bfeb320664db76ef8bb6cb8c09fc06",
+    "remaining_service_groups": 0,
+    "remaining_migration": 0,
+    "remaining_seed": 0
+  },
+  "local_only": [
+    "original ledger, raw supply/HTTP, credentials/cookies, OCI tar and signed/access-bearing URLs",
+    "real vendor closure, exact secret qualification proof, new DB volume and raw log failures",
+    "final-readback.json, budget-terminal.json, completion-receipt.json, sealed ledger SHA after GitHub publication"
+  ],
+  "gates": {
+    "V10_1_5": "PARTIAL_NOT_ACCEPTED",
+    "AC01_11": "10_PARTIAL_1_OPEN",
+    "AC05": "OPEN",
+    "G2_READY_FOR_POPEN": false,
+    "REAL_PUSH": "PROVIDER_PENDING",
+    "RTC_AEC": "NOT_CLOSED",
+    "OS_ENFORCEMENT": "NOT_PROVEN",
+    "V10_1_6": "NOT_STARTED",
+    "FUNCTION_ACCEPTED": false
+  },
+  "not_run": [
+    "Flutter",
+    "Gradle",
+    "G2",
+    "APK",
+    "ADB",
+    "APP_device_E2E",
+    "RTC_AEC",
+    "real_Push",
+    "physical15_30days",
+    "H264_video206_without_qualified_fixture"
+  ],
+  "stop": "After fresh complete GitHub readback, seal this same root and ledger STOP, no successors and no budget reuse."
+}

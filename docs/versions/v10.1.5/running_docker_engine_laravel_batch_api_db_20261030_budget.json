@@ -1,0 +1,51 @@
+{
+  "stage": "DYNAMIC_WORK_COMPLETE_BEFORE_GITHUB_PUBLICATION",
+  "limits": {
+    "seconds": 14400,
+    "logical": 17179869184,
+    "allocated": 17179869184,
+    "activation": 0,
+    "wsl_start": 0,
+    "supply_bytes": 2147483648,
+    "supply_requests": 500,
+    "digests": 8,
+    "build": 3,
+    "solver": 3,
+    "vendor": 2,
+    "service_groups": 4,
+    "php_cli": 120,
+    "feature_batches": 5,
+    "http": 240,
+    "migration": 2,
+    "seed": 2
+  },
+  "used": {
+    "activation": 0,
+    "wsl_start": 0,
+    "supply_requests": 317,
+    "digests": 4,
+    "build": 1,
+    "solver": 1,
+    "vendor": 1,
+    "service_groups": 4,
+    "php_cli": 79,
+    "feature_batches": 4,
+    "http": 100,
+    "migration": 2,
+    "seed": 2,
+    "supply_bytes": 336590677,
+    "elapsed_seconds": 7156.859,
+    "space": {
+      "logical": 10361638395,
+      "allocated": 10386729472,
+      "reserve": 67108864
+    }
+  },
+  "php_build_reserved": 30,
+  "php_build_observed": 9,
+  "space_daemon_accounting": "conservative additive upper bound for task image/build/DB bytes; Windows root native allocation measured",
+  "ledger_prefix_sha256": "eb17f4f531ecf2c8e62d3938006aa46ac0bfeb320664db76ef8bb6cb8c09fc06",
+  "remaining_service_groups": 0,
+  "remaining_migration": 0,
+  "remaining_seed": 0
+}

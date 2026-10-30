@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Services\Accounts\DisableUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery as ValidateCsrfToken;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
@@ -102,8 +102,9 @@ final class V1006AdminWebTest extends TestCase
     public function test_active_refresh_retains_response_contract(): void
     {
         $user = $this->account();
-        $token = $user->createToken('old')->plainTextToken;
-        $this->withToken($token)->postJson('/api/v1/auth/refresh')->assertOk()
+        // Refresh must use a server-issued refresh token with its DeviceSession/T0.
+        $tokens = app(\App\Services\Accounts\DeviceSessions::class)->issue($user);
+        $this->withToken($tokens['refresh_token'])->postJson('/api/v1/auth/refresh')->assertOk()
             ->assertJsonPath('user.id', $user->id)->assertJsonStructure(['access_token', 'token_type', 'user']);
     }
 
