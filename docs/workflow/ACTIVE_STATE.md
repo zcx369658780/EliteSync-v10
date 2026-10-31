@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-31 Astra有界接受604a900 WS软件/浏览器成果；真实设备与AC05仍开放（CURRENT ENTRY）
+
+**`V10.1.5_FINAL_DEVICE_RTC_WS_SOFTWARE_AND_BROWSER_BOUNDED_ACCEPTED_WITH_OBSERVATIONS / APP_DEVICE_NOT_RUN / WS_REAL_RUNTIME_NOT_RUN / H264_API_GATE_CLOSED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Astra独立验收已发布并回读：** [604a900最终设备/RTC/WS/H.264独立有界验收](https://github.com/zcx369658780/EliteSync-v10/blob/b11289d37b67ab6666691b63993fd74a61b9e9dc/docs/versions/v10.1.5/604A900_FINAL_DEVICE_RTC_WS_H264_ASTRA_INDEPENDENT_BOUNDED_ACCEPTANCE_20261031.md)；Review Commit **`b11289d37b67ab6666691b63993fd74a61b9e9dc`**、Review Blob **`4ca326b8073c547e5b12473be440f62f37bface3`**；Review Parent为Codex候选`604a900aed786c9bc53e44d3eaf7e1aa73ad4b2c`，Review Root `9af29c580bbede6b36acb4dd5fe06146987eeecc`。Review分支只作独立审查记录，不是产品合main或未来研发Parent。
+
+**Codex唯一候选原生身份：** Commit `604a900aed786c9bc53e44d3eaf7e1aa73ad4b2c`，sole Parent `ea682562c148166dcf502a048c7e47a4e136fb8f`（本任务开工fresh main），Root `fe8b89d9b717f37a2022a10c7f7d03dc3da1b0be`；compare ahead1/behind0，96项变更；递归Tree 6321项未截断。apps Tree `2526e6ec86b4e054a2d712aab41f5cd6dd5a38a8`，services Tree `7634b4755a41f08641e00948f684c06efb12d8fe`。Result Blob `2b2c097d0ebe315906108650d646fcb61362fb03`，Manifest Blob `d4d12bfa8f7656e629996b4096e7a1b91007588a`。94项源码/测试path/mode/Blob/size **94/94匹配原生Git Tree**：81项承袭b441已接受Blob、3项WS来源修正、10项本任务配置/测试/夹具；另2项Result/Manifest。96项compare文件无额外未映射对象。main仍为Parent `ea682562c148166dcf502a048c7e47a4e136fb8f`，候选未合main。
+
+**本轮有界接受：** WS客户端在session/logout/账号/token/authority epoch变化时主动停止旧socket，取消升级/订阅/重连，generation关闭迟到socket，重连有限；LiveChatPage取消旧订阅；dev/prod bootstrap安全接入同host WS authority，HTTPS只WSS、明文仅dev loopback；Workerman默认绑定127.0.0.1且只发conversation_changed失效通知，不推送正文。指定Flutter 47 tests/exit0，PHP 10 tests/58 assertions/exit0（SQLite内存），Flutter分析最终exit0，PREPARE故障负例9/9；真实IAB浏览器单批8项正反例；新独立MariaDB资格/单次迁移seed通过，最小loopback health200/缺鉴权401。Manifest 68 process receipts全部有prepare_seq，2项非零退出原样保留并后续更正。所有本地运行均为Codex回执，Astra未本机重跑。
+
+**仍未运行/未通过：** G2 false，本轮Gradle/ADB/install=0，无新APK；Android实际密文/冷启动/系统通知未运行。PHP镜像无pcntl/pcntl_fork，Workerman未启动，真实WS仍NOT_RUN。无可信ffprobe，H264真实API上传/READY/Range/播放器未运行；AC04视频链门关闭。AC05无合格双端、MIC/CAM/SFU/同步时钟，无新AEC或revoke COMMIT至最后媒体≤5秒证据，继续OPEN。真实Push PENDING；物理15/30天与逻辑DB恢复未运行。6个容器均停止/PID0，其中两个API exit137；DB未重启。旧Laravel11.48默认根、dirty252/refs527及11,066件备份元数据/160样本按具名范围保护通过，非全盘审计。曾有一次历史网络元数据返回旧合成密钥字段，Codex未使用/公开并停止进一步查询，作为观察保留。
+
+**整版状态与停止：** 本轮裁决`V10.1.5_FINAL_DEVICE_RTC_WS_SOFTWARE_AND_BROWSER_BOUNDED_ACCEPTED_WITH_OBSERVATIONS`，不是`FUNCTION_ACCEPTED`。v10.1.5整版仍`PARTIAL_NOT_ACCEPTED`；AC05 OPEN、G2 false、真实Push PENDING、候选未合main、v10.1.6未启动。Codex候选永久STOP，Astra审查及状态归档后停止；不自动合main、不放行G2/AC05、不切换旧Laravel11默认入口、不删除备份、不重开预算、不创建后继任务。
+
+以下保留本次任务发布时点及b441上一轮有界验收历史；其旧`TASK_PUBLISHED / NOT_EXECUTED`仅代表当时状态，不覆盖当前604a900候选已交付与Astra有界接受结论。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner授权最后设备/RTC专项综合长任务已发布，待手动派发（CURRENT ENTRY）
 
 **`V1015_FINAL_DEVICE_RTC_WS_H264_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / B441_SOFTWARE_API_DB_WEB_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / PRODUCT_MAIN_UNCHANGED / V10.1.6_NOT_STARTED`**
