@@ -15,6 +15,7 @@ use Tests\TestCase;
 final class V1007PrivateMediaTest extends TestCase
 {
     use RefreshDatabase;
+    use \Tests\Support\CreatesAcceptedMainMatch;
 
     private User $sender;
 
@@ -32,7 +33,7 @@ final class V1007PrivateMediaTest extends TestCase
         Storage::fake('v1007');
         $this->sender = User::factory()->create(['id' => $identity, 'phone' => '19900000751', 'disabled' => false, 'is_synthetic' => false]);
         $this->recipient = User::factory()->create(['phone' => '19900000752', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'v1007-private-media', 'user_a' => $this->sender->id, 'user_b' => $this->recipient->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->sender, $this->recipient);
         $service = app(LiveConsentService::class);
         $service->transition($this->sender->id, $this->recipient->id, 'connection', 'request', 0);
         $service->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);
@@ -71,7 +72,10 @@ final class V1007PrivateMediaTest extends TestCase
         auth('sanctum')->forgetUser();
         auth('web')->forgetUser();
         $this->app['auth']->forgetGuards();
-        $this->get($path)->assertNotFound();
+        // The accepted route runs auth:sanctum before private-media lookup.
+        $guest = $this->get($path)->assertUnauthorized();
+        $this->assertStringNotContainsString(base64_decode(self::PNG), $guest->getContent());
+        $this->assertStringNotContainsString($asset->storage_key, $guest->getContent());
         app(LiveConsentService::class)->transition($this->recipient->id, $this->sender->id, 'consent', 'revoke', 2);
         Sanctum::actingAs($this->recipient);
         $this->get($path)->assertNotFound();

@@ -13,6 +13,7 @@ use Tests\TestCase;
 final class V1007LiveConsentTest extends TestCase
 {
     use RefreshDatabase;
+    use \Tests\Support\CreatesAcceptedMainMatch;
 
     private User $a;
 
@@ -24,7 +25,7 @@ final class V1007LiveConsentTest extends TestCase
         config(['restoration.enabled' => true]);
         $this->a = User::factory()->create(['phone' => '19900000702', 'disabled' => false, 'is_synthetic' => false]);
         $this->b = User::factory()->create(['phone' => '19900000703', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'v1007-test', 'user_a' => $this->a->id, 'user_b' => $this->b->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->a, $this->b);
         Sanctum::actingAs($this->a);
     }
 
@@ -97,7 +98,7 @@ final class V1007LiveConsentTest extends TestCase
         $this->postJson('/api/v1/messages', $payload)->assertOk();
         $this->act('consent', 'revoke', 2, $first)->assertOk();
         $this->b = User::factory()->create(['phone' => '19900000706', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'second-peer', 'user_a' => $this->a->id, 'user_b' => $this->b->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->a, $this->b);
         $this->active();
         Sanctum::actingAs($this->a);
         $this->postJson('/api/v1/messages',$payload + ['peer_id' => $this->b->id])->assertNotFound();

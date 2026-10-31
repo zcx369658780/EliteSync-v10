@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Services\Accounts\DisableUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery as ValidateCsrfToken;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
