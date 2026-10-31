@@ -1,3 +1,25 @@
+# EliteSync v10.1.5｜2026-10-31 Astra独立有界接受7bd84020 Laravel13目标main隔离运行候选（CURRENT ENTRY）
+
+**`7BD84020_LARAVEL13_TARGET_MAIN_ISOLATED_RUNTIME_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS / ASTRA_INDEPENDENT_REVIEW_PUBLISHED / CONTROLLED_MAIN_INTEGRATION_OWNER_GATE_PENDING / MAIN_PRODUCT_NOT_INTEGRATED / LOCAL_DEFAULT_L11_UNCHANGED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_LEGACY_L11_COOKIE_NOT_PROVEN / HOST_PORT_FORWARDING_NOT_VERIFIED / V10.1.6_NOT_STARTED`**
+
+**最新Codex候选已STOP，Astra审查已归档：** 候选Commit `7bd840200f781466919c7946e3533585caf6f8c3`，唯一Parent `f9f9b97870c6ca482ced83ba09af82dab326f370`，Root `cd4b6ae230105c28aebf2790b704a7218cd64055`；Astra独立Git对象核验25/25变更 path/mode/Blob/size，apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`与主线相同，候选services Tree `e14dece6cf3eef118875f688fd303a82d34418c2`。正式Result Blob `89ce021b8d393acb48562801bb2066bc3bc7fba6`，Manifest Blob `77659710dc85dee31f4e65dbec838837806a7ce8`。最后已授权任务`V10_1_5_OWNER_STAGED_IMMUTABLE_OCI_IMPORT_AND_LARAVEL13_MAIN_SAFE_RUNTIME_INTEGRATION_TASK_20261031.md` Blob `30c993d6a350ba79f62dddea6ddbeb420854ddec`，已经Codex手动派发执行且STOP，不可重新使用旧账本/余额。
+
+**Astra正式独立验收报告：** [7BD84020_OWNER_OCI_L13_MAIN_RUNTIME_ASTRA_INDEPENDENT_REVIEW_20261031.md](https://github.com/zcx369658780/EliteSync-v10/blob/09b7ded0bfaa6bc0d1019cdb2e76f34fdfa31c1f/docs/versions/v10.1.5/7BD84020_OWNER_OCI_L13_MAIN_RUNTIME_ASTRA_INDEPENDENT_REVIEW_20261031.md)，Review Commit `09b7ded0bfaa6bc0d1019cdb2e76f34fdfa31c1f`、Review Blob `8c340dd9c1270a99a730879c69cf5b9b0fa9915e`，已在固定Git对象回读。裁决：`LARAVEL13_TARGET_MAIN_ISOLATED_RUNTIME_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS`；只签已接受v10.1.4产品源码之上的Laravel13选择性后端隔离运行候选，**不是**`MAIN_PRODUCT_INTEGRATED`、`INTEGRATION_ACCEPTED`或整版`FUNCTION_ACCEPTED`。Astra审查分支永不作为新的研发Parent。
+
+**真实源码与锁事实（DIRECT_GITHUB_OBJECT）：** `composer.json` Blob `130793decf84ff8ab93faa0300117b7fab9d1826`、`composer.lock` Blob `e236fbc960c1dd08c1fecb9aeed4926b4cab3933`；锁Laravel v13.39.0/PHP8.4约束、114包、Tinker3、PHPUnit12，scripts/plugins清空。全部257个原main业务app/routes保持Git Blob不变，新增17条backend目标源码差异仅框架/依赖输入、session php格式、原功能测试fixture/PHPUnit/CSRF及本task CLI验证工具，没有合入9b较宽v10.1.5未接受F1/F3/F4业务。新的main当前仍v10.1.4正式基线apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `0cb1f9d19659291a462488b3686fd0a07a6698ac`。
+
+**Codex本机回执限定：** 先验Owner已有官方php index `54b467...`与MariaDB Jammy备选index `7db293...`/amd64 manifest `dc9dd57...`，Config/layers/diffID及任务独立受控构建报告通过；PHP8.4.27、Composer2.11.1、Laravel13.39.0、MariaDB10.11.19。锁定114包`solver=0`、vendor安装、strict validate、platform check、显式审查package:discover/route:list均CODEX_REPORTED_LOCAL_TEST。最终5/5 Feature批`166 tests / 2817 assertions / exit0`，先前4批失败保留，20 PHP lint；真实任务容器内HTTP尝试47及安全正负例，独立新空MariaDB90表重启前后行数/逐表Hash相等，并导出到另一合成空schema恢复，90表哈希相等。上述是Codex本地记录，**Astra未亲自重跑或访问本机raw/vendor/DB**，不能扩称生产、Windows宿主端口或真实设备API/DB。
+ 
+**预算/保护与STOP：** 公开动态关闭快照：新任务供应137请求/34,054,405 bytes、Digest7、build1、solver0、vendor1、服务组3、PHP CLI92、Feature5、HTTP47、migration2、seed2；总窗口/空间公开快照低于限额，Owner报告最终封存68.48分钟，终态ledger和真实峰值LOCAL_ONLY未被Astra直接重算；STOP后剩余额度不可再用。11,066本机旧版备份/240,617,393bytes、Manifest SHA `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`，原dirty252、refs527、旧vendor/历史18/两ACL/122原证/五根/3183Seed/11旧STOP摘要被Codex报告只读保护。备份、原旧版本与历史证据继续保留，**删除授权0**，本地默认Laravel11开发入口未切换，旧生产DB未访问/恢复；全部LOCAL_ONLY主体未上传。
+
+**不可变风险门禁：** 宿主/Windows公开端口`HOST_PORT_FORWARDING_NOT_VERIFIED`；真实Laravel11生成cookie跨框架迁移`REAL_LEGACY_L11_COOKIE_NOT_PROVEN`；真H264 video、WebSocket网关、RTC/AEC、真实Push、Flutter/Gradle/APK/ADB/设备、物理15/30天、生产部署均NOT_RUN。v10.1.5原AC01–11仍`10 PARTIAL/1 OPEN`、AC05 RTC/AEC OPEN，G2 false，v10.1.6 NOT_STARTED。Windows API-set E_NOTIMPL、`OS_ENFORCEMENT_NOT_PROVEN`、四历史事故及`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`原样保留。
+
+**唯一下一Owner决策：** 是否批准**一次安全受控将已获Astra有界接受的Laravel13目标main源码候选精确集成到GitHub产品main，读回预期双Tree，并在保留旧版备份及默认开发根不变的前提下复核最小安全/可回退条件**。本次未获新main合并许可，Astra不自动发Codex综合后继、不能清理/切换生产或擅自启动v10.1.6。Owner若批准，由Astra按当前任务发布协议创建一次具名正式安全集成任务，Owner手动派发Codex，一个候选，Astra最终独立验收闭环。
+
+以下是先前v1.1官方下载/镜像验真任务的旧CURRENT ENTRY和完整历史；旧`Codex尚未派发`仅指当时时点，不覆盖现已完成候选及独立审查。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner已手动拉取Docker镜像，原综合任务派发前修订为本地containerd验真优先（CURRENT ENTRY）
 
 **`OWNER_PULLED_PHP_AND_MARIADB_JAMMY_DOCKER_IMAGES_REPORTED / NEW_DOCKER_CONTAINERD_IDENTITY_SEMANTICS_ACKNOWLEDGED / PRE_DISPATCH_TASK_REVISED_IN_PLACE / LOCAL_IMAGE_VERIFY_BEFORE_ANY_RUNTIME / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / DOWNLOADS_RAW_FILES_OPTIONAL / NO_DOCKER_ACTION_EXECUTED_BY_ASTRA / LOCAL_L13_MAIN_RUNTIME_NOT_RUN / MAIN_PRODUCT_NOT_INTEGRATED / OLD_VERSION_NOT_DELETED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
