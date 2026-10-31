@@ -1,3 +1,17 @@
+# EliteSync｜2026-10-31 Project Sources COMPACT_V1 文档镜像同步（CURRENT ENTRY）
+
+**`DOCS_ONLY_MIRROR_PUBLICATION / REMOTE_READBACK_PENDING / OWNER_REPORTED_PROJECT_SOURCES_REPLACED / NO_PRODUCT_DEVELOPMENT_STARTED / NO_G2_APK_BUDGET_CONSUMED`**
+
+Owner已手动派发本轮文档同步，并报告在ChatGPT Project替换旧资料。Codex使用Owner提供的新ZIP，10份正文SHA256及第11份原清单均已核对；[完整镜像](../gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)与[镜像使用说明](../gpt-project-sources/20261031_COMPACT_V1_README.md)不与旧附件叠加。远端发布仍须逐文件fresh回读后才记同步完成。
+
+首读：AGENTS → 最新具名handoff → 本首段 → 当前Owner正式派发任务的冻结合同；不递归展开下方历史。v10.1.5整版仍PARTIAL_NOT_ACCEPTED、AC05 OPEN、G2 false、真实Push PENDING；本轮不发布/执行产品任务，不构建、不操作手机、不修改apps/services/数据库/系统策略，不启动v10.1.6。
+
+包内01_CURRENT_STATE及现行AGENTS记录G2/APK增量授权，而旧handoff及本文件原首段记录此前待授权时点；均原样保留。该差异不在本次文档同步中转换为具体产品任务或运行资格，后续仍须独立冻结合同并由Owner手动派发。
+
+---
+
+以下完整保留同步前ACTIVE_STATE历史正文。它们按形成时点解释，首读到此停止；仅按实际任务定点引用。
+
 # EliteSync v10.1.5｜2026-10-31 会话交接已封存：G2与USB真机权限待Owner明确（CURRENT ENTRY）
 
 **`SESSION_HANDOFF_SAVED / V10.1.5_DEVICE_G2_USB_CONTINUATION_NOT_YET_AUTHORIZED / WAITING_FOR_OWNER_EXPLICIT_SCOPE_CONFIRMATION / NO_NEW_TASK_PUBLISHED / NO_CODEX_DISPATCH / NO_LOCAL_EXECUTION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`**

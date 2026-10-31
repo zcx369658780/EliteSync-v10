@@ -1,0 +1,57 @@
+{
+  "package": "EliteSync Project Sources 2026-10-31 Compact V1",
+  "type": "complete_replacement_set",
+  "file_count": 10,
+  "files": [
+    {
+      "path": "00_INDEX.md",
+      "bytes": 740,
+      "sha256": "e85cbcbde8f2b591f3c6b277446a0a397063fd14be14c6171eeba0d9f3950eaa"
+    },
+    {
+      "path": "01_CURRENT_STATE.md",
+      "bytes": 1353,
+      "sha256": "2518a959e77d5af7315cfd830cce235dbe70e1c160988cf94d9a0699905e5aa8"
+    },
+    {
+      "path": "02_GOVERNANCE.md",
+      "bytes": 1716,
+      "sha256": "f5f324753a84ed7395a112a496141d73d3840fe4ee39c043e6229b611cbdfb90"
+    },
+    {
+      "path": "03_OWNER_DECISIONS.md",
+      "bytes": 1970,
+      "sha256": "45e06d2dc472f831e7c9a02f8c9b69c10dc7b20ef115ec756c2479381de66de6"
+    },
+    {
+      "path": "04_ROADMAP.md",
+      "bytes": 1019,
+      "sha256": "ab2ed45d444c76ed6e8e49d08b016562581408826b1f65dc037e240ba1f5f71b"
+    },
+    {
+      "path": "05_DESIGN_REFERENCE.md",
+      "bytes": 932,
+      "sha256": "7b87871c589fce7f51e4cb0851ca823e1ff6be8673b8888ee7d23f16268eda85"
+    },
+    {
+      "path": "06_RESEARCH.md",
+      "bytes": 1001,
+      "sha256": "f425b2c5c90306134405f194d27f10e06236a26aabfca616bfd013c129b9166d"
+    },
+    {
+      "path": "07_HANDOFF_RULES.md",
+      "bytes": 1123,
+      "sha256": "8b96a06255e4f6d5e038f0fcc99dbde7ebe105d335f2d372b24856e0850204f2"
+    },
+    {
+      "path": "08_ARCHIVE_MAP.md",
+      "bytes": 733,
+      "sha256": "6d8fcc16d3b2c1ea3a3d217be4cc01c29cbbcc981ff95073cd93c2e3f85c81f8"
+    },
+    {
+      "path": "09_CODEX_SYNC_INSTRUCTION.md",
+      "bytes": 1361,
+      "sha256": "06d61eea73f843543bceebf7fca429d85c10f0b4622f38257e3988eb9544f25f"
+    }
+  ]
+}

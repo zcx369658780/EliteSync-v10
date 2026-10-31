@@ -1,5 +1,7 @@
 # EliteSync-v10 当前工作方式
 
+**2026-10-31 项目源首读覆盖规则：** [COMPACT_V1完整集合](../gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)为Owner提供的新快照；[使用说明](../gpt-project-sources/20261031_COMPACT_V1_README.md)记录原字节、SHA256和引用限制。按[瘦身规则](PROJECT_SOURCE_COMPACTION_POLICY.md)使用完整替换集合，不继续叠加旧增量；旧“增量包/旧交接”段落只保留其形成时事实。首读只到最新handoff与ACTIVE_STATE当前首段，不递归加载历史。本轮文档同步不派发或启动产品任务，旧运行预算仍封存。
+
 **2026-10-21前瞻补充：** 当前短状态唯一入口 [ACTIVE_STATE](ACTIVE_STATE.md)；独立功能验收由Astra直接归档，集成不重复功能重测；项目源按里程碑增量同步。完整生效规则见 [轻量验收与项目源同步](ACCEPTANCE_INTEGRATION_SOURCE_SYNC_20261021.md)。原冻结AC/Owner及系统权限门禁均不变。
 
 生效依据：2026-10-12角色迁移、2026-10-13版后接续授权，以及2026-10-14 Owner批准“APP前后端与数据库恢复＋独立Web管理面板”的路线调整。本文是项目工作约定，不替代工具、账户权限或具体实施授权。

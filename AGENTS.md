@@ -28,6 +28,8 @@
 
 ## Project Sources
 
+当前完整集合：[20261031_COMPACT_V1 首读索引](docs/gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)；[镜像校验与快照限制](docs/gpt-project-sources/20261031_COMPACT_V1_README.md)。不要顺旧索引递归加载历史；首读按上方当前权威入口执行。
+
 遵循 `docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md`。Project Sources只保留短首读索引、当前状态摘要、稳定边界、Owner决定/路线摘要和必要的原始设计材料；大型历史研究、旧交接、过期状态快照与重复别名留在GitHub具名原路径/归档索引，不删除原件。不得把完整ACTIVE_STATE、TASK_CURRENT、CURRENT或全量日志复制进Project Sources。ZIP生成后由Owner手动替换Project Sources；GitHub、Project附件和模型记忆不自动同步。
 
 ## 保护边界
