@@ -25,9 +25,23 @@ class AuthRepositoryImpl implements AuthRepository {
     required String phone,
     required String password,
   }) async {
+    final loginEpoch = _local.beginLoginAttempt();
+    final deviceId = await _local.getOrCreateDeviceId();
+    if (!_local.isCurrentAttempt(loginEpoch)) {
+      throw const ValidationException(
+        '登录已变化，请重新操作。',
+        code: 'AUTH_STALE_RESPONSE',
+      );
+    }
     final response = await _remote.login(
-      LoginRequestDto(phone: phone, password: password),
+      LoginRequestDto(phone: phone, password: password, deviceId: deviceId),
     );
+    if (!_local.isCurrentAttempt(loginEpoch)) {
+      throw const ValidationException(
+        '登录已变化，请重新操作。',
+        code: 'AUTH_STALE_RESPONSE',
+      );
+    }
 
     if (!response.ok) {
       throw ValidationException(
@@ -41,7 +55,18 @@ class AuthRepositoryImpl implements AuthRepository {
       throw const ValidationException('登录失败，令牌为空', code: 'AUTH_EMPTY_TOKEN');
     }
 
-    await _local.persistSession(session);
+    await _local.persistSession(
+      session,
+      retention: response.sessionRetention,
+      expectedEpoch: loginEpoch,
+      expectedDeviceId: deviceId,
+    );
+    if (!_local.isCurrentAttempt(loginEpoch)) {
+      throw const ValidationException(
+        '登录已变化，请重新操作。',
+        code: 'AUTH_STALE_RESPONSE',
+      );
+    }
     return session;
   }
 
@@ -64,6 +89,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logout() async {
+    _local.cancelPendingLogin();
     try {
       await _remote.logout();
     } finally {

@@ -27,19 +27,29 @@ class AuthInterceptor extends Interceptor {
     required AccessTokenProvider accessTokenProvider,
     RefreshAccessToken? refreshAccessToken,
     Future<void> Function(String rejectedToken)? onSessionRejected,
+    String Function()? sessionIdentity,
   }) : _accessTokenProvider = accessTokenProvider,
        _refreshAccessToken = refreshAccessToken,
-       _onSessionRejected = onSessionRejected;
+       _onSessionRejected = onSessionRejected,
+       _sessionIdentity = sessionIdentity;
 
   final AccessTokenProvider _accessTokenProvider;
   final RefreshAccessToken? _refreshAccessToken;
   final Future<void> Function(String rejectedToken)? _onSessionRejected;
+  final String Function()? _sessionIdentity;
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
+    if (_sessionIdentity != null) {
+      final previous = options.extra[requestSessionGuardKey];
+      final identity = _sessionIdentity();
+      options.extra[requestSessionGuardKey] = () =>
+          _sessionIdentity() == identity &&
+          (previous == null || (previous is bool Function() && previous()));
+    }
     if (!requestSessionIsCurrent(options)) {
       handler.reject(staleSessionRequest(options));
       return;
@@ -53,6 +63,15 @@ class AuthInterceptor extends Interceptor {
       options.headers['Authorization'] = 'Bearer $token';
     }
     super.onRequest(options, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (!requestSessionIsCurrent(response.requestOptions)) {
+      handler.reject(staleSessionRequest(response.requestOptions));
+      return;
+    }
+    super.onResponse(response, handler);
   }
 
   @override
@@ -76,6 +95,11 @@ class AuthInterceptor extends Interceptor {
           '/api/v1/notifications',
           '/api/v1/status/',
           '/api/v1/media/',
+          '/api/v1/messages',
+          '/api/v1/conversations',
+          '/api/v1/rtc/',
+          '/api/v1/notification-preferences',
+          '/api/v1/notification-devices',
         ].any(path.startsWith);
     final status = err.response?.statusCode;
     final data = err.response?.data;
@@ -126,6 +150,10 @@ class AuthInterceptor extends Interceptor {
           req.headers['Authorization'] = nextAuthorization;
           try {
             final response = await Dio().fetch(req);
+            if (!requestSessionIsCurrent(req)) {
+              handler.reject(staleSessionRequest(req));
+              return;
+            }
             handler.resolve(response);
             return;
           } catch (_) {
@@ -135,6 +163,10 @@ class AuthInterceptor extends Interceptor {
       }
     }
 
+    if (!requestSessionIsCurrent(err.requestOptions)) {
+      handler.reject(staleSessionRequest(err.requestOptions));
+      return;
+    }
     super.onError(err, handler);
   }
 }

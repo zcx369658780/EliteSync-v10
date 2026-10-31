@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_preferences_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -254,9 +255,11 @@ class _NotificationCenterPageState
         return false;
       }
       try {
-        final conversation = await ref.read(
-          conversationDetailProvider(conversationId).future,
-        );
+        final identity = ref.read(sessionProvider).asData?.value.accessToken;
+        final epoch = ref.read(relationshipAuthorityEpochProvider);
+        ref.invalidate(conversationDetailProvider(conversationId));
+        final conversation = await ref.read(conversationDetailProvider(conversationId).future);
+        if (!_currentControlledIntent(identity, epoch)) return false;
         final peerUserId = conversation.peerUserId;
         final resolvedConversationId = conversation.conversationId;
         if (!mounted ||
@@ -352,17 +355,21 @@ class _NotificationCenterPageState
   }
 
   Future<void> _openAndMarkRead(NotificationItemEntity item) async {
-    final controlled =
-        item.kind == 'buddy' ||
-        item.kind == 'status_comment' ||
-        NotificationPrivacyContract.isPlatformControlledKind(item.kind);
-    final identity = controlled
-        ? ref.read(sessionProvider).asData?.value.accessToken
-        : null;
-    final epoch = controlled ? ref.read(relationshipAuthorityEpochProvider) : 0;
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    final intentEpoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
+    try {
+      item = await ref.read(notificationRemoteDataSourceProvider).fetchNotification(item.id);
+    } catch (_) {
+      if (mounted && _currentControlledIntent(identity, intentEpoch)) {
+        AppFeedback.showInfo(context, '当前通知已不可访问，请刷新后重试');
+      }
+      return;
+    }
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
     final opened = await _openNotification(item);
     if (!opened || !mounted) return;
-    if (controlled && !_currentControlledIntent(identity, epoch)) return;
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
     await _markRead(item);
   }
 
@@ -562,6 +569,15 @@ class _NotificationCenterPageState
             IconButton(
               onPressed: _refresh,
               icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+            ),
+            IconButton(
+              tooltip: '通知设置',
+              icon: const Icon(Icons.tune),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const NotificationPreferencesPage(),
+                ),
+              ),
             ),
           ],
         ),
