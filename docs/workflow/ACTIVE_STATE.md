@@ -1,3 +1,19 @@
+# EliteSync v10.1.5｜2026-10-31 Owner批准后续集中设备/软件贯通：唯一综合长任务已发布，等待手动派发（CURRENT ENTRY）
+
+**`OWNER_APPROVED_V1015_POST_0017_CONTINUATION / V1015_POST_0017_DEVICE_E2E_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / PREVIOUS_F1_F3_F4_BOUNDED_ACCEPTED_WITH_OBSERVATIONS / PRODUCT_MAIN_UNCHANGED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`**
+
+**本次Owner明确授权与状态纠正：** Owner在Astra对`0017ce7`完成有界接受后表示“可以，看起来开发环境搞定了，v10.1.5也彻底结束。我授权继续”。结合上一条Astra提出“集中APP设备/集成验收”的明确下一步，该授权用于**发布并由Owner手动派发v10.1.5后继综合长任务**；用户的“彻底结束”不代替正式AC，**整版仍PARTIAL NOT ACCEPTED**，AC05 RTC/AEC/5秒停止OPEN、G2 false、APP设备/Android密文/WS/H264仍未证、真实Push provider PENDING、v10.1.6 NOT_STARTED。没有授权自动进入1.6、使用额外系统或设备权限、无条件启动G2/Gradle、真实供应商或合并产品。
+
+**唯一新任务已创建并按路径全文读回：** [V10_1_5_POST_0017_SELECTIVE_PRODUCT_CONTINUATION_AND_DEVICE_E2E_CLOSURE_LONG_TASK_20261031.md](../versions/v10.1.5/V10_1_5_POST_0017_SELECTIVE_PRODUCT_CONTINUATION_AND_DEVICE_E2E_CLOSURE_LONG_TASK_20261031.md)，Task Blob **`ffe21d60ea46630f01cb09fe1821dccd5a115a89`**；创建Commit **`f2a298852811928e07a8b42fe8dd381fd6991051`**，Task ID `V1015_POST_0017_DEVICE_E2E_FINAL_CLOSURE_20261031`。**目前仅`PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED`，不是Codex已执行或完成。** 正式任务覆盖从已接受`0017ce7` Manifest精确71个源/测试对象选择性接续、独立APP/API/MariaDB/Web真实贯通、条件获准的Gradle/设备、Android实际加密与OS通知、WS可信pcntl、合成H264与AC05具名验证，以及PREPARE fail-closed新任务内程序修正；其它普通错误允许同长任务集中修复并交付单一候选。
+
+**冻结输入和安全界限：** 创建前main `8fb1ff72c9b4d9daf8976d828ac14e8977bc7622`、Root `96c789d82a96a51799ed25b194f4a8d5129e5fb2`，产品apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `049a8676cc90b3b830e32a524c172720e800fa37`，后续创建文档/状态会推进main而产品Tree须不变；Codex开工重新读取实时main而非使用旧快照为Parent。旧候选`0017ce7aa6b991360b2b26b7f5785b86bce2f369`及其Astra Review `b5e2c9754aa2710d2d40eea22ba8d9a6b2960d4e`是**来源及审查**，不是新研发Parent。旧APP设备/G2资格尚未成立，不允许凭新任务文字越过门禁；没有当前合规运行条件则相关项NOT_RUN，不把“部分运行”升格E2E PASS。旧Laravel11默认脏根/refs、11,066件备份/历史STOP、数据库、ACL、密钥、私密原证、事故与旧预算全部保留，严禁未经授权删除、覆盖、重置或外传。
+
+**当前唯一下一动作：** Owner手动将精确Blob任务的单一启动Prompt转交本地Codex。Codex在正式任务的单一新根/attempt-0001和持久日志范围内自主开发、做已具资格的有限运行、集中交付一个非force候选及Result/Manifest后永久STOP等待Astra独立验收，**不自行FUNCTION_ACCEPTED、不合main、不放行AC05/G2、不切旧默认入口、不启动v10.1.6**。如需设备/SDK/供应商新增许可，单独报告阻断，其他合法软件工作继续。
+
+以下完整保留此前`F1_F3_F4_BOUNDED_ACCEPTED_WITH_OBSERVATIONS`验收和更早的历史记录；其中“下一任务尚未发布”属于其原时间点，不覆盖本次任务签发状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra独立接受F1/F3/F4有界软件成果；APP/AC05等整版门禁仍开放（CURRENT ENTRY）
 
 **`V10.1.5_F1_F3_F4_SOURCE_AND_CONTROLLED_API_DB_ACCEPTED_WITH_OBSERVATIONS / FLUTTER_PHP_TARGETED_SOFTWARE_SUPPORTED / APP_DEVICE_E2E_NOT_RUN / ANDROID_CIPHERTEXT_NOT_PROVEN / WS_NOT_RUN / H264_NOT_RUN / PREPARE_PROCEDURAL_GAP_RETAINED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / MAIN_PRODUCT_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
