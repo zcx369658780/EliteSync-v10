@@ -1,42 +1,45 @@
-# Project Sources 瘦身与历史封存规则
+# Project Sources瘦身与按需读取规则
 
-生效：2026-10-31。Owner已授权本轮项目源治理。适用于ChatGPT Project Sources与本仓库的长期同步。
+生效：2026-11-01。适用于ChatGPT Project Sources及本仓库的长期同步。
 
 ## 1. 权威分层
 
-1. 工程实时状态只认 `docs/workflow/ACTIVE_STATE.md` 的最新首段和live main；项目源状态文档只作启动摘要，不得覆盖GitHub实时状态。
-2. 当前会话交接只保留一个最新有效入口。旧交接、旧状态快照、旧任务入口按形成时点封存，不继续作为首读材料。
-3. 稳定产品原则、Owner决定、冻结计划、正式验收与运行回执分开；不得把规划、CODEX_REPORTED、LOCAL_ONLY、NOT_RUN、PENDING混写为接受事实。
-4. 冻结计划/原始接受设计/Owner决定不因瘦身而改写其历史含义。可在Project Sources中以短摘要替代全文，但必须提供GitHub固定路径和适用边界。
+1. 工程实时状态只认live GitHub main与`docs/workflow/ACTIVE_STATE.md`最新CURRENT ENTRY。
+2. Session Handoff是导航摘要，不是状态数据库、任务合同或授权来源。
+3. 冻结plan、Owner决定、正式任务、Astra验收和Codex运行回执各自保留原始身份；摘要不得覆盖原件。
+4. `CODEX_REPORTED`、`LOCAL_ONLY`、`NOT_RUN`、`PENDING`不得改写成Astra直接核验或PASS。
 
-## 2. Project Sources 保留规则
+## 2. Project Sources保留内容
 
-- 只保留：一份首读索引、一份当前状态摘要、一份稳定治理/架构边界、一份Owner决定摘要、一份路线图摘要、必要的原始设计/接受材料（按需读取）、一份工作流摘要、必要研究结论摘要。
-- 删除Project Sources中的重复别名、过期CURRENT快照、旧交接全文、已被GitHub固定文档取代的历史执行快照；这仅指下一版Project Sources ZIP，不删除GitHub历史文件、Git对象、分支、备份或本地原件。
-- 大型历史研究、竞品盘点、历史失败报告、旧任务单、旧验收证据留在GitHub具名归档/原始路径；Project Sources仅保留结论摘要、证据级别、局限和链接。
-- 不复制完整ACTIVE_STATE、TASK_CURRENT、CURRENT、全量日志或整仓清单进入Project Sources。
-- 同一正文不得以多个文件名重复装入；别名只在索引里说明对应的唯一规范路径。
+只保留有长期复用价值的短索引、当前状态快照、稳定治理边界、Owner决定/路线摘要、必要设计参考、研究摘要、交接规则和历史导航。大型研究、旧handoff、旧状态、旧任务、完整验收与运行证据留在GitHub原路径。
 
-## 3. 交接与证据复用
+Project Sources是按需参考库，不是每次会话的阅读清单。不得把完整ACTIVE_STATE、TASK_CURRENT、CURRENT、全量日志或整仓清单复制进Project Sources。相同正文不得用多个文件名重复装入。
 
-- 新会话首读：本索引 → 最新交接 → ACTIVE_STATE当前首段 → 当前冻结plan（仅当前版本）→ 本次真正相关的专项合同。
-- 不递归展开旧交接引用；仅在新任务触及对应事实且证据适用时，定点读取原文。
-- 既有接受证据按源码Tree/Blob、适用测试和失效条件复用。只有源码、环境、合同或风险边界发生相关变化时，才执行增量重验。
-- 每份摘要必须标注快照日期、GitHub权威链接、非权威声明和不得推断事项。
+## 3. 新会话首读与按需补读
 
-## 4. GitHub封存与保全
+首读仅三项：`AGENTS.md`全文 → `ACTIVE_STATE.md`最新CURRENT ENTRY → 最新具名Session Handoff。到此停止，不按Project Sources索引顺序全量读取。
 
-- 历史文件不做删除、重命名、force-push或覆盖。封存通过日期化索引记录原路径、原Blob/commit（可取得时）、历史时点、为何不再首读及其继续适用的证据范围。
-- 历史文档中当时真实的PENDING/NOT_RUN/授权状态仍是历史事实，不得倒填成当前状态。
-- 任何原始私密证据、密钥、个人数据、LOCAL_ONLY日志/APK/数据库不进入公开GitHub或Project Sources。
+只有目标明确后才补读：
+- 正式任务：任务全文及其引用的当前冻结plan/专项合同。
+- 产品/技术决策：直接相关的Owner决定、原始合同、源码、测试和验收证据。
+- 历史追溯：通过archive map定位具名原件，不递归加载所有历史。
 
-## 5. ZIP交付
+证据复用须保留Tree/Blob、适用范围和失效条件；仅在源码、环境、合同或风险边界相关变化时增量重验。
 
-- 每次生成日期化完整替换包，包含该版全部Project Sources文件、README/索引、文件清单与SHA-256 manifest。
-- ZIP只包含唯一版本的完整新集合，不把增量包与旧集合叠加；Owner手动替换旧Project Sources。
-- 生成ZIP不等于GitHub同步，也不等于Project Sources已替换。Codex必须分别回报GitHub归档/规则同步与本地项目源镜像状态；Owner手动上传后再确认Project附件已替换。
-- Codex仅按Owner派发的文档同步指令操作，不触碰产品源码、运行库、构建、ADB、设备或任何版本预算。
+## 4. Session Handoff与任务Prompt
 
-## 6. 本轮适用
+Session Handoff使用`SESSION_HANDOFF_TEMPLATE.md`六字段结构，目标300–600字，通常不超过1000字；只写本轮状态差异、下一目标、必要文件路径/Blob、Owner决定和STOP。旧handoff不删除，但不作为首读材料。
 
-本轮新ZIP以2026-10-31项目源快照为准，保留v10.1.5当前PARTIAL/AC05 OPEN/G2 false/真实Push PENDING等事实；两项Owner新运行授权仅在当前对话明确记录，不代表任务已发布/派发/执行。瘦身完成并由Owner手动替换Project Sources、Codex完成本地镜像同步后，才继续已授权的v10.1.5剩余工作。
+任务单采用八字段最小结构；启动Prompt只指向正式任务路径/Blob并给出fresh读取、范围、预算和STOP要求，不复制任务正文。具体规则见`TASK_DISPATCH_CLOSURE_PROTOCOL.md`。
+
+## 5. 历史封存与安全
+
+历史文件不删除、不重命名、不force-push、不覆盖原始证据。过期入口通过日期化索引标注为历史，不再首读；历史PENDING/NOT_RUN/授权状态仍是其形成时的事实。
+
+私密SQL、真实个人数据、密钥、设备原始日志、LOCAL_ONLY APK/数据库和未脱敏运行证据不得进入公开GitHub或Project Sources。
+
+## 6. ZIP与附件同步
+
+每版生成日期化完整替换ZIP，包含唯一文件集合、README/索引和SHA256 manifest。不得叠加旧附件。ZIP生成、GitHub镜像、Owner手动替换Project附件和账户Memory更新是四件不同的事，分别报告，不声称自动同步。
+
+Codex仅在Owner手动派发的文档同步任务范围内操作；项目源治理本身不授权产品代码、运行库、构建、Gradle、ADB、设备、系统策略、供应商或费用操作。

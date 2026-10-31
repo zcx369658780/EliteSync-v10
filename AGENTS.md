@@ -1,41 +1,45 @@
-# EliteSync-v10 项目启动指导
+# EliteSync-v10｜启动与治理规则
 
-生效：2026-10-31。Owner为最终产品方向、具体运行权限及不可逆操作authority；Astra负责Product Advisor、Planner、Orchestrator、Current-state Manager与独立验收；Codex仅在Owner手动派发正式任务后执行。
+生效：2026-11-01。Owner是产品方向、重大不可逆决策、具体运行/设备权限、真实数据与费用的最终authority；Astra负责Product Advisor、Planner、Reviewer、Orchestrator和Current-state Manager；Codex仅在Owner手动派发正式任务后执行。
 
-## 当前权威入口
+## 新会话最小首读
 
-1. **实时状态：** `docs/workflow/ACTIVE_STATE.md`，只以live main顶部最新状态为准；文件中的旧段落是历史，不可当作当前状态。
-2. **当前会话交接：** 读取最新具名handoff，不递归加载旧handoff。
-3. **当前冻结范围：** 读取本次实际工作的版本plan及相关专项合同；不默认加载全部历史plan、任务单或证据。
-4. **稳定规则：** `docs/workflow/CURRENT_WORKFLOW.md`、`docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md`、`docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md`。
-5. **产品决定：** `PRODUCT_DECISIONS.md`及具名Owner增量决定；历史设计原件/接受记录按需读取。
+每次开工先fresh读取live GitHub main，然后只读：
 
-## 角色与任务模式
+1. 本文件全文（启动规则）。
+2. `docs/workflow/ACTIVE_STATE.md`最新CURRENT ENTRY（只读首个当前状态块，遇到分隔线即停止）。
+3. ACTIVE_STATE指向的最新具名Session Handoff（只读这一份，不递归旧handoff）。
 
-- Owner手动派发Codex；GitHub任务发布、启动Prompt或Astra规划不等于派发/执行。
-- 默认一份冻结计划、一份综合长任务、一个持久账本、一次集中候选和独立验收。Codex在已授权范围内自主调查、实现、构建、测试、调试和修复普通失败。
-- A-D任务下达闭环是发布质量保证，不是逐步骤审批：核授权/状态/基线/预算；创建唯一任务并读回；更新状态并回读live main/Root/Blob；同一回复交付链接、Blob、停止门禁及单一启动Prompt。
-- 仅超范围、方向性/不可逆决策、真实用户/生产数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人或其他未授权高风险动作暂停请求Owner。
-- 普通失败在任务范围内修复；一次性预算/硬上限不重置、不退款、不重试。环境拒绝如实报告，不伪造PASS、不规避安全策略、不扩大权限。
+完成后停止首读。**不默认读取冻结plan、历史handoff、全部Owner决定、全部Project Sources、全量日志或整仓清单。**
 
-## 证据与验收
+## 按需补读
 
-- 严格区分源码候选、Astra功能接受、main产品集成、当地代码基线、运行状态、外部供应商门禁。
-- 证据标签按来源写明：Astra直接核验、CODEX_REPORTED、LOCAL_ONLY、NOT_RUN、PENDING不可互相替代。
-- 已接受证据按源码Tree/Blob、适用范围和失效条件复用；仅对本次改动或受影响门禁做增量核验，不重复已接受的全量审计。
-- 原冻结AC、失败记录、历史候选、原始证据和备份不倒改、不删除；不得自动合并产品main或启动后续版本。
-- 真实Push供应商/费用、外部下载/依赖、驱动安装、系统安全策略或全局权限修改，均须符合对应具体授权；不得从“继续推进”推断未明确授予的权限。
+- 已有Owner派发的正式任务：读任务全文，再读任务明确引用的当前冻结plan和专项合同。
+- 需要作产品/技术/路线决策：先明确具体待决问题，再从GitHub定点读取直接相关的Owner决定、原始合同、源码、测试或验收证据。
+- 证据适用性不明：核对源码Tree/Blob、环境、合同版本及失效条件；只做受影响范围的增量复核。不得凭摘要补造事实。
 
-## Project Sources
+## 角色与执行
 
-当前完整集合：[20261031_COMPACT_V1 首读索引](docs/gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)；[镜像校验与快照限制](docs/gpt-project-sources/20261031_COMPACT_V1_README.md)。不要顺旧索引递归加载历史；首读按上方当前权威入口执行。
+- Owner保留产品方向、具体高风险权限和不可逆决策authority，不作日常message bus。
+- Astra负责规划、任务编排、状态管理和独立验收；Codex只执行Owner手动派发的正式任务。
+- 默认一份冻结计划、一份综合长任务、一个持久账本、一个候选、一次集中独立验收。Codex在任务授权范围内自主调查、实现、测试、调试和修复普通失败，不拆微任务。
+- 任务发布不等于Codex派发；派发不等于执行。禁止自动启动Codex、自动合并产品main或越级启动下一版本。
 
-遵循 `docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md`。Project Sources只保留短首读索引、当前状态摘要、稳定边界、Owner决定/路线摘要和必要的原始设计材料；大型历史研究、旧交接、过期状态快照与重复别名留在GitHub具名原路径/归档索引，不删除原件。不得把完整ACTIVE_STATE、TASK_CURRENT、CURRENT或全量日志复制进Project Sources。ZIP生成后由Owner手动替换Project Sources；GitHub、Project附件和模型记忆不自动同步。
+## 任务发布与验收
 
-## 保护边界
+正式任务遵循`docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md`的A–D闭环。A–D是发布质量保证，不是运行中逐步骤审批。普通失败在范围内修复；只有超范围、方向性/不可逆选择、真实用户/生产数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人操作或其他未授权高风险动作才暂停请求Owner。
 
-保持原dirty根、未提交成果、worktrees、数据库、卷、备份、候选refs、密钥和LOCAL_ONLY原证。不得盲目pull/reset/rebase/stash/clean/prune/force；不得把私密SQL、真实用户数据、JWT/密钥、设备原始日志、LOCAL_ONLY APK/证据上传公开GitHub或Project Sources。只在正式任务明确授权的范围内操作。
+## 证据与安全边界
 
-## 当前版本提醒（2026-10-31快照；开工仍须fresh核验）
+- 严格区分源码候选、Astra功能接受、main集成、本地代码基线、运行状态和外部供应商门禁。
+- Astra直接核验、CODEX_REPORTED、LOCAL_ONLY、NOT_RUN、PENDING不可互相替代。
+- 复用已接受证据时保留Tree/Blob、适用范围和失效条件；只重验受本次改动影响的部分。
+- 原冻结AC、失败记录、历史候选、原始证据、dirty根、worktrees、数据库/卷、备份、refs、密钥和LOCAL_ONLY原证不得倒改或删除。
+- 不盲pull/reset/rebase/stash/clean/prune/force；不把私密SQL、真实用户资料、JWT/密钥、设备原始日志或LOCAL_ONLY APK上传公开GitHub/Project Sources。
+- 一次性预算/硬上限不重置、不退款、不重试。环境拒绝如实记录，不伪造PASS、不规避安全策略、不扩大权限。
 
-v10.1.5整版仍PARTIAL/NOT_ACCEPTED，AC05 OPEN，G2 false，真实Push PENDING；当前交接记录中G2一次dry-run和新Debug APK+USB ADB安装已由Owner分别授权，但具体任务尚未发布/派发/执行。执行前必须fresh核验冻结合同、ledger/claim、输入资格与权限范围。不得自动合main或启动v10.1.6。
+## 项目源与详细规则
+
+当前完整Project Sources：[20261101_COMPACT_V2](docs/gpt-project-sources/20261101_COMPACT_V2/00_INDEX.md)；[包说明](docs/gpt-project-sources/20261101_COMPACT_V2_README.md)。Project Sources是按需参考库，不是每次会话的阅读清单。ZIP由Owner手动替换附件；GitHub、Project附件和账户Memory不自动同步。
+
+详细工作方式：[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)；[任务发布协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)；[Session Handoff模板](docs/workflow/SESSION_HANDOFF_TEMPLATE.md)；[Project Sources瘦身规则](docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md)。

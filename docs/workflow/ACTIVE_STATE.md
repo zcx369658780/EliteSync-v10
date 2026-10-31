@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-01 精简工作流V1已同步（CURRENT ENTRY）
+
+**`WORKFLOW_V1_GOVERNANCE_SYNCED / COMPACT_V2_PACKAGE_READY / OWNER_MANUAL_PROJECT_SOURCE_REPLACEMENT_PENDING / NO_PRODUCT_TASK_DISPATCHED / NO_PRODUCT_EXECUTION`**
+
+Owner已批准精简工作流V1。本次仅更新治理、交接、任务发布和导航文档，并生成COMPACT_V2完整替换包；不修改产品apps/services、运行库或系统策略。
+
+最新交接：[SESSION_HANDOFF_20261101_LIGHTWEIGHT_WORKFLOW_V1.md](SESSION_HANDOFF_20261101_LIGHTWEIGHT_WORKFLOW_V1.md)。新会话首读：fresh live main → AGENTS全文 → 本文件最新CURRENT ENTRY → 最新handoff；到此停止。目标明确后才读取当前任务、冻结plan和真正相关的专项合同。
+
+产品状态：v10.1.5整版仍PARTIAL_NOT_ACCEPTED；AC05 OPEN；G2 false；真实Push PENDING。604a900仅获WS软件/浏览器限定范围的Astra有界接受，候选STOP且未合main。不得由此推断真实WS、H.264、RTC/AEC、15/30天、设备或Push门禁通过。
+
+Owner已分别授权：①一次条件性Gradle 8.14 `assembleAarRelease --dry-run`；②一次新的Debug APK构建及USB ADB安装。两项独立计账；授权不代表任务已发布、Codex已派发、执行已发生、设备已连接或成功。执行前必须fresh核验冻结合同、ledger/claim、输入资格及独立预算门禁。
+
+本次没有发布/派发产品任务，没有运行Gradle、ADB、构建或设备操作，没有消费G2/APK预算；不自动合main、不重置预算、不启动v10.1.6。Project Sources V2仍需Owner手动替换附件；GitHub、Project附件和账户Memory分别记账。
+
+---
+
+## 历史CURRENT ENTRY｜2026-10-31 Project Sources COMPACT_V1同步记录（原文保留）
+
 # EliteSync｜2026-10-31 Project Sources COMPACT_V1 文档镜像已核验（CURRENT ENTRY）
 
 **`DOCS_ONLY_MIRROR_SYNC_VERIFIED / OWNER_REPORTED_PROJECT_SOURCES_REPLACED / AWAITING_ASTRA_INDEPENDENT_VERIFICATION / NO_PRODUCT_DEVELOPMENT_STARTED / NO_G2_APK_BUDGET_CONSUMED`**
