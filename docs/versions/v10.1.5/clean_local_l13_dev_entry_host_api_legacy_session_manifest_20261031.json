@@ -1,0 +1,420 @@
+{
+  "task_id": "V1015_CLEAN_LOCAL_L13_DEV_ENTRY_HOST_API_LEGACY_SESSION_20261031",
+  "task_blob": "bd5aa7ee6fc4682ece9136d3b025e6b5d421ef80",
+  "attempt": "attempt-0001",
+  "status": "LOCAL_L13_VENDOR_READY_HOST_LOOPBACK_PASS_SYNTHETIC_SESSION_PASS_WITH_TEST_GAPS",
+  "sole_parent": "310456834fd653229b27748e44912de5ba9df66f",
+  "parent_root": "058fee5d498f98e381920c85d83300ec59b9ebaf",
+  "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "services": "049a8676cc90b3b830e32a524c172720e800fa37",
+  "product_source_changes": 0,
+  "main_updated": false,
+  "dev_entry": {
+    "alias": "CLEAN_L13_DEV_20261031",
+    "identity": [
+      3028074659,
+      562949958255059
+    ],
+    "source_files": 5322,
+    "source_bytes": 141638016,
+    "git_clean": true,
+    "default_local_switched": false
+  },
+  "vendor": {
+    "php": "8.4.27",
+    "composer": "2.11.1",
+    "laravel": "13.39.0",
+    "packages": 114,
+    "lock_blob": "e236fbc960c1dd08c1fecb9aeed4926b4cab3933",
+    "install_attempts": 2,
+    "solver": 0,
+    "scripts_plugins": false,
+    "receipt_sha256": "56b14836cfc8cfb93769cc83829f4341b01201c933ffdbfa752e6ebf34afffd2"
+  },
+  "runtime_image": {
+    "id": "sha256:8fc9e4e0410a0c7a6d1e69194bb493758cd7b59986ca39439f094e0fab732f89",
+    "size": 762062218,
+    "rootfs": {
+      "Layers": [
+        "sha256:44a87794b739d471ec360bec56cc0ceac640d06bbf579ee7d9061a0b88d09818",
+        "sha256:55752bf73d2784972589a07b70e28660d3a64bf008f4f2603f7c5ece41abb7f5",
+        "sha256:1ab2dc9f84fcc64b67fa994c46f5fa57f01d617da8ac8af6d8e295edf1dcd93a",
+        "sha256:bcd2a7fad0e8a8ae58fa2f1fcbce0c572e634ff2e12819bf74b2dd4d92b122ba",
+        "sha256:3be7496c8a62eb4f0af4c061527a8e88b3510ce44732c27cb9a41a05fe5370dd",
+        "sha256:74189fdb51851f53bac99a2d8e28997ae42c1a238c349b1fc5505c8a853354e8",
+        "sha256:7403aaaa6a22c9d38251f656bf7b34583f038d65d2c4dd29c030791ed3469691",
+        "sha256:3d2b2122575cdc7490c09e54825ab35d736f8194a69fffb4557ebc4c614db56c",
+        "sha256:1040ad5d2f02f20413948b6074079c432040b42a8440b53982c632a53dbca7ba",
+        "sha256:c500804b237fb07c047f910dbfdf58c4fea695253d2964b55d93ba4aaf8c3deb",
+        "sha256:015902d985aa3c8420174721a2a90f3efedbc124010d1fc45bf2f255e3c618ca",
+        "sha256:2cda3a1698b4a20af766143bab3f087850b13e4bd3dc4b261ff250e29c88e27a",
+        "sha256:d4bc9840be6b30b3408a28b94e97ac01a842eb1fe6a70b4744300a45be864f3e",
+        "sha256:e04eda004a4d63e229583baa9b8a60c50a2f20040ddd46f0b417279c1249efe9"
+      ],
+      "Type": "layers"
+    },
+    "labels": {
+      "elitesync.task": "V1015_CLEAN_LOCAL_L13_DEV_ENTRY_HOST_API_LEGACY_SESSION_20261031"
+    },
+    "parent": "sha256:91d6e602687da2d6afc83f60f54b8bf4bc3c702dca8a8b628e77369e054a54f7",
+    "builds": 1,
+    "source_digests_count": 6
+  },
+  "official_image_pins": [
+    {
+      "image": "php:8.4.27-cli-bookworm",
+      "index": "sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76",
+      "manifest": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+      "config": "sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff",
+      "diffids": [
+        "sha256:44a87794b739d471ec360bec56cc0ceac640d06bbf579ee7d9061a0b88d09818",
+        "sha256:55752bf73d2784972589a07b70e28660d3a64bf008f4f2603f7c5ece41abb7f5",
+        "sha256:1ab2dc9f84fcc64b67fa994c46f5fa57f01d617da8ac8af6d8e295edf1dcd93a",
+        "sha256:bcd2a7fad0e8a8ae58fa2f1fcbce0c572e634ff2e12819bf74b2dd4d92b122ba",
+        "sha256:3be7496c8a62eb4f0af4c061527a8e88b3510ce44732c27cb9a41a05fe5370dd",
+        "sha256:74189fdb51851f53bac99a2d8e28997ae42c1a238c349b1fc5505c8a853354e8",
+        "sha256:7403aaaa6a22c9d38251f656bf7b34583f038d65d2c4dd29c030791ed3469691",
+        "sha256:3d2b2122575cdc7490c09e54825ab35d736f8194a69fffb4557ebc4c614db56c",
+        "sha256:1040ad5d2f02f20413948b6074079c432040b42a8440b53982c632a53dbca7ba",
+        "sha256:c500804b237fb07c047f910dbfdf58c4fea695253d2964b55d93ba4aaf8c3deb"
+      ],
+      "local_id": "sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76",
+      "source_closure": "OFFICIAL_REGISTRY_INDEX_MANIFEST_CONFIG_ROOTFS_PASS"
+    },
+    {
+      "image": "mariadb:10.11.19-jammy",
+      "index": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+      "manifest": "sha256:dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c",
+      "config": "sha256:41096ae9913468679bb5e05bbc19f44edcaf0eae45d67fcde224ffdeda9d3a1f",
+      "diffids": [
+        "sha256:cbaf391e670933f026c05c7dedec3faf8f194b6c2d83b0d5694ad68323c8077c",
+        "sha256:5701c526cef73e0b1516824179943955501f0b3d713bf8d8a3c0fe402fe9e4de",
+        "sha256:7abdcdab5206a86d91a55f422508fdd7a4eaff46a528ca7edf225798ba554f0f",
+        "sha256:8813df9f70d76dec9908558df3d171a68619f897d31542f89ae644f4e4c01946",
+        "sha256:d41bf04bb97163e8044b5a7b3044b0765a0f28294bbbb7e140d85bb0e81aa867",
+        "sha256:b98fb7b4149ae2b9f398b949b795ecc56574e8a50a8b78bf6e36711ceeec9dd4",
+        "sha256:cf46a9b110464f6a817e1ffa242c23c4c9a54a913b81aae1403a62ee727668f0",
+        "sha256:cbe072999d67a7d272b0fdf21c3d129edc756ab6b2c3502941ad9618e9cd17da"
+      ],
+      "local_id": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+      "source_closure": "OFFICIAL_REGISTRY_INDEX_MANIFEST_CONFIG_ROOTFS_PASS"
+    }
+  ],
+  "host_loopback": {
+    "status": "HOST_LOOPBACK_API_REACHABILITY_PASS",
+    "api_recreated_before_host_pass": true,
+    "pre_recreation_synthetic_user_and_token_survived": true,
+    "db_process_restart_after_data_not_run": true,
+    "restart_budget_used": 2,
+    "windows_host_real_requests": true,
+    "default_local_switched": false,
+    "cases": [
+      {
+        "label": "health-after-api-recreation",
+        "status": 200,
+        "expected": 200,
+        "pass": true,
+        "response_sha256": "3e30359aee7d5ab7e0bd99903efbd23d8d85b130ec49d305385611027b72d98d",
+        "seconds": 3.843999999924563,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "anonymous-denied",
+        "status": 401,
+        "expected": 401,
+        "pass": true,
+        "response_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03",
+        "seconds": 1.327999999979511,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "bad-token-denied",
+        "status": 401,
+        "expected": 401,
+        "pass": true,
+        "response_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03",
+        "seconds": 0.46799999999348074,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "pre-recreation-token-persisted",
+        "status": 200,
+        "expected": 200,
+        "pass": true,
+        "response_sha256": "ce1778ace06e9a715f66d2345cc40ad5de49c75befdcabdc950762f2da248012",
+        "seconds": 0.46799999999348074,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "wrong-password-denied",
+        "status": 422,
+        "expected": 422,
+        "pass": true,
+        "response_sha256": "ca446a6e3c0f2af5c6bf36ea1ad1a9e40da19139fadbc5d0438953af406f955e",
+        "seconds": 0.7970000000204891,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "synthetic-login",
+        "status": 200,
+        "expected": 200,
+        "pass": true,
+        "response_sha256": "089548c387faf9296f3ee213743e3ed7a47b1288f2612e22b51fd99b1926b18e",
+        "seconds": 3.327999999979511,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      },
+      {
+        "label": "login-token-authorized",
+        "status": 200,
+        "expected": 200,
+        "pass": true,
+        "response_sha256": "568909dfc6fe03a65765fe75797c2b324d7acde21901d0b92284ce79088eb92b",
+        "seconds": 1.812000000034459,
+        "windows_host": true,
+        "proxy_disabled": true,
+        "loopback_only": true
+      }
+    ]
+  },
+  "legacy_binary_synthetic": {
+    "status": "L11_BINARY_TO_L13_SYNTHETIC_SESSION_COMPATIBILITY_PASS",
+    "generated_with": "11.48.0",
+    "read_with": "13.39.0",
+    "cases": [
+      {
+        "framework": "13.39.0",
+        "mode": "verify",
+        "authenticated": true,
+        "authenticated_before": true,
+        "store_wire_sha256": "e62d3e81e5813a57e8ee2af0c63595883fced5efb2330b24343802c982f04367",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "wrong-key",
+        "authenticated": false,
+        "authenticated_before": false,
+        "store_wire_sha256": "a42e3c66889e32de76c67a79c9b37396eb1fd223b90fdd883702c01a2bf1488b",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "tamper",
+        "authenticated": false,
+        "authenticated_before": false,
+        "store_wire_sha256": "5876a25ce4ee8ca3a069da0ae76e93a065f9db7a32ca2650b42fd8dc98762128",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "revoked",
+        "authenticated": false,
+        "authenticated_before": false,
+        "store_wire_sha256": "e62d3e81e5813a57e8ee2af0c63595883fced5efb2330b24343802c982f04367",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "logout",
+        "authenticated": false,
+        "authenticated_before": true,
+        "store_wire_sha256": "93f264742e5e80e40bab8aee8eaa3d16b459907654381b9593459f870f80764f",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "replay-after-logout",
+        "authenticated": false,
+        "authenticated_before": false,
+        "store_wire_sha256": "ff8dab45dc8b9bf87e8b2b61e25714ac22e063e2f8ebcd9ecf4a725970145147",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      },
+      {
+        "framework": "13.39.0",
+        "mode": "expired",
+        "authenticated": false,
+        "authenticated_before": false,
+        "store_wire_sha256": "a6625e43547b9fd70e7a5b4a71203cee8da0aa46605fc0d7aac009094568d8ee",
+        "real_framework_encryption_middleware": true,
+        "real_framework_session_guard": true,
+        "real_framework_file_handler": true
+      }
+    ],
+    "fresh_key": true,
+    "synthetic_user": true,
+    "store": "actual framework file handler PHP serialization",
+    "real_legacy_user_cookie_proven": false,
+    "harness_sha256": "778a9d6029c35c801dc0c5fc7c9637d776ade7ff3fc195fd7d0e934d6cb8bdd0",
+    "scope": "Real framework SessionGuard+EncryptCookies+FileSessionHandler, isolated synthetic provider. Not production cookie/app-business migration proof. Expiry uses synthetic file mtime, not elapsed two hours."
+  },
+  "regression": {
+    "tests": 60,
+    "assertions": 284,
+    "errors": 2,
+    "passed": 58,
+    "error_class": "QuestionnaireQuestionSeeder could not find accepted repository-root question_bank because runtime mount exposes backend only",
+    "product_source_changed": false,
+    "tests_weakened": false,
+    "migration_total_including_sqlite": 2,
+    "seed_batches_attempted": 2,
+    "rerun": "NOT_RUN_HARD_MIGRATION_SEED_BUDGET_EXHAUSTED",
+    "scope": "This mixed optional regression batch is PARTIAL; framework/connection tests passed and real host API/session results remain independently recorded."
+  },
+  "db_persistence": {
+    "status": "SYNTHETIC_DB_PERSISTENCE_ACROSS_API_RECREATION_PASS",
+    "tables": 90,
+    "users": 1,
+    "tokens": 4,
+    "server_id_matched": true,
+    "schema_matched": true,
+    "effective_app_db_connection": "mysql",
+    "db_restart_with_populated_data": "NOT_RUN_RESTART_BUDGET_EXHAUSTED",
+    "production_db_accessed": false
+  },
+  "shutdown": {
+    "all_task_services_stopped": true,
+    "autostart": false,
+    "old_asset_deletions": 0
+  },
+  "protection": {
+    "dirty_entries": 252,
+    "refs": 527,
+    "old_laravel_framework": "v11.48.0",
+    "backup_manifest_sha256": "3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d",
+    "backup_files": 11066,
+    "backup_bytes": 240617393,
+    "backup_id_size_checks": 11066,
+    "backup_sha_samples": 160
+  },
+  "prior_seals": 13,
+  "named_protection": {
+    "status": "NAMED_PROTECTION_PASS",
+    "old18_current_captured_views": 18,
+    "two_acl": 2,
+    "raw_identity_size": 122,
+    "raw_sha_samples": 69,
+    "seed_identity_size": 3183,
+    "seed_sha_samples": 3,
+    "five_heads_branches": 5,
+    "old_asset_writes": 0,
+    "exact_historical_sd_restoration_not_newly_claimed": true
+  },
+  "budget_snapshot": {
+    "elapsed_seconds": 1602.187,
+    "space": {
+      "local_logical": 398787599,
+      "local_allocated": 450310000,
+      "engine_allocation_reserved_upper_bound": 4294967296
+    },
+    "counters": {
+      "supply_requests": 133,
+      "supply_bytes": 103825408,
+      "service_groups": 3,
+      "php_cli": 42,
+      "offline_builds": 1,
+      "vendor_installs": 2,
+      "container_restarts": 2,
+      "migrations": 2,
+      "host_http": 9,
+      "container_http": 2,
+      "feature_batches": 1,
+      "seeds": 2,
+      "source_digests": 7
+    },
+    "limits": {
+      "seconds": 14400,
+      "logical": 17179869184,
+      "allocated": 17179869184,
+      "supply_bytes": 2147483648,
+      "supply_requests": 500,
+      "source_digests": 8,
+      "offline_builds": 2,
+      "composer_solver": 0,
+      "vendor_installs": 2,
+      "service_groups": 3,
+      "php_cli": 150,
+      "feature_batches": 4,
+      "host_http": 100,
+      "container_http": 120,
+      "migrations": 2,
+      "seeds": 2,
+      "container_restarts": 2,
+      "global_operations": 0,
+      "old_asset_writes": 0
+    },
+    "final_terminal_receipt": "LOCAL_ONLY, after final native readback",
+    "nested_feature_subcounts": "Derived after prepared PHPUnit command; no retrospective PREPARE"
+  },
+  "documents": [
+    {
+      "path": "docs/versions/v10.1.5/CLEAN_LOCAL_L13_DEV_ENTRY_HOST_API_LEGACY_SESSION_RESULT_20261031.md",
+      "mode": "100644",
+      "sha": "48f21c3c663184ce3707d8cb95da4dee6426af0a",
+      "sha256": "f776a7fc58ea20e693ce88bb5863d06686734b365c0491a24889fb304d50b107",
+      "size": 8792
+    },
+    {
+      "path": "docs/versions/v10.1.5/CLEAN_LOCAL_L13_DEV_ENTRY_HANDOFF_20261031.md",
+      "mode": "100644",
+      "sha": "f5cf82bcd2d2e7e5c61dd964bab9324731d879b3",
+      "sha256": "7759e47494b31d9d843689265af0ccb664c38a044d58fb87cdb7e376f4ebda0e",
+      "size": 2777
+    },
+    {
+      "path": "docs/versions/v10.1.5/clean_local_l13_dev/start-existing-dev.ps1",
+      "mode": "100644",
+      "sha": "38582fd4fe145961a30e3c74a0644bbaa41fb7c2",
+      "sha256": "6ca1aba43d755431254c142cc573b5e1e1921508812ce048670388be173f9192",
+      "size": 4616
+    },
+    {
+      "path": "docs/versions/v10.1.5/clean_local_l13_dev/stop-existing-dev.ps1",
+      "mode": "100644",
+      "sha": "f0bb6e41121b0efb912bdd5d51346be4f5aa0dcf",
+      "sha256": "c36e0825d53b218f8279b8a9bf082dbc94649a256105dbfe2c334186cee1f97e",
+      "size": 2199
+    }
+  ],
+  "manifest_self": "Bound by enclosing native Git tree and final fresh readback",
+  "acceptance": "PENDING_ASTRA",
+  "remaining": {
+    "real_legacy_l11_user_cookie": "NOT_PROVEN",
+    "populated_db_process_restart": "NOT_RUN_BUDGET_EXHAUSTED",
+    "question_bank_regression": "2_ERRORS_NOT_RETESTED",
+    "os_enforcement": "NOT_PROVEN",
+    "function_accepted": false,
+    "AC05": "OPEN",
+    "G2": false,
+    "v1016": "NOT_STARTED"
+  },
+  "manual_static_review": {
+    "non_author_finding": "Frozen container/image/mount/network/security/DB-host-port identity checks strengthened before publication",
+    "fixed": true,
+    "runtime_restart_after_shutdown": "NOT_RUN",
+    "config_private": true
+  }
+}
