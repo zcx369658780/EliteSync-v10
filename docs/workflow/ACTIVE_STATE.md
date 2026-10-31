@@ -1,3 +1,25 @@
+# EliteSync v10.1.5｜2026-10-31 Owner授权Laravel13已接受目标main候选的精确安全集成任务正式发布（CURRENT ENTRY）
+
+**`OWNER_AUTHORIZED_LARAVEL13_PHP84_PRECISE_MAIN_INTEGRATION / INTEGRATION_TASK_FORMALLY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_INTEGRATION_NOT_YET_EXECUTED / MAIN_PRODUCT_STILL_V1014 / OLD_LOCAL_L11_AND_BACKUP_RETAINED / NO_LOCAL_DEFAULT_SWITCH / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新授权：** Astra此前完成候选`7bd840200f781466919c7946e3533585caf6f8c3`有界独立验收，明确询问“是否授权我下达一次Laravel13安全集成到GitHub产品main的综合任务？该任务仍由Codex手动执行、Astra独立验收，不删除旧版或切换本机默认环境”，Owner答复“好的我同意，请继续”。故**明确授权Codex在新综合任务内符合全部门禁时，将受限15条Laravel13开发基线产品源码正式快进集成GitHub main**；不授权代码整树合并、生产部署、真实设备、全版AC接受、旧版删除或默认本地版本切换。本次由Astra发布文档，**尚无Codex实际派发或执行**。
+
+**唯一最新正式综合任务（已写入并固定Commit全文回读）：** [V10_1_5_LARAVEL13_ACCEPTED_TARGET_MAIN_PRECISE_SAFE_INTEGRATION_TASK_20261031.md](../versions/v10.1.5/V10_1_5_LARAVEL13_ACCEPTED_TARGET_MAIN_PRECISE_SAFE_INTEGRATION_TASK_20261031.md)，任务Git Blob `dbaf9a05e1d5799ebdb8a99b3084fc29027e8479`；创建Commit `0f377313fbfc3e73ba3c6e21e315654ca315bf20`。包含冻结15个`services/backend-laravel`路径的mode/目标Git Blob，签出前fresh main作为**唯一Git产品候选Parent**，保留原main其它源码文件与全部apps Tree；**两份旧7bd task-only CLI验证工具不入main**。Owner手动派发之后，Codex先创建唯一本轮候选/做保护和局部静态检查，门禁通过后可在同一任务里non-force fast-forward product Commit进入main，并可后接一次仅docs报告/Manifest/ACTIVE_STATE提交；完整fresh Git对象及产品Tree回读后STOP，Astra再独立签`INTEGRATION_ACCEPTED_WITH_OBSERVATIONS`或返修。
+
+**固定接受来源：** 7bd候选Commit `7bd840200f781466919c7946e3533585caf6f8c3`、Root `cd4b6ae230105c28aebf2790b704a7218cd64055`，Astra Review Commit `09b7ded0bfaa6bc0d1019cdb2e76f34fdfa31c1f`、Blob `8c340dd9c1270a99a730879c69cf5b9b0fa9915e`，有界接受`LARAVEL13_TARGET_MAIN_ISOLATED_RUNTIME_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS`。来源有Laravel13/PHP8.4新`composer.lock` Blob`e236fbc960c1dd08c1fecb9aeed4926b4cab3933`、114包，Codex报告166tests/2817 assertions、私有HTTP/API与合成MariaDB90表重启和恢复PASS。但这不是当前main代码已经合入、当前旧本地开发根已切换或整版v10.1.5功能通过。全部运行证据仍属`CODEX_REPORTED_LOCAL_TEST`，Astra未在本机重跑。task-only验证CLI及此前未接受F1/F3/F4新业务不在本次允许15文件内。
+
+**签发时main接受产品身份不变：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`，services Tree `0cb1f9d19659291a462488b3686fd0a07a6698ac`，唯一正式集成仍v10.1.4。新文档提交推进main HEAD不代表产品tree变动。待Owner派发Codex时须**fresh读取main HEAD/Root与这两个产品Tree**，严禁使用旧快照强制覆盖，也不得以Astra Review分支/7bd候选作为Git集成Parent。
+
+**本任务明确禁止：** 不重下OCI、不运行Docker/PHP/Composer/vendor/DB、无新网络依赖供应、无需重复166项测试；预算新root/attempt-0001/ledger，≤120分钟、≤4GiB且所有额外成本先PREPARE+fsync；原STOP任务余额不复用。旧本机Laravel11默认工作树、dirty252、refs527、11,066件备份/240,617,393 bytes及Manifest SHA `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`继续留存；旧18/两ACL/122原证/5根/3183 Seed与历史原始失败不删除。即便main精确集成成功，**默认本地开发入口/旧vendor不自动替换**，旧生产DB、真实Cookie、宿主入口、RTC/AEC、真Push、H264真视频、物理15/30天等继续未通过或NOT_RUN；四历史事故状态、Windows E_NOTIMPL与`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`原样。
+
+**当前产品版门禁：** `V10.1.5_PARTIAL_NOT_ACCEPTED`、11 AC中10 PARTIAL/1 OPEN、AC05 RTC/AEC OPEN、G2 false、REAL_PUSH_PROVIDER_PENDING、v10.1.6 NOT_STARTED。即使受控产品main框架集成成功，也只可能等待Astra接受`LARAVEL13_DEVELOPMENT_FRAMEWORK_MAIN_INTEGRATED`，不得代替`V10.1.5_FUNCTION_ACCEPTED`。
+
+**唯一下一动作：** Owner把上述唯一正式任务单（准确Blob）手动派发给本地Codex。Codex在固定范围内一次完成安全集成、实际main回读、结果/Manifest与STOP，Astra直接独立验收；没有下一任务自动派发、没有旧版文件清理。
+
+以下是最新授权以前的全部ACTIVE_STATE历史，旧“等待Owner是否允许集成”只代表彼时已保存状态，不覆盖本CURRENT ENTRY。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra独立有界接受7bd84020 Laravel13目标main隔离运行候选（CURRENT ENTRY）
 
 **`7BD84020_LARAVEL13_TARGET_MAIN_ISOLATED_RUNTIME_CANDIDATE_ACCEPTED_WITH_OBSERVATIONS / ASTRA_INDEPENDENT_REVIEW_PUBLISHED / CONTROLLED_MAIN_INTEGRATION_OWNER_GATE_PENDING / MAIN_PRODUCT_NOT_INTEGRATED / LOCAL_DEFAULT_L11_UNCHANGED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_LEGACY_L11_COOKIE_NOT_PROVEN / HOST_PORT_FORWARDING_NOT_VERIFIED / V10.1.6_NOT_STARTED`**
