@@ -1,0 +1,487 @@
+{
+  "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+  "batches": [
+    {
+      "batch": 1,
+      "exit": 2,
+      "tests": 102,
+      "assertions": 1512,
+      "errors": 1,
+      "failures": 1,
+      "junit_sha256": "15a191ef1da697dec0cab35a028869fbc1065c97fc4d5d469e6fa8ff47d0d147",
+      "stdout_sha256": "a0f3c73478e7c6ba6421df766860eb4561385add73f07ed725a2053bd98d5611",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "ORIGINAL_FAILURE_RETAINED_REPAIRED_BEFORE_FINAL",
+      "failed_cases": [
+        {
+          "class": "Tests.Feature.FrameworkDependencyCompatibilityTest",
+          "name": "test_laravel_http_client_uses_the_locked_guzzle_transport_api"
+        },
+        {
+          "class": "Tests.Feature.Api.V2.TransportEnvelopeTest",
+          "name": "test_v1_source_slice_and_non_authority_boundaries_remain_unchanged"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "exit": 2,
+      "tests": 74,
+      "assertions": 1372,
+      "errors": 6,
+      "failures": 5,
+      "junit_sha256": "e1237fa045fec0500bc3c5e8c22ee4a5c451142b9fbebf457a80d4fa15f2c81d",
+      "stdout_sha256": "c1f04b0f8ff364d6967f81acf3dbc471200e05903edc129b7e924286a261f575",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "ORIGINAL_FAILURE_RETAINED_REPAIRED_BEFORE_FINAL",
+      "failed_cases": [
+        {
+          "class": "Tests.Feature.AdminApiTest",
+          "name": "test_question_quality_stats_endpoint_returns_reason_breakdown"
+        },
+        {
+          "class": "Tests.Feature.AdminApiTest",
+          "name": "test_prune_low_drop_questions_supports_dry_run_and_apply"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_match_alone_and_single_party_do_not_grant_messages"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_legal_send_replay_read_and_revocation_check_current_server_state"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_unknown_actor_disabled_peer_and_unconfigured_environment_deny"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_a_second_authorized_peer_cannot_replay_a_revoked_peers_message"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_private_attachment_download_requires_current_participant_consent"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_client_alias_or_overwrite_fields_are_rejected_with_and_without_file"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_public_disk_asset_cannot_be_injected_as_live_attachment"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_upload_fails_closed_without_private_disk_configuration"
+        },
+        {
+          "class": "Tests.Feature.V1009PrivateVideoTest",
+          "name": "test_current_permission_is_checked_for_video_and_range_after_revocation"
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "exit": 2,
+      "tests": 36,
+      "assertions": 334,
+      "errors": 9,
+      "failures": 0,
+      "junit_sha256": "ddaed487f21f4182b3eefcba23250a97c20a6ce4f27c307ef891268d86dfe4d3",
+      "stdout_sha256": "9971680f33647e29b24a91df6fc18e04b969bde1c7dd92968ad434639fbb726c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "ORIGINAL_FAILURE_RETAINED_REPAIRED_BEFORE_FINAL",
+      "failed_cases": [
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_match_alone_and_single_party_do_not_grant_messages"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_legal_send_replay_read_and_revocation_check_current_server_state"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_unknown_actor_disabled_peer_and_unconfigured_environment_deny"
+        },
+        {
+          "class": "Tests.Feature.V1007LiveConsentTest",
+          "name": "test_a_second_authorized_peer_cannot_replay_a_revoked_peers_message"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_private_attachment_download_requires_current_participant_consent"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_client_alias_or_overwrite_fields_are_rejected_with_and_without_file"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_public_disk_asset_cannot_be_injected_as_live_attachment"
+        },
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_upload_fails_closed_without_private_disk_configuration"
+        },
+        {
+          "class": "Tests.Feature.V1009PrivateVideoTest",
+          "name": "test_current_permission_is_checked_for_video_and_range_after_revocation"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "exit": 1,
+      "tests": 166,
+      "assertions": 2812,
+      "errors": 0,
+      "failures": 1,
+      "junit_sha256": "85c9d4c0e99b43b247957eda720c880e9c7341a7218ea17186f972caf3cbb4f6",
+      "stdout_sha256": "9b64af70ef18f71e9664eb0287e0e3b086ebacc140e1013451cb47e881801b32",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "ORIGINAL_FAILURE_RETAINED_REPAIRED_BEFORE_FINAL",
+      "failed_cases": [
+        {
+          "class": "Tests.Feature.V1007PrivateMediaTest",
+          "name": "test_private_attachment_download_requires_current_participant_consent"
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "exit": 0,
+      "tests": 166,
+      "assertions": 2817,
+      "errors": 0,
+      "failures": 0,
+      "junit_sha256": "b1357a608a8768e62c7780f7cd0452d76b5a43a94453891fdb176afbc726b6b9",
+      "stdout_sha256": "f64e39b81bc41314b79b2c2fb61e43a3a6872eb2c7d02f80ef36c1f9ce43fe87",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "FINAL_PASS",
+      "failed_cases": []
+    }
+  ],
+  "feature_batches_consumed": 5,
+  "feature_budget_closed": true,
+  "final_test_scope": "16 selected target-main framework/auth/message/private-media/platform-safety files; not entire v10.1.5 acceptance",
+  "php_lint_files": 20,
+  "composer_validate_strict": "PASS",
+  "composer_check_platform_reqs": "PASS",
+  "install": "PASS --no-scripts --no-plugins --no-interaction; solver 0; 114 installed versions/dist references match frozen lock",
+  "package_discovery_and_route_bootstrap": "PASS; own and 7 package providers source-reviewed before explicit commands",
+  "dependency_use_paths": {
+    "Guzzle8": "Laravel HTTP client setHandler transport API with deterministic MockHandler; no real vendor endpoints",
+    "Workerman5.2.3": "Worker/callback construction and disabled gateway boundary; no real WebSocket server/RTC",
+    "lunar_php1.4.7": "Actual application canonicalization adapter, four-pillar output and explicit invalid-input fallback"
+  },
+  "http_phase1": {
+    "status": "PASS",
+    "message_count": 1,
+    "attachment_count": 1,
+    "private_png_sha256_match": true,
+    "admin_draft_count": 1,
+    "mutual_cn_mc_required": true,
+    "csrf_negative": true,
+    "outsider_negative": true,
+    "consent_revocation_negative": true,
+    "token_revocation_negative": true,
+    "all_people_fictional": true,
+    "transport": "real private-container-loopback HTTP -> Laravel -> new MariaDB",
+    "host_port_forwarding": "NOT_VERIFIED",
+    "h264": "NOT_RUN",
+    "partial_console_error_receipt_preserved": true
+  },
+  "http_post_restart": {
+    "status": "PASS",
+    "valid_token_still_usable": true,
+    "revoked_consent_read_write_media_still_denied": true,
+    "old_revoked_token_still_401": true,
+    "guest_media_401_no_lookup": true,
+    "ordinary_credentials_cannot_open_admin_session": true,
+    "snapshot_restore_point": "Before these HTTP authorization checks; business restoration verified on 90 full tables"
+  },
+  "http_results": [
+    {
+      "label": "health",
+      "status": 200,
+      "body_bytes": 190,
+      "body_sha256": "639499459488a5c52398b23ec60eb3f13b4d8d4056c70e15cc70a04992ed16ed"
+    },
+    {
+      "label": "unauth-profile",
+      "status": 401,
+      "body_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "label": "login-sender",
+      "status": 200,
+      "body_bytes": 630,
+      "body_sha256": "709f023f462b662fb5c26310a214c2867cee50136fe48df85bb11973bdb51e19"
+    },
+    {
+      "label": "login-recipient",
+      "status": 200,
+      "body_bytes": 633,
+      "body_sha256": "82ca402116082ba427643797cfc3a8c01583aadc9efb16fa5f07de3442b34420"
+    },
+    {
+      "label": "login-outsider",
+      "status": 200,
+      "body_bytes": 640,
+      "body_sha256": "204db77f96b94d9ce8e3929c51a7c7f165e01f0ac4ed6fdc1152d0391df190cc"
+    },
+    {
+      "label": "login-platform",
+      "status": 200,
+      "body_bytes": 634,
+      "body_sha256": "b75f6d5597ebee0730f4487f383ad5577fd59147146dc956744517819910abe4"
+    },
+    {
+      "label": "disabled-login",
+      "status": 403,
+      "body_bytes": 56,
+      "body_sha256": "e8c3e059c34d1c8ef8a91f89a8dee95ab185d8d2f74c5d87a258f524f3ae276e"
+    },
+    {
+      "label": "before-consent",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "png-outsider",
+      "status": 404,
+      "body_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "label": "grant-connection-request",
+      "status": 200,
+      "body_bytes": 251,
+      "body_sha256": "0f4bbe3416a5bd71b96544591a1f7edb6c434ac0bd06268ab31a3b2a3f4f1dcc"
+    },
+    {
+      "label": "grant-connection-accept",
+      "status": 200,
+      "body_bytes": 250,
+      "body_sha256": "4d38169eb13618d9b95b851cdbc7b54fc46738721582a55280e7bbd79043c25a"
+    },
+    {
+      "label": "grant-consent-request",
+      "status": 200,
+      "body_bytes": 2229,
+      "body_sha256": "b26d3792b245386cf62775ce89d145a151c2b26e4c5bf54f73ed6ca1f7a488eb"
+    },
+    {
+      "label": "grant-consent-accept",
+      "status": 200,
+      "body_bytes": 2182,
+      "body_sha256": "416703eeced4912caee4b634774fa5f6a3f0170e29835198406d43582331f7f1"
+    },
+    {
+      "label": "message-write",
+      "status": 200,
+      "body_bytes": 967,
+      "body_sha256": "33c154e722bc8002517805225c75a0f3b676c3afc0d6f70da00c8cfa83b134af"
+    },
+    {
+      "label": "message-replay",
+      "status": 200,
+      "body_bytes": 966,
+      "body_sha256": "df76c25cec676252ec84676e187854a96938541159394f9e3133bc416a0a5232"
+    },
+    {
+      "label": "key-conflict",
+      "status": 409,
+      "body_bytes": 92,
+      "body_sha256": "b8edb967017cca2c6058cf0b2359dcfeaaa5f7716515ef213cc868a0dd3d9cba"
+    },
+    {
+      "label": "persisted-read",
+      "status": 200,
+      "body_bytes": 817,
+      "body_sha256": "3dc8b8f180b02ab1eb623ca9b2994289a6846e7bb2aa814f74a06f9e2f7e086b"
+    },
+    {
+      "label": "png-authorized",
+      "status": 200,
+      "body_bytes": 68,
+      "body_sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+    },
+    {
+      "label": "message-outsider",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "admin-form",
+      "status": 200,
+      "body_bytes": 3362,
+      "body_sha256": "66969d0f5bbad63cdfc0d73427666649c9fe67a040a8015b857b6df82f9a7eb1"
+    },
+    {
+      "label": "admin-no-csrf",
+      "status": 419,
+      "body_bytes": 6592,
+      "body_sha256": "ed0403292b91ada9b7e1dc7159467c5083e76977944d83daad889d7f1c19549e"
+    },
+    {
+      "label": "admin-login",
+      "status": 302,
+      "body_bytes": 354,
+      "body_sha256": "09e5aa0a7fc6a48bc0cdb7fd6bb8f8581bd8925c0c2eb26bd1380f5239c30b49"
+    },
+    {
+      "label": "admin-page",
+      "status": 200,
+      "body_bytes": 6082,
+      "body_sha256": "d1afa90f5ccd7c19b51838faf6988bfa80c16e8e08fde86e7091067cefd01dc5"
+    },
+    {
+      "label": "admin-write-no-csrf",
+      "status": 419,
+      "body_bytes": 41,
+      "body_sha256": "bb434aa96fb54f3c2b11879dcf335d2597954065ced876919f2c66dc7c2e36e8"
+    },
+    {
+      "label": "admin-create",
+      "status": 302,
+      "body_bytes": 418,
+      "body_sha256": "ebced63780e6413501152d30f90713c84150e26c2181a31aea2205684464d7e4"
+    },
+    {
+      "label": "unpublished-event",
+      "status": 404,
+      "body_bytes": 81,
+      "body_sha256": "7c7541794024d30441663826d5932191a83e3a3e78f8a63028c82a9b593ae153"
+    },
+    {
+      "label": "consent-revoke",
+      "status": 200,
+      "body_bytes": 2229,
+      "body_sha256": "a7a36aab616d0f6c467b8c2b4a5b765d1f8e67b295bb9198e9afa4371b5e4837"
+    },
+    {
+      "label": "revoked-png",
+      "status": 404,
+      "body_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "label": "revoked-replay",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "revoked-read",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "logout",
+      "status": 200,
+      "body_bytes": 38,
+      "body_sha256": "e8255cc3221feae929472b867280798cd828840618405d6baec295bcc558d289"
+    },
+    {
+      "label": "revoked-token",
+      "status": 401,
+      "body_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "label": "restart-profile-token-valid",
+      "status": 200,
+      "body_bytes": 890,
+      "body_sha256": "8515a48c8a330ce31ffc78a907a53a0d94e32a8d4a26ef311a0569a5792c9575"
+    },
+    {
+      "label": "restart-revoked-replay",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "restart-revoked-png",
+      "status": 404,
+      "body_bytes": 37,
+      "body_sha256": "cc878f6a7e6c0ac2c563c9b1753fc0435c51510d9111e39aa99d8df8f90e35a2"
+    },
+    {
+      "label": "restart-revoked-read",
+      "status": 404,
+      "body_bytes": 38,
+      "body_sha256": "e96f694d7018211694dda085e416b538028fe6a4bf3c36b2044328535f43e7b9"
+    },
+    {
+      "label": "restart-old-token-denied",
+      "status": 401,
+      "body_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "label": "guest-private-media-denied",
+      "status": 401,
+      "body_bytes": 91,
+      "body_sha256": "24adaba268a402c0169ffe6b7fe3139bbbc804ff0389b6f4465bcb5c72c32e03"
+    },
+    {
+      "label": "ordinary-login-form",
+      "status": 200,
+      "body_bytes": 3362,
+      "body_sha256": "e8bbf8c16b7aa13454351f6a16add8bd3475a3b58835e2df8e83717249cc63f8"
+    },
+    {
+      "label": "ordinary-admin-login-denied",
+      "status": 302,
+      "body_bytes": 378,
+      "body_sha256": "71e5eb1f1b759b9c12a8e172a8ab9aa0e34650f62004af773228ed72437e4252"
+    },
+    {
+      "label": "ordinary-no-admin-session",
+      "status": 401,
+      "body_bytes": 30,
+      "body_sha256": "8031180d4d982a471ca97ef5a04e8d013d003c5c19e80d0a5f45401c4463ec27"
+    },
+    {
+      "label": "final-helper-health",
+      "status": 200,
+      "body_bytes": 190,
+      "body_sha256": "4f867640f4d41aaf974af26118f118bc2c4a8af8373d795d0a9d62485243f9e7"
+    }
+  ],
+  "http_charged_attempts": 47,
+  "transport_observations": [
+    "Host published loopback port refused; not verified.",
+    "First private-loopback probe timed out at 5s cold start; later 30/45s private-loopback requests passed.",
+    "Actual HTTP used native curl to only 127.0.0.1:8080 inside this task private namespace; no proxy or redirects; each HTTP and PHP CLI charged."
+  ],
+  "synthetic_database_restart_restore": {
+    "status": "PASS",
+    "table_count": 90,
+    "all_target_schema_rows_hashes_unchanged_after_restart": true,
+    "all_restored_schema_rows_hashes_equal": true,
+    "dump_sha256": "070d38969fb1f38c88320cb8fff501c64963c768f6fe993d2144b7fa117a6e12",
+    "dump_bytes": 121210,
+    "source": "Only current task brand-new synthetic database",
+    "old_or_production_db_accessed": false,
+    "old_backup_overwritten": false
+  },
+  "client_crlf_negative_guard": "2 real PHP preflights rejected before curl; normal health rechecked 200",
+  "not_run_or_proven": [
+    "REAL_LEGACY_L11_COOKIE_NOT_PROVEN",
+    "H264_VIDEO_206_NOT_RUN",
+    "REAL_WEBSOCKET_GATEWAY_NOT_RUN",
+    "REAL_PUSH_PROVIDER_PENDING",
+    "RTC_AEC_NOT_RUN",
+    "PHYSICAL_15_30_DAY_NOT_RUN",
+    "APP_DEVICE_E2E_NOT_RUN",
+    "PRODUCTION_NOT_RUN"
+  ]
+}

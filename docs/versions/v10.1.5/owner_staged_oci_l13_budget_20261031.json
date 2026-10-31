@@ -1,0 +1,63 @@
+{
+  "stage": "DYNAMIC_PHASE_CLOSED_BEFORE_SINGLE_CANDIDATE_PUBLICATION",
+  "task_id": "V1015_OWNER_STAGED_OCI_L13_MAIN_RUNTIME_INTEGRATION_20261031",
+  "attempt": "attempt-0001",
+  "limits": {
+    "seconds": 14400,
+    "logical": 17179869184,
+    "allocated": 17179869184,
+    "supply_bytes": 2147483648,
+    "supply_requests": 500,
+    "digests": 8,
+    "build": 2,
+    "solver": 0,
+    "vendor": 2,
+    "service_groups": 3,
+    "php_cli": 150,
+    "feature_batches": 5,
+    "http": 180,
+    "migration": 2,
+    "seed": 2,
+    "activation": 0,
+    "wsl_start": 0
+  },
+  "used": {
+    "supply_requests": 137,
+    "digests": 7,
+    "build": 1,
+    "solver": 0,
+    "vendor": 1,
+    "service_groups": 3,
+    "php_cli": 92,
+    "feature_batches": 5,
+    "http": 47,
+    "migration": 2,
+    "seed": 2,
+    "activation": 0,
+    "wsl_start": 0,
+    "supply_bytes": 34054405
+  },
+  "failed_response_conservative_maximum_charge": 3145728,
+  "successful_response_body_bytes": 30908677,
+  "owner_external_pull": {
+    "classification": "OWNER_EXTERNAL_DOCKER_PULL",
+    "bytes": "UNKNOWN_EXTERNAL_BYTES",
+    "requests": "UNKNOWN_EXTERNAL_REQUESTS",
+    "images": [
+      "php:8.4.27-cli-bookworm",
+      "mariadb:10.11.19-jammy"
+    ],
+    "ubi9": "EXCLUDED_PROTECTED"
+  },
+  "digest_counter_definition": "6 distinct source Index/platform Manifest/Config identities plus 1 new task image identity; raw layer hashes and package hashes are verification records, not extra image inputs",
+  "elapsed_seconds_at_snapshot": 3528.125,
+  "space_snapshot_task_root_plus_conservative_daemon_bound": {
+    "logical": 3801118968,
+    "allocated": 3826357448,
+    "headroom_reserve": 67108864
+  },
+  "post_publication_metadata_space_reserve": 33554432,
+  "final_exact_seal": "LOCAL_ONLY budget-terminal/completion receipt, generated after fresh GitHub readback; this snapshot is not mislabeled terminal",
+  "remaining_budget_reusable_after_STOP": false,
+  "activation_wsl_install_upgrade": 0
+}

@@ -1,0 +1,220 @@
+{
+  "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+  "images": [
+    {
+      "repository": "docker.io/library/php",
+      "index": "sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76",
+      "manifest": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+      "config": "sha256:12f6d2ea136f247580f3dc42bda86b27af080fa8f04ea5ec9b581238702093ff",
+      "platform": "linux/amd64",
+      "source_class": "FROZEN_PHP_8_4_27_BOOKWORM",
+      "export_sha256": "33f9bec4c99653eae199da2a4f9bb789cd27497abdaf0b22ffcf422b450b0526",
+      "export_bytes": 192750080,
+      "all_registry_compressed_layers_recalculated": true,
+      "all_uncompressed_diff_ids_recalculated": true,
+      "layers": [
+        {
+          "compressed_sha256": "3c5439d0ae62993af4cc4e21b8c777297e81bc40e200d4633c85a3e0f977a3bc",
+          "compressed_bytes": 28247437,
+          "diff_id": "sha256:44a87794b739d471ec360bec56cc0ceac640d06bbf579ee7d9061a0b88d09818",
+          "uncompressed_bytes": 77946880,
+          "match": true
+        },
+        {
+          "compressed_sha256": "521f906de6f3fda4a5cd63892a9fac65456276165212adbb6b58cfbfcf8f3807",
+          "compressed_bytes": 227,
+          "diff_id": "sha256:55752bf73d2784972589a07b70e28660d3a64bf008f4f2603f7c5ece41abb7f5",
+          "uncompressed_bytes": 3584,
+          "match": true
+        },
+        {
+          "compressed_sha256": "46825504d7db5d96b76369f2224045b60a02760420f74d74024be4a2bb4f9809",
+          "compressed_bytes": 104156230,
+          "diff_id": "sha256:1ab2dc9f84fcc64b67fa994c46f5fa57f01d617da8ac8af6d8e295edf1dcd93a",
+          "uncompressed_bytes": 319482368,
+          "match": true
+        },
+        {
+          "compressed_sha256": "2cf351c8e236b3c373336d155d46b0ce5fcc0a5cb4dd878f7a5fa691ea1af7ba",
+          "compressed_bytes": 227,
+          "diff_id": "sha256:bcd2a7fad0e8a8ae58fa2f1fcbce0c572e634ff2e12819bf74b2dd4d92b122ba",
+          "uncompressed_bytes": 5120,
+          "match": true
+        },
+        {
+          "compressed_sha256": "c50c8419d5e5f91fd134d3613e15ef5cb87a02fd917883bc93952c3d1bfad195",
+          "compressed_bytes": 13973088,
+          "diff_id": "sha256:3be7496c8a62eb4f0af4c061527a8e88b3510ce44732c27cb9a41a05fe5370dd",
+          "uncompressed_bytes": 14304256,
+          "match": true
+        },
+        {
+          "compressed_sha256": "63e631e020cf4dd2066e28f16888d657b1e0bfac71a1271594c0c016486839fa",
+          "compressed_bytes": 491,
+          "diff_id": "sha256:74189fdb51851f53bac99a2d8e28997ae42c1a238c349b1fc5505c8a853354e8",
+          "uncompressed_bytes": 4096,
+          "match": true
+        },
+        {
+          "compressed_sha256": "000aa038b17de8a8f35a82ff6db11c34704c34697c3220730c660daa7eddb15b",
+          "compressed_bytes": 39886151,
+          "diff_id": "sha256:7403aaaa6a22c9d38251f656bf7b34583f038d65d2c4dd29c030791ed3469691",
+          "uncompressed_bytes": 138507264,
+          "match": true
+        },
+        {
+          "compressed_sha256": "aa91feabb77b87ad6ceafca1cc5a1cad5b092e1e5548c0b199bff31c6fac2d04",
+          "compressed_bytes": 2451,
+          "diff_id": "sha256:3d2b2122575cdc7490c09e54825ab35d736f8194a69fffb4557ebc4c614db56c",
+          "uncompressed_bytes": 12800,
+          "match": true
+        },
+        {
+          "compressed_sha256": "be9432be2130d053d50b9f0c49eda6246be5cdc677eb6b918aaa74ddae68ee02",
+          "compressed_bytes": 249,
+          "diff_id": "sha256:1040ad5d2f02f20413948b6074079c432040b42a8440b53982c632a53dbca7ba",
+          "uncompressed_bytes": 4608,
+          "match": true
+        },
+        {
+          "compressed_sha256": "797518a68278cddce8959cb1dbda780ccd2feb21a95661dcf8fe9c608a0d292e",
+          "compressed_bytes": 244,
+          "diff_id": "sha256:c500804b237fb07c047f910dbfdf58c4fea695253d2964b55d93ba4aaf8c3deb",
+          "uncompressed_bytes": 4608,
+          "match": true
+        }
+      ],
+      "observed_inspect_id": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+      "observed_descriptor": "sha256:dd0e2b902f1edfb6ca02fbcb391c28b1554c7d35a4e36e5925876b90aa804851",
+      "repo_digests": [
+        "php@sha256:54b467ede1db96c66675e7b78457dd43729d0e7be31978d4a1e5c069ceabcf76"
+      ]
+    },
+    {
+      "repository": "docker.io/library/mariadb",
+      "index": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+      "manifest": "sha256:dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c",
+      "config": "sha256:41096ae9913468679bb5e05bbc19f44edcaf0eae45d67fcde224ffdeda9d3a1f",
+      "platform": "linux/amd64",
+      "source_class": "QUALIFIED_OFFICIAL_ALTERNATE_MARIADB_10_11_19_JAMMY",
+      "export_sha256": "b2f90f6d806303b58e7ea1556d5124bf6027989669d79d03c8892eff594fbe71",
+      "export_bytes": 109005312,
+      "all_registry_compressed_layers_recalculated": true,
+      "all_uncompressed_diff_ids_recalculated": true,
+      "layers": [
+        {
+          "compressed_sha256": "98c4455a98982b35380ec62f90d5cf0edff02eeb4b3bb18595d871fdeb0c0c67",
+          "compressed_bytes": 29751627,
+          "diff_id": "sha256:cbaf391e670933f026c05c7dedec3faf8f194b6c2d83b0d5694ad68323c8077c",
+          "uncompressed_bytes": 80642560,
+          "match": true
+        },
+        {
+          "compressed_sha256": "c34808af6b3ec476ae59c4fce76f48329c00a2bd2f0846eb56c0422cc4ffcb35",
+          "compressed_bytes": 1716,
+          "diff_id": "sha256:5701c526cef73e0b1516824179943955501f0b3d713bf8d8a3c0fe402fe9e4de",
+          "uncompressed_bytes": 337920,
+          "match": true
+        },
+        {
+          "compressed_sha256": "37f986522545a8789af18a0cf27b3de6961bdde4da5d29ec2ddc99c8885df22a",
+          "compressed_bytes": 5566380,
+          "diff_id": "sha256:7abdcdab5206a86d91a55f422508fdd7a4eaff46a528ca7edf225798ba554f0f",
+          "uncompressed_bytes": 16000000,
+          "match": true
+        },
+        {
+          "compressed_sha256": "3e968919cb92fde35b419d924757f4023d3727916482cb03a3aba7a06faea64c",
+          "compressed_bytes": 116,
+          "diff_id": "sha256:8813df9f70d76dec9908558df3d171a68619f897d31542f89ae644f4e4c01946",
+          "uncompressed_bytes": 1536,
+          "match": true
+        },
+        {
+          "compressed_sha256": "e7908f3008467d8a20daee702cc0f9b946de1d64f76a8757be5ba1bdef09337f",
+          "compressed_bytes": 333,
+          "diff_id": "sha256:d41bf04bb97163e8044b5a7b3044b0765a0f28294bbbb7e140d85bb0e81aa867",
+          "uncompressed_bytes": 5120,
+          "match": true
+        },
+        {
+          "compressed_sha256": "4ef363dc51e787593eee2ce42017231e0e902af46f5efdb59443d57ec49d62f6",
+          "compressed_bytes": 68825273,
+          "diff_id": "sha256:b98fb7b4149ae2b9f398b949b795ecc56574e8a50a8b78bf6e36711ceeec9dd4",
+          "uncompressed_bytes": 236017152,
+          "match": true
+        },
+        {
+          "compressed_sha256": "59013e7d205ae23cbfd855e43bacc9da961349e79e72f2c4f2e72a86fe0b5630",
+          "compressed_bytes": 4015,
+          "diff_id": "sha256:cf46a9b110464f6a817e1ffa242c23c4c9a54a913b81aae1403a62ee727668f0",
+          "uncompressed_bytes": 13824,
+          "match": true
+        },
+        {
+          "compressed_sha256": "d626f8bd756e729d33b6eb3af6d23c7a742d3e9a48e6fddd6c12427616aa481c",
+          "compressed_bytes": 8457,
+          "diff_id": "sha256:cbe072999d67a7d272b0fdf21c3d129edc756ab6b2c3502941ad9618e9cd17da",
+          "uncompressed_bytes": 30208,
+          "match": true
+        }
+      ],
+      "observed_inspect_id": "sha256:dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c",
+      "observed_descriptor": "sha256:dc9dd57be7f46ad6f350c598a331d64f295899c4abac3ec5652eff831fc38a6c",
+      "repo_digests": [
+        "mariadb@sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2"
+      ]
+    }
+  ],
+  "old_frozen_mariadb_index_not_selected": "sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae",
+  "alternate_mariadb_qualified": true,
+  "containerd_id_semantics": "API 1.54 reported Index; signed CLI/API 1.56 --platform reported platform Manifest. Neither is blindly equated with Config.",
+  "desktop": "4.97.0.244584",
+  "engine": "29.9.2 linux/amd64",
+  "qualified_signed_cli": "29.9.2",
+  "observed_old_path_cli": "29.3.0, unsigned, read-only observations only; not used for runtime",
+  "docker_signature": "Valid Docker Inc",
+  "license": "Owner-reported qualifying small business; existing LicenseTermsVersion 2; no new terms accepted",
+  "php": "8.4.27",
+  "laravel": "13.39.0",
+  "composer": {
+    "version": "2.11.1",
+    "path": "/download/2.11.1/composer.phar",
+    "sha256": "6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c",
+    "bytes": 3797852,
+    "source": "https://getcomposer.org official stable metadata and checksum"
+  },
+  "unzip_official_signed_debian_input": {
+    "package": "unzip",
+    "version": "6.0-28",
+    "filename": "pool/main/u/unzip/unzip_6.0-28_amd64.deb",
+    "sha256": "b3d9529c34382cc8d2e6cc8299a18536504edbc284b9133ffbe522704865068e",
+    "bytes": 166496,
+    "release_sha256": "77737fa4b34f2693e982cc9ee35736816c35a7778fc2d326cc1bbf5b301fe1aa",
+    "packages_sha256": "9e0b5aabb2465b3d2e7a7fe27f9913846277833f7a2826e7767acccff5b588c5",
+    "signature_gate": "OFFLINE_GPGV_PASS_IN_ACTUAL_BUILD"
+  },
+  "offline_builds": 1,
+  "build_network": "none; legacy --pull=false local immutable source; no engine setting change",
+  "new_task_runtime_image_id": "sha256:45936264f829d26c5fcd77d39877431f8d740eaa43b5af24a3e039b2362393c7",
+  "new_vendor": {
+    "files": 9161,
+    "bytes": 50472584,
+    "sorted_path_size_sha256_aggregate": "36bd103e7ee8f440750020f8776ad2eb9a7fbdb7a6758615efa7e77f02572d0e",
+    "per_file_hashes_recalculated": true,
+    "scope": "New task vendor only; no historical vendor reused"
+  },
+  "owner_external_supply": {
+    "classification": "OWNER_EXTERNAL_DOCKER_PULL",
+    "bytes": "UNKNOWN_EXTERNAL_BYTES",
+    "requests": "UNKNOWN_EXTERNAL_REQUESTS",
+    "images": [
+      "php:8.4.27-cli-bookworm",
+      "mariadb:10.11.19-jammy"
+    ],
+    "ubi9": "EXCLUDED_PROTECTED"
+  },
+  "ubi9_input_used_modified_or_deleted": false,
+  "registry_bearer_and_temporary_redirect_urls": "memory only; not public or raw-persisted by transport",
+  "export_scope": "Only the exact selected linux/amd64 platform chain is qualified and used at runtime. Additional saved attestation entries are not imported or treated as execution inputs."
+}

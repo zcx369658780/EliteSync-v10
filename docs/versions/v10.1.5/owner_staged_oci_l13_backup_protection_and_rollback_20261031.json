@@ -1,0 +1,49 @@
+{
+  "evidence_class": "CODEX_REPORTED_LOCAL_TEST",
+  "backup_manifest_sha256": "3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d",
+  "existing_backup_files": 11066,
+  "existing_backup_bytes": 240617393,
+  "this_task_all_backup_files_reopened_sha256": 11066,
+  "this_task_old_source_vendor_private_metadata_hash_checks": 9643,
+  "prior_isolated_restore_trial": "Previously verified 11066-file read/restore; retained; not falsely claimed repeated this task",
+  "original_dirty_entries": 252,
+  "original_refs": 527,
+  "original_index_refs_head_dirty_unchanged": true,
+  "historical": {
+    "status": "PASS_NAMED_HISTORICAL_PROTECTION",
+    "records_sha256_size_fileid": 122,
+    "seed_sha256_size_fileid": 3183,
+    "old18_current_captured_view_descriptor_bytes_and_control_unchanged": 18,
+    "two_prior_acl_fixture_descriptors_unchanged": 2,
+    "five_head_branch_pairs_unchanged": 5,
+    "old_descriptor_restore_attempts": 0,
+    "old_source_or_acl_writes": 0,
+    "original_sd_full_restoration": "NOT_PROVEN_UNCHANGED",
+    "G2": false
+  },
+  "previous_task_seals_checked": 11,
+  "all_old_versions_and_backups_retained": true,
+  "deletions_authorized": 0,
+  "current_default_local_l11_switched": false,
+  "new_synthetic_database_recovery": {
+    "status": "PASS",
+    "table_count": 90,
+    "all_target_schema_rows_hashes_unchanged_after_restart": true,
+    "all_restored_schema_rows_hashes_equal": true,
+    "dump_sha256": "070d38969fb1f38c88320cb8fff501c64963c768f6fe993d2144b7fa117a6e12",
+    "dump_bytes": 121210,
+    "source": "Only current task brand-new synthetic database",
+    "old_or_production_db_accessed": false,
+    "old_backup_overwritten": false
+  },
+  "rollback_plan": [
+    "Candidate is not merged; current main product and original local Laravel11 remain unchanged.",
+    "Retain original dirty tree, vendor, private configuration, all task ledgers/evidence and the verified local backup.",
+    "Any future activation must use a clean reviewed target and match Astra-accepted product Trees; do not overwrite the dirty root.",
+    "If a future rollback is separately authorized, restore into a new isolated destination and verify backup manifest hashes and accepted product Trees before any switch.",
+    "This task tested recovery only for its own new synthetic 90-table database. No production/old database or full Git-history recovery is claimed.",
+    "Deletion of any old asset requires a future explicit Owner item-by-item decision; no cleanup successor is issued."
+  ],
+  "physical_other_disk_redundancy": "NOT_PROVEN",
+  "production_database_backup_restore": "NOT_RUN"
+}
