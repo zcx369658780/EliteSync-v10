@@ -1,3 +1,4 @@
+import '../../../../support/synthetic_private_login.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +32,16 @@ class _Api extends ApiClient {
   _Api() : super(dio: Dio());
   final pending = Completer<NetworkResult<Map<String, dynamic>>>();
   int posts = 0;
+  bool allowAttachmentPreflight = false;
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
     CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
-  }) => pending.future;
+  }) => query?['limit'] == 1 && allowAttachmentPreflight
+      ? Future.value(const NetworkSuccess({'items':<dynamic>[]}))
+      : pending.future;
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
@@ -48,6 +52,19 @@ class _Api extends ApiClient {
   }) async {
     posts++;
     return const NetworkFailure(message: 'revoked', statusCode: 403);
+  }
+}
+
+class _UnknownSendApi extends ApiClient {
+  _UnknownSendApi() : super(dio: Dio());
+  final bodies = <Map<String, dynamic>>[];
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(String path, {CancelToken? cancelToken, Map<String, dynamic>? query, Options? options}) async =>
+      const NetworkSuccess({'items': <dynamic>[]});
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(String path, {Object? body, CancelToken? cancelToken, Map<String, dynamic>? query, Options? options}) async {
+    bodies.add(Map<String, dynamic>.from(body as Map));
+    return const NetworkFailure(message: 'upstream response lost', statusCode: 502);
   }
 }
 
@@ -83,8 +100,10 @@ Future<void> _show(
   _Gateway? gateway,
   Dio? dio,
 }) async {
+  final secure=await syntheticPrivateLogin();
   final container = ProviderContainer(
     overrides: [
+      secureStorageProvider.overrideWithValue(secure),
       apiClientProvider.overrideWithValue(api),
       sessionProvider.overrideWith(_Session.new),
       if (gateway != null)
@@ -105,10 +124,25 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets('502 after possible commit retries same logical message key', (tester) async {
+    final api = _UnknownSendApi();
+    await _show(tester, api);
+    await tester.enterText(find.byType(TextField), 'synthetic unchanged payload');
+    await tester.tap(find.text('发送'));
+    await tester.pump(); await tester.pump();
+    expect(api.bodies.length, 1);
+    expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
+    await tester.tap(find.text('使用原消息编号重试'));
+    await tester.pump(); await tester.pump();
+    expect(api.bodies.length, 2);
+    expect(api.bodies[1]['client_message_id'], api.bodies[0]['client_message_id']);
+    expect(api.bodies[1]['content'], api.bodies[0]['content']);
+    await tester.pumpWidget(const SizedBox());
+  });
   testWidgets(
     'video attachment waits for real ready upload before message dispatch',
     (tester) async {
-      final api = _Api();
+      final api = _Api()..allowAttachmentPreflight = true;
       final gateway = _Gateway();
       await _show(tester, api, gateway: gateway);
       await tester.tap(find.byTooltip('发送短视频'));
@@ -131,7 +165,7 @@ void main() {
   testWidgets('processing video never becomes a sendable local ready asset', (
     tester,
   ) async {
-    final api = _Api();
+    final api = _Api()..allowAttachmentPreflight = true;
     final gateway = _Gateway();
     await _show(tester, api, gateway: gateway);
     await tester.tap(find.byTooltip('发送短视频'));

@@ -13,6 +13,7 @@ use Laravel\Sanctum\Sanctum;
 
 final class V1009RtcAuthorityRetryTest extends TestCase
 {
+    use \Tests\Support\CreatesAcceptedMainMatch;
     // No wrapping test transaction: exercise Laravel's real outermost retry.
     protected function setUp(): void
     {
@@ -30,7 +31,7 @@ final class V1009RtcAuthorityRetryTest extends TestCase
         config(['restoration.enabled'=>true,'rtc_guard.enabled'=>true]);
         $a=User::factory()->create(['phone'=>'19900000931','disabled'=>false,'is_synthetic'=>false]);
         $b=User::factory()->create(['phone'=>'19900000932','disabled'=>false,'is_synthetic'=>false]);
-        DatingMatch::create(['week_tag'=>'v1009-retry','user_a'=>$a->id,'user_b'=>$b->id,'drop_released'=>true]);
+        $this->createAcceptedMatchContext($a, $b);
         $consent=app(LiveConsentService::class);
         foreach ([[$a,$b,'connection','request',0],[$b,$a,'connection','accept',1],
             [$a,$b,'consent','request',0],[$b,$a,'consent','accept',1]] as [$actor,$peer,$kind,$action,$revision]) {

@@ -70,7 +70,7 @@ class StatusRemoteDataSource {
     final result = await apiClient
         .get(
           '/api/v1/status/posts',
-          query: {'limit': pageLimit, if (cursor != null) 'cursor': cursor},
+          query: {'limit': pageLimit, 'cursor': ?cursor},
           options: _options,
         )
         .timeout(_requestTimeout);

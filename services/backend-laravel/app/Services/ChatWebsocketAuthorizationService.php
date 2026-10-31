@@ -46,12 +46,18 @@ class ChatWebsocketAuthorizationService
         if (! $token) {
             return false;
         }
-        if ($token->expires_at?->isPast()) {
+        if ($token->expires_at?->lte(now())) {
             return false;
         }
         if ($token->device_session_id && ! DB::table('device_sessions')->where('id', $token->device_session_id)->where('user_id', $token->tokenable_id)->whereNull('revoked_at')->exists()) {
             return false;
         }
+        try {
+            if ($token->device_session_id) {
+                $family = DB::table('device_sessions')->where('id', $token->device_session_id)->first();
+                if (! $family || app(\App\Services\Accounts\DeviceSessions::class)->onlineDeadline($family) <= now()) return false;
+            } elseif (! $token->created_at || $token->created_at->copy()->addDays(15)->lte(now())) return false;
+        } catch (\Throwable) { return false; }
         if (Schema::hasTable('account_closures') && DB::table('account_closures')->where('user_id', $token->tokenable_id)->exists()) {
             return false;
         }

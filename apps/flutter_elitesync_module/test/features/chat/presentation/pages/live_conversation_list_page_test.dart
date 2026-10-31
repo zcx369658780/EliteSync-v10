@@ -1,3 +1,5 @@
+import '../../../../support/synthetic_private_login.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +16,7 @@ class _Session extends SessionNotifier {
       state = AsyncData(SessionState(status: AuthStatus.authenticated));
   @override
   Future<SessionState> build() async =>
-      const SessionState(status: AuthStatus.authenticated);
+      const SessionState(status: AuthStatus.authenticated,accessToken:'synthetic-only',user:UserSummary(id:1,phone:'synthetic'));
 }
 
 class _Api extends ApiClient {
@@ -70,9 +72,11 @@ class _Api extends ApiClient {
 }
 
 Future<void> _show(WidgetTester tester, _Api api) async {
+  final secure=await syntheticPrivateLogin();
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
+        secureStorageProvider.overrideWithValue(secure),
         apiClientProvider.overrideWithValue(api),
         sessionProvider.overrideWith(_Session.new),
       ],

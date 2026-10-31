@@ -18,6 +18,12 @@ final class LiveConsentService
         if (! config('restoration.enabled') || ! app()->environment(['local', 'testing'])) {
             return false;
         }
+        // Only a server-owned private development bootstrap may qualify a new
+        // isolated instance. HTTP input/config flags cannot create this binding.
+        if (app()->bound('restoration.private-instance-qualified')) {
+            $qualifier = app('restoration.private-instance-qualified');
+            return is_callable($qualifier) && $qualifier() === true;
+        }
         if (app()->environment('testing')) {
             return DB::connection()->getDriverName() === 'sqlite';
         }

@@ -27,7 +27,8 @@ class MeLandingPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
         children: [
-          if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD'))
+          if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD') ||
+              const bool.fromEnvironment('ELITESYNC_V1015_R1_LOCAL_BUILD'))
             ListTile(
               title: const Text('本人处理状态与申诉'),
               subtitle: const Text('仅本人最小状态，内部Safety不公开'),

@@ -38,8 +38,9 @@ class Api extends RelationshipApi {
   ]) async {
     expect(method, 'GET');
     paths.add(path);
-    if (path == '/journey')
+    if (path == '/journey') {
       throw StateError('Synthetic user has no dating participation or profile');
+    }
     expect(path, '/buddy');
     return {
       'preferences': {'enabled': false, 'revision': 0},

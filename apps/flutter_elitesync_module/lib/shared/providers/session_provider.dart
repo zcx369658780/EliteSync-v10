@@ -1,5 +1,7 @@
+import 'package:flutter_elitesync_module/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -52,6 +54,14 @@ final sessionRejectionNoticeProvider =
 
 class SessionNotifier extends AsyncNotifier<SessionState> {
   Future<void> _mutation = Future.value();
+  int _authenticationIntent = 0;
+  int beginAuthentication() {
+    _authenticationIntent++;
+    PrivateCacheService.forStorage(ref.read(secureStorageProvider)).lock();
+    state = const AsyncData(SessionState(status: AuthStatus.unauthenticated));
+    return _authenticationIntent;
+  }
+  bool isCurrentAuthentication(int intent) => intent == _authenticationIntent;
   Future<void> _serialize(Future<void> Function() action) {
     final next = _mutation.then((_) => action());
     _mutation = next.catchError((Object _) {});
@@ -83,43 +93,56 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
   Future<SessionState> build() async {
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
-
-    final accessToken = await secure.read(CacheKeys.accessToken);
-    final refreshToken = await secure.read(CacheKeys.refreshToken);
-    final profileJson = await local.getJson(CacheKeys.lastKnownProfile);
-
-    if (accessToken == null || accessToken.isEmpty) {
-      return const SessionState(status: AuthStatus.unauthenticated);
-    }
-
-    final user = profileJson == null ? null : UserSummary.fromJson(profileJson);
-    return SessionState(
-      status: AuthStatus.authenticated,
-      user: user,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    );
+    PrivateCacheService.forStorage(secure).lock();
+    // Persisted credentials/profile cannot prove a current online session or a
+    // trustworthy cross-restart clock. Require a successful online login.
+    await local.purgeLegacyPrivateCache();
+    return const SessionState(status: AuthStatus.unauthenticated);
   }
 
   Future<void> setAuthenticated({
     required String accessToken,
     String? refreshToken,
     UserSummary? user,
-  }) => _serialize(() async {
+    int? expectedIntent,
+  }) {
+    final intent = expectedIntent ?? _authenticationIntent;
+    return _serialize(() async {
+    void checkIntent() {
+      if (!isCurrentAuthentication(intent)) throw StateError('Obsolete login response discarded.');
+    }
+    checkIntent();
     final secure = ref.read(secureStorageProvider);
     final local = ref.read(localStorageProvider);
 
-    await local.tryPurgeLegacyPrivateChatCache();
+    final cache = PrivateCacheService.forStorage(secure);
+    if (cache.accountId != null && cache.accountId != user?.id) cache.lock();
+    final expectedCacheAccount = cache.accountId;
+    if (!await local.purgeLegacyPrivateCache()) {
+      cache.lock();
+      throw StateError('Private cache cleanup failed; login remains locked.');
+    }
     await _clearAccountSnapshots();
 
-    await secure.write(CacheKeys.accessToken, accessToken);
-    if (refreshToken != null) {
-      await secure.write(CacheKeys.refreshToken, refreshToken);
-    }
+    checkIntent();
+    await AuthLocalDataSource(secureStorage: secure, localStorage: local)
+        .persistVisibleCredentials(
+          accessToken: accessToken, refreshToken: refreshToken,
+          isCurrent: () => isCurrentAuthentication(intent),
+        );
+    checkIntent();
     if (user != null) {
       await local.setJson(CacheKeys.lastKnownProfile, user.toJson());
     }
 
+    if (expectedCacheAccount != null &&
+        cache.accountId != expectedCacheAccount) {
+      throw StateError(
+        'Login changed while private storage was being checked.',
+      );
+    }
+
+    checkIntent();
     ref.read(sessionRejectionNoticeProvider.notifier).set(null);
     state = AsyncData(
       SessionState(
@@ -129,7 +152,8 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
         refreshToken: refreshToken,
       ),
     );
-  });
+    });
+  }
 
   Future<void> updateProfile(
     UserSummary user, {
@@ -145,6 +169,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     if (current.user != null && user.id != 0 && current.user!.id != user.id) {
       return;
     }
+    final intent = _authenticationIntent;
     final merged = UserSummary(
       id: user.id != 0 ? user.id : (current.user?.id ?? 0),
       phone: user.phone.isNotEmpty ? user.phone : (current.user?.phone ?? ''),
@@ -167,6 +192,11 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     );
 
     await local.setJson(CacheKeys.lastKnownProfile, merged.toJson());
+    if (intent != _authenticationIntent ||
+        state.asData?.value.accessToken != current.accessToken ||
+        state.asData?.value.isLoggedIn != true) {
+      return;
+    }
     state = AsyncData(current.copyWith(user: merged));
   });
 
@@ -184,42 +214,29 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     await ref.read(localStorageProvider).setJson(key, value);
   });
 
-  Future<void> setUnauthenticated({String? notice, String? rejectedToken}) =>
-      _serialize(() async {
-        String? currentToken;
-        try {
-          currentToken = await ref
-              .read(secureStorageProvider)
-              .read(CacheKeys.accessToken);
-        } catch (_) {
-          final current = state.asData?.value;
-          if (rejectedToken == null || current?.accessToken == rejectedToken) {
-            ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
-            state = AsyncData(
-              SessionState(status: AuthStatus.unauthenticated, notice: notice),
-            );
-          }
-          rethrow;
-        }
-        if (rejectedToken != null && currentToken != rejectedToken) return;
-        ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
-        state = AsyncData(
-          SessionState(status: AuthStatus.unauthenticated, notice: notice),
-        );
-        await ref.read(localStorageProvider).tryPurgeLegacyPrivateChatCache();
-        final secure = ref.read(secureStorageProvider);
-        await secure.delete(CacheKeys.accessToken);
-        await secure.delete(CacheKeys.refreshToken);
+  Future<void> setUnauthenticated({String? notice, String? rejectedToken}) {
+    final visibleToken = state.asData?.value.accessToken;
+    if (rejectedToken != null && rejectedToken != visibleToken) return Future.value();
+    final logoutIntent = ++_authenticationIntent;
+    state = AsyncData(SessionState(status: AuthStatus.unauthenticated, notice: notice));
+    ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
+    final storage = ref.read(secureStorageProvider);
+    final local = AuthLocalDataSource(
+      secureStorage: storage, localStorage: ref.read(localStorageProvider),
+    );
+    // Invoke now: waiting old persistSession writes must finish before deletion,
+    // while a later login's writes must be enqueued after this cleanup.
+    final cleanup = local.clearSessionWithReceipt();
+    return _serialize(() async {
+      final completed = await cleanup;
+      if (logoutIntent != _authenticationIntent) return;
+      final effectiveNotice = completed ? notice :
+          '已退出，私密数据仍锁定；部分本地清理未完成，请重新登录后重试。';
+      state = AsyncData(SessionState(status: AuthStatus.unauthenticated, notice: effectiveNotice));
+      ref.read(sessionRejectionNoticeProvider.notifier).set(effectiveNotice);
+    });
+  }
 
-        final local = ref.read(localStorageProvider);
-        await _clearAccountSnapshots();
-        await local.remove(CacheKeys.lastKnownProfile);
-        await local.remove(CacheKeys.profileSummarySnapshot);
-        await local.remove(CacheKeys.profileDetailSnapshot);
-        state = AsyncData(
-          SessionState(status: AuthStatus.unauthenticated, notice: notice),
-        );
-      });
 }
 
 final sessionProvider = AsyncNotifierProvider<SessionNotifier, SessionState>(

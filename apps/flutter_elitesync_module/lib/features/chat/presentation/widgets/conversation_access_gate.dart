@@ -109,6 +109,8 @@ class ConversationAccessUnavailablePage extends StatelessWidget {
                   Text('生产路径仍严格要求权威 Connection 与权威消息同意证据。'),
                   SizedBox(height: 8),
                   Text('同意或生命周期状态不是安全认定；对话不会建立关系。'),
+                  SizedBox(height: 8),
+                  Text('拉黑与举报是两个独立控制；需要时请分别使用。'),
                 ],
               ),
             ),

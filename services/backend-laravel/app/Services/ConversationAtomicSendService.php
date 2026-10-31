@@ -23,22 +23,18 @@ class ConversationAtomicSendService
 
     public function fingerprint(int $receiverId, string $content, array $attachmentIds): string
     {
-        return hash('sha256', json_encode([
-            'receiver_id' => $receiverId,
-            'content' => $content,
-            'attachment_ids' => array_values($attachmentIds),
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        return \App\Domain\MessagingReplayContract::fingerprint($receiverId, $content, $attachmentIds);
     }
 
     /** @return array<string, mixed>|null */
-    public function replay(int $senderId, string $clientMessageId, string $fingerprint): ?array
+    public function replay(int $senderId, string $clientMessageId, string $fingerprint, ?int $receiverId = null): ?array
     {
         $message = ChatMessage::query()
             ->where('sender_id', $senderId)
             ->where('client_message_id', $clientMessageId)
             ->first();
 
-        return $message ? $this->replayResult($message, $fingerprint) : null;
+        return $message ? $this->replayResult($message, $fingerprint, $receiverId) : null;
     }
 
     /** @return array<string, mixed> */
@@ -79,8 +75,23 @@ class ConversationAtomicSendService
         string $sourcePage,
     ): array {
         return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage) {
+            // No consistent read may precede the pair lock under MariaDB RR.
+            $pair = User::whereIn('id', [(int) $sender->id, $receiverId])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            foreach ([(int) $sender->id, $receiverId] as $id) {
+                $current = $pair->get($id);
+                if (!$current || $current->disabled || ($current->account_status ?? 'active') !== 'active') {
+                    return ['ok'=>false,'status'=>404,'message'=>'chat unavailable'];
+                }
+            }
+            $token = $sender->currentAccessToken();
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+                $freshToken = \Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->lockForUpdate()->first();
+                abort_unless($freshToken && (int)$freshToken->tokenable_id === (int)$sender->id
+                    && $freshToken->tokenable_type === $sender->getMorphClass(), 401, 'SESSION_REVOKED');
+                abort_if($freshToken->expires_at && $freshToken->expires_at->lte(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+            }
             if ($clientMessageId !== null) {
-                $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint);
+                $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint, $receiverId);
                 if ($replay) {
                     return $replay;
                 }
@@ -161,7 +172,7 @@ class ConversationAtomicSendService
                     ],
                 );
                 if (! $message->wasRecentlyCreated) {
-                    return $this->replayResult($message, (string) $fingerprint);
+                    return $this->replayResult($message, (string) $fingerprint, $receiverId);
                 }
             }
 
@@ -249,12 +260,17 @@ class ConversationAtomicSendService
     }
 
     /** @return array<string, mixed> */
-    private function replayResult(ChatMessage $message, string $fingerprint): array
+    private function replayResult(ChatMessage $message, string $fingerprint, ?int $receiverId = null): array
     {
-        if (app(LiveConsentService::class)->enabled() && ! $this->capabilities->canSend((int) $message->sender_id, (int) $message->receiver_id)) {
+        $decision = \App\Domain\MessagingReplayContract::replayDecision(
+            (int)$message->sender_id, (int)$message->receiver_id, (int)$message->sender_id,
+            $receiverId ?? (int)$message->receiver_id, (string)$message->request_fingerprint, $fingerprint,
+            $this->capabilities->authorizeSend((int)$message->sender_id, (int)$message->receiver_id, true)['allowed'],
+        );
+        if ($decision === 'UNAVAILABLE') {
             return ['ok' => false, 'status' => 404, 'code' => 'conversation_unavailable'];
         }
-        if (! hash_equals((string) $message->request_fingerprint, $fingerprint)) {
+        if ($decision === 'CONFLICT') {
             return [
                 'ok' => false,
                 'status' => 409,

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
@@ -71,9 +72,7 @@ class _InMemoryLocalStorageService extends LocalStorageService {
 
 class _FailingPurgeLocalStorage extends _InMemoryLocalStorageService {
   @override
-  Future<void> purgeLegacyPrivateChatCache() async {
-    throw StateError('Legacy private cache cleanup failed');
-  }
+  Future<bool> purgeLegacyPrivateCache() async => false;
 }
 
 class _InMemorySecureStorageService extends SecureStorageService {
@@ -100,7 +99,39 @@ class _InMemorySecureStorageService extends SecureStorageService {
   }
 }
 
+class _HeldSecureStorage extends _InMemorySecureStorageService {
+  final entered = Completer<void>();
+  final release = Completer<void>();
+  bool hold = true;
+  @override
+  Future<void> write(String key, String value) async {
+    if (hold && key == CacheKeys.accessToken) {
+      if (!entered.isCompleted) entered.complete();
+      await release.future;
+    }
+    await super.write(key, value);
+  }
+}
+
 void main() {
+  test('logout queues behind a late login write and removes both obsolete credentials', () async {
+    final secure = _HeldSecureStorage();
+    final source = AuthLocalDataSource(secureStorage: secure, localStorage: _InMemoryLocalStorageService());
+    final epoch = source.beginLoginAttempt();
+    final pending = source.persistSession(const AuthSession(
+      accessToken: 'obsolete-access', refreshToken: 'obsolete-refresh',
+      user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
+    ), expectedEpoch: epoch);
+    final discarded = expectLater(pending, throwsStateError);
+    await secure.entered.future;
+    final cleanup = source.clearSessionWithReceipt();
+    secure.release.complete();
+    await discarded;
+    expect(await cleanup, isTrue);
+    expect(await secure.read(CacheKeys.accessToken), isNull);
+    expect(await secure.read(CacheKeys.refreshToken), isNull);
+  });
+
   test('persistSession clears previous account scoped caches', () async {
     final secure = _InMemorySecureStorageService();
     final local = _InMemoryLocalStorageService({
@@ -170,23 +201,29 @@ void main() {
     );
   });
 
-  test('failed purge does not block existing session replacement', () async {
-    final secure = _InMemorySecureStorageService();
-    await secure.write(CacheKeys.accessToken, 'previous token');
-    final dataSource = AuthLocalDataSource(
-      secureStorage: secure,
-      localStorage: _FailingPurgeLocalStorage(),
-    );
-    await dataSource.persistSession(
-      const AuthSession(
-        accessToken: 'new token',
-        refreshToken: 'new refresh',
-        user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
-      ),
-    );
-    expect(await secure.read(CacheKeys.accessToken), 'new token');
-    expect(await secure.read(CacheKeys.refreshToken), 'new refresh');
-  });
+  test(
+    'failed private cleanup blocks publishing a replacement session',
+    () async {
+      final secure = _InMemorySecureStorageService();
+      await secure.write(CacheKeys.accessToken, 'previous token');
+      final dataSource = AuthLocalDataSource(
+        secureStorage: secure,
+        localStorage: _FailingPurgeLocalStorage(),
+      );
+      await expectLater(
+        dataSource.persistSession(
+          const AuthSession(
+            accessToken: 'new token',
+            refreshToken: 'new refresh',
+            user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
+          ),
+        ),
+        throwsStateError,
+      );
+      expect(await secure.read(CacheKeys.accessToken), 'previous token');
+      expect(await secure.read(CacheKeys.refreshToken), isNull);
+    },
+  );
 
   test(
     'logout purges dynamic drafts before existing account cleanup',

@@ -55,6 +55,17 @@ class NotificationRemoteDataSource {
     throw Exception(failure.message);
   }
 
+  Future<NotificationItemEntity> fetchNotification(int id) async {
+    if (useMock || id <= 0) throw StateError('Current notification lookup required.');
+    final result = await apiClient.get('/api/v1/notifications/$id', options: _options()).timeout(_requestTimeout);
+    if (result is! NetworkSuccess<Map<String, dynamic>>) throw StateError('Notification unavailable.');
+    final raw = result.data['item'];
+    if (raw is! Map<String, dynamic>) throw const FormatException('Invalid notification.');
+    final item = NotificationItemEntity.fromJson(raw);
+    if (item.id != id) throw const FormatException('Notification identity mismatch.');
+    return item;
+  }
+
   Future<int> fetchUnreadCount() async {
     if (useMock) {
       return 0;

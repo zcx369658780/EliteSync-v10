@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 
 String _resolveApiBaseUrl() {
@@ -46,6 +47,23 @@ Map<String, String> _readBootstrapFile() {
   return const {};
 }
 
+String resolveDevWsBaseUrl({
+  required String apiBaseUrl,
+  required Map<String, String> fileBootstrap,
+  String? environmentOverride,
+}) => resolveChatSocketBaseUrl(
+  apiBaseUrl: apiBaseUrl,
+  override:
+      (environmentOverride ??
+              const String.fromEnvironment('ELITESYNC_WS_BASE_URL'))
+          .trim()
+          .isNotEmpty
+      ? (environmentOverride ??
+            const String.fromEnvironment('ELITESYNC_WS_BASE_URL'))
+      : (fileBootstrap['elitesync_ws_base_url'] ?? ''),
+  allowLocalInsecure: true,
+);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final fileBootstrap = _readBootstrapFile();
@@ -53,11 +71,16 @@ Future<void> main() async {
       String.fromEnvironment('ELITESYNC_INITIAL_ROUTE').trim().isNotEmpty
       ? String.fromEnvironment('ELITESYNC_INITIAL_ROUTE').trim()
       : (fileBootstrap['elitesync_initial_route'] ?? '').trim();
+  final apiBaseUrl = _resolveApiBaseUrl();
   await runEliteSyncApp(
     AppEnv(
       flavor: AppFlavor.dev,
       appName: 'EliteSync Dev',
-      apiBaseUrl: _resolveApiBaseUrl(),
+      apiBaseUrl: apiBaseUrl,
+      wsBaseUrl: resolveDevWsBaseUrl(
+        apiBaseUrl: apiBaseUrl,
+        fileBootstrap: fileBootstrap,
+      ),
       useMockData: false,
       useLiveKitRtc: true,
       useMockAuth: false,

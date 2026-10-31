@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/chat/data/datasource/chat_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/chat/data/datasource/chat_socket_data_source.dart';
@@ -15,11 +16,29 @@ import 'package:flutter_elitesync_module/features/chat/domain/usecases/send_mess
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_list_ui_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+
+String _chatIdentity(Ref ref) {
+  final session = ref.read(sessionProvider).asData?.value;
+  return '${session?.status.name}:${session?.user?.id}:${session?.accessToken}:'
+      '${ref.read(relationshipAuthorityEpochProvider)}';
+}
+
+bool Function() _chatCurrent(Ref ref) {
+  ref.watch(sessionProvider);
+  ref.watch(relationshipAuthorityEpochProvider);
+  final identity = _chatIdentity(ref);
+  var alive = true;
+  ref.onDispose(() => alive = false);
+  return () => alive && _chatIdentity(ref) == identity;
+}
 
 Never _conversationAccessUnavailable() =>
     throw StateError('Product Conversation access is NOT YET ESTABLISHED');
 
 final chatRemoteDataSourceProvider = Provider<ChatRemoteDataSource>((ref) {
+  ref.watch(sessionProvider);
   final env = ref.watch(appEnvProvider);
   return ChatRemoteDataSource(
     apiClient: ref.watch(apiClientProvider),
@@ -28,13 +47,28 @@ final chatRemoteDataSourceProvider = Provider<ChatRemoteDataSource>((ref) {
   );
 });
 
-final chatSocketDataSourceProvider = Provider<ChatSocketDataSource>(
-  (ref) => ChatSocketDataSource(
+final chatSocketDataSourceProvider = Provider<ChatSocketDataSource>((ref) {
+  final changes = StreamController<void>.broadcast(sync: true);
+  ref.listen(sessionProvider, (_, _) {
+    changes.add(null);
+  });
+  ref.listen(relationshipAuthorityEpochProvider, (_, _) {
+    changes.add(null);
+  });
+  final source = ChatSocketDataSource(
     apiClient: ref.watch(apiClientProvider),
     localStorage: ref.watch(localStorageProvider),
     env: ref.watch(appEnvProvider),
-  ),
-);
+    accessToken: ref.watch(accessTokenProvider),
+    sessionIdentity: () => _chatIdentity(ref),
+    sessionChanges: changes.stream,
+  );
+  ref.onDispose(() {
+    source.dispose();
+    unawaited(changes.close());
+  });
+  return source;
+});
 
 final chatRepositoryProvider = Provider<ChatRepository>((ref) {
   return ChatRepositoryImpl(
@@ -51,11 +85,16 @@ final getConversationUseCaseProvider = Provider<GetConversationUseCase>(
   (ref) => GetConversationUseCase(ref.watch(chatRepositoryProvider)),
 );
 final conversationDetailProvider =
-    FutureProvider.family<ConversationEntity, int>((ref, conversationId) {
+    FutureProvider.family<ConversationEntity, int>((ref, conversationId) async {
+      final current = _chatCurrent(ref);
       if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
         return _conversationAccessUnavailable();
       }
-      return ref.read(getConversationUseCaseProvider).call(conversationId);
+      final item = await ref
+          .read(getConversationUseCaseProvider)
+          .call(conversationId);
+      if (!current()) return _conversationAccessUnavailable();
+      return item;
     });
 final getMessagesUseCaseProvider = Provider<GetMessagesUseCase>(
   (ref) => GetMessagesUseCase(ref.watch(chatRepositoryProvider)),
@@ -69,13 +108,16 @@ final observeMessagesUseCaseProvider = Provider<ObserveMessagesUseCase>(
 final conversationListProvider = FutureProvider<ConversationListUiState>((
   ref,
 ) async {
+  final current = _chatCurrent(ref);
   if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
     return _conversationAccessUnavailable();
   }
   try {
     final items = await ref.read(getConversationsUseCaseProvider).call();
+    if (!current()) return _conversationAccessUnavailable();
     return ConversationListUiState(items: items);
   } catch (e) {
+    if (!current()) return _conversationAccessUnavailable();
     return ConversationListUiState(error: e.toString());
   }
 });
@@ -109,12 +151,15 @@ final chatRoomMessagesProvider =
       ref,
       request,
     ) async {
+      final current = _chatCurrent(ref);
       if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
         return _conversationAccessUnavailable();
       }
-      return ref
+      final items = await ref
           .read(getMessagesUseCaseProvider)
           .call(request.peerUserId.toString());
+      if (!current()) return _conversationAccessUnavailable();
+      return items;
     });
 
 final chatConnectionProvider = Provider<String>((ref) => 'connected');

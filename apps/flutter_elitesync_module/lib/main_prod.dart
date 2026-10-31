@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 
 @immutable
@@ -119,6 +120,22 @@ String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   return 'http://101.133.161.203/';
 }
 
+@visibleForTesting
+String resolveWsBaseUrl({
+  required String apiBaseUrl,
+  required Map<String, String> hostBootstrap,
+  required AppFlavor flavor,
+  String? environmentOverride,
+}) => resolveChatSocketBaseUrl(
+  apiBaseUrl: apiBaseUrl,
+  override: _firstNonEmpty([
+    hostBootstrap['wsBaseUrl'] ?? '',
+    environmentOverride ??
+        const String.fromEnvironment('ELITESYNC_WS_BASE_URL'),
+  ]),
+  allowLocalInsecure: flavor == AppFlavor.dev,
+);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -162,6 +179,7 @@ Future<void> main() async {
   const rtcRestoration =
       bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD');
+  final apiBaseUrl = resolveApiBaseUrl(hostBootstrap: hostBootstrap);
   await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
@@ -169,7 +187,12 @@ Future<void> main() async {
       // The Android host app embeds the Flutter release AAR, which always
       // boots through main.dart -> main_prod.dart. Keep prod pointed at the
       // verified direct backend entry until the public domain chain is stable.
-      apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
+      apiBaseUrl: apiBaseUrl,
+      wsBaseUrl: resolveWsBaseUrl(
+        apiBaseUrl: apiBaseUrl,
+        hostBootstrap: hostBootstrap,
+        flavor: flavor,
+      ),
       useMockData: false,
       useLiveKitRtc: rtcRestoration || !restoration,
       restorationLocalBuild: restoration,
