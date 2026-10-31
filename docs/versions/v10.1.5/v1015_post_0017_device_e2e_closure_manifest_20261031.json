@@ -1,0 +1,2360 @@
+{
+  "task_id": "V1015_POST_0017_DEVICE_E2E_FINAL_CLOSURE_20261031",
+  "task_blob": "ffe21d60ea46630f01cb09fe1821dccd5a115a89",
+  "status": "PARTIAL_DELIVERY_WITH_EXPLICIT_DEVICE_GATES",
+  "attempt": "attempt-0001",
+  "authority": "zcx369658780/EliteSync-v10",
+  "sole_parent": "be272c1f6855eb28aa4b483083ab4072783bdf30",
+  "parent_root": "e57df87a2f08a47fdb8dfbba241ad3e23af9ba4c",
+  "frozen_plan_blob": "7d3466b3be67135dc641cfee7c7faef78937ba03",
+  "accepted_source": {
+    "commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+    "root": "778437c50759cb5f057618ee95db78af981e4c89",
+    "manifest_blob": "ca56fd86a7ddc0a88aa5d259748c13f74a83b6ce",
+    "review_commit": "b5e2c9754aa2710d2d40eea22ba8d9a6b2960d4e",
+    "review_blob": "5679481e0b7ffd5259fae0efdbfe0c8b8fb54e10",
+    "paths": 71,
+    "all_selected_blobs_exact": true,
+    "whole_branch_merge": false,
+    "review_used_as_parent": false
+  },
+  "baseline_product_trees": {
+    "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "services": "049a8676cc90b3b830e32a524c172720e800fa37"
+  },
+  "candidate_product_trees": {
+    "apps": "92c7caea1ed2d22b3998e79c120d4b31c9572bdf",
+    "services": "ca42f315edb27a8993b3591f51991185d1ed3026"
+  },
+  "source_tree_before_two_delivery_documents": "02455685de2b67e631806ff6da6cf862112dc745",
+  "candidate_identity": "Final enclosing Commit/Root is verified through native Git objects and final delivery receipt, outside this self-referential manifest.",
+  "source_mapping": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
+      "mode": "100644",
+      "blob": "1798c493169a3d2ad7d77346a80ccad35ac65640",
+      "sha256": "266631e30fb1b1def17e3f3823387e55a513794a23c6a2d97a58b2463f02b438",
+      "bytes": 1622,
+      "fresh_main_blob": "53864daac635952fcd8cbd91cdfcab1d4430629a",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "1798c493169a3d2ad7d77346a80ccad35ac65640"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/rtc_invite_coordinator.dart",
+      "mode": "100644",
+      "blob": "d1c035d21f5f15fdfaa6820c3c04a99d5e2e0cd6",
+      "sha256": "92d0da9163253e97d1785bb0d7768dfb552a78cc08c8ae1ddabc3a53759ef467",
+      "bytes": 12382,
+      "fresh_main_blob": "f70a36d523d990a500a2da7458f7be5e3eba54bc",
+      "origin": "EIGHT_INFO_STYLE_ONLY_FIX"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart",
+      "mode": "100644",
+      "blob": "bb0cef4e976096b54e81afad5182b5ade0053168",
+      "sha256": "871a69e87d9f0215b7f670deed8e7aa36f131be308acdf63cf2ce024ad9a14ca",
+      "bytes": 2024,
+      "fresh_main_blob": "3c8426f1503eab187fce1530bb0eaa18e22d951d",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "bb0cef4e976096b54e81afad5182b5ade0053168"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart",
+      "mode": "100644",
+      "blob": "5a1cd556aa663062d915cc8903ff97a637fab1ac",
+      "sha256": "f6cc34dfceb8fb73db5006baa55bfe63c4aed7776313b64a9d0763300ca78022",
+      "bytes": 5843,
+      "fresh_main_blob": "e3aaa8fdc1ca52152e364a04630dd2abf096606e",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "5a1cd556aa663062d915cc8903ff97a637fab1ac"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/retry_interceptor.dart",
+      "mode": "100644",
+      "blob": "067d8e0bb9b29dfde1e8a6f70c87fc842b209209",
+      "sha256": "556346a2a4ad8ba0528336bf20f41bb5e7a0a2718c81ba314cce64a03c8aac0e",
+      "bytes": 1939,
+      "fresh_main_blob": "b4f6cf12db412ef75120ae3b4aedc3cedcfba358",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "067d8e0bb9b29dfde1e8a6f70c87fc842b209209"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/cache_keys.dart",
+      "mode": "100644",
+      "blob": "61611498ac13752a2351c6ea8ccc933c6c3caf51",
+      "sha256": "551f78afd423ef2eec4a461cc0f57d7a7d38299be34ed65af1faae6269a4b909",
+      "bytes": 3564,
+      "fresh_main_blob": "b1881756c063b18fe8d403afd592e5368d2499ee",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "61611498ac13752a2351c6ea8ccc933c6c3caf51"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/local_storage_service.dart",
+      "mode": "100644",
+      "blob": "4974a2863f1675fb8f589b824c78c4a11ec61334",
+      "sha256": "eec874d67dfa66ca8b9d4515169ff1aa35a6b8178c1e5c282e0d8aa18d4f3efa",
+      "bytes": 4552,
+      "fresh_main_blob": "c6be5824c3cebd0cdb7fe043610fb14f2fd054c5",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "4974a2863f1675fb8f589b824c78c4a11ec61334"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+      "mode": "100644",
+      "blob": "ea23fcf79a2a20f26377620575eba94356194f25",
+      "sha256": "1f37358f3c8e8f5462190825ead99296cdfed14ffcb17298d618783d0911a294",
+      "bytes": 13305,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "ea23fcf79a2a20f26377620575eba94356194f25"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/secure_storage_service.dart",
+      "mode": "100644",
+      "blob": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55",
+      "sha256": "94e634dc0a4de9129bc8637ee08324321f94816242539e7142e86c9c88a6140a",
+      "bytes": 708,
+      "fresh_main_blob": "c2d6c84ac40868c5c854da57936c039c1fd66f03",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "8f83b05596716b5a9151163dc1d13ebcc5eb3b55"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
+      "mode": "100644",
+      "blob": "b856b357df83bd998937e011a1ccd5923fa9329a",
+      "sha256": "f11fdfb25f74a7f35d4254b701ff3f9c7df0860ef903ad56c4c763291ba0107d",
+      "bytes": 7275,
+      "fresh_main_blob": "315d682361389136ff5ec7bb65af9c86f01cab5d",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "b856b357df83bd998937e011a1ccd5923fa9329a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_request_dto.dart",
+      "mode": "100644",
+      "blob": "6e0641f3bf84a7acd79372e5147291c568efe5a1",
+      "sha256": "a2b35be549bf735ffb99710526675a65f35217d0431a696f1b76de6c005f4a70",
+      "bytes": 364,
+      "fresh_main_blob": "fae39a797217c4a55951cc530e1b909f7931232e",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "6e0641f3bf84a7acd79372e5147291c568efe5a1"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_response_dto.dart",
+      "mode": "100644",
+      "blob": "5ddc82e2420f047e5cfa946c864ccdb010acdff1",
+      "sha256": "52883b104ec408f48f35c732192ec0fd5799b85b31b5a3d85f32f17de7049e3e",
+      "bytes": 1212,
+      "fresh_main_blob": "eb89e23e29613ade4bbc23bedfb95d7e0ee8235a",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "5ddc82e2420f047e5cfa946c864ccdb010acdff1"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
+      "mode": "100644",
+      "blob": "b39d20d64f23d6d163c501d9f4a55880342e4ffd",
+      "sha256": "0f1d50f4dc75b30cea648174d0c3990285b2589f10d638c84da89083f5138e37",
+      "bytes": 3070,
+      "fresh_main_blob": "1925c1e9a95f07a453c26f9c1c263241b9c8b110",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "b39d20d64f23d6d163c501d9f4a55880342e4ffd"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/login_form_provider.dart",
+      "mode": "100644",
+      "blob": "3f6730982709af3abecbe82a2c55bf5117fb5221",
+      "sha256": "0c598240cbc26c3389c1a3278f55c39074c0612a7bbd8a9d9f7e9e88c3c5cc6c",
+      "bytes": 3298,
+      "fresh_main_blob": "9641499249a0aa6cf26581cbb10d7357230d014a",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3f6730982709af3abecbe82a2c55bf5117fb5221"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_socket_data_source.dart",
+      "mode": "100644",
+      "blob": "84c5e18a141eb3c880710d7cf2be0f88f34db97e",
+      "sha256": "0f958478c94e0be83421ba650e7edc04110436a98c9734a4f518b9a06208f72b",
+      "bytes": 7147,
+      "fresh_main_blob": "afa90445767349b69c933cc37939266b200eeb31",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "84c5e18a141eb3c880710d7cf2be0f88f34db97e"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
+      "mode": "100644",
+      "blob": "4f623383d052c8e80a29e256c83e8d1ec4f65196",
+      "sha256": "65e7ec32c738903196ec062c44c43c09751fb783acc8953e3dca8098f3261605",
+      "bytes": 59659,
+      "fresh_main_blob": "aa5df26269df848a91cd166fa22e8f636e34a979",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "4f623383d052c8e80a29e256c83e8d1ec4f65196"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
+      "mode": "100644",
+      "blob": "a136bb24f497ab2b376db8d81b1b13ddf9d85277",
+      "sha256": "48fd6e94831ee9aa7871425689e16734254251ae741f96941c84b0ae6002c521",
+      "bytes": 34661,
+      "fresh_main_blob": "f809be2690935604a1104b55c5d7059f4ee50fd5",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "a136bb24f497ab2b376db8d81b1b13ddf9d85277"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_chat_page.dart",
+      "mode": "100644",
+      "blob": "e4f5207e4fd7a5dea9ca8c57f13802c8adf018e8",
+      "sha256": "bc06c451993cf81de2b8921fde36defd663c2698c93c76797cf7674f7ea5ac3f",
+      "bytes": 23218,
+      "fresh_main_blob": "fb4838b1be9bf3651c06726790edab777609629e",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "e4f5207e4fd7a5dea9ca8c57f13802c8adf018e8"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/live_conversation_list_page.dart",
+      "mode": "100644",
+      "blob": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee",
+      "sha256": "9a8f6f2186347e8434c869fa35d475a4e22ce4e33e88af3591d36e39077ad94f",
+      "bytes": 14722,
+      "fresh_main_blob": "a3ee7a6cdc55966516bb8c850cc886e64866786e",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "bd4d7fc2a9aadc60729fd87f54e15c552e3aeaee"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
+      "mode": "100644",
+      "blob": "12d792fd4cd40c5ef253f95a17ff8064de0344f0",
+      "sha256": "d2689ed88dfbf5d1d751636c8691132aa3d0fe4e760f9d92c8a1ce0bc3d619c5",
+      "bytes": 6198,
+      "fresh_main_blob": "68788783eea53649056725b74f21d692fceda0a9",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "12d792fd4cd40c5ef253f95a17ff8064de0344f0"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/conversation_access_gate.dart",
+      "mode": "100644",
+      "blob": "dc998761b86899f6a934831d60aaf9a3837d6d74",
+      "sha256": "8b189fb4cdd3033f2c90e1d753eea62c689ed9e2a27e2050cdc485fb030843f7",
+      "bytes": 7927,
+      "fresh_main_blob": "fb09ca4ed76590c78c889eccba49b26a4a33f259",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "dc998761b86899f6a934831d60aaf9a3837d6d74"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+      "mode": "100644",
+      "blob": "46e16f5a201cc9af821d63bebb523c10237ad5c2",
+      "sha256": "60c932042696eba21c47c914ed2ddeaaef35fc82082538736c5a074fd95c097d",
+      "bytes": 7147,
+      "fresh_main_blob": "c56778b0cbafdc7b91b9703d8d78dedb0367087c",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "46e16f5a201cc9af821d63bebb523c10237ad5c2"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/notification_remote_data_source.dart",
+      "mode": "100644",
+      "blob": "5ed57e7c583dc71546b464b573f064e65aec60c7",
+      "sha256": "3a65700a6f0a1d0bb6de14b9fcb77cc34c3d5244f9719a22d208a57d0df917f9",
+      "bytes": 3444,
+      "fresh_main_blob": "a261efe7d77bfd90f4c8391d6aa6d911d2283189",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "5ed57e7c583dc71546b464b573f064e65aec60c7"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "mode": "100644",
+      "blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7",
+      "sha256": "70cfe2cdd3ae4b4007fa166ff05cb114b21e40e2974555a1707a0633f214d769",
+      "bytes": 29775,
+      "fresh_main_blob": "2be21dce1e85486932a6b1f66f33d667ce0fc55f",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "df95b10eefdda5bcdedfa3d03fe5ee7d2c704da7"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_preferences_page.dart",
+      "mode": "100644",
+      "blob": "8ce0d4c2a6e72703a442a55f0b86f6d5edd55021",
+      "sha256": "c1470053edab0b583711623bf9149feba132449538fdae413bb838623ca4a2ef",
+      "bytes": 5850,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "8ce0d4c2a6e72703a442a55f0b86f6d5edd55021"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/data/datasource/status_remote_data_source.dart",
+      "mode": "100644",
+      "blob": "2e1d6c0df95b6c48c7964714e211a6a3c6cbb446",
+      "sha256": "054829ac39806883b5875269aa78b9afe1dfe3f508fb06c940eb0cd4f1e99d8a",
+      "bytes": 11180,
+      "fresh_main_blob": "761202a160297e49649e7b297686c3262c57a6a4",
+      "origin": "EIGHT_INFO_STYLE_ONLY_FIX"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart",
+      "mode": "100644",
+      "blob": "37d52d2623ad05505fda1f466b34b4ff58971b38",
+      "sha256": "453e8219bb58a95dd424e94a1fca711e3c22661c2d319ca81c8895687f40a79d",
+      "bytes": 28171,
+      "fresh_main_blob": "58f29ce00e179a81fee1fecd81d070d2037841d2",
+      "origin": "EIGHT_INFO_STYLE_ONLY_FIX"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart",
+      "mode": "100644",
+      "blob": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c",
+      "sha256": "0fe43c46a293afcdf3c9224385423062d5ae7c84a54f33d80b60bb6d5e3d90a5",
+      "bytes": 2813,
+      "fresh_main_blob": "c3fd4fcee86ec1933a33c734440296b5c0659bc7",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "30daf42177d9ebefb13de6c8aedece1fb5b74c6c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+      "mode": "100644",
+      "blob": "9df5df2d79694c151b52cf2b384e9156acc96caf",
+      "sha256": "f3c4710f879cb790caabd178a8dfebf85513fc2f4bc6ca73e77ba40a9d60e8b9",
+      "bytes": 9323,
+      "fresh_main_blob": "433e598c4328b6bbadcd9d50c72dfa23f31706e3",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "9df5df2d79694c151b52cf2b384e9156acc96caf"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/network/retry_session_guard_test.dart",
+      "mode": "100644",
+      "blob": "04c0d519750cf9d3a131903d133e996fc7e241d4",
+      "sha256": "12a7fcfb7bc7b6360ef6d34cd317201558b522ea77c14a9784b862abbb050d99",
+      "bytes": 2341,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "04c0d519750cf9d3a131903d133e996fc7e241d4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/network/v1015_late_response_test.dart",
+      "mode": "100644",
+      "blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8",
+      "sha256": "911eb529fad255cda648a1cc3d9ad4d0c8ed22f3d220a3a5530b4f6839c3f6de",
+      "bytes": 4041,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "fe82ebc4bf59a074f535c488975d152aeb2836a8"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/core/storage/private_cache_service_test.dart",
+      "mode": "100644",
+      "blob": "39956188db4e361f34e9210890cf6d337f56edf7",
+      "sha256": "ed22f5d66db97cb1d2c3999693017cfe5e39bcc213dd90847506291447b36e1c",
+      "bytes": 6619,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "39956188db4e361f34e9210890cf6d337f56edf7"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_local_data_source_test.dart",
+      "mode": "100644",
+      "blob": "3cfc33004a579114cce96a778452fa78edfeabcb",
+      "sha256": "03fe601071ca552db644aecd08a341db37705278d91eb03bc77e066adf5a0c06",
+      "bytes": 8963,
+      "fresh_main_blob": "8ee664ff6857e3e2816417536dd8ebb132dab48d",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3cfc33004a579114cce96a778452fa78edfeabcb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/auth/data/datasource/auth_private_storage_test.dart",
+      "mode": "100644",
+      "blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67",
+      "sha256": "819b437f30ebbd34dda39a2407d1f2c6fdd9b6563e63dfa7896643290377bb4a",
+      "bytes": 4763,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "15a0a36776eaf66ff20a6cb04d23cecf4dfe6d67"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart",
+      "mode": "100644",
+      "blob": "7105cd61fec56c6e2dce9d36dd3cc4ecb5fa8c63",
+      "sha256": "aff297d6b00bf70b2a68e13efc2d9c747e5aa1b8585da3a9c8fd16174ee688f4",
+      "bytes": 4883,
+      "fresh_main_blob": "8ee7a6f28f8115d26bf08eb899f291e675c74df5",
+      "origin": "EIGHT_INFO_STYLE_ONLY_FIX"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/data/datasource/v1015_socket_contract_test.dart",
+      "mode": "100644",
+      "blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870",
+      "sha256": "9cb93ffcd888ce03a6b8c33a7ff8710da663f93f5eb6392156be0e2917207d00",
+      "bytes": 5966,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3a345a03410dfb4c3e7388b78ade1aa7be5cf870"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/chat_room_page_test.dart",
+      "mode": "100644",
+      "blob": "50938ed830cf4d273337a2ea83461d8ed14a741b",
+      "sha256": "9be0a8f272d894895e71f637b6391679637b043a29fa623b9f0ade7706f12be2",
+      "bytes": 40178,
+      "fresh_main_blob": "c49afe5ecbcc477f3b503592652e1b8c0b538803",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "50938ed830cf4d273337a2ea83461d8ed14a741b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+      "mode": "100644",
+      "blob": "9031e7a3e9be84748d0e8a21b727fb4f8a7775a9",
+      "sha256": "2eafa5c73beecf7fa073e3735e96f84c2c6e5c0df45940c85cf424b1873e4998",
+      "bytes": 13353,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "9031e7a3e9be84748d0e8a21b727fb4f8a7775a9"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+      "mode": "100644",
+      "blob": "a54512c3500f463211d32c52a6e41db442f49489",
+      "sha256": "4e06230e5d445c61fc8f001b402e968b64e66c5f00ca07911034a5c228841cde",
+      "bytes": 14552,
+      "fresh_main_blob": "d5dd613638ae545f43bdc78d431d74f2bcc3b7fd",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "a54512c3500f463211d32c52a6e41db442f49489"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_list_page_test.dart",
+      "mode": "100644",
+      "blob": "573bd258dbf78f37a1750362d6b4ecb5a827c57c",
+      "sha256": "6f1ca41cc61c36a73976f069485ab1c079fbc8568ac90e67d750d34bbc76e786",
+      "bytes": 4989,
+      "fresh_main_blob": "765b80568ecdaa16fdd90492e2933a75a2239250",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "573bd258dbf78f37a1750362d6b4ecb5a827c57c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+      "mode": "100644",
+      "blob": "e3a03e47263a4919fdfce45c49d259fe954ae992",
+      "sha256": "c6c34827d251ff31dc360e16ff6ded731ccb16f140277e894bce851d20b80e5c",
+      "bytes": 11003,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "e3a03e47263a4919fdfce45c49d259fe954ae992"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/v1015_live_chat_reliability_test.dart",
+      "mode": "100644",
+      "blob": "d9c0a457b31efade37476cd05f6e32eb42d19de6",
+      "sha256": "3299eda408680760b2f5e6868caad1ff8f9c4a5290438c8cec0dec26272b5cd0",
+      "bytes": 22678,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "d9c0a457b31efade37476cd05f6e32eb42d19de6"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+      "mode": "100644",
+      "blob": "6ec6e0fd50982c4123141bffc888ff3141c8b953",
+      "sha256": "b535e08e9c95aa39dee9108b2e6f13c29423ffaad3a82837acd8fc7ce17412d3",
+      "bytes": 40053,
+      "fresh_main_blob": "1b8ee6a75bd53996b0b79ca5c8c008794231c7cd",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "6ec6e0fd50982c4123141bffc888ff3141c8b953"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+      "mode": "100644",
+      "blob": "87ab0f0230963d80cd2f8847c46d465708cd10ee",
+      "sha256": "924eea1313aafbb30a1e82ca52ce87dc204e4a77822f799d525be5ec7798a440",
+      "bytes": 13307,
+      "fresh_main_blob": "cc4de42868c5204c306eafcfe7d8d305f24179e5",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "87ab0f0230963d80cd2f8847c46d465708cd10ee"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/status/presentation/pages/community_pagination_test.dart",
+      "mode": "100644",
+      "blob": "455d4516bd83492e03b2f05f3c1f0025901310bd",
+      "sha256": "6b47d7bff1ca2f672331fbad3b78b68d7e18c846108c4e8981d554c74ac0072c",
+      "bytes": 10372,
+      "fresh_main_blob": "588954c4ec36df46cdcc3d240eb95d75be9f1733",
+      "origin": "EIGHT_INFO_STYLE_ONLY_FIX"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/session_rejection_test.dart",
+      "mode": "100644",
+      "blob": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab",
+      "sha256": "78ae33c6b71fefa11f40194c39c6b329644c4ca46ad9ad1203dffb2c28103bf9",
+      "bytes": 9507,
+      "fresh_main_blob": "50b307ac93efcfef0ffe0a9b42f760476b9e856f",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "74e4ed68dfe0b33d58e687e1465e1d99fdd503ab"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/support/synthetic_private_login.dart",
+      "mode": "100644",
+      "blob": "499ec95bc893b69349bbe8ec0d696e7abf0bf61d",
+      "sha256": "1cdfc8eb5dc3a36e72eb2c79b243df36e228dd9e776b9138f208736e1bac460a",
+      "bytes": 996,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "499ec95bc893b69349bbe8ec0d696e7abf0bf61d"
+    },
+    {
+      "path": "services/backend-laravel/app/Console/Commands/ChatWebsocketServerCommand.php",
+      "mode": "100644",
+      "blob": "e4868a2a6b14ba4fa3e69e3fe016e789b47ea518",
+      "sha256": "d29e4dec17366ab8078d2393862d444e30acf4ecb19f507de47eb4ea6c2ac228",
+      "bytes": 5905,
+      "fresh_main_blob": "b315fc8fc43edbaacbcdefce1bfeb6e64bf012e5",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "e4868a2a6b14ba4fa3e69e3fe016e789b47ea518"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingReplayContract.php",
+      "mode": "100644",
+      "blob": "55b757fff40588f572251a776503e2a6074a3c20",
+      "sha256": "636e7f694ecd303cf7affe6a5ee04922dd06f15d7b548773a52aeaed8567d7ee",
+      "bytes": 1179,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "55b757fff40588f572251a776503e2a6074a3c20"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/NotificationDeliveryContract.php",
+      "mode": "100644",
+      "blob": "3173eb35e174612139f5b68c85821c7bccf1d434",
+      "sha256": "f836ca221e31d46c8f88eac6d22303b816a79c3eb7dc117346fdf55059b41be7",
+      "bytes": 1532,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3173eb35e174612139f5b68c85821c7bccf1d434"
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/TrustedLoginTimeContract.php",
+      "mode": "100644",
+      "blob": "a710bbc673f4bb5f030e3661dd42e95b9bc3548e",
+      "sha256": "0d079519c813474feb624802c2764349fd17c5f4073dd80b49f6139586d32e96",
+      "bytes": 1095,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "a710bbc673f4bb5f030e3661dd42e95b9bc3548e"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+      "mode": "100644",
+      "blob": "f69e06670e6584a02862f965d82fc37dee407224",
+      "sha256": "eea7f3f94bb1f643b387eaa30e2c95d76ac7e4cc2ca6f109703d44ede2c0526a",
+      "bytes": 6352,
+      "fresh_main_blob": "9a3bfbcd2cdae86ff6d18dd84728e22a80e2b817",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "f69e06670e6584a02862f965d82fc37dee407224"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+      "mode": "100644",
+      "blob": "892adcb18b45750579bc71fec2b53a9841ed542d",
+      "sha256": "703edf98642f0acfe1665612fe8eaed8a5bb067e915f2adb8e87f294ebecdc8c",
+      "bytes": 11143,
+      "fresh_main_blob": "e4166fa6c4b5ef6ffc34ccef7c3ad9345836a9bd",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "892adcb18b45750579bc71fec2b53a9841ed542d"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationController.php",
+      "mode": "100644",
+      "blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7",
+      "sha256": "284b4e6261fa7876da146bac77ad568fe166764ed7c64bc96218cb0b94e51c8a",
+      "bytes": 3911,
+      "fresh_main_blob": "6271cb8ecc45b525ff86689ea9a9a5ed9ee313f0",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "562065876c6a78f7b25a6a4bcb332bad4f6320a7"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NotificationPreferencesController.php",
+      "mode": "100644",
+      "blob": "011fecb63606b303671efbc53c913fdf54dc54e6",
+      "sha256": "3e8abe7fe7f86c67cc9e64e32944dd4aa263ef8d781194df04745176a77e5860",
+      "bytes": 2241,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "011fecb63606b303671efbc53c913fdf54dc54e6"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
+      "mode": "100644",
+      "blob": "737a90e2842f386dba4a421b5a65ab303775d131",
+      "sha256": "0068ada516d026ccadfe36a875d3e220f9a305fe964132beea7bb9367796fb78",
+      "bytes": 3522,
+      "fresh_main_blob": "8eb33d864572ffbe226be7ba6517630c4cd29075",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "737a90e2842f386dba4a421b5a65ab303775d131"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php",
+      "mode": "100644",
+      "blob": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5",
+      "sha256": "189ef03c0da2149d2236238c5c3db3fbf454efb0a8339ab36660e4057167a51e",
+      "bytes": 3426,
+      "fresh_main_blob": "bd15a3558336e117450266e2172838939a2299eb",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "fb6f088e6dccf80b06a2433f7eb71471d9dab8b5"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+      "mode": "100644",
+      "blob": "03754bed3a62f58f26db2913bbb786f8775e98f7",
+      "sha256": "624b55c204a2bc785a1e5452d43bb63b08c4dd173786a425d8b45a3872ee8421",
+      "bytes": 6854,
+      "fresh_main_blob": "6ed72abb06a2d2158ad989883a3e00a0234af2aa",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "03754bed3a62f58f26db2913bbb786f8775e98f7"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ChatWebsocketAuthorizationService.php",
+      "mode": "100644",
+      "blob": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c",
+      "sha256": "80fbd1dc0a588a12211f17f598eca95210b945023117904097267696e2c3a8c4",
+      "bytes": 2830,
+      "fresh_main_blob": "042ed6982c0395cd385fd71e1d262035562c0815",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "d71c8f438d6f09d4b40ac6e90692b32ab1c9453c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "mode": "100644",
+      "blob": "0152f24226ad821ade592a7e0f0e540c962a0fa0",
+      "sha256": "405be9417be12f49266a33cf96a30a1e57cb427532fe9ea8cf35d92080689444",
+      "bytes": 13155,
+      "fresh_main_blob": "a6196e5fdd268d7bd27c3026d21d65dc8ad1158e",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "0152f24226ad821ade592a7e0f0e540c962a0fa0"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "mode": "100644",
+      "blob": "3b8f8f9e991943ca7d645d209edf14cf36686cb5",
+      "sha256": "ab1a7b86f2b19b6826abf211f520afe8a9d283f878423b6523e860e01ee0e994",
+      "bytes": 19861,
+      "fresh_main_blob": "5d3d09533bdcca15374140fee75a4e7ddbae6886",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3b8f8f9e991943ca7d645d209edf14cf36686cb5"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationDeliveryService.php",
+      "mode": "100644",
+      "blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9",
+      "sha256": "b2a5c7e57cf37d189da6237ba08105f0b30f6e92a6a56f63435f09a91f5d8af3",
+      "bytes": 10555,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "3b9835bfed135d2a990f3e4a0d85077d47cc7cf9"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "mode": "100644",
+      "blob": "9e45e8988d2aefbbec667cfea3fc975ab949dc4c",
+      "sha256": "0ae215097b52b48daa841520f84d974d941e2edc7753e909af8d2546409a10ec",
+      "bytes": 12537,
+      "fresh_main_blob": "6dad47ad1a7b2d13258f5a862139fcf2cd614470",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "9e45e8988d2aefbbec667cfea3fc975ab949dc4c"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_210000_trusted_device_login.php",
+      "mode": "100644",
+      "blob": "038874c4dd773099cb5e0cff670c2d2fa5732fa7",
+      "sha256": "5023a088680642e83628d09203f0df0c459e88e38ea7b8a4311ffad150c271bd",
+      "bytes": 699,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "038874c4dd773099cb5e0cff670c2d2fa5732fa7"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_220000_create_notification_delivery_contracts.php",
+      "mode": "100644",
+      "blob": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b",
+      "sha256": "46a6eb7516b2b0aabbfbd29f8720c098637a39345d7c208e5ab509d021d71d1a",
+      "bytes": 1781,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "6c3c383751c8ec3625f34ece6b60ca50d1b34a9b"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "mode": "100644",
+      "blob": "fcb4d81338b6ec4b908ba16d1e729d76f98ca101",
+      "sha256": "e6bf99b8780e36f30ee0fd3d9b3cdf1c4795960a639eb3f3796439c646805685",
+      "bytes": 25145,
+      "fresh_main_blob": "2fb22267a726c42035b70d6f5d458fc6f3c88fa6",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "fcb4d81338b6ec4b908ba16d1e729d76f98ca101"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/NotificationApiTest.php",
+      "mode": "100644",
+      "blob": "2faf714c806ab741624f89d7646303c691cfe882",
+      "sha256": "1228d337b5d633996e9bfaffb9c1967045e936d19afd72f5edf1579ac9ee3e95",
+      "bytes": 6751,
+      "fresh_main_blob": "df5d4a12919e5c2a3e1a8f77d5ce20afeb42d7d8",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "2faf714c806ab741624f89d7646303c691cfe882"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/PrivateDevelopmentInstanceTest.php",
+      "mode": "100644",
+      "blob": "e490041e17354637e24706e8d2232430a0f47eef",
+      "sha256": "50f32917273bb42b39a5f9e18953b2a187a30ed0fd106d9f2a7eba2e7f310da1",
+      "bytes": 1247,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "e490041e17354637e24706e8d2232430a0f47eef"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1007R1NotificationPrivacyTest.php",
+      "mode": "100644",
+      "blob": "8241ee26679ada6b4143a51364c17d4c3819f090",
+      "sha256": "eb80d2a44c701f1d4ba6c7bf97b5caae7f1882294a2056c161ccd06a563943a8",
+      "bytes": 6327,
+      "fresh_main_blob": "67f8b3adf8180f298cb62ac07fcd973255b1227b",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "8241ee26679ada6b4143a51364c17d4c3819f090"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityRetryTest.php",
+      "mode": "100644",
+      "blob": "ffb8087a4bcf175c44ae5e9f987d0792807ab6bf",
+      "sha256": "4041294a72cd6c66e77011f0461a4434a5dc2ddeb209bb453f4a88b751189735",
+      "bytes": 7677,
+      "fresh_main_blob": "d889147429829bede356e93cb9581a7b1d72d56a",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "ffb8087a4bcf175c44ae5e9f987d0792807ab6bf"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009RtcAuthorityTest.php",
+      "mode": "100644",
+      "blob": "f3c5cdf321f7f983f3c6933f3b972c3db2948909",
+      "sha256": "52ea28de9deb2d4f0d7c3f68d29568fc83310b5b930a44542acddf38b6504513",
+      "bytes": 13113,
+      "fresh_main_blob": "7bc57c3cbf14fc1aef6c16ee35b775ceed1d0a23",
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "f3c5cdf321f7f983f3c6933f3b972c3db2948909"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015MessagingTest.php",
+      "mode": "100644",
+      "blob": "1cdaa400d7b8e4ba57eab49a2245f7edbd6ec3b5",
+      "sha256": "c7daf4fd983a8f7f548faf9a422262f3ee5bb66463d8e879ba6d852e354d7bae",
+      "bytes": 4934,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "1cdaa400d7b8e4ba57eab49a2245f7edbd6ec3b5"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015NotificationDeliveryTest.php",
+      "mode": "100644",
+      "blob": "e54e3c125c99f7ddc811d8e16c80c0f7414a8be2",
+      "sha256": "e87aababcd906cbbc3d06d8c7ad8418112977aa8cdb133bddf58d36a575bf804",
+      "bytes": 12701,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "e54e3c125c99f7ddc811d8e16c80c0f7414a8be2"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1015TrustedLoginTest.php",
+      "mode": "100644",
+      "blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4",
+      "sha256": "0e3bb534acbe05745511c482114276b53cb1dc1616ad265244780028b1b38eb0",
+      "bytes": 8668,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "840c75065c0af5b7021721c4e6d5f5f3b05ebdf4"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/executor_fail_closed_test.py",
+      "mode": "100644",
+      "blob": "aa09e2ce9eccf4bcb6e05aff547a325e5b07a8fa",
+      "sha256": "6f173289158a2e474048a56c74ceb4efc46fbe8d8dc453c2cfcead3b240878e0",
+      "bytes": 3968,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/hold_pair.php",
+      "mode": "100644",
+      "blob": "3ff6f074399f9acb6893c2b6d3de29785a418cf6",
+      "sha256": "d32e039026a986770f70d2e965270084c4c7548af5a1eb1b45894bd92e8c9c2e",
+      "bytes": 1722,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/http_journey.py",
+      "mode": "100644",
+      "blob": "2068173e83a985e49b5c1ec16ff89134aea93de4",
+      "sha256": "b289e64ac50d27f9ce4f1afc5306d9d6d0d5f73a3cc7d19134bc9454b68486de",
+      "bytes": 16895,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/persistence.py",
+      "mode": "100644",
+      "blob": "1ce067dfdc4b73b40480fbaa6c1b368ea9f5323e",
+      "sha256": "ce45f510095311307b5801e29ef0c8d67aa9b3d03d07ec5d8c498109defe2026",
+      "bytes": 3804,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/qualification_negative.php",
+      "mode": "100644",
+      "blob": "7936bb8154b513888360347a3c4769588584b1a8",
+      "sha256": "b7a5ce946b16b10dac1e503d3d57b08020f63f9438a19724f0df0882dc803e17",
+      "bytes": 2751,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/qualify.php",
+      "mode": "100644",
+      "blob": "cbdc7100ba6faca4dc110f790adcf55a1383192a",
+      "sha256": "a27c46c58b0c20ebe8a2b6b984c4b64c4ea371db3f983895f700b6d23d4630d5",
+      "bytes": 1799,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/scenario.php",
+      "mode": "100644",
+      "blob": "557b64d86e5da40d1ad1ca0f83e635977a2e21f9",
+      "sha256": "b97c7aaf081e3190df881599707fe37b90e55242da2a542af68949607b75f4a3",
+      "bytes": 3423,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_0017/web_http.py",
+      "mode": "100644",
+      "blob": "50a3e7e0b7f69861c90a3d9d9314b5ce21d31755",
+      "sha256": "930ef381222762ffdefdd0e037eca4db1d63019baa8d38a892790b9cf62d1253",
+      "bytes": 2736,
+      "fresh_main_blob": null,
+      "origin": "NEW_TASK_SYNTHETIC_E2E_HARNESS"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_l13/qualify.php",
+      "mode": "100644",
+      "blob": "2d2a41dfd55f50194325c4a8def12ef892371d33",
+      "sha256": "d18a5d7e51850d5bb1bd4033c79e7ef8c16d55ae171366a17e7708614743762d",
+      "bytes": 1679,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "2d2a41dfd55f50194325c4a8def12ef892371d33"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/post_l13/runtime_fixture.php",
+      "mode": "100644",
+      "blob": "f7c0559055dbbfb32a0132d7d2bfd71cf9d60b39",
+      "sha256": "ab38c933ea7363ad8e12781d307e154cb63cc7f18a29b151b5ac5c6460096436",
+      "bytes": 5285,
+      "fresh_main_blob": null,
+      "origin": "ACCEPTED_0017_EXACT",
+      "source_commit": "0017ce7aa6b991360b2b26b7f5785b86bce2f369",
+      "source_blob": "f7c0559055dbbfb32a0132d7d2bfd71cf9d60b39"
+    }
+  ],
+  "source_change_counts": {
+    "exact_accepted_paths": 71,
+    "style_only_paths": 5,
+    "new_synthetic_harness_paths": 8,
+    "total_source_test_paths": 84,
+    "new_delivery_docs": 2
+  },
+  "toolchain": {
+    "php": "8.4.27",
+    "composer_vendor_packages": 114,
+    "composer_install_or_solver": 0,
+    "mariadb": "10.11.19",
+    "engine": "29.9.2 linux/amd64",
+    "php_existing_image_id": "sha256:8fc9e4e0410a0c7a6d1e69194bb493758cd7b59986ca39439f094e0fab732f89",
+    "mariadb_existing_index_id": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "offline_pub_packages": 165,
+    "new_dependencies_supplied": 0,
+    "image_inspect_id_semantics": "MariaDBId is treated as an index identity, never forced equal to its config digest."
+  },
+  "acceptance_matrix": [
+    {
+      "id": "AC01",
+      "status": "DIRECT_GITHUB_OBJECT_AND_BOUNDED_PROTECTION_SUPPORTED",
+      "evidence": "fresh main/Root, exact71 accepted blobs plus explicit5 style/8 harness paths; new empty isolated DB/recovery point/APP_DB priority; protected named assets; no full disk audit"
+    },
+    {
+      "id": "AC02",
+      "status": "NEW_API_DB_RUNTIME_PASS__APP_NOT_RUN",
+      "evidence": "actual dropped-ACK proxy, same-key replay/conflict409,4 HTTP retries one logical row/notice, current history; targeted Flutter software only"
+    },
+    {
+      "id": "AC03",
+      "status": "NEW_CURRENT_AUTHZ_AND_RR_OVERLAP_PASS__WS_DEVICE_NOT_RUN",
+      "evidence": "third user, MC/CN/Block, expired/rotated/disabled actor and private URL negatives; real RR user locks, holder-connection filtered wait counts[0,2], send200 then committed revoke200 and replay404"
+    },
+    {
+      "id": "AC04",
+      "status": "REAL_PNG_UPLOAD_API_PASS__VALID_H264_FIXTURE__VIDEO_PIPELINE_BLOCKED",
+      "evidence": "actual multipart PNG ready/send/200/206/unauthorized404; valid synthetic H26410-frame full decode; API rejects422 because no trusted ffprobe, no asset created. Android picker/player NOT_RUN"
+    },
+    {
+      "id": "AC05",
+      "status": "OPEN",
+      "evidence": "one fixed7773 review source check; limited call4/call5/cleanup/old-token403 history retained; no new qualified devices/acoustics/5s/native media test; G2 false"
+    },
+    {
+      "id": "AC06",
+      "status": "NEW_REAL_HTTP_T0_REFRESH_SUPPORTED__TEST_INJECTION",
+      "evidence": "password login user/device/session T0; registration no retention, refresh preserves login/deadlines, old access401, own16day T0 injection401; physical15/30days NOT_RUN"
+    },
+    {
+      "id": "AC07",
+      "status": "TARGETED_FLUTTER_SOFTWARE_SUPPORTED__ANDROID_NOT_PROVEN",
+      "evidence": "new targeted private-cache/time/late-response/secure-store failure and resume tests; actual Android plugin ciphertext/cold device/recovery/deletion NOT_RUN_GATE_CLOSED"
+    },
+    {
+      "id": "AC08",
+      "status": "NEW_API_AND_WIDGET_NOTIFICATION_PRIVACY_SUPPORTED__OS_GUI_NOT_RUN",
+      "evidence": "category/silent actual persistence, token denial/revoke/rotation, old notice current authorization; no system lockscreen or permission dialog execution"
+    },
+    {
+      "id": "AC09",
+      "status": "TEST_ONLY_SUBSTITUTE_SUPPORTED__REAL_PUSH_PROVIDER_PENDING",
+      "evidence": "fixed generic payload, actual hash-only columns/values, dedup/suppression; no provider SDK, credentials, network delivery or fee"
+    },
+    {
+      "id": "AC10",
+      "status": "NEW_API_DB_WEB_HTTP_AND_REAL_DB_RESTART_SUPPORTED__APP_UI_NOT_RUN",
+      "evidence": "new93table163row all-row hashes and identities preserved after real MariaDB stop/start; new SQL copies read back, not restored;8 Web HTTP checks; browser tool initialization failed before UI; no same-source APK"
+    },
+    {
+      "id": "AC11",
+      "status": "ONE_CANDIDATE_READY_FOR_NATIVE_READBACK_AND_ASTRA",
+      "evidence": "one non-main non-force sole-parent candidate;84 source/test paths plus2 new documents; non-author review; post-publication native objects and permanent STOP in terminal companion, no self acceptance"
+    }
+  ],
+  "new_runtime_results": {
+    "flutter_default_targeted": {
+      "tests": 63,
+      "exit": 0
+    },
+    "flutter_buddy_specific_profile": {
+      "tests": 5,
+      "exit": 0,
+      "dart_define": "ELITESYNC_V1013_LOCAL_BUILD=true",
+      "meaning": "Dart-only existing UI test profile, not G2 or Gradle qualification"
+    },
+    "php_targeted": {
+      "tests": 32,
+      "assertions": 240,
+      "exit": 0
+    },
+    "analyzer_before": {
+      "exit": 1,
+      "errors": 0,
+      "warnings": 0,
+      "info": 8
+    },
+    "analyzer_after": {
+      "exit": 0,
+      "issues": 0,
+      "suppression_added": false
+    },
+    "http_phase_checks": {
+      "actors": 26,
+      "messages": 23,
+      "media_notifications": 37,
+      "revocation": 16,
+      "concurrent_mc": 18
+    },
+    "mariadb_restart": {
+      "tables": 93,
+      "rows": 163,
+      "full_rows_aggregate_sha256": "01d7b0e5a0b7d9ec23b36f0c152367381ecd1b3d175856fb41aa2e16fabf2cc2",
+      "db_down_observation": {
+        "kind": "BOUNDED_HOST_TIMEOUT",
+        "seconds": 3
+      },
+      "recovery_SQL_readback": true,
+      "logical_restore_executed": false
+    },
+    "actual_rr_overlap": {
+      "send_status": 200,
+      "committed_revoke_status": 200,
+      "post_revoke_replay": 404,
+      "isolation": "REPEATABLE-READ",
+      "observed_waiting_request_transaction_counts": [
+        0,
+        2
+      ],
+      "actual_lock_overlap_observed": true,
+      "classification": "ACTUAL_HTTP_MARIADB_LOCK_OVERLAP_NOT_DEVICE"
+    },
+    "web_http_checks": 8,
+    "web_browser_ui": "NOT_RUN_KERNEL_OS_ERROR3",
+    "apk": {
+      "status": "NOT_RUN_GATE_CLOSED",
+      "sha256": null,
+      "package_id": null
+    },
+    "no_old270_or128_as_new_run": true
+  },
+  "prepare_fail_closed": {
+    "actual_executor_sha256": "6547f23983931b1f5318bc33e6d6fd8aea27e1b407c1051a40ebee302973762d",
+    "public_regression_sha256": "6f173289158a2e474048a56c74ceb4efc46fbe8d8dc453c2cfcead3b240878e0",
+    "negative_cases": [
+      {
+        "case": "logger_type_error",
+        "operation": "write",
+        "actual_fault_site": "logger_entry",
+        "mutation_blocked": true
+      },
+      {
+        "case": "logger_type_error",
+        "operation": "revise",
+        "actual_fault_site": "logger_entry",
+        "mutation_blocked": true
+      },
+      {
+        "case": "logger_type_error",
+        "operation": "process",
+        "actual_fault_site": "logger_entry",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_flush_error",
+        "operation": "write",
+        "actual_fault_site": "actual_event_flush",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_flush_error",
+        "operation": "revise",
+        "actual_fault_site": "actual_event_flush",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_flush_error",
+        "operation": "process",
+        "actual_fault_site": "actual_event_flush",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_fsync_error",
+        "operation": "write",
+        "actual_fault_site": "actual_event_fsync",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_fsync_error",
+        "operation": "revise",
+        "actual_fault_site": "actual_event_fsync",
+        "mutation_blocked": true
+      },
+      {
+        "case": "actual_fsync_error",
+        "operation": "process",
+        "actual_fault_site": "actual_event_fsync",
+        "mutation_blocked": true
+      }
+    ],
+    "real_flush_path_cases": 3,
+    "real_fsync_path_cases": 3,
+    "unprepared_writes_or_revisions_or_processes": 0,
+    "authoritative_ledger_received_injected_io_error": false,
+    "test_data_journals": "Marked .fixture data copies only, not task budgets or operational ledgers",
+    "old_gap_not_retroactively_closed": true,
+    "intermediate_event_only_injection": "retained as event-exception test, not actual I/O path proof"
+  },
+  "qualification_negatives": {
+    "negative_cases": [
+      {
+        "case": "host",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "port",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "database",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "username",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "url",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "unix_socket",
+        "denied": true,
+        "connection_to_wrong_target_attempted": false
+      },
+      {
+        "case": "server_id",
+        "denied": true,
+        "classification": "TEST_INJECTION_ON_REAL_CONNECTION_RESULT"
+      },
+      {
+        "case": "grants",
+        "denied": true,
+        "classification": "TEST_INJECTION_ON_REAL_CONNECTION_RESULT"
+      }
+    ],
+    "positive": true,
+    "effective_schema": "post0017_synthetic"
+  },
+  "synthetic_h264": {
+    "sha256": "a220520c0fbf9aa620cf6a718966f7743ed580b1b8d0d5ced4eb55b23ca23ec9",
+    "bytes": 13562,
+    "duration_seconds": 1,
+    "width": 160,
+    "height": 120,
+    "decoded_frames": 10,
+    "codec": "h264",
+    "origin": "pure lavfi testsrc2, no audio/camera/user media",
+    "existing_encoder_package": "imageio-ffmpeg0.6.0 existing bundled FFmpeg7.1 essentials",
+    "encoder_sha256": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "trust_basis": "existing installed package RECORD sha256 matched and local binary/license/version frozen; no new supplier download; not a new upstream attestation",
+    "redistribution_of_encoder": false,
+    "api_gate": {
+      "fixture_valid_h264_and_full_decode": true,
+      "api_status": 422,
+      "verifier_unavailable": true,
+      "asset_created": false,
+      "classification": "H264_FIXTURE_PASS__API_VERIFIER_GATE_BLOCKED__ANDROID_NOT_RUN"
+    },
+    "recipe": [
+      "-f",
+      "lavfi",
+      "-i",
+      "testsrc2=size=160x120:rate=10",
+      "-t",
+      "1",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-pix_fmt",
+      "yuv420p",
+      "-profile:v",
+      "baseline",
+      "-threads",
+      "1",
+      "-movflags",
+      "+faststart"
+    ]
+  },
+  "non_author_bounded_review": {
+    "role": "independent non-author Sol/high read-only",
+    "scope": "new executor fail-closed; private new-DB qualifier; message/notification current authorization;5 lint-only files; deterministic RR lock overlap; final I/O fault test",
+    "remaining_concrete_p1_p2_found": false,
+    "observations_resolved": [
+      "revise exception coverage added",
+      "actual event flush/fsync injection on marked test-data journals replaces event-only simulation claim",
+      "8 qualification negatives plus real positive, with server_id/grants explicitly test injection",
+      "actual pair lock holder/connection-ID filtered [0,2] transaction waits replaces launch-only concurrency inference"
+    ],
+    "final_executor_sha256": "6547f23983931b1f5318bc33e6d6fd8aea27e1b407c1051a40ebee302973762d",
+    "final_io_test_source_sha256": "6f173289158a2e474048a56c74ceb4efc46fbe8d8dc453c2cfcead3b240878e0",
+    "acceptance_self_signed": false,
+    "reviewer_runtime_execution": false,
+    "device_or_acoustic_verification": false
+  },
+  "ac05_source_check": {
+    "checks": 1,
+    "path": "docs/versions/v10.1.5/REMAINING_ACCEPTANCE_7773B989_ASTRA_REVIEW_20261025.md",
+    "blob": "5e5851cc54185d488490706e99deaed57cb67802",
+    "bounded_history": [
+      "PCM/Room cleanup and67 software tests accepted within original identity",
+      "call4 same-call reconnect and actual UI hangup with synthetic PC peer accepted",
+      "call5 followup media and one old-token guarded WS403 accepted"
+    ],
+    "not_proven": [
+      "two-physical-device acoustics",
+      "AEC on/off objective control",
+      "fresh5second stop from synchronized revoke COMMIT",
+      "all native failure cleanup paths"
+    ],
+    "historical_observation_upper_seconds": 10.125,
+    "new_device_or_media_execution": false,
+    "current_gate": "AC05_OPEN_G2_FALSE",
+    "minimum_future_qualification": [
+      "explicit G2/SDK/build execution qualification and named approved device(s)",
+      "named permitted peer/SFU/network and microphone/camera scope",
+      "synchronized revoke-COMMIT and observable terminal media clock"
+    ]
+  },
+  "protection": {
+    "status": "FINAL_PROTECTION_PASS",
+    "dirty_entries": 252,
+    "refs": 527,
+    "old_laravel": "v11.48.0",
+    "git_hashes": {
+      "identity": "cb910a07f67a495a7ce57829baf2c154e3cc13eb2c44ee6fa8a5aa35c2df1aae",
+      "dirty": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+      "refs": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+      "index": "0503100e864862390919216bec312078991a1fe20699edbce3cb73f38c8716d6"
+    },
+    "raw_index_sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+    "backup_manifest_sha256": "3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d",
+    "backup_files": 11066,
+    "backup_bytes": 240617393,
+    "backup_metadata_checks": 11066,
+    "backup_sha_samples": 160,
+    "previous0017_stop_seal": {
+      "sha256": "c9cee51fe7aa8ddddc4dd34e92196442bc3c60416d59e1ae0665cdec7087a678",
+      "unchanged": true,
+      "permanent_stop": true,
+      "old_writes": 0
+    },
+    "old_asset_writes": 0,
+    "old_default_entry_changed": false,
+    "scope": "named actual touch/protection scope only; no full-disk or old backup restoration claim"
+  },
+  "resource_snapshot_at_document_freeze": {
+    "owner_numerical_hard_limits": null,
+    "elapsed_monotonic_seconds": 3115.485,
+    "metered_counters": {
+      "executor_failure_injection_batches": 1,
+      "executor_positive_process": 1,
+      "readonly_tool_metadata_queries": 1,
+      "readonly_source_checks": 1,
+      "protected_readonly_batches": 2,
+      "docker_readonly": 11,
+      "new_main_files": 5325,
+      "isolated_git_mutations": 10,
+      "git_readonly": 3,
+      "accepted_source_paths": 71,
+      "desktop_readonly_qualification": 1,
+      "encoder_readonly_queries": 2,
+      "vendor_copy_batches": 1,
+      "flutter_toolchain_copy_batches": 1,
+      "ac05_named_source_checks": 1,
+      "synthetic_media_directories": 1,
+      "synthetic_h264_encodes": 1,
+      "synthetic_h264_full_decode_verifications": 1,
+      "pub_cache_copy_batches": 1,
+      "runtime_directory_batches": 1,
+      "task_capability_containers": 1,
+      "task_isolated_resources_created": 3,
+      "task_containers_created": 3,
+      "task_network_attachments": 1,
+      "db_process_starts": 2,
+      "db_readiness_queries": 4,
+      "synthetic_recovery_dumps": 2,
+      "api_service_starts": 1,
+      "db_identity_queries": 2,
+      "new_schema_migrations": 1,
+      "flutter_offline_lock_preparations": 2,
+      "synthetic_image_encodes": 1,
+      "flutter_sdk_metadata_copy_batches": 1,
+      "flutter_analysis": 2,
+      "real_http_db_phases": 6,
+      "loopback_http_requests": 67,
+      "synthetic_cli_actions": 21,
+      "flutter_targeted_batches": 3,
+      "loopback_proxy_starts": 1,
+      "local_browser_ui_sessions": 1,
+      "browser_runtime_qualification_attempts": 1,
+      "executor_regression_processes": 2,
+      "executor_fault_test_batches": 1,
+      "private_qualification_negative_batches": 1,
+      "pair_lock_signal_groups": 1,
+      "private_pair_lock_holds": 1,
+      "own_db_lock_observation_queries": 2,
+      "test_runner_starts": 1,
+      "php_targeted_batches": 1,
+      "real_web_http_phases": 1,
+      "loopback_web_http_requests": 9,
+      "real_db_restart_phases": 1,
+      "db_process_stops": 1,
+      "executor_real_io_fault_batches": 1,
+      "task_service_stops": 3
+    },
+    "space": {
+      "logical_bytes": 2710576219,
+      "allocated_conservative_upper": 2850705408,
+      "host_free_bytes": 471115583488,
+      "owner_numerical_limit": null
+    },
+    "new_db_volume_kib": 163776,
+    "external_dependency_supply_bytes": 0,
+    "external_dependency_requests": 0,
+    "composer_install_solver": 0,
+    "docker_pull_build": 0,
+    "gradle_sdk_supply": 0,
+    "system_changes": 0,
+    "old_balances_reused": false,
+    "counter_scope": "prepared attempts; failed pre-dispatch and retries remain charged, successful HTTP response counts are separate journal receipts; terminal post-publication totals LOCAL_ONLY",
+    "no_os_global_network_enforcement_claim": true
+  },
+  "process_receipts": [
+    {
+      "name": "executor-positive-receipt",
+      "exit": 0,
+      "seconds": 0.0779999999795109,
+      "prepare_seq": 8,
+      "stdout_sha256": "0dfecdc430de6b526588e56761f8de0379ff3115a8263f531cb86fa09c4fced1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "existing-tool-path-metadata",
+      "exit": 1,
+      "seconds": 0.6880000000819564,
+      "prepare_seq": 19,
+      "stdout_sha256": "7a59edad75a8f2804da65db8074eeb51c0b83b2306b445880a11d000c6a7519e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-identity",
+      "exit": 0,
+      "seconds": 0.1410000000614673,
+      "prepare_seq": 34,
+      "stdout_sha256": "cb910a07f67a495a7ce57829baf2c154e3cc13eb2c44ee6fa8a5aa35c2df1aae",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-dirty",
+      "exit": 0,
+      "seconds": 0.2029999999795109,
+      "prepare_seq": 42,
+      "stdout_sha256": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-refs",
+      "exit": 0,
+      "seconds": 0.14000000001396984,
+      "prepare_seq": 50,
+      "stdout_sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-index",
+      "exit": 0,
+      "seconds": 0.125,
+      "prepare_seq": 58,
+      "stdout_sha256": "0503100e864862390919216bec312078991a1fe20699edbce3cb73f38c8716d6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "initial-old-asset-protection",
+      "exit": 0,
+      "seconds": 2.6089999999385327,
+      "prepare_seq": 32,
+      "stdout_sha256": "60fa0a3c52dc28314b796834beab0be641ae8ef7d31211e03ac42a73da923855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "running-engine-readonly-qualification",
+      "exit": 0,
+      "seconds": 0.2970000000204891,
+      "prepare_seq": 75,
+      "stdout_sha256": "7674091cd8495a79bedc6e6bf1510b5b6ccacb7cfee044f179abd912db3815ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "engine-context-readonly",
+      "exit": 0,
+      "seconds": 0.25,
+      "prepare_seq": 85,
+      "stdout_sha256": "a84dda9b15176bd2e35c6e98412fccfd3f468ea9a958e3644d54188860619b75",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "existing-images-readonly",
+      "exit": 0,
+      "seconds": 0.2660000000614673,
+      "prepare_seq": 93,
+      "stdout_sha256": "c87ce6268827d379800d7215ecf658fb6e4345ca6d65811672ee16725b005c6a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "shared-running-inventory-readonly",
+      "exit": 0,
+      "seconds": 7.202999999979511,
+      "prepare_seq": 103,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-init",
+      "exit": 0,
+      "seconds": 0.15700000000651926,
+      "prepare_seq": 113,
+      "stdout_sha256": "6274112d617cc087664b331637ec80b9c37d4d0c1e9eb5a2c4d29a03a65d3f89",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-autocrlf",
+      "exit": 0,
+      "seconds": 0.10899999993853271,
+      "prepare_seq": 121,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-filemode",
+      "exit": 0,
+      "seconds": 0.125,
+      "prepare_seq": 129,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-eol",
+      "exit": 0,
+      "seconds": 0.125,
+      "prepare_seq": 137,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-index-main",
+      "exit": 0,
+      "seconds": 14.063000000081956,
+      "prepare_seq": 145,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "owned-baseline-write-main",
+      "exit": 0,
+      "seconds": 2.609000000054948,
+      "prepare_seq": 153,
+      "stdout_sha256": "115b44e4b3bf53fae8d58c8565705e5247484dc88455b61b802da09a147100b7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "materialize-fresh-main",
+      "exit": 0,
+      "seconds": 0.14099999994505197,
+      "prepare_seq": 161,
+      "stdout_sha256": "3da8747ca5b6835626b4cb8c70ef113ef8d0c6b1f9f2a661e82ad9fa4ce6640a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "bind-owned-baseline-parent",
+      "exit": 0,
+      "seconds": 0.125,
+      "prepare_seq": 171,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-fresh-main-status",
+      "exit": 0,
+      "seconds": 0.14000000001396984,
+      "prepare_seq": 179,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "desktop-binary-signature-process-readonly",
+      "exit": 0,
+      "seconds": 2.7660000000614673,
+      "prepare_seq": 191,
+      "stdout_sha256": "3492a90e62b2fbc3be45f38eba9eca3f4a726d7ec374e31aeda1c24dd9cbf0e5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "existing-encoder-version",
+      "exit": 0,
+      "seconds": 0.734000000054948,
+      "prepare_seq": 209,
+      "stdout_sha256": "f0d11220d4773bb6a4338eaee8c3defd2d09dea7f841066656186ae96ec39f7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "existing-encoder-license",
+      "exit": 0,
+      "seconds": 0.14099999994505197,
+      "prepare_seq": 217,
+      "stdout_sha256": "35fed3bda7c88eef3ff67a96c7c029a0b530a1e9d811f620280f8c2bf2ab8153",
+      "stderr_sha256": "5f9f5eab09ed41b64a8d42d830ac68020149cf126305f7c0b84db45f2dc4adda"
+    },
+    {
+      "name": "generate-pure-synthetic-h264",
+      "exit": 0,
+      "seconds": 0.2029999999795109,
+      "prepare_seq": 233,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b4055ed19a0d6f13bd5e49a94203210c5752a2f46265fa2678c6506688be46d8"
+    },
+    {
+      "name": "decode-entire-synthetic-h264",
+      "exit": 0,
+      "seconds": 0.15600000007543713,
+      "prepare_seq": 241,
+      "stdout_sha256": "3afcfdffa4755dfa4c629411f2f81568ca1db225c212743cca19b5b106603f1c",
+      "stderr_sha256": "1e90e42efcdb9efcac285f2881159e33475e258e21d3cfc40f9cb85b7b25f245"
+    },
+    {
+      "name": "existing-php-image-capability-probe",
+      "exit": 0,
+      "seconds": 7.016000000061467,
+      "prepare_seq": 267,
+      "stdout_sha256": "8f7fa6e5146a114d3aa93fa0fbacd5b8cae8e28fb620ded796dbbd9a4e070270",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-private-network",
+      "exit": 0,
+      "seconds": 0.2969999999040738,
+      "prepare_seq": 277,
+      "stdout_sha256": "a4e165a15cd24d507619f50e967c9b830c3778b60a6635b753ecf5207205a320",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-front-network",
+      "exit": 0,
+      "seconds": 0.31299999996554106,
+      "prepare_seq": 285,
+      "stdout_sha256": "b3afe69db1630266a53bccf856b807176680fd0ea56e24d38b7faed90166e3e4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-db-volume",
+      "exit": 0,
+      "seconds": 0.2970000000204891,
+      "prepare_seq": 293,
+      "stdout_sha256": "1019dfa8af12d87dce7ef28021f9097228e24ccf755d705d11d7c7be3e7f9ef9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "inspect-own-networks",
+      "exit": 0,
+      "seconds": 0.28200000000651926,
+      "prepare_seq": 301,
+      "stdout_sha256": "0262dcae88778c2494349c593e31bebad06a04ef18c7e295ee9f2a8e21d81bc4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-new-private-db",
+      "exit": 0,
+      "seconds": 0.3440000000409782,
+      "prepare_seq": 311,
+      "stdout_sha256": "2ab18e2f3fd4bd7752b6835c645a1c951ce60108e3356974f2730dc67ee84959",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-new-private-api",
+      "exit": 0,
+      "seconds": 0.35900000005494803,
+      "prepare_seq": 319,
+      "stdout_sha256": "27e31e50f655d43a1c49c67c034f939f6338839ed99f4690eae21dae932adeb4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "connect-new-api-only-private-db",
+      "exit": 0,
+      "seconds": 0.2970000000204891,
+      "prepare_seq": 327,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "start-new-private-db",
+      "exit": 0,
+      "seconds": 0.46799999999348074,
+      "prepare_seq": 335,
+      "stdout_sha256": "b8b379b1e9082f11b31c4e5db9eddc782eafd330882da0dd660abcc252fe6448",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-empty-db-readiness-0",
+      "exit": 1,
+      "seconds": 0.375,
+      "prepare_seq": 343,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c1adbae00ff817df928f157aa05b89459fafd61934bcdf2d3f2192308fa0b0"
+    },
+    {
+      "name": "new-empty-db-readiness-1",
+      "exit": 1,
+      "seconds": 0.3589999999385327,
+      "prepare_seq": 351,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c1adbae00ff817df928f157aa05b89459fafd61934bcdf2d3f2192308fa0b0"
+    },
+    {
+      "name": "new-empty-db-readiness-2",
+      "exit": 0,
+      "seconds": 0.34399999992456287,
+      "prepare_seq": 359,
+      "stdout_sha256": "0bb49863616997ae92b2597185d7a5321660c4deb73966057f2c8773465f31c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "save-new-empty-schema-recovery-point",
+      "exit": 0,
+      "seconds": 0.35900000005494803,
+      "prepare_seq": 369,
+      "stdout_sha256": "c57865bcd1c030fc3b54fd0d58916195f9ea9bc413639fc939a2b7db904a5bcc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "start-new-loopback-api",
+      "exit": 0,
+      "seconds": 0.5779999999795109,
+      "prepare_seq": 379,
+      "stdout_sha256": "4a13178eb869624d7514d283508144a8f80ab1df1eb7d05fb961cfc760e42b01",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "effective-app-db-selector-before-migration",
+      "exit": 0,
+      "seconds": 14.890999999945052,
+      "prepare_seq": 387,
+      "stdout_sha256": "3aa450f295ad4dbbe7abfbab99f8282f555c8646dd15e2a410009c490a6b004b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-local-offline-locked-pub-get",
+      "exit": 1,
+      "seconds": 0.7029999999795109,
+      "prepare_seq": 398,
+      "stdout_sha256": "7c4ed1d6727090250cd0b241bcc7a246dbed158761eb81b3c32128cfc03a6710",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "generate-pure-synthetic-png",
+      "exit": 0,
+      "seconds": 0.765999999945052,
+      "prepare_seq": 406,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "migrate-only-new-synthetic-schema",
+      "exit": 0,
+      "seconds": 24.60999999998603,
+      "prepare_seq": 397,
+      "stdout_sha256": "4793a814bf62b4481d02a4273c15f2cf151eabdeef3fd32e7abee1850380591c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "identity-after-new-schema-migration",
+      "exit": 0,
+      "seconds": 5.062999999965541,
+      "prepare_seq": 423,
+      "stdout_sha256": "38200f7bcef33f0df905bc833e8dd8fb048711b50c57d9fcf01dcab7aab6ffe2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-local-offline-locked-pub-get-complete-sdk",
+      "exit": 0,
+      "seconds": 7.39000000001397,
+      "prepare_seq": 434,
+      "stdout_sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-analyzer-before-targeted-info-fix",
+      "exit": 1,
+      "seconds": 96.14099999994505,
+      "prepare_seq": 442,
+      "stdout_sha256": "76ec555004f442ab7e01fe3f622314680a2da7971d4e21f961b3a2742e94af37",
+      "stderr_sha256": "56821dae90016e7a9c8d13db8c3c35ac8f88173b88fc82350532748f16073d96"
+    },
+    {
+      "name": "new-real-http-actors-and-t0",
+      "exit": 1,
+      "seconds": 0.6400000000139698,
+      "prepare_seq": 451,
+      "stdout_sha256": "a6b08fd46ad12ab4702292b37b57da0ffdb92ff3a2b7d15570b95e95741dc870",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-analyzer-after-eight-info-fix",
+      "exit": 0,
+      "seconds": 25.20299999997951,
+      "prepare_seq": 480,
+      "stdout_sha256": "2b40d9c6c3d61eff38ec837197eb6df2ca313bfdf77a0ff19bc238e0d58d1f69",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-admin",
+      "exit": 0,
+      "seconds": 5.530999999959022,
+      "prepare_seq": 552,
+      "stdout_sha256": "384fb218293b998c14eba7cd7b97b9e42c261e1277aec58ec1d9068672e45d1c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-http-actors-and-t0-fixed-harness",
+      "exit": 0,
+      "seconds": 67.96899999992456,
+      "prepare_seq": 478,
+      "stdout_sha256": "0d7532c8615dcfa135fd29179ca32bed54b734be723a24c4517193da733020da",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-friendship",
+      "exit": 0,
+      "seconds": 5.766000000061467,
+      "prepare_seq": 573,
+      "stdout_sha256": "1a443183bcb3c5cbe7b86b3379aa3cd00130edb9f84553e888e4b73326cac4d5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-targeted-flutter-integration-regressions",
+      "exit": 1,
+      "seconds": 23.5,
+      "prepare_seq": 586,
+      "stdout_sha256": "945b855fea2464066e65d89141c48ed1b08756c1da51b95d23dde24116169f36",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 5.218999999924563,
+      "prepare_seq": 638,
+      "stdout_sha256": "d63503778e6bb58724deb7c0a0969891898b023b55c718199b06f6f841286f86",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-http-messaging-and-ack-loss",
+      "exit": 0,
+      "seconds": 48.436999999918044,
+      "prepare_seq": 572,
+      "stdout_sha256": "3e3ed29d5db67889f8623488e597ea4c84d694bd4951400319fba8f92978524a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.609000000054948,
+      "prepare_seq": 670,
+      "stdout_sha256": "81c46b6c1b5bdcc50a72865a9b2a1760f678a671ec5f2d945019098a4564a42e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.530999999959022,
+      "prepare_seq": 680,
+      "stdout_sha256": "d93c8ca1fd5f7560da4c80753ac321daf5e662ef4ac08d97beb289c6a95380e0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.187999999965541,
+      "prepare_seq": 693,
+      "stdout_sha256": "7694b1b65f427318691f01dd24f5015508c2fa90e36ca8dffab37a4212332d1d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.063000000081956,
+      "prepare_seq": 706,
+      "stdout_sha256": "7694b1b65f427318691f01dd24f5015508c2fa90e36ca8dffab37a4212332d1d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.202999999979511,
+      "prepare_seq": 732,
+      "stdout_sha256": "81c46b6c1b5bdcc50a72865a9b2a1760f678a671ec5f2d945019098a4564a42e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.655999999959022,
+      "prepare_seq": 745,
+      "stdout_sha256": "7694b1b65f427318691f01dd24f5015508c2fa90e36ca8dffab37a4212332d1d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.98499999998603,
+      "prepare_seq": 758,
+      "stdout_sha256": "f42f635e87bf1cb3a9a05e618fff3dab7eebf9f8836afef47b2ea7904cd46349",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.75,
+      "prepare_seq": 786,
+      "stdout_sha256": "89b7f9ec07a8e7cacd01ec6645846c9bf406256c653d58af9d5a62edab731127",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.844000000040978,
+      "prepare_seq": 799,
+      "stdout_sha256": "89b7f9ec07a8e7cacd01ec6645846c9bf406256c653d58af9d5a62edab731127",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-http-media-notification-chain",
+      "exit": 0,
+      "seconds": 108.03099999995902,
+      "prepare_seq": 666,
+      "stdout_sha256": "d1af7aa21b1f6f3fe4ea03004c9339a647b1c5e7b56c90b34e4ea5c628ed2e52",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-complete-executor-fail-closed-regression",
+      "exit": 0,
+      "seconds": 0.5,
+      "prepare_seq": 827,
+      "stdout_sha256": "e0fb9164f4187583227ce67bd51bde3f1c57e7ef7f17095a72f3658c8f3f4d67",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-private-qualification-negatives",
+      "exit": 0,
+      "seconds": 5.375,
+      "prepare_seq": 840,
+      "stdout_sha256": "a82b5ec9769ec11a56bb72a98a300951f97608ebffaa17f463a24f076d4a60fc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-targeted-flutter-default-profile",
+      "exit": 0,
+      "seconds": 9.422000000020489,
+      "prepare_seq": 850,
+      "stdout_sha256": "c6d307bcc46510ca05bbc582b7c47ee58f41c7213e1261d2f8b21755a667fd2f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-buddy-specific-dart-test-profile",
+      "exit": 0,
+      "seconds": 11.0,
+      "prepare_seq": 858,
+      "stdout_sha256": "928e3cba914d2feaa350f4f1936c260bdc5c66e682e5ff21ae93246365822360",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-delivery",
+      "exit": 0,
+      "seconds": 5.640999999945052,
+      "prepare_seq": 887,
+      "stdout_sha256": "7694b1b65f427318691f01dd24f5015508c2fa90e36ca8dffab37a4212332d1d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.375,
+      "prepare_seq": 903,
+      "stdout_sha256": "89b7f9ec07a8e7cacd01ec6645846c9bf406256c653d58af9d5a62edab731127",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.827999999979511,
+      "prepare_seq": 915,
+      "stdout_sha256": "89b7f9ec07a8e7cacd01ec6645846c9bf406256c653d58af9d5a62edab731127",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-expire",
+      "exit": 0,
+      "seconds": 4.672000000020489,
+      "prepare_seq": 925,
+      "stdout_sha256": "b4361b556653a31254a9f49a98cfadddaa3ea7fbd220de7088451bfbc9ca445c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-current-authorization-revocations",
+      "exit": 0,
+      "seconds": 65.95299999997951,
+      "prepare_seq": 870,
+      "stdout_sha256": "849787fe68b388f283a6f501e1915bbdc29cd21f21ef9f201a6ac04592b3927d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-friendship",
+      "exit": 0,
+      "seconds": 4.734000000054948,
+      "prepare_seq": 949,
+      "stdout_sha256": "1a443183bcb3c5cbe7b86b3379aa3cd00130edb9f84553e888e4b73326cac4d5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "observe-own-db-lock-overlap-0",
+      "exit": 0,
+      "seconds": 0.43799999996554106,
+      "prepare_seq": 975,
+      "stdout_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "observe-own-db-lock-overlap-1",
+      "exit": 0,
+      "seconds": 0.39000000001396984,
+      "prepare_seq": 984,
+      "stdout_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "hold-new-synthetic-user-pair",
+      "exit": 0,
+      "seconds": 6.89000000001397,
+      "prepare_seq": 971,
+      "stdout_sha256": "7e91a2a2f6a37a69dfd15a460817da1fb0ff71ec0e1e4b30d49686b8fdfe0363",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.312000000034459,
+      "prepare_seq": 1008,
+      "stdout_sha256": "df8417ab455fa0b4a5181103d84f0afa379749198587c0e8e4a48ddfd7bbaddc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-observe",
+      "exit": 0,
+      "seconds": 4.422000000020489,
+      "prepare_seq": 1020,
+      "stdout_sha256": "df8417ab455fa0b4a5181103d84f0afa379749198587c0e8e4a48ddfd7bbaddc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-new-networkless-php-runner",
+      "exit": 0,
+      "seconds": 0.4369999999180436,
+      "prepare_seq": 1031,
+      "stdout_sha256": "da3acb79f60b1a850bad356377e4dda8f4a48bbf4c619d89b0d923c4e5795f6a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "start-new-networkless-php-runner",
+      "exit": 0,
+      "seconds": 0.5150000000139698,
+      "prepare_seq": 1039,
+      "stdout_sha256": "aa208231436d7be51670b073786909b5ef71f36230af04ff2c9e43920ed2e129",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-disable",
+      "exit": 0,
+      "seconds": 4.921999999904074,
+      "prepare_seq": 1030,
+      "stdout_sha256": "c16a0da2e9c818f2f3b2f8f7a8e7402e3da19561cad688502e54d8fb0a871151",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-mariadb-observed-overlap-concurrency",
+      "exit": 0,
+      "seconds": 48.31299999996554,
+      "prepare_seq": 948,
+      "stdout_sha256": "6ba2582bd086e56d38fa8c466e371efa8a433c2e468c4c77f13db1afd95a13bb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-targeted-php-session-notification-rtc-permissions",
+      "exit": 0,
+      "seconds": 52.93700000003446,
+      "prepare_seq": 1047,
+      "stdout_sha256": "fd6ccd178b49a634ca8df90b0c963f8368ec6bfc4fa3c5384bf5abcfd8737766",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-web-operator-and-negative-http",
+      "exit": 0,
+      "seconds": 36.40599999995902,
+      "prepare_seq": 1073,
+      "stdout_sha256": "3e32e4e97bf4f495d6f88bf0ec93a0d4b5080c13bc0c266f9f59ad039568515f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "save-populated-new-schema-recovery-copy",
+      "exit": 0,
+      "seconds": 0.5779999999795109,
+      "prepare_seq": 1119,
+      "stdout_sha256": "ea3017c5ca26db4b0305b7515d9dc673c85b583542553be2730e162b904774ce",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scenario-snapshot",
+      "exit": 0,
+      "seconds": 4.73499999998603,
+      "prepare_seq": 1131,
+      "stdout_sha256": "96e8aa9ad4959322a24ebb66bf7a593933c6c285fdc0a124153a489c3ffac857",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "own-db-before-restart-identity",
+      "exit": 0,
+      "seconds": 0.375,
+      "prepare_seq": 1142,
+      "stdout_sha256": "8c7f854452c6009cb3eb8cf3ee30749a084a3b7baf338d7a00de5ba31d16f47f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "stop-own-mariadb-process",
+      "exit": 0,
+      "seconds": 0.7339999999385327,
+      "prepare_seq": 1152,
+      "stdout_sha256": "385c06007e6b76e0a595dd0621b930caf01562c4495f13008f5f67bf9ffb9ab2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "own-db-stopped-proof",
+      "exit": 0,
+      "seconds": 0.375,
+      "prepare_seq": 1161,
+      "stdout_sha256": "5682a478979a374b1516f32f3b9175246e39be5b07c536f414dbad46730640a6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "start-own-mariadb-process",
+      "exit": 0,
+      "seconds": 0.765999999945052,
+      "prepare_seq": 1172,
+      "stdout_sha256": "b8b379b1e9082f11b31c4e5db9eddc782eafd330882da0dd660abcc252fe6448",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-db-restart-readiness-0",
+      "exit": 0,
+      "seconds": 4.844000000040978,
+      "prepare_seq": 1181,
+      "stdout_sha256": "96e8aa9ad4959322a24ebb66bf7a593933c6c285fdc0a124153a489c3ffac857",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "own-db-new-process-identity",
+      "exit": 0,
+      "seconds": 0.375,
+      "prepare_seq": 1192,
+      "stdout_sha256": "d805c44c3aee21f44ce5a9883f3724a93eca8d3615663987ebbb2444b5c52cfc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-mariadb-backup-and-process-restart",
+      "exit": 0,
+      "seconds": 32.375,
+      "prepare_seq": 1118,
+      "stdout_sha256": "d40aa1346def9a1555824e843ce7d14f79afc2ae06813f1044d2f54f3eb871e8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-real-prepare-flush-fsync-failure-regression",
+      "exit": 0,
+      "seconds": 2.8429999999934807,
+      "prepare_seq": 1223,
+      "stdout_sha256": "408fc539acaf09ae7e4444084222d1b65b1882d8bb3b7a86093b8983f8c94a3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "source-freeze-working-whitespace",
+      "exit": 0,
+      "seconds": 0.3119999999180436,
+      "prepare_seq": 1292,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "source-freeze-new-file-inventory",
+      "exit": 0,
+      "seconds": 0.3279999999795109,
+      "prepare_seq": 1300,
+      "stdout_sha256": "3d8dc3fe9d7418b5130ddd01499032b3629516a65098a95512061ab654d53f7e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "final-own-resource-isolation",
+      "exit": 0,
+      "seconds": 0.39000000001396984,
+      "prepare_seq": 1308,
+      "stdout_sha256": "65d72942c8934296da514c073af0d378f57273e31cc1ba68e4a5969fbe3c5267",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-own-db-volume-size",
+      "exit": 0,
+      "seconds": 0.4220000000204891,
+      "prepare_seq": 1318,
+      "stdout_sha256": "8cf85406dfe51414a2a03fb79bb30489daa6a9bf7e86dd43ccc62d6ecd4e1dbd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "stop-final-v1015-post0017-api",
+      "exit": 0,
+      "seconds": 20.95299999997951,
+      "prepare_seq": 1328,
+      "stdout_sha256": "e33c3cde69acd0d7992820b0eb5685a049e771a836859c3c13298939b341731b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "stop-final-v1015-post0017-tests",
+      "exit": 0,
+      "seconds": 20.45299999997951,
+      "prepare_seq": 1336,
+      "stdout_sha256": "1e007e4af3770e5e14de85d9e914b431ea1406c6f0f13aa3133147bc0f1127a5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "stop-final-v1015-post0017-db",
+      "exit": 0,
+      "seconds": 0.6400000000139698,
+      "prepare_seq": 1344,
+      "stdout_sha256": "385c06007e6b76e0a595dd0621b930caf01562c4495f13008f5f67bf9ffb9ab2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "all-four-new-task-containers-stopped",
+      "exit": 0,
+      "seconds": 0.375,
+      "prepare_seq": 1352,
+      "stdout_sha256": "094c695f867d1c72a64224b3db1bde357e5ac0864716b45da400df4bfe8014ce",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-identity",
+      "exit": 0,
+      "seconds": 0.25,
+      "prepare_seq": 1366,
+      "stdout_sha256": "cb910a07f67a495a7ce57829baf2c154e3cc13eb2c44ee6fa8a5aa35c2df1aae",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-dirty",
+      "exit": 0,
+      "seconds": 0.31299999996554106,
+      "prepare_seq": 1374,
+      "stdout_sha256": "37a116e072f30466bf9385fb3e44dbb35c61b0ce927feb104f08f9903a6c6c60",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-refs",
+      "exit": 0,
+      "seconds": 0.3440000000409782,
+      "prepare_seq": 1382,
+      "stdout_sha256": "4e62a58b4fb00ced1f74e1945556c592a7dd297d4c1b7909d356ab07f5e4bda3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "protected-index",
+      "exit": 0,
+      "seconds": 0.25,
+      "prepare_seq": 1390,
+      "stdout_sha256": "0503100e864862390919216bec312078991a1fe20699edbce3cb73f38c8716d6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "final-protected-old-assets",
+      "exit": 0,
+      "seconds": 6.327999999979511,
+      "prepare_seq": 1364,
+      "stdout_sha256": "2313ae2d0547313e5991962431577ba0e5638d403ba80a2dbbe20de7fdadea40",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "stage-frozen-product-and-test-sources",
+      "exit": 0,
+      "seconds": 0.4690000000409782,
+      "prepare_seq": 1409,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "write-frozen-source-tree",
+      "exit": 0,
+      "seconds": 0.5629999999655411,
+      "prepare_seq": 1417,
+      "stdout_sha256": "8e497e77cb70c06ffae30242226b04bcd6e246629b46feb8930eec4e207f21a3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "nonzero_process_receipts": [
+    {
+      "name": "existing-tool-path-metadata",
+      "exit": 1,
+      "seconds": 0.6880000000819564,
+      "prepare_seq": 19,
+      "stdout_sha256": "7a59edad75a8f2804da65db8074eeb51c0b83b2306b445880a11d000c6a7519e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-empty-db-readiness-0",
+      "exit": 1,
+      "seconds": 0.375,
+      "prepare_seq": 343,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c1adbae00ff817df928f157aa05b89459fafd61934bcdf2d3f2192308fa0b0"
+    },
+    {
+      "name": "new-empty-db-readiness-1",
+      "exit": 1,
+      "seconds": 0.3589999999385327,
+      "prepare_seq": 351,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c1adbae00ff817df928f157aa05b89459fafd61934bcdf2d3f2192308fa0b0"
+    },
+    {
+      "name": "flutter-local-offline-locked-pub-get",
+      "exit": 1,
+      "seconds": 0.7029999999795109,
+      "prepare_seq": 398,
+      "stdout_sha256": "7c4ed1d6727090250cd0b241bcc7a246dbed158761eb81b3c32128cfc03a6710",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "flutter-analyzer-before-targeted-info-fix",
+      "exit": 1,
+      "seconds": 96.14099999994505,
+      "prepare_seq": 442,
+      "stdout_sha256": "76ec555004f442ab7e01fe3f622314680a2da7971d4e21f961b3a2742e94af37",
+      "stderr_sha256": "56821dae90016e7a9c8d13db8c3c35ac8f88173b88fc82350532748f16073d96"
+    },
+    {
+      "name": "new-real-http-actors-and-t0",
+      "exit": 1,
+      "seconds": 0.6400000000139698,
+      "prepare_seq": 451,
+      "stdout_sha256": "a6b08fd46ad12ab4702292b37b57da0ffdb92ff3a2b7d15570b95e95741dc870",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "new-targeted-flutter-integration-regressions",
+      "exit": 1,
+      "seconds": 23.5,
+      "prepare_seq": 586,
+      "stdout_sha256": "945b855fea2464066e65d89141c48ed1b08756c1da51b95d23dde24116169f36",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "failure_observations": [
+    "Initial task-owned Flutter SDK copy lacked Git metadata; original guard refused operation. Existing original Git metadata was copied read-only; no clone/download or guard modification.",
+    "First HTTP harness shadowed the http module and failed before connecting; fixed alias, retained original stdout/exit and charged attempt.",
+    "Initial combined Dart profile failed5 Buddy gate/UI tests because the required existing per-test compile profile was omitted. Reran63 default tests and5 Buddy-profile tests; no assertion or G2 change.",
+    "Actual H264 file is valid/full-decodable but API intentionally422 without trusted ffprobe, no asset/READY. This is a pipeline gate, not video E2E PASS.",
+    "Both official browser automation initialization paths failed before any tab/UI interaction with OS error3. No system/MCP repair or security workaround.",
+    "One auxiliary read-only document helper returned outside assigned scope including old checkout lookup; results excluded, helper stopped, independent main protection/source checks used.",
+    "Initial whole-event exception injection summary was insufficient to prove actual flush/fsync fault sites; final9-case public test uses marked data-journal copies and actual I/O call sites.",
+    "Original previous-task PREPARE gap and all previous STOP/history remain unchanged."
+  ],
+  "remaining_gates": {
+    "device_app": "NOT_RUN_GATE_CLOSED",
+    "g2": false,
+    "adb_or_gradle_or_install_operations": 0,
+    "android_actual_storage": "NOT_PROVEN_GATE_CLOSED",
+    "os_notification_gui": "NOT_RUN_GATE_CLOSED",
+    "ac05": "OPEN",
+    "new_microphone_camera_usb_udp_permissions": 0,
+    "websocket": "NOT_RUN_MISSING_PCNTL_NO_ACCEPTED_EQUIVALENT",
+    "browser_ui": "NOT_RUN_AUTOMATION_KERNEL_OS_ERROR3",
+    "browser_fallback_attempts": 1,
+    "system_policy_or_config_changes": 0,
+    "web_real_http_still_allowed": true
+  },
+  "historical_gates_retained": [
+    "WINDOWS_E_NOTIMPL",
+    "PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT",
+    "OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN",
+    "RESTRICTED_IDENTITY_GATE_BLOCKED",
+    "OS_ENFORCEMENT_NOT_PROVEN",
+    "EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED",
+    "PHYSICAL15_30DAYS_NOT_RUN",
+    "REAL_L11_COOKIE_NOT_RUN",
+    "LOGICAL_DB_RESTORE_NOT_RUN"
+  ],
+  "final_resources": {
+    "new_task_containers": 4,
+    "all_stopped": true,
+    "images_or_volumes_deleted": 0,
+    "default_development_entry_switched": false,
+    "old_resources_reactivated": false
+  },
+  "local_only": "raw tokens/cookies/config/HTML/DB rows/SQL copies/media bytes, private filesystem identities, machine paths, runtime logs/tool copies/ledger remain local; no public raw private evidence",
+  "delivery_docs": [
+    "docs/versions/v10.1.5/V1015_POST_0017_DEVICE_E2E_CLOSURE_RESULT_20261031.md",
+    "docs/versions/v10.1.5/v1015_post_0017_device_e2e_closure_manifest_20261031.json"
+  ],
+  "final_authority": "Astra independent acceptance pending; no main merge, FUNCTION_ACCEPTED, AC05 closure, G2 release orv10.1.6"
+}

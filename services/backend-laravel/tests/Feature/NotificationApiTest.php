@@ -28,23 +28,20 @@ class NotificationApiTest extends TestCase
             'password' => 'secret123',
         ]);
 
-        AppNotificationItem::query()->create([
-            'user_id' => $user->id,
-            'kind' => 'message',
-            'title' => 'Peer 发来一条消息',
-            'body' => 'hello',
-            'payload' => [
-                'route_name' => 'chat_room',
-                'route_args' => ['conversation_id' => (string) $other->id],
-            ],
-            'read_at' => null,
-        ]);
+        config(['restoration.enabled'=>true]);
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a'=>min($user->id,$other->id),'user_b'=>max($user->id,$other->id),'state'=>'ACTIVE','revision'=>1,'created_at'=>now(),'updated_at'=>now()]);
+        $consent=app(\App\Services\LiveConsentService::class);
+        foreach ([[$other,$user,'connection','request',0],[$user,$other,'connection','accept',1],[$other,$user,'consent','request',0],[$user,$other,'consent','accept',1]] as [$a,$b,$kind,$action,$revision]) $consent->transition($a->id,$b->id,$kind,$action,$revision);
+        Sanctum::actingAs($other);
+        $this->postJson('/api/v1/messages',['receiver_id'=>$user->id,'content'=>'synthetic notification flow','client_message_id'=>(string)\Illuminate\Support\Str::uuid()])->assertOk();
+        $post=\App\Models\StatusPost::create(['author_user_id'=>$user->id,'title'=>'synthetic','body'=>'synthetic','visibility'=>'public','audience'=>'FRIENDS','is_deleted'=>false]);
         AppNotificationItem::query()->create([
             'user_id' => $user->id,
             'kind' => 'status_like',
             'title' => 'Peer 赞了你的动态',
             'body' => 'nice',
             'payload' => [
+                'actor_user_id'=>$other->id,'status_post_id'=>$post->id,
                 'route_name' => 'status_author',
                 'route_args' => ['user_id' => $other->id],
             ],

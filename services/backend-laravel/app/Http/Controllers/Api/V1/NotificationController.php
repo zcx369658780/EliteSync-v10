@@ -47,6 +47,15 @@ class NotificationController extends Controller
         ]);
     }
 
+    /** An old notification ID is a locator, never a cached navigation grant. */
+    public function show(Request $request, int $notificationId, NotificationService $notifications): JsonResponse
+    {
+        $viewer = (int)$request->user()->id;
+        $notice = AppNotificationItem::query()->where('user_id',$viewer)->findOrFail($notificationId);
+        $item = $this->shapeNotification($notice,$viewer,$notifications);
+        return response()->json(['item'=>$item])->header('Cache-Control','private, no-store');
+    }
+
     public function unreadCount(Request $request, NotificationService $notifications): JsonResponse
     {
         return response()->json([

@@ -84,7 +84,7 @@ void main() {
       );
       final c = containerFor(api);
       addTearDown(c.dispose);
-      c.listen(statusPostPageProvider, (_, __) {});
+      c.listen(statusPostPageProvider, (_, _) {});
       await c.read(sessionProvider.future);
       expect((await c.read(statusPostPageProvider.future)).items.single.id, 1);
       c.read(statusPageCursorProvider.notifier).nextPage('20');
@@ -110,7 +110,7 @@ void main() {
         });
         final c = containerFor(api);
         addTearDown(c.dispose);
-        c.listen(statusPostPageProvider, (_, __) {});
+        c.listen(statusPostPageProvider, (_, _) {});
         await c.read(sessionProvider.future);
         await c.read(statusPostPageProvider.future);
         c.read(statusPageCursorProvider.notifier).nextPage('20');
@@ -246,11 +246,11 @@ void main() {
         routes: [
           GoRoute(
             path: '/community',
-            builder: (_, __) => const StatusSquarePage(),
+            builder: (_, _) => const StatusSquarePage(),
           ),
           GoRoute(
             path: '/home',
-            builder: (_, __) => const Scaffold(body: Text('HOME')),
+            builder: (_, _) => const Scaffold(body: Text('HOME')),
           ),
         ],
       );

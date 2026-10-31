@@ -12,7 +12,19 @@ import 'package:flutter_elitesync_module/features/chat/data/dto/message_dto.dart
 Uri buildChatSocketUri({
   required String apiBaseUrl,
   required int selfId,
+  int? peerId,
+  String wsBaseUrl = '',
 }) {
+  if (wsBaseUrl.isNotEmpty) {
+    final configured = Uri.parse(wsBaseUrl);
+    if (!['ws', 'wss'].contains(configured.scheme) || configured.host.isEmpty) {
+      throw StateError('Invalid websocket endpoint');
+    }
+    return configured.replace(
+      path: '/api/v1/messages/ws/$selfId',
+      queryParameters: peerId == null ? null : {'peer_id': '$peerId'},
+    );
+  }
   final apiUri = Uri.tryParse(apiBaseUrl.trim());
   final host = apiUri?.host.isNotEmpty == true ? apiUri!.host : '127.0.0.1';
   final scheme = (apiUri?.scheme ?? 'http').toLowerCase() == 'https'
@@ -25,6 +37,7 @@ Uri buildChatSocketUri({
       scheme: scheme,
       host: host,
       path: path,
+      queryParameters: peerId == null ? null : {'peer_id': '$peerId'},
     );
   }
 
@@ -33,6 +46,7 @@ Uri buildChatSocketUri({
     host: host,
     port: 8081,
     path: path,
+    queryParameters: peerId == null ? null : {'peer_id': '$peerId'},
   );
 }
 
@@ -60,6 +74,17 @@ MessageDto? decodeChatSocketEvent(
   if (json == null) return null;
 
   final type = (json['type'] ?? '').toString();
+  if (type == 'conversation_changed') {
+    // Scoped authenticated socket is only an invalidation signal. Fetch text
+    // and media from the current-authorized HTTP reader, never from this frame.
+    return MessageDto(
+      id: (json['id'] ?? '').toString(),
+      mine: false,
+      text: '',
+      time: '',
+      attachments: const [],
+    );
+  }
   if (type != 'message') return null;
 
   final senderId = (json['sender_id'] as num?)?.toInt() ?? 0;
@@ -83,11 +108,15 @@ class ChatSocketDataSource {
     required this.apiClient,
     required this.localStorage,
     required this.env,
+    this.accessToken,
+    this.sessionIdentity,
   });
 
   final ApiClient apiClient;
   final LocalStorageService localStorage;
   final AppEnv env;
+  final Future<String?> Function()? accessToken;
+  final String Function()? sessionIdentity;
 
   Stream<MessageDto> observe(String conversationId) {
     if (env.useMockChat) {
@@ -102,12 +131,7 @@ class ChatSocketDataSource {
     controller.onListen = () {
       if (started) return;
       started = true;
-      unawaited(
-        _runConnectionLoop(
-          peerId: peerId,
-          controller: controller,
-        ),
-      );
+      unawaited(_runConnectionLoop(peerId: peerId, controller: controller));
     };
     return controller.stream;
   }
@@ -125,21 +149,51 @@ class ChatSocketDataSource {
     }
 
     var keepRunning = true;
+    final identity = sessionIdentity?.call();
+    WebSocket? activeSocket;
     controller.onCancel = () async {
       keepRunning = false;
+      await activeSocket?.close();
     };
 
     while (keepRunning && !controller.isClosed) {
       WebSocket? socket;
       try {
-        final uri = buildChatSocketUri(apiBaseUrl: env.apiBaseUrl, selfId: selfId);
-        socket = await WebSocket.connect(uri.toString());
+        if (sessionIdentity?.call() != identity) break;
+        final token = await accessToken?.call();
+        if (token == null ||
+            token.isEmpty ||
+            sessionIdentity?.call() != identity) {
+          break;
+        }
+        final uri = buildChatSocketUri(
+          apiBaseUrl: env.apiBaseUrl,
+          selfId: selfId,
+          peerId: peerId,
+          wsBaseUrl: env.wsBaseUrl,
+        );
+        socket = await WebSocket.connect(
+          uri.toString(),
+          headers: {'Authorization': 'Bearer $token'},
+        );
+        activeSocket = socket;
+        if (!keepRunning || sessionIdentity?.call() != identity) {
+          await socket.close();
+          break;
+        }
         socket.pingInterval = const Duration(seconds: 20);
         final completed = Completer<void>();
         socket.listen(
           (event) {
-            final dto = decodeChatSocketEvent(event, selfId: selfId, peerId: peerId);
-            if (dto != null && !controller.isClosed) {
+            final dto = decodeChatSocketEvent(
+              event,
+              selfId: selfId,
+              peerId: peerId,
+            );
+            if (dto != null &&
+                keepRunning &&
+                sessionIdentity?.call() == identity &&
+                !controller.isClosed) {
               controller.add(dto);
             }
           },

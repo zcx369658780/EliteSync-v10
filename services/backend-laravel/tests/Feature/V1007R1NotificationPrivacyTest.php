@@ -15,6 +15,7 @@ use Tests\TestCase;
 
 final class V1007R1NotificationPrivacyTest extends TestCase
 {
+    use \Tests\Support\CreatesAcceptedMainMatch;
     use RefreshDatabase;
 
     private User $sender;
@@ -31,7 +32,7 @@ final class V1007R1NotificationPrivacyTest extends TestCase
         config(['restoration.enabled' => true]);
         $this->sender = User::factory()->create(['phone' => '19900000791', 'name' => 'PRIVATE SENDER IDENTITY', 'disabled' => false, 'is_synthetic' => false]);
         $this->recipient = User::factory()->create(['phone' => '19900000792', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'r1-notification', 'user_a' => $this->sender->id, 'user_b' => $this->recipient->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->sender, $this->recipient);
         $s = app(LiveConsentService::class);
         $s->transition($this->sender->id, $this->recipient->id, 'connection', 'request', 0);
         $s->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);

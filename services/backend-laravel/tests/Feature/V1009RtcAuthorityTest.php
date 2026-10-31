@@ -17,6 +17,7 @@ use Tests\TestCase;
 
 final class V1009RtcAuthorityTest extends TestCase
 {
+    use \Tests\Support\CreatesAcceptedMainMatch;
     use RefreshDatabase;
 
     private User $a;
@@ -30,7 +31,7 @@ final class V1009RtcAuthorityTest extends TestCase
             'livekit.enabled' => true, 'livekit.api_key' => 'test', 'livekit.api_secret' => str_repeat('s', 40), 'livekit.url' => 'http://127.0.0.1:7884']);
         $this->a = User::factory()->create(['phone' => '19900000921', 'disabled' => false, 'is_synthetic' => false]);
         $this->b = User::factory()->create(['phone' => '19900000922', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'v1009', 'user_a' => $this->a->id, 'user_b' => $this->b->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->a, $this->b);
         Sanctum::actingAs($this->a);
     }
 
