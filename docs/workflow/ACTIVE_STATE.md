@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-31 Astra独立接受F1/F3/F4有界软件成果；APP/AC05等整版门禁仍开放（CURRENT ENTRY）
+
+**`V10.1.5_F1_F3_F4_SOURCE_AND_CONTROLLED_API_DB_ACCEPTED_WITH_OBSERVATIONS / FLUTTER_PHP_TARGETED_SOFTWARE_SUPPORTED / APP_DEVICE_E2E_NOT_RUN / ANDROID_CIPHERTEXT_NOT_PROVEN / WS_NOT_RUN / H264_NOT_RUN / PREPARE_PROCEDURAL_GAP_RETAINED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / MAIN_PRODUCT_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
+
+**Astra正式独立有界审查已直接GitHub发布并全文回读：** [0017ce7审阅](https://github.com/zcx369658780/EliteSync-v10/blob/b5e2c9754aa2710d2d40eea22ba8d9a6b2960d4e/docs/versions/v10.1.5/0017CE7_F1_F3_F4_POST_L13_ASTRA_INDEPENDENT_BOUNDED_REVIEW_20261031.md)；Review Commit **`b5e2c9754aa2710d2d40eea22ba8d9a6b2960d4e`**、Review Blob **`5679481e0b7ffd5259fae0efdbfe0c8b8fb54e10`**。Review分支只作独立证据归档，不是研发Parent或可直接main合并的产品Commit。本裁决为`V10.1.5_F1_F3_F4_BOUNDED_ACCEPTED_WITH_OBSERVATIONS`，**不是**`V10.1.5_FUNCTION_ACCEPTED`。
+
+**Codex已STOP候选与原生对象：** Commit `0017ce7aa6b991360b2b26b7f5785b86bce2f369`、sole Parent `a71c1429a0bfaf9ed2fd379eb2944907dd057b7b`、Root `778437c50759cb5f057618ee95db78af981e4c89`；compare ahead1/behind0，73项变更；71项产品与测试Manifest path/Blob/mode/bytes **71/71独立一致**，另2项Result/Manifest。候选apps Tree `2c72ceb889d95766a05c77047592f5886739d1c2`、services Tree `5033dd8e45979d3b01b904f0ea5951ed3f95d3df`；main目前未集成这些变更，仍为先前L13框架apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `049a8676cc90b3b830e32a524c172720e800fa37`。正式Result Blob `8cd6affe37d2ec16ae08610a316df3145f7d7542`，冻结Task Blob `9c7f4a9ad1b6e5d89e8976c39f4a4edb0e3c24dd`、Plan Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`不改。
+
+**具名功能证据（CODEX_REPORTED_LOCAL_TEST，非Astra本机重跑）：** Flutter受影响270 tests exit0；PHP权限128 tests/2593 assertions exit0（另25 tests/159 assertions与前者重叠，不能相加）；真实Windows回环API与独立合成MariaDB消息丢ACK/同键回放/冲突/4并发幂等、跨角色CN/MC/Block撤权，合成PNG私有200/206，已有Web管理使用点6项HTTP；MariaDB93表/173行在真实DB进程停止重启后逐表计数与全行Hash一致。静态源读取覆盖消息事务、T0/设备会话、Flutter安全缓存/代际晚响应、测试Push及通知最小化。**Flutter analyze仍exit1/0 errors/0 warnings/8 info**，8项报告为已有提示，不签`analyze PASS`。
+
+**不能追补的程序观察：** 一次任务自有 `incoming/source.json`编辑前PREPARE logger TypeError，后续Hash/fsync不能倒称事前已PREPARE。shell一次策略拒绝且没有越权修改策略；旧dirty索引曾被只读辅助使用但已排除权威。原LOCAL_ONLY日志、进程/数据库行、账本与终态私有，Astra仅审公开脱敏回执。Codex报告旧Laravel11默认dirty252/refs527、11,066件备份及历史原证保留，任务5容器全停，所有历史预算STOP不得复用。
+
+**AC与下一门：** `AC01–11`仍整体`10 PARTIAL / 1 OPEN`；**AC05 RTC/AEC/5秒媒体停止OPEN**、**G2 false**、真实Push provider PENDING；APP设备/Gradle/AVD端到端、Android实际加密落盘、WebSocket缺pcntl的真实会话、合法H264影片、物理15/30天与真正DB备份恢复未运行/未证明。源码接受≠main集成≠Windows真实全APP运行≠生产部署。旧环境/事故/OS enforcement缺口一律继承，v10.1.6未启动。
+
+**停止与后续权限：** 本轮独立审阅及状态归档后停止；不自动发布下个任务、合main、切原Laravel11默认入口、重开G2/AC05或删除历史备份。未来如Owner要求，可根据已验软件范围集中规划APP设备/Android密文/WS/H264及RTC专门门禁的有界贯通；**无需重新进行Laravel13迁移、114包安装或本轮已有限接受的PHP/Flutter软件测试**。
+
+以下保留此前2026-10-31 Owner发布任务及Laravel13开发入口接受状态的完整历史时点；旧`TASK_PUBLISHED / NOT_EXECUTED`仅代表候选交付之前，不能覆盖当前审阅裁决。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner要求恢复业务研发：F1/F3/F4同源接续综合长任务已发布，等待手动派发（CURRENT ENTRY）
 
 **`V10.1.5_POST_L13_F1_F3_F4_LONG_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / L13_LOCAL_DEV_ENTRY_ACCEPTED_WITH_OBSERVATIONS / F1_F3_F4_PRODUCT_MAIN_NOT_INTEGRATED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_RTC_AEC_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`**
