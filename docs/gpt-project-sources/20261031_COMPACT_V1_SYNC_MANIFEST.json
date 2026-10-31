@@ -1,0 +1,399 @@
+{
+  "task_id": "ELITESYNC_PROJECT_SOURCES_COMPACT_SYNC_20261031",
+  "scope": "DOCUMENTATION_ONLY",
+  "source_zip": {
+    "zip_bytes": 11676,
+    "zip_sha256": "b6816adeee677c0aa0fcb7a0ed3fca0c3462293890ce472b7551c4cae6171ca0",
+    "zip_crc_pass": true,
+    "utf8_all_pass": true,
+    "markdown_count": 10,
+    "manifest_count": 1,
+    "exact_files": 11,
+    "manifest_self_sha256": "29a9cb8495557b0948f914a9074c41a5c81b2934d4183757fbb5657c8d79da78"
+  },
+  "source_zip_root": "EliteSync_Project_Sources_20261031_COMPACT_V1/",
+  "source_source": "Owner supplied new ZIP directly; no old substitute",
+  "owner_reported_chatgpt_project_replacement": true,
+  "independent_project_backend_inspection": false,
+  "package_member_instructions_grant_runtime_permission": false,
+  "local_backup": {
+    "repository_relative_path": "build/project-source-backups/20261031_COMPACT_V1_b6816adeee67",
+    "git_ignored": true,
+    "raw_zip_exact_readback": true,
+    "all11_extracted_files_exact": true,
+    "original_download_unchanged": true,
+    "full_machine_paths": "LOCAL_ONLY"
+  },
+  "mirror_commit": "717a87138af1a38835aaed10e4bc498d25736e50",
+  "mirror_sole_parent": "90134b561ab51145db7d1f6d787ab3ee16b47fbf",
+  "mirror_root": "5941d3742d4a01bce5192e8436fdceed36e2d183",
+  "mirror_tree_entries": 6296,
+  "mirror_members": [
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md",
+      "package_path": "00_INDEX.md",
+      "mode": "100644",
+      "blob": "a963e6b1f5e2a84392db69d18da15345cce5c0bc",
+      "sha256": "e85cbcbde8f2b591f3c6b277446a0a397063fd14be14c6171eeba0d9f3950eaa",
+      "bytes": 740,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/01_CURRENT_STATE.md",
+      "package_path": "01_CURRENT_STATE.md",
+      "mode": "100644",
+      "blob": "eb56f6de18772f69061f24d09234f30efdf5ea61",
+      "sha256": "2518a959e77d5af7315cfd830cce235dbe70e1c160988cf94d9a0699905e5aa8",
+      "bytes": 1353,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/02_GOVERNANCE.md",
+      "package_path": "02_GOVERNANCE.md",
+      "mode": "100644",
+      "blob": "293a4fef4055c0a77358db13106461f64de4082a",
+      "sha256": "f5f324753a84ed7395a112a496141d73d3840fe4ee39c043e6229b611cbdfb90",
+      "bytes": 1716,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/03_OWNER_DECISIONS.md",
+      "package_path": "03_OWNER_DECISIONS.md",
+      "mode": "100644",
+      "blob": "00daec32204d009172c47a031eb41c235604ec78",
+      "sha256": "45e06d2dc472f831e7c9a02f8c9b69c10dc7b20ef115ec756c2479381de66de6",
+      "bytes": 1970,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/04_ROADMAP.md",
+      "package_path": "04_ROADMAP.md",
+      "mode": "100644",
+      "blob": "fa19a5b6bd4f0111ad22368ae5a2a03acf5bb367",
+      "sha256": "ab2ed45d444c76ed6e8e49d08b016562581408826b1f65dc037e240ba1f5f71b",
+      "bytes": 1019,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/05_DESIGN_REFERENCE.md",
+      "package_path": "05_DESIGN_REFERENCE.md",
+      "mode": "100644",
+      "blob": "87334cacdefacc4ce62daafacbb21c70664d9c63",
+      "sha256": "7b87871c589fce7f51e4cb0851ca823e1ff6be8673b8888ee7d23f16268eda85",
+      "bytes": 932,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/06_RESEARCH.md",
+      "package_path": "06_RESEARCH.md",
+      "mode": "100644",
+      "blob": "6bebdce9ba514438a17b6cc3dc97b3f16a8b2ef7",
+      "sha256": "f425b2c5c90306134405f194d27f10e06236a26aabfca616bfd013c129b9166d",
+      "bytes": 1001,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/07_HANDOFF_RULES.md",
+      "package_path": "07_HANDOFF_RULES.md",
+      "mode": "100644",
+      "blob": "dc425bdfd00f0f32ae9d0e1c2fb5aad471414930",
+      "sha256": "8b96a06255e4f6d5e038f0fcc99dbde7ebe105d335f2d372b24856e0850204f2",
+      "bytes": 1123,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/08_ARCHIVE_MAP.md",
+      "package_path": "08_ARCHIVE_MAP.md",
+      "mode": "100644",
+      "blob": "cd18599e92068d0fe7df8207cdea734ffa49876c",
+      "sha256": "6d8fcc16d3b2c1ea3a3d217be4cc01c29cbbcc981ff95073cd93c2e3f85c81f8",
+      "bytes": 733,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/09_CODEX_SYNC_INSTRUCTION.md",
+      "package_path": "09_CODEX_SYNC_INSTRUCTION.md",
+      "mode": "100644",
+      "blob": "1eef31ad29e079b3f65766847207dce01592e417",
+      "sha256": "06d61eea73f843543bceebf7fca429d85c10f0b4622f38257e3988eb9544f25f",
+      "bytes": 1361,
+      "in_source_manifest": true
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/SHA256_MANIFEST.json",
+      "package_path": "SHA256_MANIFEST.json",
+      "mode": "100644",
+      "blob": "d1013e5d27ae7741d6869e5df86850016987900e",
+      "sha256": "29a9cb8495557b0948f914a9074c41a5c81b2934d4183757fbb5657c8d79da78",
+      "bytes": 1669,
+      "in_source_manifest": false
+    }
+  ],
+  "mirror_readback": {
+    "pass": true,
+    "files": 11,
+    "native_blob_mode_utf8_body_sha256_match": true
+  },
+  "c1_all_changed_files_readback": [
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "blob": "cddadbdec3a4d51778ba5239f6fd7c2f65f1cd0a",
+      "utf8_content_exact": true,
+      "sha256": "5d7ee602a55fbfffb4c43066c27df3c70f535a74d1ab497fb1e7f11f55d9e633",
+      "bytes": 4369
+    },
+    {
+      "path": "DOC_INDEX_CURRENT.md",
+      "mode": "100644",
+      "blob": "5766b06968d527cada03baff5aab3c6f77d3536d",
+      "utf8_content_exact": true,
+      "sha256": "f64e59372762af2c2072cd8d1855e9518246f03f193d9e346c5270ff2aef040c",
+      "bytes": 1512
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md",
+      "mode": "100644",
+      "blob": "a963e6b1f5e2a84392db69d18da15345cce5c0bc",
+      "utf8_content_exact": true,
+      "sha256": "e85cbcbde8f2b591f3c6b277446a0a397063fd14be14c6171eeba0d9f3950eaa",
+      "bytes": 740
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/01_CURRENT_STATE.md",
+      "mode": "100644",
+      "blob": "eb56f6de18772f69061f24d09234f30efdf5ea61",
+      "utf8_content_exact": true,
+      "sha256": "2518a959e77d5af7315cfd830cce235dbe70e1c160988cf94d9a0699905e5aa8",
+      "bytes": 1353
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/02_GOVERNANCE.md",
+      "mode": "100644",
+      "blob": "293a4fef4055c0a77358db13106461f64de4082a",
+      "utf8_content_exact": true,
+      "sha256": "f5f324753a84ed7395a112a496141d73d3840fe4ee39c043e6229b611cbdfb90",
+      "bytes": 1716
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/03_OWNER_DECISIONS.md",
+      "mode": "100644",
+      "blob": "00daec32204d009172c47a031eb41c235604ec78",
+      "utf8_content_exact": true,
+      "sha256": "45e06d2dc472f831e7c9a02f8c9b69c10dc7b20ef115ec756c2479381de66de6",
+      "bytes": 1970
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/04_ROADMAP.md",
+      "mode": "100644",
+      "blob": "fa19a5b6bd4f0111ad22368ae5a2a03acf5bb367",
+      "utf8_content_exact": true,
+      "sha256": "ab2ed45d444c76ed6e8e49d08b016562581408826b1f65dc037e240ba1f5f71b",
+      "bytes": 1019
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/05_DESIGN_REFERENCE.md",
+      "mode": "100644",
+      "blob": "87334cacdefacc4ce62daafacbb21c70664d9c63",
+      "utf8_content_exact": true,
+      "sha256": "7b87871c589fce7f51e4cb0851ca823e1ff6be8673b8888ee7d23f16268eda85",
+      "bytes": 932
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/06_RESEARCH.md",
+      "mode": "100644",
+      "blob": "6bebdce9ba514438a17b6cc3dc97b3f16a8b2ef7",
+      "utf8_content_exact": true,
+      "sha256": "f425b2c5c90306134405f194d27f10e06236a26aabfca616bfd013c129b9166d",
+      "bytes": 1001
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/07_HANDOFF_RULES.md",
+      "mode": "100644",
+      "blob": "dc425bdfd00f0f32ae9d0e1c2fb5aad471414930",
+      "utf8_content_exact": true,
+      "sha256": "8b96a06255e4f6d5e038f0fcc99dbde7ebe105d335f2d372b24856e0850204f2",
+      "bytes": 1123
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/08_ARCHIVE_MAP.md",
+      "mode": "100644",
+      "blob": "cd18599e92068d0fe7df8207cdea734ffa49876c",
+      "utf8_content_exact": true,
+      "sha256": "6d8fcc16d3b2c1ea3a3d217be4cc01c29cbbcc981ff95073cd93c2e3f85c81f8",
+      "bytes": 733
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/09_CODEX_SYNC_INSTRUCTION.md",
+      "mode": "100644",
+      "blob": "1eef31ad29e079b3f65766847207dce01592e417",
+      "utf8_content_exact": true,
+      "sha256": "06d61eea73f843543bceebf7fca429d85c10f0b4622f38257e3988eb9544f25f",
+      "bytes": 1361
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1/SHA256_MANIFEST.json",
+      "mode": "100644",
+      "blob": "d1013e5d27ae7741d6869e5df86850016987900e",
+      "utf8_content_exact": true,
+      "sha256": "29a9cb8495557b0948f914a9074c41a5c81b2934d4183757fbb5657c8d79da78",
+      "bytes": 1669
+    },
+    {
+      "path": "docs/gpt-project-sources/20261031_COMPACT_V1_README.md",
+      "mode": "100644",
+      "blob": "fd1c61db8d66212dcd0ff38e006de95ca93ae3d8",
+      "utf8_content_exact": true,
+      "sha256": "21bba6e62fdeafbd0b2ab36be7d472513d5e74c6444f8082ae7e1f5553893c59",
+      "bytes": 2567
+    },
+    {
+      "path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/DOC_INDEX_CURRENT.md",
+      "mode": "100644",
+      "blob": "58d21e41f6fe5c29f00ee87cc4c8eefc942eeb07",
+      "utf8_content_exact": true,
+      "sha256": "b518c336107c0572961e628ec58a8b5c052d351c1b5b3e72cf8e67898163a913",
+      "bytes": 36373
+    },
+    {
+      "path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/MEMORY_NAVIGATION.md",
+      "mode": "100644",
+      "blob": "6f0f9909a300d81cd36aeda94c266ee11a2a269e",
+      "utf8_content_exact": true,
+      "sha256": "7bd0f34db929c0e96525c997b411fad53f346f3d7abbe0c0a9ea5bdba46aefcb",
+      "bytes": 14550
+    },
+    {
+      "path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md",
+      "mode": "100644",
+      "blob": "e12949d1bf838d68c1dba7e25b30ff33209076a3",
+      "utf8_content_exact": true,
+      "sha256": "ec6e6cd5e5cfd7d962ef0ec860ed8e2f447c03530fed9164f494fbb6557b14ce",
+      "bytes": 4594
+    },
+    {
+      "path": "docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md",
+      "mode": "100644",
+      "blob": "702ff5b92cced0defc2a87a65cb6cd2a95e0f531",
+      "utf8_content_exact": true,
+      "sha256": "336f58e43c723fbfc457adabe9e2f1c12c0b5d4c5d59ec73b70f96a831498dca",
+      "bytes": 1105
+    },
+    {
+      "path": "docs/memory/navigation.md",
+      "mode": "100644",
+      "blob": "526614dfc6f558601338482b523d785342626ef9",
+      "utf8_content_exact": true,
+      "sha256": "ac53859e032980b9cd351ac8884554fc68f64550048c6dab5f032d708c21e6cf",
+      "bytes": 1174
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "mode": "100644",
+      "blob": "9dfcb5a16f2a2ad6167a62edabf09338feec61be",
+      "utf8_content_exact": true,
+      "sha256": "9e7799cc2ed8d2e28fac77d8b79b4bcb638e7cafc2103b0c7eb341dae1fc1bdd",
+      "bytes": 246919
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "mode": "100644",
+      "blob": "addbef0f690d664a14d5d79484c3b80ba8acd911",
+      "utf8_content_exact": true,
+      "sha256": "6de189a9900466343386ebf73adb64ed23f28d92f714b2c7600807ba44badc2c",
+      "bytes": 11578
+    }
+  ],
+  "preimage_archives": [
+    {
+      "original_path": "DOC_INDEX_CURRENT.md",
+      "original_blob": "58d21e41f6fe5c29f00ee87cc4c8eefc942eeb07",
+      "archive_path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/DOC_INDEX_CURRENT.md",
+      "archive_blob": "58d21e41f6fe5c29f00ee87cc4c8eefc942eeb07",
+      "sha256": "b518c336107c0572961e628ec58a8b5c052d351c1b5b3e72cf8e67898163a913",
+      "bytes": 36373
+    },
+    {
+      "original_path": "docs/memory/navigation.md",
+      "original_blob": "6f0f9909a300d81cd36aeda94c266ee11a2a269e",
+      "archive_path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/MEMORY_NAVIGATION.md",
+      "archive_blob": "6f0f9909a300d81cd36aeda94c266ee11a2a269e",
+      "sha256": "7bd0f34db929c0e96525c997b411fad53f346f3d7abbe0c0a9ea5bdba46aefcb",
+      "bytes": 14550
+    },
+    {
+      "original_path": "docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md",
+      "original_blob": "e12949d1bf838d68c1dba7e25b30ff33209076a3",
+      "archive_path": "docs/gpt-project-sources/archive/20261031/pre_compact_sync_90134b56/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md",
+      "archive_blob": "e12949d1bf838d68c1dba7e25b30ff33209076a3",
+      "sha256": "ec6e6cd5e5cfd7d962ef0ec860ed8e2f447c03530fed9164f494fbb6557b14ce",
+      "bytes": 4594
+    }
+  ],
+  "products_unchanged": [
+    {
+      "path": "apps",
+      "sha": "3468a3dd97da7accfda2539a0f8d8f68931a6110"
+    },
+    {
+      "path": "services",
+      "sha": "049a8676cc90b3b830e32a524c172720e800fa37"
+    }
+  ],
+  "no_deleted_paths": true,
+  "archive_manifest_unchanged": {
+    "path": "docs/gpt-project-sources/archive/20261031/ARCHIVE_MANIFEST.md",
+    "sha": "bdbb94eec61276be1ba68a4c247370a2cead5f35",
+    "mode": "100644"
+  },
+  "policy_unchanged": {
+    "path": "docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md",
+    "sha": "b685621a168b7726cee7235a7d7b84014143162d",
+    "mode": "100644"
+  },
+  "navigation_updates": [
+    "AGENTS.md",
+    "DOC_INDEX_CURRENT.md",
+    "docs/memory/navigation.md",
+    "docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md",
+    "docs/workflow/CURRENT_WORKFLOW.md",
+    "docs/workflow/ACTIVE_STATE.md"
+  ],
+  "known_snapshot_observations": [
+    {
+      "kind": "BROKEN_SOURCE_PACKAGE_REFERENCE",
+      "original_path": "docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_ACCEPTANCE_V0_1.md",
+      "resolved_path": "docs/architecture/ELITESYNC_V10_NEW_VERSION_APP_FEATURE_DESIGN_OWNER_ACCEPTANCE_V0_1.md",
+      "resolved_blob": "063dc18309afdc8f477cc9b22a29da1842776556",
+      "source_zip_members_modified": false,
+      "correction_location": "docs/gpt-project-sources/20261031_COMPACT_V1_README.md"
+    },
+    {
+      "kind": "HISTORICAL_PERMISSION_TIMELINE_DIFFERENCE",
+      "detail": "New ZIP01 and current AGENTS contain later G2/APK permission summaries; old handoff/ACTIVE entry preserve prior pending status. No rewrite of original records, runtime inference or product dispatch in this task."
+    }
+  ],
+  "local_dirty_protection": {
+    "head_index_refs_dirty_hashes_equal": true,
+    "current_local_AGENTS_not_overwritten": true,
+    "original_files_cleaned_or_deleted": 0
+  },
+  "not_run": {
+    "product_source_changes": 0,
+    "gradle": 0,
+    "adb": 0,
+    "apk_or_device_operations": 0,
+    "g2_or_apk_budget_consumption": 0,
+    "database_or_cloud_runtime_changes": 0,
+    "system_policy_or_global_permission_changes": 0,
+    "history_backup_branch_evidence_deletions": 0,
+    "v1016_tasks_created": 0,
+    "model_account_memory_updates": 0
+  },
+  "verification": "ZIP CRC / exact members / UTF8 / SHA256 and Git native Blob/mode / current-nav links / before-after protected Git identities; no product tests",
+  "c2_report_publication": {
+    "parent": "717a87138af1a38835aaed10e4bc498d25736e50",
+    "scope": "one consolidated report, machine-readable manifest and final docs-only ACTIVE_STATE entry",
+    "final_commit_root": "recorded by post-publication native readback and final sealed delivery; self-hash not embedded"
+  }
+}

@@ -1,16 +1,16 @@
-# EliteSync｜2026-10-31 Project Sources COMPACT_V1 文档镜像同步（CURRENT ENTRY）
+# EliteSync｜2026-10-31 Project Sources COMPACT_V1 文档镜像已核验（CURRENT ENTRY）
 
-**`DOCS_ONLY_MIRROR_PUBLICATION / REMOTE_READBACK_PENDING / OWNER_REPORTED_PROJECT_SOURCES_REPLACED / NO_PRODUCT_DEVELOPMENT_STARTED / NO_G2_APK_BUDGET_CONSUMED`**
+**`DOCS_ONLY_MIRROR_SYNC_VERIFIED / OWNER_REPORTED_PROJECT_SOURCES_REPLACED / AWAITING_ASTRA_INDEPENDENT_VERIFICATION / NO_PRODUCT_DEVELOPMENT_STARTED / NO_G2_APK_BUDGET_CONSUMED`**
 
-Owner已手动派发本轮文档同步，并报告在ChatGPT Project替换旧资料。Codex使用Owner提供的新ZIP，10份正文SHA256及第11份原清单均已核对；[完整镜像](../gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)与[镜像使用说明](../gpt-project-sources/20261031_COMPACT_V1_README.md)不与旧附件叠加。远端发布仍须逐文件fresh回读后才记同步完成。
+Owner手动派发的文档同步已形成镜像Commit `717a87138af1a38835aaed10e4bc498d25736e50`，Root `5941d3742d4a01bce5192e8436fdceed36e2d183`。原ZIP 10份正文+1份清单共11成员，本地SHA256/CRC和C1远端正文/mode/Blob逐项通过；[同步报告](PROJECT_SOURCES_COMPACT_V1_SYNC_RESULT_20261031.md)、[机器清单](../gpt-project-sources/20261031_COMPACT_V1_SYNC_MANIFEST.json)、[唯一新集合索引](../gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)及[引用限制说明](../gpt-project-sources/20261031_COMPACT_V1_README.md)分别记录身份和边界。Owner报告Project附件已手动替换；Codex核验的是Owner提供的新ZIP和镜像，未独立检查Project后台或更改账户Memory。C2报告自身身份以最终回读为准。
 
-首读：AGENTS → 最新具名handoff → 本首段 → 当前Owner正式派发任务的冻结合同；不递归展开下方历史。v10.1.5整版仍PARTIAL_NOT_ACCEPTED、AC05 OPEN、G2 false、真实Push PENDING；本轮不发布/执行产品任务，不构建、不操作手机、不修改apps/services/数据库/系统策略，不启动v10.1.6。
+首读：AGENTS → 最新具名handoff → 本首段 → 当前Owner派发任务的冻结合同，不递归展开历史。旧活动导航已有原字节封存；全部旧历史、候选、备份及原证保留。原本机dirty根未切换/覆盖，项目目录仅新增Git忽略的包备份。
 
-包内01_CURRENT_STATE及现行AGENTS记录G2/APK增量授权，而旧handoff及本文件原首段记录此前待授权时点；均原样保留。该差异不在本次文档同步中转换为具体产品任务或运行资格，后续仍须独立冻结合同并由Owner手动派发。
+v10.1.5整版仍PARTIAL_NOT_ACCEPTED、AC05 OPEN、G2 false、真实Push PENDING；本轮没有产品任务派发/运行、Gradle/ADB/APK/手机操作，没有消费G2/APK预算，不改apps/services/数据库/云端/系统策略，不创建v10.1.6。包内新授权摘要与旧handoff待授权时点的差异按各自来源保留，不能转换成本轮运行许可。完成最终文档回读后STOP，等待Astra独立核验，不自动接续产品开发。
 
 ---
 
-以下完整保留同步前ACTIVE_STATE历史正文。它们按形成时点解释，首读到此停止；仅按实际任务定点引用。
+以下完整保留本轮同步前ACTIVE_STATE历史正文；按形成时点解释，首读到此停止，仅在任务真正相关时定点读取。
 
 # EliteSync v10.1.5｜2026-10-31 会话交接已封存：G2与USB真机权限待Owner明确（CURRENT ENTRY）
 
