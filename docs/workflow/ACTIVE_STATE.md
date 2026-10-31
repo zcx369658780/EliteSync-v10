@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-31 Owner批准本地Laravel13三个剩余门禁统一收口，唯一综合任务已发布（CURRENT ENTRY）
+
+**`OWNER_APPROVED_L13_THREE_GAPS_SINGLE_CLOSURE / TASK_PUBLISHED_OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / ROOT_QUESTION_BANK_READONLY_MOUNT_AND_58_OF_60_RERUN_PENDING / POPULATED_SYNTHETIC_MARIADB_ACTUAL_PROCESS_RESTART_PENDING / MANUAL_START_STOP_RUNTIME_VERIFICATION_PENDING / LOCAL_L13_BASELINE_PARTIAL_NOT_FULLY_ACCEPTED / PRODUCT_MAIN_UNCHANGED / DEFAULT_LOCAL_L11_UNCHANGED / BACKUP_RETAINED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner本轮明确授权：** Astra上一轮确认`bb94a6c273c436aa9a88e9313f9ae662840aa6e7`的新L13源码/vendor、Windows宿主回环API与真实Laravel11/13框架二进制**合成**session七项有界PASS，同时保留`58/60`中2项问卷资源挂载错误、填充数据后MariaDB真正进程重启NOT_RUN、两份manual start/stop脚本runtime NOT_VERIFIED。Astra提出把**这三个缺口合并为一份收口任务**，Owner答复“可以我同意，请继续”。因此现发布新任务、不是执行Codex或恢复旧STOP。
+
+**唯一正式综合任务：** [V10_1_5_L13_LOCAL_DEV_REMAINING_GAPS_SINGLE_CLOSURE_TASK_20261031.md](../versions/v10.1.5/V10_1_5_L13_LOCAL_DEV_REMAINING_GAPS_SINGLE_CLOSURE_TASK_20261031.md)，**正式Git Blob `4080ba09cd83aa68537fcc719fb63f2dec312efc`**，校订后任务发布Commit `0c9164addcd7769840204b7059069a9c80b60a03`，此前任务文件创建Commit `307a5d6ab1d1d6c9752fd407fbe6d9fb47831ed7`仅历史，不作为Codex精确Blob入口。task_id `V1015_L13_DEV_3_GAPS_CLOSURE_20261031`，唯一新root `v1015-l13-dev-three-gaps-closure-20261031`、attempt-0001、独立持久ledger与`PREPARE+fsync`。窗口≤180min，新产生的空间logical/allocated各≤8GiB；新外部依赖供应/镜像pull/build/Composer install/solver与全局系统操作额度均为0；受限任务已有合成开发资源的检查/启动在新预算计量，不能复用旧任务账本/剩余尝试。
+
+**任务三项独立实测门：** ①从live main固定的`question_bank/`四个原生JSON Blob只读映射到后端Seeder预期的仓库根部路径，只在隔离SQLite/新test runner先复测`AuthQuestionnaireApiTest`失败两项，必要时原60项同范围回归；不得修改题库或业务Seeder以求绿；②对现存新干净L13开发入口的**唯一具名合成MariaDB90表数据卷**按Owner授权做带数据真实DB进程stop/start，事前快照/逐表row count+hash、server_id和卷身份核对，事后按相同口径90表全比；**API重建不能代替DB重启**，不可访问旧DB；③以新任务独立预算实测已有PowerShell手动start/stop脚本和LOCAL_ONLY私有配置，验证服务从全停状态启动、Windows宿主仅127.0.0.1 API health/401，再全部停止；若脚本原有安全冻结验证不匹配，仅可在本任务所属副本中修复并保留旧原证，不能削弱所有权/端口/隔离边界。三项各自输出PASS/PARTIAL/NOT_RUN而非一项受阻全部清零。
+
+**当前来源与事实：** main签发前 `4fbaaf8d6e7f1955abd3f182a85a04dc35687fa6`，Astra bb94独立审查Commit `12072468f6a3f18b84ee508b2d9a0e03a6c33a6a`、审查Blob `b19eacb9ad0577faa30512750c89217e9bdc9fe9`，旧Codex开发入口5,322源文件/141,638,016 bytes、Laravel13.39.0/PHP8.4.27/vendor114；正式GitHub产品apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `049a8676cc90b3b830e32a524c172720e800fa37`，本次文档任务发布后双Tree继续不变。旧本地默认Laravel11.48/dirty252/refs527、11,066文件备份/240,617,393 bytes、Manifest SHA `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`及旧18/2ACL/122原证/3183Seed/五根/13旧STOP继续只读保护，禁止删除、覆盖、移动或改变默认入口。原已封存资源虽可在新任务许可内具名使用现存合成开发DB，但不得回写旧任务ledger/历史raw。
+
+**保留门：** v10.1.5整版依然`10 PARTIAL/1 OPEN`，AC05 RTC/AEC OPEN、G2_READY_FOR_POPEN_FALSE、REAL_PUSH_PROVIDER_PENDING、v10.1.6 NOT_STARTED；真实Laravel11用户Cookie迁移仍NOT_PROVEN，Windows完整OS暴露/出口强制性仍NOT_PROVEN，真机/物理15/30日/生产未执行。旧Windows E_NOTIMPL、四项历史事故和`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`永不追认。**本轮只在三项分别经Codex实测和Astra独立审查后才能考虑新本地开发入口收口，不代表功能整版接受**。
+
+**唯一下一动作：** Owner把本任务精确Blob的单一启动Prompt手动派发Codex。Codex交付唯一non-force候选，fresh回读GitHub Commit/Parent/Root/全部path/mode/Blob及产品双Tree后永久STOP，等待Astra独立审查。本次无Codex自动启动、无main产品源码变更、无本地默认入口切换、无旧备份清理。
+
+以下保留前次ACTIVE_STATE全部历史原文；旧“等待Owner确认三缺口收口”的状态只代表此前时点。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra分项有界接受新Laravel13干净入口、Windows宿主回环及合成L11→L13会话；回归/DB重启未收口（CURRENT ENTRY）
 
 **`BB94A6C_CLEAN_L13_SOURCE_VENDOR_READY_WITH_OBSERVATIONS / WINDOWS_HOST_LOOPBACK_API_PASS_CODEX_REPORTED / L11_BINARY_TO_L13_SYNTHETIC_SESSION_PASS_CODEX_REPORTED / FOCUSED_REGRESSION_PARTIAL_58_OF_60 / ROOT_QUESTION_BANK_MOUNT_GAP / POPULATED_MARIADB_RESTART_NOT_RUN_BUDGET_EXHAUSTED / MANUAL_START_STOP_RUNTIME_NOT_VERIFIED / FULL_LOCAL_L13_BASELINE_NOT_ACCEPTED / GITHUB_MAIN_PRODUCTS_UNCHANGED / LOCAL_DEFAULT_L11_UNCHANGED / OLD_BACKUP_RETAINED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
