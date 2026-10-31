@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-31 会话交接已封存：G2与USB真机权限待Owner明确（CURRENT ENTRY）
+
+**`SESSION_HANDOFF_SAVED / V10.1.5_DEVICE_G2_USB_CONTINUATION_NOT_YET_AUTHORIZED / WAITING_FOR_OWNER_EXPLICIT_SCOPE_CONFIRMATION / NO_NEW_TASK_PUBLISHED / NO_CODEX_DISPATCH / NO_LOCAL_EXECUTION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`**
+
+**本会话交接文档已创建并逐字回读：** [SESSION_HANDOFF_20261031_V1015_G2_USB_DEVICE_AUTHORIZATION_PENDING.md](SESSION_HANDOFF_20261031_V1015_G2_USB_DEVICE_AUTHORIZATION_PENDING.md)，Git Blob **`626db55b07af0f99832ceafabd7f5c53756122df`**，创建Commit **`cc62f5bbc270945cdf7e5104041caadeac6eda8d`**。文档记录当前GitHub快照、604a900候选/Astra有界接受、v10.1.5未关闭门、Owner已表达的继续方向/效率偏好/手机USB可用性，以及尚未获明确答复的G2与新Debug APK+ADB具体权限。
+
+**交接时main快照（本次创建handoff文档后、更新本文件前）：** HEAD `cc62f5bbc270945cdf7e5104041caadeac6eda8d`，Root `57f89086eb546e52afd83375e7c6ee2a0f1afafd`，sole Parent `8c3532bee80e101d77480aeedc3daa24e655ba60`；apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`，services Tree `049a8676cc90b3b830e32a524c172720e800fa37`。ACTIVE_STATE本次更新将再推进main，后续以最后fresh readback为准。产品apps/services Tree应保持不变。
+
+**Owner明确表达：** 同意继续推进v10.1.5未关闭的真实设备/运行门收口；指出此前验收耗时过长，希望复用已接受证据、减少重复大规模审计；有手机可通过USB调试接入PC。**未明确批准：** (1) 冻结条件性G2的一次真实Gradle `assembleAarRelease --dry-run`；(2) 一次新的Debug APK构建并通过USB ADB安装。上条Astra已分别询问这两项具体权限，Owner未回答是/否。不得将“授权继续”或“有手机”推断为已授权这两项Popen/设备操作。旧APK/G预算仍耗尽，不得复用；历史G2 0/1、claim absent只是Codex旧本地回执，须新任务fresh核ledger/claim，且原合同前置全部通过后才可能使用。新APK构建必须有单独新授权。
+
+**G2阻断历史：** 2026-10-24 Sandbox内部Networking Disable父子IPv4/IPv6拒绝曾通过，JDK/Dart/Gradle版本检查通过；Flutter framework Git因guest SYSTEM与WDAGUtilityAccount owner不一致报`dubious ownership`，Flutter CLI/producer未运行，未改global Git配置、.git、ACL或owner。仅允许在冻结精确合同下考虑对已核真实Flutter framework根使用进程作用域临时`safe.directory`；禁止通配/global/ACL绕过。冻结G2任务Blob `796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`；精确Git信任任务Blob `3cfba96e62befcc495c55279967c5c2b8a3370cd`。
+
+**下一会话唯一接续：** fresh读取本handoff、main/Root、ACTIVE_STATE、冻结plan与两份G2合同；先取得Owner对G2一次dry-run和新Debug APK+USB ADB安装两项权限的明确回答，再发布一份综合长任务。未获授权前不创建新任务单、不派发Codex、不运行本地命令/ADB/Gradle。获授权后先做最小只读资格检查；G2与APK/设备分开计账、分门验收，G2失败不虚构源码失败；保留WS真实运行、H.264可信ffprobe、AC05 AEC/≤5秒、真实Push等独立门禁。禁止重做已接受Laravel13迁移/114包安装/270-128-120全量回归和大规模历史审计；不降低冻结AC标准。
+
+**仍保持：** v10.1.5整版PARTIAL_NOT_ACCEPTED；AC05 OPEN；G2 false；真实Push PENDING；604a900候选永久STOP且未合main；不自动合main、不删除旧资产、不切默认Laravel11入口、不启动v10.1.6。以下旧ACTIVE_STATE历史正文全部原样保留，不追溯改写。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra有界接受604a900 WS软件/浏览器成果；真实设备与AC05仍开放（CURRENT ENTRY）
 
 **`V10.1.5_FINAL_DEVICE_RTC_WS_SOFTWARE_AND_BROWSER_BOUNDED_ACCEPTED_WITH_OBSERVATIONS / APP_DEVICE_NOT_RUN / WS_REAL_RUNTIME_NOT_RUN / H264_API_GATE_CLOSED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
