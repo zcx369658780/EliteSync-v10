@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-31 Owner授权最后设备/RTC专项综合长任务已发布，待手动派发（CURRENT ENTRY）
+
+**`V1015_FINAL_DEVICE_RTC_WS_H264_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / B441_SOFTWARE_API_DB_WEB_ACCEPTED_WITH_OBSERVATIONS / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / PRODUCT_MAIN_UNCHANGED / V10.1.6_NOT_STARTED`**
+
+**Owner明确授权与正式任务：** Owner在阅读Astra对`b441d180`的独立有界验收与“v10.1.5最终设备与RTC专项收口任务”建议后明确回复“我同意，请继续”。Astra按2026-10-25 A-D协议发布[唯一正式综合长任务](../versions/v10.1.5/V10_1_5_FINAL_DEVICE_RTC_GATE_AND_WS_H264_HARDENING_LONG_TASK_20261031.md)，Task Blob **`e9dee55a80ae274456edb8da109206e5d05183c6`**，创建Commit **`fca089a0eec75ded2d6b8d7bc933abaeeb6dc62f`**；任务ID `V1015_FINAL_DEVICE_RTC_WS_H264_GATE_20261031`，已按路径回读全文与写入正文一致。**当前仅`PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED`**，GitHub签发不等于Codex运行。
+
+**这轮唯一目标：** 在最新已接受的Laravel13/PHP8.4干净开发入口和b441有界接受的软件来源基础上，精确接续Manifest已接受84项源码/测试，**优先实际修复**WS切号不主动关闭`activeSocket`、LiveChatPage旧订阅生命周期、`AppEnv.wsBaseUrl`未由dev/prod bootstrap接线等源码观察；开展有资格的定向软件测试与有条件的WS真实运行、可信ffprobe/H264产品链、APP/Android加密及系统通知、RTC/AEC/撤权COMMIT→≤5秒停媒实际证据。缺少G2/设备/pcntl/ffprobe的合规运行资格就清楚标NOT_RUN、STOP风险分项并集中报告一次最小外部许可；**不再重复Laravel13迁移、114包安装、已接受的270/128/120软件回归、原90/83或93/163持久性任务**。冻结AC01–11不改。
+
+**签发前权威与受保护身份：** 2026-10-31签发前main `12c20cee72ea1af40349da73bd6e6e9db0787fbe`、Root `2bb38dd99069ba0018a61a135db237c4af19dc44`；main apps `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services `049a8676cc90b3b830e32a524c172720e800fa37`，签发文件使HEAD继续前进但产品子Tree不得变化，Codex开工必须fresh读取最后HEAD。最近已STOP候选 `b441d1808bb366dbffebbecc03180b7bedd197f7`，Root `11b73b2d3bca69d5212dc11fb7a4f109ca126c35`，其Astra Review Commit `923d248385c46d7bcecc1b29dced6f307b1dcb87` / Review Blob `fe1d22b21fddfd7ec5a0bf427faddd7d219be0df`均是固定来源与审查，不是新研发Parent；`plan.md` Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`仍冻结。
+
+**新任务预算与不可越界事项：** 仅一个新task-owned root/attempt-0001/ledger，PREPARE+flush/fsync失败即fail-closed；新工作窗口≤90分钟、logical/allocated各≤8GiB，独立MariaDB启动≤2、API启动≤2、HTTP≤100、Flutter测试/分析≤4批、PHP≤3批、WS服务启动≤1等，其余精确预算见Task全文。**G2仍false、Gradle/ADB/真机/新音视频或系统权限/新供应默认运行预算0**，未获额外具名Owner授权不能凭这次同意擅自启动。旧全部STOP、dirty252/refs527、原Laravel11.48默认入口、11,066件旧备份/Manifest、事故库/ACL/旧SQL/APK/LOCAL_ONLY原证一概保护。未通过AC05/设备/真实Push不能改写为PASS；v10.1.5整版仍PARTIAL_NOT_ACCEPTED，v10.1.6 NOT_STARTED。
+
+**唯一后续动作：** Owner手动将带准确Task Blob的单一启动Prompt交给本地Codex；Codex在授权范围内集中实现、测试、提交一个非force非main候选与脱敏Result/Manifest并永久STOP，等待Astra独立审查。不得自行FUNCTION_ACCEPTED、自动合main、切默认L11入口、删备份、放行G2/AC05或启动v10.1.6。本次仅发布任务/状态同步，不启动Codex或任何本地服务。
+
+以下保留此前b441独立有界验收和前任任务的完整历史记录；其中“未发布下一任务”是其原时间点，不能覆盖本次任务已签发状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra有界接受b441软件/API-DB-Web成果；设备/AC05仍未关闭（CURRENT ENTRY）
 
 **`V10.1.5_POST_0017_BOUNDED_ACCEPTED_WITH_OBSERVATIONS / SOFTWARE_AND_CONTROLLED_API_DB_WEB_SUPPORTED / APP_DEVICE_NOT_RUN / ANDROID_CIPHERTEXT_NOT_PROVEN / OS_NOTIFICATION_GUI_NOT_RUN / WS_NOT_RUN_CLIENT_LIFECYCLE_OBSERVATION / H264_API_PIPELINE_BLOCKED / AC05_OPEN / G2_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / MAIN_NOT_INTEGRATED / V10.1.6_NOT_STARTED`**
