@@ -1,0 +1,254 @@
+{
+  "task_id": "V1015_L13_ACCEPTED_RUNTIME_MAIN_PRECISE_INTEGRATION_20261031",
+  "task_blob": "dbaf9a05e1d5799ebdb8a99b3084fc29027e8479",
+  "attempt": "attempt-0001",
+  "status": "MAIN_SOURCE_INTEGRATED_AWAITING_ASTRA_REVIEW",
+  "product_commit": "7e1e107ca0faed840e1ce06418694e3590e3b3ae",
+  "product_sole_parent": "c78196765cdcbd5bd0b355dbfeb954f38538d2d8",
+  "parent_root": "df53c07892859450d32dfb36a265baff5f94282e",
+  "product_root": "e467619683d20582735bb2c28ab806bcd2b0be2f",
+  "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "services": "049a8676cc90b3b830e32a524c172720e800fa37",
+  "prior_products": {
+    "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+    "services": "0cb1f9d19659291a462488b3686fd0a07a6698ac"
+  },
+  "source_commit": "7bd840200f781466919c7946e3533585caf6f8c3",
+  "source_root": "cd4b6ae230105c28aebf2790b704a7218cd64055",
+  "astra_review_commit": "09b7ded0bfaa6bc0d1019cdb2e76f34fdfa31c1f",
+  "astra_review_blob": "8c340dd9c1270a99a730879c69cf5b9b0fa9915e",
+  "product_source_paths": [
+    {
+      "path": "services/backend-laravel/composer.json",
+      "old_mode": "100644",
+      "old_blob": "64af0a69ce68e0d4c1b1213cd6efb1acdfb080a1",
+      "mode": "100644",
+      "blob": "130793decf84ff8ab93faa0300117b7fab9d1826",
+      "sha256": "f1373dd107b83e310a84d587f9411b0f8074dec94f126190917d7cf7689e85a6",
+      "bytes": 1525
+    },
+    {
+      "path": "services/backend-laravel/composer.lock",
+      "old_mode": "100644",
+      "old_blob": "66327f584d3961c2b53391bb012047dda9cc9d23",
+      "mode": "100644",
+      "blob": "e236fbc960c1dd08c1fecb9aeed4926b4cab3933",
+      "sha256": "de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3",
+      "bytes": 321059
+    },
+    {
+      "path": "services/backend-laravel/config/session.php",
+      "old_mode": "100644",
+      "old_blob": "7036d0a4140b419fd35005b84bcef12f16449f34",
+      "mode": "100644",
+      "blob": "dbcb582d0afbab3a0dc95576797730555ce3cd8d",
+      "sha256": "9c71027403f12aca8929365e83524188ca160718b4f832cf28d2e8e9bfa3ae3c",
+      "bytes": 8332
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/Api/V2/TransportEnvelopeTest.php",
+      "old_mode": "100644",
+      "old_blob": "60434c0a70f7a768496e30dd937cfca4c15411b0",
+      "mode": "100644",
+      "blob": "44ee2de7b682148ce326563976215351d35c54b7",
+      "sha256": "3af693c5341ef70ce0fba8b628562c5c2bf2b4e9bde25a803c9514adfb37e89f",
+      "bytes": 24057
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1006AdminWebTest.php",
+      "old_mode": "100644",
+      "old_blob": "0424114bd380fd32c350e76dc53b83b396f6ed8f",
+      "mode": "100644",
+      "blob": "d67921e90c4bde8a6b2644929140978016325ecf",
+      "sha256": "9aab6cabf5b58bdcef1359d0c10806acf9147a075f4e6dd98dd425019147a61d",
+      "bytes": 7231
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1007LiveConsentTest.php",
+      "old_mode": "100644",
+      "old_blob": "47acb22587495457147bc2f7494fd307a4f4be62",
+      "mode": "100644",
+      "blob": "273fca333c2f97f0f96def9d4949e8d68c444365",
+      "sha256": "387bf4c496012e3009c093638ce8ea9011d898e08a3a5fca81e32107adc7404c",
+      "bytes": 5111
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1007PrivateMediaTest.php",
+      "old_mode": "100644",
+      "old_blob": "08e3e3ea0216868bb8fb29c3dd85784df3dbe391",
+      "mode": "100644",
+      "blob": "ddd02ced9b382cf004c41f2509079599e89d4497",
+      "sha256": "835a68e1d522549621872edf83f1d1b5de9e9b9167f4f2321378c60134512d07",
+      "bytes": 6281
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008MatchingOperationsWebTest.php",
+      "old_mode": "100644",
+      "old_blob": "ad7f01eb267ebbdc8a82d4fe0289a25a5270a50b",
+      "mode": "100644",
+      "blob": "edf9ad8811898bfa2d39cedf63f5cc93e274f254",
+      "sha256": "67ae477ef4fce968d5b39d4e10b97e8c00c86605e67ccb168a10b81e52d8baa7",
+      "bytes": 13941
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1008SessionWebTest.php",
+      "old_mode": "100644",
+      "old_blob": "8085ee4da23e8bf7e313e85fa29e67986d38a5a2",
+      "mode": "100644",
+      "blob": "80754a18a09d679a0d14309ea8b171c67ca13e65",
+      "sha256": "27416802920f61602e96577d5ff8eb3c1e79fed0440491e55a0c7e6bf9ea93a7",
+      "bytes": 7601
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1009PrivateVideoTest.php",
+      "old_mode": "100644",
+      "old_blob": "85c9652d1381cdece6f6ea47171c1198d9bc3286",
+      "mode": "100644",
+      "blob": "ab21487cf54ebb0136cf05aa5b8cfe806f7d5500",
+      "sha256": "fa150198bceecc0955725d674966b7d5683a87c292b4ce90c0c72192ebaa0161",
+      "bytes": 6748
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1014SafetyContinuityR1Test.php",
+      "old_mode": "100644",
+      "old_blob": "bbc187dff4dbb9f6c3b738f323abca9d7af4e2d7",
+      "mode": "100644",
+      "blob": "acbc201e312c40b9c9970867df771a64591a9e91",
+      "sha256": "5e73c7ce6d8eeb1e0c6d0e1f7a11d7f1a2bd2bd488210b7969fcfc71d4b5d592",
+      "bytes": 26841
+    },
+    {
+      "path": "services/backend-laravel/tests/Unit/ProductConnectionStateTransitionEvaluatorTest.php",
+      "old_mode": "100644",
+      "old_blob": "c68f82adf44af65ca80e51d7fc73bf1522b81980",
+      "mode": "100644",
+      "blob": "b024d4d043e57ac71d1c8562f991ea3dd6be339e",
+      "sha256": "ec8becf6de6b68dc3568a8898f93371cdf21379eaa7d838ab98ffd81353cdee5",
+      "bytes": 38343
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/FrameworkDependencyCompatibilityTest.php",
+      "old_mode": null,
+      "old_blob": null,
+      "mode": "100644",
+      "blob": "7abec5fbf155f95941657b22004a63d4d4498560",
+      "sha256": "7a73f716ca25c11964ee33254b8530004c0074820bf19bb77678ac599b5c39b5",
+      "bytes": 2902
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/FrameworkSessionCompatibilityTest.php",
+      "old_mode": null,
+      "old_blob": null,
+      "mode": "100644",
+      "blob": "b43bdc530389f509c1290a77e940767ed3aba2a8",
+      "sha256": "846400b22a438a9ef3b3166afe4b715896d416a6e36feb23b591b083615ff9e6",
+      "bytes": 1079
+    },
+    {
+      "path": "services/backend-laravel/tests/Support/CreatesAcceptedMainMatch.php",
+      "old_mode": null,
+      "old_blob": null,
+      "mode": "100644",
+      "blob": "7a41ebb9e85705cc94ced7783b3b843c4c429fa5",
+      "sha256": "b9b9e34d643eaf6d5292f37678ceb6916bed5a71f045afda99a1e1387b459c14",
+      "bytes": 2731
+    }
+  ],
+  "product_changed_paths": 15,
+  "product_deletions": 0,
+  "task_only_cli_tools_imported": false,
+  "other_main_native_leaf_objects_unchanged": true,
+  "product_fast_forward": {
+    "force": false,
+    "expected_sha": "c78196765cdcbd5bd0b355dbfeb954f38538d2d8",
+    "actual_main_after_write": "7e1e107ca0faed840e1ce06418694e3590e3b3ae"
+  },
+  "docs_commit_binding": "Single enclosing docs-only native commit, sole parent is product_commit; actual enclosing Commit/Root recorded by final native readback. No circular self SHA.",
+  "documentation_paths": [
+    {
+      "path": "docs/versions/v10.1.5/LARAVEL13_TARGET_MAIN_PRECISE_INTEGRATION_RESULT_20261031.md",
+      "mode": "100644",
+      "blob": "7c9dae0698ba487c73875f356821c6ebfdaae3a3",
+      "sha256": "0f95db9f143a32a1f2222aa1abcbc54e9c265bafb737f13e2a63196e38710c46",
+      "bytes": 6037
+    },
+    {
+      "path": "docs/versions/v10.1.5/LARAVEL13_DEVELOPMENT_BASELINE_STATUS_20261031.md",
+      "mode": "100644",
+      "blob": "5b6086ab08a6cb810f1a9baf946ea9f13985bc57",
+      "sha256": "7accd30c69e6b337acac6e3a55864b2a5e1cd0bbe759d430c0d90f3bd5b47600",
+      "bytes": 1814
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "mode": "100644",
+      "blob": "e0ab40a61595a03f151954b1b203cbee8a61f63b",
+      "sha256": "a2bc5d9ec752928b011f3740bf67c5644150318d8d7c2b8d1f31ce4d551beb48",
+      "bytes": 190062
+    }
+  ],
+  "manifest_self": "Enclosing native Tree binds this manifest path/Blob",
+  "documentation_allowed_paths": [
+    "docs/versions/v10.1.5/LARAVEL13_TARGET_MAIN_PRECISE_INTEGRATION_RESULT_20261031.md",
+    "docs/versions/v10.1.5/LARAVEL13_DEVELOPMENT_BASELINE_STATUS_20261031.md",
+    "docs/workflow/ACTIVE_STATE.md",
+    "docs/versions/v10.1.5/laravel13_target_main_precise_integration_manifest_20261031.json"
+  ],
+  "active_old_suffix_blob": "fa09173d4deb48738983b2a15a4121503cf24742",
+  "active_old_suffix_preserved_byte_exact": true,
+  "static": {
+    "git_diff_check_exit": 0,
+    "json": "PASS",
+    "15_blob_mode_checks": "PASS",
+    "non_author_review": "NO_BLOCKING_FINDINGS",
+    "runtime_reexecuted": false
+  },
+  "protection": {
+    "dirty_entries": 252,
+    "refs": 527,
+    "old_laravel_framework": "v11.48.0",
+    "backup_manifest_sha256": "3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d",
+    "backup_file_count": 11066,
+    "backup_total_bytes": 240617393,
+    "backup_all_file_id_size_checks": 11066,
+    "backup_sample_sha256_checks": 164,
+    "backup_restricted_acl_preserved": true,
+    "old_raw_metadata": 122,
+    "old_raw_sample_sha256": 69,
+    "seed_metadata": 3183,
+    "seed_sample_sha256": 3,
+    "old18_current_captured_view_unchanged": 18,
+    "two_old_acl_unchanged": 2,
+    "five_heads_branches_unchanged": 5,
+    "old_writes": 0,
+    "acl_changes": 0,
+    "local_default_switched": false,
+    "production_db_accessed": false
+  },
+  "historical_sealed_tasks_checked": 12,
+  "budget": {
+    "seconds_limit": 7200,
+    "logical_allocated_limit_each": 4294967296,
+    "elapsed_seconds_at_publication_snapshot": 1108.406,
+    "space_snapshot": {
+      "logical": 12090651,
+      "allocated": 13270528,
+      "reserve": 33554432
+    },
+    "final_seal": "LOCAL_ONLY after final fresh readback",
+    "forbidden_runtime_supply_acl_old_writes_each": 0
+  },
+  "evidence_levels": [
+    "DIRECT_GITHUB_OBJECT",
+    "CODEX_REPORTED_LOCAL_STATIC_CHECK",
+    "PREVIOUS_CODEX_REPORTED_LOCAL_RUNTIME",
+    "LOCAL_ONLY_RAW",
+    "NOT_RUN",
+    "NOT_PROVEN"
+  ],
+  "INTEGRATION_ACCEPTED": false,
+  "FUNCTION_ACCEPTED": false,
+  "AC05": "OPEN",
+  "G2": false,
+  "v1016": "NOT_STARTED"
+}

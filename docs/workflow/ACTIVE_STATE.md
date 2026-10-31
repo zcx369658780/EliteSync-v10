@@ -1,3 +1,29 @@
+# EliteSync v10.1.5｜2026-10-31 Laravel13/PHP8.4 15路径精确产品 main 集成完成，等待 Astra 独立集成验收（CURRENT ENTRY）
+
+**MAIN_SOURCE_INTEGRATED_AWAITING_ASTRA_REVIEW / OWNER_AUTHORIZED_PRECISE_FIFTEEN_BACKEND_PATHS / LOCAL_DEFAULT_L11_UNCHANGED / OLD_BACKUP_RETAINED / NO_OLD_DELETION / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED**
+
+本轮唯一正式任务 Blob：dbaf9a05e1d5799ebdb8a99b3084fc29027e8479。Owner 已明确授权静态/保护门通过后以普通 non-force fast-forward 集成 main；Codex 已执行，尚未由 Astra 签本轮 INTEGRATION_ACCEPTED 或 FUNCTION_ACCEPTED。
+
+实际产品 Commit：7e1e107ca0faed840e1ce06418694e3590e3b3ae；唯一 Parent 为开工 fresh main c78196765cdcbd5bd0b355dbfeb954f38538d2d8，Parent Root df53c07892859450d32dfb36a265baff5f94282e；产品 Root e467619683d20582735bb2c28ab806bcd2b0be2f。集成前后均已 fresh GitHub 回读15/15 path/mode/Blob及完整产品双Tree，写入采用 force=false 和 expected Parent；没有 merge/cherry-pick 全分支、rebase 或覆盖他人提交。
+
+apps Tree：3468a3dd97da7accfda2539a0f8d8f68931a6110（原样）；新 services Tree：049a8676cc90b3b830e32a524c172720e800fa37。它不是含两份 task-only CLI 的 7bd services e14dece6cf3eef118875f688fd303a82d34418c2。仅正式任务冻结15条后端输入/配置/测试Blob入main，其余 main 全部原生叶子与未受影响子Tree不变，app/routes/database 与 SQLite TestCase 未改；未接受 F1/F3/F4 新业务、旧task工具和LOCAL_ONLY原证未带入。
+
+接受输入仍为7bd840200f781466919c7946e3533585caf6f8c3 / Root cd4b6ae230105c28aebf2790b704a7218cd64055，Astra Review 09b7ded0bfaa6bc0d1019cdb2e76f34fdfa31c1f / Blob 8c340dd9c1270a99a730879c69cf5b9b0fa9915e。此前166 tests/2817 assertions、私有HTTP/MariaDB90表重启恢复是 PREVIOUS_CODEX_REPORTED_LOCAL_RUNTIME，本次没有重跑。当前只做Git对象、15文件静态JSON/锁/差异检查、Git diff --check与非作者只读复核。
+
+本次附随文档仅 Result、15文件Manifest、本地/主线基线状态及本ACTIVE_STATE；文档提交的唯一Parent为上述产品Commit，apps/services不再变化。文档自身 Commit/Root 从包含它的原生Git对象及最终封存 fresh readback解析，不内嵌不可能稳定自引用的SHA。
+
+旧本地Laravel11.48.0元数据、原dirty252、refs527、index/HEAD仍保留，当前默认开发根未切换。旧版备份11,066文件/240,617,393 bytes，Manifest SHA256 3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d，本轮具名只读核身份/尺寸与164项SHA样本，既有隔离恢复证明保留；未宣称重新复制或全量恢复。122原证、3183 Seed的身份/尺寸及受限SHA样本、旧18当前捕获视图、两ACL夹具、五根和历史STOP封存均通过只读核对，无旧资产写/ACL改/删除/移动。
+
+宿主入口 HOST_PORT_FORWARDING_NOT_VERIFIED、真实旧Cookie REAL_LEGACY_L11_COOKIE_NOT_PROVEN 仍保留。未执行Docker/WSL、PHP/Composer、Feature/API/HTTP/DB、Flutter/Gradle/G2/APK/ADB、RTC/AEC、真实Push、物理15/30天或生产；Windows E_NOTIMPL、PRIOR_33213A77_CROSS_ATTEMPT_FIXTURE_BUDGET_NONCOMPLIANT、OLD_FIXTURE_EXACT_SD_RESTORATION_NOT_PROVEN、RESTRICTED_IDENTITY_GATE_BLOCKED、OS_ENFORCEMENT_NOT_PROVEN、EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED 不改写。v10.1.5 AC01–11仍10 PARTIAL/1 OPEN，AC05 OPEN，G2 false，Push待定，v10.1.6 NOT_STARTED。
+
+结果：[LARAVEL13_TARGET_MAIN_PRECISE_INTEGRATION_RESULT_20261031.md](../versions/v10.1.5/LARAVEL13_TARGET_MAIN_PRECISE_INTEGRATION_RESULT_20261031.md)；[Manifest](../versions/v10.1.5/laravel13_target_main_precise_integration_manifest_20261031.json)；[GitHub与本地基线状态](../versions/v10.1.5/LARAVEL13_DEVELOPMENT_BASELINE_STATUS_20261031.md)。
+
+唯一下一动作：本任务完成原生main及文档回读后封存STOP，等待Astra独立集成验收；不自动切换本机版本、清理旧版、派发后继或启动v10.1.6。
+
+以下完整保留此前ACTIVE_STATE原始字节；其中“尚未执行/仍为旧main”的标签仅代表历史时点，不覆盖本条。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner授权Laravel13已接受目标main候选的精确安全集成任务正式发布（CURRENT ENTRY）
 
 **`OWNER_AUTHORIZED_LARAVEL13_PHP84_PRECISE_MAIN_INTEGRATION / INTEGRATION_TASK_FORMALLY_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / CODEX_INTEGRATION_NOT_YET_EXECUTED / MAIN_PRODUCT_STILL_V1014 / OLD_LOCAL_L11_AND_BACKUP_RETAINED / NO_LOCAL_DEFAULT_SWITCH / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
