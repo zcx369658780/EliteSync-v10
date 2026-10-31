@@ -1,3 +1,21 @@
+# EliteSync v10.1.5｜2026-10-31 Owner要求恢复业务研发：F1/F3/F4同源接续综合长任务已发布，等待手动派发（CURRENT ENTRY）
+
+**`V10.1.5_POST_L13_F1_F3_F4_LONG_TASK_PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED / L13_LOCAL_DEV_ENTRY_ACCEPTED_WITH_OBSERVATIONS / F1_F3_F4_PRODUCT_MAIN_NOT_INTEGRATED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_RTC_AEC_OPEN / G2_READY_FOR_POPEN_FALSE / REAL_PUSH_PROVIDER_PENDING / V10.1.6_NOT_STARTED`**
+
+**最新Owner指令和发布结果：** Owner已在2026-10-31当前会话明确要求按现有冻结路线总结v10.1.5未完成事项并发布下一份**版本综合长任务**。Astra按A-D发布[正式任务单](../versions/v10.1.5/V10_1_5_POST_L13_F1_F3_F4_PRODUCT_CONTINUATION_AND_E2E_LONG_TASK_20261031.md)，Blob **`9c7f4a9ad1b6e5d89e8976c39f4a4edb0e3c24dd`**；任务创建Commit **`97fab78d40ab2ad52774f74bf04885e72d7ee218`**，创建后已按路径读回全文与提交正文逐字相符。新task_id `V1015_POST_L13_F1_F3_F4_E2E_20261031`。**本次只发布任务并同步状态，不是Owner已派发Codex、不是Codex已经运行、不是业务验收或产品合main。**
+
+**功能剩余与限定接续：** 冻结`docs/versions/v10.1.5/plan.md`（Blob `7d3466b3be67135dc641cfee7c7faef78937ba03`）保持AC01–11不变；F1消息幂等/丢响应/媒体重读和WS、F3可信T0与加密离线只读/测试清理、F4通知隐私与测试Push隔离都有历史部分证据，但广范围旧F1/F3/F4业务**没有被纳入当前main**。新任务只在已接受的Laravel13/PHP8.4 main及干净开发入口中，选择旧已证功能源码、按差异修复并集中验证同一Flutter APP/API/MariaDB和独立Web既有使用点；不能盲合旧完整候选、假定本地服务仍运行或用mock充当E2E。F2 RTC仅本次受影响权限回归，**AC05/AEC/5秒停止未闭合**；F5只一次具名旧源核查；真实Push不接供应商。
+
+**固定开发基线：** 任务签发前main `8c888ff0cb97545fb0f519cd4073f9a6e3839f37`、Root `268e1d8b023bfcda123a89f46b5a264b2c13aef6`，产品apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `049a8676cc90b3b830e32a524c172720e800fa37`。创建任务与本状态更新均为docs-only，会推进GitHub main；开工必须fresh回读，**不把签发前SHA当未来Codex固定研发Parent**。最新L13三门独立审核Review Commit `08747eeec778340a82bf3c11a3f4181847dd037a`、Review Blob `afa9cbac11484bdff53171e96774f80072e12462`，仅证明新干净本地开发入口在已验范围内可接续，不证明完整60回归/DB备份恢复/失败清理或v10.1.5功能通过。
+
+**授权与保护：** Owner尚须**手动转交唯一启动Prompt**给Codex；后者仅能在正式任务列明的新task-owned根、已有可信L13/Flutter资源及**新独立虚构空数据库**上开发与定向测试，先证明各实际工具/设备权限，禁止复用历史STOP预算或突破G2/Gradle/SDK守卫。原本地Laravel11默认入口、dirty252/refs527、11,066件/240,617,393bytes旧备份与Manifest、旧事故/ACL/LOCAL_ONLY原证均原样保护；不得删除、覆盖、重设默认或操作生产/真实用户/公网/费用/真实Push。无新实机/声学权限，本任务不能自动打开AC05或G2。普通软件缺陷允许单次综合任务内自主修复，不拆一系列环境微任务。
+
+**唯一下一动作：** Owner手动派发上述精确Blob的启动Prompt。Codex集中交付具名报告、manifest、受影响源码与正反E2E证据、一个非强制可审候选后STOP等待Astra独立功能验收；不直接main集成、不签`FUNCTION_ACCEPTED`、不启动v10.1.6。当前整版仍`10 PARTIAL / 1 OPEN`、AC05 OPEN、G2 false、真实Push PENDING。
+
+以下为此前`B21F0955_L13_THREE_GATES_ACCEPTED_WITH_OBSERVATIONS`阶段的完整历史入口；其“下一步还未发布”只代表上一时点，不覆盖本次新任务发布状态。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra独立有界接受本地Laravel13三门收口：开发入口可接续，整版功能仍未接受（CURRENT ENTRY）
 
 **`B21F0955_L13_THREE_GATES_ACCEPTED_WITH_OBSERVATIONS / CLEAN_LOCAL_L13_DEVELOPMENT_ENTRY_ACCEPTED_WITH_OBSERVATIONS / TARGETED_QUESTIONNAIRE_RETEST_2_TESTS_53_ASSERTIONS_PASS / POPULATED_SYNTHETIC_MARIADB_REAL_PROCESS_RESTART_90_TABLES_83_ROWS_PASS / ORIGINAL_MANUAL_START_STOP_NORMAL_CYCLE_PASS / FULL_60_REGRESSION_NOT_RUN / DB_BACKUP_RESTORE_NOT_RUN / DEFAULT_LOCAL_L11_UNCHANGED / PRODUCT_MAIN_UNCHANGED / OLD_BACKUP_RETAINED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
