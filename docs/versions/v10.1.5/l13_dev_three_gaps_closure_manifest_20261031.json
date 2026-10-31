@@ -1,0 +1,204 @@
+{
+  "task_id": "V1015_L13_DEV_3_GAPS_CLOSURE_20261031",
+  "task_blob": "4080ba09cd83aa68537fcc719fb63f2dec312efc",
+  "attempt": "attempt-0001",
+  "status": "CLEAN_LOCAL_L13_DEV_BASELINE_CLOSURE_CANDIDATE_AWAITING_ASTRA_REVIEW",
+  "sole_parent": "e0baf03d4f63ab9fc22e65c8431b019017fded5f",
+  "parent_root": "0b8ad8ff8d88ab51ff68be0d76d54022c1b936fa",
+  "apps": "3468a3dd97da7accfda2539a0f8d8f68931a6110",
+  "services": "049a8676cc90b3b830e32a524c172720e800fa37",
+  "product_changes": 0,
+  "main_updated": false,
+  "questionnaire": {
+    "status": "QUESTION_BANK_MOUNT_AND_REGRESSION_PASS",
+    "tests": 2,
+    "assertions": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "test_cases": [
+      "test_register_login_questionnaire_flow",
+      "test_submit_answers_accepts_v2_payload_fields"
+    ],
+    "junit_sha256": "d77b8b1fcd03b94c6e1aede015894927ccd90d570f244b09b775cce84b4ba3cc",
+    "process_exit": 0,
+    "readonly_bank_files": 4,
+    "seeder_and_tests_changed": false,
+    "SQLite_only": true,
+    "existing_mariadb_access": 0,
+    "full_60_batch": "NOT_RUN: directed tests consume two seed batches; another full60 needs two more and would exceed limit3",
+    "old_58_of_60_result_retained": true,
+    "prepaid_sqlite_migrations_upper_bound": 1,
+    "prepaid_seed_batches_upper_bound": 2
+  },
+  "question_inputs": [
+    {
+      "name": "question_bank_core_v1.json",
+      "blob": "02611e93fcb50cbe35126381cc4a79b178b2d423",
+      "mode": "100644",
+      "bytes": 119340,
+      "sha256": "0aee60f84cb0730b6f3b043891a7f37bafe1ff54d7e9295a5186476cf768b753"
+    },
+    {
+      "name": "question_bank_docx_scored_v2.json",
+      "blob": "6d3fb19242734dd6938979f3846e9837518be175",
+      "mode": "100644",
+      "bytes": 114935,
+      "sha256": "bfea256eb5b2d371b8e373b980f4b23ae27566f2141b3b2f198b746bbb34a919"
+    },
+    {
+      "name": "question_bank_extended_v1.json",
+      "blob": "d18a585139e7b179c670f84e9ca1f8734fa0398b",
+      "mode": "100644",
+      "bytes": 67382,
+      "sha256": "6525a375bbb76da1bca3a1ace0e0f5a5c85234542c69f77a6bf758d393a5cb81"
+    },
+    {
+      "name": "question_bank_research_v1.json",
+      "blob": "086cceddba59704b0085e21d7e3fead8a01f7495",
+      "mode": "100644",
+      "bytes": 45165,
+      "sha256": "d119da1de029be80a514bafff5b1428df8fb14c372ad55cbb261143bb0998b74"
+    }
+  ],
+  "seeder_blob": "9108ca9802b8b6fb9b0ffe48f34b6bc5f1ae86a2",
+  "db_restart": {
+    "status": "POPULATED_SYNTHETIC_MARIADB_PROCESS_RESTART_HASH_PASS",
+    "tables_compared": 90,
+    "rows_before": 83,
+    "rows_after": 83,
+    "users": 1,
+    "tokens": 4,
+    "all_row_counts_hashes_and_DDL_equal": true,
+    "same_container_id": true,
+    "host_pid_changed": true,
+    "started_at_changed": true,
+    "observed_stopped_pid_zero": true,
+    "same_named_volume": true,
+    "same_volume_filesystem_identity": true,
+    "same_schema_server_id_version_principal_grants": true,
+    "system_schema_permission_negative_pass": true,
+    "api_recreated": false,
+    "snapshot_receipts_sha256": {
+      "before": "ce48403bdc4f72ce215fb4832f28c25380608c9dbf007e643de5ebeeef8bfbd7",
+      "after": "3bbf94b59db261a7f71a94f434edbb67340739e7350132bcdc32b2cc58a4fab6"
+    },
+    "raw_row_hashes": "LOCAL_ONLY",
+    "existing_db_migrations_seed_drop": 0,
+    "restore_test_claimed": false
+  },
+  "manual_cycle": {
+    "status": "MANUAL_START_STOP_RUNTIME_PASS",
+    "cycles": 1,
+    "source_start_blob": "38582fd4fe145961a30e3c74a0644bbaa41fb7c2",
+    "source_stop_blob": "f0bb6e41121b0efb912bdd5d51346be4f5aa0dcf",
+    "scripts_modified": false,
+    "config_in_new_root_source_sha256_preserved": true,
+    "start_exit": 0,
+    "stop_exit": 0,
+    "initial_both_stopped": true,
+    "started_both": true,
+    "independent_final_both_stopped": true,
+    "host_health_200_and_anonymous401_before_and_after_db_restart": true,
+    "all_new_task_runners_stopped": true,
+    "named_volume_preserved": true,
+    "default_local_switched": false,
+    "failure_cleanup_branches_executed": false,
+    "script_health_http_prepaid_upper_bound": 20,
+    "explicit_host_requests": 4
+  },
+  "script_revision": "NONE_ORIGINAL_BLOBS_RUNTIME_VERIFIED",
+  "public_runtime_identity_policy": "No local paths, LocalFileIDs, row-hash sequences, credentials, raw rows or actual private config fields",
+  "budget_snapshot": {
+    "elapsed_seconds": 802.11,
+    "new_root_space": {
+      "new_root_logical": 2575549,
+      "new_root_allocated": 2750568,
+      "conservative_engine_growth_charge_upper_bound": 2147483648
+    },
+    "costs_prepaid_upper_bounds": {
+      "service_groups": 2,
+      "php_cli": 4,
+      "feature_batches": 1,
+      "sqlite_migrations": 1,
+      "seed_batches": 2,
+      "manual_cycles": 1,
+      "db_process_restarts": 2,
+      "api_restarts": 1,
+      "host_http": 24
+    },
+    "limits": {
+      "seconds": 10800,
+      "logical": 8589934592,
+      "allocated": 8589934592,
+      "dependency_requests": 0,
+      "dependency_bytes": 0,
+      "image_pulls": 0,
+      "image_builds": 0,
+      "composer_installs": 0,
+      "composer_solver": 0,
+      "global_operations": 0,
+      "service_groups": 2,
+      "db_process_restarts": 2,
+      "api_restarts": 2,
+      "manual_cycles": 2,
+      "php_cli": 80,
+      "feature_batches": 3,
+      "host_http": 30,
+      "internal_http": 30,
+      "sqlite_migrations": 3,
+      "seed_batches": 3,
+      "existing_mariadb_migrations_seed_drop": 0,
+      "old_asset_writes": 0
+    },
+    "host_http_semantics": "20 prepared maximum script health polls +4 explicit actual Windows requests; not a claim of24 actual requests",
+    "existing_mariadb_migrations_seed_drop": 0,
+    "public_dependency_supply_requests_bytes": 0,
+    "final_terminal_receipt": "LOCAL_ONLY, after fresh GitHub native readback"
+  },
+  "protection": {
+    "old_head": "4bebc8f394248e254c1368a06fbdee5d2c883301",
+    "dirty": 252,
+    "refs": 527,
+    "backup_files": 11066,
+    "backup_bytes": 240617393,
+    "backup_manifest_sha256": "3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d",
+    "backup_bounded_hash_samples": 160,
+    "historical_and_source_seals": 14,
+    "old_default_unchanged": true,
+    "old_assets_deleted_moved_overwritten": 0,
+    "prior_bb_ledger_script_config_unchanged": true,
+    "old18_twoACL_raw122_seed3183_fiveRoots": "Untouched; prior proofs retained, not rescanned this round"
+  },
+  "all_services_stopped": true,
+  "scripts_original_runtime_pass": true,
+  "local_default_switched": false,
+  "documents": [
+    {
+      "path": "docs/versions/v10.1.5/L13_DEV_THREE_GAPS_CLOSURE_RESULT_20261031.md",
+      "mode": "100644",
+      "sha": "ba64c296838c669a9fcd1f8e7bf3f6bb2187cf3f",
+      "sha256": "966e58a854ca0fb746c44c8bfcc3d0ea0ccbc00eaa96b0d76885fb6e43eb7b2c",
+      "bytes": 7922
+    },
+    {
+      "path": "docs/versions/v10.1.5/L13_DEV_BASELINE_THREE_GAPS_HANDOFF_20261031.md",
+      "mode": "100644",
+      "sha": "2dfb179fddafa40fce99a8ab0cf60442469e9f17",
+      "sha256": "14f5b5e8c81c30288441ac016d8399d236bb20d06e0867d2bc1ab15cfdf3ee7d",
+      "bytes": 2716
+    }
+  ],
+  "manifest_self_identity": "Enclosing native Git tree and final full readback; no circular SHA",
+  "acceptance": "PENDING_ASTRA",
+  "remaining": {
+    "full60_current_run": "NOT_RUN_SEED_LIMIT",
+    "start_failure_cleanup_injection": "NOT_RUN",
+    "real_legacy_l11_user_cookie": "NOT_PROVEN",
+    "os_enforcement": "NOT_PROVEN",
+    "function_accepted": false,
+    "AC05": "OPEN",
+    "G2": false,
+    "v1016": "NOT_STARTED"
+  }
+}
