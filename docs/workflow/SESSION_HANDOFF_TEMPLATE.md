@@ -33,3 +33,8 @@ Status: [一个准确状态标签]
 - 一个时点只指定一个最新有效handoff。旧handoff保留为历史，但新会话不递归读取。
 - Handoff是导航摘要，不是实时状态权威、正式任务合同或授权来源；与live ACTIVE_STATE、正式任务和Owner原始决定冲突时，回到对应权威原件核验。
 - 如果本会话没有形成有价值的状态变化或下一步，不为形式而新建handoff。
+
+
+## 新会话启动Prompt（复制即可）
+
+接续EliteSync-v10。Fresh读取live main后，只读AGENTS全文、ACTIVE_STATE最新CURRENT ENTRY和最新具名handoff；到此停止。按handoff确定一个目标，再按需读取正式任务、冻结plan和相关合同。不要递归历史，不自动派发Codex或执行未授权操作。
