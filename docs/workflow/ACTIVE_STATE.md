@@ -1,3 +1,25 @@
+# EliteSync v10.1.5｜2026-10-31 Astra分项有界接受新Laravel13干净入口、Windows宿主回环及合成L11→L13会话；回归/DB重启未收口（CURRENT ENTRY）
+
+**`BB94A6C_CLEAN_L13_SOURCE_VENDOR_READY_WITH_OBSERVATIONS / WINDOWS_HOST_LOOPBACK_API_PASS_CODEX_REPORTED / L11_BINARY_TO_L13_SYNTHETIC_SESSION_PASS_CODEX_REPORTED / FOCUSED_REGRESSION_PARTIAL_58_OF_60 / ROOT_QUESTION_BANK_MOUNT_GAP / POPULATED_MARIADB_RESTART_NOT_RUN_BUDGET_EXHAUSTED / MANUAL_START_STOP_RUNTIME_NOT_VERIFIED / FULL_LOCAL_L13_BASELINE_NOT_ACCEPTED / GITHUB_MAIN_PRODUCTS_UNCHANGED / LOCAL_DEFAULT_L11_UNCHANGED / OLD_BACKUP_RETAINED / AC05_OPEN / G2_FALSE / V10.1.6_NOT_STARTED`**
+
+**最新Astra正式独立审查已发布并回读：** [BB94A6C_CLEAN_L13_HOST_LOOPBACK_SYNTHETIC_SESSION_ASTRA_REVIEW_20261031.md](https://github.com/zcx369658780/EliteSync-v10/blob/12072468f6a3f18b84ee508b2d9a0e03a6c33a6a/docs/versions/v10.1.5/BB94A6C_CLEAN_L13_HOST_LOOPBACK_SYNTHETIC_SESSION_ASTRA_REVIEW_20261031.md)，Review Commit `12072468f6a3f18b84ee508b2d9a0e03a6c33a6a`、Review Blob `b19eacb9ad0577faa30512750c89217e9bdc9fe9`，Review的唯一Git Parent为上一Codex候选`bb94a6c273c436aa9a88e9313f9ae662840aa6e7`；不作为下一研发Parent或产品main合并目标。**裁决仅分项有界接受**，不是完整本地开发环境/全部回归/生产发布/整版v10.1.5验收。
+
+**Codex候选STOP与GitHub对象：** Commit `bb94a6c273c436aa9a88e9313f9ae662840aa6e7`、唯一Parent `310456834fd653229b27748e44912de5ba9df66f`，Root `b4ae308d5e186bd1e36342a46c74116a566d7c11`；compare ahead1/behind0，只新增5个docs文件（Result、Handoff、Manifest及两份PowerShell手动启停脚本），递归Git Tree未截断，Manifest 4/4非自身文件path/mode/Blob/size与Git Tree一致且自身Blob `c740da37cbda07b102ee5eb09e7c976b8a056f9d`闭合，总5/5。正式任务 `V10_1_5_LARAVEL13_CLEAN_LOCAL_DEV_BASELINE_HOST_API_AND_LEGACY_SESSION_TASK_20261031.md` Blob `bd5aa7ee6fc4682ece9136d3b025e6b5d421ef80`，已经Owner手动派发完成且永久STOP，余量不得恢复/借用。Result Blob `48f21c3c663184ce3707d8cb95da4dee6426af0a`，Handoff Blob `f5cf82bcd2d2e7e5c61dd964bab9324731d879b3`。
+
+**Codex本地验证的三项成果（非Astra本机重跑）：** 全新独立干净`CLEAN_L13_DEV_20261031`源5,322文件/141,638,016 bytes，固定Laravel13/PHP8.4、Composer2.11.1、lock114包新vendor真实安装及平台检查PASS，原local Laravel11默认入口未切换；由**Windows宿主进程真实**对仅127.0.0.1的任务API请求health200、匿名/坏bearer401、错误密码422、合成账号login与token200等正反例PASS（原port refuse/IPv6/自有容器重建失败留存，OS-wide暴露控制未证明）；实际Laravel11.48框架SessionGuard/EncryptCookies/FileSessionHandler用**全新虚构user/测试APP_KEY**制作cookie/session wire bytes后由Laravel13验证7个正反例PASS。后者明确只是`SYNTHETIC_L11_BINARY_SESSION_COMPATIBILITY`，真实用户旧Cookie与生产密钥未触碰，`REAL_LEGACY_L11_USER_COOKIE_NOT_PROVEN`保留。
+
+**两个必须保留的动态缺口：** 混合回归`60 tests/284 assertions/58 passed/2 errors`，2错同属`AuthQuestionnaireApiTest`调`QuestionnaireQuestionSeeder`。Astra直接核查冻结main的`question_bank/`下4份JSON及原Seeder Blob`9108ca9802b8b6fb9b0ffe48f34b6bc5f1ae86a2`，实际Seeder按后端base_path上两级读root question_bank；Codex报告当前容器只有backend mount，所以是有源码支持的资源挂载解释，但**未重跑，不能补造60/60 PASS**。有数据MariaDB进程/持久卷重启验证**NOT_RUN**：受控容器重建/重启2/2、migration与seed2/2预算耗尽；仅API容器重建后新DB一用户/4token仍可读，**不是MariaDB进程重启/恢复**。另两份手动启停脚本已静态审阅，仅parser PASS，最终STOP后运行未验，`MANUAL_START_STOP_RUNTIME_NOT_VERIFIED`。
+
+**预算/旧版保护：** Codex公开动态快照供给133请求/103,825,408 bytes、Owner最终135请求/103,923,712 bytes；快照1602.187秒、总限14,400秒和16GiB，Owner报告终封36.50min，最终LOCAL_ONLY ledger/seal Astra未直接核终态峰值。新任务服务均已退出但保留新vendor/镜像/虚构DB卷，旧Laravel11、dirty252、refs527、11,066文件旧备份/240,617,393 bytes及Manifest SHA`3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`，旧18/两ACL/122原证/3183Seed/五根/13旧STOP均由Codex报告保留；原旧资产写入/删除/ACL更改0，Astra未实机访问。
+
+**GitHub已接受产品框架主线不变：** apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`、services Tree `049a8676cc90b3b830e32a524c172720e800fa37`；Laravel13/PHP8.4框架main集成已获Astra先前`INTEGRATION_ACCEPTED_WITH_OBSERVATIONS`，本候选不改任何apps/services。v10.1.5功能继续`10 PARTIAL/1 OPEN`、AC05 RTC/AEC OPEN、G2 false、真实Push Pending、真H264视频/APP/设备/物理15/30天/生产未验、v10.1.6 NOT_STARTED。Windows E_NOTIMPL、四历史事故、`OS_ENFORCEMENT_NOT_PROVEN`、`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`原样保留。
+
+**唯一建议后继（待Owner独立授权，当前不自动发布）：** 使用已有全新干净L13候选入口、另行冻结**一份**独立预算的收口任务：源自现行main的4份question_bank JSON只读挂载，针对2项失败回归重跑并保留授权负例；对本任务新合成MariaDB有数据卷执行真正的进程停止/启动和前后行hash；在已合格配置及新授权额度下真实检验两份manual start/stop脚本。安全前提不允许借用旧STOP余额/真实旧DB/默认旧目录/历史证据；后续Astra独立验收这些单列门。主线源码/功能AC/生产不自动改变。
+
+以下为上一时点的ACTIVE_STATE全文；之前`NEW_TASK_NOT_EXECUTED`、`HOST_PORT_FORWARDING_NOT_VERIFIED`属于当时记录，不覆盖上面的新宿主回环**有限**通过、但OS全局/公网仍未证明的当期事实。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Owner授权创建新的干净Laravel13本地开发入口与宿主回环/旧会话有界验证（CURRENT ENTRY）
 
 **`OWNER_APPROVED_CLEAN_LOCAL_L13_DEV_ENTRY / HOST_LOOPBACK_API_VALIDATION_TASK_PUBLISHED / SYNTHETIC_L11_TO_L13_SESSION_RISK_CLASSIFICATION_INCLUDED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_TASK_NOT_EXECUTED / MAIN_FRAMEWORK_L13_INTEGRATION_ALREADY_ACCEPTED / OLD_LOCAL_L11_DEFAULT_UNCHANGED / OLD_BACKUP_NOT_DELETED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
