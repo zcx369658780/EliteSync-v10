@@ -1,3 +1,23 @@
+# EliteSync v10.1.5｜2026-10-31 Owner授权创建新的干净Laravel13本地开发入口与宿主回环/旧会话有界验证（CURRENT ENTRY）
+
+**`OWNER_APPROVED_CLEAN_LOCAL_L13_DEV_ENTRY / HOST_LOOPBACK_API_VALIDATION_TASK_PUBLISHED / SYNTHETIC_L11_TO_L13_SESSION_RISK_CLASSIFICATION_INCLUDED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NEW_TASK_NOT_EXECUTED / MAIN_FRAMEWORK_L13_INTEGRATION_ALREADY_ACCEPTED / OLD_LOCAL_L11_DEFAULT_UNCHANGED / OLD_BACKUP_NOT_DELETED / V10.1.5_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / V10.1.6_NOT_STARTED`**
+
+**Owner最新决定：** 在Astra确认`LARAVEL13_PHP84_DEVELOPMENT_FRAMEWORK_MAIN_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS`后，Owner对“基于新main已接受Git对象建立一个全新干净本地Laravel13开发入口、必要宿主API连通与旧session兼容风险分级，原Laravel11 dirty根及旧备份不动”明确回复“可以我同意，请继续”。这批准发布**一次本地执行综合任务**，Codex仍须Owner手动派发；**不批准切换原默认开发入口、删除旧Laravel11或备份、真实旧DB/真实用户cookie访问、系统全局安装/升级/Firewall更改、生产部署、RTC/AEC/真实Push或整版接受**。
+
+**最新唯一正式任务（GitHub已创建并在固定Commit全文回读）：** [V10_1_5_LARAVEL13_CLEAN_LOCAL_DEV_BASELINE_HOST_API_AND_LEGACY_SESSION_TASK_20261031.md](../versions/v10.1.5/V10_1_5_LARAVEL13_CLEAN_LOCAL_DEV_BASELINE_HOST_API_AND_LEGACY_SESSION_TASK_20261031.md)，任务Blob `bd5aa7ee6fc4682ece9136d3b025e6b5d421ef80`，创建Commit `062eb56a3aea9f849614a3bec76a5b74ab8e1ca9`。Status `PUBLISHED / OWNER_MANUAL_CODEX_DISPATCH_REQUIRED / NOT_EXECUTED`。新task_id `V1015_CLEAN_LOCAL_L13_DEV_ENTRY_HOST_API_LEGACY_SESSION_20261031`，唯一新root/attempt-0001/ledger、最多240min/16GiB；不复用任何旧STOP任务的资源、镜像私有缓存、vendor、数据库卷或预算。
+
+**综合执行范围：** Codex从开工fresh main原生Git对象在新独立目录恢复全新干净Laravel13项目，实际固定composer.lock的114包/私有vendor/受限新虚构MariaDB运行闭包；在不放开LAN、公网/Windows Firewall的情况下，将**任务自有API**仅绑定Windows宿主`127.0.0.1`并由宿主进程实际请求，验证健康、权限负例与受控重启。另在**全新虚构账号、全新测试APP_KEY/私有session存储**内尝试实际Laravel11.48二进制产生Cookie/session再由Laravel13读取的合成跨版本兼容证据；如果旧二进制无合规依赖，必须`NOT_RUN`，绝不读取真实旧Cookie、旧APP_KEY或生产DB，不凭PHP serialize手工造假称旧Laravel11真正兼容。所有结果按门别分级，不因局部阻断抹掉已成成果。本次候选仅最小脱敏文档/必要非敏感配置，**不自动合main产品代码**，若有新的代码修正也必须等待Astra审查，不偷渡未接受F1/F3/F4业务功能。
+
+**已经接受、永久固定的GitHub产品基线：** 前Astra审查Commit `71afd7e2da6d1ad56bb53664ec347fe0aa5364ba`、Blob `542a34926fddf2e53917a1e362ebded8e8dc43ce`，确认Laravel13/PHP8.4受控main集成。产品apps Tree `3468a3dd97da7accfda2539a0f8d8f68931a6110`，services Tree `049a8676cc90b3b830e32a524c172720e800fa37`；任务签发前main `30f652c48d266c7df35a208eb5c456cd2ad4f26b`/Root `d4bcaadd5b98a4018570887319bc27ee8db883f2`，文档发布后HEAD会变化但双Tree不得变。开工必须fresh读main、Root、ACTIVE_STATE和正式任务精确Blob，不用旧Snapshot或Astra Review作为sole Parent。
+
+**本地保护：** Codex历史报告原默认Laravel11.48、dirty252、refs527、index/HEAD保留，Owner以前本机备份11,066文件/240,617,393bytes、Manifest SHA `3f66535d75bce70c7978338acefea8912aea855134538d04d8dd429dee07d48d`，旧18/两ACL/122原证/3183Seed/五根/12旧STOP封存保持，旧Windows E_NOTIMPL及历史四事故、`OS_ENFORCEMENT_NOT_PROVEN`、`EARLY_READONLY_RECEIPT_GAP_NOT_RECONSTRUCTED`不倒改。新本地目录、测试数据库与文件只归本task，旧根/历史资产无删除/写入授权，Astra不宣称本机实测。
+
+**保留风险门：** `HOST_PORT_FORWARDING_NOT_VERIFIED`与`REAL_LEGACY_L11_COOKIE_NOT_PROVEN`在新结果提交前继续为OPEN；即使只测成功**合成**旧Laravel11 cookie也不是生产真实旧用户cookie迁移。v10.1.5仍10 PARTIAL/1 OPEN、AC05 RTC/AEC OPEN、G2 false、Push provider pending；完整APP设备E2E、真机RTC/AEC、H264真实片、物理15/30天、生产与v10.1.6均未启动。Owner只有下一步手动派发Codex的任务，没有此刻后台执行或未来文件删除。
+
+以下为本决定前的ACTIVE_STATE全部原文；之前的等待Owner批准本地入口只是当时历史状态，不覆盖新CURRENT ENTRY。
+
+---
+
 # EliteSync v10.1.5｜2026-10-31 Astra独立验收Laravel13/PHP8.4框架精确产品main集成通过（CURRENT ENTRY）
 
 **`LARAVEL13_PHP84_DEVELOPMENT_FRAMEWORK_MAIN_INTEGRATION_ACCEPTED_WITH_OBSERVATIONS / GITHUB_MAIN_PRODUCT_SOURCE_INTEGRATED / OLD_V10_1_4_BUSINESS_SOURCE_UNCHANGED / LOCAL_DEFAULT_L11_UNCHANGED / OLD_11066_FILE_BACKUP_RETAINED / V10.1.5_FUNCTION_PARTIAL_NOT_ACCEPTED / AC05_OPEN / G2_READY_FOR_POPEN_FALSE / HOST_PORT_FORWARDING_NOT_VERIFIED / REAL_LEGACY_L11_COOKIE_NOT_PROVEN / V10.1.6_NOT_STARTED`**
