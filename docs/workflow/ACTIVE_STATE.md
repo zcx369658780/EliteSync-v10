@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-01 Owner授权后设备资格与v10.1.5构建配置修复（CURRENT ENTRY）
+
+**OWNER_RUNTIME_CONTINUATION_AUTHORIZED / ADB_DEVICE_IDENTIFIED / V1015_PROFILE_SOFTWARE_CHECKS_PASS / APK_BUILD_G2_GATE_CLOSED / PHP84_RUNTIME_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**
+
+Owner已直接授权推进v10.1.5剩余收口并报告手机通过USB连接，不再把旧handoff中的Owner授权pending当作当前状态。独立产品分支继续为`codex/v10.1.5-software-continuation-20261101`，工作面`D:/EliteSync-v10-product-v1015-20261101`；本轮源码提交`9acaf0cc7b7adae47b5c436130af1c2646ed0729`，Parent为上节点`0a14d40c7401bd6bfb228e2247f3167b8edace5c`。
+
+ADB已识别一台获授权物理手机，Android16/API36、arm64；只读设备属性和EliteSync包名，未读取个人数据。已修复v1015开关回落原包名/旧端点的问题：准备独立`com.elitesync.v1015dev`、版本10.1.5-dev/1010501、arm64、设备loopback API8021/WS8022，继承已接受1.4产品路由，native WS传入Flutter，debug声明通知授权；这些是源码配置，尚无APK或manifest合并证明。
+
+本轮v1015配置22项测试、默认配置27项回归及2文件Dart分析均通过；新端点用例先RED后GREEN，失败保留。非作者Codex辅助审查指出的新测试默认入口问题已修复并复验，无新具体P1/P2。身份、回执及门禁见[唯一进度细表当前节点](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-owner授权后的运行资格与设备配置节点)。
+
+四份具名G2账本fresh仍reserved0/Popen0、claim absent；旧APK/G已耗状态不变，种子/OS隔离资格仍不成立。当前产品没有现成受控构建调度入口；不得直接走普通preBuild→Flutter AAR。G2、Gradle、APK构建/安装/运行、媒体采集均NOT_RUN，本轮未占用新APK安装claim。手机连接不改变这些技术条件。
+
+稳定L13 vendor的114包版本/来源引用与当前lock精确一致，未重装；Docker未启动，现有Docker启动/WSL后端动作已因此前明确禁止边界单独向Owner请求，当前尚待该具体回复。PHP8.4/DB/API/浏览器/真实WS/H264/RTC与Android功能验证继续NOT_RUN，不改变AC05 OPEN、G2 false、真实Push PENDING、整版10 PARTIAL。不合main、不启动v10.1.6；原dirty根/index、旧L11/L13入口、备份、旧库及STOP记录保留。
+
+---
+
+## 本节点之前的记录（按原时点保留）
+
 # EliteSync｜2026-11-01 v10.1.5 独立产品软件接续（CURRENT ENTRY）
 
 **SOFTWARE_CONTINUATION_CANDIDATE / FLUTTER_172_PASS / DART_ANALYSIS_PASS / PHP84_RUNTIME_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**

@@ -1,3 +1,63 @@
+# EliteSync-v10｜项目进度细表（Owner授权后的运行资格与设备配置）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_RUNTIME_CONTINUATION_AUTHORIZED / DEVICE_IDENTIFIED / V1015_PROFILE_SOFTWARE_CHECKS_PASS / NATIVE_BUILD_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 Owner授权后的运行资格与设备配置节点
+
+Owner直接授权继续v10.1.5剩余目标，并确认手机USB连接。授权原文SHA256 `3a8a62a64d95b229a6bdb3ab4655a51c486694590921455fe3eeb46c1e0be63a`；[决定记录](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)追加本轮说明。旧handoff的Owner授权pending是历史；真实资格、具体受保护动作与账本仍分别核验。本轮独立LOCAL_ONLY执行记录标识`V1015_LOCAL_FIRST_RUNTIME_20261101_01`，没有重开旧任务或复用旧余额。
+
+### 代码身份与修复
+
+| 对象 | 当前结果 |
+|---|---|
+| 产品分支 / 工作面 | `codex/v10.1.5-software-continuation-20261101` / `D:/EliteSync-v10-product-v1015-20261101` |
+| 本轮源码commit / Parent | `9acaf0cc7b7adae47b5c436130af1c2646ed0729` / `0a14d40c7401bd6bfb228e2247f3167b8edace5c` |
+| Root / 产品双Tree | Root `a5bdf2a8a1c1d12d3fca870f36951f284406bf13`；apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`；services `7634b4755a41f08641e00948f684c06efb12d8fe` |
+| 软件变更 | 5文件：Android Gradle profile、MainActivity、debug manifest、main_prod、v1015_product_entry_test；96新增/6删除。保留原文件换行格式，无全文件格式改写 |
+| 既有框架及软件 | L13精确15路径和services Tree未变；前节点94项接续继续保留，main_prod为本节点增量修复，不再声称该路径保持604a900原Blob |
+
+已确认的源码缺陷：Android未声明v1015独立profile，单独该开关会落入base包名；内部构建默认x86_64不匹配当前arm64手机；1.4 Dart API校验拒绝新端点；native restoration bootstrap原先将WS地址清空；debug缺Android13+通知授权声明。修复后目标为`com.elitesync.v1015dev`、`10.1.5-dev`/`1010501`，AAR与APK同选arm64，设备回环API8021/WS8022，自动继承1.4产品路由且明确拒绝互相矛盾的1.4=false。v1015入口启用既有RTC软件接线；不代表已运行通话或新增外部权限。WS只在v1015分支透传，其他profile保持原语义。通知permission只在debug manifest声明，仍须用户在Android系统对话框同意，不授予权限、不接真实Push。
+
+### 实际检查、失败与非作者复查
+
+| 检查 | 结果 | stdout SHA256 |
+|---|---|---|
+| v1015新端点RED | 7通过/2失败，应用新端点被旧1.4分支拒绝、旧8019反被接受；真实测试exit1保留 | 见LOCAL_ONLY `v1015-entry-red`回执 |
+| 配置混跑观察 | 30通过/1失败，误把默认API合同测试放入1.5编译配置；原证保留，按适用profile分开复验，未改弱断言 | 见LOCAL_ONLY `v1015-entry-green`回执 |
+| 最终v1015配置 | `flutter test --no-pub --dart-define=ELITESYNC_V1015_LOCAL_BUILD=true --dart-define=ELITESYNC_V1014_LOCAL_BUILD=true`，产品entry+WS两文件；**22通过/0失败，exit0** | `3b797363d94acad4abd55b721d970cc54b8bd8c699f328d5989caf0be1a83e4e` |
+| 最终默认配置 | 无上述defines，产品entry+WS+internal-feature+android-bootstrap四文件；**27通过/0失败，exit0** | `4fb9898a1d85b2570e883d449cf0b9ac37b8f9ccdf4caf894f36bd56b3e33de6` |
+| 最终Dart分析 | main_prod与新entry测试2文件，No issues，exit0 | `1459e299e9c4a6cec04c651e71d4cfac21bc6fb8dc0de9c7ff2ecd302ba8e2c8` |
+| 静态与保护 | debug XML可解析且只声明POST_NOTIFICATIONS；完整diff/公开凭据模式检查；保留原Kotlin CRLF后按cr-at-eol核空白；6件具名保护文件hash保持 | LOCAL_ONLY回执 |
+
+22与27是两种编译配置下的执行数量，其中WS测试有复用，不相加冒称49个独立用例。前节点172项是此前source身份下的历史结果，本轮只重验受main_prod/profile变化影响的部分，没有将172写作本轮新测。
+
+非作者Codex辅助审查（Sol/high，只读，非外部独立接受）覆盖5个变更文件，发现新测试无条件要求profile会破坏默认测试入口的P2；已改为对应profile注册专属API断言、默认与v1015均注册WS安全用例，没有skip或删断言。默认配置包含该新文件实跑通过，复查确认该P2消除，无新具体P1/P2。原生Gradle/Kotlin编译、manifest合并、最终包名/签名/ABI制品验证仍NOT_RUN。
+
+### 设备、G2与后端资格
+
+| 项目 | 本轮fresh事实与限制 |
+|---|---|
+| Owner手机 | ADB仅一台非模拟器、非TCP序号格式设备，state=device；型号25060RK16C、API36、arm64-v8a。Owner报告USB；Windows adb get-devpath返回unknown，未将其冒称独立USB总线证明。序号/完整设备回执LOCAL_ONLY |
+| 设备读取范围 | 只读取设备版本/ABI和com.elitesync包名过滤列表；目标com.elitesync.v1015dev当前未见安装。没有应用启动、安装、卸载、清数据、run-as、屏幕/私聊读取、端口reverse或MIC/CAM动作 |
+| 四根G2账本 | graph/write-isolation/minimal-seed/single-seed的budget-terminal fresh保留0/Popen0、G2.claim与G2.claim.json均不存在，4份hash记录后复核不变；只读这些具名记录，不扫描全盘claims |
+| G2技术门 | MINIMAL_SEED_CLOSURE_NOT_PROVEN / OS_ENFORCEMENT_NOT_PROVEN仍成立；child恢复终态为RESTORATION_BLOCKED_WITH_ORIGINAL_EVIDENCE。当前产品缺owned init/库存/受控runner入口，普通preBuild会直接触发Flutter AAR，不能作为绕过路径。**G2=false；Gradle/G2 Popen=0** |
+| 新APK/安装 | Owner继续授权已收到；本轮没有保留新build/install claim、没有新APK、构建及安装次数0。旧APK/G各SPENT_1_OF_1保持，旧A gate closed；不据本轮0次推断所有历史新授权预算均可用 |
+| L13依赖 | 稳定干净L13入口vendor的114包版本与source reference逐一匹配当前composer.lock；仅只读资格化，未复制/安装114包或改默认入口 |
+| PHP8.4环境 | 现有签名有效Docker Desktop程序已定位，冻结CLI镜像/DB镜像身份来自已接受稳定入口；但Docker两具名pipe不存在，未启动镜像或服务。此前Owner明确禁止Docker/WSL启动，所以本轮已就此具体动作单独请求确认，**当前待回复**；不把v10.1.5目标授权自动扩成该启动动作已执行 |
+| 真实媒体与供应商 | 可信ffprobe尚未资格化，当前pcntl/SFU/双端/同步测量UNKNOWN，所有真实WS/H264/RTC及MIC/CAM未运行。没有真实Push供应商/SDK/费用授权，保持PENDING |
+
+USB连接和profile修复没有消除输入库存、OS隔离或受控构建要求。G2合同仅提供单次固定dry-run的条件范围，不是实际APK预算；本轮未运行旧6ca任务、未改变旧claims、未删guard或改全局安全设置。原根index SHA仍`2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`，旧库/备份/原证/现成L13入口保持。
+
+### 当前结论与接续
+
+本轮完成手机只读身份核验、受控运行前提核对及v1015手机profile源码修复与软件复验；**PHP8.4/DB/API/Web/真实WS/H264/RTC/Android功能和APK构建安装仍NOT_RUN，整版仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。没有合main或启动v10.1.6。
+
+下一步：Owner对已列出的Docker启动动作答复后，先只核现成镜像和稳定vendor，使用新隔离运行写面开展当前source的PHP8.4内存库回归，再按现有权限做实际开发API/DB验证；不启动任何旧STOP执行器。设备构建先解决当前输入/隔离/受控入口闭合，不能直接执行普通构建。具体APK形成并核定签名/包名/ABI后才进入安装确认与设备测试；实际音视频采集按当次具名场景确认。
+
+---
+
+## 前一软件接续节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（当前软件接续节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**SOFTWARE_CONTINUATION_CANDIDATE / CODEX_BOUNDED_SOFTWARE_CHECKS_PASS / PHP84_RUNTIME_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**。
