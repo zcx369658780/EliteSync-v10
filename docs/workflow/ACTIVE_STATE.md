@@ -1,3 +1,20 @@
+# EliteSync｜2026-11-01 v10.1.5 独立产品软件接续（CURRENT ENTRY）
+
+**SOFTWARE_CONTINUATION_CANDIDATE / FLUTTER_172_PASS / DART_ANALYSIS_PASS / PHP84_RUNTIME_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**
+
+Owner已授权按新工作流接续产品；本轮从fresh产品main `8a9e97a1e9414b65d669e07f3188b81764196027`建立独立分支 `codex/v10.1.5-software-continuation-20261101`，工作面 `D:/EliteSync-v10-product-v1015-20261101`。产品源码提交 `4abf313d6297702c31d8934da975eb31ee9f9a87`，sole Parent即上述main；治理/候选/审查commit均未作研发Parent。当前工作分支的最终记录提交由Git HEAD识别，不为自引用追加提交。
+
+固定604a900 Manifest 94条已全部接续：92条保留接受Blob，2条为本轮合法大图/长历史触发在线锁定的修复及测试。Laravel13/PHP8.4精确15路径保持。20个映射Flutter测试文件共172项通过，53个映射Dart文件分析通过；PHP8.5仅36文件语法通过，不冒称PHP8.4/Laravel13运行通过。身份、命令、原失败、回执指纹和审查范围见[唯一进度细表当前节点](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-软件接续工程节点)。
+
+原根main@4bebc8f3、255项dirty状态记录及index保持，仅安全更新本入口和唯一细表；旧L11、独立L13入口、备份、数据库、账本和设备不动。现行规则以Owner本次授权及[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)为准；其中“本轮只整理”的旧语句属于已结束治理阶段。本产品分支带入四份现行规则的精确副本供后续读取，不重做Sources/ZIP或网页确认。
+
+本轮只有普通软件检查；PHP8.4运行、持久DB/浏览器、真实WS/H264/RTC/Android/Push均NOT_RUN。全版仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；新APK预算/claim/输入/设备资格仍UNKNOWN。没有启动Docker/WSL、安装工具链、消费特殊预算、合main或启动v10.1.6。下一步在既有权限内先核可用PHP8.4执行环境，再跑受影响L13内存库回归；设备与真实链继续分别核门。
+
+
+---
+
+## 本产品分支接续前main入口（按原时点保留）
+
 # EliteSync｜2026-11-01 精简工作流与Project Sources V2同步完成（CURRENT ENTRY）
 
 **WORKFLOW_V1_SYNCED / PROJECT_SOURCES_V2_OWNER_REPLACED / LOCAL_MIRROR_CODEX_REPORTED_COMPLETE / NO_PRODUCT_TASK_DISPATCHED / NO_PRODUCT_EXECUTION**

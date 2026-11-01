@@ -1,45 +1,29 @@
-# EliteSync-v10｜启动与治理规则
+# EliteSync-v10 项目启动指导
 
-生效：2026-11-01。Owner是产品方向、重大不可逆决策、具体运行/设备权限、真实数据与费用的最终authority；Astra负责Product Advisor、Planner、Reviewer、Orchestrator和Current-state Manager；Codex仅在Owner手动派发正式任务后执行。
+生效：2026-11-01，依据[Owner 本地接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)采用 Local-first；原产品路线继续保留。此文件只保留现行项目指导；旧长篇启动历史已由[调整前AGENTS固定版本](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/AGENTS.md)完整保留，不每次注入或全量重读。
 
-## 新会话最小首读
+## 当前目标与入口
 
-每次开工先fresh读取live GitHub main，然后只读：
+v10.0核心只有两项：**复现可实际使用的EliteSync APP（前端、后端、数据库及选定原版主要功能恢复）＋可用的独立Web管理面板**。其它新增产品扩展及公开运营准备后置；不再以长期synthetic演示或新架构设计替代恢复。
 
-1. 本文件全文（启动规则）。
-2. `docs/workflow/ACTIVE_STATE.md`最新CURRENT ENTRY（只读首个当前状态块，遇到分隔线即停止）。
-3. ACTIVE_STATE指向的最新具名Session Handoff（只读这一份，不递归旧handoff）。
+新会话以实际本地本文件、[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部有效 CURRENT ENTRY 和具体目标为起点；规则见[现行工作流](docs/workflow/CURRENT_WORKFLOW.md)。核对实际 Git 根、remote、分支、HEAD 和工作区；GitHub 按需核对，不要求每次先恢复网页或远端状态。只按目标读取必要材料，不递归加载全部 Project Sources、长期记忆、历史交接、任务档案或原始日志；不足时仅补读直接相关的一份最新交接。历史冻结标准继续适用，旧流程角色以本次 Owner 决定为准。
 
-完成后停止首读。**不默认读取冻结plan、历史handoff、全部Owner决定、全部Project Sources、全量日志或整仓清单。**
+## 执行方式
 
-## 按需补读
+Owner负责方向、决策和授权；项目源GPT顾问负责项目计划与路线图；Codex负责工程执行与验收。Codex 负责计划落地的工程拆解、实现、调试、测试、代码审查、工程验收、进度、常规 Git 和记录，在已批准目标与权限内自主安排工作和修复普通失败。日常工程不再要求网页 GPT 派单、冻结任务单、A–D 发布闭环或网页验收。一个功能版本可跨前端、后端、数据库、管理面板和测试，不默认限制一个源文件。
 
-- 已有Owner派发的正式任务：读任务全文，再读任务明确引用的当前冻结plan和专项合同。
-- 需要作产品/技术/路线决策：先明确具体待决问题，再从GitHub定点读取直接相关的Owner决定、原始合同、源码、测试或验收证据。
-- 证据适用性不明：核对源码Tree/Blob、环境、合同版本及失效条件；只做受影响范围的增量复核。不得凭摘要补造事实。
+Owner 保留产品定位、重大功能取舍、重大架构、不可逆操作、真实用户和生产数据、设备与外部服务权限、费用、重大版本及正式发布。边界不清或存在实质风险时只暂停受影响工作，向 Owner 提出明确问题与选项，其余已授权工作继续。项目源GPT顾问制定项目计划和路线图，不承担Codex工程验收或逐项执行；顾问计划不自动扩大权限，保留事项仍由Owner决定。
 
-## 角色与执行
+工程验收依据实际源码、适用标准和测试证据，不事后降低冻结标准。自测、Codex 审查、外部独立审查、Owner 接受和生产发布分别记录；自己的复查不能冒充外部独立审查，不建立每项工作强制多模型审核。未运行写 NOT_RUN，未核实写 UNKNOWN；节点记录目标、改动、代码身份、实际检查、未完成项及下一步，不逐小步复制报告。
 
-- Owner保留产品方向、具体高风险权限和不可逆决策authority，不作日常message bus。
-- Astra负责规划、任务编排、状态管理和独立验收；Codex只执行Owner手动派发的正式任务。
-- 默认一份冻结计划、一份综合长任务、一个持久账本、一个候选、一次集中独立验收。Codex在任务授权范围内自主调查、实现、测试、调试和修复普通失败，不拆微任务。
-- 任务发布不等于Codex派发；派发不等于执行。禁止自动启动Codex、自动合并产品main或越级启动下一版本。
+原版有效功能不得仅因旧MVP标Later而省略。读取具名旧资产和现有LOCAL_ONLY为恢复服务，不能无限考古、覆盖原件或擅自认可旧未验收实现。用户/管理员操作须最终贯通真实开发服务和持久化数据库；测试数据可以虚构，软件链不能只用mock代替。
 
-## 任务发布与验收
+具体设备、外部服务、真实数据、费用和不可逆操作仍需 Owner 授权，平台、组织策略和实际权限不被覆盖。G2、APK/ADB 等特殊预算、claim/ledger 及已消耗记录保持，不退款、不重置、不复用 STOP 余额。本轮只整理活动项目源与现行规则，不修改产品源码、不运行构建/测试/数据库/设备、不合产品main、不删除历史资产或启动新版本。不全局删除鉴权或私信保护，不复活旧 V57/H1/H2/D0 任务链。
 
-正式任务遵循`docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md`的A–D闭环。A–D是发布质量保证，不是运行中逐步骤审批。普通失败在范围内修复；只有超范围、方向性/不可逆选择、真实用户/生产数据、敏感外传、真实费用、系统/全局安全设置、供应商/实人操作或其他未授权高风险动作才暂停请求Owner。
+保持原 dirty/untracked、暂存区、未提交成果、worktrees、旧版本、备份、数据库和历史原证；相关未提交原文先作局部可恢复保存。不盲 pull/reset/rebase/stash/clean/prune、不 force、不夹带无关提交。历史冻结计划、接受/拒绝和原始失败不重写；退出码与 stdout 共同核验，证据只重验受影响部分。网页不假设可读本机资料，GitHub 与本地代码和运行状态分开记录。公开 GitHub 不上传凭据、私密 SQL、真实用户资料、敏感设备日志、受限 APK 或 LOCAL_ONLY 原件。同步失败记 PENDING_SYNC，不更换身份绕过拒绝。
 
-## 证据与安全边界
+## 本地辅助约定（不改变现行路线）
 
-- 严格区分源码候选、Astra功能接受、main集成、本地代码基线、运行状态和外部供应商门禁。
-- Astra直接核验、CODEX_REPORTED、LOCAL_ONLY、NOT_RUN、PENDING不可互相替代。
-- 复用已接受证据时保留Tree/Blob、适用范围和失效条件；只重验受本次改动影响的部分。
-- 原冻结AC、失败记录、历史候选、原始证据、dirty根、worktrees、数据库/卷、备份、refs、密钥和LOCAL_ONLY原证不得倒改或删除。
-- 不盲pull/reset/rebase/stash/clean/prune/force；不把私密SQL、真实用户资料、JWT/密钥、设备原始日志或LOCAL_ONLY APK上传公开GitHub/Project Sources。
-- 一次性预算/硬上限不重置、不退款、不重试。环境拒绝如实记录，不伪造PASS、不规避安全策略、不扩大权限。
+主实现默认GPT-6.1 Sol/medium；读取/定位/常规文档辅助GPT-6 Luna/medium；完整非作者代码审查GPT-6.1 Sol/high；复杂规划可使用独立GPT-6 Astra/high只读建议。模型规则不新增内部审批或改变Owner决定权。
 
-## 项目源与详细规则
-
-当前完整Project Sources：[20261101_COMPACT_V2](docs/gpt-project-sources/20261101_COMPACT_V2/00_INDEX.md)；[包说明](docs/gpt-project-sources/20261101_COMPACT_V2_README.md)。Project Sources是按需参考库，不是每次会话的阅读清单。ZIP由Owner手动替换附件；GitHub、Project附件和账户Memory不自动同步。
-
-详细工作方式：[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)；[任务发布协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)；[Session Handoff模板](docs/workflow/SESSION_HANDOFF_TEMPLATE.md)；[Project Sources瘦身规则](docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md)。
+既定产品/科研定义、accepted ADR、legal/Safety/no-processing、FD02排除及历史固定证据保留；UAC必须当前Owner“我在”及具体授权。后续工程按 Owner 已批准目标与权限推进，不恢复旧 Work 或旧预算。旧协议、技能、Sources 和历史状态中的强制网页派单、验收及被动等待条款已由本次决定取代，真实保护门继续有效。当前只整理活动项目源及必要规则，历史资产保留；完成后结束本轮整理，不自动启动产品开发。
