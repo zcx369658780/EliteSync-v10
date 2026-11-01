@@ -1,3 +1,23 @@
+# EliteSync｜2026-11-01 本地 Codex 接管迁移（CURRENT ENTRY）
+
+**LOCAL_FIRST_RULES_ACTIVE / GOVERNANCE_MIGRATION_ONLY / PRODUCT_EXECUTION_NOT_RUN**
+
+Owner 最终决策；Local Codex 自治管理和执行；Web GPT 为按需顾问。有效规则：[AGENTS](../../AGENTS.md)、[当前工作流](CURRENT_WORKFLOW.md)、[Owner 接管决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。日常工程不再等待网页 GPT 派单、A–D 发布闭环或网页验收；重大事项与真实权限仍交 Owner。
+
+本次规则已落实到实际活动目录；原本地产品 HEAD、分支和暂存区保持，未同步/切换产品基线。专用分支只承载五项治理文档，GitHub main 未由本轮更新；同步身份以该分支实际 commit 和本地回执为准。本地代码、远端发布、旧报告和实际运行不可混为一谈。
+
+承接开工远端状态（本轮不重新验收）：v10.1.5 仍 PARTIAL_NOT_ACCEPTED；AC05 OPEN、G2 false、真实 Push PENDING；604a900 仅获 WS 软件/浏览器有界接受，候选 STOP 且未合 main。旧“等待 GPT 验收”改由后续 Codex/Owner 按新分工处理，缺陷和未完成测试不自动 PASS。
+
+已记录的条件性 G2 一次 dry-run、新 Debug APK/USB ADB 授权及其独立预算继续按原前提、ledger/claim 核验；本轮不执行、不消费、不重置、不退款。旧任务 STOP 资产、dirty/untracked、11,066 文件备份、历史数据库、原证和既有 worktrees 保留。当前设备与服务运行状态 UNKNOWN，本轮构建/测试/数据库/设备均 NOT_RUN。
+
+Owner 已确认网页顾问迁移和 Project Sources 替换（OWNER_REPORTED）；没有独立检查 Project 后台。本轮只完成治理迁移，本地提交及专用分支副本，完成后停止；仓库清理、产品开发和旧任务接续均未启动。
+
+此前产品与预算状态保存在[迁移前固定 ACTIVE_STATE](https://github.com/zcx369658780/EliteSync-v10/blob/8a9e97a1e9414b65d669e07f3188b81764196027/docs/workflow/ACTIVE_STATE.md)，按需定点读取。后续只需定点处理旧协议/技能角色、旧导航入口及实际开发基线，不在本轮展开。
+
+---
+
+## History before Local-first migration (original bytes retained below)
+
 # EliteSync｜2026-11-01 精简工作流与Project Sources V2同步完成（CURRENT ENTRY）
 
 **WORKFLOW_V1_SYNCED / PROJECT_SOURCES_V2_OWNER_REPLACED / LOCAL_MIRROR_CODEX_REPORTED_COMPLETE / NO_PRODUCT_TASK_DISPATCHED / NO_PRODUCT_EXECUTION**
