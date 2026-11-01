@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The development app still requests consent through the Android dialog.
+         Declaring this permission does not enable a real Push provider. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+</manifest>
