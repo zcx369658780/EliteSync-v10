@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-01 Owner要求停止并关机（CURRENT ENTRY）
+
+**OWNER_STOP_AND_SHUTDOWN_REQUESTED / CONFIG_DIAGNOSTICS_RESERVED_2_OF_3 / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner已明确授权独立最多3次禁网配置诊断，并在本节点要求“这次执行后请停下来，马上关机，明天继续”。当前停止后续工作，不启动第三次、不退款或新开额度。新任务LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`；reservation-1/2永久保留，尚余1次，旧G2/STOP不改。
+
+同一产品分支，节点起点`c05303e73816d9f96065110464cb2f198e6d2cb4`；apps/services不变。新增专用执行器/守卫/永久claim链及测试；最终16项Python诊断、9项纯预算数据测试、42项C#纯断言通过（C#纯断言之后只增客体环境回执，最终源已实际运行）。Java fixture第3次通过：49样本、两JDK成员、越界监听负例触发自有Job停止并全部退出；前两次conhost拒收保留。
+
+真实Gradle两次均安全停止：第1次一次性daemon派生conhost；按官方8.14文档/已装源码匹配JVM选项并加载既有Gradle agent后，第2次实测仅一个JDK进程、311样本，stock/private工具双上下文守卫生效，Gradle识别readonly cache；随后磁盘扫描遇到Gradle transforms临时目录消失而拒收。配置/任务图/缓存命中未通过，不能把collect成功或守卫运行写成构建成功。两次Job均空、所有已绑定句柄退出，APK/安装/设备/媒体0。
+
+明天从**修复磁盘扫描对任务私有临时目录的竞态**开始，保持输入/身份/网络失败关闭；新native源码需重新做具名、不可覆盖的资格化回执，修正qualification记录换版方式后才能使用剩余第3次。保留原始失败，先做定向检查及明确接续决定，不原样重跑。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-当前产品离线诊断授权与owner停止节点)。整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一装配节点（按原时点保留）
+
 # EliteSync｜2026-11-01 只读输入与私有写面装配实测通过（CURRENT ENTRY）
 
 **READONLY_INPUTS_PRIVATE_LAYOUT_BOUNDED_SUPPORTED / CURRENT_PRODUCT_PLAN_ONLY / GRADLE_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**

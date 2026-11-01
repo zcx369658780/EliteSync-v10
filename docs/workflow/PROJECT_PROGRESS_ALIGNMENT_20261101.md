@@ -1,3 +1,34 @@
+# EliteSync-v10｜项目进度细表（当前产品诊断与Owner停止节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_REQUESTED_STOP_AND_SHUTDOWN / TWO_DIAGNOSTICS_SAFETY_STOPPED / ONE_RESERVED_SLOT_REMAINING / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 当前产品离线诊断授权与Owner停止节点
+
+Owner针对具名问题明确答复“授权上述独立3次诊断范围”，随后要求本次执行后立即停止、关机、明天继续。Codex停止新增运行，保存当前证据和源码；不启动第三次。任务唯一LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`，原Owner授权、reservation-1/2和outcome文件均保留，**已占2/3，剩1/3**；不退款、不换任务续额，旧G2四账本/STOP保持。
+
+| 项目 | 实际结果与限制 |
+|---|---|
+| 产品身份 | 起点/Parent `c05303e73816d9f96065110464cb2f198e6d2cb4`；产品仍固定source `84a94c9177ce832040146cff9968569762300307`、apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`。本节点无产品源码变化、不合main |
+| 新实现 | `current_product_diagnostic_contract.py`/测试负责纯数据上限3、连续不可退款reservation和旧额度不可复用；`current_product_config_diagnostic.py`/测试负责只读输入/私有适配、精确CLI/环境、永久claim及outcome/接续链、收集和严格分类；`current_product_config_guard.init.gradle`固定双工具根/源/唯一dry-run任务和私有输出；`windows_sandbox_gradle_diagnostic.cs`/纯测试及`DiagnosticMonitorFixture.java`负责自有Job动态JDK树、双栈端点、增量下载日志、输入/磁盘和独立watchdog |
+| 软件验证 | **9项纯预算数据测试、最终16项Python诊断测试、42项C#纯断言exit0**。初版Python测试发现718 tracked集合不含生成.android，已另从工作面具名6脚本/3个src目录只读复制并记hash，未改原文件；源位置测试修复后通过。C#首次未处理异常保留，补错误回执后定位ADS路径在规范错误分类前抛异常，冒号拒收前移后42项通过。纯C#断言后只增加实际CLR/kernel回执，最终源另经真实VM执行 |
+| 审查修复 | 非作者Codex只读指出的首次退出成员身份、日志尾部漏信号、单线程时限、写前路径检查、claim/manifest/reservation绑定、安全STOP接续门、最终输出路由/分类、UNKNOWN outcome阻断等均已修并定向检查；最终UNKNOWN outcome及JVM参数delta由主代理源码核对/测试负责。此为Codex辅助静态审查，不冒充外部独立验收 |
+| 资格化VM | monitor-qualification-01/02各一次因UNKNOWN_PROCESS_IMAGE/conhost停止，未放宽conhost门；改root/leaf为已安装且Eclipse有效签名javaw后，monitor-qualification-03一次通过，**49成功样本、2成员、loopback端口正例与NON_LOOPBACK_TCP负例、全部句柄退出/Job空**，collect exit0。前一次collect因Sandbox尚未退出拒收，退出后仅再收集，未重启VM。三次均Gradle0 |
+| 准备中止 | 产品attempt-01仅prepare，误把Gradle附带src/docs纳入清单导致慢扫描；按精确命令、已知Python镜像及创建时间绑定停止自有准备进程，保留目录，**VM0/claim0/Gradle0**。随后收窄到Gradle lib+LICENSE/NOTICE，保留整个JDK及6096原输入和具名Flutter engine/SDK元数据、platform jars，共6954客体输入；不复制SDK/Seed |
+| 第1次真实诊断 | 目录attempt-02，对应永久reservation-1。实际Gradle8.14 root创建尝试1，6954输入已核；**28成功样本、3成员、UNKNOWN_PROCESS_IMAGE/conhost安全停止**。stdout明确因JVM选项而要求single-use daemon。Job空/全部已绑定句柄退出，collect exit0仅表示有界失败回执收集有效；status CONFIG_DIAGNOSTIC_SAFETY_STOP，不能退款 |
+| 有据修复与接续 | 依现有8.14官方daemon文档、CurrentProcess/DaemonCompatibilitySpec/BuildActionsFactory/JvmOptions及JPMS源，匹配客户端和org.gradle.jvmargs的managed选项，预载**已有且逐SHA固定的Gradle instrumentation agent**；不关闭该agent或减少自有监测。不改JDK/Gradle分发、SDK或全局设置。16项检查通过后持久化绑定旧receipt/新manifest/修复证据/范围不变的Codex接续决定，才占第2次；旧已启动控制器原文按冻结SHA逐字节恢复保存 |
+| 第2次真实诊断 | 目录attempt-03，对应永久reservation-2。实际Gradle root尝试1，**311成功样本、只绑定1个JDK进程**，无single-use fork提示；根模块与private tooling两上下文守卫实际运行，Gradle报告识别共享只读依赖缓存。之后监督器扫描owned Gradle transforms目录时遇到临时路径消失，FileNotFoundException安全停止；无完整任务图/AGP输出消费/缓存命中结论。Job空、全部已绑定句柄退出；原始失败永久保留，status仍SAFETY_STOP |
+| 环境/保护 | 新客体实际CLR4.0.30319.42000、kernel10.0.26100.6713；JDK17.0.18全分发/Gradle运行lib字节及所列输入在launch/collect核身份。UDP目的UNKNOWN、采样非原子、磁盘额度为轮询且可短暂超调、VM后台完整teardown UNKNOWN保留。只允许具名java/javaw镜像，无conhost通用白名单 |
+
+下一次先修**磁盘扫描竞态**：不对已在枚举后消失的owned临时路径误当输入漂移；不能简单忽略全部IO/API失败或放松reparse/身份门。应采用可验证的枚举元数据/有界一致性重扫，记录非原子与额度超调限制，补定向验证。native代码变化后，要以按源码身份具名的新资格化回执保留旧proof，不能覆盖现有`monitor-qualification.json`或直接拿旧源码proof放行新native；当前collect写该固定文件名的换版方式须先修。仍有1次独立额度，必须全部技术前置重新成立并绑定两个既有STOP的明确接续决定后才可占用。**本节点按Owner指示先停，不做这些后续实现。**
+
+节点原证/PE/manifest/编译失败/claim/日志及详细source pins全部LOCAL_ONLY。资格化最终receipt SHA `4f62a6259a3b6cbf51e98bac91afd7d7ee6da479e3312969a72f2d61bcee4c67`；第1真实诊断receipt `fe316ed043ff97707ffd866a6e7e20e57dbdecc76c3468e2c4ec747bb851ccd8`；第2真实诊断receipt `cf658f2912a2ac613b4d9d1dcea124dc7c4359f3e12a3f8c8adb2f9d66ffb3e2`。官方依据：[Gradle8.14禁用daemon/JVM匹配](https://docs.gradle.org/8.14/userguide/gradle_daemon.html#sec:disabling_the_daemon)，所读本地官方HTML及七份源码/agent身份已记本地hash；不是新下载或另一次Gradle执行。
+
+原根main@4bebc8f3、255项状态/index及六个具名保护锚点最终定点复核；旧L11/L13、11,066备份、数据库、STOP原证不动。新工作面另见空`%SystemDrive%/ProgramData/SogouInput`目录，来源UNKNOWN，保持不删、不纳入提交。本节点只接受受控执行与实际失败证据，**不接受完整构建或整版功能**。APK构建/安装、手机/音视频、本轮供应商/真实Push0；整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启动v10.1.6。
+
+---
+
+## 前一装配节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（只读输入与私有写面装配节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**READONLY_INPUTS_PRIVATE_LAYOUT_BOUNDED_SUPPORTED / FULL_BUILD_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
