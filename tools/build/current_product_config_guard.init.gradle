@@ -44,6 +44,10 @@ if (gradle.parent != null) {
 def receipt = new File('C:/ProbeOutput/guard-routing.jsonl')
 receipt << JsonOutput.toJson([event:'context', root:gradle.parent == null, current:path(gradle.startParameter.currentDir).path, tooling:tooling.path, sdk:sdk.path]) + '\n'
 gradle.beforeProject { p ->
+    if (p.projectDir == tooling) {
+        check(p.findProperty('kotlin.compiler.execution.strategy') == 'in-process', 'included compiler property must be in-process')
+        receipt << JsonOutput.toJson([event:'included_compiler_property', project:p.path, requested:p.findProperty('kotlin.compiler.execution.strategy')]) + '\n'
+    }
     def base = p.projectDir == tooling ? tooling : (contract.native_plugins.contains(p.name) ? new File('C:/BuildWork/Project/apps/flutter_elitesync_module/.android/plugins_build_output') : new File('C:/BuildWork/state/project-outputs'))
     p.layout.buildDirectory.fileValue(new File(base, p.projectDir == tooling ? 'build' : p.name))
     p.pluginManager.withPlugin('com.android.library') {
@@ -75,4 +79,12 @@ gradle.projectsEvaluated {
 gradle.taskGraph.beforeTask { task ->
     // Included tooling compilation may run to configure plugins; no root AAR/APK task actions.
     check(gradle.parent != null && path(task.project.projectDir) == tooling, 'root task action prohibited')
+    if (task.name == 'compileKotlin') {
+        check(task.hasProperty('compilerExecutionStrategy'), 'compiler execution strategy API unavailable')
+        def strategyProperty = task.compilerExecutionStrategy
+        strategyProperty.finalizeValue()
+        def strategy = strategyProperty.get()
+        check(strategy instanceof Enum && strategy.name() == 'IN_PROCESS', 'included compiler task must execute in-process')
+        receipt << JsonOutput.toJson([event:'included_compiler_strategy_before_action', task:task.path, selected:strategy.name(), finalized:true]) + '\n'
+    }
 }

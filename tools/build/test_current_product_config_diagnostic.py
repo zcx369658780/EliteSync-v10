@@ -28,10 +28,24 @@ class DiagnosticTests(unittest.TestCase):
         args=d.command('gradle');self.assertEqual(args[0],d.JAVA)
         self.assertIn('-jar',args);self.assertTrue(args[args.index('-jar')+1].endswith('gradle-gradle-cli-main-8.14.jar'))
         self.assertEqual(args[-2:],['--dry-run','assembleAarRelease'])
-        self.assertIn('--offline',args);self.assertIn('--no-daemon',args)
+        self.assertIn('--offline',args);self.assertIn('--no-daemon',args);self.assertIn('--info',args)
         self.assertEqual(args.count('-I'),2)
         self.assertFalse(any(s in ['cmd','flutter','gradlew','publish',':app:assembleDebug'] for s in args))
         with self.assertRaises(ValueError):d.command('apk')
+    def test_private_home_property_is_a_pinned_input_not_a_host_home_write(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);inputs=[];bindings=[]
+            d.add_private_gradle_home_properties(root,inputs,bindings)
+            source=root/'inputs/adapters/diagnostic-gradle-home.properties'
+            self.assertEqual(source.read_bytes(),b'kotlin.compiler.execution.strategy=in-process\n')
+            self.assertEqual(len(inputs),1);self.assertEqual(len(bindings),1)
+            self.assertEqual(inputs[0]['path'],r'C:\Inputs\Adapters\diagnostic-gradle-home.properties')
+            self.assertEqual(inputs[0]['destination'],str(d.WORK/'GradleHome/gradle.properties'))
+            self.assertEqual(inputs[0]['sha256'],d.sha(source))
+            self.assertEqual(bindings[0]['host'],str(source))
+            self.assertEqual(bindings[0]['sha256'],d.sha(source))
+            self.assertFalse((root/'GradleHome').exists())
+            with self.assertRaises(FileExistsError):d.add_private_gradle_home_properties(root,[],[])
     def test_gradle_request_and_launcher_managed_jvm_options_match(self):
         args=d.command('gradle');prefix=args[:args.index('-jar')]
         properties=d.adapt_text('/gradle.properties','legacy').splitlines()

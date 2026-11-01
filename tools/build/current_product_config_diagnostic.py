@@ -88,7 +88,7 @@ def command(mode):
         '-Dorg.gradle.java.installations.auto-detect=false','-Dorg.gradle.java.installations.auto-download=false',
         '--offline','--console=plain','--no-daemon','--max-workers=2',
         '--gradle-user-home',str(WORK/'GradleHome'),'--project-cache-dir',str(WORK/'state/project-cache'),
-        '--dry-run','assembleAarRelease']
+        '--info','--dry-run','assembleAarRelease']
 
 def environment():
     return {'SystemRoot':r'C:\Windows','WINDIR':r'C:\Windows','OS':'Windows_NT',
@@ -140,6 +140,12 @@ def add_input(inputs,bindings,host,guest,destination=None):
     if destination is not None:row['destination']=str(PureWindowsPath(destination))
     inputs.append(row)
 
+def add_private_gradle_home_properties(root,inputs,bindings):
+    # Gradle user-home properties also cover the separate included tooling build.
+    path=root/'inputs/adapters/diagnostic-gradle-home.properties'
+    write(path,b'kotlin.compiler.execution.strategy=in-process\n')
+    add_input(inputs,bindings,path,r'C:\Inputs\Adapters\diagnostic-gradle-home.properties',WORK/'GradleHome/gradle.properties')
+
 def product_inputs(root,inputs,bindings):
     _,prior=layout.frozen(PRIOR,PARENT)
     if (prior['source_commit'],prior['apps_tree'],prior['services_tree'])!=(SOURCE,APPS,SERVICES):raise ValueError('Fixed product identity mismatch')
@@ -182,6 +188,7 @@ def product_inputs(root,inputs,bindings):
     for name,source in [('current-product-config-guard.init.gradle',HERE/'current_product_config_guard.init.gradle'),('aar-registration.init.gradle',layout.FLUTTER/'packages/flutter_tools/gradle/aar_init_script.gradle')]:
         path=root/'inputs/adapters'/name;write(path,source.read_bytes())
         add_input(inputs,bindings,path,PureWindowsPath(r'C:\Inputs\Adapters')/name,WORK/'Adapters'/name)
+    add_private_gradle_home_properties(root,inputs,bindings)
     pins={r['destination']:r['sha256'] for r in inputs if 'destination' in r}
     put(root/'probe/guard-contract.json',{'project_properties':properties(),'source_pins':pins,'native_plugins':sorted(names),'output_roots':expected_outputs(names)})
     put(root/'adaptations-private.json',adaptations)
