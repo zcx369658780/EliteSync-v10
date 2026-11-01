@@ -1,3 +1,41 @@
+# EliteSync-v10｜项目进度细表（小样本隔离复验通过节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**MAPPED_FIXTURE_ISOLATION_BOUNDED_SUPPORTED / INPUT_RUNTIME_CLOSURE_NOT_PROVEN / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 目录改名原生诊断与小样本隔离复验节点
+
+Owner在上次失败交付后直接答复“可以请继续”。按已批准目标继续普通诊断修复；旧claim/失败不退款、不重写。新诊断范围仍只映射新fixture、探针和owned输出，不运行Gradle/Java/Flutter/JDK工具、设备或媒体，不增加系统权限或安装工具链。Codex负责工程验收，不等待网页派单或终验。
+
+### 改动与证据
+
+| 项目 | 本节点实际证据及限制 |
+|---|---|
+| 产品身份 | 同一独立产品分支，Parent `806506387df4776dc5142409ccd644b81e1fdc18`。apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`保持；L13精确兼容输入保持，无产品源码变更 |
+| 根因界限 | 已证旧探针只捕捉UnauthorizedAccessException，而Directory.Move实际抛IOException，导致停止且没有原生码；旧回执无法证明该次原生错误究竟为何，不追认旧测试通过 |
+| 修复 | 仅目录改名使用MoveFileW，失败后立即GetLastWin32Error，只接`!succeeded && native_error==5`。六项原生访问操作输出succeeded+native_error；收集器要求每项唯一原生5/false，缺失、重复、分享冲突32、字符串伪5或成功带stale5均拒绝 |
+| 定向软件验证 | Python **13 tests、exit0**；新增原生证据拒收回归。C#纯结果分类**7 cases、exit0**，以独立Main只调用纯函数，不执行guest Main或原生API。首次C#测试编译因相对路径解释失败，改为解析出的绝对路径后编译/运行通过，原失败日志保留 |
+| 新诊断次数/输入 | LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-sandbox-qualification-20261101-03`，独立输入和claim，**本节点一次启动**。旧01 prepare-only、旧02一次失败及其claim/receipt SHA保持；没有在旧claim下重试 |
+| 客体身份 | WDAGUtilityAccount，nonce/input/EXE hash绑定；PID18404，creation `2026-11-01T11:46:46.4410423Z`。实际EXE SHA256 `39d11c437876a7f37a61a34877f8eb1872b848fb3164f17871386c7b624fd012`；运行source、host controller与launcher均与本节点最终代码hash相等 |
+| 实际隔离结果 | **13/13检查true**：read、owned output写及11项拒写/无活动网卡判定。父目录改名明确失败/error5；六项原生访问拒绝均error5。IPv4/IPv6文档保留地址都返回原生10051，无timeout/refusal冒充禁网；没有DNS或真实供应商请求 |
+| 收集/退出/保护 | collect **exit0**，`MAPPED_FIXTURE_ISOLATION_BOUNDED_SUPPORTED`。宿主样本FileID/SHA/st_nlink=1与目录内容不变；原launch身份退出且WindowsSandbox/Client/RemoteSession/Server缺席；后台VM完整teardown仍UNKNOWN，没有杀用户进程。六份具名旧保护锚点hash均相等 |
+| 当前输入身份审计 | 只读记录**798文件**，其中当前tracked Android/Flutter产品输入718；170包根均存在，15 Android插件条目/14 native；四个Flutter工具脚本与6ca固定历史pin相等。记录当前JDK17.0.18元数据/选定二进制、Gradle8.14四个具名文件及SDK36/NDK/CMake的具名元数据/工具身份，无重定向/多链接/缺失项（仅所选范围） |
+
+原生改名依据：[MoveFileW](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-movefilew)的BOOL返回和失败GetLastError合同；仍沿用此前CreateFileW、Sandbox配置和Winsock官方依据。本次原生证据更严格，没有用“报错文字含denied”放宽判定。非作者Codex辅助只读复核当前改动未发现具体P1/P2；没有执行测试/VM，不冒称外部独立接受。
+
+### 复用边界与下一步
+
+本节点工程接受仅是**本批新fixture映射的实际拒写、网络不可达和收集通过**，并非整个SDK/cache/build输出隔离。798文件的“身份已记录”不等同可信来源已全部验证或完整读集闭合；四个Flutter pin相等不等同全Flutter SDK完整复算。170包根存在不代表全部包内容/Gradle依赖选型/仓库metadata可离线解析。JDK/Gradle选定文件在场不等同完整分发或运行通过；本节点Java/Gradle启动均0。新增输入审计脚本及原始路径/文件ID列表只存LOCAL_ONLY，未装包、下载、升级、改共享SDK/cache或复制大Seed。
+
+下一步构建预检仍列为未满足：完整工具/插件实际消费来源、缓存repository与metadata映射/离线命中、tooling/plugin私有写面、受控runner/observer身份及强停条件、当前APK独立预算与输入/claim绑定。旧G2的6ca源pin与一次dry-run合同不能移到当前产品source，也不能把G2成功与否混同新APK额度；本节点不创建G2/APK claim、不运行构建。不得直接走普通preBuild→flutter build aar。继续在已有授权内补这些具体条件，涉及Owner保留事项时才单独提出具体决定。
+
+本节点原始编译/单测/guest回执/claim及输入身份材料保留LOCAL_ONLY，公开摘要指纹：guest receipt `559d4343f5ddae243c63a04c63f70deb76a02e03c31b22def66f3a697e7a92a2`；verified-result `e11973e44263408cd4eb29950759446ffbca9c5531f8cffa5af1c916093eb4e5`；单测log `b95fb67cec9876eec13251cf6e9a3359a52b0d68d82f28802c29947721476f1b`；输入summary `9bc68270c25eb0febb6c86a06b29c7051c544a15d3cf51f5ea228c39c49fe977`；输入private列表 `c440df715578cd79757c5f204f6c662cd7f6cd9820f12d7a97d0ebae3390af6f`。自身helper的只读定位与主代理798文件记录分层，未把定位报告当Hash验收。
+
+原根main@4bebc8f3、255项普通状态和index保持；旧库、备份、ACL恢复对象及STOP资产不动。产品双Tree未改，前一PHP59/537、真实WS/Web与选定持久性证据继续按原身份/环境/范围复用，本轮未重跑。G2 false、Gradle0、APK构建0/安装0、设备及媒体0；整版仍10 PARTIAL、AC05 OPEN、真实Push PENDING。不合main、不启动v10.1.6。
+
+---
+
+## 前一未通过节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（一次小样本隔离探针节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**FIXTURE_ISOLATION_PROBE_PARTIAL_FAILED_NO_RETRY / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。

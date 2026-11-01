@@ -25,6 +25,28 @@ class Probe
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     static extern SafeFileHandle CreateFile(string name, uint access, uint share, IntPtr security, uint creation, uint flags, IntPtr template);
 
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "MoveFileW", ExactSpelling = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    static extern bool MoveFile(string source, string destination);
+
+    internal static bool IsAccessDenied(bool succeeded, int nativeError)
+    {
+        return !succeeded && nativeError == 5;
+    }
+
+    static void ParentRenameDenied()
+    {
+        // Capture the native result rather than inferring it from an IOException message.
+        // https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-movefilew
+        const string name = "parent_rename_denied";
+        Before(name);
+        bool succeeded = MoveFile(@"C:\InputFixture", @"C:\InputFixture-renamed");
+        int error = succeeded ? 0 : Marshal.GetLastWin32Error();
+        Operations.Add(new { name = name, succeeded = succeeded, native_error = error });
+        Checks[name] = IsAccessDenied(succeeded, error);
+        if (!Checks[name]) throw new InvalidOperationException(name + " was not denied with ERROR_ACCESS_DENIED; native=" + error);
+    }
+
     static string Hash(string path)
     {
         using (var stream = File.OpenRead(path))
@@ -46,8 +68,8 @@ class Probe
         using (var handle = CreateFile(path, access, 7, IntPtr.Zero, 3, flags, IntPtr.Zero))
         {
             int error = handle.IsInvalid ? Marshal.GetLastWin32Error() : 0;
-            Operations.Add(new { name = name, native_error = error });
-            Checks[name] = handle.IsInvalid && error == 5;
+            Operations.Add(new { name = name, succeeded = !handle.IsInvalid, native_error = error });
+            Checks[name] = IsAccessDenied(!handle.IsInvalid, error);
             if (!Checks[name]) throw new InvalidOperationException(name + " was not denied with ERROR_ACCESS_DENIED");
         }
     }
@@ -113,7 +135,7 @@ class Probe
                 MutationDenied("file_delete_denied", () => File.Delete(Input));
                 MutationDenied("file_rename_denied", () => File.Move(Input, Input + ".renamed"));
                 MutationDenied("directory_create_denied", () => Directory.CreateDirectory(@"C:\InputFixture\new-child"));
-                MutationDenied("parent_rename_denied", () => Directory.Move(@"C:\InputFixture", @"C:\InputFixture-renamed"));
+                ParentRenameDenied();
                 // Only request handles: never change a DACL, owner, or child entry.
                 AccessDenied("write_dac_denied", Input, 0x00040000, 0);
                 AccessDenied("write_owner_denied", Input, 0x00080000, 0);

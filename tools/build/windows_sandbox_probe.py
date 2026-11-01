@@ -23,6 +23,8 @@ REQUIRED_CHECKS = (
     'delete_child_denied', 'alias_write_denied', 'network_no_active_adapter',
 )
 HERE = Path(__file__).resolve().parent
+NATIVE_ACCESS_CHECKS = ('open_write_denied', 'parent_rename_denied', 'write_dac_denied',
+                        'write_owner_denied', 'delete_child_denied', 'alias_write_denied')
 
 
 def digest(path):
@@ -102,6 +104,12 @@ def validate_receipt(receipt, nonce, input_sha, binary_sha=None):
     checks = receipt.get('checks', {})
     if any(checks.get(name) is not True for name in REQUIRED_CHECKS):
         raise ValueError('A failed, missing or unknown check cannot qualify isolation')
+    operations = receipt.get('operations', [])
+    for name in NATIVE_ACCESS_CHECKS:
+        matching = [row for row in operations if row.get('name') == name]
+        if (len(matching) != 1 or matching[0].get('succeeded') is not False or
+                type(matching[0].get('native_error')) is not int or matching[0]['native_error'] != 5):
+            raise ValueError('Missing or ambiguous native access-denial evidence: ' + name)
     networks = receipt.get('network', [])
     if len(networks) != 2 or {row.get('family') for row in networks} != {2, 23}:
         raise ValueError('Both literal address families must be observed')

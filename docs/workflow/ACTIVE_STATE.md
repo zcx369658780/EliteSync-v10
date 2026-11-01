@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-01 构建隔离小样本实测未通过（CURRENT ENTRY）
+# EliteSync｜2026-11-01 小样本隔离修复复验通过，构建输入仍待闭合（CURRENT ENTRY）
+
+**MAPPED_FIXTURE_13_PASS / DUAL_STACK_NETWORK_UNREACHABLE_OBSERVED / SELECTED_INPUTS_798_HASHED / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**
+
+Owner回复“可以请继续”后，继续在既有独立产品分支修复探针；本节点Parent `806506387df4776dc5142409ccd644b81e1fdc18`，apps/services双Tree未改。目录改名改用MoveFileW立即读取原生错误，仅“失败且错误5”可通过；收集器要求六项原生访问拒绝均有唯一明确回执，不从异常文本猜测。13项Python测试、7项C#纯判定用例通过。
+
+另立新诊断输入与claim，实际启动一次小样本Sandbox；**13/13检查true，IPv4/IPv6均原生10051，collect exit0**；宿主样本FileID/SHA/单链接保持，原launch身份退出且四种Sandbox进程缺席，后台VM完整teardown仍UNKNOWN。旧root02失败和claim未改，不能将本轮结果补记到旧失败。当前798份选定产品/生成配置/插件/工具文件已记身份；170包根存在、15个Android插件条目中14 native，4个Flutter tooling历史pin相等；这些不是完整离线解析/SDK/cache资格。
+
+当前只接受**新小样本只读映射及本轮收集结果的有界工程结论**，不宣称G2、完整构建环境、旧受限child恢复或APP验收通过。下一步聚焦完整输入/离线缓存映射、私有输出路由及受控runner/observer；G2固定6ca原合同保持，当前APK另行闭合自身输入和预算，不借旧账本。Gradle/Java/APK/设备/媒体本节点0；整版仍10 PARTIAL、AC05 OPEN、真实Push PENDING，不合main、不启动v10.1.6。详细范围与指纹见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-目录改名原生诊断与小样本隔离复验节点)。
+
+---
+
+## 前一未通过节点（按原时点保留）
+
+# EliteSync｜2026-11-01 构建隔离小样本实测未通过（历史节点）
 
 **FIXTURE_SANDBOX_ONE_LAUNCH / SEVEN_OF_THIRTEEN_CHECKS_OBSERVED / COLLECT_REJECTED / NO_RETRY / G2_FALSE / V10.1.5_PARTIAL**
 

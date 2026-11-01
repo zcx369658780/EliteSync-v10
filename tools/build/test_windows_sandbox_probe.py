@@ -55,6 +55,7 @@ class SandboxProbeContractTests(unittest.TestCase):
             'schema': 1, 'nonce': self.nonce, 'username': 'WDAGUtilityAccount',
             'input_sha256': 'b' * 64,
             'checks': {name: True for name in probe.REQUIRED_CHECKS},
+            'operations': [{'name': name, 'succeeded': False, 'native_error': 5} for name in probe.NATIVE_ACCESS_CHECKS],
             'network': [{'family': 2, 'native_error': 10051}, {'family': 23, 'native_error': 10051}],
         }
 
@@ -83,6 +84,21 @@ class SandboxProbeContractTests(unittest.TestCase):
         for key, value in [('failure', 'native check failed'), ('binary_sha256', 'd' * 64), ('pid', True), ('pid', 0), ('creation_utc', None)]:
             with self.assertRaises(ValueError):
                 probe.validate_receipt({**receipt, key: value}, self.nonce, 'b' * 64, 'c' * 64)
+
+    def test_rename_requires_single_explicit_native_access_denial(self):
+        for operation in [None, {'name': 'parent_rename_denied', 'succeeded': True, 'native_error': 5},
+                          {'name': 'parent_rename_denied', 'succeeded': False, 'native_error': 32},
+                          {'name': 'parent_rename_denied', 'succeeded': False, 'native_error': '5'}]:
+            receipt = self.good_receipt()
+            receipt['operations'] = [row for row in receipt['operations'] if row['name'] != 'parent_rename_denied']
+            if operation is not None:
+                receipt['operations'].append(operation)
+            with self.assertRaises(ValueError):
+                probe.validate_receipt(receipt, self.nonce, 'b' * 64)
+        receipt = self.good_receipt()
+        receipt['operations'].append({'name': 'parent_rename_denied', 'succeeded': False, 'native_error': 5})
+        with self.assertRaises(ValueError):
+            probe.validate_receipt(receipt, self.nonce, 'b' * 64)
 
     def test_leaf_mapping_reparse_is_rejected(self):
         fixture = self.root / 'fixture'
