@@ -1,13 +1,9 @@
-# EliteSync Project Sources｜历史快照与按需参考
+# EliteSync Project Sources｜活动替换包与历史参考
 
-Owner 已确认网页 GPT 顾问迁移及 Project Sources 替换为轻量版本（OWNER_CONFIRMED；非 Codex 独立检查网页后台）。本轮不生成新包、不替换网页附件。
+当前完整替换包：[20261101_COMPACT_V3](20261101_COMPACT_V3/00_INDEX.md)，[清单](20261101_COMPACT_V3/SHA256_MANIFEST.json)，[替换与恢复说明](20261101_COMPACT_V3_README.md)。
 
-当前启动和角色只看实际本地 [AGENTS](../../AGENTS.md)、[ACTIVE_STATE 当前块](../workflow/ACTIVE_STATE.md)及[CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)；必要时再读取与具体目标相关的快照。日期化包不自动等于本地产品或运行状态，不是默认启动输入。
+Owner最新分工：GPT顾问制定项目计划/路线图；Codex负责工程执行与验收；Owner负责方向、决策和授权。当前规则为[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)和[Owner决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)；实时进度见[ACTIVE_STATE顶部块](../workflow/ACTIVE_STATE.md)。旧网页派单/终验和A–D门不再适用，真实保护约束不变。
 
-| 快照 | 原件与说明 |
-|---|---|
-| 2026-11-01 COMPACT_V2 | [集合索引](20261101_COMPACT_V2/00_INDEX.md)、[原 manifest](20261101_COMPACT_V2/SHA256_MANIFEST.json)、[历史说明](20261101_COMPACT_V2_README.md) |
-| 2026-10-31 COMPACT_V1 | [集合索引](20261031_COMPACT_V1/00_INDEX.md)、[原 manifest](20261031_COMPACT_V1/SHA256_MANIFEST.json)、[历史说明](20261031_COMPACT_V1_README.md) |
-| 更早原件 | [归档清单](archive/20261031/ARCHIVE_MANIFEST.md)；仅按需定位，不删除、不移动 |
+V3为完整集合，不能叠加V2/V1或旧18份附件。网页Project仍待Owner手动替换；本地/GitHub/Project附件/账户Memory不是自动同步关系。
 
-日期化成员、ZIP 和 manifest 原样保留，包内旧派单、远端首读和网页终验已不代表现行流程。[政策适用性](../workflow/PROJECT_SOURCE_COMPACTION_POLICY.md)、[Owner 决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)及[治理分类](../workflow/LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md)说明覆盖范围。GitHub、Project 附件和账户 Memory 分别记录，不假定自动同步。
+历史按需读取：[COMPACT_V2](https://github.com/zcx369658780/EliteSync-v10/blob/d170d0c5b1553f7135f2dbb4f3f1320269eb4a8f/docs/gpt-project-sources/20261101_COMPACT_V2/00_INDEX.md)、[COMPACT_V1](https://github.com/zcx369658780/EliteSync-v10/blob/d170d0c5b1553f7135f2dbb4f3f1320269eb4a8f/docs/gpt-project-sources/20261031_COMPACT_V1/00_INDEX.md)、[更早归档](https://github.com/zcx369658780/EliteSync-v10/blob/d170d0c5b1553f7135f2dbb4f3f1320269eb4a8f/docs/gpt-project-sources/archive/20261031/ARCHIVE_MANIFEST.md)。这些原件保持，不作为默认会话输入，不因历史角色条款重启旧审批链。

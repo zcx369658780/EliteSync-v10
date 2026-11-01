@@ -1,14 +1,12 @@
-# EliteSync-v10｜Local-first 当前入口
+# EliteSync-v10｜当前工作入口
 
-从实际本地目录和具体目标开始，按需核对 GitHub，不递归读取历史。
+分工：项目源GPT顾问制定项目计划/路线图；Codex负责工程执行与验收；Owner负责方向、决策和授权。
 
-| 入口 | 用途 |
-|---|---|
-| [AGENTS](AGENTS.md) | 当前角色、启动、执行与保护规则 |
-| [ACTIVE_STATE 顶部 CURRENT ENTRY](docs/workflow/ACTIVE_STATE.md) | 本工作树唯一短当前状态；遇到历史分隔线停止 |
-| [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) | Owner 目标与边界 → Codex 自主工程 → 节点同步 |
-| [Owner 接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md) | 第一阶段接管及第二阶段治理的日期、范围和覆盖关系 |
-| [治理分类与核对索引](docs/workflow/LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md) | 本轮定点审计、有效约束、旧流程与 UNKNOWN |
-| [Project Sources 历史参考](docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md) | 日期化快照及哈希；非默认启动材料 |
+- [AGENTS](AGENTS.md)：实际启动、角色与保护规则。
+- [ACTIVE_STATE顶部当前块](docs/workflow/ACTIVE_STATE.md)：唯一短当前进度。
+- [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)：计划落地、执行、验收与同步。
+- [Owner决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)：最新分工与覆盖关系。
+- [项目进度细表](docs/workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)：既有证据与未关闭门，不是新的路线规划授权。
+- [Project Sources索引](docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md)：当前COMPACT_V3与历史快照。
 
-[CURRENT_STATE](CURRENT_STATE.md)、旧 CURRENT/TASK_CURRENT、旧 handoff 和任务发布协议是历史/可选参考，不构成并列当前状态或网页审批门槛。只有目标需要时才读取相关 Owner 决定、计划、合同、源码或证据；冻结标准与真实保护门继续有效。
+从具体目标开始，GitHub和原计划/合同/证据按需核对，不强制fresh远端、handoff或全包首读。旧CURRENT、CURRENT_STATE、TASK_CURRENT、A–D协议、旧Sources与历史等待Astra的条款不作为当前派单/验收流程；真实AC、安全、权限和预算仍有效。保留历史，不递归加载。

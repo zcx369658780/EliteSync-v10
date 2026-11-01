@@ -1,3 +1,22 @@
+# EliteSync｜2026-11-01 活动项目源与新工作流已整理（CURRENT ENTRY）
+
+**LOCAL_PROJECT_SOURCES_V3_ACTIVE / CODEX_ENGINEERING_EXECUTION_AND_ACCEPTANCE / GPT_ADVISOR_PLANS_AND_ROADMAP / WEB_PROJECT_REPLACEMENT_PENDING**
+
+Owner已明确新分工：项目源GPT顾问负责项目计划和路线图；Codex负责工程拆解、执行、调试、测试、工程验收、Git与进度；Owner协助开发并保留方向、重大决策和具体授权。现行规则见[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)及[Owner决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。普通执行不等待网页派单、A–D闭环或Astra终验。
+
+本地活动Project Sources已完整替换为COMPACT_V3，10份Markdown+manifest；旧07_HANDOFF_RULES与09_CODEX_SYNC_INSTRUCTION不在活动目录，V2原字节封存。新包与替换说明见[COMPACT_V3说明](../gpt-project-sources/20261101_COMPACT_V3_README.md)。网页Project附件仍待Owner上传完整新包，本地/GitHub更改不等于网页已更新。实际本地版本执行技能源也已去除旧网页终验和被动等待条款。
+
+产品进度仍见[唯一进度细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md)，其中此前Codex路线建议是历史工程建议，不替代现在由GPT顾问制定的项目计划。原活动产品main@4bebc8f3及dirty/index保留；独立L13入口未切换或运行。GitHub产品main仍为8a9e97a1，apps 3468a3dd97da7accfda2539a0f8d8f68931a6110 / services 049a8676cc90b3b830e32a524c172720e800fa37，本轮仅同步治理分支。
+
+v10.1.5仍10 PARTIAL、AC05 OPEN；G2 false；真实Push PENDING；新APK预算/claim资格UNKNOWN；旧已耗额度、STOP账本和真实保护边界不变。604a900未合main，Laravel13框架的历史有界接受不扩大为整版接受。没有启动v10.1.6。
+
+本轮只整理项目源、现行规则与导航，不运行构建、测试、Docker/PHP/Composer/数据库/Gradle/ADB/设备或生产，不修改产品源码、不删除旧版本/备份/历史原证。新会话只读本地有效规则、此短状态和具体目标，历史材料按需读取。
+
+
+---
+
+## Before Sources V3 cleanup (original record retained below)
+
 # EliteSync｜2026-11-01 项目进度对齐与 Codex 自主管理（CURRENT ENTRY）
 
 **PROGRESS_ALIGNMENT_COMPLETE / LOCAL_FIRST_PROJECT_MANAGEMENT_ACTIVE / V10.1.5_PARTIAL_NOT_ACCEPTED / PRODUCT_RUNTIME_NOT_RUN**

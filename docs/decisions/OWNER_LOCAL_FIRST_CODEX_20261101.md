@@ -62,3 +62,13 @@ Owner在本地会话直接粘贴并派发《Local-first 项目进度对齐与 Co
 Owner再次确认此前一次条件性G2 dry-run和一次新的Debug APK/USB ADB独立授权；本轮明确不执行、不消费、不重置，只核原文、前置、claim/ledger与状态。新APK当前预算消耗未查明时记UNKNOWN，不冒认未授权或0/1可用。重大输入/权限变更仍属Owner保留边界。
 
 进度事实与Codex下一阶段路线见[唯一进度细表](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)。本轮工程自查为静态对象/证据对齐，不冒充当前运行、外部独立复核、Owner新增功能接受或发布。完成后结束对齐任务，日常自治管理继续；本轮不修改产品、不运行工具链/数据库/设备、不合main、不创建PR、不启动v10.1.6或清理旧资产。
+
+## 2026-11-01｜计划路线与工程执行职责细化、活动项目源清理
+
+Owner明确决定：“Codex项目的执行、验收完全由Codex负责；项目源GPT顾问负责项目计划路线图制定；Owner协助开发、决策和授权。”据此，现行计划/路线图责任归项目源GPT顾问，Codex保留计划落地的工程拆解、执行、调试、测试、工程验收、Git及进度维护；旧文中由Codex承担产品/版本路线规划的分工仅按此前时点解释。
+
+Owner同时要求清理活动Project Sources中已过期的工作流规则，避免干扰后续工作。本轮保存可恢复原文后完整替换本地活动集合为COMPACT_V3；活动07_HANDOFF_RULES.md、09_CODEX_SYNC_INSTRUCTION.md退出并由07_WORKFLOW.md、09_SOURCE_MAINTENANCE.md替代，旧V2及历史原包仍保留。同步更新必要AGENTS/工作流、实际执行技能和导航，不修改产品或历史冻结AC。
+
+工程验收不再等待网页GPT/Astra派单或终验；顾问计划不自动扩大权限。Owner保留重大目标/架构、不可逆操作、真实数据、设备/外部服务、费用、重大版本与正式发布。工程自验不冒称外部独立审查或Owner接受。G2/APK/ADB和原账本消耗不变，本轮产品运行NOT_RUN。
+
+本地活动集合和GitHub治理分支副本已按文件身份核验；网页Project附件仍需Owner手动完整替换，状态PENDING_OWNER_REPLACEMENT，不声称已自动修改网页资料。原V1/V2、备份、dirty成果、数据库和历史原证不删除；main不在本轮更新。
