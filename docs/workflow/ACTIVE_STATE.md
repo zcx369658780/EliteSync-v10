@@ -1,3 +1,22 @@
+# EliteSync｜2026-11-01 V3网页更新确认与v10.1.5接续准备（CURRENT ENTRY）
+
+**WEB_PROJECT_V3_OWNER_CONFIRMED / LOCAL_V3_INTEGRITY_PASS / SOFTWARE_CONTINUATION_PREPARED / PRODUCT_IMPORT_NOT_STARTED**
+
+Owner已确认网页Project附件更新为V3。本地V3 ZIP与活动目录11文件、SHA256/大小/UTF-8/CRC一致，旧07_HANDOFF_RULES和09_CODEX_SYNC_INSTRUCTION不在活动集合。网页状态按OWNER_CONFIRMED记录，Codex没有独立读取Project后台附件集合；此前待上传事项已结束。[V3说明](../gpt-project-sources/20261101_COMPACT_V3_README.md)记录包身份，不重做ZIP或改写历史快照。
+
+分工继续为项目源GPT顾问制定项目计划与路线图，Codex负责工程拆解、执行、验证、工程验收、Git和进度，Owner协助开发、决策和授权。当前规则见[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)和[Owner决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)，无网页逐项派单或工程终验前置门。
+
+既定v10.1.5接续准备已做静态核对：当前产品main 8a9e97a1e9414b65d669e07f3188b81764196027与604a900原sole Parent ea682562c148166dcf502a048c7e47a4e136fb8f的apps/services没有差异。94项已接受映射可作为下一步精确接续的固定来源，不能盲合旧分支；真正开始产品研发时仍以当时实际main为Parent，不能使用治理或审查HEAD。此轮尚未导入产品源码、创建产品候选或运行工具链。
+
+原活动产品根仍main@4bebc8f3、255项状态记录，index/dirty保持；独立L13入口未切换或启动。v10.1.5仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；新APK独立预算/claim资格UNKNOWN。旧STOP、备份、原库、历史已耗额度和实际设备/运行权限不变；本轮构建、产品测试、服务、数据库和设备均NOT_RUN，未合main、未启动v10.1.6。
+
+产品证据和缺口继续维护于[唯一进度细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。后续依既定批准计划接续普通软件工作，新增路线由GPT顾问制定、重大取舍由Owner决定；运行和设备门分别核验，不借网页附件更新扩大权限。
+
+
+---
+
+## Before Owner confirmed V3 replacement (original record retained below)
+
 # EliteSync｜2026-11-01 活动项目源与新工作流已整理（CURRENT ENTRY）
 
 **LOCAL_PROJECT_SOURCES_V3_ACTIVE / CODEX_ENGINEERING_EXECUTION_AND_ACCEPTANCE / GPT_ADVISOR_PLANS_AND_ROADMAP / WEB_PROJECT_REPLACEMENT_PENDING**

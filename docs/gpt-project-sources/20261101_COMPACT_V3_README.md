@@ -15,6 +15,6 @@
 
 本地旧活动V2的11份原文先封存并逐文件核验，再完整替换为V3；原V2 ZIP的既有本地备份仍与原SHA256 `2c0b29d6744f623231640240d29596599b856479d935a97d4fbcef7ea7a45d8e`一致。Downloads原V2路径当前不存在，本轮未删除它。GitHub的V1/V2日期化集合和历史原证不变。恢复路径和逐文件身份记录LOCAL_ONLY。
 
-网页Project附件状态：**PENDING_OWNER_REPLACEMENT**。Owner需将原附件集合整体替换为V3全部10份正文（manifest可一并保留核验），不要叠加V2/V1或旧18份材料。Codex未直接修改网页Project后台或账户Memory。
+网页Project附件状态：**OWNER_CONFIRMED_V3_REPLACED（2026-11-01）**。Owner已在本地会话确认网页附件更新。本地ZIP及活动11文件核验通过；Codex未独立读取网页附件集合，也未修改Project后台或账户Memory。此前待Owner替换状态结束，不再作为工程接续前置门；V3 ZIP和日期化成员保持不变。
 
 GitHub只更新governance/codex-local-first-20261101治理分支；main和产品apps/services未改。旧dirty、暂存区、worktrees、L11/L13环境、备份、数据库、STOP账本和特殊预算保持；产品工具链、测试、设备、数据库、生产均NOT_RUN。工程自查不冒称外部独立审查或产品接受。
