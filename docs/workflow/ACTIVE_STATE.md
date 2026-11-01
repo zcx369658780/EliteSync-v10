@@ -1,8 +1,8 @@
-# EliteSync｜2026-11-01 Owner要求停止并关机（CURRENT ENTRY）
+# EliteSync｜2026-11-01 已停止，Owner自行关机（CURRENT ENTRY）
 
-**OWNER_STOP_AND_SHUTDOWN_REQUESTED / CONFIG_DIAGNOSTICS_RESERVED_2_OF_3 / G2_FALSE / V10.1.5_PARTIAL**
+**OWNER_STOPPED / OWNER_HANDLES_SHUTDOWN / CONFIG_DIAGNOSTICS_RESERVED_2_OF_3 / G2_FALSE / V10.1.5_PARTIAL**
 
-Owner已明确授权独立最多3次禁网配置诊断，并在本节点要求“这次执行后请停下来，马上关机，明天继续”。当前停止后续工作，不启动第三次、不退款或新开额度。新任务LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`；reservation-1/2永久保留，尚余1次，旧G2/STOP不改。
+Owner已明确授权独立最多3次禁网配置诊断，并在本节点要求“这次执行后请停下来，马上关机，明天继续”。Owner随后明确“关机我自己来，你准备好停下即可”；Codex不发出或安排关机命令。当前已停止后续研发和测试，不启动第三次、不退款或新开额度。新任务LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`；reservation-1/2永久保留，尚余1次，旧G2/STOP不改。
 
 同一产品分支，节点起点`c05303e73816d9f96065110464cb2f198e6d2cb4`；apps/services不变。新增专用执行器/守卫/永久claim链及测试；最终16项Python诊断、9项纯预算数据测试、42项C#纯断言通过（C#纯断言之后只增客体环境回执，最终源已实际运行）。Java fixture第3次通过：49样本、两JDK成员、越界监听负例触发自有Job停止并全部退出；前两次conhost拒收保留。
 

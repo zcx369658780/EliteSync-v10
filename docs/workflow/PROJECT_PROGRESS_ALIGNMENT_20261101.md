@@ -1,10 +1,10 @@
 # EliteSync-v10｜项目进度细表（当前产品诊断与Owner停止节点）
 
-日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_REQUESTED_STOP_AND_SHUTDOWN / TWO_DIAGNOSTICS_SAFETY_STOPPED / ONE_RESERVED_SLOT_REMAINING / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_STOPPED / OWNER_HANDLES_SHUTDOWN / TWO_DIAGNOSTICS_SAFETY_STOPPED / ONE_RESERVED_SLOT_REMAINING / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
 
 ## 2026-11-01 当前产品离线诊断授权与Owner停止节点
 
-Owner针对具名问题明确答复“授权上述独立3次诊断范围”，随后要求本次执行后立即停止、关机、明天继续。Codex停止新增运行，保存当前证据和源码；不启动第三次。任务唯一LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`，原Owner授权、reservation-1/2和outcome文件均保留，**已占2/3，剩1/3**；不退款、不换任务续额，旧G2四账本/STOP保持。
+Owner针对具名问题明确答复“授权上述独立3次诊断范围”，随后要求本次执行后立即停止、关机、明天继续。Owner随后补充“关机我自己来，你准备好停下即可”。Codex已停止新增运行，保存当前证据和源码；不启动第三次，不执行或安排系统关机。任务唯一LOCAL_ONLY根 `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`，原Owner授权、reservation-1/2和outcome文件均保留，**已占2/3，剩1/3**；不退款、不换任务续额，旧G2四账本/STOP保持。
 
 | 项目 | 实际结果与限制 |
 |---|---|
