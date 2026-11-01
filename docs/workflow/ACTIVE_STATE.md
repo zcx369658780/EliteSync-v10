@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-01 PHP8.4后端、真实WS与持久化有界验证（CURRENT ENTRY）
+# EliteSync｜2026-11-01 构建隔离小样本实测未通过（CURRENT ENTRY）
+
+**FIXTURE_SANDBOX_ONE_LAUNCH / SEVEN_OF_THIRTEEN_CHECKS_OBSERVED / COLLECT_REJECTED / NO_RETRY / G2_FALSE / V10.1.5_PARTIAL**
+
+继续Owner批准的本地工程工作；GPT顾问仅负责计划路线，Codex负责工程执行与验收，不等网页派单或终验。产品分支及工作面保持`codex/v10.1.5-software-continuation-20261101` / `D:/EliteSync-v10-product-v1015-20261101`，Parent为`9beddeb6df12cd4a557d6fe0a00a0af6382aeab5`，apps/services双Tree未改。
+
+新增一次性fixture-only Windows Sandbox探针与12项软件测试，使用现有微软签名编译器，无工具链安装/升级。仅映射新建小样本、探针及独立输出；禁网、剪贴板、音视频、打印和vGPU。实际只启动一次：7/13检查有true回执，到父目录改名时IOException终止；其余6项及两个网络地址检查未执行，collect退出1拒收。**隔离未资格化，不重试、不消费G2/Gradle/APK额度**。宿主fixture的FileID、SHA256、单链接保持；当前四种Sandbox进程缺席，后台VM完整teardown仍UNKNOWN。
+
+定向单测12项通过，最终C#只编译未再运行；审查发现的junction及同字节替换/硬链接边界已修，运行后仅补新版进程名与异常诊断，不追认本次缺失回执。身份、失败与复用边界见[唯一进度细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-一次小样本隔离探针节点)。原dirty根main@4bebc8f3、255项普通状态与index SHA保持。旧ACL/STOP/claims/库/备份不动；既有PHP59项、真实WS和持久性证据继续按原范围有效。整版仍10 PARTIAL、AC05 OPEN、真实Push PENDING，不合main、不启动v10.1.6。
+
+---
+
+## 前一后端节点（按原时点保留）
+
+# EliteSync｜2026-11-01 PHP8.4后端、真实WS与持久化有界验证（历史节点）
 
 **DOCKER_START_OWNER_AUTHORIZED_AND_EXECUTED / PHP84_L13_TARGETED_59_PASS / REAL_WS_BOUNDED_PASS / WEB_HTTP_8_PASS / SELECTED_DB_RESTART_PASS / V10.1.5_PARTIAL_NOT_ACCEPTED**
 

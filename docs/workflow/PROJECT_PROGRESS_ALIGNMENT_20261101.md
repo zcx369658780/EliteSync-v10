@@ -1,3 +1,43 @@
+# EliteSync-v10｜项目进度细表（一次小样本隔离探针节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**FIXTURE_ISOLATION_PROBE_PARTIAL_FAILED_NO_RETRY / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 一次小样本隔离探针节点
+
+Owner再次明确纯本地工作流、GPT顾问只负责计划路线，工程完成与验收由Codex负责。按此前已批准的v10.1.5目标推进新的小样本隔离检查，不恢复旧受限token任务、不操作旧18项ACL恢复对象或借用旧预算。此检查不是原G2入口、不是Gradle/APK执行，不以VM替换方式宣称原G2合同成立。
+
+### 源码、软件检查与实际运行
+
+| 项目 | 本次事实与限制 |
+|---|---|
+| 产品身份 | 同一独立产品分支；Parent `9beddeb6df12cd4a557d6fe0a00a0af6382aeab5`。apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`未改，L13兼容基线未改 |
+| 新工具 | `tools/build/windows_sandbox_probe.py`、`.cs`、`windows_sandbox_launch.ps1`和`test_windows_sandbox_probe.py`；不是产品受控构建runner，不支持Gradle/APK |
+| 软件验证 | 12项单测exit0；包含精确映射/禁共享/nonce、缺失或伪true回执、错误网络结果、独占claim、junction、相同字节换文件及硬链接负例。junction负例先失败，改用lstat后通过，原工具回执保留；没有降低运行判据 |
+| 编译 | 现有微软有效签名.NET Framework csc，SHA256 `eca02e6b15cde93009a59a3d129d5a77fb5008f2e1cf62cf573b6737c747ecc3`；既有系统组件，无安装或升级。最终补诊断版编译exit0，但未在guest或host执行该最终EXE |
+| 准备与次数 | LOCAL_ONLY `v1015-sandbox-qualification-20261101-01`仅prepare、launch0，保留不覆盖；审查后在`…-02`冻结最终启动输入，**两根合计launch1**。独占claim保留、不退款、不重试；不含G2 claim |
+| 精确映射 | 新probe和fixture两目录ReadOnly=true，仅新output可写；Networking/vGPU/AudioInput/VideoInput/PrinterRedirection/ClipboardRedirection显式Disable，ProtectedClient Enable、内存2048MB。没有映射旧源码、SDK、缓存、私密证据或数据库 |
+| 客体身份 | WDAGUtilityAccount、nonce、输入SHA、实际EXE SHA均绑定；客体PID15560，creation `2026-11-01T11:27:44.5660406Z`；运行EXE SHA `1211d0ad0a6cbdf4ffc97c75061544a74e8dda0e1ced6e55314e59694c681ada` |
+| 实际回执 | 13必需检查中7项true：读、owned输出写、打开写拒绝、内容写拒绝、删除拒绝、文件改名拒绝、建子目录拒绝。第8项父目录改名抛`System.IO.IOException: Access to the path ... is denied.`，没有该异常HRESULT；**不凭消息猜测原生错误，不追认该项通过** |
+| 未执行 | 父目录改名未完成认定、WRITE_DAC、WRITE_OWNER、DELETE_CHILD、alias写及无活动网卡共6项缺失；IPv4/IPv6两目标网络测试均未到达。配置禁网不是运行禁网证据 |
+| 收集与退出 | collect exit1，明确`Guest reported an execution failure`，无verified-result。guest请求自身shutdown；最终WindowsSandbox/Client/RemoteSession/Server进程均缺席，但后台VM完整teardown仍UNKNOWN。未杀进程、未改系统设置、未再次启动 |
+| 宿主样本保护 | 原source.txt SHA、FileID、st_nlink=1保持；目录仅source.txt，无宿主ACL/owner变更；原根HEAD/index及255项普通状态保持 |
+
+### 审查、证据及验收判断
+
+非作者Codex辅助静态复核发现启动前仅比hash可能漏掉同字节换文件/硬链接；已在claim前及collect同时核FileID、SHA、单链接和精确目录内容并补负例。其四文件最终启动前复核未见具体阻止fixture-only启动的P1/P2；这不是外部功能接受。实际机器使用新版WindowsSandboxRemoteSession/Server，运行后将两个进程名补入未来启动及退出检查；C#只补failure_hresult诊断与官方参考，**最终代码未重跑VM**。最后delta辅助意见仅依据描述，没有重新读取最终源码；主代理负责最终源码检查和工程裁决。
+
+本轮原始claim、nonce、C#编译产物、operations、实际receipt、进程快照及失败日志保留LOCAL_ONLY于`C:/Users/zcxve/EliteSyncDev/v1015-sandbox-qualification-20261101-02`。公开仅放工具源码与下列摘要指纹，不上传原始guest/宿主日志。单测日志SHA256 `4b4b98a6e86b8a5e311aff0663582df2c8be5a37f4521147f32f0d8fc9c39b72`；实际receipt SHA256 `51284ca9cb790126f48530d887828eb67b1f4085f9d9c17ca07fec8b530ced68`；launch claim SHA256 `23b97b75600b9788c3d74a4dd4ba6aec33dbc785954a051350ecad6eb65270e4`。runtime输入manifest与最终文件hash分别存本地bounded-result.json，不能将后来诊断改动记作运行已覆盖。
+
+本轮工程判断：**软件探针和失败拒收行为有证据，真实隔离资格未通过**。只证明新小样本的部分映射拒写，不证明完整SDK/cache写面、旧restricted-child矩阵、最小依赖闭包或G2源pin/observer/受控Job成立。G2仍false；Gradle0、APK构建0/安装0、设备/媒体动作0，旧G/APK已耗记录及新正式额度不变。后续动态诊断应另行固定修复后的输入、范围和尝试记录，不复用本次claim或补记缺失结果；仅在涉及UAC/权限扩大等Owner保留事项时再请求具体授权。普通源码诊断继续按已有授权进行。
+
+已验证PHP59项/537断言、真实WS、Web HTTP及选定持久性按前一节点身份和范围复用，本轮未重跑且apps/services未变。原dirty根、旧L11/L13、备份、数据库、旧ACL/STOP账本保持；全版仍10 PARTIAL、AC05 OPEN、真实Push PENDING，不合main、不启动v10.1.6。
+
+官方依据：[Sandbox配置](https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-configure-using-wsb-file)、[CreateFileW](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew)、[Winsock错误](https://learn.microsoft.com/en-us/windows/win32/winsock/windows-sockets-error-codes-2)。仅采用API/配置事实，不把文档等同本机运行资格。
+
+---
+
+## 前一后端节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（PHP8.4后端与真实WS节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**PHP84_LARAVEL13_CURRENT_SOURCE_BOUNDED_RUNTIME_PASS / REAL_WS_BOUNDED_PASS / SELECTED_PERSISTENCE_PASS / V10.1.5_PARTIAL_NOT_ACCEPTED**。
