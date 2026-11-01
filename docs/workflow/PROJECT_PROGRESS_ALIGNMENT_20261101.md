@@ -1,3 +1,47 @@
+# EliteSync-v10｜项目进度细表（只读输入与私有写面装配节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**READONLY_INPUTS_PRIVATE_LAYOUT_BOUNDED_SUPPORTED / FULL_BUILD_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 只读输入与私有写面装配节点
+
+继续Owner授权的v10.1.5本地工程；源码/Parent `84a94c9177ce832040146cff9968569762300307`，同一独立产品分支/工作面。apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`及精确L13兼容基线未变。远端main本节点fresh仍`8a9e97a1e9414b65d669e07f3188b81764196027`，未合main。
+
+### 实现与实际证据
+
+| 项目 | 本节点结果及边界 |
+|---|---|
+| 非执行计划 | `tools/build/current_product_build_plan.py`与测试，纯数据/无文件或程序调用。固定当前source/apps/services、只读SDK/Pub/Seed和独立私有路径；禁止把plan变成执行授权、旧额度继承或G2成功。**12 tests exit0**，沿用本次上下文中的实际工具回执，本节点收尾未重复运行 |
+| 装配工具 | `windows_sandbox_layout_probe.py`、`.cs`、`SandboxLayoutProbe.java`及回执测试。只读映射现有Flutter/JDK/SDK、旧Seed、tooling源码及native/产品快照，宿主仅新`ProbeOutput`可写。`C:/BuildWork`为客体本地未映射NTFS；网络/剪贴板/音视频/打印/vGPU关闭。没有Gradle类加载或入口 |
+| 输入校验 | 客体实际逐SHA读**6096文件**：产品718、native2145、tooling+LICENSE50、旧Seed3183；只把产品718和tooling50复制到客体本地私有目录。6096个清单文件及具名工具锚点在launch/collect分别核FileID/单链接/尺寸/SHA；这不是全SDK全量哈希或完整运行读集资格。旧Seed不复制、不改写 |
+| 拒写证据 | 7份文件各请求GENERIC_WRITE/WRITE_DAC/WRITE_OWNER，7根请求DELETE_CHILD，共**28项均原生error5且句柄无效**。仅申请句柄，无内容/ACL实际修改；不从报错文本推定拒绝 |
+| 私有写面 | 14个插件输出、独立CMake staging、Gradle home、project cache、tooling build与.gradle，共**19处写读成功**。旧jni `android/.cxx`未暴露。此处仅证明文件系统可用，**不是Gradle/AGP已消费路由** |
+| 实际路径 | 8路径采集Java toRealPath/normalize/isOther/symlink及祖先属性，实际均规范。stock tooling与private tooling的真实路径仍不相等；没有以相同内容冒充相同路径身份，原guard冲突保持 |
+| 环境/次数 | `…/v1015-layout-qualification-20261101-02`独立输入，一次VM，collect exit0。Java17.0.18、Windows11/os.version10.0、kernel file10.0.26100.6713 (WinBuild.160101.0800)、CLR4.0.30319.42000。启动身份退出，四种Sandbox进程缺席；完整后台VM teardown UNKNOWN |
+| 软件测试/审查 | 最终装配**10 tests exit0**，含拒收缺失/伪类型/重复/计数/环境/路径/构建声明、真实subprocess参数环境mock和固定commit回归。非作者Codex只读审查两个P2修复后未报新具体P1/P2；未替主代理运行VM或测试，不冒充外部独立验收 |
+
+### 失败、修复与启动前修订
+
+- 初始`…/v1015-layout-qualification-20261101-01`因git archive字节与首Blob不一致而prepare拒收，产品落盘0、编译0、VM0、claim0；唯一原因UNKNOWN，不断言CRLF。最终改为`git cat-file --batch`原始对象读取，校header/长度/Blob SHA1/分隔与尾数据，未放宽输入判定。
+- 编译器继承环境注入P2已修：仅子进程清Java选项/CLASSPATH/LIB/CLR profiler等，javac禁annotation processor并固定空classpath/sourcepath、owned cwd/temp/home；不改全局环境。带缺口版本未实际执行；一次测试环境键大小写期望失败保留，改为对实际before环境比较后通过。
+- source捕获后继续读可变HEAD的P2已修：首次取source，后续trees/diff/ls-tree全部固定该commit。root02当时只有prepare、未启动/claim；718份产品逐项对固定84a94c91原始Blob复核，旧manifest原字节保留。启动前仅修controller hash，不改payload；revision明确launches_before_revision=0，不能当运行后热改。
+- 启动前manifest旧SHA `2f18caa63671b4dd2c661037a44b0835ded0e73171fdbec4a3c07728e63a66ad`，新SHA `6340904ffe30b380b1240a47bfc6299ef18122bd1d106d503d068e3bf765aec3`。修订回执 `59ee1cc939b7a10d6dbc5996586267c810be32bfa7d254780536c340a2532f07`，原件LOCAL_ONLY。
+
+### 复用界限与真正下一步
+
+本轮仅接受**所绑定输入的只读拒绝、所选文件客体读取、私有目录写读和路径实测**。Gradle索引解析/依赖离线命中、AGP实际staging覆盖、完整构建runner/observer以及当前产品运行预算均未闭合；Gradle/APK/安装/设备/媒体0，G2 false。计划/探针不得直接放行普通preBuild→Flutter AAR。之前PHP59/537、真实WS/Web与选定数据库持久性按原源码/环境/范围复用，本轮未重跑；环境漂移或相关源变更需重新判断。
+
+旧G2合同Blob `796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`固定source `6ca09a66c0ef9619df7a3d7d4b089516f409954f`、apps `5af7a9d0042be19437616e969e260658b67e9353`及唯一一次固定dry-run，禁止用额度探索未闭合输入。该旧commit的context_guard从flutter-root派生唯一tooling根，要求included child currentDir完全相等且canonical/无redirect；当前产品不同，分置私有tooling也不满足该路径身份。当前产品工作面没有旧`apps/android/scripts`目录；不能把旧脚本视为本分支已部署，或未经选择导入全部旧候选。
+
+已形成[当前产品离线配置诊断具体提案](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md)，状态**PROPOSED_NOT_AUTHORIZED**：申请独立最多3次当前产品dry-run配置诊断，逐次原子claim、不退款，允许在新任务内诊断离线缺项；旧guard/合同/余额不改，禁止真实AAR/APK、下载升级及设备动作。新runner/guard尚未实现/资格化，Owner同意新范围也不跳过技术前置。本节点未给自己新增额度，不以一般“继续”替代该具体决定。
+
+原root main@4bebc8f3、普通状态255项、index SHA `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`及六个具名保护hash已再次实核相等；旧L11/L13、数据库、11,066文件备份、STOP与历史失败保持。整版**10 PARTIAL、AC05 OPEN、真实Push PENDING**；不合main、不启动v10.1.6。
+
+原始文件/路径/claim/输出均LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-layout-qualification-20261101-02`。公开摘要指纹：bootstrap receipt `07608ba4754f5648e8a5bd98f4c5c53209fa76187a17baa48df497361a8758b9`；Java layout `10bf951172a98ab631494a4e7e565e85df74aac90f6b47fe80943d31b3f1524d`；verified-result `027b90bfadb532aae74264ffb50e27c22e14c25edc91c2080d5425ec1bb8b57f`；10 tests日志 `0ee1a5ffa82c7af3dc33d514881321aa6e34203f417c50f4add162ebf27542a8`；保护复核 `56a7772c1729b061625665805e8451587e8eed2d7ad28240b7bd50fee931890c`；本地节点汇总 `c273c2cf254011b6d197927cf49d8215733dd4ecb8b06920ac2f0f6a48454f54`。运行源/controller/plan helper与本节点最终文件SHA相等；复用须保持这些身份、所列环境与所选范围，不扩大为完整构建资格。
+
+---
+
+## 前一观察器节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（自有进程树网络观察器节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**SYNTHETIC_TREE_NETWORK_OBSERVER_BOUNDED_SUPPORTED / PRIVATE_TOOLING_SOURCE_SNAPSHOT_VERIFIED / FULL_BUILD_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。

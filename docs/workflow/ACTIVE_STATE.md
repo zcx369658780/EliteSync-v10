@@ -1,3 +1,17 @@
+# EliteSync｜2026-11-01 只读输入与私有写面装配实测通过（CURRENT ENTRY）
+
+**READONLY_INPUTS_PRIVATE_LAYOUT_BOUNDED_SUPPORTED / CURRENT_PRODUCT_PLAN_ONLY / GRADLE_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+同一产品分支与工作面，本节点Parent/source `84a94c9177ce832040146cff9968569762300307`，apps/services未变。一次禁网Sandbox装配验证完成，collect exit0：28项原生访问拒绝均error5、6096份客体输入SHA校验、19处私有写读成功；产品718份、tooling+LICENSE50份复制到客体本地未映射NTFS。旧jni `.cxx`不暴露。8路径实测规范；stock与private tooling真实路径仍不同，旧guard冲突保留。Java17.0.18、Windows11/kernel10.0.26100.6713、CLR4.0.30319.42000已记录，完整VM后台teardown仍UNKNOWN。
+
+计划模块12项、装配回执10项测试通过；已修编译环境注入与源码捕获后读取可变HEAD两个P2。初次prepare拒收及启动前修订原证均保留；非作者Codex静态复核不等于外部独立验收。具体证据、失效条件见[唯一进度细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-只读输入与私有写面装配节点)。
+
+**没有执行Gradle、解析Gradle索引或验证缓存命中/AGP消费。** 旧G2固定6ca源与一次dry-run合同不适用于当前产品及分置tooling；旧guard/额度/STOP不改。下一步按[当前产品离线配置诊断提案](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md)请Owner决定独立新范围，提案目前未授权、运行0；不能因一般“继续”推定新增特殊额度。原根main@4bebc8f3、255项状态/index及六个保护锚点保持。整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；APK/安装/设备/媒体本节点0，不合main、不启动v10.1.6。
+
+---
+
+## 前一观察器节点（按原时点保留）
+
 # EliteSync｜2026-11-01 自有进程树网络观察器实测通过（CURRENT ENTRY）
 
 **SYNTHETIC_TREE_NETWORK_OBSERVER_PASS / PRIVATE_TOOLING_SNAPSHOT_50_VERIFIED / ROUTING_SOURCE_PLAN / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**

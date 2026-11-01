@@ -1,0 +1,60 @@
+# v10.1.5 当前产品离线配置诊断提案
+
+日期：2026-11-01（Asia/Shanghai）。状态：**PROPOSED_NOT_AUTHORIZED / RUNTIME_COUNT_0 / G2_FALSE**。
+
+这是一项待Owner决定的具体新范围；不恢复网页派单或网页验收，不是执行许可证。Codex负责实现、调试、测试与工程裁决。Owner此前对v10.1.5、USB及现有Docker/WSL的授权保留；本提案只处理旧特殊构建额度不能迁移到当前产品的问题。
+
+## 需要Owner决定的差异
+
+[旧G2合同](../versions/v10.1.5/V10_1_5_CONTROLLED_SOURCE_HARDENED_GRADLE_GRAPH_G_ONLY_TASK_20261027.md) Blob `796c9ad2d5d91b3d375cea6c079e9e6121e0be4c`明确固定6ca源码、一次真实Gradle dry-run，禁止用该额度探索未闭合输入，不允许改原guard。当前产品源码及apps Tree不同；旧guard要求included tooling与stock flutter-root派生路径完全相同，私有tooling真实路径不同，虽然快照内容相同。不能拿旧额度直接验证当前产品、删guard或把当前source假标成6ca。
+
+提议**另立当前产品离线配置诊断范围与独立最多3次真实Gradle启动额度**，允许在只读输入/隔离写面中诊断现有依赖索引和配置缺项，以及实现专用guard以固定stock SDK与分置private tooling两个精确根。原guard、原G2源码、旧额度和STOP账本全部保持；新结果不记为旧G2通过。
+
+## 固定输入及允许工程改动
+
+- 产品source `84a94c9177ce832040146cff9968569762300307`；apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`；services `7634b4755a41f08641e00948f684c06efb12d8fe`。后续工具/文档提交可变，但这两棵产品树不得静默替换；需变更产品行为则先另记原因及受影响检查。
+- 仅使用已有Flutter3.41.7、JDK17.0.18、Gradle8.14、Android SDK及现有Pub/Gradle缓存；禁止下载安装升级、修改共享输入或全局安全设置。版本标签不能替代源码/二进制身份，实际入口及依赖须在claim前固定到manifest。
+- 新任务私有目录内可生成必要路径适配：local.properties、package/plugin引用、settings included tooling、专用配置guard/init及输出路由。逐文件保留原文/差异/hash/来源，不覆盖stock SDK、Pub、旧Seed或产品工作面。旧6ca guard仅作固定合同对照，不修改或部署为已通过入口。
+- guard同时固定模块根、stock SDK根、private tooling根、源码树、tooling源字节与许可证、唯一任务/参数/init顺序、included child来源；不接受任意目录白名单、junction、符号链接或非规范路径。private tooling源快照与其可写build/cache分列。
+- 诊断允许“现有缓存不能离线命中”成为运行结果，而不要求在第一次启动前已证明该命中；但已知输入来源、可读范围、输出隔离和执行器/观察器安全条件必须先成立。不能把诊断许可解释成未知外部工具或任意宿主读写许可。
+
+## 唯一运行类型与有限重试
+
+拟在禁网Windows Sandbox中使用已有Gradle8.14 CLI，通过JDK原生进程启动；不运行wrapper、Flutter CLI、外层Android app或任何实际AAR/APK任务。逻辑命令合同为：
+
+```text
+<existing-java> <fixed-JVM-options> -jar <readonly-gradle>/lib/gradle-gradle-cli-main-8.14.jar
+  -I <current-product-config-guard-and-routing.init.gradle>
+  -I <pinned-AAR-registration.init.gradle>
+  -Pflutter-root=C:\Inputs\Flutter
+  -PelitesyncDiagnosticToolingRoot=C:\BuildWork\Tooling\packages\flutter_tools\gradle
+  -PelitesyncDiagnosticProjectRoot=C:\BuildWork\Project
+  -PelitesyncDiagnosticScope=v10.1.5-current-product-config-20261101
+  <fixed ordinary module target/lib-main, arm64, build-number, encoded v1015+v1014 defines and owned output properties>
+  --offline --console=plain --no-daemon --max-workers=2
+  --gradle-user-home C:\BuildWork\GradleHome
+  --project-cache-dir C:\BuildWork\state\project-cache
+  --dry-run assembleAarRelease
+```
+
+这是范围合同，**尚无可执行runner**；尖括号必须在实际运行前落实为唯一参数向量并绑定hash，禁止直接复制上述占位文本运行。cwd固定`C:/BuildWork/Project/apps/flutter_elitesync_module/.android`；JDK自动下载关闭，GRADLE_RO_DEP_CACHE指向只读Seed base。允许注册任务的init必须固定来源/字节/完整差异，不能借“registration”执行任务动作；私有输出/CMake staging在DSL定型前显式路由并收集消费证据。
+
+- 最多3次，使用单一新任务账本，逐次在任何真实Gradle创建尝试前原子占用对应序号；Popen失败、非零退出、强停及诊断无结果均计数，不退款、不换目录绕过。新账本与四份旧G2账本完全分开。前置未过不占启动次数。
+- 每次最多1200秒。普通配置/缓存错误可由Codex在上述私有适配范围内修复并使用下一次剩余额度；每次先封存原输入与失败，再绑定新版本/hash。额度耗尽即停止动态分项，不另开新task续额。
+- 观察器失效、未知进程/镜像、输入漂移、网络/下载信号、越界写或无法可靠收证属于安全停止：仅终止自有Job并保留原证；**不得原样自动重跑**。先暂停动态分项，完成静态定位、修复、定向检查与原因报告；只有原因已明确、修复未扩大权限、新输入manifest及全部安全前置重新成立时，Codex才可决定使用本任务剩余额度接续。原因不明或条件未闭合则保持NOT_RUN；涉及Owner保留权限须针对性授权，禁止减少监测、放宽身份判定或换task补额度。
+
+## 技术前置与保护
+
+现有装配28拒写/6096哈希/19私有写读通过，仅为有界FS证据；现有观察器只验证自身synthetic镜像。授权本提案不自动让runner/完整Gradle树观察器合格。
+
+Codex须先完成并检查：精确映射/源与执行镜像库存、清理仅子进程的注入环境、root挂起先归入kill-on-close Job、进程句柄/创建时间/镜像/Job归属绑定、所有实际子镜像的精确身份、持续TCP/UDP与下载信号观察、可flush原始诊断、硬时限、输入前后验证、只终止自有Job及退出确认。采样非原子与UDP目的UNKNOWN保留，禁止宣称无任何瞬时活动。没有这些前置则NOT_RUN，不能以“诊断”绕过守卫。
+
+网络/剪贴板/音视频/打印/vGPU关闭，宿主输入只读、仅新回执输出宿主可写；构建缓存/生成输出位于客体本地。每次启动前要求客体可用空间至少8GiB，客体自有工作面上限4GiB、宿主新源/诊断材料上限512MiB；超限/无法观测则停止自有Job，保留必要回执，不删除旧资产。预算不是许可占用整个磁盘，禁止复制完整SDK/旧Seed到多份任务目录。
+
+## 接受标准及明确范围
+
+记录真实启动数/各次source与adapter身份、退出码、stdout/stderr、首个实际失败点、实际缓存读取与命中证据（如有）、任务图、路由消费、stop reason、Job/原进程句柄退出、输入及保护锚点保持。只有真实配置/选图证据齐全才记该诊断范围支持；BUILD SUCCESSFUL单行不能代表整版接受。缺缓存如实记OFFLINE_INPUT_MISSING，不联网补包。
+
+**本提案不含实际AAR/APK产出、安装/升级/手机操作、音视频通话/采集、供应商/真实Push、数据库/生产动作、merge main、正式发布或v10.1.6。** 后续已授权设备目标仍需真实构建输入/独立预算/claim及设备资格满足，不能用本项配置次数替代。G2 false、AC05 OPEN、10 PARTIAL及真实Push PENDING保持，直至各自有真实证据。
+
+Owner待答：是否同意上述“独立最多3次当前产品离线配置诊断＋专用私有guard适配”范围？收到明确同意后只更新本文件的决定记录；无需网页派单/验收。未答复前不执行真实Gradle。
