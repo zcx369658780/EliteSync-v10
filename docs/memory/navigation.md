@@ -6,7 +6,7 @@ permalink: elitesync-v10-local/navigation
 
 # EliteSync-v10 当前导航
 
-2026-11-01精简工作流：fresh读取live main后，只读[AGENTS](../../AGENTS.md)全文 → [ACTIVE_STATE最新CURRENT ENTRY](../workflow/ACTIVE_STATE.md) → [最新handoff](../workflow/SESSION_HANDOFF_20261101_LIGHTWEIGHT_WORKFLOW_V1.md)，然后停止首读。目标确定后才按需读取正式任务、当前冻结plan和相关专项合同；不递归旧handoff或全量Project Sources。
+2026-11-01精简工作流：fresh读取live main后，只读[AGENTS](../../AGENTS.md)全文 → [ACTIVE_STATE最新CURRENT ENTRY](../workflow/ACTIVE_STATE.md) → [最新handoff](../workflow/SESSION_HANDOFF_20261101_PROJECT_SOURCES_V2_SYNC_COMPLETE.md)，然后停止首读。目标确定后才按需读取正式任务、当前冻结plan和相关专项合同；不递归旧handoff或全量Project Sources。
 
 - [当前工作流](../workflow/CURRENT_WORKFLOW.md)
 - [任务发布协议](../workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)

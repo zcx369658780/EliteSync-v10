@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-01 精简工作流与Project Sources V2同步完成（CURRENT ENTRY）
+
+**WORKFLOW_V1_SYNCED / PROJECT_SOURCES_V2_OWNER_REPLACED / LOCAL_MIRROR_CODEX_REPORTED_COMPLETE / NO_PRODUCT_TASK_DISPATCHED / NO_PRODUCT_EXECUTION**
+
+Owner已确认ChatGPT Project Sources已替换为COMPACT_V2完整集合。GitHub治理规则和V2镜像已同步并回读；Codex报告本地活动目录D:/EliteSync-v10/build/project-sources-current仅含V2的11个文件，ZIP、manifest、逐文件SHA256/大小/UTF-8/读回均通过；旧ZIP/V1备份、dirty状态及worktrees保持。回执：D:/EliteSync-v10/build/project-source-sync-records/COMPACT_V2_LOCAL_20261101T003932Z/completion-receipt.json。该本地结果为CODEX_REPORTED，Astra未直接读取回执。
+
+最新交接：[SESSION_HANDOFF_20261101_PROJECT_SOURCES_V2_SYNC_COMPLETE.md](SESSION_HANDOFF_20261101_PROJECT_SOURCES_V2_SYNC_COMPLETE.md)。新会话只读AGENTS全文、本首个CURRENT ENTRY及最新handoff；到此停止。目标明确后再定点读取当前plan、专项合同和必要证据。
+
+v10.1.5整版仍PARTIAL_NOT_ACCEPTED；AC05 OPEN、G2 false、真实Push PENDING。604a900仅获WS软件/浏览器限定范围的Astra有界接受，候选STOP且未合main。
+
+Owner已分别授权一次条件性Gradle 8.14 assembleAarRelease --dry-run，以及一次新的Debug APK构建+USB ADB安装。两项独立计账；G2须满足冻结合同全部前置条件并fresh核验ledger/claim，最多一次，claim保留后不退款不重试；新APK使用独立预算，构建与安装分门核验。授权不等于任务已发布、Codex已派发、设备已连接或成功。
+
+本轮GitHub治理与项目源同步完成；没有发布/派发产品任务，没有运行Gradle、ADB、构建或设备操作，没有消费G2/APK预算。apps/services产品Tree保持不变；不自动合main、不重置预算、不启动v10.1.6。
+
+---
+
+## 历史CURRENT ENTRY｜2026-11-01 精简工作流V1发布记录（原文保留）
+
 # EliteSync｜2026-11-01 精简工作流V1已同步（CURRENT ENTRY）
 
 **`WORKFLOW_V1_GOVERNANCE_SYNCED / COMPACT_V2_PACKAGE_READY / OWNER_MANUAL_PROJECT_SOURCE_REPLACEMENT_PENDING / NO_PRODUCT_TASK_DISPATCHED / NO_PRODUCT_EXECUTION`**
