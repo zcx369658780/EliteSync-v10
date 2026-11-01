@@ -1,3 +1,13 @@
+# Local-first｜可选交接模板说明
+
+**HISTORICAL_REFERENCE：下方六字段模板仅供按需参考，不是必填审批表或每次首读材料。**
+
+从实际本地 [AGENTS](../../AGENTS.md)、[ACTIVE_STATE 当前块](ACTIVE_STATE.md)和具体目标开始；仅信息不足时补读一份直接相关交接。旧“fresh main → 必读 handoff → 正式任务”启动 Prompt 已由[当前工作流](CURRENT_WORKFLOW.md)取代。
+
+保留简短、可追溯、不重复状态和不递归历史的原则；没有有价值的节点变化就不另造 handoff。下方原文按原时点保留，不新增运行或设备权限。
+
+---
+
 # Session Handoff｜轻量交接模板
 
 本文件是模板。每次交接复制后填写，不要把模板本身当作当前状态。

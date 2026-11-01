@@ -31,6 +31,6 @@ G2、APK/ADB、设备、供应商及一次性预算继续按原授权和实际 l
 
 ## 有效入口与本轮停点
 
-[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[Owner 接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)及 ACTIVE_STATE 是本次有效入口。旧协议、项目技能、Sources 和历史状态中的网页派单、网页验收及被动等待条款已被该 Owner 决定取代；其中真实安全、权限、冻结标准和历史预算继续有效。其它文件留待后续定点治理，不批量改写。
+[当前工作流](docs/workflow/CURRENT_WORKFLOW.md)、[Owner 接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)及 ACTIVE_STATE 是本次有效入口。旧协议、项目技能、Sources 和历史状态中的网页派单、网页验收及被动等待条款已被该 Owner 决定取代；其中真实安全、权限、冻结标准和历史预算继续有效。定点分类、历史标记及加载 UNKNOWN 见[治理索引](docs/workflow/LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md)，不递归加载其历史。
 
-本轮仅落实接管规则、本地提交和 GitHub 治理分支副本；不修改产品源码，不运行构建、测试、数据库或设备，不合产品 main，不清理，不启动新产品版本。完成后停止本迁移阶段；这不恢复网页 GPT 逐任务审批。
+当前阶段只做 Owner 已批准的有界治理文档、导航和旧流程标记整合，在专用治理工作树提交和同步；原活动 dirty 根保持，不自动传播。构建、产品测试、数据库、设备、产品 main 合并、清理和新版本均不在本轮范围。阶段完成后停止，不恢复网页 GPT 逐任务审批。

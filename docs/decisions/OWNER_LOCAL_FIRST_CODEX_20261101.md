@@ -40,3 +40,15 @@ Owner 已确认网页 GPT Project 转为整体产品顾问并已替换 Project S
 后续治理重点仅列为待办：定点消除旧任务协议与项目技能的角色冲突；核对旧 CURRENT/导航指针；明确真正采用的开发基线和剩余工程验收目标。它们不在本轮执行。
 
 本轮构建、产品测试、数据库、Gradle、ADB、设备和生产操作均 NOT_RUN；没有恢复旧任务、合并候选或启动 v10.1.6。迁移完成后停止，仅结束本迁移阶段，不恢复旧 GPT 逐任务审批。
+
+## 2026-11-01｜第二阶段：Local-first 后续 GitHub 治理整合
+
+Owner 在本地会话提供《EliteSync_GitHub_Governance_Codex_Prompt.md》，并明确回复“确定，请执行”。附件 SHA256：`9607fcf16484ba4096a3622db38417f6a45eba4264a88c06c98548ed21fc5495`。这是本阶段直接授权，不是 Web GPT 自行派单；第一阶段的“五项入口、完整治理留待后续”仅描述当时范围，本阶段按本节有界接续。
+
+允许定点检查和修正当前规则、导航、旧工作流标识、已证实可用的冲突技能源，并记录分类和未知项。只在已核对的治理分支追加普通 fast-forward 提交，保留原活动 dirty/untracked、index、HEAD 和既有 worktrees；不覆盖原活动目录文件，不合 main、不创建 PR、不 force。
+
+旧 GPT/Astra 派单、网页终验、Dot/Work 管理和 A–D 前置流程归为 SUPERSEDED_WORKFLOW；历史文件归为 HISTORICAL_REFERENCE，保留原字节。有效的隐私、安全、冻结 AC、证据、权限、预算和已消耗记录归为 CURRENT_RULE，不随旧流程废除；加载或事实无法确认的项目记 UNKNOWN。
+
+日期化 Sources、ZIP、manifest 不变，不重做网页附件替换。产品源码、构建、测试、数据库、设备、外部供应商、系统策略和全局配置不在本轮范围；不删除、搬迁或清理历史资产。具体范围、分类和原活动目录未传播项见[治理索引](../workflow/LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md)。
+
+执行情况：治理修订与静态工程自查在专用工作树完成，原活动目录保护；分支远端副本以真实 commit/回读及本地回执记录。自己的自查不称外部独立验收；产品与运行门禁不判 PASS。完成本阶段后停止，不自动开始产品开发或 main 合并。

@@ -1,3 +1,13 @@
+# COMPACT_V2｜历史快照说明
+
+**HISTORICAL_REFERENCE：包内文件、哈希和下方原说明均按形成时点保留。**
+
+当前流程以[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](../workflow/CURRENT_WORKFLOW.md)和[Owner 接管决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)为准。包内旧角色、远端首读、派单、A–D 或网页终验文字不再是执行门槛；真实权限、原始证据和预算仍保留。
+
+本轮未改变 ZIP、日期化成员或 manifest，不重新替换网页附件。该快照不是默认启动输入；按需参考见[Sources 索引](PROJECT_SOURCE_INDEX_ELITESYNC_V10.md)。
+
+---
+
 # Project Sources COMPACT_V2 镜像使用说明
 
 日期：2026-11-01。

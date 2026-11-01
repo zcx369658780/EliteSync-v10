@@ -1,3 +1,13 @@
+# Local-first｜旧任务发布协议适用性
+
+**SUPERSEDED_WORKFLOW：A–D、网页派单与网页终验不再是普通工程前置门槛。**
+
+当前执行规则见[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)和[Owner 决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。Codex 在已批准目标和权限内自主工作；原八字段可按需参考，不强制另制任务单、发布到 main 或等网页验收。
+
+下方协议是历史原文，不作为当前派发命令。其明确授权、冻结标准、隐私、供应商/设备权限、特殊预算与 STOP 资产约束继续有效；原始消耗和失败不得倒改或复活。需要咨询时由 Owner 发起，不假设自动消息转发。
+
+---
+
 # Task Dispatch Closure Protocol｜精简任务发布闭环
 
 生效：2026-11-01。适用于Astra向Owner交付Codex正式任务的场景。

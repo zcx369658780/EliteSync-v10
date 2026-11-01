@@ -1,3 +1,15 @@
+# Project Sources｜Local-first 适用规则
+
+**CURRENT_RULE：精简、原文保留、哈希核验及敏感资料保护；SUPERSEDED_WORKFLOW：旧远端唯一权威、必读交接、网页派单与 A–D 规定。**
+
+实际执行状态以本地核对为准；本工作树唯一短状态入口是 [ACTIVE_STATE 顶部当前块](ACTIVE_STATE.md)，角色和按需启动见[AGENTS](../../AGENTS.md)、[当前工作流](CURRENT_WORKFLOW.md)和[Owner 决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。GitHub 是发布/审计副本，不自动代表本地产品或运行状态。
+
+下方原文中与新分工冲突的第1、3、4、6节流程条款已被取代；原始文件、历史 AC、证据等级、权限、预算、数据安全及不删除历史等约束继续有效。日期化 ZIP/镜像/manifest 是历史快照，不是默认启动输入。
+
+Owner 已确认 Project Sources 替换（OWNER_CONFIRMED）；本轮不重新生成 ZIP、不修改日期化集合或 manifest、不操作网页附件或账户 Memory。原文与形成时点完整保留如下。
+
+---
+
 # Project Sources瘦身与按需读取规则
 
 生效：2026-11-01。适用于ChatGPT Project Sources及本仓库的长期同步。

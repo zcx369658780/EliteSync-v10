@@ -1,3 +1,13 @@
+# Local-first｜历史入口说明
+
+**HISTORICAL_REFERENCE / SUPERSEDED_WORKFLOW（旧角色与派单流程）**
+
+本文件下方是原时点记录，不再是当前状态或启动规则。[ACTIVE_STATE 顶部当前块](docs/workflow/ACTIVE_STATE.md)是本工作树唯一短状态入口；执行规则见[AGENTS](AGENTS.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)及[Owner 决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。
+
+旧 GPT/Astra 派单、网页终验、Dot/Work 管理及 CURRENT_STATE 权威声明已被取代；历史接受/拒绝、冻结标准、隐私、安全、真实权限与已消耗预算不因该标记失效。下方原文保持原字节，只按实际问题定点追溯，不递归加载。
+
+---
+
 # EliteSync-v10 当前状态
 
 **2026-10-21唯一当前入口：** [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)。v10.1.2已由Astra功能接受，完整接受产品已安全集成main，当前集中候选等待Astra独立集成验收；[唯一集成报告](docs/versions/v10.1.2/integration.md)。项目源ZIP未取得，仅语义候选/BYTE_MIRROR_UNVERIFIED；本轮运行NOT_RUN、v10.1.3未启动。下列各个“当前”均为原时点历史快照，不再堆叠新当前长段。

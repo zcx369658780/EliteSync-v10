@@ -1,3 +1,22 @@
+# EliteSync｜2026-11-01 Local-first 第二阶段治理（CURRENT ENTRY）
+
+**LOCAL_FIRST_GOVERNANCE_CONSOLIDATED / ORIGINAL_ACTIVE_DIRECTORY_PRESERVED / NO_PRODUCT_EXECUTION**
+
+当前角色和流程见[AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)，授权见[Owner 决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)，具体分类与 UNKNOWN 见[治理索引](LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md)。本块是本治理工作树唯一短当前状态；不把旧 CURRENT、handoff、Sources 或网页派单当作并列权威。
+
+本轮只在专用治理工作树修正导航、旧流程标识和可用技能源；原活动目录的文件、dirty/untracked、暂存区、HEAD、分支和既有 worktrees 保持。其 Local-first 接管已在前轮生效；本轮进一步修订尚未复制至原目录，桌面技能是否重新加载 UNKNOWN。GitHub 仅更新治理分支，main 未由本轮更改。
+
+承接既有产品状态而不重新验收：v10.1.5 PARTIAL_NOT_ACCEPTED；AC05 OPEN、G2 false、真实 Push PENDING；604a900 仅有 WS 软件/浏览器限定接受，仍未合 main。旧等待 GPT 验收改为由 Codex/Owner 按新分工处理，不抹除技术缺陷或未完成测试。
+
+条件性 G2 一次 dry-run 与新 Debug APK/USB ADB 的授权前提和独立预算、claim/ledger 继续有效；本轮不执行、不消费、不重置、不退款。STOP 账本、旧版本、11,066 文件备份、数据库与原证保留；当前服务和设备运行状态未重新核实，UNKNOWN。
+
+构建、产品测试、数据库、设备、供应商和生产操作均 NOT_RUN；日期化 Sources、ZIP 和 manifest 未改，也未替换网页附件或账户 Memory。第二阶段完成后 STOP，不自动合 main、恢复旧任务、清理或启动产品版本。
+
+
+---
+
+## Before phase 2 (original record retained below)
+
 # EliteSync｜2026-11-01 本地 Codex 接管迁移（CURRENT ENTRY）
 
 **LOCAL_FIRST_RULES_ACTIVE / GOVERNANCE_MIGRATION_ONLY / PRODUCT_EXECUTION_NOT_RUN**

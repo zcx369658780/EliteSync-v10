@@ -1,19 +1,14 @@
-# EliteSync-v10 当前首读导航
+# EliteSync-v10｜Local-first 当前入口
 
-日期：2026-11-01。只提供最小启动入口，不递归加载历史。
+从实际本地目录和具体目标开始，按需核对 GitHub，不递归读取历史。
 
-1. [现行启动规则](AGENTS.md)：读取全文。
-2. [ACTIVE_STATE最新CURRENT ENTRY](docs/workflow/ACTIVE_STATE.md)：只读当前首块，到分隔线停止。
-3. [最新具名Session Handoff](docs/workflow/SESSION_HANDOFF_20261101_PROJECT_SOURCES_V2_SYNC_COMPLETE.md)：只读这一份。
+| 入口 | 用途 |
+|---|---|
+| [AGENTS](AGENTS.md) | 当前角色、启动、执行与保护规则 |
+| [ACTIVE_STATE 顶部 CURRENT ENTRY](docs/workflow/ACTIVE_STATE.md) | 本工作树唯一短当前状态；遇到历史分隔线停止 |
+| [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) | Owner 目标与边界 → Codex 自主工程 → 节点同步 |
+| [Owner 接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md) | 第一阶段接管及第二阶段治理的日期、范围和覆盖关系 |
+| [治理分类与核对索引](docs/workflow/LOCAL_FIRST_GOVERNANCE_AUDIT_20261101.md) | 本轮定点审计、有效约束、旧流程与 UNKNOWN |
+| [Project Sources 历史参考](docs/gpt-project-sources/PROJECT_SOURCE_INDEX_ELITESYNC_V10.md) | 日期化快照及哈希；非默认启动材料 |
 
-完成三项后停止首读。只有目标明确后，才读取当前正式任务、冻结plan及该任务真正相关的专项合同；决策缺证据时再从GitHub定点补读。
-
-- [当前工作流](docs/workflow/CURRENT_WORKFLOW.md)
-- [任务发布协议](docs/workflow/TASK_DISPATCH_CLOSURE_PROTOCOL.md)
-- [Session Handoff模板](docs/workflow/SESSION_HANDOFF_TEMPLATE.md)
-- [Project Sources瘦身规则](docs/workflow/PROJECT_SOURCE_COMPACTION_POLICY.md)
-- [COMPACT_V2完整项目源索引](docs/gpt-project-sources/20261101_COMPACT_V2/00_INDEX.md)
-- [COMPACT_V2镜像说明](docs/gpt-project-sources/20261101_COMPACT_V2_README.md)
-- [历史原件封存索引](docs/gpt-project-sources/archive/20261031/ARCHIVE_MANIFEST.md)
-
-Project Sources是快照与按需参考库，不覆盖live main。Owner已确认手动替换COMPACT_V2；Codex报告本地镜像完成（CODEX_REPORTED，Astra未直接读取本地回执）。GitHub、Project附件和账户Memory分别记账。
+[CURRENT_STATE](CURRENT_STATE.md)、旧 CURRENT/TASK_CURRENT、旧 handoff 和任务发布协议是历史/可选参考，不构成并列当前状态或网页审批门槛。只有目标需要时才读取相关 Owner 决定、计划、合同、源码或证据；冻结标准与真实保护门继续有效。

@@ -1,3 +1,13 @@
+# Local-first｜历史交接标记
+
+**HISTORICAL_REFERENCE：下方交接形成于 Local-first 接管前，不再是默认启动输入或当前派单。**
+
+当前状态见[ACTIVE_STATE 顶部当前块](ACTIVE_STATE.md)，角色与后续工作见[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)及[Owner 决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)。旧等待网页派单/验收仅是历史流程状态；真实缺陷、G2/APK 授权前提、预算与未完成测试继续有效，不自动 PASS。
+
+下方原字节保留，仅在当前目标确需时定点读取。
+
+---
+
 # Session Handoff｜2026-11-01 精简工作流V1已发布
 
 Status: `WORKFLOW_V1_DOCS_SYNCED / PROJECT_SOURCES_V2_READY / OWNER_MANUAL_REPLACEMENT_PENDING / NO_PRODUCT_TASK_DISPATCHED`
