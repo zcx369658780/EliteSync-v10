@@ -1,3 +1,47 @@
+# EliteSync-v10｜项目进度细表（自有进程树网络观察器节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**SYNTHETIC_TREE_NETWORK_OBSERVER_BOUNDED_SUPPORTED / PRIVATE_TOOLING_SOURCE_SNAPSHOT_VERIFIED / FULL_BUILD_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 自有进程树网络观察器与私有工具输入节点
+
+按Owner再次“可以请继续”推进普通工程。Parent `1594d01e6e6092c7f3d7e1b5156f263e822ce62d`，分支/工作面不变；apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`及L13兼容基线保持。旧源/旧任务不作为新研发Parent，不重开STOP或改旧claims。
+
+### 观察器工程与实际验证
+
+| 项目 | 实际结果及边界 |
+|---|---|
+| 新实现 | `tools/build/windows_sandbox_observer_probe.{py,cs}`、Python回执测试和C#纯解析测试。VM仅映射新probe只读及新owned输出可写；禁网/剪贴板/音视频/打印/vGPU，ProtectedClient Enable。源/二进制FileID、单链接、hash、控制器/辅助/launcher身份冻结并首尾核验；未映射SDK、Pub、数据库或私密旧证 |
+| 测试 | 最终**7 Python tests exit0、33 C#表解析/策略断言exit0**；纯C#测试独立Main，不调用原生API或guest Main。覆盖TCP4/6与UDP4/6布局、port字节序、截断/过大表、loopback与wildcard/外部remote、缺失/未知回执和构建计数。补异常回执时一次CS5同名变量编译失败，改名后编译/断言通过；失败日志保留 |
+| 进程树 | supervisor创建挂起root，归入匿名kill-on-close Job后才恢复；root创建挂起leaf。观察器从Job PID列表取得两成员，原始句柄核image/birth/live/Job归属；leaf恢复前再核创建回执。每次端点采样前后均核进程实例；未知镜像/成员、API或持久诊断失败均停止，仅处理自有Job/已持有句柄 |
+| 网络正例 | 实际GetExtendedTcpTable/GetExtendedUdpTable，AF_INET与AF_INET6；leaf只创建loopback TCP/UDP端点。**四类端口/PID匹配连续3个样本**。最终**35个成功采样窗口、36份端点快照（含触发停止的负例）**；不是仅空表或mock通过 |
+| 停止负例 | 同一leaf在禁网客体内创建一个wildcard TCP监听，没有对外connect/发送请求。观察器实际识别`NON_LOOPBACK_TCP`，TerminateJobObject仅终止自有Job；两个已绑定句柄均退出，QueryJob PID列表最终空。listening remote占位按原生合同不当作真实remote；本观察器对非loopback本地监听采取保守拒绝 |
+| 最终收集 | `collect exit0 / SYNTHETIC_TREE_NETWORK_OBSERVER_BOUNDED_SUPPORTED`；源/二进制身份保持，原launch身份退出且四种Sandbox进程缺席。后台VM完整teardown仍UNKNOWN；UDP目的仍UNKNOWN，端点/进程采样非原子，不证明发包与否或无任何未采到的瞬时活动 |
+| 运行次数与失败 | **本节点VM共3次：初版失败1、追加精确镜像诊断失败1、headless版本通过1**。前两次均因UNKNOWN_PROCESS_IMAGE停止，第二次raw明确是conhost；首批collect exit1，诊断批无verified-result。后改`/target:winexe`并补worker/leaf失败JSON，严格Self门保持、没有conhost白名单。PE头首两批subsystem3，最终2。不同版本原输入/claim/失败永久保留，不把先前结果改为通过 |
+
+此处探针claim只用于同一版本防重复启动和证据归属，不是G2或APK授权账本；本节点所有Gradle/G2/APK调用均0，不从不同诊断目录转移任何旧额度。后两次继续处理的是普通软件诊断，未运行被STOP的旧restricted token/ACL任务。当前观察器仅允许两个自身测试镜像，并非已适用于任意JVM/Gradle/外部工具树；下载信号、完整工具白名单/输入漂移/实际构建硬时限等仍须另核。guest具体OS/CLR版本未收集，仍UNKNOWN；本结论仅适用于本批客体，跨未核实环境更新不得无条件复用。非作者Codex只读审查未发现具体P1/P2；headless与异常回执delta也经静态复核，未执行原生测试，不冒称外部独立接受。
+
+官方依据：[GetExtendedTcpTable](https://learn.microsoft.com/en-us/windows/win32/api/iphlpapi/nf-iphlpapi-getextendedtcptable)、[GetExtendedUdpTable](https://learn.microsoft.com/en-us/windows/win32/api/iphlpapi/nf-iphlpapi-getextendedudptable)、[TCP6 owner-PID row](https://learn.microsoft.com/en-us/windows/win32/api/tcpmib/ns-tcpmib-mib_tcp6row_owner_pid)、[QueryInformationJobObject](https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject)。原始socket/PID/路径/异常及三批输入均LOCAL_ONLY，不上传公开日志。
+
+### 输出路由与输入准备
+
+- 定点读取当前14个native插件及Flutter SDK加载器后，确认既有`module_plugin_loader.gradle`将插件Gradle build dir重定向到模块`.android/plugins_build_output/<plugin>`；不需把整个Pub Cache设为可写。jni显式CMake path使Flutter fake-download helper提前返回，故该helper的staging重定向不覆盖jni真实CMake输出。
+- AGP8.11官方[Cmake API](https://developer.android.com/reference/tools/gradle-api/8.11/com/android/build/api/dsl/Cmake)确认默认staging在模块`.cxx`，支持buildStagingDirectory，并明确不能设在临时build目录内。LOCAL_ONLY方案将jni staging单独规划为owned state/cmake/jni，与插件build目录分开；**尚未由Gradle消费/执行验证**。
+- 只对当前14个声明native包安全枚举/哈希2145个选定源文件，加Flutter SDK Git列出的49份tracked tooling和LICENSE，共**2195文件/15,740,844 bytes**。源树单链接/无reparse及读前后身份/尺寸/mtime核验；49份tooling tracked diff为空。明确排除且保留jni旧`android/.cxx`一目录，不将生成缓存当可信源码，不把这个selected集合说成完整运行读集。
+- 新任务目录建立**单份50文件/366,275 bytes工具源码快照**，全量逐项复制hash和源未变核验，五个历史pin（四份工具源码+LICENSE）匹配、独立文件无hardlink、许可证保留。不是完整SDK/Seed复制，不安装升级或更改共享SDK。初始路由方案形成后才做此本地快照，尚未部署到构建客体或运行Gradle。
+- 仍未闭合：AGP staging override在DSL定型前的实际消费、included-build缓存/输出、完整Flutter SDK/composite root/CLI/cache/git身份、排除生成路径的读集处理、repository/索引运行读取/离线命中。静态源码哈希与输出方案不能替代这些运行条件。
+
+只读助手在定位时误对Pub Cache根发出一次宽泛rg，读取前30条结果即停；无写入/执行，随后停止该宽范围访问。结论仅采用其逐项指定文件读取，主代理另按当前声明的14个包根作有界source seal，不以误搜索结果扩大来源范围。
+
+### 身份、证据及后续
+
+最终guest EXE SHA256 `30d010bbc36efc46700681222558bb31e025fe88826cffb06c17e8d4fff723e8`，实际运行source/controller与本节点最终文件hash相等。guest receipt `485a8b77e56500cba01db58aa8cc16e2d8eccc933b66322a6608742644816446`；verified-result `38e2d539d78e3a43a01f1830f5f96900929d0d7a134e6116ca709d0ea2ae7fa3`；Python log `3fb4e79d19bd821de0af4e206c3bd40e07305c9cce7bd63458398c64a2ed5935`；33断言log `fce31c10b1f051f1cc7ae0258408c77a9083ce4ae2a8ef338cee8541eede0ec8`。selected source summary `c689690f06958fdf68e1a2c4bce6e0993fe0c991645a9e68c123da0630f9a2f7`；tooling snapshot summary `2ae2c51f9d3b4f4e09334e4d4fe66545c0703e8126742bfcb846bad01a06b1d3`。原证分别在`C:/Users/zcxve/EliteSyncDev/v1015-sandbox-observer-*`、`v1015-observer-hostchecks-20261101-01`与`v1015-build-routing-20261101-01`，均LOCAL_ONLY。
+
+下一步继续把这些输入和私有写面装配为可审查、可实际消费的受控构建准备，补完整观察器/实际缓存命中及源/预算绑定；不得直接运行普通preBuild或用此synthetic证明放行G2。G2仍绑定原6ca合同，当前APK独立资格另核。原main@4bebc8f3、255项普通状态/index及六个具名保护hash保持，旧L11/L13、数据库、11,066备份及STOP失败不动。产品双Tree未改，之前PHP59/537、真实WS/Web、选定持久性及已有软件测试按原身份/范围复用，本轮未重跑。**G2 false、Gradle0、APK构建0/安装0、设备及媒体0；10 PARTIAL、AC05 OPEN、真实Push PENDING**，不合main、不启动v10.1.6。
+
+---
+
+## 前一单子进程节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（隔离工具及Job基础验证节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**EXISTING_TOOLS_AND_SYNTHETIC_JOB_BOUNDED_SUPPORTED / SEALED_SEED_BYTES_MATCH / FULL_BUILDER_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。

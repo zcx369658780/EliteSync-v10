@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-01 隔离工具兼容与单子进程Job验证通过（CURRENT ENTRY）
+# EliteSync｜2026-11-01 自有进程树网络观察器实测通过（CURRENT ENTRY）
+
+**SYNTHETIC_TREE_NETWORK_OBSERVER_PASS / PRIVATE_TOOLING_SNAPSHOT_50_VERIFIED / ROUTING_SOURCE_PLAN / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**
+
+继续同一产品分支，本节点Parent `1594d01e6e6092c7f3d7e1b5156f263e822ce62d`，apps/services未改。新增只映射探针/owned输出的禁网沙盒观察器；软件诊断共3次启动，前两次因未知镜像拒收，第二次记录到conhost。改为无控制台目标并补子进程异常回执后通过，未放宽Self镜像门。最终7项Python测试、33项纯解析/策略断言通过；实际绑定2成员，35个成功采样窗口，双栈TCP/UDP四类端点连续3次正例；客体内wildcard监听触发停止，仅终止自有Job，全部句柄退出且Job清空，collect exit0。UDP目的仍UNKNOWN、采样非原子；这不是任意构建树或G2资格。
+
+14个声明native插件的2145个选定源文件、49份tracked Flutter tooling及LICENSE共2195文件/15,740,844字节已记身份；排除且保留jni旧android/.cxx。另仅在新任务目录建立50文件/366,275字节工具源码快照，五个历史pin相等、许可证保留，无完整SDK/Seed复制。插件输出路由及CMake独立staging方案已明确，但未执行Gradle消费验证或部署到构建客体。
+
+后续补私有输出路由实际消费、完整工具/插件读集、缓存repository/索引离线命中及构建输入/预算绑定；G2固定6ca合同保持。3次探针的claim仅防各版本重复启动，不提供或替代G2/APK授权，旧失败与所有账本保持。Gradle/APK/安装/设备/媒体0，整版10 PARTIAL、AC05 OPEN、真实Push PENDING，不合main、不启动v10.1.6。六个旧保护锚点、原根main@4bebc8f3、255项普通状态/index保持。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-自有进程树网络观察器与私有工具输入节点)。
+
+---
+
+## 前一单子进程节点（按原时点保留）
+
+# EliteSync｜2026-11-01 隔离工具兼容与单子进程Job验证通过（历史节点）
 
 **EXISTING_JDK_PYTHON_GUEST_PASS / SYNTHETIC_JOB_CHILD_PASS / SEALED_SEED_3183_MATCH / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**
 
