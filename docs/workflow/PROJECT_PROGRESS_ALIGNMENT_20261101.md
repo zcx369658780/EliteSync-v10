@@ -1,3 +1,49 @@
+# EliteSync-v10｜项目进度细表（扫描竞态修复与第三次配置诊断节点）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**SCANNER_RUNTIME_BOUNDED_SUPPORTED / FINAL_AUTHORIZED_CONFIG_DIAGNOSTIC_SAFETY_STOP / BUDGET_3_OF_3_CONSUMED / STATIC_INPROCESS_CANDIDATE_NOT_RUNTIME_VERIFIED / G2_FALSE**。
+
+## 2026-11-02 扫描竞态修复第三次诊断与静态候选节点
+
+Owner明确“请继续”，解除昨晚停止；没有主机关机或定时关机动作。同一独立产品工作面/分支，起点`b852dc255024945716bf5bb554349581a87d0647`；产品source仍`84a94c9177ce832040146cff9968569762300307`，apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`及精确L13兼容基线未改。
+
+### 实现、验证与实际运行
+
+| 项目 | 本节点事实及边界 |
+|---|---|
+| 扫描修复 | `1189cfa7`：DirectoryInfo.GetFileSystemInfos预填充FileInfo元数据，避免枚举后重新stat已消失文件；仅FileNotFound/DirectoryNotFound且HRESULT低位2/3对整个树重扫，最多3轮。每轮重置计数/栈；root消失、权限、reparse、其它IO不忽略，持续不稳定仍STOP。原独立1200s/15s心跳watchdog、身份/网络/下载/输入守卫保持 |
+| 文件系统及软件检查 | **12项真实owned临时文件系统断言、42项纯C#策略断言、16项Python诊断测试、13项新资格记录测试通过、exit0**。覆盖文件枚举后删除仍读缓存长度、error2/3重扫、持续失败、wrong HRESULT、拒绝权限/其它IO、实际新建owned junction拒收、严格schema/hash/FileID和版本记录独占写。新增error2测试初次误把含子目录的枚举调用数写2，实为3，纠正期望后通过；原失败/fixture保留。旧9项预算纯测试按未变代码复用，未记作本轮新测 |
+| 官方依据 | Microsoft FileInfo.Length文档确认GetFileSystemInfos返回对象的Length为pre-cached；本机真实删文件后读取缓存长度亦通过。首次抓取后控制台Unicode输出异常保留，第二次以ASCII转义输出并保存引用/页面SHA成功，未安装下载工具。参考 https://learn.microsoft.com/en-us/dotnet/api/system.io.fileinfo.length?view=netframework-4.8 |
+| 资格记录换版 | schema2按完整native/controller SHA校身份、文件名前20位具名；前缀碰撞仍因完整身份/open-x拒绝，旧monitor-qualification.json不改。记录绑定原EXE bytes/FileID/SHA、manifest/receipt SHA、task直属根、真实churn计数。真实模式copy_new同一已资格化EXE，launch再核record SHA/原EXE/实际binary，避免重编译PE后追认。新控制器组合不得借旧记录 |
+| 新资格化实际结果 | LOCAL_ONLY `monitor-qualification-20261102-01`，一次VM、Gradle0。**1792次创建/写/原子rename/delete、47成功采样窗口、2个JDK成员、12次扫描、0 retry**；loopback端口正例及NON_LOOPBACK_TCP负例有效，Job空/全部句柄退出，collect exit0。guest CLR4.0.30319.42000、kernel10.0.26100.6713；监督器EXE SHA `3dce6562c8fdca47f4a8a77b11ec18adf7ea3ccdb30dcfbc9ffd95ba9d108f15` |
+| 最后1次真实诊断 | `attempt-20261102-01`，对应唯一永久reservation-3。完成两个旧STOP的具名接续决定、全量6954绑定输入fresh校验和精确资格EXE核对后才占用。**600成功样本、130次扫描、2次missing-path整轮retry成功**，已越过原transforms竞态；stdout到`:gradle:pluginDescriptors`，根模块/private tooling两个上下文守卫运行。随后出现绑定JDK java.exe子进程和conhost，未知镜像触发STOP，3成员全部退出/Job空，collect exit0，status CONFIG_DIAGNOSTIC_SAFETY_STOP。全量图、最终项目输出/CMake消费、整体离线命中仍未证明 |
+| 额度与保护 | 原独立任务3/3永久已耗、剩0；没有第四次Gradle、退款、改max、清claim或新账本。旧5份诊断记录、六个保护hash、原根main@4bebc8f3/255状态/index保持。四类Sandbox表面进程最终缺席；后台完整VM teardown UNKNOWN，UDP目的UNKNOWN、采样非原子、磁盘轮询可短暂超调均保留 |
+
+### 新阻断点与可审查静态候选
+
+本次raw只证明新JDK进程/conhost在工具构建阶段出现，没有child命令行或完整父子调用链，**conhost唯一根因UNKNOWN**。不能凭相邻日志断言已确认是Kotlin daemon。
+
+静态发现原`kotlin.compiler.execution.strategy=in-process`仅在模块`.android/gradle.properties`，不覆盖独立tooling root的配置层级。已依据Gradle8.14 DefaultGradlePropertiesLoader（各root加载自己的properties，再叠加共用Gradle user home）及JetBrains Kotlin1.9.20/2.0.21 PropertiesProvider/AbstractKotlinCompile官方版本源码，形成`6ecb5d13`候选：
+
+- 只在新任务owned adapters生成一份gradle-home.properties，作为受hash绑定输入复制到**guest C:/BuildWork/GradleHome/gradle.properties**，不改宿主shared Gradle home、SDK或Pub。
+- included tooling project先核in-process属性；compileKotlin动作前通过已在sealed Kotlin API2.0.21 JAR中静态核为public的Property getter，finalizeValue并断言枚举IN_PROCESS，记录before_action事件；不白名单conhost，不减少身份/网络监测。此事件即使将来取得，也只证明执行前配置状态，不等同编译完成或唯一归因。
+- CLI增加--info，仍唯一assembleAarRelease --dry-run、offline、无真实AAR/APK。**最新17项Python检查exit0（包含前16项，并非额外17项新用例）**，新增owned配置文件序列化/guest路由/hash绑定/拒绝覆盖验证；守卫Source-level复核无新具体P1/P2，实际Gradle消费/属性生效均NOT_RUN。
+
+静态查阅只采用指定官方版本源与sealed API2.0.21 public getter事实；曾列出13份已在输入清单内的Kotlin API缓存符号，不代表这些版本均已被本轮选中，实际解析KGP版本仍UNKNOWN。静态class解析首次接口表偏移写错、修正后取得public getter签名，失败工具回执保留；未执行缓存JAR或启动Gradle。当前新版官方网页未检出预期策略段，因此不以该网页作为该属性的成功依据，采用版本化官方源码及既有密封JAR元数据。
+
+非作者Codex辅助只读审查扫描/资格记录/静态候选及最后before-action delta，未报新具体P1/P2；测试/VM均由主代理执行或按helper实际回执记录，不冒称外部独立验收。主代理只接受**扫描竞态修复及本轮受控失败证据的有界工程结果**，不接受整版构建/功能。
+
+后续动态检查需Owner[追加独立范围提案](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md#2026-11-02-追加独立诊断范围提案未授权)明确同意；目前PROPOSED_NOT_AUTHORIZED，无新任务账本/调度/运行。新控制器hash已使旧资格记录不匹配，新授权也不跳过fresh资格化/输入/权限条件。旧3次和旧G2始终不改，不从“继续”推断更多额度。
+
+### 身份与原证
+
+全部原始路径、FileID/PID、PE、编译/测试日志、old/new qualification、永久claim/接续决定、stdout/stderr及outcome均LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-current-product-config-20261101`；本日细项位于`preflight-20261102`。最终资格receipt `2e2bee852590782dfb46df5dc171b568308b468200775fe3fac0f36b5560520a`；第3次receipt `03725a264cc6638d522210728035c89fb18177c8741f371b66e62fe89c79e1ce`；reservation-3 `70733e855cee7e685f2fdb0b6c223ebc751e342ac87209e8c44e8352ac01f400`；节点汇总 `a24dc1b66c44fd992135c67a5b7f6a2e1aa2b6a091616b426da11d3dfe7c938e`。运行控制器原文已保存并核冻结SHA，Git源码身份为1189cfa7；6ecb5d13是后续未运行静态候选，二者不得混写。
+
+本节点AAR/APK产出/安装/手机/音视频/供应商/真实Push均0；旧PHP59/537、WS/Web/持久性及软件证据仅按原身份与范围复用，本轮未重跑。整版仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；旧L11/L13、数据库、11,066备份、STOP原证及无关IME空目录保留，不合main、不启动v10.1.6。
+
+---
+
+## 前一停止节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（当前产品诊断与Owner停止节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_STOPPED / OWNER_HANDLES_SHUTDOWN / TWO_DIAGNOSTICS_SAFETY_STOPPED / ONE_RESERVED_SLOT_REMAINING / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。

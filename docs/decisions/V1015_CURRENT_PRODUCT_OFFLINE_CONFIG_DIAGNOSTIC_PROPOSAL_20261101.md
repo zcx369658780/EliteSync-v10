@@ -1,6 +1,6 @@
 # v10.1.5 当前产品离线配置诊断提案
 
-日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / COUNTS_IN_LOCAL_LEDGER / OWNER_STOP_REQUESTED / G2_FALSE**。
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。
 
 Owner已通过当前会话的具名问题明确答复“授权上述独立3次诊断范围”。这是独立于旧G2的新配置诊断授权；不恢复网页派单或网页验收，技术前置仍须成立。Codex负责实现、调试、测试与工程裁决。Owner此前对v10.1.5、USB及现有Docker/WSL的授权保留；本提案只处理旧特殊构建额度不能迁移到当前产品的问题。
 
@@ -64,3 +64,15 @@ Owner决定：2026-11-01，明确答复“授权上述独立3次诊断范围”�
 Owner在本次第2次诊断结束后要求立即停止并关机、明天继续。已占用2/3，剩1/3，第三次未启动；最终实际状态见ACTIVE_STATE及唯一细表。授权仍有效，但先遵守本次停止要求，不自动继续运行。
 
 Owner最新补充：“关机我自己来，你准备好停下即可”。本次停止保持，关机由Owner自行执行；Codex未发出或安排系统关机命令。
+
+## 2026-11-02 追加独立诊断范围提案（未授权）
+
+Owner“请继续”已解除11月1日停止，关机仍由Owner自行决定。原独立任务`v1015-current-product-config-20261101`的3次现全部永久消耗，第3次在600样本/130次扫描后因conhost停止；磁盘竞态修复已有真实证据。旧3个reservation/outcome、旧G2及所有STOP不退款、不重置或转移。
+
+**PROPOSED_NOT_AUTHORIZED**：请求另立`v1015-inprocess-config-20261102`预算范围，最多3次真实Gradle root创建尝试，用于验证已提交静态候选`6ecb5d13`并诊断同一当前产品的离线配置/任务图。产品source84a94c91、apps ed248529、services7634b475保持。候选只扩展任务私有compiler属性、编译动作前策略检查及--info日志；conhost唯一归因仍UNKNOWN，不以新额度保证成功。
+
+如Owner同意：先实现明确独立的预算调度并fresh资格化新控制器/相同native源码，完整验证来源/输入/命令/监测；**不得改旧max=3或旧账本绕过上限**。新任务每次Popen尝试前原子独占预约，失败/未创建进程/配置错误/强停均不退款；普通私有配置缺陷可在剩余新额度内静态修复/检查后接续，安全STOP须具名原因及证据/明确Codex接续决定，停止原因或前置条件未查明时不重跑。次数用完即停止动态分项，不自动开后继。
+
+其余保护沿原已批准范围：禁网Sandbox、固定Gradle8.14/JDK17/Flutter3.41.7及现有依赖、精确known images/自有Job/watchdog、只读输入/私有写面、每次1200s、同等磁盘边界。仅assembleAarRelease --dry-run配置诊断；不得下载安装升级、实际AAR/APK、手机安装/设备/音视频、真实Push/供应商/生产/费用、main合并、正式发布或v10.1.6。原3次及所有旧资产保持，新的许可不放行G2或关闭AC05。
+
+当前没有新账本或新调度入口，额外Gradle0；收到Owner对此具体新增范围的明确答复后才开始，日常软件工程不恢复网页派单或网页验收。

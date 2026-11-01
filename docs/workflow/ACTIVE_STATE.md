@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-02 扫描修复实测通过，三次配置诊断额度已用完（CURRENT ENTRY）
+
+**OWNER_RESUMED / SCANNER_RUNTIME_BOUNDED_SUPPORTED / CONFIG_DIAGNOSTICS_3_OF_3_CONSUMED / INPROCESS_STATIC_CANDIDATE_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner于2026-11-02明确“请继续”，昨晚的停止已解除；关机仍由Owner自行决定，Codex未执行或安排关机。同一产品分支，起点`b852dc255024945716bf5bb554349581a87d0647`，apps/services未变。扫描修复提交`1189cfa7`，后续静态候选`6ecb5d13`。
+
+修复目录枚举后重新stat临时路径的竞态，改用缓存元数据并仅对error2/3整轮有界重扫，持续不稳定/权限/reparse/其它IO仍拒收。12项文件系统回归、42项纯C#、16项诊断Python、13项资格记录测试通过。新禁网Java资格化：1792次目录churn、47成功样本、12次扫描，正例及越界监听负例通过，Job/句柄全部退出；新版资格记录不可覆盖，真实诊断直接复用同一已资格化EXE。
+
+最后一次真实Gradle完成6954输入核验、600成功样本、130次扫描/2次有界retry，已越过昨晚故障点；随后新JDK子进程伴随conhost触发UNKNOWN_PROCESS_IMAGE停止，Job空且全部句柄退出，collect exit0仅表示失败证据有效。独立任务`v1015-current-product-config-20261101`现**3/3永久已耗、剩0**，不得第四次运行/退款/换目录续额。完整任务图、缓存全面命中、AGP路由消费及APK仍未通过。
+
+静态候选已把compiler in-process属性扩展到任务私有Gradle user home，并在included compileKotlin动作前固定/检查策略，增加--info；17项Python检查通过，**候选运行NOT_RUN、conhost唯一根因UNKNOWN**，不能称已解决编译派生。控制器hash变化使旧资格记录不匹配，后续须新资格化。[Owner决定文件](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md#2026-11-02-追加独立诊断范围提案未授权)已提出另立最多3次同范围诊断，**尚未授权、未建新账本或运行**；收到明确授权后才能实现新独立调度，不能改旧max/claims。
+
+原根main@4bebc8f3、255项状态/index、六个保护锚点及旧资格/两次STOP记录均字节保持；额外IME空目录保留。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-扫描竞态修复第三次诊断与静态候选节点)。整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；本节点AAR/APK产出、安装、手机/媒体/供应商0，不合main、不启动v10.1.6。
+
+---
+
+## 前一停止节点（按原时点保留）
+
 # EliteSync｜2026-11-01 已停止，Owner自行关机（CURRENT ENTRY）
 
 **OWNER_STOPPED / OWNER_HANDLES_SHUTDOWN / CONFIG_DIAGNOSTICS_RESERVED_2_OF_3 / G2_FALSE / V10.1.5_PARTIAL**
