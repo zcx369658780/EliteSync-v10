@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-01 小样本隔离修复复验通过，构建输入仍待闭合（CURRENT ENTRY）
+# EliteSync｜2026-11-01 隔离工具兼容与单子进程Job验证通过（CURRENT ENTRY）
+
+**EXISTING_JDK_PYTHON_GUEST_PASS / SYNTHETIC_JOB_CHILD_PASS / SEALED_SEED_3183_MATCH / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**
+
+按Owner“可以请继续”推进同一独立产品分支，本节点Parent `32fdb170fbb22e7794ab301a989850226f67943a`，apps/services未改。新增隔离运行探针；一次VM中现有JDK17.0.18、Python3.11.9实际exit0，7个工具锚点前后身份一致，工具目录只读映射、独立输出可写，禁网和外设共享。新自身EXE子进程完成挂起→归入匿名Job→句柄路径/创建时间核验→恢复→ready帧→关闭Job后退出；collect exit0、8项定向测试通过。**单子进程证明不是完整构建观察器资格**，Java/Python兼容测试与synthetic Job分列。
+
+旧单Seed只读fresh核对3183文件/1,362,106,905字节，SHA/FileID/单链接保持，精确文件列表无额外/缺失/reparse；未复制Seed、改ACL或重开旧STOP。依据六份本地Gradle8.14源码明确了只读缓存base与私有writable home分离的映射方案，尚未装配/执行，不等同repository identity、索引运行读取或离线命中通过。
+
+本节点仅接受工具兼容、7锚点只读及一个自有Job child的有界工程结果；完整观察器/进程树网络、tooling/plugin写面、完整实际输入与缓存解析、当前APK预算/claim仍未闭合。G2固定6ca合同保持false；Gradle/APK/安装/设备/媒体0，不合main、不启动v10.1.6，整版仍10 PARTIAL、AC05 OPEN、真实Push PENDING。原根main@4bebc8f3、255项普通状态/index与六个具名旧保护hash保持。回执、审查和下一步见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-隔离工具兼容单子进程job与seed复核节点)。
+
+---
+
+## 前一小样本复验节点（按原时点保留）
+
+# EliteSync｜2026-11-01 小样本隔离修复复验通过，构建输入仍待闭合（历史节点）
 
 **MAPPED_FIXTURE_13_PASS / DUAL_STACK_NETWORK_UNREACHABLE_OBSERVED / SELECTED_INPUTS_798_HASHED / G2_FALSE / APK_NOT_RUN / V10.1.5_PARTIAL**
 

@@ -1,3 +1,41 @@
+# EliteSync-v10｜项目进度细表（隔离工具及Job基础验证节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**EXISTING_TOOLS_AND_SYNTHETIC_JOB_BOUNDED_SUPPORTED / SEALED_SEED_BYTES_MATCH / FULL_BUILDER_NOT_QUALIFIED / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 隔离工具兼容单子进程Job与Seed复核节点
+
+Owner再次回复“可以请继续”；本节点继续现有范围内的输入和执行条件工程，不重开旧STOP任务、不复用旧claim或特殊预算。源码Parent `32fdb170fbb22e7794ab301a989850226f67943a`，同一独立产品工作面/分支；apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`与L13兼容基线保持，无产品源码变更。
+
+### 实际完成项
+
+| 项目 | 实际证据与界限 |
+|---|---|
+| 新工具与准备 | `tools/build/windows_sandbox_runtime_probe.{py,cs}`与专用测试。现有签名csc编译，现有JDK/Python签名核验；只映射probe/JDK/Python为只读、一个新owned output可写，禁网/剪贴板/音视频/打印/vGPU，ProtectedClient Enable。七个具名工具锚点的FileID/单链接/尺寸/SHA在prepare、launch和collect核验；不是全工具分发复算 |
+| 软件检查与审查 | 最终runtime定向**8 tests、exit0**，涵盖只读映射、身份、工具失败、Job缺证、未知/矛盾构建计数、hardlink等。初次Python语法检查发现路径raw string尾反斜杠错误，已用PureWindowsPath修复后通过；原工具回执保留。非作者Codex静态复核发现collect未校apk_builds却固定记0的P2，已严格要求int==0并补缺失/None/bool/非零拒收，最终复核无新增具体P1/P2；非外部独立接受 |
+| 本批次数 | 新LOCAL_ONLY根`C:/Users/zcxve/EliteSyncDev/v1015-sandbox-runtime-20261101-01`，独立claim，一次VM启动；guest Java1、Python1、synthetic自身EXE worker1。没有Gradle/JAR入口、Flutter构建或旧restricted child/token调用，旧01/02/03探针记录保持 |
+| 现有工具兼容实测 | **JDK17.0.18 / Temurin17.0.18+8**的`-version` exit0；**Python3.11.9 x64**的`-I -S`版本及ctypes指针大小8检查exit0，移除可能注入选项的环境变量。不加载用户site、不安装升级、不联网下载。两个工具是独立兼容探测，未声称已经纳入构建Job |
+| 只读锚点 | JDK release、Python Lib/os.py分别请求GENERIC_WRITE/WRITE_DAC/WRITE_OWNER均被原生5拒绝；只申请句柄并关闭，未尝试修改工具内容/ACL。七个锚点前后身份保持；并未验证整套SDK/cache全部写面 |
+| 自有Job链 | 匿名Job设置KILL_ON_JOB_CLOSE，x64结构布局检查；CreateProcess(CREATE_SUSPENDED|CREATE_NO_WINDOW)创建自身EXE worker，**归入Job之后才ResumeThread**；原始进程句柄核QueryFullProcessImageName/GetProcessTimes、IsProcessInJob；ready文件原子改名后核nonce/PID/birth，关闭Job后原句柄Wait退出。worker PID17276，birth134380085030925976，实际exit0；ready后仍live，关闭Job到后续写回执约0.016秒，未等30秒自然退出。不按裸PID找/杀进程，不涉及旧失败child |
+| 收集和清理 | **collect exit0**；`EXISTING_TOOLS_AND_SYNTHETIC_JOB_BOUNDED_SUPPORTED`。VM内自行请求shutdown，原launch身份退出且四种Sandbox进程缺席；后台VM完整teardown仍UNKNOWN。仅证明该自有worker链，未观察任意构建树/TCP/UDP或证明完整builder observer |
+| 旧Seed fresh复核 | 精确检查封存3183条，**3183/3183 SHA/尺寸/FileID/单链接相等**，合计1,362,106,905 bytes；files-2.1内容2149、metadata-2.107元数据1034。限定Seed根安全枚举9426 entries/6244目录，文件列表精确一致，额外/缺失/reparse均0；只读、不改宿主DACL、不新复制cache |
+| 缓存映射工程 | 根据六份现成Gradle8.14源码记录hash与行锚点，明确`GRADLE_RO_DEP_CACHE`应指向含modules-2的base、`GRADLE_USER_HOME`应为新owned写面；DefaultModuleArtifactCache用commonRoot相对路径序列化/恢复，two-stage读回退readonly。新LOCAL_ONLY方案仍是SOURCE_LEVEL/NOT_EXECUTED；没有读取二进制索引条目、运行解析或证明repository identity/variant命中 |
+
+旧Seed复核首先由只读助手对历史manifest/settled作3183条交叉定位，主代理随后直接fresh核实际文件与精确列表；两层证据分列。旧Seed仅被读取，**没有映射到本次工具VM**，不能拿本次JDK/Python只读结果追认旧Seed宿主OS资格。缓存源码来自已安装Gradle8.14 bundled source，本文仅报告所读源码行为；不是这些Java类已运行或与所有运行JAR完成来源校验。网页文档工具未能打开8.14缓存页，未据此下载或换装工具。
+
+原生Job依据：[AssignProcessToJobObject](https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-assignprocesstojobobject)、[SetInformationJobObject](https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-setinformationjobobject)、[CreateProcess flags](https://learn.microsoft.com/en-us/windows/win32/procthread/process-creation-flags)。实验仍使用guest普通WDAG身份，未提权、改全局安全、操作旧ACL恢复样本或复活旧执行器。
+
+### 回执、复用及未完成项
+
+实际guest EXE SHA256 `f48e6c2672122d803224acff7cd8319398a806d8fde49f10fc1cf26b666ac586`；运行source/controller与最终本节点文件hash相等。guest receipt `3773a8dbc74f831eb2fae348da0b6c3ca471cd8c35427ef9e73fbb587cff6554`；verified-result `29c89d711c74bd2e53f9290a576bd22071c69014540d45e24cf2f514a68627ae`；8项单测log `b276084ee75a4c64e34ddf4b76fe94e0ce746b81db01bed8916f8072f8f899fc`。Seed fresh summary `42d3e54a6a03f849dbacf316157697d316e73ea84f438edbfad3542a92d582eb`；精确列表检查 `ee8111aee9e58a4a50fe20b5370e2b05ef8ef574ade46fbc059da57e4f6d6a5c`；静态缓存映射方案 `9b3fd4cb7aedfca1819a1f9ec9249876454299f487ff148edbafea79ae99e069`。运行原始日志/路径/claim保持LOCAL_ONLY；缓存逐项列表和源代码行锚点放`C:/Users/zcxve/EliteSyncDev/v1015-build-inputs-20261101-01`，不公开上传。
+
+本节点有界工程结论：现有工具在隔离客体可运行、七锚点保持只读、自有单child可先归Job后执行并在关Job后退出；封存cache仍可被精确识别，readonly/base布局有明确源码级装配方案。**完整builder observer、任意进程树身份/网络采样、SDK/pub/tooling/plugin实际读写集及私有输出路由、readonly cache实际索引/离线命中、源pin/授权/预算绑定仍未通过**。不得用synthetic worker代替真实Gradle配置或让JDK版本成功放行G2。
+
+继续工程重点是把静态缓存映射与只读工具输入装配成可审查的私有写面及完整观察器，保持G2固定6ca源/命令合同；当前APK另核其已授权的独立输入与预算。普通preBuild→flutter build aar仍不得直接执行，不通过其他入口花掉或重置旧G/APK/G2额度。原根main@4bebc8f3、255项普通状态/index及六个具名保护锚点hash保持；旧库、11,066文件备份、STOP与旧失败不动。产品双Tree未改，PHP59/537、真实WS/Web与选定持久性证据按原范围复用，本轮未重跑。**G2 false、Gradle0、APK构建0/安装0、设备及媒体0；全版10 PARTIAL、AC05 OPEN、真实Push PENDING**，不合main、不启动v10.1.6。
+
+---
+
+## 前一小样本复验节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（小样本隔离复验通过节点）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**MAPPED_FIXTURE_ISOLATION_BOUNDED_SUPPORTED / INPUT_RUNTIME_CLOSURE_NOT_PROVEN / G2_FALSE / V10.1.5_PARTIAL_NOT_ACCEPTED**。
