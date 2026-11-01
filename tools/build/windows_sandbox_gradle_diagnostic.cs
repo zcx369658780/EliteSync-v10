@@ -214,10 +214,44 @@ class GradleDiagnostic
         foreach(var row in Rows(m["inputs"]).Where(r=>r.ContainsKey("destination")))
             if(Hash((string)row["destination"])!=(string)row["sha256"])throw new SafetyStop("WORK_SOURCE_DRIFT");
     }
+    static int DiskScanRetries,DiskScansCompleted;
+    // DirectoryInfo enumeration pre-populates FileInfo metadata; do not stat vanished files again.
+    // Each completed walk is a non-atomic observation, not an OS-enforced quota.
+    internal static long MeasureTree(string root,Func<string,FileSystemInfo[]> enumerate,Action<int,IOException> retry) {
+        Canonical(root);
+        for(int attempt=1;attempt<=3;attempt++) {
+            try {
+                long total=0;var pending=new Stack<string>();pending.Push(root);
+                while(pending.Count>0) {
+                    string directory=pending.Pop();Canonical(directory);
+                    foreach(var entry in enumerate(directory)) {
+                        FileAttributes attributes=entry.Attributes;
+                        if((attributes&FileAttributes.ReparsePoint)!=0)throw new SafetyStop("REDIRECTED_DISK_ENTRY");
+                        if((attributes&FileAttributes.Directory)!=0)pending.Push(entry.FullName);
+                        else {
+                            var file=entry as FileInfo;
+                            if(file==null)throw new SafetyStop("UNKNOWN_DISK_ENTRY_TYPE");
+                            total=checked(total+file.Length);
+                        }
+                    }
+                }
+                return total;
+            }catch(IOException error) {
+                int code=error.HResult&0xffff;
+                if(!((error is FileNotFoundException||error is DirectoryNotFoundException)&&(code==2||code==3)))throw;
+                // Never turn an absent owned root or persistent failure into a zero-byte success.
+                Canonical(root);
+                if(attempt==3)throw new SafetyStop("DISK_SNAPSHOT_UNSTABLE");
+                retry(attempt,error);Thread.Sleep(10);
+            }
+        }
+        throw new SafetyStop("DISK_SNAPSHOT_UNSTABLE");
+    }
     static long Size(string root) {
-        long total=0;var pending=new Stack<string>();pending.Push(root);
-        while(pending.Count>0){string directory=pending.Pop();Canonical(directory);foreach(string file in Directory.GetFiles(directory)){Canonical(file);total=checked(total+new FileInfo(file).Length);}foreach(string child in Directory.GetDirectories(directory))pending.Push(child);}
-        return total;
+        long total=MeasureTree(root,path=>new DirectoryInfo(path).GetFileSystemInfos(),delegate(int attempt,IOException error) {
+            DiskScanRetries++;Log(new{operation="disk_scan_retry",root=root,attempt=attempt,hresult=error.HResult});
+        });
+        DiskScansCompleted++;return total;
     }
     internal static string CheckLogChunk(string pending,string next) {
         string text=pending+next;
@@ -284,7 +318,7 @@ class GradleDiagnostic
                 foreach(var b in known.Values)CloseHandle(b.handle);if(root.thread!=IntPtr.Zero)CloseHandle(root.thread);
             }
         }
-        return new {root_pid=root.pid,root_exit=exit,stop_reason=stop,successful_samples=samples,bound_members=known.Count,job_final_empty=empty,all_bound_handles_exited=exited,sampling_non_atomic=true,udp_destination="UNKNOWN",disk_limit_sampled=true,transient_disk_overshoot_possible=true,watchdog_stop=watchdogStop};
+        return new {root_pid=root.pid,root_exit=exit,stop_reason=stop,successful_samples=samples,bound_members=known.Count,job_final_empty=empty,all_bound_handles_exited=exited,sampling_non_atomic=true,udp_destination="UNKNOWN",disk_limit_sampled=true,transient_disk_overshoot_possible=true,disk_scan_retries=DiskScanRetries,disk_scans_completed=DiskScansCompleted,watchdog_stop=watchdogStop};
     }
     static int Main(string[] args) {
         Json.MaxJsonLength=64*1024*1024;

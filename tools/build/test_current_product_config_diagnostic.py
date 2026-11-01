@@ -48,7 +48,7 @@ class DiagnosticTests(unittest.TestCase):
         self.assertNotIn('untrusted',env['PATH']);self.assertEqual(env['GRADLE_RO_DEP_CACHE'],r'C:\Inputs\DependencyCache')
     def result(self,mode='gradle'):
         m={'nonce':'a'*32,'binary_sha256':'b'*64,'mode':mode,'inputs':[1]}
-        r={'schema':1,'nonce':m['nonce'],'binary_sha256':m['binary_sha256'],'mode':mode,'input_files':1,'failure':None,'G2':False,'apk_builds':0,'gradle_root_attempts':1 if mode=='gradle' else 0,'proof':{'job_final_empty':True,'all_bound_handles_exited':True,'watchdog_stop':0,'root_exit':1,'stop_reason':None,'bound_members':2,'successful_samples':8}}
+        r={'schema':1,'nonce':m['nonce'],'binary_sha256':m['binary_sha256'],'mode':mode,'input_files':1,'failure':None,'G2':False,'apk_builds':0,'gradle_root_attempts':1 if mode=='gradle' else 0,'proof':{'job_final_empty':True,'all_bound_handles_exited':True,'watchdog_stop':0,'root_exit':1,'stop_reason':None,'bound_members':2,'successful_samples':8,'disk_scans_completed':6,'disk_scan_retries':0}}
         if mode=='qualify':r['proof']['stop_reason']='SafetyStop: NON_LOOPBACK_TCP'
         return r,m
     def test_normal_failure_is_valid_evidence_not_success(self):
@@ -63,7 +63,7 @@ class DiagnosticTests(unittest.TestCase):
             with self.assertRaises(ValueError):d.validate_result(r,m)
     def test_qualification_requires_observed_negative_and_descendant(self):
         r,m=self.result('qualify');d.validate_result(r,m)
-        for key,value in [('bound_members',1),('successful_samples',True),('stop_reason',None),('watchdog_stop',2)]:
+        for key,value in [('bound_members',1),('successful_samples',True),('stop_reason',None),('watchdog_stop',2),('disk_scans_completed',0),('disk_scan_retries',True)]:
             changed=copy.deepcopy(r);changed['proof'][key]=value
             with self.assertRaises(ValueError):d.validate_result(changed,m)
     def test_success_line_cannot_replace_graph_and_route_evidence(self):

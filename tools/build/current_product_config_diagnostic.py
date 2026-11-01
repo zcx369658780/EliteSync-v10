@@ -187,11 +187,50 @@ def product_inputs(root,inputs,bindings):
     put(root/'adaptations-private.json',adaptations)
     return prior
 
+def monitor_qualification_path(native_sha256,controller_sha256):
+    for value in [native_sha256,controller_sha256]:
+        if type(value) is not str or re.fullmatch('[0-9a-f]{64}',value) is None:raise ValueError('Exact source identities required')
+    # Prefix collisions fail full-identity validation/open-x rather than replacing another record.
+    return TASK_ROOT/('monitor-qualification-'+native_sha256[:20]+'-'+controller_sha256[:20]+'.json')
+
+def validate_monitor_record(record,*,native_sha256,controller_sha256,binary_identity,manifest_sha256,receipt_sha256):
+    keys={'schema','kind','qualified','native_source_sha256','controller_sha256','binary_identity','receipt_sha256','manifest_sha256','root','disk_churn_operations','gradle_starts','G2'}
+    if type(record) is not dict or set(record)!=keys or type(record['schema']) is not int or record['schema']!=2:raise ValueError('Unknown monitor qualification schema')
+    identity=record['binary_identity']
+    if type(identity) is not dict or set(identity)!={'bytes','file_id','sha256'} or type(identity['bytes']) is not int or identity['bytes']<=0 or type(identity['file_id']) is not list or len(identity['file_id'])!=2 or any(type(value) is not int for value in identity['file_id']):raise ValueError('Unknown qualified binary identity')
+    if type(record['root']) is not str or not Path(record['root']).is_absolute() or Path(record['root']).parent!=TASK_ROOT:raise ValueError('Qualification root outside task')
+    for digest in [identity['sha256'],record['native_source_sha256'],record['controller_sha256'],record['manifest_sha256'],record['receipt_sha256']]:
+        if type(digest) is not str or re.fullmatch('[0-9a-f]{64}',digest) is None:raise ValueError('Exact qualification digest required')
+    if record['kind']!='java-tree-and-disk-churn' or record['qualified'] is not True or record['G2'] is not False or type(record['gradle_starts']) is not int or record['gradle_starts']!=0:raise ValueError('No runtime authority inherited from qualification')
+    for key,value in [('native_source_sha256',native_sha256),('controller_sha256',controller_sha256),('binary_identity',binary_identity),('manifest_sha256',manifest_sha256),('receipt_sha256',receipt_sha256)]:
+        if record[key]!=value:raise ValueError('Qualification evidence identity drift: '+key)
+    if type(record['disk_churn_operations']) is not int or record['disk_churn_operations']<1:raise ValueError('Real disk churn not demonstrated')
+
+def qualified_monitor():
+    native=sha(HERE/'windows_sandbox_gradle_diagnostic.cs');controller=sha(Path(__file__))
+    path=monitor_qualification_path(native,controller)
+    layout.safe_file(path);record=json.loads(path.read_bytes())
+    root=Path(record['root']).absolute()
+    if root.parent!=TASK_ROOT:raise ValueError('Qualification must belong to this owned task')
+    for ancestor in [root,*root.parents]:
+        if ancestor.is_symlink() or getattr(ancestor.lstat(),'st_file_attributes',0)&0x400:raise ValueError('Redirected qualification root')
+    manifest=root/'manifest.json';receipt=root/'output/result.json';binary=root/'probe/GradleDiagnostic.exe'
+    layout.safe_file(manifest);layout.safe_file(receipt)
+    validate_monitor_record(record,native_sha256=native,controller_sha256=controller,binary_identity=layout.safe_file(binary),manifest_sha256=sha(manifest),receipt_sha256=sha(receipt))
+    m=json.loads(manifest.read_bytes());r=json.loads(receipt.read_bytes())
+    if m['mode']!='qualify' or m['native_source_sha256']!=native or m['controller_sha256']!=controller:raise ValueError('Qualification manifest source/mode drift')
+    if r['binary_sha256']!=record['binary_identity']['sha256']:raise ValueError('Qualified binary/receipt mismatch')
+    validate_launch_chain(root,m);validate_result(r,m)
+    current_images=[{'path':str(PureWindowsPath(r'C:\Inputs\Jdk\bin')/name),'sha256':sha(layout.JDK/'bin'/name)} for name in ['java.exe','javaw.exe']]
+    if m['images']!=current_images or m['environment']!=environment():raise ValueError('Qualification Java/environment drift')
+    return path,record,binary
+
 def prepare(root,mode):
     root=Path(root).absolute()
     if root.parent!=TASK_ROOT or root.exists():raise ValueError('One new direct attempt directory required')
     authorization=json.loads((TASK_ROOT/'owner-authorization.json').read_bytes())
     if authorization.get('owner_answer')!='授权上述独立3次诊断范围' or authorization.get('max_attempts')!=3:raise ValueError('Missing explicit new authorization')
+    qualification=qualified_monitor() if mode=='gradle' else None
     root.mkdir()
     for name in ['probe','output','inputs/product','inputs/adapters']:(root/name).mkdir(parents=True)
     inputs=[];bindings=[]
@@ -217,7 +256,9 @@ def prepare(root,mode):
         if subprocess.run(['pwsh','-NoProfile','-Command',script],capture_output=True,timeout=30).returncode:raise ValueError('Existing tool signature not qualified')
     for name in ['host-compile-temp','empty-classpath','host-compile-home']:(root/name).mkdir()
     env=layout.compiler_environment(root)
-    commands=[('csc',[str(compiler),'/nologo','/target:winexe','/platform:x64','/r:System.Web.Extensions.dll','/out:'+str(root/'probe/GradleDiagnostic.exe'),str(root/'probe/GradleDiagnostic.cs')])]
+    commands=[]
+    if mode=='qualify':commands=[('csc',[str(compiler),'/nologo','/target:winexe','/platform:x64','/r:System.Web.Extensions.dll','/out:'+str(root/'probe/GradleDiagnostic.exe'),str(root/'probe/GradleDiagnostic.cs')])]
+    else:layout.copy_new(qualification[2],root/'probe/GradleDiagnostic.exe',qualification[1]['binary_identity']['sha256'])
     if mode=='qualify':
         shutil.copyfile(HERE/'DiagnosticMonitorFixture.java',root/'probe/DiagnosticMonitorFixture.java')
         commands.append(('javac',[str(layout.JDK/'bin/javac.exe'),'-proc:none','-classpath',str(root/'empty-classpath'),'-sourcepath',str(root/'empty-classpath'),'-J-Duser.home='+str(root/'host-compile-home'),'-J-Djava.io.tmpdir='+str(root/'host-compile-temp'),'-d',str(root/'probe'),str(root/'probe/DiagnosticMonitorFixture.java')]))
@@ -237,6 +278,8 @@ def prepare(root,mode):
         'cwd':str(MODULE),'environment':environment(),'bindings':bindings,
         'controller_sha256':sha(Path(__file__)),'native_source_sha256':sha(HERE/'windows_sandbox_gradle_diagnostic.cs'),
         'authorization_sha256':sha(TASK_ROOT/'owner-authorization.json'),'G2':False,'apk_allowed':False}
+    if qualification:
+        m['qualification_record_path']=str(qualification[0]);m['qualification_record_sha256']=sha(qualification[0])
     m['helper_pins']={str(path):sha(path) for path in [Path(layout.__file__),Path(common.__file__),HERE/'current_product_diagnostic_contract.py',HERE/'windows_sandbox_launch.ps1']}
     m['semantic_sha256']=data_sha({'mode':mode,'command':args,'native_source':m['native_source_sha256'],'inputs':[r for r in inputs if r['path']!=r'C:\Probe\GradleDiagnostic.exe']})
     put(root/'manifest.json',m);put(root/'probe/manifest.json',m)
@@ -288,8 +331,8 @@ def launch(root):
             if outcome.get('status')=='CONFIG_DIAGNOSTIC_SAFETY_STOP':
                 decision=json.loads((root/('continuation-of-'+str(reservation['attempt'])+'.json')).read_bytes())
                 validate_continuation(decision,outcome,m)
-        proof=json.loads((TASK_ROOT/'monitor-qualification.json').read_bytes())
-        if proof['native_source_sha256']!=m['native_source_sha256'] or proof['qualified'] is not True:raise ValueError('Native monitor not qualified')
+        qualification_path,proof,_=qualified_monitor()
+        if str(qualification_path)!=m.get('qualification_record_path') or sha(qualification_path)!=m.get('qualification_record_sha256') or proof['binary_identity']['sha256']!=m['binary_sha256']:raise ValueError('Native monitor qualification/binary changed after preparation')
         for path in TASK_ROOT.glob('*/launch.claim.json'):
             old=json.loads(path.read_bytes())
             if old.get('mode')=='gradle' and old.get('semantic_sha256')==m['semantic_sha256']:raise ValueError('Unchanged semantic input cannot be retried in another directory')
@@ -339,6 +382,7 @@ def validate_result(r,m):
     if type(p.get('watchdog_stop')) is not int:raise ValueError('Watchdog state unknown')
     if type(r.get('gradle_root_attempts')) is not int or r['gradle_root_attempts']!=(1 if m['mode']=='gradle' else 0):raise ValueError('Actual Gradle root attempt unknown')
     if m['mode']=='qualify':
+        if type(p.get('disk_scans_completed')) is not int or p['disk_scans_completed']<4 or type(p.get('disk_scan_retries')) is not int or p['disk_scan_retries']<0:raise ValueError('Disk scan workload not observed')
         if type(p.get('bound_members')) is not int or p['bound_members']<2 or type(p.get('successful_samples')) is not int or p['successful_samples']<5 or 'NON_LOOPBACK_TCP' not in str(p.get('stop_reason')) or p['watchdog_stop']!=0:raise ValueError('Java monitor qualification not demonstrated')
     elif p.get('stop_reason') is None and type(p.get('root_exit')) is not int:raise ValueError('Root exit unknown')
     return p
@@ -366,7 +410,10 @@ def collect(root):
         positive=int((root/'output/fixture-positive.txt').read_text())
         rows=[json.loads(line) for line in (root/'output/samples.jsonl').read_text().splitlines()]
         if not any(e.get('local_port')==positive and e.get('local') in ['127.0.0.1','::1'] for row in rows for e in row.get('endpoints',[])):raise ValueError('Positive Java endpoint not observed')
-        put(TASK_ROOT/'monitor-qualification.json',{'qualified':True,'native_source_sha256':m['native_source_sha256'],'receipt_sha256':sha(root/'output/result.json'),'manifest_sha256':sha(root/'manifest.json'),'gradle_starts':0,'G2':False})
+        operations=int((root/'output/fixture-churn-operations.txt').read_text())
+        record={'schema':2,'kind':'java-tree-and-disk-churn','qualified':True,'native_source_sha256':m['native_source_sha256'],'controller_sha256':m['controller_sha256'],'binary_identity':layout.safe_file(root/'probe/GradleDiagnostic.exe'),'receipt_sha256':sha(root/'output/result.json'),'manifest_sha256':sha(root/'manifest.json'),'root':str(root),'disk_churn_operations':operations,'gradle_starts':0,'G2':False}
+        validate_monitor_record(record,native_sha256=m['native_source_sha256'],controller_sha256=m['controller_sha256'],binary_identity=layout.safe_file(root/'probe/GradleDiagnostic.exe'),manifest_sha256=sha(root/'manifest.json'),receipt_sha256=sha(root/'output/result.json'))
+        put(monitor_qualification_path(m['native_source_sha256'],m['controller_sha256']),record)
         status='JAVA_TREE_MONITOR_BOUNDED_SUPPORTED'
     else:
         text=(root/'output/gradle.stdout').read_text(errors='replace')+(root/'output/gradle.stderr').read_text(errors='replace')
