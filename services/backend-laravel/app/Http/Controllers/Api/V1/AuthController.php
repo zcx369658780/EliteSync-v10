@@ -120,6 +120,7 @@ class AuthController extends Controller
         $data = $request->validate([
             'phone' => ['required', 'string', 'max:32'],
             'password' => ['required', 'string'],
+            'device_id' => ['nullable', 'string', 'min:8', 'max:128'],
         ]);
 
         $user = User::where('phone', $data['phone'])->first();
@@ -129,13 +130,13 @@ class AuthController extends Controller
             ]);
         }
 
-        return DB::transaction(function () use ($user) {
+        return DB::transaction(function () use ($user, $data) {
             $user = User::query()->lockForUpdate()->findOrFail($user->id);
             if ($user->disabled) {
                 return response()->json(['message' => '账号已被禁用。'], 403);
             }
 
-            $tokens = app(DeviceSessions::class)->issue($user);
+            $tokens = app(DeviceSessions::class)->issue($user, 'Mobile', true, $data['device_id'] ?? null);
 
             return response()->json([
                 'user' => $this->userPayload($user),

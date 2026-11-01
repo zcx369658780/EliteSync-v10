@@ -42,6 +42,10 @@ class RetryInterceptor extends Interceptor {
 
       try {
         final response = await Dio().fetch(requestOptions);
+            if (!requestSessionIsCurrent(requestOptions)) {
+              handler.reject(staleSessionRequest(requestOptions));
+              return;
+            }
         handler.resolve(response);
         return;
       } catch (_) {
@@ -49,6 +53,10 @@ class RetryInterceptor extends Interceptor {
       }
     }
 
+    if (!requestSessionIsCurrent(requestOptions)) {
+      handler.reject(staleSessionRequest(err.requestOptions));
+      return;
+    }
     super.onError(err, handler);
   }
 }

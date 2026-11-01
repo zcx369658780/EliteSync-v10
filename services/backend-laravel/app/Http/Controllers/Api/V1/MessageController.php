@@ -11,6 +11,7 @@ use App\Services\ConversationDomainService;
 use App\Services\ConversationCapabilityService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -104,7 +105,7 @@ class MessageController extends Controller
             'receiver_id' => ['required', 'integer', 'min:1'],
             'content' => ['nullable', 'string', 'max:5000'],
             'attachment_ids' => ['nullable', 'array'],
-            'attachment_ids.*' => ['integer', 'distinct'],
+            'attachment_ids.*' => ['integer', 'min:1', 'distinct'],
             'client_message_id' => ['nullable', 'string', 'size:36', 'regex:/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/'],
         ]);
 
@@ -121,24 +122,13 @@ class MessageController extends Controller
             return response()->json(['message' => 'cannot message self'], 422);
         }
 
-        if ($clientMessageId !== null) {
-            $replay = $service->replay((int) $user->id, $clientMessageId, (string) $fingerprint);
-            if ($replay !== null) {
-                return $this->sendResponse($replay);
-            }
-        }
-
         if ($content === '' && empty($attachmentIds)) {
             return response()->json([
                 'message' => 'content or attachment_ids is required',
             ], 422);
         }
 
-        $preflight = $service->preflightAttachments((int) $user->id, $attachmentIds);
-        if (!$preflight['ok']) {
-            return $this->sendResponse($preflight);
-        }
-
+        // Current authorization and committed replay precede new-asset validation.
         return $this->sendResponse($service->send(
             sender: $user,
             receiverId: $receiverId,
@@ -174,6 +164,19 @@ class MessageController extends Controller
     }
 
     public function list(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
+    {
+        $data = $request->validate(['peer_id' => ['required', 'integer', 'min:1']]);
+        return DB::transaction(function () use ($request, $data, $conversationService, $capabilities) {
+            User::whereIn('id', [(int) $request->user()->id, (int) $data['peer_id']])->orderBy('id')->lockForUpdate()->get();
+            $token = $request->user()->currentAccessToken();
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+                abort_unless(\Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->exists(), 401, 'SESSION_REVOKED');
+            }
+            return $this->listAuthorized($request, $conversationService, $capabilities);
+        });
+    }
+
+    private function listAuthorized(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
     {
         $data = $request->validate([
             'peer_id' => ['required', 'integer', 'min:1'],
@@ -217,7 +220,7 @@ class MessageController extends Controller
             ->where('id', '>', $afterId)
             ->orderBy('id')
             ->limit($limit)
-            ->get(['id', 'sender_id', 'receiver_id', 'content', 'is_read', 'created_at']);
+            ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at']);
 
         return response()->json([
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),

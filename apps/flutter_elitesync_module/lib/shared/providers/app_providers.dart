@@ -7,7 +7,6 @@ import 'package:flutter_elitesync_module/core/logging/app_logger.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/dio_factory.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
-import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
 
@@ -29,15 +28,13 @@ final secureStorageProvider = Provider<SecureStorageService>((ref) {
 });
 
 final localStorageProvider = Provider<LocalStorageService>((ref) {
-  return LocalStorageService();
+  return LocalStorageService(secureStorage: ref.watch(secureStorageProvider));
 });
 
 final accessTokenProvider = Provider<AccessTokenProvider>((ref) {
   return () async {
-    final token = await ref
-        .read(secureStorageProvider)
-        .read(CacheKeys.accessToken);
-    return token;
+    if (ref.read(sessionProvider).asData?.value.isLoggedIn != true) return null;
+    return ref.read(sessionProvider).asData?.value.accessToken;
   };
 });
 
@@ -60,6 +57,8 @@ final dioProvider = Provider<Dio>((ref) {
     logger: logger,
     accessTokenProvider: tokenProvider,
     refreshAccessToken: refreshProvider,
+    sessionIdentity: () =>
+        ref.read(sessionProvider).asData?.value.accessToken ?? '',
     onSessionRejected: (rejectedToken) => ref
         .read(sessionProvider.notifier)
         .setUnauthenticated(

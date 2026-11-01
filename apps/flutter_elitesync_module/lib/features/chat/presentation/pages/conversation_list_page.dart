@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/design_system/components/brand/browse_top_search_bar.dart';
 import 'package:flutter_elitesync_module/design_system/components/brand/category_tab_strip.dart';
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_feedback.dart';
@@ -50,7 +52,191 @@ class _AuthorizedConversationListPage extends ConsumerStatefulWidget {
 
 class _AuthorizedConversationListPageState
     extends ConsumerState<_AuthorizedConversationListPage>
-    with AutomaticKeepAliveClientMixin<_AuthorizedConversationListPage> {
+    with
+        AutomaticKeepAliveClientMixin<_AuthorizedConversationListPage>,
+        WidgetsBindingObserver {
+  PrivateCacheService get _privateCache =>
+      PrivateCacheService.forStorage(ref.read(secureStorageProvider));
+  List<ConversationEntity> _offlineItems = const [];
+  bool _offlineReadOnly = false;
+  bool _revalidating = false;
+  bool _trustedContextLocked = false;
+  String? _cacheNotice;
+  Timer? _retentionTimer;
+  int _cacheEpoch = 0;
+
+  bool _networkFailure(String error) => RegExp(
+    r'NETWORK_UNAVAILABLE|SocketException|connectionError|connectionTimeout|receiveTimeout|sendTimeout|Connection refused|Failed host lookup',
+    caseSensitive: false,
+  ).hasMatch(error);
+
+  Map<String, dynamic> _encodeConversations(List<ConversationEntity> items) => {
+    'items': items
+        .map(
+          (item) => {
+            'id': item.id,
+            'name': item.name,
+            'lastMessage': item.lastMessage,
+            'lastTime': item.lastTime,
+            'unread': 0,
+            'entryKind': item.entryKind,
+            'conversationId': item.conversationId,
+            'peerUserId': item.peerUserId,
+            'matchId': item.matchId,
+          },
+        )
+        .toList(),
+  };
+
+  Future<void> _handleRemoteResult(
+    List<ConversationEntity>? items,
+    String? error,
+  ) async {
+    final epoch = ++_cacheEpoch;
+    final cache = _privateCache;
+    final session = ref.read(sessionProvider).asData?.value;
+    // A transport retry/current-read response cannot replace a lost clock or
+    // login authority. Preserve the lock until a genuine login reanchors it.
+    if (_trustedContextLocked && !cache.isUnlocked) {
+      if (mounted) setState(() => _revalidating = false);
+      return;
+    }
+    if (items != null) {
+      cache.beginOnlineRevalidation();
+      if (cache.isUnlocked && !ref.read(appEnvProvider).useMockChat) {
+        await cache.saveAuthorized(
+          'conversation-list',
+          _encodeConversations(items),
+        );
+      }
+      if (!mounted ||
+          epoch != _cacheEpoch ||
+          ref.read(sessionProvider).asData?.value != session) {
+        return;
+      }
+      setState(() {
+        _offlineItems = const [];
+        _offlineReadOnly = false;
+        _revalidating = false;
+        _cacheNotice = null;
+        _trustedContextLocked = false;
+      });
+      return;
+    }
+    if (!_networkFailure(error ?? '')) {
+      cache.revokeObject('conversation-list');
+      if (mounted && epoch == _cacheEpoch) {
+        setState(() {
+          _offlineItems = const [];
+          _offlineReadOnly = false;
+          _revalidating = false;
+        });
+      }
+      return;
+    }
+    cache.enterOffline();
+    final purge = await cache.purgeExpired();
+    final saved = await cache.readOffline('conversation-list');
+    if (!mounted ||
+        epoch != _cacheEpoch ||
+        ref.read(sessionProvider).asData?.value != session) {
+      return;
+    }
+    final decoded = <ConversationEntity>[];
+    try {
+      for (final raw in (saved?['items'] as List? ?? const [])) {
+        final item = Map<String, dynamic>.from(raw as Map);
+        decoded.add(
+          ConversationEntity(
+            id: item['id'] as String,
+            name: item['name'] as String,
+            lastMessage: item['lastMessage'] as String,
+            lastTime: item['lastTime'] as String,
+            unread: 0,
+            entryKind: item['entryKind'] as String?,
+            conversationId: item['conversationId'] as int?,
+            peerUserId: item['peerUserId'] as int?,
+            matchId: item['matchId'] as int?,
+          ),
+        );
+      }
+    } catch (_) {
+      cache.lock();
+      decoded.clear();
+    }
+    setState(() {
+      _offlineItems = decoded;
+      _offlineReadOnly = saved != null && cache.isUnlocked;
+      _revalidating = false;
+      _cacheNotice = purge.status == PrivateCachePurgeStatus.failed
+          ? '私有缓存清理失败，内容已锁定。'
+          : purge.status == PrivateCachePurgeStatus.completed
+          ? '私有缓存已到期并完成清理，请在线登录。'
+          : null;
+      if (!cache.isUnlocked &&
+          purge.status == PrivateCachePurgeStatus.untrustedTime) {
+        _trustedContextLocked = true;
+        _cacheNotice = '无法确认可信登录与设备时间，请重新在线登录。';
+      }
+    });
+  }
+
+  Future<void> _checkRetention() async {
+    final cache = _privateCache;
+    final epoch = _cacheEpoch;
+    final session = ref.read(sessionProvider).asData?.value;
+    final purge = await cache.purgeExpired();
+    final saved = cache.isOffline
+        ? await cache.readOffline('conversation-list')
+        : await cache.readOnlineAuthorized('conversation-list');
+    if (!mounted || epoch != _cacheEpoch ||
+        ref.read(sessionProvider).asData?.value != session) {
+      return;
+    }
+    if (saved == null || !cache.isUnlocked ||
+        purge.status == PrivateCachePurgeStatus.completed ||
+        purge.status == PrivateCachePurgeStatus.failed) {
+      setState(() {
+        _offlineItems = const [];
+        _offlineReadOnly = false;
+        _trustedContextLocked = true;
+        _searchIndex.clear();
+        _recentSearches = const [];
+        _cachedSourceItems = const [];
+        _cachedFilteredItems = const [];
+        if (purge.status == PrivateCachePurgeStatus.failed) {
+          _cacheNotice = '私有缓存清理失败，内容已锁定。';
+        } else if (purge.status == PrivateCachePurgeStatus.completed) {
+          _cacheNotice = '私有缓存已到期并完成清理，请在线登录。';
+        } else {
+          _cacheNotice = '无法确认可信登录与设备时间，请重新在线登录。';
+        }
+      });
+    }
+  }
+
+  void _startRevalidation() {
+    _cacheEpoch++;
+    _privateCache.beginOnlineRevalidation();
+    setState(() {
+      _offlineItems = const [];
+      _offlineReadOnly = false;
+      _revalidating = true;
+      _searchController.clear();
+      _searchQueryNotifier.value = '';
+      _searchIndex.clear();
+      _recentSearches = const [];
+      _cachedSourceItems = const [];
+      _cachedFilteredItems = const [];
+    });
+    ref.invalidate(conversationListProvider);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && mounted) _startRevalidation();
+  }
+
   int _tabIndex = 0;
   final ValueNotifier<String> _searchQueryNotifier = ValueNotifier<String>('');
   static const _tabs = ['全部', '未读', '已读'];
@@ -71,6 +257,10 @@ class _AuthorizedConversationListPageState
   bool _normalizingHiddenUnreadTab = false;
 
   void _openConversation(ConversationEntity item) {
+    if (_offlineReadOnly || _revalidating) {
+      AppFeedback.showInfo(context, '离线内容仅供只读；请联网重新核验后打开会话。');
+      return;
+    }
     try {
       final routeState = ChatRouteState.fromConversation(item);
       context.push(
@@ -85,6 +275,11 @@ class _AuthorizedConversationListPageState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _retentionTimer = Timer.periodic(
+      const Duration(minutes: 1),
+      (_) => unawaited(_checkRetention()),
+    );
     _searchController = TextEditingController();
     _searchFocusNode = FocusNode()
       ..addListener(() {
@@ -142,6 +337,9 @@ class _AuthorizedConversationListPageState
 
   @override
   void dispose() {
+    _cacheEpoch++;
+    WidgetsBinding.instance.removeObserver(this);
+    _retentionTimer?.cancel();
     _searchUiDebounce?.cancel();
     _searchQueryNotifier.dispose();
     _searchController.dispose();
@@ -213,7 +411,7 @@ class _AuthorizedConversationListPageState
     if (_quickRefreshing) return;
     setState(() => _quickRefreshing = true);
     try {
-      ref.invalidate(conversationListProvider);
+      _startRevalidation();
       final state = await ref.read(conversationListProvider.future);
       if ((state.error ?? '').isNotEmpty) {
         if (mounted) AppFeedback.showInfo(context, '会话更新失败，请稍后重试');
@@ -231,6 +429,73 @@ class _AuthorizedConversationListPageState
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    ref.listen(conversationListProvider, (_, next) {
+      final state = next.asData?.value;
+      if (state != null) {
+        unawaited(
+          _handleRemoteResult(
+            state.error == null ? state.items : null,
+            state.error,
+          ),
+        );
+      } else if (next.hasError) {
+        unawaited(_handleRemoteResult(null, next.error.toString()));
+      }
+    });
+    ref.listen(sessionProvider, (previous, next) {
+      final old = previous?.asData?.value;
+      final current = next.asData?.value;
+      if (old?.accessToken != current?.accessToken ||
+          old?.user?.id != current?.user?.id) {
+        if (current?.isLoggedIn != true ||
+            _privateCache.accountId != current?.user?.id) {
+          _privateCache.lock();
+        }
+        _cacheEpoch++;
+        setState(() {
+          _offlineItems = const [];
+          _offlineReadOnly = false;
+          _searchIndex.clear();
+          _recentSearches = const [];
+        });
+      }
+    });
+    if (_offlineReadOnly && _privateCache.isUnlocked) {
+      return Column(
+        children: [
+          const ListTile(
+            title: Text('离线只读'),
+            subtitle: Text('仅显示本次在线核验后保存的加密内容；无法实时得知远端撤权。'),
+          ),
+          TextButton(
+            onPressed: _startRevalidation,
+            child: const Text('联网重新核验'),
+          ),
+          Expanded(
+            child: ListView(
+              children: _offlineItems
+                  .map(
+                    (item) => ListTile(
+                      title: Text(item.name),
+                      subtitle: Text(item.lastMessage),
+                      trailing: const Icon(Icons.lock_outline),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ],
+      );
+    }
+    if (_cacheNotice != null) {
+      return AppErrorState(
+        title: '私有缓存已锁定',
+        description: _cacheNotice!,
+        retryLabel: '在线重新核验',
+        onRetry: _startRevalidation,
+      );
+    }
+    if (_revalidating) return const AppLoadingSkeleton(lines: 7);
     final async = ref.watch(conversationListProvider);
     return async.when(
       loading: () => const AppLoadingSkeleton(lines: 7),

@@ -500,8 +500,9 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                 _prefilledLocation ||
                 prefillIdentity !=
                     ref.read(sessionProvider).asData?.value.accessToken ||
-                prefillEpoch != ref.read(relationshipAuthorityEpochProvider))
+                prefillEpoch != ref.read(relationshipAuthorityEpochProvider)) {
               return;
+            }
             if (_locationController.text.trim().isEmpty) {
               _locationController.text = city;
             }
