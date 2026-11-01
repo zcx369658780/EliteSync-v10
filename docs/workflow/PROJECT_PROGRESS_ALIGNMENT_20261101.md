@@ -1,3 +1,60 @@
+# EliteSync-v10｜项目进度细表（PHP8.4后端与真实WS节点）
+
+日期：2026-11-01（Asia/Shanghai）。状态：**PHP84_LARAVEL13_CURRENT_SOURCE_BOUNDED_RUNTIME_PASS / REAL_WS_BOUNDED_PASS / SELECTED_PERSISTENCE_PASS / V10.1.5_PARTIAL_NOT_ACCEPTED**。
+
+## 2026-11-01 现有Docker授权后的后端与真实WS节点
+
+Owner答复“授权启动现有环境，不升级或安装工具链”，覆盖本次现有Docker Desktop/WSL后端启动，仅用于隔离v10.1.5开发与测试。该动作已执行，不再列为PENDING。仍不增加生产、真实用户、Push/外部供应商、主机工具链安装/升级、全局安全、main合并或v10.1.6权限。独立LOCAL_ONLY记录继续使用`V1015_LOCAL_FIRST_RUNTIME_20261101_01`，未重开任何历史STOP执行器或借用其预算。
+
+### 身份与环境
+
+| 对象 | 实际身份/范围 |
+|---|---|
+| 当前分支/工作面 | `codex/v10.1.5-software-continuation-20261101` / `D:/EliteSync-v10-product-v1015-20261101` |
+| 实际测试source/Root | `e4b4732d1f16e45399baf0edbb6c4b0b206af1c1` / `912e4f74ace5d356ed85f07e95af390b0649e01e`；本轮无产品源码变更，实际产品源为上一节点`9acaf0cc7b7adae47b5c436130af1c2646ed0729` |
+| 产品双Tree | apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`；services `7634b4755a41f08641e00948f684c06efb12d8fe`；L13精确15路径保持 |
+| Docker | 已签名现有Desktop/CLI，CLI SHA256与固定稳定入口相同；明确desktop-linux本机named pipe，Linux29.9.2/amd64，启动后原运行容器0。未安装、升级、pull或改变全局设置 |
+| 复用镜像 | PHP基础 `sha256:8fc9e4e0410a0c7a6d1e69194bb493758cd7b59986ca39439f094e0fab732f89`；MariaDB `sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2`；与已接受稳定入口pin一致 |
+| pcntl派生镜像 | `sha256:893014a9e551183fa7e9c36503f8ed61e98641e3999081db86d9b02e34f37b3d`；仅从PHP基础镜像内已有官方源码、gcc/make离线构建，RUN网络none，无外部下载或宿主安装；不升级PHP/Laravel |
+| 稳定vendor | 明确允许复用的干净L13入口114包，版本与source reference逐项匹配当前lock；lock SHA256 `de8ad0c0593620df96a2ce02e547552d556c728703f06c00605bbbf0d95a84a3`。只读挂载，结束时重新核source clean与114引用 |
+| 新独立库 | 新task label/volume/network，schema `nov01_synthetic`，内部port55371/server_id230110101/app用户nov01_app；DB无宿主发布端口；实际schema/port/server/user、两条最小grants及无URL/socket均先核后绑定server-owned qualifier |
+| 隔离与持久化 | 产品源码/vendor只读、UID10001/DB999、cap-drop ALL/no-new-privileges/资源限额；写面仅任务storage/bootstrap-cache/新DB卷。API仅宿主127.0.0.1:65481、WS127.0.0.1:65482，内部服务不等同LAN/公网授权 |
+
+### 本轮实际验证
+
+| 检查 | 实际结果与边界 | 证据指纹 |
+|---|---|---|
+| PHP定向 | PHP8.4.27/PHPUnit12.5.42，9个受影响Feature文件；**59 tests / 537 assertions / exit0**，SQLite内存库，网络none | stdout `4b69c35d80a75201a77056ec5c36520fe33593a6d7d16979ad833ffac6957f5b` |
+| 新库资格 | 真实运行读回PHP8.4.27/Laravel13.39.0，迁移前0表；一次迁移后93表；单次seed事务4虚构账号（3普通、1管理员），不含真实身份/数据 | `new-db-effective-live-qualification` stdout `f441aa0097a2c21f0b7b747a58630fbf738580b3a0a0c1ae9058267caeebd1da` |
+| 宿主API初批 | **21条**真实HTTP交换：健康/缺鉴权、3账号真实登录及T0/15/30期限、CN/MC请求接受、消息同键精确回放/不同payload409/第三方拒绝/通知最小内容/偏好持久读回/token轮换与旧token401 | summary SHA256 `032baafadc93730d340f32d17269c7b678d00ccd0d497fb0f113f89b7a1bed6b` |
+| 真实WS | Workerman5.2.3/PHP8.4.27/真实MariaDB：当前有权B收到connected，A经HTTP发送消息，B仅收type/id；旧token、错误claimed actor、无权第三方、撤权后重连4负例关闭；撤权现有socket关闭；不以禁用合法连接冒PASS | summary SHA256 `eefa65763a385a24f24833d027cef743cd1199eaccc54267366451171ec8d42d` |
+| WS计时限定 | 本次HTTP revoke响应返回→WS关闭0.375秒；请求发起→关闭2.000秒。**不是DB COMMIT→最后有效RTC媒体计时，不关闭AC05** | 与上一行同批回执 |
+| Web HTTP | 9交换/8断言：CSRF登录、管理员同库4虚构账号列表、无私聊正文、审计、退出、旧session拒绝、普通账号登录/保护页拒绝 | summary SHA256 `b02cd224185abcd1582840253cddc23af8c7bf566b280a9332315b2f9885421d` |
+| 浏览器视觉 | 现有IAB真实打开/admin/login，AX与截图见实际登录表单；随后关闭任务临时tab。仅登录页渲染观察，**没有冒称8项GUI登录流程已重跑** | CUA本轮原始工具回执；无真实用户操作 |
+| 真实重启 | API先停、任务DB受控停/启一次、API恢复；**选定9表16行逐表sha256前后相同**；重启后健康、偏好读回及已撤权消息拒绝成立 | summary SHA256 `a708617f7701368ab93dc8406adad1eec8a9b1e441dc615ea81f71263afa736d` |
+| 最终资源/保护 | 5任务容器全停/PID0；API与第一WS exit137、其余3 exit0，原始退出状态保留；6件具名旧保护hash与原根dirty/index保持 | summary SHA256 `63b923c4835cbfb43363c2759d9b3d00b1d52fc62b57f09c7c2c97c14eaf9e91` |
+
+API回执共29条=初批21＋WS触发/撤权相关5＋重启后3；Web HTTP另9交换，浏览器登录页观察另列，不把页面资源请求说成同一计数器已全量精确计量。初批summary最初硬编码22，已按HTTP_RESULT实际21校正，原stdout22及initial_reported_count保留，不能再引用为22项新测。重复回放与拒绝后新库chat_messages=2/notifications=2，没有重复消息/通知；这是本批串行行为，不冒称MariaDB并发竞态已全覆盖。
+
+### 失败、审查与证据限制
+
+- 真实WS本轮服务启动4次，前3次测试端失败均保留：前两次仅以Docker宿主代理TCP可连误判Workerman已就绪，第二次时间线明确在worker启动前已发握手并开始停机；第一次child日志在/tmp tmpfs随停机丢失，保留这一诊断限制，不追补原日志。之后改为容器内实际listen就绪并把诊断写面持久化。第三次有权连接已收到connected，但负例被服务端在101升级前关闭，测试端误按“必须升级”判失败；修正为仅负例允许升级前关闭，正例仍必须验证101/Sec-WebSocket-Accept与真实frame。第四批真实正反例通过，不把测试端失败隐去或归罪产品源码。
+- 非作者Codex辅助静态复核（Sol/high，非外部功能接受）指出：初始脚本对volume只调用create，未在启动前断言同名卷不存在；创建命令可能复用旧卷。主代理只读核实际卷CreatedAt=`2026-11-01T10:33:37Z`，精确落在本轮create PREPARE/RESULT同秒内，label匹配本task，直接证明本次是新卷；没有据此重建/重启。脚本补入未来运行的absence和source HEAD/clean前置，**没有追认首次已做这些前置**。
+- 只读挂载不能阻止宿主另改输入；主代理在运行后重新核产品HEAD/clean、services Tree及114包引用匹配。原先一条环境诊断把installed首个包的1.4.7版本错标“laravel”，不作为框架证据；正式新库资格与重启后均通过真实Application::VERSION确认13.39.0。
+- 所有原始响应、Cookie/Bearer、测试口令、env、SQL数据、详细Docker/WS日志、局部运行脚本与回执均LOCAL_ONLY，不上传公开GitHub。公开节点仅放身份、范围、计数、hash与必要限制；没有重做旧大规模保护审计、114包安装或历史270/128/120全套回归。
+
+### AC、保护与接续
+
+本节点使当前source的PHP运行、MariaDB/API、真实WS及最小Web和选定持久性有新证据；**AC01–11整版状态仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。没有实际APP同源APK/API/DB贯通，H264可信ffprobe尚未资格化，Android密文/冷启动/OS通知、RTC/AEC/COMMIT到最后媒体≤5秒、实际15/30天经过及全库逻辑恢复均未由本节点证明。仅不再把本节点已通过的PHP/真实WS写成当前NOT_RUN。
+
+原D:/EliteSync-v10仍main@4bebc8f3、255项状态记录、index SHA256 `2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716`，只安全更新3项节点文档。旧L11、稳定L13入口、11,066备份、旧库、STOP/claims和既有worktrees保持。G2/Gradle/APK/ADB/音视频本阶段启动次数0，不消费旧或新APK/G2额度。测试卷与镜像保留，5测试容器最终停，Docker按本次授权保持开启，未设置任务自启动。
+
+后续工程聚焦剩余受控构建输入/OS隔离/入口与设备链，及合格视频验证器/RTC测量条件；不绕过G2、直接构建、修改全局安全、擅装工具链或扩供应商。普通后端已有界验证不因设备门阻断而归零，也不无差别重跑。不合main、不启动v10.1.6；本节点按Codex工程责任记录，不冒称Owner整版接受、外部独立接受或正式发布。
+
+---
+
+## 前一设备配置节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（Owner授权后的运行资格与设备配置）
 
 日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_RUNTIME_CONTINUATION_AUTHORIZED / DEVICE_IDENTIFIED / V1015_PROFILE_SOFTWARE_CHECKS_PASS / NATIVE_BUILD_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**。

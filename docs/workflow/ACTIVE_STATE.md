@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-01 PHP8.4后端、真实WS与持久化有界验证（CURRENT ENTRY）
+
+**DOCKER_START_OWNER_AUTHORIZED_AND_EXECUTED / PHP84_L13_TARGETED_59_PASS / REAL_WS_BOUNDED_PASS / WEB_HTTP_8_PASS / SELECTED_DB_RESTART_PASS / V10.1.5_PARTIAL_NOT_ACCEPTED**
+
+Owner已明确答复“授权启动现有环境，不升级或安装工具链”。现有Docker Desktop已启动并核为本机Linux Engine；未升级/安装宿主工具链，未执行pull或外部下载，未重开旧执行器/旧数据库。继续使用独立产品分支`codex/v10.1.5-software-continuation-20261101`及工作面`D:/EliteSync-v10-product-v1015-20261101`。
+
+本轮实际运行绑定source `e4b4732d1f16e45399baf0edbb6c4b0b206af1c1`（产品源码`9acaf0cc…`），产品双Tree未改：apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`。PHP8.4.27/Laravel13.39.0/PHPUnit12.5.42定向59项/537断言通过；稳定vendor114包版本/来源引用与lock一致，无重装。
+
+新建隔离虚构MariaDB由0表资格化后迁移至93表、4虚构账号。宿主API初批21交换，加WS触发/撤权相关5和重启后3，共29条API回执通过；管理Web9次HTTP交换8项正反断言通过，浏览器只读观察实际登录页渲染。选定9表16行受控DB重启前后逐表哈希一致，不冒称全库恢复或真机E2E。
+
+现有镜像内PHP源码已在禁网构建中生成pcntl扩展，仅新增任务镜像，不改宿主。真实Workerman合法失效提示及旧token/错账号/第三方/撤权后重连负例通过，撤权现有WS关闭；该计时不是RTC媒体5秒证明。前3次测试端失败、日志限制和审查观察均保留，详见[唯一进度细表当前节点](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-01-现有docker授权后的后端与真实ws节点)。
+
+5个本轮容器最终全部停止/PID0，测试卷/依赖/证据保留；Docker引擎按本次授权保持开启，无自启动设置变更。原根main@4bebc8f3、255项dirty/index及6件具名旧保护文件hash保持。Gradle/G2/APK/设备/媒体采集0；G2 false、H264可信ffprobe未资格化、AC05 OPEN、真实Push PENDING，整版仍10 PARTIAL。当前不再等待Docker启动许可；后续只推进剩余受控构建/设备及媒体门，不重复本次已通过后端批次或启动v10.1.6，不合main。
+
+---
+
+## 本节点之前的记录（按原时点保留）
+
 # EliteSync｜2026-11-01 Owner授权后设备资格与v10.1.5构建配置修复（CURRENT ENTRY）
 
 **OWNER_RUNTIME_CONTINUATION_AUTHORIZED / ADB_DEVICE_IDENTIFIED / V1015_PROFILE_SOFTWARE_CHECKS_PASS / APK_BUILD_G2_GATE_CLOSED / PHP84_RUNTIME_NOT_RUN / V10.1.5_PARTIAL_NOT_ACCEPTED**
