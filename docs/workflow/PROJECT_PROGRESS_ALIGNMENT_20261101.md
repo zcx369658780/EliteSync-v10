@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（Dart单进程与缓存版本核验）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**DART_SINGLE_PROCESS_COMPATIBILITY_SUPPORTED / REVISION_BOUND_CACHE_METADATA_UNSUPPORTED / FLUTTER_FULL_NATIVE_APK_NOT_PROVEN / G2_FALSE**。
+
+## 2026-11-02 Dart单进程与缓存版本静态核验节点
+
+接续已授权v10.1.5新Debug APK/USB准备，Parent `05617c2b4a6ee801299a610a8262a6f5955a4a4e`。产品source84a94c9177ce832040146cff9968569762300307、apps ed24852975baebeadc66f007dfb75ff9e31a97d4、services7634b4755a41f08641e00948f684c06efb12d8fe未变；实际远端main及产品分支仍匹配前节点，未以治理/旧候选作为Parent。
+
+| 项目 | 实际结果、证据与限制 |
+|---|---|
+| 窄探针 | 新native源从原Java诊断器精确fork，差异仅固定自身路径/日志名、精确Dart --version门、90秒hard timeout及receipt。Job、镜像/网络/磁盘/下载/身份保护保留；禁网、只读DartSDK和probe、新输出，无产品/设备/Pub映射。Java资格不借给本项；本项也不赋予完整native链资格 |
+| 输入与编译 | 1001份文件/583431947源字节（非新增复制空间），完整当前DartSDK普通文件及probe全部有界fd SHA/size/FileID前后核验；12,000文件/2GiB源读取cap，严格walk错误拒收，枚举cap在排序/哈希前，10份间接helper纳pin。现有csc有效Microsoft Windows签名、身份前后不变；系统服务硬链接2单独记录，16MiB实际读取cap，SDK/helper继续single-link。Dart.exe NotSigned如实保留，不冒称签名有效 |
+| 原始准备失败 | dart-version-01在编译前safe_file拒收csc硬链接2；原文/新failure记录保留，未创建claim、未运行VM或工具。修复仅编译器专用身份；dart-version-02新准备成功，不退款/重置已耗执行，实际仅后者一次launch |
+| 实测 | 单次claim，Dart 3.11.5输出匹配；root exit0，2成功样本、4磁盘扫描、1已绑定Dart成员，STOP/failure/watchdog均无，Job空/全部句柄退出。采样非原子、UDP目的UNKNOWN、磁盘是逻辑长度采样并可能瞬时超限；不把这些边界隐藏。四类Sandbox宿主进程全部缺席后collect exit0，receipt/launch/manifest/exact SDK/helper链核验。瞬时Server退出等待保留，未主动结束用户/系统进程 |
+| 检查和审查 | 最终97项current_product Python+23项Dart探针检查均exit0，含间接helper漂移、walk错误、读中增长超cap、提前枚举cap、编译器多链接/漂移/超cap等负例。更早7项含copy的草案检查结果保留但不作为最终可交付范围；此前168项C#纯断言已核原证，未在本节点重跑。非作者Codex源码复核无新具体P1/P2，未代跑真实原证，非外部独立接受；工程裁决由主代理基于本次真实receipt/collector给出 |
+| SDK身份与metadata | SDK HEAD cc0734ac716fbb8b90f3f9db8020958b1553afa7；已捕获的control/snapshot身份不变，engine三stamp/engine_info及version JSON一致。shared.bat工作文件与本地Git blob规范化相同，均含字面$git；tool stamp为":"。以已知HEAD+空tool args绑定的compilekey检查false，其它8个静态检查true；这不是预测stock BAT实际分支，不声称官方远端源码已独立验证，不修原SDK/stamp或重编tools snapshot。engine content_hash与Git revision分开 |
+| 缓存草案取舍 | 缓存模板复制草案的Windows别名/并发目录/时间戳问题已识别，原文/测试保存于LOCAL_ONLY cache-materializer-draft-not-qualified；未进行真实SDK复制。公开交付current_product_flutter_cache仅只读metadata API，校必需version JSON字段、非空engine身份并明确stock_bat_branch UNKNOWN_NOT_EXECUTED，无copy/执行/准入API |
+| 私有证据 | worksite v1015-flutter-cache-20261102-01；manifest SHA f995a7e41be4c40687ce03ec1d869677ffb8a8dd755fc1aabd7931fd00873bba，receipt 8f659b33af35d7945179f377dead7bbe3b0e3ec1ea6a57c3a2e1b6bd6e9f5d9a，verified-result aeea6fe4665b98dd7780dbc5c70848d79d932ac0f156d17e2c60e615a4c2a5eb，工程汇总 a3661bfdf79de7e5d5200c04a7a5abba43e79f6c94e22db60ad1a178c8d9f706。原始stdout/nonce/工具身份/绝对路径等不上传公开仓库 |
+
+**工程结论仅为DART_SINGLE_PROCESS_COMPATIBILITY_SUPPORTED。** Flutter正常cache锁/完整依赖与原生工具树/Gradle实际生产/AAR→host交接/APK均未证明，producer_entry_allowed=false。下一步针对既有snapshot与任务正常锁继续最小受控资格，不能修改本已耗case命令或借旧3+3+1余额；实际产包预算/claim仍UNKNOWN_NOT_CREATED。现行APK/USB授权保留，无需重问一般许可。原根main@4bebc8f3、255状态/index、旧具名记录hash、SDK/备份/数据库/STOP保持，本节点Gradle/AAR/APK/设备写/媒体0。AC05 OPEN、G2 false、整版10 PARTIAL、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一USB及实际APK准备节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（实际APK输入及USB只读资格准备）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_APK_USB_PERMISSION_RECONFIRMED / USB_READONLY_IDENTITY_SUPPORTED / SELECTED_INPUT_INVENTORY / ACTUAL_BUILD_EXECUTOR_NOT_READY / BUILD_NOT_RUN / G2_FALSE**。

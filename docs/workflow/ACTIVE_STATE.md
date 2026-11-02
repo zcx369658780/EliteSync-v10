@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-02 Dart单进程禁网兼容实测通过（CURRENT ENTRY）
+
+**DART_SINGLE_PROCESS_COMPATIBILITY_SUPPORTED / REVISION_BOUND_CACHE_METADATA_UNSUPPORTED / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+接续同一产品分支，Parent `05617c2b4a6ee801299a610a8262a6f5955a4a4e`，产品source/apps/services未变。新专用探针只运行现有Dart 3.11.5的`--version`：1001份只读输入/583431947源字节，root exit0、2成功样本/4扫描、仅1已绑定进程、无STOP/watchdog，Job空/全部句柄退出；四类Sandbox宿主进程已全部缺席后collect exit0。单次claim永久消耗，不属于旧配置/G2/APK额度，不产生AAR/APK、不操作手机。
+
+本节点120项Python定向检查exit0；此前168项C#纯断言原证按未变native源复用，此处未重跑。非作者Codex只读源码复核已修输入枚举/有界读取/helper pin等问题，无具体P1/P2，非外部独立验收。首次prepare因Windows自带csc.exe硬链接2在编译前拒收，0claim/0launch原证保留；仅固定系统编译器增加16MiB有界fd身份与有效微软签名专用检查，SDK/helper单链接保护保持。
+
+SDK控制文件、snapshot、HEAD与前次身份相同；本地shared.bat及其本地Git blob均含字面`$git`，stamp为`":"`。仅**revision-bound compilekey静态不成立**，不能推断该BAT实际分支或称本轮破坏/官方远端已核；未执行BAT、未修stamp/SDK、未用FLUTTER_ALREADY_LOCKED。缓存复制草案存在并发写侧问题，保留LOCAL_ONLY未合格/未执行，交付模块仅只读metadata检查。下一步继续正常缓存锁/既有snapshot受控路径与完整原生链资格；当前Dart单进程结果不准入Flutter/Gradle/APK生产。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-dart单进程与缓存版本静态核验节点)。
+
+原根255项/index、旧3+3+1已耗账本、全部STOP/SDK/数据库/备份保持。AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING；新Debug APK/USB现行授权保留，实际产包预算/claim未创建；不合main、不启动v10.1.6。
+
+---
+
+## 前一USB及产包准备节点（按原时点保留）
+
 # EliteSync｜2026-11-02 USB手机只读资格及实际产包准备已推进（CURRENT ENTRY）
 
 **USB_READONLY_BINDING_SUPPORTED / SELECTED_APK_INPUTS_INVENTORIED / BUILD_EXECUTOR_NOT_READY / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
