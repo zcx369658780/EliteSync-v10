@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-02 Flutter私有缓存验证安全停止（CURRENT ENTRY）
+
+**FLUTTER_CACHE_NEGATIVE_REJECTED_UNKNOWN_PROCESS_IMAGE / DART_SINGLE_PROCESS_SUPPORTED / CACHE_LOCK_NOT_CREATED / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+接续产品分支，Parent/已推节点 `1143e56911d64533a150424fe454247eddded4e0`，apps/services未变。此前Dart 3.11.5单进程实测通过保持；新单次私有Flutter缓存负例已运行并拒收：1011输入/627209978源字节，10份控制文件约43.77MB，直接运行既有snapshot，不执行BAT/重编snapshot/改SDK或stamp，不跳锁。启动早期出现Job内conhost.exe，按UNKNOWN_PROCESS_IMAGE停止；root exit未知、cache lock未创建、预期exit2/错误句未到达。2样本、2成员、Job空/全部句柄退出，四类宿主Sandbox进程缺席后collect明确拒收。此独立claim **1/1永久已耗、剩0**，不重跑/退款/换目录续额、不添加宽泛白名单。
+
+最终130项Python、168项C#保护断言及9项新Windows环境大小写断言exit0；修复native按大小写敏感检查FLUTTER_ALREADY_LOCKED的缺口，拒Windows重复环境名，固定正常锁及唯一私有根。非作者Codex只读源码复核无新具体P1/P2，非外部独立验收；测试绿不抹除真实失败。缓存锁文件存在本来也只作佐证，不能单独证明锁持有；本次连新锁文件也未出现。
+
+限6份相关源码只读定位发现终端/ANSI及where/ver候选，但触发来源/唯一根因仍UNKNOWN；未继续试跑。宿主conhost为10.0.26100.9949，而guest kernel10.0.26100.6713，不能借宿主签名或hash作为guest工具资格。下一工程项为另行有界的stdio阶段标记诊断设计及具名native资格；尚未创建新执行claim或运行，不从本次STOP接续执行。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-flutter私有缓存负例停止与定位节点)。
+
+原根255/index、SDK、旧3+3+1账本及全部STOP/数据库/备份保持。现行新Debug APK/USB授权保留，实际产包预算/claim仍未创建；AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING；本节点无Gradle/AAR/APK/手机/媒体，不合main、不启动v10.1.6。
+
+---
+
+## 前一Dart单进程节点（按原时点保留）
+
 # EliteSync｜2026-11-02 Dart单进程禁网兼容实测通过（CURRENT ENTRY）
 
 **DART_SINGLE_PROCESS_COMPATIBILITY_SUPPORTED / REVISION_BOUND_CACHE_METADATA_UNSUPPORTED / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**

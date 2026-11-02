@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（Flutter私有缓存负例安全停止）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**FLUTTER_CACHE_NEGATIVE_REJECTED_UNKNOWN_PROCESS_IMAGE / CACHE_LOCK_NOT_CREATED / CLAIM_1_OF_1_CONSUMED / DART_SINGLE_PROCESS_SUPPORTED / G2_FALSE**。
+
+## 2026-11-02 Flutter私有缓存负例停止与定位节点
+
+Parent `1143e56911d64533a150424fe454247eddded4e0`，继续同一产品分支与已授权v10.1.5准备；产品source/apps/services保持。未把一般授权标成未授权，也未把已有Dart兼容结果扩大成完整Flutter/native工具链资格。
+
+| 项目 | 事实与限制 |
+|---|---|
+| 目的/精确入口 | 新具名单次scope flutter-cache-negative-01，只测试既有Flutter snapshot正常cache锁路径与构建分派前的固定负例；精确Dart --packages=<私有package_config> <私有flutter_tools.snapshot> --suppress-analytics --no-version-check --machine assemble。源码顺序先lock/update informative/ensureVersionFile，再按--machine无效exit2，assemble分派在后。完整错误句仅包含匹配，不声称stderr只能有该句。不是BAT等价性、框架迁移、APK构建或完整SDK恢复 |
+| 来源/私有面 | 1011份输入/627209978源字节，完整当前DartSDK只读；10份具名现有control/snapshot合计43771897字节复制到新case fixture，只读映射后由guest复制到全新本地C:/BuildWork/Flutter。源文件有界fd与前后身份、源集及副本SHA/mtime均核；无.git/旧lock/root version/stamp伪造，不复制完整SDK。SDK、helper、源/副本、compiler、EXE、env、命令、WSB及guest destination全冻结。没有映射产品/Pub/手机/媒体 |
+| native新门 | 在原已审Dart观察器基础上只换自身/固定命令/kind及cache状态。root前要求lockfile/flutter.bat.lock/root version均缺席；环境名OrdinalIgnoreCase，拒重复或任何大小写FLUTTER_ALREADY_LOCKED，FLUTTER_ROOT唯一且精确私有根。Job/镜像/网络/磁盘/下载/90秒hard/15秒heartbeat保持。事后只记录新lock0字节非reparse及legacy3.41.7，存在不是锁持有证明，必须合并预期root exit2、无STOP及错误句才能接受 |
+| 实际失败 | claim 1/1永久消耗；guest原始receipt root_exit=null、主stop UNKNOWN_PROCESS_IMAGE；2成功样本后观察到第二Job成员C:/Windows/System32/conhost.exe。随后ReadCacheState缺锁报CACHE_LOCK_NOT_CREATED，是停止后的次级失败，不覆盖主stop。stdout/stderr均空；2次磁盘扫描、watchdog0，Job空/全部绑定句柄退出。四类Sandbox宿主进程最终全部缺席，未主动kill用户/系统服务 |
+| 工程收集 | collector按冻结链读取真实receipt并exit1拒收，没有生成verified-result。工程wrapper保留完整拒收/外层exit0只表示封存完成，不称工具成功。root首次实际运行1次，剩0；不重跑/退款/修改该claim/换目录续额。旧Dart成功不推翻此失败，旧配置3+3+1和G2全保留 |
+| 检查/审查 | 130项Python组合检查exit0（97 current_product+23 Dart+10新cache fixture/mock）；新版native实际重编并重跑168纯保护断言、9项Windows环境正负例均exit0。最早宿主纯检查wrapper非raw路径产生vertical-tab、签名查询断言失败且尚未编译，错误记录保留，改用固定COMPILER Path后通过，不涉及VM或执行claim。新controller/native非作者Codex只读审查已修环境名P2，无新具体P1/P2；非外部独立验收，审查者未代跑真实原证 |
+| 有界定位 | 仅读6份直接相关SDK源码：terminal/io/platform/utils/os及Dart stdio。未发现显式conhost/AllocConsole/AttachConsole/CreateProcess调用；terminal/ANSI getter走external，os.dart存在where及runInShell ver路径，未证明本次实际调用。具体触发点和唯一根因UNKNOWN，不事后指定。宿主conhost 10.0.26100.9949、Catalog/Microsoft Windows签名Valid，仅宿主事实；guest kernel10.0.26100.6713，不可借宿主版本/签名/hash放行guest系统映像 |
+| 证据/保护 | LOCAL_ONLY v1015-flutter-cache-20261102-01/flutter-cache-negative-01；manifest SHA 799db49a86f46f6fe4f47952523da7f82127c473b2270c29ea03c943e053660d；outcome SHA 62febed49ff96a9d71bb061c38e97d8d11d4753caac7888f49c1c9dc112cad29；工程汇总 SHA f0a6743e8b00529328917919752be2427cd655175bd6fdf5d7602c9ddb4a2518。原source/control/Snapshot、20份旧具名记录、原根main@4bebc8f3/255状态/index不变；原始完整路径/PID/nonce/工具原证不上传公开仓库 |
+
+**工程结论为拒收，cache锁/Flutter完整路径/原生树仍NOT_PROVEN，producer_entry_allowed=false。** 下一步应另行设计最小stdio分阶段标记诊断（先记录阶段，再读取hasTerminal/ANSI等元数据，不读stdin内容、不加白名单），预注册其独立输入/命令/上限/STOP/claim并完成资格检查；当前仅定位建议，新运行NOT_RUN，不自动从该已耗scope建后继或借余额。实际AAR→host交接/执行预算及APK claim仍未闭合，现行APK/USB许可保留。此节点Gradle/AAR/APK/设备/媒体0，原备份/数据库/历史STOP保持；AC05 OPEN、G2 false、整版10 PARTIAL、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一Dart单进程及metadata节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（Dart单进程与缓存版本核验）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**DART_SINGLE_PROCESS_COMPATIBILITY_SUPPORTED / REVISION_BOUND_CACHE_METADATA_UNSUPPORTED / FLUTTER_FULL_NATIVE_APK_NOT_PROVEN / G2_FALSE**。
