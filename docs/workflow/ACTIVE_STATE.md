@@ -1,3 +1,17 @@
+# EliteSync｜2026-11-02 私有注册脚本单次配置复验通过（CURRENT ENTRY）
+
+**CONFIG_GRAPH_BOUNDED_SUPPORTED / SINGLE_BUDGET_1_OF_1_CONSUMED / AAR_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner具名授权的独立单次复验已结束并封存。task `v1015-aar-registration-config-20261102`现1/1永久已耗、剩0；旧两组各3/3保持，不退款/重跑/自动后继。新合同/调度`503f62cbb621d97ff82e3cff3761c605276083a4`，私有注册修复`567e555a`，同一产品分支，apps/services未变。
+
+**实际配置图606任务、文档任务0（原30）、必需AAR release任务15及源码附件任务15；17个项目输出和JNI CMake路由均满足原分类器。** Gradle root exit0、6956输入、1325样本/306扫描、仅1JDK、无安全STOP/各类retry/watchdog，Job空/全部句柄退出。私有修改脚本及原SDK身份已绑定，原SDK未改。本项工程结论只接受有界配置/选图与路由，不是AAR/APK产出或APP验收。
+
+58项Python检查和新组合fresh资格化有效，历史失败/拒收不重写，Codex辅助审查不是外部独立验收。实际产包、当前构建执行器/完整native工具进程资格和真机前置仍待闭合；本次无手机/媒体/供应商操作、不合main、不启动v10.1.6。AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING保持。原根255/index、SDK、六锚点、两组旧账本及全部资产保持。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-独立单次aar注册配置复验节点)与[授权记录](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md#独立单次复验授权记录)。
+
+---
+
+## 前一静态修复节点（按原时点保留）
+
 # EliteSync｜2026-11-02 已恢复，私有注册脚本静态修复完成（CURRENT ENTRY）
 
 **OWNER_RESUMED / PRIVATE_AAR_REGISTRATION_STATIC_CANDIDATE / RUNTIME_NOT_RUN / BOTH_CONFIG_BUDGETS_EXHAUSTED / G2_FALSE / V10.1.5_PARTIAL**

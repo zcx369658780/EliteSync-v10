@@ -1,3 +1,27 @@
+# EliteSync-v10｜项目进度细表（独立单次AAR注册配置复验）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_SINGLE_RECHECK_AUTHORIZED / FRESH_QUALIFICATION_PASS / SINGLE_BUDGET_1_OF_1_CONSUMED / CONFIG_GRAPH_BOUNDED_SUPPORTED / AAR_APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-02 独立单次AAR注册配置复验节点
+
+Parent `4743ee8aba1ea7361badf0e79e73a45d27e203ec`，源码fork提交 `503f62cbb621d97ff82e3cff3761c605276083a4`；同一产品工作面/分支，产品source84a94c91、apps ed24852975baebeadc66f007dfb75ff9e31a97d4、services7634b4755a41f08641e00948f684c06efb12d8fe未变。Owner具名答复“授权独立最多1次禁网复验”，只授权既有提案范围。
+
+| 项目 | 本节点事实及边界 |
+|---|---|
+| 独立账本 | task `v1015-aar-registration-config-20261102`，新contract MAX1，首项后拒绝再次预约且拒收额外reservation-*.json；原两个MAX3及12份reservation/outcome SHA保持。controller仅新namespace/Owner答复/strict int1/helperpin/MAX派生及额外文件拒收的精确fork；不改原SDK/guard/命令/输出/分类器。初次copy漏UTF8导致locale decode失败，发生在task/账本创建前，显式UTF8修正，无运行/额度消耗 |
+| 软件检查/审查 | 58项定向Python exit0，含7项新namespace/max1检查、6项AAR适配和既有45项。覆盖两个旧scope双向拒收、临时旧满额账本字节不变、Owner旧答复/True最大值写前拒收、旧资格根拒收、offline dryrun向量。非作者Codex只读比对无具体P1/P2，不是外部独立验收 |
+| fresh资格化 | `monitor-qualification-01`一次VM：496输入、1623轮create/write/rename/delete、47样本、2个JDK、12扫描；一项目录消失观察、一次名称有界重查，watchdog0，端点正例/越界负例有效，Job空/句柄退出，collect0。EXE SHA `61c34d4a9acfb39af4736e88ec2ec0ae653a3d95a9215a5f4f9419b4b1ecc178`，receipt `4cc93b4a685c3da58dad1793e6681549d601e49ce537a108a8faa305e1de8455`，manifest `e6c658007c1f1afc26dfa08a18411fa38373bb448b117e543db26c1749d9d1ad`。guest CLR4.0.30319.42000/kernel10.0.26100.6713；非原子/UDP目的UNKNOWN/非强制物理配额限制保留 |
+| 完整输入/启动 | `attempt-01`，6956输入，新增原SDK注册脚本只读输入，原SHA b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2；私有修改脚本5aec8e6a4269724a95a15700d64d4771d9581b58c94fbe8b15182f1c026465c0在guard source_pins中，原SDK/全部保护记录及原根255/indexfresh核验。manifest `68acc44d3fb5e1db1ee175b5e83a504a0e7398c72d73126479c33efc8a86ad6f`。已永久消耗1/1、剩0；实际root exit0，最终CONFIG_GRAPH_BOUNDED_SUPPORTED。receipt `ca7fce75bf2dd2860f2adbe7d7fbe774c2afb4efbe0962b10311763f4ba628fa`；无安全STOP、1325样本/306扫描、仅1JDK，各类retry/watchdog0，Job空/全部句柄退出 |
+| 实际图/消费/工程裁决 | 实际选中606任务（原636）、文档任务0（原30），15项必需assembleAarRelease及15项sourceReleaseJar保持；17个project_output精确匹配，JNI CMake finalized及IN_PROCESS动作前回执有效。guard核唯一init顺序/私有脚本SHA且该脚本注册的AAR任务进入图，原SDK readonly身份前后保持。保持原classifier，接受**CONFIG_GRAPH_BOUNDED_SUPPORTED**，不把dry-run选图当产包/设备证据 |
+| 收集与复核边界 | 完整collect stdout JSON、空stderr、verified-result/outcome一致，receipt/manifest SHA及启动链/当前源码/命令/环境/图/路由/保护记录的无状态复核exit0。外层编排首次只取output，未保留其后台shell会话ID，因此该外层wrapper退出码未单独捕获；未重跑收集器或Gradle、不伪补该退出码。Gradle自身exit0已由原生process handle回执确认，工程图结论依据不可变回执及另行无状态复核，不依赖外层退出码推断 |
+| 最终保护/下一步 | 原根main@4bebc8f3/255状态/index、SDK FileID/bytes/SHA、六保护锚点及旧两组12份reservation/outcome SHA保持；new max1账本拒绝第二次预约。只支持配置图/路由及已有监测边界，下一步为实际产包所需完整输入/命令/执行镜像和独立预算/claim、当前设备前置的工程闭合；本轮不自动产AAR/APK或启动设备/媒体，新范围也不放行旧G2 |
+
+全部原证LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-aar-registration-config-20261102`；Owner授权、旧record身份、fork差异、58项测试日志、资格/输入manifest/EXE/原文patch/report及prelaunch均保存。旧两个scope及历史STOP/SDK/原根/worktrees/数据库/备份保持；无SDK安装升级/产AAR或APK/设备媒体/供应商/生产/main合并或v10.1.6。唯一结果及工程汇总已封存，engineering-result-private.json SHA `3b750c77b2ea103e30604605746eb7ee8b67c9a28381e8bd76ff79863986b33e`；不退款或自动开后继。G2 false、AC05 OPEN、整版10 PARTIAL、真实Push PENDING不因本项授权改变。
+
+---
+
+## 前一静态修复节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（私有AAR注册脚本静态修复节点）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_RESUMED / PRIVATE_REGISTRATION_STATIC_CANDIDATE / CONFIG_RUNTIME_NOT_RUN / BOTH_BUDGETS_EXHAUSTED / SINGLE_RECHECK_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。

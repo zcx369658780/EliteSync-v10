@@ -1,6 +1,6 @@
 # v10.1.5 当前产品离线配置诊断提案
 
-日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_OWNER_AUTHORIZED / NEW_SCOPE_3_OF_3_CONSUMED / OWNER_RESUMED / SINGLE_RECHECK_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_OWNER_AUTHORIZED / NEW_SCOPE_3_OF_3_CONSUMED / OWNER_RESUMED / SINGLE_RECHECK_1_OF_1_CONSUMED_CONFIG_GRAPH_SUPPORTED / G2_FALSE**。
 
 Owner已通过当前会话的具名问题明确答复“授权上述独立3次诊断范围”。这是独立于旧G2的新配置诊断授权；不恢复网页派单或网页验收，技术前置仍须成立。Codex负责实现、调试、测试与工程裁决。Owner此前对v10.1.5、USB及现有Docker/WSL的授权保留；本提案只处理旧特殊构建额度不能迁移到当前产品的问题。
 
@@ -98,3 +98,11 @@ Owner“请继续”解除上午停止，只恢复已授权普通工程；不补
 唯一真实命令仍固定现有Gradle8.14/JDK17/Flutter3.41.7的assembleAarRelease --dry-run、--offline及同样参数/守卫/私有输出；每次最多1200秒、相同4GiB客体/512MiB宿主新材料及空间前置、身份/网络/日志/输入/watchdog不放宽。任何真实Gradle root创建尝试前永久独占预约；Popen失败、非零、STOP和无结果均耗唯一一次，不退款、不重跑或自动开后继。资格化本身不消费Gradle次数，也不能代替实际图验证。
 
 不下载安装升级工具、不产AAR/APK、不操作手机/USB/媒体/供应商/真实Push/生产、不扩大系统权限/费用、不合main、不发布或启动v10.1.6。旧两组6次及全部STOP永久保持。只有真实init消费、所需AAR任务、全部路由和无文档任务均满足现有classifier才可记录有界配置图支持；失败或未知如实封存。G2仍false、AC05 OPEN和整版PARTIAL不因此放行。日常静态工程不恢复网页派单或网页验收。
+
+### 独立单次复验授权记录
+
+Owner对具名问题明确答复“授权独立最多1次禁网复验”。这只批准上文单次独立范围；原两组各3/3永久已耗保持。新task `v1015-aar-registration-config-20261102`已以独立max1合同/调度建立（`503f62cbb621d97ff82e3cff3761c605276083a4`），不是旧task第4次；第二次及额外reservation文件均拒收。58项定向Python检查通过，fresh资格化一次VM通过（47样本/双JDK/12扫描/1623轮churn、正负端点、Job空/句柄退出）。真实诊断已结束并永久消耗1/1、剩0，root exit0且CONFIG_GRAPH_BOUNDED_SUPPORTED；实际最终计数见新task永久账本与ACTIVE_STATE。新增许可不产包/操作设备、不放行G2或变更旧AC，失败照耗且不自动续额。
+
+### 独立单次复验最终结果
+
+该独立一次已完成：6956输入、Gradle exit0、1325样本/306扫描、Job空及句柄退出；606选中任务中0文档任务，15项AAR release/15项源码附件任务及17项目输出/JNI路由保持，原分类器判CONFIG_GRAPH_BOUNDED_SUPPORTED。只接受本次有界配置图证据，AAR/APK/手机/媒体/供应商均未运行、G2 false、AC05 OPEN及整版PARTIAL不变。新1次永久已耗，旧两组6次永久保持；没有新增后继额度或授权。下一步的实际产包须先单独闭合其完整输入、执行器/镜像、claim/预算和设备前置，不由本项dry-run放行。
