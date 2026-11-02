@@ -75,3 +75,24 @@ Owner在上一节点明确列出“适配实际观察器，再安排独立复验
 已实际完成并限定支持 `FLUTTER_JSON_CACHE_NEGATIVE_OBSERVATION_SUPPORTED`：1013项guest输入（1011份host/627220406源字节+2 guest-only OS pin），root2及固定错误句，6成功样本/6成员/4扫描（实际角色为1 VM、3 conhost、2 where），无STOP/watchdog、Job空和全部句柄退出。真实post-exit观察返回锁存在/0字节/nonreparse/前后身份稳定、legacy文件不存在、预置版本JSON559字节/SHA f170ed630dcc291fe6f632656d976bf09de59ab940160c67a314344eec842c1e及固定三项版本身份；实际flag、运行时持锁、元数据生成/消费仍未直接证明，producer/G2仍false，不是完整Flutter/BAT/native链或产包资格。
 
 本scope1/1永久已耗、剩0；旧46份具名记录逐份保持，加入本次claim/verified后固定48份。原活动根255项状态及index、SDK/数据库/备份/STOP保持，四类Sandbox宿主进程已缺席，手机/媒体0。实际AAR/APK预算/claim仍未建；后续仅在原已授权目标中准备完整生产读集/私有Flutter根、完整native工具树及真实AAR→host交接，不自动复跑本scope或增加后继额度。真实结果/证据hash见唯一进度细表。
+
+## 会话封存：Owner决定与后续边界
+
+2026-11-02，Owner要求“当前会话太长，请立即在github端文档、本地文档中保存当前会话的任务进度、Owner决策等信息，然后给我当前会话的交接prompt”。本节点只进行文档保存、只读保护/身份核对和普通Git同步；不新增工程/测试/构建/数据库/设备，不自动续跑或安排关机。新会话按本次交接及既有授权继续，不重做治理迁移、不恢复网页流程、不另造CURRENT/MEMORY/HANDOFF或ZIP。
+
+既有Owner决定按原会话记录继承，以下为汇总而非新增授权：
+
+- **分工与范围**：顾问GPT只下达项目计划/路线，Codex负责工程拆解、实现、调试、测试、代码审查、工程验收、Git和进度；Owner保留方向、重大取舍/架构、具体保护权限、费用与正式发布。普通已授权实现与修复自主完成；自查/非作者Codex复核不冒称外部独立审查，不为每项工程恢复网页派单或验收。
+- **产品工程与环境**：Owner已同意独立产品分支精确接续已接受软件源，已授权v10.1.5剩余范围内工程及一般新Debug APK/USB；并针对环境问题明确“授权启动现有环境，不升级或安装工具链”，仅现有Docker Desktop/WSL用于隔离开发/测试。一般许可不重复询问；服务是否运行、设备当前绑定/空闲状态和实际资格仍须当时增量核实，不能把曾经USB连接/历史资格当当前合格。
+- **有限预算**：两组各3次配置诊断及独立1次复验、后续具名where三项等均按各自明确授权/claim封存；最近JSON观察单次为Owner继续已明述下一步后由Codex保守注册的独立max1，不伪称Owner原话给出数字。旧3+3+1及所有已耗scope不退款、不重置、不重跑、不借STOP余额或换目录续额。当前RUNTIME_AUTHORIZED=True只绑定已耗唯一case，不是新许可；为收尾改开关/旧helper会破坏冻结身份，不做此变更。
+- **工程结论**：软件接续与受控JSON缓存负例观察已完成；真实AAR/APK尚未生成，实际产包预算/claim未创建。完整生产输入、私有完整Flutter根/native资格/AAR→host真实交接仍待工程闭合；缓存观察通过不能放行producer或G2，旧legacy观察器拒收不改判，预置JSON及持锁/flag/消费的证据限制保留。
+- **真实保护边界**：不安装升级工具链，不绕守卫/改全局安全；未获新的具体保留权限时不擅自增加设备、音视频、供应商、外部服务、真实用户/生产数据、费用或不可逆操作；UAC仍需当前Owner“我在”与具体授权。既有APK/USB许可不等于所有媒体/供应商权限。原dirty/index、旧L11/L13、11,066文件备份、SDK、DB、worktrees、LOCAL_ONLY和STOP保留；不pull/reset/rebase/stash/clean/prune/force，不合main、不关闭AC05、不放行G2、不启动v10.1.6。
+- **记录与同步**：继续唯一ACTIVE_STATE短入口、唯一进度细表及必要decisions；只提交本轮已审查内容，普通non-force后回读远端HEAD/关键文档。失败记PENDING_SYNC，不换身份绕过；真实消息Push PENDING与Git同步分开。禁止上传凭据/私密SQL/真实用户资料/敏感设备日志/受限APK或LOCAL_ONLY原证。
+
+封存前本地/远端产品分支d8543689f3b85b0575a4fa429ff819dd7b8fc8a2，原活动根仍main@4bebc8f394248e254c1368a06fbdee5d2c883301/255项及原index，48份保护记录一致；最终保存提交以本节点提交后的本地和远端核实为准。当前整体10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING保持，下一会话从实际产包准备接续，不重复已完成的94映射导入或Laravel13兼容迁移。
+
+### 会话文档保存的连接失败与独立镜像
+
+首次保存commit e4f0ac863652af928ee9dfdf88126d7d988f5373的普通SSH推送及一次已披露的同身份/同协议重试均被连接关闭（exit1），不把连接关闭归因为已证实鉴权拒绝，也不把失败写成同步成功；两次原文私有保留。原产品分支PENDING_SYNC，不改SSH/凭据或强推，不持续盲重试。
+
+Owner当前已明确要求GitHub端保存文档；现有连接器身份核实为仓库Owner zcx369658780。为完成这一文档保存事项，使用该既有账号在独立codex/session-save-20261102分支保存已审三文档，以原远端d8543689为parent，不修改原产品分支或main，不作为SSH修复或原分支推送成功。快照只包含三文档差异，产品apps/services及其它Tree保持；最终以远端branch/commit、三文档Blob和整体Tree回读为准。本地与镜像Git commit身份不同必须明示；镜像不是研发Parent，不自动合回。原产品分支待连接恢复、核整个待推范围后普通non-force同步，勿pull/reset/rebase来“对齐”镜像。
