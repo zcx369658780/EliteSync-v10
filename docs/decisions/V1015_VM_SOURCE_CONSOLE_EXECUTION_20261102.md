@@ -57,3 +57,13 @@ Owner针对上述具名问题明确答复“授权按提案执行这三个独立
 静态核对发现当前Flutter源码把omitLegacyVersionFile定义为fullyEnabled，_ensureLegacyVersionFile可早退；featuresConfig仍可覆盖，本次没有直接采集实际flag。4份本地源码raw SHA固定且CRLF归一后与SDK local HEAD对应Git Blob一致；这不等于远端独立核验或snapshot消费证明。root2/固定错误与源码中lock→informative update→ensureVersionFile→负例→构建分派的顺序一致。观察器沿用旧版文件必存假设是本轮验证设计错误，**旧拒收与冻结条件保持**。
 
 后续纯观察策略候选分别验证预置JSON的版本身份/raw SHA、真实锁字段及legacy缺失预期，结果明确NOT_RUN、实际flag/锁持有未直接观察，不输出PASS或工具资格；6项新纯测试通过。JSON本来就是只读控制输入，不能称本轮新生成或由其存在/hash推断工具消费；锁存在不能证明持有，legacy缺失不能反推flag。候选未接任何执行器，真实collector适配及新运行均未进行，不自动新建预算/claim。原40份具名记录、原根255/index、SDK/备份/数据库及STOP保持；手机/媒体0，G2 false、AC05 OPEN、10 PARTIAL、真实消息Push PENDING保持。
+
+## 当前版本观察器适配与独立单次复验登记
+
+Owner在上一节点明确列出“适配实际观察器，再安排独立复验”后回复“可以请继续”。沿本次继续授权，Codex先完成实际采集器/分类器适配与适用纯检查，再为此不同观察策略注册独立 `v1015-flutter-json-cache-observer-20261102/case01`，**max1由Codex作为本范围的保守执行上限**。不把Owner原话冒称具名次数答复，不恢复旧三项或任何旧余额；此次是有新Owner输入后的具名工程接续，不是无人批准的自动后继。权限仍仅当前已知VM/where/conhost及禁网私有缓存诊断，无新增系统工具或设备/媒体/供应商权限。
+
+新profile命令、SDK/10控制文件、镜像及资源边界与前一缓存负例相同；prepare/frozen内固定旧失败manifest raw SHA，逐项比较SDK/FlutterControls完整guest路径/hash及原source_pins，拒漂移。前置where库存/固定用途资格须按原代码、环境与范围重新核身份，旧缓存manifest/receipt/verified三份固定SHA仍要求REJECTED/cache_state null，不改写原失败。完整输入、生成源/patch、helper、命令和环境在创建前冻结；source授权开关只作用此唯一新case，未授权状态先于claim/子进程拒绝。
+
+新原生观察器只替换后置ReadCacheState：持FileShare.Read双文件句柄核lock0字节/非reparse/单链接及前后FileID-size-mtime-link；版本JSON有界1..32768字节、严格UTF8、原始SHA及3.41.7/cc0734ac716fbb8b90f3f9db8020958b1553afa7/Dart3.11.5身份；独立记录legacy文件存在与否。本profile明确要求legacy缺失，适用源码默认省略策略；它不声称已直接采集有效feature flag。host分类器必须同时核真实exit2/固定错误句、全部已绑定成员的精确镜像及完整清理、真实guest观察字段和预置JSON来源，才能给本profile限定支持。JSON原始输入/hash不证明本轮生成或工具消费；退出后稳定身份不证明工具运行时曾持锁。
+
+新单次在任何实际启动尝试前独占写不可退款claim，启动失败/非零或未知结果/STOP同样耗这一次，不能再跑或改目录续额。运行前实际执行器/输入不合格则相关项NOT_RUN，不以纯检查或历史成功放行；运行仍90秒hard/15秒heartbeat、2GiB guest内存、4GiB私有工作面/512MiB输出采样边界、网络/剪贴板/音视频/打印/vGPU关闭、未知映像立即STOP、只清理自有Job。旧46份保护记录、原根255/index、SDK/数据库/备份/worktrees/STOP全部保留。新产包/设备/外部服务/生产/费用/main合并与发布均不在本profile中，G2 false、AC05 OPEN及整版10 PARTIAL保持。首次实际创建前完成审查/纯检查并记录具体执行决定；最终事实以独占claim和唯一进度细表为准。

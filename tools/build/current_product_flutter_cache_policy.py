@@ -2,8 +2,9 @@
 
 Flutter 3.41.7's pinned source defaults to omitting the legacy version file.
 This policy does not observe the effective feature flag or directly prove lock
-ownership. It is not wired into an executor and cannot reclassify a consumed
-scope or replace its original rejected receipt. Future runtime remains NOT_RUN.
+ownership. Execution and provenance belong to callers; this pure function
+cannot reclassify a consumed scope or replace its original rejected receipt.
+Its model status is NOT_RUN, independently of any later caller's runtime proof.
 """
 import hashlib
 import json
