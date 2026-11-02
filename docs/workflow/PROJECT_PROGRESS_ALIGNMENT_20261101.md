@@ -1,6 +1,24 @@
-# EliteSync-v10｜项目进度细表（where资格与legacy观察器定位）
+# EliteSync-v10｜项目进度细表（当前Flutter JSON缓存观察）
 
-日期：2026-11-02（Asia/Shanghai）。状态：**WHERE_INVENTORY_SUPPORTED / WHERE_FIXED_ROLE_SUPPORTED / FLUTTER_NEGATIVE_EXIT2_OBSERVED / CACHE_REJECTED_LEGACY_OBSERVER / THREE_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**。
+日期：2026-11-02（Asia/Shanghai）。状态：**FLUTTER_JSON_CACHE_NEGATIVE_OBSERVATION_SUPPORTED / OLD_REJECTIONS_PRESERVED / NEW_SINGLE_CLAIM_CONSUMED / PRODUCER_NOT_READY / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-02 当前Flutter JSON缓存观察限定实测通过节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 接续/代码 | Owner“可以请继续”承接上一节点明确的“适配实际观察器，再安排独立复验”；主代理在同已知VM/where/conhost与禁网私有缓存范围内注册独立max1，次数上限为Codex保守约束，不伪称Owner具名次数答复。执行源码935464a73f4fa4a7d532796f88a16c5c8d198488，同一产品分支，产品source84a94c91/apps ed248529/services7634b475未变。旧三项/旧余额/旧拒收全部保留 |
+| 独立范围 | LOCAL_ONLY v1015-flutter-json-cache-observer-20261102/case01，max1；新观察策略先实现/检查再fresh prepare，不从已耗manifest直接复用。原命令/正常锁/私有PATHEXT=.EXE/内存2GiB/90秒hard/15秒heartbeat/4GiB工作面/512MiB输出采样边界保持，网络/媒体等关闭，未知镜像STOP；不执行CLI/BAT或实际构建分派 |
+| 前置/复用 | 原where库存及固定用途按原helper、环境、范围/frozen/原证身份复核；旧缓存失败manifest/receipt/verified三份raw SHA固定且仍要求REJECTED/cache_state null。新prepare/frozen内逐条比较SDK/FlutterControls完整guest路径/hash和source_pins等于旧失败manifest，原SDK/control不改，不把新库存本身当旧VM角色继续有效。新helper列表另固定collector和pure policy |
+| 实际输入 | 1011份host输入/627220406源字节+2 guest-only OS pin=1013项；OS pin仍精确conhost/where，host source_bytes不计guest已有文件。私有控制文件为同10份原件复制；预置版本JSON559字节/SHA f170ed630dcc291fe6f632656d976bf09de59ab940160c67a314344eec842c1e。完整清单/来源/原FileID/环境/命令/生成源/patch与编译器身份均纳入冻结 |
+| 观察器修复 | 在原固定cache native及旧9处精确变换上，只替换后置ReadCacheState一个body。实际持FileShare.Read双句柄，lock严格0字节/regular/nonreparse/单链接、metadata有界1..32768/严格UTF8/原始SHA/3版本字段，前后FileID-size-mtime-link一致；独立采集legacy是否存在。生成native SHA32bfb0e332f91c2ad3e535f2ba81a75abdaf542eaaaa6e43fc5aa0b7a3d3d679，原base/patch/upstream报告保留，未改旧shared runner/helpers |
+| 真实限定通过 | **FLUTTER_JSON_CACHE_NEGATIVE_OBSERVATION_SUPPORTED**：root2、固定--machine错误已观察，6成功样本/6绑定成员/4扫描；精确角色为1 dartvm、3 conhost、2 where，无STOP/watchdog、Job空/全部句柄退出。真实cache_state返回lock_exists=true/lock_bytes=0/lock_reparse=false/lock_identity_stable=true/legacy_version_file_exists=false；guest metadata SHA/559字节及固定3.41.7/cc0734.../Dart3.11.5身份全部与主机预置输入和纯策略一致 |
+| 范围未外推 | metadata_source=PRESEEDED_CONTROL，metadata_generation=NOT_PROVEN、tool_metadata_consumption/legacy_feature_flag/cache_lock_held均NOT_DIRECTLY_OBSERVED；退出后稳定FD不是运行时持锁证明，JSON存在/hash不是新生成或消费证明，legacy缺失不反推flag。采样非原子/UDP目的地UNKNOWN/短命进程漏采可能/DLL闭包未固定仍保留。本profile不放行完整Flutter/BAT/native树、Gradle生产、AAR/APK、设备/媒体或G2 |
+| 原证 | manifest 7441b8a56710e763f05fbf887d908784ab1d9ca89f3fa4da9d7d2005e533f6a6；receipt 486869b91d1b3c453f8361320b5de7ded17f469fa014a409529ddbec0637a24c；verified 51e43297bcc62f9b163ec9ff589de66e191cbe60cb14dcfada3e92c91bf47ad1；工程汇总8d8ac2c26a2bce369f1617dfac50ee8fd0fddd17976cf19d71f132058dee6e4a。原始nonce/PID/FileID、完整控制输入和日志私有保留，公开仅源码/摘要/必要hash |
+| 检查/审查 | 授权绑定前249项Python组合通过，最终19项新collector定向通过（显式False及整数1均无claim/子进程，True仍固定唯一case/max1）。授权绑定仅常量/合同状态及测试状态隔离，C#源SHA与前面实编纯检查相同；168项观察器/9项环境/31项JSON文件形状与身份纯C#断言通过。非作者Codex只读源审无剩余具体P1/P2，非外部独立验收；新真实host/generation/guest/collector接线拒绝源漂移/legacy存在/坏状态/缺proof/额外镜像/不完整清理/旧失败升级 |
+| 额度/保护 | 本scope1/1永久已耗/剩0，任何再跑或目录续额拒绝，无自动后继claim；RUNTIME授权状态仍与固定原manifest/代码绑定，不能为收尾改开关破坏证据身份。46份旧具名记录逐份SHA不变，加新claim/verified后固定48份；原根main@4bebc8f3/255/index SHA2be660...保持，SDK/数据库/备份/worktrees/%SystemDrive%与全部STOP保留。四类Sandbox宿主进程缺席，手机/媒体0；旧3+3+1及后续已耗诊断均不重开 |
+| 下一生产入口 | 有界只读定位现有current_product_apk_inventory/plan及current_product_build_plan：旧262选定文件/536141675字节、170包pubspec及两阶段assembleAarRelease→私有host :app:assembleDebug仅作增量锚点，不是完整闭包。仍需完整生产只读输入/离线action依赖、任务自有完整Flutter生产根和FlutterPlugin/BAT调用接线、gen_snapshot/CMake/ninja/clang/aapt2等真实工具树资格、真实AAR仓库hash/版本到私有host依赖交接、实际产包独立预算/claim。不能把10控制文件根当完整SDK、用空目录跳syncFlutterAar或复用旧配置诊断TASK。只读准备摘要SHA fd11433ce63b442ca46f77c3d358aea2a8d9320b11f1fc971e83fd88afb109cb，无后继动态运行 |
+
+工程结论仅接受当前版本私有缓存负例的完整观察字段及限定执行路径；旧legacy观察器REJECTED保留。后续回到完整实际产包准备，当前实际AAR/APK预算/claim仍UNKNOWN_NOT_CREATED，一般APK/USB许可保留。AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING，不合main、不启动v10.1.6。范围与实际结果见[决定文件](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#当前版本观察器实际结果)。
 
 ## 2026-11-02 where库存、用途通过与legacy观察器拒收节点
 

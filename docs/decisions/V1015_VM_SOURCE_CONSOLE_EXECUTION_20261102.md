@@ -67,3 +67,11 @@ Owner在上一节点明确列出“适配实际观察器，再安排独立复验
 新原生观察器只替换后置ReadCacheState：持FileShare.Read双文件句柄核lock0字节/非reparse/单链接及前后FileID-size-mtime-link；版本JSON有界1..32768字节、严格UTF8、原始SHA及3.41.7/cc0734ac716fbb8b90f3f9db8020958b1553afa7/Dart3.11.5身份；独立记录legacy文件存在与否。本profile明确要求legacy缺失，适用源码默认省略策略；它不声称已直接采集有效feature flag。host分类器必须同时核真实exit2/固定错误句、全部已绑定成员的精确镜像及完整清理、真实guest观察字段和预置JSON来源，才能给本profile限定支持。JSON原始输入/hash不证明本轮生成或工具消费；退出后稳定身份不证明工具运行时曾持锁。
 
 新单次在任何实际启动尝试前独占写不可退款claim，启动失败/非零或未知结果/STOP同样耗这一次，不能再跑或改目录续额。运行前实际执行器/输入不合格则相关项NOT_RUN，不以纯检查或历史成功放行；运行仍90秒hard/15秒heartbeat、2GiB guest内存、4GiB私有工作面/512MiB输出采样边界、网络/剪贴板/音视频/打印/vGPU关闭、未知映像立即STOP、只清理自有Job。旧46份保护记录、原根255/index、SDK/数据库/备份/worktrees/STOP全部保留。新产包/设备/外部服务/生产/费用/main合并与发布均不在本profile中，G2 false、AC05 OPEN及整版10 PARTIAL保持。首次实际创建前完成审查/纯检查并记录具体执行决定；最终事实以独占claim和唯一进度细表为准。
+
+### 当前版本观察器实际结果
+
+执行源码`935464a73f4fa4a7d532796f88a16c5c8d198488`；249项Python组合通过，授权绑定后最终19项定向通过（未授权False/整数1均先于claim/Popen拒绝），当前生成源168项观察器/9项环境/31项JSON文件形状与身份纯C#断言通过。新增profile独立prepare/frozen并逐项核复用SDK/control与固定旧失败manifest相同，未改旧helper或任何拒收结果。
+
+已实际完成并限定支持 `FLUTTER_JSON_CACHE_NEGATIVE_OBSERVATION_SUPPORTED`：1013项guest输入（1011份host/627220406源字节+2 guest-only OS pin），root2及固定错误句，6成功样本/6成员/4扫描（实际角色为1 VM、3 conhost、2 where），无STOP/watchdog、Job空和全部句柄退出。真实post-exit观察返回锁存在/0字节/nonreparse/前后身份稳定、legacy文件不存在、预置版本JSON559字节/SHA f170ed630dcc291fe6f632656d976bf09de59ab940160c67a314344eec842c1e及固定三项版本身份；实际flag、运行时持锁、元数据生成/消费仍未直接证明，producer/G2仍false，不是完整Flutter/BAT/native链或产包资格。
+
+本scope1/1永久已耗、剩0；旧46份具名记录逐份保持，加入本次claim/verified后固定48份。原活动根255项状态及index、SDK/数据库/备份/STOP保持，四类Sandbox宿主进程已缺席，手机/媒体0。实际AAR/APK预算/claim仍未建；后续仅在原已授权目标中准备完整生产读集/私有Flutter根、完整native工具树及真实AAR→host交接，不自动复跑本scope或增加后继额度。真实结果/证据hash见唯一进度细表。

@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-02 where两项通过，缓存到达预期负例但观察器拒收（CURRENT ENTRY）
+# EliteSync｜2026-11-02 当前Flutter缓存观察实测通过（CURRENT ENTRY）
+
+**FLUTTER_JSON_CACHE_NEGATIVE_OBSERVATION_SUPPORTED / OLD_REJECTIONS_PRESERVED / NEW_SINGLE_CLAIM_CONSUMED / PRODUCER_NOT_READY / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以请继续”承接上一节点“适配实际观察器，再安排独立复验”；Codex在同已知工具/权限内注册不同观察策略的新固定scope/max1，不冒称Owner原话指定次数，不续旧三项。实现/实际运行源码`935464a73f4fa4a7d532796f88a16c5c8d198488`，同一产品分支，apps/services未变；新单次1/1永久已耗/剩0。
+
+实际1013项guest输入（1011份host/627220406字节+2 guest OS pin）、root2/固定--machine错误，6成功样本/6成员/4扫描，角色1 VM+3 conhost+2 where；无STOP/watchdog、Job空/句柄全部退出。新观察器真实返回锁存在/0字节/nonreparse/前后文件身份稳定、legacy文件不存在，以及预置版本JSON559字节/raw SHA和固定Flutter/Dart身份，达成本profile限定标准。**JSON预置，不称本轮生成或消费证明；实际feature flag及运行时持锁未直接观察。** 旧legacy观察器拒收保持，不回溯改判；完整Flutter/BAT/native树、实际AAR/APK仍未证明，producer/G2 false。
+
+249项Python组合通过，授权绑定后最终19项定向通过；当前生成源168项观察器/9项环境/31项JSON文件形状与身份纯C#断言通过。非作者Codex源码复核无剩余具体P1/P2，非外部独立验收。完整输入、SDK/control复用身份、旧失败三证据、单body patch及新源均绑定；见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-当前flutter-json缓存观察限定实测通过节点)和[范围/实际结果](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#当前版本观察器实际结果)。
+
+下一工程入口回到实际产包准备：现有262份选定库存/170包metadata及两阶段AAR→host Debug计划只作增量起点，仍缺完整生产读集、任务自有完整Flutter根/调用接线、gen_snapshot/CMake/ninja/clang/aapt2等完整native资格、真实AAR仓库hash/版本到私有host交接，以及实际产包独立预算/claim；不得把10控制文件私有缓存当生产SDK或借空目录跳syncFlutterAar。已作有界只读定位，未开始后继动态运行。
+
+原根main@4bebc8f3、255项/index和46份旧具名记录逐份保持，加入新claim/verified后固定48份；原SDK/数据库/备份/worktrees/%SystemDrive%无关目录/全部STOP保留。四类Sandbox进程缺席，手机/媒体0。一般APK/USB许可保留，实际产包claim仍未建；AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一where与legacy拒收节点（按原时点保留）
+
+# EliteSync｜2026-11-02 where两项通过，缓存到达预期负例但观察器拒收
 
 **WHERE_INVENTORY_SUPPORTED / WHERE_FIXED_ROLE_SUPPORTED / FLUTTER_NEGATIVE_EXIT2_OBSERVED / CACHE_REJECTED_LEGACY_OBSERVER / THREE_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**
 
