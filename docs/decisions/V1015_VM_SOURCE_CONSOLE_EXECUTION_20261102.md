@@ -23,3 +23,19 @@
 历史VM的manifest/receipt/verified-result和先前合成OS证据均按精确SHA复用；本轮重新核完整只读SDK、10份控制源和全部映射/镜像/生成源/环境。仍仅允许固定VM/conhost双镜像及同样kernel/CLR；未知进程立即STOP。完整字节输入、原文、patch和执行回执私有保留。此单次失败或无结果同样永久耗尽，不退款、重跑或自动追加后继额度。
 
 该负例不产AAR/APK、不执行assemble构建动作、不操作手机、媒体或供应商；真实产包claim尚未建立，G2仍false。本项支持也不证明stock BAT等价性、完整native树、实际构建/安装或整版工程验收。
+
+### 实际拒收与静态候选
+
+本独立Flutter scope已执行并永久耗尽1/1：root255，无supervisor STOP/watchdog，双成员及清理完整；尚未创建缓存锁，预期exit2/错误句未到达，明确REJECTED。原stderr首先报告process/src/interface/common.dart:60:49的空值断言；所选process5.0.5源码该行解引用PATHEXT，本次固定环境确实缺此键。事后CACHE_LOCK_NOT_CREATED是症状。当前证据支持缺PATHEXT是这次首异常的直接原因，不能据此承诺补齐后完整缓存路径成功。
+
+新增纯静态候选只给私有环境字典副本加入PATHEXT=.EXE，拒其它扩展、重复Windows变量名和锁绕过，不继承宿主环境，不改已执行controller/SDK或旧claim。它没有启动能力，未接入任何新运行。现有Flutter _WindowsUtils._which源码在canRun后会调用where；where.exe尚未资格化，不能把.EXE扩展当作新的镜像许可。
+
+### 后续具体验证提案（PROPOSED_NOT_AUTHORIZED）
+
+需Owner对下一组有限运行另行确认，不修改上述两个已耗scope，也不自动续额。提案最多3个独立scope、每个最多1次，不是现有scope的重跑：
+
+1. `v1015-where-image-inventory-20261102/case01`：仅在禁网guest由自有只读fixture核实固定System32/where.exe文件及Windows Catalog签名、版本、SHA、长度、句柄身份；不执行where，不映射SDK/产品/设备。固定文件结果若不完整或漂移即停止。
+2. `v1015-where-execution-qualification-20261102/case01`：只有第1项支持、具体guest字节pin/完整输入/观察器固定并通过纯检查后，运行该固定where.exe的 `/Q __ELITESYNC_V1015_NEGATIVE_LOOKUP__`，期望exit1且无结果匹配。精确允许该where与已有具名conhost角色；不是宽泛系统工具白名单。具体长度/hash由第1项的immutable原证消费，未得到完整结果时不得执行。
+3. `v1015-flutter-pathext-cache-recheck-20261102/case01`：前两项及现有VM角色均成立后，在本静态候选的私有环境上验证同一snapshot负例，精确加入已资格化where镜像。旧SDK/10份控制源不变，正常缓存锁，不执行stock CLI/BAT或构建分派；仍须真实exit2、固定错误句/缓存状态/精确镜像/完整清理共同满足才支持。
+
+各scope启动前独占写max1不可退款claim，失败、无结果、STOP同样耗尽，无自动后继。每次仍90秒/15秒heartbeat、同等磁盘/只读映射/禁网/未知镜像STOP，实际准备后固定全部输入、命令、生成源与环境hash，再做非作者源码复核和适用纯检查；无法固定即NOT_RUN。签名无效、版本漂移、新映像、下载/网络或清理不完整只停止受影响分项，不重试、不放宽守卫。此次提案不含下载安装升级、AAR/APK/手机/媒体/供应商/生产/费用、main合并或发布，G2 false、AC05 OPEN保持。当前三项都未建执行claim、未运行，Owner现有一般APK/USB许可仍保留。
