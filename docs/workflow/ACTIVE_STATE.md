@@ -6,6 +6,8 @@ Owner要求“当前会话太长，请立即在github端文档、本地文档中
 
 产品工作面 `D:/EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`，remote为zcx369658780/EliteSync-v10。封存前本地/远端HEAD `d8543689f3b85b0575a4fa429ff819dd7b8fc8a2`，执行源码 `935464a73f4fa4a7d532796f88a16c5c8d198488`；本次最终记录提交以Git实际HEAD及远端核对为准，不把文档写入自身commit造成循环身份。已核远端main `8a9e97a1e9414b65d669e07f3188b81764196027`；现有产品分支继续，不重导入已接续94映射、不以旧候选/治理/审查commit当新研发Parent。
 
+**本次同步分开记录**：本地会话保存提交e4f0ac863652af928ee9dfdf88126d7d988f5373的SSH推送及一次已披露同方式重试均被连接关闭，原因除连接关闭外UNKNOWN，原失败私有保留；产品分支暂记PENDING_SYNC，不改SSH配置/凭据/身份或强推。现有GitHub连接器已核为仓库Owner zcx369658780，使用独立 `codex/session-save-20261102` 作为同三文档镜像目标，基于已在GitHub的d8543689创建文档快照；实际成功/远端commit以回读核验为准。镜像与本地产品分支commit可不同，须以三文档Blob/完整Tree对齐核对，不能宣称同HEAD；镜像只作归档，不是新研发Parent、不自动合回或合main。连接恢复后可核整个待推范围再普通推送当前产品分支，无需pull/reset/rebase。
+
 当前已完成：软件源码接续；具名VM/console/where限定验证；当前Flutter私有缓存负例观察实测通过（root2为预期，6样本/6成员/4扫描、无STOP/watchdog/清理完整）。软件source `84a94c9177ce832040146cff9968569762300307`，apps Tree `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services Tree `7634b4755a41f08641e00948f684c06efb12d8fe`，本阶段未改产品apps/services；Laravel13/PHP8.4既有15路径兼容基线保留，不重迁移或安装114包。
 
 整版仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；真实AAR/APK未生成，实际产包预算/claim为UNKNOWN_NOT_CREATED。缓存观察通过不证明完整生产SDK/native树、BAT等价性、锁运行时持有、实际feature flag或预置JSON生成/消费；旧失败/拒收不改判。旧配置3+3+1、where组三项及最近独立单次等全部已耗范围保持，最近1/1剩0；源码RUNTIME_AUTHORIZED=True不是余额或新运行许可，不改开关/旧helper破坏冻结，不重跑或换目录续额。

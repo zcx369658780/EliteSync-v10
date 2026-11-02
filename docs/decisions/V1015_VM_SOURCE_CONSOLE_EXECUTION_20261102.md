@@ -90,3 +90,9 @@ Owner在上一节点明确列出“适配实际观察器，再安排独立复验
 - **记录与同步**：继续唯一ACTIVE_STATE短入口、唯一进度细表及必要decisions；只提交本轮已审查内容，普通non-force后回读远端HEAD/关键文档。失败记PENDING_SYNC，不换身份绕过；真实消息Push PENDING与Git同步分开。禁止上传凭据/私密SQL/真实用户资料/敏感设备日志/受限APK或LOCAL_ONLY原证。
 
 封存前本地/远端产品分支d8543689f3b85b0575a4fa429ff819dd7b8fc8a2，原活动根仍main@4bebc8f394248e254c1368a06fbdee5d2c883301/255项及原index，48份保护记录一致；最终保存提交以本节点提交后的本地和远端核实为准。当前整体10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING保持，下一会话从实际产包准备接续，不重复已完成的94映射导入或Laravel13兼容迁移。
+
+### 会话文档保存的连接失败与独立镜像
+
+首次保存commit e4f0ac863652af928ee9dfdf88126d7d988f5373的普通SSH推送及一次已披露的同身份/同协议重试均被连接关闭（exit1），不把连接关闭归因为已证实鉴权拒绝，也不把失败写成同步成功；两次原文私有保留。原产品分支PENDING_SYNC，不改SSH/凭据或强推，不持续盲重试。
+
+Owner当前已明确要求GitHub端保存文档；现有连接器身份核实为仓库Owner zcx369658780。为完成这一文档保存事项，使用该既有账号在独立codex/session-save-20261102分支保存已审三文档，以原远端d8543689为parent，不修改原产品分支或main，不作为SSH修复或原分支推送成功。快照只包含三文档差异，产品apps/services及其它Tree保持；最终以远端branch/commit、三文档Blob和整体Tree回读为准。本地与镜像Git commit身份不同必须明示；镜像不是研发Parent，不自动合回。原产品分支待连接恢复、核整个待推范围后普通non-force同步，勿pull/reset/rebase来“对齐”镜像。

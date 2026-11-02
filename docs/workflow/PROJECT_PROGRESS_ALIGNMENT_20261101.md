@@ -8,6 +8,7 @@
 |---|---|
 | Owner当前决定 | 因会话过长，立即把任务进度/Owner决定保存本地与GitHub，并提供交接prompt；本节点仅文档与只读核对/Git，不新增工程或动态验证，不自动续跑，不生成新ZIP/CURRENT/MEMORY/HANDOFF。已有源码与运行记录已在此前节点提交，本次补全会话入口/权限继承/下一工程面 |
 | 分支身份 | D:/EliteSync-v10-product-v1015-20261101，codex/v10.1.5-software-continuation-20261101，origin git@github.com:zcx369658780/EliteSync-v10.git；封存前HEAD/远端d8543689f3b85b0575a4fa429ff819dd7b8fc8a2，执行源码935464a73f4fa4a7d532796f88a16c5c8d198488；本次记录最终HEAD以Git实际提交/远端回读为准。远端main仍8a9e97a1e9414b65d669e07f3188b81764196027，不合main |
+| 本次同步通道/差异 | 本地首次保存commit e4f0ac863652af928ee9dfdf88126d7d988f5373已提交；SSH推送及一次明示同方式重试均Connection closed/exit1，原因不进一步推定，私有失败原文保留，原产品分支PENDING_SYNC。现有连接器账号已核zcx369658780，以已发布d8543689为基线、仅本轮三文档建立codex/session-save-20261102快照；本地与镜像commit分别核实，三文档Blob及完整Tree须一致。原产品分支/SSH配置/凭据/历史不改，镜像不作研发Parent/自动合回，不把文档镜像成功写成原产品分支已同步 |
 | 产品身份/总体 | 软件接续已完成，source84a94c9177ce832040146cff9968569762300307；apps ed24852975baebeadc66f007dfb75ff9e31a97d4/services7634b4755a41f08641e00948f684c06efb12d8fe未变；已有Laravel13/PHP8.4兼容15路径不重做。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；Git分支同步成功不等于真实消息Push通过。未开始v10.1.6 |
 | 已达工程节点 | 94软件/测试映射已选择性接续，不能再次盲合旧候选；具名VM/console/where角色及当前Flutter JSON缓存负例观察获限定支持。最近实测root2/6样本/6成员/4扫描，无STOP/watchdog且清理完整；249项组合及最终19项定向、C#168/9/31断言已在前节点实跑，**本封存节点不重跑或写作新测** |
 | 范围未外推/额度 | 缓存观察不证明完整SDK/native树/BAT/生产/AAR/APK、运行时持锁、实际flag或JSON生成/消费。旧legacy拒收不改判；旧配置3+3+1、where组三项和最近单次等各具名已耗scope仍剩0。最近scope1/1永久已耗，源码True开关不是余额/新许可，不能改旧helper/开关、重跑或换目录续额；实际产包预算/claim仍UNKNOWN_NOT_CREATED，无新后继claim |
