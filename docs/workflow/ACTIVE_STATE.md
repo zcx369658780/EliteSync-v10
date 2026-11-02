@@ -1,3 +1,17 @@
+# EliteSync｜2026-11-02 已恢复，私有注册脚本静态修复完成（CURRENT ENTRY）
+
+**OWNER_RESUMED / PRIVATE_AAR_REGISTRATION_STATIC_CANDIDATE / RUNTIME_NOT_RUN / BOTH_CONFIG_BUDGETS_EXHAUSTED / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner“请继续”解除上午停止；新研发/测试仍沿已授权普通工程范围推进，不恢复网页流程。源码候选`567e555af17162105ebc41ee3805270b4be43779`，同一产品分支/工作面，产品source84a94c91和apps/services未变。原两组各3/3永久已耗，剩0；本轮未创建新预算/任务、未启动Gradle或VM。
+
+已在任务私有AAR注册副本移除固定SDK原文的第136/142行withJavadocJar()，保留withSourcesJar、AAR发布及模块/插件依赖；原SDK字节/FileID保持。原文、两行patch、适配说明及修改后脚本均独占写、纳入绑定；守卫source_pins消费修改后hash。**51项定向Python检查exit0**，含输入接线、源漂移/重复适配拒收和文档任务仍拒收；Codex辅助静态审查无具体P1/P2，非外部独立验收。真实Gradle消费、文档任务消失及发布图仍NOT_RUN，新controller不得借旧资格记录。
+
+原第3次636任务/含30文档任务的拒收结论不改；AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING。下一步[独立最多1次禁网配置复验提案](../decisions/V1015_CURRENT_PRODUCT_OFFLINE_CONFIG_DIAGNOSTIC_PROPOSAL_20261101.md#2026-11-02-私有注册脚本修复后的独立单次复验提案未授权)尚未授权；需另立计数并fresh资格化，不能第四次或换目录借余额。本轮AAR/APK/设备/媒体/供应商操作0、不合main、不启动v10.1.6。原根255状态/index、六锚点、两组账本及全部资产保持。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-私有aar注册脚本静态修复节点)。
+
+---
+
+## 上午停止节点（按原时点保留）
+
 # EliteSync｜2026-11-02 上午已停止，下午接续（CURRENT ENTRY）
 
 **OWNER_STOPPED / CONFIG_PROCESS_EXIT0 / CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK / NEW_BUDGET_3_OF_3_CONSUMED / G2_FALSE / V10.1.5_PARTIAL**

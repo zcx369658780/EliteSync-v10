@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（私有AAR注册脚本静态修复节点）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_RESUMED / PRIVATE_REGISTRATION_STATIC_CANDIDATE / CONFIG_RUNTIME_NOT_RUN / BOTH_BUDGETS_EXHAUSTED / SINGLE_RECHECK_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。
+
+## 2026-11-02 私有AAR注册脚本静态修复节点
+
+Owner“请继续”解除上午停止，不新增一次性额度。起点/Parent `438d648bb389cb4ac4eb18fa76c1a1597cb77582`；实现提交 `567e555af17162105ebc41ee3805270b4be43779`。同一工作面`D:/EliteSync-v10-product-v1015-20261101`、分支`codex/v10.1.5-software-continuation-20261101`；产品source `84a94c9177ce832040146cff9968569762300307`、apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`未变。
+
+| 项目 | 本节点事实及边界 |
+|---|---|
+| 原始阻点 | 原task和in-process task均3/3永久已耗。上次root exit0/636任务中选中30个javaDoc任务，仍CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK；本节点不重写或升格旧回执 |
+| 固定来源 | 现有SDK `D:/flutter/packages/flutter_tools/gradle/aar_init_script.gradle`，7483字节，SHA `b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2`；与上午sealed副本逐字节相等。捕获前后核FileID/bytes/SHA，任一漂移或非固定版本拒收 |
+| 私有适配 | current_product_inprocess_diagnostic.py新增适配/装配函数，仅删除原第136/142行两处withJavadocJar()；其它原始行/CRLF保留，withSourcesJar、from component、publish finalizer及模块插件依赖保持。只修改新任务私有副本，SDK未写。原文/patch/report/适配脚本独占写并记绑定；源SDK仍只读输入，guard source_pins绑定修改后SHA |
+| 代码身份 | 修改后脚本SHA `5aec8e6a4269724a95a15700d64d4771d9581b58c94fbe8b15182f1c026465c0`，候选controller raw SHA `515c89f61b83fd626e4a5362e31ad5ac5cd3a11bdf44e53d8e152db7c54c43e6`。旧controller原文已保留于上午sealed-controller-source及本轮before快照；旧qual记录与新controller不匹配，无当前资格record |
+| 检查 | 初次RED为适配API尚未实现，原输出保留。最终**51项Python检查exit0**：6项新适配检查+既有45项。覆盖精确两行差异、保留发布/源码附件、任何源漂移/二次适配拒收、捕获期FileID变化在写前拒收、产物独占及hash绑定、真实product_inputs在轻量fixture中把after_sha写入guard contract、文档任务继续拒收。没有执行Groovy/Java/Gradle/VM；fixture接线不是实际Gradle消费证明 |
+| 审查 | Codex非作者只读源码审查无具体P1/P2，补充守卫接线回归由主代理复核。不是外部独立验收。实际init消费、文档任务不再选中、发布/完整依赖图仍NOT_RUN；不预言任务总数或配置门禁通过 |
+| 证据及复用 | LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-inprocess-config-20261102/registration-static-01`：preflight/before、candidate原文/patch/report、RED及两次GREEN、static-result与static-final-result保留。native/guard/旧controller/contract及apps/services未改，旧C#/PHP/Flutter/设备证据只按原身份/范围复用，本轮未重跑 |
+| 权限/预算 | 本轮新Gradle/VM/AAR/APK/设备/音视频/供应商均0，新预算/任务未创建，现有两组各3/3已耗且原记录SHA保持。单独最多1次禁网配置复验仅为具体提案，需Owner另行明确授权、新独立调度/claim及fresh资格化，不能续旧余额或降低分类器 |
+
+原根main@4bebc8f3、255项状态/index、六保护锚点、两组reservation/outcome、SDK原件、全部STOP、数据库、备份和无关IME空目录保持。只接受本轮私有脚本静态候选及Python结果，不接受完整配置图或APP。整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 上午运行及停止节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（新独立范围与对象ID扫描节点）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**NEW_SCOPE_AUTHORIZED / HANDLE_SCANNER_QUALIFIED / OWNER_STOPPED / CONFIG_PROCESS_EXIT0 / CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK / NEW_BUDGET_3_OF_3_CONSUMED / G2_FALSE**。

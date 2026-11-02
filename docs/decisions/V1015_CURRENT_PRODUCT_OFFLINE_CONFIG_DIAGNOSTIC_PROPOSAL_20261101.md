@@ -1,6 +1,6 @@
 # v10.1.5 当前产品离线配置诊断提案
 
-日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_OWNER_AUTHORIZED / NEW_SCOPE_3_OF_3_CONSUMED / OWNER_STOPPED / G2_FALSE**。
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_OWNER_AUTHORIZED / NEW_SCOPE_3_OF_3_CONSUMED / OWNER_RESUMED / SINGLE_RECHECK_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。
 
 Owner已通过当前会话的具名问题明确答复“授权上述独立3次诊断范围”。这是独立于旧G2的新配置诊断授权；不恢复网页派单或网页验收，技术前置仍须成立。Codex负责实现、调试、测试与工程裁决。Owner此前对v10.1.5、USB及现有Docker/WSL的授权保留；本提案只处理旧特殊构建额度不能迁移到当前产品的问题。
 
@@ -88,3 +88,13 @@ Owner针对具名问题明确答复“授权新增独立最多3次诊断”。�
 ### 2026-11-02 上午Owner停止决定
 
 Owner要求“你这这次执行结束后请停下，下午继续。”第3次已结束并封存，停止新增工程、测试、资格化及构建，仅完成收尾记录和本轮已审查内容的普通分支同步；不自动安排下午续跑。第3次6955输入、1050样本/234扫描、无安全STOP、Job空/句柄退出，但636任务中含30个文档任务，故保留CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK。旧3次和新3次均永久已耗，不把下午恢复解释为第4次/新预算。后续任务私有AAR注册脚本适配仅有具名定位，尚未实施/运行；SDK、门禁和历史结果保留。
+
+## 2026-11-02 私有注册脚本修复后的独立单次复验提案（未授权）
+
+Owner“请继续”解除上午停止，只恢复已授权普通工程；不补充两组各3/3已耗额度。静态修复已提交`567e555af17162105ebc41ee3805270b4be43779`：固定现有SDK源SHA，只在私有副本删两处withJavadocJar()，保留源码附件/AAR发布/依赖及原文/差异/输入绑定，51项Python检查通过。修改后脚本SHA `5aec8e6a4269724a95a15700d64d4771d9581b58c94fbe8b15182f1c026465c0`；真实任务图NOT_RUN，旧30项文档任务拒收保持。
+
+**PROPOSED_NOT_AUTHORIZED**：另立`v1015-aar-registration-config-20261102`独立最多**1次**禁网配置诊断，仅验证上述私有副本是否被消费、文档任务不再选中及原AAR/依赖/输出图保持。不得改旧两组max/账本或复用余额；目前无该task根/Owner许可/新账本/实际运行。若获具体授权，先建立独立max1调度与不可退款claim、复核完整输入/精确命令/全部保护锚点并fresh资格化新controller/native组合。当前新controller不能借上午资格record，预计输入增加只读原SDK脚本一项，实际manifest须重新核验，不能以预计文件数放行。
+
+唯一真实命令仍固定现有Gradle8.14/JDK17/Flutter3.41.7的assembleAarRelease --dry-run、--offline及同样参数/守卫/私有输出；每次最多1200秒、相同4GiB客体/512MiB宿主新材料及空间前置、身份/网络/日志/输入/watchdog不放宽。任何真实Gradle root创建尝试前永久独占预约；Popen失败、非零、STOP和无结果均耗唯一一次，不退款、不重跑或自动开后继。资格化本身不消费Gradle次数，也不能代替实际图验证。
+
+不下载安装升级工具、不产AAR/APK、不操作手机/USB/媒体/供应商/真实Push/生产、不扩大系统权限/费用、不合main、不发布或启动v10.1.6。旧两组6次及全部STOP永久保持。只有真实init消费、所需AAR任务、全部路由和无文档任务均满足现有classifier才可记录有界配置图支持；失败或未知如实封存。G2仍false、AC05 OPEN和整版PARTIAL不因此放行。日常静态工程不恢复网页派单或网页验收。
