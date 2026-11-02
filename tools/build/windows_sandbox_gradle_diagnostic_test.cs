@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Text;
+using System.ComponentModel;
 
 class DiagnosticBufferTests
 {
@@ -44,10 +46,44 @@ class DiagnosticBufferTests
         active.remote="0.0.0.0";Check(GradleDiagnostic.UnsafeTcp(active),"unknown active remote rejected");
         GradleDiagnostic.RequireKnownExit(true);checks++;
         try{GradleDiagnostic.RequireKnownExit(false);throw new InvalidDataException("unbound exit accepted");}catch(Exception e){Check(e.Message=="EXIT_BEFORE_IDENTITY_BOUND","unbound exit refused");}
-        Check(GradleDiagnostic.CheckLogChunk("Download","ing htt")=="Downloading htt","split log prefix retained");
-        try{GradleDiagnostic.CheckLogChunk("Downloading htt","ps://example.invalid/x");throw new InvalidDataException("download accepted");}catch(Exception e){Check(e.Message=="DOWNLOAD_LOG_SIGNAL","split download detected");}
-        Check(GradleDiagnostic.CheckLogChunk("first"," line\nrest")=="rest","complete lines consumed");
-        try{GradleDiagnostic.CheckLogChunk("",new string('x',8193));throw new InvalidDataException("long line accepted");}catch(Exception e){Check(e.Message=="DIAGNOSTIC_LINE_LIMIT","oversized diagnostic rejected");}
+        foreach(string signal in new[]{"Downloading https://example.invalid/x","Download http://example.invalid/x"," \tDoWnLoAdInG\r\t HtTpS://example.invalid/x"}) {
+            for(int split=0;split<=signal.Length;split++) {
+                var scanner=new GradleDiagnostic.DownloadLogScanner();
+                try{scanner.Feed(signal.Substring(0,split));scanner.Feed(signal.Substring(split));throw new InvalidDataException("split download accepted");}
+                catch(Exception e){Check(e.Message=="DOWNLOAD_LOG_SIGNAL","download detected at every split");}
+            }
+        }
+        var benign=new GradleDiagnostic.DownloadLogScanner();
+        benign.Feed("Tasks to be executed: ["+new string('x',33528)+"]");
+        Check(benign.BufferedCharacters==0,"long task graph does not accumulate line memory");
+        benign.Feed("Downloading https://example.invalid/not-an-anchored-prefix");
+        Check(benign.BufferedCharacters==0,"unanchored text retains original anchored semantics");
+        benign.Feed("\n"+new string(' ',100000));
+        Check(benign.BufferedCharacters==0,"long leading whitespace uses bounded state");
+        try{benign.Feed("Downloading https://example.invalid/x");throw new InvalidDataException("download after long whitespace accepted");}
+        catch(Exception e){Check(e.Message=="DOWNLOAD_LOG_SIGNAL","anchored signal after long whitespace still rejected");}
+        var reset=new GradleDiagnostic.DownloadLogScanner();reset.Feed("Downloa\nding https://example.invalid/x\nDownloadx http://example.invalid/x\nDownloading file:/local\n");
+        Check(reset.BufferedCharacters==0,"newline resets partial words and benign schemes");
+        byte[] encoded=Encoding.UTF8.GetBytes("\u2003Downloading https://example.invalid/x");
+        var unicode=new GradleDiagnostic.DownloadLogScanner();
+        try{foreach(byte value in encoded)unicode.FeedBytes(new[]{value},1,false);throw new InvalidDataException("UTF8 split download accepted");}
+        catch(Exception e){Check(e.Message=="DOWNLOAD_LOG_SIGNAL","split UTF8 whitespace preserves detection");}
+        var malformed=new GradleDiagnostic.DownloadLogScanner();malformed.FeedBytes(new byte[]{0xe2},1,false);
+        try{malformed.FeedBytes(new byte[0],0,true);throw new InvalidDataException("truncated UTF8 accepted");}
+        catch(DecoderFallbackException){checks++;}
+        foreach(int code in new[]{2,3,5}) {
+            int calls=0,retries=0;
+            string result=GradleDiagnostic.ReadDirectoryName(()=>{if(++calls<3)throw new Win32Exception(code);return @"C:\BuildWork\live";},(n,e)=>retries++);
+            Check(result==@"C:\BuildWork\live"&&calls==3&&retries==2,"exact name query can recover after bounded native error");
+            calls=0;retries=0;
+            try{GradleDiagnostic.ReadDirectoryName(()=>{calls++;throw new Win32Exception(code);},(n,e)=>retries++);throw new Exception("persistent name error ignored");}
+            catch(Win32Exception e){Check(e.NativeErrorCode==code&&calls==3&&retries==2,"persistent native name error fails closed");}
+        }
+        foreach(int code in new[]{6,50,87}) {
+            int calls=0;
+            try{GradleDiagnostic.ReadDirectoryName(()=>{calls++;throw new Win32Exception(code);},(n,e)=>{throw new Exception("unknown name error retried");});throw new Exception("unknown name error ignored");}
+            catch(Win32Exception e){Check(e.NativeErrorCode==code&&calls==1,"unknown name error fails immediately");}
+        }
         foreach(string bad in new[]{@"C:\BuildWork\..\Outside",@"C:\Other\x",@"C:\BuildWork\x:stream"}){
             try{GradleDiagnostic.CheckOwnedPath(bad);throw new InvalidDataException("outside path accepted");}catch(Exception e){Check(e.Message=="OWNED_PATH_ESCAPE","pre-write private path rejection");}
         }

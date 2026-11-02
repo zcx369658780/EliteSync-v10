@@ -214,7 +214,167 @@ class GradleDiagnostic
         foreach(var row in Rows(m["inputs"]).Where(r=>r.ContainsKey("destination")))
             if(Hash((string)row["destination"])!=(string)row["sha256"])throw new SafetyStop("WORK_SOURCE_DRIFT");
     }
-    static int DiskScanRetries,DiskScansCompleted;
+    [StructLayout(LayoutKind.Sequential)] struct FileIdentityNative {
+        public uint attributes,creationLow,creationHigh,accessLow,accessHigh,writeLow,writeHigh,volume,sizeHigh,sizeLow,links,indexHigh,indexLow;
+    }
+    [StructLayout(LayoutKind.Sequential)] struct FileIdDescriptor {public uint size;public int type;public long id,reserved;}
+    [DllImport("kernel32.dll",SetLastError=true)] static extern bool GetFileInformationByHandle(IntPtr file,out FileIdentityNative info);
+    [DllImport("kernel32.dll",SetLastError=true)] static extern bool GetFileInformationByHandleEx(IntPtr file,int kind,IntPtr data,uint size);
+    [DllImport("kernel32.dll",SetLastError=true)] static extern IntPtr OpenFileById(IntPtr volume,ref FileIdDescriptor id,uint access,uint share,IntPtr security,uint flags);
+    [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern uint GetFinalPathNameByHandle(IntPtr file,StringBuilder name,uint size,uint flags);
+    internal class DiskEntry {public string name;public ulong id;public long bytes;public uint attributes;}
+    internal static List<DiskEntry> ParseDirectoryPage(byte[] data) {
+        var result=new List<DiskEntry>();int offset=0;
+        while(true) {
+            if(offset<0||offset>data.Length-104)throw new InvalidDataException("Directory header truncated");
+            uint next=BitConverter.ToUInt32(data,offset),length=BitConverter.ToUInt32(data,offset+60);
+            if(length==0||length%2!=0||length>data.Length-offset-104)throw new InvalidDataException("Directory name truncated");
+            if(next!=0&&(next%8!=0||next<104+length||next>data.Length-offset-104))throw new InvalidDataException("Directory row offset invalid");
+            string name=Encoding.Unicode.GetString(data,offset+104,(int)length);
+            if(name!="."&&name!="..") {
+                uint attributes=BitConverter.ToUInt32(data,offset+56);ulong id=BitConverter.ToUInt64(data,offset+96);long size=BitConverter.ToInt64(data,offset+40);
+                if(name.IndexOfAny(new[]{'\\','/',':','\0'})>=0||size<0||id==0)throw new InvalidDataException("Directory entry identity invalid");
+                if((attributes&0x400)!=0)throw new SafetyStop("REDIRECTED_DISK_ENTRY");
+                result.Add(new DiskEntry{name=name,id=id,bytes=size,attributes=attributes});
+            }
+            if(next==0)return result;offset=checked(offset+(int)next);
+        }
+    }
+    static FileIdentityNative FileIdentity(IntPtr handle) {
+        FileIdentityNative info;Require(GetFileInformationByHandle(handle,out info),"directory handle identity");return info;
+    }
+    static ulong FileId(FileIdentityNative info){return ((ulong)info.indexHigh<<32)|info.indexLow;}
+    static bool DeletePending(IntPtr handle) {
+        IntPtr data=Marshal.AllocHGlobal(24);
+        try{Require(GetFileInformationByHandleEx(handle,1,data,24),"directory delete-pending state");return Marshal.ReadByte(data,20)!=0;}
+        finally{Marshal.FreeHGlobal(data);}
+    }
+    internal static string ReadDirectoryName(Func<string> read,Action<int,Win32Exception> retry) {
+        for(int attempt=1;;attempt++) {
+            try{return read();}
+            catch(Win32Exception error) {
+                int code=error.NativeErrorCode;
+                if((code!=2&&code!=3&&code!=5)||attempt==3)throw;
+                retry(attempt,error);Thread.Sleep(10);
+            }
+        }
+    }
+    static bool ScopedDirectory(IntPtr handle,uint volume,ulong expected,string root,bool isRoot) {
+        var info=FileIdentity(handle);
+        if(info.volume!=volume||FileId(info)!=expected)throw new SafetyStop("DIRECTORY_OBJECT_ID_DRIFT");
+        if((info.attributes&0x400)!=0)throw new SafetyStop("REDIRECTED_DISK_ENTRY");
+        if((info.attributes&0x10)==0)throw new SafetyStop("DIRECTORY_OBJECT_TYPE_DRIFT");
+        if(DeletePending(handle)){if(isRoot)throw new SafetyStop("OWNED_ROOT_DELETE_PENDING");return false;}
+        string path;
+        try {
+            path=ReadDirectoryName(delegate {
+                var text=new StringBuilder(32768);uint n=GetFinalPathNameByHandle(handle,text,32768,0);
+                if(n==0){int error=Marshal.GetLastWin32Error();throw new Win32Exception(error,"directory final handle name; native="+error+"; id="+expected.ToString("x16"));}
+                if(n>=32768)throw new SafetyStop("DIRECTORY_NAME_OVERFLOW");
+                return text.ToString();
+            },delegate(int attempt,Win32Exception error) {
+                DiskDirectoryNameRetries++;
+                if(Sink!=null)Log(new{operation="disk_directory_name_retry",file_id=expected,error=error.NativeErrorCode,attempt=attempt});
+            });
+        }catch(Win32Exception) {
+            if(!isRoot&&DeletePending(handle))return false;
+            throw;
+        }
+        if(path.StartsWith(@"\\?\",StringComparison.Ordinal))path=path.Substring(4);
+        bool same=String.Equals(path,root,StringComparison.OrdinalIgnoreCase);
+        if(isRoot?!same:!(same||path.StartsWith(root+"\\",StringComparison.OrdinalIgnoreCase))) {
+            // Deletion can occur between the first pending-state query and the
+            // name query (NTFS may then report its internal deleted-object path).
+            if(!isRoot&&DeletePending(handle))return false;
+            throw new SafetyStop("DIRECTORY_SCOPE_ESCAPE");
+        }
+        return true;
+    }
+    static List<DiskEntry> DirectoryRows(IntPtr handle) {
+        IntPtr page=Marshal.AllocHGlobal(65536);var rows=new List<DiskEntry>();
+        try {
+            bool first=true;
+            while(true) {
+                bool ok=GetFileInformationByHandleEx(handle,first?11:10,page,65536);int error=ok?0:Marshal.GetLastWin32Error();first=false;
+                if(!ok){if(error==18)return rows;throw new Win32Exception(error,"enumerate owned directory handle");}
+                var bytes=new byte[65536];Marshal.Copy(page,bytes,0,bytes.Length);rows.AddRange(ParseDirectoryPage(bytes));
+                if(rows.Count>262144)throw new SafetyStop("DIRECTORY_ENTRY_COUNT_LIMIT");
+            }
+        }finally{Marshal.FreeHGlobal(page);}
+    }
+    static IntPtr OpenDirectoryId(IntPtr anchor,ulong id) {
+        var descriptor=new FileIdDescriptor{size=24,type=0,id=unchecked((long)id)};
+        return OpenFileById(anchor,ref descriptor,0x81,7,IntPtr.Zero,0x02200000);
+    }
+    static IntPtr OpenChildDirectoryId(IntPtr anchor,ulong id,out int error) {
+        for(int attempt=1;;attempt++) {
+            IntPtr child=OpenDirectoryId(anchor,id);error=child==new IntPtr(-1)?Marshal.GetLastWin32Error():0;
+            if(child!=new IntPtr(-1)||error!=5||attempt==3)return child;
+            // NTFS can deny an ID while its last delete-pending handle closes.
+            // Retry the exact read-only request, never classify error 5 as gone.
+            DiskDirectoryOpenRetries++;
+            if(Sink!=null)Log(new{operation="disk_directory_open_retry",file_id=id,error=error,attempt=attempt});
+            Thread.Sleep(10);
+        }
+    }
+    // A retired NTFS ID can return error 87, as well as 2. Neither is sufficient
+    // evidence of deletion: retain the parent handle and confirm the ID is absent.
+    // A still-live ID, an unknown error, or a failed root/API control stays fatal.
+    static void ConfirmMissingDirectory(IntPtr anchor,IntPtr parent,ulong parentId,ulong id,uint volume,ulong rootId,string root,int error) {
+        if(error!=2&&error!=87)throw new Win32Exception(error,"open owned child directory by ID");
+        ScopedDirectory(anchor,volume,rootId,root,true);
+        IntPtr control=OpenDirectoryId(anchor,rootId);Require(control!=new IntPtr(-1),"open live root ID control");
+        try{ScopedDirectory(control,volume,rootId,root,true);}finally{CloseHandle(control);}
+        if(ScopedDirectory(parent,volume,parentId,root,parentId==rootId)) {
+            if(DirectoryRows(parent).Any(row=>row.id==id))throw new Win32Exception(error,"failed directory ID still present in parent");
+            ScopedDirectory(parent,volume,parentId,root,parentId==rootId);
+        }
+        ScopedDirectory(anchor,volume,rootId,root,true);
+    }
+    static long MeasureDirectory(IntPtr anchor,IntPtr current,ulong id,uint volume,ulong rootId,string root,int depth,HashSet<ulong> seen,Action<DiskEntry> beforeOpen,Action<ulong> deleted,Action<DiskEntry> afterOpen) {
+        if(depth>128)throw new SafetyStop("DIRECTORY_DEPTH_LIMIT");
+        if(!ScopedDirectory(current,volume,id,root,id==rootId)){deleted(id);return 0;}
+        List<DiskEntry> rows;
+        try{rows=DirectoryRows(current);}
+        catch(Win32Exception) {
+            if(!ScopedDirectory(current,volume,id,root,id==rootId)){deleted(id);return 0;}
+            throw;
+        }
+        long total=0;
+        if(!ScopedDirectory(current,volume,id,root,id==rootId)){deleted(id);return 0;}
+        foreach(var entry in rows) {
+            if((entry.attributes&0x10)==0){total=checked(total+entry.bytes);continue;}
+            if(!seen.Add(entry.id))continue;
+            if(seen.Count>65536)throw new SafetyStop("DIRECTORY_ID_COUNT_LIMIT");
+            if(beforeOpen!=null)beforeOpen(entry);
+            int error;IntPtr child=OpenChildDirectoryId(anchor,entry.id,out error);
+            if(child==new IntPtr(-1)) {
+                ConfirmMissingDirectory(anchor,current,id,entry.id,volume,rootId,root,error);
+                deleted(entry.id);continue;
+            }
+            try {
+                if(afterOpen!=null)afterOpen(entry);
+                total=checked(total+MeasureDirectory(anchor,child,entry.id,volume,rootId,root,depth+1,seen,beforeOpen,deleted,afterOpen));
+            }finally{CloseHandle(child);}
+        }
+        ScopedDirectory(current,volume,id,root,id==rootId);return total;
+    }
+    internal static long MeasureLocalTree(string root,Action<DiskEntry> beforeOpen,Action<ulong> deleted,Action<DiskEntry> afterOpen=null) {
+        Canonical(root);
+        if(Path.GetPathRoot(root)==root||new DriveInfo(Path.GetPathRoot(root)).DriveFormat!="NTFS")throw new SafetyStop("OWNED_LOCAL_NTFS_REQUIRED");
+        if(Marshal.SizeOf(typeof(FileIdentityNative))!=52||Marshal.SizeOf(typeof(FileIdDescriptor))!=24)throw new SafetyStop("DIRECTORY_NATIVE_LAYOUT");
+        var security=new Security{length=Marshal.SizeOf(typeof(Security)),inherit=false};
+        IntPtr anchor=CreateFile(root,0x81,7,ref security,3,0x02200000,IntPtr.Zero);
+        Require(anchor!=new IntPtr(-1),"open owned directory anchor");
+        try {
+            var origin=FileIdentity(anchor);ulong rootId=FileId(origin);
+            ScopedDirectory(anchor,origin.volume,rootId,root,true);
+            var seen=new HashSet<ulong>();seen.Add(rootId);
+            long total=MeasureDirectory(anchor,anchor,rootId,origin.volume,rootId,root,0,seen,beforeOpen,deleted,afterOpen);
+            ScopedDirectory(anchor,origin.volume,rootId,root,true);return total;
+        }finally{CloseHandle(anchor);}
+    }
+    static int DiskScanRetries,DiskScansCompleted,DiskDeletedDirectoryIds,DiskDirectoryOpenRetries,DiskDirectoryNameRetries;
     // DirectoryInfo enumeration pre-populates FileInfo metadata; do not stat vanished files again.
     // Each completed walk is a non-atomic observation, not an OS-enforced quota.
     internal static long MeasureTree(string root,Func<string,FileSystemInfo[]> enumerate,Action<int,IOException> retry) {
@@ -248,22 +408,48 @@ class GradleDiagnostic
         throw new SafetyStop("DISK_SNAPSHOT_UNSTABLE");
     }
     static long Size(string root) {
-        long total=MeasureTree(root,path=>new DirectoryInfo(path).GetFileSystemInfos(),delegate(int attempt,IOException error) {
+        long total;
+        if(root==@"C:\BuildWork")total=MeasureLocalTree(root,null,delegate(ulong id){DiskDeletedDirectoryIds++;Log(new{operation="disk_directory_id_gone",root=root,file_id=id});});
+        else total=MeasureTree(root,path=>new DirectoryInfo(path).GetFileSystemInfos(),delegate(int attempt,IOException error) {
             DiskScanRetries++;Log(new{operation="disk_scan_retry",root=root,attempt=attempt,hresult=error.HResult});
         });
         DiskScansCompleted++;return total;
     }
-    internal static string CheckLogChunk(string pending,string next) {
-        string text=pending+next;
-        foreach(string line in text.Split('\n')){
-            if(System.Text.RegularExpressions.Regex.IsMatch(line,@"^\s*(Downloading|Download)\s+https?://",System.Text.RegularExpressions.RegexOptions.IgnoreCase))throw new SafetyStop("DOWNLOAD_LOG_SIGNAL");
-            if(line.Length>8192)throw new SafetyStop("DIAGNOSTIC_LINE_LIMIT");
+    // Inspect every character without retaining an arbitrarily long task-graph
+    // line. Only an unfinished anchored download prefix is buffered (<=11 chars).
+    internal sealed class DownloadLogScanner {
+        int phase;string token=""; // leading whitespace / word / space / scheme / other
+        readonly Decoder decoder=new UTF8Encoding(false,true).GetDecoder();
+        readonly char[] characters=new char[65537];
+        internal int BufferedCharacters {get{return token.Length;}}
+        internal void Feed(string text) {
+            foreach(char value in text) {
+                if(value=='\n'){phase=0;token="";continue;}
+                if(phase==4)continue;
+                if(phase==0){if(Char.IsWhiteSpace(value))continue;phase=1;}
+                if(phase==1) {
+                    if(Char.IsWhiteSpace(value)&&(token.Equals("Download",StringComparison.OrdinalIgnoreCase)||token.Equals("Downloading",StringComparison.OrdinalIgnoreCase))){phase=2;token="";continue;}
+                    string next=token+value;
+                    if("Downloading".StartsWith(next,StringComparison.OrdinalIgnoreCase))token=next;
+                    else{phase=4;token="";}
+                    continue;
+                }
+                if(phase==2){if(Char.IsWhiteSpace(value))continue;phase=3;}
+                string scheme=token+value;
+                if(scheme.Equals("http://",StringComparison.OrdinalIgnoreCase)||scheme.Equals("https://",StringComparison.OrdinalIgnoreCase))throw new SafetyStop("DOWNLOAD_LOG_SIGNAL");
+                if("http://".StartsWith(scheme,StringComparison.OrdinalIgnoreCase)||"https://".StartsWith(scheme,StringComparison.OrdinalIgnoreCase))token=scheme;
+                else{phase=4;token="";}
+            }
         }
-        return text.Substring(text.LastIndexOf('\n')+1);
+        internal void FeedBytes(byte[] bytes,int count,bool final) {
+            if(count<0||count>65536||count>bytes.Length)throw new InvalidDataException("Diagnostic log chunk size");
+            int length=decoder.GetChars(bytes,0,count,characters,0,final);
+            Feed(new string(characters,0,length));
+        }
     }
     static Dictionary<string,long> LogOffsets=new Dictionary<string,long>();
-    static Dictionary<string,string> LogTails=new Dictionary<string,string>();
-    static void BoundDiskAndDownloads() {
+    static Dictionary<string,DownloadLogScanner> LogScanners=new Dictionary<string,DownloadLogScanner>();
+    static void BoundDiskAndDownloads(bool final=false) {
         if(Size(@"C:\BuildWork")>4L*1024*1024*1024||Size(Output)>512L*1024*1024)throw new SafetyStop("OWNED_DISK_BUDGET");
         foreach(string name in new[]{"gradle.stdout","gradle.stderr"}){
             string path=Output+"\\"+name;if(!File.Exists(path))continue;
@@ -272,9 +458,11 @@ class GradleDiagnostic
                 if(f.Length<offset)throw new SafetyStop("DIAGNOSTIC_LOG_TRUNCATED");
                 if(f.Length-offset>16*1024*1024)throw new SafetyStop("DIAGNOSTIC_BACKLOG_LIMIT");
                 f.Position=offset;byte[] bytes=new byte[65536];int read;
+                if(!LogScanners.ContainsKey(name))LogScanners[name]=new DownloadLogScanner();
                 while((read=f.Read(bytes,0,bytes.Length))>0){
-                    LogTails[name]=CheckLogChunk(LogTails.ContainsKey(name)?LogTails[name]:"",Encoding.UTF8.GetString(bytes,0,read));LogOffsets[name]=f.Position;
+                    LogScanners[name].FeedBytes(bytes,read,false);LogOffsets[name]=f.Position;
                 }
+                if(final)LogScanners[name].FeedBytes(new byte[0],0,true);
             }
         }
     }
@@ -303,7 +491,7 @@ class GradleDiagnostic
                 if(WaitForSingleObject(root.process,0)==0){uint code;Require(GetExitCodeProcess(root.process,out code),"root exit code");exit=code;break;}
                 Interlocked.Exchange(ref heartbeat,time.ElapsedMilliseconds);Thread.Sleep(100);
             }
-            SourcePins(m);BoundDiskAndDownloads();
+            SourcePins(m);BoundDiskAndDownloads(true);
         }catch(Exception problem){stop=problem.GetType().FullName+": "+problem.Message;Log(new{operation="safety_stop",reason=stop,hresult=problem.HResult});}
         finally {
             if(watchdog!=null){using(var done=new ManualResetEvent(false)){watchdog.Dispose(done);done.WaitOne();}}
@@ -318,7 +506,7 @@ class GradleDiagnostic
                 foreach(var b in known.Values)CloseHandle(b.handle);if(root.thread!=IntPtr.Zero)CloseHandle(root.thread);
             }
         }
-        return new {root_pid=root.pid,root_exit=exit,stop_reason=stop,successful_samples=samples,bound_members=known.Count,job_final_empty=empty,all_bound_handles_exited=exited,sampling_non_atomic=true,udp_destination="UNKNOWN",disk_limit_sampled=true,transient_disk_overshoot_possible=true,disk_scan_retries=DiskScanRetries,disk_scans_completed=DiskScansCompleted,watchdog_stop=watchdogStop};
+        return new {root_pid=root.pid,root_exit=exit,stop_reason=stop,successful_samples=samples,bound_members=known.Count,job_final_empty=empty,all_bound_handles_exited=exited,sampling_non_atomic=true,udp_destination="UNKNOWN",disk_limit_sampled=true,transient_disk_overshoot_possible=true,disk_scan_retries=DiskScanRetries,disk_scans_completed=DiskScansCompleted,disk_deleted_directory_ids=DiskDeletedDirectoryIds,disk_directory_open_retries=DiskDirectoryOpenRetries,disk_directory_name_retries=DiskDirectoryNameRetries,watchdog_stop=watchdogStop};
     }
     static int Main(string[] args) {
         Json.MaxJsonLength=64*1024*1024;
