@@ -1,3 +1,21 @@
+# EliteSync｜2026-11-02 直接VM停止定位与客体系统文件库存（CURRENT ENTRY）
+
+**STDIO_VM_UNQUALIFIED_CONSOLE_STOP / NO_STAGE_RECORDED / GUEST_CONSOLE_IMAGE_INVENTORY_SUPPORTED / CONSOLE_EXECUTION_FALSE / APK_NOT_RUN / G2_FALSE**
+
+同一产品分支，Parent `ff263243b6e5e7aecffc0b34f60660c19e1ffdc1`，产品apps/services未变。Owner继续已授权工程，手机仍供Owner使用；本节点未访问设备。独立stdio VM诊断1002输入/583434144源字节，root为现有dartvm.exe，仍因Job内conhost安全STOP；0阶段标记、root exit未知、2样本/2成员，Job空/句柄退出。该1/1永久已耗，不重跑/换目录续额；不能归因某个getter或断言排除间接launcher。既有Dart --version结果仅支持CLI单进程，不证明VM/Flutter。
+
+按本机Dart revision c70f78e7d682c158c15ca0c26c729b3ccb932284读取4份官方源码，Git Blob逐份匹配：CLI可自己打印version，脚本入口转交dartvm及两个逻辑路径参数；机制不等于已复现旧STOP唯一根因。新stdio源只6项终端元数据getter，不读stdin内容；已修标记写入错误归因，缺标记不推测阶段。VM本机签名NotSigned如实记录。
+
+另一个纯只读guest OS文件库存成功：仅4份probe输入/119670源字节，无SDK映射/执行。guest conhost版本10.0.26100.8875、1003520字节、SHA c86146188b78e484f32cc29e2331689659943b47689a85570342044f499938ac，Windows Catalog签名Valid，读取前后句柄身份/双SHA保持。现有GAC程序集在进程内查询签名，无外部PowerShell；该路径签名Valid，不称程序集加载字节完整固定。root0、27样本/1成员、8扫描、无STOP/watchdog，Job空/句柄退出，collect0；该库存scope1/1已耗，**不是conhost执行资格**。
+
+154项Python、两份生成观察器各168项C#纯断言、新12项UTF8字节断言通过；初次非法测试FileID正例导致失败原证保留，改正fixture而未降门。非作者Codex静态复核已修范围/输出P2，非外部独立验收。现继续准备单独具名控制台合成Job资格，尚未创建其执行claim；不把库存转成白名单直接跑VM。见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-直接vm定位与客体conhost库存节点)。
+
+原根255/index、30份旧具名记录/账本、SDK/数据库/备份/STOP保持；现行APK/USB许可保留，实际APK claim未建。AC05 OPEN、G2 false、整版10 PARTIAL、真实消息Push PENDING；无Gradle/AAR/APK/手机/媒体，不合main、不启动v10.1.6。
+
+---
+
+## 前一Flutter缓存节点（按原时点保留）
+
 # EliteSync｜2026-11-02 Flutter私有缓存验证安全停止（CURRENT ENTRY）
 
 **FLUTTER_CACHE_NEGATIVE_REJECTED_UNKNOWN_PROCESS_IMAGE / DART_SINGLE_PROCESS_SUPPORTED / CACHE_LOCK_NOT_CREATED / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**

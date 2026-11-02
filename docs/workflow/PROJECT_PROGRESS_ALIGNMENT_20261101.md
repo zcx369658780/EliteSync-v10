@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（直接VM定位与guest控制台文件库存）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**STDIO_VM_CONSOLE_STOP_REPRODUCED / NO_STAGE_RECORDED / GUEST_CONSOLE_OS_IMAGE_INVENTORY_SUPPORTED / CONSOLE_EXECUTION_NOT_QUALIFIED / G2_FALSE**。
+
+## 2026-11-02 直接VM定位与客体conhost库存节点
+
+Owner继续当前v10.1.5，Parent `ff263243b6e5e7aecffc0b34f60660c19e1ffdc1`；同一产品分支/工作面，source84a94c91、apps ed248529、services7634b475保持。手机仍由Owner使用，本节点无ADB/安装/应用/音视频。原活动目录main@4bebc8f3/255状态/index SHA保持。
+
+| 项目 | 实际证据、判断与边界 |
+|---|---|
+| SDK入口机制 | 本机Dart3.11.5 revision c70f78e7d682c158c15ca0c26c729b3ccb932284；官方dart-lang/sdk同revision的dartdev.cc/dartdev_options.cc/process_win.cc/console_win.cc经GitHub只读工具获取，保存字节逐份Git Blob匹配。dartdev.cc:1039–1057显示--version可由CLI直接打印，493–546及options显示脚本转交dartvm.exe并传两个逻辑dart路径参数；这是源码机制，二进制对应关系与旧STOP唯一触发点仍未独立证明，不假定官方代码已在本机重编 |
+| stdio独立scope | 新v1015-stdio-vm-source-isolation-20261102/case01/max1，实际1002输入/583434144源字节，完整SDK只读，仅dartvm.exe执行镜像；--resolved_executable_name/--executable_name遵循具名源码形状。脚本固定6个stdout/stdin terminal/ANSI元数据getter，每项前后同步JSONL，无stream内容/网络/Flutter；Native从固定raw72637d...基底经5项各count1替换生成，原文/patch/report/sourceSHA均冻结，原Job/身份/网络/下载/磁盘/90s保护保持。脚本标记写入错误已放getter try之外，不能伪装getter失败 |
+| stdio真实结果 | root=VM仍遇conhost，UNKNOWN_PROCESS_IMAGE停止；root exit=null、0标记、2成功样本/2成员，watchdog0，Job空/句柄全部退出；四类宿主Sandbox进程缺席后封存collector0，tool_qualified=false。collector0仅表示停止证据有效，不是VM成功。该独立1/1永久已耗，不重跑/退款/换目录续额；缺标记不能确定getter/编译/初始化的具体触发点，也不能排除VM内部间接CLI路径。工程interpretation-note收窄原exclusion文字，不覆盖原证 |
+| OS库存独立scope | 新v1015-console-image-inventory-20261102/case01/max1；只4份probe文件/119670字节，probe RO+output RW，未映射SDK/产品/设备。自有C#fixture读取固定guest C:/Windows/System32/conhost.exe，不执行它；持FileShare.Read句柄拒写删，限16MiB、句柄ID/size/mtime/link前后及双SHA稳定、祖先reparse拒收。in-process现有System.Management.Automation精确v3 FullName调用Get-AuthenticodeSignature，无外部PowerShell；微软5.1官方文档明确可报告Windows catalog签名 |
+| 库存实际结果 | root exit0、27样本/1成员、8扫描、无STOP/watchdog、Job空/句柄退出、四类宿主进程缺席、collect0。guest conhost **10.0.26100.8875**、1003520字节，SHA **c86146188b78e484f32cc29e2331689659943b47689a85570342044f499938ac**；Catalog/Microsoft Windows/IsOSBinary/Valid，文件身份/哈希稳定。guest kernel仍10.0.26100.6713；宿主conhost10.0.26100.9949是另一个文件，未替代guest身份。库存scope1/1已耗，CONSOLE_OS_IMAGE_INVENTORY_SUPPORTED，console_execution_allowed=false |
+| 资格范围 | 新库存记录GAC FullName/Windows目录及该路径的签名查询，不能称程序集加载字节/FileID/完整DLL闭包已固定；没有执行conhost，也没有证明它在Job内的执行/网络/退出行为。库存只为后续单独合成控制台资格提供精确候选，不由库存直接给VM/Flutter/APK加白名单。直接VM和原CLI --version分别保留，后者不是VM运行资格 |
+| 代码/检查/审查 | 154项Python最终组合exit0（97 current_product+23 Dart+10cache+12stdio+12库存）；两份新生成观察器各168项C#纯保护断言、新fixture12项UTF8字节/有效性断言exit0。库存初次因非法fixture-index正例失败原日志保持；改合法虚构UInt64，未降验证。已校文件16MiB/UInt32 volume/link/十进制UInt64 index，metadata与多字节异常输出统一16KiB；非作者Codex源码复核P2均修复，无新具体P1/P2，未代跑真实原证，非外部独立验收 |
+| 私有原证 | stdio manifest8d26b4ec09b6c530b394df18c8292ad798b0acf91669857ec832fca8835be92d，receipt c847cccb8b5c916d369fb4fc7f0641350dba645b1f5844c12c64e35cc7fedb7a，汇总7543e02190a0043d67799db5338e1a71c9e0c8d655c5f85e69220178d9c2cc83。OS库存manifest e009c987d4e29b27fb545f4e047d7c98c8ee208550c731923bac09780e61e1dd、receipt d33e0749ac7149b033cb9b5df68c5a552c13135a2daeda9a8a38bf92e71cfe66、metadata a57728385b19a5e5f471986faa581eb6c6d9f2e8b5f82bf20e25d233b669e2cf；总汇总d2e3f7a4e2975845acd18a743f7d2e0eb1a7dcdff11554fd35f1402894017cd6。完整FileID/PID/nonce/日志/官方源码副本保留LOCAL_ONLY，不上传公开仓库 |
+
+下一工程项：以fresh guest再次核文件哈希/签名为前提，准备独立的固定合成控制台Job资格（固定自有fixture+具名conhost，不加其它映像/通配），先核实际分配/释放与监督/退出行为；本节点该资格尚未运行/创建claim，不能借已耗stdio或库存余额。已有新APK/USB许可保持，实际AAR/APK执行预算及claim仍未建。30份旧具名记录、原root/index、SDK/数据库/备份/全部STOP保持；AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING，无Gradle/AAR/APK/设备/媒体，不合main、不启动v10.1.6。
+
+---
+
+## 前一Flutter私有缓存负例节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（Flutter私有缓存负例安全停止）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**FLUTTER_CACHE_NEGATIVE_REJECTED_UNKNOWN_PROCESS_IMAGE / CACHE_LOCK_NOT_CREATED / CLAIM_1_OF_1_CONSUMED / DART_SINGLE_PROCESS_SUPPORTED / G2_FALSE**。
