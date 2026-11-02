@@ -1,3 +1,29 @@
+# EliteSync-v10｜项目进度细表（实际APK输入及USB只读资格准备）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_APK_USB_PERMISSION_RECONFIRMED / USB_READONLY_IDENTITY_SUPPORTED / SELECTED_INPUT_INVENTORY / ACTUAL_BUILD_EXECUTOR_NOT_READY / BUILD_NOT_RUN / G2_FALSE**。
+
+## 2026-11-02 实际APK输入及USB只读资格准备节点
+
+Owner再次明确“可以，手机已经usb连入PC，请继续”。Parent `98789bf838d779a0555b7cc35eb4a770cc2091cc`，工具源码提交 `8623824b876a320ec67159065a8f8fd9177790c4`；同一产品分支/工作面，source84a94c9177ce832040146cff9968569762300307、apps ed24852975baebeadc66f007dfb75ff9e31a97d4、services7634b4755a41f08641e00948f684c06efb12d8fe未变。
+
+| 项目 | 本节点事实、边界与未完成项 |
+|---|---|
+| 手机只读身份 | 现有Google签名有效ADB，单台ready、非模拟器/非TCP序号形式，和此前Owner手机serial相同；model25060RK16C/API36/arm64-v8a，目标com.elitesync.v1015dev未装。6次ADB只读命令：前后devices、3个getprop、目标包过滤列表；本机5037仅loopback且进程精确为现有SDK adb，正常ADB服务保留供已授权USB开发，未替换服务或改启动设置。无安装/启动/卸载/清数据/reverse/MIC/CAM或消息/屏幕内容读取。序号/原stdout全部LOCAL_ONLY |
+| 独立USB关联 | Windows当前USB节点serial与绑定ADB serial相同、WINUSB服务/状态OK，CompatibleIds为ADB标准USB classFF/subclass42/protocol01，独立只读关联通过。最初只按名称找ADB子节点得到0，原结果保留；具名同设备family元数据证实本机直接以serial-bearing USB接口暴露，按协议核对后成功，不把第一次0改写为PASS，未修改驱动/系统策略 |
+| 实际产品构建链 | 正确APK目标为apps/android的:app:assembleDebug，v1015 Dart define并继承v1014 gate，包com.elitesync.v1015dev、1010501/10.1.5-dev、arm64，API8021/WS8022。宿主debug消费Flutter release AAR，preBuild→syncFlutterAar会调用BAT；当前目标AAR仓库不存在、host local.properties不存在，需要私有配置与真实AAR生产/仓库绑定，不能使用模块内示例host或旧APK |
+| SDK/进程阻点 | 具名FlutterPlugin/BaseFlutterTaskHelper确定Windows启动flutter.bat；其最终Dart snapshot参数已定位，但共享BAT会写flutter.bat.lock并检查Git/PowerShell/update-engine等，Dart cache.lock()也写SDK/bin/cache/lockfile。直接Dart仅确认BAT末端参数，不等于完整启动等价性，现只读stock SDK不能直接用于实际生产；不使用FLUTTER_ALREADY_LOCKED或关锁绕门。现有Java-only监测资格不覆盖Dart/gen_snapshot/CMake/ninja/clang/aapt2等实际链 |
+| 选定身份库存 | 新只读inventory_files API仅处理caller逐项列出的文件，不递归。限定root/绝对规范路径、祖先reparse/symlink、single-link普通文件、聚合次数/字节cap、fd及前后path dev/inode/size/mtime和实际read长度，异常拒收；源不复制、不写。实际262文件/536141675字节，含host tracked、170包pubspec元数据、选定SDK/NDK/CMake/JDK/控制文件，选定role均存在。数量是源读取字节，不是新增空间；170个包元数据不证明全部lib/hooks/assets/DLL/离线闭包 |
+| 产包数据计划 | 新make_plan绑定当前产品身份、已支持配置回执、同一arm64只读手机和库存hash。AARrelease→host Debug两阶段，拟版本1.0-v1015-<source12>-<selected-inventory12>保持两端一致，避免只沿用旧1.0；私有host版本/真实仓库交接尚未实现。版本仅是source+选定库存的准备标识，不是完整build fingerprint。所有execution/install/media/G2/claim false，完整闭包/缓存/原生监测/host交接/预算/制品身份均保留未就绪 |
+| 检查与审查 | 最终80项Python exit0：18项新库存临时fixture（路径边界、重复/缺失/相对、bool/caps、reparse/hardlink、句柄/路径替换/mtime/size等漂移）+4项计划检查+原58项。非作者Codex只读审查无具体P1/P2，非外部独立接受；库存并非原子快照，plan本身不独立核原证链。主代理在外层绑定真实receipt/manifest/source、手机原证及库存；以后实际构建前仍须fresh完整核验 |
+| 证据 | LOCAL_ONLY worksite v1015-apk-readiness-20261102-01；选定库存SHA `d260db918b9a7ba77307e3c9823fd29a3f7ab589414a942dd280e99b6dd824c3`，v2计划 `396351f1eba42b003f1112ea567416e854f868267dba45e96dc49d47f0c9672a`，汇总 `21d78872a33cac85cd6dca9a3ef9ff5a8463fca113e82d5078d0bfa353bd70d1`。原ADB/PNP/序号/工具绝对路径/完整FileID保留私有，公开仅源码与摘要；新写材料约143KB，未复制完整SDK/Seed |
+| 预算与授权 | 新Debug APK/USB的现行Owner许可保留，本轮再次确认并落实只读设备资格；不把它误标为未授权，也不从许可或配置成功推导运行资格。实际APK执行计数/资源与claim未冻结、UNKNOWN_NOT_CREATED，未创建build ledger。旧配置两组3/3及单次1/1、旧G2/STOP永久保持，无退款/借余额；本轮新Gradle/VM/AAR/APK0、设备写入0 |
+
+下一工程闭合点：任务自有Flutter缓存与正常锁/完整选定SDK及Dart读集、扩展native执行镜像与受控Job/网络/日志资格、真实AAR产物身份及private host依赖交接，随后才可冻结实际产包输入/命令/运行计数与claim。当前实际构建分项NOT_RUN，普通工程继续，不通过更改保护门制造可运行结论。原根main@4bebc8f3/255状态/index、具名SDK/旧账本/STOP、数据库/备份/worktrees及无关IME目录保持；不宣称全盘资产重扫。AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一单次配置复验节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（独立单次AAR注册配置复验）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**OWNER_SINGLE_RECHECK_AUTHORIZED / FRESH_QUALIFICATION_PASS / SINGLE_BUDGET_1_OF_1_CONSUMED / CONFIG_GRAPH_BOUNDED_SUPPORTED / AAR_APK_NOT_RUN / G2_FALSE**。

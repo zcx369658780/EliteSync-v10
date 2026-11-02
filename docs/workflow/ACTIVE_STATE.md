@@ -1,3 +1,17 @@
+# EliteSync｜2026-11-02 USB手机只读资格及实际产包准备已推进（CURRENT ENTRY）
+
+**USB_READONLY_BINDING_SUPPORTED / SELECTED_APK_INPUTS_INVENTORIED / BUILD_EXECUTOR_NOT_READY / ACTUAL_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner再次确认“可以，手机已经usb连入PC，请继续”。现行新Debug APK/USB许可保留，不重问已授许可、不把已耗配置次数用于产包。源码工具提交`8623824b876a320ec67159065a8f8fd9177790c4`，产品apps/services未变。当前同一台已绑定测试手机，API36/arm64，目标com.elitesync.v1015dev未安装；ADB只读前后绑定一致，Windows USB WINUSB的ADB协议FF/42/01与同一serial关联，设备写入/应用启动/清数据/reverse/媒体均0。
+
+已记录262份选定文件、536141675字节源读取身份及170个Dart包元数据；没有复制SDK，**不代表完整Dart/工具/依赖闭包**。80项Python定向检查exit0，Codex辅助静态审查无具体P1/P2，非外部独立验收。分阶段计划为Flutter release AAR→Android host Debug；版本暂绑定source+选定库存，不是最终完整构建指纹，执行/安装/媒体/G2全部false。
+
+实际构建当前未就绪：官方BAT和Dart会写SDK缓存锁；需任务自有缓存与正常锁、完整读集、Dart/CMake/clang/aapt2等进程资格，以及实际AAR哈希仓库交接。不能设置CI目录存在来跳过生产者，也不能借仅JDK配置观察器运行。APK执行计数/资源及claim尚未冻结，UNKNOWN_NOT_CREATED；不是把已有Owner许可改为未授权。本轮Gradle/VM/实际AAR/APK均0，旧3+3+1次数及所有STOP保持。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-实际apk输入及usb只读资格准备节点)。AC05 OPEN、G2 false、10 PARTIAL、真实Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一单次配置复验节点（按原时点保留）
+
 # EliteSync｜2026-11-02 私有注册脚本单次配置复验通过（CURRENT ENTRY）
 
 **CONFIG_GRAPH_BOUNDED_SUPPORTED / SINGLE_BUDGET_1_OF_1_CONSUMED / AAR_APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
