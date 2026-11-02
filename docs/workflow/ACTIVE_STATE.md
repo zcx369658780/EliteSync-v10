@@ -1,4 +1,24 @@
-# EliteSync｜2026-11-02 VM源通过，Flutter缓存拒收与环境静态修复（CURRENT ENTRY）
+# EliteSync｜2026-11-02 where两项通过，缓存到达预期负例但观察器拒收（CURRENT ENTRY）
+
+**WHERE_INVENTORY_SUPPORTED / WHERE_FIXED_ROLE_SUPPORTED / FLUTTER_NEGATIVE_EXIT2_OBSERVED / CACHE_REJECTED_LEGACY_OBSERVER / THREE_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**
+
+Owner明确授权“三个独立单次验证”后已按序完成；同一产品分支，执行源码`c650f86b27b4311e0e963e21a5483466896b1b0c`首项冻结后未改helpers。后续纯策略候选`4c47720814b0d714687425446e3a5decd0a39de4`未接执行器/NOT_RUN。apps/services未变，三项各1/1永久已耗、剩0，没有后继claim，不借旧额度。
+
+客体where文件库存通过（4份host/122469字节、root0、29样本/1成员/10扫描、Catalog签名Valid）；固定/Q查无结果用途通过（2份host/98643字节+2份guest OS pin、root1、3样本/1成员/4扫描、双流严格0字节）。guest where为65536字节/SHA f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29；仅限定具名用途，不扩展其它系统工具。
+
+Flutter缓存复验仍**REJECTED**：1013项guest输入（1011份host/627214169字节+2 OS pin），真实root2、固定--machine错误已到达，6样本/4成员（VM+conhost+两个where）、无STOP/watchdog且清理完整。旧缺PATHEXT异常已越过，但观察器随后要求旧版root/version文件，FileNotFound、cache_state=null；预期负例与整项资格分别记录，不改判PASS。
+
+静态源码核实当前SDK默认允许省略legacy version文件，原观察器沿用“文件必存”的假设是本轮验证设计错误。实际feature flag未直接采集；JSON已预置，不能称本轮生成或单靠存在/hash证明工具消费；锁存在亦不证明持有。新的纯观察策略分开版本JSON身份、锁字段和legacy预期，6项检查通过，真实collector适配/新运行尚未进行，旧拒收/冻结门不重写。
+
+本轮225项Python组合通过，三份生成观察器各168项C#纯保护断言、库存17项/缓存环境9项通过。非作者Codex只读复核无剩余具体P1/P2，非外部独立验收。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-where库存用途通过与legacy观察器拒收节点)及[授权与实际结果](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#本组三项实际执行结果)。
+
+下一工程项是适配独立后续collector的真实JSON/锁/legacy分项观测与资格标准，不能改已耗共享runner或自动开新运行额度。实际AAR/APK预算/claim仍未建，现行一般APK/USB许可保留。原根main@4bebc8f3、255项/index及40份旧具名记录逐份保持；加本组三项后固定46份保护记录，所有STOP/SDK/数据库/备份保持。四类Sandbox进程缺席，手机/媒体0；AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING，不合main、不启动v10.1.6。
+
+---
+
+## 前一VM与PATHEXT节点（按原时点保留）
+
+# EliteSync｜2026-11-02 VM源通过，Flutter缓存拒收与环境静态修复
 
 **VM_SOURCE_WITH_PINNED_CONSOLE_SUPPORTED / FLUTTER_CACHE_REJECTED / PATHEXT_STATIC_CANDIDATE / BOTH_NEW_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
 

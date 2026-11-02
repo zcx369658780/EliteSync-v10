@@ -1,6 +1,28 @@
-# EliteSync-v10｜项目进度细表（VM源验证与Flutter缓存环境定位）
+# EliteSync-v10｜项目进度细表（where资格与legacy观察器定位）
 
-日期：2026-11-02（Asia/Shanghai）。状态：**VM_SOURCE_WITH_PINNED_CONSOLE_SUPPORTED / FLUTTER_CACHE_REJECTED / PATHEXT_STATIC_CANDIDATE / BOTH_NEW_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**。
+日期：2026-11-02（Asia/Shanghai）。状态：**WHERE_INVENTORY_SUPPORTED / WHERE_FIXED_ROLE_SUPPORTED / FLUTTER_NEGATIVE_EXIT2_OBSERVED / CACHE_REJECTED_LEGACY_OBSERVER / THREE_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-02 where库存、用途通过与legacy观察器拒收节点
+
+| 项目 | 本轮实际事实与限制 |
+|---|---|
+| 授权/代码 | Owner具名答复“授权按提案执行这三个独立单次验证”；按前项支持才运行后项完成。执行源码c650f86b27b4311e0e963e21a5483466896b1b0c，首项冻结后共享runner/helpers未变；纯观察策略候选4c47720814b0d714687425446e3a5decd0a39de4未接执行器。产品source84a94c91/apps ed248529/services7634b475未变；旧3+3+1及全部STOP保持 |
+| 新链/前置 | 三个独立固定task/case01分别为v1015-where-image-inventory-20261102、v1015-where-execution-qualification-20261102、v1015-flutter-pathext-cache-recheck-20261102，各max1不可退款claim。后项重新核前项frozen、原始launch链/receipt/样本/分类/三证据SHA并固定为自己的prerequisites，不从库存直接授执行。旧VM/console证据限已核代码/环境/范围复用，版本/hash不是完整DLL闭包 |
+| 库存输入/结果 | 4份host probe/122469源字节，无SDK/产品/设备映射，fixture仅读固定where文件，synthetic可执行分支从新副本精确删除。WHERE_OS_IMAGE_INVENTORY_SUPPORTED：root0、29样本/1成员/10扫描，无STOP/watchdog、Job空/句柄退出；Catalog签名Valid、句柄/双SHA稳定。guest where.exe版本10.0.26100.8875、65536字节、SHA f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29；程序集路径签名不称加载字节闭包固定 |
+| 库存原证 | manifest ce56fff29292fa38ff6f4ef810b8fb4f77d3deea170cd40acc82d90002170b81；receipt 8f338fb94e27a7560db514915a316ded7aac38a6f3a2a8f39405ccd57ccf752f；verified 4e95aa1fe4821325f1ef7bfd42b7cc3cff131e2f604223425b5ae47c6b428a97；工程汇总a1b3d16a468b865490e37939be2e892b1877d6f7bc935df64770311fb5382416 |
+| 固定用途输入/结果 | 2份host probe/98643字节+where/conhost两份guest-only OS pin=4项，host source_bytes不含OS文件。真实where.exe执行 `/Q __ELITESYNC_V1015_NEGATIVE_LOOKUP__`，WHERE_FIXED_NEGATIVE_LOOKUP_SUPPORTED：预期root1、3样本/1成员/4扫描、双流严格0字节、无STOP/watchdog、清理完整。支持此固定用途；可选第二角色仅conhost，未知镜像不许可，.EXE不是执行白名单 |
+| 用途原证 | manifest bae2c3d8e3a1bc7c632b8d1f6b948c1619b211bf56b77023ec709cffb0eda905；receipt fdb8baab910944398b525245631468ceb6051e3024ae7d463595894c225d255e；verified 426427a319836c9cdc3ab6a17a0ac87583250a82d21ab90ce9e602a39023c98d；工程汇总a0651d815584d2bf51344acd406994aff34ca3648d30f08892e375234b3f194c |
+| 缓存输入 | 1011份host输入/627214169字节+两OS pin=1013项；完整SDK/10控制源与前案字节/原身份逐项相同。仅私有PATHEXT=.EXE候选接线，不执行CLI/BAT、不改SDK/stamp/全局环境、不跳正常锁；精确VM/conhost/where镜像，两处有界OS hash，kernel/CLR同固定基线；正常90秒/15秒heartbeat及4GiB/512MiB采样边界保持 |
+| 缓存实际拒收 | **REJECTED / tool_qualified=false**：真实root2，固定--machine错误已观察；6样本/4成员，包含VM、conhost、两个where，where_image_observed=true。stop_reason=null/watchdog0/Job空/全部句柄退出；后置ReadCacheState因旧root/version不存在抛FileNotFound，cache_state=null。故原receipt/collector拒收保持；不能由root2或collector exit0改判整个缓存资格通过 |
+| 缓存原证 | manifest 088dc3f3c375b172f7ae246cc685603d8fe57c756aeace051199e46dd7305bd0；receipt e562a61767c2a9faffb3d56460b6f43a5f651c66b28657b5cb741fd2e6ffd053；verified 5b615932f96198d61cef06e0d80d2624b76755f1d24f007dda8489d5d42f9131；工程汇总f5cb4f1ae1b0b57589d14d06eced7b6991a136c8e4d58666bd7e9679d56e024e。整组汇总30bfbfd1f1a3838ad8f08d38f6b1724ec2bbaff7c2b4c1b9f80af0358308dab8 |
+| 静态定位 | runner源码顺序lock→informative update→ensureVersionFile→固定参数exit2→构建分派，与负例原证相符。当前features.dart将omitLegacyVersionFile定义fullyEnabled；version.dart可因该flag早退，featuresConfig仍可覆盖，本轮实际flag未采集。旧观察器假设legacy version必存是本次验证设计错误，原拒收与冻结门保持。4份具名源码raw SHA固定，CRLF归一后分别与SDK local HEAD对应Git Blob一致，不称远端独立核验/实际snapshot消费；诊断SHA e0e01c2619513a0365c8efc4b85ef20458410ab7e073eecf31c6ef5b230a87f8 |
+| 证据分级 | 已知ReadCacheState先检查lock存在再Canonical(version)，异常位置支持其存在检查已通过；大小/reparse/身份元组未返回，锁持有NOT_DIRECTLY_OBSERVED。JSON本来是预置控制输入，存在/hash不证明本轮生成或工具消费；legacy缺失不反推实际flag。采样非原子、UDP目的地UNKNOWN及短命进程漏采可能保持；不能外推完整native树 |
+| 纯策略候选 | current_product_flutter_cache_policy只验证future profile的raw JSON SHA/大小/严格UTF8及3.41.7+cc0734...+Dart3.11.5身份、精确typed锁字段与legacy缺失预期；返回NOT_RUN、flag/锁持有未直接观察、producer/G2false，不输出PASS/tool_qualified。未接任何执行器，不回溯改已耗controller/结果；真实collector适配/新动态运行均NOT_RUN |
+| 检查/审查 | 225项Python组合通过，新策略6项定向通过；三个实际生成观察器各168项C#纯断言，库存fixture17项/缓存环境9项通过。native库存6处替换SHA077ee8065daa3c37f422c2aa8c74c370a32eb830e028f39893d14c3dcca0cb55；用途9处SHA8ee11446e9e579b28476cb4aed57590b217e697d739da8c1304a8c54902c5d7f；缓存9处SHAecc15463512265769bbec51bf701776a06cd2eb9a9987129721e81a50248143f。非作者Codex只读复核P2已修：严格双流空字节、非root仅conhost、同PID矛盾镜像拒收；不是外部独立验收 |
+| 首次拒收保留 | 首次host preflight因源LF/CRLF分隔符拒收，0claim/0launch；仅新fixture副本规范LF并精确去synthetic分支，原源不变。首次纯测试误判顶部历史注释为入口，限定Main后通过，原工具输出保留；未改实际守卫或降低阈值 |
+| 额度/保护 | 三个新scope各1/1永久已耗/剩0，无自动后继。40份旧具名记录逐份SHA不变，加入本组claim/result后固定46份保护记录；原根main@4bebc8f3/255/index SHA2be660...保持，%SystemDrive%无关目录/原SDK/数据库/备份/worktrees/STOP不改。四类Sandbox宿主进程缺席，手机/媒体0；实际AAR/APK预算/claim仍未建 |
+
+本组三项授权已执行结束：两项具名where证据支持，一项缓存资格拒收。下一工程项是完成独立后续collector的版本JSON/锁/legacy分开观测和来源绑定，保留当前冻结失败；未创建新运行额度或claim。一般APK/USB许可保留，AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING；无AAR/APK、手机/媒体/供应商操作，不合main、不启动v10.1.6。见[授权与实际结果](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#本组三项实际执行结果)。
 
 ## 2026-11-02 VM源通过、Flutter缓存拒收及环境静态候选节点
 

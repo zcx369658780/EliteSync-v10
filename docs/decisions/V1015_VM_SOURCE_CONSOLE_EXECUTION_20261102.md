@@ -43,3 +43,17 @@
 ### 本组三项授权记录
 
 Owner针对上述具名问题明确答复“授权按提案执行这三个独立单次验证”。上文PROPOSED_NOT_AUTHORIZED与未建claim是授权前的原时点状态；现允许按顺序准备和执行这三个各max1范围。前项不支持则后项NOT_RUN，不退款、重置、借旧余额或追加后继。实际执行以各任务根永久claim/原证为准；本授权不含产包、手机、媒体、供应商、生产、费用或main合并。
+
+### 本组三项实际执行结果
+
+三项均按顺序执行，各1/1永久已耗、剩0，无追加scope或后继claim。共用新runner源码固定`c650f86b27b4311e0e963e21a5483466896b1b0c`，首项冻结后没有修改其代码或helpers；未改任何旧controller/claim。
+
+- 文件库存支持：仅4份probe/122469源字节，无SDK/产品/设备映射；root0、29样本/1成员/10扫描，Windows Catalog签名Valid、身份稳定。guest where.exe为10.0.26100.8875、65536字节、SHA f51fab8041e5023d7290b540a2106f051ef0bd2bc3443c9daf318628b560fa29。只读库存不直接授执行。
+- 固定用途支持：2份host probe/98643字节+where/conhost两项guest OS pin，共4项；真实where根执行固定/Q负例，预期root1、3样本/1成员/4扫描，stdout/stderr原始字节均空，严格限定此用途，不扩展其它命令或程序。
+- 缓存复验拒收：1011份host输入/627214169字节+两OS pin，共1013项；仅私有PATHEXT=.EXE变更，SDK/10控制源仍与前案逐条相同。真实root2、固定--machine错误已观察，6样本/4成员包含VM、conhost及两个where，无STOP/watchdog且清理完整；但观察器随后要求旧版root/version文件，FileNotFound、cache_state=null，因此仍REJECTED，不能把collector exit0或预期负例单独当整项通过。
+
+225项Python组合通过，三份生成观察器各168项纯C#保护断言、库存fixture17项、缓存环境9项通过。首次host preflight因生成fixture换行分隔符被拒，在0claim/0launch时仅规范新副本LF后精确删除synthetic入口；旧源保持。纯测试首次误把历史注释当入口，限定Main后通过，原工具输出保留。非作者Codex只读复核P2已修，非外部独立验收。
+
+静态核对发现当前Flutter源码把omitLegacyVersionFile定义为fullyEnabled，_ensureLegacyVersionFile可早退；featuresConfig仍可覆盖，本次没有直接采集实际flag。4份本地源码raw SHA固定且CRLF归一后与SDK local HEAD对应Git Blob一致；这不等于远端独立核验或snapshot消费证明。root2/固定错误与源码中lock→informative update→ensureVersionFile→负例→构建分派的顺序一致。观察器沿用旧版文件必存假设是本轮验证设计错误，**旧拒收与冻结条件保持**。
+
+后续纯观察策略候选分别验证预置JSON的版本身份/raw SHA、真实锁字段及legacy缺失预期，结果明确NOT_RUN、实际flag/锁持有未直接观察，不输出PASS或工具资格；6项新纯测试通过。JSON本来就是只读控制输入，不能称本轮新生成或由其存在/hash推断工具消费；锁存在不能证明持有，legacy缺失不能反推flag。候选未接任何执行器，真实collector适配及新运行均未进行，不自动新建预算/claim。原40份具名记录、原根255/index、SDK/备份/数据库及STOP保持；手机/媒体0，G2 false、AC05 OPEN、10 PARTIAL、真实消息Push PENDING保持。
