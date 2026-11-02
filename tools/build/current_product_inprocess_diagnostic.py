@@ -1,6 +1,7 @@
 """Separately authorized in-process configuration diagnostics; no old balance reuse."""
 import argparse
 import base64
+import difflib
 import hashlib
 import json
 import os
@@ -27,6 +28,7 @@ WORK=PureWindowsPath(r'C:\BuildWork')
 MODULE=WORK/'Project/apps/flutter_elitesync_module/.android'
 TOOLING=WORK/'Tooling/packages/flutter_tools/gradle'
 JAVA=r'C:\Inputs\Jdk\bin\javaw.exe'
+AAR_REGISTRATION_SOURCE_SHA256='b6b870954405c5d52afea183bb51b3220100c234401142d8c1bf3e2410cee2c2'
 
 def sha(path):
     with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -146,6 +148,41 @@ def add_private_gradle_home_properties(root,inputs,bindings):
     write(path,b'kotlin.compiler.execution.strategy=in-process\n')
     add_input(inputs,bindings,path,r'C:\Inputs\Adapters\diagnostic-gradle-home.properties',WORK/'GradleHome/gradle.properties')
 
+def adapt_aar_registration(original):
+    # Only this already-observed SDK version is accepted. Do not change the SDK
+    # or hide selected documentation tasks in the result classifier.
+    if type(original) is not bytes or hashlib.sha256(original).hexdigest()!=AAR_REGISTRATION_SOURCE_SHA256:
+        raise ValueError('AAR registration source identity drift')
+    lines=original.splitlines(keepends=True)
+    removed=[n for n,line in enumerate(lines,1) if line.strip()==b'withJavadocJar()']
+    if removed!=[136,142]:raise ValueError('Unexpected Javadoc publication declarations')
+    return b''.join(line for n,line in enumerate(lines,1) if n not in removed)
+
+def add_private_aar_registration(root,inputs,bindings):
+    source=layout.FLUTTER/'packages/flutter_tools/gradle/aar_init_script.gradle'
+    pin=layout.safe_file(source);original=source.read_bytes()
+    if hashlib.sha256(original).hexdigest()!=pin['sha256'] or layout.safe_file(source)!=pin:
+        raise ValueError('AAR registration source changed during capture')
+    changed=adapt_aar_registration(original)
+    patch=('\n'.join(difflib.unified_diff(original.decode('utf-8').splitlines(),changed.decode('utf-8').splitlines(),
+        fromfile='stock/aar_init_script.gradle',tofile='private/aar-registration.init.gradle',lineterm=''))+'\n').encode('utf-8')
+    after=hashlib.sha256(changed).hexdigest()
+    report={'schema':1,'kind':'private-aar-registration-without-javadoc','source_identity':pin,
+        'before_sha256':pin['sha256'],'after_sha256':after,'patch_sha256':hashlib.sha256(patch).hexdigest(),
+        'removed_source_lines':[136,142],'runtime_status':'NOT_RUN','G2':False}
+    artifacts=[(root/'inputs/adapters/aar-registration.init.gradle',changed),
+        (root/'aar-registration.original.gradle',original),(root/'aar-registration.patch',patch),
+        (root/'aar-registration-adaptation-private.json',(json.dumps(report,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))]
+    for path,data in artifacts:
+        write(path,data);identity=layout.safe_file(path)
+        if identity['sha256']!=hashlib.sha256(data).hexdigest():raise ValueError('Private AAR adaptation output drift')
+        bindings.append({'host':str(path),**identity})
+    # The original stays a readonly input; only the changed private script is executed.
+    bindings.append({'host':str(source),**pin})
+    inputs.extend([{'path':r'C:\Inputs\Flutter\packages\flutter_tools\gradle\aar_init_script.gradle','sha256':pin['sha256']},
+        {'path':r'C:\Inputs\Adapters\aar-registration.init.gradle','sha256':after,
+         'destination':str(WORK/'Adapters/aar-registration.init.gradle')}])
+
 def product_inputs(root,inputs,bindings):
     _,prior=layout.frozen(PRIOR,PARENT)
     if (prior['source_commit'],prior['apps_tree'],prior['services_tree'])!=(SOURCE,APPS,SERVICES):raise ValueError('Fixed product identity mismatch')
@@ -185,9 +222,10 @@ def product_inputs(root,inputs,bindings):
     for group,host,guest in [('native',PRIOR/'inputs/native',r'C:\Inputs\Pub'),('tooling',layout.TOOLING,r'C:\Inputs\ToolingSnapshot'),('seed',layout.SEED,r'C:\Inputs\DependencyCache')]:
         for r in prior['input_sets'][group]:
             add_input(inputs,bindings,layout.relative(host,r['relative']),PureWindowsPath(guest)/r['relative'],WORK/'Tooling'/r['relative'] if group=='tooling' else None)
-    for name,source in [('current-product-config-guard.init.gradle',HERE/'current_product_config_guard.init.gradle'),('aar-registration.init.gradle',layout.FLUTTER/'packages/flutter_tools/gradle/aar_init_script.gradle')]:
-        path=root/'inputs/adapters'/name;write(path,source.read_bytes())
-        add_input(inputs,bindings,path,PureWindowsPath(r'C:\Inputs\Adapters')/name,WORK/'Adapters'/name)
+    name='current-product-config-guard.init.gradle'
+    path=root/'inputs/adapters'/name;write(path,(HERE/'current_product_config_guard.init.gradle').read_bytes())
+    add_input(inputs,bindings,path,PureWindowsPath(r'C:\Inputs\Adapters')/name,WORK/'Adapters'/name)
+    add_private_aar_registration(root,inputs,bindings)
     add_private_gradle_home_properties(root,inputs,bindings)
     pins={r['destination']:r['sha256'] for r in inputs if 'destination' in r}
     put(root/'probe/guard-contract.json',{'project_properties':properties(),'source_pins':pins,'native_plugins':sorted(names),'output_roots':expected_outputs(names)})
