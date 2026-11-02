@@ -1,3 +1,37 @@
+# EliteSync-v10｜项目进度细表（新独立范围与对象ID扫描节点）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**NEW_SCOPE_AUTHORIZED / HANDLE_SCANNER_QUALIFIED / OWNER_STOPPED / CONFIG_PROCESS_EXIT0 / CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK / NEW_BUDGET_3_OF_3_CONSUMED / G2_FALSE**。
+
+## 2026-11-02 新独立范围与对象ID扫描节点
+
+Owner具名答复“授权新增独立最多3次诊断”。同一产品分支`codex/v10.1.5-software-continuation-20261101`/工作面`D:/EliteSync-v10-product-v1015-20261101`；节点起点`797bec43159129825dc7c2b308caec6b761b678d`，本节点观察器修复提交`cfc715ac3a09dca844dea37a036da1abbfe83fa3`（与运行raw源码相同）。产品source `84a94c9177ce832040146cff9968569762300307`，apps `ed24852975baebeadc66f007dfb75ff9e31a97d4`、services `7634b4755a41f08641e00948f684c06efb12d8fe`未变。
+
+| 项目 | 本节点事实及边界 |
+|---|---|
+| 独立预算 | `797bec43`冻结新controller/contract，task `v1015-inprocess-config-20261102`；原task的3个reservation/outcome保持，原3/3永久已耗。新范围独立max3，已占3/3、剩0。6项namespace隔离检查包含在本轮45项Python中；新旧合同/授权/资格根/账本互拒，未改旧max或记录 |
+| 新范围第1次 | 6955输入；动作前日志实际requested=in-process、selected=IN_PROCESS finalized=true。仅1个JDK、无conhost；1019样本/228扫描/9次missing-path retry后DISK_SNAPSHOT_UNSTABLE，安全STOP。Job空/全部句柄退出；完整配置图/离线命中未证。该策略证据不是编译成功或conhost唯一根因确认 |
+| 扫描修复 | 仅客体本地未映射NTFS C:/BuildWork采用FILE_ID_BOTH_DIR_INFO与OpenFileById，固定卷/完整64-bit ID、目录类型、reparse、最终handle路径。保留父句柄并缓存全页；ID2/87须live-root/API control且原父复枚举ID缺席或已确认父DeletePending。打开child的error5只精确重试最多3次，最终5仍STOP；已打开child的name/枚举异常仅同句柄确认DeletePending才可跳过。root/权限/其它IO/边界失败不跳过。mapped输出保持旧有界扫描；深度/ID/entries有上限，配额仍非原子逻辑长度采样，非物理空间强制限额 |
+| 真实缺陷定位 | 原v1-v6日志误定位为stable打开失败，v7/v8插桩确认stable及rename已通过，error87实际来自删除后旧ID。并发回归另显露pending-state/name之间的竞态及短暂OpenById5；逐项定位修复，v1-v14/fixture原证保留，不把失败写成PASS |
+| 首版定向检查 | 当时527项真实owned文件系统断言，含500并发样本/285 create-write-rename-delete、116确认消失观察；多页、坏offset/长度、deletepending、live ID对2/87/5/50拒收、真实ACL5、escape、junction覆盖。42项纯策略、12项旧文件系统断言、45项Python exit0。编译/运行使用现有.NET，未安装工具。没有将527断言称为527独立场景 |
+| 审查 | Codex非作者只读审查无具体P1/P2；主代理复查delta。不是外部独立验收。对finalName/DirectoryRows在live非pending句柄上的直接故障注入负例NOT_RUN；现有真实ACL负例覆盖OpenById5 |
+| 新资格化 | `monitor-qualification-02`一次VM：496输入、1633轮churn、47样本、2个JDK、12扫描、0 retry、0 watchdog；loopback正例/越界监听负例通过，Job空/全部句柄退出。guest CLR4.0.30319.42000、kernel10.0.26100.6713；EXE SHA `e4d3097ee5c175ad1ab01a8f83144e6971ee27fc10facc572fa94ebaccc53fbd`，receipt `7fe00f006e7f49c4aec6d0514e02e81efef407ffd94df1696681f470c15a12da`。首次collect因host Sandbox仍退出中拒收，后确认四进程缺席才收同一回执，无VM重启/Gradle次数消耗 |
+| 第2次接续 | `attempt-02`；具名Codex接续决定绑定第1次manifest/receipt、最终修复证据 `273f611d9ce1bca80cc2081f3a2804b2298409e69507a2ab037beb90b2959f6a`、新semantic/controller/资格回执及全部6955输入fresh校验。已预约2/3；1198样本/270扫描，扫描retry0、仅1JDK、Job空/句柄退出，最终DIAGNOSTIC_LINE_LIMIT安全STOP。stdout有BUILD SUCCESSFUL但不改变拒收结论，receipt `843d3e695f5c9da394d0d7999dc61230902f06daef098f32569fdcf651d4f865`。manifest `19d55ecb405607fdf118682612523dae1e016528db4e45d022f08215e438bee2` |
+| 长日志修复 | 第2次原stdout第18178行是33528字符Tasks to be executed，原8192限制重现为RED。保留--info，将整行缓冲改为逐字符下载前缀状态机，token≤11，跨chunk严格UTF8 decoder、EOF截断拒收；不改变原anchored Download/Downloading whitespace https?://检测。16MiB backlog、日志截断、配额、身份、网络、watchdog不变。159项纯断言exit0；回放原1683966字节stdout/空stderr通过，最终parser片段身份相等。原BUILD SUCCESSFUL不提升第2次安全STOP |
+| 资格化03拒收 | 496输入，20样本/双JDK/4扫描，名称查询Win32Exception，Job空/句柄退出，collect exit1且不写资格record。旧回执未含native code，历史code/内核原因UNKNOWN。之后host两类5000样本长测分别2675 create-delete及2697纯rename均通过，不能反推旧原因 |
+| 名称查询修复/最终检查 | 同一已打开handle的final-name查询对native2/3/5最多3次/两次10ms；成功后完整scope比较，持续/未知错误仍STOP，无空路径/零字节fallback；日志具名native code/ID。最终168项纯断言exit0（新增恢复/持久失败/未知错误），527文件系统断言exit0（500并发样本、287变动、129消失观察）。45项Python按未变controller/contract范围复用，非name-query新测；旧12项MeasureTree回归按未变方法复用。非作者Codex源码审查无具体P1/P2，非外部独立验收 |
+| 最终资格化04 | 一次VM，496输入、1873轮churn、46样本/双JDK/10扫描，实际一次同handle name-query native2经有界重查恢复；端点正负例通过、watchdog0、Job空/句柄退出，collect exit0。EXE `fdd84494c26a0bb7cdbc6ae97d7d5a9f183334be8ba9d8fe58ea1ae5844954c2`；receipt `cae5b281a5d795f73600e2816f875a95a2ad8702d754f3da28faf42ec7baf919`；manifest `efd5d0f7f5a0e641d96cfe1877f324041b6e92ed80b5b4336d9202c61398c6e8`。这是本次实际有界恢复，不追认资格化03 native code |
+| 第3次接续 | `attempt-03`，新范围最后1次已永久预约，现3/3已占、剩0。6955输入fresh核验、全部旧保护对象复核及对前2次STOP的具名接续决定通过，绑定最终修复证据 `71e242ca4ed38d1f84c34e03d8b0746863e22df4825a64e1bb1530ffc8b3adbb` 与资格化04原EXE。manifest `cfdb9618c57732e5192c7f44b5e2163c30a5172d0eddec01a619821cc7596828`；实际已结束root exit0、无安全STOP，1050样本、234扫描、仅1JDK、各类retry/watchdog0，Job空/句柄退出；receipt `cd351e0cbca9f76ded5138d93d72cb928a2896b77af91eca68acf74c8c33f11f`。collect exit0只表示结果有效，最终分类CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK，非门禁通过 |
+| 最终任务图/工程判断 | 实际选中636任务，其中30个javaDocReleaseGeneration/javaDocReleaseJar；17个project_output全部精确匹配，JNI CMake最终路由及IN_PROCESS动作前日志有效。进程/观察器及这组路由证据有界支持，完整配置图门禁**未通过**；不改classifier忽略文档任务，不把dry-run当AAR/APK成功。具名SDK `D:/flutter/packages/flutter_tools/gradle/aar_init_script.gradle`两处withJavadocJar()引入文档变体；仅定位，任务私有复制/适配尚未实现、SDK未改 |
+| Owner停止/下一步 | Owner在第3次结束时要求本次后停止、下午继续；已停止新增工程/测试/资格化/构建，仅收尾记录与分支同步，不设置自动续跑。下午从任务私有registration适配方案/差异与定向静态检查继续；原3次、新3次均永久已耗，恢复不产生第4次或新预算。G2/产包/设备门仍独立成立才可运行 |
+
+全部原证LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-inprocess-config-20261102`。第1次receipt `fff580c52e999c2147d6b8b3313d9e9fdd3de1962396daadec4454560f6d79d4`、manifest `467ea83ab379e260e49355ad34454f9230c59a7ce88c87b873ececf2e0a4877d`；新的独占record与EXE字节绑定，不覆盖旧资格化。完整VM后台teardown仍UNKNOWN。
+
+保护对象、原main@4bebc8f3/255状态/index及原3组reservation/outcome保持；旧L11/L13、数据库、11,066备份、全部STOP、既有worktrees及无关IME空目录保留。旧PHP/Flutter/WS/Web/持久性证据只按原身份与范围复用，本轮未重跑。AAR/APK、手机/媒体/供应商/真实Push0；G2 false、AC05 OPEN、10 PARTIAL、真实Push PENDING，不合main、不启动v10.1.6。最终已封存第3次结果与Owner停止记录；LOCAL_ONLY owner-stop-20261102-am.json SHA `ca8ecabe9b98e64462257ed5a6a52424562bc8464371156d7b612bdfeb743a2f`。新范围已永久耗3/3，停止新增真实Gradle尝试，不退款/借旧余额或自动新开后继。
+
+---
+
+## 前一扫描节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（扫描竞态修复与第三次配置诊断节点）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**SCANNER_RUNTIME_BOUNDED_SUPPORTED / FINAL_AUTHORIZED_CONFIG_DIAGNOSTIC_SAFETY_STOP / BUDGET_3_OF_3_CONSUMED / STATIC_INPROCESS_CANDIDATE_NOT_RUNTIME_VERIFIED / G2_FALSE**。

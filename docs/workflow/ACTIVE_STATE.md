@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-02 上午已停止，下午接续（CURRENT ENTRY）
+
+**OWNER_STOPPED / CONFIG_PROCESS_EXIT0 / CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK / NEW_BUDGET_3_OF_3_CONSUMED / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner要求“这次执行结束后请停下，下午继续”。第3次已结束并封存；现停止新增工程、测试、资格化及构建，仅完成本节点记录/Git同步，不自动下午启动。原独立任务3/3已耗保持，新task `v1015-inprocess-config-20261102`亦3/3永久已耗、剩0；不退款/重置/借余额/自动新开后继。
+
+本节点调度提交`797bec43159129825dc7c2b308caec6b761b678d`，观察器修复`cfc715ac3a09dca844dea37a036da1abbfe83fa3`。最终第3次6955输入核验、root exit0、1050成功样本/234扫描、仅1JDK、无安全STOP/retry/watchdog，Job空/全部句柄退出；17项目输出及JNI CMake路由有回执，636项任务选图。**其中30项javaDoc任务被选中，分类仍为CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK，未达到完整配置图门禁**；不能把BUILD SUCCESSFUL或collect exit0当作门禁PASS。
+
+前两次安全STOP、资格化03拒收及历史原证保持。最终168项纯策略/527文件系统断言通过；45项未变Python检查、旧12项扫描回归按范围复用。原1683966字节日志回放通过；资格化04实测1873轮churn、46样本/双JDK/10扫描及一次native2有界恢复。Codex辅助审查非外部独立验收；旧资格化03具体native code仍UNKNOWN。
+
+下午从**任务私有AAR注册脚本的文档任务依赖**继续静态定位/适配：现有SDK脚本两处withJavadocJar()是具名来源，尚未改；保留SDK、文档门禁及失败。恢复不补充已耗额度，任何新真实Gradle仍需独立明确预算和资格。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-新独立范围与对象id扫描节点)。产品source84a94c91及apps/services未变；原根main@4bebc8f3、255状态/index、六保护锚点、旧账本及资产保持。整版10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；本节点AAR/APK产出、手机/媒体/供应商操作均0，不合main、不启动v10.1.6。
+
+---
+
+## 前一扫描节点（按原时点保留）
+
 # EliteSync｜2026-11-02 扫描修复实测通过，三次配置诊断额度已用完（CURRENT ENTRY）
 
 **OWNER_RESUMED / SCANNER_RUNTIME_BOUNDED_SUPPORTED / CONFIG_DIAGNOSTICS_3_OF_3_CONSUMED / INPROCESS_STATIC_CANDIDATE_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**

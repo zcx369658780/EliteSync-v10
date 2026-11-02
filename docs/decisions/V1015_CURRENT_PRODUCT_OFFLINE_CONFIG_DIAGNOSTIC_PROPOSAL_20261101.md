@@ -1,6 +1,6 @@
 # v10.1.5 当前产品离线配置诊断提案
 
-日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_PROPOSED_NOT_AUTHORIZED / G2_FALSE**。
+日期：2026-11-01（Asia/Shanghai）。状态：**OWNER_AUTHORIZED_MAX_3_OFFLINE_CONFIG_DIAGNOSTICS / ORIGINAL_3_OF_3_CONSUMED / NEXT_SCOPE_OWNER_AUTHORIZED / NEW_SCOPE_3_OF_3_CONSUMED / OWNER_STOPPED / G2_FALSE**。
 
 Owner已通过当前会话的具名问题明确答复“授权上述独立3次诊断范围”。这是独立于旧G2的新配置诊断授权；不恢复网页派单或网页验收，技术前置仍须成立。Codex负责实现、调试、测试与工程裁决。Owner此前对v10.1.5、USB及现有Docker/WSL的授权保留；本提案只处理旧特殊构建额度不能迁移到当前产品的问题。
 
@@ -65,14 +65,26 @@ Owner在本次第2次诊断结束后要求立即停止并关机、明天继续�
 
 Owner最新补充：“关机我自己来，你准备好停下即可”。本次停止保持，关机由Owner自行执行；Codex未发出或安排系统关机命令。
 
-## 2026-11-02 追加独立诊断范围提案（未授权）
+## 2026-11-02 追加独立诊断范围（Owner已授权）
 
 Owner“请继续”已解除11月1日停止，关机仍由Owner自行决定。原独立任务`v1015-current-product-config-20261101`的3次现全部永久消耗，第3次在600样本/130次扫描后因conhost停止；磁盘竞态修复已有真实证据。旧3个reservation/outcome、旧G2及所有STOP不退款、不重置或转移。
 
-**PROPOSED_NOT_AUTHORIZED**：请求另立`v1015-inprocess-config-20261102`预算范围，最多3次真实Gradle root创建尝试，用于验证已提交静态候选`6ecb5d13`并诊断同一当前产品的离线配置/任务图。产品source84a94c91、apps ed248529、services7634b475保持。候选只扩展任务私有compiler属性、编译动作前策略检查及--info日志；conhost唯一归因仍UNKNOWN，不以新额度保证成功。
+**授权前提案（历史时点，PROPOSED_NOT_AUTHORIZED）**：请求另立`v1015-inprocess-config-20261102`预算范围，最多3次真实Gradle root创建尝试，用于验证已提交静态候选`6ecb5d13`并诊断同一当前产品的离线配置/任务图。产品source84a94c91、apps ed248529、services7634b475保持。候选只扩展任务私有compiler属性、编译动作前策略检查及--info日志；conhost唯一归因仍UNKNOWN，不以新额度保证成功。
 
 如Owner同意：先实现明确独立的预算调度并fresh资格化新控制器/相同native源码，完整验证来源/输入/命令/监测；**不得改旧max=3或旧账本绕过上限**。新任务每次Popen尝试前原子独占预约，失败/未创建进程/配置错误/强停均不退款；普通私有配置缺陷可在剩余新额度内静态修复/检查后接续，安全STOP须具名原因及证据/明确Codex接续决定，停止原因或前置条件未查明时不重跑。次数用完即停止动态分项，不自动开后继。
 
 其余保护沿原已批准范围：禁网Sandbox、固定Gradle8.14/JDK17/Flutter3.41.7及现有依赖、精确known images/自有Job/watchdog、只读输入/私有写面、每次1200s、同等磁盘边界。仅assembleAarRelease --dry-run配置诊断；不得下载安装升级、实际AAR/APK、手机安装/设备/音视频、真实Push/供应商/生产/费用、main合并、正式发布或v10.1.6。原3次及所有旧资产保持，新的许可不放行G2或关闭AC05。
 
-当前没有新账本或新调度入口，额外Gradle0；收到Owner对此具体新增范围的明确答复后才开始，日常软件工程不恢复网页派单或网页验收。
+授权前时点没有新账本或新调度入口，额外Gradle0；收到Owner对此具体新增范围的明确答复后才开始，日常软件工程不恢复网页派单或网页验收。
+
+### 新范围授权记录
+
+Owner针对具名问题明确答复“授权新增独立最多3次诊断”。新task为`v1015-inprocess-config-20261102`，旧task的3/3永久已耗不变。授权包括新独立调度/资格化后最多3次同范围离线配置诊断；不扩展工具安装、产包、设备、媒体、生产、发布或main权限。上文PROPOSED及无调度描述是答复前状态；实际计数以新task永久独占账本为准。
+
+### 新范围实际执行登记
+
+新controller/contract已以`797bec43159129825dc7c2b308caec6b761b678d`建立，未改旧调度器/max/账本。新范围第1次已封存DISK_SNAPSHOT_UNSTABLE安全停止；in-process策略实际IN_PROCESS且无conhost，仅证明本次动作前配置/进程观察，非编译成功。完成对象ID扫描修复/定向测试及fresh资格化后，Codex记录具名接续决定并启动第2次；第2次亦封存DIAGNOSTIC_LINE_LIMIT安全STOP（33528字符任务图行，虽有BUILD SUCCESSFUL仍不判通过）。后续流式日志与名称查询有界修复经定向检查和fresh资格化04通过，最后一次已具名接续并启动。**当前新范围3/3永久已耗、剩0，第3次root exit0但CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK，门禁未通过**。最新事实见[ACTIVE_STATE](../workflow/ACTIVE_STATE.md)与[唯一细表](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-新独立范围与对象id扫描节点)。计数仍只由LOCAL_ONLY永久reservation/outcome决定，文档不是计数器。
+
+### 2026-11-02 上午Owner停止决定
+
+Owner要求“你这这次执行结束后请停下，下午继续。”第3次已结束并封存，停止新增工程、测试、资格化及构建，仅完成收尾记录和本轮已审查内容的普通分支同步；不自动安排下午续跑。第3次6955输入、1050样本/234扫描、无安全STOP、Job空/句柄退出，但636任务中含30个文档任务，故保留CONFIG_GRAPH_SELECTS_DOCUMENTATION_TASK。旧3次和新3次均永久已耗，不把下午恢复解释为第4次/新预算。后续任务私有AAR注册脚本适配仅有具名定位，尚未实施/运行；SDK、门禁和历史结果保留。
