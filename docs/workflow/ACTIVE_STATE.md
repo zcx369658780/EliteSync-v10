@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-02 具名控制台合成Job资格通过（CURRENT ENTRY）
+
+**CONSOLE_JOB_SYNTHETIC_QUALIFICATION_SUPPORTED / EXACT_OS_IMAGE_PINNED / VM_FLUTTER_NOT_PROVEN / APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+Parent `f069a83837e5dfe2088283c9f96702485e812a42`，同一产品分支，apps/services未变。独立scope v1015-console-execution-qualification-20261102/case01已实际完成：自有fixture+精确System32/conhost双镜像，不加通配或其它程序，无SDK/产品/设备映射。4份host probe/129782源字节+1份guest-only OS pin（1003520字节）分开记账；root前及conhost首次绑定均核精确路径、长度、只读共享句柄、前后ID/size/mtime/link与SHA。
+
+fixture在同一guest再次核目标/程序集路径Windows有效签名与OS SHA，初始无控制台，AllocConsole保持2000ms后FreeConsole，结束再核ID/hash。实测root0、45成功样本/2成员、12扫描、无STOP/watchdog，Job空/全部句柄退出，四类Sandbox宿主进程缺席后collect0。**只接受固定OS控制台在该合成Job中的角色，VM/Flutter/完整native树/APK均未通过**；该scope1/1永久已耗，不重跑/退款/借旧余额。
+
+168项Python组合、当前生成观察器168项C#纯断言、fixture17项UTF8/签名策略纯断言通过；非作者Codex源码复核P2已修（0成员失败只能封存REJECTED，不误升成功），非外部独立验收。新生成器基于固定raw72637d...，8处精确count1替换，其中新增OS有界hash，不修改旧观察器/旧claim。旧只读库存原文绑定f069a838并在旧case保存；本轮扩展fixture显式synthetic模式，未重写旧接受/失败。见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-具名控制台合成job资格节点)。
+
+下一项是以此具名角色准备独立VM/Flutter私有缓存候选：仍须绑定实际代码/SDK/环境与适用范围、新独立计数/claim，不自动重跑已耗stdio/cache范围；当前没有该候选执行claim。原根255/index、34份旧具名记录、SDK/数据库/备份/STOP保持，手机本轮未操作。现行APK/USB许可沿用，实际AAR/APK claim未建；AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一直接VM与OS库存节点（按原时点保留）
+
 # EliteSync｜2026-11-02 直接VM停止定位与客体系统文件库存（CURRENT ENTRY）
 
 **STDIO_VM_UNQUALIFIED_CONSOLE_STOP / NO_STAGE_RECORDED / GUEST_CONSOLE_IMAGE_INVENTORY_SUPPORTED / CONSOLE_EXECUTION_FALSE / APK_NOT_RUN / G2_FALSE**

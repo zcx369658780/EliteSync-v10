@@ -2,6 +2,11 @@
 using System;
 using System.Text;
 class ConsoleInventoryBufferTests {
+    static void Reject(object signature) {
+        try{ConsoleImageInventory.RequireWindowsSignature(signature);}
+        catch(System.IO.InvalidDataException){return;}
+        throw new Exception("Unqualified Windows signature accepted");
+    }
     static int Main() {
         try {
             int checks=0;
@@ -10,7 +15,12 @@ class ConsoleInventoryBufferTests {
                 if(data.Length>16384)throw new Exception("UTF8 failure byte cap exceeded");
                 new UTF8Encoding(false,true).GetString(data);checks+=2;
             }
-            Console.WriteLine(checks+" pure failure UTF8 cap/validity assertions passed; no inventory or native APIs invoked.");return 0;
+            ConsoleImageInventory.RequireWindowsSignature(new{status="Valid",subject="CN=Microsoft Windows, O=Microsoft Corporation",signature_type="Catalog",is_os_binary=true});checks++;
+            Reject(new{status="NotSigned",subject="CN=Microsoft Windows",signature_type="Catalog",is_os_binary=true});checks++;
+            Reject(new{status="Valid",subject="CN=Microsoft Windows Fake",signature_type="Catalog",is_os_binary=true});checks++;
+            Reject(new{status="Valid",subject="CN=Microsoft Windows",signature_type="Catalog",is_os_binary=false});checks++;
+            Reject(new{status="Valid",subject="CN=Microsoft Windows",signature_type="Unknown",is_os_binary=true});checks++;
+            Console.WriteLine(checks+" pure UTF8 and Windows-signature policy assertions passed; no inventory or native APIs invoked.");return 0;
         }catch(Exception e){Console.WriteLine(e.ToString());return 1;}
     }
 }

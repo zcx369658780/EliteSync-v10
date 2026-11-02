@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（具名控制台合成Job资格）
+
+日期：2026-11-02（Asia/Shanghai）。状态：**CONSOLE_JOB_SYNTHETIC_QUALIFICATION_SUPPORTED / FIXED_OS_ROLE_ONLY / VM_FLUTTER_APK_NOT_PROVEN / CLAIM_1_OF_1_CONSUMED / G2_FALSE**。
+
+## 2026-11-02 具名控制台合成Job资格节点
+
+Parent `f069a83837e5dfe2088283c9f96702485e812a42`（前一stdio停止及只读库存源码已推）；source84a94c91、apps ed248529、services7634b475保持。Owner继续v10.1.5的既有工程与APK/USB许可沿用；本项仅隔离Windows合成资格，不操作手机/产品/媒体。
+
+| 项目 | 实测/来源/工程边界 |
+|---|---|
+| 具名来源 | 以前一guest只读库存的immutable metadata SHA a57728385b19a5e5f471986faa581eb6c6d9f2e8b5f82bf20e25d233b669e2cf及verified-result eae0c4d320f4e88185f98c0a92fbe737fee8b6a521b24a793c6aee2fe64fceb5绑定OS候选。未调用已耗旧case的当前frozen冒称fresh；旧代码/原文按f069a838及其case/probe副本保留。库存本身未授执行；本合成profile明确仅允许具名控制台试验，通用console/VM/Flutter/producer权限false |
+| 新scope/输入 | 独立v1015-console-execution-qualification-20261102/case01/max1；4份host probe/129782源字节，加唯一guest_os_pin，5项guest输入。OS pin是guest既有System32/conhost、1003520字节/SHA c86146188b78e484f32cc29e2331689659943b47689a85570342044f499938ac，不是宿主文件映射/复制；m.bindings及source_bytes只统计host4份。只有probe RO/output RW，无SDK/产品/设备映射 |
+| Native保护适配 | 从固定rawSHA72637d0257fc37aa1ae7dc670ae4d7efb74dc8128a20822625429f97216b0347生成，8项逐项count1：原Self/mode/固定EXE/完整command/kind，加输入hash调度、首次conhost绑定hash调度、OS有界helper。原Job、birth/handle/镜像、网络、私有磁盘/下载、90s hard/15s heartbeat不降。新OS helper只准精确System32/conhost，持FileShare.Read拒写删，先核1003520长度/类型/reparse，再核同句柄ID/size/mtime/link前后及SHA；其它readonly输入保持原hash。原guard文件/旧scope未改 |
+| 合成fixture | 默认无参数仍为旧只读库存语义；显式且唯一--synthetic-console才进入新分支。同一guest持OS文件读句柄，核OS baseline SHA与fresh Microsoft Windows Catalog/Authenticode Valid/OSbinary（目标及程序集路径），初始无console，再AllocConsole→Sleep2000→finally FreeConsole，结束核OS ID/hash后写synthetic回执。程序集只记录路径签名，不宣称加载字节/完整DLL闭包已固定；合成数据没有真实输入或通信 |
+| 实测 | root exit0，45成功样本、2已绑定成员（自有fixture及精确conhost）、12扫描，STOP/failure/watchdog均无，Job空/全部句柄退出，四类Sandbox宿主进程最终缺席。fresh OS SHA/签名匹配、allocated/released/pre_execution_identity_verified均true、hold_ms2000且root_pid一致；distinct conhost PID的image check存在。guest kernel10.0.26100.6713；conhost组件10.0.26100.8875。采样仍非原子，UDP目的UNKNOWN，磁盘为逻辑长度采样/可能瞬时超限，不提升为网络/物理配额的绝对证明 |
+| 收集/工程裁决 | collect0只在上述完整组合条件成立才给CONSOLE_JOB_SYNTHETIC_QUALIFICATION_SUPPORTED；此裁决仅当前OS控制台在固定合成Job中的角色，不能给VM/Flutter/完整native树/Gradle/APK放行。该新scope1/1永久已耗/剩0；原配置3+3+1、旧Dart/cache/stdio/库存claim及STOP保持，无退款/重置/借余额 |
+| 检查/审查 | 最终168项Python组合exit0（97 current_product+23 Dart+10cache+12stdio+12库存+14合成）；当前8替换观察器168项C#纯断言、fixture17项UTF8/Windows签名策略断言exit0。非作者Codex只读审查P2已修：允许CreateJob/Spawn/Assign导致0成员/未创建root的明确失败回执封存REJECTED，成功仍必须2成员+root0/noSTOP/清理完整；typed bool/nonce/pin/额外镜像/超限/签名/PID/缺sample等负例通过。审查非外部独立接受，未由审查者代跑原证 |
+| 证据 | LOCAL_ONLY v1015-console-execution-qualification-20261102；manifest582273e3c978a03e4ce1de2d7ac2346a8c1e9d7c58d627185acf1533ab8a7e1a，receipt5d29b0868ca85a268025536bf6a0c3fd6ca822e9ab5cfb689c0bf1592d27fd18，verified-result5b8bd015e9d3d15ad45d7bedfa4f4038b23020fb4140adf5b9559d32ec8c4545，synthetic a3873c66b87784b3b048f24d2c89fa93f4bb7f68c4fba0a5cf406b87b42cf8ca，工程汇总4a1f4540d6748951cdf4303b86c76ddeaf33a5e4686a18899e65d2d83e7e7c22。原PID/FileID/nonce/日志、完整metadata/签名原件均私有；公开仅源码/摘要/必要hash |
+
+下一工程项：准备结合该具名OS角色的独立VM source/Flutter私有缓存候选，核实际SDK、代码、适用环境/范围和失效条件、独立计数/claim；不把合成fixture当真实Flutter或产包证据，也不自动重跑已耗范围。当前该候选尚未建立执行claim，实际AAR→host交接、完整native工具树及APK预算/claim仍未闭合。原根255/index SHA、34份旧具名记录、SDK/备份/数据库/全部STOP不变。AC05 OPEN、G2 false、整版10 PARTIAL、真实消息Push PENDING；本scope无VM/Flutter/Gradle/AAR/APK/设备/媒体执行，不合main、不启动v10.1.6。
+
+---
+
+## 前一直接VM及OS库存节点（按原时点保留）
+
 # EliteSync-v10｜项目进度细表（直接VM定位与guest控制台文件库存）
 
 日期：2026-11-02（Asia/Shanghai）。状态：**STDIO_VM_CONSOLE_STOP_REPRODUCED / NO_STAGE_RECORDED / GUEST_CONSOLE_OS_IMAGE_INVENTORY_SUPPORTED / CONSOLE_EXECUTION_NOT_QUALIFIED / G2_FALSE**。
