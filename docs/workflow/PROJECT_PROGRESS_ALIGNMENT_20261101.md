@@ -1,6 +1,25 @@
-# EliteSync-v10｜项目进度细表（具名控制台合成Job资格）
+# EliteSync-v10｜项目进度细表（VM源验证与Flutter缓存环境定位）
 
-日期：2026-11-02（Asia/Shanghai）。状态：**CONSOLE_JOB_SYNTHETIC_QUALIFICATION_SUPPORTED / FIXED_OS_ROLE_ONLY / VM_FLUTTER_APK_NOT_PROVEN / CLAIM_1_OF_1_CONSUMED / G2_FALSE**。
+日期：2026-11-02（Asia/Shanghai）。状态：**VM_SOURCE_WITH_PINNED_CONSOLE_SUPPORTED / FLUTTER_CACHE_REJECTED / PATHEXT_STATIC_CANDIDATE / BOTH_NEW_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-02 VM源通过、Flutter缓存拒收及环境静态候选节点
+
+| 项目 | 本次事实与适用边界 |
+|---|---|
+| 授权/代码 | Owner“请继续，我授权”后按既定独立VM/Flutter候选接续，不恢复网页流程。VM source `fc086f5db0f71ba94d69bcce419ca20b7f1d4021`；Flutter source `682ba96ffe774641313db760c257babb6f209925`；静态环境候选 `17e485611261b4faf1a1e5a44165c9add2b96989`。同一产品分支，产品source84a94c91、apps ed248529、services7634b475未变；main未合 |
+| 历史复用/失效 | 先固定合成console的manifest/receipt/verified-result三SHA，校角色/原proof/OS pin及false权限，再固定本轮VM三证据供缓存候选消费；不调旧已耗库存frozen冒称fresh。guest conhost固定System32路径/1003520字节/SHA c86146188b78e484f32cc29e2331689659943b47689a85570342044f499938ac，kernel32固定10.0.26100.6713 (WinBuild.160101.0800)、CLR4.0.30319.42000；漂移在创建VM前拒收。版本字符串及具名文件pin不是完整已加载DLL闭包 |
+| 独立VM范围/输入 | LOCAL_ONLY `v1015-vm-source-qualified-console-20261102/case01/max1`。原SDK完整只读路径/hash与此前stdio manifest逐条相同；1002份host输入/583437518源字节+1份guest-only OS pin=1003项。直接现有dartvm.exe+两逻辑launcher路径参数+同一六getter源脚本，不读stdin内容；仅VM/固定conhost双镜像 |
+| VM真实结果 | **VM_SOURCE_WITH_PINNED_CONSOLE_SUPPORTED**：root0，7成功样本/2成员/4扫描，无STOP/watchdog，Job空、全部句柄退出；完整14阶段标记。stdout终端宽高各记录StdoutException，其余getter结果及脚本完成原证保留；不把完整标记写成所有getter均无异常，不定位旧STOP唯一根因。仅固定VM源和具名console角色支持，Flutter/BAT/producer仍未证明 |
+| VM证据 | manifest `4d0d1adf30430d246507c5e8588c99ffa91d1c01765df6fec7282158d834645d`；receipt `3f56bdc5ac6366138107dafccfbda63c3e00e86c71d6c6ff9ef5ecd653babbcf`；verified `6ca34fbda66322e76ca782d9308799b7cf50a904495392f6a1a18fa2c80dad8a`；工程汇总 `670ca199ee3d0f27a96feb2508db150de59133bccde0c13d337b7b21cdb90c6f` |
+| 独立Flutter范围/输入 | LOCAL_ONLY `v1015-flutter-vm-qualified-console-20261102/case01/max1`。直接VM加两个逻辑路径参数执行原snapshot负例，未执行CLI/BAT。完整SDK及10份控制源字节/原身份与原CLI负例逐条相同，控制源仅私有复制，不改SDK/stamp、不用FLUTTER_ALREADY_LOCKED；1011份host输入/627213955源字节+OS pin=1012项guest输入，精确VM/conhost两镜像 |
+| Flutter真实结果 | **REJECTED**：root255，5成功样本/2成员/4扫描，supervisor stop_reason=null、watchdog0、Job空/句柄退出。缓存锁未创建，预期exit2/错误句未到达；事后ReadCacheState报告CACHE_LOCK_NOT_CREATED。collector exit0只封存拒收，tool_qualified=false、producer/G2仍false；不把运行完成写成缓存验证通过 |
+| Flutter证据 | manifest `6d63b509078deac1cb17b25ff4dcf23c8a02a212eeedb634c83bba5381beb07b`；receipt `b6d4f384da6af9cd7f176175db344013f1fa12f47c5e513455f89912b1056f62`；verified `70e0834e5fcaea79fd62425d33ae74a084da23c0a7b5a4c2a609e72d20314c23`；工程汇总 `8fdf8d13cafccfa01151159de384de719024bd0763ea7b76c3de3e08c80e55a6` |
+| 静态原因/修复候选 | stderr首异常Null check operator位于process/common.dart:60:49；本机package_config选择process5.0.5，该行解引用PATHEXT，本次固定环境确缺此键；证据支持它是本次首异常的直接原因，CACHE_LOCK_NOT_CREATED为后续症状。6份具名源码/配置只读保存，诊断SHA `0b1952b0946494306d0fdf8bbc83c9cf6671f7dee09e9db540bd94ddf7b7957e`。纯静态函数仅给私有字典副本补PATHEXT=.EXE，拒脚本扩展/重复Windows变量/锁绕过，不继承宿主环境；未接线旧controller，效果NOT_RUN。where后续调用源码可见，工具资格仍UNKNOWN，.EXE不是镜像许可 |
+| 生成源/检查 | VM源基于已审console生成源再6处精确count1替换，生成SHA6e846312f31eb9b3a2c817635427e474157d4d3796307437366a5285181ed9fc；Flutter基于固定cache raw b31fd158...及已审OS helper做8处count1，生成SHA522a66dbaa27eab866c2663a04c4fd7657a4a5ba42f63d464fd87a9fdcea84a6；原文/patch/报告均保存。VM阶段184项Python通过，Flutter最终198项组合通过，静态环境新增5项定向通过；两份当前生成观察器各168项C#纯断言，Flutter缓存9项Windows环境断言通过 |
+| 审查/失败封存 | 非作者Codex只读源码复核无剩余具体P1/P2，非外部独立验收。已修新receipt适配层对PrepareInputs完成后SourcePins/环境失败的封存：typed attempts0/proofNone/nonempty failure/完整input_files只能REJECTED，partial/Bool仍拒绝。新失败封存不改旧validator/原证；原root255/failure/proof不覆盖。负例exit2仅在验证副本映射到VM clean策略，原输出仍保留实际退出码 |
+| 额度/保护/下一步 | 两个新scope各1/1永久已耗/剩0，不退款、重跑或换目录续额。原3+3+1及全部旧claim/STOP保持，38份既有具名记录逐份SHA不变；原根main@4bebc8f3、255项/index SHA2be660...保持，原SDK/数据库/备份/worktrees/%SystemDrive%无关目录保留。四类Sandbox宿主进程缺席，设备/媒体0；实际AAR/APK预算/claim仍未建。后续where库存1→资格1→环境缓存复验1提案已具名，**未授权/无后继claim/NOT_RUN**，不自动追加 |
+
+工程结论：固定VM源的实际路径已获本次限定支持；Flutter私有缓存仍拒收，静态环境修复尚待独立验证。后续有限提案见[决定文件](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#后续具体验证提案proposed_not_authorized)。一般APK/USB许可保留；AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING保持；未产AAR/APK、未操作手机或媒体、不合main、不启动v10.1.6。
 
 ## 2026-11-02 具名控制台合成Job资格节点
 

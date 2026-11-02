@@ -1,4 +1,24 @@
-# EliteSync｜2026-11-02 具名控制台合成Job资格通过（CURRENT ENTRY）
+# EliteSync｜2026-11-02 VM源通过，Flutter缓存拒收与环境静态修复（CURRENT ENTRY）
+
+**VM_SOURCE_WITH_PINNED_CONSOLE_SUPPORTED / FLUTTER_CACHE_REJECTED / PATHEXT_STATIC_CANDIDATE / BOTH_NEW_CLAIMS_CONSUMED / APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner“请继续，我授权”后接续同一产品分支；VM验证源码`fc086f5db0f71ba94d69bcce419ca20b7f1d4021`、Flutter验证源码`682ba96ffe774641313db760c257babb6f209925`，环境静态候选`17e485611261b4faf1a1e5a44165c9add2b96989`。apps/services未变。两个独立max1 scope各已消耗1/1，旧配置3+3+1及全部STOP/账本保持，不重跑或换目录续额。
+
+实际VM源验证通过：1003项guest输入（1002份host/583437518字节+唯一guest OS pin）、root0、7样本/双成员/4扫描、14阶段标记完整、无STOP/watchdog、Job空/句柄退出。终端宽高getter的2项StdoutException如实列出；此结果只覆盖固定VM源与具名conhost角色，不证明Flutter/产包。
+
+继后直接VM/Flutter snapshot私有缓存负例**拒收**：1012项guest输入（1011份host/627213955字节+OS pin）、root255、5样本/双成员/4扫描，进程监督无STOP/watchdog且清理完整，但尚未创建缓存锁/到达预期exit2错误句。首异常与选中process5.0.5源码一致地指向私有环境缺PATHEXT；事后CACHE_LOCK_NOT_CREATED是症状。静态候选只给私有字典补`.EXE`，不接线已耗controller/改SDK/跳锁；运行效果NOT_RUN。源码还显示后续where调用，**where.exe尚未资格化**，不能直接加入白名单。
+
+198项Python组合+5项环境定向检查通过；两份生成观察器各168项C#纯保护断言、缓存9项环境断言通过。非作者Codex源码复核无剩余具体P1/P2，非外部独立验收；版本/hash不称完整DLL闭包。见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-02-vm源通过flutter缓存拒收及环境静态候选节点)。
+
+已准备[后续有限验证提案](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#后续具体验证提案proposed_not_authorized)：where只读库存1次→精确工具资格1次→PATHEXT私有缓存复验1次，各独立max1、前项支持才执行后项；**当前未授权、未建后继claim、未运行**，不自动追加额度。仅动态分项在此边界等待Owner决定；一般APK/USB许可保留，实际AAR/APK预算/claim仍未建。
+
+原根main@4bebc8f3、255项/index SHA、38份既有具名记录、原SDK/数据库/备份/全部STOP保持；四类Sandbox宿主进程均缺席，本节点设备/媒体操作0。AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING；不合main、不启动v10.1.6。
+
+---
+
+## 前一合成控制台节点（按原时点保留）
+
+# EliteSync｜2026-11-02 具名控制台合成Job资格通过
 
 **CONSOLE_JOB_SYNTHETIC_QUALIFICATION_SUPPORTED / EXACT_OS_IMAGE_PINNED / VM_FLUTTER_NOT_PROVEN / APK_NOT_RUN / G2_FALSE / V10.1.5_PARTIAL**
 
