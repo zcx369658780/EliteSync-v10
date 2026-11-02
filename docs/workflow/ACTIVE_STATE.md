@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-02 会话封存与下一工程入口（CURRENT ENTRY）
+# EliteSync｜2026-11-03 产包准备只读接续后按Owner要求停止（CURRENT ENTRY）
+
+**OWNER_STOP_AFTER_HANDOFF / READONLY_PREPARATION_ONLY / PRODUCER_NOT_READY / APK_NOT_RUN / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**
+
+Owner先授权从实际产包准备接续，明确上一保存轮“只保存文档”限制已结束；随后要求“你好，交接完成后请停下，明天继续”。本节点完成必要交接保存后停止，不自动安排唤醒或续跑。既有普通工程授权保留，停止不退款、不重置、不恢复任何已耗预算；本次不进入新实现或动态验证。
+
+本轮实际核对产品根 `D:/EliteSync-v10-product-v1015-20261101`、origin `git@github.com:zcx369658780/EliteSync-v10.git`、分支 `codex/v10.1.5-software-continuation-20261101`、进入时HEAD `20fb774a9d8703cbfb226961a71a0c157b6f3513`；index无暂存变更，唯一未跟踪项为既有 `%SystemDrive%/`。最终保存HEAD以Git实际提交为准。原根main/HEAD/默认状态255项/index SHA与交接一致；48份具名保护记录全部SHA一致。本轮无产品源码修改、测试/构建/数据库/设备/媒体运行，无新预算或claim；服务、设备和远端状态未fresh核实，均不继承为当前资格。
+
+新增只读定位：`current_product_apk_inventory.py`只覆盖逐项声明文件，不枚举完整目录；`current_product_build_plan.py`仍是配置布局数据；`current_product_apk_plan.py`拟定的AAR版本含source与selected inventory摘要，尚未接入真实消费。Android host当前Debug依赖固定 `flutter_release:1.0`，CI跳过 `syncFlutterAar` 只检查固定版本目录存在，不能作为有效AAR证明。完整目录库存及真实POM/AAR hash/坐标→私有host交接均**尚未实现**；本轮仅定位，不改apps/services或冻结helper。
+
+下次由Owner发起继续后，从上述三个tools/build源文件和 `apps/android/app/build.gradle.kts`、`settings.gradle.kts` 的已定位接点增量闭合完整生产读集/离线依赖、任务私有完整Flutter根和调用接线、native工具资格及真实AAR交接。旧262文件/170包metadata和10控制文件根均非完整生产SDK；不得用空仓库跳构建。实际产包独立预算/claim仍 **UNKNOWN_NOT_CREATED**；最近scope1/1剩0，旧3+3+1及where组三项等全部已耗范围不改。
+
+Git产品分支仍记 **PENDING_SYNC**（本轮未重新访问远端或推送）；上次远端产品d8543689、main8a9e97a1及文档镜像a4521681均仅是上次核实身份。镜像不作产品Parent、不自动合回；连接恢复后先审整个待推范围，再以现有身份普通non-force同步原产品分支。详细节点见[唯一进度细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-03-产包准备只读接续与owner停止节点)及[Owner停止记录](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#2026-11-03-owner交接后停止决定)。
+
+---
+
+# EliteSync｜2026-11-02 会话封存与下一工程入口（历史封存入口）
 
 **SESSION_SAVE_FOR_HANDOFF / CACHE_OBSERVATION_SUPPORTED / PRODUCER_NOT_READY / APK_NOT_RUN / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**
 
