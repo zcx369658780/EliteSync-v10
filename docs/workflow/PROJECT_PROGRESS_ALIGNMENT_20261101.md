@@ -1,4 +1,29 @@
-# EliteSync-v10｜项目进度细表（产包准备只读接续与Owner停止）
+# EliteSync-v10｜项目进度细表（完整声明库存与私有产包源码工作面）
+
+日期：2026-11-03（Asia/Shanghai）。状态：**DECLARED_INPUTS_AND_PRIVATE_SOURCE_PREPARED / RUNTIME_NOT_READY / APK_NOT_RUN / PENDING_SYNC / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**。
+
+## 2026-11-03 完整声明库存与私有产包源码工作面准备节点
+
+| 项目 | 本轮工程事实与限制 |
+|---|---|
+| 恢复/代码身份 | Owner在前次交接后“请继续”，恢复已授权工程，不恢复旧余额。进入f5192943b88cb4bea52d57779afe38f3f1e3e21b，实际根/产品分支/origin均与交接一致；原index无暂存，仅%SystemDrive%/无关未跟踪。新增源码2711ca9e（完整声明树库存）及4bcf5c009d3bc5255d7bb3cd79af78b582966080（AAR校验/私有host渲染）。apps ed248529/services7634b475未改，未重导入94映射或迁移L13 |
+| 完整声明树库存 | 新current_product_tree_inventory.py调用原冻结inventory_files，根明确且互斥，无排除；目录/文件/深度/总字节均设上限，拒链接/reparse/多链接/空树，前后全枚举及逐文件身份/hash检验。实际274根、89,846文件、23,935目录、113,781 entries、8,370,208,597源字节；cap200,000文件/250,000 entries/24GiB/64层。源读取964.281秒，无SDK工具运行；非原子枚举，暂态变动可能，声明树完整不等于runtime read closure |
+| 包/依赖内容 | 产品config170包+Flutter工具config102包=272映射；其中266个外部Pub包根，来自pub.dev及pub.flutter-io.cn，全部内容23,549文件/379,450,694字节已覆盖，不再只有pubspec。完整Flutter18,019文件/3,284,402,664字节；JDK492/317,293,526、Gradle22,425/459,622,990；既有Seed3183/1,362,106,905。内容在场/hash不是离线解析成功、可信来源认证或完整DLL资格 |
+| 私有完整Flutter根 | LOCAL_ONLY任务内private-full-flutter实际复制18,019文件，逐源句柄核身份/hash并对完整目标复算；只改新私有副本packages/flutter_tools/.dart_tool/package_config.json，原文另存。最终18,019文件/3,284,398,412字节；272条包路由指向C:/BuildWork/Flutter、私有Project及266个精确readonly Pub候选映射。原D:/flutter不写，未用10控制文件根冒充SDK，未关锁或设置FLUTTER_ALREADY_LOCKED |
+| 私有Project/首次准备失败 | 先复制718份tracked源码/86,353,114字节；首次因.android为ignored生成目录、尚未复制，创建其local.properties发生FileNotFoundError/exit1。保留首次caller与部分Project，不改判成功，不另起运行scope；随后从实际源完整核20份生成Android控制文件/76,835字节并补齐。私有包config、74条跨平台插件path和两份SDK/Flutter local.properties另行生成/保存原文，最终741文件/86,481,842字节，273条readonly输入映射候选；此为源码准备修复，不是构建重试 |
+| 原生工具候选差异 | 已声明Android build-tools36、platform36、NDK28.2、CMake3.22.1完整目录身份。另在既有Seed精确aapt2目录点查到AGP8.11.1-12782657 Windows JAR，archive SHA3ac122c7fc5a6b8bd5fd4b65b94fd00afc7ec69f51a00245fa05803517a588a7；内部aapt2.exe5,073,920字节/SHAeac70ec5367c823a96432a1afb9f4f2bcf077148d957ed96935a5b338a1b0392，与选定SDK工具SHA不同。只读ZIP流/未解压执行，实际选用NOT_PROVEN；不能拿SDK候选直接资格化AGP工具 |
+| AAR交接实现 | 新current_product_aar_handoff.py校完整repo，严格UTF8/noDTD/唯一直接POM坐标/路径与版本、publication binary存在；拒Maven/Gradle动态版本，校主AAR成员/所有JNI .so的ELF64 little-endian AArch64头；非完整ELF/CRC/全部制品ABI证明。POM/AAR消费后再次完整复算拒持久新增/漂移。stage_repository仅向独立任务根的新子目录复制、双端完整内容一致才返回receipt，失败保留partial不清理；实际来源、offline、guest映射、execution/G2始终false |
+| 私有host接线实现 | 新current_product_private_host.py对原app/settings规范LF SHA锁定，只渲染私有副本；指定publication version替代Debug固定1.0，移除该副本BAT分派/CI目录exists跳过，改为配置及preBuild二次完整成员/长度/SHA检查；限制offline唯一:app:assembleDebug和V1015 gate，exclusiveContent精确includeModule，mavenPom+ignoreGradleMetadataRedirection避免.module绕过所核POM。原apps文件未改，无真实AAR故renderer尚未应用到实际私有host，Kotlin编译/Gradle消费NOT_RUN |
+| 来源/验证 | Flutter当前aar_init_script.gradle的buildNumber→publication版本及gradle.dart参数来源已核；Gradle8.14官方网页读取失败，改读现有all分发内官方filtering_repository_content.html、StartParameter.java及MavenArtifactRepository.java。42项定向Python检查通过，两个临时source副本移除dynamic-version/drift守卫后均被回归检出；仓库原文未为变异改动。非作者Codex/Sol高强度只读复核发现动态版本/额外JNI头/后置漂移等P2并修复，最终无剩余具体P1/P2，非外部独立验收。历史249/19/C#168/9/31未重跑或计入本轮 |
+| 原证定位 | 全部raw路径/FileID/manifest/原文/脚本/输出均LOCAL_ONLY C:/Users/zcxve/EliteSyncDev/v1015-producer-inputs-20261103；声明树inventory SHA0b34a527161803e5b783705c3fc07b7fcf5e1818b064b3e42bd5355ea0b14af9，私有Flutter inventory SHA4b6321517a0abab0a715dfa24b22c8997099360eb28af08d72a7da3f62dc8019，私有Project inventory SHA557f07fc2a1888303982b0f145efce34d0f2fdd17558fabc58ff0e8d9e08d487。先读engineering-summary-private及private-flutter-materialization/private-project-preparation outcome，原件不上传GitHub |
+| 权限/未完成 | SDK工具/真实构建/DB/设备/媒体运行0，新运行预算/claim0，实际产包UNKNOWN_NOT_CREATED。候选客体映射/写面、完整BAT/cmd/Git/PowerShell与Dart/gen_snapshot/CMake/ninja/clang/aapt2进程/DLL资格、实际offline action解析未闭合；真实AAR→host handoff、Kotlin/Gradle消费NOT_RUN。新代码/私有目录不是新运行余额，不重跑旧3+3+1、where组三项或最近1/1已耗scope，不改冻结helper/开关 |
+| 保护/同步 | 48份具名保护记录再次逐份SHA一致；原根仍main@4bebc8f394248e254c1368a06fbdee5d2c883301/default status255/index SHA2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；旧L11/L13/SDK/DB/备份/全部STOP保持。fresh只读SSH核产品远端d8543689/main8a9e97a1；审过待推5 commits/9 paths、d854为本地ancestor、apps/services不变。随后唯一普通non-force push Connection closed/exit128，仍PENDING_SYNC，原因不超出连接关闭推定，不重试或改SSH/身份；镜像不作Parent/自动合回 |
+
+本节点工程判断：**声明输入内容、完整私有Flutter与Project源码工作面已准备，AAR交接/host渲染有源码与fixture证据，生产执行器仍未就绪。** 下一步只增量处理273条readonly候选/owned写面在客体中的实际资格与完整native/启动链，然后闭合offline action依赖并为真实产包具名注册独立预算/claim；所有条件成立前不派真实生产任务。旧JSON预置/生成消费/锁持有/flag与legacy拒收限制保留；不借准备结果放行G2。整版仍10 PARTIAL、AC05 OPEN、真实消息Push PENDING，不合main、不启v10.1.6。
+
+---
+
+# 前次Owner停止节点（按原时点保留）
 
 日期：2026-11-03（Asia/Shanghai）。状态：**OWNER_STOP_AFTER_HANDOFF / READONLY_PREPARATION_ONLY / PRODUCER_NOT_READY / APK_NOT_RUN / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**。
 

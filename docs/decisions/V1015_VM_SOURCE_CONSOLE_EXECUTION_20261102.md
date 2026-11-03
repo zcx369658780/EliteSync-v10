@@ -104,3 +104,11 @@ Owner本轮明确授权接续v10.1.5实际产包准备，上一轮“只保存�
 停止时尚未修改任何工程源码，未运行测试、构建、数据库、SDK工具、设备或媒体，也未创建任何新预算或claim。一般工程/新Debug APK及USB/仅现有Docker Desktop与WSL启动许可仍按既有范围保留，实际执行器、完整输入、独立预算/claim和设备当时资格不因此成立；旧已耗scope及原helper/开关继续冻结。
 
 本轮只读发现拟议AAR版本与host固定1.0接线尚未闭合、CI目录exists并非真实工件证明；完整目录库存和真实POM/AAR hash/坐标交接未实现。具名48保护记录、原根main/HEAD/默认255项/index均保持。产品Git同步仍PENDING_SYNC，本轮不重试SSH、不重建镜像；最终保存身份以产品分支实际Git HEAD为准。详见唯一进度细表2026-11-03节点，整版仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。
+
+## 2026-11-03 Owner恢复工程与产包源码准备节点
+
+Owner在上述交接停止后明确“请继续”，据此恢复既有v10.1.5剩余范围内普通工程；此前“明天继续”不再构成当前等待指令，实际日期仍按本轮Asia/Shanghai记录。原一般Debug APK/USB、仅现有Docker Desktop/WSL许可继续有效，不重问笼统许可；本答复不新增次数、独立产包预算、具体执行器或设备资格，不恢复任何已耗scope。
+
+Codex本轮实现完整声明树库存、AAR仓库校验/私有复制及私有host源码渲染，实际准备274根完整内容库存、任务私有完整Flutter根与Project/生成Android控制/包插件路径接线。原apps/services、SDK、旧helper/开关未改；无SDK工具、构建、DB、设备或媒体执行，无新预算/claim。真实产包前仍须完整执行器/客体映射/native资格/offline依赖及具名独立预算成立，真实AAR来源与host Kotlin/Gradle消费不由fixture替代。自测/非作者Codex复核与外部独立验收、Owner接受、发布继续分开。
+
+首次私有Project准备因未含ignored生成.android目录而停止，保留部分输出及首次caller，补齐实际20控制文件后完成，未重开SDK/构建范围或重置旧预算。48保护记录、原根main/255/index保持。一次fresh SSH只读核对成功后，审整个待推范围并尝试唯一普通non-force推送，仍被Connection closed/exit128关闭；PENDING_SYNC保留，不继续重试、不改身份/SSH、不用镜像作Parent。详见唯一进度细表本次节点；整版10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING均保持。
