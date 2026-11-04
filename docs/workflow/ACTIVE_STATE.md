@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-04 原生静态导入读集准备（CURRENT ENTRY）
+# EliteSync｜2026-11-05 具名版本查询执行核心与严格收集策略（CURRENT ENTRY）
+
+**VERSION_ONLY_CORE_COMPILED / PURE_RECEIPT_VALIDATOR_READY / HOST_ADAPTER_NOT_READY / NO_RUNTIME_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以请继续”后接续普通工程，实际产品根/分支/origin与进入HEAD `3be1a570a13ef4fd167962596937716753f5ad1a` 核对一致，初始index空，仅原%SystemDrive%/未跟踪。59份保护记录、原dirty根main/255/index与产品apps/services保持；旧interop1/1已耗/剩0及全部STOP不动。本轮没有新的VM/SDK/Gradle/构建/设备/媒体动作或运行claim。
+
+新增native_role_executor，从SHA固定的旧监督器派生独立核心，保留挂起→Job绑定→镜像/网络/磁盘采样→收尾逻辑，严格限定16个具名版本查询，不接受shell、Flutter/Gradle/任意argv。编译内嵌实际42份PE输入hash、逐角色镜像集合、精确环境/写面；候选runtime_authorized默认false，C#强制真且producer/G2恒false。原有helper未改；移除未受Job观察的shutdown.exe子进程，必须由后续宿主生命周期适配完成关机与收尾，当前不能直接作为完整VM执行器。
+
+9项检查通过，含真实C#策略消费者的45个合成案例；只运行策略测试入口，未调用guest Main或任何SDK。纯receipt validator严格拒收内部STOP、非零/未知退出、watchdog、Job/句柄未清理及类型/范围漂移，外层failure=null/退出0不够；非作者Codex复核无具体P1/P2，非外部独立验收。实际核心已用现有签名有效csc编译，binary SHA `4b4f74c317397856c7bd05a8926fafad3f0337ed964883be8bd31289aee5a9ab`，未执行。
+
+LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-native-role-executor-preparation-20261105`，先看engineering-outcome-private、role-plan-candidates-private及derivation.patch；early engineering-summary只对应首次编译快照。宿主授权/不可退款claim/冻结case、只读映射/关机协议、原证和采样日志绑定仍未接线，完整DLL/进程闭包与版本参数实际行为NOT_RUN；这是受限核心，不是实际工具资格或产包许可。下一步接这些具体适配，再闭合offline/资源/真实AAR→host。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。最终Git身份与同步见实际ref/私有回执及[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-具名版本查询执行核心与严格收集策略节点)。
+
+---
+
+# EliteSync｜2026-11-04 原生静态导入读集准备（历史节点）
 
 **STATIC_NATIVE_READSET_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
 

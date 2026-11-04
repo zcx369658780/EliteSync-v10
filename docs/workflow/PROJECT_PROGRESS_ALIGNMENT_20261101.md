@@ -1,4 +1,27 @@
-# EliteSync-v10｜项目进度细表（原生静态导入读集准备）
+# EliteSync-v10｜项目进度细表（具名版本查询执行核心与严格收集策略）
+
+日期：2026-11-05（Asia/Shanghai）。状态：**VERSION_ONLY_CORE_COMPILED / PURE_RECEIPT_VALIDATOR_READY / HOST_ADAPTER_NOT_READY / NO_RUNTIME_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 具名版本查询执行核心与严格收集策略节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 接续/权限 | Owner“可以请继续”，进入实际产品根/分支/origin和3be1a570a13ef4fd167962596937716753f5ad1a；index空，仅原%SystemDrive%/。沿用普通源码/检查权限，不新增VM/SDK/Gradle/产包/DB/设备/媒体预算或claim，不复用interop已耗单次 |
+| 独立核心 | 新native_role_executor仅派生新源码，不提供launch/grant/claim API。旧windows_sandbox_native_tool_probe.cs SHA72637d0257fc37aa1ae7dc670ae4d7efb74dc8128a20822625429f97216b0347先核再读；旧Spawn/Job监督函数保留，改Self与Main/输入重验，追加编译内嵌策略。旧源码/已耗helper身份不改，完整差异保存LOCAL_ONLY |
+| 16个封闭角色 | Git shim/real、Dart/dartvm/dartaotruntime、三ABI release gen_snapshot、SDK aapt2、CMake/ninja、clang/clang++/lld、java/javac，仅固定version参数。没有shell/BAT/Flutter/Gradle入口；AGP archive无合格提取路径故不做执行角色。参数支持/实际退出码仍NOT_RUN，不失败改参重试 |
+| 固定输入与策略 | 实际42份PE hash及固定guest根、逐角色精确images（root/conhost，Git shim另含real）、完整环境/私有目录编译进新核心，manifest只能精确匹配；拒命令追加、额外env、输入destination复制、hash漂移、布尔/数字混淆和producer/G2升格。候选runtime_authorized=false，guest Main需要真值和WDAG/self/nonce/binary/固定kernel/CLR检查；该flag不是新余额，宿主grant/claim适配未实现 |
+| 监督与边界 | 保留先挂起归Job再resume、kill-on-close、90秒/15秒heartbeat、镜像/网络/磁盘采样及owned收尾。SourcePins重验全部输入；采样非原子、UDP目的地UNKNOWN、瞬时磁盘超限可能，不能证明完整进程/DLL闭包。删除未受Job监督的shutdown.exe子进程；guest关机/宿主退出必须由未完成的适配协议接线，不把此核心当成已有mapping driver |
+| 严格纯收集策略 | validate_receipt绑定完整角色manifest/pins、精确字段/类型/nonce/binary，要求root_exit=0、stop_reason=null、watchdog0、Job空/handles退出、至少2样本及合理成员数。外层failure=null或进程退出0均不能掩盖内部STOP/未知退出/未清理。函数不读取原证/采样日志、不写verified-result、不授授权；宿主适配仍须绑定原始文件hash和真实日志/launch链 |
+| 实际检查 | 最终9项Python检查通过，包含真实C#消费者45个合成策略案例：16角色默认拒绝与纯策略真值、argv/env/hash/写面/flag等负例。另有receipt STOP/坏退出/watchdog/清理负例。测试可执行文件只调用NativeRolePolicy.Validate，不调用guest Main/Spawn/Job/SDK；旧11/13/249等检查不重计。非作者Codex复核核心及新增validator无具体P1/P2，非外部独立验收 |
+| 实际编译/原证 | 现有微软签名有效csc编译新核心成功、无安装升级。generated CS SHAebc9f3f7a909dc554d4cb4528d0a4b71c2260b9c161f4d14f84e813435ae21e3，binary SHA4b4f74c317397856c7bd05a8926fafad3f0337ed964883be8bd31289aee5a9ab；核心未执行。LOCAL_ONLY v1015-native-role-executor-preparation-20261105先读engineering-outcome-private、role-plan-candidates-private、derivation.patch。初次summary是6项检查时快照，最终outcome为9项；新增纯validator后generated core字节精确不变 |
+| 保护与未完成 | 59保护记录逐份一致；原根main@4bebc8f3/default255/index2be660...，产品apps ed248529/services7634b475与相关工作区保持。尚无冻结runtime case、宿主grant/claim/只读映射/生命周期与原证日志适配；native/DLL/offline/资源及真实AAR→host仍未通过。实际VM/SDK/构建/设备/媒体0，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、G2 false、AC05 OPEN、10 PARTIAL、真实消息Push PENDING |
+| 下一步/Git | 接具名宿主适配与raw samples/receipt身份校验，再准备具体可审查执行范围；不自动创建继任预算，不合main、不启v10.1.6。只提交本次三源码/测试及三文档，普通non-force同步/远端Blob以实际ref/私有回执为准，无LOCAL_ONLY上传 |
+
+本节点完成受限执行核心和纯收集约束，尚未完成整个受控执行器或工具运行资格。自测、非作者Codex复核、外部独立验收、Owner整版接受分别记录。
+
+---
+
+# 前一原生静态导入读集准备节点（按原时点保留）
 
 日期：2026-11-04。状态：**STATIC_NATIVE_READSET_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。
 

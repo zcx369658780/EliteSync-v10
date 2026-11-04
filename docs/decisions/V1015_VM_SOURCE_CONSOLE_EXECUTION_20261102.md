@@ -153,3 +153,9 @@ Owner直接选择“授权这独立 1 次复验”，对应上述固定interop�
 ## 2026-11-04 后续普通静态准备，不新增运行额度
 
 Owner“可以，请继续”后完成原生PE静态导入读集：42个库存PE及1个AGP archive内PE、328条导入候选关系，11项定向检查通过。三个同名libwinpthread字节不同，逐份保留，不据此代选实际加载路径；OS/API-set/动态加载与完整producer资格仍未证明。此为普通源码/只读输入准备，没有再次启动VM、执行SDK、重跑旧scope或创建新claim。既有一般工程/Debug APK许可保留；实际产包独立预算/claim仍UNKNOWN_NOT_CREATED、G2 false，详情见唯一进度细表最新节点。
+
+## 2026-11-05 具名版本查询核心准备，不产生新运行许可
+
+Owner“可以请继续”用于继续实现受限核心与收集策略。新核心只接受16个固定native version角色、编译内嵌42输入及精确命令/环境/镜像策略，默认runtime_authorized=false；9项检查及45个C#纯策略案例通过，现有csc编译成功，核心未执行。宿主grant/不可退款claim/冻结case、只读映射、guest关机和宿主生命周期、raw日志身份适配尚未完成，不能翻flag直接运行或拿布尔真值当余额。
+
+本轮无VM/SDK/Gradle/产包/DB/设备/媒体动作、新scope或运行claim；旧interop单次及历史STOP保持已耗状态。一般已授权工程/Debug APK许可保留，下一动态范围须满足具体资格与独立预算；producer预算UNKNOWN_NOT_CREATED、G2 false、AC05 OPEN、10 PARTIAL和真实消息Push PENDING不变。具体源码/编译/原证身份见唯一进度细表最新节点。
