@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-03 完整声明库存与私有产包源码工作面准备（CURRENT ENTRY）
+# EliteSync｜2026-11-04 完整映射矩阵实测、宿主收尾STOP与独立复验候选（CURRENT ENTRY）
+
+**MAPPING_MATRIX_OBSERVED / SCOPE_STOP_PRESERVED / OWNED_HOST_CLEANUP_COMPLETED / LIFECYCLE_RECHECK_PROPOSED_NOT_AUTHORIZED / APK_NOT_RUN / PENDING_SYNC / G2_FALSE**
+
+Owner再次“请继续”后，从实际产品根/分支/remote与HEAD ee16a5f258956db9042a9c93108c3ab738ce826b接续，初始index空、仅既有%SystemDrive%/无关未跟踪。执行源码e3449678a93d1dd9b30d4de7b1cbc683d5f70965，新收尾/复验候选源码cdce9889daa22f95c4ac291cc055be6b15ff4ec0；apps/services及所有旧已耗helper/开关保持，最终记录HEAD以Git实际提交为准。
+
+已完成独立mapping-only scope `v1015-full-input-mapping-qualification-20261104`：Codex在既有工程与所述下一步映射检查授权内保守注册max1，不伪称Owner原话给出次数。275个绑定样本/307,671字节真实读取、273只读根的2,457项权限句柄拒绝、两个已拥有写面的nonce文件写读删均完成，guest failure=null、无活动非loopback网卡；SDK/Gradle/APK/设备/媒体0。该scope已耗1/1、剩0。客体退出后Store Sandbox0.8.107的RemoteSession/Server在180秒观察窗内未退，最终186.515秒返回STOP，**整体资格未通过，不以guest矩阵成功改判**。
+
+主代理随后仅凭精确配置参数、父PID链/创建时间及持有句柄绑定，结束本次两个宿主后台实例；当前四类Sandbox进程缺席，后台VM完全teardown仍UNKNOWN。此为STOP后的单独清理，旧claim/outcome不改、不重跑。最初48份保护记录一致，加本scope claim/outcome及独立清理receipt后，最新51份保护记录私有保存。
+
+已准备新的生命周期复验候选 `v1015-full-input-mapping-lifecycle-recheck-20261104`：固定新输入/源码/可执行文件已编译并冻结，默认启动拒绝，**PROPOSED_NOT_AUTHORIZED、无新claim**。仅替换已耗基线的scope literal生成新副本，保留旧源；加入独立核验的生成源码闭包、隔离helper加载、11项必备pin、完整Windows argv匹配，以及客体返回后精确拥有宿主实例的收尾。23项Python定向检查通过，C#编译和仅解析PowerShell通过；非作者Codex复核无剩余具体P1/P2，非外部独立验收。候选全链实际行为NOT_RUN。
+
+**下一受影响动态项需Owner明确给新的独立最多1次映射生命周期复验范围**，仅273只读/2私有写面与宿主收尾，不运行SDK/Gradle/Flutter/产包/设备/媒体，不退款或换目录续旧额；候选已可审查，本节点不自行启动。源码准备仍属既有授权。生产资源也尚未闭合：私有项目-Xmx8G不能套旧2GiB观察配置；完整BAT/Git/PowerShell与native工具/DLL资格、实际offline action解析、真实AAR→host消费及实际产包预算/claim仍未成立。实际产包UNKNOWN_NOT_CREATED，AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING。
+
+原证先读LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-preflight-20261104/engineering-summary-private.json`，再看已耗scope工程outcome/guest result和独立cleanup receipt；候选manifest SHA0f4ee77b89f03417d82c6e4cc49079e9febd07819a38ca9fb4c49f69f58d989e。原件不上传GitHub。原根main@4bebc8f3/255/index SHA2be660...保持；旧SDK/DB/备份/worktrees/STOP不动。Git仍PENDING_SYNC，普通同步失败不改身份/SSH或强推；镜像不作Parent。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-完整映射矩阵与宿主生命周期stop节点)及[新独立复验提案](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#2026-11-04-映射scope实测stop与新的独立生命周期复验提案)。
+
+---
+
+# EliteSync｜2026-11-03 完整声明库存与私有产包源码工作面准备（历史节点）
 
 **DECLARED_INPUTS_AND_PRIVATE_SOURCE_PREPARED / RUNTIME_NOT_READY / APK_NOT_RUN / PENDING_SYNC / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**
 

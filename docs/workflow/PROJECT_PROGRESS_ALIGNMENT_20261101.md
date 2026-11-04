@@ -1,4 +1,29 @@
-# EliteSync-v10｜项目进度细表（完整声明库存与私有产包源码工作面）
+# EliteSync-v10｜项目进度细表（完整映射矩阵实测与宿主生命周期STOP）
+
+日期：2026-11-04（Asia/Shanghai）。状态：**MAPPING_MATRIX_OBSERVED / SCOPE_STOP_PRESERVED / OWNED_HOST_CLEANUP_COMPLETED / LIFECYCLE_RECHECK_PROPOSED_NOT_AUTHORIZED / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-04 完整映射矩阵与宿主生命周期STOP节点
+
+| 项目 | 本轮事实与边界 |
+|---|---|
+| 接续/身份 | Owner再次“请继续”，实际产品根/分支/origin与交接一致，进入ee16a5f258956db9042a9c93108c3ab738ce826b，index无暂存，仅%SystemDrive%/旧未跟踪。执行源码e3449678a93d1dd9b30d4de7b1cbc683d5f70965；新候选cdce9889daa22f95c4ac291cc055be6b15ff4ec0。apps ed248529/services7634b475不改，未重新导入/迁移/启动v10.1.6 |
+| 路由/容量前置 | 两份package_config的170+102 rootUri、74条插件路径、两份local.properties均精确命中既定guest路由，未见宿主路径残留或映射重叠；273RO=266 Pub+7工具/Seed，两个owned写面为完整私有Flutter/Project。私有.android/gradle.properties仍-Xmx8G，与旧2GiB观察配置不兼容；本fixture不运行Gradle，不能据此继承为生产容量合格 |
+| 独立scope | v1015-full-input-mapping-qualification-20261104/max1，由Codex在既有工程/明确下一映射项接续授权内保守限1，非Owner原话数字。独立claim不可退款；275小样本host SHA/字节/单链接/FileID前后核，合计307,671字节；不重哈89k或冒称全部文件已在guest消费。源码/helper/准备元数据/WSB/程序固定，旧7-root与旧scope/helper未改 |
+| Fixture保护 | .NET winexe，无SDK或子进程启动；RO只读及OPEN_EXISTING权限句柄试开，不执行任何实际写、删、改ACL；文件GENERIC_WRITE/WRITE_DATA/APPEND_DATA/DELETE/WRITE_DAC/WRITE_OWNER六项，目录ADD_FILE/ADD_SUBDIRECTORY/DELETE_CHILD三项，要求精确error5。RW只在两个owned根做nonce CreateNew→读→删除，不碰已有文件。网络/音视频/剪贴板/打印/vGPU禁用，2GiB、guest90秒watchdog、host180秒观察窗；观察/收集并非无开销的硬180秒总限 |
+| 实际矩阵 | guest failure=null；275 reads、2457拒绝项、2 private writes完整，network_no_active_adapter=true；内核10.0.26100.6713/CLR4.0身份保留。执行范围中SDK/Gradle/APK/DB/ADB/媒体0。仅支持本次绑定的样本/权限/owned写操作观察，不是完整读集、DLL、native进程树、BAT/产包资格 |
+| 整体STOP | Store Sandbox0.8.107的guest前台退出，但RemoteSession/Server未在host观察窗内退出；186.515秒报MAPPING_QUALIFICATION_REJECTED_OR_STOPPED。该scope1/1已耗/剩0，verified-result未创建。客体矩阵与最终退出资格分开，不能事后放宽或改判整体PASS |
+| STOP后清理 | RemoteSession由记录的launcher在0.111秒后创建、命令精确含本scope qualification.wsb，Server为其子且创建更晚；fresh快照与原路径/命令/时间一致，四类进程仅余该二者。主代理持有两个进程handle再次核生时后，仅按对象结束这两个实例。结束无关进程0；当前四类进程缺席，background VM teardown UNKNOWN。独立receipt不改变原STOP/claim，不进行重跑或UAC/全局权限变更；普通MSIX exe的NotSigned状态未当成独立签名认证 |
+| 修复后候选 | 新sandbox_owned_session_cleanup只绑定/渲染，不自行执行；完整Windows argv后只接受一个精确配置token，核父链/创建窗/原新快照/同包路径，运行命令再核身份、持有handles、拒其他Sandbox实例。新full_input_mapping_lifecycle从固定SHA e344基线生成副本，唯一scope literal变化；先独立校全部生成源码和helper的字节/非reparse/单链接，再compile已核bytes并隔离绑定两个helper，不用pyc/sys.modules/sys.path；合同固定11项pins及旧scope/剩0等，默认无新grant就拒启动 |
+| 候选完整性 | scope=v1015-full-input-mapping-lifecycle-recheck-20261104，PROPOSED_NOT_AUTHORIZED；准备/现有C#编译/冻结复核已完成，未启动、未建新claim或授权文件。manifest SHA0f4ee77b89f03417d82c6e4cc49079e9febd07819a38ca9fb4c49f69f58d989e，binary SHA4007f3270b0ce9495575984c16c0a915a2a0ec1d664d3a49b4e7355b0024e0ce。loop剩余时限传观察/清理/单独Python收集器；新combined Windows生命周期实际NOT_RUN |
+| 检查/审查 | 23项Python纯检查（映射10+收尾/候选13）通过，C#实际编译与PowerShell仅AST解析通过。非作者Codex复核发现并修复：客体关机位误用、RO创建权限漏项、生成源码验前执行/裸helper导入、quoted参数子串误认和pin集合缺项；均在各自动态路径启动前修复，旧e344运行源冻结。最后无剩余具体P1/P2，非外部独立验收；旧42/249/19及C#168/9/31不重计 |
+| 原证/保护 | 原证分别为LOCAL_ONLY v1015-full-input-mapping-preflight-20261104（engineering-summary-private）、v1015-full-input-mapping-qualification-20261104（manifest/claim/output/result/engineering-outcome/owned-host-cleanup）、lifecycle候选的独立scope及source目录。原48记录SHA一致，加已耗claim/outcome和清理receipt为51；旧scope不改。原根main@4bebc8f3/default255/index2be660...保持，SDK/DB/备份/worktrees/%SystemDrive%/历史失败保留 |
+| 新预算与下一步 | 申请新的独立最多1次映射生命周期复验，仅同273RO+2owned/275样本/2457权限项与已绑定宿主收尾，guest2GiB/90秒、host剩余时限180秒；禁止SDK/Gradle/Flutter/真实产包/设备/媒体/网络服务。Owner尚未授权此新范围，无新claim；旧scope0余额不续。不以一般产包许可替代本独立复验门，源码准备可继续；真正产包预算/claim UNKNOWN_NOT_CREATED、native/启动链/offline/AAR→host仍未证明 |
+
+新候选已具体准备，下一动态执行只等待Owner对该独立最多1次范围的明确决定；不是笼统重问v10.1.5/Debug APK/USB许可，也不是恢复旧余额。原主工程仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不做正式发布。
+
+---
+
+# 前一完整库存与私有产包源码准备节点（按原时点保留）
 
 日期：2026-11-03（Asia/Shanghai）。状态：**DECLARED_INPUTS_AND_PRIVATE_SOURCE_PREPARED / RUNTIME_NOT_READY / APK_NOT_RUN / PENDING_SYNC / AC05_OPEN / G2_FALSE / V10.1.5_PARTIAL**。
 

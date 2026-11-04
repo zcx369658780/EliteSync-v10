@@ -112,3 +112,16 @@ Owner在上述交接停止后明确“请继续”，据此恢复既有v10.1.5�
 Codex本轮实现完整声明树库存、AAR仓库校验/私有复制及私有host源码渲染，实际准备274根完整内容库存、任务私有完整Flutter根与Project/生成Android控制/包插件路径接线。原apps/services、SDK、旧helper/开关未改；无SDK工具、构建、DB、设备或媒体执行，无新预算/claim。真实产包前仍须完整执行器/客体映射/native资格/offline依赖及具名独立预算成立，真实AAR来源与host Kotlin/Gradle消费不由fixture替代。自测/非作者Codex复核与外部独立验收、Owner接受、发布继续分开。
 
 首次私有Project准备因未含ignored生成.android目录而停止，保留部分输出及首次caller，补齐实际20控制文件后完成，未重开SDK/构建范围或重置旧预算。48保护记录、原根main/255/index保持。一次fresh SSH只读核对成功后，审整个待推范围并尝试唯一普通non-force推送，仍被Connection closed/exit128关闭；PENDING_SYNC保留，不继续重试、不改身份/SSH、不用镜像作Parent。详见唯一进度细表本次节点；整版10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING均保持。
+
+## 2026-11-04 映射scope实测STOP与新的独立生命周期复验提案
+
+Owner本轮再次“请继续”，Codex在已列明下一步映射资格与既有v10.1.5工程范围内，保守登记独立max1 mapping-only fixture；次数为Codex限制，不伪称Owner原话数字。该v1015-full-input-mapping-qualification-20261104已执行1/1、剩0，275样本/2457权限拒绝/2owned写读删成功，但宿主后台未在观察窗内退出，最终STOP；SDK/Gradle/产包/设备/媒体0，原STOP/claim冻结不退款不重跑。主代理在STOP后以精确配置、父/生时链、fresh身份及持有handles，只结束两个本次拥有的宿主实例，另存receipt，未改判原scope通过。
+
+以下为**新的明确提案，PROPOSED_NOT_AUTHORIZED**，不是本轮“继续”自动增加的额度：
+
+- 固定scope：`v1015-full-input-mapping-lifecycle-recheck-20261104`，独立最多1次，不可退款、不自动后继；Owner须明确批准这个新范围后才创建claim。旧scope保持1/1已耗、剩0。
+- 同一完整候选布局：273只读根、两个已拥有的私有写面；仅275个小样本读取、2457个只试开权限句柄拒绝及nonce写面测试。RO无实际写删改ACL；不执行SDK/Gradle/Flutter/AAR/APK、DB、设备或媒体，不新增供应商、外部服务、费用或系统权限。
+- 收尾修复：客体回执后，精确Windows参数token+父PID/创建时间+原新快照+持有handles绑定且无其他会话时，只清理本次宿主后台，再作原严格退出检查。主体2GiB/guest90秒，host观察/清理/收集传剩余180秒时限，失败STOP，不换目录续额或改旧helper。
+- 候选已准备/编译/冻结：固定e344基线生成副本仅换scope literal，另加独立核验生成源码闭包、隔离helper及固定11项pins的driver；原执行源码不修改。23项定向Python、编译、AST解析及非作者Codex复核有界支持，真实新生命周期未运行。manifest/binary及原始输入见唯一进度细表和LOCAL_ONLY候选原证，不上传原件。
+
+本提案只等待这一次新范围的Owner决定，不重问既有Debug APK/USB或普通工程许可；尚无新claim。更后的真实产包预算/claim仍UNKNOWN_NOT_CREATED，资源/完整native/BAT/offline/AAR→host门各自保留。整版10 PARTIAL、AC05 OPEN、G2 false及真实消息Push PENDING不变。
