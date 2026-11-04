@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-04 互操作源码候选与原生/资源准备（CURRENT ENTRY）
+# EliteSync｜2026-11-04 独立映射生命周期复验通过（CURRENT ENTRY）
+
+**OWNER_GRANTED_CASE_SPENT / INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
+
+Owner针对已列明的独立最多1次、2GiB/90秒guest和180秒host观察/收尾/收集范围，明确答复“授权这独立 1 次复验”。实际产品根/分支/origin及执行HEAD `95cad6ced467cdcbe8a76b4722fd1f9ff7d5cf0e` 核对一致，初始index空，仅保留原%SystemDrive%/。候选未重新prepare，18项source/evidence pins、manifest/binary和275样本fresh冻结核对；无既存Sandbox，现有启动器签名Valid，未安装或升级工具链。
+
+固定scope `v1015-full-input-mapping-interop-recheck-20261104` 实际启动一次，**50.734秒完成，1/1已耗、剩0**。guest failure=null，275读取/2457权限拒绝/2私有canary完整、无活动非loopback网卡。primitive JSON观察→精确owned收尾→空宿主快照→严格collector真实全链通过，canonical verified-result已生成，当前四类Sandbox进程缺席。后台VM完全teardown仍UNKNOWN；这只支持本scope绑定样本/权限/生命周期，不证明89,846文件实际消费、native/DLL、offline或生产构建资格。旧两个mapping/lifecycle STOP不改判，不退款、不重跑。
+
+LOCAL_ONLY原证 `C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-interop-recheck-20261104`，先读engineering-summary-private、engineering-outcome-private、verified-result，再看owner-explicit-grant、claim、guest与宿主原件；原证不上传。原54保护记录一致，新增本次grant/authorization/claim/outcome/verified五份后最新**59份保护记录**；原根main@4bebc8f3/255/index2be660...及产品apps/services树保持。本轮SDK/Gradle/真实构建/DB/设备/媒体0，实际产包预算/claim仍UNKNOWN_NOT_CREATED。
+
+下一工程面为guest OS/BAT/native/DLL资格、完整offline action依赖、有效资源配置及真实AAR→host交接；上一资源候选6GiB+4GiB reserve未获容量资格，不套本次2GiB映射配置。此次授权已用尽，不产生下一次VM额度或实际产包预算；既有一般工程/Debug APK许可保留，普通源码准备仍可继续。整版仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。最终Git同步以实际ref/私有回执为准，详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-owner独立单次映射生命周期实测通过节点)。
+
+---
+
+# EliteSync｜2026-11-04 互操作源码候选与原生/资源准备（历史节点）
 
 **SOURCE_CANDIDATES_PREPARED / NEW_VM_NOT_AUTHORIZED / NATIVE_NOT_QUALIFIED / CAPACITY_NOT_READY / APK_NOT_RUN / G2_FALSE**
 

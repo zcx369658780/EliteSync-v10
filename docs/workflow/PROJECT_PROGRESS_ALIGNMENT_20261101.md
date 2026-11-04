@@ -1,4 +1,26 @@
-# EliteSync-v10｜项目进度细表（互操作源码候选与原生/资源准备）
+# EliteSync-v10｜项目进度细表（独立映射生命周期复验通过）
+
+日期：2026-11-04。状态：**OWNER_GRANTED_CASE_SPENT / INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-04 Owner独立单次映射生命周期实测通过节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 明确授权与入口 | Owner对已列范围回复“授权这独立 1 次复验”。源95cad6ced467cdcbe8a76b4722fd1f9ff7d5cf0e、实际产品根/分支/origin正确，index初始空，仅原%SystemDrive%/未跟踪。最多1次mapping-only，guest2GiB/90秒、host观察/收尾/收集共享180秒；不含SDK/Gradle/产包/DB/设备/媒体/外部服务 |
+| 启动前核对 | 新owner-explicit-grant绑定原问题/答复、source/manifest/binary及精确范围；独立authorization/不可退款claim，不改历史候选合同或旧开关。18项pins/275样本及54保护记录fresh一致，无既存Sandbox；现有启动器签名Valid、Store Sandbox0.8.107.0，可用内存4205MiB。现有候选未重新prepare/C#编译，没有工具链安装/升级 |
+| 固定身份 | scope v1015-full-input-mapping-interop-recheck-20261104；manifest SHAc605ff5b03b8163408ad664120cdfe591ca8ff581bceb339cf8f98006233ff74，binary SHA8c59908fc2b6d2ad6a7bcf1d8d257be35cdabe0c32ae773cbad7aedcc40d6ac2，均同95cad6ce候选。旧源码/合同/STOP保持 |
+| 实际执行 | 一次launch，50.734秒完成，退出0；INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED，error=null。guest failure=null，275读取/2457权限拒绝/2私有写读删完整；guest kernel10.0.26100.6713/CLR4.0.30319.42000，无活动非loopback网卡。只证明绑定样本和权限，不等于全文件生产读集 |
+| 真实宿主全链 | 本次primitive JSON观察正常、无depth告警污染；精确配置token/父链/生时绑定两个owned宿主实例，冻结的修正脚本成功收尾，stdout/stderr均0字节。收尾后快照[]，严格独立collector再次核原链和全部Sandbox进程缺席、host anchors不变，生成canonical FULL_LAYOUT_MAPPING_ANCHORS_BOUNDED_SUPPORTED。不是事后改判旧STOP；后台VM完全teardown UNKNOWN |
+| 原证身份 | LOCAL_ONLY v1015-full-input-mapping-interop-recheck-20261104。guest receipt SHAaa92d27987684eae93aa01d7705e3ee5cb5c659643f8cdc8c45e8149cb04a110，outcome SHA1a86907eddebdbbec02e31c8593f2bea0abbdfb1315aa63affdaa5b0008b0317，verified SHAee4e26d74a943a10cc4e2ee28694033c71f0fc8050875e29b0ba75a201366184。先看engineering-summary/outcome/verified，再按需读grant/claim/guest/宿主快照与精确cleanup原件；不上传原证 |
+| 预算与保护 | 本次1/1永久已耗、剩0，无自动重试、继任claim或新scope；旧两个STOP/全部已耗余额不动。原54记录前后SHA一致，加本次grant/authorization/claim/outcome/verified为最新59；原dirty根main@4bebc8f3/默认255/index2be660...，产品apps ed248529/services7634b475均一致，SDK/DB/备份/worktrees与STOP保留 |
+| 证据边界与下一步 | 实际SDK/Gradle/产包/DB/设备/媒体0，producer预算/claim UNKNOWN_NOT_CREATED。guest OS角色、BAT及native进程/DLL闭包、实际offline action解析、容量与资源有效消费、真实AAR→host仍未证明；不能以本次mapping通过放行生产或G2。上一6GiB+4GiB资源候选余量不足，不与本次2GiB映射混用。普通源码准备可继续；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+| Git | 执行源95cad6ce已在本地和原远端产品分支一致；本次仅更新三文档，最终普通non-force同步及关键文档Blob回读以实际ref/私有回执为准，无pull/reset/rebase/身份变更或镜像Parent |
+
+这是Owner授权的本次真实映射与宿主生命周期有界工程结果。非作者Codex只读交叉核对guest/outcome/verified、回执hash及宿主前后快照，未发现不一致，非外部独立验收。之前13项stub和6项静态检查保留原身份，本轮未重跑或把它们重复计作真实检查；自验、非作者Codex复核、外部独立验收与Owner整版接受分开。
+
+---
+
+# 前一互操作源码候选与原生资源准备节点（按原时点保留）
 
 日期：2026-11-04。状态：**SOURCE_CANDIDATES_PREPARED / NEW_VM_NOT_AUTHORIZED / NATIVE_NOT_QUALIFIED / CAPACITY_NOT_READY / APK_NOT_RUN / G2_FALSE**。
 

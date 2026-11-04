@@ -143,3 +143,9 @@ Owner随后“可以请继续”用于普通源码和产包输入准备，不自
 如Owner另行明确同意，本候选仅提议独立最多1次mapping-only复验：273只读根/2已拥有写面、275读取/2457权限拒绝、guest2GiB/90秒、host观察/收尾/收集共享180秒剩余时限，含精确owned宿主收尾；不运行SDK/Gradle/Flutter产包、数据库、设备、媒体或外部服务。启动前仍fresh核源/输入/当前环境，不借旧额度；当前状态SOURCE_READY_NOT_AUTHORIZED。
 
 普通准备另完成32文件fresh身份与新私有Gradle资源候选，不修改旧-Xmx8G项目文件；拟生产guest6GiB+宿主reserve4GiB，快照可用4474MiB，余量不足。此候选不是上项2GiB映射检查，也不是实际产包授权/资格。guest OS/native/DLL/offline/AAR→host及实际产包独立预算仍待闭合；不结束用户应用、不安装升级工具链。细项及LOCAL_ONLY原证见唯一进度细表最新节点。
+
+## 2026-11-04 Owner明确授权独立1次映射复验：已执行并耗尽
+
+Owner直接选择“授权这独立 1 次复验”，对应上述固定interop候选及原问题所列273RO/2owned、guest2GiB/90秒和host观察/收尾/收集180秒范围。独立grant保存原问题、原答复、source95cad6ce及manifest/binary，原SOURCE_READY_NOT_AUTHORIZED候选合同保留为历史；本决定不扩至SDK、Gradle、产包、DB、设备、媒体或下一VM。
+
+本次实际启动1次，50.734秒完成，275读取/2457拒绝/2私有写面及精确owned宿主收尾通过；当前Sandbox进程缺席，canonical verified-result生成，状态INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED。**本次1/1已耗、剩0**；旧STOP及已耗helper身份不动，不退款/重跑/换目录续额。后台VM完全teardown仍UNKNOWN，完整native/DLL/offline/资源和生产读集仍未证明；G2不因此放行，真实AAR/APK未生成，实际产包预算/claim UNKNOWN_NOT_CREATED。最新保护记录59份，原证与唯一细表按本节点保存，不上传LOCAL_ONLY。
