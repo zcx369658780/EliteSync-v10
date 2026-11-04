@@ -149,3 +149,7 @@ Owner随后“可以请继续”用于普通源码和产包输入准备，不自
 Owner直接选择“授权这独立 1 次复验”，对应上述固定interop候选及原问题所列273RO/2owned、guest2GiB/90秒和host观察/收尾/收集180秒范围。独立grant保存原问题、原答复、source95cad6ce及manifest/binary，原SOURCE_READY_NOT_AUTHORIZED候选合同保留为历史；本决定不扩至SDK、Gradle、产包、DB、设备、媒体或下一VM。
 
 本次实际启动1次，50.734秒完成，275读取/2457拒绝/2私有写面及精确owned宿主收尾通过；当前Sandbox进程缺席，canonical verified-result生成，状态INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED。**本次1/1已耗、剩0**；旧STOP及已耗helper身份不动，不退款/重跑/换目录续额。后台VM完全teardown仍UNKNOWN，完整native/DLL/offline/资源和生产读集仍未证明；G2不因此放行，真实AAR/APK未生成，实际产包预算/claim UNKNOWN_NOT_CREATED。最新保护记录59份，原证与唯一细表按本节点保存，不上传LOCAL_ONLY。
+
+## 2026-11-04 后续普通静态准备，不新增运行额度
+
+Owner“可以，请继续”后完成原生PE静态导入读集：42个库存PE及1个AGP archive内PE、328条导入候选关系，11项定向检查通过。三个同名libwinpthread字节不同，逐份保留，不据此代选实际加载路径；OS/API-set/动态加载与完整producer资格仍未证明。此为普通源码/只读输入准备，没有再次启动VM、执行SDK、重跑旧scope或创建新claim。既有一般工程/Debug APK许可保留；实际产包独立预算/claim仍UNKNOWN_NOT_CREATED、G2 false，详情见唯一进度细表最新节点。

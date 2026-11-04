@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-04 独立映射生命周期复验通过（CURRENT ENTRY）
+# EliteSync｜2026-11-04 原生静态导入读集准备（CURRENT ENTRY）
+
+**STATIC_NATIVE_READSET_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以，请继续”后按既有普通工程权限接续，实际产品根/分支/origin、HEAD `abcd02f9720fd49c44212d39d8a8da5f3af369fe` 和空index核对一致，保留原%SystemDrive%/。上一interop单次已耗1/1、剩0，不重跑、不改其helper/合同/结果；本轮没有新的VM/SDK/Gradle/构建/设备/媒体动作或运行claim。
+
+新增有界只读PE普通/延迟导入名称解析与具名库存候选查询。按微软PE格式规格检查PE32/PE32+、RVA到文件映射、完整目录边界/终止符/名称，复用已有句柄绑定的SHA/FileID复核；11项纯检查通过。非作者Codex发现的目录尾部越界P2已在任何SDK执行前修复，复核无剩余具体问题，非外部独立验收。
+
+最终从15个可执行入口及Git实际入口/JVM等具名动态候选扩展到**42份库存PE/448,756,381字节**，另解析AGP archive内aapt2；328条导入关系（4条delay），内容与库存身份一致。NDK的三个libwinpthread-1.dll候选SHA均不同，全部分别记录，不按basename合并或代选；66条同根唯一候选边也不是实际加载证明，243条边无同根候选、3条歧义边、16条archive依赖位置未资格化。API-set/SxS/导出转发、动态LoadLibrary和真实进程/DLL闭包仍未证明。
+
+LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-native-static-imports-20261104`，先读engineering-outcome-private及candidate-native-readset-private；早期engineering-summary/native-import-graph保留为修复前静态快照，不作最终源码身份。59保护记录一致，原根main/255/index及产品apps/services保持。完整producer/consumer受控调用仍未实现，旧固定探针不能当通用runner；下一工程面为独立窄参数执行器、OS/BAT/native资格、offline依赖/有效资源/真实AAR交接。实际产包预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-原生静态导入读集准备节点)。
+
+---
+
+# EliteSync｜2026-11-04 独立映射生命周期复验通过（历史节点）
 
 **OWNER_GRANTED_CASE_SPENT / INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
 

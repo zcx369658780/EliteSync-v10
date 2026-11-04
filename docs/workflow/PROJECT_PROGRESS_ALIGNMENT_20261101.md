@@ -1,4 +1,27 @@
-# EliteSync-v10｜项目进度细表（独立映射生命周期复验通过）
+# EliteSync-v10｜项目进度细表（原生静态导入读集准备）
+
+日期：2026-11-04。状态：**STATIC_NATIVE_READSET_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-04 原生静态导入读集准备节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 接续/权限 | Owner“可以，请继续”用于普通产包准备；实际产品根/分支/origin与abcd02f9720fd49c44212d39d8a8da5f3af369fe一致，index空，仅原%SystemDrive%/未跟踪。上一interop1/1已耗/剩0保持；新VM/SDK/Gradle/构建/DB/设备/媒体运行0，新claim0 |
+| 实际调用层定位 | current_product_apk_inventory可复用输入身份，apk_plan/build_plan只是数据，AAR verifier/stager只验/复制已产仓库；没有完整producer→verified repo→host Debug调用。现有native_tool/flutter_cache/runtime C#监督逻辑各绑定固定命令，不是通用runner；旧固定源码不能改标重用为新执行额度 |
+| 新源码/规格 | native_import_inventory静态解析PE32/PE32+的普通及delay DLL名，校机器/可选头/目录数、RVA唯一文件映射、完整目录范围与32位溢出、终止符、规范basename和大小上限；不加载PE。规格固定微软PE-format官方页面，原文HTML SHA83eca76b497aa8a91220ceb5d5fed35d97267ec264578612866d03e742bc8254保存在LOCAL_ONLY |
+| 检查/修复 | 测试先因模块缺失失败，完成实现后9项通过；非作者发现声明目录尾部可被早期零terminator掩盖P2。修为扫描前完整RVA+Size边界校验，保守拒跨区段目录；新增普通/delay尾越界和RVA溢出反例，最终11/11通过。修复后实际输入重新核读、旧名称结果一致；复核无剩余具体问题，非外部独立验收，没有SDK执行 |
+| 最终只读读集 | 15个已选EXE＋4个明确但未观察的动态候选（实际Git exe、JVM/java/jimage DLL），加每个同根导入候选，包括歧义路径全部独立读验；最终42份库存PE/448,756,381字节，另1份AGP archive内aapt2 PE。固定完整库存元数据SHA，逐文件FileID/内容句柄复核，cap256文件/2GiB，单PE512MiB。未全树重扫/复制SDK，不将候选视作真实加载 |
+| 依赖关系 | 328条普通/delay导入边，其中4条delay；66条同根唯一候选、243条无同根候选、3条歧义、16条AGP archive位置待资格化。同根候选图不等于Windows搜索顺序或加载闭包；系统/API-set/SxS/导出转发、动态LoadLibrary和子进程身份仍NOT_PROVEN |
+| 具体歧义 | NDK simpleperf/bin/windows/x86_64、toolchain bin、toolchain lib中三个libwinpthread-1.dll字节不同（SHA前缀3c5e8684/441e8c67/07786984），全部独立保存身份和静态导入，绝不凭同名合并、代选或声称实际加载路径 |
+| 原证/保护 | LOCAL_ONLY v1015-native-static-imports-20261104：最终engineering-outcome-private、candidate-native-readset-private及protected-records-after-static-private为入口；早期summary/graph保留为修复前静态快照，最终source pins以outcome/最终Git为准。59份保护记录一致；原根main@4bebc8f3/default255/index2be660...及产品apps ed248529/services7634b475保持，旧SDK/DB/备份/worktrees/STOP不动 |
+| 未完成/下一步 | 原生受控执行器与实际OS/BAT/DLL资格、offline action解析、资源配置实际生效和容量、真实AAR→host调用仍待闭合。本次不创建下一VM/SDK/产包预算或claim，不套旧2GiB配置放行生产；一般已授权源码准备继续，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。不合main、不启v10.1.6 |
+| Git | 只新增两份解析器/测试源码与三文档；最终提交/普通non-force同步及关键文档Blob以实际ref/私有回执为准。没有pull/reset/rebase/force、身份变更、镜像Parent或LOCAL_ONLY上传 |
+
+本节点完成的是原生静态输入准备，不是工具运行、构建资格或整版验收；上一mapping/lifecycle真实有界通过仍保留原身份与范围。
+
+---
+
+# 前一独立映射生命周期复验通过节点（按原时点保留）
 
 日期：2026-11-04。状态：**OWNER_GRANTED_CASE_SPENT / INTEROP_MAPPING_LIFECYCLE_BOUNDED_SUPPORTED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
 
