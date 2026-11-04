@@ -1,4 +1,26 @@
-# EliteSync-v10｜项目进度细表（完整映射矩阵实测与宿主生命周期STOP）
+# EliteSync-v10｜项目进度细表（Owner明确授权复验与无重启证据恢复）
+
+日期：2026-11-04（Asia/Shanghai）。状态：**OWNER_GRANTED_CASE_SPENT / LIFECYCLE_DRIVER_STOP / BOUND_MATRIX_RECOVERED / OWNED_HOST_CLEANUP_COMPLETED / NO_VM_RELAUNCH / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-04 Owner明确授权复验与无重启宿主修复恢复节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| Owner/实际工作面 | Owner针对明确最多1次提案答复“我授权，请继续”；仅覆盖已冻结lifecycle-recheck scope。产品根/分支/origin正确，进入fd048cd7d8604e7471e44d2f04d62f4675fb9ed9，index空，保留%SystemDrive%/旧未跟踪；51份保护记录/原根main@4bebc8f3/default255/index2be660...先核一致。此许可不是SDK/产包/设备或下一次VM授权 |
+| 新授权/输入 | 独立owner-explicit-grant-private.json和new-scope-authorization-private.json绑定当前source、原提案与scope，未改历史PROPOSED合同或Source开关。manifest SHA0f4ee77b89f03417d82c6e4cc49079e9febd07819a38ca9fb4c49f69f58d989e、binary SHA4007f3270b0ce9495575984c16c0a915a2a0ec1d664d3a49b4e7355b0024e0ce均与上一候选一致，275 anchor/307,671字节及helper/闭包fresh冻结核对通过，未重新prepare |
+| 实际单次 | v1015-full-input-mapping-lifecycle-recheck-20261104实际启动一次，claim1/1永久已耗、剩0，source fd048cd7。guest failure=null、275 reads/2457 access checks/2 private writes完成；SDK/Gradle/真实构建/DB/ADB/设备/媒体0。返回22.344秒，status LIFECYCLE_RECHECK_REJECTED_OR_STOPPED，错误Expecting value: line1 column1；原结果/退出码1保留 |
+| 第一实现缺陷 | 直接ConvertTo-Json完整Win32_Process CIM对象超过Depth4，警告写入stdout首行而stderr0/exit0；相同宿主查询只读重现stdout38,511字节，开头为中文截断警告，不是实际空输出。JSON解析因此在首字节失败，既有纯数据测试未覆盖真实PowerShell序列化。未把其当客体检查失败或外部隔离故障 |
+| 第二实现缺陷与清理 | 当前RemoteSession/Server的精确配置token、父链与创建时间绑定到本次launcher；冻结generic renderer生成$session.Cim/$server.Cim而非变量$sessionCim/$serverCim，第一脚本在任何终止前抛Null/exit1。保留原脚本，私有新脚本仅两处精确变量修正；再取fresh身份、持有handles、只终止两个已拥有实例，执行exit0且当前四类Sandbox进程缺席，无其他进程终止。原scope不改判，VM完整后台teardown UNKNOWN |
+| 修复源码与验证 | ef98dd80ef261ebbd439fb3e1c73939bd30505db新增sandbox_host_observation和专用测试，已耗lifecycle/cleanup/base源码未改。观察仅投影六个primitive字段，以EncodedCommand避免quoting歧义、严格数组和错误failclosed；render修正先核旧template SHAaa5f09...，只改两个变量token。5项无VM PowerShell互操作通过，覆盖0/1/2对象及deep metadata、旧模板STUB_STOPS=0、修正版两个stub端到端；非作者只读复核无具体P1/P2，非外部独立验收。未重启VM验证修复后冻结全链 |
+| 只读证据恢复 | 原manifest/代码仍冻结，通过原validate_receipt核同一guest bytes/nonce/binary与完整矩阵；修复后真实宿主观察stdout为干净[]/exit0，脚本文本精确等于已执行私有修正，owner/父链/生时和原新快照仍绑定。另存BOUND_MATRIX_AND_POST_STOP_HOST_CLEANUP_EVIDENCE_RECOVERED；original_frozen_lifecycle_driver_qualified=false、canonical verified-result未创建、原STOP/1已耗/剩0保持。此证据仅支持已观察矩阵与STOP后已拥有宿主清理，不充当新全链PASS |
+| 原证/身份 | LOCAL_ONLY C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-lifecycle-recheck-20261104。原outcome SHA3fdfe2fad460b03f3000c298fbbe02e5e282db0f3b2307f36b8bef03e99eb70f，guest receipt SHA25b42e50155c96841008aec752ac0842232467c4442bd20421106cfb9dc5ed27；修正执行脚本raw SHA5a8d3e5556e22aa434b26e2fc606facb9e57f5963dc3c0c3c8a7a6dbe84dda47。原observer重现、错误脚本、修正脚本、授权/claim/outcome/独立恢复文件均留原件，不上传GitHub |
+| 预算/保护/下一步 | 本轮唯一VM启动已结束，无再次启动、无新scope/继任claim或退款。原51记录保持，加本次claim/outcome及独立恢复记录为54；原根main/255/index、SDK/DB/备份/worktrees/全部历史STOP保留。普通源码准备仍授权，但新的VM资格复验必须另有明确独立范围；本节点不自动创建。完整driver/native/DLL/BAT/offline/AAR→host仍未证明，实际产包UNKNOWN_NOT_CREATED、APK NOT_RUN、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING |
+
+本节点已完成Owner授权的一次执行、失败归因、无重启宿主修复验证和独立证据恢复；**冻结生命周期整体仍STOP**。5项宿主互操作检查不是新的guest资格，也不重计旧23/42/249/19或C#断言；不降低标准、不以事后恢复改判原失败、不合main或正式发布。
+
+---
+
+# 前一完整映射矩阵与宿主生命周期节点（按原时点保留）
 
 日期：2026-11-04（Asia/Shanghai）。状态：**MAPPING_MATRIX_OBSERVED / SCOPE_STOP_PRESERVED / OWNED_HOST_CLEANUP_COMPLETED / LIFECYCLE_RECHECK_PROPOSED_NOT_AUTHORIZED / APK_NOT_RUN / G2_FALSE**。
 

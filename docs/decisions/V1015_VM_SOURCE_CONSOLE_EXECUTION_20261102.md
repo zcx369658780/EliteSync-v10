@@ -127,3 +127,11 @@ Owner本轮再次“请继续”，Codex在已列明下一步映射资格与既�
 本提案只等待这一次新范围的Owner决定，不重问既有Debug APK/USB或普通工程许可；尚无新claim。更后的真实产包预算/claim仍UNKNOWN_NOT_CREATED，资源/完整native/BAT/offline/AAR→host门各自保留。整版10 PARTIAL、AC05 OPEN、G2 false及真实消息Push PENDING不变。
 
 同节点原产品Git同步已恢复：审全待推9提交/16路径后，既有origin/身份普通non-force推送至dd349a19253a72f26bfe00d8c191a953dd3b8dba成功并回读一致，main仍8a9e97a1；历史失败不重写，镜像不作Parent。此同步不授予新的运行余额，也不改变真实消息Push PENDING；同步记录最终提交以实际Git HEAD/远端核实为准。
+
+## 2026-11-04 Owner明确授权单次复验及执行结束
+
+Owner对上一个明确“新的独立最多1次生命周期复验”问题直接答复“我授权，请继续”。该决定已单独绑定v1015-full-input-mapping-lifecycle-recheck-20261104及原候选身份，不修改冻结历史提案合同/旧Source开关，不扩至SDK/Gradle/产包、DB、设备/媒体或新的运行范围。一般v10.1.5工程/Debug APK/USB既有许可保留，各实际资格与独立预算仍须成立。
+
+此新scope已执行1/1、剩0：guest275/2457/2完成，但宿主直接CIM序列化的告警污染JSON，冻结driver返回STOP。后续generic清理模板变量错误也在任何终止前拒收；主代理保留错误脚本，仅修两处私有变量、严格绑定后结束两个本次拥有的后台实例，无其他进程操作。新宿主helper经5项无VM互操作及只读复核；仅对现有回执作恢复验证，不再启动VM、不创建canonical PASS、不改判原STOP或退款。
+
+原先PROPOSED_NOT_AUTHORIZED块保留为当时提案；本块与独立授权/claim/outcome是当前已批准且已耗尽的事实。没有新的继任scope或下一次额度。任何新的VM资格复验须另有明确独立范围；其余普通源码准备可继续，真实产包预算/claim仍UNKNOWN_NOT_CREATED。APK NOT_RUN、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING不变，细项/原证见唯一进度细表最新节点。

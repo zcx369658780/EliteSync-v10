@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-04 完整映射矩阵实测、宿主收尾STOP与独立复验候选（CURRENT ENTRY）
+# EliteSync｜2026-11-04 Owner授权单次复验STOP与无重启证据恢复（CURRENT ENTRY）
+
+**OWNER_GRANTED_CASE_SPENT / LIFECYCLE_DRIVER_STOP / BOUND_MATRIX_RECOVERED / OWNED_HOST_CLEANUP_COMPLETED / NO_VM_RELAUNCH / APK_NOT_RUN / G2_FALSE**
+
+Owner对上一明确“独立最多1次生命周期复验”提案直接答复“我授权，请继续”。本节点使用已经冻结的 `v1015-full-input-mapping-lifecycle-recheck-20261104`，从实际产品根/分支/origin及HEAD fd048cd7d8604e7471e44d2f04d62f4675fb9ed9接续；初始index空，仅既有%SystemDrive%/未跟踪。新授权独立落盘，不改候选历史合同/旧helper/旧STOP，不重新prepare或换目录。
+
+本scope已实际启动一次，**1/1永久已耗、剩0**。客体failure=null，275个样本、2457项权限拒绝与两个owned写面再次完成；但宿主观察把完整CIM对象直接转JSON，depth4告警污染stdout，22.344秒以JSON解析异常返回 `LIFECYCLE_RECHECK_REJECTED_OR_STOPPED`，原始outcome不改。随后收尾模板两处变量拼接错误又在任何终止前抛Null；主代理保存失败脚本，仅校正两处私有变量token，严格绑定本次两个宿主实例后结束，当前四类Sandbox进程缺席。后台VM完全teardown仍UNKNOWN。
+
+新修复源码ef98dd80ef261ebbd439fb3e1c73939bd30505db提供宿主只读观察/渲染修正，**没有改动已耗的lifecycle/cleanup/base源码**。先投影六个原始字段再输出严格JSON数组，null/空输出/告警污染均拒收；对SHA固定的旧模板只改两处变量。5项无VM PowerShell互操作检查通过（0/1/2行含深层CIM metadata、旧模板零终止失败、修正版仅操作stub），非作者Codex复核无具体P1/P2；实际修复全链未重新运行。
+
+对同一已有guest回执以原冻结策略作只读恢复核验，275/2457/2均有效；修正脚本与已执行私有脚本文本精确相等，fresh宿主快照为干净 `[]`。另存 `BOUND_MATRIX_AND_POST_STOP_HOST_CLEANUP_EVIDENCE_RECOVERED`，**不是原scope PASS，不生成canonical verified-result，不放行完整冻结driver、native或G2**。此次仅一个VM启动，SDK/Gradle/构建/DB/设备/媒体0，没有新scope/继任claim或自动续额；真正产包预算/claim仍UNKNOWN_NOT_CREATED。
+
+原证位于LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-lifecycle-recheck-20261104`，先读engineering-outcome-private.json与post-stop-evidence-recovery-private.json，再看owner-explicit-grant/原observer输出/失败与修正脚本。54份保护记录私有保存（旧51+本claim/outcome+独立恢复证据）；原根main@4bebc8f3/默认255/index2be660...保持，旧SDK/DB/备份/worktrees与STOP不动。普通工程仍可准备；任何新的VM复验须另有明确独立范围，不能复用本scope。整版仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。源码与记录同步结果以实际Git ref/私有回执为准，详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-owner明确授权复验与无重启宿主修复恢复节点)。
+
+---
+
+# EliteSync｜2026-11-04 完整映射矩阵实测、宿主收尾STOP与独立复验候选（历史节点）
 
 **MAPPING_MATRIX_OBSERVED / SCOPE_STOP_PRESERVED / OWNED_HOST_CLEANUP_COMPLETED / LIFECYCLE_RECHECK_PROPOSED_NOT_AUTHORIZED / APK_NOT_RUN / PENDING_SYNC / G2_FALSE**
 
