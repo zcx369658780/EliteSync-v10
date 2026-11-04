@@ -12,7 +12,9 @@ Owner再次“请继续”后，从实际产品根/分支/remote与HEAD ee16a5f2
 
 **下一受影响动态项需Owner明确给新的独立最多1次映射生命周期复验范围**，仅273只读/2私有写面与宿主收尾，不运行SDK/Gradle/Flutter/产包/设备/媒体，不退款或换目录续旧额；候选已可审查，本节点不自行启动。源码准备仍属既有授权。生产资源也尚未闭合：私有项目-Xmx8G不能套旧2GiB观察配置；完整BAT/Git/PowerShell与native工具/DLL资格、实际offline action解析、真实AAR→host消费及实际产包预算/claim仍未成立。实际产包UNKNOWN_NOT_CREATED，AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING。
 
-原证先读LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-preflight-20261104/engineering-summary-private.json`，再看已耗scope工程outcome/guest result和独立cleanup receipt；候选manifest SHA0f4ee77b89f03417d82c6e4cc49079e9febd07819a38ca9fb4c49f69f58d989e。原件不上传GitHub。原根main@4bebc8f3/255/index SHA2be660...保持；旧SDK/DB/备份/worktrees/STOP不动。Git仍PENDING_SYNC，普通同步失败不改身份/SSH或强推；镜像不作Parent。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-完整映射矩阵与宿主生命周期stop节点)及[新独立复验提案](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#2026-11-04-映射scope实测stop与新的独立生命周期复验提案)。
+原证先读LOCAL_ONLY `C:/Users/zcxve/EliteSyncDev/v1015-full-input-mapping-preflight-20261104/engineering-summary-private.json`，再看已耗scope工程outcome/guest result和独立cleanup receipt；候选manifest SHA0f4ee77b89f03417d82c6e4cc49079e9febd07819a38ca9fb4c49f69f58d989e。原件不上传GitHub。原根main@4bebc8f3/255/index SHA2be660...保持；旧SDK/DB/备份/worktrees/STOP不动。
+
+**Git原产品分支同步已恢复**：审查整个d8543689..dd349a19的9个待推提交/16条路径后，沿既有origin/身份普通non-force推送成功，并回读远端为dd349a19253a72f26bfe00d8c191a953dd3b8dba；main仍8a9e97a1e9414b65d669e07f3188b81764196027。历史SSH失败不改写；未pull/reset/rebase/force、未改SSH/身份、未取镜像为Parent。该Git同步不等于真实消息Push通过；本同步记录提交自身最终以Git实际HEAD/远端核实为准。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-完整映射矩阵与宿主生命周期stop节点)及[新独立复验提案](../decisions/V1015_VM_SOURCE_CONSOLE_EXECUTION_20261102.md#2026-11-04-映射scope实测stop与新的独立生命周期复验提案)。
 
 ---
 

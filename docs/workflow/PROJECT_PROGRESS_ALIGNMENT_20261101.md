@@ -18,6 +18,7 @@
 | 检查/审查 | 23项Python纯检查（映射10+收尾/候选13）通过，C#实际编译与PowerShell仅AST解析通过。非作者Codex复核发现并修复：客体关机位误用、RO创建权限漏项、生成源码验前执行/裸helper导入、quoted参数子串误认和pin集合缺项；均在各自动态路径启动前修复，旧e344运行源冻结。最后无剩余具体P1/P2，非外部独立验收；旧42/249/19及C#168/9/31不重计 |
 | 原证/保护 | 原证分别为LOCAL_ONLY v1015-full-input-mapping-preflight-20261104（engineering-summary-private）、v1015-full-input-mapping-qualification-20261104（manifest/claim/output/result/engineering-outcome/owned-host-cleanup）、lifecycle候选的独立scope及source目录。原48记录SHA一致，加已耗claim/outcome和清理receipt为51；旧scope不改。原根main@4bebc8f3/default255/index2be660...保持，SDK/DB/备份/worktrees/%SystemDrive%/历史失败保留 |
 | 新预算与下一步 | 申请新的独立最多1次映射生命周期复验，仅同273RO+2owned/275样本/2457权限项与已绑定宿主收尾，guest2GiB/90秒、host剩余时限180秒；禁止SDK/Gradle/Flutter/真实产包/设备/媒体/网络服务。Owner尚未授权此新范围，无新claim；旧scope0余额不续。不以一般产包许可替代本独立复验门，源码准备可继续；真正产包预算/claim UNKNOWN_NOT_CREATED、native/启动链/offline/AAR→host仍未证明 |
+| 原产品Git同步恢复 | 本节点完整审过d8543689..dd349a19的9提交/16路径，普通non-force推送原产品分支成功；回读远端dd349a19253a72f26bfe00d8c191a953dd3b8dba，main仍8a9e97a1e9414b65d669e07f3188b81764196027。历史PENDING_SYNC/失败原文保留为历史，此次不再沿用为当前Git失败；未改身份/SSH或使用镜像Parent，无pull/reset/rebase/force。此同步回执的最终保存提交以实际Git HEAD/远端一致性为准，真实消息Push仍PENDING |
 
 新候选已具体准备，下一动态执行只等待Owner对该独立最多1次范围的明确决定；不是笼统重问v10.1.5/Debug APK/USB许可，也不是恢复旧余额。原主工程仍10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不做正式发布。
 

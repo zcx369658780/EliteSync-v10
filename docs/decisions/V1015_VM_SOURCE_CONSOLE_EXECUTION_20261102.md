@@ -125,3 +125,5 @@ Owner本轮再次“请继续”，Codex在已列明下一步映射资格与既�
 - 候选已准备/编译/冻结：固定e344基线生成副本仅换scope literal，另加独立核验生成源码闭包、隔离helper及固定11项pins的driver；原执行源码不修改。23项定向Python、编译、AST解析及非作者Codex复核有界支持，真实新生命周期未运行。manifest/binary及原始输入见唯一进度细表和LOCAL_ONLY候选原证，不上传原件。
 
 本提案只等待这一次新范围的Owner决定，不重问既有Debug APK/USB或普通工程许可；尚无新claim。更后的真实产包预算/claim仍UNKNOWN_NOT_CREATED，资源/完整native/BAT/offline/AAR→host门各自保留。整版10 PARTIAL、AC05 OPEN、G2 false及真实消息Push PENDING不变。
+
+同节点原产品Git同步已恢复：审全待推9提交/16路径后，既有origin/身份普通non-force推送至dd349a19253a72f26bfe00d8c191a953dd3b8dba成功并回读一致，main仍8a9e97a1；历史失败不重写，镜像不作Parent。此同步不授予新的运行余额，也不改变真实消息Push PENDING；同步记录最终提交以实际Git HEAD/远端核实为准。
