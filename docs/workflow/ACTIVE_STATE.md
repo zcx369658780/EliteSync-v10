@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-04 Owner授权单次复验STOP与无重启证据恢复（CURRENT ENTRY）
+# EliteSync｜2026-11-04 互操作源码候选与原生/资源准备（CURRENT ENTRY）
+
+**SOURCE_CANDIDATES_PREPARED / NEW_VM_NOT_AUTHORIZED / NATIVE_NOT_QUALIFIED / CAPACITY_NOT_READY / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以请继续”用于普通源码准备，没有据此新增VM/SDK/产包额度。产品根/分支/origin保持，进入HEAD `976b7528fedf5c36ea77de699f23ceedd378aecc`，index空，仅保留原%SystemDrive%/；apps/services未修改。新增四个工具文件与本节点最终身份以Git提交和远端回读为准。
+
+新full_input_mapping_interop将primitive JSON观察、SHA绑定的模板两处变量修正、精确owned收尾和严格collector接入全链；已耗源码/STOP不改。候选 `v1015-full-input-mapping-interop-recheck-20261104` 已编译/冻结，manifest SHA `c605ff5b03b8163408ad664120cdfe591ca8ff581bceb339cf8f98006233ff74`、binary SHA `8c59908fc2b6d2ad6a7bcf1d8d257be35cdabe0c32ae773cbad7aedcc40d6ac2`。SOURCE_READY_NOT_AUTHORIZED，无授权文件或claim，不重新prepare。13项无VM互操作检查通过，进程查询/终止均stub；不是实际生命周期资格。
+
+新静态原生/资源选择器6项检查通过；32个具名文件/460,126,056字节fresh SHA/FileID与原完整库存一致，覆盖私有Flutter/Git/Dart/snapshot/三ABI release gen_snapshot、CMake/ninja/clang/JDK/Gradle及两种aapt2来源。非作者Codex复核两组源码无具体P1/P2，非外部独立验收。SDK未写未执行；实际aapt2选择、guest cmd/where/PowerShell、native/DLL及offline action闭包仍未证明。新私有GradleHome准备heap2GiB/metaspace768MiB/code256MiB/worker1，旧项目-Xmx8G不改；Gradle8.14源码支持user-home override优先，实际生效NOT_RUN。拟guest6GiB+host reserve4GiB，新快照仅可用4474MiB，**余量不足，不放行生产资源候选**，不结束用户应用。
+
+LOCAL_ONLY原证 `C:/Users/zcxve/EliteSyncDev/v1015-producer-qualification-preparation-20261104`，先看engineering-summary-private、selected-native-inputs-private、resource-candidate-private。54保护记录、原dirty根/index及全部STOP保留；旧lifecycle仍1/1已耗、剩0。新VM须另有明确独立最多1次映射复验范围，不含SDK/产包；本节点未启动。实际产包预算/claim仍UNKNOWN_NOT_CREATED；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-04-互操作源码候选与原生资源准备节点)。
+
+---
+
+# EliteSync｜2026-11-04 Owner授权单次复验STOP与无重启证据恢复（历史节点）
 
 **OWNER_GRANTED_CASE_SPENT / LIFECYCLE_DRIVER_STOP / BOUND_MATRIX_RECOVERED / OWNED_HOST_CLEANUP_COMPLETED / NO_VM_RELAUNCH / APK_NOT_RUN / G2_FALSE**
 

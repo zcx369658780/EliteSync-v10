@@ -135,3 +135,11 @@ Owner对上一个明确“新的独立最多1次生命周期复验”问题直�
 此新scope已执行1/1、剩0：guest275/2457/2完成，但宿主直接CIM序列化的告警污染JSON，冻结driver返回STOP。后续generic清理模板变量错误也在任何终止前拒收；主代理保留错误脚本，仅修两处私有变量、严格绑定后结束两个本次拥有的后台实例，无其他进程操作。新宿主helper经5项无VM互操作及只读复核；仅对现有回执作恢复验证，不再启动VM、不创建canonical PASS、不改判原STOP或退款。
 
 原先PROPOSED_NOT_AUTHORIZED块保留为当时提案；本块与独立授权/claim/outcome是当前已批准且已耗尽的事实。没有新的继任scope或下一次额度。任何新的VM资格复验须另有明确独立范围；其余普通源码准备可继续，真实产包预算/claim仍UNKNOWN_NOT_CREATED。APK NOT_RUN、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING不变，细项/原证见唯一进度细表最新节点。
+
+## 2026-11-04 普通源码接续与新互操作候选（未获新VM授权）
+
+Owner随后“可以请继续”用于普通源码和产包输入准备，不自动成为上一已耗单次的退款或第三次VM许可。新full_input_mapping_interop与固定scope `v1015-full-input-mapping-interop-recheck-20261104` 已具体准备，默认launch拒绝；manifest SHAc605ff5b03b8163408ad664120cdfe591ca8ff581bceb339cf8f98006233ff74、binary SHA8c59908fc2b6d2ad6a7bcf1d8d257be35cdabe0c32ae773cbad7aedcc40d6ac2。13项无VM/stub互操作通过，实际全链NOT_RUN，无新授权文件或claim。旧helper/合同/STOP不修改，不重新prepare或换目录续额。
+
+如Owner另行明确同意，本候选仅提议独立最多1次mapping-only复验：273只读根/2已拥有写面、275读取/2457权限拒绝、guest2GiB/90秒、host观察/收尾/收集共享180秒剩余时限，含精确owned宿主收尾；不运行SDK/Gradle/Flutter产包、数据库、设备、媒体或外部服务。启动前仍fresh核源/输入/当前环境，不借旧额度；当前状态SOURCE_READY_NOT_AUTHORIZED。
+
+普通准备另完成32文件fresh身份与新私有Gradle资源候选，不修改旧-Xmx8G项目文件；拟生产guest6GiB+宿主reserve4GiB，快照可用4474MiB，余量不足。此候选不是上项2GiB映射检查，也不是实际产包授权/资格。guest OS/native/DLL/offline/AAR→host及实际产包独立预算仍待闭合；不结束用户应用、不安装升级工具链。细项及LOCAL_ONLY原证见唯一进度细表最新节点。

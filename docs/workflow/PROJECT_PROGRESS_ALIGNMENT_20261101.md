@@ -1,4 +1,28 @@
-# EliteSync-v10｜项目进度细表（Owner明确授权复验与无重启证据恢复）
+# EliteSync-v10｜项目进度细表（互操作源码候选与原生/资源准备）
+
+日期：2026-11-04。状态：**SOURCE_CANDIDATES_PREPARED / NEW_VM_NOT_AUTHORIZED / NATIVE_NOT_QUALIFIED / CAPACITY_NOT_READY / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-04 互操作源码候选与原生资源准备节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 接续与范围 | Owner“可以请继续”用于普通源码准备；实际根/分支/origin正确，进入976b7528fedf5c36ea77de699f23ceedd378aecc，index空，仅原%SystemDrive%/未跟踪。VM/SDK/实际构建/DB/设备/媒体运行0，新运行claim0，不恢复任何旧余额 |
+| 新全链源码 | full_input_mapping_interop从SHA锁定旧基线只换scope literal，校5份生成闭包后compile已核bytes、隔离helper绑定、固定完整pins。primitive JSON观察→修正renderer→精确owned收尾→空快照→独立Python严格collector，失败guest也先清理再拒收，剩余时限贯穿观察/清理/收集。已耗base/lifecycle/cleanup源码未改 |
+| 固定候选 | v1015-full-input-mapping-interop-recheck-20261104已prepare/C#编译/冻结，manifest SHAc605ff5b03b8163408ad664120cdfe591ca8ff581bceb339cf8f98006233ff74、binary SHA8c59908fc2b6d2ad6a7bcf1d8d257be35cdabe0c32ae773cbad7aedcc40d6ac2。SOURCE_READY_NOT_AUTHORIZED，无授权文件或claim；本次再次frozen核对，没有重新prepare/启动 |
+| 宿主检查 | 13项互操作检查通过：0/1/2行深层CIM metadata、全链stub收尾/空快照/collector、guest失败拒收及并发frontend不终止。真实PowerShell但进程查询/终止全部stub；非作者Codex复核无P1/P2，非实际Windows生命周期/外部独立验收。不将其中已有5项重复计为新增 |
+| 静态选择器 | 新producer_qualification_plan无SDK/VM/构建入口，绑定具名库存host/guest，拒缺件、歧义、错根、非规范relative与坏身份；6项纯Python检查通过，非作者复核无P1/P2。仅用于当前固定且已核的本地根，不是任意不可信根的通用验证器 |
+| 只读原生输入 | 从原89,846文件及私有Flutter库存选32文件/460,126,056字节fresh hash/FileID一致，无全树重扫。包括BAT/shared、Git、Dart三入口、tools snapshot/config/stamps、arm/arm64/x64 release gen_snapshot、SDK aapt2、CMake/ninja、NDK clang/clang++/ld.lld、JDK、Gradle与优先级源码及AGP aapt2 archive；全部qualified=false，SDK执行0 |
+| aapt2/OS限制 | AGP archive SHA3ac122c7fc5a6b8bd5fd4b65b94fd00afc7ec69f51a00245fa05803517a588a7，内部exe SHAeac70ec5367c823a96432a1afb9f4f2bcf077148d957ed96935a5b338a1b0392/5,073,920字节只读核对，未解压执行。SDK版本另列，实际选择NOT_PROVEN；guest cmd/where/WindowsPS未pin，不能以host同名程序或pwsh7存在替代。完整DLL/子进程资格、BAT真实消费和offline action闭包未证明 |
+| 私有资源候选 | 新GradleHome/gradle.properties为heap2GiB/metaspace768MiB/code256MiB/worker1、关闭parallel/watch/daemon、Kotlin in-process候选，要求offline/no-daemon/max-workers1。旧Project-Xmx8G未改，新home未接执行器。Gradle8.14 Loader将user-home置overrideProperties，Properties最后putAll覆盖，DaemonBuildOptions读取jvmargs；只支持静态优先级，实际配置/Kotlin消费NOT_RUN |
+| 容量未通过 | 拟guest6144MiB+host reserve4096MiB，新快照total32238MiB/available4474MiB，低于10240MiB提案阈值。capacity_qualified=false、execution_allowed=false；快照非长期资格，不结束用户应用、不借旧2GiB观察配置放行生产 |
+| 原证/保护 | LOCAL_ONLY v1015-producer-qualification-preparation-20261104含新材料与三文档修改前可恢复副本。最新54份保护记录、原根main@4bebc8f3/default255/index2be660...、apps ed248529/services7634b475及全部STOP保持。原lifecycle1/1已耗/剩0、canonical PASS仍不存在 |
+| 下一步/同步 | 新mapping-only复验需Owner明确独立最多1次范围，仅273RO/2owned/275reads/2457拒绝和精确宿主收尾，禁止SDK/产包/设备/媒体。实际产包另需资源、native/offline闭包、真实AAR→host与独立预算/claim，当前UNKNOWN_NOT_CREATED。本轮只读远端产品976b7528/main8a9e97a1，最终普通同步以Git ref/私有回执为准；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本节点完成源码、输入与资源候选准备，未闭合实际产包执行器。13项宿主互操作与6项静态检查分别记录，不把stub、内容存在性或源码优先级提升为实际构建/Owner整版接受。
+
+---
+
+# 前一Owner明确授权复验与无重启证据恢复节点（按原时点保留）
 
 日期：2026-11-04（Asia/Shanghai）。状态：**OWNER_GRANTED_CASE_SPENT / LIFECYCLE_DRIVER_STOP / BOUND_MATRIX_RECOVERED / OWNED_HOST_CLEANUP_COMPLETED / NO_VM_RELAUNCH / APK_NOT_RUN / G2_FALSE**。
 
