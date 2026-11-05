@@ -27,8 +27,100 @@ class SupervisorTests(unittest.TestCase):
             dict(host='D:/prepared',guest='C:/Inputs/PreparedFlutter',readonly=True)],'nonce'))
         self.assertEqual(tree.findtext('Networking'),'Disable')
         folders=tree.findall('MappedFolders/MappedFolder')
-        self.assertEqual([f.findtext('SandboxFolder') for f in folders if f.findtext('ReadOnly')=='false'],['C:/ProbeOutput'])
-        self.assertNotIn('C:/BuildWork',[f.findtext('SandboxFolder') for f in folders])
+        self.assertEqual([f.findtext('SandboxFolder') for f in folders if f.findtext('ReadOnly')=='false'],[r'C:\ProbeOutput'])
+        self.assertNotIn(r'C:\BuildWork',[f.findtext('SandboxFolder') for f in folders])
+        self.assertTrue(all('/' not in f.findtext(field) for f in folders for field in ('HostFolder','SandboxFolder')))
+
+    def owned_pair(self):
+        base=dict(CreationDate='2026-11-05T13:05:34.8202130Z',
+                  ExecutablePath=r'C:\Apps\WindowsSandboxRemoteSession.exe',
+                  CommandLine=r'"C:\Apps\WindowsSandboxRemoteSession.exe" "C:\case\qualification.wsb"')
+        session=dict(base,ProcessId=123,ParentProcessId=100,Name='WindowsSandboxRemoteSession.exe')
+        server=dict(ProcessId=124,ParentProcessId=123,Name='WindowsSandboxServer.exe',
+                    CreationDate='2026-11-05T13:05:35.0000000Z',
+                    ExecutablePath=r'C:\Apps\WindowsSandboxServer.exe',CommandLine='server')
+        return [session,server]
+
+    def test_recorded_server_exit_stops_without_waiting_for_host_deadline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);self.case(root);pair=self.owned_pair()
+            observations=iter(({'rows':[]},{'rows':pair},{'rows':pair[:1]}))
+            with patch.object(supervisor,'preflight'),patch.object(supervisor.observation,'observe',side_effect=lambda **k:next(observations)),\
+                 patch.object(supervisor.subprocess,'run',return_value=subprocess.CompletedProcess([],0,b'{"pid":100,"creationUtc":"2026-11-05T13:05:34Z"}',b'')),\
+                 patch.object(supervisor.time,'sleep'),patch.object(supervisor,'_finish_host') as finish:
+                with self.assertRaisesRegex(RuntimeError,'server exited'):
+                    supervisor.launch(root)
+            self.assertEqual(finish.call_count,1)
+            self.assertTrue((root/'launch.claim.json').exists())
+
+    def test_remaining_session_cleanup_binds_history_and_refuses_pid_reuse(self):
+        pair=self.owned_pair();launch=dict(pid=100,creationUtc='2026-11-05T13:05:34Z')
+        script=supervisor.remaining_session_cleanup(launch,pair,pair[:1],r'C:\case\qualification.wsb')
+        self.assertIn('.CloseMainWindow()',script)
+        self.assertIn('.Handle',script)
+        self.assertIn('.Kill()',script)
+        self.assertIn('2026-11-05T13:05:34.8202130Z',script)
+        for changed in (dict(pair[0],CreationDate='2026-11-06T13:05:34Z'),dict(pair[0],CommandLine='other')):
+            with self.assertRaises(ValueError):
+                supervisor.remaining_session_cleanup(launch,pair,[changed],r'C:\case\qualification.wsb')
+        with self.assertRaises(ValueError):
+            supervisor.remaining_session_cleanup(launch,[],pair[:1],r'C:\case\qualification.wsb')
+        with self.assertRaises(ValueError):
+            supervisor.remaining_session_cleanup(launch,pair,pair[1:],r'C:\case\qualification.wsb')
+
+    def test_finish_host_routes_surviving_session_and_verifies_empty_snapshot(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);pair=self.owned_pair()
+            pair[0]['CommandLine']='"'+pair[0]['ExecutablePath']+'" "'+str(root/'qualification.wsb')+'"'
+            launch=dict(pid=100,creationUtc='2026-11-05T13:05:34Z')
+            with patch.object(supervisor.observation,'observe',side_effect=({'rows':pair[:1]},{'rows':[]})),\
+                 patch.object(supervisor.subprocess,'run',return_value=subprocess.CompletedProcess([],0,b'',b'')) as run:
+                supervisor._finish_host(root,launch,pair,supervisor.time.monotonic()+45)
+            self.assertEqual(run.call_count,1)
+            self.assertIn('.CloseMainWindow()',(root/'close-owned.ps1').read_text())
+            self.assertEqual(json.loads((root/'host-after-cleanup.json').read_bytes()),[])
+
+    def test_cleanup_script_execution_uses_only_simulated_processes(self):
+        pair=self.owned_pair();launch=dict(pid=100,creationUtc='2026-11-05T13:05:34Z')
+        script=supervisor.remaining_session_cleanup(launch,pair,pair[:1],r'C:\case\qualification.wsb')
+        harness=r'''
+$ErrorActionPreference='Stop'
+Add-Type @'
+public class FakeOwnedSession {
+    public int Handle { get { return 123; } }
+    public System.DateTime StartTime;
+    public bool Gentle;
+    public bool HasExited;
+    public bool CloseMainWindow() { System.Console.WriteLine("CLOSE"); return true; }
+    public bool WaitForExit(int timeout) { if(Gentle) HasExited=true; return HasExited; }
+    public void Kill() { System.Console.WriteLine("KILL"); HasExited=true; }
+}
+'@
+$fake=[FakeOwnedSession]::new()
+$fake.Gentle=$mode -eq 'gentle'
+$birth=[datetime]::Parse('2026-11-05T13:05:34.8202130Z')
+$fake.StartTime=$birth
+$cim=[pscustomobject]@{CreationDate=$birth;ExecutablePath='C:\Apps\WindowsSandboxRemoteSession.exe';CommandLine='"C:\Apps\WindowsSandboxRemoteSession.exe" "C:\case\qualification.wsb"'}
+switch($mode){
+ 'birth' {$cim.CreationDate=$birth.AddSeconds(1)}
+ 'path' {$cim.ExecutablePath='C:\other.exe'}
+ 'command' {$cim.CommandLine='other'}
+ 'held' {$fake.StartTime=$birth.AddSeconds(1)}
+}
+function Get-Process { param($Id,$ErrorAction) if($mode -ne 'absent'){$fake} }
+function Get-CimInstance { param($ClassName,$Filter) if($mode -ne 'gone'){$cim} }
+'''
+        for mode in ('gentle','kill','absent','gone','birth','path','command','held'):
+            with self.subTest(mode=mode):
+                result=subprocess.run(['pwsh','-NoProfile','-NonInteractive','-Command',"$mode='"+mode+"'\n"+harness+'\n'+script],capture_output=True,timeout=20)
+                lines=result.stdout.decode('utf-8-sig').splitlines()
+                if mode in ('birth','path','command','held'):
+                    self.assertNotEqual(result.returncode,0)
+                    self.assertEqual(lines,[])
+                    self.assertIn(b'identity',result.stderr)
+                else:
+                    self.assertEqual(result.returncode,0,result.stderr)
+                    self.assertEqual(lines,['CLOSE'] if mode=='gentle' else ['CLOSE','KILL'] if mode=='kill' else [])
 
     def launch_fake(self, root, terminal, change=None, cleanup_error=False):
         c=self.case(root)

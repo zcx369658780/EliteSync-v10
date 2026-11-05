@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import shutil
 import stat
 import subprocess
@@ -49,7 +49,8 @@ def configuration(root, mappings, nonce):
                 dict(host=str(root/'output'), guest='C:/ProbeOutput', readonly=False)]
     for item in all_maps:
         folder = ET.SubElement(folders, 'MappedFolder')
-        for name, value in (('HostFolder', item['host']), ('SandboxFolder', item['guest']),
+        for name, value in (('HostFolder', str(PureWindowsPath(item['host']))),
+                            ('SandboxFolder', str(PureWindowsPath(item['guest']))),
                             ('ReadOnly', str(item['readonly']).lower())):
             ET.SubElement(folder, name).text = value
     ET.SubElement(ET.SubElement(tree, 'LogonCommand'), 'Command').text = (
@@ -127,13 +128,42 @@ def prepare(root, prepared_inputs, entry_file):
     return contract
 
 
+def remaining_session_cleanup(launch, recorded, current, configuration):
+    """Close the exact recorded session when its server has already exited."""
+    # Authenticate the original complete ancestry/configuration, then bind the
+    # survivor. Never infer ownership from a process name or PID alone.
+    observation.original_cleanup.bind_owned_pair(launch, recorded, recorded, configuration)
+    expected = next(row for row in recorded if row['Name'] == 'WindowsSandboxRemoteSession.exe')
+    if current != [expected]:
+        raise ValueError('Only the unchanged recorded session may remain')
+    def quote(value):
+        return "'" + str(value).replace("'", "''") + "'"
+    return '\n'.join([
+        "$ErrorActionPreference = 'Stop'",
+        '$owned = Get-Process -Id ' + str(expected['ProcessId']) + ' -ErrorAction SilentlyContinue',
+        'if(-not $owned){exit 0}',
+        '$held = $owned.Handle',
+        "$fresh = Get-CimInstance Win32_Process -Filter 'ProcessId=" + str(expected['ProcessId']) + "'",
+        'if(-not $fresh){exit 0}',
+        "if($fresh.CreationDate.ToUniversalTime().ToString('o') -cne " + quote(expected['CreationDate'])
+        + ' -or $fresh.ExecutablePath -cne ' + quote(expected['ExecutablePath'])
+        + ' -or $fresh.CommandLine -cne ' + quote(expected['CommandLine'])
+        + "){throw 'Owned session identity drifted'}",
+        "if([math]::Abs(($owned.StartTime.ToUniversalTime() - $fresh.CreationDate.ToUniversalTime()).TotalMilliseconds) -gt 1){throw 'Held session identity differs'}",
+        '$null = $owned.CloseMainWindow()',
+        'if(-not $owned.WaitForExit(5000)){$owned.Kill(); $null = $owned.WaitForExit(5000)}',
+        "if(-not $owned.HasExited){throw 'Owned session exit unverified'}",
+    ]) + '\n'
+
+
 def _finish_host(root, launch, recorded, deadline):
-    """Close only a fully bound owned session/server pair; reuse existing code."""
+    """Close a bound owned pair or its exact surviving session."""
     current = observation.observe(timeout_seconds=min(15, max(1, deadline-time.monotonic())))
     put(root/'host-after-guest.json', current['rows'])
     if not current['rows']:
         return
-    script = observation.render_corrected_cleanup(launch, recorded, current['rows'], str(root/'qualification.wsb'))
+    renderer = remaining_session_cleanup if len(current['rows']) == 1 else observation.render_corrected_cleanup
+    script = renderer(launch, recorded, current['rows'], str(root/'qualification.wsb'))
     (root/'close-owned.ps1').write_text(script, encoding='utf-8')
     result = subprocess.run(['pwsh','-NoProfile','-File',str(root/'close-owned.ps1')],
                             capture_output=True, timeout=min(45, max(1, deadline-time.monotonic())))
@@ -253,6 +283,8 @@ def launch(root):
                         not 0 <= proof['elapsed_ms'] < contract['guest_seconds']*1000):
                     raise RuntimeError('Guest producer result binding failed')
                 break
+            if recorded and next(row for row in recorded if row['Name'] == 'WindowsSandboxServer.exe') not in current:
+                raise RuntimeError('Sandbox server exited before a producer result; attempt consumed')
             time.sleep(min(1,max(0,deadline-time.monotonic())))
         if proof is None:
             raise TimeoutError('Host deadline; attempt consumed')
