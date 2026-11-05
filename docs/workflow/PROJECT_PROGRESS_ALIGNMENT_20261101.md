@@ -15,6 +15,7 @@
 | 真实只读应用 | 按固定materialization SHA131ab25bea79927f2e18f08273fbf5b6b02c0c3855f91b8f61ce643451bf5adf选中三源文件；两输出新鲜FileID库存与旧诊断SHA逐份匹配。最终源码下再次只读核五文件，派生预期与已保存f7ab...f780逐项一致。初始binding-report保留原时点，最终确认另存，不改旧outcome/STOP，不重新collect或运行CMake |
 | 原证/保护 | LOCAL_ONLY v1015-cmake-version-binding-20261105，engineering-summary-private/version-expectation-private/binding-report-private/binding-final-verification-private、73记录前后副本及三文档修改前原文。73/73 SHA一致，旧合同SHAccb792...00de及其全部冻结源码保持，旧canonical不存在。原main@4bebc8f3/default255/index2be660...，apps ed248529/services7634b475不变；SDK/DB/备份/worktrees/STOP保留，原证不上传 |
 | 旧scope与未运行 | 旧app-local scope仍REJECTED，1/1已耗剩0；root0/实际首行与冻结精确首行冲突的原始结论保持。字节匹配不是事后放宽或改判，不退款、不重跑、不换目录续额。本节点VM/SDK/observer编译/Gradle/Flutter/产包/DB/设备/媒体/installer0，无新运行scope/claim或候选VM；前轮动态/12项纯检查不记作本轮新测 |
+| Git同步 | 本地源码024f78a8已提交；普通SSH push被Connection closed拒绝，PENDING_SYNC。之前最后实核远端产品分支a2af87a8/main8a9e97a1，失败后HEAD未证实；不换身份/协议/镜像写入，不pull/reset/rebase/force。后续核完整待推范围再普通non-force同步原产品分支；最终本地HEAD与回执见实际记录 |
 | 下一步/整版 | 未来新消费者须独立冻结预期SHA，另闭合执行器、完整输入及具体独立运行范围；目前CONSUMER_NOT_WIRED，不能直接用新数据替换旧case判据。其余native/offline/资源/真实AAR→host、实际加载DLL与完整producer资格未证明，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
 
 本节点只完成离线版本预期和纯字节消费者，记录真实固定输入的限定关系；没有新增SDK运行或放行旧case。

@@ -8,6 +8,8 @@ Owner“可以请继续”接续完整版本字面值的离线绑定。新增只
 
 73保护记录、旧合同及全部冻结源码、原dirty/index及apps/services保持；LOCAL_ONLY新绑定原证见唯一细表。producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL及真实消息Push PENDING不变，剩余native/offline/资源/真实AAR→host继续普通准备；不合main、不启v10.1.6。以下历史决定保留原时点。
 
+Git同步：源码提交 `024f78a8a91fd2e6f945ad39b85414ec280820c1` 已在本地保存，普通SSH推送连接关闭，**PENDING_SYNC**。推送前最后核实远端产品分支a2af87a8、main8a9e97a1；失败后远端HEAD未重新证实。不换身份/协议或写镜像绕过，保留整个待推范围，连接恢复后先核全范围再普通non-force同步原产品分支。
+
 ---
 
 ## 2026-11-05 最新Owner决定：新app-local单次已授权、已耗，首行不符拒收

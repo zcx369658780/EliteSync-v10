@@ -2,6 +2,8 @@
 
 **FULL_VERSION_LITERAL_OFFLINE_BOUND / EXACT_OUTPUT_BYTES_CHECKER_READY / CONSUMER_NOT_WIRED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
 
+Git同步：源码提交 `024f78a8a91fd2e6f945ad39b85414ec280820c1` 已在本地保存，普通SSH推送连接关闭，**PENDING_SYNC**。推送前最后核实远端产品分支a2af87a8、main8a9e97a1；失败后远端HEAD未重新证实。不换身份/协议或写镜像绕过，保留整个待推范围，连接恢复后先核全范围再普通non-force同步原产品分支。
+
 Owner“可以请继续”接续上一节点已列明的完整版本字面值离线绑定，普通工程授权内完成；实际产品根/分支/origin与进入HEAD `a2af87a8fdd8f4539ed4e6852e10ce72e35ef86a` 核对一致，index空，仅原%SystemDrive%/。本轮不执行SDK/VM/编译或旧collector，不建新scope/claim，不改已耗cmake_vc_candidate/host/lifecycle及任何原证、判据或余额。
 
 新增cmake_version_binding及9项纯/合成检查。读取固定CMake PE、source.properties、package.xml及既有stdout/stderr共五份文件，全部按库存FileID/size/SHA持有句柄并后置复核；完整NUL边界版本字面值为 `3.22.1-g37088a8-dirty`，在PE偏移**7,402,704**，包修订号3.22.1一致。生成精确首行和完整stdout106字节/SHA的离线预期，未来消费者必须另有独立冻结的预期SHA和匹配PE字节，拒绝版本缩写、错误后缀、空白/换行漂移、额外输出及非空stderr；字节匹配不赋予运行资格。
