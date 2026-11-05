@@ -111,6 +111,7 @@ internal static class ProducerSupervisor {
             Directory.CreateDirectory(Work+@"\Control");
             int flutter=Materialize("flutter-inventory.json",(string)contract["flutter_inventory_sha256"],@"C:\Inputs\PreparedFlutter",Work+@"\Flutter");
             int project=Materialize("project-inventory.json",(string)contract["project_inventory_sha256"],@"C:\Inputs\PreparedProject",Work+@"\Project");
+            File.Copy(Probe+@"\project-package-graph.json",Work+@"\Project\apps\flutter_elitesync_module\.dart_tool\package_graph.json");
             byte[] entryRaw=File.ReadAllBytes(Probe+@"\producer-entry.json");
             if(Hash(entryRaw)!=(string)contract["producer_entry_sha256"])throw new InvalidDataException("Producer entry changed");
             var entry=Object(Json.DeserializeObject(Encoding.UTF8.GetString(entryRaw)));

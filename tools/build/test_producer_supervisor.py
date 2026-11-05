@@ -33,6 +33,8 @@ class SupervisorTests(unittest.TestCase):
             declared=inputs/'complete-declared-input-trees-private.json';declared.write_text('{"files":[]}')
             cmake_inventory=task/'cmake.json';cmake_inventory.write_text('{"inventory":{"files":[]}}')
             entry=task/'entry.json';entry.write_text('{}');root=task/'candidate'
+            graph=task/'package_graph.json';graph_bytes=b'{"configVersion":1,"packages":[]}'
+            graph.write_bytes(graph_bytes)
             original_sha=supervisor.sha
             def fixture_sha(path):
                 return '0b34a527161803e5b783705c3fc07b7fcf5e1818b064b3e42bd5355ea0b14af9' if Path(path)==declared else original_sha(path)
@@ -41,19 +43,26 @@ class SupervisorTests(unittest.TestCase):
                 Path(target).write_bytes(b'fixture-not-executable')
                 return subprocess.CompletedProcess(command,0,b'',b'')
             with patch.object(supervisor,'PINS',dict(flutter=original_sha(inventory),project=original_sha(project_inventory))),\
+                 patch.object(supervisor,'PROJECT_PACKAGE_GRAPH',graph),\
+                 patch.object(supervisor,'PROJECT_PACKAGE_GRAPH_SHA256',original_sha(graph)),\
                  patch.object(supervisor,'sha',side_effect=fixture_sha),\
                  patch.object(supervisor,'bind_entry',return_value={'launch_request':{}}),\
                  patch.object(cmake,'verify_private_tree'),patch.object(cmake,'PRIVATE_CMAKE',task),\
                  patch.object(cmake,'MATERIALIZATION',cmake_inventory),\
                  patch.object(supervisor.subprocess,'run',side_effect=compile_fixture):
                 contract=supervisor.prepare(root,inputs,entry)
+                graph.write_bytes(b'changed')
+                with self.assertRaisesRegex(ValueError,'package graph identity differs'):
+                    supervisor.prepare(task/'changed-graph-candidate',inputs,entry)
+                self.assertFalse((task/'changed-graph-candidate').exists())
             guest=(root/'probe/producer_supervisor.cs').read_text()
             consumed=re.findall(r'File\.Copy\(Probe\+@"\\([^"]+)"',guest)
             self.assertTrue(consumed,'Fixture must exercise actual guest file consumers')
             for name in consumed:
                 self.assertTrue((root/'probe'/name).is_file(),name)
                 self.assertEqual(contract['payload_sha256']['probe/'+name],original_sha(root/'probe'/name))
-            self.assertEqual((root/'probe'/consumed[0]).read_bytes(),(supervisor.HERE/'producer_output.init.gradle').read_bytes())
+            self.assertEqual((root/'probe/producer-output.init.gradle').read_bytes(),(supervisor.HERE/'producer_output.init.gradle').read_bytes())
+            self.assertEqual((root/'probe/project-package-graph.json').read_bytes(),graph_bytes)
             self.assertIn(dict(host=str(tools35),guest='C:/Inputs/AndroidSdk/build-tools/35.0.0',readonly=True),contract['readonly_mappings'])
             added=[row for row in contract['native_inputs'] if row['role']=='android_build_tools_35']
             self.assertEqual({row['relative_path'] for row in added},{'source.properties','aapt2.exe'})

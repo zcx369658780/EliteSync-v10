@@ -24,6 +24,10 @@ import sandbox_host_observation as observation
 
 
 HERE = Path(__file__).resolve().parent
+# Existing Pub output audited against the pinned project's lock/config and
+# unchanged pubspec; copied as input, never synthesized or regenerated here.
+PROJECT_PACKAGE_GRAPH = HERE.parent.parent/'apps/flutter_elitesync_module/.dart_tool/package_graph.json'
+PROJECT_PACKAGE_GRAPH_SHA256 = '8f0d666e6ddf495e504530688c08d665f583959950bc5c45f2971394dfc5880f'
 LIMITS = dict(memory_mb=6144, guest_seconds=1800, host_seconds=2100,
               cleanup_seconds=45, output_bytes=2 * 1024**3)
 
@@ -64,6 +68,9 @@ def prepare(root, prepared_inputs, entry_file):
     root, prepared_inputs, entry_file = map(lambda p: Path(p).resolve(), (root, prepared_inputs, entry_file))
     if root.exists():
         raise FileExistsError('Candidate already exists; preserve it')
+    project_graph = PROJECT_PACKAGE_GRAPH.read_bytes()
+    if hashlib.sha256(project_graph).hexdigest() != PROJECT_PACKAGE_GRAPH_SHA256:
+        raise ValueError('Existing project package graph identity differs')
     entry_raw = entry_file.read_bytes()
     sources = ['producer_process_boundary.cs', 'producer_supervisor.cs',
                'producer_output.init.gradle', 'producer_boundary_binding.py', 'producer_supervisor.py']
@@ -109,6 +116,7 @@ def prepare(root, prepared_inputs, entry_file):
     native_inputs += supplemental_inventory['files']
     root.mkdir(); (root/'probe').mkdir(); (root/'output').mkdir()
     put(root/'probe'/'supplemental-sdk-inventory.json', supplemental_inventory)
+    (root/'probe'/'project-package-graph.json').write_bytes(project_graph)
     for name in sources:
         target = 'producer-output.init.gradle' if name == 'producer_output.init.gradle' else name
         shutil.copyfile(HERE/name, root/'probe'/target)
