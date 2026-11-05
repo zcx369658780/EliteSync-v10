@@ -1,5 +1,19 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新执行事实：原单次已耗0余额，新路径兼容候选未授权
+
+Owner“已释放内存，重新核验”后按原grant/候选fresh资源10291MiB、磁盘460593926144字节及81保护一致才创建UTC13:05:34.244838不可退款claim、唯一VM启动尝试。只读自有窗口明确“Windows 沙盒无法初始化。 Value does not fall within the expected range.”；guest输出空、SDK/Gradle启动无证据、AAR/APK未生成，根因UNKNOWN。原授权**1/1永久已耗，余0**，下面未耗额条款为历史时点，不能再据此启动。
+
+仅重核原session39644完整身份后温和关闭，UTC13:29:48Z退出、无Kill/其它程序操作；host进程面为空，底层VM teardown UNKNOWN。空output宿主停止标记明写origin=host_observed_startup_failure/guest_generated=false，冻结driver1470.844秒异常结束；其Guest STOP/failure通用标签不是guest实测。原claim/STOP/原不足预检/grant/合同/payload都保留，不改判/退款/重跑。
+
+普通工程修复d9a75094统一WSB映射Windows路径格式、记录server退出后及时STOP、精确剩余session收尾。13项定向测试/8个模拟执行分支及Parser通过，非作者Codex复核无具体P1/P2，非外部独立验收；新Windows收尾真实运行NOT_RUN，路径差异不是已证明根因。遵循Owner减少过度防御要求，不恢复token/ACL层或另设逐工具SDK审批。
+
+可审查新候选aar-windows-paths-candidate已编译冻结，合同SHA5ac53e328ba900df2151c4b3d5246870c651d52166496aac9da97bc047785f92、binary bb4e2ab4...e791，275源RO＋probe RO＋唯一fresh输出，**未授权、无grant/claim、VM/SDK0**。拟范围独立最多1VM/1次真实AAR、guest6GiB/整体1800秒、host2100秒、STOP仅本实例安全收尾另45秒、输出2GiB采样限制/可能瞬时超量、不重试；禁网，不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。依据原“实际产包独立预算/claim”与一次性授权边界，新的实际运行仍须Owner明确独立决定，不能把旧授权或普通继续当额度；这不是普通工程许可门。
+
+旧81一致、追加本次原证后97保护，原根main/255/index与双tree保持；原证LOCAL_ONLY，不上传GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。原失败保存完成后继续普通源码准备，以下历史不倒改。
+
+---
+
 ## 2026-11-05 最新Owner决定：独立1次实际AAR已授权，内存预检未耗额
 
 Owner明确答复原问题call_d57fda7d32234010b03e35bcf8145b07/item0：“授权这独立1次实际AAR验证”。已知源码f39dcaa2/Git PENDING_SYNC及合同9c20ffda...acf43，绑定binary66f914c1...61660/原nonce/275源RO/唯一fresh输出/禁网，最多1VM/1真实AAR、6GiB guest整体1800秒/host整体2100秒、STOP仅本实例收尾另45秒、输出2GiB采样限制，不重试。无host APK/设备/DB/媒体/外部服务/生产/安装升级；旧失败/0余额不改。Owner grant原问题/答复/绑定数据已独占保存。

@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 Owner已授权单次AAR，当前内存预检未耗额（CURRENT ENTRY）
+# EliteSync｜2026-11-05 单次AAR尝试止于沙盒初始化，源码修复及新候选已冻结（CURRENT ENTRY）
+
+**SANDBOX_INITIALIZATION_FAILED / CLAIM_SPENT_1_REMAINING_0 / SDK_START_NO_EVIDENCE / SOURCE_FIX_COMPILED / NEW_CANDIDATE_NOT_AUTHORIZED / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner答复“已释放内存，重新核验”后，同一候选/原grant fresh可用10291MiB满足10240门槛，旧81保护一致，2026-11-05T13:05:34.244838Z创建不可退款claim并仅启动1次。只读本实例窗口实际报“Windows 沙盒无法初始化。 Value does not fall within the expected range.”；原server已退出，guest输出一直为空，没有SDK/Gradle启动证据或AAR。根因UNKNOWN，不能写成AAR编译失败。**本次1/1永久已耗、剩0**，此前PRECLAIM_BLOCKED原文保留，下面“余1”仅历史时点。
+
+重核PID/创建时刻/exe/命令后，仅对本次残留session温和CloseMainWindow，13:29:48Z确认退出，无需Kill、未触碰其它程序；host观察为空，底层VM teardown UNKNOWN。向空输出写明origin=host_observed_startup_failure、guest_generated=false的宿主STOP标记，冻结driver1470.844秒异常结束。其通用“Guest STOP/failure”标签不是guest证据；旧合同/payload/claim不改，无重试。
+
+普通源码修复commit **d9a7509443b57f0ca305affedc71758ebf75f84d**：映射路径统一Windows格式；已记录server退出后及时STOP；只剩原session也能绑定完整历史链/当前身份安全收尾。13项定向测试（含8个纯pwsh模拟分支）与脚本Parser检查通过，非作者Codex复核无具体P1/P2，非外部独立验收。路径差异只是兼容修正，尚未证明它造成初始化失败；新收尾真实Windows运行NOT_RUN，不增逐工具资格/审批链。
+
+新私有aar-windows-paths-candidate已编译冻结：合同SHA **5ac53e328ba900df2151c4b3d5246870c651d52166496aac9da97bc047785f92**、binary bb4e2ab4...e791，275源RO＋probe RO＋唯一fresh输出。**未授权、无grant/claim、启动0**；拟独立最多1VM/1真实AAR，原6GiB/30分钟guest/35分钟host/STOP仅本实例45秒/2GiB采样上限及禁网/排除范围不变。旧额度不转移，具体新运行须Owner独立明确决定；资源在未来启动前fresh核，不继承旧内存资格。
+
+LOCAL_ONLY v1015-producer-supervisor-20261105先读startup-stop-engineering-summary-private、resumed-runtime-outcome-private及post-startup-new-candidate-private；原81一致，追加本次原证后97保护。原main/255/index及apps/services不变。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。源码/三文档在原产品分支普通同步，最终ref/Blob见私有回执；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-单次aar初始化失败与源码修复节点)。
+
+---
+
+# EliteSync｜2026-11-05 Owner已授权单次AAR，当前内存预检未耗额（历史节点）
 
 **OWNER_GRANTED_ONE_REAL_AAR_ATTEMPT / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / AAR_APK_NOT_GENERATED / G2_FALSE**
 

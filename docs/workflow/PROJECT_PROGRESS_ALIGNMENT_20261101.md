@@ -1,3 +1,28 @@
+# EliteSync-v10｜项目进度细表（单次AAR初始化失败与源码修复）
+
+日期：2026-11-05。状态：**SANDBOX_INITIALIZATION_FAILED / CLAIM_SPENT_1_REMAINING_0 / SDK_START_NO_EVIDENCE / SOURCE_FIX_COMPILED / NEW_CANDIDATE_NOT_AUTHORIZED / G2_FALSE**。
+
+## 2026-11-05 单次AAR初始化失败与源码修复节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 身份/授权 | 进入产品根/原分支/origin、HEAD e93fb90b55149b526358db42d7f0926a2fb61650、空index/旧%SystemDrive%/正确。Owner“已释放内存，重新核验”沿用已授权原候选，不是新预算；原合同9c20ffda...acf43/binary66f914c1...61660/nonce保持 |
+| fresh预检/耗额 | 实际冻结launch预检10291MiB达到10240门槛、磁盘460593926144字节，19关键输入及旧81保护一致。UTC13:05:34.244838创建claim并仅启动1次VM尝试，1/1永久已耗、余0；旧4204MiB PRECLAIM_BLOCKED及原grant回执保留，不退款/重建/重跑 |
+| 实际失败 | 只读本实例窗口UTC13:24:35.4941543明确“错误／Windows 沙盒无法初始化。 Value does not fall within the expected range.”。server56704已退出、只剩session39644，guest输出一直空，无heartbeat/SDK/Gradle/产物证据。根因UNKNOWN；不是实际AAR编译失败，也不能推断完整离线/native工具链已消费 |
+| 自有收尾 | 重核session39644创建13:05:34.8202130Z/exe/配置完整命令，仅CloseMainWindow，UTC13:29:48.3871086已退出，不需Kill。前后host观察留原证，最终Sandbox进程面为空，底层VM teardown UNKNOWN，不停止其它程序/服务。前置身份比较曾因PowerShell JSON自动解析日期拒绝，未执行操作；改用原始UTC明确字符串后才关闭 |
+| STOP/退出 | 空output只加入明确origin=host_observed_startup_failure、guest_generated=false的宿主failure.json以停止原driver；不是guest日志。冻结driver1470.844秒非零结束并写原STOP/异常/回执，其通用Guest STOP/failure标签不改变实际初始化失败归类。原case合同/payload/claim均不改，无第二次启动 |
+| 静态定位 | 新277映射所有guest使用正斜杠，此前成功配置使用Windows反斜杠。具名配置检查无缺失host/重复guest/相对guest，Application限定时间错误查询与Sandbox具名日志查询无补充结果。路径差异是线索，不据通用错误认定根因；无权限/安装/工具治理变更。当前隔离产品根未索引，代码图谱未用于旧根代证；只读取具名模块/测试 |
+| 源码修复 | d9a7509443b57f0ca305affedc71758ebf75f84d：configuration以PureWindowsPath序列化host/guest；已记录server消失且无结果时立即STOP；本次pair历史绑定＋当前完整身份仅剩原session时，持有handle后重核并温和关闭，超时仅Kill held对象。旧helper/SDK/原case不改，真实新收尾NOT_RUN，不增一般许可门 |
+| 新检查/复核 | 先红1失败/2错误后修；最终13项定向单测5.450秒通过，其中9项既有回归＋4项新增，8个纯pwsh fake Process/CIM分支覆盖gentle/kill/absent/gone/creation/path/command/held身份漂移；不调用真实进程操作。实际身份渲染脚本Parser通过，不执行该脚本。非作者Codex复核指出的执行测试缺口已补，最终无具体P1/P2；非外部独立验收。历史C#80/12等不记本轮新测 |
+| 新候选准备 | 私有aar-windows-paths-candidate，27.578秒真实csc编译冻结；source d9a75094，合同SHA5ac53e328ba900df2151c4b3d5246870c651d52166496aac9da97bc047785f92，binary SHA bb4e2ab46c05cb6673979df8d4e9b178c0fcc9f0191acb00d478333eda77e791，nonce f36178a40629405bb6ed0e8b75d95fcf。275源RO＋probe RO＋唯一fresh output，277路径均Windows格式，无grant/claim、VM/SDK0；不是旧额继任 |
+| 下一具体范围 | 新候选仅提案：独立最多1VM/1 assembleAarRelease；guest6GiB/整体1800秒，Job4GiB/64进程，host2100秒，STOP后仅本实例收尾另45秒，2GiB输出采样上限（可能瞬时超量），不重试。禁网/源只读/guest本地BuildWork；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。需新Owner明确授权；新claim前fresh资源和输入核验，不把本次旧资源或准备视为新资格 |
+| 保护/原证 | 旧81逐份SHA一致，原case冻结payload一致，追加本次16份原证后97保护。driver结束后才修改主控源码，旧冻结probe副本不改。原main4bebc8f3/255/index2be660...、apps ed248529/services7634b475不变；LOCAL_ONLY同父目录startup-stop-engineering-summary-private、resumed-runtime-outcome-private、post-startup-new-candidate-private、protected-records-after-startup-stop-private及具名UI/cleanup原证，不上传 |
+| 项目/Git | AAR/APK未生成，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。fresh SSH核远端产品e93fb90b/main8a9e97a1；审d9a75094及三文档整个待推范围后同身份/协议普通non-force同步，最终commit/ref/Blob见私有回执，不以归档镜像替代产品Parent |
+
+本节点只支持“原单次初始化失败已封存、源码修复和新候选可审查”；不支持新运行额度或产包成功。
+
+---
+
 # EliteSync-v10｜项目进度细表（Owner授权单次AAR后内存预检未耗额）
 
 日期：2026-11-05。状态：**OWNER_GRANTED_ONE_REAL_AAR_ATTEMPT / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / AAR_APK_NOT_GENERATED / G2_FALSE**。
