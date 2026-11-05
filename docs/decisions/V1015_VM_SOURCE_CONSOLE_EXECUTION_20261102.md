@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：完整版本离线预期，不新增动态范围
+
+Owner“可以请继续”接续完整版本字面值的离线绑定。新增只读五文件绑定/纯输出消费者与9项定向检查，固定PE的完整NUL版本3.22.1-g37088a8-dirty、偏移7,402,704，与properties/XML修订3.22.1及既有106字节stdout绑定；新预期SHA f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780。非作者Codex发现的UTF16 XML实体绕过已修复、复核无剩余具体P1/P2，非外部独立验收。
+
+新消费者只返回离线字节匹配，execution_allowed/runtime_qualified/producer_allowed/G2均false；未来调用者必须独立冻结预期SHA并另有完整输入/执行器/运行范围，当前尚未接入或创建新执行器/候选VM。此节点不运行SDK/VM/编译，不建scope/claim，不修改已耗helper、合同/nonce/原结果/STOP或冻结标准。旧app-local case保持REJECTED、1/1已耗剩0、canonical不存在，不以新数据事后改判或续额。
+
+73保护记录、旧合同及全部冻结源码、原dirty/index及apps/services保持；LOCAL_ONLY新绑定原证见唯一细表。producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL及真实消息Push PENDING不变，剩余native/offline/资源/真实AAR→host继续普通准备；不合main、不启v10.1.6。以下历史决定保留原时点。
+
+---
+
 ## 2026-11-05 最新Owner决定：新app-local单次已授权、已耗，首行不符拒收
 
 Owner随后直接选择“授权这独立 1 次新候选检查”，只限上一具名提案的1VM/1 CMake --version、45 PE/五只读根、270+15权限/owned输出/禁网预检、guest2GiB/90秒、host180秒及STOP本实例安全清理另45秒。执行源ba7176b40d5d37566ac4d8e9624fb6062546cc8b；grant单独保存原问题/答复与原合同SHA，不更改此前SOURCE_READY_NOT_AUTHORIZED的历史合同。

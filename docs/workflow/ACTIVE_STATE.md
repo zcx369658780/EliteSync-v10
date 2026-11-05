@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 Owner授权app-local CMake单次：root0、版本首行不符拒收（CURRENT ENTRY）
+# EliteSync｜2026-11-05 CMake完整版本字面值离线绑定（CURRENT ENTRY）
+
+**FULL_VERSION_LITERAL_OFFLINE_BOUND / EXACT_OUTPUT_BYTES_CHECKER_READY / CONSUMER_NOT_WIRED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以请继续”接续上一节点已列明的完整版本字面值离线绑定，普通工程授权内完成；实际产品根/分支/origin与进入HEAD `a2af87a8fdd8f4539ed4e6852e10ce72e35ef86a` 核对一致，index空，仅原%SystemDrive%/。本轮不执行SDK/VM/编译或旧collector，不建新scope/claim，不改已耗cmake_vc_candidate/host/lifecycle及任何原证、判据或余额。
+
+新增cmake_version_binding及9项纯/合成检查。读取固定CMake PE、source.properties、package.xml及既有stdout/stderr共五份文件，全部按库存FileID/size/SHA持有句柄并后置复核；完整NUL边界版本字面值为 `3.22.1-g37088a8-dirty`，在PE偏移**7,402,704**，包修订号3.22.1一致。生成精确首行和完整stdout106字节/SHA的离线预期，未来消费者必须另有独立冻结的预期SHA和匹配PE字节，拒绝版本缩写、错误后缀、空白/换行漂移、额外输出及非空stderr；字节匹配不赋予运行资格。
+
+私有version-expectation SHA `f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780`，固定PE SHA41d609...cb8ac。非作者Codex发现的无BOM UTF16 XML实体绕过P2已先复现再修复，解析前拒NUL/DTD/entity并保留UTF8 BOM正例；最终9项检查通过、复核无剩余具体P1/P2，非外部独立验收。真实五文件在最终源码下重新只读核验，预期数据SHA不变；没有运行任何SDK来验证此新消费者。
+
+LOCAL_ONLY `v1015-cmake-version-binding-20261105`，先读engineering-summary-private、version-expectation-private及binding-final-verification-private；binding-report为首次有效输入绑定快照。73保护记录、旧合同/全部冻结源码与原证一致，原main/255/index及产品apps/services保持。旧app-local case仍REJECTED、1/1已耗剩0、canonical不存在；新离线输出匹配不得回写或改判旧case。
+
+下一工程面是让未来新消费者独立冻结并接入该预期，执行链/输入/预算另行闭合；**本轮未创建新执行器、候选VM或运行许可**，不靠新数据文件续旧额。其余native/offline/资源/真实AAR→host仍未闭合；producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。最终Git身份及普通同步见实际ref/私有回执；详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-cmake完整版本字面值离线绑定节点)。
+
+---
+
+# EliteSync｜2026-11-05 Owner授权app-local CMake单次：root0、版本首行不符拒收（历史节点）
 
 **OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_ZERO_VERSION_SUFFIX_MISMATCH / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
 

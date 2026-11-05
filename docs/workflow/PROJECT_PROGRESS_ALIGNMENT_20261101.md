@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（CMake完整版本字面值离线绑定）
+
+日期：2026-11-05。状态：**FULL_VERSION_LITERAL_OFFLINE_BOUND / EXACT_OUTPUT_BYTES_CHECKER_READY / CONSUMER_NOT_WIRED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 CMake完整版本字面值离线绑定节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权/工作面 | Owner“可以请继续”对应完整版本字面值离线绑定，未扩为新SDK/VM运行许可。进入a2af87a8fdd8f4539ed4e6852e10ce72e35ef86a，产品根/分支/origin与空index核对一致，仅既有%SystemDrive%/。新源码/测试及三文档形成独立提交，最终身份以实际Git为准；不动已耗执行器与判据 |
+| 严格离线绑定 | 新cmake_version_binding只读五份显式库存文件：固定PE/source.properties/package.xml与既有stdout/stderr。所有句柄保持到派生结束，FileID/size/SHA及路径边界前后复核，拒链接/源漂移/重复或越界行。PE16MiB、properties64KiB、XML256KiB、stdout/stderr各4096字节、预期JSON64KiB、最多64个完整NUL字面值偏移；不调用进程或写入输入 |
+| 完整版本与元数据 | 实际PE9,819,992字节，SHA41d609bae2a65a9a8e2060bb222d6e031d33c0546054d354137eb490933cb8ac；完整NUL边界字面值3.22.1-g37088a8-dirty唯一偏移7,402,704。properties revision/path/desc与package.xml唯一release revision3.22.1一致；保留完整后缀，不由包修订号截断或允许通配 |
+| 既有输出绑定 | stdout106字节/SHA49bf8d147ddeed5040c89759270f9e9e97a159f262951f40fdd87891ed52ca80，精确首行cmake version 3.22.1-g37088a8-dirty及原Kitware尾段/LF；stderr0字节/SHAe3b0c442...b855。五文件内容与先前materialization/拒收诊断的固定SHA一致，仅作为已有记录字节，不新增运行或收集窗口 |
+| 新预期/消费者 | 私有version-expectation SHA f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780；记录完整字面值、包修订号、PE/metadata/stdout/stderr SHA与字节数及偏移。check_output要求调用者独立冻结此SHA，不能从待验文件自学；并核匹配PE、完整输出及离线flag/类型。返回OUTPUT_BYTES_MATCH_OFFLINE_EXPECTATION，execution_allowed/runtime_qualified/producer_allowed/G2均false，不证明启动/退出/加载或任何case通过；尚未接入新执行器 |
+| 9项新检查 | 完整字面值和NUL边界/AMD64、元数据冲突与重复/DTD、预期SHA/PE漂移、资格flag/type、缩写/错后缀/空白/换行/额外输出/非空stderr、大小界限、五文件句柄和源漂移、UTF16LE/BE实体绕过及UTF8 BOM正例。前述P2先复现两种编码均被误收，再在XML解析前拒NUL并修复；最终9项纯/合成检查通过，非作者Codex复核无剩余具体P1/P2，非外部独立验收 |
+| 真实只读应用 | 按固定materialization SHA131ab25bea79927f2e18f08273fbf5b6b02c0c3855f91b8f61ce643451bf5adf选中三源文件；两输出新鲜FileID库存与旧诊断SHA逐份匹配。最终源码下再次只读核五文件，派生预期与已保存f7ab...f780逐项一致。初始binding-report保留原时点，最终确认另存，不改旧outcome/STOP，不重新collect或运行CMake |
+| 原证/保护 | LOCAL_ONLY v1015-cmake-version-binding-20261105，engineering-summary-private/version-expectation-private/binding-report-private/binding-final-verification-private、73记录前后副本及三文档修改前原文。73/73 SHA一致，旧合同SHAccb792...00de及其全部冻结源码保持，旧canonical不存在。原main@4bebc8f3/default255/index2be660...，apps ed248529/services7634b475不变；SDK/DB/备份/worktrees/STOP保留，原证不上传 |
+| 旧scope与未运行 | 旧app-local scope仍REJECTED，1/1已耗剩0；root0/实际首行与冻结精确首行冲突的原始结论保持。字节匹配不是事后放宽或改判，不退款、不重跑、不换目录续额。本节点VM/SDK/observer编译/Gradle/Flutter/产包/DB/设备/媒体/installer0，无新运行scope/claim或候选VM；前轮动态/12项纯检查不记作本轮新测 |
+| 下一步/整版 | 未来新消费者须独立冻结预期SHA，另闭合执行器、完整输入及具体独立运行范围；目前CONSUMER_NOT_WIRED，不能直接用新数据替换旧case判据。其余native/offline/资源/真实AAR→host、实际加载DLL与完整producer资格未证明，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本节点只完成离线版本预期和纯字节消费者，记录真实固定输入的限定关系；没有新增SDK运行或放行旧case。
+
+---
+
 # EliteSync-v10｜项目进度细表（Owner授权app-local CMake单次root0、版本首行不符拒收）
 
 日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_ZERO_VERSION_SUFFIX_MISMATCH / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
