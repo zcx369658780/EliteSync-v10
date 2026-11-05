@@ -1,3 +1,25 @@
+# EliteSync-v10｜项目进度细表（产包边界原语与真实入口绑定）
+
+日期：2026-11-05。状态：**PRODUCER_BOUNDARY_SOURCE_COMPILED / ENTRY_REQUEST_CONSUMED_BY_HOST_SAFE_CHECKS / WINDOWS_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。
+
+## 2026-11-05 产包边界原语与真实入口绑定节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 授权/身份 | Owner“可以请继续”接续产包进程/写入边界普通源码工程。产品根/原分支/origin正确、进入929750993c2a87c99b13ab372427134acf5d8d64、空index，仅原%SystemDrive%/。不推断新SDK/VM授权/预算；旧冻结helper/原Scope和0余额不改 |
+| 新C#原语 | producer_process_boundary.cs无Main，不负责授权、claim或VM启动。真实backend构造先核guest WDAGUtilityAccount/固定C:/Probe/ProducerSupervisor.exe；WRITE_RESTRICTED/禁最大特权token＋低完整性，guest自有C:/BuildWork专属完整nonce SID写ACL及low label；挂起CreateProcessAsUser、先加入自有Job再Resume，kill-on-close/64进程/4GiB Job内存限制，显式仅3stdio句柄继承。所有OS语义均未在真实backend运行，限制值不是当前资源资格或VM运行额度 |
+| 清理/工厂所有权 | 成功工厂在全部临时资源清理后才转移token/child所有权；创建后返回前清理失败必须本地终止/等待挂起子进程及收尾handles。入Job失败仅终止本次未入Job root，已入Job失败仅终止/drain本次Job；多个错误聚合、每个owned有效句柄最多一次close，0/-1/-2不能终止/close。Job排空5秒仅为源码清理等待，不把未观察到退出当完成 |
+| 真实entry绑定 | producer_boundary_binding固定前节点原文SHA52d35954c0147ad41865e74196c89e3177d9218d3f8a98c90d3fdd91dd88a48c，保留完整Java argv的Windows quoting、唯一C:/BuildWork/Project/apps/flutter_elitesync_module/.android及显式环境；拒继承/重复环境名、绕锁、非离线/其它task/输入漂移。boundary source SHA另绑定，nonce/authorization为空、runtime_authorized=false、claim=false；真实请求被C#宿主fixture读取并Validate，未调用Windows backend或SDK |
+| 实际检查 | 现有Framework64 csc签名Valid；/warnaserror x64编译exit0。最终90个host-safe C#断言exit0＋4个Python检查exit0；覆盖挂起/assign/resume顺序、逐阶段失败、关闭/Job drain失败、多个错误/不重复close、native工厂pre-transfer清理失败、进程/线程0/-1/-2、全部nonce位SID、Windows命令/环境边界及真实绑定数据消费。断言不是Win32实际效果或SDK执行证据，测试exe留LOCAL_ONLY |
+| 复核/失败保留 | 非作者Codex两P2：native工厂finally清理抛错会遗失已创建资源、无效句柄拒绝后仍进入终止/close，已修并最终无具体P1/P2，非外部独立验收。初始csc相对slash参数失败、局部变量作用域编译失败、close-40宿主假backend红例及各阶段输出原文保留，不改旧失败、不挪scope续额，不把前节点8/14/16等检查算本节点新测 |
+| 未实现/下一工程 | 本入口guest supervisor Main/整体watchdog/host实例生命周期集成尚未实现，Windows受限token/权限传播/实际Job效果NOT_RUN；网络/预执行映像allowlist/完整DLL/原生工具及offline action闭包未证明。下一工程接guarded guest controller＋watchdog/宿主收尾并准备具体隔离边界资格；输入/当前资源/独立预算成立后才SDK producer。本源码不可直接启动产包，不能据host-safe fixtures放行任何动态门 |
+| 保护/私有原证 | 78/78保护SHA、原main@4bebc8f3/default255/index2be660...及apps ed248529/services7634b475保持；本轮未改host ACL/token，SDK/Gradle/VM/产包/设备/DB/媒体0、无nonce/grant/claim。LOCAL_ONLY v1015-producer-boundary-source-20261105的engineering-summary-private/pure-checks-private/producer-boundary-binding-private、编译/测试/原失败、保护/三文档前后副本保留；exe/原证不上传 |
+| 状态/Git | producer预算UNKNOWN_NOT_CREATED、所有旧已耗余额0、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING、AAR/APK未生成，不合main、不启v10.1.6。同步前普通SSH远端只读Connection closed，未push/重试，PENDING_SYNC；前节点最后已核产品92975099/main8a9e97a1，本次失败后远端HEAD UNKNOWN。保留本地全部待推提交，连接恢复先核完整范围，再同身份/协议普通non-force同步；最终身份见实际Git/私有回执 |
+
+本节点接受边界控制源码和托管检查证据，不声称操作系统隔离、producer执行器或产品产出已验收。
+
+---
+
 # EliteSync-v10｜项目进度细表（完整Flutter根产包入口源码接线）
 
 日期：2026-11-05。状态：**FULL_ROOT_PRODUCER_SOURCE_WIRED_NOT_EXECUTABLE / COMPILATION_AND_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。

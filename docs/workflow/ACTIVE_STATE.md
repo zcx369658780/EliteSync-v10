@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 完整Flutter根产包入口源码接线（CURRENT ENTRY）
+# EliteSync｜2026-11-05 产包边界原语与真实入口绑定（CURRENT ENTRY）
+
+**PRODUCER_BOUNDARY_SOURCE_COMPILED / ENTRY_REQUEST_CONSUMED_BY_HOST_SAFE_CHECKS / WINDOWS_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner“可以请继续”接续产包进程/写入约束普通工程。产品根/原分支/origin、进入HEAD `929750993c2a87c99b13ab372427134acf5d8d64`、空index正确，仅原%SystemDrive%/。新增guest-only producer_process_boundary C#库（无Main/授权/claim/VM启动入口）及producer_boundary_binding：固定前节点真实entry原文SHA52d35954...a48c，把其完整Java命令、Windows引号/工作目录/显式环境绑定到边界请求；nonce/authorization为空，runtime_authorized=false、budget UNKNOWN_NOT_CREATED。
+
+原语源码实现：调用真实backend前核WDAGUtilityAccount/固定guest supervisor身份；WRITE_RESTRICTED＋禁最大特权token/低完整性，给guest自有C:/BuildWork配置专属SID写ACL/low label；Java root挂起创建，先入本次kill-on-close Job后恢复；显式仅继承三个stdio句柄。64进程/4GiB Job内存是源码上限，不是VM/资源资格或新预算。错误路径只终止本次有效owned root/Job，0/-1/-2不作为owned句柄；临时资源全部清理成功才转移native工厂所有权，失败保留原因并收尾挂起子进程，不重试close。
+
+现有系统csc签名Valid，源码/warnaserror编译通过；**90个宿主安全断言＋4项Python检查通过**，C#实际读入本次绑定的真实producer请求，只执行托管Validate与假backend，不实例化Windows backend、改host ACL/token或启动SDK/VM。非作者Codex发现native工厂返回前清理丢所有权、无效pseudo-handle进入清理两P2，已修复并复核无剩余具体P1/P2；非外部独立验收。初始编译参数/局部变量编译失败及close-40生命周期红例均留原证；旧测试不记作本轮新测。
+
+**实际Windows权限/ACL传播/Job效果NOT_RUN**；新guest supervisor Main/watchdog/宿主生命周期尚未接入，网络、完整映像/DLL、原生工具与离线action资格均未证明。此库和请求仍不可直接产包；下一步接guarded guest controller及watchdog/宿主收尾，先准备具体隔离边界资格，再满足完整输入/资源/独立预算后的SDK producer，不自动继任。78保护、原main/255/index及apps/services保持；本轮SDK/Gradle/VM/产包/设备/DB/媒体0，无nonce/grant/claim，旧已耗余额保持0；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，AAR/APK未生成。
+
+LOCAL_ONLY `v1015-producer-boundary-source-20261105`先读engineering-summary-private、pure-checks-private、producer-boundary-binding-private，再按需源码/编译与失败原件；不上传exe/原证。Git **PENDING_SYNC**：本次普通SSH远端只读Connection closed，未push/重试；前节点最后已核产品92975099/main8a9e97a1，当前远端HEAD UNKNOWN。本地完整保存，连接恢复后核整个待推范围，同身份/协议普通non-force同步，不pull/reset/rebase/force或借镜像绕过；不合main、不启v10.1.6。最终身份见Git/私有回执；详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-产包边界原语与真实入口绑定节点)。
+
+---
+
+# EliteSync｜2026-11-05 完整Flutter根产包入口源码接线（历史节点）
 
 **FULL_ROOT_PRODUCER_SOURCE_WIRED_NOT_EXECUTABLE / COMPILATION_AND_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
 

@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：产包边界原语源码编译，Windows实际隔离未运行
+
+Owner“可以请继续”接续普通源码工程。新增guest-only无Main的边界库和固定真实entry SHA绑定，源码含WRITE_RESTRICTED/禁最大特权与low token、自有C:/BuildWork写ACL/low label、挂起Java先入kill-on-close Job再恢复、限定stdio继承及owned handles清理；64进程/4GiB Job仅源码限制，非资源资格或运行预算。原有观察器仅采样/有限预检，未被重新标为完整producer隔离，旧源码/Scope不改。
+
+现有系统csc编译通过，90个宿主安全断言及4项Python检查通过；真实entry请求被C#fixture只Validate，未构造Windows backend、改host ACL/token或启动SDK/VM。非作者Codex工厂清理所有权、无效pseudo-handle清理两P2已修，最终无具体P1/P2，非外部独立验收；原编译失败和假backend红例保留，不改旧失败或续额。
+
+Windows权限传播/实际Job效果NOT_RUN；guarded guest Main/watchdog/host生命周期尚未集成，网络/映像/DLL/原生工具/实际离线action未证明。下一普通工程接该控制器并准备具体隔离资格；新请求nonce/authorization为空、runtimefalse，无新grant/claim，producer预算UNKNOWN_NOT_CREATED，旧已耗0保持。78保护/原dirty/index/双tree一致，SDK/Gradle/VM/产包/设备/DB/媒体0；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING、AAR/APK未生成。不合main、不启v10.1.6。
+
+Git本次SSH远端只读Connection closed，未push/重试，PENDING_SYNC；前节点最后已核92975099/main8a9e97a1，本次当前远端UNKNOWN。保存完整本地范围，连接恢复后普通同身份/协议non-force同步；LOCAL_ONLY v1015-producer-boundary-source-20261105和最终Git见唯一细表/私有回执。以下按历史时点保留。
+
+---
+
 ## 2026-11-05 最新工程节点：转向实际producer入口源码接线，不新增运行额度
 
 Owner要求继续并指出v10.1.5停滞一周多。主代理将普通工程集中到真实AAR→host关键路径，复用已有完整私有Flutter/Project及AAR verifier/host renderer，不重复制SDK、泛扫POM或逐工具版本查询。新增source-pinned producer entry把Flutter Gradle任务BAT调用前缀改为同完整私有根direct Dart/package_config/snapshot，保留assemble参数；沿用两处Javadoc私有适配，明确Java Gradle arm64 release候选与统一源/选定库存发布版本及真实repo→host接点。只生成overlay/patch/manifest，旧SDK/完整根/诊断helper/原scope均不改。
