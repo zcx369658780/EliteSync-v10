@@ -1,3 +1,17 @@
+# EliteSync-v10｜项目进度细表（新候选已授权，等待内存确认）
+
+## 2026-11-05 新候选授权等待内存确认节点
+
+Owner明确答复call_045d57dd82c742a28e476526c69b5d4d/item0“授权新候选独立1次；释放内存后再执行”。实际根/原分支/origin、进入d1926180、空index与旧%SystemDrive%/一致；合同5ac53e328ba900df2151c4b3d5246870c651d52166496aac9da97bc047785f92、binary bb4e2ab4...e791、原nonce及全部payload/helpers复核一致。Owner完整问题/答复/条件独占存新grant及probe副本，旧97不变，最新99保护。
+
+授权范围沿用前节点冻结新候选：独立最多1VM/1真实AAR；guest6GiB/1800秒、host2100秒、STOP仅本实例另45秒、输出2GiB采样上限（可能瞬时超量），275源只读/唯一fresh输出/禁网/不重试；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。新范围已耗0、余1、无claim/启动；旧初始化失败1/1已耗余0不变。
+
+答复附有“释放内存后再执行”，尚未明确内存已释放，因此本轮不调用launch/preflight、不自行关闭用户程序；等Owner后续明确告知才按同候选/原grant fresh输入与资源核验，不重授权、不降门槛/换nonce/重建候选。旧4246MiB资源仅历史，当前资格UNKNOWN。只记录授权，无源码修改，不重跑已通过测试。LOCAL_ONLY windows-paths-grant-waiting-memory-private、owner-windows-paths-explicit-grant-private、protected-records-after-windows-paths-grant-private保留，不上传原件。
+
+Git PENDING_SYNC：之前push接受c1e44910后SSH回读关闭，当前远端ref UNKNOWN，本次仅本地授权记录/提交，未重试或改身份；恢复后核完整待推范围普通同步。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。
+
+---
+
 # EliteSync-v10｜项目进度细表（单次AAR初始化失败与源码修复）
 
 日期：2026-11-05。状态：**SANDBOX_INITIALIZATION_FAILED / CLAIM_SPENT_1_REMAINING_0 / SDK_START_NO_EVIDENCE / SOURCE_FIX_COMPILED / NEW_CANDIDATE_NOT_AUTHORIZED / G2_FALSE**。

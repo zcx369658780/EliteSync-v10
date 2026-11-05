@@ -1,4 +1,16 @@
-# EliteSync｜2026-11-05 单次AAR尝试止于沙盒初始化，源码修复及新候选已冻结（CURRENT ENTRY）
+# EliteSync｜2026-11-05 新候选已授权，等待Owner确认释放内存（CURRENT ENTRY）
+
+**OWNER_GRANTED_NEW_CANDIDATE / WAITING_EXPLICIT_MEMORY_RELEASE_CONFIRMATION / NEW_SPENT_0_REMAINING_1 / NO_NEW_CLAIM_OR_VM_SDK_START / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner明确答复call_045d57dd82c742a28e476526c69b5d4d/item0：“授权新候选独立1次；释放内存后再执行”。授权仅绑定源码d9a75094、aar-windows-paths-candidate合同5ac53e32...85f92/binary bb4e2ab4...e791/原nonce；范围仍1VM/1真实AAR、guest6GiB/30分钟、host35分钟、STOP仅本实例另45秒、2GiB采样上限（可能瞬时超量）、275源只读/唯一输出/禁网/不重试，原排除范围不变。**答复不是“内存已释放”确认；等待Owner后续明确告知，再fresh复检后启动，不重复索要授权。**
+
+实际根/remote/原分支/进入HEAD d1926180/index及旧%SystemDrive%/一致；旧97保护、冻结payload/helpers全部一致、fresh输出空。新grant原文及probe副本独占保存后99保护；本轮只保存授权，未调用launch/preflight，未创建claim，VM/SDK0，新范围已耗0/余1；旧初始化失败1/1已耗余0保持。旧资源4246MiB仅历史时点，不继承为当前资格；不启停其它程序、不修改冻结候选/旧STOP。
+
+LOCAL_ONLY同父目录先读windows-paths-grant-waiting-memory-private、owner-windows-paths-explicit-grant-private及protected-records-after-windows-paths-grant-private。Git PENDING_SYNC沿用：此前push接受至c1e44910后SSH回读关闭，远端当前ref UNKNOWN；本次授权节点本地保存，未网络重试。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING、AAR/APK未生成；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-新候选授权等待内存确认节点)。
+
+---
+
+# EliteSync｜2026-11-05 单次AAR尝试止于沙盒初始化，源码修复及新候选已冻结（历史节点）
 
 **SANDBOX_INITIALIZATION_FAILED / CLAIM_SPENT_1_REMAINING_0 / SDK_START_NO_EVIDENCE / SOURCE_FIX_COMPILED / NEW_CANDIDATE_NOT_AUTHORIZED / AAR_APK_NOT_GENERATED / G2_FALSE**
 

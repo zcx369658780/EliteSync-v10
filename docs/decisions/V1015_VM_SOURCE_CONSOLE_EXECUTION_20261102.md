@@ -1,5 +1,13 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner决定：新候选独立1次已授权，释放内存后再执行
+
+Owner针对call_045d57dd82c742a28e476526c69b5d4d/item0明确选择“授权新候选独立1次；释放内存后再执行”。绑定已冻结源码d9a75094/aar-windows-paths-candidate/合同5ac53e32...85f92/binary bb4e2ab4...e791/原nonce，范围与前节点新提案完全一致：1VM/1真实AAR、6GiB、guest1800秒/host2100秒、STOP仅本实例另45秒、输出2GiB采样上限/可能瞬时超量、275源只读/唯一输出/禁网/不重试及全部排除范围。
+
+本答复不是内存释放完成确认；需等待Owner另行明确告知后，沿用同候选/新grant fresh复检再启动，无需再次授权。当前只独占保存完整授权原文与probe副本，旧97一致、新99保护，无claim/VM/SDK、新已耗0余1；旧初始化失败1/1已耗余0保持。未改旧失败/冻结payload/资源门槛，不启停其它程序，未调用launch/preflight或重跑测试。Git仍PENDING_SYNC，本次仅本地保存、不重试SSH；项目10 PARTIAL/AC05 OPEN/G2 false不变。以下“新候选未授权”为此前历史时点。
+
+---
+
 ## 2026-11-05 最新执行事实：原单次已耗0余额，新路径兼容候选未授权
 
 Owner“已释放内存，重新核验”后按原grant/候选fresh资源10291MiB、磁盘460593926144字节及81保护一致才创建UTC13:05:34.244838不可退款claim、唯一VM启动尝试。只读自有窗口明确“Windows 沙盒无法初始化。 Value does not fall within the expected range.”；guest输出空、SDK/Gradle启动无证据、AAR/APK未生成，根因UNKNOWN。原授权**1/1永久已耗，余0**，下面未耗额条款为历史时点，不能再据此启动。
