@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 CMake app-local独立候选接线与冻结（CURRENT ENTRY）
+# EliteSync｜2026-11-05 Owner授权app-local CMake单次：root0、版本首行不符拒收（CURRENT ENTRY）
+
+**OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_ZERO_VERSION_SUFFIX_MISMATCH / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
+
+Owner对已冻结新候选提案明确选择“授权这独立 1 次新候选检查”。执行源 `ba7176b40d5d37566ac4d8e9624fb6062546cc8b`，原合同SHA ccb792...00de、binary SHA7011...7c9a、nonce与源码不改，独立grant保存原问题/答复及完整范围。启动前45 PE、完整私有CMake 2,995文件、66保护记录fresh一致，现有启动器签名Valid、Store0.8.107.0，无既存Sandbox，7301MiB可用内存满足本次2GiB+4GiB reserve；未安装升级或继承设备资格。
+
+固定scope `v1015-cmake-app-local-version-candidate-20261105` 已实际启动一次，**claim起45.437秒结束，1/1已耗、剩0**（驱动含claim前核对53.203秒）。真实guest完成45输入验证、270文件+15目录权限拒绝、owned输出canary及禁网预检；CMake root尝试1，exit0、failure=null、stop_reason=null、watchdog0、stderr0，stdout106字节。实际首行 `cmake version 3.22.1-g37088a8-dirty` 与冻结精确预期 `cmake version 3.22.1` 不符，严格collector正确拒收，driver STOP及原outcome保留，canonical verified-result不存在。
+
+包元数据revision为3.22.1，同SHA41d609...cb8ac的固定PE本身含完整后缀。候选准备沿用了包版本作精确首行，未事先绑定PE完整版本字面值，是预期准备遗漏；不因此放宽冻结规则、改判PASS、退款或补跑。此次app-local配置下确有root0及完整版本输出的限定观察，实际加载的三DLL身份仍UNKNOWN，上次0xC0000135的具体缺失DLL也仍UNKNOWN；不宣称DLL全闭包或完整生产资格通过。
+
+日志9行/2样本/1成员/6次镜像检查/4次磁盘扫描，PID+root_birth/nonce/hash绑定一致；Job空、bound handles退出，精确owned宿主收尾后[]，STOP安全检查为HOST_PROCESSES_ALREADY_ABSENT，后续只读宿主快照仍[]；后台VM完全teardown UNKNOWN。非作者Codex核对记录和精确判据一致，非外部独立验收。仅另存只读rejection-diagnostics，不重新collect/运行SDK或修改原helper/合同/结果。
+
+LOCAL_ONLY同名scope根先读engineering-summary-private、engineering-outcome-private、rejection-diagnostics-private和collector.stderr，再按需读guest原件/宿主快照。原66保护SHA一致，新增本次grant/claim/launch binding/outcome/driver STOP/安全收尾/诊断七件后最新**73保护记录**。原main/255/index及产品apps/services保持，私有原证不上传。
+
+本轮VM1/CMake根1，Gradle/Flutter/真实AAR/APK/DB/设备/媒体/installer0；producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。下一普通准备先把版本预期与固定PE完整字面值/包元数据/既有原证绑定，再闭合其余native/offline/资源/AAR→host；不得改或重跑本已耗case，也不自动生成下一SDK/VM额度。不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-owner授权app-local-cmake单次root0版本首行不符拒收节点)。
+
+---
+
+# EliteSync｜2026-11-05 CMake app-local独立候选接线与冻结（历史节点）
 
 **INDEPENDENT_APP_LOCAL_CANDIDATE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
 

@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（Owner授权app-local CMake单次root0、版本首行不符拒收）
+
+日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_ZERO_VERSION_SUFFIX_MISMATCH / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 Owner授权app-local CMake单次root0版本首行不符拒收节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 明确授权与身份 | Owner直接选择“授权这独立 1 次新候选检查”，只限已列新scope/1VM/1 CMake --version、guest2GiB/整体90秒、host180秒及STOP本实例安全清理另45秒。原问题/答复、source ba7176b40d5d37566ac4d8e9624fb6062546cc8b、合同SHAccb792bda349ce53c4c62b2309fb0f6554002e6dc2e683512c09edd0eee600de、binary SHA7011a3bba72d25c4a2f71b52569af84797bc8a8c50dc9a40fa19d8826df07c9a在独立grant绑定；不回写原SOURCE_READY合同历史状态 |
+| 启动前资格 | 实际产品根/分支/origin、HEAD ba7176b4与空index一致，仅原%SystemDrive%/；45 PE/449,500,965字节及私有完整2,995文件fresh、66保护记录一致。无既存Sandbox、现有启动器签名Valid、Store0.8.107.0、host OS10.0.26300，可用7301MiB满足2GiB+4GiB reserve。guest仍由冻结源码自检具名OS/CLR，未安装升级工具链、未使用DB/设备/媒体 |
+| 单次实际与预算 | scope v1015-cmake-app-local-version-candidate-20261105，claim起45.437秒结束；驱动53.203秒含claim前冻结核对。1VM记录、1 native root、claim1/1永久已耗、剩0；没有重试或后继claim。驱动outcome为CMAKE_APP_LOCAL_VERSION_REJECTED_OR_STOPPED，canonical verified-result未生成 |
+| 真实预检 | 45输入全部核验；guest native-cmake-vc-preflight记录270文件权限+15目录权限拒绝/owned canary写读删/禁网通过，预检时SDK_starts=0。只支持本次样本与五RO根权限，不能代替guest对完整生产树的消费证明 |
+| 真实root/输出 | CMake root_exit=0，failure=null、stop_reason=null、watchdog0；stdout106字节，首行“cmake version 3.22.1-g37088a8-dirty”，另有Kitware说明；stderr0。存在真实版本查询执行/采样观察，但冻结collector要求首行精确“cmake version 3.22.1”，在此拒收；外层0/内层0都不覆盖该冻结门 |
+| 预期遗漏定位 | 私有source.properties写Pkg.Revision=3.22.1/Pkg.Path=cmake;3.22.1，package.xml revision3.22.1；同固定CMake PE SHA41d609bae2a65a9a8e2060bb222d6e031d33c0546054d354137eb490933cb8ac的字节中含3.22.1-g37088a8-dirty。候选准备把包版本沿用为完整首行，未事先绑定完整字面值；这解释本次精确字符串门拒收，不解释具体DLL加载身份。保留判据/STOP，不修改已耗helper或事后降标改PASS，不退款或再查SDK |
+| 日志与收尾 | 原JSONL9行/2样本/1成员/6次image checks/0 endpoint rows/4磁盘扫描；root PID+root_birth/nonce/binary hash绑定一致，无STOP/watchdog/retry记录。Job空、所有bound handles退出；主链精确owned收尾后宿主[]，STOP安全receipt=HOST_PROCESSES_ALREADY_ABSENT，随后只读宿主快照仍[]；后台VM完全teardown UNKNOWN，采样非原子、UDP目的地UNKNOWN |
+| 限定诊断/独立层级 | rejection-diagnostics另存原raw SHA、首行差异、原证纯core/log validator的部分支持、包元数据/固定PE字面值及当前宿主[]；诊断调用不启动SDK/VM，不重新collect或写canonical。原scope保持REJECTED，实际加载DLL/API-set/SxS/转发器/动态LoadLibrary UNKNOWN，上一0xC0000135的具体缺失DLLUNKNOWN。非作者Codex核对源码/原证一致，非外部独立验收或Owner整版接受；前节点12纯检查不记作本轮新测 |
+| LOCAL_ONLY/保护 | 同名scope根先读engineering-summary-private/engineering-outcome-private/rejection-diagnostics-private/collector.stderr、driver STOP、stop-cleanup，再按需原始guest/宿主记录。原66 SHA全部一致，新增grant/claim/launch binding/outcome/driver STOP/安全收尾/诊断七件为最新73保护记录。原main@4bebc8f3/default255/index2be660...、apps ed248529/services7634b475、SDK/DB/备份/worktrees/旧STOP均保持；私有原证、SDK/DLL/二进制不上传 |
+| 工程后续与整版 | 普通准备先让版本预期绑定固定PE完整字面值、包元数据与既有输出原证，再闭合其余native/offline/资源/AAR→host；不能把此部分观察提升为已耗case PASS或自动新增运行。VM1/CMake1，Gradle/Flutter/真实AAR/APK/installer/DB/设备/媒体0，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。最终三文档Git同步与私有回执按实际ref/Blob核验 |
+
+本节点完成Owner明确批准的唯一一次实际检查及拒收封存。root0与版本输出作为限定事实保留，不满足原精确首行标准，单次预算不退款、不重置、不复跑。
+
+---
+
 # EliteSync-v10｜项目进度细表（CMake app-local独立候选接线与冻结）
 
 日期：2026-11-05。状态：**INDEPENDENT_APP_LOCAL_CANDIDATE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。

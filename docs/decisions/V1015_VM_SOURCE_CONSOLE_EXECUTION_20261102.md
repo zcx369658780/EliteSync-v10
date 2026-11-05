@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner决定：新app-local单次已授权、已耗，首行不符拒收
+
+Owner随后直接选择“授权这独立 1 次新候选检查”，只限上一具名提案的1VM/1 CMake --version、45 PE/五只读根、270+15权限/owned输出/禁网预检、guest2GiB/90秒、host180秒及STOP本实例安全清理另45秒。执行源ba7176b40d5d37566ac4d8e9624fb6062546cc8b；grant单独保存原问题/答复与原合同SHA，不更改此前SOURCE_READY_NOT_AUTHORIZED的历史合同。
+
+该次已实际执行并永久耗尽1/1、剩0，claim起45.437秒结束。CMake root0、完整首行“cmake version 3.22.1-g37088a8-dirty”、stderr0，285项权限拒绝/owned输出/禁网及采样/收尾有原证；冻结期望精确“cmake version 3.22.1”，严格collector在此正确拒收，canonical未生成。候选准备沿用了包修订号作完整首行，遗漏固定PE自带后缀；已另存只读诊断，不把定位当改判或续额依据。非作者Codex核对一致，非外部独立验收。
+
+本scope及前scope的已耗状态均不退款、不重置、不重跑，不改已耗helper/contract/nonce/claim/outcome/STOP、不翻开关或换目录。普通版本预期/依赖源码准备可继续，任何下一动态范围仍须有具体新执行器/完整输入/独立明确范围；不自动继任。现有三DLL实际加载与完整DLL/producer资格未证明，上一具体缺失DLL仍UNKNOWN；最新73保护记录、LOCAL_ONLY原证及详细节点见唯一细表。producer预算UNKNOWN_NOT_CREATED、G2 false、AC05 OPEN、10 PARTIAL及真实消息Push PENDING保持，不合main、不启v10.1.6。以下提案和决定保留原时点。
+
+---
+
 ## 2026-11-05 最新工程节点：新app-local候选已冻结，运行提案未授权
 
 Owner“可以，请继续”接续新45-PE/app-local输入的隔离候选与完整宿主调用工程。新cmake_vc_candidate按固定SHA派生已耗源码，旧host/lifecycle/core及其合同/nonce/claim/STOP不改；新scope v1015-cmake-app-local-version-candidate-20261105使用45输入、270文件拒绝/15目录拒绝，额外核完整2,995文件私有CMake树。12项定向纯检查通过，两P2已修复并经非作者Codex复核，非外部独立验收。
