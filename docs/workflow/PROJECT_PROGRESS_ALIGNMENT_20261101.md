@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（CMake app-local独立候选接线与冻结）
+
+日期：2026-11-05。状态：**INDEPENDENT_APP_LOCAL_CANDIDATE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 CMake app-local独立候选接线与冻结节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权/身份 | Owner“可以，请继续”对应新45-PE/app-local隔离候选接线普通工程；产品根/分支/origin及进入fb4e89631db68298ebad3c8c60c737fa0991c859、空index核对，保留原%SystemDrive%/。源码7dab09f8048a8633f87c48c8508117fff333400e，最终记录提交以实际Git和私有回执为准；无新SDK/VM许可或运行claim |
+| 不可变派生 | 新cmake_vc_candidate固定原host SHA e729091443269a56e2b6ba9406d6cd5f3bc10f1d1772c931a6462b7cb814f4c8与guest wrapper SHA feee40132f2fa8412f7a61be4ad24cec7387bfd04258a9209db7590e1adf69f7；唯一锚点派生新scope/readset/计数/collector，去除原partial恢复与原nonce定义。不改或运行已耗旧case；新collector子进程只导入新模块 |
+| 输入/映射 | 新readset SHA13bf160717fcc7b56ca41d8a0494f72811b0778e625fc661a06f069f57914704绑定45份实际PE/449,500,965字节，另有archive条目不执行；CMake映射到前轮私有2,995文件副本，其他四根保持具名现有只读输入。materialization SHA131ab25bea79927f2e18f08273fbf5b6b02c0c3855f91b8f61ce643451bf5adf固定，每次readset/frozen额外核完整CMake文件集合/内容/FileID。输入唯一性、逐角色路径及三DLL精确哈希沿固定readset验证，不按同名代选 |
+| 接线/保护门 | 新guest只派生270文件拒绝与native-cmake-vc-preflight身份，五根×三目录拒绝仍15；固定nonce/角色/编译内manifest/镜像与权限、禁网、owned canary不放宽。宿主保留新grant/合同SHA/精确scope→不可退款claim→活跃manifest→固定180秒双时钟→owned生命周期→严格raw日志/root_birth/退出/收尾collector；旧grant或252预检、坏退出、多marker均拒收 |
+| 准备与失败 | 只允许新固定根首次准备，不覆盖、不重编/换nonce；显式/noconfig、target:winexe、AMD64及System/System.Core/System.Web.Extensions引用，最小环境不继承LIB/CLR注入，TEMP/TMP/HOME/USERPROFILE固定compile-temp。编译前后源码pins和csc path/SHA/FileID/mtime/size/nlink严格相同；合同用前置pins。任一准备失败保留产物与terminal failure marker，frozen/launch永久拒绝，不把晚期失败合同当可运行 |
+| 检查/复核 | 新12项纯/合成检查通过，包含派生SHA/计数、只读配置、完整树漂移、首次准备与失败保留、旧grant/预检/坏退出/多marker拒收、180秒不续额、编译期间源/csc漂移，以及合同后freeze失败不得再启动。两具体P2先见反例失败再修复；非作者Codex静态复核无剩余具体P1/P2，非外部独立验收。未调用guest Main或SDK |
+| 实际候选 | 固定v1015-cmake-app-local-version-candidate-20261105；现有签名有效系统csc真实编译观察器一次，csc SHAeca02e6b15cde93009a59a3d129d5a77fb5008f2e1cf62cf573b6737c747ecc3。准备13.313秒（不是VM资源资格）。guest source SHAc53d91fc55326e3c0712d0b439924197b821b2a10fd096862ca2685d04834ddf、binary SHA7011a3bba72d25c4a2f71b52569af84797bc8a8c50dc9a40fa19d8826df07c9a、合同 SHAccb792bda349ce53c4c62b2309fb0f6554002e6dc2e683512c09edd0eee600de。SOURCE_READY_NOT_AUTHORIZED，locked runtime_authorized=false，无Owner新grant/launch.claim/active manifest，output空；不再prepare |
+| 原证/保护 | LOCAL_ONLY准备根v1015-cmake-vc-candidate-preparation-20261105，engineering-outcome-private/preparation-result-private/pure-checks-private及最终派生patch、前后三文档原文和66记录副本；input-plan/早期patch保留其原时点。真实候选原件在新scope根，均不上传SDK/DLL/二进制/原证。66/66保护SHA前后一致，原main@4bebc8f3/default255/index2be660...及apps ed248529/services7634b475保持；原SDK/DB/备份/worktrees/STOP保留 |
+| 独立运行提案 | 仅新候选独立max1 VM/max1 CMake --version，guest2GiB/整体90秒、host自启动180秒；SDK前45 PE及五根270+15拒绝/owned输出/禁网预检，任何新输入/OS/签名/环境资格不符则不启动。STOP安全清理另45秒，仅本实例、不改资格STOP、不重试。需Owner明确授权此具名SDK/VM范围，当前NOT_AUTHORIZED、NO_CLAIM；不含Gradle/Flutter/AAR/APK构建/DB/设备/媒体/外部服务/安装升级 |
+| 未证明/整版 | 本轮VM/SDK/installer/Gradle/Flutter/真实构建/DB/设备/媒体0。前CMake单次1/1已耗剩0、0xC0000135拒收及具体缺失DLL UNKNOWN保持；静态同根候选不等于加载成功，API-set/SxS/导出转发/动态加载、完整offline/资源/真实AAR→host仍待证明。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6 |
+
+本节点完成新输入的独立源码、实际观察器编译与冻结接线；未执行SDK/VM，不恢复任何旧额度，也不将一般继续代作新运行许可。
+
+---
+
 # EliteSync-v10｜项目进度细表（CMake配套VC离线输入准备）
 
 日期：2026-11-05。状态：**APP_LOCAL_VC_INPUTS_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。

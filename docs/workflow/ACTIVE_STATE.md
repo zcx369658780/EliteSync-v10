@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 CMake配套VC离线输入准备（CURRENT ENTRY）
+# EliteSync｜2026-11-05 CMake app-local独立候选接线与冻结（CURRENT ENTRY）
+
+**INDEPENDENT_APP_LOCAL_CANDIDATE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以，请继续”接续已列明的新45-PE/app-local输入隔离候选及调用接线。实际产品根/分支/origin、进入HEAD fb4e89631db68298ebad3c8c60c737fa0991c859与空index核对，仅保留原%SystemDrive%/；实现提交 `7dab09f8048a8633f87c48c8508117fff333400e`。旧native_role_host/guest lifecycle/core、已耗合同/claim/原结果及STOP均不改，前CMake单次仍1/1已耗、剩0。
+
+新增cmake_vc_candidate与12项定向检查：按固定SHA派生旧宿主与guest wrapper，只将新scope、readset、45输入/270文件拒绝及新collector身份接线；仍五只读根/15目录拒绝，保留显式grant→不可退款claim、固定180秒窗、精确owned收尾和严格日志/root_birth绑定。每次冻结同时核完整私有CMake 2,995文件的内容、FileID与集合；编译前后源码/csc SHA及身份一致，/noconfig、winexe及私有最小环境。复核发现的源码/编译器漂移与晚期失败marker可重入两P2均有失败反例并修复，非作者Codex复核无剩余具体P1/P2，非外部独立验收。
+
+新候选 `v1015-cmake-app-local-version-candidate-20261105` 已用现有系统csc编译一次并冻结，未执行来宾入口或SDK。合同SHA `ccb792bda349ce53c4c62b2309fb0f6554002e6dc2e683512c09edd0eee600de`，binary SHA `7011a3bba72d25c4a2f71b52569af84797bc8a8c50dc9a40fa19d8826df07c9a`；锁定manifest runtime_authorized=false，无grant/launch.claim/活跃manifest，output空，禁止重新prepare或换nonce。真实45 PE/449,500,965字节与完整私有树已核一致；此不是guest加载通过，上次具体缺失DLL仍UNKNOWN。
+
+LOCAL_ONLY准备报告根 `v1015-cmake-vc-candidate-preparation-20261105`，先读engineering-outcome-private、preparation-result-private及pure-checks-private；input-plan/早期patch保留为复核前快照，最终派生见host-derivation-final.patch。候选原件在上述新scope根；原证/SDK/DLL/二进制不上传。66保护记录前后一致，原main/255/index及产品apps/services树保持。
+
+下一动态提案仅该新候选独立最多1VM/1 CMake --version：45 PE与完整私有CMake源冻结，五只读根，SDK前270文件+15目录权限拒绝/owned输出/禁网预检；guest2GiB/整体90秒、host从启动起180秒，STOP后本实例安全清理另45秒，不改判、不重试。**尚未授权该新SDK/VM范围，未建claim**；一般继续不作新余额。Gradle/Flutter/AAR/APK/DB/设备/媒体/安装升级不在此提案内。完整offline/资源/真实AAR→host仍待闭合，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-cmake-app-local独立候选接线与冻结节点)。
+
+---
+
+# EliteSync｜2026-11-05 CMake配套VC离线输入准备（历史节点）
 
 **APP_LOCAL_VC_INPUTS_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
 

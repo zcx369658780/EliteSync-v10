@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：新app-local候选已冻结，运行提案未授权
+
+Owner“可以，请继续”接续新45-PE/app-local输入的隔离候选与完整宿主调用工程。新cmake_vc_candidate按固定SHA派生已耗源码，旧host/lifecycle/core及其合同/nonce/claim/STOP不改；新scope v1015-cmake-app-local-version-candidate-20261105使用45输入、270文件拒绝/15目录拒绝，额外核完整2,995文件私有CMake树。12项定向纯检查通过，两P2已修复并经非作者Codex复核，非外部独立验收。
+
+新观察器已由现有csc编译一次，源码提交7dab09f8048a8633f87c48c8508117fff333400e；合同 SHAccb792bda349ce53c4c62b2309fb0f6554002e6dc2e683512c09edd0eee600de、binary SHA7011a3bba72d25c4a2f71b52569af84797bc8a8c50dc9a40fa19d8826df07c9a。SOURCE_READY_NOT_AUTHORIZED、locked runtime_authorized=false，无新grant/claim/活跃manifest，未运行VM/SDK，不得重新prepare或换nonce。准备失败标记为永久阻断，不能在原原因消失后用已写合同启动。
+
+现提出仅该新候选独立最多1VM/1 CMake --version，五只读根/45 PE，SDK前270文件+15目录权限拒绝/owned输出/禁网预检；guest2GiB/整体90秒、host从固定启动起180秒，STOP后仅本实例安全清理另45秒，不改判、不重试。**该新SDK/VM范围尚未获Owner明确授权，不建claim、不启动**；一般工程继续不作该动态额度。禁止Gradle/Flutter/AAR/APK构建、数据库、设备、媒体、外部服务与工具链安装升级；原CMake已耗单次仍剩0。具体源/原证及范围见唯一细表。
+
+66保护记录、原dirty/index及产品apps/services保持。具体缺失DLL和guest实际app-local加载仍UNKNOWN；producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING，不合main、不启v10.1.6。以下历史决定保留原时点。
+
+---
+
 ## 2026-11-05 最新工程节点：现有VC配套离线输入，不新增运行
 
 Owner“我同意，请继续”接续已列明的现有运行库来源/配套版本/架构/签名和app-local离线输入准备。Codex按普通工程权限新增复制/核验源码、5项纯检查并完成同机LOCAL_ONLY副本：CMake原2,992文件加JDK同套AMD64、14.40.33810.0、微软签名Valid的三DLL，共2,995文件/40,111,563字节；新静态描述45份实际PE。原SDK、旧helper/claim/STOP保持，非作者Codex复核不等于外部独立验收。
