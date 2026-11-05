@@ -1,3 +1,25 @@
+# EliteSync-v10｜项目进度细表（真实Gradle失败与补充SDK输入）
+
+## 2026-11-05 真实Gradle失败与补充SDK输入节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 身份/授权 | 进入产品根/原分支/origin、HEAD b508629029ab1d9f349dd38b663e59b1cfe17574、空index与旧%SystemDrive%/正确。Owner对call_5da401ce030c472cb2d8996b70096b7e/item0答“授权修复候选独立1次”；同一b14e3828...8bea1/binaryf1b81787...64e9/原nonce不变，授权问题/答复独占存两grant，旧114一致、新116保护 |
+| 资源/claim | fresh15768MiB、磁盘459608444928字节，旧根main4bebc8f3/255/index2be660...及双tree保持。UTC14:42:20.990813创建不可退款claim，唯一VM/assembleAarRelease尝试；本scope1/1永久已耗余0，旧9c20/5ac等已耗范围余额0不变，不重试/退款/改冻结身份 |
+| 实际生产执行 | Gradle8.14真实启动，Kotlin编译、pluginDescriptors/processResources/jar完成，日志报4 actionable tasks/4 executed；4m5s后因:connectivity_plus:extractReleaseAnnotations依赖配置找不到Build Tools35.0.0而BUILD FAILED。guest真实failure root_create_attempted=true/sdk_start_observed=true、elapsed270874ms，Java/Gradle确已运行；不是之前未启动SDK的缺文件STOP，也未产出AAR/APK |
+| 退出/收尾 | driver290.672秒异常；完整owned pair自动精确收尾退出0、stdout/stderr空，host-after-cleanup=[]且fresh observe=[]，底层VM teardown UNKNOWN。未启停其它程序/服务，guest原始failure/heartbeat/stdout/stderr/claim/STOP保留，无宿主代写标记；新增本次16份原证后132保护，旧116及冻结payload不变 |
+| 具名静态定位 | host BuildTools35确已安装，source.properties为35.0.0，但原guest只映射36；不需安装或改版本。只读选定PubPackages14份具名Android Gradle文件：flutter_secure_storage/package_info_plus/permission_handler_android字面compileSdk34；jni/jni_flutter字面35；另有36/Flutter变量。host android34/35已安装、旧guest仅36；NDK变量为原完整Flutter28.2.13676358，不扩为新NDK。静态声明不是有效任务解析结论，不纳入未见需求36.1 |
+| 修复身份 | e66a5d30fcbf68b7dc4bd76c4cc11c0939a8a480：从已选36的SDK根派生现有BuildTools35及platform34/35，追加3个RO映射；完整补充inventory入payload、全部文件进既有preflight FileID/size/hash。沿用现有inventory_trees（30000文件/60000成员/1GiB/深32），不添加SDK版本查询/安装/一般审批链，旧SDK/布局/helper/case/失败不改 |
+| 测试与复核 | 原prepare fixture扩展同级35与两平台，缺35映射先红、扩展缺platform34再红；最终14项定向单测4.500秒通过，同长度篡改fixture35 aapt2后preflight拒收/无claim。fixture用模拟输入/编译器，不是SDK运行。非作者Codex复核无具体P1/P2，非外部独立验收。早先35单根阶段14项4.530秒是本次修复中间态，不另算新增测试；历史C#和其它旧检查不记本轮新测 |
+| 新候选冻结 | 私有aar-sdk-inputs-candidate，真实既有csc编译冻结127.828秒；sourcee66a5d30，合同SHAe1a6f9b0944369833f228b4086c8427b570cdabd9d81748d14aaaf90bd7543f6（10381592字节），binary SHA21f42c9fc161325db9554f3d06144918104010bf3ea72916fe69f901f5be721f，nonce1e9e1a99e1e04ce69c9e8a7e707022e9。278源RO＋probe RO＋唯一fresh输出共280映射，init脚本接点保持；无grant/claim/VM/SDK0 |
+| 完整补充读集 | BuildTools35 170文件/144869412字节，platform34 10964文件/99099943字节，platform35 11163文件/102608525字节，总22297文件/346577880字节；前后枚举/逐份hash由既有完整inventory完成。合同输入身份绑定合计22316；清单/映射存在不等于工具消费、native完整资格或离线action闭包 |
+| 当前准备/下一范围 | 新候选只读preflight通过、16274MiB/磁盘460714070016字节；该快照不是持续资格，未来启动前fresh核。只提案独立最多1VM/1真实AAR：guest6GiB/整体1800秒、Job4GiB/64进程，host2100秒，STOP仅本实例收尾另45秒，输出2GiB采样上限/可能瞬时超量，278源只读/唯一fresh输出/禁网/不重试；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。具体新运行需Owner独立明确额度，旧scope0余额不转移 |
+| 保护/原证/项目/Git | 132保护、原根/双tree保持，SDK/DB/STOP/备份/worktrees保留；LOCAL_ONLY init-asset-runtime-engineering-summary-private、init-asset-runtime-outcome-private、supplemental-sdk-candidate-private、supplemental-sdk-candidate-preflight-private、selected-plugin-sdk-declarations-private、protected-records-after-init-asset-runtime-private及具名真实日志，不上传。fresh SSH核远端产品b5086290/main8a9e97a1，审本次源码/三文档整个范围普通non-force同步，最终ref/Blob见私有回执。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本节点支持真实Gradle执行、明确SDK映射缺口及其源码/完整输入准备；不支持完整产包成功或新运行余额。
+
+---
+
 # EliteSync-v10｜项目进度细表（来宾准备缺脚本STOP与接线修复）
 
 ## 2026-11-05 来宾准备缺脚本STOP与接线修复节点

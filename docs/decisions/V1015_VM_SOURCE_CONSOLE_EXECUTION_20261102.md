@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新执行事实：真实Gradle失败已耗，补充既有SDK三根并冻结新候选
+
+Owner对call_5da401ce030c472cb2d8996b70096b7e/item0答“授权修复候选独立1次”。同b14e3828...8bea1/原nonce、grant及116保护/原根核对，fresh15768MiB后UTC14:42:20.990813创建claim并唯一启动。真实Gradle8.14完成插件编译等4项任务，最终connectivity_plus:extractReleaseAnnotations依赖配置报缺Build Tools35.0.0、BUILD FAILED in4m5s；guest270874ms/root_create_attempted=true/sdk_start_observed=true，driver290.672秒异常。**本scope1/1永久已耗余0**，旧所有0余额保留，无AAR/APK、不重试。
+
+完整owned pair自动收尾成功，host-after-cleanup/fresh observe为空，底层VM teardown UNKNOWN；真实guest日志/claim/STOP保持、旧116一致、追加16份原证后132保护，原根main/255/index及双tree不变。
+
+确认host35已安装但漏guest映射；具名14插件Android DSL另声明platform34/35、host也已安装。普通修复e66a5d30补3个既有RO输入，不改版本或安装/升级。复用完整inventory与preflight，14项定向测试4.500秒通过、非作者Codex无具体P1/P2，非外部独立验收。新aar-sdk-inputs-candidate实际csc编译冻结，合同e1a6f9b0944369833f228b4086c8427b570cdabd9d81748d14aaaf90bd7543f6/binary21f42c9f...721f/新固定nonce；278源RO＋probe＋唯一fresh输出，补充22297文件/346577880字节完整盘点并接22316项身份绑定，**未授权/无grant/claim/启动**。
+
+仅新提案独立最多1VM/1真实AAR，guest6GiB/1800秒、host2100秒、STOP仅本实例另45秒、输出2GiB采样上限/可能瞬时超量、278源只读/唯一fresh输出/禁网/不重试及原排除范围。当前只读预检16274MiB支持，实际启动前fresh核；需Owner对新具体候选明确独立额度，不从已耗授权继任，不新增普通工程审批。完整native/离线action闭包仍未证明，AAR/APK未生成，AC05 OPEN/G2 false等保持。以下旧“未运行SDK”等为历史时点，不倒改。
+
+---
+
 ## 2026-11-05 最新执行事实：新单次guest准备STOP已耗，init脚本接线修复并冻结下一候选
 
 Owner后续明确“已释放内存”，按原5ac53e32...85f92候选/同grant、fresh16855MiB及99保护/原根状态一致后，UTC14:01:11.181063创建claim并唯一启动。真实guest122204ms在File.Copy报缺producer-output.init.gradle；root_create_attempted=false/sdk_start_observed=false，无Java/Gradle/产物。准备器提供underscore文件名、消费者读取hyphen文件名，根因已证实；不是AAR编译失败。本独立范围**1/1永久已耗、余0**，旧初始化失败范围也余0，不退款/重跑。

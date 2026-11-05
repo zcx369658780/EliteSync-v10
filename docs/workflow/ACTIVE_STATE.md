@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 来宾准备缺文件STOP已封存，产包脚本接线已修复（CURRENT ENTRY）
+# EliteSync｜2026-11-05 真实Gradle已运行，缺失SDK映射已修复并冻结新候选（CURRENT ENTRY）
+
+**ACTUAL_GRADLE_STARTED_FAILED / GUEST_BUILD_TOOLS35_NOT_MAPPED / SCOPE_SPENT_1_REMAINING_0 / SUPPLEMENTAL_SDK_CANDIDATE_NOT_AUTHORIZED / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner明确答复call_5da401ce030c472cb2d8996b70096b7e/item0“授权修复候选独立1次”。同一b14e3828...8bea1候选/原nonce及授权原文独占保存，旧114一致、两grant后116保护；fresh15768MiB、原根/双tree正确，UTC14:42:20.990813创建claim并唯一启动。真实Gradle8.14进入插件编译、4个actionable任务完成；最终:connectivity_plus:extractReleaseAnnotations依赖配置报“Failed to find Build Tools revision 35.0.0”，BUILD FAILED in 4m 5s。guest270874ms报root_create_attempted=true/sdk_start_observed=true，Java/Gradle已运行，AAR/APK未生成。**本范围1/1已耗余0**，此前所有0余额不变，无重试。
+
+driver290.672秒异常结束，完整owned pair自动收尾退出0、stderr空，host-after-cleanup与fresh observe为空，底层VM teardown UNKNOWN。本次真实guest失败/heartbeat/stdout/stderr/claim/STOP原文保留，原116不改，新增本次16份原证后132保护。
+
+已确认host BuildTools35原已安装但guest仅映射36；只读14份选定插件Android DSL还见字面compileSdk34/35，host两平台原已安装却未映射。普通修复commit **e66a5d30fcbf68b7dc4bd76c4cc11c0939a8a480**补三份既有只读输入，不安装/升级/改插件版本，也不纳入未见需求的36.1。复用完整tree inventory与既有preflight，14项定向测试4.500秒通过（含缺35映射、缺platform34先红、同长度篡改拒收），非作者Codex复核无具体P1/P2，非外部独立验收。
+
+新私有aar-sdk-inputs-candidate已实际csc编译冻结，127.828秒，合同SHA **e1a6f9b0944369833f228b4086c8427b570cdabd9d81748d14aaaf90bd7543f6**，binary21f42c9f...721f；278源RO＋probe RO＋唯一fresh输出，共280映射。补充BuildTools35的170文件、platform34的10964文件、platform35的11163文件，总22297文件/346577880字节完整只读盘点；清单入payload、22316份输入逐文件身份/bytes/hash接既有preflight。新候选**未授权、无grant/claim、启动0**；当前只读预检16274MiB/磁盘460714070016字节支持，启动前须fresh核。仅提出独立最多1VM/1真实AAR，6GiB/guest30分钟/host35分钟/STOP仅本实例另45秒/2GiB采样上限（可能瞬时超量）/禁网/不重试及原排除范围；旧额度不转移。
+
+原根main/255/index与apps/services保持。LOCAL_ONLY v1015-producer-supervisor-20261105先读init-asset-runtime-engineering-summary-private、init-asset-runtime-outcome-private、supplemental-sdk-candidate-private、supplemental-sdk-candidate-preflight-private及protected-records-after-init-asset-runtime-private；原证不上GitHub。fresh SSH核产品b5086290/main8a9e97a1，审整个待推范围普通同步，最终ref/Blob见私有回执。完整离线action/native生产工具链仍未证明；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-真实gradle失败与补充sdk输入节点)。
+
+---
+
+# EliteSync｜2026-11-05 来宾准备缺文件STOP已封存，产包脚本接线已修复（历史节点）
 
 **GUEST_PREPARATION_STOP_BEFORE_SDK / INIT_ASSET_NAME_MISMATCH_FIXED / SCOPE_SPENT_1_REMAINING_0 / NEXT_CANDIDATE_NOT_AUTHORIZED / AAR_APK_NOT_GENERATED / G2_FALSE**
 
