@@ -1,3 +1,25 @@
+# EliteSync-v10｜项目进度细表（主Flutter图文件缺项修复与本轮停止）
+
+## 2026-11-05 主Flutter图文件缺项修复与本轮停止节点
+
+| 项目 | 实际事实与限制 |
+|---|---|
+| Owner本轮终点 | 最新要求“这次完成后请停下，明天继续”。只完成当前新候选准备/证据/三文档及普通同步后停止，今日不申请/启动继任、不创建新grant/claim；明日恢复须核实际状态/当前资格，新运行额度UNKNOWN_NOT_CREATED，所有旧0余额保持 |
+| 当前已耗范围 | Owner对call_5331f4cc476d4b9a9dd4b2453cf347c5/item0选择“授权补齐SDK候选独立1次”；进入1aacf413d2c18a037233bd2223216a1ef8ca6e6f、原根/分支/origin/index/旧%SystemDrive%/正确。e1a合同/原nonce不变，原132一致、两grant后134保护；fresh16281MiB、磁盘460714528768字节，UTC15:12:18.730646创建不可退款claim并唯一VM/真实AAR尝试。1/1永久已耗余0，不重试/退款/变更冻结身份 |
+| 实际推进与失败 | Gradle8.14越过SDK35缺项，多个插件完成bundleReleaseAar/发布；454 actionable tasks，453 executed/1 up-to-date。主: flutter:compileFlutterBuildRelease内Target dart_build报缺.dart_tool/package_graph.json，Dart根退出1、BUILD FAILED in6m13s。guest397887ms/root_create_attempted=true/sdk_start_observed=true，driver440.547秒异常；主Flutter AAR未完成、仓库未导出，host无可交接AAR/APK，不把插件任务日志冒充已保存主产物 |
+| 收尾与保护 | 完整owned pair自动收尾退出0、stdout/stderr空，host-after-cleanup=[]且fresh observe=[]；底层VM teardown UNKNOWN，不启停其它程序/服务。旧134及冻结payload不变，16份本次原证＋具名既有graph后151保护。原main4bebc8f3/255/index2be660...及apps ed248529/services7634b475保持，旧STOP/SDK/DB/备份/worktrees不动 |
+| 根因与来源 | 私有完整Project的741文件基线漏带现有生成元数据package_graph；产品侧ignored graph确已存在31517字节，不借原dirty根31473字节版本。当前graph SHA8f0d666e6ddf495e504530688c08d665f583959950bc5c45f2971394dfc5880f；产品pubspec.yaml SHA78e52456...b0115、lock SHA0b38db9d...b7640均与固定私有工程逐字节一致 |
+| 静态一致性 | graph configVersion1/root flutter_elitesync_module，170唯一节点与私有package_config170完全同名；169非root版本逐项等Dart生成lock，root17直接/3开发依赖分类等lock，所有依赖边均引用在场节点。审计只读取既有元数据；未做Pub get/下载/SDK调用，不把一致性当运行时消费或全部边与每份第三方pubspec独立复核 |
+| 消费者源码事实 | 固定完整Flutter packages/flutter_tools/lib/src/package_graph.dart:121–155/171–177解析configVersion1、packages/name及roots/dependencies/devDependencies字符串列表；IO错误提示flutter pub get。Pub wrapper在调用Pub后读取graph，再作Flutter特定生成；本修复复用已有同解析结果的真实原文，不生成替代JSON、不修改Pub或绕过消费者 |
+| 源码/检查 | ea0ae47330570723a9a4eae5c03eff2e47495a02：prepare读一次graph原始bytes、按固定SHA核对并把相同bytes写probe/project-package-graph.json纳入payload，C#Materialize Project后复制到guest工作副本.dart_tool/package_graph.json。原准备根/源graph不改，741基线外明确新增1份冻结元数据。真实prepare fixture按实际C#消费者名先红缺graph；修后14项4.523秒通过，改graph在case创建/编译前拒收，源bytes/冻结payload一致。非作者Codex无具体P1/P2/必要缺测；非外部独立验收；旧C#等不记本轮新测，修后真实消费NOT_RUN |
+| 新候选 | 私有aar-project-graph-candidate，实际既有csc编译冻结141.140秒；sourceea0ae473，合同SHA8dbf9f383db4f5bc6db1d34a303f8125d6523ed21d9cf8083f58e4e61b78e850，binary SHA074ffec6e97ba0c28a050bed4e63aa454b4be67929d9633d694c3bf42a6ee3eb，nonce3b9be5820471478baeb5aff3e708b447。278源RO＋probe RO＋唯一fresh输出共280映射，22316文件身份绑定，graph31517字节另入probe；无grant/claim/VM/SDK0 |
+| 当前准备资格/明日 | 新候选只读preflight17342MiB、磁盘460783407104字节支持，未来须fresh核。既有6GiB/guest30分钟/host35分钟/STOP仅本实例45秒/2GiB采样上限（可能瞬时超量）、禁网/只读/不重试和无host APK/设备/DB/媒体/外部服务/生产/安装升级范围只供后续具体决定参考；当前未授权，今日不再询问或执行。完整native/离线action闭包及主AAR→host Debug仍未完成 |
+| 原证/项目/Git | LOCAL_ONLY同父目录supplemental-sdk-runtime-engineering-summary-private、supplemental-sdk-runtime-outcome-private、project-package-graph-input-audit-private、project-package-graph-consumer-source-private、project-graph-candidate-private、project-graph-candidate-preflight-private、protected-records-after-supplemental-sdk-runtime-private、owner-finish-then-stop-private，先摘要后具名原件，不上传。fresh SSH产品1aacf413/main8a9e97a1，审ea0ae473/本节点整个范围普通non-force同步，最终ref/Blob见回执。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本轮终点为失败原证封存、对应源码修复和下一候选可审查后停止；不建立明日自动运行或新额度。
+
+---
+
 # EliteSync-v10｜项目进度细表（真实Gradle失败与补充SDK输入）
 
 ## 2026-11-05 真实Gradle失败与补充SDK输入节点

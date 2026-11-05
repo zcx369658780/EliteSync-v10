@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner决定与收尾：完成当前保存后停止，明日继续
+
+Owner最新原话“这次完成后请停下，明天继续”。本轮只完成当前graph输入修复候选准备、证据/三文档保存及原产品分支普通同步后停止；今天不申请或启动继任、不写新grant/claim，不建立自动明日执行。明日从CURRENT ENTRY及具名摘要核实际身份/资格，后续新运行额度UNKNOWN_NOT_CREATED；全部旧已耗余额0保持。
+
+Owner此前对call_5331f4cc476d4b9a9dd4b2453cf347c5/item0答“授权补齐SDK候选独立1次”，同e1a合同/原nonce、134保护、原根及fresh16281MiB后UTC15:12:18.730646唯一claim/VM启动。Gradle完成454项任务（453执行），插件发布任务通过；主Flutter编译因.dart_tool/package_graph.json缺失而失败，6m13s/guest397887ms/driver440.547秒，SDK已启动、主AAR未完成、host仓库未导出。该scope**1/1永久已耗余0**，无重试，完整owned pair自动收尾成功/host观察为空，底层VM teardown UNKNOWN。
+
+产品侧已有graph31517字节/SHA8f0d666e...5880f，锁文件/pubspec与固定私有工程逐字节一致；170节点/169解析版本/17直接与3开发依赖及边目标存在静态核对通过。普通修复ea0ae473只冻结这份现有原始bytes并复制到guest工作副本，不改源文件/旧根，不运行Pub或伪造JSON；14项定向测试通过、非作者Codex无具体P1/P2，非外部独立验收。旧134保持、16份运行原证＋源graph后151保护，原根/双tree不变。
+
+新aar-project-graph-candidate已实际csc编译冻结，合同8dbf9f383db4f5bc6db1d34a303f8125d6523ed21d9cf8083f58e4e61b78e850/binary074ffec6...e3eb/新nonce，278源RO＋probe/唯一fresh输出，现有22316输入绑定和graph原文；**无授权/grant/claim/启动**。只读预检17342MiB是当时准备快照，不是明日资格或新额度。原单次6GiB/30分钟guest/35分钟host/本实例STOP45秒/2GiB采样及排除范围保持参考，不产生继任权限；AC05 OPEN/G2 false等不变，以下历史不倒改。
+
+---
+
 ## 2026-11-05 最新执行事实：真实Gradle失败已耗，补充既有SDK三根并冻结新候选
 
 Owner对call_5da401ce030c472cb2d8996b70096b7e/item0答“授权修复候选独立1次”。同b14e3828...8bea1/原nonce、grant及116保护/原根核对，fresh15768MiB后UTC14:42:20.990813创建claim并唯一启动。真实Gradle8.14完成插件编译等4项任务，最终connectivity_plus:extractReleaseAnnotations依赖配置报缺Build Tools35.0.0、BUILD FAILED in4m5s；guest270874ms/root_create_attempted=true/sdk_start_observed=true，driver290.672秒异常。**本scope1/1永久已耗余0**，旧所有0余额保留，无AAR/APK、不重试。
