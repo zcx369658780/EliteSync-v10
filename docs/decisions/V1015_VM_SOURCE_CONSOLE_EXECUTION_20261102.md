@@ -167,3 +167,9 @@ Owner“可以我同意，请继续”接续上一项宿主冻结case、生命�
 新提案仅 `v1015-native-cmake-version-qualification-20261105`：独立最多1次VM、1次现有CMake --version根进程；五个只读SDK根/42个PE，SDK前267项拒绝与owned输出预检，网络/音视频/剪贴板等禁用。guest2GiB/整体90秒、host从固定启动起180秒；资格STOP后精确本实例安全清理另限45秒，不改判、不重试或新开VM。不含Gradle/Flutter、AAR/APK构建、DB、设备、媒体、外部服务或工具链安装升级；完整native/DLL资格及G2不因此自动成立。
 
 合同SHAe3d291fecaf151cca890ab6d7070fa81bca3979a3fe0c0c5b073c522d4de9886，binary SHAdb7d7984917a1219d6c12ef569ba6f0ca1b74d6d9bbde6f71886819c008c448a。当前SOURCE_READY_NOT_AUTHORIZED、locked manifest runtime_authorized=false，无Owner新scope grant/launch.claim/active manifest；旧scope余额0保持。**下一动态动作须Owner对该具体独立SDK/VM范围明确同意**，失败/启动未成/非零/STOP一旦claim即耗该次，不自动重跑或换目录。一般v10.1.5工程和Debug APK/USB许可保留；实际产包预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING不变。
+
+## 2026-11-05 Owner明确授权CMake单次：已执行、非零拒收、余额0
+
+Owner随后直接选择“授权这独立1次CMake检查”，授权限上一提案所列1VM/1CMake --version、guest2GiB/90s、host180s及STOP本实例安全清理另45s；原问题/答复和代码/合同/二进制绑定在独立grant，不改历史未授权提案合同。该次已实际执行，30.016秒因root_exit 0xC0000135拒收，1/1已耗、剩0；267项拒绝/输出/禁网预检、根进程身份与收尾有实际证据，但版本查询整体未通过，canonical PASS未生成。具体缺失DLL仍UNKNOWN，不能凭状态码或静态导入指定唯一原因。
+
+此许可不延伸为第二次SDK/VM、安装升级或实际产包；不修改已耗helper、claim/outcome、旧STOP，不把runtime_authorized真值当新余额。后续普通依赖输入准备继续按既有工程权限推进，任何新动态范围必须具体闭合后另行明确；producer预算UNKNOWN_NOT_CREATED、G2 false、AC05 OPEN、10 PARTIAL与真实消息Push PENDING不变。最新66保护记录及LOCAL_ONLY原证见唯一细表。

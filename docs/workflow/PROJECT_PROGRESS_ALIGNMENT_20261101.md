@@ -1,4 +1,27 @@
-# EliteSync-v10｜项目进度细表（CMake单次宿主适配与冻结候选）
+# EliteSync-v10｜项目进度细表（Owner授权CMake单次检查非零拒收）
+
+日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_0xC0000135 / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 Owner授权CMake单次检查非零拒收节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 明确授权 | Owner对具体1VM/1CMake版本查询提案选择“授权这独立1次CMake检查”，不是从笼统继续推断。源3a9ea634191117c70e0bbdae4d8c7e0df62b04d6，独立owner-explicit-grant保存原问题/答复/limits/source和合同SHA；未改原合同SOURCE_READY历史状态或旧helper，不继承旧预算/设备状态 |
+| 启动前与范围 | 实际产品根/分支/origin正确，index空，仅原%SystemDrive%/；42输入/59保护记录fresh一致，无既存Sandbox，系统launcher签名Valid、Store0.8.107.0、可用9645MiB。合同SHAe3d291...9886、binary SHAdb7d7984...c448a、原nonce与六件编译产物一致。guest2GiB/90s、host从启动起180s、STOP安全清理另45s，无工具链安装/升级或权限扩大 |
+| 实际单次 | 独立scope v1015-native-cmake-version-qualification-20261105，实际VM1，30.016秒结束；1/1永久已耗、剩0，无重试/继任claim/退款。CMAKE_VERSION_REJECTED_OR_STOPPED；guest CMake root尝试1、42输入验证，root_exit=3221225781 (0xC0000135)，stdout/stderr各0字节，没有版本输出。Gradle/Flutter/真实构建/DB/设备/媒体0 |
+| 真实预检 | guest-preflight记录252文件权限+15目录权限均error5、owned canary写读删与无活动非loopback适配器通过，预检时SDK_starts=0；随后核心才尝试CMake。仅支持本次42文件/五映射和自有输出的有界检查，不等于所有SDK/生产实际读集 |
+| 正确拒收 | 外层failure=null，内层stop_reason=null、watchdog0，但root_exit非零，严格validator在日志/版本接受之前拒收。collector.stderr保留原始异常，driver STOP及原engineering-outcome不改；canonical verified-result不存在。不能把收集器包装错误或guest外层0看作成功，也不把SDK非零归为观察器STOP |
+| 日志与收尾 | 同一原始日志只读核验9行/2样本/1成员/6次image-check/0 endpoint rows，与receipt的root_pid+root_birth/nonce/binary SHA一致；采样非原子、UDP目的地UNKNOWN。Job最终空、bound handles均退出；主链精确owned pair收尾后宿主[]，STOP安全receipt为HOST_PROCESSES_ALREADY_ABSENT，无额外终止/SDK/VM。后台VM完全teardown UNKNOWN |
+| 拒收诊断边界 | 0xC0000135为STATUS_DLL_NOT_FOUND，仅读宿主ntdll状态映射为Win32 126，未执行额外SDK；没有loader trace，不指定具体缺失DLL。静态CMake导入含MSVCP140/VCRUNTIME140及CRT/API-set，但这不是缺失身份的实测证明。现有完整声明库存只读查到JDK三配套VC DLL与NDK Python另版候选，existing-declared-vc-candidates-private保存原role/路径/hash；未复制、替换、混用或安装 |
+| 原证与独立层级 | LOCAL_ONLY同名scope根，先读engineering-outcome-private/rejection-diagnostics-private/collector.stderr及stop-cleanup-private，再看guest result/preflight/samples/宿主快照。诊断绑定另存原始hash，scope_STOP_unchanged=true，不生成canonical PASS。非作者Codex原证交叉核对无不一致，非外部独立验收或Owner整版接受；原预备summary/partial失败/合同全部留原件 |
+| 保护/下一步 | 原59前后SHA一致，新增本次grant/claim/launch binding/outcome/driver STOP/安全收尾/诊断绑定七件，最新66保护记录。原dirty根main@4bebc8f3/default255/index2be660...，apps ed248529/services7634b475、SDK/DB/备份/worktrees/旧STOP保留。后续普通源码准备先闭合已有VC运行库来源/版本/架构/签名与app-local输入，不盲搬System32，不修改已耗host/helper或补flag；动态复验需具体新范围，不能复用本次0余额 |
+| 整版/Git | producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、native完整DLL/进程/offline/资源/AAR→host未证明；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。执行源3a9ea634已同步，最终结果三文档只做普通non-force并回读ref/Blob，不上传LOCAL_ONLY |
+
+本节点完成已授权的一次实际SDK检查与失败封存。真实预检、绑定日志和收尾为有界部分证据；本scope整体资格未通过，不退款、不降标或事后改判。
+
+---
+
+# 前一CMake宿主适配与冻结提案节点（按原时点保留）
 
 日期：2026-11-05。状态：**HOST_ADAPTER_SOURCE_READY / CMAKE_SINGLE_CASE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
 
