@@ -159,3 +159,11 @@ Owner“可以，请继续”后完成原生PE静态导入读集：42个库存PE
 Owner“可以请继续”用于继续实现受限核心与收集策略。新核心只接受16个固定native version角色、编译内嵌42输入及精确命令/环境/镜像策略，默认runtime_authorized=false；9项检查及45个C#纯策略案例通过，现有csc编译成功，核心未执行。宿主grant/不可退款claim/冻结case、只读映射、guest关机和宿主生命周期、raw日志身份适配尚未完成，不能翻flag直接运行或拿布尔真值当余额。
 
 本轮无VM/SDK/Gradle/产包/DB/设备/媒体动作、新scope或运行claim；旧interop单次及历史STOP保持已耗状态。一般已授权工程/Debug APK许可保留，下一动态范围须满足具体资格与独立预算；producer预算UNKNOWN_NOT_CREATED、G2 false、AC05 OPEN、10 PARTIAL和真实消息Push PENDING不变。具体源码/编译/原证身份见唯一进度细表最新节点。
+
+## 2026-11-05 宿主适配完成与独立CMake版本查询提案（未授权运行）
+
+Owner“可以我同意，请继续”接续上一项宿主冻结case、生命周期和日志工程。本轮完成适配、31项定向检查和固定候选；未据一般同意注册新SDK额度。原六件编译成果及原nonce在同目录保留并补合同，预备元数据失败不当作VM尝试，也不退款或复用旧运行scope。
+
+新提案仅 `v1015-native-cmake-version-qualification-20261105`：独立最多1次VM、1次现有CMake --version根进程；五个只读SDK根/42个PE，SDK前267项拒绝与owned输出预检，网络/音视频/剪贴板等禁用。guest2GiB/整体90秒、host从固定启动起180秒；资格STOP后精确本实例安全清理另限45秒，不改判、不重试或新开VM。不含Gradle/Flutter、AAR/APK构建、DB、设备、媒体、外部服务或工具链安装升级；完整native/DLL资格及G2不因此自动成立。
+
+合同SHAe3d291fecaf151cca890ab6d7070fa81bca3979a3fe0c0c5b073c522d4de9886，binary SHAdb7d7984917a1219d6c12ef569ba6f0ca1b74d6d9bbde6f71886819c008c448a。当前SOURCE_READY_NOT_AUTHORIZED、locked manifest runtime_authorized=false，无Owner新scope grant/launch.claim/active manifest；旧scope余额0保持。**下一动态动作须Owner对该具体独立SDK/VM范围明确同意**，失败/启动未成/非零/STOP一旦claim即耗该次，不自动重跑或换目录。一般v10.1.5工程和Debug APK/USB许可保留；实际产包预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING不变。

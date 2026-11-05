@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 具名版本查询执行核心与严格收集策略（CURRENT ENTRY）
+# EliteSync｜2026-11-05 CMake单次宿主适配与冻结候选（CURRENT ENTRY）
+
+**HOST_ADAPTER_SOURCE_READY / CMAKE_SINGLE_CASE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以我同意，请继续”用于上一节点的宿主冻结/日志/生命周期工程接线，不推断为尚未提出的新SDK运行范围。实际产品根/分支/origin、进入HEAD `c34098773b18d7df7578f8a94de6f2586b3e8e53` 与初始空index核对一致，仅原%SystemDrive%/；新增适配源码621f520d及原半成品身份绑定修复7bcba16a，最终文档提交以Git为准。59保护记录、原根main/255/index、产品apps/services保持；旧interop1/1已耗/剩0，不复用任何历史余额。
+
+已完成固定CMake --version的宿主适配：五个SDK只读映射/42个PE输入、编译内nonce/角色/命令策略、独立新grant与不可退款claim前置、claim后才可创建活跃manifest；guest在SDK之前核252项文件拒绝+15项目录拒绝/网络禁用/owned输出canary。回执持有root handle捕获的root_birth与原始采样日志独立匹配；180秒窗口由不可变启动双时钟计算剩余，重复调用不续额。失败marker原子发布后同样先精确owned收尾再拒收；STOP后另设最多45秒安全清理，仅本实例pair，不改STOP、不启动新SDK/VM。
+
+31项新定向检查通过（17宿主+14日志），含15个真实C#纯生命周期断言；未调用guest Main、SDK或VM。复核发现的早期失败收尾/出生时间/时限/marker发布/半成品恢复身份问题均已修复，非作者Codex无剩余具体P1/P2，非外部独立验收。首次候选编译成功后，csc正常系统硬链接导致封存元数据校验失败；保留六份原产物与原回执，在同目录核固定SHA/原nonce后只补合同，未重编/改nonce/换目录。SDK单链接规则未放宽，仅固定微软签名系统csc有专用身份校验。
+
+候选 `v1015-native-cmake-version-qualification-20261105` 已冻结：contract SHA `e3d291fecaf151cca890ab6d7070fa81bca3979a3fe0c0c5b073c522d4de9886`，binary SHA `db7d7984917a1219d6c12ef569ba6f0ca1b74d6d9bbde6f71886819c008c448a`。**SOURCE_READY_NOT_AUTHORIZED**，锁定manifest runtime_authorized=false，无Owner新scope grant、launch.claim或活跃manifest；不得再prepare或重建。提议独立最多1VM/1CMake版本查询，guest2GiB/90秒、host从启动起180秒；失败后精确owned安全清理另限45秒，不延长资格窗口。本节点未启动。
+
+LOCAL_ONLY原证根为同名候选目录，先读engineering-summary-private、case-contract-private、preparation-partial-private；不上传原始SDK/日志/二进制。下一动态项需Owner明确同意上述新SDK/VM有限范围；一般工程/Debug APK许可保留，真实产包预算UNKNOWN_NOT_CREATED。采样非原子、UDP目的地UNKNOWN、完整进程/DLL/offline/资源/真实AAR→host仍未证明；APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-cmake单次宿主适配与冻结候选节点)。
+
+---
+
+# EliteSync｜2026-11-05 具名版本查询执行核心与严格收集策略（历史节点）
 
 **VERSION_ONLY_CORE_COMPILED / PURE_RECEIPT_VALIDATOR_READY / HOST_ADAPTER_NOT_READY / NO_RUNTIME_CLAIM / APK_NOT_RUN / G2_FALSE**
 

@@ -1,4 +1,28 @@
-# EliteSync-v10｜项目进度细表（具名版本查询执行核心与严格收集策略）
+# EliteSync-v10｜项目进度细表（CMake单次宿主适配与冻结候选）
+
+日期：2026-11-05。状态：**HOST_ADAPTER_SOURCE_READY / CMAKE_SINGLE_CASE_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 CMake单次宿主适配与冻结候选节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权与工作面 | Owner“可以我同意，请继续”用于接上已列宿主冻结case/生命周期/日志工程，未将一般同意扩为尚未具名的新SDK执行额。实际产品根/分支/origin与进入c3409877、空index一致，仅原%SystemDrive%/。实现621f520de645bf5827cc33a44fc1473ec0d35bbc，恢复修复7bcba16a22aad9f2bd509a60374313a81c50735a；旧helper和interop1/1已耗/剩0不改 |
+| 固定适配 | 新native_role_host只接一个CMake --version case，ROOT固定，不提供任意任务/命令。五个具名SDK根RO、probe RO/output RW；42 PE按既有readset SHA/FileID/内容fresh核对。新Owner grant须绑定scope/role/合同SHA/完整limits与1VM/1SDK根，默认launch拒绝，claim不可退款且先于活跃manifest和系统launcher。无grant/claim时WSB缺活跃manifest，不能启动SDK |
+| Guest前置/关机 | 包装器编译内绑定原nonce，Owned核WDAG/self/nonce后立即启动90秒watchdog，所有manifest/自hash/授权/策略/预检失败都在Guarded失败marker/finally关机范围。只读权限OPEN_EXISTING试开：42文件六权限=252、五目录三权限=15，仅接受error5，不实际写输入；输出canary只清理本次成功创建文件，不删预存件。网络无活动非loopback适配器，SDK在预检后才可能启动；没有shutdown.exe子进程 |
+| 原证与时限接线 | pending→Flush(true)→Move发布preflight/failure/watchdog marker，宿主不会读取半成品marker。仅抽取SHA锁定旧interop两个纯函数，不调用旧scope；成功/失败信号均接精确owned pair收尾。claim持久化单次启动monotonic+UTC，launch-binding绑定claim/launcher原始hash；host窗口按已耗最大值扣减，不能延迟调用或重复收集续180秒。terminal拒二次收集 |
+| 严格收集 | 独立Python -I/-S/-B子进程在剩余窗口核五份输出/总字节、nonce/binary/角色、guest预检、root_exit/STOP/watchdog/Job/handles、CMake3.22.1文本与空stderr。新派生监督器从持有的root handle取root_birth写proof，日志必须独立对应root PID+生时+镜像/计数/端点/重试；不是仅日志内部自洽。旧core validator不改，宿主验证新增root_birth后仅剥该字段复用旧严格策略 |
+| STOP安全收尾 | 资格失败先写不可改判driver STOP，再额外最多45秒安全清理；先验当前frozen/grant/claim/launcher，仅对精确本配置/父链/生时/持有handle的RemoteSession+Server操作，遇frontend/其他实例或身份不明拒终止。安全收尾不延长原资格窗、不写PASS、不重试SDK或新VM，后台VM完全teardown仍UNKNOWN |
+| 检查与复核 | 最终31项（17宿主+14日志）通过，含真实C#只执行纯回调/文件fixture的15个生命周期断言；不调用guest Main/SDK/VM。涵盖命令/授权/claim漂移、全体birth改写、STOP/坏退出/窗口过期、失败marker先收尾、发布原子性、canary归属、partial共同漂移等。非作者复核所见P2已修，无剩余具体P1/P2，非外部独立验收；旧9/45、11/13/249等不当新增运行证据 |
+| 准备失败原证与同目录补齐 | 初次csc实际编译成功，最后封存元数据时因系统csc正常两硬链接而失败，无VM/SDK/claim。保存原六份CS/exe/locked manifest/WSB/编译stdout/stderr的原始hash，回执SHA8833ef686fb46342360b9b539b756f55d00b4068cd3d51732569aa3c8800b507。固定原nonce0d56a5fe51fb4586a80cc3b7c2194246，finish/frozen均核回执自身SHA和六件bytes/hash，拒nonce/二进制共同替换及运行/终态残留；禁止重新prepare。仅同目录补合同，未重编、覆盖原件或换目录。固定签名系统csc允许稳定servicing硬链接，SDK单链接门不变 |
+| 冻结身份/状态 | scope v1015-native-cmake-version-qualification-20261105；contract SHAe3d291fecaf151cca890ab6d7070fa81bca3979a3fe0c0c5b073c522d4de9886，generated CS SHA01f99540726108908fb500f083cc75f2922c1661e6628a1c8051a4b72bfc186f，binary SHAdb7d7984917a1219d6c12ef569ba6f0ca1b74d6d9bbde6f71886819c008c448a。SOURCE_READY_NOT_AUTHORIZED，locked runtime_authorized=false，无新grant/claim/active manifest。提议1VM/1SDK根、2GiB/guest90s、host180s、STOP清理另45s，尚未获此新范围授权 |
+| 原证/保护/边界 | LOCAL_ONLY同名候选根先读engineering-summary-private、case-contract-private、preparation-partial-private，不上传原始SDK/日志/可执行文件。59保护记录一致；原根main@4bebc8f3/default255/index2be660...，产品apps ed248529/services7634b475保持。实际VM/SDK/产包/DB/设备/媒体0，新运行claim0；真实producer预算UNKNOWN_NOT_CREATED，native完整DLL/进程/offline/资源/AAR→host未证明，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING |
+| 下一步与Git | 具体新SDK/VM单次范围待Owner明确决定；普通工程继续，一般Debug APK/USB许可不重问，但不替代独立预算/资格。当前仅源码/测试和三文档普通同步，最终ref/Blob见实际Git和私有回执；不合main、不启动v10.1.6，不用镜像Parent或身份绕过失败 |
+
+本节点完成宿主适配源码与一个可审查冻结候选，尚非真实CMake运行资格或实际产包结果。
+
+---
+
+# 前一具名版本查询核心节点（按原时点保留）
 
 日期：2026-11-05（Asia/Shanghai）。状态：**VERSION_ONLY_CORE_COMPILED / PURE_RECEIPT_VALIDATOR_READY / HOST_ADAPTER_NOT_READY / NO_RUNTIME_CLAIM / APK_NOT_RUN / G2_FALSE**。
 
