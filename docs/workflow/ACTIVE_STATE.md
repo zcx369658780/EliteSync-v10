@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 组件来源链接与POM静态声明准备（CURRENT ENTRY）
+# EliteSync｜2026-11-05 完整Flutter根产包入口源码接线（CURRENT ENTRY）
+
+**FULL_ROOT_PRODUCER_SOURCE_WIRED_NOT_EXECUTABLE / COMPILATION_AND_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner要求继续并指出v10.1.5已停滞一周多；本节点转向实际产物关键路径，不重复复制SDK/全量POM目录或逐个工具版本查询。实际产品根/分支/origin、进入HEAD `1bf1b8633365aedaf4300c3844e3b2090ec32846`、空index核对，仅原%SystemDrive%/。原完整18,019文件Flutter私有根、741文件工程副本及AAR verifier/host renderer已存在，当前真正未接通的是producer执行链与完整运行约束。
+
+新增current_product_producer_entry：按固定完整Flutter/Project/262选定输入库存SHA及原Kotlin/AAR-init SHA生成两个私有源码overlay与Java Gradle真实assembleAarRelease命令候选。FlutterTask的flutter.bat子调用改成同完整私有根的dart.exe＋明确package_config＋flutter_tools.snapshot前缀，其余assemble参数/规则保留；限定release、正常取锁、无local-engine、不继承环境。AAR沿用既有私有适配只去两处Javadoc publication，sources保留；只产源文件/patch/manifest，不修改旧SDK或已准备根，不编译/执行。
+
+明确arm64/两个v1015/v1014 defines、离线/no-daemon/单worker、私有GradleHome及既有只读Seed；统一发布版本 `1.0-v1015-84a94c9177ce-d260db918b9a`。输出约定AarOutput/outputs/repo接现有stage_repository和render_private_host，后者仍须真实仓库验证后才能生成host Debug消费文件，不用空目录跳syncFlutterAar。绑定清单不是完整根当前重新hash、编译或运行资格；旧APK plan/冻结helper/已耗scope不改。
+
+8项新纯/合成检查通过；非作者Codex发现两处负例提前失败的测试缺口，已修正并以去project pin、去helper-row绑定两个定向变异确认可检出，最终无具体P1/P2，非外部独立验收。原78保护、原main/255/index及apps/services一致。LOCAL_ONLY `v1015-producer-entry-wiring-20261105`先读engineering-summary-private、producer-entry-private、pure-checks-private，再按需两overlay/patch；SDK/二进制/原证不上传。
+
+**仍不能执行新产包**：本入口的OS写入/进程约束未实现、native完整资格与实际离线action闭包未证明、当前资源资格UNKNOWN、独立producer预算/claim UNKNOWN_NOT_CREATED。所有旧余额0保持；本轮SDK/Gradle/VM/构建/设备/DB/媒体0，无新claim、AAR/APK未生成。下一工程集中于上述具体producer执行约束及依赖消费，再真实AAR→host；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。
+
+Git本次普通SSH只读已恢复，fresh远端产品04dfd24f/main8a9e97a1；待推包含上节点1bf1b863及本节点，审整个范围后同身份/协议普通non-force同步，最终ref/Blob以实际回执为准。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-完整flutter根产包入口源码接线节点)。
+
+---
+
+# EliteSync｜2026-11-05 组件来源链接与POM静态声明准备（历史节点）
 
 **STATIC_COMPONENT_LINKS_AND_POM_DECLARATIONS_PREPARED / EFFECTIVE_MODEL_NOT_COMPUTED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
 

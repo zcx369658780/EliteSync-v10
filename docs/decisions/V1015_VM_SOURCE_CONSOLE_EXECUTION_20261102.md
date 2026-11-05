@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：转向实际producer入口源码接线，不新增运行额度
+
+Owner要求继续并指出v10.1.5停滞一周多。主代理将普通工程集中到真实AAR→host关键路径，复用已有完整私有Flutter/Project及AAR verifier/host renderer，不重复制SDK、泛扫POM或逐工具版本查询。新增source-pinned producer entry把Flutter Gradle任务BAT调用前缀改为同完整私有根direct Dart/package_config/snapshot，保留assemble参数；沿用两处Javadoc私有适配，明确Java Gradle arm64 release候选与统一源/选定库存发布版本及真实repo→host接点。只生成overlay/patch/manifest，旧SDK/完整根/诊断helper/原scope均不改。
+
+8项纯检查及两定向变异检出，非作者Codex测试缺口修正后复核无具体P1/P2，非外部独立验收。完整清单SHA绑定不等于当前全根重新hash、编译、执行或依赖消费。该入口OS写入/进程约束尚未实现、native/离线闭包未证明、当前资源UNKNOWN、独立producer预算/claim UNKNOWN_NOT_CREATED，**仍不可执行新产包**；无新动态继任/claim，旧CMake及全部scope余额0保持。本轮SDK/Gradle/VM/构建/设备/DB/媒体0，78保护与原dirty/index/双tree一致。
+
+10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING、AAR/APK未生成；继续该producer的具体执行约束/依赖资格普通工程，不合main、不启v10.1.6。本次SSH普通只读恢复，远端产品04dfd24f/main8a9e97a1，需审含1bf1b863的整个待推范围再普通non-force同步；最终Git按私有回执。LOCAL_ONLY v1015-producer-entry-wiring-20261105及唯一细表保留边界；以下历史时点不改判。
+
+---
+
 ## 2026-11-05 最新工程节点：组件来源与POM静态声明，不新增执行资格
 
 Git状态PENDING_SYNC：同步前普通SSH远端只读Connection closed，未push；前节点最后已核产品04dfd24f/main8a9e97a1，失败后HEAD UNKNOWN。先保存本地完整源码/记录，连接恢复后再核全部待推范围普通non-force同步原产品分支，不改身份/协议、不借归档镜像绕过。

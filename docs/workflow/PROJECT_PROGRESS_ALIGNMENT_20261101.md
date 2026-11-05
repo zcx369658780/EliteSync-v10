@@ -1,3 +1,25 @@
+# EliteSync-v10｜项目进度细表（完整Flutter根产包入口源码接线）
+
+日期：2026-11-05。状态：**FULL_ROOT_PRODUCER_SOURCE_WIRED_NOT_EXECUTABLE / COMPILATION_AND_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。
+
+## 2026-11-05 完整Flutter根产包入口源码接线节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 目标/身份 | Owner要求继续并指出1.5停滞一周多；目标为接通实际AAR producer关键路径，不再泛扫POM或逐个工具版本查询。产品根/原分支/origin正确，进入1bf1b8633365aedaf4300c3844e3b2090ec32846、空index，仅原%SystemDrive%/；产品源码身份仍84a94c9177ce832040146cff9968569762300307/apps ed248529/services7634b475，不以新工程HEAD替换旧产品源身份 |
+| 复用已有资产 | 20261103完整私有Flutter根18,019文件/3,284,398,412字节、Project741文件及真实仓库验证/host renderer已经准备，保持原件；不重复制SDK、不把10控制文件根当生产SDK。完整Flutter库存SHA4b632151...c8019、Project库存557f07fc...8d487、262选定库存d260db91...824c3共同固定入口；本节点新鲜读取上述清单及两个按FileID/size/SHA绑定的SDK文本，未重hash全部完整根/实际资格 |
+| 新源码接线 | current_product_producer_entry仅渲染两个overlay、命令/环境/交接manifest。原BaseFlutterTaskHelper SHA81bfe154...d2730：只替换唯一executable锚点，用同C:/BuildWork/Flutter的dart.exe＋工具package_config＋snapshot，保留原workingDir/assemble参数/规则；检查release、无local-engine、无FLUTTER_ALREADY_LOCKED绕锁。原AAR-init SHAb6b87095...e2c2只去两处withJavadocJar，沿用既有有界适配，withSourcesJar及publication其余逻辑保留 |
+| 实际action候选 | 明确Java Gradle CLI主JAR/agent，不经Gradle BAT；任务assembleAarRelease、target lib/main.dart、android-arm64、v1015/v1014 defines；--offline/--no-daemon/--max-workers=1、私有Home/tmp/GradleHome/project-cache及GRADLE_RO_DEP_CACHE。命令仅数据，未运行/编译或声称等效bootstrap、真实持锁、JVM/Kotlin策略已消费；缺本入口独立OS/进程写入执行器，不能直接运行该候选argv |
+| 真实产物交接 | 源＋选定库存发布版本1.0-v1015-84a94c9177ce-d260db918b9a，预期主坐标com.elitesync.flutter_elitesync_module:flutter_release:<version>；producer输出C:/BuildWork/AarOutput/outputs/repo，后接current_product_aar_handoff.stage_repository及current_product_private_host.render_private_host，再:app:assembleDebug。只声明并绑定现有helper接点，真实repo未产、verifier未被真实产物调用、host未渲染或运行；空目录不可跳syncFlutterAar，不赋予producer provenance |
+| 检查/审查 | 新8项纯/合成检查通过，含四输入pin逐项漂移、缺/重复/错role库存、helper-row/唯一Exec锚点、Javadoc数量/原sources保留、direct Dart参数、release/锁约束、两个defines、版本/交接一致及0许可/claim。非作者Codex发现两处测试提前失败缺口，修后去project pin、去helper-row检查两个定向变异均1 failure/0 errors被检出；最终无具体P1/P2，非外部独立验收。原失败/STOP/前节点测试不改判、不冒称本轮新测 |
+| 保护/原证 | 78/78保护SHA、原main@4bebc8f3/default255/index2be660...及产品双tree一致，旧SDK/完整私有根/Project/原诊断helper/STOP/余额/DB/备份/worktrees保留。LOCAL_ONLY v1015-producer-entry-wiring-20261105：engineering-summary-private/producer-entry-private/preparation-request-private/pure-checks-private/mutation-checks-private、两源原文/候选/patch、保护/三文档前后副本；不上传SDK/二进制/原证 |
+| 阻塞/下一步 | producer OS写入/进程约束NOT_IMPLEMENTED_FOR_THIS_ENTRY，native完整资格/离线action闭包NOT_PROVEN，overlay编译/运行NOT_RUN，当前资源UNKNOWN，独立预算/claim UNKNOWN_NOT_CREATED。下一工程集中补该入口具体执行约束与实际依赖消费，再资格成立后的真实产包/交接；本轮SDK/Gradle/VM/构建/设备/DB/媒体0、无新claim，所有已耗余额仍0。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6 |
+| Git | 本次fresh普通SSH只读恢复：产品04dfd24fac3d5263b91f126541dd300b24a42e41/main8a9e97a1e9414b65d669e07f3188b81764196027；上节点1bf1b863未同步。审该HEAD起整个待推范围后同身份/协议普通non-force同步原分支，最终commit/ref/Blob按实际Git及私有回执；失败PENDING_SYNC、不pull/reset/rebase/force、不改身份或借归档镜像绕过 |
+
+本节点只完成可审查源码接线，不是完整producer执行器/运行资格或AAR/APK产出。
+
+---
+
 # EliteSync-v10｜项目进度细表（组件来源链接与POM静态声明准备）
 
 日期：2026-11-05。状态：**STATIC_COMPONENT_LINKS_AND_POM_DECLARATIONS_PREPARED / EFFECTIVE_MODEL_NOT_COMPUTED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
