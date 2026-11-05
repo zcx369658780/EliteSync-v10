@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（CMake完整版本消费者接线与冻结）
+
+日期：2026-11-05。状态：**FULL_VERSION_CONSUMER_WIRED_AND_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 CMake完整版本消费者接线与冻结节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权/工作面 | Owner“可以请继续”用于新消费者工程接线，非新SDK/VM运行许可。进入91fa0adbe297ddd2c3e396e75198b20dbed84694，产品根/分支/origin、空index正确，仅原%SystemDrive%/。原待推024f/91fa完整保留，本轮同身份普通SSH可读，远端产品a2af87a8/main8a9e97a1；新源码9ae9d706f0256eeb4ed2e91bf421d0e430b0cc91，最终记录与同步按实际ref |
+| 独立不可变派生 | 新cmake_version_consumer固定旧适配器SHA0149cef24b3ad688527e51e98daa2eaa42903b35352701be9ca47d48b8d2f04a，再沿已固定host/core/wrapper派生。新scope v1015-cmake-version-bound-consumer-20261105，预检kind native-cmake-bound-version-preflight、子collector导入新模块；旧cmake_vc_candidate/native_role_host/guest lifecycle、已耗case合同/nonce/claim/outcome/STOP不改，不调用旧collect |
+| 预期进入真实消费者 | f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780独立固定到policy/contract；readset/frozen在编译和claim前检查JSON/固定PE及模板完整性，合成模板只用于静态一致性，不是SDK输出。collector在core/root_birth/raw日志核验后调用完整字节消费者：精确PE及106字节stdout/空stderr，缩写、后缀/换行/额外输出/预期SHA漂移均拒收，纯匹配flag不提升G2/producer |
+| 调用/安全接线 | 保留new grant+合同SHA+scope/role/limits→不可退款claim→active manifest→固定180秒双时钟→精确owned生命周期→严格collector。45 PE/五RO根、270文件+15目录权限/owned canary/禁网，guest90秒watchdog和STOP另45秒安全收尾保持；没有任意shell/BAT/Gradle/Flutter入口。缺旧授予新scope授权、错误root birth/额外marker/未清理均不接受 |
+| 18项组合检查 | 9项新接线加9项完整版本绑定回归通过：新scope/合同f7ab pin、默认launch先拒、旧grant/预检拒收、core坏exit/出生时间/多marker、全字节输出变化、预期或PE漂移、冻结manifest false、不可二次prepare、编译中预期漂移留下terminal失败且恢复数据仍拒绝、180秒不续额。仅合成文件/纯校验，无SDK/VM；非作者Codex复核无具体P1/P2，非外部独立验收 |
+| 真实准备 | 45份PE/449,500,965字节及完整私有CMake2,995文件/五映射只读fresh核对；现有签名有效系统csc编译观察器一次，沿用/noconfig、winexe、私有最小环境、编译前后source/csc身份复核和失败永久阻断；准备20.75秒不当VM容量/运行资格。guest source SHAb5bcfb5344a897165216305166a260387ca1d7f284ba1b570e03ebe18783eb73，binary SHA1862c5f15a10b937c0b3d78c6f6a212fdcc1b9a4fca3a7cf07d7cafff359983d，合同SHAaecfcfa6fdec308895b6b6632e94e82185101d805e14ddc72d0b62ec8cbfe175 |
+| 冻结与未运行 | SOURCE_READY_NOT_AUTHORIZED，locked manifest SHA7b9f80bb6ecdbbf6706e3ca5d814d81fabefe20042d340887db21eb0be6c765f，runtime_authorized=false/producer=false/G2=false。无grant/launch.claim/active/failure marker，output与compile-temp空，compiler stdout/stderr0字节；不得再prepare/换nonce。预备新scope只有proposed max1，不是已授权余额；本轮VM/SDK/Gradle/Flutter/真实构建/DB/设备/媒体/installer0 |
+| 原证/保护 | LOCAL_ONLY v1015-cmake-version-consumer-preparation-20261105：engineering-summary-private/preparation-result-private/pure-checks-private/input-plan/consumer-derivation.patch及73记录前后副本、三文档原文；冻结二进制/合同在新scope根。非作者仅哈希/目录交叉核对与声明一致，不作外部验收。73/73保护匹配，旧case合同/全部源码和canonical缺席不变；原main@4bebc8f3/default255/index2be660...及apps ed248529/services7634b475保持，原SDK/DB/备份/worktrees/旧STOP保留，原证不上传 |
+| 下一独立运行提案 | 仅上述新scope/合同/固定f7ab预期，独立最多1VM/1 CMake --version，guest2048MiB/整体90秒，host从启动起180秒，STOP后本实例安全清理另45秒、不改判/不重试。SDK前核45输入/五RO根270+15拒绝/owned输出/禁网；启动前fresh核当前环境/容量/输入/launcher，不借历史资格。尚未授权、无运行claim；禁止Gradle/Flutter/AAR/APK/DB/设备/媒体/外部服务/安装升级 |
+| Git/整版 | 审整个从a2af87a8起的待推范围，保留024f/91fa及9ae9源码和本轮最终记录，普通non-force同步原产品分支；不pull/reset/rebase/改身份/协议/写镜像。失败仍PENDING_SYNC，最终ref/Blob以私有回执为准。旧单次全部剩0、上一case仍REJECTED，本节点不重收或改判；完整DLL/进程/offline/资源/真实AAR→host未证明，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本节点仅把完整版本预期接入独立宿主并实际编译/冻结观察器；未启动SDK/VM或获得下一运行预算，旧原始失败不变。
+
+---
+
 # EliteSync-v10｜项目进度细表（CMake完整版本字面值离线绑定）
 
 日期：2026-11-05。状态：**FULL_VERSION_LITERAL_OFFLINE_BOUND / EXACT_OUTPUT_BYTES_CHECKER_READY / CONSUMER_NOT_WIRED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。

@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：完整版本消费者已接线冻结，运行未授权
+
+Owner“可以请继续”接续新消费者源码接线。新增cmake_version_consumer按固定SHA派生旧适配器，不改任何已耗helper/case；完整版本预期f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780进入新policy/contract，编译/claim前验证、运行时collector在core/log后核全字节输出。18项组合检查通过，非作者Codex静态审查无具体P1/P2、原件哈希/目录核对一致，非外部独立验收。
+
+新scope v1015-cmake-version-bound-consumer-20261105已由现有csc编译观察器一次并冻结，source commit9ae9d706f0256eeb4ed2e91bf421d0e430b0cc91；合同SHAaecfcfa6fdec308895b6b6632e94e82185101d805e14ddc72d0b62ec8cbfe175、binary SHA1862c5f15a10b937c0b3d78c6f6a212fdcc1b9a4fca3a7cf07d7cafff359983d。SOURCE_READY_NOT_AUTHORIZED、locked runtime_authorized=false、无grant/claim/active/failure marker、output空，禁止再prepare/改nonce。本轮SDK/VM启动0，旧case仍REJECTED/余额0，不因新消费者事后改判。
+
+现提出仅该新scope独立最多1VM/1 CMake --version、45 PE/五RO根与固定完整版本预期，SDK前270文件+15目录拒绝/owned输出/禁网预检，guest2GiB/整体90秒，host从启动起180秒；STOP后仅本实例安全清理另45秒，不改判、不重试。**该新SDK/VM范围尚未获Owner明确授权，不建claim、不启动**；启动前fresh核资格，不套旧配置/容量结论。禁止Gradle/Flutter/AAR/APK/DB/设备/媒体/外部服务/安装升级；一般继续不是该新额度。
+
+73保护记录、原dirty/index及apps/services保持，producer预算UNKNOWN_NOT_CREATED、G2 false、AC05 OPEN、10 PARTIAL、真实消息Push PENDING不变。此前两PENDING_SYNC提交保留，按整段审查后同身份普通non-force同步原产品分支，实际结果见最终Git/私有回执。其余native/offline/资源/真实AAR→host继续准备，不合main、不启v10.1.6；以下历史决定保留原时点。
+
+---
+
 ## 2026-11-05 最新工程节点：完整版本离线预期，不新增动态范围
 
 Owner“可以请继续”接续完整版本字面值的离线绑定。新增只读五文件绑定/纯输出消费者与9项定向检查，固定PE的完整NUL版本3.22.1-g37088a8-dirty、偏移7,402,704，与properties/XML修订3.22.1及既有106字节stdout绑定；新预期SHA f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780。非作者Codex发现的UTF16 XML实体绕过已修复、复核无剩余具体P1/P2，非外部独立验收。

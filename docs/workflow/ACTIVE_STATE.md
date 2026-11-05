@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 CMake完整版本字面值离线绑定（CURRENT ENTRY）
+# EliteSync｜2026-11-05 CMake完整版本消费者接线与冻结（CURRENT ENTRY）
+
+**FULL_VERSION_CONSUMER_WIRED_AND_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以请继续”接续完整版本消费者接线普通工程；实际产品根/分支/origin与进入HEAD `91fa0adbe297ddd2c3e396e75198b20dbed84694`、空index核对，仅保留原%SystemDrive%/。进入本轮的024f78a8/91fa0adb两项PENDING_SYNC提交完整保留，本轮普通SSH只读已核远端产品分支a2af87a8、main8a9e97a1，将按整个待推范围审核后普通non-force同步，不换身份/协议、pull/reset/rebase或force；最终结果按实际ref/私有回执。
+
+新增cmake_version_consumer，源码提交 `9ae9d706f0256eeb4ed2e91bf421d0e430b0cc91`。按固定SHA0149cef2...f04a派生已耗适配器，旧文件/合同/claim/STOP不动；新scope、预检kind、子collector入口独立。预期SHA `f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780` 固定进入新policy/contract，readset与frozen在编译/claim前验证预期和PE；collector先验core/root_birth/原日志，再按固定PE及完整stdout/stderr字节验证，不再只截首行。旧case保持REJECTED/剩0，不用新消费者重收或改判。
+
+18项组合检查通过（9项新接线+9项绑定回归），含缺/漂移预期、裸版本/多余输出/stderr、旧grant/旧预检、出生时间、多marker、固定180秒不续额和编译中预期漂移后terminal阻断。非作者Codex静态复核无具体P1/P2；合同/source/binary/45唯一输入/5RO映射/marker缺席亦有非作者只读交叉核对，均非外部独立验收。实际45 PE/完整CMake 2,995文件只读核对一致。
+
+新候选 `v1015-cmake-version-bound-consumer-20261105` 已用现有系统csc编译观察器一次并冻结，准备20.75秒不是VM资源资格。合同SHA `aecfcfa6fdec308895b6b6632e94e82185101d805e14ddc72d0b62ec8cbfe175`、binary SHA `1862c5f15a10b937c0b3d78c6f6a212fdcc1b9a4fca3a7cf07d7cafff359983d`；SOURCE_READY_NOT_AUTHORIZED、locked runtime_authorized=false，无grant/launch.claim/active/failure marker，output空；禁止再prepare或换nonce。VM/SDK启动0，未建新运行预算或claim。
+
+LOCAL_ONLY准备根 `v1015-cmake-version-consumer-preparation-20261105` 先读engineering-summary-private/preparation-result-private/pure-checks-private，再看input-plan/derivation.patch；真实冻结原件在上述新scope根，SDK/二进制/原证不上传。73保护记录、旧case全部冻结源码和原main/255/index、产品apps/services保持；原有所有STOP与0余额不变。
+
+下一动态提案只对该新合同：独立最多1VM/1 CMake --version，五只读根/45 PE、固定f7ab...预期，SDK前270文件+15目录拒绝/owned输出/禁网预检；guest2GiB/整体90秒、host自启动180秒，STOP后仅本实例安全清理另45秒，不改判、不重试。**尚未获该新范围明确授权，不建claim/启动SDK**；启动前重新核当前环境/输入/容量，不继承历史资格，不含Gradle/Flutter/AAR/APK/DB/设备/媒体/外部服务或工具链安装升级。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；其余native/offline/资源/真实AAR→host待闭合，不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-cmake完整版本消费者接线与冻结节点)。
+
+---
+
+# EliteSync｜2026-11-05 CMake完整版本字面值离线绑定（历史节点）
 
 **FULL_VERSION_LITERAL_OFFLINE_BOUND / EXACT_OUTPUT_BYTES_CHECKER_READY / CONSUMER_NOT_WIRED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
 
