@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-05 精简门禁并接通产包主控制器（CURRENT ENTRY）
+# EliteSync｜2026-11-05 Owner已授权单次AAR，当前内存预检未耗额（CURRENT ENTRY）
+
+**OWNER_GRANTED_ONE_REAL_AAR_ATTEMPT / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner明确选择“授权这独立1次实际AAR验证”，对应原问题call_d57fda7d32234010b03e35bcf8145b07/item0，已知本地f39dcaa2及Git PENDING_SYNC。授权绑定同一冻结合同SHA9c20ffda...acf43、binary66f914c1...61660和原nonce/275源RO/唯一fresh输出/禁网；最多1VM/1次真实AAR，6GiB guest、guest整体1800秒/host整体2100秒、STOP仅自有实例收尾另45秒、输出2GiB采样上限，不重试。无host APK/设备/DB/媒体/外部服务/生产/安装升级。授权原问题/答复已独占保存，不改旧scope/余额或重建候选。
+
+实际目录/origin/分支、HEAD f39dcaa2c16111163411b6dd1a3580a47f5c3c96、空index与旧%SystemDrive%/正确，冻结payload/host helpers一致、原78保护一致。写入独立Owner grant后仅调用一次冻结host driver；fresh 19工具身份核验后资源预检可用内存**4204MiB**，低于候选已定10240MiB（guest6144＋host预留4096），磁盘余461547507712字节。驱动2.187秒在preclaim处停止，**claim/launch记录均缺席，VM/SDK启动0、已耗0、余1**。系统只读查询未见既存Sandbox，未启停其它程序；普通工作可继续，授权有效，无需重新授权。
+
+已请Owner释放约6–7GiB内存后告知，再按同一候选/原grant fresh核验；不降低门槛、改helper/合同/nonce或换目录续额，不重放会创建grant的初始脚本。LOCAL_ONLY `v1015-producer-supervisor-20261105`先读owner-explicit-grant-private、authorized-runtime-outcome-private（PRECLAIM_BLOCKED）、最新candidate/resource-preflight记录，再按需原异常；原不足预检保留。新增两份grant原文及未耗额回执后最新81保护记录，旧78不变；原main/255/index及apps/services保持。
+
+本节点只读预检/记录，不重跑已通过源码测试。AAR/APK未生成，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。Git本次fresh普通SSH已核远端产品92975099/main8a9e97a1；待推含87ed9bdb/f39dcaa2及本节点，审全范围后同身份/协议普通non-force同步，最终ref/Blob见实际回执。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-owner授权单次aar后内存预检未耗额节点)。
+
+---
+
+# EliteSync｜2026-11-05 精简门禁并接通产包主控制器（历史节点）
 
 **SIMPLIFIED_CONTROLLER_COMPILED_AND_FROZEN / CURRENT_PRECLAIM_INPUT_RESOURCE_SUPPORTED / ONE_REAL_AAR_SCOPE_NOT_AUTHORIZED / NO_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
 

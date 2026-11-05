@@ -1,3 +1,23 @@
+# EliteSync-v10｜项目进度细表（Owner授权单次AAR后内存预检未耗额）
+
+日期：2026-11-05。状态：**OWNER_GRANTED_ONE_REAL_AAR_ATTEMPT / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / AAR_APK_NOT_GENERATED / G2_FALSE**。
+
+## 2026-11-05 Owner授权单次AAR后内存预检未耗额节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 明确授权 | Owner对call_d57fda7d32234010b03e35bcf8145b07/item0完整范围选择“授权这独立1次实际AAR验证”；知本地f39dcaa2/Git PENDING_SYNC。同合同9c20ffda6328270aa490678d256501b48fe08c3a63bd7d21233109e01c5acf43、binary66f914c10e6aa444dfa68c685a08b069feca7e23e9cbc30d40a854cf81b61660及原nonce，1VM/1真实AAR、6GiB/整体1800秒/host2100秒、STOP自有收尾另45秒、2GiB采样，不重试；排除host APK/设备/DB/媒体/外部服务/生产/安装升级 |
+| 身份与前置 | 产品目录/原分支/origin、进入f39dcaa2c16111163411b6dd1a3580a47f5c3c96、空index、原%SystemDrive%/核对；冻结payload/helper一致，旧78保护/原main@4bebc8f3/255/index2be660...及apps ed248529/services7634b475一致，未把上次16587MiB当本次资格 |
+| 实际调用/预检 | 原问题/答复/合同/binary/nonce/limits独占写Owner grant，再调用一次冻结launch。fresh19工具输入核对后资源快照4204MiB、磁盘461547507712字节；内存低于冻结10240MiB（6144guest＋4096host预留），驱动2.187秒在preclaim停止。当前系统查询无Sandbox进程，未对其它程序执行停止/释放操作 |
+| 额度事实 | 授权有效、grant已存；claim/launch记录缺席，VM/SDK/产包实际0，已耗0/余1，无退款/重置/新继任。PRECLAIM_BLOCKED及原异常/资源快照保留，不能写成实际AAR失败或SDK运行结果；不重跑旧测试并计作本轮新测 |
+| 恢复路径 | 已请Owner按任务安排释放约6–7GiB后告知；复用原候选/同一grant fresh预检，授权无需重问，不降资源门槛、改冻结helper/合同/nonce、重建候选或换目录。恢复直接沿用已存在grant进入launch；原独占创建grant脚本及PRECLAIM回执保持原文 |
+| 私有保护 | LOCAL_ONLY v1015-producer-supervisor-20261105的owner-explicit-grant-private、candidate/probe/owner-grant、authorized-runtime-outcome-private、原error/资源快照先读。旧78一致，新增两份Owner grant原文＋PRECLAIM回执后最新81条保护；旧SDK/helper/STOP/数据库/备份/worktrees不动，原证不上传 |
+| 项目/Git | AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。本次fresh SSH产品92975099/main8a9e97a1，审87ed9bdb/f39dcaa2及本节点整个待推范围，再同身份/协议普通non-force同步；最终commit/ref/Blob以实际回执为准 |
+
+本节点仅支持“授权已持久化、实际未消耗”；内存不足只暂停对应动态分项。
+
+---
+
 # EliteSync-v10｜项目进度细表（精简门禁并接通产包主控制器）
 
 日期：2026-11-05。状态：**SIMPLIFIED_CONTROLLER_COMPILED_AND_FROZEN / CURRENT_PRECLAIM_INPUT_RESOURCE_SUPPORTED / ONE_REAL_AAR_SCOPE_NOT_AUTHORIZED / NO_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。

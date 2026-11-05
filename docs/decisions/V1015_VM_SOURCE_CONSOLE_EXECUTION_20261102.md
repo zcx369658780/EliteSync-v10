@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner决定：独立1次实际AAR已授权，内存预检未耗额
+
+Owner明确答复原问题call_d57fda7d32234010b03e35bcf8145b07/item0：“授权这独立1次实际AAR验证”。已知源码f39dcaa2/Git PENDING_SYNC及合同9c20ffda...acf43，绑定binary66f914c1...61660/原nonce/275源RO/唯一fresh输出/禁网，最多1VM/1真实AAR、6GiB guest整体1800秒/host整体2100秒、STOP仅本实例收尾另45秒、输出2GiB采样限制，不重试。无host APK/设备/DB/媒体/外部服务/生产/安装升级；旧失败/0余额不改。Owner grant原问题/答复/绑定数据已独占保存。
+
+冻结候选/19工具身份及旧78保护一致；fresh可用4204MiB低于已定10240MiB（6144guest＋4096host），磁盘充足，驱动2.187秒在preclaim处停止。没有claim/launch记录或VM/SDK启动，**本独立授权已耗0、余1且继续有效**，不是产包运行失败或退款；未启停其它程序。已请Owner释放约6–7GiB后告知，同候选/同grant fresh预检，无需重授权，不改合同/helper/nonce/资源门槛、不换目录续额或重建候选。
+
+LOCAL_ONLY v1015-producer-supervisor-20261105保留原不足预检/异常、两grant原文及PRECLAIM回执；最新81保护含旧78不变。原dirty/index/双tree/全部STOP保留，AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。Git按整个待推范围普通同步，最终身份见唯一细表/私有回执；以下历史时点不倒改。
+
+---
+
 ## 2026-11-05 最新Owner补充与工程落实：减少门禁，直接接通单次产包验证候选
 
 Owner原话：“目前门禁太多了，请尽量避免过度防御性编程（之前项目治理有过几次都是针对这个额的），然后继续”。本补充要求收敛普通工程中的过度防御，不据此恢复旧已耗次数或改写冻结AC、真实权限和Owner保留事项。
