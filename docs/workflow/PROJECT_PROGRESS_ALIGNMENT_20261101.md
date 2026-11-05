@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（Owner授权完整版本CMake单次实测通过）
+
+日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_BOUND_VERSION_LIFECYCLE_SUPPORTED / EXACT_OUTPUT_BYTES_CONSUMED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 Owner授权完整版本CMake单次实测通过节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 明确授权 | Owner选择“授权本地新候选独立 1 次检查”，原问题已明本地源码9ae9d706/HEAD d4603ee4、5提交PENDING_SYNC；仅新scope v1015-cmake-version-bound-consumer-20261105/max1 VM/max1 CMake --version、guest2GiB/90秒、host180秒、STOP本实例安全清理另45秒。独立grant保存原问题/答复、源d4603ee4e42a90395f1709d47a57d1106697dc40、合同SHAaecfcfa6fdec308895b6b6632e94e82185101d805e14ddc72d0b62ec8cbfe175、binary SHA1862c5f15a10b937c0b3d78c6f6a212fdcc1b9a4fca3a7cf07d7cafff359983d及f7ab预期，不更改原历史SOURCE_READY合同 |
+| 内存门/无启动阶段 | 初次当前free5331MiB低于6144（2GiB guest+4GiB host reserve），其余输入/launcher/Store/无既存Sandbox门通过；host-preflight-before记录NOT_READY_NO_CLAIM，grant/claim/VM/SDK均未创建/启动。Owner答“已释放内存，重新核验”后同scope/合同/nonce与固定helper再核环境，不重建/改门槛；新free11395MiB、45 PE/完整2995文件/73保护记录fresh，launcher签名Valid、Store0.8.107.0、host OS10.0.26300，确认READY才grant/claim。两份预检均保留，无SDK/VM重试或预算退款 |
+| 唯一实际/计时 | 实际1VM记录/1 native root，claim起46.359秒完成，驱动56.843秒含claim前冻结核验。CMAKE_BOUND_VERSION_SAMPLED_LIFECYCLE_SUPPORTED；claim1/1永久已耗剩0，不产生下一次授权或producer额度。此次没有STOP、安全清理后继或第二次collection |
+| 真实guest前置 | 新kind native-cmake-bound-version-preflight，45输入均实际核验，270文件权限+15目录权限拒绝/owned canary写读删/禁网通过，预检SDK_starts=0，然后才root1。只覆盖此45 PE/五映射与输出写面，不把host全树库存当guest完整生产消费证明 |
+| root/输出/消费者 | root_exit0、failure=null、stop_reason=null、watchdog0；stdout106字节，首行cmake version 3.22.1-g37088a8-dirty，完整SHA49bf8d147ddeed5040c89759270f9e9e97a159f262951f40fdd87891ed52ca80，stderr0。独立冻结预期SHAf7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780在真实core/log后消费并按全字节通过，纯匹配子结果仍不自行赋予运行/producer/G2资格；aggregate仅支持本限定版本查询与生命周期 |
+| 严格canonical | verified-result实际生成，SHA99a0c679b28a2f05dab2cfa080ade1ef106458015fad6491287beb9b1223d2fc，与engineering-outcome内summary及五份原始文件SHA一致。无driver STOP或stop-cleanup；原nonce/输入/hash/source不改。两个旧CMake拒收scope及所有历史0余额保持；不是把旧结果交给新规则重收或改判 |
+| 日志/收尾/限制 | 原JSONL9行、2样本、1成员、6次image checks、0 endpoints、4磁盘扫描，PID/root_birth/nonce/binary绑定一致；Job空，所有bound handles退出，精确owned主链收尾后宿主[]，其后只读快照仍[]。采样非原子/瞬时磁盘超限可能、UDP目的地UNKNOWN、后台VM完全teardown UNKNOWN、实际加载DLL及全进程/DLL闭包未证明；不做ETW/DLL新探针或扩大范围 |
+| 复核层级/原证 | 非作者Codex只读核合同/原授权/预期/binary、raw/canonical/日志/收尾及两次内存预检无差异；此为工程交叉核对，非外部独立验收或Owner整版接受。LOCAL_ONLY同名scope先读engineering-outcome/verified/engineering-summary/evidence-crosscheck；summary的review pending是生成时状态，最终复核看crosscheck与回执；再按需原始guest/host记录。准备目录的18项纯检查不当本轮新测，原证/SDK/DLL/二进制不上传 |
+| 保护状态 | 原73/73 SHA匹配，新增本次grant/claim/launch binding/outcome/canonical五件为最新78保护记录；初次不足及释放后预检由grant内SHA绑定保留。原D:/EliteSync-v10仍main@4bebc8f394248e254c1368a06fbdee5d2c883301/default255/index SHA2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；apps ed24852975baebeadc66f007dfb75ff9e31a97d4、services7634b4755a41f08641e00948f684c06efb12d8fe、SDK/DB/备份/worktrees和全部STOP保持 |
+| Git/后续与整版 | 入节点5项待推未丢弃，按从最后实核远端a2af87a8起的整个待推范围审核，普通non-force同步原产品分支，失败PENDING_SYNC，不换身份/协议/镜像写入，不pull/reset/rebase/force。后续普通准备闭合其余native/offline/资源/真实AAR→host，不能自动新增SDK/VM范围。本轮VM1/CMake1，observer重编/Gradle/Flutter/真实AAR/APK/installer/DB/设备/媒体0；producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6，最终Git/ref/Blob及私有回执以实测为准 |
+
+本节点仅在新Owner独立授权、同一冻结候选和当前资格下完成一次限定CMake版本/完整输出/采样生命周期实测；成功不延长余额或替代后续生产读集与产包资格。
+
+---
+
 # EliteSync-v10｜项目进度细表（CMake完整版本消费者接线与冻结）
 
 日期：2026-11-05。状态：**FULL_VERSION_CONSUMER_WIRED_AND_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。

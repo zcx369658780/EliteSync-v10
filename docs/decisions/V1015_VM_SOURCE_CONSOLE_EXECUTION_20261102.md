@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner决定：本地完整版本CMake单次已授权、实测通过、余额0
+
+Owner直接选择“授权本地新候选独立 1 次检查”，已知本地HEAD d4603ee4/源码9ae9d706及Git PENDING_SYNC，限定上一新scope/合同/完整预期、1VM/1 CMake --version、guest2GiB/90秒、host180秒及STOP本实例安全清理另45秒。原问题/答复、代码/合同/binary/f7ab预期和前后内存资格SHA绑定在新grant，不修改原历史未授权合同或旧case。
+
+初次内存5331MiB未达到6144门槛，未grant/claim/启动；Owner随后“已释放内存，重新核验”，同scope/合同/nonce核至11395MiB及完整输入/73保护记录一致才执行，未降门槛或换目录。实际唯一启动claim起46.359秒完成，root0/完整106字节输出与预期一致、285权限拒绝/owned输出/禁网、日志/root_birth/Job/句柄/宿主收尾通过，canonical SHA99a0c679b28a2f05dab2cfa080ade1ef106458015fad6491287beb9b1223d2fc；1/1永久已耗剩0。
+
+工程结论只限新scope的CMAKE_BOUND_VERSION_SAMPLED_LIFECYCLE_SUPPORTED，非全DLL/进程/生产读集/资源/真实AAR→host资格，后台VM完全teardown与实际加载DLL仍UNKNOWN；非作者Codex原证核对不称外部独立验收。旧0xC0000135与版本首行拒收scope仍按原标准拒收/余额0，不重收、重跑、退款或回写判据/nonce/原结果/STOP；新active runtime_authorized即使为真也不成为下一余额。
+
+最新78保护记录、原dirty/index及apps/services保持；producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING不变。继续其余已授权普通工程准备，不自动继任新SDK/VM范围。整个待推范围按原产品分支普通non-force同步，失败PENDING_SYNC、不改身份/协议/写镜像；不合main或启v10.1.6。详细原证/范围/最终Git见唯一细表及私有回执，以下历史决定保留原时点。
+
+---
+
 ## 2026-11-05 最新工程节点：完整版本消费者已接线冻结，运行未授权
 
 Owner“可以请继续”接续新消费者源码接线。新增cmake_version_consumer按固定SHA派生旧适配器，不改任何已耗helper/case；完整版本预期f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780进入新policy/contract，编译/claim前验证、运行时collector在core/log后核全字节输出。18项组合检查通过，非作者Codex静态审查无具体P1/P2、原件哈希/目录核对一致，非外部独立验收。

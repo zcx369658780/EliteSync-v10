@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 CMake完整版本消费者接线与冻结（CURRENT ENTRY）
+# EliteSync｜2026-11-05 Owner授权完整版本CMake单次实测通过（CURRENT ENTRY）
+
+**OWNER_GRANTED_CASE_SPENT / CMAKE_BOUND_VERSION_LIFECYCLE_SUPPORTED / EXACT_OUTPUT_BYTES_CONSUMED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
+
+Owner明确选择“授权本地新候选独立 1 次检查”，知悉本地HEAD `d4603ee4e42a90395f1709d47a57d1106697dc40`、源码9ae9d706及Git PENDING_SYNC。独立grant绑定原问题/答复、原合同SHAaecfcfa6...fe175、binary SHA1862c5...983d和预期SHAf7ab715a...f780；未改冻结源/nonce/合同或旧case。实际产品根/分支/origin、空index正确，仅原%SystemDrive%/；73保护记录一致。
+
+初次当前预检5331MiB低于既定6144MiB（guest2GiB+host4GiB reserve），**没有grant/claim或VM/SDK启动，不消耗授权**。Owner回复“已释放内存，重新核验”后，同scope/合同/nonce重新fresh核45 PE、完整私有CMake2,995文件及73记录，11395MiB可用、无既存Sandbox、启动器签名Valid/现有Store0.8.107.0，才写新grant与不可退款claim；原不足记录保留，不降门槛、不重建候选。
+
+固定 `v1015-cmake-version-bound-consumer-20261105` 实际启动唯一一次，**claim起46.359秒通过，1/1已耗、剩0**（驱动56.843秒含claim前冻结检查）。guest验证45输入、270文件+15目录权限拒绝/owned输出/禁网；root1次、exit0、failure=null、无STOP/watchdog，完整stdout106字节/SHA49bf8d...ca80与独立冻结预期精确匹配，stderr0。严格collector真实全链成功，canonical verified-result已生成，SHA `99a0c679b28a2f05dab2cfa080ade1ef106458015fad6491287beb9b1223d2fc`。
+
+日志9行/2样本/1成员/6次镜像检查/4扫描，nonce/binary/PID+root_birth一致；Job空、bound handles退出，精确owned宿主收尾后[]，随后只读宿主快照仍[]。非作者Codex原证交叉核对无差异，非外部独立验收；后台VM完全teardown、实际加载DLL身份/全进程闭包仍UNKNOWN。此次仅支持固定CMake版本查询/完整输出消费者及采样生命周期；旧0xC0000135和版本首行不符两个scope仍拒收/剩0，不改判。
+
+LOCAL_ONLY同名scope根先读engineering-outcome-private、verified-result、engineering-summary-private及evidence-crosscheck-private（汇总中的复核pending为创建时状态，以后者/最终回执为准），再按需guest原件/宿主快照。原73 SHA一致，新增grant/claim/launch binding/outcome/canonical五件后最新**78保护记录**；原main/255/index及产品apps/services保持。SDK/原证/二进制不上传，保留原不足预检、准备和全部STOP。
+
+本轮VM1/CMake根1，观察器重编/Gradle/Flutter/真实AAR/APK/DB/设备/媒体/installer0，不重跑前节点18项纯检查或记为本轮新测。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；剩余native/offline/资源/真实AAR→host仍待工程闭合。进入本节点的5项待推完整保留，最终整段普通non-force同步/ref/Blob见实际Git和私有回执；不改身份/协议、pull/reset/rebase/force、不合main或启v10.1.6。下一步继续其余原生工具和离线依赖准备，不自动新增SDK/VM额度。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-owner授权完整版本cmake单次实测通过节点)。
+
+---
+
+# EliteSync｜2026-11-05 CMake完整版本消费者接线与冻结（历史节点）
 
 **FULL_VERSION_CONSUMER_WIRED_AND_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
 
