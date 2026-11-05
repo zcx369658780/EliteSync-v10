@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：现有VC配套离线输入，不新增运行
+
+Owner“我同意，请继续”接续已列明的现有运行库来源/配套版本/架构/签名和app-local离线输入准备。Codex按普通工程权限新增复制/核验源码、5项纯检查并完成同机LOCAL_ONLY副本：CMake原2,992文件加JDK同套AMD64、14.40.33810.0、微软签名Valid的三DLL，共2,995文件/40,111,563字节；新静态描述45份实际PE。原SDK、旧helper/claim/STOP保持，非作者Codex复核不等于外部独立验收。
+
+微软官方文档描述app-local部署和VC14兼容要求，但本轮没有guest加载证据，也没有从JDK随附文档确认三DLL的专项公开再分发许可；只作私有开发输入，不宣称产品捆绑/公开分发通过，不因此新造Owner许可门。上次0xC0000135的具体缺失DLL仍UNKNOWN，原单次1/1已耗、剩0，不能回写原case、改flag、重跑或换目录续额。
+
+本轮SDK/VM/installer执行0，无新运行scope/claim。下一步可按既有权限完成新45-PE/app-local候选及调用接线；具体新执行器/完整输入/独立范围成立前不启动SDK，不提前把一般继续当运行许可。producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL、真实消息Push PENDING保持；完整事实及LOCAL_ONLY原证入口见唯一进度细表。本节点保留以下历史决定原文。
+
+---
+
 2026-11-02，Owner在当前接续上下文明确“请继续，我授权”。此前入口已指明下一项为结合具名控制台角色的独立VM/Flutter候选；本节点只落实其中VM源验证。该许可不补充已耗scope，不启动Flutter、Gradle或实际产包。
 
 独立scope `v1015-vm-source-qualified-console-20261102/case01`，最多1次。实际创建尝试前独占写不可退款claim；启动失败、非零退出、STOP、无结果均耗这一次，不能重跑或换目录续额。原配置3+3+1及Dart/cache/stdio/OS库存/合成控制台的旧claim、失败和STOP保持。

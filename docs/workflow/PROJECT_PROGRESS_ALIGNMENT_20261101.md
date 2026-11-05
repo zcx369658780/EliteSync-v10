@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（CMake配套VC离线输入准备）
+
+日期：2026-11-05。状态：**APP_LOCAL_VC_INPUTS_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 CMake配套VC离线输入准备节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权与工作面 | Owner“我同意，请继续”接续上一项现有运行库离线输入工程；产品根/分支/origin核实，进入fdb7e80a9c4a203bc903cb73295527adf123222f，index空，仅既有%SystemDrive%/。不是新SDK/VM执行授权；前CMake scope 1/1已耗、剩0，helper/合同/claim/原结果和STOP保持 |
+| 实现 | 新cmake_vc_inputs.py只接受JDK既有三份固定DLL、同版本/微软有效签名/同证书/AMD64；句柄绑定元数据和内容核验。完整复制CMake文件，仅写显式任务私有根的新子目录，拒覆盖、链接、源漂移及混套。5,000文件/15,000条目/512MiB/64层上限，总字节在mkdir前检查；失败保留半成品，不复制空目录元数据 |
+| 真实离线输入 | 现有Android CMake 3.22.1全部2,992文件原样复制，仅新副本bin加入三DLL；最终2,995文件、40,111,563字节。源CMake与JDK DLL前后FileID/size/SHA及目标全文件集合核对；不改原SDK，不安装升级、不从System32搬DLL、不混用NDK Python另版运行库 |
+| 三DLL资格 | 现有Temurin JDK17.0.18.8-hotspot/bin：msvcp140.dll 575056字节 SHA a4c2229bdc2a2a630acdc095b4d86008e5c3e3bc7773174354f3da4f5beb9cde；vcruntime140.dll 119888字节 SHA 02c6aa0e6e624411a9f19b0360a7865ab15908e26024510e5c38a9c08362c35a；vcruntime140_1.dll 49640字节 SHA 7dd9aa02e271c68ca6d5f18d651d23a15d7259715af43326578f7dde27f37637。均14.40.33810.0、AMD64、Microsoft Corporation签名Valid，同证书19FAC08D74CA905CEC066C597708A16148C8FCD5；仅元数据/静态资格 |
+| 静态读集 | 旧42 PE中CMake两入口换为新私有副本的路径/FileID，另加三DLL，形成45份实际PE/449,500,965字节，另保留AGP archive PE；新描述记录48条CMake相关导入边、5条同根唯一候选。原readset SHA b243c9d7b46fe7753b09b85e04d4c10b40e78e34fe6f03bd62a7ff7ce04b94e2不改；完整库存SHA 0b34a527161803e5b783705c3fc07b7fcf5e1818b064b3e42bd5355ea0b14af9固定 |
+| 检查与复核 | 本工程节点5项unittest通过，包含错签名/版本/架构、覆盖拒绝、总字节上限和复制后源漂移负例；仅纯逻辑/合成文件。非作者Codex发现并复核已修复的P2：早复制DLL后续漂移须最终聚合复核；最终无剩余具体问题。不是外部独立验收，也不是SDK加载测试；收尾仅docstring措辞修正，未重复测试 |
+| 部署/许可依据 | 实际读取微软deployment-in-visual-cpp与binary-compat-2015-2017官方文档，支持app-local方案说明及VC14系列版本约束，不能证明guest加载成功。JDK NOTICE/release/ADDITIONAL_LICENSE_INFO/LICENSE等未找到三DLL专项再分发说明；本轮同机LOCAL_ONLY私有开发候选，不宣称公开分发权或产品捆绑通过，不新增推断审批门 |
+| 私有原证 | LOCAL_ONLY v1015-cmake-vc-inputs-20261105：engineering-summary-private、materialization-outcome-private、candidate-native-readset-private、source-vc-bundle-private、source-notices、两份微软HTML、保护报告及三文档原文备份。最终源码SHA/提交及同步回执绑定实际结果；SDK/DLL/二进制/私有原证不上传 |
+| 保护与未运行 | 66/66保护记录一致，原D:/EliteSync-v10仍main@4bebc8f394248e254c1368a06fbdee5d2c883301、默认status255、index SHA2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；apps树ed24852975baebeadc66f007dfb75ff9e31a97d4，services树7634b4755a41f08641e00948f684c06efb12d8fe。SDK/VM/installer/Gradle/Flutter/构建/DB/设备/媒体0，无新运行scope/claim |
+| 下一步与整版 | 将新45-PE/app-local输入接入新的隔离候选，不改已耗host旧case；完整执行器/调用/只读映射和独立动态范围未成立，运行NOT_RUN。具体缺失DLL、OS API-set/SxS/导出转发/动态加载、offline完整依赖、有效资源、真实AAR→host仍UNKNOWN/未证明。producer预算UNKNOWN_NOT_CREATED，APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6 |
+
+本节点只完成离线输入与源码准备，不改判此前0xC0000135拒收，不产生第二次运行或实际产包额度。
+
+---
+
 # EliteSync-v10｜项目进度细表（Owner授权CMake单次检查非零拒收）
 
 日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_0xC0000135 / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。

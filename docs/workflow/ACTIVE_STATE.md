@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 Owner授权CMake单次检查非零拒收（CURRENT ENTRY）
+# EliteSync｜2026-11-05 CMake配套VC离线输入准备（CURRENT ENTRY）
+
+**APP_LOCAL_VC_INPUTS_PREPARED / RUNTIME_NOT_QUALIFIED / NO_NEW_VM_OR_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“我同意，请继续”接续普通离线输入工程；实际产品根、origin、分支与进入HEAD `fdb7e80a9c4a203bc903cb73295527adf123222f` 核对一致，初始index空，仅保留原%SystemDrive%/。没有新增SDK/VM运行范围或claim，上一CMake单次仍1/1已耗、剩0；已耗host/helper/合同/结果及STOP不改。
+
+新增cmake_vc_inputs及5项纯检查。以现有完整声明库存为依据，将原CMake全部2,992文件复制到任务私有CMake根，仅bin加入既有JDK同套三份VC DLL：msvcp140/vcruntime140/vcruntime140_1，均AMD64、14.40.33810.0、微软签名Valid且同签名证书。最终2,995文件／40,111,563字节；原源与目标文件集合、FileID、大小及SHA核对，原SDK未写。复制后源漂移的聚合复核P2已修复并有反例覆盖，非作者Codex复核无剩余具体问题，非外部独立验收。
+
+新静态读集为45份实际PE／449,500,965字节，另保留archive PE条目；CMake相关48条导入边中5条有同根唯一候选。此为静态候选，不证明guest实际加载、具体缺失DLL、API-set/转发器/动态加载闭包。微软官方文档描述app-local部署及VC14兼容边界；JDK随附文档未确认三DLL专项再分发许可，本次只作同机LOCAL_ONLY开发输入，不宣称可随产品公开捆绑。
+
+LOCAL_ONLY根 `v1015-cmake-vc-inputs-20261105`，先读engineering-summary-private、materialization-outcome-private、candidate-native-readset-private；源通知/官方文档/三文档修改前备份保留私有，不上传SDK/DLL或原证。66保护记录一致，原main/255/index与产品apps/services树保持。VM/SDK/installer执行0，无新scope/claim；最终代码与普通Git同步身份见实际ref及私有回执。
+
+下一工程面为将45-PE/app-local输入接入新的隔离候选及其完整调用接线，不修改或重跑已耗native_role_host旧case；具体新执行器、输入与独立运行范围成立前不启动SDK。完整offline/资源/真实AAR→host仍待闭合，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-cmake配套vc离线输入准备节点)。
+
+---
+
+# EliteSync｜2026-11-05 Owner授权CMake单次检查非零拒收（历史节点）
 
 **OWNER_GRANTED_CASE_SPENT / CMAKE_ROOT_0xC0000135 / STRICT_REJECTION_PRESERVED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
 
