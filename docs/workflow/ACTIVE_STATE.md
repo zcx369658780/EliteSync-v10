@@ -2,6 +2,8 @@
 
 **FULL_VERSION_CONSUMER_WIRED_AND_FROZEN / SOURCE_READY_NOT_AUTHORIZED / NO_VM_OR_SDK_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
 
+本轮Git：新增源码9ae9d706与冻结记录5440ff64已本地提交；整段普通SSH push仍被Connection closed关闭，**PENDING_SYNC**。失败前最后实核远端产品分支a2af87a8、main8a9e97a1，失败后HEAD UNKNOWN；不换身份/协议/镜像写入、不补推。保留全部待推提交，连接恢复后重新核整个待推范围再普通non-force同步。
+
 Owner“可以请继续”接续完整版本消费者接线普通工程；实际产品根/分支/origin与进入HEAD `91fa0adbe297ddd2c3e396e75198b20dbed84694`、空index核对，仅保留原%SystemDrive%/。进入本轮的024f78a8/91fa0adb两项PENDING_SYNC提交完整保留，本轮普通SSH只读已核远端产品分支a2af87a8、main8a9e97a1，将按整个待推范围审核后普通non-force同步，不换身份/协议、pull/reset/rebase或force；最终结果按实际ref/私有回执。
 
 新增cmake_version_consumer，源码提交 `9ae9d706f0256eeb4ed2e91bf421d0e430b0cc91`。按固定SHA0149cef2...f04a派生已耗适配器，旧文件/合同/claim/STOP不动；新scope、预检kind、子collector入口独立。预期SHA `f7ab715afc911d941a61122318831635399ca3e9a3c27672d228445bdecfe780` 固定进入新policy/contract，readset与frozen在编译/claim前验证预期和PE；collector先验core/root_birth/原日志，再按固定PE及完整stdout/stderr字节验证，不再只截首行。旧case保持REJECTED/剩0，不用新消费者重收或改判。

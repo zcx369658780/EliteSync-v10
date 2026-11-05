@@ -15,6 +15,7 @@
 | 冻结与未运行 | SOURCE_READY_NOT_AUTHORIZED，locked manifest SHA7b9f80bb6ecdbbf6706e3ca5d814d81fabefe20042d340887db21eb0be6c765f，runtime_authorized=false/producer=false/G2=false。无grant/launch.claim/active/failure marker，output与compile-temp空，compiler stdout/stderr0字节；不得再prepare/换nonce。预备新scope只有proposed max1，不是已授权余额；本轮VM/SDK/Gradle/Flutter/真实构建/DB/设备/媒体/installer0 |
 | 原证/保护 | LOCAL_ONLY v1015-cmake-version-consumer-preparation-20261105：engineering-summary-private/preparation-result-private/pure-checks-private/input-plan/consumer-derivation.patch及73记录前后副本、三文档原文；冻结二进制/合同在新scope根。非作者仅哈希/目录交叉核对与声明一致，不作外部验收。73/73保护匹配，旧case合同/全部源码和canonical缺席不变；原main@4bebc8f3/default255/index2be660...及apps ed248529/services7634b475保持，原SDK/DB/备份/worktrees/旧STOP保留，原证不上传 |
 | 下一独立运行提案 | 仅上述新scope/合同/固定f7ab预期，独立最多1VM/1 CMake --version，guest2048MiB/整体90秒，host从启动起180秒，STOP后本实例安全清理另45秒、不改判/不重试。SDK前核45输入/五RO根270+15拒绝/owned输出/禁网；启动前fresh核当前环境/容量/输入/launcher，不借历史资格。尚未授权、无运行claim；禁止Gradle/Flutter/AAR/APK/DB/设备/媒体/外部服务/安装升级 |
+| 本轮实际同步 | 整段普通SSH push再次Connection closed，PENDING_SYNC；新增源码9ae9d706及冻结记录5440ff64已本地保存。之前实核远端产品a2af87a8/main8a9e97a1，失败后HEAD UNKNOWN；不换身份/协议/写镜像、不补推，保留全部待推范围，最终本地HEAD和回执按实际Git记录 |
 | Git/整版 | 审整个从a2af87a8起的待推范围，保留024f/91fa及9ae9源码和本轮最终记录，普通non-force同步原产品分支；不pull/reset/rebase/改身份/协议/写镜像。失败仍PENDING_SYNC，最终ref/Blob以私有回执为准。旧单次全部剩0、上一case仍REJECTED，本节点不重收或改判；完整DLL/进程/offline/资源/真实AAR→host未证明，producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
 
 本节点仅把完整版本预期接入独立宿主并实际编译/冻结观察器；未启动SDK/VM或获得下一运行预算，旧原始失败不变。
