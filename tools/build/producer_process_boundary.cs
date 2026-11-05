@@ -1,5 +1,5 @@
-// Guest-only primitives. No Main, authorization, claim, VM or SDK launch entry.
-// Windows semantics remain NOT_RUN until an independently authorized guest test.
+// Guest Job boundary. Host writes/network are isolated by the WSB mappings,
+// not a second unqualified token/ACL sandbox inside the guest.
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,8 +7,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,9 +17,8 @@ internal sealed class ProducerChild {
 
 internal interface IProducerBoundaryApi {
     void PrepareWorkspace();
-    IntPtr CreateToken();
     IntPtr CreateJob();
-    ProducerChild SpawnSuspended(IntPtr token);
+    ProducerChild SpawnSuspended();
     void Assign(IntPtr job, IntPtr process);
     void Resume(IntPtr thread);
     void TerminateAndDrainJob(IntPtr job);
@@ -48,27 +45,26 @@ internal sealed class ProducerLease : IDisposable {
 internal static class ProducerBoundary {
     internal static ProducerLease Start(IProducerBoundaryApi api) {
         if(api==null)throw new ArgumentNullException("api");
-        IntPtr token=IntPtr.Zero,job=IntPtr.Zero;ProducerChild child=null;bool assigned=false;
+        IntPtr job=IntPtr.Zero;ProducerChild child=null;bool assigned=false;
         var errors=new List<Exception>();
         try {
             api.PrepareWorkspace();
-            token=api.CreateToken();Nonzero(token);
             job=api.CreateJob();Nonzero(job);
-            child=api.SpawnSuspended(token);
+            child=api.SpawnSuspended();
             if(child==null)throw new InvalidDataException("Missing suspended child");
             Nonzero(child.Process);Nonzero(child.Thread);
             api.Assign(job,child.Process);assigned=true;
             api.Resume(child.Thread);
         } catch(Exception failure) {errors.Add(failure);}
         if(errors.Count==0) {
-            CloseTaken(api,ref child.Thread,errors);CloseTaken(api,ref token,errors);
+            CloseTaken(api,ref child.Thread,errors);
             if(errors.Count==0)return new ProducerLease(api,job,child.Process);
         }
         if(assigned)Attempt(errors,delegate{api.TerminateAndDrainJob(job);});
         else if(child!=null&&OwnedHandle(child.Process))
             Attempt(errors,delegate{api.TerminateAndWaitRoot(child.Process);});
         if(child!=null){CloseTaken(api,ref child.Thread,errors);CloseTaken(api,ref child.Process,errors);}
-        CloseTaken(api,ref job,errors);CloseTaken(api,ref token,errors);
+        CloseTaken(api,ref job,errors);
         throw new AggregateException("Producer start failed; cleanup attempted once for all owned handles",errors);
     }
     internal static void Attempt(List<Exception> errors,Action action) {try{action();}catch(Exception e){errors.Add(e);}}
@@ -92,20 +88,15 @@ internal static class ProducerBoundary {
 internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
     const string Work=@"C:\BuildWork", Self=@"C:\Probe\ProducerSupervisor.exe";
     readonly string Nonce, Command, Cwd, EnvironmentBlock;
-    readonly SecurityIdentifier RestrictedSid;
+    internal bool RootCreateAttempted {get; private set;}
     internal WindowsProducerBoundary(string nonce, string command, string cwd, IDictionary<string,string> environment) {
         if(Environment.UserName!="WDAGUtilityAccount"||
            !String.Equals(Process.GetCurrentProcess().MainModule.FileName,Self,StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("Guest supervisor identity required");
         Validate(nonce,command,cwd,environment);
         Nonce=nonce;Command=command;Cwd=cwd;
-        RestrictedSid=new SecurityIdentifier(RestrictionSid(nonce));
         EnvironmentBlock=String.Join("\0",environment.OrderBy(p=>p.Key,StringComparer.OrdinalIgnoreCase)
             .Select(p=>p.Key+"="+p.Value))+"\0\0";
-    }
-    internal static string RestrictionSid(string nonce) {
-        if(nonce==null||!Regex.IsMatch(nonce,"\\A[0-9a-f]{32}\\z"))throw new InvalidDataException("Exact nonce required");
-        return "S-1-5-21-"+String.Join("-",Enumerable.Range(0,4).Select(i=>Convert.ToUInt32(nonce.Substring(i*8,8),16)))+"-1015";
     }
     internal static void Validate(string nonce,string command,string cwd,IDictionary<string,string> environment) {
         if(nonce==null||!Regex.IsMatch(nonce,"\\A[0-9a-f]{32}\\z")||command==null||command.Length>30000||
@@ -136,43 +127,6 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
     }
     public void PrepareWorkspace() {
         Canonical(Work);Canonical(Cwd);
-        // Only the future owned guest workspace receives this SID and low label.
-        // No source mapping, Windows directory or host path is modified.
-        var acl=Directory.GetAccessControl(Work);
-        acl.SetAccessRuleProtection(true,true);
-        acl.AddAccessRule(new FileSystemAccessRule(RestrictedSid,FileSystemRights.Modify|FileSystemRights.Synchronize,
-            InheritanceFlags.ContainerInherit|InheritanceFlags.ObjectInherit,PropagationFlags.None,AccessControlType.Allow));
-        Directory.SetAccessControl(Work,acl);
-        IntPtr descriptor=IntPtr.Zero;
-        try {
-            Check(ConvertStringSecurityDescriptorToSecurityDescriptor("S:(ML;OICI;NW;;;LW)",1,out descriptor,IntPtr.Zero),"low workspace descriptor");
-            bool present,defaulted;IntPtr sacl;
-            Check(GetSecurityDescriptorSacl(descriptor,out present,out sacl,out defaulted)&&present,"low workspace SACL");
-            uint code=SetNamedSecurityInfo(Work,1,0x10,IntPtr.Zero,IntPtr.Zero,IntPtr.Zero,sacl);
-            if(code!=0)throw new Win32Exception((int)code,"label only owned workspace");
-        } finally {if(descriptor!=IntPtr.Zero)LocalFree(descriptor);}
-    }
-    public IntPtr CreateToken() {
-        IntPtr original=IntPtr.Zero,restricted=IntPtr.Zero;
-        var sidBytes=new byte[RestrictedSid.BinaryLength];RestrictedSid.GetBinaryForm(sidBytes,0);
-        IntPtr sid=Marshal.AllocHGlobal(sidBytes.Length),low=IntPtr.Zero;
-        var errors=new List<Exception>();
-        try {
-            Marshal.Copy(sidBytes,0,sid,sidBytes.Length);
-            Check(OpenProcessToken(GetCurrentProcess(),0x0001|0x0002|0x0008|0x0080,out original),"open own token");
-            var restriction=new[]{new SidAndAttributes{Sid=sid,Attributes=0}};
-            // DISABLE_MAX_PRIVILEGE | WRITE_RESTRICTED. Only explicit owned ACL
-            // grants satisfy the second write access check. MIC adds NO_WRITE_UP.
-            Check(CreateRestrictedToken(original,0x1|0x8,0,IntPtr.Zero,0,IntPtr.Zero,1,restriction,out restricted),"restricted write token");
-            Check(ConvertStringSidToSid("S-1-16-4096",out low),"low token SID");
-            var label=new SidAndAttributes{Sid=low,Attributes=0x20};
-            Check(SetTokenInformation(restricted,25,ref label,(uint)(Marshal.SizeOf(typeof(SidAndAttributes))+GetLengthSid(low))),"low token label");
-        } catch(Exception error) {errors.Add(error);}
-        ProducerBoundary.FinishFactory(errors,delegate{if(restricted!=IntPtr.Zero)Close(restricted);},
-            delegate{if(original!=IntPtr.Zero)Close(original);},
-            delegate{if(low!=IntPtr.Zero&&LocalFree(low)!=IntPtr.Zero)throw new Win32Exception("free low SID");},
-            delegate{Marshal.FreeHGlobal(sid);});
-        return restricted;
     }
     public IntPtr CreateJob() {
         IntPtr job=CreateJobObject(IntPtr.Zero,null);
@@ -185,8 +139,8 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
             return job;
         } catch {Close(job);throw;}
     }
-    public ProducerChild SpawnSuspended(IntPtr token) {
-        string logs=Work+@"\Control";Canonical(logs);
+    public ProducerChild SpawnSuspended() {
+        string logs=@"C:\ProbeOutput";Canonical(logs);
         IntPtr stdout=IntPtr.Zero,stderr=IntPtr.Zero,stdin=IntPtr.Zero,attributes=IntPtr.Zero,
             handles=IntPtr.Zero,env=IntPtr.Zero;
         bool initialized=false;
@@ -205,8 +159,9 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
             var startup=new StartupEx();startup.Startup.Size=(uint)Marshal.SizeOf(typeof(StartupEx));
             startup.Startup.Flags=0x100;startup.Startup.Stdin=stdin;startup.Startup.Stdout=stdout;startup.Startup.Stderr=stderr;startup.Attributes=attributes;
             env=Marshal.StringToHGlobalUni(EnvironmentBlock);
-            Check(CreateProcessAsUser(token,@"C:\Inputs\Jdk\bin\java.exe",new StringBuilder(Command),IntPtr.Zero,IntPtr.Zero,true,
-                0x08000000|0x80000|0x400|0x4,env,Cwd,ref startup,out child),"restricted suspended Java root");
+            RootCreateAttempted=true;
+            Check(CreateProcess(@"C:\Inputs\Jdk\bin\java.exe",new StringBuilder(Command),IntPtr.Zero,IntPtr.Zero,true,
+                0x08000000|0x80000|0x400|0x4,env,Cwd,ref startup,out child),"suspended Java root");
             created=true;
         } catch(Exception error) {errors.Add(error);}
         ProducerBoundary.FinishFactory(errors,delegate {
@@ -244,7 +199,13 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
         }
     }
     public void Close(IntPtr handle) {Check(CloseHandle(handle),"close owned handle");}
-    [StructLayout(LayoutKind.Sequential)] struct SidAndAttributes {public IntPtr Sid;public uint Attributes;}
+    internal bool HasExited(IntPtr process) {
+        uint result=WaitForSingleObject(process,0);
+        if(result==0)return true;
+        if(result!=258)throw new Win32Exception(Marshal.GetLastWin32Error(),"wait owned root");
+        return false;
+    }
+    internal uint ExitCode(IntPtr process) {uint code;Check(GetExitCodeProcess(process,out code),"owned root exit code");return code;}
     [StructLayout(LayoutKind.Sequential)] struct SecurityAttributes {public int Length;public IntPtr Descriptor;[MarshalAs(UnmanagedType.Bool)]public bool Inherit;}
     [StructLayout(LayoutKind.Sequential)] struct Startup {public uint Size;public IntPtr Reserved,Desktop,Title;public uint X,Y,XSize,YSize,XChars,YChars,Fill,Flags;public ushort Show,Reserved2;public IntPtr ReservedBytes,Stdin,Stdout,Stderr;}
     [StructLayout(LayoutKind.Sequential)] struct StartupEx {public Startup Startup;public IntPtr Attributes;}
@@ -253,21 +214,11 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
     [StructLayout(LayoutKind.Sequential)] struct Io {public ulong Read,Write,Other,ReadBytes,WriteBytes,OtherBytes;}
     [StructLayout(LayoutKind.Sequential)] struct Extended {public BasicLimits Basic;public Io Io;public UIntPtr ProcessMemoryLimit,JobMemoryLimit,PeakProcessMemory,PeakJobMemory;}
     [StructLayout(LayoutKind.Sequential)] struct Accounting {public long User,Kernel,PeriodUser,PeriodKernel;public uint Faults,TotalProcesses,ActiveProcesses,Terminated;}
-    [DllImport("kernel32.dll")] static extern IntPtr GetCurrentProcess();
-    [DllImport("advapi32.dll",SetLastError=true)] static extern bool OpenProcessToken(IntPtr process,uint access,out IntPtr token);
-    [DllImport("advapi32.dll",SetLastError=true)] static extern bool CreateRestrictedToken(IntPtr existing,uint flags,uint disable,IntPtr disabled,uint deletes,IntPtr privileges,uint count,[In] SidAndAttributes[] sids,out IntPtr token);
-    [DllImport("advapi32.dll",SetLastError=true)] static extern bool SetTokenInformation(IntPtr token,int kind,ref SidAndAttributes value,uint bytes);
-    [DllImport("advapi32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern bool ConvertStringSidToSid(string sid,out IntPtr pointer);
-    [DllImport("advapi32.dll")] static extern uint GetLengthSid(IntPtr sid);
-    [DllImport("advapi32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern bool ConvertStringSecurityDescriptorToSecurityDescriptor(string sddl,uint revision,out IntPtr descriptor,IntPtr size);
-    [DllImport("advapi32.dll",SetLastError=true)] static extern bool GetSecurityDescriptorSacl(IntPtr descriptor,out bool present,out IntPtr sacl,out bool defaulted);
-    [DllImport("advapi32.dll",CharSet=CharSet.Unicode)] static extern uint SetNamedSecurityInfo(string name,uint kind,uint info,IntPtr owner,IntPtr group,IntPtr dacl,IntPtr sacl);
-    [DllImport("advapi32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern bool CreateProcessAsUser(IntPtr token,string app,StringBuilder command,IntPtr pa,IntPtr ta,bool inherit,uint flags,IntPtr env,string cwd,ref StartupEx startup,out ProcessInformation child);
+    [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern bool CreateProcess(string app,StringBuilder command,IntPtr pa,IntPtr ta,bool inherit,uint flags,IntPtr env,string cwd,ref StartupEx startup,out ProcessInformation child);
     [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern IntPtr CreateFile(string path,uint access,uint share,ref SecurityAttributes sa,uint creation,uint flags,IntPtr template);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool InitializeProcThreadAttributeList(IntPtr list,int count,int flags,ref IntPtr size);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool UpdateProcThreadAttribute(IntPtr list,uint flags,IntPtr key,IntPtr value,IntPtr size,IntPtr previous,IntPtr returned);
     [DllImport("kernel32.dll")] static extern void DeleteProcThreadAttributeList(IntPtr list);
-    [DllImport("kernel32.dll")] static extern IntPtr LocalFree(IntPtr pointer);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool CloseHandle(IntPtr handle);
     [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] static extern IntPtr CreateJobObject(IntPtr attributes,string name);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool SetInformationJobObject(IntPtr job,int kind,ref Extended value,uint bytes);
@@ -276,5 +227,6 @@ internal sealed class WindowsProducerBoundary : IProducerBoundaryApi {
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool TerminateJobObject(IntPtr job,uint code);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool TerminateProcess(IntPtr process,uint code);
     [DllImport("kernel32.dll",SetLastError=true)] static extern uint WaitForSingleObject(IntPtr handle,uint milliseconds);
+    [DllImport("kernel32.dll",SetLastError=true)] static extern bool GetExitCodeProcess(IntPtr handle,out uint code);
     [DllImport("kernel32.dll",SetLastError=true)] static extern bool QueryInformationJobObject(IntPtr job,int kind,out Accounting value,uint bytes,out uint returned);
 }

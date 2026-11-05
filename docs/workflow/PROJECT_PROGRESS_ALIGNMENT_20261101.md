@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（精简门禁并接通产包主控制器）
+
+日期：2026-11-05。状态：**SIMPLIFIED_CONTROLLER_COMPILED_AND_FROZEN / CURRENT_PRECLAIM_INPUT_RESOURCE_SUPPORTED / ONE_REAL_AAR_SCOPE_NOT_AUTHORIZED / NO_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。
+
+## 2026-11-05 精简门禁并接通产包主控制器节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| Owner补充/解释 | Owner指出门禁太多，要求避免过度防御性编程后继续。Codex撤未使用token/ACL自建隔离层、固定输入hash之后的重复schema；不另开逐工具版本查询或自建机制资格任务。用既有WSB宿主RO/断网、guest本地工作区、Job/时限/owned cleanup完成真实产包主链。普通工程不增审批；原AC、实际权限/一次性额度/STOP与Owner保留事项不被取消 |
+| 代码身份 | 产品根/原分支/origin正确，进入87ed9bdb9794b7c7bf96899434ba5daa390e7fbd、空index，仅原%SystemDrive%/；apps ed248529/services7634b475及原产品源码84a94c9保持。4个上一节点文件简化，新增guest supervisor/host driver/输出init及必要测试；旧scope helper与SDK原件不改，原文/旧证据留私有 |
+| 主控已接通 | guest Main复制并逐份hash核固定Flutter18,019文件/Project741文件，应用overlay及私有Gradle属性/插件输出和CMake staging；Java根挂起入Job后恢复、整体watchdog/心跳/非零退出，stdio直接写唯一fresh输出，成功后导出真实repo。host prepare编译冻结，launch使用唯一Owner合同中的payload/helper hashes，独占不可退款claim后至多一次启动、固定时限内收集并复用已有owned pair cleanup；不因中途失败重新启动 |
+| 精简/真实缺陷 | 去掉WRITE_RESTRICTED/低完整性/ACL原语和专属资格路径；固定entry原文SHA仍在单一输入边界核一次，内部字段正常消费。复核修复重复cleanup、递归先遍历再验界、异常/超时丢stdio、prepared哈希表游离授权合同、guest/host总时限与成功身份误判、.pending原子改名被采样误STOP。输出容量明确采样非OS配额；未知结果不改PASS，0/-1/-2与owned handles清理回归保留 |
+| 实际检查 | 现有csc /warnaserror编译：80生命周期回归＋12新主控断言通过；Python9主控＋3binding检查通过。宿主观察跨deadline反例先红后修；各阶段原文保留。非作者Codex最终无具体P1/P2，仅工程复核非外部独立验收。撤掉的token/ACL特定测试随未使用功能移除，不降低产品AC或把旧90等断言记为本轮新测；所有真实Windows/SDK/VM行为本轮NOT_RUN |
+| 冻结候选 | LOCAL_ONLY v1015-producer-supervisor-20261105/aar-candidate，准备22.766秒；contract SHA9c20ffda6328270aa490678d256501b48fe08c3a63bd7d21233109e01c5acf43、binary SHA66f914c10e6aa444dfa68c685a08b069feca7e23e9cbc30d40a854cf81b61660，nonce固定、grant/claim缺席、output空。275源RO映射＋probe RO＋唯一fresh输出RW，BuildWork不映射宿主；不得修改候选/换nonce后称同范围 |
+| 新鲜预检 | 完整app-local CMake2995文件及三DLL复核/复用，不执行版本查询；19关键工具输入FileID/size/SHA一致。此时可用16587MiB、C盘余461768441856字节，预检通过且无claim；真实启动前重核当前输入/资源/无既存VM，不把此快照当持续资格。完整离线action/实际native进程/DLL消费仍未证明，下一整体有界验证如实记录结果，不伪造预先闭包 |
+| 唯一动态提案 | 尚未授权：独立最多1VM/1次assembleAarRelease真实AAR验证，6GiB guest，Job4GiB/64进程；guest整体1800秒（含复制/导出）/host整体2100秒（含收集/收尾），STOP仅本实例安全收尾另45秒，输出2GiB采样限制/可能瞬时超量，不重试/退款/借旧余额。合同统一源/选定库存发布版本1.0-v1015-84a94c9177ce-d260db918b9a。不含host APK/设备/DB/媒体/外部服务/生产或工具链安装升级；成功AAR仍须既有verifier，不能冒称整版接受 |
+| 保护/原证 | 78保护、原main@4bebc8f3/default255/index2be660...、产品双tree保持，SDK/旧helper/STOP/DB/备份/worktrees保留。LOCAL_ONLY同父目录engineering-summary-private/pure-checks-private/preparation-result-private/preflight-result-private、source-before/documents-before、编译/原反例及candidate冻结payload；exe/原证不上传 |
+| 结论/Git | 本轮SDK/Gradle/VM/产包/设备/DB/媒体0，无新grant/claim/运行余额；AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。下一为上述新实际运行范围的一次明确Owner决定；其依据为既有“实际产包独立预算/claim”约束，不新增普通工程审批。SSH本次恢复，fresh产品92975099/main8a9e97a1；待推含87ed9bdb及本节点，审整个范围普通同身份/协议non-force同步，最终ref/Blob见Git与私有回执 |
+
+本节点工程验收只覆盖精简源码、已编译冻结候选和预claim实测预检；不代替尚未发生的实际产包。
+
+---
+
 # EliteSync-v10｜项目进度细表（产包边界原语与真实入口绑定）
 
 日期：2026-11-05。状态：**PRODUCER_BOUNDARY_SOURCE_COMPILED / ENTRY_REQUEST_CONSUMED_BY_HOST_SAFE_CHECKS / WINDOWS_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**。

@@ -1,5 +1,19 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新Owner补充与工程落实：减少门禁，直接接通单次产包验证候选
+
+Owner原话：“目前门禁太多了，请尽量避免过度防御性编程（之前项目治理有过几次都是针对这个额的），然后继续”。本补充要求收敛普通工程中的过度防御，不据此恢复旧已耗次数或改写冻结AC、真实权限和Owner保留事项。
+
+Codex实现取舍：移除刚新增但未实际运行的token/ACL自建隔离和重复字段防御，不为其再安排单独资格/审批；依托Windows Sandbox断网/宿主源RO、guest本地BuildWork、唯一fresh输出和Job/时限/自有实例收尾。guest Main/host driver/插件输出重定向/stdio保全/真实repo导出已接通；执行payload统一一份Owner合同，不叠加凭证链。80生命周期回归＋12主控断言、9＋3 Python检查通过，非作者Codex实质缺陷修后无具体P1/P2，非外部独立验收。
+
+候选已22.766秒编译冻结：LOCAL_ONLY v1015-producer-supervisor-20261105/aar-candidate，合同SHA9c20ffda...acf43、binary SHA66f914c1...61660；nonce已固定、grant/claim缺席/output空，未建运行余额。275源RO/唯一fresh输出，完整旧私有Flutter/Project将在guest复制/逐份hash；既有app-local CMake2995文件和三DLL复核/复用、19关键工具身份一致，当前16587MiB/磁盘满足源提案，实际启动前fresh重核。离线action与实际native DLL/进程消费未证明，不伪造预先PASS。
+
+仍待具体一次Owner决定的范围：独立最多1VM/1次真实AAR assembleAarRelease，6GiB guest/4GiB Job/64进程，guest整体1800秒/host整体2100秒，STOP仅自有实例安全收尾另45秒，输出2GiB采样限制（可瞬时超量），不重试/退款/借旧额。无host APK/设备/DB/媒体/外部服务/生产/工具链安装升级；这项确认来自Owner原保留的实际产包独立预算/claim要求，不是新增一般许可。收到明确答复前不写grant/claim、不启动VM/SDK；授权后仍按同一冻结候选fresh预检，失败如实STOP不改判。
+
+78保护/原dirty/index/双tree及全部旧0余额保持。本轮SDK/VM/产包0，AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；不合main、不启v10.1.6。SSH本次恢复，审含87ed9bdb的整个待推范围后普通non-force同身份/协议同步；最终Git/原证见唯一细表及私有回执。以下历史时点完整保留。
+
+---
+
 ## 2026-11-05 最新工程节点：产包边界原语源码编译，Windows实际隔离未运行
 
 Owner“可以请继续”接续普通源码工程。新增guest-only无Main的边界库和固定真实entry SHA绑定，源码含WRITE_RESTRICTED/禁最大特权与low token、自有C:/BuildWork写ACL/low label、挂起Java先入kill-on-close Job再恢复、限定stdio继承及owned handles清理；64进程/4GiB Job仅源码限制，非资源资格或运行预算。原有观察器仅采样/有限预检，未被重新标为完整producer隔离，旧源码/Scope不改。

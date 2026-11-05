@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 产包边界原语与真实入口绑定（CURRENT ENTRY）
+# EliteSync｜2026-11-05 精简门禁并接通产包主控制器（CURRENT ENTRY）
+
+**SIMPLIFIED_CONTROLLER_COMPILED_AND_FROZEN / CURRENT_PRECLAIM_INPUT_RESOURCE_SUPPORTED / ONE_REAL_AAR_SCOPE_NOT_AUTHORIZED / NO_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner补充“目前门禁太多了，请尽量避免过度防御性编程……然后继续”。工程落实为撤掉尚未运行的自建低权限token/ACL层、固定entry之后的重复字段防御，不另开逐工具版本/自建隔离资格任务；保护宿主沿用Windows Sandbox断网、275源只读映射＋只读probe、唯一fresh输出写面、来宾本地BuildWork与Job/超时/自有实例收尾。普通实现自主推进；既有冻结AC、具体权限、旧claim/0余额保留，实际产包的新一次额度仍需明确范围，不把本补充当旧预算退款。
+
+进入HEAD `87ed9bdb9794b7c7bf96899434ba5daa390e7fbd`、产品根/原分支/origin与空index正确，仅原%SystemDrive%/。新guest Main与host主控已接通：来宾复制并hash核完整18,019文件Flutter/741文件工程，应用两个源码overlay、私有Gradle属性及插件输出/CMake staging重定向；一次Java assembleAarRelease、整体超时/心跳、stdout/stderr直接留fresh输出、真实AAR/POM仓库导出；宿主复用已有实例身份绑定收尾。冻结执行payload/配置/host helper统一进入同一Owner合同，不再叠加凭证链。
+
+80项生命周期回归＋12项新C#主控断言、9项Python主控＋3项binding检查通过；非作者Codex实质缺陷（重复收尾、输出遍历、日志丢失、payload授权绑定、时限/结果误判、原子发布采样误STOP）已修并最终无具体P1/P2，非外部独立验收。Main已真实编译、候选22.766秒冻结；无VM/SDK执行。既有app-local CMake完整2995文件复核并复用三DLL，不重跑版本查询。当前19关键工具输入身份/hash一致、可用16587MiB/磁盘余461768441856字节；运行前fresh重核，不继承资格快照。
+
+LOCAL_ONLY `v1015-producer-supervisor-20261105/aar-candidate`：合同SHA `9c20ffda6328270aa490678d256501b48fe08c3a63bd7d21233109e01c5acf43`，binary SHA `66f914c10e6aa444dfa68c685a08b069feca7e23e9cbc30d40a854cf81b61660`，准备nonce已固定，grant/claim缺席、输出空，CONTROLLER_PREPARED_NOT_AUTHORIZED。提案仅独立最多1VM/1次真实AAR，6GiB guest/4GiB Job/64进程、guest整体1800秒/host整体2100秒、失败仅自有实例收尾另45秒、输出2GiB采样上限（非OS配额，可能瞬时超量），不重试。未生成新运行余额；先读同父目录engineering-summary-private/pure-checks-private/preparation-result-private/preflight-result-private。
+
+下一步只需对这份具体验证范围作一次Owner决定，再按同一冻结候选fresh预检、独占不可退款claim执行；缺依赖/工具失败如实STOP，不事先冒称离线action/完整native DLL与进程闭包已证明。无设备/DB/媒体/外部服务/生产/安装升级或host APK执行；真实AAR需另经既有verifier后才接host。78保护、原main/255/index及apps/services保持，旧SDK/helper/STOP/备份不改；本轮VM/SDK/产包0、无grant/claim、AAR/APK未生成，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。
+
+Git普通SSH只读本次已恢复，产品92975099/main8a9e97a1；待推包含87ed9bdb及本节点，审全范围后同身份/协议普通non-force同步，最终ref/Blob以实际回执为准。详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-精简门禁并接通产包主控制器节点)。
+
+---
+
+# EliteSync｜2026-11-05 产包边界原语与真实入口绑定（历史节点）
 
 **PRODUCER_BOUNDARY_SOURCE_COMPILED / ENTRY_REQUEST_CONSUMED_BY_HOST_SAFE_CHECKS / WINDOWS_RUNTIME_NOT_RUN / NO_NEW_CLAIM / AAR_APK_NOT_GENERATED / G2_FALSE**
 

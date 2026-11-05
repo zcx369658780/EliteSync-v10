@@ -14,9 +14,8 @@ internal sealed class FakeProducerApi : IProducerBoundaryApi {
     void Call(string name) {Calls.Add(name);if(Fail.Contains(name))throw new IOException(name);}
     IntPtr Handle(int n) {var h=new IntPtr(n);Open.Add(h);return h;}
     public void PrepareWorkspace(){Call("prepare");}
-    public IntPtr CreateToken(){Call("token");return Handle(10);}
     public IntPtr CreateJob(){Call("job");return Handle(20);}
-    public ProducerChild SpawnSuspended(IntPtr token){Call("spawn");return new ProducerChild{
+    public ProducerChild SpawnSuspended(){Call("spawn");return new ProducerChild{
         Process=InvalidProcess?InvalidValue:Handle(30),Thread=InvalidThread?InvalidValue:Handle(40)};}
     public void Assign(IntPtr job,IntPtr process){Call("assign");}
     public void Resume(IntPtr thread){Call("resume");}
@@ -36,14 +35,14 @@ class ProducerBoundaryTests {
     }
     static void Lifecycle() {
         var api=new FakeProducerApi();var lease=ProducerBoundary.Start(api);
-        Assert(String.Join(",",api.Calls)=="prepare,token,job,spawn,assign,resume,close-40,close-10","suspend/assign/resume order and transient handles");
+        Assert(String.Join(",",api.Calls)=="prepare,job,spawn,assign,resume,close-40","suspend/assign/resume order and transient handles");
         Assert(api.Open.SetEquals(new[]{new IntPtr(20),new IntPtr(30)}),"lease holds only its job/root");
         lease.Dispose();int count=api.Calls.Count;lease.Dispose();
         Assert(api.Open.Count==0&&api.Calls.Count==count,"dispose closes once");
         Assert(api.Calls.IndexOf("kill-job-20")<api.Calls.IndexOf("close-30"),"drain before process handle release");
     }
     static void FailurePaths() {
-        foreach(string failure in new[]{"prepare","token","job","spawn","assign","resume","close-40","close-10"}) {
+        foreach(string failure in new[]{"prepare","job","spawn","assign","resume","close-40"}) {
             var api=new FakeProducerApi();api.Fail.Add(failure);
             Throws(delegate{ProducerBoundary.Start(api);});
             Assert(api.Open.Count==0,"all owned handles attempted after "+failure);
@@ -86,7 +85,6 @@ class ProducerBoundaryTests {
     static void Validation() {
         const string nonce="0123456789abcdef0123456789abcdef",cmd="C:/Inputs/Jdk/bin/java.exe -version",cwd=@"C:\BuildWork\Project\apps\flutter_elitesync_module\.android";
         WindowsProducerBoundary.Validate(nonce,cmd,cwd,Env());Checks++;
-        Assert(WindowsProducerBoundary.RestrictionSid(nonce)!=WindowsProducerBoundary.RestrictionSid(nonce.Substring(0,31)+"0"),"all 128 nonce bits bind restriction SID");
         foreach(var value in new[]{"",nonce+"\n",nonce.ToUpperInvariant(),"not-a-nonce"})
             Throws(delegate{WindowsProducerBoundary.Validate(value,cmd,cwd,Env());});
         foreach(var value in new[]{"cmd.exe /c anything",cmd+"\0",cmd+"\r\n",new string('a',30001)})
@@ -113,12 +111,13 @@ class ProducerBoundaryTests {
         WindowsProducerBoundary.Validate("0123456789abcdef0123456789abcdef",(string)request["command_line"],(string)request["cwd"],env);
         Checks++; // Fixed nonce above is a validation fixture, never a run nonce.
     }
-    static int Main(string[] args) {
+    internal static int Run(string[] args) {
         try{
             Lifecycle();FailurePaths();FactoryOwnership();Validation();
             if(args.Length>1)throw new InvalidDataException("At most one source binding fixture");
             if(args.Length==1)ValidateBoundRequest(args[0]);
-            Console.WriteLine("PASS "+Checks+" host-safe boundary assertions; Windows token/ACL/Job/SDK runtime NOT_RUN");return 0;}
+            Console.WriteLine("PASS "+Checks+" host-safe boundary assertions; Windows Job/Sandbox runtime NOT_RUN");return 0;}
         catch(Exception error){Console.Error.WriteLine(error);return 1;}
     }
+    static int Main(string[] args){return Run(args);}
 }

@@ -29,27 +29,18 @@ class BindingTests(unittest.TestCase):
         self.assertIsNone(result['nonce']);self.assertIsNone(result['authorization'])
         self.assertFalse(result['runtime_authorized']);self.assertFalse(result['runtime_qualified'])
 
-    def test_artifact_drift_does_not_create_new_entry_authority(self):
-        with self.assertRaises(ValueError):binding.bind_entry(b'{}',b'source')
-        for key in ('execution_allowed','inherit_environment','old_claims_reused','G2','claim_created'):
-            obj=fixture();obj[key]=True
-            with self.subTest(key=key),self.assertRaises(ValueError):self.bind(obj)
-
-    def test_action_path_and_environment_negatives_are_independent(self):
-        for defect in ('cwd','offline','task','locked','duplicate','size'):
-            obj=fixture()
-            if defect=='cwd':obj['stage1']['working_directory']='D:/EliteSync-v10'
-            elif defect=='offline':obj['stage1']['argv'].remove('--offline')
-            elif defect=='task':obj['stage1']['argv'][-1]='help'
-            elif defect=='locked':obj['environment']['FLUTTER_ALREADY_LOCKED']='true'
-            elif defect=='duplicate':obj['environment']['Path']='x'
-            else:obj['environment']['X']='x'*8193
-            with self.subTest(defect=defect),self.assertRaises(ValueError):self.bind(obj)
-
-    def test_duplicate_json_is_not_silently_reinterpreted(self):
-        raw=b'{"execution_allowed":false,"execution_allowed":true}'
+    def test_any_artifact_drift_is_rejected_at_the_single_input_boundary(self):
+        raw=json.dumps(fixture()).encode()
         with patch.object(binding,'ENTRY_SHA256',hashlib.sha256(raw).hexdigest()):
-            with self.assertRaises(ValueError):binding.bind_entry(raw,b'source')
+            for changed in (raw+b' ',raw.replace(b'assembleAarRelease',b'help')):
+                with self.assertRaises(ValueError):binding.bind_entry(changed,b'source')
+
+    def test_output_routing_is_added_without_changing_the_pinned_entry(self):
+        obj=fixture();original=json.dumps(obj)
+        result=self.bind(obj)
+        self.assertEqual(json.dumps(obj),original)
+        self.assertIn('producer-output.init.gradle',result['launch_request']['command_line'])
+        self.assertEqual(result['launch_request']['cwd'],r'C:\BuildWork\Project\apps\flutter_elitesync_module\.android')
 
 
 if __name__=='__main__':unittest.main()
