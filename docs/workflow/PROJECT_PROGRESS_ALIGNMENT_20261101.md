@@ -19,6 +19,8 @@
 | 保护/原证 | 旧81逐份SHA一致，原case冻结payload一致，追加本次16份原证后97保护。driver结束后才修改主控源码，旧冻结probe副本不改。原main4bebc8f3/255/index2be660...、apps ed248529/services7634b475不变；LOCAL_ONLY同父目录startup-stop-engineering-summary-private、resumed-runtime-outcome-private、post-startup-new-candidate-private、protected-records-after-startup-stop-private及具名UI/cleanup原证，不上传 |
 | 项目/Git | AAR/APK未生成，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。fresh SSH核远端产品e93fb90b/main8a9e97a1；审d9a75094及三文档整个待推范围后同身份/协议普通non-force同步，最终commit/ref/Blob见私有回执，不以归档镜像替代产品Parent |
 
+补充实况：新候选仅只读preclaim检查，可用4246MiB低于10240门槛、磁盘460351819776字节，资源BLOCKED，无grant/claim/新启动；不降低门槛。源码和首轮三文档已普通push获服务器接受至c1e4491097d6c0a7e78c6aaac7f682d48161036d，随后同SSH远端回读Connection closed，当前远端ref/Blob UNKNOWN，不把push回执当最终回读。本次补充仅本地保存，Git PENDING_SYNC；未重试/改身份/协议，连接恢复后核整个待推范围普通同步。
+
 本节点只支持“原单次初始化失败已封存、源码修复和新候选可审查”；不支持新运行额度或产包成功。
 
 ---

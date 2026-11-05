@@ -12,6 +12,8 @@ Owner答复“已释放内存，重新核验”后，同一候选/原grant fresh
 
 LOCAL_ONLY v1015-producer-supervisor-20261105先读startup-stop-engineering-summary-private、resumed-runtime-outcome-private及post-startup-new-candidate-private；原81一致，追加本次原证后97保护。原main/255/index及apps/services不变。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。源码/三文档在原产品分支普通同步，最终ref/Blob见私有回执；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-单次aar初始化失败与源码修复节点)。
 
+补充实况：新候选仅只读preclaim检查，可用4246MiB低于10240门槛、磁盘460351819776字节，资源BLOCKED，无grant/claim/新启动；不降低门槛。源码和首轮三文档已普通push获服务器接受至c1e4491097d6c0a7e78c6aaac7f682d48161036d，随后同SSH远端回读Connection closed，当前远端ref/Blob UNKNOWN，不把push回执当最终回读。本次补充仅本地保存，Git PENDING_SYNC；未重试/改身份/协议，连接恢复后核整个待推范围普通同步。
+
 ---
 
 # EliteSync｜2026-11-05 Owner已授权单次AAR，当前内存预检未耗额（历史节点）

@@ -12,6 +12,8 @@ Owner“已释放内存，重新核验”后按原grant/候选fresh资源10291Mi
 
 旧81一致、追加本次原证后97保护，原根main/255/index与双tree保持；原证LOCAL_ONLY，不上传GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。原失败保存完成后继续普通源码准备，以下历史不倒改。
 
+补充实况：新候选仅只读preclaim检查，可用4246MiB低于10240门槛、磁盘460351819776字节，资源BLOCKED，无grant/claim/新启动；不降低门槛。源码和首轮三文档已普通push获服务器接受至c1e4491097d6c0a7e78c6aaac7f682d48161036d，随后同SSH远端回读Connection closed，当前远端ref/Blob UNKNOWN，不把push回执当最终回读。本次补充仅本地保存，Git PENDING_SYNC；未重试/改身份/协议，连接恢复后核整个待推范围普通同步。
+
 ---
 
 ## 2026-11-05 最新Owner决定：独立1次实际AAR已授权，内存预检未耗额
