@@ -16,6 +16,7 @@ import uuid
 import xml.etree.ElementTree as ET
 
 from current_product_apk_inventory import _checked_stat
+from current_product_tree_inventory import inventory_trees
 from current_product_producer_entry import PINS
 from producer_qualification_plan import TOOL_FILES
 from producer_boundary_binding import bind_entry, ENTRY_SHA256
@@ -84,6 +85,16 @@ def prepare(root, prepared_inputs, entry_file):
         raise ValueError('Source mappings must stay read-only')
     mappings += [dict(host=layout[key]['host'], guest=guest, readonly=True) for key, guest in
                  [('owned_flutter','C:/Inputs/PreparedFlutter'), ('owned_project','C:/Inputs/PreparedProject')]]
+    # AGP defaults to Build Tools 35; selected plugins also declare platforms
+    # 34 and 35. Reuse these installed inputs without changing SDK versions.
+    sdk = Path(layout['readonly_mappings']['android_build_tools_36']['host']).parent.parent
+    supplemental = {'android_build_tools_35':'build-tools/35.0.0',
+                    'android_platform_34':'platforms/android-34',
+                    'android_platform_35':'platforms/android-35'}
+    supplemental_inventory = inventory_trees(roots={role:str(sdk/path) for role,path in supplemental.items()},
+        file_limit=30000, entry_limit=60000, byte_limit=1024**3, depth_limit=32)
+    mappings += [dict(host=str(sdk/path), guest='C:/Inputs/AndroidSdk/'+path, readonly=True)
+                 for path in supplemental.values()]
     for item in mappings:
         _checked_stat(Path(item['host']))
     declared_file = prepared_inputs/'complete-declared-input-trees-private.json'
@@ -95,7 +106,9 @@ def prepare(root, prepared_inputs, entry_file):
     cmake_inventory = json.loads(cmake.MATERIALIZATION.read_bytes())['inventory']
     native_inputs += [row for row in cmake_inventory['files'] if row['relative_path'] in
                       ('bin/cmake.exe','bin/ninja.exe','bin/msvcp140.dll','bin/vcruntime140.dll','bin/vcruntime140_1.dll')]
+    native_inputs += supplemental_inventory['files']
     root.mkdir(); (root/'probe').mkdir(); (root/'output').mkdir()
+    put(root/'probe'/'supplemental-sdk-inventory.json', supplemental_inventory)
     for name in sources:
         target = 'producer-output.init.gradle' if name == 'producer_output.init.gradle' else name
         shutil.copyfile(HERE/name, root/'probe'/target)

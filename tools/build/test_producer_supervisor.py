@@ -17,9 +17,17 @@ class SupervisorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             task=Path(directory);inputs=task/'inputs';inputs.mkdir()
             flutter=task/'flutter';flutter.mkdir();project=task/'project';project.mkdir()
+            tools36=task/'sdk/build-tools/36.0.0';tools36.mkdir(parents=True)
+            tools35=tools36.parent/'35.0.0';tools35.mkdir()
+            (tools35/'source.properties').write_text('Pkg.Revision=35.0.0\n')
+            (tools35/'aapt2.exe').write_bytes(b'fixture-not-executable')
+            for version in ('34','35'):
+                platform=task/('sdk/platforms/android-'+version);platform.mkdir(parents=True)
+                (platform/'android.jar').write_bytes(b'fixture-not-a-real-platform')
             inventory=inputs/'private-flutter-complete-inventory-private.json';inventory.write_text('{}')
             project_inventory=inputs/'private-project-inventory-private.json';project_inventory.write_text('{}')
-            layout=dict(readonly_mappings={'android_cmake_3_22_1':dict(host=str(task),guest='C:/Inputs/CMake',readonly=True)},
+            layout=dict(readonly_mappings={'android_cmake_3_22_1':dict(host=str(task),guest='C:/Inputs/CMake',readonly=True),
+                                          'android_build_tools_36':dict(host=str(tools36),guest='C:/Inputs/AndroidSdk/build-tools/36.0.0',readonly=True)},
                         owned_flutter=dict(host=str(flutter)),owned_project=dict(host=str(project)))
             (inputs/'production-layout-private.json').write_text(json.dumps(layout))
             declared=inputs/'complete-declared-input-trees-private.json';declared.write_text('{"files":[]}')
@@ -46,6 +54,17 @@ class SupervisorTests(unittest.TestCase):
                 self.assertTrue((root/'probe'/name).is_file(),name)
                 self.assertEqual(contract['payload_sha256']['probe/'+name],original_sha(root/'probe'/name))
             self.assertEqual((root/'probe'/consumed[0]).read_bytes(),(supervisor.HERE/'producer_output.init.gradle').read_bytes())
+            self.assertIn(dict(host=str(tools35),guest='C:/Inputs/AndroidSdk/build-tools/35.0.0',readonly=True),contract['readonly_mappings'])
+            added=[row for row in contract['native_inputs'] if row['role']=='android_build_tools_35']
+            self.assertEqual({row['relative_path'] for row in added},{'source.properties','aapt2.exe'})
+            for version in ('34','35'):
+                self.assertIn(dict(host=str(task/('sdk/platforms/android-'+version)),guest='C:/Inputs/AndroidSdk/platforms/android-'+version,readonly=True),contract['readonly_mappings'])
+                self.assertEqual([row['relative_path'] for row in contract['native_inputs'] if row['role']=='android_platform_'+version],['android.jar'])
+            self.assertTrue((root/'probe/supplemental-sdk-inventory.json').is_file())
+            (tools35/'aapt2.exe').write_bytes(b'fixture-not-executablX')
+            with self.assertRaisesRegex(ValueError,'Native input identity changed'):
+                supervisor.preflight(root,contract)
+            self.assertFalse((root/'launch.claim.json').exists())
 
     def case(self, root):
         (root/'probe').mkdir();(root/'output').mkdir()
