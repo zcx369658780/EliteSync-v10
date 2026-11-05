@@ -7,6 +7,7 @@ import math
 import os
 from pathlib import Path, PureWindowsPath
 import re
+import stat
 import subprocess
 import time
 import uuid
@@ -24,6 +25,10 @@ ROOT = Path.home() / 'EliteSyncDev' / SCOPE
 READSET = Path.home() / 'EliteSyncDev/v1015-native-static-imports-20261104/candidate-native-readset-private.json'
 READSET_SHA = 'b243c9d7b46fe7753b09b85e04d4c10b40e78e34fe6f03bd62a7ff7ce04b94e2'
 INTEROP_SHA = 'd4af38893301dfb2a9c5a7a13c88d744a6ec0e9a90932cf53eaad33c4c8c48fb'
+PARTIAL_RECEIPT_SHA = '8833ef686fb46342360b9b539b756f55d00b4068cd3d51732569aa3c8800b507'
+PARTIAL_NONCE = '0d56a5fe51fb4586a80cc3b7c2194246'
+PARTIAL_FILES = ('probe/NativeRoleProbe.cs', 'probe/NativeRoleProbe.exe',
+                 'probe/manifest.locked.json', 'qualification.wsb', 'compiler.stdout', 'compiler.stderr')
 ROLE = 'cmake'
 LIMITS = {'memory_mb': 2048, 'guest_seconds': 90, 'host_seconds': 180, 'stop_cleanup_seconds': 45,
           'input_files': 42, 'input_bytes': 512 * 1024**2, 'output_bytes': 64 * 1024**2}
@@ -176,6 +181,24 @@ def policy():
             'producer_allowed': False, 'gradle_allowed': False, 'device_media_allowed': False, 'G2': False}
 
 
+def compiler_pin():
+    """Only the signed system compiler may have servicing hardlinks, not SDK inputs."""
+    compiler = Path(os.environ['SystemRoot']) / 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+    before = inventory._checked_stat(compiler)
+    if not stat.S_ISREG(before.st_mode) or not 1 <= before.st_nlink or not 0 < before.st_size <= 8 * 1024**2:
+        raise ValueError('ordinary bounded system compiler required')
+    check = subprocess.run(['pwsh', '-NoProfile', '-NonInteractive', '-Command',
+        "$s=Get-AuthenticodeSignature -LiteralPath '" + str(compiler).replace("'", "''") + "';if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'Microsoft Windows'){exit 1}"], capture_output=True, timeout=15)
+    if check.returncode:
+        raise ValueError('existing compiler signature rejected')
+    with compiler.open('rb') as stream:
+        opened = os.fstat(stream.fileno()); digest = hashlib.file_digest(stream, 'sha256').hexdigest(); after = os.fstat(stream.fileno())
+    current = inventory._checked_stat(compiler)
+    if any(inventory._identity(info) != inventory._identity(before) or info.st_nlink != before.st_nlink for info in (opened, after, current)):
+        raise ValueError('system compiler identity changed')
+    return compiler, digest
+
+
 def same(left, right):
     return json.dumps(left, sort_keys=True) == json.dumps(right, sort_keys=True)
 
@@ -242,37 +265,60 @@ def remaining_window(origin, monotonic_now, utc_now):
 
 
 def prepare():
-    if ROOT.exists():
-        raise FileExistsError('fixed candidate exists; no reset or directory successor')
+    # This fixed candidate already has a retained original compilation. A new
+    # directory/nonce would silently replace that identity, so never regenerate.
+    raise FileExistsError('initial snapshot already registered; only attest and finish the retained partial in place')
+
+
+def preserved_partial():
+    raw = safe_bytes(ROOT / 'preparation-partial-private.json', 128 * 1024)
+    if sha(raw) != PARTIAL_RECEIPT_SHA:
+        raise ValueError('fixed original partial receipt differs')
+    receipt = decode_json(raw)
+    expected = {'status': 'PREPARATION_METADATA_PIN_FAILED_NO_RUNTIME_ATTEMPT',
+                'VM_launches': 0, 'SDK_starts': 0, 'claim_created': False, 'same_fixed_directory_required': True}
+    if any(k not in receipt or not same(receipt[k], value) for k, value in expected.items()):
+        raise ValueError('partial snapshot is not a preserved non-running preparation')
+    if type(receipt.get('files')) is not dict or set(receipt['files']) != set(PARTIAL_FILES):
+        raise ValueError('exact six original partial artifacts required')
+    for name in PARTIAL_FILES:
+        row = receipt['files'][name]
+        if type(row) is not dict or set(row) != {'bytes', 'sha256'} or type(row['bytes']) is not int or row['bytes'] < 0:
+            raise ValueError('partial artifact identity malformed')
+        data = safe_bytes(ROOT / name, 4 * 1024**2)
+        if len(data) != row['bytes'] or sha(data) != row['sha256']:
+            raise ValueError('original partial artifact drift: ' + name)
+    manifest = decode_json(safe_bytes(ROOT / 'probe/manifest.locked.json', 1024**2))
+    if manifest.get('nonce') != PARTIAL_NONCE:
+        raise ValueError('original compiled nonce differs')
+    return receipt
+
+
+def finish_preparation():
+    """Complete a non-running partial preparation in place; never recompile/reset."""
+    if (ROOT / 'case-contract-private.json').exists() or any((ROOT / name).exists() for name in
+            ('launch.claim.json', 'owner-explicit-grant-private.json', 'probe/manifest.json', 'launched.json',
+             'launch-binding-private.json', 'verified-result.json', 'driver-stop-private.json',
+             'launcher.stdout', 'launcher.stderr', 'host-observations', 'stop-cleanup-private.json')):
+        raise ValueError('only an unclaimed partial preparation may be completed')
+    for name in ('probe', 'output', 'compile-temp'):
+        if not stat.S_ISDIR(inventory._checked_stat(ROOT / name).st_mode):
+            raise ValueError('ordinary preparation directories required')
+    if any((ROOT / 'output').iterdir()):
+        raise ValueError('partial preparation output must remain empty')
+    preserved_partial()
     _, pins, mappings = readset()
-    nonce = uuid.uuid4().hex
+    manifest = decode_json(safe_bytes(ROOT / 'probe/manifest.locked.json', 1024**2))
+    nonce = manifest.get('nonce')
     source = guest_source(pins, nonce)
-    ROOT.mkdir()
-    for child in ('probe', 'output', 'compile-temp'):
-        (ROOT / child).mkdir()
-    (ROOT / 'probe/NativeRoleProbe.cs').write_bytes(source)
-    compiler = Path(os.environ['SystemRoot']) / 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
-    check = subprocess.run(['pwsh', '-NoProfile', '-NonInteractive', '-Command',
-        "$s=Get-AuthenticodeSignature -LiteralPath '" + str(compiler).replace("'", "''") + "';if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'Microsoft Windows'){exit 1}"], capture_output=True, timeout=15)
-    if check.returncode:
-        raise ValueError('existing compiler signature rejected')
-    env = {k: v for k, v in os.environ.items() if not k.upper().startswith(('COR_', 'CORECLR_', 'COMPLUS_'))
-           and k.upper() not in {'LIB', 'DOTNET_STARTUP_HOOKS', 'DOTNET_ADDITIONAL_DEPS', 'DOTNET_SHARED_STORE'}}
-    env['TEMP'] = env['TMP'] = str(ROOT / 'compile-temp')
-    compiled = subprocess.run([str(compiler), '/nologo', '/noconfig', '/target:winexe', '/platform:x64',
-        '/r:System.dll', '/r:System.Core.dll', '/r:System.Web.Extensions.dll', '/main:NativeRoleGuestWrapper',
-        '/out:' + str(ROOT / 'probe/NativeRoleProbe.exe'), str(ROOT / 'probe/NativeRoleProbe.cs')],
-        capture_output=True, timeout=30, cwd=ROOT, env=env)
-    (ROOT / 'compiler.stdout').write_bytes(compiled.stdout); (ROOT / 'compiler.stderr').write_bytes(compiled.stderr)
-    if compiled.returncode:
-        raise ValueError('candidate compile failed, no runtime claim created')
-    manifest = {**core.role_plan(ROLE, pins), 'nonce': nonce,
+    expected = {**core.role_plan(ROLE, pins), 'nonce': nonce,
                 'binary_sha256': sha(safe_bytes(ROOT / 'probe/NativeRoleProbe.exe', 4 * 1024**2))}
-    write_once(ROOT / 'probe/manifest.locked.json', manifest)
-    (ROOT / 'qualification.wsb').write_text(configuration(mappings, manifest['nonce']), encoding='utf-8', newline='\n')
-    contract = {**policy(), 'source_pins': sources(), 'readset_sha256': READSET_SHA,
-                'manifest': manifest, 'mappings': mappings,
-                'source_sha256': sha(source), 'compiler_sha256': sha(safe_bytes(compiler, 8 * 1024**2))}
+    if (not same(manifest, expected) or safe_bytes(ROOT / 'probe/NativeRoleProbe.cs', 4 * 1024**2) != source
+            or safe_bytes(ROOT / 'qualification.wsb', 1024**2).decode() != configuration(mappings, nonce)):
+        raise ValueError('partial candidate source/binary/config identity differs')
+    _, compiler_sha = compiler_pin()
+    contract = {**policy(), 'source_pins': sources(), 'readset_sha256': READSET_SHA, 'partial_receipt_sha256': PARTIAL_RECEIPT_SHA,
+                'manifest': manifest, 'mappings': mappings, 'source_sha256': sha(source), 'compiler_sha256': compiler_sha}
     write_once(ROOT / 'case-contract-private.json', contract)
     return {'status': contract['status'], 'scope': SCOPE, 'binary_sha256': manifest['binary_sha256'], 'claim_created': False}
 
@@ -283,11 +329,14 @@ def frozen():
             raise ValueError('fixed ordinary case directories required')
         inventory._checked_stat(path)
     contract = decode_json(safe_bytes(ROOT / 'case-contract-private.json', 4 * 1024**2))
-    fields = set(policy()) | {'source_pins', 'readset_sha256', 'manifest', 'mappings', 'source_sha256', 'compiler_sha256'}
+    fields = set(policy()) | {'source_pins', 'readset_sha256', 'partial_receipt_sha256', 'manifest', 'mappings', 'source_sha256', 'compiler_sha256'}
     if set(contract) != fields or any(not same(contract[k], v) for k, v in policy().items()):
         raise ValueError('exact frozen case policy required')
     if contract['source_pins'] != sources() or contract['readset_sha256'] != READSET_SHA:
         raise ValueError('source or readset identity drift')
+    if contract['partial_receipt_sha256'] != PARTIAL_RECEIPT_SHA:
+        raise ValueError('original partial receipt pin differs')
+    preserved_partial()
     _, pins, mappings = readset()
     m = contract['manifest']
     if type(m.get('nonce')) is not str or not re.fullmatch('[a-f0-9]{32}', m['nonce']):

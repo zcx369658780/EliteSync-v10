@@ -58,6 +58,22 @@ class NativeRoleHostTests(unittest.TestCase):
             'network_no_active_adapter': True, 'SDK_starts': 0, 'G2': False})
         return contract, pins, receipt
 
+    def partial_fixture(self):
+        binary = b'original synthetic compiled artifact, never executed'
+        original = {
+            'probe/NativeRoleProbe.cs': ('nonce=' + host.PARTIAL_NONCE).encode(),
+            'probe/NativeRoleProbe.exe': binary,
+            'probe/manifest.locked.json': json.dumps({'nonce': host.PARTIAL_NONCE, 'binary_sha256': host.sha(binary)}).encode(),
+            'qualification.wsb': ('nonce=' + host.PARTIAL_NONCE).encode(),
+            'compiler.stdout': b'', 'compiler.stderr': b''}
+        for name, raw in original.items():
+            (self.root / name).write_bytes(raw)
+        record = {'status': 'PREPARATION_METADATA_PIN_FAILED_NO_RUNTIME_ATTEMPT', 'VM_launches': 0,
+                  'SDK_starts': 0, 'claim_created': False, 'same_fixed_directory_required': True,
+                  'files': {name: {'bytes': len(raw), 'sha256': host.sha(raw)} for name, raw in original.items()}}
+        host.write_once(self.root / 'preparation-partial-private.json', record)
+        return host.sha((self.root / 'preparation-partial-private.json').read_bytes())
+
     def collect(self, contract, pins):
         with patch.object(host, 'frozen', return_value=(contract, pins)), patch.object(host.observation, 'observe', return_value={'rows': []}):
             return host.collect()
@@ -67,6 +83,46 @@ class NativeRoleHostTests(unittest.TestCase):
             for value in (False, None, 1, 'true'):
                 with self.assertRaises(ValueError):
                     host.launch(new_scope_authorized=value, owner_reference='anything')
+
+    def test_system_compiler_hardlinks_do_not_relax_single_link_SDK_inputs(self):
+        compiler = self.root / 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+        compiler.parent.mkdir(parents=True)
+        compiler.write_bytes(b'synthetic signed-system-compiler metadata fixture')
+        os.link(compiler, self.root / 'servicing-hardlink')
+        with self.assertRaises(ValueError):
+            host.safe_bytes(compiler, 1024)
+        with patch.dict(os.environ, {'SystemRoot': str(self.root)}), \
+             patch.object(host.subprocess, 'run', return_value=SimpleNamespace(returncode=0)):
+            path, digest = host.compiler_pin()
+        self.assertEqual(path, compiler)
+        self.assertEqual(digest, host.sha(compiler.read_bytes()))
+
+    def test_partial_resume_rejects_binary_and_manifest_joint_replacement(self):
+        digest = self.partial_fixture()
+        with patch.object(host, 'PARTIAL_RECEIPT_SHA', digest):
+            host.preserved_partial()
+            binary = b'replacement synthetic artifact'
+            (self.root / 'probe/NativeRoleProbe.exe').write_bytes(binary)
+            m = json.loads((self.root / 'probe/manifest.locked.json').read_bytes());m['binary_sha256'] = host.sha(binary)
+            (self.root / 'probe/manifest.locked.json').write_text(json.dumps(m))
+            with self.assertRaises(ValueError):
+                host.preserved_partial()
+
+    def test_partial_resume_rejects_joint_nonce_source_and_config_replacement(self):
+        digest = self.partial_fixture()
+        m = json.loads((self.root / 'probe/manifest.locked.json').read_bytes());m['nonce'] = 'b' * 32
+        (self.root / 'probe/manifest.locked.json').write_text(json.dumps(m))
+        (self.root / 'probe/NativeRoleProbe.cs').write_text('nonce=' + 'b' * 32)
+        (self.root / 'qualification.wsb').write_text('nonce=' + 'b' * 32)
+        with patch.object(host, 'PARTIAL_RECEIPT_SHA', digest), self.assertRaises(ValueError):
+            host.preserved_partial()
+
+    def test_partial_resume_refuses_launched_or_terminal_residue_before_rechecking_inputs(self):
+        for name in ('launched.json', 'verified-result.json', 'driver-stop-private.json'):
+            path = self.root / name;path.write_text('{}')
+            with patch.object(host, 'readset', side_effect=AssertionError('do not touch SDK inputs')), self.assertRaises(ValueError):
+                host.finish_preparation()
+            path.unlink()
 
     def test_launch_window_cannot_reset_on_delayed_or_repeated_collection(self):
         origin = {'monotonic': 1000.0, 'utc': '2026-11-05T00:00:00Z'}
