@@ -1,3 +1,27 @@
+# EliteSync-v10｜项目进度细表（组件来源链接与POM静态声明准备）
+
+日期：2026-11-05。状态：**STATIC_COMPONENT_LINKS_AND_POM_DECLARATIONS_PREPARED / EFFECTIVE_MODEL_NOT_COMPUTED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 组件来源链接与POM静态声明准备节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 路线图位置 | Owner要求先说明整体进度/下一目标再继续；v10.1.1～1.4保留历史限定接受与集成，当前v10.1.5仍在消息可靠性/离线/通知和实际产包准备。已有源码与后端/API/WS/Web/DB分项证据，不代表同源APP全链；10 PARTIAL、AC05 OPEN、v10.1.6/1.7未启动，v10.2以后外部运营仍条件阶段。现行Local-first替代历史网页派单/验收角色，不改历史接受/失败 |
+| 身份/授权 | 产品根D:/EliteSync-v10-product-v1015-20261101、原codex/v10.1.5-software-continuation-20261101分支/origin正确，进入04dfd24fac3d5263b91f126541dd300b24a42e41、空index，仅原%SystemDrive%/。普通静态源码工程，不推断SDK/VM/Gradle后继预算；此前CMake1/1已耗剩0 |
+| 新增读集/源码 | 新gradle_metadata_declarations及测试；只读原库存SHA0b34a527...14af9和前节点catalog SHAaf3b0bbb...63369约束的1,314份元数据（301 module＋1,013 POM）、9,893,191字节，按原FileID/size/SHA句柄前后核验。成功2.312秒；其余Seed文件本节点未重新hash，非原子观察。最多1600文件/单份2MiB/总64MiB，100000关系/候选引用，XML20000节点/64层；无URL、parent relativePath、profile/plugin/build执行 |
+| 组件来源 | 30条来源中25 EXACT_LOCAL_ORIGIN_LINK：在逻辑Maven命名空间规范化URL，与目标GAV/精确basename/本地目标component及format1.1共同绑定；缓存归属/声明来源仍分列，不改owner、不合并variants/递归来源或跟URL。5 TARGET_DESCRIPTOR_ABSENT：korte2.0.7、coroutines-core1.5.0/1.6.4/1.8.0、kotlinx-html0.7.3，仅本声明读集缺目标，不是证明构建必缺五依赖；无未知module格式 |
+| POM声明 | 1013份POM：919自身直接坐标匹配、94 NEEDS_EFFECTIVE_MODEL；5425条关系由173 parent、55 BOM import、1579 dependency management、3618 dependency组成。3364条请求POM坐标在场、1229不在声明读集、832需有效模型；不是Gradle选择/必缺数量。保留properties/父relativePath/版本字符串/optional/scope/type/classifier/systemPath/exclusions，不插值、不应用父继承/BOM优先级或跳过可选/特定scope；6份重复属性保留全部声明、移出唯一值map，不选择最后值 |
+| 具名输入 | AGP8.11.1 POM的55条direct dependency、Kotlin2.0.21的10 dependency＋1 BOM import，全部有请求POM坐标候选。仅具名直接声明核对，不证明递归有效模型、Gradle metadata优先级、repository identity、冲突解决、action变体/平台/版本或离线命中；原2769变体未被自动选择，二进制metadata仍未解析 |
+| 检查/复核/原失败 | 14项新纯/合成检查通过：URL/目标别名/缺席/歧义/来源不递归、parent/BOM/属性/缺版本/动态版本/optional与exclusions、UTF8/BOM/命名空间、DTD/entity/NUL/UTF16/重复字段/深度及关系/候选/文件上限。非作者Codex唯一P2为来源目标文件名未绑定，反例先红后修，最终无具体P1/P2，非外部独立验收。首次真实静态分析在com.sun.activation:all:1.2.0的重复property处停止，原request/failure保留，改为显式歧义后同目录完成；非SDK重试或旧额续用。前节点16项未重跑/不写作本节点新测 |
+| 保护/私有原证 | 78/78保护SHA一致；原main@4bebc8f3/default255/index2be660...、产品apps ed248529/services7634b475不变，旧SDK/Seed/STOP/helper/DB/备份/worktrees保留。LOCAL_ONLY v1015-gradle-metadata-links-20261105：engineering-summary-private/scan-result-private/declarations-private/named-input-declarations-private、请求/原失败/检查/保护/三文档前后副本；原证/POM/缓存不上传 |
+| 未运行/下一目标/Git | SDK/Gradle/VM/构建/DB/设备/媒体动作0、metadata网络请求0，无新claim；producer预算UNKNOWN_NOT_CREATED、AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。下一普通工程针对实际action处理parent/BOM/属性、metadata优先级和变体/版本，再闭合工具/资源/真实AAR→host；不自动开启新动态范围、不合main、不启v10.1.6。审整个待推范围后同身份/协议普通non-force同步原产品分支，失败PENDING_SYNC；最终ref/Blob及来源SHA见实际Git/私有回执 |
+
+本节点仅接受静态声明和25份精确来源链接证据；不授予离线解析、构建执行或产品验收资格。
+
+本节点同步前普通SSH读取远端被Connection closed关闭，未尝试push，**PENDING_SYNC**。最后成功核实远端产品04dfd24f、main8a9e97a1属于前节点时点，失败后远端HEAD UNKNOWN；本地新增commit身份见Git与私有回执。保留整个待推范围，连接恢复后先核范围再同身份/协议普通non-force同步；本节点不重试、不改身份/协议或镜像写入绕过失败。
+
+---
+
 # EliteSync-v10｜项目进度细表（Gradle离线Seed静态目录与变体声明准备）
 
 日期：2026-11-05。状态：**DECLARED_SEED_HASHED_AND_MODULE_CATALOG_PREPARED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。

@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：组件来源与POM静态声明，不新增执行资格
+
+Git状态PENDING_SYNC：同步前普通SSH远端只读Connection closed，未push；前节点最后已核产品04dfd24f/main8a9e97a1，失败后HEAD UNKNOWN。先保存本地完整源码/记录，连接恢复后再核全部待推范围普通non-force同步原产品分支，不改身份/协议、不借归档镜像绕过。
+
+Owner要求先说明路线图整体进度与下一任务再继续。v10.1.5仍处消息可靠性/离线/通知及实际产包准备；历史1.1～1.4限定接受/集成保留，1.6/1.7未启动，不以源码或后端分项冒称完整可安装交付。新gradle_metadata_declarations仅处理具名已有Seed元数据：1314文件/9,893,191字节逐份按原库存FileID/size/SHA句柄核对；25/30组件来源链接精确对应本地描述文件、5目标未在声明读集，缓存身份/来源身份不合并或递归重绑、不跟URL。
+
+1013份POM仅提取5425条parent/BOM/dependency management/dependency声明；94份自身坐标、832条关系仍需有效模型，6份重复property保留歧义、不选择值。具名AGP/Kotlin的直接POM关系有坐标候选，不证明有效模型、metadata优先级、变体选择或构建闭包。14项新纯检查通过；非作者Codex目标basename绑定P2先有红例再修，最终无具体P1/P2，非外部独立验收。原重复属性分析失败与请求保留，修复后同目录静态读回，不改SDK/Seed/库存pin/冻结helper/STOP或额度。
+
+本节点SDK/Gradle/VM/构建/DB/设备/媒体动作0、metadata网络请求0，无新claim；78保护及原main/255/index、apps/services一致。旧已耗次数保持0、producer预算UNKNOWN_NOT_CREATED、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING、AAR/APK未生成。继续针对实际action的有效模型/变体和其它工具/资源/AAR→host普通准备，不自动继任新动态scope、不合main、不启v10.1.6。LOCAL_ONLY v1015-gradle-metadata-links-20261105及最终Git回执见唯一细表；以下按历史时点保留。
+
+---
+
 ## 2026-11-05 最新工程节点：离线Seed静态目录，不新增执行资格
 
 Owner“可以，请继续”接续其余原生工具/离线依赖普通准备。新gradle_cache_catalog按原0b34...14af9库存只读核全部Seed 3183文件/1,362,106,905字节，files-2.1的2149条多hash与目录完整SHA1一致，前后成员/元数据一致。按descriptor/GAV/variant保留声明，271份module/2769变体可直接解析，30份带component.url来源关系明确待解，不改坐标或跟URL。

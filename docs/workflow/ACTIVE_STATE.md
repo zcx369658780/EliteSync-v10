@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 Gradle离线Seed静态目录与变体声明准备（CURRENT ENTRY）
+# EliteSync｜2026-11-05 组件来源链接与POM静态声明准备（CURRENT ENTRY）
+
+**STATIC_COMPONENT_LINKS_AND_POM_DECLARATIONS_PREPARED / EFFECTIVE_MODEL_NOT_COMPUTED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+本节点Git **PENDING_SYNC**：同步前普通SSH只读远端时Connection closed，未尝试push；最后成功核实产品远端04dfd24f、main8a9e97a1为前节点时点，本次失败后远端HEAD UNKNOWN。本地源码/三文档完整提交保存，最终commit见Git/私有回执；连接恢复后先核整个待推范围再同身份/协议普通non-force同步，不改身份绕过、不重试/重写或借镜像合回。
+
+Owner要求说明路线图整体进度、下一任务并继续。路线图仍在v10.1.5消息可靠性/离线/通知：v10.1.1～1.4已有历史限定接受与集成，当前源码及后端/API/WS/Web/持久性仅分项支持；最终同源APK交付未完成。10 PARTIAL、AC05 OPEN；v10.1.6/1.7未启动，v10.2及供应商/运营仍为条件阶段。旧路线图中的网页派单/验收角色以Local-first现行决定替代，历史接受边界不变，不用百分比混合源码与产品接受。
+
+产品根/分支/origin、进入HEAD `04dfd24fac3d5263b91f126541dd300b24a42e41`、空index核对一致，仅原%SystemDrive%/。新增gradle_metadata_declarations及14项纯/合成检查：只读取原0b34...14af9库存中1,314份.module/POM、9,893,191字节，逐文件按FileID/size/SHA持有句柄核对；成功2.312秒，非完整Seed重新扫描或原子快照。30个来源链接中25个URL逻辑路径/坐标/目标文件名/目标component可精确对应本地描述文件，5个目标缺席；保留缓存身份/来源身份，不跟URL、不递归改绑或合并variants。
+
+1,013份POM提取5,425条声明：173 parent、55 BOM import、1,579 dependency management、3,618 dependency；3,364条请求POM坐标在场、1,229不在声明读集、832需有效模型。自身坐标919直接匹配、94需继承等有效模型。属性/版本/optional/scope/type/classifier/exclusions保留；6份POM有重复属性，两份原声明均留存且不选择值。AGP8.11.1的55条、Kotlin2.0.21的11条直接POM关系都有请求坐标候选，**不等于有效模型、变体/版本选择或实际构建闭包**；未应用parent/BOM/属性插值、profiles、metadata优先级及repository identity，二进制缓存未解析。
+
+14项检查通过；非作者Codex找到URL目标basename未绑定的P2，先红后修、复核无剩余具体P1/P2，非外部独立验收。首次真实静态分析在既有POM重复属性处停下，原request/failure保留，修复为保留歧义后同目录读回；非SDK/VM重试，不改旧Seed/库存pin/冻结helper/STOP或额度。78/78保护、原main/255/index及产品apps/services一致。
+
+LOCAL_ONLY `v1015-gradle-metadata-links-20261105` 先读engineering-summary-private、scan-result-private、declarations-private，按需named-input-declarations-private及失败/检查；原证/POM/cache不上传。本轮SDK/Gradle/VM/构建/设备/媒体/DB动作0、metadata网络请求0，无新claim，所有旧余额保持0；producer预算UNKNOWN_NOT_CREATED。下一普通工程针对实际action输入处理parent/BOM/属性、metadata优先级及变体/版本，再闭合完整工具/资源与真实AAR→host。APK未生成、真实消息Push PENDING、G2 false，不自动启动新动态范围、不合main、不启v10.1.6。最终Git/ref/Blob见实际回执；详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-组件来源链接与pom静态声明准备节点)。
+
+---
+
+# EliteSync｜2026-11-05 Gradle离线Seed静态目录与变体声明准备（历史节点）
 
 **DECLARED_SEED_HASHED_AND_MODULE_CATALOG_PREPARED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
 
