@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新工程节点：离线Seed静态目录，不新增执行资格
+
+Owner“可以，请继续”接续其余原生工具/离线依赖普通准备。新gradle_cache_catalog按原0b34...14af9库存只读核全部Seed 3183文件/1,362,106,905字节，files-2.1的2149条多hash与目录完整SHA1一致，前后成员/元数据一致。按descriptor/GAV/variant保留声明，271份module/2769变体可直接解析，30份带component.url来源关系明确待解，不改坐标或跟URL。
+
+16项新纯检查通过，四项非作者P2已修复并复核无剩余具体P1/P2；仅Codex工程审查，非外部独立验收。原三次布局预检/来源分析失败保留，修复后同一报告目录进行只读确认，无源/缓存修改、下载或SDK/VM启动，不借旧额续用。声明缺项是逐变体的库存对照，不能据此说实际构建必缺相同数量依赖，也不能把坐标在场当离线闭包；POM/二进制metadata、来源链接及action选择仍未解。
+
+本轮所有SDK/Gradle/VM/编译/构建/DB/设备/媒体动作0，无新scope/claim；此前CMake限定成功及所有0余额保持，不重跑/改旧helper/nonce/contract/outcome/STOP。78保护记录与原dirty/index、apps/services不变。producer预算UNKNOWN_NOT_CREATED、AC05 OPEN、G2 false、10 PARTIAL及真实消息Push PENDING保持，继续已授权普通源码准备；任何下一动态范围仍须具体输入/执行器/独立预算成立，不自动继任。不合main、不启v10.1.6，原证和最终Git见唯一细表/私有回执，以下历史决定保留原时点。
+
+---
+
 ## 2026-11-05 最新Owner决定：本地完整版本CMake单次已授权、实测通过、余额0
 
 Owner直接选择“授权本地新候选独立 1 次检查”，已知本地HEAD d4603ee4/源码9ae9d706及Git PENDING_SYNC，限定上一新scope/合同/完整预期、1VM/1 CMake --version、guest2GiB/90秒、host180秒及STOP本实例安全清理另45秒。原问题/答复、代码/合同/binary/f7ab预期和前后内存资格SHA绑定在新grant，不修改原历史未授权合同或旧case。

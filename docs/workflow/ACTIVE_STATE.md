@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-05 Owner授权完整版本CMake单次实测通过（CURRENT ENTRY）
+# EliteSync｜2026-11-05 Gradle离线Seed静态目录与变体声明准备（CURRENT ENTRY）
+
+**DECLARED_SEED_HASHED_AND_MODULE_CATALOG_PREPARED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**
+
+Owner“可以，请继续”后接续其余原生工具/离线依赖普通准备；实际产品根/分支/origin、进入HEAD `2d53432c0917b67bfabcbcbe55f570b7f5a3da03`、空index核对一致，仅原%SystemDrive%/。上一CMake限定实测保持SUPPORTED/1次已耗剩0，本轮不运行SDK/Gradle/VM、旧collector或构建，不新增claim，不改SDK/旧Seed/保护源/STOP或额度。
+
+新增gradle_cache_catalog，按原完整库存SHA0b34a527...14af9只读核现有Seed全部**3,183文件／1,362,106,905字节**，前后枚举成员/元数据一致；每文件按库存FileID/size/SHA持有句柄核验。files-2.1共2,149条，逐份计算SHA-512/SHA-256/SHA-1/MD5，目录SHA-1按完整40位比对；原117个省略前导零目录只作逻辑补齐，9个不带坐标名的AAR由目录取GAV/精确变体文件名及摘要绑定，不改文件或路径。
+
+301份.module均完整读取：271份直接解析为**2,769个变体**；30份component.url来源与缓存坐标不同，明确UNRESOLVED_COMPONENT_ORIGIN、保留两者，不改owner或跟URL，不接入其variants。文件声明1727条：409条全部声明摘要匹配，1251条未在该声明Seed中，63条URL映射未解析，4条在场但未声明摘要；依赖/约束/available-at共7456条：4598条请求坐标在场、2850条不在声明Seed、8条版本策略未解析。**这些是逐变体声明，不是实际构建缺失依赖数**；未选变体/解冲突，1013份POM与1034份二进制元数据仍未解析，offline action closure未证明。
+
+16项新纯/合成检查通过。非作者Codex发现的latest.*动态版本误当literal、attributes复制放大、candidate引用放大、descriptor关联不唯一四P2均有反例修复；最终复核无具体P1/P2，非外部独立验收。保留三份源码解析预检/分析失败记录，分别定位短SHA目录、AAR别名、组件来源关系；前两次停在内容扫描前，第三次在元数据分析停下，修复后同一报告目录完成静态扫描，非SDK重试或旧额续用。
+
+LOCAL_ONLY `v1015-gradle-cache-catalog-20261105`，先读engineering-summary-private/scan-result-private/catalog-private，再按需named-variant-candidates-private（44个AGP/Kotlin具名候选变体，未选择）及原失败。原固定库存/Seed不改，无复制cache、下载、执行或metadata URL访问。78保护记录/旧冻结源、原main/255/index及产品apps/services保持；原证/缓存/JAR/SDK不上传。
+
+下一步先处理组件来源链接、POM语义和action实际变体/版本约束，再闭合其它native/资源/真实AAR→host；不能以静态坐标在场放行Gradle离线解析或实际产包。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不自动新增SDK/VM范围、不合main、不启v10.1.6。最终Git/ref/Blob与普通同步按实际回执；详见[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-gradle离线seed静态目录与变体声明准备节点)。
+
+---
+
+# EliteSync｜2026-11-05 Owner授权完整版本CMake单次实测通过（历史节点）
 
 **OWNER_GRANTED_CASE_SPENT / CMAKE_BOUND_VERSION_LIFECYCLE_SUPPORTED / EXACT_OUTPUT_BYTES_CONSUMED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**
 

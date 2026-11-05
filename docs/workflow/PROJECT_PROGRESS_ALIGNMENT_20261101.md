@@ -1,3 +1,26 @@
+# EliteSync-v10｜项目进度细表（Gradle离线Seed静态目录与变体声明准备）
+
+日期：2026-11-05。状态：**DECLARED_SEED_HASHED_AND_MODULE_CATALOG_PREPARED / OFFLINE_ACTION_CLOSURE_NOT_PROVEN / NO_SDK_OR_VM_RUN / NO_CLAIM / APK_NOT_RUN / G2_FALSE**。
+
+## 2026-11-05 Gradle离线Seed静态目录与变体声明准备节点
+
+| 项目 | 本轮事实与限制 |
+|---|---|
+| 授权/身份 | Owner“可以，请继续”接续其余native/离线依赖普通工程，不推断新SDK/VM范围。产品根/分支/origin正确，进入2d53432c0917b67bfabcbcbe55f570b7f5a3da03、空index，仅原%SystemDrive%/；apps/services树不变，旧CMake scope已耗1/1剩0。新源码/测试及本节点三文档身份以实际Git为准 |
+| 有界静态目录 | 新gradle_cache_catalog只读原库存role existing_readonly_dependency_seed的完整根，库存SHA0b34a527161803e5b783705c3fc07b7fcf5e1818b064b3e42bd5355ea0b14af9不改。最多4000文件/20000条目/2GiB/64层，单module1MiB、module总64MiB、关系200000、累计candidate引用100000；按句柄FileID/size/SHA、前后根枚举集合/元数据一致校验，不写/复制/修cache、不调用Gradle或URL |
+| 真实文件核对 | 成功静态扫描20.906秒，3183/3183文件、1,362,106,905字节与原库存一致。files-2.1共2149：1013 POM、301 module、724 JAR、111 AAR；另1034份metadata-2.107二进制文件仅校验身份/字节，不解析。2149文件的SHA512/SHA256/SHA1/MD5已计算，SHA1目录逻辑零扩展后与完整真实摘要比较；不以目录名或弱hash作来源认证，不证明archive/代码可执行 |
+| 两类实际布局 | 117个SHA1目录为38/39位十六进制，补齐前导零至40位再全文比对，保留原路径；9份AAR名不含module/version（如datastore-release.aar），GAV仅取目录，逐variant按原名/全部声明摘要匹配。初始固定40位和文件名反推版本的两次预检失败均留原文，均在cache内容扫描前结束，不改源/库存pin |
+| module/来源关系 | 全部301份.module完整读取，271份直接解析，2769个variants各存attributes/capabilities一次，按descriptor路径+GAV+variant唯一关联。30份component.url来源与缓存GAV不同，记录UNRESOLVED_COMPONENT_ORIGIN并跳过其variants/edges/files，不重命名owner、不沿链接读取、不把实际来源关系解释为缓存损坏。此前分析硬拒记录保留，后续单独处理来源语义 |
+| 文件声明结果 | 1727条逐variant文件声明：409 MATCHED_DECLARED_HASHES、1251 NOT_IN_DECLARED_SEED、63 UNRESOLVED_FILE_URL、4 PRESENT_WITHOUT_DECLARED_HASH。有缓存同名多内容时保留全部候选并报歧义，不按basename合并或挑一个；本次未见该歧义/声明hash不符类别。来源/变体选择未做，缺项可属sources/javadoc/其它Gradle目标，不能当实际构建缺1251依赖 |
+| 坐标关系结果 | 7456条dependency/constraint/available-at声明：4598请求坐标在场、2850不在该声明Seed、8版本策略未解析；requires完整版本对象保留，rich/dynamic/latest.*不被改为精确选择，available-at URL不跟随。即使exact requires在场也不代表Gradle最终选用或闭包成立；1013 POM继承/BOM等与1034二进制缓存语义均未解，offline_resolution_proven=false |
+| 16项检查/审查 | 新纯/合成16项通过：目录SHA1补齐/不当prefix、精确多hash、别名AAR、变体文档缺项、同名异内容、rich/dynamic/constraints/redirect、JSON重复/组件不符、候选fanout和关系cap、大attrs单存、双descriptor关联、根额外文件/后置漂移、来源链接不改坐标。四个非作者P2（latest.*、attrs放大、candidate放大、descriptor关联）先有反例再修；最终无具体P1/P2，非外部独立验收。三份普通源码预检/分析失败保留，非旧scope重跑/续额 |
+| 私有原证/保护 | LOCAL_ONLY v1015-gradle-cache-catalog-20261105：engineering-summary-private/scan-result-private/catalog-private/named-variant-candidates-private、三份失败与各阶段request、checks和78记录前后副本、三文档原文。44个AGP8.11.1/Kotlin2.0.21具名候选变体只是库存路线候选，无action选择。78/78保护SHA与旧冻结源保持；原main@4bebc8f3/default255/index2be660...、apps ed248529/services7634b475、SDK/DB/备份/worktrees/STOP不变；原证/缓存/二进制不上传 |
+| 未运行/后续/Git | 本轮SDK/Gradle/VM/编译/构建/DB/设备/媒体/网络请求0，无新scope/claim；CMake限定成功保留，但所有已耗次数均不退款/重置/复跑。下一普通工程处理组件来源、POM与实际action变体/版本，再闭合其它native/资源/真实AAR→host；静态目录不赋予执行资格。producer预算UNKNOWN_NOT_CREATED、APK NOT_RUN、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6；审整个待推范围普通non-force同步原产品分支，失败PENDING_SYNC，不改身份/协议、pull/reset/rebase/force，最终ref/Blob见实际回执 |
+
+本节点工程完成仅为已有完整声明Seed的真实字节/身份核对及部分module声明目录，未进行Gradle依赖解析、运行或实际产包。
+
+---
+
 # EliteSync-v10｜项目进度细表（Owner授权完整版本CMake单次实测通过）
 
 日期：2026-11-05。状态：**OWNER_GRANTED_CASE_SPENT / CMAKE_BOUND_VERSION_LIFECYCLE_SUPPORTED / EXACT_OUTPUT_BYTES_CONSUMED / HOST_PROCESSES_ABSENT / APK_NOT_RUN / G2_FALSE**。
