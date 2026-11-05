@@ -1,3 +1,24 @@
+# EliteSync-v10｜项目进度细表（来宾准备缺脚本STOP与接线修复）
+
+## 2026-11-05 来宾准备缺脚本STOP与接线修复节点
+
+| 项目 | 实际证据与边界 |
+|---|---|
+| 身份/授权/资源 | 进入产品根/原分支/origin、HEAD ed379d5826f3fe78349bd93cb296255b32eb5e21、空index/旧%SystemDrive%/核对；Owner新“已释放内存”满足上一授权附带等待条件。同一5ac53e32...85f92合同/bb4e2ab4...e791/原nonce/grant，fresh19关键输入、99保护、原根main/255/index和双tree一致；可用16855MiB、磁盘460330975232字节 |
+| 唯一启动/耗额 | UTC14:01:11.181063创建不可退款claim，只启动1次VM。launcher39652/session75252/server37640原始身份绑定留原证；独立范围1/1永久已耗余0，不重试/退款/改冻结身份。旧9c20范围初始化失败1/1已耗余0也保留 |
+| 真实guest结果 | 来宾失败原文FileNotFoundException: C:/Probe/producer-output.init.gradle；elapsed_ms122204，root_create_attempted=false、sdk_start_observed=false。执行到两完整树Materialize及entry准备返回后的File.Copy；该控制流定位不冒称SDK/DLL/离线action已消费或AAR产包。新failure.json是真实guest原文、未写宿主标记，无heartbeat/Java/Gradle或AAR/APK |
+| 收尾/退出 | driver146.344秒异常返回Guest STOP/failure；原完整pair自动绑定收尾子进程退出0、stdout/stderr空，host-after-cleanup=[]且fresh observe=[]。仅自有实例收尾、无其它程序/服务操作；底层VM teardown UNKNOWN。原claim/STOP/输出及99保护不改，新增本次15份原证后114保护 |
+| 根因与修复 | prepare原样复制producer_output.init.gradle，实际C# File.Copy及Gradle -I消费者使用producer-output.init.gradle，真实缺文件定位明确。commit36d34aaa70423b810b30e88dc9e47726feb2253c仅将复制目标改为消费者名，消费者/原SDK/旧case/运行链其余部分不改；不把本次进入guest当上一初始化错误的根因证明 |
+| 定向检查/复核 | 新测试调用真实prepare但模拟输入pin/编译器，读取实际C#消费者File.Copy源名后核候选文件存在、内容和合同payload hash；修前准确报缺producer-output.init.gradle，修后14项定向单测4.504秒通过。非作者Codex只读复核无具体P1/P2；非外部独立验收。没有新VM/SDK测试，旧13项/C#80/12等不重复记为本轮新增；git add初次触发已忽略目录规则后改用tracked -u完成，无force或新文件夹带 |
+| 新候选已具体准备 | 私有aar-init-asset-candidate，真实既有csc编译8.907秒；source36d34aaa，合同SHAb14e3828254be41e0bd2ddf2f62592842b645a9ea6e040c9ee384fc0ada8bea1，binary SHA f1b81787a6adf54911c081e901510fa0263b7fd294938660ebb45af6e79b64e9，nonce8cc0c10920ef443a9b6c31d8522742ea。275源只读/只读probe/唯一fresh输出、277映射Windows格式，所需init脚本在场且源字节/hash一致；未授权/无grant/claim/VM/SDK0 |
+| 后续具体范围 | 仅新提案独立最多1VM/1真实assembleAarRelease；guest6GiB/整体1800秒、Job4GiB/64进程、host2100秒、STOP仅本实例收尾另45秒、输出2GiB采样上限/可能瞬时超量、不重试。禁网/只读源/guest本地BuildWork；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。普通修复已做完，新实际运行仍需明确独立Owner额度，不复用本次0余额；未证明其它离线action/native完整链 |
+| 当前准备资格 | 新候选只读preflight通过19关键输入，当前可用16530MiB、磁盘455765897216字节；无claim/启动，不把此快照当未来持续资格。114保护/旧冻结payload及原根main4bebc8f3/255/index2be660...、apps ed248529/services7634b475保持，原SDK/DB/STOP/备份/worktrees不动 |
+| 私有原证/Git/项目 | LOCAL_ONLY同父目录windows-paths-runtime-engineering-summary-private、windows-paths-runtime-outcome-private、init-asset-fixed-candidate-private、init-asset-fixed-candidate-preflight-private、protected-records-after-windows-paths-runtime-private及本次guest/收尾原文，不上传GitHub。fresh SSH核远端产品c1e44910/main8a9e97a1，审d1926180/ed379d58/本次源码及三文档完整待推范围普通non-force同步，最终ref/Blob见私有回执。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+本节点证明真实guest准备到达具体缺文件处及对应打包修复；不证明SDK生产执行或整版接受。
+
+---
+
 # EliteSync-v10｜项目进度细表（新候选已授权，等待内存确认）
 
 ## 2026-11-05 新候选授权等待内存确认节点

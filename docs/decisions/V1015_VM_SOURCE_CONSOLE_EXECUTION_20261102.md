@@ -1,5 +1,17 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-05 最新执行事实：新单次guest准备STOP已耗，init脚本接线修复并冻结下一候选
+
+Owner后续明确“已释放内存”，按原5ac53e32...85f92候选/同grant、fresh16855MiB及99保护/原根状态一致后，UTC14:01:11.181063创建claim并唯一启动。真实guest122204ms在File.Copy报缺producer-output.init.gradle；root_create_attempted=false/sdk_start_observed=false，无Java/Gradle/产物。准备器提供underscore文件名、消费者读取hyphen文件名，根因已证实；不是AAR编译失败。本独立范围**1/1永久已耗、余0**，旧初始化失败范围也余0，不退款/重跑。
+
+driver146.344秒异常结束、完整owned pair自动收尾成功，host-after-cleanup及fresh observe均空，底层VM teardown UNKNOWN；本次为真实guest failure，无宿主代写标记。旧99及冻结payload不改、追加本次原证后114保护，原根/双tree保持。
+
+普通修复36d34aaa只将prepare复制目标接到既有消费者名。真实prepare路径回归（模拟输入/编译器）先红准确缺文件，修后14项定向测试通过，非作者Codex无具体P1/P2，非外部独立验收。新aar-init-asset-candidate以现有csc真实编译冻结，合同b14e3828254be41e0bd2ddf2f62592842b645a9ea6e040c9ee384fc0ada8bea1/binary f1b81787...64e9/原新nonce，所需init脚本实际在场且内容/hash一致；**未授权、无grant/claim/启动**。
+
+仅提案下一独立最多1VM/1真实AAR，6GiB/guest1800秒/host2100秒、STOP仅本实例另45秒、2GiB采样上限/可能瞬时超量，275源只读/唯一fresh输出/禁网/不重试及前述全部排除范围不变。当前只读输入/资源预检16530MiB支持，启动前仍fresh核；旧授权不转移，实际运行需Owner对这份具体新候选另给明确独立额度，普通修复不增审批。AAR/APK未生成，AC05 OPEN/G2 false等不变，以下余1/等待内存为历史时点。
+
+---
+
 ## 2026-11-05 最新Owner决定：新候选独立1次已授权，释放内存后再执行
 
 Owner针对call_045d57dd82c742a28e476526c69b5d4d/item0明确选择“授权新候选独立1次；释放内存后再执行”。绑定已冻结源码d9a75094/aar-windows-paths-candidate/合同5ac53e32...85f92/binary bb4e2ab4...e791/原nonce，范围与前节点新提案完全一致：1VM/1真实AAR、6GiB、guest1800秒/host2100秒、STOP仅本实例另45秒、输出2GiB采样上限/可能瞬时超量、275源只读/唯一输出/禁网/不重试及全部排除范围。

@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-05 新候选已授权，等待Owner确认释放内存（CURRENT ENTRY）
+# EliteSync｜2026-11-05 来宾准备缺文件STOP已封存，产包脚本接线已修复（CURRENT ENTRY）
+
+**GUEST_PREPARATION_STOP_BEFORE_SDK / INIT_ASSET_NAME_MISMATCH_FIXED / SCOPE_SPENT_1_REMAINING_0 / NEXT_CANDIDATE_NOT_AUTHORIZED / AAR_APK_NOT_GENERATED / G2_FALSE**
+
+Owner“已释放内存”后，同一已授权候选/原grant按fresh16855MiB及99保护/原根状态一致核验，UTC14:01:11.181063创建不可退款claim、唯一VM启动。来宾实际进入准备流程，122204ms在File.Copy读取C:/Probe/producer-output.init.gradle报FileNotFoundException；准备器实际提供producer_output.init.gradle，文件名接线错误已证实。root_create_attempted=false、sdk_start_observed=false，未创建Java/Gradle产包进程；不是AAR编译失败。**该独立范围1/1永久已耗、余0**；未重试，无AAR/APK。
+
+冻结driver146.344秒异常结束；自动完整owned pair收尾退出0、stderr空，host-after-cleanup及fresh宿主观察均为空，底层VM teardown UNKNOWN。本次failure.json是真实guest生成，未加宿主STOP标记。旧初始化失败仍保留；本次成功进入来宾不据此倒推上一错误根因。
+
+普通修复commit **36d34aaa70423b810b30e88dc9e47726feb2253c**：prepare复制该脚本时使用既有guest/Gradle消费者的连字符文件名，只改打包接点。新增真实prepare路径回归（模拟输入/编译器、不执行SDK）读取实际C#消费者文件名、检查候选文件/内容/payload hash，先红准确缺文件，修后14项定向测试4.504秒通过；非作者Codex复核无具体P1/P2，非外部独立验收。不添加新的资格/审批层，历史C#等不记本轮新测。
+
+新私有aar-init-asset-candidate实际csc编译8.907秒冻结，合同SHA **b14e3828254be41e0bd2ddf2f62592842b645a9ea6e040c9ee384fc0ada8bea1**，binary f1b81787...64e9，275源RO/原禁网/唯一fresh输出；实际候选所需脚本存在且原字节/hash一致。**未授权、无grant/claim、启动0**。拟独立最多1VM/1真实AAR，guest6GiB/30分钟、host35分钟、STOP仅本实例45秒、输出2GiB采样限制/可能瞬时超量、不重试、全部排除范围不变；新运行仍须Owner独立明确额度。只读预检16530MiB/磁盘455765897216字节，此时支持，未来启动前fresh核验。
+
+原99及全部冻结payload保持，追加本次原证后114保护；原main/255/index、apps/services保持。LOCAL_ONLY v1015-producer-supervisor-20261105先读windows-paths-runtime-engineering-summary-private、windows-paths-runtime-outcome-private、init-asset-fixed-candidate-private及protected-records-after-windows-paths-runtime-private。SSH本次只读恢复并核远端产品c1e44910/main8a9e97a1；审全部待推范围普通同步，最终ref/Blob见私有回执。AAR/APK未生成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-05-来宾准备缺脚本stop与接线修复节点)。
+
+---
+
+# EliteSync｜2026-11-05 新候选已授权，等待Owner确认释放内存（历史节点）
 
 **OWNER_GRANTED_NEW_CANDIDATE / WAITING_EXPLICIT_MEMORY_RELEASE_CONFIRMATION / NEW_SPENT_0_REMAINING_1 / NO_NEW_CLAIM_OR_VM_SDK_START / AAR_APK_NOT_GENERATED / G2_FALSE**
 
