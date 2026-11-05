@@ -1,5 +1,6 @@
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -11,6 +12,41 @@ import producer_supervisor as supervisor
 
 
 class SupervisorTests(unittest.TestCase):
+    def test_prepare_packages_guest_control_inputs_under_consumer_names(self):
+        import cmake_vc_candidate as cmake
+        with tempfile.TemporaryDirectory() as directory:
+            task=Path(directory);inputs=task/'inputs';inputs.mkdir()
+            flutter=task/'flutter';flutter.mkdir();project=task/'project';project.mkdir()
+            inventory=inputs/'private-flutter-complete-inventory-private.json';inventory.write_text('{}')
+            project_inventory=inputs/'private-project-inventory-private.json';project_inventory.write_text('{}')
+            layout=dict(readonly_mappings={'android_cmake_3_22_1':dict(host=str(task),guest='C:/Inputs/CMake',readonly=True)},
+                        owned_flutter=dict(host=str(flutter)),owned_project=dict(host=str(project)))
+            (inputs/'production-layout-private.json').write_text(json.dumps(layout))
+            declared=inputs/'complete-declared-input-trees-private.json';declared.write_text('{"files":[]}')
+            cmake_inventory=task/'cmake.json';cmake_inventory.write_text('{"inventory":{"files":[]}}')
+            entry=task/'entry.json';entry.write_text('{}');root=task/'candidate'
+            original_sha=supervisor.sha
+            def fixture_sha(path):
+                return '0b34a527161803e5b783705c3fc07b7fcf5e1818b064b3e42bd5355ea0b14af9' if Path(path)==declared else original_sha(path)
+            def compile_fixture(command,**kwargs):
+                target=next(item[5:] for item in command if item.startswith('/out:'))
+                Path(target).write_bytes(b'fixture-not-executable')
+                return subprocess.CompletedProcess(command,0,b'',b'')
+            with patch.object(supervisor,'PINS',dict(flutter=original_sha(inventory),project=original_sha(project_inventory))),\
+                 patch.object(supervisor,'sha',side_effect=fixture_sha),\
+                 patch.object(supervisor,'bind_entry',return_value={'launch_request':{}}),\
+                 patch.object(cmake,'verify_private_tree'),patch.object(cmake,'PRIVATE_CMAKE',task),\
+                 patch.object(cmake,'MATERIALIZATION',cmake_inventory),\
+                 patch.object(supervisor.subprocess,'run',side_effect=compile_fixture):
+                contract=supervisor.prepare(root,inputs,entry)
+            guest=(root/'probe/producer_supervisor.cs').read_text()
+            consumed=re.findall(r'File\.Copy\(Probe\+@"\\([^"]+)"',guest)
+            self.assertTrue(consumed,'Fixture must exercise actual guest file consumers')
+            for name in consumed:
+                self.assertTrue((root/'probe'/name).is_file(),name)
+                self.assertEqual(contract['payload_sha256']['probe/'+name],original_sha(root/'probe'/name))
+            self.assertEqual((root/'probe'/consumed[0]).read_bytes(),(supervisor.HERE/'producer_output.init.gradle').read_bytes())
+
     def case(self, root):
         (root/'probe').mkdir();(root/'output').mkdir()
         config=root/'qualification.wsb';config.write_text('frozen configuration')

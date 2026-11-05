@@ -97,7 +97,8 @@ def prepare(root, prepared_inputs, entry_file):
                       ('bin/cmake.exe','bin/ninja.exe','bin/msvcp140.dll','bin/vcruntime140.dll','bin/vcruntime140_1.dll')]
     root.mkdir(); (root/'probe').mkdir(); (root/'output').mkdir()
     for name in sources:
-        shutil.copyfile(HERE/name, root/'probe'/name)
+        target = 'producer-output.init.gradle' if name == 'producer_output.init.gradle' else name
+        shutil.copyfile(HERE/name, root/'probe'/target)
     for name, _, target in inventories:
         shutil.copyfile(prepared_inputs/name, root/'probe'/target)
     (root/'probe'/'producer-entry.json').write_bytes(entry_raw)
