@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-06 最新执行事实：同授权实测已耗，SDK识别输入修复候选未授权
+
+Owner对内存问题call_0118053c33b84311a5503d664b5d4acb/item0答“已释放内存，重新核验”，同原8db候选/原grant/原nonce，旧156保护一致、答复后157保护；fresh11919MiB/原根正确，UTC00:22:22.536311唯一claim/VM启动。Gradle日志计454项actionable（453执行/1 up-to-date），主dart_build因“Android SDK could not be found”失败，8m35s/guest650180ms/driver716.360秒。**该scope1/1永久已耗余0**；原PRECLAIM7239MiB原文和grant保留，不退款/重建/重跑。完整owned pair自动收尾成功，host观察空、底层VM teardown UNKNOWN；主Flutter AAR未完成、host仓库未导出。
+
+只读定位Flutter识别SDK根需licenses或platform-tools目录，原组合guest两者均缺，host已有licenses7记录/294字节。普通修复20fee19f仅补既有目录RO映射和完整清单，沿用payload/preflight；不接受新许可、不装升级、不运行sdkmanager/ADB，也不伪造空目录。14项定向测试通过，非作者Codex无具体P1/P2/必要缺测，非外部独立验收；旧157不变，本次原证后175保护，原根/双tree保持。
+
+新aar-sdk-recognition-candidate-20261106已实际csc编译冻结，合同6f5428edb2e5cc8fd7aea0d0b9808c5661190974fd0e67b3b5c3e83bd359e0bb/binary252e1c9c...a33b/新固定nonce；279源RO＋probe/唯一fresh输出，22323身份绑定及原graph，**未授权、无grant/claim/启动**。只读预检10995MiB支持，启动前fresh核。仅提案独立最多1VM/1真实AAR，6GiB/guest1800秒/host2100秒/STOP本实例45秒/2GiB采样上限可能瞬时超量/禁网/不重试及原全部排除事项；新运行仍须Owner独立明确额度，不从旧0余额继任。主AAR/host仓库未完成、AC05 OPEN/G2 false等保持，以下“余1”为此前preclaim历史时点。
+
+---
+
 ## 2026-11-06 最新Owner决定：依赖图修复候选独立1次已授权，内存预检未耗额
 
 Owner“请继续”恢复普通工程；针对call_fc9086763ce942d693669f1eb444c508/item0明确选择“授权依赖图修复候选独立1次”。绑定原ea0ae473/aar-project-graph-candidate/8dbf9f38...8e850/binary074ffec6...e3eb/nonce，范围保持278源RO/原有图/唯一fresh输出/禁网，独立最多1VM/1真实AAR，6GiB/guest1800秒/host2100秒/本实例STOP另45秒/2GiB采样上限可能瞬时超量/不重试及原全部排除事项；完整问题/答复与绑定数据独占保存，不重建候选或恢复旧已耗次数。

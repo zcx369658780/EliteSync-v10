@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-06 依赖图候选已授权，内存预检未耗额（CURRENT ENTRY）
+# EliteSync｜2026-11-06 主Flutter SDK识别缺项修复，新候选已冻结（CURRENT ENTRY）
+
+**ACTUAL_FLUTTER_COMPILE_FAILED_SDK_DISCOVERY / SCOPE_SPENT_1_REMAINING_0 / SDK_RECOGNITION_CANDIDATE_NOT_AUTHORIZED / NO_MAIN_AAR_OR_HOST_REPOSITORY / G2_FALSE**
+
+Owner对内存问题call_0118053c33b84311a5503d664b5d4acb/item0答“已释放内存，重新核验”。沿用原8db候选/原grant，无重新授权；原156一致，答复后157保护，fresh11919MiB/磁盘461638107136字节，UTC00:22:22.536311唯一claim/VM启动。Gradle日志计454项actionable任务（453执行/1 up-to-date），插件发布及JNI/CMake任务推进；主: flutter:compileFlutterBuildRelease内Target dart_build报“Android SDK could not be found”，BUILD FAILED in8m35s。guest650180ms/sdk=true、driver716.360秒STOP。**本scope1/1永久已耗余0**，原PRECLAIM7239MiB回执与原grant保留，不重试；主Flutter AAR未完成、host仓库未导出。
+
+完整owned pair自动收尾退出0、stderr空，host-after-cleanup/fresh observe为空，底层VM teardown UNKNOWN。旧157不变，本次原证后175保护；原main/255/index及apps/services保持。缺图错误未再出现，不据此冒称全部JSON/feature flag或完整native资格通过。
+
+只读准确定位Flutter AndroidSdk.validSdkDirectory要求SDK根含licenses或platform-tools；当前组合SDK两者均缺，host已有真实licenses目录7文件/294字节。native-assets后续只取原NDK28.2的clang/llvm-ar/ld.lld，静态确认文件在场，此分支不执行ADB。源码修复 **20fee19f374c8595c462381afb34746a8e8bb05a**仅补现有licenses目录RO映射/完整清单，沿用payload/preflight；不造空目录、不接受新许可、不安装升级/运行sdkmanager或ADB。14项定向测试4.687秒通过，非作者Codex无具体P1/P2/必要缺测，非外部独立验收；修后实际SDK识别NOT_RUN。
+
+新私有aar-sdk-recognition-candidate-20261106实际csc编译冻结234.813秒，合同SHA **6f5428edb2e5cc8fd7aea0d0b9808c5661190974fd0e67b3b5c3e83bd359e0bb**、binary252e1c9c...a33b，279源RO＋probe RO＋唯一fresh输出共281映射；补充库存22304文件/346578174字节、输入身份绑定22323，既有graph原字节保持。**未授权、无grant/claim/启动**；只读预检10995MiB/磁盘460197740544字节支持，未来启动前fresh核。后续只提案独立最多1VM/1真实AAR、6GiB/guest30分钟/host35分钟/STOP仅本实例45秒/2GiB采样上限可能瞬时超量/禁网/不重试及原全部排除事项，旧0余额不转移。
+
+LOCAL_ONLY v1015-producer-supervisor-20261105先读project-graph-runtime-engineering-summary-20261106-private、resumed-project-graph-runtime-outcome-20261106-private、sdk-recognition-consumer-source-20261106-private、sdk-recognition-candidate-20261106-private及protected-records-after-project-graph-runtime-20261106-private；原证/许可证内容不上GitHub。fresh SSH产品0ba66fdd/main8a9e97a1，审整个待推范围普通同步，最终ref/Blob见私有回执。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-依赖图候选实测停止与sdk识别输入修复节点)。
+
+---
+
+# EliteSync｜2026-11-06 依赖图候选已授权，内存预检未耗额（历史节点）
 
 **OWNER_GRANTED_PROJECT_GRAPH_CANDIDATE / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / G2_FALSE**
 

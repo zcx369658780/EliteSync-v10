@@ -1,3 +1,24 @@
+# EliteSync-v10｜项目进度细表（SDK识别输入修复）
+
+## 2026-11-06 依赖图候选实测停止与SDK识别输入修复节点
+
+| 项目 | 实际事实与限制 |
+|---|---|
+| 同候选恢复/原证 | Owner对call_0118053c33b84311a5503d664b5d4acb/item0答“已释放内存，重新核验”。进入0ba66fdd095e9919c1a4c2c3396c8e277a426974，实际根/origin/原分支/空index及旧%SystemDrive%/一致；同8db合同/原nonce/原grant，旧156一致、内存答复后157保护，原PRECLAIM_BLOCKED7239MiB回执/错误/资源快照不覆盖、不退款或重建grant |
+| 唯一实测/额度 | fresh22316输入及原根/双tree一致，11919MiB/磁盘461638107136字节；UTC00:22:22.536311不可退款claim、唯一VM/真实AAR尝试。本scope1/1永久已耗余0，旧所有0余额保持。前次未耗额不是额外运行，本次恢复不按重试或新授权计；此后不再运行当前case |
+| 运行事实 | 初始guest准备较慢，自有窗口只读UIA无明确初始化错误，随后真实heartbeat/Gradle8.14出现。插件发布/JNI CMake配置构建任务推进；454 actionable tasks，453 executed/1 up-to-date；主Flutter Dart构建报“Android SDK could not be found”，8m35s失败。guest650180ms/root_create_attempted=true/sdk_start_observed=true，driver716.360秒STOP；主Flutter AAR未完成，host仓库未导出，不把guest插件发布日志冒称主产物 |
+| 收尾/保护 | 完整owned pair自动收尾退出0、stdout/stderr空，host-after-cleanup=[]、fresh observe=[]，底层VM teardown UNKNOWN；不停止其它程序/服务。旧157一致，本次运行/自有UIA/资源原证后175保护，旧失败/SDK/STOP/DB/备份/worktrees不改。原main4bebc8f3/255/index2be660...，apps ed248529/services7634b475保持 |
+| 准确根因链 | 固定Flutter lib/src/isolated/native_assets/android/native_assets.dart:99–111调用AndroidSdk.locateAndroidSdk；android/android_sdk.dart:161–170需licenses或platform-tools目录。组合guest SDK两者均缺，host真实licenses已存在7记录/294字节；不是host未装SDK。后续NDK路径解析只取原已映射28.2/windows-x86_64/bin clang.exe/llvm-ar.exe/ld.lld.exe，三文件静态在场，该分支不请求ADB执行。缺图错误未再出现不等于完整JSON/feature/native链验收 |
+| 最小源码修复 | 20fee19f374c8595c462381afb34746a8e8bb05a：supplemental新增android_licenses=licenses，复用既有完整tree inventory/payload/preflight，新增1个真实目录RO映射。原SDK/许可记录/源graph/旧case不改，不伪造空目录、不接受新许可，不安装升级或运行sdkmanager/ADB；许可证内容不上传 |
+| 定向检查 | 真实prepare fixture补licenses文件，修前准确红在缺少licenses RO映射，修后14项4.687秒通过，断言只读路径/角色清单且保留graph pin变动与同长度SDK文件篡改拒收。fixture不构成真实许可接受；非作者Codex无具体P1/P2/必要缺测，非外部独立验收。仅新候选编译，无新VM/SDK实测，旧检查不另计 |
+| 新冻结身份 | 私有aar-sdk-recognition-candidate-20261106，现有csc真实编译冻结234.813秒；source20fee19f，合同SHA6f5428edb2e5cc8fd7aea0d0b9808c5661190974fd0e67b3b5c3e83bd359e0bb，binary SHA252e1c9ce8d07183fe1f84b72814f6e2bd310ec2c7341808609c95fa7b40a33b，nonce52016402fa664240af62fa4521b609d6。279源RO＋probe RO＋唯一fresh输出共281映射，补充22304文件/346578174字节（含7许可证记录/294字节），22323输入绑定；原graph SHA8f0d666e...5880f保留，未授权/无grant/claim/VM/SDK0 |
+| 当前准备/后续具体范围 | 只读preflight10995MiB/磁盘460197740544字节支持，未来启动前fresh核，不继承当前快照。仅提案独立最多1VM/1真实AAR，279源RO/唯一fresh输出/禁网，guest6GiB/1800秒、Job4GiB/64进程、host2100秒、STOP仅本实例另45秒、输出2GiB采样上限/可能瞬时超量、不重试；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级/新许可接受。新实际运行需Owner对该具体候选独立明确额度，旧预算不转移 |
+| 私有原证/Git/项目 | LOCAL_ONLY project-graph-runtime-engineering-summary-20261106-private、resumed-project-graph-runtime-outcome-20261106-private、sdk-recognition-consumer-source-20261106-private、sdk-recognition-candidate-20261106-private、sdk-recognition-candidate-preflight-20261106-private、protected-records-after-project-graph-runtime-20261106-private先读，原文/许可内容不上传。fresh SSH产品0ba66fdd/main8a9e97a1，审本次源码/三文档整个待推范围普通non-force同步，最终ref/Blob见回执。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，主AAR/host仓库未完成，不合main、不启v10.1.6 |
+
+本节点封存真实失败并提供最小SDK识别输入修复；不放行下一动态范围或整版接受。
+
+---
+
 # EliteSync-v10｜项目进度细表（依赖图候选授权，内存预检未耗额）
 
 ## 2026-11-06 依赖图候选授权后内存预检未耗额节点
