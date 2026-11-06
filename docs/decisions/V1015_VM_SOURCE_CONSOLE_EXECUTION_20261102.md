@@ -1,3 +1,17 @@
+# v10.1.5｜2026-11-06 本机AAR单次执行结束，原额度已耗
+
+## 2026-11-06 内存释放通知后真实本机执行与Dart OOM
+
+Owner“内存已经清空，请继续”满足再次通知条件，原grant与case01保持；轻量17391MiB、启动前fresh15203MiB/工作卷444803018752字节，UTC05:23:10.038996唯一claim、本机Gradle8.14启动，未使用原VM。仅调用一次现有launch进行完整fresh复核，无独立全量preflight叠加。
+
+实际BUILD FAILED in4m27s，454项任务（453执行/1 up-to-date）。主Flutter的kernel_snapshot_program内Dart3.11.5 windows_x64报allocation.cc:22 Out of memory；SDK268086ms，root1/controller32、driver1143.594秒。**本机scope1/1已耗余0**，不重试、退款、改名或换目录续额；原grant的授权时点字段不重写，当前消费由claim/原始失败记录。本机partial repo350文件/1142093字节/14插件AAR，缺主flutter_release，无完整AAR/APK交接。控制器已退出，宿主只读未见本实例构建进程，未采集Job峰值或系统提交量。
+
+主机启动条件成立与Dart实际分配失败分别记录。已有单worker/关闭并行、JVM2G/768m和Job4GiB并不能证明是否实际触顶；本机复用旧VM入口配置，不臆造差异。后续先准备有Job峰值/提交量证据的诊断方案，再决定配置，不擅改原限额、冻结helper或已耗候选，不自动创建新的运行预算/claim。
+
+本轮仅本机SDK1次，VM/APK/ADB/模拟器0；一般本机编译、模拟器调试路线仍保留，新的实际执行须有新的具体独立范围与Owner决定。源码未改、测试NOT_RUN，前轮17项检查不记新测；原证/产物/许可证LOCAL_ONLY。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6。
+
+---
+
 # v10.1.5｜2026-11-06 本机编译与模拟器调试续行
 
 ## 2026-11-06 Owner续行指示与本机preclaim资源阻断

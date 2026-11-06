@@ -1,3 +1,20 @@
+# EliteSync-v10｜2026-11-06 本机AAR实际执行失败封存
+
+## 2026-11-06 本机AAR实测Dart内存失败与额度耗尽
+
+| 项目 | 实际事实与限制 |
+|---|---|
+| 通知与启动 | Owner“内存已经清空，请继续”另存case根，原grant不改；轻量17391MiB，原launch单次完整fresh输入/资源复核后15203MiB/444803018752字节。UTC05:23:10.038996唯一claim、PID88568，原case01/合同e5a12e5d…/binary3390c084…/nonce不变 |
+| 实际构建 | 本机Gradle8.14，BUILD FAILED in4m27s，454 actionable tasks（453执行/1 up-to-date）。主: flutter:compileFlutterBuildRelease的kernel_snapshot_program内Dart3.11.5 windows_x64在allocation.cc:22 Out of memory；SDK268086ms，root exit1/controller exit32，driver1143.594秒 |
+| 额度 | scope1/1永久已耗余0，不重试/退款或换目录续额；所有旧耗尽scope仍0。原grant历史初始字段不改，实际消费由claim/失败回执和本节点记载；旧PRECLAIM/通知/原证均保留 |
+| 产物与收尾 | repo350文件/1142093字节/14个插件AAR，主flutter_release缺席；无完整AAR/APK交接，不拿partial仓库放行。控制器退出，宿主只读未见本实例构建进程；源码返回Job收尾路径，未采集Job峰值/系统提交量 |
+| 静态诊断 | 已有JVM -Xmx2G/MaxMetaspaceSize768m、max-workers1、parallel=false/daemon=false、Job4GiB/64进程；项目.android的8G/4G属性不等于实际请求参数。入口源码显示本机复用旧VM配置，不能据本机失败宣称内存配置不同。Job总额竞争、Windows提交量、Dart自身分配异常均为待验证假设；是否触及4GiB上限UNKNOWN |
+| 已完成与未运行 | 本轮不改源码、不重跑旧测试；9574838c的本机host渲染/17项测试为前轮证据。仅读本实例失败日志、配置和源码，partial inventory只做字节/清单记录；无新候选、grant、claim、限额变更或SDK复现。VM/APK/ADB/模拟器/设备执行均0 |
+| 后续 | 先补有依据的内存诊断方案，再决定配置；保护旧case/冻结helper，实际新执行须新的具体独立范围与Owner决定。一般Debug APK/模拟器授权不重问，不能继承本scope余额；完整AAR验证未成立前不启动APK交接 |
+| 原证与状态 | case根local-aar-oom-execution-summary-*、resume-launch-outcome-0919c589e39c4f2794cd3ba183879495-private、launch.claim、controller-exit及output原日志；local-failed-partial-repository-inventory-2d1a2ac90fc54196a8b545d07fae672c-private。原证/产物/许可证不上GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；普通同步原产品分支，不合main、不启v10.1.6 |
+
+---
+
 # EliteSync-v10｜2026-11-06 本机资源阻断与模拟器调试准备
 
 ## 2026-11-06 本机输入复核后资源阻断与Debug host本机接线

@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-06 本机AAR实测Dart内存分配失败，单次额度已耗（CURRENT ENTRY）
+
+**ACTUAL_LOCAL_AAR_FAILED_DART_OOM / SPENT_1_REMAINING_0 / NO_MAIN_AAR_OR_APK / FROZEN_CASE_PRESERVED / G2_FALSE**
+
+Owner再次明确“内存已经清空，请继续”。通知另存case根、原grant未改。轻量可用17391MiB支持后，仅调用原`current_product_local_producer.launch`做一轮完整fresh复核；启动前fresh15203MiB/工作卷444803018752字节，UTC05:23:10.038996创建唯一claim、控制器PID88568，本机真实Gradle8.14执行；VM0。
+
+**BUILD FAILED in4m27s，454项任务（453执行/1 up-to-date）**。`:flutter:compileFlutterBuildRelease`内`kernel_snapshot_program`的Dart3.11.5 windows_x64在`runtime/platform/allocation.cc:22`报`Out of memory`；SDK268086ms、controller exit32/root exit1、driver1143.594秒。**本机scope1/1永久已耗、余0，不重试/退款/换目录续额。** 原PRECLAIM阻断、通知、grant与所有旧STOP保留；原grant内初始0/1字段属于授权时点，当前消费以唯一claim和本节点为准。
+
+部分仓库350文件/1142093字节/14个插件AAR，缺主flutter_release，完整AAR交接及APK未形成；不调用完整仓库验证器冒充放行。控制器已退出，宿主只读匹配未见本实例构建进程；源码路径返回自有Job收尾，无独立峰值内存记录。Job峰值/是否命中4GiB总限额仍UNKNOWN，不能仅凭OOM或主机15GiB可用就判定根因。当前已单worker、parallel=false、daemon=false、JVM2G/768m、Job4GiB；本机与旧VM复用同套入口内存配置，不能臆称配置差异。
+
+本轮源码未改、测试NOT_RUN；前轮9574838c的本机Debug host渲染接线及17项测试仍为前轮证据，非本次新测。现有AVD主ABI x86_64、当前候选ARM64，运行兼容性UNKNOWN；APK/ADB/模拟器启动0。仅做失败静态诊断并保存原证，未创建新候选/nonce/grant/claim或更改冻结helper、4GiB限额。
+
+下一步先形成有Job峰值/系统提交量证据的诊断方案，再决定堆/进程配置；原候选不能重跑，任何新的实际SDK执行需新的具体独立范围与Owner决定，不重问既有一般本机/模拟器路线授权。LOCAL_ONLY case根最新`local-aar-oom-execution-summary-*.json`、`resume-launch-outcome-0919c589e39c4f2794cd3ba183879495-private.json`、output原日志与partial inventory为准。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持；[细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-本机aar实测dart内存失败与额度耗尽)。
+
+---
+
 # EliteSync｜2026-11-06 本机AAR输入复核后资源阻断，Debug host本机接线已备（CURRENT ENTRY）
 
 **OWNER_MEMORY_NOTICES_RECEIVED / LOCAL_PRECLAIM_BLOCKED_MEMORY / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / SDK_NOT_STARTED / LOCAL_HOST_RENDERER_SOURCE_READY / G2_FALSE**
