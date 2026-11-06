@@ -1,3 +1,17 @@
+# 2026-11-06 在线恢复修复已入真实Debug APK（CURRENT ENTRY）
+
+**COMPLETE_AAR_DEBUG_APK_VERIFIED / ACTUAL_ONLINE_COLD_RESUME_T0_UNCHANGED / UI_LOGOUT_REVOKED / OFFLINE_LOGOUT_CLONE_LOGIN_OBSERVED / G2_FALSE**
+
+工程源码 **4fada9307fda95d7aed0924d3aa34e1158a2dd87**，apps树1c368aac…、services树8703e749…。72项Flutter相关测试、13项PHP/68断言及23项producer/overlay纯fixture通过；非作者Codex复核无遗留可行动P1/P2，非外部独立验收。新本机AAR真实3m51s/474任务后完整验仓375文件/15publications；新host真实2m23s/38任务产出 **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable /Android Debug签名**。APK73459721字节，SHA **75b53c6d0fecc68226ef643ecdd816708de95c39cbdd8ba92bde8066d57c0b5c**；AAR→merged→stripped→APK的代码字节链已核实，未为停验重跑SDK。
+
+真实模拟器首登200，强制停止后 **POST /auth/session/verify 200** 恢复已登录页；原T0 **2026-11-06 12:11:59**、同设备会话族、2个token IDs和期限不变。独立退出范围UI确认退出、logout200、目标设备族revoked且对应2令牌删除，其他测试设备族保持；随后只读复制已停止虚构数据AVD另做离线冷启，安装0/Activity1、实核installed APK同SHA，仍登录页且2输入框为空。该克隆观察不等于所有设备或15/30天真实时长验收。
+
+在线首范围900秒STOP及后端1800秒STOP原样保留；退出范围主动收尾、离线克隆41.906秒，所有controller0/cleanup_errors空；后端WS0/API137/DB0、均PID0。全部本次实际scope已耗1余0，旧额度不复用。两个内存preclaim阻断均未启动SDK，原候选/grant保留后才继续。任务Docker正常停止exit0，原117容器状态与新增3容器记录保留；首次状态查询超时仍UNKNOWN。原VM teardown UNKNOWN，本轮不用VM、不触碰手机。
+
+稳定LOCAL_ONLY交付 **v1015-online-resume-delivery-20261106-case01**（APK、3截图、START_HERE、final runtime receipt）；[详细事实与限制](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。产物、原证、二进制、许可证不上传GitHub。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；只完成本次在线启动恢复工程切片，不放行整版/真实设备/正式发布。Owner同类已批准运行下放继续有效，不恢复旧claim、不合main、不启v10.1.6。
+
+---
+
 # 2026-11-06 冷启动在线恢复修复与源码测试完成，重新产包待执行
 
 **ONLINE_SESSION_VERIFY_IMPLEMENTED / SOURCE_TESTS_PASSED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**

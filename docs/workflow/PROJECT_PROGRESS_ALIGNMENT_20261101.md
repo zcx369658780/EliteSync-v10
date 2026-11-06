@@ -1,3 +1,25 @@
+# 2026-11-06 在线冷启动恢复修复已入真实APK，登录/恢复/退出及离线冷启已观察
+
+**CURRENT_SOURCE_COMPLETE_AAR_AND_DEBUG_APK_VERIFIED / ACTUAL_ONLINE_COLD_RESUME_T0_UNCHANGED / ACTUAL_DEVICE_LOGOUT_REVOKED / OFFLINE_LOGOUT_CLONE_LOGIN_OBSERVED / G2_FALSE**
+
+工程源码 **4fada9307fda95d7aed0924d3aa34e1158a2dd87**（已普通推送），apps树1c368aac59f14e5b1cb15672a4e4b206722d13fa、services树8703e749731bcbbc9e282c47ab8721daed81dff1。新增非轮换会话核验和受代际保护的在线恢复；不以本地候选授权，不轮换令牌或重置原T0，不继承旧私密对象及current-read授权。72项Flutter相关测试、13项PHP/68断言、23项producer/overlay纯fixture通过；非作者Codex静态与产物交叉核验无遗留可行动P1/P2，非外部独立验收。
+
+新本机AAR范围 v1015-online-resume-aar-20261106-case01：7文件overlay SHA1fb52eb0…40f7，合同5b6a4a2e…6c0e，版本1.0-v1015-4fada9307fda-1fb52eb0370f。首次full fresh后8219MiB不足10GiB，未claim/SDK，原grant余1保留；正常停止本任务此前启动、无活跃容器的Docker后，同候选/nonce/grant重新fresh，末尾12755MiB支持，唯一claim实际执行。**BUILD SUCCESSFUL in3m51s，474任务（473执行/1 up-to-date）**，SDK232512ms、root/controller0、Job峰4052307968字节；已耗1余0。完整仓库375文件/6417911字节/15 publications，manifest SHA166835640b7217568093b1596eb64def2450f529b606e07e19e2a5ceb93f508c，主AAR SHA2d4cc9783f02ab880f230e54afca1d5a3f49afe5baa84af613acc1b0ba83dcb0。内容验证字段仍不改写为额外provenance/执行权限证明。
+
+新独立host v1015-online-resume-debug-host-20261106-case01：合同4b0f8a5e…22c2；轻量8797MiB阻断未claim，Owner明确通知再释放内存后沿同候选继续。**BUILD SUCCESSFUL in2m23s，38任务全部执行**，SDK144933ms、root/controller0、Job峰4076650496字节；已耗1余0，无Flutter重编。APK **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable /Android Debug签名**，73459721字节，SHA **75b53c6d0fecc68226ef643ecdd816708de95c39cbdd8ba92bde8066d57c0b5c**。首次新增直接AAR与APK库hash相等断言停验，随后实证AAR=merged、stripped=APK，ELF加载头及代码/数据节一致；非作者进一步核全部PT_LOAD字节一致，差异在装载区之后的节名字串/索引。仅修正验证链，没有重跑SDK或替换APK。
+
+新私有后端使用既有Docker/WSL、固定本机镜像/vendor114包及空环境文件，源码只读；新库从0表到93表，一次事务4虚构账号；PHP8.4.27/Laravel13.39.0，无安装、升级或框架迁移。前端首范围真实登录200，强制停止后 **POST /auth/session/verify 200**，无需重新输入密码进入已登录页；数据库会话族/设备绑定/2个token IDs与期限不变，原 **T0=2026-11-06 12:11:59** 不变。900秒范围到限STOP，40条UI/2次Activity，controller0、cleanup_errors空，原STOP/耗尽保留，不称整范围无失败。键盘后误用旧坐标进入只读回执页，提交前已返回和校验输入，未做注销操作；不是认证失败。
+
+按Owner同类运行下放另建仅剩余退出目标的独立模拟器范围：实际UI确认退出，**POST /auth/logout 200**，本次设备会话族revoked、对应2个token删除，另一虚构测试设备族保持。29条UI/1次Activity，827.750秒主动收尾，controller0/cleanup_errors空。后端随后1800秒到限STOP（总含收尾1808.609秒），WS0/API137/DB0，均Running=false/PID0、cleanup_errors空；卷/网络保留，不复开。在线退出后冷启因后端终止在UI claim前被拒，未绕过该门。
+
+为完成独立离线边界，另建 v1015-offline-logout-clone-20261106-case01：只读复制已停止的虚构数据AVD，21文件/3587631821逻辑字节，闭合相对qcow backing，独立dense副本，原AVD未写。新scope boot1/install0/Activity1，已安装APK实核SHA与新产物一致；**离线冷启动仍为登录页、2个输入框为空**。41.906秒/23条ADB命令，controller0、cleanup_errors空，已耗1余0；仅此离线克隆观察，不扩大为所有冷启或15/30天真实时长验收。各新scope都独立建约束/授权依据/claim，未借用或退款旧额度。
+
+稳定LOCAL_ONLY交付在 **v1015-online-resume-delivery-20261106-case01**：新APK、在线冷启/真实退出/离线冷启截图、START_HERE及final runtime receipt。原证在repair、AAR、host、integration、logout、offline-clone各具名私有根。仅方法/无查询串路径/状态的私有API观测没有记录headers/body/token。所有限定后台已停，原117容器状态保持，加本次3容器共120条记录保留；本任务Docker正常停止exit0，无force/prune/全局WSL shutdown。第一次Docker状态查询超时仍按UNKNOWN保留，不以其返回宣称成功。旧WindowsSandbox VM teardown仍UNKNOWN，本轮没有重跑VM或触碰手机。
+
+**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。本节点仅完成在线启动恢复这一工程切片；整版原功能、聊天/媒体/Push、长期时窗、真实设备及正式发布仍不能放行。Owner下放同类已批准工程运行继续有效；后续依据实际目标建立必要范围，不恢复任何已耗claim，不合main、不启v10.1.6。产物、原证、二进制与许可证内容不上GitHub。
+
+---
+
 # 2026-11-06 冷启动在线恢复修复与源码测试完成，重新产包待执行
 
 **ONLINE_SESSION_VERIFY_IMPLEMENTED / SOURCE_TESTS_PASSED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**

@@ -1,3 +1,13 @@
+# 2026-11-06 同类运行下放已落实于在线恢复APK验证，原权限边界保持
+
+Owner原话“类似的运行授权我完全下放给你，后续不用再问我”继续适用。本节点由Codex按具名目标分别保存新合同、依据下放的grant及唯一claim：当前源码AAR、Debug host、在线恢复模拟器、剩余UI退出、独立离线注销状态克隆；不是伪造Owner逐案答复，也不退款/复用旧scope。Job6GiB/64、10GiB/8GiB启动门、各阶段时限和45秒本实例收尾、2GiB采样、禁下载及生产/真实数据/费用/工具安装升级/新许可/正式发布保留边界保持。
+
+实际完成新AAR及签名/代码字节链已核Debug APK（源码4fada930…；APK SHA75b53c6d…7c0b5c）；真实首登、在线冷启核验200且原T0/token IDs不变、UI退出及服务端目标设备族撤销、离线注销状态副本冷启仍登录均已观察。在线900秒和后端1800秒原始STOP保留；其余独立范围正常收尾，所有本次实际scope已耗1余0。两个资源preclaim阻断未消费SDK额度，具体释放内存通知原证保留。关闭/重新启动的是本任务此前启动、无活跃容器的Docker；原117容器状态保持，无force/prune/全局WSL shutdown，原AVD/手机/旧VM不动。后端和任务Docker已停，不以该调试包宣称持续在线服务已交付。
+
+此为Codex工程验证和非作者Codex复核，不是外部独立验收、Owner整版接受或发布。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；未核的旧VM teardown仍UNKNOWN。后续普通已授权工程继续自主推进，受保护事项仍按原边界处理，不合main、不启v10.1.6。完整证据、失败和LOCAL_ONLY交付见[进度节点](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)与私有具名回执；二进制、原证及许可证不上GitHub。
+
+---
+
 # 2026-11-06 冷启动在线恢复修复与源码测试完成，重新产包待执行
 
 **ONLINE_SESSION_VERIFY_IMPLEMENTED / SOURCE_TESTS_PASSED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**
