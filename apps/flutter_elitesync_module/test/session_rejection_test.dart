@@ -74,7 +74,11 @@ void main() {
       final restarted = ProviderContainer(
         overrides: [secureStorageProvider.overrideWithValue(secure)],
       );
-      final state = await restarted.read(sessionProvider.future);
+      await restarted.read(sessionProvider.future);
+      for (var i = 0; i < 100 && restarted.read(sessionProvider).asData?.value.status == AuthStatus.unknown; i++) {
+        await Future<void>.delayed(const Duration(milliseconds: 1));
+      }
+      final state = restarted.read(sessionProvider).asData!.value;
       expect(state.status, AuthStatus.unauthenticated);
       expect(state.accessToken, isNull);
       expect(state.user, isNull);

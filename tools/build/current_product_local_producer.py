@@ -17,6 +17,7 @@ import uuid
 from current_product_aar_handoff import _bound_file
 from current_product_tree_inventory import inventory_trees
 from current_product_local_entry import render_local_entry, remap_json
+import current_product_source_overlay as source_overlay
 import producer_supervisor as shared
 
 HERE = Path(__file__).resolve().parent
@@ -89,7 +90,7 @@ def _copy_tree(inventory, target, role=None):
 def _json(path):return json.loads(Path(path).read_bytes())
 
 
-def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
+def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4, current_source_root=None):
     """Materialize/compile only. No SDK invocation, grant or claim is created."""
     memory_policy=local_memory_policy(job_memory_gib)
     limits=dict(LIMITS,**memory_policy)
@@ -105,6 +106,10 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
     declared=_json(declared_file)
     boundary=(HERE/'producer_process_boundary.cs').read_bytes()
     if hashlib.sha256(boundary).hexdigest()!=BOUNDARY_SHA:raise ValueError('Original Job boundary differs')
+    overlay=None
+    if current_source_root is not None:
+        baseline=_json(source_case/'probe/producer-entry.json')['source_identity']['source_commit']
+        overlay=source_overlay.capture_overlay(current_source_root,baseline)
     mappings=source_contract['readonly_mappings']
     pub=[m for m in mappings if m['guest'].startswith('C:/Inputs/PubPackages/')]
     pub_parent=os.path.commonpath([m['host'] for m in pub])
@@ -113,6 +118,9 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
     root.mkdir();work.mkdir();control.mkdir();output.mkdir()
     _copy_tree(_json(source_case/'probe/flutter-inventory.json'),work/'Flutter')
     _copy_tree(_json(source_case/'probe/project-inventory.json'),work/'Project')
+    if overlay is not None:
+        source_overlay.apply_overlay(overlay,work/'Project')
+        shared.put(control/'source-overlay.json',overlay)
     sdk=work/'AndroidSdk'
     for role,relative in {'android_build_tools_36':'build-tools/36.0.0',
                           'android_platform_36':'platforms/android-36','android_ndk_28_2':'ndk/28.2.13676358'}.items():
@@ -135,6 +143,7 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
         if m['guest'].startswith(prefix):replacements[m['guest']]=(sdk/m['guest'][len(prefix):]).as_posix()
     entry=render_local_entry((source_case/'probe/producer-entry.json').read_bytes(),boundary,replacements,
                              (source_case/'probe/producer-output.init.gradle').read_text(encoding='utf-8'))
+    if overlay is not None:entry=source_overlay.retarget_entry(entry,overlay)
     for relative,text in entry['overlays'].items():
         target=work/'Flutter'/relative
         if not target.resolve().is_relative_to((work/'Flutter').resolve()):raise ValueError('Overlay escapes Flutter')
@@ -174,6 +183,8 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
     shared.put(control/'external-inputs.json',external)
     helpers={str(HERE/name):shared.sha(HERE/name) for name in
              ['current_product_local_producer.py','current_product_local_entry.py','local_aar_supervisor.cs','local_aar_memory_diagnostics.cs']}
+    if overlay is not None:
+        helpers[str(HERE/'current_product_source_overlay.py')]=shared.sha(HERE/'current_product_source_overlay.py')
     payload={p.relative_to(root).as_posix():shared.sha(p) for p in control.iterdir() if p.is_file()}
     contract=dict(kind='current-product-local-aar-producer',scope=root.name,host_root=str(root),work_root=str(work),
         nonce=uuid.uuid4().hex,binary_sha256=shared.sha(executable),launch_request=request,
@@ -181,6 +192,8 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
         source_input_contract_sha256=SOURCE_CONTRACT_SHA,repository=str(work/'AarOutput/outputs/repo'),
         work_inventory_sha256=shared.sha(control/'prepared-work-inventory.json'),external_inventory_sha256=shared.sha(control/'external-inputs.json'),
         payload_sha256=payload,host_helpers=helpers,networking='offline flags; no OS network isolation or system network changes',**limits)
+    if overlay is not None:
+        contract.update(base_identity=entry['base_identity'],source_overlay_manifest_sha256=overlay['manifest_sha256'])
     shared.put(control/'run-contract.json',contract)
     shared.put(root/'prepared.json',dict(status='LOCAL_PRIVATE_AAR_PREPARED_NOT_AUTHORIZED',contract_sha256=shared.sha(control/'run-contract.json'),
         work_files=len(inventory['files']),work_bytes=inventory['total_bytes'],external_files=len(external),claim_created=False,G2=False,

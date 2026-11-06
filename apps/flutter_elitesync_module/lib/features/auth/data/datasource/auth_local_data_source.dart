@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
@@ -27,6 +28,60 @@ class AuthLocalDataSource {
   int beginLoginAttempt() => ++_mutation.epoch;
   bool isCurrentAttempt(int epoch) => epoch == _mutation.epoch;
   void cancelPendingLogin() => _mutation.epoch++;
+
+  /// An explicit login attempt must not leave an older account resumable.
+  Future<void> prepareLoginAttempt(int epoch) => _serialize(() async {
+    if (!isCurrentAttempt(epoch)) throw StateError('Login changed.');
+    await _secureStorage.delete(CacheKeys.privateResumeAllowed);
+    if (!isCurrentAttempt(epoch) ||
+        await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
+      throw StateError('Previous session recovery could not be disabled.');
+    }
+  });
+
+  Future<
+    ({
+      String accessToken,
+      String refreshToken,
+      String deviceId,
+      int userId,
+      String sessionId,
+      DateTime loginAt,
+    })?
+  >
+  readResumeCandidate(int epoch) => _serialize(() async {
+    if (!isCurrentAttempt(epoch)) return null;
+    final raw = await _secureStorage.read(CacheKeys.privateResumeAllowed);
+    if (raw == null) return null;
+    final binding = jsonDecode(raw) as Map<String, dynamic>;
+    final access = await _secureStorage.read(CacheKeys.accessToken);
+    final refresh = await _secureStorage.read(CacheKeys.refreshToken);
+    final device = await _secureStorage.read(CacheKeys.privateDeviceBinding);
+    if (!isCurrentAttempt(epoch) ||
+        access == null ||
+        access.isEmpty ||
+        refresh == null ||
+        refresh.isEmpty ||
+        device == null ||
+        device.isEmpty)
+      return null;
+    if (binding['access_token'] != access ||
+        binding['refresh_token'] != refresh ||
+        binding['device_id'] != device ||
+        binding['user_id'] is! int ||
+        (binding['user_id'] as int) <= 0 ||
+        binding['session_id'] is! String ||
+        (binding['session_id'] as String).isEmpty)
+      return null;
+    return (
+      accessToken: access,
+      refreshToken: refresh,
+      deviceId: device,
+      userId: binding['user_id'] as int,
+      sessionId: binding['session_id'] as String,
+      loginAt: DateTime.parse(binding['login_at'] as String).toUtc(),
+    );
+  });
   Future<String> getOrCreateDeviceId() => _mutation.deviceId ??= () async {
     final saved = await _secureStorage.read(CacheKeys.privateDeviceBinding);
     if (saved != null && saved.isNotEmpty) return saved;
@@ -35,9 +90,9 @@ class AuthLocalDataSource {
     return created;
   }();
 
-  Future<void> _serialize(Future<void> Function() action) {
+  Future<T> _serialize<T>(Future<T> Function() action) {
     final next = _mutation.queue.then((_) => action());
-    _mutation.queue = next.catchError((Object _) {});
+    _mutation.queue = next.then<void>((_) {}, onError: (Object _) {});
     return next;
   }
 
@@ -46,14 +101,21 @@ class AuthLocalDataSource {
     Map<String, dynamic>? retention,
     int? expectedEpoch,
     String? expectedDeviceId,
+    bool Function()? isCurrent,
   }) => _serialize(() async {
     void checkEpoch() {
-      if (expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) {
+      if ((expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) ||
+          (isCurrent != null && !isCurrent())) {
         throw StateError('Login changed; obsolete response was discarded.');
       }
     }
 
     checkEpoch();
+    await _secureStorage.delete(CacheKeys.privateResumeAllowed);
+    checkEpoch();
+    if (await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
+      throw StateError('Previous session recovery could not be disabled.');
+    }
     if (retention != null &&
         expectedDeviceId != null &&
         retention['device_id'] != expectedDeviceId) {
@@ -101,6 +163,23 @@ class AuthLocalDataSource {
       'realname_verified': session.user.verified,
     });
     checkEpoch();
+    if (retention != null && trusted && session.refreshToken.isNotEmpty) {
+      final binding = jsonEncode({
+        'access_token': session.accessToken,
+        'refresh_token': session.refreshToken,
+        'user_id': session.user.id,
+        'device_id': retention['device_id'],
+        'session_id': retention['session_id'].toString(),
+        'login_at': retention['login_at'],
+      });
+      await _secureStorage.write(CacheKeys.privateResumeAllowed, binding);
+      checkEpoch();
+      if (await _secureStorage.read(CacheKeys.privateResumeAllowed) !=
+          binding) {
+        throw StateError('Session recovery marker was not saved.');
+      }
+      checkEpoch();
+    }
   });
 
   /// Publish visible credentials through the same queue as login and logout.
@@ -111,9 +190,22 @@ class AuthLocalDataSource {
     required bool Function() isCurrent,
   }) => _serialize(() async {
     void checkCurrent() {
-      if (!isCurrent() || accessToken.isEmpty) throw StateError('Obsolete credentials discarded.');
+      if (!isCurrent() || accessToken.isEmpty)
+        throw StateError('Obsolete credentials discarded.');
     }
+
     checkCurrent();
+    final savedAccess = await _secureStorage.read(CacheKeys.accessToken);
+    final savedRefresh = await _secureStorage.read(CacheKeys.refreshToken);
+    checkCurrent();
+    if (savedAccess != accessToken || savedRefresh != refreshToken) {
+      await _secureStorage.delete(CacheKeys.privateResumeAllowed);
+      checkCurrent();
+      if (await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
+        throw StateError('Previous session recovery could not be disabled.');
+      }
+      checkCurrent();
+    }
     await _secureStorage.write(CacheKeys.accessToken, accessToken);
     checkCurrent();
     if (refreshToken == null) {
@@ -139,10 +231,15 @@ class AuthLocalDataSource {
       final privateCleanup = await cache.clearCurrentAccount();
       final legacyCleaned = await _localStorage.purgeLegacyPrivateCache();
       var credentialsCleaned = true;
-      for (final key in [CacheKeys.accessToken, CacheKeys.refreshToken]) {
+      for (final key in [
+        CacheKeys.privateResumeAllowed,
+        CacheKeys.accessToken,
+        CacheKeys.refreshToken,
+      ]) {
         try {
           await _secureStorage.delete(key);
-          if (await _secureStorage.read(key) != null) credentialsCleaned = false;
+          if (await _secureStorage.read(key) != null)
+            credentialsCleaned = false;
         } catch (_) {
           credentialsCleaned = false;
         }
@@ -153,8 +250,11 @@ class AuthLocalDataSource {
       } catch (_) {
         snapshotsCleaned = false;
       }
-      completed = privateCleanup.status == PrivateCachePurgeStatus.completed &&
-          legacyCleaned && credentialsCleaned && snapshotsCleaned;
+      completed =
+          privateCleanup.status == PrivateCachePurgeStatus.completed &&
+          legacyCleaned &&
+          credentialsCleaned &&
+          snapshotsCleaned;
     }).then((_) => completed);
   }
 

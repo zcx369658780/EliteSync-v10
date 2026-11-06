@@ -3,6 +3,7 @@ abstract final class CacheKeys {
   static bool isPrivate(String key) =>
       key.startsWith(chatDraftPrefix) ||
       const {
+        privateResumeAllowed,
         lastKnownProfile,
         questionnaireDraft,
         profileSummarySnapshot,
@@ -27,6 +28,7 @@ abstract final class CacheKeys {
   static const refreshToken = 'auth_refresh_token';
   static const tokenExpireAt = 'auth_token_expire_at';
   static const privateDeviceBinding = 'v1015_private_device_binding';
+  static const privateResumeAllowed = 'v1015_online_resume_allowed';
 
   // Non-sensitive keys (shared preferences)
   static const onboardingDone = 'onboarding_done';

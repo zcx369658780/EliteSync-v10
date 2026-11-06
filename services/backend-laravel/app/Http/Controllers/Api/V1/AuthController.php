@@ -145,6 +145,21 @@ class AuthController extends Controller
         });
     }
 
+    public function verifySession(Request $request, DeviceSessions $sessions): JsonResponse
+    {
+        $data = $request->validate(['refresh_token' => ['required', 'string', 'max:512']]);
+        $token = $request->user()->currentAccessToken();
+        abort_unless($token instanceof PersonalAccessToken, 401);
+        $receipt = $sessions->verifyCurrent($request->user(), $token, $data['refresh_token']);
+
+        return response()->json([
+            'verified' => true,
+            'user' => $this->userPayload($request->user()->fresh()),
+            'session_id' => $receipt['session_id'],
+            'session_retention' => $receipt,
+        ]);
+    }
+
     public function refresh(Request $request): JsonResponse
     {
         $token = $request->user()->currentAccessToken();

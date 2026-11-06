@@ -1,3 +1,19 @@
+# 2026-11-06 冷启动在线恢复修复与源码测试完成，重新产包待执行
+
+**ONLINE_SESSION_VERIFY_IMPLEMENTED / SOURCE_TESTS_PASSED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**
+
+补 POST /api/v1/auth/session/verify：服务端重新核验现有access/refresh同账号、同设备会话、有效且未撤销，不轮换令牌、不重置原登录T0。客户端仅将加密保存的完整绑定作为候选，冷启动先锁私密缓存、清旧明文；在线核验账号/设备/session/原T0与15/30期限一致后才建立进程内可信上下文。旧对象及current-read授权不继承；离线、坏绑定、过期、待撤销或存储失败仍闭锁。登录/退出/销毁代际保护拒绝迟到响应，通用401自动刷新保持关闭。
+
+本节点真实检查：隔离PHP/SQLite无网络13项、68断言通过；新的私有Flutter SDK副本9个相关测试文件72项通过（含19项新恢复测试），Job6GiB/64、controller/root0；23项producer/overlay纯fixture通过。最终非作者Codex静态复核无遗留可行动P1/P2，不是外部独立验收。旧退出fixture改为显式建立会话，保留原退出/清凭据/待撤销/身份/迟到完成断言，未放宽产品标准。
+
+私有单测准备/运行失败全部保留：环境变量、包图与误排除licenses.dart等SDK源码造成4次基础设施停止；启动曾触发Gradle Wrapper缓存下载，超出禁下载边界，原单测面封存不用。新面全部从既有固定SDK重复制、补齐原wrapper/包图/API源码，并将Flutter/Pub下载入口置为本机关闭端口作失败闭锁；不是OS断网或系统网络修改。旧源码有效红例和一次旧fixture失败亦保留，不当产品通过。原件、凭据、产物、许可证及原证不上GitHub。
+
+产包接线新增可选current-source overlay：仅接已提交lib/test Dart增改，依赖/Android不变；捕获Git身份、基线及字节/hash，复制后应用并将manifest/当前源码身份/新publication版本冻结进新合同。默认旧模式兼容，不能再拿旧84a源码声称本次修复已入包。下一步固定本节点源码，依据Owner同类运行下放建立独立AAR、host、模拟器/私有后端记录；每个claim最多一次，旧耗尽scope全部保持0，不复用、退款或改写STOP。不用VM，不依赖DOT。
+
+LOCAL_ONLY证据位于v1015-online-session-repair-20261106（php-regression、unit-final、各原始失败与新offline准备回执）。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；新修复的AAR/APK与模拟器冷启动实证仍NOT_RUN。
+
+---
+
 # 2026-11-06 实际APK与私有后端首登贯通，在线启动恢复待补齐
 
 **ACTUAL_APK_PRIVATE_API_LOGIN_OBSERVED / COLD_RESTART_LOCKED / ONLINE_RESUME_NOT_IMPLEMENTED / G2_FALSE**

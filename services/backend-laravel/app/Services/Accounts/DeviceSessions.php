@@ -68,6 +68,34 @@ final class DeviceSessions
             'device_id' => $family->device_id, 'session_id' => $family->id, 'user_id' => (int) $family->user_id];
     }
 
+    /** Verify the current pair without rotating credentials or renewing login T0. */
+    public function verifyCurrent(User $actor, PersonalAccessToken $presented, string $refreshCredential): array
+    {
+        return DB::transaction(function () use ($actor, $presented, $refreshCredential) {
+            $user = User::query()->lockForUpdate()->findOrFail($actor->id);
+            abort_if($user->disabled || $this->hasClosure($user), 403, 'ACCOUNT_UNAVAILABLE');
+            $access = PersonalAccessToken::query()->whereKey($presented->id)->lockForUpdate()->first();
+            $candidate = PersonalAccessToken::findToken($refreshCredential);
+            $refresh = $candidate ? PersonalAccessToken::query()->whereKey($candidate->id)->lockForUpdate()->first() : null;
+            foreach ([$access, $refresh] as $token) {
+                abort_unless($token && (int) $token->tokenable_id === (int) $user->id
+                    && $token->tokenable_type === $user->getMorphClass(), 401, 'SESSION_REVOKED');
+                abort_if($token->expires_at && $token->expires_at->lessThanOrEqualTo(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+            }
+            abort_unless($access->name === 'mobile-access' && $refresh->name === 'mobile-refresh'
+                && $refresh->can('session:refresh') && $access->device_session_id
+                && $access->device_session_id === $refresh->device_session_id, 401, 'SESSION_PAIR_MISMATCH');
+            $family = DB::table('device_sessions')->where('id', $access->device_session_id)
+                ->where('user_id', $user->id)->lockForUpdate()->first();
+            abort_unless($family && ! $family->revoked_at, 401, 'SESSION_REVOKED');
+            abort_if($this->onlineDeadline($family)->lessThanOrEqualTo(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+            $receipt = $this->retentionReceipt($family);
+            abort_unless($receipt, 401, 'PASSWORD_LOGIN_REQUIRED');
+
+            return $receipt;
+        });
+    }
+
     public function refresh(User $actor, PersonalAccessToken $presented): array
     {
         return DB::transaction(function () use ($actor, $presented) {

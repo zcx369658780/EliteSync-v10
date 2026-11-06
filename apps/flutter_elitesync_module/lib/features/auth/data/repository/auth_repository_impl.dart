@@ -26,6 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final loginEpoch = _local.beginLoginAttempt();
+    await _local.prepareLoginAttempt(loginEpoch);
     final deviceId = await _local.getOrCreateDeviceId();
     if (!_local.isCurrentAttempt(loginEpoch)) {
       throw const ValidationException(

@@ -1,12 +1,18 @@
+import base64
+from contextlib import ExitStack
+import copy
+import hashlib
 import json
 from pathlib import Path
 import subprocess
 import tempfile
+import types
 import unittest
 from unittest.mock import patch
 
 import current_product_local_producer as local
 from current_product_tree_inventory import inventory_trees
+import current_product_source_overlay as source_overlay
 
 
 class LocalProducerTests(unittest.TestCase):
@@ -186,6 +192,98 @@ class LocalProducerTests(unittest.TestCase):
             self.assertEqual(controller.kills,1)
             self.assertTrue((root/'launch.claim.json').exists())
             self.assertTrue((root/'output/host-stop.json').exists())
+
+
+class SourceOverlayWiringTests(unittest.TestCase):
+    """Tiny materialization fixture; all SDK, compiler and inventory calls are fake."""
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.base=Path(self.temp.name);self.root=self.base/'candidate'
+        self.inputs=self.base/'inputs';self.inputs.mkdir()
+        self.source=self.base/'source';probe=self.source/'probe';probe.mkdir(parents=True)
+        def write(path,value):path.write_text(json.dumps(value),encoding='utf-8')
+        write(probe/'run-contract.json',dict(payload_sha256={},readonly_mappings=[
+            dict(guest='C:/Inputs/PubPackages/fixture',host=str(self.base/'pub/fixture'))]))
+        write(probe/'producer-entry.json',dict(source_identity={'source_commit':'a'*40}))
+        write(self.inputs/'complete-declared-input-trees-private.json',dict(roots={},files=[]))
+        for name in ['flutter-inventory.json','project-inventory.json','supplemental-sdk-inventory.json','project-package-graph.json']:
+            write(probe/name,{})
+        (probe/'producer-output.init.gradle').write_text('// fixture',encoding='utf-8')
+        self.cmake=self.base/'cmake.json';write(self.cmake,dict(inventory={}))
+        row=dict(path='apps/flutter_elitesync_module/lib/main.dart',status='M',
+            content_b64=base64.b64encode(b'new\n').decode(),sha256=hashlib.sha256(b'new\n').hexdigest(),bytes=4,
+            baseline_b64=base64.b64encode(b'old\n').decode(),baseline_sha256=hashlib.sha256(b'old\n').hexdigest(),baseline_bytes=4)
+        manifest=dict(baseline_commit='a'*40,source_identity=dict(source_commit='b'*40,apps_tree='c'*40,services_tree='d'*40),files=[row])
+        self.overlay=dict(manifest=manifest,manifest_sha256=hashlib.sha256(source_overlay._canonical(manifest)).hexdigest())
+        args=['C:/fixture/java.exe','-PbuildNumber=old','--offline','assembleAarRelease']
+        self.entry=dict(argv=args,launch_request=dict(command_line=subprocess.list2cmdline(args),
+            cwd=str(self.root/'work/Project/apps/flutter_elitesync_module/.android'),environment={}),
+            publication_version='old',source_identity={'source_commit':'a'*40},overlays={},
+            output_init='// fixture',gradle_properties='org.gradle.jvmargs=-Xmx2048m\n')
+
+    def copy_fixture(self,inventory,target,role=None):
+        targets=[]
+        if target.name=='Flutter':targets=['packages/flutter_tools/.dart_tool/package_config.json']
+        if target.name=='Project':targets=['apps/flutter_elitesync_module/.dart_tool/package_config.json',
+            'apps/flutter_elitesync_module/.flutter-plugins-dependencies','apps/flutter_elitesync_module/lib/main.dart']
+        for name in targets:
+            path=target/name;path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_bytes(b'old\n' if path.suffix=='.dart' else b'{}')
+        if target.name=='Project':(target/'apps/flutter_elitesync_module/.android').mkdir()
+
+    def patches(self):
+        stack=ExitStack();self.addCleanup(stack.close)
+        stack.enter_context(patch.object(local,'SOURCE_CONTRACT_SHA',local.shared.sha(self.source/'probe/run-contract.json')))
+        stack.enter_context(patch.object(local,'DECLARED_SHA',local.shared.sha(self.inputs/'complete-declared-input-trees-private.json')))
+        stack.enter_context(patch.object(local,'_copy_tree',side_effect=self.copy_fixture))
+        stack.enter_context(patch.object(local,'render_local_entry',return_value=copy.deepcopy(self.entry)))
+        stack.enter_context(patch.object(local,'current_user',return_value='fixture-user'))
+        stack.enter_context(patch.dict('sys.modules',{'cmake_vc_candidate':types.SimpleNamespace(
+            MATERIALIZATION=self.cmake,verify_private_tree=lambda:None)}))
+        def compile_fixture(argv,**kwargs):
+            Path(next(arg[5:] for arg in argv if arg.startswith('/out:'))).write_bytes(b'fixture exe, never executed')
+            return subprocess.CompletedProcess(argv,0,b'',b'')
+        stack.enter_context(patch.object(local.subprocess,'run',side_effect=compile_fixture))
+        return stack
+
+    def test_capture_failure_precedes_root_creation_and_any_copy(self):
+        stack=self.patches()
+        with patch.object(source_overlay,'capture_overlay',side_effect=ValueError('fixture dirty source')) as capture:
+            with self.assertRaisesRegex(ValueError,'fixture dirty source'):
+                local.prepare(self.root,self.inputs,self.source,current_source_root=self.base/'product')
+        capture.assert_called_once_with(self.base/'product','a'*40)
+        self.assertFalse(self.root.exists())
+
+    def test_overlay_is_applied_retargeted_and_frozen_before_inventory(self):
+        self.patches()
+        def capture(root,baseline):
+            self.assertFalse(self.root.exists());self.assertEqual(baseline,'a'*40)
+            return self.overlay
+        def inventory(**kwargs):
+            self.assertEqual((self.root/'work/Project/apps/flutter_elitesync_module/lib/main.dart').read_bytes(),b'new\n')
+            self.assertEqual(local._json(self.root/'control/source-overlay.json'),self.overlay)
+            return dict(files=[],total_bytes=0)
+        with patch.object(source_overlay,'capture_overlay',side_effect=capture),patch.object(local,'inventory_trees',side_effect=inventory):
+            contract=local.prepare(self.root,self.inputs,self.source,current_source_root=self.base/'product')
+        self.assertEqual(contract['source_identity'],self.overlay['manifest']['source_identity'])
+        self.assertEqual(contract['base_identity'],self.entry['source_identity'])
+        self.assertEqual(contract['source_overlay_manifest_sha256'],self.overlay['manifest_sha256'])
+        self.assertEqual(contract['payload_sha256']['control/source-overlay.json'],local.shared.sha(self.root/'control/source-overlay.json'))
+        self.assertIn(str(local.HERE/'current_product_source_overlay.py'),contract['host_helpers'])
+        self.assertIn('-PbuildNumber='+contract['publication_version'],contract['launch_request']['command_line'])
+        self.assertFalse((self.root/'control/owner-grant.json').exists())
+
+    def test_default_prepare_has_no_source_overlay_fields_or_capture(self):
+        self.patches()
+        with patch.object(source_overlay,'capture_overlay',side_effect=AssertionError('default must not capture')) as capture,\
+             patch.object(local,'inventory_trees',return_value=dict(files=[],total_bytes=0)):
+            contract=local.prepare(self.root,self.inputs,self.source)
+        capture.assert_not_called()
+        self.assertEqual(contract['publication_version'],'old')
+        self.assertNotIn('base_identity',contract)
+        self.assertNotIn('source_overlay_manifest_sha256',contract)
+        self.assertFalse((self.root/'control/source-overlay.json').exists())
+        self.assertNotIn(str(local.HERE/'current_product_source_overlay.py'),contract['host_helpers'])
 
 
 if __name__=='__main__':unittest.main()

@@ -71,6 +71,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
+        Route::post('/session/verify', [AuthController::class, 'verifySession'])->middleware(['auth:sanctum', 'account.active']);
         Route::post('/refresh', [AuthController::class, 'refresh'])->middleware(['auth:sanctum', 'account.active']);
         Route::post('/password', [AuthController::class, 'changePassword'])->middleware(['auth:sanctum', 'account.active']);
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);

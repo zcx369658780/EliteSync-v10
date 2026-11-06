@@ -36,6 +36,8 @@ class _HangingLogoutApi extends support.FakeApiClient {
 
 class _Local extends support.FakeLocalStorageService {
   @override
+  Future<bool> purgeLegacyPrivateCache() async => true;
+  @override
   Future<bool> tryPurgeLegacyPrivateChatCache() async => true;
 }
 
@@ -70,6 +72,15 @@ void main() {
         ],
       );
       addTearDown(container.dispose);
+      // Exercise logout from an explicit active session. Persisted credentials
+      // and a plaintext fixture profile alone cannot authenticate on startup.
+      await container.read(sessionProvider.future);
+      await container
+          .read(sessionProvider.notifier)
+          .setAuthenticated(
+            accessToken: 'old-access',
+            refreshToken: 'old-refresh',
+          );
       final router = GoRouter(
         initialLocation: AppRouteNames.settings,
         routes: [
