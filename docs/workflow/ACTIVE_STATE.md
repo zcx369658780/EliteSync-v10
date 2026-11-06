@@ -1,4 +1,22 @@
-# EliteSync｜2026-11-06 本机AAR候选独立1次已授权，等待释放内存（CURRENT ENTRY）
+# EliteSync｜2026-11-06 会话封存：本机AAR已授权，等待内存通知（CURRENT ENTRY）
+
+**SESSION_SAVED / OWNER_GRANTED_LOCAL_AAR / WAIT_OWNER_MEMORY_RELEASE_NOTICE / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / LOCAL_SDK_NOT_STARTED / G2_FALSE**
+
+Owner要求立即保存本地/GitHub进度与决定并提供交接prompt。本保存轮只核身份、封存文档/原证并普通同步，不运行SDK/测试/VM/设备、不消耗次数；完成后结束保存。本轮“只保存”不限制以后已授权普通工程，也不恢复任何旧已耗预算。
+
+保存前HEAD **c5661ea473e7980561cbe586eb3d83f02054662b**，产品根 `D:\EliteSync-v10-product-v1015-20261101`、origin SSH及原产品分支保持；仅旧无关`%SystemDrive%/`未跟踪、index无暂存。原根main4bebc8f3/255/index2be660…及apps/services树再次一致。旧356保护、候选合同/payload/helpers与原grant一致，输出空、claim/launched缺席，本实例控制器未在运行；本机已耗0、余1。保存最终commit/ref/三文档Blob及新增保护记录以LOCAL_ONLY保存回执为准，不在文档中循环自引用commit。
+
+已冻结源码 **f98353fc280e9a146354001531d6750843487411**；本机case `C:\Users\zcxve\EliteSyncDev\v1015-local-aar-20261106-case01`，合同 **e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da**，binary **3390c0845685680ddd68a8bd017545cc1cc01373237ec27475250484eedda4fd**，nonce6bd5ba4ad9294dfe9ba26eed41fe4d88。Owner对call_0d859e3a190b4004a14bc0c1345a0b9d/item0已答“授权本机候选独立1次；释放内存后再执行”。**尚未收到后续已释放通知**；本次保存请求不是释放通知。最近5259MiB仅历史快照，本轮不测资源或轮询启动。
+
+下一会话最小读取本顶部、细表封存/本机准备节点及决定封存块；LOCAL_ONLY先读本机authorization-wait-memory-summary-private.json、local-readiness-summary-private.json、control/owner-grant.json；父根v1015-producer-supervisor-20261105的session-save-20261106-local-aar-wait-memory-complete-private.json为保存回执。不要重建候选、原grant/nonce或改冻结helper；后续内存通知另存case根/父根，不改原grant、不向control夹入额外文件。
+
+收到明确释放通知后，先轻量核当前内存≥8192MiB/工作卷空间≥8GiB；条件支持才使用现有`current_product_local_producer.launch`，由其做一次完整fresh输入复核、再核资源并创建唯一claim。**不先单独全量preflight再让launch重复全量读取。** 新额度仅最多1次AAR，Job4GiB/64进程、SDK30分钟/host35分钟、STOP本实例另45秒、2GiB采样（可瞬时超量）、不重试；离线参数禁下载而非OS断网，原排除范围保持。结果若只为REPOSITORY_UNVERIFIED，须继续用既有AAR验证器核完整仓库，不能直接算交接通过。
+
+最后VM真实Gradle成功9m9s/474任务，但.NET长路径导出失败；scope余0，host仅133文件/5插件AAR、缺主AAR，不能用于完整交接。改用本机私有构建，不默认再申请VM；不重复94映射导入/Laravel迁移/旧测试，不增加无必要门禁。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6；[封存细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-会话封存与下一会话入口)。
+
+---
+
+# EliteSync｜2026-11-06 本机AAR候选独立1次已授权，等待释放内存（历史节点）
 
 **OWNER_GRANTED_LOCAL_AAR / WAIT_OWNER_MEMORY_RELEASE_NOTICE / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / LOCAL_SDK_NOT_STARTED / G2_FALSE**
 

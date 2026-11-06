@@ -1,5 +1,19 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-06 会话封存与Owner决定汇总
+
+Owner要求本次立即保存本地/GitHub任务进度、Owner决定并提供交接prompt。**本保存轮仅封存与普通同步，完成后结束；不启动SDK/测试/VM/设备，不消耗本机次数。** “只保存”限定本轮，不转成以后已授权普通工程的禁令；也不退款、重置或继承任何旧已耗scope。
+
+当前有效决定：Local-first，顾问负责路线、Codex负责普通工程与验收/Git/进度；Owner要求避免过度防御性编程，不恢复网页派单/验收或强制多模型门。VM不是Android/Flutter编译要求，后续采用本机私有构建、不默认再提VM；模拟器/手机用于实际产物安装调试，其当时资格另核，不能拿设备在场代替产物。
+
+本机候选源码f98353fc280e9a146354001531d6750843487411、合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da/binary3390c0845685680ddd68a8bd017545cc1cc01373237ec27475250484eedda4fd/nonce6bd5ba4ad9294dfe9ba26eed41fe4d88。Owner已对call_0d859e3a190b4004a14bc0c1345a0b9d/item0答“授权本机候选独立1次；释放内存后再执行”，**spent0/remaining1持续有效，无claim/launched/SDK且输出空。尚未收到后续已释放通知**，保存请求不是释放通知。原grant与356保护均一致，原根/双tree不变；本轮不重读全量输入、不测资源/轮询启动。
+
+沿用原全部范围：1次本机AAR，Job4GiB/64进程、SDK30分钟/host35分钟/本实例STOP45秒/2GiB采样（可瞬时超量）/不重试，内存8192MiB与工作卷8GiB；离线参数禁下载非OS断网，不改系统网络、不装升级/接受新许可，排除VM/host APK/设备/DB/媒体/外部服务/生产。通知到达后另存case根或父根回执，不改原grant、nonce/helper或control清单；轻量资源支持后调用现有launch做一次完整fresh输入复核和claim，不先重复全量preflight。此授权不用重问，不等于自动取得当前资源资格或后续APK/设备次数。
+
+原VM最后Gradle编译成功但长路径导出失败，原scope永久余0，主AAR仍未形成host完整交接；不倒改失败/预算，不拿5插件AAR部分仓库放行。10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING保持，不合main、不启v10.1.6。保存最终commit/ref/三文档Blob及保护ledger见LOCAL_ONLY父根session-save-20261106-local-aar-wait-memory-complete-private.json；原证/二进制/许可证不上传。三文档备份及预检在同父根session-save-20261106-local-aar-wait-memory，最终交接prompt也作本地私有保存。
+
+---
+
 ## 2026-11-06 最新Owner决定：本机AAR候选独立1次已授权，释放内存后执行
 
 Owner对call_0d859e3a190b4004a14bc0c1345a0b9d/item0明确答“授权本机候选独立1次；释放内存后再执行”。绑定v1015-local-aar-20261106-case01、源码f98353fc、合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da、binary3390c084…da4fd/原nonce；完整绑定grant独占保存，旧350/payload/helpers一致。**本机新授权已耗0、余1，无claim/SDK启动**，全部旧0余额保持。

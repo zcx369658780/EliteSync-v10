@@ -1,4 +1,22 @@
-# EliteSync-v10｜项目进度细表（本机候选已授权，等待释放内存）
+# EliteSync-v10｜项目进度细表（2026-11-06 会话封存）
+
+## 2026-11-06 会话封存与下一会话入口
+
+| 项目 | 封存事实/下一步 |
+|---|---|
+| Owner本轮请求 | 会话过长，立即保存本地和GitHub进度/Owner决定并提供交接prompt。仅文档与原证封存，完成后停止保存；不启动编译/测试/VM/设备，不消费授权；保存轮限制不延伸为下一会话的普通工程禁令，不退款或恢复旧余额 |
+| 当前Git/保护 | 进入c5661ea473e7980561cbe586eb3d83f02054662b，实际产品根/origin/原产品分支/空index一致，仅旧%SystemDrive%/未跟踪。原根main4bebc8f394248e254c1368a06fbdee5d2c883301、255项、index SHA256 2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716复核相等；apps ed24852975baebeadc66f007dfb75ff9e31a97d4/services7634b4755a41f08641e00948f684c06efb12d8fe保持；356原保护/冻结payload/helper/grant均一致 |
+| 本机源码与准备 | f98353fc280e9a146354001531d6750843487411新增current_product_local_producer.py、current_product_local_entry.py、local_aar_supervisor.cs及两测试。已真实物化/编译/冻结1396.063秒，work63,248文件/6,285,581,972字节，external49,649；7关键实际配置无guest路径。12项Python测试通过、前序77 managed/8 authority/自写FakeJava Job通过，两P2修复后非作者Codex无遗留发现；本保存轮未重跑，非外部独立验收 |
+| 冻结身份/授权 | case v1015-local-aar-20261106-case01；合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da，binary3390c0845685680ddd68a8bd017545cc1cc01373237ec27475250484eedda4fd，nonce6bd5ba4ad9294dfe9ba26eed41fe4d88。Owner对call_0d859e3a190b4004a14bc0c1345a0b9d/item0答“授权本机候选独立1次；释放内存后再执行”；原grant已保存，spent0/remaining1，无claim/launched/SDK、输出空，本实例控制器不在运行；不将保存请求当作释放通知 |
+| 本机额度边界 | 最多1次assembleAarRelease；Job4GiB/64进程、SDK1800秒/host2100秒/本实例STOP45秒、2GiB采样（可能瞬时超量）、不重试；内存8192MiB/工作卷8GiB。现有工具和私有输出、离线参数禁下载而非OS断网，不改系统网络；排除VM、host APK、设备、DB、媒体、外部服务、生产、安装升级、新许可接受。本次不测资源；5259MiB为历史快照，不能继承为当前资格 |
+| 下一具体动作 | 等待Owner另行明确已释放内存；新通知另存case根/父根，不重写原grant或control额外添文件。先轻量核资源，符合才调用现有launch，由其执行一次完整fresh输入复核/再核资源/唯一claim；不要单独preflight后又launch重复读。当前完整preflight不是PASS，不重建候选/nonce/helper或换目录续额。成功根退出只给REPOSITORY_UNVERIFIED，须用既有current_product_aar_handoff.verify_repository核完整主AAR/版本/hash，之后再准备私有Android Debug host；不把本次AAR授权扩为APK/设备次数 |
+| 最后真实构建/路线 | 原6f5428ed…候选Gradle BUILD SUCCESSFUL in9m9s，474任务（473执行/1 up-to-date），随后旧.NET ExportRepository/File.GetAttributes长路径异常；guest674104ms、host721.984秒，scope1/1已耗余0。host133文件/519203字节/5插件AAR，缺主flutter_release，完整交接未成立。owned pair收尾成功/host观察空，底层VM teardown UNKNOWN。Owner质疑VM路线后改为本机私有构建，模拟器/手机留至安装调试；旧失败/partial repo不改，不默认再提VM |
+| 私有定位/保存完成依据 | 父根C:\Users\zcxve\EliteSyncDev\v1015-producer-supervisor-20261105；本机根C:\Users\zcxve\EliteSyncDev\v1015-local-aar-20261106-case01。最小先读authorization-wait-memory-summary-private、local-readiness-summary-private、control/owner-grant，再读父根session-save-20261106-local-aar-wait-memory-complete-private；后者记最终Git commit/ref/三文档Blob与新增保护ledger。三文档原文局部备份在父根session-save-20261106-local-aar-wait-memory；原证/二进制/许可证不上GitHub |
+| 保持的路线与硬边界 | Local-first；顾问只负责路线，Codex负责实现/调试/测试/审查/工程验收/Git/进度，不重建网页派单或强制多模型门，避免过度防御性工程。普通权限不重问，具体额度/停止条件仍保留。所有旧已耗范围余0；保护旧SDK/DB/备份/worktrees/全部STOP及无关文件；不pull/reset/rebase/stash/clean/prune/force，不合main、不启v10.1.6。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING |
+
+---
+
+# EliteSync-v10｜项目进度细表（本机候选已授权，等待释放内存，历史节点）
 
 ## 2026-11-06 本机AAR候选授权等待释放内存
 
