@@ -1,3 +1,17 @@
+# EliteSync｜2026-11-06 实际Debug APK产出，私有模拟器登录首屏已观察（CURRENT ENTRY）
+
+**COMPLETE_AAR_VERIFIED / ACTUAL_DEBUG_APK_BUILT_AND_SIGNATURE_VERIFIED / PRIVATE_EMULATOR_LOGIN_FRAME_OBSERVED / G2_FALSE**
+
+本机Debug host修复源码 **3c0f4b871a822667c812702c0a66f0d308d86543**；case02真实 **BUILD SUCCESSFUL in2m15s，38任务全部执行**，SDK136608ms、root/controller exit0，独立scope已耗1余0。主AAR沿用case03完整已验仓库，未再编译Flutter。APK **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable**，调试签名与包内原生库实核通过；73459721字节，SHA256 **776643b37d526309562fa453b97fb7b6c908d405cc1c04951810192e44f43561**。
+
+新的私有模拟器scope完成一次冷启动/一次安装/一次Activity启动：运行时x86_64+arm64-v8a、libndk_translation.so已实核，安装Success，am start Status ok、冷启动10636ms，主代理实际查看“慢约会/账号登录”首屏。10秒后检查窗口内进程存活、Activity resumed、所取日志未见应用错误标记；非持续稳定性/登录/后端验收。controller exit0，本实例和独立ADB服务正常结束，私有端口已关闭；未触碰旧AVD/手机，原VM未重跑。
+
+私有交付：`v1015-debug-delivery-20261106-case01/EliteSync-10.1.5-dev-arm64-debug.apk`、`login-first-frame.png`、delivery-receipt-private.json。完整原证在host case02的verified-debug-apk-private.json、output与apk-inspection，以及emulator case01的runtime-session-private.json、screen-review-and-runtime-validation-private.json；均LOCAL_ONLY，不上传产物/原证/许可证。
+
+Owner同类运行下放继续有效，不逐次询问；后续必要运行建立具体独立scope，全部旧耗尽余额仍0。本机AAR case03、host case01/02、模拟器本次scope均已耗，不复用claim。保留6GiB/64进程/10GiB启动门、离线与各自时间/输出/本实例收尾边界，不扩大生产/真实数据/费用/工具安装升级/新许可/正式发布权限。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；登录、开发服务/数据库、聊天与Push本轮NOT_RUN。后续推进对应功能链时按其实际资格与边界处理，不以首屏替代G2。
+
+---
+
 # 2026-11-06 Debug host首测脚本编译停止，生成器修复继续
 
 **DEBUG_HOST_CASE01_SPENT_1_REMAINING_0 / APK_NOT_PRODUCED / EMULATOR_NOT_RUN / G2_FALSE**

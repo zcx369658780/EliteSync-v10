@@ -1,3 +1,18 @@
+# 2026-11-06 本机Debug APK成功与私有模拟器实测节点
+
+- 工程源码3c0f4b87（前序独立host adapter c46d0a6a/ba236571）；apps树ed24852975baebeadc66f007dfb75ff9e31a97d4、services树7634b4755a41f08641e00948f684c06efb12d8fe保持。35项相关纯/fixture检查通过；Kotlin名称遮蔽修复后14项受影响检查通过（检查有重叠，不合并计数）；非作者Codex复核无遗留P1/P2，非外部独立验收。
+- host case01仍保留42秒脚本失败、已耗1余0。case02基于已证原因修复建立独立记录：合同b2d80a73bd55909e766eee2cf4c5a0753bf777d3013ac5d0f26a93fbd0363615，binary04a2ab1cb518734cb24196498c9fccf22e4f4ad07e90e61d0d0394aeb3ca8b6d，nonce613e28e9b89344ebb3612f02edc2a597。19626工作输入、3993外部输入，物化252.203秒；轻量14539MiB支持后仅launch一次完整fresh核验，不另做全量preflight叠读。
+- **真实离线:app:assembleDebug成功2m15s，38任务/38执行**；SDK136608ms、driver160.390秒、root/controller0。原始完整AAR仓库被消费，syncFlutterAar任务在私有脚本中仅校验仓库，没有Flutter Exec。Job峰值3782389760字节；6GiB/64与原边界保持。scope已耗1余0，不重跑。
+- APK实核包名com.elitesync.v1015dev、versionName10.1.5-dev、versionCode1010501、debuggable=true、仅arm64-v8a、含libapp.so/libflutter.so，apksigner校验成功且Android Debug signer；73459721字节，SHA256 776643b37d526309562fa453b97fb7b6c908d405cc1c04951810192e44f43561。使用私有Home生成Debug签名，不复制原untracked配置/密钥。
+- 新私有模拟器scope独立于host/AAR：已有镜像android-36.1/google_apis/x86_64，WHPX可用；一次启动/安装/Activity启动，Job6GiB/64、启动10GiB/磁盘8GiB、900秒运行/950秒host/本实例45秒收尾、2GiB遥测采样；不改系统网络，实例radio/wifi restrict=on与禁metrics，安装前关闭该私有实例wifi/data，不申请媒体权限。全部授权记录标明依据Owner下放，不伪造逐案Owner答复。
+- 启动前fresh15149MiB支持。运行时abi列表x86_64,arm64-v8a，native bridge=libndk_translation.so/exec=1；安装Success。am start Status ok/Activity com.elitesync.v1015dev/com.elitesync.MainActivity，冷启动10636ms；PID2155、Activity resumed，主代理查看实际“慢约会”账号登录首屏。10秒后所取1500行日志未见FATAL/Eflutter/ANR/Unhandled等应用错误标记；该窄窗口不证明长期稳定或功能贯通。
+- 会话92.890秒，controller0/root0，Job峰值4047339520字节；emu kill OK、独立ADB kill-server0、5060/5580/5581已关闭，cleanup_errors空。首次模拟器scope已耗1余0，旧AVD/物理手机/旧VM不动；旧VM teardown UNKNOWN不被本次结果改写。
+- 稳定私有交付目录v1015-debug-delivery-20261106-case01，原APK与交付副本SHA一致，实际截图另存login-first-frame.png。原证在host case02、emulator case01，最终Git/ref/保护ledger见LOCAL_ONLY收尾回执；产物、原证、二进制、许可证不上GitHub。
+
+**10 PARTIAL /AC05 OPEN /G2 false /真实Push PENDING**；本轮登录、后端/数据库、聊天与Push均NOT_RUN。已形成Debug APK及模拟器初步启动证据，尚不是完整功能验收或正式发布。
+
+---
+
 # 2026-11-06 Debug host首测脚本编译停止，生成器修复继续
 
 **DEBUG_HOST_CASE01_SPENT_1_REMAINING_0 / APK_NOT_PRODUCED / EMULATOR_NOT_RUN / G2_FALSE**
