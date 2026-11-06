@@ -122,4 +122,29 @@ final class V1015WsAuthorizationTest extends TestCase
         $this->assertNull($service->authorize('Bearer '.$tokens['access_token'], $a->id, $b->id));
         $this->assertFalse($service->reauthorize($id, $a->id, $b->id));
     }
+
+    public function test_departed_peer_is_rejected_at_handshake_and_poll(): void
+    {
+        [$a, $b, $tokens, $id, $service] = $this->pair();
+        DB::table('conversation_members')->where('user_id', $b->id)->update(['left_at' => now()]);
+        $this->assertFalse(app(\App\Services\ConversationCapabilityService::class)->authorizeSend($a->id, $b->id)['allowed']);
+        $this->assertNull($service->authorize('Bearer '.$tokens['access_token'], $a->id, $b->id));
+        $this->assertFalse($service->reauthorize($id, $a->id, $b->id));
+    }
+
+    public function test_missing_peer_member_is_rejected_at_handshake_and_poll(): void
+    {
+        [$a, $b, $tokens, $id, $service] = $this->pair();
+        DB::table('conversation_members')->where('user_id', $b->id)->delete();
+        $this->assertNull($service->authorize('Bearer '.$tokens['access_token'], $a->id, $b->id));
+        $this->assertFalse($service->reauthorize($id, $a->id, $b->id));
+    }
+
+    public function test_departed_actor_remains_rejected_at_handshake_and_poll(): void
+    {
+        [$a, $b, $tokens, $id, $service] = $this->pair();
+        DB::table('conversation_members')->where('user_id', $a->id)->update(['left_at' => now()]);
+        $this->assertNull($service->authorize('Bearer '.$tokens['access_token'], $a->id, $b->id));
+        $this->assertFalse($service->reauthorize($id, $a->id, $b->id));
+    }
 }

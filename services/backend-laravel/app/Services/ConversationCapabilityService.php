@@ -89,7 +89,8 @@ class ConversationCapabilityService
             'can_read' => $canRead,
             'can_create' => $canMutate,
             'can_send' => $canMutate,
-            'can_ws' => $canMutate && $conversation !== null,
+            'can_ws' => $canMutate && $conversation !== null
+                && $conversation->members()->where('user_id', $peerId)->whereNull('left_at')->exists(),
             'reason_code' => $blocked ? 'moderation_blocked' : ($syntheticDenied ? 'relationship_unavailable' : (! $releasedMatch ? 'relationship_unavailable' : null)),
         ];
     }
