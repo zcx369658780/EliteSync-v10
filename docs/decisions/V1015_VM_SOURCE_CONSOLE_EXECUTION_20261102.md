@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-06 最新Owner决定：依赖图修复候选独立1次已授权，内存预检未耗额
+
+Owner“请继续”恢复普通工程；针对call_fc9086763ce942d693669f1eb444c508/item0明确选择“授权依赖图修复候选独立1次”。绑定原ea0ae473/aar-project-graph-candidate/8dbf9f38...8e850/binary074ffec6...e3eb/nonce，范围保持278源RO/原有图/唯一fresh输出/禁网，独立最多1VM/1真实AAR，6GiB/guest1800秒/host2100秒/本实例STOP另45秒/2GiB采样上限可能瞬时超量/不重试及原全部排除事项；完整问题/答复与绑定数据独占保存，不重建候选或恢复旧已耗次数。
+
+fresh恢复核验11985MiB支持、151保护/冻结payload/helpers及原根/双tree一致；正式driver再核当前输入/资源时降为7239MiB低于10240，磁盘充足，54.812秒preclaim停止。claim/launch记录缺席、VM/SDK0；**新授权已耗0、余1且持续有效**，不是实际产包失败或退款。两grant及本次未耗额原证后156保护、旧151不变，不改原不足回执/hash。
+
+已请Owner释放约4–5GiB后明确告知，同候选/原grant fresh复核后再执行，无需再次授权；不自停用户程序、不降门槛/改helper/合同/nonce、不重放grant创建脚本，不覆盖本次PRECLAIM回执。旧所有0余额不变；10 PARTIAL、AC05 OPEN、G2 false、主AAR/host仓库未完成。以下昨日停止/未授权为历史时点，不倒改。
+
+---
+
 ## 2026-11-05 最新Owner决定与收尾：完成当前保存后停止，明日继续
 
 Owner最新原话“这次完成后请停下，明天继续”。本轮只完成当前graph输入修复候选准备、证据/三文档保存及原产品分支普通同步后停止；今天不申请或启动继任、不写新grant/claim，不建立自动明日执行。明日从CURRENT ENTRY及具名摘要核实际身份/资格，后续新运行额度UNKNOWN_NOT_CREATED；全部旧已耗余额0保持。

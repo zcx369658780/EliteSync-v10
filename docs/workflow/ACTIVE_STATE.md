@@ -1,4 +1,18 @@
-# EliteSync｜2026-11-05 本轮收尾停止，package graph修复候选已冻结（CURRENT ENTRY）
+# EliteSync｜2026-11-06 依赖图候选已授权，内存预检未耗额（CURRENT ENTRY）
+
+**OWNER_GRANTED_PROJECT_GRAPH_CANDIDATE / PRECLAIM_BLOCKED_MEMORY / CLAIM_NOT_CREATED / VM_SDK_NOT_STARTED / AUTHORIZED_REMAINING_1 / G2_FALSE**
+
+Owner“请继续”恢复普通已授权工程，昨日停止要求已结束；随后针对call_fc9086763ce942d693669f1eb444c508/item0明确答“授权依赖图修复候选独立1次”。绑定已冻结源码ea0ae473/aar-project-graph-candidate/合同8dbf9f38...8e850/binary074ffec6...e3eb/原nonce，范围保持278源RO/现有图/唯一fresh输出/禁网、最多1VM/1真实AAR、6GiB/guest30分钟/host35分钟/STOP本实例另45秒/2GiB采样上限可能瞬时超量/不重试及原排除事项。原文独占存grant及probe副本，不重建候选或恢复旧额度。
+
+进入HEAD d93f471f、原目录/origin/分支/空index/旧%SystemDrive%/正确，fresh SSH产品d93f471f/main8a9e97a1；旧151保护、全部payload/helpers/原根main/255/index及双tree一致。首次只读复检11985MiB通过；正式driver再次fresh核22316输入后，可用7239MiB低于10240门槛、磁盘460752949248字节，54.812秒在preclaim停止。**无claim/launch记录、VM/SDK0，本独立授权已耗0、余1且有效**；原错误/回执/资源快照保存，不写为产包运行失败或退款，不启停用户程序。
+
+已请Owner方便时释放约4–5GiB后明确告知，再按同一候选/原grant fresh核验；无需重授权，不降门槛、改helper/合同/nonce或换目录。两grant及本次未耗额原证后最新156保护，旧151不变。LOCAL_ONLY v1015-producer-supervisor-20261105先读project-graph-authorization-preclaim-summary-20261106-private、project-graph-runtime-outcome-private（PRECLAIM_BLOCKED）、protected-records-after-project-graph-preclaim-private；此回执后续保留，恢复用新结果文件，不重放会独占创建grant的初始脚本。
+
+本节点只做授权保存/当前只读核验，未改源码或重跑旧测试。主Flutter AAR/host仓库未完成，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6。三文档普通同步最终HEAD/ref/Blob见私有回执；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-依赖图候选授权后内存预检未耗额节点)。
+
+---
+
+# EliteSync｜2026-11-05 本轮收尾停止，package graph修复候选已冻结（历史节点）
 
 **OWNER_STOP_AFTER_CURRENT_SAVE / ACTUAL_FLUTTER_COMPILE_FAILED / SCOPE_SPENT_1_REMAINING_0 / PROJECT_GRAPH_CANDIDATE_NOT_AUTHORIZED / NO_MAIN_AAR_OR_HOST_REPOSITORY / G2_FALSE**
 

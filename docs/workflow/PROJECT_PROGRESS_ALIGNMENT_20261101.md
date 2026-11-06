@@ -1,3 +1,20 @@
+# EliteSync-v10｜项目进度细表（依赖图候选授权，内存预检未耗额）
+
+## 2026-11-06 依赖图候选授权后内存预检未耗额节点
+
+| 项目 | 本节点事实与限制 |
+|---|---|
+| 恢复与授权 | Owner“请继续”结束昨日收尾停止；当前根/origin/原分支、进入d93f471fb451b189524550517876477c5d6c344d、空index及旧%SystemDrive%/一致。Owner对call_fc9086763ce942d693669f1eb444c508/item0明确答“授权依赖图修复候选独立1次”，完整问题/答复与原8db合同/binary074ffec6/nonce独占写两grant；旧151一致，授权不转移旧0余额 |
+| 具体范围 | 原已编译冻结ea0ae473候选，278源RO/原有经核对依赖图/唯一fresh输出/禁网；独立最多1VM/1真实AAR，6GiB/guest1800秒/host2100秒/STOP仅本实例另45秒，2GiB输出采样上限（可能瞬时超量）、不重试；不运行host APK/设备/DB/媒体/外部服务/生产/安装升级。不改合同/原nonce/旧SDK/helper/已耗scope |
+| fresh核验 | payload/helpers/151保护、原root main4bebc8f3/255/index2be660...及apps ed248529/services7634b475一致，候选输出空、grant/claim初始缺席。初次输入/资源复检11985MiB支持；收到授权后冻结driver再次fresh核22316输入，资源7239MiB低于10240（6144guest＋4096host预留），磁盘460752949248字节，54.812秒在preclaim停止。无Sandbox宿主进程，不对用户程序执行释放/停止 |
+| 额度与原证 | 新授权有效，**已耗0、余1**；claim与launch记录缺席、VM/SDK/Gradle/产包0，PRECLAIM_BLOCKED不是本次实际构建失败，更不是已耗余额退款。原错误、回执、资源快照留原文；两grant＋本次未耗额原证后最新156保护，旧151保持。原文LOCAL_ONLY，不上传GitHub |
+| 等待条件与恢复 | 已请Owner方便时释放约4–5GiB后明确告知；同候选/原grant重新fresh核验，无需重授权。不降低门槛、改helper/合同/nonce/重建候选或换目录，不重放独占创建grant的初始脚本。后续结果使用新文件，保留project-graph-runtime-outcome-private的本次PRECLAIM原文与保护hash；普通源码准备仍可继续，本节点无新源码修改或旧测试重跑 |
+| 保存/Git/项目 | LOCAL_ONLY project-graph-authorization-preclaim-summary-20261106-private、project-graph-runtime-outcome-private、protected-records-after-project-graph-preclaim-private及owner-project-graph-explicit-grant-private先读。fresh SSH产品d93f471f/main8a9e97a1，审本节点三文档普通non-force同步，最终HEAD/ref/Blob见私有回执。主AAR/host仓库未完成、10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，不合main、不启v10.1.6 |
+
+授权不需要再问；当前仅等待内存释放确认与同候选fresh复检，旧所有已耗余额保持0。
+
+---
+
 # EliteSync-v10｜项目进度细表（主Flutter图文件缺项修复与本轮停止）
 
 ## 2026-11-05 主Flutter图文件缺项修复与本轮停止节点
