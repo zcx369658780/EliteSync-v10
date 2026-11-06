@@ -1,3 +1,15 @@
+# 2026-11-07 Owner明确后续AAR采用6GiB＋1GiB启动余量
+
+Owner原话：“可以，以后请按照6GB+1GB来构建AAR。请继续”。落实为仅新AAR候选：Job上限6GiB（6442450944字节），启动可用内存门7168MiB；prepare默认并限定integer6。此决定替代后续AAR的6＋4/10GiB启动政策，不重写任何既有冻结合同/原grant/claim/STOP或已耗余额。Debug APK host及其他独立范围仍按各自原政策，本决定不自动替它们改限。
+
+AAR其余Job64进程、SDK30分钟/host35分钟、本实例STOP收尾45秒、工作卷8GiB、2GiB输出采样可瞬超、离线参数/禁下载、不改系统网络、不重试及既定排除项保持。未来必要构建使用新冻结输入/控制程序/合同，由Codex按既有同类运行下放安排；本轮没有实际AAR/APK构建，不宣称新政策真实产包通过。
+
+继续已授权跨账号页面软件回归：独立私有Flutter unit各一次，6GiB Job/7GiB启动、64进程、SDK300秒/host360秒/收尾45秒、2GiB采样；首次旧测试替身编译失败保留、已耗1余0，修同步替身后独立scope23项通过、已耗1余0。只用Fake API/socket，不新增模拟器/设备、VM、后端/数据库、外部服务、真实Push、安装升级、新许可或生产执行。自测/非作者Codex复核不是外部独立验收。
+
+10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；不合main、不启v10.1.6，原资产与所有旧已耗scope保持。具体事实见最新进度节点。
+
+---
+
 # 2026-11-07 同类工程下放继续用于既有读取合同回归，轻量测试资源单列
 
 依据Owner已下放的普通本机工程授权，Codex对已接受v10.1.1合同与旧回归期望冲突作测试对齐；不新增Block历史读例外、不修改产品权限。仅SQLite内存/network none/1GiB容器的定向PHP检查，engine启动前6GiB、test前4GiB；最初误沿用SDK10GiB的preclaim准备保留并在claim前修订，原AAR/APK6GiB Job与10GiB启动门及所有历史预算保持。本次不是Owner逐案另答授权。

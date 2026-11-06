@@ -1,3 +1,19 @@
+# 2026-11-07 新AAR资源政策6＋1落地，切号晚响应页面软件回归完成
+
+**OWNER_AAR_6_PLUS_1_APPLIED / PYTHON_30_PASS / WIDGET_23_PASS / G2_FALSE**
+
+Owner新决定“以后请按照6GB+1GB来构建AAR”。工程策略 **c36658ff70e499d87f363d911c0d63f516c51ba4** 新增AAR专用策略：prepare默认且只收integer6，Job6GiB/启动7168MiB；共用legacy/Debug host策略保持6＋4/10240MiB。旧合同按自身门槛，不改grant/claim/STOP、不恢复额度。仍64进程、工作卷8GiB、SDK30分钟/host35分钟、本实例收尾45秒、输出2GiB采样可瞬超、离线禁下载、不改系统网络与原排除范围；本轮新AAR候选/实际构建均0。两项策略红例（API缺失/物化仍4GiB）后，producer/entry/debug host共30项Python纯测试通过，包括7167拒/7168允及旧10240仍拒7168；Fake编译不当真实SDK资格。
+
+工程测试 **2e2d517350b8d60a8c662402248132c951b28010**：旧GET和POST确已发出并挂起，切号后才由不理cancel的Fake返回；断言锁页、旧正文/成功确认/重试入口消失，读取/发送次数不增加、secure写次数和密文map不变。旧WS测试替身仍Future build，而当前SessionNotifier父类已同步；首轮19通过/1文件加载失败controller32/Flutter1、host30.172秒原证保留。绑定原样测试hash后只修一行替身签名，独立范围最终 **23项通过**（19可靠性含2新增、4 WS lifecycle），controller0/Flutter0、SDK6229ms/host7.360秒；两scope各已耗1余0，不续旧claim。
+
+私有unit复制先在旧生成hook锁hash不符处preclaim停止、未grant/claim/SDK，源与部分目录保留；后续只排除10个hooks_runner生成物，5830文件/1150913006字节复制核hash，重映射两配置，旧workspace不写，不改依赖/source pin。465个当前产品lib文件逐字节匹配测试输入。unit6GiB/启动7GiB/64进程、SDK300秒/host360秒/45秒收尾/2GiB采样；启动资源11668及11368MiB，成功Job峰值1076146176字节不能当物理RAM/AAR峰值；持有两个controller PID事后观察空。stderr loopback:9资产源提示不当实际下载证据；不宣称OS断网。
+
+报告/proof/合同/原始失败/日志在 **v1015-aar-headroom-and-account-regression-20261107**；非作者Codex复核无遗留可行动P1/P2，非外部独立验收。产品lib/Android/依赖和后端未变，apps树仅测试变化；旧APK SHA1a4f22fe…aa7f006及原交付保持。此次无AAR/APK/模拟器/手机/VM/真实API/DB/WS服务/Push，不冒充真实设备切号或并发线性化。
+
+**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。跨账号页面软件覆盖推进，完整AC03真实切号/并发/旧room、物理15/30天、私有媒体/RTC/OS通知仍未闭合。原SDK/DB/备份/脏根/STOP保护，旧VM teardown UNKNOWN，不合main、不启v10.1.6，私有原件不上GitHub。
+
+---
+
 # 2026-11-07 既有历史读取合同冲突澄清，定向回归30项通过
 
 **ACCEPTED_POLICY_TEST_ALIGNMENT_COMPLETE / PHP_30_288_PASS / G2_FALSE**

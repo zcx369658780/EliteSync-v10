@@ -1,3 +1,15 @@
+# 2026-11-07 Owner AAR改为6＋1，跨账号晚响应页面回归23项通过（CURRENT ENTRY）
+
+**OWNER_AAR_6_PLUS_1_APPLIED / PYTHON_30_PASS / FLUTTER_WIDGET_23_PASS / G2_FALSE**
+
+Owner明确后续AAR按6GB＋1GB：策略提交 **c36658ff70e499d87f363d911c0d63f516c51ba4**，新AAR默认/限定6GiB Job、启动至少7168MiB；Debug host仍原6＋4，原合同/已耗/STOP不改，其余时限/磁盘/进程/离线边界保留。30项Python纯检查通过；本轮未真实assembleAarRelease，不称新AAR已通过。
+
+测试提交 **2e2d517350b8d60a8c662402248132c951b28010**：补旧GET/POST切号后才完成的页面回归，验证不显示旧正文/成功确认，不追加请求，不写secure缓存；修旧WS测试替身同步签名。最终 **23项Flutter widget测试通过**。首轮19通过但旧替身编译失败（controller32/Flutter1）保留；修正后独立范围controller0/Flutter0，两个scope均已耗1余0。Fake API/socket不是实际APP切号或完整AC03。465个lib文件与unit输入一致；apps树只因测试变化，既有APK保持，本轮无AAR/APK/模拟器/手机/VM/后端运行。
+
+私有报告/原证 **v1015-aar-headroom-and-account-regression-20261107**。非作者Codex复核无遗留可行动问题，非外部独立验收。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；继续真实切号/并发/旧room、长期时窗、媒体/RTC与通知等未完成项，不合main、不启v10.1.6。
+
+---
+
 # 2026-11-07 历史读取回归按既有合同对齐，30项/288断言通过（CURRENT ENTRY）
 
 **ACCEPTED_POLICY_TEST_ALIGNMENT_COMPLETE / PHP_30_288_PASS / HISTORICAL_FAILURE_RETAINED / G2_FALSE**
