@@ -16,6 +16,20 @@ import current_product_source_overlay as source_overlay
 
 
 class LocalProducerTests(unittest.TestCase):
+    def test_new_aar_policy_is_six_gib_plus_one_without_changing_debug_host_policy(self):
+        self.assertEqual(local.aar_memory_policy(),
+                         dict(job_memory_bytes=6*1024**3, required_available_mib=7168))
+        self.assertEqual(local.local_memory_policy(6),
+                         dict(job_memory_bytes=6*1024**3, required_available_mib=10240))
+
+    def test_new_aar_policy_rejects_other_limits_before_preparation(self):
+        for value in [True, False, None, 0, 4, 5, 8, -1, 6.0, '6']:
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(ValueError, 'integer 6 GiB'):
+                    local.aar_memory_policy(value)
+                with self.assertRaisesRegex(ValueError, 'integer 6 GiB'):
+                    local.prepare(None, None, None, job_memory_gib=value)
+
     def test_memory_policy_defaults_and_explicit_six_keep_four_gib_headroom(self):
         self.assertEqual(local.local_memory_policy(),
                          dict(job_memory_bytes=4*1024**3,required_available_mib=8192))
@@ -43,7 +57,7 @@ class LocalProducerTests(unittest.TestCase):
                 # None raw input proves policy validation precedes source hashing/decoding.
                 with self.assertRaisesRegex(ValueError,'4 or 6'):
                     local.local_boundary(None,'work','exe','java','cwd','logs','user',job_memory_gib=value)
-                with self.assertRaisesRegex(ValueError,'4 or 6'):
+                with self.assertRaisesRegex(ValueError,'integer 6 GiB'):
                     local.prepare(None,None,None,job_memory_gib=value)
 
     def test_task_specific_boundary_keeps_job_core_and_explicit_identity(self):
@@ -104,6 +118,23 @@ class LocalProducerTests(unittest.TestCase):
                     else:
                         with self.assertRaisesRegex(RuntimeError,'resources insufficient'):local.preflight(root,contract)
                     disk.assert_called_once_with(root)
+
+    def test_preflight_uses_new_seven_gib_gate_and_keeps_frozen_old_gate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);self.case(root)
+            local.shared.put(root/'control/prepared-work-inventory.json',dict(files=[]))
+            local.shared.put(root/'control/external-inputs.json',[])
+            common=dict(work_inventory_sha256=local.shared.sha(root/'control/prepared-work-inventory.json'),
+                        external_inventory_sha256=local.shared.sha(root/'control/external-inputs.json'))
+            for gate,available,allowed in [(7168,7167,False),(7168,7168,True),(10240,7168,False)]:
+                response=subprocess.CompletedProcess([],0,json.dumps({'available_mib':available}).encode(),b'')
+                with self.subTest(gate=gate,available=available),patch.object(local.subprocess,'run',return_value=response),\
+                     patch.object(local.shutil,'disk_usage',return_value=type('Disk',(),{'free':9*1024**3})()):
+                    contract=dict(common,required_available_mib=gate)
+                    if allowed:self.assertEqual(local.preflight(root,contract)['available_mib'],available)
+                    else:
+                        with self.assertRaisesRegex(RuntimeError,'resources insufficient'):local.preflight(root,contract)
+            self.assertFalse((root/'launch.claim.json').exists())
 
     def test_kind_selects_controller_and_result_binding_without_cross_acceptance(self):
         for kind,exe,status,key in [
@@ -280,6 +311,10 @@ class SourceOverlayWiringTests(unittest.TestCase):
             contract=local.prepare(self.root,self.inputs,self.source)
         capture.assert_not_called()
         self.assertEqual(contract['publication_version'],'old')
+        self.assertEqual(contract['job_memory_bytes'],6*1024**3)
+        self.assertEqual(contract['required_available_mib'],7168)
+        self.assertIn(b'JobMemoryLimit=new UIntPtr(6UL*1024*1024*1024)',
+                      (self.root/'control/local-boundary.cs').read_bytes())
         self.assertNotIn('base_identity',contract)
         self.assertNotIn('source_overlay_manifest_sha256',contract)
         self.assertFalse((self.root/'control/source-overlay.json').exists())

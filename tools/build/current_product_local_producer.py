@@ -29,11 +29,18 @@ LIMITS = dict(sdk_seconds=1800, host_seconds=2100, cleanup_seconds=45,
 
 
 def local_memory_policy(job_memory_gib=4):
-    """Select only the approved Job limit, retaining 4 GiB host headroom."""
+    """Retain the legacy/shared policy, including the Debug host's 4 GiB reserve."""
     if type(job_memory_gib) is not int or job_memory_gib not in (4,6):
         raise ValueError('Local Job memory must be integer 4 or 6 GiB')
     return dict(job_memory_bytes=job_memory_gib*1024**3,
                 required_available_mib=(job_memory_gib+4)*1024)
+
+
+def aar_memory_policy(job_memory_gib=6):
+    """Owner's policy for new AAR candidates: 6 GiB Job plus 1 GiB reserve."""
+    if type(job_memory_gib) is not int or job_memory_gib != 6:
+        raise ValueError('New local AAR builds require integer 6 GiB')
+    return dict(job_memory_bytes=6*1024**3, required_available_mib=7168)
 
 
 def current_user():
@@ -90,9 +97,9 @@ def _copy_tree(inventory, target, role=None):
 def _json(path):return json.loads(Path(path).read_bytes())
 
 
-def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4, current_source_root=None):
+def prepare(root, prepared_inputs, source_case, *, job_memory_gib=6, current_source_root=None):
     """Materialize/compile only. No SDK invocation, grant or claim is created."""
-    memory_policy=local_memory_policy(job_memory_gib)
+    memory_policy=aar_memory_policy(job_memory_gib)
     limits=dict(LIMITS,**memory_policy)
     root,prepared_inputs,source_case=map(lambda p:Path(p).resolve(),(root,prepared_inputs,source_case))
     if root.exists():raise FileExistsError('Preserve the existing local candidate')
