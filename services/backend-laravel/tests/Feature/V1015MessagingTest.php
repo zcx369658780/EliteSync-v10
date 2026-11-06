@@ -59,6 +59,30 @@ class V1015MessagingTest extends TestCase
         $this->assertDatabaseCount('chat_messages',1);
         $this->assertDatabaseCount('notifications',1);
     }
+
+    public function test_hiding_keeps_authorized_history_readable_but_cn_close_does_not(): void
+    {
+        [$a, $b] = $this->pair();
+        $token = $this->token($a);
+        $body = ['receiver_id' => $b->id, 'content' => 'fictional retained history', 'client_message_id' => (string) Str::uuid()];
+        $sent = $this->withToken($token)->postJson('/api/v1/messages', $body)->assertOk()->json();
+        $message = \App\Models\ChatMessage::query()->findOrFail($sent['id']);
+        $ciphertext = $message->getRawOriginal('content');
+        app(\App\Services\ConversationVisibility::class)->set($a->id, $sent['conversation_id'], true);
+        $this->assertDatabaseHas('conversation_hidden_views', [
+            'user_id' => $a->id, 'conversation_id' => $sent['conversation_id'], 'hidden_through_id' => $sent['id'],
+        ]);
+        $this->assertFalse(app(\App\Services\ConversationVisibility::class)->visible($a->id, $sent['conversation_id'], $b->id));
+        $this->withToken($token)->getJson('/api/v1/messages?peer_id='.$b->id)
+            ->assertOk()->assertJsonPath('items.0.id', $sent['id'])->assertJsonPath('items.0.content', $body['content']);
+        app(LiveConsentService::class)->transition($a->id, $b->id, 'connection', 'close', 2);
+        $this->withToken($token)->getJson('/api/v1/messages?peer_id='.$b->id)->assertNotFound();
+        $this->withToken($token)->postJson('/api/v1/messages', $body)->assertNotFound();
+        $this->assertDatabaseCount('chat_messages', 1);
+        $this->assertDatabaseCount('notifications', 1);
+        $this->assertSame($body['content'], $message->fresh()->content);
+        $this->assertSame($ciphertext, $message->fresh()->getRawOriginal('content'));
+    }
     public function test_committed_attachment_state_change_does_not_hide_same_key_result_or_conflict(): void
     {
         [$a,$b]=$this->pair(); $ta=$this->token($a);
