@@ -1,3 +1,19 @@
+# 2026-11-06 实际APK与私有后端首登贯通，在线启动恢复待补齐
+
+**ACTUAL_APK_PRIVATE_API_LOGIN_OBSERVED / COLD_RESTART_LOCKED / ONLINE_RESUME_NOT_IMPLEMENTED / G2_FALSE**
+
+沿用已验APK SHA776643b3…43561（应用树ed248529…），新独立后端读取源码42cf24bc/services7634b475…，使用已安装Docker/WSL及固定本机镜像，没有升级、安装或pull。首个后端scope因私有snapshot缺vendor挂载目录在API启动前停止，DB正常退出，未迁移/seed；原证保留，已耗1余0。修复目录后另建case02，新库nov06_login_case02/内部55376/server_id230110602，迁移前0表、后93表，一次事务4虚构账号；API127.0.0.1:8021与真实WS8022就绪。源码和114包vendor只读，任务storage与新volume隔离，原.env未复制/加载。
+
+宿主缺鉴权401、虚构B账号登录200；新的私有模拟器scope安装同一APK，首次A账号实际登录后进入首次引导/应用页面/“我的”，取得服务端运营资格数据。force-stop后第二次Activity启动返回登录页，未绕过私密缓存锁定；服务端device_sessions前后均2。初始键盘动画导致多输入一字符，实际提交前已按设备层级比对并修正，不归为认证产品失败。40条UI命令、2次Activity启动，未做登出/媒体/真实Push。
+
+定位：SessionNotifier.build主动lock私密缓存、purge旧明文并恒返unauth，通用refresh回调为null；这是现有保护实现，在线恢复链尚缺。冻结AC06/07要求重启后先服务端在线核验，且refresh/重启不得重置T0，非强制每次输入密码。下一步补非轮换的会话核验及客户端在线恢复；在任何核验/绑定/时间/清理失败时继续锁定，不用本地token/profile直接授权，不降低CN/MC/Block/FD02或15/30天门。
+
+本次模拟器controller0、cleanup_errors空，896.672秒内正常收尾；后端case02三容器均停/PID0，WS0/API137/DB0，原退出码保留；1296.094秒，cleanup_errors空。两后端scope和本次模拟器scope均已耗，各余0，所有旧scope保持0，不复用claim。新DB卷/网络和原证留存，旧DB/AVD/手机/VM不动。仅这些动态事实是新测；3项文本渲染、1项含3分支目录回归、8项模拟器脚本检查及非作者Codex复核均为工程检查，不称外部独立验收。
+
+LOCAL_ONLY原证在v1015-app-login-integration-20261106-case01的app-login-and-cold-start-observation-private.json、emulator，以及case02的backend-session-outcome-private.json、effective-db-qualified-private.json、host-api-checks、cold-restart snapshots。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；在线恢复修复/新APK重验尚未运行，不以首次登录替代整版接受。
+
+---
+
 # EliteSync｜2026-11-06 实际Debug APK产出，私有模拟器登录首屏已观察（CURRENT ENTRY）
 
 **COMPLETE_AAR_VERIFIED / ACTUAL_DEBUG_APK_BUILT_AND_SIGNATURE_VERIFIED / PRIVATE_EMULATOR_LOGIN_FRAME_OBSERVED / G2_FALSE**
