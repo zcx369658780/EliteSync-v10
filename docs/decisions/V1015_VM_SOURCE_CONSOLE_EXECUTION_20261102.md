@@ -1,3 +1,15 @@
+# 2026-11-06 本机AAR成功并完成完整仓库内容核验
+
+**ACTUAL_LOCAL_AAR_SUCCESS / COMPLETE_REPOSITORY_CONTENTS_VERIFIED / CASE03_SPENT_1_REMAINING_0 / APK_NOT_RUN / G2_FALSE**
+
+case03真实本机Gradle **BUILD SUCCESSFUL in5m3s**，474任务（473 executed /1 up-to-date），root/controller exit0；SDK304743ms。合同ac07e761…b737b7、binary8e343c2f…19284、nonce76852b11…保持，唯一claim已消费1次、余0。无VM，不能重跑此case。599份实际内存采样，Job峰值4600205312字节（约4.28GiB）；系统提交余量不是物理可用内存，不据进程峰值指认Dart。
+
+既有verify_repository已核完整私有仓库：**375文件 /6411438字节 /15 publications**，主坐标`com.elitesync.flutter_elitesync_module:flutter_release:1.0-v1015-84a94c9177ce-d260db918b9a`；manifest SHA256 `685e92712c4e96da2b398cf1b2fad27316a3f462dc916e5209bd82d58cd2cc3c`，主AAR SHA256 `59d15146ce041ccd43729d3afbedbe90a143ae1aa02ee9ff3393ec5112c85c41`。验证仅证明仓库内容，不改写验证器的provenance/offline/execution_allowed字段，不等于APK、设备或G2验收。LOCAL_ONLY原证在case03的output/result.json、heartbeat.jsonl、verified-complete-aar-repository-private.json及aar-success-checkpoint-*。
+
+继续Owner已批准的本机Debug APK与模拟器调试目标：先用这份AAR准备独立私有Android host，禁重复Flutter构建；每个必要运行依据Owner下放记录独立范围/输入/claim，不再逐次询问同类许可，不借case03或任何旧余额。保留6GiB/64进程、10GiB启动门、8GiB磁盘、SDK30分钟/host35分钟/STOP45秒、2GiB采样及离线禁下载边界。模拟器ARM64兼容性仍UNKNOWN，APK/ADB/模拟器尚未执行。生产、真实数据、费用、安装升级、新许可及正式发布等保留边界保持。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。
+
+---
+
 # v10.1.5｜2026-11-06 Owner下放同类运行授权
 
 ## 2026-11-06 case03独立授权与后续同类运行下放决定
