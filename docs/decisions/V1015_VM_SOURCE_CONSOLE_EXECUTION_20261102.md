@@ -1,5 +1,15 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-06 最新Owner决定：本机AAR候选独立1次已授权，释放内存后执行
+
+Owner对call_0d859e3a190b4004a14bc0c1345a0b9d/item0明确答“授权本机候选独立1次；释放内存后再执行”。绑定v1015-local-aar-20261106-case01、源码f98353fc、合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da、binary3390c084…da4fd/原nonce；完整绑定grant独占保存，旧350/payload/helpers一致。**本机新授权已耗0、余1，无claim/SDK启动**，全部旧0余额保持。
+
+遵守答复条件：等待Owner另行告知已释放内存，届时沿用同一候选/原grant完整fresh核输入与8192MiB/磁盘8GiB后执行，不再询问同一授权；当前答复不是已释放通知，不轮询资源或自动启动。本节点当前资源未重测，原5259MiB回执保留。范围保持最多1次本机AAR、Job4GiB/64进程、SDK30分钟/host35分钟/本实例STOP45秒/2GiB采样（可瞬时超量）、不重试，离线参数禁下载但不改系统网络；原VM/APK/设备/DB/媒体/外部服务/生产/安装升级/新许可接受排除不变。
+
+仅授权保存/记录，未修改源码或重跑测试/全量输入检查。三文档原文保存，最新356保护、旧350一致；本机输出空。普通non-force同步同产品分支；AC05 OPEN/G2 false/10 PARTIAL保持，不合main、不启v10.1.6。下方本机“未授权”为原历史时点，不倒改原失败或额度。
+
+---
+
 ## 2026-11-06 最新执行事实与工程路线调整：编译成功、导出停止，准备本机私有入口
 
 Owner对6f5428ed…359e0bb候选明确独立1次授权，随后call_e070691dfacb43f18a22316a03cf01f8/item0答复已释放内存。沿用原候选/原grant，fresh11338MiB，UTC00:54:01.882319创建唯一claim并启动。Gradle BUILD SUCCESSFUL in9m9s、474项任务（473执行/1 up-to-date）；之后旧.NET ExportRepository/File.GetAttributes因PathTooLongException停止。guest674104ms、host721.984秒，**scope1/1永久已耗余0**；原PRECLAIM/grant/失败保留，不重试。host只留133文件/519203字节/5插件AAR，主flutter_release缺席，完整仓库与APK交接未成立；owned pair收尾成功、host观察空，底层VM teardown UNKNOWN，333保护一致。

@@ -1,4 +1,16 @@
-# EliteSync｜2026-11-06 AAR编译成功、导出停止；改走本机私有产包（CURRENT ENTRY）
+# EliteSync｜2026-11-06 本机AAR候选独立1次已授权，等待释放内存（CURRENT ENTRY）
+
+**OWNER_GRANTED_LOCAL_AAR / WAIT_OWNER_MEMORY_RELEASE_NOTICE / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / LOCAL_SDK_NOT_STARTED / G2_FALSE**
+
+Owner对call_0d859e3a190b4004a14bc0c1345a0b9d/item0明确答复“授权本机候选独立1次；释放内存后再执行”。同一v1015-local-aar-20261106-case01、源码f98353fc、合同e5a12e5d…c5517da/binary3390c084…da4fd/原nonce，完整绑定grant已独占保存；**新授权已耗0、余1，无claim/启动**，不改任何旧0余额。
+
+按Owner条件等待其另行告知已释放内存，再对同一候选完整fresh输入/资源核验后执行，无需重授权。本节点不启动VM/SDK/设备、不重跑测试或全量输入读取，也不轮询等待内存自动执行；当前资源未重测，5259MiB仅是上节点历史快照。最多1次AAR、Job4GiB/64进程、SDK30分钟/host35分钟/本实例STOP45秒、2GiB采样（可瞬时超量）、8192MiB预检及原全部排除范围保持。
+
+LOCAL_ONLY本机case先读authorization-wait-memory-summary-private.json；显式grant及protected-records-after-local-grant-20261106-private.json在v1015-producer-supervisor-20261105。最新356保护，旧350一致，输出仍空；原工程/SDK及全部STOP保留。仅授权保存/文档普通同步；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING。[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-本机aar候选授权等待释放内存)。
+
+---
+
+# EliteSync｜2026-11-06 AAR编译成功、导出停止；改走本机私有产包（历史节点）
 
 **AAR_COMPILE_SUCCESS_EXPORT_STOP / LOCAL_PRIVATE_PREPARED / PRECLAIM_RESOURCE_BLOCKED_MEMORY / LOCAL_SDK_NOT_AUTHORIZED / NO_COMPLETE_HOST_REPOSITORY / G2_FALSE**
 
