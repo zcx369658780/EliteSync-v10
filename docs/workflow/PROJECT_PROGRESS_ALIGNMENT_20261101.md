@@ -1,3 +1,20 @@
+# EliteSync-v10｜2026-11-06 Owner批准6GiB候选准备完成
+
+## 2026-11-06 Owner批准6GiB与case03准备节点
+
+| 项目 | 实际结果与限制 |
+|---|---|
+| Owner边界决定 | 对call_588370d3bb2a4f14a17f0e02ebac89a4/item0答“同意6GiB，先准备新候选”；只准备，不执行SDK。Job4→6GiB、启动可用内存8→10GiB以保留4GiB余量，其余参数不变；旧case01/02各耗尽余0，原证不改 |
+| 代码身份 | c882e1466f746f4b5a3783fb7dd0155b78162727；只改local producer及其测试。显式job_memory_gib=4默认兼容，仅4/6合法，6只改新派生JobMemoryLimit；shared边界原SHA0a78…982e及Job核心/64进程不变。新合同/回执绑定job_memory_bytes和required_available_mib，global LIMITS/launch/JVM等保持 |
+| 验证与复核 | 新增先红后绿，最终16项定向检查通过，含11个纯C#行为断言；拒绝未授权配置发生在Path/读源/建目录之前。非作者Codex无遗留P1/P2，非外部独立验收。实际6GiB native/SDK NOT_RUN，不把case02的413次已知采样写成新候选实测 |
+| 实物准备 | v1015-local-aar-mem6-20261106-case03，853.359秒完成真实副本/Framework64 csc编译/清单。work63248文件/6285582032字节，external49649；合同ac07e761b78898080c253048ded8d4067697c4f73ea1cb98c1c55192f0b737b7，binary8e343c2f4a6862ff602c6605e862f2b1e51c863cab6e7c536705dbd685619284，nonce见私有提案 |
+| 绑定与状态 | Job6442450944字节/required10240MiB与派生源码/合同/回执一致；6份payload、4份helper和7实际配置回读一致，无guest残留，control7项、输出空、无grant/claim/launched。新SDK预算UNKNOWN_NOT_CREATED，不产生新0/1余额或借旧scope |
+| 资源与预检 | 准备后15149MiB/423369560064字节仅轻量快照；完整fresh preflight NOT_RUN，不单独调用全量preflight再让launch重复。获新具名授权后先轻量资源，符合才由同一launch做一次fresh核验并claim |
+| 待决定的新单次范围 | 绑定case03独立最多1次assembleAarRelease，Job6GiB/64、SDK1800秒/host2100秒/STOP本实例45秒、输出2GiB采样可瞬时超量、10240MiB/工作卷8GiB、不重试；JVM2G/768m/worker1/禁并行、离线禁下载/非OS断网及原VM/APK/设备/模拟器执行/DB/媒体/外部服务/生产/安装升级/新许可排除不变 |
+| 后续与原证 | 成功只为REPOSITORY_UNVERIFIED仍须既有verify_repository核完整主AAR/版本/hash，再准备实际私有Debug host。原1143保护、原main4bebc8f3/255/index2be660…保留。case03的proposed-memory6-single-aar-scope-private与memory6-candidate-binding-readback-private；工程回执v1015-memory6-engineering-20261106-e231a697f74841948d4a53a9956685ce。原证/二进制/许可证不上GitHub，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main、不启v10.1.6 |
+
+---
+
 # EliteSync-v10｜2026-11-06 case02真实内存诊断结束
 
 ## 2026-11-06 case02内存实测与资源策略待决定

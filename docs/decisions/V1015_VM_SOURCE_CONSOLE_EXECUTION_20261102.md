@@ -1,3 +1,19 @@
+# v10.1.5｜2026-11-06 Owner批准6GiB策略，仅新候选准备完成
+
+## 2026-11-06 6GiB准备决定与case03具名范围
+
+Owner对call_588370d3bb2a4f14a17f0e02ebac89a4/item0明确答“同意6GiB，先准备新候选”。该决定允许新候选Job6GiB/启动可用10GiB，保留原4GiB余量；本轮只准备，没有新SDK运行grant/claim。case01/02仍各1/1已耗余0，不修改/复跑旧case，不恢复旧余额。
+
+源码c882e1466f746f4b5a3783fb7dd0155b78162727显式支持默认4/8GiB与选中6/10GiB策略，仅新派生边界改Job限额，shared原始4GiB边界SHA/Job核心/64进程不变。策略绑定新合同与准备回执；global LIMITS、launch、JVM2G/768m、worker1/禁并行、所有时间/输出/离线与claim规则保持。16项定向检查通过（含11纯C#断言），非作者Codex无遗留P1/P2，非外部独立验收。
+
+case03 v1015-local-aar-mem6-20261106-case03已物化/编译/冻结853.359秒，63248文件/6285582032字节，external49649；合同ac07e761b78898080c253048ded8d4067697c4f73ea1cb98c1c55192f0b737b7、binary8e343c2f4a6862ff602c6605e862f2b1e51c863cab6e7c536705dbd685619284。派生源码、合同、回执均为Job6442450944字节/required10240MiB；payload/helper及7配置回读一致，输出空，无grant/claim/SDK。15149MiB/423369560064字节仅准备后快照，完整fresh preflight和6GiB实际native执行均NOT_RUN。
+
+下一只请求本具名case03独立最多1次本机assembleAarRelease：Job6GiB/64、SDK30分钟/host35分钟/本实例STOP另45秒、2GiB采样可瞬时超量、不重试、可用10240MiB/工作卷8GiB；原离线禁下载/非OS断网、不改系统网络及VM/APK/设备/模拟器执行/DB/媒体/外部服务/生产/安装升级/新许可排除不变。新实际额度UNKNOWN_NOT_CREATED。获新具名授权后先轻量资源，支持才由launch一次fresh核验/唯一claim，不重复全量preflight。
+
+本轮准备决定不自动等于SDK试跑许可，也不重问既有一般本机/模拟器路线授权。原证LOCAL_ONLY；成功还需完整AAR验证，不直接放行APK/G2。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6。
+
+---
+
 # v10.1.5｜2026-11-06 case02诊断实测已耗，下一资源边界待Owner决定
 
 ## 2026-11-06 case02独立授权执行与Job预算证据

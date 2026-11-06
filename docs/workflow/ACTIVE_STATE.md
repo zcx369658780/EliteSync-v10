@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-06 Owner批准6GiB策略，case03已准备待具名单次SDK授权（CURRENT ENTRY）
+
+**OWNER_APPROVED_MEMORY6_PREPARATION / CASE03_PREPARED_NOT_RUNTIME_GRANTED / NO_GRANT_OR_CLAIM / SDK_NOT_RUN / CASE01_CASE02_REMAINING_0 / G2_FALSE**
+
+Owner对call_588370d3bb2a4f14a17f0e02ebac89a4/item0明确答“同意6GiB，先准备新候选”。本轮仅实现/准备，实际SDK额度尚未创建；旧case01与case02仍各1/1已耗余0，不修改原grant/claim/二进制、失败或部分仓库。
+
+源码 **c882e1466f746f4b5a3783fb7dd0155b78162727**：local_boundary/prepare显式job_memory_gib，默认4GiB/8192MiB兼容，Owner批准6GiB/10240MiB模式保留4GiB余量，只改新派生Job限额；shared原始边界SHA0a78…982e/64进程/Job核心不变。策略写入新合同和prepared回执，拒绝bool及其他值在读源/建目录前；全局LIMITS默认8GiB、launch及JVM2G/768m/worker1/禁并行不改。16项定向检查通过（含11纯C#断言），非作者Codex无遗留P1/P2；非外部独立验收，6GiB实际native/SDK执行NOT_RUN。
+
+新case `v1015-local-aar-mem6-20261106-case03` 已真实物化/编译/冻结853.359秒：work63248文件/6285582032字节，external49649；合同 **ac07e761b78898080c253048ded8d4067697c4f73ea1cb98c1c55192f0b737b7**，binary **8e343c2f4a6862ff602c6605e862f2b1e51c863cab6e7c536705dbd685619284**，nonce见私有提案。派生源码Job6442450944字节与合同/回执一致，启动门10240MiB；6份payload/4份helper、7配置回读一致，无guest残留，control7项、输出空，无grant/claim/launched。
+
+准备后轻量快照15149MiB/工作卷423369560064字节支持当时资源门，但不是持续资格或preflight PASS。未在物化后额外全量预检；未来获具名单次授权后，先轻量核资源，支持才由既有launch一次fresh核输入/资源/唯一claim。待决定仅为本case03独立最多1次本机assembleAarRelease，Job6GiB/64、SDK30分钟/host35分钟/本实例STOP另45秒、输出2GiB采样可瞬时超量、不重试，10240MiB/工作卷8GiB；原离线/禁下载、非OS断网与VM/APK/设备/模拟器执行/DB/媒体/外部服务/生产/安装升级/新许可排除保持。旧0余额不继承。
+
+LOCAL_ONLY先读case03的proposed-memory6-single-aar-scope-private.json与memory6-candidate-binding-readback-private.json；工程回执在v1015-memory6-engineering-20261106-e231a697f74841948d4a53a9956685ce。case02实测峰值约4.001GiB/系统提交余量至少23.3GiB是旧诊断证据，不等于6GiB实际通过或AAR完成。成功若REPOSITORY_UNVERIFIED仍须核完整主AAR/版本/hash，再准备实际Debug host；模拟器ABI兼容性仍UNKNOWN。原main4bebc8f3/255/index2be660…与旧1143保护保持；10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6。[细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-owner批准6gib与case03准备节点)。
+
+---
+
 # EliteSync｜2026-11-06 case02实测达到4GiB预算边缘，额度耗尽（CURRENT ENTRY）
 
 **CASE02_DART_OOM / RUNTIME_MEMORY_SAMPLING_OBSERVED / CASE01_AND_CASE02_SPENT_1_REMAINING_0 / NO_MAIN_AAR_OR_APK / RESOURCE_POLICY_DECISION_PENDING / G2_FALSE**
