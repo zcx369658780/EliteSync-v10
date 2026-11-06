@@ -1,3 +1,19 @@
+# v10.1.5｜2026-11-06 内存诊断准备完成，等待新的具名SDK决定
+
+## 2026-11-06 Owner同意继续诊断与case02准备事实
+
+Owner“我同意，请继续”后，Codex完成内存诊断实现、定向检查/非作者复核与新私有候选准备；没有将泛称继续写成具名新SDK额度或创建grant/claim。旧case01 scope1/1永久已耗余0，原候选、原grant/claim、失败和部分仓库不改。
+
+源码08c8be6057dc82ee8d9831fe395fe614dd0a7532只补借用Job的只读限额/峰值、系统提交量采样及结束回执；不改4GiB/64、JVM2G/768m、worker1、超时/输出/授权规则。13项定向检查通过，含11个纯C#断言，非作者Codex无遗留P1/P2；非外部独立验收，真实native Job/SDK诊断NOT_RUN。查询失败保留PARTIAL/UNKNOWN；采样时点不是精确故障瞬间，不自动判断OOM根因或放宽限额。
+
+case02 v1015-local-aar-diag-20261106-case02已物化/编译/冻结1012.172秒，63248文件/6285582032字节，external49649；合同e983ba1ffabec865dd062603ffed6affccb55c212990c772f15eeeaaa423ab08、binary2408a3915ec70100ddefb84af76f4a715e67cd1623894cca8148fb81b8013cf1，nonce见私有提案。payload/helper与7配置回读一致，输出空、无grant/claim/SDK；未额外全量preflight。13605MiB/434353999872字节只是当时资源快照。
+
+待决定的具体新范围：绑定该候选独立最多1次本机assembleAarRelease，仍Job4GiB/64进程、SDK30分钟/host35分钟、STOP本实例另45秒、2GiB采样可瞬时超量、不重试、内存8192MiB/工作卷8GiB；离线参数禁下载、非OS断网、不改系统网络，排除VM/APK/模拟器及设备执行/DB/媒体/外部服务/生产/安装升级/新许可。新实际额度UNKNOWN_NOT_CREATED；原一次额度已耗，不能借用。同一候选获具名授权后先轻量资源，支持才launch一次fresh全量复核并claim，不重复全量preflight。
+
+一般本机编译与模拟器调试路线授权保留，不重问；这里仅是新独立SDK范围决定。成功还需完整主AAR/版本/hash验证，不把诊断或部分仓库当APK/G2通过。原证LOCAL_ONLY，10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6。
+
+---
+
 # v10.1.5｜2026-11-06 本机AAR单次执行结束，原额度已耗
 
 ## 2026-11-06 内存释放通知后真实本机执行与Dart OOM

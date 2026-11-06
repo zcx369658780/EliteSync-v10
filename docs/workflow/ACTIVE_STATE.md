@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-06 内存诊断源码与case02已准备，待具名新运行决定（CURRENT ENTRY）
+
+**MEMORY_DIAGNOSTIC_SOURCE_READY / NEW_LOCAL_CANDIDATE_PREPARED / NEW_RUNTIME_BUDGET_UNKNOWN_NOT_CREATED / SDK_NOT_RUN / OLD_CASE01_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner同意继续内存诊断。本轮完成源码、定向检查、非作者复核和新的私有候选准备；未生成新的SDK grant/claim，未试跑或更改旧case01。旧单次额度仍永久已耗余0，不从旧grant的历史初始字段恢复余额。
+
+源码 **08c8be6057dc82ee8d9831fe395fe614dd0a7532**：借用自有Job句柄只读查询提交内存限额/Job与进程峰值，GetPerformanceInfo读取系统提交页数并乘PageSize。失败保留PARTIAL/UNKNOWN；不凭诊断值自动判因、调整限额或改SDK结果。每心跳采样，观测根退出后、释放Job前再取最后样本，result/failure/watchdog带memory_last和采样时点。Job4GiB/64、JVM2G/768m、worker1、禁并行及原超时/输出/离线规则均不变。13项定向Python检查通过（内含11个纯C#行为断言）；非作者Codex无遗留P1/P2，非外部独立验收，真实native Job/SDK诊断NOT_RUN。
+
+新候选 `C:\Users\zcxve\EliteSyncDev\v1015-local-aar-diag-20261106-case02` 已实际物化/编译/冻结1012.172秒，work63248文件/6285582032字节、external49649；合同 **e983ba1ffabec865dd062603ffed6affccb55c212990c772f15eeeaaa423ab08**、binary **2408a3915ec70100ddefb84af76f4a715e67cd1623894cca8148fb81b8013cf1**，nonce见私有提案。6份payload/4份helper、7关键配置回读一致，无guest路径残留；control7项、输出空，无grant/claim/launched。未单独全量preflight，完整fresh复核只保留在未来获具名授权的launch中一次。
+
+准备后轻量快照13605MiB/工作卷434353999872字节支持当时资源门，但不是持续资格或preflight PASS。下一个具体决定仅为本case02独立最多1次本机assembleAarRelease：原4GiB/64、SDK30分钟/host35分钟/本实例STOP另45秒、输出2GiB采样可瞬时超量、不重试，内存8192MiB/工作卷8GiB，离线参数禁下载、非OS断网；排除VM/APK/设备/模拟器执行/DB/媒体/外部服务/生产/安装升级/新许可。旧scope全部余0。成功只为REPOSITORY_UNVERIFIED时仍须既有verify_repository，不直接放行APK/G2。
+
+LOCAL_ONLY先读case02的proposed-single-local-aar-diagnostic-scope-private.json、diagnostic-candidate-binding-readback-private.json；工程回执在v1015-memory-diag-engineering-20261106-bfa5778af10a42319bba31494212e3ee。旧749保护已核一致、原main4bebc8f3/255/index2be660…保持；原证/二进制/许可证不上GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；[细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-内存诊断实现与新本机候选准备)。
+
+---
+
 # EliteSync｜2026-11-06 本机AAR实测Dart内存分配失败，单次额度已耗（CURRENT ENTRY）
 
 **ACTUAL_LOCAL_AAR_FAILED_DART_OOM / SPENT_1_REMAINING_0 / NO_MAIN_AAR_OR_APK / FROZEN_CASE_PRESERVED / G2_FALSE**

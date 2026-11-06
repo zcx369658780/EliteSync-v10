@@ -1,3 +1,21 @@
+# EliteSync-v10｜2026-11-06 内存诊断候选已准备
+
+## 2026-11-06 内存诊断实现与新本机候选准备
+
+| 项目 | 实际事实与后续边界 |
+|---|---|
+| Owner与旧scope | Owner“我同意，请继续”后推进诊断工程和候选准备；旧case01实际Dart OOM、scope1/1耗尽余0不改，不用旧grant/换目录续额。本轮没有创建新的具名SDK额度、grant或claim |
+| 代码身份与改动 | 08c8be6057dc82ee8d9831fe395fe614dd0a7532，新增local_aar_memory_diagnostics.cs及纯fixture/harness；local supervisor借用Job查询class9峰值/限额，GetPerformanceInfo记录提交页数*PageSize与动态headroom。query失败保留PARTIAL/UNKNOWN；峰值不是物理RAM，不能仅凭采样自动判定OOM原因 |
+| 采样与限制 | 每心跳记录，观测根进程退出后、释放Job前最后采样；result/failure/watchdog带memory_last/采样时点。保留Job4GiB/64、JVM2G/768m、worker1、parallel=false/daemon=false及全部原超时/输出/授权规则；不Set/Terminate/Close借用句柄，不自动改SDK结论 |
+| 实际验证 | 最终13项定向Python检查通过，含11个纯C#行为断言；新增前先红，文本拼写断言由实际候选编译/冻结回读替代。非作者Codex无遗留P1/P2，非外部独立验收。原native Job/SDK采样仍NOT_RUN；前轮17项不记本轮新测 |
+| 新候选实物 | v1015-local-aar-diag-20261106-case02，1012.172秒完成物化/Framework64 csc编译/清单；work63248文件/6285582032字节，external49649。合同e983ba1ffabec865dd062603ffed6affccb55c212990c772f15eeeaaa423ab08，binary2408a3915ec70100ddefb84af76f4a715e67cd1623894cca8148fb81b8013cf1；nonce在私有提案 |
+| 回读与资格 | 6份payload、4份host helper hash匹配；7关键实际配置无guest路径残留，控制器stderr空，control7项、输出空，无grant/claim/launched。完整fresh preflight NOT_RUN，不在物化后立即重复全量读。准备后13605MiB/434353999872字节仅资源快照，不能继承为启动资格 |
+| 待具名独立运行范围 | 最多1次本机assembleAarRelease；Job4GiB/64、SDK1800秒/host2100秒/STOP本实例45秒、输出2GiB采样可瞬时超量、8192MiB/工作卷8GiB、不重试。离线参数禁下载而非OS断网，原VM/APK/设备/模拟器执行/DB/媒体/外部服务/生产/安装升级/新许可排除保持；新实际额度UNKNOWN_NOT_CREATED |
+| 后续与状态 | 新授权只绑定本候选，资源支持才由launch一次fresh核输入/资源/唯一claim；若成功只为REPOSITORY_UNVERIFIED仍用verify_repository核完整主AAR/版本/hash，然后再准备实际私有Debug host。模拟器x86_64与候选ARM64兼容性UNKNOWN；本轮SDK/VM/APK/ADB/模拟器0，10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING |
+| 原证与保护 | case02的proposed-single-local-aar-diagnostic-scope-private、diagnostic-candidate-binding-readback-private及prepared-resource-snapshot-private；工程目录v1015-memory-diag-engineering-20261106-bfa5778af10a42319bba31494212e3ee保存准备/测试复核回执和文档原文。旧749保护一致，原main4bebc8f3/255/index2be660保持；原证/二进制/许可证不上传，普通同步原分支，不合main、不启v10.1.6 |
+
+---
+
 # EliteSync-v10｜2026-11-06 本机AAR实际执行失败封存
 
 ## 2026-11-06 本机AAR实测Dart内存失败与额度耗尽
