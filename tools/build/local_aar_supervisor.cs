@@ -31,10 +31,18 @@ internal static class LocalAarSupervisor {
            (string)claim["grant_sha256"]!=grantSha||!Equals(claim["attempt"],1))
             throw new InvalidDataException("Independent local AAR authority does not match");
     }
+    internal static Dictionary<string,object> MemoryHeartbeat(TextWriter writer,IntPtr job,long elapsed,bool rootExited,
+                                                             Func<IntPtr,Dictionary<string,object>> capture=null) {
+        var memory=(capture??LocalAarMemoryDiagnostics.Read)(job);
+        // These are observations at this timestamp, never a precise failure-instant diagnosis.
+        memory["sample_elapsed_ms"]=elapsed;memory["root_exit_observed"]=rootExited;
+        writer.WriteLine(Json.Serialize(new{elapsed_ms=elapsed,root_exit_observed=rootExited,memory=memory}));writer.Flush();
+        return memory;
+    }
     static int Main(string[] args) {
         if(args.Length!=1)return 30;
         var clock=Stopwatch.StartNew();WindowsProducerBoundary api=null;Timer watchdog=null;
-        bool started=false;
+        bool started=false;Dictionary<string,object> memoryLast=null;
         try {
             byte[] raw=File.ReadAllBytes(Path.Combine(Control,"run-contract.json"));
             var contract=Json.Deserialize<Dictionary<string,object>>(Encoding.UTF8.GetString(raw));
@@ -43,7 +51,7 @@ internal static class LocalAarSupervisor {
                       args[0],Hash(File.ReadAllBytes(Process.GetCurrentProcess().MainModule.FileName)));
             long limit=Convert.ToInt64(contract["sdk_seconds"])*1000;
             watchdog=new Timer(delegate {
-                try{Publish("watchdog.json",new{nonce=args[0],reason="local_sdk_deadline"});}
+                try{Publish("watchdog.json",new{nonce=args[0],reason="local_sdk_deadline",memory_last=memoryLast});}
                 finally{Environment.Exit(83);}
             },null,checked((int)Math.Max(1,limit-clock.ElapsedMilliseconds)),Timeout.Infinite);
             var request=(Dictionary<string,object>)contract["launch_request"];
@@ -56,19 +64,22 @@ internal static class LocalAarSupervisor {
                     while(true) {
                         if(clock.ElapsedMilliseconds>=limit)throw new TimeoutException("Local SDK deadline");
                         if(File.Exists(Path.Combine(Output,"host-stop.json")))throw new IOException("Host requested owned build stop");
-                        if(api.HasExited(lease.Process)){exit=api.ExitCode(lease.Process);break;}
-                        heartbeat.WriteLine(Json.Serialize(new{elapsed_ms=clock.ElapsedMilliseconds}));heartbeat.Flush();Thread.Sleep(500);
+                        if(api.HasExited(lease.Process)){
+                            memoryLast=MemoryHeartbeat(heartbeat,lease.Job,clock.ElapsedMilliseconds,true);
+                            exit=api.ExitCode(lease.Process);break;
+                        }
+                        memoryLast=MemoryHeartbeat(heartbeat,lease.Job,clock.ElapsedMilliseconds,false);Thread.Sleep(500);
                     }
                 }
             }
             if(exit!=0)throw new InvalidOperationException("Local AAR producer exited "+exit);
             if(clock.ElapsedMilliseconds>=limit)throw new TimeoutException("Local result deadline");
             Publish("result.json",new{nonce=args[0],status="LOCAL_AAR_ROOT_EXIT0_REPOSITORY_UNVERIFIED",root_exit=exit,
-                elapsed_ms=clock.ElapsedMilliseconds,repository=(string)contract["repository"],sdk_started=started,G2=false});
+                elapsed_ms=clock.ElapsedMilliseconds,repository=(string)contract["repository"],sdk_started=started,memory_last=memoryLast,G2=false});
             return 0;
         } catch(Exception error) {
             Publish("failure.json",new{nonce=args[0],reason=error.ToString(),root_create_attempted=api!=null&&api.RootCreateAttempted,
-                sdk_start_observed=started,elapsed_ms=clock.ElapsedMilliseconds,G2=false});return 32;
+                sdk_start_observed=started,elapsed_ms=clock.ElapsedMilliseconds,memory_last=memoryLast,G2=false});return 32;
         } finally {if(watchdog!=null)watchdog.Dispose();}
     }
 }

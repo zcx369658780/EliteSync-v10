@@ -143,9 +143,11 @@ def prepare(root, prepared_inputs, source_case):
     executable=control/'LocalAarProducer.exe';java=entry['argv'][0];cwd=Path(request['cwd'])
     (control/'local-boundary.cs').write_bytes(local_boundary(boundary,work,executable,java,cwd,output,current_user()))
     shutil.copyfile(HERE/'local_aar_supervisor.cs',control/'local_aar_supervisor.cs')
+    shutil.copyfile(HERE/'local_aar_memory_diagnostics.cs',control/'local_aar_memory_diagnostics.cs')
     compiler=Path('C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe')
     compiled=subprocess.run([str(compiler),'/nologo','/warnaserror','/platform:x64','/r:System.Web.Extensions.dll',
-        '/main:LocalAarSupervisor','/out:'+str(executable),str(control/'local-boundary.cs'),str(control/'local_aar_supervisor.cs')],capture_output=True,timeout=60)
+        '/main:LocalAarSupervisor','/out:'+str(executable),str(control/'local-boundary.cs'),str(control/'local_aar_supervisor.cs'),
+        str(control/'local_aar_memory_diagnostics.cs')],capture_output=True,timeout=60)
     (root/'compiler.stdout').write_bytes(compiled.stdout);(root/'compiler.stderr').write_bytes(compiled.stderr)
     if compiled.returncode:raise RuntimeError('Local controller compile failed; preserve candidate')
     inventory=inventory_trees(roots={'local_work':str(work)},file_limit=100000,entry_limit=200000,
@@ -156,7 +158,7 @@ def prepare(root, prepared_inputs, source_case):
     external=[row for row in declared['files'] if str(Path(declared['roots'][row['role']]).resolve()).casefold() in external_roles]
     shared.put(control/'external-inputs.json',external)
     helpers={str(HERE/name):shared.sha(HERE/name) for name in
-             ['current_product_local_producer.py','current_product_local_entry.py','local_aar_supervisor.cs']}
+             ['current_product_local_producer.py','current_product_local_entry.py','local_aar_supervisor.cs','local_aar_memory_diagnostics.cs']}
     payload={p.relative_to(root).as_posix():shared.sha(p) for p in control.iterdir() if p.is_file()}
     contract=dict(kind='current-product-local-aar-producer',scope=root.name,host_root=str(root),work_root=str(work),
         nonce=uuid.uuid4().hex,binary_sha256=shared.sha(executable),launch_request=request,
