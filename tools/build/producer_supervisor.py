@@ -94,10 +94,12 @@ def prepare(root, prepared_inputs, entry_file):
                  [('owned_flutter','C:/Inputs/PreparedFlutter'), ('owned_project','C:/Inputs/PreparedProject')]]
     # AGP defaults to Build Tools 35; selected plugins also declare platforms
     # 34 and 35. Reuse these installed inputs without changing SDK versions.
+    # Flutter recognizes the SDK root through its existing licenses directory.
     sdk = Path(layout['readonly_mappings']['android_build_tools_36']['host']).parent.parent
     supplemental = {'android_build_tools_35':'build-tools/35.0.0',
                     'android_platform_34':'platforms/android-34',
-                    'android_platform_35':'platforms/android-35'}
+                    'android_platform_35':'platforms/android-35',
+                    'android_licenses':'licenses'}
     supplemental_inventory = inventory_trees(roots={role:str(sdk/path) for role,path in supplemental.items()},
         file_limit=30000, entry_limit=60000, byte_limit=1024**3, depth_limit=32)
     mappings += [dict(host=str(sdk/path), guest='C:/Inputs/AndroidSdk/'+path, readonly=True)

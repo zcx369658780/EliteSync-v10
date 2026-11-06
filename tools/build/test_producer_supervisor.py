@@ -24,6 +24,8 @@ class SupervisorTests(unittest.TestCase):
             for version in ('34','35'):
                 platform=task/('sdk/platforms/android-'+version);platform.mkdir(parents=True)
                 (platform/'android.jar').write_bytes(b'fixture-not-a-real-platform')
+            licenses=task/'sdk/licenses';licenses.mkdir()
+            (licenses/'android-sdk-license').write_bytes(b'fixture-not-a-license-acceptance')
             inventory=inputs/'private-flutter-complete-inventory-private.json';inventory.write_text('{}')
             project_inventory=inputs/'private-project-inventory-private.json';project_inventory.write_text('{}')
             layout=dict(readonly_mappings={'android_cmake_3_22_1':dict(host=str(task),guest='C:/Inputs/CMake',readonly=True),
@@ -69,6 +71,8 @@ class SupervisorTests(unittest.TestCase):
             for version in ('34','35'):
                 self.assertIn(dict(host=str(task/('sdk/platforms/android-'+version)),guest='C:/Inputs/AndroidSdk/platforms/android-'+version,readonly=True),contract['readonly_mappings'])
                 self.assertEqual([row['relative_path'] for row in contract['native_inputs'] if row['role']=='android_platform_'+version],['android.jar'])
+            self.assertIn(dict(host=str(licenses),guest='C:/Inputs/AndroidSdk/licenses',readonly=True),contract['readonly_mappings'])
+            self.assertEqual([row['relative_path'] for row in contract['native_inputs'] if row['role']=='android_licenses'],['android-sdk-license'])
             self.assertTrue((root/'probe/supplemental-sdk-inventory.json').is_file())
             (tools35/'aapt2.exe').write_bytes(b'fixture-not-executablX')
             with self.assertRaisesRegex(ValueError,'Native input identity changed'):
