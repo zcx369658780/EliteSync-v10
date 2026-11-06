@@ -1,3 +1,15 @@
+# EliteSync｜2026-11-06 Owner下放同类运行授权，case03已获独立1次（CURRENT ENTRY）
+
+**OWNER_DELEGATED_SIMILAR_LOCAL_RUN_AUTHORITY / CASE03_OWNER_GRANTED_LAUNCH_IN_PROGRESS / OLD_SCOPE_BALANCES_UNCHANGED / G2_FALSE**
+
+Owner先对call_66b64a26fd254c9c9778c8738a9b48a1/item0答“授权case03独立1次，资源达标后执行”，随后明确：“备注：类似的运行授权我完全下放给你，后续不用再问我”。后续同类、已批准边界内的本机AAR工程运行由Codex安排并创建/保存各自的授权、合同、claim与原证，**不再逐次索取Owner运行确认**；不得伪造Owner逐案答复。已有6GiB/64进程、SDK30分钟/host35分钟/STOP本实例45秒、输出2GiB采样可瞬时超量、离线禁下载、资源10GiB/工作卷8GiB等已批准边界保持，不自动扩大资源上限或当前明确排除项。旧已耗scope仍余0，不退款/覆盖STOP或以新目录冒充旧余额。
+
+case03原合同ac07e761…b737b7/binary8e343c2f…19284/nonce76852b…保持，grant原文和副本已独占保存。启动前轻量14660MiB/422685237248字节支持，已调用现有launch一次fresh全量复核，未另跑全量preflight。实际消费/启动状态以本实例launch.claim、launched、controller/result/failure/outcome为准；SDK结束后记录实际结果。此前准备快照和“待具名授权”为历史时点，不再要求同类运行逐次Owner批准。
+
+下放不重置case01/02或任何旧额度，不把case03 AAR单次范围扩为APK/设备执行；后续阶段按Owner已批准目标、适用范围和当前资格建立独立记录，生产/真实数据/费用/安装升级/新许可、正式发布等保留事项不自动放开。普通实现/修复/测试/Git继续由Codex负责；自测/非作者复核不冒充外部独立验收。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持。授权原证在case03的owner-case03-explicit-grant-*与owner-similar-local-aar-delegation-*，均LOCAL_ONLY。
+
+---
+
 # EliteSync｜2026-11-06 Owner批准6GiB策略，case03已准备待具名单次SDK授权（CURRENT ENTRY）
 
 **OWNER_APPROVED_MEMORY6_PREPARATION / CASE03_PREPARED_NOT_RUNTIME_GRANTED / NO_GRANT_OR_CLAIM / SDK_NOT_RUN / CASE01_CASE02_REMAINING_0 / G2_FALSE**
