@@ -5,7 +5,7 @@
 - **真实离线:app:assembleDebug成功2m15s，38任务/38执行**；SDK136608ms、driver160.390秒、root/controller0。原始完整AAR仓库被消费，syncFlutterAar任务在私有脚本中仅校验仓库，没有Flutter Exec。Job峰值3782389760字节；6GiB/64与原边界保持。scope已耗1余0，不重跑。
 - APK实核包名com.elitesync.v1015dev、versionName10.1.5-dev、versionCode1010501、debuggable=true、仅arm64-v8a、含libapp.so/libflutter.so，apksigner校验成功且Android Debug signer；73459721字节，SHA256 776643b37d526309562fa453b97fb7b6c908d405cc1c04951810192e44f43561。使用私有Home生成Debug签名，不复制原untracked配置/密钥。
 - 新私有模拟器scope独立于host/AAR：已有镜像android-36.1/google_apis/x86_64，WHPX可用；一次启动/安装/Activity启动，Job6GiB/64、启动10GiB/磁盘8GiB、900秒运行/950秒host/本实例45秒收尾、2GiB遥测采样；不改系统网络，实例radio/wifi restrict=on与禁metrics，安装前关闭该私有实例wifi/data，不申请媒体权限。全部授权记录标明依据Owner下放，不伪造逐案Owner答复。
-- 启动前fresh15149MiB支持。运行时abi列表x86_64,arm64-v8a，native bridge=libndk_translation.so/exec=1；安装Success。am start Status ok/Activity com.elitesync.v1015dev/com.elitesync.MainActivity，冷启动10636ms；PID2155、Activity resumed，主代理查看实际“慢约会”账号登录首屏。10秒后所取1500行日志未见FATAL/Eflutter/ANR/Unhandled等应用错误标记；该窄窗口不证明长期稳定或功能贯通。
+- 启动前fresh15149MiB支持。运行时abi列表x86_64,arm64-v8a，native bridge=libndk_translation.so/exec=1；安装Success。am start Status ok/Activity com.elitesync.v1015dev/com.elitesync.MainActivity，冷启动10636ms；PID2155、Activity resumed，主代理查看实际“慢约会”账号登录首屏。10秒后所取日志展开1905行，未见FATAL/Eflutter/ANR/Unhandled等应用错误标记；该窄窗口不证明长期稳定或功能贯通。
 - 会话92.890秒，controller0/root0，Job峰值4047339520字节；emu kill OK、独立ADB kill-server0、5060/5580/5581已关闭，cleanup_errors空。首次模拟器scope已耗1余0，旧AVD/物理手机/旧VM不动；旧VM teardown UNKNOWN不被本次结果改写。
 - 稳定私有交付目录v1015-debug-delivery-20261106-case01，原APK与交付副本SHA一致，实际截图另存login-first-frame.png。原证在host case02、emulator case01，最终Git/ref/保护ledger见LOCAL_ONLY收尾回执；产物、原证、二进制、许可证不上GitHub。
 
