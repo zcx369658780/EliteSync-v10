@@ -223,7 +223,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           .read(apiClientProvider)
           .get(
             '/api/v1/messages',
-            query: {'peer_id': widget.peerId, 'limit': 100},
+            query: {'peer_id': widget.peerId, 'limit': 100, 'latest': 1},
             cancelToken: _uploadCancellation,
             options: Options(
               extra: {requestSessionGuardKey: () => _current(session, epoch)},

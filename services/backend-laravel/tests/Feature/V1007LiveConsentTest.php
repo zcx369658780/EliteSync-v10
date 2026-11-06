@@ -89,6 +89,27 @@ final class V1007LiveConsentTest extends TestCase
         $this->getJson('/api/v1/conversations')->assertNotFound();
     }
 
+    public function test_latest_message_window_keeps_new_messages_and_legacy_cursor_order(): void
+    {
+        $this->active();
+        $ids = [];
+        for ($i = 1; $i <= 105; $i++) {
+            $ids[] = ChatMessage::create([
+                'room_id' => min($this->a->id, $this->b->id).'_'.max($this->a->id, $this->b->id),
+                'sender_id' => $this->a->id, 'receiver_id' => $this->b->id,
+                'content' => 'fictional history '.$i,
+            ])->id;
+        }
+        Sanctum::actingAs($this->b);
+        $url = '/api/v1/messages?peer_id='.$this->a->id.'&limit=100';
+        $this->assertSame(array_slice($ids, 0, 100), $this->getJson($url)->assertOk()->json('items.*.id'));
+        $this->assertSame(array_slice($ids, -100), $this->getJson($url.'&latest=1')->assertOk()->json('items.*.id'));
+        $this->assertSame(array_slice($ids, 100), $this->getJson($url.'&after_id='.$ids[99])->assertOk()->json('items.*.id'));
+        $this->getJson($url.'&latest=1&after_id='.$ids[99])->assertUnprocessable();
+        $this->act('consent', 'revoke', 2, $this->b)->assertOk();
+        $this->getJson($url.'&latest=1')->assertNotFound();
+    }
+
     public function test_a_second_authorized_peer_cannot_replay_a_revoked_peers_message(): void
     {
         $this->active();

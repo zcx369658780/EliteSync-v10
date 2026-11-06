@@ -180,8 +180,9 @@ class MessageController extends Controller
     {
         $data = $request->validate([
             'peer_id' => ['required', 'integer', 'min:1'],
-            'after_id' => ['nullable', 'integer', 'min:0'],
+            'after_id' => ['nullable', 'integer', 'min:0', 'prohibited_if:latest,1,true'],
             'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
+            'latest' => ['nullable', 'boolean'],
         ]);
 
         $user = $request->user();
@@ -193,6 +194,7 @@ class MessageController extends Controller
 
         $afterId = (int) ($data['after_id'] ?? 0);
         $limit = (int) ($data['limit'] ?? 50);
+        $latest = (bool) ($data['latest'] ?? false);
         $roomId = $this->roomId((int) $user->id, $peerId);
 
         // Pulling conversation acts as read receipt for incoming unread messages.
@@ -218,9 +220,14 @@ class MessageController extends Controller
             ->with(['attachments.mediaAsset'])
             ->where('room_id', $roomId)
             ->where('id', '>', $afterId)
-            ->orderBy('id')
+            // Live views replace their current window; delta consumers retain
+            // the existing ascending after_id contract when latest is absent.
+            ->orderBy('id', $latest ? 'desc' : 'asc')
             ->limit($limit)
             ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at']);
+        if ($latest) {
+            $items = $items->reverse()->values();
+        }
 
         return response()->json([
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),

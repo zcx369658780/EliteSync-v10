@@ -34,7 +34,7 @@ class _Secure extends SecureStorageService {
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     user: UserSummary(id: 1, phone: 'synthetic'),
   );
@@ -57,6 +57,7 @@ class _Api extends ApiClient {
   int successfulPostAcknowledgements = 0;
   Completer<NetworkResult<Map<String, dynamic>>>? preflight;
   final posts = <Map<String, dynamic>>[];
+  int? longHistoryCount;
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
@@ -70,6 +71,17 @@ class _Api extends ApiClient {
           Future.value(const NetworkSuccess({'items': <dynamic>[]}));
     }
     events.add('message-read');
+    if (longHistoryCount != null) {
+      final history = List.generate(longHistoryCount!, (index) => {
+        'id': index + 1,
+        'content': 'fictional history ${index + 1}',
+        'attachments': <dynamic>[],
+      });
+      final latest = query?['latest'] == 1;
+      return NetworkSuccess({
+        'items': latest ? history.skip(history.length > 100 ? history.length - 100 : 0).toList() : history.take(100).toList(),
+      });
+    }
     if (pendingRead != null) return pendingRead!.future;
     if (readMode == 'non-network-failure') {
       return NetworkFailure(
@@ -230,6 +242,26 @@ Finder _mediaButton(String tooltip) => find.byWidgetPredicate(
     );
 
 void main() {
+  testWidgets('refresh reads the newest chronological window beyond 100 messages', (tester) async {
+    final f = await _mount(tester);
+    f.api.longHistoryCount = 105;
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    var saved = await f.cache.readOnlineAuthorized('live-chat:2');
+    var messages = saved!['messages'] as List;
+    expect(messages.length, 100);
+    expect(messages.first['id'], 6);
+    expect(messages.last['id'], 105);
+    f.api.longHistoryCount = 106;
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    saved = await f.cache.readOnlineAuthorized('live-chat:2');
+    messages = saved!['messages'] as List;
+    expect(messages.first['id'], 7);
+    expect(messages.last['id'], 106);
+    expect(messages.map((m) => m['id']).toSet().length, 100);
+    await _dispose(tester, f);
+  });
   testWidgets(
     'large authorized history keeps recent offline messages without locking online',
     (tester) async {
