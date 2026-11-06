@@ -1,3 +1,31 @@
+# 2026-11-07 WS成员资格修复及五组真实串行撤权观察，保留已复现基线失败
+
+**WS_MEMBERSHIP_FIX_VERIFIED / SERIAL_AUTHORITY_CASES_OBSERVED / BASELINE_TEST_FAILURE_RETAINED / G2_FALSE**
+
+工程源码 **081ec8dcdb787622ac1530202fe68c953a15c597**，apps树 **1e7a0349a947d3798faa6c2f78058e008dd8259c** 不变，services树 **b79a234e7422fb98428015d92ee5ad069f120084**。定位到发送授权会拒绝departed成员，但WS能力只核actor仍是当前成员，遗漏peer的left_at/成员缺失。can_ws仅追加当前peer成员存在且left_at为空；现有actor、token/设备族、CN/MC/Block及其他历史读取判断保持，不借此开启RTC或改变旧历史读标准。
+
+有效红例2项都拿到不应返回的授权数组；新增peer离开、peer成员缺失及actor离开3回归，健康授权前置保持。修复后 **V1015WsAuthorizationTest 11项通过**；完整定向PHP组 **27项中26通过、1失败，211断言**。失败为既有test_block_denies_mutation_but_preserves_historical_read：预期Block后历史读true，当前实现false；在修改前 **03f3cde11d66098bc93d262c67eb739e98e9f4c4** 源码上独立复现同样失败。原测试/断言/失败保留，此标准与当前实现冲突仍未解决，不通过改权限、删测试或换统计把整组标绿。非作者Codex静态复核无新可行动P1/P2，不等于整版无缺陷。
+
+未安装客户端依赖，使用本机标准库的受限loopback WS观察器；14项FakeSocket协议纯测试通过，覆盖预读/TCP分片、connected校验、关闭、坏协议、超时区别；三份私有PHP模板语法解析通过。这些不当真实WS、数据库或设备资格。新具名后端与WS probe分别记录依据Owner下放的grant/唯一claim；不是Owner逐案答复，也不复用旧scope。
+
+新实际范围 **v1015-ws-authority-runtime-20261107-case01**：新库 **nov07_ws_authority_case01 /内部55376 /server_id230110711**，有效APP_DB_CONNECTION=mysql优先于DB_CONNECTION=sqlite，URL/socket为空，限定账号只获新库权限。固定本机PHP/MariaDB images/vendor114包和当前提交源快照只读，0表→93表，一次seed事务4虚构账号/4好友关系，无预置消息；不安装/升级/pull或迁移框架。轻量12137MiB支持后由现有runner一次完整输入/资源复核并创建claim。loopback API8021、WS8022，实例poll=1秒。
+
+实际 **39条HTTP命令、12次WS连接**：5次取得匹配actor的应用层connected，7次拒绝（1次冒用actor路径对照、6次权限变化后），每次拒绝都核对应authorize=false日志；HTTP101本身不当授权，超时/协议错误会停止，不当拒绝通过。实际API发送5条消息，其中一条从peer发往当前连接，收到真实conversation_changed对应ID且无正文。
+
+五组串行变化：①注销A旧访问令牌后已连WS关闭、新握手拒绝，旧HTTP读/重放401；新密码登录产生新合法会话，不声称该新登录T0不变。②新A连接健康后在本次新空库对A/B唯一peer成员left_at作一次具名TEST_INJECTION，周期复核false后关闭、新握手拒绝，发送/重放404；不改变历史读语义、不冒充实际APP离开入口。③C经原API Block A，既有A/C WS关闭、新握手与HTTP读/重放拒绝404。④B经原API关闭B/C连接，旧通道关闭，新握手、HTTP读/重放拒绝404。⑤虚构admin经原API禁用虚构B，admin/B既有通道关闭；禁用actor及其peer的新握手拒绝，旧token读401、peer读404。账号、成员、CN/MC、token元数据和精确事件观察原证保留，无真实用户/生产作用。
+
+五个已连通道分别有对应token ID/actor/peer的reauthorize=false日志。操作返回后至观察关闭的等待依次 **0.750、0.406、0.640、0.515、0.563秒**；服务器与宿主各自时钟域明确记录，不能当精确SQL提交/断连时刻或并发线性化。拒绝请求前后核的是消息标识列表及通知数量保持，不扩为全部正文/审计字段不变；原collector的side_effects字段在最终proof按此捕获维度限定解释，原输出/合同/源码不重写。
+
+probe **57.578秒** 完成，持有客户端socket关闭；backend **198.078秒** 主动收尾、cleanup_errors空，WS0/API137/DB0、全部Running=false/PID0，API137原样保留。8021/8022端口闭，任务Docker正常停止exit0，原129项容器状态保持、总132条记录保留；旧125项原有容器状态也已核对保持。新卷/网络、令牌/原始失败和全部原证留存，无force/prune/全局WSL shutdown。新backend与probe各已耗1余0；原有已耗额度、STOP不复活。
+
+集中私有 **IMPLEMENTATION_REPORT.md /artifact_manifest.json** 在 **v1015-ws-authority-repair-20261107**；原证及verified-ws-authority-proof-private.json在上述runtime根。apps树未变，旧已验APK SHA **1a4f22fea19542118b899fa97c78375b7cb840aae8f8df54d511e2ae0aa7f006** 和原交付保持。本轮 **AAR/APK构建、模拟器、手机、VM、真实媒体/Push均0次**，不能把服务端观察宣称新APK或APP切号/晚响应设备通过。旧VM teardown仍UNKNOWN。非作者Codex又交叉核验实际原证，未发现遗留可行动不一致或过度结论，不是外部独立验收。
+
+**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。限定WS成员资格漏洞及五组串行服务端观察完成；一项基线历史读失败、完整AC03并发/跨账号晚响应/其他旧room情形、实际APP相应新流程及其他版本门仍未完成。当前后台已停止，不提供持续在线服务，不合main、不启v10.1.6；凭据、原证、二进制和许可证不上GitHub。
+
+保护核验：前序9813项全部一致；追加本轮原证后ledger共12281项，无跳过链接，SHA256 cb58c3a1a41eaec046a2a419585cfddac494e8a5511334f5010b8bb3aeb60c37。
+
+---
+
 # 2026-11-07 文字消息最近窗口修复、当前APK及受控实际消息链完成
 
 **CURRENT_SOURCE_AAR_APK_VERIFIED / ACTUAL_TEXT_WINDOW_SAME_ID_RETRY_REPLY_COLD_REOPEN_REVOCATION_OBSERVED / G2_FALSE**

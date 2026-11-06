@@ -1,3 +1,13 @@
+# 2026-11-07 既有同类工程下放用于WS成员资格修复与独立串行验证
+
+沿用Owner本机工程/Debug APK目标及“类似的运行授权我完全下放给你，后续不用再问我”，Codex对后端源码081ec8dc安排独立私有MariaDB/API/WS及一次WS probe；新scope各已耗1余0，原grant/claim/失败/STOP不复用。保持既有固定镜像/vendor、空库身份、启动10GiB/工作卷8GiB、1800秒后端/600秒客户端、45秒本实例收尾及2GiB采样边界。无新AAR/APK、模拟器/手机/VM、媒体或真实Push运行，不扩大生产/真实数据/费用/工具安装升级/新许可/正式发布权限。
+
+本节点修复WS遗漏peer当前成员资格，完成旧访问令牌、peer left_at受控注入、Block、CN关闭、虚构admin禁用虚构账号的五组串行观察及持有实例收尾。peer离开为具名新空库TEST_INJECTION；时序不冒充并发线性化。保留原历史读测试及其在03f3cde基线复现的失败，不把现有实现自动变成新标准或将27项全标通过。源码/原证经非作者Codex复核，不是外部独立验收、Owner整版接受或发布。
+
+**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；未完成项和精确限制见[最新进度节点](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)。全部原证和新卷/网络留存，旧VM teardown UNKNOWN，原脏根/历史资产保护，不合main、不启v10.1.6，私有原件不上GitHub。
+
+---
+
 # 2026-11-07 既有同类运行下放用于文字消息修复与实际APK验证
 
 沿用Owner“类似的运行授权我完全下放给你，后续不用再问我”及已批准的本机Debug APK/模拟器目标，Codex为修复源码a51f98b2分别建立新AAR、host、私有后端和模拟器的具名独立记录；不是Owner逐案答复，不复用旧grant/claim/STOP。保留Job6GiB/64进程、启动10GiB/工作卷8GiB、各阶段时限/45秒本实例收尾、输出2GiB采样可瞬时超量及离线禁下载边界；各实际scope均已耗1余0。

@@ -1,3 +1,17 @@
+# 2026-11-07 WS双方成员资格修复，实际撤权五例完成，保留一项基线测试失败（CURRENT ENTRY）
+
+**WS_MEMBER_GUARD_FIXED / FIVE_SERIAL_HTTP_WS_AUTHORITY_CASES_OBSERVED / ONE_EXISTING_TEST_FAILURE_RETAINED / G2_FALSE**
+
+源码 **081ec8dcdb787622ac1530202fe68c953a15c597**；apps树仍1e7a0349…，services树b79a234e…。修复peer离开或成员行缺失时WS仍可能握手/周期复核放行的问题：can_ws追加当前peer成员存在且left_at为空；actor原检查及其他读取语义保持。两个红例复现错误授权；WS授权11项通过（含3新增），定向PHP组 **27项中26通过、1失败/211断言**。旧历史读断言在修改前03f3cde同样失败，原测试和标准保留，整组不标绿。14项协议纯测试和3份私有PHP语法检查不当真实网络结果。
+
+新空私有MariaDB/固定本机镜像/vendor、4虚构账号和4好友前置，无seed消息。实际HTTP39次、WS12次：5次健康连接、7次拒绝（1次冒用actor对照、6次权限变化后）。注销旧访问令牌（当前Sanctum实现）、唯一受控peer left_at注入、真实Block、真实CN关闭、虚构admin经原API禁用虚构B五组，都观察到已连WS在周期复核拒绝后关闭；新连接拒绝有对应服务端日志。一次真实conversation_changed仅含ID，无正文；5条实际API消息，拒绝请求前后消息标识列表/通知数量保持。
+
+关闭观察等待0.406～0.750秒，仅指操作成功返回后至观察关闭的窗口；不冒充精确SQL提交延迟或并发线性化。peer离开是具名TEST_INJECTION，不是APP离开流程。客户端57.578秒、后端198.078秒主动收尾；WS0/API137/DB0、均Running=false/PID0，cleanup_errors空，API137保留。8021/8022关闭，任务Docker正常停止，原129项容器状态保持、总132条记录留存；新卷/网络和全部原证保留，新backend/probe各已耗1余0，旧scope/STOP不复用。
+
+集中LOCAL_ONLY **v1015-ws-authority-repair-20261107/IMPLEMENTATION_REPORT.md、artifact_manifest.json**；原证 **v1015-ws-authority-runtime-20261107-case01**。[详细事实及未完成项](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。Flutter/apps未变，既有APK SHA1a4f22fe…aa7f006保持；本轮无Flutter/AAR/APK重编、模拟器/手机/VM/媒体/真实Push执行。非作者Codex源码与原证复核无遗留可行动问题，非外部独立验收。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；基线历史读冲突、完整AC03并发/跨账号/旧room和其他版本门仍未闭合，不合main、不启v10.1.6，私有原件不上GitHub。
+
+---
+
 # 2026-11-07 文字消息窗口修复已入真实APK，超时重试/回复/冷启/撤权已观察（CURRENT ENTRY）
 
 **LATEST_TEXT_WINDOW_FIXED / CURRENT_AAR_DEBUG_APK_VERIFIED / ACTUAL_SAME_ID_RETRY_REPLY_COLD_REOPEN_REVOCATION_OBSERVED / G2_FALSE**
