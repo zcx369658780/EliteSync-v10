@@ -38,7 +38,7 @@ class _Secure extends SecureStorageService {
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     user: UserSummary(id: 1, phone: 'synthetic'),
     accessToken: 'synthetic-a',

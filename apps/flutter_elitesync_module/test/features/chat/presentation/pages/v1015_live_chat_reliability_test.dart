@@ -20,12 +20,14 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 
 class _Secure extends SecureStorageService {
   final values = <String, String>{};
+  int writes = 0;
   bool failWrites=false;
   @override
   Future<String?> read(String key) async => values[key];
   @override
   Future<void> write(String key, String value) async {
     if (failWrites) throw StateError('synthetic secure storage failure');
+    writes++;
     values[key] = value;
   }
   @override
@@ -242,6 +244,66 @@ Finder _mediaButton(String tooltip) => find.byWidgetPredicate(
     );
 
 void main() {
+  testWidgets('old GET completed after account switch cannot render or write private cache', (tester) async {
+    final f = await _mount(tester);
+    final readsBefore = f.api.events.where((event) => event == 'message-read').length;
+    f.api.pendingRead = Completer();
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore + 1);
+    expect(f.api.pendingRead!.isCompleted, isFalse);
+    (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
+    await tester.pumpAndSettle();
+    final writesAfterSwitch = f.secure.writes;
+    final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
+
+    // The fake transport deliberately completes despite cancellation.
+    f.api.pendingRead!.complete(const NetworkSuccess({
+      'items': [{'id': 999, 'content': 'OLD_ACCOUNT_DELAYED_PRIVATE_GET', 'attachments': <dynamic>[]}],
+    }));
+    await tester.pumpAndSettle();
+    expect(find.text('OLD_ACCOUNT_DELAYED_PRIVATE_GET'), findsNothing);
+    expect(find.text('此前合法保存的合成私密消息'), findsNothing);
+    expect(find.text('会话已锁定'), findsOneWidget);
+    expect(find.byType(TextField), findsNothing);
+    expect(f.secure.writes, writesAfterSwitch);
+    expect(f.secure.values, cacheAfterSwitch);
+    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore + 1);
+    expect(f.api.posts, isEmpty);
+    expect(tester.takeException(), isNull);
+    await _dispose(tester, f);
+  });
+
+  testWidgets('old POST acknowledgement after account switch cannot confirm or reload the new account', (tester) async {
+    final f = await _mount(tester);
+    f.api.pendingFirstPost = Completer();
+    await tester.enterText(find.byType(TextField), 'OLD_ACCOUNT_PENDING_DRAFT');
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(f.api.posts, hasLength(1));
+    expect(f.api.pendingFirstPost!.isCompleted, isFalse);
+    final originalKey = f.api.posts.single['client_message_id'];
+    final readsBefore = f.api.events.where((event) => event == 'message-read').length;
+    (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
+    await tester.pumpAndSettle();
+    final writesAfterSwitch = f.secure.writes;
+    final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
+
+    f.api.pendingFirstPost!.complete(NetworkSuccess({'id': 999, 'client_message_id': originalKey}));
+    await tester.pumpAndSettle();
+    expect(find.text('服务器已确认此消息'), findsNothing);
+    expect(find.text('使用原消息编号重试'), findsNothing);
+    expect(find.text('OLD_ACCOUNT_PENDING_DRAFT'), findsNothing);
+    expect(find.text('会话已锁定'), findsOneWidget);
+    expect(find.byType(TextField), findsNothing);
+    expect(f.api.posts, hasLength(1));
+    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore);
+    expect(f.secure.writes, writesAfterSwitch);
+    expect(f.secure.values, cacheAfterSwitch);
+    expect(tester.takeException(), isNull);
+    await _dispose(tester, f);
+  });
+
   testWidgets('refresh reads the newest chronological window beyond 100 messages', (tester) async {
     final f = await _mount(tester);
     f.api.longHistoryCount = 105;
