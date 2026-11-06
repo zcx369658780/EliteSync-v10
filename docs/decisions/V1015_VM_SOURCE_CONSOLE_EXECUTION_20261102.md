@@ -1,3 +1,13 @@
+# 2026-11-07 同类工程下放继续用于既有读取合同回归，轻量测试资源单列
+
+依据Owner已下放的普通本机工程授权，Codex对已接受v10.1.1合同与旧回归期望冲突作测试对齐；不新增Block历史读例外、不修改产品权限。仅SQLite内存/network none/1GiB容器的定向PHP检查，engine启动前6GiB、test前4GiB；最初误沿用SDK10GiB的preclaim准备保留并在claim前修订，原AAR/APK6GiB Job与10GiB启动门及所有历史预算保持。本次不是Owner逐案另答授权。
+
+首次缺挂载目录CLI125/容器128、PHP未启动，已耗1余0原证保留；修复新快照的三个空挂载目标后独立scope实际30项/288断言通过、已耗1余0，均具名收尾、不复用claim、不改旧STOP。原旧历史读失败不追写PASS；当前规范判断依据既有正式接受文件，非以实现现状自创标准。非作者Codex复核不是外部独立验收。
+
+本轮无MariaDB/API/WS服务器、APK/AAR、模拟器/手机/VM、媒体/真实Push、工具安装升级、新许可或生产运行。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；原脏根/旧库/原证保留，不合main、不启v10.1.6。详见最新进度节点。
+
+---
+
 # 2026-11-07 既有同类工程下放用于WS成员资格修复与独立串行验证
 
 沿用Owner本机工程/Debug APK目标及“类似的运行授权我完全下放给你，后续不用再问我”，Codex对后端源码081ec8dc安排独立私有MariaDB/API/WS及一次WS probe；新scope各已耗1余0，原grant/claim/失败/STOP不复用。保持既有固定镜像/vendor、空库身份、启动10GiB/工作卷8GiB、1800秒后端/600秒客户端、45秒本实例收尾及2GiB采样边界。无新AAR/APK、模拟器/手机/VM、媒体或真实Push运行，不扩大生产/真实数据/费用/工具安装升级/新许可/正式发布权限。

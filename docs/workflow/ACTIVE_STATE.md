@@ -1,3 +1,15 @@
+# 2026-11-07 历史读取回归按既有合同对齐，30项/288断言通过（CURRENT ENTRY）
+
+**ACCEPTED_POLICY_TEST_ALIGNMENT_COMPLETE / PHP_30_288_PASS / HISTORICAL_FAILURE_RETAINED / G2_FALSE**
+
+源码 **ccbdb6354e9345714c106d61a5e238b4df7f492a**，仅修改两份PHP回归，产品权限实现与apps/APK未变。根据已接受[v10.1.1计划第6节](../versions/v10.1.1/plan.md)及正式功能/集成接受，Block/账号禁止不可借历史接口取回对方资料/媒体；更正旧Block后历史可读期望。新增双向Block/双方拒读、任侧禁用、legacy既有消息只读、有效CN/MC下隐藏仍可读而CN关闭后读/重放拒绝的正反覆盖。旧27项26通过/1失败及基线反事实保留，不追写PASS。
+
+隔离PHPUnit **30项、288断言、0失败**；network none、SQLite内存、容器1GiB，PHPUnit报告79MB不代表宿主总开销。初次只读快照缺storage挂载点，CLI125/容器128、PHP未启动；该scope已耗1余0保留。补齐挂载目标后的独立验证耗时56.078秒，正常exit0/无OOM，engine停止0；原132容器状态保持、总134记录留存。非作者Codex复核无剩余可行动P1/P2，非外部独立验收。
+
+本次轻量测试资源门为engine启动前6GiB/test前4GiB；原AAR/APK 10GiB门及历史额度不变。私有报告/原证 **v1015-history-policy-alignment-20261107**；无新APK、模拟器或VM运行。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。后续重点为跨账号晚响应/完整AC03并发与旧room等未闭合项，当前后台停止，不合main、不启v10.1.6。
+
+---
+
 # 2026-11-07 WS双方成员资格修复，实际撤权五例完成，保留一项基线测试失败（CURRENT ENTRY）
 
 **WS_MEMBER_GUARD_FIXED / FIVE_SERIAL_HTTP_WS_AUTHORITY_CASES_OBSERVED / ONE_EXISTING_TEST_FAILURE_RETAINED / G2_FALSE**

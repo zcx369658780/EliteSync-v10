@@ -1,3 +1,19 @@
+# 2026-11-07 既有历史读取合同冲突澄清，定向回归30项通过
+
+**ACCEPTED_POLICY_TEST_ALIGNMENT_COMPLETE / PHP_30_288_PASS / G2_FALSE**
+
+工程提交 **ccbdb6354e9345714c106d61a5e238b4df7f492a**，仅ConversationCapabilityFoundationTest与V1015MessagingTest，apps及所有产品权限实现不变。既有v10.1.1 plan第72/87/93行及正式功能/集成接受已明确Block/禁用的读取优先级；当前回归期望与接受合同对齐，不新增Block历史例外，不降低标准。旧错误回归及其在03f3cde/081ec8dc的失败原证保留，不能追写旧整组通过。
+
+覆盖健康前置、两方向Block对双方能力/会话/peer/消息读取与发送拒绝、任侧账号禁用拒读。legacy无match真实既有消息读回、拒发后消息及原密文保持的正例明确仍处legacy middleware隔离，不扩为v10 live许可。有效CN/MC的应用测试验证隐藏记录/visible=false确实成立、仍读回原消息，关闭CN后读和同key重放404，消息/通知各1且模型正文与原密文保持。非作者发现的空历史正例、隐藏未断言、明文直接比对密文三项P2已修复，复核无遗留可行动问题。
+
+实际PHPUnit12.5.42/PHP8.4.27：**30 tests /288 assertions /exit0**，测试31.487秒、PHPUnit memory79MB，容器硬限1GiB/2CPU/64进程、network none/只读源码与vendor、SQLite内存。该内存数字不代表Docker或宿主总内存；不是MariaDB事务/并发/API服务器/设备实测。新独立mountfix scope CLI56.078秒、总79.266秒，容器exit0/Running=false/PID0/OOMKilled=false，Docker正常停止0；原132项容器状态保持，总134条留存，无prune/全局WSL shutdown。
+
+原SDK6GiB+4GiB余量的10GiB启动门不应一律套给1GiB PHP单测；原preclaim准备版保留，本次测试单独定6GiB engine启动门、4GiB test启动门。Owner释放内存后轻量7781MiB，成功test启动前9588MiB；旧AAR/APK10GiB及已耗预算保持。首次CLI125/容器128因快照缺storage挂载点，PHP尚未启动，无OOM；其claim已耗1余0，正常收尾。补齐storage/vendor/bootstrap/cache三个空挂载目录后建立独立记录，成功scope亦已耗1余0。原首次wrapper0未冒充内部125通过。
+
+私有集中报告/proof/合同/失败/输出在 **v1015-history-policy-alignment-20261107**；现有APK SHA1a4f22fe…aa7f006保持，本轮AAR/APK/模拟器/手机/VM/真实Push均0。整版仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；完整AC03并发/跨账号晚响应/旧room、长期时窗、媒体/RTC和通知门未完成。自测与非作者Codex复核不代外部独立验收或Owner整版接受，不合main、不启v10.1.6；凭据/原证/二进制不上GitHub。
+
+---
+
 # 2026-11-07 WS成员资格修复及五组真实串行撤权观察，保留已复现基线失败
 
 **WS_MEMBERSHIP_FIX_VERIFIED / SERIAL_AUTHORITY_CASES_OBSERVED / BASELINE_TEST_FAILURE_RETAINED / G2_FALSE**
