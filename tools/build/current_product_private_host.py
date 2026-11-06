@@ -6,6 +6,7 @@ runtime consumption of these generated Kotlin files still require qualification.
 """
 import hashlib
 import json
+from pathlib import Path
 import re
 
 from current_product_aar_handoff import verify_repository
@@ -31,10 +32,13 @@ def _replace(text, old, new):
     return text.replace(old, new, 1)
 
 
-def render_private_host(app_gradle, settings_gradle, repository, version, *, file_limit, byte_limit):
+def render_private_host(app_gradle, settings_gradle, repository, version, *, file_limit, byte_limit,
+                        local_repository=False):
     app = _source(app_gradle, APP_SHA256)
     settings = _source(settings_gradle, SETTINGS_SHA256)
     receipt = verify_repository(repository, version, file_limit=file_limit, byte_limit=byte_limit)
+    rendered_repository = Path(receipt['repository']).as_posix() if local_repository else GUEST_REPOSITORY
+    repository_literal = json.dumps(rendered_repository).replace('$', '\\$')
     entries = []
     for row in receipt['content_manifest']:
         if not re.fullmatch(r'[A-Za-z0-9_./+\-]+', row['relative_path']):
@@ -42,7 +46,7 @@ def render_private_host(app_gradle, settings_gradle, repository, version, *, fil
         entries.append('    ' + json.dumps(row['relative_path']) + ' to ('
                        + str(row['bytes']) + 'L to ' + json.dumps(row['sha256']) + ')')
     checks = '''
-val verifiedFlutterRepo = rootProject.file("C:/Inputs/VerifiedAarRepository").toPath()
+val verifiedFlutterRepo = rootProject.file(__REPOSITORY__).toPath()
 val verifiedFlutterFiles = mapOf(
 __FILES__
 )
@@ -94,7 +98,7 @@ val syncFlutterAar by tasks.registering {
 }
 tasks.named("preBuild") { dependsOn(syncFlutterAar) }
 
-'''.replace('__FILES__', ',\n'.join(entries))
+'''.replace('__FILES__', ',\n'.join(entries)).replace('__REPOSITORY__', repository_literal, 1)
     # Remove SDK lookup/BAT dispatch only from this rendered private copy.
     start = app.index('val flutterModuleDir =')
     end = app.index('val requestedFlutterDartDefines =', start)
@@ -113,10 +117,10 @@ tasks.named("preBuild") { dependsOn(syncFlutterAar) }
     filters = '\n'.join('                includeModule(' + json.dumps(group) + ', '
                         + json.dumps(artifact) + ')' for group, artifact in modules)
     settings = _replace(settings, 'maven(url = uri("../flutter_elitesync_module/build/host/outputs/repo"))',
-                        '''exclusiveContent {
+                        ('''exclusiveContent {
             forRepository {
                 maven {
-                    url = uri("C:/Inputs/VerifiedAarRepository")
+                    url = uri(__REPOSITORY__)
                     metadataSources {
                         mavenPom()
                         ignoreGradleMetadataRedirection()
@@ -126,10 +130,13 @@ tasks.named("preBuild") { dependsOn(syncFlutterAar) }
             filter {
 ''' + filters + '''
             }
-        }''')
+        }''').replace('__REPOSITORY__', repository_literal))
     return {'app_gradle': app, 'settings_gradle': settings,
             'source_sha256': {'app': APP_SHA256, 'settings': SETTINGS_SHA256},
             'repository_content_manifest_sha256': receipt['content_manifest_sha256'],
-            'coordinate': receipt['coordinate'], 'guest_repository': GUEST_REPOSITORY,
+            'coordinate': receipt['coordinate'],
+            'repository_mode': 'LOCAL' if local_repository else 'GUEST',
+            'rendered_repository': rendered_repository,
+            'guest_repository': None if local_repository else GUEST_REPOSITORY,
             'runtime_consumption': 'NOT_RUN', 'readonly_guest_mapping_proven': False,
             'producer_provenance_proven': False, 'execution_allowed': False, 'G2': False}

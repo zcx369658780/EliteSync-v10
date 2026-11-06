@@ -1,3 +1,21 @@
+# EliteSync-v10｜2026-11-06 本机资源阻断与模拟器调试准备
+
+## 2026-11-06 本机输入复核后资源阻断与Debug host本机接线
+
+| 项目 | 实际结果与边界 |
+|---|---|
+| Owner指示 | 接续实际工程；不用原VM，本机编译、Android模拟器运行与调试APK。原一般Debug APK/USB授权不重问；当前AAR额度不扩为APK/设备次数，不恢复任何旧耗尽scope |
+| 当前身份 | 进入产品分支aca885751e5e3a0c196d939c28b854f486b2c511，本地/SSH产品ref相同；远端main8a9e97a1e9414b65d669e07f3188b81764196027。仅旧%SystemDrive%/未跟踪、index空；原根main4bebc8f3、255状态、index2be660…匹配 |
+| 释放通知与资源 | 两次明确通知分别独占另存case根，原grant不改。首次轻量7938MiB未启动；再次9025MiB/447509753856字节支持后，仅调用一次既有launch，无独立全量preflight叠加 |
+| 本次launch结果 | 完整逐文件身份/hash复核已走完，随后资源6061MiB/447494729728字节不足，UTC03:45:56 PRECLAIM_BLOCKED_NOT_CONSUMED，driver922.844秒、exit1；无claim/launched、SDK0、输出空。已耗0/余1；不是SDK失败，不把输入检查完成写成整体preflight PASS或未来持续资格 |
+| 本机host接线 | 仅current_product_private_host.py及其测试；新增local_repository=False兼容参数，本机True从已验证回执生成app/settings相同的绝对正斜杠路径并转义Kotlin $；默认guest输出保留。source pins、manifest/坐标检查、离线/任务/仓库filter与无Flutter Exec保持，无新资格门；原文件局部备份 |
+| 检查与复核 | 新增2项先红后绿；最终17项private_host/aar_handoff定向Python测试通过，diff --check通过。主代理非作者Codex复核无遗留问题，非外部独立验收；真实SDK/Gradle消费、完整AAR仓库与APK仍NOT_RUN/未完成。前序12/77/8项不记作本轮新测 |
+| 模拟器静态事实 | 7份现有AVD均主ABI x86_64，候选仅arm64-v8a；ARM64兼容能力UNKNOWN。仅读配置，未启动/修改模拟器、未调用ADB或安装APK；完整AAR验证后再核目标与ABI |
+| 冻结与后续 | 原case01/合同e5a12e5d…/binary3390c084…/nonce、grant及三producer helpers保持；不重建候选/换目录续额。待新内存通知，先轻量核资源，支持后同一launch做fresh全量复核；不自动轮询/重试。仍最多1次assembleAarRelease、Job4GiB/64进程、SDK30分钟/host35分钟/STOP本实例45秒、输出2GiB采样、不重试及原排除范围 |
+| 私有原证与状态 | case根resume-launch-outcome-a6bd601d2d27454d9e0d5721327d21e3-private、resource-065bc58c08e84562aa4967a7ec3e0165、emulator-debug-static-preparation-d0063b4b8e924566be0eb89e21a58f51-private；原证/二进制/许可证不上GitHub。普通同步原分支，不合main、不启v10.1.6；10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING |
+
+---
+
 # EliteSync-v10｜项目进度细表（2026-11-06 会话封存）
 
 ## 2026-11-06 会话封存与下一会话入口

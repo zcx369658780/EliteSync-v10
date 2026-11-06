@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-06 本机AAR输入复核后资源阻断，Debug host本机接线已备（CURRENT ENTRY）
+
+**OWNER_MEMORY_NOTICES_RECEIVED / LOCAL_PRECLAIM_BLOCKED_MEMORY / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / SDK_NOT_STARTED / LOCAL_HOST_RENDERER_SOURCE_READY / G2_FALSE**
+
+本轮已接续实际工程。Owner明确后续不用原VM，采用本机编译、Android模拟器运行/调试APK；不重问既有一般授权，具体APK/模拟器预算与当前资格仍需成立，本机AAR一次额度不扩为APK/设备执行。
+
+Owner先后明确“已释放内存，请核验并继续”和“已进一步释放内存，请重新核验”，通知已另存case根，原grant未改。轻量资源7938MiB阻断；再次9025MiB/工作卷447509753856字节支持后，仅调用一次现有`current_product_local_producer.launch`。其完整逐文件输入复核完成，但UTC03:45:56返回资源不足：6061MiB/447494729728字节，driver922.844秒，在preclaim停止。**无claim/launched、SDK未启动、输出空；本机已耗0、余1。** 本次输入检查完成不等于整体preflight PASS，也不沿用为下次启动资格；不自动重试或轮询。
+
+`current_product_private_host.py`新增显式`local_repository=True`，以验证回执的本机绝对路径同时生成app验证路径/settings Maven路径，保留默认guest输出、source pins、完整仓库检查、离线与任务限制，避免host preBuild重复触发Flutter AAR。17项私有host/AAR-handoff定向测试通过；主代理非作者Codex复核无遗留发现，非外部独立验收；真实Gradle消费NOT_RUN。冻结producer三helpers、候选、合同e5a12e5d…c5517da、binary3390c084…da4fd及nonce保持，不重建。
+
+现有7份AVD配置均为x86_64，当前候选ARM64；仅静态读取配置，ARM64运行兼容性UNKNOWN，模拟器启动/ADB/APK构建安装均0。后续待完整AAR仓库验证后处理本机Debug host与模拟器ABI，不把配置文件当运行资格。
+
+已告知Owner可再释放约4–5GiB留余量，等待新通知；收到后沿用同一grant/候选，先轻量核内存≥8192MiB/工作卷≥8GiB，支持才由launch做一次fresh完整复核并claim。旧scope全部余0；成功若REPOSITORY_UNVERIFIED仍需既有verify_repository，不直接放行APK/G2。LOCAL_ONLY先读case根`resume-launch-outcome-a6bd601d2d27454d9e0d5721327d21e3-private.json`、`resource-065bc58c08e84562aa4967a7ec3e0165.json`及`emulator-debug-static-preparation-d0063b4b8e924566be0eb89e21a58f51-private.json`。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持；[细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-本机输入复核后资源阻断与debug-host本机接线)。
+
+---
+
 # EliteSync｜2026-11-06 会话封存：本机AAR已授权，等待内存通知（CURRENT ENTRY）
 
 **SESSION_SAVED / OWNER_GRANTED_LOCAL_AAR / WAIT_OWNER_MEMORY_RELEASE_NOTICE / SPENT_0_REMAINING_1 / CLAIM_NOT_CREATED / LOCAL_SDK_NOT_STARTED / G2_FALSE**

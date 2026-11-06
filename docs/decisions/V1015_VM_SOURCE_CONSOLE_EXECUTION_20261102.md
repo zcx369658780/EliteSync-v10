@@ -1,3 +1,17 @@
+# v10.1.5｜2026-11-06 本机编译与模拟器调试续行
+
+## 2026-11-06 Owner续行指示与本机preclaim资源阻断
+
+Owner明确“可以，请继续。顺便，请你不要使用虚拟机，而是使用模拟器继续编译、调试apk”。工程落实为本机编译、Android模拟器安装运行与调试，不再采用原VM；原一般Debug APK/USB授权保留，当前本机AAR的具体一次额度与排除范围不自动变成APK/设备次数。后续在完整AAR核验和对应预算/资格成立后推进，不重问同一一般许可。
+
+Owner又先后明确“已释放内存，请核验并继续”“已进一步释放内存，请重新核验”。两通知另存case根，原grant字节/hash保持。轻量7938MiB不足未调用launch；再次9025MiB支持后仅调用一次现有launch，完整输入复核后可用6061MiB低于8192MiB，在preclaim退出1，driver922.844秒。无claim/launched、SDK0、输出空，本机授权仍已耗0/余1，全部旧0余额保持；不是SDK运行失败。此次输入检查完成不证明整体preflight通过或未来资格，不自动轮询或重试；已请Owner方便时再释放约4–5GiB并明确通知。
+
+普通准备完成本机private host路径渲染接线，17项定向测试通过，主代理非作者Codex复核无遗留发现；非外部独立验收、实际Gradle消费NOT_RUN。默认guest行为及原source pins/仓库校验/离线任务限制保留，不改冻结三producer helpers、候选/合同/nonce/grant。7份AVD静态配置主ABI均x86_64，ARM64候选的模拟器运行兼容性UNKNOWN；本轮未启动模拟器、ADB或APK执行。
+
+后续同一候选/原grant先轻量资源核对，支持才由launch一次fresh全量复核与唯一claim；结果只为REPOSITORY_UNVERIFIED时仍用既有verify_repository核完整主AAR/版本/hash。原Job4GiB/64进程、SDK30分钟/host35分钟、STOP仅本实例45秒、2GiB采样、不重试及全部排除范围不变。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；旧失败/STOP与本机原证保留。
+
+---
+
 # v10.1.5｜固定控制台角色的独立VM源验证
 
 ## 2026-11-06 会话封存与Owner决定汇总

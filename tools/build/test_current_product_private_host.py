@@ -11,7 +11,7 @@ class PrivateHostTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.repo = Path(self.temp.name) / 'repo'
+        self.repo = Path(self.temp.name) / 'repo $local __FILES__'
         module = self.repo / GROUP.replace('.', '/') / ARTIFACT / VERSION
         module.mkdir(parents=True)
         (module / f'{ARTIFACT}-{VERSION}.pom').write_text(f'''<project><groupId>{GROUP}</groupId>
@@ -26,9 +26,35 @@ class PrivateHostTests(unittest.TestCase):
         self.app = (source / 'app' / 'build.gradle.kts').read_text(encoding='utf-8')
         self.settings = (source / 'settings.gradle.kts').read_text(encoding='utf-8')
 
-    def render(self, app=None):
+    def render(self, app=None, **options):
         return host.render_private_host(self.app if app is None else app, self.settings,
-                                         str(self.repo), VERSION, file_limit=100, byte_limit=100000)
+                                         str(self.repo), VERSION, file_limit=100, byte_limit=100000,
+                                         **options)
+
+    def test_local_repository_uses_verified_absolute_path_in_both_files(self):
+        result = self.render(local_repository=True)
+        expected = self.repo.resolve().as_posix()
+        literal = '"' + expected.replace('$', '\\$') + '"'
+        self.assertIn('rootProject.file(' + literal + ').toPath()', result['app_gradle'])
+        self.assertIn('url = uri(' + literal + ')', result['settings_gradle'])
+        self.assertNotIn(host.GUEST_REPOSITORY, result['app_gradle'])
+        self.assertNotIn(host.GUEST_REPOSITORY, result['settings_gradle'])
+        self.assertEqual(result['repository_mode'], 'LOCAL')
+        self.assertEqual(result['rendered_repository'], expected)
+        self.assertIsNone(result['guest_repository'])
+        self.assertEqual(result['runtime_consumption'], 'NOT_RUN')
+        self.assertIs(result['execution_allowed'], False)
+        self.assertIs(result['readonly_guest_mapping_proven'], False)
+        self.assertIs(result['G2'], False)
+
+    def test_guest_default_and_explicit_false_preserve_guest_output(self):
+        result = self.render()
+        self.assertEqual(result, self.render(local_repository=False))
+        self.assertIn('rootProject.file("' + host.GUEST_REPOSITORY + '")', result['app_gradle'])
+        self.assertIn('url = uri("' + host.GUEST_REPOSITORY + '")', result['settings_gradle'])
+        self.assertEqual(result['guest_repository'], host.GUEST_REPOSITORY)
+        self.assertEqual(result['repository_mode'], 'GUEST')
+        self.assertEqual(result['rendered_repository'], host.GUEST_REPOSITORY)
 
     def test_private_copy_binds_real_manifest_coordinate_and_rechecks_bytes(self):
         result = self.render()
