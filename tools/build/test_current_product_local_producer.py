@@ -67,7 +67,7 @@ class LocalProducerTests(unittest.TestCase):
 
     def case(self,root):
         (root/'control').mkdir();(root/'output').mkdir()
-        contract=dict(host_root=str(root.resolve()),nonce='fixture',payload_sha256={},host_helpers={})
+        contract=dict(kind='current-product-local-aar-producer',host_root=str(root.resolve()),nonce='fixture',payload_sha256={},host_helpers={})
         local.shared.put(root/'control/run-contract.json',contract)
         return contract
 
@@ -98,6 +98,38 @@ class LocalProducerTests(unittest.TestCase):
                     else:
                         with self.assertRaisesRegex(RuntimeError,'resources insufficient'):local.preflight(root,contract)
                     disk.assert_called_once_with(root)
+
+    def test_kind_selects_controller_and_result_binding_without_cross_acceptance(self):
+        for kind,exe,status,key in [
+            ('current-product-local-aar-producer','LocalAarProducer.exe','LOCAL_AAR_ROOT_EXIT0_REPOSITORY_UNVERIFIED','repository'),
+            ('current-product-local-debug-host','LocalDebugHost.exe','LOCAL_DEBUG_HOST_ROOT_EXIT0_APK_UNVERIFIED','apk_output')]:
+            for wrong in (False,True):
+                with self.subTest(kind=kind,wrong=wrong),tempfile.TemporaryDirectory() as directory:
+                    root=Path(directory);contract=self.case(root)
+                    contract.update(kind=kind,output_bytes=100,host_seconds=20,sdk_seconds=10,cleanup_seconds=45)
+                    contract[key]=str(root/'artifact')
+                    (root/'control/run-contract.json').write_text(json.dumps(contract))
+                    local.shared.put(root/'control/owner-grant.json',dict(authorized=True,max_attempts=1,
+                        contract_sha256=local.shared.sha(root/'control/run-contract.json')))
+                    proof=dict(nonce='fixture',status='WRONG' if wrong else status,root_exit=0,elapsed_ms=1)
+                    proof[key]=contract[key]
+                    def start(argv,**kwargs):
+                        self.assertEqual(argv,[str(root/'control'/exe),'fixture'])
+                        local.shared.put(root/'output/result.json',proof)
+                        return type('Exited',(),{'pid':123,'returncode':0,'poll':lambda self:0})()
+                    with patch.object(local,'preflight'),patch.object(local.subprocess,'Popen',side_effect=start),\
+                         patch.object(local.shared,'output_size',return_value=0):
+                        if wrong:
+                            with self.assertRaisesRegex(ValueError,'result binding'):local.launch(root)
+                        else:self.assertEqual(local.launch(root),proof)
+                    self.assertTrue((root/'launch.claim.json').exists())
+
+    def test_unknown_kind_rejected_before_grant_or_claim(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);contract=self.case(root);contract['kind']='arbitrary-command'
+            (root/'control/run-contract.json').write_text(json.dumps(contract))
+            with self.assertRaisesRegex(ValueError,'Unsupported'):local.launch(root)
+            self.assertFalse((root/'launch.claim.json').exists())
 
     def test_interrupt_always_cleans_owned_controller_without_refunding_claim(self):
         class FakeController:

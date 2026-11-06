@@ -215,6 +215,12 @@ def preflight(root,contract):
 def launch(root):
     """One independent local grant, one irreversible claim, one SDK root."""
     root=Path(root).resolve();control=root/'control';raw=(control/'run-contract.json').read_bytes();contract=json.loads(raw)
+    adapters={
+        'current-product-local-aar-producer':('LocalAarProducer.exe','LOCAL_AAR_ROOT_EXIT0_REPOSITORY_UNVERIFIED','repository'),
+        'current-product-local-debug-host':('LocalDebugHost.exe','LOCAL_DEBUG_HOST_ROOT_EXIT0_APK_UNVERIFIED','apk_output'),
+    }
+    if contract.get('kind') not in adapters:raise ValueError('Unsupported local build kind')
+    executable_name,result_status,output_key=adapters[contract['kind']]
     if str(root)!=contract['host_root']:raise ValueError('Local candidate cannot move')
     if (root/'launch.claim.json').exists() or (control/'launch.claim.json').exists():raise RuntimeError('Local attempt already consumed')
     grant=_json(control/'owner-grant.json');digest=hashlib.sha256(raw).hexdigest()
@@ -232,11 +238,11 @@ def launch(root):
     shared.put(root/'launch.claim.json',claim);shared.put(control/'launch.claim.json',claim)
     start=time.monotonic();process=None
     try:
-        process=subprocess.Popen([str(control/'LocalAarProducer.exe'),contract['nonce']],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        process=subprocess.Popen([str(control/executable_name),contract['nonce']],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         shared.put(root/'launched.json',dict(pid=process.pid,utc=datetime.now(timezone.utc).isoformat()))
         while process.poll() is None:
             total=shared.output_size(root/'output',contract['output_bytes'])
-            repo=Path(contract['repository'])
+            repo=Path(contract[output_key])
             if repo.exists():shared.output_size(repo,contract['output_bytes']-total)
             if time.monotonic()-start>=contract['host_seconds']:raise TimeoutError('Local host deadline')
             time.sleep(1)
@@ -244,12 +250,12 @@ def launch(root):
         if process.returncode or (root/'output/failure.json').exists() or (root/'output/watchdog.json').exists():
             raise RuntimeError('Local producer STOP/failure; attempt consumed')
         proof=_json(root/'output/result.json')
-        if (proof.get('nonce')!=contract['nonce'] or proof.get('status')!='LOCAL_AAR_ROOT_EXIT0_REPOSITORY_UNVERIFIED'
+        if (proof.get('nonce')!=contract['nonce'] or proof.get('status')!=result_status
                 or type(proof.get('root_exit')) is not int or proof['root_exit']!=0
                 or type(proof.get('elapsed_ms')) is not int or not 0<=proof['elapsed_ms']<contract['sdk_seconds']*1000
-                or proof.get('repository')!=contract['repository']):raise ValueError('Local result binding failed')
+                or proof.get(output_key)!=contract[output_key]):raise ValueError('Local result binding failed')
         total=shared.output_size(root/'output',contract['output_bytes'])
-        shared.output_size(Path(contract['repository']),contract['output_bytes']-total)
+        shared.output_size(Path(contract[output_key]),contract['output_bytes']-total)
         if time.monotonic()-start>=contract['host_seconds']:raise TimeoutError('Local collection deadline')
         return proof
     except BaseException as error:
