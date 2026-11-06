@@ -1,3 +1,31 @@
+# 2026-11-07 文字消息最近窗口修复、当前APK及受控实际消息链完成
+
+**CURRENT_SOURCE_AAR_APK_VERIFIED / ACTUAL_TEXT_WINDOW_SAME_ID_RETRY_REPLY_COLD_REOPEN_REVOCATION_OBSERVED / G2_FALSE**
+
+工程源码 **a51f98b268a437b9a301a0a713a86220e820e3ad**，apps树 **1e7a0349a947d3798faa6c2f78058e008dd8259c**、services树 **8dee6ee7352f938ed44546188577fc5d6c8191a8**。非作者发现真实聊天页固定limit=100、未传游标，后端默认升序首100条，长会话的新消息无法进入页面。新增可选latest=1当前窗口：倒序取限量后恢复升序，旧默认/after_id行为保留，latest和游标互斥；不修改既有授权/撤权、幂等键、可信时窗或通用401保护。RTC列表404来自既有服务端门控，未据此改路径或开启RTC。
+
+客户端和PHP有效红例都证实预期6～105、实际1～100。修复后 **17项Flutter页面测试、19项PHP/242断言** 通过；563份PHP源/配置/测试与当前产品逐份字节回读一致。首次Flutter fixture因旧Future build覆盖不匹配现有同步SessionNotifier而编译停止，失败留存；仅适配fixture签名，未放宽断言。非作者Codex对四文件及有界私有运行脚本复核无遗留可行动P1/P2，不是外部独立验收；前序72/13/23等检查不重计为本次新测。
+
+新AAR **v1015-chat-window-aar-20261107-case01**：9文件current-source overlay，版本 **1.0-v1015-a51f98b268a4-33424cfa4780**，合同abda97f9…4e7702、nonce0cb7e26f…d3dde8。物化63249文件/6285605503字节、外部49649文件；只调用launch的一次完整fresh复核，没有先单跑全量preflight。轻量13236MiB支持、末尾资源复核支持后创建唯一claim。真实 **BUILD SUCCESSFUL in4m45s，474任务（473执行/1 up-to-date）**，SDK286822ms、root/controller0、Job峰4645298176字节；已耗1余0。完整验仓 **375文件/6417939字节/15 publications**，manifest SHA **8d1029b5f534e217f102e14c5102ac0b2b10fb3ba1b83d259d9eaad85dbce049**，主AAR SHA **6700dc01a39b45e9ed49c475a2e14703cb59c26899fbb63cc4f79f65c24f34a5**。内容验证不改写验证器的provenance/offline/execution_allowed字段。
+
+新host **v1015-chat-window-debug-host-20261107-case01**：合同b886bc70…e1b853、nonce d5e8f34e…2a58f1，轻量14294MiB支持；独立真实 **BUILD SUCCESSFUL in2m16s，38任务全执行**，SDK137481ms、root/controller0、Job峰3972173824字节；已耗1余0，没有Flutter重编。APK **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable /Android Debug签名**，73459721字节，SHA **1a4f22fea19542118b899fa97c78375b7cb840aae8f8df54d511e2ae0aa7f006**。AAR=merged、stripped=APK；ELF代码/数据节、program headers及全部PT_LOAD字节一致，主libapp SHA f3e43a35…76bdf2。签名/版本/ABI与实际安装包SHA均实核。
+
+新实际后端/模拟器范围 **v1015-text-message-integration-20261107-case02**：既有Docker/WSL、固定 resident images/vendor114包、当前提交源快照只读，无安装升级、pull或框架迁移。新库nov07_text_case02/内部55376/server_id230110702，0表→93表，一次seed事务4虚构账号和105条模型加密历史。105条仅为测试前置，不当实际发收消息。API双方登录200，CN/MC成立前消息读404；双方经真实API请求/接受连接和消息同意后，有权发送成功。
+
+一个实际APP账号、对方真实API：初始API消息106；APP消息107在真实提交后仅首次响应延迟28秒，APP显示结果未知并保留原编号；手动原编号重试后显示服务器确认，数据库只有一行。额外同键回放200且同ID、改正文409；回放不增加消息/通知。对方API读取107并回复108，APP实际显示两条新消息且已读；窗口前端初始从7开始，随后推进，未停在旧首100条。此为受控确认超时，不扩大为所有网络故障。
+
+强制停止后第二次Activity在线 **POST /auth/session/verify 200**，重开消息页仍显示107/108各一次；前后108条消息逐项一致，3设备会话族、6令牌ID/绑定/期限与原T0不变，没有新登录或refresh续期。随后对方撤销MC，旧读取和原键回放均404、无新消息/通知；APP当前页清空旧消息并显示拒绝提示。只观察本次当前页撤权，不冒充全部跨账号、WS并发、旧room或长时窗验收。
+
+模拟器 **550.015秒/103条UI/2次Activity** 主动收尾，controller0、cleanup_errors空；后端 **681.437秒** 主动收尾，WS0/API137/DB0、均Running=false/PID0，API137保留。专用8021/8022/5072/5592/5593端口关闭；新卷/网络和容器记录留存。任务Docker正常停止exit0，原122项容器状态保持、总125条记录；没有force/prune/全局WSL shutdown。新后端与模拟器各已耗1余0。旧源case01准备后8011MiB阻断未创建运行claim、未启动后端/模拟器；发现源码缺陷后为修复源码另具名case02，原准备/grant原样留存，不是旧耗尽额度续额。所有旧scope/STOP/失败保持；旧VM teardown仍UNKNOWN，未用VM/手机。
+
+稳定LOCAL_ONLY交付 **v1015-text-message-delivery-20261107-case01**，含新APK、最近窗口/确认超时/重试确认/回复/冷启/撤权六张实际截图、START_HERE及runtime receipt。集中 **IMPLEMENTATION_REPORT.md /artifact_manifest.json** 在 **v1015-chat-window-repair-20261107**；actual-text-runtime-proof-private.json、原始输出/截图/XML/DB元数据、授权依据及claim都在具名私有根。原D根仍main@4bebc8f3、255项状态、index SHA2be66002…e716。产品无关%SystemDrive%/保持，二进制、原证、凭据及许可证不上GitHub。
+
+保存前原5839项保护记录全部一致；新增关闭范围原证和产物后共9813项，ledger SHA8efba90d…e17648。非作者Codex又交叉核验实际构建、APK/hash、消息状态、T0/令牌和收尾回执，无遗留可行动问题；令牌使用时间允许更新，不误称全部字段不变。
+
+**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**。完成这一文字消息窗口与可靠性工程切片；没有据此关闭完整AC02/03、真实15/30天、私有媒体、RTC/AEC、OS通知或真实Push门。自测/非作者Codex复核不是外部独立验收。开发后端已停止，不提供持续在线服务，不合main、不启v10.1.6。
+
+---
+
 # 2026-11-06 在线冷启动恢复修复已入真实APK，登录/恢复/退出及离线冷启已观察
 
 **CURRENT_SOURCE_COMPLETE_AAR_AND_DEBUG_APK_VERIFIED / ACTUAL_ONLINE_COLD_RESUME_T0_UNCHANGED / ACTUAL_DEVICE_LOGOUT_REVOKED / OFFLINE_LOGOUT_CLONE_LOGIN_OBSERVED / G2_FALSE**
