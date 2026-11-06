@@ -98,7 +98,16 @@ val syncFlutterAar by tasks.registering {
 }
 tasks.named("preBuild") { dependsOn(syncFlutterAar) }
 
-'''.replace('__FILES__', ',\n'.join(entries)).replace('__REPOSITORY__', repository_literal, 1)
+'''
+    # Gradle exposes a `java` extension in the script receiver. Imported aliases
+    # avoid resolving a Java package name through that extension at compile time.
+    checks = checks.replace('java.nio.file.Files', 'VerifiedRepositoryFiles')
+    checks = checks.replace('java.nio.file.LinkOption', 'VerifiedRepositoryLinkOption')
+    checks = checks.replace('java.security.MessageDigest', 'VerifiedRepositoryMessageDigest')
+    checks = checks.replace('__FILES__', ',\n'.join(entries)).replace('__REPOSITORY__', repository_literal, 1)
+    app = ('import java.nio.file.Files as VerifiedRepositoryFiles\n'
+           'import java.nio.file.LinkOption as VerifiedRepositoryLinkOption\n'
+           'import java.security.MessageDigest as VerifiedRepositoryMessageDigest\n' + app)
     # Remove SDK lookup/BAT dispatch only from this rendered private copy.
     start = app.index('val flutterModuleDir =')
     end = app.index('val requestedFlutterDartDefines =', start)

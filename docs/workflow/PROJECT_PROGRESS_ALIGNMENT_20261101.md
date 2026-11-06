@@ -1,3 +1,15 @@
+# 2026-11-06 Debug host首测脚本编译停止，生成器修复继续
+
+**DEBUG_HOST_CASE01_SPENT_1_REMAINING_0 / APK_NOT_PRODUCED / EMULATOR_NOT_RUN / G2_FALSE**
+
+独立私有Debug host已物化19626文件/2618155904字节，3993外部输入，实际csc通过。源码c46d0a6a；35项相关纯/fixture检查通过，非作者Codex静态复核无P1/P2，均不是实际APK证明。依据Owner已批准Debug APK/模拟器目标及同类运行下放创建独立grant，保持6GiB/64、启动10GiB/磁盘8GiB、1800/2100/45秒、输出2GiB采样、离线禁下载；不触发Flutter、不借case03额度。
+
+合同bb5997f0…d23f5，binary7b802609…808b6，nonceeeb2b8ff…5fc34。一次fresh启动后Gradle **BUILD FAILED in42s**：生成的仓库校验Kotlin脚本`java.nio`/`java.security`名称被Gradle `java`扩展遮蔽，尚未进入应用编译。root1/controller32，SDK42756ms；本host scope已耗1、余0，保留grant/claim/失败/日志/私有副本，不重跑。主AAR完整验仓结论保持，APK未产出。
+
+修复生成器使用Java类型import aliases，校验文件集合/字节/hash的逻辑保持；回归先红后绿；非作者指出路径插值后替换会误改合法目录名，已调整为先改模板后插值并补回归，最终14项相关检查通过。下一必要试跑采用修复源码和独立记录，由Codex按Owner下放安排，不逐次请示、不恢复旧余额。私有新AVD配置/控制器已准备但未启动；现有镜像静态声明ARM64转译，实际安装/运行仍UNKNOWN。所有原证/二进制/许可证留本机。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。
+
+---
+
 # 2026-11-06 本机AAR成功并完成完整仓库内容核验
 
 **ACTUAL_LOCAL_AAR_SUCCESS / COMPLETE_REPOSITORY_CONTENTS_VERIFIED / CASE03_SPENT_1_REMAINING_0 / APK_NOT_RUN / G2_FALSE**

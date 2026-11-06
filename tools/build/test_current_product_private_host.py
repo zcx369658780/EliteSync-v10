@@ -79,6 +79,25 @@ class PrivateHostTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.render(self.app + '\n// drift\n')
 
+    def test_repository_checks_do_not_resolve_java_through_gradle_extension(self):
+        app = self.render(local_repository=True)['app_gradle']
+        imports, body = app.split('plugins {', 1)
+        self.assertIn('import java.nio.file.Files as VerifiedRepositoryFiles', imports)
+        self.assertIn('import java.nio.file.LinkOption as VerifiedRepositoryLinkOption', imports)
+        self.assertIn('import java.security.MessageDigest as VerifiedRepositoryMessageDigest', imports)
+        self.assertNotIn('java.nio.', body)
+        self.assertNotIn('java.security.', body)
+        self.assertIn('VerifiedRepositoryFiles.newInputStream', body)
+
+    def test_java_type_names_in_repository_path_are_not_rewritten(self):
+        target = self.repo.with_name('repo java.nio.file.Files java.nio.file.LinkOption java.security.MessageDigest')
+        self.repo.rename(target)
+        self.repo = target
+        result = self.render(local_repository=True)
+        literal = '"' + target.resolve().as_posix() + '"'
+        self.assertIn('rootProject.file(' + literal + ').toPath()', result['app_gradle'])
+        self.assertIn('url = uri(' + literal + ')', result['settings_gradle'])
+
     def test_empty_repository_cannot_generate_host_override(self):
         empty = Path(self.temp.name) / 'empty'
         empty.mkdir()
