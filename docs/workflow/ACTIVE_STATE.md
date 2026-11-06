@@ -1,3 +1,19 @@
+# EliteSync｜2026-11-06 case02实测达到4GiB预算边缘，额度耗尽（CURRENT ENTRY）
+
+**CASE02_DART_OOM / RUNTIME_MEMORY_SAMPLING_OBSERVED / CASE01_AND_CASE02_SPENT_1_REMAINING_0 / NO_MAIN_AAR_OR_APK / RESOURCE_POLICY_DECISION_PENDING / G2_FALSE**
+
+Owner对call_20a66dd10a9340e3ac2e1fb8567f6f41/item0明确答“授权case02独立1次，资源达标后执行”。绑定原case02/e983ba1f…23ab08/binary2408a391…13cf1/nonce580646…；原文及grant独占保存，轻量13143MiB支持后，仅调用既有launch做一次完整fresh输入复核，启动前13662MiB/工作卷434124611584字节。UTC06:25:45.333278唯一claim、控制器PID3936，本机真实Gradle执行；VM0。
+
+**BUILD FAILED in3m30s，454项任务（453执行/1 up-to-date）**；Dart3.11.5 windows_x64在kernel_snapshot_program的allocation.cc:22 Out of memory，任务: flutter:compileFlutterBuildRelease失败。SDK211537ms，root1/controller32、driver619.875秒。**case02独立1/1永久已耗余0**；case01与所有旧0余额不变，不重试/退款/改名或换目录续额，原grant/claim/源码/二进制与失败保持。
+
+诊断真实记录413行，全部KNOWN、错误0；Job配置限额4294967296字节，记录峰值4295811072字节（约4.001GiB），系统提交余量始终25037975552–29367029760字节（约23.3–27.4GiB）。末心跳root_exit_observed=true且memory_last与failure完全一致，支持采样接线在本实例正常记录。峰值达到预算边缘且系统提交量余量大，证据支持构建树Job预算压力；不把单进程峰值2990268416字节归给特定Dart PID，也不把采样当精确失败瞬间或声称已保证某种修复。
+
+部分仓库350文件/1142096字节/14插件AAR，缺主flutter_release，无完整AAR/APK交接。控制器退出，宿主只读未见本实例相关进程；源码路径完成自有Job收尾，无VM/APK/ADB/模拟器执行。本轮源码未改、单元测试NOT_RUN；13项纯/定向检查属前轮准备证据，真实413次查询是本次新证据；G2 false、AC05 OPEN、10 PARTIAL、真实Push PENDING保持。
+
+下一需Owner决定是否允许**新的候选**将Job由4提高到6GiB，并将启动可用内存门由8提高到10GiB（保留原4GiB余量），其余时间/进程/离线/输出/排除范围不变；或保留4GiB先优化内部内存配置。该方案尚未应用，没有新候选/nonce/grant/claim或SDK额度，不能在旧case上调高后重跑。LOCAL_ONLY先读case02的memory-diagnostic-runtime-summary-private.json、next-resource-policy-proposal-private.json、diagnostic-launch-outcome-1be9d3ebf7dd498598bb57cfd7b03523-private.json与output原证。原749/772及grant后775保护、原根main/255/index保持；[细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-case02内存实测与资源策略待决定)。
+
+---
+
 # EliteSync｜2026-11-06 内存诊断源码与case02已准备，待具名新运行决定（CURRENT ENTRY）
 
 **MEMORY_DIAGNOSTIC_SOURCE_READY / NEW_LOCAL_CANDIDATE_PREPARED / NEW_RUNTIME_BUDGET_UNKNOWN_NOT_CREATED / SDK_NOT_RUN / OLD_CASE01_SPENT_1_REMAINING_0 / G2_FALSE**

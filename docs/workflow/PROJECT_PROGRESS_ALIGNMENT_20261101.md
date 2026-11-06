@@ -1,3 +1,20 @@
+# EliteSync-v10｜2026-11-06 case02真实内存诊断结束
+
+## 2026-11-06 case02内存实测与资源策略待决定
+
+| 项目 | 实测事实与当前边界 |
+|---|---|
+| 新授权与启动 | Owner对call_20a66dd10a9340e3ac2e1fb8567f6f41/item0答“授权case02独立1次，资源达标后执行”。原case02合同e983ba1f…/binary2408a391…不变，独占原文及grant；轻量13143MiB，既有launch一次完整fresh复核后13662MiB/434124611584字节，UTC06:25:45.333278唯一claim、PID3936 |
+| SDK实际结果 | BUILD FAILED in3m30s，454任务（453执行/1 up-to-date）；Dart3.11.5 windows_x64在kernel_snapshot_program的allocation.cc:22 Out of memory，主: flutter:compileFlutterBuildRelease失败。SDK211537ms，root1/controller32，driver619.875秒；本轮VM0 |
+| 真实诊断 | 413行heartbeat，job/commit/status均KNOWN，PARTIAL/UNKNOWN/查询错误0；Job限额4294967296字节，max peak_job4295811072（约4.001GiB），max peak_process2990268416；后者不能归给特定PID。failure.memory_last等于末心跳memory，末行root_exit_observed=true |
+| 系统提交量 | commit_total32649711616–36978765824字节、commit_limit62016741376字节；headroom25037975552–29367029760字节（约23.3–27.4GiB），不是可用物理RAM。峰值达到配置Job预算边缘，支持Job总额压力解释；采样不证明精确失败分配或修复必然成功 |
+| 额度与产物 | case02 scope1/1永久已耗余0，case01和所有旧0余额保持，原grant/claim/失败不改。partial repo350文件/1142096字节/14插件AAR，主flutter_release缺席；不交接APK、不运行完整仓库验证器冒充放行、不重试/退款/换目录续额 |
+| 收尾与验证范围 | 控制器已退出，宿主只读未见本实例进程；源码返回自有Job收尾。本轮不改源码、不重跑单测；前轮13项为准备证据，413真实query是本轮新证据。源码08c8be60、准备封存f1201948；非外部独立验收，G2 false |
+| 资源策略提案 | 拟新候选Job4→6GiB、启动物理内存8→10GiB（保留4GiB余量），其余JVM2G/768m、worker1、64进程、SDK30分钟/host35分钟/本实例STOP45秒/2GiB采样可瞬时超量及离线/排除范围不变；也可保留4GiB先优化内存配置。提案未应用，需Owner决定，未创建新候选/新SDK额度/grant/claim，不在旧case调整或重跑 |
+| 原证与保持 | case02的memory-diagnostic-runtime-summary-private、next-resource-policy-proposal-private、diagnostic-launch-outcome-1be9d3ebf7dd498598bb57cfd7b03523-private及output原日志；failed-partial-repository-inventory-e1e53e1e6e69464a9f501a1c5e03f16b-private。授权后775保护，原工程/main4bebc8f3/255/index2be660…保留；原证/产物/许可证不上GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6 |
+
+---
+
 # EliteSync-v10｜2026-11-06 内存诊断候选已准备
 
 ## 2026-11-06 内存诊断实现与新本机候选准备

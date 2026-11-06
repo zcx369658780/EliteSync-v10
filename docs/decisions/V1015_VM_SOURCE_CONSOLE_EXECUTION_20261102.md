@@ -1,3 +1,19 @@
+# v10.1.5｜2026-11-06 case02诊断实测已耗，下一资源边界待Owner决定
+
+## 2026-11-06 case02独立授权执行与Job预算证据
+
+Owner对call_20a66dd10a9340e3ac2e1fb8567f6f41/item0明确答“授权case02独立1次，资源达标后执行”；原grant原文与副本独占保存，绑定e983ba1f…23ab08/binary2408a391…13cf1/原nonce。轻量13143MiB支持，既有launch一次完整fresh复核后13662MiB/434124611584字节，UTC06:25:45.333278唯一claim、本机Gradle启动，VM0。
+
+实际BUILD FAILED in3m30s、454项任务（453执行/1 up-to-date）。主Flutter的kernel_snapshot_program仍报Dart3.11.5 allocation.cc:22 Out of memory；SDK211537ms、root1/controller32、driver619.875秒。**case02独立1/1已耗余0**，不重试/退款/换目录续额，case01及全部旧0余额不变。partial repo350文件/1142096字节/14插件AAR，主flutter_release缺席，无完整AAR/APK交接。控制器退出，宿主只读未见本实例相关进程。
+
+新增诊断在真实运行中得到413条KNOWN、查询错误0；配置Job上限4294967296字节，peak_job4295811072（约4.001GiB），系统提交余量最小25037975552（约23.3GiB）。末样本在Job释放前记录，memory_last与末心跳一致。证据支持4GiB构建树预算压力；不将peak_process归给Dart特定PID，也不把采样视为某次失败分配的精确证据。原证保持，13项单元/纯fixture为前轮证据，本轮没有新单测或源码修改。
+
+拟议的下一Owner资源决定：新候选Job4→6GiB、启动可用物理内存门8→10GiB（保留4GiB余量），其他时间/输出/进程/离线/排除范围不变；或保持4GiB先优化内部内存配置。**尚未应用、没有新候选或新SDK预算/grant/claim**。原授权固定4GiB且已耗，不能直接在旧case上放宽限额复跑；一般本机/模拟器路线授权保留，后续实际试跑仍需具体新独立范围。
+
+两已耗case、源码与二进制/原grant/claim和失败不改；原证LOCAL_ONLY。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main、不启v10.1.6。
+
+---
+
 # v10.1.5｜2026-11-06 内存诊断准备完成，等待新的具名SDK决定
 
 ## 2026-11-06 Owner同意继续诊断与case02准备事实
