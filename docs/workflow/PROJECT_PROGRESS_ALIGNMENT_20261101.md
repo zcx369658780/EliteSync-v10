@@ -1,4 +1,23 @@
-# EliteSync-v10｜项目进度细表（SDK识别输入修复）
+# EliteSync-v10｜项目进度细表（AAR编译成功，转本机私有产包）
+
+## 2026-11-06 AAR编译成功导出停止与本机私有产包路线
+
+| 项目 | 当前事实与限制 |
+|---|---|
+| 最后VM授权与消耗 | Owner对call_4e251968ddaa44cfbd8615a87335d2a6/item0授权SDK识别候选独立1次；call_e070691dfacb43f18a22316a03cf01f8/item0答“已释放内存，重新核验”。同6f5428ed…359e0bb/binary252e1c9c…a33b/nonce52016402fa664240af62fa4521b609d6，fresh11338MiB，UTC00:54:01.882319唯一claim/VM；1/1已耗、余0，原不足回执与grant不覆盖、不退款/重跑 |
+| 真实运行结果 | Gradle BUILD SUCCESSFUL in9m9s；474 actionable tasks，473 executed/1 up-to-date。随后ProducerSupervisor.ExportRepository的File.GetAttributes抛旧.NET PathTooLongException；guest674104ms、driver721.984秒，CLAIM_SPENT_STOP。编译成功不等于host交接完成 |
+| 部分仓库/收尾 | host repository仅133文件/519203字节/5插件AAR，主flutter_release AAR缺席，未交给stager接受。完整owned pair自动收尾成功、host-after-cleanup/fresh观察空，底层VM teardown UNKNOWN。333保护逐项一致；原main4bebc8f3/255/index2be660…、apps ed248529/services7634b475及全部旧STOP保持 |
+| 路线调整 | Owner提问为什么必须VM编译，Codex调整普通工程方案：本机私有副本/缓存/输出，已有JDK/Gradle/Pub/依赖；不默认继续VM。问题不等于本机SDK或设备的新独立额度。原VM源、helpers、合同、失败和耗额不改 |
+| 新源码/检查 | f98353fc280e9a146354001531d6750843487411新增local producer/entry/controller及两测试；真实路径/URI渲染、完整源复制/库存、原Job私有派生，Python原地仓库核验取代.NET导出。12项定向Python测试通过；本轮前序自写FakeJava父子Job退出/收尾通过、77项managed和8项授权fixture通过（非SDK）。非作者Codex两P2：实际工作卷空间、KeyboardInterrupt收尾，修复并回归后无遗留发现；非外部独立验收 |
+| 私有准备 | v1015-local-aar-20261106-case01已真实物化/编译/冻结1396.063秒：work63,248文件/6,285,581,972字节，external49,649文件。源完整Flutter18,019文件/3,284,398,412字节，Project741文件/86,481,842字节；既有Android平台34/35/36、Build Tools35/36、NDK28.2、完整app-local CMake及现有licenses进入私有副本，不接受新许可/安装升级。原SDK与旧case不写；7份关键实际配置回读无guest路径残留 |
+| 本机冻结/避免重复检查 | 合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da；binary3390c0845685680ddd68a8bd017545cc1cc01373237ec27475250484eedda4fd；nonce6bd5ba4ad9294dfe9ba26eed41fe4d88。合同/payload/helpers一致。完成后立即重读刚生成work清单的只读preflight由Codex主动停止，核对PID/创建时刻/命令身份后仅结束自有准备进程；driver exit1不是SDK失败，原回执保留。完整fresh输入复核移至实际启动前一次，当前不宣称完整preflight通过 |
+| 当前资源/运行资格 | UTC02:12:46资源只读快照：可用5259MiB<8192，工作卷451901673472字节。PRECLAIM_RESOURCE_BLOCKED_MEMORY；本机grant/claim均缺席、输出空、SDK0；不自停用户程序。新实际额度UNKNOWN_NOT_CREATED，授权与资源满足后仍按同一候选核验，旧VM余额0不改 |
+| 待明确的新实际范围 | 准备最多1次本机assembleAarRelease；Job4GiB/64进程、SDK1800秒/host2100秒/本实例STOP45秒、2GiB输出采样（可能瞬时超量）、8GiB可用内存/工作卷8GiB预检、不重试。只用离线参数/禁下载，不承诺OS级断网，不改变系统网络；排除host APK/设备/数据库/媒体/外部服务/生产/安装升级/新许可接受。旧VM10GiB门槛与所有0余额不变，新实际额度UNKNOWN_NOT_CREATED |
+| 原证与项目 | LOCAL_ONLY v1015-producer-supervisor-20261105的sdk-recognition-build-success-export-stop、resumed-sdk-recognition-runtime-outcome、partial-repository-inventory；本机case先读local-readiness-summary-private，fixture在v1015-local-producer-tests-20261106。最新protected-records-after-local-preparation共350，旧333一致；原根main/255/index及双tree复核保持。原证/二进制/AAR/许可证不上GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING；普通同步原产品分支，不合main、不启v10.1.6 |
+
+---
+
+# EliteSync-v10｜项目进度细表（SDK识别输入修复，历史节点）
 
 ## 2026-11-06 依赖图候选实测停止与SDK识别输入修复节点
 

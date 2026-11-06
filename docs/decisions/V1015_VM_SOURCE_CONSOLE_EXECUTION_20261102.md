@@ -1,5 +1,21 @@
 # v10.1.5｜固定控制台角色的独立VM源验证
 
+## 2026-11-06 最新执行事实与工程路线调整：编译成功、导出停止，准备本机私有入口
+
+Owner对6f5428ed…359e0bb候选明确独立1次授权，随后call_e070691dfacb43f18a22316a03cf01f8/item0答复已释放内存。沿用原候选/原grant，fresh11338MiB，UTC00:54:01.882319创建唯一claim并启动。Gradle BUILD SUCCESSFUL in9m9s、474项任务（473执行/1 up-to-date）；之后旧.NET ExportRepository/File.GetAttributes因PathTooLongException停止。guest674104ms、host721.984秒，**scope1/1永久已耗余0**；原PRECLAIM/grant/失败保留，不重试。host只留133文件/519203字节/5插件AAR，主flutter_release缺席，完整仓库与APK交接未成立；owned pair收尾成功、host观察空，底层VM teardown UNKNOWN，333保护一致。
+
+Owner询问为何坚持VM编译、本机已有模拟器且可接手机。Codex承认VM不是Android/Flutter编译要求，原隔离路线增加输入补齐与导出成本；**后续优先本机私有构建，不默认申请新VM**。这是Codex范围内的工程路线调整，不将Owner的问题解释为本机实际SDK/设备的独立额度，也不重写此前VM授权或耗额。
+
+本机入口源码f98353fc280e9a146354001531d6750843487411将完整Flutter/Project和既有SDK复制到任务私有写面，复用JDK/Gradle/Pub/依赖输入、原Job私有派生并保留收尾限制；仓库留原地由Python核验，取消.NET仓库遍历导出。12项Python定向测试通过，前序77项managed/8项authority及自写FakeJava Job收尾通过，未运行真实SDK；非作者Codex两P2修复后无遗留发现，非外部独立验收。只用离线参数及禁下载，不冒称OS级断网或修改系统网络；不安装升级/接受新许可。
+
+本机v1015-local-aar-20261106-case01已真实物化/编译/冻结1396.063秒，work63,248文件/6,285,581,972字节、external49,649文件；合同e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da/binary3390c084…da4fd/nonce6bd5ba4ad9294dfe9ba26eed41fe4d88。7份实际配置回读无guest路径残留，payload/helper身份一致。刚完成库存后重复全量读取的只读检查由Codex核实进程身份后主动停止，仅结束自有准备进程；driver exit1明确为重复检查收束，非SDK失败；完整fresh输入复核留至实际启动前一次，本次不冒称完整preflight通过。
+
+**无本机grant/claim，输出空，实际运行NOT_RUN**。UTC02:12:46可用5259MiB<8192、工作卷451901673472字节，当前内存不足；不自停用户程序、不修改旧门槛。依据既有一次性预算决定，仅另提这份具体候选独立最多1次assembleAarRelease，Job4GiB/64进程、SDK30分钟/host35分钟/本实例STOP45秒/2GiB输出采样（可瞬时超量）、不重试，排除host APK/设备/DB/媒体/外部服务/生产/安装升级。新host8GiB可用内存门槛对应4GiB Job+预留，不改旧VM10GiB门槛或任何旧0余额。普通源码准备不另问一般许可；新实际额度UNKNOWN_NOT_CREATED，AC05 OPEN/G2 false/10 PARTIAL保持。
+
+LOCAL_ONLY本机case的local-readiness-summary-private记录完整冻结/资源/主动停止重复只读检查事实；最新protected-records-after-local-preparation共350，旧333全部一致。原根main/255/index及apps/services树保持，三文档原文已局部保存；普通non-force同步同产品分支，不合main、不启v10.1.6。原证/二进制/许可证内容不上GitHub。
+
+---
+
 ## 2026-11-06 最新执行事实：同授权实测已耗，SDK识别输入修复候选未授权
 
 Owner对内存问题call_0118053c33b84311a5503d664b5d4acb/item0答“已释放内存，重新核验”，同原8db候选/原grant/原nonce，旧156保护一致、答复后157保护；fresh11919MiB/原根正确，UTC00:22:22.536311唯一claim/VM启动。Gradle日志计454项actionable（453执行/1 up-to-date），主dart_build因“Android SDK could not be found”失败，8m35s/guest650180ms/driver716.360秒。**该scope1/1永久已耗余0**；原PRECLAIM7239MiB原文和grant保留，不退款/重建/重跑。完整owned pair自动收尾成功，host观察空、底层VM teardown UNKNOWN；主Flutter AAR未完成、host仓库未导出。

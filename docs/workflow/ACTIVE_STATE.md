@@ -1,4 +1,20 @@
-# EliteSync｜2026-11-06 主Flutter SDK识别缺项修复，新候选已冻结（CURRENT ENTRY）
+# EliteSync｜2026-11-06 AAR编译成功、导出停止；改走本机私有产包（CURRENT ENTRY）
+
+**AAR_COMPILE_SUCCESS_EXPORT_STOP / LOCAL_PRIVATE_PREPARED / PRECLAIM_RESOURCE_BLOCKED_MEMORY / LOCAL_SDK_NOT_AUTHORIZED / NO_COMPLETE_HOST_REPOSITORY / G2_FALSE**
+
+Owner已授权6f5428ed…359e0bb候选独立1次，释放内存后fresh11338MiB，UTC00:54:01.882319唯一claim/VM启动。Gradle **BUILD SUCCESSFUL in 9m 9s，474任务（473 executed/1 up-to-date）**；随后旧.NET在ExportRepository/File.GetAttributes触发PathTooLongException。guest674104ms、driver721.984秒，scope **1/1已耗、余0**；原PRECLAIM与grant保留。host仅导出133文件/519203字节/5插件AAR，缺主flutter_release AAR；未形成完整仓库或APK交接，不能拿部分仓库放行。owned pair收尾成功、host观察空，底层VM teardown UNKNOWN；333保护记录一致。
+
+Owner质疑为何必须沙盒编译。Codex重新判断：Android/Flutter不要求VM，模拟器/手机用于产物后的安装调试；后续采用本机私有工程/SDK副本和私有输出，复用既有JDK/Gradle/Pub/依赖，不默认提出新VM。此问题不是新的本机SDK/设备运行额度。新入口源码 **f98353fc280e9a146354001531d6750843487411**：保留已有Job收尾/限制，仓库留原地由Python核验，取消旧.NET长路径导出；仅离线参数/禁下载，不声称OS级断网。12项Python定向测试通过，前序自写FakeJava Job收尾通过、77项managed和8项授权fixture通过；非作者Codex两项P2修复后无遗留发现，不冒称外部独立验收。
+
+本机私有候选 `C:\Users\zcxve\EliteSyncDev\v1015-local-aar-20261106-case01` 已真实物化/编译/冻结，1396.063秒；私有63,248文件/6,285,581,972字节，外部依赖49,649文件。合同 **e5a12e5d0b4654538f8514120c6bb2df3acf3bab554a8308798f18142c5517da**、binary3390c084…da4fd；7份实际配置回读无guest路径残留，合同/payload/helper身份复核一致。完成后立即重复重读全量work的只读preflight由Codex主动停止，仅结束当前自有准备进程；回执明确driver exit1是有意结束重复检查，**不是SDK运行失败**。完整fresh输入复核保留在实际启动前一次，不把本次写为完整preflight通过。
+
+**无本机grant/claim、SDK未启动、输出空。** UTC02:12:46资源快照仅5259MiB可用/工作卷451901673472字节，低于本机8192MiB门槛，故不能启动；不自停用户程序。具体新范围最多1次assembleAarRelease：Job4GiB/64进程、SDK30分钟/host35分钟、STOP本实例另45秒、2GiB输出采样（可瞬时超量）、不重试。本机8GiB门槛对应新方案，不改旧VM10GiB门槛或旧余额；新实际额度仍UNKNOWN_NOT_CREATED，按现行一次性预算决定另交Owner。
+
+LOCAL_ONLY先读旧VM的 `sdk-recognition-build-success-export-stop-20261106-private.json` 和本机case的 `local-readiness-summary-private.json`；最新 `protected-records-after-local-preparation-20261106-private.json` 共350条，旧333一致。原证/AAR/许可证不上GitHub。10 PARTIAL、AC05 OPEN、G2 false、真实消息Push PENDING，原main/255/index、apps/services及旧STOP保持；[唯一细表](PROJECT_PROGRESS_ALIGNMENT_20261101.md#2026-11-06-aar编译成功导出停止与本机私有产包路线)。
+
+---
+
+# EliteSync｜2026-11-06 主Flutter SDK识别缺项修复，新候选已冻结（历史节点）
 
 **ACTUAL_FLUTTER_COMPILE_FAILED_SDK_DISCOVERY / SCOPE_SPENT_1_REMAINING_0 / SDK_RECOGNITION_CANDIDATE_NOT_AUTHORIZED / NO_MAIN_AAR_OR_HOST_REPOSITORY / G2_FALSE**
 
