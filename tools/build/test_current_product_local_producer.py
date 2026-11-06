@@ -10,6 +10,36 @@ from current_product_tree_inventory import inventory_trees
 
 
 class LocalProducerTests(unittest.TestCase):
+    def test_memory_policy_defaults_and_explicit_six_keep_four_gib_headroom(self):
+        self.assertEqual(local.local_memory_policy(),
+                         dict(job_memory_bytes=4*1024**3,required_available_mib=8192))
+        self.assertEqual(local.local_memory_policy(6),
+                         dict(job_memory_bytes=6*1024**3,required_available_mib=10240))
+        self.assertEqual(local.LIMITS['required_available_mib'],8192)
+
+    def test_six_gib_boundary_changes_only_selected_memory_limit(self):
+        raw=(local.HERE/'producer_process_boundary.cs').read_bytes()
+        args=(raw,'work','exe','java','cwd','logs','fixture-user')
+        default=local.local_boundary(*args)
+        self.assertEqual(default,local.local_boundary(*args,job_memory_gib=4))
+        six=local.local_boundary(*args,job_memory_gib=6)
+        old=b'JobMemoryLimit=new UIntPtr(4UL*1024*1024*1024)'
+        new=b'JobMemoryLimit=new UIntPtr(6UL*1024*1024*1024)'
+        self.assertEqual(default.count(old),1)
+        self.assertEqual(six,default.replace(old,new,1))
+        self.assertEqual((local.HERE/'producer_process_boundary.cs').read_bytes(),raw)
+
+    def test_memory_policy_rejects_other_values_before_source_processing(self):
+        for value in [True,False,None,0,5,8,-1,4.0,6.0,'4','6']:
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(ValueError,'4 or 6'):
+                    local.local_memory_policy(value)
+                # None raw input proves policy validation precedes source hashing/decoding.
+                with self.assertRaisesRegex(ValueError,'4 or 6'):
+                    local.local_boundary(None,'work','exe','java','cwd','logs','user',job_memory_gib=value)
+                with self.assertRaisesRegex(ValueError,'4 or 6'):
+                    local.prepare(None,None,None,job_memory_gib=value)
+
     def test_task_specific_boundary_keeps_job_core_and_explicit_identity(self):
         raw=(local.HERE/'producer_process_boundary.cs').read_bytes()
         rendered=local.local_boundary(raw,r'C:\Local Build\work',r'C:\Local Build\control\Local.exe',

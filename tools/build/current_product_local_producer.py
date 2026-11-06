@@ -27,6 +27,14 @@ LIMITS = dict(sdk_seconds=1800, host_seconds=2100, cleanup_seconds=45,
               output_bytes=2*1024**3, required_available_mib=8192)
 
 
+def local_memory_policy(job_memory_gib=4):
+    """Select only the approved Job limit, retaining 4 GiB host headroom."""
+    if type(job_memory_gib) is not int or job_memory_gib not in (4,6):
+        raise ValueError('Local Job memory must be integer 4 or 6 GiB')
+    return dict(job_memory_bytes=job_memory_gib*1024**3,
+                required_available_mib=(job_memory_gib+4)*1024)
+
+
 def current_user():
     # Desktop tool sessions may deliberately omit USERNAME/USER environment vars.
     import ctypes
@@ -43,8 +51,9 @@ def _replace(text, old, new):
     return text.replace(old,new,1)
 
 
-def local_boundary(raw, work, executable, java, cwd, logs, user):
+def local_boundary(raw, work, executable, java, cwd, logs, user, *, job_memory_gib=4):
     """Derive task-specific paths/identity; retain all native Job/handle code."""
+    local_memory_policy(job_memory_gib)
     if hashlib.sha256(raw).hexdigest()!=BOUNDARY_SHA:
         raise ValueError('Original boundary identity differs')
     text=raw.decode('utf-8')
@@ -57,6 +66,9 @@ def local_boundary(raw, work, executable, java, cwd, logs, user):
     text=_replace(text,r'string logs=@"C:\ProbeOutput";', 'string logs='+verbatim(logs)+';')
     text=_replace(text,r'@"C:\Inputs\Jdk\bin\java.exe"',verbatim(java))
     text=text.replace('Guest supervisor identity required','Bound local supervisor identity required')
+    if job_memory_gib==6:
+        text=_replace(text,'JobMemoryLimit=new UIntPtr(4UL*1024*1024*1024)',
+                      'JobMemoryLimit=new UIntPtr(6UL*1024*1024*1024)')
     return text.encode('utf-8')
 
 
@@ -77,8 +89,10 @@ def _copy_tree(inventory, target, role=None):
 def _json(path):return json.loads(Path(path).read_bytes())
 
 
-def prepare(root, prepared_inputs, source_case):
+def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4):
     """Materialize/compile only. No SDK invocation, grant or claim is created."""
+    memory_policy=local_memory_policy(job_memory_gib)
+    limits=dict(LIMITS,**memory_policy)
     root,prepared_inputs,source_case=map(lambda p:Path(p).resolve(),(root,prepared_inputs,source_case))
     if root.exists():raise FileExistsError('Preserve the existing local candidate')
     if shared.sha(source_case/'probe/run-contract.json')!=SOURCE_CONTRACT_SHA:
@@ -141,7 +155,8 @@ def prepare(root, prepared_inputs, source_case):
     request['environment'].update(ANDROID_USER_HOME=(work/'Home/.android').as_posix(),
                                   ANDROID_NDK_HOME=(sdk/'ndk/28.2.13676358').as_posix())
     executable=control/'LocalAarProducer.exe';java=entry['argv'][0];cwd=Path(request['cwd'])
-    (control/'local-boundary.cs').write_bytes(local_boundary(boundary,work,executable,java,cwd,output,current_user()))
+    (control/'local-boundary.cs').write_bytes(local_boundary(boundary,work,executable,java,cwd,output,current_user(),
+                                                         job_memory_gib=job_memory_gib))
     shutil.copyfile(HERE/'local_aar_supervisor.cs',control/'local_aar_supervisor.cs')
     shutil.copyfile(HERE/'local_aar_memory_diagnostics.cs',control/'local_aar_memory_diagnostics.cs')
     compiler=Path('C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe')
@@ -165,10 +180,11 @@ def prepare(root, prepared_inputs, source_case):
         publication_version=entry['publication_version'],source_identity=entry['source_identity'],
         source_input_contract_sha256=SOURCE_CONTRACT_SHA,repository=str(work/'AarOutput/outputs/repo'),
         work_inventory_sha256=shared.sha(control/'prepared-work-inventory.json'),external_inventory_sha256=shared.sha(control/'external-inputs.json'),
-        payload_sha256=payload,host_helpers=helpers,networking='offline flags; no OS network isolation or system network changes',**LIMITS)
+        payload_sha256=payload,host_helpers=helpers,networking='offline flags; no OS network isolation or system network changes',**limits)
     shared.put(control/'run-contract.json',contract)
     shared.put(root/'prepared.json',dict(status='LOCAL_PRIVATE_AAR_PREPARED_NOT_AUTHORIZED',contract_sha256=shared.sha(control/'run-contract.json'),
-        work_files=len(inventory['files']),work_bytes=inventory['total_bytes'],external_files=len(external),claim_created=False,G2=False))
+        work_files=len(inventory['files']),work_bytes=inventory['total_bytes'],external_files=len(external),claim_created=False,G2=False,
+        **memory_policy))
     return contract
 
 
