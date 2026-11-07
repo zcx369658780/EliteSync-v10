@@ -1,3 +1,15 @@
+# 2026-11-07 Owner降低本次启动余量，实际模拟器切号观察完成
+
+Owner原话：“你好实在是没办法释放更多了，实际上10GB已经很多了。请你降低余量门槛”。据此仅对尚未claim的case04候选保留原配置/grant字节后，后端总容器硬限2GiB/启动可用3072MiB，模拟器Job6GiB/启动可用7168MiB；保留1GiB余量，原nonce、binary、一次次数/claim槽、进程/磁盘/时限/采样及排除项保持。此前AAR6＋1政策保持；本节点不自动改变Debug APK host或已耗scope。原私有Owner回执控制台显示曾乱码，Unicode读取确认原JSON中文完整；不覆盖原件，另存文本核对。
+
+沿用Owner同类本机工程下放，四个具名后端scope各耗1余0；case01/02/04模拟器各耗1余0。case03后端在首个网络创建失败，模拟器未claim余1，但绑定已结束后端，不转移到case04。case01 AM timeout和case02自然150秒到限无合格release保留，不以新成功覆盖。case04仅用两个经查冲突的任务/28网络，不改Docker全局地址池/宿主路由/防火墙，不删除或复用旧网，不用VM。
+
+case04真实APP完成A退出、C登录及C自己聊天；新账号画面/会话绑定后才放行服务端迟发旧ACK，release_seen=true、hold76.513089062秒，当前两帧无旧正文/确认/重试；旧A族撤销、新C族有效、原API族T0/撤销状态保持。B读旧A200、C自己聊天200、C读旧AB404，旧逻辑消息一份。仅该实际串行观察成立，Dart回调到达UNKNOWN、设备缓存零写入未直接测量，不当完整AC03/并发线性化。工程自测/非作者Codex核证不是外部独立验收。
+
+后端/模拟器及任务Docker均已收尾，API137保留，原140容器状态和32旧网保持、总143容器/34网络，新卷/原证留存；不force/prune/全局WSL shutdown。未重编AAR/APK，无手机/媒体/真实Push/安装升级/新许可，旧VM teardown UNKNOWN。仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**，不合main、不启v10.1.6；详细事实、失败和LOCAL_ONLY交付见[最新进度节点](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)。
+
+---
+
 # 2026-11-07 Owner明确后续AAR采用6GiB＋1GiB启动余量
 
 Owner原话：“可以，以后请按照6GB+1GB来构建AAR。请继续”。落实为仅新AAR候选：Job上限6GiB（6442450944字节），启动可用内存门7168MiB；prepare默认并限定integer6。此决定替代后续AAR的6＋4/10GiB启动政策，不重写任何既有冻结合同/原grant/claim/STOP或已耗余额。Debug APK host及其他独立范围仍按各自原政策，本决定不自动替它们改限。

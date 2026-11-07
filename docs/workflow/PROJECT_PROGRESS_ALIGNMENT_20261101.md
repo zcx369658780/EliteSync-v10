@@ -1,3 +1,32 @@
+# 2026-11-07 实际APP切号与绑定后服务器迟发确认观察完成
+
+**ACTUAL_ACCOUNT_SWITCH / QUALIFIED_SERVER_LATE_ACK_ATTEMPT / CURRENT_UI_UNPOLLUTED / G2_FALSE**
+
+工程源码 **81bede1d8e84a87027000119b2b7f2afd5f971e3**，apps树 **8e2e5f1c978b79193e9c37bdd49e1007cf6fd0bf**，services树 **4530ae85754a2f3698d073182a47038708f2cb55**。复用Debug APK SHA **1a4f22fea19542118b899fa97c78375b7cb840aae8f8df54d511e2ae0aa7f006**；运行lib/Android/pubspec与APK源码a51f98b2无差异，apps树之前仅测试变化，不称整棵apps未变。本轮无AAR/APK重编，全部原件LOCAL_ONLY。
+
+case04固定本机PHP/MariaDB镜像、vendor114、新空私有MariaDB nov07_switch_case04/内部55376/server_id230110724，4虚构账号/2好友对，无seed消息；真实API建立A/B、C/admin两对CN/MC并各发一条前置消息。一个实际模拟器APP登录A，在A/B聊天发第3条消息；私有router对指定消息真实提交后单次hold ACK，最多150秒，其他请求仍走实际应用和数据库。
+
+APP实际退出A、登录C、进入C/admin聊天。旧A UI会话族撤销/对应令牌删除，新C UI族有效；原4个API族T0、撤销状态、令牌IDs/期限保持。C画面及会话原证hash绑定后才release，**release_seen=true**；同一PHP单调时钟hold **76.513089062秒**，不当精确SQL提交延迟。服务端send-attempt/after-send原证完整；C放行后和稳定两帧有COnlyCurrentAccountNov07，无旧A正文、成功确认、重试入口。B读取A已提交消息200，旧A逻辑消息恰好1行；C自己聊天200、C读旧AB404。最终持久3消息、3通知、0附件。实际145条UI命令、19条观察脚本HTTP、1安装/1次Activity；APP自身HTTP另有route日志，19不是总请求数。
+
+本轮四个具名范围均保留，未复用已耗额度：
+
+|范围|后端已耗/余|模拟器已耗/余|结果|
+|---|---|---|---|
+|case01|1/0|1/0|AM exit0但Status timeout，未判成功；原因UNKNOWN|
+|case02|1/0|1/0|真实A→C成立；私有validator误将UUID转int，修正后150秒barrier已自然结束，release_seen=false；不标合格迟发目标PASS|
+|case03|1/0|0/1|首个network create因默认地址池耗尽失败，0.156秒，无实际对象；未用模拟器余额绑定已结束后端，不挪到case04|
+|case04|1/0|1/0|实际切号、绑定后服务器迟发确认及当前UI观察完成|
+
+Owner无法再释放并明确要求降低余量，case04尚未claim时另存原配置/grant字节，后端总硬限2GiB/启动3072MiB，模拟器Job6GiB/启动7168MiB；原nonce/binary/次数/硬限/时限保持，fresh实际10466MiB。AAR既有6＋1保持，未改变Debug host政策。Owner回执控制台显示曾乱码，Unicode读取确认原JSON中文完整；原字节保留，另存文本核对。claim前复制runner旧端口引用修为合同既定5080/5600/5601，原字节保留。case04采用经Docker及宿主IPv4路由查冲突的两个具名/28，不改全局地址池、宿主路由/防火墙，不删除复用旧网。
+
+Android虚拟环境Bluetooth keeps stopping弹窗只点Close app；未改宿主蓝牙、未重启EliteSync。A首登异步引导使原flow首次等待消息失败，跳过引导后从已登录画面续行，实际完成脚本run-ui-after-login.py，共用原180条UI预算，无新增A登录/boot/Activity。原流程及阻断截图保留。7项AM诊断、3项UUID绑定、6项污染反例为纯检查；后续AM实际正常启动，诊断分支未真实触发；此前23项widget仍为历史Fake回调/缓存证据，不记本轮新测。
+
+case04模拟器461.390秒controller0/cleanup_errors空；后端597.109秒cleanup_errors空，WS0/API137/DB0均Running=false/PID0/OOMKilled=false，API137保留。case01后端333.782秒/模拟器69.688秒、case02后端890.110秒/模拟器737.937秒，收尾原证完整。原网络ID首次缩写/全长直接比较断言失败保留，改为唯一前缀核对后确认32旧网＋2新网；任务Docker正常停止0，原140容器状态保持，总143记录，新卷/网络全部保留。专用端口均无监听，持有controller PID事后观察空，无force/prune/全局WSL shutdown。
+
+集中LOCAL_ONLY **v1015-account-switch-integration-20261107-case04/IMPLEMENTATION_REPORT.md、verified-account-switch-proof-private.json、artifact_manifest.json**；前三失败原证在各自case根。非作者Codex原证/报告复核无可行动P1/P2，非外部独立验收。**Dart旧回调是否实际收到取消后响应UNKNOWN；真实设备缓存零写入未直接测量；单串行观察不代表完整AC03或并发线性化。** 本轮VM/手机/媒体/真实Push/AAR/APK重编/安装升级/新许可均0，旧VM teardown UNKNOWN。仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；后续完整AC03并发/旧room、长期时窗、媒体/RTC及通知等未完成，原脏根/旧库/SDK/STOP保护，不合main、不启v10.1.6。
+
+---
+
 # 2026-11-07 新AAR资源政策6＋1落地，切号晚响应页面软件回归完成
 
 **OWNER_AAR_6_PLUS_1_APPLIED / PYTHON_30_PASS / WIDGET_23_PASS / G2_FALSE**

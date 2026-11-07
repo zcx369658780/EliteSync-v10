@@ -1,3 +1,17 @@
+# 2026-11-07 实际模拟器切号及绑定后迟发确认观察完成（CURRENT ENTRY）
+
+**ACTUAL_ACCOUNT_SWITCH_AND_QUALIFIED_SERVER_LATE_ACK_OBSERVED / CURRENT_UI_UNPOLLUTED / G2_FALSE**
+
+源码 **81bede1d8e84a87027000119b2b7f2afd5f971e3**；复用已验Debug APK SHA1a4f22fe…aa7f006，运行lib/Android/pubspec与APK源码a51f98b2一致，apps树此前有测试变化。本轮无AAR/APK重编。新空私有库/4虚构账号/2好友对，无seed消息；真实API建立两对CN/MC与前置消息，APP登录A、发送并真实提交后单次hold确认，实际退出A、登录C并打开C自己的聊天。
+
+绑定C画面与会话原证后才release，**release_seen=true，hold76.513089062秒**（同一PHP单调时钟，非SQL提交延迟）；旧A UI族撤销、新C UI族有效，原4个API族T0/撤销状态保持。放行后及稳定两帧只有C聊天标记，无旧正文/成功确认/重试入口；B读旧A消息200，旧逻辑消息恰好1行，C自己聊天200、C读旧AB404；最终3消息/3通知/0附件。145条UI、19条观察器HTTP、1安装/1次Activity；19不含APP自身HTTP。
+
+Owner要求降低余量：仅case04尚未claim候选保留原字节后，后端2GiB硬限/启动3GiB、模拟器6GiB Job/启动7GiB；原nonce、binary、次数及时限保持，Debug host政策未改。case01 AM timeout、case02自然150秒到限未合格release、case03网络池耗尽均保留；case04用两个经查冲突的具名/28网络，未改全局地址池/宿主路由或删旧网。前三后端均耗尽，case01/02模拟器耗尽；case03模拟器未用1次仍绑定已结束后端，不挪用；case04后端/模拟器各耗1余0。
+
+case04模拟器461.390秒controller0，后端597.109秒，cleanup_errors空，WS0/API137/DB0均停止/PID0/无OOM；任务Docker正常停止0，原140容器状态保持，共143记录，32旧网＋2新网/新卷保留，专用端口/持有controller事后观察空。集中LOCAL_ONLY **v1015-account-switch-integration-20261107-case04**；非作者Codex核证无可行动P1/P2，非外部独立验收。**Dart旧回调到达UNKNOWN、设备缓存零写入未直接测量、单串行不代表完整AC03。** 仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；旧VM teardown UNKNOWN，本轮VM/手机/媒体/真实Push为0，不合main、不启v10.1.6。详细失败、环境处理及边界见[进度节点](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。
+
+---
+
 # 2026-11-07 Owner AAR改为6＋1，跨账号晚响应页面回归23项通过（CURRENT ENTRY）
 
 **OWNER_AAR_6_PLUS_1_APPLIED / PYTHON_30_PASS / FLUTTER_WIDGET_23_PASS / G2_FALSE**
