@@ -1,3 +1,15 @@
+# 2026-11-07 Redmi文字往返与冷启T0/令牌保持已实测，退出导航STOP（CURRENT ENTRY）
+
+**ACTUAL_PHONE_LOGIN_TEXT_ROUNDTRIP_COLD_T0_TOKEN_VERIFIED / LOGOUT_NAVIGATION_STOP / CASE03_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner另授修正候选一次；前置通过APP正常退出旧fixture后核空登录，旧前置失败/STOP和计数保留。case03同一源码Debug APK真实登录、手机发信/服务器确认/DB模型及密文hash绑定、对端API读及回复手机显示均通过。一次APP冷启后，新phase/cursor/actor/完整UUID绑定verify200，同会话、T0和令牌ID保持，消息/回复再次显示。[本节点](V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)。
+
+退出前点击观察中的“我的”，下一页却为旅程，查找本地设置失败；无退出确认/服务器撤权。根因UNKNOWN，收尾后的单次离线“我的”观察正常，不据此解释旧异常。独立候选增加稳定目标及目的页确认，5项纯检查通过，实际退出复测NOT_RUN；无后继scope/grant/claim。后台162.266秒，已耗1余0，不自动重跑。
+
+三个新容器停止/PID0/无OOM，API137保留；reverse/两类UI临时文件已清理。集成158条ADB＋离线诊断8条＝166/180，2次Activity/1次force-stop，无重编/重装。149旧容器完整State一致且全停止，共享引擎运行，手机仍为虚构会话并位于“我的”。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/SDK/DB/STOP及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 Redmi真实登录及手机文字入库，密文观察器误判STOP（CURRENT ENTRY）
 
 **ACTUAL_PHONE_LOGIN_AND_OUTGOING_TEXT_SUPPORTED / CIPHERTEXT_OBSERVER_ERROR_STOP / CASE02_SPENT_1_REMAINING_0 / G2_FALSE**
