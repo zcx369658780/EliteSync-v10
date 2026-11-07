@@ -1,3 +1,15 @@
+# 2026-11-07 Redmi私有API服务已就绪，检查探针错误STOP，修正仅静态验证（CURRENT ENTRY）
+
+**BACKEND_READY / OBSERVER_ROUTE_ERROR_STOP / SPENT_1_REMAINING_0 / CANDIDATE_STATIC_ONLY / G2_FALSE**
+
+Owner已批准恢复现有Docker/WSL2引擎；最初preclaim阻断不耗额，随后同一范围继续。新空库93表/4个虚构账号、API/WS和health200实际成功。Codex观察器误用不存在的GET /api/v1/me，预期401却实际404后停止；不是已证明的产品鉴权缺陷。API/手机登录、文字、冷启与退出均NOT_RUN；后端49.109秒，已耗1余0，不重跑。[本节点与修正候选](V1015_REDMI_API_PROBE_STOP_20261107.md)。
+
+三个新容器停止/PID0/无OOM，API退出137保留；新卷/网络留存，两个USB reverse及自有UI临时文件已清理。143旧容器完整State事后回核一致且全停止，原dirty根255项与index hash保持；Docker共享引擎仍运行。手机28条ADB/2次Activity/0次账号提交，无重装。
+
+独立候选仅改用已注册且受保护的GET /api/v1/account/sessions；路由静态核对、拦截首请求纯测试及非作者Codex复核通过，真实401 NOT_RUN，无后继scope/grant/claim。须另授该候选一次后端额度；同机APP调试和现有引擎启动许可保留，不重问。已验源码Debug/热重载成果保留；仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布或启动v10.1.6，旧STOP/SDK/DB与%SystemDrive%保护。
+
+---
+
 # 2026-11-07 Redmi真实源码attach与修改/恢复热重载验证成功（CURRENT ENTRY）
 
 **ACTUAL_PHONE_SOURCE_ATTACH_EDIT_RELOAD_RESTORE_VERIFIED / SOURCE_AND_RUNTIME_RESTORED / G2_FALSE**
