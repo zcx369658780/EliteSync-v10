@@ -1,3 +1,17 @@
+# 2026-11-07 续行补充：源码调试优先、串行4＋1与保存轮边界
+
+本补充延续Local-first，不重做治理迁移。Owner已下放同类普通本机工程，由Codex连续实现、调试、测试、审查、工程验收、常规Git和记录；顾问负责路线。具体一次预算/claim/STOP、设备/外部服务/真实数据/费用/生产/正式发布和重大版本边界仍保持。
+
+后续新AAR和Debug APK host统一Job4GiB＋1GiB余量、启动可用5120MiB，两个阶段串行，不用VM。64进程/SDK30分钟/host35分钟/本实例收尾45秒/工作卷8GiB/2GiB输出采样及离线禁下载保持；先完整AAR验仓后运行APK。旧冻结合同不回写、已耗余额不恢复，5GiB不是整机物理内存封顶，不自动改其他独立范围合同。
+
+Owner同意优先真正源码Debug/热重载、稳定私有开发目录与减少重复准备，再按冻结AC完成v10.1.5消息权限、媒体、离线、通知、合格RTC及同源集中工程收口；工程提效不新增产品验收门。原生设备、云端及供应商仍按具体资格/权限执行。v10.1.6未启动，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+“只保存文档”仅约束2026-11-07本次保存轮；下方2026-11-01“仅整理项目源”等是已结束历史整理轮，不能阻止后续明确授权工程。新会话先核真实Git身份，读ACTIVE_STATE顶部和[最新交接](SESSION_HANDOFF_20261107_V1015_4GIB_BUILD_SOURCE_DEBUG_NEXT.md)，再最小读取相关源码；不递归读全Sources/日志，不重做迁移，不恢复旧网页执行门。没有当前待回复的内存释放请求，不用旧资源快照启动、不轮询资源自动开工。必要启动仍由既有入口一次fresh核验，不在launch前另跑重复全量preflight。
+
+自测/非作者Codex、外部独立验收、Owner产品接受及发布分别记录，NOT_RUN/UNKNOWN如实保留。原dirty根/SDK/DB/备份/全部STOP保护，不pull/reset/rebase/stash/clean/prune/force、不合main或归档镜像、不启v10.1.6，私有原件不上GitHub。
+
+---
+
 # EliteSync-v10 当前工作流｜Local-first
 
 生效：2026-11-01。依据[Owner 接管决定](../decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)，执行边界见[AGENTS](../../AGENTS.md)。

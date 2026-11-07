@@ -1,3 +1,13 @@
+# 2026-11-07 会话已保存，下一步源码Debug与v10.1.5剩余收口（CURRENT ENTRY）
+
+**SESSION_SAVE_ONLY / FOUR_GIB_AAR_APK_VERIFIED / SOURCE_DEBUG_NEXT / G2_FALSE**
+
+Owner同意整体进度及后续顺序，要求本轮立即保存本地/GitHub并交接。最新实际4GiB AAR/APK结果保持，两个scope各已耗1余0，APK安装/运行NOT_RUN；本保存轮无新构建、测试、设备、服务或内存重测。保存前HEADd43f781c；完整[本次交接](SESSION_HANDOFF_20261107_V1015_4GIB_BUILD_SOURCE_DEBUG_NEXT.md)列出Owner决定、已完成结果、当前缺口、原证摘要和最小下一步。
+
+后续新AAR/Debug host继续4GiB＋1GiB、启动5120MiB、串行；同类普通工程已下放，旧grant/claim/STOP不重置。Owner同意优先源码Debug/热重载与稳定开发目录/准备提效，随后消息权限、媒体、离线、通知及合格条件下RTC/同源集中验收；这不是v10.1.5整版接受或v10.1.6授权。只保存属于当前已结束保存轮，不阻止下一会话已授权工程。不用VM，不依赖DOT，不恢复网页派单或重做迁移。**10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；自测/非作者Codex不冒充外部独立验收。
+
+---
+
 # 2026-11-07 本机4GiB串行AAR与APK实际构建通过（CURRENT ENTRY）
 
 **ACTUAL_FOUR_GIB_SERIAL_AAR_AND_DEBUG_APK_VERIFIED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**
