@@ -1,3 +1,13 @@
+# 2026-11-07 Owner返回后，Redmi源码Debug APK安装成功并核对原字节
+
+**SOURCE_DEBUG_APK_INSTALLED_EXACT_BYTES_VERIFIED / APP_LAUNCH_ATTACH_HOT_RELOAD_NOT_RUN / G2_FALSE**
+
+Owner明确返回并要求继续安装；同一Redmi物理USB/主用户0/开发包尚未安装，确认无遗留安装客户端后，新接续范围case02仅安装1次，7.868秒exit0/Success。实际com.elitesync.v1015dev/10.1.5-dev/1010501/debuggable；设备base.apk SHA974ef00c…3017a4dc与已验源码Debug交付完全一致。8条ADB，未覆盖/卸载/清空、改设置或自动授予权限；case01受限失败原证不改。[本节点](V1015_REDMI_USB_SOURCE_DEBUG_INSTALLED_20261107.md)。
+
+本次安装完成，Codex未发APP启动命令；运行/attach/热重载NOT_RUN，下一步为源码调试连接。无SDK重编/服务/真实数据操作；仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。旧STOP/SDK/DB/原dirty根与%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 Redmi个人手机USB资格已核，安装受限，按Owner要求等待
 
 **USB_PHONE_QUALIFIED / INSTALL_FAILED_USER_RESTRICTED / WAIT_OWNER_AFTER_MEAL / G2_FALSE**
