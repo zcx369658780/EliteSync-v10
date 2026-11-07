@@ -11,13 +11,14 @@ assert !fixture.exists(): 'Use a fresh fixture directory'
 settingsDir.mkdirs()
 
 def evaluateSettings = { String values ->
-    def result = [callbacks: [], included: null]
+    def rootProject = new Expando(buildFileName: 'build.gradle.kts')
+    def result = [callbacks: [], included: null, rootProject: rootProject]
     def providers = new Expando(gradleProperty: { String name ->
         assert name == 'flutterDartDefines'
         new Expando(orNull: values)
     })
     def gradle = new Expando(beforeProject: { Closure callback -> result.callbacks.add(callback) })
-    def binding = new Binding(settingsDir: settingsDir, providers: providers, gradle: gradle,
+    def binding = new Binding(settingsDir: settingsDir, rootProject: rootProject, providers: providers, gradle: gradle,
         apply: { Map options -> result.included = options.from })
     def configuration = new CompilerConfiguration()
     configuration.addCompilationCustomizers(new ImportCustomizer().addImports('org.gradle.api.GradleException'))
@@ -42,6 +43,7 @@ for (values in [null, '', 'ELITESYNC_V1014_LOCAL_BUILD=true',
 }
 def result = evaluateSettings(' ELITESYNC_V1015_LOCAL_BUILD=true ;EXTRA=中文,ELITESYNC_V1015_LOCAL_BUILD=true ')
 assert result.included.canonicalFile == includeFile.canonicalFile
+assert result.rootProject.buildFileName == 'build-source-debug.gradle.kts'
 assert result.callbacks.size() == 1
 def flutterValues = [:]
 def appValues = [:]

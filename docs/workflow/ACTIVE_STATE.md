@@ -1,3 +1,15 @@
+# 2026-11-07 case04越过默认JAR缺口，插件类型类路径STOP，修正已静态验证（CURRENT ENTRY）
+
+**CASE04_STOP_SPENT_1_REMAINING_0 / PLUGIN_TYPE_CLASSPATH_FIX_STATIC / NO_APK / G2_FALSE**
+
+Owner明确批准完整默认JAR候选一次。复用稳定目录/SDK复制0，输入67506文件/7029564398字节、外部49710项。唯一fresh launch启动13615MiB；SDK54.495秒/Gradle53秒，插件4项up-to-date，root1/controller32、峰约1.130GiB。默认JAR错误未再出现，随后原生lifecycle Kotlin脚本报flutter.compileSdkVersion不可识别；生成访问器注明FlutterExtension类型不可见、flutter为Any。未进Dart/APP、无新APK；case04已耗1余0，case01–03封存hash一致、不重跑。
+
+源码模式改选独立根脚本，以Flutter插件apply false提供共同父classpath；默认AAR根与第三方原件不改。根选择fixture RED→GREEN/8场景PASS，私有AAR renderer10项PASS；非作者Codex无可行动P1/P2，非外部独立验收。真实类加载/修正后产包NOT_RETESTED；两文件候选已保存、尚未应用稳定副本，没有case05或后继claim。详见[本节点](V1015_SOURCE_DEBUG_CANONICAL_PASSED_PLUGIN_CLASSPATH_STOP_20261107.md)。
+
+安装/运行/attach/热重载NOT_RUN；仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。不合main/发布、不启v10.1.6，原dirty根/SDK/DB/STOP与%SystemDrive%保护。
+
+---
+
 # 2026-11-07 门户修正实际通过，case03默认JAR缺口已补，当前范围STOP（CURRENT ENTRY）
 
 **PORTAL_RECOVERED / CASE03_STOP_SPENT_1_REMAINING_0 / CANONICAL_JARS_COMPLETED_STATICALLY / NO_APK / G2_FALSE**

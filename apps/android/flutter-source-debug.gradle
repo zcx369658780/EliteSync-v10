@@ -8,6 +8,10 @@ if (!includeFile.isFile()) {
     throw new GradleException('Source Debug needs the prepared Flutter module .android directory; do not download or regenerate it implicitly.')
 }
 
+// Kotlin native-plugin scripts need FlutterExtension on the shared parent
+// classpath, before Gradle generates their typed extension accessors.
+rootProject.buildFileName = 'build-source-debug.gradle.kts'
+
 def defines = (providers.gradleProperty('flutterDartDefines').orNull ?: '')
     .split('[;,]').collect { it.trim() }.findAll { !it.isEmpty() }
 if (!defines.contains('ELITESYNC_V1015_LOCAL_BUILD=true') ||
