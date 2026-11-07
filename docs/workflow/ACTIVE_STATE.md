@@ -1,3 +1,15 @@
+# 2026-11-07 真正源码Debug APK实际产出并核验（CURRENT ENTRY）
+
+**ACTUAL_SOURCE_DEBUG_APK_VERIFIED / CASE05_COMPLETED_SPENT_1_REMAINING_0 / HOT_RELOAD_NOT_RUN / G2_FALSE**
+
+源码c5e2dc34、apps树b673913；Owner明确批准插件类型修正候选一次。复用稳定目录/SDK复制0，输入74111文件/7643328091字节、外部49710项。唯一fresh launch启动14254MiB；SDK215.276秒，Gradle3m34s/345任务（340执行/5 up-to-date），root/controller0，Job峰约3.663GiB。:flutter:compileFlutterBuildDebug实际执行，原生插件类型问题越过；case05已耗1余0，case01–04 STOP封存hash一致，无重试。
+
+新源码Debug APK为123292162字节、SHA974ef00c…3017a4dc，com.elitesync.v1015dev/10.1.5-dev/1010501/ARM64/Debug签名。完整ZIP/版本/签名/ABI、JIT kernel存在/AOT libapp缺失、官方Debug引擎PHDR/PT_LOAD代码链通过。LOCAL_ONLY交付已冻结；默认AAR路线保留。非作者Codex复核无可行动P1/P2，非外部独立验收；此前8场景/10项检查未在本轮重跑。[本节点](V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)。
+
+设备安装/运行/attach/热重载NOT_RUN，正在确认下一USB测试设备信息，FD02仍排除；本次授权不含设备动作。仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。不合main/发布、不启v10.1.6，原dirty根/SDK/DB/STOP与%SystemDrive%保护。
+
+---
+
 # 2026-11-07 case04越过默认JAR缺口，插件类型类路径STOP，修正已静态验证（CURRENT ENTRY）
 
 **CASE04_STOP_SPENT_1_REMAINING_0 / PLUGIN_TYPE_CLASSPATH_FIX_STATIC / NO_APK / G2_FALSE**
