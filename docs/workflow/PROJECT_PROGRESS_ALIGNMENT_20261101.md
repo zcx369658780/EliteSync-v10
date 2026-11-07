@@ -1,3 +1,23 @@
+# 2026-11-07 4GiB上限实际串行产出完整AAR仓库及已验Debug APK
+
+**ACTUAL_FOUR_GIB_SERIAL_AAR_AND_DEBUG_APK_VERIFIED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**
+
+源码 **76135add5bf9e1581e67c5e9f25b72fda7250f7d**，新独立AAR/host各最多一次、各已耗1余0，保持Job4GiB/启动5120MiB，两个阶段串行。AAR SDK **290.888秒**，Gradle4m49s/474任务（473执行/1 up-to-date），Job记账峰值 **3.852GiB**；完整仓库 **375文件/6418018字节/15 publications**，主AAR/版本/hash通过。随后APK SDK **138.081秒**，Job记账峰值 **3.774GiB**，controller/root均0。两阶段峰值不相加，也不等于整机物理内存占用；仅支持本次固定输入下4GiB成功，不当未来所有构建保证。
+
+新APK **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable /Android Debug签名**，73459721字节，SHA **477f0d1705ab0c239db942621bbf75a40275e128dd48657b16423fd2958b796a**；完整ZIP、签名、ABI及主AAR→merged→stripped→APK的代码字节链已核验，全部PT_LOAD代码字节/allocated sections/program headers保持。本轮安装/运行NOT_RUN，不继承为新的设备实测或完整G2。
+
+准备与复核开销单列：AAR准备 **1189.625秒**，启动调用 **906.812秒**（含SDK290.888秒和输入复核/收集）；host准备 **332.563秒**，启动调用 **161.235秒**。这些不冒充Gradle编译耗时。只读源码定位发现清单工具双遍枚举和重复祖先metadata核对，未作本机耗时分布profiling，不能断言实际瓶颈；本次没有为加速而改冻结检查。
+
+本轮保持64进程、SDK30分钟/host35分钟、本实例收尾45秒、工作卷8GiB、输出2GiB采样可瞬超、离线参数禁下载，不改系统网络。没有VM、模拟器/手机、后端/数据库、媒体/真实Push、工具安装升级、新许可或生产运行；旧scope/claim/STOP不改、不重试，旧VM teardown UNKNOWN。
+
+当前Android Debug仍消费Flutter Release AAR；源码调试/热重载变体尚未接入。只读定位已确认需分开source-debug与verified-AAR依赖，保留V1015/V1014 defines、插件注册和bootstrap通道，避免双重打包。后续优先稳定源码调试目录、减少重复准备，再按具体设备资格安排USB调试；本轮不借此扩大设备或云端权限。
+
+本轮没有重跑前序34项Python策略检查，不将旧测试写成本轮新测；实际新证据是这两个具名构建、验仓和APK读取核验。集中报告/清单/原证及稳定交付在LOCAL_ONLY **v1015-four-gib-build-runtime-20261107**，AAR根 **v1015-four-gib-aar-20261107-case01**、host根 **v1015-four-gib-debug-host-20261107-case01**。
+
+仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；此前实际切号/迟发观察保留原边界，Dart旧回调到达UNKNOWN、缓存零写入未直接测量。自测/非作者Codex核证不是外部独立验收，不合main、不启v10.1.6；原脏根/SDK/数据库/STOP保护，二进制/许可证/私有原证不上传GitHub。
+
+---
+
 # 2026-11-07 新AAR及APK统一串行4GiB＋1GiB，旧范围不改写
 
 **SERIAL_AAR_APK_4_PLUS_1 / PYTHON_34_PASS / NEW_BUILD_NOT_RUN / G2_FALSE**

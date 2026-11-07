@@ -1,3 +1,17 @@
+# 2026-11-07 本机4GiB串行AAR与APK实际构建通过（CURRENT ENTRY）
+
+**ACTUAL_FOUR_GIB_SERIAL_AAR_AND_DEBUG_APK_VERIFIED / NEW_APK_RUNTIME_NOT_RUN / G2_FALSE**
+
+源码 **76135add5bf9e1581e67c5e9f25b72fda7250f7d**，新独立AAR/host各最多一次、各已耗1余0，保持Job4GiB/启动5120MiB，两个阶段串行。AAR SDK **290.888秒**，Gradle4m49s/474任务（473执行/1 up-to-date），Job记账峰值 **3.852GiB**；完整仓库 **375文件/6418018字节/15 publications**，主AAR/版本/hash通过。随后APK SDK **138.081秒**，Job记账峰值 **3.774GiB**，controller/root均0。两阶段峰值不相加，也不等于整机物理内存占用；仅支持本次固定输入下4GiB成功，不当未来所有构建保证。
+
+新APK **com.elitesync.v1015dev /10.1.5-dev /1010501 /ARM64 /debuggable /Android Debug签名**，73459721字节，SHA **477f0d1705ab0c239db942621bbf75a40275e128dd48657b16423fd2958b796a**；完整ZIP、签名、ABI及主AAR→merged→stripped→APK的代码字节链已核验，全部PT_LOAD代码字节/allocated sections/program headers保持。本轮安装/运行NOT_RUN，不继承为新的设备实测或完整G2。
+
+LOCAL_ONLY交付 **v1015-four-gib-build-runtime-20261107/delivery**；准备/复核耗时及源码调试下一步见[进度](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。本轮保持64进程、SDK30分钟/host35分钟、本实例收尾45秒、工作卷8GiB、输出2GiB采样可瞬超、离线参数禁下载，不改系统网络。没有VM、模拟器/手机、后端/数据库、媒体/真实Push、工具安装升级、新许可或生产运行；旧scope/claim/STOP不改、不重试，旧VM teardown UNKNOWN。
+
+仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；此前实际切号/迟发观察保留原边界，Dart旧回调到达UNKNOWN、缓存零写入未直接测量。自测/非作者Codex核证不是外部独立验收，不合main、不启v10.1.6；原脏根/SDK/数据库/STOP保护，二进制/许可证/私有原证不上传GitHub。
+
+---
+
 # 2026-11-07 Owner改为AAR/APK串行4＋1，启动门5GiB（CURRENT ENTRY）
 
 **OWNER_SERIAL_BUILD_4_PLUS_1_APPLIED / PYTHON_34_PASS / NEW_SDK_BUILD_NOT_RUN / G2_FALSE**

@@ -1,3 +1,15 @@
+# 2026-11-07 同类下放授权下的4＋1串行实际产包完成
+
+依据Owner同类本机运行下放、新4＋1决定及“好的，请继续”，Codex分别安排一次新AAR及一次依赖完整AAR的Debug host；不是另造Owner逐案答复，不复用旧额度。实际两阶段各已耗1余0，Job4GiB/启动5GiB与串行规则均成立，完整验仓后才运行host。
+
+源码 **76135add5bf9e1581e67c5e9f25b72fda7250f7d**，新独立AAR/host各最多一次、各已耗1余0，保持Job4GiB/启动5120MiB，两个阶段串行。AAR SDK **290.888秒**，Gradle4m49s/474任务（473执行/1 up-to-date），Job记账峰值 **3.852GiB**；完整仓库 **375文件/6418018字节/15 publications**，主AAR/版本/hash通过。随后APK SDK **138.081秒**，Job记账峰值 **3.774GiB**，controller/root均0。两阶段峰值不相加，也不等于整机物理内存占用；仅支持本次固定输入下4GiB成功，不当未来所有构建保证。
+
+新APK仅完成签名/元数据/主代码字节链核验，安装运行NOT_RUN；源码热重载模式未实现。本轮保持64进程、SDK30分钟/host35分钟、本实例收尾45秒、工作卷8GiB、输出2GiB采样可瞬超、离线参数禁下载，不改系统网络。没有VM、模拟器/手机、后端/数据库、媒体/真实Push、工具安装升级、新许可或生产运行；旧scope/claim/STOP不改、不重试，旧VM teardown UNKNOWN。
+
+仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；此前实际切号/迟发观察保留原边界，Dart旧回调到达UNKNOWN、缓存零写入未直接测量。自测/非作者Codex核证不是外部独立验收，不合main、不启v10.1.6；原脏根/SDK/数据库/STOP保护，二进制/许可证/私有原证不上传GitHub。 事实见[最新进度](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)。
+
+---
+
 # 2026-11-07 Owner将后续构建改为AAR/APK串行4＋1
 
 Owner原话：“可以，考虑到我们的apk不会有太复杂的内容，请参考上述信息将内存限制改为AAR 4GB + 1GB，并且两个阶段不需要并行进行，因此综合内存限制可以降低到5GB。”
