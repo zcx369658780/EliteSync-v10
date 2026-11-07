@@ -1,3 +1,15 @@
+# 2026-11-07 Debug依赖补齐，首次源码构建STOP（CURRENT ENTRY）
+
+**DEBUG_DEPENDENCIES_SUPPLEMENTED / SOURCE_DEBUG_FIRST_BUILD_FAILED / SPENT_1_REMAINING_0 / NO_NEW_APK / G2_FALSE**
+
+Owner已允许补齐缺失Debug依赖，不升级/新许可，后续构建仍离线。2份官方Flutter Debug JAR/POM完成校验；首次source-debug独立范围经唯一fresh launch实际运行，启动12443MiB、SDK53.656秒/Gradle52秒，仅完成插件4项任务；:flutter classpath缺10项Kotlin1.8.0依赖，root1/controller32，Job峰约1.705GiB，无新APK。当前scope已耗1余0、STOP保留，未重跑/换目录续额；旧两个4GiB范围各1/0不改。
+
+随后按既有补依赖许可，在独立仓库静态补齐25固定组件/54文件/76825868字节；未重新运行Gradle解析或SDK。稳定目录完整输入63036文件/6283649033字节，私有SDK根/Debug guard/工具包URI及现有NDK pin已记录；原SDK不写。下一固定init候选覆盖插件classpath仓库，未应用、未建后继scope/grant/claim；现范围关闭后的下一次运行需Owner新决定。见[本节点原证与下一输入](V1015_SOURCE_DEBUG_DEPENDENCIES_AND_STOP_20261107.md)。
+
+安装/运行/attach/热重载NOT_RUN；自测/非作者Codex不作外部独立验收。仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING，不合main/发布、不启v10.1.6；原dirty根/SDK/DB/STOP及%SystemDrive%保护。
+
+---
+
 # 2026-11-07 源码Debug接线完成，动态验证待离线依赖（CURRENT ENTRY）
 
 **SOURCE_DEBUG_WIRING_IMPLEMENTED / PYTHON_17_PASS / GROOVY_FIXTURE_8_PASS / SDK_BUILD_HOT_RELOAD_NOT_RUN / G2_FALSE**
