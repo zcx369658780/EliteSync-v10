@@ -1,3 +1,15 @@
+# 2026-11-07 Redmi真实登录及手机文字入库，密文观察器误判STOP（CURRENT ENTRY）
+
+**ACTUAL_PHONE_LOGIN_AND_OUTGOING_TEXT_SUPPORTED / CIPHERTEXT_OBSERVER_ERROR_STOP / CASE02_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner确认重连解锁后，同机/用户/APK/空登录重新资格通过，原断开STOP和手机计数保留。case02同一次授权实际运行112.5秒：正确探针401、真实手机虚构账号登录/初始T0和令牌基线、对端预置来信显示、手机发信/API200/服务器UI确认及MariaDB密文记录取得。检查器误把原始存储密文与明文比较而断言停止；离线对保存的两条虚构消息核验HMAC/解密匹配，不重启服务。[本节点](V1015_REDMI_LOGIN_TEXT_CIPHERTEXT_OBSERVER_STOP_20261107.md)。
+
+另发现私有遥测UUID转int的静态阻断。独立候选改模型语义读取并绑定原密文hash/消息身份、保留完整UUID，11项纯检查通过，真实PHP模型/冷启重测NOT_RUN。对端API读/回复、冷启T0/令牌保持和退出均NOT_RUN，整体未通过；case02已耗1余0，无后继scope/grant/claim，不自动重跑。
+
+三个新容器停止/PID0/无OOM，API137保留；reverse/UI临时文件已清理，累计79条ADB/2次Activity，无重编/重装。146旧容器完整State一致且全停止，共享引擎运行。手机仍为本任务虚构登录会话，后续须先处理该fixture的APP退出或明确接续方案；既有手机/Docker许可保持。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/SDK/DB/STOP及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 修正探针候选已获新一次授权，USB断开在claim前等待（CURRENT ENTRY）
 
 **NEW_ONE_SHOT_AUTHORIZED / USB_DISCONNECTED_PRECLAIM / SPENT_0_REMAINING_1 / BACKEND_NOT_STARTED / G2_FALSE**
