@@ -1,3 +1,15 @@
+# 2026-11-08 Redmi退出撤权集中补验通过（CURRENT ENTRY）
+
+**ACTUAL_PHONE_APP_LOGOUT_API_DB_REVOCATION_VERIFIED / FOCUSED_SCOPE_COMPLETED_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner接续一次集中补验；初次手机/引擎不可用在claim前保留余额，随后明确重连解锁并另授现有引擎启动一次。原失败/STOP和计数保留，同一未用后端范围继续。相同源码Debug APK真实登录后，稳定“我的”目标及目的页确认通过；APP正常退出返回登录页，新phase/cursor/actor/完整UUID绑定logout200，合格DB手机会话撤销、两枚令牌ID3/4删除；同账号哨兵会话/T0/令牌ID1/2保持且API仍200。[本节点](V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)。
+
+后端125.656秒，已耗1余0，无重试；本轮引擎启动一次已用。自有三个容器停止/PID0/无OOM，API137保留，新卷/网络留存，reverse/UI文件清理完成；75条ADB/1次Activity，无冷启重放/重编/重装。152旧容器完整State一致且全停止，共享引擎运行；手机为登录页。旧令牌HTTP拒绝和缓存零写入未直接测量，前次导航异常根因仍UNKNOWN。
+
+退出撤权分项通过；文字往返与冷启动保持沿用前轮对应原证，不写成本轮重测。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，继续冻结矩阵/媒体/离线/通知/RTC及同源集中验收；原dirty根/SDK/DB/全部STOP及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 Redmi文字往返与冷启T0/令牌保持已实测，退出导航STOP（CURRENT ENTRY）
 
 **ACTUAL_PHONE_LOGIN_TEXT_ROUNDTRIP_COLD_T0_TOKEN_VERIFIED / LOGOUT_NAVIGATION_STOP / CASE03_SPENT_1_REMAINING_0 / G2_FALSE**
