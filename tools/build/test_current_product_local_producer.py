@@ -5,9 +5,12 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
+import threading
 import types
 import unittest
+import uuid
 from unittest.mock import patch
 
 import current_product_local_producer as local
@@ -16,18 +19,19 @@ import current_product_source_overlay as source_overlay
 
 
 class LocalProducerTests(unittest.TestCase):
-    def test_new_aar_policy_is_six_gib_plus_one_without_changing_debug_host_policy(self):
+    def test_new_build_policy_is_four_gib_plus_one_with_legacy_policy_preserved(self):
         self.assertEqual(local.aar_memory_policy(),
-                         dict(job_memory_bytes=6*1024**3, required_available_mib=7168))
+                         dict(job_memory_bytes=4*1024**3, required_available_mib=5120))
+        self.assertEqual(local.build_memory_policy(), local.aar_memory_policy())
         self.assertEqual(local.local_memory_policy(6),
                          dict(job_memory_bytes=6*1024**3, required_available_mib=10240))
 
     def test_new_aar_policy_rejects_other_limits_before_preparation(self):
-        for value in [True, False, None, 0, 4, 5, 8, -1, 6.0, '6']:
+        for value in [True, False, None, 0, 5, 6, 8, -1, 4.0, 6.0, '4', '6']:
             with self.subTest(value=value):
-                with self.assertRaisesRegex(ValueError, 'integer 6 GiB'):
+                with self.assertRaisesRegex(ValueError, 'integer 4 GiB'):
                     local.aar_memory_policy(value)
-                with self.assertRaisesRegex(ValueError, 'integer 6 GiB'):
+                with self.assertRaisesRegex(ValueError, 'integer 4 GiB'):
                     local.prepare(None, None, None, job_memory_gib=value)
 
     def test_memory_policy_defaults_and_explicit_six_keep_four_gib_headroom(self):
@@ -57,7 +61,7 @@ class LocalProducerTests(unittest.TestCase):
                 # None raw input proves policy validation precedes source hashing/decoding.
                 with self.assertRaisesRegex(ValueError,'4 or 6'):
                     local.local_boundary(None,'work','exe','java','cwd','logs','user',job_memory_gib=value)
-                with self.assertRaisesRegex(ValueError,'integer 6 GiB'):
+                with self.assertRaisesRegex(ValueError,'integer 4 GiB'):
                     local.prepare(None,None,None,job_memory_gib=value)
 
     def test_task_specific_boundary_keeps_job_core_and_explicit_identity(self):
@@ -119,14 +123,15 @@ class LocalProducerTests(unittest.TestCase):
                         with self.assertRaisesRegex(RuntimeError,'resources insufficient'):local.preflight(root,contract)
                     disk.assert_called_once_with(root)
 
-    def test_preflight_uses_new_seven_gib_gate_and_keeps_frozen_old_gate(self):
+    def test_preflight_uses_new_five_gib_gate_and_keeps_frozen_old_gates(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);self.case(root)
             local.shared.put(root/'control/prepared-work-inventory.json',dict(files=[]))
             local.shared.put(root/'control/external-inputs.json',[])
             common=dict(work_inventory_sha256=local.shared.sha(root/'control/prepared-work-inventory.json'),
                         external_inventory_sha256=local.shared.sha(root/'control/external-inputs.json'))
-            for gate,available,allowed in [(7168,7167,False),(7168,7168,True),(10240,7168,False)]:
+            for gate,available,allowed in [(5120,5119,False),(5120,5120,True),
+                                           (7168,5120,False),(10240,5120,False)]:
                 response=subprocess.CompletedProcess([],0,json.dumps({'available_mib':available}).encode(),b'')
                 with self.subTest(gate=gate,available=available),patch.object(local.subprocess,'run',return_value=response),\
                      patch.object(local.shutil,'disk_usage',return_value=type('Disk',(),{'free':9*1024**3})()):
@@ -135,6 +140,63 @@ class LocalProducerTests(unittest.TestCase):
                     else:
                         with self.assertRaisesRegex(RuntimeError,'resources insufficient'):local.preflight(root,contract)
             self.assertFalse((root/'launch.claim.json').exists())
+
+    def test_busy_serial_build_slot_rejects_before_preflight_or_claim(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);contract=self.case(root);contract['serial_build']=True
+            (root/'control/run-contract.json').write_text(json.dumps(contract))
+            with patch.object(local,'serial_build_slot',side_effect=RuntimeError('Build slot busy')),\
+                 patch.object(local,'preflight') as check,patch.object(local.subprocess,'Popen') as start:
+                with self.assertRaisesRegex(RuntimeError,'Build slot busy'):local.launch(root)
+            check.assert_not_called();start.assert_not_called()
+            self.assertFalse((root/'launch.claim.json').exists())
+            self.assertFalse((root/'control/launch.claim.json').exists())
+
+    def test_windows_serial_slot_excludes_another_thread_and_releases_after_error(self):
+        name='Local\\EliteSync-build-test-'+uuid.uuid4().hex
+        ready=threading.Event();finish=threading.Event();errors=[]
+        def hold():
+            try:
+                with local.serial_build_slot(name):
+                    ready.set()
+                    if not finish.wait(5):raise TimeoutError('fixture release missing')
+                    raise ValueError('fixture build failure')
+            except ValueError:pass
+            except BaseException as error:errors.append(error);ready.set()
+        worker=threading.Thread(target=hold);worker.start()
+        try:
+            self.assertTrue(ready.wait(5));self.assertEqual(errors,[])
+            with self.assertRaisesRegex(RuntimeError,'already running'):
+                with local.serial_build_slot(name):self.fail('parallel slot acquired')
+        finally:
+            finish.set();worker.join(5)
+        self.assertFalse(worker.is_alive());self.assertEqual(errors,[])
+        with local.serial_build_slot(name):pass
+
+    def test_controller_keeps_serial_slot_after_launcher_handle_closes(self):
+        name='Local\\EliteSync-build-test-'+uuid.uuid4().hex
+        controller=None
+        try:
+            with local.serial_build_slot(name) as handle:
+                controller=local._start_controller(
+                    [sys.executable,'-B','-c','import time; time.sleep(30)'],handle)
+            self.assertIsNone(controller.poll())
+            with self.assertRaisesRegex(RuntimeError,'already running'):
+                with local.serial_build_slot(name):self.fail('live controller lost serial slot')
+        finally:
+            if controller is not None:
+                controller.terminate();controller.wait(timeout=5)
+        with local.serial_build_slot(name):pass
+
+    def test_inheritance_reset_failure_stops_already_created_owned_controller(self):
+        controller=unittest.mock.Mock()
+        error=OSError('fixture inheritance reset failed')
+        with patch.object(local.os,'set_handle_inheritable',side_effect=[None,error]),\
+             patch.object(local.subprocess,'Popen',return_value=controller):
+            with self.assertRaisesRegex(OSError,'inheritance reset failed'):
+                local._start_controller(['fixture-controller'],123)
+        controller.kill.assert_called_once_with()
+        controller.wait.assert_called_once_with(timeout=45)
 
     def test_kind_selects_controller_and_result_binding_without_cross_acceptance(self):
         for kind,exe,status,key in [
@@ -311,9 +373,10 @@ class SourceOverlayWiringTests(unittest.TestCase):
             contract=local.prepare(self.root,self.inputs,self.source)
         capture.assert_not_called()
         self.assertEqual(contract['publication_version'],'old')
-        self.assertEqual(contract['job_memory_bytes'],6*1024**3)
-        self.assertEqual(contract['required_available_mib'],7168)
-        self.assertIn(b'JobMemoryLimit=new UIntPtr(6UL*1024*1024*1024)',
+        self.assertEqual(contract['job_memory_bytes'],4*1024**3)
+        self.assertEqual(contract['required_available_mib'],5120)
+        self.assertIs(contract['serial_build'],True)
+        self.assertIn(b'JobMemoryLimit=new UIntPtr(4UL*1024*1024*1024)',
                       (self.root/'control/local-boundary.cs').read_bytes())
         self.assertNotIn('base_identity',contract)
         self.assertNotIn('source_overlay_manifest_sha256',contract)

@@ -5,6 +5,7 @@ read dependencies; caches and build outputs use the private work directory.
 Offline flags are used; this runner does not claim OS network isolation.
 """
 from datetime import datetime, timezone
+from contextlib import contextmanager, nullcontext
 import hashlib
 import json
 import os
@@ -29,18 +30,65 @@ LIMITS = dict(sdk_seconds=1800, host_seconds=2100, cleanup_seconds=45,
 
 
 def local_memory_policy(job_memory_gib=4):
-    """Retain the legacy/shared policy, including the Debug host's 4 GiB reserve."""
+    """Retain legacy boundary rendering; new candidates use build_memory_policy."""
     if type(job_memory_gib) is not int or job_memory_gib not in (4,6):
         raise ValueError('Local Job memory must be integer 4 or 6 GiB')
     return dict(job_memory_bytes=job_memory_gib*1024**3,
                 required_available_mib=(job_memory_gib+4)*1024)
 
 
-def aar_memory_policy(job_memory_gib=6):
-    """Owner's policy for new AAR candidates: 6 GiB Job plus 1 GiB reserve."""
-    if type(job_memory_gib) is not int or job_memory_gib != 6:
-        raise ValueError('New local AAR builds require integer 6 GiB')
-    return dict(job_memory_bytes=6*1024**3, required_available_mib=7168)
+def build_memory_policy(job_memory_gib=4):
+    """New serial AAR/APK candidates: 4 GiB Job plus 1 GiB reserve."""
+    if type(job_memory_gib) is not int or job_memory_gib != 4:
+        raise ValueError('New local builds require integer 4 GiB')
+    return dict(job_memory_bytes=4*1024**3, required_available_mib=5120)
+
+
+def aar_memory_policy(job_memory_gib=4):
+    return build_memory_policy(job_memory_gib)
+
+
+@contextmanager
+def serial_build_slot(name=r'Local\EliteSyncV1015LocalBuildSlot'):
+    """Reserve an atomic named slot; an inherited handle keeps it during build."""
+    import ctypes
+    from ctypes import wintypes
+    api=ctypes.WinDLL('kernel32',use_last_error=True)
+    api.CreateEventW.argtypes=[ctypes.c_void_p,wintypes.BOOL,wintypes.BOOL,wintypes.LPCWSTR]
+    api.CreateEventW.restype=wintypes.HANDLE
+    api.CloseHandle.argtypes=[wintypes.HANDLE];api.CloseHandle.restype=wintypes.BOOL
+    handle=api.CreateEventW(None,True,False,name)
+    error=ctypes.get_last_error()
+    if not handle:raise ctypes.WinError(ctypes.get_last_error())
+    try:
+        if error==183:raise RuntimeError('Another local AAR/APK build is already running; no claim consumed')
+        yield handle
+    finally:
+        if not api.CloseHandle(handle):raise ctypes.WinError(ctypes.get_last_error())
+
+
+def _start_controller(argv,slot_handle=None):
+    options=dict(stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    if slot_handle is None:return subprocess.Popen(argv,**options)
+    startup=subprocess.STARTUPINFO()
+    startup.lpAttributeList={'handle_list':[slot_handle]}
+    # The controller retains this handle until process exit, even if Python dies.
+    # Its native SDK-child handle whitelist does not pass the slot further down.
+    os.set_handle_inheritable(slot_handle,True)
+    process=None
+    try:
+        process=subprocess.Popen(argv,close_fds=True,startupinfo=startup,**options)
+    finally:
+        try:os.set_handle_inheritable(slot_handle,False)
+        except BaseException as error:
+            if process is not None:
+                try:
+                    process.kill() # Held controller only; closing it closes its native Job.
+                    process.wait(timeout=45)
+                except BaseException as cleanup_error:
+                    raise BaseExceptionGroup('Controller inheritance reset and owned cleanup failed',[error,cleanup_error])
+            raise
+    return process
 
 
 def current_user():
@@ -97,7 +145,7 @@ def _copy_tree(inventory, target, role=None):
 def _json(path):return json.loads(Path(path).read_bytes())
 
 
-def prepare(root, prepared_inputs, source_case, *, job_memory_gib=6, current_source_root=None):
+def prepare(root, prepared_inputs, source_case, *, job_memory_gib=4, current_source_root=None):
     """Materialize/compile only. No SDK invocation, grant or claim is created."""
     memory_policy=aar_memory_policy(job_memory_gib)
     limits=dict(LIMITS,**memory_policy)
@@ -198,7 +246,8 @@ def prepare(root, prepared_inputs, source_case, *, job_memory_gib=6, current_sou
         publication_version=entry['publication_version'],source_identity=entry['source_identity'],
         source_input_contract_sha256=SOURCE_CONTRACT_SHA,repository=str(work/'AarOutput/outputs/repo'),
         work_inventory_sha256=shared.sha(control/'prepared-work-inventory.json'),external_inventory_sha256=shared.sha(control/'external-inputs.json'),
-        payload_sha256=payload,host_helpers=helpers,networking='offline flags; no OS network isolation or system network changes',**limits)
+        payload_sha256=payload,host_helpers=helpers,serial_build=True,
+        networking='offline flags; no OS network isolation or system network changes',**limits)
     if overlay is not None:
         contract.update(base_identity=entry['base_identity'],source_overlay_manifest_sha256=overlay['manifest_sha256'])
     shared.put(control/'run-contract.json',contract)
@@ -235,6 +284,13 @@ def preflight(root,contract):
 def launch(root):
     """One independent local grant, one irreversible claim, one SDK root."""
     root=Path(root).resolve();control=root/'control';raw=(control/'run-contract.json').read_bytes();contract=json.loads(raw)
+    # Old frozen contracts retain their own limits and do not gain new fields.
+    with serial_build_slot() if contract.get('serial_build') is True else nullcontext() as slot:
+        return _launch(root,raw,contract,slot)
+
+
+def _launch(root,raw,contract,slot=None):
+    control=root/'control'
     adapters={
         'current-product-local-aar-producer':('LocalAarProducer.exe','LOCAL_AAR_ROOT_EXIT0_REPOSITORY_UNVERIFIED','repository'),
         'current-product-local-debug-host':('LocalDebugHost.exe','LOCAL_DEBUG_HOST_ROOT_EXIT0_APK_UNVERIFIED','apk_output'),
@@ -258,7 +314,7 @@ def launch(root):
     shared.put(root/'launch.claim.json',claim);shared.put(control/'launch.claim.json',claim)
     start=time.monotonic();process=None
     try:
-        process=subprocess.Popen([str(control/executable_name),contract['nonce']],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        process=_start_controller([str(control/executable_name),contract['nonce']],slot)
         shared.put(root/'launched.json',dict(pid=process.pid,utc=datetime.now(timezone.utc).isoformat()))
         while process.poll() is None:
             total=shared.output_size(root/'output',contract['output_bytes'])

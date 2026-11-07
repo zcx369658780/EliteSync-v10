@@ -1,3 +1,13 @@
+# 2026-11-07 Owner将后续构建改为AAR/APK串行4＋1
+
+Owner原话：“可以，考虑到我们的apk不会有太复杂的内容，请参考上述信息将内存限制改为AAR 4GB + 1GB，并且两个阶段不需要并行进行，因此综合内存限制可以降低到5GB。”
+
+后续新AAR及新Debug APK host各采用Job4GiB硬限、启动可用5120MiB，共用串行构建槽，执行完整核验至本实例收尾；槽由launcher及controller共同持有，外层意外退出不释放活跃controller的槽；槽忙在claim前停止且不消耗次数，不自动等待重试。按现有单位约定将GB落实为GiB。5GiB指4GiB构建预算＋1GiB余量，不是全系统/所有应用的内存总上限；两个阶段不同时运行，仍须完整AAR验仓后才运行APK。此决定替代后续候选的AAR6＋1及host6＋4，旧冻结合同/grant/claim/STOP/已耗余额保持。
+
+64进程、SDK30分钟/host35分钟、STOP仅本实例收尾45秒、工作卷8GiB、输出2GiB采样可瞬超、离线禁下载不改系统网络及全部排除范围保持，不用VM。此前AAR4.33GiB峰值来自旧6GiB成功范围，新4GiB不预判通过；若超限保留原失败，不自动加额重跑。本次34项Python工程检查通过，实际新AAR/APK构建NOT_RUN，不恢复任何旧额度或扩大设备/生产/费用/正式发布权限。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持；事实见[最新进度](../workflow/PROJECT_PROGRESS_ALIGNMENT_20261101.md)。
+
+---
+
 # 2026-11-07 Owner降低本次启动余量，实际模拟器切号观察完成
 
 Owner原话：“你好实在是没办法释放更多了，实际上10GB已经很多了。请你降低余量门槛”。据此仅对尚未claim的case04候选保留原配置/grant字节后，后端总容器硬限2GiB/启动可用3072MiB，模拟器Job6GiB/启动可用7168MiB；保留1GiB余量，原nonce、binary、一次次数/claim槽、进程/磁盘/时限/采样及排除项保持。此前AAR6＋1政策保持；本节点不自动改变Debug APK host或已耗scope。原私有Owner回执控制台显示曾乱码，Unicode读取确认原JSON中文完整；不覆盖原件，另存文本核对。

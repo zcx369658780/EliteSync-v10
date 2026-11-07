@@ -95,8 +95,9 @@ class LocalDebugHostTests(unittest.TestCase):
         self.assertEqual(contract['apk_output'], str(self.root/'work/ApkOutput'))
         self.assertEqual((contract['sdk_seconds'], contract['host_seconds'], contract['cleanup_seconds']),
                          (1800, 2100, 45))
-        self.assertEqual(contract['job_memory_bytes'], 6*1024**3)
-        self.assertEqual(contract['required_available_mib'], 10240)
+        self.assertEqual(contract['job_memory_bytes'], 4*1024**3)
+        self.assertEqual(contract['required_available_mib'], 5120)
+        self.assertIs(contract['serial_build'], True)
         self.assertEqual(contract['output_bytes'], 2*1024**3)
         args = host.windows_arguments(contract['launch_request']['command_line'])
         self.assertIn('--offline', args)
@@ -124,7 +125,7 @@ class LocalDebugHostTests(unittest.TestCase):
         self.assertNotIn('LOCAL_AAR_ROOT_EXIT0', controller)
         boundary = (self.root/'control/local-boundary.cs').read_text()
         self.assertIn('ActiveProcessLimit=64', boundary)
-        self.assertIn('6UL*1024*1024*1024', boundary)
+        self.assertIn('4UL*1024*1024*1024', boundary)
         self.assertIn('AssignProcessToJobObject', boundary)
 
     def test_source_drift_rejects_and_preserves_partial_candidate(self):

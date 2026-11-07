@@ -1,3 +1,19 @@
+# 2026-11-07 新AAR及APK统一串行4GiB＋1GiB，旧范围不改写
+
+**SERIAL_AAR_APK_4_PLUS_1 / PYTHON_34_PASS / NEW_BUILD_NOT_RUN / G2_FALSE**
+
+Owner明确要求AAR4GB＋1GB、两阶段不并行、综合5GB。新候选统一为Job4GiB（4294967296字节）/启动5120MiB：AAR默认且只允许integer4；新Debug host也采用同一政策，避免继续遗留6＋4/10GiB门。旧local_memory_policy仍保留用于历史边界渲染，preflight仍按各自冻结合同核资源，旧6＋1/6＋4/grant/claim/STOP和所有已耗余额不改。新合同serial_build=true，共用Windows会话内具名占用槽，launcher与controller共同持有，覆盖核验/运行/本实例收尾；忙则preclaim停止、无SDK/无claim、无自动轮询重试。锁不扩大为模拟器/后端/全系统资源控制，5GiB不代表整机物理内存封顶。
+
+两个阶段仍是先AAR、验完整主AAR/版本/hash，再APK。新AAR与APK生成的native Job边界均4GiB，进程64/SDK1800秒/host2100秒/本实例收尾45秒、工作卷8GiB、输出2GiB采样可瞬超、离线参数禁下载不改系统网络保持。未改产品源码、工具链、依赖或许可。
+
+先更新行为期望，旧实现32项出现28个失败记录/1错误（含未存在的互斥入口），有效指出旧6GiB政策与新4GiB要求不一致；实现并修复两项句柄生命周期P2后 **34项Python检查通过**。覆盖新策略拒6GiB/非integer、AAR与host实际生成合同及4GiB native边界、5119/5120启动门、冻结旧7168/10240门保持、忙时preflight/SDK/claim均不触发，以及唯一测试名下实际Windows跨线程互斥、异常后释放，以及关闭launcher句柄后无SDK替身controller仍持槽、controller退出才释放，以及创建后恢复继承标志失败时仍按持有句柄收尾。物化中的编译器为Fake，不称真实控制程序新编译或SDK通过；本轮没有实际AAR/APK/模拟器/手机/后端/VM运行。
+
+最近成功旧6GiB构建记录的AAR Job记账峰值4.326GiB、host3.699GiB，顺序执行不能相加，也不等于整机物理内存。新4GiB可能触及原AAR峰值，不因APP内容简单而预判成功；若实际超限，保留对应失败/消耗记录，不自动提高上限或在同一scope重试。新策略真实产包 **NOT_RUN**。
+
+策略原文、7份改前字节、红例摘要、绿例stdout/stderr与集中报告在LOCAL_ONLY **v1015-build-memory-4plus1-20261107**。apps/services运行源码和既有APK未变，上节点实际切号/迟发服务器确认观察保持其原边界。仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**；旧VM teardown UNKNOWN，旧脏根/SDK/数据库/全部STOP留存，不合main、不启v10.1.6，私有原证/二进制不上传GitHub。
+
+---
+
 # 2026-11-07 实际APP切号与绑定后服务器迟发确认观察完成
 
 **ACTUAL_ACCOUNT_SWITCH / QUALIFIED_SERVER_LATE_ACK_ATTEMPT / CURRENT_UI_UNPOLLUTED / G2_FALSE**

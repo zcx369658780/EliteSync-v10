@@ -167,7 +167,7 @@ def prepare(root, aar_case, android_inventory, *, file_limit=100000, byte_limit=
         encoding='utf-8', newline='\n')
     executable = control/'LocalDebugHost.exe'
     (control/'local-boundary.cs').write_bytes(local.local_boundary(boundary, work, executable, java,
-        host, output, local.current_user(), job_memory_gib=6))
+        host, output, local.current_user(), job_memory_gib=4))
     (control/'local_debug_host_supervisor.cs').write_bytes(controller)
     shutil.copyfile(local.HERE/'local_aar_memory_diagnostics.cs', control/'local_aar_memory_diagnostics.cs')
     compiled = subprocess.run(['C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe',
@@ -205,9 +205,9 @@ def prepare(root, aar_case, android_inventory, *, file_limit=100000, byte_limit=
         external_inventory_sha256=local.shared.sha(control/'external-inputs.json'),
         payload_sha256={p.relative_to(root).as_posix(): local.shared.sha(p)
                         for p in control.iterdir() if p.is_file()}, host_helpers=helpers,
-        networking='offline flags; no OS network isolation or system network changes',
+        serial_build=True, networking='offline flags; no OS network isolation or system network changes',
         sdk_seconds=1800, host_seconds=2100, cleanup_seconds=45, output_bytes=2*1024**3,
-        **local.local_memory_policy(6))
+        **local.build_memory_policy())
     put(control/'run-contract.json', contract)
     put(root/'prepared.json', dict(status='LOCAL_PRIVATE_DEBUG_HOST_PREPARED_NOT_AUTHORIZED',
         contract_sha256=local.shared.sha(control/'run-contract.json'), claim_created=False,

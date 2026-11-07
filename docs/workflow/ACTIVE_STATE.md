@@ -1,3 +1,15 @@
+# 2026-11-07 Owner改为AAR/APK串行4＋1，启动门5GiB（CURRENT ENTRY）
+
+**OWNER_SERIAL_BUILD_4_PLUS_1_APPLIED / PYTHON_34_PASS / NEW_SDK_BUILD_NOT_RUN / G2_FALSE**
+
+Owner要求“AAR 4GB＋1GB”“两个阶段不需要并行”“综合内存限制降低到5GB”。落实到后续新AAR及新Debug APK host：各自Job硬限 **4GiB**、启动可用内存 **5120MiB**，共用构建互斥槽，覆盖完整输入/资源核验、执行与本实例收尾；忙则在claim前阻断、无等待重试或额度消耗。两个阶段串行，先有完整成功AAR仓库才准备/运行APK；5GiB是构建预算和启动门，不是整机或其他应用的物理内存上限。
+
+34项producer/entry/host检查通过，覆盖4GiB生成边界、5119拒/5120允、旧7168/10240门不降、忙时无claim及Windows跨线程互斥/异常释放、外层句柄关闭后替身controller仍持槽。纯fixture及无SDK替身进程不当真实SDK成功。本轮只修改构建策略及记录，未准备/启动新AAR/APK、模拟器、后端或设备；旧合同/grant/claim/STOP与已耗余额不改。最近成功旧6GiB范围AAR峰值约4.33GiB，高于新4GiB，不能保证新上限产包成功；超限保留失败，不自动加额重跑。64进程、SDK30分钟/host35分钟、收尾45秒、工作卷8GiB、输出2GiB采样及离线边界保持，不用VM。
+
+LOCAL_ONLY策略原证 **v1015-build-memory-4plus1-20261107**；apps/services运行源码与既有APK未变。上节点实际模拟器切号/迟发观察保留，Dart旧回调到达UNKNOWN、设备缓存零写入未直接测量。仍 **10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING**，不合main、不启v10.1.6；详情见[进度](PROJECT_PROGRESS_ALIGNMENT_20261101.md)。
+
+---
+
 # 2026-11-07 实际模拟器切号及绑定后迟发确认观察完成（CURRENT ENTRY）
 
 **ACTUAL_ACCOUNT_SWITCH_AND_QUALIFIED_SERVER_LATE_ACK_OBSERVED / CURRENT_UI_UNPOLLUTED / G2_FALSE**
