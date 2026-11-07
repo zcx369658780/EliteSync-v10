@@ -1,3 +1,15 @@
+# 2026-11-07 修正探针候选已获新一次授权，USB断开在claim前等待（CURRENT ENTRY）
+
+**NEW_ONE_SHOT_AUTHORIZED / USB_DISCONNECTED_PRECLAIM / SPENT_0_REMAINING_1 / BACKEND_NOT_STARTED / G2_FALSE**
+
+Owner已回复“我授权，请继续”，批准修正候选一次后端验证。case02复用只读726文件源码快照/114包vendor，不重建APK；后端合计2GiB、启动3072MiB、30分钟/收尾45秒及原限制保持。6项手机边界、10项集成边界、正确首探针拦截和非作者复核通过。case01仍1/0、STOP不变。[本节点](V1015_REDMI_API_CASE02_USB_PRECLAIM_WAIT_20261107.md)。
+
+同机/主用户0/已安装APK hash先核对成功，随后UI导出提示成功却返回255；读取已生成文件时明确设备not found，未取得有效XML，不视作通过。未重复dump，手机8条ADB/1次Activity/0次账号提交；断开STOP封存。无后端claim/新容器/API请求/reverse，**本次仍0耗、余1**。自有UI临时文件清理待重连；已请求Owner接好USB并解锁，不轮询自动启动。
+
+待Owner连接回复后先重新资格检查、累计沿用180命令/3次Activity额度，再按同一次未用授权继续，无需重问后端次数或手机/Docker许可。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；原dirty根/SDK/DB/旧STOP及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 Redmi私有API服务已就绪，检查探针错误STOP，修正仅静态验证（CURRENT ENTRY）
 
 **BACKEND_READY / OBSERVER_ROUTE_ERROR_STOP / SPENT_1_REMAINING_0 / CANDIDATE_STATIC_ONLY / G2_FALSE**
