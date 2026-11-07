@@ -1,3 +1,15 @@
+# 2026-11-07 新授权源码候选case02停止，默认插件门户遗漏已静态修正（CURRENT ENTRY）
+
+**CASE02_STOP_SPENT_1_REMAINING_0 / REPOSITORY_POLICY_FIXTURE_RED_GREEN / NO_NEW_APK / G2_FALSE**
+
+Owner明确另授新输入一次。复用稳定目录、SDK复制0次，完整清单67406文件/7028833366字节、外部49707项。唯一fresh launch启动可用8575MiB，SDK4.756秒/Gradle4秒，root1/controller32、峰约0.700GiB；候选只注入过滤的补充插件库，遗漏保留默认Portal，kotlin-dsl5.2.0未被查找，未进Dart/APP编译，无新APK。Codex承担配置遗漏；case02已耗1余0，旧case01和原两个4GiB范围各1/0不改。
+
+独立保存的修正候选在settings完成后保留默认/显式插件仓库，再追加固定补充库；未回写已STOP输入。纯Groovy策略原配置RED/修正GREEN，非作者复核无新可行动P1/P2；真实离线解析/产包NOT_RETESTED。未建新的scope/grant/claim，不自动重跑或换目录续额。详见[本节点](V1015_SOURCE_DEBUG_APPROVED_CANDIDATE_STOP_20261107.md)。
+
+依赖补齐成果保留，安装/运行/attach/热重载NOT_RUN；仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。不合main/发布、不启v10.1.6，原dirty根/SDK/DB/STOP与%SystemDrive%保护。
+
+---
+
 # 2026-11-07 Debug依赖补齐，首次源码构建STOP（CURRENT ENTRY）
 
 **DEBUG_DEPENDENCIES_SUPPLEMENTED / SOURCE_DEBUG_FIRST_BUILD_FAILED / SPENT_1_REMAINING_0 / NO_NEW_APK / G2_FALSE**
