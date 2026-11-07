@@ -14,6 +14,8 @@ from current_product_aar_handoff import verify_repository
 
 APP_SHA256 = '1c317b520a145523ccfee3265cbf5ecae2ea6c731025433f755cf7cd8a2fbb53'
 SETTINGS_SHA256 = '1335de46738cdbf13351ea136487524f21eab849d6a02dc7341bce00d8a64fb9'
+SOURCE_DEBUG_APP_SHA256 = '360ee446bf9a52249f14b9c359598d15886c6bc559af2f3e566ddc39de1bb2eb'
+SOURCE_DEBUG_SETTINGS_SHA256 = 'd5ba2cb9b4c1ed7a731029aa6df0dff948777518bf33a2de0a3c85b79ab02d82'
 GUEST_REPOSITORY = 'C:/Inputs/VerifiedAarRepository'
 
 
@@ -21,7 +23,7 @@ def _source(text, expected):
     if type(text) is not str:
         raise ValueError('UTF-8 source text required')
     text = text.replace('\r\n', '\n')
-    if hashlib.sha256(text.encode()).hexdigest() != expected:
+    if hashlib.sha256(text.encode()).hexdigest() not in expected:
         raise ValueError('host source differs from the pinned product')
     return text
 
@@ -34,8 +36,25 @@ def _replace(text, old, new):
 
 def render_private_host(app_gradle, settings_gradle, repository, version, *, file_limit, byte_limit,
                         local_repository=False):
-    app = _source(app_gradle, APP_SHA256)
-    settings = _source(settings_gradle, SETTINGS_SHA256)
+    app = _source(app_gradle, (APP_SHA256, SOURCE_DEBUG_APP_SHA256))
+    settings = _source(settings_gradle, (SETTINGS_SHA256, SOURCE_DEBUG_SETTINGS_SHA256))
+    source_sha256 = dict(app=hashlib.sha256(app.encode()).hexdigest(),
+                         settings=hashlib.sha256(settings.encode()).hexdigest())
+    # Only the two exact reviewed source versions are admitted above. Render the
+    # verified-AAR host from its original form; never include a source project.
+    if source_sha256['app'] == SOURCE_DEBUG_APP_SHA256:
+        app = _replace(app, 'val flutterSourceDebug = providers.gradleProperty("flutterSourceDebug").orNull == "true"\n', '')
+        app = _replace(app, 'if (flutterSourceDebug) {\n            false\n        } else if (isCiBuild', 'if (isCiBuild')
+        app = _replace(app, 'if (!flutterSourceDebug) dependsOn(syncFlutterAar)', 'dependsOn(syncFlutterAar)')
+        start = app.index('    if (flutterSourceDebug) {\n        implementation(project(":flutter"))\n    } else {\n')
+        end = app.index('\n    }', app.index('releaseImplementation("com.elitesync.flutter_elitesync_module:flutter_release:1.0")', start))
+        branch = app[app.index('        // Use release AAR', start):end]
+        branch = '\n'.join(line[4:] for line in branch.split('\n'))
+        app = app[:start] + branch + app[end + len('\n    }'):]
+        _source(app, (APP_SHA256,))
+    if source_sha256['settings'] == SOURCE_DEBUG_SETTINGS_SHA256:
+        settings = settings[:settings.index('\n// Explicit opt-in; the default keeps the verified AAR host path.')]
+        _source(settings, (SETTINGS_SHA256,))
     receipt = verify_repository(repository, version, file_limit=file_limit, byte_limit=byte_limit)
     rendered_repository = Path(receipt['repository']).as_posix() if local_repository else GUEST_REPOSITORY
     repository_literal = json.dumps(rendered_repository).replace('$', '\\$')
@@ -141,7 +160,7 @@ tasks.named("preBuild") { dependsOn(syncFlutterAar) }
             }
         }''').replace('__REPOSITORY__', repository_literal))
     return {'app_gradle': app, 'settings_gradle': settings,
-            'source_sha256': {'app': APP_SHA256, 'settings': SETTINGS_SHA256},
+            'source_sha256': source_sha256,
             'repository_content_manifest_sha256': receipt['content_manifest_sha256'],
             'coordinate': receipt['coordinate'],
             'repository_mode': 'LOCAL' if local_repository else 'GUEST',

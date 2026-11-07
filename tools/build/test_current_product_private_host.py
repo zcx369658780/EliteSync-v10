@@ -1,7 +1,9 @@
 from pathlib import Path
+import hashlib
 import tempfile
 import unittest
 import zipfile
+from unittest.mock import patch
 
 import current_product_private_host as host
 from test_current_product_aar_handoff import GROUP, ARTIFACT, VERSION
@@ -78,6 +80,35 @@ class PrivateHostTests(unittest.TestCase):
     def test_source_drift_is_rejected(self):
         with self.assertRaises(ValueError):
             self.render(self.app + '\n// drift\n')
+
+    def test_source_debug_opt_in_is_removed_from_verified_aar_host(self):
+        result = self.render(local_repository=True)
+        self.assertNotIn('flutterSourceDebug', result['app_gradle'])
+        self.assertNotIn('project(":flutter")', result['app_gradle'])
+        self.assertNotIn('flutter-source-debug.gradle', result['settings_gradle'])
+        self.assertEqual(result['source_sha256'], {
+            'app': hashlib.sha256(self.app.encode()).hexdigest(),
+            'settings': hashlib.sha256(self.settings.encode()).hexdigest(),
+        })
+
+    def test_settings_drift_is_rejected_before_repository_read(self):
+        with self.assertRaises(ValueError):
+            host.render_private_host(self.app, self.settings + '\n// drift\n',
+                str(self.repo), VERSION, file_limit=100, byte_limit=100000)
+
+    def test_source_opt_in_preserves_original_aar_host_output_bytes(self):
+        receipt = dict(repository='C:/fixture/repo',
+            coordinate='com.elitesync.flutter_elitesync_module:flutter_release:1.0-fixed',
+            content_manifest_sha256='1'*64,
+            content_manifest=[dict(relative_path='fixture.aar', bytes=7, sha256='2'*64)],
+            publications=['com.elitesync.flutter_elitesync_module:flutter_release:1.0-fixed'])
+        # Golden outputs captured from the exact pre-source-debug pinned files.
+        with patch.object(host, 'verify_repository', return_value=receipt):
+            result = self.render()
+        self.assertEqual(hashlib.sha256(result['app_gradle'].encode()).hexdigest(),
+            '958a2b35600dd6b63bf8c260716e01a4b5d55ce5a2bf7db2b579856f5cf23a5b')
+        self.assertEqual(hashlib.sha256(result['settings_gradle'].encode()).hexdigest(),
+            'baf38ea8545d4c144ebef42ba9a18147eb6dd2bf982848f41744c70590b6f78d')
 
     def test_repository_checks_do_not_resolve_java_through_gradle_extension(self):
         app = self.render(local_repository=True)['app_gradle']

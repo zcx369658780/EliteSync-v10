@@ -19,6 +19,7 @@ val baiduSecurityCodeFromProp = (project.findProperty("BAIDU_MAP_SECURITY_CODE")
     ?: localProps.getProperty("BAIDU_MAP_SECURITY_CODE", "")
 
 val flutterModuleDir = rootProject.file("../flutter_elitesync_module")
+val flutterSourceDebug = providers.gradleProperty("flutterSourceDebug").orNull == "true"
 val flutterModuleLocalProps = Properties().apply {
     val f = rootProject.file("../flutter_elitesync_module/.android/local.properties")
     if (f.exists()) {
@@ -97,7 +98,9 @@ val syncFlutterAar by tasks.registering(Exec::class) {
     description = "Build latest Flutter module AAR before Android preBuild"
     workingDir = flutterModuleDir
     onlyIf {
-        if (isCiBuild && flutterReleaseAarRepo.exists()) {
+        if (flutterSourceDebug) {
+            false
+        } else if (isCiBuild && flutterReleaseAarRepo.exists()) {
             logger.lifecycle("Skipping syncFlutterAar because CI prebuilt Flutter release AAR at $flutterReleaseAarRepo")
             false
         } else {
@@ -125,7 +128,7 @@ val syncFlutterAar by tasks.registering(Exec::class) {
 }
 
 tasks.named("preBuild") {
-    dependsOn(syncFlutterAar)
+    if (!flutterSourceDebug) dependsOn(syncFlutterAar)
 }
 
 android {
@@ -249,10 +252,14 @@ dependencies {
     implementation(files("libs/BaiduLBS_Android.jar"))
     implementation("cn.6tail:lunar:1.7.7")
     implementation("com.google.android.gms:play-services-location:21.3.0")
-    // Use release AAR for debug installs to reduce APK size and startup/runtime jank.
-    debugImplementation("com.elitesync.flutter_elitesync_module:flutter_release:1.0")
-    add("profileImplementation", "com.elitesync.flutter_elitesync_module:flutter_profile:1.0")
-    releaseImplementation("com.elitesync.flutter_elitesync_module:flutter_release:1.0")
+    if (flutterSourceDebug) {
+        implementation(project(":flutter"))
+    } else {
+        // Use release AAR for debug installs to reduce APK size and startup/runtime jank.
+        debugImplementation("com.elitesync.flutter_elitesync_module:flutter_release:1.0")
+        add("profileImplementation", "com.elitesync.flutter_elitesync_module:flutter_profile:1.0")
+        releaseImplementation("com.elitesync.flutter_elitesync_module:flutter_release:1.0")
+    }
 }
 
 configurations.all {

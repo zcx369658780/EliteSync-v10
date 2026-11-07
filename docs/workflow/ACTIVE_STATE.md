@@ -1,3 +1,15 @@
+# 2026-11-07 源码Debug接线完成，动态验证待离线依赖（CURRENT ENTRY）
+
+**SOURCE_DEBUG_WIRING_IMPLEMENTED / PYTHON_17_PASS / GROOVY_FIXTURE_8_PASS / SDK_BUILD_HOT_RELOAD_NOT_RUN / G2_FALSE**
+
+显式源码模式接入现有Flutter module和原生插件，传递V1015/V1014 defines并跳过AAR前置构建；默认及私有已验证AAR→APK路线保留，固定输出字节回归通过。MainActivity/bootstrap及产品Dart未改。17项Python、8个Groovy配置fixture通过；fixture未执行真实loader/Gradle配置。非作者Codex复核无可行动P1/P2，非外部独立验收。
+
+当前引擎的Debug embedding/ARM64 Maven依赖在4个具名已知cache均缺失，SDK自带Debug jar不当完整依赖图。未下载/接受新许可，SDK构建、设备安装/运行、attach和热重载NOT_RUN，无新SDK claim；已耗两个4GiB scope各1/0保持。稳定私有源码目录准备与缺口见[本节点说明](V1015_SOURCE_DEBUG_20261107.md)。Owner联网补依赖选择待答，其余本地工作继续。资源不足/preclaim阻断不耗额、不轮询启动。
+
+仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING；不合main/发布、不启v10.1.6，原dirty根/SDK/DB/STOP及无关%SystemDrive%保护。
+
+---
+
 # 2026-11-07 会话已保存，下一步源码Debug与v10.1.5剩余收口（CURRENT ENTRY）
 
 **SESSION_SAVE_ONLY / FOUR_GIB_AAR_APK_VERIFIED / SOURCE_DEBUG_NEXT / G2_FALSE**
