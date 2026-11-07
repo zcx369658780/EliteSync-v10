@@ -1,3 +1,13 @@
+# 2026-11-07 Redmi个人手机USB资格已核，安装受限，按Owner要求等待
+
+**USB_PHONE_QUALIFIED / INSTALL_FAILED_USER_RESTRICTED / WAIT_OWNER_AFTER_MEAL / G2_FALSE**
+
+Owner指定自己的Redmi K80 Ultra继续，并要求安装若被手机确认卡住就等其吃完饭。只读核实物理USB、ARM64/API36/主用户0，独立开发包安装前不存在；原始设备身份/输出仅LOCAL_ONLY。一次新包安装约16.509秒返回INSTALL_FAILED_USER_RESTRICTED/Install canceled by user；原因是否为手动取消UNKNOWN。已停止，无重试、无后续设备命令，未覆盖/卸载/清空或改手机设置。13条ADB中12条只读资格查询、1条安装；APP启动/attach/热重载NOT_RUN。[本节点](V1015_REDMI_USB_INSTALL_BLOCKED_WAIT_OWNER_20261107.md)。
+
+当前等待Owner饭后返回，不轮询或自动安装。已验源码Debug APK SHA974ef00c…3017a4dc保持，case05完成1/0，未重编；仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING。旧STOP/SDK/DB/原dirty根与%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 真正源码Debug APK实际产出并核验
 
 **ACTUAL_SOURCE_DEBUG_APK_VERIFIED / CASE05_COMPLETED_SPENT_1_REMAINING_0 / HOT_RELOAD_NOT_RUN / G2_FALSE**
