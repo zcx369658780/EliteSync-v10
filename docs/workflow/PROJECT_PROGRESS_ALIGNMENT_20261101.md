@@ -1,3 +1,15 @@
+# 2026-11-07 Redmi真实源码attach与修改/恢复热重载验证成功
+
+**ACTUAL_PHONE_SOURCE_ATTACH_EDIT_RELOAD_RESTORE_VERIFIED / SOURCE_AND_RUNTIME_RESTORED / G2_FALSE**
+
+Owner明确授权对同机EliteSync操作调试，此普通APP调试授权保留。一次Activity/attach，两次计划内源码热重载均code0，各Reloaded1of2980；临时标题进入实际登录Widget树后还原，同PID/主isolate保持。没有重编/重装，手机APK SHA974ef00c…3017a4dc；源码c5e2dc34/apps b673913。私有同版本离线工具入口禁缓存更新/pub/无线发现，不改SDK源码或snapshot；首次构造参数纯help失败及修正原文保留。[本节点](V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)。
+
+fresh14191MiB，宿主55.017秒/root-controller0、Job峰约2.105GiB；detach true、原文件SHA恢复、运行树恢复、owned forward精确匹配移除0、全部输入pins一致。观察器ADB12条不含工具内部命令。8项纯清理测试和协议fixture通过，非作者Codex复核无遗留P1/P2，非外部独立验收。
+
+已接通真实源码Debug/热重载；登录/API/DB、完整视觉与产品验收未做，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。后续同机同APP普通调试不重复询问已授权限，独立合同、真实数据/服务及旧一次额度保持；保护旧STOP/SDK/DB/原dirty根与%SystemDrive%，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-07 Owner返回后，Redmi源码Debug APK安装成功并核对原字节
 
 **SOURCE_DEBUG_APK_INSTALLED_EXACT_BYTES_VERIFIED / APP_LAUNCH_ATTACH_HOT_RELOAD_NOT_RUN / G2_FALSE**
