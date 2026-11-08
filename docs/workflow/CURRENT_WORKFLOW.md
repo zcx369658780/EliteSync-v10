@@ -1,3 +1,9 @@
+# 2026-11-08 双端新模拟器启动/安装成功，Activity等待超时停止（CURRENT ENTRY）
+
+Owner提出模拟器+同Redmi双测试账号对话，新隔离AVD启动/ARM64资格/同b621一次安装成功；唯一Activity exit0但Status timeout/11297ms，原Status ok断言STOP，APP首屏UNKNOWN、不能判崩溃。66.687秒/36ADB，Job及私有ADB清理无错；手机ADB0/累计34，后端无claim仍0耗1余。新case02仅准备，9host检查通过：同一次Activity后最多180秒观察真实空登录+focus才继续，不将timeout作PASS；尚未批准/转交/运行，不重开旧STOP或重复申请未耗后端。详见[本节点](V1015_DUAL_EMULATOR_INSTALLED_ACTIVITY_WAIT_TIMEOUT_20261108.md)。双端实际登录/互发/DB及媒体均NOT_RUN，全部保护与功能优先/UI最后保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-08 等待后仍持续对话页，手机接续再次preclaim停止（CURRENT ENTRY）
 
 Owner批准新phone接续后20ADB：Back一次、随后4份仍chat，未见“我的”而STOP；前14+本20合计34/240，清理无错。无backend claim，原后端仍0耗1余，两旧phone入口及当前接续均STOP/封口，不能凭余额复活。页面等待未使导航通过，实际输入/路由/亮屏解锁原因UNKNOWN；源码未见chat自定义返回拦截，不盲改产品或再开同类完整测试。图片/短片/冷启/播放/撤权NOT_RUN，已装b621/1f真机效果未证。详见[本节点](V1015_NAVIGATION_PERSISTENT_CHAT_PRECLAIM_STOP_20261108.md)。没有新增构建/安装/后端次数，全部保护及功能优先/UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
