@@ -1,3 +1,9 @@
+# 2026-11-08 缓存修正新Debug已装，选图超时停止；自主UI授权已记录（CURRENT ENTRY）
+
+源码1f936d25新包b621fb88…实际构建/同机更新通过；scope05登录/CN/MC/聊天通过，120秒9次仍见picker后STOP，无手机媒体/消息POST，新修正真机效果UNKNOWN。101ADB、后端235.547秒/已耗1余0、清理无错、182旧容器State不变。无后端UI诊断8条仅见对话连接错误、到期清理结束，无点击截图，选图确认步骤未查明。Owner自主APP/相关选图UI授权已记录，但不续构建/后端预算或撤旧STOP。新scope06候选仅准备、9纯检查通过，尚未授权/运行。详见[本节点](V1015_CACHE_FIX_APK_INSTALLED_PICKER_TIMEOUT_20261108.md)。仍功能优先/UI最后，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 双页共享缓存竞争受控复现并修正，GREEN47通过（CURRENT ENTRY）
 
 源码1f936d25仅收窄普通在线列表成功刷新对共享缓存的全局失效，真正离线恢复及安全硬锁保留；新双页真实路由用例RED锁页失败→GREEN47通过，82输入hash闭合。旧测试fake签名同步修正，无跳过检查。两阶段各一次已耗/无重试，清理无错、SDK关键hash不变；隔离assets/config诊断保留。尚未产新APK/装机，当前手机仍66524ef6…旧65b，设备效果UNKNOWN；本轮无手机/后端/构建/安装，旧STOP保持。详见[本节点](V1015_RETAINED_LIST_CACHE_RACE_FIXED_UNIT_VERIFIED_20261108.md)。Owner明确功能优先、UI最后按我的和设置→消息列表和聊天→首页及主要导航；计划已记录，UI未改。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index和%SystemDrive%保护，不合main/发布、不启v10.1.6。
