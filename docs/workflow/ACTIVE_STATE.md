@@ -1,3 +1,15 @@
+# 2026-11-08 消息真实并发重放与MC撤权锁交接通过（CURRENT ENTRY）
+
+**REAL_MARIADB_MESSAGE_DUPLICATE_AND_MC_REVOKE_HANDOFF_VERIFIED / BACKEND_SUBSET_PASS / SPENT_1_REMAINING_0 / AC03_PARTIAL / G2_FALSE**
+
+依据Owner既有同类本机工程委派和当前接续，建立新的消息并发一次范围，旧退出/构建/STOP封存。新增探针固定源码6b03aad9，产品APP/消息服务未改。实际PHP8.4 HTTP kernel与MariaDB：双同键POST连接20/19确实等待18，均200同ID、恰一replay，消息/消息通知/发送事件各新增1；真实MC revoker25提交后，等待中的GET/新POST连接27/26均404、跟踪副作用不变，旧键重放404。[本节点](V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)。
+
+两组严格串行，组内精确观测独立DB会话锁等待与交接，实际RR/事务闭合均通过。24项纯检查、2项held-ID纯检查及非作者源码/原证复核通过；非外部独立验收。后端101.578秒，已耗1余0；新容器停止/PID0/无OOM，API137保留，新卷/网络留存，155旧容器完整State一致且全停止。无手机/SDK/新引擎启动，无重试。
+
+证据限后端kernel/MariaDB及具名字段，手机/WS/cache并发未测。AC03仍缺Block/CN/禁用等其余并发矩阵、旧凭据/room/media、跨账号晚结果和设备缓存直接核验。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/SDK/DB/全部STOP及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 Redmi退出撤权集中补验通过（CURRENT ENTRY）
 
 **ACTUAL_PHONE_APP_LOGOUT_API_DB_REVOCATION_VERIFIED / FOCUSED_SCOPE_COMPLETED_SPENT_1_REMAINING_0 / G2_FALSE**
