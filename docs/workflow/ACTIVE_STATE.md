@@ -1,5 +1,7 @@
 # 2026-11-08 Block/CN关闭/peer禁用真实消息并发通过（CURRENT ENTRY）
 
+Owner于2026-11-08[明确v10定位](../decisions/OWNER_V10_SOFTWARE_COMPLETENESS_SCOPE_20261108.md)：承接旧EliteSync增加功能、提高APP完成度；v10.1.6后仍有软件完善和联合质量工作，不自动转运营。当前继续v10.1.5，不启动v10.1.6或扩大运营权限。
+
 **REAL_MARIADB_BLOCK_CN_CLOSE_PEER_DISABLE_HANDOFF_VERIFIED / BACKEND_SUBSET_PASS / SPENT_1_REMAINING_0 / AC03_PARTIAL / G2_FALSE**
 
 Owner明确“批准修正候选运行一次”，新scope_03承接已存设备ID修正候选；旧scope_02首登录422/claim/STOP/已耗保持。实际输入84b3be96、公开探针ac867637，APP/授权/消息服务未改。真实PHP8.4 HTTP kernel/MariaDB：Block31/32→30主键1、CN close42/41→40主键3、peer disable51/52→50主键1，三组有精确独立DB等待与真实mutation200/commit；等待GET/POST及旧键均404/no success IDs，跟踪消息副作用不变。[本节点](V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。
