@@ -13,10 +13,10 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 本次真实图片上传→private ready asset→消息附件→DB/文件hash→200/206→撤权旧URL404后端子范围通过 | 当前APP选择/显示、受控重启；合格ffprobe与真实短片输入及短视频完整正向链；媒体并发 | PARTIAL |
+| 04 私有图片/短视频 | 图片上传→消息/DB/hash→200/206→撤权旧URL后端子范围已通过；现已备妥固定LGPL共享工具与真实2秒合成H.264输入 | Linux工具ABI/真实validator与短视频后端正向；当前APP选择/显示/播放、受控重启及媒体并发 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
-| 07 加密离线/清理 | 现有策略/实现及此前检查保留，离线闭锁有分项观察 | 当前APP密文读回、切号/重启、超期清理与清理失败真链；缓存零写入未直接测量 | PARTIAL |
+| 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，离线闭锁分项证据保留 | 新源码尚未产APK；Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
 | 08 通知隐私/权限 | 既有站内通知、偏好与消息最小payload基线保留 | 当前系统权限拒绝/撤销、锁屏文案、旧通知点击重验及相关撤权矩阵 | PARTIAL |
 | 09 Push供应商隔离 | 不将本地开关/替身写成真实送达，真实Push保持PENDING | token登记/轮换/注销与隔离transport剩余检查；真实供应商另需资格/授权 | PARTIAL；真实Push PENDING |
 | 10 同候选运行/重启 | 源码Debug产包/真机安装/attach热重载；真机登录/消息/冷启/退出；持久MariaDB后台子范围 | 同一最终APK→API→MariaDB→独立Web→受控重启读回集中验证 | PARTIAL |
@@ -24,7 +24,37 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 
 关键现有入口：[源码Debug产包](../../workflow/V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)、[真机源码热重载](../../workflow/V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)、[文字往返/冷启](../../workflow/V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)、[真机退出撤权](../../workflow/V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)、[双同键/MC并发](../../workflow/V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)、[Block/CN/禁用并发](../../workflow/V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。这些历史成果本轮未重测，限制继续按各原证保留。
 
-## 本节点：私有图片真实后端链通过
+## 本节点：离线缓存单索引恢复修正与视频输入准备｜2026-11-08
+
+**CACHE_SINGLE_INDEX_RECOVERY_UNIT_VERIFIED / VIDEO_DEPS_PREPARED / LINUX_VIDEO_NOT_RUN / APK_NOT_REBUILT / G2_FALSE**
+
+Owner继续既定v10软件完善工程，并明确回复“允许补齐短视频依赖”：范围只为私有工具/合成片准备，先核来源与许可，不升级现有环境、不自动接受额外条款，不启动设备或消耗新后端/AAR/APK额度。旧范围、nonce、claim与STOP保持封存，没有恢复余额；v10.1.6及运营均未启动。
+
+### 离线清理修正及实际检查
+
+源码固定`747247ee697f7d6c9530aa5046bde5dfbfdee630`，apps树`02ccf83153d0ce9ab5b522816aac2b1925c27862`，services树4530ae85754a2f3698d073182a47038708f2cb55保持。仅改`private_cache_service.dart`及其定向测试：原单一manifest丢失会被当空，坏JSON则无法完成清理；现在同一已知账号/device namespace内增加恢复索引，保存按恢复索引→主索引→对象写入，保存和清理都读取可解析索引并集。每索引≤128，清理并集最多256；超过写容量拒写并锁定。存在损坏且没有有效索引时清理failed/锁定，不把坏索引当清理完成；对象逐删除/回读成功后才删除并核验两个索引，失败保留可重试清单。保存、removeObject及索引解析统一拒绝控制键名。兼容旧主索引，不枚举全局存储、其他账号、凭据或历史原证。
+
+同进程可信时钟、15/30天语义、重启后必须重新在线核验的锁定行为不变。双索引同时缺失仍不能区分新空namespace与失索引孤立对象；后台/停用设备的物理到期删除及跨重启离线授权没有因此获得保证。这些边界继续保留，AC06/07仍PARTIAL，无需重开已冻结的fail-closed方向选择。
+
+定向GREEN **27项Flutter单元检查通过**：缓存15项（新增10项单索引丢失/损坏、保存后清理、无有效索引失败、清理重试、恢复索引写失败、控制名隔离及旧格式兼容），旧明文键清理4项，15/30策略8项。实际运行约40.078秒、controller/root0、原生Job4GiB/64进程/SDK300秒/host360秒/45秒收尾，峰Job1729736704字节；启动门5120MiB、卷8GiB/输出2GiB采样及离线保持。只准备11个直接相关项目文件，无SDK复制、Pub下载或设备/Gradle/AAR/APK/后端；5个已存在SDK关键文件hash前后一致，legacy version一直不存在。11个测试输入逐个与产品工作树核对，两个变更文件另绑定最终Git Blob。
+
+预先计划RED/GREEN两次定向单元调用；首次RED控制调用因主代理加入被原边界禁止的`FLUTTER_ALREADY_LOCKED`参数而停止，root_create_attempted=false、sdk_start_observed=false、controller32，未执行产品测试。其claim已耗1余0保留，不记作产品RED复现。修正适配时删除该参数，未放松原边界；随后只执行原计划GREEN一次，该范围已耗1余0，无自动重跑。非作者发现新测试wrapper的STOP写盘失败可跳过收尾，启动GREEN前修正为无条件held-controller收尾、SDK审计及回执尝试，保留原错误和共享截止时间；3项纯故障注入检查通过，真实故障注入未测。非作者最终源码/输入/原证复核无P1/P2，非外部独立验收。
+
+27项结果使用MemorySecure替身和虚构时间，未测Android密钥库或手机实体删除，也未真实经过15/30天。**本节点未重编APK；已安装旧APK不含这次缓存修正**，不能据本节点关闭APP/加密离线/最终候选门。
+
+### 视频依赖与合成输入
+
+对旧视频交付的3份直接相关记录作有界只读查找，Q绝对路径/旧工具来源仍UNKNOWN，未扩大考古或启动旧环境。发布项目由旧BtbN路径规范重定向至`FFmpeg-Builds/FFmpeg-Builds`；原连接器ID端点不支持、一次匿名REST返回rate limit，随后按规范公共仓库读取固定发布，没有切换凭据或修改网络。
+
+选定发布`autobuild-2026-11-07-12-47`（release ID437572827），稳定8.1分支`n8.1.3-34-ga35157abb9`的Linux x86_64与Windows x64 **LGPL shared**包，私有稳定根名`toolchains/ffmpeg-8.1-a35157abb9-lgpl-shared-20261107`。Linux归档SHA256 `67260ceeaa91dfc464dbad72e6d6b47e4548ff657a98cd65d619165f6a595e64`；Windows归档`1ae156959395f0f0b3ad97674de02dc21fb3bbee01142a0d8f744467b5cd5886`。两者同时核GitHub资产digest和同版checksums.sha256；这是发布方完整性校验，不冒称签名者认证或可复现构建。LGPLv3原许可证及其所引用的GPLv3/上游源许可说明保留；无gpl/nonfree/x264/x265开关，没有点击接受额外条款或改变系统PATH。Linux archive内部共享库别名在NTFS物化为同字节文件，未要求系统链接特权。464个工具/文档/归档文件共923936361字节有本地manifest，二进制/许可原件不上传GitHub，不装入既有后端镜像。
+
+Windows端实际完成6条工具自检/准备命令：ffmpeg/ffprobe版本、编码器及选项、生成、ffprobe解码计帧。使用纯testsrc2图案与Windows已有MediaFoundation软件H.264编码器（hw_encoding=0），不调用摄像头/麦克风/手机，不引入GPL编码器。所得MP4为128×128、2.0秒、无音轨、20帧经实际解码计数，25976字节，SHA256 `01354babdf240a57f6345df930002b49908c359a6c8ad5303676cdf9023ec80d`。这是真实合成H.264输入，不是伪造ffprobe JSON或模拟素材状态。
+
+Linux端ABI/动态链接、PHP真实PrivateVideoValidator、后台上传/消息绑定及APP播放均**NOT_RUN**。已存无claim的输入候选：后续可在获准新实例只读挂载Linux目录，设定精确ffprobe路径与本进程LD_LIBRARY_PATH；不修改系统库/网络、不借用已耗范围。此次后端/生产SDK构建/AAR/APK/安装/手机启动均0；Windows工具准备不等于AC04视频正向通过。实际新后端验证还需其独立当前范围与一次fresh检查。
+
+LOCAL_ONLY根名`v1015-video-dependencies-and-offline-recovery-20261108`：先读`IMPLEMENTATION_REPORT.md`、`verified-source-and-video-binding-private.json`、`verified-video-inputs-private.json`、GREEN outcome/stdout、保留的RED failure、`prepared-video-input-candidate-private.json`及最终回执。原dirty根255项状态/index及%SystemDrive%保护；ledger承接20567项，仅追加本节点和新获准工具输入，不重扫旧SDK/AVD/Sources。整体仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；不合main/发布，不启v10.1.6/运营。
+
+## 前序节点：私有图片真实后端链通过
 
 任务`V1015_PRIVATE_IMAGE_20261108_01`，在Owner当前继续和既有同类普通本机工程委派下建立独立一次范围；前次所有已耗claim/STOP保持，不退款/重试。源码输入`063379626f5b282bc16c7b3023e0dbdd29d8c79a`；新增[媒体证据helper](../../../tools/acceptance/v1015_private_media/README.md)，未修改产品APP、鉴权、媒体或消息服务。apps树b673913a4ff0ff1a8bfc83ca98951ff1556a2f23、services树4530ae85754a2f3698d073182a47038708f2cb55保持。复用只读726文件服务快照/114包vendor，没有重复物化源码/SDK或框架迁移。
 

@@ -1,3 +1,15 @@
+# 2026-11-08 离线缓存单索引恢复修正与视频输入准备（CURRENT ENTRY）
+
+**CACHE_SINGLE_INDEX_RECOVERY_UNIT_VERIFIED / VIDEO_DEPS_PREPARED / LINUX_VIDEO_NOT_RUN / APK_NOT_REBUILT / G2_FALSE**
+
+源码747247ee：同一账号/device namespace增加恢复索引，保存/清理使用双索引可解析并集，失败闭锁，控制名隔离；不全局枚举。27项定向Flutter单元检查通过，40.078秒、controller/root0、峰Job1729736704字节，GREEN已耗1余0。首次RED控制调用因禁止的环境参数停止、未运行产品测试，原失败/claim保留；wrapper收尾修正及3项纯故障注入检查通过。非作者最终复核无P1/P2，非外部独立验收。双索引均失、Android真实密钥库/物理清理、实际15/30天仍未闭合，新源码未产APK。[本节点及11项AC进度](../versions/v10.1.5/PROGRESS.md)。
+
+Owner明确允许补齐短视频依赖；已核固定发布的Linux/Windows LGPL shared工具及digest/checksums，许可原件仅本地保留。Windows实际生成并解码核验纯合成2秒H.264（128×128、20帧、无音轨）；464文件/923936361字节工具清单及无claim输入候选已存。Linux ABI/链接、真实PHP validator、视频上传/消息绑定、APP播放NOT_RUN；本节点新后端/AAR/APK/安装/手机均0，不自动启动后继动态验证。
+
+LOCAL_ONLY根名v1015-video-dependencies-and-offline-recovery-20261108，先读IMPLEMENTATION_REPORT.md、verified-source-and-video-binding-private.json、verified-video-inputs-private.json、GREEN outcome及最终回执。保护ledger承接20567项，仅追加本节点/新获准工具和上轮最终回执，不重扫旧SDK/AVD/Sources；原dirty根255项/index及%SystemDrive%保留。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6；整个v10提高软件完成度，v10.1.6后不自动转运营。
+
+---
+
 # 2026-11-08 私有图片上传/附件/DB/Range/撤权旧URL后端子范围通过（CURRENT ENTRY）
 
 **REAL_PRIVATE_IMAGE_UPLOAD_SEND_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / VIDEO_POSITIVE_NOT_RUN / AC04_PARTIAL / G2_FALSE**
