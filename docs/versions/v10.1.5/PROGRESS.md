@@ -1,3 +1,9 @@
+# 2026-11-08 Owner头像上传成功，新65b包缓存锁页仍复现（CURRENT ENTRY）
+
+Owner另授新scope04后，同机同已装新包实际登录/选图返回；手机POST媒体200、private image16900B/DB/backing一致，但8快照attachment0、无手机POST消息，实际APP显示可信登录或加密保存未核验而锁页。65b修正未解决该真机路径；唯一根因UNKNOWN。后端224.391秒已耗1余0、88ADB、清理无错、179旧容器State字节一致；无新SDK/构建/安装/Activity/force-stop。旧STOP保持。详情见[本节点](../../workflow/V1015_OWNER_AVATAR_UPLOAD_LOCK_REPRODUCED_20261108.md)。下一步优先验证列表+聊天共享缓存代际的双页并发候选，不绕过安全锁或自动新增运行次数。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 独立头像副本系统索引已证，选择器可见性仍未知（CURRENT ENTRY）
 
 Owner明确批准独立单副本检查，同Redmi/已装新包不变，文件hash与精确媒体索引记录（JPEG/17975B/is_pending0）匹配；14ADB、清理无错，零后端/构建/安装/Activity/UI截图。本诊断已耗1余0，原媒体后端仍已耗1余0，旧STOP/claim保持。只证本次shell可查询索引，不证目标选择器/APP权限或前次索引，媒体真链仍未完成。详见[本节点](../../workflow/V1015_EXACT_IMAGE_INDEX_VERIFIED_20261108.md)。Local-first普通工程及全部保护边界保持，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；下一设备范围需具体授权，不自动续跑。
@@ -31,7 +37,7 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 图片与短视频后端上传/消息/DB/Range/撤权子范围通过；前次真机头像仅上传后锁页；修正源码Debug已产包并更新同机；本次焦点/实际登录/聊天通过，选图等待超时停止，手机媒体POST为0 | 新包实际APP图片渲染、视频选择/发送/播放、冷启及媒体并发；锁页修正真机效果仍未证 | PARTIAL |
+| 04 私有图片/短视频 | 图片与短视频后端上传/消息/DB/Range/撤权子范围通过；前次真机头像仅上传后锁页；修正源码Debug已产包并更新同机；最新新scope04已实际选图上传200，随后再次缓存核验锁页；attachment0且无手机消息POST，65b真机修复未成立 | 新包实际APP图片渲染、视频选择/发送/播放、冷启及媒体并发；锁页修正真机效果仍未证 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
 | 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，新源码已随本次Debug产包/同机更新 | Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |

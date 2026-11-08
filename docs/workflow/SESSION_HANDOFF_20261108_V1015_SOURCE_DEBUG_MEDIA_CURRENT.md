@@ -1,3 +1,11 @@
+# 2026-11-08 Owner头像上传成功，新65b包缓存锁页仍复现（CURRENT ENTRY）
+
+Owner另授新scope04后，同机同已装新包实际登录/选图返回；手机POST媒体200、private image16900B/DB/backing一致，但8快照attachment0、无手机POST消息，实际APP显示可信登录或加密保存未核验而锁页。65b修正未解决该真机路径；唯一根因UNKNOWN。后端224.391秒已耗1余0、88ADB、清理无错、179旧容器State字节一致；无新SDK/构建/安装/Activity/force-stop。旧STOP保持。详情见[本节点](V1015_OWNER_AVATAR_UPLOAD_LOCK_REPRODUCED_20261108.md)。下一步优先验证列表+聊天共享缓存代际的双页并发候选，不绕过安全锁或自动新增运行次数。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-owner-media-retest-20261108-case01`，先读final-local-github-receipt-private.json及IMPLEMENTATION_REPORT.md。下方历史保存入口不增加次数。
+
+---
+
 # 2026-11-08 独立头像副本系统索引已证，选择器可见性仍未知（CURRENT ENTRY）
 
 Owner明确批准独立单副本检查，同Redmi/已装新包不变，文件hash与精确媒体索引记录（JPEG/17975B/is_pending0）匹配；14ADB、清理无错，零后端/构建/安装/Activity/UI截图。本诊断已耗1余0，原媒体后端仍已耗1余0，旧STOP/claim保持。只证本次shell可查询索引，不证目标选择器/APP权限或前次索引，媒体真链仍未完成。详见[本节点](V1015_EXACT_IMAGE_INDEX_VERIFIED_20261108.md)。Local-first普通工程及全部保护边界保持，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；下一设备范围需具体授权，不自动续跑。
