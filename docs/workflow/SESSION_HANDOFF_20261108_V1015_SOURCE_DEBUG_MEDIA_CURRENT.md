@@ -1,3 +1,11 @@
+# 2026-11-08 模拟器原生UI无根节点，观察器解析错误停止（CURRENT ENTRY）
+
+Owner批准case02后新boot/install成功，Activity timeout13089ms；dump exit0却stderr nullroot，cat exit0却缺文件错误文本，被观察器当XML解析而STOP。是观察工具缺陷，不是APP失败证据，未等完180秒。63控制ADB/124.859秒、Job和私有ADB清理无错；手机0/累计34、后端无claim仍0耗1余，旧STOP/已耗及转交保持。新case03仅准备，先核模拟器OS亮屏/未锁/可读画面再装包，fresh dump门修正含post-focus/两端UI；13host检查通过，尚未批准/转交/运行，不复活旧实例或重复申请未耗后端。详见[本节点](V1015_EMULATOR_NULL_ROOT_OBSERVER_STOP_20261108.md)。产品源码未改，APP首屏/双端互发/媒体未证，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，功能优先/UI最后及全部保护保持。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-emulator-redmi-dual-chat-20261108-case02`，先读IMPLEMENTATION_REPORT.md与final-local-github-receipt-private.json；case03候选尚未批准。原余1后端当前指定到已STOP case02/backend，不得重开旧入口。
+
+---
+
 # 2026-11-08 双端新模拟器启动/安装成功，Activity等待超时停止（CURRENT ENTRY）
 
 Owner提出模拟器+同Redmi双测试账号对话，新隔离AVD启动/ARM64资格/同b621一次安装成功；唯一Activity exit0但Status timeout/11297ms，原Status ok断言STOP，APP首屏UNKNOWN、不能判崩溃。66.687秒/36ADB，Job及私有ADB清理无错；手机ADB0/累计34，后端无claim仍0耗1余。新case02仅准备，9host检查通过：同一次Activity后最多180秒观察真实空登录+focus才继续，不将timeout作PASS；尚未批准/转交/运行，不重开旧STOP或重复申请未耗后端。详见[本节点](V1015_DUAL_EMULATOR_INSTALLED_ACTIVITY_WAIT_TIMEOUT_20261108.md)。双端实际登录/互发/DB及媒体均NOT_RUN，全部保护与功能优先/UI最后保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
