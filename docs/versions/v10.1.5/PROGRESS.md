@@ -13,10 +13,10 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 图片与短视频上传→消息/DB/hash→200/206→撤权旧URL后端子范围通过；Linux真实validator已核2秒合成H.264；本次APP头像上传200/私有文件已核，发信锁页停止 | 修正候选新产包/真机再验；APP图片渲染、视频选择/发送/播放、同最终APK重启及媒体并发 | PARTIAL |
+| 04 私有图片/短视频 | 图片与短视频后端上传/消息/DB/Range/撤权子范围通过；前次真机头像仅上传后锁页；修正源码Debug已产包并更新同机，本次首次输入前焦点核验停止 | 新包实际APP图片渲染、视频选择/发送/播放、冷启及媒体并发；锁页修正真机效果仍未证 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
-| 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，离线闭锁分项证据保留 | 新源码尚未产APK；Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
+| 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，新源码已随本次Debug产包/同机更新 | Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
 | 08 通知隐私/权限 | 既有站内通知、偏好与消息最小payload基线保留 | 当前系统权限拒绝/撤销、锁屏文案、旧通知点击重验及相关撤权矩阵 | PARTIAL |
 | 09 Push供应商隔离 | 不将本地开关/替身写成真实送达，真实Push保持PENDING | token登记/轮换/注销与隔离transport剩余检查；真实供应商另需资格/授权 | PARTIAL；真实Push PENDING |
 | 10 同候选运行/重启 | 源码Debug产包/真机安装/attach热重载；真机登录/消息/冷启/退出；持久MariaDB后台子范围 | 同一最终APK→API→MariaDB→独立Web→受控重启读回集中验证 | PARTIAL |
@@ -24,7 +24,23 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 
 关键现有入口：[源码Debug产包](../../workflow/V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)、[真机源码热重载](../../workflow/V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)、[文字往返/冷启](../../workflow/V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)、[真机退出撤权](../../workflow/V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)、[双同键/MC并发](../../workflow/V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)、[Block/CN/禁用并发](../../workflow/V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。这些历史成果本轮未重测，限制继续按各原证保留。
 
-## 本节点：真机头像上传后锁页停止，前台回调修正通过40项单元检查｜2026-11-08
+## 本节点：修正源码Debug产包/同机更新通过，媒体复测在登录焦点核验停止｜2026-11-08
+
+**SOURCE_DEBUG_REBUILD_INSTALLED_VERIFIED / PHONE_LOGIN_FOCUS_STOP / BUILD_AND_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner明确批准修正候选各运行一次。输入98722adcecbed0bdecddf0474734aa8b8276bb42、修正65b22f632cf108f34018fd22de6665eb81933757；apps树588c408dd594eabcc83599a2af9596b4c7cb1691、services树4530ae85754a2f3698d073182a47038708f2cb55。本轮无产品源码修改。新源码Debug实际编译194.891秒/Gradle3m13s，345任务（21执行/324 up-to-date），controller/root0，Job峰2697871360字节；JIT kernel更新，ZIP/版本/签名/ARM64及官方Debug引擎代码链核验通过。Job4GiB/启动5120MiB及原时限、离线、工作卷/输出约束保持。派生CMake索引硬链接按字节保留后独立化，派生Gradle缓存同卷移动保留，无删旧依赖/SDK或降低8GiB检查。唯一fresh检查由原入口执行，构建结束后才启动后端。
+
+新APK 154066381字节，SHA256 `66524ef65b5525f3c0a2942954cbcea4a2d56d634b0a4c738165c010438c3a06`；com.elitesync.v1015dev /10.1.5-dev /1010501 /arm64-v8a /debuggable，同旧Debug签名。一次更新安装成功，同一Redmi用户0的APK字节回读一致、空登录表单已核；未卸载/清空或改变权限。构建阶段早期seal中的install NOT_RUN为当时快照，终态以本节点/最终回执为准。
+
+独立后端V1015_REDMI_PRIVATE_MEDIA_20261108_02就绪并完成虚构账号API/CN/MC准备；APP首次点击手机号字段后，新的目标APP节点仍无focused EditText，`Owned focused EditText required`断言停止。尚无文字输入或APP登录提交；实际未获焦点唯一原因UNKNOWN，不推断为权限/产品故障。图片/短片选择、上传、发信、播放、冷启/T0/token读回、媒体撤权和正常退出均NOT_RUN；原锁页修正的真机效果仍未证，前轮40项单元检查未重跑、不计本轮新测。
+
+后端74.843秒/controller0；合计2GiB/启动3072MiB、1800秒/统一45秒收尾、8GiB卷/2GiB输出采样、离线与DB restart0保持。49条ADB含资格/安装/收尾，Activity1/force-stop0/install1。phone/backend cleanup_errors均空；自有三容器停止/PID0/无OOM，退出0/137/0，API137不归因，卷/网络保留。173个既有容器完整State一致且全停止；既有引擎未重启。精确reverse/UI文件/四份测试副本已清理，未浏览个人图库或改原图。
+
+LOCAL_ONLY根名`v1015-foreground-fix-rebuild-media-20261108-case01`，先读IMPLEMENTATION_REPORT.md、verified-build-delivery-private.json、completed-new-source-build-seal-private.json、phone-media/failure/cleanup/outcome及最终回执；独立构建控制根名`v1015-source-debug-host-20261108-foreground-fix-case01`。非作者构建/原证复核与外部独立验收分开。保护ledger承接22190项，仅追加新节点、独立构建原证、保留派生缓存manifest及上轮最终回执，原dirty根/index及%SystemDrive%保持。
+
+构建/后端各已耗1余0，旧claim/STOP不改。下一步复用已装新APK，先在新后端claim前确认空表单及手机号焦点，必要时由Owner手动点选；不降低输入前目标/正确字段/焦点保护。新一次手机/后端额度尚未授予，不自动重试、不再编译/重装。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6或运营。
+
+## 前序节点：真机头像上传后锁页停止，前台回调修正通过40项单元检查｜2026-11-08
 
 **PHONE_IMAGE_UPLOAD_ONLY_LOCK_STOP / BACKEND_SPENT_1_REMAINING_0 / SOURCE_FIX_GREEN40_VERIFIED / FIX_NOT_ON_PHONE / G2_FALSE**
 

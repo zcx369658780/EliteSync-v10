@@ -1,4 +1,16 @@
-# 2026-11-08 真机头像上传后锁页停止，前台回调修正GREEN40通过（CURRENT ENTRY）
+# 2026-11-08 修正源码Debug产包/同机更新通过，媒体复测登录焦点停止（CURRENT ENTRY）
+
+**SOURCE_DEBUG_REBUILD_INSTALLED_VERIFIED / PHONE_LOGIN_FOCUS_STOP / BUILD_AND_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner明确批准各一次；输入98722adc、修正65b22f63，新源码Debug194.891秒/345任务/21执行，峰Job2697871360字节，ZIP/签名/版本/ARM64/JIT及引擎代码链通过。同一Redmi一次更新成功，新APK SHA256 `66524ef65b5525f3c0a2942954cbcea4a2d56d634b0a4c738165c010438c3a06`、154066381字节，手机回读一致，空登录表单已核。构建结束才启动后端，无新引擎/下载或产品源码修改。[本节点及11项AC](../versions/v10.1.5/PROGRESS.md)。
+
+后端就绪并完成虚构API/CN/MC准备，但APP首次点击手机号后焦点核验失败，未输入/提交登录。唯一原因UNKNOWN；图片/短片/冷启/播放/撤权/正常退出NOT_RUN，前轮锁页修正真机效果未证。后端74.843秒耗1余0；49ADB/1Activity/0force-stop/1install，收尾无错，自有三容器停止/PID0/无OOM，API137不归因；173旧容器State不变且全停止，reverse/UI/四份媒体副本精确清理，原图未改。
+
+LOCAL_ONLY根名v1015-foreground-fix-rebuild-media-20261108-case01，读IMPLEMENTATION_REPORT.md、构建seal及phone-media failure/cleanup/outcome、最终回执；独立构建控制根v1015-source-debug-host-20261108-foreground-fix-case01。ledger承接22190项只追加新原证/派生缓存manifest；原dirty根/index及%SystemDrive%保护。两范围各耗1余0，不重试。下步复用已装新包，后端claim前先确认手机号焦点/必要时Owner手动点选；新一次手机/后端尚未授权，无需重编/重装。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6或运营。
+
+---
+
+# 2026-11-08 真机头像上传后锁页停止，前台回调修正GREEN40通过（历史入口）
 
 **PHONE_IMAGE_UPLOAD_ONLY_LOCK_STOP / BACKEND_SPENT_1_REMAINING_0 / SOURCE_FIX_GREEN40_VERIFIED / FIX_NOT_ON_PHONE / G2_FALSE**
 
