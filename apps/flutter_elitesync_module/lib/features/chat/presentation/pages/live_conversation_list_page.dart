@@ -265,7 +265,10 @@ class _LiveConversationListPageState
         }
         items.add(Map<String, dynamic>.from(raw));
       }
-      _cache.beginOnlineRevalidation();
+      // An ordinary current list read authorizes this object, not a global
+      // reset that can invalidate a retained foreground chat's in-flight save.
+      // Actual offline recovery must still discard all old read grants.
+      if (_cache.isOffline) _cache.beginOnlineRevalidation();
       final saved = await _cache.saveAuthorized(
         _cacheObject,
         {'items': items.map(_savedItem).toList()},
