@@ -125,17 +125,22 @@ def validate_duplicate(before, after, replies, wait_rows, holder_id, request_ids
             "matched_waits": matched}
 
 
-def validate_revocation(before, after, replies, wait_rows, holder_id, request_ids,
-                        database, locked_user_id, revoker_result):
-    """Require committed MC revocation, real lock handoff, and no message effects.
+def validate_denied_response(reply, status=404):
+    """A denied replay/bearer must not expose success identity or hide errors."""
+    _require(type(reply.get('status')) is int and reply['status'] == status
+             and reply.get('private_marker_present') is False, 'Wrong or private-body-bearing denial')
+    _require(all(reply.get(field) is None for field in ('id', 'client_message_id', 'idempotent_replay')),
+             'Denied response contains success identity')
+    _require(reply.get('kernel_executed') is True and type(reply.get('transaction_level')) is int
+             and reply['transaction_level'] == 0 and _rr(reply.get('session_isolation')),
+             'Denial lacks kernel/isolation/closed transaction evidence')
+    _require(not any(reply.get(field) for field in ('error', 'exception', 'deadlock')), 'Denied worker reported an error')
 
-    No ordering is imposed between reader acquisition and the revoker's post-
-    commit acknowledgment: that acknowledgment may be emitted later.
-    """
+
+def _committed_denial(before, after, replies, wait_rows, holder_id, request_ids,
+                      database, locked_user_id, revoker_result):
     _snapshot(before, "before")
     _snapshot(after, "after")
-    _authorization(before, "MC_ACTIVE", "before")
-    _authorization(after, "MC_REVOKED", "after")
     matched = _request_witnesses(replies, wait_rows, holder_id, request_ids, database, locked_user_id)
     _require(isinstance(revoker_result, dict), "Revoker result required")
     _require(type(revoker_result.get("status")) is int and revoker_result["status"] == 200,
@@ -149,12 +154,60 @@ def validate_revocation(before, after, replies, wait_rows, holder_id, request_id
     _require(not any(revoker_result.get(key) for key in ("error", "exception", "deadlock")),
              "Revoker worker error cannot be accepted as committed denial")
     for reply in replies:
-        _require(reply["status"] == 404 and reply.get("private_marker_present") is False,
-                 "Revoked request was not a private-body-free 404")
-        _require(reply.get("id") is None and reply.get("client_message_id") is None
-                 and reply.get("idempotent_replay") is None, "Denied response contains success identity")
+        validate_denied_response(reply)
     for field in EFFECT_FIELDS:
         _require(before[field] == after[field], f"Revoked requests changed {field}")
+    return matched
+
+
+def validate_revocation(before, after, replies, wait_rows, holder_id, request_ids,
+                        database, locked_user_id, revoker_result):
+    """Require committed MC revoke and no message effects; ACK may arrive later."""
+    matched = _committed_denial(before, after, replies, wait_rows, holder_id,
+                               request_ids, database, locked_user_id, revoker_result)
+    _authorization(before, "MC_ACTIVE", "before")
+    _authorization(after, "MC_REVOKED", "after")
     return {"passed": True, "scenario": "revoke_before_requests", "denied_requests": len(replies),
             "request_connection_ids": list(request_ids), "holder_connection_id": holder_id,
             "matched_waits": matched}
+
+
+def validate_permission_denial(before, after, replies, wait_rows, holder_id, request_ids,
+                               database, locked_user_id, writer, case, participants):
+    """Check one real block/CN-close/peer-disable lock handoff and tracked effects."""
+    _require(case in ('block', 'cn-close', 'disable'), 'Unknown permission scenario')
+    pair = _ids(participants, 'participants')
+    _require(len(pair) == 2 and min(pair) == locked_user_id, 'Wrong qualified pair')
+    matched = _committed_denial(before, after, replies, wait_rows, holder_id,
+                               request_ids, database, locked_user_id, writer)
+    _require(writer.get('kernel_executed') is True, 'Mutation must execute real HTTP kernel')
+    _authorization(before, 'MC_ACTIVE', 'before')
+    _require(after.get('cn_state') == 'CN_CLOSED' and after.get('mc_states') == ['MC_REVOKED'] * 2,
+             'Expected persisted closed CN and both revoked MC purposes')
+    _require(before.get('cn_revision') == 2 and before.get('mc_revisions') == [2, 2]
+             and after.get('cn_revision') == 3, 'Unexpected CN/MC generation or revision')
+    expected_ids = {str(n) for n in participants}
+    for state in (before, after):
+        flags = state.get('disabled')
+        _require(isinstance(flags, dict) and set(flags) == expected_ids
+                 and all(type(flag) is bool for flag in flags.values()), 'Exact participant disabled capture required')
+        for field in ('token_ids', 'active_session_ids'):
+            rows = state.get(field)
+            _require(isinstance(rows, dict) and set(rows) == expected_ids
+                     and all(isinstance(values, list) for values in rows.values()), 'Participant credential capture required')
+    _require(not any(before['disabled'].values()) and before.get('block_count') == 0,
+             'Matrix pair must initially be active and unblocked')
+    _require(type(after.get('block_count')) is int and after['block_count'] == (1 if case == 'block' else 0),
+             'Wrong persisted block transition')
+    expected_disabled = {identity: case == 'disable' and identity == str(participants[1]) for identity in expected_ids}
+    _require(after['disabled'] == expected_disabled, 'Wrong disabled participant or no disable')
+    _require(after.get('mc_revisions') == [3, 3], 'Expected one MC revocation revision')
+    for field in ('token_ids', 'active_session_ids'):
+        for identity in expected_ids:
+            old, new = before[field][identity], after[field][identity]
+            if case == 'disable' and identity == str(participants[1]):
+                _require(old and new == [], 'Disabled peer credentials must actually be revoked')
+            else:
+                _require(old == new and old, 'Unrelated participant credentials changed or missing')
+    return dict(passed=True, scenario=case, denied_requests=len(replies),
+                request_connection_ids=list(request_ids), holder_connection_id=holder_id, matched_waits=matched)

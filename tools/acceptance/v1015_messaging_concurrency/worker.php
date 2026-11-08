@@ -7,13 +7,19 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 [$script, $mode, $label, $case, $configPath] = $argv;
+$matrix = in_array($case, ['block', 'cn-close', 'disable'], true);
 if (!in_array($mode, ['hold', 'request', 'snapshot'], true)
-    || !preg_match('/\A[a-z0-9-]+\z/', $label) || !in_array($case, ['duplicate', 'revocation'], true)) {
+    || !preg_match('/\A[a-z0-9-]+\z/', $label) || (!$matrix && !in_array($case, ['duplicate', 'revocation'], true))) {
     throw new RuntimeException('Unsupported probe operation');
 }
 $cfg = json_decode(file_get_contents($configPath), true, 32, JSON_THROW_ON_ERROR);
 if (!preg_match('/\AV1015_MSG_CONCURRENCY_[0-9]{8}_[0-9]{2}\z/', $cfg['task_id'] ?? '')
     || getenv('TASK_ID') !== $cfg['task_id']) throw new RuntimeException('Task binding required');
+if ($matrix) $cfg['participants'] = $cfg['scenarios'][$case]['participants'];
+if (count($cfg['participants']) !== 2 || count(array_unique($cfg['participants'])) !== 2
+    || count(array_filter($cfg['participants'], fn($n)=>is_int($n) && $n>0)) !== 2) {
+    throw new RuntimeException('Two distinct qualified participant IDs required');
+}
 require '/app/vendor/autoload.php';
 $app = require '/app/bootstrap/app.php';
 $app->useEnvironmentPath('/task');
@@ -51,7 +57,7 @@ function barrier(): void {
     }
 }
 function snapshot(): array {
-    global $cfg;
+    global $cfg,$matrix;
     [$a,$b] = $cfg['participants'];
     $rows = DB::table('chat_messages')->where(function ($q) use ($a,$b) {
         $q->where(function ($q) use ($a,$b) {$q->where('sender_id',$a)->where('receiver_id',$b);})
@@ -60,13 +66,32 @@ function snapshot(): array {
     $ids=[];$hashes=[];$keys=[];
     foreach ($rows as $row) {$ids[]=(int)$row->id;$hashes[(string)$row->id]=hash('sha256',(string)$row->content);$keys[(string)$row->id]=$row->client_message_id;}
     $cn=DB::table('product_connections')->where('user_a',min($a,$b))->where('user_b',max($a,$b))->first();
-    return [
+    $result = [
         'message_ids'=>$ids,'message_hashes'=>(object)$hashes,'client_message_ids'=>(object)$keys,
         'notification_ids'=>DB::table('notifications')->where('user_id',$b)->where('kind','message')->orderBy('id')->pluck('id')->map(fn($x)=>(int)$x)->all(),
         'message_event_ids'=>DB::table('app_events')->where('event_name','message_sent')->where('actor_user_id',$a)->where('target_user_id',$b)->orderBy('id')->pluck('id')->map(fn($x)=>(int)$x)->all(),
         'attachment_ids'=>DB::table('message_attachments')->whereIn('message_id',$ids)->orderBy('id')->pluck('id')->map(fn($x)=>(int)$x)->all(),
         'cn_state'=>$cn?->state,'mc_states'=>$cn ? DB::table('messaging_consents')->where('connection_id',$cn->id)->orderBy('purpose')->pluck('state')->all() : [],
     ];
+    if ($matrix) {
+        $disabled=[];$tokens=[];$sessions=[];
+        foreach ([$a,$b] as $id) {
+            $disabled[(string)$id]=(bool) DB::table('users')->where('id',$id)->value('disabled');
+            $tokens[(string)$id]=DB::table('personal_access_tokens')->where('tokenable_type',User::class)->where('tokenable_id',$id)
+                ->orderBy('id')->pluck('id')->map(fn($n)=>(int)$n)->all();
+            $sessions[(string)$id]=DB::table('device_sessions')->where('user_id',$id)->whereNull('revoked_at')->orderBy('id')->pluck('id')->all();
+        }
+        $result += [
+            'disabled'=>(object)$disabled,'token_ids'=>(object)$tokens,'active_session_ids'=>(object)$sessions,
+            'block_count'=>DB::table('user_blocks')->where(function ($q) use ($a,$b) {
+                $q->where(fn($q)=>$q->where('blocker_id',$a)->where('blocked_user_id',$b))
+                    ->orWhere(fn($q)=>$q->where('blocker_id',$b)->where('blocked_user_id',$a));
+            })->count(),
+            'cn_revision'=>$cn ? (int)$cn->revision : null,
+            'mc_revisions'=>$cn ? DB::table('messaging_consents')->where('connection_id',$cn->id)->orderBy('purpose')->pluck('revision')->map(fn($n)=>(int)$n)->all() : [],
+        ];
+    }
+    return $result;
 }
 $requestActive=false;$lockAttempt=false;$lockAcquired=false;
 DB::connection()->beforeExecuting(function ($sql) use (&$requestActive,&$lockAttempt) {
@@ -83,8 +108,10 @@ DB::listen(function ($query) use (&$requestActive,&$lockAcquired) {
 });
 function http(string $method,string $uri,string $actor,array $body=[]): array {
     global $app,$kernel,$cfg,$requestActive,$lockAcquired,$cid,$isolation;
-    if (!in_array($method,['GET','POST'],true) || !preg_match('~\A/api/v1/(messages(?:\?peer_id=[0-9]+)?|connections/[0-9]+/consent)\z~',$uri)) {
-        throw new RuntimeException('Only probe message/consent routes allowed');
+    $messageRoute = preg_match('~\A/api/v1/messages(?:\?peer_id=[0-9]+)?\z~',$uri);
+    $mutationRoute = preg_match('~\A/api/v1/(connections/[0-9]+/(?:consent|connection)|moderation/blocks|admin/users/[0-9]+/disable)\z~',$uri);
+    if (!(in_array($method,['GET','POST'],true) && $messageRoute) && !($method==='POST' && $mutationRoute)) {
+        throw new RuntimeException('Only probe message and permission-mutation routes allowed');
     }
     $app['auth']->forgetGuards();
     $request=Request::create($uri,$method,[],[],[],['HTTP_ACCEPT'=>'application/json',
@@ -115,6 +142,11 @@ try {
                 ['action'=>'revoke','expected_revision'=>2]);
             mark('revocation-written',['status'=>$result['status']]);
             if ($result['status']!==200 || DB::transactionLevel()!==1) throw new RuntimeException('Real MC revoke failed');
+        } elseif ($matrix) {
+            $operation=$cfg['operations'][$case]['mutation'];
+            $result=http($operation['method'],$operation['uri'],$operation['actor'],$operation['body']);
+            mark('permission-written',['scenario'=>$case,'status'=>$result['status']]);
+            if ($result['status']!==200 || DB::transactionLevel()!==1) throw new RuntimeException('Real permission mutation failed');
         } else {$result=['status'=>200,'connection_id'=>$cid,'session_isolation'=>$isolation];}
         DB::commit();$result['committed']=true;$result['transaction_level']=DB::transactionLevel();
         mark('committed',$result);mark('done',$result);echo json_encode($result,JSON_THROW_ON_ERROR)."\n";exit(0);

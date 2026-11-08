@@ -14,7 +14,27 @@ import subprocess
 import time
 import uuid
 
-from protocol import EFFECT_FIELDS, validate_duplicate, validate_revocation
+from protocol import EFFECT_FIELDS, validate_duplicate, validate_revocation, validate_permission_denial, validate_denied_response
+
+MATRIX_CASES = ('block', 'cn-close', 'disable')
+
+
+def probe_cases(cfg):
+    if 'scenarios' not in cfg:
+        return ('duplicate', 'revocation')
+    scenarios = cfg['scenarios']
+    if not isinstance(scenarios, dict) or set(scenarios) != set(MATRIX_CASES):
+        raise ValueError('Exactly block, cn-close and disable scenarios required')
+    pairs = set()
+    for scenario in scenarios.values():
+        pair = scenario.get('participants')
+        if (not isinstance(pair, list) or len(pair) != 2
+                or any(type(n) is not int or n <= 0 for n in pair) or pair[0] == pair[1]):
+            raise ValueError('Two distinct qualified participant IDs required')
+        pairs.add(tuple(sorted(pair)))
+    if len(pairs) != 3:
+        raise ValueError('Permission scenarios require separate pairs')
+    return MATRIX_CASES
 
 WAIT_SQL = (
     'SELECT r.trx_mysql_thread_id,b.trx_mysql_thread_id,l.lock_table,l.lock_index,l.lock_data '
@@ -41,7 +61,9 @@ def read(path):
 
 def persisted_state(snapshot):
     """Compare business evidence, not independent observer clocks/connections."""
-    return {field: snapshot[field] for field in (*EFFECT_FIELDS, 'cn_state', 'mc_states')}
+    fields = (*EFFECT_FIELDS, 'cn_state', 'mc_states')
+    matrix_fields = ('disabled', 'block_count', 'token_ids', 'active_session_ids', 'cn_revision', 'mc_revisions')
+    return {field: snapshot[field] for field in (*fields, *matrix_fields) if field in snapshot or field in fields}
 
 
 def publish_stop(path, value):
@@ -69,8 +91,7 @@ def abort_probe(stop, output, processes, original_error):
             cleanup_deadline_monotonic=deadline))
     except BaseException as error:
         errors.append('stop publication: ' + repr(error))
-    for case in ('duplicate', 'revocation'):
-        folder = output / case
+    for folder in (output / case for case in ('duplicate', 'revocation', *MATRIX_CASES)):
         try:
             if folder.exists() and not (folder / 'cancel').exists():
                 with (folder / 'cancel').open('x', encoding='ascii') as stream:
@@ -90,6 +111,7 @@ def abort_probe(stop, output, processes, original_error):
 
 def run_probe(config_path: pathlib.Path) -> dict:
     cfg = read(config_path)
+    cases = probe_cases(cfg)
     if not re.fullmatch(r'V1015_MSG_CONCURRENCY_[0-9]{8}_[0-9]{2}', cfg['task_id']):
         raise ValueError('Explicit messaging concurrency scope required')
     if not all(re.fullmatch(r'[a-f0-9]{64}', cfg[key]) for key in ('api_container_id', 'db_container_id')):
@@ -141,7 +163,7 @@ def run_probe(config_path: pathlib.Path) -> dict:
         folder = output / case
         return finish(folder, label, start('snapshot', label, case))
 
-    def waits(folder, expected_ids, holder_id):
+    def waits(folder, expected_ids, holder_id, participants):
         deadline = time.monotonic() + 25
         observations = []
         while time.monotonic() < deadline:
@@ -159,7 +181,7 @@ def run_probe(config_path: pathlib.Path) -> dict:
             matched = {row['waiting_connection'] for row in rows
                 if row['blocking_connection'] == holder_id
                 and row['table'] == f"`{cfg['database']}`.`users`"
-                and row['index'] == 'PRIMARY' and row['lock_data'] == str(min(cfg['participants']))}
+                and row['index'] == 'PRIMARY' and row['lock_data'] == str(min(participants))}
             if set(expected_ids) <= matched:
                 write(folder / 'independent-lock-waits.json', dict(observations=observations,
                     expected_request_connections=expected_ids, holder_connection=holder_id,
@@ -172,10 +194,24 @@ def run_probe(config_path: pathlib.Path) -> dict:
         raise TimeoutError('No exact request->holder qualified users PRIMARY waits')
 
     try:
-        for case in ('duplicate', 'revocation'):
+        for case in cases:
             folder = output / case
             folder.mkdir()
+            participants = cfg['scenarios'][case]['participants'] if case in MATRIX_CASES else cfg['participants']
+            if case in MATRIX_CASES:
+                seeded = finish(folder, 'seed-message', start('request', 'seed-message', case))
+                if (seeded['status'] != 200 or not seeded['private_marker_present']
+                        or seeded['transaction_level'] != 0 or seeded['idempotent_replay'] is not False
+                        or seeded['client_message_id'] != cfg['scenarios'][case]['client_message_id']):
+                    raise ValueError('Matrix baseline message must be created by the real route')
+                positive = finish(folder, 'positive-read', start('request', 'positive-read', case))
+                if positive['status'] != 200 or not positive['private_marker_present'] or positive['transaction_level'] != 0:
+                    raise ValueError('Matrix authorized history positive control failed')
             before = snapshot(case, 'snapshot-before')
+            if case in MATRIX_CASES and (before['message_ids'] != [seeded['id']]
+                    or len(before['notification_ids']) != 1 or len(before['message_event_ids']) != 1
+                    or before['attachment_ids']):
+                raise ValueError('Matrix baseline must bind one message/notification/event and no attachment')
             holder = start('hold', 'holder', case)
             held = wait(folder, 'holder', 'held', holder)
             active_requests = [start('request', label, case) for label in ('request-a', 'request-b')]
@@ -183,7 +219,7 @@ def run_probe(config_path: pathlib.Path) -> dict:
             for label, proc in zip(('request-a', 'request-b'), active_requests):
                 request_ids.append(wait(folder, label, 'started', proc)['connection_id'])
                 wait(folder, label, 'lock-attempt', proc)
-            server_waits = waits(folder, request_ids, held['connection_id'])
+            server_waits = waits(folder, request_ids, held['connection_id'], participants)
             # Publish the release only after the independent database witness.
             with (folder / 'allow-release').open('x', encoding='ascii') as stream:
                 stream.write('exact waits observed\n')
@@ -195,19 +231,24 @@ def run_probe(config_path: pathlib.Path) -> dict:
                     raise ValueError('Lock handoff identity mismatch')
             after = snapshot(case, 'snapshot-after')
             args = (before, after, replies, server_waits, held['connection_id'], request_ids,
-                    cfg['database'], min(cfg['participants']))
+                    cfg['database'], min(participants))
             if case == 'duplicate':
                 decision = validate_duplicate(*args, cfg['client_message_id'])
                 positive = finish(folder, 'positive-read', start('request', 'positive-read', case))
                 if positive['status'] != 200 or not positive['private_marker_present'] or positive['transaction_level'] != 0:
                     raise ValueError('Authorized message history positive control failed')
             else:
-                decision = validate_revocation(*args, revoker_result)
+                decision = (validate_permission_denial(*args, revoker_result, case, participants)
+                            if case in MATRIX_CASES else validate_revocation(*args, revoker_result))
                 replay = finish(folder, 'old-key-replay', start('request', 'old-key-replay', case))
-                if replay['status'] != 404 or replay['private_marker_present'] or replay['transaction_level'] != 0:
-                    raise ValueError('Committed revoke must deny same-key replay')
+                validate_denied_response(replay)
                 if persisted_state(snapshot(case, 'snapshot-after-replay')) != persisted_state(after):
                     raise ValueError('Denied old-key replay changed tracked effects')
+                if case == 'disable':
+                    old_token = finish(folder, 'disabled-old-token', start('request', 'disabled-old-token', case))
+                    validate_denied_response(old_token, 401)
+                    if persisted_state(snapshot(case, 'snapshot-after-old-token')) != persisted_state(after):
+                        raise ValueError('Rejected disabled old bearer changed tracked effects')
             write(folder / 'validated-result.json', decision)
             summary[case] = decision
         write(output / 'summary-private.json', dict(status='PASS', cases=summary,

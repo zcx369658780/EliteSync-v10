@@ -47,6 +47,30 @@ outputs stay LOCAL_ONLY. The caller's immutable input contract must bind these
 scripts before launch. Errors publish the common45-second cleanup deadline and
 stop request; the owning backend controller closes only its held containers.
 
+An explicit `scenarios` configuration selects a separate three-case permission
+matrix: `block`, `cn-close`, `disable`, in that fixed serial order and using three
+distinct pairs. This does not repeat the default two-case task. Each case first
+creates one baseline message and reads it through real routes, then witnesses
+two independent GET/new-POST connections waiting on the exact holder user row.
+The holder invokes the real Block, CN-close or administrator-disable route in
+its transaction and commits. Both waiting requests and a postcommit old-key
+replay must return404 without the private marker or success IDs. Captured
+message IDs/ciphertext hashes/client keys, message notifications/events and
+attachment IDs must remain unchanged. CN/MC revisions must transition2->3;
+CN must close and both MC purposes must revoke. Block additionally requires one
+persisted pair block. Disable targets the peer, requires its tokens/active
+sessions removed while the request actor retains credentials, and directly
+tests that the disabled peer's old bearer now returns401. This covers in-flight
+peer disable, not an actor already disabled before authentication.
+
+Worker config `scenarios[case].participants` must match the runner config;
+`operations[case]` contains `seed-message`, `positive-read`, `mutation`,
+`request-a`, `request-b`, `old-key-replay`, plus `disabled-old-token` for disable.
+Only the exact message and permission-mutation routes are allowed. The separate
+backend contract must bind both configs and source identities; no arbitrary
+mutation or additional scenario is an implied grant. These captures still do
+not prove every DB field unchanged, APP/WS/cache behavior, or full AC03.
+
 Pure checks using Python3.11+ (no DB/device execution):
 
 ```powershell
