@@ -1,3 +1,19 @@
+# 2026-11-08 同机焦点/登录通过，图片选择器等待超时停止（CURRENT ENTRY）
+
+**PHONE_FOCUS_LOGIN_VERIFIED / PICKER_MANUAL_TIMEOUT_STOP / ORIGINAL_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner回复“同意，手机已就位”后才启动手机接续，实际同Redmi/已装新APK66524ef6…/空表单手机号focus通过；真实虚构账号登录、CN/MC和聊天peer文字通过。只消费原V1015_REDMI_PRIVATE_MEDIA_20261108_03未耗后端1，canonical claim在原根独占记录，未增后端次数，旧phone STOP/invocation原文件保持。本次无产品源码改动、构建/安装/Activity/force-stop/新引擎。
+
+四份自有媒体副本导入/hash通过，但没有证明系统选择器可见；首次选图无法隔离测试目录，转Owner手动选择，120秒未观察到返回APP后停止。Owner随后报告列表无之前头像副本；回复在入口退出/副本清理之后到达，实际观察相对清理时机UNKNOWN，具体原因UNKNOWN。手机媒体/消息POST均0；图片上传发送渲染、视频/冷启/播放/撤权/正常退出NOT_RUN，锁页修正真机效果仍未证。
+
+110ADB，与前次27合计137/240；后端234.328秒已耗1余0，失败无重试。清理无错，两reverse/UI/四副本精确清理；自有三容器停止/PID0/无OOM，API137不归因，卷/网络保留；176既有容器完整State不变且全停止。LOCAL_ONLY根名v1015-redmi-media-continuation-20261108-case01，读IMPLEMENTATION_REPORT.md、verified-continuation-stop-private.json、phone-media failure/cleanup、backend outcome及最终回执。ledger承接22728项只追加，不重扫旧SDK/AVD/Sources。下一动态需当前具体范围授权，先解决测试媒体在选择器可见的准备方式，不直接重跑本次入口或复活旧STOP。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根255项/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
+最新私有回执：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-media-continuation-20261108-case01\final-local-github-receipt-private.json`。下方为不可覆盖的历史交接；其中“后端余1”只表示当时快照，现已独占消费为0。
+
+---
+
 # v10.1.5 源码Debug与真机媒体会话交接｜2026-11-08
 
 **SESSION_SAVED / NEW_SOURCE_DEBUG_APK_INSTALLED / PHONE_PRECLAIM_FOCUS_STOP / BACKEND_0_SPENT_1_REMAINING / G2_FALSE**

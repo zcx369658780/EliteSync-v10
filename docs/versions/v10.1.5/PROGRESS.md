@@ -1,3 +1,15 @@
+# 2026-11-08 同机焦点/登录通过，图片选择器等待超时停止（CURRENT ENTRY）
+
+**PHONE_FOCUS_LOGIN_VERIFIED / PICKER_MANUAL_TIMEOUT_STOP / ORIGINAL_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner回复“同意，手机已就位”后才启动手机接续，实际同Redmi/已装新APK66524ef6…/空表单手机号focus通过；真实虚构账号登录、CN/MC和聊天peer文字通过。只消费原V1015_REDMI_PRIVATE_MEDIA_20261108_03未耗后端1，canonical claim在原根独占记录，未增后端次数，旧phone STOP/invocation原文件保持。本次无产品源码改动、构建/安装/Activity/force-stop/新引擎。
+
+四份自有媒体副本导入/hash通过，但没有证明系统选择器可见；首次选图无法隔离测试目录，转Owner手动选择，120秒未观察到返回APP后停止。Owner随后报告列表无之前头像副本；回复在入口退出/副本清理之后到达，实际观察相对清理时机UNKNOWN，具体原因UNKNOWN。手机媒体/消息POST均0；图片上传发送渲染、视频/冷启/播放/撤权/正常退出NOT_RUN，锁页修正真机效果仍未证。
+
+110ADB，与前次27合计137/240；后端234.328秒已耗1余0，失败无重试。清理无错，两reverse/UI/四副本精确清理；自有三容器停止/PID0/无OOM，API137不归因，卷/网络保留；176既有容器完整State不变且全停止。LOCAL_ONLY根名v1015-redmi-media-continuation-20261108-case01，读IMPLEMENTATION_REPORT.md、verified-continuation-stop-private.json、phone-media failure/cleanup、backend outcome及最终回执。ledger承接22728项只追加，不重扫旧SDK/AVD/Sources。下一动态需当前具体范围授权，先解决测试媒体在选择器可见的准备方式，不直接重跑本次入口或复活旧STOP。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根255项/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # v10.1.5 版本进度总账｜2026-11-08
 
 **SOFTWARE_COMPLETENESS_IN_PROGRESS / 10_PARTIAL_AC05_OPEN / G2_FALSE / REAL_PUSH_PENDING**
@@ -13,7 +25,7 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 图片与短视频后端上传/消息/DB/Range/撤权子范围通过；前次真机头像仅上传后锁页；修正源码Debug已产包并更新同机，本次首次输入前焦点核验停止 | 新包实际APP图片渲染、视频选择/发送/播放、冷启及媒体并发；锁页修正真机效果仍未证 | PARTIAL |
+| 04 私有图片/短视频 | 图片与短视频后端上传/消息/DB/Range/撤权子范围通过；前次真机头像仅上传后锁页；修正源码Debug已产包并更新同机；本次焦点/实际登录/聊天通过，选图等待超时停止，手机媒体POST为0 | 新包实际APP图片渲染、视频选择/发送/播放、冷启及媒体并发；锁页修正真机效果仍未证 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
 | 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，新源码已随本次Debug产包/同机更新 | Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
