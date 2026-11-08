@@ -1,3 +1,9 @@
+# 2026-11-09 启动前只读等待候选32项检查通过，待新启动批准（CURRENT ENTRY）
+
+Owner确认同Redmi已连接亮屏解锁（仅Owner报告）；未新增设备操作。新case02只在guest首次boot=1前、精确只读getprop/本serial的已知offline/notfound作有界等待，security/未知及boot后offline硬停保持；240/900秒与控制120+UI160不变。32host检查及非作者复核通过，50payload/合同零差异；尚无新批准/transfer/claim，后端原0耗1余仍在已STOP case01，不重复申请。详见[本节点](V1015_PREBOOT_READONLY_WAIT_PREPARED_20261109.md)。旧STOP/已耗和全部保护保持，真实双端/媒体NOT_RUN，源码/APK不变；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 新模拟器启动离线，安装前停止（CURRENT ENTRY）
 
 Owner批准本次新启动后，新模拟器在第三份启动查询报告device offline，按transport硬停止条件退出。5控制ADB/24.046秒；安装/Activity/APP/手机均0，后端无claim仍0耗1余，当前指定到已STOP的11月9日case01/backend，不复活入口或重复申请未耗次数。清理无错，自有controller退出及私有端口关闭另核通过。离线原因UNKNOWN，非APP故障结论；旧STOP、已耗及保护保持。详见[本节点](V1015_EMULATOR_BOOT_OFFLINE_PREINSTALL_STOP_20261109.md)。双端/媒体NOT_RUN，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；本节点未准备新例。
