@@ -26,6 +26,10 @@ HTTP kernel substitution or simulated video verifier is acceptable as runtime
 proof. This scope does not include restart, APP picker/rendering, image decoding
 on a phone, or complete concurrent media revocation acceptance.
 
+For a private short-video scope, pass `expected_mime='video/mp4'` to the byte
+validator; the default remains PNG for the existing image probe. The same exact
+bytes, Range and privacy checks apply. Pure checks do not decode real video.
+
 Private short-video positive validation requires an existing qualified ffprobe
 and real MP4/H.264 fixture. Without those dependencies it remains NOT_RUN; an
 invalid-video422 is only negative input-validation evidence. Do not download,

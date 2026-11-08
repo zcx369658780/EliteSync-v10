@@ -20,12 +20,14 @@ def content_path(url, asset_id):
     return path
 
 
-def validate_media_bytes(status, headers, body, fixture, byte_range=None):
+def validate_media_bytes(status, headers, body, fixture, byte_range=None, *, expected_mime='image/png'):
     headers = {k.lower(): v for k, v in headers.items()}
     require(status == (206 if byte_range else 200), 'Wrong full/range HTTP status')
     expected = fixture if byte_range is None else fixture[byte_range[0]:byte_range[1]+1]
     require(body == expected and int(headers.get('content-length', -1)) == len(expected), 'Media bytes/length differ from fixture')
-    require(headers.get('content-type', '').split(';')[0].strip() == 'image/png', 'Unexpected content MIME')
+    require(expected_mime in ('image/png', 'video/mp4')
+            and headers.get('content-type', '').split(';')[0].strip() == expected_mime,
+            'Unexpected content MIME')
     cache = {part.strip().lower() for part in headers.get('cache-control', '').split(',')}
     vary = {part.strip().lower() for part in headers.get('vary', '').split(',')}
     require({'private', 'no-store', 'max-age=0'} <= cache and 'public' not in cache, 'Private no-store cache policy required')

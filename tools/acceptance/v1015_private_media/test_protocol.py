@@ -32,6 +32,26 @@ class MediaProtocolTests(unittest.TestCase):
             with self.subTest(status=status, body=body), self.assertRaises(ValueError):
                 validate_denied_media(status, body, self.data)
 
+    def test_video_full_range_require_mp4_mime_exact_bytes_and_privacy(self):
+        data = b'fictional mp4 fixture bytes'
+        headers = dict(self.headers, **{'content-type': 'video/mp4', 'content-length': str(len(data))})
+        validate_media_bytes(200, headers, data, data, expected_mime='video/mp4')
+        part = dict(headers, **{'content-length': '4', 'content-range': f'bytes 0-3/{len(data)}'})
+        validate_media_bytes(206, part, data[:4], data, (0, 3), expected_mime='video/mp4')
+        for changes in [{'content-type': 'image/png'}, {'content-length': '9'},
+                        {'content-range': 'bytes 1-4/26'}, {'cache-control': 'public'},
+                        {'vary': 'Cookie'}]:
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                validate_media_bytes(206, dict(part, **changes), data[:4], data, (0, 3), expected_mime='video/mp4')
+        with self.assertRaises(ValueError):
+            validate_media_bytes(200, headers, data, data)
+
+    def test_video_multipart_keeps_actual_file_bytes_and_type(self):
+        data = b'fictional mp4 fixture bytes'
+        _, body = multipart_file('video', 'synthetic.mp4', data, 'video/mp4', 'video-fixture-boundary')
+        self.assertIn(b'name="media_type"\r\n\r\nvideo\r\n', body)
+        self.assertIn(b'Content-Type: video/mp4\r\n\r\n' + data, body)
+
     def test_returned_url_must_stay_on_exact_qualified_origin_and_asset(self):
         self.assertEqual(content_path('http://127.0.0.1:8021/api/v1/media/7/content', 7), '/api/v1/media/7/content')
         for url in ['http://external.invalid/api/v1/media/7/content', 'http://127.0.0.1:8021/storage/a.png',
