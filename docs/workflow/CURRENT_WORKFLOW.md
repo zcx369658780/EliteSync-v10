@@ -1,3 +1,9 @@
+# 2026-11-08 双页共享缓存竞争受控复现并修正，GREEN47通过（CURRENT ENTRY）
+
+源码1f936d25仅收窄普通在线列表成功刷新对共享缓存的全局失效，真正离线恢复及安全硬锁保留；新双页真实路由用例RED锁页失败→GREEN47通过，82输入hash闭合。旧测试fake签名同步修正，无跳过检查。两阶段各一次已耗/无重试，清理无错、SDK关键hash不变；隔离assets/config诊断保留。尚未产新APK/装机，当前手机仍66524ef6…旧65b，设备效果UNKNOWN；本轮无手机/后端/构建/安装，旧STOP保持。详见[本节点](V1015_RETAINED_LIST_CACHE_RACE_FIXED_UNIT_VERIFIED_20261108.md)。Owner明确功能优先、UI最后按我的和设置→消息列表和聊天→首页及主要导航；计划已记录，UI未改。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index和%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 Owner头像上传成功，新65b包缓存锁页仍复现（CURRENT ENTRY）
 
 Owner另授新scope04后，同机同已装新包实际登录/选图返回；手机POST媒体200、private image16900B/DB/backing一致，但8快照attachment0、无手机POST消息，实际APP显示可信登录或加密保存未核验而锁页。65b修正未解决该真机路径；唯一根因UNKNOWN。后端224.391秒已耗1余0、88ADB、清理无错、179旧容器State字节一致；无新SDK/构建/安装/Activity/force-stop。旧STOP保持。详情见[本节点](V1015_OWNER_AVATAR_UPLOAD_LOCK_REPRODUCED_20261108.md)。下一步优先验证列表+聊天共享缓存代际的双页并发候选，不绕过安全锁或自动新增运行次数。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
