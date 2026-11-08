@@ -1,3 +1,11 @@
+# 2026-11-09 新模拟器启动离线，安装前停止（CURRENT ENTRY）
+
+Owner批准本次新启动后，新模拟器在第三份启动查询报告device offline，按transport硬停止条件退出。5控制ADB/24.046秒；安装/Activity/APP/手机均0，后端无claim仍0耗1余，当前指定到已STOP的11月9日case01/backend，不复活入口或重复申请未耗次数。清理无错，自有controller退出及私有端口关闭另核通过。离线原因UNKNOWN，非APP故障结论；旧STOP、已耗及保护保持。详见[本节点](V1015_EMULATOR_BOOT_OFFLINE_PREINSTALL_STOP_20261109.md)。双端/媒体NOT_RUN，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；本节点未准备新例。
+
+最新实际运行私有回执位于case01/runtime-closeout-20261109/final-local-github-receipt-private.json；根目录同名旧回执为运行前准备原证，勿覆盖或当作实际终态。
+
+---
+
 # 2026-11-08 真实登录页节点已观察、焦点未核；Owner保存并停止（CURRENT ENTRY）
 
 case03新模拟器OS Awake/未锁/root可读，同b621安装通过；Activity timeout后第四份fresh XML已观察真实账号登录/两个空enabled字段。点一次手机号后fresh dump nullroot，正确拒旧XML，焦点UNKNOWN，未达APP截图/ready。40控制ADB/137.938秒、Job及私有ADB清理无错；手机0/累计34剩206，后端无claim仍0耗1余。Owner要求本次保存后立即停下、明天再继续；scope/backend已STOP封口，保存后不修focus/准备新例/另开动态，明天不自动运行或续额。详见[本节点](V1015_LOGIN_UI_OBSERVED_FOCUS_UNKNOWN_OWNER_STOP_20261108.md)。双端/媒体NOT_RUN，产品源码未改，全部保护/功能优先UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
