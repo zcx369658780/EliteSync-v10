@@ -24,7 +24,19 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 
 关键现有入口：[源码Debug产包](../../workflow/V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)、[真机源码热重载](../../workflow/V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)、[文字往返/冷启](../../workflow/V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)、[真机退出撤权](../../workflow/V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)、[双同键/MC并发](../../workflow/V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)、[Block/CN/禁用并发](../../workflow/V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。这些历史成果本轮未重测，限制继续按各原证保留。
 
-## 本节点：修正源码Debug产包/同机更新通过，媒体复测在登录焦点核验停止｜2026-11-08
+## 本节点：最后一次媒体复测preclaim焦点等待停止，Owner要求保存交接｜2026-11-08
+
+**PHONE_PRECLAIM_FOCUS_DEADLINE_STOP / BACKEND_SPENT_0_REMAINING_1 / SESSION_HANDOFF_SAVED / G2_FALSE**
+
+Owner[明确同意新一次同机媒体/后端复测，并要求测试后停止保存交接](../../decisions/OWNER_FINAL_MEDIA_TEST_THEN_HANDOFF_20261108.md)。输入ad0d56262c844755ebf1e55b64bcec2f5bc0dab3，产品源码未改，复用已安装新包`66524ef65b5525f3c0a2942954cbcea4a2d56d634b0a4c738165c010438c3a06`。同Redmi用户0、包hash/空登录表单回核；手机号未获焦点，提示Owner手动点选，绝对120秒等待最后两次APP原生节点仍未见focus而停止。Owner“已点”回复在入口退出后到达，未据此续跑；实际点击相对最后观测时间及唯一原因UNKNOWN。
+
+27条ADB仅设备/包/界面读取、既有reverse检查及自有UI文件清理；文字输入/安装/Activity/force-stop/素材导入均0，无截图或个人图库操作。未运行到后端入口，无backend claim/新容器/DB/API/WS/引擎操作；**本次后端已耗0、余1保留**，不能与上次已耗1余0混用。当前phone STOP/invocation保持，不重跑；preclaim统一45秒收尾，cleanup_errors空。APP登录、图片/短片/冷启/播放/撤权全部NOT_RUN；原65b修正真机效果仍未证。本次未做Docker容器State或资源新测，不挪用上轮快照。
+
+候选将初始手机号焦点前移到后端claim前，输入前再核正确唯一字段；7项纯焦点检查与语法检查通过，不冒充Android产品通过。非作者预启动P2重复UI清理已在启动前统一责任并冻结新输入；实际preclaim原证非作者复核无P1/P2，非外部独立验收。LOCAL_ONLY根名`v1015-redmi-focus-media-final-20261108-case01`，读IMPLEMENTATION_REPORT.md、phone-preclaim-failure/phone-STOP/orchestrator-preclaim-cleanup、最终保存回执。ledger承接22576项仅追加本节点及上轮最终回执，不重扫旧SDK/AVD/Sources/缓存；原dirty根/index及%SystemDrive%保持。
+
+按Owner要求，本次结束后只保存、同步与交接，不启动后继动态任务。[最新交接](../../workflow/SESSION_HANDOFF_20261108_V1015_SOURCE_DEBUG_MEDIA_CURRENT.md)列明全部关键决定、已耗与未耗。后端1次未用不应重新申请同一次数，但当前phone STOP也不能自动复活；下次先协调Owner屏幕操作及具体手机接续条件，不再重编/重装。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布，不启v10.1.6或运营。
+
+## 前序节点：修正源码Debug产包/同机更新通过，媒体复测在登录焦点核验停止｜2026-11-08
 
 **SOURCE_DEBUG_REBUILD_INSTALLED_VERIFIED / PHONE_LOGIN_FOCUS_STOP / BUILD_AND_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
 

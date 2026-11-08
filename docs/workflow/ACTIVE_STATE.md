@@ -1,4 +1,14 @@
-# 2026-11-08 修正源码Debug产包/同机更新通过，媒体复测登录焦点停止（CURRENT ENTRY）
+# 2026-11-08 最后一次媒体preclaim焦点等待停止，Owner要求保存交接（CURRENT ENTRY）
+
+**PHONE_PRECLAIM_FOCUS_DEADLINE_STOP / BACKEND_SPENT_0_REMAINING_1 / SESSION_HANDOFF_SAVED / G2_FALSE**
+
+Owner[明确同意复测并要求本次测试后停止/本地与GitHub保存/交接prompt](../decisions/OWNER_FINAL_MEDIA_TEST_THEN_HANDOFF_20261108.md)。同一Redmi用户0、新包hash66524ef6…再回核一致、空登录表单；手机号focus绝对120秒手动等待最终仍未观察到，preclaim停止，随后Owner“已点”未触发续跑。27ADB、文字/安装/Activity/force-stop/导入0，自有UI清理无错；没有backend claim，后端0耗/1余保留。当前phone STOP保持，媒体/冷启/播放/撤权NOT_RUN，焦点原因及65b修正真机效果未证。
+
+[最新交接](SESSION_HANDOFF_20261108_V1015_SOURCE_DEBUG_MEDIA_CURRENT.md)与[完整进度](../versions/v10.1.5/PROGRESS.md)为接续入口。LOCAL_ONLY根名v1015-redmi-focus-media-final-20261108-case01，读IMPLEMENTATION_REPORT.md、preclaim failure/STOP/cleanup及final-session-handoff-local-github-receipt-private.json；ledger承接22576项只追加本节点/上轮最终回执。旧构建与上轮后端各耗1余0，当前未耗后端1不与旧scope混用；不得复活当前STOP。新包已装，无需重编/重装。按Owner要求本会话保存后停止，不另开动态。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6或运营。
+
+---
+
+# 2026-11-08 修正源码Debug产包/同机更新通过，媒体复测登录焦点停止（历史入口）
 
 **SOURCE_DEBUG_REBUILD_INSTALLED_VERIFIED / PHONE_LOGIN_FOCUS_STOP / BUILD_AND_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
 
