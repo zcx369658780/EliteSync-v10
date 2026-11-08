@@ -13,7 +13,7 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 图片与短视频上传→消息/DB/hash→200/206→撤权旧URL后端子范围通过；Linux真实validator已核2秒合成H.264 | 当前APP选择/显示/播放、同最终APK受控重启及媒体并发 | PARTIAL |
+| 04 私有图片/短视频 | 图片与短视频上传→消息/DB/hash→200/206→撤权旧URL后端子范围通过；Linux真实validator已核2秒合成H.264；本次APP头像上传200/私有文件已核，发信锁页停止 | 修正候选新产包/真机再验；APP图片渲染、视频选择/发送/播放、同最终APK重启及媒体并发 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
 | 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，离线闭锁分项证据保留 | 新源码尚未产APK；Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
@@ -24,7 +24,33 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 
 关键现有入口：[源码Debug产包](../../workflow/V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)、[真机源码热重载](../../workflow/V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)、[文字往返/冷启](../../workflow/V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)、[真机退出撤权](../../workflow/V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)、[双同键/MC并发](../../workflow/V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)、[Block/CN/禁用并发](../../workflow/V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。这些历史成果本轮未重测，限制继续按各原证保留。
 
-## 本节点：私有短视频真实后端链通过｜2026-11-08
+## 本节点：真机头像上传后锁页停止，前台回调修正通过40项单元检查｜2026-11-08
+
+**PHONE_IMAGE_UPLOAD_ONLY_LOCK_STOP / BACKEND_SPENT_1_REMAINING_0 / SOURCE_FIX_GREEN40_VERIFIED / FIX_NOT_ON_PHONE / G2_FALSE**
+
+Owner继续APP媒体验证，并指定本机三张图片用于测试。仅复制三份私有输入，不压缩、不改原件；三图均低于5MiB。加上先前合格的2秒无声合成H.264短片，共四份测试副本导入同一Redmi的独立测试目录并逐份核hash。没有枚举个人图库或读取其他照片；系统选择器无法证明测试目录位置时转Owner手动选择。Owner明确选择第二张头像，实际返回APP后才继续；不以文字回复代替设备观察。设备仍主用户0、包com.elitesync.v1015dev、APK SHA256 `974ef00c5803c87acee457d6010648f4b1fb0868fecc966e61e3ad363017a4dc`；本轮未重编、重装或热重载，APK构建源码c5e2dc34保持。
+
+### 真机实际结果与停止
+
+独立一次范围`V1015_REDMI_PRIVATE_MEDIA_20261108_01`，运行输入源码2ef36835、services树4530ae85754a2f3698d073182a47038708f2cb55。同机同APP调试许可及既有同类本机工程委派承接，旧范围/claim/STOP不改。新私有PHP8.4/MariaDB/WS就绪，真实虚构账号登录、CN/MC放行及APP聊天页通过；同一手机会话/完整UUID绑定的POST `/api/v1/media`实际200。存储中private asset1为ready image/jpeg、16900字节，DB与backing SHA256 `4fdb16490556b2221235ac34d093c0a95727a90d63789ccf764b19c4435552e8`一致；JPEG重新编码后的RGB平均绝对差约0.374，与Owner指定头像原件匹配，三份原件hash均保持。不是合成图片，不把不同编码字节假称完全相同。
+
+**手机未发送成消息**：该phone-image phase无POST `/messages`；8份相邻快照均为asset1、attachment0、只有预置文字message1。回到APP的原生观察显示“会话已锁定”和“可信登录或加密保存未能核验，私密内容已锁定，请重新在线登录。”；检查在预期消息/附件未出现后停止，未点第二次选图或自动续跑。图片实际聊天渲染、短视频选择/发送/播放、APP冷启动读回、媒体撤权重验及退出均**NOT_RUN**。源码可提出生命周期重验重叠机制，但未捕获设备回调/缓存失败原因，**本次真机唯一根因UNKNOWN**。
+
+后端279.391秒，已耗1余0、controller0、cleanup_errors空；手机累计110条ADB、1次Activity、0次force-stop。合计2GiB/启动3072MiB/1800秒/统一45秒收尾/8GiB卷/2GiB输出采样、离线、一次start/migrate/seed、DB restart0保持；fresh核验仅由既有入口完成一次，可用10408MiB/卷空闲353235574784字节只属本次历史快照。新三个容器停止/PID0/无OOM，WS/API/DB退出0/137/0，API137不归因；新卷/网络留存，170个旧容器完整State不变且均停止，共享引擎保持运行。两个reverse、UI临时文件和四份手机测试副本按精确自有路径清理，无个人原件操作；手机最后的APP锁定状态不冒称已正常退出。无新引擎、构建/重装、其他设备、云端或费用操作。
+
+### 新源码候选及定向单元检查
+
+修正源码`65b22f632cf108f34018fd22de6665eb81933757`，apps树`588c408dd594eabcc83599a2af9596b4c7cb1691`，services树保持。只改LiveChatPage及定向测试：已在前台时忽略重复resumed通知，实际后台→前台仍重新验证；统一current guard及picker返回都明确拒绝timeLocked。保留epoch/session/account/服务器权限与真正安全存储失败的硬锁，不因上传已成功就强发消息；PrivateCacheService本节点未改。新增两例：暂停一次真实fake-store写期间重复resumed不得作废同代保存；picker期间缓存确实写失败锁页后，旧picker返回不得触发preflight、上传或发信。
+
+预先计划的RED/GREEN各一次且均已耗1余0。RED真实启动SDK/root，root1/controller32；两例目标判据失败，同时受`--no-test-assets`缺ink_sparkle着色资源影响，随后包装器还出现GBK打印错误。原始UTF8日志/outcome保留，**不称干净产品RED**。后续只为原计划GREEN启用既有本地UI test assets、修正日志打印，没有下载/Pub安装/SDK升级或重跑RED。
+
+GREEN **40项Flutter检查通过**（聊天可靠性21、Socket生命周期4、缓存15），20.813秒、root/controller0，峰Job2314915840字节；Job4GiB/64进程/启动5120MiB/SDK300秒/host360秒/共享45秒收尾/8GiB卷/2GiB输出采样保持。仅物化79个直接传递输入，无SDK复制；79文件与当前产品hash一致，两改动文件另绑定最终Git Blob。5个已存在SDK关键文件hash不变，legacy version前后均不存在。stderr保留隔离夹具`Error: unable to find directory entry ... assets/config`诊断，测试退出0且40项通过；不是完整素材/APP环境验收。内存Secure/虚构时间/受控API与picker替身仍不是Android实际密钥库、相机/图库或端到端通过。
+
+启动前新增选择器/混合界面/原子收尾记录7项纯检查通过，4项静态P2在启动前关闭；真实磁盘故障注入未测。非作者源码复核无P1/P2；实际停止原证与GREEN非作者复核无P1/P2，不是外部独立验收。新源码**尚未产包/装机**，不得把GREEN或代码机制当作原手机锁定原因已证、原APK已修复或AC04/07闭合。
+
+LOCAL_ONLY根名`v1015-redmi-private-media-20261108-case01`：先读IMPLEMENTATION_REPORT.md、verified-phone-image-upload-only-private.json、phone-media-failure/cleanup、phone-image各快照、completed-phone-media-stop-source-fix-seal-private.json、GREEN outcome/result/原始stdout及保留RED failure/stdout、非作者复核与最终回执。ledger承接21400项，仅追加本节点和上一最终回执；三张指定原件只核既定hash，不重扫旧SDK/AVD/Sources。原dirty根255项/index与%SystemDrive%保护。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6或运营。后续新产包/同机后端复测须另有明确当前一次范围，旧STOP/已耗不退款、不靠换目录续额。
+
+## 前序节点：私有短视频真实后端链通过｜2026-11-08
 
 **REAL_PRIVATE_VIDEO_LINUX_VALIDATOR_UPLOAD_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / APP_PLAYBACK_NOT_RUN / AC04_PARTIAL / G2_FALSE**
 

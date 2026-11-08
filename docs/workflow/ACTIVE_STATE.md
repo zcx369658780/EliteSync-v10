@@ -1,3 +1,15 @@
+# 2026-11-08 真机头像上传后锁页停止，前台回调修正GREEN40通过（CURRENT ENTRY）
+
+**PHONE_IMAGE_UPLOAD_ONLY_LOCK_STOP / BACKEND_SPENT_1_REMAINING_0 / SOURCE_FIX_GREEN40_VERIFIED / FIX_NOT_ON_PHONE / G2_FALSE**
+
+Owner指定三张本机图片，原件保持，四份手机测试副本（含合成短片）只在独立目录；选择器无法隔离时由Owner选第二张头像。同Redmi/同旧源码Debug APK实际登录/CN/MC/选图返回，phone POST媒体200，asset1 ready/16900B/DB与backing hash及头像RGB匹配；无phone POST消息/附件，APP显示缓存核验锁页，实际唯一根因UNKNOWN。视频/冷启/播放/撤权/退出NOT_RUN。[本节点及11项AC进度](../versions/v10.1.5/PROGRESS.md)。
+
+后端279.391秒，已耗1余0；110ADB/1Activity/0force-stop，收尾无错，reverse/UI/自有媒体副本清理，旧170容器State不变，新容器停止/PID0/无OOM，API137不归因，新卷/网络保留；未新开引擎/产包/重装。源码65b22f63修正重复resumed使在途cache保存作废的代码机制，并在timeLocked时挡旧picker/副作用；保留真实失败硬锁。GREEN40项/20.813秒/root-controller0、79输入绑定；RED混着色素材错误不当干净产品RED，两范围各耗1余0。5个SDK文件hash不变、legacy version保持缺失，无SDK复制；测试素材目录缺失诊断保留。新修正未装手机，不能宣称实际故障已修复。
+
+LOCAL_ONLY根名v1015-redmi-private-media-20261108-case01，先读IMPLEMENTATION_REPORT.md、verified-phone-image-upload-only-private.json、failure/cleanup、completed-phone-media-stop-source-fix-seal-private.json、GREEN原始结果、保留RED及最终回执。非作者代码复核无P1/P2，实际停止原证与GREEN非作者复核无P1/P2，非外部验收。ledger承接21400项只追加本节点/上轮最终回执，原dirty根255项/index及%SystemDrive%保护。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；新产包/手机后端复测另具当前一次范围，旧claim/STOP及已耗保持，不合main/发布、不启v10.1.6或运营。
+
+---
+
 # 2026-11-08 私有短视频Linux校验与后端链通过（CURRENT ENTRY）
 
 **REAL_PRIVATE_VIDEO_LINUX_VALIDATOR_UPLOAD_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / APP_PLAYBACK_NOT_RUN / AC04_PARTIAL / G2_FALSE**
