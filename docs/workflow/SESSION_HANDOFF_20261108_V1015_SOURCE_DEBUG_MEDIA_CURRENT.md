@@ -1,3 +1,11 @@
+# 2026-11-08 真实登录页节点已观察、焦点未核；Owner保存并停止（CURRENT ENTRY）
+
+case03新模拟器OS Awake/未锁/root可读，同b621安装通过；Activity timeout后第四份fresh XML已观察真实账号登录/两个空enabled字段。点一次手机号后fresh dump nullroot，正确拒旧XML，焦点UNKNOWN，未达APP截图/ready。40控制ADB/137.938秒、Job及私有ADB清理无错；手机0/累计34剩206，后端无claim仍0耗1余。Owner要求本次保存后立即停下、明天再继续；scope/backend已STOP封口，保存后不修focus/准备新例/另开动态，明天不自动运行或续额。详见[本节点](V1015_LOGIN_UI_OBSERVED_FOCUS_UNKNOWN_OWNER_STOP_20261108.md)。双端/媒体NOT_RUN，产品源码未改，全部保护/功能优先UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-emulator-redmi-dual-chat-20261108-case03`，先读HANDOFF_PROMPT.txt、IMPLEMENTATION_REPORT.md和final-local-github-receipt-private.json。未耗后端1当前唯一指定到已STOP case03/backend，不能重跑旧入口；没有case04候选。
+
+---
+
 # 2026-11-08 模拟器原生UI无根节点，观察器解析错误停止（CURRENT ENTRY）
 
 Owner批准case02后新boot/install成功，Activity timeout13089ms；dump exit0却stderr nullroot，cat exit0却缺文件错误文本，被观察器当XML解析而STOP。是观察工具缺陷，不是APP失败证据，未等完180秒。63控制ADB/124.859秒、Job和私有ADB清理无错；手机0/累计34、后端无claim仍0耗1余，旧STOP/已耗及转交保持。新case03仅准备，先核模拟器OS亮屏/未锁/可读画面再装包，fresh dump门修正含post-focus/两端UI；13host检查通过，尚未批准/转交/运行，不复活旧实例或重复申请未耗后端。详见[本节点](V1015_EMULATOR_NULL_ROOT_OBSERVER_STOP_20261108.md)。产品源码未改，APP首屏/双端互发/媒体未证，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，功能优先/UI最后及全部保护保持。
