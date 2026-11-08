@@ -1,3 +1,15 @@
+# 2026-11-08 消息权限矩阵首登录422停止，修正候选仅静态（CURRENT ENTRY）
+
+**MATRIX_FIXTURE_LOGIN_422_STOP / SPENT_1_REMAINING_0 / THREE_SCENARIOS_NOT_RUN / CANDIDATE_STATIC_ONLY / G2_FALSE**
+
+Owner接续下新建Block/CN关闭/peer禁用三组串行范围，前次双同键/MC撤权通过范围封存。探针源码ac867637，32项纯检查、2项held-ID纯检查及非作者复核通过；APP/授权/消息服务未改。新私有API/WS和93表/4虚构账号就绪，首fixture登录422后停止，三组baseline/并发/撤权/旧键/旧Bearer均NOT_RUN。[本节点](V1015_MESSAGE_PERMISSION_MATRIX_LOGIN_STOP_CANDIDATE_20261108.md)。
+
+本轮新增设备ID长度7，登录契约要求至少8；确认输入缺陷，422字段响应未保存，不认定唯一运行原因。原driver/claim/STOP不变；非执行文本候选改长前缀，3项静态检查通过、实际未跑。后端55.5秒，已耗1余0，无后继scope/grant/claim、不重试；候选再运行需另授一次。
+
+新容器停止/PID0/无OOM，API137保留、cleanup_errors空，新卷/网络留存；158旧容器完整State一致且全停止，共享引擎运行，本轮无新引擎/手机/SDK/产包。原dirty根/index及%SystemDrive%保护，ledger承接19805项仅追加本节点。前次实际通过证据保留不计本次重测；仍10 PARTIAL/AC03 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 消息真实并发重放与MC撤权锁交接通过（CURRENT ENTRY）
 
 **REAL_MARIADB_MESSAGE_DUPLICATE_AND_MC_REVOKE_HANDOFF_VERIFIED / BACKEND_SUBSET_PASS / SPENT_1_REMAINING_0 / AC03_PARTIAL / G2_FALSE**
