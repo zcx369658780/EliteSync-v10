@@ -1,3 +1,9 @@
+# 2026-11-08 独立头像副本系统索引已证，选择器可见性仍未知（CURRENT ENTRY）
+
+Owner明确批准独立单副本检查，同Redmi/已装新包不变，文件hash与精确媒体索引记录（JPEG/17975B/is_pending0）匹配；14ADB、清理无错，零后端/构建/安装/Activity/UI截图。本诊断已耗1余0，原媒体后端仍已耗1余0，旧STOP/claim保持。只证本次shell可查询索引，不证目标选择器/APP权限或前次索引，媒体真链仍未完成。详见[本节点](V1015_EXACT_IMAGE_INDEX_VERIFIED_20261108.md)。Local-first普通工程及全部保护边界保持，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；下一设备范围需具体授权，不自动续跑。
+
+---
+
 # 2026-11-08 手机接续与未耗后端消费终态
 
 Owner本会话回复“同意，手机已就位”，已先核实际焦点，再使用原未耗后端1；不新增后端额度。已实际登录/到聊天，图片选择器手动等待120秒未返回后停止，后端现已耗1余0。旧phone STOP/invocation保持，本次STOP另存，无重试；不将后端controller0当媒体通过。下一动态先协调测试副本选择器可见与当前具体授权，不能重跑本次入口。详见[当前交接](SESSION_HANDOFF_20261108_V1015_SOURCE_DEBUG_MEDIA_CURRENT.md)；Local-first普通工程委派及原保护边界保持。

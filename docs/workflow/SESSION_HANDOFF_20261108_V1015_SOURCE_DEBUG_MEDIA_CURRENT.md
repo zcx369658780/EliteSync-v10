@@ -1,3 +1,11 @@
+# 2026-11-08 独立头像副本系统索引已证，选择器可见性仍未知（CURRENT ENTRY）
+
+Owner明确批准独立单副本检查，同Redmi/已装新包不变，文件hash与精确媒体索引记录（JPEG/17975B/is_pending0）匹配；14ADB、清理无错，零后端/构建/安装/Activity/UI截图。本诊断已耗1余0，原媒体后端仍已耗1余0，旧STOP/claim保持。只证本次shell可查询索引，不证目标选择器/APP权限或前次索引，媒体真链仍未完成。详见[本节点](V1015_EXACT_IMAGE_INDEX_VERIFIED_20261108.md)。Local-first普通工程及全部保护边界保持，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；下一设备范围需具体授权，不自动续跑。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-image-index-diagnostic-20261108-case01`，先读final-local-github-receipt-private.json和IMPLEMENTATION_REPORT.md。下方保留历史快照，不据旧“余1”续用。
+
+---
+
 # 2026-11-08 同机焦点/登录通过，图片选择器等待超时停止（CURRENT ENTRY）
 
 **PHONE_FOCUS_LOGIN_VERIFIED / PICKER_MANUAL_TIMEOUT_STOP / ORIGINAL_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
