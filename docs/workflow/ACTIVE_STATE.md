@@ -1,3 +1,15 @@
+# 2026-11-08 Block/CN关闭/peer禁用真实消息并发通过（CURRENT ENTRY）
+
+**REAL_MARIADB_BLOCK_CN_CLOSE_PEER_DISABLE_HANDOFF_VERIFIED / BACKEND_SUBSET_PASS / SPENT_1_REMAINING_0 / AC03_PARTIAL / G2_FALSE**
+
+Owner明确“批准修正候选运行一次”，新scope_03承接已存设备ID修正候选；旧scope_02首登录422/claim/STOP/已耗保持。实际输入84b3be96、公开探针ac867637，APP/授权/消息服务未改。真实PHP8.4 HTTP kernel/MariaDB：Block31/32→30主键1、CN close42/41→40主键3、peer disable51/52→50主键1，三组有精确独立DB等待与真实mutation200/commit；等待GET/POST及旧键均404/no success IDs，跟踪消息副作用不变。[本节点](V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。
+
+CN/双MC revision2→3并关闭/撤销；Block行0→1；禁用peer3的tokens5/6及活动会话撤销，actor1 tokens1/2和会话保持，peer旧Bearer直接401且捕获状态不变。三组串行，实际RR/事务闭合通过；此前32/2/3纯检查沿用不计新测，新输入适配与实际原证非作者复核无P1/P2，非外部验收。
+
+后端157.109秒，已耗1余0，无重试；自有容器停止/PID0/无OOM，API137保留、cleanup_errors空，新卷/网络留存。161旧容器完整State一致且全停止，共享引擎运行；无新引擎/手机/SDK/产包。原dirty根/index及%SystemDrive%保护，ledger承接19952项仅追加本节点。证据仅后端消息GET/POST；其他路径/主体/时序、APP/WS/cache及所有字段零写入未证，仍10 PARTIAL/AC03 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 消息权限矩阵首登录422停止，修正候选仅静态（CURRENT ENTRY）
 
 **MATRIX_FIXTURE_LOGIN_422_STOP / SPENT_1_REMAINING_0 / THREE_SCENARIOS_NOT_RUN / CANDIDATE_STATIC_ONLY / G2_FALSE**
