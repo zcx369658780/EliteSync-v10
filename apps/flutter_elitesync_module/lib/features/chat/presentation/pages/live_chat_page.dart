@@ -116,6 +116,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      // Duplicate resumed notifications do not start another trust epoch while
+      // the current read may still be serializing its authorized cache copy.
+      if (_foreground) return;
       _foreground = true;
       _offline = false;
       _cache.beginOnlineRevalidation();
@@ -137,6 +140,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       epoch == _epoch &&
       _foreground &&
       !_sessionChanged &&
+      !_timeLocked &&
       identical(ref.read(sessionProvider).asData?.value, session);
 
   void _cancelSocket() {
@@ -460,6 +464,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       if (!mounted ||
           !_foreground ||
           _sessionChanged ||
+          _timeLocked ||
           !identical(ref.read(sessionProvider).asData?.value, session) ||
           picked == null) {
         return;

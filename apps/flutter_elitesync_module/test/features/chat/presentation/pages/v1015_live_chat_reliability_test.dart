@@ -22,11 +22,19 @@ class _Secure extends SecureStorageService {
   final values = <String, String>{};
   int writes = 0;
   bool failWrites=false;
+  Completer<void>? nextWrite;
+  bool writeBlocked = false;
   @override
   Future<String?> read(String key) async => values[key];
   @override
   Future<void> write(String key, String value) async {
     if (failWrites) throw StateError('synthetic secure storage failure');
+    final pending = nextWrite;
+    nextWrite = null;
+    if (pending != null) {
+      writeBlocked = true;
+      await pending.future;
+    }
     writes++;
     values[key] = value;
   }
@@ -666,6 +674,55 @@ void main() {
         isEmpty,
       );
       expect(find.textContaining('授权已变化'), findsOneWidget);
+      expect(f.api.posts, isEmpty);
+      await _dispose(tester, f);
+    },
+  );
+
+  testWidgets(
+    'duplicate foreground notification cannot invalidate an in-flight cache save',
+    (tester) async {
+      final f = await _mount(tester);
+      final pending = Completer<void>();
+      f.secure.nextWrite = pending;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pump();
+      expect(f.secure.writeBlocked, isTrue);
+      // A repeated native resumed event is not a new background-to-foreground
+      // transition and must not revoke the current save's cache generation.
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      pending.complete();
+      await tester.pumpAndSettle();
+      expect(f.cache.isUnlocked, isTrue);
+      expect(find.text('此前合法保存的合成私密消息'), findsOneWidget);
+      expect(find.textContaining('私密内容已锁定'), findsNothing);
+      await _dispose(tester, f);
+    },
+  );
+
+  testWidgets(
+    'cache locked while picker is open cannot dispatch upload or message',
+    (tester) async {
+      final f = await _mount(tester);
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pump();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pump();
+      f.secure.failWrites = true;
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(find.textContaining('私密内容已锁定'), findsOneWidget);
+      f.gateway.picked.complete(
+        const ChatPickedMedia(path: 'synthetic.png', name: 'synthetic.png'),
+      );
+      await tester.pumpAndSettle();
+      expect(f.api.events, isNot(contains('fresh-current-read-before-upload')));
+      expect(f.gateway.uploads, 0);
       expect(f.api.posts, isEmpty);
       await _dispose(tester, f);
     },
