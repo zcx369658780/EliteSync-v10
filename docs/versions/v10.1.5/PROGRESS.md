@@ -13,7 +13,7 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 | 01 基线/数据保护 | 独立产品树、具名源码与运行合同；原dirty根/index、旧库/原证/STOP保护持续核对 | 最终候选统一身份与完整交付保护回执 | PARTIAL |
 | 02 消息幂等/故障恢复 | 真机文字往返、冷启；真实MariaDB双同键并发；本次图片同键重放/不同payload冲突与跟踪状态保持 | 当前APP弱网/超时/重连等剩余用户旅程 | PARTIAL |
 | 03 授权/跨账号晚响应 | MC/Block/CN关闭/peer禁用的真实后台锁交接；旧peer Bearer401；图片旧URL full/Range拒绝；保留前序WS与切号分项 | 其他接口/主体/时序、APP/WS/cache并发、旧JWT/room与跨账号晚回调、设备缓存直接证据 | PARTIAL |
-| 04 私有图片/短视频 | 图片上传→消息/DB/hash→200/206→撤权旧URL后端子范围已通过；现已备妥固定LGPL共享工具与真实2秒合成H.264输入 | Linux工具ABI/真实validator与短视频后端正向；当前APP选择/显示/播放、受控重启及媒体并发 | PARTIAL |
+| 04 私有图片/短视频 | 图片与短视频上传→消息/DB/hash→200/206→撤权旧URL后端子范围通过；Linux真实validator已核2秒合成H.264 | 当前APP选择/显示/播放、同最终APK受控重启及媒体并发 | PARTIAL |
 | 05 RTC保护/质量 | 既有RTC实现与历史分项证据保留 | 合格双端RTC/AEC、旧令牌拒绝与撤权提交后≤5秒停媒真链 | OPEN |
 | 06 可信15/30计时 | 实际登录T0与冷启/在线恢复不续期已有证据 | 15/30边界、可靠时钟异常/回拨及对应受权路径的剩余验证 | PARTIAL |
 | 07 加密离线/清理 | 已修正同namespace单索引损坏/丢失的清理恢复；27项相关Flutter单元检查通过，离线闭锁分项证据保留 | 新源码尚未产APK；Android真实密钥库/密文/清理失败真链、双索引均失及后台/停用边界仍未闭合 | PARTIAL |
@@ -24,7 +24,27 @@ Owner已明确：[整个v10承接旧EliteSync增加功能、提高APP完成度](
 
 关键现有入口：[源码Debug产包](../../workflow/V1015_SOURCE_DEBUG_APK_VERIFIED_20261107.md)、[真机源码热重载](../../workflow/V1015_REDMI_ACTUAL_SOURCE_ATTACH_HOT_RELOAD_VERIFIED_20261107.md)、[文字往返/冷启](../../workflow/V1015_REDMI_TEXT_COLD_VERIFIED_LOGOUT_NAV_STOP_20261107.md)、[真机退出撤权](../../workflow/V1015_REDMI_LOGOUT_REVOCATION_VERIFIED_20261108.md)、[双同键/MC并发](../../workflow/V1015_MESSAGE_CONCURRENCY_DUPLICATE_MC_VERIFIED_20261108.md)、[Block/CN/禁用并发](../../workflow/V1015_MESSAGE_PERMISSION_MATRIX_BLOCK_CN_DISABLE_VERIFIED_20261108.md)。这些历史成果本轮未重测，限制继续按各原证保留。
 
-## 本节点：离线缓存单索引恢复修正与视频输入准备｜2026-11-08
+## 本节点：私有短视频真实后端链通过｜2026-11-08
+
+**REAL_PRIVATE_VIDEO_LINUX_VALIDATOR_UPLOAD_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / APP_PLAYBACK_NOT_RUN / AC04_PARTIAL / G2_FALSE**
+
+Owner回复“可以请继续”，结合既有同类普通本机工程委派，为已准备的合格视频输入建立独立一次范围`V1015_PRIVATE_VIDEO_20261108_01`；不是重试前序图片或已耗范围。旧grant/nonce/claim/STOP与失败保留，未恢复额度。输入源码`0a2db4b1991a473e22ac7c5c869276d79ef5d036`，只扩充脱敏媒体证据helper与纯检查的MP4 MIME判据，未改APP、鉴权、消息或媒体产品服务；apps树02ccf83153d0ce9ab5b522816aac2b1925c27862、services树4530ae85754a2f3698d073182a47038708f2cb55保持。复用726文件服务快照和114包/9161文件vendor，不重复复制；Linux工具及短片只读挂载，238个Linux输入文件hash由启动入口核验。
+
+真实PHP8.4.27/Laravel13.39.0/MariaDB新独立空库：迁移前，固定Linux ffprobe实际执行成功，真实`App\Services\PrivateVideoValidator`直接校验只读短片，未替换容器绑定、探针结果或存储。实际得到video/mp4、H.264、128×128、2000ms、25976字节、无音轨及validation=`ffprobe-mp4-h264-v1`；ffprobe文件hash与固定输入一致。只接受本进程固定路径/共享库目录，没有安装镜像内工具、改系统PATH/网络、下载、接受新许可或启动引擎。
+
+同一纯合成短片SHA256 `01354babdf240a57f6345df930002b49908c359a6c8ad5303676cdf9023ec80d`实际经multipart上传，private asset1 ready→message1/attachment1→持久DB与backing文件哈希/元数据一致。未绑定owner200、receiver/第三人404、匿名401；绑定后a/b完整200、两段Range206（0–15与末8字节），实际字节/长度/Content-Range及private/no-store/max-age0、Vary Authorization/Cookie、Accept-Ranges、nosniff均匹配。异主附件422、同键重放同ID、不同payload409，逐操作快照中的6类媒体/消息状态保持；坏图片/坏视频/伪造storage/public URL各422，不生成假READY。
+
+真实MC route200提交后，同一个旧URL的a/b完整及Range共四404，旧消息history/旧键重放两404；无视频字节、成功身份、URL或私有caption/key/hash泄漏。CN保持ACTIVE revision2、双MC变REVOKED revision3；assets（含本任务backing hash）、messages、attachments、消息通知、message_sent events、processing_jobs六类具名状态前后一致，不宣称所有DB字段或设备缓存零写入。26条媒体HTTP结果与实际body逐一核hash/长度，原始请求/响应及快照仅本地保留。
+
+8项纯协议检查通过，新增MP4完整/Range字节、MIME/隐私拒绝及multipart类型/内容检查；本机PHP仅语法预检，实际运行资格来自本次PHP8.4实例。非作者静态候选复核无P1/P2；实际原证非作者复核无P1/P2（seal、26条实际body、DB/hash、撤权副作用与收尾一致），不是外部独立验收。
+
+后端实际101.796秒，已耗1、余0，无重试，controller0/verified=true/cleanup_errors空。合计2GiB、启动3072MiB、1800秒/共享45秒收尾、8GiB工作卷/2GiB输出采样保持；一次start/migrate/seed，DB restart0、离线。完整fresh核验仅由既有入口执行一次，可用10623MiB/卷空闲353442820096字节只属于本次历史快照。新WS/API/DB均停止/PID0/无OOM，退出0/137/0；API137保留、不归因。新卷/网络留存，167个既有容器完整State保持且均停止，共享引擎继续运行；新引擎启动、手机/ADB、SDK/AAR/APK/安装、云端/真实数据/费用均0。
+
+此结果关闭的是短视频Linux校验与后端正向子范围，**APP选择/播放、相同最终APK受控重启、媒体撤权并发均NOT_RUN**；旧手机APK仍不含前序缓存恢复修正。AC04/AC03仍PARTIAL，AC05 OPEN，整体10 PARTIAL/G2 false/真实Push PENDING；不合main/发布、不启v10.1.6或运营。
+
+LOCAL_ONLY根名`v1015-private-video-lifecycle-20261108-case01`：先读`IMPLEMENTATION_REPORT.md`、`linux-real-validator-private.json`、`verified-private-video-private.json`、`completed-private-video-seal-private.json`、实际HTTP body/前后快照、outcome/cleanup、非作者复核与最终回执。保护ledger承接21139项，仅追加本节点和上轮最终回执，不重扫旧SDK/AVD/Sources；原dirty根255项状态/index及%SystemDrive%保留。原证、工具/短片、凭据、SQL、许可原件不上传GitHub。
+
+## 前序节点：离线缓存单索引恢复修正与视频输入准备｜2026-11-08
 
 **CACHE_SINGLE_INDEX_RECOVERY_UNIT_VERIFIED / VIDEO_DEPS_PREPARED / LINUX_VIDEO_NOT_RUN / APK_NOT_REBUILT / G2_FALSE**
 

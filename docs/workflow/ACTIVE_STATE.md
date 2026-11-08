@@ -1,3 +1,15 @@
+# 2026-11-08 私有短视频Linux校验与后端链通过（CURRENT ENTRY）
+
+**REAL_PRIVATE_VIDEO_LINUX_VALIDATOR_UPLOAD_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / APP_PLAYBACK_NOT_RUN / AC04_PARTIAL / G2_FALSE**
+
+Owner当前继续与既有同类本机工程委派下建立首次合格输入短视频scope，旧claim/STOP及已耗保持。源码0a2db4b1仅扩充MP4证据helper/纯检查，APP/鉴权/媒体/消息服务不变。真实PHP8.4/MariaDB：固定Linux ffprobe及真实PrivateVideoValidator核2秒128²无音轨H264；实际multipart→private asset1→message1/attachment1/DB与backing hash→a/b完整200/两段206→MC撤权后旧URL四404及history/旧键两404，六类跟踪副作用保持。26媒体HTTP结果/body已核；8纯检查与静态非作者复核通过，实际原证非作者复核无P1/P2，非外部验收。[本节点与11项AC进度](../versions/v10.1.5/PROGRESS.md)。
+
+后端101.796秒，已耗1余0，无重试；新容器停止/PID0/无OOM，API137不归因、cleanup_errors空，卷/网络保留；167旧容器完整State不变且均停止，共享引擎保持。只读复用源码/vendor/工具，完整fresh检查仅由入口执行一次，无新引擎/手机/SDK/产包/下载。APP选择/播放、同最终APK重启、媒体并发NOT_RUN，前序缓存修正未产新APK。
+
+LOCAL_ONLY根名v1015-private-video-lifecycle-20261108-case01，先读IMPLEMENTATION_REPORT.md、linux-real-validator-private.json、verified-private-video-private.json、completed-private-video-seal-private.json、outcome/cleanup及最终回执。ledger承接21139项仅追加本节点/上轮最终回执，原dirty根255项/index及%SystemDrive%保护；仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6或运营。
+
+---
+
 # 2026-11-08 离线缓存单索引恢复修正与视频输入准备（CURRENT ENTRY）
 
 **CACHE_SINGLE_INDEX_RECOVERY_UNIT_VERIFIED / VIDEO_DEPS_PREPARED / LINUX_VIDEO_NOT_RUN / APK_NOT_REBUILT / G2_FALSE**
