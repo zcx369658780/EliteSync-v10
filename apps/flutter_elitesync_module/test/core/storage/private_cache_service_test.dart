@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
@@ -29,6 +30,24 @@ class _BlockingSecure extends _MemorySecure {
   }
 }
 
+class _IndexFailureSecure extends _MemorySecure {
+  bool failRecoveryWrite = false;
+  bool refuseRecoveryDelete = false;
+  @override
+  Future<void> write(String key, String value) async {
+    if (failRecoveryWrite && key.endsWith(':manifest-recovery')) {
+      throw StateError('synthetic recovery write failure');
+    }
+    await super.write(key, value);
+  }
+
+  @override
+  Future<void> delete(String key) async {
+    if (refuseRecoveryDelete && key.endsWith(':manifest-recovery')) return;
+    await super.delete(key);
+  }
+}
+
 Map<String, dynamic> _receipt(DateTime now, {int account = 1}) => {
   'user_id': account,
   'device_id': 'synthetic-device',
@@ -40,6 +59,191 @@ Map<String, dynamic> _receipt(DateTime now, {int account = 1}) => {
 };
 
 void main() {
+  const namespace = 'v1015_private:a1:dsynthetic-device';
+  const primary = '$namespace:manifest';
+  const recovery = '$namespace:manifest-recovery';
+
+  for (final damaged in [primary, recovery]) {
+    for (final missing in [true, false]) {
+      test(
+        'purge recovers ${missing ? 'missing' : 'corrupt'} index $damaged',
+        () async {
+          final secure = _MemorySecure();
+          final now = DateTime.utc(2026, 11, 8);
+          var elapsed = Duration.zero;
+          final cache = PrivateCacheService.forTesting(
+            secure,
+            wallNow: () => now.add(elapsed),
+            elapsed: () => elapsed,
+          );
+          expect(
+            await cache.establishLogin(userId: 1, retention: _receipt(now)),
+            isTrue,
+          );
+          expect(
+            await cache.saveAuthorized('draft:one', {'text': 'synthetic one'}),
+            isTrue,
+          );
+          expect(
+            await cache.saveAuthorized('draft:two', {'text': 'synthetic two'}),
+            isTrue,
+          );
+          secure.values['v1015_private:a2:dsynthetic-device:retained'] =
+              'other account';
+          secure.values['credential'] = 'must remain';
+          if (missing) {
+            secure.values.remove(damaged);
+          } else {
+            secure.values[damaged] = 'corrupt';
+          }
+          elapsed = const Duration(days: 30);
+          final result = await cache.purgeExpired();
+          expect(result.status, PrivateCachePurgeStatus.completed);
+          expect(result.deletedObjects, 2);
+          expect(secure.values, {
+            'v1015_private:a2:dsynthetic-device:retained': 'other account',
+            'credential': 'must remain',
+          });
+          expect(cache.isUnlocked, isFalse);
+        },
+      );
+    }
+  }
+
+  test(
+    'save after primary loss preserves the older recovery-owned object',
+    () async {
+      final secure = _MemorySecure();
+      final now = DateTime.utc(2026, 11, 8);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'older synthetic'});
+      secure.values.remove(primary);
+      expect(
+        await cache.saveAuthorized('draft:two', {'text': 'new synthetic'}),
+        isTrue,
+      );
+      final result = await cache.clearCurrentAccount();
+      expect(result.status, PrivateCachePurgeStatus.completed);
+      expect(result.deletedObjects, 2);
+      expect(secure.values, isEmpty);
+    },
+  );
+
+  test(
+    'no valid index fails closed without falsely confirming deletion',
+    () async {
+      for (final values in [
+        <String, String>{primary: 'bad'},
+        <String, String>{recovery: 'bad'},
+        <String, String>{primary: 'bad', recovery: 'also bad'},
+      ]) {
+        final secure = _MemorySecure()..values.addAll(values);
+        secure.values['$namespace:draft%3Aone'] =
+            'retained synthetic ciphertext';
+        final now = DateTime.utc(2026, 11, 8);
+        final cache = PrivateCacheService.forTesting(
+          secure,
+          wallNow: () => now,
+        );
+        expect(
+          await cache.establishLogin(userId: 1, retention: _receipt(now)),
+          isFalse,
+        );
+        expect(cache.isUnlocked, isFalse);
+        expect(
+          secure.values['$namespace:draft%3Aone'],
+          'retained synthetic ciphertext',
+        );
+        expect(
+          (await cache.clearCurrentAccount()).status,
+          PrivateCachePurgeStatus.failed,
+        );
+      }
+    },
+  );
+
+  test(
+    'failed recovery deletion retains index for an explicit cleanup retry',
+    () async {
+      final secure = _IndexFailureSecure();
+      final now = DateTime.utc(2026, 11, 8);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'synthetic'});
+      secure.refuseRecoveryDelete = true;
+      expect(
+        (await cache.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.failed,
+      );
+      expect(cache.isUnlocked, isFalse);
+      expect(secure.values.keys, [recovery]);
+      secure.refuseRecoveryDelete = false;
+      expect(
+        (await cache.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.completed,
+      );
+      expect(secure.values, isEmpty);
+    },
+  );
+
+  test(
+    'recovery index write failure cannot leave an unindexed new object',
+    () async {
+      final secure = _IndexFailureSecure();
+      final now = DateTime.utc(2026, 11, 8);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      secure.failRecoveryWrite = true;
+      expect(
+        await cache.saveAuthorized('draft:one', {'text': 'must not be saved'}),
+        isFalse,
+      );
+      expect(cache.isUnlocked, isFalse);
+      expect(secure.values, isEmpty);
+    },
+  );
+
+  test('control index names cannot be saved or removed as objects', () async {
+    final secure = _MemorySecure();
+    final now = DateTime.utc(2026, 11, 8);
+    final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+    await cache.establishLogin(userId: 1, retention: _receipt(now));
+    await cache.saveAuthorized('draft:one', {'text': 'synthetic'});
+    final before = Map<String, String>.of(secure.values);
+    for (final name in ['manifest', 'manifest-recovery']) {
+      expect(
+        await cache.saveAuthorized(name, {'text': 'must not overwrite'}),
+        isFalse,
+      );
+      await cache.removeObject(name);
+      expect(secure.values, before);
+    }
+  });
+
+  test(
+    'legacy primary-only index remains purgeable, poisoned control entries do not',
+    () async {
+      final now = DateTime.utc(2026, 11, 8);
+      final secure = _MemorySecure();
+      secure.values[primary] = jsonEncode(['draft:legacy']);
+      secure.values['$namespace:draft%3Alegacy'] =
+          'legacy synthetic ciphertext';
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      expect(
+        await cache.establishLogin(userId: 1, retention: _receipt(now)),
+        isTrue,
+      );
+      expect(secure.values, isEmpty);
+      secure.values[primary] = jsonEncode(['manifest']);
+      expect(
+        (await cache.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.failed,
+      );
+      expect(secure.values[primary], jsonEncode(['manifest']));
+    },
+  );
+
   test(
     'old account save queued before a new login cannot write into the new context',
     () async {

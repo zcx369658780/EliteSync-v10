@@ -173,15 +173,40 @@ class PrivateCacheService {
   String _key(String objectKey) =>
       '$_namespace:${Uri.encodeComponent(objectKey)}';
   String get _manifestKey => '$_namespace:manifest';
+  String get _recoveryManifestKey => '$_namespace:manifest-recovery';
+
+  bool _validObjectKey(String key) =>
+      key.isNotEmpty &&
+      key.length <= 256 &&
+      key != 'manifest' &&
+      key != 'manifest-recovery';
 
   Future<Set<String>> _manifest() async {
-    final raw = await _secure.read(_manifestKey);
-    if (raw == null) return <String>{};
-    final values = jsonDecode(raw) as List<dynamic>;
-    if (values.length > 128 || values.any((e) => e is! String || e.isEmpty || e.length > 256)) {
-      throw const FormatException('Private cache manifest is not bounded.');
+    final objects = <String>{};
+    var found = false;
+    var parsed = false;
+    for (final key in [_manifestKey, _recoveryManifestKey]) {
+      final raw = await _secure.read(key);
+      if (raw == null) continue;
+      found = true;
+      try {
+        final values = jsonDecode(raw);
+        if (values is! List ||
+            values.length > 128 ||
+            values.any((e) => e is! String || !_validObjectKey(e))) {
+          continue;
+        }
+        objects.addAll(values.cast<String>());
+        parsed = true;
+      } on FormatException {
+        // One intact index can recover this known namespace; never enumerate
+        // other accounts, credentials or unindexed storage entries.
+      }
     }
-    return values.cast<String>().toSet();
+    if (found && !parsed) {
+      throw const FormatException('No valid private cache index remains.');
+    }
+    return objects;
   }
 
   /// Successful online current-read grants this exact object for this process.
@@ -201,6 +226,7 @@ class PrivateCacheService {
     final wasUnlocked = _unlocked;
     final objectKeyOnDisk = _key(objectKey);
     final manifestKey = _manifestKey;
+    final recoveryManifestKey = _recoveryManifestKey;
     final envelope = jsonEncode({
       'account_id': account,
       'session_id': session,
@@ -225,16 +251,27 @@ class PrivateCacheService {
     }
 
     return _serialize(() async {
-      if (!current() || !_canUse(offline: false) || objectKey.isEmpty ||
-          objectKey.length > 256 || utf8.encode(envelope).length > 512 * 1024) {
+      if (!current() ||
+          !_canUse(offline: false) ||
+          !_validObjectKey(objectKey) ||
+          utf8.encode(envelope).length > 512 * 1024) {
         return false;
       }
       try {
         final manifest = await _manifest();
         if (!current()) return false;
-        // Index first, so interrupted object writes remain discoverable for purge.
-        if (!manifest.contains(objectKey) && manifest.length >= 128) return false;
+        if (manifest.length > 128) {
+          throw const FormatException(
+            'Recovered cache exceeds write capacity.',
+          );
+        }
+        // Recovery first, then primary, then object. Saving also consumes the
+        // union so a missing primary cannot erase older recovery-owned objects.
+        if (!manifest.contains(objectKey) && manifest.length >= 128)
+          return false;
         manifest.add(objectKey);
+        await _secure.write(recoveryManifestKey, jsonEncode(manifest.toList()));
+        if (!current()) return false;
         await _secure.write(manifestKey, jsonEncode(manifest.toList()));
         if (!current()) return false;
         await _secure.write(objectKeyOnDisk, envelope);
@@ -316,6 +353,7 @@ class PrivateCacheService {
   }
 
   Future<void> removeObject(String objectKey) {
+    if (!_validObjectKey(objectKey)) return Future<void>.value();
     final generation = _generation;
     final namespace = _namespace;
     final key = _key(objectKey);
@@ -371,12 +409,14 @@ class PrivateCacheService {
         }
         deleted++;
       }
-      await _secure.delete(_manifestKey);
-      if (await _secure.read(_manifestKey) != null) {
-        return PrivateCachePurgeReceipt(
-          PrivateCachePurgeStatus.failed,
-          deletedObjects: deleted,
-        );
+      for (final index in [_manifestKey, _recoveryManifestKey]) {
+        await _secure.delete(index);
+        if (await _secure.read(index) != null) {
+          return PrivateCachePurgeReceipt(
+            PrivateCachePurgeStatus.failed,
+            deletedObjects: deleted,
+          );
+        }
       }
       return PrivateCachePurgeReceipt(
         PrivateCachePurgeStatus.completed,
