@@ -1,3 +1,15 @@
+# 2026-11-08 私有图片上传/附件/DB/Range/撤权旧URL后端子范围通过（CURRENT ENTRY）
+
+**REAL_PRIVATE_IMAGE_UPLOAD_SEND_DB_RANGE_REVOCATION_VERIFIED / SPENT_1_REMAINING_0 / VIDEO_POSITIVE_NOT_RUN / AC04_PARTIAL / G2_FALSE**
+
+Owner明确整个v10承接旧EliteSync增加功能、提高APP完成度，v10.1.6后仍有软件完善/联合质量，不自动转运营；[决定](../decisions/OWNER_V10_SOFTWARE_COMPLETENESS_SCOPE_20261108.md)及路线/工作流已同步口径。当前建立[版本进度总账](../versions/v10.1.5/PROGRESS.md)，集中11项AC成果/缺口，冻结标准不改。
+
+新独立图片scope输入06337962，APP/授权/消息/媒体服务未改。真实PHP8.4 API/MariaDB：99B合成PNG→private asset1→message1/attachment1/DB与backing hash；full200、两段Range206字节/隐私头吻合；坏输入422不造asset，异主422、同键重放/409冲突逐操作跟踪状态保持；MC真实撤销后旧URL a/b full/Range四404，history/旧键两404，双MC rev3且CN仍active、跟踪状态不变。6纯检查、输入及实际原证非作者复核通过，非外部验收。
+
+后端95.453秒，已耗1余0，无重试；新容器停止/PID0/无OOM，API137保留、cleanup_errors空，新卷/网络留存；164旧容器完整State一致且全停止，共享引擎运行。无新引擎/手机/SDK/产包/下载。原dirty根/index及%SystemDrive%保护，ledger承接20304项。视频正向缺合格ffprobe/真实短片输入，手机选择渲染/重启/媒体并发NOT_RUN；仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-08 Block/CN关闭/peer禁用真实消息并发通过（CURRENT ENTRY）
 
 Owner于2026-11-08[明确v10定位](../decisions/OWNER_V10_SOFTWARE_COMPLETENESS_SCOPE_20261108.md)：承接旧EliteSync增加功能、提高APP完成度；v10.1.6后仍有软件完善和联合质量工作，不自动转运营。当前继续v10.1.5，不启动v10.1.6或扩大运营权限。
