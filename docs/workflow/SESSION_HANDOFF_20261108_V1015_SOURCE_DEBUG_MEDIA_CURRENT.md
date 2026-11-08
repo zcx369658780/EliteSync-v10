@@ -1,3 +1,11 @@
+# 2026-11-08 等待后仍持续对话页，手机接续再次preclaim停止（CURRENT ENTRY）
+
+Owner批准新phone接续后20ADB：Back一次、随后4份仍chat，未见“我的”而STOP；前14+本20合计34/240，清理无错。无backend claim，原后端仍0耗1余，两旧phone入口及当前接续均STOP/封口，不能凭余额复活。页面等待未使导航通过，实际输入/路由/亮屏解锁原因UNKNOWN；源码未见chat自定义返回拦截，不盲改产品或再开同类完整测试。图片/短片/冷启/播放/撤权NOT_RUN，已装b621/1f真机效果未证。详见[本节点](V1015_NAVIGATION_PERSISTENT_CHAT_PRECLAIM_STOP_20261108.md)。没有新增构建/安装/后端次数，全部保护及功能优先/UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-autonomous-navigation-persistent-stop-20261108-case01`，先读IMPLEMENTATION_REPORT.md及final-local-github-receipt-private.json；20ADB原证仍在上一接续根phone-media。后端未耗1已唯一转交至已停止接续根，旧STOP不动，不重开旧入口。
+
+---
+
 # 2026-11-08 自主导航preclaim停止，后端未耗1保留（CURRENT ENTRY）
 
 Owner批准scope06后仅14ADB：同机/已装b621核对，点Back后首份仍chat，未见“我的”而STOP；输入/安装/Activity/截图/导入0，自有UI清理无错。没有backend claim，后端0耗1余，原phone STOP保持，不重复申请未耗后端。私有导航候选改为等待目标稳定，6项host检查通过，实际原因UNKNOWN。新的手机接续仅准备：226条加14合计240，拟原子独占继承原未耗后端1，新增后端0；尚无phone批准/transfer/claim，不自动启动。详见[本节点](V1015_AUTONOMOUS_NAV_PRECLAIM_STOP_BACKEND_UNSPENT_20261108.md)。产品源码未改，媒体/冷启/播放/撤权NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，功能优先/UI最后及全部原保护保持。
