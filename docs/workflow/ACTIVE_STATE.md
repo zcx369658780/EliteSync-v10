@@ -1,3 +1,9 @@
+# 2026-11-09 新范围启动前内存门停止，模拟器与后端均未耗（CURRENT ENTRY）
+
+Owner批准新case02后，fresh可用8910MiB低于10240MiB，资源断言在launch claim/ADB前exit1。模拟器/安装/Activity/APP/手机/后端均0，无自有进程需清理。启动0耗1余、后端原0耗1余及手机剩206保持，但本入口与emulator/backend已STOP，不直接重跑或降低门槛；不重复申请未耗后端。详见[本节点](V1015_PRELAUNCH_MEMORY_GATE_STOP_20261109.md)。当前先需释放内存，未准备新例；旧STOP/原证和全部保护保持，双端/媒体NOT_RUN，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 启动前只读等待候选32项检查通过，待新启动批准（CURRENT ENTRY）
 
 Owner确认同Redmi已连接亮屏解锁（仅Owner报告）；未新增设备操作。新case02只在guest首次boot=1前、精确只读getprop/本serial的已知offline/notfound作有界等待，security/未知及boot后offline硬停保持；240/900秒与控制120+UI160不变。32host检查及非作者复核通过，50payload/合同零差异；尚无新批准/transfer/claim，后端原0耗1余仍在已STOP case01，不重复申请。详见[本节点](V1015_PREBOOT_READONLY_WAIT_PREPARED_20261109.md)。旧STOP/已耗和全部保护保持，真实双端/媒体NOT_RUN，源码/APK不变；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
