@@ -1,3 +1,9 @@
+# 2026-11-09 原Redmi连接/serial只读核对通过，阶段完成STOP（CURRENT ENTRY）
+
+Owner批准后独立连接检查2条均exit0，原固定机state=device、serial一致，其他设备0；不进入APP。phone累计37/240、余203，B仍未claim余1/末端case04 STOP不变，E/B/APP动作0。详见[本节点](V1015_REDMi_READONLY_CONNECTION_VERIFIED_20261109.md)。前次notfound原因UNKNOWN，不改旧失败；本阶段成功后也STOP不可重跑。下一完整范围应先手机预检再新E启动额度，当前未装配/授权。双端/媒体NOT_RUN，源码/APK及全部保护保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 模拟器ready/首帧已证，手机指定serial未找到后STOP（CURRENT ENTRY）
 
 case04 E启动/安装/真实空手机号焦点/APP PNG与EUI qualify通过；phone首条get-serialno报固定机notfound后整个范围STOP。E控制40+EUI11=51，phone1/累计35余205；E286.047秒/controller0/清理无错，B无claim仍余1、末端封在case04。Owner后报USB已接/允许调试仅Owner报告；原因UNKNOWN。详见[本节点](V1015_EMULATOR_READY_PHONE_ABSENT_PRECLAIM_STOP_20261109.md)。独立2条/60秒连接只读候选11host/非作者通过，尚未批准或运行，不操作APP/E/B，不增总额或B次数。IME/登录/双向对话/媒体NOT_RUN；源码/APK、旧STOP及全部保护保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
