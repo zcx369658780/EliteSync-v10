@@ -1,3 +1,9 @@
+# 2026-11-09 模拟器ready/首帧已证，手机指定serial未找到后STOP（CURRENT ENTRY）
+
+case04 E启动/安装/真实空手机号焦点/APP PNG与EUI qualify通过；phone首条get-serialno报固定机notfound后整个范围STOP。E控制40+EUI11=51，phone1/累计35余205；E286.047秒/controller0/清理无错，B无claim仍余1、末端封在case04。Owner后报USB已接/允许调试仅Owner报告；原因UNKNOWN。详见[本节点](V1015_EMULATOR_READY_PHONE_ABSENT_PRECLAIM_STOP_20261109.md)。独立2条/60秒连接只读候选11host/非作者通过，尚未批准或运行，不操作APP/E/B，不增总额或B次数。IME/登录/双向对话/媒体NOT_RUN；源码/APK、旧STOP及全部保护保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 整合观察器的新双端候选77项通过，待新启动/安装批准（CURRENT ENTRY）
 
 case04已装配新AVD/root/nonce与完整观察器，77host及非作者复核通过，56payload/合同零差异。新boot/install各1待批准；原B仍余1/新增0，phone剩206+旧34≤240。两端先核IME协议，再在实际B claim前重验全部fresh资格；B预检/运行/API均继承E原剩余900秒，不叠加1800秒。详见[本节点](V1015_DUAL_CHAT_INTEGRATED_OBSERVER_PREPARED_20261109.md)。当前无reply/actualgrant/request/transfer/claim或设备服务运行；旧STOP和全部保护保持。源码/APK不变，真实双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。

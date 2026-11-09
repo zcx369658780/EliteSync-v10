@@ -1,3 +1,11 @@
+# 2026-11-09 模拟器ready/首帧已证，手机指定serial未找到后STOP（CURRENT ENTRY）
+
+case04 E启动/安装/真实空手机号焦点/APP PNG与EUI qualify通过；phone首条get-serialno报固定机notfound后整个范围STOP。E控制40+EUI11=51，phone1/累计35余205；E286.047秒/controller0/清理无错，B无claim仍余1、末端封在case04。Owner后报USB已接/允许调试仅Owner报告；原因UNKNOWN。详见[本节点](V1015_EMULATOR_READY_PHONE_ABSENT_PRECLAIM_STOP_20261109.md)。独立2条/60秒连接只读候选11host/非作者通过，尚未批准或运行，不操作APP/E/B，不增总额或B次数。IME/登录/双向对话/媒体NOT_RUN；源码/APK、旧STOP及全部保护保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新实际回执在case04/runtime-closeout-phone-absent-20261109/final-local-github-receipt-private.json；下一只读连接候选根v1015-redmi-connection-readonly-20261109-case01，无grant/claim，不复活case04。
+
+---
+
 # 2026-11-09 登录观察器调用链主机整合45项通过，未设备复测（CURRENT ENTRY）
 
 完整表单基线与可见目标焦点分开，绑定当前scope/端/APK且限180秒；startup/prepare/两端focus/login/pre-backend/backend authority一起整合，输入与只读门保持。修正仅focus不能证明IME可见的P2：唯一IME可见且fresh本APP foreground才单Back，否则只读等/停。45host检查及非作者复核通过，实际IME字段资格UNKNOWN。详见[本节点](V1015_LOGIN_OBSERVER_CHAIN_HOST_INTEGRATED_20261109.md)。包仅HOST_ONLY，无新动态候选/授权/claim，手机和B均0；旧case03 STOP与启动/安装已耗保持，原B仍余1/phone剩206，不能重跑。源码/APK及全部保护不变，双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
