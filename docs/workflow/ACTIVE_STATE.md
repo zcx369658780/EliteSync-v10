@@ -1,3 +1,9 @@
+# 2026-11-09 登录观察器调用链主机整合45项通过，未设备复测（CURRENT ENTRY）
+
+完整表单基线与可见目标焦点分开，绑定当前scope/端/APK且限180秒；startup/prepare/两端focus/login/pre-backend/backend authority一起整合，输入与只读门保持。修正仅focus不能证明IME可见的P2：唯一IME可见且fresh本APP foreground才单Back，否则只读等/停。45host检查及非作者复核通过，实际IME字段资格UNKNOWN。详见[本节点](V1015_LOGIN_OBSERVER_CHAIN_HOST_INTEGRATED_20261109.md)。包仅HOST_ONLY，无新动态候选/授权/claim，手机和B均0；旧case03 STOP与启动/安装已耗保持，原B仍余1/phone剩206，不能重跑。源码/APK及全部保护不变，双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 5GiB门通过、真实手机号焦点已证；观察器双框可见假设停止（CURRENT ENTRY）
 
 按Owner5GiB/分阶段指示继承原未耗boot/B各1，无新次数。case03 boot/install/Activity各1，45控制ADB/153.844秒/清理无错；034两空enabled框后单tap，038/040/042新XML均唯一空enabled手机框focused=true，实际焦点已证。旧len(fields)==2把单框聚焦态判None而STOP，未达APP PNG/ready。手机0/仍34剩206，B无claim仍0耗1余，末端已STOP在case03/backend。另存startup helper12host修正但未整合后续同类校验/未准备新动态。详见[本节点](V1015_MOBILE_FOCUS_OBSERVED_VISIBILITY_OBSERVER_STOP_20261109.md)。双端/媒体NOT_RUN，源码/APK及全部保护保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
