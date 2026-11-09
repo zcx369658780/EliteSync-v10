@@ -1,3 +1,9 @@
+# 2026-11-09 整合观察器的新双端候选77项通过，待新启动/安装批准（CURRENT ENTRY）
+
+case04已装配新AVD/root/nonce与完整观察器，77host及非作者复核通过，56payload/合同零差异。新boot/install各1待批准；原B仍余1/新增0，phone剩206+旧34≤240。两端先核IME协议，再在实际B claim前重验全部fresh资格；B预检/运行/API均继承E原剩余900秒，不叠加1800秒。详见[本节点](V1015_DUAL_CHAT_INTEGRATED_OBSERVER_PREPARED_20261109.md)。当前无reply/actualgrant/request/transfer/claim或设备服务运行；旧STOP和全部保护保持。源码/APK不变，真实双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 登录观察器调用链主机整合45项通过，未设备复测（CURRENT ENTRY）
 
 完整表单基线与可见目标焦点分开，绑定当前scope/端/APK且限180秒；startup/prepare/两端focus/login/pre-backend/backend authority一起整合，输入与只读门保持。修正仅focus不能证明IME可见的P2：唯一IME可见且fresh本APP foreground才单Back，否则只读等/停。45host检查及非作者复核通过，实际IME字段资格UNKNOWN。详见[本节点](V1015_LOGIN_OBSERVER_CHAIN_HOST_INTEGRATED_20261109.md)。包仅HOST_ONLY，无新动态候选/授权/claim，手机和B均0；旧case03 STOP与启动/安装已耗保持，原B仍余1/phone剩206，不能重跑。源码/APK及全部保护不变，双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
