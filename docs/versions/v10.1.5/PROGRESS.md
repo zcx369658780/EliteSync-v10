@@ -1,3 +1,9 @@
+# 2026-11-09 5GiB门通过、真实手机号焦点已证；观察器双框可见假设停止（CURRENT ENTRY）
+
+按Owner5GiB/分阶段指示继承原未耗boot/B各1，无新次数。case03 boot/install/Activity各1，45控制ADB/153.844秒/清理无错；034两空enabled框后单tap，038/040/042新XML均唯一空enabled手机框focused=true，实际焦点已证。旧len(fields)==2把单框聚焦态判None而STOP，未达APP PNG/ready。手机0/仍34剩206，B无claim仍0耗1余，末端已STOP在case03/backend。另存startup helper12host修正但未整合后续同类校验/未准备新动态。详见[本节点](../../workflow/V1015_MOBILE_FOCUS_OBSERVED_VISIBILITY_OBSERVER_STOP_20261109.md)。双端/媒体NOT_RUN，源码/APK及全部保护保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+---
+
 # 2026-11-09 新范围启动前内存门停止，模拟器与后端均未耗（CURRENT ENTRY）
 
 Owner批准新case02后，fresh可用8910MiB低于10240MiB，资源断言在launch claim/ADB前exit1。模拟器/安装/Activity/APP/手机/后端均0，无自有进程需清理。启动0耗1余、后端原0耗1余及手机剩206保持，但本入口与emulator/backend已STOP，不直接重跑或降低门槛；不重复申请未耗后端。详见[本节点](../../workflow/V1015_PRELAUNCH_MEMORY_GATE_STOP_20261109.md)。当前先需释放内存，未准备新例；旧STOP/原证和全部保护保持，双端/媒体NOT_RUN，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
