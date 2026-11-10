@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
 import 'notification_preferences_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +33,118 @@ class NotificationCenterPage extends ConsumerStatefulWidget {
 
 class _NotificationCenterPageState
     extends ConsumerState<NotificationCenterPage> {
+  List<NotificationItemEntity>? _firstPage;
+  List<NotificationItemEntity> _olderItems = [];
+  int _historyGeneration = 0;
+  int? _nextBeforeId;
+  bool _hasOlder = false;
+  bool _loadingOlder = false;
+  String? _olderError;
+
+  void _resetHistory() {
+    _historyGeneration++;
+    _firstPage = null;
+    _olderItems = [];
+    _nextBeforeId = null;
+    _hasOlder = false;
+    _loadingOlder = false;
+    _olderError = null;
+  }
+
+  List<NotificationItemEntity> _mergeItems(
+    List<NotificationItemEntity> older,
+    List<NotificationItemEntity> newer,
+  ) {
+    final byId = {
+      for (final item in [...older, ...newer]) item.id: item,
+    };
+    return byId.values.toList()..sort((a, b) => b.id.compareTo(a.id));
+  }
+
+  void _adoptFirstPage(List<NotificationItemEntity> items) {
+    if (identical(items, _firstPage)) return;
+    _resetHistory();
+    _firstPage = items;
+    _nextBeforeId = items is NotificationPage
+        ? items.nextBeforeId
+        : items.isEmpty
+        ? null
+        : items.map((item) => item.id).reduce((a, b) => a < b ? a : b);
+    _hasOlder =
+        (items is NotificationPage ? items.hasMore : items.length >= 50) &&
+        (_nextBeforeId ?? 0) > 0;
+  }
+
+  Future<void> _loadOlder() async {
+    final before = _nextBeforeId;
+    if (_loadingOlder || !_hasOlder || before == null || _firstPage == null) {
+      return;
+    }
+    final generation = _historyGeneration;
+    final firstPage = _firstPage;
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    bool current() =>
+        generation == _historyGeneration &&
+        identical(firstPage, _firstPage) &&
+        _currentControlledIntent(identity, epoch);
+    if (!current()) return;
+    setState(() {
+      _loadingOlder = true;
+      _olderError = null;
+    });
+    try {
+      final page = await ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchOlderNotifications(before);
+      if (!current()) return;
+      final older = page
+          .where((item) => item.id > 0 && item.id < before)
+          .toList();
+      var nextBefore = page.nextBeforeId;
+      if (nextBefore == null && older.isNotEmpty) {
+        nextBefore = older
+            .map((item) => item.id)
+            .reduce((a, b) => a < b ? a : b);
+      }
+      setState(() {
+        _olderItems = _mergeItems(_olderItems, older);
+        _nextBeforeId = nextBefore;
+        _hasOlder =
+            page.hasMore &&
+            nextBefore != null &&
+            nextBefore > 0 &&
+            nextBefore < before;
+      });
+    } catch (_) {
+      if (current()) setState(() => _olderError = '较早通知加载失败，已读取的通知仍保留。');
+    } finally {
+      if (current()) setState(() => _loadingOlder = false);
+    }
+  }
+
+  List<Widget> _historyControls() => [
+    if (_olderError != null)
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Text(_olderError!),
+      ),
+    if (_hasOlder)
+      TextButton(
+        key: const ValueKey('notification-load-more'),
+        onPressed: _loadingOlder ? null : _loadOlder,
+        child: Text(
+          _loadingOlder
+              ? '正在加载较早通知…'
+              : _olderError == null
+              ? '加载更早通知'
+              : '重试加载更早通知',
+        ),
+      )
+    else if (_olderItems.isNotEmpty)
+      const Padding(padding: EdgeInsets.all(8), child: Text('已显示全部通知')),
+  ];
+
   int _intRouteArg(String key, NotificationItemEntity item) {
     final value = item.routeArgs[key];
     if (value is int) return value;
@@ -51,6 +164,7 @@ class _NotificationCenterPageState
   }
 
   Future<void> _refresh() async {
+    setState(_resetHistory);
     ref.invalidate(notificationListProvider);
     ref.invalidate(notificationUnreadCountProvider);
     await ref.read(notificationListProvider.future);
@@ -258,7 +372,9 @@ class _NotificationCenterPageState
         final identity = ref.read(sessionProvider).asData?.value.accessToken;
         final epoch = ref.read(relationshipAuthorityEpochProvider);
         ref.invalidate(conversationDetailProvider(conversationId));
-        final conversation = await ref.read(conversationDetailProvider(conversationId).future);
+        final conversation = await ref.read(
+          conversationDetailProvider(conversationId).future,
+        );
         if (!_currentControlledIntent(identity, epoch)) return false;
         final peerUserId = conversation.peerUserId;
         final resolvedConversationId = conversation.conversationId;
@@ -359,7 +475,9 @@ class _NotificationCenterPageState
     final intentEpoch = ref.read(relationshipAuthorityEpochProvider);
     if (!_currentControlledIntent(identity, intentEpoch)) return;
     try {
-      item = await ref.read(notificationRemoteDataSourceProvider).fetchNotification(item.id);
+      item = await ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchNotification(item.id);
     } catch (_) {
       if (mounted && _currentControlledIntent(identity, intentEpoch)) {
         AppFeedback.showInfo(context, '当前通知已不可访问，请刷新后重试');
@@ -410,6 +528,7 @@ class _NotificationCenterPageState
       item,
     );
     return Container(
+      key: ValueKey('notification-card-${item.id}'),
       decoration: BoxDecoration(
         color: t.browseSurface,
         borderRadius: BorderRadius.circular(t.radius.lg),
@@ -548,6 +667,20 @@ class _NotificationCenterPageState
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(notificationListProvider, (previous, next) {
+      if (next.isLoading || next.hasError) setState(_resetHistory);
+    });
+    ref.listen(sessionProvider, (previous, next) {
+      if (previous?.asData?.value.accessToken !=
+              next.asData?.value.accessToken ||
+          previous?.asData?.value.isLoggedIn != next.asData?.value.isLoggedIn) {
+        setState(_resetHistory);
+      }
+    });
+    ref.listen(
+      relationshipAuthorityEpochProvider,
+      (_, next) => setState(_resetHistory),
+    );
     final listAsync = ref.watch(notificationListProvider);
     final unreadAsync = ref.watch(notificationUnreadCountProvider);
     final t = context.appTokens;
@@ -607,17 +740,25 @@ class _NotificationCenterPageState
                 ),
               ],
             ),
-            data: (items) {
+            data: (firstPage) {
+              _adoptFirstPage(firstPage);
+              final items = _mergeItems(_olderItems, firstPage);
               final unread =
                   (unreadAsync.isLoading ? null : unreadAsync.asData?.value) ??
                   items.where((e) => !e.isRead).length;
               if (items.isEmpty) {
-                const emptyState = AppPresentationState.empty(
-                  safeTitle: '当前没有提醒',
-                  safeBody:
-                      '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
-                );
+                final emptyState = _hasOlder
+                    ? const AppPresentationState.empty(
+                        safeTitle: '本页暂无可显示提醒',
+                        safeBody: '可以继续加载更早通知，查看当前仍有权读取的提醒。',
+                      )
+                    : const AppPresentationState.empty(
+                        safeTitle: '当前没有提醒',
+                        safeBody:
+                            '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+                      );
                 return ListView(
+                  key: ValueKey('notification-list-$_historyGeneration'),
                   padding: EdgeInsets.only(bottom: t.spacing.huge),
                   children: [
                     AppInfoSectionCard(
@@ -643,11 +784,13 @@ class _NotificationCenterPageState
                     ),
                     SizedBox(height: t.spacing.sm),
                     const _LocalReturnPreviewCard(),
+                    ..._historyControls(),
                   ],
                 );
               }
 
               return ListView(
+                key: ValueKey('notification-list-$_historyGeneration'),
                 padding: EdgeInsets.only(bottom: t.spacing.huge),
                 children: [
                   AppInfoSectionCard(
@@ -683,6 +826,7 @@ class _NotificationCenterPageState
                       child: _buildNotificationCard(item, t),
                     ),
                   ),
+                  ..._historyControls(),
                 ],
               );
             },

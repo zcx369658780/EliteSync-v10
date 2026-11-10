@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:dio/dio.dart';
@@ -18,13 +19,18 @@ import 'package:flutter_elitesync_module/features/notification/domain/entities/n
 import 'package:flutter_elitesync_module/features/notification/presentation/pages/notification_center_page.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 class _CurrentSession extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     accessToken: 'synthetic-notification-session',
   );
+  void changeAccount() => state = const AsyncData(SessionState(
+    status: AuthStatus.authenticated,
+    accessToken: 'synthetic-other-notification-session',
+  ));
 }
 
 /// The real notification providers watch sessionProvider. List mocks replace
@@ -100,6 +106,78 @@ class FakeNotificationRemoteDataSource extends NotificationRemoteDataSource {
   }
 }
 
+Map<String, dynamic> _pagingItem(int id) => {
+  'id': id,
+  'kind': 'system',
+  'title': 'synthetic hidden title $id',
+  'body': 'synthetic hidden body',
+  'payload': <String, dynamic>{},
+  'is_read': true,
+  'created_at': '2026-11-10T00:00:00Z',
+};
+
+class _PagingApi extends ApiClient {
+  _PagingApi() : super(dio: Dio());
+  List<Map<String, dynamic>> firstItems = [_pagingItem(30), _pagingItem(29)];
+  bool firstHasMore = true;
+  int? firstCursor = 29;
+  bool emptyCurrentAccount = false;
+  bool failOlderOnce = false;
+  final cursors = <int>[];
+  final pages = <int, Map<String, dynamic>>{};
+  Completer<NetworkResult<Map<String, dynamic>>>? pending;
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    expect(path, '/api/v1/notifications');
+    expect(query?['limit'], 50);
+    final before = query?['before_id'] as int?;
+    if (before == null) {
+      return NetworkSuccess({
+        'items': emptyCurrentAccount ? <dynamic>[] : firstItems,
+        'has_more': !emptyCurrentAccount && firstHasMore,
+        'next_before_id': emptyCurrentAccount ? null : firstCursor,
+      });
+    }
+    cursors.add(before);
+    if (pending != null) return pending!.future;
+    if (failOlderOnce) {
+      failOlderOnce = false;
+      return const NetworkFailure(message: 'fictional unavailable', statusCode: 503);
+    }
+    return NetworkSuccess(pages[before] ?? {
+      'items': <dynamic>[], 'has_more': false, 'next_before_id': null,
+    });
+  }
+}
+
+Widget _pagingApp(_PagingApi api) => _wrap(
+  const NotificationCenterPage(),
+  overrides: [
+    sessionProvider.overrideWith(_CurrentSession.new),
+    frontendTelemetryProvider.overrideWithValue(FrontendTelemetry(telemetry: FakeAppTelemetryService())),
+    notificationRemoteDataSourceProvider.overrideWith((ref) => NotificationRemoteDataSource(
+      apiClient: api,
+      useMock: false,
+      identity: () => '${ref.read(sessionProvider).asData?.value.accessToken}:${ref.read(relationshipAuthorityEpochProvider)}',
+    )),
+    notificationUnreadCountProvider.overrideWith((ref) async => 0),
+  ],
+);
+
+Future<void> _loadOlderNotifications(WidgetTester tester) async {
+  final button = find.byKey(const ValueKey('notification-load-more'));
+  await tester.scrollUntilVisible(button, 350, scrollable: find.byType(Scrollable).first);
+  await tester.pumpAndSettle();
+  await tester.tap(button);
+  await tester.pumpAndSettle();
+}
+
 Widget _wrap(Widget child, {List<dynamic> overrides = const []}) {
   return ProviderScope(
     overrides: overrides.cast(),
@@ -141,6 +219,85 @@ void _expectNoD7CForbiddenVisibleCopy() {
 }
 
 void main() {
+  testWidgets('older notifications merge by id and a first-page refresh clears history', (tester) async {
+    final api = _PagingApi();
+    api.pages[29] = {
+      'items': [_pagingItem(28), _pagingItem(28), _pagingItem(29), _pagingItem(27)],
+      'has_more': false,
+      'next_before_id': 27,
+    };
+    await tester.pumpWidget(_pagingApp(api));
+    await tester.pumpAndSettle();
+    await _loadOlderNotifications(tester);
+    await tester.scrollUntilVisible(find.text('已显示全部通知'), 350, scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
+    expect(api.cursors, [29]);
+    expect(find.byKey(const ValueKey('notification-card-28')), findsOneWidget);
+    expect(find.byKey(const ValueKey('notification-card-27')), findsOneWidget);
+    expect(tester.getTopLeft(find.byKey(const ValueKey('notification-card-28'))).dy,
+      lessThan(tester.getTopLeft(find.byKey(const ValueKey('notification-card-27'))).dy));
+    await tester.tap(find.byIcon(Icons.refresh_rounded));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('notification-card-28')), findsNothing);
+    expect(find.text('已显示全部通知'), findsNothing);
+    await tester.scrollUntilVisible(find.byKey(const ValueKey('notification-load-more')), 350, scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('notification-load-more')), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('failed history read preserves notifications and retries the same cursor', (tester) async {
+    final api = _PagingApi()..failOlderOnce = true;
+    api.pages[29] = {'items': [_pagingItem(28)], 'has_more': false, 'next_before_id': 28};
+    await tester.pumpWidget(_pagingApp(api));
+    await tester.pumpAndSettle();
+    await _loadOlderNotifications(tester);
+    expect(find.text('较早通知加载失败，已读取的通知仍保留。'), findsOneWidget);
+    expect(find.byKey(const ValueKey('notification-card-29')), findsOneWidget);
+    await _loadOlderNotifications(tester);
+    expect(api.cursors, [29, 29]);
+    expect(find.text('较早通知加载失败，已读取的通知仍保留。'), findsNothing);
+    expect(find.byKey(const ValueKey('notification-card-28')), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('empty authorized pages still advance the server scan cursor', (tester) async {
+    final api = _PagingApi()..firstItems = []..firstCursor = 90;
+    api.pages[90] = {'items': <dynamic>[], 'has_more': true, 'next_before_id': 80};
+    api.pages[80] = {'items': [_pagingItem(79)], 'has_more': false, 'next_before_id': 79};
+    await tester.pumpWidget(_pagingApp(api));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('本页暂无可显示提醒'), findsOneWidget);
+    await _loadOlderNotifications(tester);
+    expect(api.cursors, [90]);
+    expect(find.byKey(const ValueKey('notification-load-more')), findsOneWidget);
+    await _loadOlderNotifications(tester);
+    expect(api.cursors, [90, 80]);
+    expect(find.byKey(const ValueKey('notification-card-79')), findsOneWidget);
+    expect(find.byKey(const ValueKey('notification-load-more')), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('old notification page cannot append after account change', (tester) async {
+    final api = _PagingApi()..pending = Completer();
+    await tester.pumpWidget(_pagingApp(api));
+    await tester.pumpAndSettle();
+    await _loadOlderNotifications(tester);
+    final container = ProviderScope.containerOf(tester.element(find.byType(NotificationCenterPage)));
+    api.emptyCurrentAccount = true;
+    (container.read(sessionProvider.notifier) as _CurrentSession).changeAccount();
+    await tester.pumpAndSettle();
+    api.pending!.complete(NetworkSuccess({
+      'items': [_pagingItem(28)], 'has_more': false, 'next_before_id': 28,
+    }));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('notification-card-28')), findsNothing);
+    expect(find.byKey(const ValueKey('notification-card-30')), findsNothing);
+    await tester.drag(find.byType(ListView), const Offset(0, 3000));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('当前没有提醒'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
   testWidgets('chat notification resolves stored ID before marking read', (
     tester,
   ) async {

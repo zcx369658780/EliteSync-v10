@@ -37,13 +37,25 @@ class NotificationController extends Controller
 
     public function index(Request $request, NotificationService $notifications): JsonResponse
     {
-        $items = $notifications->listForUser((int) $request->user()->id, 50);
+        $data = $request->validate([
+            'limit' => ['sometimes', 'integer', 'min:1', 'max:100'],
+            'before_id' => ['sometimes', 'integer', 'min:1'],
+        ]);
+        $limit = (int) ($data['limit'] ?? 50);
+        $page = $notifications->pageForUser(
+            (int) $request->user()->id,
+            $limit,
+            isset($data['before_id']) ? (int) $data['before_id'] : null,
+        );
+        $items = $page['items'];
 
         return response()->json([
             'ok' => true,
             'items' => $items->map(fn (AppNotificationItem $item) => $this->shapeNotification($item, (int) $request->user()->id, $notifications))->values(),
             'total' => $items->count(),
             'unread_total' => $items->whereNull('read_at')->count(),
+            'has_more' => $page['has_more'],
+            'next_before_id' => $page['next_before_id'],
         ]);
     }
 

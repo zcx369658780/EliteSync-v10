@@ -15,6 +15,70 @@ class NotificationApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_notification_pages_skip_unavailable_notices_and_keep_exclusive_owner_cursor(): void
+    {
+        $user = User::factory()->create(['phone' => '19900010201']);
+        $other = User::factory()->create(['phone' => '19900010202']);
+        $ids = [];
+        for ($i = 0; $i < 5; $i++) {
+            $ids[] = AppNotificationItem::create([
+                'user_id' => $user->id, 'kind' => 'system', 'title' => 'Reminder '.$i,
+            ])->id;
+        }
+        // These exceed a raw first page and must not hide the older valid rows.
+        for ($i = 0; $i < 55; $i++) {
+            AppNotificationItem::create([
+                'user_id' => $user->id, 'kind' => 'system', 'title' => 'Expired',
+                'expires_at' => now()->subMinute(),
+            ]);
+        }
+        AppNotificationItem::create(['user_id' => $other->id, 'kind' => 'system', 'title' => 'Other account']);
+        Sanctum::actingAs($user);
+        $first = $this->getJson('/api/v1/notifications?limit=2')->assertOk()
+            ->assertJsonPath('total', 2)->assertJsonPath('has_more', true)
+            ->assertJsonPath('next_before_id', $ids[3]);
+        $this->assertSame([$ids[4], $ids[3]], $first->json('items.*.id'));
+        $next = $this->getJson('/api/v1/notifications?limit=2&before_id='.$ids[3])->assertOk()
+            ->assertJsonPath('has_more', true)->assertJsonPath('next_before_id', $ids[1]);
+        $this->assertSame([$ids[2], $ids[1]], $next->json('items.*.id'));
+        $last = $this->getJson('/api/v1/notifications?limit=2&before_id='.$ids[1])->assertOk()
+            ->assertJsonPath('has_more', false);
+        $this->assertSame([$ids[0]], $last->json('items.*.id'));
+        $this->getJson('/api/v1/notifications?before_id='.$ids[0])->assertOk()
+            ->assertJsonPath('total', 0)->assertJsonPath('next_before_id', null)
+            ->assertJsonPath('has_more', false);
+    }
+
+    public function test_notification_page_parameters_are_bounded_without_changing_read_state(): void
+    {
+        $user = User::factory()->create(['phone' => '19900010203']);
+        $notice = AppNotificationItem::create(['user_id' => $user->id, 'kind' => 'system', 'title' => 'Unread']);
+        Sanctum::actingAs($user);
+        foreach (['limit=0', 'limit=101', 'limit=1.5', 'before_id=0', 'before_id=abc'] as $query) {
+            $this->getJson('/api/v1/notifications?'.$query)->assertUnprocessable();
+        }
+        $this->assertNull($notice->fresh()->read_at);
+    }
+
+    public function test_unavailable_history_scanning_is_bounded_and_can_continue_past_an_empty_page(): void
+    {
+        $user = User::factory()->create(['phone' => '19900010204']);
+        $old = AppNotificationItem::create(['user_id' => $user->id, 'kind' => 'system', 'title' => 'Older available reminder']);
+        $unavailable = [];
+        for ($i = 0; $i < 105; $i++) {
+            $unavailable[] = AppNotificationItem::create([
+                'user_id' => $user->id, 'kind' => 'message', 'title' => 'Unavailable message', 'payload' => [],
+            ])->id;
+        }
+        Sanctum::actingAs($user);
+        $this->getJson('/api/v1/notifications?limit=1')->assertOk()
+            ->assertJsonCount(0, 'items')->assertJsonPath('has_more', true)
+            ->assertJsonPath('next_before_id', $unavailable[5]);
+        $this->getJson('/api/v1/notifications?limit=1&before_id='.$unavailable[5])->assertOk()
+            ->assertJsonPath('items.0.id', $old->id)->assertJsonPath('has_more', false)
+            ->assertJsonPath('next_before_id', $old->id);
+    }
+
     public function test_notifications_index_and_unread_count_and_mark_read_flow(): void
     {
         $user = User::create([

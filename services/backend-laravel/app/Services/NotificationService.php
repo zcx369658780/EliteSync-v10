@@ -183,20 +183,45 @@ class NotificationService
     /**
      * @return Collection<int, AppNotificationItem>
      */
-    public function listForUser(int $userId, int $limit = 50): Collection
+    public function listForUser(int $userId, int $limit = 50, ?int $beforeId = null): Collection
     {
-        return AppNotificationItem::query()
-            ->where('user_id', $userId)
-            ->orderByDesc('id')
-            ->limit($limit)
-            ->get()->filter(function ($n) use ($userId) {
-                if (! app(NotificationDeliveryService::class)->categoryEnabled($userId, (string) $n->kind)) {
-                    return false;
-                }
-                $p = $this->presentationForUser($n, $userId);
+        return $this->pageForUser($userId, $limit, $beforeId)['items'];
+    }
 
-                return ($p['available'] ?? true) && $p['title'] !== '通知已不可用';
-            })->values();
+    /** @return array{items: Collection<int, AppNotificationItem>, has_more: bool, next_before_id: ?int} */
+    public function pageForUser(int $userId, int $limit = 50, ?int $beforeId = null): array
+    {
+        $limit = max(1, min(100, $limit));
+        $scanLimit = 100;
+        $query = AppNotificationItem::query()
+            ->where('user_id', $userId)
+            ->where(fn ($q) => $q->whereNull('expires_at')->orWhere('expires_at', '>', now('UTC')))
+            ->when($beforeId !== null, fn ($q) => $q->where('id', '<', $beforeId));
+        $candidates = $query->orderByDesc('id')->limit($scanLimit + 1)->get();
+        $delivery = app(NotificationDeliveryService::class);
+        $categories = $delivery->preferences($userId)['categories'];
+        $items = new Collection;
+        $scanned = 0;
+        $cursor = null;
+        // Bound dynamic permission checks. The raw cursor also advances over
+        // unavailable notices so the next page can still reach older reminders.
+        foreach ($candidates->take($scanLimit) as $notification) {
+            $scanned++;
+            $cursor = (int) $notification->id;
+            if (! $categories[$delivery->category((string) $notification->kind)]) {
+                continue;
+            }
+            $presentation = $this->presentationForUser($notification, $userId);
+            if (! ($presentation['available'] ?? true) || $presentation['title'] === '通知已不可用') {
+                continue;
+            }
+            $items->push($notification);
+            if ($items->count() >= $limit) {
+                break;
+            }
+        }
+
+        return ['items' => $items, 'has_more' => $candidates->count() > $scanned, 'next_before_id' => $cursor];
     }
 
     public function unreadCount(int $userId): int
