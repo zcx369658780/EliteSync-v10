@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-15T02:03:01.430911+00:00",
+  "role": "r1recipient",
+  "method": "POST",
+  "path": "/api/v1/notifications/10/read",
+  "request": null,
+  "status": 200,
+  "body": {
+    "ok": true,
+    "notification_id": 10
+  }
+}

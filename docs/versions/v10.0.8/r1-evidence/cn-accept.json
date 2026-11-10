@@ -1,0 +1,22 @@
+{
+  "time": "2026-10-15T09:29:13.722736+00:00",
+  "user": "r1peer",
+  "status": 200,
+  "body": {
+    "connection": {
+      "state": "CN_ACTIVE",
+      "revision": 2,
+      "requester_id": 11
+    },
+    "consent": {
+      "state": "MC_NONE",
+      "revision": 0,
+      "requester_id": null
+    },
+    "peer_id": 11,
+    "gates": {
+      "live_read_allowed": false,
+      "live_send_allowed": false
+    }
+  }
+}

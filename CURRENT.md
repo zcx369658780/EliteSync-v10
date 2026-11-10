@@ -1,3 +1,53 @@
+# 2026-10-12 生效：网页 Astra 管理与 Codex 版本实现
+
+当前规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)，导航见 [DOC_INDEX_CURRENT](DOC_INDEX_CURRENT.md)。Owner保留方向决定；网页Astra负责版本规划、最终独立验收与复盘；Codex按冻结版本自主实现、测试、诊断修复并集中交付。旧Work/dot实时管理、逐步骤审批及强制新增多模型循环被本次Owner指令替代。产品/科学定义、真实数据、不可逆风险及历史固定证据保留。
+
+下方为历史记录：其中旧路由、ISSUED、微审批、逐调用预算、审查角色和Git禁令不构成当前迁移或未来版的自动授权/默认流程。本轮仅文档迁移与正常GitHub发布；旧任务保持暂停，第三阶段由Owner手动启动。普通错误自主诊断；真正边界/决定/持续阻碍才报告。现状以 CURRENT_STATE.md 为入口，冻结版仍按其原计划和证据身份解释。
+
+---
+
+# 2026-10-05 第二综合阶段已派发／Codex自主连续执行
+
+WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005已原生派发至01a10b18-0d3c-7f82-b0cd-0fdb0b92b1a7/local；原项目1ce219d1-c26f-4297-9b16-23b1f05975f2，D:\EliteSync-v10。完整task和dispatch在同名EVIDENCE root。Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local等待完成/实质阻塞通知，集中独立验收，不逐步骤指导或轮询。上一阶段执行会话不接收新任务。
+
+目标：完整可执行接口隔离synthetic链及可重复验证交付。三条交付改进已生效；4–6小时仅预估，普通错误自主诊断修复重测。正式JVM/compile/14case/SDK/Publisher发行/M6仍冻结，NOT_READY/RuntimeReadyfalse和所有未知保留；原自动化PAUSED，dirty/untracked及历史冻结预算保留。
+
+---
+# 2026-10-05 第二综合阶段ISSUED／准备原项目新Codex派发
+
+Owner已确认三条交付改进，已写入AGENTS、REVIEW_GATE、交付工作流及本地skill；完整任务 EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-E2E-SYNTHETIC-20261005/task.md。目标：五组件可执行接口的完整隔离synthetic链、有效失败/边界验证和可重复交付；不重复已接受源码审查，不开放正式JVM/14case/SDK/Publisher发行。
+
+唯一Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local；执行者由本次原项目create_thread回执确定。上一阶段源码接受保持，Owner已授权后继，历史WAITING_FOR_OWNER_WORKFLOW_DISCUSSION不再阻止本次派发。工时4–6小时仅估计，内部自主修复重测，集中验收；原自动化PAUSED。HEAD4bebc8f394248e254c1368a06fbdee5d2c883301、index空是本次核定；dirty/untracked、旧预算冻结、NOT_READY与全部未知保持。
+
+---
+
+# 2026-10-05 首综合阶段SOURCEONLY接受／等待Owner工作流讨论
+
+Work LEVEL2终裁 ACCEPT/CLOSED SOURCEONLY_TOOLCHAIN_SOURCE_INTEGRATION_STAGE_V1；准确记录 EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005/work-review.md。完整非作者Sol/high COMPLETE/NO_FINDINGS；Work核验457/457身份、最终24组及关键原始证据，额外准确intent序列化、成功wrapper→B、SHA mutation隔离验证通过。仅接受修订Launcher与完整准备源码包/synthetic证据；旧V6拒绝不追认，正式compile/JVM/14case/Publisher发行/M6未开放。
+
+当前Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local；阶段执行01a10ae5-eac6-70a3-ac49-852f0171ac8a/local已交付。Owner已确认项目源替换。阶段完成，WAITING_FOR_OWNER_WORKFLOW_DISCUSSION，不发后继，不恢复原PAUSED自动化。阶段工作流继续生效；6小时只预估，普通错误内部修复重测，集中验收不回退微任务链。
+
+终验本地HEAD4bebc8f394248e254c1368a06fbdee5d2c883301、index空；无代码GitHub发布。NOT_READY/RuntimeReadyfalse、全部未知、历史接受拒绝/闭预算、dirty/untracked/冻结/rawfixture/M5-50及生产敏感边界保持。GitHub工作流文档备份c0cb8c1是此前已核记录，不冒本次远端fresh状态。
+
+---
+# 2026-10-05 首阶段已派发／Codex连续执行中
+
+WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005已通过原生create_thread派发至原项目D:\EliteSync-v10的新执行会话01a10ae5-eac6-70a3-ac49-852f0171ac8a/local（project1ce219d1-c26f-4297-9b16-23b1f05975f2）。唯一当前Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local，旧Builder停止新派发。完整委托见EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005/task.md，回执同root dispatch.json。阶段内部自主执行/诊断修复重测，6小时只预估；完成或实质阻塞主动通知Work集中验收，不逐步轮询。GitHub本轮11文档备份已核c0cb8c1e9f92c2fb0242283a8044eebd8386c056，本地HEAD仍4bebc8f394248e254c1368a06fbdee5d2c883301、index空，未pull或提交旧dirty。原elitesync PAUSED/prompt已更新。正式运行与敏感生产保护、NOT_READY及旧结论保持；新阶段尚未接受。
+
+---
+# 2026-10-05 阶段工作流已实施／首综合阶段ISSUED
+
+Owner已批准“阶段目标委托—Codex连续执行—Work集中验收”，并明确授权本地和GitHub工作流文档修订。当前Work01a109e0-4b59-77e2-b2cf-dc293d6533ad/local；首阶段WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005，准确任务EVIDENCE/WORK-STAGE-M5-TOOLCHAIN-SOURCE-INTEGRATION-20261005/task.md。执行者由本次原项目新Codex会话派发回执确定；旧Builder01a1072f及所有旧Work/执行停止新派发。
+
+Codex自主修复Launcher三缺陷、整合完整源码包、普通本地synthetic验证和失败诊断修复重测；6小时只预估，无内部逐步审批。完成/实质阻塞/必要交接通知本Work，交付后完整非作者Sol/high审查及Work LEVEL2集中终裁。
+
+本次启动前Git核对main/HEAD4bebc8f394248e254c1368a06fbdee5d2c883301、staged空、现有dirty/untracked保持。Owner授权的GitHub文档备份可能使remote main前移；本地不自动pull，不冒候选已合入。原elitesync保持PAUSED，prompt更新为阶段事件通知规则，不重建。
+
+新阶段不继承旧微任务首失败/读写次数/显示预算；旧计数错误不作为启动门，所有旧拒绝/已闭预算仍只作历史。四旧SOURCEONLY接受保留，Launcher V6 REJECT/CLOSED三缺陷仍成立；当前完整包尚未接受，M5工具链准备/M6未开放。正式compile/JVM/14case、SDK/外部依赖及全部敏感生产边界仍冻结；NOT_READY/RuntimeReadyfalse及未知保持。
+
+## 下方为历史快照，不能按旧task标题或旧自动化prompt恢复执行
+
+---
 # 2026-10-02 RAW_GSTRING 源码修复接受／本地备份检查点
 
 父 dot 已接受非作者独立 SOURCEONLY PASS：harness 外层7行12处 state 改名 diagnosticState，fixture 内19处及输入／调用／计数／schema不变。候选9932bytes／SHA256 D3DB9459F830D44652367F6DE719E4567755BC00ACCDB6368FCD9AA525DBB1F1，仅源码接受，未编译未运行；终裁及闭环见 [plan](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/plan.md)、[原准备／父终裁记录](EVIDENCE/DOT-RAW-GSTRING-HARNESS-STATE-SOURCE-20261002/native-receipts.json)。作者仅记录父终裁。

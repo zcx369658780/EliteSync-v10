@@ -1,0 +1,14 @@
+{
+  "command": [
+    "docker",
+    "ps",
+    "-a",
+    "--filter",
+    "name=elitesync-v100",
+    "--format",
+    "{{.Names}} {{.State}}"
+  ],
+  "exit": 0,
+  "stdout_sha256": "7356212a123a07abec4ab42bacdcaeb55f7b5ef770a20df4bcbb9290903d79c3",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

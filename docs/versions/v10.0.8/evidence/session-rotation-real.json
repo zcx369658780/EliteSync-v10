@@ -1,0 +1,8 @@
+{
+  "actual_local_http": true,
+  "login_is_admin": true,
+  "session_cookie_rotated": true,
+  "csrf_rotated": true,
+  "logout_is_login": true,
+  "old_session_cannot_access_after_logout": true
+}

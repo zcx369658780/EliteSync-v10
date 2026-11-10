@@ -22,7 +22,7 @@ void main() {
     });
 
     expect(entity.authorLayerLabel, '示例动态');
-    expect(entity.authorLayerBadge, '示例动态 · 广场可见');
+    expect(entity.authorLayerBadge, '示例动态 · 仅自己可见');
   });
 
   test(
@@ -47,7 +47,7 @@ void main() {
       });
 
       expect(entity.authorLayerLabel, '示例动态');
-      expect(entity.visibilityLabel, '公开');
+      expect(entity.visibilityLabel, '仅自己可见');
     },
   );
 

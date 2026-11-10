@@ -1,0 +1,12 @@
+[
+  {
+    "command": "C:\\Users\\zcxve\\AppData\\Local\\Programs\\Python\\Python311\\python.exe C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\docs\\versions\\v10.0.7\\local-http-front.py",
+    "created": "2026-10-15T17:36:59.974318+08:00",
+    "pid": 49156
+  },
+  {
+    "command": "C:/tools/php85/php.exe -S 127.0.0.1:8001 -t public public/index.php",
+    "created": "2026-10-15T17:36:59.967997+08:00",
+    "pid": 16692
+  }
+]

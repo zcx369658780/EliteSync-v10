@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-14T23:58:14.175261+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/admin/matching/rounds/1447cf03-341b-437a-b1a6-35e35af6e2d9/reveal",
+  "request": {
+    "state_version": 3,
+    "reason_code": "v1007-authorized-development"
+  },
+  "status": 500,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "internal_error",
+      "message": "Server error",
+      "details": null
+    }
+  }
+}

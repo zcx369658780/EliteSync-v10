@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "artisan",
+    "migrate",
+    "--force"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 0,
+  "stdout_sha256": "d75bf5b1c98a7c798243193f301cb01ee55225eb6424eca69271b3b8312176ae",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

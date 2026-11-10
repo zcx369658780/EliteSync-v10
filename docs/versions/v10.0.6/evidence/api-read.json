@@ -1,0 +1,82 @@
+[
+  {
+    "operation": "profile/basic",
+    "role": "target",
+    "status": 200,
+    "data": {
+      "id": 2,
+      "name": "V1006 Fictional target",
+      "phone": "19900000602",
+      "birthday": null,
+      "birth_time": null,
+      "zodiac_animal": null,
+      "gender": "male",
+      "city": "V1006 City A",
+      "relationship_goal": "friendship",
+      "birth_place": null,
+      "birth_lat": null,
+      "birth_lng": null,
+      "moderation_status": "normal",
+      "moderation_note": null,
+      "realname_verified": false,
+      "profile_readiness": {
+        "contract_version": "profile_readiness_v1",
+        "matching_eligibility": {
+          "eligible": false,
+          "reason_code": "synthetic_account_excluded",
+          "required_answer_count": 20,
+          "answered_answer_count": 0,
+          "missing_answer_count": 20,
+          "next_action_code": "contact_support"
+        },
+        "showcase": {
+          "draft_state": "none",
+          "review_status": "not_submitted",
+          "publication_status": "not_published",
+          "published_version_current": false,
+          "affects_matching_eligibility": false
+        }
+      }
+    }
+  },
+  {
+    "operation": "profile/basic",
+    "role": "control",
+    "status": 200,
+    "data": {
+      "id": 3,
+      "name": "V1006 Fictional control",
+      "phone": "19900000603",
+      "birthday": null,
+      "birth_time": null,
+      "zodiac_animal": null,
+      "gender": "male",
+      "city": "Initial Development City",
+      "relationship_goal": "friendship",
+      "birth_place": null,
+      "birth_lat": null,
+      "birth_lng": null,
+      "moderation_status": "normal",
+      "moderation_note": null,
+      "realname_verified": false,
+      "profile_readiness": {
+        "contract_version": "profile_readiness_v1",
+        "matching_eligibility": {
+          "eligible": false,
+          "reason_code": "synthetic_account_excluded",
+          "required_answer_count": 20,
+          "answered_answer_count": 0,
+          "missing_answer_count": 20,
+          "next_action_code": "contact_support"
+        },
+        "showcase": {
+          "draft_state": "none",
+          "review_status": "not_submitted",
+          "publication_status": "not_published",
+          "published_version_current": false,
+          "affects_matching_eligibility": false
+        }
+      }
+    }
+  }
+]

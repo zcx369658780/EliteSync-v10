@@ -1,0 +1,141 @@
+{
+  "utc": "2026-10-15T00:16:11.001958+00:00",
+  "role": "admin",
+  "method": "GET",
+  "path": "/api/v1/admin/matching/rounds/2fd673e0-c40b-460c-b35f-47ea8dc24f9e",
+  "request": null,
+  "status": 200,
+  "body": {
+    "data": {
+      "id": 5,
+      "round_key": "2fd673e0-c40b-460c-b35f-47ea8dc24f9e",
+      "channel_key": "v1007-lease-recovery-01",
+      "cadence_key": "2026-10-15",
+      "state": "failed",
+      "state_version": 3,
+      "scheduled_for": null,
+      "reveal_at": "2026-10-14T00:00:00.000000Z",
+      "revealed_at": null,
+      "closed_at": null,
+      "active_run_id": 5,
+      "created_by_type": "admin",
+      "created_by_id": 1,
+      "source": "admin",
+      "failure_code": "lease_expired",
+      "failure_summary": "Run lease expired.",
+      "created_at": "2026-10-15T00:16:08.000000Z",
+      "updated_at": "2026-10-15T00:16:10.000000Z",
+      "active_run": {
+        "id": 5,
+        "round_id": 5,
+        "run_key": "45cf0c90-8de5-4f59-879f-257eff75df17",
+        "idempotency_key": "v1007-lease-recovery-01-execute",
+        "correlation_id": "eb3e2cc8-5fa0-4c38-affb-b589aa821723",
+        "attempt_no": 1,
+        "state": "failed",
+        "outcome": null,
+        "trigger_source": "admin",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "eligible_count": 0,
+        "candidate_count": 0,
+        "pair_count": 0,
+        "no_candidate_count": 0,
+        "lease_owner": "v1007-lease-evidence",
+        "lease_expires_at": "2026-10-15T00:16:09.000000Z",
+        "heartbeat_at": "2026-10-15T00:16:08.000000Z",
+        "started_at": "2026-10-15T00:16:08.000000Z",
+        "finished_at": "2026-10-15T00:16:10.000000Z",
+        "eligibility_cutoff_at": "2026-10-15T00:16:08.000000Z",
+        "algorithm_version": "v1",
+        "config_version": "c1",
+        "candidate_digest": null,
+        "digest_version": null,
+        "digest_key_version": null,
+        "supersedes_run_id": null,
+        "error_code": "lease_expired",
+        "error_summary": "Run lease expired; a new retry attempt is required.",
+        "timeout_seconds": null,
+        "created_at": "2026-10-15T00:16:08.000000Z",
+        "updated_at": "2026-10-15T00:16:10.000000Z"
+      },
+      "runs": [
+        {
+          "id": 5,
+          "round_id": 5,
+          "run_key": "45cf0c90-8de5-4f59-879f-257eff75df17",
+          "idempotency_key": "v1007-lease-recovery-01-execute",
+          "correlation_id": "eb3e2cc8-5fa0-4c38-affb-b589aa821723",
+          "attempt_no": 1,
+          "state": "failed",
+          "outcome": null,
+          "trigger_source": "admin",
+          "actor_type": "admin",
+          "actor_id": 1,
+          "reason_code": "v1007-authorized-development",
+          "eligible_count": 0,
+          "candidate_count": 0,
+          "pair_count": 0,
+          "no_candidate_count": 0,
+          "lease_owner": "v1007-lease-evidence",
+          "lease_expires_at": "2026-10-15T00:16:09.000000Z",
+          "heartbeat_at": "2026-10-15T00:16:08.000000Z",
+          "started_at": "2026-10-15T00:16:08.000000Z",
+          "finished_at": "2026-10-15T00:16:10.000000Z",
+          "eligibility_cutoff_at": "2026-10-15T00:16:08.000000Z",
+          "algorithm_version": "v1",
+          "config_version": "c1",
+          "candidate_digest": null,
+          "digest_version": null,
+          "digest_key_version": null,
+          "supersedes_run_id": null,
+          "error_code": "lease_expired",
+          "error_summary": "Run lease expired; a new retry attempt is required.",
+          "timeout_seconds": null,
+          "created_at": "2026-10-15T00:16:08.000000Z",
+          "updated_at": "2026-10-15T00:16:10.000000Z"
+        }
+      ]
+    },
+    "audits": [
+      {
+        "action": "schedule",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": null,
+        "before_state": null,
+        "after_state": {
+          "state": "preparing"
+        },
+        "created_at": "2026-10-15T00:16:08.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "pending"
+        },
+        "created_at": "2026-10-15T00:16:08.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "failed",
+          "error_code": "lease_expired"
+        },
+        "created_at": "2026-10-15T00:16:10.000000Z"
+      }
+    ],
+    "meta": {
+      "compensation_enabled": false
+    }
+  }
+}

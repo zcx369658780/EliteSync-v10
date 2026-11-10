@@ -46,7 +46,7 @@ final class ProductConnectionStateTransitionEvaluatorTest extends TestCase
         self::assertTrue($result['connection_active_for_downstream_consideration']);
     }
 
-    /** @dataProvider allowedTransitionProvider */
+    #[\PHPUnit\Framework\Attributes\DataProvider('allowedTransitionProvider')]
     public function testCanonicalTransitionIsAdmissible(string $from, string $to): void
     {
         $result = $this->evaluateTransition($from, $to);
@@ -105,7 +105,7 @@ final class ProductConnectionStateTransitionEvaluatorTest extends TestCase
         self::assertStringNotContainsString('timeout', $encoded);
     }
 
-    /** @dataProvider terminalStateProvider */
+    #[\PHPUnit\Framework\Attributes\DataProvider('terminalStateProvider')]
     public function testTerminalSameIdentityStatesHaveNoOutgoingTransition(string $terminal): void
     {
         $result = $this->evaluateTransition($terminal, Evaluator::STATE_PENDING);

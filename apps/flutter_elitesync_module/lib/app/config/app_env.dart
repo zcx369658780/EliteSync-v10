@@ -7,6 +7,8 @@ class AppEnv {
     required this.apiBaseUrl,
     required this.useMockData,
     this.useLiveKitRtc = false,
+    this.wsBaseUrl = '',
+    this.restorationLocalBuild = false,
     this.useMockAuth = false,
     this.useMockQuestionnaire = false,
     this.useMockHome = false,
@@ -26,8 +28,10 @@ class AppEnv {
   final AppFlavor flavor;
   final String appName;
   final String apiBaseUrl;
+  final String wsBaseUrl;
   final bool useMockData;
   final bool useLiveKitRtc;
+  final bool restorationLocalBuild;
   final bool useMockAuth;
   final bool useMockQuestionnaire;
   final bool useMockHome;

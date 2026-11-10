@@ -1,0 +1,3 @@
+elitesync-v1008-db
+Restarted exact V1008 container, same volume retained; no seed.
+Only owned R1 front/PHP processes stopped.

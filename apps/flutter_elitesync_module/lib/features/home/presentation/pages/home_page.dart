@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/features/platform_v1014/platform_home_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +14,13 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
+      return const PlatformHomePage();
+    }
+    if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
+        const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
+      return const SlowDatingHomePage();
+    }
     final t = context.appTokens;
     final projection = ref.watch(calmHomeProjectionProvider);
     return BrowseScaffold(

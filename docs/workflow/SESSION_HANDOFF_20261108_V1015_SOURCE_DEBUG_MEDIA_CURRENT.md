@@ -1,0 +1,203 @@
+# 2026-11-10 case05前台资格拒绝后终态保存、Owner交接（CURRENT ENTRY）
+
+本次补存11月9日实际运行及立即停止中断的保存；Owner今日要求完成最新完整任务后本地/GitHub保存并交接。模拟器APP ready已证，手机身份/user0/APK/亮屏解锁通过，但010因非目标或混合UI拒绝，未截图/点击/输入/Activity；Owner后报桌面或其他APP。E控制40+UI11=51，phone旧37+本11=48/240余192；E启动/安装各耗1余0，B未claim仍0耗1余/新增0，唯一末端case05/backend已STOP，不余额复活。详见[终态节点](V1015_PHONE_FOREGROUND_REJECTED_CLOCK_DOMAIN_HANDOFF_20261110.md)。
+
+scope306.263因Python3.11 GetTickCount64与QPC原点混用无效，原件保留；独立C#原900秒门保持。HOST_ONLY同域修正一项测试/两种原点场景通过及非作者复核，未整合冻结case05、无新动态候选。controller0、清理无错；双端/媒体NOT_RUN、缓存效果UNKNOWN。源码1f/APK b621及全部保护不变，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；本次保存后交接结束，不自动启动新范围或新增额度。
+
+最新私有终态：case05/runtime-closeout-foreground-20261109内HANDOFF_PROMPT.txt、IMPLEMENTATION_REPORT.md、final-local-github-receipt-private.json。根目录prepared回执/报告不覆盖。下一会话先整合同域时钟普通工程，再准备手机APP前台先行具体范围；一般APP/UI权限保留，旧STOP及设备具体批准门保持。功能优先、UI最后，不合main/发布、不启v10.1.6。
+
+---
+
+# 2026-11-09 原Redmi连接/serial只读核对通过，阶段完成STOP（CURRENT ENTRY）
+
+Owner批准后独立连接检查2条均exit0，原固定机state=device、serial一致，其他设备0；不进入APP。phone累计37/240、余203，B仍未claim余1/末端case04 STOP不变，E/B/APP动作0。详见[本节点](V1015_REDMi_READONLY_CONNECTION_VERIFIED_20261109.md)。前次notfound原因UNKNOWN，不改旧失败；本阶段成功后也STOP不可重跑。下一完整范围应先手机预检再新E启动额度，当前未装配/授权。双端/媒体NOT_RUN，源码/APK及全部保护保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新实际私有回执为v1015-redmi-connection-readonly-20261109-case01/runtime-closeout-20261109/final-local-github-receipt-private.json；根目录旧回执是准备原证，不覆盖。
+
+---
+
+# 2026-11-09 模拟器ready/首帧已证，手机指定serial未找到后STOP（CURRENT ENTRY）
+
+case04 E启动/安装/真实空手机号焦点/APP PNG与EUI qualify通过；phone首条get-serialno报固定机notfound后整个范围STOP。E控制40+EUI11=51，phone1/累计35余205；E286.047秒/controller0/清理无错，B无claim仍余1、末端封在case04。Owner后报USB已接/允许调试仅Owner报告；原因UNKNOWN。详见[本节点](V1015_EMULATOR_READY_PHONE_ABSENT_PRECLAIM_STOP_20261109.md)。独立2条/60秒连接只读候选11host/非作者通过，尚未批准或运行，不操作APP/E/B，不增总额或B次数。IME/登录/双向对话/媒体NOT_RUN；源码/APK、旧STOP及全部保护保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新实际回执在case04/runtime-closeout-phone-absent-20261109/final-local-github-receipt-private.json；下一只读连接候选根v1015-redmi-connection-readonly-20261109-case01，无grant/claim，不复活case04。
+
+---
+
+# 2026-11-09 登录观察器调用链主机整合45项通过，未设备复测（CURRENT ENTRY）
+
+完整表单基线与可见目标焦点分开，绑定当前scope/端/APK且限180秒；startup/prepare/两端focus/login/pre-backend/backend authority一起整合，输入与只读门保持。修正仅focus不能证明IME可见的P2：唯一IME可见且fresh本APP foreground才单Back，否则只读等/停。45host检查及非作者复核通过，实际IME字段资格UNKNOWN。详见[本节点](V1015_LOGIN_OBSERVER_CHAIN_HOST_INTEGRATED_20261109.md)。包仅HOST_ONLY，无新动态候选/授权/claim，手机和B均0；旧case03 STOP与启动/安装已耗保持，原B仍余1/phone剩206，不能重跑。源码/APK及全部保护不变，双端/媒体NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新普通工程私有根v1015-login-observer-integration-host-20261109-case01，读IMPLEMENTATION_REPORT.md、GREEN-final-45.txt、非作者复核及final-local-github-receipt-private.json；它不是可执行设备范围。上一实际运行原证仍在case03/runtime-closeout-20261109。
+
+---
+
+# 2026-11-09 5GiB门通过、真实手机号焦点已证；观察器双框可见假设停止（CURRENT ENTRY）
+
+按Owner5GiB/分阶段指示继承原未耗boot/B各1，无新次数。case03 boot/install/Activity各1，45控制ADB/153.844秒/清理无错；034两空enabled框后单tap，038/040/042新XML均唯一空enabled手机框focused=true，实际焦点已证。旧len(fields)==2把单框聚焦态判None而STOP，未达APP PNG/ready。手机0/仍34剩206，B无claim仍0耗1余，末端已STOP在case03/backend。另存startup helper12host修正但未整合后续同类校验/未准备新动态。详见[本节点](V1015_MOBILE_FOCUS_OBSERVED_VISIBILITY_OBSERVER_STOP_20261109.md)。双端/媒体NOT_RUN，源码/APK及全部保护保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新实际私有回执为case03/runtime-closeout-20261109/final-local-github-receipt-private.json；先完整修观察器调用链，不重跑当前STOP或凭余1后端复活入口。
+
+---
+
+# 2026-11-09 新范围启动前内存门停止，模拟器与后端均未耗（CURRENT ENTRY）
+
+Owner批准新case02后，fresh可用8910MiB低于10240MiB，资源断言在launch claim/ADB前exit1。模拟器/安装/Activity/APP/手机/后端均0，无自有进程需清理。启动0耗1余、后端原0耗1余及手机剩206保持，但本入口与emulator/backend已STOP，不直接重跑或降低门槛；不重复申请未耗后端。详见[本节点](V1015_PRELAUNCH_MEMORY_GATE_STOP_20261109.md)。当前先需释放内存，未准备新例；旧STOP/原证和全部保护保持，双端/媒体NOT_RUN，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新实际私有回执位于case02/runtime-closeout-resource-20261109/final-local-github-receipt-private.json；根目录旧同名回执及报告为运行前准备原证，不覆盖、不当当前终态。
+
+---
+
+# 2026-11-09 新模拟器启动离线，安装前停止（CURRENT ENTRY）
+
+Owner批准本次新启动后，新模拟器在第三份启动查询报告device offline，按transport硬停止条件退出。5控制ADB/24.046秒；安装/Activity/APP/手机均0，后端无claim仍0耗1余，当前指定到已STOP的11月9日case01/backend，不复活入口或重复申请未耗次数。清理无错，自有controller退出及私有端口关闭另核通过。离线原因UNKNOWN，非APP故障结论；旧STOP、已耗及保护保持。详见[本节点](V1015_EMULATOR_BOOT_OFFLINE_PREINSTALL_STOP_20261109.md)。双端/媒体NOT_RUN，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；本节点未准备新例。
+
+最新实际运行私有回执位于case01/runtime-closeout-20261109/final-local-github-receipt-private.json；根目录同名旧回执为运行前准备原证，勿覆盖或当作实际终态。
+
+---
+
+# 2026-11-08 真实登录页节点已观察、焦点未核；Owner保存并停止（CURRENT ENTRY）
+
+case03新模拟器OS Awake/未锁/root可读，同b621安装通过；Activity timeout后第四份fresh XML已观察真实账号登录/两个空enabled字段。点一次手机号后fresh dump nullroot，正确拒旧XML，焦点UNKNOWN，未达APP截图/ready。40控制ADB/137.938秒、Job及私有ADB清理无错；手机0/累计34剩206，后端无claim仍0耗1余。Owner要求本次保存后立即停下、明天再继续；scope/backend已STOP封口，保存后不修focus/准备新例/另开动态，明天不自动运行或续额。详见[本节点](V1015_LOGIN_UI_OBSERVED_FOCUS_UNKNOWN_OWNER_STOP_20261108.md)。双端/媒体NOT_RUN，产品源码未改，全部保护/功能优先UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-emulator-redmi-dual-chat-20261108-case03`，先读HANDOFF_PROMPT.txt、IMPLEMENTATION_REPORT.md和final-local-github-receipt-private.json。未耗后端1当前唯一指定到已STOP case03/backend，不能重跑旧入口；没有case04候选。
+
+---
+
+# 2026-11-08 模拟器原生UI无根节点，观察器解析错误停止（CURRENT ENTRY）
+
+Owner批准case02后新boot/install成功，Activity timeout13089ms；dump exit0却stderr nullroot，cat exit0却缺文件错误文本，被观察器当XML解析而STOP。是观察工具缺陷，不是APP失败证据，未等完180秒。63控制ADB/124.859秒、Job和私有ADB清理无错；手机0/累计34、后端无claim仍0耗1余，旧STOP/已耗及转交保持。新case03仅准备，先核模拟器OS亮屏/未锁/可读画面再装包，fresh dump门修正含post-focus/两端UI；13host检查通过，尚未批准/转交/运行，不复活旧实例或重复申请未耗后端。详见[本节点](V1015_EMULATOR_NULL_ROOT_OBSERVER_STOP_20261108.md)。产品源码未改，APP首屏/双端互发/媒体未证，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，功能优先/UI最后及全部保护保持。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-emulator-redmi-dual-chat-20261108-case02`，先读IMPLEMENTATION_REPORT.md与final-local-github-receipt-private.json；case03候选尚未批准。原余1后端当前指定到已STOP case02/backend，不得重开旧入口。
+
+---
+
+# 2026-11-08 双端新模拟器启动/安装成功，Activity等待超时停止（CURRENT ENTRY）
+
+Owner提出模拟器+同Redmi双测试账号对话，新隔离AVD启动/ARM64资格/同b621一次安装成功；唯一Activity exit0但Status timeout/11297ms，原Status ok断言STOP，APP首屏UNKNOWN、不能判崩溃。66.687秒/36ADB，Job及私有ADB清理无错；手机ADB0/累计34，后端无claim仍0耗1余。新case02仅准备，9host检查通过：同一次Activity后最多180秒观察真实空登录+focus才继续，不将timeout作PASS；尚未批准/转交/运行，不重开旧STOP或重复申请未耗后端。详见[本节点](V1015_DUAL_EMULATOR_INSTALLED_ACTIVITY_WAIT_TIMEOUT_20261108.md)。双端实际登录/互发/DB及媒体均NOT_RUN，全部保护与功能优先/UI最后保持，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-emulator-redmi-dual-chat-20261108-case01`，先读IMPLEMENTATION_REPORT.md与final-local-github-receipt-private.json；case02候选尚未批准，原后端余1当前绑定已STOP case01/backend。禁止重跑旧入口。
+
+---
+
+# 2026-11-08 等待后仍持续对话页，手机接续再次preclaim停止（CURRENT ENTRY）
+
+Owner批准新phone接续后20ADB：Back一次、随后4份仍chat，未见“我的”而STOP；前14+本20合计34/240，清理无错。无backend claim，原后端仍0耗1余，两旧phone入口及当前接续均STOP/封口，不能凭余额复活。页面等待未使导航通过，实际输入/路由/亮屏解锁原因UNKNOWN；源码未见chat自定义返回拦截，不盲改产品或再开同类完整测试。图片/短片/冷启/播放/撤权NOT_RUN，已装b621/1f真机效果未证。详见[本节点](V1015_NAVIGATION_PERSISTENT_CHAT_PRECLAIM_STOP_20261108.md)。没有新增构建/安装/后端次数，全部保护及功能优先/UI最后保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-autonomous-navigation-persistent-stop-20261108-case01`，先读IMPLEMENTATION_REPORT.md及final-local-github-receipt-private.json；20ADB原证仍在上一接续根phone-media。后端未耗1已唯一转交至已停止接续根，旧STOP不动，不重开旧入口。
+
+---
+
+# 2026-11-08 自主导航preclaim停止，后端未耗1保留（CURRENT ENTRY）
+
+Owner批准scope06后仅14ADB：同机/已装b621核对，点Back后首份仍chat，未见“我的”而STOP；输入/安装/Activity/截图/导入0，自有UI清理无错。没有backend claim，后端0耗1余，原phone STOP保持，不重复申请未耗后端。私有导航候选改为等待目标稳定，6项host检查通过，实际原因UNKNOWN。新的手机接续仅准备：226条加14合计240，拟原子独占继承原未耗后端1，新增后端0；尚无phone批准/transfer/claim，不自动启动。详见[本节点](V1015_AUTONOMOUS_NAV_PRECLAIM_STOP_BACKEND_UNSPENT_20261108.md)。产品源码未改，媒体/冷启/播放/撤权NOT_RUN；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，功能优先/UI最后及全部原保护保持。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-autonomous-picker-media-continuation-20261108-case01`，读IMPLEMENTATION_REPORT.md、PREPARATION.md与final-local-github-receipt-private.json。原scope06 phone根v1015-autonomous-picker-media-20261108-case01已STOP，后端未claim；不得重开旧入口。
+
+---
+
+# 2026-11-08 缓存修正新Debug已装，选图超时停止；自主UI授权已记录（CURRENT ENTRY）
+
+源码1f936d25新包b621fb88…实际构建/同机更新通过；scope05登录/CN/MC/聊天通过，120秒9次仍见picker后STOP，无手机媒体/消息POST，新修正真机效果UNKNOWN。101ADB、后端235.547秒/已耗1余0、清理无错、182旧容器State不变。无后端UI诊断8条仅见对话连接错误、到期清理结束，无点击截图，选图确认步骤未查明。Owner自主APP/相关选图UI授权已记录，但不续构建/后端预算或撤旧STOP。新scope06候选仅准备、9纯检查通过，尚未授权/运行。详见[本节点](V1015_CACHE_FIX_APK_INSTALLED_PICKER_TIMEOUT_20261108.md)。仍功能优先/UI最后，10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-retained-cache-fix-build-media-20261108-case01`，先读IMPLEMENTATION_REPORT.md与final-local-github-receipt-private.json；下一候选v1015-autonomous-picker-media-20261108-case01。无需重新构建或安装；新的后端一次需当前明确批准。
+
+---
+
+# 2026-11-08 双页共享缓存竞争受控复现并修正，GREEN47通过（CURRENT ENTRY）
+
+源码1f936d25仅收窄普通在线列表成功刷新对共享缓存的全局失效，真正离线恢复及安全硬锁保留；新双页真实路由用例RED锁页失败→GREEN47通过，82输入hash闭合。旧测试fake签名同步修正，无跳过检查。两阶段各一次已耗/无重试，清理无错、SDK关键hash不变；隔离assets/config诊断保留。尚未产新APK/装机，当前手机仍66524ef6…旧65b，设备效果UNKNOWN；本轮无手机/后端/构建/安装，旧STOP保持。详见[本节点](V1015_RETAINED_LIST_CACHE_RACE_FIXED_UNIT_VERIFIED_20261108.md)。Owner明确功能优先、UI最后按我的和设置→消息列表和聊天→首页及主要导航；计划已记录，UI未改。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index和%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-retained-list-cache-regression-20261108-case01`，先读final-local-github-receipt-private.json与IMPLEMENTATION_REPORT.md。本交接不授新产包/设备/后端次数。
+
+---
+
+# 2026-11-08 Owner头像上传成功，新65b包缓存锁页仍复现（CURRENT ENTRY）
+
+Owner另授新scope04后，同机同已装新包实际登录/选图返回；手机POST媒体200、private image16900B/DB/backing一致，但8快照attachment0、无手机POST消息，实际APP显示可信登录或加密保存未核验而锁页。65b修正未解决该真机路径；唯一根因UNKNOWN。后端224.391秒已耗1余0、88ADB、清理无错、179旧容器State字节一致；无新SDK/构建/安装/Activity/force-stop。旧STOP保持。详情见[本节点](V1015_OWNER_AVATAR_UPLOAD_LOCK_REPRODUCED_20261108.md)。下一步优先验证列表+聊天共享缓存代际的双页并发候选，不绕过安全锁或自动新增运行次数。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-owner-media-retest-20261108-case01`，先读final-local-github-receipt-private.json及IMPLEMENTATION_REPORT.md。下方历史保存入口不增加次数。
+
+---
+
+# 2026-11-08 独立头像副本系统索引已证，选择器可见性仍未知（CURRENT ENTRY）
+
+Owner明确批准独立单副本检查，同Redmi/已装新包不变，文件hash与精确媒体索引记录（JPEG/17975B/is_pending0）匹配；14ADB、清理无错，零后端/构建/安装/Activity/UI截图。本诊断已耗1余0，原媒体后端仍已耗1余0，旧STOP/claim保持。只证本次shell可查询索引，不证目标选择器/APP权限或前次索引，媒体真链仍未完成。详见[本节点](V1015_EXACT_IMAGE_INDEX_VERIFIED_20261108.md)。Local-first普通工程及全部保护边界保持，仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；下一设备范围需具体授权，不自动续跑。
+
+最新私有根：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-image-index-diagnostic-20261108-case01`，先读final-local-github-receipt-private.json和IMPLEMENTATION_REPORT.md。下方保留历史快照，不据旧“余1”续用。
+
+---
+
+# 2026-11-08 同机焦点/登录通过，图片选择器等待超时停止（CURRENT ENTRY）
+
+**PHONE_FOCUS_LOGIN_VERIFIED / PICKER_MANUAL_TIMEOUT_STOP / ORIGINAL_BACKEND_SPENT_1_REMAINING_0 / G2_FALSE**
+
+Owner回复“同意，手机已就位”后才启动手机接续，实际同Redmi/已装新APK66524ef6…/空表单手机号focus通过；真实虚构账号登录、CN/MC和聊天peer文字通过。只消费原V1015_REDMI_PRIVATE_MEDIA_20261108_03未耗后端1，canonical claim在原根独占记录，未增后端次数，旧phone STOP/invocation原文件保持。本次无产品源码改动、构建/安装/Activity/force-stop/新引擎。
+
+四份自有媒体副本导入/hash通过，但没有证明系统选择器可见；首次选图无法隔离测试目录，转Owner手动选择，120秒未观察到返回APP后停止。Owner随后报告列表无之前头像副本；回复在入口退出/副本清理之后到达，实际观察相对清理时机UNKNOWN，具体原因UNKNOWN。手机媒体/消息POST均0；图片上传发送渲染、视频/冷启/播放/撤权/正常退出NOT_RUN，锁页修正真机效果仍未证。
+
+110ADB，与前次27合计137/240；后端234.328秒已耗1余0，失败无重试。清理无错，两reverse/UI/四副本精确清理；自有三容器停止/PID0/无OOM，API137不归因，卷/网络保留；176既有容器完整State不变且全停止。LOCAL_ONLY根名v1015-redmi-media-continuation-20261108-case01，读IMPLEMENTATION_REPORT.md、verified-continuation-stop-private.json、phone-media failure/cleanup、backend outcome及最终回执。ledger承接22728项只追加，不重扫旧SDK/AVD/Sources。下一动态需当前具体范围授权，先解决测试媒体在选择器可见的准备方式，不直接重跑本次入口或复活旧STOP。仍10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，原dirty根255项/index及%SystemDrive%保护，不合main/发布、不启v10.1.6。
+
+---
+
+最新私有回执：`C:\Users\zcxve\EliteSyncDev\v1015-redmi-media-continuation-20261108-case01\final-local-github-receipt-private.json`。下方为不可覆盖的历史交接；其中“后端余1”只表示当时快照，现已独占消费为0。
+
+---
+
+# v10.1.5 源码Debug与真机媒体会话交接｜2026-11-08
+
+**SESSION_SAVED / NEW_SOURCE_DEBUG_APK_INSTALLED / PHONE_PRECLAIM_FOCUS_STOP / BACKEND_0_SPENT_1_REMAINING / G2_FALSE**
+
+此文件是保存与接续材料，不是新动态预算、STOP覆盖、整版接受或发布授权。保存前HEAD为ad0d56262c844755ebf1e55b64bcec2f5bc0dab3；保存后完整HEAD见本文件所在提交和LOCAL_ONLY最终回执。Owner要求“这次测试后停下准备交接”，当前会话保存后停止，不自动启动后继任务。
+
+## 最小启动
+
+- 产品根D:\EliteSync-v10-product-v1015-20261101；仓库zcx369658780/EliteSync-v10；分支codex/v10.1.5-software-continuation-20261101；origin git@github.com:zcx369658780/EliteSync-v10.git。
+- 先核实际根/remote/分支/HEAD/工作区/index，保留原有无关%SystemDrive%/。只读产品AGENTS、ACTIVE_STATE顶部、CURRENT_WORKFLOW顶部、本交接和必要具名原证/源码。不递归加载全部Sources/旧日志，不重做治理迁移/ZIP/网页派单/94映射/框架升级。
+- 最新私有保存根C:\Users\zcxve\EliteSyncDev\v1015-redmi-focus-media-final-20261108-case01；先读final-session-handoff-local-github-receipt-private.json，再读IMPLEMENTATION_REPORT.md、phone-preclaim-failure-private.json、phone-STOP-private.json、orchestrator-preclaim-cleanup-private.json。最新ledger路径/hash/数量见回执，承接22576项，仅追加本节点和上轮最终回执；不重扫旧SDK/AVD/Sources/保留派生缓存。
+
+## Owner决定与工作方式
+
+Local-first：顾问负责路线，Codex负责实现/调试/测试/代码审查/工程验收/常规Git/进度。已授权同类普通本机工程不逐小步再问；具体一次预算/claim/STOP、设备/真实数据/外部服务/费用/生产/发布/重大版本继续保留。自测、非作者Codex、外部独立审查、Owner接受与发布分别记录。
+
+整个v10承接旧EliteSync补充功能、提高APP完成度；v10.1.6后仍有软件完善/整合/联合质量，不自动进入运营。v10.1.6路线只规划，未启动；不合main/归档镜像/发布。
+
+Owner已允许补齐缺失Flutter Debug依赖和具名FFmpeg/ffprobe及纯合成短片输入；均已保存，不自动扩大为下载升级或接受新许可。优先真正源码Debug/热重载和稳定私有工作区，保留已验证AAR→APK路线；准备耗时与双遍枚举/重复metadata观察不是本机profiling，不降低冻结保护。
+
+同一Redmi K80 Ultra为Owner自己的日常手机，已授权操作EliteSync测试APP及具名媒体；未获得其他个人资料或其他APP操作权。Owner指定Pictures顶部三图可私有测试，原件不改；选择器不能隔离测试目录时交Owner手动选，不浏览个人图库。FD02继续排除。
+
+不用新VM、不依赖DOT。Owner曾按次允许现有Docker/WSL2开发引擎启动；不是任意重启许可。本轮新授权明确不含新引擎启动。阿里云只讨论备选，无云端权限。
+
+## 新源码Debug包已产出并更新手机
+
+修正65b22f632cf108f34018fd22de6665eb81933757；构建输入98722adcecbed0bdecddf0474734aa8b8276bb42；apps树588c408dd594eabcc83599a2af9596b4c7cb1691、services树4530ae85754a2f3698d073182a47038708f2cb55。
+
+新包路径C:\Users\zcxve\EliteSyncDev\v1015-foreground-fix-rebuild-media-20261108-case01\delivery\EliteSync-10.1.5-foreground-fix-arm64-debug.apk；154066381字节，SHA256 **66524ef65b5525f3c0a2942954cbcea4a2d56d634b0a4c738165c010438c3a06**。com.elitesync.v1015dev /10.1.5-dev /1010501 /arm64-v8a /debuggable，同旧Debug签名。
+
+194.891秒/Gradle3m13s、345任务（21执行/324 up-to-date），root/controller0，峰Job2697871360字节；真实compileFlutterBuildDebug执行，JIT kernel更新，完整ZIP/签名/版本/ARM64及官方Debug引擎代码链核验通过。一次更新安装成功，同机用户0回读包hash一致，无清空/卸载/新权限。后端在构建controller退出后才启动；构建已耗1余0，不能重跑。原AAR/旧源码Debug所有失败/claim/STOP保持；不再换目录续额。
+
+后续新AAR/Debug host保持各Job4GiB＋1GiB余量、启动5120MiB；64进程、SDK30分钟/host35分钟/本实例45秒收尾、工作卷8GiB/输出2GiB采样、离线禁下载、串行，不是整机5GiB封顶。现有入口启动一次fresh完整核验，不在launch前重复全量preflight。资源不足或preclaim阻断保留余额，不轮询资源自动启动；不自动更改其他独立合同。
+
+构建前CMake派生索引硬链接按字节/mtime保留后独立化；派生Gradle transforms同卷移动保留28011文件/3052236036字节，manifest在上轮私有根。旧SDK/原始依赖/旧交付不动，8GiB检查未降低。新APK体积变化只读测得主要为ZIP条目间gap，未重打包/重签，不推断根因或性能。
+
+## 真机媒体三次节点须区分
+
+1. v1015-redmi-private-media-20261108-case01：旧源码Debug在同机真实登录/CN/MC后由Owner选头像，媒体POST200/private image16900B/backing/DB/hash和头像RGB匹配；没有手机POST消息，缓存核验锁页，唯一根因UNKNOWN。后端已耗1余0。随后65b修正重复resumed在途cache作废机制、current/picker拒绝timeLocked，40项定向Flutter检查通过；不是手机根因已证或故障已修复。
+2. v1015-foreground-fix-rebuild-media-20261108-case01的phone-media：新包构建/安装通过，后端74.843秒耗1余0；手机号首次点击后仍无focus，尚未输入而停止。49ADB含1install/1Activity/0force-stop，收尾无错；173个旧容器完整State不变，自有三个容器exited/PID0/无OOM，API137不归因，卷/网络保留。媒体/冷启/播放/撤权NOT_RUN。
+3. **最新**v1015-redmi-focus-media-final-20261108-case01：Owner另授一次并要求测试后交接。把手机号焦点门前移到后端claim前；同机用户0/新包hash/空表单回核，但绝对120秒手动等待最后两次节点仍未见focus。入口已退出后收到Owner“已点”，未续跑；实际触控相对最后观测时机UNKNOWN。27ADB，文字/安装/Activity/force-stop/素材导入0，自有UI文件收尾无错，未截图/浏览图库。**未创建backend claim、未启动后端；后端已耗0余1**。当前phone-STOP和invocation保持，不能拿未耗后端余额复活已STOP入口。下次应先协调屏幕操作时机与具体手机接续条件，不重复申请同一未耗后端次数，也不擅增次数。
+
+最新节点7项纯焦点正负/语法检查通过，非作者输入/实际原证复核无剩余P1/P2，非外部验收。未测新的Docker State/内存，不用旧快照启动。三个节点均未完成新包媒体真机全链，不把原锁页机制修正当设备效果已证。
+
+## 版本成果与剩余项
+
+仍 **10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING**。历史具名实际登录恢复/T0不续/退出、文字幂等重试/回复/冷启、五组WS撤权、A→C切号后绑定放行旧服务器确认保留；Dart旧回调实际到达UNKNOWN，设备缓存零写入未直接测量。
+
+真实MariaDB已有双同键、MC撤权与Block/CN关闭/peer禁用锁交接后端子范围；私有图片/短视频已有真实Linux validator、上传→消息/DB/backing hash→200/206→撤权旧URL拒绝的后端子范围。缓存单索引恢复及生命周期定向单元检查保留。均按各节点身份/限制使用，不计本次新测，也不拼为完整AC03/AC04/AC07或整版PASS。
+
+剩余：APP消息完整权限/并发/弱网矩阵，图片/短片选择发送渲染/冷启/播放/撤权；Android真实加密存储/15与30天/时间异常/清理失败和双索引均失；OS通知权限/锁屏/旧点击与Push token生命周期；合格双端RTC/AEC及撤权提交≤5秒停媒；同一最终APK→API→MariaDB→独立Web→重启读回集中验收。完整11项现状见PROGRESS，不按提交/测试数虚构完成率。
+
+## 保护与下一会话
+
+原D:\EliteSync-v10保持main@4bebc8f394248e254c1368a06fbdee5d2c883301、255状态，index SHA256 2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716；status SHA256 d6b9cfe5495c04742be8cfb4cef1ecf70751901085ca204569a4f7e12f9059e5。原dirty/untracked/index、worktrees、旧SDK、L11/L13、备份、数据库/卷及全部STOP不动；旧VM teardown UNKNOWN。
+
+不pull/reset/rebase/stash/clean/prune/force，不合main/发布或启动v10.1.6。凭据、SQL、二进制、许可、Owner素材与敏感设备原证不上GitHub。普通已授权工程可在新会话继续，但先核实际状态、未耗后端1与当前phone STOP，不复活已耗范围；需要新设备接续/Owner屏幕配合时只暂停该动态分项。当前会话到保存交接结束。

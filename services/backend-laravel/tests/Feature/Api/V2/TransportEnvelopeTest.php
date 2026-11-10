@@ -304,7 +304,7 @@ final class TransportEnvelopeTest extends TestCase
         $v1Slice = str_replace("\r\n", "\n", substr($source, $v1Start));
 
         self::assertSame(
-            '986308bc4a5d4978986ca55642753982ffb9a8979af4656623f72d187f680e13',
+            'ee56dcab57ded641f23039c30207a56d983b6d172670515af765d4cd7ab44d9d',
             hash('sha256', $v1Slice),
         );
         self::assertStringNotContainsString('/contracts/application-envelope', $v1Slice);
@@ -367,7 +367,7 @@ final class TransportEnvelopeTest extends TestCase
             'request_identity' => $requestIdentity,
             'family' => TransportNeutralApplicationRequestResponseContract::FAMILY_PROJECTION_RETRIEVAL,
             'semantic_payload' => [
-                'query' => $this->query(),
+                'query' => $this->transportQueryFixture(),
                 'request_bindings' => $this->projectionBindings(),
             ],
         ];
@@ -387,7 +387,7 @@ final class TransportEnvelopeTest extends TestCase
             'request_identity' => $requestIdentity,
             'family' => TransportNeutralApplicationRequestResponseContract::FAMILY_PROTECTED_REVALIDATION,
             'semantic_payload' => [
-                'query' => $this->query(),
+                'query' => $this->transportQueryFixture(),
                 'required_bindings' => $requiredBindings,
                 'source_evidence' => CommonAuthorityEvidenceContract::evidence(
                     $record['bindings'],
@@ -472,7 +472,7 @@ final class TransportEnvelopeTest extends TestCase
     }
 
     /** @return array<string, mixed> */
-    private function query(): array
+    private function transportQueryFixture(): array
     {
         return [
             'record_family' => 'SYNTHETIC-HTTP-TRANSPORT-FAMILY',

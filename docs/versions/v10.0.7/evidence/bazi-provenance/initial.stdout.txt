@@ -1,0 +1,70 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDFDD                                                               5 / 5 (100%)
+
+Time: 00:01.162, Memory: 52.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1007BaziProvenanceTest::test_invalid_time_or_unsupported_timezone_rejects_before_user_or_profile_write
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 [
++    'id' => 1,
+     'name' => 'Elissa Bosco',
++    'phone' => '19900000771',
+     'email' => 'laney.wilkinson@example.com',
+     'email_verified_at' => '2026-10-15 00:16:55',
+     'password' => '$2y$04$ZzoIontcNEKsL4EAq5VpOemXQ/QnusaKQqGBGXeVAXqtP5FY3VLBC',
+     'remember_token' => 'N8gn6bA590',
+-    'phone' => '19900000771',
+-    'disabled' => false,
++    'created_at' => '2026-10-15 00:16:55',
++    'updated_at' => '2026-10-15 00:16:55',
++    'verify_status' => 'pending',
++    'disabled' => 0,
+     'birthday' => '1989-09-05 00:00:00',
++    'realname_verified' => 0,
++    'public_zodiac_sign' => null,
++    'public_mbti' => null,
++    'public_personality' => null,
++    'private_bazi' => null,
++    'private_natal_chart' => null,
++    'private_birth_place' => null,
++    'private_birth_lat' => null,
++    'private_birth_lng' => null,
+     'gender' => 'male',
+-    'updated_at' => '2026-10-15 00:16:55',
+-    'created_at' => '2026-10-15 00:16:55',
+-    'id' => 1,
++    'city' => null,
++    'relationship_goal' => null,
++    'is_synthetic' => 0,
++    'synthetic_batch' => null,
++    'zodiac_animal' => null,
++    'private_ziwei' => null,
++    'moderation_status' => 'normal',
++    'moderation_note' => null,
++    'role' => 'user',
++    'account_type' => 'normal',
++    'is_match_eligible' => 1,
++    'is_square_visible' => 1,
++    'exclude_from_metrics' => 0,
++    'banned_reason' => null,
++    'synthetic_batch_id' => null,
++    'synthetic_seed' => null,
++    'generation_version' => 'v1',
++    'account_status' => 'active',
++    'visibility_scope' => 'square',
++    'cleanup_token' => null,
+ ]
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007BaziProvenanceTest.php:65
+
+FAILURES!
+Tests: 5, Assertions: 24, Failures: 1, Deprecations: 2.

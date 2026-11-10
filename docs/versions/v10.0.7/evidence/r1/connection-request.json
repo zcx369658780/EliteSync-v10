@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-15T02:03:00.476925+00:00",
+  "role": "r1sender",
+  "method": "POST",
+  "path": "/api/v1/connections/12/connection",
+  "request": {
+    "action": "request",
+    "expected_revision": 0
+  },
+  "status": 200,
+  "body": {
+    "connection": {
+      "state": "CN_PENDING",
+      "revision": 1,
+      "requester_id": 11
+    },
+    "consent": {
+      "state": "MC_NONE",
+      "revision": 0,
+      "requester_id": null
+    },
+    "peer_id": 12,
+    "gates": {
+      "live_read_allowed": false,
+      "live_send_allowed": false
+    }
+  }
+}

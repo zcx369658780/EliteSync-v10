@@ -1,0 +1,71 @@
+{
+  "note": "Initial diagnostic expected 401 for media; private media intentionally denies anonymously with404. No request repeated.",
+  "results": [
+    {
+      "role": "bob",
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "GET",
+      "path": "/api/v1/matches/current",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "GET",
+      "path": "/api/v1/connections/2",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=2",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 401
+    },
+    {
+      "role": "bob",
+      "method": "GET",
+      "path": "/api/v1/media/1/content",
+      "status": 404
+    },
+    {
+      "role": "alice",
+      "method": "GET",
+      "path": "/api/v1/profile/basic",
+      "status": 200
+    },
+    {
+      "role": "alice",
+      "method": "GET",
+      "path": "/api/v1/connections/3",
+      "status": 404
+    },
+    {
+      "role": "alice",
+      "method": "GET",
+      "path": "/api/v1/matches/history",
+      "status": 200
+    },
+    {
+      "role": "alice",
+      "method": "GET",
+      "path": "/api/v1/media/1/content",
+      "status": 404
+    }
+  ]
+}
