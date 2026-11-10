@@ -31,6 +31,7 @@ class _NotificationPreferencesPageState
   bool _busy = false;
   PermissionStatus? _permission;
   String? _error;
+  Map<String, dynamic>? _failedSave;
 
   String? get _identity => ref.read(sessionProvider).asData?.value.accessToken;
   @override
@@ -78,27 +79,39 @@ class _NotificationPreferencesPageState
     });
   }
 
-  Future<void> _save({String? category, bool? enabled, bool? silent}) async {
+  Future<void> _save({String? category, bool? enabled, bool? silent}) =>
+      _savePayload({
+        if (category != null) 'categories': {category: enabled},
+        'silent': ?silent,
+      });
+
+  Future<void> _savePayload(
+    Map<String, dynamic> payload, {
+    bool retrying = false,
+  }) async {
     if (_busy) return;
     final identity = _identity;
-    setState(() => _busy = true);
-    final result = await ref
-        .read(apiClientProvider)
-        .put(
-          '/api/v1/notification-preferences',
-          body: {
-            if (category != null) 'categories': {category: enabled},
-            'silent': ?silent,
-          },
-        );
-    if (!mounted || identity != _identity) return;
+    if (identity == null) return;
     setState(() {
-      _busy = false;
-      _error = result is NetworkSuccess ? null : '保存未完成，请重试。';
+      _busy = true;
+      // A new choice replaces the old failed intent, rather than retrying it.
+      if (!retrying) _failedSave = null;
     });
-    ref.invalidate(notificationListProvider);
-    ref.invalidate(notificationUnreadCountProvider);
-    await _load();
+    try {
+      final result = await ref
+          .read(apiClientProvider)
+          .put('/api/v1/notification-preferences', body: payload);
+      if (!mounted || identity != _identity) return;
+      setState(() {
+        _failedSave = result is NetworkSuccess ? null : payload;
+      });
+      ref.invalidate(notificationListProvider);
+      ref.invalidate(notificationUnreadCountProvider);
+      // Readback may refresh the switches, but cannot acknowledge a failed PUT.
+      await _load();
+    } finally {
+      if (mounted && identity == _identity) setState(() => _busy = false);
+    }
   }
 
   Future<void> _requestPermission() async {
@@ -112,8 +125,16 @@ class _NotificationPreferencesPageState
   @override
   Widget build(BuildContext context) {
     ref.listen(sessionProvider, (previous, next) {
-      if (previous?.asData?.value.accessToken == next.asData?.value.accessToken) return;
-      setState(() { _categories = null; _busy = false; _permission = null; _error = null; });
+      if (previous?.asData?.value.accessToken == next.asData?.value.accessToken) {
+        return;
+      }
+      setState(() {
+        _categories = null;
+        _busy = false;
+        _permission = null;
+        _error = null;
+        _failedSave = null;
+      });
       if (next.asData?.value.isLoggedIn == true) Future.microtask(_load);
     });
     ref.watch(sessionProvider);
@@ -142,6 +163,18 @@ class _NotificationPreferencesPageState
               _error!,
               style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
+          if (_failedSave case final payload?) ...[
+            Text(
+              '保存未完成，请重试。',
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+            TextButton(
+              onPressed: _busy
+                  ? null
+                  : () => _savePayload(payload, retrying: true),
+              child: Text(_busy ? '正在保存…' : '重试保存'),
+            ),
+          ],
           if (_categories == null)
             TextButton(onPressed: _load, child: const Text('重新读取设置'))
           else ...[

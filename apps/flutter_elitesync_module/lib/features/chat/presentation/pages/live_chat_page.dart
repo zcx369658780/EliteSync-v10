@@ -41,6 +41,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _timeLocked = false;
   bool _hadTrustedCache = false;
   bool _picking = false;
+  int _peerEpoch = 0;
+  ChatPickedMedia? _pendingMedia;
+  ChatAttachmentKind? _pendingMediaKind;
+  int? _readyMediaAsset;
+  String? _uploadStatus;
   StreamSubscription? _socket;
   String get _cacheKey => 'live-chat:${widget.peerId}';
   PrivateCacheService get _cache =>
@@ -115,6 +120,21 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   @override
+  void didUpdateWidget(covariant LiveChatPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.peerId == widget.peerId) return;
+    _peerEpoch++;
+    _picking = false;
+    _reject('正在加载对话。');
+    _session = null;
+    _offline = false;
+    _sessionChanged = false;
+    _timeLocked = false;
+    _hadTrustedCache = false;
+    Future.microtask(_load);
+  }
+
+  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _cancelSocket();
@@ -173,6 +193,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _hasOlder = false;
       _historyExpanded = false;
       _historyError = null;
+      _pendingMedia = null;
+      _pendingMediaKind = null;
+      _readyMediaAsset = null;
+      _uploadStatus = null;
       if (!preserveAttempt) {
         _text.clear();
         _attempt = null;
@@ -272,7 +296,6 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               _historyExpanded = false;
               _hasOlder = false;
               _historyError = null;
-              _busy = false;
               _error = '离线只读：仅显示已加密保存且此前有权读取的内容，不能发送或编辑。';
             });
             return;
@@ -608,10 +631,23 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   Future<void> _picture() => _attachment(ChatAttachmentKind.image);
   Future<void> _video() => _attachment(ChatAttachmentKind.video);
 
-  Future<void> _attachment(ChatAttachmentKind kind) async {
+  void _removePendingMedia() {
+    setState(() {
+      _pendingMedia = null;
+      _pendingMediaKind = null;
+      _readyMediaAsset = null;
+      _uploadStatus = null;
+    });
+  }
+
+  Future<void> _attachment(
+    ChatAttachmentKind kind, {
+    bool retry = false,
+  }) async {
     if (_busy ||
         _attempt != null ||
         !mounted ||
+        !_foreground ||
         _offline ||
         _sessionChanged ||
         _timeLocked) {
@@ -619,18 +655,25 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     final session = ref.read(sessionProvider).asData?.value;
     if (session == null || !session.isLoggedIn) {
-      _reject('附件上传或处理未完成，仅支持25MiB内、30秒内的MP4/H.264视频或图片。');
+      _reject('请先登录后再发送附件。');
       return;
     }
     _session = session;
     var epoch = _epoch;
+    final peerEpoch = _peerEpoch;
     setState(() => _busy = true);
     try {
       final gateway = ref.read(liveChatMediaGatewayProvider);
-      _picking = true;
-      final picked = await gateway.pick(kind);
-      _picking = false;
+      ChatPickedMedia? picked;
+      if (retry) {
+        picked = _pendingMediaKind == kind ? _pendingMedia : null;
+      } else {
+        _picking = true;
+        picked = await gateway.pick(kind);
+        if (peerEpoch == _peerEpoch) _picking = false;
+      }
       if (!mounted ||
+          peerEpoch != _peerEpoch ||
           !_foreground ||
           _sessionChanged ||
           _timeLocked ||
@@ -638,44 +681,81 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           picked == null) {
         return;
       }
-      // A native picker crosses pause/resume. Never reuse its former authority;
-      // obtain a fresh current read under the new foreground epoch before upload.
+      // A native picker crosses pause/resume. Obtain a fresh current read for
+      // both an initial upload and an explicit retry of the selected file.
       epoch = _epoch;
+      setState(() {
+        _pendingMedia = picked;
+        _pendingMediaKind = kind;
+        if (!retry) _readyMediaAsset = null;
+        _uploadStatus = '正在准备${kind.label}…';
+      });
       final check = await ref
           .read(apiClientProvider)
           .get(
             '/api/v1/messages',
             query: {'peer_id': widget.peerId, 'limit': 1},
+            cancelToken: _uploadCancellation,
             options: Options(
               extra: {requestSessionGuardKey: () => _current(session, epoch)},
             ),
           );
-      if (!_current(session, epoch) ||
-          check is! NetworkSuccess<Map<String, dynamic>>) {
+      if (!_current(session, epoch)) return;
+      if (check is! NetworkSuccess<Map<String, dynamic>>) {
+        if (check is NetworkFailure<Map<String, dynamic>> &&
+            const {401, 403, 404}.contains(check.statusCode)) {
+          _cache.revokeObject(_cacheKey);
+          _reject('当前无法发送附件，请检查登录与双方消息同意。');
+        } else {
+          setState(() => _uploadStatus = '暂时无法发送附件，选择和输入已保留，请重试。');
+        }
         return;
       }
       setState(() => _busy = true);
-      if (gateway is! SessionBoundChatMediaGateway) {
-        throw StateError('附件上传缺少会话保护');
+      var assetId = _readyMediaAsset;
+      if (assetId == null) {
+        if (gateway is! SessionBoundChatMediaGateway) {
+          throw StateError('Attachment session binding unavailable');
+        }
+        setState(() => _uploadStatus = '正在上传${kind.label}，请稍候…');
+        final uploaded = await gateway.uploadForSession(
+          kind,
+          picked,
+          isCurrent: () => _current(session, epoch),
+          cancelToken: _uploadCancellation,
+        );
+        if (!_current(session, epoch)) return;
+        if (uploaded.assetId == null || uploaded.status != 'ready') {
+          throw StateError('Attachment not ready');
+        }
+        assetId = uploaded.assetId!;
+        _readyMediaAsset = assetId;
       }
-      final uploaded = await gateway.uploadForSession(
-        kind,
-        picked,
-        isCurrent: () => _current(session, epoch),
-        cancelToken: _uploadCancellation,
-      );
-      if (!_current(session, epoch)) return;
-      if (uploaded.assetId == null || uploaded.status != 'ready') {
-        throw StateError('附件尚未就绪');
+      if (_offline) {
+        setState(() => _uploadStatus = '附件已上传，联网后请重试发送。');
+        return;
       }
-      await _post(session, epoch, asset: uploaded.assetId);
+      // Once POST owns the asset, retries belong to its immutable message
+      // attempt, not to the upload. Never upload it twice for a lost POST reply.
+      _removePendingMedia();
+      await _post(session, epoch, asset: assetId);
+    } catch (error) {
       if (!_current(session, epoch)) return;
-    } catch (_) {
-      if (_current(session, epoch)) {
-        _reject('附件上传或处理未完成，仅支持25MiB内、30秒内的MP4/H.264视频或图片。');
+      final status = error is ChatMediaGatewayException
+          ? error.statusCode
+          : error is DioException
+          ? error.response?.statusCode
+          : null;
+      if (const {401, 403, 404}.contains(status)) {
+        _cache.revokeObject(_cacheKey);
+        _reject('当前无法发送附件，请检查登录与双方消息同意。');
+      } else if (_attempt != null) {
+        setState(() => _sendStatus = '发送结果尚未确认，请重试发送。');
+      } else {
+        setState(() => _uploadStatus = '附件上传或处理未完成，聊天和输入已保留，请重试或移除附件。');
       }
     } finally {
-      _picking = false;
+      if (peerEpoch == _peerEpoch) _picking = false;
       if (_current(session, epoch)) setState(() => _busy = false);
     }
   }
@@ -756,6 +836,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _hasOlder = false;
           _historyExpanded = false;
           _historyError = null;
+          _pendingMedia = null;
+          _pendingMediaKind = null;
+          _readyMediaAsset = null;
+          _uploadStatus = null;
           _busy = false;
           _text.clear();
           _error = '账号已变化，请重新打开对话。';
@@ -798,6 +882,35 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             TextButton(
               onPressed: _busy ? null : () => _send(asset: _retryAsset),
               child: const Text('使用原消息编号重试'),
+            ),
+          if (_uploadStatus != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Column(
+                children: [
+                  Text(_uploadStatus!),
+                  if (_pendingMedia != null &&
+                      !_busy &&
+                      !_offline &&
+                      _attempt == null)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () =>
+                              _attachment(_pendingMediaKind!, retry: true),
+                          child: Text(
+                            _readyMediaAsset == null ? '重试上传' : '重试发送附件',
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: _removePendingMedia,
+                          child: const Text('移除附件'),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
             ),
           if (_historyError != null)
             Padding(
@@ -861,7 +974,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               children: [
                 IconButton(
                   onPressed:
-                      _busy || _attempt != null || _offline || _timeLocked
+                      _busy ||
+                          _attempt != null ||
+                          _pendingMedia != null ||
+                          _offline ||
+                          _timeLocked
                       ? null
                       : _picture,
                   icon: const Icon(Icons.image),
@@ -869,7 +986,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 ),
                 IconButton(
                   onPressed:
-                      _busy || _attempt != null || _offline || _timeLocked
+                      _busy ||
+                          _attempt != null ||
+                          _pendingMedia != null ||
+                          _offline ||
+                          _timeLocked
                       ? null
                       : _video,
                   icon: const Icon(Icons.video_library_outlined),
@@ -885,7 +1006,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 ),
                 TextButton(
                   onPressed:
-                      _busy || _attempt != null || _offline || _timeLocked
+                      _busy ||
+                          _attempt != null ||
+                          _pendingMedia != null ||
+                          _offline ||
+                          _timeLocked
                       ? null
                       : () => _send(),
                   child: const Text('发送'),

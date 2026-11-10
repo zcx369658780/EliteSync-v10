@@ -142,7 +142,11 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
           : Options(extra: {requestSessionGuardKey: isCurrent}),
     );
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
-      throw const ChatMediaGatewayException();
+      throw ChatMediaGatewayException(
+        statusCode: result is NetworkFailure<Map<String, dynamic>>
+            ? result.statusCode
+            : null,
+      );
     }
     final asset = result.data['asset'];
     if (asset is! Map<String, dynamic>) {
@@ -160,7 +164,9 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
 }
 
 class ChatMediaGatewayException implements Exception {
-  const ChatMediaGatewayException();
+  const ChatMediaGatewayException({this.statusCode});
+
+  final int? statusCode;
 
   @override
   String toString() => 'ChatMediaGatewayException';

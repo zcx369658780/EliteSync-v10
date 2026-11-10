@@ -22,7 +22,7 @@ class _Session extends SessionNotifier {
     ),
   );
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     user: UserSummary(id: 1, phone: 'fictional'),
   );
@@ -40,7 +40,7 @@ class _Api extends ApiClient {
     Map<String, dynamic>? query,
     Options? options,
   }) => query?['limit'] == 1 && allowAttachmentPreflight
-      ? Future.value(const NetworkSuccess({'items':<dynamic>[]}))
+      ? Future.value(const NetworkSuccess({'items': <dynamic>[]}))
       : pending.future;
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
@@ -59,12 +59,25 @@ class _UnknownSendApi extends ApiClient {
   _UnknownSendApi() : super(dio: Dio());
   final bodies = <Map<String, dynamic>>[];
   @override
-  Future<NetworkResult<Map<String, dynamic>>> get(String path, {CancelToken? cancelToken, Map<String, dynamic>? query, Options? options}) async =>
-      const NetworkSuccess({'items': <dynamic>[]});
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async => const NetworkSuccess({'items': <dynamic>[]});
   @override
-  Future<NetworkResult<Map<String, dynamic>>> post(String path, {Object? body, CancelToken? cancelToken, Map<String, dynamic>? query, Options? options}) async {
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
     bodies.add(Map<String, dynamic>.from(body as Map));
-    return const NetworkFailure(message: 'upstream response lost', statusCode: 502);
+    return const NetworkFailure(
+      message: 'upstream response lost',
+      statusCode: 502,
+    );
   }
 }
 
@@ -94,13 +107,96 @@ class _Gateway implements SessionBoundChatMediaGateway {
   }) => uploaded.future;
 }
 
+class _MediaApi extends ApiClient {
+  _MediaApi() : super(dio: Dio());
+  bool unavailable = false;
+  final bodies = <Map<String, dynamic>>[];
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async => unavailable
+      ? NetworkFailure(
+          message: 'fictional offline',
+          error: TimeoutException('fictional'),
+        )
+      : const NetworkSuccess({
+          'items': [
+            {
+              'id': 1,
+              'content': 'retained conversation',
+              'attachments': <dynamic>[],
+            },
+          ],
+        });
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path == '/api/v1/media') {
+      return const NetworkFailure(message: 'fictional denied', statusCode: 403);
+    }
+    final data = Map<String, dynamic>.from(body as Map);
+    bodies.add(data);
+    return NetworkSuccess({
+      'id': 9,
+      'client_message_id': data['client_message_id'],
+    });
+  }
+}
+
+class _RetryGateway implements SessionBoundChatMediaGateway {
+  int picks = 0;
+  int uploads = 0;
+  Completer<ChatPickedMedia?>? picking;
+  int? failureStatus = 422;
+  Completer<ChatMediaUploadResponse>? pending;
+  static const ready = ChatMediaUploadResponse(
+    assetId: 42,
+    publicUrl: null,
+    status: 'ready',
+  );
+  @override
+  Future<ChatPickedMedia?> pick(ChatAttachmentKind kind) async {
+    picks++;
+    if (picking != null) return picking!.future;
+    return const ChatPickedMedia(path: 'fictional', name: 'fixture.png');
+  }
+
+  @override
+  Future<ChatMediaUploadResponse> upload(
+    ChatAttachmentKind kind,
+    ChatPickedMedia media,
+  ) => throw StateError('Unbound upload not used');
+  @override
+  Future<ChatMediaUploadResponse> uploadForSession(
+    ChatAttachmentKind kind,
+    ChatPickedMedia media, {
+    required bool Function() isCurrent,
+    required CancelToken cancelToken,
+  }) async {
+    uploads++;
+    if (pending != null) return pending!.future;
+    if (uploads == 1 && failureStatus != null) {
+      throw ChatMediaGatewayException(statusCode: failureStatus);
+    }
+    return ready;
+  }
+}
+
 Future<void> _show(
   WidgetTester tester,
   ApiClient api, {
-  _Gateway? gateway,
+  ChatMediaGateway? gateway,
   Dio? dio,
 }) async {
-  final secure=await syntheticPrivateLogin();
+  final secure = await syntheticPrivateLogin();
   final container = ProviderContainer(
     overrides: [
       secureStorageProvider.overrideWithValue(secure),
@@ -124,18 +220,256 @@ Future<void> _show(
 }
 
 void main() {
-  testWidgets('502 after possible commit retries same logical message key', (tester) async {
+  testWidgets('a picker result cannot adopt the newly opened peer epoch', (
+    tester,
+  ) async {
+    final api = _MediaApi();
+    final gateway = _RetryGateway()
+      ..picking = Completer()
+      ..failureStatus = null;
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(LiveChatPage)),
+    );
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const MaterialApp(home: LiveChatPage(peerId: 3)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    gateway.picking!.complete(
+      const ChatPickedMedia(path: 'fictional', name: 'old-peer.png'),
+    );
+    await tester.pumpAndSettle();
+    expect(gateway.uploads, 0);
+    expect(api.bodies, isEmpty);
+    expect(find.text('重试上传'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'recovery cannot reopen retry or remove while the original upload is pending',
+    (tester) async {
+      final api = _MediaApi();
+      final gateway = _RetryGateway()..pending = Completer();
+      await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      api.unavailable = true;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      api.unavailable = false;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(find.text('重试上传'), findsNothing);
+      expect(find.text('移除附件'), findsNothing);
+      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
+      expect(gateway.uploads, 1);
+      expect(api.bodies, isEmpty);
+      gateway.pending!.complete(_RetryGateway.ready);
+      await tester.pumpAndSettle();
+      expect(gateway.uploads, 1);
+      expect(api.bodies, hasLength(1));
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  test(
+    'platform gateway preserves a rejected upload status for page handling',
+    () async {
+      final gateway = PlatformChatMediaGateway(
+        apiClient: _MediaApi(),
+        formBuilder:
+            ({
+              required String mediaType,
+              required String filePath,
+              required String fileName,
+              required Map<String, dynamic> metadata,
+            }) async => FormData(),
+      );
+      await expectLater(
+        gateway.uploadForSession(
+          ChatAttachmentKind.image,
+          const ChatPickedMedia(path: 'fictional', name: 'fixture.png'),
+          isCurrent: () => true,
+          cancelToken: CancelToken(),
+        ),
+        throwsA(
+          isA<ChatMediaGatewayException>().having(
+            (e) => e.statusCode,
+            'status',
+            403,
+          ),
+        ),
+      );
+    },
+  );
+
+  testWidgets('a late upload cannot be sent to a newly opened peer', (
+    tester,
+  ) async {
+    final api = _MediaApi();
+    final gateway = _RetryGateway()..pending = Completer();
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    final oldState = tester.state(find.byType(LiveChatPage));
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(LiveChatPage)),
+    );
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const MaterialApp(home: LiveChatPage(peerId: 3)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      identical(oldState, tester.state(find.byType(LiveChatPage))),
+      isTrue,
+    );
+    gateway.pending!.complete(_RetryGateway.ready);
+    await tester.pumpAndSettle();
+    expect(api.bodies, isEmpty);
+    expect(find.text('重试上传'), findsNothing);
+    expect(find.text('重试发送附件'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'upload failure retains conversation and draft; explicit retry reuses selected file',
+    (tester) async {
+      final api = _MediaApi();
+      final gateway = _RetryGateway()..pending = Completer();
+      await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'caption before upload');
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      expect(find.text('正在上传图片，请稍候…'), findsOneWidget);
+      expect(api.bodies, isEmpty);
+      gateway.pending!.completeError(
+        const ChatMediaGatewayException(statusCode: 422),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('retained conversation'), findsOneWidget);
+      expect(find.text('caption before upload'), findsOneWidget);
+      expect(find.text('重试上传'), findsOneWidget);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).readOnly,
+        isFalse,
+      );
+      await tester.enterText(find.byType(TextField), 'caption after failure');
+      gateway.pending = null;
+      await tester.tap(find.text('重试上传'));
+      await tester.pumpAndSettle();
+      expect(gateway.picks, 1);
+      expect(gateway.uploads, 2);
+      expect(api.bodies.single['attachment_ids'], [42]);
+      expect(api.bodies.single['content'], 'caption after failure');
+      expect(find.text('重试上传'), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('removing failed media preserves text and restores normal send', (
+    tester,
+  ) async {
+    final api = _MediaApi();
+    final gateway = _RetryGateway();
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byType(TextField),
+      'text kept after removing media',
+    );
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('移除附件'));
+    await tester.pumpAndSettle();
+    expect(find.text('text kept after removing media'), findsOneWidget);
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies.single['content'], 'text kept after removing media');
+    expect(api.bodies.single.containsKey('attachment_ids'), isFalse);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'revoked upload clears retained content instead of offering unsafe retry',
+    (tester) async {
+      final api = _MediaApi();
+      final gateway = _RetryGateway()..failureStatus = 403;
+      await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'revoked caption');
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      expect(find.text('retained conversation'), findsNothing);
+      expect(find.text('revoked caption'), findsNothing);
+      expect(find.text('重试上传'), findsNothing);
+      expect(api.bodies, isEmpty);
+      expect(find.textContaining('当前无法发送附件'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'uploaded asset waits offline and explicit send retry does not upload again',
+    (tester) async {
+      final api = _MediaApi();
+      final gateway = _RetryGateway()..pending = Completer();
+      await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      api.unavailable = true;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      gateway.pending!.complete(_RetryGateway.ready);
+      await tester.pumpAndSettle();
+      expect(api.bodies, isEmpty);
+      api.unavailable = false;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(api.bodies, isEmpty);
+      await tester.tap(find.text('重试发送附件'));
+      await tester.pumpAndSettle();
+      expect(gateway.uploads, 1);
+      expect(gateway.picks, 1);
+      expect(api.bodies.single['attachment_ids'], [42]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('502 after possible commit retries same logical message key', (
+    tester,
+  ) async {
     final api = _UnknownSendApi();
     await _show(tester, api);
-    await tester.enterText(find.byType(TextField), 'synthetic unchanged payload');
+    await tester.enterText(
+      find.byType(TextField),
+      'synthetic unchanged payload',
+    );
     await tester.tap(find.text('发送'));
-    await tester.pump(); await tester.pump();
+    await tester.pump();
+    await tester.pump();
     expect(api.bodies.length, 1);
     expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
     await tester.tap(find.text('使用原消息编号重试'));
-    await tester.pump(); await tester.pump();
+    await tester.pump();
+    await tester.pump();
     expect(api.bodies.length, 2);
-    expect(api.bodies[1]['client_message_id'], api.bodies[0]['client_message_id']);
+    expect(
+      api.bodies[1]['client_message_id'],
+      api.bodies[0]['client_message_id'],
+    );
     expect(api.bodies[1]['content'], api.bodies[0]['content']);
     await tester.pumpWidget(const SizedBox());
   });
