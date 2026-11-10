@@ -1,3 +1,16 @@
+import 'package:dio/dio.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
+import 'package:flutter_elitesync_module/core/network/api_client.dart';
+import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:flutter_elitesync_module/core/telemetry/app_telemetry_service.dart';
+import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
+import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
+import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +36,7 @@ import 'package:flutter_elitesync_module/features/connection/domain/product_conn
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_bubble.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_input_bar.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 final _syntheticAuthorizedConversationAccess =
     ProductConversationAccessAdapter.resolve(
@@ -225,6 +239,111 @@ Widget _chatMediaApp({
   );
 }
 
+class _CallSession extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    user: UserSummary(id: 1, phone: 'fictional'),
+    accessToken: 'fictional-call-session',
+  );
+}
+
+class _CallPermissions implements RtcPermissionService {
+  _CallPermissions({this.failCheck = false});
+  bool failCheck;
+  @override
+  Future<bool> hasVoiceCallPermission() async {
+    if (failCheck) {
+      failCheck = false;
+      throw StateError('fictional permission check unavailable');
+    }
+    return true;
+  }
+  @override
+  Future<bool> ensureVoiceCallPermission() async => true;
+  @override
+  Future<bool> openSettings() async => true;
+}
+
+class _CallSource extends RtcRemoteDataSource {
+  _CallSource({this.alwaysDenied = false})
+      : super(apiClient: ApiClient(dio: Dio()));
+  final bool alwaysDenied;
+  final modes = <String>[];
+  @override
+  Future<RtcSessionEntity> createCall({
+    required int peerUserId,
+    String mode = 'voice',
+  }) async {
+    modes.add(mode);
+    if (alwaysDenied || modes.length == 1) {
+      throw StateError('fictional permission error');
+    }
+    return RtcSessionEntity.fromJson({
+      'id': 17,
+      'mode': mode,
+      'status': 'calling',
+      'is_terminal': false,
+      'is_initiator': true,
+    });
+  }
+}
+
+class _CallTelemetry extends AppTelemetryService {
+  _CallTelemetry()
+      : super(apiClient: ApiClient(dio: Dio()), appVersionProvider: () async => 'test');
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> postEvent(
+    String path, {
+    required String sourcePage,
+    Object? body,
+  }) async => const NetworkSuccess({});
+}
+
+Widget _callChatApp(
+  _CallSource source,
+  List<String> permissionVisits, {
+  RtcPermissionService? permissions,
+}) {
+  final router = GoRouter(routes: [
+    GoRoute(
+      path: '/',
+      builder: (_, _) => ChatRoomPage(
+        routeState: ChatRouteState.legacyPeer(peerUserId: 2, title: '虚构通话用户'),
+      ),
+    ),
+    GoRoute(
+      path: AppRouteNames.rtcPermission,
+      builder: (context, state) {
+        permissionVisits.add(state.uri.path);
+        return Scaffold(body: TextButton(
+          onPressed: () => context.pop(true),
+          child: const Text('测试确认权限'),
+        ));
+      },
+    ),
+    GoRoute(
+      path: '${AppRouteNames.rtcCall}/:callId',
+      builder: (_, _) => const Scaffold(body: Text('fake-call-room')),
+    ),
+  ]);
+  addTearDown(router.dispose);
+  return ProviderScope(
+    overrides: [
+      conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+        _syntheticAuthorizedConversationAccess,
+      ),
+      sessionProvider.overrideWith(_CallSession.new),
+      localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+      chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
+      rtcRemoteDataSourceProvider.overrideWithValue(source),
+      rtcPermissionServiceProvider.overrideWithValue(permissions ?? _CallPermissions()),
+      frontendTelemetryProvider.overrideWithValue(FrontendTelemetry(telemetry: _CallTelemetry())),
+    ],
+    child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
+  );
+}
+
 Widget _basicChatApp(FakeChatRepository repository) => ProviderScope(
   overrides: [
     conversationAccessProvider.overrideWithBuild((ref, notifier) =>
@@ -279,6 +398,72 @@ Future<void> _confirmManualSend(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('video permission retry preserves video without a second invitation confirmation', (tester) async {
+    final source = _CallSource();
+    final permissionVisits = <String>[];
+    await tester.pumpWidget(_callChatApp(source, permissionVisits));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    expect(find.text('视频前先确认节奏'), findsOneWidget);
+    await tester.tap(find.text('现在视频'));
+    await tester.pumpAndSettle();
+    expect(source.modes, ['video']);
+    await tester.tap(find.text('测试确认权限'));
+    await tester.pumpAndSettle();
+    expect(source.modes, ['video', 'video']);
+    expect(permissionVisits, [AppRouteNames.rtcPermission]);
+    expect(find.text('fake-call-room'), findsOneWidget);
+    expect(find.text('语音前先确认节奏'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('repeated permission failure stops once and makes call controls usable again', (tester) async {
+    final source = _CallSource(alwaysDenied: true);
+    final permissionVisits = <String>[];
+    await tester.pumpWidget(_callChatApp(source, permissionVisits));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('现在视频'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('测试确认权限'));
+    await tester.pumpAndSettle();
+    expect(source.modes, ['video', 'video']);
+    expect(permissionVisits, [AppRouteNames.rtcPermission]);
+    expect(find.text('暂时无法开始视频通话，请稍后重试'), findsOneWidget);
+    expect(tester.widget<IconButton>(find.widgetWithIcon(IconButton, Icons.videocam_outlined)).onPressed, isNotNull);
+    expect(tester.widget<IconButton>(find.widgetWithIcon(IconButton, Icons.call_outlined)).onPressed, isNotNull);
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    expect(find.text('视频前先确认节奏'), findsOneWidget);
+    await tester.tap(find.text('继续文字'));
+    await tester.pumpAndSettle();
+    expect(source.modes, ['video', 'video']);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('permission check exception reports failure and releases call controls', (tester) async {
+    final source = _CallSource();
+    await tester.pumpWidget(_callChatApp(source, [], permissions: _CallPermissions(failCheck: true)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('现在视频'));
+    await tester.pumpAndSettle();
+    expect(find.text('暂时无法开始视频通话，请稍后重试'), findsOneWidget);
+    expect(source.modes, isEmpty);
+    expect(tester.widget<IconButton>(find.widgetWithIcon(IconButton, Icons.videocam_outlined)).onPressed, isNotNull);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    expect(find.text('视频前先确认节奏'), findsOneWidget);
+    await tester.tap(find.text('继续文字'));
+    await tester.pumpAndSettle();
+    expect(source.modes, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   test('ChatSendAttempt creates canonical UUID-v4 and immutable payload', () {
     final attempt = ChatSendAttempt.create(
       peerUserId: 2,

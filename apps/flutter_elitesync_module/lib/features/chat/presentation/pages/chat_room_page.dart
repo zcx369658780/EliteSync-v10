@@ -105,6 +105,7 @@ class _AuthorizedChatRoomPageState
   Timer? _realtimeRefreshTimer;
   StreamSubscription<MessageEntity>? _realtimeSubscription;
   bool _sending = false;
+  bool _startingCall = false;
   ChatSendAttempt? _failedAttempt;
   String? _sendFailureMessage;
   bool _sameKeyRetryBlocked = false;
@@ -532,77 +533,115 @@ class _AuthorizedChatRoomPageState
   Future<void> _startVideoCall() => _startCall(mode: 'video');
 
   Future<void> _startCall({required String mode}) async {
+    if (_startingCall) return;
     final peerId = _peerId;
     if (peerId <= 0) {
       AppFeedback.showError(context, '当前会话无法发起通话');
       return;
     }
-    final router = GoRouter.of(context);
-    final confirmed = await _confirmVoiceRhythm();
-    if (!confirmed) return;
-
-    final permissionService = ref.read(rtcPermissionServiceProvider);
-    if (!await permissionService.hasVoiceCallPermission()) {
-      final granted =
-          await router.push<bool>(
-            '${AppRouteNames.rtcPermission}?title=${Uri.encodeComponent('通话权限')}',
-          ) ??
-          false;
-      if (!granted && !await permissionService.hasVoiceCallPermission()) {
-        return;
-      }
-    }
-
-    final telemetry = ref.read(frontendTelemetryProvider);
-    telemetry.rtcCallEntryOpened(sourcePage: 'chat_room');
-
+    final token = _sessionToken;
+    final epoch = _authorityEpoch;
+    bool current() =>
+        mounted &&
+        token == _sessionToken &&
+        epoch == _authorityEpoch &&
+        _peerId == peerId &&
+        _foreground &&
+        !_revalidating;
+    setState(() => _startingCall = true);
     try {
-      final session = await ref
-          .read(rtcRemoteDataSourceProvider)
-          .createCall(peerUserId: peerId, mode: mode);
-      telemetry.rtcCallStatusChanged(
-        sourcePage: 'chat_room',
-        callId: session.id,
-        status: session.status,
-      );
-      if (!mounted) return;
-      final target = session.isTerminal
-          ? '${AppRouteNames.rtcCallResult}/${session.id}'
-          : '${AppRouteNames.rtcCall}/${session.id}';
-      router.push(
-        target,
-        extra: session.title.isNotEmpty
-            ? sanitizeProfileDisplayName(session.title)
-            : _displayTitle,
-      );
-    } catch (e) {
-      final message = e.toString().toLowerCase();
-      if (message.contains('permission') ||
-          message.contains('授权') ||
-          message.contains('权限')) {
-        if (!mounted) return;
+      final router = GoRouter.of(context);
+      final confirmed = await _confirmCallRhythm(mode: mode);
+      if (!current() || !confirmed) return;
+      final permissionService = ref.read(rtcPermissionServiceProvider);
+      var permissionHandled = false;
+      if (!await permissionService.hasVoiceCallPermission()) {
+        if (!current()) return;
+        permissionHandled = true;
         final granted =
             await router.push<bool>(
               '${AppRouteNames.rtcPermission}?title=${Uri.encodeComponent('通话权限')}',
             ) ??
             false;
-        if (granted || await permissionService.hasVoiceCallPermission()) {
-          await _startVoiceCall();
+        if (!current()) return;
+        if (!granted && !await permissionService.hasVoiceCallPermission()) {
           return;
         }
       }
-      if (!mounted) return;
-      AppFeedback.showError(context, '暂时无法开始语音，请稍后重试');
+      if (!current()) return;
+      final telemetry = ref.read(frontendTelemetryProvider);
+      telemetry.rtcCallEntryOpened(sourcePage: 'chat_room');
+      for (var attempt = 0; attempt < 2; attempt++) {
+        try {
+          final session = await ref
+              .read(rtcRemoteDataSourceProvider)
+              .createCall(peerUserId: peerId, mode: mode);
+          if (!current()) return;
+          telemetry.rtcCallStatusChanged(
+            sourcePage: 'chat_room',
+            callId: session.id,
+            status: session.status,
+          );
+          final target = session.isTerminal
+              ? '${AppRouteNames.rtcCallResult}/${session.id}'
+              : '${AppRouteNames.rtcCall}/${session.id}';
+          router.push(
+            target,
+            extra: session.title.isNotEmpty
+                ? sanitizeProfileDisplayName(session.title)
+                : _displayTitle,
+          );
+          return;
+        } catch (error) {
+          if (!current()) return;
+          final message = error.toString().toLowerCase();
+          final permissionFailure =
+              message.contains('permission') ||
+              message.contains('授权') ||
+              message.contains('权限');
+          if (permissionFailure && attempt == 0) {
+            var granted = false;
+            if (!permissionHandled) {
+              permissionHandled = true;
+              granted =
+                  await router.push<bool>(
+                    '${AppRouteNames.rtcPermission}?title=${Uri.encodeComponent('通话权限')}',
+                  ) ??
+                  false;
+            }
+            if (!current()) return;
+            final canRetry =
+                granted || await permissionService.hasVoiceCallPermission();
+            if (!current()) return;
+            if (canRetry) continue;
+          }
+          if (!mounted) return;
+          AppFeedback.showError(
+            context,
+            mode == 'video' ? '暂时无法开始视频通话，请稍后重试' : '暂时无法开始语音通话，请稍后重试',
+          );
+          return;
+        }
+      }
+    } catch (_) {
+      if (!current() || !mounted) return;
+      AppFeedback.showError(
+        context,
+        mode == 'video' ? '暂时无法开始视频通话，请稍后重试' : '暂时无法开始语音通话，请稍后重试',
+      );
+    } finally {
+      if (mounted) setState(() => _startingCall = false);
     }
   }
 
-  Future<bool> _confirmVoiceRhythm() async {
+  Future<bool> _confirmCallRhythm({required String mode}) async {
+    final callLabel = mode == 'video' ? '视频' : '语音';
     final result = await showDialog<bool>(
       context: context,
       builder: (dialogContext) {
         final t = dialogContext.appTokens;
         return AlertDialog(
-          title: const Text('语音前先确认节奏'),
+          title: Text('$callLabel前先确认节奏'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -615,13 +654,13 @@ class _AuthorizedChatRoomPageState
               SizedBox(height: t.spacing.xs),
               _VoiceRhythmLine(
                 icon: Icons.favorite_outline_rounded,
-                text: '当你们已经围绕共同点聊开，再切到语音会更自然。',
+                text: '当你们已经围绕共同点聊开，再切到$callLabel会更自然。',
                 color: t.brandPrimary,
               ),
               SizedBox(height: t.spacing.xs),
               _VoiceRhythmLine(
                 icon: Icons.call_outlined,
-                text: '现在发起语音邀请，不会自动发送文字消息。',
+                text: '现在发起$callLabel邀请，不会自动发送文字消息。',
                 color: t.brandPrimary,
               ),
             ],
@@ -633,7 +672,7 @@ class _AuthorizedChatRoomPageState
             ),
             FilledButton(
               onPressed: () => Navigator.of(dialogContext).pop(true),
-              child: const Text('现在语音'),
+              child: Text('现在$callLabel'),
             ),
           ],
         );
@@ -1005,7 +1044,7 @@ class _AuthorizedChatRoomPageState
         child: SectionReveal(
           child: _ConversationContextHeader(
             title: _displayTitle,
-            onVoiceRhythmTap: _confirmVoiceRhythm,
+            onVoiceRhythmTap: () => _confirmCallRhythm(mode: 'voice'),
           ),
         ),
       ),
@@ -1240,12 +1279,12 @@ class _AuthorizedChatRoomPageState
           ),
           IconButton(
             tooltip: '语音通话',
-            onPressed: _startVoiceCall,
+            onPressed: _startingCall ? null : _startVoiceCall,
             icon: const Icon(Icons.call_outlined),
           ),
           IconButton(
             tooltip: '视频通话',
-            onPressed: _startVideoCall,
+            onPressed: _startingCall ? null : _startVideoCall,
             icon: const Icon(Icons.videocam_outlined),
           ),
           PopupMenuButton<String>(

@@ -140,6 +140,11 @@ class _PrivateVideoPlayerState extends ConsumerState<PrivateVideoPlayer>
       if (player.value.isPlaying) {
         await player.pause();
       } else {
+        if (player.value.duration > Duration.zero &&
+            player.value.position >= player.value.duration) {
+          await player.seekTo(Duration.zero);
+          if (!_current || !identical(_player, player)) return;
+        }
         await player.play();
       }
     } catch (_) {
@@ -185,6 +190,12 @@ class _PrivateVideoPlayerState extends ConsumerState<PrivateVideoPlayer>
     super.dispose();
   }
 
+  String _playbackTime(Duration value) {
+    final seconds = value.inSeconds;
+    final minutes = seconds ~/ 60;
+    return '$minutes:${(seconds % 60).toString().padLeft(2, '0')}';
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(sessionProvider, (_, next) {
@@ -211,9 +222,25 @@ class _PrivateVideoPlayerState extends ConsumerState<PrivateVideoPlayer>
             ),
           ),
         ),
+        Semantics(
+          label: '视频播放进度',
+          child: VideoProgressIndicator(
+            player,
+            allowScrubbing: true,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+          ),
+        ),
+        Text(
+          '${_playbackTime(player.value.position)} / ${_playbackTime(player.value.duration)}',
+        ),
         IconButton(
           onPressed: _toggle,
-          tooltip: player.value.isPlaying ? '暂停视频' : '播放视频',
+          tooltip: player.value.isPlaying
+              ? '暂停视频'
+              : player.value.duration > Duration.zero &&
+                    player.value.position >= player.value.duration
+              ? '重新播放视频'
+              : '播放视频',
           icon: Icon(player.value.isPlaying ? Icons.pause : Icons.play_arrow),
         ),
       ],

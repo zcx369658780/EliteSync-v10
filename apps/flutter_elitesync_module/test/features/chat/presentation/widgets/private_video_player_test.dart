@@ -11,7 +11,7 @@ import 'package:flutter_elitesync_module/features/chat/presentation/widgets/priv
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     accessToken: 'synthetic-test-only',
   );
@@ -27,6 +27,13 @@ class _Player extends VideoPlayerController {
   _Player(super.uri, Map<String, String> headers)
     : super.networkUrl(httpHeaders: headers);
   bool disposed = false;
+  final seeks = <Duration>[];
+  @override
+  Future<void> seekTo(Duration position) async {
+    seeks.add(position);
+    value = value.copyWith(position: position);
+  }
+
   @override
   Future<void> initialize() async {
     value = VideoPlayerValue(
@@ -131,6 +138,28 @@ void main() {
         await tester.pump(const Duration(milliseconds: 10));
       }
       expect(player, isNotNull);
+      expect(find.text('0:00 / 0:05'), findsOneWidget);
+      expect(find.byType(VideoProgressIndicator), findsOneWidget);
+      await tester.tapAt(tester.getCenter(find.byType(VideoProgressIndicator)));
+      for (var i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 10));
+      }
+      expect(player!.seeks.single, greaterThan(Duration.zero));
+      expect(player!.seeks.single, lessThan(const Duration(seconds: 5)));
+      player!.value = player!.value.copyWith(
+        position: const Duration(seconds: 5),
+      );
+      await tester.pump();
+      await tester.tap(find.byTooltip('重新播放视频'));
+      for (var i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 10));
+      }
+      expect(player!.seeks.last, Duration.zero);
+      expect(player!.value.isPlaying, isTrue);
+      await tester.tap(find.byTooltip('暂停视频'));
+      for (var i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 10));
+      }
       await tester.tap(find.byTooltip('播放视频'));
       for (var i = 0; i < 5; i++) {
         await tester.pump(const Duration(milliseconds: 10));
