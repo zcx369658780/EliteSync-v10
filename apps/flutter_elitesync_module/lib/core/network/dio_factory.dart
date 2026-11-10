@@ -40,14 +40,39 @@ class DioFactory {
     );
 
     configureApiTransport(dio, env: _env);
+    // Replays retain their explicit Authorization header and never re-enter
+    // auth/refresh/retry/logging. They still cross the same transport boundary.
+    final replayDio = Dio();
+    configureApiTransport(replayDio, env: _env);
+    replayDio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          if (!requestSessionIsCurrent(options)) {
+            handler.reject(staleSessionRequest(options));
+            return;
+          }
+          handler.next(options);
+        },
+      ),
+    );
+    Future<Response<dynamic>> replayRequest(RequestOptions options) {
+      if (!requestSessionIsCurrent(options)) {
+        return Future.error(staleSessionRequest(options));
+      }
+      // Follow adapter replacement in tests/configuration and share its pool.
+      replayDio.httpClientAdapter = dio.httpClientAdapter;
+      return replayDio.fetch<dynamic>(options);
+    }
+
     dio.interceptors.addAll([
       AuthInterceptor(
         accessTokenProvider: _accessTokenProvider,
         refreshAccessToken: _refreshAccessToken,
         onSessionRejected: _onSessionRejected,
         sessionIdentity: _sessionIdentity,
+        replayRequest: replayRequest,
       ),
-      RetryInterceptor(),
+      RetryInterceptor(replayRequest: replayRequest),
       // Keep request logging on during the current astro-loading investigation.
       LoggingInterceptor(logger: _logger),
     ]);

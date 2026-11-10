@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 class RetryInterceptor extends Interceptor {
-  RetryInterceptor({this.maxRetries = 2});
+  RetryInterceptor({this.maxRetries = 2, TransportReplay? replayRequest})
+    : _replayRequest = replayRequest;
 
   final int maxRetries;
+  final TransportReplay? _replayRequest;
 
   static const _retryableMethods = {'GET', 'HEAD', 'OPTIONS'};
 
@@ -30,6 +32,7 @@ class RetryInterceptor extends Interceptor {
     if (isRetryableMethod &&
         !hasResponse &&
         isConnectionError &&
+        _replayRequest != null &&
         retries < maxRetries) {
       requestOptions.extra['__retry_count__'] = retries + 1;
 
@@ -41,11 +44,11 @@ class RetryInterceptor extends Interceptor {
       }
 
       try {
-        final response = await Dio().fetch(requestOptions);
-            if (!requestSessionIsCurrent(requestOptions)) {
-              handler.reject(staleSessionRequest(requestOptions));
-              return;
-            }
+        final response = await _replayRequest(requestOptions);
+        if (!requestSessionIsCurrent(requestOptions)) {
+          handler.reject(staleSessionRequest(requestOptions));
+          return;
+        }
         handler.resolve(response);
         return;
       } catch (_) {

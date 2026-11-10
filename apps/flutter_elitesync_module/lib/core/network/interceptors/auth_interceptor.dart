@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 typedef AccessTokenProvider = Future<String?> Function();
 typedef RefreshAccessToken = Future<String?> Function();
+typedef TransportReplay = Future<Response<dynamic>> Function(RequestOptions);
 
 const requestSessionGuardKey = '__request_session_is_current__';
 
@@ -28,15 +29,18 @@ class AuthInterceptor extends Interceptor {
     RefreshAccessToken? refreshAccessToken,
     Future<void> Function(String rejectedToken)? onSessionRejected,
     String Function()? sessionIdentity,
+    TransportReplay? replayRequest,
   }) : _accessTokenProvider = accessTokenProvider,
        _refreshAccessToken = refreshAccessToken,
        _onSessionRejected = onSessionRejected,
-       _sessionIdentity = sessionIdentity;
+       _sessionIdentity = sessionIdentity,
+       _replayRequest = replayRequest;
 
   final AccessTokenProvider _accessTokenProvider;
   final RefreshAccessToken? _refreshAccessToken;
   final Future<void> Function(String rejectedToken)? _onSessionRejected;
   final String Function()? _sessionIdentity;
+  final TransportReplay? _replayRequest;
 
   @override
   void onRequest(
@@ -130,7 +134,9 @@ class AuthInterceptor extends Interceptor {
       super.onError(err, handler);
       return;
     }
-    if (err.response?.statusCode == 401 && _refreshAccessToken != null) {
+    if (err.response?.statusCode == 401 &&
+        _refreshAccessToken != null &&
+        _replayRequest != null) {
       final req = err.requestOptions;
       final hasRetried = req.extra['__retried_401__'] == true;
       final currentAuthorization = req.headers['Authorization']?.toString();
@@ -149,7 +155,7 @@ class AuthInterceptor extends Interceptor {
           req.extra['__retried_401__'] = true;
           req.headers['Authorization'] = nextAuthorization;
           try {
-            final response = await Dio().fetch(req);
+            final response = await _replayRequest(req);
             if (!requestSessionIsCurrent(req)) {
               handler.reject(staleSessionRequest(req));
               return;

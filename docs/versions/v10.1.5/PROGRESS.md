@@ -36,6 +36,10 @@ Android主资源禁明文，只有Debug资源列出不含子域的本机例外�
 
 RTC新增gateway URL前置校验：默认WSS可独立SFU，开发WS仅在API本身为HTTP且同一精确本机主机时允许异端口；复用API词法校验，保留SDK路径。非法地址在权限申请和Room构造前拒绝，错误不含原凭据URL。29项policy及16项service共45项检查、analyze和非作者静态复核通过；尚未纳入当前ccf APK，独立RTC运行不冒充已证。后续重放路径统一仍进行中。
 
+普通GET网络重试与401刷新重放现统一走Factory内的transport-only客户端，同源/禁重定向和末端会话检查仍在发出前执行；动态共享主adapter及连接池，不重新读取并覆盖刷新Bearer、不重入Auth/Retry/Logging或扩大原重试次数。无明确重放回调时直接保留原失败，移除裸Dio旁路。新增18项fakeadapter、既有Auth17项、late-response3项及原重放晚回4项均通过（共42项），相关analyze无问题，非作者最终静态复核无P1/P2；原4项改用真实Factory与pending fakeadapter，原边界断言保留并加强。最终合包尚待完成。
+
+同步状态：47811a5e最后确认推送成功，随后本地932bf338已保存但两次SSH443连接关闭，目前PENDING_SYNC。没有更换身份、强推或修改全局网络；继续本地工程，后续有意义节点再尝试。
+
 ## 当前APP确认丢失后的发送重试
 
 896候选经实际APP→真实API→MariaDB完成一次确认丢失场景：本机短时代理将首个真实message POST的成功确认替换为503，服务端已保存message15；APP显示结果未确认及“使用原消息编号重试”，用户路径点击后第二次真实POST使用同client_message_id、返回同server ID且idempotent_replay=true。真实GET按该client UUID只读回1条，APP显示已确认内容；未伪造成功或直接插表。该测试也经历同包进程重启和正常在线登录恢复，但不是Android离线清理/15或30天证明。临时代理已停止，专用模拟器API reverse已恢复直连，手机未用。私有回执 `app-ack-retry-private.json`；其它弱网、并发及故障矩阵仍按原未完成项保留。
