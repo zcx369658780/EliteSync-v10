@@ -1,0 +1,53 @@
+{
+  "schema": "elitesync.v1010.continuation-reference-sources.v1",
+  "status": "PARTIAL_REFERENCE_COVERAGE_NOT_VERSION_ACCEPTANCE",
+  "calendar": {
+    "definition": "../CALCULATION_CONVENTIONS.md#qiyun",
+    "non_author_expected_before_product_sha256": "b8b825546e1cefd9e1a520ea0c6e7a7675ccc5eb57796262015c7fda595286ff",
+    "qiyun_expected_before_product_sha256": "617ef097a4811ba61f60adecbed20d7ec1d7347df065740370be292db88d923f",
+    "source": "https://docs.python.org/3.11/library/datetime.html",
+    "input": "30 synthetic calendar probes and HKO independent natal input set",
+    "independence": "non-author did not read production; Gregorian engineering convention only",
+    "portable_replay_change": "only default path changed; full 88 sample records identical; one explanatory phrase differs in reconstructed generator metadata"
+  },
+  "western": {
+    "definition": "../CALCULATION_CONVENTIONS.md#western",
+    "sidereal_expected_before_product_sha256": "34df6f3ac35cd05972dee51fc7f7aa99dee26ee328d07ebdfb79b07b52502044",
+    "apogee_expected_before_product_sha256": "02dd3f0f2da2b3955a206f79815ec09890dd305c4b4d0ad02147291f6fe83f61",
+    "independence": "non-author ERFA matrices and Delaunay arguments; shared IERS/ERFA model family, not independent observations",
+    "source": [
+      "https://www.iausofa.org/2023-10-11c",
+      "https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf"
+    ],
+    "rejected_reference": "v1 apogee transcribed F+Omega without subtracting l and without true-equinox correction; rejected before product comparison, all original files retained privately",
+    "not_asserted": [
+      "official Lahiri identity",
+      "previous-engine bitwise equivalence",
+      "Chiron"
+    ]
+  },
+  "ziwei": {
+    "expected_before_product_sha256": "acb062e0ab59de1197903fe1e8d275d4d4d821214f4a66ddf01f966ee0e86fe8",
+    "input": "ziwei_legal_reference_inputs.json; 72 fictional HKO-established dates, prior expected values excluded",
+    "rules": "ziwei_minor_rule_sources.json; factual rule arrays and formulas, no brightness table or article text",
+    "portable_source": "ziwei_minor_reference.py; no production imports or output expected generation",
+    "sources": [
+      "https://sanqing.com.tw/en/the-chinese-astrology-chart010/",
+      "https://www.ncc.com.tw/fate/paleo/gv/gv_15.htm",
+      "https://ziweihome.com/zh-hans/liu-nian"
+    ],
+    "coverage": {
+      "eligible_natal_inputs": 40,
+      "not_asserted_natal_inputs": 32,
+      "minor_star_positions": 680,
+      "selected_luck_rule_comparisons": 1512
+    },
+    "limits": [
+      "profile/publisher upstream lineage UNKNOWN",
+      "no leap/month-start exceptions",
+      "no brightness or full selected-luck auxiliary stars",
+      "classical cut-void pair 84 cases and xun-void membership 84 cases only; no label/polarity choice oracle"
+    ],
+    "no_scope_upgrade": true
+  }
+}

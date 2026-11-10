@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-15T00:27:12.371382+00:00",
+  "role": "incomplete",
+  "method": "POST",
+  "path": "/api/v1/messages",
+  "request": {
+    "receiver_id": 3,
+    "content": "V1007 protected route probe",
+    "client_message_id": "a743f0c2-28cd-41f1-9a05-989176567501"
+  },
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

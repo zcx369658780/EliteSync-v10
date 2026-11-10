@@ -29,20 +29,17 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
 
     state = state.copyWith(isSubmitting: true, clearError: true);
 
+    final sessionNotifier = ref.read(sessionProvider.notifier);
+    final authenticationIntent = sessionNotifier.beginAuthentication();
     try {
-      // ignore: avoid_print
-      print('LOGIN_SUBMIT phone=${state.phone}');
       final session = await ref
           .read(loginUseCaseProvider)
           .call(phone: state.phone, password: state.password);
-      // ignore: avoid_print
-      print(
-        'LOGIN_OK token=${session.accessToken.isNotEmpty} user=${session.user.phone}',
-      );
 
       await ref
           .read(sessionProvider.notifier)
           .setAuthenticated(
+            expectedIntent: authenticationIntent,
             accessToken: session.accessToken,
             refreshToken: session.refreshToken,
             user: UserSummary(
@@ -63,6 +60,7 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
             ),
           );
 
+      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) return false;
       ref.invalidate(profileProvider);
       ref.invalidate(editProfileProvider);
       try {
@@ -71,11 +69,10 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
         // 资料刷新失败不应阻塞登录结果，页面会继续按 provider 的 error 状态兜底。
       }
 
+      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) return false;
       state = state.copyWith(isSubmitting: false, clearError: true);
       return true;
     } catch (e) {
-      // ignore: avoid_print
-      print('LOGIN_FAIL $e');
       final msg = ref.read(authErrorMapperProvider).mapToUserMessage(e);
       state = state.copyWith(isSubmitting: false, submitError: msg);
       return false;

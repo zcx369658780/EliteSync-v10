@@ -1,0 +1,2873 @@
+{
+  "utc": "2026-10-15T01:07:43.370718+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/matches/history",
+  "request": null,
+  "status": 200,
+  "body": {
+    "items": [
+      {
+        "match_id": 3,
+        "week_tag": "2026-10-15",
+        "partner_id": 7,
+        "partner_nickname": "V1007 Fictional dave",
+        "highlights": "八字数据不完整，当前仅作保守参考。",
+        "explanation_tags": [
+          "八字数据不完整，当前仅作保守参考。",
+          "属相关系一般，仍可通过沟通建立默契",
+          "星座信息不完整，当前仅作基础参考。"
+        ],
+        "match_verdict": "low",
+        "match_reasons": {
+          "contract_version": "v1",
+          "generated_at": "2026-10-15T00:24:04+00:00",
+          "summary": "综合匹配度38分（八字40%、属相20%、星座8%、星盘0%、紫微主星参考0%、合盘0%）",
+          "match": [
+            "八字(55分)：八字信息不完整，已使用保守估计",
+            "属相(55分)：属相关系一般，仍可通过沟通建立默契",
+            "星座(60分)：星座信息不完整，采用基础评分"
+          ],
+          "mismatch": [
+            "八字(55分)：缺少完整八字或五行明细，结论置信度较低"
+          ],
+          "confidence": 0.55,
+          "display_score": 44,
+          "modules": [
+            {
+              "key": "bazi",
+              "label": "八字匹配",
+              "layer": "result",
+              "algo_version": "p2",
+              "confidence": 0.4,
+              "verdict": "weak",
+              "reason_short": "八字数据不完整，当前仅作保守参考。（存在降级估算，建议补全出生信息后再判断）",
+              "reason_detail": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "risk_short": "缺少完整八字或五行明细，结论置信度较低",
+              "risk_detail": "建议补全出生时刻与地点，提高长期结果判断的稳定性。",
+              "evidence_tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "八字数据不完整，当前仅作保守参考。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                },
+                {
+                  "text": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                }
+              ],
+              "risks": [
+                {
+                  "text": "缺少完整八字或五行明细，结论置信度较低",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                },
+                {
+                  "text": "建议补全出生时刻与地点，提高长期结果判断的稳定性。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "missing_bazi",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_bazi",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "evidence_tag_labels": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ]
+            },
+            {
+              "key": "zodiac",
+              "label": "属相匹配",
+              "layer": "bridge",
+              "algo_version": "p2",
+              "confidence": 1,
+              "verdict": "weak",
+              "reason_short": "属相关系一般，仍可通过沟通建立默契",
+              "reason_detail": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "risk_short": "",
+              "risk_detail": "",
+              "evidence_tags": [
+                "zodiac_normal"
+              ],
+              "evidence": {
+                "animal_a": "狗",
+                "animal_b": "猴",
+                "relation_type": "normal"
+              },
+              "highlights": [
+                {
+                  "text": "属相关系一般，仍可通过沟通建立默契",
+                  "evidence_tags": [
+                    "zodiac_normal"
+                  ],
+                  "evidence": {
+                    "animal_a": "狗",
+                    "animal_b": "猴",
+                    "relation_type": "normal"
+                  }
+                },
+                {
+                  "text": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                  "evidence_tags": [
+                    "zodiac_normal"
+                  ],
+                  "evidence": {
+                    "animal_a": "狗",
+                    "animal_b": "猴",
+                    "relation_type": "normal"
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": false,
+              "degrade_reason": "",
+              "engine_source": "unknown",
+              "engine_mode": "canonical",
+              "data_quality": "exact_time+location",
+              "precision_level": "high",
+              "confidence_tier": "high",
+              "confidence_reason": [
+                "engine_mode:canonical",
+                "data_quality:exact_time+location",
+                "precision:high",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": true,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": true
+              },
+              "display_tags": [
+                "zodiac_normal"
+              ],
+              "evidence_tag_labels": [
+                "zodiac_normal"
+              ]
+            },
+            {
+              "key": "constellation",
+              "label": "星座匹配",
+              "layer": "process",
+              "algo_version": "p1",
+              "confidence": 0.6,
+              "verdict": "medium",
+              "reason_short": "星座信息不完整，当前仅作基础参考。（存在降级估算，建议补全出生信息后再判断）",
+              "reason_detail": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "risk_short": "",
+              "risk_detail": "（存在降级估算，建议补全出生信息后再判断）",
+              "evidence_tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "evidence": {
+                "sign_a": "双鱼座",
+                "sign_b": ""
+              },
+              "highlights": [
+                {
+                  "text": "星座信息不完整，当前仅作基础参考。",
+                  "evidence_tags": [
+                    "missing_constellation"
+                  ],
+                  "evidence": {
+                    "sign_a": "双鱼座",
+                    "sign_b": ""
+                  }
+                },
+                {
+                  "text": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。",
+                  "evidence_tags": [
+                    "missing_constellation"
+                  ],
+                  "evidence": {
+                    "sign_a": "双鱼座",
+                    "sign_b": ""
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": true,
+              "degrade_reason": "missing_constellation",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_constellation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "evidence_tag_labels": [
+                "missing_constellation",
+                "degraded_estimation"
+              ]
+            },
+            {
+              "key": "natal_chart",
+              "label": "星盘匹配",
+              "layer": "process",
+              "algo_version": "p2",
+              "confidence": 0,
+              "verdict": "medium",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "",
+              "risk_detail": "（存在降级估算，建议补全出生信息后再判断）",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "情绪同步60 / 表达风格60 / 关系方向60。",
+                  "evidence_tags": [
+                    "natal_chart_partial_data"
+                  ],
+                  "evidence": {
+                    "sun_sign_a": "双鱼座",
+                    "sun_sign_b": "",
+                    "moon_sign_a": "摩羯座",
+                    "moon_sign_b": "",
+                    "asc_sign_a": "金牛座",
+                    "asc_sign_b": "",
+                    "emotion_sync_score": 60,
+                    "expression_sync_score": 60,
+                    "direction_sync_score": 60,
+                    "data_completeness_level": 0,
+                    "engine_source": "default_v1"
+                  }
+                },
+                {
+                  "text": "该项主要衡量过程层顺滑度：情绪同步（60）、表达风格（60）、关系方向（60）。当前存在部分出生信息缺失，建议补全后复核。",
+                  "evidence_tags": [
+                    "natal_chart_partial_data"
+                  ],
+                  "evidence": {
+                    "sun_sign_a": "双鱼座",
+                    "sun_sign_b": "",
+                    "moon_sign_a": "摩羯座",
+                    "moon_sign_b": "",
+                    "asc_sign_a": "金牛座",
+                    "asc_sign_b": "",
+                    "emotion_sync_score": 60,
+                    "expression_sync_score": 60,
+                    "direction_sync_score": 60,
+                    "data_completeness_level": 0,
+                    "engine_source": "default_v1"
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "partial_natal_chart",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            },
+            {
+              "key": "ziwei",
+              "label": "紫微主星关系参考",
+              "layer": "bridge",
+              "algo_version": "p1",
+              "confidence": 0,
+              "verdict": "weak",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "risk_detail": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                },
+                {
+                  "text": "本项采用 fail-open 策略：缺少双方主星排盘或配置关闭时，保持原有匹配结果。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                }
+              ],
+              "risks": [
+                {
+                  "text": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_ziwei_main_star_data",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            },
+            {
+              "key": "pair_chart",
+              "label": "男女合盘",
+              "layer": "bridge",
+              "algo_version": "p2",
+              "confidence": 0,
+              "verdict": "medium",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "risk_detail": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "存在互补空间，建议通过沟通对齐节奏。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "text": "合盘过程层分项：日月互动60、上升互动60、情绪节奏60、长期稳定60。当前存在信息缺失，建议补全后复核。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "risks": [
+                {
+                  "text": "当前为简化估算，缺失信息会降低结论稳定性。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "sun_only_estimation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            }
+          ],
+          "ziwei_main_star_affinity": {
+            "match": "",
+            "mismatch": "",
+            "confidence": 0,
+            "status": "unavailable",
+            "key": "ziwei_main_star_affinity_v1",
+            "label": "紫微主星关系参考",
+            "weight_policy": "low_weight_auxiliary",
+            "contribution_level": "low_weight_auxiliary",
+            "score_delta": 0,
+            "summary": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+            "conversation_hint": "",
+            "boundary_note": "紫微主星辅助维度缺失或关闭时不扣分，不改变现有匹配结果。",
+            "reason_short": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+            "reason_detail": "本项采用 fail-open 策略：缺少双方主星排盘或配置关闭时，保持原有匹配结果。",
+            "risk_detail": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+            "evidence_tags": [
+              "missing_ziwei",
+              "low_weight_auxiliary"
+            ],
+            "evidence": {
+              "has_a": true,
+              "has_b": false,
+              "engine_a": "ziwei_seed_estimate",
+              "engine_b": "",
+              "scoring_status": "unavailable"
+            },
+            "degraded": true,
+            "degrade_reason": "missing_ziwei_main_star_data"
+          },
+          "module_explanations": [
+            {
+              "label": "星盘匹配",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "partial_natal_chart",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 1
+            },
+            {
+              "label": "紫微主星关系参考",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_ziwei_main_star_data",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 2
+            },
+            {
+              "label": "男女合盘",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "sun_only_estimation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 3
+            },
+            {
+              "label": "八字匹配",
+              "confidence": 0.4,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "missing_bazi",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_bazi",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "risk": "缺少完整八字或五行明细，结论置信度较低",
+              "risk_level": "high",
+              "priority": 405,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较多、置信度偏低、存在降级估算",
+              "tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "core_tags": [
+                "bazi_degraded_estimation"
+              ],
+              "aux_tags": [
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 4
+            },
+            {
+              "label": "属相匹配",
+              "confidence": 1,
+              "confidence_tier": "high",
+              "degraded": false,
+              "degrade_reason": "",
+              "engine_source": "unknown",
+              "engine_mode": "canonical",
+              "data_quality": "exact_time+location",
+              "precision_level": "high",
+              "confidence_reason": [
+                "engine_mode:canonical",
+                "data_quality:exact_time+location",
+                "precision:high",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": true,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": true
+              },
+              "reason": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "risk": "",
+              "risk_level": "high",
+              "priority": 327,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、分项得分偏低",
+              "evidence_strength": "medium",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度高",
+              "tags": [
+                "zodiac_normal"
+              ],
+              "core_tags": [
+                "zodiac_normal"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 5
+            },
+            {
+              "label": "星座匹配",
+              "confidence": 0.6,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "missing_constellation",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_constellation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "risk": "",
+              "risk_level": "medium",
+              "priority": 286,
+              "priority_level": "medium",
+              "priority_reason": "风险等级中、存在降级估算",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、存在降级估算",
+              "tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "core_tags": [
+                "missing_constellation"
+              ],
+              "aux_tags": [
+                "degraded_estimation"
+              ],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 6
+            }
+          ],
+          "evidence_strength_summary": {
+            "high": 0,
+            "medium": 1,
+            "low": 5,
+            "total": 6,
+            "weak_modules": [
+              {
+                "label": "星盘匹配",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 1
+              },
+              {
+                "label": "紫微主星关系参考",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 2
+              },
+              {
+                "label": "男女合盘",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 3
+              }
+            ]
+          },
+          "explanation_blocks": [
+            {
+              "key": "",
+              "label": "星盘匹配",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "紫微主星关系参考",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "男女合盘",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "当前为简化估算，缺失信息会降低结论稳定性。",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "八字匹配",
+              "summary": "匹配层结论：缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "process": [
+                "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+                "核心证据：bazi_degraded_estimation"
+              ],
+              "risks": [
+                "缺少完整八字或五行明细，结论置信度较低",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "bazi_degraded_estimation"
+              ],
+              "supporting_evidence": [
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "属相匹配",
+              "summary": "匹配层结论：当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "process": [
+                "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                "核心证据：zodiac_normal"
+              ],
+              "risks": [
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "zodiac_normal"
+              ],
+              "supporting_evidence": [],
+              "confidence": "high",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "星座匹配",
+              "summary": "匹配层结论：因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "process": [
+                "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+                "核心证据：missing_constellation"
+              ],
+              "risks": [
+                "当前风险等级：medium"
+              ],
+              "advice": [
+                "建议优先处理：风险等级中、存在降级估算。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "missing_constellation"
+              ],
+              "supporting_evidence": [
+                "degraded_estimation"
+              ],
+              "confidence": "low",
+              "priority": "medium"
+            }
+          ],
+          "reason_glossary": {
+            "八字": "基于出生信息推算的结构，用于观察长期生活节奏与稳定性倾向。",
+            "五行": "木火土金水的分布结构，主要看互补与均衡，不作为绝对结论。",
+            "属相六合": "传统上协同度较高的属相关系，通常更容易形成配合感。",
+            "属相三合": "传统分组中的协同关系，通常表示节奏更容易对齐。",
+            "相冲/相刑/相害": "表示磨合成本可能偏高，建议提前明确沟通边界。",
+            "星座元素": "火土风水四元素倾向，主要用于过程层互动顺滑度判断。",
+            "证据标签": "用于说明每个结论来自哪些信号，便于复盘与解释。",
+            "合盘": "将双方盘面组合后的过程层分析，关注互动路径与磨合成本。"
+          },
+          "compatibility_sections": {
+            "natal_compatibility": [],
+            "synastry": [
+              {
+                "label": "星盘匹配",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "default_v1",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "partial_natal_chart",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:default_v1"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 1
+              },
+              {
+                "label": "紫微主星关系参考",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_ziwei_main_star_data",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 2
+              },
+              {
+                "label": "八字匹配",
+                "confidence": 0.4,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "missing_bazi",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_bazi",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+                "risk": "缺少完整八字或五行明细，结论置信度较低",
+                "risk_level": "high",
+                "priority": 405,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较多、置信度偏低、存在降级估算",
+                "tags": [
+                  "bazi_degraded_estimation",
+                  "missing_bazi",
+                  "degraded_estimation"
+                ],
+                "core_tags": [
+                  "bazi_degraded_estimation"
+                ],
+                "aux_tags": [
+                  "missing_bazi",
+                  "degraded_estimation"
+                ],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 4
+              },
+              {
+                "label": "属相匹配",
+                "confidence": 1,
+                "confidence_tier": "high",
+                "degraded": false,
+                "degrade_reason": "",
+                "engine_source": "unknown",
+                "engine_mode": "canonical",
+                "data_quality": "exact_time+location",
+                "precision_level": "high",
+                "confidence_reason": [
+                  "engine_mode:canonical",
+                  "data_quality:exact_time+location",
+                  "precision:high",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": true,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": true
+                },
+                "reason": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                "risk": "",
+                "risk_level": "high",
+                "priority": 327,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、分项得分偏低",
+                "evidence_strength": "medium",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度高",
+                "tags": [
+                  "zodiac_normal"
+                ],
+                "core_tags": [
+                  "zodiac_normal"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 5
+              },
+              {
+                "label": "星座匹配",
+                "confidence": 0.6,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "missing_constellation",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_constellation",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+                "risk": "",
+                "risk_level": "medium",
+                "priority": 286,
+                "priority_level": "medium",
+                "priority_reason": "风险等级中、存在降级估算",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、存在降级估算",
+                "tags": [
+                  "missing_constellation",
+                  "degraded_estimation"
+                ],
+                "core_tags": [
+                  "missing_constellation"
+                ],
+                "aux_tags": [
+                  "degraded_estimation"
+                ],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 6
+              }
+            ],
+            "composite_like": [
+              {
+                "label": "男女合盘",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "default_v1",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "sun_only_estimation",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:default_v1"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "当前为简化估算，缺失信息会降低结论稳定性。",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 3
+              }
+            ]
+          }
+        },
+        "display_score": 44,
+        "drop_released": true,
+        "like_self": null,
+        "like_partner": null
+      },
+      {
+        "match_id": 2,
+        "week_tag": "2026-10-15",
+        "partner_id": 6,
+        "partner_nickname": "V1007 Fictional charlie",
+        "highlights": "八字数据不完整，当前仅作保守参考。",
+        "explanation_tags": [
+          "八字数据不完整，当前仅作保守参考。",
+          "属相关系一般，仍可通过沟通建立默契",
+          "星座信息不完整，当前仅作基础参考。"
+        ],
+        "match_verdict": "low",
+        "match_reasons": {
+          "contract_version": "v1",
+          "generated_at": "2026-10-15T00:22:20+00:00",
+          "summary": "综合匹配度38分（八字40%、属相20%、星座8%、星盘0%、紫微主星参考0%、合盘0%）",
+          "match": [
+            "八字(55分)：八字信息不完整，已使用保守估计",
+            "属相(55分)：属相关系一般，仍可通过沟通建立默契",
+            "星座(60分)：星座信息不完整，采用基础评分"
+          ],
+          "mismatch": [
+            "八字(55分)：缺少完整八字或五行明细，结论置信度较低"
+          ],
+          "confidence": 0.55,
+          "display_score": 44,
+          "modules": [
+            {
+              "key": "bazi",
+              "label": "八字匹配",
+              "layer": "result",
+              "algo_version": "p2",
+              "confidence": 0.4,
+              "verdict": "weak",
+              "reason_short": "八字数据不完整，当前仅作保守参考。（存在降级估算，建议补全出生信息后再判断）",
+              "reason_detail": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "risk_short": "缺少完整八字或五行明细，结论置信度较低",
+              "risk_detail": "建议补全出生时刻与地点，提高长期结果判断的稳定性。",
+              "evidence_tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "八字数据不完整，当前仅作保守参考。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                },
+                {
+                  "text": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                }
+              ],
+              "risks": [
+                {
+                  "text": "缺少完整八字或五行明细，结论置信度较低",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                },
+                {
+                  "text": "建议补全出生时刻与地点，提高长期结果判断的稳定性。",
+                  "evidence_tags": [
+                    "bazi_degraded_estimation",
+                    "missing_bazi"
+                  ],
+                  "evidence": []
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "missing_bazi",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_bazi",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "evidence_tag_labels": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ]
+            },
+            {
+              "key": "zodiac",
+              "label": "属相匹配",
+              "layer": "bridge",
+              "algo_version": "p2",
+              "confidence": 1,
+              "verdict": "weak",
+              "reason_short": "属相关系一般，仍可通过沟通建立默契",
+              "reason_detail": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "risk_short": "",
+              "risk_detail": "",
+              "evidence_tags": [
+                "zodiac_normal"
+              ],
+              "evidence": {
+                "animal_a": "狗",
+                "animal_b": "猴",
+                "relation_type": "normal"
+              },
+              "highlights": [
+                {
+                  "text": "属相关系一般，仍可通过沟通建立默契",
+                  "evidence_tags": [
+                    "zodiac_normal"
+                  ],
+                  "evidence": {
+                    "animal_a": "狗",
+                    "animal_b": "猴",
+                    "relation_type": "normal"
+                  }
+                },
+                {
+                  "text": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                  "evidence_tags": [
+                    "zodiac_normal"
+                  ],
+                  "evidence": {
+                    "animal_a": "狗",
+                    "animal_b": "猴",
+                    "relation_type": "normal"
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": false,
+              "degrade_reason": "",
+              "engine_source": "unknown",
+              "engine_mode": "canonical",
+              "data_quality": "exact_time+location",
+              "precision_level": "high",
+              "confidence_tier": "high",
+              "confidence_reason": [
+                "engine_mode:canonical",
+                "data_quality:exact_time+location",
+                "precision:high",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": true,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": true
+              },
+              "display_tags": [
+                "zodiac_normal"
+              ],
+              "evidence_tag_labels": [
+                "zodiac_normal"
+              ]
+            },
+            {
+              "key": "constellation",
+              "label": "星座匹配",
+              "layer": "process",
+              "algo_version": "p1",
+              "confidence": 0.6,
+              "verdict": "medium",
+              "reason_short": "星座信息不完整，当前仅作基础参考。（存在降级估算，建议补全出生信息后再判断）",
+              "reason_detail": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "risk_short": "",
+              "risk_detail": "（存在降级估算，建议补全出生信息后再判断）",
+              "evidence_tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "evidence": {
+                "sign_a": "双鱼座",
+                "sign_b": ""
+              },
+              "highlights": [
+                {
+                  "text": "星座信息不完整，当前仅作基础参考。",
+                  "evidence_tags": [
+                    "missing_constellation"
+                  ],
+                  "evidence": {
+                    "sign_a": "双鱼座",
+                    "sign_b": ""
+                  }
+                },
+                {
+                  "text": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。",
+                  "evidence_tags": [
+                    "missing_constellation"
+                  ],
+                  "evidence": {
+                    "sign_a": "双鱼座",
+                    "sign_b": ""
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": true,
+              "degrade_reason": "missing_constellation",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_constellation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "evidence_tag_labels": [
+                "missing_constellation",
+                "degraded_estimation"
+              ]
+            },
+            {
+              "key": "natal_chart",
+              "label": "星盘匹配",
+              "layer": "process",
+              "algo_version": "p2",
+              "confidence": 0,
+              "verdict": "medium",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "",
+              "risk_detail": "（存在降级估算，建议补全出生信息后再判断）",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "情绪同步60 / 表达风格60 / 关系方向60。",
+                  "evidence_tags": [
+                    "natal_chart_partial_data"
+                  ],
+                  "evidence": {
+                    "sun_sign_a": "双鱼座",
+                    "sun_sign_b": "",
+                    "moon_sign_a": "摩羯座",
+                    "moon_sign_b": "",
+                    "asc_sign_a": "金牛座",
+                    "asc_sign_b": "",
+                    "emotion_sync_score": 60,
+                    "expression_sync_score": 60,
+                    "direction_sync_score": 60,
+                    "data_completeness_level": 0,
+                    "engine_source": "default_v1"
+                  }
+                },
+                {
+                  "text": "该项主要衡量过程层顺滑度：情绪同步（60）、表达风格（60）、关系方向（60）。当前存在部分出生信息缺失，建议补全后复核。",
+                  "evidence_tags": [
+                    "natal_chart_partial_data"
+                  ],
+                  "evidence": {
+                    "sun_sign_a": "双鱼座",
+                    "sun_sign_b": "",
+                    "moon_sign_a": "摩羯座",
+                    "moon_sign_b": "",
+                    "asc_sign_a": "金牛座",
+                    "asc_sign_b": "",
+                    "emotion_sync_score": 60,
+                    "expression_sync_score": 60,
+                    "direction_sync_score": 60,
+                    "data_completeness_level": 0,
+                    "engine_source": "default_v1"
+                  }
+                }
+              ],
+              "risks": [],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "partial_natal_chart",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            },
+            {
+              "key": "ziwei",
+              "label": "紫微主星关系参考",
+              "layer": "bridge",
+              "algo_version": "p1",
+              "confidence": 0,
+              "verdict": "weak",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "risk_detail": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                },
+                {
+                  "text": "本项采用 fail-open 策略：缺少双方主星排盘或配置关闭时，保持原有匹配结果。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                }
+              ],
+              "risks": [
+                {
+                  "text": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                  "evidence_tags": [
+                    "missing_ziwei",
+                    "low_weight_auxiliary"
+                  ],
+                  "evidence": {
+                    "has_a": true,
+                    "has_b": false,
+                    "engine_a": "ziwei_seed_estimate",
+                    "engine_b": "",
+                    "scoring_status": "unavailable"
+                  }
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "missing_ziwei_main_star_data",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            },
+            {
+              "key": "pair_chart",
+              "label": "男女合盘",
+              "layer": "bridge",
+              "algo_version": "p2",
+              "confidence": 0,
+              "verdict": "medium",
+              "reason_short": "本项完整算法尚未恢复，不参与本版排序。",
+              "reason_detail": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk_short": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "risk_detail": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "evidence_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence": [],
+              "highlights": [
+                {
+                  "text": "存在互补空间，建议通过沟通对齐节奏。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "text": "合盘过程层分项：日月互动60、上升互动60、情绪节奏60、长期稳定60。当前存在信息缺失，建议补全后复核。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "risks": [
+                {
+                  "text": "当前为简化估算，缺失信息会降低结论稳定性。",
+                  "evidence_tags": [
+                    "pair_chart_v2",
+                    "sun_moon_harmony",
+                    "emotion_rhythm",
+                    "asc_style_match",
+                    "long_term_stability",
+                    "pair_chart_harmony",
+                    "pair_chart_degraded"
+                  ],
+                  "evidence": {
+                    "sun_moon_ab": 60,
+                    "sun_moon_ba": 60,
+                    "asc_score": 60,
+                    "emotion_rhythm_score": 60,
+                    "bazi_bridge": 60,
+                    "gender_pair": [
+                      "female",
+                      "male"
+                    ],
+                    "component_count": 0,
+                    "engine_source": "default_v1",
+                    "features": [
+                      {
+                        "key": "sun_moon_harmony",
+                        "label": "日月互动",
+                        "contribution": 21,
+                        "evidence_tags": [
+                          "sun_moon_harmony"
+                        ],
+                        "evidence": {
+                          "sun_moon_ab": 60,
+                          "sun_moon_ba": 60
+                        }
+                      },
+                      {
+                        "key": "emotion_rhythm",
+                        "label": "情绪节奏",
+                        "contribution": 15,
+                        "evidence_tags": [
+                          "emotion_rhythm"
+                        ],
+                        "evidence": {
+                          "emotion_rhythm_score": 60
+                        }
+                      },
+                      {
+                        "key": "asc_interaction",
+                        "label": "上升互动",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "asc_style_match"
+                        ],
+                        "evidence": {
+                          "asc_score": 60
+                        }
+                      },
+                      {
+                        "key": "long_term_stability",
+                        "label": "长期稳定",
+                        "contribution": 12,
+                        "evidence_tags": [
+                          "long_term_stability"
+                        ],
+                        "evidence": {
+                          "bazi_bridge": 60
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_tier": "low",
+              "confidence_reason": [
+                "sun_only_estimation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "display_tags": [
+                "v1007_not_restored"
+              ],
+              "evidence_tag_labels": [
+                "v1007_not_restored"
+              ]
+            }
+          ],
+          "ziwei_main_star_affinity": {
+            "match": "",
+            "mismatch": "",
+            "confidence": 0,
+            "status": "unavailable",
+            "key": "ziwei_main_star_affinity_v1",
+            "label": "紫微主星关系参考",
+            "weight_policy": "low_weight_auxiliary",
+            "contribution_level": "low_weight_auxiliary",
+            "score_delta": 0,
+            "summary": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+            "conversation_hint": "",
+            "boundary_note": "紫微主星辅助维度缺失或关闭时不扣分，不改变现有匹配结果。",
+            "reason_short": "双方紫微主星排盘资料暂不完整，本项不扣分。",
+            "reason_detail": "本项采用 fail-open 策略：缺少双方主星排盘或配置关闭时，保持原有匹配结果。",
+            "risk_detail": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+            "evidence_tags": [
+              "missing_ziwei",
+              "low_weight_auxiliary"
+            ],
+            "evidence": {
+              "has_a": true,
+              "has_b": false,
+              "engine_a": "ziwei_seed_estimate",
+              "engine_b": "",
+              "scoring_status": "unavailable"
+            },
+            "degraded": true,
+            "degrade_reason": "missing_ziwei_main_star_data"
+          },
+          "module_explanations": [
+            {
+              "label": "星盘匹配",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "partial_natal_chart",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 1
+            },
+            {
+              "label": "紫微主星关系参考",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_ziwei_main_star_data",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 2
+            },
+            {
+              "label": "男女合盘",
+              "confidence": 0,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "v1007_not_restored",
+              "engine_source": "default_v1",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "sun_only_estimation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:default_v1"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "本项完整算法尚未恢复，不参与本版排序。",
+              "risk": "当前为简化估算，缺失信息会降低结论稳定性。",
+              "risk_level": "high",
+              "priority": 470,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+              "tags": [
+                "v1007_not_restored"
+              ],
+              "core_tags": [
+                "v1007_not_restored"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 3
+            },
+            {
+              "label": "八字匹配",
+              "confidence": 0.4,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "missing_bazi",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_bazi",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "risk": "缺少完整八字或五行明细，结论置信度较低",
+              "risk_level": "high",
+              "priority": 405,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、辅助证据较多、置信度偏低、存在降级估算",
+              "tags": [
+                "bazi_degraded_estimation",
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "core_tags": [
+                "bazi_degraded_estimation"
+              ],
+              "aux_tags": [
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 4
+            },
+            {
+              "label": "属相匹配",
+              "confidence": 1,
+              "confidence_tier": "high",
+              "degraded": false,
+              "degrade_reason": "",
+              "engine_source": "unknown",
+              "engine_mode": "canonical",
+              "data_quality": "exact_time+location",
+              "precision_level": "high",
+              "confidence_reason": [
+                "engine_mode:canonical",
+                "data_quality:exact_time+location",
+                "precision:high",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": true,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": true
+              },
+              "reason": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "risk": "",
+              "risk_level": "high",
+              "priority": 327,
+              "priority_level": "high",
+              "priority_reason": "风险等级高、分项得分偏低",
+              "evidence_strength": "medium",
+              "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度高",
+              "tags": [
+                "zodiac_normal"
+              ],
+              "core_tags": [
+                "zodiac_normal"
+              ],
+              "aux_tags": [],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 5
+            },
+            {
+              "label": "星座匹配",
+              "confidence": 0.6,
+              "confidence_tier": "low",
+              "degraded": true,
+              "degrade_reason": "missing_constellation",
+              "engine_source": "unknown",
+              "engine_mode": "hybrid",
+              "data_quality": "partial_unknown",
+              "precision_level": "estimated",
+              "confidence_reason": [
+                "missing_constellation",
+                "engine_mode:hybrid",
+                "data_quality:partial_unknown",
+                "precision:estimated",
+                "engine_source:unknown"
+              ],
+              "display_guard": {
+                "allow_high_confidence_badge": false,
+                "allow_strong_evidence_badge": false,
+                "allow_precise_wording": false
+              },
+              "reason": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "risk": "",
+              "risk_level": "medium",
+              "priority": 286,
+              "priority_level": "medium",
+              "priority_reason": "风险等级中、存在降级估算",
+              "evidence_strength": "low",
+              "evidence_strength_reason": "具备核心证据、存在降级估算",
+              "tags": [
+                "missing_constellation",
+                "degraded_estimation"
+              ],
+              "core_tags": [
+                "missing_constellation"
+              ],
+              "aux_tags": [
+                "degraded_estimation"
+              ],
+              "core_tag_explains": [],
+              "aux_tag_explains": [],
+              "core_tag_refs": [],
+              "aux_tag_refs": [],
+              "priority_rank": 6
+            }
+          ],
+          "evidence_strength_summary": {
+            "high": 0,
+            "medium": 1,
+            "low": 5,
+            "total": 6,
+            "weak_modules": [
+              {
+                "label": "星盘匹配",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 1
+              },
+              {
+                "label": "紫微主星关系参考",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 2
+              },
+              {
+                "label": "男女合盘",
+                "reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "priority_rank": 3
+              }
+            ]
+          },
+          "explanation_blocks": [
+            {
+              "key": "",
+              "label": "星盘匹配",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "紫微主星关系参考",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "男女合盘",
+              "summary": "匹配层结论：本项完整算法尚未恢复，不参与本版排序。",
+              "process": [
+                "本项完整算法尚未恢复，不参与本版排序。",
+                "核心证据：v1007_not_restored"
+              ],
+              "risks": [
+                "当前为简化估算，缺失信息会降低结论稳定性。",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "v1007_not_restored"
+              ],
+              "supporting_evidence": [],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "八字匹配",
+              "summary": "匹配层结论：缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+              "process": [
+                "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+                "核心证据：bazi_degraded_estimation"
+              ],
+              "risks": [
+                "缺少完整八字或五行明细，结论置信度较低",
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、存在降级估算、置信度偏低、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "bazi_degraded_estimation"
+              ],
+              "supporting_evidence": [
+                "missing_bazi",
+                "degraded_estimation"
+              ],
+              "confidence": "low",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "属相匹配",
+              "summary": "匹配层结论：当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+              "process": [
+                "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                "核心证据：zodiac_normal"
+              ],
+              "risks": [
+                "当前风险等级：high"
+              ],
+              "advice": [
+                "建议优先处理：风险等级高、分项得分偏低。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "zodiac_normal"
+              ],
+              "supporting_evidence": [],
+              "confidence": "high",
+              "priority": "high"
+            },
+            {
+              "key": "",
+              "label": "星座匹配",
+              "summary": "匹配层结论：因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+              "process": [
+                "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+                "核心证据：missing_constellation"
+              ],
+              "risks": [
+                "当前风险等级：medium"
+              ],
+              "advice": [
+                "建议优先处理：风险等级中、存在降级估算。",
+                "请结合真实互动结果理解该分项结论。"
+              ],
+              "core_evidence": [
+                "missing_constellation"
+              ],
+              "supporting_evidence": [
+                "degraded_estimation"
+              ],
+              "confidence": "low",
+              "priority": "medium"
+            }
+          ],
+          "reason_glossary": {
+            "八字": "基于出生信息推算的结构，用于观察长期生活节奏与稳定性倾向。",
+            "五行": "木火土金水的分布结构，主要看互补与均衡，不作为绝对结论。",
+            "属相六合": "传统上协同度较高的属相关系，通常更容易形成配合感。",
+            "属相三合": "传统分组中的协同关系，通常表示节奏更容易对齐。",
+            "相冲/相刑/相害": "表示磨合成本可能偏高，建议提前明确沟通边界。",
+            "星座元素": "火土风水四元素倾向，主要用于过程层互动顺滑度判断。",
+            "证据标签": "用于说明每个结论来自哪些信号，便于复盘与解释。",
+            "合盘": "将双方盘面组合后的过程层分析，关注互动路径与磨合成本。"
+          },
+          "compatibility_sections": {
+            "natal_compatibility": [],
+            "synastry": [
+              {
+                "label": "星盘匹配",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "default_v1",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "partial_natal_chart",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:default_v1"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 1
+              },
+              {
+                "label": "紫微主星关系参考",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_ziwei_main_star_data",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "不要把缺失的紫微信息解读为不合适；当前只是未展示辅助维度。",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 2
+              },
+              {
+                "label": "八字匹配",
+                "confidence": 0.4,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "missing_bazi",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_bazi",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "缺少完整八字或五行明细，系统只能按简化规则估算，不建议把该项作为强结论。（存在降级估算，建议补全出生信息后再判断）",
+                "risk": "缺少完整八字或五行明细，结论置信度较低",
+                "risk_level": "high",
+                "priority": 405,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较多、置信度偏低、存在降级估算",
+                "tags": [
+                  "bazi_degraded_estimation",
+                  "missing_bazi",
+                  "degraded_estimation"
+                ],
+                "core_tags": [
+                  "bazi_degraded_estimation"
+                ],
+                "aux_tags": [
+                  "missing_bazi",
+                  "degraded_estimation"
+                ],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 4
+              },
+              {
+                "label": "属相匹配",
+                "confidence": 1,
+                "confidence_tier": "high",
+                "degraded": false,
+                "degrade_reason": "",
+                "engine_source": "unknown",
+                "engine_mode": "canonical",
+                "data_quality": "exact_time+location",
+                "precision_level": "high",
+                "confidence_reason": [
+                  "engine_mode:canonical",
+                  "data_quality:exact_time+location",
+                  "precision:high",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": true,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": true
+                },
+                "reason": "当前组合不属于传统六合/三合，也不在冲刑害高风险组，建议以现实互动质量为主判断。 当前组合：狗-猴（关系类型：normal）。",
+                "risk": "",
+                "risk_level": "high",
+                "priority": 327,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、分项得分偏低",
+                "evidence_strength": "medium",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度高",
+                "tags": [
+                  "zodiac_normal"
+                ],
+                "core_tags": [
+                  "zodiac_normal"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 5
+              },
+              {
+                "label": "星座匹配",
+                "confidence": 0.6,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "missing_constellation",
+                "engine_source": "unknown",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "missing_constellation",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:unknown"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "因星座要素缺失，系统无法给出完整过程层判断，仅提供中性估计。（存在降级估算，建议补全出生信息后再判断）",
+                "risk": "",
+                "risk_level": "medium",
+                "priority": 286,
+                "priority_level": "medium",
+                "priority_reason": "风险等级中、存在降级估算",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、存在降级估算",
+                "tags": [
+                  "missing_constellation",
+                  "degraded_estimation"
+                ],
+                "core_tags": [
+                  "missing_constellation"
+                ],
+                "aux_tags": [
+                  "degraded_estimation"
+                ],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 6
+              }
+            ],
+            "composite_like": [
+              {
+                "label": "男女合盘",
+                "confidence": 0,
+                "confidence_tier": "low",
+                "degraded": true,
+                "degrade_reason": "v1007_not_restored",
+                "engine_source": "default_v1",
+                "engine_mode": "hybrid",
+                "data_quality": "partial_unknown",
+                "precision_level": "estimated",
+                "confidence_reason": [
+                  "sun_only_estimation",
+                  "engine_mode:hybrid",
+                  "data_quality:partial_unknown",
+                  "precision:estimated",
+                  "engine_source:default_v1"
+                ],
+                "display_guard": {
+                  "allow_high_confidence_badge": false,
+                  "allow_strong_evidence_badge": false,
+                  "allow_precise_wording": false
+                },
+                "reason": "本项完整算法尚未恢复，不参与本版排序。",
+                "risk": "当前为简化估算，缺失信息会降低结论稳定性。",
+                "risk_level": "high",
+                "priority": 470,
+                "priority_level": "high",
+                "priority_reason": "风险等级高、存在降级估算、置信度偏低、分项得分偏低",
+                "evidence_strength": "low",
+                "evidence_strength_reason": "具备核心证据、辅助证据较少、置信度偏低、存在降级估算",
+                "tags": [
+                  "v1007_not_restored"
+                ],
+                "core_tags": [
+                  "v1007_not_restored"
+                ],
+                "aux_tags": [],
+                "core_tag_explains": [],
+                "aux_tag_explains": [],
+                "core_tag_refs": [],
+                "aux_tag_refs": [],
+                "priority_rank": 3
+              }
+            ]
+          }
+        },
+        "display_score": 44,
+        "drop_released": true,
+        "like_self": null,
+        "like_partner": null
+      }
+    ],
+    "total": 2
+  }
+}

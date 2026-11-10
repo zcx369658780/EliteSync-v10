@@ -1,0 +1,11 @@
+# M5-66执行只读交接终止及Owner会话规则修正
+
+2026-10-01 主Work REJECT/CLOSED READONLY HANDOFF。原01a0f590-3c90-74c1-b6d4-4c01198d2d3f turn01a0f590-3fea-7590-b42a-0ea5cd626d75 completed/error=null，无在途任务。原exec-d6f42d2b读取handoff禁读的memory/home registry；exec-778cd7ea输出完整dirty列表且native检索truncated=true；作者报告偏离后仍继续只读检查。Work指示停止后正常结束。native-receipts.json保存取回原turn，不能由之后匹配事实追认交接流程合格。
+
+之后原exec-f56b0871 exit0/native truncated=false回执4057字符，记main指定HEAD/224status/223快照成员缺0、只新增本handoff目录、九冻结及M5-65两候选/M5-66残留完整祖先-size-hash一致、summary无。接受这些回执中直接可见的只读观察，不接受完整handoff，也不授权实现或重跑。Reads/写入/Git mutation/源码运行区别保持，未见本会话workspace写入或候选执行。
+
+Owner随后明确纠正：创建Codex会话太频繁，不要每任务新建；交接规则是30次实际对话或上下文太长。此直接Owner要求优先于Work此前对可靠性条款的扩大解释。Work承认将失败过快转为退休新建；撤回对最新01a0f590自动退休和立即再建执行/新Work的安排，保留现有01a0f590用于后续核定，不再因普通任务失败自动新建会话。尚未接受的handoff及M5-66拒绝/闭budget不变，修正规则不把它们改为通过或重开预算。更早已明确停用的会话不自动复活。
+
+原elitesync在本轮已PAUSED，没有实现后继或在途派发；维持现状记录Owner修正，不创建任何自动化/执行会话/Work。今后任务首失败只关闭该task并保留证据；实际往返达到30次或具体上下文过长才按根规则交接，已有明确退休禁派的历史会话不重复派发。当前主Work继续保留权威，不能仅因本次执行失败要求Owner新建Work。
+
+M5-66 REJECT/CLOSED NOT_DELIVERED残留27360>24576/hash24CED1808B633716E0F5C831BEB8225413564132DEA3DD8011E1508D157C04BB，summary无/A1 reads2闭/B未执行闭/完整传输NOT_PROVEN；M5-65源码拒绝/旧候选闭budget，M5-62仅SOURCE-ONLY接受/语法行为NOT_CHECKED，M5-60数据事实接受/完整传输拒绝stderr UNKNOWN/硬超时NOT_PROVEN保持。全部dirty/九冻结/rawfixture/M5-50阻塞及NOT_READY/时序/真实性恢复生产/UAC门保持，无Git mutation或受保护运行。

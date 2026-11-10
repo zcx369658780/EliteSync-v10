@@ -23,22 +23,18 @@ class ConversationAtomicSendService
 
     public function fingerprint(int $receiverId, string $content, array $attachmentIds): string
     {
-        return hash('sha256', json_encode([
-            'receiver_id' => $receiverId,
-            'content' => $content,
-            'attachment_ids' => array_values($attachmentIds),
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        return \App\Domain\MessagingReplayContract::fingerprint($receiverId, $content, $attachmentIds);
     }
 
     /** @return array<string, mixed>|null */
-    public function replay(int $senderId, string $clientMessageId, string $fingerprint): ?array
+    public function replay(int $senderId, string $clientMessageId, string $fingerprint, ?int $receiverId = null): ?array
     {
         $message = ChatMessage::query()
             ->where('sender_id', $senderId)
             ->where('client_message_id', $clientMessageId)
             ->first();
 
-        return $message ? $this->replayResult($message, $fingerprint) : null;
+        return $message ? $this->replayResult($message, $fingerprint, $receiverId) : null;
     }
 
     /** @return array<string, mixed> */
@@ -51,8 +47,11 @@ class ConversationAtomicSendService
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->get()->keyBy('id');
         foreach ($attachmentIds as $id) {
             $asset = $assets->get($id);
-            if (!$asset || (int) $asset->owner_user_id !== $senderId) {
+            if (! $asset || (int) $asset->owner_user_id !== $senderId) {
                 return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
+            }
+            if (app(LiveConsentService::class)->enabled() && ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+                return ['ok' => false, 'status' => 422, 'code' => 'private_attachment_required'];
             }
         }
         foreach ($attachmentIds as $id) {
@@ -76,20 +75,35 @@ class ConversationAtomicSendService
         string $sourcePage,
     ): array {
         return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage) {
+            // No consistent read may precede the pair lock under MariaDB RR.
+            $pair = User::whereIn('id', [(int) $sender->id, $receiverId])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            foreach ([(int) $sender->id, $receiverId] as $id) {
+                $current = $pair->get($id);
+                if (!$current || $current->disabled || ($current->account_status ?? 'active') !== 'active') {
+                    return ['ok'=>false,'status'=>404,'message'=>'chat unavailable'];
+                }
+            }
+            $token = $sender->currentAccessToken();
+            if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+                $freshToken = \Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->lockForUpdate()->first();
+                abort_unless($freshToken && (int)$freshToken->tokenable_id === (int)$sender->id
+                    && $freshToken->tokenable_type === $sender->getMorphClass(), 401, 'SESSION_REVOKED');
+                abort_if($freshToken->expires_at && $freshToken->expires_at->lte(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+            }
             if ($clientMessageId !== null) {
-                $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint);
+                $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint, $receiverId);
                 if ($replay) {
                     return $replay;
                 }
             }
 
             $authorization = $this->capabilities->authorizeSend((int) $sender->id, $receiverId, true);
-            if (!$authorization['allowed']) {
+            if (! $authorization['allowed']) {
                 return ['ok' => false, 'status' => 404, 'message' => 'chat unavailable'];
             }
 
             $assetsResult = $this->lockedReadyAssets((int) $sender->id, $attachmentIds);
-            if (!$assetsResult['ok']) {
+            if (! $assetsResult['ok']) {
                 return $assetsResult;
             }
 
@@ -123,17 +137,19 @@ class ConversationAtomicSendService
                 }
             }
 
-            $matchId = (int) $authorization['dating_match_id'];
-            ConversationMatchLink::query()->firstOrCreate(
-                ['dating_match_id' => $matchId],
-                ['conversation_id' => $conversation->id, 'linked_at' => now()],
-            );
-            $link = ConversationMatchLink::query()
-                ->where('dating_match_id', $matchId)
-                ->lockForUpdate()
-                ->firstOrFail();
-            if ((int) $link->conversation_id !== (int) $conversation->id) {
-                throw new RuntimeException('match link conversation invariant violation');
+            $matchId = $authorization['dating_match_id'];
+            if ($matchId !== null) {
+                ConversationMatchLink::query()->firstOrCreate(
+                    ['dating_match_id' => $matchId],
+                    ['conversation_id' => $conversation->id, 'linked_at' => now()],
+                );
+                $link = ConversationMatchLink::query()
+                    ->where('dating_match_id', $matchId)
+                    ->lockForUpdate()
+                    ->firstOrFail();
+                if ((int) $link->conversation_id !== (int) $conversation->id) {
+                    throw new RuntimeException('match link conversation invariant violation');
+                }
             }
 
             if ($clientMessageId === null) {
@@ -155,8 +171,8 @@ class ConversationAtomicSendService
                         'request_fingerprint' => $fingerprint,
                     ],
                 );
-                if (!$message->wasRecentlyCreated) {
-                    return $this->replayResult($message, (string) $fingerprint);
+                if (! $message->wasRecentlyCreated) {
+                    return $this->replayResult($message, (string) $fingerprint, $receiverId);
                 }
             }
 
@@ -196,18 +212,14 @@ class ConversationAtomicSendService
                 ],
             );
 
-            $senderName = trim((string) ($sender->nickname ?? $sender->name ?? $sender->phone ?? '有人'));
             $message->load('attachments.mediaAsset');
             $this->notifications->createForUser(
                 userId: $receiverId,
                 kind: 'message',
-                title: "{$senderName} 发来一条消息",
-                body: $this->notificationBody($message),
+                title: NotificationService::MESSAGE_TITLE,
+                body: NotificationService::MESSAGE_BODY,
                 payload: [
-                    'route_name' => 'chat_room',
-                    'route_args' => ['conversation_id' => (string) $conversation->id, 'title' => $senderName],
                     'message_id' => (int) $message->id,
-                    'peer_user_id' => (int) $sender->id,
                     'source' => 'message',
                 ],
             );
@@ -229,9 +241,12 @@ class ConversationAtomicSendService
             return ['ok' => true, 'assets' => collect()];
         }
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->lockForUpdate()->get()->keyBy('id');
+        if (app(LiveConsentService::class)->enabled() && $assets->contains(fn ($asset) => ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true))) {
+            return ['ok' => false, 'status' => 422, 'code' => 'private_attachment_required'];
+        }
         foreach ($attachmentIds as $id) {
             $asset = $assets->get($id);
-            if (!$asset || (int) $asset->owner_user_id !== $senderId) {
+            if (! $asset || (int) $asset->owner_user_id !== $senderId) {
                 return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
             }
         }
@@ -240,13 +255,22 @@ class ConversationAtomicSendService
                 return ['ok' => false, 'status' => 409, 'code' => 'attachment_not_ready', 'retry_safe' => true];
             }
         }
+
         return ['ok' => true, 'assets' => $assets];
     }
 
     /** @return array<string, mixed> */
-    private function replayResult(ChatMessage $message, string $fingerprint): array
+    private function replayResult(ChatMessage $message, string $fingerprint, ?int $receiverId = null): array
     {
-        if (!hash_equals((string) $message->request_fingerprint, $fingerprint)) {
+        $decision = \App\Domain\MessagingReplayContract::replayDecision(
+            (int)$message->sender_id, (int)$message->receiver_id, (int)$message->sender_id,
+            $receiverId ?? (int)$message->receiver_id, (string)$message->request_fingerprint, $fingerprint,
+            $this->capabilities->authorizeSend((int)$message->sender_id, (int)$message->receiver_id, true)['allowed'],
+        );
+        if ($decision === 'UNAVAILABLE') {
+            return ['ok' => false, 'status' => 404, 'code' => 'conversation_unavailable'];
+        }
+        if ($decision === 'CONFLICT') {
             return [
                 'ok' => false,
                 'status' => 409,
@@ -255,9 +279,10 @@ class ConversationAtomicSendService
             ];
         }
         $conversation = Conversation::query()->where('room_key', $message->room_id)->first();
-        if (!$conversation) {
+        if (! $conversation) {
             throw new RuntimeException('idempotent message conversation missing');
         }
+
         return [
             'ok' => true,
             'message' => $message->load('attachments.mediaAsset'),
@@ -272,21 +297,5 @@ class ConversationAtomicSendService
         return str_starts_with($mediaType, 'video') || $mediaType === 'video'
             ? 'video'
             : (str_starts_with($mediaType, 'image') || $mediaType === 'image' ? 'image' : 'media');
-    }
-
-    private function notificationBody(ChatMessage $message): string
-    {
-        $content = trim((string) $message->content);
-        if ($content !== '') {
-            return mb_strimwidth($content, 0, 90, '…', 'UTF-8');
-        }
-        $types = $message->attachments->map(fn ($item) => (string) ($item->mediaAsset?->media_type ?? ''));
-        if ($types->contains(fn ($type) => str_starts_with($type, 'video') || $type === 'video')) {
-            return '发送了一条视频消息';
-        }
-        if ($types->contains(fn ($type) => str_starts_with($type, 'image') || $type === 'image')) {
-            return '发送了一条图片消息';
-        }
-        return $types->isNotEmpty() ? '发送了一条多媒体消息' : '发送了一条新消息';
     }
 }

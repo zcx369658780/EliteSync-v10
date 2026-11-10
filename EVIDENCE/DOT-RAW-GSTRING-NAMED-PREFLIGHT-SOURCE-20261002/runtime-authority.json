@@ -1,0 +1,16 @@
+{
+  "TaskId": "DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002",
+  "Status": "CLOSED_AFTER_A_FAILURE",
+  "JVM": 1,
+  "OwnerAuthorization": "OWNER_SINGLE_CASE_DIAGNOSTIC_AUTHORIZED",
+  "ProbeSha256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+  "ProbeBytes": 9812,
+  "ProbePath": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\\DiagnoseRawGString.groovy",
+  "ManifestPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv",
+  "InputRoot": "D:\\GradleHome\\wrapper\\dists\\gradle-8.14-all\\dq61qkzrdg407zji6bwf6hwt7\\gradle-8.14\\lib",
+  "OutputRoot": "D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002",
+  "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot\\bin\\java.exe",
+  "InstallerPath": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy",
+  "InstallerSha256": "7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37",
+  "InstallerBytes": 6141
+}

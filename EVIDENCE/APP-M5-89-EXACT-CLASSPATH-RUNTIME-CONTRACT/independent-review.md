@@ -1,0 +1,1 @@
+NO_FINDINGS仅失败处理：Sol/high m587_review task/native各完整Read1，无补读/其它路径/外部/hash/运行/写。原native仅入口command exit0/nativefalse、无A-B/fileChange；宿主JS SyntaxError/A0-source0/B关闭报告未建均AUTHOR_REPORTED，不能独立冒原错误已证。失败停下符合首停，未交付不得恢复预算；未现场检查候选存在。Work保留终裁。

@@ -31,7 +31,7 @@ void main() {
 
     final header = find.bySemanticsLabel(RegExp('Home title'));
     expect(header, findsOneWidget);
-    expect(tester.getSemantics(header), containsSemantics(hasTapAction: false));
+    expect(tester.getSemantics(header), isSemantics(hasTapAction: false));
     expect(find.bySemanticsLabel('Action'), findsOneWidget);
     semantics.dispose();
   });

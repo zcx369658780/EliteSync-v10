@@ -1,0 +1,26 @@
+{
+  "command": [
+    "D:\\flutter\\bin\\flutter.bat",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/session_rejection_test.dart",
+    "test/core/network/auth_interceptor_rejection_test.dart",
+    "test/features/profile/data/profile_city_save_test.dart",
+    "test/features/profile/presentation/pages/edit_profile_city_test.dart",
+    "test/features/profile/presentation/providers/profile_city_provider_test.dart",
+    "test/features/profile/presentation/providers/profile_providers_test.dart",
+    "test/features/auth/data/datasource/auth_local_data_source_test.dart",
+    "test/app/router/home_progress_guard_refresh_test.dart",
+    "test/app/router/app_shell_rtc_invite_test.dart"
+  ],
+  "cwd": ".",
+  "exit": 1,
+  "start": "2026-10-14T13:28:07.142597+00:00",
+  "end": "2026-10-14T13:28:19.850155+00:00",
+  "streams": {
+    "stdout": "8b0ecab2459a9164f222e320ec595ce790b1fba175b5ba53868d7cca7a52aab2",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

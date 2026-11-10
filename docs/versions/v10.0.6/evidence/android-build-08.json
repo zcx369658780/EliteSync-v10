@@ -1,0 +1,17 @@
+{
+  "command": [
+    ".\\apps\\android\\gradlew.bat",
+    "assembleDebug",
+    "-PflutterDartDefines=ELITESYNC_V1006_LOCAL_BUILD=true",
+    "--console=plain",
+    "--info"
+  ],
+  "cwd": ".\\apps\\android",
+  "exit": 1,
+  "start": "2026-10-14T13:57:37.939338+00:00",
+  "end": "2026-10-14T13:57:37.971450+00:00",
+  "streams": {
+    "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "83cee69214da2175b5033379ed8853ff7990d883aa32a0acf6b28bef6f404b66"
+  }
+}

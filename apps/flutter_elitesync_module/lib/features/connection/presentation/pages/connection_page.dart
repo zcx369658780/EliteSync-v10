@@ -1,16 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/features/connection/domain/product_connection_contract.dart';
+import 'package:flutter_elitesync_module/features/connection/presentation/providers/connection_presentation_provider.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/state/connection_presentation_state.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/widgets/connection_authority_panel.dart';
 import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ConnectionPage extends StatelessWidget {
   const ConnectionPage({
     super.key,
-    this.snapshot = const ConnectionPresentationState.notYetEstablished(),
+    this.snapshot,
+  });
+
+  final ConnectionPresentationState? snapshot;
+
+  @override
+  Widget build(BuildContext context) {
+    final fixedSnapshot = snapshot;
+    if (fixedSnapshot != null) {
+      return _ConnectionPageBody(snapshot: fixedSnapshot);
+    }
+
+    try {
+      ProviderScope.containerOf(context, listen: false);
+    } catch (_) {
+      return const _ConnectionPageBody(
+        snapshot: ConnectionPresentationState.notYetEstablished(),
+      );
+    }
+
+    return Consumer(
+      builder: (context, ref, child) {
+        final current = ref.watch(connectionPresentationProvider);
+        final controller = ref.read(connectionPresentationProvider.notifier);
+        return _ConnectionPageBody(
+          snapshot: current,
+          availableTransitions: controller.availableTransitions,
+          onAction: controller.apply,
+          onReset: controller.resetLocalDemo,
+        );
+      },
+    );
+  }
+}
+
+class _ConnectionPageBody extends StatelessWidget {
+  const _ConnectionPageBody({
+    required this.snapshot,
+    this.availableTransitions = const <ConnectionTransition>[],
+    this.onAction,
+    this.onReset,
   });
 
   final ConnectionPresentationState snapshot;
+  final List<ConnectionTransition> availableTransitions;
+  final ValueChanged<ConnectionLifecycleAction>? onAction;
+  final VoidCallback? onReset;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +68,12 @@ class ConnectionPage extends StatelessWidget {
           const SizedBox(height: 12),
           const _ConnectionBoundaryCard(),
           const SizedBox(height: 12),
-          const ConnectionAuthorityPanel(),
+          ConnectionAuthorityPanel(
+            snapshot: snapshot,
+            availableTransitions: availableTransitions,
+            onAction: onAction,
+            onReset: onReset,
+          ),
         ],
       ),
     );
@@ -39,6 +89,8 @@ class _ConnectionStatusCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = snapshot.state;
     final hasAuthority = snapshot.hasAuthoritativeState && state != null;
+    final isSynthetic =
+        snapshot.hasSyntheticDevelopmentState && state != null;
     const unresolved = AppPresentationState.authorityNotEstablished(
       safeTitle: '连接状态尚未建立',
       safeBody:
@@ -51,19 +103,30 @@ class _ConnectionStatusCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              hasAuthority ? '当前连接状态' : unresolved.safeTitle,
+              isSynthetic
+                  ? 'Synthetic Connection · 开发演示'
+                  : hasAuthority
+                  ? '当前连接状态'
+                  : unresolved.safeTitle,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
             Text(
-              hasAuthority
-                  ? state!.code
+              hasAuthority || isSynthetic
+                  ? state.code
                   : ProductConnectionAuthority.notYetEstablishedLabel,
               style: Theme.of(context).textTheme.labelLarge,
             ),
             const SizedBox(height: 4),
-            Text(hasAuthority ? state!.label : unresolved.safeBody),
-            if (hasAuthority && state!.isTerminalRequestOutcome) ...[
+            Text(
+              isSynthetic
+                  ? '${state.label}\n这是仅存于本地内存的开发 simulation，不是服务器或生产 Connection authority。'
+                  : hasAuthority
+                  ? state.label
+                  : unresolved.safeBody,
+            ),
+            if ((hasAuthority || isSynthetic) &&
+                state.isTerminalRequestOutcome) ...[
               const SizedBox(height: 8),
               const Text('该结果不代表过错、安全认定，也不是客观不合适的结论。'),
             ],

@@ -1,0 +1,5 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/D:/GradleHome/wrapper/dists/gradle-8.14-all/dq61qkzrdg407zji6bwf6hwt7/gradle-8.14/lib/gradle-logging-8.14.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/D:/GradleHome/caches/8.14/generated-gradle-jars/gradle-api-8.14.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.gradle.internal.logging.slf4j.OutputEventListenerBackedLoggerContext]

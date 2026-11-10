@@ -505,7 +505,6 @@ class _OverlayBadgeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.appTokens;
     return Wrap(
       spacing: 2,
       runSpacing: 2,

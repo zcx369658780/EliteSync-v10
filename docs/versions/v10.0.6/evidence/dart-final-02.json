@@ -1,0 +1,30 @@
+{
+  "command": [
+    "D:\\flutter\\bin\\dart.bat",
+    "analyze",
+    "lib/shared/providers/session_provider.dart",
+    "lib/core/network/interceptors/auth_interceptor.dart",
+    "lib/core/network/dio_factory.dart",
+    "lib/shared/providers/app_providers.dart",
+    "lib/features/auth/presentation/pages/login_page.dart",
+    "lib/main_prod.dart",
+    "lib/app/config/app_env.dart",
+    "lib/app/router/app_shell.dart",
+    "lib/features/profile/data/datasource/profile_remote_data_source.dart",
+    "lib/features/profile/presentation/pages/edit_profile_page.dart",
+    "lib/features/profile/presentation/providers/profile_providers.dart",
+    "test/session_rejection_test.dart",
+    "test/core/network/auth_interceptor_rejection_test.dart",
+    "test/features/profile/data/profile_city_save_test.dart",
+    "test/features/profile/presentation/pages/edit_profile_city_test.dart",
+    "test/features/profile/presentation/providers/profile_city_provider_test.dart"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T13:22:17.959238+00:00",
+  "end": "2026-10-14T13:22:44.393872+00:00",
+  "streams": {
+    "stdout": "77e46ee46bb2bedc7552ddd418ca1d01d4845121eaa2215b60615f1797a1ae63",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

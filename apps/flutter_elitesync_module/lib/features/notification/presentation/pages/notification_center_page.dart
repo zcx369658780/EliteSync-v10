@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'notification_preferences_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
+import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
+import 'package:flutter_elitesync_module/features/platform_v1014/platform_events_page.dart';
+import 'package:flutter_elitesync_module/features/platform_v1014/safety_cases_page.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_feedback.dart';
@@ -93,7 +99,150 @@ class _NotificationCenterPageState
     return true;
   }
 
+  String? _controlledTarget(NotificationItemEntity item) {
+    if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+      return NotificationPrivacyContract.platformControlledTarget(item);
+    }
+    if (item.kind == 'buddy') {
+      final id = item.payload['buddy_activity_id'];
+      if (id is String &&
+          RegExp(
+            r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+          ).hasMatch(id)) {
+        return id;
+      }
+    }
+    if (item.kind == 'status_comment') {
+      final id = int.tryParse(item.payload['status_post_id']?.toString() ?? '');
+      if (id != null && id > 0) return '$id';
+    }
+    return null;
+  }
+
+  bool _currentControlledIntent(String? identity, int epoch) {
+    if (!mounted) return false;
+    final current = ref.read(sessionProvider).asData?.value;
+    return mounted &&
+        identity != null &&
+        current?.isLoggedIn == true &&
+        current?.accessToken == identity &&
+        ref.read(relationshipAuthorityEpochProvider) == epoch;
+  }
+
+  void _discardPlatformAuthority() {
+    ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    ref.invalidate(notificationListProvider);
+    ref.invalidate(notificationUnreadCountProvider);
+  }
+
+  Future<bool> _openControlledNotification(
+    NotificationItemEntity item,
+    String id,
+  ) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final identity = session?.isLoggedIn == true ? session?.accessToken : null;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, epoch)) return false;
+    try {
+      final path = switch (item.kind) {
+        'buddy' => '/buddy/${Uri.encodeComponent(id)}',
+        'platform_event' => '/platform-events/${Uri.encodeComponent(id)}',
+        'safety_case' => '/safety/own/${Uri.encodeComponent(id)}',
+        _ => '/status/posts/$id',
+      };
+      final result = await ref.read(relationshipApiProvider).call('GET', path);
+      if (!mounted || !_currentControlledIntent(identity, epoch)) return false;
+      if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+        final valid = item.kind == 'platform_event'
+            ? result['id'] == id &&
+                  result['title'] is String &&
+                  result['marker'] == 'DEV_SYNTHETIC_EVENT' &&
+                  const [
+                    'OPEN',
+                    'CLOSED',
+                    'COMPLETED',
+                  ].contains(result['state'])
+            : result['id'] == id &&
+                  const ['reporter', 'subject'].contains(result['role']) &&
+                  const [
+                    'OPEN',
+                    'TRIAGED',
+                    'INVESTIGATING',
+                    'DISMISSED',
+                    'SUBSTANTIATED',
+                    'ACTIONED',
+                    'CLOSED',
+                    'REOPENED_FOR_APPEAL',
+                    'CORRECTED',
+                  ].contains(result['state']);
+        if (!valid) {
+          _discardPlatformAuthority();
+          AppFeedback.showInfo(context, '当前内容已不可访问，请刷新当前状态');
+          return false;
+        }
+        // Only the current lookup grants navigation. The destination reads its
+        // own projection again and never receives this preflight response.
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => item.kind == 'platform_event'
+                ? const PlatformEventsPage()
+                : const SafetyCasesPage(),
+          ),
+        );
+      } else if (item.kind == 'buddy') {
+        if (result['id'] != id ||
+            result['subject'] is! String ||
+            !const [
+              'OPEN',
+              'REQUESTED',
+              'CONFIRMED',
+            ].contains(result['state'])) {
+          AppFeedback.showInfo(context, '本次活动已不可访问，请刷新当前状态');
+          return false;
+        }
+        context.push('/buddy-v1013');
+      } else {
+        final post = result['item'];
+        if (post is! Map ||
+            post['id'].toString() != id ||
+            post['body'] is! String) {
+          AppFeedback.showInfo(context, '当前动态已不可访问，请刷新当前状态');
+          return false;
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => Scaffold(
+              appBar: AppBar(title: const Text('好友动态评论')),
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: CommentPanel(postId: int.parse(id)),
+              ),
+            ),
+          ),
+        );
+      }
+      return true;
+    } catch (_) {
+      if (mounted && _currentControlledIntent(identity, epoch)) {
+        if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+          _discardPlatformAuthority();
+        }
+        AppFeedback.showInfo(context, '当前访问未完成，请检查网络或权限后重试');
+      }
+      return false;
+    }
+  }
+
   Future<bool> _openNotification(NotificationItemEntity item) async {
+    final controlledTarget = _controlledTarget(item);
+    if (controlledTarget != null) {
+      return _openControlledNotification(item, controlledTarget);
+    }
+    if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
+      _discardPlatformAuthority();
+      AppFeedback.showInfo(context, '当前通知目标不可用，请刷新当前状态');
+      return false;
+    }
     final routeName = item.routeName.trim();
     if (routeName.isEmpty) {
       AppFeedback.showInfo(context, '这条通知没有可打开页面，可先标记已读');
@@ -106,23 +255,27 @@ class _NotificationCenterPageState
         return false;
       }
       try {
-        final conversation = await ref.read(
-          conversationDetailProvider(conversationId).future,
-        );
+        final identity = ref.read(sessionProvider).asData?.value.accessToken;
+        final epoch = ref.read(relationshipAuthorityEpochProvider);
+        ref.invalidate(conversationDetailProvider(conversationId));
+        final conversation = await ref.read(conversationDetailProvider(conversationId).future);
+        if (!_currentControlledIntent(identity, epoch)) return false;
         final peerUserId = conversation.peerUserId;
-        if (!mounted || peerUserId == null || peerUserId <= 0) {
+        final resolvedConversationId = conversation.conversationId;
+        if (!mounted ||
+            conversation.entryKind != 'stored_conversation' ||
+            resolvedConversationId == null ||
+            resolvedConversationId <= 0 ||
+            resolvedConversationId != conversationId ||
+            peerUserId == null ||
+            peerUserId <= 0) {
           if (mounted) {
             AppFeedback.showInfo(context, '暂时无法打开这段会话，请稍后重试');
           }
           return false;
         }
-        if (conversation.conversationId != null &&
-            conversation.conversationId != conversationId) {
-          AppFeedback.showInfo(context, '暂时无法打开这段会话，请稍后重试');
-          return false;
-        }
         final routeState = ChatRouteState.stored(
-          conversationId: conversationId,
+          conversationId: resolvedConversationId,
           peerUserId: peerUserId,
           matchId: conversation.matchId,
           title: conversation.name,
@@ -140,27 +293,13 @@ class _NotificationCenterPageState
       }
     }
     if (routeName == 'status_author') {
-      final userId = _intRouteArg('user_id', item);
-      final name = (item.routeArgs['name'] ?? '用户资料').toString();
-      if (userId > 0) {
-        context.push(
-          '${AppRouteNames.statusAuthor}/$userId?name=${Uri.encodeComponent(name)}',
-        );
-        return true;
-      }
-      AppFeedback.showInfo(context, '动态作者信息缺失，暂无法打开');
+      AppFeedback.showInfo(context, '当前访问权限尚未建立，暂无法打开');
       return false;
     }
-    if (routeName == 'match_detail') {
-      context.go(AppRouteNames.matchDetail);
-      return true;
-    }
-    if (routeName == 'match_result') {
-      context.go(AppRouteNames.matchResult);
-      return true;
-    }
-    if (routeName == 'match_intention') {
-      context.go(AppRouteNames.matchIntention);
+    if (routeName == 'match_detail' ||
+        routeName == 'match_result' ||
+        routeName == 'match_intention') {
+      context.go(AppRouteNames.progressMatch);
       return true;
     }
     if (routeName == 'questionnaire_history') {
@@ -216,8 +355,21 @@ class _NotificationCenterPageState
   }
 
   Future<void> _openAndMarkRead(NotificationItemEntity item) async {
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    final intentEpoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
+    try {
+      item = await ref.read(notificationRemoteDataSourceProvider).fetchNotification(item.id);
+    } catch (_) {
+      if (mounted && _currentControlledIntent(identity, intentEpoch)) {
+        AppFeedback.showInfo(context, '当前通知已不可访问，请刷新后重试');
+      }
+      return;
+    }
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
     final opened = await _openNotification(item);
     if (!opened || !mounted) return;
+    if (!_currentControlledIntent(identity, intentEpoch)) return;
     await _markRead(item);
   }
 
@@ -228,7 +380,9 @@ class _NotificationCenterPageState
   }
 
   Future<void> _handlePrimaryAction(NotificationItemEntity item) async {
-    if (item.routeName.trim().isEmpty) {
+    if (item.routeName.trim().isEmpty &&
+        _controlledTarget(item) == null &&
+        !NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
       await _markReadOnly(item);
       return;
     }
@@ -362,7 +516,11 @@ class _NotificationCenterPageState
                       onPressed: () => _handlePrimaryAction(item),
                       icon: const Icon(Icons.open_in_new_rounded),
                       label: Text(
-                        item.routeName.trim().isEmpty
+                        item.routeName.trim().isEmpty &&
+                                _controlledTarget(item) == null &&
+                                !NotificationPrivacyContract.isPlatformControlledKind(
+                                  item.kind,
+                                )
                             ? '仅标记已读'
                             : privacyPresentation.actionLabel,
                       ),
@@ -394,126 +552,141 @@ class _NotificationCenterPageState
     final unreadAsync = ref.watch(notificationUnreadCountProvider);
     final t = context.appTokens;
 
-    return BrowseScaffold(
-      header: Row(
-        children: [
-          Expanded(
-            child: Text(
-              '通知中心',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: t.textPrimary,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: _refresh,
-            icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: _refresh,
-        child: listAsync.when(
-          loading: () => const AppPresentationStateView(
-            state: AppPresentationState.loading(
-              safeTitle: '正在读取通知',
-              safeBody: '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
-            ),
-            loadingLines: 6,
-          ),
-          error: (e, _) => ListView(
-            padding: EdgeInsets.only(bottom: t.spacing.huge),
-            children: [
-              AppPresentationStateView(
-                state: const AppPresentationState.retryableError(
-                  safeTitle: '通知加载失败',
-                  safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
-                  safeActionLabel: '重新加载',
+    return Scaffold(
+      backgroundColor: t.browseBackground,
+      body: BrowseScaffold(
+        header: Row(
+          children: [
+            Expanded(
+              child: Text(
+                '通知中心',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: t.textPrimary,
+                  fontWeight: FontWeight.w800,
                 ),
-                onRetryRead: _refresh,
               ),
-            ],
-          ),
-          data: (items) {
-            final unread =
-                unreadAsync.asData?.value ??
-                items.where((e) => !e.isRead).length;
-            if (items.isEmpty) {
-              const emptyState = AppPresentationState.empty(
-                safeTitle: '当前没有提醒',
+            ),
+            IconButton(
+              onPressed: _refresh,
+              icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+            ),
+            IconButton(
+              tooltip: '通知设置',
+              icon: const Icon(Icons.tune),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const NotificationPreferencesPage(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: RefreshIndicator(
+          onRefresh: _refresh,
+          child: listAsync.when(
+            skipLoadingOnReload: false,
+            skipLoadingOnRefresh: false,
+            loading: () => const AppPresentationStateView(
+              state: AppPresentationState.loading(
+                safeTitle: '正在读取通知',
                 safeBody:
-                    '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
-              );
+                    '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
+              ),
+              loadingLines: 6,
+            ),
+            error: (e, _) => ListView(
+              padding: EdgeInsets.only(bottom: t.spacing.huge),
+              children: [
+                AppPresentationStateView(
+                  state: const AppPresentationState.retryableError(
+                    safeTitle: '通知加载失败',
+                    safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
+                    safeActionLabel: '重新加载',
+                  ),
+                  onRetryRead: _refresh,
+                ),
+              ],
+            ),
+            data: (items) {
+              final unread =
+                  (unreadAsync.isLoading ? null : unreadAsync.asData?.value) ??
+                  items.where((e) => !e.isRead).length;
+              if (items.isEmpty) {
+                const emptyState = AppPresentationState.empty(
+                  safeTitle: '当前没有提醒',
+                  safeBody:
+                      '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+                );
+                return ListView(
+                  padding: EdgeInsets.only(bottom: t.spacing.huge),
+                  children: [
+                    AppInfoSectionCard(
+                      title: '站内提醒',
+                      subtitle: '慢约会、聊天和资料准备的关键回流会收在这里',
+                      leadingIcon: Icons.notifications_active_outlined,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${emptyState.safeTitle}。${emptyState.safeBody}',
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: t.textSecondary),
+                            ),
+                          ),
+                          AppChoiceChip(
+                            label: '去首页',
+                            leading: const Icon(Icons.home_outlined),
+                            onTap: () => context.go(AppRouteNames.home),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    const _LocalReturnPreviewCard(),
+                  ],
+                );
+              }
+
               return ListView(
                 padding: EdgeInsets.only(bottom: t.spacing.huge),
                 children: [
                   AppInfoSectionCard(
                     title: '站内提醒',
-                    subtitle: '慢约会、聊天和资料准备的关键回流会收在这里',
+                    subtitle: '慢约会、聊天和资料准备的应用内回流中心',
                     leadingIcon: Icons.notifications_active_outlined,
                     child: Row(
                       children: [
                         Expanded(
                           child: Text(
-                            '${emptyState.safeTitle}。${emptyState.safeBody}',
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(color: t.textSecondary),
+                            _unreadSummaryText(unread),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(
+                                  color: t.textPrimary,
+                                  fontWeight: FontWeight.w700,
+                                ),
                           ),
                         ),
                         AppChoiceChip(
-                          label: '去首页',
-                          leading: const Icon(Icons.home_outlined),
-                          onTap: () => context.go(AppRouteNames.home),
+                          label: '全部已读',
+                          leading: const Icon(Icons.done_all_rounded),
+                          onTap: _markAllRead,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: t.spacing.sm),
                   const _LocalReturnPreviewCard(),
+                  SizedBox(height: t.spacing.md),
+                  ...items.map(
+                    (item) => Padding(
+                      padding: EdgeInsets.only(bottom: t.spacing.sm),
+                      child: _buildNotificationCard(item, t),
+                    ),
+                  ),
                 ],
               );
-            }
-
-            return ListView(
-              padding: EdgeInsets.only(bottom: t.spacing.huge),
-              children: [
-                AppInfoSectionCard(
-                  title: '站内提醒',
-                  subtitle: '慢约会、聊天和资料准备的应用内回流中心',
-                  leadingIcon: Icons.notifications_active_outlined,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          _unreadSummaryText(unread),
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
-                                color: t.textPrimary,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                      ),
-                      AppChoiceChip(
-                        label: '全部已读',
-                        leading: const Icon(Icons.done_all_rounded),
-                        onTap: _markAllRead,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: t.spacing.sm),
-                const _LocalReturnPreviewCard(),
-                SizedBox(height: t.spacing.md),
-                ...items.map(
-                  (item) => Padding(
-                    padding: EdgeInsets.only(bottom: t.spacing.sm),
-                    child: _buildNotificationCard(item, t),
-                  ),
-                ),
-              ],
-            );
-          },
+            },
+          ),
         ),
       ),
     );

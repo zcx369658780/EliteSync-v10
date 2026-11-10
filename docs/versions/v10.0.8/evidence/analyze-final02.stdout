@@ -1,0 +1,6 @@
+Analyzing flutter_elitesync_module...
+
+warning - lib\features\questionnaire\presentation\providers\questionnaire_provider.dart:389:18 - Unnecessary cast. Try removing the cast. - unnecessary_cast
+   info - test\features\questionnaire\questionnaire_bank_change_notice_test.dart:87:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+2 issues found.

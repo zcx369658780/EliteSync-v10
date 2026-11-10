@@ -1,0 +1,10 @@
+{
+  "livekit-license": {
+    "url": "https://raw.githubusercontent.com/livekit/livekit/v1.13.10/LICENSE",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "python-license": {
+    "url": "https://raw.githubusercontent.com/python/cpython/v3.11.13/LICENSE",
+    "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+  }
+}

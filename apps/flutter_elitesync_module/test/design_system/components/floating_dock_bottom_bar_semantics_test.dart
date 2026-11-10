@@ -38,7 +38,7 @@ void main() {
     expect(find.bySemanticsLabel('首页'), findsOneWidget);
     expect(
       tester.getSemantics(find.bySemanticsLabel('首页')),
-      containsSemantics(
+      isSemantics(
         label: '首页',
         hasSelectedState: true,
         isSelected: true,
@@ -81,11 +81,11 @@ void main() {
     await tester.pumpAndSettle();
     expect(
       tester.getSemantics(find.bySemanticsLabel('首页')),
-      containsSemantics(hasSelectedState: true, isSelected: false),
+      isSemantics(hasSelectedState: true, isSelected: false),
     );
     expect(
       tester.getSemantics(find.bySemanticsLabel('消息')),
-      containsSemantics(hasSelectedState: true, isSelected: true),
+      isSemantics(hasSelectedState: true, isSelected: true),
     );
 
     await tester.tap(find.bySemanticsLabel('发现'));

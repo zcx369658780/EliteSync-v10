@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-15T00:04:17.808582+00:00",
+  "role": "bob",
+  "method": "GET",
+  "path": "/api/v1/questionnaire/draft",
+  "request": null,
+  "status": 200,
+  "body": {
+    "current_index": 3,
+    "version": "q_v2",
+    "bank_version": "qb_v1",
+    "answers": {
+      "72": 0,
+      "60": 0,
+      "136": 0
+    },
+    "question_ids": [
+      72,
+      60,
+      136,
+      135,
+      50,
+      86,
+      131,
+      114,
+      33,
+      102,
+      41,
+      125,
+      45,
+      108,
+      79,
+      112,
+      43,
+      32,
+      49,
+      101
+    ]
+  }
+}

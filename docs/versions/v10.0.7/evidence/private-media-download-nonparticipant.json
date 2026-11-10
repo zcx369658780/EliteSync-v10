@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T00:27:11.511883+00:00",
+  "role": "incomplete",
+  "method": "GET",
+  "path": "/api/v1/media/1/content",
+  "request": null,
+  "status": 404,
+  "body": {
+    "message": "media asset unavailable"
+  }
+}

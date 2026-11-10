@@ -822,6 +822,7 @@ class MatchingEngineService
         }
 
         $astroWeightMap = (array) config('match_rules.weights', []);
+        $astroWeightMap = array_replace($astroWeightMap, (array)($astro['effective_weights'] ?? []));
         $astroDetail = (array) ($astro['module_details'] ?? []);
         if (isset($astroDetail['ziwei']) && is_array($astroDetail['ziwei'])) {
             $astroWeightMap['ziwei'] = (float) ($astroDetail['ziwei']['weight'] ?? ($astroWeightMap['ziwei'] ?? 0.0));

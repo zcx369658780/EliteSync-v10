@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state.dart';
 import 'package:flutter_elitesync_module/shared/presentation_state/app_presentation_state_view.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,6 +12,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: AppTheme.light,
         home: Scaffold(
           body: AppPresentationStateView(
             state: const AppPresentationState.stale(),
@@ -33,8 +35,9 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
+      MaterialApp(
+        theme: AppTheme.light,
+        home: const Scaffold(
           body: AppPresentationStateView(
             state: AppPresentationState.authorityNotEstablished(),
             lastKnownContent: Text('SYNTHETIC PROTECTED CONTENT'),

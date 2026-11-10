@@ -90,8 +90,9 @@ class ChatRouteState {
   );
 
   factory ChatRouteState.fromConversation(ConversationEntity conversation) {
-    final peerUserId =
-        conversation.peerUserId ?? int.tryParse(conversation.id.trim());
+    final peerUserId = conversation.entryKind == 'stored_conversation'
+        ? conversation.peerUserId
+        : conversation.peerUserId ?? int.tryParse(conversation.id.trim());
     if (peerUserId == null || peerUserId <= 0) {
       throw ArgumentError.value(
         conversation.id,
@@ -100,7 +101,14 @@ class ChatRouteState {
       );
     }
     final conversationId = conversation.conversationId;
-    if (conversationId != null) {
+    if (conversation.entryKind == 'stored_conversation') {
+      if (conversationId == null || conversationId <= 0) {
+        throw ArgumentError.value(
+          conversationId,
+          'conversation.conversationId',
+          'stored conversation requires a positive conversation ID',
+        );
+      }
       return ChatRouteState.stored(
         conversationId: conversationId,
         peerUserId: peerUserId,
@@ -108,8 +116,21 @@ class ChatRouteState {
         title: conversation.name,
       );
     }
-    if (conversation.entryKind == 'eligible_match' &&
-        conversation.matchId != null) {
+    if (conversationId != null) {
+      throw ArgumentError.value(
+        conversationId,
+        'conversation.conversationId',
+        'non-stored entry cannot claim a conversation ID',
+      );
+    }
+    if (conversation.entryKind == 'eligible_match') {
+      if (conversation.matchId == null || conversation.matchId! <= 0) {
+        throw ArgumentError.value(
+          conversation.matchId,
+          'conversation.matchId',
+          'eligible match requires a positive match ID',
+        );
+      }
       return ChatRouteState.eligibleMatch(
         peerUserId: peerUserId,
         matchId: conversation.matchId!,

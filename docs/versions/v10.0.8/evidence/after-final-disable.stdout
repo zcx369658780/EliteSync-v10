@@ -1,0 +1,1101 @@
+{
+    "database": "elitesync_v1008_dev",
+    "port": 43318,
+    "users": [
+        {
+            "id": 1,
+            "name": "V1008 Fictional admin",
+            "role": "admin",
+            "disabled": 0,
+            "verify_status": "approved",
+            "verify_reason": null,
+            "verify_revision": 0,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 2,
+            "name": "V1008 Fictional alice",
+            "role": "user",
+            "disabled": 1,
+            "verify_status": "approved",
+            "verify_reason": "V1008 final approved control after questionnaire recovery",
+            "verify_revision": 5,
+            "admin_revision": 3,
+            "moderation_status": "banned",
+            "account_status": "disabled",
+            "visibility_scope": "hidden",
+            "is_match_eligible": 0
+        },
+        {
+            "id": 3,
+            "name": "V1008 Fictional bob",
+            "role": "user",
+            "disabled": 0,
+            "verify_status": "approved",
+            "verify_reason": "V1008 final normal control approved",
+            "verify_revision": 2,
+            "admin_revision": 2,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 4,
+            "name": "V1008 Fictional pending",
+            "role": "user",
+            "disabled": 0,
+            "verify_status": "pending",
+            "verify_reason": "V1008 concurrent same revision",
+            "verify_revision": 2,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 5,
+            "name": "V1008 Fictional incomplete",
+            "role": "user",
+            "disabled": 0,
+            "verify_status": "pending",
+            "verify_reason": null,
+            "verify_revision": 0,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 6,
+            "name": "V1008 Fictional roleonly",
+            "role": "admin",
+            "disabled": 0,
+            "verify_status": "pending",
+            "verify_reason": null,
+            "verify_revision": 0,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 7,
+            "name": "V1008 Fictional listonly",
+            "role": "user",
+            "disabled": 0,
+            "verify_status": "pending",
+            "verify_reason": null,
+            "verify_revision": 0,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        },
+        {
+            "id": 8,
+            "name": "V1008 Fictional disabled",
+            "role": "user",
+            "disabled": 1,
+            "verify_status": "pending",
+            "verify_reason": null,
+            "verify_revision": 0,
+            "admin_revision": 0,
+            "moderation_status": "normal",
+            "account_status": "active",
+            "visibility_scope": "square",
+            "is_match_eligible": 1
+        }
+    ],
+    "admin_sanctions": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "report_id": null,
+            "kind": "restrict",
+            "active": 0,
+            "restored_by": 1
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "report_id": 1,
+            "kind": "banned",
+            "active": 0,
+            "restored_by": 1
+        },
+        {
+            "id": 3,
+            "user_id": 2,
+            "report_id": null,
+            "kind": "banned",
+            "active": 1,
+            "restored_by": null
+        }
+    ],
+    "admin_operation_audits": [
+        {
+            "id": 1,
+            "actor_user_id": 1,
+            "action": "matching.prepare",
+            "target_type": "round",
+            "target_id": "new",
+            "reason": "v1008-browser-baseline",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 2,
+            "actor_user_id": 1,
+            "action": "matching.executionRequest",
+            "target_type": "round",
+            "target_id": "6370d69b-d715-48f1-a5d5-82daa55424f4",
+            "reason": "v1008-browser-execute",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":202}"
+        },
+        {
+            "id": 3,
+            "actor_user_id": 1,
+            "action": "matching.reveal",
+            "target_type": "round",
+            "target_id": "6370d69b-d715-48f1-a5d5-82daa55424f4",
+            "reason": "v1008-browser-reveal",
+            "expected_version": 3,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 4,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 pending operational review evidence",
+            "expected_version": 0,
+            "before_state": "{\"status\":\"approved\",\"revision\":0}",
+            "after_state": "{\"status\":\"pending\",\"revision\":1}"
+        },
+        {
+            "id": 5,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 rejected operational review evidence",
+            "expected_version": 1,
+            "before_state": "{\"status\":\"pending\",\"revision\":1}",
+            "after_state": "{\"status\":\"rejected\",\"revision\":2}"
+        },
+        {
+            "id": 6,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 approved after controlled review",
+            "expected_version": 2,
+            "before_state": "{\"status\":\"rejected\",\"revision\":2}",
+            "after_state": "{\"status\":\"approved\",\"revision\":3}"
+        },
+        {
+            "id": 7,
+            "actor_user_id": 1,
+            "action": "user.restrict",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 controlled restrict privacy regression",
+            "expected_version": 0,
+            "before_state": "{\"disabled\":false,\"moderation_status\":\"normal\",\"revision\":0}",
+            "after_state": "{\"disabled\":false,\"moderation_status\":\"restricted\",\"revision\":1,\"sanction_id\":1}"
+        },
+        {
+            "id": 8,
+            "actor_user_id": 1,
+            "action": "release.web.upsert",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "V1008 create current local package metadata",
+            "expected_version": 0,
+            "before_state": "{\"revision\":0,\"releases\":[]}",
+            "after_state": "{\"revision\":1,\"releases\":[{\"changelog_sha256\":\"ad9a1c658e084159ce90fa9e8fe43a128ad22e74062d39103881fd0ca4d8be99\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.01.08\",\"version_code\":108,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"2E63F75AC79FDA22248DF8F1A80082317E371BB5E403CF0E58CA3412257AF0E3\",\"force_update\":false,\"is_active\":false,\"published_at\":null}]}"
+        },
+        {
+            "id": 9,
+            "actor_user_id": 1,
+            "action": "release.web.activate",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "Activate V1008 local metadata for APP readback",
+            "expected_version": 1,
+            "before_state": "{\"revision\":1,\"releases\":[{\"changelog_sha256\":\"ad9a1c658e084159ce90fa9e8fe43a128ad22e74062d39103881fd0ca4d8be99\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.01.08\",\"version_code\":108,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"2E63F75AC79FDA22248DF8F1A80082317E371BB5E403CF0E58CA3412257AF0E3\",\"force_update\":false,\"is_active\":false,\"published_at\":null}]}",
+            "after_state": "{\"revision\":2,\"releases\":[{\"changelog_sha256\":\"ad9a1c658e084159ce90fa9e8fe43a128ad22e74062d39103881fd0ca4d8be99\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.01.08\",\"version_code\":108,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"2E63F75AC79FDA22248DF8F1A80082317E371BB5E403CF0E58CA3412257AF0E3\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}"
+        },
+        {
+            "id": 10,
+            "actor_user_id": 1,
+            "action": "user.restore",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 restore only controlled restriction 1",
+            "expected_version": 1,
+            "before_state": "{\"disabled\":false,\"moderation_status\":\"restricted\",\"revision\":1}",
+            "after_state": "{\"disabled\":false,\"moderation_status\":\"normal\",\"revision\":2,\"sanction_id\":1}"
+        },
+        {
+            "id": 11,
+            "actor_user_id": 1,
+            "action": "report.view",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "case detail view",
+            "expected_version": null,
+            "before_state": "[]",
+            "after_state": "{\"category\":\"status_post\"}"
+        },
+        {
+            "id": 12,
+            "actor_user_id": 1,
+            "action": "report.remove_post",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "V1008 public post controlled removal",
+            "expected_version": 0,
+            "before_state": "{\"status\":\"new\",\"revision\":0}",
+            "after_state": "{\"status\":\"action_taken\",\"revision\":1}"
+        },
+        {
+            "id": 13,
+            "actor_user_id": 1,
+            "action": "report.view",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "case detail view",
+            "expected_version": null,
+            "before_state": "[]",
+            "after_state": "{\"category\":\"status_post\"}"
+        },
+        {
+            "id": 14,
+            "actor_user_id": 1,
+            "action": "user.banned",
+            "target_type": "user",
+            "target_id": "3",
+            "reason": "V1008 report-linked controlled ban",
+            "expected_version": 0,
+            "before_state": "{\"disabled\":false,\"moderation_status\":\"normal\",\"revision\":0}",
+            "after_state": "{\"disabled\":true,\"moderation_status\":\"banned\",\"revision\":1,\"sanction_id\":2}"
+        },
+        {
+            "id": 15,
+            "actor_user_id": 1,
+            "action": "report.banned",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "V1008 report-linked controlled ban",
+            "expected_version": 1,
+            "before_state": "{\"status\":\"action_taken\",\"revision\":1}",
+            "after_state": "{\"status\":\"action_taken\",\"revision\":2}"
+        },
+        {
+            "id": 16,
+            "actor_user_id": 1,
+            "action": "report.view",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "case detail view",
+            "expected_version": null,
+            "before_state": "[]",
+            "after_state": "{\"category\":\"status_post\"}"
+        },
+        {
+            "id": 17,
+            "actor_user_id": 1,
+            "action": "user.restore",
+            "target_type": "user",
+            "target_id": "3",
+            "reason": "V1008 report restore only tracked sanction 2",
+            "expected_version": 1,
+            "before_state": "{\"disabled\":true,\"moderation_status\":\"banned\",\"revision\":1}",
+            "after_state": "{\"disabled\":false,\"moderation_status\":\"normal\",\"revision\":2,\"sanction_id\":2}"
+        },
+        {
+            "id": 18,
+            "actor_user_id": 1,
+            "action": "report.restore",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "V1008 report restore only tracked sanction 2",
+            "expected_version": 2,
+            "before_state": "{\"status\":\"action_taken\",\"revision\":2}",
+            "after_state": "{\"status\":\"closed\",\"revision\":3}"
+        },
+        {
+            "id": 19,
+            "actor_user_id": 1,
+            "action": "report.view",
+            "target_type": "report",
+            "target_id": "1",
+            "reason": "case detail view",
+            "expected_version": null,
+            "before_state": "[]",
+            "after_state": "{\"category\":\"status_post\"}"
+        },
+        {
+            "id": 20,
+            "actor_user_id": 1,
+            "action": "question.disable",
+            "target_type": "questionnaire_question",
+            "target_id": "1",
+            "reason": "V1008 retire question 1 preserve historical answers",
+            "expected_version": 0,
+            "before_state": "{\"enabled\":true,\"version\":2,\"revision\":0}",
+            "after_state": "{\"enabled\":false,\"version\":3,\"revision\":1}"
+        },
+        {
+            "id": 21,
+            "actor_user_id": 1,
+            "action": "matching.close",
+            "target_type": "round",
+            "target_id": "6370d69b-d715-48f1-a5d5-82daa55424f4",
+            "reason": "V1008 close original published round preserve result",
+            "expected_version": 4,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 22,
+            "actor_user_id": 1,
+            "action": "matching.prepare",
+            "target_type": "round",
+            "target_id": "new",
+            "reason": "V1008 stopped worker and lease recovery",
+            "expected_version": 3,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 23,
+            "actor_user_id": 1,
+            "action": "matching.executionRequest",
+            "target_type": "round",
+            "target_id": "ef144a3a-fc77-4fe7-924c-b0527a2e8c83",
+            "reason": "V1008 request while owned worker stopped",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":202}"
+        },
+        {
+            "id": 24,
+            "actor_user_id": 1,
+            "action": "matching.retry",
+            "target_type": "round",
+            "target_id": "ef144a3a-fc77-4fe7-924c-b0527a2e8c83",
+            "reason": "V1008 expire abandoned lease and retry new attempt",
+            "expected_version": 2,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 25,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "4",
+            "reason": "V1008 real lock serialization proof",
+            "expected_version": 0,
+            "before_state": "{\"status\":\"pending\",\"revision\":0}",
+            "after_state": "{\"status\":\"rejected\",\"revision\":1}"
+        },
+        {
+            "id": 26,
+            "actor_user_id": 1,
+            "action": "matching.reveal",
+            "target_type": "round",
+            "target_id": "ef144a3a-fc77-4fe7-924c-b0527a2e8c83",
+            "reason": "V1008 reveal completed retry outcome preserve prior match",
+            "expected_version": 5,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 27,
+            "actor_user_id": 1,
+            "action": "matching.close",
+            "target_type": "round",
+            "target_id": "ef144a3a-fc77-4fe7-924c-b0527a2e8c83",
+            "reason": "V1008 close completed recovery round",
+            "expected_version": 6,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 28,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "4",
+            "reason": "V1008 concurrent same revision",
+            "expected_version": 1,
+            "before_state": "{\"status\":\"rejected\",\"revision\":1}",
+            "after_state": "{\"status\":\"pending\",\"revision\":2}"
+        },
+        {
+            "id": 29,
+            "actor_user_id": 1,
+            "action": "release.web.upsert",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "Bind current final development package identity",
+            "expected_version": 2,
+            "before_state": "{\"revision\":2,\"releases\":[{\"changelog_sha256\":\"ad9a1c658e084159ce90fa9e8fe43a128ad22e74062d39103881fd0ca4d8be99\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.01.08\",\"version_code\":108,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"2E63F75AC79FDA22248DF8F1A80082317E371BB5E403CF0E58CA3412257AF0E3\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}",
+            "after_state": "{\"revision\":3,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}"
+        },
+        {
+            "id": 30,
+            "actor_user_id": 1,
+            "action": "release.web.deactivate",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "V1008 deactivate development metadata fallback verification",
+            "expected_version": 3,
+            "before_state": "{\"revision\":3,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}",
+            "after_state": "{\"revision\":4,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":false,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}"
+        },
+        {
+            "id": 31,
+            "actor_user_id": 1,
+            "action": "release.web.activate",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "V1008 restore sole active development metadata",
+            "expected_version": 4,
+            "before_state": "{\"revision\":4,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":false,\"published_at\":\"2026-10-15T07:16:29.000000Z\"}]}",
+            "after_state": "{\"revision\":5,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:49:43.000000Z\"}]}"
+        },
+        {
+            "id": 32,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 pending for zero-candidate control; preserve old consent",
+            "expected_version": 3,
+            "before_state": "{\"status\":\"approved\",\"revision\":3}",
+            "after_state": "{\"status\":\"pending\",\"revision\":4}"
+        },
+        {
+            "id": 33,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "3",
+            "reason": "V1008 pending zero-candidate control",
+            "expected_version": 0,
+            "before_state": "{\"status\":\"approved\",\"revision\":0}",
+            "after_state": "{\"status\":\"pending\",\"revision\":1}"
+        },
+        {
+            "id": 34,
+            "actor_user_id": 1,
+            "action": "matching.prepare",
+            "target_type": "round",
+            "target_id": "new",
+            "reason": "V1008 zero eligible candidates under pending review",
+            "expected_version": 5,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 35,
+            "actor_user_id": 1,
+            "action": "matching.executionRequest",
+            "target_type": "round",
+            "target_id": "e3df5fc0-f840-4395-8fc6-8962796a1518",
+            "reason": "V1008 execute zero eligible candidate run",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":202}"
+        },
+        {
+            "id": 36,
+            "actor_user_id": 1,
+            "action": "matching.reveal",
+            "target_type": "round",
+            "target_id": "e3df5fc0-f840-4395-8fc6-8962796a1518",
+            "reason": "V1008 publish genuine zero-candidate outcome",
+            "expected_version": 3,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 37,
+            "actor_user_id": 1,
+            "action": "matching.close",
+            "target_type": "round",
+            "target_id": "e3df5fc0-f840-4395-8fc6-8962796a1518",
+            "reason": "V1008 close zero candidate control",
+            "expected_version": 4,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 38,
+            "actor_user_id": 1,
+            "action": "matching.prepare",
+            "target_type": "round",
+            "target_id": "new",
+            "reason": "V1008 real freeze and question change concurrency",
+            "expected_version": 7,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 39,
+            "actor_user_id": 1,
+            "action": "matching.executionRequest",
+            "target_type": "round",
+            "target_id": "b7787b1b-850c-442d-a875-f9c13749ceef",
+            "reason": "V1008 freeze controlled pending run",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":202}"
+        },
+        {
+            "id": 40,
+            "actor_user_id": 1,
+            "action": "question.enable",
+            "target_type": "questionnaire_question",
+            "target_id": "1",
+            "reason": "V1008 restore audited question during real frozen-input race",
+            "expected_version": 1,
+            "before_state": "{\"enabled\":false,\"version\":3,\"revision\":1}",
+            "after_state": "{\"enabled\":true,\"version\":4,\"revision\":2}"
+        },
+        {
+            "id": 41,
+            "actor_user_id": 1,
+            "action": "matching.retry",
+            "target_type": "round",
+            "target_id": "b7787b1b-850c-442d-a875-f9c13749ceef",
+            "reason": "V1008 explicit retry after input changed",
+            "expected_version": 3,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 42,
+            "actor_user_id": 1,
+            "action": "matching.reveal",
+            "target_type": "round",
+            "target_id": "b7787b1b-850c-442d-a875-f9c13749ceef",
+            "reason": "V1008 publish fresh attempt after bank conflict",
+            "expected_version": 5,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 43,
+            "actor_user_id": 1,
+            "action": "matching.close",
+            "target_type": "round",
+            "target_id": "b7787b1b-850c-442d-a875-f9c13749ceef",
+            "reason": "V1008 close recovered bank race",
+            "expected_version": 6,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 44,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 final approved control after questionnaire recovery",
+            "expected_version": 4,
+            "before_state": "{\"status\":\"pending\",\"revision\":4}",
+            "after_state": "{\"status\":\"approved\",\"revision\":5}"
+        },
+        {
+            "id": 45,
+            "actor_user_id": 1,
+            "action": "user.review",
+            "target_type": "user",
+            "target_id": "3",
+            "reason": "V1008 final normal control approved",
+            "expected_version": 1,
+            "before_state": "{\"status\":\"pending\",\"revision\":1}",
+            "after_state": "{\"status\":\"approved\",\"revision\":2}"
+        },
+        {
+            "id": 46,
+            "actor_user_id": 1,
+            "action": "matching.prepare",
+            "target_type": "round",
+            "target_id": "new",
+            "reason": "V1008 final shared publish and station event",
+            "expected_version": 9,
+            "before_state": "[]",
+            "after_state": "{\"status\":201}"
+        },
+        {
+            "id": 47,
+            "actor_user_id": 1,
+            "action": "matching.executionRequest",
+            "target_type": "round",
+            "target_id": "5829c486-ea91-4c98-ac16-a4003d274822",
+            "reason": "V1008 final real consumer execution",
+            "expected_version": 1,
+            "before_state": "[]",
+            "after_state": "{\"status\":202}"
+        },
+        {
+            "id": 48,
+            "actor_user_id": 1,
+            "action": "matching.reveal",
+            "target_type": "round",
+            "target_id": "5829c486-ea91-4c98-ac16-a4003d274822",
+            "reason": "V1008 final publish and station event readback",
+            "expected_version": 3,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 49,
+            "actor_user_id": 1,
+            "action": "matching.close",
+            "target_type": "round",
+            "target_id": "5829c486-ea91-4c98-ac16-a4003d274822",
+            "reason": "v1008_notice_read_close",
+            "expected_version": 4,
+            "before_state": "[]",
+            "after_state": "{\"status\":200}"
+        },
+        {
+            "id": 50,
+            "actor_user_id": 1,
+            "action": "release.web.upsert",
+            "target_type": "app_release",
+            "target_id": "1",
+            "reason": "Final source rebuild metadata verified",
+            "expected_version": 5,
+            "before_state": "{\"revision\":5,\"releases\":[{\"changelog_sha256\":\"22dd25047eba4bd4616602145097e9bca579e77cf61d1d19c63ce6109d6fdc4b\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:49:43.000000Z\"}]}",
+            "after_state": "{\"revision\":6,\"releases\":[{\"changelog_sha256\":\"9c21af193f4795b08f3a86fc72e304d56b5d447d757b714d5cdb17e637daf6df\",\"id\":1,\"platform\":\"android\",\"channel\":\"development\",\"version_name\":\"0.08.04\",\"version_code\":80400,\"min_supported_version_name\":\"0.01.01\",\"download_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/v1008-debug.apk\",\"sha256\":\"F2E025C9E9F3D4ACE1183467D8F753ED5B7FFD395CF0793D323ABDC3EF15B11D\",\"force_update\":false,\"is_active\":true,\"published_at\":\"2026-10-15T07:49:43.000000Z\"}]}"
+        },
+        {
+            "id": 51,
+            "actor_user_id": 1,
+            "action": "user.banned",
+            "target_type": "user",
+            "target_id": "2",
+            "reason": "V1008 final Blade disable current APP user",
+            "expected_version": 2,
+            "before_state": "{\"disabled\":false,\"moderation_status\":\"normal\",\"revision\":2}",
+            "after_state": "{\"disabled\":true,\"moderation_status\":\"banned\",\"revision\":3,\"sanction_id\":3}"
+        }
+    ],
+    "admin_versions": [
+        {
+            "key": "matching-operations",
+            "revision": 0
+        },
+        {
+            "key": "questionnaire",
+            "revision": 2
+        },
+        {
+            "key": "releases:android:development",
+            "revision": 6
+        }
+    ],
+    "dating_rounds": [
+        {
+            "id": 1,
+            "round_key": "6370d69b-d715-48f1-a5d5-82daa55424f4",
+            "cadence_key": "08-baseline",
+            "state": "closed",
+            "state_version": 5,
+            "active_run_id": 1
+        },
+        {
+            "id": 2,
+            "round_key": "ef144a3a-fc77-4fe7-924c-b0527a2e8c83",
+            "cadence_key": "08-recovery",
+            "state": "closed",
+            "state_version": 7,
+            "active_run_id": 3
+        },
+        {
+            "id": 3,
+            "round_key": "e3df5fc0-f840-4395-8fc6-8962796a1518",
+            "cadence_key": "08-zero",
+            "state": "closed",
+            "state_version": 5,
+            "active_run_id": 4
+        },
+        {
+            "id": 4,
+            "round_key": "b7787b1b-850c-442d-a875-f9c13749ceef",
+            "cadence_key": "08-bank-race",
+            "state": "closed",
+            "state_version": 7,
+            "active_run_id": 6
+        },
+        {
+            "id": 5,
+            "round_key": "5829c486-ea91-4c98-ac16-a4003d274822",
+            "cadence_key": "08-final-notice",
+            "state": "closed",
+            "state_version": 5,
+            "active_run_id": 7
+        }
+    ],
+    "matching_runs": [
+        {
+            "id": 1,
+            "round_id": 1,
+            "run_key": "e85aa167-f60b-41a4-9517-c4c403d3b5ac",
+            "attempt_no": 1,
+            "state": "succeeded",
+            "outcome": "matches_created",
+            "error_code": null,
+            "pair_count": 1,
+            "candidate_count": 2,
+            "supersedes_run_id": null,
+            "fencing_token": 1
+        },
+        {
+            "id": 2,
+            "round_id": 2,
+            "run_key": "d8f38c55-c0e5-4544-8023-38158b07eebe",
+            "attempt_no": 1,
+            "state": "failed",
+            "outcome": null,
+            "error_code": "lease_expired",
+            "pair_count": 0,
+            "candidate_count": 0,
+            "supersedes_run_id": null,
+            "fencing_token": 2
+        },
+        {
+            "id": 3,
+            "round_id": 2,
+            "run_key": "be972351-bc35-4372-9934-8a4d0d20edea",
+            "attempt_no": 2,
+            "state": "succeeded",
+            "outcome": "no_candidate",
+            "error_code": null,
+            "pair_count": 0,
+            "candidate_count": 2,
+            "supersedes_run_id": 2,
+            "fencing_token": 1
+        },
+        {
+            "id": 4,
+            "round_id": 3,
+            "run_key": "1be2c158-4f60-42c9-a915-4f27b51d44b7",
+            "attempt_no": 1,
+            "state": "succeeded",
+            "outcome": "no_candidate",
+            "error_code": null,
+            "pair_count": 0,
+            "candidate_count": 0,
+            "supersedes_run_id": null,
+            "fencing_token": 1
+        },
+        {
+            "id": 5,
+            "round_id": 4,
+            "run_key": "eeabc9d4-d8ca-4e43-b944-34e575a3b3fb",
+            "attempt_no": 1,
+            "state": "failed",
+            "outcome": null,
+            "error_code": "input_changed",
+            "pair_count": 0,
+            "candidate_count": 0,
+            "supersedes_run_id": null,
+            "fencing_token": 1
+        },
+        {
+            "id": 6,
+            "round_id": 4,
+            "run_key": "596729b1-af32-4b68-83df-c6e64f87b853",
+            "attempt_no": 2,
+            "state": "succeeded",
+            "outcome": "no_candidate",
+            "error_code": null,
+            "pair_count": 0,
+            "candidate_count": 0,
+            "supersedes_run_id": 5,
+            "fencing_token": 1
+        },
+        {
+            "id": 7,
+            "round_id": 5,
+            "run_key": "1896c78f-3656-444a-b0b3-b149d272e7cc",
+            "attempt_no": 1,
+            "state": "succeeded",
+            "outcome": "no_candidate",
+            "error_code": null,
+            "pair_count": 0,
+            "candidate_count": 2,
+            "supersedes_run_id": null,
+            "fencing_token": 1
+        }
+    ],
+    "dating_matches": [
+        {
+            "id": 1,
+            "round_id": 1,
+            "matching_run_id": 1,
+            "user_a": 2,
+            "user_b": 3,
+            "drop_released": 1
+        }
+    ],
+    "product_connections": [
+        {
+            "id": 1,
+            "match_id": 1,
+            "state": "CN_ACTIVE",
+            "revision": 2
+        }
+    ],
+    "messaging_consents": [
+        {
+            "id": 1,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_READ",
+            "state": "MC_REVOKED",
+            "revision": 3,
+            "generation": 1
+        },
+        {
+            "id": 2,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_SEND",
+            "state": "MC_REVOKED",
+            "revision": 3,
+            "generation": 1
+        },
+        {
+            "id": 3,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_READ",
+            "state": "MC_REVOKED",
+            "revision": 3,
+            "generation": 2
+        },
+        {
+            "id": 4,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_SEND",
+            "state": "MC_REVOKED",
+            "revision": 3,
+            "generation": 2
+        }
+    ],
+    "moderation_reports": [
+        {
+            "id": 1,
+            "reporter_id": 2,
+            "target_user_id": 3,
+            "target_status_post_id": 2,
+            "status": "closed",
+            "admin_revision": 3
+        }
+    ],
+    "status_posts": [
+        {
+            "id": 1,
+            "author_user_id": 2,
+            "is_deleted": 0
+        },
+        {
+            "id": 2,
+            "author_user_id": 3,
+            "is_deleted": 1
+        }
+    ],
+    "app_release_versions": [
+        {
+            "id": 1,
+            "platform": "android",
+            "channel": "development",
+            "version_name": "0.08.04",
+            "version_code": 80400,
+            "min_supported_version_name": "0.01.01",
+            "is_active": 1
+        }
+    ],
+    "notifications": [
+        {
+            "id": 1,
+            "user_id": 3,
+            "kind": "message",
+            "title": "有一条新消息",
+            "body": "请打开会话查看，读取前会验证当前权限。",
+            "payload": "{\"source\":\"message\",\"message_id\":1}",
+            "read_at": null
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "kind": "message",
+            "title": "有一条新消息",
+            "body": "请打开会话查看，读取前会验证当前权限。",
+            "payload": "{\"source\":\"message\",\"message_id\":2}",
+            "read_at": null
+        },
+        {
+            "id": 3,
+            "user_id": 2,
+            "kind": "matching_round",
+            "title": "匹配轮次结果已发布",
+            "body": "请在应用内查看本轮结果。匹配不授予连接或消息同意。",
+            "payload": "{\"source\":\"matching_round\",\"round_key\":\"5829c486-ea91-4c98-ac16-a4003d274822\",\"run_key\":\"1896c78f-3656-444a-b0b3-b149d272e7cc\",\"route_name\":\"match_result\",\"route_args\":[]}",
+            "read_at": "2026-10-15 08:13:15"
+        },
+        {
+            "id": 4,
+            "user_id": 3,
+            "kind": "matching_round",
+            "title": "匹配轮次结果已发布",
+            "body": "请在应用内查看本轮结果。匹配不授予连接或消息同意。",
+            "payload": "{\"source\":\"matching_round\",\"round_key\":\"5829c486-ea91-4c98-ac16-a4003d274822\",\"run_key\":\"1896c78f-3656-444a-b0b3-b149d272e7cc\",\"route_name\":\"match_result\",\"route_args\":[]}",
+            "read_at": null
+        }
+    ],
+    "answers_by_user": [
+        {
+            "user_id": 2,
+            "n": 40
+        },
+        {
+            "user_id": 3,
+            "n": 20
+        }
+    ],
+    "attempts_count": 3,
+    "attempts_sha256": "4414a79c7330bc1c66d9a3975e2490b54ff4e54fc5a249e24f0276d8a9bec26d",
+    "answers_sha256": "d7d919717acc31b4a3d3198252d8b9cca52ee2d42a2d2a47c4e12a38dca92012",
+    "question_states": [
+        {
+            "id": 1,
+            "question_key": "Q_REL_V2_001",
+            "enabled": 1,
+            "version": 4
+        },
+        {
+            "id": 2,
+            "question_key": "Q_REL_V2_002",
+            "enabled": 1,
+            "version": 2
+        }
+    ],
+    "drafts": [],
+    "tokens_by_user": [
+        {
+            "tokenable_id": 3,
+            "n": 2
+        },
+        {
+            "tokenable_id": 5,
+            "n": 1
+        }
+    ],
+    "sessions_by_user": [
+        {
+            "user_id": null,
+            "n": 5
+        },
+        {
+            "user_id": 1,
+            "n": 3
+        }
+    ],
+    "readiness": {
+        "2": {
+            "contract_version": "profile_readiness_v1",
+            "operational_review": {
+                "status": "approved",
+                "reason": "V1008 final approved control after questionnaire recovery",
+                "revision": 5,
+                "scope": "运营参与资格，非实名认证"
+            },
+            "matching_eligibility": {
+                "eligible": false,
+                "reason_code": "account_disabled",
+                "required_answer_count": 20,
+                "answered_answer_count": 40,
+                "missing_answer_count": 0,
+                "next_action_code": "contact_support"
+            },
+            "showcase": {
+                "draft_state": "none",
+                "review_status": "not_submitted",
+                "publication_status": "not_published",
+                "published_version_current": false,
+                "affects_matching_eligibility": false
+            }
+        },
+        "3": {
+            "contract_version": "profile_readiness_v1",
+            "operational_review": {
+                "status": "approved",
+                "reason": "V1008 final normal control approved",
+                "revision": 2,
+                "scope": "运营参与资格，非实名认证"
+            },
+            "matching_eligibility": {
+                "eligible": true,
+                "reason_code": "eligible",
+                "required_answer_count": 20,
+                "answered_answer_count": 20,
+                "missing_answer_count": 0,
+                "next_action_code": "wait_for_matching"
+            },
+            "showcase": {
+                "draft_state": "none",
+                "review_status": "not_submitted",
+                "publication_status": "not_published",
+                "published_version_current": false,
+                "affects_matching_eligibility": false
+            }
+        },
+        "4": {
+            "contract_version": "profile_readiness_v1",
+            "operational_review": {
+                "status": "pending",
+                "reason": "V1008 concurrent same revision",
+                "revision": 2,
+                "scope": "运营参与资格，非实名认证"
+            },
+            "matching_eligibility": {
+                "eligible": false,
+                "reason_code": "operational_review_pending",
+                "required_answer_count": 20,
+                "answered_answer_count": 0,
+                "missing_answer_count": 20,
+                "next_action_code": "wait_for_review"
+            },
+            "showcase": {
+                "draft_state": "none",
+                "review_status": "not_submitted",
+                "publication_status": "not_published",
+                "published_version_current": false,
+                "affects_matching_eligibility": false
+            }
+        }
+    }
+}

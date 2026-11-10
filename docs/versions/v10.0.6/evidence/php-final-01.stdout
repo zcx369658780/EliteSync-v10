@@ -1,0 +1,149 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDD                                             21 / 21 (100%)
+
+Time: 00:13.611, Memory: 56.00 MB
+
+21 tests triggered 2 PHP deprecations:
+
+1) C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\config\database.php:61
+Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\Mysql::ATTR_SSL_CA instead
+
+Triggered by:
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_truncated_synthetic_hash_without_rewriting_it
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:247
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_weak_new_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:275
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_wrong_current_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:230
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_success_and_login_with_new_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:17
+
+* Tests\Feature\AuthPasswordApiTest::test_delete_self_only_allows_smoke_accounts
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:292
+
+* Tests\Feature\AuthPasswordApiTest::test_disabled_synthetic_account_still_cannot_log_in
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:157
+
+* Tests\Feature\AuthPasswordApiTest::test_login_accepts_runtime_bcrypt_hash_without_rewriting_it_and_rejects_wrong_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:115
+
+* Tests\Feature\AuthPasswordApiTest::test_login_and_basic_profile_choose_private_birth_place_when_both_sources_conflict
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:88
+
+* Tests\Feature\AuthPasswordApiTest::test_login_prefers_profile_birth_place_when_private_value_is_blank
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:45
+
+* Tests\Feature\AuthPasswordApiTest::test_login_propagates_unrelated_hash_runtime_exception_without_creating_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:200
+
+* Tests\Feature\AuthPasswordApiTest::test_login_rejects_truncated_synthetic_hash_without_token_or_rewrite
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:144
+
+* Tests\Feature\AuthPasswordApiTest::test_login_rejects_unsupported_synthetic_hash_without_token_or_rewrite
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:152
+
+* Tests\Feature\AuthPasswordApiTest::test_synthetic_delete_rejects_unsupported_hash_without_removing_account_or_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:322
+
+* Tests\Feature\V1006AdminWebTest::test_active_refresh_retains_response_contract
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:94
+
+* Tests\Feature\V1006AdminWebTest::test_city_is_persisted_without_creating_algorithm_records_and_invalid_input_is_rejected
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:102
+
+* Tests\Feature\V1006AdminWebTest::test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:112
+
+* Tests\Feature\V1006AdminWebTest::test_disabled_user_cannot_login_refresh_or_use_profile_with_old_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:80
+
+* Tests\Feature\V1006AdminWebTest::test_empty_admin_list_rejects_web_and_api_even_in_local
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:47
+
+* Tests\Feature\V1006AdminWebTest::test_missing_csrf_is_rejected_and_web_logout_invalidates_authentication
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:69
+
+* Tests\Feature\V1006AdminWebTest::test_valid_csrf_does_not_grant_a_whitelisted_ordinary_user_management
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:56
+
+* Tests\Feature\V1006AdminWebTest::test_web_login_search_and_disable_share_the_api_action
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:30
+
+2) C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\config\database.php:81
+Constant PDO::MYSQL_ATTR_SSL_CA is deprecated since 8.5, use Pdo\Mysql::ATTR_SSL_CA instead
+
+Triggered by:
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_truncated_synthetic_hash_without_rewriting_it
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:247
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_weak_new_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:275
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_rejects_wrong_current_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:230
+
+* Tests\Feature\AuthPasswordApiTest::test_change_password_success_and_login_with_new_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:17
+
+* Tests\Feature\AuthPasswordApiTest::test_delete_self_only_allows_smoke_accounts
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:292
+
+* Tests\Feature\AuthPasswordApiTest::test_disabled_synthetic_account_still_cannot_log_in
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:157
+
+* Tests\Feature\AuthPasswordApiTest::test_login_accepts_runtime_bcrypt_hash_without_rewriting_it_and_rejects_wrong_password
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:115
+
+* Tests\Feature\AuthPasswordApiTest::test_login_and_basic_profile_choose_private_birth_place_when_both_sources_conflict
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:88
+
+* Tests\Feature\AuthPasswordApiTest::test_login_prefers_profile_birth_place_when_private_value_is_blank
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:45
+
+* Tests\Feature\AuthPasswordApiTest::test_login_propagates_unrelated_hash_runtime_exception_without_creating_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:200
+
+* Tests\Feature\AuthPasswordApiTest::test_login_rejects_truncated_synthetic_hash_without_token_or_rewrite
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:144
+
+* Tests\Feature\AuthPasswordApiTest::test_login_rejects_unsupported_synthetic_hash_without_token_or_rewrite
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:152
+
+* Tests\Feature\AuthPasswordApiTest::test_synthetic_delete_rejects_unsupported_hash_without_removing_account_or_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AuthPasswordApiTest.php:322
+
+* Tests\Feature\V1006AdminWebTest::test_active_refresh_retains_response_contract
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:94
+
+* Tests\Feature\V1006AdminWebTest::test_city_is_persisted_without_creating_algorithm_records_and_invalid_input_is_rejected
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:102
+
+* Tests\Feature\V1006AdminWebTest::test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:112
+
+* Tests\Feature\V1006AdminWebTest::test_disabled_user_cannot_login_refresh_or_use_profile_with_old_token
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:80
+
+* Tests\Feature\V1006AdminWebTest::test_empty_admin_list_rejects_web_and_api_even_in_local
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:47
+
+* Tests\Feature\V1006AdminWebTest::test_missing_csrf_is_rejected_and_web_logout_invalidates_authentication
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:69
+
+* Tests\Feature\V1006AdminWebTest::test_valid_csrf_does_not_grant_a_whitelisted_ordinary_user_management
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:56
+
+* Tests\Feature\V1006AdminWebTest::test_web_login_search_and_disable_share_the_api_action
+  C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:30
+
+OK, but there were issues!
+Tests: 21, Assertions: 123, Deprecations: 2.

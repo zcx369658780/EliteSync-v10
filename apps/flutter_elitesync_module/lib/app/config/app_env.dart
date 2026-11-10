@@ -7,6 +7,8 @@ class AppEnv {
     required this.apiBaseUrl,
     required this.useMockData,
     this.useLiveKitRtc = false,
+    this.wsBaseUrl = '',
+    this.restorationLocalBuild = false,
     this.useMockAuth = false,
     this.useMockQuestionnaire = false,
     this.useMockHome = false,
@@ -14,6 +16,10 @@ class AppEnv {
     this.useMockChat = false,
     this.useMockProfile = false,
     this.useMockAdmin = false,
+    this.useSyntheticReadinessProjection = false,
+    this.useSyntheticConnectionLifecycle = false,
+    this.useSyntheticConversationLifecycle = false,
+    this.useSyntheticHomeProjection = false,
     this.useMatchRoundContract = false,
     this.useAdminMatchingOperations = false,
     this.initialRoute,
@@ -22,8 +28,10 @@ class AppEnv {
   final AppFlavor flavor;
   final String appName;
   final String apiBaseUrl;
+  final String wsBaseUrl;
   final bool useMockData;
   final bool useLiveKitRtc;
+  final bool restorationLocalBuild;
   final bool useMockAuth;
   final bool useMockQuestionnaire;
   final bool useMockHome;
@@ -31,6 +39,10 @@ class AppEnv {
   final bool useMockChat;
   final bool useMockProfile;
   final bool useMockAdmin;
+  final bool useSyntheticReadinessProjection;
+  final bool useSyntheticConnectionLifecycle;
+  final bool useSyntheticConversationLifecycle;
+  final bool useSyntheticHomeProjection;
   final bool useMatchRoundContract;
   final bool useAdminMatchingOperations;
   final String? initialRoute;

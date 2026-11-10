@@ -1,0 +1,242 @@
+{
+  "Schema": "DOT_RAW_GSTRING_NATIVE_RECEIPTS_V1",
+  "Commands": {
+    "A": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'\n$utf=[Text.UTF8Encoding]::new($false,$true)\n$reads=[Collections.Generic.List[object]]::new()\n$data=@{}\nfunction Ordinary($f){\n    if(($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'REPARSE'}\n    $d=$f.Directory\n    while($null-ne$d){\n        if(($d.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'ANCESTOR_REPARSE'}\n        $d=$d.Parent\n    }\n}\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$spec=@(\n    @('Harness',$base+'\\DiagnoseRawGString.groovy',9812,16384,'0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB'),\n    @('Launcher',$base+'\\Invoke-RawGStringDiagnostic.ps1',26073,32768,'A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048'),\n    @('Installer','D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy',6141,6141,'7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37'),\n    @('TSV','D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv',19534,19534,'E405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80'),\n    @('Authority',$base+'\\runtime-authority.json',-1,8192,''),\n    @('Snapshot',$base+'\\workspace-before.json',-1,262144,'')\n)\nforeach($item in $spec){\n    $f=Get-Item -LiteralPath $item[1]\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt$item[3]-or($item[2]-ge0-and$f.Length-ne$item[2])){throw 'A_METADATA'}\n    Ordinary $f\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length-or$b.Length-gt$item[3]){throw 'A_READ_SIZE'}\n    $hash=HashBytes $b\n    if($item[4]-ne''-and$hash-cne$item[4]){throw 'A_HASH'}\n    $data[$item[0]]=$b\n    $reads.Add([ordered]@{Name=$item[0];Bytes=$b.Length;SHA256=$hash;BodyReads=1})\n}\nfunction ExactKeys($map,[string[]]$keys){\n    if($map-isnot[Collections.IDictionary]-or$map.Count-ne$keys.Count){throw 'A_JSON_KEYS'}\n    foreach($k in $keys){if(-not$map.Contains($k)){throw 'A_JSON_KEY'}}\n}\n$auth=$utf.GetString($data.Authority)|ConvertFrom-Json -AsHashtable\nExactKeys $auth @('TaskId','Status','JVM','OwnerAuthorization','ProbeSha256','ProbeBytes','ProbePath','ManifestPath','InputRoot','OutputRoot','JavaPath','InstallerPath','InstallerSha256','InstallerBytes')\n$expected=@{\n    TaskId='DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE';Status='ISSUED';JVM=1;\n    OwnerAuthorization='OWNER_SINGLE_CASE_DIAGNOSTIC_AUTHORIZED';\n    ProbeSha256='0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB';ProbeBytes=9812;\n    ProbePath=($base+'\\DiagnoseRawGString.groovy');\n    ManifestPath='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-90-EXACT-188-JAR-IDENTITY\\jar-identities.tsv';\n    InputRoot='D:\\GradleHome\\wrapper\\dists\\gradle-8.14-all\\dq61qkzrdg407zji6bwf6hwt7\\gradle-8.14\\lib';\n    OutputRoot=$base;JavaPath='C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.18.8-hotspot\\bin\\java.exe';\n    InstallerPath='D:\\EliteSync-v10\\EVIDENCE\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\LocalExtraRecipeInstaller.groovy';\n    InstallerSha256='7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37';InstallerBytes=6141\n}\nforeach($k in $expected.Keys){\n    if($expected[$k]-is[string]){\n        if($auth[$k]-isnot[string]-or$auth[$k]-cne$expected[$k]){throw 'A_AUTH_STRING'}\n    }elseif(($auth[$k]-isnot[int]-and$auth[$k]-isnot[long])-or$auth[$k]-ne$expected[$k]){throw 'A_AUTH_INTEGER'}\n}\n$snap=$utf.GetString($data.Snapshot)|ConvertFrom-Json -AsHashtable\nExactKeys $snap @('Branch','HEAD','Count','Paths')\nif($snap.Branch-cne'main'-or$snap.HEAD-cne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'-or$snap.Paths-isnot[array]-or$snap.Count-ne$snap.Paths.Count){throw 'A_SNAPSHOT'}\nforeach($p in $snap.Paths){if($p-isnot[string]){throw 'A_PATH_TYPE'}}\nif(@($snap.Paths|Select-Object -Unique).Count-ne$snap.Count){throw 'A_DUPLICATE_PATH'}\nif((Get-Location).Path-cne'D:\\EliteSync-v10'){throw 'A_CWD'}\n$branch=git branch --show-current\nif($LASTEXITCODE-ne0-or$branch-cne'main'){throw 'A_BRANCH'}\n$head=git rev-parse HEAD\nif($LASTEXITCODE-ne0-or$head-cne$snap.HEAD){throw 'A_HEAD'}\n$now=@(git --no-optional-locks -c core.quotepath=false status --porcelain=v1 --untracked-files=all)\nif($LASTEXITCODE-ne0){throw 'A_GIT_STATUS'}\n$paths=@($now|ForEach-Object{$_.Substring(3)})\nif($paths.Count-ne$snap.Count-or@($snap.Paths|Where-Object{$_ -cnotin $paths}).Count-ne0){throw 'A_WORKSPACE_PATHS'}\nforeach($name in @('invocation-started.json','stdout.bin','stderr.bin','probe-wrapper.json','cwd','tmp','user-home','appdata','localappdata','gradle-home')){\n    if(Test-Path -LiteralPath ($base+'\\'+$name)){throw 'A_OUTPUT_EXISTS'}\n}\n[ordered]@{Result='A_READY';HEAD=$head;Branch=$branch;SnapshotPaths=$paths.Count;Reads=$reads;ExternalRead=0;JVM=0}|ConvertTo-Json -Depth 5 -Compress\n",
+    "Invocation": "& 'D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE\\Invoke-RawGStringDiagnostic.ps1'",
+    "B": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'\n$utf=[Text.UTF8Encoding]::new($false,$true)\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$raw=@{};$facts=@{}\nforeach($name in @('stdout.bin','stderr.bin','probe-wrapper.json')){\n    $f=Get-Item -LiteralPath ($base+'\\'+$name)\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt8192-or($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'B_METADATA'}\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length-or$b.Length-gt8192){throw 'B_SIZE'}\n    $raw[$name]=$b\n    $facts[$name]=[ordered]@{Bytes=$b.Length;SHA256=(HashBytes $b);BodyReads=1}\n}\n$w=$utf.GetString($raw['probe-wrapper.json'])|ConvertFrom-Json -AsHashtable\nif($w.mode-cne'SINGLE_JVM_RAW_GSTRING_DIAGNOSTIC_RECEIPT'-or$w.Result-cne'DIAGNOSTIC_CAPTURE_COMPLETE'-or\n   $w.Root-cne$base-or$w.RuntimeReady-isnot[bool]-or$w.RuntimeReady-or\n   $w.DiagnosticSchemaChecked-isnot[bool]-or-not$w.DiagnosticSchemaChecked-or\n   $w.CaptureComplete-isnot[bool]-or-not$w.CaptureComplete-or\n   $w.StdoutComplete-isnot[bool]-or-not$w.StdoutComplete-or\n   $w.StderrComplete-isnot[bool]-or-not$w.StderrComplete-or\n   $w.CleanupComplete-isnot[bool]-or-not$w.CleanupComplete-or\n   $w.Timeout-isnot[bool]-or$w.Timeout-or$w.KillAttempt-ne0-or$w.ExitCode-ne0-or\n   $w.Started-isnot[bool]-or-not$w.Started-or$w.Exited-isnot[bool]-or-not$w.Exited-or\n   $w.ProcessStartAttempt-ne1-or$w.CandidateInvocationAttempt-ne1-or\n   $w.CandidateSourceRead-ne1-or$w.CandidateParseClassLoad-ne1-or$w.FourteenCaseInvocation-ne0-or\n   $w.ExternalGet-ne189-or$w.ExternalRead-ne189-or$w.ExternalBytes-ne115118021-or\n   $w.TSVRead-ne1-or$w.HarnessSourceRead-ne1-or$w.HarnessCopies-ne1-or$w.LocalInstallerPreflightRead-ne1-or\n   $null-ne$w.Failure-or$w.SecondaryFailure.Count-ne0){throw 'B_WRAPPER_SCOPE'}\nif($w.StdoutBytes-ne$facts['stdout.bin'].Bytes-or$w.StdoutSHA256-cne$facts['stdout.bin'].SHA256-or\n   $w.StderrBytes-ne$facts['stderr.bin'].Bytes-or$w.StderrSHA256-cne$facts['stderr.bin'].SHA256-or\n   $facts['stderr.bin'].Bytes-ne0){throw 'B_STREAM_IDENTITY'}\n$j=$utf.GetString($raw['stdout.bin'])|ConvertFrom-Json -AsHashtable\nif($j.mode-cne'DIAGNOSTIC_ONLY'-or$j.caseId-cne'RAW_GSTRING_PATH'-or\n   $j.observationComplete-isnot[bool]-or-not$j.observationComplete-or$j.runtimeReady-isnot[bool]-or$j.runtimeReady-or\n   $j.sourceReadAttempt-ne1-or$j.parseClassLoadAttempt-ne1-or$j.candidateInvocationAttempt-ne1-or\n   $j.invokeOutcome-cne$w.InvokeOutcome){throw 'B_CHILD_SCOPE'}\nif($j.invokeOutcome-ceq'DIRECT_INVOKE_EXCEPTION'){\n    if($w.CandidateInvocation-isnot[string]-or$w.CandidateInvocation-cne'UNKNOWN'){throw 'B_DIRECT_COUNT'}\n}elseif($w.CandidateInvocation-ne1){throw 'B_CANDIDATE_COUNT'}\n$head=git rev-parse HEAD\nif($LASTEXITCODE-ne0-or$head-cne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'){throw 'B_HEAD'}\n[ordered]@{Result='B_DISK_IDENTITIES_VERIFIED';HEAD=$head;Facts=$facts;Wrapper=$w;Diagnostic=$j;OriginalToolReceiptComparison='PENDING_SAME_CALLER_CACHE'}|ConvertTo-Json -Depth 8 -Compress\n",
+    "FailureDisclosure": "$ErrorActionPreference='Stop'\n$base='D:\\EliteSync-v10\\EVIDENCE\\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'\n$utf=[Text.UTF8Encoding]::new($false,$true)\nfunction HashBytes([byte[]]$b){\n    $h=[Security.Cryptography.SHA256]::Create()\n    try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}\n}\n$facts=@{}\nforeach($name in @('stdout.bin','stderr.bin','probe-wrapper.json')){\n    $p=$base+'\\'+$name\n    if(-not(Test-Path -LiteralPath $p)){$facts[$name]=[ordered]@{Exists=$false;BodyReads=0};continue}\n    $f=Get-Item -LiteralPath $p\n    if($f-isnot[IO.FileInfo]-or$f.Length-gt8192-or($f.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'DISCLOSURE_METADATA'}\n    [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)\n    if($b.Length-ne$f.Length){throw 'DISCLOSURE_SIZE'}\n    $facts[$name]=[ordered]@{Exists=$true;Bytes=$b.Length;SHA256=(HashBytes $b);BodyReads=1;Text=$utf.GetString($b)}\n}\n[ordered]@{Result='FAILURE_DISCLOSURE_ONLY';Facts=$facts;RuntimeReady=$false}|ConvertTo-Json -Depth 5 -Compress\n",
+    "BCacheCheck": "const inv = load(\"rawGStringInvocation\");\nconst b = load(\"rawGStringB\");\nif (inv.exit_code !== 0 || b.exit_code !== 0) throw Error(\"NATIVE_EXIT\");\nconst receipt = JSON.parse(inv.output.trim());\nconst disk = JSON.parse(b.output.trim());\nif (receipt.Result !== \"DIAGNOSTIC_CAPTURE_COMPLETE\") throw Error(\"NATIVE_RESULT\");\nfor (const [name, prefix] of [[\"stdout.bin\",\"Stdout\"],[\"stderr.bin\",\"Stderr\"],[\"probe-wrapper.json\",\"Wrapper\"]]) {\n  if (receipt[prefix+\"Bytes\"] !== disk.Facts[name].Bytes ||\n      receipt[prefix+\"SHA256\"] !== disk.Facts[name].SHA256) throw Error(\"NATIVE_DISK_IDENTITY\");\n}\nfor (const k of [\"ProcessStartAttempt\",\"CandidateInvocation\",\"CandidateInvocationAttempt\",\"CandidateParseClassLoad\",\"CandidateSourceRead\",\"FourteenCaseInvocation\",\"InvokeOutcome\",\"RuntimeReady\"]) {\n  if (receipt[k] !== disk.Wrapper[k]) throw Error(\"NATIVE_WRAPPER_FIELD\");\n}\ntext({Result:\"B_ORIGINAL_NATIVE_AND_DISK_MATCH\",CandidateAcceptance:\"NOT_GRANTED\"});\n"
+  },
+  "CommandFacts": {
+    "BCacheCheck": {
+      "Bytes": 954,
+      "SHA256": "2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216",
+      "StaticParserErrors": "NOT_APPLICABLE_JS"
+    },
+    "FailureDisclosure": {
+      "Bytes": 1038,
+      "SHA256": "6346D6881E9464F37750E771988340E1D1AC433BE53D854CB915BD50B3E123DE",
+      "StaticParserErrors": 0
+    },
+    "A": {
+      "Bytes": 4924,
+      "SHA256": "230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389",
+      "StaticParserErrors": 0
+    },
+    "B": {
+      "Bytes": 3191,
+      "SHA256": "E6D1CB9711DC0DC570C26C219E67E0B5FF64A4A23A1921478AA5B9D1E7CD99A6",
+      "StaticParserErrors": 0
+    },
+    "Invocation": {
+      "Bytes": 105,
+      "SHA256": "AA9AE1CE4E549C20F66803F7032ACF9AF089A03BF9EC531637E3706292C9DAE5",
+      "StaticParserErrors": 0
+    }
+  },
+  "Preparation": [
+    {
+      "Stage": "ORIGINAL_PREPARATION",
+      "Result": {
+        "chunk_id": "d13cba",
+        "wall_time_seconds": 0.173023569,
+        "exit_code": 1,
+        "original_token_count": 55,
+        "output": "ParserError: \r\nLine |\r\n 205 |  if (inv.exit_code !== 0 || b.exit_code !== 0) throw Error(\"'{\"Schema\" ��\r\n     |                                                              ~\r\n     | ����ʽ������д�������ı�ǡ�{����\r\n"
+      }
+    },
+    {
+      "Stage": "INDEPENDENT_ADMINISTRATIVE_CORRECTION",
+      "Result": {
+        "chunk_id": "cb2a7e",
+        "wall_time_seconds": 0.395285338,
+        "exit_code": 0,
+        "original_token_count": 708,
+        "output": "{\"Result\":\"ADMIN_PREPARATION_COMPLETE_RUNTIME_WITHHELD\",\"HEAD\":\"71fa57f8c734bf4ea2597b4bf453515ef3c37461\",\"Branch\":\"main\",\"SourceChecks\":[{\"Bytes\":9812,\"SHA256\":\"0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB\",\"Name\":\"DiagnoseRawGString.groovy\",\"AdministrativeBodyRead\":1},{\"Bytes\":26073,\"SHA256\":\"A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048\",\"Name\":\"Invoke-RawGStringDiagnostic.ps1\",\"AdministrativeBodyRead\":1}],\"Preparation\":{\"Snapshot\":{\"Branch\":\"main\",\"HEAD\":\"71fa57f8c734bf4ea2597b4bf453515ef3c37461\",\"Count\":14,\"Paths\":[\"EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar\",\"EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md\",\"EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md\",\"EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md\",\"EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc\",\"EVIDENCE/DOT-M112-RAW-GSTRING-DIAGNOSIS-20261002/diagnosis.md\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/DiagnoseRawGString.groovy\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/Invoke-RawGStringDiagnostic.ps1\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/native-receipts.json\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/runtime-authority.json\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/task.md\",\"EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/workspace-before.json\",\"EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md\",\"EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/\"]},\"TaskBytes\":15050,\"CommandFacts\":{\"BCacheCheck\":{\"Bytes\":954,\"SHA256\":\"2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216\",\"StaticParserErrors\":\"NOT_APPLICABLE_JS\"},\"FailureDisclosure\":{\"Bytes\":1038,\"SHA256\":\"6346D6881E9464F37750E771988340E1D1AC433BE53D854CB915BD50B3E123DE\",\"StaticParserErrors\":0},\"A\":{\"Bytes\":4924,\"SHA256\":\"230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389\",\"StaticParserErrors\":0},\"B\":{\"Bytes\":3191,\"SHA256\":\"E6D1CB9711DC0DC570C26C219E67E0B5FF64A4A23A1921478AA5B9D1E7CD99A6\",\"StaticParserErrors\":0},\"Invocation\":{\"Bytes\":105,\"SHA256\":\"AA9AE1CE4E549C20F66803F7032ACF9AF089A03BF9EC531637E3706292C9DAE5\",\"StaticParserErrors\":0}},\"JVMStart\":0,\"AuthoritySHA256\":\"7DD08BD16DDE41810A63B18338AEC88D086A3D56223B9A6EEB846FA6EB3CE0D6\",\"SnapshotSHA256\":\"32A61CD23205E4C6843F17CF986EC9515C4ABD091C99A2018F9A92B75A5003F1\",\"SnapshotBytes\":1090,\"AuthorityBytes\":1046,\"TaskSHA256\":\"428285BF02C0B84712F23B887F25D191F17B49598DD004EC2D7A0CF969F268BB\",\"Invocation\":0,\"AuthorityStatus\":\"PREPARED_NOT_RELEASED\",\"B\":0,\"A\":0},\"NativeBytes\":15988,\"NativeSHA256\":\"10629F4E55F182140628EB2DFB7E94142CF647E358352A0B338E161593A574B3\",\"OriginalPreparationClosed\":true,\"AdministrativeCorrectionUsed\":1,\"A\":0,\"Invocation\":0,\"B\":0,\"JVMStart\":0}\r\n"
+      }
+    }
+  ],
+  "A": {
+    "Calls": 1,
+    "OriginalToolResult": {
+      "chunk_id": "0a7f55",
+      "wall_time_seconds": 0.201367426,
+      "exit_code": 1,
+      "original_token_count": 51,
+      "output": "Exception: \r\nLine |\r\n  28 |  … item[3]-or($item[2]-ge0-and$f.Length-ne$item[2])){throw 'A_METADATA'}\r\n     |                                                      ~~~~~~~~~~~~~~~~~~\r\n     | A_METADATA\r\n"
+    },
+    "ReadAccounting": "NO_PER_ITEM_RECEIPT;ACTUAL_LOCAL_BODY_READ_COUNT_NOT_INDEPENDENTLY_OBSERVED;UPPER_BOUND_6"
+  },
+  "Invocation": null,
+  "B": null,
+  "FailureDisclosure": null,
+  "BCacheCheck": null,
+  "Budgets": {
+    "A": 1,
+    "Invocation": 0,
+    "B": 0,
+    "FailureDisclosure": 0,
+    "JVMStart": 0,
+    "OriginalPreparationClosed": true,
+    "RuntimeRelease": "EXPLICITLY_RELEASED_UNUSED_SINGLE_CASE_BUDGET",
+    "Closed": true,
+    "Reason": "A_EXIT1_A_METADATA"
+  },
+  "Closure": "REJECT_CLOSED_A_METADATA_NO_INVOCATION",
+  "Recovery": {
+    "Result": {
+      "chunk_id": "48d708",
+      "wall_time_seconds": 0.231381883,
+      "exit_code": 0,
+      "original_token_count": 280,
+      "output": "71fa57f8c734bf4ea2597b4bf453515ef3c37461\nDiagnoseRawGString.groovy=True\r\nInvoke-RawGStringDiagnostic.ps1=True\r\nruntime-authority.json=False\r\ntask.md=False\r\nnative-receipts.json=False\r\nworkspace-before.json=False\r\ninvocation-started.json=False\r\nstdout.bin=False\r\nstderr.bin=False\r\nprobe-wrapper.json=False\r\ncwd=False\r\ntmp=False\r\nuser-home=False\r\nappdata=False\r\nlocalappdata=False\r\ngradle-home=False\r\n?? EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar\n?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md\n?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md\n?? EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md\n?? EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc\n?? EVIDENCE/DOT-M112-RAW-GSTRING-DIAGNOSIS-20261002/diagnosis.md\n?? EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/DiagnoseRawGString.groovy\n?? EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/Invoke-RawGStringDiagnostic.ps1\n?? EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md\n?? EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/\n"
+    },
+    "CachedA": null,
+    "CachedInvocation": null,
+    "CachedB": null
+  },
+  "AdministrativeCorrection": {
+    "Allowance": 1,
+    "Used": 1,
+    "Status": "PREPARED_WAITING_EXPLICIT_RELEASE",
+    "SourceChanges": 0,
+    "SourceChecks": [
+      {
+        "Bytes": 9812,
+        "SHA256": "0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB",
+        "Name": "DiagnoseRawGString.groovy",
+        "AdministrativeBodyRead": 1
+      },
+      {
+        "Bytes": 26073,
+        "SHA256": "A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048",
+        "Name": "Invoke-RawGStringDiagnostic.ps1",
+        "AdministrativeBodyRead": 1
+      }
+    ]
+  },
+  "AdministrativePreparation": {
+    "Snapshot": {
+      "Branch": "main",
+      "HEAD": "71fa57f8c734bf4ea2597b4bf453515ef3c37461",
+      "Count": 14,
+      "Paths": [
+        "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar",
+        "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md",
+        "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md",
+        "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md",
+        "EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc",
+        "EVIDENCE/DOT-M112-RAW-GSTRING-DIAGNOSIS-20261002/diagnosis.md",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/DiagnoseRawGString.groovy",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/Invoke-RawGStringDiagnostic.ps1",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/native-receipts.json",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/runtime-authority.json",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/task.md",
+        "EVIDENCE/DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE/workspace-before.json",
+        "EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md",
+        "EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/"
+      ]
+    },
+    "TaskBytes": 15050,
+    "CommandFacts": {
+      "BCacheCheck": {
+        "Bytes": 954,
+        "SHA256": "2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216",
+        "StaticParserErrors": "NOT_APPLICABLE_JS"
+      },
+      "FailureDisclosure": {
+        "Bytes": 1038,
+        "SHA256": "6346D6881E9464F37750E771988340E1D1AC433BE53D854CB915BD50B3E123DE",
+        "StaticParserErrors": 0
+      },
+      "A": {
+        "Bytes": 4924,
+        "SHA256": "230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389",
+        "StaticParserErrors": 0
+      },
+      "B": {
+        "Bytes": 3191,
+        "SHA256": "E6D1CB9711DC0DC570C26C219E67E0B5FF64A4A23A1921478AA5B9D1E7CD99A6",
+        "StaticParserErrors": 0
+      },
+      "Invocation": {
+        "Bytes": 105,
+        "SHA256": "AA9AE1CE4E549C20F66803F7032ACF9AF089A03BF9EC531637E3706292C9DAE5",
+        "StaticParserErrors": 0
+      }
+    },
+    "JVMStart": 0,
+    "AuthoritySHA256": "7DD08BD16DDE41810A63B18338AEC88D086A3D56223B9A6EEB846FA6EB3CE0D6",
+    "SnapshotSHA256": "32A61CD23205E4C6843F17CF986EC9515C4ABD091C99A2018F9A92B75A5003F1",
+    "SnapshotBytes": 1090,
+    "AuthorityBytes": 1046,
+    "TaskSHA256": "428285BF02C0B84712F23B887F25D191F17B49598DD004EC2D7A0CF969F268BB",
+    "Invocation": 0,
+    "AuthorityStatus": "PREPARED_NOT_RELEASED",
+    "B": 0,
+    "A": 0
+  },
+  "RuntimeRelease": {
+    "OriginalToolResult": {
+      "chunk_id": "91cbcb",
+      "wall_time_seconds": 0.303087402,
+      "exit_code": 0,
+      "original_token_count": 263,
+      "output": "{\"Result\":\"EXPLICIT_RELEASE_STATE_UPDATED\",\"AuthorityStatus\":\"ISSUED\",\"AuthorityBytes\":1031,\"AuthoritySHA256\":\"5E6CD8D230AF0F5C1546A82740F4C4CA4085EEBB1AB19CC13D9FA38ACAE54300\",\"TaskBytes\":15048,\"TaskSHA256\":\"0CC9FCCCA42C9EBD63E0F59DDB89B7D313CBA19A13851A6F4B6E277A27C95668\",\"CommandFacts\":{\"BCacheCheck\":{\"Bytes\":954,\"SHA256\":\"2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216\",\"StaticParserErrors\":\"NOT_APPLICABLE_JS\"},\"FailureDisclosure\":{\"Bytes\":1038,\"SHA256\":\"6346D6881E9464F37750E771988340E1D1AC433BE53D854CB915BD50B3E123DE\",\"StaticParserErrors\":0},\"A\":{\"Bytes\":4924,\"SHA256\":\"230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389\",\"StaticParserErrors\":0},\"B\":{\"Bytes\":3191,\"SHA256\":\"E6D1CB9711DC0DC570C26C219E67E0B5FF64A4A23A1921478AA5B9D1E7CD99A6\",\"StaticParserErrors\":0},\"Invocation\":{\"Bytes\":105,\"SHA256\":\"AA9AE1CE4E549C20F66803F7032ACF9AF089A03BF9EC531637E3706292C9DAE5\",\"StaticParserErrors\":0}},\"CommandsUnchanged\":true,\"NoNewPaths\":true,\"A\":0,\"Invocation\":0,\"B\":0,\"JVMStart\":0,\"AdministrativeCorrectionUsed\":1}\r\n"
+    },
+    "Facts": {
+      "Result": "EXPLICIT_RELEASE_STATE_UPDATED",
+      "AuthorityStatus": "ISSUED",
+      "AuthorityBytes": 1031,
+      "AuthoritySHA256": "5E6CD8D230AF0F5C1546A82740F4C4CA4085EEBB1AB19CC13D9FA38ACAE54300",
+      "TaskBytes": 15048,
+      "TaskSHA256": "0CC9FCCCA42C9EBD63E0F59DDB89B7D313CBA19A13851A6F4B6E277A27C95668",
+      "CommandFacts": {
+        "BCacheCheck": {
+          "Bytes": 954,
+          "SHA256": "2076734058B2655BAE18A194D29BCCF154C3C352BC21DCFE68CBDEFA93BB5216",
+          "StaticParserErrors": "NOT_APPLICABLE_JS"
+        },
+        "FailureDisclosure": {
+          "Bytes": 1038,
+          "SHA256": "6346D6881E9464F37750E771988340E1D1AC433BE53D854CB915BD50B3E123DE",
+          "StaticParserErrors": 0
+        },
+        "A": {
+          "Bytes": 4924,
+          "SHA256": "230CD36D085CD2141B19EE3FB00FFA8D0EEEF5FA58EFE9CA76CB329F063D1389",
+          "StaticParserErrors": 0
+        },
+        "B": {
+          "Bytes": 3191,
+          "SHA256": "E6D1CB9711DC0DC570C26C219E67E0B5FF64A4A23A1921478AA5B9D1E7CD99A6",
+          "StaticParserErrors": 0
+        },
+        "Invocation": {
+          "Bytes": 105,
+          "SHA256": "AA9AE1CE4E549C20F66803F7032ACF9AF089A03BF9EC531637E3706292C9DAE5",
+          "StaticParserErrors": 0
+        }
+      },
+      "CommandsUnchanged": true,
+      "NoNewPaths": true,
+      "A": 0,
+      "Invocation": 0,
+      "B": 0,
+      "JVMStart": 0,
+      "AdministrativeCorrectionUsed": 1
+    },
+    "Status": "ISSUED"
+  },
+  "Stop": {
+    "NoSourceChange": true,
+    "NoRetry": true,
+    "NoJVM": true,
+    "NoRawArtifactFabrication": true,
+    "FailureDisclosure": "NOT_CALLED_A_FAILED_BEFORE_INVOCATION_PER_FIXED_TASK"
+  },
+  "ClosurePersistence": {
+    "FirstCombinedSave": "PROCESS_NOT_CREATED_OS_ERROR_206",
+    "ScientificBudgetsUnchanged": true
+  }
+}

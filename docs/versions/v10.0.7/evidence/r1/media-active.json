@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-15T02:03:01.268414+00:00",
+  "role": "r1recipient",
+  "method": "GET",
+  "path": "/api/v1/media/2/content",
+  "request": null,
+  "status": 200,
+  "body": {
+    "bytes": 68,
+    "sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "D:/flutter/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "--dart-define=QUALIFICATION_DIAGNOSTIC_FIXTURE=C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/same-run-diagnostic.json"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module",
+  "exit": 1,
+  "start": "2026-10-15T02:02:49.022706+00:00",
+  "end": "2026-10-15T02:03:31.851109+00:00",
+  "streams": {
+    "stdout": "fa0a7fdbd935adedeb24e21308195acd2f2f63700ab6800ee05e4691b123db2b",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

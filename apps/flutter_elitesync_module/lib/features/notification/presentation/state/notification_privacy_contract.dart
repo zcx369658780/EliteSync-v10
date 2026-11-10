@@ -21,6 +21,26 @@ class NotificationPrivacyPresentation {
 }
 
 abstract final class NotificationPrivacyContract {
+  static bool isPlatformControlledKind(String kind) =>
+      kind == 'platform_event' || kind == 'safety_case';
+
+  /// Payload is only a locator. It never supplies current viewing authority.
+  static String? platformControlledTarget(NotificationItemEntity item) {
+    final key = switch (item.kind) {
+      'platform_event' => 'platform_event_id',
+      'safety_case' => 'safety_case_id',
+      _ => null,
+    };
+    if (key == null) return null;
+    final id = item.payload[key];
+    return id is String &&
+            RegExp(
+              r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+            ).hasMatch(id)
+        ? id
+        : null;
+  }
+
   static const externalDefault = NotificationPrivacyPresentation(
     audience: NotificationPresentationAudience.external,
     title: 'EliteSync 有新提醒',
