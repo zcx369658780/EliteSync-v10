@@ -3,6 +3,8 @@
 
 日期：2026-10-19｜规划基线：1.0｜制定方：Astra
 
+2026-11-08 Owner明确：[当前v10承接旧EliteSync增加功能、提高APP软件完成度](../decisions/OWNER_V10_SOFTWARE_COMPLETENESS_SCOPE_20261108.md)。完成v10.1.6后仍有软件完善与联合质量工作；v10.1.7也不自动触发运营。下文10.2/10.3的资质、收费、试点与运营仅为远期条件展望，不是当前研发的自动出口或授权。原冻结版本范围、历史接受及失败保持，当前继续v10.1.5。
+
 **ROADMAP_BASELINE_ISSUED / OWNER_PRODUCT_DIRECTIONS_CONFIRMED / PER_VERSION_PLANS_NOT_FROZEN / IMPLEMENTATION_NOT_AUTHORIZED_BY_THIS_DOCUMENT**
 
 本路线图基于已接受设计、旧恢复路线、14领域/24候选功能矩阵及Owner最新决定。它规定后续目标和建议顺序，不重置项目、不重跑历史AC，不将未来能力或外部资格写成已实现。只授权配套文档同步；每个功能版仍需一次版前冻结和Owner手动派发综合任务。

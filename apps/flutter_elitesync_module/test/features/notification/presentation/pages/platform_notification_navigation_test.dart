@@ -65,6 +65,14 @@ class _Telemetry extends AppTelemetryService {
 class _Notifications extends NotificationRemoteDataSource {
   _Notifications() : super(apiClient: ApiClient(dio: Dio()), useMock: false);
   int marked = 0;
+  NotificationItemEntity? current;
+  Future<NotificationItemEntity> Function(int)? lookup;
+  @override
+  Future<NotificationItemEntity> fetchNotification(int id) async {
+    if (lookup != null) return lookup!(id);
+    if (current?.id != id) throw StateError('Current notification unavailable');
+    return current!;
+  }
   @override
   Future<void> markRead(int id) async {
     marked++;
@@ -113,6 +121,7 @@ Future<ProviderContainer> _mount(
   _Sessions? sessions,
   bool Function()? stillAvailable,
 }) async {
+  notifications.current = item;
   tester.view.physicalSize = const Size(900, 2000);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.resetPhysicalSize);
@@ -161,6 +170,29 @@ Future<void> _open(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('old notification lookup failure cannot open or mark read', (tester) async {
+    final notifications = _Notifications()..lookup = (_) async => throw StateError('gone');
+    var calls = 0;
+    await _mount(tester, _item('platform_event'), _Api((_) async { calls++; return {}; }), notifications);
+    await _open(tester);
+    await tester.pumpAndSettle();
+    expect(calls, 0);
+    expect(notifications.marked, 0);
+    expect(find.text('UNRELATED_ROUTE_BYPASS'), findsNothing);
+  });
+  testWidgets('account switch during current notification lookup discards response', (tester) async {
+    final gate = Completer<NotificationItemEntity>();
+    final notifications = _Notifications()..lookup = (_) => gate.future;
+    final sessions = _Sessions();
+    var calls = 0;
+    await _mount(tester, _item('platform_event'), _Api((_) async { calls++; return {}; }), notifications, sessions: sessions);
+    await _open(tester);
+    sessions.change(2);
+    gate.complete(_item('platform_event'));
+    await tester.pumpAndSettle();
+    expect(calls, 0);
+    expect(notifications.marked, 0);
+  });
   for (final kind in ['platform_event', 'safety_case']) {
     testWidgets(
       '$kind preflights current target then destination reads again',

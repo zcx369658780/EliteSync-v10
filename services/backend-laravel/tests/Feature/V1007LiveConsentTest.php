@@ -13,6 +13,7 @@ use Tests\TestCase;
 final class V1007LiveConsentTest extends TestCase
 {
     use RefreshDatabase;
+    use \Tests\Support\CreatesAcceptedMainMatch;
 
     private User $a;
 
@@ -24,7 +25,7 @@ final class V1007LiveConsentTest extends TestCase
         config(['restoration.enabled' => true]);
         $this->a = User::factory()->create(['phone' => '19900000702', 'disabled' => false, 'is_synthetic' => false]);
         $this->b = User::factory()->create(['phone' => '19900000703', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'v1007-test', 'user_a' => $this->a->id, 'user_b' => $this->b->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->a, $this->b);
         Sanctum::actingAs($this->a);
     }
 
@@ -88,6 +89,27 @@ final class V1007LiveConsentTest extends TestCase
         $this->getJson('/api/v1/conversations')->assertNotFound();
     }
 
+    public function test_latest_message_window_keeps_new_messages_and_legacy_cursor_order(): void
+    {
+        $this->active();
+        $ids = [];
+        for ($i = 1; $i <= 105; $i++) {
+            $ids[] = ChatMessage::create([
+                'room_id' => min($this->a->id, $this->b->id).'_'.max($this->a->id, $this->b->id),
+                'sender_id' => $this->a->id, 'receiver_id' => $this->b->id,
+                'content' => 'fictional history '.$i,
+            ])->id;
+        }
+        Sanctum::actingAs($this->b);
+        $url = '/api/v1/messages?peer_id='.$this->a->id.'&limit=100';
+        $this->assertSame(array_slice($ids, 0, 100), $this->getJson($url)->assertOk()->json('items.*.id'));
+        $this->assertSame(array_slice($ids, -100), $this->getJson($url.'&latest=1')->assertOk()->json('items.*.id'));
+        $this->assertSame(array_slice($ids, 100), $this->getJson($url.'&after_id='.$ids[99])->assertOk()->json('items.*.id'));
+        $this->getJson($url.'&latest=1&after_id='.$ids[99])->assertUnprocessable();
+        $this->act('consent', 'revoke', 2, $this->b)->assertOk();
+        $this->getJson($url.'&latest=1')->assertNotFound();
+    }
+
     public function test_a_second_authorized_peer_cannot_replay_a_revoked_peers_message(): void
     {
         $this->active();
@@ -97,7 +119,7 @@ final class V1007LiveConsentTest extends TestCase
         $this->postJson('/api/v1/messages', $payload)->assertOk();
         $this->act('consent', 'revoke', 2, $first)->assertOk();
         $this->b = User::factory()->create(['phone' => '19900000706', 'disabled' => false, 'is_synthetic' => false]);
-        DatingMatch::create(['week_tag' => 'second-peer', 'user_a' => $this->a->id, 'user_b' => $this->b->id, 'drop_released' => true]);
+        $this->createAcceptedMatchContext($this->a, $this->b);
         $this->active();
         Sanctum::actingAs($this->a);
         $this->postJson('/api/v1/messages',$payload + ['peer_id' => $this->b->id])->assertNotFound();

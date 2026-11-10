@@ -60,3 +60,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "EliteSyncAndroid"
 include(":app")
+
+// Explicit opt-in; the default keeps the verified AAR host path.
+if (providers.gradleProperty("flutterSourceDebug").orNull == "true") {
+    apply(from = file("flutter-source-debug.gradle"))
+}

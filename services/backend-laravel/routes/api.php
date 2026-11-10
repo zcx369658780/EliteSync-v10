@@ -71,6 +71,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
+        Route::post('/session/verify', [AuthController::class, 'verifySession'])->middleware(['auth:sanctum', 'account.active']);
         Route::post('/refresh', [AuthController::class, 'refresh'])->middleware(['auth:sanctum', 'account.active']);
         Route::post('/password', [AuthController::class, 'changePassword'])->middleware(['auth:sanctum', 'account.active']);
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
@@ -251,10 +252,19 @@ Route::prefix('v1')->group(function () {
         Route::prefix('notifications')->middleware('account.active')->group(function () {
             Route::get('', [NotificationController::class, 'index'])->middleware('throttle:notifications');
             Route::get('/unread-count', [NotificationController::class, 'unreadCount'])->middleware('throttle:notifications');
+            Route::get('/{notificationId}', [NotificationController::class, 'show'])->whereNumber('notificationId')->middleware('throttle:notifications');
             Route::post('/read-all', [NotificationController::class, 'markAllRead'])->middleware('throttle:notifications');
             Route::post('/{notificationId}/read', [NotificationController::class, 'markRead'])
                 ->whereNumber('notificationId')
                 ->middleware('throttle:notifications');
+        });
+
+        Route::middleware('account.active')->group(function () {
+            $preferences = \App\Http\Controllers\Api\V1\NotificationPreferencesController::class;
+            Route::get('/notification-preferences', [$preferences, 'show']);
+            Route::put('/notification-preferences', [$preferences, 'update']);
+            Route::post('/notification-devices', [$preferences, 'register']);
+            Route::delete('/notification-devices/{deviceId}', [$preferences, 'revoke']);
         });
 
         Route::prefix('rtc')->middleware([RtcTransaction::class])->group(function () {

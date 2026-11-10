@@ -72,6 +72,7 @@ class FakeChatRepository implements ChatRepository {
   List<MessageEntity> messages = const [];
   bool failMessages = false;
   bool failSend = false;
+  String? echoedClientIdOverride;
   Object? nextSendFailure;
   final List<String?> sentClientMessageIds = <String?>[];
 
@@ -118,7 +119,7 @@ class FakeChatRepository implements ChatRepository {
     return SendMessageResult(
       serverMessageId: 1,
       conversationId: 1,
-      clientMessageId: clientMessageId,
+      clientMessageId: echoedClientIdOverride ?? clientMessageId,
       idempotentReplay: false,
       message: MessageEntity(
         id: '1',
@@ -322,6 +323,20 @@ void main() {
       ),
       isFalse,
     );
+  });
+
+  testWidgets('mismatched acknowledgement stays unknown and retains logical key', (tester) async {
+    final repository = FakeChatRepository()..echoedClientIdOverride = 'unrelated-response';
+    await tester.pumpWidget(_basicChatApp(repository));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'same synthetic payload');
+    await _confirmManualSend(tester);
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'same synthetic payload');
+    expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
+    repository.echoedClientIdOverride = null;
+    await _confirmManualSend(tester);
+    expect(repository.sentClientMessageIds, hasLength(2));
+    expect(repository.sentClientMessageIds[1], repository.sentClientMessageIds[0]);
   });
 
   testWidgets('unchanged explicit retry reuses the exact client key', (
@@ -847,7 +862,7 @@ void main() {
         ),
         findsNothing,
       );
-      expect(find.text('发送失败，已恢复输入框，请稍后重试'), findsOneWidget);
+      expect(find.text('发送结果尚未确认；输入已保留，重试会使用同一个消息编号'), findsOneWidget);
       expect(find.textContaining('raw send failure detail'), findsNothing);
       expect(find.textContaining('发送成功'), findsNothing);
       expect(storage.storedString(draftKey), 'OLD PRIVATE DRAFT');

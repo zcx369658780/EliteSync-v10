@@ -69,8 +69,9 @@ Future<bool> _scanIncomingCalls(
               as Future<List<RtcSessionEntity>>)
           .timeout(const Duration(seconds: 8));
   if ((isCurrent != null && !isCurrent()) ||
-      _currentUserId(ref) != currentUserId)
+      _currentUserId(ref) != currentUserId) {
     return false;
+  }
   final incoming = shell.selectLatestIncomingRtcCall(calls, currentUserId);
   // ignore: avoid_print
   print(
