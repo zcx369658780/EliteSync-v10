@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-11 当前网关拒绝未过期旧JWT
+
+为避免APP来电导航干扰接口子范围，临时停止两自有APP进程，AVD/服务/数据保留。正常虚构账号API创建并接受call11，双方各由自己的当前设备会话获取JoinInfo；未使用管理权限伪造令牌，原JWT仅本机私有保存。当前实际网关 `/rtc/validate`：双方JWT正控均200，破坏签名403；正常撤MC后，两未到exp的旧JWT均403。双方正常request/accept恢复MC generation7后，原JWT仍未过期且均403，没有复活旧通话。call1–11均ended、房间为空。
+
+私有 `rtc-old-jwt-guard-private.json` 记录代码身份、HTTP状态、仍未过期及恢复代次；原JoinInfo/JWT在单独私有文件，不上GitHub。该节点是正常本机API＋真实网关当前鉴权，不是APP/SDK媒体重测；不扩展为Block、禁用、15天到期、并发及所有旧JWT矩阵均通过，AC05仍OPEN、G2 false、真实Push PENDING。下一项为聊天历史分页与读取失败恢复，保留既有ACK丢失幂等重试节点，不重复主链。
+
+---
+
 # 最新节点｜2026-11-11 RTC撤权后的Android采集使用状态
 
 5582按需要恢复并安装同一ed01候选，原会话没有恢复到聊天时通过正常UI重新登录虚构user2；未扫描或绕过会话。call10为本次新视频通话。双方自身日志均有正向音频收发、视频编码/解码，无Unhandled Exception/Concurrent modification；但撤权前SFU快照仅1参与者，发起端曾重连6.5秒后恢复，不能称稳定两参与者质量基线。
