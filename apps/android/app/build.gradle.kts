@@ -132,6 +132,8 @@ tasks.named("preBuild") {
 }
 
 android {
+    // Match the existing source-debug module toolchain instead of fetching the AGP default.
+    if (flutterSourceDebug) ndkVersion = "28.2.13676358"
     namespace = "com.elitesync"
     compileSdk = 36
 
