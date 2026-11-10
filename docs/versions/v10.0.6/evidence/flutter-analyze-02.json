@@ -1,0 +1,22 @@
+{
+  "command": [
+    "D:\\flutter\\bin\\dart.bat",
+    "analyze",
+    "lib/shared/providers/session_provider.dart",
+    "lib/core/network/interceptors/auth_interceptor.dart",
+    "lib/core/network/dio_factory.dart",
+    "lib/shared/providers/app_providers.dart",
+    "lib/features/auth/presentation/pages/login_page.dart",
+    "lib/main_prod.dart",
+    "lib/app/config/app_env.dart",
+    "lib/app/router/app_shell.dart"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T13:00:44.707794+00:00",
+  "end": "2026-10-14T13:00:48.291341+00:00",
+  "streams": {
+    "stdout": "f421b160e0871c9473c8c17d443694c6a2425239a81db6bbf0718c3159f5e604",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

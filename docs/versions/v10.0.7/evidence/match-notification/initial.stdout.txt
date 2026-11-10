@@ -1,0 +1,18 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:00.786, Memory: 48.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1007MatchNotificationTest::test_first_mutual_like_notifies_both_once_and_guides_independent_consent
+Failed asserting that actual size 0 matches expected size 2.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007MatchNotificationTest.php:31
+
+FAILURES!
+Tests: 1, Assertions: 6, Failures: 1, Deprecations: 2.

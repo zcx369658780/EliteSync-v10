@@ -72,7 +72,6 @@ void main() {
       final container = _container(flavor);
       addTearDown(container.dispose);
       final router = container.read(appRouterProvider);
-      addTearDown(router.dispose);
       final paths = _registeredPaths(router);
 
       expect(paths, isNot(contains(_removedPath)));

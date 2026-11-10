@@ -10,6 +10,7 @@ use App\Models\UserBlock;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class RtcSessionService
 {
@@ -40,31 +41,14 @@ class RtcSessionService
 
     public function canCall(int $userId, int $peerId): bool
     {
-        if ($userId <= 0 || $peerId <= 0 || $userId === $peerId) {
-            return false;
-        }
-
-        if ($this->blockedByModeration($userId, $peerId)) {
-            return false;
-        }
-
-        return DatingMatch::query()
-            ->where('drop_released', true)
-            ->where(function ($q) use ($userId, $peerId) {
-                $q->where(function ($pair) use ($userId, $peerId) {
-                    $pair->where('user_a', $userId)->where('user_b', $peerId);
-                })->orWhere(function ($pair) use ($userId, $peerId) {
-                    $pair->where('user_a', $peerId)->where('user_b', $userId);
-                });
-            })
-            ->exists();
+        return DB::transaction(fn () => app(RtcAuthorityService::class)->signature($userId, $peerId) !== null);
     }
 
     public function findForUser(int $userId, int $sessionId): ?RtcSession
     {
         return RtcSession::query()
             ->with(['initiator', 'peer', 'acceptedBy', 'endedBy', 'events.user'])
-            ->where('id', $sessionId)
+            ->where('id', $sessionId)->lockForUpdate()
             ->where(function ($query) use ($userId) {
                 $query->where('initiator_user_id', $userId)->orWhere('peer_user_id', $userId);
             })
@@ -84,6 +68,7 @@ class RtcSessionService
             ->orderByDesc('id')
             ->limit($limit)
             ->get()
+            ->filter(fn (RtcSession $session) => app(RtcAuthorityService::class)->authorized($session, $userId))
             ->map(fn (RtcSession $session) => $this->refreshExpiredSession($session))
             ->values();
     }
@@ -96,11 +81,7 @@ class RtcSessionService
         }
         $pairActive = RtcSession::query()
             ->where(function ($query) use ($callerId, $peerId) {
-                $query->where(function ($pair) use ($callerId, $peerId) {
-                    $pair->where('initiator_user_id', $callerId)->where('peer_user_id', $peerId);
-                })->orWhere(function ($pair) use ($callerId, $peerId) {
-                    $pair->where('initiator_user_id', $peerId)->where('peer_user_id', $callerId);
-                });
+                $query->whereIn('initiator_user_id', [$callerId,$peerId])->orWhereIn('peer_user_id', [$callerId,$peerId]);
             })
             ->whereIn('status', self::ACTIVE_STATUSES)
             ->latest('id')
@@ -115,7 +96,7 @@ class RtcSessionService
 
         $session = RtcSession::query()->create([
             'call_key' => (string) Str::uuid(),
-            'room_key' => $this->roomKey($callerId, $peerId),
+            'room_key' => 'rtc-'.Str::uuid(),
             'initiator_user_id' => $callerId,
             'peer_user_id' => $peerId,
             'mode' => $normalizedMode,
@@ -130,7 +111,8 @@ class RtcSessionService
             'metadata' => [
                 'mode' => $normalizedMode,
                 'call_kind' => $normalizedMode,
-                'state_surface' => 'rtc_46',
+                'state_surface' => 'v1009',
+                'authority_signature' => app(RtcAuthorityService::class)->signature($callerId, $peerId),
             ],
         ]);
 
@@ -145,7 +127,7 @@ class RtcSessionService
                 $peerId,
                 'rtc_call_invite',
                 '语音来电',
-                $caller ? ($caller->name ?: '好友') . ' 正在邀请你语音通话' : '你有一条语音来电',
+                '请打开APP查看当前有权通话',
                 $session,
                 [
                     'event' => 'incoming_call',
@@ -161,14 +143,17 @@ class RtcSessionService
     {
         $this->assertParticipant($session, $userId);
         $this->assertMutable($session);
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $userId), 404, 'call unavailable');
         if ((int) $session->peer_user_id !== $userId) {
             abort(403, 'only callee can accept');
         }
 
+        abort_unless(in_array($session->status, ['calling','ringing'], true), 409, 'call cannot be accepted');
         $session->forceFill([
             'status' => 'connecting',
             'accepted_by_user_id' => $userId,
             'accepted_at' => now(),
+            'expires_at' => now()->addSeconds(self::INVITE_TIMEOUT_SECONDS),
             'peer_last_seen_at' => $userId === (int) $session->peer_user_id ? now() : $session->peer_last_seen_at,
             'initiator_last_seen_at' => $userId === (int) $session->initiator_user_id ? now() : $session->initiator_last_seen_at,
         ])->save();
@@ -183,7 +168,9 @@ class RtcSessionService
     {
         $this->assertParticipant($session, $userId);
         $this->assertMutable($session);
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $userId), 404, 'call unavailable');
 
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $userId, true), 404, 'call unavailable');
         $heartbeatAt = now();
         $session->forceFill([
             'status' => 'in_call',
@@ -204,6 +191,7 @@ class RtcSessionService
     public function heartbeatCall(RtcSession $session, int $userId): RtcSession
     {
         $this->assertParticipant($session, $userId);
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $userId), 404, 'call unavailable');
         if (in_array((string) $session->status, self::TERMINAL_STATUSES, true)) {
             return $this->refreshExpiredSession($session->fresh(['initiator', 'peer', 'acceptedBy', 'endedBy', 'events.user']));
         }
@@ -229,6 +217,7 @@ class RtcSessionService
     {
         $this->assertParticipant($session, $userId);
         $this->assertMutable($session);
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $userId), 404, 'call unavailable');
         if ((int) $session->peer_user_id !== $userId) {
             abort(403, 'only callee can reject');
         }
@@ -363,6 +352,7 @@ class RtcSessionService
      */
     public function summarizeSession(RtcSession $session, int $viewerId): array
     {
+        abort_unless(app(RtcAuthorityService::class)->authorized($session, $viewerId), 404, 'call unavailable');
         $session = $this->refreshExpiredSession($session->loadMissing(['initiator', 'peer', 'acceptedBy', 'endedBy', 'events.user']));
         $peer = (int) $session->initiator_user_id === $viewerId ? $session->peer : $session->initiator;
         $initiator = $session->initiator;
@@ -447,7 +437,7 @@ class RtcSessionService
                     'call_id' => $session->id,
                     'call_key' => $session->call_key,
                     'peer_user_id' => $session->initiator_user_id,
-                    'peer_name' => $session->initiator?->name ?: '好友',
+                    'peer_name' => '通话邀请',
                     'title' => $this->modeLabel((string) $session->mode),
                     'mode' => $session->mode,
                     ...$payload,

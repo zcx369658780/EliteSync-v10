@@ -1,0 +1,7 @@
+{
+  "candidate_services_matching_path": 0,
+  "firewall_rules_remaining": 0,
+  "app_stop_status": "Prior stop receipt only; no ADB/device inspection in R1",
+  "emulator_processes": 2,
+  "device_actions": "NOT_RUN"
+}

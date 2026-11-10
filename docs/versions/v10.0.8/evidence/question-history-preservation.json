@@ -1,0 +1,16 @@
+{
+  "answers_sha256": true,
+  "attempts_sha256": true,
+  "attempts_count": true,
+  "dating_matches": true,
+  "product_connections": true,
+  "drafts": true,
+  "alice_eligibility_after": {
+    "eligible": false,
+    "reason_code": "questionnaire_incomplete",
+    "required_answer_count": 20,
+    "answered_answer_count": 19,
+    "missing_answer_count": 1,
+    "next_action_code": "complete_questionnaire"
+  }
+}

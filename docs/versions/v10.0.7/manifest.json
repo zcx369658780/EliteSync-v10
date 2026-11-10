@@ -1,0 +1,123 @@
+{
+  "version": "v10.0.7",
+  "status": "CANDIDATE_DELIVERED_AWAITING_ASTRA_FINAL_ACCEPTANCE",
+  "plan_commit": "ef1bf4d07f5d7b84a38fb0f59f2efbe951ff4307",
+  "plan_blob": "151d75b67238826841467fa93c140825ebf61282",
+  "implementation_base": "0989812c141ce892915b67c14e9291d34e3c7053",
+  "implementation_base_tree": "c2dd89f3a0726bff6cd18fb8fe0008c2f347aadf",
+  "candidate_branch": "codex/v10.0.7-app-restoration",
+  "candidate_identity": "exact final commit/tree in Owner delivery and local candidate-publication.json; no self-referential SHA in Git tree",
+  "build": {
+    "source_commit": "7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f",
+    "source_tree": "754b9a65b41ac9393687417836e380effc81c09b",
+    "build": "build-07",
+    "artifacts": [
+      {
+        "source": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\apps\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+        "local_only": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\app-debug.apk",
+        "bytes": 222632154,
+        "sha256": "fe3d9556977e5cbd34ec006a67537fd6f41efbc9d2a57e724f5d64932b102765"
+      },
+      {
+        "source": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\apps\\flutter_elitesync_module\\build\\host\\outputs\\repo\\com\\elitesync\\flutter_elitesync_module\\flutter_release\\1.0\\flutter_release-1.0.aar",
+        "local_only": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\flutter_release-1.0.aar",
+        "bytes": 3953324,
+        "sha256": "76800ca93d696d8cfb0db87be930bd106927bb26edd45c4c730ec3193957acb5"
+      }
+    ]
+  },
+  "environment": {
+    "database": "elitesync_v1007_dev",
+    "container": "elitesync-v1007-db",
+    "volume": "elitesync-v1007-db-data",
+    "db_bind": "127.0.0.1:43317",
+    "backend": "127.0.0.1:8001",
+    "front": "127.0.0.1:8000",
+    "android_url": "http://127.0.0.1:8000 via adb reverse",
+    "avd": "elitesync_v1007_api36",
+    "serial": "emulator-5582",
+    "define": "ELITESYNC_V1007_LOCAL_BUILD=true",
+    "media_disk": "v1007",
+    "runtime_final": "stopped; volume/private config retained"
+  },
+  "source_questions": {
+    "loaded_split_sources": [
+      {
+        "path": "question_bank/question_bank_core_v1.json",
+        "rows": 50,
+        "blob": "02611e93fcb50cbe35126381cc4a79b178b2d423"
+      },
+      {
+        "path": "question_bank/question_bank_docx_scored_v2.json",
+        "rows": 57,
+        "blob": "6d3fb19242734dd6938979f3846e9837518be175"
+      },
+      {
+        "path": "question_bank/question_bank_extended_v1.json",
+        "rows": 30,
+        "blob": "d18a585139e7b179c670f84e9ca1f8734fa0398b"
+      },
+      {
+        "path": "question_bank/question_bank_research_v1.json",
+        "rows": 20,
+        "blob": "086cceddba59704b0085e21d7e3fead8a01f7495"
+      }
+    ],
+    "rows": 157,
+    "distinct_keys": 157,
+    "duplicate_keys": 0,
+    "legacy_single_file": "retained provenance / used only when split banks absent",
+    "research": "retained but inactive; not automatically enabled"
+  },
+  "tests": {
+    "php_related": {
+      "tests": 139,
+      "assertions": 1162,
+      "exit": 0,
+      "deprecations": 2
+    },
+    "php_projection_followup": {
+      "tests": 5,
+      "assertions": 34,
+      "exit": 0
+    },
+    "flutter_full": {
+      "passed": 792,
+      "failed": 6,
+      "exit": 1
+    },
+    "full_analyze": {
+      "info": 3,
+      "exit": 1
+    },
+    "product_lib_analyze": {
+      "result": "No issues found!",
+      "exit": 0
+    },
+    "build07": {
+      "exit": 0,
+      "warning": "libapp.so not stripped"
+    }
+  },
+  "protection": {
+    "head": true,
+    "index_sha256": true,
+    "status": true,
+    "files": true,
+    "named_files": 43
+  },
+  "evidence_index": "evidence/index.json",
+  "local_raw_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007",
+  "local_raw_index": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\RAW_INDEX.json",
+  "not_run": [
+    "production",
+    "historical SQL/VHDX",
+    "real accounts",
+    "RTC",
+    "full Ziwei/Western astrology",
+    "Buddy/Social live",
+    "external maps/Push/SMS",
+    "complete web admin"
+  ],
+  "acceptance_authority": "Astra independent final acceptance; no main merge or successor"
+}

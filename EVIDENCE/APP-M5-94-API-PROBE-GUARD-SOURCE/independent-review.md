@@ -1,0 +1,3 @@
+# M5-94 independent Sol/high
+Required: new source line30 replaces non-ASCII/control/delimiter characters with ?, losing reversible first.Tag prefix. A <=128-char original can still be marked Cut=False after lossy replacement. Task requires safe escaping, preservation of bounded original prefix and truthful truncation.
+Other four repairs and terminal call coverage statically pass; five-region inverse restores original text exactly. Both candidate/nativeAdd/B identities agree; A/B exit0/nativefalse. Five files each ReadAllBytes1/strictUTF8, all additional/external reads/hash/enumeration/Parser/Process/JVM/writes0. No runtime claim or Work verdict.

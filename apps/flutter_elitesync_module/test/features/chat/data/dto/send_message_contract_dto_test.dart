@@ -23,6 +23,39 @@ void main() {
       expect(entity.matchId, isNull);
     });
 
+    for (final rawPeerId in <Object?>[null, 0, -1, 'invalid']) {
+      test('stored entry does not borrow numeric id for peer $rawPeerId', () {
+        final dto = ConversationDto.fromJson({
+          'id': '29',
+          'name': 'Stored peer',
+          'entry_kind': 'stored_conversation',
+          'conversation_id': 501,
+          'peer_user_id': ?rawPeerId,
+        });
+        final entity = const ChatMapper().conversation(dto);
+
+        expect(dto.peerUserId, isNull);
+        expect(entity.peerUserId, isNull);
+        expect(entity.conversationId, 501);
+        expect(entity.entryKind, 'stored_conversation');
+      });
+    }
+
+    test('stored entry uses an explicit peer instead of numeric legacy id', () {
+      final entity = const ChatMapper().conversation(
+        ConversationDto.fromJson({
+          'id': '29',
+          'name': 'Stored peer',
+          'entry_kind': 'stored_conversation',
+          'conversation_id': 501,
+          'peer_user_id': 23,
+        }),
+      );
+
+      expect(entity.peerUserId, 23);
+      expect(entity.conversationId, 501);
+    });
+
     test('eligible match keeps null conversation plus peer and match IDs', () {
       final entity = const ChatMapper().conversation(
         ConversationDto.fromJson({

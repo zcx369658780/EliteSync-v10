@@ -24,6 +24,13 @@ class PermissionHandlerRtcPermissionService implements RtcPermissionService {
     return refreshedStatus.isGranted;
   }
 
+  Future<bool> ensureCameraPermission() async {
+    final currentStatus = await Permission.camera.status;
+    if (currentStatus.isGranted) return true;
+    final status = await Permission.camera.request();
+    return status.isGranted;
+  }
+
   @override
   Future<bool> openSettings() => openAppSettings();
 

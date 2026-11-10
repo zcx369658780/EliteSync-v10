@@ -1,0 +1,4817 @@
+[
+  {
+    "bytes": 84186,
+    "path": "AGENTS.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1514,
+    "path": "apps/android_synthetic_demo/app/build.gradle.kts",
+    "extension": ".kts"
+  },
+  {
+    "bytes": 1976,
+    "path": "apps/android_synthetic_demo/app/src/main/AndroidManifest.xml",
+    "extension": ".xml"
+  },
+  {
+    "bytes": 906,
+    "path": "apps/android_synthetic_demo/app/src/main/java/com/elitesync/syntheticdemo/BootstrapEndpointPolicy.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 2063,
+    "path": "apps/android_synthetic_demo/app/src/main/java/com/elitesync/syntheticdemo/MainActivity.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 238,
+    "path": "apps/android_synthetic_demo/app/src/main/res/values/styles.xml",
+    "extension": ".xml"
+  },
+  {
+    "bytes": 1704,
+    "path": "apps/android_synthetic_demo/build-contract.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 270,
+    "path": "apps/android_synthetic_demo/build.gradle.kts",
+    "extension": ".kts"
+  },
+  {
+    "bytes": 197,
+    "path": "apps/android_synthetic_demo/settings.gradle.kts",
+    "extension": ".kts"
+  },
+  {
+    "bytes": 6510,
+    "path": "apps/android_synthetic_demo/tools/aar_applied_materials.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 20338,
+    "path": "apps/android_synthetic_demo/tools/aar_entry_materials.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 11258,
+    "path": "apps/android_synthetic_demo/tools/aar_material_functions.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 9600,
+    "path": "apps/android_synthetic_demo/tools/aar_scoped_crlf_kotlin_transform.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 8131,
+    "path": "apps/android_synthetic_demo/tools/aar_scoped_kotlin_transform.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 7124,
+    "path": "apps/android_synthetic_demo/tools/render_module_bundle.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 72513,
+    "path": "apps/android_synthetic_demo/tools/test_aar_applied_materials.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 74376,
+    "path": "apps/android_synthetic_demo/tools/test_aar_entry_materials.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 24014,
+    "path": "apps/android_synthetic_demo/tools/test_aar_material_functions.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 17927,
+    "path": "apps/android_synthetic_demo/tools/test_render_module_bundle.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 4568,
+    "path": "apps/android_synthetic_demo/tools/validate_contract.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 7753,
+    "path": "apps/android/app/build.gradle.kts",
+    "extension": ".kts"
+  },
+  {
+    "bytes": 892,
+    "path": "apps/android/app/src/main/java/com/elitesync/BootstrapEndpointPolicy.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 5076,
+    "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 3952,
+    "path": "apps/android/app/src/test/java/com/elitesync/BootstrapEndpointPolicyJvmTest.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 2141,
+    "path": "apps/android/settings.gradle.kts",
+    "extension": ".kts"
+  },
+  {
+    "bytes": 26408,
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 1098,
+    "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/logging_interceptor.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 2326,
+    "path": "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 1869,
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/conversation_dto.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 6195,
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_route_state.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 5930,
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 22688,
+    "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 4623,
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_provider.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 41063,
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/standard_ziwei_grid.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 25736,
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 287,
+    "path": "apps/flutter_elitesync_module/lib/main.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 8418,
+    "path": "apps/flutter_elitesync_module/test/app/router/chat_route_state_router_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 6031,
+    "path": "apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 8904,
+    "path": "apps/flutter_elitesync_module/test/app/router/stored_chat_direct_route_binding_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 2095,
+    "path": "apps/flutter_elitesync_module/test/design_system/components/browse_scaffold_semantics_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 3013,
+    "path": "apps/flutter_elitesync_module/test/design_system/components/floating_dock_bottom_bar_semantics_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 5787,
+    "path": "apps/flutter_elitesync_module/test/features/chat/data/dto/send_message_contract_dto_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 48104,
+    "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_list_page_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 15825,
+    "path": "apps/flutter_elitesync_module/test/features/home/presentation/pages/home_page_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 36709,
+    "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 15513,
+    "path": "apps/flutter_elitesync_module/test/synthetic_home_main_loop_integration_test.dart",
+    "extension": ".dart"
+  },
+  {
+    "bytes": 308956,
+    "path": "CURRENT.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1,
+    "path": "EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/",
+    "extension": ""
+  },
+  {
+    "bytes": 3314,
+    "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2930,
+    "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1088,
+    "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3044,
+    "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3009,
+    "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1484,
+    "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2412,
+    "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3362,
+    "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1386,
+    "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8724,
+    "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2492,
+    "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1238,
+    "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2937,
+    "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3391,
+    "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1503,
+    "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2257,
+    "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3080,
+    "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1308,
+    "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2597,
+    "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2636,
+    "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1518,
+    "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3047,
+    "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3642,
+    "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1348,
+    "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2165,
+    "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2713,
+    "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1164,
+    "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8082,
+    "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2195,
+    "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1213,
+    "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2749,
+    "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2611,
+    "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1312,
+    "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2692,
+    "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2501,
+    "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1154,
+    "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2625,
+    "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2745,
+    "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1172,
+    "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2737,
+    "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2756,
+    "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1166,
+    "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2406,
+    "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2832,
+    "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1052,
+    "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2125,
+    "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2428,
+    "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1078,
+    "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8429,
+    "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1930,
+    "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1326,
+    "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3434,
+    "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3333,
+    "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1272,
+    "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3239,
+    "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3315,
+    "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1245,
+    "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2727,
+    "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2364,
+    "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1644,
+    "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2511,
+    "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3499,
+    "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1484,
+    "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2640,
+    "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3636,
+    "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1572,
+    "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2306,
+    "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2715,
+    "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1529,
+    "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2549,
+    "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3606,
+    "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1535,
+    "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2364,
+    "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2740,
+    "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1709,
+    "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2290,
+    "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2885,
+    "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1406,
+    "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2356,
+    "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2991,
+    "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1367,
+    "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9442,
+    "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2880,
+    "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1307,
+    "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6217,
+    "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2066,
+    "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1262,
+    "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6480,
+    "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1961,
+    "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1296,
+    "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7155,
+    "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2136,
+    "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1107,
+    "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2576,
+    "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2443,
+    "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1000,
+    "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8052,
+    "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2144,
+    "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1233,
+    "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2200,
+    "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2282,
+    "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1236,
+    "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7457,
+    "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar",
+    "extension": ".jar"
+  },
+  {
+    "bytes": 7883,
+    "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4307,
+    "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1257,
+    "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4575,
+    "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3007,
+    "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1149,
+    "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4013,
+    "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2428,
+    "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1036,
+    "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17741,
+    "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4271,
+    "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1234,
+    "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1343,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/cwd/probe.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 30970,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1105,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/probe-wrapper.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 780,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/runtime-authority.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 0,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/stderr.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 810,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/stdout.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 5546,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1269,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23521,
+    "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4399,
+    "path": "EVIDENCE/APP-M5-100-RUNTIME-BUDGET-DRAFT/task-draft.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 622,
+    "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23889,
+    "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6662,
+    "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1186,
+    "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22918,
+    "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 461,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/final-state.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 910,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19623,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/Invoke-DistributionApiProbe.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 29596,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1397,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7652,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2577,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22980,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 44614,
+    "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 12735,
+    "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4279,
+    "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 627,
+    "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23572,
+    "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 23943,
+    "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 29295,
+    "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4182,
+    "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 817,
+    "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23549,
+    "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 28291,
+    "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/workspace-review-stage1.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3512,
+    "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 741,
+    "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23612,
+    "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 29062,
+    "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3427,
+    "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 868,
+    "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23675,
+    "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 29277,
+    "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 8460,
+    "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7210,
+    "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1486,
+    "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1655,
+    "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3946,
+    "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2891,
+    "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23737,
+    "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 29396,
+    "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 137170,
+    "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 8124,
+    "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 927,
+    "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23800,
+    "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 25336,
+    "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 69620,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 703,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8623,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 874,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23863,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 24346,
+    "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 69835,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 483,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9429,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 946,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23926,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 25321,
+    "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21223,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/Invoke-SyntheticInstallerTest.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 100826,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 472,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4354,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10310,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 829,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23989,
+    "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4033,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/handoff-current.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 656,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 236040,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/native-work-partial.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2399,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3377,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 23948,
+    "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3711,
+    "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3042,
+    "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1704,
+    "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14282,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4833,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9936,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-first-round-selected-excerpt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 61824,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-first-round-source-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 2735,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1821,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 102400,
+    "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-second-round-source-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 13382,
+    "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3696,
+    "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1370,
+    "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4378,
+    "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4816,
+    "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1525,
+    "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10979,
+    "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2871,
+    "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1192,
+    "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3911,
+    "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3504,
+    "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1106,
+    "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11653,
+    "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3224,
+    "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1009,
+    "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9108,
+    "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2767,
+    "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1029,
+    "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4050,
+    "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3707,
+    "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1053,
+    "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9498,
+    "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2891,
+    "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1015,
+    "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4809,
+    "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5304,
+    "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1166,
+    "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15630,
+    "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4491,
+    "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1850,
+    "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5582,
+    "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3841,
+    "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2102,
+    "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11788,
+    "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4296,
+    "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1989,
+    "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9476,
+    "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3657,
+    "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1607,
+    "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 24935,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/m526-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 16605,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17581,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/round-1-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 31659,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/round-2-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 4759,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2421,
+    "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 33736,
+    "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 26825,
+    "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/round-1-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 2095,
+    "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/round-2-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 7633,
+    "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2224,
+    "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 40085,
+    "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15491,
+    "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/round-1-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 2778,
+    "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/round-2-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 6508,
+    "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2172,
+    "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6848,
+    "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7858,
+    "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1858,
+    "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6273,
+    "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/static-original-checker.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 1050,
+    "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/static-original-receipt.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 5258,
+    "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4245,
+    "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1681,
+    "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5207,
+    "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4484,
+    "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1671,
+    "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3487,
+    "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6575,
+    "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1037,
+    "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18304,
+    "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/check_frozen_sources.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 8091,
+    "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/Invoke-FrozenAarValidation.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 12969,
+    "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7493,
+    "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1659,
+    "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19323,
+    "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/check_frozen_sources.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 8089,
+    "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/Invoke-FrozenAarValidation.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 32136,
+    "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4443,
+    "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1338,
+    "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19656,
+    "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4341,
+    "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1407,
+    "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9102,
+    "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4515,
+    "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1845,
+    "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 137079,
+    "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5807,
+    "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1497,
+    "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8070,
+    "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5464,
+    "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2014,
+    "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 26781,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/check_applied_sources.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 9196,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/Invoke-AppliedAarValidation.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 11745,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/status-entry.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 28911,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6992,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2081,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1697,
+    "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/work-takeover.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3592,
+    "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4746,
+    "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1475,
+    "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1607,
+    "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/resume-authority.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 31885,
+    "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/resume-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1418,
+    "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7818,
+    "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1246,
+    "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 27406,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/check_applied_sources.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 9239,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/Invoke-AppliedAarValidation.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 46567,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6099,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1934,
+    "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 46650,
+    "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5174,
+    "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1865,
+    "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11777,
+    "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5158,
+    "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2201,
+    "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11329,
+    "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4496,
+    "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2024,
+    "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13048,
+    "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4334,
+    "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2291,
+    "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 32531,
+    "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/source-context.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4816,
+    "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2220,
+    "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13818,
+    "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/patch-materials.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4834,
+    "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2296,
+    "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 12421,
+    "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6170,
+    "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2480,
+    "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4923,
+    "path": "EVIDENCE/APP-M5-51-EXACT-FULL-SOURCE-FIXTURE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2223,
+    "path": "EVIDENCE/APP-M5-51-EXACT-FULL-SOURCE-FIXTURE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 42405,
+    "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/flutter_plugin_original.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 5007,
+    "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5027,
+    "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2075,
+    "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5533,
+    "path": "EVIDENCE/APP-M5-53-RAW-CRLF-ANCHOR-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1849,
+    "path": "EVIDENCE/APP-M5-53-RAW-CRLF-ANCHOR-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5879,
+    "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/anchor-map.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4930,
+    "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1842,
+    "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14300,
+    "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/crlf-contract.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5026,
+    "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1969,
+    "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5105,
+    "path": "EVIDENCE/APP-M5-56-EXISTING-CRLF-CONTRACT-VERIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1976,
+    "path": "EVIDENCE/APP-M5-56-EXISTING-CRLF-CONTRACT-VERIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6451,
+    "path": "EVIDENCE/APP-M5-57-STABLE-CRLF-CONTRACT-CHECKER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1988,
+    "path": "EVIDENCE/APP-M5-57-STABLE-CRLF-CONTRACT-CHECKER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13604,
+    "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/Check-CrlfContract.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 3493,
+    "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7255,
+    "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2574,
+    "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18068,
+    "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/Check-CrlfContract.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 4922,
+    "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6738,
+    "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4252,
+    "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8403,
+    "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5721,
+    "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3460,
+    "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 43307,
+    "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6689,
+    "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2962,
+    "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 68116,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 16286,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6028,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1029,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2693,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14066,
+    "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 25403,
+    "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5681,
+    "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 853,
+    "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2102,
+    "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16003,
+    "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 74022,
+    "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6339,
+    "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 865,
+    "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2400,
+    "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16057,
+    "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 18415,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/Build-IndependentCrlfExpected.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 87977,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5893,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4686,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 736,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3441,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16166,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 16954,
+    "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 27360,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/Build-IndependentCrlfExpected.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 65659,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5267,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 997,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3026,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14351,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 17606,
+    "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19817,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/Build-IndependentCrlfExpected.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 73889,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1368,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5528,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1089,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3342,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14465,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 18368,
+    "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 45907,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/flutter_plugin_expected.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 0,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/invocation-stderr.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 2276,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/invocation-stdout.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 52535,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5407,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7571,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 923,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4105,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17171,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19007,
+    "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 61896,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2148,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6894,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11574,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/validate_crlf_transform.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 771,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2199,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17944,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 18863,
+    "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 29409,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1931,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5658,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1058,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2293,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18497,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19336,
+    "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 14705,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/Invoke-CrlfStatic.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 60894,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2120,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7901,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 993,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2338,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18531,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19512,
+    "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 15348,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/Invoke-CrlfStatic.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 61576,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1735,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5022,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 877,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2206,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18589,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19480,
+    "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 0,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/invocation-stderr.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 453,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/invocation-stdout.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 38321,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3914,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6124,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 998,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2572,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18968,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 23130,
+    "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 969,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/independent-review-2-task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1052,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/independent-review-process-1.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16595,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/Invoke-CrlfTest.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 66710,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2011,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6683,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 976,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2619,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19020,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 19898,
+    "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 0,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/invocation-stderr.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 1111,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/invocation-stdout.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 41804,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5334,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7313,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1086,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3056,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19387,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 25376,
+    "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 45907,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/FlutterPlugin.kt",
+    "extension": ".kt"
+  },
+  {
+    "bytes": 39979,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2795,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5070,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 685,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3050,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19474,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20081,
+    "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 8054,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/binding-audit.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 60669,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5339,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 725,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2991,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19840,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20234,
+    "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 42375,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4952,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 707,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2221,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19904,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20108,
+    "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 44005,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4025,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 737,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2028,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19960,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20168,
+    "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5208,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/api-evidence.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 36145,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4519,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 773,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3578,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20021,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21134,
+    "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4523,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/command-length-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 33771,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4097,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/own-api-evidence.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4583,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1030,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3440,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20086,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20914,
+    "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 27452,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3990,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 991,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3192,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20148,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 20656,
+    "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5800,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/LocalExtraRecipeInstaller.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 45480,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2568,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6306,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 920,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3062,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20217,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21557,
+    "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6141,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/LocalExtraRecipeInstaller.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 40206,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1469,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4034,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 962,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3279,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20284,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21701,
+    "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 53842,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1733,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6925,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14402,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/VerifyLocalExtraRecipeInstaller.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 1247,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3653,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 20677,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 22012,
+    "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 33643,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3406,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/runtime-locator-evidence.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3671,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1097,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3056,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21073,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21217,
+    "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 863,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22916,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1306,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/owner-locators.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2714,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/runtime-metadata.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3069,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2918,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21165,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21939,
+    "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 404,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-1-closed.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 392,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-2-closed.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 504,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-3.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7957,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/jar-name-inventory.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 36199,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3152,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2526,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21222,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 22248,
+    "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 403,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 12010,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4430,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2013,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21283,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 21448,
+    "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6220,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/Collect-JarIdentities.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 2647,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/identity-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 676,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19534,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/jar-identities.tsv",
+    "extension": ".tsv"
+  },
+  {
+    "bytes": 30279,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 336,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/owner-authorization.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5111,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3134,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21334,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 22981,
+    "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6515,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/Collect-JarIdentities-Guarded.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 636,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 33037,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1675,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3815,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3650,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21384,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 28382,
+    "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 958,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 18996,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/Invoke-GroovyApiProbe.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 55254,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1343,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/Probe-GroovyGradleApi.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 2714,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9483,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2207,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21815,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 41080,
+    "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5416,
+    "path": "EVIDENCE/APP-M5-93-RUNTIME-BUDGET-DRAFT/task-draft.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1343,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/cwd/probe.groovy",
+    "extension": ".groovy"
+  },
+  {
+    "bytes": 734,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19183,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 1202,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/probe-wrapper.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2542,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/review-budget.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 853,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/runtime-authority.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 578,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/stderr.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 810,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/stdout.bin",
+    "extension": ".bin"
+  },
+  {
+    "bytes": 6818,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2601,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22890,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 28354,
+    "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 654,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19818,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/Invoke-GroovyApiProbe-Guarded.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 64924,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2585,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5981,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1548,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21769,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 53965,
+    "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 484,
+    "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2834,
+    "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1022,
+    "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1910,
+    "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 707,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 19873,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/Invoke-GroovyApiProbe-Escaped.ps1",
+    "extension": ".ps1"
+  },
+  {
+    "bytes": 43441,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2161,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/source-summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3807,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1768,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 21820,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 38958,
+    "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 22765,
+    "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/handoff-baseline.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 573,
+    "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2901,
+    "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1274,
+    "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1910,
+    "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 484,
+    "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 26660,
+    "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 5482,
+    "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1005,
+    "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22856,
+    "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 6346,
+    "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5207,
+    "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2058,
+    "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7554,
+    "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2123,
+    "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1261,
+    "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2945,
+    "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2395,
+    "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1909,
+    "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 12644,
+    "path": "EVIDENCE/AUTH-152-BOUNDED-PUBLIC-HOST-KEY-CANDIDATE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 14666,
+    "path": "EVIDENCE/AUTH-153-LOCAL-ISOLATED-RESTORE-PREFLIGHT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7743,
+    "path": "EVIDENCE/AUTH-153-LOCAL-ISOLATED-RESTORE-PREFLIGHT/task-draft.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9680,
+    "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3133,
+    "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1639,
+    "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9818,
+    "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5165,
+    "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/task-draft.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4335,
+    "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2099,
+    "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10163,
+    "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5549,
+    "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2197,
+    "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2310,
+    "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2716,
+    "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1671,
+    "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2660,
+    "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2290,
+    "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1654,
+    "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2884,
+    "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3354,
+    "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1825,
+    "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9761,
+    "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3423,
+    "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1279,
+    "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3269,
+    "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3735,
+    "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1474,
+    "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2742,
+    "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2809,
+    "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1525,
+    "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3754,
+    "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5598,
+    "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/supervisor.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 3314,
+    "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2432,
+    "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/test_supervisor.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1548,
+    "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13689,
+    "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3730,
+    "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1406,
+    "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9035,
+    "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3047,
+    "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1221,
+    "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9753,
+    "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2509,
+    "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1236,
+    "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5271,
+    "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/raw_reader.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2692,
+    "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2554,
+    "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3552,
+    "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/test_raw_reader.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1118,
+    "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13329,
+    "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2814,
+    "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1174,
+    "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5801,
+    "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/release_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2517,
+    "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2414,
+    "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3323,
+    "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/test_release_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1039,
+    "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 973,
+    "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/job_probe.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2907,
+    "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2321,
+    "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1607,
+    "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/test_job_probe.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1071,
+    "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10427,
+    "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2825,
+    "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1440,
+    "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9372,
+    "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2717,
+    "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1511,
+    "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7255,
+    "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2350,
+    "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1435,
+    "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3636,
+    "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2256,
+    "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1261,
+    "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5870,
+    "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2201,
+    "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1315,
+    "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3215,
+    "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/layout_probe.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 3701,
+    "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2603,
+    "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1516,
+    "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4196,
+    "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/pre_resume.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2852,
+    "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3068,
+    "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7159,
+    "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/test_pre_resume.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1711,
+    "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6665,
+    "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2386,
+    "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1488,
+    "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 6338,
+    "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2284,
+    "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1304,
+    "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4261,
+    "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2310,
+    "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1329,
+    "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 8069,
+    "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2800,
+    "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1532,
+    "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4549,
+    "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/observer_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 3281,
+    "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3033,
+    "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4962,
+    "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/test_observer_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1628,
+    "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5380,
+    "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/observer_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2949,
+    "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2650,
+    "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7415,
+    "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/test_observer_gate.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 1491,
+    "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4512,
+    "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/layout_probe.py",
+    "extension": ".py"
+  },
+  {
+    "bytes": 2951,
+    "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2490,
+    "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1539,
+    "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1797,
+    "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2137,
+    "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 957,
+    "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5565,
+    "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2056,
+    "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1258,
+    "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3622,
+    "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2607,
+    "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1656,
+    "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3822,
+    "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2423,
+    "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1788,
+    "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2922,
+    "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2013,
+    "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1151,
+    "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2735,
+    "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1923,
+    "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1220,
+    "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 7935,
+    "path": "EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc",
+    "extension": ".pyc"
+  },
+  {
+    "bytes": 1120,
+    "path": "EVIDENCE/AUTH-OWNER-BOUNDED-LOCAL-CONTINUATION-20261001/decision.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10296,
+    "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4077,
+    "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1578,
+    "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15286,
+    "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3615,
+    "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1798,
+    "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15365,
+    "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2294,
+    "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1349,
+    "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3813,
+    "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3866,
+    "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1803,
+    "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3133,
+    "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3279,
+    "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1561,
+    "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9576,
+    "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2832,
+    "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1393,
+    "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3669,
+    "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3759,
+    "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1505,
+    "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2665,
+    "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2617,
+    "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1395,
+    "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11449,
+    "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4903,
+    "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2459,
+    "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2810,
+    "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4781,
+    "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2148,
+    "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 9970,
+    "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/plan.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3708,
+    "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2090,
+    "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4287,
+    "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4896,
+    "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2321,
+    "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3568,
+    "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3549,
+    "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1550,
+    "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3811,
+    "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4435,
+    "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2105,
+    "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4092,
+    "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4191,
+    "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1971,
+    "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3616,
+    "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/summary.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3947,
+    "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1877,
+    "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3307,
+    "path": "EVIDENCE/CODEX-HANDOFF-20260929-APP-HM/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2519,
+    "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11319,
+    "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/status-before.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 625,
+    "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3361,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11953,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/status-before.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 769,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16247,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-55/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1452,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-55/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3266,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 139750,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 609,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1759,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 16183,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/workspace-snapshot.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2862,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 83998,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 393,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-dispatch.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1271,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-resume-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17833,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-resume-snapshot.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2473,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 17606,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/workspace-snapshot.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 435,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 13070,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3908,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1232,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22740,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 351,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/final-state.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 596,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/independent-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15619,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 3803,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 2129,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/work-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 22836,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/workspace-before.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 28699,
+    "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/workspace-review.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 4323,
+    "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/task.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 3743,
+    "path": "EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4468,
+    "path": "EVIDENCE/WORK-HANDOFF-20260927-LOCAL-PROGRESS/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 5313,
+    "path": "EVIDENCE/WORK-HANDOFF-20260929-G11-LOCAL-PROGRESS/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4022,
+    "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10974,
+    "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/takeover-status-before.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 2493,
+    "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/takeover.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 4074,
+    "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-39/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 11703,
+    "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-39/status-before.txt",
+    "extension": ".txt"
+  },
+  {
+    "bytes": 6342,
+    "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 10953,
+    "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/native-receipts.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2677,
+    "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/restart-stop.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 1697,
+    "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/resume-review.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 15297,
+    "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/workspace-snapshot.json",
+    "extension": ".json"
+  },
+  {
+    "bytes": 2179,
+    "path": "EVIDENCE/WORK-SHUTDOWN-20260930/handoff.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 68592,
+    "path": "PRODUCT_DECISIONS.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 52750,
+    "path": "REVIEW_GATE.md",
+    "extension": ".md"
+  },
+  {
+    "bytes": 111563,
+    "path": "services/backend-laravel/app/Domain/InMemoryLogicalPersistenceRepositoryContract.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 17821,
+    "path": "services/backend-laravel/app/Domain/MessagingConsentPersistenceApplicationAdapter.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 10314,
+    "path": "services/backend-laravel/app/Domain/MessagingConsentSyntheticLiveGateUsePoint.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 3421,
+    "path": "services/backend-laravel/app/Domain/PrivateAccount/PrivateAccountTargetCandidate.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 30891,
+    "path": "services/backend-laravel/app/Domain/SqliteInMemoryLogicalPersistenceAdapter.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 6842,
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 4196,
+    "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ConversationController.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 420,
+    "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 11890,
+    "path": "services/backend-laravel/app/Services/ConversationDomainService.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 6375,
+    "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 16183,
+    "path": "services/backend-laravel/routes/api.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 13802,
+    "path": "services/backend-laravel/tests/Feature/AuthPasswordApiTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 11651,
+    "path": "services/backend-laravel/tests/Feature/C2LocalRuntimeIntegrationTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 17234,
+    "path": "services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 4196,
+    "path": "services/backend-laravel/tests/Feature/DomainSkeletonApiTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 4094,
+    "path": "services/backend-laravel/tests/Feature/MatchingTruthSliceIntegratedSmokeTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 28659,
+    "path": "services/backend-laravel/tests/Feature/MessageApiTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 4374,
+    "path": "services/backend-laravel/tests/Feature/MessagingLiveGateFailClosedRouteTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 5245,
+    "path": "services/backend-laravel/tests/Feature/ModerationApiTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 5573,
+    "path": "services/backend-laravel/tests/Feature/NotificationApiTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 3748,
+    "path": "services/backend-laravel/tests/Unit/ConversationListPeerFilterTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 9594,
+    "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceApplicationAdapterTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 21474,
+    "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceFamilyTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 11020,
+    "path": "services/backend-laravel/tests/Unit/MessagingConsentSyntheticLiveGateUsePointTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 8599,
+    "path": "services/backend-laravel/tests/Unit/PrivateAccountTargetCandidateTest.php",
+    "extension": ".php"
+  },
+  {
+    "bytes": 214483,
+    "path": "TASK_CURRENT.md",
+    "extension": ".md"
+  }
+]

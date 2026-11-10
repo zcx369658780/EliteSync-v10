@@ -1,0 +1,106 @@
+{
+  "time": "2026-10-15T09:29:14.140537+00:00",
+  "user": "r1peer",
+  "status": 200,
+  "body": {
+    "connection": {
+      "state": "CN_ACTIVE",
+      "revision": 2,
+      "requester_id": 11
+    },
+    "consent": {
+      "state": "MC_ACTIVE",
+      "revision": 2,
+      "requester_id": 11
+    },
+    "peer_id": 11,
+    "gates": {
+      "source_authority": false,
+      "consent_created": false,
+      "connection_inherited_consent": false,
+      "conversation_content_read": false,
+      "conversation_content_written": false,
+      "message_created": false,
+      "message_sent": false,
+      "unread_count_authority": false,
+      "preview_authority": false,
+      "notification_authority": false,
+      "relationship_authority": false,
+      "home_authority": false,
+      "training_authority": false,
+      "analytics_authority": false,
+      "ads_authority": false,
+      "ranking_computed": false,
+      "compatibility_total_computed": false,
+      "desirability_computed": false,
+      "person_worth_computed": false,
+      "source_evidence_mutated": false,
+      "connection_lifecycle_reset": false,
+      "consent_lifecycle_reset": false,
+      "connection_reopened": false,
+      "consent_reopened": false,
+      "record_kind": "CONVERSATION_LIVE_GATE_DERIVATION",
+      "connection_identity": "cn:2",
+      "participants": [
+        "user:11",
+        "user:12"
+      ],
+      "read_consent_identity": "mc:5",
+      "send_consent_identity": "mc:6",
+      "live_read_allowed": true,
+      "live_send_allowed": true,
+      "valid_for_live_read": true,
+      "valid_for_live_send": true,
+      "dependency_vector": {
+        "connection": {
+          "state_evidence_identity": "cn-state:2:2",
+          "connection_identity": "cn:2",
+          "state": "CN_ACTIVE",
+          "source_revision": {
+            "authority_owner": "laravel-v1007",
+            "authority_scope": "connection",
+            "lineage": "cn:2",
+            "aggregate_context": "cn:2",
+            "value": 2
+          },
+          "source_condition": "PRESENT"
+        },
+        "read_consent": {
+          "consent_evidence_identity": "mc-state:5:2",
+          "consent_identity": "mc:5",
+          "connection_identity": "cn:2",
+          "purpose": "CONVERSATION_LIVE_READ",
+          "state": "MC_ACTIVE",
+          "source_revision": {
+            "authority_owner": "laravel-v1007",
+            "authority_scope": "consent",
+            "lineage": "mc:5",
+            "aggregate_context": "mc:5",
+            "value": 2
+          },
+          "source_condition": "PRESENT"
+        },
+        "send_consent": {
+          "consent_evidence_identity": "mc-state:6:2",
+          "consent_identity": "mc:6",
+          "connection_identity": "cn:2",
+          "purpose": "CONVERSATION_LIVE_SEND",
+          "state": "MC_ACTIVE",
+          "source_revision": {
+            "authority_owner": "laravel-v1007",
+            "authority_scope": "consent",
+            "lineage": "mc:6",
+            "aggregate_context": "mc:6",
+            "value": 2
+          },
+          "source_condition": "PRESENT"
+        }
+      },
+      "reasons": {
+        "connection": [],
+        "read": [],
+        "send": []
+      }
+    }
+  }
+}

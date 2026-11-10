@@ -1,0 +1,5 @@
+{
+  "command": "php vendor/bin/phpunit tests/Feature/V1008MatchingOperationsWebTest.php tests/Feature/V1008MatchingConcurrencyTest.php tests/Feature/MatchingFoundationServiceTest.php --no-progress --colors=never --do-not-cache-result",
+  "database": "sqlite :memory:",
+  "exit_code": 0
+}

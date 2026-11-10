@@ -1,0 +1,28 @@
+{
+  "label": "baseline08",
+  "exit": 2,
+  "started_epoch": 1792147905.1198323,
+  "duration_seconds": 6.252886533737183,
+  "filter_test_names": [
+    "Tests\\Unit\\ZiweiIztroAppVisibleReplacementTest::test_app_visible_replacement_outputs_b_iztro_14_main_star_subset",
+    "Tests\\Unit\\ZiweiIztroAppVisibleReplacementTest::test_app_visible_replacement_outputs_c_iztro_14_main_star_subset",
+    "Tests\\Unit\\ZiweiIztroLocalReplacementTest::test_local_replacement_mode_outputs_b_iztro_14_main_star_subset",
+    "Tests\\Unit\\ZiweiIztroLocalReplacementTest::test_local_replacement_mode_outputs_c_iztro_14_main_star_subset",
+    "Tests\\Unit\\ZiweiIztroRunnerClientTest::test_runner_client_executes_iztro_runner_for_sample_a",
+    "Tests\\Unit\\ZiweiIztroShadowAdapterTest::test_shadow_adapter_generates_a_b_c_candidates_that_match_accepted_strict_subset",
+    "Tests\\Unit\\ZiweiIztroShadowAdapterTest::test_shadow_adapter_preserves_b_empty_strict_main_star_palaces",
+    "Tests\\Feature\\AdminMatchingOperationalTruthLoopIntegratedSmokeTest::test_disposable_admin_operation_truth_recovery_and_audit_loop",
+    "Tests\\Feature\\Api\\V2\\TransportEnvelopeTest::test_v1_source_slice_and_non_authority_boundaries_remain_unchanged",
+    "Tests\\Feature\\C2LocalRuntimeIntegrationTest::test_admin_request_replay_stale_retry_reveal_and_close_contract",
+    "Tests\\Feature\\C2LocalRuntimeIntegrationTest::test_non_admin_is_denied_and_compensation_stays_unavailable",
+    "Tests\\Feature\\DomainSkeletonApiTest::test_conversation_and_media_skeleton_routes_are_available",
+    "Tests\\Feature\\MatchPayloadContractTest::test_current_match_payload_contains_all_module_contracts_from_matching_engine",
+    "Tests\\Feature\\MatchRoundApiFoundationTest::test_admin_and_cli_execution_are_default_off",
+    "Tests\\Feature\\ProfileBasicRecomputeTest::test_save_basic_invalidates_stale_western_natal_chart_cache_before_detail_recompute",
+    "Tests\\Feature\\ProfileBasicRecomputeTest::test_save_basic_marks_western_natal_render_failure_without_fake_chart_cache"
+  ],
+  "php": "8.5.3",
+  "memory_limit": "512M",
+  "database": "sqlite :memory:",
+  "scope": "16 exact previously failing methods; no full suite; no persistent service"
+}

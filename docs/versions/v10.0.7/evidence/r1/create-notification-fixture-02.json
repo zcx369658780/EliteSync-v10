@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/r1/create-fixture.php",
+    "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel",
+  "exit": 0,
+  "start": "2026-10-15T02:01:28.274139+00:00",
+  "end": "2026-10-15T02:01:28.847811+00:00",
+  "streams": {
+    "stdout": "593ab58d4a474bc7a6ba98848d1506c368e8f3969a283fb0e76bbc975b57f3e4",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

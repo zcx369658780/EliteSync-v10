@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-15T02:03:01.054417+00:00",
+  "role": "r1sender",
+  "method": "POST",
+  "path": "/api/v1/messages",
+  "request": {
+    "receiver_id": 12,
+    "content": "V1007 R1 fictional confidential message marker",
+    "attachment_ids": [
+      2
+    ],
+    "client_message_id": "49a3a873-7554-4e8b-b9ed-98b4ca442576"
+  },
+  "status": 200,
+  "body": {
+    "id": 5,
+    "ok": true,
+    "conversation_id": 2,
+    "client_message_id": "49a3a873-7554-4e8b-b9ed-98b4ca442576",
+    "idempotent_replay": false,
+    "message": {
+      "id": 5,
+      "room_id": "11_12",
+      "sender_id": 11,
+      "receiver_id": 12,
+      "content": "V1007 R1 fictional confidential message marker",
+      "client_message_id": "49a3a873-7554-4e8b-b9ed-98b4ca442576",
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2026-10-15T02:03:01.000000Z",
+      "message_type": "image",
+      "has_attachments": true,
+      "attachments": [
+        {
+          "id": 2,
+          "attachment_type": "image",
+          "sort_order": 0,
+          "metadata": {
+            "media_type": "image",
+            "status": "ready"
+          },
+          "media_asset": {
+            "id": 2,
+            "owner_user_id": 11,
+            "media_type": "image",
+            "storage_provider": "oss",
+            "storage_disk": "v1007",
+            "storage_key": "chat-media/11/image/54784954-14c9-48b7-a0b2-849f84c77a73.png",
+            "mime_type": "image/png",
+            "size_bytes": 68,
+            "width": null,
+            "height": null,
+            "duration_ms": null,
+            "status": "ready",
+            "error_code": null,
+            "error_message": null,
+            "public_url": "http://127.0.0.1:8000/api/v1/media/2/content",
+            "metadata": null,
+            "uploaded_at": "2026-10-15T02:03:00.000000Z",
+            "processed_at": "2026-10-15T02:03:00.000000Z"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.exe",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1007LiveConsentTest.php",
+    "tests/Feature/V1007QuestionnairePersistenceTest.php",
+    "tests/Feature/AdminApiTest.php",
+    "tests/Feature/AuthQuestionnaireApiTest.php",
+    "tests/Feature/MatchingFoundationServiceTest.php",
+    "tests/Feature/MessageApiTest.php",
+    "tests/Feature/MediaUploadEndpointTest.php",
+    "tests/Feature/MediaProcessingPipelineTest.php",
+    "tests/Feature/StatusPostApiTest.php",
+    "tests/Feature/NotificationApiTest.php",
+    "tests/Feature/MbtiApiVersioningTest.php",
+    "tests/Feature/V1006AdminWebTest.php",
+    "tests/Feature/AuthPasswordApiTest.php",
+    "tests/Feature/V1007PrivateMediaTest.php",
+    "tests/Feature/V1007MatchProjectionTest.php",
+    "tests/Feature/V1007BaziProvenanceTest.php",
+    "tests/Unit/V1007IsolationGateTest.php",
+    "tests/Feature/AstroCanonicalApiTest.php",
+    "tests/Feature/MatchingTruthSliceIntegratedSmokeTest.php",
+    "tests/Feature/V1007MatchingExplanationTest.php",
+    "tests/Feature/V1007MatchNotificationTest.php"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 0,
+  "start": "2026-10-15T00:43:18.105404+00:00",
+  "end": "2026-10-15T00:43:26.628691+00:00",
+  "streams": {
+    "stdout": "a0010f22e8f01c7f27d5fa9e486cf46860c2845017ea897b451a271006a75c22",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "restart",
+    "elitesync-v1007-db"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10",
+  "exit": 0,
+  "start": "2026-10-15T00:58:02.627308+00:00",
+  "end": "2026-10-15T00:58:03.927258+00:00",
+  "streams": {
+    "stdout": "cd9207335c976a16a7b6d4514878e89598a182ba90c9301d4697101a681cfb86",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

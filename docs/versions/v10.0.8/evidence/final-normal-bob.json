@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-15T08:18:06.718725+00:00",
+  "user": "bob",
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "The route api/v1/me could not be found.",
+      "details": null
+    }
+  }
+}
