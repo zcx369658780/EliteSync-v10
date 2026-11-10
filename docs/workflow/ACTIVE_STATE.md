@@ -4,7 +4,7 @@ Owner接续普通工程后，在新私有包整合同域时钟及直接依赖；
 
 仅准备手机前台资格：拟120秒＋清理15秒、24ADB含2清理预留，从48/240接续；原机/user0/已装b621，必要明确Activity最多1、空手机号焦点tap最多1。成功失败均STOP；不截图/输入/提交/媒体，不E启动/安装、不B claim/转交，无grant/claim且HOST_ONLY。一般APP/UI控制权不重复申请，新设备具体范围待Owner批准，旧STOP/后端未耗1不能余额复活。今天设备/SDK/服务/构建安装均0。
 
-产品源码1f/APK b621及原main根255项/index/%SystemDrive%和所有旧原证保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，双端/媒体NOT_RUN、缓存真机UNKNOWN。功能优先/UI最后，不合main/发布、不启v10.1.6。最新私有工程包为v1015-phone-foreground-first-20261110-case01；旧case05终态仍在原runtime-closeout子目录，本节点不覆盖。
+产品源码1f/APK b621及原main根255项/index/%SystemDrive%和所有旧原证保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，双端/媒体NOT_RUN、缓存真机UNKNOWN。功能优先/UI最后，不合main/发布、不启v10.1.6。最新私有工程包为v1015-phone-foreground-first-20261110-case01；最终待批准对象是其execution-01/proposal-private.json，激活只新增grant，不删除HOST_ONLY或改写入ledger原证（见ACTIVATION_ADDENDUM）；旧case05终态仍在原runtime-closeout子目录，本节点不覆盖。
 
 ---
 

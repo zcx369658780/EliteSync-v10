@@ -25,6 +25,8 @@ Owner接续普通工程后，已核实际产品根、origin、分支、HEAD与in
 
 Owner已具备一般APP/UI控制权，本次不重复申请一般权限。执行这份新设备具体范围仍需Owner明确批准；批准绑定唯一绝对执行根、nonce、完整三项payload hash与单次claim，不能复制批准到新目录重跑。当前无批准且HOST_ONLY保持。
 
+最终激活采用另行冻结的唯一`execution-01`目录，其三项源码/目标payload hash与准备稿相同，只更新执行根和nonce。该目录无grant/claim，实际main因缺授权而拒绝；批准后仅新增其proposal绑定的单次grant，不删除准备根HOST_ONLY、不修改入ledger原证。原准备根proposal作为早期草案保留；最终批准对象为`execution-01/proposal-private.json`。原私有报告/交接里的解除HOST_ONLY描述由`ACTIVATION_ADDENDUM.md`纠正，第一版保存回执另存原文。
+
 手机候选15项主机测试通过，含桌面→明确APP组件一次、已前台不启动、锁屏/截止拒绝、foreign UI/非空字段保护、超时计数、清理预留、完整manifest、目标替换拒绝、复制批准拒绝、运行中STOP与耗额保存。对STOP门与执行根门分别做隔离变异，两项对应测试均按预期失败。非作者Codex只读复核已修复发现的问题，最终无剩余P1/P2；这不属于外部验收或真机效果验证。
 
 本范围只是前台资格诊断，不是双端或媒体验收，也不自动授予后续模拟器预算。后续若准备双端接续，须在其本次执行内fresh核手机前台，不能把此次未来可能得到的旧资格当作永久前置证明。原唯一未耗后端仍封于case05/backend STOP；本候选不转交、不消费，也不重复申请这一次未耗后端。
