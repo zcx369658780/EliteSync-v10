@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/api_transport_policy.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
@@ -26,18 +27,18 @@ final relationshipApiProvider = Provider<RelationshipApi>(
 
 // Restricted receipt/revocation traffic must never inherit another account's
 // credentials, auto-refresh, retry, or request-body logging.
-final restrictedAccountClientProvider = Provider<ApiClient>(
-  (ref) => ApiClient(
-    dio: Dio(
-      BaseOptions(
-        baseUrl: ref.watch(appEnvProvider).apiBaseUrl,
-        connectTimeout: const Duration(seconds: 12),
-        receiveTimeout: const Duration(seconds: 20),
-        contentType: 'application/json',
-      ),
+final restrictedAccountClientProvider = Provider<ApiClient>((ref) {
+  final env = ref.watch(appEnvProvider);
+  final dio = Dio(
+    BaseOptions(
+      connectTimeout: const Duration(seconds: 12),
+      receiveTimeout: const Duration(seconds: 20),
+      contentType: 'application/json',
     ),
-  ),
-);
+  );
+  configureApiTransport(dio, env: env);
+  return ApiClient(dio: dio);
+});
 
 class RelationshipApi {
   RelationshipApi(this.client, {this.identity});

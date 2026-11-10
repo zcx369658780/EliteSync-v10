@@ -47,7 +47,7 @@ void main() {
           env: const AppEnv(
             flavor: AppFlavor.dev,
             appName: 'test',
-            apiBaseUrl: 'http://unused.invalid',
+            apiBaseUrl: 'https://unused.invalid',
             useMockData: false,
           ),
           logger: const AppLogger(enableDebugLogs: false),
@@ -96,7 +96,7 @@ void main() {
         env: const AppEnv(
           flavor: AppFlavor.dev,
           appName: 'test',
-          apiBaseUrl: 'http://unused.invalid',
+          apiBaseUrl: 'https://unused.invalid',
           useMockData: false,
         ),
         logger: const AppLogger(enableDebugLogs: false),

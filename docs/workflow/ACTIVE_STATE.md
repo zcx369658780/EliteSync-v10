@@ -13,6 +13,7 @@ Owner 已明确继续完善 APP；后续可同时使用两个模拟器进行功�
 - 通知中心实际APP单条标已读、服务端未读5→4通过；静默设置APP保存→重新打开读回→恢复原设置通过。未用系统Push供应商；不将这些结果当APP分页全量或远程送达通过。
 - 896候选实际发送确认丢失重试通过：APP经真实API先保存message15，单次代理把成功确认替换503；界面出现原编号重试，点击后同client UUID/同server ID、idempotent replay，真实API持久化读回仅1条。临时代理停止、专用模拟器API映射恢复。私有 `app-ack-retry-private.json`，不是模拟成功或全弱网矩阵。
 - 重启后的登出清理已修复并进入896候选：持久owner定位仅用于精确删除，重启登出/换号可清已登记旧namespace；对象、双索引和定位删除均核验，写内容前验证定位已落盘。RED复现应删2实际0，最终21项缓存与5项auth集成检查/analyze、非作者复核通过。仍不恢复读取、授权或可信时钟；未知旧未索引资产不扫描、不宣称全清。Android实际重启/登出清理待验证。
+- 当前进入通讯安全封装：API默认HTTPS、dev明文仅固定loopback，普通/受限Dio均在读取凭据前校验同源并禁止redirect；Android正式网络配置禁明文，Debug资源仅精确本机例外，正式Bootstrap忽略外部Intent/file端点覆盖。38项策略、16项入口/晚回、6项socket与16项Kotlin正反例及analyze通过，非作者复核无P1/P2；最终合包尚待完成。未访问或部署外部服务，RTC URL及重放路径的后续封装仍待处理，不能称整体加密已完成。
 - v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。RTC画面稳定性/AEC、15/30边界、安全封装、通知和最终集中验收未完成；真机缓存效果UNKNOWN。
 - 资产整理已完成确认冗余项；[版本与资产索引](../versions/ASSET_VERSION_SUMMARY_20261110.md) 记录归档与保留项。旧 case07 STOP、case08 未激活、旧已耗/未耗事实保留；不继续退役冻结链。
 

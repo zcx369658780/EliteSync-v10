@@ -26,6 +26,12 @@ call5在实际两参与者通话中经正常HTTP撤销MC，响应0.078秒、请�
 
 最新源码d1f71cb0的896候选已实际构建34.644秒并更新双模拟器，APK SHA256 `896ace212148f61ada0e33e653052318e537ce2238cf8afc94eb74691cef9095`、154097126字节；新波形与cleanup-owner内核标记、v2签名/身份通过。call6双方本地/远端生成视频及编码/解码非零，一端一次自动重连后恢复；保留的本call完整自身日志中双方Concurrent modification、Unhandled Exception与Visualizer错误均0。原生波形监听已启动，但变化bands未观察到，波形活动效果仍NOT_VERIFIED；不冒充真实音质/AEC。正常撤MC到房间不存在0.297秒，双方恢复新代MC3后旧房间保持不存在，call6结束。原call5撤权回执已追加保存在history JSONL，未覆盖旧事实；当前新回执为 `call6-video-native-visualizer-private.json`。
 
+## 通讯安全封装第一项（源码检查阶段）
+
+实际源码存在普通API接受公网HTTP及Android全局明文配置，也存在正式exported Activity接受Intent/file端点覆盖的问题。现统一API base URL与请求origin规则：默认HTTPS，开发HTTP只准精确本机地址；原始authority先校验，空@/空端口也拒绝，普通与restricted客户端在凭据读取前拦截不同scheme/host/port的绝对请求并关闭重定向。restricted继续独立于当前账户的Auth/Retry/Logging。现有域名HTTPS/WSS配置作为默认，没有探测或认可外部服务可用性。
+
+Android主资源禁明文，只有Debug资源列出不含子域的本机例外；正式Bootstrap只使用编译端点，不接受外部Intent/file替换。新增非debug注入反例先RED，修正后Kotlin16项通过；Dart策略38项、入口/内部标志/晚回16项及socket6项通过，相关analyze无问题，非作者静态复核无P1/P2。原生Kotlin复用既有精确2.2.20编译器和JDK，仅编译两份policy源码，没有启动旧执行器。最终合包未完成，API/WS重放与RTC URL进一步封装仍待处理；TLS、端到端加密、真实Push及整版验收不互相替代。本次没有发布或访问外部服务。
+
 ## 当前APP确认丢失后的发送重试
 
 896候选经实际APP→真实API→MariaDB完成一次确认丢失场景：本机短时代理将首个真实message POST的成功确认替换为503，服务端已保存message15；APP显示结果未确认及“使用原消息编号重试”，用户路径点击后第二次真实POST使用同client_message_id、返回同server ID且idempotent_replay=true。真实GET按该client UUID只读回1条，APP显示已确认内容；未伪造成功或直接插表。该测试也经历同包进程重启和正常在线登录恢复，但不是Android离线清理/15或30天证明。临时代理已停止，专用模拟器API reverse已恢复直连，手机未用。私有回执 `app-ack-retry-private.json`；其它弱网、并发及故障矩阵仍按原未完成项保留。

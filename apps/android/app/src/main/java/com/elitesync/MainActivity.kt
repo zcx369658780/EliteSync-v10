@@ -34,7 +34,7 @@ class MainActivity : FlutterActivity() {
                         } else {
                             null
                         }
-                        val fileBootstrap = readBootstrapFile(includeEndpoints = !synthetic)
+                        val fileBootstrap = readBootstrapFile(includeEndpoints = BuildConfig.DEBUG && !synthetic)
                         val endpoints = if (restoration) BootstrapEndpointPolicy.Endpoints(
                             BuildConfig.API_BASE_URL,
                             if (BuildConfig.ELITESYNC_V1015_LOCAL_BUILD) BuildConfig.WS_BASE_URL else "",
@@ -45,6 +45,8 @@ class MainActivity : FlutterActivity() {
                             intentWs = extras?.getString("elitesync_ws_base_url"),
                             fileApi = fileBootstrap["elitesync_api_base_url"],
                             fileWs = fileBootstrap["elitesync_ws_base_url"],
+                            compiledApi = BuildConfig.API_BASE_URL,
+                            compiledWs = BuildConfig.WS_BASE_URL,
                         )
                         result.success(
                             mapOf(

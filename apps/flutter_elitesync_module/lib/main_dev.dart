@@ -6,18 +6,19 @@ import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
+import 'package:flutter_elitesync_module/core/network/api_transport_policy.dart';
 
 String _resolveApiBaseUrl() {
   final override = String.fromEnvironment('ELITESYNC_API_BASE_URL').trim();
   if (override.isNotEmpty) {
-    return override.endsWith('/') ? override : '$override/';
+    return validateApiBaseUrl(override, allowLocalInsecure: true);
   }
   final fileBootstrap = _readBootstrapFile();
   final fileOverride = fileBootstrap['elitesync_api_base_url']?.trim() ?? '';
   if (fileOverride.isNotEmpty) {
-    return fileOverride.endsWith('/') ? fileOverride : '$fileOverride/';
+    return validateApiBaseUrl(fileOverride, allowLocalInsecure: true);
   }
-  return 'http://101.133.161.203/';
+  return 'https://slowdate.top/';
 }
 
 Map<String, String> _readBootstrapFile() {

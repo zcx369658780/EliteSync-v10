@@ -33,14 +33,14 @@ object BootstrapEndpointPolicyJvmTest {
         case("synthetic nondebug fails with external inputs") {
             check(runCatching { BootstrapEndpointPolicy.resolve(true, false, "https://external.invalid/", "wss://external.invalid/") }.exceptionOrNull() is IllegalArgumentException)
         }
-        case("ordinary Intent wins and trims") {
-            check(BootstrapEndpointPolicy.resolve(false, false, "  https://intent.invalid/  ", "  wss://intent.invalid/  ", "https://file.invalid/", "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("https://intent.invalid/", "wss://intent.invalid/"))
+        case("debug Intent wins and trims") {
+            check(BootstrapEndpointPolicy.resolve(false, true, "  https://intent.invalid/  ", "  wss://intent.invalid/  ", "https://file.invalid/", "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("https://intent.invalid/", "wss://intent.invalid/"))
         }
         case("ordinary blank Intent falls back to trimmed file") {
             check(BootstrapEndpointPolicy.resolve(false, true, " ", "\t", "  https://file.invalid/  ", " wss://file.invalid/ ") == BootstrapEndpointPolicy.Endpoints("https://file.invalid/", "wss://file.invalid/"))
         }
-        case("ordinary null Intent falls back to file") {
-            check(BootstrapEndpointPolicy.resolve(false, false, fileApi = "https://file.invalid/", fileWs = "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("https://file.invalid/", "wss://file.invalid/"))
+        case("debug null Intent falls back to file") {
+            check(BootstrapEndpointPolicy.resolve(false, true, fileApi = "https://file.invalid/", fileWs = "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("https://file.invalid/", "wss://file.invalid/"))
         }
         case("ordinary API and WS resolve independently") {
             check(BootstrapEndpointPolicy.resolve(false, true, "https://intent.invalid/", null, "https://file.invalid/", "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("https://intent.invalid/", "wss://file.invalid/"))
@@ -51,10 +51,20 @@ object BootstrapEndpointPolicyJvmTest {
         case("ordinary blank file inputs return empty strings") {
             check(BootstrapEndpointPolicy.resolve(false, true, " ", "", "\t", " ") == BootstrapEndpointPolicy.Endpoints("", ""))
         }
-        case("ordinary malformed nonblank values retain original semantics") {
-            check(BootstrapEndpointPolicy.resolve(false, false, " bad-api ", " bad-ws ") == BootstrapEndpointPolicy.Endpoints("bad-api", "bad-ws"))
+        case("debug leaves malformed values for the downstream URL validator") {
+            check(BootstrapEndpointPolicy.resolve(false, true, " bad-api ", " bad-ws ") == BootstrapEndpointPolicy.Endpoints("bad-api", "bad-ws"))
         }
-        println("TOTAL $cases/14 PASS")
-        check(cases == 14)
+        case("nondebug rejects injected Intent and file endpoints") {
+            check(BootstrapEndpointPolicy.resolve(false, false, "https://injected.invalid/", "wss://injected.invalid/", "https://file.invalid/", "wss://file.invalid/") == BootstrapEndpointPolicy.Endpoints("", ""))
+        }
+        case("nondebug uses only the compiled API and websocket authority") {
+            check(BootstrapEndpointPolicy.resolve(false, false,
+                intentApi = "https://injected.invalid/", intentWs = "wss://injected.invalid/",
+                fileApi = "https://file.invalid/", fileWs = "wss://file.invalid/",
+                compiledApi = " https://configured.invalid/ ", compiledWs = " wss://configured.invalid/ ") ==
+                BootstrapEndpointPolicy.Endpoints("https://configured.invalid/", "wss://configured.invalid/"))
+        }
+        println("TOTAL $cases/16 PASS")
+        check(cases == 16)
     }
 }

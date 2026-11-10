@@ -4,6 +4,7 @@ import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
+import 'package:flutter_elitesync_module/core/network/api_transport_policy.dart';
 
 @immutable
 class InternalFeatureGateResolution {
@@ -57,7 +58,10 @@ String _firstNonEmpty(List<String> values) {
 }
 
 @visibleForTesting
-String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
+String resolveApiBaseUrl({
+  required Map<String, String> hostBootstrap,
+  bool allowLocalInsecure = false,
+}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
   if (const bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8021/') {
@@ -117,13 +121,16 @@ String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
     return hostOverride;
   }
   if (hostOverride.isNotEmpty) {
-    return hostOverride.endsWith('/') ? hostOverride : '$hostOverride/';
+    return validateApiBaseUrl(
+      hostOverride,
+      allowLocalInsecure: allowLocalInsecure,
+    );
   }
   final override = String.fromEnvironment('ELITESYNC_API_BASE_URL').trim();
   if (override.isNotEmpty) {
-    return override.endsWith('/') ? override : '$override/';
+    return validateApiBaseUrl(override, allowLocalInsecure: allowLocalInsecure);
   }
-  return 'http://101.133.161.203/';
+  return 'https://slowdate.top/';
 }
 
 @visibleForTesting
@@ -187,14 +194,16 @@ Future<void> main() async {
       bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
       bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD');
-  final apiBaseUrl = resolveApiBaseUrl(hostBootstrap: hostBootstrap);
+  final apiBaseUrl = resolveApiBaseUrl(
+    hostBootstrap: hostBootstrap,
+    allowLocalInsecure: flavor == AppFlavor.dev,
+  );
   await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
       appName: flavor == AppFlavor.dev ? 'EliteSync Dev' : 'EliteSync',
-      // The Android host app embeds the Flutter release AAR, which always
-      // boots through main.dart -> main_prod.dart. Keep prod pointed at the
-      // verified direct backend entry until the public domain chain is stable.
+      // Match the host's existing secure default; endpoint availability and
+      // production deployment remain separate from URL validation.
       apiBaseUrl: apiBaseUrl,
       wsBaseUrl: resolveWsBaseUrl(
         apiBaseUrl: apiBaseUrl,

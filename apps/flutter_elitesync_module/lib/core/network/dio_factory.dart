@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/core/logging/app_logger.dart';
+import 'package:flutter_elitesync_module/core/network/api_transport_policy.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/logging_interceptor.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/retry_interceptor.dart';
@@ -30,7 +31,6 @@ class DioFactory {
   Dio create() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: _env.apiBaseUrl,
         connectTimeout: const Duration(seconds: 12),
         receiveTimeout: const Duration(seconds: 20),
         sendTimeout: const Duration(seconds: 20),
@@ -39,6 +39,7 @@ class DioFactory {
       ),
     );
 
+    configureApiTransport(dio, env: _env);
     dio.interceptors.addAll([
       AuthInterceptor(
         accessTokenProvider: _accessTokenProvider,
