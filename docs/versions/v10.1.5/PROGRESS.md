@@ -40,6 +40,8 @@ RTC新增gateway URL前置校验：默认WSS可独立SFU，开发WS仅在API本�
 
 同步状态：47811a5e最后确认推送成功，随后本地932bf338已保存但两次SSH443连接关闭，目前PENDING_SYNC。没有更换身份、强推或修改全局网络；继续本地工程，后续有意义节点再尝试。
 
+后续正常推送已恢复，a2487847及前序提交均确认同步。源码a2487847实际构建35.709秒，APK SHA256 `9b87b8580d792b16bcb2c4d772a42f7c368488cd9f5da8ea176c4ca8341f0972`、154104232字节，RTC URL与TransportReplay新内核标记及签名/身份通过，双模拟器均更新。call7正常建立两参与者语音，双方UDP音频RTP收发，原生聚合波形活动已观察到；UI挂断到房间不存在上界0.938秒，call1–7现均ended。私有 `call7-secure-endpoint-voice-private.json`，不等于听感/AEC或完整停媒矩阵。先前call6未观察到bands的原记录仍保留。
+
 ## 当前APP确认丢失后的发送重试
 
 896候选经实际APP→真实API→MariaDB完成一次确认丢失场景：本机短时代理将首个真实message POST的成功确认替换为503，服务端已保存message15；APP显示结果未确认及“使用原消息编号重试”，用户路径点击后第二次真实POST使用同client_message_id、返回同server ID且idempotent_replay=true。真实GET按该client UUID只读回1条，APP显示已确认内容；未伪造成功或直接插表。该测试也经历同包进程重启和正常在线登录恢复，但不是Android离线清理/15或30天证明。临时代理已停止，专用模拟器API reverse已恢复直连，手机未用。私有回执 `app-ack-retry-private.json`；其它弱网、并发及故障矩阵仍按原未完成项保留。
