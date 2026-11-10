@@ -1,3 +1,13 @@
+# 2026-11-10 整段运行遇旧native身份绑定拒绝；已自主修正并准备case02（CURRENT ENTRY）
+
+Owner批准完整链后只执行case01一次：手机前台预检10+清理1=11、累计87/240余153，E控制3。controller32在创建模拟器前因仍绑定case05 Self/Work/cwd拒绝，root_create/sdk_start均false；runner1、整段11.656秒，启动claim已耗1不退款，安装未claim余1，B已转交case01但未claim余1并STOP。手机XML/私有ADB清理exit0、E自身cleanup_errors空、私有端口已闭；root原数组中的退出失败标记保留。详见[终态与修正](../../workflow/V1015_CONTINUOUS_NATIVE_IDENTITY_STOP_HOST_REPAIRED_20261110.md)。
+
+普通主机修复已连续完成，无小步骤请示：case02重绑定并编译主机控制器，实际生产binary真实构造器RED→GREEN5＋同源时钟6通过，无producer创建；自检接在phone/boot claim之前。102Python回归、72payload/新binary/contract闭合、非作者最终无P1/P2。旧99+6未覆盖真实constructor的遗漏追加纠正，旧源/原证不改。新case02仅准备、无授权/claim/transfer；只需新boot1，安装新增0继承未耗1、B新增0继承原未耗1，不重复申请已有未耗次数；批准后整链自动推进，仍900+shared45，不逐动作问Owner。
+
+最新case01实际终态读其runtime-closeout三件；case02根三件为新prepared。产品source1f/APKb621、原main根255项/index/%SystemDrive%及全部历史保护不动。10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN、缓存真机UNKNOWN，功能优先/UI最后，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-10 Owner要求按整段连续推进；完整双端候选99项主机检查通过（CURRENT ENTRY）
 
 按Owner“不要每次操作都停下”，以后在已准确批准的完整任务内连续观察、等待、导航、亮屏、输入与业务验证，中间成功不再单独STOP或逐动作问Owner。旧STOP/已耗/保留事项不撤销；需要新范围时一次合并准确说明。新私有连续入口已整合手机实际APP前台先于E claim→E OS/APP→两端完整表单/IME→原未耗B1→两个虚构账号登录/双向文字持久化→退出/统一清理。详见[连续候选](../../workflow/V1015_CONTINUOUS_DUAL_CHAT_SCOPE_PREPARED_20261110.md)及其中Owner决定。
