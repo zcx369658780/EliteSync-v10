@@ -8,6 +8,14 @@
 
 私有资源/观测/截图及 `app-functional-verification-private.json` 仅在 `v1015-current-dev`，当前服务和两模拟器仍运行；ADB5038排除实体USB。功能工程继续，Owner明确叫停才停止自有进程并手动交接。RTC控制面缺v1.5精确登记与本机开关，媒体SFU尚未就绪；集中安全/权限、RTC/AEC、通知、15/30和最终统一验收仍未完成。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING、缓存真机UNKNOWN保持。
 
+### 当前RTC本机接入准备
+
+RTC开发库白名单已仅补入v1.5精确配对，保留原环境、开关、LiveConsent和当前授权行为；新隔离正反例与既有RTC相关检查34项/238断言通过。本机开关开启后，真实 `/api/v1/rtc/calls` 已由404恢复200，当前列表为空。
+
+新增 `services/backend-laravel/tools/rtc` 当前开发网关，从具名历史协议实现派生，改为直接调用当前自有API，不运行历史launcher或私有目录桥。沿用签名与当前身份验证、未公开裸SFU、失效房间删除、失败即停媒体及独立匿名pipe watchdog；非作者只读复核未发现P1/P2。6项针对性协议检查在主机与实际Linux运行镜像通过，补了合法结构坏HMAC及GET Content-Length反例。
+
+官方LiveKit v1.13.11已固定镜像digest并仅用于本机；复用已核无凭据的现有Python运行层，构建当前新入口。准备阶段保留旧tar上下文格式失败后，仅修正为标准压缩tar构建成功；未安装Docker插件。自有监督SFU已实际启动，内部监控可读当前API，裸信令仅容器回环且未公开；APP媒体通话尚待实际运行，不能以此节点关闭AC05或声称5秒停媒已证。参考[官方本机运行](https://docs.livekit.io/transport/self-hosting/local/)及[固定配置](https://github.com/livekit/livekit/blob/v1.13.11/config-sample.yaml)。源码/配置/许可与镜像身份回执仅本机必要保留，私有凭据不上GitHub。
+
 ## 本日已保存的通知与后端节点
 
 通知中心补齐更早通知读取：API支持排他before_id/limit、has_more和下一扫描游标；APP增加继续加载与失败重试，保留已读取内容，按ID去重及新到旧排序。初始/后续空页仍可继续，刷新/会话/关系epoch变化丢弃旧页与晚回。点击通知的当前权限重验保持。后端先剔除过期行，并将动态过滤限定为每页最多100条，避免大量失效历史阻断较早有效提醒或导致无界扫描。
