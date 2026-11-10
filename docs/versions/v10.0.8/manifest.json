@@ -1,0 +1,152 @@
+{
+  "version": "v10.0.8",
+  "status": "CANDIDATE_DELIVERED_AWAITING_ASTRA_FINAL_ACCEPTANCE",
+  "authority": {
+    "plan_commit": "ac57d3370a2f2f17c042987a758d86c9aa725650",
+    "plan_blob": "0856e7372d1f91fadfa3350b30f926f7af9cf809",
+    "decisions_commit": "cacfa889128f9a3a4b443efa87f4c347a178f1d5",
+    "decisions_blob": "4f84f1968ee2737b842f828ad2e0cbdd5c929936",
+    "last_read_main": "e1dec331d7fc4d6d42fb2fffa63e02987d52e4a0"
+  },
+  "source": {
+    "implementation_start": "a75b8d4061ae012937ef4823120b396f257d3aec",
+    "implementation_start_tree": "89637891276cdf4280f918ccad7eb4c5030f55be",
+    "final_product_commit": "1f73a80afd2e0678006ce62e019235dc5ec36374",
+    "final_product_tree": "9f7071412a0341604563ee73a9556116b6b1bc28",
+    "flutter_lib_tree": "d610254d1d93c0ab2c7eed839eba44e635713acf",
+    "android_tree": "7e76419254e889c95d846d91bde7674020331c75",
+    "backend_tree": "79463dd4b7aa7034019f90965f5d1843872faea7",
+    "branch": "codex/v10.0.8-web-admin",
+    "publication_identity": "Actual containing publication commit/tree is recorded in final owner delivery and LOCAL_ONLY Q/publication-receipt.json after remote readback. Self-containing manifest has no fabricated self-hash."
+  },
+  "workspace": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10",
+  "local_evidence_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008",
+  "packages": [
+    {
+      "kind": "debug APK",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\packages-fifth\\v1008-debug.apk",
+      "sha256": "f2e025c9e9f3d4ace1183467d8f753ed5b7ffd395cf0793d323abdc3ef15b11d",
+      "bytes": 222632154,
+      "distribution": "LOCAL_ONLY",
+      "versionName": "0.08.04",
+      "versionCode": 80400
+    },
+    {
+      "kind": "release AAR",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\packages-fifth\\v1008-release.aar",
+      "sha256": "a22561393b09f6e57e1ef913fa174b1fbe6120b91d073ad3ec05c778308a27c9",
+      "bytes": 3957682,
+      "distribution": "LOCAL_ONLY",
+      "versionName": "0.08.04",
+      "versionCode": 80400
+    },
+    {
+      "kind": "device readback APK",
+      "path": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1008\\packages-fifth\\device-installed.apk",
+      "sha256": "f2e025c9e9f3d4ace1183467d8f753ed5b7ffd395cf0793d323abdc3ef15b11d",
+      "bytes": 222632154,
+      "distribution": "LOCAL_ONLY",
+      "versionName": "0.08.04",
+      "versionCode": 80400
+    }
+  ],
+  "environment": {
+    "database": "elitesync_v1008_dev",
+    "container": "elitesync-v1008-db",
+    "volume": "elitesync-v1008-db-data",
+    "host": "127.0.0.1",
+    "port": 43318,
+    "web": "127.0.0.1:8000 -> 8001",
+    "queue": "database / v1008-matching",
+    "avd": "elitesync_v1007_api36",
+    "serial": "emulator-5582",
+    "final_services": "STOPPED",
+    "final_database": "Exited (0), volume retained",
+    "final_avd": "STOPPED",
+    "media": "LOCAL_ONLY Q/media; disk logical name v1007, root isolated to this Q",
+    "private_configuration": "LOCAL_ONLY Q/secrets; retained, not published"
+  },
+  "business_summary": {
+    "round_count": 5,
+    "run_count": 7,
+    "audit_count": 51,
+    "sanction_count": 3,
+    "attempts_count": 3,
+    "answers_by_user": [
+      {
+        "user_id": 2,
+        "n": 40
+      },
+      {
+        "user_id": 3,
+        "n": 20
+      }
+    ],
+    "joint_snapshot_all_fields_equal": true
+  },
+  "validation": {
+    "php_related": {
+      "label": "php-regression-sixth",
+      "tests": 146,
+      "assertions": 1457,
+      "deprecations": 2,
+      "exit": 0
+    },
+    "flutter_related_final02": {
+      "tests": 41,
+      "exit": 0
+    },
+    "flutter_related_final03": {
+      "tests": 30,
+      "exit": 0,
+      "different_scope": true
+    },
+    "dart_full": {
+      "label": "analyze-final03",
+      "result": "No issues found!",
+      "exit": 0
+    },
+    "dart_lib_separate": "NOT_RUN_SEPARATELY; included by full analysis",
+    "flutter_full": "NOT_RUN; prior v10.0.7 failures/exit1 retained at original evidence",
+    "build_fifth": {
+      "exit": 0,
+      "incremental": true
+    },
+    "install_fifth": {
+      "exit": 0,
+      "device_apk_hash_equal": true
+    }
+  },
+  "protected_root": {
+    "named_files": 43,
+    "status_normal_equal": true,
+    "changed_named_files": [],
+    "comparison_anchor": "existing pre-version root-before.json; not freshly captured before this continuation",
+    "historical_109": "NOT_RECHECKED",
+    "initial_check": "-uall differed in enumeration and emitted long-path warnings; normal comparison is the comparable scope",
+    "head_equal": true,
+    "index_equal": true
+  },
+  "remaining": [
+    "RTC dual endpoint",
+    "complete Ziwei and Western astrology",
+    "Buddy/Social real business",
+    "other media",
+    "map/system Push/settings dependencies",
+    "authorized historical data and attachment restoration",
+    "legacy local notification storage observation"
+  ],
+  "not_run": [
+    "production",
+    "real accounts",
+    "third-party paid services",
+    "historical SQL/VHDX",
+    "old acceptance database reads or reseed",
+    "APK URL hosting/download",
+    "full backend suite",
+    "full Flutter suite"
+  ],
+  "published_evidence_index": "evidence/INDEX.json",
+  "original_failures": "Retained under Q; core-first stdout public password-hash redaction has separate original/public hash in index",
+  "local_only_unrelated": "Existing %SystemDrive%/ directory retained untracked; not staged, removed or included in candidate"
+}

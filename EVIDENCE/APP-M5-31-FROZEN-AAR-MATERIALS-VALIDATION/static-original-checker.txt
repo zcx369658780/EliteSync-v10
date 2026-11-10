@@ -1,0 +1,89 @@
+import ast
+import hashlib
+from pathlib import Path
+paths = [Path('D:/EliteSync-v10/apps/android_synthetic_demo/tools/aar_entry_materials.py'),Path('D:/EliteSync-v10/apps/android_synthetic_demo/tools/test_aar_entry_materials.py')]
+expected = [(20338,'B324943D7CC88EB714DD19450E0E9A2853609580C3A6F9FBFACAC0DA11D04DD7'),(74376,'F067B5D169E21F690369B573A1882CD6D7082979E730FEC203954C07DA9A45D2')]
+trees=[]
+texts=[]
+for p,(size,digest) in zip(paths,expected):
+    assert p.is_file() and not p.is_symlink() and p.stat().st_size==size
+    b=p.read_bytes()
+    h=hashlib.sha256(b).hexdigest().upper()
+    print('FROZEN_SOURCE',p.name,'BYTES',len(b),'SHA256',h)
+    assert len(b)==size and h==digest
+    text=b.decode('utf-8-sig')
+    texts.append(text)
+    trees.append(ast.parse(text))
+allow=[{'__future__','dataclasses','hashlib','re','typing'},{'__future__','importlib.util','sys','unittest','dataclasses'}]
+for tree,whitelist in zip(trees,allow):
+    for n in ast.walk(tree):
+        if isinstance(n,ast.Import):
+            assert all(a.name in whitelist for a in n.names)
+        if isinstance(n,ast.ImportFrom):
+            assert n.level==0 and n.module in whitelist
+for n in ast.walk(trees[0]):
+    if isinstance(n,ast.Call) and isinstance(n.func,ast.Name):
+        assert n.func.id not in {'open','eval','exec','__import__','getattr','setattr','globals','locals','input','compile'}
+    if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute):
+        assert n.func.attr not in {'read','read_text','read_bytes','write','write_text','write_bytes','system','Popen','run','resolve','stat','exists','unlink'}
+fn=next(n for n in trees[0].body if isinstance(n,ast.FunctionDef) and n.name=='adapt_module_debug_entry')
+assert not fn.args.posonlyargs and not fn.args.args and not fn.args.vararg and not fn.args.kwarg
+assert [x.arg for x in fn.args.kwonlyargs]==['materials','config'] and fn.args.kw_defaults==[None,None]
+classes=[n for n in trees[0].body if isinstance(n,ast.ClassDef)]
+assert len(classes)==7
+for n in classes:
+    d=n.decorator_list[0]
+    assert isinstance(d,ast.Call) and isinstance(d.func,ast.Name) and d.func.id=='dataclass'
+    assert {k.arg:k.value.value for k in d.keywords}=={'frozen':True,'slots':True}
+    for member in n.body:
+        if isinstance(member,ast.AnnAssign):
+            assert not (isinstance(member.annotation,ast.Subscript) and isinstance(member.annotation.value,ast.Name) and member.annotation.value.id in {'dict','list','set'})
+def assignment(tree,name):
+    return next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id==name for t in n.targets))
+def encoded(v):
+    assert isinstance(v,ast.Call) and isinstance(v.func,ast.Attribute) and v.func.attr=='encode'
+    assert isinstance(v.func.value,ast.Constant) and isinstance(v.func.value.value,str)
+    assert len(v.args)==1 and v.args[0].value=='utf-8' and not v.keywords
+    return v.func.value.value.encode('utf-8')
+def embedded_dict(tree,name):
+    v=assignment(tree,name)
+    assert isinstance(v,ast.Dict)
+    return {k.value:encoded(b) for k,b in zip(v.keys,v.values)}
+production=embedded_dict(trees[0],'_CODE')
+oracle=embedded_dict(trees[1],'EXPECTED_CODE')
+assert production==oracle and len(production)==14
+assert b'own.has(key)' in production['apply-helper'] and b'own.has(key)' in production['init-helpers']
+assert b'?: return false' not in production['apply-helper'] and b'if (raw == null)' not in production['init-helpers']
+originals=assignment(trees[1],'ORIGINALS')
+assert isinstance(originals,ast.Tuple) and len(originals.elts)==4
+digests=ast.literal_eval(assignment(trees[1],'EXPECTED_DIGESTS'))
+for pair,(name,digest) in zip(originals.elts,digests):
+    assert isinstance(pair,ast.Tuple) and pair.elts[0].value==name
+    assert hashlib.sha256(encoded(pair.elts[1])).hexdigest().upper()==digest
+scratch=embedded_dict(trees[1],'EXPECTED_SCRATCH')
+assert set(scratch)=={'repo-block','tasks-full','init-full'}
+scratch_hashes={'repo-block':'6CD532EDDD8D104E299B6384AD3B81B2738CE700330FF00B2221A824162CEC17','tasks-full':'B951D53A72DA69E88FBBAB601EE83DE77AB5220E5458B55D4E3EB95ED683A20A','init-full':'C85D24FDDBBCC05F296FA56E16BEF7187EF316B45969DB6BEC5C31605B347C05'}
+for k,v in scratch.items():
+    assert hashlib.sha256(v).hexdigest().upper()==scratch_hashes[k]
+    print('INDEPENDENT_EXPECTED_FULL',k,'BYTES',len(v),'SHA256',scratch_hashes[k])
+expected_fn=next(n for n in trees[1].body if isinstance(n,ast.FunctionDef) and n.name=='expected')
+assert not any(isinstance(n,ast.Attribute) and n.attr in {'adapt_module_debug_entry','_CODE','_DIGESTS','_PROJECTS','_KEYS'} for n in ast.walk(expected_fn))
+loads=[n for n in ast.walk(trees[1]) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='spec_from_file_location']
+assert len(loads)==1 and loads[0].args[0].value=='aar_entry_materials'
+assert loads[0].args[1].value=='D:\\\\EliteSync-v10\\\\apps\\\\android_synthetic_demo\\\\tools\\\\aar_entry_materials.py'
+assert "sys.modules['aar_entry_materials'] = _module" in texts[1]
+assert texts[1].index("sys.modules['aar_entry_materials'] = _module") < texts[1].index('_spec.loader.exec_module(_module)')
+assert 'unittest.defaultTestLoader.loadTestsFromModule(sys.modules[__name__])' in texts[1]
+assert 'outcome.testsRun > 0' in texts[1]
+assert 'discover' not in texts[1] and 'sys.path' not in texts[1]
+methods=[n.name for n in ast.walk(trees[1]) if isinstance(n,ast.FunctionDef) and n.name.startswith('test_')]
+assert len(methods)==12
+assert 'self.assertEqual(a, expected(' in texts[1] and 'self.assertEqual(b, expected(' in texts[1]
+assert "self.assertEqual(actual[target], EXPECTED_SCRATCH[target])" in texts[1]
+for name in ['test_top_and_nested_types','test_material_integrity_order_and_anchors','test_config_keys_fixed_values_and_paths','test_ids_and_bindings','test_projects_and_tasks','test_property_schema_scope_and_types','test_mode_matrix_is_source_only']:
+    assert name in methods
+print('STATIC_AST_HASH_IMPORT_KEYWORD_ONLY_FROZEN_TUPLE_FIXTURE_SCOPE_PASS')
+print('STATIC_TEST_METHOD_COUNT',len(methods))
+print('METHODS',','.join(methods))
+print('COVERAGE_P1_P2_COMPLETE_RETURN_AND_THREE_COMPLETE_SCRATCH_PRESENT')
+print('LIMIT_STATIC_TEXT_AND_AST_NOT_FORMAL_SAFETY_OR_RUNTIME_PROOF')

@@ -1,0 +1,6 @@
+{
+  "status": 200,
+  "elapsed_seconds": 0.094,
+  "idle_browser_like_connection_open": true,
+  "real_laravel_backend": "127.0.0.1:8001"
+}

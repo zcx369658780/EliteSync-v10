@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_elitesync_module/core/logging/app_logger.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/dio_factory.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
-import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
 
@@ -28,20 +28,13 @@ final secureStorageProvider = Provider<SecureStorageService>((ref) {
 });
 
 final localStorageProvider = Provider<LocalStorageService>((ref) {
-  return LocalStorageService();
+  return LocalStorageService(secureStorage: ref.watch(secureStorageProvider));
 });
 
 final accessTokenProvider = Provider<AccessTokenProvider>((ref) {
   return () async {
-    final token = await ref
-        .read(secureStorageProvider)
-        .read(CacheKeys.accessToken);
-    if (token != null && token.isNotEmpty) {
-      // Temporary debug aid for emulator-side matching setup.
-      // ignore: avoid_print
-      print('ACCESS_TOKEN_READ token=$token');
-    }
-    return token;
+    if (ref.read(sessionProvider).asData?.value.isLoggedIn != true) return null;
+    return ref.read(sessionProvider).asData?.value.accessToken;
   };
 });
 
@@ -64,6 +57,14 @@ final dioProvider = Provider<Dio>((ref) {
     logger: logger,
     accessTokenProvider: tokenProvider,
     refreshAccessToken: refreshProvider,
+    sessionIdentity: () =>
+        ref.read(sessionProvider).asData?.value.accessToken ?? '',
+    onSessionRejected: (rejectedToken) => ref
+        .read(sessionProvider.notifier)
+        .setUnauthenticated(
+          notice: '登录已失效或账号已被禁用，请重新登录。',
+          rejectedToken: rejectedToken,
+        ),
   );
 
   return factory.create();

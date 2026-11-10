@@ -1,0 +1,14 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check",
+    "--",
+    ".",
+    ":(exclude)docs/versions/v10.0.7/evidence/**"
+  ],
+  "exit": 2,
+  "stdout_sha256": "721a045ad9a60490a6deef6eb873011bc920e049092e82f1f41e0a4660c0e9d9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

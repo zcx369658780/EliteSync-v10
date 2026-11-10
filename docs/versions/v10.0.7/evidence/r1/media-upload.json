@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "body": {
+    "ok": true,
+    "domain": "media",
+    "asset": {
+      "id": 2,
+      "owner_user_id": 11,
+      "media_type": "image",
+      "storage_provider": "oss",
+      "storage_disk": "v1007",
+      "storage_key": "chat-media/11/image/54784954-14c9-48b7-a0b2-849f84c77a73.png",
+      "original_name": "r1-fixture.png",
+      "mime_type": "image/png",
+      "size_bytes": 68,
+      "width": null,
+      "height": null,
+      "duration_ms": null,
+      "sha256": "1ba05c474761e0ddb53dce893d2883fa50d58905f57f1166d372968d5ec6567d",
+      "status": "ready",
+      "error_code": null,
+      "error_message": null,
+      "public_url": "http://127.0.0.1:8000/api/v1/media/2/content",
+      "metadata": null,
+      "uploaded_at": "2026-10-15T02:03:00.000000Z",
+      "processed_at": "2026-10-15T02:03:00.000000Z",
+      "created_at": "2026-10-15T02:03:00.000000Z",
+      "updated_at": "2026-10-15T02:03:00.000000Z",
+      "deleted_at": null
+    },
+    "states": [
+      "pending",
+      "uploading",
+      "uploaded",
+      "processing",
+      "ready",
+      "failed",
+      "blocked",
+      "deleted"
+    ]
+  }
+}

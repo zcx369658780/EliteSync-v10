@@ -1,0 +1,151 @@
+--- reviewed/Invoke-RawGStringDiagnostic.ps1
++++ successor/Invoke-RawGStringDiagnostic.ps1
+@@ -1,8 +1,8 @@
+ # SOURCE-ONLY: no execution permission is conveyed by this source.
+ # New single-case authority must be independently issued; old M112 remains closed.
+ $ErrorActionPreference='Stop'
++$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'
++$probePath='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002\DiagnoseRawGString.groovy'
+-$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'
+-$probePath='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE\DiagnoseRawGString.groovy'
+ $installerPath='D:\EliteSync-v10\EVIDENCE\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\LocalExtraRecipeInstaller.groovy'
+ $tsvPath='D:\EliteSync-v10\EVIDENCE\APP-M5-90-EXACT-188-JAR-IDENTITY\jar-identities.tsv'
+ $root='D:\GradleHome\wrapper\dists\gradle-8.14-all\dq61qkzrdg407zji6bwf6hwt7\gradle-8.14\lib'
+@@ -106,7 +106,7 @@
+     ExactKeys $authority @('TaskId','Status','JVM','OwnerAuthorization','ProbeSha256','ProbeBytes','ProbePath','ManifestPath','InputRoot','OutputRoot','JavaPath','InstallerPath','InstallerSha256','InstallerBytes')
+     foreach($k in @('TaskId','Status','OwnerAuthorization','ProbeSha256','ProbePath','ManifestPath','InputRoot','OutputRoot','JavaPath','InstallerPath','InstallerSha256')){if($authority[$k]-isnot[string]){throw 'AUTHORITY_STRING'}}
+     foreach($k in @('JVM','ProbeBytes','InstallerBytes')){if($authority[$k]-isnot[int]-and$authority[$k]-isnot[long]){throw 'AUTHORITY_INTEGER'}}
++    if($authority.TaskId-cne'DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'-or$authority.Status-cne'ISSUED'-or
+-    if($authority.TaskId-cne'DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'-or$authority.Status-cne'ISSUED'-or
+        $authority.JVM-ne1-or$authority.OwnerAuthorization-cne'OWNER_SINGLE_CASE_DIAGNOSTIC_AUTHORIZED'-or
+        $authority.ProbePath-cne$probePath-or$authority.ManifestPath-cne$tsvPath-or
+        $authority.InputRoot-cne$root-or$authority.OutputRoot-cne$base-or$authority.JavaPath-cne$java-or
+@@ -118,8 +118,8 @@
+     $phase='WORKSPACE'
+     $snap=ReadText ($base+'\workspace-before.json') 262144|ConvertFrom-Json -AsHashtable
+     if((Get-Location).Path-ne'D:\EliteSync-v10'-or(git branch --show-current)-ne'main'-or
++       (git rev-parse HEAD)-ne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'-or
++       $snap.Branch-ne'main'-or$snap.HEAD-ne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'){throw 'WORKSPACE_IDENTITY'}
+-       (git rev-parse HEAD)-ne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'-or
+-       $snap.Branch-ne'main'-or$snap.HEAD-ne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'){throw 'WORKSPACE_IDENTITY'}
+     $now=@(git --no-optional-locks -c core.quotepath=false status --porcelain=v1 --untracked-files=all|ForEach-Object{$_.Substring(3)})
+     if($snap.Count-ne$snap.Paths.Count-or$now.Count-ne$snap.Paths.Count-or@($snap.Paths|Where-Object{$_ -cnotin $now}).Count-ne0-or@($snap.Paths|Select-Object -Unique).Count-ne$snap.Paths.Count){throw 'WORKSPACE_MEMBERS'}
+     $authorityVerified=$true
+--- reviewed/A.ps1
++++ successor/A.ps1
+@@ -1,5 +1,5 @@
+ $ErrorActionPreference='Stop'
++$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'
+-$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'
+ $utf=[Text.UTF8Encoding]::new($false,$true)
+ $reads=[Collections.Generic.List[object]]::new()
+ $data=@{}
+@@ -15,33 +15,42 @@
+     $h=[Security.Cryptography.SHA256]::Create()
+     try{[BitConverter]::ToString($h.ComputeHash($b)).Replace('-','')}finally{$h.Dispose()}
+ }
++$currentName='Task';$stage='SETUP'
++try{
+ $spec=@(
++    [ordered]@{Name='Harness';Path=($base+'\DiagnoseRawGString.groovy');Bytes=9812;Limit=16384;Hash='0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB'},
++    [ordered]@{Name='Launcher';Path=($base+'\Invoke-RawGStringDiagnostic.ps1');Bytes=26085;Limit=32768;Hash='C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED'},
++    [ordered]@{Name='Installer';Path='D:\EliteSync-v10\EVIDENCE\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\LocalExtraRecipeInstaller.groovy';Bytes=6141;Limit=6141;Hash='7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37'},
++    [ordered]@{Name='TSV';Path='D:\EliteSync-v10\EVIDENCE\APP-M5-90-EXACT-188-JAR-IDENTITY\jar-identities.tsv';Bytes=19534;Limit=19534;Hash='E405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80'},
++    [ordered]@{Name='Authority';Path=($base+'\runtime-authority.json');Bytes=-1;Limit=8192;Hash=''},
++    [ordered]@{Name='Snapshot';Path=($base+'\workspace-before.json');Bytes=-1;Limit=262144;Hash=''}
+-    @('Harness',$base+'\DiagnoseRawGString.groovy',9812,16384,'0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB'),
+-    @('Launcher',$base+'\Invoke-RawGStringDiagnostic.ps1',26073,32768,'A10012BF520B5A3F928A46D8E1240636F094A663330F13BEE53F162C284F0048'),
+-    @('Installer','D:\EliteSync-v10\EVIDENCE\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\LocalExtraRecipeInstaller.groovy',6141,6141,'7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37'),
+-    @('TSV','D:\EliteSync-v10\EVIDENCE\APP-M5-90-EXACT-188-JAR-IDENTITY\jar-identities.tsv',19534,19534,'E405A9E6580DD1B63E534E09F3E24333E772E2C5FB78C39E8B4DB8128AC42D80'),
+-    @('Authority',$base+'\runtime-authority.json',-1,8192,''),
+-    @('Snapshot',$base+'\workspace-before.json',-1,262144,'')
+ )
+ foreach($item in $spec){
++    $currentName=$item.Name;$stage='SPEC'
++    if($item.Count-ne5-or@(@('Name','Path','Bytes','Limit','Hash')|Where-Object{-not$item.Contains($_)}).Count-ne0){throw 'A_SPEC_KEYS'}
++    if($item.Name-isnot[string]-or$item.Path-isnot[string]-or$item.Hash-isnot[string]-or
++       $item.Bytes-isnot[int]-or$item.Limit-isnot[int]-or$item.Limit-le0-or$item.Bytes-lt-1-or$item.Bytes-gt$item.Limit){throw 'A_SPEC_TYPES'}
++    $stage='METADATA'
++    $f=Get-Item -LiteralPath $item.Path
++    if($f-isnot[IO.FileInfo]-or$f.Length-gt$item.Limit-or($item.Bytes-ge0-and$f.Length-ne$item.Bytes)){throw 'A_METADATA'}
++    $stage='ORDINARY';Ordinary $f
++    $stage='READ'
+-    $f=Get-Item -LiteralPath $item[1]
+-    if($f-isnot[IO.FileInfo]-or$f.Length-gt$item[3]-or($item[2]-ge0-and$f.Length-ne$item[2])){throw 'A_METADATA'}
+-    Ordinary $f
+     [byte[]]$b=[IO.File]::ReadAllBytes($f.FullName)
++    if($b.Length-ne$f.Length-or$b.Length-gt$item.Limit){throw 'A_READ_SIZE'}
++    $stage='HASH';$hash=HashBytes $b
++    if($item.Hash-ne''-and$hash-cne$item.Hash){throw 'A_HASH'}
++    $data[$item.Name]=$b
++    $reads.Add([ordered]@{Name=$item.Name;Bytes=$b.Length;SHA256=$hash;BodyReads=1})
+-    if($b.Length-ne$f.Length-or$b.Length-gt$item[3]){throw 'A_READ_SIZE'}
+-    $hash=HashBytes $b
+-    if($item[4]-ne''-and$hash-cne$item[4]){throw 'A_HASH'}
+-    $data[$item[0]]=$b
+-    $reads.Add([ordered]@{Name=$item[0];Bytes=$b.Length;SHA256=$hash;BodyReads=1})
+ }
+ function ExactKeys($map,[string[]]$keys){
+     if($map-isnot[Collections.IDictionary]-or$map.Count-ne$keys.Count){throw 'A_JSON_KEYS'}
+     foreach($k in $keys){if(-not$map.Contains($k)){throw 'A_JSON_KEY'}}
+ }
++$currentName='Authority';$stage='AUTHORITY'
+ $auth=$utf.GetString($data.Authority)|ConvertFrom-Json -AsHashtable
+ ExactKeys $auth @('TaskId','Status','JVM','OwnerAuthorization','ProbeSha256','ProbeBytes','ProbePath','ManifestPath','InputRoot','OutputRoot','JavaPath','InstallerPath','InstallerSha256','InstallerBytes')
+ $expected=@{
++    TaskId='DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002';Status='ISSUED';JVM=1;
+-    TaskId='DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE';Status='ISSUED';JVM=1;
+     OwnerAuthorization='OWNER_SINGLE_CASE_DIAGNOSTIC_AUTHORIZED';
+     ProbeSha256='0FDF72979FE6C6C174CAFDB8A8B7975AFA86D6F22743DD0520BAAE87EC4368EB';ProbeBytes=9812;
+     ProbePath=($base+'\DiagnoseRawGString.groovy');
+@@ -56,11 +65,13 @@
+         if($auth[$k]-isnot[string]-or$auth[$k]-cne$expected[$k]){throw 'A_AUTH_STRING'}
+     }elseif(($auth[$k]-isnot[int]-and$auth[$k]-isnot[long])-or$auth[$k]-ne$expected[$k]){throw 'A_AUTH_INTEGER'}
+ }
++$currentName='Snapshot';$stage='SNAPSHOT'
+ $snap=$utf.GetString($data.Snapshot)|ConvertFrom-Json -AsHashtable
+ ExactKeys $snap @('Branch','HEAD','Count','Paths')
++if($snap.Branch-cne'main'-or$snap.HEAD-cne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'-or$snap.Paths-isnot[array]-or$snap.Count-ne$snap.Paths.Count){throw 'A_SNAPSHOT'}
+-if($snap.Branch-cne'main'-or$snap.HEAD-cne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'-or$snap.Paths-isnot[array]-or$snap.Count-ne$snap.Paths.Count){throw 'A_SNAPSHOT'}
+ foreach($p in $snap.Paths){if($p-isnot[string]){throw 'A_PATH_TYPE'}}
+ if(@($snap.Paths|Select-Object -Unique).Count-ne$snap.Count){throw 'A_DUPLICATE_PATH'}
++$currentName='Workspace';$stage='WORKSPACE'
+ if((Get-Location).Path-cne'D:\EliteSync-v10'){throw 'A_CWD'}
+ $branch=git branch --show-current
+ if($LASTEXITCODE-ne0-or$branch-cne'main'){throw 'A_BRANCH'}
+@@ -71,6 +82,10 @@
+ $paths=@($now|ForEach-Object{$_.Substring(3)})
+ if($paths.Count-ne$snap.Count-or@($snap.Paths|Where-Object{$_ -cnotin $paths}).Count-ne0){throw 'A_WORKSPACE_PATHS'}
+ foreach($name in @('invocation-started.json','stdout.bin','stderr.bin','probe-wrapper.json','cwd','tmp','user-home','appdata','localappdata','gradle-home')){
++    $currentName=$name;$stage='OUTPUT_ABSENCE'
+     if(Test-Path -LiteralPath ($base+'\'+$name)){throw 'A_OUTPUT_EXISTS'}
+ }
+ [ordered]@{Result='A_READY';HEAD=$head;Branch=$branch;SnapshotPaths=$paths.Count;Reads=$reads;ExternalRead=0;JVM=0}|ConvertTo-Json -Depth 5 -Compress
++}catch{
++    throw [InvalidOperationException]::new(('A_FAILURE Name='+$currentName+' Stage='+$stage+' Tag='+$_.Exception.Message+' Class='+$_.Exception.GetType().FullName+' CompletedReads='+$reads.Count),$_.Exception)
++}
+--- reviewed/B.ps1
++++ successor/B.ps1
+@@ -1,5 +1,5 @@
+ $ErrorActionPreference='Stop'
++$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'
+-$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'
+ $utf=[Text.UTF8Encoding]::new($false,$true)
+ function HashBytes([byte[]]$b){
+     $h=[Security.Cryptography.SHA256]::Create()
+@@ -41,5 +41,5 @@
+     if($w.CandidateInvocation-isnot[string]-or$w.CandidateInvocation-cne'UNKNOWN'){throw 'B_DIRECT_COUNT'}
+ }elseif($w.CandidateInvocation-ne1){throw 'B_CANDIDATE_COUNT'}
+ $head=git rev-parse HEAD
++if($LASTEXITCODE-ne0-or$head-cne'9ac66fc5566cd1fa5da23ed797cb6a08606e01d5'){throw 'B_HEAD'}
+-if($LASTEXITCODE-ne0-or$head-cne'71fa57f8c734bf4ea2597b4bf453515ef3c37461'){throw 'B_HEAD'}
+ [ordered]@{Result='B_DISK_IDENTITIES_VERIFIED';HEAD=$head;Facts=$facts;Wrapper=$w;Diagnostic=$j;OriginalToolReceiptComparison='PENDING_SAME_CALLER_CACHE'}|ConvertTo-Json -Depth 8 -Compress
+--- reviewed/FailureDisclosure.ps1
++++ successor/FailureDisclosure.ps1
+@@ -1,5 +1,5 @@
+ $ErrorActionPreference='Stop'
++$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002'
+-$base='D:\EliteSync-v10\EVIDENCE\DOT-RAW-GSTRING-SINGLE-CASE-DIAGNOSTIC-ONCE'
+ $utf=[Text.UTF8Encoding]::new($false,$true)
+ function HashBytes([byte[]]$b){
+     $h=[Security.Cryptography.SHA256]::Create()

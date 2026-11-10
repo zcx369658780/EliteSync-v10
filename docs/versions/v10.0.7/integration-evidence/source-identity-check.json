@@ -1,0 +1,34 @@
+{
+  "accepted_candidate": "cf0c359b86e35c794da389a58ba0b687c3c0bd32",
+  "main_before": "3561c51abbbda8ee4b32ec7a19eb9825aae99951",
+  "objects": [
+    {
+      "path": "apps",
+      "accepted_object": "a4abd8469360e73df1641199e678099bbb8326ef",
+      "integrated_index_object": "a4abd8469360e73df1641199e678099bbb8326ef",
+      "equal": true
+    },
+    {
+      "path": "services",
+      "accepted_object": "d31991e4e3d3f8c57f93ce809e3749d190491429",
+      "integrated_index_object": "d31991e4e3d3f8c57f93ce809e3749d190491429",
+      "equal": true
+    },
+    {
+      "path": "question_bank",
+      "accepted_object": "0508fbc85e45fa473ed43ddf36a0d5c1a14dbe86",
+      "integrated_index_object": "0508fbc85e45fa473ed43ddf36a0d5c1a14dbe86",
+      "equal": true
+    },
+    {
+      "path": "dating_question_bank_v_1.json",
+      "accepted_object": "34817351b92c5b9cf1f7e363af52541f1e76aa22",
+      "integrated_index_object": "34817351b92c5b9cf1f7e363af52541f1e76aa22",
+      "equal": true
+    }
+  ],
+  "all_existing_v1007_documents_preserved": true,
+  "main_existing_document_count": 6,
+  "unstaged_diff_empty": true,
+  "initial_verifier_error": "rev-parse :directory unsupported; corrected to write-tree:<directory>; no source mutation"
+}

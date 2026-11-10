@@ -1,0 +1,683 @@
+{
+  "version": "v10.1.3",
+  "status": [
+    "V10.1.3_CANDIDATE_DELIVERED",
+    "AWAITING_ASTRA_INDEPENDENT_FUNCTION_ACCEPTANCE",
+    "V10.1.4_NOT_STARTED"
+  ],
+  "evidence_class": "CODEX_REPORTED; physical originals LOCAL_ONLY; not Astra acceptance",
+  "frozen": {
+    "plan_blob": "74b67f4a61d2b38f7993dcfcb345510bc57cd65a",
+    "task_blob": "249981ba9dc3d1aac8f6f676d99504a79d5c8b12"
+  },
+  "baseline": {
+    "commit": "e4c854453e2d477562e8df2fb1dccf58df8d705d",
+    "tree": "d23ac2343e4ba3ab20e82a550b9d216c12153030",
+    "apps": "365810451b6faad98e041835be6c86f4f81be0a9",
+    "services": "96b2972a19ec49108cf5c11d144179e5693570a9"
+  },
+  "source": {
+    "commit": "e27db2012e2c57390c4da179330552a6b64a728d",
+    "tree": "cf670270aaac7d641d58939eaea7737c23b89417",
+    "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+    "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a"
+  },
+  "product_paths": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "mode": "100644",
+      "blob": "947db369df5308792d7a1ab45bd74d62659a19c4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "mode": "100644",
+      "blob": "560ca1a07b7bc06cd36cbcd3912c7d5c69dd7f87"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/buddy_v1013/buddy_page.dart",
+      "mode": "100644",
+      "blob": "7f024859add387d0b703e4e34954982efc8264fe"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/buddy_v1013/comment_panel.dart",
+      "mode": "100644",
+      "blob": "269a80b957714b8710567b83301484e095f77e7b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/pages/home_page.dart",
+      "mode": "100644",
+      "blob": "69828487ee14c4504004d41ca1e9c48d21111c72"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+      "mode": "100644",
+      "blob": "6701b52b6e17a80175be26eed65c1aebb91012d4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+      "mode": "100644",
+      "blob": "2dec453f2a40f106e65f07696a4ba81eb4f55d92"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_home_page.dart",
+      "mode": "100644",
+      "blob": "ba74add94bcf63b9b21fafe9259b6c861521134a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+      "mode": "100644",
+      "blob": "030a1c0c5400530c8754ae3c102c384f4c24f0eb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/data/datasource/status_remote_data_source.dart",
+      "mode": "100644",
+      "blob": "761202a160297e49649e7b297686c3262c57a6a4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart",
+      "mode": "100644",
+      "blob": "58f29ce00e179a81fee1fecd81d070d2037841d2"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/providers/status_posts_provider.dart",
+      "mode": "100644",
+      "blob": "3aae0bb2b2821d92b8db03c6c8221b61744762fb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_post_card.dart",
+      "mode": "100644",
+      "blob": "2c4bbcd022ad09b60126f82527c74788534b89dd"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+      "mode": "100644",
+      "blob": "8f41c3b906f4ac99db8c0b6912a2b1668e5ae54a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/buddy_pages_test.dart",
+      "mode": "100644",
+      "blob": "549d6049454bc54e42c64c1f731c9f1d3deac99f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart",
+      "mode": "100644",
+      "blob": "8ee7a6f28f8115d26bf08eb899f291e675c74df5"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/status/presentation/pages/community_pagination_test.dart",
+      "mode": "100644",
+      "blob": "588954c4ec36df46cdcc3d240eb95d75be9f1733"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/BuddyController.php",
+      "mode": "100644",
+      "blob": "9e6a82497ff18c55ca7c2820b8a999bfcf258a6b"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php",
+      "mode": "100644",
+      "blob": "916b6bf5247fb9434ebd6b80a67d50126f2ce032"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SocialController.php",
+      "mode": "100644",
+      "blob": "a8168930baccf0db8a70ce29b6acf2f7472a99a5"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusCommentController.php",
+      "mode": "100644",
+      "blob": "d92721d9bd5450f46bf21019348035c0ef5a61cc"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php",
+      "mode": "100644",
+      "blob": "74d6a2ef39e106ec063e0931d2759c410fd1579f"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Web/BuddyCommunityController.php",
+      "mode": "100644",
+      "blob": "40a4c4b85a2e307984c95877178a491fda7daa43"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/BuddyService.php",
+      "mode": "100644",
+      "blob": "1288e3aa1508f4765cd4cf02d281f1737ed5ed2d"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LiveConsentService.php",
+      "mode": "100644",
+      "blob": "f7500f69d1e76daa95873773d3674cb2369333ef"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "mode": "100644",
+      "blob": "2a89bc9f34aeb563a8766671c655060e009fba4c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/PostAudience.php",
+      "mode": "100644",
+      "blob": "39fec15acdc19d941f7c616a60fe7f9e7528a54c"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SocialPolicy.php",
+      "mode": "100644",
+      "blob": "e1fc69d84ce4f2b1904a92f9ae70febd20b621a6"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_10_21_170000_create_buddy_and_comments.php",
+      "mode": "100644",
+      "blob": "a15e4a8af03e905e802a4aad2b7cf823af123bd5"
+    },
+    {
+      "path": "services/backend-laravel/resources/views/admin/buddy-community.blade.php",
+      "mode": "100644",
+      "blob": "48f6096d388820f1fd9363902d20ee12a8cabb4b"
+    },
+    {
+      "path": "services/backend-laravel/resources/views/admin/layout.blade.php",
+      "mode": "100644",
+      "blob": "0a703370a8de9eebac131388fec0a5e019386e78"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "mode": "100644",
+      "blob": "99f7dbefb6cd790650945408e8bf603d1c5cd250"
+    },
+    {
+      "path": "services/backend-laravel/routes/web.php",
+      "mode": "100644",
+      "blob": "2a9f7bd3f439b4a406add725fec1c4fa7671ad03"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1013BuddyCommunityTest.php",
+      "mode": "100644",
+      "blob": "9ac45cc81c06ce7eb0f3fab772e9ab3ce38dabad"
+    }
+  ],
+  "candidate_branch": "codex/v10.1.3-buddy-friend-community",
+  "full_delivery_identity": "candidate HEAD independently GET-read after formal document commit; not self-referential",
+  "apk": {
+    "source": {
+      "commit": "e27db2012e2c57390c4da179330552a6b64a728d",
+      "tree": "cf670270aaac7d641d58939eaea7737c23b89417",
+      "apps": "d4569b330629d74c6e5f3ee1d6438245d7bfd024",
+      "services": "4d637a3fd827e00974887d9ce515a1833a8f3a8a"
+    },
+    "application_id": "com.elitesync.v1013dev",
+    "version_name": "10.1.3-dev",
+    "version_code": 1010301,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "sha256": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+    "installed_pull_sha256": "a134e5c1fecfed3449ede1c996c57e2972774ee777071d071cd59a6017c2ed6d",
+    "bytes": 411589695,
+    "signer_SHA256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+    "development_signature": true,
+    "backend": "fixed source / 8017 / independent elitesync_v10_1_3_dev",
+    "command_exits": {
+      "final-apk-badging": 0,
+      "final-apk-signer": 0,
+      "final-apk-install": 0
+    },
+    "phone_touched": false
+  },
+  "review": {
+    "branch": "codex/review-v10.1.3-20261021",
+    "commit": "a8c234e4b6f3e8837ab2e6978ab29ca43a38d172",
+    "tree": "f853f13166939b671e982f4ddb6d4c11ab9c36a5",
+    "parent": "6b04c84de157eb1ee4348bb79df337769544ca23",
+    "source": "e27db2012e2c57390c4da179330552a6b64a728d",
+    "files": [
+      {
+        "path": "docs/_temporary_review/v1013-20261021/after-restart-http-result.json",
+        "blob": "e0290a9bbd26a87aa9d12d2f746d1ee92617dee2",
+        "bytes": 245,
+        "sha256": "e5bf1616f8d6f05cbed7b5c5ea50b98f692efc66af102b05f4def366575f6900"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/android-build-final-binding.json",
+        "blob": "3b380d064702bcf51caec79fada00b2dc25300a7",
+        "bytes": 424,
+        "sha256": "a13adc270bd417ca5c7be132e1710485e83ebd9adc3530a0bfc6eb2b366024f2"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/apk-final-manifest.json",
+        "blob": "f13b8967a8030da3d32ae5f43d41e7c142c30cfe",
+        "bytes": 926,
+        "sha256": "9d95baf6be27de87cf44818b04ce8af8e078e7a8e783e1267082972176a802a9"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-consolidated-result.json",
+        "blob": "4a587ca4da47001ab88554ac952a91cb5f3c3e18",
+        "bytes": 2933,
+        "sha256": "f1cbe4c6b9d80cd392d06e8bd84d228a4489675fe9a56012aa5ea2aab6e2bf94"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-entry-initial-failure.json",
+        "blob": "91f65a91db0b4fd0dcce04b225c5fa73fd3d5c04",
+        "bytes": 552,
+        "sha256": "2bd5004657065a6529068edeeb14144e74fdf97446c22e4cde86f5b1e25fc875"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-final-audience-revoke-result.json",
+        "blob": "e697f2744b7e353ce6fff7001e12b69794e467be",
+        "bytes": 283,
+        "sha256": "ab0205138851148ab55de3dad6a1deeb4025008c3d2352457aa208529294076e"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-meal-result.json",
+        "blob": "37a3a73b24b60d0ea415ad7c9cda3f011bf62eab",
+        "bytes": 577,
+        "sha256": "2aa4a661bc6a342440c8c30dd6277d1f856c778cd56451e47c9a2f86715a6938"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-offline-result.json",
+        "blob": "9d2542d5f92c9eb0c9291477750b1ee7f923fffd",
+        "bytes": 217,
+        "sha256": "01488353ea2b051b0873e34166435ad4a30500598d0895f136f14aba15a6fdb9"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-related-message-denial-result.json",
+        "blob": "ccad922d2c8fbfda5502762523841770a2bb7fa3",
+        "bytes": 207,
+        "sha256": "f07c40976ebf6df2a67eef996376c0d3c24534f4ed39b9edf42936b7bb79f3ed"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-related-requester-negative-result.json",
+        "blob": "bfe915c2246e6846391baecf8b02256a40c74345",
+        "bytes": 164,
+        "sha256": "393185f4c8f57a6716e4bb46dbabd848acf70fac7e15b340fa80eafc65877746"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-relogin-restart-result.json",
+        "blob": "a9cef89674935f9e52beec32cbef64245dd51120",
+        "bytes": 248,
+        "sha256": "5495ff1e4fab011bd5fa563b3607d98154ead465464f8ea27cbfed42ddf018a8"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-revoked-read-result.json",
+        "blob": "7843747d6a92a6aad691bb85aa1b37eae1d1ff9a",
+        "bytes": 211,
+        "sha256": "a0cd55189cabdff1b5c98db2a2fb76349ee8e6c4f1568f6290824136796365d4"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/app-study-result.json",
+        "blob": "b1a12448993105ae0d85e1a00d5ac6b12af326c8",
+        "bytes": 437,
+        "sha256": "04b578902da48982eeb227a6a6525bf89b0df48cb0557465bcb2b38724ae3809"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/buddy-concurrent-v2-result.json",
+        "blob": "3b47944aa06844cfbebe98f6d984ab4b17b25152",
+        "bytes": 1032,
+        "sha256": "a6d4f367b4f5bf3b633136759095bc6ee3e1394e0e85b12ec1d5d727c11fc346"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/changed-product-paths.json",
+        "blob": "5c874e2ea49324d467c2337ae00cb018a6cd9fae",
+        "bytes": 6421,
+        "sha256": "d7709db3f03f23180bdf1c89efad90d4129219aa7f85c45d09909130f802df3e"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/command-exit-index.json",
+        "blob": "cc39c266f95af36c70fca6510e5d0aa3824c9f12",
+        "bytes": 78501,
+        "sha256": "efa326a48cec01a6f360657e3b147648ea503b920ba6cfa2132ae57c2f6ac9b4"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/durability-after-restart.json",
+        "blob": "122f7375f6d37a1faecee8baec6e526823847315",
+        "bytes": 2458,
+        "sha256": "ed8c3f855316429dd3f59434e7f28af00cd0ff21210e5eeb2a7951bd4db93c85"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/durability-before-restart.json",
+        "blob": "122f7375f6d37a1faecee8baec6e526823847315",
+        "bytes": 2458,
+        "sha256": "ed8c3f855316429dd3f59434e7f28af00cd0ff21210e5eeb2a7951bd4db93c85"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/durability-final.json",
+        "blob": "8ed34f3e8a600dfb2102bc0f2ad511f96264accf",
+        "bytes": 2458,
+        "sha256": "5e624cd6546a04bc50c367b40e9989a23d794bf7e3e888ae26d37aaaad249103"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/final-check-receipts.json",
+        "blob": "0792425d515e8d4dccf9c92e3a2d1b42493ef655",
+        "bytes": 8780,
+        "sha256": "bdb7bae5dc1f5e136c94ed3df4d1f8234eab5a01a23747974ec95d42dc898d83"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/final-v1013-backup.json",
+        "blob": "bf8122f57ab6c47019687d9b9d54dbaa4e2e51a1",
+        "bytes": 228,
+        "sha256": "05974c278bca64ac681ae97368656b5b57b72fa1e15f2e11043032891c355c67"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-community-result.json",
+        "blob": "f8aa86a735e21afe8d276406366619f5f8e8ea1d",
+        "bytes": 298,
+        "sha256": "6199f8adf9727c6e80faf22bf1e3d67afd9ce061e1597cce66668c2c92bc1ed5"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-independent-consent-result.json",
+        "blob": "c12bb90d343f15b1d517b9b2036900d2f75eae12",
+        "bytes": 152,
+        "sha256": "dcdd2971a36b352b6d893adf421462f0cadb9308871774f49265984be7a55f98"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-negative-result.json",
+        "blob": "2b2f0ae12d491b1980744f7b0bf31abf64475d62",
+        "bytes": 322,
+        "sha256": "2cfae661504f600f7bd0151017c611f820a8c459521d40c130cdd688356b485e"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-non-romantic-result.json",
+        "blob": "e545ea3738cef0290900742a68746ccb78044efa",
+        "bytes": 279,
+        "sha256": "d32b9e9bc652f7697c96c2455f44e913ff062041bb5fa54356121293c426f48a"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-pagination-result.json",
+        "blob": "26f1cfd1f7fa0b42006e051f38769d4c646e7594",
+        "bytes": 229,
+        "sha256": "897b1643c61a0a1d0e922da178cc7120296c033a46f846728eafe1fcd0e3d098"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-positive-result.json",
+        "blob": "60d9775bdaa6441f0e3ffa19decda443ddaffeb7",
+        "bytes": 171,
+        "sha256": "bc748e37edae28f13c0b8a2e720e2ec307358b9f9d5d77cea6427722fce74cbe"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-block-result.json",
+        "blob": "742236b6d95004902d7dcfc0d4546a5bceb13c80",
+        "bytes": 305,
+        "sha256": "dffa2d318114c93f2df3013a2bc492984b6852516367396282d57e2151671298"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-closure-result.json",
+        "blob": "d8db7cff7a041bc0c26338efd622710448b3a74f",
+        "bytes": 307,
+        "sha256": "a77bb0b154b74c4fcfb58c1cb61d71b35ab062792320d7616126a9f9fca51ae8"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-delete-result.json",
+        "blob": "d7e039be41da19f3a6b70c310fbe112aa1e6c083",
+        "bytes": 306,
+        "sha256": "1d270750cda49706a69fa8aba04cbe1868b248a4fd38a17ce2e606abeb2aabc7"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-disable-result.json",
+        "blob": "8a8038d35f66b370496104379d6e346de6b35d5a",
+        "bytes": 307,
+        "sha256": "0db013fa94c423e7520685349e9fd5991c3cc2c827a46687a315748d2fbc6d81"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-SELF-result.json",
+        "blob": "fdede52621c0cc6c9e8eb6d867a0bc78b5155edb",
+        "bytes": 304,
+        "sha256": "bb56f337c399d6c3f48a4ae23f3772b3f79e17304aa987452e41d852fd86caef"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/http-revoke-unfriend-result.json",
+        "blob": "ad5de268b83fbd135a002fe29fbb56ce2648370c",
+        "bytes": 308,
+        "sha256": "63ee2a98d84641e4c853c1ad8f4b775e58aa1abf85c2dd5f004396ed72c3b6ae"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/non-author-review.md",
+        "blob": "4887f2bbaf66d6d8d8ce9d9e235c4d2c78bc1946",
+        "bytes": 1737,
+        "sha256": "44f5ba0263bc221f0f4dfe3c71931c7d6fff1ed375d14254bc8e912d001d31dc"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/notification-final-service-result.json",
+        "blob": "96071ac1126404ee3dfb89bda06545d8a84682e3",
+        "bytes": 207,
+        "sha256": "35fceefd212f13726001daa9c22269619ee3d1567942d887928510c37e558a55"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/notification-final-withdraw-result.json",
+        "blob": "2585cbe9982b7c3e9821a2e4af16536b0a40bcd7",
+        "bytes": 200,
+        "sha256": "ae5361de1ac705f43d07e69218668deb859a76ef6ca2ede14ff6cf1b3e0943a2"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/original-failure-index.json",
+        "blob": "def8f6f338f9499d8e1ad8c64ab5677338435bbb",
+        "bytes": 16284,
+        "sha256": "21b2f7f422968f363315bccf8f00ad93682a6f8fe4e6c103b82f24252cf79b7d"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/php-lint-final.json",
+        "blob": "ea544e2f955e36f51c4bc1a9626bdc55dcc80bb4",
+        "bytes": 1772,
+        "sha256": "b1589bdc5df4beaff0b3dc32c8079effdb3b0b0736cd651d5fa45855367c35b4"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/pre-restart-backup.json",
+        "blob": "f9f95dfd4267e64c73095447b159512adbb3e550",
+        "bytes": 228,
+        "sha256": "63989e527bb82a84f6c71fcd09a924d423749f895dd848a9a80880cb2df9d7d5"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/protection-final-result.json",
+        "blob": "15f5e2ab6a21d63453ee2fce9e88acac3a228cfd",
+        "bytes": 308,
+        "sha256": "082d73d5258a1ba6a7086b61a37f54180d4cbefb1f4ff7164a4009088d3bf4c3"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/README.md",
+        "blob": "6c9bd2d35d1efed0e764d252548be46ea468bbbb",
+        "bytes": 1473,
+        "sha256": "6dc511b20d896823b010f9795f003fabc0775cf5e4fc33182fed0b8b720faa14"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/resource-final-result.json",
+        "blob": "466e57964b9a9b8bf22c5f4eab44babff92a7b05",
+        "bytes": 400,
+        "sha256": "07cb376c09cc93380cf2fd59f73ae8def727669211b11a5333e92ce19c9a7b65"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/restart-result.json",
+        "blob": "5a15e49c1eecd18e99ebfe9885f75cf2da394f08",
+        "bytes": 187,
+        "sha256": "db5142a75d90a685a55d86f1fc6ca31fd0653ad94f928891ef65e1956ecf0790"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr2-audience-result.json",
+        "blob": "86c7f25840e548e8dc6e0df24dffed5b6dc6b54c",
+        "bytes": 631,
+        "sha256": "a31857447c4551e55f436865a7e0ef6efaca7abf44ab6235091ecb7fa3dd8f53"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr2-audience.exact-wait.json",
+        "blob": "adce663ff251144d0fca85752e7c4637bfb0fcea",
+        "bytes": 725,
+        "sha256": "ae5417215a1e73db6c6d6a5faa816c4810b8272ef48e553f9f624dd198e8e9e4"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr2-unfriend-result.json",
+        "blob": "e0cf50ad30e879ba72f25c340f48905b46092114",
+        "bytes": 631,
+        "sha256": "d1bd5edf54cff28d5420b83a55feeb472f4913b3acf5e7b471808c03f2df8f34"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr2-unfriend.exact-wait.json",
+        "blob": "3678e1b15227f320126d5937c71907a49a2e9350",
+        "bytes": 749,
+        "sha256": "60b5742daef6cd2f9b9cae88359c78af84b1c7ce2d143ac2fff821fe72bbc282"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr3-logout-result.json",
+        "blob": "f6318d1dedd2056d2238ae0e164058698b2c8b67",
+        "bytes": 631,
+        "sha256": "e8b1d7ad33d899ee4876fefbfccd62212c870998f38875bea69bf97393289daf"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/rr3-logout.exact-wait.json",
+        "blob": "8692dcbac4caa5526b74eade8e6fd1913ddc1f18",
+        "bytes": 688,
+        "sha256": "d34269002a3bcc2896a3082e3b08d1a1fc8b2afa932323f3a6b44bbad5809e39"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/SHA256SUMS.json",
+        "blob": "6ed99e40ea22404fd80c273b762dd897485945e9",
+        "bytes": 8017,
+        "sha256": "ebfcea1bcd9f9eef7cfde678e866ee8de79fb7c8b7f2a3128c7e6e1a4fbfef44"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/source-identity.json",
+        "blob": "289548b3c87beca7a38535e7cdc3b4d7f8be18b3",
+        "bytes": 225,
+        "sha256": "e6c0c2185645bdb54a3ca2bd875022dbda1ca4f1f35e6ae0a7fb8a5401348204"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/source-line-ending-check.json",
+        "blob": "e826e11081163b9f582326eea131a4122cc58093",
+        "bytes": 313,
+        "sha256": "8a2227c42c7f70b9e47b9b97c25f694858c94ce079fcb4562794061a0a2a73da"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/web-negative-result.json",
+        "blob": "06ec4e8dc8fdc75b23ca788bf7f6365833847ceb",
+        "bytes": 305,
+        "sha256": "836e98bed987bc842e5c41123e9829f443ef72d8b550a23b469d32d57debd444"
+      },
+      {
+        "path": "docs/_temporary_review/v1013-20261021/zip-status.json",
+        "blob": "bbe50f46baf16724d2ac70b659f0f0f63694a9f7",
+        "bytes": 233,
+        "sha256": "4f4b132654a210fd5cf721e9d0b21fbe175b677c01c8ccfb15eaedbc5c505a25"
+      }
+    ]
+  },
+  "review_directory_url": "https://github.com/zcx369658780/EliteSync-v10/tree/a8c234e4b6f3e8837ab2e6978ab29ca43a38d172/docs/_temporary_review/v1013-20261021",
+  "original_failures": {
+    "nonzero_command_count": 28,
+    "index": "original-failure-index.json",
+    "streams": "LOCAL_ONLY_RETAINED"
+  },
+  "database": {
+    "name": "elitesync_v10_1_3_dev",
+    "container": "elitesync-v1013-buddy-db",
+    "volume": "elitesync-v1013-buddy-data-20261021",
+    "version": "MariaDB 10.11",
+    "isolation": "REPEATABLE-READ",
+    "port": 43324,
+    "API_port": 8017,
+    "WS": "NOT_STARTED"
+  },
+  "backups": [
+    {
+      "database": "elitesync_v10_1_3_dev",
+      "volume": "elitesync-v1013-buddy-data-20261021",
+      "exit": 0,
+      "sha256": "6d7426ef3df6fd545d6c0d93ca076de57973c7d73269d7e4de4bb08f19aec210",
+      "bytes": 274017,
+      "raw": "LOCAL_ONLY"
+    },
+    {
+      "database": "elitesync_v10_1_3_dev",
+      "volume": "elitesync-v1013-buddy-data-20261021",
+      "exit": 0,
+      "sha256": "44f629f25a088d5dfca3cb56e00ac542085520fa8c455875bac742476bc9c1f7",
+      "bytes": 274173,
+      "raw": "LOCAL_ONLY"
+    }
+  ],
+  "resources": {
+    "owned_API": "STOPPED",
+    "owned_DB_container": "EXITED",
+    "owned_DB_volume": "RETAINED",
+    "owned_AVD": "STOPPED",
+    "owned_reverse_8017": "REMOVED",
+    "loopback_ports_accepting_connections": {
+      "8017": false,
+      "8018": false,
+      "43324": false
+    },
+    "WS8018": "NOT_STARTED",
+    "phone": "NOT_TOUCHED",
+    "old_containers_volumes": "NOT_OPERATED",
+    "raw_backups": "LOCAL_ONLY_RETAINED"
+  },
+  "protection": {
+    "protected_roots": 4,
+    "per_root_equal": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "all_equal": true,
+    "checks": [
+      "HEAD output bytes",
+      "full porcelain/untracked output bytes",
+      "index locator bytes",
+      "actual index file SHA256"
+    ],
+    "no_restoration_or_cleanup_attempted": true
+  },
+  "zip_mirror": "BYTE_MIRROR_PENDING",
+  "not_run": [
+    "phone",
+    "RTC/audio/video",
+    "UDP/firewall/DNAT/UAC/global SDK",
+    "cloud/public network/certificates",
+    "real suppliers/costs/real identity",
+    "unrelated algorithm oracles",
+    "actual GUI notification click",
+    "exact ZIP mirror",
+    "main integration",
+    "Astra acceptance",
+    "review cleanup",
+    "v10.1.4"
+  ],
+  "report": {
+    "path": "docs/versions/v10.1.3/IMPLEMENTATION_REPORT.md",
+    "sha256": "f0213ad4e0a18ae047fb0f1977f4a18573c4b9dfeaecd151bfa87ffc3bd89336"
+  },
+  "delivery_pipeline_receipts": [
+    {
+      "label": "publish-source-and-review",
+      "exit": 0,
+      "utc": "2026-10-21T02:49:11.500878+00:00",
+      "raw": "LOCAL_ONLY",
+      "command.json_sha256": "e8195b65788f25b6224b204c73b4c7399db2d5a39948156cf34b7ec4307c6131",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b4c1f977b549cd74ef32adce3b1f32719b3378ec2b669e6f2a448ecd90b40242"
+    },
+    {
+      "label": "remote-source-review-readback",
+      "exit": 0,
+      "utc": "2026-10-21T02:50:24.845279+00:00",
+      "raw": "LOCAL_ONLY",
+      "command.json_sha256": "e6cdd51cbc9e2c789957b8fd3856e884df8499a177708117b9d84bdc36e1bbb9",
+      "stdout_sha256": "d2c686b6fbf3db5aee03a364a5f6f346082118c6dff258d5bab1f2a49ced4c22",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "formal-preflight",
+      "exit": 1,
+      "utc": "2026-10-21T02:54:31.189334+00:00",
+      "raw": "LOCAL_ONLY",
+      "command.json_sha256": "84339bb10decffb6e17c33def5e2a0d24e2e3e78b2218ceed902a768e30279ae",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c9ad85c1cff3370e2fb078fdd3a7c5b32439d342ce040a5254077f938b33c05a"
+    },
+    {
+      "label": "formal-preflight-v2",
+      "exit": 0,
+      "utc": "2026-10-21T02:55:29.568117+00:00",
+      "raw": "LOCAL_ONLY",
+      "command.json_sha256": "80cac49b8db24c109a09cef4650583a7ccf0a1b4193217f528b0a2ed4159c4e0",
+      "stdout_sha256": "700965e39ae7964702ce5f58592d60f1edee74ff15b981c7697fc120cf7e8ce3",
+      "stderr_sha256": "0eff34f09dc0251ff1088faaa3348eb1067ee909e33279388dc0189a63959fa7"
+    }
+  ]
+}

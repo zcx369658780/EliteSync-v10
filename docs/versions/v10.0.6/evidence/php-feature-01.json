@@ -1,0 +1,17 @@
+{
+  "command": [
+    "php",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1006AdminWebTest.php",
+    "tests/Feature/AuthPasswordApiTest.php",
+    "tests/Feature/AdminApiTest.php"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\services\\backend-laravel",
+  "exit": 2,
+  "start": "2026-10-14T12:49:01.573437+00:00",
+  "end": "2026-10-14T12:49:06.365509+00:00",
+  "streams": {
+    "stdout": "dca0479f34551d6aab573b5a441ef3d510f04aee9ed7431c602b43e261c94fa7",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-15T00:37:02.843520+00:00",
+  "role": "incomplete",
+  "method": "GET",
+  "path": "/api/v1/profile/basic",
+  "request": null,
+  "status": 200,
+  "body": {
+    "id": 4,
+    "name": "V1007 Fictional incomplete",
+    "phone": "19900000704",
+    "birthday": "1989-09-05",
+    "birth_time": "12:00",
+    "zodiac_animal": "Éß",
+    "gender": "male",
+    "city": "V1007 Control City",
+    "relationship_goal": "dating",
+    "birth_place": null,
+    "birth_lat": null,
+    "birth_lng": null,
+    "moderation_status": "normal",
+    "moderation_note": null,
+    "realname_verified": false,
+    "profile_readiness": {
+      "contract_version": "profile_readiness_v1",
+      "matching_eligibility": {
+        "eligible": false,
+        "reason_code": "questionnaire_unavailable",
+        "required_answer_count": 20,
+        "answered_answer_count": 0,
+        "missing_answer_count": 20,
+        "next_action_code": "wait_for_service"
+      },
+      "showcase": {
+        "draft_state": "none",
+        "review_status": "not_submitted",
+        "publication_status": "not_published",
+        "published_version_current": false,
+        "affects_matching_eligibility": false
+      }
+    }
+  }
+}

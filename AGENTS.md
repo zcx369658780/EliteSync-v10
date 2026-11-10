@@ -1,46 +1,29 @@
-# EliteSync-v10 Agent Rules
+# EliteSync-v10 项目启动指导
 
-## Project identity
+生效：2026-11-01，依据[Owner 本地接管决定](docs/decisions/OWNER_LOCAL_FIRST_CODEX_20261101.md)采用 Local-first；原产品路线继续保留。此文件只保留现行项目指导；旧长篇启动历史已由[调整前AGENTS固定版本](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/AGENTS.md)完整保留，不每次注入或全量重读。
 
-EliteSync-v10 is the new architecture authority for EliteSync 10.0.
+## 当前目标与入口
 
-EliteSync 9.x is a historical asset source. Historical assets may inform research, but its architecture, governance, task chains, roadmaps, and migration constraints do not govern v10.
+v10.0核心只有两项：**复现可实际使用的EliteSync APP（前端、后端、数据库及选定原版主要功能恢复）＋可用的独立Web管理面板**。其它新增产品扩展及公开运营准备后置；不再以长期synthetic演示或新架构设计替代恢复。
 
-## Current phase
+新会话以实际本地本文件、[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部有效 CURRENT ENTRY 和具体目标为起点；规则见[现行工作流](docs/workflow/CURRENT_WORKFLOW.md)。核对实际 Git 根、remote、分支、HEAD 和工作区；GitHub 按需核对，不要求每次先恢复网页或远端状态。只按目标读取必要材料，不递归加载全部 Project Sources、长期记忆、历史交接、任务档案或原始日志；不足时仅补读直接相关的一份最新交接。历史冻结标准继续适用，旧流程角色以本次 Owner 决定为准。
 
-Current phase: Product and Architecture Design.
+## 执行方式
 
-The repository is not in product implementation mode. Architecture and product decisions must be reviewed before they authorize code, schema, API, migration, or service work.
+Owner负责方向、决策和授权；项目源GPT顾问负责项目计划与路线图；Codex负责工程执行与验收。Codex 负责计划落地的工程拆解、实现、调试、测试、代码审查、工程验收、进度、常规 Git 和记录，在已批准目标与权限内自主安排工作和修复普通失败。日常工程不再要求网页 GPT 派单、冻结任务单、A–D 发布闭环或网页验收。一个功能版本可跨前端、后端、数据库、管理面板和测试，不默认限制一个源文件。
 
-## Roles
+Owner 保留产品定位、重大功能取舍、重大架构、不可逆操作、真实用户和生产数据、设备与外部服务权限、费用、重大版本及正式发布。边界不清或存在实质风险时只暂停受影响工作，向 Owner 提出明确问题与选项，其余已授权工作继续。项目源GPT顾问制定项目计划和路线图，不承担Codex工程验收或逐项执行；顾问计划不自动扩大权限，保留事项仍由Owner决定。
 
-- Owner: final product authority.
-- ChatGPT: architecture and product reviewer.
-- Codex: bounded implementation and research agent operating only within the current task scope.
+工程验收依据实际源码、适用标准和测试证据，不事后降低冻结标准。自测、Codex 审查、外部独立审查、Owner 接受和生产发布分别记录；自己的复查不能冒充外部独立审查，不建立每项工作强制多模型审核。未运行写 NOT_RUN，未核实写 UNKNOWN；节点记录目标、改动、代码身份、实际检查、未完成项及下一步，不逐小步复制报告。
 
-No agent may substitute its own approval for Owner authority or the required review gate.
+原版有效功能不得仅因旧MVP标Later而省略。读取具名旧资产和现有LOCAL_ONLY为恢复服务，不能无限考古、覆盖原件或擅自认可旧未验收实现。用户/管理员操作须最终贯通真实开发服务和持久化数据库；测试数据可以虚构，软件链不能只用mock代替。
 
-## Forbidden actions
+具体设备、外部服务、真实数据、费用和不可逆操作仍需 Owner 授权，平台、组织策略和实际权限不被覆盖。G2、APK/ADB 等特殊预算、claim/ledger 及已消耗记录保持，不退款、不重置、不复用 STOP 余额。本轮只整理活动项目源与现行规则，不修改产品源码、不运行构建/测试/数据库/设备、不合产品main、不删除历史资产或启动新版本。不全局删除鉴权或私信保护，不复活旧 V57/H1/H2/D0 任务链。
 
-- Do not restore or reproduce EliteSync 9.x architecture as the v10 target.
-- Do not create product code before the relevant architecture decision is reviewed and authorized.
-- Do not automatically migrate legacy constraints, APIs, schemas, service boundaries, roadmaps, or governance.
-- Do not treat historical reports or migrated source as current architecture authority.
-- Do not expand a research or documentation task into backend, Flutter, Android, database, API, infrastructure, or deployment changes.
+保持原 dirty/untracked、暂存区、未提交成果、worktrees、旧版本、备份、数据库和历史原证；相关未提交原文先作局部可恢复保存。不盲 pull/reset/rebase/stash/clean/prune、不 force、不夹带无关提交。历史冻结计划、接受/拒绝和原始失败不重写；退出码与 stdout 共同核验，证据只重验受影响部分。网页不假设可读本机资料，GitHub 与本地代码和运行状态分开记录。公开 GitHub 不上传凭据、私密 SQL、真实用户资料、敏感设备日志、受限 APK 或 LOCAL_ONLY 原件。同步失败记 PENDING_SYNC，不更换身份绕过拒绝。
 
-## Documentation rules
+## 本地辅助约定（不改变现行路线）
 
-- System and domain architecture belongs in `docs/architecture/`.
-- Product requirements, product decisions, and user journeys belong in `docs/product/`.
-- Competitor analysis and other research materials belong in `docs/research/`.
-- Architecture Decision Records belong in `docs/decisions/`.
-- Historical migration and runtime evidence belongs in `docs/archive/`.
+主实现默认GPT-6.1 Sol/medium；读取/定位/常规文档辅助GPT-6 Luna/medium；完整非作者代码审查GPT-6.1 Sol/high；复杂规划可使用独立GPT-6 Astra/high只读建议。模型规则不新增内部审批或改变Owner决定权。
 
-Keep evidence, proposals, reviewed decisions, and implementation authorization visibly distinct. Moving a document into an active directory does not itself make it an accepted decision.
-
-## Working boundaries
-
-- Preserve unrelated user changes and dirty-worktree evidence.
-- Prefer bounded, reviewable changes.
-- Never delete historical evidence during workspace organization; archive it with provenance intact.
-- Stop for Owner direction when a file's authority or classification is ambiguous.
+既定产品/科研定义、accepted ADR、legal/Safety/no-processing、FD02排除及历史固定证据保留；UAC必须当前Owner“我在”及具体授权。后续工程按 Owner 已批准目标与权限推进，不恢复旧 Work 或旧预算。旧协议、技能、Sources 和历史状态中的强制网页派单、验收及被动等待条款已由本次决定取代，真实保护门继续有效。当前只整理活动项目源及必要规则，历史资产保留；完成后结束本轮整理，不自动启动产品开发。

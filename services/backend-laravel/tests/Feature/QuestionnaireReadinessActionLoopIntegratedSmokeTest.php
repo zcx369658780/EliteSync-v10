@@ -19,8 +19,8 @@ class QuestionnaireReadinessActionLoopIntegratedSmokeTest extends TestCase
         config()->set('questionnaire.required_answer_count', 2);
         $first = $this->question('r3-smoke-first', 1);
         $second = $this->question('r3-smoke-second', 2);
-        $actor = User::factory()->create(['phone' => 'r3-smoke-actor']);
-        $outsider = User::factory()->create(['phone' => 'r3-smoke-outsider']);
+        $actor = User::factory()->create(['phone' => 'r3-smoke-actor', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
+        $outsider = User::factory()->create(['phone' => 'r3-smoke-outsider', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
         $draft = UserProfileShowcaseDraft::query()->create([
             'user_id' => $actor->id,
             'self_intro' => 'published but unrelated',
@@ -83,7 +83,7 @@ class QuestionnaireReadinessActionLoopIntegratedSmokeTest extends TestCase
             'category' => 'readiness',
             'content' => $key,
             'question_type' => 'single',
-            'options' => ['a', 'b'],
+            'options' => [['option_id' => 'a', 'label' => ['zh' => 'A']], ['option_id' => 'b', 'label' => ['zh' => 'B']]],
             'sort_order' => $sortOrder,
             'enabled' => true,
             'version' => 1,

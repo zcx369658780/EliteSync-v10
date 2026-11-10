@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-14T23:58:12.974617+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/admin/matching/rounds/1447cf03-341b-437a-b1a6-35e35af6e2d9/execution-requests",
+  "request": {
+    "state_version": 1,
+    "reason_code": "v1007-authorized-development"
+  },
+  "status": 202,
+  "body": {
+    "data": {
+      "round_id": 1,
+      "run_key": "7ad71f07-bb01-4955-bc23-4bd30fd5681c",
+      "idempotency_key": "v1007-no-candidate-01-execute",
+      "correlation_id": "0f217b2e-2118-4e10-b80e-b164a1728c38",
+      "attempt_no": 1,
+      "state": "pending",
+      "trigger_source": "admin",
+      "actor_type": "admin",
+      "actor_id": 1,
+      "reason_code": "v1007-authorized-development",
+      "eligibility_cutoff_at": "2026-10-14T23:58:12.000000Z",
+      "algorithm_version": "v1",
+      "config_version": "c1",
+      "updated_at": "2026-10-14T23:58:12.000000Z",
+      "created_at": "2026-10-14T23:58:12.000000Z",
+      "id": 1
+    },
+    "meta": {
+      "consumer": "manual_cli_once",
+      "background_started": false
+    }
+  }
+}

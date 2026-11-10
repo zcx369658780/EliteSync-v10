@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-15T00:27:12.223646+00:00",
+  "role": "incomplete",
+  "method": "POST",
+  "path": "/api/v1/conversations",
+  "request": {
+    "peer_user_id": 3
+  },
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

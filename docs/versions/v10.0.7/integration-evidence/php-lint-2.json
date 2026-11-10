@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.EXE",
+    "-l",
+    "services/backend-laravel/app/Services/ConversationAtomicSendService.php"
+  ],
+  "exit": 0,
+  "stdout_sha256": "0245f8276389de12d7810e4d884eee6514d2b11a52a02c8a041d1e862c1eed78",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

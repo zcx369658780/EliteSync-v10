@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 
 @immutable
@@ -58,6 +59,63 @@ String _firstNonEmpty(List<String> values) {
 @visibleForTesting
 String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (const bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8021/') {
+      throw StateError('v10.1.5 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8019/') {
+      throw StateError('v10.1.4 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8017/') {
+      throw StateError('v10.1.3 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8015/') {
+      throw StateError('v10.1.2 requires its isolated local host.');
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8012/') {
+      throw StateError(
+        'Relationship development requires its isolated local host.',
+      );
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8011/') {
+      throw StateError('Dynamic chart build requires its isolated local host.');
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1010_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8010/') {
+      throw StateError(
+        'Natal restoration build requires its isolated local host.',
+      );
+    }
+    return hostOverride;
+  }
+  if (const bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
+      const bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
+      const bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
+      const bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD')) {
+    if (hostOverride != 'http://127.0.0.1:8000/') {
+      throw StateError(
+        'Restoration build requires the matching local Android host.',
+      );
+    }
+    return hostOverride;
+  }
   if (hostOverride.isNotEmpty) {
     return hostOverride.endsWith('/') ? hostOverride : '$hostOverride/';
   }
@@ -67,6 +125,22 @@ String resolveApiBaseUrl({required Map<String, String> hostBootstrap}) {
   }
   return 'http://101.133.161.203/';
 }
+
+@visibleForTesting
+String resolveWsBaseUrl({
+  required String apiBaseUrl,
+  required Map<String, String> hostBootstrap,
+  required AppFlavor flavor,
+  String? environmentOverride,
+}) => resolveChatSocketBaseUrl(
+  apiBaseUrl: apiBaseUrl,
+  override: _firstNonEmpty([
+    hostBootstrap['wsBaseUrl'] ?? '',
+    environmentOverride ??
+        const String.fromEnvironment('ELITESYNC_WS_BASE_URL'),
+  ]),
+  allowLocalInsecure: flavor == AppFlavor.dev,
+);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,7 +160,19 @@ Future<void> main() async {
       'ELITESYNC_ADMIN_MATCHING_OPERATIONS',
     ),
   );
-  final flavor = internalFeatures.flavor;
+  const restoration =
+      bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1006_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1007_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1008_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1010_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1011_LOCAL_BUILD');
+  final flavor = restoration ? AppFlavor.dev : internalFeatures.flavor;
   final initialRoute = _firstNonEmpty([
     String.fromEnvironment('ELITESYNC_INITIAL_ROUTE'),
     hostBootstrap['initialRoute'] ?? '',
@@ -97,16 +183,27 @@ Future<void> main() async {
     'MAIN_PROD_BOOTSTRAP initialRoute=${initialRoute.isNotEmpty ? initialRoute : "null"} flavor=${flavor.name}',
   );
 
-  runEliteSyncApp(
+  const rtcRestoration =
+      bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_V1009_LOCAL_BUILD') ||
+      bool.fromEnvironment('ELITESYNC_RELATIONSHIP_DEV_BUILD');
+  final apiBaseUrl = resolveApiBaseUrl(hostBootstrap: hostBootstrap);
+  await runEliteSyncApp(
     AppEnv(
       flavor: flavor,
       appName: flavor == AppFlavor.dev ? 'EliteSync Dev' : 'EliteSync',
       // The Android host app embeds the Flutter release AAR, which always
       // boots through main.dart -> main_prod.dart. Keep prod pointed at the
       // verified direct backend entry until the public domain chain is stable.
-      apiBaseUrl: resolveApiBaseUrl(hostBootstrap: hostBootstrap),
+      apiBaseUrl: apiBaseUrl,
+      wsBaseUrl: resolveWsBaseUrl(
+        apiBaseUrl: apiBaseUrl,
+        hostBootstrap: hostBootstrap,
+        flavor: flavor,
+      ),
       useMockData: false,
-      useLiveKitRtc: true,
+      useLiveKitRtc: rtcRestoration || !restoration,
+      restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,
       useMockHome: false,

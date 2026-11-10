@@ -2,15 +2,18 @@ import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/core/telemetry/app_telemetry_service.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 class ModerationRemoteDataSource {
   const ModerationRemoteDataSource({
     required this.telemetry,
     required this.useMock,
+    this.onBlocked,
   });
 
   final AppTelemetryService telemetry;
   final bool useMock;
+  final void Function()? onBlocked;
 
   Future<NetworkResult<Map<String, dynamic>>> reportUser({
     required int targetUserId,
@@ -33,7 +36,8 @@ class ModerationRemoteDataSource {
         'category': category,
         'reason_code': reasonCode,
         if (detail != null && detail.trim().isNotEmpty) 'detail': detail.trim(),
-        if (targetMessageId != null && targetMessageId > 0) 'target_message_id': targetMessageId,
+        if (targetMessageId != null && targetMessageId > 0)
+          'target_message_id': targetMessageId,
       },
     );
 
@@ -59,7 +63,8 @@ class ModerationRemoteDataSource {
       sourcePage: sourcePage,
       body: {
         'blocked_user_id': blockedUserId,
-        if (reasonCode != null && reasonCode.trim().isNotEmpty) 'reason_code': reasonCode.trim(),
+        if (reasonCode != null && reasonCode.trim().isNotEmpty)
+          'reason_code': reasonCode.trim(),
         if (detail != null && detail.trim().isNotEmpty) 'detail': detail.trim(),
       },
     );
@@ -67,14 +72,19 @@ class ModerationRemoteDataSource {
     if (result is NetworkFailure<Map<String, dynamic>>) {
       throw Exception(result.message);
     }
+    onBlocked?.call();
     return result;
   }
 }
 
-final moderationRemoteDataSourceProvider = Provider<ModerationRemoteDataSource>((ref) {
-  final env = ref.watch(appEnvProvider);
-  return ModerationRemoteDataSource(
-    telemetry: ref.watch(appTelemetryProvider),
-    useMock: env.useMockData,
-  );
-});
+final moderationRemoteDataSourceProvider = Provider<ModerationRemoteDataSource>(
+  (ref) {
+    final env = ref.watch(appEnvProvider);
+    return ModerationRemoteDataSource(
+      telemetry: ref.watch(appTelemetryProvider),
+      useMock: env.useMockData,
+      onBlocked: () =>
+          ref.read(relationshipAuthorityEpochProvider.notifier).invalidate(),
+    );
+  },
+);

@@ -1,0 +1,44 @@
+{
+    "time": "2026-10-14T14:35:19+00:00",
+    "database": "elitesync_v1006_dev",
+    "port": 43316,
+    "users": [
+        {
+            "id": 1,
+            "name": "V1006 Fictional admin",
+            "role": "admin",
+            "city": "Initial Development City",
+            "disabled": false,
+            "moderation_status": "normal",
+            "generation_version": "v10.0.6",
+            "account_type": "test",
+            "is_synthetic": true
+        },
+        {
+            "id": 2,
+            "name": "V1006 Fictional target",
+            "role": "user",
+            "city": "V1006 City A",
+            "disabled": false,
+            "moderation_status": "normal",
+            "generation_version": "v10.0.6",
+            "account_type": "test",
+            "is_synthetic": true
+        },
+        {
+            "id": 3,
+            "name": "V1006 Fictional control",
+            "role": "user",
+            "city": "Initial Development City",
+            "disabled": false,
+            "moderation_status": "normal",
+            "generation_version": "v10.0.6",
+            "account_type": "test",
+            "is_synthetic": true
+        }
+    ],
+    "astro_rows": 0,
+    "migration_rows": 57,
+    "target_token_count": 3,
+    "target_session_count": 0
+}

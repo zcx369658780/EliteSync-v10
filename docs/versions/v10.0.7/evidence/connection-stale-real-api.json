@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-15T00:27:11.596595+00:00",
+  "role": "alice",
+  "method": "POST",
+  "path": "/api/v1/connections/3/connection",
+  "request": {
+    "action": "close",
+    "expected_revision": 0
+  },
+  "status": 409,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "stale revision",
+      "details": null
+    }
+  }
+}

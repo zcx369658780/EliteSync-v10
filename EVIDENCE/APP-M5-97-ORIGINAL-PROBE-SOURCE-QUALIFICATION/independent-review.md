@@ -1,0 +1,2 @@
+# M5-97 independent GPT-6.1 Sol/high
+NO_FINDINGS on original probe artifact SOURCEONLY. Three exact files eachReadAllBytes1/strictUTF8; other/external reads/hash/enumeration/Parser/Process/JVM/writes0. Probe1343/hashF523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1, literal nativeAdd exact/originalBhash/exit0/nontruncated. Noargs/two fixed properties/three ordered Class.forName false/single8keyJSON/candidate0/runtimeReadyfalse. Runtime versions/behavior unproven, implicit loadsNOT_MEASURED. M95 failure/M92 overall rejection retained. Not Work verdict.

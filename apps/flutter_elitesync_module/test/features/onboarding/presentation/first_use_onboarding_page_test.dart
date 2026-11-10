@@ -98,7 +98,7 @@ void main() {
         ('按需要完善资料', '资料由你填写；是否还需补充，以页面之后显示的可靠提示为准。'),
         ('等待可靠的进展通知', '有可确认的安排或结果时，页面会显示相应说明；也可能暂时没有结果。'),
         ('符合条件后再使用消息', '只有服务确认可以继续交流后，消息入口才会开放。'),
-        ('随时跳过或重新查看', '你可以跳过；之后可在“设置 > 新手引导”重新查看。'),
+        ('随时跳过或重新查看', '你可以跳过；之后可在“设置 > 新手引导”重新查看。完成本引导不代表账户设置或准备状态已经完成。'),
       ],
     );
 
@@ -197,8 +197,8 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    expect(find.text('完成'), findsOneWidget);
-    await tester.tap(find.text('完成'));
+    expect(find.text('完成引导'), findsOneWidget);
+    await tester.tap(find.text('完成引导'));
     await tester.pumpAndSettle();
     expect(find.text('OPEN'), findsOneWidget);
     expect(storage.value, FirstUseOnboardingStatus.completed);
@@ -223,7 +223,7 @@ void main() {
       await tester.tap(find.text('继续'));
       await tester.pumpAndSettle();
     }
-    await tester.tap(find.text('完成'));
+    await tester.tap(find.text('完成引导'));
     await tester.pumpAndSettle();
 
     expect(storage.writeCount, 1);
@@ -249,7 +249,7 @@ void main() {
       await tester.tap(find.text('继续'));
       await tester.pumpAndSettle();
     }
-    await tester.tap(find.text('完成'));
+    await tester.tap(find.text('完成引导'));
     await tester.pump(const Duration(milliseconds: 749));
     expect(find.text('随时跳过或重新查看'), findsOneWidget);
     await tester.pump(const Duration(milliseconds: 2));
@@ -300,7 +300,7 @@ void main() {
       await tester.tap(find.text('继续'));
       await tester.pumpAndSettle();
     }
-    await tester.tap(find.text('完成'));
+    await tester.tap(find.text('完成引导'));
     await tester.pumpAndSettle();
 
     expect(storage.value, FirstUseOnboardingStatus.completed);

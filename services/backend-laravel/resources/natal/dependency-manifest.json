@@ -1,0 +1,414 @@
+{
+  "schema": "elitesync.natal.dependencies.v1",
+  "status": "PINNED_LOCAL_RUNTIME_WITH_LOWELL_CHIRON_SAMPLED_REFERENCE",
+  "scope": "New natal PHP/Node/Python calculation chain; existing application dependencies retain their baseline locks and notices.",
+  "python_platform": "CPython 3.11 win_amd64 only; other platform artifacts require separate hashes and license audit",
+  "python": [
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "declared_license": "MPL-2.0",
+      "wheel": "certifi-2026.7.22-py3-none-any.whl",
+      "wheel_sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+      "source": "https://pypi.org/project/certifi/2026.7.22/",
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/certifi--certifi-2026.7.22.dist-info_licenses_LICENSE",
+          "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
+          "source_archive_path": "certifi-2026.7.22.dist-info/licenses/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "jplephem",
+      "version": "2.24",
+      "declared_license": "MIT",
+      "wheel": "jplephem-2.24-py3-none-any.whl",
+      "wheel_sha256": "2de15608a0f13010a71a0a8af8765646d5884402006dac0dd7639d7db13629ac",
+      "source": "https://pypi.org/project/jplephem/2.24/",
+      "requires_dist": [
+        "numpy"
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/jplephem--jplephem-2.24.dist-info_licenses_LICENSE.txt",
+          "sha256": "31bbf940baa5da362ef4e16ccda663cf09a096673b9eac30413f899c1055981d",
+          "source_archive_path": "jplephem-2.24.dist-info/licenses/LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "name": "numpy",
+      "version": "2.4.6",
+      "declared_license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "wheel": "numpy-2.4.6-cp311-cp311-win_amd64.whl",
+      "wheel_sha256": "1e254a00cdf42b1e4d5b3d68d33af63268d41340d8885df2ab6470f2e1500147",
+      "source": "https://pypi.org/project/numpy/2.4.6/",
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/numpy--numpy_ma_LICENSE",
+          "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7",
+          "source_archive_path": "numpy/ma/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy_random_LICENSE.md",
+          "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a",
+          "source_archive_path": "numpy/random/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy__core_include_numpy_random_LICENSE.txt",
+          "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150",
+          "source_archive_path": "numpy/_core/include/numpy/random/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_LICENSE.txt",
+          "sha256": "a804dff0ead9fadc5293456410bcbfc32bf024be9c4513459663fb7b442d2341",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_fft_pocketfft_LICENSE.md",
+          "sha256": "8db000e158c162e7249787852d8c69764706502ccee725c06641b31c1e95c8af",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_linalg_lapack_lite_LICENSE.txt",
+          "sha256": "19060ef465e1797d682ee0fc3081bd25ab1395e995e43d25c9d13c95d9a3cd6b",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_ma_LICENSE",
+          "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/ma/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_LICENSE.md",
+          "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_distributions_LICENSE.md",
+          "sha256": "cf5619f25b112d5ce7c896efffc8e610bcb345dfadcc19f2c1460aa48fff2c9e",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/distributions/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_mt19937_LICENSE.md",
+          "sha256": "92c10699884321f1c2947fe2a70ab23b0fbf1507f756d89dd08f38c61fc3d4fa",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_pcg64_LICENSE.md",
+          "sha256": "41190663b77bee5302386495a07b7eabfbfa571aa0ae2f11da6764162062fc4f",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_philox_LICENSE.md",
+          "sha256": "322ac46d870c8aeead6c53adcccc839296fb3c8e456eae155081297daf7f8013",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/philox/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_sfc64_LICENSE.md",
+          "sha256": "28cad82ce1379dc529df30da78ec012d7d0d1d576b03ddcb93388aee53659f59",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy_random_src_splitmix64_LICENSE.md",
+          "sha256": "454ec7350e478e037061850b67395753b425b1cb0a34bbc26290b020bf89d763",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy__core_include_numpy_libdivide_LICENSE.txt",
+          "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy__core_src_common_pythoncapi-compat_COPYING",
+          "sha256": "aea41976c720f91bd19725c16916a1ace40eb1ea42620d340e587a5de4bbcea0",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy__core_src_highway_LICENSE",
+          "sha256": "d208152e2777ffd0126eacc1bd21c0320d69e4e6b622d21a2a12a47e8ef73763",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/highway/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy__core_src_npysort_x86-simd-sort_LICENSE.md",
+          "sha256": "a732977853530066790c42817087f4829b518dd98d340c916acbfd227e39d3cb",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/numpy--numpy-2.4.6.dist-info_licenses_numpy__core_src_umath_svml_LICENSE",
+          "sha256": "585483905b13d4b42f800c55ba99e89d6e2e33ccd5f503e201c07531d148ff41",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "pyerfa",
+      "version": "2.0.1.5",
+      "declared_license": "BSD 3-Clause License",
+      "wheel": "pyerfa-2.0.1.5-cp39-abi3-win_amd64.whl",
+      "wheel_sha256": "66292d437dcf75925b694977aa06eb697126e7b86553e620371ed3e48b5e0ad0",
+      "source": "https://pypi.org/project/pyerfa/2.0.1.5/",
+      "requires_dist": [
+        "numpy>=1.19.3",
+        "sphinx-astropy>=1.3; extra == \"docs\"",
+        "pytest; extra == \"test\"",
+        "pytest-doctestplus>=0.7; extra == \"test\""
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/pyerfa--pyerfa-2.0.1.5.dist-info_LICENSE.rst",
+          "sha256": "f392ad7c4070fff981eeea80b067ed43650e7a17583b1bc02b44ae68ff3a4c25",
+          "source_archive_path": "pyerfa-2.0.1.5.dist-info/LICENSE.rst"
+        }
+      ]
+    },
+    {
+      "name": "sgp4",
+      "version": "2.27",
+      "declared_license": "MIT",
+      "wheel": "sgp4-2.27-cp311-abi3-win_amd64.whl",
+      "wheel_sha256": "827c63feb60987ad177c2c80f3a927e721ead2f444d6560cd2a4337ca90d2490",
+      "source": "https://pypi.org/project/sgp4/2.27/",
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/sgp4--sgp4-2.27.dist-info_licenses_LICENSE",
+          "sha256": "bef1d2d6e24eca3db2345fadcbd0f454d1b9a2632f266d97c20fd0db4a813ad5",
+          "source_archive_path": "sgp4-2.27.dist-info/licenses/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "skyfield",
+      "version": "1.55",
+      "declared_license": "MIT",
+      "wheel": "skyfield-1.55-py3-none-any.whl",
+      "wheel_sha256": "9f98964855067460c94aa81a337194136f4a97a62ba8bbbfac1b8556f2b66ad4",
+      "source": "https://pypi.org/project/skyfield/1.55/",
+      "requires_dist": [
+        "certifi >=2017.4.17",
+        "jplephem >=2.13",
+        "numpy",
+        "sgp4 >=2.13"
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/skyfield--skyfield-1.55.dist-info_LICENSE",
+          "sha256": "4b3cad9301fc389f9545079b43384659b908e94d6ab271474b3f6da2bd20d65a",
+          "source_archive_path": "skyfield-1.55.dist-info/LICENSE"
+        }
+      ]
+    }
+  ],
+  "node": [
+    {
+      "name": "@babel/runtime",
+      "version": "7.29.7",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/@babel/runtime/v/7.29.7",
+      "lock_integrity": "sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==",
+      "dependencies": {},
+      "installed_package_json_sha256": "8c4bf20c55e3f3a93df034b12746bf72185cf2acb0ef52847a3465d6e67c61e7",
+      "notice": {
+        "path": "resources/natal/notices/node--babel_runtime--LICENSE",
+        "sha256": "117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    },
+    {
+      "name": "dayjs",
+      "version": "1.11.21",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/dayjs/v/1.11.21",
+      "lock_integrity": "sha512-98IT+HOahAisibz/yjKbzuOBwYcjJ7BCLPzARyHiyEBmRz4fatF+KPJszEHXsGYjUG234aH/cOjW1wwTbKUZlA==",
+      "dependencies": {},
+      "installed_package_json_sha256": "dcb46b4045ace466baa3972d8d85d81f9036ac0ca23f48a8fe77d0d786de0400",
+      "notice": {
+        "path": "resources/natal/notices/node--dayjs--LICENSE",
+        "sha256": "5faab7526d055651be3aab769d58897be6bd91f3d39d137f25f12dba1b31d5dc"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    },
+    {
+      "name": "i18next",
+      "version": "23.16.8",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/i18next/v/23.16.8",
+      "lock_integrity": "sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==",
+      "dependencies": {
+        "@babel/runtime": "^7.23.2"
+      },
+      "installed_package_json_sha256": "eed0139050cc6d3b62e97a29529bd4d729d1d5f993af8e78fe48564c246648fc",
+      "notice": {
+        "path": "resources/natal/notices/node--i18next--LICENSE",
+        "sha256": "c83b2035d5a4740f8739869a994acc24559e2946219b15091922b52e7b2a7287"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    },
+    {
+      "name": "iztro",
+      "version": "2.5.8",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/iztro/v/2.5.8",
+      "lock_integrity": "sha512-kgyyvxdSEvgJxi6zvHpvzGbXZLGXCdhTHYK2Pe/sRdBIQ7RfCArvupmg2ChUMQCSQGomW7XCI0gWwUuKJwPENg==",
+      "dependencies": {
+        "dayjs": "^1.11.10",
+        "i18next": "^23.5.1",
+        "lunar-lite": "^0.2.8",
+        "lunar-typescript": "^1.7.8"
+      },
+      "installed_package_json_sha256": "a5a85df951d28965caa7bf9a9fe6b44e3df676c8dd938573061257cff681a20f",
+      "notice": {
+        "path": "resources/natal/notices/node--iztro--LICENSE",
+        "sha256": "e6c7b6e313cbda3135b41bccc66c98be132cb8319d0d465903d17e669e748b36"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    },
+    {
+      "name": "lunar-lite",
+      "version": "0.2.8",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/lunar-lite/v/0.2.8",
+      "lock_integrity": "sha512-Y4tba4RaIFI0ikImJhgoEsyqtDE64lJIM3yFwRX01dbmagCDq7rNmpDQFrSFFy4WXeuywdRVFpIBoT1GGCEizw==",
+      "dependencies": {
+        "lunar-typescript": "^1.8.6"
+      },
+      "installed_package_json_sha256": "be39ac7d686fd9e1eee487e4e1960ff670e368ad6529bd435d2d0222521147dd",
+      "notice": {
+        "path": "resources/natal/notices/node--lunar-lite--LICENSE",
+        "sha256": "21c79dc1c4df538c682573291f8824be1b1313e309a32f1e2367e3fd4c66d62a"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    },
+    {
+      "name": "lunar-typescript",
+      "version": "1.8.6",
+      "license": "MIT",
+      "source": "https://www.npmjs.com/package/lunar-typescript/v/1.8.6",
+      "lock_integrity": "sha512-5Eo4T/cnuXfrgO4k5LCpOGHIUOuz5hCF/IfNv0T29WY2shR36Hiz+ecN9WjnUuxUKhql9gbOkPaQoqLFKtPRNA==",
+      "dependencies": {},
+      "installed_package_json_sha256": "f66f1217e67e227f77b7a35b3c5b40d3835842856920e99ebd7e10f2d940e21c",
+      "notice": {
+        "path": "resources/natal/notices/node--lunar-typescript--LICENSE",
+        "sha256": "097ec7989106eb9a27b6eff71dbaf1cd6bb04a9b35b6c94b54fff0829a041a8c"
+      },
+      "archive_independent_rehash": "NOT_RUN; npm ci integrity verification completed in original install receipt"
+    }
+  ],
+  "php": [
+    {
+      "name": "6tail/lunar-php",
+      "version": "1.4.0",
+      "license": [
+        "MIT"
+      ],
+      "source": {
+        "type": "git",
+        "url": "https://github.com/6tail/lunar-php.git",
+        "reference": "1443e795c132d63333c358a330117cfe18b1b560"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/6tail/lunar-php/zipball/1443e795c132d63333c358a330117cfe18b1b560",
+        "reference": "1443e795c132d63333c358a330117cfe18b1b560",
+        "shasum": ""
+      },
+      "notice": {
+        "path": "resources/natal/notices/php--lunar-php--LICENSE",
+        "sha256": "d9210caf1844dcf410095cea464b79800aad30dbd49df092076b9f0ddc015404"
+      },
+      "archive_independent_rehash": "NOT_RUN; installed metadata/license and composer source ref verified"
+    }
+  ],
+  "data": [
+    {
+      "name": "DE440s",
+      "bytes": 32726016,
+      "sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+      "md5": "3917ee56769db332790c751e2168843d",
+      "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp",
+      "coverage_tdb": "1849-12-25 through 2150-01-21",
+      "terms": "https://naif.jpl.nasa.gov/naif/rules.html",
+      "terms_response_sha256": "ae85f851646e7c4f0a762db852907bc090a2ab50c815eb2a6cd8639e96b7e047",
+      "terms_summary": "NAIF kernel download/use and unmodified kernel redistribution permitted; commercial use allowed subject to posted support and other conditions. No Toolkit redistributed.",
+      "redistribution": "Not embedded in Git/APK; acquire unmodified and verify this exact SHA256 before use."
+    },
+    {
+      "name": "Chiron",
+      "status": "SOURCE_PERMISSION_ADMITTED_WITH_SAMPLED_REFERENCE_NOT_VERSION_ACCEPTANCE",
+      "data_acquired": true,
+      "runtime_enabled": true,
+      "manifest": "resources/natal/chiron-data-manifest.json",
+      "manifest_sha256": "8692db1a86bccfeca2911d4846e4e1d3290ad619081b5d9240cbe80e84147ebf",
+      "sha256": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+      "bytes": 438113,
+      "source_permission": {
+        "owner": "Lowell Observatory astorb",
+        "sources": [
+          "https://asteroid.lowell.edu/astorb/",
+          "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true"
+        ],
+        "terms_response_sha256": "c44b89dfb02999bce916e22ee3f6608bfd7c54a82041450ff7d5b390b8b7fdd5",
+        "source_scope": "Selected astorb.dat element facts and our derived trajectory; original author express free use/copy/transmit with attribution, not generic permissions for other VizieR catalogs",
+        "attribution_notice": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+        "attribution_notice_sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3",
+        "fees": 0,
+        "no_restricted_data_included": [
+          "MPC raw observations",
+          "Gaia raw state/covariance product",
+          "NIMA",
+          "Horizons output",
+          "Swiss-derived coefficients"
+        ]
+      },
+      "accuracy_limitations": [
+        "Independent software/external fitted initial solution, not an independent physical model or proven disjoint observations",
+        "Shared planetary data and finite-force assumptions; 10 original-fit perturbing asteroids/full EIH/J2/NG/covariance propagation omitted",
+        "Sampled comparisons do not certify an all-continuous-date physical uncertainty bound or every exact station instant",
+        "No original-engine bitwise equivalence or astronomical/predictive efficacy guarantee",
+        "Reference is Gaia plus independent force author/SciPy DOP853/ERFA; main runner NOT_BLIND; selector24 is input-selection blindness only",
+        "Source permission and sampled numerical evidence do not constitute Astra version acceptance"
+      ],
+      "old_jpl_nima_requests": "SENT_REPLY_PENDING_RIGHTS_NOT_GRANTED; not used by this route"
+    },
+    {
+      "name": "NAIF DE440 GM (offline Chiron build input only)",
+      "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/gm_de440.tpc",
+      "sha256": "924ddf4fb9ead9fe8a1aa55780bcabde40b09d00065d58226e24b68d8092f140",
+      "terms": "https://naif.jpl.nasa.gov/naif/rules.html",
+      "redistribution": "Not bundled; acquire unmodified and verify exact SHA256; no SPICE Toolkit"
+    }
+  ],
+  "extra_notices": [
+    {
+      "path": "resources/natal/notices/ERFA-2.0.1-LICENSE.txt",
+      "sha256": "b1858f9a263f22c438a455a32945da51a31a0ae25a21055da13bb7ed57cc3b51"
+    },
+    {
+      "path": "resources/natal/notices/MPL-2.0.txt",
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "resources/natal/notices/Lowell-astorb-Chiron-ATTRIBUTION.txt",
+      "sha256": "61cb05104752825f91449bf9adae99610f171ec76323895cee144e3098674ba3"
+    }
+  ],
+  "binary_notice_obligations": [
+    "NumPy wheel includes OpenBLAS, LAPACK and GCC runtime GPL-3.0-or-later WITH GCC-exception-3.1; retain complete wheel license text. Do not describe the binary wheel as MIT-only.",
+    "Certifi is unmodified MPL-2.0 covered material; preserve its notice, MPL text and source availability information: https://github.com/certifi/python-certifi .",
+    "PyERFA BSD wrapper and ERFA BSD notices both retained; runtime reports actual embedded ERFA version."
+  ],
+  "local_source_corrections": [
+    {
+      "id": "iztro-2.5.8-with-official-2.6.1-you-data-fix-v1",
+      "manifest": "resources/natal/ziwei-upstream-corrections.json",
+      "license": "MIT",
+      "notice": "resources/natal/notices/node--iztro--LICENSE",
+      "notice_sha256": "e6c7b6e313cbda3135b41bccc66c98be132cb8319d0d465903d17e669e748b36",
+      "package_lock_changed": false
+    }
+  ]
+}

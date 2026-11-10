@@ -1,0 +1,3906 @@
+{
+  "task": "DOT-MIGRATION-GITHUB-SYNC-20261002",
+  "parent": "a8f6ff265cc3c2e809f9dde0b70f985d8ebec813",
+  "status": "PREPARED_REVIEW_PENDING",
+  "scope": "MECHANICAL_SNAPSHOT_NOT_PRODUCT_ACCEPTANCE",
+  "selectedCount": 963,
+  "selectedWorkingBytes": 10690093.0,
+  "selected": [
+    {
+      "workingBytes": 84382,
+      "path": "AGENTS.md"
+    },
+    {
+      "workingBytes": 1514,
+      "path": "apps/android_synthetic_demo/app/build.gradle.kts"
+    },
+    {
+      "workingBytes": 1976,
+      "path": "apps/android_synthetic_demo/app/src/main/AndroidManifest.xml"
+    },
+    {
+      "workingBytes": 906,
+      "path": "apps/android_synthetic_demo/app/src/main/java/com/elitesync/syntheticdemo/BootstrapEndpointPolicy.kt"
+    },
+    {
+      "workingBytes": 2063,
+      "path": "apps/android_synthetic_demo/app/src/main/java/com/elitesync/syntheticdemo/MainActivity.kt"
+    },
+    {
+      "workingBytes": 238,
+      "path": "apps/android_synthetic_demo/app/src/main/res/values/styles.xml"
+    },
+    {
+      "workingBytes": 1704,
+      "path": "apps/android_synthetic_demo/build-contract.json"
+    },
+    {
+      "workingBytes": 270,
+      "path": "apps/android_synthetic_demo/build.gradle.kts"
+    },
+    {
+      "workingBytes": 197,
+      "path": "apps/android_synthetic_demo/settings.gradle.kts"
+    },
+    {
+      "workingBytes": 6510,
+      "path": "apps/android_synthetic_demo/tools/aar_applied_materials.py"
+    },
+    {
+      "workingBytes": 20338,
+      "path": "apps/android_synthetic_demo/tools/aar_entry_materials.py"
+    },
+    {
+      "workingBytes": 11258,
+      "path": "apps/android_synthetic_demo/tools/aar_material_functions.py"
+    },
+    {
+      "workingBytes": 9600,
+      "path": "apps/android_synthetic_demo/tools/aar_scoped_crlf_kotlin_transform.py"
+    },
+    {
+      "workingBytes": 8131,
+      "path": "apps/android_synthetic_demo/tools/aar_scoped_kotlin_transform.py"
+    },
+    {
+      "workingBytes": 7124,
+      "path": "apps/android_synthetic_demo/tools/render_module_bundle.py"
+    },
+    {
+      "workingBytes": 72513,
+      "path": "apps/android_synthetic_demo/tools/test_aar_applied_materials.py"
+    },
+    {
+      "workingBytes": 74376,
+      "path": "apps/android_synthetic_demo/tools/test_aar_entry_materials.py"
+    },
+    {
+      "workingBytes": 24014,
+      "path": "apps/android_synthetic_demo/tools/test_aar_material_functions.py"
+    },
+    {
+      "workingBytes": 17927,
+      "path": "apps/android_synthetic_demo/tools/test_render_module_bundle.py"
+    },
+    {
+      "workingBytes": 4568,
+      "path": "apps/android_synthetic_demo/tools/validate_contract.py"
+    },
+    {
+      "workingBytes": 7753,
+      "path": "apps/android/app/build.gradle.kts"
+    },
+    {
+      "workingBytes": 892,
+      "path": "apps/android/app/src/main/java/com/elitesync/BootstrapEndpointPolicy.kt"
+    },
+    {
+      "workingBytes": 5076,
+      "path": "apps/android/app/src/main/java/com/elitesync/MainActivity.kt"
+    },
+    {
+      "workingBytes": 3952,
+      "path": "apps/android/app/src/test/java/com/elitesync/BootstrapEndpointPolicyJvmTest.kt"
+    },
+    {
+      "workingBytes": 2141,
+      "path": "apps/android/settings.gradle.kts"
+    },
+    {
+      "workingBytes": 26408,
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart"
+    },
+    {
+      "workingBytes": 1098,
+      "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/logging_interceptor.dart"
+    },
+    {
+      "workingBytes": 2326,
+      "path": "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart"
+    },
+    {
+      "workingBytes": 1869,
+      "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/conversation_dto.dart"
+    },
+    {
+      "workingBytes": 6195,
+      "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_route_state.dart"
+    },
+    {
+      "workingBytes": 5930,
+      "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart"
+    },
+    {
+      "workingBytes": 22688,
+      "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart"
+    },
+    {
+      "workingBytes": 4623,
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_provider.dart"
+    },
+    {
+      "workingBytes": 41063,
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/standard_ziwei_grid.dart"
+    },
+    {
+      "workingBytes": 25736,
+      "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart"
+    },
+    {
+      "workingBytes": 287,
+      "path": "apps/flutter_elitesync_module/lib/main.dart"
+    },
+    {
+      "workingBytes": 8418,
+      "path": "apps/flutter_elitesync_module/test/app/router/chat_route_state_router_test.dart"
+    },
+    {
+      "workingBytes": 6031,
+      "path": "apps/flutter_elitesync_module/test/app/router/match_legacy_redirect_regression_test.dart"
+    },
+    {
+      "workingBytes": 8904,
+      "path": "apps/flutter_elitesync_module/test/app/router/stored_chat_direct_route_binding_test.dart"
+    },
+    {
+      "workingBytes": 2095,
+      "path": "apps/flutter_elitesync_module/test/design_system/components/browse_scaffold_semantics_test.dart"
+    },
+    {
+      "workingBytes": 3013,
+      "path": "apps/flutter_elitesync_module/test/design_system/components/floating_dock_bottom_bar_semantics_test.dart"
+    },
+    {
+      "workingBytes": 5787,
+      "path": "apps/flutter_elitesync_module/test/features/chat/data/dto/send_message_contract_dto_test.dart"
+    },
+    {
+      "workingBytes": 48104,
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_list_page_test.dart"
+    },
+    {
+      "workingBytes": 15825,
+      "path": "apps/flutter_elitesync_module/test/features/home/presentation/pages/home_page_test.dart"
+    },
+    {
+      "workingBytes": 36709,
+      "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/notification_center_page_test.dart"
+    },
+    {
+      "workingBytes": 15513,
+      "path": "apps/flutter_elitesync_module/test/synthetic_home_main_loop_integration_test.dart"
+    },
+    {
+      "workingBytes": 309152,
+      "path": "CURRENT.md"
+    },
+    {
+      "workingBytes": 3314,
+      "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2930,
+      "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1088,
+      "path": "EVIDENCE/APP-G11-01-MATCH-LEGACY-ROUTE-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 3044,
+      "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 3009,
+      "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1484,
+      "path": "EVIDENCE/APP-G11-02-MATCH-ALIAS-READINESS-GUARD-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 2412,
+      "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/summary.md"
+    },
+    {
+      "workingBytes": 3362,
+      "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/task.md"
+    },
+    {
+      "workingBytes": 1386,
+      "path": "EVIDENCE/APP-G11-03-NOTIFICATION-CHAT-IDENTITY-BINDING/work-review.md"
+    },
+    {
+      "workingBytes": 8724,
+      "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/plan.md"
+    },
+    {
+      "workingBytes": 2492,
+      "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/task.md"
+    },
+    {
+      "workingBytes": 1238,
+      "path": "EVIDENCE/APP-G11-04-NOTIFICATION-CHAT-COMPATIBILITY-MAP/work-review.md"
+    },
+    {
+      "workingBytes": 2937,
+      "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/summary.md"
+    },
+    {
+      "workingBytes": 3391,
+      "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/task.md"
+    },
+    {
+      "workingBytes": 1503,
+      "path": "EVIDENCE/APP-G11-05-DIRECT-CHAT-STORED-IDENTITY-BINDING/work-review.md"
+    },
+    {
+      "workingBytes": 2257,
+      "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/summary.md"
+    },
+    {
+      "workingBytes": 3080,
+      "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/task.md"
+    },
+    {
+      "workingBytes": 1308,
+      "path": "EVIDENCE/APP-G11-06-CHAT-LIST-STORED-KIND-CONSISTENCY/work-review.md"
+    },
+    {
+      "workingBytes": 2597,
+      "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2636,
+      "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1518,
+      "path": "EVIDENCE/APP-G11-07-CHAT-LIST-CONFLICT-PAGE-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 3047,
+      "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/summary.md"
+    },
+    {
+      "workingBytes": 3642,
+      "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/task.md"
+    },
+    {
+      "workingBytes": 1348,
+      "path": "EVIDENCE/APP-G11-08-STORED-PEER-SOURCE-BINDING/work-review.md"
+    },
+    {
+      "workingBytes": 2165,
+      "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2713,
+      "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1164,
+      "path": "EVIDENCE/APP-G11-09-STORED-PEER-LIST-PAGE-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 8082,
+      "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/plan.md"
+    },
+    {
+      "workingBytes": 2195,
+      "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/task.md"
+    },
+    {
+      "workingBytes": 1213,
+      "path": "EVIDENCE/APP-G11-10-CONVERSATION-RESPONSE-SOURCE-MAP/work-review.md"
+    },
+    {
+      "workingBytes": 2749,
+      "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/summary.md"
+    },
+    {
+      "workingBytes": 2611,
+      "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/task.md"
+    },
+    {
+      "workingBytes": 1312,
+      "path": "EVIDENCE/APP-G11-11-STORED-KIND-PRODUCER-ALIGNMENT/work-review.md"
+    },
+    {
+      "workingBytes": 2692,
+      "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/summary.md"
+    },
+    {
+      "workingBytes": 2501,
+      "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/task.md"
+    },
+    {
+      "workingBytes": 1154,
+      "path": "EVIDENCE/APP-G11-12-STORED-KIND-SQLITE-VERIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 2625,
+      "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/summary.md"
+    },
+    {
+      "workingBytes": 2745,
+      "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/task.md"
+    },
+    {
+      "workingBytes": 1172,
+      "path": "EVIDENCE/APP-G11-13-CONVERSATION-LIST-PEER-FILTER/work-review.md"
+    },
+    {
+      "workingBytes": 2737,
+      "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 2756,
+      "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1166,
+      "path": "EVIDENCE/APP-G11-14-CONVERSATION-SUMMARY-PEER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 2406,
+      "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/summary.md"
+    },
+    {
+      "workingBytes": 2832,
+      "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/task.md"
+    },
+    {
+      "workingBytes": 1052,
+      "path": "EVIDENCE/APP-G11-15-ELIGIBLE-MATCH-ID-BOUNDARY/work-review.md"
+    },
+    {
+      "workingBytes": 2125,
+      "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2428,
+      "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1078,
+      "path": "EVIDENCE/APP-G11-16-ELIGIBLE-MATCH-LIST-PAGE-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 8429,
+      "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/plan.md"
+    },
+    {
+      "workingBytes": 1930,
+      "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/task.md"
+    },
+    {
+      "workingBytes": 1326,
+      "path": "EVIDENCE/APP-G11-17-REMAINING-COMPATIBILITY-MAP/work-review.md"
+    },
+    {
+      "workingBytes": 3434,
+      "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/summary.md"
+    },
+    {
+      "workingBytes": 3333,
+      "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/task.md"
+    },
+    {
+      "workingBytes": 1272,
+      "path": "EVIDENCE/APP-G11-18-TYPED-CHAT-PATH-MISMATCH-GUARD/work-review.md"
+    },
+    {
+      "workingBytes": 3239,
+      "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/summary.md"
+    },
+    {
+      "workingBytes": 3315,
+      "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/task.md"
+    },
+    {
+      "workingBytes": 1245,
+      "path": "EVIDENCE/APP-HM-01-SYNTHETIC-HOME-UNKNOWN-READINESS/work-review.md"
+    },
+    {
+      "workingBytes": 2727,
+      "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 2364,
+      "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1644,
+      "path": "EVIDENCE/APP-HM-02-SYNTHETIC-HOME-FORMAT-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 2511,
+      "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/summary.md"
+    },
+    {
+      "workingBytes": 3499,
+      "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/task.md"
+    },
+    {
+      "workingBytes": 1484,
+      "path": "EVIDENCE/APP-HM-03-SYNTHETIC-HOME-MATCH-UNKNOWN/work-review.md"
+    },
+    {
+      "workingBytes": 2640,
+      "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/summary.md"
+    },
+    {
+      "workingBytes": 3636,
+      "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/task.md"
+    },
+    {
+      "workingBytes": 1572,
+      "path": "EVIDENCE/APP-HM-04-SYNTHETIC-HOME-DOWNSTREAM-UNKNOWN/work-review.md"
+    },
+    {
+      "workingBytes": 2306,
+      "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 2715,
+      "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1529,
+      "path": "EVIDENCE/APP-HM-05-SYNTHETIC-HOME-CONVERSATION-STATECODE-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 2549,
+      "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/summary.md"
+    },
+    {
+      "workingBytes": 3606,
+      "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/task.md"
+    },
+    {
+      "workingBytes": 1535,
+      "path": "EVIDENCE/APP-HM-06-SYNTHETIC-HOME-MATCH-CONDITION-GATE/work-review.md"
+    },
+    {
+      "workingBytes": 2364,
+      "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2740,
+      "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1709,
+      "path": "EVIDENCE/APP-HM-07-HOME-WIDGET-FALLBACK-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 2290,
+      "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/summary.md"
+    },
+    {
+      "workingBytes": 2885,
+      "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/task.md"
+    },
+    {
+      "workingBytes": 1406,
+      "path": "EVIDENCE/APP-HM-08-HOME-PROVIDER-PAGE-INTEGRATION/work-review.md"
+    },
+    {
+      "workingBytes": 2356,
+      "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/summary.md"
+    },
+    {
+      "workingBytes": 2991,
+      "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/task.md"
+    },
+    {
+      "workingBytes": 1367,
+      "path": "EVIDENCE/APP-HM-09-HOME-ASYNC-MATCH-PAGE-FALLBACK/work-review.md"
+    },
+    {
+      "workingBytes": 9442,
+      "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/plan.md"
+    },
+    {
+      "workingBytes": 2880,
+      "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/task.md"
+    },
+    {
+      "workingBytes": 1307,
+      "path": "EVIDENCE/APP-HM-10-LIVE-HOME-SOURCE-MAPPING/work-review.md"
+    },
+    {
+      "workingBytes": 6217,
+      "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/plan.md"
+    },
+    {
+      "workingBytes": 2066,
+      "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/task.md"
+    },
+    {
+      "workingBytes": 1262,
+      "path": "EVIDENCE/APP-M5-01-LOCAL-ANDROID-READONLY-PREFLIGHT/work-review.md"
+    },
+    {
+      "workingBytes": 6480,
+      "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/plan.md"
+    },
+    {
+      "workingBytes": 1961,
+      "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/task.md"
+    },
+    {
+      "workingBytes": 1296,
+      "path": "EVIDENCE/APP-M5-02-ANDROID-HOST-REPO-LOCATOR/work-review.md"
+    },
+    {
+      "workingBytes": 7155,
+      "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 2136,
+      "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1107,
+      "path": "EVIDENCE/APP-M5-03-SYNTHETIC-HOST-ENTRY-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 2576,
+      "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/summary.md"
+    },
+    {
+      "workingBytes": 2443,
+      "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/task.md"
+    },
+    {
+      "workingBytes": 1000,
+      "path": "EVIDENCE/APP-M5-04-EXPLICIT-SYNTHETIC-DART-ENTRY/work-review.md"
+    },
+    {
+      "workingBytes": 8052,
+      "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/plan.md"
+    },
+    {
+      "workingBytes": 2144,
+      "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/task.md"
+    },
+    {
+      "workingBytes": 1233,
+      "path": "EVIDENCE/APP-M5-05-SYNTHETIC-HOST-GUARD-DESIGN/work-review.md"
+    },
+    {
+      "workingBytes": 2200,
+      "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/summary.md"
+    },
+    {
+      "workingBytes": 2282,
+      "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/task.md"
+    },
+    {
+      "workingBytes": 1236,
+      "path": "EVIDENCE/APP-M5-06-V10-HOST-MAVEN-BOUNDARY/work-review.md"
+    },
+    {
+      "workingBytes": 7883,
+      "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/summary.md"
+    },
+    {
+      "workingBytes": 4307,
+      "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/task.md"
+    },
+    {
+      "workingBytes": 1257,
+      "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/work-review.md"
+    },
+    {
+      "workingBytes": 4575,
+      "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/summary.md"
+    },
+    {
+      "workingBytes": 3007,
+      "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/task.md"
+    },
+    {
+      "workingBytes": 1149,
+      "path": "EVIDENCE/APP-M5-08-EMULATOR-READONLY-PREFLIGHT/work-review.md"
+    },
+    {
+      "workingBytes": 4013,
+      "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/summary.md"
+    },
+    {
+      "workingBytes": 2428,
+      "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/task.md"
+    },
+    {
+      "workingBytes": 1036,
+      "path": "EVIDENCE/APP-M5-09-SYNTHETIC-PACKAGE-OCCUPANCY/work-review.md"
+    },
+    {
+      "workingBytes": 17741,
+      "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 4271,
+      "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1234,
+      "path": "EVIDENCE/APP-M5-10-ISOLATED-SYNTHETIC-BUILD-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 1343,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/cwd/probe.groovy"
+    },
+    {
+      "workingBytes": 30970,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1105,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/probe-wrapper.json"
+    },
+    {
+      "workingBytes": 780,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/runtime-authority.json"
+    },
+    {
+      "workingBytes": 0,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/stderr.bin"
+    },
+    {
+      "workingBytes": 810,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/stdout.bin"
+    },
+    {
+      "workingBytes": 5546,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/task.md"
+    },
+    {
+      "workingBytes": 1269,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 23521,
+      "path": "EVIDENCE/APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 4399,
+      "path": "EVIDENCE/APP-M5-100-RUNTIME-BUDGET-DRAFT/task-draft.md"
+    },
+    {
+      "workingBytes": 622,
+      "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/independent-review.md"
+    },
+    {
+      "workingBytes": 23889,
+      "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/native-receipts.json"
+    },
+    {
+      "workingBytes": 6662,
+      "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/task.md"
+    },
+    {
+      "workingBytes": 1186,
+      "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/work-review.md"
+    },
+    {
+      "workingBytes": 22918,
+      "path": "EVIDENCE/APP-M5-101-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-before.json"
+    },
+    {
+      "workingBytes": 461,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/final-state.json"
+    },
+    {
+      "workingBytes": 910,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/independent-review.md"
+    },
+    {
+      "workingBytes": 19623,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/Invoke-DistributionApiProbe.ps1"
+    },
+    {
+      "workingBytes": 29596,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1397,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/source-summary.md"
+    },
+    {
+      "workingBytes": 7652,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/task.md"
+    },
+    {
+      "workingBytes": 2577,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/work-review.md"
+    },
+    {
+      "workingBytes": 22980,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-before.json"
+    },
+    {
+      "workingBytes": 44614,
+      "path": "EVIDENCE/APP-M5-103-DISTRIBUTION-ONLY-SOURCE-PREPARE/workspace-review.json"
+    },
+    {
+      "workingBytes": 12735,
+      "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/native-receipts.json"
+    },
+    {
+      "workingBytes": 4279,
+      "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 627,
+      "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23572,
+      "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/workspace-before.json"
+    },
+    {
+      "workingBytes": 23943,
+      "path": "EVIDENCE/APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 29295,
+      "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/native-receipts.json"
+    },
+    {
+      "workingBytes": 4182,
+      "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 817,
+      "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23549,
+      "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/workspace-before.json"
+    },
+    {
+      "workingBytes": 28291,
+      "path": "EVIDENCE/APP-M5-105-ORIGINAL-API-EVIDENCE-QUALIFICATION/workspace-review-stage1.json"
+    },
+    {
+      "workingBytes": 3512,
+      "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 741,
+      "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23612,
+      "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/workspace-before.json"
+    },
+    {
+      "workingBytes": 29062,
+      "path": "EVIDENCE/APP-M5-106-ORIGINAL-INVOCATION-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 3427,
+      "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 868,
+      "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23675,
+      "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/workspace-before.json"
+    },
+    {
+      "workingBytes": 29277,
+      "path": "EVIDENCE/APP-M5-108-ORIGINAL-INVOCATION-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 8460,
+      "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/summary.md"
+    },
+    {
+      "workingBytes": 7210,
+      "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/task.md"
+    },
+    {
+      "workingBytes": 1486,
+      "path": "EVIDENCE/APP-M5-11-SYNTHETIC-HOST-SOURCE-SCAFFOLD/work-review.md"
+    },
+    {
+      "workingBytes": 1655,
+      "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/independent-review.md"
+    },
+    {
+      "workingBytes": 3946,
+      "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 2891,
+      "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23737,
+      "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/workspace-before.json"
+    },
+    {
+      "workingBytes": 29396,
+      "path": "EVIDENCE/APP-M5-110-ORIGINAL-API-SCOPE-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 137170,
+      "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 8124,
+      "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 927,
+      "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 23800,
+      "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 25336,
+      "path": "EVIDENCE/APP-M5-111-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 69620,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 703,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md"
+    },
+    {
+      "workingBytes": 8623,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 874,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 23863,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 24346,
+      "path": "EVIDENCE/APP-M5-113-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 69835,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 483,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md"
+    },
+    {
+      "workingBytes": 9429,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 946,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 23926,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 25321,
+      "path": "EVIDENCE/APP-M5-115-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 21223,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/Invoke-SyntheticInstallerTest.ps1"
+    },
+    {
+      "workingBytes": 100826,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 472,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/preparation-note.md"
+    },
+    {
+      "workingBytes": 4354,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/source-summary.md"
+    },
+    {
+      "workingBytes": 10310,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 829,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 23989,
+      "path": "EVIDENCE/APP-M5-117-SYNTHETIC-HARNESS-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 4033,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/handoff-current.md"
+    },
+    {
+      "workingBytes": 656,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/independent-review.md"
+    },
+    {
+      "workingBytes": 236040,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/native-work-partial.json"
+    },
+    {
+      "workingBytes": 2399,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 3377,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 23948,
+      "path": "EVIDENCE/APP-M5-118-ORIGINAL-SYNTHETIC-LAUNCHER-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 3711,
+      "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/summary.md"
+    },
+    {
+      "workingBytes": 3042,
+      "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/task.md"
+    },
+    {
+      "workingBytes": 1704,
+      "path": "EVIDENCE/APP-M5-12-SYNTHETIC-ACTIVITY-ROUTE-GUARD/work-review.md"
+    },
+    {
+      "workingBytes": 14282,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 4833,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 9936,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-first-round-selected-excerpt.txt"
+    },
+    {
+      "workingBytes": 61824,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-first-round-source-receipt.txt"
+    },
+    {
+      "workingBytes": 2735,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-handoff.md"
+    },
+    {
+      "workingBytes": 1821,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 102400,
+      "path": "EVIDENCE/APP-M5-13-FLUTTER-AAR-GRADLE-INVOCATION-CONTRACT/work-second-round-source-receipt.txt"
+    },
+    {
+      "workingBytes": 13382,
+      "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 3696,
+      "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1370,
+      "path": "EVIDENCE/APP-M5-14-AAR-ARGV-AND-PUBLICATION-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 4378,
+      "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/summary.md"
+    },
+    {
+      "workingBytes": 4816,
+      "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/task.md"
+    },
+    {
+      "workingBytes": 1525,
+      "path": "EVIDENCE/APP-M5-15-PURE-AAR-MATERIAL-FUNCTIONS/work-review.md"
+    },
+    {
+      "workingBytes": 10979,
+      "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/plan.md"
+    },
+    {
+      "workingBytes": 2871,
+      "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/task.md"
+    },
+    {
+      "workingBytes": 1192,
+      "path": "EVIDENCE/APP-M5-16-GRADLE-TAIL-AND-PUBLISH-WIRING/work-review.md"
+    },
+    {
+      "workingBytes": 3911,
+      "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/summary.md"
+    },
+    {
+      "workingBytes": 3504,
+      "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/task.md"
+    },
+    {
+      "workingBytes": 1106,
+      "path": "EVIDENCE/APP-M5-17-SYNTHETIC-BUILDINFO-MATERIALS/work-review.md"
+    },
+    {
+      "workingBytes": 11653,
+      "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 3224,
+      "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1009,
+      "path": "EVIDENCE/APP-M5-18-MODULE-TEMPLATE-SOURCE-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 9108,
+      "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/plan.md"
+    },
+    {
+      "workingBytes": 2767,
+      "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/task.md"
+    },
+    {
+      "workingBytes": 1029,
+      "path": "EVIDENCE/APP-M5-19-MODULE-INCLUDE-SOURCE-CLOSURE/work-review.md"
+    },
+    {
+      "workingBytes": 4050,
+      "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/summary.md"
+    },
+    {
+      "workingBytes": 3707,
+      "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/task.md"
+    },
+    {
+      "workingBytes": 1053,
+      "path": "EVIDENCE/APP-M5-20-PURE-MODULE-TOPOLOGY-MATERIALS/work-review.md"
+    },
+    {
+      "workingBytes": 9498,
+      "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2891,
+      "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1015,
+      "path": "EVIDENCE/APP-M5-21-MODULE-PLUGIN-LOADER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 4809,
+      "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/summary.md"
+    },
+    {
+      "workingBytes": 5304,
+      "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/task.md"
+    },
+    {
+      "workingBytes": 1166,
+      "path": "EVIDENCE/APP-M5-22-PURE-SYNTHETIC-PLUGIN-MATERIALS/work-review.md"
+    },
+    {
+      "workingBytes": 15630,
+      "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 4491,
+      "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1850,
+      "path": "EVIDENCE/APP-M5-23-CONTROLLED-MODULE-RENDERER-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 5582,
+      "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/summary.md"
+    },
+    {
+      "workingBytes": 3841,
+      "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/task.md"
+    },
+    {
+      "workingBytes": 2102,
+      "path": "EVIDENCE/APP-M5-24-PURE-MODULE-BUNDLE-RENDERER/work-review.md"
+    },
+    {
+      "workingBytes": 11788,
+      "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 4296,
+      "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1989,
+      "path": "EVIDENCE/APP-M5-25-FLUTTER-PLUGIN-CONFIGURATION-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 9476,
+      "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/plan.md"
+    },
+    {
+      "workingBytes": 3657,
+      "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/task.md"
+    },
+    {
+      "workingBytes": 1607,
+      "path": "EVIDENCE/APP-M5-26-NDK-LIBRARY-AND-METADATA-CLOSURE/work-review.md"
+    },
+    {
+      "workingBytes": 24935,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/m526-original-receipt.txt"
+    },
+    {
+      "workingBytes": 16605,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/plan.md"
+    },
+    {
+      "workingBytes": 17581,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/round-1-original-receipt.txt"
+    },
+    {
+      "workingBytes": 31659,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/round-2-original-receipt.txt"
+    },
+    {
+      "workingBytes": 4759,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/task.md"
+    },
+    {
+      "workingBytes": 2421,
+      "path": "EVIDENCE/APP-M5-27-AAR-CONFIGURATION-ENTRY-CLOSURE/work-review.md"
+    },
+    {
+      "workingBytes": 33736,
+      "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 26825,
+      "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/round-1-original-receipt.txt"
+    },
+    {
+      "workingBytes": 2095,
+      "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/round-2-original-receipt.txt"
+    },
+    {
+      "workingBytes": 7633,
+      "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 2224,
+      "path": "EVIDENCE/APP-M5-28-CONTROLLED-AAR-ENTRY-ADAPTATION-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 40085,
+      "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/plan.md"
+    },
+    {
+      "workingBytes": 15491,
+      "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/round-1-original-receipt.txt"
+    },
+    {
+      "workingBytes": 2778,
+      "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/round-2-original-receipt.txt"
+    },
+    {
+      "workingBytes": 6508,
+      "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 2172,
+      "path": "EVIDENCE/APP-M5-29-AAR-ADAPTATION-CONTRACT-CONSISTENCY-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 6848,
+      "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/summary.md"
+    },
+    {
+      "workingBytes": 7858,
+      "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/task.md"
+    },
+    {
+      "workingBytes": 1858,
+      "path": "EVIDENCE/APP-M5-30-PURE-AAR-ENTRY-MATERIALS/work-review.md"
+    },
+    {
+      "workingBytes": 6273,
+      "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/static-original-checker.txt"
+    },
+    {
+      "workingBytes": 1050,
+      "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/static-original-receipt.txt"
+    },
+    {
+      "workingBytes": 5258,
+      "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/summary.md"
+    },
+    {
+      "workingBytes": 4245,
+      "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/task.md"
+    },
+    {
+      "workingBytes": 1681,
+      "path": "EVIDENCE/APP-M5-31-FROZEN-AAR-MATERIALS-VALIDATION/work-review.md"
+    },
+    {
+      "workingBytes": 5207,
+      "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/summary.md"
+    },
+    {
+      "workingBytes": 4484,
+      "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/task.md"
+    },
+    {
+      "workingBytes": 1671,
+      "path": "EVIDENCE/APP-M5-32-AST-CHECKER-CORRECTION-FROZEN-VALIDATION/work-review.md"
+    },
+    {
+      "workingBytes": 3487,
+      "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/summary.md"
+    },
+    {
+      "workingBytes": 6575,
+      "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/task.md"
+    },
+    {
+      "workingBytes": 1037,
+      "path": "EVIDENCE/APP-M5-33-REVIEWABLE-AAR-VALIDATION-HARNESS/work-review.md"
+    },
+    {
+      "workingBytes": 18304,
+      "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/check_frozen_sources.py"
+    },
+    {
+      "workingBytes": 8091,
+      "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/Invoke-FrozenAarValidation.ps1"
+    },
+    {
+      "workingBytes": 12969,
+      "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/summary.md"
+    },
+    {
+      "workingBytes": 7493,
+      "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/task.md"
+    },
+    {
+      "workingBytes": 1659,
+      "path": "EVIDENCE/APP-M5-34-BOUNDED-HARNESS-SOURCE-DELIVERY/work-review.md"
+    },
+    {
+      "workingBytes": 19323,
+      "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/check_frozen_sources.py"
+    },
+    {
+      "workingBytes": 8089,
+      "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/Invoke-FrozenAarValidation.ps1"
+    },
+    {
+      "workingBytes": 32136,
+      "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 4443,
+      "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1338,
+      "path": "EVIDENCE/APP-M5-35-HARNESS-AST-COMPARISON-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 19656,
+      "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/summary.md"
+    },
+    {
+      "workingBytes": 4341,
+      "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/task.md"
+    },
+    {
+      "workingBytes": 1407,
+      "path": "EVIDENCE/APP-M5-36-FROZEN-HARNESS-STATIC-EXECUTION/work-review.md"
+    },
+    {
+      "workingBytes": 9102,
+      "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/summary.md"
+    },
+    {
+      "workingBytes": 4515,
+      "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/task.md"
+    },
+    {
+      "workingBytes": 1845,
+      "path": "EVIDENCE/APP-M5-37-FROZEN-AAR-MATERIALS-TEST/work-review.md"
+    },
+    {
+      "workingBytes": 137079,
+      "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 5807,
+      "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1497,
+      "path": "EVIDENCE/APP-M5-38-INMEMORY-AAR-APPLICATION-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 8070,
+      "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 5464,
+      "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 2014,
+      "path": "EVIDENCE/APP-M5-39-PURE-AAR-APPLICATION-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 26781,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/check_applied_sources.py"
+    },
+    {
+      "workingBytes": 9196,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/Invoke-AppliedAarValidation.ps1"
+    },
+    {
+      "workingBytes": 11745,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/status-entry.txt"
+    },
+    {
+      "workingBytes": 28911,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/summary.md"
+    },
+    {
+      "workingBytes": 6992,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/task.md"
+    },
+    {
+      "workingBytes": 2081,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/work-review.md"
+    },
+    {
+      "workingBytes": 1697,
+      "path": "EVIDENCE/APP-M5-40-APPLIED-MATERIALS-VALIDATION-HARNESS/work-takeover.md"
+    },
+    {
+      "workingBytes": 3592,
+      "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 4746,
+      "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1475,
+      "path": "EVIDENCE/APP-M5-41-APPLIED-HARNESS-LITERAL-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 1607,
+      "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/resume-authority.md"
+    },
+    {
+      "workingBytes": 31885,
+      "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/resume-summary.md"
+    },
+    {
+      "workingBytes": 1418,
+      "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 7818,
+      "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1246,
+      "path": "EVIDENCE/APP-M5-42-APPLIED-HARNESS-BOUNDED-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 27406,
+      "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/check_applied_sources.py"
+    },
+    {
+      "workingBytes": 9239,
+      "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/Invoke-AppliedAarValidation.ps1"
+    },
+    {
+      "workingBytes": 46567,
+      "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 6099,
+      "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1934,
+      "path": "EVIDENCE/APP-M5-43-STABLE-APPLIED-HARNESS-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 46650,
+      "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/summary.md"
+    },
+    {
+      "workingBytes": 5174,
+      "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/task.md"
+    },
+    {
+      "workingBytes": 1865,
+      "path": "EVIDENCE/APP-M5-44-FROZEN-APPLIED-STATIC-VALIDATION/work-review.md"
+    },
+    {
+      "workingBytes": 11777,
+      "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/summary.md"
+    },
+    {
+      "workingBytes": 5158,
+      "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/task.md"
+    },
+    {
+      "workingBytes": 2201,
+      "path": "EVIDENCE/APP-M5-45-FROZEN-APPLIED-MATERIALS-TEST/work-review.md"
+    },
+    {
+      "workingBytes": 11329,
+      "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/plan.md"
+    },
+    {
+      "workingBytes": 4496,
+      "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/task.md"
+    },
+    {
+      "workingBytes": 2024,
+      "path": "EVIDENCE/APP-M5-46-AAR-EXECUTABLE-GAP-CONVERGENCE/work-review.md"
+    },
+    {
+      "workingBytes": 13048,
+      "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/plan.md"
+    },
+    {
+      "workingBytes": 4334,
+      "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 2291,
+      "path": "EVIDENCE/APP-M5-47-AAR-GAP-MAP-FACT-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 32531,
+      "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/source-context.md"
+    },
+    {
+      "workingBytes": 4816,
+      "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/task.md"
+    },
+    {
+      "workingBytes": 2220,
+      "path": "EVIDENCE/APP-M5-48-FLUTTER-PLUGIN-SOURCE-CONTEXT/work-review.md"
+    },
+    {
+      "workingBytes": 13818,
+      "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/patch-materials.md"
+    },
+    {
+      "workingBytes": 4834,
+      "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/task.md"
+    },
+    {
+      "workingBytes": 2296,
+      "path": "EVIDENCE/APP-M5-49-SCOPED-KOTLIN-PATCH-MATERIALS/work-review.md"
+    },
+    {
+      "workingBytes": 12421,
+      "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/summary.md"
+    },
+    {
+      "workingBytes": 6170,
+      "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/task.md"
+    },
+    {
+      "workingBytes": 2480,
+      "path": "EVIDENCE/APP-M5-50-PURE-SCOPED-KOTLIN-TRANSFORM/work-review.md"
+    },
+    {
+      "workingBytes": 4923,
+      "path": "EVIDENCE/APP-M5-51-EXACT-FULL-SOURCE-FIXTURE/task.md"
+    },
+    {
+      "workingBytes": 2223,
+      "path": "EVIDENCE/APP-M5-51-EXACT-FULL-SOURCE-FIXTURE/work-review.md"
+    },
+    {
+      "workingBytes": 42405,
+      "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/flutter_plugin_original.bin"
+    },
+    {
+      "workingBytes": 5007,
+      "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/summary.md"
+    },
+    {
+      "workingBytes": 5027,
+      "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/task.md"
+    },
+    {
+      "workingBytes": 2075,
+      "path": "EVIDENCE/APP-M5-52-RAW-NEWLINE-SOURCE-FIXTURE/work-review.md"
+    },
+    {
+      "workingBytes": 5533,
+      "path": "EVIDENCE/APP-M5-53-RAW-CRLF-ANCHOR-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1849,
+      "path": "EVIDENCE/APP-M5-53-RAW-CRLF-ANCHOR-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 5879,
+      "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/anchor-map.md"
+    },
+    {
+      "workingBytes": 4930,
+      "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/task.md"
+    },
+    {
+      "workingBytes": 1842,
+      "path": "EVIDENCE/APP-M5-54-RAW-ANCHOR-SCOPE-MAP/work-review.md"
+    },
+    {
+      "workingBytes": 14300,
+      "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/crlf-contract.md"
+    },
+    {
+      "workingBytes": 5026,
+      "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1969,
+      "path": "EVIDENCE/APP-M5-55-LOCAL-CRLF-MATERIALS-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 5105,
+      "path": "EVIDENCE/APP-M5-56-EXISTING-CRLF-CONTRACT-VERIFICATION/task.md"
+    },
+    {
+      "workingBytes": 1976,
+      "path": "EVIDENCE/APP-M5-56-EXISTING-CRLF-CONTRACT-VERIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 6451,
+      "path": "EVIDENCE/APP-M5-57-STABLE-CRLF-CONTRACT-CHECKER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1988,
+      "path": "EVIDENCE/APP-M5-57-STABLE-CRLF-CONTRACT-CHECKER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 13604,
+      "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/Check-CrlfContract.ps1"
+    },
+    {
+      "workingBytes": 3493,
+      "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 7255,
+      "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 2574,
+      "path": "EVIDENCE/APP-M5-58-COMPACT-CRLF-CHECKER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 18068,
+      "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/Check-CrlfContract.ps1"
+    },
+    {
+      "workingBytes": 4922,
+      "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 6738,
+      "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 4252,
+      "path": "EVIDENCE/APP-M5-59-EXACT-SCHEMA-CRLF-CHECKER-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 8403,
+      "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/summary.md"
+    },
+    {
+      "workingBytes": 5721,
+      "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/task.md"
+    },
+    {
+      "workingBytes": 3460,
+      "path": "EVIDENCE/APP-M5-60-FROZEN-CRLF-CONTRACT-CHECKER-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 43307,
+      "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 6689,
+      "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 2962,
+      "path": "EVIDENCE/APP-M5-61-PURE-CRLF-SCOPED-TRANSFORM-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 68116,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 16286,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 6028,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1029,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2693,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 14066,
+      "path": "EVIDENCE/APP-M5-62-SEPARATED-CRLF-TRANSFORM-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 25403,
+      "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/native-receipts.json"
+    },
+    {
+      "workingBytes": 5681,
+      "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/task.md"
+    },
+    {
+      "workingBytes": 853,
+      "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2102,
+      "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/work-review.md"
+    },
+    {
+      "workingBytes": 16003,
+      "path": "EVIDENCE/APP-M5-63-INDEPENDENT-CRLF-EXPECTED/workspace-before.json"
+    },
+    {
+      "workingBytes": 74022,
+      "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 6339,
+      "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 865,
+      "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2400,
+      "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 16057,
+      "path": "EVIDENCE/APP-M5-64-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 18415,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/Build-IndependentCrlfExpected.ps1"
+    },
+    {
+      "workingBytes": 87977,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 5893,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 4686,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 736,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3441,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 16166,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 16954,
+      "path": "EVIDENCE/APP-M5-65-INDEPENDENT-ORACLE-BUILDER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 27360,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/Build-IndependentCrlfExpected.ps1"
+    },
+    {
+      "workingBytes": 65659,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 5267,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 997,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3026,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 14351,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 17606,
+      "path": "EVIDENCE/APP-M5-66-ORACLE-BUILDER-REPORT-FIRSTFAIL-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 19817,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/Build-IndependentCrlfExpected.ps1"
+    },
+    {
+      "workingBytes": 73889,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/native-receipts.json"
+    },
+    {
+      "workingBytes": 1368,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 5528,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1089,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3342,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 14465,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/workspace-before.json"
+    },
+    {
+      "workingBytes": 18368,
+      "path": "EVIDENCE/APP-M5-67-SINGLE-SOURCE-ORACLE-REPORT-REPAIR/workspace-review.json"
+    },
+    {
+      "workingBytes": 45907,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/flutter_plugin_expected.bin"
+    },
+    {
+      "workingBytes": 0,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/invocation-stderr.txt"
+    },
+    {
+      "workingBytes": 2276,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/invocation-stdout.txt"
+    },
+    {
+      "workingBytes": 52535,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 5407,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/summary.md"
+    },
+    {
+      "workingBytes": 7571,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/task.md"
+    },
+    {
+      "workingBytes": 923,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 4105,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 17171,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 19007,
+      "path": "EVIDENCE/APP-M5-68-FROZEN-INDEPENDENT-EXPECTED-ONCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 61896,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2148,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 6894,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 11574,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/validate_crlf_transform.py"
+    },
+    {
+      "workingBytes": 771,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2199,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 17944,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 18863,
+      "path": "EVIDENCE/APP-M5-69-STABLE-CRLF-VALIDATOR-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 29409,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1931,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/summary.md"
+    },
+    {
+      "workingBytes": 5658,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/task.md"
+    },
+    {
+      "workingBytes": 1058,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2293,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 18497,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 19336,
+      "path": "EVIDENCE/APP-M5-70-FROZEN-CRLF-STATIC-ONCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 14705,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/Invoke-CrlfStatic.ps1"
+    },
+    {
+      "workingBytes": 60894,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2120,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 7901,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 993,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2338,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 18531,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 19512,
+      "path": "EVIDENCE/APP-M5-71-STABLE-STATIC-LAUNCHER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 15348,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/Invoke-CrlfStatic.ps1"
+    },
+    {
+      "workingBytes": 61576,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1735,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 5022,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 877,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2206,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 18589,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 19480,
+      "path": "EVIDENCE/APP-M5-72-STATIC-LAUNCHER-FIRSTFAIL-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 0,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/invocation-stderr.txt"
+    },
+    {
+      "workingBytes": 453,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/invocation-stdout.txt"
+    },
+    {
+      "workingBytes": 38321,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 3914,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/summary.md"
+    },
+    {
+      "workingBytes": 6124,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/task.md"
+    },
+    {
+      "workingBytes": 998,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2572,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 18968,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 23130,
+      "path": "EVIDENCE/APP-M5-73-FROZEN-STATIC-LAUNCHER-ONCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 969,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/independent-review-2-task.md"
+    },
+    {
+      "workingBytes": 1052,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/independent-review-process-1.md"
+    },
+    {
+      "workingBytes": 16595,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/Invoke-CrlfTest.ps1"
+    },
+    {
+      "workingBytes": 66710,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2011,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 6683,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 976,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2619,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 19020,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 19898,
+      "path": "EVIDENCE/APP-M5-74-STABLE-TEST-LAUNCHER-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 0,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/invocation-stderr.txt"
+    },
+    {
+      "workingBytes": 1111,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/invocation-stdout.txt"
+    },
+    {
+      "workingBytes": 41804,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 5334,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/summary.md"
+    },
+    {
+      "workingBytes": 7313,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/task.md"
+    },
+    {
+      "workingBytes": 1086,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3056,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 19387,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 25376,
+      "path": "EVIDENCE/APP-M5-75-FROZEN-CRLF-TEST-ONCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 45907,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/FlutterPlugin.kt"
+    },
+    {
+      "workingBytes": 39979,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/native-receipts.json"
+    },
+    {
+      "workingBytes": 2795,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/summary.md"
+    },
+    {
+      "workingBytes": 5070,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/task.md"
+    },
+    {
+      "workingBytes": 685,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3050,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/work-review.md"
+    },
+    {
+      "workingBytes": 19474,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/workspace-before.json"
+    },
+    {
+      "workingBytes": 20081,
+      "path": "EVIDENCE/APP-M5-76-LOCAL-CRLF-CANDIDATE-MATERIAL/workspace-review.json"
+    },
+    {
+      "workingBytes": 8054,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/binding-audit.md"
+    },
+    {
+      "workingBytes": 60669,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/native-receipts.json"
+    },
+    {
+      "workingBytes": 5339,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/task.md"
+    },
+    {
+      "workingBytes": 725,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2991,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/work-review.md"
+    },
+    {
+      "workingBytes": 19840,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/workspace-before.json"
+    },
+    {
+      "workingBytes": 20234,
+      "path": "EVIDENCE/APP-M5-77-LOCAL-KOTLIN-ATTACHMENT-BINDING-AUDIT/workspace-review.json"
+    },
+    {
+      "workingBytes": 42375,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/native-receipts.json"
+    },
+    {
+      "workingBytes": 4952,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 707,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2221,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 19904,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/workspace-before.json"
+    },
+    {
+      "workingBytes": 20108,
+      "path": "EVIDENCE/APP-M5-78-OWN-ROOT-BOOTSTRAP-CONTRACT/workspace-review.json"
+    },
+    {
+      "workingBytes": 44005,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/native-receipts.json"
+    },
+    {
+      "workingBytes": 4025,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/task.md"
+    },
+    {
+      "workingBytes": 737,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/work-dispatch.md"
+    },
+    {
+      "workingBytes": 2028,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/work-review.md"
+    },
+    {
+      "workingBytes": 19960,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/workspace-before.json"
+    },
+    {
+      "workingBytes": 20168,
+      "path": "EVIDENCE/APP-M5-79-SINGLE-SOURCE-BOOTSTRAP-BEHAVIOR/workspace-review.json"
+    },
+    {
+      "workingBytes": 5208,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/api-evidence.md"
+    },
+    {
+      "workingBytes": 36145,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 4519,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/task.md"
+    },
+    {
+      "workingBytes": 773,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3578,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/work-review.md"
+    },
+    {
+      "workingBytes": 20021,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 21134,
+      "path": "EVIDENCE/APP-M5-80-PINNED-GRADLE-BOOTSTRAP-API-EVIDENCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 4523,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/command-length-review.json"
+    },
+    {
+      "workingBytes": 33771,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 4097,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/own-api-evidence.md"
+    },
+    {
+      "workingBytes": 4583,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/task.md"
+    },
+    {
+      "workingBytes": 1030,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3440,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/work-review.md"
+    },
+    {
+      "workingBytes": 20086,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 20914,
+      "path": "EVIDENCE/APP-M5-81-PINNED-OWN-EXTENSION-API-EVIDENCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 27452,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 3990,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/task.md"
+    },
+    {
+      "workingBytes": 991,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3192,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/work-review.md"
+    },
+    {
+      "workingBytes": 20148,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 20656,
+      "path": "EVIDENCE/APP-M5-82-PINNED-EXTENSION-AWARE-ACCESSOR-EVIDENCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 5800,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/LocalExtraRecipeInstaller.groovy"
+    },
+    {
+      "workingBytes": 45480,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2568,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 6306,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 920,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3062,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 20217,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 21557,
+      "path": "EVIDENCE/APP-M5-83-LOCAL-EXTRA-INSTALLER-PRIMITIVE-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 6141,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/LocalExtraRecipeInstaller.groovy"
+    },
+    {
+      "workingBytes": 40206,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1469,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 4034,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 962,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3279,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 20284,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 21701,
+      "path": "EVIDENCE/APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 53842,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1733,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/summary.md"
+    },
+    {
+      "workingBytes": 6925,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 14402,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/VerifyLocalExtraRecipeInstaller.groovy"
+    },
+    {
+      "workingBytes": 1247,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3653,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 20677,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 22012,
+      "path": "EVIDENCE/APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 33643,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 3406,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/runtime-locator-evidence.md"
+    },
+    {
+      "workingBytes": 3671,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/task.md"
+    },
+    {
+      "workingBytes": 1097,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/work-dispatch.md"
+    },
+    {
+      "workingBytes": 3056,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/work-review.md"
+    },
+    {
+      "workingBytes": 21073,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 21217,
+      "path": "EVIDENCE/APP-M5-86-HISTORICAL-RUNTIME-LOCATOR-EVIDENCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 863,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/independent-review.md"
+    },
+    {
+      "workingBytes": 22916,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/native-receipts.json"
+    },
+    {
+      "workingBytes": 1306,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/owner-locators.md"
+    },
+    {
+      "workingBytes": 2714,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/runtime-metadata.md"
+    },
+    {
+      "workingBytes": 3069,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/task.md"
+    },
+    {
+      "workingBytes": 2918,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/work-review.md"
+    },
+    {
+      "workingBytes": 21165,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/workspace-before.json"
+    },
+    {
+      "workingBytes": 21939,
+      "path": "EVIDENCE/APP-M5-87-OWNER-EXACT-RUNTIME-METADATA/workspace-review.json"
+    },
+    {
+      "workingBytes": 404,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-1-closed.md"
+    },
+    {
+      "workingBytes": 392,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-2-closed.md"
+    },
+    {
+      "workingBytes": 504,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/independent-review-3.md"
+    },
+    {
+      "workingBytes": 7957,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/jar-name-inventory.md"
+    },
+    {
+      "workingBytes": 36199,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/native-receipts.json"
+    },
+    {
+      "workingBytes": 3152,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/task.md"
+    },
+    {
+      "workingBytes": 2526,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/work-review.md"
+    },
+    {
+      "workingBytes": 21222,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/workspace-before.json"
+    },
+    {
+      "workingBytes": 22248,
+      "path": "EVIDENCE/APP-M5-88-EXACT-LIB-JAR-NAME-INVENTORY/workspace-review.json"
+    },
+    {
+      "workingBytes": 403,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/independent-review.md"
+    },
+    {
+      "workingBytes": 12010,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/native-receipts.json"
+    },
+    {
+      "workingBytes": 4430,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 2013,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 21283,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/workspace-before.json"
+    },
+    {
+      "workingBytes": 21448,
+      "path": "EVIDENCE/APP-M5-89-EXACT-CLASSPATH-RUNTIME-CONTRACT/workspace-review.json"
+    },
+    {
+      "workingBytes": 6220,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/Collect-JarIdentities.ps1"
+    },
+    {
+      "workingBytes": 2647,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/identity-summary.md"
+    },
+    {
+      "workingBytes": 676,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/independent-review.md"
+    },
+    {
+      "workingBytes": 19534,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/jar-identities.tsv"
+    },
+    {
+      "workingBytes": 30279,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/native-receipts.json"
+    },
+    {
+      "workingBytes": 336,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/owner-authorization.md"
+    },
+    {
+      "workingBytes": 5111,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/task.md"
+    },
+    {
+      "workingBytes": 3134,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/work-review.md"
+    },
+    {
+      "workingBytes": 21334,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/workspace-before.json"
+    },
+    {
+      "workingBytes": 22981,
+      "path": "EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/workspace-review.json"
+    },
+    {
+      "workingBytes": 6515,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/Collect-JarIdentities-Guarded.ps1"
+    },
+    {
+      "workingBytes": 636,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/independent-review.md"
+    },
+    {
+      "workingBytes": 33037,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1675,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/source-summary.md"
+    },
+    {
+      "workingBytes": 3815,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 3650,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 21384,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 28382,
+      "path": "EVIDENCE/APP-M5-91-TSV-BASE-GUARD-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 958,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/independent-review.md"
+    },
+    {
+      "workingBytes": 18996,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/Invoke-GroovyApiProbe.ps1"
+    },
+    {
+      "workingBytes": 55254,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1343,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/Probe-GroovyGradleApi.groovy"
+    },
+    {
+      "workingBytes": 2714,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/source-summary.md"
+    },
+    {
+      "workingBytes": 9483,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 2207,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 21815,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 41080,
+      "path": "EVIDENCE/APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 5416,
+      "path": "EVIDENCE/APP-M5-93-RUNTIME-BUDGET-DRAFT/task-draft.md"
+    },
+    {
+      "workingBytes": 1343,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/cwd/probe.groovy"
+    },
+    {
+      "workingBytes": 734,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/independent-review.md"
+    },
+    {
+      "workingBytes": 19183,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 1202,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/probe-wrapper.json"
+    },
+    {
+      "workingBytes": 2542,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/review-budget.md"
+    },
+    {
+      "workingBytes": 853,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/runtime-authority.json"
+    },
+    {
+      "workingBytes": 578,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/stderr.bin"
+    },
+    {
+      "workingBytes": 810,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/stdout.bin"
+    },
+    {
+      "workingBytes": 6818,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/task.md"
+    },
+    {
+      "workingBytes": 2601,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/work-review.md"
+    },
+    {
+      "workingBytes": 22890,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 28354,
+      "path": "EVIDENCE/APP-M5-93-SINGLE-JVM-API-PROBE-ONCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 654,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/independent-review.md"
+    },
+    {
+      "workingBytes": 19818,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/Invoke-GroovyApiProbe-Guarded.ps1"
+    },
+    {
+      "workingBytes": 64924,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2585,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/source-summary.md"
+    },
+    {
+      "workingBytes": 5981,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1548,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 21769,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 53965,
+      "path": "EVIDENCE/APP-M5-94-API-PROBE-GUARD-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 484,
+      "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/independent-review.md"
+    },
+    {
+      "workingBytes": 2834,
+      "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 1022,
+      "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 1910,
+      "path": "EVIDENCE/APP-M5-95-ORIGINAL-PROBE-SOURCE-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 707,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/independent-review.md"
+    },
+    {
+      "workingBytes": 19873,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/Invoke-GroovyApiProbe-Escaped.ps1"
+    },
+    {
+      "workingBytes": 43441,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 2161,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/source-summary.md"
+    },
+    {
+      "workingBytes": 3807,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1768,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 21820,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 38958,
+      "path": "EVIDENCE/APP-M5-96-TERMINAL-ESCAPE-SOURCE/workspace-review.json"
+    },
+    {
+      "workingBytes": 22765,
+      "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/handoff-baseline.json"
+    },
+    {
+      "workingBytes": 573,
+      "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/independent-review.md"
+    },
+    {
+      "workingBytes": 2901,
+      "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/task.md"
+    },
+    {
+      "workingBytes": 1274,
+      "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 1910,
+      "path": "EVIDENCE/APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION/workspace-review.json"
+    },
+    {
+      "workingBytes": 484,
+      "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/independent-review.md"
+    },
+    {
+      "workingBytes": 26660,
+      "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/native-receipts.json"
+    },
+    {
+      "workingBytes": 5482,
+      "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1005,
+      "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 22856,
+      "path": "EVIDENCE/APP-M5-99-DISTRIBUTION-ONLY-PROBE-SOURCE/workspace-before.json"
+    },
+    {
+      "workingBytes": 6346,
+      "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 5207,
+      "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 2058,
+      "path": "EVIDENCE/APP-T12-G12-ANALYZE-DIAGNOSTIC-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 7554,
+      "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/plan.md"
+    },
+    {
+      "workingBytes": 2123,
+      "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/task.md"
+    },
+    {
+      "workingBytes": 1261,
+      "path": "EVIDENCE/APP-T12-G12-LOCAL-FLUTTER-EVIDENCE-STATUS/work-review.md"
+    },
+    {
+      "workingBytes": 2945,
+      "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/summary.md"
+    },
+    {
+      "workingBytes": 2395,
+      "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/task.md"
+    },
+    {
+      "workingBytes": 1909,
+      "path": "EVIDENCE/APP-T12-G12-MODULE-ANALYZE/work-review.md"
+    },
+    {
+      "workingBytes": 12644,
+      "path": "EVIDENCE/AUTH-152-BOUNDED-PUBLIC-HOST-KEY-CANDIDATE/plan.md"
+    },
+    {
+      "workingBytes": 14666,
+      "path": "EVIDENCE/AUTH-153-LOCAL-ISOLATED-RESTORE-PREFLIGHT/plan.md"
+    },
+    {
+      "workingBytes": 7743,
+      "path": "EVIDENCE/AUTH-153-LOCAL-ISOLATED-RESTORE-PREFLIGHT/task-draft.md"
+    },
+    {
+      "workingBytes": 9818,
+      "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/plan.md"
+    },
+    {
+      "workingBytes": 5165,
+      "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/task-draft.md"
+    },
+    {
+      "workingBytes": 4335,
+      "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/task.md"
+    },
+    {
+      "workingBytes": 2099,
+      "path": "EVIDENCE/AUTH-155-LOCAL-ISOLATION-CAPABILITY-PREFLIGHT/work-review.md"
+    },
+    {
+      "workingBytes": 10163,
+      "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 5549,
+      "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 2197,
+      "path": "EVIDENCE/AUTH-156-V10-ACCOUNT-TARGET-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 2310,
+      "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 2716,
+      "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1671,
+      "path": "EVIDENCE/AUTH-157-BIRTH-PLACE-FIRST-CANDIDATE-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 2660,
+      "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/summary.md"
+    },
+    {
+      "workingBytes": 2290,
+      "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/task.md"
+    },
+    {
+      "workingBytes": 1654,
+      "path": "EVIDENCE/AUTH-158-BIRTH-PLACE-SQLITE-VERIFICATION/work-review.md"
+    },
+    {
+      "workingBytes": 2884,
+      "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/summary.md"
+    },
+    {
+      "workingBytes": 3354,
+      "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/task.md"
+    },
+    {
+      "workingBytes": 1825,
+      "path": "EVIDENCE/AUTH-159-SYNTHETIC-BCRYPT-LOGIN-PROBE/work-review.md"
+    },
+    {
+      "workingBytes": 9761,
+      "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/plan.md"
+    },
+    {
+      "workingBytes": 3423,
+      "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/task.md"
+    },
+    {
+      "workingBytes": 1279,
+      "path": "EVIDENCE/AUTH-160-PRIVATE-ACCOUNT-TARGET-SEMANTICS/work-review.md"
+    },
+    {
+      "workingBytes": 3269,
+      "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/summary.md"
+    },
+    {
+      "workingBytes": 3735,
+      "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/task.md"
+    },
+    {
+      "workingBytes": 1474,
+      "path": "EVIDENCE/AUTH-161-SYNTHETIC-PRIVATE-ACCOUNT-CANDIDATE/work-review.md"
+    },
+    {
+      "workingBytes": 2742,
+      "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/summary.md"
+    },
+    {
+      "workingBytes": 2809,
+      "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/task.md"
+    },
+    {
+      "workingBytes": 1525,
+      "path": "EVIDENCE/AUTH-162-SYNTHETIC-NAME-SOURCE-BINDING/work-review.md"
+    },
+    {
+      "workingBytes": 3754,
+      "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/summary.md"
+    },
+    {
+      "workingBytes": 5598,
+      "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/supervisor.py"
+    },
+    {
+      "workingBytes": 3314,
+      "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/task.md"
+    },
+    {
+      "workingBytes": 2432,
+      "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/test_supervisor.py"
+    },
+    {
+      "workingBytes": 1548,
+      "path": "EVIDENCE/AUTH-163-SYNTHETIC-BOUNDED-PREFLIGHT-SUPERVISOR/work-review.md"
+    },
+    {
+      "workingBytes": 13689,
+      "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/plan.md"
+    },
+    {
+      "workingBytes": 3730,
+      "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/task.md"
+    },
+    {
+      "workingBytes": 1406,
+      "path": "EVIDENCE/AUTH-164-ISOLATED-RESTORE-FEASIBILITY-DECISION-PACK/work-review.md"
+    },
+    {
+      "workingBytes": 9035,
+      "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 3047,
+      "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1221,
+      "path": "EVIDENCE/AUTH-165-RESTORE-TARGET-ACL-EXPECTED-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 9753,
+      "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 2509,
+      "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1236,
+      "path": "EVIDENCE/AUTH-166-HARD-SUPERVISOR-REPAIR-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 5271,
+      "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/raw_reader.py"
+    },
+    {
+      "workingBytes": 2692,
+      "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/summary.md"
+    },
+    {
+      "workingBytes": 2554,
+      "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/task.md"
+    },
+    {
+      "workingBytes": 3552,
+      "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/test_raw_reader.py"
+    },
+    {
+      "workingBytes": 1118,
+      "path": "EVIDENCE/AUTH-167-SYNTHETIC-RAW-DUAL-STREAM-READER/work-review.md"
+    },
+    {
+      "workingBytes": 13329,
+      "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 2814,
+      "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1174,
+      "path": "EVIDENCE/AUTH-168-DUAL-STAGING-FAILURE-STATE-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 5801,
+      "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/release_gate.py"
+    },
+    {
+      "workingBytes": 2517,
+      "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/summary.md"
+    },
+    {
+      "workingBytes": 2414,
+      "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/task.md"
+    },
+    {
+      "workingBytes": 3323,
+      "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/test_release_gate.py"
+    },
+    {
+      "workingBytes": 1039,
+      "path": "EVIDENCE/AUTH-169-SYNTHETIC-DUAL-STAGING-RELEASE-GATE/work-review.md"
+    },
+    {
+      "workingBytes": 973,
+      "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/job_probe.py"
+    },
+    {
+      "workingBytes": 2907,
+      "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/summary.md"
+    },
+    {
+      "workingBytes": 2321,
+      "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/task.md"
+    },
+    {
+      "workingBytes": 1607,
+      "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/test_job_probe.py"
+    },
+    {
+      "workingBytes": 1071,
+      "path": "EVIDENCE/AUTH-170-SYNTHETIC-WINDOWS-JOB-TREE-PREFLIGHT/work-review.md"
+    },
+    {
+      "workingBytes": 10427,
+      "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 2825,
+      "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1440,
+      "path": "EVIDENCE/AUTH-171-WINDOWS-JOB-STATIC-SAFETY-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 9372,
+      "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/plan.md"
+    },
+    {
+      "workingBytes": 2717,
+      "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/task.md"
+    },
+    {
+      "workingBytes": 1511,
+      "path": "EVIDENCE/AUTH-172-WIN32-PRE-RESUME-ABI-LEDGER/work-review.md"
+    },
+    {
+      "workingBytes": 7255,
+      "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2350,
+      "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1435,
+      "path": "EVIDENCE/AUTH-173-SUSPENDED-PARENT-ABI-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 3636,
+      "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/plan.md"
+    },
+    {
+      "workingBytes": 2256,
+      "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/task.md"
+    },
+    {
+      "workingBytes": 1261,
+      "path": "EVIDENCE/AUTH-174-PROCESS-INFORMATION-DECLARATION/work-review.md"
+    },
+    {
+      "workingBytes": 5870,
+      "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2201,
+      "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1315,
+      "path": "EVIDENCE/AUTH-175-WINDOWS-ABI-TYPE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 3215,
+      "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/layout_probe.py"
+    },
+    {
+      "workingBytes": 3701,
+      "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/summary.md"
+    },
+    {
+      "workingBytes": 2603,
+      "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/task.md"
+    },
+    {
+      "workingBytes": 1516,
+      "path": "EVIDENCE/AUTH-176-SYNTHETIC-CTYPES-LAYOUT-PROBE/work-review.md"
+    },
+    {
+      "workingBytes": 4196,
+      "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/pre_resume.py"
+    },
+    {
+      "workingBytes": 2852,
+      "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/summary.md"
+    },
+    {
+      "workingBytes": 3068,
+      "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/task.md"
+    },
+    {
+      "workingBytes": 7159,
+      "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/test_pre_resume.py"
+    },
+    {
+      "workingBytes": 1711,
+      "path": "EVIDENCE/AUTH-177-SYNTHETIC-PRE-RESUME-FAIL-CLOSED/work-review.md"
+    },
+    {
+      "workingBytes": 6665,
+      "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2386,
+      "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1488,
+      "path": "EVIDENCE/AUTH-178-JOB-KILL-ON-CLOSE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 6338,
+      "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2284,
+      "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1304,
+      "path": "EVIDENCE/AUTH-179-JOB-LIMIT-ABI-TYPE-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 4261,
+      "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/plan.md"
+    },
+    {
+      "workingBytes": 2310,
+      "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/task.md"
+    },
+    {
+      "workingBytes": 1329,
+      "path": "EVIDENCE/AUTH-180-JOB-NESTED-STRUCT-SOURCE/work-review.md"
+    },
+    {
+      "workingBytes": 8069,
+      "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/plan.md"
+    },
+    {
+      "workingBytes": 2800,
+      "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/task.md"
+    },
+    {
+      "workingBytes": 1532,
+      "path": "EVIDENCE/AUTH-181-HARD-DEADLINE-RESIDUAL-DECISION-PACK/work-review.md"
+    },
+    {
+      "workingBytes": 4549,
+      "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/observer_gate.py"
+    },
+    {
+      "workingBytes": 3281,
+      "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/summary.md"
+    },
+    {
+      "workingBytes": 3033,
+      "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/task.md"
+    },
+    {
+      "workingBytes": 4962,
+      "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/test_observer_gate.py"
+    },
+    {
+      "workingBytes": 1628,
+      "path": "EVIDENCE/AUTH-182-SYNTHETIC-OBSERVER-RESIDUAL-GATE/work-review.md"
+    },
+    {
+      "workingBytes": 5380,
+      "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/observer_gate.py"
+    },
+    {
+      "workingBytes": 2949,
+      "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 2650,
+      "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 7415,
+      "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/test_observer_gate.py"
+    },
+    {
+      "workingBytes": 1491,
+      "path": "EVIDENCE/AUTH-183-POST-RELEASE-FAILURE-STATE-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 4512,
+      "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/layout_probe.py"
+    },
+    {
+      "workingBytes": 2951,
+      "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/summary.md"
+    },
+    {
+      "workingBytes": 2490,
+      "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/task.md"
+    },
+    {
+      "workingBytes": 1539,
+      "path": "EVIDENCE/AUTH-184-SYNTHETIC-JOB-CTYPES-LAYOUT/work-review.md"
+    },
+    {
+      "workingBytes": 1797,
+      "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/summary.md"
+    },
+    {
+      "workingBytes": 2137,
+      "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/task.md"
+    },
+    {
+      "workingBytes": 957,
+      "path": "EVIDENCE/AUTH-185-LOCAL-C-ABI-TOOLCHAIN-LOCATOR/work-review.md"
+    },
+    {
+      "workingBytes": 5565,
+      "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/plan.md"
+    },
+    {
+      "workingBytes": 2056,
+      "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/task.md"
+    },
+    {
+      "workingBytes": 1258,
+      "path": "EVIDENCE/AUTH-186-ACCOUNT-BACKEND-NEXT-SLICE/work-review.md"
+    },
+    {
+      "workingBytes": 3622,
+      "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/summary.md"
+    },
+    {
+      "workingBytes": 2607,
+      "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/task.md"
+    },
+    {
+      "workingBytes": 1656,
+      "path": "EVIDENCE/AUTH-187-SYNTHETIC-MALFORMED-HASH-LOGIN/work-review.md"
+    },
+    {
+      "workingBytes": 3822,
+      "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/summary.md"
+    },
+    {
+      "workingBytes": 2423,
+      "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/task.md"
+    },
+    {
+      "workingBytes": 1788,
+      "path": "EVIDENCE/AUTH-188-SYNTHETIC-MALFORMED-HASH-ACCOUNT-ACTIONS/work-review.md"
+    },
+    {
+      "workingBytes": 2922,
+      "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/summary.md"
+    },
+    {
+      "workingBytes": 2013,
+      "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/task.md"
+    },
+    {
+      "workingBytes": 1151,
+      "path": "EVIDENCE/AUTH-189-AUTH-HASH-CHECK-LOCAL-REFACTOR/work-review.md"
+    },
+    {
+      "workingBytes": 2735,
+      "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/summary.md"
+    },
+    {
+      "workingBytes": 1923,
+      "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/task.md"
+    },
+    {
+      "workingBytes": 1220,
+      "path": "EVIDENCE/AUTH-190-AUTH-HASH-UNRELATED-EXCEPTION-REGRESSION/work-review.md"
+    },
+    {
+      "workingBytes": 1120,
+      "path": "EVIDENCE/AUTH-OWNER-BOUNDED-LOCAL-CONTINUATION-20261001/decision.md"
+    },
+    {
+      "workingBytes": 10296,
+      "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/plan.md"
+    },
+    {
+      "workingBytes": 4077,
+      "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/task.md"
+    },
+    {
+      "workingBytes": 1578,
+      "path": "EVIDENCE/BE-01-MESSAGING-CONSENT-PERSISTENCE-MAPPING/work-review.md"
+    },
+    {
+      "workingBytes": 15286,
+      "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 3615,
+      "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 1798,
+      "path": "EVIDENCE/BE-02-MESSAGING-CONSENT-DERIVED-FAMILY-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 15365,
+      "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/plan.md"
+    },
+    {
+      "workingBytes": 2294,
+      "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/task.md"
+    },
+    {
+      "workingBytes": 1349,
+      "path": "EVIDENCE/BE-03-MESSAGING-CONSENT-FAMILY-CONTRACT-CORRECTION/work-review.md"
+    },
+    {
+      "workingBytes": 3813,
+      "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/summary.md"
+    },
+    {
+      "workingBytes": 3866,
+      "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/task.md"
+    },
+    {
+      "workingBytes": 1803,
+      "path": "EVIDENCE/BE-04-MESSAGING-CONSENT-PERSISTENCE-FAMILY/work-review.md"
+    },
+    {
+      "workingBytes": 3133,
+      "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 3279,
+      "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1561,
+      "path": "EVIDENCE/BE-05-MESSAGING-CONSENT-FAMILY-FAIL-CLOSED-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 9576,
+      "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/plan.md"
+    },
+    {
+      "workingBytes": 2832,
+      "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/task.md"
+    },
+    {
+      "workingBytes": 1393,
+      "path": "EVIDENCE/BE-06-MESSAGING-CONSENT-APPLICATION-BINDING-MAPPING/work-review.md"
+    },
+    {
+      "workingBytes": 3669,
+      "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/summary.md"
+    },
+    {
+      "workingBytes": 3759,
+      "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/task.md"
+    },
+    {
+      "workingBytes": 1505,
+      "path": "EVIDENCE/BE-07-MESSAGING-CONSENT-CURRENT-APPLICATION-ADAPTER/work-review.md"
+    },
+    {
+      "workingBytes": 2665,
+      "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/summary.md"
+    },
+    {
+      "workingBytes": 2617,
+      "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/task.md"
+    },
+    {
+      "workingBytes": 1395,
+      "path": "EVIDENCE/BE-08-MESSAGING-CONSENT-AUDIENCE-BINDING-REPAIR/work-review.md"
+    },
+    {
+      "workingBytes": 11449,
+      "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/plan.md"
+    },
+    {
+      "workingBytes": 4903,
+      "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/task.md"
+    },
+    {
+      "workingBytes": 2459,
+      "path": "EVIDENCE/BE-09-MESSAGING-LIVE-GATE-APPLICATION-CONTRACT/work-review.md"
+    },
+    {
+      "workingBytes": 2810,
+      "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/summary.md"
+    },
+    {
+      "workingBytes": 4781,
+      "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/task.md"
+    },
+    {
+      "workingBytes": 2148,
+      "path": "EVIDENCE/BE-10-SYNTHETIC-LIVE-GATE-USE-POINT/work-review.md"
+    },
+    {
+      "workingBytes": 9970,
+      "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/plan.md"
+    },
+    {
+      "workingBytes": 3708,
+      "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/task.md"
+    },
+    {
+      "workingBytes": 2090,
+      "path": "EVIDENCE/BE-11-LEGACY-MESSAGING-ROUTE-LIVE-GATE-AUDIT/work-review.md"
+    },
+    {
+      "workingBytes": 4287,
+      "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/summary.md"
+    },
+    {
+      "workingBytes": 4896,
+      "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/task.md"
+    },
+    {
+      "workingBytes": 2321,
+      "path": "EVIDENCE/BE-12-UNVERIFIED-MESSAGING-ROUTE-FAIL-CLOSED/work-review.md"
+    },
+    {
+      "workingBytes": 3568,
+      "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/summary.md"
+    },
+    {
+      "workingBytes": 3549,
+      "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/task.md"
+    },
+    {
+      "workingBytes": 1550,
+      "path": "EVIDENCE/BE-13-LEGACY-MESSAGING-TEST-ISOLATION/work-review.md"
+    },
+    {
+      "workingBytes": 3811,
+      "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/summary.md"
+    },
+    {
+      "workingBytes": 4435,
+      "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/task.md"
+    },
+    {
+      "workingBytes": 2105,
+      "path": "EVIDENCE/BE-14-LEGACY-FEATURE-LIVE-GATE-ALIGNMENT/work-review.md"
+    },
+    {
+      "workingBytes": 4092,
+      "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/summary.md"
+    },
+    {
+      "workingBytes": 4191,
+      "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/task.md"
+    },
+    {
+      "workingBytes": 1971,
+      "path": "EVIDENCE/BE-15-MATCH-ROUND-CONVERSATION-CLAIM-FAIL-CLOSED/work-review.md"
+    },
+    {
+      "workingBytes": 3616,
+      "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/summary.md"
+    },
+    {
+      "workingBytes": 3947,
+      "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/task.md"
+    },
+    {
+      "workingBytes": 1877,
+      "path": "EVIDENCE/BE-16-MATCH-ROUND-NEXT-ACTION-FAIL-CLOSED/work-review.md"
+    },
+    {
+      "workingBytes": 3307,
+      "path": "EVIDENCE/CODEX-HANDOFF-20260929-APP-HM/handoff.md"
+    },
+    {
+      "workingBytes": 2519,
+      "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/handoff.md"
+    },
+    {
+      "workingBytes": 11319,
+      "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/status-before.txt"
+    },
+    {
+      "workingBytes": 625,
+      "path": "EVIDENCE/CODEX-HANDOFF-20260930-M5-32/work-review.md"
+    },
+    {
+      "workingBytes": 3361,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/handoff.md"
+    },
+    {
+      "workingBytes": 11953,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/status-before.txt"
+    },
+    {
+      "workingBytes": 769,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-42/work-review.md"
+    },
+    {
+      "workingBytes": 16247,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-55/handoff.md"
+    },
+    {
+      "workingBytes": 1452,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-55/work-review.md"
+    },
+    {
+      "workingBytes": 3266,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/handoff.md"
+    },
+    {
+      "workingBytes": 139750,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/native-receipts.json"
+    },
+    {
+      "workingBytes": 609,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/work-dispatch.md"
+    },
+    {
+      "workingBytes": 1759,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/work-review.md"
+    },
+    {
+      "workingBytes": 16183,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-64/workspace-snapshot.json"
+    },
+    {
+      "workingBytes": 2862,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/handoff.md"
+    },
+    {
+      "workingBytes": 83998,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/native-receipts.json"
+    },
+    {
+      "workingBytes": 393,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-dispatch.md"
+    },
+    {
+      "workingBytes": 1271,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-resume-review.md"
+    },
+    {
+      "workingBytes": 17833,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-resume-snapshot.json"
+    },
+    {
+      "workingBytes": 2473,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/work-review.md"
+    },
+    {
+      "workingBytes": 17606,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-66/workspace-snapshot.json"
+    },
+    {
+      "workingBytes": 435,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/independent-review.md"
+    },
+    {
+      "workingBytes": 13070,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/native-receipts.json"
+    },
+    {
+      "workingBytes": 3908,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/task.md"
+    },
+    {
+      "workingBytes": 1232,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/work-review.md"
+    },
+    {
+      "workingBytes": 22740,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-97/workspace-before.json"
+    },
+    {
+      "workingBytes": 351,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/final-state.json"
+    },
+    {
+      "workingBytes": 596,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/independent-review.md"
+    },
+    {
+      "workingBytes": 15619,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/native-receipts.json"
+    },
+    {
+      "workingBytes": 3803,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/task.md"
+    },
+    {
+      "workingBytes": 2129,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/work-review.md"
+    },
+    {
+      "workingBytes": 22836,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/workspace-before.json"
+    },
+    {
+      "workingBytes": 28699,
+      "path": "EVIDENCE/CODEX-HANDOFF-20261001-M5-98/workspace-review.json"
+    },
+    {
+      "workingBytes": 6115,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/frozen-sync.json"
+    },
+    {
+      "workingBytes": 1038,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/handoff-current.md"
+    },
+    {
+      "workingBytes": 132247,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/inventory-before.json"
+    },
+    {
+      "workingBytes": 139908,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/screening.json"
+    },
+    {
+      "workingBytes": 123859,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/snapshot-manifest.json"
+    },
+    {
+      "workingBytes": 2426,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/snapshot-summary.md"
+    },
+    {
+      "workingBytes": 72845,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/stage-paths.txt"
+    },
+    {
+      "workingBytes": 4323,
+      "path": "EVIDENCE/DOT-MIGRATION-GITHUB-SYNC-20261002/task.md"
+    },
+    {
+      "workingBytes": 4468,
+      "path": "EVIDENCE/WORK-HANDOFF-20260927-LOCAL-PROGRESS/handoff.md"
+    },
+    {
+      "workingBytes": 5313,
+      "path": "EVIDENCE/WORK-HANDOFF-20260929-G11-LOCAL-PROGRESS/handoff.md"
+    },
+    {
+      "workingBytes": 4022,
+      "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/handoff.md"
+    },
+    {
+      "workingBytes": 10974,
+      "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/takeover-status-before.txt"
+    },
+    {
+      "workingBytes": 2493,
+      "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-26/takeover.md"
+    },
+    {
+      "workingBytes": 4074,
+      "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-39/handoff.md"
+    },
+    {
+      "workingBytes": 11703,
+      "path": "EVIDENCE/WORK-HANDOFF-20260930-M5-39/status-before.txt"
+    },
+    {
+      "workingBytes": 6342,
+      "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/handoff.md"
+    },
+    {
+      "workingBytes": 10953,
+      "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/native-receipts.json"
+    },
+    {
+      "workingBytes": 2677,
+      "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/restart-stop.md"
+    },
+    {
+      "workingBytes": 1697,
+      "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/resume-review.md"
+    },
+    {
+      "workingBytes": 15297,
+      "path": "EVIDENCE/WORK-HANDOFF-20261001-M5-60/workspace-snapshot.json"
+    },
+    {
+      "workingBytes": 2179,
+      "path": "EVIDENCE/WORK-SHUTDOWN-20260930/handoff.md"
+    },
+    {
+      "workingBytes": 68788,
+      "path": "PRODUCT_DECISIONS.md"
+    },
+    {
+      "workingBytes": 52946,
+      "path": "REVIEW_GATE.md"
+    },
+    {
+      "workingBytes": 111563,
+      "path": "services/backend-laravel/app/Domain/InMemoryLogicalPersistenceRepositoryContract.php"
+    },
+    {
+      "workingBytes": 17821,
+      "path": "services/backend-laravel/app/Domain/MessagingConsentPersistenceApplicationAdapter.php"
+    },
+    {
+      "workingBytes": 10314,
+      "path": "services/backend-laravel/app/Domain/MessagingConsentSyntheticLiveGateUsePoint.php"
+    },
+    {
+      "workingBytes": 3421,
+      "path": "services/backend-laravel/app/Domain/PrivateAccount/PrivateAccountTargetCandidate.php"
+    },
+    {
+      "workingBytes": 30891,
+      "path": "services/backend-laravel/app/Domain/SqliteInMemoryLogicalPersistenceAdapter.php"
+    },
+    {
+      "workingBytes": 6842,
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php"
+    },
+    {
+      "workingBytes": 4196,
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ConversationController.php"
+    },
+    {
+      "workingBytes": 420,
+      "path": "services/backend-laravel/app/Http/Middleware/DenyUnverifiedMessagingLiveAccess.php"
+    },
+    {
+      "workingBytes": 11890,
+      "path": "services/backend-laravel/app/Services/ConversationDomainService.php"
+    },
+    {
+      "workingBytes": 6375,
+      "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php"
+    },
+    {
+      "workingBytes": 16183,
+      "path": "services/backend-laravel/routes/api.php"
+    },
+    {
+      "workingBytes": 13802,
+      "path": "services/backend-laravel/tests/Feature/AuthPasswordApiTest.php"
+    },
+    {
+      "workingBytes": 11651,
+      "path": "services/backend-laravel/tests/Feature/C2LocalRuntimeIntegrationTest.php"
+    },
+    {
+      "workingBytes": 17234,
+      "path": "services/backend-laravel/tests/Feature/ConversationCapabilityFoundationTest.php"
+    },
+    {
+      "workingBytes": 4196,
+      "path": "services/backend-laravel/tests/Feature/DomainSkeletonApiTest.php"
+    },
+    {
+      "workingBytes": 4094,
+      "path": "services/backend-laravel/tests/Feature/MatchingTruthSliceIntegratedSmokeTest.php"
+    },
+    {
+      "workingBytes": 28659,
+      "path": "services/backend-laravel/tests/Feature/MessageApiTest.php"
+    },
+    {
+      "workingBytes": 4374,
+      "path": "services/backend-laravel/tests/Feature/MessagingLiveGateFailClosedRouteTest.php"
+    },
+    {
+      "workingBytes": 5245,
+      "path": "services/backend-laravel/tests/Feature/ModerationApiTest.php"
+    },
+    {
+      "workingBytes": 5573,
+      "path": "services/backend-laravel/tests/Feature/NotificationApiTest.php"
+    },
+    {
+      "workingBytes": 3748,
+      "path": "services/backend-laravel/tests/Unit/ConversationListPeerFilterTest.php"
+    },
+    {
+      "workingBytes": 9594,
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceApplicationAdapterTest.php"
+    },
+    {
+      "workingBytes": 21474,
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentPersistenceFamilyTest.php"
+    },
+    {
+      "workingBytes": 11020,
+      "path": "services/backend-laravel/tests/Unit/MessagingConsentSyntheticLiveGateUsePointTest.php"
+    },
+    {
+      "workingBytes": 8599,
+      "path": "services/backend-laravel/tests/Unit/PrivateAccountTargetCandidateTest.php"
+    },
+    {
+      "workingBytes": 214679,
+      "path": "TASK_CURRENT.md"
+    }
+  ],
+  "excluded": [
+    {
+      "reason": "UNRELATED_EMBEDDED_REPOSITORY",
+      "bytes": 1,
+      "path": "EliteSync-v10-ip13i-r17-r3-mapping-rereview-v0-1/"
+    },
+    {
+      "reason": "PROTECTED_OR_BUILD_BINARY",
+      "bytes": 7457,
+      "path": "EVIDENCE/APP-M5-07-SYNTHETIC-BOOTSTRAP-ENDPOINT-POLICY/out/policy-tests.jar"
+    },
+    {
+      "reason": "PROTECTED_SERVER_DB_OR_BACKUP_EVIDENCE",
+      "bytes": 9680,
+      "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/plan.md"
+    },
+    {
+      "reason": "PROTECTED_SERVER_DB_OR_BACKUP_EVIDENCE",
+      "bytes": 3133,
+      "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/task.md"
+    },
+    {
+      "reason": "PROTECTED_SERVER_DB_OR_BACKUP_EVIDENCE",
+      "bytes": 1639,
+      "path": "EVIDENCE/AUTH-154-TWO-DB-ACCOUNT-STRUCTURE-AUDIT-PATH/work-review.md"
+    },
+    {
+      "reason": "PROTECTED_OR_BUILD_BINARY",
+      "bytes": 7935,
+      "path": "EVIDENCE/AUTH-67-DEPLOYED-DB-ENGINE-METADATA-READONLY/__pycache__/test_run.cpython-311.pyc"
+    },
+    {
+      "reason": "PROTECTED_SERVER_DB_OR_BACKUP_EVIDENCE",
+      "bytes": 3743,
+      "path": "EVIDENCE/WORK-HANDOFF-20260926-DB-BACKUP/handoff.md"
+    }
+  ],
+  "FrozenCount": 22,
+  "nonBinFreshHash": 20,
+  "oldBinBodyRead": 0,
+  "credentialPatternsFound": 0,
+  "NOT_READY": true,
+  "M112": "UNCREATED_UNISSUED",
+  "automation": "PAUSED"
+}

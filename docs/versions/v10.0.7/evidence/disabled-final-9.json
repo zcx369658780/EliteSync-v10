@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-15T01:07:43.277581+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/connections/3",
+  "request": null,
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "connection unavailable",
+      "details": null
+    }
+  }
+}

@@ -136,13 +136,16 @@ class ChatRemoteDataSource {
       throw Exception('invalid conversation id');
     }
     if (useMock) {
+      final mockConversationId = peerId == ChatMock.syntheticPeerUserId
+          ? ChatMock.syntheticConversationId
+          : peerId + 1000000000;
       return SendMessageResponseDto.fromJson({
-        'id': 1,
-        'conversation_id': peerId + 1000000000,
+        'id': 990000499,
+        'conversation_id': mockConversationId,
         'client_message_id': clientMessageId,
         'idempotent_replay': false,
         'message': {
-          'id': 1,
+          'id': 990000499,
           'mine': true,
           'content': text,
           'time': '',

@@ -34,6 +34,7 @@ class _FakeApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {
@@ -67,6 +68,7 @@ class _FakeApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
+    CancelToken? cancelToken,
     Object? body,
     Map<String, dynamic>? query,
     Options? options,
