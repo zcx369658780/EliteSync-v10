@@ -71,6 +71,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _busy = false;
   bool _loading = false;
   bool _loadingOlder = false;
+  int? _queuedHistoryEpoch;
   bool _hasOlder = false;
   bool _historyExpanded = false;
   String? _historyError;
@@ -192,6 +193,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _images = {};
       _previewImageId = null;
       _loadingOlder = false;
+      _queuedHistoryEpoch = null;
       _hasOlder = false;
       _historyExpanded = false;
       _historyError = null;
@@ -395,7 +397,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _historyExpanded = false;
           _hasOlder = response.data['has_more'] as bool? ?? items.length == 100;
         }
-        _historyError = null;
+        // A newest-window read cannot acknowledge an unread older page.
+        if (!_hasOlder) _historyError = null;
         _error = null;
         _offline = false;
         // A current read may observe this message while its POST response is
@@ -427,7 +430,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _reject('当前无法读取消息或附件，请检查登录、连接与双方消息同意。');
       }
     } finally {
-      if (epoch == _epoch) _loading = false;
+      if (epoch == _epoch) {
+        _loading = false;
+        final queued = _queuedHistoryEpoch;
+        _queuedHistoryEpoch = null;
+        if (queued == epoch && started != null && _current(started, epoch)) {
+          unawaited(_loadOlder());
+        }
+      }
     }
   }
 
@@ -473,16 +483,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   Future<void> _loadOlder() async {
-    if (_loading ||
-        _loadingOlder ||
-        !_hasOlder ||
-        _offline ||
-        _messages.isEmpty) {
+    if (_loadingOlder || !_hasOlder || _offline || _messages.isEmpty) {
       return;
     }
     final session = _session;
     final epoch = _epoch;
     if (session == null || !_current(session, epoch)) return;
+    if (_loading) {
+      // Coalesce repeated taps while the live window finishes refreshing.
+      _queuedHistoryEpoch = epoch;
+      return;
+    }
+    _queuedHistoryEpoch = null;
     final before = (_messages.first['id'] as num).toInt();
     setState(() {
       _loadingOlder = true;

@@ -38,6 +38,7 @@ class _Api extends ApiClient {
   int? olderFailure;
   bool duplicateOlder = false;
   Completer<NetworkResult<Map<String, dynamic>>>? pendingOlder;
+  Completer<NetworkResult<Map<String, dynamic>>>? pendingLatest;
   final cursors = <int>[];
 
   @override
@@ -47,6 +48,9 @@ class _Api extends ApiClient {
     Map<String, dynamic>? query,
     Options? options,
   }) async {
+    if (query?['latest'] == 1 && pendingLatest != null) {
+      return pendingLatest!.future;
+    }
     if (unavailable) {
       return NetworkFailure(
         message: 'fictional offline',
@@ -315,6 +319,106 @@ void main() {
     expect(find.text('fictional message 7'), findsNothing);
     expect(await cache.readOnlineAuthorized('live-chat:2'), isNull);
     expect(find.textContaining('当前无法读取对话'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('older-page intent waits for a live read and coalesces taps', (
+    tester,
+  ) async {
+    final api = _Api();
+    await _mount(tester, api);
+    api.pendingLatest = Completer();
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    await _older(tester);
+    await _older(tester);
+    expect(api.cursors, isEmpty);
+    api.pendingLatest!.complete(
+      const NetworkSuccess({
+        'items': [
+          {
+            'id': 5,
+            'content': 'fictional message 5',
+            'attachments': <dynamic>[],
+          },
+          {
+            'id': 6,
+            'content': 'fictional message 6',
+            'attachments': <dynamic>[],
+          },
+          {
+            'id': 7,
+            'content': 'fictional message 7',
+            'attachments': <dynamic>[],
+          },
+        ],
+        'has_more': true,
+      }),
+    );
+    await tester.pumpAndSettle();
+    expect(api.cursors, [5]);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('queued older-page intent is discarded on account switch', (
+    tester,
+  ) async {
+    final api = _Api();
+    final (container, _) = await _mount(tester, api);
+    api.pendingLatest = Completer();
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    await _older(tester);
+    (container.read(sessionProvider.notifier) as _Session).switchAccount();
+    await tester.pumpAndSettle();
+    api.pendingLatest!.complete(
+      const NetworkSuccess({
+        'items': [
+          {
+            'id': 7,
+            'content': 'obsolete live result',
+            'attachments': <dynamic>[],
+          },
+        ],
+        'has_more': true,
+      }),
+    );
+    await tester.pumpAndSettle();
+    expect(api.cursors, isEmpty);
+    expect(find.text('obsolete live result'), findsNothing);
+    expect(find.text('会话已锁定'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'newest-window refresh cannot acknowledge an older-page failure',
+    (tester) async {
+      final api = _Api()..olderFailure = 503;
+      await _mount(tester, api);
+      await _older(tester);
+      expect(find.text('较早消息加载失败，请重试。'), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      expect(find.text('较早消息加载失败，请重试。'), findsOneWidget);
+      expect(api.cursors, [5]);
+      await _older(tester);
+      expect(api.cursors, [5, 5]);
+      expect(find.text('较早消息加载失败，请重试。'), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('current read of all history resolves an obsolete page failure', (
+    tester,
+  ) async {
+    final api = _Api()..olderFailure = 503;
+    await _mount(tester, api);
+    await _older(tester);
+    api.count = 3;
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    expect(find.text('较早消息加载失败，请重试。'), findsNothing);
+    expect(find.byKey(const ValueKey('load-earlier-messages')), findsNothing);
     await tester.pumpWidget(const SizedBox());
   });
 }
