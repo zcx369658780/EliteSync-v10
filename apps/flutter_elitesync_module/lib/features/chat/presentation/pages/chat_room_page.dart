@@ -106,6 +106,7 @@ class _AuthorizedChatRoomPageState
   StreamSubscription<MessageEntity>? _realtimeSubscription;
   bool _sending = false;
   ChatSendAttempt? _failedAttempt;
+  String? _sendFailureMessage;
   bool _sameKeyRetryBlocked = false;
   int _lastMergedCount = 0;
   String? _selectedImagePath;
@@ -155,6 +156,7 @@ class _AuthorizedChatRoomPageState
     if (oldWidget.routeState != widget.routeState) {
       _stopRealtimeSync();
       _routeState = widget.routeState;
+      _sendFailureMessage = null;
       _startRealtimeSync();
     }
   }
@@ -178,6 +180,7 @@ class _AuthorizedChatRoomPageState
         _foreground = false;
         _localMessages.clear();
         _controller.clear();
+        _sendFailureMessage = null;
       });
     }
   }
@@ -337,6 +340,7 @@ class _AuthorizedChatRoomPageState
     setState(() {
       _localMessages.add(optimistic);
       _sending = true;
+      _sendFailureMessage = null;
       if (!isSameAttempt) {
         _failedAttempt = null;
         _sameKeyRetryBlocked = false;
@@ -382,6 +386,7 @@ class _AuthorizedChatRoomPageState
         );
         _localMessages.add(reconciled);
         _failedAttempt = null;
+        _sendFailureMessage = null;
         _sameKeyRetryBlocked = false;
         _routeState = adopted;
       });
@@ -423,6 +428,16 @@ class _AuthorizedChatRoomPageState
         _localMessages.removeWhere((m) => m.id == optimistic.id);
         _failedAttempt = attempt;
         _sameKeyRetryBlocked = failure?.isPayloadMismatch ?? false;
+        _sendFailureMessage = _sameKeyRetryBlocked
+            ? '这条消息发送失败，请修改内容或附件后再发送。'
+            : failure?.isConversationIdentityConflict ?? false
+            ? '这条消息发送失败，请刷新会话后重试。'
+            : failure?.statusCode == null ||
+                  (failure?.statusCode ?? 0) >= 500 ||
+                  failure?.statusCode == 408 ||
+                  failure?.statusCode == 429
+            ? '这条消息尚未确认发送，输入已保留。'
+            : '这条消息发送失败，输入已保留。';
       });
       _controller.text = attempt.content;
       _controller.selection = TextSelection.collapsed(
@@ -434,7 +449,10 @@ class _AuthorizedChatRoomPageState
             ? '消息内容与原发送请求冲突，请修改内容或附件后重新发送'
             : failure?.isConversationIdentityConflict ?? false
             ? '会话身份校验失败，未切换当前会话，请刷新后重试'
-            : (failure?.statusCode == null || (failure?.statusCode ?? 0) >= 500 || failure?.statusCode == 408 || failure?.statusCode == 429)
+            : (failure?.statusCode == null ||
+                  (failure?.statusCode ?? 0) >= 500 ||
+                  failure?.statusCode == 408 ||
+                  failure?.statusCode == 429)
             ? '发送结果尚未确认；输入已保留，重试会使用同一个消息编号'
             : '服务器未接受此消息，已恢复输入框，请检查当前权限后重试',
       );
@@ -1366,6 +1384,48 @@ class _AuthorizedChatRoomPageState
               },
             ),
           ),
+          if (_sendFailureMessage != null)
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: t.spacing.pageHorizontal,
+                vertical: t.spacing.xs,
+              ),
+              child: ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _controller,
+                builder: (context, draft, child) {
+                  final matchesFailedAttempt =
+                      _failedAttempt?.hasSamePayload(
+                        peerUserId: _peerId,
+                        content: draft.text.trim(),
+                        attachmentIds:
+                            _attachmentStage == AttachmentUploadStage.ready &&
+                                _selectedAttachmentId != null
+                            ? [_selectedAttachmentId!]
+                            : const [],
+                      ) ??
+                      false;
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          matchesFailedAttempt
+                              ? _sendFailureMessage!
+                              : '输入已修改，可发送为新消息。',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
+                      if (matchesFailedAttempt && !_sameKeyRetryBlocked)
+                        TextButton(
+                          onPressed: _sending || !_canSend
+                              ? null
+                              : _sendMessage,
+                          child: const Text('重试发送'),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ),
           Padding(
             padding: EdgeInsets.fromLTRB(
               t.spacing.pageHorizontal,

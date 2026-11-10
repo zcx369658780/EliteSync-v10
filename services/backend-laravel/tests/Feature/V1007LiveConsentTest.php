@@ -110,6 +110,38 @@ final class V1007LiveConsentTest extends TestCase
         $this->getJson($url.'&latest=1')->assertNotFound();
     }
 
+    public function test_older_message_pages_are_nearest_chronological_and_exclusive(): void
+    {
+        $this->active();
+        $ids = [];
+        for ($i = 1; $i <= 7; $i++) {
+            $ids[] = ChatMessage::create([
+                'room_id' => min($this->a->id, $this->b->id).'_'.max($this->a->id, $this->b->id),
+                'sender_id' => $this->a->id, 'receiver_id' => $this->b->id,
+                'content' => 'fictional history '.$i,
+            ])->id;
+        }
+        // Rows belonging to a different room must never enter this history.
+        ChatMessage::create([
+            'room_id' => 'unrelated_room', 'sender_id' => $this->a->id,
+            'receiver_id' => $this->b->id, 'content' => 'other room',
+        ]);
+        Sanctum::actingAs($this->b);
+        $url = '/api/v1/messages?peer_id='.$this->a->id.'&limit=3';
+        $latest = $this->getJson($url.'&latest=1')->assertOk()->assertJsonPath('has_more', true);
+        $this->assertSame(array_slice($ids, 4), $latest->json('items.*.id'));
+        $middle = $this->getJson($url.'&before_id='.$ids[4])->assertOk()->assertJsonPath('has_more', true);
+        $this->assertSame(array_slice($ids, 1, 3), $middle->json('items.*.id'));
+        $first = $this->getJson($url.'&before_id='.$ids[1])->assertOk()->assertJsonPath('has_more', false);
+        $this->assertSame([$ids[0]], $first->json('items.*.id'));
+        $this->getJson($url.'&before_id='.$ids[0])->assertOk()->assertJsonPath('items', [])->assertJsonPath('has_more', false);
+        $this->getJson($url.'&before_id='.$ids[4].'&after_id=0')->assertUnprocessable();
+        $this->getJson($url.'&before_id='.$ids[4].'&latest=1')->assertUnprocessable();
+        $this->getJson($url.'&before_id=0')->assertUnprocessable();
+        $this->act('consent', 'revoke', 2, $this->b)->assertOk();
+        $this->getJson($url.'&before_id='.$ids[4])->assertNotFound();
+    }
+
     public function test_a_second_authorized_peer_cannot_replay_a_revoked_peers_message(): void
     {
         $this->active();

@@ -64,6 +64,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   String? _error;
   bool _busy = false;
   bool _loading = false;
+  bool _loadingOlder = false;
+  bool _hasOlder = false;
+  bool _historyExpanded = false;
+  String? _historyError;
   Timer? _timer;
   @override
   void initState() {
@@ -72,11 +76,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     Future.microtask(_load);
     _timer = Timer.periodic(const Duration(seconds: 3), (_) async {
       await _retentionTick();
-      if (mounted &&
-          _foreground &&
-          !_offline &&
-          !_sessionChanged &&
-          !_timeLocked) {
+      if (mounted && _foreground && !_sessionChanged && !_timeLocked) {
         await _load();
       }
     });
@@ -91,6 +91,17 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         ? await _cache.readOffline(_cacheKey)
         : await _cache.readOnlineAuthorized(_cacheKey);
     if (!mounted || epoch != _epoch || !identical(_session, session)) return;
+    if (_offline &&
+        !_cache.isOffline &&
+        _cache.isUnlocked &&
+        receipt.status == PrivateCachePurgeStatus.notDue) {
+      // Another retained page recovered first. Hide this page's old offline
+      // copy until its own current read, instead of treating a mode change as
+      // a broken login or expired clock.
+      _reject('网络已恢复，正在重新验证对话。', preserveAttempt: true);
+      _offline = false;
+      return;
+    }
     if ((saved == null && (_messages.isNotEmpty || _images.isNotEmpty)) ||
         receipt.status != PrivateCachePurgeStatus.notDue ||
         !_cache.isUnlocked) {
@@ -158,6 +169,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _uploadCancellation = CancelToken();
       _messages = [];
       _images = {};
+      _loadingOlder = false;
+      _hasOlder = false;
+      _historyExpanded = false;
+      _historyError = null;
       if (!preserveAttempt) {
         _text.clear();
         _attempt = null;
@@ -205,6 +220,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   Future<void> _load() async {
     if (_loading ||
+        _loadingOlder ||
         !mounted ||
         !_foreground ||
         _sessionChanged ||
@@ -251,6 +267,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   int.parse(e.key.toString()): base64Decode(e.value.toString()),
               };
               _offline = true;
+              // The selected offline copy may omit older pages to fit its
+              // storage budget. Rebuild the history boundary after reconnect.
+              _historyExpanded = false;
+              _hasOlder = false;
+              _historyError = null;
               _busy = false;
               _error = '离线只读：仅显示已加密保存且此前有权读取的内容，不能发送或编辑。';
             });
@@ -273,32 +294,64 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       final items = (response.data['items'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .toList();
-      final images = <int, Uint8List>{};
-      for (final message in items) {
-        for (final attachment in (message['attachments'] as List? ?? [])) {
-          final asset = attachment['media_asset'];
-          if (asset is! Map || asset['media_type'] != 'image') continue;
-          final id = (asset['id'] as num).toInt();
-          final data = await ref
-              .read(dioProvider)
-              .get<List<int>>(
-                '/api/v1/media/$id/content',
+      final keepHistory = _historyExpanded && items.isNotEmpty;
+      final additions = <Map<String, dynamic>>[];
+      if (keepHistory && _messages.isNotEmpty) {
+        var cursor = (_messages.last['id'] as num).toInt();
+        final newestWindowStart = (items.first['id'] as num).toInt();
+        // A burst can move the live window beyond the loaded tail. Bridge that
+        // gap with ascending pages rather than discarding the expanded history.
+        while (cursor < newestWindowStart) {
+          final delta = await ref
+              .read(apiClientProvider)
+              .get(
+                '/api/v1/messages',
+                query: {
+                  'peer_id': widget.peerId,
+                  'after_id': cursor,
+                  'limit': 100,
+                },
                 cancelToken: _uploadCancellation,
                 options: Options(
-                  responseType: ResponseType.bytes,
                   extra: {
                     requestSessionGuardKey: () => _current(session, epoch),
                   },
                 ),
               );
           if (!_current(session, epoch)) return;
-          images[id] = Uint8List.fromList(data.data ?? []);
+          if (delta is! NetworkSuccess<Map<String, dynamic>>) {
+            if (delta is NetworkFailure<Map<String, dynamic>> &&
+                const {401, 403, 404}.contains(delta.statusCode)) {
+              _cache.revokeObject(_cacheKey);
+              _reject('当前无法读取对话，请检查登录、连接与双方消息同意。');
+            } else {
+              setState(() => _error = '新消息加载未完成，请刷新重试。');
+            }
+            return;
+          }
+          final page = (delta.data['items'] as List? ?? [])
+              .whereType<Map<String, dynamic>>()
+              .where((item) => (item['id'] as num).toInt() > cursor)
+              .toList();
+          if (page.isEmpty) {
+            setState(() => _error = '新消息加载未完成，请刷新重试。');
+            return;
+          }
+          additions.addAll(page);
+          cursor = (page.last['id'] as num).toInt();
         }
       }
+      final fresh = _mergeMessages(additions, items);
+      final freshImages = await _messageImages(fresh, session, epoch);
       if (!_current(session, epoch)) return;
+      final visible = keepHistory ? _mergeMessages(_messages, fresh) : fresh;
+      final images = keepHistory ? {..._images, ...freshImages} : freshImages;
+      // Like the conversation list, recover only after this current read; an
+      // ordinary online refresh must not invalidate another page's cache write.
+      if (_cache.isOffline) _cache.beginOnlineRevalidation();
       _hadTrustedCache = await _cache.saveAuthorized(
         _cacheKey,
-        _offlineSnapshot(items, images),
+        _offlineSnapshot(visible, images),
         expectedAccountId: session.user?.id,
         isCurrent: () => _current(session, epoch),
       );
@@ -309,8 +362,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         return;
       }
       setState(() {
-        _messages = items;
+        _messages = visible;
         _images = images;
+        if (!keepHistory) {
+          _historyExpanded = false;
+          _hasOlder = response.data['has_more'] as bool? ?? items.length == 100;
+        }
+        _historyError = null;
         _error = null;
         _offline = false;
         // A current read may observe this message while its POST response is
@@ -343,6 +401,117 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       }
     } finally {
       if (epoch == _epoch) _loading = false;
+    }
+  }
+
+  List<Map<String, dynamic>> _mergeMessages(
+    List<Map<String, dynamic>> older,
+    List<Map<String, dynamic>> newer,
+  ) {
+    final byId = <int, Map<String, dynamic>>{
+      for (final message in [...older, ...newer])
+        (message['id'] as num).toInt(): message,
+    };
+    return byId.values.toList()
+      ..sort((a, b) => (a['id'] as num).compareTo(b['id'] as num));
+  }
+
+  Future<Map<int, Uint8List>> _messageImages(
+    List<Map<String, dynamic>> messages,
+    SessionState session,
+    int epoch,
+  ) async {
+    final images = <int, Uint8List>{};
+    for (final message in messages) {
+      for (final attachment in (message['attachments'] as List? ?? [])) {
+        final asset = attachment['media_asset'];
+        if (asset is! Map || asset['media_type'] != 'image') continue;
+        final id = (asset['id'] as num).toInt();
+        if (images.containsKey(id)) continue;
+        final data = await ref
+            .read(dioProvider)
+            .get<List<int>>(
+              '/api/v1/media/$id/content',
+              cancelToken: _uploadCancellation,
+              options: Options(
+                responseType: ResponseType.bytes,
+                extra: {requestSessionGuardKey: () => _current(session, epoch)},
+              ),
+            );
+        if (!_current(session, epoch)) return {};
+        images[id] = Uint8List.fromList(data.data ?? []);
+      }
+    }
+    return images;
+  }
+
+  Future<void> _loadOlder() async {
+    if (_loading ||
+        _loadingOlder ||
+        !_hasOlder ||
+        _offline ||
+        _messages.isEmpty) {
+      return;
+    }
+    final session = _session;
+    final epoch = _epoch;
+    if (session == null || !_current(session, epoch)) return;
+    final before = (_messages.first['id'] as num).toInt();
+    setState(() {
+      _loadingOlder = true;
+      _historyError = null;
+    });
+    try {
+      final response = await ref
+          .read(apiClientProvider)
+          .get(
+            '/api/v1/messages',
+            query: {
+              'peer_id': widget.peerId,
+              'before_id': before,
+              'limit': 100,
+            },
+            cancelToken: _uploadCancellation,
+            options: Options(
+              extra: {requestSessionGuardKey: () => _current(session, epoch)},
+            ),
+          );
+      if (!_current(session, epoch)) return;
+      if (response is! NetworkSuccess<Map<String, dynamic>>) {
+        if (response is NetworkFailure<Map<String, dynamic>> &&
+            const {401, 403, 404}.contains(response.statusCode)) {
+          _cache.revokeObject(_cacheKey);
+          _reject('当前无法读取对话，请检查登录、连接与双方消息同意。');
+        } else {
+          setState(() => _historyError = '较早消息加载失败，请重试。');
+        }
+        return;
+      }
+      final items = (response.data['items'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .where((item) => (item['id'] as num).toInt() < before)
+          .toList();
+      final images = await _messageImages(items, session, epoch);
+      if (!_current(session, epoch)) return;
+      setState(() {
+        _messages = _mergeMessages(items, _messages);
+        _images = {...images, ..._images};
+        _historyExpanded = true;
+        _hasOlder =
+            items.isNotEmpty &&
+            (response.data['has_more'] as bool? ?? items.length == 100);
+      });
+    } catch (error) {
+      if (!_current(session, epoch)) return;
+      if (error is DioException &&
+          const {401, 403, 404}.contains(error.response?.statusCode)) {
+        _cache.revokeObject(_cacheKey);
+        _reject('当前无法读取消息或附件，请重新验证当前权限。');
+      } else {
+        setState(() => _historyError = '较早消息加载失败，请重试。');
+      }
+    } finally {
+      if (_current(session, epoch)) setState(() => _loadingOlder = false);
     }
   }
 
@@ -583,6 +752,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _messages = [];
           _images = {};
           _loading = false;
+          _loadingOlder = false;
+          _hasOlder = false;
+          _historyExpanded = false;
+          _historyError = null;
           _busy = false;
           _text.clear();
           _error = '账号已变化，请重新打开对话。';
@@ -626,43 +799,61 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               onPressed: _busy ? null : () => _send(asset: _retryAsset),
               child: const Text('使用原消息编号重试'),
             ),
+          if (_historyError != null)
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(_historyError!),
+            ),
           Expanded(
             child: ListView(
-              children: _messages
-                  .map(
-                    (m) => Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(m['content']?.toString() ?? ''),
-                            for (final a in (m['attachments'] as List? ?? []))
-                              if (a['media_asset'] is Map)
-                                if (_images[(a['media_asset']['id'] as num)
-                                        .toInt()]
-                                    case final bytes?)
-                                  Image.memory(bytes, height: 140),
-                            for (final a in (m['attachments'] as List? ?? []))
-                              if (a['media_asset'] is Map &&
-                                  a['media_asset']['media_type'] == 'video')
-                                TextButton.icon(
-                                  onPressed: () => _openVideo(
-                                    (a['media_asset']['id'] as num).toInt(),
-                                  ),
-                                  icon: const Icon(Icons.play_circle_outline),
-                                  label: const Text('播放私有视频'),
+              reverse: true,
+              children: [
+                ..._messages.reversed.map(
+                  (m) => Card(
+                    key: ValueKey('live-message-${m['id']}'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(m['content']?.toString() ?? ''),
+                          for (final a in (m['attachments'] as List? ?? []))
+                            if (a['media_asset'] is Map)
+                              if (_images[(a['media_asset']['id'] as num)
+                                      .toInt()]
+                                  case final bytes?)
+                                Image.memory(bytes, height: 140),
+                          for (final a in (m['attachments'] as List? ?? []))
+                            if (a['media_asset'] is Map &&
+                                a['media_asset']['media_type'] == 'video')
+                              TextButton.icon(
+                                onPressed: () => _openVideo(
+                                  (a['media_asset']['id'] as num).toInt(),
                                 ),
-                            Text(
-                              m['is_read'] == true ? '已读' : '未读',
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
+                                icon: const Icon(Icons.play_circle_outline),
+                                label: const Text('播放私有视频'),
+                              ),
+                          Text(
+                            m['is_read'] == true ? '已读' : '未读',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                ),
+                if (!_offline && _hasOlder)
+                  TextButton(
+                    key: const ValueKey('load-earlier-messages'),
+                    onPressed: _loadingOlder ? null : _loadOlder,
+                    child: Text(_loadingOlder ? '正在加载较早消息…' : '加载更早消息'),
                   )
-                  .toList(),
+                else if (!_offline && _historyExpanded)
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text('已显示全部消息'),
+                  ),
+              ],
             ),
           ),
           SafeArea(

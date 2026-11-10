@@ -181,6 +181,7 @@ class MessageController extends Controller
         $data = $request->validate([
             'peer_id' => ['required', 'integer', 'min:1'],
             'after_id' => ['nullable', 'integer', 'min:0', 'prohibited_if:latest,1,true'],
+            'before_id' => ['nullable', 'integer', 'min:1', 'prohibits:after_id,latest'],
             'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
             'latest' => ['nullable', 'boolean'],
         ]);
@@ -193,8 +194,10 @@ class MessageController extends Controller
         }
 
         $afterId = (int) ($data['after_id'] ?? 0);
+        $beforeId = isset($data['before_id']) ? (int) $data['before_id'] : null;
         $limit = (int) ($data['limit'] ?? 50);
         $latest = (bool) ($data['latest'] ?? false);
+        $descending = $latest || $beforeId !== null;
         $roomId = $this->roomId((int) $user->id, $peerId);
 
         // Pulling conversation acts as read receipt for incoming unread messages.
@@ -220,18 +223,22 @@ class MessageController extends Controller
             ->with(['attachments.mediaAsset'])
             ->where('room_id', $roomId)
             ->where('id', '>', $afterId)
-            // Live views replace their current window; delta consumers retain
-            // the existing ascending after_id contract when latest is absent.
-            ->orderBy('id', $latest ? 'desc' : 'asc')
-            ->limit($limit)
+            ->when($beforeId !== null, fn ($query) => $query->where('id', '<', $beforeId))
+            // History pages select the nearest older rows. Legacy after_id
+            // consumers keep their ascending delta contract.
+            ->orderBy('id', $descending ? 'desc' : 'asc')
+            ->limit($limit + 1)
             ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at']);
-        if ($latest) {
+        $hasMore = $items->count() > $limit;
+        $items = $items->take($limit);
+        if ($descending) {
             $items = $items->reverse()->values();
         }
 
         return response()->json([
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),
             'total' => $items->count(),
+            'has_more' => $hasMore,
         ]);
     }
 

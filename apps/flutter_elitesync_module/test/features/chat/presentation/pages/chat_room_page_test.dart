@@ -350,9 +350,15 @@ void main() {
     await tester.enterText(find.byType(TextField), 'same payload');
     await _confirmManualSend(tester);
     await tester.pumpAndSettle();
-    await _confirmManualSend(tester);
+    expect(find.text('这条消息尚未确认发送，输入已保留。'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
+    expect(find.text('这条消息尚未确认发送，输入已保留。'), findsOneWidget);
+    await tester.tap(find.text('重试发送'));
     await tester.pumpAndSettle();
 
+    expect(find.text('重试发送'), findsNothing);
+    expect(find.text('这条消息尚未确认发送，输入已保留。'), findsNothing);
     expect(repository.sentClientMessageIds, hasLength(2));
     expect(
       repository.sentClientMessageIds[1],
@@ -369,7 +375,11 @@ void main() {
     await tester.enterText(find.byType(TextField), 'first payload');
     await _confirmManualSend(tester);
     await tester.pumpAndSettle();
+    expect(find.text('重试发送'), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'changed payload');
+    await tester.pump();
+    expect(find.text('重试发送'), findsNothing);
+    expect(find.text('输入已修改，可发送为新消息。'), findsOneWidget);
     await _confirmManualSend(tester);
     await tester.pumpAndSettle();
 
