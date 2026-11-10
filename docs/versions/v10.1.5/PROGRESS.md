@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 RTC撤权后的Android采集使用状态
+
+5582按需要恢复并安装同一ed01候选，原会话没有恢复到聊天时通过正常UI重新登录虚构user2；未扫描或绕过会话。call10为本次新视频通话。双方自身日志均有正向音频收发、视频编码/解码，无Unhandled Exception/Concurrent modification；但撤权前SFU快照仅1参与者，发起端曾重连6.5秒后恢复，不能称稳定两参与者质量基线。
+
+在两端Android AppOps均明确报告CAMERA与RECORD_AUDIO为running后，正常HTTP撤MC。所有时长仅由同一个主机Python time.monotonic记录，使用ADB查询返回到主机的时间作为保守观察上界，不使用Android日志/系统时间差拼接。撤销请求响应0.094秒；首次观察inactive：5582麦克风0.969秒、摄像头1.781秒，5580麦克风2.516秒、摄像头3.484秒。四项最晚3.484秒均不再运行，恢复新同意前复查保持停止；双方正常request/accept恢复第6代后又确认仍未重启采集。call1–10均ended、房间为空。
+
+私有 `rtc-native-capture-stop-private.json` 保存基线、逐次AppOps样本、同域计时及自身日志摘要。这是实际Android系统采集使用状态子证据，超出了单纯房间消失；仍不证明完整网络数据包停止、现实AEC/听感、旧JWT全矩阵，且保留单参与者/重连基线限制。AC05仍OPEN、G2 false；工程继续验证当前网关的旧JWT拒绝。
+
+---
+
 # 最新节点｜2026-11-11 旧站内通知当前授权子范围（有证据限制）
 
 当前ed01候选显示既有消息通知14，基线MC_ACTIVE generation3、route=chat_room。正常API撤销MC后，服务端通知查询的route/args/payload清空；UI在自动点击器第二次读取前先刷新并移除了旧按钮，实际点击NOT_RUN，原UI XML与失败保留。双方随后通过正常request/accept恢复第4代。
