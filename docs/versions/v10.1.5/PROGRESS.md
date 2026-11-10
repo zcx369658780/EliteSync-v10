@@ -1,3 +1,17 @@
+# 最新节点｜2026-11-11 日志版本合包、Android缓存原生清理与UI登出
+
+源码 `bfbbe4eda27423acf25fdf48eb2b763102650b13` 增量只同步LoggingInterceptor。最初在两个模拟器运行时可用内存不足5120MiB，构建入口于启动前拒绝；没有降低保护门。仅暂停两自有模拟器/ADB5038后实际构建35.397秒、退出0；APK SHA256 `4211c5a1e2adf60570c6e87605805ce85bee098f8e831aeb41c04f275a4dfbef`、154157018字节，签名/身份/功能标记核验并安装两端。后续为节约内存，仅保留5580运行，5582的AVD/新包保留；没有停止无关应用。
+
+通过官方Flutter调试工具观察实际Android日志：正常登录的离线失败→恢复后成功，共7条REQ、5条RES、1条ERR，全部符合仅方法/状态码/错误类别的格式，error/stackTrace均为空；正常登录恢复成功。日志原证及 `network-android-logging-receipt-private.json` 私有保留。本项不代表全应用日志审计或整体安全封装完成。
+
+Android缓存验证分开记录：①移除仅5580的API/WS reverse后冷启动，已知旧缓存1对象与owner仍在，真实缓存实例namespace/unlocked/stopwatch均未打开；用官方调试器调用当前既有生产AuthLocalDataSource.clearSessionWithReceipt，返回true，再直接读取已知键，旧对象、manifest/recovery与owner均不存在。②恢复reverse并正常UI登录，读取当前会话；设置→退出账号→确认退出后返回登录页，4个已知对象及两索引/定位键、access/refresh/resume均不存在。①不是UI登出，②不是离线冷启UI链，不合并冒充另一条路径。没有枚举未知存储、读取聊天正文或修改设备时钟。
+
+最初私有读取器缺表达式编译服务；补充官方Flutter attach和DDS WebSocket调用，并处理单行表达式/字符串截断后才取得以上原生证据。仅为验证工具修复，未修改产品存储授权或加入调试后门。临时Flutter工具及精确debug forwards已关闭，API/WS reverse恢复，user1再次正常UI登录。固定运行回执已更新；私有 `cache-android-cold-local-cleanup-private.json` 和 `cache-android-ui-logout-private.json` 保留。真实手机仍未用、效果UNKNOWN，硬件密钥特性、真实删除故障/双索引均失及15/30边界尚未闭合，AC07仍PARTIAL。
+
+工程继续检查通知权限拒绝/撤销的状态同步；此前6343候选call8/9的RTC证据保留，不重复联测、不将其改称本次4211候选已重测。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持。
+
+---
+
 # 最新节点｜2026-11-11 网络日志仅保留固定元数据
 
 交接已指出普通LoggingInterceptor输出完整URI并向logger附带原始DioException/堆栈。新增12项定向用例先RED复现；现请求/响应/错误日志只保留标准HTTP方法、状态码与Dio错误类别，不读取或输出URL、header、body、原始异常和堆栈，自定义方法只标OTHER。真实Dio链验证请求URI/header/body、响应以及错误对象细节继续原样传递，没有改变鉴权、重试、重放或传输策略。
