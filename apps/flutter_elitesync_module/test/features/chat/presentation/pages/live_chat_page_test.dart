@@ -1,5 +1,6 @@
 import '../../../../support/synthetic_private_login.dart';
 import 'dart:async';
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -110,6 +111,8 @@ class _Gateway implements SessionBoundChatMediaGateway {
 class _MediaApi extends ApiClient {
   _MediaApi() : super(dio: Dio());
   bool unavailable = false;
+  bool includeImage = false;
+  bool denied = false;
   final bodies = <Map<String, dynamic>>[];
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
@@ -117,17 +120,24 @@ class _MediaApi extends ApiClient {
     CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
-  }) async => unavailable
+  }) async => denied
+      ? const NetworkFailure(message: 'fictional denied', statusCode: 403)
+      : unavailable
       ? NetworkFailure(
           message: 'fictional offline',
           error: TimeoutException('fictional'),
         )
-      : const NetworkSuccess({
+      : NetworkSuccess({
           'items': [
             {
               'id': 1,
               'content': 'retained conversation',
-              'attachments': <dynamic>[],
+              'attachments': [
+                if (includeImage)
+                  {
+                    'media_asset': {'id': 42, 'media_type': 'image'},
+                  },
+              ],
             },
           ],
         });
@@ -220,6 +230,49 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets(
+    'authorized image opens zoomable preview, back closes it and denial removes it',
+    (tester) async {
+      final api = _MediaApi()..includeImage = true;
+      final dio = Dio()
+        ..interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              handler.resolve(
+                Response<List<int>>(
+                  requestOptions: options,
+                  statusCode: 200,
+                  data: base64Decode(
+                    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      await _show(tester, api, dio: dio);
+      await tester.pumpAndSettle();
+      final image = find.byKey(const ValueKey('live-chat-image-42'));
+      await tester.tap(image);
+      await tester.pumpAndSettle();
+      expect(find.text('图片预览'), findsOneWidget);
+      expect(find.byType(InteractiveViewer), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(find.text('图片预览'), findsNothing);
+      expect(find.text('retained conversation'), findsOneWidget);
+      await tester.tap(image);
+      await tester.pumpAndSettle();
+      api.denied = true;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(find.text('图片预览'), findsNothing);
+      expect(find.byType(Image), findsNothing);
+      expect(find.textContaining('当前无法读取对话'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets('a picker result cannot adopt the newly opened peer epoch', (
     tester,
   ) async {

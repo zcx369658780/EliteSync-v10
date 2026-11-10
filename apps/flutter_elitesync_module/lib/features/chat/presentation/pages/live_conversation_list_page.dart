@@ -31,6 +31,7 @@ class _LiveConversationListPageState
   bool _foreground = true;
   String? _cacheStatus;
   Timer? _retentionTimer;
+  Timer? _refreshTimer;
   PrivateCacheService get _cache =>
       PrivateCacheService.forStorage(ref.read(secureStorageProvider));
   String get _cacheObject =>
@@ -43,6 +44,10 @@ class _LiveConversationListPageState
     _retentionTimer = Timer.periodic(
       const Duration(minutes: 1),
       (_) => unawaited(_checkRetention()),
+    );
+    _refreshTimer = Timer.periodic(
+      const Duration(seconds: 5),
+      (_) => unawaited(_refresh(automatic: true)),
     );
     _authoritySubscription = ref.listenManual(
       relationshipAuthorityEpochProvider,
@@ -66,6 +71,7 @@ class _LiveConversationListPageState
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _retentionTimer?.cancel();
+    _refreshTimer?.cancel();
     _authoritySubscription.close();
     _epoch++;
     super.dispose();
@@ -95,6 +101,7 @@ class _LiveConversationListPageState
   }
 
   Future<void> _checkRetention() async {
+    if (!_foreground) return;
     final session = _session;
     final epoch = _epoch;
     if (session == null) return;
@@ -106,10 +113,14 @@ class _LiveConversationListPageState
       setState(() => _lockDisplay(_purgeMessage(purge)));
       return;
     }
-    final saved = _cache.isOffline
+    if (_busy) return;
+    final offline = _cache.isOffline;
+    final saved = offline
         ? await _cache.readOffline(_cacheObject)
         : await _cache.readOnlineAuthorized(_cacheObject);
-    if (!_current(session, epoch)) return;
+    if (!_current(session, epoch) || _busy || offline != _cache.isOffline) {
+      return;
+    }
     if (saved == null) {
       setState(() => _lockDisplay('当前私有内容的读取资格已失效，请重新核验或在线登录。'));
     }
@@ -208,14 +219,21 @@ class _LiveConversationListPageState
       mounted &&
       epoch == _epoch &&
       identical(ref.read(sessionProvider).asData?.value, session);
-  Future<void> _refresh() async {
-    if (!mounted || _busy) return;
+  Future<void> _refresh({bool automatic = false}) async {
+    if (!mounted ||
+        _busy ||
+        !_foreground ||
+        (automatic && _trustedContextLocked)) {
+      return;
+    }
     final epoch = _epoch;
     setState(() {
       _busy = true;
       _error = null;
-      _items = [];
-      _offlineReadOnly = false;
+      if (!automatic) {
+        _items = [];
+        _offlineReadOnly = false;
+      }
     });
     SessionState? started;
     try {
@@ -245,6 +263,17 @@ class _LiveConversationListPageState
       if (response is NetworkFailure<Map<String, dynamic>>) {
         if (_transportUnavailable(response)) {
           await _showOwnedOfflineCopy(session, epoch);
+          return;
+        }
+        if (automatic &&
+            (response.statusCode == 408 ||
+                response.statusCode == 429 ||
+                (response.statusCode ?? 0) >= 500)) {
+          if (!_cache.isUnlocked) {
+            _lockDisplay(_purgeMessage(purge));
+          } else {
+            _error = '暂时无法更新会话，请稍后重试。';
+          }
           return;
         }
         _cache.revokeObject(_cacheObject);
@@ -364,7 +393,7 @@ class _LiveConversationListPageState
                     _refresh();
                   },
           ),
-          if (_busy) const LinearProgressIndicator(),
+          if (_busy && items.isEmpty) const LinearProgressIndicator(),
           if (_error != null)
             Text(
               '会话读取未确认：$_error',

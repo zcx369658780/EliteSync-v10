@@ -66,6 +66,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   final _text = TextEditingController();
   List<Map<String, dynamic>> _messages = [];
   Map<int, Uint8List> _images = {};
+  int? _previewImageId;
   String? _error;
   bool _busy = false;
   bool _loading = false;
@@ -189,6 +190,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _uploadCancellation = CancelToken();
       _messages = [];
       _images = {};
+      _previewImageId = null;
       _loadingOlder = false;
       _hasOlder = false;
       _historyExpanded = false;
@@ -290,6 +292,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 for (final e in (saved['images'] as Map? ?? {}).entries)
                   int.parse(e.key.toString()): base64Decode(e.value.toString()),
               };
+              if (!_images.containsKey(_previewImageId)) _previewImageId = null;
               _offline = true;
               // The selected offline copy may omit older pages to fit its
               // storage budget. Rebuild the history boundary after reconnect.
@@ -387,6 +390,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       setState(() {
         _messages = visible;
         _images = images;
+        if (!images.containsKey(_previewImageId)) _previewImageId = null;
         if (!keepHistory) {
           _historyExpanded = false;
           _hasOlder = response.data['has_more'] as bool? ?? items.length == 100;
@@ -831,6 +835,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _sendStatus = null;
           _messages = [];
           _images = {};
+          _previewImageId = null;
           _loading = false;
           _loadingOlder = false;
           _hasOlder = false;
@@ -850,6 +855,33 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       return Scaffold(
         appBar: AppBar(title: const Text('会话已锁定')),
         body: Center(child: Text(_error ?? '请从当前账号重新打开')),
+      );
+    }
+    final preview = _images[_previewImageId];
+    if (preview != null) {
+      // Keep the preview in this page's authority/lifecycle. Clearing the
+      // conversation also removes the full image, without a detached route.
+      return PopScope<Object?>(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (!didPop) setState(() => _previewImageId = null);
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('图片预览'),
+            leading: IconButton(
+              tooltip: '返回对话',
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => setState(() => _previewImageId = null),
+            ),
+          ),
+          body: Center(
+            child: InteractiveViewer(
+              maxScale: 5,
+              child: Image.memory(preview, fit: BoxFit.contain),
+            ),
+          ),
+        ),
       );
     }
     return Scaffold(
@@ -935,7 +967,21 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                               if (_images[(a['media_asset']['id'] as num)
                                       .toInt()]
                                   case final bytes?)
-                                Image.memory(bytes, height: 140),
+                                InkWell(
+                                  key: ValueKey(
+                                    'live-chat-image-${a['media_asset']['id']}',
+                                  ),
+                                  onTap: () => setState(
+                                    () => _previewImageId =
+                                        (a['media_asset']['id'] as num).toInt(),
+                                  ),
+                                  child: Image.memory(
+                                    bytes,
+                                    width: 140,
+                                    height: 140,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                           for (final a in (m['attachments'] as List? ?? []))
                             if (a['media_asset'] is Map &&
                                 a['media_asset']['media_type'] == 'video')
