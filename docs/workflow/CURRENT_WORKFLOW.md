@@ -1,3 +1,13 @@
+# 2026-11-10 环境及手机前台通过，native输出目录遗漏后STOP；workspace主机修正已准备（CURRENT ENTRY）
+
+case03获准新boot/install各1与phone+80至cap320后只运行一次：Docker185旧容器停止/固定镜像、phone前台通过；native3762504530后STOP，缺output致Publish DirectoryNotFound。初始异常原文/SDK实际启动UNKNOWN，未install/B claim，无账号输入/登录/互发/媒体。phone13累计130/320余190；E控制3/UI0，boot耗1、install/B各未耗1留case03 STOP。runner/Edriver1，root原2项退出失败标记保留；实际phone/私有ADB清理exit0，185旧State0差异/owned过程0/私有端口闭，整段13.703秒。详见[本节点](V1015_NATIVE_WORKSPACE_DIRECTORY_STOP_HOST_REPAIRED_20261110.md)。
+
+主代理另在case04预建完整owned目录，真实native workspace独占probe检查写/flush/rename/read/清理，host自检先于phone/claim，Main也先于Start；诊断不再因Publish失败丢初始异常。实际缺目录RED→拒31、完整目录0，109Python+5constructor+2workspace场景+6clock通过、最终非作者无剩余P1/P2。只prepared，无reply/grant/claim/transfer/设备服务动作。下一只需新boot1；install/B新增0各继承原未耗1；phone余190（174普通/16清理）不追加，900+shared45整链连续，不逐动作问。
+
+case03 actual三件在runtime-closeout、根prepared原证不改；case04根三件为prepared。source1f/APKb621/原main255/index/%SystemDrive%及所有旧资产/STOP保持；运行镜像不哈希、ledger仅追加。10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN缓存UNKNOWN，功能优先/UI最后；不手机卸载重装/APP重编/合main/发布/v10.1.6。
+
+---
+
 # 2026-11-10 两端真实登录资格通过；Docker引擎未就绪STOP，环境前置修正已准备（CURRENT ENTRY）
 
 case02获准新增boot1后只执行一次：两端完整空登录表单/手机号焦点/IME与目标APP前台通过，模拟器OS/同包安装/Activity/APP ready通过。随后Docker Linux engine管道不存在，后端driver/claim均无，账号输入/登录/互发/媒体NOT_RUN；旧容器State UNKNOWN。phone30，累计117/240余123；E43+25=68，启动/安装各耗1。runner1/controller0、统一清理无错、私有端口闭、同域整段195.547秒。原唯一B1未耗，末端case02/backend STOP。详见[本节点](V1015_DUAL_LOGIN_QUALIFIED_DOCKER_UNAVAILABLE_STOP_20261110.md)。
