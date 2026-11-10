@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 旧站内通知当前授权子范围（有证据限制）
+
+当前ed01候选显示既有消息通知14，基线MC_ACTIVE generation3、route=chat_room。正常API撤销MC后，服务端通知查询的route/args/payload清空；UI在自动点击器第二次读取前先刷新并移除了旧按钮，实际点击NOT_RUN，原UI XML与失败保留。双方随后通过正常request/accept恢复第4代。
+
+因第一段定位竞态，后续仅增加一次紧随正常撤销响应、按刚观察到按钮位置的点击；APP未进入聊天，服务端仍无路由/指针，通知14原read_at未变。没有观察到拒绝提示，未独立确认点击处理器是否执行，因此只记“观察位置点击无聊天跳转＋当前服务端脱敏”，不称完整旧通知点击链通过，不重复追测。该段也经正常双方request/accept恢复至第5代，没有直接改表或复用旧MC。通知中心短暂loading后自行恢复，真实列表5项、读取0.171秒、未见自身Unhandled Exception；不认定新产品缺陷。
+
+私有 `notification-old-open-revoke-private.json`、`notification-old-observed-click-private.json` 与对应UI原证分开保留。当前MC generation5、call1–9均ended、房间为空；旧通知/旧JWT/并发完整矩阵仍未关闭。下一项补查RTC撤权后原生采集停止，使用模拟器系统AppOps当前运行状态及同一主机monotonic观察，不把Android日志时间与主机计时混用，也不将采集状态扩大为完整网络停包/AEC通过。
+
+---
+
 # 最新节点｜2026-11-11 通知权限修复合包与系统拒绝/撤销
 
 源码 `81f9abfc08283fecc254257b0aca395cc9dea4c7` 增量合包38.993秒、退出0，APK SHA256 `ed01b528e09f726e907027d43cae1ce7d13648aee8b9697a30ae26e34a84c3cb`、154151779字节；签名/身份/标记通过，仅更新当前需要运行的5580，5582暂停并保留4211。32项定向检查与最终analyze沿用本节点源码阶段，不重复全量或RTC联测。
