@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "thread": {
+    "id": "01a0f74b-03a7-7d41-8185-9c47d92ab428",
+    "kind": "codex",
+    "hostId": "local",
+    "title": "EliteSync-v10 M5-97后只读执行交接",
+    "preview": "",
+    "status": {
+      "type": "idle"
+    },
+    "cwd": "D:\\EliteSync-v10",
+    "createdAt": 1790855283,
+    "updatedAt": 1790861652
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 1,
+    "nextCursor": "{\"requestedThreadId\":\"01a0f74b-03a7-7d41-8185-9c47d92ab428\",\"rolloutOrdinal\":199,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "turns": [
+    {
+      "id": "01a0f7a6-79fe-7213-9a47-c44ea87d804c",
+      "status": "completed",
+      "error": null,
+      "startedAt": 1790861277,
+      "completedAt": 1790861652,
+      "durationMs": 374830,
+      "items": [
+        {
+          "type": "functionCallOutput",
+          "id": "fco_01a0f7a6-7a16-7512-a2aa-fead23a80c21",
+          "name": "send_message_to_thread",
+          "namespace": "codex_app",
+          "output": {
+            "text": "<codex_delegation>\n  <source_thread_id>01a0f66b-6c41-7020-99f3-b1c634c82ebf</source_thread_id>\n  <input>执行新 ARTIFACT-ONLY 任务 D:\\EliteSync-v10\\EVIDENCE\\APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION\\task.md。M100原task闭不追认，Work与独立旧审查首工具失败也均闭；此为Owner持续委托下新预算，仅核原本仓原证/交付有限API事实报告，外部读取/JVM0，不重跑M100B。准确原字段以wrapper为准，新ENTRY不读baseline/A一次聚合读取（数组括号正确，GetDigest无别名）/B只新报告。首失败闭不补读修改重跑。停止REVIEW_PENDING供独立Solhigh和Work终裁，不派后继。</input>\n</codex_delegation>",
+            "truncated": false
+          }
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe5fed9f4087d0999ff29724cab27d",
+          "text": "我将按 M5-104 的新只读原证预算核验本仓产物，并交付限定API事实报告；不重开M100，也不访问外部文件或启动JVM。",
+          "phase": "commentary"
+        },
+        {
+          "type": "commandExecution",
+          "id": "exec-290957ec-8b30-4a57-a4bd-f3b99d70d0de",
+          "command": "\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -NoProfile -Command '$ErrorActionPreference='\"'Stop';Get-Content -LiteralPath 'D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION\\\\task.md' -Raw;foreach(\"'$n in @('\"'CURRENT.md','AGENTS.md','PRODUCT_DECISIONS.md','TASK_CURRENT.md','REVIEW_GATE.md')){\"'$s=[IO.File]::OpenText(\"D:'\"\\\\EliteSync-v10\\\\\"'$n\");try{$on=$false;$ls=@();while(($l=$s.ReadLine()) -ne $null){if($l.Trim().Length){$on=$true;$ls+=$l}else{if($on){break}}};[Console]::WriteLine(($n+'\"': '+(\"'$ls -join \"`n\")))}finally{$s.Dispose()}}'",
+          "cwd": "D:\\EliteSync-v10",
+          "status": "completed",
+          "exitCode": 0,
+          "durationMs": 139,
+          "output": {
+            "text": "# APP-M5-104-ORIGINAL-API-PROBE-EVIDENCE-QUALIFICATION\n\nISSUED / LEVEL2 / ARTIFACT-ONLY READONLY QUALIFICATION. Owner delegated similar local bounded continuation; no new JVM or external scope. CODEX_SUBAGENTS_DISABLED_FROM_INVOCATION_START. Existing executor 01a0f74b/local only, no successors. M100 original task REJECT/CLOSED B field mismatch; original Invocation exit0 is not task acceptance. Work precheck alias-H failure and independent path-array failure closed, no retry within their old budgets.\n\nENTRY1 own task fully once and five authority first paragraphs each once, output<=12288 bytes/chars; no baseline read at entry. login:false/workdir D:\\EliteSync-v10 throughout.\n\nA1 one governance command<=12288 rendered chars/output<=8192 bytes/chars. Read own workspace-before.json1 (contains Frozen21/current dirty paths), default git status Substring3/main/HEADcf8bfaa4a03b8c9a682105617b185141904413be/oldmissing0. Frozen21 ordinary ancestors/size;19 non-bin ReadAllBytes1/SHA256 match, two OLD bins identity/size only/prior hash carried. Accepted M103launcher read within Frozen once/strictUTF8, do not double-read. GetDigest function must have unambiguous name, no H alias.\n\nIn this A read exactly seven additional M100 local artifacts once each: task.md,native-receipts.json,runtime-authority.json,workspace-before.json,stdout.bin,stderr.bin,probe-wrapper.json under D:\\EliteSync-v10\\EVIDENCE\\APP-M5-100-DISTRIBUTION-ONLY-API-PROBE-ONCE. New M100 stdout/stderr bins expressly permitted original evidence reads. All text strictUTF8. No other source/home/skill/memory/external discovery/read. No Parser/candidate/script/JVM or candidate execution; only ordinary governance text/byte/hash operations.\n\nVerify original ENTRY/preflight/Invocation/B complete nativefalse, exact limits from original task, completed/errornull and single unique fixed launcher invocation. Original B exit1 at SchemaChecked; verify its owned sizes/hash and full wrapperJSON/stdoutJSON against raw files and Invocation receipt. Explicit actual wrapper keys ExternalGet189/ExternalRead189/ExternalBytes115118021/ProcessStartAttempt1/Startedtrue/Exitedtrue/ExitCode0/Timeoutfalse/KillAttempt0/CleanupCompletetrue/CaptureCompletetrue/StdoutCompletetrue/StderrCompletetrue/StderrBytes0/ProbeSchemaCheckedtrue/ExplicitInterfaceRequest3/CandidateInvocation0/FourteenCaseInvocation0/RuntimeReadyfalse/Failurenull. Stdout exact8keys/types3/versions3.0.24-17.0.18-17.0.18+8/interfaces exactordered names and codeSource literal distribution gradle-core-api-8.14.jar; no API cache jar. Authority strict11 keys/exact bindings as source, no ApiPath. Source19623hashE60B16AEDEED241CBBF0E13DC831D9E24AAC5A46EAB0AA3380A7DBF366626B7B. Do not confuse B regex fields with original wrapper schema or execute B again.\n\nDeliver only new api-probe-evidence.md<=6144 UTF8bytes via prewrite byte hash/CreateNew1, echo complete report with measurement/hash and small facts<=8192. Original facts can be qualified as ORIGINAL_API_PROBE_SCOPE_ONLY; do not accept M100 task, 14case, installer, build or runtimeReady. Original errors/NOT_PROVEN limits preserved. No source changes or external/JVM run. Report provenance fixed governance verification+prewritehash+newBdisk, no invented nativeAdd. First failure stops/unexecutedB closes; retain partial, no repair or supplemental read/rerun/session change.\n\nB1 only A success, separate command<=4096/output<=4096: own workspace-before1/defaultgit/mainHEAD/oldmissing0 and exact new report GetItem1/fullordinaryancestors/ReadAllBytes1/strictUTF8/sizeSHA256 match A. Original inputs reread0, external0/JVM0. Return original A/B IDs/counters/hashes REVIEW_PENDING, stop for independent Sol/high+Work original full evidence LEVEL2; no self-accept.\n\nFrozen21/dirty/rawfixture/M5-50/NOT_READY/settings denial/loader-runtimefalse/real binding-ID-path-hook/four-project transactions/LibraryExtension timing retained. Parent stderr UNKNOWN/OS hard cutoff-isolation NOT_PROVEN/SDK-internal scope NOT_CHECKED/unexercised failure paths NOT_EXERCISED. No Git writes/oldD:\\EliteSync/metadata-properties/neighbor index/home-cache-config search/real data-backup-secrets/production DBAPI-SSH/HTTP/download-install/UAC. Automation PAUSED; UAC current Owner我在 plus specific scope separately.\n\r\nCURRENT.md: **2026-10-01 M5-100 B字段核验失败关闭/M5-104原证资格核定发布**：M100 REJECT/CLOSED B_VERIFIER_FIELD_MISMATCH，原Invocationexit0/PASS_API_SCOPE_ONLY/rawstdout810-stderr0-wrapper1105仅待独立原证资格，不追认整task；189get-read115118021/Start1/三接口仅原receipt事实。作者B错误SchemaChecked实际ProbeSchemaChecked首失败闭无补读重跑。Work首precheck-H别名冲突exit1与独立审稿路径拼接exit1各budget闭保留，未终裁原事实。M104 ISSUED新ARTIFACT-ONLY单A七M100原证+冻结21与新B报告，只读本仓/JVM外部0；沿01a0f74b/local第7turncompleted/errornull/idle。Owner持续委托类似本地小任务有效，独立Solhigh+WorkLEVEL2/旧拒绝预算/dirty21冻结/NOT_READY保护门保持，自动化PAUSED。\r\nAGENTS.md: **2026-10-01 M5-100 B字段核验失败关闭/M5-104原证资格核定发布**：M100 REJECT/CLOSED B_VERIFIER_FIELD_MISMATCH，原Invocationexit0/PASS_API_SCOPE_ONLY/rawstdout810-stderr0-wrapper1105仅待独立原证资格，不追认整task；189get-read115118021/Start1/三接口仅原receipt事实。作者B错误SchemaChecked实际ProbeSchemaChecked首失败闭无补读重跑。Work首precheck-H别名冲突exit1与独立审稿路径拼接exit1各budget闭保留，未终裁原事实。M104 ISSUED新ARTIFACT-ONLY单A七M100原证+冻结21与新B报告，只读本仓/JVM外部0；沿01a0f74b/local第7turncompleted/errornull/idle。Owner持续委托类似本地小任务有效，独立Solhigh+WorkLEVEL2/旧拒绝预算/dirty21冻结/NOT_READY保护门保持，自动化PAUSED。\r\nPRODUCT_DECISIONS.md: **2026-10-01 M5-100 B字段核验失败关闭/M5-104原证资格核定发布**：M100 REJECT/CLOSED B_VERIFIER_FIELD_MISMATCH，原Invocationexit0/PASS_API_SCOPE_ONLY/rawstdout810-stderr0-wrapper1105仅待独立原证资格，不追认整task；189get-read115118021/Start1/三接口仅原receipt事实。作者B错误SchemaChecked实际ProbeSchemaChecked首失败闭无补读重跑。Work首precheck-H别名冲突exit1与独立审稿路径拼接exit1各budget闭保留，未终裁原事实。M104 ISSUED新ARTIFACT-ONLY单A七M100原证+冻结21与新B报告，只读本仓/JVM外部0；沿01a0f74b/local第7turncompleted/errornull/idle。Owner持续委托类似本地小任务有效，独立Solhigh+WorkLEVEL2/旧拒绝预算/dirty21冻结/NOT_READY保护门保持，自动化PAUSED。\r\nTASK_CURRENT.md: **2026-10-01 M5-100 B字段核验失败关闭/M5-104原证资格核定发布**：M100 REJECT/CLOSED B_VERIFIER_FIELD_MISMATCH，原Invocationexit0/PASS_API_SCOPE_ONLY/rawstdout810-stderr0-wrapper1105仅待独立原证资格，不追认整task；189get-read115118021/Start1/三接口仅原receipt事实。作者B错误SchemaChecked实际ProbeSchemaChecked首失败闭无补读重跑。Work首precheck-H别名冲突exit1与独立审稿路径拼接exit1各budget闭保留，未终裁原事实。M104 ISSUED新ARTIFACT-ONLY单A七M100原证+冻结21与新B报告，只读本仓/JVM外部0；沿01a0f74b/local第7turncompleted/errornull/idle。Owner持续委托类似本地小任务有效，独立Solhigh+WorkLEVEL2/旧拒绝预算/dirty21冻结/NOT_READY保护门保持，自动化PAUSED。\r\nREVIEW_GATE.md: **2026-10-01 M5-100 B字段核验失败关闭/M5-104原证资格核定发布**：M100 REJECT/CLOSED B_VERIFIER_FIELD_MISMATCH，原Invocationexit0/PASS_API_SCOPE_ONLY/rawstdout810-stderr0-wrapper1105仅待独立原证资格，不追认整task；189get-read115118021/Start1/三接口仅原receipt事实。作者B错误SchemaChecked实际ProbeSchemaChecked首失败闭无补读重跑。Work首precheck-H别名冲突exit1与独立审稿路径拼接exit1各budget闭保留，未终裁原事实。M104 ISSUED新ARTIFACT-ONLY单A七M100原证+冻结21与新B报告，只读本仓/JVM外部0；沿01a0f74b/local第7turncompleted/errornull/idle。Owner持续委托类似本地小任务有效，独立Solhigh+WorkLEVEL2/旧拒绝预算/dirty21冻结/NOT_READY保护门保持，自动化PAUSED。\r\n",
+            "truncated": false
+          }
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe5ffe152c87d090c9c8760340842e",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe601fdeac87d0a9cd389024bd2935",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe60c82aa087d0bfda77da3a9a6c0f",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe615402dc87d0ae156417746ead93",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe615a357487d0af196170f8f32e50",
+          "text": "M5-104 首失败停止：A治理命令准备超出12288字符上限，未提交执行。\n\n入口已读；A实际执行0、原证读取0、报告写入0，B未执行并关闭。未缩短重试或补读；外部访问、JVM及候选执行均0。\n\n未交付API资格报告，不能据此接受M100原证。停待独立Sol/high与Work LEVEL2裁定；NOT_READY及自动化PAUSED保持。",
+          "phase": "final_answer"
+        }
+      ]
+    }
+  ]
+}

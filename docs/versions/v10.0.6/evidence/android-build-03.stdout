@@ -1,0 +1,17 @@
+Initialized native services in: C:\Users\zcxve\.gradle\native
+Initialized jansi services in: C:\Users\zcxve\.gradle\native
+The client will now receive all logging from the daemon (pid: 21440). The daemon log file: C:\Users\zcxve\.gradle\daemon\8.14\daemon-21440.out.log
+Starting 3rd build in daemon [uptime: 4 mins 21.185 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 2 GiB]
+Using 20 worker leases.
+Now considering [C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\apps\android] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file 'C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\apps\android\settings.gradle.kts'.
+Projects loaded. Root project using build file 'C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\apps\android\build.gradle.kts'.
+Included projects: [root project 'EliteSyncAndroid', project ':app']
+
+> Configure project :
+Evaluating root project 'EliteSyncAndroid' using build file 'C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\apps\android\build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '8.11.1', artifact: 'com.android.tools.build:gradle:8.11.1', apply: false]
+Watched directory hierarchies: []

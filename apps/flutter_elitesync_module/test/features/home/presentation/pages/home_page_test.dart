@@ -1,20 +1,83 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/providers/calm_home_projection_provider.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/state/calm_home_projection.dart';
+import 'package:flutter_elitesync_module/features/match/domain/entities/match_round_projection.dart';
+import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
+import 'package:flutter_elitesync_module/main_demo.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
+import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 
-Widget _wrap(GoRouter router, {ThemeMode themeMode = ThemeMode.light}) {
-  return MaterialApp.router(
-    theme: AppTheme.light,
-    darkTheme: AppTheme.dark,
-    themeMode: themeMode,
-    routerConfig: router,
+Widget _wrap(
+  GoRouter router, {
+  ThemeMode themeMode = ThemeMode.light,
+  CalmHomeProjection? projection,
+}) {
+  return ProviderScope(
+    overrides: [
+      calmHomeProjectionProvider.overrideWithValue(
+        projection ?? CalmHomeProjection.current,
+      ),
+    ],
+    child: MaterialApp.router(
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
+      routerConfig: router,
+    ),
   );
 }
+
+Widget _wrapMatchFuture(
+  GoRouter router,
+  Future<MatchRoundProjection> Function() loadMatch,
+) {
+  const readyNavigation = NavigationSnapshot(
+    authStatus: AuthStatus.authenticated,
+    verificationStatus: VerificationStatus.unknown,
+    questionnaireStatus: QuestionnaireStatus.unknown,
+    matchStatus: MatchStatus.unknown,
+    canChat: false,
+    readinessState: ReadinessGuardState.ready,
+    isBootstrapLoading: false,
+  );
+  return ProviderScope(
+    overrides: [
+      appEnvProvider.overrideWithValue(createDemoAppEnv()),
+      navigationGuardProvider.overrideWithValue(readyNavigation),
+      matchRoundProjectionProvider.overrideWith((ref) => loadMatch()),
+    ],
+    child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
+  );
+}
+
+MatchRoundProjection _syntheticMatch(MatchRoundBusinessState state) =>
+    MatchRoundProjection(
+      state: state,
+      serverTime: DateTime.utc(2026, 9, 21),
+      receivedAt: DateTime.utc(2026, 9, 21),
+      contractVersion: 'synthetic-home-widget-v1',
+      retryEligible: false,
+      userAction: 'view',
+      projectionVersion: 1,
+      updatedAt: DateTime.utc(2026, 9, 21),
+    );
+
+Widget _wrapSyntheticMatch(GoRouter router, MatchRoundBusinessState state) =>
+    _wrapMatchFuture(router, () async => _syntheticMatch(state));
 
 double _contrastRatio(Color first, Color second) {
   final firstLuminance = first.computeLuminance();
@@ -167,6 +230,132 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('READINESS ROUTE'), findsOneWidget);
+  });
+
+  testWidgets('Home Match unknown fallback opens Progress', (tester) async {
+    tester.view.physicalSize = const Size(1080, 3000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final router = _router();
+    addTearDown(router.dispose);
+
+    const syntheticUnknownMatch = CalmHomeProjection(
+      summaries: [
+        HomeStateSummary(
+          domain: HomeProjectedDomain.readiness,
+          authority: HomeProjectionAuthority.syntheticDevelopment,
+          stateCode: 'READY',
+        ),
+        HomeStateSummary(
+          domain: HomeProjectedDomain.match,
+          authority: HomeProjectionAuthority.unknown,
+        ),
+      ],
+      readinessAuthority: HomeProjectionAuthority.syntheticDevelopment,
+    );
+    expect(syntheticUnknownMatch.authoritativeNextDecision, isNull);
+
+    await tester.pumpWidget(_wrap(router, projection: syntheticUnknownMatch));
+    await tester.pumpAndSettle();
+
+    expect(find.text('UNKNOWN'), findsOneWidget);
+    expect(find.byType(FilledButton), findsOneWidget);
+    expect(find.text('查看进展'), findsOneWidget);
+    expect(find.textContaining('当前没有可用的匹配提案'), findsNothing);
+    await tester.tap(find.byKey(const ValueKey('home-primary-next-decision')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('PROGRESS ROUTE'), findsOneWidget);
+    expect(find.text('READINESS ROUTE'), findsNothing);
+    expect(find.text('PRIVACY ROUTE'), findsNothing);
+  });
+
+  for (final state in [
+    MatchRoundBusinessState.failed,
+    MatchRoundBusinessState.closed,
+  ]) {
+    testWidgets('synthetic Match $state reaches Home unknown fallback', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(1080, 3000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final router = _router();
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(_wrapSyntheticMatch(router, state));
+      await tester.pumpAndSettle();
+
+      expect(find.text('UNKNOWN'), findsOneWidget);
+      expect(find.byType(FilledButton), findsOneWidget);
+      expect(find.text('查看进展'), findsOneWidget);
+      expect(find.textContaining('当前没有可用的匹配提案'), findsNothing);
+      await tester.tap(
+        find.byKey(const ValueKey('home-primary-next-decision')),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('PROGRESS ROUTE'), findsOneWidget);
+      expect(find.text('READINESS ROUTE'), findsNothing);
+      expect(find.text('PRIVACY ROUTE'), findsNothing);
+    });
+  }
+
+  testWidgets('loading synthetic Match reaches Home unknown fallback', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1080, 3000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final router = _router();
+    addTearDown(router.dispose);
+    final pendingMatch = Completer<MatchRoundProjection>();
+
+    await tester.pumpWidget(
+      _wrapMatchFuture(router, () => pendingMatch.future),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('UNKNOWN'), findsOneWidget);
+    expect(find.byType(FilledButton), findsOneWidget);
+    expect(find.text('查看进展'), findsOneWidget);
+    expect(find.textContaining('当前没有可用的匹配提案'), findsNothing);
+    await tester.tap(find.byKey(const ValueKey('home-primary-next-decision')));
+    await tester.pumpAndSettle();
+    expect(find.text('PROGRESS ROUTE'), findsOneWidget);
+
+    pendingMatch.complete(_syntheticMatch(MatchRoundBusinessState.noRound));
+    await pendingMatch.future;
+    await tester.pump();
+  });
+
+  testWidgets('errored synthetic Match reaches Home unknown fallback', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1080, 3000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final router = _router();
+    addTearDown(router.dispose);
+    final failedMatch = Completer<MatchRoundProjection>();
+    final consumedFailure = expectLater(failedMatch.future, throwsStateError);
+
+    await tester.pumpWidget(_wrapMatchFuture(router, () => failedMatch.future));
+    failedMatch.completeError(StateError('synthetic Match read failure'));
+    await consumedFailure;
+    await tester.pumpAndSettle();
+
+    expect(find.text('UNKNOWN'), findsOneWidget);
+    expect(find.byType(FilledButton), findsOneWidget);
+    expect(find.text('查看进展'), findsOneWidget);
+    expect(find.textContaining('当前没有可用的匹配提案'), findsNothing);
+    await tester.tap(find.byKey(const ValueKey('home-primary-next-decision')));
+    await tester.pumpAndSettle();
+    expect(find.text('PROGRESS ROUTE'), findsOneWidget);
   });
 
   testWidgets('Home keeps optional privacy support secondary', (tester) async {

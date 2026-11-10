@@ -1,0 +1,32 @@
+{
+  "size": 403852021,
+  "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+  "abis": [
+    "arm64-v8a",
+    "x86_64"
+  ],
+  "source_commit": "34a0b0ed4209895cebd4ef040519ac13a8054b6c",
+  "source_tree": "af6ee10b91d542331f682e8a6e140f12ce96dd7b",
+  "apps_tree": "1ddc864a8f7f8f7e024d6102a36057252bc77bab",
+  "services_tree": "fe0d8f58575ceb98eca60fd47cdeb3804c7874b2",
+  "package": "com.elitesync.v10x.relationshipdev",
+  "version_name": "10.1.1-dev",
+  "version_code": 1010101,
+  "certificate_sha256": "9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09",
+  "installed_readback": [
+    {
+      "side": "phone",
+      "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+      "size": 403852021,
+      "readback": "pm path -> pull -> SHA256"
+    },
+    {
+      "side": "avd",
+      "sha256": "5ed82741074904b8f3d91817d1d2aab5117579bf918c12036f3e79f049e6ebd9",
+      "size": 403852021,
+      "readback": "pm path -> pull -> SHA256"
+    }
+  ],
+  "raw_apk": "LOCAL_ONLY",
+  "acceptance": "NOT_YET_ACCEPTED"
+}

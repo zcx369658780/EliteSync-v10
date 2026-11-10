@@ -1,0 +1,19 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDEDD                                                               5 / 5 (100%)
+
+Time: 00:01.131, Memory: 50.00 MB
+
+There was 1 error:
+
+1) Tests\Feature\V1007MatchProjectionTest::test_local_old_explanation_does_not_grant_unrestored_algorithm_authority
+ErrorException: Undefined array key "weight"
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php:258
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007MatchProjectionTest.php:81
+
+ERRORS!
+Tests: 5, Assertions: 28, Errors: 1, Deprecations: 2.

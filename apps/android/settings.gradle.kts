@@ -13,16 +13,6 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        val localWindowsMaven = java.io.File("D:/EliteSync/gradle-local-m2")
-        val osName = System.getProperty("os.name").lowercase()
-        if (osName.contains("windows") && localWindowsMaven.exists()) {
-            maven(url = localWindowsMaven.toURI()) {
-                metadataSources {
-                    mavenPom()
-                    artifact()
-                }
-            }
-        }
         maven(url = "https://maven.aliyun.com/repository/gradle-plugin")
         maven(url = "https://maven.aliyun.com/repository/google")
         maven(url = "https://maven.aliyun.com/repository/public")
@@ -51,16 +41,6 @@ dependencyResolutionManagement {
         // Required for com.github.* dependencies such as audioswitch.
         maven(url = "https://jitpack.io")
 
-        val localWindowsMaven = java.io.File("D:/EliteSync/gradle-local-m2")
-        val osName = System.getProperty("os.name").lowercase()
-        if (osName.contains("windows") && localWindowsMaven.exists()) {
-            maven(url = localWindowsMaven.toURI()) {
-                metadataSources {
-                    mavenPom()
-                    artifact()
-                }
-            }
-        }
         maven(url = "https://maven.aliyun.com/repository/google") {
             content {
                 excludeGroup("io.flutter")
@@ -80,3 +60,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "EliteSyncAndroid"
 include(":app")
+
+// Explicit opt-in; the default keeps the verified AAR host path.
+if (providers.gradleProperty("flutterSourceDebug").orNull == "true") {
+    apply(from = file("flutter-source-debug.gradle"))
+}

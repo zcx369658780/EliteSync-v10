@@ -12,6 +12,7 @@ use App\Models\UserBlock;
 use App\Services\ConversationCapabilityService;
 use App\Services\ConversationDomainService;
 use App\Services\ChatWebsocketAuthorizationService;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
@@ -21,6 +22,14 @@ use Tests\TestCase;
 class ConversationCapabilityFoundationTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Exercise legacy internals only; these assertions do not grant v10 live access.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+    }
 
     public function test_conversation_persists_append_only_match_link_history(): void
     {
@@ -87,24 +96,117 @@ class ConversationCapabilityFoundationTest extends TestCase
         $this->assertDatabaseCount('conversations', 0);
     }
 
-    public function test_block_denies_mutation_but_preserves_historical_read(): void
+    public function test_block_in_either_direction_denies_historical_read_and_mutation(): void
     {
         $a = User::factory()->create(['phone' => 'cap-a']); $b = User::factory()->create(['phone' => 'cap-b']);
         DatingMatch::query()->create(['week_tag' => 'legacy', 'user_a' => $a->id, 'user_b' => $b->id, 'drop_released' => true]);
         $conversation = app(ConversationDomainService::class)->ensureDirectConversation($a->id, $b->id);
-        UserBlock::query()->create(['blocker_id' => $a->id, 'blocked_user_id' => $b->id]);
+        $service = app(ConversationCapabilityService::class);
+        $this->assertTrue($service->canRead($a->id, $b->id));
+        $this->assertTrue($service->canSend($a->id, $b->id));
+        Sanctum::actingAs($a);
+        $this->getJson('/api/v1/conversations/'.$conversation->id)->assertOk();
+
+        // Accepted v10.1.1 plan section 6 excludes Block from historical read rights.
+        foreach ([[$a, $b], [$b, $a]] as [$blocker, $blocked]) {
+            $block = UserBlock::query()->create(['blocker_id' => $blocker->id, 'blocked_user_id' => $blocked->id]);
+            foreach ([[$a, $b], [$b, $a]] as [$actor, $peer]) {
+                $capability = $service->evaluate($actor->id, $peer->id);
+                $this->assertFalse($capability['can_read']);
+                $this->assertFalse($capability['can_create']);
+                $this->assertFalse($capability['can_send']);
+                $this->assertFalse($capability['can_ws']);
+                Sanctum::actingAs($actor);
+                $this->getJson('/api/v1/conversations/'.$conversation->id)
+                    ->assertNotFound()->assertExactJson(['message' => 'conversation not found']);
+                $this->getJson('/api/v1/conversation-peers/'.$peer->id)
+                    ->assertNotFound()->assertExactJson(['message' => 'conversation not found']);
+                $this->getJson('/api/v1/messages?peer_id='.$peer->id)
+                    ->assertNotFound()->assertExactJson(['message' => 'chat unavailable']);
+                $this->postJson('/api/v1/messages', ['receiver_id' => $peer->id, 'content' => 'not persisted'])
+                    ->assertNotFound();
+            }
+            $block->delete(); // Reset only this in-memory fixture for the opposite direction.
+        }
+        $this->assertDatabaseCount('chat_messages', 0);
+        $this->assertDatabaseHas('conversations', ['id' => $conversation->id]);
+    }
+
+    public function test_legacy_stored_history_without_a_match_remains_read_only_when_not_blocked(): void
+    {
+        $a = User::factory()->create(['phone' => 'history-a']);
+        $b = User::factory()->create(['phone' => 'history-b']);
+        $conversation = app(ConversationDomainService::class)->ensureDirectConversation($a->id, $b->id);
+        $message = ChatMessage::query()->create([
+            'room_id' => $conversation->room_key, 'sender_id' => $a->id, 'receiver_id' => $b->id,
+            'content' => 'fictional legacy history', 'is_read' => false,
+        ]);
+        $ciphertext = $message->getRawOriginal('content');
         $capability = app(ConversationCapabilityService::class)->evaluate($a->id, $b->id);
         $this->assertTrue($capability['can_read']);
+        $this->assertFalse($capability['can_create']);
         $this->assertFalse($capability['can_send']);
         $this->assertFalse($capability['can_ws']);
         Sanctum::actingAs($a);
         $this->getJson('/api/v1/conversations/'.$conversation->id)
-            ->assertOk()
-            ->assertJsonPath('conversation.entry_kind', 'conversation')
-            ->assertJsonPath('conversation.conversation_id', $conversation->id)
-            ->assertJsonPath('conversation.peer_user_id', $b->id);
-        $this->postJson('/api/v1/messages', ['receiver_id' => $b->id, 'content' => 'not persisted'])->assertNotFound();
-        $this->assertDatabaseMissing('chat_messages', ['sender_id' => $a->id, 'receiver_id' => $b->id]);
+            ->assertOk()->assertJsonPath('conversation.conversation_id', $conversation->id);
+        $this->getJson('/api/v1/messages?peer_id='.$b->id)
+            ->assertOk()->assertJsonPath('items.0.id', $message->id)
+            ->assertJsonPath('items.0.content', 'fictional legacy history');
+        $this->postJson('/api/v1/messages', ['receiver_id' => $b->id, 'content' => 'not persisted'])
+            ->assertNotFound();
+        $this->assertDatabaseCount('chat_messages', 1);
+        $this->assertSame($ciphertext, $message->fresh()->getRawOriginal('content'));
+    }
+
+    public function test_disabled_account_on_either_side_cannot_grant_historical_read(): void
+    {
+        $a = User::factory()->create(['phone' => 'disabled-history-a']);
+        $b = User::factory()->create(['phone' => 'disabled-history-b']);
+        app(ConversationDomainService::class)->ensureDirectConversation($a->id, $b->id);
+        $service = app(ConversationCapabilityService::class);
+        $this->assertTrue($service->canRead($a->id, $b->id));
+        foreach ([$a, $b] as $disabled) {
+            $disabled->forceFill(['disabled' => true])->save();
+            $this->assertFalse($service->canRead($a->id, $b->id));
+            $this->assertFalse($service->canRead($b->id, $a->id));
+            $disabled->forceFill(['disabled' => false])->save();
+        }
+    }
+
+    public function test_stored_summary_never_uses_viewer_as_missing_or_departed_peer(): void
+    {
+        $viewer = User::factory()->create(['phone' => 'summary-viewer']);
+        $peer = User::factory()->create(['phone' => 'summary-peer']);
+        $service = app(ConversationDomainService::class);
+        $conversation = $service->ensureDirectConversation($viewer->id, $peer->id);
+
+        $active = $service->summarizeConversation($conversation, $viewer->id);
+        $this->assertSame('stored_conversation', $active['entry_kind']);
+        $this->assertSame($conversation->id, $active['conversation_id']);
+        $this->assertSame($peer->id, $active['peer_user_id']);
+        $this->assertSame((string) $peer->id, $active['id']);
+
+        ConversationMember::query()
+            ->where('conversation_id', $conversation->id)
+            ->where('user_id', $peer->id)
+            ->delete();
+        $onlyViewer = $service->summarizeConversation($conversation->fresh(['members.user', 'creator']), $viewer->id);
+        $this->assertNull($onlyViewer['peer_user_id']);
+        $this->assertSame($conversation->room_key, $onlyViewer['id']);
+        $this->assertNotSame((string) $viewer->id, $onlyViewer['id']);
+
+        ConversationMember::query()->create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $peer->id,
+            'role' => 'member',
+            'joined_at' => now()->subMinute(),
+            'left_at' => now(),
+        ]);
+        $departed = $service->summarizeConversation($conversation->fresh(['members.user', 'creator']), $viewer->id);
+        $this->assertNull($departed['peer_user_id']);
+        $this->assertSame($conversation->room_key, $departed['id']);
+        $this->assertNotSame((string) $viewer->id, $departed['id']);
     }
 
     public function test_list_separates_stored_and_eligible_identity_without_creating_rows(): void
@@ -125,7 +227,7 @@ class ConversationCapabilityFoundationTest extends TestCase
         $stored = $items->firstWhere('peer_user_id', $storedPeer->id);
         $eligible = $items->firstWhere('peer_user_id', $eligiblePeer->id);
 
-        $this->assertSame('conversation', $stored['entry_kind']);
+        $this->assertSame('stored_conversation', $stored['entry_kind']);
         $this->assertSame($conversation->id, $stored['conversation_id']);
         $this->assertSame((string) $storedPeer->id, $stored['id']);
         $this->assertSame('eligible_match', $eligible['entry_kind']);
@@ -158,7 +260,7 @@ class ConversationCapabilityFoundationTest extends TestCase
         }
         $this->getJson('/api/v1/conversation-peers/'.$peer->id)
             ->assertOk()
-            ->assertJsonPath('conversation.entry_kind', 'conversation')
+            ->assertJsonPath('conversation.entry_kind', 'stored_conversation')
             ->assertJsonPath('conversation.conversation_id', $conversation->id);
         $this->getJson('/api/v1/conversation-peers/'.$eligiblePeer->id)
             ->assertOk()

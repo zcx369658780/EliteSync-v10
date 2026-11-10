@@ -1,0 +1,50 @@
+[
+  {
+    "File": "Invoke-RawGStringDiagnostic.ps1",
+    "After": "DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002",
+    "Count": 3,
+    "Before": "DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002"
+  },
+  {
+    "File": "Invoke-RawGStringDiagnostic.ps1",
+    "After": "$map.psbase.Count",
+    "Count": 1,
+    "Before": "$map.Count"
+  },
+  {
+    "File": "Invoke-RawGStringDiagnostic.ps1",
+    "After": "$snap['Count']",
+    "Count": 1,
+    "Before": "$snap.Count"
+  },
+  {
+    "File": "A.ps1",
+    "After": "DOT-RAW-GSTRING-COUNT-CONTRACT-SOURCE-20261002",
+    "Count": 2,
+    "Before": "DOT-RAW-GSTRING-NAMED-PREFLIGHT-SOURCE-20261002"
+  },
+  {
+    "File": "A.ps1",
+    "After": "$map.psbase.Count",
+    "Count": 1,
+    "Before": "$map.Count"
+  },
+  {
+    "File": "A.ps1",
+    "After": "$snap['Count']",
+    "Count": 3,
+    "Before": "$snap.Count"
+  },
+  {
+    "File": "A.ps1",
+    "After": "Bytes=26092;",
+    "Count": 1,
+    "Before": "Bytes=26085;"
+  },
+  {
+    "File": "A.ps1",
+    "After": "B3BDE4B427412C843711373AB95784EEB2B6C25BAC764C800C7923CC4D11CD88",
+    "Count": 1,
+    "Before": "C0BD3944E42A85A4DAB29D2BC4EC509803018ECDF5932895DE3BEAA3BCA697ED"
+  }
+]

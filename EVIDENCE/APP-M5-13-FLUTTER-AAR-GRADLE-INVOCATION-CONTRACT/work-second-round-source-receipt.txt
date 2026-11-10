@@ -1,0 +1,2346 @@
+D:\flutter\packages\flutter_tools\lib\src\build_info.dart SHA256 AF123D66AB4325F8D4F7819853653AC0808D09E33287B1DEA41204DAA54D8BE8
+9: 
+10: import 'package:package_config/package_config_types.dart';
+11: 
+12: import 'artifacts.dart';
+13: import 'base/config.dart';
+14: import 'base/file_system.dart';
+15: import 'base/logger.dart';
+16: import 'base/os.dart';
+17: import 'base/utils.dart';
+18: import 'convert.dart';
+19: import 'darwin/darwin.dart';
+20: import 'globals.dart' as globals;
+317:     // the Environment map.
+318:     return <String, String>{
+319:       kBuildMode: mode.cliName,
+320:       if (dartDefines.isNotEmpty) kDartDefines: encodeDartDefines(dartDefines),
+321:       kDartObfuscation: dartObfuscation.toString(),
+322:       kFrontendServerStarterPath: ?frontendServerStarterPath,
+323:       if (extraFrontEndOptions.isNotEmpty) kExtraFrontEndOptions: extraFrontEndOptions.join(','),
+324:       if (extraGenSnapshotOptions.isNotEmpty)
+325:         kExtraGenSnapshotOptions: extraGenSnapshotOptions.join(','),
+326:       kSplitDebugInfo: ?splitDebugInfoPath,
+327:       kTrackWidgetCreation: trackWidgetCreation.toString(),
+328:       kIconTreeShakerFlag: treeShakeIcons.toString(),
+341:   /// Fields that are `null` are excluded from this configuration.
+342:   Map<String, String> toEnvironmentConfig() {
+343:     return <String, String>{
+344:       if (dartDefines.isNotEmpty) 'DART_DEFINES': encodeDartDefines(dartDefines),
+345:       'DART_OBFUSCATION': dartObfuscation.toString(),
+346:       if (frontendServerStarterPath != null)
+347:         'FRONTEND_SERVER_STARTER_PATH': frontendServerStarterPath!,
+348:       if (extraFrontEndOptions.isNotEmpty)
+349:         'EXTRA_FRONT_END_OPTIONS': extraFrontEndOptions.join(','),
+350:       if (extraGenSnapshotOptions.isNotEmpty)
+351:         'EXTRA_GEN_SNAPSHOT_OPTIONS': extraGenSnapshotOptions.join(','),
+352:       'SPLIT_DEBUG_INFO': ?splitDebugInfoPath,
+362: 
+363:   /// Convert this config to a series of project level arguments to be passed
+364:   /// on the command line to gradle.
+365:   List<String> toGradleConfig() {
+366:     // PACKAGE_CONFIG not currently supported.
+367:     return <String>[
+368:       if (dartDefines.isNotEmpty) '-Pdart-defines=${encodeDartDefines(dartDefines)}',
+369:       '-Pdart-obfuscation=$dartObfuscation',
+370:       if (frontendServerStarterPath != null)
+371:         '-Pfrontend-server-starter-path=$frontendServerStarterPath',
+372:       if (extraFrontEndOptions.isNotEmpty)
+373:         '-Pextra-front-end-options=${extraFrontEndOptions.join(',')}',
+365:   List<String> toGradleConfig() {
+366:     // PACKAGE_CONFIG not currently supported.
+367:     return <String>[
+368:       if (dartDefines.isNotEmpty) '-Pdart-defines=${encodeDartDefines(dartDefines)}',
+369:       '-Pdart-obfuscation=$dartObfuscation',
+370:       if (frontendServerStarterPath != null)
+371:         '-Pfrontend-server-starter-path=$frontendServerStarterPath',
+372:       if (extraFrontEndOptions.isNotEmpty)
+373:         '-Pextra-front-end-options=${extraFrontEndOptions.join(',')}',
+374:       if (extraGenSnapshotOptions.isNotEmpty)
+375:         '-Pextra-gen-snapshot-options=${extraGenSnapshotOptions.join(',')}',
+376:       if (splitDebugInfoPath != null) '-Psplit-debug-info=$splitDebugInfoPath',
+403:   /// Whether to split the shared library per ABI.
+404:   ///
+405:   /// When this is false, multiple ABIs will be contained within one primary
+406:   /// build artifact. When this is true, multiple build artifacts (one per ABI)
+407:   /// will be produced.
+408:   final bool splitPerAbi;
+409: 
+410:   /// The target platforms for the build.
+411:   final Iterable<AndroidArch> targetArchs;
+412: }
+413: 
+414: /// A summary of the compilation strategy used for Dart.
+721: /// The default set of iOS device architectures to build for.
+722: List<DarwinArch> defaultIOSArchsForEnvironment(
+723:   EnvironmentType environmentType,
+724:   Artifacts artifacts,
+725: ) {
+726:   // Handle single-arch local engines.
+727:   final LocalEngineInfo? localEngineInfo = artifacts.localEngineInfo;
+728:   if (localEngineInfo != null) {
+729:     final String localEngineName = localEngineInfo.localTargetName;
+730:     if (localEngineName.contains('_arm64')) {
+731:       return <DarwinArch>[DarwinArch.arm64];
+732:     }
+724:   Artifacts artifacts,
+725: ) {
+726:   // Handle single-arch local engines.
+727:   final LocalEngineInfo? localEngineInfo = artifacts.localEngineInfo;
+728:   if (localEngineInfo != null) {
+729:     final String localEngineName = localEngineInfo.localTargetName;
+730:     if (localEngineName.contains('_arm64')) {
+731:       return <DarwinArch>[DarwinArch.arm64];
+732:     }
+733:     if (localEngineName.contains('_sim')) {
+734:       return <DarwinArch>[DarwinArch.x86_64];
+735:     }
+740: }
+741: 
+742: /// The default set of macOS device architectures to build for.
+743: List<DarwinArch> defaultMacOSArchsForEnvironment(Artifacts artifacts) {
+744:   // Handle single-arch local engines.
+745:   final LocalEngineInfo? localEngineInfo = artifacts.localEngineInfo;
+746:   if (localEngineInfo != null) {
+747:     if (localEngineInfo.localTargetName.contains('_arm64')) {
+748:       return <DarwinArch>[DarwinArch.arm64];
+749:     }
+750:     return <DarwinArch>[DarwinArch.x86_64];
+751:   }
+742: /// The default set of macOS device architectures to build for.
+743: List<DarwinArch> defaultMacOSArchsForEnvironment(Artifacts artifacts) {
+744:   // Handle single-arch local engines.
+745:   final LocalEngineInfo? localEngineInfo = artifacts.localEngineInfo;
+746:   if (localEngineInfo != null) {
+747:     if (localEngineInfo.localTargetName.contains('_arm64')) {
+748:       return <DarwinArch>[DarwinArch.arm64];
+749:     }
+750:     return <DarwinArch>[DarwinArch.x86_64];
+751:   }
+752:   return <DarwinArch>[DarwinArch.x86_64, DarwinArch.arm64];
+753: }
+1092: ///
+1093: /// If the presence of the `/` character ends up being an issue, this can
+1094: /// be changed to use base32 instead.
+1095: String encodeDartDefines(List<String> defines) {
+1096:   return defines.map(_defineEncoder.convert).join(',');
+1097: }
+1098: 
+1099: List<String> decodeCommaSeparated(Map<String, String> environmentDefines, String key) {
+1100:   if (!environmentDefines.containsKey(key) || environmentDefines[key]!.isEmpty) {
+1101:     return <String>[];
+1102:   }
+1103:   return environmentDefines[key]!.split(',').cast<String>().toList();
+D:\flutter\packages\flutter_tools\lib\src\cache.dart SHA256 EB6D9F130287F48DF8C176E346FFA4E7AD00E2686464409277900044E19332FC
+43:     'flutter_tools.dart'; // in //flutter/packages/flutter_tools/bin/
+44: const kFlutterEnginePackageName = 'sky_engine';
+45: 
+46: /// A tag for a set of development artifacts that need to be cached.
+47: class DevelopmentArtifact {
+48:   const DevelopmentArtifact._(this.name, {this.feature});
+49: 
+50:   /// The name of the artifact.
+51:   ///
+52:   /// This should match the flag name in precache.dart.
+53:   final String name;
+54: 
+55:   /// A feature to control the visibility of this artifact.
+56:   final Feature? feature;
+57: 
+58:   /// Artifacts required for Android development.
+59:   static const androidGenSnapshot = DevelopmentArtifact._(
+60:     'android_gen_snapshot',
+61:     feature: flutterAndroidFeature,
+62:   );
+63:   static const androidMaven = DevelopmentArtifact._(
+64:     'android_maven',
+65:     feature: flutterAndroidFeature,
+66:   );
+65:     feature: flutterAndroidFeature,
+66:   );
+67: 
+68:   // Artifacts used for internal builds.
+69:   static const androidInternalBuild = DevelopmentArtifact._(
+70:     'android_internal_build',
+71:     feature: flutterAndroidFeature,
+72:   );
+73: 
+74:   /// Artifacts required for iOS development.
+75:   static const iOS = DevelopmentArtifact._('ios', feature: flutterIOSFeature);
+76: 
+71:     feature: flutterAndroidFeature,
+72:   );
+73: 
+74:   /// Artifacts required for iOS development.
+75:   static const iOS = DevelopmentArtifact._('ios', feature: flutterIOSFeature);
+76: 
+77:   /// Artifacts required for web development.
+78:   static const web = DevelopmentArtifact._('web', feature: flutterWebFeature);
+79: 
+80:   /// Artifacts required for desktop macOS.
+81:   static const macOS = DevelopmentArtifact._('macos', feature: flutterMacOSDesktopFeature);
+82: 
+74:   /// Artifacts required for iOS development.
+75:   static const iOS = DevelopmentArtifact._('ios', feature: flutterIOSFeature);
+76: 
+77:   /// Artifacts required for web development.
+78:   static const web = DevelopmentArtifact._('web', feature: flutterWebFeature);
+79: 
+80:   /// Artifacts required for desktop macOS.
+81:   static const macOS = DevelopmentArtifact._('macos', feature: flutterMacOSDesktopFeature);
+82: 
+83:   /// Artifacts required for desktop Windows.
+84:   static const windows = DevelopmentArtifact._('windows', feature: flutterWindowsDesktopFeature);
+85: 
+77:   /// Artifacts required for web development.
+78:   static const web = DevelopmentArtifact._('web', feature: flutterWebFeature);
+79: 
+80:   /// Artifacts required for desktop macOS.
+81:   static const macOS = DevelopmentArtifact._('macos', feature: flutterMacOSDesktopFeature);
+82: 
+83:   /// Artifacts required for desktop Windows.
+84:   static const windows = DevelopmentArtifact._('windows', feature: flutterWindowsDesktopFeature);
+85: 
+86:   /// Artifacts required for desktop Linux.
+87:   static const linux = DevelopmentArtifact._('linux', feature: flutterLinuxDesktopFeature);
+88: 
+80:   /// Artifacts required for desktop macOS.
+81:   static const macOS = DevelopmentArtifact._('macos', feature: flutterMacOSDesktopFeature);
+82: 
+83:   /// Artifacts required for desktop Windows.
+84:   static const windows = DevelopmentArtifact._('windows', feature: flutterWindowsDesktopFeature);
+85: 
+86:   /// Artifacts required for desktop Linux.
+87:   static const linux = DevelopmentArtifact._('linux', feature: flutterLinuxDesktopFeature);
+88: 
+89:   /// Artifacts required for Fuchsia.
+90:   static const fuchsia = DevelopmentArtifact._('fuchsia', feature: flutterFuchsiaFeature);
+91: 
+83:   /// Artifacts required for desktop Windows.
+84:   static const windows = DevelopmentArtifact._('windows', feature: flutterWindowsDesktopFeature);
+85: 
+86:   /// Artifacts required for desktop Linux.
+87:   static const linux = DevelopmentArtifact._('linux', feature: flutterLinuxDesktopFeature);
+88: 
+89:   /// Artifacts required for Fuchsia.
+90:   static const fuchsia = DevelopmentArtifact._('fuchsia', feature: flutterFuchsiaFeature);
+91: 
+92:   /// Artifacts required for the Flutter Runner.
+93:   static const flutterRunner = DevelopmentArtifact._(
+94:     'flutter_runner',
+86:   /// Artifacts required for desktop Linux.
+87:   static const linux = DevelopmentArtifact._('linux', feature: flutterLinuxDesktopFeature);
+88: 
+89:   /// Artifacts required for Fuchsia.
+90:   static const fuchsia = DevelopmentArtifact._('fuchsia', feature: flutterFuchsiaFeature);
+91: 
+92:   /// Artifacts required for the Flutter Runner.
+93:   static const flutterRunner = DevelopmentArtifact._(
+94:     'flutter_runner',
+95:     feature: flutterFuchsiaFeature,
+96:   );
+97: 
+89:   /// Artifacts required for Fuchsia.
+90:   static const fuchsia = DevelopmentArtifact._('fuchsia', feature: flutterFuchsiaFeature);
+91: 
+92:   /// Artifacts required for the Flutter Runner.
+93:   static const flutterRunner = DevelopmentArtifact._(
+94:     'flutter_runner',
+95:     feature: flutterFuchsiaFeature,
+96:   );
+97: 
+98:   /// Artifacts required for any development platform.
+99:   ///
+100:   /// This does not need to be explicitly returned from requiredArtifacts as
+95:     feature: flutterFuchsiaFeature,
+96:   );
+97: 
+98:   /// Artifacts required for any development platform.
+99:   ///
+100:   /// This does not need to be explicitly returned from requiredArtifacts as
+101:   /// it will always be downloaded.
+102:   static const universal = DevelopmentArtifact._('universal');
+103: 
+104:   /// Artifacts which contain build information for the flutter tool.
+105:   static const informative = DevelopmentArtifact._('informative');
+106: 
+97: 
+98:   /// Artifacts required for any development platform.
+99:   ///
+100:   /// This does not need to be explicitly returned from requiredArtifacts as
+101:   /// it will always be downloaded.
+102:   static const universal = DevelopmentArtifact._('universal');
+103: 
+104:   /// Artifacts which contain build information for the flutter tool.
+105:   static const informative = DevelopmentArtifact._('informative');
+106: 
+107:   /// The values of DevelopmentArtifacts.
+108:   static final values = <DevelopmentArtifact>[
+98:   /// Artifacts required for any development platform.
+99:   ///
+100:   /// This does not need to be explicitly returned from requiredArtifacts as
+101:   /// it will always be downloaded.
+102:   static const universal = DevelopmentArtifact._('universal');
+103: 
+104:   /// Artifacts which contain build information for the flutter tool.
+105:   static const informative = DevelopmentArtifact._('informative');
+106: 
+107:   /// The values of DevelopmentArtifacts.
+108:   static final values = <DevelopmentArtifact>[
+109:     androidGenSnapshot,
+101:   /// it will always be downloaded.
+102:   static const universal = DevelopmentArtifact._('universal');
+103: 
+104:   /// Artifacts which contain build information for the flutter tool.
+105:   static const informative = DevelopmentArtifact._('informative');
+106: 
+107:   /// The values of DevelopmentArtifacts.
+108:   static final values = <DevelopmentArtifact>[
+109:     androidGenSnapshot,
+110:     androidMaven,
+111:     androidInternalBuild,
+112:     iOS,
+104:   /// Artifacts which contain build information for the flutter tool.
+105:   static const informative = DevelopmentArtifact._('informative');
+106: 
+107:   /// The values of DevelopmentArtifacts.
+108:   static final values = <DevelopmentArtifact>[
+109:     androidGenSnapshot,
+110:     androidMaven,
+111:     androidInternalBuild,
+112:     iOS,
+113:     web,
+114:     macOS,
+115:     windows,
+126: 
+127: /// A wrapper around the `bin/cache/` directory.
+128: ///
+129: /// This does not provide any artifacts by default. See [FlutterCache] for the default
+130: /// artifact set.
+131: ///
+132: /// ## Artifact mirrors
+133: ///
+134: /// Some environments cannot reach the Google Cloud Storage buckets and CIPD due
+135: /// to regional or corporate policies.
+136: ///
+137: /// To enable Flutter users in these environments, the Flutter tool supports
+140: /// (`FLUTTER_STORAGE_BASE_URL`) environment variable that points to the mirror.
+141: /// Flutter tool reads this variable and uses it instead of the default URLs.
+142: ///
+143: /// For more details on specific URLs used to download artifacts, see
+144: /// [storageBaseUrl] and [cipdBaseUrl].
+145: class Cache {
+146:   /// [rootOverride] is configurable for testing.
+147:   /// [artifacts] is configurable for testing.
+148:   Cache({
+149:     @protected Directory? rootOverride,
+150:     @protected List<ArtifactSet>? artifacts,
+151:     required Logger logger,
+144: /// [storageBaseUrl] and [cipdBaseUrl].
+145: class Cache {
+146:   /// [rootOverride] is configurable for testing.
+147:   /// [artifacts] is configurable for testing.
+148:   Cache({
+149:     @protected Directory? rootOverride,
+150:     @protected List<ArtifactSet>? artifacts,
+151:     required Logger logger,
+152:     required FileSystem fileSystem,
+153:     required Platform platform,
+154:     required OperatingSystemUtils osUtils,
+155:   }) : _rootOverride = rootOverride,
+147:   /// [artifacts] is configurable for testing.
+148:   Cache({
+149:     @protected Directory? rootOverride,
+150:     @protected List<ArtifactSet>? artifacts,
+151:     required Logger logger,
+152:     required FileSystem fileSystem,
+153:     required Platform platform,
+154:     required OperatingSystemUtils osUtils,
+155:   }) : _rootOverride = rootOverride,
+156:        _logger = logger,
+157:        _fileSystem = fileSystem,
+158:        _platform = platform,
+159:        _osUtils = osUtils,
+160:        _net = Net(logger: logger, platform: platform),
+161:        _fsUtils = FileSystemUtils(fileSystem: fileSystem, platform: platform),
+162:        _artifacts = artifacts ?? <ArtifactSet>[];
+163: 
+164:   /// Create a [Cache] for testing.
+165:   ///
+166:   /// Defaults to a memory file system, fake platform,
+167:   /// buffer logger, and no accessible artifacts.
+168:   /// By default, the root cache directory path is "cache".
+169:   factory Cache.test({
+170:     Directory? rootOverride,
+164:   /// Create a [Cache] for testing.
+165:   ///
+166:   /// Defaults to a memory file system, fake platform,
+167:   /// buffer logger, and no accessible artifacts.
+168:   /// By default, the root cache directory path is "cache".
+169:   factory Cache.test({
+170:     Directory? rootOverride,
+171:     List<ArtifactSet>? artifacts,
+172:     Logger? logger,
+173:     FileSystem? fileSystem,
+174:     Platform? platform,
+175:     required ProcessManager processManager,
+168:   /// By default, the root cache directory path is "cache".
+169:   factory Cache.test({
+170:     Directory? rootOverride,
+171:     List<ArtifactSet>? artifacts,
+172:     Logger? logger,
+173:     FileSystem? fileSystem,
+174:     Platform? platform,
+175:     required ProcessManager processManager,
+176:   }) {
+177:     if (rootOverride?.fileSystem != null &&
+178:         fileSystem != null &&
+179:         rootOverride!.fileSystem != fileSystem) {
+188:     logger ??= BufferLogger.test();
+189:     return Cache(
+190:       rootOverride: rootOverride ?? fileSystem.currentDirectory,
+191:       artifacts: artifacts ?? <ArtifactSet>[],
+192:       logger: logger,
+193:       fileSystem: fileSystem,
+194:       platform: platform,
+195:       osUtils: OperatingSystemUtils(
+196:         fileSystem: fileSystem,
+197:         logger: logger,
+198:         platform: platform,
+199:         processManager: processManager,
+206:   final FileSystem _fileSystem;
+207:   final OperatingSystemUtils _osUtils;
+208:   final Directory? _rootOverride;
+209:   final List<ArtifactSet> _artifacts;
+210:   final Net _net;
+211:   final FileSystemUtils _fsUtils;
+212: 
+213:   late final ArtifactUpdater _artifactUpdater = _createUpdater();
+214: 
+215:   @visibleForTesting
+216:   @protected
+217:   void registerArtifact(ArtifactSet artifactSet) {
+214: 
+215:   @visibleForTesting
+216:   @protected
+217:   void registerArtifact(ArtifactSet artifactSet) {
+218:     _artifacts.add(artifactSet);
+219:   }
+220: 
+221:   /// This has to be lazy because it requires FLUTTER_ROOT to be initialized.
+222:   ArtifactUpdater _createUpdater() {
+223:     return ArtifactUpdater(
+224:       operatingSystemUtils: _osUtils,
+225:       logger: _logger,
+215:   @visibleForTesting
+216:   @protected
+217:   void registerArtifact(ArtifactSet artifactSet) {
+218:     _artifacts.add(artifactSet);
+219:   }
+220: 
+221:   /// This has to be lazy because it requires FLUTTER_ROOT to be initialized.
+222:   ArtifactUpdater _createUpdater() {
+223:     return ArtifactUpdater(
+224:       operatingSystemUtils: _osUtils,
+225:       logger: _logger,
+226:       fileSystem: _fileSystem,
+224:       operatingSystemUtils: _osUtils,
+225:       logger: _logger,
+226:       fileSystem: _fileSystem,
+227:       tempStorage: getDownloadDir(),
+228:       platform: _platform,
+229:       httpClient: HttpClient(),
+230:       allowedBaseUrls: <String>[storageBaseUrl, realmlessStorageBaseUrl, cipdBaseUrl],
+231:     );
+232:   }
+233: 
+234:   static const _hostsBlockedInChina = <String>[
+235:     'storage.googleapis.com',
+303:     return normalize('.');
+304:   }
+305: 
+306:   // Whether to cache artifacts for all platforms. Defaults to only caching
+307:   // artifacts for the current platform.
+308:   bool includeAllPlatforms = false;
+309: 
+310:   // Names of artifacts which should be cached even if they would normally
+311:   // be filtered out for the current platform.
+312:   Set<String>? platformOverrideArtifacts;
+313: 
+314:   // Whether to cache the unsigned mac binaries. Defaults to caching the signed binaries.
+304:   }
+305: 
+306:   // Whether to cache artifacts for all platforms. Defaults to only caching
+307:   // artifacts for the current platform.
+308:   bool includeAllPlatforms = false;
+309: 
+310:   // Names of artifacts which should be cached even if they would normally
+311:   // be filtered out for the current platform.
+312:   Set<String>? platformOverrideArtifacts;
+313: 
+314:   // Whether to cache the unsigned mac binaries. Defaults to caching the signed binaries.
+315:   bool useUnsignedMacBinaries = false;
+307:   // artifacts for the current platform.
+308:   bool includeAllPlatforms = false;
+309: 
+310:   // Names of artifacts which should be cached even if they would normally
+311:   // be filtered out for the current platform.
+312:   Set<String>? platformOverrideArtifacts;
+313: 
+314:   // Whether to cache the unsigned mac binaries. Defaults to caching the signed binaries.
+315:   bool useUnsignedMacBinaries = false;
+316: 
+317:   // Whether the warning printed when a custom artifact URL is used is fatal.
+318:   bool fatalStorageWarning = true;
+309: 
+310:   // Names of artifacts which should be cached even if they would normally
+311:   // be filtered out for the current platform.
+312:   Set<String>? platformOverrideArtifacts;
+313: 
+314:   // Whether to cache the unsigned mac binaries. Defaults to caching the signed binaries.
+315:   bool useUnsignedMacBinaries = false;
+316: 
+317:   // Whether the warning printed when a custom artifact URL is used is fatal.
+318:   bool fatalStorageWarning = true;
+319: 
+320:   static RandomAccessFile? _lock;
+347: 
+348:   /// Lock the cache directory.
+349:   ///
+350:   /// This happens while required artifacts are updated
+351:   /// (see [FlutterCommandRunner.runCommand]).
+352:   ///
+353:   /// This uses normal POSIX flock semantics.
+354:   Future<void> lock() async {
+355:     if (!_lockEnabled) {
+356:       return;
+357:     }
+358:     assert(_lock == null);
+375:       } on FileSystemException {
+376:         if (!printed) {
+377:           _logger.printTrace(
+378:             'Waiting to be able to obtain lock of Flutter binary artifacts directory: ${_lock!.path}',
+379:           );
+380:           // This needs to go to stderr to avoid cluttering up stdout if a
+381:           // parent process is collecting stdout (e.g. when calling "flutter
+382:           // version --machine"). It's not really a "warning" though, so print it
+383:           // in grey. Also, make sure that it isn't counted as a warning for
+384:           // Logger.warningsAreFatal.
+385:           _logger.printWarning(
+386:             'Waiting for another flutter command to release the startup lock...',
+397:   /// Releases the lock.
+398:   ///
+399:   /// This happens automatically on startup (see [FlutterCommand.verifyThenRunCommand])
+400:   /// after the command's required artifacts are updated.
+401:   void releaseLock() {
+402:     if (!_lockEnabled || _lock == null) {
+403:       return;
+404:     }
+405:     _lock!.closeSync();
+406:     _lock = null;
+407:   }
+408: 
+486: 
+487:   String? _dartSdkBuild;
+488: 
+489:   /// The current version of the Flutter engine the flutter tool will download.
+490:   String get engineRevision {
+491:     _engineRevision ??= getStampFor('engine');
+492:     if (_engineRevision == null) {
+493:       throwToolExit('Could not determine engine revision.');
+494:     }
+495:     return _engineRevision!;
+496:   }
+497: 
+499: 
+500:   /// The "realm" for the storage URL.
+501:   ///
+502:   /// For production artifacts from Engine post-submit and release builds,
+503:   /// this string will be empty, and the `storageBaseUrl` will be unmodified.
+504:   /// When non-empty, this string will be appended to the `storageBaseUrl` after
+505:   /// a '/'. For artifacts generated by Engine presubmits, the realm should be
+506:   /// "flutter_archives_v2".
+507:   String get storageRealm {
+508:     _storageRealm ??= getRealmFor('engine');
+509:     if (_storageRealm == null) {
+510:       throwToolExit('Could not determine engine realm.');
+502:   /// For production artifacts from Engine post-submit and release builds,
+503:   /// this string will be empty, and the `storageBaseUrl` will be unmodified.
+504:   /// When non-empty, this string will be appended to the `storageBaseUrl` after
+505:   /// a '/'. For artifacts generated by Engine presubmits, the realm should be
+506:   /// "flutter_archives_v2".
+507:   String get storageRealm {
+508:     _storageRealm ??= getRealmFor('engine');
+509:     if (_storageRealm == null) {
+510:       throwToolExit('Could not determine engine realm.');
+511:     }
+512:     return _storageRealm!;
+513:   }
+514: 
+515:   String? _storageRealm;
+516: 
+517:   /// The base for URLs that store Flutter engine artifacts that are fetched
+518:   /// during the installation of the Flutter SDK.
+519:   ///
+520:   /// By default the base URL is https://storage.googleapis.com. However, if
+521:   /// `FLUTTER_STORAGE_BASE_URL` environment variable ([kFlutterStorageBaseUrl])
+522:   /// is provided, the environment variable value is returned instead.
+523:   ///
+524:   /// See also:
+525:   ///
+523:   ///
+524:   /// See also:
+525:   ///
+526:   ///  * [cipdBaseUrl], which determines how CIPD artifacts are fetched.
+527:   ///  * [Cache] class-level dartdocs that explain how artifact mirrors work.
+528:   String get storageBaseUrl {
+529:     String? overrideUrl = _platform.environment[kFlutterStorageBaseUrl];
+530:     if (overrideUrl == null) {
+531:       return storageRealm.isEmpty
+532:           ? 'https://storage.googleapis.com'
+533:           : 'https://storage.googleapis.com/$storageRealm';
+534:     }
+547:     return storageRealm.isEmpty ? storageBaseUrl : storageBaseUrl.replaceAll('/$storageRealm', '');
+548:   }
+549: 
+550:   /// The base for URLs that store Flutter engine artifacts in CIPD.
+551:   ///
+552:   /// For some platforms, such as Web and Fuchsia, CIPD artifacts are fetched
+553:   /// during the installation of the Flutter SDK, in addition to those fetched
+554:   /// from [storageBaseUrl].
+555:   ///
+556:   /// By default the base URL is https://chrome-infra-packages.appspot.com/dl.
+557:   /// However, if `FLUTTER_STORAGE_BASE_URL` environment variable is provided
+558:   /// ([kFlutterStorageBaseUrl]), then the following value is used:
+549: 
+550:   /// The base for URLs that store Flutter engine artifacts in CIPD.
+551:   ///
+552:   /// For some platforms, such as Web and Fuchsia, CIPD artifacts are fetched
+553:   /// during the installation of the Flutter SDK, in addition to those fetched
+554:   /// from [storageBaseUrl].
+555:   ///
+556:   /// By default the base URL is https://chrome-infra-packages.appspot.com/dl.
+557:   /// However, if `FLUTTER_STORAGE_BASE_URL` environment variable is provided
+558:   /// ([kFlutterStorageBaseUrl]), then the following value is used:
+559:   ///
+560:   ///     FLUTTER_STORAGE_BASE_URL/flutter_infra_release/cipd
+561:   ///
+562:   /// See also:
+563:   ///
+564:   ///  * [storageBaseUrl], which determines how engine artifacts stored in the
+565:   ///    Google Cloud Storage buckets are fetched.
+566:   ///  * https://chromium.googlesource.com/infra/luci/luci-go/+/refs/heads/main/cipd,
+567:   ///    which contains information about CIPD.
+568:   ///  * [Cache] class-level dartdocs that explain how artifact mirrors work.
+569:   String get cipdBaseUrl {
+570:     final String? overrideUrl = _platform.environment[kFlutterStorageBaseUrl];
+571:     if (overrideUrl == null) {
+572:       return 'https://chrome-infra-packages.appspot.com/dl';
+592:       return;
+593:     }
+594:     _logger.printWarning(
+595:       'Flutter assets will be downloaded from $overrideUrl. Make sure you trust this source!',
+596:       emphasis: true,
+597:       fatal: false,
+598:     );
+599:     _hasWarnedAboutStorageOverride = true;
+600:   }
+601: 
+602:   /// Return the top-level directory in the cache; this is `bin/cache`.
+603:   Directory getRoot() {
+623:     return dir;
+624:   }
+625: 
+626:   /// Return the top-level directory for artifact downloads.
+627:   Directory getDownloadDir() => getCacheDir('downloads');
+628: 
+629:   /// Return the top-level mutable directory in the cache; this is `bin/cache/artifacts`.
+630:   Directory getCacheArtifacts() => getCacheDir('artifacts');
+631: 
+632:   /// Location of LICENSE file.
+633:   File getLicenseFile() => _fileSystem.file(_fileSystem.path.join(flutterRoot!, 'LICENSE'));
+634: 
+624:   }
+625: 
+626:   /// Return the top-level directory for artifact downloads.
+627:   Directory getDownloadDir() => getCacheDir('downloads');
+628: 
+629:   /// Return the top-level mutable directory in the cache; this is `bin/cache/artifacts`.
+630:   Directory getCacheArtifacts() => getCacheDir('artifacts');
+631: 
+632:   /// Location of LICENSE file.
+633:   File getLicenseFile() => _fileSystem.file(_fileSystem.path.join(flutterRoot!, 'LICENSE'));
+634: 
+635:   /// Get a named directory from with the cache's artifact directory; for example,
+626:   /// Return the top-level directory for artifact downloads.
+627:   Directory getDownloadDir() => getCacheDir('downloads');
+628: 
+629:   /// Return the top-level mutable directory in the cache; this is `bin/cache/artifacts`.
+630:   Directory getCacheArtifacts() => getCacheDir('artifacts');
+631: 
+632:   /// Location of LICENSE file.
+633:   File getLicenseFile() => _fileSystem.file(_fileSystem.path.join(flutterRoot!, 'LICENSE'));
+634: 
+635:   /// Get a named directory from with the cache's artifact directory; for example,
+636:   /// `material_fonts` would return `bin/cache/artifacts/material_fonts`.
+637:   Directory getArtifactDirectory(String name) {
+627:   Directory getDownloadDir() => getCacheDir('downloads');
+628: 
+629:   /// Return the top-level mutable directory in the cache; this is `bin/cache/artifacts`.
+630:   Directory getCacheArtifacts() => getCacheDir('artifacts');
+631: 
+632:   /// Location of LICENSE file.
+633:   File getLicenseFile() => _fileSystem.file(_fileSystem.path.join(flutterRoot!, 'LICENSE'));
+634: 
+635:   /// Get a named directory from with the cache's artifact directory; for example,
+636:   /// `material_fonts` would return `bin/cache/artifacts/material_fonts`.
+637:   Directory getArtifactDirectory(String name) {
+638:     return getCacheArtifacts().childDirectory(name);
+633:   File getLicenseFile() => _fileSystem.file(_fileSystem.path.join(flutterRoot!, 'LICENSE'));
+634: 
+635:   /// Get a named directory from with the cache's artifact directory; for example,
+636:   /// `material_fonts` would return `bin/cache/artifacts/material_fonts`.
+637:   Directory getArtifactDirectory(String name) {
+638:     return getCacheArtifacts().childDirectory(name);
+639:   }
+640: 
+641:   MapEntry<String, String> get dyLdLibEntry {
+642:     if (_dyLdLibEntry != null) {
+643:       return _dyLdLibEntry!;
+644:     }
+635:   /// Get a named directory from with the cache's artifact directory; for example,
+636:   /// `material_fonts` would return `bin/cache/artifacts/material_fonts`.
+637:   Directory getArtifactDirectory(String name) {
+638:     return getCacheArtifacts().childDirectory(name);
+639:   }
+640: 
+641:   MapEntry<String, String> get dyLdLibEntry {
+642:     if (_dyLdLibEntry != null) {
+643:       return _dyLdLibEntry!;
+644:     }
+645:     final paths = <String>[];
+646:     for (final ArtifactSet artifact in _artifacts) {
+643:       return _dyLdLibEntry!;
+644:     }
+645:     final paths = <String>[];
+646:     for (final ArtifactSet artifact in _artifacts) {
+647:       final Map<String, String> env = artifact.environment;
+648:       if (!env.containsKey('DYLD_LIBRARY_PATH')) {
+649:         continue;
+650:       }
+651:       final String path = env['DYLD_LIBRARY_PATH']!;
+652:       if (path.isEmpty) {
+653:         continue;
+654:       }
+696:   void clearStampFiles() {
+697:     try {
+698:       getStampFileFor('flutter_tools').deleteSync();
+699:       for (final ArtifactSet artifact in _artifacts) {
+700:         final File file = getStampFileFor(artifact.stampName);
+701:         ErrorHandlingFileSystem.deleteIfExists(file);
+702:       }
+703:     } on FileSystemException catch (err) {
+704:       _logger.printWarning('Failed to delete some stamp files: $err');
+705:     }
+706:   }
+707: 
+735:     return _fsUtils.isOlderThanReference(entity: entity, referenceFile: flutterToolsStamp);
+736:   }
+737: 
+738:   Future<bool> isUpToDate() async {
+739:     for (final ArtifactSet artifact in _artifacts) {
+740:       if (!await artifact.isUpToDate(_fileSystem)) {
+741:         return false;
+742:       }
+743:     }
+744:     return true;
+745:   }
+746: 
+736:   }
+737: 
+738:   Future<bool> isUpToDate() async {
+739:     for (final ArtifactSet artifact in _artifacts) {
+740:       if (!await artifact.isUpToDate(_fileSystem)) {
+741:         return false;
+742:       }
+743:     }
+744:     return true;
+745:   }
+746: 
+747:   /// Update the cache to contain all `requiredArtifacts`.
+737: 
+738:   Future<bool> isUpToDate() async {
+739:     for (final ArtifactSet artifact in _artifacts) {
+740:       if (!await artifact.isUpToDate(_fileSystem)) {
+741:         return false;
+742:       }
+743:     }
+744:     return true;
+745:   }
+746: 
+747:   /// Update the cache to contain all `requiredArtifacts`.
+748:   Future<void> updateAll(Set<DevelopmentArtifact> requiredArtifacts, {bool offline = false}) async {
+744:     return true;
+745:   }
+746: 
+747:   /// Update the cache to contain all `requiredArtifacts`.
+748:   Future<void> updateAll(Set<DevelopmentArtifact> requiredArtifacts, {bool offline = false}) async {
+749:     if (!_lockEnabled) {
+750:       return;
+751:     }
+752:     for (final ArtifactSet artifact in _artifacts) {
+753:       if (!requiredArtifacts.contains(artifact.developmentArtifact)) {
+754:         _logger.printTrace('Artifact $artifact is not required, skipping update.');
+755:         continue;
+745:   }
+746: 
+747:   /// Update the cache to contain all `requiredArtifacts`.
+748:   Future<void> updateAll(Set<DevelopmentArtifact> requiredArtifacts, {bool offline = false}) async {
+749:     if (!_lockEnabled) {
+750:       return;
+751:     }
+752:     for (final ArtifactSet artifact in _artifacts) {
+753:       if (!requiredArtifacts.contains(artifact.developmentArtifact)) {
+754:         _logger.printTrace('Artifact $artifact is not required, skipping update.');
+755:         continue;
+756:       }
+749:     if (!_lockEnabled) {
+750:       return;
+751:     }
+752:     for (final ArtifactSet artifact in _artifacts) {
+753:       if (!requiredArtifacts.contains(artifact.developmentArtifact)) {
+754:         _logger.printTrace('Artifact $artifact is not required, skipping update.');
+755:         continue;
+756:       }
+757:       if (await artifact.isUpToDate(_fileSystem)) {
+758:         continue;
+759:       }
+760:       try {
+750:       return;
+751:     }
+752:     for (final ArtifactSet artifact in _artifacts) {
+753:       if (!requiredArtifacts.contains(artifact.developmentArtifact)) {
+754:         _logger.printTrace('Artifact $artifact is not required, skipping update.');
+755:         continue;
+756:       }
+757:       if (await artifact.isUpToDate(_fileSystem)) {
+758:         continue;
+759:       }
+760:       try {
+761:         await artifact.update(_artifactUpdater, _logger, _fileSystem, _osUtils, offline: offline);
+754:         _logger.printTrace('Artifact $artifact is not required, skipping update.');
+755:         continue;
+756:       }
+757:       if (await artifact.isUpToDate(_fileSystem)) {
+758:         continue;
+759:       }
+760:       try {
+761:         await artifact.update(_artifactUpdater, _logger, _fileSystem, _osUtils, offline: offline);
+762:       } on SocketException catch (e) {
+763:         if (_hostsBlockedInChina.contains(e.address?.host)) {
+764:           _logger.printError(
+765:             'Failed to retrieve Flutter tool dependencies: ${e.message}.\n'
+773:     }
+774:   }
+775: 
+776:   Future<bool> areRemoteArtifactsAvailable({
+777:     String? engineVersion,
+778:     bool includeAllPlatforms = true,
+779:   }) async {
+780:     final bool includeAllPlatformsState = this.includeAllPlatforms;
+781:     var allAvailable = true;
+782:     this.includeAllPlatforms = includeAllPlatforms;
+783:     for (final ArtifactSet cachedArtifact in _artifacts) {
+784:       if (cachedArtifact is EngineCachedArtifact) {
+780:     final bool includeAllPlatformsState = this.includeAllPlatforms;
+781:     var allAvailable = true;
+782:     this.includeAllPlatforms = includeAllPlatforms;
+783:     for (final ArtifactSet cachedArtifact in _artifacts) {
+784:       if (cachedArtifact is EngineCachedArtifact) {
+785:         allAvailable &= await cachedArtifact.checkForArtifacts(engineVersion);
+786:       }
+787:     }
+788:     this.includeAllPlatforms = includeAllPlatformsState;
+789:     return allAvailable;
+790:   }
+791: 
+782:     this.includeAllPlatforms = includeAllPlatforms;
+783:     for (final ArtifactSet cachedArtifact in _artifacts) {
+784:       if (cachedArtifact is EngineCachedArtifact) {
+785:         allAvailable &= await cachedArtifact.checkForArtifacts(engineVersion);
+786:       }
+787:     }
+788:     this.includeAllPlatforms = includeAllPlatformsState;
+789:     return allAvailable;
+790:   }
+791: 
+792:   Future<bool> doesRemoteExist(String message, Uri url) async {
+793:     final Status status = _logger.startProgress(message);
+801:   }
+802: }
+803: 
+804: /// Representation of a set of artifacts used by the tool.
+805: abstract class ArtifactSet {
+806:   ArtifactSet(this.developmentArtifact);
+807: 
+808:   /// The development artifact.
+809:   final DevelopmentArtifact developmentArtifact;
+810: 
+811:   /// Whether the artifact is up to date.
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+802: }
+803: 
+804: /// Representation of a set of artifacts used by the tool.
+805: abstract class ArtifactSet {
+806:   ArtifactSet(this.developmentArtifact);
+807: 
+808:   /// The development artifact.
+809:   final DevelopmentArtifact developmentArtifact;
+810: 
+811:   /// Whether the artifact is up to date.
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+813: 
+803: 
+804: /// Representation of a set of artifacts used by the tool.
+805: abstract class ArtifactSet {
+806:   ArtifactSet(this.developmentArtifact);
+807: 
+808:   /// The development artifact.
+809:   final DevelopmentArtifact developmentArtifact;
+810: 
+811:   /// Whether the artifact is up to date.
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+813: 
+814:   /// The environment variables (if any) required to consume the artifacts.
+809:   final DevelopmentArtifact developmentArtifact;
+810: 
+811:   /// Whether the artifact is up to date.
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+813: 
+814:   /// The environment variables (if any) required to consume the artifacts.
+815:   Map<String, String> get environment {
+816:     return const <String, String>{};
+817:   }
+818: 
+819:   /// Updates the artifact.
+820:   Future<void> update(
+811:   /// Whether the artifact is up to date.
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+813: 
+814:   /// The environment variables (if any) required to consume the artifacts.
+815:   Map<String, String> get environment {
+816:     return const <String, String>{};
+817:   }
+818: 
+819:   /// Updates the artifact.
+820:   Future<void> update(
+821:     ArtifactUpdater artifactUpdater,
+822:     Logger logger,
+812:   Future<bool> isUpToDate(FileSystem fileSystem);
+813: 
+814:   /// The environment variables (if any) required to consume the artifacts.
+815:   Map<String, String> get environment {
+816:     return const <String, String>{};
+817:   }
+818: 
+819:   /// Updates the artifact.
+820:   Future<void> update(
+821:     ArtifactUpdater artifactUpdater,
+822:     Logger logger,
+823:     FileSystem fileSystem,
+835: }
+836: 
+837: /// An artifact set managed by the cache.
+838: abstract class CachedArtifact extends ArtifactSet {
+839:   CachedArtifact(this.name, this.cache, DevelopmentArtifact developmentArtifact)
+840:     : super(developmentArtifact);
+841: 
+842:   final Cache cache;
+843: 
+844:   @override
+845:   final String name;
+846: 
+854:   // Whether or not to bypass normal platform filtering for this artifact.
+855:   bool get ignorePlatformFiltering {
+856:     return cache.includeAllPlatforms ||
+857:         (cache.platformOverrideArtifacts != null &&
+858:             cache.platformOverrideArtifacts!.contains(developmentArtifact.name));
+859:   }
+860: 
+861:   @override
+862:   Future<bool> isUpToDate(FileSystem fileSystem) async {
+863:     if (!location.existsSync()) {
+864:       return false;
+865:     }
+855:   bool get ignorePlatformFiltering {
+856:     return cache.includeAllPlatforms ||
+857:         (cache.platformOverrideArtifacts != null &&
+858:             cache.platformOverrideArtifacts!.contains(developmentArtifact.name));
+859:   }
+860: 
+861:   @override
+862:   Future<bool> isUpToDate(FileSystem fileSystem) async {
+863:     if (!location.existsSync()) {
+864:       return false;
+865:     }
+866:     if (version != cache.getStampFor(stampName)) {
+859:   }
+860: 
+861:   @override
+862:   Future<bool> isUpToDate(FileSystem fileSystem) async {
+863:     if (!location.existsSync()) {
+864:       return false;
+865:     }
+866:     if (version != cache.getStampFor(stampName)) {
+867:       return false;
+868:     }
+869:     return isUpToDateInner(fileSystem);
+870:   }
+866:     if (version != cache.getStampFor(stampName)) {
+867:       return false;
+868:     }
+869:     return isUpToDateInner(fileSystem);
+870:   }
+871: 
+872:   @override
+873:   Future<void> update(
+874:     ArtifactUpdater artifactUpdater,
+875:     Logger logger,
+876:     FileSystem fileSystem,
+877:     OperatingSystemUtils operatingSystemUtils, {
+893:       if (version == null) {
+894:         logger.printWarning(
+895:           'No known version for the artifact name "$name". '
+896:           'Flutter can continue, but the artifact may be re-downloaded on '
+897:           'subsequent invocations until the problem is resolved.',
+898:         );
+899:       } else {
+900:         cache.setStampFor(stampName, version!);
+901:       }
+902:     } on FileSystemException catch (err) {
+903:       logger.printWarning(
+904:         'The new artifact "$name" was downloaded, but Flutter failed to update '
+901:       }
+902:     } on FileSystemException catch (err) {
+903:       logger.printWarning(
+904:         'The new artifact "$name" was downloaded, but Flutter failed to update '
+905:         'its stamp file, receiving the error "$err". '
+906:         'Flutter can continue, but the artifact may be re-downloaded on '
+907:         'subsequent invocations until the problem is resolved.',
+908:       );
+909:     }
+910:     artifactUpdater.removeDownloadedFiles();
+911:   }
+912: 
+903:       logger.printWarning(
+904:         'The new artifact "$name" was downloaded, but Flutter failed to update '
+905:         'its stamp file, receiving the error "$err". '
+906:         'Flutter can continue, but the artifact may be re-downloaded on '
+907:         'subsequent invocations until the problem is resolved.',
+908:       );
+909:     }
+910:     artifactUpdater.removeDownloadedFiles();
+911:   }
+912: 
+913:   /// Hook method for extra checks for being up-to-date.
+914:   bool isUpToDateInner(FileSystem fileSystem) => true;
+907:         'subsequent invocations until the problem is resolved.',
+908:       );
+909:     }
+910:     artifactUpdater.removeDownloadedFiles();
+911:   }
+912: 
+913:   /// Hook method for extra checks for being up-to-date.
+914:   bool isUpToDateInner(FileSystem fileSystem) => true;
+915: 
+916:   Future<void> updateInner(
+917:     ArtifactUpdater artifactUpdater,
+918:     FileSystem fileSystem,
+911:   }
+912: 
+913:   /// Hook method for extra checks for being up-to-date.
+914:   bool isUpToDateInner(FileSystem fileSystem) => true;
+915: 
+916:   Future<void> updateInner(
+917:     ArtifactUpdater artifactUpdater,
+918:     FileSystem fileSystem,
+919:     OperatingSystemUtils operatingSystemUtils,
+920:   );
+921: }
+922: 
+930:   @override
+931:   String? get version => cache.engineRevision;
+932: 
+933:   /// Return a list of (directory path, download URL path) tuples.
+934:   List<List<String>> getBinaryDirs();
+935: 
+936:   /// A list of cache directory paths to which the LICENSE file should be copied.
+937:   List<String> getLicenseDirs();
+938: 
+939:   /// A list of the dart package directories to download.
+940:   List<String> getPackageDirs();
+941: 
+936:   /// A list of cache directory paths to which the LICENSE file should be copied.
+937:   List<String> getLicenseDirs();
+938: 
+939:   /// A list of the dart package directories to download.
+940:   List<String> getPackageDirs();
+941: 
+942:   @override
+943:   bool isUpToDateInner(FileSystem fileSystem) {
+944:     final Directory pkgDir = cache.getCacheDir('pkg');
+945:     for (final String pkgName in getPackageDirs()) {
+946:       final String pkgPath = fileSystem.path.join(pkgDir.path, pkgName);
+947:       if (!fileSystem.directory(pkgPath).existsSync()) {
+940:   List<String> getPackageDirs();
+941: 
+942:   @override
+943:   bool isUpToDateInner(FileSystem fileSystem) {
+944:     final Directory pkgDir = cache.getCacheDir('pkg');
+945:     for (final String pkgName in getPackageDirs()) {
+946:       final String pkgPath = fileSystem.path.join(pkgDir.path, pkgName);
+947:       if (!fileSystem.directory(pkgPath).existsSync()) {
+948:         return false;
+949:       }
+950:     }
+951: 
+975: 
+976:     final Directory pkgDir = cache.getCacheDir('pkg');
+977:     for (final String pkgName in getPackageDirs()) {
+978:       await artifactUpdater.downloadZipArchive(
+979:         'Downloading package $pkgName...',
+980:         Uri.parse('$url$pkgName.zip'),
+981:         pkgDir,
+982:       );
+983:     }
+984: 
+985:     for (final List<String> toolsDir in getBinaryDirs()) {
+986:       final String cacheDir = toolsDir[0];
+976:     final Directory pkgDir = cache.getCacheDir('pkg');
+977:     for (final String pkgName in getPackageDirs()) {
+978:       await artifactUpdater.downloadZipArchive(
+979:         'Downloading package $pkgName...',
+980:         Uri.parse('$url$pkgName.zip'),
+981:         pkgDir,
+982:       );
+983:     }
+984: 
+985:     for (final List<String> toolsDir in getBinaryDirs()) {
+986:       final String cacheDir = toolsDir[0];
+987:       final String urlPath = toolsDir[1];
+987:       final String urlPath = toolsDir[1];
+988:       final Directory dir = fileSystem.directory(fileSystem.path.join(location.path, cacheDir));
+989: 
+990:       // Avoid printing things like 'Downloading linux-x64 tools...' multiple times.
+991:       final String friendlyName = urlPath.replaceAll('/artifacts.zip', '').replaceAll('.zip', '');
+992:       await artifactUpdater.downloadZipArchive(
+993:         'Downloading $friendlyName tools...',
+994:         Uri.parse(url + urlPath),
+995:         dir,
+996:       );
+997: 
+998:       _makeFilesExecutable(dir, operatingSystemUtils);
+988:       final Directory dir = fileSystem.directory(fileSystem.path.join(location.path, cacheDir));
+989: 
+990:       // Avoid printing things like 'Downloading linux-x64 tools...' multiple times.
+991:       final String friendlyName = urlPath.replaceAll('/artifacts.zip', '').replaceAll('.zip', '');
+992:       await artifactUpdater.downloadZipArchive(
+993:         'Downloading $friendlyName tools...',
+994:         Uri.parse(url + urlPath),
+995:         dir,
+996:       );
+997: 
+998:       _makeFilesExecutable(dir, operatingSystemUtils);
+999:     }
+989: 
+990:       // Avoid printing things like 'Downloading linux-x64 tools...' multiple times.
+991:       final String friendlyName = urlPath.replaceAll('/artifacts.zip', '').replaceAll('.zip', '');
+992:       await artifactUpdater.downloadZipArchive(
+993:         'Downloading $friendlyName tools...',
+994:         Uri.parse(url + urlPath),
+995:         dir,
+996:       );
+997: 
+998:       _makeFilesExecutable(dir, operatingSystemUtils);
+999:     }
+1000: 
+990:       // Avoid printing things like 'Downloading linux-x64 tools...' multiple times.
+991:       final String friendlyName = urlPath.replaceAll('/artifacts.zip', '').replaceAll('.zip', '');
+992:       await artifactUpdater.downloadZipArchive(
+993:         'Downloading $friendlyName tools...',
+994:         Uri.parse(url + urlPath),
+995:         dir,
+996:       );
+997: 
+998:       _makeFilesExecutable(dir, operatingSystemUtils);
+999:     }
+1000: 
+1001:     final File licenseSource = cache.getLicenseFile();
+1009:     }
+1010:   }
+1011: 
+1012:   Future<bool> checkForArtifacts(String? engineVersion) async {
+1013:     engineVersion ??= version;
+1014:     final url = '${cache.storageBaseUrl}/flutter_infra_release/flutter/$engineVersion/';
+1015: 
+1016:     var exists = false;
+1017:     for (final String pkgName in getPackageDirs()) {
+1018:       exists = await cache.doesRemoteExist(
+1019:         'Checking package $pkgName is available...',
+1020:         Uri.parse('$url$pkgName.zip'),
+1051:   }
+1052: }
+1053: 
+1054: /// An API for downloading and un-archiving artifacts, such as engine binaries or
+1055: /// additional source code.
+1056: class ArtifactUpdater {
+1057:   ArtifactUpdater({
+1058:     required OperatingSystemUtils operatingSystemUtils,
+1059:     required Logger logger,
+1060:     required FileSystem fileSystem,
+1061:     required Directory tempStorage,
+1062:     required HttpClient httpClient,
+1070:        _platform = platform,
+1071:        _allowedBaseUrls = allowedBaseUrls;
+1072: 
+1073:   /// The number of times the artifact updater will repeat the artifact download loop.
+1074:   static const _kRetryCount = 2;
+1075: 
+1076:   final Logger _logger;
+1077:   final OperatingSystemUtils _operatingSystemUtils;
+1078:   final FileSystem _fileSystem;
+1079:   final Directory _tempStorage;
+1080:   final HttpClient _httpClient;
+1081:   final Platform _platform;
+1080:   final HttpClient _httpClient;
+1081:   final Platform _platform;
+1082: 
+1083:   /// Artifacts should only be downloaded from URLs that use one of these
+1084:   /// prefixes.
+1085:   ///
+1086:   /// [ArtifactUpdater] will issue a warning if an attempt to download from a
+1087:   /// non-compliant URL is made.
+1088:   final List<String> _allowedBaseUrls;
+1089: 
+1090:   /// Keep track of the files we've downloaded for this execution so we
+1091:   /// can delete them after completion. We don't delete them right after
+1083:   /// Artifacts should only be downloaded from URLs that use one of these
+1084:   /// prefixes.
+1085:   ///
+1086:   /// [ArtifactUpdater] will issue a warning if an attempt to download from a
+1087:   /// non-compliant URL is made.
+1088:   final List<String> _allowedBaseUrls;
+1089: 
+1090:   /// Keep track of the files we've downloaded for this execution so we
+1091:   /// can delete them after completion. We don't delete them right after
+1092:   /// extraction in case [ArtifactSet.update] is interrupted, so we can
+1093:   /// restart without starting from scratch.
+1094:   @visibleForTesting
+1087:   /// non-compliant URL is made.
+1088:   final List<String> _allowedBaseUrls;
+1089: 
+1090:   /// Keep track of the files we've downloaded for this execution so we
+1091:   /// can delete them after completion. We don't delete them right after
+1092:   /// extraction in case [ArtifactSet.update] is interrupted, so we can
+1093:   /// restart without starting from scratch.
+1094:   @visibleForTesting
+1095:   final downloadedFiles = <File>[];
+1096: 
+1097:   /// These filenames, should they exist after extracting an archive, should be deleted.
+1098:   static const _denylistedBasenames = <String>{
+1089: 
+1090:   /// Keep track of the files we've downloaded for this execution so we
+1091:   /// can delete them after completion. We don't delete them right after
+1092:   /// extraction in case [ArtifactSet.update] is interrupted, so we can
+1093:   /// restart without starting from scratch.
+1094:   @visibleForTesting
+1095:   final downloadedFiles = <File>[];
+1096: 
+1097:   /// These filenames, should they exist after extracting an archive, should be deleted.
+1098:   static const _denylistedBasenames = <String>{
+1099:     'entitlements.txt',
+1100:     'without_entitlements.txt',
+1092:   /// extraction in case [ArtifactSet.update] is interrupted, so we can
+1093:   /// restart without starting from scratch.
+1094:   @visibleForTesting
+1095:   final downloadedFiles = <File>[];
+1096: 
+1097:   /// These filenames, should they exist after extracting an archive, should be deleted.
+1098:   static const _denylistedBasenames = <String>{
+1099:     'entitlements.txt',
+1100:     'without_entitlements.txt',
+1101:     'unsigned_binaries.txt',
+1102:   };
+1103:   void _removeDenylistedFiles(Directory directory) {
+1111:     }
+1112:   }
+1113: 
+1114:   /// Download a zip archive from the given [url] and unzip it to [location].
+1115:   Future<void> downloadZipArchive(String message, Uri url, Directory location) {
+1116:     return _downloadArchive(message, url, location, _operatingSystemUtils.unzip);
+1117:   }
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1112:   }
+1113: 
+1114:   /// Download a zip archive from the given [url] and unzip it to [location].
+1115:   Future<void> downloadZipArchive(String message, Uri url, Directory location) {
+1116:     return _downloadArchive(message, url, location, _operatingSystemUtils.unzip);
+1117:   }
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1113: 
+1114:   /// Download a zip archive from the given [url] and unzip it to [location].
+1115:   Future<void> downloadZipArchive(String message, Uri url, Directory location) {
+1116:     return _downloadArchive(message, url, location, _operatingSystemUtils.unzip);
+1117:   }
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1116:     return _downloadArchive(message, url, location, _operatingSystemUtils.unzip);
+1117:   }
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1117:   }
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1128:     });
+1118: 
+1119:   /// Download a gzipped tarball from the given [url] and unpack it to [location].
+1120:   Future<void> downloadZippedTarball(String message, Uri url, Directory location) {
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1128:     });
+1129:   }
+1121:     return _downloadArchive(message, url, location, _operatingSystemUtils.unpack);
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1128:     });
+1129:   }
+1130: 
+1131:   /// Download an archive from the given [url] and unzip it to [location].
+1132:   Future<void> _downloadArchive(
+1122:   }
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1128:     });
+1129:   }
+1130: 
+1131:   /// Download an archive from the given [url] and unzip it to [location].
+1132:   Future<void> _downloadArchive(
+1133:     String message,
+1123: 
+1124:   /// Download a file from the given [url] and copy it to [location].
+1125:   Future<void> downloadFile(String message, Uri url, Directory location) {
+1126:     return _downloadArchive(message, url, location, (File file, Directory dir) {
+1127:       file.copySync(dir.childFile(file.basename).path);
+1128:     });
+1129:   }
+1130: 
+1131:   /// Download an archive from the given [url] and unzip it to [location].
+1132:   Future<void> _downloadArchive(
+1133:     String message,
+1134:     Uri url,
+1128:     });
+1129:   }
+1130: 
+1131:   /// Download an archive from the given [url] and unzip it to [location].
+1132:   Future<void> _downloadArchive(
+1133:     String message,
+1134:     Uri url,
+1135:     Directory location,
+1136:     void Function(File, Directory) extractor,
+1137:   ) async {
+1138:     final String downloadPath = flattenNameSubdirs(url, _fileSystem);
+1139:     final File tempFile = _createDownloadFile(downloadPath);
+1129:   }
+1130: 
+1131:   /// Download an archive from the given [url] and unzip it to [location].
+1132:   Future<void> _downloadArchive(
+1133:     String message,
+1134:     Uri url,
+1135:     Directory location,
+1136:     void Function(File, Directory) extractor,
+1137:   ) async {
+1138:     final String downloadPath = flattenNameSubdirs(url, _fileSystem);
+1139:     final File tempFile = _createDownloadFile(downloadPath);
+1140:     Status status;
+1135:     Directory location,
+1136:     void Function(File, Directory) extractor,
+1137:   ) async {
+1138:     final String downloadPath = flattenNameSubdirs(url, _fileSystem);
+1139:     final File tempFile = _createDownloadFile(downloadPath);
+1140:     Status status;
+1141:     int retries = _kRetryCount;
+1142: 
+1143:     while (retries > 0) {
+1144:       status = _logger.startProgress(message);
+1145:       try {
+1146:         _ensureExists(tempFile.parent);
+1136:     void Function(File, Directory) extractor,
+1137:   ) async {
+1138:     final String downloadPath = flattenNameSubdirs(url, _fileSystem);
+1139:     final File tempFile = _createDownloadFile(downloadPath);
+1140:     Status status;
+1141:     int retries = _kRetryCount;
+1142: 
+1143:     while (retries > 0) {
+1144:       status = _logger.startProgress(message);
+1145:       try {
+1146:         _ensureExists(tempFile.parent);
+1147:         if (tempFile.existsSync()) {
+1147:         if (tempFile.existsSync()) {
+1148:           tempFile.deleteSync();
+1149:         }
+1150:         await _download(url, tempFile, status);
+1151: 
+1152:         if (!tempFile.existsSync()) {
+1153:           throw Exception('Did not find downloaded file ${tempFile.path}');
+1154:         }
+1155:       } on Exception catch (err) {
+1156:         _logger.printTrace(err.toString());
+1157:         retries -= 1;
+1158:         if (retries == 0) {
+1150:         await _download(url, tempFile, status);
+1151: 
+1152:         if (!tempFile.existsSync()) {
+1153:           throw Exception('Did not find downloaded file ${tempFile.path}');
+1154:         }
+1155:       } on Exception catch (err) {
+1156:         _logger.printTrace(err.toString());
+1157:         retries -= 1;
+1158:         if (retries == 0) {
+1159:           throwToolExit(
+1160:             'Failed to download $url. Ensure you have network connectivity and then try again.\n$err',
+1161:           );
+1157:         retries -= 1;
+1158:         if (retries == 0) {
+1159:           throwToolExit(
+1160:             'Failed to download $url. Ensure you have network connectivity and then try again.\n$err',
+1161:           );
+1162:         }
+1163:         continue;
+1164:       } on ArgumentError catch (error) {
+1165:         final String? overrideUrl = _platform.environment[kFlutterStorageBaseUrl];
+1166:         if (overrideUrl != null && url.toString().contains(overrideUrl)) {
+1167:           _logger.printError(error.toString());
+1168:           throwToolExit(
+1208:         retries -= 1;
+1209:         if (retries == 0) {
+1210:           throwToolExit(
+1211:             'Flutter could not download and/or extract $url. Ensure you have '
+1212:             'network connectivity and all of the required dependencies listed at '
+1213:             'https://flutter.dev/setup.\nThe original exception was: $err.',
+1214:           );
+1215:         }
+1216:         _deleteIgnoringErrors(tempFile);
+1217:         continue;
+1218:       }
+1219:       _removeDenylistedFiles(location);
+1221:     }
+1222:   }
+1223: 
+1224:   /// Download bytes from [url], throwing non-200 responses as an exception.
+1225:   ///
+1226:   /// Validates that the md5 of the content bytes matches the provided
+1227:   /// `x-goog-hash` header, if present. This header should contain an md5 hash
+1228:   /// if the download source is Google cloud storage.
+1229:   ///
+1230:   /// See also:
+1231:   ///   * https://cloud.google.com/storage/docs/xml-api/reference-headers#xgooghash
+1232:   Future<void> _download(Uri url, File file, Status status) async {
+1225:   ///
+1226:   /// Validates that the md5 of the content bytes matches the provided
+1227:   /// `x-goog-hash` header, if present. This header should contain an md5 hash
+1228:   /// if the download source is Google cloud storage.
+1229:   ///
+1230:   /// See also:
+1231:   ///   * https://cloud.google.com/storage/docs/xml-api/reference-headers#xgooghash
+1232:   Future<void> _download(Uri url, File file, Status status) async {
+1233:     final bool isAllowedUrl = _allowedBaseUrls.any(
+1234:       (String baseUrl) => url.toString().startsWith(baseUrl),
+1235:     );
+1236: 
+1229:   ///
+1230:   /// See also:
+1231:   ///   * https://cloud.google.com/storage/docs/xml-api/reference-headers#xgooghash
+1232:   Future<void> _download(Uri url, File file, Status status) async {
+1233:     final bool isAllowedUrl = _allowedBaseUrls.any(
+1234:       (String baseUrl) => url.toString().startsWith(baseUrl),
+1235:     );
+1236: 
+1237:     // In tests make this a hard failure.
+1238:     assert(
+1239:       isAllowedUrl,
+1240:       'URL not allowed: $url\n'
+1241:       'Allowed URLs must be based on one of: ${_allowedBaseUrls.join(', ')}',
+1242:     );
+1243: 
+1244:     // In production, issue a warning but allow the download to proceed.
+1245:     if (!isAllowedUrl) {
+1246:       status.pause();
+1247:       _logger.printWarning(
+1248:         'Downloading an artifact that may not be reachable in some environments (e.g. firewalled environments): $url\n'
+1249:         'This should not have happened. This is likely a Flutter SDK bug. Please file an issue at https://github.com/flutter/flutter/issues/new?template=01_activation.yml',
+1250:       );
+1251:       status.resume();
+1252:     }
+1245:     if (!isAllowedUrl) {
+1246:       status.pause();
+1247:       _logger.printWarning(
+1248:         'Downloading an artifact that may not be reachable in some environments (e.g. firewalled environments): $url\n'
+1249:         'This should not have happened. This is likely a Flutter SDK bug. Please file an issue at https://github.com/flutter/flutter/issues/new?template=01_activation.yml',
+1250:       );
+1251:       status.resume();
+1252:     }
+1253: 
+1254:     final HttpClientRequest request = await _httpClient.getUrl(url);
+1255:     final HttpClientResponse response = await request.close();
+1256:     if (response.statusCode != HttpStatus.ok) {
+1279:         throw Exception(
+1280:           'Expected $url to have md5 checksum $md5Hash, but was $rawDigest. This '
+1281:           'may indicate a problem with your connection to the Flutter backend servers. '
+1282:           'Please re-try the download after confirming that your network connection is '
+1283:           'stable.',
+1284:         );
+1285:       }
+1286:     }
+1287:   }
+1288: 
+1289:   String? _expectedMd5(HttpHeaders httpHeaders) {
+1290:     final List<String>? values = httpHeaders['x-goog-hash'];
+1312:     return md5Hash;
+1313:   }
+1314: 
+1315:   /// Create a temporary file and add it to the [downloadedFiles].
+1316:   File _createDownloadFile(String name) {
+1317:     final File tempFile = _fileSystem.file(_fileSystem.path.join(_tempStorage.path, name));
+1318:     downloadedFiles.add(tempFile);
+1319:     return tempFile;
+1320:   }
+1321: 
+1322:   /// Create the given [directory] and parents, as necessary.
+1323:   void _ensureExists(Directory directory) {
+1313:   }
+1314: 
+1315:   /// Create a temporary file and add it to the [downloadedFiles].
+1316:   File _createDownloadFile(String name) {
+1317:     final File tempFile = _fileSystem.file(_fileSystem.path.join(_tempStorage.path, name));
+1318:     downloadedFiles.add(tempFile);
+1319:     return tempFile;
+1320:   }
+1321: 
+1322:   /// Create the given [directory] and parents, as necessary.
+1323:   void _ensureExists(Directory directory) {
+1324:     if (!directory.existsSync()) {
+1315:   /// Create a temporary file and add it to the [downloadedFiles].
+1316:   File _createDownloadFile(String name) {
+1317:     final File tempFile = _fileSystem.file(_fileSystem.path.join(_tempStorage.path, name));
+1318:     downloadedFiles.add(tempFile);
+1319:     return tempFile;
+1320:   }
+1321: 
+1322:   /// Create the given [directory] and parents, as necessary.
+1323:   void _ensureExists(Directory directory) {
+1324:     if (!directory.existsSync()) {
+1325:       directory.createSync(recursive: true);
+1326:     }
+1326:     }
+1327:   }
+1328: 
+1329:   /// Clear any zip/gzip files downloaded.
+1330:   void removeDownloadedFiles() {
+1331:     for (final File file in downloadedFiles) {
+1332:       if (!file.existsSync()) {
+1333:         continue;
+1334:       }
+1335:       try {
+1336:         file.deleteSync();
+1337:       } on FileSystemException catch (e) {
+1327:   }
+1328: 
+1329:   /// Clear any zip/gzip files downloaded.
+1330:   void removeDownloadedFiles() {
+1331:     for (final File file in downloadedFiles) {
+1332:       if (!file.existsSync()) {
+1333:         continue;
+1334:       }
+1335:       try {
+1336:         file.deleteSync();
+1337:       } on FileSystemException catch (e) {
+1338:         _logger.printWarning('Failed to delete "${file.path}". Please delete manually. $e');
+1328: 
+1329:   /// Clear any zip/gzip files downloaded.
+1330:   void removeDownloadedFiles() {
+1331:     for (final File file in downloadedFiles) {
+1332:       if (!file.existsSync()) {
+1333:         continue;
+1334:       }
+1335:       try {
+1336:         file.deleteSync();
+1337:       } on FileSystemException catch (e) {
+1338:         _logger.printWarning('Failed to delete "${file.path}". Please delete manually. $e');
+1339:         continue;
+D:\flutter\packages\flutter_tools\lib\src\template.dart SHA256 5CC4689B9DD46350C33BF4460C8A6A179ED75BBD8DD90A6EF3B2CFC1FE6CBB8F
+21: const kReservedKotlinKeywords = <String>['when', 'in', 'is'];
+22: 
+23: /// Provides the path where templates used by flutter_tools are stored.
+24: class TemplatePathProvider {
+25:   const TemplatePathProvider();
+26: 
+27:   /// Returns the directory containing the 'name' template directory.
+28:   Directory directoryInPackage(String name, FileSystem fileSystem) {
+29:     final String templatesDir = fileSystem.path.join(
+30:       Cache.flutterRoot!,
+31:       'packages',
+32:       'flutter_tools',
+22: 
+23: /// Provides the path where templates used by flutter_tools are stored.
+24: class TemplatePathProvider {
+25:   const TemplatePathProvider();
+26: 
+27:   /// Returns the directory containing the 'name' template directory.
+28:   Directory directoryInPackage(String name, FileSystem fileSystem) {
+29:     final String templatesDir = fileSystem.path.join(
+30:       Cache.flutterRoot!,
+31:       'packages',
+32:       'flutter_tools',
+33:       'templates',
+26: 
+27:   /// Returns the directory containing the 'name' template directory.
+28:   Directory directoryInPackage(String name, FileSystem fileSystem) {
+29:     final String templatesDir = fileSystem.path.join(
+30:       Cache.flutterRoot!,
+31:       'packages',
+32:       'flutter_tools',
+33:       'templates',
+34:     );
+35:     return fileSystem.directory(fileSystem.path.join(templatesDir, name));
+36:   }
+37: 
+32:       'flutter_tools',
+33:       'templates',
+34:     );
+35:     return fileSystem.directory(fileSystem.path.join(templatesDir, name));
+36:   }
+37: 
+38:   /// Returns the directory containing the 'name' template directory in
+39:   /// flutter_template_images, to resolve image placeholder against.
+40:   /// if 'name' is null, return the parent template directory.
+41:   Future<Directory> imageDirectory(String? name, FileSystem fileSystem, Logger logger) async {
+42:     final String toolPackagePath = fileSystem.path.join(
+43:       Cache.flutterRoot!,
+62:   }
+63: }
+64: 
+65: TemplatePathProvider get templatePathProvider =>
+66:     context.get<TemplatePathProvider>() ?? const TemplatePathProvider();
+67: 
+68: /// Expands templates in a directory to a destination. All files that must
+69: /// undergo template expansion should end with the `.tmpl` extension. All files
+70: /// that should be replaced with the corresponding image from
+71: /// `flutter_template_images` should end with the `.img.tmpl` extension. All other
+72: /// files are ignored. In case the contents of entire directories must be copied
+73: /// as is, the directory itself can end with `.tmpl` extension. Files within
+63: }
+64: 
+65: TemplatePathProvider get templatePathProvider =>
+66:     context.get<TemplatePathProvider>() ?? const TemplatePathProvider();
+67: 
+68: /// Expands templates in a directory to a destination. All files that must
+69: /// undergo template expansion should end with the `.tmpl` extension. All files
+70: /// that should be replaced with the corresponding image from
+71: /// `flutter_template_images` should end with the `.img.tmpl` extension. All other
+72: /// files are ignored. In case the contents of entire directories must be copied
+73: /// as is, the directory itself can end with `.tmpl` extension. Files within
+74: /// such a directory may also contain the `.tmpl` or `.img.tmpl` extensions and
+145:     }
+146:   }
+147: 
+148:   static Future<Template> fromName(
+149:     String name, {
+150:     required FileSystem fileSystem,
+151:     required Set<Uri>? templateManifest,
+152:     required Logger logger,
+153:     required TemplateRenderer templateRenderer,
+154:   }) async {
+155:     // All named templates are placed in the 'templates' directory
+156:     final Directory templateDir = templatePathProvider.directoryInPackage(name, fileSystem);
+153:     required TemplateRenderer templateRenderer,
+154:   }) async {
+155:     // All named templates are placed in the 'templates' directory
+156:     final Directory templateDir = templatePathProvider.directoryInPackage(name, fileSystem);
+157:     final Directory imageDir = await templatePathProvider.imageDirectory(name, fileSystem, logger);
+158:     return Template._(
+159:       <Directory>[templateDir],
+160:       <Directory>[imageDir],
+161:       fileSystem: fileSystem,
+162:       logger: logger,
+163:       templateRenderer: templateRenderer,
+164:       templateManifest: templateManifest,
+154:   }) async {
+155:     // All named templates are placed in the 'templates' directory
+156:     final Directory templateDir = templatePathProvider.directoryInPackage(name, fileSystem);
+157:     final Directory imageDir = await templatePathProvider.imageDirectory(name, fileSystem, logger);
+158:     return Template._(
+159:       <Directory>[templateDir],
+160:       <Directory>[imageDir],
+161:       fileSystem: fileSystem,
+162:       logger: logger,
+163:       templateRenderer: templateRenderer,
+164:       templateManifest: templateManifest,
+165:     );
+176:     // All named templates are placed in the 'templates' directory
+177:     return Template._(
+178:       <Directory>[
+179:         for (final String name in names) templatePathProvider.directoryInPackage(name, fileSystem),
+180:       ],
+181:       <Directory>[
+182:         for (final String name in names)
+183:           if ((await templatePathProvider.imageDirectory(name, fileSystem, logger)).existsSync())
+184:             await templatePathProvider.imageDirectory(name, fileSystem, logger),
+185:       ],
+186:       fileSystem: fileSystem,
+187:       logger: logger,
+180:       ],
+181:       <Directory>[
+182:         for (final String name in names)
+183:           if ((await templatePathProvider.imageDirectory(name, fileSystem, logger)).existsSync())
+184:             await templatePathProvider.imageDirectory(name, fileSystem, logger),
+185:       ],
+186:       fileSystem: fileSystem,
+187:       logger: logger,
+188:       templateRenderer: templateRenderer,
+189:       templateManifest: templateManifest,
+190:     );
+191:   }
+181:       <Directory>[
+182:         for (final String name in names)
+183:           if ((await templatePathProvider.imageDirectory(name, fileSystem, logger)).existsSync())
+184:             await templatePathProvider.imageDirectory(name, fileSystem, logger),
+185:       ],
+186:       fileSystem: fileSystem,
+187:       logger: logger,
+188:       templateRenderer: templateRenderer,
+189:       templateManifest: templateManifest,
+190:     );
+191:   }
+192: 
+210:   int render(
+211:     Directory destination,
+212:     Map<String, Object?> context, {
+213:     bool overwriteExisting = true,
+214:     bool printStatusWhenWriting = true,
+215:   }) {
+216:     try {
+217:       destination.createSync(recursive: true);
+218:     } on FileSystemException catch (err) {
+219:       _logger.printError(err.toString());
+220:       throwToolExit('Failed to flutter create at ${destination.path}.');
+221:     }
+327:       // Step 1: Check if the file needs to be overwritten.
+328: 
+329:       if (finalDestinationFile.existsSync()) {
+330:         if (overwriteExisting) {
+331:           finalDestinationFile.deleteSync(recursive: true);
+332:           if (printStatusWhenWriting) {
+333:             _logger.printStatus('  $relativePathForLogging (overwritten)');
+334:           }
+335:         } else {
+336:           // The file exists but we cannot overwrite it, move on.
+337:           if (printStatusWhenWriting) {
+338:             _logger.printTrace('  $relativePathForLogging (existing - skipped)');
+D:\flutter\packages\flutter_tools\lib\src\android\java.dart SHA256 196E06E95E740F84EB17B1A3D6E21F119A9A4C8B3A97123CC6E5F5F24682BB4F
+19:   /// JDK bundled with latest Android Studio installation.
+20:   androidStudio,
+21: 
+22:   /// JDK specified by the system's JAVA_HOME environment variable.
+23:   javaHome,
+24: 
+25:   /// JDK available through the system's PATH environment variable.
+26:   path,
+27: 
+28:   /// JDK specified in Flutter's configuration.
+29:   flutterConfig,
+30: }
+20:   androidStudio,
+21: 
+22:   /// JDK specified by the system's JAVA_HOME environment variable.
+23:   javaHome,
+24: 
+25:   /// JDK available through the system's PATH environment variable.
+26:   path,
+27: 
+28:   /// JDK specified in Flutter's configuration.
+29:   flutterConfig,
+30: }
+31: 
+29:   flutterConfig,
+30: }
+31: 
+32: typedef _JavaHomePathWithSource = ({String path, JavaSource source});
+33: 
+34: /// Represents an installation of Java.
+35: class Java {
+36:   Java({
+37:     required this.javaHome,
+38:     required this.binaryPath,
+39:     required this.javaSource,
+40:     required Logger logger,
+34: /// Represents an installation of Java.
+35: class Java {
+36:   Java({
+37:     required this.javaHome,
+38:     required this.binaryPath,
+39:     required this.javaSource,
+40:     required Logger logger,
+41:     required FileSystem fileSystem,
+42:     required OperatingSystemUtils os,
+43:     required Platform platform,
+44:     required ProcessManager processManager,
+45:   }) : _logger = logger,
+54:   /// Development Kit (JDK).
+55:   ///
+56:   /// Tools that depend on Java and need to find it will often check this
+57:   /// variable. If you are looking to set `JAVA_HOME` when stating a process,
+58:   /// consider using the [environment] instance property instead.
+59:   static String javaHomeEnvironmentVariable = 'JAVA_HOME';
+60: 
+61:   /// Finds the Java runtime environment that should be used for all java-dependent
+62:   /// operations across the tool.
+63:   ///
+64:   /// This searches for Java in the following places, in order:
+65:   ///
+56:   /// Tools that depend on Java and need to find it will often check this
+57:   /// variable. If you are looking to set `JAVA_HOME` when stating a process,
+58:   /// consider using the [environment] instance property instead.
+59:   static String javaHomeEnvironmentVariable = 'JAVA_HOME';
+60: 
+61:   /// Finds the Java runtime environment that should be used for all java-dependent
+62:   /// operations across the tool.
+63:   ///
+64:   /// This searches for Java in the following places, in order:
+65:   ///
+66:   /// 1. the runtime environment bundled with Android Studio;
+67:   /// 2. the runtime environment found in the JAVA_HOME env variable, if set; or
+64:   /// This searches for Java in the following places, in order:
+65:   ///
+66:   /// 1. the runtime environment bundled with Android Studio;
+67:   /// 2. the runtime environment found in the JAVA_HOME env variable, if set; or
+68:   /// 3. the java binary found on PATH.
+69:   ///
+70:   /// Returns null if no java binary could be found.
+71:   static Java? find({
+72:     required Config config,
+73:     required AndroidStudio? androidStudio,
+74:     required Logger logger,
+75:     required FileSystem fileSystem,
+68:   /// 3. the java binary found on PATH.
+69:   ///
+70:   /// Returns null if no java binary could be found.
+71:   static Java? find({
+72:     required Config config,
+73:     required AndroidStudio? androidStudio,
+74:     required Logger logger,
+75:     required FileSystem fileSystem,
+76:     required Platform platform,
+77:     required ProcessManager processManager,
+78:   }) {
+79:     final os = OperatingSystemUtils(
+82:       platform: platform,
+83:       processManager: processManager,
+84:     );
+85:     final _JavaHomePathWithSource? home = _findJavaHome(
+86:       config: config,
+87:       logger: logger,
+88:       androidStudio: androidStudio,
+89:       platform: platform,
+90:     );
+91:     final String? binary = _findJavaBinary(
+92:       logger: logger,
+93:       javaHome: home?.path,
+90:     );
+91:     final String? binary = _findJavaBinary(
+92:       logger: logger,
+93:       javaHome: home?.path,
+94:       fileSystem: fileSystem,
+95:       operatingSystemUtils: os,
+96:       platform: platform,
+97:     );
+98: 
+99:     if (binary == null) {
+100:       return null;
+101:     }
+100:       return null;
+101:     }
+102: 
+103:     // If javaHome == null and binary is not null, it means that
+104:     // binary obtained from PATH as fallback.
+105:     final JavaSource javaSource = home?.source ?? JavaSource.path;
+106: 
+107:     return Java(
+108:       javaHome: home?.path,
+109:       binaryPath: binary,
+110:       javaSource: javaSource,
+111:       logger: logger,
+105:     final JavaSource javaSource = home?.source ?? JavaSource.path;
+106: 
+107:     return Java(
+108:       javaHome: home?.path,
+109:       binaryPath: binary,
+110:       javaSource: javaSource,
+111:       logger: logger,
+112:       fileSystem: fileSystem,
+113:       os: os,
+114:       platform: platform,
+115:       processManager: processManager,
+116:     );
+119:   /// The path of the runtime environments' home directory.
+120:   ///
+121:   /// This should only be used for logging and validation purposes.
+122:   /// If you need to set JAVA_HOME when starting a process, consider
+123:   /// using [environment] instead.
+124:   /// If you need to inspect the files of the runtime, considering adding
+125:   /// a new method to this class instead.
+126:   final String? javaHome;
+127: 
+128:   /// The path of the runtime environments' java binary.
+129:   ///
+130:   /// This should be only used for logging and validation purposes.
+123:   /// using [environment] instead.
+124:   /// If you need to inspect the files of the runtime, considering adding
+125:   /// a new method to this class instead.
+126:   final String? javaHome;
+127: 
+128:   /// The path of the runtime environments' java binary.
+129:   ///
+130:   /// This should be only used for logging and validation purposes.
+131:   /// If you need to invoke the binary directly, consider adding a new method
+132:   /// to this class instead.
+133:   final String binaryPath;
+134: 
+146:   final ProcessUtils _processUtils;
+147: 
+148:   /// Returns an environment variable map with
+149:   /// 1. JAVA_HOME set if this object has a known home directory, and
+150:   /// 2. The java binary folder appended onto PATH, if the binary location is known.
+151:   ///
+152:   /// This map should be used as the environment when invoking any Java-dependent
+153:   /// processes, such as Gradle or Android SDK tools (avdmanager, sdkmanager, etc.)
+154:   Map<String, String> get environment => <String, String>{
+155:     javaHomeEnvironmentVariable: ?javaHome,
+156:     'PATH':
+157:         _fileSystem.path.dirname(binaryPath) +
+151:   ///
+152:   /// This map should be used as the environment when invoking any Java-dependent
+153:   /// processes, such as Gradle or Android SDK tools (avdmanager, sdkmanager, etc.)
+154:   Map<String, String> get environment => <String, String>{
+155:     javaHomeEnvironmentVariable: ?javaHome,
+156:     'PATH':
+157:         _fileSystem.path.dirname(binaryPath) +
+158:         _os.pathVarSeparator +
+159:         _platform.environment['PATH']!,
+160:   };
+161: 
+162:   /// Returns the version of java in the format \d(.\d)+(.\d)+
+152:   /// This map should be used as the environment when invoking any Java-dependent
+153:   /// processes, such as Gradle or Android SDK tools (avdmanager, sdkmanager, etc.)
+154:   Map<String, String> get environment => <String, String>{
+155:     javaHomeEnvironmentVariable: ?javaHome,
+156:     'PATH':
+157:         _fileSystem.path.dirname(binaryPath) +
+158:         _os.pathVarSeparator +
+159:         _platform.environment['PATH']!,
+160:   };
+161: 
+162:   /// Returns the version of java in the format \d(.\d)+(.\d)+
+163:   /// Returns null if version could not be determined.
+166:       return null;
+167:     }
+168: 
+169:     final RunResult result = _processUtils.runSync(<String>[
+170:       binaryPath,
+171:       '--version',
+172:     ], environment: environment);
+173:     if (result.exitCode != 0) {
+174:       _logger.printTrace(
+175:         'java --version failed: exitCode: ${result.exitCode}'
+176:         ' stdout: ${result.stdout} stderr: ${result.stderr}',
+177:       );
+223:   }
+224: }
+225: 
+226: _JavaHomePathWithSource? _findJavaHome({
+227:   required Config config,
+228:   required Logger logger,
+229:   required AndroidStudio? androidStudio,
+230:   required Platform platform,
+231: }) {
+232:   final Object? configured = config.getValue('jdk-dir');
+233:   if (configured != null) {
+234:     return (path: configured as String, source: JavaSource.flutterConfig);
+229:   required AndroidStudio? androidStudio,
+230:   required Platform platform,
+231: }) {
+232:   final Object? configured = config.getValue('jdk-dir');
+233:   if (configured != null) {
+234:     return (path: configured as String, source: JavaSource.flutterConfig);
+235:   }
+236: 
+237:   final String? androidStudioJavaPath = androidStudio?.javaPath;
+238:   if (androidStudioJavaPath != null) {
+239:     return (path: androidStudioJavaPath, source: JavaSource.androidStudio);
+240:   }
+239:     return (path: androidStudioJavaPath, source: JavaSource.androidStudio);
+240:   }
+241: 
+242:   final String? javaHomeEnv = platform.environment[Java.javaHomeEnvironmentVariable];
+243:   if (javaHomeEnv != null) {
+244:     return (path: javaHomeEnv, source: JavaSource.javaHome);
+245:   }
+246:   return null;
+247: }
+248: 
+249: String? _findJavaBinary({
+250:   required Logger logger,
+240:   }
+241: 
+242:   final String? javaHomeEnv = platform.environment[Java.javaHomeEnvironmentVariable];
+243:   if (javaHomeEnv != null) {
+244:     return (path: javaHomeEnv, source: JavaSource.javaHome);
+245:   }
+246:   return null;
+247: }
+248: 
+249: String? _findJavaBinary({
+250:   required Logger logger,
+251:   required String? javaHome,
+241: 
+242:   final String? javaHomeEnv = platform.environment[Java.javaHomeEnvironmentVariable];
+243:   if (javaHomeEnv != null) {
+244:     return (path: javaHomeEnv, source: JavaSource.javaHome);
+245:   }
+246:   return null;
+247: }
+248: 
+249: String? _findJavaBinary({
+250:   required Logger logger,
+251:   required String? javaHome,
+252:   required FileSystem fileSystem,
+248: 
+249: String? _findJavaBinary({
+250:   required Logger logger,
+251:   required String? javaHome,
+252:   required FileSystem fileSystem,
+253:   required OperatingSystemUtils operatingSystemUtils,
+254:   required Platform platform,
+255: }) {
+256:   if (javaHome != null) {
+257:     return fileSystem.path.join(javaHome, 'bin', 'java');
+258:   }
+259: 
+253:   required OperatingSystemUtils operatingSystemUtils,
+254:   required Platform platform,
+255: }) {
+256:   if (javaHome != null) {
+257:     return fileSystem.path.join(javaHome, 'bin', 'java');
+258:   }
+259: 
+260:   // Fallback to PATH based lookup.
+261:   return operatingSystemUtils.which(_javaExecutable)?.path;
+262: }
+263: 
+264: // Returns a user visible String that says the tool failed to parse
+254:   required Platform platform,
+255: }) {
+256:   if (javaHome != null) {
+257:     return fileSystem.path.join(javaHome, 'bin', 'java');
+258:   }
+259: 
+260:   // Fallback to PATH based lookup.
+261:   return operatingSystemUtils.which(_javaExecutable)?.path;
+262: }
+263: 
+264: // Returns a user visible String that says the tool failed to parse
+265: // the version of java along with the output.
+D:\flutter\packages\flutter_tools\lib\src\base\process.dart SHA256 3F29425E8048FA7878C2AADF7F482441952ADBE47FCB238F98F3CB39558EBC04
+183:   ///
+184:   /// If [timeout] is supplied, the command will be retried [timeoutRetries] times
+185:   /// if it times out.
+186:   Future<RunResult> run(
+187:     List<String> cmd, {
+188:     bool throwOnError = false,
+189:     RunResultChecker? allowedFailures,
+190:     String? workingDirectory,
+191:     bool allowReentrantFlutter = false,
+192:     Map<String, String>? environment,
+193:     Duration? timeout,
+194:     int timeoutRetries = 0,
+195:   });
+196: 
+197:   /// Run the command and block waiting for its result.
+198:   RunResult runSync(
+199:     List<String> cmd, {
+200:     bool throwOnError = false,
+201:     bool verboseExceptions = false,
+202:     RunResultChecker? allowedFailures,
+203:     bool hideStdout = false,
+204:     String? workingDirectory,
+205:     Map<String, String>? environment,
+206:     bool allowReentrantFlutter = false,
+214:     String? workingDirectory,
+215:     bool allowReentrantFlutter = false,
+216:     Map<String, String>? environment,
+217:     ProcessStartMode mode = ProcessStartMode.normal,
+218:   });
+219: 
+220:   /// This runs the command and streams stdout/stderr from the child process to
+221:   /// this process' stdout/stderr. Completes with the process's exit code.
+222:   ///
+223:   /// If [filter] is null, no lines are removed.
+224:   ///
+225:   /// If [filter] is non-null, all lines that do not match it are removed. If
+345:   final Logger _logger;
+346: 
+347:   @override
+348:   Future<RunResult> run(
+349:     List<String> cmd, {
+350:     bool throwOnError = false,
+351:     RunResultChecker? allowedFailures,
+352:     String? workingDirectory,
+353:     bool allowReentrantFlutter = false,
+354:     Map<String, String>? environment,
+355:     Duration? timeout,
+356:     int timeoutRetries = 0,
+469:   }
+470: 
+471:   @override
+472:   RunResult runSync(
+473:     List<String> cmd, {
+474:     bool throwOnError = false,
+475:     bool verboseExceptions = false,
+476:     RunResultChecker? allowedFailures,
+477:     bool hideStdout = false,
+478:     String? workingDirectory,
+479:     Map<String, String>? environment,
+480:     bool allowReentrantFlutter = false,
+481:     Encoding encoding = systemEncoding,
+482:   }) {
+483:     _traceCommand(cmd, workingDirectory: workingDirectory);
+484:     final ProcessResult results = _processManager.runSync(
+485:       cmd,
+486:       workingDirectory: workingDirectory,
+487:       environment: _environment(allowReentrantFlutter, environment),
+488:       stderrEncoding: encoding,
+489:       stdoutEncoding: encoding,
+490:     );
+491:     final runResult = RunResult(results, cmd);
+492: 
+532:     String? workingDirectory,
+533:     bool allowReentrantFlutter = false,
+534:     Map<String, String>? environment,
+535:     ProcessStartMode mode = ProcessStartMode.normal,
+536:   }) {
+537:     _traceCommand(cmd, workingDirectory: workingDirectory);
+538:     return _processManager.start(
+539:       cmd,
+540:       workingDirectory: workingDirectory,
+541:       environment: _environment(allowReentrantFlutter, environment),
+542:       mode: mode,
+543:     );
+620:     }
+621: 
+622:     try {
+623:       return _processManager.runSync(cli, environment: environment).exitCode == 0;
+624:     } on Exception catch (error) {
+625:       _logger.printTrace('$cli failed with $error');
+626:       return false;
+627:     }
+628:   }
+629: 
+630:   @override
+631:   Future<bool> exitsHappy(List<String> cli, {Map<String, String>? environment}) async {
+D:\flutter\packages\flutter_tools\lib\src\flutter_plugins.dart SHA256 FF221DFBA4790A328798F10056B24853E7C9FD1694C9869FE1B61415C53E12F3
+144: /// Plugin resolution type to determine the injection mechanism.
+145: enum _PluginResolutionType { dart, nativeOrDart }
+146: 
+147: // Key strings for the .flutter-plugins-dependencies file.
+148: const _kFlutterPluginsPluginListKey = 'plugins';
+149: const _kFlutterPluginsNameKey = 'name';
+150: const _kFlutterPluginsPathKey = 'path';
+151: const _kFlutterPluginsDependenciesKey = 'dependencies';
+152: const _kFlutterPluginsHasNativeBuildKey = 'native_build';
+153: const _kFlutterPluginsSharedDarwinSource = 'shared_darwin_source';
+154: const _kFlutterPluginsDevDependencyKey = 'dev_dependency';
+155: 
+153: const _kFlutterPluginsSharedDarwinSource = 'shared_darwin_source';
+154: const _kFlutterPluginsDevDependencyKey = 'dev_dependency';
+155: 
+156: /// Writes the .flutter-plugins-dependencies file based on the list of plugins.
+157: /// If there aren't any plugins, then the files aren't written to disk. The resulting
+158: /// file looks something like this (order of keys is not guaranteed):
+159: /// {
+160: ///   "info": "This is a generated file; do not edit or check into version control.",
+161: ///   "plugins": {
+162: ///     "ios": [
+163: ///       {
+164: ///         "name": "test",
+266:   return pluginsChanged;
+267: }
+268: 
+269: /// Find what has changed in the `.flutter-plugins-dependencies` JSON file.
+270: ///
+271: /// `pluginsChanged` is `true` if anything changed in the `plugins` property.
+272: /// This indicates that platform-specific tooling like `pod install` should be
+273: /// re-run.
+274: ///
+275: /// `contentsChanged` is `true` if [newJson] has changes that should be
+276: /// saved to disk.
+277: ({bool pluginsChanged, bool contentsChanged}) _detectFlutterPluginsListChanges(
+324:   }
+325: }
+326: 
+327: /// Checks if the .flutter-plugins-dependencies file has any plugin
+328: /// dev dependencies with platform-specific implementations.
+329: bool flutterPluginsListHasDevDependencies(File pluginsFile) {
+330:   final String pluginsString = pluginsFile.readAsStringSync();
+331:   final pluginsJson = json.decode(pluginsString) as Map<String, dynamic>;
+332:   final plugins = pluginsJson[_kFlutterPluginsPluginListKey] as Map<String, dynamic>;
+333: 
+334:   for (final MapEntry<String, dynamic> pluginEntries in plugins.entries) {
+335:     final platformPlugins = pluginEntries.value as List<dynamic>;
+1041: /// be created only if missing.
+1042: ///
+1043: /// This uses [FlutterProject.flutterPluginsDependenciesFile], so it should only be
+1044: /// run after [refreshPluginsList] has been run since the last plugin change.
+1045: void createPluginSymlinks(
+1046:   FlutterProject project, {
+1047:   bool force = false,
+1048:   @visibleForTesting FeatureFlags? featureFlagsOverride,
+1049: }) {
+1050:   final FeatureFlags localFeatureFlags = featureFlagsOverride ?? featureFlags;
+1051:   Map<String, Object?>? platformPlugins;
+1052:   final String? pluginFileContent = _readFileContent(project.flutterPluginsDependenciesFile);
+1154:   }
+1155: }
+1156: 
+1157: /// Rewrites the `.flutter-plugins` file of [project] based on the plugin
+1158: /// dependencies declared in `pubspec.yaml`.
+1159: ///
+1160: /// Assumes `pub get` has been executed since last change to `pubspec.yaml`.
+1161: ///
+1162: /// Plugins that are development-only dependencies might be labeled or,
+1163: /// depending on the platform, omitted from metadata or platform-specific artifacts.
+1164: Future<void> refreshPluginsList(
+1165:   FlutterProject project, {
+1160: /// Assumes `pub get` has been executed since last change to `pubspec.yaml`.
+1161: ///
+1162: /// Plugins that are development-only dependencies might be labeled or,
+1163: /// depending on the platform, omitted from metadata or platform-specific artifacts.
+1164: Future<void> refreshPluginsList(
+1165:   FlutterProject project, {
+1166:   bool iosPlatform = false,
+1167:   bool macOSPlatform = false,
+1168:   bool forceCocoaPodsOnly = false,
+1169: }) async {
+1170:   final List<Plugin> plugins = await findPlugins(project);
+1171:   // Sort the plugins by name to keep ordering stable in generated files.
+1161: ///
+1162: /// Plugins that are development-only dependencies might be labeled or,
+1163: /// depending on the platform, omitted from metadata or platform-specific artifacts.
+1164: Future<void> refreshPluginsList(
+1165:   FlutterProject project, {
+1166:   bool iosPlatform = false,
+1167:   bool macOSPlatform = false,
+1168:   bool forceCocoaPodsOnly = false,
+1169: }) async {
+1170:   final List<Plugin> plugins = await findPlugins(project);
+1171:   // Sort the plugins by name to keep ordering stable in generated files.
+1172:   plugins.sort((Plugin left, Plugin right) => left.name.compareTo(right.name));
+1202: /// Injects plugins found in `pubspec.yaml` into the platform-specific projects
+1203: /// only at build-time.
+1204: ///
+1205: /// This method is similar to [injectPlugins], but used only for platforms where
+1206: /// the plugin files are not required when the app is created (currently: Web).
+1207: ///
+1208: /// This method will create files in the temporary flutter build directory
+1209: /// specified by `destination`.
+1210: ///
+1211: /// In the Web platform, `destination` can point to a real filesystem (`flutter build`)
+1212: /// or an in-memory filesystem (`flutter run`).
+1213: ///
+1238: /// Web tooling uses [injectBuildTimePluginFilesForWebPlatform] instead, which places files in the
+1239: /// current build (temp) directory, and doesn't modify the users' working copy.
+1240: ///
+1241: /// Assumes [refreshPluginsList] has been called since last change to `pubspec.yaml`.
+1242: ///
+1243: /// If [releaseMode] is `true`, platform-specific tooling and metadata generated
+1244: /// may apply optimizations or changes that are only specific to release builds,
+1245: /// such as not including dev-only dependencies.
+1246: Future<void> injectPlugins(
+1247:   FlutterProject project, {
+1248:   required bool releaseMode,
+1249:   bool androidPlatform = false,
+1243: /// If [releaseMode] is `true`, platform-specific tooling and metadata generated
+1244: /// may apply optimizations or changes that are only specific to release builds,
+1245: /// such as not including dev-only dependencies.
+1246: Future<void> injectPlugins(
+1247:   FlutterProject project, {
+1248:   required bool releaseMode,
+1249:   bool androidPlatform = false,
+1250:   bool iosPlatform = false,
+1251:   bool linuxPlatform = false,
+1252:   bool macOSPlatform = false,
+1253:   bool windowsPlatform = false,
+1254:   DarwinDependencyManagement? darwinDependencyManagement,
+1325: 
+1326: /// Returns whether the specified Flutter [project] has any plugin dependencies.
+1327: ///
+1328: /// Assumes [refreshPluginsList] has been called since last change to `pubspec.yaml`.
+1329: bool hasPlugins(FlutterProject project) {
+1330:   return _readFileContent(project.flutterPluginsDependenciesFile) != null;
+1331: }
+1332: 
+1333: /// Resolves the plugin implementations for all platforms.
+1334: ///
+1335: ///   * If there is only one dependency on a package that implements the
+1336: ///     frontend plugin for the current platform, use that.

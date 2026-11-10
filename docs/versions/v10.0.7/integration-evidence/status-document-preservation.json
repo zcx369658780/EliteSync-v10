@@ -1,0 +1,26 @@
+[
+  {
+    "path": "CURRENT_STATE.md",
+    "main_original_blob": "69df108227534dc6710b03572b71a4eedb0d70c5",
+    "original_bytes_retained": true,
+    "action": "prepend current K08 status only"
+  },
+  {
+    "path": "DOC_INDEX_CURRENT.md",
+    "main_original_blob": "0984786b8bdf26bb30b535fe3fe6993e1198717b",
+    "original_bytes_retained": true,
+    "action": "prepend current K08 status only"
+  },
+  {
+    "path": "docs/versions/README.md",
+    "main_original_blob": "01d08c0db29ebfd8fc7b83ceecc97efa9586ca24",
+    "original_bytes_retained": true,
+    "action": "prepend current K08 status only"
+  },
+  {
+    "path": "docs/architecture/RESTORATION_CAPABILITY_MATRIX.md",
+    "main_original_blob": "9e3d0364604dd7311a867d12a63d9e5cf3f29ad3",
+    "original_bytes_retained": true,
+    "action": "prepend current K08 status only"
+  }
+]

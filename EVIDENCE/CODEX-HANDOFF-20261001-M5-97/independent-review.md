@@ -1,0 +1,2 @@
+# Independent GPT-6.1 Sol/high handoff97
+Required, not accepted: wrong comparison between baselinePaths and rawporcelainrows means oldMissing255 is not physical loss proof; entrydefaultlogin deviated from taskloginfalse. Original Aexit1/nativefalse stops atgit,all20frozen notexecuted,no supplement/retry/write. Reviewer task/native eachReadAllBytes1/strictUTF8,allotherreads/hash/run/write0. Closedbudget and Workrejection preserved.

@@ -1,0 +1,1126 @@
+{
+  "oracle": "independent-ziwei-rules-v2.1-metadata-alignment",
+  "sourceReviewDate": "2026-10-17",
+  "scope": "Fictional rule-level lunar inputs, independent of product engine. No production code, iztro implementation/data, birth API or whole-chart outputs consulted. Not a calendar-valid solar birth dataset.",
+  "coordinateConvention": {
+    "branchIndex": "子=0 through 亥=11; increasing branch order",
+    "stemIndex": "甲=0 through 癸=9",
+    "palaceOrder": "命兄弟夫妻子女财帛疾厄迁移仆役官禄田宅福德父母: decreasing branch index",
+    "decadeAges": "Traditional nominal age, bureau..bureau+9 first at 命宫"
+  },
+  "sources": [
+    {
+      "id": "classical-volume-2",
+      "url": "https://zh.wikisource.org/zh-hans/紫微斗數全書/卷二",
+      "title": "紫微斗数全书 卷二",
+      "sections": [
+        "安身命例",
+        "安十二宫例",
+        "起五行寅例",
+        "六十花甲子纳音歌",
+        "安南北斗诸星诀",
+        "安文昌文曲星诀",
+        "安左辅右弼星诀",
+        "安天马星诀",
+        "安禄存星诀",
+        "安擎羊陀罗二星诀",
+        "天空地劫诀",
+        "安天刑天姚星诀",
+        "安三台八座二星诀",
+        "安天哭天虚星诀",
+        "安龙池凤阁诀",
+        "安红鸾天喜诀",
+        "水二局至火六局日表"
+      ],
+      "use": "Public-domain classical rule basis, manually interpreted; not a claim modern profile is identical to this edition."
+    },
+    {
+      "id": "sanqing-modern-rules",
+      "url": "https://sanqing.com.tw/en/the-chinese-astrology-chart010/",
+      "title": "三清灵学院 紫微安星诀",
+      "sections": [
+        "起大限",
+        "起紫微星诀",
+        "安天府星诀",
+        "安魁钺",
+        "安火铃诀",
+        "安四化星",
+        "安台辅封诰",
+        "安天空",
+        "安天伤天使"
+      ],
+      "use": "Independently published placement facts only; no article copied."
+    },
+    {
+      "id": "modern-ten-stem-hua",
+      "url": "https://minglimr.com/learn/ziwei/si-hua",
+      "title": "命理先生 十干四化对照",
+      "sections": [
+        "紫微四化表：十干各化哪四颗星",
+        "各派在戊、庚、壬三干的分歧"
+      ],
+      "use": "Only ten-stem to four-star factual map, independently cross-checked with Sanqing. NOT this publisher's 立春 year boundary, time conversion or whole-chart conventions."
+    }
+  ],
+  "ruleProvenance": {
+    "lifeBodyPalaces": "classical-volume-2 安身命例 + separately Owner-frozen modern leap policy",
+    "palaceStemsAndBureau": "classical-volume-2 起五行寅例, 六十纳音; bureau 2/3/4/5/6 from five day-placement tables",
+    "fourteenMajorStars": "classical-volume-2 安南北斗诸星诀 and 五局日表; sanqing-modern-rules explicit quotient/supplement examples and 天府 reflection",
+    "leftRightChangQuLuYangTuoHorse": "classical-volume-2 corresponding named sections; 天马 uses YEAR branch trine",
+    "kuiYue": "sanqing-modern-rules modern 辛午寅 and 丙丁亥酉, not literal 卷二",
+    "fireBell": "classical-volume-2 start positions; sanqing-modern-rules explicitly counts forward to birth hour",
+    "diKongDiJie": "classical-volume-2 天空地劫诀 ancient 天空 is modern 地空; separate modern 天空 from sanqing-modern-rules",
+    "taiFuFengGao": "Sanqing 台辅午顺时; 封诰 follows independently attested classical Volume2/NCC 寅起子顺行. Sanqing 寅逆行 is retained as the rejected-for-this-profile v1 variant.",
+    "xingYaoSanTaiBaZuoKuXuLongFengHongXi": "classical-volume-2 corresponding named sections",
+    "tianShangTianShi": "sanqing-modern-rules fixed 交友/疾厄 palaces",
+    "birthHua": "modern-ten-stem-hua and sanqing-modern-rules modern 南派 mapping",
+    "palaceStemHuaEdges": "Owner-requested deterministic graph construction: each palace stem applies selected modern ten-stem map and points to transformed star placement. Graph scope is product profile, not an ancient whole-chart theorem.",
+    "decades": "sanqing-modern-rules 起大限: 命宫起 阳男阴女顺/阴男阳女逆, ten-year interval; starting ages from classical five bureau tables"
+  },
+  "explicitProfileChoices": {
+    "yearBoundary": "Independent lunar year supplied; no Gregorian/立春 inference",
+    "leapMonth": "Owner-frozen modern profile: day 1..15 nominal month, day 16..30 next month; original lunar day retained for 紫微 and day stars. NOT classical-volume-2 whole-leap-month-next-month rule.",
+    "modernDifferences": [
+      "壬科左辅 instead of classical 天府",
+      "辛魁午钺寅 instead of classical 虎马 order",
+      "丙丁钺酉 instead of classical 狗 reading",
+      "大限命宫起 instead of literal classical 前后一宫"
+    ],
+    "algorithmSex": "male/female explicitly supplied, only directional traditional algorithm input",
+    "brightness": "UNKNOWN; external 168-cell acquisition separate; no modern brightness table copied",
+    "fengGao": "FENG_GAO_YIN_ZI_FORWARD; classical Volume2 + NCC, contrasting Sanqing reverse variant preserved in original first comparison."
+  },
+  "limitations": [
+    "No astronomical calendar validation/conversion",
+    "Fictional leap month/day 30 may not exist in named year; parent must separately establish HKO-valid inputs before treating samples as actual births",
+    "No time conversion",
+    "No brightness expected values",
+    "Unlisted minor stars UNKNOWN",
+    "No metaphysical predictive/scientific correctness claim",
+    "Independent code may contain errors; review and held-out comparison remain required",
+    "48 fresh/24 blind are logical splits only: parent must hash/freeze both files BEFORE first execution/comparison; this file alone does not establish blindness"
+  ],
+  "samples": [
+    {
+      "id": "fresh-001",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1984,
+        "lunarMonth": 1,
+        "lunarDay": 1,
+        "leapMonth": true,
+        "yearStem": "甲",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-002",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1985,
+        "lunarMonth": 1,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-003",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1986,
+        "lunarMonth": 1,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "丙",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-004",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1987,
+        "lunarMonth": 1,
+        "lunarDay": 29,
+        "leapMonth": true,
+        "yearStem": "丁",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-005",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1988,
+        "lunarMonth": 1,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "戊",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-006",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1989,
+        "lunarMonth": 1,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "己",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-007",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1990,
+        "lunarMonth": 2,
+        "lunarDay": 15,
+        "leapMonth": true,
+        "yearStem": "庚",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-008",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1991,
+        "lunarMonth": 2,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "辛",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-009",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1992,
+        "lunarMonth": 2,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "壬",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-010",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1993,
+        "lunarMonth": 2,
+        "lunarDay": 30,
+        "leapMonth": true,
+        "yearStem": "癸",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-011",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1994,
+        "lunarMonth": 2,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "甲",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-012",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1995,
+        "lunarMonth": 2,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-013",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1996,
+        "lunarMonth": 3,
+        "lunarDay": 16,
+        "leapMonth": true,
+        "yearStem": "丙",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-014",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1997,
+        "lunarMonth": 3,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "丁",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-015",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1998,
+        "lunarMonth": 3,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "戊",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-016",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 1999,
+        "lunarMonth": 3,
+        "lunarDay": 1,
+        "leapMonth": true,
+        "yearStem": "己",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-017",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2000,
+        "lunarMonth": 3,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "庚",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-018",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2001,
+        "lunarMonth": 3,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "辛",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-019",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2002,
+        "lunarMonth": 4,
+        "lunarDay": 29,
+        "leapMonth": true,
+        "yearStem": "壬",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-020",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2003,
+        "lunarMonth": 4,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "癸",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-021",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2004,
+        "lunarMonth": 4,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "甲",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-022",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2005,
+        "lunarMonth": 4,
+        "lunarDay": 15,
+        "leapMonth": true,
+        "yearStem": "乙",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-023",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2006,
+        "lunarMonth": 4,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "丙",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-024",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2007,
+        "lunarMonth": 4,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "丁",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-025",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2008,
+        "lunarMonth": 5,
+        "lunarDay": 30,
+        "leapMonth": true,
+        "yearStem": "戊",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-026",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2009,
+        "lunarMonth": 5,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "己",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-027",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2010,
+        "lunarMonth": 5,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "庚",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-028",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2011,
+        "lunarMonth": 5,
+        "lunarDay": 16,
+        "leapMonth": true,
+        "yearStem": "辛",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-029",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2012,
+        "lunarMonth": 5,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "壬",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-030",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2013,
+        "lunarMonth": 5,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "癸",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-031",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2014,
+        "lunarMonth": 6,
+        "lunarDay": 1,
+        "leapMonth": true,
+        "yearStem": "甲",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-032",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2015,
+        "lunarMonth": 6,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-033",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2016,
+        "lunarMonth": 6,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "丙",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-034",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2017,
+        "lunarMonth": 6,
+        "lunarDay": 29,
+        "leapMonth": true,
+        "yearStem": "丁",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-035",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2018,
+        "lunarMonth": 6,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "戊",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-036",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2019,
+        "lunarMonth": 6,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "己",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-037",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2020,
+        "lunarMonth": 7,
+        "lunarDay": 15,
+        "leapMonth": true,
+        "yearStem": "庚",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-038",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2021,
+        "lunarMonth": 7,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "辛",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-039",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2022,
+        "lunarMonth": 7,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "壬",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-040",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2023,
+        "lunarMonth": 7,
+        "lunarDay": 30,
+        "leapMonth": true,
+        "yearStem": "癸",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-041",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2024,
+        "lunarMonth": 7,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "甲",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-042",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2025,
+        "lunarMonth": 7,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-043",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2026,
+        "lunarMonth": 8,
+        "lunarDay": 16,
+        "leapMonth": true,
+        "yearStem": "丙",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-044",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2027,
+        "lunarMonth": 8,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "丁",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-045",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2028,
+        "lunarMonth": 8,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "戊",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-046",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2029,
+        "lunarMonth": 8,
+        "lunarDay": 1,
+        "leapMonth": true,
+        "yearStem": "己",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "fresh-047",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2030,
+        "lunarMonth": 8,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "庚",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "fresh-048",
+      "split": "fresh",
+      "input": {
+        "lunarYear": 2031,
+        "lunarMonth": 8,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "辛",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-001",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2032,
+        "lunarMonth": 9,
+        "lunarDay": 29,
+        "leapMonth": true,
+        "yearStem": "壬",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-002",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2033,
+        "lunarMonth": 9,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "癸",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-003",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2034,
+        "lunarMonth": 9,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "甲",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-004",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2035,
+        "lunarMonth": 9,
+        "lunarDay": 15,
+        "leapMonth": true,
+        "yearStem": "乙",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-005",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2036,
+        "lunarMonth": 9,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "丙",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-006",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2037,
+        "lunarMonth": 9,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "丁",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-007",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2038,
+        "lunarMonth": 10,
+        "lunarDay": 30,
+        "leapMonth": true,
+        "yearStem": "戊",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-008",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2039,
+        "lunarMonth": 10,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "己",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-009",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2040,
+        "lunarMonth": 10,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "庚",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-010",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2041,
+        "lunarMonth": 10,
+        "lunarDay": 16,
+        "leapMonth": true,
+        "yearStem": "辛",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-011",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2042,
+        "lunarMonth": 10,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "壬",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-012",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2043,
+        "lunarMonth": 10,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "癸",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-013",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2044,
+        "lunarMonth": 11,
+        "lunarDay": 1,
+        "leapMonth": true,
+        "yearStem": "甲",
+        "yearBranch": "子",
+        "hourBranch": "子",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-014",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2045,
+        "lunarMonth": 11,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "丑",
+        "hourBranch": "丑",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-015",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2046,
+        "lunarMonth": 11,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "丙",
+        "yearBranch": "寅",
+        "hourBranch": "寅",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-016",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2047,
+        "lunarMonth": 11,
+        "lunarDay": 29,
+        "leapMonth": true,
+        "yearStem": "丁",
+        "yearBranch": "卯",
+        "hourBranch": "卯",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-017",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2048,
+        "lunarMonth": 11,
+        "lunarDay": 30,
+        "leapMonth": false,
+        "yearStem": "戊",
+        "yearBranch": "辰",
+        "hourBranch": "辰",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-018",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2049,
+        "lunarMonth": 11,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "己",
+        "yearBranch": "巳",
+        "hourBranch": "巳",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-019",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2050,
+        "lunarMonth": 12,
+        "lunarDay": 15,
+        "leapMonth": true,
+        "yearStem": "庚",
+        "yearBranch": "午",
+        "hourBranch": "午",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-020",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2051,
+        "lunarMonth": 12,
+        "lunarDay": 16,
+        "leapMonth": false,
+        "yearStem": "辛",
+        "yearBranch": "未",
+        "hourBranch": "未",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-021",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2052,
+        "lunarMonth": 12,
+        "lunarDay": 29,
+        "leapMonth": false,
+        "yearStem": "壬",
+        "yearBranch": "申",
+        "hourBranch": "申",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-022",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2053,
+        "lunarMonth": 12,
+        "lunarDay": 30,
+        "leapMonth": true,
+        "yearStem": "癸",
+        "yearBranch": "酉",
+        "hourBranch": "酉",
+        "algorithmSex": "male"
+      }
+    },
+    {
+      "id": "blind-023",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2054,
+        "lunarMonth": 12,
+        "lunarDay": 1,
+        "leapMonth": false,
+        "yearStem": "甲",
+        "yearBranch": "戌",
+        "hourBranch": "戌",
+        "algorithmSex": "female"
+      }
+    },
+    {
+      "id": "blind-024",
+      "split": "blind",
+      "input": {
+        "lunarYear": 2055,
+        "lunarMonth": 12,
+        "lunarDay": 15,
+        "leapMonth": false,
+        "yearStem": "乙",
+        "yearBranch": "亥",
+        "hourBranch": "亥",
+        "algorithmSex": "female"
+      }
+    }
+  ],
+  "reference_profile_correction": {
+    "field": "fenggao",
+    "selected": "FENG_GAO_YIN_ZI_FORWARD",
+    "former_v1": "Sanqing reverse variant; original source, expected and 60/72 differences retained LOCAL_ONLY",
+    "basis": "The frozen target is the named iztro-consistent profile. Original classical Volume2 and independent NCC attest the forward variant. No production rule was changed to hide a difference.",
+    "independent_sources": [
+      "https://zh.wikisource.org/zh-hans/紫微斗數全書/卷二",
+      "https://www.ncc.com.tw/fate/paleo/gv/gv_15.htm"
+    ],
+    "locator": "安封诰诀; NCC 安台辅封诰",
+    "contrasting_source_retained": "https://sanqing.com.tw/en/the-chinese-astrology-chart010/"
+  },
+  "metadata_alignment_note": "v2.1 updates contradictory prose only, not ziwei_reference.py calculations or independently frozen v2 expected. The initial v2 source hash and all v1/v2 receipts remain preserved locally; no comparison was regenerated to change a result."
+}

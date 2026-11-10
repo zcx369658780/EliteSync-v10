@@ -1,19 +1,19 @@
 class ChatMock {
+  static const syntheticPeerUserId = 990000201;
+  static const syntheticMatchId = 990000101;
+  static const syntheticConversationId = 990000301;
+
   static const conversationsHappy = [
     {
-      'id': 'c001',
-      'name': '晨雾',
+      'id': '$syntheticPeerUserId',
+      'entry_kind': 'stored_conversation',
+      'conversation_id': syntheticConversationId,
+      'peer_user_id': syntheticPeerUserId,
+      'match_id': syntheticMatchId,
+      'name': 'Synthetic Demo Partner',
       'avatar': null,
-      'last_message': '图片消息',
-      'last_time': '10:18',
-      'unread': 2,
-    },
-    {
-      'id': 'c002',
-      'name': '九紫瑶瑶',
-      'avatar': null,
-      'last_message': '我也喜欢慢节奏散步。',
-      'last_time': '昨天',
+      'last_message': 'Synthetic 开发演示假消息：这是本地会话摘要。',
+      'last_time': 'Demo',
       'unread': 0,
     },
   ];
@@ -28,38 +28,16 @@ class ChatMock {
 
   static const messagesHappy = [
     {
-      'id': 'm001',
+      'id': '990000401',
       'mine': false,
-      'text': '你好呀，看到你也喜欢看展。',
-      'time': '10:15',
+      'text': 'Synthetic 开发演示假消息：这里没有真实参与者数据。',
+      'time': 'Demo 10:15',
     },
     {
-      'id': 'm002',
+      'id': '990000402',
       'mine': true,
-      'text': '是的，我最近在看摄影展。',
-      'time': '10:16',
-    },
-    {
-      'id': 'm003',
-      'mine': true,
-      'text': '',
-      'time': '10:17',
-      'attachments': [
-        {
-          'id': 'a001',
-          'attachment_type': 'image',
-          'media_asset': {
-            'id': '9001',
-            'media_type': 'image',
-            'public_url': 'file:///data/user/0/com.elitesync/files/4_2_demo_image.png',
-            'status': 'ready',
-            'mime_type': 'image/png',
-            'size_bytes': 58241,
-            'width': 1024,
-            'height': 1024,
-          },
-        },
-      ],
+      'text': 'Synthetic 开发演示假消息：读取与发送只发生在本地。',
+      'time': 'Demo 10:16',
     },
   ];
 }

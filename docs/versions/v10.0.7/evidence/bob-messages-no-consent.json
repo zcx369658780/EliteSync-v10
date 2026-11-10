@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T00:11:38.517703+00:00",
+  "role": "bob",
+  "method": "GET",
+  "path": "/api/v1/messages?peer_id=2",
+  "request": null,
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

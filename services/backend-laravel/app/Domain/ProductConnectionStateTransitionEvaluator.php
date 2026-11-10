@@ -354,7 +354,9 @@ final class ProductConnectionStateTransitionEvaluator
             ) {
                 return ['evidence' => null, 'reason' => $identityReason];
             }
+        }
 
+        foreach ($evidenceSet as $candidate) {
             $comparison = CommonAuthorityEvidenceContract::compareSourceRevisions(
                 $selected['source_evidence']['source_revision'],
                 $candidate['source_evidence']['source_revision'],
@@ -363,16 +365,30 @@ final class ProductConnectionStateTransitionEvaluator
             if ($comparison === CommonAuthorityEvidenceContract::CONDITION_INCOMPARABLE) {
                 return ['evidence' => null, 'reason' => $incomparableReason];
             }
+        }
+
+        $maximal = [$selected];
+
+        foreach ($evidenceSet as $candidate) {
+            $comparison = CommonAuthorityEvidenceContract::compareSourceRevisions(
+                $maximal[0]['source_evidence']['source_revision'],
+                $candidate['source_evidence']['source_revision'],
+            );
 
             if ($comparison === CommonAuthorityEvidenceContract::REVISION_OLDER) {
-                $selected = $candidate;
+                $maximal = [$candidate];
                 continue;
             }
 
-            if (
-                $comparison === CommonAuthorityEvidenceContract::REVISION_EQUAL
-                && $signature($selected) !== $signature($candidate)
-            ) {
+            if ($comparison === CommonAuthorityEvidenceContract::REVISION_EQUAL) {
+                $maximal[] = $candidate;
+            }
+        }
+
+        $selected = array_shift($maximal);
+
+        foreach ($maximal as $candidate) {
+            if ($signature($selected) !== $signature($candidate)) {
                 return ['evidence' => null, 'reason' => $conflictReason];
             }
         }

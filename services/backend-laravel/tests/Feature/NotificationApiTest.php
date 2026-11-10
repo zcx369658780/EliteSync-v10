@@ -6,6 +6,7 @@ use App\Models\AppNotificationItem;
 use App\Models\DatingMatch;
 use App\Models\User;
 use App\Services\NotificationService;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -27,23 +28,20 @@ class NotificationApiTest extends TestCase
             'password' => 'secret123',
         ]);
 
-        AppNotificationItem::query()->create([
-            'user_id' => $user->id,
-            'kind' => 'message',
-            'title' => 'Peer 发来一条消息',
-            'body' => 'hello',
-            'payload' => [
-                'route_name' => 'chat_room',
-                'route_args' => ['conversation_id' => (string) $other->id],
-            ],
-            'read_at' => null,
-        ]);
+        config(['restoration.enabled'=>true]);
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a'=>min($user->id,$other->id),'user_b'=>max($user->id,$other->id),'state'=>'ACTIVE','revision'=>1,'created_at'=>now(),'updated_at'=>now()]);
+        $consent=app(\App\Services\LiveConsentService::class);
+        foreach ([[$other,$user,'connection','request',0],[$user,$other,'connection','accept',1],[$other,$user,'consent','request',0],[$user,$other,'consent','accept',1]] as [$a,$b,$kind,$action,$revision]) $consent->transition($a->id,$b->id,$kind,$action,$revision);
+        Sanctum::actingAs($other);
+        $this->postJson('/api/v1/messages',['receiver_id'=>$user->id,'content'=>'synthetic notification flow','client_message_id'=>(string)\Illuminate\Support\Str::uuid()])->assertOk();
+        $post=\App\Models\StatusPost::create(['author_user_id'=>$user->id,'title'=>'synthetic','body'=>'synthetic','visibility'=>'public','audience'=>'FRIENDS','is_deleted'=>false]);
         AppNotificationItem::query()->create([
             'user_id' => $user->id,
             'kind' => 'status_like',
             'title' => 'Peer 赞了你的动态',
             'body' => 'nice',
             'payload' => [
+                'actor_user_id'=>$other->id,'status_post_id'=>$post->id,
                 'route_name' => 'status_author',
                 'route_args' => ['user_id' => $other->id],
             ],
@@ -127,8 +125,11 @@ class NotificationApiTest extends TestCase
         $this->assertSame(1, AppNotificationItem::query()->where('user_id', $user->id)->count());
     }
 
-    public function test_message_notification_uses_stored_conversation_and_sender_identity_without_replay_duplicate(): void
+    public function test_message_notification_keeps_private_pointer_and_replay_does_not_duplicate(): void
     {
+        // This replay check exercises legacy internals, not v10 live messaging authority.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+
         $sender = User::factory()->create(['phone' => 'notify-sender']);
         $receiver = User::factory()->create(['phone' => 'notify-receiver']);
         DatingMatch::query()->create([
@@ -149,8 +150,14 @@ class NotificationApiTest extends TestCase
 
         $this->assertDatabaseCount('notifications', 1);
         $notification = AppNotificationItem::query()->firstOrFail();
-        $this->assertSame((string) $send['conversation_id'], $notification->payload['route_args']['conversation_id']);
-        $this->assertSame($sender->id, $notification->payload['peer_user_id']);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_TITLE, $notification->title);
+        $this->assertSame(\App\Services\NotificationService::MESSAGE_BODY, $notification->body);
+        $this->assertArrayNotHasKey('peer_user_id', $notification->payload);
+        $this->assertArrayNotHasKey('route_args', $notification->payload);
+        $storedMessage = \App\Models\ChatMessage::findOrFail($notification->payload['message_id']);
+        $storedConversation = \App\Models\Conversation::where('room_key', $storedMessage->room_id)->firstOrFail();
+        $this->assertSame((int) $send['conversation_id'], (int) $storedConversation->id);
+        $this->assertSame($sender->id, (int) $storedMessage->sender_id);
         $this->assertSame($send['id'], $notification->payload['message_id']);
     }
 }

@@ -1,0 +1,15 @@
+{
+  "HEAD": "cf8bfaa4a03b8c9a682105617b185141904413be",
+  "Branch": "main",
+  "Count": 262,
+  "OldMissing": [],
+  "Frozen": 21,
+  "FutureRuntimeRootExists": false,
+  "M93": "FAIL_CLOSED_ONE_JVM_USED",
+  "M103": "ACCEPT_CLOSED_SOURCEONLY",
+  "M100": "DRAFT_NOT_ISSUED_WAITING_NEW_OWNER_SCOPE",
+  "Executor": "01a0f74b-03a7-7d41-8185-9c47d92ab428/local",
+  "Turn": 6,
+  "Cursor": "3ba1c1a4-9ffe-4fee-aaf9-f5b397ae060e:17",
+  "Automation": "PAUSED"
+}

@@ -1,0 +1,3 @@
+# Work LEVEL2 — M104
+
+REJECT/CLOSED REPORT_NOT_DELIVERED. Original native only ENTRY1 exit0/truncatedfalse; no A/B commands or fileChange. Current report absent,265status/oldmissing0/main expectedHEAD/Frozen21 verified (19fresh hashes,2old bins identity only). Author's proposed command overflow is AUTHOR_REPORTED; exact length/measurement NOT_PROVEN. No API qualification accepted. Independent GPT-6.1 Sol/high two files Read1/NO_FINDINGS only for failure stop/closure, not terminal verdict. Old M100 and old review failures stay closed. M105 new artifact-only command budget does not rerun JVM or reclassify any old task.

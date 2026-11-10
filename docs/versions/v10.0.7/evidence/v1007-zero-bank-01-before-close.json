@@ -1,0 +1,219 @@
+{
+  "utc": "2026-10-15T00:42:22.053042+00:00",
+  "role": "admin",
+  "method": "GET",
+  "path": "/api/v1/admin/matching/rounds/62491db4-e884-4888-b2fe-b5391e843853",
+  "request": null,
+  "status": 200,
+  "body": {
+    "data": {
+      "id": 8,
+      "round_key": "62491db4-e884-4888-b2fe-b5391e843853",
+      "channel_key": "v1007-zero-bank-01",
+      "cadence_key": "2026-10-15",
+      "state": "no_candidate",
+      "state_version": 6,
+      "scheduled_for": null,
+      "reveal_at": "2026-10-14T00:00:00.000000Z",
+      "revealed_at": "2026-10-15T00:42:21.000000Z",
+      "closed_at": null,
+      "active_run_id": 10,
+      "created_by_type": "admin",
+      "created_by_id": 1,
+      "source": "admin",
+      "failure_code": null,
+      "failure_summary": null,
+      "created_at": "2026-10-15T00:37:01.000000Z",
+      "updated_at": "2026-10-15T00:42:21.000000Z",
+      "active_run": {
+        "id": 10,
+        "round_id": 8,
+        "run_key": "67d240c6-db89-49ee-b131-1c5b9d07ab3f",
+        "idempotency_key": "v1007-zero-bank-01-retry",
+        "correlation_id": "734b142f-8b35-4f32-ad92-9dbb72db9228",
+        "attempt_no": 2,
+        "state": "succeeded",
+        "outcome": "no_candidate",
+        "trigger_source": "admin",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "retry",
+        "eligible_count": 4,
+        "candidate_count": 4,
+        "pair_count": 0,
+        "no_candidate_count": 4,
+        "lease_owner": "zcx_265K:45408",
+        "lease_expires_at": "2026-10-15T00:38:04.000000Z",
+        "heartbeat_at": "2026-10-15T00:37:04.000000Z",
+        "started_at": "2026-10-15T00:37:04.000000Z",
+        "finished_at": "2026-10-15T00:37:04.000000Z",
+        "eligibility_cutoff_at": "2026-10-15T00:37:03.000000Z",
+        "algorithm_version": "v1",
+        "config_version": "cb23799ded74d80b8ca84399c23e02083df91d3c7ef51fac01c09af7c89f3d99",
+        "candidate_digest": "c9f8fa87a9f441dae3cd7ac726095aa600e36720bdc7d198987a10f6f4ecd5cf",
+        "digest_version": "hmac-sha256-v1",
+        "digest_key_version": "local-v1",
+        "supersedes_run_id": 9,
+        "error_code": null,
+        "error_summary": null,
+        "timeout_seconds": null,
+        "created_at": "2026-10-15T00:37:03.000000Z",
+        "updated_at": "2026-10-15T00:37:04.000000Z"
+      },
+      "runs": [
+        {
+          "id": 9,
+          "round_id": 8,
+          "run_key": "0d246ca7-1877-4eb6-8b8f-d048f01adc1b",
+          "idempotency_key": "v1007-zero-bank-01-execute",
+          "correlation_id": "bee5e874-c83f-49ce-adb6-4086ab96c1ae",
+          "attempt_no": 1,
+          "state": "failed",
+          "outcome": null,
+          "trigger_source": "admin",
+          "actor_type": "admin",
+          "actor_id": 1,
+          "reason_code": "v1007-authorized-development",
+          "eligible_count": 0,
+          "candidate_count": 0,
+          "pair_count": 0,
+          "no_candidate_count": 0,
+          "lease_owner": "zcx_265K:38144",
+          "lease_expires_at": "2026-10-15T00:38:02.000000Z",
+          "heartbeat_at": "2026-10-15T00:37:02.000000Z",
+          "started_at": "2026-10-15T00:37:02.000000Z",
+          "finished_at": "2026-10-15T00:37:02.000000Z",
+          "eligibility_cutoff_at": "2026-10-15T00:37:01.000000Z",
+          "algorithm_version": "v1",
+          "config_version": "c1",
+          "candidate_digest": null,
+          "digest_version": null,
+          "digest_key_version": null,
+          "supersedes_run_id": null,
+          "error_code": "execution_failed",
+          "error_summary": "Protected matching execution failed.",
+          "timeout_seconds": null,
+          "created_at": "2026-10-15T00:37:01.000000Z",
+          "updated_at": "2026-10-15T00:37:02.000000Z"
+        },
+        {
+          "id": 10,
+          "round_id": 8,
+          "run_key": "67d240c6-db89-49ee-b131-1c5b9d07ab3f",
+          "idempotency_key": "v1007-zero-bank-01-retry",
+          "correlation_id": "734b142f-8b35-4f32-ad92-9dbb72db9228",
+          "attempt_no": 2,
+          "state": "succeeded",
+          "outcome": "no_candidate",
+          "trigger_source": "admin",
+          "actor_type": "admin",
+          "actor_id": 1,
+          "reason_code": "retry",
+          "eligible_count": 4,
+          "candidate_count": 4,
+          "pair_count": 0,
+          "no_candidate_count": 4,
+          "lease_owner": "zcx_265K:45408",
+          "lease_expires_at": "2026-10-15T00:38:04.000000Z",
+          "heartbeat_at": "2026-10-15T00:37:04.000000Z",
+          "started_at": "2026-10-15T00:37:04.000000Z",
+          "finished_at": "2026-10-15T00:37:04.000000Z",
+          "eligibility_cutoff_at": "2026-10-15T00:37:03.000000Z",
+          "algorithm_version": "v1",
+          "config_version": "cb23799ded74d80b8ca84399c23e02083df91d3c7ef51fac01c09af7c89f3d99",
+          "candidate_digest": "c9f8fa87a9f441dae3cd7ac726095aa600e36720bdc7d198987a10f6f4ecd5cf",
+          "digest_version": "hmac-sha256-v1",
+          "digest_key_version": "local-v1",
+          "supersedes_run_id": 9,
+          "error_code": null,
+          "error_summary": null,
+          "timeout_seconds": null,
+          "created_at": "2026-10-15T00:37:03.000000Z",
+          "updated_at": "2026-10-15T00:37:04.000000Z"
+        }
+      ]
+    },
+    "audits": [
+      {
+        "action": "schedule",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": null,
+        "before_state": null,
+        "after_state": {
+          "state": "preparing"
+        },
+        "created_at": "2026-10-15T00:37:01.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "pending"
+        },
+        "created_at": "2026-10-15T00:37:01.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "v1007-authorized-development",
+        "before_state": null,
+        "after_state": {
+          "state": "failed",
+          "error_code": "execution_failed"
+        },
+        "created_at": "2026-10-15T00:37:02.000000Z"
+      },
+      {
+        "action": "retry",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "retry",
+        "before_state": null,
+        "after_state": {
+          "state": "pending",
+          "supersedes_run_id": 9
+        },
+        "created_at": "2026-10-15T00:37:03.000000Z"
+      },
+      {
+        "action": "execute",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": "retry",
+        "before_state": null,
+        "after_state": {
+          "state": "succeeded",
+          "outcome": "no_candidate",
+          "pair_count": 0
+        },
+        "created_at": "2026-10-15T00:37:04.000000Z"
+      },
+      {
+        "action": "reveal",
+        "actor_type": "admin",
+        "actor_id": 1,
+        "reason_code": null,
+        "before_state": null,
+        "after_state": {
+          "before": {
+            "state": "waiting",
+            "state_version": 5
+          },
+          "after": {
+            "state": "no_candidate",
+            "state_version": 6
+          }
+        },
+        "created_at": "2026-10-15T00:42:21.000000Z"
+      }
+    ],
+    "meta": {
+      "compensation_enabled": false
+    }
+  }
+}

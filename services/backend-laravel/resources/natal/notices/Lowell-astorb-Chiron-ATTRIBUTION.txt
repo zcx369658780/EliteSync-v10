@@ -1,0 +1,30 @@
+Lowell astorb selected Chiron (2060) orbital elements and our derived orbit
+
+Data authors: Lowell Observatory; L.H. Wasserman (selected orbit computer).
+Funding attribution: NASA grant NAG5-4741 (PI E. Bowell), NASA PDART grant
+NNX16AG52G (PI N. Moskovitz), and the Lowell Observatory endowment.
+The current astorb publication also acknowledges grant 80NSSC19K0420.
+
+Specific permission source:
+https://asteroid.lowell.edu/astorb/ (Acknowledgment and Attribution)
+https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/B/astorb?format=html&tex=true
+
+The data owner's posted permission allows astorb.dat use, copying and
+transmission with the above funding attribution. It states no noncommercial
+or source-code-disclosure condition. This admission relies on that specific
+owner permission, rather than a default license for other VizieR catalogs.
+Only the selected orbital-element facts and our calculated trajectory are
+distributed here; VizieR's response wrapper/database is not redistributed.
+
+The selected record has epoch 2021-03-27 TT/TDT and was fitted to 3,186
+observations spanning 45,945 days. The archived one-object response SHA-256 is
+6b97fdfcb48f018cc359eb8f35064c318c236085b8338fc1b2f2cd3ec7e1beed.
+
+The derived trajectory is our own limited-force-model calculation, not an
+official Lowell ephemeris or a product endorsed by Lowell, CDS, ESA or NASA.
+The original near-epoch accuracy description is not a century guarantee.
+Independent sampled reference comparisons are documented separately.
+
+This permission does not extend to MPC raw observations, NIMA, Horizons
+outputs, Swiss-derived coefficients, or ESA/Gaia raw-data redistribution.
+No such data is included in this product orbit.

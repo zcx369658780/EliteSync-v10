@@ -7,6 +7,9 @@ use InvalidArgumentException;
 final class InMemoryLogicalPersistenceRepositoryContract
 {
     public const RECORD_FAMILY_RR03 = 'RR03_RUNTIME_READINESS_DERIVED_PROJECTION';
+    public const RECORD_FAMILY_CANONICAL_MATCH = 'CANONICAL_MATCH_PROPOSAL_DECISION_DERIVED_PROJECTION';
+    public const RECORD_FAMILY_PRODUCT_CONNECTION = 'PRODUCT_CONNECTION_STATE_TRANSITION_DERIVED_PROJECTION';
+    public const RECORD_FAMILY_MESSAGING_CONSENT = 'MESSAGING_CONSENT_STATE_TRANSITION_DERIVED_PROJECTION';
 
     public const STORED_NEW = 'STORED_NEW';
     public const EXACT_DUPLICATE = 'EXACT_DUPLICATE';
@@ -87,6 +90,215 @@ final class InMemoryLogicalPersistenceRepositoryContract
         'MEMBER_UNUSABLE',
         'UNKNOWN_MEMBER_OUTCOME',
         'AUTHORITATIVE_REQUIRED_MEMBER_UNSATISFIED',
+        'DEPENDENCY_INVALIDATED',
+    ];
+
+    private const MATCH_PAYLOAD_KEYS = [
+        'payload_kind',
+        'derived_fact_class',
+        'classification',
+        'proposal_identity',
+        'protected_use_scope',
+        'reason_categories',
+        'proposal_dependency',
+        'participation_dependencies',
+        'decision_slot_dependencies',
+        'terminality',
+        'invalidation',
+    ];
+
+    private const MATCH_PROPOSAL_DEPENDENCY_KEYS = [
+        'proposal_identity',
+        'lifecycle_state',
+        'terminal',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'currentness',
+        'freshness',
+    ];
+
+    private const MATCH_PARTICIPATION_DEPENDENCY_KEYS = [
+        'participant_identity',
+        'state',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'currentness',
+        'freshness',
+    ];
+
+    private const MATCH_SLOT_DEPENDENCY_KEYS = [
+        'slot_identity',
+        'proposal_identity',
+        'participant_identity',
+        'decision',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'currentness',
+        'freshness',
+    ];
+
+    private const MATCH_CLASSIFICATIONS = [
+        'PENDING',
+        'MUTUALLY_ACCEPTED',
+        'DECLINED',
+        'WITHDRAWN',
+        'EXPIRED',
+        'UNKNOWN',
+    ];
+
+    private const MATCH_TERMINAL_CLASSIFICATIONS = [
+        'MUTUALLY_ACCEPTED',
+        'DECLINED',
+        'WITHDRAWN',
+        'EXPIRED',
+    ];
+
+    private const MATCH_REASON_CATEGORIES = [
+        'PROPOSAL_NOT_CURRENT_FRESH_AUTHORITATIVE',
+        'UNRESOLVED_PROPOSAL_PRECONDITION_NOT_ESTABLISHED',
+        'INVALID_PARTICIPATION_EVIDENCE_SET',
+        'MISSING_PARTICIPATION',
+        'PARTICIPATION_NOT_USABLE',
+        'PARTICIPATION_PREVENTS_ACCEPTANCE',
+        'CROSS_PROPOSAL_SLOT',
+        'WRONG_PARTICIPANT_SLOT',
+        'MISSING_DECISION_SLOT',
+        'CONFLICTING_SLOT_IDENTITY',
+        'INCOMPARABLE_DUPLICATE_SLOT',
+        'CONFLICTING_EQUAL_REVISION_SLOT',
+        'DECISION_SLOT_NOT_CURRENT_FRESH_BOUND',
+        'CONFLICTING_TERMINAL_SLOT_DECISIONS',
+        'DEPENDENCY_INVALIDATED',
+    ];
+
+    private const PRODUCT_CONNECTION_CURRENT_PAYLOAD_KEYS = [
+        'payload_kind',
+        'derived_fact_class',
+        'connection_identity',
+        'participant_references',
+        'protected_use_scope',
+        'classification',
+        'current_state',
+        'reason_categories',
+        'current_state_dependency',
+        'connection_active_for_downstream_consideration',
+        'valid_for_protected_use',
+        'terminality',
+        'invalidation',
+    ];
+
+    private const PRODUCT_CONNECTION_TRANSITION_PAYLOAD_KEYS = [
+        'payload_kind',
+        'derived_fact_class',
+        'connection_identity',
+        'participant_references',
+        'protected_use_scope',
+        'classification',
+        'current_state',
+        'proposed_state',
+        'reason_categories',
+        'current_state_dependency',
+        'transition_dependency',
+        'connection_active_for_downstream_consideration',
+        'valid_for_protected_use',
+        'terminality',
+        'invalidation',
+    ];
+
+    private const PRODUCT_CONNECTION_CURRENT_DEPENDENCY_KEYS = [
+        'dependency_type',
+        'state_evidence_identity',
+        'connection_identity',
+        'state',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'protected_binding_satisfied',
+        'currentness',
+        'freshness',
+    ];
+
+    private const PRODUCT_CONNECTION_TRANSITION_DEPENDENCY_KEYS = [
+        'dependency_type',
+        'transition_identity',
+        'connection_identity',
+        'from_state',
+        'to_state',
+        'expected_state_revision',
+        'authority_owner',
+        'authority_scope',
+        'aggregate_context',
+        'source_lineage',
+        'source_revision_value',
+        'source_condition',
+        'protected_binding_satisfied',
+        'currentness',
+        'freshness',
+    ];
+
+    private const PRODUCT_CONNECTION_STATES = [
+        'CN_NONE',
+        'CN_PENDING',
+        'CN_ACTIVE',
+        'CN_PAUSED',
+        'CN_CLOSED',
+        'CN_DECLINED',
+        'CN_WITHDRAWN',
+        'CN_EXPIRED',
+    ];
+
+    private const PRODUCT_CONNECTION_TERMINAL_STATES = [
+        'CN_CLOSED',
+        'CN_DECLINED',
+        'CN_WITHDRAWN',
+        'CN_EXPIRED',
+    ];
+
+    private const PRODUCT_CONNECTION_CURRENT_REASONS = [
+        'MISSING_CURRENT_STATE_EVIDENCE',
+        'CROSS_CONNECTION_STATE_EVIDENCE',
+        'STATE_PARTICIPANT_MISMATCH',
+        'CONFLICTING_STATE_EVIDENCE_IDENTITY',
+        'INCOMPARABLE_DUPLICATE_STATE_EVIDENCE',
+        'CONFLICTING_EQUAL_REVISION_STATE_EVIDENCE',
+        'CURRENT_STATE_NOT_CURRENT_FRESH_BOUND',
+        'DEPENDENCY_INVALIDATED',
+    ];
+
+    private const PRODUCT_CONNECTION_TRANSITION_REASONS = [
+        'MISSING_CURRENT_STATE_EVIDENCE',
+        'CROSS_CONNECTION_STATE_EVIDENCE',
+        'STATE_PARTICIPANT_MISMATCH',
+        'CONFLICTING_STATE_EVIDENCE_IDENTITY',
+        'INCOMPARABLE_DUPLICATE_STATE_EVIDENCE',
+        'CONFLICTING_EQUAL_REVISION_STATE_EVIDENCE',
+        'CURRENT_STATE_NOT_CURRENT_FRESH_BOUND',
+        'MISSING_TRANSITION_EVIDENCE',
+        'CROSS_CONNECTION_TRANSITION_EVIDENCE',
+        'TRANSITION_PARTICIPANT_MISMATCH',
+        'CONFLICTING_TRANSITION_IDENTITY',
+        'INCOMPARABLE_DUPLICATE_TRANSITION_EVIDENCE',
+        'CONFLICTING_EQUAL_REVISION_TRANSITION_EVIDENCE',
+        'TRANSITION_NOT_CURRENT_FRESH_BOUND',
+        'TRANSITION_CURRENT_CONTEXT_MISMATCH',
+        'TERMINAL_CONNECTION_IDENTITY_CANNOT_REOPEN',
+        'DIRECT_NONE_TO_ACTIVE_REJECTED',
+        'TRANSITION_NOT_ALLOWED',
         'DEPENDENCY_INVALIDATED',
     ];
 
@@ -175,7 +387,9 @@ final class InMemoryLogicalPersistenceRepositoryContract
 
         foreach ($this->records as $existing) {
             if (
-                ($existing['bindings']['lifecycle_identity'] ?? null) === $normalized['bindings']['lifecycle_identity']
+                ($existing['record_family'] ?? null) === $normalized['record_family']
+                && ($existing['bindings']['lifecycle_identity'] ?? null) === $normalized['bindings']['lifecycle_identity']
+                && ($existing['bindings']['purpose'] ?? null) === ($normalized['bindings']['purpose'] ?? null)
                 && ($existing['bindings']['terminal'] ?? false) === true
                 && ($normalized['bindings']['terminal'] ?? null) !== true
             ) {
@@ -465,6 +679,9 @@ final class InMemoryLogicalPersistenceRepositoryContract
         }
 
         $isRr03 = $record['record_family'] === self::RECORD_FAMILY_RR03;
+        $isCanonicalMatch = $record['record_family'] === self::RECORD_FAMILY_CANONICAL_MATCH;
+        $isProductConnection = $record['record_family'] === self::RECORD_FAMILY_PRODUCT_CONNECTION;
+        $isMessagingConsent = $record['record_family'] === self::RECORD_FAMILY_MESSAGING_CONSENT;
 
         if ($isRr03) {
             if (! array_key_exists('derived_projection_payload', $record)
@@ -482,13 +699,31 @@ final class InMemoryLogicalPersistenceRepositoryContract
             ) {
                 return ['valid' => false, 'reason' => 'INVALID_RR03_REVISION_OR_AUTHORITY_BOUNDARY'];
             }
+        } elseif ($isCanonicalMatch) {
+            if (! array_key_exists('derived_projection_payload', $record)
+                || ! is_array($record['derived_projection_payload'])
+                || ! $this->validCanonicalMatchRecord($record)) {
+                return ['valid' => false, 'reason' => 'INVALID_CANONICAL_MATCH_DERIVED_PROJECTION'];
+            }
+        } elseif ($isProductConnection) {
+            if (! array_key_exists('derived_projection_payload', $record)
+                || ! is_array($record['derived_projection_payload'])
+                || ! $this->validProductConnectionRecord($record)) {
+                return ['valid' => false, 'reason' => 'INVALID_PRODUCT_CONNECTION_DERIVED_PROJECTION'];
+            }
+        } elseif ($isMessagingConsent) {
+            if (! array_key_exists('derived_projection_payload', $record)
+                || ! is_array($record['derived_projection_payload'])
+                || ! $this->validMessagingConsentRecord($record)) {
+                return ['valid' => false, 'reason' => 'INVALID_MESSAGING_CONSENT_DERIVED_PROJECTION'];
+            }
         } elseif (($record['derived_projection_payload'] ?? null) !== null) {
             return ['valid' => false, 'reason' => 'DERIVED_PAYLOAD_NOT_ALLOWED_FOR_RECORD_FAMILY'];
         }
 
         $fingerprintRecord = $record;
 
-        if (! $isRr03) {
+        if (! $isRr03 && ! $isCanonicalMatch && ! $isProductConnection && ! $isMessagingConsent) {
             unset($fingerprintRecord['derived_projection_payload']);
         }
 
@@ -611,11 +846,1348 @@ final class InMemoryLogicalPersistenceRepositoryContract
                 'transport_observation' => $record['transport_observation'],
                 'transport_authoritative_outcome' => $transportOutcome,
                 'source_evidence' => $evidence,
-                'derived_projection_payload' => $isRr03
+                'derived_projection_payload' => ($isRr03 || $isCanonicalMatch || $isProductConnection || $isMessagingConsent)
                     ? $record['derived_projection_payload']
                     : null,
             ],
         ];
+    }
+
+    /** @param array<string, mixed> $record */
+    private function validMessagingConsentRecord(array $record): bool
+    {
+        $payload = $record['derived_projection_payload'];
+        $keys = [
+            'schema_marker', 'payload_kind', 'consent_identity', 'connection_identity',
+            'participant_references', 'requester', 'recipient', 'purpose', 'classification',
+            'current_state', 'proposed_state', 'reason_categories', 'connection_dependency',
+            'consent_state_dependency', 'transition_dependency', 'terminality', 'invalidation',
+        ];
+        $current = ($payload['payload_kind'] ?? null) === 'MC_CURRENT_STATE';
+        $transition = ($payload['payload_kind'] ?? null) === 'MC_TRANSITION';
+        $states = ['MC_NONE', 'MC_PENDING', 'MC_ACTIVE', 'MC_DECLINED', 'MC_WITHDRAWN', 'MC_REVOKED'];
+        $terminalStates = ['MC_DECLINED', 'MC_WITHDRAWN', 'MC_REVOKED'];
+        $reasons = [
+            'MISSING_CONSENT_EVIDENCE', 'MISSING_CONSENT_TRANSITION_EVIDENCE',
+            'CONNECTION_CONTEXT_NOT_CURRENT_FRESH_BOUND', 'CONSENT_STATE_NOT_CURRENT_FRESH_BOUND',
+            'CONSENT_TRANSITION_NOT_CURRENT_FRESH_BOUND', 'CONSENT_CURRENT_CONTEXT_MISMATCH',
+            'CONSENT_REQUEST_REQUIRES_CURRENT_ACTIVE_CONNECTION', 'RECIPIENT_BOUND_DECISION_REQUIRED',
+            'REQUESTER_BOUND_REQUEST_REQUIRED', 'REQUESTER_BOUND_WITHDRAWAL_REQUIRED',
+            'TRANSITION_ACTOR_NOT_EXACT_PARTICIPANT', 'TERMINAL_CONSENT_IDENTITY_CANNOT_REOPEN',
+            'CONSENT_TRANSITION_NOT_ALLOWED', 'NON_CANONICAL_OR_FORBIDDEN_TARGET_STATE',
+            'CONFLICTING_EQUAL_REVISION_CONSENT_EVIDENCE', 'CONFLICTING_EQUAL_REVISION_TRANSITION_EVIDENCE',
+            'INCOMPARABLE_DUPLICATE_CONSENT_EVIDENCE', 'INCOMPARABLE_DUPLICATE_TRANSITION_EVIDENCE',
+            'CROSS_CONNECTION_CONSENT_EVIDENCE', 'CROSS_CONNECTION_TRANSITION_EVIDENCE',
+            'CROSS_CONSENT_IDENTITY_EVIDENCE', 'CROSS_CONSENT_TRANSITION_EVIDENCE',
+            'CONSENT_PARTICIPANT_MISMATCH', 'TRANSITION_PARTICIPANT_MISMATCH',
+            'SOURCE_CONDITION_NOT_PRESENT', 'SOURCE_NOT_CURRENT_FRESH', 'DEPENDENCY_INVALIDATED',
+        ];
+
+        if (! $this->hasExactKeys($payload, $keys)
+            || (! $current && ! $transition)
+            || ($payload['schema_marker'] ?? null) !== ($current
+                ? 'mc-source-state-correlation-v1' : 'mc-transition-derivation-v1')
+            || ! $this->nonEmptyString($payload['consent_identity'] ?? null)
+            || ! $this->nonEmptyString($payload['connection_identity'] ?? null)
+            || ! $this->validMessagingConsentParticipants($payload)
+            || ! in_array($payload['purpose'] ?? null, ['CONVERSATION_LIVE_READ', 'CONVERSATION_LIVE_SEND'], true)
+            || ! is_array($payload['reason_categories'] ?? null)
+            || ! array_is_list($payload['reason_categories'])
+            || ! $this->allNonEmptyStrings($payload['reason_categories'])
+            || count($payload['reason_categories']) !== count(array_unique($payload['reason_categories']))
+            || array_diff($payload['reason_categories'], $reasons) !== []
+            || ! $this->validMessagingConsentTerminality($payload, $terminalStates)
+            || ! $this->validMessagingConsentInvalidation($payload['invalidation'] ?? null)) {
+            return false;
+        }
+
+        $connection = $payload['connection_dependency'];
+        $consent = $payload['consent_state_dependency'];
+        $transitionEvidence = $payload['transition_dependency'];
+        if (! is_array($consent)
+            || ($connection !== null && (! is_array($connection)
+                || ! $this->validMessagingConsentDependency($connection, $payload, 'CONNECTION')))
+            || ! $this->validMessagingConsentDependency($consent, $payload, 'CONSENT')
+            || ($transitionEvidence !== null && (! $transition
+                || ! is_array($transitionEvidence)
+                || ! $this->validMessagingConsentDependency($transitionEvidence, $payload, 'TRANSITION')))) {
+            return false;
+        }
+
+        if ($current) {
+            if ($transitionEvidence !== null || $payload['proposed_state'] !== null
+                || ! in_array($payload['classification'], [...$states, 'UNKNOWN'], true)
+                || $payload['current_state'] !== $consent['state']
+                || ($payload['classification'] !== 'UNKNOWN'
+                    && ($payload['classification'] !== $consent['state']
+                        || $payload['current_state'] !== $consent['state']
+                        || $connection === null
+                        || $connection['source_condition'] !== CommonAuthorityEvidenceContract::CONDITION_PRESENT
+                        || $consent['source_condition'] !== CommonAuthorityEvidenceContract::CONDITION_PRESENT
+                        || $connection['currentness'] !== true || $connection['freshness'] !== true
+                        || $consent['currentness'] !== true || $consent['freshness'] !== true
+                        || ! $connection['protected_binding_satisfied']
+                        || ! $consent['protected_binding_satisfied']
+                        || $payload['invalidation']['invalidated']
+                        || $payload['reason_categories'] !== []))) {
+                return false;
+            }
+        } elseif ($payload['classification'] !== 'UNKNOWN'
+            || ! in_array($payload['current_state'], [...$states, null], true)
+            || ! in_array($payload['proposed_state'], [...$states, null], true)
+            || ($transitionEvidence === null && $payload['classification'] !== 'UNKNOWN')
+            || ($transitionEvidence !== null && ($payload['current_state'] !== $consent['state']
+                || $payload['proposed_state'] !== $transitionEvidence['to_state']))) {
+            return false;
+        }
+
+        if ($transitionEvidence !== null && $transitionEvidence['from_state'] !== $consent['state']) {
+            return false;
+        }
+
+        $dependencies = [$connection, $consent];
+        if ($transition) {
+            $dependencies[] = $transitionEvidence;
+        }
+        $expectedCondition = $this->messagingConsentCondition($dependencies);
+        $invalidated = $payload['invalidation']['invalidated'];
+        $expectedCurrentness = $this->messagingConsentBoolean($dependencies, 'currentness', $invalidated);
+        $expectedFreshness = $this->messagingConsentBoolean($dependencies, 'freshness', $invalidated);
+        $bindings = $record['bindings'];
+        $revision = $record['source_revision'];
+        $scope = self::RECORD_FAMILY_MESSAGING_CONSENT.'|'.$payload['payload_kind'].'|'.$payload['purpose'];
+        $sourceRevision = $transitionEvidence['source_revision'] ?? $consent['source_revision'];
+        $sourceIdentity = $transitionEvidence['transition_identity'] ?? $consent['evidence_identity'];
+        $intentIdentity = 'mc-intent-v1:'.$this->fingerprint([$payload['payload_kind'], $sourceIdentity]);
+        $recordIdentity = 'mc-record-v1:'.$this->fingerprint([self::RECORD_FAMILY_MESSAGING_CONSENT, $payload['payload_kind'], $intentIdentity]);
+        $lineage = 'mc-lineage-v1:'.$this->fingerprint([
+            $payload['consent_identity'], $payload['purpose'], $payload['payload_kind'],
+            $sourceRevision['lineage'],
+        ]);
+        $semantic = [
+            'record_family' => self::RECORD_FAMILY_MESSAGING_CONSENT,
+            'bindings' => $bindings,
+            'derived_projection_payload' => $payload,
+        ];
+        $lag = match ($expectedCurrentness) { true => 'CURRENT', false => 'LAGGED', null => 'UNKNOWN' };
+
+        return $this->hasExactKeys($bindings, [
+            'authority_owner', 'authority_scope', 'actor', 'actor_role', 'subject', 'participants',
+            'audience', 'purpose', 'aggregate_context', 'lifecycle_identity', 'terminal',
+        ])
+            && $bindings['authority_owner'] === 'MC_DERIVATION'
+            && $bindings['authority_scope'] === $scope
+            && $bindings['actor'] === 'MC_DERIVATION'
+            && $bindings['actor_role'] === 'DERIVED_NON_AUTHORITATIVE_CORRELATION'
+            && $bindings['subject'] === $payload['connection_identity']
+            && $bindings['participants'] === $payload['participant_references']
+            && $bindings['audience'] === 'INTERNAL_APPLICATION_PERSISTENCE'
+            && $bindings['purpose'] === $payload['purpose']
+            && $bindings['aggregate_context'] === $payload['consent_identity']
+            && $bindings['lifecycle_identity'] === $payload['consent_identity']
+            && $bindings['terminal'] === $payload['terminality']['current_state_terminal']
+            && $this->hasExactKeys($revision, [
+                'authority_owner', 'authority_scope', 'lineage', 'aggregate_context', 'value',
+            ])
+            && $revision['authority_owner'] === 'MC_DERIVATION'
+            && $revision['authority_scope'] === $scope
+            && $revision['aggregate_context'] === $payload['consent_identity']
+            && $revision['lineage'] === $lineage
+            && $revision['value'] === $sourceRevision['value']
+            && $record['source_condition'] === $expectedCondition
+            && $record['currentness'] === $expectedCurrentness
+            && $record['freshness'] === $expectedFreshness
+            && $record['logical_record_identity'] === $recordIdentity
+            && $this->hasExactKeys($record['logical_intent'], ['intent_identity', 'semantic_input'])
+            && $record['logical_intent']['intent_identity'] === $intentIdentity
+            && $record['logical_intent']['semantic_input'] === $semantic
+            && $record['authoritative_outcome'] === CommonAuthorityEvidenceContract::OUTCOME_UNKNOWN
+            && $record['authoritative_outcome_metadata'] === null
+            && $record['correction_metadata'] === null
+            && $record['transport_observation'] === 'AMBIGUOUS'
+            && $record['private_fixture_extensions'] === []
+            && $record['projection_metadata'] === [
+                'projection_identity' => 'mc-projection-v1:'.$this->fingerprint($recordIdentity),
+                'represented_source_revision_value' => $revision['value'],
+                'lag_classification' => $lag,
+                'projection_currentness' => $expectedCurrentness,
+            ];
+    }
+
+    /** @param array<string, mixed> $payload */
+    private function validMessagingConsentParticipants(array $payload): bool
+    {
+        $participants = $payload['participant_references'] ?? null;
+
+        return is_array($participants) && array_is_list($participants) && count($participants) === 2
+            && $this->allNonEmptyStrings($participants) && $participants[0] !== $participants[1]
+            && in_array($payload['requester'] ?? null, $participants, true)
+            && in_array($payload['recipient'] ?? null, $participants, true)
+            && $payload['requester'] !== $payload['recipient'];
+    }
+
+    /** @param array<string, mixed> $payload @param list<string> $terminalStates */
+    private function validMessagingConsentTerminality(array $payload, array $terminalStates): bool
+    {
+        $terminality = $payload['terminality'] ?? null;
+
+        return is_array($terminality)
+            && $this->hasExactKeys($terminality, [
+                'current_state_terminal', 'proposed_state_terminal', 'terminal_reopen_rejected',
+            ])
+            && $terminality['current_state_terminal'] === in_array($payload['current_state'], $terminalStates, true)
+            && $terminality['proposed_state_terminal'] === in_array($payload['proposed_state'], $terminalStates, true)
+            && is_bool($terminality['terminal_reopen_rejected'])
+            && $terminality['terminal_reopen_rejected']
+                === ($payload['reason_categories'] === ['TERMINAL_CONSENT_IDENTITY_CANNOT_REOPEN']);
+    }
+
+    private function validMessagingConsentInvalidation(mixed $invalidation): bool
+    {
+        if (! is_array($invalidation) || ! $this->hasExactKeys($invalidation, [
+            'invalidated', 'relation', 'dependency_identity', 'lifecycle_reset', 'consent_reopened',
+        ])) {
+            return false;
+        }
+
+        return is_bool($invalidation['invalidated'])
+            && $invalidation['lifecycle_reset'] === false
+            && $invalidation['consent_reopened'] === false
+            && ($invalidation['invalidated']
+                ? in_array($invalidation['relation'], [
+                    CommonAuthorityEvidenceContract::INVALIDATION_CORRECTION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_REVOCATION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_SUPERSESSION,
+                ], true) && $this->nonEmptyString($invalidation['dependency_identity'])
+                : $invalidation['relation'] === null && $invalidation['dependency_identity'] === null);
+    }
+
+    /** @param array<string, mixed> $dependency @param array<string, mixed> $payload */
+    private function validMessagingConsentDependency(array $dependency, array $payload, string $type): bool
+    {
+        $keys = [
+            'evidence_identity', 'required_bindings', 'source_revision', 'state',
+            'source_condition', 'currentness', 'freshness', 'protected_binding_satisfied',
+        ];
+        if ($type === 'TRANSITION') {
+            $keys = [...$keys, 'transition_identity', 'actor', 'from_state', 'to_state', 'expected_state_revision'];
+        }
+        if (! $this->hasExactKeys($dependency, $keys)
+            || ! $this->nonEmptyString($dependency['evidence_identity'] ?? null)
+            || ! is_array($dependency['required_bindings'] ?? null)
+            || ! is_array($dependency['source_revision'] ?? null)
+            || ! $this->validSourceCondition($dependency['source_condition'] ?? null)
+            || ! $this->nullableBoolean($dependency['currentness'] ?? null)
+            || ! $this->nullableBoolean($dependency['freshness'] ?? null)
+            || ! is_bool($dependency['protected_binding_satisfied'] ?? null)) {
+            return false;
+        }
+        try {
+            CommonAuthorityEvidenceContract::evidence(
+                $dependency['required_bindings'], $dependency['source_condition'],
+                $dependency['source_revision'], $dependency['currentness'], $dependency['freshness'],
+            );
+        } catch (InvalidArgumentException) {
+            return false;
+        }
+
+        $binding = $dependency['required_bindings'];
+        $revision = $dependency['source_revision'];
+        $context = $type === 'CONNECTION' ? $payload['connection_identity'] : $payload['consent_identity'];
+        $states = $type === 'CONNECTION'
+            ? self::PRODUCT_CONNECTION_STATES
+            : ['MC_NONE', 'MC_PENDING', 'MC_ACTIVE', 'MC_DECLINED', 'MC_WITHDRAWN', 'MC_REVOKED'];
+        if ($binding['subject'] !== $payload['connection_identity']
+            || $binding['participants'] !== $payload['participant_references']
+            || $binding['aggregate_context'] !== $context
+            || $binding['lifecycle_identity'] !== $context
+            || ($type !== 'CONNECTION' && $binding['purpose'] !== $payload['purpose'])
+            || $revision['authority_owner'] !== $binding['authority_owner']
+            || $revision['authority_scope'] !== $binding['authority_scope']
+            || $revision['aggregate_context'] !== $context
+            || ! in_array($dependency['state'], $states, true)
+            || $binding['terminal'] !== in_array($dependency['state'], ['MC_DECLINED', 'MC_WITHDRAWN', 'MC_REVOKED'], true)) {
+            return false;
+        }
+        if ($type !== 'TRANSITION') {
+            return true;
+        }
+        if (! $this->nonEmptyString($dependency['transition_identity'] ?? null)
+            || ! in_array($dependency['actor'] ?? null, $payload['participant_references'], true)
+            || ! in_array($dependency['from_state'] ?? null, $states, true)
+            || ! in_array($dependency['to_state'] ?? null, $states, true)
+            || ! is_array($dependency['expected_state_revision'] ?? null)
+            || ! $this->hasExactKeys($dependency['expected_state_revision'], [
+                'authority_owner', 'authority_scope', 'lineage', 'aggregate_context', 'value',
+            ])) {
+            return false;
+        }
+
+        return $dependency['expected_state_revision'] === $payload['consent_state_dependency']['source_revision']
+            && $dependency['transition_identity'] === $dependency['evidence_identity']
+            && $dependency['actor'] === $binding['actor'];
+    }
+
+    /** @param list<array<string, mixed>|null> $dependencies */
+    private function messagingConsentCondition(array $dependencies): string
+    {
+        if (in_array(null, $dependencies, true)) {
+            return CommonAuthorityEvidenceContract::CONDITION_UNKNOWN;
+        }
+        $conditions = array_unique(array_column($dependencies, 'source_condition'));
+
+        return count($conditions) === 1 ? $conditions[0] : CommonAuthorityEvidenceContract::CONDITION_UNKNOWN;
+    }
+
+    /** @param list<array<string, mixed>|null> $dependencies */
+    private function messagingConsentBoolean(array $dependencies, string $field, bool $invalidated): ?bool
+    {
+        foreach ($dependencies as $dependency) {
+            if ($dependency !== null && $dependency[$field] === false) {
+                return false;
+            }
+        }
+        if ($invalidated || $this->messagingConsentCondition($dependencies) !== CommonAuthorityEvidenceContract::CONDITION_PRESENT) {
+            return null;
+        }
+        foreach ($dependencies as $dependency) {
+            if ($dependency[$field] !== true) {
+                return null;
+            }
+        }
+
+        return true;
+    }
+
+    /** @param array<string, mixed> $record */
+    private function validProductConnectionRecord(array $record): bool
+    {
+        $payload = $record['derived_projection_payload'] ?? null;
+
+        if (! is_array($payload) || $this->containsPrivateSentinel($payload)) {
+            return false;
+        }
+
+        $currentFact = ($payload['payload_kind'] ?? null) === 'PRODUCT_CONNECTION_CURRENT_STATE'
+            && ($payload['derived_fact_class'] ?? null) === 'PRODUCT_CONNECTION_CURRENT_STATE_DERIVATION';
+        $transitionFact = ($payload['payload_kind'] ?? null) === 'PRODUCT_CONNECTION_TRANSITION'
+            && ($payload['derived_fact_class'] ?? null) === 'PRODUCT_CONNECTION_TRANSITION_DERIVATION';
+
+        if ((! $currentFact && ! $transitionFact)
+            || ! $this->hasExactKeys(
+                $payload,
+                $currentFact
+                    ? self::PRODUCT_CONNECTION_CURRENT_PAYLOAD_KEYS
+                    : self::PRODUCT_CONNECTION_TRANSITION_PAYLOAD_KEYS,
+            )
+            || ! $this->nonEmptyString($payload['connection_identity'] ?? null)
+            || ! $this->nonEmptyString($payload['protected_use_scope'] ?? null)) {
+            return false;
+        }
+
+        $participants = $payload['participant_references'] ?? null;
+
+        if (! is_array($participants)
+            || ! array_is_list($participants)
+            || count($participants) !== 2
+            || ! $this->allNonEmptyStrings($participants)
+            || count(array_unique($participants)) !== 2) {
+            return false;
+        }
+
+        $sortedParticipants = $participants;
+        sort($sortedParticipants, SORT_STRING);
+
+        if ($participants !== $sortedParticipants) {
+            return false;
+        }
+
+        $reasonVocabulary = $currentFact
+            ? self::PRODUCT_CONNECTION_CURRENT_REASONS
+            : self::PRODUCT_CONNECTION_TRANSITION_REASONS;
+        $reasons = $payload['reason_categories'] ?? null;
+
+        if (! is_array($reasons)
+            || ! array_is_list($reasons)
+            || count($reasons) !== count(array_unique($reasons))
+            || $reasons !== array_values(array_filter(
+                $reasonVocabulary,
+                static fn (string $reason): bool => in_array($reason, $reasons, true),
+            ))) {
+            return false;
+        }
+
+        $currentDependency = $payload['current_state_dependency'] ?? null;
+        $transitionDependency = $transitionFact ? ($payload['transition_dependency'] ?? null) : null;
+
+        if (($currentDependency !== null
+                && (! is_array($currentDependency)
+                    || ! $this->validProductConnectionCurrentDependency(
+                        $currentDependency,
+                        $payload['connection_identity'],
+                    )))
+            || ($transitionDependency !== null
+                && (! is_array($transitionDependency)
+                    || ! $this->validProductConnectionTransitionDependency(
+                        $transitionDependency,
+                        $payload['connection_identity'],
+                    )))) {
+            return false;
+        }
+
+        if (is_array($currentDependency)
+            && is_array($transitionDependency)
+            && $currentDependency['state_evidence_identity'] === $transitionDependency['transition_identity']) {
+            return false;
+        }
+
+        $invalidation = $payload['invalidation'] ?? null;
+
+        if (! is_array($invalidation)
+            || ! $this->hasExactKeys($invalidation, [
+                'invalidated',
+                'relation',
+                'dependency_identity',
+                'lifecycle_reset',
+                'connection_reopened',
+            ])
+            || ! is_bool($invalidation['invalidated'] ?? null)
+            || ($invalidation['lifecycle_reset'] ?? null) !== false
+            || ($invalidation['connection_reopened'] ?? null) !== false) {
+            return false;
+        }
+
+        $dependencyIdentities = array_values(array_filter([
+            is_array($currentDependency) ? $currentDependency['state_evidence_identity'] : null,
+            is_array($transitionDependency) ? $transitionDependency['transition_identity'] : null,
+        ], static fn (mixed $identity): bool => is_string($identity)));
+
+        if ($invalidation['invalidated']) {
+            if ($reasons !== ['DEPENDENCY_INVALIDATED']
+                || ! in_array($invalidation['relation'] ?? null, [
+                    CommonAuthorityEvidenceContract::INVALIDATION_CORRECTION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_REVOCATION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_SUPERSESSION,
+                ], true)
+                || ! $this->nonEmptyString($invalidation['dependency_identity'] ?? null)
+                || count(array_filter(
+                    $dependencyIdentities,
+                    static fn (string $identity): bool => $identity === $invalidation['dependency_identity'],
+                )) !== 1) {
+                return false;
+            }
+        } elseif ($invalidation['relation'] !== null
+            || $invalidation['dependency_identity'] !== null
+            || in_array('DEPENDENCY_INVALIDATED', $reasons, true)) {
+            return false;
+        }
+
+        $expectedCurrentness = $this->productConnectionAggregate(
+            $currentDependency,
+            $transitionDependency,
+            'currentness',
+            $transitionFact,
+        );
+        $expectedFreshness = $this->productConnectionAggregate(
+            $currentDependency,
+            $transitionDependency,
+            'freshness',
+            $transitionFact,
+        );
+
+        if ($record['currentness'] !== $expectedCurrentness
+            || $record['freshness'] !== $expectedFreshness
+            || ! $this->validProductConnectionPayloadMatrix(
+                $payload,
+                $currentDependency,
+                $transitionDependency,
+                $currentFact,
+                $expectedCurrentness,
+                $expectedFreshness,
+            )) {
+            return false;
+        }
+
+        $bindings = $record['bindings'] ?? null;
+        $sourceRevision = $record['source_revision'] ?? null;
+        $projection = $record['projection_metadata'] ?? null;
+        $intent = $record['logical_intent'] ?? null;
+        $scope = $payload['derived_fact_class'].'|'.$payload['protected_use_scope'];
+
+        if (! is_array($bindings)
+            || ! is_array($sourceRevision)
+            || ! is_array($projection)
+            || ! is_array($intent)
+            || ! $this->hasExactKeys($intent, ['intent_identity', 'semantic_input'])
+            || ($bindings['authority_owner'] ?? null) !== 'PRODUCT_CONNECTION_DERIVATION'
+            || ($bindings['authority_scope'] ?? null) !== $scope
+            || ($bindings['actor'] ?? null) !== 'PRODUCT_CONNECTION_DERIVATION'
+            || ($bindings['actor_role'] ?? null) !== 'DERIVED_NON_AUTHORITATIVE_CORRELATION'
+            || ($bindings['subject'] ?? null) !== $payload['connection_identity']
+            || ($bindings['participants'] ?? null) !== $participants
+            || ($bindings['audience'] ?? null) !== 'INTERNAL_APPLICATION_PERSISTENCE'
+            || ($bindings['purpose'] ?? null) !== $payload['protected_use_scope']
+            || ($bindings['aggregate_context'] ?? null) !== $payload['connection_identity']
+            || ($bindings['terminal'] ?? null) !== ($payload['terminality']['current_state_terminal'] ?? null)
+            || ($sourceRevision['authority_owner'] ?? null) !== 'PRODUCT_CONNECTION_DERIVATION'
+            || ($sourceRevision['authority_scope'] ?? null) !== $scope
+            || ($sourceRevision['aggregate_context'] ?? null) !== $payload['connection_identity']
+            || ($sourceRevision['value'] ?? null) !== 0
+            || $record['source_condition'] !== CommonAuthorityEvidenceContract::CONDITION_PRESENT
+            || $record['authoritative_outcome'] !== CommonAuthorityEvidenceContract::OUTCOME_UNKNOWN
+            || $record['authoritative_outcome_metadata'] !== null
+            || $record['correction_metadata'] !== null
+            || $record['transport_observation'] !== 'AMBIGUOUS'
+            || $record['private_fixture_extensions'] !== []) {
+            return false;
+        }
+
+        $lifecycleBasis = [
+            'record_family' => self::RECORD_FAMILY_PRODUCT_CONNECTION,
+            'authority_owner' => 'PRODUCT_CONNECTION_DERIVATION',
+            'actor' => 'PRODUCT_CONNECTION_DERIVATION',
+            'actor_role' => 'DERIVED_NON_AUTHORITATIVE_CORRELATION',
+            'connection_identity' => $payload['connection_identity'],
+            'protected_use_scope' => $payload['protected_use_scope'],
+            'subject' => $payload['connection_identity'],
+            'participants' => $participants,
+            'audience' => 'INTERNAL_APPLICATION_PERSISTENCE',
+            'purpose' => $payload['protected_use_scope'],
+            'aggregate_context' => $payload['connection_identity'],
+        ];
+        $expectedLifecycle = 'product-connection-lifecycle-v1:'.$this->fingerprint($lifecycleBasis);
+
+        if (($bindings['lifecycle_identity'] ?? null) !== $expectedLifecycle) {
+            return false;
+        }
+
+        $schemaMarker = $currentFact
+            ? 'product-connection-current-state-derived-projection-v1'
+            : 'product-connection-transition-derived-projection-v1';
+        $semanticInput = [
+            'record_family' => self::RECORD_FAMILY_PRODUCT_CONNECTION,
+            'derived_fact_class' => $payload['derived_fact_class'],
+            'bindings' => $bindings,
+            'derived_projection_payload' => $payload,
+            'schema_marker' => $schemaMarker,
+        ];
+        $digest = $this->fingerprint($semanticInput);
+        $expectedLag = match ($record['currentness']) {
+            true => 'CURRENT',
+            false => 'LAGGED',
+            null => 'UNKNOWN',
+        };
+
+        return $record['logical_record_identity'] === 'product-connection-record-v1:'.$digest
+            && ($intent['intent_identity'] ?? null) === 'product-connection-intent-v1:'.$digest
+            && ($intent['semantic_input'] ?? null) === $semanticInput
+            && ($sourceRevision['lineage'] ?? null) === 'product-connection-lineage-v1:'.$digest
+            && ($projection['projection_identity'] ?? null) === 'product-connection-projection-v1:'.$digest
+            && ($projection['represented_source_revision_value'] ?? null) === 0
+            && ($projection['projection_currentness'] ?? null) === $record['currentness']
+            && ($projection['lag_classification'] ?? null) === $expectedLag;
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validProductConnectionCurrentDependency(array $dependency, string $connectionIdentity): bool
+    {
+        return $this->hasExactKeys($dependency, self::PRODUCT_CONNECTION_CURRENT_DEPENDENCY_KEYS)
+            && ($dependency['dependency_type'] ?? null) === 'CURRENT_STATE_EVIDENCE'
+            && $this->nonEmptyString($dependency['state_evidence_identity'] ?? null)
+            && ($dependency['connection_identity'] ?? null) === $connectionIdentity
+            && in_array($dependency['state'] ?? null, self::PRODUCT_CONNECTION_STATES, true)
+            && $this->validProductConnectionDependencySource($dependency)
+            && is_bool($dependency['protected_binding_satisfied'] ?? null);
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validProductConnectionTransitionDependency(array $dependency, string $connectionIdentity): bool
+    {
+        $expectedRevision = $dependency['expected_state_revision'] ?? null;
+
+        return $this->hasExactKeys($dependency, self::PRODUCT_CONNECTION_TRANSITION_DEPENDENCY_KEYS)
+            && ($dependency['dependency_type'] ?? null) === 'TRANSITION_EVIDENCE'
+            && $this->nonEmptyString($dependency['transition_identity'] ?? null)
+            && ($dependency['connection_identity'] ?? null) === $connectionIdentity
+            && in_array($dependency['from_state'] ?? null, self::PRODUCT_CONNECTION_STATES, true)
+            && in_array($dependency['to_state'] ?? null, self::PRODUCT_CONNECTION_STATES, true)
+            && is_array($expectedRevision)
+            && $this->hasExactKeys($expectedRevision, [
+                'authority_owner',
+                'authority_scope',
+                'lineage',
+                'aggregate_context',
+                'value',
+            ])
+            && $this->nonEmptyString($expectedRevision['authority_owner'] ?? null)
+            && $this->nonEmptyString($expectedRevision['authority_scope'] ?? null)
+            && $this->nonEmptyString($expectedRevision['lineage'] ?? null)
+            && $this->nonEmptyString($expectedRevision['aggregate_context'] ?? null)
+            && is_int($expectedRevision['value'] ?? null)
+            && $expectedRevision['value'] >= 0
+            && $this->validProductConnectionDependencySource($dependency)
+            && is_bool($dependency['protected_binding_satisfied'] ?? null);
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validProductConnectionDependencySource(array $dependency): bool
+    {
+        foreach (['authority_owner', 'authority_scope', 'aggregate_context', 'source_lineage'] as $key) {
+            if (! $this->nonEmptyString($dependency[$key] ?? null)) {
+                return false;
+            }
+        }
+
+        return is_int($dependency['source_revision_value'] ?? null)
+            && $dependency['source_revision_value'] >= 0
+            && $this->validSourceCondition($dependency['source_condition'] ?? null)
+            && $this->nullableBoolean($dependency['currentness'] ?? null)
+            && $this->nullableBoolean($dependency['freshness'] ?? null);
+    }
+
+    /**
+     * @param array<string, mixed>|null $current
+     * @param array<string, mixed>|null $transition
+     */
+    private function productConnectionAggregate(
+        ?array $current,
+        ?array $transition,
+        string $field,
+        bool $transitionFact,
+    ): ?bool {
+        if ($current === null) {
+            return null;
+        }
+
+        if (! $transitionFact) {
+            return $current[$field];
+        }
+
+        if ($transition === null) {
+            return $current[$field] === false ? false : null;
+        }
+
+        if ($current[$field] === false || $transition[$field] === false) {
+            return false;
+        }
+
+        return $current[$field] === true && $transition[$field] === true ? true : null;
+    }
+
+    /**
+     * @param array<string, mixed> $payload
+     * @param array<string, mixed>|null $current
+     * @param array<string, mixed>|null $transition
+     */
+    private function validProductConnectionPayloadMatrix(
+        array $payload,
+        ?array $current,
+        ?array $transition,
+        bool $currentFact,
+        ?bool $aggregateCurrentness,
+        ?bool $aggregateFreshness,
+    ): bool {
+        $classification = $payload['classification'] ?? null;
+        $currentState = $payload['current_state'] ?? null;
+        $reasons = $payload['reason_categories'];
+        $invalidated = $payload['invalidation']['invalidated'];
+        $currentTerminal = is_string($currentState)
+            && in_array($currentState, self::PRODUCT_CONNECTION_TERMINAL_STATES, true);
+
+        if (! is_bool($payload['connection_active_for_downstream_consideration'] ?? null)
+            || ! is_bool($payload['valid_for_protected_use'] ?? null)
+            || ! is_array($payload['terminality'] ?? null)) {
+            return false;
+        }
+
+        if ($currentFact) {
+            if (! $this->hasExactKeys($payload['terminality'], ['current_state_terminal'])
+                || ! is_bool($payload['terminality']['current_state_terminal'] ?? null)
+                || $payload['terminality']['current_state_terminal'] !== $currentTerminal
+                || ! in_array($classification, [...self::PRODUCT_CONNECTION_STATES, 'UNKNOWN'], true)) {
+                return false;
+            }
+
+            if ($invalidated) {
+                return $classification === 'UNKNOWN'
+                    && $current !== null
+                    && ($currentState === null || $currentState === $current['state'])
+                    && $payload['connection_active_for_downstream_consideration'] === false
+                    && $payload['valid_for_protected_use'] === false;
+            }
+
+            if ($classification !== 'UNKNOWN') {
+                return $reasons === []
+                    && $current !== null
+                    && $this->productConnectionDependencyUsable($current)
+                    && $currentState === $classification
+                    && $current['state'] === $classification
+                    && $aggregateCurrentness === true
+                    && $aggregateFreshness === true
+                    && $payload['connection_active_for_downstream_consideration'] === ($classification === 'CN_ACTIVE')
+                    && $payload['valid_for_protected_use'] === true;
+            }
+
+            if ($reasons === ['CURRENT_STATE_NOT_CURRENT_FRESH_BOUND']) {
+                return $current !== null
+                    && ! $this->productConnectionDependencyUsable($current)
+                    && $currentState === null
+                    && $payload['terminality']['current_state_terminal'] === false
+                    && $payload['connection_active_for_downstream_consideration'] === false
+                    && $payload['valid_for_protected_use'] === false;
+            }
+
+            return count($reasons) === 1
+                && in_array($reasons[0], array_slice(self::PRODUCT_CONNECTION_CURRENT_REASONS, 0, 6), true)
+                && $current === null
+                && $currentState === null
+                && $aggregateCurrentness === null
+                && $aggregateFreshness === null
+                && $payload['terminality']['current_state_terminal'] === false
+                && $payload['connection_active_for_downstream_consideration'] === false
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        $proposedState = $payload['proposed_state'] ?? null;
+        $proposedTerminal = is_string($proposedState)
+            && in_array($proposedState, self::PRODUCT_CONNECTION_TERMINAL_STATES, true);
+
+        if (! $this->hasExactKeys($payload['terminality'], [
+            'current_state_terminal',
+            'proposed_state_terminal',
+            'terminal_reopen_rejected',
+        ])
+            || ! is_bool($payload['terminality']['current_state_terminal'] ?? null)
+            || ! is_bool($payload['terminality']['proposed_state_terminal'] ?? null)
+            || ! is_bool($payload['terminality']['terminal_reopen_rejected'] ?? null)
+            || $payload['terminality']['current_state_terminal'] !== $currentTerminal
+            || $payload['terminality']['proposed_state_terminal'] !== $proposedTerminal
+            || $payload['terminality']['terminal_reopen_rejected']
+                !== ($reasons === ['TERMINAL_CONNECTION_IDENTITY_CANNOT_REOPEN'])
+            || ! in_array($classification, ['ADMISSIBLE', 'REJECTED', 'UNKNOWN'], true)) {
+            return false;
+        }
+
+        if ($invalidated) {
+            return $classification === 'UNKNOWN'
+                && ($current !== null || $transition !== null)
+                && $payload['connection_active_for_downstream_consideration'] === false
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        if ($current === null) {
+            return $classification === 'UNKNOWN'
+                && count($reasons) === 1
+                && in_array($reasons[0], array_slice(self::PRODUCT_CONNECTION_TRANSITION_REASONS, 0, 6), true)
+                && $transition === null
+                && $currentState === null
+                && $proposedState === null
+                && $aggregateCurrentness === null
+                && $aggregateFreshness === null
+                && $payload['connection_active_for_downstream_consideration'] === false
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        if ($reasons === ['CURRENT_STATE_NOT_CURRENT_FRESH_BOUND']) {
+            return $classification === 'UNKNOWN'
+                && $transition === null
+                && ! $this->productConnectionDependencyUsable($current)
+                && $currentState === null
+                && $proposedState === null
+                && $payload['connection_active_for_downstream_consideration'] === false
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        if ($transition === null) {
+            return $classification === 'UNKNOWN'
+                && count($reasons) === 1
+                && in_array($reasons[0], array_slice(self::PRODUCT_CONNECTION_TRANSITION_REASONS, 7, 6), true)
+                && $this->productConnectionDependencyUsable($current)
+                && $currentState === $current['state']
+                && $proposedState === null
+                && $aggregateCurrentness === null
+                && $aggregateFreshness === null
+                && $payload['connection_active_for_downstream_consideration'] === ($currentState === 'CN_ACTIVE')
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        if ($currentState !== $current['state']
+            || $proposedState !== $transition['to_state']
+            || $payload['connection_active_for_downstream_consideration'] !== ($currentState === 'CN_ACTIVE')) {
+            return false;
+        }
+
+        if ($reasons === ['TRANSITION_NOT_CURRENT_FRESH_BOUND']) {
+            return $classification === 'UNKNOWN'
+                && $this->productConnectionDependencyUsable($current)
+                && ! $this->productConnectionDependencyUsable($transition)
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        $bothUsable = $this->productConnectionDependencyUsable($current)
+            && $this->productConnectionDependencyUsable($transition);
+
+        if (! $bothUsable || $aggregateCurrentness !== true || $aggregateFreshness !== true) {
+            return false;
+        }
+
+        $currentRevision = [
+            'authority_owner' => $current['authority_owner'],
+            'authority_scope' => $current['authority_scope'],
+            'lineage' => $current['source_lineage'],
+            'aggregate_context' => $current['aggregate_context'],
+            'value' => $current['source_revision_value'],
+        ];
+        $contextMatches = $transition['from_state'] === $currentState
+            && $transition['expected_state_revision'] === $currentRevision;
+
+        if ($reasons === ['TRANSITION_CURRENT_CONTEXT_MISMATCH']) {
+            return $classification === 'UNKNOWN'
+                && ! $contextMatches
+                && $payload['valid_for_protected_use'] === false;
+        }
+
+        if (! $contextMatches) {
+            return false;
+        }
+
+        $pair = $currentState.'->'.$proposedState;
+        $allowed = in_array($pair, [
+            'CN_NONE->CN_PENDING',
+            'CN_PENDING->CN_ACTIVE',
+            'CN_PENDING->CN_DECLINED',
+            'CN_PENDING->CN_WITHDRAWN',
+            'CN_PENDING->CN_EXPIRED',
+            'CN_ACTIVE->CN_PAUSED',
+            'CN_ACTIVE->CN_CLOSED',
+            'CN_PAUSED->CN_ACTIVE',
+            'CN_PAUSED->CN_CLOSED',
+        ], true);
+
+        if ($classification === 'ADMISSIBLE') {
+            return $reasons === []
+                && ! $currentTerminal
+                && $allowed
+                && $payload['valid_for_protected_use'] === true;
+        }
+
+        if ($classification !== 'REJECTED'
+            || count($reasons) !== 1
+            || $payload['valid_for_protected_use'] !== false) {
+            return false;
+        }
+
+        return match ($reasons[0]) {
+            'TERMINAL_CONNECTION_IDENTITY_CANNOT_REOPEN' => $currentTerminal,
+            'DIRECT_NONE_TO_ACTIVE_REJECTED' => $pair === 'CN_NONE->CN_ACTIVE',
+            'TRANSITION_NOT_ALLOWED' => ! $currentTerminal && ! $allowed && $pair !== 'CN_NONE->CN_ACTIVE',
+            default => false,
+        };
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function productConnectionDependencyUsable(array $dependency): bool
+    {
+        return ($dependency['protected_binding_satisfied'] ?? null) === true
+            && ($dependency['source_condition'] ?? null) === CommonAuthorityEvidenceContract::CONDITION_PRESENT
+            && ($dependency['currentness'] ?? null) === true
+            && ($dependency['freshness'] ?? null) === true;
+    }
+
+    /** @param array<string, mixed> $record */
+    private function validCanonicalMatchRecord(array $record): bool
+    {
+        $payload = $record['derived_projection_payload'] ?? null;
+
+        if (! is_array($payload)
+            || ! $this->hasExactKeys($payload, self::MATCH_PAYLOAD_KEYS)
+            || ($payload['payload_kind'] ?? null) !== 'CANONICAL_MATCH_PROPOSAL_DECISION'
+            || ($payload['derived_fact_class'] ?? null) !== 'CANONICAL_MATCH_PROPOSAL_DECISION'
+            || ! in_array($payload['classification'] ?? null, self::MATCH_CLASSIFICATIONS, true)
+            || ! $this->nonEmptyString($payload['proposal_identity'] ?? null)
+            || ! $this->nonEmptyString($payload['protected_use_scope'] ?? null)
+            || $this->containsPrivateSentinel($payload)) {
+            return false;
+        }
+
+        $reasons = $payload['reason_categories'] ?? null;
+
+        if (! is_array($reasons)
+            || ! array_is_list($reasons)
+            || ! $this->allNonEmptyStrings($reasons)
+            || count($reasons) !== count(array_unique($reasons))) {
+            return false;
+        }
+
+        $canonicalReasons = array_values(array_filter(
+            self::MATCH_REASON_CATEGORIES,
+            static fn (string $reason): bool => in_array($reason, $reasons, true),
+        ));
+
+        if ($reasons !== $canonicalReasons) {
+            return false;
+        }
+
+        $bindings = $record['bindings'] ?? null;
+        $sourceRevision = $record['source_revision'] ?? null;
+        $projectionMetadata = $record['projection_metadata'] ?? null;
+        $logicalIntent = $record['logical_intent'] ?? null;
+
+        if (! is_array($bindings)
+            || ! is_array($sourceRevision)
+            || ! is_array($projectionMetadata)
+            || ! is_array($logicalIntent)
+            || ! $this->hasExactKeys($logicalIntent, ['intent_identity', 'semantic_input'])
+            || ! is_array($logicalIntent['semantic_input'] ?? null)) {
+            return false;
+        }
+
+        $participants = $bindings['participants'] ?? null;
+
+        if (! is_array($participants)
+            || ! array_is_list($participants)
+            || count($participants) !== 2
+            || ! $this->allNonEmptyStrings($participants)
+            || count(array_unique($participants)) !== 2) {
+            return false;
+        }
+
+        $sortedParticipants = $participants;
+        sort($sortedParticipants, SORT_STRING);
+
+        if ($participants !== $sortedParticipants) {
+            return false;
+        }
+
+        $proposal = $payload['proposal_dependency'] ?? null;
+        $participation = $payload['participation_dependencies'] ?? null;
+        $slots = $payload['decision_slot_dependencies'] ?? null;
+
+        if (! is_array($proposal)
+            || ! $this->validCanonicalMatchProposalDependency($proposal, $payload['proposal_identity'])
+            || ! is_array($participation)
+            || ! array_is_list($participation)
+            || ! is_array($slots)
+            || ! array_is_list($slots)) {
+            return false;
+        }
+
+        $participationIdentities = [];
+
+        foreach ($participation as $dependency) {
+            if (! is_array($dependency)
+                || ! $this->validCanonicalMatchParticipationDependency($dependency, $participants)) {
+                return false;
+            }
+
+            $participationIdentities[] = $dependency['participant_identity'];
+        }
+
+        if (count($participationIdentities) !== count(array_unique($participationIdentities))) {
+            return false;
+        }
+
+        $sortedParticipation = $participation;
+        usort($sortedParticipation, self::compareCanonicalMatchParticipationDependencies(...));
+
+        if ($participation !== $sortedParticipation) {
+            return false;
+        }
+
+        $slotIdentities = [];
+        $slotParticipantIdentities = [];
+
+        foreach ($slots as $dependency) {
+            if (! is_array($dependency)
+                || ! $this->validCanonicalMatchSlotDependency(
+                    $dependency,
+                    $payload['proposal_identity'],
+                    $participants,
+                )) {
+                return false;
+            }
+
+            $slotIdentities[] = $dependency['slot_identity'];
+            $slotParticipantIdentities[] = $dependency['participant_identity'];
+        }
+
+        if (count($slotIdentities) !== count(array_unique($slotIdentities))
+            || count($slotParticipantIdentities) !== count(array_unique($slotParticipantIdentities))) {
+            return false;
+        }
+
+        $sortedSlots = $slots;
+        usort($sortedSlots, self::compareCanonicalMatchSlotDependencies(...));
+
+        if ($slots !== $sortedSlots) {
+            return false;
+        }
+
+        $dependencyIdentities = [
+            $payload['proposal_identity'],
+            ...$participants,
+            ...$slotIdentities,
+        ];
+        $persistedDependencyIdentities = [
+            $payload['proposal_identity'],
+            ...$participationIdentities,
+            ...$slotIdentities,
+        ];
+
+        if (count($dependencyIdentities) !== count(array_unique($dependencyIdentities))) {
+            return false;
+        }
+
+        $sourceProposalTerminal = $proposal['terminal'];
+
+        if ($sourceProposalTerminal) {
+            if ($participation !== [] || $slots !== []) {
+                return false;
+            }
+
+            $complete = true;
+        } else {
+            $complete = count($participation) === 2
+                && count($slots) === 2
+                && $this->sameIdentitySet($participationIdentities, $participants)
+                && $this->sameIdentitySet($slotParticipantIdentities, $participants);
+        }
+
+        if ($record['currentness'] !== $this->canonicalMatchAggregate(
+            $proposal,
+            $participation,
+            $slots,
+            'currentness',
+            $complete,
+        ) || $record['freshness'] !== $this->canonicalMatchAggregate(
+            $proposal,
+            $participation,
+            $slots,
+            'freshness',
+            $complete,
+        )) {
+            return false;
+        }
+
+        $terminality = $payload['terminality'] ?? null;
+        $invalidation = $payload['invalidation'] ?? null;
+
+        if (! is_array($terminality)
+            || ! $this->hasExactKeys($terminality, [
+                'source_proposal_terminal',
+                'derived_terminal',
+                'classification_before_invalidation',
+                'lifecycle_reset',
+                'proposal_reopened',
+            ])
+            || ! is_bool($terminality['source_proposal_terminal'] ?? null)
+            || ! is_bool($terminality['derived_terminal'] ?? null)
+            || $terminality['source_proposal_terminal'] !== $sourceProposalTerminal
+            || ($terminality['lifecycle_reset'] ?? null) !== false
+            || ($terminality['proposal_reopened'] ?? null) !== false
+            || ($bindings['terminal'] ?? null) !== $terminality['derived_terminal']
+            || ! is_array($invalidation)
+            || ! $this->hasExactKeys($invalidation, [
+                'invalidated',
+                'relation',
+                'dependency_identity',
+                'lifecycle_reset',
+                'proposal_reopened',
+            ])
+            || ! is_bool($invalidation['invalidated'] ?? null)
+            || ($invalidation['lifecycle_reset'] ?? null) !== false
+            || ($invalidation['proposal_reopened'] ?? null) !== false) {
+            return false;
+        }
+
+        if ($invalidation['invalidated'] === false) {
+            $expectedTerminal = in_array($payload['classification'], self::MATCH_TERMINAL_CLASSIFICATIONS, true);
+
+            if ($invalidation['relation'] !== null
+                || $invalidation['dependency_identity'] !== null
+                || $terminality['classification_before_invalidation'] !== null
+                || $terminality['derived_terminal'] !== $expectedTerminal
+                || in_array('DEPENDENCY_INVALIDATED', $reasons, true)) {
+                return false;
+            }
+
+            if ($sourceProposalTerminal && $payload['classification'] !== $proposal['lifecycle_state']) {
+                return false;
+            }
+        } else {
+            $before = $terminality['classification_before_invalidation'] ?? null;
+            $expectedTerminal = in_array($before, self::MATCH_TERMINAL_CLASSIFICATIONS, true);
+
+            if ($payload['classification'] !== 'UNKNOWN'
+                || ! in_array($before, self::MATCH_CLASSIFICATIONS, true)
+                || $terminality['derived_terminal'] !== $expectedTerminal
+                || $reasons !== ['DEPENDENCY_INVALIDATED']
+                || ! in_array($invalidation['relation'] ?? null, [
+                    CommonAuthorityEvidenceContract::INVALIDATION_CORRECTION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_REVOCATION,
+                    CommonAuthorityEvidenceContract::INVALIDATION_SUPERSESSION,
+                ], true)
+                || ! $this->nonEmptyString($invalidation['dependency_identity'] ?? null)
+                || count(array_filter(
+                    $persistedDependencyIdentities,
+                    static fn (string $identity): bool => $identity === $invalidation['dependency_identity'],
+                )) !== 1) {
+                return false;
+            }
+
+            if ($sourceProposalTerminal && $before !== $proposal['lifecycle_state']) {
+                return false;
+            }
+        }
+
+        $scope = 'CANONICAL_MATCH_PROPOSAL_DECISION|'.$payload['protected_use_scope'];
+
+        if (($bindings['authority_owner'] ?? null) !== 'CANONICAL_MATCH_DERIVATION'
+            || ($bindings['authority_scope'] ?? null) !== $scope
+            || ($bindings['aggregate_context'] ?? null) !== $payload['proposal_identity']
+            || ($bindings['purpose'] ?? null) !== $payload['protected_use_scope']
+            || ($sourceRevision['authority_owner'] ?? null) !== 'CANONICAL_MATCH_DERIVATION'
+            || ($sourceRevision['authority_scope'] ?? null) !== $scope
+            || ($sourceRevision['aggregate_context'] ?? null) !== $bindings['aggregate_context']
+            || ($sourceRevision['value'] ?? null) !== 0
+            || $record['source_condition'] !== CommonAuthorityEvidenceContract::CONDITION_PRESENT
+            || $record['authoritative_outcome'] !== CommonAuthorityEvidenceContract::OUTCOME_UNKNOWN
+            || $record['authoritative_outcome_metadata'] !== null
+            || $record['correction_metadata'] !== null
+            || $record['transport_observation'] !== 'AMBIGUOUS'
+            || $record['private_fixture_extensions'] !== []) {
+            return false;
+        }
+
+        $lifecycleBasis = [
+            'record_family' => self::RECORD_FAMILY_CANONICAL_MATCH,
+            'proposal_identity' => $payload['proposal_identity'],
+            'protected_use_scope' => $payload['protected_use_scope'],
+            'subject' => $bindings['subject'] ?? null,
+            'participants' => $participants,
+            'audience' => $bindings['audience'] ?? null,
+            'purpose' => $bindings['purpose'] ?? null,
+            'aggregate_context' => $bindings['aggregate_context'] ?? null,
+        ];
+        $expectedLifecycle = 'canonical-match-lifecycle-v1:'.$this->fingerprint($lifecycleBasis);
+
+        if (($bindings['lifecycle_identity'] ?? null) !== $expectedLifecycle) {
+            return false;
+        }
+
+        $semanticInput = [
+            'record_family' => self::RECORD_FAMILY_CANONICAL_MATCH,
+            'bindings' => $bindings,
+            'derived_projection_payload' => $payload,
+            'schema_marker' => 'canonical-match-derived-projection-v1',
+        ];
+        $digest = $this->fingerprint($semanticInput);
+
+        if ($record['logical_record_identity'] !== 'canonical-match-record-v1:'.$digest
+            || ($logicalIntent['intent_identity'] ?? null) !== 'canonical-match-intent-v1:'.$digest
+            || $logicalIntent['semantic_input'] !== $semanticInput
+            || ($sourceRevision['lineage'] ?? null) !== 'canonical-match-lineage-v1:'.$digest
+            || ($projectionMetadata['projection_identity'] ?? null) !== 'canonical-match-projection-v1:'.$digest
+            || ($projectionMetadata['represented_source_revision_value'] ?? null) !== 0
+            || ($projectionMetadata['projection_currentness'] ?? null) !== $record['currentness']) {
+            return false;
+        }
+
+        $expectedLag = match ($record['currentness']) {
+            true => 'CURRENT',
+            false => 'LAGGED',
+            null => 'UNKNOWN',
+        };
+
+        return ($projectionMetadata['lag_classification'] ?? null) === $expectedLag;
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validCanonicalMatchProposalDependency(array $dependency, string $proposalIdentity): bool
+    {
+        if (! $this->hasExactKeys($dependency, self::MATCH_PROPOSAL_DEPENDENCY_KEYS)
+            || ($dependency['proposal_identity'] ?? null) !== $proposalIdentity
+            || ! in_array($dependency['lifecycle_state'] ?? null, [
+                'PENDING',
+                'MUTUALLY_ACCEPTED',
+                'DECLINED',
+                'WITHDRAWN',
+                'EXPIRED',
+            ], true)
+            || ! is_bool($dependency['terminal'] ?? null)
+            || $dependency['terminal'] !== ($dependency['lifecycle_state'] !== 'PENDING')) {
+            return false;
+        }
+
+        return $this->validCanonicalMatchSourceFields($dependency);
+    }
+
+    /** @param array<string, mixed> $dependency @param list<string> $participants */
+    private function validCanonicalMatchParticipationDependency(array $dependency, array $participants): bool
+    {
+        if (! $this->hasExactKeys($dependency, self::MATCH_PARTICIPATION_DEPENDENCY_KEYS)
+            || ! $this->nonEmptyString($dependency['participant_identity'] ?? null)
+            || ! in_array($dependency['participant_identity'], $participants, true)
+            || ! in_array($dependency['state'] ?? null, [
+                'NOT_ENROLLED',
+                'ENROLLED',
+                'PAUSED',
+                'WITHDRAWN',
+            ], true)) {
+            return false;
+        }
+
+        return $this->validCanonicalMatchSourceFields($dependency);
+    }
+
+    /** @param array<string, mixed> $dependency @param list<string> $participants */
+    private function validCanonicalMatchSlotDependency(
+        array $dependency,
+        string $proposalIdentity,
+        array $participants,
+    ): bool {
+        if (! $this->hasExactKeys($dependency, self::MATCH_SLOT_DEPENDENCY_KEYS)
+            || ! $this->nonEmptyString($dependency['slot_identity'] ?? null)
+            || ($dependency['proposal_identity'] ?? null) !== $proposalIdentity
+            || ! $this->nonEmptyString($dependency['participant_identity'] ?? null)
+            || ! in_array($dependency['participant_identity'], $participants, true)
+            || ! in_array($dependency['decision'] ?? null, [
+                'PENDING',
+                'ACCEPTED',
+                'DECLINED',
+                'WITHDRAWN',
+            ], true)) {
+            return false;
+        }
+
+        return $this->validCanonicalMatchSourceFields($dependency);
+    }
+
+    /** @param array<string, mixed> $dependency */
+    private function validCanonicalMatchSourceFields(array $dependency): bool
+    {
+        foreach (['authority_owner', 'authority_scope', 'aggregate_context', 'source_lineage'] as $key) {
+            if (! $this->nonEmptyString($dependency[$key] ?? null)) {
+                return false;
+            }
+        }
+
+        return is_int($dependency['source_revision_value'] ?? null)
+            && $dependency['source_revision_value'] >= 0
+            && $this->validSourceCondition($dependency['source_condition'] ?? null)
+            && $this->nullableBoolean($dependency['currentness'] ?? null)
+            && $this->nullableBoolean($dependency['freshness'] ?? null);
+    }
+
+    private function validSourceCondition(mixed $condition): bool
+    {
+        return in_array($condition, [
+            CommonAuthorityEvidenceContract::CONDITION_PRESENT,
+            CommonAuthorityEvidenceContract::CONDITION_ABSENT,
+            CommonAuthorityEvidenceContract::CONDITION_UNKNOWN,
+            CommonAuthorityEvidenceContract::CONDITION_UNAVAILABLE,
+            CommonAuthorityEvidenceContract::CONDITION_STALE,
+            CommonAuthorityEvidenceContract::CONDITION_SUPERSEDED,
+            CommonAuthorityEvidenceContract::CONDITION_INCOMPARABLE,
+        ], true);
+    }
+
+    /**
+     * @param array<string, mixed> $proposal
+     * @param list<array<string, mixed>> $participation
+     * @param list<array<string, mixed>> $slots
+     */
+    private function canonicalMatchAggregate(
+        array $proposal,
+        array $participation,
+        array $slots,
+        string $field,
+        bool $complete,
+    ): ?bool {
+        $values = [$proposal[$field]];
+
+        foreach ([...$participation, ...$slots] as $dependency) {
+            $values[] = $dependency[$field];
+        }
+
+        if (in_array(false, $values, true)) {
+            return false;
+        }
+
+        if (! $complete || in_array(null, $values, true)) {
+            return null;
+        }
+
+        return true;
+    }
+
+    /** @param list<string> $left @param list<string> $right */
+    private function sameIdentitySet(array $left, array $right): bool
+    {
+        sort($left, SORT_STRING);
+        sort($right, SORT_STRING);
+
+        return $left === $right;
+    }
+
+    /** @param array<string, mixed> $left @param array<string, mixed> $right */
+    private static function compareCanonicalMatchParticipationDependencies(array $left, array $right): int
+    {
+        foreach ([
+            'participant_identity',
+            'authority_owner',
+            'authority_scope',
+            'aggregate_context',
+            'source_lineage',
+            'source_revision_value',
+        ] as $key) {
+            $comparison = $left[$key] <=> $right[$key];
+
+            if ($comparison !== 0) {
+                return $comparison;
+            }
+        }
+
+        return 0;
+    }
+
+    /** @param array<string, mixed> $left @param array<string, mixed> $right */
+    private static function compareCanonicalMatchSlotDependencies(array $left, array $right): int
+    {
+        foreach ([
+            'participant_identity',
+            'slot_identity',
+            'authority_owner',
+            'authority_scope',
+            'aggregate_context',
+            'source_lineage',
+            'source_revision_value',
+        ] as $key) {
+            $comparison = $left[$key] <=> $right[$key];
+
+            if ($comparison !== 0) {
+                return $comparison;
+            }
+        }
+
+        return 0;
+    }
+
+    /** @param list<mixed> $values */
+    private function allNonEmptyStrings(array $values): bool
+    {
+        foreach ($values as $value) {
+            if (! $this->nonEmptyString($value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private function nonEmptyString(mixed $value): bool
+    {
+        return is_string($value) && $value !== '';
     }
 
     /** @param array<string, mixed> $payload */
@@ -862,7 +2434,13 @@ final class InMemoryLogicalPersistenceRepositoryContract
         $correctionMetadata = $record['correction_metadata'];
         $derivedPayload = $record['derived_projection_payload'] ?? null;
 
-        if ($derivedPayload !== null && $invalidation !== null) {
+        if ($derivedPayload !== null
+            && $invalidation !== null
+            && ! in_array($record['record_family'], [
+                self::RECORD_FAMILY_CANONICAL_MATCH,
+                self::RECORD_FAMILY_PRODUCT_CONNECTION,
+                self::RECORD_FAMILY_MESSAGING_CONSENT,
+            ], true)) {
             $derivedPayload['invalidation'] = [
                 'invalidated' => true,
                 'relation' => $invalidation['relation'],

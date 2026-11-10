@@ -1,0 +1,7 @@
+{
+  "independent_process_connections": true,
+  "waiting_before_commit": true,
+  "send": 404,
+  "media": 404,
+  "locker_exit": 0
+}

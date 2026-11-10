@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-15T00:27:11.455198+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/media/1/content",
+  "request": null,
+  "status": 200,
+  "body": {
+    "bytes": 7371,
+    "sha256": "3b6551c2f935c5c1d5da79e74b4b13cee6bfcc24ea5e3c6c5d6afd4d13101a1d"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "startEpochMs": 1792050995689,
+  "durationMs": 29,
+  "consumerLockFileMtimeMs": 1792050985399.6797,
+  "consumerHoldSeconds": 12,
+  "response_state_receipt_mtime_ms": 1792050997601.61,
+  "dispatch_to_verified_state_ms": 1912.610107421875,
+  "note": "click duration measures dispatch only; verified AX state receipt is after HTTP navigation"
+}

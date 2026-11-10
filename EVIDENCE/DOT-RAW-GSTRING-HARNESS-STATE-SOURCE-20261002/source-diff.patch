@@ -1,0 +1,44 @@
+--- reviewed/DiagnoseRawGString.groovy
++++ successor/DiagnoseRawGString.groovy
+@@ -22,7 +22,7 @@
+ String stage = 'SOURCE'
+ GroovyClassLoader loader = null
+ Map inputObservation = null
++Map diagnosticState = null
+-Map state = null
+ Map input = null
+ Map inputBefore = null
+ Object returned = null
+@@ -149,8 +149,8 @@
+     String suffix = 'flutter'
+     bound = ":$suffix"
+     check.call(bound instanceof GString, 'SPEC_RAW_GSTRING')
++    diagnosticState = fixture.call(new LinkedHashMap(), ':flutter', '')
++    Object target = diagnosticState.get('project')
+-    state = fixture.call(new LinkedHashMap(), ':flutter', '')
+-    Object target = state.get('project')
+     Object recipes = input
+     // Observation-only extraction of the original inline Object[] expression.
+     // Do not presume this extraction has runtime equivalence to old M112.
+@@ -174,7 +174,7 @@
+     }
+     // No outcome assertion: collect either branch exactly once and stop.
+     stage = 'OBSERVE'
++    check.call(diagnosticState.reads.size() <= 16 && diagnosticState.sets.size() <= 16 && diagnosticState.events.size() <= 16, 'OBSERVATION_LIMIT')
+-    check.call(state.reads.size() <= 16 && state.sets.size() <= 16 && state.events.size() <= 16, 'OBSERVATION_LIMIT')
+     observationComplete = true
+ } catch (Throwable firstFailure) {
+     infrastructureFailure = firstFailure
+@@ -200,9 +200,9 @@
+     reflectionFailure: describeFailure.call(reflectionFailure),
+     infrastructureFailure: describeFailure.call(infrastructureFailure),
+     closeFailure: describeFailure.call(closeFailure),
++    proxyObservation: diagnosticState == null ? null : [
++        reads: diagnosticState.reads, sets: diagnosticState.sets, events: diagnosticState.events,
++        ownEmpty: diagnosticState.own.isEmpty(), ownKeys: new ArrayList(diagnosticState.own.keySet())
+-    proxyObservation: state == null ? null : [
+-        reads: state.reads, sets: state.sets, events: state.events,
+-        ownEmpty: state.own.isEmpty(), ownKeys: new ArrayList(state.own.keySet())
+     ],
+     callerMapUnchanged: input != null && inputBefore != null && input == inputBefore,
+     realBinding: 'NOT_CHECKED', hook: 'NOT_CHECKED',

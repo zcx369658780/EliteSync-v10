@@ -1,0 +1,65 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart
+00:00 +0: Shows pending from the real API provider contract
+00:00 +1: Shows approved from the real API provider contract
+00:00 +2: Shows rejected from the real API provider contract
+00:00 +3: Approved review does not manufacture matching eligibility
+00:00 +4: Loading and failed refresh never display stale approval
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "运营资格暂不可用，无法确认当前审核或匹配状态。": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart:138:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart line 138
+The test description was:
+  Loading and failed refresh never display stale approval
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +4 -1: Loading and failed refresh never display stale approval [E]
+  Test failed. See exception logs above.
+  The test description was: Loading and failed refresh never display stale approval
+  
+00:00 +4 -1: Malformed server eligibility fails closed
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "运营资格暂不可用，无法确认当前审核或匹配状态。": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart:154:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1682:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/operational_status_card_test.dart line 154
+The test description was:
+  Malformed server eligibility fails closed
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +4 -2: Malformed server eligibility fails closed [E]
+  Test failed. See exception logs above.
+  The test description was: Malformed server eligibility fails closed
+  
+00:00 +4 -2: Supplement answers uses the existing questionnaire route
+00:00 +5 -2: Some tests failed.

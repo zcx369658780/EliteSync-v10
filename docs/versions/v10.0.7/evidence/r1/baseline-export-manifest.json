@@ -1,0 +1,2648 @@
+[
+  {
+    "path": "apps/flutter_elitesync_module/.metadata",
+    "blob": "07f2d19a563a83f9c2d6c914271e01d364277db4",
+    "sha256": "642a4f86346d736da5de3ceb2cc8f53fbd845c2081d45712b998fe3e99f12fa2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/analysis_options.yaml",
+    "blob": "a66c32347c24eddd2635608d94d9f73af14d7b55",
+    "sha256": "ac817b4ca2a412ce6677656f0b4b666b1634bca0c0f50e52b0d2de8a95531d3d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/assets/config/about_update_0_xx.json",
+    "blob": "1f0f302b66f6b0c2d23fb71b7fbc0909ff35c307",
+    "sha256": "acd292365e0f70e176ba3efbbb726d8c20c97e15bd7de67f679dfd2a4b675504",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/app.dart",
+    "blob": "cd1fe7736a3941470f099f750430222ae0d0acdb",
+    "sha256": "7e3fc00d1f9f3224fbab9c5b501421196c71c2fe6ad63b3973d1ae24bb5043b0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/bootstrap/app_bootstrap.dart",
+    "blob": "9091a4bebf2b32e441f5b5b2753890aa21e9b2aa",
+    "sha256": "051bec691642cde8f94b4db084c11aec7c64fa478d769cf23524bbd7f7f45f7b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/config/app_env.dart",
+    "blob": "f4e01d05f16f2290b192ae63d05ab8b554e11417",
+    "sha256": "8a4b370e8a3182483352f401169b01be395f2335b2b83764afe1033cf5b66657",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/config/app_flavor.dart",
+    "blob": "e225ab414600ab346c0d7618d09ed8b93b895228",
+    "sha256": "a26be5ccc7f4d54503eeeebc2c9f617005855ee8ec9e0d4b103b075bfc2ce75d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_route_names.dart",
+    "blob": "da69a7d64fba32c5f625dd11a578912386682e17",
+    "sha256": "fcabd90de3634e1d72c9783c86a29104d428858f046c95c2d413f99f6f0395c5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_route_observer.dart",
+    "blob": "0f585d85d413e93c5d259f5fd5eefb791a69638d",
+    "sha256": "948ec58a3dede71d3d4f53190b186b84349da2ed6e468ad12da8752ef481ca6e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+    "blob": "2eebd3f0959414f95e2a3ec61e94d73a2779d795",
+    "sha256": "0b8a26c548bfd1be86088c7e7874ff9c8e0dc8799930905df42fa68b85101a94",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/app_shell.dart",
+    "blob": "11447be9484099ef88dea943d3227bb7ba606c48",
+    "sha256": "2f011ac85e4b1ed98a89097fe33bf87c4c947694ce1cc150a36f2c053690910b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/app/router/rtc_invite_coordinator.dart",
+    "blob": "adcfd34c1602b2136e3b765d30689d92e15b43f7",
+    "sha256": "bb02ab02a5b312e250255219d0982ea6c9614bae42bacc14307b327d35eda11e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/error/app_exception.dart",
+    "blob": "0a302422f7b4996f2f79ec82d412ed91a8c59163",
+    "sha256": "5a62c60aa59ecae6a630d54ddba93c16a2d0f7d11fe63a0f7f72a62f9eb2f7ae",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/error/app_failure.dart",
+    "blob": "24161dad7b5fb1bdaad4616bf60dda12a9469306",
+    "sha256": "b3b7e0486b4e30863a10d358531512c001503cf6937359b04e7ad358c3512bf6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/error/error_mapper.dart",
+    "blob": "ec084fffcf923b43d4537f4683504b122109a7c4",
+    "sha256": "96cd4a3e8133ca237247701689c5e3a1b76a82c17c10c29e680b916ab8594c24",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/logging/app_logger.dart",
+    "blob": "50d31c7fe180e790a9d51e112c3d6d3bc052ca14",
+    "sha256": "2d66e1aa8c48241a551d243964a3794b239bc54d4bc37094a35d3a63a4aa932e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/media/media_url_resolver.dart",
+    "blob": "cedef4cd6b51f1824f6db217e730e6ca6b42102c",
+    "sha256": "d70393def5ad68c27bd9e7955819e1d3d0c75755df0a05134d07e8e0386d31fd",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/api_client.dart",
+    "blob": "dd7f7555eb097763f9bf7d2992401db3a024ae56",
+    "sha256": "567ad83ec0ae65d5fc75293093e555f242249dc5050bda28529cffd84562788e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart",
+    "blob": "daf46208ff43b16888099d52ab005b16fedffa4f",
+    "sha256": "a4e203b92328cf704314df64feb55353fb20e51b0e2b88caf3972902dd98946b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart",
+    "blob": "a6b0e4677edf8eeda272a3afd3b34314ecb654bb",
+    "sha256": "39e1c5d2b883d14bb71de9a6821555c301e0baad4c9be2edf7102c5dd2a9f236",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/logging_interceptor.dart",
+    "blob": "860b8b26144e012062800cdbc27c51cfc53983f3",
+    "sha256": "cd7d66bc46e2dd0891d36243e047e7118ae6ae7df2a5471c38e97aa9657a35f2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/interceptors/retry_interceptor.dart",
+    "blob": "c931fc65709d5fd81b11aa6658efd60be86ae505",
+    "sha256": "10b91afc745a348d975161a2975ce017192bf4fd29278f697728bed057866d93",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/network/network_result.dart",
+    "blob": "48439cd313bcb3b35a1814474c17f6a64fb7c017",
+    "sha256": "f41e668902b00d5b645d2293421d5fa4bb292f508347800cbbbb74863626cb9b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/storage/cache_keys.dart",
+    "blob": "e20badcc03c44b759138546b523c3c5f8883e176",
+    "sha256": "0a71f30a9493a4e134868abb718429fbd6062b34685581cb9d4f46ae5591da88",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/storage/local_storage_service.dart",
+    "blob": "7081e4aa3679a79b75ac48e0296543ab8e7f4cfc",
+    "sha256": "7ab3ade973cf08934831da598337c2fb5d7777bbcad283e7c53d126ee935fe7a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/storage/secure_storage_service.dart",
+    "blob": "e37c4ba44e40a0c13af1fc64a3423dfddb4bed6a",
+    "sha256": "6896ecad91c88a5dad884c8a1558a931b6819ed44c203f7052b34effb2ab69e2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/telemetry/app_telemetry_service.dart",
+    "blob": "a39773a80489b3aefc352c312ac52a11c9d7a100",
+    "sha256": "097ef10ddd80925c2975e190994cf699d13e1d9afa9e8034e82f32ffbbd59af7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/telemetry/frontend_telemetry.dart",
+    "blob": "a4758e0d6c21af0446420cd96eeec3d3869801fa",
+    "sha256": "c687f845b828e97e12766de614bec6400654f6e0ffe004246b5697f3b78e5a01",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/core/ui/app_motion.dart",
+    "blob": "78bda80fbc1aaeeed75f1757db5f2be505c6f3ad",
+    "sha256": "54d8871abf6ecd612cfc5001a785cdb27fd8f01760761a4c0d483510caefcbbc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/bars/app_bottom_nav_bar.dart",
+    "blob": "d3e707e8c230285237214772be51de568da24a99",
+    "sha256": "375216c03bf120d6efc71a0b15a660e922355efba4abb4013e27cd7d38ea731d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/bars/app_top_bar.dart",
+    "blob": "28d6e59bf8b70985ce2601ca083fec5a53c2f0b2",
+    "sha256": "a693541256d71132472076281a9b24dc5e8c236516a9849ee1ebc6adda25ad3c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/brand_action_pill.dart",
+    "blob": "793e445d6fba6b80ce15dab0f49e4b5f7cdde322",
+    "sha256": "e885565164b22bae559f9b1722fecb8d84b0e8ca827a23870e57085b506341df",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/browse_top_search_bar.dart",
+    "blob": "776e2f26d39e9650585e4ed9dc70603d99cc676a",
+    "sha256": "5664132c3a40cf076796b090750085d9cce3ce0ed50e05ab63dd597d26d288fd",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/category_tab_strip.dart",
+    "blob": "9fd74f01ab18dbfcb76fd8b9d20cdc48726f1583",
+    "sha256": "3e27dedb3e5d3d4ac7ca6822c301edb007ea8975d94a067dbe3bb08dfc5c19df",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/constellation_hero_canvas.dart",
+    "blob": "f32ed039ad9526876d6e021720df597437df9f8c",
+    "sha256": "fa8b2ec6c204aa2d8f38dca78804731636240057ddcb53b0d2f8c9345bdf65e0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/floating_dock_bottom_bar.dart",
+    "blob": "1f99406e807ce3b7b41143369451366a71f8f2ce",
+    "sha256": "2fe47aea2323ac8b142498047c08a2d318a1f0536c879d0700128a82cd13551e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/gradient_hero_header.dart",
+    "blob": "f6cab610c9a3e9bbdee1e02921572d92e9186fee",
+    "sha256": "62dcf92b6a0caa2ca054545a1b6495b60389bcaf064950d687cfb05d1a0fac3e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/profile_glass_header_card.dart",
+    "blob": "20f8176107450e2e322aa7f5cd1f3a8a36ebe5ce",
+    "sha256": "9311f5026b15eb8c5e9138b1615ba124988020d3102a021f9ab01709f530dab1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/brand/soul_style_feature_card.dart",
+    "blob": "8e501a18ec5752b32611fc4305553c883f2b24b6",
+    "sha256": "4966935c7f9b07e640f7b83de14453c26dec198e945d1865f4257008a63b5f63",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/buttons/app_ghost_button.dart",
+    "blob": "344a39d2ff92992c10291bcc5e212329e8bb5bdc",
+    "sha256": "c158e7b5b33596928998bf4385dd47b590c79d3e973cfa38604a8929be09fe8d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/buttons/app_primary_button.dart",
+    "blob": "76bd9ae971972c94bd620942fefd4091ace497a9",
+    "sha256": "4e6c974f5177d3454787d54a1eab9ac77e345ae139fc505a4cc0fb7b4922ab1e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/buttons/app_secondary_button.dart",
+    "blob": "4ea939c192644e00879d19795065ea39ab81b02b",
+    "sha256": "f1fb88cc98271398d5a8294b6328b0451e2bc072dc883684b63b21aa4a8130f4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/cards/app_card.dart",
+    "blob": "3c23cf5351745807e018887eb4b090b50d2b1713",
+    "sha256": "8274ac60be2fffb7ec27c2b5c5c8be09f7181fcc14898c7d9e76d69a47b940a8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/cards/app_hero_card.dart",
+    "blob": "72978fb17737e35cba2bee09da8d47e508686483",
+    "sha256": "7a7e65c03ec6fc64975f48999b354735f87a67f48ffa94c7376441d4460904a5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/cards/app_info_card.dart",
+    "blob": "764ce19cccccfb33af25e7a93fe24332f957f835",
+    "sha256": "716d84b9703948859bd13645e08c4922967f3ac5f6b00079dae0a5e91c5eb246",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/cards/app_info_section_card.dart",
+    "blob": "ac55e16c206de7f416a4a617e72b4cf0fdb89fa4",
+    "sha256": "3a931befc906ea6189408257c11c673fa3c4f01b78c1e5be503d43ea9ccc458e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/cards/legal_document_card.dart",
+    "blob": "55572c2f7e315fa16b728e78a638329e0eee744b",
+    "sha256": "765e1625cdd1b0f4124139dddf6c12dfb2213e0ebb003433e57fc36c62d3f9ef",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/controls/app_switch.dart",
+    "blob": "de2fc156b113fd1e84843991b277642153e96dad",
+    "sha256": "756fec0242d497c118325a29f5b6c62c0f0553c95567763e9b7394af52db370a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/demo/design_system_demo_page.dart",
+    "blob": "501ba0519ddb349afc6f81708acfc330d08151c6",
+    "sha256": "c83cc1825ea84fe607d9495c293674cbf08dc23859817f3ab313be3771d62f49",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/feedback/app_confirm_dialog.dart",
+    "blob": "be3bf7ec500b10b0e52de717b8516a5c0711bbb5",
+    "sha256": "11f497c263318e5b8aeaf16ab400467e058e4625a87fcc54afc927e2c536c494",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/feedback/app_feedback.dart",
+    "blob": "cf3a52ccb62c5ba667edeb80979171f949a82b63",
+    "sha256": "12e28847b8b54d20d21fbb09ab73da9014fb079ba3124e8700e828c1448240f5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/fields/app_password_field.dart",
+    "blob": "fa8f8edfa6f83f5ebe0dbef40f9a712b23c539f3",
+    "sha256": "87990383237c6bb23f71dc6094422438cf080216c2be582241c046c8a7f35f76",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/fields/app_search_field.dart",
+    "blob": "b57f1e36f0e1f942992c468d10eec5f74887d9ce",
+    "sha256": "e641e265cdc5add205fc6d8463520fb97dbcfa3d98ecffe2cecc35fb6de6e404",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/fields/app_text_field.dart",
+    "blob": "7ba09c4dba4367cedeff21bcc3d29dffc67916d6",
+    "sha256": "17dcb8860d9047243f81f5cbb5b7acfbda405151d50933f138816ca5ce16bde7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/layout/app_scaffold.dart",
+    "blob": "4ea4a97a325a65965a52dc50e00b349f95251476",
+    "sha256": "61b99ede356d34b09fabd8fe6d73e7c3fa81643fbc78ec06bfae9ea8d01912d5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/layout/app_section.dart",
+    "blob": "132a0ffc5637820284db317c62065acd80b5534f",
+    "sha256": "e200273961ef58eb0c8fe5c6f42c592eedca3a34e30b2a11f7270210f0868184",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/layout/browse_scaffold.dart",
+    "blob": "decbdc1d4a5e3eff896afe60ce71de22f831087d",
+    "sha256": "9f96d5c163fbce439925c8fe4e1ae5898a94dff3b86558eba27f445aa2b74efc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/layout/page_title_rail.dart",
+    "blob": "88b20e03562f0ff90506275d1d7730d7a8e3ccfe",
+    "sha256": "ae135e63efca6435e297fdd9dc6a6e0d237efea28fa26a0f4f0f7c3bdfbc39c9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/layout/section_reveal.dart",
+    "blob": "d5de41a492143a3c07d657ca3c95d34345adc4a3",
+    "sha256": "b107dc3d551521da5865ec914f2c43d0554df46abcd66eb74d81708ea411d335",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/states/app_empty_state.dart",
+    "blob": "2c97d8f85e499e04d4a05efe0794d452e3c9fdb0",
+    "sha256": "e64bafebaa37dfad1965ee8ed53a253ba2b1a02606ebccfab8a256798e682b42",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/states/app_error_state.dart",
+    "blob": "0f6ba86db6eaf5a7382d8db75b5c61817f255233",
+    "sha256": "8f19393d358708f6c9be07540a8d3afd20cfc5429a782b50b27e9ec74c61bd6f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/states/app_loading_skeleton.dart",
+    "blob": "6790b5c62ac7f0f2d2a1c887a5ced7003c630300",
+    "sha256": "3df96848090c87c8b58a8a405b8f448dfe8d749585b56dc88d33fbed10cd4141",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/states/app_retry_block.dart",
+    "blob": "4ff4296ece98c9d21cbeef1857de74c2724f3381",
+    "sha256": "7917874dbfa7457d543718c2aebfb4922d782048fe62c0a9f00d922886443b77",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/tags/app_choice_chip.dart",
+    "blob": "5dc66ad5ed02e96f28a527b481b6aa60e1f63ca3",
+    "sha256": "cd43403351114803152c672b284453a3320c875efa2cc333c6bafb9168e4c668",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/tags/app_tag.dart",
+    "blob": "ebe15b5f098712b019bdcd5b15667624529fda23",
+    "sha256": "9bdd056bca911fd607d3a790c937ac86c22eda5e5fc035c966819c2c20bc62a6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/components/tags/highlight_text.dart",
+    "blob": "620fb62d52ab8287322a2cd825eb98f9b32c5b24",
+    "sha256": "2aea98caf57a13fd43d64de571ebbcd3d8eeb66eb1e3288291064365a4ab9f55",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/theme/app_theme.dart",
+    "blob": "4f52ee40b8f9cde24a277da1334c593ae8f969af",
+    "sha256": "f3307d15bb5315e5ec90d22b0abdd9601bb4eed6b4d1ae97e16522e58a2ecff8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/theme/app_theme_extensions.dart",
+    "blob": "50cfd7353db550632d49fbbbdb1d939f5c3629de",
+    "sha256": "b50ea5d06fd685fd333cc5c86e5a874e93dbb7f99a46365a0534eadcae56a1ca",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/theme/app_theme_mode.dart",
+    "blob": "26923dc172e97c82be8fa94d5d95af2306cb543f",
+    "sha256": "5ede71a3c962a207ece037be5752dcf6d68cdac38d45c5480549163484056790",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/theme/dark_theme.dart",
+    "blob": "0b8e929e6aae47f34e420b3d737742649d25deeb",
+    "sha256": "4989104227fe2684a34eda6a74a3b3068d5472bb09c516043f25bc665727b469",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/theme/light_theme.dart",
+    "blob": "5f3b4435d009dc62eb6511cdcff32121a693fd7e",
+    "sha256": "5def2a3891cf29c3b9fbb5cfe8fe44e25c9d9a3312a227ef769e83061476082f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_colors.dart",
+    "blob": "f919a4a1b66dd0076ec9c036139c16a50fc1813f",
+    "sha256": "2dc64941ab8474c04a37fdbe96564343a489e734a45b6850db9bf4c8247e295f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_gradients.dart",
+    "blob": "47e50f403db807a56d482117a3eba73c231a47d7",
+    "sha256": "0a952705a4495b58ee5276ae4d3fdf7ac8943d6979fb6a72905c81b4a9e91a0f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_motion.dart",
+    "blob": "b12c20f5d865bf12701f76f061d536af767515d9",
+    "sha256": "4263bc03da2e9acf299762e78a6510470fd5ef421e9c029a56a035d057ae509e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_opacity.dart",
+    "blob": "a36015d2fb2cb6209903507d72bcf302be566170",
+    "sha256": "4f322554be7fcc909a42d08edafabd5f22e18170e15f21fee7688b6f997a8a44",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_radius.dart",
+    "blob": "213994eb4378027f7928e518c70f8da620fb5631",
+    "sha256": "10063d2f4deac00d0c0f9104c989134e50c53dc721fd8bc4c9af570317d28420",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_shadows.dart",
+    "blob": "8b3a186247f5cd520af736bd5780b38d51bc7ce1",
+    "sha256": "48303f5b76e57e61d534be8b9d89eb3784df399a28e1f0033c8459d001e88b23",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_spacing.dart",
+    "blob": "b5088683bb3163e2b95c943d119a8a4e6de57572",
+    "sha256": "a8f4aa99b042310b7af5c769e3142da7e495b2b5eff754c6f33034dc69948bdf",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/design_system/tokens/app_typography.dart",
+    "blob": "a1679fe3b75564e79bdfee7346d102152aac230e",
+    "sha256": "cda58c52ad1a5926f9324dec5315a23ae499340cb0a2c3506fc6c77819296a0d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/data/datasource/admin_moderation_remote_data_source.dart",
+    "blob": "dcfb355577aa88cfe2e4e630d88c985fea0d1a48",
+    "sha256": "e692f87e2e24d93a5ebbff035bb181ee24618465e580c14aaed1f1411d366a53",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/domain/entities/admin_moderation_entities.dart",
+    "blob": "01de3bd5ba7a42f39770ab6d54930c43df1714c0",
+    "sha256": "0e730aecc0784197fd1ec5c3c002ab6e7bd4f7f679d0a5a72aac02501381c526",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_dashboard_page.dart",
+    "blob": "a28a360fc3c2c89756f1790e6d1bfe4110c6818c",
+    "sha256": "bd3a2e3b41250436f6a846bf35775eeed0cca976862be0ba3629e72a910fd424",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_matching_operations_page.dart",
+    "blob": "112440d8c7f27170cbd8bd2f7c83bea0f941060e",
+    "sha256": "00c955cea062f881170c31674f72e0f1a61265926b9b72164a0e7a734c6dd76e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_moderation_page.dart",
+    "blob": "a0adfe643695e320325a93d09e7d9d082691628f",
+    "sha256": "b0c38a0dc73607b19eb266c5555c5677ba83a2a73728a0bf1388af8b4e8405c1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_report_detail_page.dart",
+    "blob": "d340e21f4cc7d39d7fa13b71711bbc500cfa6a57",
+    "sha256": "e01fc2399d12bb2f03bd2735b5c30147771c527d70133071291c42bd4273504f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_users_page.dart",
+    "blob": "6179bb06d1e9b60a321ea8595a24bc17404d3fce",
+    "sha256": "9339848f21dd7f5bdcd7d756282f9588b888fa9d64c639b34161ed5e205ba6a6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/pages/admin_verification_page.dart",
+    "blob": "329a898077d5025b8bfe7f9c424a38cd986c3118",
+    "sha256": "4d02658fd9ab037ad89df27a29f6717326f8a240c2df9e7fc713bb15fcd99814",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/admin/presentation/providers/admin_moderation_provider.dart",
+    "blob": "8dd503d10b1ed906d6aff1e6df4d1d4a432d7078",
+    "sha256": "8a6ce0048e664a1a5dd6da8f4a7b5ee51128b1112eabd58c575fcc63a5a54003",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_local_data_source.dart",
+    "blob": "cf3f4292b9a8364429318406bc76ccd17c95e854",
+    "sha256": "30c0e14b860ca9c1250f6f2ad1acc853d3df7c6f7f2a0e12ac439aa6e502986c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_remote_data_source.dart",
+    "blob": "89b56d57a16456db665c76101c8f4149cc1267fc",
+    "sha256": "b7a674646864e06a4aaaef21ed4d8f0c2cc627a4fff77721ffcb02b75cc785ae",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_request_dto.dart",
+    "blob": "6b054cf20e1fdb8e7c2af5f09024b2686a1f343c",
+    "sha256": "5da4b16efc4e107fc9dcf05b0909715fc6e06974c43d9542c7767b14e0b85344",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/login_response_dto.dart",
+    "blob": "afa7a4041535499eec2360be31c99dd92f3a5ba2",
+    "sha256": "c1dc284b7106d69a0f4d84726c0557a399e849fd72d18bff8797ae3b0bae91f9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/register_request_dto.dart",
+    "blob": "c539b5db41b8f3e2e74e723027ab940ffafe9a85",
+    "sha256": "78306a88f6e9f5e34939fd92541527261947e2645277686e725a8af869e5dad1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/mapper/auth_mapper.dart",
+    "blob": "332335f0052e63fedbf71d5710d93b125e5c5a94",
+    "sha256": "51fb87fb90f31e286cbf46772fddddc5ba238d49b72300cd968cbc1fe9d2a475",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
+    "blob": "6689544eec72bb0ba8a5840656e0fe98d676eec0",
+    "sha256": "cb00eb95be051bd7f2cf1107a36c0b8205b57f265f24807ecffa5a22fd423260",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/entities/auth_session.dart",
+    "blob": "e4f6b03180a4ad32b92a85c1140c31556ab378e1",
+    "sha256": "db5a5abcd5056eb2a39869ca60b4e4c50fb5801e3251e853cba7f7285fd3a104",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/entities/auth_user.dart",
+    "blob": "a71f2a7f617b707b91cad825b9fef2798112dfdb",
+    "sha256": "a2a4fdcec4cb007bfe603e27542ef5006ebc96a6da5b247728cd74f0600670d1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/repository/auth_repository.dart",
+    "blob": "1819b1703760b1c7920145d6857338775e8f315f",
+    "sha256": "6277659779f6bd9d85599a0269c608bb64993623a3b63ad2479a945548771e0e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/usecases/login_usecase.dart",
+    "blob": "dbe27aeab8bae66adec60e8a13eebf676a0d60f5",
+    "sha256": "325dc2dbcf3e7ece6066ca335b227bd2be3dadf628047581a29cbac832726b23",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/usecases/logout_usecase.dart",
+    "blob": "36fe805bc5b2bc92081d5cff94d51d3829bfcab8",
+    "sha256": "01a3174fea4902194c667040c46e875ba438e2afd30e8cb9edb357f96a22f7a7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/domain/usecases/register_usecase.dart",
+    "blob": "f5130420537c19c8f4bf0a1d12f23e2581b2a8db",
+    "sha256": "73bc79985942a733b1709c7574bc464a3577edb2f7cbf0b112b1118f1447b5dc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/pages/login_page.dart",
+    "blob": "1cfa4bd8441f856de5cd023140f93f148f330382",
+    "sha256": "b9b3f3fff7333340fb118e8e853f49098ec4cd608d260fc551dc75139a6f1fc9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/pages/register_page.dart",
+    "blob": "42f280f7c157d25bdc64ab011af3d57f4a19f792",
+    "sha256": "e0078ec6c11790039c425a6aa55eb93ad86276a1cd5eaeef27f015c77234b26f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/auth_guard_provider.dart",
+    "blob": "7e430a6a8e58b34499e4ef291ee1a04e938b8b03",
+    "sha256": "c26625edf2ce721554e063ad522e44e37a8fefc02d47e9c9eb8cdb88bb8b6a14",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/login_form_provider.dart",
+    "blob": "786d2cd09c02e981e2e67b2e38b24a0b92b4f87c",
+    "sha256": "48dbbac3116f8cccf95b784003824b2bcfd8961e97c5865196eb6e989bb4bcc4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/register_form_provider.dart",
+    "blob": "46f04c09bd26f289ec007aaa12c057e26294ba89",
+    "sha256": "6aa165a3a8bd0112ad15be1297679f0fbbfb00b373db6be2a4076604107b0bbc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/state/login_form_state.dart",
+    "blob": "494587a6f176c444ea2ef2661f3d137e71c594de",
+    "sha256": "dc4547288ad3c251b02022a77d3cc4b9259bbbc8155af4987396a29dbc901c8d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/state/register_form_state.dart",
+    "blob": "6a1d1b37348628fe61e127b207754ae63d71275a",
+    "sha256": "334185f590a13c919846632f9c47f780d5f108b62d370895bc6bb5d04fec5b6e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/widgets/auth_agreement_row.dart",
+    "blob": "ae0c1cdaa7c91b29cb24566a40b2ab02216de93d",
+    "sha256": "00d1deec0ffcfa036d57751e1b90bb5134f56fcd4974ecf1aeffabe495f8c048",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/widgets/auth_form_card.dart",
+    "blob": "36984b2c1568cf64643f243c9e35d223baa1f7d8",
+    "sha256": "dd670488cebc9e8a22be280043643e412dcfa0173daa09cd5c562ececfaf633c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/widgets/auth_header.dart",
+    "blob": "db0dd8f49bdc81d9b6e987006da6bb034779a78f",
+    "sha256": "02d2e3b9d8289140515a9622d3624d79d9565b283a944eea4901f31cd40359f2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/widgets/immersive_auth_background.dart",
+    "blob": "fcc1a7a6fe6d4ec95ef824f6a36664e96cef3c7f",
+    "sha256": "649fc283b19821506f1da03567c197e738b83eb9df7df479eed2c63a5a970bf0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/buddy/presentation/pages/buddy_companion_page.dart",
+    "blob": "618d0792af0a3b32787812989212defba0fa5285",
+    "sha256": "b4f4998468a4e55becf7cc76dbeff185372d880e05b36a2a522d1d39ae953c14",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_remote_data_source.dart",
+    "blob": "7fa628a8c5b789ae088c464b61559ecd8cd17dcd",
+    "sha256": "00da3c0a8f4d8460d2139057425255c6fae7245bea992fb41b1a6c261d4ba9a4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/datasource/chat_socket_data_source.dart",
+    "blob": "62db2f1f8ad53d3d9b4c3bc61cb2a2b2e645c26c",
+    "sha256": "d2be192ed047dd8f7eac0a8d4d2c53350acd84bcae0c4358fcff0575518ad53c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/conversation_dto.dart",
+    "blob": "b5060fd182fe05ec439a939aa7cc190c73549820",
+    "sha256": "ca6501fbaf63cbb9598f3c103e562e3d80f4161a4eadae18c88ef79a01b7b8ae",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/message_attachment_dto.dart",
+    "blob": "2d0af70f89495908f0a635b495a013f2e6ba9b7e",
+    "sha256": "76de6281190301de5800899c1bfe0e33bc4c764c865e495f1bec2ec2cf820d1a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/message_dto.dart",
+    "blob": "59328479ee597336fdc0f77172ce2a8a9f816460",
+    "sha256": "6a9c356b0e851cc85f6c7a83e23b89eca8fa6056e17634bbfade40fa05b42de1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/send_message_request_dto.dart",
+    "blob": "55dd3f41a3da80c9c83190a3f4ee6f4fc106a325",
+    "sha256": "79ac9dee7c10f65abac0b6f0f7aeba9310ab0425c063bd696e21a60be59fbfca",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/dto/send_message_response_dto.dart",
+    "blob": "f1eed0d6d35d551417c62bc73a978eb9c3483ed2",
+    "sha256": "c160aa318749bfe40d711d381c6bdf543fadb559e9ff17775251b41cade4f150",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/gateway/chat_media_gateway.dart",
+    "blob": "54348ea492a13cc65c0017d66a9e24fd5788e7ce",
+    "sha256": "f153b2457edc50f7c1a18a3d5e022e14a3fbc36faacb157c4f222966a8f9eb0a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/mapper/chat_mapper.dart",
+    "blob": "637adb71aad4ee07a16eb9a968327d6136cca4a7",
+    "sha256": "b2b14726563b1e16718288aac3997a873bb8b788397f3759caee7441b42c7a12",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/repository/chat_repository_impl.dart",
+    "blob": "79497fd3b057b082cb2be97c4836cc41abdbb5ef",
+    "sha256": "ab07ef930b07ad339880b12b0c7fe820d2f557db58f2a85523f32309fa968915",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/data/utils/chat_media_upload_form.dart",
+    "blob": "c8704fc15b85db8819ec4aacabebfdd0551d3ab9",
+    "sha256": "1677d09f85e6ed216222d4ba26a2840076e618922ea6390290b6df0bc75f6572",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/conversation_revalidation_gate.dart",
+    "blob": "2f6a1b8b612caa31ce517f78825971df7c3d11ed",
+    "sha256": "d1c81a60e34b6c1a0b46788bb6e967afad7c7bc593d9d26b72ad99666c783f3a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_route_state.dart",
+    "blob": "6f3592cd437980f983a936ca7e384aeb1455c505",
+    "sha256": "8e764f99e20bc5a5e0a878f014d28fadc5e225112a715a9aaac3588883233758",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_send_attempt.dart",
+    "blob": "16e70b1d76691a91c38f3a212033198fe691548b",
+    "sha256": "bb4255c5f5fb5a4942d33d85f2c6263d3202e7907f7d272371452c38a09960a8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/chat_send_failure.dart",
+    "blob": "45c516a791b654c2db9cff937bb3a226d660066b",
+    "sha256": "74a5a01affa48cefc4b85fe1bb4c776ca69a94e3f157ca670f577866c56a4dcd",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/conversation_entity.dart",
+    "blob": "a3654a0bf00577d577d3d54f33cb866ecd0867bb",
+    "sha256": "8a64b3a6103ee02c33e254ef71f106a47f35b1cc31870ff212c6f7d314c8175b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/message_attachment_entity.dart",
+    "blob": "809beed4a19c60fc8c8ce05bb5ebdc3c94e3bbed",
+    "sha256": "91c411df7a083330cb80b52672bdf34f73da1e609a4451c70ac73139df1a85b2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/message_entity.dart",
+    "blob": "027e60b94cc4d740fe177322dcc6b85def9b69be",
+    "sha256": "048bc576c7a51c444951f797095bafdddd44f1dbabd16c891507c141c02c287f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/send_message_entity.dart",
+    "blob": "b32dc0bad1ee8991dad6be13cdc87a0d68129355",
+    "sha256": "3c7aa61a1ade5e8cb1215ab5b48fcaadecdcc074104d99534fd1306319592d43",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/entities/send_message_result.dart",
+    "blob": "e7daa7eb0ad1f9ac5d607ca98131517294a2a3fa",
+    "sha256": "beb3ae5886bf5c139c4e9339117d4206f0699146181853ddfafb25875bbc6e43",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/offline_private_retention_policy.dart",
+    "blob": "ed4700fe5fb7a904e0f042119c4f8b6ca6dc1c70",
+    "sha256": "dea42021b3921ceda072fdd4e4692d246da643075b013f072183962bc333dd04",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/product_conversation_contract.dart",
+    "blob": "1d186002ab9d3f16887a490988d07cb6448ce95a",
+    "sha256": "b366908c488f64f3ba040cbc3c9bb241637c98826ae2a228a9a33950e4b2bd9f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/repository/chat_repository.dart",
+    "blob": "89d75050fc9994af36ec4bf40f970ecbcdee33f7",
+    "sha256": "6d8d718132813cdf0e2fce38e0ce8e2d9f45864986c182b62ea4218cc8fecf07",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/usecases/get_conversation_usecase.dart",
+    "blob": "3dff4e60c01d8270f32401e7c46ad75f60b17002",
+    "sha256": "4a3ebde7c3d0ec359e9a4bc3aad400d9a8abbcd9ff69c3190180877f2697cc28",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/usecases/get_conversations_usecase.dart",
+    "blob": "fe013caa7fa855b7dd800c0a6a8d3db711b16a39",
+    "sha256": "a247316349b199e56edd3f5ebe061ef243ab36d58501b50ec098bf3f2ad6e982",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/usecases/get_messages_usecase.dart",
+    "blob": "1b5a516fd81f76f4713100c440e82238a37bd808",
+    "sha256": "14387eee33a5f67f8597d0ef17a2d8fcb6a8eb14b72b1bab8451a6c0063a8752",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/usecases/observe_messages_usecase.dart",
+    "blob": "fc101e1c60779cf2757309e14f33f4520dbac506",
+    "sha256": "6017960644e94ed0b4c127838a650461a69bbf9d81864f1f45d95149439938e7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/usecases/send_message_usecase.dart",
+    "blob": "55fbad4d93da9f857aa5645a73e78f8792914aaf",
+    "sha256": "bf693fc1ad5148fee3c231eeb72142859764fd063c0bb659b578b881e10d7c72",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/utils/chat_message_reconciliation.dart",
+    "blob": "d39d4df53048b2377f22ac6c263b903e6426f3f7",
+    "sha256": "964624d26e5496d563c2ab1e38cdfa82d39171ba883079eb559eb4b9d8f59f92",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/utils/chat_route_adoption.dart",
+    "blob": "9009d4596b121de5bfb73c8c0259aef1b4ee6db5",
+    "sha256": "cc29c83224f7ef340511a7b716d8b8ff8461f7c5b81a15c359e963564c8f25a6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/utils/conversation_snapshot_utils.dart",
+    "blob": "6f90c2a63c94d3a894a920221ee007dc344f234d",
+    "sha256": "04166046a73267d81131abdeb77be19e9e1f80e0fd8c94771d7f6eb1e6ddab46",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/domain/utils/message_visibility_utils.dart",
+    "blob": "86969efb5f1a4d914a3122bd860e5677cbe159a0",
+    "sha256": "ad9f14079ec802b6088284dc9762b557dceb7b450ff78d4db6f3e573528c4474",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/chat_room_page.dart",
+    "blob": "6976b37dab53db904b872c3b57716648fdaa9eb7",
+    "sha256": "e78b2aee718239d8ab6a163d6fc0f6789162b7cbda3c133a68e99411e3746533",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/conversation_list_page.dart",
+    "blob": "f45aebaa0d38d927e8ce212df1cc9afce2aa45a9",
+    "sha256": "b0b4e876b38c5e0d6ad97761643c085368726e159e657ec3382ae28d3ddf36d1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/pages/video_message_preview_page.dart",
+    "blob": "43ab8bad6d3f3a92b3ed606ee286e0109338c8b1",
+    "sha256": "9bd5fef8dc989569f6727e5f5e8ccc809f8db82c973abe2e87cf288cdfe8b3ea",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/providers/chat_providers.dart",
+    "blob": "d0968da775dc6da9ef3c198818bf7a07cabb01ec",
+    "sha256": "2920ba4d9c554a89cfc7d4b2a2f500efa15c8f88981c732fc8bde7d66ee0f337",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/state/chat_room_ui_state.dart",
+    "blob": "c7706e3cf4e3482d9e1c7258cc7cc7c6dc16a177",
+    "sha256": "b490067ffc842ab51e4fd804e2f2d4c5cc657e3795fba12ef20eb2520f0da660",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/state/conversation_access_state.dart",
+    "blob": "eb1469799e6b491381b132836f50552cb79b2795",
+    "sha256": "0c86f028192fb520c22975307cd11de62b0cbb30e6e8eacf26f3aaf5e3f250ac",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/state/conversation_list_ui_state.dart",
+    "blob": "d114e471662990daf8872bf2eae0030ab10d6601",
+    "sha256": "e282eac30b533d27031489311f78683f764f088e46129792be618ceb9bc97b6c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/attachment_upload_card.dart",
+    "blob": "56ad56e6a602b49212ca352ae0300db58ddb8866",
+    "sha256": "4f5a17dc5e14298acf4e5c1e2bddb21da4aaa41a466debba6e1b89f81c4608fa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/chat_opening_suggestion_card.dart",
+    "blob": "ab303fc9f7f977a08e40fe64b161428401dfcab7",
+    "sha256": "25e12ef2c2d790bac26fb723423bb5f31531189ee2cc787604de7b18982b221f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/connection_status_banner.dart",
+    "blob": "851b243a881deb6cf1c1e58a85609b27b8ce1a04",
+    "sha256": "fea5886283862cfdb22f7d3c5f7b8538f9488275fa86d9e3386a0bc56886f016",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/conversation_access_gate.dart",
+    "blob": "1004d7b12ba0a974847f4378967066a391e857f4",
+    "sha256": "e7833b63b7426ac10d4c36583f8ff39ce89d33db46af844399627960232ddeb2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/conversation_list_item.dart",
+    "blob": "329ca18febdeecc78f74c4c7f2924b2509a58817",
+    "sha256": "fc80360c0f4a70509b588e837de8a3273a16701f1339d1f610b91beea8eabd61",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/icebreaker_card.dart",
+    "blob": "b6ec6d0fc7b55f6087b42d115791a217cfd936d3",
+    "sha256": "64645a3e13e03debaf2da5510620566490217ffcf07a9c1c6b3cb24519ac6cc9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/message_attachment_shelf.dart",
+    "blob": "09858e4cdc3b51b2a1ee6ae83fe247a57a717c42",
+    "sha256": "6109a41718ed594dcaa214484738fb6cc561fb60d997fad4a0498745a9bef1c6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/message_bubble.dart",
+    "blob": "9d3e2c9690c78b2ac1ba475488b371232d4be5b1",
+    "sha256": "b893c1271ad7d8ed6dff5ae471569f4a8cae8c2cabbba1a8c688c4768e936c95",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/message_input_bar.dart",
+    "blob": "2dc124f0603f92e8efd8e7f914fc7229112b3624",
+    "sha256": "4ae73d0a95b28a79f9b81fa5247ddd7076afac6bc8389f1651299260e0d9bf2a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/connection/domain/product_connection_contract.dart",
+    "blob": "f0a95852aacb750c02a233d23e93fa113be6fe06",
+    "sha256": "8e2d0c041eefb5ee663b97f0b43d61e5d08e9b48af19f050002ec6025c1063e4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/pages/connection_page.dart",
+    "blob": "5c88a054a0a19cada5186b5b64b7df3d4c8f9cac",
+    "sha256": "448e04e595fe26ce26199a46b62d84e5abcc13d6f0c11018fdbdd52b50ec4893",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/providers/connection_presentation_provider.dart",
+    "blob": "c3a9246856acbe89f4a879031ddf21e160569f37",
+    "sha256": "e3e2ca9d42729a61d3f397903341e9bf0f7a6b397d23277301c5deea66248d30",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/state/connection_presentation_state.dart",
+    "blob": "86627ffa5bf2b5529b27ce7bdbbc3b355a152560",
+    "sha256": "6e8250e6242d1aa266f6ec222a58d5042f639546e7a476f0b41552053ef98a4e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/connection/presentation/widgets/connection_authority_panel.dart",
+    "blob": "bd7bcaab53f74f84e1413a632d349c33f35c93aa",
+    "sha256": "14c6663865576635c269a5e7fb963a16fba6dda613fa49f3ddfd5408ccb68a1b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/debug/presentation/pages/local_only_visual_fixture_page.dart",
+    "blob": "3cff5da6aead79cff135b31393bd94f027f9b983",
+    "sha256": "b69d60f2f26a1d8cfa877a064e33531156185f57ccabd7a0edab8b4b28dbac85",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/discover/presentation/controllers/discover_feed_controller.dart",
+    "blob": "8f1aaeffe49d15dafb49067b72cee6d01858dddb",
+    "sha256": "3b2794c13dda10112e76e298bc54679f635cb46df410dc6b3561206379352c1e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/discover/presentation/pages/discover_page.dart",
+    "blob": "e766d3e6ade648fd870b3eded90e479810c65e15",
+    "sha256": "a5075c766f3279a2c40f8b521d4b201936ba2f693077799c30cd1aa6629e6440",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/discover/presentation/providers/discover_provider.dart",
+    "blob": "ba6ec77f4ab3498145a5724f8c014711f1e2db81",
+    "sha256": "d44e94dc877553fb1ef7d694bc963ebaad3b29f18bc91bd2440719613c1bc092",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/discover/presentation/state/discover_ui_state.dart",
+    "blob": "0ce19bd3069615802a42844c094c90d36181821e",
+    "sha256": "b29d992904f698ac9963a7ece16fb2382e058f04e20c5622f93572b44f785865",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/feedback/domain/inner_test_feedback_category.dart",
+    "blob": "bc5f641576f7b816bdb021b0b4d7d202ea36ebdc",
+    "sha256": "9d57f2dddb782eea4f9f7499d894cb0ee0d8eeeb5267f8c90bdd3915b78856c2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/feedback/presentation/pages/inner_test_feedback_page.dart",
+    "blob": "48dbecf7e188484d25f33553a9438d47aa98b2b0",
+    "sha256": "4b7e2935c7f13b87ae24fd94ccce3a78eccbec54046fa38eb96036593f951ae8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/datasource/home_remote_data_source.dart",
+    "blob": "f44133732d8f8aedb71113a296e2280859e006e1",
+    "sha256": "d03e3e0bc1e270946e170f1e620b36a2834a863d250ba64ec1608afc6cc59dce",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/dto/home_banner_dto.dart",
+    "blob": "f613690ca1e7ba549ebe70d21d2425cf838499cb",
+    "sha256": "030f70fa7860df7feb4d198e4d198a1a4edab4be6f3507bea0a277595b758f37",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/dto/home_feed_dto.dart",
+    "blob": "4b69903bf5cab70e7caa582354e864e4f471ade1",
+    "sha256": "f6d23d1968a904a30f58b1124f4f1539612da5ebc9124bae375df71707a184ac",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/dto/shortcut_entry_dto.dart",
+    "blob": "2221361bbd10d3f455d6c3dc0ce0082436dfa233",
+    "sha256": "77a893c91894a9651ec38c8f6de9ed149bbb957e6f3c0c43a581d6d7a9c36710",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/mapper/home_mapper.dart",
+    "blob": "5429cc8e503c452f7bec18de60669bc43276780b",
+    "sha256": "d88ae48f86e65b83c476cc5eb29be6322043e7adb20e6bc30d31346dd827e122",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/data/repository/home_repository_impl.dart",
+    "blob": "c13be27eead325fa24bf8b111e0eb840d18e309d",
+    "sha256": "edb4c233944f1ff4801fc0e750bc1de1d0fc468eb9e92e49d4f28c619e8511c1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/domain/entities/home_banner_entity.dart",
+    "blob": "083e06c1245dfa294f93a2fce3aa64631848f555",
+    "sha256": "28dc4d85fa8d5a41c82a6d6f2c2690dc3a00482afac5e40717f13acd9319d8fc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/domain/entities/home_feed_entity.dart",
+    "blob": "83ee2bfbf9a7cd02c2d77bb2f05fd42d44e290cb",
+    "sha256": "e8cf6cfe103ddbf70fb1b4041da34cc84ddb09d76b49a5851dc750dcf0af01e9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/domain/entities/home_shortcut_entity.dart",
+    "blob": "9f778deb1b9d6a071009c1f1190a1b32e833e737",
+    "sha256": "1d15c776c9c6d783dcf6103535e478fdfadb192bcd26d822ef59e7331ca20372",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/domain/repository/home_repository.dart",
+    "blob": "b96a557ad9855064d9cce3db0c3dac80f1dee841",
+    "sha256": "48d53369ab53e8e57643e64949d157604e574d8ae75db6522fcc106d286e6b36",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/domain/usecases/fetch_home_feed_usecase.dart",
+    "blob": "bbfa4e0be0f24b81453ec81f9d0502cb80d8ba24",
+    "sha256": "7ba84315dbc58b36c10b5472be20c8bf97a0c4cdd6aa06a5e85619417a788e33",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/copy/public_content_copy.dart",
+    "blob": "ef7d733fbfab51001192e83c882f0dffc3a2ceac",
+    "sha256": "e00a92d92c58465abf93c9f684028e9c65002777cb9e1185de3cf9d828ba4618",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/pages/content_detail_page.dart",
+    "blob": "b9e61a819ec44cc1a14b2709eb3ef6ecfe79ac88",
+    "sha256": "6c53270d07ed0d784873a39ef3add8d933691a3bca1c88a7c769c3230c67aefa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/pages/home_page.dart",
+    "blob": "bd06d72aafd57ee11b18f956200b9883acc6e459",
+    "sha256": "5e1d5d60cef451445399fa8f4f7ba943cca804810843ab42b020b60832a5eb51",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/calm_home_projection_provider.dart",
+    "blob": "a07e0863573db74fd7705a4657cdedc3295ba91c",
+    "sha256": "7d2adcacf09866b6130eab543dbc82611d2b752841bb1cb0bc0ea12d55d4042b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/content_detail_provider.dart",
+    "blob": "94a5db2e082a87cf60321e178317d81bfa3a8af6",
+    "sha256": "f31577393f00615bb9e4b3a2dc62a8abaf8574eb72379b820e0d941e91eef5c7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/providers/home_provider.dart",
+    "blob": "f7de403b7404c384fd21e27b0232017173a088ef",
+    "sha256": "325000417687c2644f9819093531cd1a487acec36ecbd24250a0fb689f0cbacf",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/state/calm_home_projection.dart",
+    "blob": "5877db856960d6e850505814a8bc99a0dff498fd",
+    "sha256": "1fa47134876932a5201e2fd29102fae02067fa643ed8aefb6f0a4a9acdd2cf25",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/state/home_ui_state.dart",
+    "blob": "75b1f340faf4cea366fbbd0d3eeb73dab4931a2c",
+    "sha256": "b1e317322e3bec79754e8a0648a40152ec2151aa6ca7802812cab49929dab5b8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/feed_card.dart",
+    "blob": "4b5997282f1ff6d343986b93f8af2582fd1e4f0f",
+    "sha256": "553dd3b7c771c2f3ddcdf67e273c44299901ff3668c5758b0bab355d71abd77d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/home_hero_banner.dart",
+    "blob": "3595fd8287dfbaab1567a3d83df2af315239580b",
+    "sha256": "34ed3600f7a763024f7b81658428aefb6f7a7ff2fee93d6979ed4ce93dce9aa4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/home_search_header.dart",
+    "blob": "3b37e1a23e3978d0058ab241a766452c55192c95",
+    "sha256": "3210fba35308e81adbb02c4d845259a6eece56b5946fd5d0201e661c5c8114e0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/home_shortcut_grid.dart",
+    "blob": "6e87b31028f3c9b7ff1aa5b9c8895b0726cd0682",
+    "sha256": "67bdfb8f8d3b1b12780021c87e9725ab39834efe8ccd6c9985408fcaf598848f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/media_feed_card.dart",
+    "blob": "f9063b511be9d343218d599075640df4f6bf18d5",
+    "sha256": "a5021edb6dd36e130071391da2f888381b39e17d08785b2f2013e8578becf276",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/home/presentation/widgets/relationship_topic_card.dart",
+    "blob": "bd5035c864d6ff0dde5c1d2fc034179082779f5d",
+    "sha256": "6b683ab0398b751479f1e2147a44d720b2b80d65c31cbceb6b85f02fe0a26c2f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/datasource/match_remote_data_source.dart",
+    "blob": "5f0ef8340cbcecba0b2dc5768a56e161719fe3ab",
+    "sha256": "d592549bcd0722bdd36405cef39bb65adca39024014dbfa2288a9f91ad4d0c1d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/dto/intention_request_dto.dart",
+    "blob": "936a8d69062871738624c3e9611f64b158c14407",
+    "sha256": "29a7d3257c59318c472aea16ae1700c6131ca7cf4d9d3fbcd866f23277d49312",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/dto/match_countdown_dto.dart",
+    "blob": "ef564dd41b2c337f97eaa6074191ed8efc04c66b",
+    "sha256": "176dc8a1d0c52b868de27425ef401eb23d145f889b9d50e1acb7f8a552bec7f0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/dto/match_detail_dto.dart",
+    "blob": "3aa6d63e6b01f0b682ac31a22e13db59a3a0dfdb",
+    "sha256": "872f4282eb9588002dbbf878e57319ea39ec257ae61c28c057562d109aa5730a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/dto/match_result_dto.dart",
+    "blob": "23fcf5e229bcb69f84cb93327282dc4e48b9fc0e",
+    "sha256": "5b1600b900217ff6f420419b4e6a5356d37c1891978cbcfbed053a7911791609",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/local_runtime_adapter/relationship_runtime_local_adapter.dart",
+    "blob": "0744e5f87b4c1ba64a010133d4359be779145d91",
+    "sha256": "910ef0f84912429710798617b572bdbf2e200d0a36b8ed0e7e37353127ed2626",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/mapper/match_mapper.dart",
+    "blob": "8a868d107b49ccfca7cdac7ada25fdfeb2cae0a1",
+    "sha256": "d41a85d4f81485516a6554a7d54d3266228dcdb00aefbc6494f4a051e5d60bee",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/data/repository/match_repository_impl.dart",
+    "blob": "b7049114fde98933db129da4f4626867d16fb949",
+    "sha256": "f4a5d65535e62ead4151ff3018a13f1426a635db3a16252c4f77f7e324728097",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/canonical_match_lifecycle.dart",
+    "blob": "550e976171be996d3acb4ffd30db02f5ab7de728",
+    "sha256": "3c07e32271c557c4f187e3f375d5e8d847420d26b2f2ceafc9176b26d0653a36",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_countdown_entity.dart",
+    "blob": "30148bb0ff6dd84eb8a109eec9d9716283e4ab0f",
+    "sha256": "459f44eeeeccf6e01a32cf677d8fcab214a95e984c2a4ee92775faabe69eb9b9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_detail_entity.dart",
+    "blob": "5c463581b5f1314743cdfc6bfc1dee8c74cf4b17",
+    "sha256": "7dd22ecb4db79abcbef995dd0d1fb4555215b842395380e857113801212e3cb2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_feedback_entity.dart",
+    "blob": "1d9f128184dd4bf9f5ea866b48f6f655363a5fa1",
+    "sha256": "69686cfba5322f420ffb984ae75c384c7dd0de7dba97f593f10d9fc4d30e3df0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_highlight_entity.dart",
+    "blob": "fc259d2366e9d0fc9449ee8dc59e28fb48660dee",
+    "sha256": "6aeb0e2d3b880f375ebab70b5159f5c276d5223d2f1e6e5af9860793455d8d0f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_reason_entity.dart",
+    "blob": "dd959f5aa72b84dafdd7a2b869efed522bec9dfc",
+    "sha256": "37658fa9729e6d93093439105621d3ddf4fdb30855620330e66b8a016e03b9a8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_result_entity.dart",
+    "blob": "14b7d28656538db60e63f366a7af4040024644d4",
+    "sha256": "b217bca99cd0fb6eb3e7aec864ec51f70b31b74e37d1e42f247d83adff436496",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/entities/match_round_projection.dart",
+    "blob": "3e70b1d60b2e8cdfc8a52c351e7c0df1b383dbac",
+    "sha256": "048885056ab756f224060f4f7944a82beb658fe916d448f825f94befb7a2e7f7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/repository/match_repository.dart",
+    "blob": "ff789b66da8459e7119518eac362a658dd4b2b98",
+    "sha256": "944c8e5f7e10d7b5ec3c198138742c76806e3830a4070e04cc3fb549734f5620",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/usecases/get_countdown_usecase.dart",
+    "blob": "8dc3fd9de9f5b91fb9b6a71c0d52e634b0e30146",
+    "sha256": "00c6d92e7a6654dc186444957c520af15313bd4d8f3861cf1819826b3a8cea7e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/usecases/get_match_detail_usecase.dart",
+    "blob": "b20bc3465908d5465a1463c918b935abf7e0ee1d",
+    "sha256": "812647c4849a7976a28fa0323e9d4ad51ae91deee8c56ab74f87c64ace6e252f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/usecases/get_match_result_usecase.dart",
+    "blob": "4870f048d35184d2ff219954740f26498cfa423b",
+    "sha256": "c823cdf50d0fcd154e1caceb92c33c9d77d6aa3a402d84b1551b0ae4226f861e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/domain/usecases/submit_intention_usecase.dart",
+    "blob": "bcfb160681f752d03f56a9d3b4aecd897cca2717",
+    "sha256": "e323dd1fa1c0571f434733e2404c5894f896215292e3c9f5b09607f57fcd1890",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/dev/relationship_runtime_local_preview_harness.dart",
+    "blob": "ab3b5768626a29fc00f2ab53bb9e454444734f3c",
+    "sha256": "42acd36c74fa9382eab6219ffed43518923960005aa260ce6922984ea124c77c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/pages/match_portal_page.dart",
+    "blob": "aa27515b8570d5ac8caad524b52c5d4862512c5b",
+    "sha256": "02127197c593bc9779e74d8285672dc4323aed79bddc2986f24006a769f2f683",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/providers/match_feedback_provider.dart",
+    "blob": "0d2e022cce7a9ce0db76ac6524a97da8318e055e",
+    "sha256": "28b917c6d82999d17324af658880d3f737ff568d18be9fa71e5b58e86d52991e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/providers/match_providers.dart",
+    "blob": "0c3521c4cc265b3e082dae50c03af7f913c8e621",
+    "sha256": "cf33a3d7ebe1a2a062d6201e31b5cf249e3c46717e8648f821e69fa5df7c343f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/providers/relationship_runtime_local_adapter_provider.dart",
+    "blob": "f0aa2549395ecaeece898c8cffaaaf3b9f663de6",
+    "sha256": "c2ae86da575c84caafc9e90be5e78999aefaf30fcffc101679388717edc97dbc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/state/date_drop_main_chain_model.dart",
+    "blob": "18058848a41e0955c2f8ba93142650f0a557b746",
+    "sha256": "a36bc0c59ec2bb1c0270b0b4be732d82569d8aa3103589c99df60ce731fe034b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/state/match_countdown_ui_state.dart",
+    "blob": "d0fa5e9b30141dc30ccf6146611b150ee9d80310",
+    "sha256": "73042ef9969ef66661393148d878bb71a7f1993b6246c9bfa015f00470dc9cd7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/state/match_result_ui_state.dart",
+    "blob": "433c2fafe731237cb5e612f8e0cbee286261dc15",
+    "sha256": "7266ce36043aa8d65a620f0f8622cfb8ea4c146abadeb9a725f3e93f9b2b44d7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/state/relationship_runtime_local_presentation_state.dart",
+    "blob": "d437ae7d650fe1174fdce9e934125bb126ed680f",
+    "sha256": "6a0fdeaa142905350a8dbd8e992931f595959c920bc71b33eb3873263bd21f82",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/canonical_match_explanation_card.dart",
+    "blob": "716d4dd06543d503e438f443eb3422689db43a2f",
+    "sha256": "86effaa805052d6a9b991285eebd066c7444479218207ce989b591bcde101751",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/date_drop_journey_card.dart",
+    "blob": "fe1fe93385ea5f3ef6a383b0d320421f7fb528a2",
+    "sha256": "0dadda8144c2641a5bd9f1f97a3be5762543aaeea47501a0722dc0b5ec5182b0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/date_drop_main_chain_cards.dart",
+    "blob": "c200ea4c2bed96556886498a0e56cd3ace43dcaa",
+    "sha256": "5597626ef07ab6d1b0a533d84e24e4549b3e67d7d8a68302dccdbc98d922ee0d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/date_drop_readiness_card.dart",
+    "blob": "5c37b47f79fc5d479c95ca334014d096bfb2e117",
+    "sha256": "661bc36522ab4fd1150455ec02bda0bd6bd3c763b6aa7fb0a6339c0ad1124458",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_evidence_reference_card.dart",
+    "blob": "3fc14707eac57f56e8418306bd8c62de7f8c765f",
+    "sha256": "4ab652c9cd3f10df742f09c1a43a82100000c46a75c1843d79d301a35c4eb843",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_glossary_card.dart",
+    "blob": "1c9874fd67c1243c8962eaa039ed3efa978bea4b",
+    "sha256": "9402baa42d2a443695f6bf4318716d1ab3a386932f5975aab265811687b0a30a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_hero_card.dart",
+    "blob": "15317cf4bd2e865ecfb76741aa9dcc10f1f5ce9e",
+    "sha256": "a919a24fa6324fcae57fdeafb49bbd4f866d1994a2f626188d851324c07f0bc6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_hero_summary_card.dart",
+    "blob": "f032a91a1ae2493b83f7d5a0bb7dc5f72940e320",
+    "sha256": "ee60b23ddf25d7a1b6b743fcc6570205dcc593af51eadc4bb3967b8cc374a2fb",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_highlight_chip.dart",
+    "blob": "232a59fcf4fd14316b971aea0d81d5d4ae98e347",
+    "sha256": "091a628c60d0283c1e8f439d9dc304eacb48085599d6ed868729e8dfd25ad30e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_intention_action_bar.dart",
+    "blob": "4182a706c629152115cd535a003d8b2c5ee470c3",
+    "sha256": "466a696cdcf11db82cedc1ddd7fefafb2a44c6c0f604ff0cc4463ea01665a69b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_module_insight_card.dart",
+    "blob": "857300bdeded1ef81a18684435b94b22fd31631f",
+    "sha256": "2bf0fffcc1395621a42432bad7389eb581cee5bbc2f1629fcbcb7525e07f1d9f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_reason_card.dart",
+    "blob": "b6f9e8ca57b332e164134f5df9e11445cdc2a9d8",
+    "sha256": "7386c082a53e335670261292bf0394c7ed4bfa2f5967b5b3417b3aaa12c9da3d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_round_contract_view.dart",
+    "blob": "20a3ebf6b03bdb2771fa1f45160afdf13df8998b",
+    "sha256": "8ebe6a4b0cc4a321ebde57861a1db285c447ad125caf9c92a43e55f0709063ec",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_summary_card.dart",
+    "blob": "90b133db6d06c11ad23129679a046f42d0864e6d",
+    "sha256": "ff01aa2d7445e0cea24fc2d8c3e1691151b9c6b0cb4d77357f52d438b51ad897",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/match_weight_breakdown.dart",
+    "blob": "7389800ffaab8cc66cec8b99b1faac0214d6f877",
+    "sha256": "7e9c1ce4ec00cfffebfcefc5b1ffee6c082fa2a118d85fc1db3e70f0b064da19",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/relationship_explanation_card.dart",
+    "blob": "fb4042f60829aa669e2756f6e40e9ccb3307f0e4",
+    "sha256": "4103544a15628db6fcf797cede12737d423076e944ab1edbbbb3ed2ff027bf4a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/relationship_runtime_local_preview_entry.dart",
+    "blob": "c2722851a594c870b513f17754bcea08be1b0834",
+    "sha256": "77363353cc409a5767b71d2aabf5ea015a9e84d9a54133213dfc42820c29d422",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/match/presentation/widgets/relationship_runtime_local_preview_panel.dart",
+    "blob": "16ed301f465183810ab8e3001fe277e1870377ef",
+    "sha256": "5c84a479cf6f27393176779697162ab19d32486abeeb1a199314ee7cc72c579a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+    "blob": "f1396e536e8b0c4cd3c72be765ab4d44eae7bf87",
+    "sha256": "4a4f5a9195a362709c5296233e4dedcddc2f2a9a0575d7af7483c4a54a7dfd34",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_purpose_pages.dart",
+    "blob": "b49d5e3a70efde1ea5245ea9239d33673c03ceb2",
+    "sha256": "7f6aa1b78f02a1d1f3d5763eed364d90bfb9d50e0a79e9b9c881e56b4035a0b1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/moderation/data/datasource/moderation_remote_data_source.dart",
+    "blob": "6ee28b07c488e37eef1bf41ad3f1765016c4ff73",
+    "sha256": "11a3e4648b0bda94e5de8ec0a2c22154ec2878c80b163b4ef957bb749ae0e767",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/moderation/presentation/providers/moderation_provider.dart",
+    "blob": "13e6e348c5c246f2f490df3fecd63bf93bcc3bc4",
+    "sha256": "eb332131a128b81193069d9667022587932d46e32a81ced4d206f6ceeb9e4213",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/moderation/presentation/widgets/report_block_sheet.dart",
+    "blob": "f2e45c35de59046a67e29baf0d6a305cf0a9c320",
+    "sha256": "d98f755328546df7bb27f78f7d6bfeb9b8d7048377ff1e23ab9e2337daa09722",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/notification/data/datasource/notification_remote_data_source.dart",
+    "blob": "db79b9e35a753e86600fd281974ae998268ec097",
+    "sha256": "64d8a46b43ba6f225c020bc0a2e7a280b942655931ea4f8c3c7e472d4426df48",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/notification/domain/entities/notification_item_entity.dart",
+    "blob": "39352378b92bf554c387a5c538de1c0af322e159",
+    "sha256": "cd5699822ac066a2e0f93cfa170a2a2366127785b83ac6892f1cfd706dfbf872",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/pages/notification_center_page.dart",
+    "blob": "377ec4b68c2e6492b10bc2f28a65b2793429aef4",
+    "sha256": "ef06a8d40544338db51c3dc3edb1cd208d7d1fa54bfe703f1f722640869e69ce",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/providers/notification_provider.dart",
+    "blob": "794045ffae4306f81b0c8b652f9db11412bee640",
+    "sha256": "d7996e19ee9da84a4e45331d7523db20e52cfdea2d5dfd755ffb004981dce69a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/notification/presentation/state/notification_privacy_contract.dart",
+    "blob": "9e66e29fd2e3fe1ce4d9de78760296407014210e",
+    "sha256": "d541215fcba5226294ada44b292e19ea2cc1732e2f642c7e1bc7f6a2f117fbba",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/onboarding/application/first_use_onboarding_coordinator.dart",
+    "blob": "a084eab39e634578b8923dbbad8d62e4a5c261f4",
+    "sha256": "de7b8373513fdbe6268a4c0eb525f5bf0143dff782fd1ed41697168ea366ce3a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/onboarding/presentation/first_use_onboarding_page.dart",
+    "blob": "561844c67e0da9938667801d20bec86096efc944",
+    "sha256": "0b331be81ed1dcf8beca5aef3c4024f018868d53fe2a9d6f1126c6aea5946674",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/privacy/presentation/state/privacy_control_projection.dart",
+    "blob": "bd17a8aa2d373a9392d14853ceb38f5a6f2aed51",
+    "sha256": "2be672ec3bf9748e406c6c650432c0496a431b6b9855c02c48b3af353830fb1d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/datasource/profile_remote_data_source.dart",
+    "blob": "66430582bd18707685d8ed98f1f930ed43827a60",
+    "sha256": "51fa9ccef664f19219a14f9bfd37c0c85ba81fd65b28502d78807087b0ab3e8d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/datasource/profile_showcase_draft_remote_data_source.dart",
+    "blob": "35b4f0149555c5a339f76a42ffe76f2af5a3aa71",
+    "sha256": "0685220d2b9c5152ccb0db252baff095c1524ad2f59511b36f29606347863b85",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/datasource/profile_showcase_publication_remote_data_source.dart",
+    "blob": "0b855416fda4b736d826f99adb9df7ce1b6f8c1a",
+    "sha256": "e64e0503d712b82d36de874fe17693c5c163e72d3cc20058600db050f8c451fe",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/profile_detail_dto.dart",
+    "blob": "600b0b67436f36298a68d36ba03cf9c5a0687207",
+    "sha256": "cea8dc46c3696f3c301d8df41638a873ffc4c68b09abc31c01bac982436fcea0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/profile_showcase_draft_dto.dart",
+    "blob": "4b4b57d773f0b9b05408f896de518d9a266b84e7",
+    "sha256": "d9e4c580e1285cda70b37351a6cad0be025352be74fab9fe996c3961b0c40778",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/profile_showcase_publication_dto.dart",
+    "blob": "10b3876b3b411b9ad738419a20186e72dcf8a638",
+    "sha256": "dc6719965919b09e4fb853fe2743b03a23979b8637a290f399daa404616eb109",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/profile_summary_dto.dart",
+    "blob": "8782ddc606116ccf9491bcbca984a191699ba6aa",
+    "sha256": "eab2d9a963912fb5378b4f406d83f3126f1c4613615254c6330c8bd353e759d8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/update_profile_request_dto.dart",
+    "blob": "e2564b83cbfb0074d96ef337ae7f9878bd3d941d",
+    "sha256": "86718bc7e336ae9130dda56c2c5e7ecf8904c8cf98abe70a870d6bd714dfdfc6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/dto/update_profile_showcase_draft_request_dto.dart",
+    "blob": "c85f7304fc89b6d6c45ccbf5da89e967d747cbdb",
+    "sha256": "c0079e5ed6628649c89e0fd5732b14704826279f75c7c1ed84f581a75a379f89",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/mapper/profile_mapper.dart",
+    "blob": "1024189e4f1281fa10a1fc8283ed983a737c6a3e",
+    "sha256": "48162cf0aff603332f25c0f31e064b591b04c1db615c56007f9912466a2f4fc7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/repository/profile_repository_impl.dart",
+    "blob": "c5ca2aa8dd1df3c4658f4086712ff84dbf1e508b",
+    "sha256": "434797963d98d5df3cfb376cdf3e4fab741f77e7d8cbb59536b9bc64f1363ab5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/repository/profile_showcase_draft_repository_impl.dart",
+    "blob": "8fc05ec44fe694e92f4a9ca08a03bfbf91110b03",
+    "sha256": "352e98f6c23ff84a5ecfc3920a22cd7088a2ee469ac4b9c03661dd601872707b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/data/repository/profile_showcase_publication_repository_impl.dart",
+    "blob": "6514a0cae5267d670be20099b065fb29f8d27c14",
+    "sha256": "3f447d99f4fba5cb6a09db994d98bdee8709a8d240fd8a2834c9d305c3a6cff0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/entities/birth_place_suggestion_entity.dart",
+    "blob": "b8df36606ccf40d93e2257211cc78ef115f13f12",
+    "sha256": "1112296a46fc76ce011b27885fb0a9ad2c44276e16d5b28249b0afb2c156f3fd",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/entities/profile_detail_entity.dart",
+    "blob": "be0ae086ec6b0fd5c68c44b5113c60d9f531f9e0",
+    "sha256": "88c54de40a9de1b72599d2d318bf712f0f753efaf67c39bcab516217eec9cee5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/entities/profile_showcase_draft_entity.dart",
+    "blob": "69953fe5725e6ef0a30d88ab691fb133183130f0",
+    "sha256": "c485d2989fb1fdf321f59da50ac5f26b93a6d1d78f2453e8c705b4583cc59d7b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/entities/profile_showcase_publication_entity.dart",
+    "blob": "a90db5d61fbd86fb34078d418eb46a0bcf88a6a3",
+    "sha256": "abd34b6c544746b62ab806c757eb0aaae9b24d335c54c3977b94a2839c2a3a93",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/entities/profile_summary_entity.dart",
+    "blob": "4aee6a53da07268228f867b22e543ced2ee6c91c",
+    "sha256": "377489d8ce4482ba5dea749cc69247663271df3db759ef014f89daf6511fd48f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/repository/profile_repository.dart",
+    "blob": "72521ef341cfa5bb91656b3dc3f7a7d979c103b4",
+    "sha256": "0b91d7ddc96cd47dca7df2a5384bc27b99716c2d831b4aa99ae3f5baa1b34a5a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/repository/profile_showcase_draft_repository.dart",
+    "blob": "f7d32bb6dab1936e19a69eb45c16dd46aefd03c9",
+    "sha256": "9bc34ab654049a934f01dccdfac24739f5d6a6cf3c031fdd45d60f2b95acb48f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/repository/profile_showcase_publication_repository.dart",
+    "blob": "6fc0a5badcbaffeb293eebd14379c92677da4e11",
+    "sha256": "00080da8b551afef0a0928f2c749213aebcb2f43353db4c5876143191e8fd4de",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/usecases/get_profile_usecase.dart",
+    "blob": "09cef61600f1ac8ffb6dd1eafbf35009c9d7be7a",
+    "sha256": "9a7af19cb1fc04de52b82ec8eb50ad15388876ee2164b385aa16814d83328325",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/domain/usecases/update_profile_usecase.dart",
+    "blob": "dcde80f7be8dd0e1bb2821a48c89fb74b2e704a8",
+    "sha256": "8a03379870f476701872bd148ab783fa2a41c38716babf16b2f11d0f8d8d667a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/about_update_page.dart",
+    "blob": "093df71bc642fa6d6e3686e21fee4b7c4f686623",
+    "sha256": "3dcfc3d9923532c7ae3466308299f80b8cd624f7bbd5d64c0f6f475894fd497e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_advanced_preview_page.dart",
+    "blob": "e06ad34f321c7e9ac55a273edb6d393c3ff06392",
+    "sha256": "e96ed411f91f32594c84d67187f60ec9dbfc088cc6b21e931766f25e4b9b2b25",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_bazi_page.dart",
+    "blob": "1746562bc1ece0a69c9dd0e1356096f76a107346",
+    "sha256": "143e4edc81bfd07a68ca92f2e087f44d9deaf04c4a7854540d0622147ee30d70",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_chart_settings_page.dart",
+    "blob": "0776eeb78c4a7bce4d5ccce8ee7e2900e642a5e3",
+    "sha256": "99e1867f00a4819e78127f315635bbf907f8dc2e7b71306d392f06bc0c0c1112",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_natal_chart_page.dart",
+    "blob": "f2e9435a37b18a4ddf879e10d9df1f2578a81e20",
+    "sha256": "d8f8ea432fe7c6bf2a58e52931cbe3d95dcef7431307a6c37c8a080a9275e960",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_overview_page.dart",
+    "blob": "c82220ac94960a23ec3a050b760a5fb55be996f5",
+    "sha256": "347987ed859e6716cebe9a499c425039c769f062686b4429544e730f6d57bc6f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_profile_page.dart",
+    "blob": "e777698ba9bcc3d1c00ba4201949e21ff89c6abe",
+    "sha256": "97e711edafb1becdcbd5f08c1c79c8e123c404f09318e8c5a504a57f71e03e25",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/astro_ziwei_page.dart",
+    "blob": "43276d0f6795a1ba5315a9b46855a6288632e777",
+    "sha256": "d3447eecaff08b87cbe882aa1be0ecf2ca9a28f4d2ab5df8a955d514b881324b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/change_password_page.dart",
+    "blob": "e7676caf958a9bbfc531708621bc3881e3da23fd",
+    "sha256": "1e53fdd5e6f6ca0d3a756084f078ede42d7fca3271771f50be0f35879f22fcc3",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/edit_profile_page.dart",
+    "blob": "2602a38e6d61405bf3dc975dbe36e07083b20ded",
+    "sha256": "a59515782955a18a5221c597eda8b731eafd9ed5a4ff4778461828765c361f4c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/mbti_center_page.dart",
+    "blob": "87247ea8d525b438d6218f9fe24e16dc746c4835",
+    "sha256": "e2efe923836ec7f76263a8b57ef709ab7766050cb8bdfa42766d538a6ccd6b50",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/personal_showcase_page.dart",
+    "blob": "daf11f028945437ce3fcdd6160622bed755b3945",
+    "sha256": "e8c179765c3444f342f6f6cf87a106a7309956de54ac9c8a570387b00eae82d2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/privacy_settings_page.dart",
+    "blob": "113b44875aae1eb537acb1d239694a3dbeb9b57f",
+    "sha256": "e0065e9ea8d8f3234e97438e7d897c2523fce9a895533e5d86bc3031afe1258b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/profile_page.dart",
+    "blob": "f9ccc64ee4a053d0d014c8636b2061aaf66fb04c",
+    "sha256": "ce56d79c8468bceb268b12105af0f5865286b0ef2e97b69a0e686c089e3b98ee",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/profile_showcase_publication_fixture_page.dart",
+    "blob": "4adfa6144382771e0427de6f7dfa159f6b3b768a",
+    "sha256": "5e33ed9b3b3c6492bbb3425da72928e3425d7a90c4a212fe78b80b1c2a497dad",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/profile_showcase_review_fixture_page.dart",
+    "blob": "fcc39e863c5dd4e80ec0c469574244c6d27bc7e0",
+    "sha256": "87ab2a8e23cf609e822e7eb1333d932c535e6d1f94f857c0435a1d38f5b0576a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/settings_page.dart",
+    "blob": "be2e296f3b0a061f5e3753e4c60200af039fc4d6",
+    "sha256": "190140a7853bec52ce5224affa1aa2d801ffa432765816de16d805ac5abe3ec0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_advanced_profile_provider.dart",
+    "blob": "4b7a2d52a5bcf894930ff60a2224298f23e34a20",
+    "sha256": "d3dc794e77a50ee5ee3f7ec2ad6838045d8d481e27ed5bdb4d5fc7da3746c518",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_chart_settings_provider.dart",
+    "blob": "85c1d27cbdcfb8bd1610a9db3fa50f166a307a13",
+    "sha256": "f77406ce3e90a51ecb324ee72d8f445a0f429fef5c10aa3baa5f3b332eeb12e3",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_errors.dart",
+    "blob": "346715f9d8a97adc0a735a517abbc071b58a6933",
+    "sha256": "97136af4164d03c0fa7d14cde620bfce5dedc59e4613e9209f638f50d78db3ed",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/astro_profile_provider.dart",
+    "blob": "db923b9d5b1e7ffdf597ad80d84838fccd709bc9",
+    "sha256": "3947368efb3267b236739fb4aca75a1913385e58084911cdacbe139cd0b0ec3c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/profile_providers.dart",
+    "blob": "73c7514740eaee045464c0f602f0ce8c0034b0e4",
+    "sha256": "5b0e2192f26857714d19efb7659d95a79fa776e94a39cb7e3f4d87465af598a8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/profile_showcase_draft_provider.dart",
+    "blob": "27670fb739e711f0ad05c956d93bdd77b002ea88",
+    "sha256": "0b601df1806b853f0f800349ebaaf9110e8145a7ddf47b3ff61d6bee4a138775",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/state/edit_profile_ui_state.dart",
+    "blob": "494b6c0d77473c2fd2459ecf1dd93fa705b90f7f",
+    "sha256": "bb3aa4db9acd1da95f8cedd22bf32eb2d3d6baa9eae5dcf8e1f0a7da3ac05692",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/state/personal_showcase_model.dart",
+    "blob": "d231694cbf6258263af7c9e26fa58c62891d8d0d",
+    "sha256": "7c5d457a27a32637ffe43d5386927a2caf7d5e4a85a23efcb704804f8e594e7f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/state/profile_showcase_draft_ui_state.dart",
+    "blob": "5e90f135fd8cf8b5eecb535368346fb60a8598ef",
+    "sha256": "ffac4797942cf7ac665683c59d2ae68a201eb78ad3ef9c169226bc3710d68652",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/state/profile_showcase_publication_ui_state.dart",
+    "blob": "f4289859ad74e1247336d79f499bce04a0a7118a",
+    "sha256": "12a3fd0373b7864a8f239113f6fd06379204a9e40996d7cb477fa713df702a31",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/state/profile_ui_state.dart",
+    "blob": "792e2a9a61358d3be19fed8d5874c5c3ca131b78",
+    "sha256": "ec7acc5ae2d87d082e5110d29bd8b3cd7f1352e2848cdc1724c6bb1468e5cf07",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/utils/profile_display_sanitizer.dart",
+    "blob": "78cea84a6b882b983d6c0e3a4a33b6500dfde1f1",
+    "sha256": "1a30286f8b8f6ed5438709a46bc40f64de5068986aa0b53067927e6298190696",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_advanced_capability_card.dart",
+    "blob": "0d6b4971884dd45a7488e49b105cab6bc52303a0",
+    "sha256": "0b198175ede4ae6ffe15b60d2189c123a0191d064c74e65f17ceff242b27aba1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_advanced_explanation_layer_card.dart",
+    "blob": "af234806aa7164cb3fede51c035434bea690bdf8",
+    "sha256": "a9a4cf5cfb6ccb5bafbd55eb4ca124014cf64287a92d9c793aa09483ae706443",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_advanced_sample_set.dart",
+    "blob": "9d3b6f7e92c074e657352e17950756b8ab7a8ed3",
+    "sha256": "3b6ec071bb578e8adbebb058cf6864edd5cbc2291120d809cada1c89dde34318",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_calibration_report.dart",
+    "blob": "6cecea088bef662081524585c8ca8ced085b0f33",
+    "sha256": "f8740997c9bd508d6b321947dc66ae98c49bfeea253f398f2a1aa15f5dcf4836",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_chart_panels.dart",
+    "blob": "0ada361cd30cbfd5daa1e499aa5f487eb11d323e",
+    "sha256": "64a340fcc8d07d6e7eb4e9e073ccc1ca83b839e1c322aab397faa1d749d15970",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_chart_sample_comparison.dart",
+    "blob": "7fc3772e80e48c9e3f3eb0ea0aeffc0485ab6a38",
+    "sha256": "ae18c1782bd7acfd7bbdd9d3ebb21bc992453c5f776f34a25fdc169faf5ff495",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_chart_sample_fixture.dart",
+    "blob": "b8ba06c5431332cf9768ffe5a14c567fb713ecb6",
+    "sha256": "5fd67da1f2b33e1464494ef3b897ac4ca9e2b0c6d4d8442d3eef75a3c55772ae",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_overview_components.dart",
+    "blob": "e07e22c0c77994dfc2e7ea49b54323b88e961da5",
+    "sha256": "2cb639bd4d17396cf47e796210049e13dc480d0e6f23d1a5d46930326b173e84",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_profile_sections.dart",
+    "blob": "34c09a24d93ebbda9becb9373f9841b47f5bcc81",
+    "sha256": "ea35dbcf8a38a58db63dc156ae5d0bcc24718163b9b6a4c9af942f08e7ac4e19",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_profile_state.dart",
+    "blob": "7c1d398019a69bfc805bed016675d722b573f1e6",
+    "sha256": "53973ebcbde9841dda08edd53c4f54015e3557c55cdbe0ec925079f8d6ab3fb6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_profile_state_view.dart",
+    "blob": "129cacd20ca4e2e12b5ae4e6b1fd99f1eb8260c5",
+    "sha256": "23ffb62e6b8247fd21b8430d28b2023de902e9b9a6d712b6167f5aef85b10da1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_relationship_narrative_card.dart",
+    "blob": "fc31915db080a0c11a48afe1f05a640f20d2a766",
+    "sha256": "fca400dc35a3125cb21be23b4811b52a5e488d0b8ceff783b1809706f3457bd7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_route_parity_report.dart",
+    "blob": "f50f8d36f2bd94ebd1fea3508020e2b8bc7cd290",
+    "sha256": "1c85191ffcd4f53ec3ba03ad27b84f7a915ddd2cea8822e41f28a0b213b120fd",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_route_sample_set.dart",
+    "blob": "711c2be33a67e79d07cdfae29643b271b517ebc6",
+    "sha256": "2d3bdbd8c4858a9c8bcf487a0a5d8db32844d71e157a3491cee0608fb4ee12f8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/astro_timing_framework_card.dart",
+    "blob": "030ec47b9a38f0c8592baedfbe3896134da81065",
+    "sha256": "94ad960b2e6693a253ec9fb9413f62468c71f7303432bf7908ee522109bd5f98",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/bazi_timeline_section.dart",
+    "blob": "de4706bdcb15038f81f9a286d351078affd0a7f5",
+    "sha256": "0619c0e1c0d708476c7491ce60514a181890a96dfa7cbd16af7b40580c6f51be",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_chart_svg_builder.dart",
+    "blob": "2042e42467ae52c9ad9fd08fd8c0750dac0458ab",
+    "sha256": "85e941be2b8c5bee7a28042d4b8c55010141671fbc98d63f4dec5a398b03c987",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/natal_chart_svg_card.dart",
+    "blob": "0dadcb2d60cd489d3fb314999c9dbefdc67daffd",
+    "sha256": "47fd34c7ce560c51807318b1d341b52821fda49c1a80a1710c4d584a1a38e728",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/personal_showcase_entry_card.dart",
+    "blob": "a32fd1ca27054f9659eade034b40431cac042513",
+    "sha256": "6bd52f61ec1eccd5864ef68aa728640d54f5d807aed9d3f26d08983e7e84cbd9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/professional_bazi_grid.dart",
+    "blob": "e7b3ca4201df65877c571f861693910d77c82d80",
+    "sha256": "81286a9dfa994c66f39d08483be9c4be964a31339352e59ea4fbc117d9c4d267",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/profile_completion_card.dart",
+    "blob": "d28c049c3255534db27fb093225ae9f5bf3f20a9",
+    "sha256": "26a024b2d5587212b2019ae56f053005a85ed8f095961eb39d4413f1a7e14e06",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/profile_expression_advice_card.dart",
+    "blob": "6af1855a6cf23ee9300e2b4008e65f00e897b36e",
+    "sha256": "a6333d95d696a74cb2fc5726c71fb6abe360c293460d3ea9ef067149539be4d1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/profile_header.dart",
+    "blob": "ae39521a9939c9860ca2f402d95569de38980ba6",
+    "sha256": "1bf8b07053068633dacda51d0be9f4155be9c10dd1e5604307769b02337e24b4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/profile_result_tag_list.dart",
+    "blob": "1b2757e37165565cbb96865bf980d737840b2dfc",
+    "sha256": "b45d0c56c79c23d1e853a2ec9a8ec9524508d3684d511c20f2e0c6046db55106",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/settings_group.dart",
+    "blob": "cd43f833e8434a02c7fe25ad03eeda03fc916bb3",
+    "sha256": "7ca93aff9b5b66b88fc3a0523fa8a61fb73fd6d6d5f88b16cede75f4dcdea0c2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/standard_ziwei_grid.dart",
+    "blob": "10763ebbcfbd8d166c45408790d6c87ee6be1916",
+    "sha256": "b0b593530199efb0dd6c76212de9b8a7d994f35b6b57ab96b298ef57ff6c7254",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/wu_xing_energy_bar.dart",
+    "blob": "c186013cb88c2be29b7a8bf43c24113295d6f72c",
+    "sha256": "161f75138527a81cc39f859f07a872af810ac2e4acccce803f1f07889fdafaef",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/progress/presentation/pages/progress_page.dart",
+    "blob": "4057ee2c101106a3105143b88948eeee78c9fe78",
+    "sha256": "e24a38835b251efbb7f97e2c945819dc5f78462b323595a21bdc2453ddf4ba3d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/domain/qualification_diagnostic.dart",
+    "blob": "c33accc43e9a21bc63eb426285e957b5c554ab3f",
+    "sha256": "4c67ae4dce684a07c4d831697cff9f7acaa3e9646e56ed89f92f806376e02fe6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/qualification_diagnostics/presentation/widgets/qualification_diagnostic_preview.dart",
+    "blob": "7fe6a0f4fcc598b5109b232d4186ed6a8ad46d8d",
+    "sha256": "fbd7fed43060dc172a2db4b9ffb0046994ad2f0b8b954eaecdf5f3c384e232ea",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/datasource/questionnaire_remote_data_source.dart",
+    "blob": "04130a65b2083373414b715b4c7ce39f1eeedac8",
+    "sha256": "16355d28ea3b9fb9999a33d385a85ea8388cd555ae5a84bd1dcc30e65386158b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/dto/question_item_dto.dart",
+    "blob": "e04e7b95c5ef74a24d0e15a5be767fcfa0575772",
+    "sha256": "6169f22e197533cee50389837ab14949a506a5de700690e889ae6eec1055c1d4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/dto/questionnaire_attempt_dto.dart",
+    "blob": "5d059939922856768dc5685e8244d1b3f13e7b16",
+    "sha256": "04506785d3b9db67efbc2d0b276a011c5d9d1fd6e4adbdd27dc2005b8fce5191",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/dto/questionnaire_bundle_dto.dart",
+    "blob": "73b41d2e78361fcc2a0e0171f0f48b26d1e0461b",
+    "sha256": "7690d6367a4ec6aca95cb2c2fad14215af6cde7373fbbdc9d7339a773ad3e8aa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/dto/questionnaire_submission_result_dto.dart",
+    "blob": "a0a67600a33e2ca3bda7b30c1b0445af349926ed",
+    "sha256": "aff37bce0e1adb0491c35ba8be7254487da3d5a3be738f5d6e0dd8220b6f7267",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/data/repository/questionnaire_repository_impl.dart",
+    "blob": "b24f33f4c95580521c1da6d4b988a458c9dfe7cf",
+    "sha256": "9557b9f47a1bb333fc14059c3774ecc9669d25911a378d85400196aae37a0ae4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/entities/question_item.dart",
+    "blob": "e1df5ae7030c849b4cd820489b49043236d21bae",
+    "sha256": "2e2bdbe6f9a1b86def12510cbc06d90e7759b573984909a5e3e2eb22797b2d37",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/entities/questionnaire_attempt.dart",
+    "blob": "287ff573820b6b271274d6d9f40057874b5d9f6d",
+    "sha256": "937b83e12d664226c4ab1d8ffdc8a2ffe4cc58a0fbcb24b12bafcb938ed200e6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/entities/questionnaire_bundle.dart",
+    "blob": "9e546e6abf51d6f3b07710c1884bb956272ecadd",
+    "sha256": "6830de4f7e3429c6c8bf147e853ed1627bde3be2ba8f95510b02e755f3e40d8e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/entities/questionnaire_profile_snapshot.dart",
+    "blob": "15232b3f323358e313aee09a822a9816f7d7b392",
+    "sha256": "120e3ee58baca83fa1b7745de2a6f1e075d8dc024260c96c7f6c1168a033270e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/entities/questionnaire_submission_result.dart",
+    "blob": "b3a549fe9f10ba828cc7d6268fb4bcafa465cea7",
+    "sha256": "eda5182cbd2404d91847464c4f5ee16ab8e5a5b30b2a8a54da6b2b63048c6767",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/repository/questionnaire_repository.dart",
+    "blob": "adf181c2c781f431cd9e739803f428de1c3ed7ab",
+    "sha256": "0a44b37f2438baf61d02d742e45088608f4daeaeaf4df46ed5e83403f11c499b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/usecases/get_questionnaire_history_usecase.dart",
+    "blob": "bdde3debc50939aaf6eb0168c08e33e10b3e9097",
+    "sha256": "0a4c33fede72fa38a009f57ff9a05b94a9c77067125585c522823a2da0e67d6c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/usecases/get_questionnaire_usecase.dart",
+    "blob": "33d34eb046ee29bf2cd304e6ff6b4c94abd46456",
+    "sha256": "bc5be90932b8bddccde9cb036258ef6a087b44808b4f05a3203ef8526e58e8ac",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/usecases/save_questionnaire_draft_usecase.dart",
+    "blob": "eb7f750e16219bb6600ed4d92681f45bded09547",
+    "sha256": "68e4e97f257685783df980fc3a314d7f08a9b1a5c0b54dcad040d42141cdaa8f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/domain/usecases/submit_questionnaire_usecase.dart",
+    "blob": "540914f9ada6135de5463a9cc96fa3c5a94c9cd3",
+    "sha256": "3813ac57bc422dd3bc11cb94fcf8f664f0f2813c1d68dcc11a1334b130cfd90d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/pages/questionnaire_history_page.dart",
+    "blob": "0dbc3d0276ea12b78e1fa98b74e25473ca72ccc0",
+    "sha256": "4e2a5de1d68b14cbf83d86e27d410dbf817d5d73764aac63dc1b36212fdfd102",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/pages/questionnaire_page.dart",
+    "blob": "5e009865d7bf20a2f902f9b61d3add1ca808f6ac",
+    "sha256": "632b87f876bf6853a8b388860d4e21dac3dff42ed036ae50572cf6b1a3b7e612",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/pages/questionnaire_result_page.dart",
+    "blob": "c24d48d15b3423ab13e6bf347a787753dddcddb7",
+    "sha256": "a47f6b32aae7f315fc5272766871f39666bd06106ab836aaf9250104d6d3c0bc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/providers/questionnaire_provider.dart",
+    "blob": "13b05cfcd96716121f97459f5fe39fcc766026e7",
+    "sha256": "b3ef3799a6f372e4f1927c9864dbf3a2b2bb3984b846358a270ca1fbf4d43dae",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/state/questionnaire_state.dart",
+    "blob": "cbd9b7e2bb1749869a2a7f318ac8a6213e5e0c25",
+    "sha256": "496b3f40c31bf935ffc6a9f2b9872bc62b9026a7f0d2ee31857d2040eac3d355",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/widgets/question_option_button.dart",
+    "blob": "d907712ced8caa8cd1428f6863f6bfc34d358d59",
+    "sha256": "999be90f957cb461c0d62cc18d6d93ebcc363c8fd9ad2a9c39d73f2b92d0b427",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/questionnaire/presentation/widgets/questionnaire_profile_summary_card.dart",
+    "blob": "6a921d5fff866e774ba7c558dc52e5ed10fc70d6",
+    "sha256": "43cdd38efa36e701b813dc3a358bbd47fee5a2c9a23f79c17afd1a4d0047ce67",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/data/datasource/rtc_remote_data_source.dart",
+    "blob": "a3b925bddcc5d3f58032d394d9b1ac7e4ac8357e",
+    "sha256": "54d81fb64ca0636c8074101a69abd63887f6fa6e0c1388d15952da18f98888f0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart",
+    "blob": "2bcaabf95f68641899d8ab6ef2bf09a4dd89301b",
+    "sha256": "d92d061ec324a14f0fceec059d0f976375b6571cdc0c5e309d4a7652fcd00871",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/entities/rtc_session_entity.dart",
+    "blob": "924bce3c73b00603e4758469e745593e297f17a1",
+    "sha256": "9c77153e902ea0dfb5f87e564ac977d838c75e759462b68be56519ef76694ffa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/entities/rtc_session_event_entity.dart",
+    "blob": "4a20344afbb8472c6c6ff31cd0cb9606f6f7348b",
+    "sha256": "3a4d08ed678a17d583edfc10accaca99dcb176d87e29d0e1f72bccf3c1ef94f0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+    "blob": "ec34e5e0c7264f7d9534f1306d430007660da82a",
+    "sha256": "dfb0bc65cc8fdc9d58b9868f59f727a5d6ea7d07de2830e3de2a2c516770731b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_permission_service.dart",
+    "blob": "9fd3c16cab3830a644acefbb75786feca264cff8",
+    "sha256": "ba42f26ab80e9c72f994af0d9811cf31ffc86235411572abc890f038e03502a5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_page.dart",
+    "blob": "6e5459660c37761be94f2ba273f48d9bb690841d",
+    "sha256": "315729d4a5902c0c40a1e7349f8d54b5bde3e437beed766ba24c4589cc2a8898",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_call_result_page.dart",
+    "blob": "c3d1d18408f53a08b9aa97bb83230819411bd7dd",
+    "sha256": "1717cdd93ee51c5fa9c54efdc6335a85c3882dda0d5a0b0b0a2915c2b6fc6825",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_incoming_call_page.dart",
+    "blob": "0b8c417a06102bcb03f2f28b0f77098f3d2c6cf8",
+    "sha256": "8dd50e3b356cf8281612d97f91c6da093110325c0142b1fb4fd564cf9f5e8b01",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/pages/rtc_permission_page.dart",
+    "blob": "d9682bfccbe37acabc2e80383d0aeab382b2b82f",
+    "sha256": "b10391d808f357e7cd4da0f977ade11c96fecdf7a331768c3984df630b9ddb52",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/providers/rtc_providers.dart",
+    "blob": "c6d6bc45ff006e7cdf168a45fc443614a5b9a576",
+    "sha256": "43a8beeefcf0c0f38aec907cb021d77a3fa3b6ea800621cb4dfe16723b519f5b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart",
+    "blob": "9915eca390da59583fa6785312d9518212dfb5ca",
+    "sha256": "b2a6e8f41ea49ef7763ef80adb07d4274afbe8a6a313a8db0b2e02ec5be8048b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/social/presentation/pages/social_baseline_page.dart",
+    "blob": "f6cb1ffdf3308d3bf109a654e70726adb5e52400",
+    "sha256": "2e0eabdc0182d4a7d1c2ff4356a27e07a70e13c42b16e57ba9651a93a9dc7e47",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/data/datasource/status_remote_data_source.dart",
+    "blob": "7c74b92c16d6ad7978b14abe5955efb29c300ef8",
+    "sha256": "a7417fc916499cc407a3ef125803fb7ebd4468aff03e26c5a7fe697426ebe012",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/domain/entities/status_author_entity.dart",
+    "blob": "5dd41a98df533a434efbf94e2777407e4cc948b7",
+    "sha256": "61bbf00913b21ac6240fd0c2d119946c708ff4d279209cad38170a4dce9e0b50",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/domain/entities/status_post_entity.dart",
+    "blob": "a7a5391e9ebef7e0467dd6f8cffabf33bf3c0a3f",
+    "sha256": "4c347bea0473b3f95e39f97741b656637ad598abe3825e50ddcce8e0a433f79d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_author_page.dart",
+    "blob": "6c655ceaf31b57bd12cebeee20e8e971d59b12b2",
+    "sha256": "b624ea34d4c62a9678dc01a034dd8809ea42c5358c871fe8fab2cebcf4606c66",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart",
+    "blob": "4f275a3b50d15ec727a3a20947718d2bb2a5a3e3",
+    "sha256": "26a6ed05c8b5f54d7033622be8b65b9511f9235843f38a6d770b0bf05aec2419",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/presentation/providers/status_posts_provider.dart",
+    "blob": "f7e9ef813750757c33b21e25cc58f5a625a5966f",
+    "sha256": "1a71a178b4cb651fb34e42bc7cb9770461442446132417de6ed06a3a368835fa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_post_card.dart",
+    "blob": "7e4661b4858cd22ea85cf0cf6c8bcf20b0acbfe8",
+    "sha256": "ee1c76b360ef610480d003bdf515d69285a55f71954c03ebc23fe135e757aae1",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_report_sheet.dart",
+    "blob": "67d0c957cc837d0e8537df35eadc2973d0a60321",
+    "sha256": "aa0bee6c7429ebcb6ad69cae2f538efd5240839bc7a0302500bf647a963bb73e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/data/datasource/verification_remote_data_source.dart",
+    "blob": "3d95759650c66ae018d81580473e052c140d9bb5",
+    "sha256": "8711bff43b2286004b4bf3fc25837b1b52fa508b79ea7dc3f469a294b6dcee29",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/data/dto/submit_verification_request_dto.dart",
+    "blob": "2641283304708554e81cfd4598367ca2df33c7d0",
+    "sha256": "a4175a7eea6c9d9f792ce6e9cb3aa1515f8afac4523b985cdd808077d184297b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/data/dto/verification_status_dto.dart",
+    "blob": "a33260edab11fee924db9db9810527524eb48037",
+    "sha256": "e0074b59d182edfc7d936516e4be19a47e5d4719eab43ff8e79c0d8e6709f6cf",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/data/mapper/verification_mapper.dart",
+    "blob": "0294d39588ab9c7cc7f3ffb3f6fcc0fecceea351",
+    "sha256": "0b7338da56140bce6a67f5b067cccef574e511d2cb944a4a58bd71d3427d884e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/data/repository/verification_repository_impl.dart",
+    "blob": "5b5a40e092e029944b9e27deeeafa5a0162fbd29",
+    "sha256": "6078139efdd6dd04238f5ca81cd0c379f82f4ed6caea1aedf14c2a61df217806",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/domain/entities/verification_state_entity.dart",
+    "blob": "ec287122528194d9f8aeebab212701ea0bcd32a4",
+    "sha256": "0f54d9d4916e2f2bf23a3c0d3975618a34116775688d93e04077a0b8164b65f5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/domain/repository/verification_repository.dart",
+    "blob": "acbcbf1cad5b43d6c90fde27ff135f3e59350300",
+    "sha256": "fccb2ba6b18c94caed1e1615f6fd5e722536f31f05986b983be18c217f577eac",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/domain/usecases/get_verification_status_usecase.dart",
+    "blob": "a99809524220e30c82a18ab28cd510f51ddd0d33",
+    "sha256": "8312d4928715bbde957075aeb5057ad4f712cf3f273e643e1b2c297686adccb2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/domain/usecases/submit_verification_usecase.dart",
+    "blob": "50240997b0ed57f900e56c9862823f387b8c2345",
+    "sha256": "43bcffef89cb7cc6978002b8a7064dbbca8966ef3ebca866147e85665442bb9a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/pages/verification_status_page.dart",
+    "blob": "115a225e7d4567e94ee1db0936e7e2241d1dd0fa",
+    "sha256": "bb754e1296c6ac674cb226f2e893d69c3ea2b55f29cc15cbcfcd5d9feee10f18",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/pages/verification_submit_page.dart",
+    "blob": "9eb5946d4353758866e57cd8b391b360f5aa7238",
+    "sha256": "90b7c2526730227812b76482b43961282dc506be40784554c6e17dd75e90c7ef",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/providers/verification_provider.dart",
+    "blob": "4e127c6eb046e54aeb302373c7f9afd13ed362b4",
+    "sha256": "be30b46fb441dc972a61975420cf7fb15de266ab8d862d7c9e9d8ca0e5026531",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/state/verification_ui_state.dart",
+    "blob": "f399b654a8b28fa1684fe08ecd8106b68dfc022e",
+    "sha256": "4d54fa032d268d8e6e9a4e2b29cbe728d097375829db8a0395280ad1ad14d42d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/widgets/verification_requirement_card.dart",
+    "blob": "8ce906ac40e172a554658b49889c7e383365d5c3",
+    "sha256": "fdcecc5ed1536fe8e20eda234bfdb39fff897274ca176535f41d82840d19b6d7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/features/verification/presentation/widgets/verification_status_card.dart",
+    "blob": "e9cb51d690c8aa3dfc27e751d35c0009d54fce4f",
+    "sha256": "aa2644621fcb155c4623c9cdacf669b782f2d47b51bb3f60500663db8934e9f6",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/main.dart",
+    "blob": "af6c4e032ae1e1e90322012194412411d9e8e06d",
+    "sha256": "c6390b8546838dabba4596151a12ea43a6130a2a24b2262015b1d8f648ff9cc4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/main_demo.dart",
+    "blob": "7fcf097238f5630ae837c1604acda4aed0b04802",
+    "sha256": "f542c28670bb3d9c28b4d5df43e93fbcbd144fcb266fdfb91b9b94789b422d02",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/main_dev.dart",
+    "blob": "8cbed0e88c5267f5f7847960be8e785c8a6638af",
+    "sha256": "0a258da84a3165a1e4ae7e05527fdd069f0d772e49e80442e1f1968c4b876d50",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/main_prod.dart",
+    "blob": "c933da877e48e66b0d8ac6d92f606b561ded0af9",
+    "sha256": "1746d3b271752dddfaeff7d6203617c39f837588ce14eab084f1cf75cf09e152",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/auth_mock.dart",
+    "blob": "768d57dcbb681160c214c4efb627bba9e3066961",
+    "sha256": "1c3cd0660f5fef6ffe7066b08d6c019f186b04b0d523b4103cb2b3463900389b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/chat_mock.dart",
+    "blob": "bd754d08c16b8b255a11bc73c712a53debe9ea52",
+    "sha256": "64e284c600641957a7ca943901f5e102e88aeb119447e0088002826d92dc750f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/home_mock.dart",
+    "blob": "02e664ed5c5c819a05334f562142580e5472fad6",
+    "sha256": "86149b8bc670ce7026131008ecad7829abadebed73a37440d00d11d228043ce0",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/match_mock.dart",
+    "blob": "ecd738eefa2621a2dbdbc5b84191a0b8371f623d",
+    "sha256": "6b1532cdde25f338b88c6d6cbb0c4acb3420edf215cc6c5ad566301d8eef87b8",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/profile_mock.dart",
+    "blob": "4a4ce801d9be4674b521e6aa9040afc7e5978a08",
+    "sha256": "37b84dedb490e64bbb16044146b10f7968bffe1b147c7190688e9ce5121f5660",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/questionnaire_mock.dart",
+    "blob": "a5ed10a80bd2d56668a2be460565557614f98770",
+    "sha256": "2fac7571d97f2978778e02efc11742870c1e22334af05e481fbabdbfcdab868f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/status_mock.dart",
+    "blob": "3b6ada3887ad66d7fa0e79c891a6044729606912",
+    "sha256": "22e646a8f033924a7e6a16143eed4e3aff96a936f1f09be721b1489e9ab1c5fa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_data/status_posts_mock.dart",
+    "blob": "4147ff7f08a91d199af8c7ec54ea391c5ad9d8a0",
+    "sha256": "9f38df74ababbeb4a2f92e2e6f2729c24add374e99379c6152dfc9a072c8b31c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/mocks/mock_router_seed.dart",
+    "blob": "43c8358b64e2ee91803124450edf8ee1dbeb2c5b",
+    "sha256": "1f73de7cc63829718f0caac5ead8f852a84880f61af4c0cf7da8b43cd402153f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/enums/auth_status.dart",
+    "blob": "a02eabcc95b68aa981ba5bebcaf8f666b41df0a6",
+    "sha256": "0fd40adc4cf8a9c980f43f60c75ce4bffb1a78976becfb3f1ab5bfd5fab16079",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/enums/intention_status.dart",
+    "blob": "342ee948648ff7a098c3b1cf25e915d429e10630",
+    "sha256": "ae6ade913b91f5dd60a5a59dec4f358f4e3521a5326aee80e6fa409bd388378e",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/enums/match_status.dart",
+    "blob": "5e500edaa2a12510086b6cd15f141a9485b07c94",
+    "sha256": "5aebf55ebf64260d213ecfa5fa3dda401850a71b6e5a61b79ea5f8024d5aec2c",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/enums/questionnaire_status.dart",
+    "blob": "3ceeafd1d585efee14c2205c7b6507d6afa6b981",
+    "sha256": "06e163dae24c38b82c9dafbc9a1087034619fc55099b8434db205f8474f474f3",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/enums/verification_status.dart",
+    "blob": "fa4467c7094eb75c74ffa583a11b462ec8d0a921",
+    "sha256": "0bb01b9d78d68614102fb04abdf226d9c54db3cdd20926286d5342401643a024",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/explainability/explainability_contract.dart",
+    "blob": "aeae0c691e5259254d71841c7e7380c43b5f1a77",
+    "sha256": "5591d3a00bc8c5f93e40e1817f0bdb2dc87f5dec7f03e897e9358dfa72cf7dad",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/explainability/explainability_panel.dart",
+    "blob": "29705dfbf0d7bda010b54027c41c17c8915f3835",
+    "sha256": "f399133bccb544eec58d86aea1c1b9305bddbb1ee0926350100d82cc76b7e8aa",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/app_notice.dart",
+    "blob": "fa0c11d93423f7f523c558a3f4f9caa7ba6d53aa",
+    "sha256": "88bff71536d3cea19ac31c3411b3342762ffad79603f8dad01b0561d194e2f0f",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/navigation_snapshot.dart",
+    "blob": "d0b1683fa7fbeb85c70591e55c1bfb0d8b13f921",
+    "sha256": "d8cfcf3cca576918db8e5087c13d38823ddf379f8f48453d4ce08a805fa0afb7",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/page_cursor.dart",
+    "blob": "ca25bdf83b280cf629331ca6d6f5626e93799b9d",
+    "sha256": "d9ae6accf5b1e3726940f764e9837b396b31897b0e1741642667511ae47810c3",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/paged_response.dart",
+    "blob": "c16688c791275ef772fc9ca6b193d80e92cf2c16",
+    "sha256": "142e957ce29424aeefa00221a9f7e206f346d8fd17bfe59c81849c75663e5fb5",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/user_role.dart",
+    "blob": "b44decb89ee37661d276a6717d45e79ddc774fe5",
+    "sha256": "97009b00621faad2d5b1f33ec948dd525d07d7cf2b9a6a50f3470cc607ba82f4",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/models/user_summary.dart",
+    "blob": "a1e4de1d39add68577db2881e196be8c83579692",
+    "sha256": "ac782718d7735b9ca338d40e18d6349cf8516fdf8eaf754928775d45b0a138d9",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/presentation_state/app_presentation_state.dart",
+    "blob": "740b839eef084983e1f29dbb62d85f7be0687f9a",
+    "sha256": "7eec55a41a786e874592234aa0370d4a4ead88f85bd4ac5769650f8520770389",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/presentation_state/app_presentation_state_view.dart",
+    "blob": "7e31f0d00b034d94427269cc05d1a5c0e84c4bc2",
+    "sha256": "89665f2e195af86254d79bf52bf6c2a55bcb327b0817d1c0317576dab488a1ad",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart",
+    "blob": "c6f2f6c16309f465ba8d414e60cc1fde2486e9f1",
+    "sha256": "86a86112e11cf50fae1cddff82200160b459d8374b756e15b65e525f26cbba0d",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/providers/navigation_guard_provider.dart",
+    "blob": "b20f7d6ef396f02bbaee97d66fb69756aa8e37ba",
+    "sha256": "8864db069c32c2baad0cbb00c91f27d202301a35002ccb5ff432bb984adc68fb",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/providers/performance_mode_provider.dart",
+    "blob": "242f09baa746964333f98bc39cdc78b6ca6cde27",
+    "sha256": "751dfc0224671f7fabe20a7ce1890883549bd2977ab5e719e951b20c9b90a843",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart",
+    "blob": "5317b03f67b7df1d20dfdb37baca92eed20c6798",
+    "sha256": "c2f90d9b6bf6479d1a161a9f60397c1b5a1830cb5e48997fa09a3b451aad791a",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/providers/theme_provider.dart",
+    "blob": "c5d23c45fdd0e49f668f54c5759d3c07221b1939",
+    "sha256": "87d64423198c9383e53a0c567c7aee5c9dcf7afa88510f6da5ba33b8f424d428",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/lib/shared/widgets/a5_relationship_understanding_card.dart",
+    "blob": "a58ca977021c4d6513470dfd237361c9018af380",
+    "sha256": "b8ee8fbba0703fc7f4a6c7dfe0566195963ce007bf64499db54860b1b59ed222",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/pubspec.lock",
+    "blob": "9e38ac969df084df1ba7a893363b9e25b3327861",
+    "sha256": "9d392f33b4324149b282aa62721d642d37a4bd5e1677db403cb5a7373c385eee",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/pubspec.yaml",
+    "blob": "8cd1308be510322a332dc83ba0bf09750574fc4f",
+    "sha256": "ecbc74ef27d949712532409eadc6be0928ea56c9cbc603eb0c80fbe0cec7e6bc",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/chat/presentation/conversation_access_gate_test.dart",
+    "blob": "75050621898c83a3f10101d26c9fe110fb0a0769",
+    "sha256": "10fc03a7543f13b5bef81d49decbb92ccab7bd7841763fba8055f33cc159895b",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/match/presentation/widgets/match_round_contract_view_test.dart",
+    "blob": "63e08cbaf8a821bd0726f3de082b4f864ff89298",
+    "sha256": "3213fea891ce2b8174c798bbdbda4430208ffa7a8ac54340336bfc72f1448266",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart",
+    "blob": "03bb6e7a1257e5269ee2df401b08b676f670989e",
+    "sha256": "1ed4c92d0ef3d6fc10e6eb8e51e157d63026862c8101b83a2ff0a203f461f0f2",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+    "blob": "d663336c555e5d26f58bf27a2619810275130a2b",
+    "sha256": "63e22c8419bd3b775af8c04fcb5d7b2d4ddaa6f767bedeccca457ce218becc31",
+    "current_export_equal": true
+  },
+  {
+    "path": "apps/flutter_elitesync_module/test/synthetic_main_loop_recovery_baseline_test.dart",
+    "blob": "e6c9852688f9dcc1a37052faa51ff0b2ba028884",
+    "sha256": "b22f713701b372a72643dacec48bebe9dc12a1d4a8922558eed5f8b9ec8b5091",
+    "current_export_equal": true
+  }
+]

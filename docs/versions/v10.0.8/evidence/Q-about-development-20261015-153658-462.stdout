@@ -1,0 +1,342 @@
+00:00 +0: loading C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module/test/features/profile/presentation/pages/about_update_page_test.dart
+00:00 +0: Version shows explicit unchecked initial state
+00:00 +0 -1: Version shows explicit unchecked initial state [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -1: Version reports false external launcher result
+00:00 +0 -2: Version reports false external launcher result [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -2: Version sanitizes thrown external launcher failure
+00:00 +0 -3: Version sanitizes thrown external launcher failure [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -3: Local build queries development and displays database metadata
+00:00 +0 -4: Local build queries development and displays database metadata [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -4: Stable build retains explicit download confirmation
+00:00 +0 -5: Stable build retains explicit download confirmation [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -5: Deactivated development release shows config fallback without production download
+00:00 +0 -6: Deactivated development release shows config fallback without production download [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -6: Unknown source null cannot confirm an update
+00:00 +0 -7: Unknown source null cannot confirm an update [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -7: Unknown source untrusted cannot confirm an update
+00:00 +0 -8: Unknown source untrusted cannot confirm an update [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -8: Unknown source true cannot confirm an update
+00:00 +0 -9: Unknown source true cannot confirm an update [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -9: Database metadata from the wrong channel is unconfirmed
+00:00 +0 -10: Database metadata from the wrong channel is unconfirmed [E]
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 66:57  main.<fn>
+  
+  'package:flutter_test/src/binding.dart': Failed assertion: line 1165 pos 14: 'inTest': is not true.
+  dart:core                                                                   _AssertionError._throwNew
+  package:flutter_test/src/binding.dart 1165:14                               TestWidgetsFlutterBinding.setSurfaceSize.<fn>
+  dart:async                                                                  _CustomZone.run
+  package:flutter_test/src/test_async_utils.dart 74:41                        TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                  new Future.error
+  package:flutter_test/src/test_async_utils.dart 125:16                       TestAsyncUtils.guard.completionHandler
+  ===== asynchronous gap ===========================
+  dart:async                                                                  Future.then
+  package:flutter_test/src/test_async_utils.dart 130:19                       TestAsyncUtils.guard
+  package:flutter_test/src/binding.dart 1164:27                               TestWidgetsFlutterBinding.setSurfaceSize
+  test\features\profile\presentation\pages\about_update_page_test.dart 71:57  main.<fn>
+  
+00:00 +0 -10: Some tests failed.

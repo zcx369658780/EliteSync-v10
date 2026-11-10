@@ -1,0 +1,150 @@
+{
+  "local_evidence_root": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\k08",
+  "files": [
+    {
+      "file": "integration-selection.json",
+      "bytes": 50845,
+      "sha256": "d8ab89fc69e419194837dca28073a846f765f693b949e29b6a22d3eb7cb81045"
+    },
+    {
+      "file": "source-identity-check.json",
+      "bytes": 1264,
+      "sha256": "3dc7793dc60390d87218c2c3cd7c2fa5aa200b1e35c49cabf95f3d00b5c14781"
+    },
+    {
+      "file": "integration-validation.json",
+      "bytes": 819,
+      "sha256": "e7940ead7046f400fd4ff8e7a71c78dac470e9bffd039411cfd87666e7d85e3b"
+    },
+    {
+      "file": "root-after-comparison.json",
+      "bytes": 131,
+      "sha256": "28e7c53746d1b8e499ac6f8bf2938b39775c6d45dbcc8d55cbb03c4250c2d504"
+    },
+    {
+      "file": "resource-status.json",
+      "bytes": 234,
+      "sha256": "e3c83c423e43dfdfb1896f3bd60f24f3de1874148b6a1ac8cb1b011ffb9c3455"
+    },
+    {
+      "file": "product-identity.json",
+      "bytes": 264,
+      "sha256": "b8a5008433770405fe8115fa48f4d10337f05ecd4dd7abdd7e8f1c9085c32d06"
+    },
+    {
+      "file": "product-publication.json",
+      "bytes": 247,
+      "sha256": "ddbc19abfc775b6c71e0a90f8acc23a52407793ddd049503b5c03e4caea69894"
+    },
+    {
+      "file": "status-document-preservation.json",
+      "bytes": 856,
+      "sha256": "2ba0571121a0af8f0d91568645c9fc6104c5d069a87504a18badb7d8d2017394"
+    },
+    {
+      "file": "docker-status.json",
+      "bytes": 343,
+      "sha256": "fa0ff0148da2a8033c5fe36f5a5ddb3bd56732cc84a6e2dd1564853c5d5953fc"
+    },
+    {
+      "file": "docker-status.stdout",
+      "bytes": 52,
+      "sha256": "7356212a123a07abec4ab42bacdcaeb55f7b5ef770a20df4bcbb9290903d79c3"
+    },
+    {
+      "file": "docker-status.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "diff-check-default.json",
+      "bytes": 345,
+      "sha256": "b6a754b70d862f2c4e5abcf45208b6ebb92e7ed9674d8753a76291af6790fd0a"
+    },
+    {
+      "file": "diff-check-default.stdout",
+      "bytes": 3947,
+      "sha256": "721a045ad9a60490a6deef6eb873011bc920e049092e82f1f41e0a4660c0e9d9"
+    },
+    {
+      "file": "diff-check-default.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "diff-check-crlf.json",
+      "bytes": 390,
+      "sha256": "0e39dcc2c54ca1cf261b1afc0d91ba8208ae6bb6bcce877060020d0f6895e01d"
+    },
+    {
+      "file": "diff-check-crlf.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "diff-check-crlf.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "php-lint-1.json",
+      "bytes": 329,
+      "sha256": "724d3ee3256d551e871453583771b758e9d0ede63267160e583bc16eede4e627"
+    },
+    {
+      "file": "php-lint-1.stdout",
+      "bytes": 91,
+      "sha256": "5352fa18ce2082d5f0d68c32d15dcd0915e75f67bfaddcf2719cc14499db8ca4"
+    },
+    {
+      "file": "php-lint-1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "php-lint-2.json",
+      "bytes": 339,
+      "sha256": "0f68c86e317a916795ee70f05aa3b2fa9931ee3d62f7067f7c39f016fffeb3e7"
+    },
+    {
+      "file": "php-lint-2.stdout",
+      "bytes": 101,
+      "sha256": "0245f8276389de12d7810e4d884eee6514d2b11a52a02c8a041d1e862c1eed78"
+    },
+    {
+      "file": "php-lint-2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "php-lint-3.json",
+      "bytes": 347,
+      "sha256": "d41337e941584ef503114f3c9c6669328641a10dcf428b4acfe44ac4d4720b75"
+    },
+    {
+      "file": "php-lint-3.stdout",
+      "bytes": 109,
+      "sha256": "0d55554821c028331139a3f4147850ec993f668aea32ce6a6172414f7e394797"
+    },
+    {
+      "file": "php-lint-3.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "php-lint-4.json",
+      "bytes": 307,
+      "sha256": "27f6344fd96f6d96c14cbbff633e4ca495faf625ef8c5b88d3bf3a4e358fad43"
+    },
+    {
+      "file": "php-lint-4.stdout",
+      "bytes": 69,
+      "sha256": "fe909ee492b07f41431c111aac2842f7d4f5b552c51868c10fe4392bd2c5f2f3"
+    },
+    {
+      "file": "php-lint-4.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

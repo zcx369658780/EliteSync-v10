@@ -1,0 +1,65 @@
+{
+  "id": "elitesync-v1010-natal",
+  "version": "1.0.3",
+  "verification": "IN_PROGRESS_UNVERIFIED",
+  "input": {
+    "coordinates": "WGS84-east-north-positive",
+    "timezone": "explicit-IANA-runtime-version-recorded",
+    "unknown_time": "no-invented-instant",
+    "algorithm_sex": "explicit-independent-selection"
+  },
+  "bazi": {
+    "engine": "6tail/lunar-php",
+    "version": "1.4.0",
+    "day_sect": 2,
+    "yun_sect": 1,
+    "da_yun_count": 10,
+    "term_time_scale": "library-model-UT1-restored-TT-half-open-bracket-v1",
+    "term_civil_conversion": "v1010-erfa-utc-ut1-1;pre1960-model-UT1;future-active-leap-table-assumption",
+    "yun_calendar_policy": "lunar-php-1.4.0-sequential-gregorian-clamp-utc8-v1",
+    "gong_month_profile": "modern-jie-month-compatible",
+    "gong_stem_rule": "same-selected-year-five-tigers;shen-chou-five-tigers-stem-v1;legacy-value-retained",
+    "calendar_policy_source": "tools/natal/CALCULATION_CONVENTIONS.md#qiyun",
+    "oracle_status": "UNVERIFIED"
+  },
+  "ziwei": {
+    "engine": "iztro",
+    "version": "2.5.8",
+    "profile": "iztro-2.5.8-modern-default-v1",
+    "brightness_correction_profile": "iztro-2.5.8-with-official-2.6.1-you-data-fix-v1",
+    "brightness_correction_manifest": "resources/natal/ziwei-upstream-corrections.json",
+    "oracle_status": "UNVERIFIED"
+  },
+  "western": {
+    "engine": "skyfield",
+    "version": "1.55",
+    "kernel": "DE440s",
+    "sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+    "coordinates": "geocentric-apparent-true-ecliptic-of-date",
+    "outer_planets": "explicit-DE440s-barycentre-targets",
+    "sidereal_profile": "CRC1956-23.25-true-frame-anchor-IAU2000A-v1",
+    "sidereal_standard_status": "CUSTOM_NAMED_RECONSTRUCTION_NOT_OFFICIAL_LAHIRI",
+    "lilith_definition": "IERS2010-F+Omega-l+180-mean-apogee-longitude; latitude-zero-chart-convention; true-equinox-rotation",
+    "definition_source": "tools/natal/CALCULATION_CONVENTIONS.md#western",
+    "oracle_status": "UNVERIFIED",
+    "chiron_profile": "lowell-astorb2060-dop54-hermite8d-v1",
+    "chiron_data_sha256": "b8172992366c783e8cc65789e4837f432d3cb496c5f503b1a776275518a059e3",
+    "chiron_reference_status": "INDEPENDENT_SAMPLED_REFERENCE_MATCH_NOT_VERSION_ACCEPTANCE"
+  },
+  "prohibited_engines": [
+    "kerykeion",
+    "swisseph",
+    "pyswisseph"
+  ],
+  "privacy": {
+    "private_to_owner": true,
+    "external_birth_data": false,
+    "matching_effect": false
+  },
+  "sources": [
+    "https://github.com/6tail/lunar-php/tree/1.4.0",
+    "https://github.com/SylarLong/iztro/tree/v2.5.8",
+    "https://rhodesmill.org/skyfield/",
+    "https://naif.jpl.nasa.gov/naif/rules.html"
+  ]
+}

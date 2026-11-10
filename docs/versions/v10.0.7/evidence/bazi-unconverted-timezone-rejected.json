@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-15T00:18:18.162760+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/profile/astro",
+  "request": {
+    "birth_time": "14:30",
+    "tz_str": "America/New_York"
+  },
+  "status": 422,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "validation_error",
+      "message": "The selected tz str is invalid.",
+      "details": {
+        "tz_str": [
+          "The selected tz str is invalid."
+        ]
+      }
+    }
+  }
+}

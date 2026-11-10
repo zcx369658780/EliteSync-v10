@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-15T00:58:54.970413+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/mbti/result",
+  "request": null,
+  "status": 404,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "http_error",
+      "message": "The route api/v1/mbti/result could not be found.",
+      "details": null
+    }
+  }
+}

@@ -1,0 +1,10 @@
+Analyzing live_connection_page.dart, live_connection_page_test.dart...
+
+warning - lib\features\connection\presentation\pages\live_connection_page.dart:111:47 - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator. - unnecessary_non_null_assertion
+   info - lib\features\connection\presentation\pages\live_connection_page.dart:59:9 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\features\connection\presentation\pages\live_connection_page.dart:124:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\features\connection\presentation\pages\live_connection_page.dart:143:24 - Unnecessary braces in a string interpolation. Try removing the braces. - unnecessary_brace_in_string_interps
+   info - test\features\connection\live_connection_page_test.dart:44:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - test\features\connection\live_connection_page_test.dart:71:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+6 issues found.

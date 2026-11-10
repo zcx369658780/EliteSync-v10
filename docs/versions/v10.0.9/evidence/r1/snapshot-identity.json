@@ -1,0 +1,11 @@
+{
+  "refs": {
+    "baseline08": "3a8f7989aa208285b885f1c80f4365f38488ac54",
+    "candidate09": "66a8638581d1017823ac3caa2536568e0de3b939"
+  },
+  "php": "C:\\tools\\php85\\php.exe",
+  "memory_limit": "512M",
+  "database": "phpunit sqlite :memory:",
+  "environment": "same current inherited environment and same existing .env; no service startup",
+  "dependency": "same existing vendor packages; isolated composer app mapping; no installation"
+}
