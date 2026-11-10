@@ -33,10 +33,15 @@ final class V1007IsolationGateTest extends TestCase
     {
         $local = ['local', true, 'mysql', 'elitesync_v1007_dev', '127.0.0.1', '', 43317, 43317, true];
         $case = static fn (array $changes) => array_replace($local, $changes);
+        $v1015 = $case([3 => 'elitesync_v10_1_5_dev', 6 => 43326, 7 => 43326]);
 
         return [
             'isolated local mysql' => $local,
             'isolated local mariadb' => $case([2 => 'mariadb']),
+            'current v1015 isolated mysql' => $v1015,
+            'current v1015 isolated mariadb' => array_replace($v1015, [2 => 'mariadb']),
+            'v1015 rejects old version port' => array_replace($v1015, [6 => 43325, 7 => 43325, 8 => false]),
+            'v1015 port rejects old version database' => $case([3 => 'elitesync_v10_1_4_dev', 6 => 43326, 7 => 43326, 8 => false]),
             'production even configured' => $case([0 => 'production', 8 => false]),
             'unknown environment' => $case([0 => 'staging', 8 => false]),
             'local feature flag off' => $case([1 => false, 8 => false]),
