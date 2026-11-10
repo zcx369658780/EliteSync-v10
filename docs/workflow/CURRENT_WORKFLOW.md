@@ -1,3 +1,13 @@
+# 2026-11-10 Docker过滤查询于设备前STOP；全部原次数未耗，完整库存新scope已准备（CURRENT ENTRY）
+
+case05按准确批准只运行一次，filtered ps名称查询15秒超时，22.843秒STOP；phone0，仍158/320余162，E两处launch/install/B claim均无，原已批E启动/安装各1及原B1全部未耗。无SDK/私有ADB/Activity/账号输入/API/DB/登录互发媒体；root Edriver1失败标记保留、端口闭。185旧State与case04已核终态0差异/全停止，本次early快照未完成不虚构。详见[本节点](V1015_DOCKER_FILTER_PREDEVICE_STOP_UNUSED_SCOPE_PREPARED_20261110.md)。
+
+case06仅HOST_ONLY以完整容器/卷/网络库存精确名称比较取代全部过滤查询，完整性/旧State/网段路由等原保护保留；early先保存、ready仍全通过才发布。真实完整RO GREEN2通过726source/9161vendor及全部条件，125Python+新native5constructor/workspace-ready1+6clock、非作者无剩余P1/P2；跨旧单独install转交P2已RED→GREEN修复。78payload，无actual reply/grant/claim/transfer。下一新增次数全0，需准确新scope批准后仅独占转交case05未耗E启动/安装各1+B原1，phone余162不追加，900+shared45整链连续，不逐动作问。
+
+case05 actual三件在runtime-closeout，根prepared原证不改；case06根三件prepared。source1f/APKb621/原main255/index/%SystemDrive%及全部旧资产/STOP保护，ledger仅追加/镜像不哈希。10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN缓存UNKNOWN；功能优先/UI最后，不手机卸载重装/APP重编/合main/发布/v10.1.6。
+
+---
+
 # 2026-11-10 两端登录资格通过；继承依赖摘要异常STOP，完整后端准备检查已前移（CURRENT ENTRY）
 
 case04按批准只跑一次：E OS/同包安装/Activity/APP与两端完整空登录/focus/IME通过，B preclaim因继承清单两项SHA被55401→55403污染而止。实际vendor未改，与ledger保护原清单一致；无B grant/contract/claim或账号输入/API/DB/登录互发媒体。phone28累计158/320余162，E41+25=66，boot/install各耗1、B原未耗1留case04 STOP。runner/Bdriver1、Edriver/controller0，root1项B退出失败标记保留；实际清理成功、185旧State0差异/owned过程0/端口闭，整段221.968秒。详见[本节点](V1015_VENDOR_DIGEST_INHERITANCE_STOP_COMPLETE_PREFLIGHT_REPAIRED_20261110.md)。
