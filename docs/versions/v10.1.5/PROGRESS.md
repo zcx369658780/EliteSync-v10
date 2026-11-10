@@ -26,6 +26,10 @@ call5在实际两参与者通话中经正常HTTP撤销MC，响应0.078秒、请�
 
 最新源码d1f71cb0的896候选已实际构建34.644秒并更新双模拟器，APK SHA256 `896ace212148f61ada0e33e653052318e537ce2238cf8afc94eb74691cef9095`、154097126字节；新波形与cleanup-owner内核标记、v2签名/身份通过。call6双方本地/远端生成视频及编码/解码非零，一端一次自动重连后恢复；保留的本call完整自身日志中双方Concurrent modification、Unhandled Exception与Visualizer错误均0。原生波形监听已启动，但变化bands未观察到，波形活动效果仍NOT_VERIFIED；不冒充真实音质/AEC。正常撤MC到房间不存在0.297秒，双方恢复新代MC3后旧房间保持不存在，call6结束。原call5撤权回执已追加保存在history JSONL，未覆盖旧事实；当前新回执为 `call6-video-native-visualizer-private.json`。
 
+## 当前APP确认丢失后的发送重试
+
+896候选经实际APP→真实API→MariaDB完成一次确认丢失场景：本机短时代理将首个真实message POST的成功确认替换为503，服务端已保存message15；APP显示结果未确认及“使用原消息编号重试”，用户路径点击后第二次真实POST使用同client_message_id、返回同server ID且idempotent_replay=true。真实GET按该client UUID只读回1条，APP显示已确认内容；未伪造成功或直接插表。该测试也经历同包进程重启和正常在线登录恢复，但不是Android离线清理/15或30天证明。临时代理已停止，专用模拟器API reverse已恢复直连，手机未用。私有回执 `app-ack-retry-private.json`；其它弱网、并发及故障矩阵仍按原未完成项保留。
+
 ## 重启后的登出与换号清理
 
 已修复服务重启丢失namespace后clearCurrentAccount直接completed、旧密文留存的缺陷。固定secure-storage owner locator仅保存清理目标，严格以账号/设备派生私有namespace；不恢复读授权、会话、单调时钟或离线解锁。重启登出及新账号/设备登录前先清已登记旧owner，逐项验证对象、双索引与最后删除的locator；写内容前先持久并读回locator，避免静默写失败生成不可定位内容。中途删除失败保留目标并报告failed，不枚举其他账号或凭据。
