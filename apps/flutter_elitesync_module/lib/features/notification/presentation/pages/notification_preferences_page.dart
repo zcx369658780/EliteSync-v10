@@ -66,15 +66,17 @@ class _NotificationPreferencesPageState
     final identity = _identity;
     if (identity == null) return;
     final p = await Permission.notification.status;
-    if (!mounted || identity != _identity || generation != _loadGeneration)
+    if (!mounted || identity != _identity || generation != _loadGeneration) {
       return;
+    }
     // OS revocation is independent of the preference API's response time.
     setState(() => _permission = p);
     final reply = await ref
         .read(apiClientProvider)
         .get('/api/v1/notification-preferences');
-    if (!mounted || identity != _identity || generation != _loadGeneration)
+    if (!mounted || identity != _identity || generation != _loadGeneration) {
       return;
+    }
     setState(() {
       if (reply is NetworkSuccess<Map<String, dynamic>>) {
         final c = reply.data['categories'] as Map? ?? {};
