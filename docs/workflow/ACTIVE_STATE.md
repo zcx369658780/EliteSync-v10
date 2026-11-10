@@ -1,3 +1,13 @@
+# 2026-11-10 手机真实空登录前台与手机号焦点已证，成功后STOP（CURRENT ENTRY）
+
+Owner批准修正后的单次scope，原机/user0/同已装b621/亮屏解锁通过，四次新displays焦点TARGET；完整两空enabled字段基线→空手机号tap1→fresh可见手机号焦点通过，无Activity启动。17ADB/同域含清理6.25秒、phone59+17=76/240余164；017清理exit0、runner0/stderr空、成功也STOP。详见[本节点](V1015_PHONE_EMPTY_LOGIN_FOREGROUND_FOCUS_VERIFIED_STOP_20261110.md)。原始window/XML不存，最终隐藏字段/IME可见性未核；非作者核对一致，不冒充外部验收。
+
+本轮截图/输入/登录/媒体/安装/构建/E/B/转交均0；不复跑本scope、不自动准备或启动下一动态。原未耗后端1仍封case05/backend STOP，旧E已耗不恢复。新结果不回写旧focus拒绝/清理exit1，也不反推其精确原因。未来接续需当次fresh资格和准确范围，不把本次资格永久复用。
+
+最新私有终态读v1015-foreground-observer-host-repair-20261110-case01/execution-01/runtime-closeout-20261110三件；准备根旧三件保留prepared身份。源码1f/APK b621、原main根255项/index/%SystemDrive%和全部旧原证不动；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，双端媒体NOT_RUN、缓存真机UNKNOWN；功能优先/UI最后，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-10 前台观察器HOST_ONLY修正28项通过，新接续范围待批准（CURRENT ENTRY）
 
 Owner要求继续并报告手机在APP登录界面；报告不重写旧010精确焦点UNKNOWN。新私有副本按AOSP显示状态字段归属将window windows改displays，新增脱敏focus分类；缺失/null/歧义不冒充非目标，不自动启动。修正dump前清理所有权及cleanup覆盖主异常，实际main分支回归GREEN28项唯一测试，两处原缺陷变异预期失败；旧41次日志含15重复不算41项。详见[本节点](V1015_FOREGROUND_OBSERVER_HOST_REPAIRED_SCOPE_PREPARED_20261110.md)。本轮设备/SDK/构建/安装/E/B命令0，原STOP/原证不改，实际Redmi效果UNKNOWN。
