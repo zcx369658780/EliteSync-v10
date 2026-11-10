@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-11 网络日志仅保留固定元数据
+
+交接已指出普通LoggingInterceptor输出完整URI并向logger附带原始DioException/堆栈。新增12项定向用例先RED复现；现请求/响应/错误日志只保留标准HTTP方法、状态码与Dio错误类别，不读取或输出URL、header、body、原始异常和堆栈，自定义方法只标OTHER。真实Dio链验证请求URI/header/body、响应以及错误对象细节继续原样传递，没有改变鉴权、重试、重放或传输策略。
+
+12项日志检查与18项transport-replay回归共30项通过，相关analyze无问题，作者diff复核通过；未冒充非作者审查。此项尚未进入APK，不扩大为全应用日志审计或整体安全封装完成。当前设备仍是上节6343候选，私有RED/GREEN/analyze日志仅本机保留。下一项核验Android重启后显式登出缓存删除。
+
+---
+
 # 最新节点｜2026-11-11 配套RTC升级已合包并完成短通话
 
 Owner已明确恢复持续工程。私有离线Maven只增加 `io.github.webrtc-sdk:android:150.7871.04` 精确版本，保留offline；增量准备仅同步两份依赖文件，无独有前件或SDK复制。Flutter3.41.7离线pub get已重生成私有package_config，确认LiveKit2.13.2/WebRTC1.6.3且锁文件未变化。源码检查和非作者静态复核沿用上一节点，不重复75项。
