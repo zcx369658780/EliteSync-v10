@@ -20,11 +20,17 @@ RTC开发库白名单已仅补入v1.5精确配对，保留原环境、开关、L
 
 两自有模拟器受控重启启用emulated相机后，call3视频双方持续编码/解码，实际截图已见本地和远端生成测试画面，未用主机webcam。画面间歇黑屏：通话页每4秒轮询进入loading，销毁本地/远端renderer并重置滚动。现改为同通话普通refresh保留data，依赖reload、换号/换call和实际error仍替换旧内容；退出清理移至下一微任务，避免通知正在卸载的Consumer。23项组件检查、定向analyze通过，非作者复核无P1/P2；新APK实际稳定视频复测待完成。以另一设备会话的fixture token读取/结束call3被正常拒绝403（设备会话隔离），未绕过；随后由APP正常返回离开一端媒体，服务端最终ended、房间消失，不冒充UI挂断。AC05仍OPEN。
 
+随后源码6049c44d实际构建40.735秒，新APK SHA256 `426e9a308baa19dbfbc66a0551834e45682acdbcb717ee61df84aa90e9856d27`、154089094字节；签名/身份核验后两模拟器均更新且保留登录。call4两端本地/远端视频显示、跨轮询滚动保持及UI挂断通过；点击到房间不存在的同一monotonic上界2.312秒。初期发生自动重连及SDK `AudioTrack.stopCapture` 的captureGroups遍历/取消竞态，恢复后画面可见；不称连续无中断质量通过。现将波形改用现有SDK公开createVisualizer聚合bands，不修改SDK/cache或增加依赖，也不再为波形采集PCM；对象身份/代际和串行启动释放覆盖换轨/退出，7项定向检查与analyze通过，实际新包尚待复测。
+
+call5在实际两参与者通话中经正常HTTP撤销MC，响应0.078秒、请求开始到SFU房间不存在0.250秒；随后正常请求/对方接受新代MC（generation2），旧房间保持不存在、call5最终ended。未直接改表，不将房间不存在上界当完整APP采集/数据包停媒或AEC时限验收。私有回执为 `rtc-consent-revoke-private.json`，源码/API/设备身份仍分开记录。
+
 ## 本日已保存的通知与后端节点
 
 通知中心补齐更早通知读取：API支持排他before_id/limit、has_more和下一扫描游标；APP增加继续加载与失败重试，保留已读取内容，按ID去重及新到旧排序。初始/后续空页仍可继续，刷新/会话/关系epoch变化丢弃旧页与晚回。点击通知的当前权限重验保持。后端先剔除过期行，并将动态过滤限定为每页最多100条，避免大量失效历史阻断较早有效提醒或导致无界扫描。
 
 通知中心24项组件检查及受影响源码analyze通过；通知API/投递/隐私相关20项后端检查通过。独立复核发现的无界扫描P2已修复，复核无剩余P1/P2。当前MariaDB中的7条真实消息通知已实际经HTTP分4页读回，游标无重叠且不改变已读状态。新增通知分页已进入0022新候选；不把组件或后端结果当通知APP端到端通过。
+
+当前426候选上，APP通知中心实际点击单条标已读，notification14持久化read_at，未读数5→4；静默开关从false保存为true、退出设置再打开读回正确，随后经APP恢复false并核实其他类别未变。系统权限当前未允许，消息/站内功能仍可使用；没有真实Push送达或APP多页大量历史验收。私有回执 `app-notification-read-private.json` 与 `app-notification-settings-private.json`。首个标已读探针在APP异步请求完成前过早读取，后来仅等待读回核实，未重复点击或误记为产品失败。
 
 当前产品API直接使用活动源码，复用既有PHP8.4/vendor，接入本次新建的独立MariaDB空库 `elitesync_v10_1_5_dev:43326`。75项迁移成功；两个虚构账号经真实HTTP注册/登录，proposal双方接受及CN/MC请求/接受完成。8条消息在真实MariaDB持久化；同UUID重试返回原消息、latest/before/after分页顺序和边界、会话列表及认证WebSocket的真实conversation_changed事件均通过。不是mock或旧backend-source快照。
 

@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:livekit_client/livekit_client.dart';
 
-// Only aggregate one PCM block; never retain samples or treat this as playback proof.
+// Legacy pure tone helper retained for unit tests; the widget never captures PCM.
 @visibleForTesting
 ({int zeroCrossings, double tone440, double tone880}) rtcAudioToneDiagnostics(
   List<int> samples,
@@ -52,10 +51,18 @@ import 'package:livekit_client/livekit_client.dart';
   );
 }
 
+typedef RtcAudioVisualizerFactory = AudioVisualizer Function(AudioTrack track);
+
 class RtcAudioSpectrumBar extends StatefulWidget {
-  const RtcAudioSpectrumBar({super.key, required this.audioTrack});
+  const RtcAudioSpectrumBar({
+    super.key,
+    required this.audioTrack,
+    this.visualizerFactory,
+  });
 
   final AudioTrack? audioTrack;
+  @visibleForTesting
+  final RtcAudioVisualizerFactory? visualizerFactory;
 
   @override
   State<RtcAudioSpectrumBar> createState() => _RtcAudioSpectrumBarState();
@@ -64,236 +71,154 @@ class RtcAudioSpectrumBar extends StatefulWidget {
 class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
   static const int _barCount = 7;
   static const double _decay = 0.82;
-  static const double _silentThreshold = 0.0001;
+  static const double _silentThreshold = 0.001;
 
-  CancelListenFunc? _cancelRenderer;
+  AudioVisualizer? _visualizer;
+  EventsListener<AudioVisualizerEvent>? _listener;
+  Future<void> _bindingWork = Future.value();
+  int _generation = 0;
   List<double> _levels = List<double>.filled(_barCount, 0.0);
   String _status = '等待远端音轨…';
-  int _frameCount = 0;
-  DateTime? _lastFrameAt;
-  String? _boundTrackId;
-  double _lastPeak = 0.0;
-  final Stopwatch _diagnosticClock = Stopwatch()..start();
-  int? _lastDiagnosticAt;
-
-  String? _safeTrackId(AudioTrack? track) {
-    if (track == null) return null;
-    try {
-      return track.mediaStreamTrack.id;
-    } catch (error) {
-      debugPrint(
-        'RTC_LIVEKIT_AUDIO_RENDER_TRACK_ID_FAIL '
-        'device=${defaultTargetPlatform.name} '
-        'error=$error',
-      );
-      return null;
-    }
-  }
+  bool _receivedLevels = false;
 
   @override
   void initState() {
     super.initState();
-    unawaited(_bindTrack(widget.audioTrack));
+    _scheduleBinding(widget.audioTrack);
   }
 
   @override
   void didUpdateWidget(covariant RtcAudioSpectrumBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final oldId = _safeTrackId(oldWidget.audioTrack);
-    final nextId = _safeTrackId(widget.audioTrack);
-    if (oldId != nextId) {
-      unawaited(_bindTrack(widget.audioTrack));
+    // A replacement track can reuse the same native ID after reconnection.
+    if (!identical(oldWidget.audioTrack, widget.audioTrack) ||
+        oldWidget.visualizerFactory != widget.visualizerFactory) {
+      _scheduleBinding(widget.audioTrack);
     }
   }
 
   @override
   void dispose() {
-    unawaited(_unbindTrack());
+    _generation++;
+    // Native start is asynchronous. Finish it before stop/dispose so a late
+    // completion cannot create an orphaned event channel after widget disposal.
+    _bindingWork = _bindingWork.then((_) => _clearBinding());
+    unawaited(_bindingWork);
     super.dispose();
   }
 
-  Future<void> _bindTrack(AudioTrack? track) async {
-    await _unbindTrack();
-    _lastDiagnosticAt = null;
-    if (!mounted) return;
+  void _scheduleBinding(AudioTrack? track) {
+    final generation = ++_generation;
+    _levels = List<double>.filled(_barCount, 0.0);
+    _receivedLevels = false;
+    _status = track == null ? '等待远端音轨…' : '正在读取远端音频活动…';
+    _bindingWork = _bindingWork.then((_) => _bindTrack(track, generation));
+    unawaited(_bindingWork);
+  }
 
-    if (track == null) {
-      setState(() {
-        _boundTrackId = null;
-        _levels = List<double>.filled(_barCount, 0.0);
-        _status = '等待远端音轨…';
-        _frameCount = 0;
-        _lastFrameAt = null;
-        _lastPeak = 0.0;
-      });
-      return;
-    }
+  bool _current(AudioTrack track, int generation) =>
+      mounted &&
+      generation == _generation &&
+      identical(widget.audioTrack, track);
 
-    final trackId = _safeTrackId(track);
-    if (trackId == null) {
-      if (!mounted) return;
-      setState(() {
-        _boundTrackId = null;
-        _levels = List<double>.filled(_barCount, 0.0);
-        _status = '远端音轨已释放';
-        _frameCount = 0;
-        _lastFrameAt = null;
-        _lastPeak = 0.0;
-      });
-      return;
-    }
-    setState(() {
-      _boundTrackId = trackId;
-      _levels = List<double>.filled(_barCount, 0.0);
-      _status = '远端音轨已接入';
-      _frameCount = 0;
-      _lastFrameAt = null;
-      _lastPeak = 0.0;
-    });
-
-    debugPrint(
-      'RTC_LIVEKIT_AUDIO_RENDER_BIND trackId=$trackId '
-      'kind=${track.kind} '
-      'device=${defaultTargetPlatform.name}',
-    );
-
+  Future<void> _bindTrack(AudioTrack? track, int generation) async {
+    await _clearBinding();
+    if (track == null || !_current(track, generation)) return;
+    AudioVisualizer? visualizer;
+    EventsListener<AudioVisualizerEvent>? listener;
     try {
-      _cancelRenderer = track.addAudioRenderer(
-        onFrame: _onAudioFrame,
-        options: const AudioRendererOptions(
-          sampleRate: 24000,
-          channels: 1,
-          format: AudioFormat.Int16,
-        ),
+      visualizer =
+          widget.visualizerFactory?.call(track) ??
+          createVisualizer(
+            track,
+            options: const AudioVisualizerOptions(barCount: _barCount),
+          );
+      listener = visualizer.createListener();
+      listener.on<AudioVisualizerEvent>((event) {
+        if (_current(track, generation) && identical(event.track, track)) {
+          _onLevels(event.event);
+        }
+      });
+      await visualizer.start();
+      if (!_current(track, generation)) {
+        await _disposeVisualizer(visualizer, listener);
+        return;
+      }
+      _visualizer = visualizer;
+      _listener = listener;
+      if (!_receivedLevels) setState(() => _status = '远端音频活动监听中');
+    } catch (error) {
+      if (visualizer != null) await _disposeVisualizer(visualizer, listener);
+      debugPrint(
+        'RTC_AUDIO_VISUALIZER_START_FAILED errorType=${error.runtimeType}',
       );
+      if (_current(track, generation)) {
+        setState(() {
+          _levels = List<double>.filled(_barCount, 0.0);
+          _status = '音频可视化暂不可用';
+        });
+      }
+    }
+  }
+
+  Future<void> _clearBinding() async {
+    final visualizer = _visualizer;
+    final listener = _listener;
+    _visualizer = null;
+    _listener = null;
+    if (visualizer != null) await _disposeVisualizer(visualizer, listener);
+  }
+
+  Future<void> _disposeVisualizer(
+    AudioVisualizer visualizer,
+    EventsListener<AudioVisualizerEvent>? listener,
+  ) async {
+    try {
+      await listener?.dispose();
     } catch (error) {
       debugPrint(
-        'RTC_LIVEKIT_AUDIO_RENDER_BIND_FAIL trackId=$trackId '
-        'device=${defaultTargetPlatform.name} '
-        'error=$error',
+        'RTC_AUDIO_VISUALIZER_LISTENER_CLEANUP_FAILED errorType=${error.runtimeType}',
       );
-      if (!mounted) return;
-      setState(() {
-        _status = '音轨订阅失败';
-      });
-      return;
     }
+    try {
+      await visualizer.stop();
+    } catch (error) {
+      debugPrint(
+        'RTC_AUDIO_VISUALIZER_STOP_FAILED errorType=${error.runtimeType}',
+      );
+    }
+    try {
+      await visualizer.dispose();
+    } catch (error) {
+      debugPrint(
+        'RTC_AUDIO_VISUALIZER_DISPOSE_FAILED errorType=${error.runtimeType}',
+      );
+    }
+  }
 
-    if (!mounted) return;
-    setState(() {
-      _status = '远端音轨监听中';
+  void _onLevels(List<Object?> bands) {
+    final levels = List<double>.generate(_barCount, (index) {
+      final value = index < bands.length ? bands[index] : null;
+      return value is num && value.isFinite
+          ? value.toDouble().clamp(0.0, 1.0)
+          : 0.0;
     });
-  }
-
-  Future<void> _unbindTrack() async {
-    final cancel = _cancelRenderer;
-    _cancelRenderer = null;
-    if (cancel != null) {
-      try {
-        await cancel();
-      } catch (error) {
-        debugPrint(
-          'RTC_LIVEKIT_AUDIO_RENDER_UNBIND_FAIL '
-          'trackId=${_boundTrackId ?? "none"} '
-          'device=${defaultTargetPlatform.name} '
-          'error=$error',
-        );
-      }
-    }
-  }
-
-  void _onAudioFrame(AudioFrame frame) {
-    final sampleCount = frame.data.lengthInBytes ~/ 2;
-    if (sampleCount <= 0) {
-      return;
-    }
-
-    final samples = frame.data.buffer.asInt16List(
-      frame.data.offsetInBytes,
-      sampleCount,
-    );
-
-    final nextLevels = List<double>.filled(_barCount, 0.0);
-    final chunkSize = math.max(1, (samples.length / _barCount).floor());
-    for (var i = 0; i < _barCount; i++) {
-      final start = i * chunkSize;
-      final end = i == _barCount - 1
-          ? samples.length
-          : math.min(samples.length, (i + 1) * chunkSize);
-      if (start >= end) {
-        break;
-      }
-
-      var total = 0.0;
-      for (var j = start; j < end; j++) {
-        total += samples[j].abs().toDouble();
-      }
-      final average = total / (end - start) / 32768.0;
-      nextLevels[i] = math.min(1.0, math.sqrt(average));
-    }
-
-    final frameAbsAverage = samples.isEmpty
-        ? 0.0
-        : samples.fold<double>(
-                0.0,
-                (sum, sample) => sum + sample.abs().toDouble(),
-              ) /
-              samples.length /
-              32768.0;
-    final framePeak = samples.isEmpty
-        ? 0.0
-        : samples
-                  .map((sample) => sample.abs().toDouble())
-                  .fold<double>(0.0, math.max) /
-              32768.0;
-
-    if (!mounted) return;
     setState(() {
-      _frameCount += 1;
-      _lastFrameAt = DateTime.now();
-      _lastPeak = framePeak;
-      _status = framePeak <= _silentThreshold ? '远端音轨已接入但无声' : '远端音轨输入中';
+      _receivedLevels = true;
+      _status = levels.any((level) => level > _silentThreshold)
+          ? '远端音频活动中'
+          : '当前远端音频活动较低';
       _levels = List<double>.generate(
         _barCount,
-        (i) => math.max(nextLevels[i], _levels[i] * _decay),
+        (index) => math.max(levels[index], _levels[index] * _decay),
       );
     });
-
-    final now = _diagnosticClock.elapsedMilliseconds;
-    if (_lastDiagnosticAt == null || now - _lastDiagnosticAt! >= 1000) {
-      _lastDiagnosticAt = now;
-      final tones = rtcAudioToneDiagnostics(samples, frame.sampleRate);
-      debugPrint(
-        'RTC_LIVEKIT_AUDIO_FRAME '
-        'trackId=${_boundTrackId ?? "none"} '
-        'device=${defaultTargetPlatform.name} '
-        'sampleRate=${frame.sampleRate} '
-        'channels=${frame.channels} '
-        'bytes=${frame.data.lengthInBytes} '
-        'absAvg=${frameAbsAverage.toStringAsFixed(4)} '
-        'peak=${framePeak.toStringAsFixed(4)} '
-        'zeroCrossings=${tones.zeroCrossings} '
-        'tone440=${tones.tone440.toStringAsFixed(4)} '
-        'tone880=${tones.tone880.toStringAsFixed(4)} '
-        'frames=$_frameCount',
-      );
-    }
-  }
-
-  String _lastFrameLabel() {
-    final lastFrameAt = _lastFrameAt;
-    if (lastFrameAt == null) {
-      return '暂无音频帧';
-    }
-    final delta = DateTime.now().difference(lastFrameAt);
-    return '最近帧 ${delta.inMilliseconds}ms 前';
   }
 
   @override
   Widget build(BuildContext context) {
     final t = context.appTokens;
-    final track = widget.audioTrack;
-
+    final hasTrack = widget.audioTrack != null;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -311,29 +236,19 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
               Row(
                 children: [
                   Icon(
-                    track == null
-                        ? Icons.graphic_eq_outlined
-                        : Icons.graphic_eq,
-                    color: track == null ? t.textTertiary : t.brandPrimary,
+                    hasTrack ? Icons.graphic_eq : Icons.graphic_eq_outlined,
+                    color: hasTrack ? t.brandPrimary : t.textTertiary,
                     size: 20,
                   ),
                   SizedBox(width: t.spacing.xs),
                   Expanded(
                     child: Text(
-                      _frameCount > 0 && _lastPeak <= _silentThreshold
-                          ? '远端音轨已接入但无声'
-                          : _status,
+                      _status,
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: t.textPrimary,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                  ),
-                  Text(
-                    _lastFrameLabel(),
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
                   ),
                 ],
               ),
@@ -344,17 +259,16 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(_barCount, (index) {
-                    final level = _levels[index].clamp(0.0, 1.0);
-                    final height = 6.0 + (level * 34.0);
                     return AnimatedContainer(
+                      key: ValueKey('rtc-audio-band-$index'),
                       duration: const Duration(milliseconds: 120),
                       curve: Curves.easeOutCubic,
                       width: 12,
-                      height: height,
+                      height: 6.0 + _levels[index].clamp(0.0, 1.0) * 34.0,
                       decoration: BoxDecoration(
-                        color: track == null
-                            ? t.textTertiary.withValues(alpha: 0.28)
-                            : t.brandPrimary.withValues(alpha: 0.85),
+                        color: hasTrack
+                            ? t.brandPrimary.withValues(alpha: 0.85)
+                            : t.textTertiary.withValues(alpha: 0.28),
                         borderRadius: BorderRadius.circular(999),
                       ),
                     );
@@ -366,13 +280,7 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
         ),
         SizedBox(height: t.spacing.xs),
         Text(
-          track == null
-              ? '当前还没有拿到远端音轨。若对端已在说话，请优先看 Room.connect / subscribe 日志。'
-              : _frameCount == 0
-              ? 'track=${track.mediaStreamTrack.id} / 仍未收到音频帧。'
-              : _lastPeak <= _silentThreshold
-              ? 'track=${track.mediaStreamTrack.id} / 帧已到达但当前仍是静音信号。'
-              : 'track=${track.mediaStreamTrack.id} / frames=$_frameCount / 绑定后会持续刷新波形。',
+          hasTrack ? '波形仅表示音轨活动，不能证明实际播放或回声消除效果。' : '等待对方接入后显示音频活动。',
           style: Theme.of(
             context,
           ).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
