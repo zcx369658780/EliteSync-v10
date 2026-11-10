@@ -20,6 +20,7 @@ class PrivateCacheService {
   PrivateCacheService._(this._secure, this._wallNow, this._elapsed);
 
   static final _instances = Expando<PrivateCacheService>();
+  static const _ownerLocatorKey = 'v1015_private:cleanup-owner';
   factory PrivateCacheService.forStorage(SecureStorageService secure) {
     return _instances[secure] ??= PrivateCacheService._(
       secure,
@@ -90,6 +91,31 @@ class PrivateCacheService {
     _readGrants.clear();
   }
 
+  String _namespaceFor(int accountId, String deviceId) =>
+      'v1015_private:a$accountId:d${Uri.encodeComponent(deviceId)}';
+
+  // This locator is only a deletion target. It never restores a session,
+  // a server clock, read grants, or offline access after process restart.
+  Future<String?> _readOwnerNamespace() async {
+    final raw = await _secure.read(_ownerLocatorKey);
+    if (raw == null) return null;
+    final value = jsonDecode(raw);
+    if (value is! Map ||
+        value.length != 3 ||
+        value['version'] is! int ||
+        value['version'] != 1 ||
+        value['account_id'] is! int ||
+        (value['account_id'] as int) <= 0 ||
+        value['device_id'] is! String ||
+        (value['device_id'] as String).isEmpty) {
+      throw const FormatException('Invalid private cache cleanup owner.');
+    }
+    return _namespaceFor(
+      value['account_id'] as int,
+      value['device_id'] as String,
+    );
+  }
+
   Future<bool> establishLogin({
     required int userId,
     required Map<String, dynamic>? retention,
@@ -121,16 +147,33 @@ class PrivateCacheService {
             !server.isBefore(onlineExpiry)) {
           return false;
         }
+        final storedOwner = await _readOwnerNamespace();
+        if (storedOwner != null &&
+            _namespace != null &&
+            storedOwner != _namespace) {
+          return false;
+        }
+        final oldNamespace = storedOwner ?? _namespace;
+        if (oldNamespace != null) {
+          final oldCleanup = await _purgeNamespace(oldNamespace);
+          if (generation != _generation ||
+              oldCleanup.status != PrivateCachePurgeStatus.completed) {
+            return false;
+          }
+        }
+        final nextNamespace = _namespaceFor(userId, device);
         _userId = userId;
         _sessionId = session;
         _deviceId = device;
-        _namespace = 'v1015_private:a$userId:d${Uri.encodeComponent(device)}';
-        // A new successful login does not silently renew a prior process's
-        // unverified cached copy. Clear only this exact account/device namespace.
-        final cleanup = await _purgeOwnedNamespace(invalidate: false);
-        if (generation != _generation ||
-            cleanup.status != PrivateCachePurgeStatus.completed) {
-          return false;
+        _namespace = nextNamespace;
+        // A fresh login also clears any old copy at its exact target. Neither
+        // the locator nor an old encrypted copy renews the login clock.
+        if (nextNamespace != oldNamespace) {
+          final cleanup = await _purgeOwnedNamespace(invalidate: false);
+          if (generation != _generation ||
+              cleanup.status != PrivateCachePurgeStatus.completed) {
+            return false;
+          }
         }
         _loginAt = login;
         _serverAnchor = server;
@@ -181,11 +224,13 @@ class PrivateCacheService {
       key != 'manifest' &&
       key != 'manifest-recovery';
 
-  Future<Set<String>> _manifest() async {
+  Future<Set<String>> _manifest({String? namespace}) async {
+    final target = namespace ?? _namespace;
+    if (target == null) return {};
     final objects = <String>{};
     var found = false;
     var parsed = false;
-    for (final key in [_manifestKey, _recoveryManifestKey]) {
+    for (final key in ['$target:manifest', '$target:manifest-recovery']) {
       final raw = await _secure.read(key);
       if (raw == null) continue;
       found = true;
@@ -220,6 +265,7 @@ class PrivateCacheService {
     // Otherwise an old account's waiting write could borrow a new login's key.
     final generation = _generation;
     final account = _userId;
+    final device = _deviceId;
     final session = _sessionId;
     final namespace = _namespace;
     final login = _loginAt;
@@ -251,13 +297,20 @@ class PrivateCacheService {
     }
 
     return _serialize(() async {
-      if (!current() ||
+      if (namespace == null ||
+          account == null ||
+          device == null ||
+          !current() ||
           !_canUse(offline: false) ||
           !_validObjectKey(objectKey) ||
           utf8.encode(envelope).length > 512 * 1024) {
         return false;
       }
       try {
+        final storedOwner = await _readOwnerNamespace();
+        if (storedOwner != null && storedOwner != namespace) {
+          throw const FormatException('Private cache cleanup owner changed.');
+        }
         final manifest = await _manifest();
         if (!current()) return false;
         if (manifest.length > 128) {
@@ -267,12 +320,30 @@ class PrivateCacheService {
         }
         // Recovery first, then primary, then object. Saving also consumes the
         // union so a missing primary cannot erase older recovery-owned objects.
-        if (!manifest.contains(objectKey) && manifest.length >= 128)
+        if (!manifest.contains(objectKey) && manifest.length >= 128) {
           return false;
+        }
         manifest.add(objectKey);
         await _secure.write(recoveryManifestKey, jsonEncode(manifest.toList()));
         if (!current()) return false;
         await _secure.write(manifestKey, jsonEncode(manifest.toList()));
+        if (!current()) return false;
+        // Establish cleanup reachability before writing any private content.
+        // Empty logins and failures before the indexes do not create a locator.
+        await _secure.write(
+          _ownerLocatorKey,
+          jsonEncode({
+            'version': 1,
+            'account_id': account,
+            'device_id': device,
+          }),
+        );
+        if (!current()) return false;
+        if (await _readOwnerNamespace() != namespace) {
+          throw const FormatException(
+            'Private cache cleanup owner was not persisted.',
+          );
+        }
         if (!current()) return false;
         await _secure.write(objectKeyOnDisk, envelope);
         if (!current() || !_canUse(offline: false)) {
@@ -378,28 +449,52 @@ class PrivateCacheService {
     return _purgeOwnedNamespace();
   });
 
-  /// Explicit logout/account switch only deletes the namespace opened by this
-  /// login. Unknown old accounts and historical evidence are never enumerated.
-  Future<PrivateCachePurgeReceipt> clearCurrentAccount() =>
-      _serialize(() async {
-        lock();
-        if (_namespace == null) {
+  /// Explicit logout/account switch clears only the opened namespace or its
+  /// validated restart locator. It never enumerates storage or restores reads.
+  Future<PrivateCachePurgeReceipt> clearCurrentAccount() => _serialize(
+    () async {
+      lock();
+      try {
+        final storedOwner = await _readOwnerNamespace();
+        if (storedOwner != null &&
+            _namespace != null &&
+            storedOwner != _namespace) {
+          return const PrivateCachePurgeReceipt(PrivateCachePurgeStatus.failed);
+        }
+        final target = storedOwner ?? _namespace;
+        if (target == null) {
           return const PrivateCachePurgeReceipt(
             PrivateCachePurgeStatus.completed,
           );
         }
-        return _purgeOwnedNamespace();
-      });
+        return _purgeNamespace(target);
+      } catch (_) {
+        return const PrivateCachePurgeReceipt(PrivateCachePurgeStatus.failed);
+      }
+    },
+  );
 
   Future<PrivateCachePurgeReceipt> _purgeOwnedNamespace({
     bool invalidate = true,
   }) async {
     if (invalidate) lock();
+    final target = _namespace;
+    if (target == null) {
+      return const PrivateCachePurgeReceipt(PrivateCachePurgeStatus.completed);
+    }
+    return _purgeNamespace(target);
+  }
+
+  Future<PrivateCachePurgeReceipt> _purgeNamespace(String namespace) async {
     var deleted = 0;
     try {
-      final manifest = await _manifest();
+      final storedOwner = await _readOwnerNamespace();
+      if (storedOwner != null && storedOwner != namespace) {
+        return const PrivateCachePurgeReceipt(PrivateCachePurgeStatus.failed);
+      }
+      final manifest = await _manifest(namespace: namespace);
       for (final object in manifest) {
-        final key = _key(object);
+        final key = '$namespace:${Uri.encodeComponent(object)}';
         await _secure.delete(key);
         if (await _secure.read(key) != null) {
           return PrivateCachePurgeReceipt(
@@ -409,9 +504,28 @@ class PrivateCacheService {
         }
         deleted++;
       }
-      for (final index in [_manifestKey, _recoveryManifestKey]) {
+      for (final index in [
+        '$namespace:manifest',
+        '$namespace:manifest-recovery',
+      ]) {
         await _secure.delete(index);
         if (await _secure.read(index) != null) {
+          return PrivateCachePurgeReceipt(
+            PrivateCachePurgeStatus.failed,
+            deletedObjects: deleted,
+          );
+        }
+      }
+      if (storedOwner != null) {
+        // Delete the locator last; any earlier failure retains its retry target.
+        if (await _readOwnerNamespace() != namespace) {
+          return PrivateCachePurgeReceipt(
+            PrivateCachePurgeStatus.failed,
+            deletedObjects: deleted,
+          );
+        }
+        await _secure.delete(_ownerLocatorKey);
+        if (await _secure.read(_ownerLocatorKey) != null) {
           return PrivateCachePurgeReceipt(
             PrivateCachePurgeStatus.failed,
             deletedObjects: deleted,
