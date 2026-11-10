@@ -1,3 +1,13 @@
+# 2026-11-10 Owner要求按整段连续推进；完整双端候选99项主机检查通过（CURRENT ENTRY）
+
+按Owner“不要每次操作都停下”，以后在已准确批准的完整任务内连续观察、等待、导航、亮屏、输入与业务验证，中间成功不再单独STOP或逐动作问Owner。旧STOP/已耗/保留事项不撤销；需要新范围时一次合并准确说明。新私有连续入口已整合手机实际APP前台先于E claim→E OS/APP→两端完整表单/IME→原未耗B1→两个虚构账号登录/双向文字持久化→退出/统一清理。详见[连续候选](V1015_CONTINUOUS_DUAL_CHAT_SCOPE_PREPARED_20261110.md)及其中Owner决定。
+
+99Python＋6纯native检查通过，非作者6项P2已修复回归、最终无剩余P1/P2；统一原monotonic/QPC900秒、唯一shared45清理，dump/reverse派发凭据可跨被杀子进程恢复，所有focus消费者使用新查询。71payload候选仅准备，无实际reply/request/grant/claim/transfer，设备/SDK/Docker0。需新E启动/安装各1，B新增0只独占转交原未耗1，不重复申请；phone76/240余164同ledger续计，整段批准后不再分步确认。
+
+产品source1f/APKb621、原main根255项/index/%SystemDrive%及全部历史保护不动；10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN、缓存真机UNKNOWN。功能优先/UI最后，不合main/发布、不启v10.1.6。最新prepared三件在v1015-continuous-dual-chat-20261110-case01；原手机成功终态及全部STOP独立保留，不覆盖、不复跑。
+
+---
+
 # 2026-11-10 手机真实空登录前台与手机号焦点已证，成功后STOP（CURRENT ENTRY）
 
 Owner批准修正后的单次scope，原机/user0/同已装b621/亮屏解锁通过，四次新displays焦点TARGET；完整两空enabled字段基线→空手机号tap1→fresh可见手机号焦点通过，无Activity启动。17ADB/同域含清理6.25秒、phone59+17=76/240余164；017清理exit0、runner0/stderr空、成功也STOP。详见[本节点](V1015_PHONE_EMPTY_LOGIN_FOREGROUND_FOCUS_VERIFIED_STOP_20261110.md)。原始window/XML不存，最终隐藏字段/IME可见性未核；非作者核对一致，不冒充外部验收。
