@@ -5,13 +5,13 @@ Owner 已明确继续完善 APP；后续可同时使用两个模拟器进行功�
 - 产品根：`D:\EliteSync-v10-product-v1015-20261101`；分支 `codex/v10.1.5-software-continuation-20261101`。原主库 main/255项状态/index 与无关 `%SystemDrive%/` 保留。
 - 已实现历史/发送/断网恢复、附件和通知设置重试、通话模式保持/有限重试、视频进度/重播、消息列表自动更新和图片完整缩放查看。相关组件检查通过；当前产品API、独立虚构数据库和双模拟器已接通，实际结果见下文，不占用手机。
 - 通知中心现可继续加载较早提醒，失败保留内容并重试；空页仍按服务端下降游标继续，刷新/换号隔离晚回。后端每页最多100条动态检查，过期项先过滤，避免失效提醒挡住旧内容或全历史扫描。组件与相关后端检查通过，已进入新统一候选。
-- 当前已安装的源码Debug候选：源码 `6049c44df2ca7ae4ca39e11fe364dfff0f275c3b`，APK SHA256 `426e9a308baa19dbfbc66a0551834e45682acdbcb717ee61df84aa90e9856d27`；40.735秒构建成功、签名/身份通过，两模拟器均已更新，实际视频/通知结果见下。波形后续修正已保存但尚未进入此APK。固定私有回执在 `v1015-source-debug-workspace/state/current-functional-build.json`，此前612候选的文字/图片/短视频事实仍按独立原回执保留；构建摘要在functional-build-history.jsonl，旧b621原件保留。
+- 当前已安装的源码Debug候选：源码 `d1f71cb0d2a19bed3dca548d841f62646715f846`，APK SHA256 `896ace212148f61ada0e33e653052318e537ce2238cf8afc94eb74691cef9095`；34.644秒构建成功，签名/身份及新波形/cleanup-owner JIT标记通过，两模拟器均更新。call6两端画面/编码解码和一次自动重连恢复已观察到，结束无原SDK集合异常；正常MC撤销到房间消失0.297秒，新代3恢复后旧房间不复活。原生Visualizer已启动但变化波形未观察到，听感/AEC未验。固定构建回执在 `v1015-source-debug-workspace/state/current-functional-build.json`、实测 `v1015-current-dev/call6-video-native-visualizer-private.json`；此前612文字/图片/短视频及426通知事实仍按各自原回执保留，旧b621原件保留。
 - 当前产品API已接通全新独立MariaDB（75项迁移），两个虚构账号实际注册/登录、proposal双方接受、CN/MC授权成功；文字、图片和短视频共10条消息经真实HTTP持久化，幂等重试、before/after分页、认证WebSocket事件、真实ffprobe视频校验和私有媒体完整/分段下载通过。聊天网关运行文件已改到可写storage，非root/只读源码环境实际启动通过。私有回执在 `v1015-current-dev/chat-verification.json` 与 `media-verification.json`。宿主连接先遭复合操作自动审批拒绝；随后增加确切自有资源/回环端口/DB监听检查的较窄操作获准，宿主API健康200、DB不公开。APP联测NOT_RUN，不占用手机。
 - 两个本次新建模拟器均已安装同包、登录两个虚构账号并完成APP文字双向互发（message11/12、已读及加密字段读回确认）。实际系统选择器选图/选短片后分别产生asset3/message13、asset4/message14，均ready并被对端读回；图片实际渲染、完整预览和返回聊天通过，新视频实际原生解码并播放到0:02/0:02，重播控件出现。初次超时已定位开发服务Windows依赖读取：保留权限/播放器时限，使用同一vendor的单一Linux运行缓存后请求4.578→0.047秒，同APK复测通过。私有当前回执 `v1015-current-dev/app-functional-verification-private.json`；不代表完整媒体/权限矩阵或整版PASS，手机未使用。
 - 本次自有开发服务与两模拟器当前仍运行；精确资源/PID/端口在 `v1015-current-dev/runtime-private.json`。专用ADB5038只连接模拟器，实体USB排除；不调用退役执行器。Owner明确叫停时停止自有进程并保留数据/源码交接。
 - RTC监督网关已接通：语音双向UDP/RTP、界面挂断后0.672秒房间消失已观察到；修正轮询销毁renderer后，新426候选在两APP显示本地/远端生成视频，跨轮询滚动保持，UI挂断后2.312秒房间消失。正常HTTP撤MC后0.250秒房间消失，双方新代同意恢复后旧房间未复活。仅为具体房间清理子证据，不等于AEC或完整撤权≤5秒验收；跨设备会话RTC请求仍403。初始重连还暴露SDK音频诊断取消竞态，现已改用官方聚合Visualizer（7项检查/analyze通过），新包复测待完成。详见PROGRESS。
 - 通知中心实际APP单条标已读、服务端未读5→4通过；静默设置APP保存→重新打开读回→恢复原设置通过。未用系统Push供应商；不将这些结果当APP分页全量或远程送达通过。
-- 重启后的登出清理已修复：持久owner定位仅用于精确删除，重启登出/换号可清已登记旧namespace；对象、双索引和定位删除均核验，写内容前验证定位已落盘。RED复现应删2实际0，最终21项缓存与5项auth集成检查/analyze通过。仍不恢复读取、授权或可信时钟；未知旧未索引资产不扫描、不宣称全清。待与波形修正一起进入后续候选，避免重复构建。
+- 重启后的登出清理已修复并进入896候选：持久owner定位仅用于精确删除，重启登出/换号可清已登记旧namespace；对象、双索引和定位删除均核验，写内容前验证定位已落盘。RED复现应删2实际0，最终21项缓存与5项auth集成检查/analyze、非作者复核通过。仍不恢复读取、授权或可信时钟；未知旧未索引资产不扫描、不宣称全清。Android实际重启/登出清理待验证。
 - v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。RTC画面稳定性/AEC、15/30边界、安全封装、通知和最终集中验收未完成；真机缓存效果UNKNOWN。
 - 资产整理已完成确认冗余项；[版本与资产索引](../versions/ASSET_VERSION_SUMMARY_20261110.md) 记录归档与保留项。旧 case07 STOP、case08 未激活、旧已耗/未耗事实保留；不继续退役冻结链。
 

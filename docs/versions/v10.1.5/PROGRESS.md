@@ -24,11 +24,13 @@ RTC开发库白名单已仅补入v1.5精确配对，保留原环境、开关、L
 
 call5在实际两参与者通话中经正常HTTP撤销MC，响应0.078秒、请求开始到SFU房间不存在0.250秒；随后正常请求/对方接受新代MC（generation2），旧房间保持不存在、call5最终ended。未直接改表，不将房间不存在上界当完整APP采集/数据包停媒或AEC时限验收。私有回执为 `rtc-consent-revoke-private.json`，源码/API/设备身份仍分开记录。
 
+最新源码d1f71cb0的896候选已实际构建34.644秒并更新双模拟器，APK SHA256 `896ace212148f61ada0e33e653052318e537ce2238cf8afc94eb74691cef9095`、154097126字节；新波形与cleanup-owner内核标记、v2签名/身份通过。call6双方本地/远端生成视频及编码/解码非零，一端一次自动重连后恢复；保留的本call完整自身日志中双方Concurrent modification、Unhandled Exception与Visualizer错误均0。原生波形监听已启动，但变化bands未观察到，波形活动效果仍NOT_VERIFIED；不冒充真实音质/AEC。正常撤MC到房间不存在0.297秒，双方恢复新代MC3后旧房间保持不存在，call6结束。原call5撤权回执已追加保存在history JSONL，未覆盖旧事实；当前新回执为 `call6-video-native-visualizer-private.json`。
+
 ## 重启后的登出与换号清理
 
 已修复服务重启丢失namespace后clearCurrentAccount直接completed、旧密文留存的缺陷。固定secure-storage owner locator仅保存清理目标，严格以账号/设备派生私有namespace；不恢复读授权、会话、单调时钟或离线解锁。重启登出及新账号/设备登录前先清已登记旧owner，逐项验证对象、双索引与最后删除的locator；写内容前先持久并读回locator，避免静默写失败生成不可定位内容。中途删除失败保留目标并报告failed，不枚举其他账号或凭据。
 
-原clear分支已实际RED复现（重启应删2对象、实际0），新实现21项缓存检查及定向analyze通过；现有auth集成5项通过，覆盖换号、失败清理不发布新会话及登出凭据删除，非作者复核无P1/P2。当前仅源码/定向主机证据，尚未进入新APK或证明Android真实密钥库/30天完整清理。旧版从未记录locator且当前无法定位的副本不会被本修复发现或全清；新登录只清精确已知目标，历史资产保护不变。
+原clear分支已实际RED复现（重启应删2对象、实际0），新实现21项缓存检查及定向analyze通过；现有auth集成5项通过，覆盖换号、失败清理不发布新会话及登出凭据删除，非作者复核无P1/P2。现已进入896候选，Android实际重启/登出清理仍待验证，不代表真实密钥库/30天完整清理已证。旧版从未记录locator且当前无法定位的副本不会被本修复发现或全清；新登录只清精确已知目标，历史资产保护不变。
 
 ## 本日已保存的通知与后端节点
 
