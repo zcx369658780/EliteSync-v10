@@ -280,7 +280,7 @@ class _RtcAudioSpectrumBarState extends State<RtcAudioSpectrumBar> {
         ),
         SizedBox(height: t.spacing.xs),
         Text(
-          hasTrack ? '波形仅表示音轨活动，不能证明实际播放或回声消除效果。' : '等待对方接入后显示音频活动。',
+          hasTrack ? '波形显示对方的声音活动。' : '等待对方接入后显示声音活动。',
           style: Theme.of(
             context,
           ).textTheme.bodySmall?.copyWith(color: t.textSecondary, height: 1.35),
