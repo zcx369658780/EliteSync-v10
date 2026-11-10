@@ -1,3 +1,13 @@
+# 2026-11-10 后端原次数已耗，旧PHP身份门拒绝STOP；同源身份与fresh范围准备（CURRENT ENTRY）
+
+case06批准整段只跑一次：两端完整空登录/focus/IME及E ready通过，原B1已claim并启动新DB/API；旧PHP TASK/host门拒绝却exit0输出文本，parser失败STOP。无migrate/seed/WS start/账号输入/业务API/登录互发媒体。phone25累计183/320余137，E40+25=65，E启动/安装/B各耗1余0，原B不能再继承。root317.703秒/B39.703秒口径不相加；runner/Bdriver1、Edriver/controller0，root2项失败标记保留但实际清理无错；旧185 State0差异、owned3全停且容器/卷/242网络保留、端口闭。详见[本节点](V1015_BACKEND_LEGACY_IDENTITY_STOP_FRESH_SCOPE_PREPARED_20261110.md)。
+
+case07仅HOST_ONLY同源instance绑定driver与严格PHP门、predevice全文核查、console错误返回1。实际PHP8.5.3正例/17负例/退出码与lint、130Python/native5constructor+workspace1+6clock、完整RO8.984秒通过，非作者无剩余P1/P2；目标PHP8.4业务链NOT_RUN。83payload，无actual reply/grant/claim/transfer；拟全新E启动/安装/B各1、phone+32总cap352/已耗183保留余169，尚未生效；不转交耗尽原B。新243两网段保留旧242，900+shared45整链连续，不逐动作问。
+
+case06 actual三件在runtime-closeout、根prepared不改；case07根三件prepared。source1f/APKb621/原main255/index/%SystemDrive%及全部旧资产/STOP保护，ledger仅追加/镜像不哈希。10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN缓存UNKNOWN；功能优先/UI最后，不手机卸载重装/APP重编/合main/发布/v10.1.6。
+
+---
+
 # 2026-11-10 Docker过滤查询于设备前STOP；全部原次数未耗，完整库存新scope已准备（CURRENT ENTRY）
 
 case05按准确批准只运行一次，filtered ps名称查询15秒超时，22.843秒STOP；phone0，仍158/320余162，E两处launch/install/B claim均无，原已批E启动/安装各1及原B1全部未耗。无SDK/私有ADB/Activity/账号输入/API/DB/登录互发媒体；root Edriver1失败标记保留、端口闭。185旧State与case04已核终态0差异/全停止，本次early快照未完成不虚构。详见[本节点](V1015_DOCKER_FILTER_PREDEVICE_STOP_UNUSED_SCOPE_PREPARED_20261110.md)。
