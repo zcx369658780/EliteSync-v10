@@ -1,22 +1,16 @@
-# 当前入口｜2026-11-10 APP 功能与双模拟器真实链继续
+# 当前入口｜2026-11-10 功能主链与通讯安全封装
 
-Owner 已明确继续完善 APP；后续可同时使用两个模拟器进行功能联测，实际测试可等 APP 功能完成后安排。手机由 Owner 使用，不连接、读取或操作手机。Owner 已进一步给予普通工程长期授权，覆盖必要构建、本机独立开发服务/虚构数据库、双模拟器及常规Git；当前先继续消息/媒体功能，确需验证时自主安排。Owner 会另行要求停下保存、手动交接；不提前结束当前连续开发。
+Owner普通工程长期授权持续有效：功能优先，随后安全封装和集中验收；持续推进直到Owner明确叫停，再保存、停止自有运行服务并手动交接。上下文压缩不是停止指令。手机由Owner使用，不连接、读取或操作手机。
 
-- 产品根：`D:\EliteSync-v10-product-v1015-20261101`；分支 `codex/v10.1.5-software-continuation-20261101`。原主库 main/255项状态/index 与无关 `%SystemDrive%/` 保留。
-- 已实现历史/发送/断网恢复、附件和通知设置重试、通话模式保持/有限重试、视频进度/重播、消息列表自动更新和图片完整缩放查看。相关组件检查通过；当前产品API、独立虚构数据库和双模拟器已接通，实际结果见下文，不占用手机。
-- 通知中心现可继续加载较早提醒，失败保留内容并重试；空页仍按服务端下降游标继续，刷新/换号隔离晚回。后端每页最多100条动态检查，过期项先过滤，避免失效提醒挡住旧内容或全历史扫描。组件与相关后端检查通过，已进入新统一候选。
-- 当前已安装的源码Debug候选：源码 `d1f71cb0d2a19bed3dca548d841f62646715f846`，APK SHA256 `896ace212148f61ada0e33e653052318e537ce2238cf8afc94eb74691cef9095`；34.644秒构建成功，签名/身份及新波形/cleanup-owner JIT标记通过，两模拟器均更新。call6两端画面/编码解码和一次自动重连恢复已观察到，结束无原SDK集合异常；正常MC撤销到房间消失0.297秒，新代3恢复后旧房间不复活。原生Visualizer已启动但变化波形未观察到，听感/AEC未验。固定构建回执在 `v1015-source-debug-workspace/state/current-functional-build.json`、实测 `v1015-current-dev/call6-video-native-visualizer-private.json`；此前612文字/图片/短视频及426通知事实仍按各自原回执保留，旧b621原件保留。
-- 当前产品API已接通全新独立MariaDB（75项迁移），两个虚构账号实际注册/登录、proposal双方接受、CN/MC授权成功；文字、图片和短视频共10条消息经真实HTTP持久化，幂等重试、before/after分页、认证WebSocket事件、真实ffprobe视频校验和私有媒体完整/分段下载通过。聊天网关运行文件已改到可写storage，非root/只读源码环境实际启动通过。私有回执在 `v1015-current-dev/chat-verification.json` 与 `media-verification.json`。宿主连接先遭复合操作自动审批拒绝；随后增加确切自有资源/回环端口/DB监听检查的较窄操作获准，宿主API健康200、DB不公开。APP联测NOT_RUN，不占用手机。
-- 两个本次新建模拟器均已安装同包、登录两个虚构账号并完成APP文字双向互发（message11/12、已读及加密字段读回确认）。实际系统选择器选图/选短片后分别产生asset3/message13、asset4/message14，均ready并被对端读回；图片实际渲染、完整预览和返回聊天通过，新视频实际原生解码并播放到0:02/0:02，重播控件出现。初次超时已定位开发服务Windows依赖读取：保留权限/播放器时限，使用同一vendor的单一Linux运行缓存后请求4.578→0.047秒，同APK复测通过。私有当前回执 `v1015-current-dev/app-functional-verification-private.json`；不代表完整媒体/权限矩阵或整版PASS，手机未使用。
-- 本次自有开发服务与两模拟器当前仍运行；精确资源/PID/端口在 `v1015-current-dev/runtime-private.json`。专用ADB5038只连接模拟器，实体USB排除；不调用退役执行器。Owner明确叫停时停止自有进程并保留数据/源码交接。
-- RTC监督网关已接通：语音双向UDP/RTP、界面挂断后0.672秒房间消失已观察到；修正轮询销毁renderer后，新426候选在两APP显示本地/远端生成视频，跨轮询滚动保持，UI挂断后2.312秒房间消失。正常HTTP撤MC后0.250秒房间消失，双方新代同意恢复后旧房间未复活。仅为具体房间清理子证据，不等于AEC或完整撤权≤5秒验收；跨设备会话RTC请求仍403。初始重连还暴露SDK音频诊断取消竞态，现已改用官方聚合Visualizer（7项检查/analyze通过），新包复测待完成。详见PROGRESS。
-- 通知中心实际APP单条标已读、服务端未读5→4通过；静默设置APP保存→重新打开读回→恢复原设置通过。未用系统Push供应商；不将这些结果当APP分页全量或远程送达通过。
-- 896候选实际发送确认丢失重试通过：APP经真实API先保存message15，单次代理把成功确认替换503；界面出现原编号重试，点击后同client UUID/同server ID、idempotent replay，真实API持久化读回仅1条。临时代理停止、专用模拟器API映射恢复。私有 `app-ack-retry-private.json`，不是模拟成功或全弱网矩阵。
-- 重启后的登出清理已修复并进入896候选：持久owner定位仅用于精确删除，重启登出/换号可清已登记旧namespace；对象、双索引和定位删除均核验，写内容前验证定位已落盘。RED复现应删2实际0，最终21项缓存与5项auth集成检查/analyze、非作者复核通过。仍不恢复读取、授权或可信时钟；未知旧未索引资产不扫描、不宣称全清。Android实际重启/登出清理待验证。
-- 当前进入通讯安全封装：API默认HTTPS、dev明文仅固定loopback，普通/受限Dio均在读取凭据前校验同源并禁止redirect；Android正式网络配置禁明文，Debug资源仅精确本机例外，正式Bootstrap忽略外部Intent/file端点覆盖。38项策略、16项入口/晚回、6项socket与16项Kotlin正反例及analyze通过，非作者复核无P1/P2；最终合包尚待完成。未访问或部署外部服务，RTC URL及重放路径的后续封装仍待处理，不能称整体加密已完成。
-- v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。RTC画面稳定性/AEC、15/30边界、安全封装、通知和最终集中验收未完成；真机缓存效果UNKNOWN。
-- 资产整理已完成确认冗余项；[版本与资产索引](../versions/ASSET_VERSION_SUMMARY_20261110.md) 记录归档与保留项。旧 case07 STOP、case08 未激活、旧已耗/未耗事实保留；不继续退役冻结链。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；先核实际Git身份/index。原主库main/255项状态/index及无关 `%SystemDrive%/` 保留。资产清理已结束，不重盘点、复制SDK或恢复旧STOP。
+- 已实现消息历史/重试/断网恢复、附件恢复、通知分页/偏好、消息列表更新、图片完整预览、短视频进度/重播及通话恢复。实际双模拟器已完成登录、双向文字、图片选取/发送/预览、短视频选取/发送/播放到结束；最新896候选又通过确认丢失后原UUID重试（message15仅一条）。各候选与原回执分开，详见PROGRESS。
+- 当前已安装APK：源码 `47811a5ed023cee895ea2a2a13b5acfd35b05ffb`，SHA256 `ccf7e2696226fd6c7609b0f834aa9d2604dcb32d896bb64b6a27d88dc423e6f5`，154100909字节，80.374秒构建。签名/身份/新策略JIT标记及合包网络XML通过；两APP正常在线恢复并读回message15。此前612媒体、426通知、896重试/RTC等原证继续按各自身份保留；不合并为最终整版PASS。
+- RTC已证双方音视频RTP/生成画面、UI挂断、一次自动重连恢复，以及正常MC撤销后房间消失（call6为0.297秒；仅房间清理子证据）。当前所有call1–6已ended，无活动房间；MC已由双方正常重新同意至generation3，旧房间未复活。AEC/听感、完整≤5秒停媒及旧JWT矩阵未完成；原生Visualizer启动但变化波形未观察到，仍NOT_VERIFIED。
+- 重启登出缓存清理已修复：固定owner仅定位精确删除，不解锁读取/时钟；21项缓存＋5项auth检查、analyze与非作者复核通过。已在当前APK；Android底层清理独立核验仍NOT_RUN。未知旧未索引资产不扫描、不宣称全清。
+- API TLS/同源与禁止redirect、正式Bootstrap拒绝外部端点覆盖、Android主资源禁明文/Debug精确本机例外，已进入当前APK并验证本机兼容。当前新增RTC URL校验在设备权限/room前拒绝不安全地址，45项检查/analyze/非作者复核通过，尚未进入当前APK；正在统一重试重放的同源边界。未访问、部署或发布外部服务，不称整体加密或端到端加密完成。
+- 自有开发服务和两模拟器仍运行；精确容器/卷/PID/端口在私有 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\runtime-private.json`。专用ADB5038只连接emulator-5580/5582并排除USB。临时确认丢失代理已停止，API映射恢复；缓存核验debug forward已移除。源码Debug固定构建回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。
+- 仍10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING、真机缓存UNKNOWN。15/30边界、Android真实密钥库/清理、完整权限/并发、通知与RTC质量矩阵、剩余安全封装和最终集中验收未完成。UI按我的/设置→消息列表/聊天→首页/导航最后处理。
 
-开发顺序：完善 APP 功能与真实开发链 → 协议加密等安全封装 → 集中产品验收。普通实现连续推进，仅做受影响检查与必要验证，不逐动作询问。现有鉴权/数据保护保留，UI按既定最后顺序处理。
+下一步：完成重放的传输封装与定向复核，再把RTC地址校验一并纳入必要候选；不重做已通过主链、不逐操作申请。Owner叫停时只收尾保存、停止自有服务/模拟器，保留数据卷和共享引擎；不合main、不发布、不启动v10.1.6。
 
-[Owner 功能优先决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [工作流](CURRENT_WORKFLOW.md) · [进度与未完成项](../versions/v10.1.5/PROGRESS.md)
+[Owner长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [工作流](CURRENT_WORKFLOW.md) · [进度及证据边界](../versions/v10.1.5/PROGRESS.md) · [资产版本摘要](../versions/ASSET_VERSION_SUMMARY_20261110.md)

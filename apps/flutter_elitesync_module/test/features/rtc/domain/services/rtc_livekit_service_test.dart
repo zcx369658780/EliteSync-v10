@@ -91,6 +91,68 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  for (final gateway in [
+    'ws://untrusted.example.com:7880',
+    'ws://localhost:7880',
+    'wss://user:synthetic-secret@sfu.example.com',
+    'wss://@sfu.example.com',
+    'wss://sfu.example.com?token=synthetic-secret',
+  ]) {
+    test(
+      'invalid RTC gateway fails before permissions or new room: $gateway',
+      () async {
+        var permissionCalls = 0;
+        final logs = <String>[];
+        final originalDebugPrint = debugPrint;
+        debugPrint = (message, {wrapWidth}) {
+          if (message != null) logs.add(message);
+        };
+        addTearDown(() => debugPrint = originalDebugPrint);
+        final source = _PendingRtcSource();
+        final room = _MediaRoom(_MediaParticipant());
+        final service = RtcLiveKitService.mediaControlTest(
+          remoteDataSource: source,
+          appEnv: const AppEnv(
+            flavor: AppFlavor.dev,
+            appName: 'RTC gateway rejection test',
+            apiBaseUrl: 'http://127.0.0.1:8021',
+            useMockData: false,
+            useLiveKitRtc: true,
+          ),
+          room: room,
+          microphonePermission: () async {
+            permissionCalls++;
+            return true;
+          },
+          cameraPermission: () async {
+            permissionCalls++;
+            return true;
+          },
+        );
+        final connection = service.ensureConnected(21);
+        source.reply.complete(
+          RtcLiveKitJoinInfoEntity.fromJson({
+            'enabled': true,
+            'url': gateway,
+            'token': 'synthetic-secret-join-token',
+            'mode': 'video',
+          }),
+        );
+        await expectLater(connection, throwsFormatException);
+        expect(permissionCalls, 0);
+        expect(service.isConnecting, isFalse);
+        expect(service.isConnected, isFalse);
+        expect(service.connectedCallId, isNull);
+        expect(service.failureMessage, isNotNull);
+        expect(logs.join('\n'), isNot(contains('AUDIO_ROUTE_PRECONNECT')));
+        expect(logs.join('\n'), isNot(contains('ROOM_CONNECT_START')));
+        expect(logs.join('\n'), isNot(contains(gateway)));
+        expect(logs.join('\n'), isNot(contains('synthetic-secret')));
+        service.dispose();
+      },
+    );
+  }
+
   test(
     'dispose during old room disconnect cannot create a new media room',
     () async {

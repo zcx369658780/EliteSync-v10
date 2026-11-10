@@ -5,6 +5,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/rtc_endpoint_policy.dart';
 import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
 import 'package:livekit_client/livekit_client.dart';
@@ -699,6 +700,7 @@ class RtcLiveKitService extends ChangeNotifier {
       final info = await _loadJoinInfo(callId);
       if (_disposed || requestedGeneration != _connectionGeneration) return;
       if (!info.isReady) throw StateError('通话服务当前不可用');
+      final gatewayUrl = validateRtcGatewayUrl(info.url, env: appEnv);
       if (!await _microphonePermission()) {
         throw StateError('需要麦克风权限');
       }
@@ -890,7 +892,11 @@ class RtcLiveKitService extends ChangeNotifier {
         'room=${info.roomName} '
         'identity=${info.identity}',
       );
-      await room.connect(info.url, info.token, connectOptions: connectOptions);
+      await room.connect(
+        gatewayUrl,
+        info.token,
+        connectOptions: connectOptions,
+      );
       if (generation != _connectionGeneration || !identical(_room, room)) {
         await room.disconnect();
         return;

@@ -32,6 +32,10 @@ call5在实际两参与者通话中经正常HTTP撤销MC，响应0.078秒、请�
 
 Android主资源禁明文，只有Debug资源列出不含子域的本机例外；正式Bootstrap只使用编译端点，不接受外部Intent/file替换。新增非debug注入反例先RED，修正后Kotlin16项通过；Dart策略38项、入口/内部标志/晚回16项及socket6项通过，相关analyze无问题，非作者静态复核无P1/P2。原生Kotlin复用既有精确2.2.20编译器和JDK，仅编译两份policy源码，没有启动旧执行器。最终合包未完成，API/WS重放与RTC URL进一步封装仍待处理；TLS、端到端加密、真实Push及整版验收不互相替代。本次没有发布或访问外部服务。
 
+后续源码47811a5e已实际构建80.374秒，新APK SHA256 `ccf7e2696226fd6c7609b0f834aa9d2604dcb32d896bb64b6a27d88dc423e6f5`、154100909字节；API策略新内核标记及v2签名/身份通过，aapt实际合包XML为全局明文false、Debug仅127.0.0.1/localhost/10.0.2.2且不含子域。两模拟器均已更新，正常在线恢复并以当前账号读回message15，私有 `tls-local-app-private.json`；没有联系外部TLS服务、构建正式Release或发布。
+
+RTC新增gateway URL前置校验：默认WSS可独立SFU，开发WS仅在API本身为HTTP且同一精确本机主机时允许异端口；复用API词法校验，保留SDK路径。非法地址在权限申请和Room构造前拒绝，错误不含原凭据URL。29项policy及16项service共45项检查、analyze和非作者静态复核通过；尚未纳入当前ccf APK，独立RTC运行不冒充已证。后续重放路径统一仍进行中。
+
 ## 当前APP确认丢失后的发送重试
 
 896候选经实际APP→真实API→MariaDB完成一次确认丢失场景：本机短时代理将首个真实message POST的成功确认替换为503，服务端已保存message15；APP显示结果未确认及“使用原消息编号重试”，用户路径点击后第二次真实POST使用同client_message_id、返回同server ID且idempotent_replay=true。真实GET按该client UUID只读回1条，APP显示已确认内容；未伪造成功或直接插表。该测试也经历同包进程重启和正常在线登录恢复，但不是Android离线清理/15或30天证明。临时代理已停止，专用模拟器API reverse已恢复直连，手机未用。私有回执 `app-ack-retry-private.json`；其它弱网、并发及故障矩阵仍按原未完成项保留。
