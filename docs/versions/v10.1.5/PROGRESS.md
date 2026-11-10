@@ -1,3 +1,13 @@
+# 2026-11-10 手机创建账号页拒绝STOP；空注册页正常返回已准备，case07次数全未耗（CURRENT ENTRY）
+
+case07新E/I/B1及phone32获批后只跑一次，完整host/PHP准备过，但同APP是创建账号/返回登录/3fields，原登录门拒绝，15.406秒STOP。phone11累计194/352余158，E两处launch/install/B claim均无，case07新批三项未耗，case06原B已耗0余不变。无tap/输入/Activity/截图/启动E/B，011清理exit0、root Edriver1标记保留，188前后State0差异全停/端口闭。密码脱敏真值UNKNOWN，首个占位分类误判已追加corrected，不反推非空或源码乱码。详见[本节点](../../workflow/V1015_REGISTRATION_SURFACE_STOP_NORMAL_LOGIN_RETURN_PREPARED_20261110.md)。
+
+case08仅HOST_ONLY将已知空注册返回登录一次纳入正常导航：3字段fresh原文text严格空、own前台/唯一按钮/原deadline；非空/redacted/缺失/None/False/0不tap，不注册/输入/清空，正常登录不增操作。144Python+新native5constructor/workspace1+6clock及PHP85/完整RO通过，非作者无剩余P1/P2，85payload。目标PHP84容器链NOT_RUN，无actualreply/grant/claim/transfer；下一新增次数0，仅准确新scope后独占转交case07未耗E/I/B1，phone158/352不追加，900+shared45整链连续，不微步骤问。
+
+case07 actual三件在runtime-closeout，根prepared不改；case08根三件prepared。source1f/APKb621/原main255/index/%SystemDrive%与全部旧资产/STOP保护，ledger只追加/镜像不哈希。10 PARTIAL/AC05 OPEN/G2 false/Push PENDING，双端媒体NOT_RUN缓存UNKNOWN，功能优先/UI最后；不手机卸载重装/APP重编/合main/发布/v10.1.6。
+
+---
+
 # 2026-11-10 后端原次数已耗，旧PHP身份门拒绝STOP；同源身份与fresh范围准备（CURRENT ENTRY）
 
 case06批准整段只跑一次：两端完整空登录/focus/IME及E ready通过，原B1已claim并启动新DB/API；旧PHP TASK/host门拒绝却exit0输出文本，parser失败STOP。无migrate/seed/WS start/账号输入/业务API/登录互发媒体。phone25累计183/320余137，E40+25=65，E启动/安装/B各耗1余0，原B不能再继承。root317.703秒/B39.703秒口径不相加；runner/Bdriver1、Edriver/controller0，root2项失败标记保留但实际清理无错；旧185 State0差异、owned3全停且容器/卷/242网络保留、端口闭。详见[本节点](../../workflow/V1015_BACKEND_LEGACY_IDENTITY_STOP_FRESH_SCOPE_PREPARED_20261110.md)。
