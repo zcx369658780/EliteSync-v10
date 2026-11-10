@@ -29,6 +29,8 @@ class _NotificationPreferencesPageState
   Map<String, bool>? _categories;
   bool _silent = false;
   bool _busy = false;
+  bool _requestingPermission = false;
+  int _loadGeneration = 0;
   PermissionStatus? _permission;
   String? _error;
   Map<String, dynamic>? _failedSave;
@@ -50,23 +52,30 @@ class _NotificationPreferencesPageState
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      setState(() => _categories = null);
+      setState(() {
+        _categories = null;
+        _permission = null;
+      });
       _load();
     }
   }
 
   Future<void> _load() async {
     if (!mounted) return;
+    final generation = ++_loadGeneration;
     final identity = _identity;
     if (identity == null) return;
     final p = await Permission.notification.status;
-    if (!mounted || identity != _identity) return;
+    if (!mounted || identity != _identity || generation != _loadGeneration)
+      return;
+    // OS revocation is independent of the preference API's response time.
+    setState(() => _permission = p);
     final reply = await ref
         .read(apiClientProvider)
         .get('/api/v1/notification-preferences');
-    if (!mounted || identity != _identity) return;
+    if (!mounted || identity != _identity || generation != _loadGeneration)
+      return;
     setState(() {
-      _permission = p;
       if (reply is NetworkSuccess<Map<String, dynamic>>) {
         final c = reply.data['categories'] as Map? ?? {};
         _categories = {for (final key in labels.keys) key: c[key] == true};
@@ -115,20 +124,30 @@ class _NotificationPreferencesPageState
   }
 
   Future<void> _requestPermission() async {
+    if (_requestingPermission) return;
     final identity = _identity;
-    final result = await Permission.notification.request();
-    if (!mounted || identity != _identity) return;
-    setState(() => _permission = result);
+    if (identity == null) return;
+    setState(() => _requestingPermission = true);
+    try {
+      await Permission.notification.request();
+      if (!mounted || identity != _identity) return;
+      // The dialog result may precede a newer change in Android settings.
+      await _load();
+    } finally {
+      if (mounted) setState(() => _requestingPermission = false);
+    }
     // There is no approved provider/token: OS permission never fabricates registration.
   }
 
   @override
   Widget build(BuildContext context) {
     ref.listen(sessionProvider, (previous, next) {
-      if (previous?.asData?.value.accessToken == next.asData?.value.accessToken) {
+      if (previous?.asData?.value.accessToken ==
+          next.asData?.value.accessToken) {
         return;
       }
       setState(() {
+        _loadGeneration++;
         _categories = null;
         _busy = false;
         _permission = null;
@@ -153,7 +172,7 @@ class _NotificationPreferencesPageState
               _permission?.isGranted == true ? '已允许' : '未允许；消息和安全入口仍可使用',
             ),
             trailing: TextButton(
-              onPressed: _requestPermission,
+              onPressed: _requestingPermission ? null : _requestPermission,
               child: const Text('请求授权'),
             ),
           ),

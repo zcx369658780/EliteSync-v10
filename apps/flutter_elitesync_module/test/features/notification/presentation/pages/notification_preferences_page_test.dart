@@ -36,6 +36,7 @@ class _Api extends ApiClient {
   bool silent = false;
   int failuresRemaining = 1;
   int reads = 0;
+  final pendingReads = <Completer<NetworkResult<Map<String, dynamic>>>>[];
   final puts = <Map<String, dynamic>>[];
   Completer<void>? beforeAcknowledge;
 
@@ -47,6 +48,7 @@ class _Api extends ApiClient {
     Options? options,
   }) async {
     reads++;
+    if (pendingReads.isNotEmpty) return pendingReads.removeAt(0).future;
     return NetworkSuccess({'categories': Map.of(categories), 'silent': silent});
   }
 
@@ -189,6 +191,115 @@ void main() {
     expect(find.text('重试保存'), findsNothing);
     expect(find.text('保存未完成，请重试。'), findsNothing);
     expect(api.puts, hasLength(1));
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('older read cannot restore a revoked system permission', (
+    tester,
+  ) async {
+    var permission = 1;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (_) async => permission);
+    final api = _Api();
+    await _mount(tester, api);
+    expect(find.text('已允许'), findsOneWidget);
+    final older = Completer<NetworkResult<Map<String, dynamic>>>();
+    final latest = Completer<NetworkResult<Map<String, dynamic>>>();
+    api.pendingReads.addAll([older, latest]);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    permission = 0;
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    latest.complete(
+      const NetworkSuccess({
+        'categories': {'message': false},
+      }),
+    );
+    await tester.pumpAndSettle();
+    older.complete(
+      const NetworkSuccess({
+        'categories': {'message': true},
+      }),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('已允许'), findsNothing);
+    expect(find.text('未允许；消息和安全入口仍可使用'), findsOneWidget);
+    expect(tester.widget<SwitchListTile>(_toggle('消息')).value, isFalse);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('revocation is visible before preference readback completes', (
+    tester,
+  ) async {
+    var permission = 1;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (_) async => permission);
+    final api = _Api();
+    await _mount(tester, api);
+    expect(find.text('已允许'), findsOneWidget);
+    final read = Completer<NetworkResult<Map<String, dynamic>>>();
+    api.pendingReads.add(read);
+    permission = 0;
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    expect(find.text('已允许'), findsNothing);
+    expect(find.text('未允许；消息和安全入口仍可使用'), findsOneWidget);
+    read.complete(const NetworkSuccess({'categories': {}}));
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('one system permission request remains in flight', (
+    tester,
+  ) async {
+    final request = Completer<Map<int, int>>();
+    var requests = 0;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (call) async {
+          if (call.method == 'requestPermissions') {
+            requests++;
+            return request.future;
+          }
+          return 0;
+        });
+    await _mount(tester, _Api());
+    final button = find.widgetWithText(TextButton, '请求授权');
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextButton>(button).onPressed, isNull);
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+    expect(requests, 1);
+    request.complete({17: 0});
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextButton>(button).onPressed, isNotNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('permission request callback rereads the current OS state', (
+    tester,
+  ) async {
+    final request = Completer<Map<int, int>>();
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          channel,
+          (call) async =>
+              call.method == 'requestPermissions' ? request.future : 0,
+        );
+    final api = _Api();
+    await _mount(tester, api);
+    await tester.tap(find.text('请求授权'));
+    await tester.pumpAndSettle();
+    // A granted dialog result may arrive after a newer OS revocation.
+    request.complete({17: 1});
+    await tester.pumpAndSettle();
+    expect(find.text('已允许'), findsNothing);
+    expect(find.text('未允许；消息和安全入口仍可使用'), findsOneWidget);
+    expect(api.puts, isEmpty);
     await tester.pumpWidget(const SizedBox());
   });
 }
