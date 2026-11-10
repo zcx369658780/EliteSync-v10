@@ -5,7 +5,8 @@ Owner 已明确继续完善 APP；后续可同时使用两个模拟器进行功�
 - 产品根：`D:\EliteSync-v10-product-v1015-20261101`；分支 `codex/v10.1.5-software-continuation-20261101`。原主库 main/255项状态/index 与无关 `%SystemDrive%/` 保留。
 - 已实现历史/发送/断网恢复、附件和通知设置重试、通话模式保持/有限重试、视频进度/重播；本节点补齐消息列表自动更新和图片完整缩放查看。相关组件检查通过，详情见 PROGRESS。统一功能候选已构建核验，下一步接续当前产品API与独立虚构数据配置，必要双模拟器联测，不占用手机。
 - 统一源码Debug候选已产出，源码 `b516733be18f6bd836d690db0d7dc6ae45920544`，APK SHA256 `7bf906d87ee73e377b197e11916e5e3b5237ce7dbd2d7c25fd096987441867b8`；ZIP/JIT新功能标记/包身份/v2签名通过。固定私有回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。安装、启动和双端实测仍未进行；旧b621原件保留。
-- v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。主机定向检查不能代替双端 APP/API/MariaDB 联测、媒体播放、RTC/AEC 和真实通知验证。
+- 当前产品API已接通全新独立MariaDB（75项迁移），两个虚构账号实际注册/登录、proposal双方接受、CN/MC授权成功；8条消息经真实HTTP持久化，幂等重试、before/after分页与认证WebSocket事件验证通过。聊天网关运行文件已改到可写storage，非root/只读源码环境实际启动通过。私有回执在 `v1015-current-dev/chat-verification.json`。宿主端口连接受网络操作自动审批拒绝影响；当前为容器内真实链，APP联测NOT_RUN，不占用手机。
+- v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。当前后端链不能代替双端 APP/API/MariaDB 联测、媒体播放、RTC/AEC 和真实通知验证。
 - 资产整理已完成确认冗余项；[版本与资产索引](../versions/ASSET_VERSION_SUMMARY_20261110.md) 记录归档与保留项。旧 case07 STOP、case08 未激活、旧已耗/未耗事实保留；不继续退役冻结链。
 
 开发顺序：完善 APP 功能与真实开发链 → 协议加密等安全封装 → 集中产品验收。普通实现连续推进，仅做受影响检查与必要验证，不逐动作询问。现有鉴权/数据保护保留，UI按既定最后顺序处理。

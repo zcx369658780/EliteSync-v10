@@ -67,6 +67,11 @@ class ChatWebsocketServerCommand extends Command
         $port = (int) $this->option('port');
         $pollInterval = max(1, (int) $this->option('poll'));
 
+        // Runtime files belong in Laravel's writable storage, not the source root.
+        Worker::$logFile = storage_path('logs/chat-websocket.log');
+        Worker::$pidFile = storage_path('framework/chat-websocket.pid');
+        Worker::$statusFile = storage_path('framework/chat-websocket.status');
+
         $gateway = new Worker("websocket://{$host}:{$port}");
         $gateway->count = 1;
         $gateway->name = 'EliteSyncChatGateway';
