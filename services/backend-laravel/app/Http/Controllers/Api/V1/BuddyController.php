@@ -1,0 +1,16 @@
+<?php
+namespace App\Http\Controllers\Api\V1;
+use App\Http\Controllers\Controller;use App\Services\BuddyService;use Illuminate\Http\Request;
+final class BuddyController extends Controller {
+ private function actor(Request $r):int {foreach(['actor_id','user_id','owner_id','guest_id','requester_id','latitude','longitude','lat','lon','address','location','phone','birthday','birth_time','notes','body'] as $k)abort_if($r->exists($k),422,'unsupported field');return (int)$r->user()->id;}
+ private function key(Request $r):string {return $r->validate(['idempotency_key'=>'required|string|max:80'])['idempotency_key'];}
+ private function revision(Request $r):int {return $r->validate(['revision'=>'required|integer|min:0'])['revision'];}
+ public function index(Request $r,BuddyService $s){return response()->json($s->listing($this->actor($r)));}
+ public function show(Request $r,string $id,BuddyService $s){return response()->json($s->show($this->actor($r),$id));}
+ public function preferences(Request $r,BuddyService $s){$a=$this->actor($r);$d=$r->validate(['enabled'=>'required|boolean']);return response()->json($s->preferences($a,(bool)$d['enabled'],$this->revision($r)));}
+ public function store(Request $r,BuddyService $s){$a=$this->actor($r);$d=$r->validate(['type'=>'required|in:MEAL,STUDY','subject'=>'required|string|max:100','general_city'=>'nullable|string|max:40','place_kind'=>'required|in:ONLINE,PUBLIC_PLACE_UNSPECIFIED','budget_band'=>'required|in:UNSPECIFIED,LOW,MID,HIGH','start_at'=>'required|date|after:now','end_at'=>'required|date|after:start_at|before:+31 days','idempotency_key'=>'required|string|max:80']);foreach(['subject','general_city'] as $k){$v=trim((string)($d[$k]??''));abort_if(preg_match('/https?:|www\.|@|\d{5,}|微信|電話|电话|手机号|身份证|住址|小区|楼|室|坐标|经纬|[路街巷弄]\s*\d|[0-9]+号|公司地址|[路街巷弄号樓楼室住宅小區区]|[零一二三四五六七八九〇壹贰叁]{5,}|QQ|wechat/iu',$v),422,'contact or precise location is not supported');$d[$k]=$v===''?null:$v;}abort_unless($d['subject']!==null,422);abort_if($d['general_city']!==null&&!preg_match('/^[\p{L}\s]{2,40}$/u',$d['general_city']),422,'coarse city only');$d['start_at']=\Illuminate\Support\Carbon::parse($d['start_at'])->utc()->format('Y-m-d H:i:s');$d['end_at']=\Illuminate\Support\Carbon::parse($d['end_at'])->utc()->format('Y-m-d H:i:s');return response()->json($s->create($a,$d),201);}
+ public function action(Request $r,string $id,BuddyService $s){$a=$this->actor($r);$action=$r->validate(['action'=>'required|in:open,confirm,decline,withdraw,cancel,complete,request,decline_invite'])['action'];return response()->json($s->action($a,$id,$action,$this->revision($r),$this->key($r)));}
+ public function invite(Request $r,string $id,BuddyService $s){$a=$this->actor($r);$peer=$r->validate(['recipient_id'=>'required|integer|min:1'])['recipient_id'];return response()->json($s->invite($a,$id,$peer,$this->revision($r),$this->key($r)));}
+ public function token(Request $r,string $id,BuddyService $s){return response()->json($s->token($this->actor($r),$id,$this->revision($r),$this->key($r),$r->isMethod('delete')));}
+ public function redeem(Request $r,BuddyService $s){$a=$this->actor($r);$token=$r->validate(['token'=>'required|string|size:64|regex:/^[a-f0-9]+$/'])['token'];return response()->json($s->redeem($a,$token,$this->key($r)));}
+}

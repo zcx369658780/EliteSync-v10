@@ -1,0 +1,13 @@
+# BE-07｜MC 当前态 synthetic application adapter
+
+状态：Work 派发给最新合资格 Codex 执行会话 `01a0ddd0-bab2-7673-bf5b-03dbfbc066e4`；LEVEL 2、synthetic/dev-test backend。BE-06 `plan.md` 与 `work-review.md` 为接受的 docs-only 映射；只做 MC 当前态关联，不做 transition 结果、live gate 或消息发送。
+
+唯一源码/测试写入：新增 `services/backend-laravel/app/Domain/MessagingConsentPersistenceApplicationAdapter.php`、新增 `services/backend-laravel/tests/Unit/MessagingConsentPersistenceApplicationAdapterTest.php`；唯一回执为本目录 `summary.md`。如现有 application boundary 无法在不修改其他源码的前提下精确提交/读回/失效，则记录 `NOT_READY` 并停，不自行扩权。
+
+固定只读来源：根 `AGENTS.md`、`CURRENT.md` 当前入口、`TASK_CURRENT.md`、`REVIEW_GATE.md`、本地 `elitesync-local-workflow`，BE-05 `summary.md`/`work-review.md`、BE-06 `plan.md`/`work-review.md`，以及 `services/backend-laravel/app/Domain/` 下的 `CommonAuthorityEvidenceContract.php`、`MessagingConsentConversationLiveGateEvaluator.php`、`InMemoryLogicalPersistenceRepositoryContract.php`、`SqliteInMemoryLogicalPersistenceAdapter.php`、`PersistenceBoundaryApplicationInterfaceIntegrationContract.php`、`ProductConnectionPersistenceApplicationAdapter.php`，及 `tests/Unit/` 下 `MessagingConsentPersistenceFamilyTest.php`、`ProductConnectionPersistenceApplicationAdapterTest.php`、`PersistenceBoundaryApplicationInterfaceIntegrationContractTest.php`。精确路径不存在则记录缺口停，不作全仓搜索。
+
+新 adapter 只接受调用方携带的一份 synthetic CN state evidence、一份同 consent/context/purpose 的 MC state evidence 和固定两参与者/requester/recipient，构造 BE-05 严格 `MC_CURRENT_STATE` 非权威记录。仅调用现有 application boundary 的一次提交，由内部 repository 校验；按精确 identity/intent/family/source lineage/context/participants/purpose/payload 读回，并可对命中的依赖作精确失效观察。`EXACT_DUPLICATE` 只表示同输入幂等；冲突、不可比、缺失、不新鲜、失效、transport timeout 和读回不一致均返回不可用。无论结果如何，`source_authority`、`permission`、`live_read_allowed`、`live_send_allowed`、`message_sent` 均为 false；不得调用不存在的 MC `evaluateCurrent`，不得将 repository 投影反作来源。`CN_ACTIVE` 不等于 `MC_ACTIVE`。
+
+新 Unit test 应覆盖内存/SQLite 同形或说明现有 application boundary 仅 SQLite 所形成的精确限制；至少覆盖单份来源正例、exact duplicate、缺失/UNKNOWN/STALE、跨 Connection/参与者/purpose/来源 owner、changed-input identity、同 revision 冲突、不可比、失效读回和所有非权限返回字段。只可运行 `php -l` 于两份新 PHP 文件各一次，修复后仅复检受影响文件；只可在 `services/backend-laravel` 下运行 `php vendor/bin/phpunit` 的三个定向文件：新 adapter test、`MessagingConsentPersistenceFamilyTest.php`、`PersistenceBoundaryApplicationInterfaceIntegrationContractTest.php`，每个初跑一次，失败后修复仅复跑失败文件一次。不得运行 Composer、Artisan、Docker、全套测试、构建、Web/模拟器、SSH、真实 DB、备份/解密/恢复或 UAC。
+
+`summary.md` 记录精确 diff、命令结果、预算/未运行项、非权限边界及失败回退。保留既有 modified/untracked；不访问旧 `D:\EliteSync`、GitHub、`.env`、真实账号、私钥、业务行或日志；不提交/pull/push。作者交付后停 Work LEVEL 2 独立审查，不自接受、不派发 transition/live gate、endpoint、migration、writer、Flutter 或生产任务。

@@ -1,8 +1,34 @@
 abstract final class CacheKeys {
+  /// These keys must never be read from or written to plaintext preferences.
+  static bool isPrivate(String key) =>
+      key.startsWith(chatDraftPrefix) ||
+      const {
+        privateResumeAllowed,
+        lastKnownProfile,
+        questionnaireDraft,
+        profileSummarySnapshot,
+        profileDetailSnapshot,
+        questionnaireProfileSnapshot,
+        matchResultSnapshot,
+        matchDetailSnapshot,
+        matchFeedbackHistory,
+        homeFeedSnapshot,
+        discoverFeedSnapshot,
+        homeSearchHistory,
+        discoverSearchHistory,
+        messagesSearchHistory,
+        homeSearchQuery,
+        discoverSearchQuery,
+        messagesSearchQuery,
+        messagesConversationSnapshot,
+      }.contains(key);
+
   // Sensitive keys (secure storage)
   static const accessToken = 'auth_access_token';
   static const refreshToken = 'auth_refresh_token';
   static const tokenExpireAt = 'auth_token_expire_at';
+  static const privateDeviceBinding = 'v1015_private_device_binding';
+  static const privateResumeAllowed = 'v1015_online_resume_allowed';
 
   // Non-sensitive keys (shared preferences)
   static const onboardingDone = 'onboarding_done';

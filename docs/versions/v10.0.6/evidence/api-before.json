@@ -1,0 +1,16 @@
+[
+  {
+    "operation": "login",
+    "role": "target",
+    "status": 200,
+    "user_id": 2,
+    "city": "Initial Development City"
+  },
+  {
+    "operation": "login",
+    "role": "control",
+    "status": 200,
+    "user_id": 3,
+    "city": "Initial Development City"
+  }
+]

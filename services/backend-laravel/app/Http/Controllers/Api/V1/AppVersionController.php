@@ -90,6 +90,7 @@ class AppVersionController extends Controller
         return response()->json([
             'platform' => $platform,
             'channel' => $channel,
+            'source' => $release !== null ? 'database' : 'config',
             'client_version_name' => $clientVersion,
             'client_version_code' => $clientCode,
             'latest_version_name' => $latestVersionName,
@@ -156,3 +157,4 @@ class AppVersionController extends Controller
         return $rank;
     }
 }
+

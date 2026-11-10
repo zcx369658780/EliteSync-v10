@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/relationship_privacy_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/design_system/components/bars/app_top_bar.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
@@ -30,6 +31,16 @@ class PrivacySettingsPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.xl),
         children: [
+          ListTile(
+            title: const Text('管理资料受众与本人预览'),
+            subtitle: const Text('服务端保存、撤回与受众预览'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const RelationshipPrivacyPage(),
+              ),
+            ),
+          ),
           SectionReveal(
             delay: const Duration(milliseconds: 40),
             child: AppInfoSectionCard(

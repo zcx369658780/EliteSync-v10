@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
@@ -6,41 +8,97 @@ import 'package:flutter_elitesync_module/features/status/domain/entities/status_
 import 'package:flutter_elitesync_module/features/status/domain/entities/status_author_entity.dart';
 import 'package:flutter_elitesync_module/mocks/mock_data/status_mock.dart';
 
+/// One bounded server-authorized page; the client never builds an infinite feed.
+class StatusPostPage {
+  const StatusPostPage({
+    required this.items,
+    this.nextCursor,
+    this.hasMore = false,
+  });
+  final List<StatusPostEntity> items;
+  final String? nextCursor;
+  final bool hasMore;
+}
+
 class StatusRemoteDataSource {
   static const Duration _requestTimeout = Duration(seconds: 4);
 
-  StatusRemoteDataSource({required this.apiClient, required this.useMock});
+  StatusRemoteDataSource({
+    required this.apiClient,
+    required this.useMock,
+    this.identity,
+  });
+  final String? Function()? identity;
+  Options get _options {
+    final token = identity?.call();
+    return Options(
+      extra: {
+        if (identity != null)
+          requestSessionGuardKey: () => identity!() == token,
+      },
+    );
+  }
 
   final ApiClient apiClient;
   final bool useMock;
 
-  Future<List<StatusPostEntity>> fetchStatusPosts({int limit = 20}) async {
-    if (useMock) {
-      return StatusMock.posts
-          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
-          .take(limit)
-          .toList();
-    }
+  Future<List<StatusPostEntity>> fetchStatusPosts({int limit = 20}) async =>
+      (await fetchStatusPage(limit: limit)).items;
 
-    try {
-      final result = await apiClient
-          .get('/api/v1/status/posts', query: {'limit': limit})
-          .timeout(_requestTimeout);
-      if (result is NetworkSuccess<Map<String, dynamic>>) {
-        final list = result.data['items'] as List<dynamic>? ?? const [];
-        return list
-            .whereType<Map<String, dynamic>>()
-            .map(StatusPostEntity.fromJson)
-            .toList();
-      }
-      final failure = result as NetworkFailure<Map<String, dynamic>>;
-      throw Exception(failure.message);
-    } catch (_) {
-      return StatusMock.posts
-          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
-          .take(limit)
-          .toList();
+  Future<StatusPostPage> fetchStatusPage({
+    int limit = 20,
+    String? cursor,
+  }) async {
+    final pageLimit = limit.clamp(1, 20);
+    final offset = cursor == null ? 0 : int.tryParse(cursor);
+    if (offset == null || offset < 0) {
+      throw ArgumentError('Invalid community page cursor');
     }
+    final startedIdentity = identity?.call();
+    if (useMock) {
+      final all = StatusMock.posts
+          .map((e) => StatusPostEntity.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+      final items = all.skip(offset).take(pageLimit).toList();
+      final more = offset + items.length < all.length;
+      return StatusPostPage(
+        items: items,
+        nextCursor: more ? '${offset + items.length}' : null,
+        hasMore: more,
+      );
+    }
+    final result = await apiClient
+        .get(
+          '/api/v1/status/posts',
+          query: {'limit': pageLimit, 'cursor': ?cursor},
+          options: _options,
+        )
+        .timeout(_requestTimeout);
+    if (identity != null && identity!() != startedIdentity) {
+      throw StateError('Current account or audience changed; discard old page');
+    }
+    if (result is NetworkSuccess<Map<String, dynamic>>) {
+      final list = result.data['items'] as List<dynamic>? ?? const [];
+      final meta = result.data['meta'] is Map
+          ? result.data['meta'] as Map
+          : const {};
+      final candidate = meta['next_cursor']?.toString();
+      final nextOffset = int.tryParse(candidate ?? '');
+      final hasMore =
+          meta['has_more'] == true && nextOffset != null && nextOffset > offset;
+      return StatusPostPage(
+        items: List.unmodifiable(
+          list
+              .whereType<Map<String, dynamic>>()
+              .take(pageLimit)
+              .map(StatusPostEntity.fromJson),
+        ),
+        nextCursor: hasMore ? candidate : null,
+        hasMore: hasMore,
+      );
+    }
+    final failure = result as NetworkFailure<Map<String, dynamic>>;
+    throw Exception(failure.message);
   }
 
   Future<StatusPostEntity> createStatusPost({
@@ -48,6 +106,7 @@ class StatusRemoteDataSource {
     required String body,
     String? locationName,
     String visibility = 'public',
+    String audience = 'SELF',
     int? coverMediaAssetId,
   }) async {
     if (useMock) {
@@ -57,6 +116,7 @@ class StatusRemoteDataSource {
         'body': body,
         'location_name': locationName ?? '同城',
         'visibility': visibility,
+        'audience': audience,
         'can_delete': true,
         'likes_count': 0,
         'liked_by_viewer': false,
@@ -81,12 +141,14 @@ class StatusRemoteDataSource {
     final result = await apiClient
         .post(
           '/api/v1/status/posts',
+          options: _options,
           body: {
             'title': title,
             'body': body,
             if (locationName != null && locationName.trim().isNotEmpty)
               'location_name': locationName.trim(),
             'visibility': visibility,
+            'audience': audience,
             if (coverMediaAssetId != null && coverMediaAssetId > 0)
               'cover_media_asset_id': coverMediaAssetId,
           },
@@ -101,6 +163,17 @@ class StatusRemoteDataSource {
     throw Exception(failure.message);
   }
 
+  Future<void> updateAudience(int postId, String audience) async {
+    final result = await apiClient.put(
+      '/api/v1/status/posts/$postId/audience',
+      body: {'audience': audience},
+      options: _options,
+    );
+    if (result is NetworkFailure<Map<String, dynamic>>) {
+      throw Exception(result.message);
+    }
+  }
+
   Future<StatusPostEntity> fetchStatusPost(int postId) async {
     if (useMock) {
       final match = StatusMock.posts.firstWhere(
@@ -110,7 +183,7 @@ class StatusRemoteDataSource {
       return StatusPostEntity.fromJson(Map<String, dynamic>.from(match));
     }
     final result = await apiClient
-        .get('/api/v1/status/posts/$postId')
+        .get('/api/v1/status/posts/$postId', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final item = result.data['item'] as Map<String, dynamic>? ?? const {};
@@ -128,7 +201,7 @@ class StatusRemoteDataSource {
           .toList();
     }
     final result = await apiClient
-        .get('/api/v1/status/authors/$userId')
+        .get('/api/v1/status/authors/$userId', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final list = result.data['items'] as List<dynamic>? ?? const [];
@@ -176,7 +249,7 @@ class StatusRemoteDataSource {
       });
     }
     final result = await apiClient
-        .get('/api/v1/status/authors/$userId')
+        .get('/api/v1/status/authors/$userId', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return StatusAuthorEntity.fromJson(result.data);
@@ -190,7 +263,7 @@ class StatusRemoteDataSource {
       return fetchStatusPost(postId);
     }
     final result = await apiClient
-        .post('/api/v1/status/posts/$postId/likes')
+        .post('/api/v1/status/posts/$postId/likes', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final item = result.data['item'] as Map<String, dynamic>? ?? const {};
@@ -205,7 +278,7 @@ class StatusRemoteDataSource {
       return fetchStatusPost(postId);
     }
     final result = await apiClient
-        .delete('/api/v1/status/posts/$postId/likes')
+        .delete('/api/v1/status/posts/$postId/likes', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final item = result.data['item'] as Map<String, dynamic>? ?? const {};
@@ -224,6 +297,7 @@ class StatusRemoteDataSource {
     final result = await apiClient
         .post(
           '/api/v1/status/posts/$postId/report',
+          options: _options,
           body: {
             'reason_code': reasonCode,
             if (detail != null && detail.trim().isNotEmpty)
@@ -239,7 +313,7 @@ class StatusRemoteDataSource {
   Future<void> deleteStatusPost(int postId) async {
     if (useMock) return;
     final result = await apiClient
-        .delete('/api/v1/status/posts/$postId')
+        .delete('/api/v1/status/posts/$postId', options: _options)
         .timeout(_requestTimeout);
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return;

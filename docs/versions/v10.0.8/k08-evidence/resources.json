@@ -1,0 +1,16 @@
+{
+  "private_configuration": "LOCAL_ONLY retained",
+  "unrelated_local_only": "%SystemDrive%/ retained untracked",
+  "services": "Not started by K08; no runtime/DB read or write",
+  "avd": "adb devices returned no devices",
+  "volumes": [
+    "elitesync-v1006-db-data",
+    "elitesync-v1007-db-data",
+    "elitesync-v1008-db-data"
+  ],
+  "containers": [
+    "elitesync-v1008-db Exited (0) About an hour ago",
+    "elitesync-v1007-db Exited (0) 9 hours ago",
+    "elitesync-v1006-db Exited (0) 20 hours ago"
+  ]
+}

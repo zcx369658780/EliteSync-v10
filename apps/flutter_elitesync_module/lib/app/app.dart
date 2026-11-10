@@ -15,7 +15,9 @@ class EliteSyncApp extends ConsumerWidget {
     final env = ref.watch(appEnvProvider);
     final router = ref.watch(appRouterProvider);
     final themeMode = ref.watch(themeModeProvider);
-    ref.watch(rtcInviteBootstrapProvider);
+    if (env.useLiveKitRtc) {
+      ref.watch(rtcInviteBootstrapProvider);
+    }
     ref.watch(sessionProvider);
 
     return MaterialApp.router(

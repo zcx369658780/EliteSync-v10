@@ -12,7 +12,11 @@ extension ProductConversationStateContract on ProductConversationState {
   };
 }
 
-enum ConversationEvidenceAuthority { authoritative, notYetEstablished }
+enum ConversationEvidenceAuthority {
+  authoritative,
+  syntheticDevelopment,
+  notYetEstablished,
+}
 
 enum MessagingConsentState { pending, mutual }
 
@@ -150,11 +154,20 @@ class ConversationAccessSnapshot {
     : state = ProductConversationState.locked,
       authority = ConversationEvidenceAuthority.notYetEstablished;
 
+  const ConversationAccessSnapshot.syntheticDevelopment(this.state)
+    : authority = ConversationEvidenceAuthority.syntheticDevelopment;
+
   final ProductConversationState state;
   final ConversationEvidenceAuthority authority;
 
+  bool get hasAuthoritativeState =>
+      authority == ConversationEvidenceAuthority.authoritative;
+
+  bool get hasSyntheticDevelopmentState =>
+      authority == ConversationEvidenceAuthority.syntheticDevelopment;
+
   bool get canRevealPrivateContent =>
-      authority == ConversationEvidenceAuthority.authoritative &&
+      (hasAuthoritativeState || hasSyntheticDevelopmentState) &&
       state == ProductConversationState.active;
 
   bool get canSend => canRevealPrivateContent;

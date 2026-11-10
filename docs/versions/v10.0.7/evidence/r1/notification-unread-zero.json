@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-15T02:03:01.487375+00:00",
+  "role": "r1recipient",
+  "method": "GET",
+  "path": "/api/v1/notifications/unread-count",
+  "request": null,
+  "status": 200,
+  "body": {
+    "ok": true,
+    "unread_total": 0
+  }
+}

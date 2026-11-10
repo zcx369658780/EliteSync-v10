@@ -8,6 +8,7 @@ import 'package:flutter_elitesync_module/features/profile/presentation/providers
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/astro_profile_sections.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'natal_restoration_provider.dart';
 
 class AstroAdvancedPreviewRequests {
   const AstroAdvancedPreviewRequests({
@@ -385,10 +386,22 @@ class AstroTimingFrameworkBundle {
 
 final astroAdvancedPreviewProvider =
     FutureProvider<AstroAdvancedPreviewBundle?>((ref) async {
+      var active = true;
+      ref.onDispose(() => active = false);
+      SessionState? started;
+      bool current() =>
+          active &&
+          started != null &&
+          natalSessionMatches(started, ref.read(sessionProvider).asData?.value);
       try {
+        started = await ref.watch(sessionProvider.future);
+        if (!current()) return null;
         final routeMode = ref.watch(astroChartRouteProvider).routeMode;
         final summary = await ref.watch(astroSummaryProvider.future);
-        if (summary == null) return null;
+        if (!current() || summary == null) return null;
+        // The native mirror is private natal-only data. Dynamic charts remain
+        // outside v10.0.10 and must not derive request payloads from this row.
+        if (summary.containsKey('natal')) return null;
 
         final requests = buildAstroAdvancedPreviewRequests(summary, routeMode);
         final timing = buildAstroTimingFrameworkBundle(summary, routeMode);
@@ -397,22 +410,30 @@ final astroAdvancedPreviewProvider =
           ref,
           path: '/api/v1/profile/astro/pair',
           body: requests.pair,
+          isCurrent: current,
         );
+        if (!current()) return null;
         final comparisonPayload = await _postAdvancedProfile(
           ref,
           path: '/api/v1/profile/astro/pair',
           body: requests.comparison,
+          isCurrent: current,
         );
+        if (!current()) return null;
         final transitPayload = await _postAdvancedProfile(
           ref,
           path: '/api/v1/profile/astro/transit',
           body: requests.transit,
+          isCurrent: current,
         );
+        if (!current()) return null;
         final returnPayload = await _postAdvancedProfile(
           ref,
           path: '/api/v1/profile/astro/return',
           body: requests.returnChart,
+          isCurrent: current,
         );
+        if (!current()) return null;
 
         return AstroAdvancedPreviewBundle(
           routeMode: routeMode,
@@ -433,6 +454,7 @@ final astroAdvancedPreviewProvider =
           ),
         );
       } catch (_) {
+        if (!current()) return null;
         final routeMode = ref.read(astroChartRouteProvider).routeMode;
         final fallbackProfile = <String, dynamic>{'name': 'EliteSync'};
         final fallbackRequests = buildAstroAdvancedPreviewRequests(
@@ -457,11 +479,24 @@ Future<Map<String, dynamic>> _postAdvancedProfile(
   Ref ref, {
   required String path,
   required Map<String, dynamic> body,
+  required bool Function() isCurrent,
 }) async {
+  if (!isCurrent()) {
+    throw const AstroProfileApiException(
+      message: '登录身份已变化。',
+      code: 'stale_session',
+    );
+  }
   final result = await ref
       .read(apiClientProvider)
-      .post(path, body: body)
+      .post(path, body: body, options: natalSessionOptions(isCurrent))
       .timeout(const Duration(seconds: 12));
+  if (!isCurrent()) {
+    throw const AstroProfileApiException(
+      message: '登录身份已变化。',
+      code: 'stale_session',
+    );
+  }
 
   if (result is NetworkSuccess<Map<String, dynamic>>) {
     final data = result.data;
@@ -472,9 +507,7 @@ Future<Map<String, dynamic>> _postAdvancedProfile(
   }
 
   final failure = result as NetworkFailure<Map<String, dynamic>>;
-  if (failure.statusCode == 401 || failure.statusCode == 403) {
-    await ref.read(sessionProvider.notifier).setUnauthenticated();
-  }
+  // Token-bound AuthInterceptor rejection owns logout; never clear a later login.
 
   throw AstroProfileApiException(
     message: failure.message,

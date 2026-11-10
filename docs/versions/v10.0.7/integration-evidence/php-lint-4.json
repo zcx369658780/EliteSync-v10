@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\tools\\php85\\php.EXE",
+    "-l",
+    "services/backend-laravel/routes/api.php"
+  ],
+  "exit": 0,
+  "stdout_sha256": "fe909ee492b07f41431c111aac2842f7d4f5b552c51868c10fe4392bd2c5f2f3",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

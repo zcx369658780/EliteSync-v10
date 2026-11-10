@@ -1,0 +1,9 @@
+# 20261021 v10.1.2项目源增量：有界降级交付
+
+SOURCE_ZIP_NOT_AVAILABLE / BYTE_MIRROR_UNVERIFIED / SEMANTIC_CANDIDATE_ONLY。具名安全目录未取得原ZIP，未全盘搜索。五个正文从固定GitHub验收/治理及旧源重建，实际hash与任务的ZIP正文期望hash分列SOURCE_MANIFEST.json；不宣称相同。SHA256SUMS只验证本目录候选文件自洽，不能验证原ZIP。
+
+不覆盖20261019包，不修改02/05/06/07/08/09/10和Owner/竞品附件。原ZIP中的操作README和MANIFEST未取得，此README及SOURCE_MANIFEST为Codex候选说明，未冒充原件。功能接受、集成前里程碑正文保持形成时点，集成后见后继MILESTONE文件与ACTIVE_STATE。
+
+后续待Owner提供SHA256为6781b7e8319037770780cfb202b6f37071031d8c9cec0bb969e39cf082c65c6f的原ZIP，才可补真正字节镜像；五份原正文及原README/manifest仍待取得。ChatGPT项目附件需Owner手动上传/替换，当前没有自动更新账户Memory。
+
+当前分类：语义候选可审阅；原包精确镜像仍为PROJECT_SOURCE_SYNC_PENDING。该缺位不阻断已接受产品的安全集成。

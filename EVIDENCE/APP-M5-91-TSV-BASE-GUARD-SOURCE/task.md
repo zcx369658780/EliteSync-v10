@@ -1,0 +1,12 @@
+# APP-M5-91-TSV-BASE-GUARD-SOURCE
+ISSUED / LEVEL2 SOURCE-ONLY EXACT BASE SAVE GUARD REPAIR。现有01a0f590-3c90-74c1-b6d4-4c01198d2d3f/local第26turncompleted/error=null；唯一D:\EliteSync-v10/main/cf8bfaa4a03b8c9a682105617b185141904413be。M5-90 REJECT/CLOSED helper失败边界，原188成功身份记录事实另核/外部预算全闭。新task只源码修正，不重读188外部jar，不重跑M5-90或重新生成TSV。
+入口五authority顶部一段/task/workspace-before，各一次；不读home-memory-skills或其它文件。
+新A最多1仅准确原helper EVIDENCE/APP-M5-90-EXACT-188-JAR-IDENTITY/Collect-JarIdentities.ps1 6220/hash6C31AEBD3CD5C96A8D9E74F36A835F3DA728F02093E5E29A76C5BC08CD01B5D3普通FileInfo自身/完整Directory.Parent祖先到根nonreparse/ReadAllBytes1/hash/strictUTF8，保留原全文同次宿主内存并全文回显≤8192bytes-9000chars，加main-HEAD-workspace-before旧缺0/目标不存在，cmd≤4096/plainpipes/login=false/tty=false。来源Read1/补读0。失败首停不改回显重试。
+唯一新源码本目录Collect-JarIdentities-Guarded.ps1≤8192UTF8bytes及source-summary.md≤3072。写前宿主分别测量一次/CreateNew1，不超限后缩短重试。仅三个精确源码区域变化：
+1) 初始状态增加明确$baseVerified=$false。
+2) 原 Ordinary (Get-Item -LiteralPath $base) 成功返回后立即置$baseVerified=$true；任何更早或该Ordinary失败均不得置true。
+3) 原整个TSV准备/hash/Open/CreateNew/Write/Flush/Dispose及manifestSaved判定块原样置于if($baseVerified){...}；else必须TSV不准备/不hash/不Open/不Write/不Dispose，manifestSaved=false，保留已有first与firstPhase，若没有first则设固定BASE_NOT_VERIFIED首错误/phase；仅可加准确未执行说明secondary固定tag。禁止Else尝试写另路径或复核base。不把失败变成功，原STDOUT只一次结果/其失败不补emit。
+其余helper原文和字面值逐字保持：包括原M5-90 base/root/248旧基线/hashloop/外部名单读取/限额和counter，不能顺便修别的条件、改名字、路径/尺寸/计数或更换保存方式。新增包裹可保留块全文不缩进，以方便原块精确比较；三处逆替换应与原源码逐字一致。摘要不得伪称可运行：继承原M5-90闭路径/闭budget，当前无任何执行许可，后继若真使用须另立准确任务/路径/输入budget和独立门，不能按source文件存在直接运行。
+修正只证明静态base guard路由意图，不证失败路径行为/OS隔离，正常和所有异常分支仍NOT_EXERCISED，不沿用M5-90正常成功为新源码运行证。原helper/原TSV/summary不改，原Required与旧闭预算保持。禁止测试复制或执行任何helper/Parser/PowerShell脚本候选/AST/JVM/外部路径字节、hash/枚举；仅治理A-B文字身份操作允许。
+新B最多1仅两个候选普通自身/完整祖先/sizehash/strictUTF8/与宿主全文身份/main-HEAD-旧缺0，cmd-output≤4096，来源补读外部0，B后不改。A-B各1/1首失败闭保留partial未执行项，不调试修复重跑或新会话。交付停独立GPT-6.1Sol/high限定只读审查，再Work原完整证据独立LEVEL2，不自接受。
+全部候选helper执行/Parser/外部访问/hash/枚举/Java/Groovy/Gradle/JVM/compile/ClassLoader/reflection/StaticTest/SDK构建/HTTP0，不产JVMlauncher或运行harness。禁metadata-properties/邻源索引/旧D:\EliteSync/下载安装/真实数据备份密钥/生产DB-API-SSH/UAC/Git写。dirty17冻结/rawfixture/M5-50/旧闭budget/NOT_READY/settings拒绝/loader-runtimefalse/真实binding-ID-path-hook/四project事务/LibraryExtension时序/父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/内部scope-anchor-scratch及SDK兼容NOT_CHECKED/旧失败路径NOT_EXERCISED保持，自动化PAUSED。

@@ -1,0 +1,4 @@
+Formatted lib/features/chat/data/gateway/chat_media_gateway.dart
+Formatted lib/features/chat/presentation/pages/live_chat_page.dart
+Formatted test/features/chat/presentation/pages/live_chat_page_test.dart
+Formatted 6 files (3 changed) in 0.03 seconds.

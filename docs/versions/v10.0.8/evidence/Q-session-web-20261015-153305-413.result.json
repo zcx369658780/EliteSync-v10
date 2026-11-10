@@ -1,0 +1,6 @@
+{
+  "test": "V1008SessionWebTest",
+  "exit_code": 0,
+  "label": "Q-session-web-20261015-153305-413",
+  "database": "sqlite::memory:"
+}

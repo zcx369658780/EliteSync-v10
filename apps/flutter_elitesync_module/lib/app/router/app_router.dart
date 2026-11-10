@@ -1,3 +1,6 @@
+import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/formal_relationship_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +22,8 @@ import 'package:flutter_elitesync_module/features/chat/presentation/providers/ch
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/conversation_access_gate.dart';
 import 'package:flutter_elitesync_module/features/connection/presentation/pages/connection_page.dart';
+import 'package:flutter_elitesync_module/features/connection/presentation/pages/live_connection_page.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
 import 'package:flutter_elitesync_module/features/home/domain/entities/home_feed_entity.dart';
@@ -31,7 +36,7 @@ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_cal
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_permission_page.dart';
 import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_bazi_page.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_advanced_preview_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/dynamic_chart_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_natal_chart_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_overview_page.dart';
@@ -57,11 +62,17 @@ import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provi
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  ref.watch(navigationGuardProvider);
   final routeObserver = ref.watch(appRouteObserverProvider);
+  // Guard changes reevaluate the current location without rebuilding the
+  // router (and losing its active branch, deep path, query or page history).
+  final guardRefresh = _GuardRouterRefresh();
+  ref.listen(navigationGuardProvider, (previous, next) {
+    guardRefresh.refresh();
+  });
 
   final env = ref.read(appEnvProvider);
-  return GoRouter(
+  final router = GoRouter(
+    refreshListenable: guardRefresh,
     observers: [routeObserver],
     initialLocation: env.initialRoute ?? AppRouteNames.splash,
     errorBuilder: (context, state) => const InvalidRouteRecoveryPage(),
@@ -85,13 +96,46 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         return AppRouteNames.home;
       }
 
-      if (path == AppRouteNames.progressMatch && !nav.isReadinessEstablished) {
+      final isMatchEntry =
+          path == AppRouteNames.progressMatch ||
+          path == AppRouteNames.match ||
+          path == AppRouteNames.matchCountdown ||
+          path == AppRouteNames.matchResult ||
+          path == AppRouteNames.matchDetail ||
+          path == AppRouteNames.matchIntention ||
+          path == AppRouteNames.matchFeedback;
+      // Local restoration shows the real server result/readiness rejection.
+      // The navigation projection is not an authority for backend operations.
+      if (isMatchEntry &&
+          !env.restorationLocalBuild &&
+          !nav.isReadinessEstablished) {
         return AppRouteNames.meReadiness;
       }
 
       return null;
     },
     routes: [
+      GoRoute(
+        path: '/buddy-v1013',
+        builder: (context, state) => const BuddyPage(),
+      ),
+      GoRoute(
+        path: '/formal-relationship',
+        builder: (context, state) => const FormalRelationshipPage(),
+      ),
+      if (env.restorationLocalBuild)
+        GoRoute(
+          path: '/live-connection',
+          builder: (context, state) => LiveConnectionPage(
+            peerId: int.tryParse(state.uri.queryParameters['peerId'] ?? ''),
+          ),
+        ),
+      if (env.restorationLocalBuild)
+        GoRoute(
+          path: '/live-chat/:peerId',
+          builder: (context, state) =>
+              LiveChatPage(peerId: int.parse(state.pathParameters['peerId']!)),
+        ),
       if (env.isDev)
         GoRoute(
           path: AppRouteNames.profileShowcaseReviewFixture,
@@ -192,6 +236,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           );
           if (routeState != null) {
             return _fadeSlidePage(state, ChatRoomPage(routeState: routeState));
+          }
+          if (state.extra is ChatRouteState) {
+            return _fadeSlidePage(state, const _InvalidChatRoutePage());
           }
           final storedConversationId = storedConversationIdFromSegment(segment);
           return _fadeSlidePage(
@@ -307,7 +354,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRouteNames.astroAdvancedPreview,
         pageBuilder: (context, state) =>
-            _fadeSlidePage(state, const AstroAdvancedPreviewPage()),
+            _fadeSlidePage(state, const DynamicChartPage()),
       ),
       GoRoute(
         path: AppRouteNames.astroChartSettings,
@@ -417,11 +464,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 routes: [
                   GoRoute(
                     path: AppRouteNames.progressMatchSegment,
-                    builder: (context, state) => const MatchShellPage(),
+                    builder: (context, state) => env.restorationLocalBuild
+                        ? const SlowDatingJourneyPage()
+                        : const MatchShellPage(),
                   ),
                   GoRoute(
                     path: AppRouteNames.progressConnectionSegment,
-                    builder: (context, state) => const ConnectionPage(),
+                    builder: (context, state) => env.restorationLocalBuild
+                        ? const LiveConnectionPage()
+                        : const ConnectionPage(),
                   ),
                 ],
               ),
@@ -453,7 +504,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                   ),
                   GoRoute(
                     path: AppRouteNames.meReadinessSegment,
-                    builder: (context, state) => const ReadinessPurposePage(),
+                    builder: (context, state) =>
+                        (const bool.fromEnvironment(
+                              'ELITESYNC_V1012_LOCAL_BUILD',
+                            ) ||
+                            const bool.fromEnvironment(
+                              'ELITESYNC_V1013_LOCAL_BUILD',
+                            ) ||
+                            const bool.fromEnvironment(
+                              'ELITESYNC_V1014_LOCAL_BUILD',
+                            ))
+                        ? const SlowDatingJourneyPage()
+                        : const ReadinessPurposePage(),
                   ),
                   GoRoute(
                     path: AppRouteNames.meShowcaseSegment,
@@ -472,14 +534,25 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+  ref.onDispose(() {
+    // GoRouter detaches its refresh listener before the bridge is disposed;
+    // Riverpod owns and closes the Guard subscription with this provider.
+    router.dispose();
+    guardRefresh.dispose();
+  });
+  return router;
 });
+
+class _GuardRouterRefresh extends ChangeNotifier {
+  void refresh() => notifyListeners();
+}
 
 ChatRouteState? chatRouteStateFromPath({
   required String segment,
   Object? extra,
 }) {
-  if (extra is ChatRouteState && extra.canonicalSegment == segment) {
-    return extra;
+  if (extra is ChatRouteState) {
+    return extra.canonicalSegment == segment ? extra : null;
   }
   final legacyPeerId = int.tryParse(segment);
   if (legacyPeerId == null || legacyPeerId <= 0) return null;
@@ -517,17 +590,20 @@ class _StoredConversationRoutePage extends ConsumerWidget {
       ),
       data: (conversation) {
         final peerUserId = conversation.peerUserId;
-        if (peerUserId == null ||
-            peerUserId <= 0 ||
-            (conversation.conversationId != null &&
-                conversation.conversationId != conversationId)) {
+        final resolvedConversationId = conversation.conversationId;
+        if (conversation.entryKind != 'stored_conversation' ||
+            resolvedConversationId == null ||
+            resolvedConversationId <= 0 ||
+            resolvedConversationId != conversationId ||
+            peerUserId == null ||
+            peerUserId <= 0) {
           return _ChatRouteResolutionError(
             onRetry: () =>
                 ref.invalidate(conversationDetailProvider(conversationId)),
           );
         }
         final routeState = ChatRouteState.stored(
-          conversationId: conversationId,
+          conversationId: resolvedConversationId,
           peerUserId: peerUserId,
           matchId: conversation.matchId,
           title: conversation.name,

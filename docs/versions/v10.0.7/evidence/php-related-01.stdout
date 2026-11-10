@@ -1,0 +1,743 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDFFFDFFFFFFFFFFDDFFDDDDDDDFFFF 65 / 84 ( 77%)
+EEDDDFDDDDDDDDDDDDD                                               84 / 84 (100%)
+
+Time: 00:09.628, Memory: 70.00 MB
+
+There were 2 errors:
+
+1) Tests\Feature\V1006AdminWebTest::test_valid_csrf_does_not_grant_a_whitelisted_ordinary_user_management
+Illuminate\Database\QueryException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = r1hN7FMSH8guD7IdWJmHoJmlUJknkKz7mol7XgvJ limit 1)
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php:343
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3013
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php:97
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:117
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:105
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:89
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Manager.php:191
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:28
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:15
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:62
+
+Caused by
+PDOException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:67
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:44
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php:24
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php:185
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:1231
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:512
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:407
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php:343
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3013
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php:97
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:117
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:105
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:89
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Manager.php:191
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:28
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:15
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:62
+
+2) Tests\Feature\V1006AdminWebTest::test_missing_csrf_is_rejected_and_web_logout_invalidates_authentication
+Illuminate\Database\QueryException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = IzEFhYkhAxfSczAdnuXspqTId0iPiKBD04BjaD8R limit 1)
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php:343
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3013
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php:97
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:117
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:105
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:89
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Manager.php:191
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:28
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:15
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:73
+
+Caused by
+PDOException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:67
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:44
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php:24
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php:185
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:1231
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:512
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:407
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:812
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:779
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:398
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3106
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3091
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3676
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3090
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php:343
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3013
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php:97
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:117
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:105
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php:89
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Manager.php:191
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:28
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithSession.php:15
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:73
+
+--
+
+There were 20 failures:
+
+1) Tests\Feature\MessageApiTest::test_send_list_and_mark_read_message_flow
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:146
+
+2) Tests\Feature\MessageApiTest::test_image_attachment_can_be_bound_to_message_and_listed
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:224
+
+3) Tests\Feature\MessageApiTest::test_video_attachment_can_be_bound_to_message_and_listed
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:299
+
+4) Tests\Feature\MessageApiTest::test_video_attachment_preview_takes_priority_over_content
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:403
+
+5) Tests\Feature\MessageApiTest::test_list_auto_marks_incoming_messages_as_read
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:436
+
+6) Tests\Feature\MessageApiTest::test_atomic_keyed_send_replay_mismatch_and_newest_match_truth
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:463
+
+7) Tests\Feature\MessageApiTest::test_key_validation_and_attachment_failure_contracts_have_no_writes
+Expected response status code [409] but received 422.
+Failed asserting that 422 is identical to 409.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:517
+
+8) Tests\Feature\MessageApiTest::test_ready_attachment_request_order_replays_and_notification_failure_rolls_back
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:531
+
+9) Tests\Feature\MessageApiTest::test_atomic_send_reuses_resolved_foundation_winners_and_preserves_departed_members
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:582
+
+10) Tests\Feature\MessageApiTest::test_cross_conversation_match_link_winner_throws_and_rolls_back_attempted_send
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'match link conversation invariant violation'
++'Cross-conversation match-link ownership must fail closed.'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MessageApiTest.php:630
+
+11) Tests\Feature\MediaUploadEndpointTest::test_media_upload_route_writes_to_object_storage_and_completes_pipeline
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MediaUploadEndpointTest.php:48
+
+12) Tests\Feature\MediaUploadEndpointTest::test_media_upload_route_rejects_invalid_mime_with_a_tracked_asset
+Failed asserting that null is identical to 'blocked'.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MediaUploadEndpointTest.php:97
+
+13) Tests\Feature\MediaUploadEndpointTest::test_video_upload_route_accepts_explicit_video_mime_from_client_payload
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MediaUploadEndpointTest.php:132
+
+14) Tests\Feature\MediaProcessingPipelineTest::test_internal_media_processing_job_drives_pipeline_and_cache
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MediaProcessingPipelineTest.php:36
+
+15) Tests\Feature\MediaProcessingPipelineTest::test_ordinary_process_demo_route_is_unavailable_without_processing_side_effect
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MediaProcessingPipelineTest.php:77
+
+16) Tests\Feature\NotificationApiTest::test_message_notification_uses_stored_conversation_and_sender_identity_without_replay_duplicate
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\NotificationApiTest.php:150
+
+17) Tests\Feature\MbtiApiVersioningTest::test_quiz_and_submit_are_disabled_when_feature_is_off
+Expected response status code [410] but received 200.
+Failed asserting that 200 is identical to 410.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\MbtiApiVersioningTest.php:25
+
+18) Tests\Feature\V1006AdminWebTest::test_web_login_search_and_disable_share_the_api_action
+Expected response status code [201, 301, 302, 303, 307, 308] but received 500.
+Failed asserting that false is true.
+
+The following exception occurred during the last request:
+
+PDOException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:67
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(67): PDO::connect()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(44): Illuminate\Database\Connectors\Connector->createPdoConnection()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(185): Illuminate\Database\Connectors\MySqlConnector->connect()
+#4 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->{closure:Illuminate\Database\Connectors\ConnectionFactory::createPdoResolverWithHosts():180}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1231): call_user_func()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(512): Illuminate\Database\Connection->getPdo()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(407): Illuminate\Database\Connection->getPdoForSelect()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(812): Illuminate\Database\Connection->{closure:Illuminate\Database\Connection::select():398}()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(397): Illuminate\Foundation\Testing\TestCase->call()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(37): Illuminate\Foundation\Testing\TestCase->post()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_web_login_search_and_disable_share_the_api_action()
+#63 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#64 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#65 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#66 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#67 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#68 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#69 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#70 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#71 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#72 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = nn4PYgRlSVfpJImIFqMHAtPbiXCMcWjE4rxzlIrv limit 1) in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#4 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(397): Illuminate\Foundation\Testing\TestCase->call()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(37): Illuminate\Foundation\Testing\TestCase->post()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_web_login_search_and_disable_share_the_api_action()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#63 {main}
+
+----------------------------------------------------------------------------------
+
+SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = nn4PYgRlSVfpJImIFqMHAtPbiXCMcWjE4rxzlIrv limit 1)
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:185
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:38
+
+19) Tests\Feature\V1006AdminWebTest::test_empty_admin_list_rejects_web_and_api_even_in_local
+Expected response status code [403] but received 500.
+Failed asserting that 500 is identical to 403.
+
+The following exception occurred during the last request:
+
+PDOException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:67
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(67): PDO::connect()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(44): Illuminate\Database\Connectors\Connector->createPdoConnection()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(185): Illuminate\Database\Connectors\MySqlConnector->connect()
+#4 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->{closure:Illuminate\Database\Connectors\ConnectionFactory::createPdoResolverWithHosts():180}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1231): call_user_func()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(512): Illuminate\Database\Connection->getPdo()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(407): Illuminate\Database\Connection->getPdoForSelect()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(812): Illuminate\Database\Connection->{closure:Illuminate\Database\Connection::select():398}()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(52): Illuminate\Foundation\Testing\TestCase->get()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_empty_admin_list_rejects_web_and_api_even_in_local()
+#63 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#64 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#65 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#66 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#67 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#68 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#69 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#70 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#71 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#72 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = alvw80IrI7WD55odXvFt2YCfhqAryORbKEKqPCzX limit 1) in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#4 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(52): Illuminate\Foundation\Testing\TestCase->get()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_empty_admin_list_rejects_web_and_api_even_in_local()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#63 {main}
+
+----------------------------------------------------------------------------------
+
+SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = alvw80IrI7WD55odXvFt2YCfhqAryORbKEKqPCzX limit 1)
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:141
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:52
+
+20) Tests\Feature\V1006AdminWebTest::test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected
+Expected response status code [403] but received 500.
+Failed asserting that 500 is identical to 403.
+
+The following exception occurred during the last request:
+
+PDOException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:67
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(67): PDO::connect()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(44): Illuminate\Database\Connectors\Connector->createPdoConnection()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(185): Illuminate\Database\Connectors\MySqlConnector->connect()
+#4 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->{closure:Illuminate\Database\Connectors\ConnectionFactory::createPdoResolverWithHosts():180}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1231): call_user_func()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(512): Illuminate\Database\Connection->getPdo()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(407): Illuminate\Database\Connection->getPdoForSelect()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(812): Illuminate\Database\Connection->{closure:Illuminate\Database\Connection::select():398}()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(397): Illuminate\Foundation\Testing\TestCase->call()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(115): Illuminate\Foundation\Testing\TestCase->post()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected()
+#63 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#64 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#65 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#66 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#67 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#68 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#69 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#70 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#71 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#72 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = yrv93hAHgo1BrENgCvZJ94exJiuNBAvz58Ke0b8O limit 1) in C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+Stack trace:
+#0 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(779): Illuminate\Database\Connection->runQueryCallback()
+#1 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Connection.php(398): Illuminate\Database\Connection->run()
+#2 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3106): Illuminate\Database\Connection->select()
+#3 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3091): Illuminate\Database\Query\Builder->runSelect()
+#4 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3676): Illuminate\Database\Query\Builder->{closure:Illuminate\Database\Query\Builder::get():3090}()
+#5 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3090): Illuminate\Database\Query\Builder->onceWithColumns()
+#6 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(343): Illuminate\Database\Query\Builder->get()
+#7 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3013): Illuminate\Database\Query\Builder->first()
+#8 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\DatabaseSessionHandler.php(97): Illuminate\Database\Query\Builder->find()
+#9 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(117): Illuminate\Session\DatabaseSessionHandler->read()
+#10 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(105): Illuminate\Session\Store->readFromHandler()
+#11 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Store.php(89): Illuminate\Session\Store->loadSession()
+#12 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(147): Illuminate\Session\Store->start()
+#13 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\helpers.php(399): Illuminate\Session\Middleware\StartSession->{closure:Illuminate\Session\Middleware\StartSession::startSession():144}()
+#14 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(144): tap()
+#15 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(116): Illuminate\Session\Middleware\StartSession->startSession()
+#16 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#17 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Session\Middleware\StartSession->handle()
+#18 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#19 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#20 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#21 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#22 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#23 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(807): Illuminate\Pipeline\Pipeline->then()
+#24 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(786): Illuminate\Routing\Router->runRouteWithinStack()
+#25 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(750): Illuminate\Routing\Router->runRoute()
+#26 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Routing\Router.php(739): Illuminate\Routing\Router->dispatchToRoute()
+#27 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(201): Illuminate\Routing\Router->dispatch()
+#28 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(170): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():198}()
+#29 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\app\Http\Middleware\RequestTraceMiddleware.php(20): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():168}()
+#30 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): App\Http\Middleware\RequestTraceMiddleware->handle()
+#31 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#32 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#33 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#34 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#35 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#36 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#37 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#38 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#39 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#40 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#41 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(49): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#42 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\HandleCors->handle()
+#43 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#44 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Http\Middleware\TrustProxies->handle()
+#45 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#46 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(209): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#47 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(127): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():184}:185}()
+#48 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(176): Illuminate\Pipeline\Pipeline->then()
+#49 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(145): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#50 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle()
+#51 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(397): Illuminate\Foundation\Testing\TestCase->call()
+#52 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php(115): Illuminate\Foundation\Testing\TestCase->post()
+#53 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Feature\V1006AdminWebTest->test_disabled_existing_web_identity_and_direct_admin_target_post_are_rejected()
+#54 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#55 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#56 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run()
+#57 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#58 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#59 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#60 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run()
+#61 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run()
+#62 C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\bin\phpunit(122): include('...')
+#63 {main}
+
+----------------------------------------------------------------------------------
+
+SQLSTATE[HY000] [1044] Access denied for user 'v1007'@'%' to database ':memory:' (Connection: mysql, SQL: select * from `sessions` where `id` = yrv93hAHgo1BrENgCvZJ94exJiuNBAvz58Ke0b8O limit 1)
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:141
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1006AdminWebTest.php:115
+
+ERRORS!
+Tests: 84, Assertions: 548, Errors: 2, Failures: 20, Deprecations: 2.

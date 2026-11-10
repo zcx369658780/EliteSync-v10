@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\AppReleaseVersion;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use App\Services\Admin\ReleaseManagement;
+use Illuminate\Validation\ValidationException;
 
 class AppReleaseUpsertCommand extends Command
 {
@@ -64,45 +65,22 @@ class AppReleaseUpsertCommand extends Command
 
         $forceUpdate = in_array($forceRaw, ['1', 'true', 'yes', 'y', 'on'], true);
         $versionCode = (int) $versionCodeRaw;
-        $publishedAt = now();
-
-        DB::transaction(function () use (
-            $platform,
-            $channel,
-            $versionCode,
-            $versionName,
-            $minSupported,
-            $downloadUrl,
-            $changelog,
-            $sha256,
-            $forceUpdate,
-            $publishedAt
-        ): void {
-            AppReleaseVersion::query()
-                ->where('platform', $platform)
-                ->where('channel', $channel)
-                ->where('is_active', true)
-                ->update(['is_active' => false]);
-
-            AppReleaseVersion::query()->updateOrCreate(
-                [
-                    'platform' => $platform,
-                    'channel' => $channel,
-                    'version_code' => $versionCode,
-                ],
-                [
-                    'version_name' => $versionName,
-                    'min_supported_version_name' => $minSupported,
-                    'download_url' => $downloadUrl,
-                    'changelog' => $changelog,
-                    'sha256' => $sha256,
-                    'force_update' => $forceUpdate,
-                    'is_active' => true,
-                    'published_at' => $publishedAt,
-                ]
-            );
-        });
-
+        try {
+            app(ReleaseManagement::class)->cli($platform, $channel, [
+                'version_code' => $versionCode,
+                'version_name' => $versionName,
+                'min_supported_version_name' => $minSupported,
+                'download_url' => $downloadUrl,
+                'changelog' => $changelog,
+                'sha256' => $sha256,
+                'force_update' => $forceUpdate,
+            ]);
+        } catch (ValidationException $exception) {
+            foreach ($exception->errors() as $messages) {
+                foreach ($messages as $message) { $this->error($message); }
+            }
+            return self::FAILURE;
+        }
         $this->info(sprintf(
             'Release upserted: %s/%s %s (%d), force=%s',
             $platform,
@@ -115,3 +93,5 @@ class AppReleaseUpsertCommand extends Command
         return self::SUCCESS;
     }
 }
+
+

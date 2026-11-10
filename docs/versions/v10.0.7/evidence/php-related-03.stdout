@@ -1,0 +1,117 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD  63 / 133 ( 47%)
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDFDDFDDFFFFF 126 / 133 ( 94%)
+FFFFFFD                                                         133 / 133 (100%)
+
+Time: 00:09.879, Memory: 78.00 MB
+
+There were 13 failures:
+
+1) Tests\Feature\AstroCanonicalApiTest::test_astro_save_uses_server_canonical_engine_without_client_sun_sign
+Failed asserting that an array has the key 'chart_data'.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:368
+
+2) Tests\Feature\AstroCanonicalApiTest::test_astro_save_changes_bazi_ziwei_and_western_when_birth_place_changes
+Failed asserting that an array has the key 'chart_data'.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:572
+
+3) Tests\Feature\AstroCanonicalApiTest::test_astro_summary_prefers_current_natal_chart_signs_over_stale_legacy_summary
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'天蝎座'
++'射手座'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:686
+
+4) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_endpoint_returns_chart_data_payload
+Failed asserting that null is identical to 'EliteSync'.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:730
+
+5) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_cache_reuses_matching_western_natal_signature
+Failed asserting that two strings are not identical.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:765
+
+6) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_cache_recomputes_when_house_system_policy_changes_to_placidus
+Failed asserting that actual size 0 matches expected size 2.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Client\Factory.php:417
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php:361
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:840
+
+7) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_cache_rejects_legacy_not_house_truth_cache_even_with_matching_signature
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'available'
++'not_house_truth'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:242
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:790
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:901
+
+8) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_cache_recomputes_when_birth_input_signature_changes
+Failed asserting that two strings are not identical.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:941
+
+9) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_old_cache_without_signature_forces_recompute
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'python_kerykeion'
++'legacy_summary_only'
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:988
+
+10) Tests\Feature\AstroCanonicalApiTest::test_astro_chart_python_fallback_does_not_claim_house_truth
+Failed asserting that actual size 0 matches expected size 1.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Http\Client\Factory.php:417
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php:361
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:1028
+
+11) Tests\Feature\AstroCanonicalApiTest::test_astro_pair_endpoint_returns_advanced_context
+Expected response status code [200] but received 503.
+Failed asserting that 503 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:1067
+
+12) Tests\Feature\AstroCanonicalApiTest::test_astro_transit_endpoint_returns_advanced_context
+Expected response status code [200] but received 503.
+Failed asserting that 503 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:1113
+
+13) Tests\Feature\AstroCanonicalApiTest::test_astro_return_endpoint_returns_advanced_context
+Expected response status code [200] but received 503.
+Failed asserting that 503 is identical to 200.
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:160
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\AstroCanonicalApiTest.php:1149
+
+FAILURES!
+Tests: 133, Assertions: 986, Failures: 13, Deprecations: 2.

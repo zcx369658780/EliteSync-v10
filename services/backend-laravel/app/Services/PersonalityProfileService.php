@@ -48,6 +48,7 @@ class PersonalityProfileService
             }
         }
 
+        $answered = app(CurrentQuestionnaire::class)->validCount($userId);
         $normalized = $this->normalizeScores($raw, $dimensions, $scoringMap, $questions->all());
         $summary = $this->summary($normalized, $dimensions);
 

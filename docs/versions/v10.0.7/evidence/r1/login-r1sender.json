@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-15T02:03:00.123982+00:00",
+  "role": null,
+  "method": "POST",
+  "path": "/api/v1/auth/login",
+  "request": {
+    "phone": "19900000709"
+  },
+  "status": 200,
+  "body": {
+    "user": {
+      "id": 11,
+      "phone": "19900000709",
+      "name": "V1007 R1 Fictional r1sender",
+      "role": "user",
+      "birthday": "1992-06-10",
+      "birth_time": null,
+      "zodiac_animal": null,
+      "gender": "male",
+      "city": "V1007 R1 City",
+      "relationship_goal": null,
+      "birth_place": null,
+      "private_birth_place": null,
+      "birth_lat": null,
+      "private_birth_lat": null,
+      "birth_lng": null,
+      "private_birth_lng": null,
+      "realname_verified": false
+    }
+  }
+}

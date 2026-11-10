@@ -1,0 +1,58 @@
+{
+  "users": {
+    "original_rows": 8,
+    "unchanged": true
+  },
+  "answers": {
+    "original_rows": 5,
+    "unchanged": true
+  },
+  "attempts": {
+    "original_rows": 5,
+    "unchanged": true
+  },
+  "drafts": {
+    "original_rows": 0,
+    "unchanged": true
+  },
+  "astro": {
+    "original_rows": 4,
+    "unchanged": true
+  },
+  "matches": {
+    "original_rows": 4,
+    "unchanged": true
+  },
+  "connections": {
+    "original_rows": 3,
+    "unchanged": true
+  },
+  "consents": {
+    "original_rows": 2,
+    "unchanged": true
+  },
+  "messages": {
+    "original_rows": 4,
+    "unchanged": true
+  },
+  "messages_decrypted": {
+    "original_rows": 4,
+    "unchanged": true
+  },
+  "mbti_attempts": {
+    "original_rows": 1,
+    "unchanged": true
+  },
+  "statuses": {
+    "original_rows": 1,
+    "unchanged": true
+  },
+  "status_likes": {
+    "original_rows": 1,
+    "unchanged": true
+  },
+  "notifications": {
+    "original_rows": 9,
+    "unchanged": true
+  }
+}

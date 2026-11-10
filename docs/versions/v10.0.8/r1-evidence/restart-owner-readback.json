@@ -1,0 +1,21 @@
+{
+  "time": "2026-10-15T09:37:18.106072+00:00",
+  "user": "r1restricted",
+  "status": 200,
+  "body": {
+    "items": [
+      {
+        "id": 4,
+        "kind": "restrict",
+        "created_at": "2026-10-15 09:30:05",
+        "appeal": {
+          "id": 1,
+          "status": "submitted",
+          "submitted_at": "2026-10-15 09:33:29",
+          "note": "V1008R1PleaseReviewRestrictionNoAutoRestore"
+        }
+      }
+    ],
+    "notice": "申诉仅登记，不自动解除处罚或恢复任何私密互动权限。请勿填写密码、私信或他人隐私。"
+  }
+}

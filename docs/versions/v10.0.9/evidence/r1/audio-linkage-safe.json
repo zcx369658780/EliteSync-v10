@@ -1,0 +1,186 @@
+{
+  "verdict": "NOT_PROVEN_SAME_CALL_SIMULTANEOUS_BIDIRECTIONAL_INTELLIGIBLE_AUDIO",
+  "owner_confirmation": [
+    {
+      "session_line": 1851,
+      "envelope_timestamp_utc": "2026-10-16T06:18:47.229Z",
+      "metadata_create_time_epoch": 1792131527.22922,
+      "metadata_time_shanghai": "2026-10-16T14:18:47.229220+08:00",
+      "owner_exact_quotes": [
+        "仍很少或没有回声",
+        "正常和轻声都清楚"
+      ],
+      "scope": "Prompt explicitly asks speech beside phone and listening at computer; reverse simultaneous speech not asked or confirmed"
+    },
+    {
+      "session_line": 1902,
+      "envelope_timestamp_utc": "2026-10-16T06:20:43.655Z",
+      "metadata_create_time_epoch": 1792131643.65554,
+      "metadata_time_shanghai": "2026-10-16T14:20:43.655540+08:00",
+      "owner_exact_quotes": [
+        "是，回声很少或没有，正常和轻声都清楚"
+      ],
+      "scope": "Prompt explicitly asks speech beside phone and listening at computer; reverse simultaneous speech not asked or confirmed"
+    }
+  ],
+  "owner_summary_receipt_timestamp_limit": "owner-agc-profile-result.json utc 06:19:10 precedes later mute-reopen response 06:20:43; treat it as aggregated mutable receipt, use actual session timestamps for each confirmation",
+  "listening_session": {
+    "call_id": "NOT_PROVEN",
+    "room": "NOT_PROVEN",
+    "connected": "Prior session UI/assistant record; no immutable call identity joined to human receipt",
+    "apk_sha256": "904efe1429740b2a435c511343586b4d9e5b4a1f7f5d84e37bdaa3b642cb20bd",
+    "both_installed": [
+      {
+        "alias": "PHONE_XIAOMI_TEST",
+        "sha256": "904efe1429740b2a435c511343586b4d9e5b4a1f7f5d84e37bdaa3b642cb20bd",
+        "match": true,
+        "engine_receipts": [
+          "RTC_AUDIO_ENGINE hardwareProcessingRequested=false engineWasAlreadyInitialized=false effectiveMode=unverified"
+        ]
+      },
+      {
+        "alias": "AVD_MANUAL",
+        "sha256": "904efe1429740b2a435c511343586b4d9e5b4a1f7f5d84e37bdaa3b642cb20bd",
+        "match": true,
+        "engine_receipts": [
+          "RTC_AUDIO_ENGINE hardwareProcessingRequested=false engineWasAlreadyInitialized=false effectiveMode=unverified"
+        ]
+      }
+    ]
+  },
+  "final_package": {
+    "sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+    "installed_receipt": {
+      "time": 1792142840.306167,
+      "devices": [
+        {
+          "alias": "PHONE_XIAOMI_TEST",
+          "sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+          "equal": true
+        },
+        {
+          "alias": "AVD_MANUAL",
+          "sha256": "77d4b0215d710a3a749814d386059d4763eaefa73101d9b31bc14b8ba7bca5ca",
+          "equal": true
+        }
+      ]
+    },
+    "same_as_listening_apk": false,
+    "audio_source_continuity": [
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_android_audio_engine.dart",
+        "sha256": "3699d17f493babf322f7464d0baa220923ceeb1ce52d9cd509a7474ee4ec81fd",
+        "unchanged": true,
+        "canonical_git_sha256": "3699d17f493babf322f7464d0baa220923ceeb1ce52d9cd509a7474ee4ec81fd",
+        "worktree_hash_matches_manifest": true,
+        "git_content_equal_after_CRLF_normalization": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/lib/features/rtc/domain/services/rtc_livekit_service.dart",
+        "sha256": "8b6c99ce02e74353abc9d59a040011bc3d5f218eb43812eca107b8a3045f1a60",
+        "unchanged": true,
+        "canonical_git_sha256": "f03fb4828dc155a20bb08a32207df80dbd78e682b790a4ceed009abd53106732",
+        "worktree_hash_matches_manifest": true,
+        "git_content_equal_after_CRLF_normalization": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/pubspec.yaml",
+        "sha256": "78e52456080ed382e6777fd7fe69e1e7c4a423769d05771147645c38b40b0115",
+        "unchanged": true,
+        "canonical_git_sha256": "64c434f3d5846150e9e004c42b6f01bb096c4816575ad5e241ad182cea7b6568",
+        "worktree_hash_matches_manifest": true,
+        "git_content_equal_after_CRLF_normalization": true
+      },
+      {
+        "path": "apps/flutter_elitesync_module/pubspec.lock",
+        "sha256": "0b38db9d35ec72fd6637e29f9ba9b2706bbd100fd6e6b244f79f4a1b346b7640",
+        "unchanged": true,
+        "canonical_git_sha256": "005d1d2d474bf4c3f7ed3095df1e9b49d9fd1ca37eb107f9eac284f27ee79b92",
+        "worktree_hash_matches_manifest": true,
+        "git_content_equal_after_CRLF_normalization": true
+      }
+    ],
+    "effective_native_processing": "UNVERIFIED"
+  },
+  "final_call_media": {
+    "call_id": 59,
+    "room": "NOT_PROVEN in selected receipt; call_id is unambiguous local lookup anchor",
+    "status_before_revoke": "in_call",
+    "mode": "voice",
+    "media": {
+      "PHONE_XIAOMI_TEST": {
+        "outbound": {
+          "samples": 8,
+          "first": {
+            "host_epoch": 1792142918.1758199,
+            "bytes": 2179,
+            "packets": 40
+          },
+          "last": {
+            "host_epoch": 1792142946.1717234,
+            "bytes": 70154,
+            "packets": 790
+          },
+          "bytes_growth": 67975,
+          "packets_growth": 750
+        },
+        "inbound": {
+          "samples": 8,
+          "first": {
+            "host_epoch": 1792142918.1820636,
+            "bytes": 574,
+            "packets": 20
+          },
+          "last": {
+            "host_epoch": 1792142946.1809027,
+            "bytes": 4358,
+            "packets": 153
+          },
+          "bytes_growth": 3784,
+          "packets_growth": 133
+        }
+      },
+      "AVD_MANUAL": {
+        "outbound": {
+          "samples": 4,
+          "first": {
+            "host_epoch": 1792142934.254482,
+            "bytes": 3595,
+            "packets": 115
+          },
+          "last": {
+            "host_epoch": 1792142946.2601035,
+            "bytes": 5233,
+            "packets": 173
+          },
+          "bytes_growth": 1638,
+          "packets_growth": 58
+        },
+        "inbound": {
+          "samples": 4,
+          "first": {
+            "host_epoch": 1792142934.2625108,
+            "bytes": 33717,
+            "packets": 398
+          },
+          "last": {
+            "host_epoch": 1792142946.2674506,
+            "bytes": 70360,
+            "packets": 792
+          },
+          "bytes_growth": 36643,
+          "packets_growth": 394
+        }
+      }
+    },
+    "SDK_playback": "Inbound audio RTP is subscription/receiver evidence, not acoustic playback or human intelligibility proof",
+    "simultaneous_direction_statistics": "Both inbound/outbound counters increase on both endpoints during same call; no human simultaneous listening confirmation"
+  },
+  "missing": [
+    "Explicit human reverse direction and same-call simultaneous two-way intelligibility confirmation",
+    "Unambiguous call/room linkage for original human listening",
+    "Human listening receipt linked to final installed APK; source continuity is narrower than binary identity"
+  ],
+  "minimum_followup": "Owner may decide whether existing limitations are acceptable or separately authorize one bounded voice-only session: record call/room, both installed hashes, both directions and simultaneous intelligibility, subscription/playback and timestamps. No new authorization assumed.",
+  "evidence_level": "CODEX_REPORTED / LOCAL_ONLY originals; no R1 device, microphone, recording, service or network actions"
+}

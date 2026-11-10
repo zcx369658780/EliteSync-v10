@@ -1,0 +1,35 @@
+// Add-to-app source integration. Generated module files remain Flutter-owned.
+import java.nio.charset.StandardCharsets
+import java.util.Base64
+
+def moduleDir = new File(settingsDir, '../flutter_elitesync_module')
+def includeFile = new File(moduleDir, '.android/include_flutter.groovy')
+if (!includeFile.isFile()) {
+    throw new GradleException('Source Debug needs the prepared Flutter module .android directory; do not download or regenerate it implicitly.')
+}
+
+// Kotlin native-plugin scripts need FlutterExtension on the shared parent
+// classpath, before Gradle generates their typed extension accessors.
+rootProject.buildFileName = 'build-source-debug.gradle.kts'
+
+def defines = (providers.gradleProperty('flutterDartDefines').orNull ?: '')
+    .split('[;,]').collect { it.trim() }.findAll { !it.isEmpty() }
+if (!defines.contains('ELITESYNC_V1015_LOCAL_BUILD=true') ||
+        defines.contains('ELITESYNC_V1015_LOCAL_BUILD=false') ||
+        defines.contains('ELITESYNC_V1014_LOCAL_BUILD=false')) {
+    throw new GradleException('Source Debug requires the v10.1.5 local gate and the accepted v10.1.4 routes.')
+}
+defines = (defines + 'ELITESYNC_V1014_LOCAL_BUILD=true').unique()
+def encodedDefines = defines.collect {
+    Base64.encoder.encodeToString(it.getBytes(StandardCharsets.UTF_8))
+}.join(',')
+
+// Flutter's module plugin reads these from :flutter, before creating its tasks.
+gradle.beforeProject { p ->
+    if (p.path == ':flutter') {
+        p.extensions.extraProperties.set('dart-defines', encodedDefines)
+        p.extensions.extraProperties.set('target-platform', 'android-arm64')
+    }
+}
+// This also loads the native plugins listed by Flutter's generated metadata.
+apply from: includeFile

@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T02:03:02.329109+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/admin/users/12/disable",
+  "request": {},
+  "status": 200,
+  "body": {
+    "ok": true
+  }
+}

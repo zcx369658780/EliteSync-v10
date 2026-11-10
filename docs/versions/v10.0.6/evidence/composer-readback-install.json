@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\ProgramData\\ComposerSetup\\bin\\composer.bat",
+    "install",
+    "--no-interaction",
+    "--prefer-dist",
+    "--no-progress"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T13:49:26.664824+00:00",
+  "end": "2026-10-14T13:51:07.982577+00:00",
+  "streams": {
+    "stdout": "36666fe4208a7850bc14c0d57bf92b93678358c7cec4f8dcb89b8709010de3d3",
+    "stderr": "7ed7d89fcf622badaeacf1e156465992a6654617a4131d965562ecdb0e5656a3"
+  }
+}

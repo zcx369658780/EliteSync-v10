@@ -1,0 +1,46 @@
+[
+  {
+    "repository": "livekit/livekit-server",
+    "tag": "v1.13.10",
+    "digest": "sha256:89ca9ce0791e18d6e03bf6e2c49ceb27e1c754eae8bd50c989386c1a5963791a",
+    "linux_amd64": [
+      {
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "digest": "sha256:e96a42b8623f738919a3f2006d433aeb19d0f3c67ce11eb986ea20e2cf65fbf5",
+        "size": 866,
+        "platform": {
+          "architecture": "amd64",
+          "os": "linux"
+        }
+      }
+    ],
+    "pull_ref": "livekit/livekit-server@sha256:89ca9ce0791e18d6e03bf6e2c49ceb27e1c754eae8bd50c989386c1a5963791a"
+  },
+  {
+    "repository": "library/python",
+    "tag": "3.11-alpine",
+    "digest": "sha256:d9368b3a5ac59afea7b5d4f2e2aea0941dbf9fdee9c369c5bec00b98244bc929",
+    "linux_amd64": [
+      {
+        "annotations": {
+          "com.docker.official-images.bashbrew.arch": "amd64",
+          "org.opencontainers.image.base.digest": "sha256:d56c381f961d307a21b3ca004cf1e3910f106644aefb1f43e654c8a56c4fd395",
+          "org.opencontainers.image.base.name": "alpine:3.24",
+          "org.opencontainers.image.created": "2026-10-01T21:49:18Z",
+          "org.opencontainers.image.revision": "cede844ace77284e32c03b61ebc35cdfc945e862",
+          "org.opencontainers.image.source": "https://github.com/docker-library/python.git#cede844ace77284e32c03b61ebc35cdfc945e862:3.11/alpine3.24",
+          "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+          "org.opencontainers.image.version": "3.11.17-alpine3.24"
+        },
+        "digest": "sha256:bfebb8e11b53c46715fe3634e3b7bc5afb33b21ec82521539af1467c81ad3aed",
+        "mediaType": "application/vnd.oci.image.manifest.v1+json",
+        "platform": {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        "size": 1735
+      }
+    ],
+    "pull_ref": "library/python@sha256:d9368b3a5ac59afea7b5d4f2e2aea0941dbf9fdee9c369c5bec00b98244bc929"
+  }
+]
