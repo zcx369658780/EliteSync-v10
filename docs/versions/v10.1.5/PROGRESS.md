@@ -1,3 +1,17 @@
+# 最新节点｜2026-11-11 配套RTC升级已合包并完成短通话
+
+Owner已明确恢复持续工程。私有离线Maven只增加 `io.github.webrtc-sdk:android:150.7871.04` 精确版本，保留offline；增量准备仅同步两份依赖文件，无独有前件或SDK复制。Flutter3.41.7离线pub get已重生成私有package_config，确认LiveKit2.13.2/WebRTC1.6.3且锁文件未变化。源码检查和非作者静态复核沿用上一节点，不重复75项。
+
+源码 `4eb9b07d67ad9c557022e41b7ecbce0367ffa971` 实际构建125.058秒，退出0；APK SHA256 `6343e4eda2c97d261e26d4097e0f2e9f567721174fc3a7b2be289e53d556db6d`、154171959字节，v2签名、包/版本/arm64/Debug和功能标记通过。APK内 `libjingle_peerconnection_so.so` SHA256 `2b561520298d9fec3e216baf58a53fbddf4a46dfd247880cbc3821875ed20200` 与官方AAR对应arm64库完全相同，不是误编旧原生包。
+
+恢复原四容器、两个已有AVD及专用ADB5038，不新建库或迁移、不碰手机/默认5037。初次API冷启动令网关鉴权检查超时并按设计fail-closed；API就绪后重启同一SFU恢复，私有恢复工具改为等待真实RTC authority就绪，没有放宽保护。既有UI辅助脚本在“消息”静态标题与导航同名时拒绝了含混定位，改为直接进入具名虚构对端会话后继续，未产生额外通话。
+
+新APK的call8语音双方双向音频RTP和聚合波形活动通过，UI挂断到房间不存在上界0.907秒。call9视频双方音频RTP、非零编码/解码帧及本地/远端生成画面通过；发起端一次自动重连后恢复，UI挂断上界1.422秒。自身进程日志快照中Concurrent modification、Unhandled Exception和Visualizer失败均0。call1–9均ended、房间为空。该证据不代表连续无中断质量、实际听感/AEC或完整撤权到采集/数据包停媒矩阵通过。
+
+私有回执 `webrtc-150-apk-native-private.json`、`webrtc-163-two-app-runtime-private.json` 及各call截图/自身日志仅本机保留。固定构建回执已更新为新包运行PARTIAL。工程继续至网络日志脱敏；10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING、真机缓存UNKNOWN与其余未完成项不变。下文暂停与旧“当前”均为历史节点，不代表现在再次暂停。
+
+---
+
 # 最新终态｜2026-11-10 Owner手动保存暂停
 
 Owner因会话过长要求立即保存本地/GitHub文档并手动交接；长期普通工程授权及后续持续运行方式保留。本次在原生AAR下载结束并核验后收尾，没有启动新构建或测试。两个自有模拟器、专用ADB5038与SFU/WS/API/DB四容器已停止，数据卷、AVD和共享引擎保留，手机未用。详见 [最新交接](../../workflow/V1015_CONTINUOUS_ENGINEERING_HANDOFF_20261110.md)。下文各节点的“当前/仍运行/待合包”均为当时记录，最新身份和停止状态以本节、ACTIVE_STATE及最新交接为准。
