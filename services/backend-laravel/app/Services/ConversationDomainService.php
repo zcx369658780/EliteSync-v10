@@ -144,8 +144,8 @@ class ConversationDomainService
 
     public function summarizeConversation(Conversation $conversation, int $viewerId): array
     {
-        $peerMember = $conversation->members->first(fn (ConversationMember $member) => (int) $member->user_id !== $viewerId)
-            ?? $conversation->members->firstWhere('user_id', $viewerId);
+        $peerMember = $conversation->members->first(fn (ConversationMember $member) =>
+            (int) $member->user_id !== $viewerId && $member->left_at === null);
         $peer = $peerMember?->user;
         $latestMessage = ChatMessage::query()
             ->with(['attachments.mediaAsset'])
@@ -164,7 +164,7 @@ class ConversationDomainService
             ->count();
 
         return [
-            'entry_kind' => 'conversation',
+            'entry_kind' => 'stored_conversation',
             'conversation_id' => (int) $conversation->id,
             'match_id' => $matchId !== null ? (int) $matchId : null,
             'id' => (string) ($peer?->id ?? $conversation->room_key),

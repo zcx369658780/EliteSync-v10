@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "label": "Q-status-store-lock-20261015-154144-617",
+  "test": "V1008StatusModerationTest + StatusPostApiTest",
+  "database": "sqlite::memory:"
+}

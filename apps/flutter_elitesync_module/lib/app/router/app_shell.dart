@@ -11,18 +11,17 @@ import 'package:flutter_elitesync_module/design_system/components/brand/floating
 import 'package:flutter_elitesync_module/features/discover/presentation/pages/discover_page.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_portal_page.dart';
+import 'package:flutter_elitesync_module/features/me/presentation/pages/me_landing_page.dart';
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
+import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/home_provider.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
-import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
-import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
-import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
 import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
@@ -64,7 +63,9 @@ RtcSessionEntity? selectLatestIncomingRtcCall(
   return null;
 }
 
-final appShellRtcInviteWatcherEnabledProvider = Provider<bool>((ref) => true);
+final appShellRtcInviteWatcherEnabledProvider = Provider<bool>(
+  (ref) => ref.watch(appEnvProvider).useLiveKitRtc,
+);
 
 class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key, required this.navigationShell});
@@ -76,6 +77,8 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
+  static const _progressIndex = 1;
+
   bool _warmed = false;
 
   @override
@@ -98,6 +101,7 @@ class _AppShellState extends ConsumerState<AppShell> {
   }
 
   Future<void> _warmupProviders() async {
+    if (ref.read(appEnvProvider).restorationLocalBuild) return;
     if (_warmed) return;
     _warmed = true;
     final lite =
@@ -117,13 +121,11 @@ class _AppShellState extends ConsumerState<AppShell> {
     // 只预热当前首进页相关 provider，避免一次性 warm 过多链路拉高启动负担。
     if (initialRoute.startsWith(AppRouteNames.messages)) {
       warm(ref.read(conversationListProvider.future));
-    } else if (initialRoute.startsWith(AppRouteNames.match)) {
-      warm(ref.read(matchCountdownProvider.future));
-      warm(ref.read(matchResultProvider.future));
+    } else if (initialRoute.startsWith(AppRouteNames.progressMatch) ||
+        initialRoute.startsWith(AppRouteNames.match)) {
+      warm(ref.read(matchRoundProjectionProvider.future));
     } else if (initialRoute.startsWith(AppRouteNames.statusSquare)) {
       warm(ref.read(statusPostsProvider.future));
-    } else if (initialRoute.startsWith(AppRouteNames.profile)) {
-      warm(ref.read(profileProvider.future));
     } else {
       warm(ref.read(homeProvider.future));
     }
@@ -155,7 +157,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       bottomNavigationBar: FloatingDockBottomBar(
         currentIndex: widget.navigationShell.currentIndex,
         onTap: _onTap,
-        browseMode: widget.navigationShell.currentIndex != 2,
+        browseMode: widget.navigationShell.currentIndex != _progressIndex,
         centerActionLabel: null,
         onCenterActionTap: null,
         items: const [
@@ -165,14 +167,9 @@ class _AppShellState extends ConsumerState<AppShell> {
             label: '首页',
           ),
           AppBottomNavItem(
-            icon: Icons.explore_outlined,
-            activeIcon: Icons.explore_rounded,
-            label: '发现',
-          ),
-          AppBottomNavItem(
-            icon: Icons.auto_awesome_outlined,
-            activeIcon: Icons.auto_awesome,
-            label: '匹配',
+            icon: Icons.route_outlined,
+            activeIcon: Icons.route_rounded,
+            label: '进展',
           ),
           AppBottomNavItem(
             icon: Icons.chat_bubble_outline,
@@ -207,13 +204,8 @@ class SplashPage extends ConsumerWidget {
         return;
       }
 
-      if (nav.verificationStatus != VerificationStatus.approved) {
-        context.go(AppRouteNames.verificationStatus);
-        return;
-      }
-
-      if (nav.questionnaireStatus != QuestionnaireStatus.completed) {
-        context.go(AppRouteNames.questionnaire);
+      if (!nav.isReadinessEstablished) {
+        context.go(AppRouteNames.meReadiness);
         return;
       }
 
@@ -251,6 +243,13 @@ class HomeShellPage extends StatelessWidget {
   Widget build(BuildContext context) => const HomePage();
 }
 
+class ProgressShellPage extends StatelessWidget {
+  const ProgressShellPage({super.key});
+
+  @override
+  Widget build(BuildContext context) => const ProgressPage();
+}
+
 class MatchShellPage extends StatelessWidget {
   const MatchShellPage({super.key});
 
@@ -265,16 +264,21 @@ class DiscoverShellPage extends StatelessWidget {
   Widget build(BuildContext context) => const DiscoverPage();
 }
 
-class MessagesShellPage extends StatelessWidget {
+class MessagesShellPage extends ConsumerWidget {
   const MessagesShellPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const ConversationListPage();
+  Widget build(BuildContext context, WidgetRef ref) =>
+      ref.watch(appEnvProvider).restorationLocalBuild
+      ? const LiveConversationListPage()
+      : const ConversationListPage();
 }
 
-class ProfileShellPage extends StatelessWidget {
-  const ProfileShellPage({super.key});
+class MeShellPage extends ConsumerWidget {
+  const MeShellPage({super.key});
 
   @override
-  Widget build(BuildContext context) => const ProfilePage();
+  Widget build(BuildContext context, WidgetRef ref) => MeLandingPage(
+    restorationLocalBuild: ref.watch(appEnvProvider).restorationLocalBuild,
+  );
 }

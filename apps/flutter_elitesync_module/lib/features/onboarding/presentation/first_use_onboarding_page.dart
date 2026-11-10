@@ -44,7 +44,7 @@ const firstUseOnboardingSteps = <FirstUseOnboardingStep>[
   ),
   FirstUseOnboardingStep(
     title: '随时跳过或重新查看',
-    body: '你可以跳过；之后可在“设置 > 新手引导”重新查看。',
+    body: '你可以跳过；之后可在“设置 > 新手引导”重新查看。完成本引导不代表账户设置或准备状态已经完成。',
     icon: Icons.replay_rounded,
   ),
 ];
@@ -315,7 +315,7 @@ class _FirstUseOnboardingPageState extends State<FirstUseOnboardingPage> {
                             ? null
                             : (_isLastStep ? _finish : _goNext),
                         child: _OnboardingPrimaryButton(
-                          label: _isLastStep ? '完成' : '继续',
+                          label: _isLastStep ? '完成引导' : '继续',
                           onPressed: _closing
                               ? null
                               : (_isLastStep ? _finish : _goNext),

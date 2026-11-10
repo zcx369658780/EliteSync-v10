@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-15T00:24:04.005844+00:00",
+  "role": "admin",
+  "method": "POST",
+  "path": "/api/v1/admin/matching/rounds/093abb04-1013-46a3-b35a-6f9c7e342a50/execution-requests",
+  "request": {
+    "state_version": 1,
+    "reason_code": "v1007-authorized-development"
+  },
+  "status": 202,
+  "body": {
+    "data": {
+      "round_id": 7,
+      "run_key": "fd6d9480-bcfd-41cd-b944-1343a1ba4015",
+      "idempotency_key": "v1007-withdraw-01-execute",
+      "correlation_id": "23669fb4-dbf4-4a93-b4b2-50b529f06d8b",
+      "attempt_no": 1,
+      "state": "pending",
+      "trigger_source": "admin",
+      "actor_type": "admin",
+      "actor_id": 1,
+      "reason_code": "v1007-authorized-development",
+      "eligibility_cutoff_at": "2026-10-15T00:24:03.000000Z",
+      "algorithm_version": "v1",
+      "config_version": "c1",
+      "updated_at": "2026-10-15T00:24:03.000000Z",
+      "created_at": "2026-10-15T00:24:03.000000Z",
+      "id": 8
+    },
+    "meta": {
+      "consumer": "manual_cli_once",
+      "background_started": false
+    }
+  }
+}

@@ -1,0 +1,3 @@
+# M106 closure
+
+REJECT/CLOSED INDEPENDENT_REVIEW_OUTPUT_LIMIT_FAILURE. Work fresh original evidence check succeeded (267status/oldmissing0/Frozen21; original raw bytes/hash/native streams matched), but it does not replace independent review. Independent m587_review reports all9 exact Read1/strictUTF8, then memory verification output exceeded4096; launcher full semantic review incomplete. Review output violation is reviewer-reported; exact output size NOT_PROVEN. No NO_FINDINGS/terminal original Invocation qualification here. Old M100-M104-M105 remain rejected, original JVM untouched. New M108 uses a fresh independent Sol/high reviewer and explicit larger review display limits under a new budget, no new author execution or runtime.

@@ -1,0 +1,5 @@
+lib/features/chat/data/gateway/chat_media_gateway.dart:132:18: Error: The method 'throwIfCancellationRequested' isn't defined for the type 'CancelToken'.
+ - 'CancelToken' is from 'package:dio/src/cancel_token.dart' ('../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.11.0/lib/src/cancel_token.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'throwIfCancellationRequested'.
+    cancelToken?.throwIfCancellationRequested();
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

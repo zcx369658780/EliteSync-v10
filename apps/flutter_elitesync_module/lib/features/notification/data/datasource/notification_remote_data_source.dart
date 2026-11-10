@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
@@ -10,18 +12,35 @@ class NotificationRemoteDataSource {
   NotificationRemoteDataSource({
     required this.apiClient,
     required this.useMock,
+    this.identity,
   });
 
   final ApiClient apiClient;
   final bool useMock;
+  final String? Function()? identity;
+  Options _options() {
+    final started = identity?.call();
+    return Options(
+      extra: {
+        if (identity != null)
+          requestSessionGuardKey: () => identity!() == started,
+      },
+    );
+  }
 
-  Future<List<NotificationItemEntity>> fetchNotifications({int limit = 50}) async {
+  Future<List<NotificationItemEntity>> fetchNotifications({
+    int limit = 50,
+  }) async {
     if (useMock) {
       return const <NotificationItemEntity>[];
     }
 
     final result = await apiClient
-        .get('/api/v1/notifications', query: {'limit': limit})
+        .get(
+          '/api/v1/notifications',
+          query: {'limit': limit},
+          options: _options(),
+        )
         .timeout(_requestTimeout);
 
     if (result is NetworkSuccess<Map<String, dynamic>>) {
@@ -36,13 +55,24 @@ class NotificationRemoteDataSource {
     throw Exception(failure.message);
   }
 
+  Future<NotificationItemEntity> fetchNotification(int id) async {
+    if (useMock || id <= 0) throw StateError('Current notification lookup required.');
+    final result = await apiClient.get('/api/v1/notifications/$id', options: _options()).timeout(_requestTimeout);
+    if (result is! NetworkSuccess<Map<String, dynamic>>) throw StateError('Notification unavailable.');
+    final raw = result.data['item'];
+    if (raw is! Map<String, dynamic>) throw const FormatException('Invalid notification.');
+    final item = NotificationItemEntity.fromJson(raw);
+    if (item.id != id) throw const FormatException('Notification identity mismatch.');
+    return item;
+  }
+
   Future<int> fetchUnreadCount() async {
     if (useMock) {
       return 0;
     }
 
     final result = await apiClient
-        .get('/api/v1/notifications/unread-count')
+        .get('/api/v1/notifications/unread-count', options: _options())
         .timeout(_requestTimeout);
 
     if (result is NetworkSuccess<Map<String, dynamic>>) {
@@ -56,7 +86,7 @@ class NotificationRemoteDataSource {
   Future<void> markRead(int notificationId) async {
     if (useMock) return;
     final result = await apiClient
-        .post('/api/v1/notifications/$notificationId/read')
+        .post('/api/v1/notifications/$notificationId/read', options: _options())
         .timeout(_requestTimeout);
     if (result is NetworkFailure<Map<String, dynamic>>) {
       throw Exception(result.message);
@@ -66,7 +96,7 @@ class NotificationRemoteDataSource {
   Future<void> markAllRead() async {
     if (useMock) return;
     final result = await apiClient
-        .post('/api/v1/notifications/read-all')
+        .post('/api/v1/notifications/read-all', options: _options())
         .timeout(_requestTimeout);
     if (result is NetworkFailure<Map<String, dynamic>>) {
       throw Exception(result.message);

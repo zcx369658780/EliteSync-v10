@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-15T01:06:46.103210+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/messages",
+  "request": {
+    "receiver_id": 2,
+    "content": "MUST NOT PERSIST revoke",
+    "client_message_id": "concurrent-revoke-denied-01"
+  },
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

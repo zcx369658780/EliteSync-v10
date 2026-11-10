@@ -12,13 +12,31 @@ abstract class AppRouteNames {
   static const questionnaireHistory = '/questionnaire/history';
 
   static const home = '/home';
+  static const progress = '/progress';
+  static const progressMatchSegment = 'match';
+  static const progressConnectionSegment = 'connection';
+  static const progressMatch = '/progress/match';
+  static const progressConnection = '/progress/connection';
+  static const messages = '/messages';
+  static const me = '/me';
+  static const mePrivateIdentitySegment = 'private-identity';
+  static const meMatchingInputsSegment = 'matching-inputs';
+  static const meReadinessSegment = 'readiness';
+  static const meShowcaseSegment = 'showcase';
+  static const mePrivacySettingsSegment = 'privacy-settings';
+  static const mePrivateIdentity = '/me/private-identity';
+  static const meMatchingInputs = '/me/matching-inputs';
+  static const meReadiness = '/me/readiness';
+  static const meShowcase = '/me/showcase';
+  static const mePrivacySettings = '/me/privacy-settings';
+
+  // Temporary compatibility routes retained for existing direct consumers.
   static const discover = '/discover';
   static const contentDetail = '/content';
   static const buddy = '/buddy';
   static const socialBaseline = '/social-baseline';
   static const notificationCenter = '/notifications';
   static const match = '/match';
-  static const messages = '/messages';
   static const profile = '/profile';
 
   static const matchCountdown = '/match/countdown';

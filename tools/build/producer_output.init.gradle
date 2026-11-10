@@ -1,0 +1,11 @@
+// Source inputs stay read-only; native plugin outputs go to guest-owned work.
+gradle.beforeProject { p ->
+    def source = p.projectDir.toPath().toAbsolutePath().normalize()
+    def pubInputs = new File('C:/Inputs/PubPackages').toPath()
+    if (source.startsWith(pubInputs)) {
+        p.layout.buildDirectory.fileValue(new File('C:/BuildWork/Project/apps/flutter_elitesync_module/.android/plugins_build_output', p.name))
+        p.pluginManager.withPlugin('com.android.library') {
+            p.extensions.getByName('android').externalNativeBuild.cmake.buildStagingDirectory = new File('C:/BuildWork/state/cmake', p.name)
+        }
+    }
+}

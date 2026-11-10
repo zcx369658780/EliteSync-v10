@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-15T01:07:42.796834+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/auth/refresh",
+  "request": null,
+  "status": 401,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "unauthenticated",
+      "message": "Unauthenticated.",
+      "details": null
+    }
+  }
+}

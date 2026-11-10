@@ -1,0 +1,5 @@
+Analyzing session_provider.dart, auth_interceptor.dart, dio_factory.dart, app_providers.dart, login_page.dart, main_prod.dart, app_env.dart, app_shell.dart, profile_remote_data_source.dart, edit_profile_page.dart, profile_providers.dart, session_rejection_test.dart, auth_interceptor_rejection_test.dart, profile_city_save_test.dart, edit_profile_city_test.dart, profile_city_provider_test.dart...
+
+   info - lib\shared\providers\session_provider.dart:121:7 - Statements in an if should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+1 issue found.

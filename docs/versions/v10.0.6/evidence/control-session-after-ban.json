@@ -1,0 +1,18 @@
+[
+  {
+    "operation": "control city POST",
+    "user_id": 3,
+    "status": 200
+  },
+  {
+    "operation": "control city readback",
+    "user_id": 3,
+    "city": "V1006 Control City",
+    "status": 200
+  },
+  {
+    "operation": "revoked ordinary target session request",
+    "status": 401,
+    "fixture": "explicit Laravel ordinary session setup; never admin authorization"
+  }
+]

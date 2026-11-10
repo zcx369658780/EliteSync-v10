@@ -1,0 +1,2 @@
+# M5-95 independent Sol/high
+NO_FINDINGS on original probe source/nativeAdd/B identity. Three files eachReadAllBytes1/strictUTF8; all other/external reads/hash/enumeration/Parser/Process/JVM/writes0. Read-only process stopped after WorkFAIL/CLOSED notification; no later checks. This review does not replace failed Work qualification or reopen budget. Originalprobe1343/hashF523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1; source expected versions not runtime proof.

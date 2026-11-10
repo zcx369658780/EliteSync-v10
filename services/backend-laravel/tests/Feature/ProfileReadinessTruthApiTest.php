@@ -19,7 +19,7 @@ class ProfileReadinessTruthApiTest extends TestCase
     public function test_profile_basic_exposes_canonical_matching_eligibility_and_missing_action(): void
     {
         config()->set('questionnaire.required_answer_count', 2);
-        $user = User::factory()->create(['phone' => 'readiness-incomplete']);
+        $user = User::factory()->create(['phone' => 'readiness-incomplete', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
         $question = $this->question('readiness-one');
         QuestionnaireAnswer::query()->create([
             'user_id' => $user->id,
@@ -48,7 +48,7 @@ class ProfileReadinessTruthApiTest extends TestCase
     public function test_profile_basic_refreshes_to_eligible_without_publication(): void
     {
         config()->set('questionnaire.required_answer_count', 1);
-        $user = User::factory()->create(['phone' => 'readiness-eligible']);
+        $user = User::factory()->create(['phone' => 'readiness-eligible', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
         $question = $this->question('readiness-complete');
         QuestionnaireAnswer::query()->create([
             'user_id' => $user->id,
@@ -78,6 +78,8 @@ class ProfileReadinessTruthApiTest extends TestCase
             ->assertJsonPath('profile_readiness.showcase.review_status', 'pending')
             ->assertJsonPath('profile_readiness.showcase.publication_status', 'not_published')
             ->assertJsonPath('profile_readiness.showcase.affects_matching_eligibility', false);
+        $this->assertFalse(app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists(), 'Readiness alone is not opt-in');
+        app(\App\Services\SlowDatingService::class)->participate((int)$user->id, 'opt_in', 0, 'Explicit fixture opt-in');
         $this->assertTrue(
             app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists()
         );
@@ -86,7 +88,7 @@ class ProfileReadinessTruthApiTest extends TestCase
     public function test_profile_basic_distinguishes_published_snapshot_from_later_private_edits(): void
     {
         config()->set('questionnaire.required_answer_count', 1);
-        $user = User::factory()->create(['phone' => 'readiness-publication']);
+        $user = User::factory()->create(['phone' => 'readiness-publication', 'verify_status' => 'approved', 'account_status' => 'active', 'moderation_status' => 'normal', 'is_match_eligible' => true]);
         $draft = UserProfileShowcaseDraft::query()->create([
             'user_id' => $user->id,
             'self_intro' => 'approved snapshot',
@@ -126,7 +128,7 @@ class ProfileReadinessTruthApiTest extends TestCase
             'category' => 'readiness',
             'content' => $key,
             'question_type' => 'single',
-            'options' => ['a', 'b'],
+            'options' => [['option_id' => 'a', 'label' => ['zh' => 'A']], ['option_id' => 'b', 'label' => ['zh' => 'B']]],
             'sort_order' => 1,
             'enabled' => true,
             'version' => 1,
