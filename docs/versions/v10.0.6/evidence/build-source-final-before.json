@@ -1,0 +1,153 @@
+{
+  "source_commit": "6a6642aa457188866a1b8cd6d9cc733aff86a0c4",
+  "tree": "faede5665a4ffa386bf23257af08a2b46be89351",
+  "code_start": "3a78c2c81859db682369fd6e03f6d98a3c2bbeb2",
+  "status": "M docs/architecture/RESTORATION_CAPABILITY_MATRIX.md",
+  "code_dirty": "",
+  "objects": {
+    "apps/android/app/build.gradle.kts": {
+      "git_blob": "8525adcce45b56d15c1d581dbd5d9e4a28f3c979",
+      "raw_sha256": "c589403d333aa8527a8b200dbb71205bb5ffad78fc55dead5990d3630f1e7b13"
+    },
+    "apps/android/app/src/main/java/com/elitesync/MainActivity.kt": {
+      "git_blob": "7013376c29021da681b47b54e5045d3abce51d4b",
+      "raw_sha256": "4ed04f1074135a986dd5411cf25c31b8879dbaf16862c42dc7bb8f1ec5d2feff"
+    },
+    "apps/flutter_elitesync_module/lib/app/config/app_env.dart": {
+      "git_blob": "53864daac635952fcd8cbd91cdfcab1d4430629a",
+      "raw_sha256": "8a4b370e8a3182483352f401169b01be395f2335b2b83764afe1033cf5b66657"
+    },
+    "apps/flutter_elitesync_module/lib/app/router/app_shell.dart": {
+      "git_blob": "e67cd16364b0eb01a36cf754f85462fdfa5ce0b6",
+      "raw_sha256": "2f011ac85e4b1ed98a89097fe33bf87c4c947694ce1cc150a36f2c053690910b"
+    },
+    "apps/flutter_elitesync_module/lib/core/network/dio_factory.dart": {
+      "git_blob": "3c8426f1503eab187fce1530bb0eaa18e22d951d",
+      "raw_sha256": "a4e203b92328cf704314df64feb55353fb20e51b0e2b88caf3972902dd98946b"
+    },
+    "apps/flutter_elitesync_module/lib/core/network/interceptors/auth_interceptor.dart": {
+      "git_blob": "69244285b642c43c4465428fc230dac0f54d95a1",
+      "raw_sha256": "39e1c5d2b883d14bb71de9a6821555c301e0baad4c9be2edf7102c5dd2a9f236"
+    },
+    "apps/flutter_elitesync_module/lib/features/auth/presentation/pages/login_page.dart": {
+      "git_blob": "52a9ebb40769a261daea7fab0199e7ced1194884",
+      "raw_sha256": "b9b3f3fff7333340fb118e8e853f49098ec4cd608d260fc551dc75139a6f1fc9"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/data/datasource/profile_remote_data_source.dart": {
+      "git_blob": "32edc3d676d45842c55c454c50b7e9b927d56b74",
+      "raw_sha256": "51fa9ccef664f19219a14f9bfd37c0c85ba81fd65b28502d78807087b0ab3e8d"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/edit_profile_page.dart": {
+      "git_blob": "8625b8e21ef008d44649a1583762dde5fd657cbc",
+      "raw_sha256": "a59515782955a18a5221c597eda8b731eafd9ed5a4ff4778461828765c361f4c"
+    },
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/profile_providers.dart": {
+      "git_blob": "a899ec4f4fea8c112185379e13755151bb313da6",
+      "raw_sha256": "5b0e2192f26857714d19efb7659d95a79fa776e94a39cb7e3f4d87465af598a8"
+    },
+    "apps/flutter_elitesync_module/lib/main_prod.dart": {
+      "git_blob": "cb05d8c42ca6f4c21aca576ac139687f0c4bffad",
+      "raw_sha256": "1746d3b271752dddfaeff7d6203617c39f837588ce14eab084f1cf75cf09e152"
+    },
+    "apps/flutter_elitesync_module/lib/shared/providers/app_providers.dart": {
+      "git_blob": "c3fd4fcee86ec1933a33c734440296b5c0659bc7",
+      "raw_sha256": "86a86112e11cf50fae1cddff82200160b459d8374b756e15b65e525f26cbba0d"
+    },
+    "apps/flutter_elitesync_module/lib/shared/providers/session_provider.dart": {
+      "git_blob": "826c866bbbfce4319dafbd2c89a82cec6e659ecc",
+      "raw_sha256": "c2f90d9b6bf6479d1a161a9f60397c1b5a1830cb5e48997fa09a3b451aad791a"
+    },
+    "apps/flutter_elitesync_module/test/core/network/auth_interceptor_rejection_test.dart": {
+      "git_blob": "88e7642bb8bd602605fb9a5dbd1e909ee7e50404",
+      "raw_sha256": "9ace4ffa6b381ea323e27c6ea177709e8b70949486ff4e451386f143a2e1955e"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/data/profile_city_save_test.dart": {
+      "git_blob": "5a5353c62e745e78bc4e742b8db2c74ceae4e861",
+      "raw_sha256": "ab64fe768f7a46dd3324e5b1115eb5305f71eb1b16db14ad4303a720cef2f764"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/presentation/pages/edit_profile_city_test.dart": {
+      "git_blob": "0557d6b4ca77ff75cfd8be2167d17fb79dd8aa36",
+      "raw_sha256": "6970b871537f9a7ec19283e26b54bc32e750dc55ef19cc0864baf8c402824829"
+    },
+    "apps/flutter_elitesync_module/test/features/profile/presentation/providers/profile_city_provider_test.dart": {
+      "git_blob": "2344979393a8f9b5fc3598e79023f81232f8dd10",
+      "raw_sha256": "77d9e3857219224328cce2aaee08c7ab9403291487d8e50e7ce943fc5ff6d09c"
+    },
+    "apps/flutter_elitesync_module/test/session_rejection_test.dart": {
+      "git_blob": "50b307ac93efcfef0ffe0a9b42f760476b9e856f",
+      "raw_sha256": "d517cd4efffd910637a6971cda26c82a680708aaf187a8c3259f115269987d58"
+    },
+    "docs/versions/v10.0.6/build-local.ps1": {
+      "git_blob": "05c0be878e9806cb22754a82937490177303377f",
+      "raw_sha256": "43e06eaa9be59f0a282b4ec57ff03b94da67e9927467891de97d00d9235aa13d"
+    },
+    "docs/versions/v10.0.6/start-dev.ps1": {
+      "git_blob": "af61377d616dbdd0edc676e7dca152c53abaf164",
+      "raw_sha256": "3bc71b05f6445193b071195c76804c255a599a48e7bbf955deed9d7fc751d6e0"
+    },
+    "services/backend-laravel/.gitignore": {
+      "git_blob": "c71ef0256802e2439f9d889f34317f7f61a041dd",
+      "raw_sha256": "2425ff40f6d31df4ba655de32c129b6541b3823d6cd368d9c8d4313bbdbcf0ff"
+    },
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AdminController.php": {
+      "git_blob": "46e498b00a0e2cb2512cc7783865274db5b5ccdc",
+      "raw_sha256": "a2f4b80102327397e16684c586330510df34e2c7a061457e387e1bbe4d5b524e"
+    },
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php": {
+      "git_blob": "e5f346a5c7d9f00581fd24e5f963c529a9deb803",
+      "raw_sha256": "1bd487f9d89a3d020566e10b096062be6d97ea0ec4db70ddd11d610b2bfb19b7"
+    },
+    "services/backend-laravel/app/Http/Controllers/Web/AdminController.php": {
+      "git_blob": "2ea3ea67c0c217dc955b97a7771ea282bc8f7d62",
+      "raw_sha256": "c9b588532f365dc4b94ce59594a56633253080b86360283bb4792fa373491e70"
+    },
+    "services/backend-laravel/app/Http/Middleware/EnsureAccountActive.php": {
+      "git_blob": "c2cc411bee21e5b5547ed6f7d178b2a6d2e5415b",
+      "raw_sha256": "bb082d7c1d9a5bc99c21e15af8c1768367dc4f5ff209049aa7f4d19dc4a4fffd"
+    },
+    "services/backend-laravel/app/Http/Middleware/EnsureAdminPhone.php": {
+      "git_blob": "3b772692bf511cae623a37f0ba98298b069e9ad7",
+      "raw_sha256": "1c4923838b4341387da40fe983ec704ce856ee440e3c7cf77bd7ea1c49207c1c"
+    },
+    "services/backend-laravel/app/Services/Accounts/AdminAccess.php": {
+      "git_blob": "06921f9f0c1f392d4e3780cb20cb8d1c6e2d2595",
+      "raw_sha256": "45e1f2611eefdafe6f2d8f03c16865bed8dfea603b2b8e8dc22143a2061fc7b8"
+    },
+    "services/backend-laravel/app/Services/Accounts/DisableUser.php": {
+      "git_blob": "c59d490b50e42871d0bc5ac04f144e49e6ae0887",
+      "raw_sha256": "4714ddcefa415d917ed573c5114924fbbe80176aa74a0f9860cdddb2fa5eff70"
+    },
+    "services/backend-laravel/bootstrap/app.php": {
+      "git_blob": "728dc0a390c0a6796c81531a36aed6010a261f1e",
+      "raw_sha256": "0e8fdb87679988b3f9328b5fa5b12a236746fa414a046b3ef01e448c80c19b31"
+    },
+    "services/backend-laravel/database/seeders/V1006DevelopmentSeeder.php": {
+      "git_blob": "14d7170fca5efe53c5c7289807a1bc8f8634de8f",
+      "raw_sha256": "8ecc7513a0d41e40b2ae95991f3693cb19b6d58254d6e2f7592acb6e9de4237a"
+    },
+    "services/backend-laravel/resources/views/admin/layout.blade.php": {
+      "git_blob": "5704b667ac081cf3ee486cc1200ac79e82d92dfa",
+      "raw_sha256": "a6847683f53d83880d08197dbc449e8425b9ed85737fa1abd7b4b831af946195"
+    },
+    "services/backend-laravel/resources/views/admin/login.blade.php": {
+      "git_blob": "39b92e32b454762cc19c31b4bb469dfb0105586b",
+      "raw_sha256": "b5928748a59cc04e4dd2a22ae84594903ee99fb243445f393f3a4b2ad2b99aaf"
+    },
+    "services/backend-laravel/resources/views/admin/users.blade.php": {
+      "git_blob": "40308c0e14b996904eec3cec63d03706a3f2a6bc",
+      "raw_sha256": "3843fa1e562c2b39eb5d50ff3432e702b971b7d19ff6fec1da06d31a048a5285"
+    },
+    "services/backend-laravel/routes/api.php": {
+      "git_blob": "b0e5d93b0a2783d04d9c83119d8f6a447292c517",
+      "raw_sha256": "60493e2412a4685adfa15914dcd016acc6800efb9413802a408fa3911cb7bcb0"
+    },
+    "services/backend-laravel/routes/web.php": {
+      "git_blob": "cac2902dddbd990bb9c3f7bf21df1cbaef6a9bed",
+      "raw_sha256": "dc6dd32eda519458721069717bb3b88b8ff4cc15987b398cef44e9a67e51e23e"
+    },
+    "services/backend-laravel/tests/Feature/V1006AdminWebTest.php": {
+      "git_blob": "65bd5d00c3e5b3c39df6d0192241b6a97470394a",
+      "raw_sha256": "129380c28f4600d4a48bda022e9d337c5be4fc7ba828a96a3ad19ded7dd6ee8f"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "D:/flutter/bin/flutter.bat",
+    "test",
+    "--no-pub",
+    "test/features/chat/presentation/conversation_access_gate_test.dart",
+    "test/features/match/presentation/widgets/match_round_contract_view_test.dart",
+    "test/synthetic_main_loop_recovery_baseline_test.dart",
+    "test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+    "test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart"
+  ],
+  "cwd": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\r1\\baseline-package",
+  "exit": 1,
+  "receipt_created_utc": "2026-10-15T01:58:18.549908+00:00",
+  "streams": {
+    "stdout": "c23ef0ce87420278b48e4148c91afede4e543b14bd39cc29a5ebc543b4d76989",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

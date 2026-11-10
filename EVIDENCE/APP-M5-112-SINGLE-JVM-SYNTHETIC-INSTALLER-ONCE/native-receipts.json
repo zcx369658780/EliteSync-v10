@@ -1,0 +1,68 @@
+{
+  "Schema": "M112_ORIGINAL_TOOL_RECEIPTS_V1",
+  "A": {
+    "calls": [
+      {
+        "chunk_id": "87c86f",
+        "wall_time_seconds": 0.38182607,
+        "exit_code": 0,
+        "original_token_count": 47,
+        "output": "{\"Phase\":\"A\",\"Result\":\"PASS_LOCAL_PREFLIGHT_ONLY\",\"HEAD\":\"4f5bea7e558bc15d24ce45d3e4704ac658906a38\",\"FrozenBody\":20,\"OldBinBody\":0,\"NewLauncherQualified\":true,\"ExternalRead\":0,\"JVM\":0}\r\n"
+      }
+    ]
+  },
+  "Release": {
+    "calls": [
+      {
+        "chunk_id": "2eac6a",
+        "wall_time_seconds": 0.401336836,
+        "exit_code": 0,
+        "original_token_count": 131,
+        "output": "warning: in the working copy of 'docs/architecture/ELITESYNC_V10_DOT_CURRENT_ROUTE_20261002.md', LF will be replaced by CRLF the next time Git touches it\n{\"Status\":\"ISSUED\",\"ABytes\":4539,\"AHash\":\"7D64D397F99CE969B4DCC122634C06A27D0B11A419933C26A96B539C68EBD573\",\"BBytes\":5889,\"BHash\":\"6FD9B0826317E862756AC5978F97DA6579CBFF40A2E0D9BBD2DF449E2751E54D\",\"InvocationHash\":\"4328452671995896FEF4CDCFC82C278D035AAF9A7BDACA6A6CD44994478336BE\",\"AuthorityKeys\":14,\"ChangedAuthorityValues\":2,\"SnapshotCount\":10,\"Administrative\":1}\r\n"
+      }
+    ]
+  },
+  "Invocation": {
+    "calls": [
+      {
+        "chunk_id": "63380b",
+        "wall_time_seconds": 8.33221678,
+        "exit_code": 1,
+        "original_token_count": 164,
+        "output": "{\"Result\":\"FAIL\",\"Root\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE\",\"WrapperBytes\":1425,\"WrapperSHA256\":\"783ECA79A054B13656017877A2A3A664CB49890FA135939281AEDC15D097980F\",\"StdoutBytes\":518,\"StdoutSHA256\":\"9CF2C1DBA02A2DE2AA5E0073B1E6E957377E06230444E38A3DBEA51E9967E5CA\",\"StderrBytes\":710,\"StderrSHA256\":\"8570F977B990F40CB57912DC6D9C14C74B0518B2580D99D010CA81E0757B4D73\",\"ProcessStartAttempt\":1,\"CandidateInvocation\":\"UNKNOWN\",\"CandidateParseClassLoad\":\"UNKNOWN\",\"CandidateSourceRead\":\"UNKNOWN\",\"FourteenCaseInvocation\":\"UNKNOWN\",\"RuntimeReady\":false,\"OSHardCutoff\":\"NOT_PROVEN\",\"OSFileNetworkIsolation\":\"NOT_PROVEN\"}\r\n"
+      }
+    ],
+    "ExitCode": 1,
+    "SmallReceiptText": "{\"Result\":\"FAIL\",\"Root\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE\",\"WrapperBytes\":1425,\"WrapperSHA256\":\"783ECA79A054B13656017877A2A3A664CB49890FA135939281AEDC15D097980F\",\"StdoutBytes\":518,\"StdoutSHA256\":\"9CF2C1DBA02A2DE2AA5E0073B1E6E957377E06230444E38A3DBEA51E9967E5CA\",\"StderrBytes\":710,\"StderrSHA256\":\"8570F977B990F40CB57912DC6D9C14C74B0518B2580D99D010CA81E0757B4D73\",\"ProcessStartAttempt\":1,\"CandidateInvocation\":\"UNKNOWN\",\"CandidateParseClassLoad\":\"UNKNOWN\",\"CandidateSourceRead\":\"UNKNOWN\",\"FourteenCaseInvocation\":\"UNKNOWN\",\"RuntimeReady\":false,\"OSHardCutoff\":\"NOT_PROVEN\",\"OSFileNetworkIsolation\":\"NOT_PROVEN\"}\r\n"
+  },
+  "FailureDisclosure": {
+    "calls": [
+      {
+        "chunk_id": "130266",
+        "wall_time_seconds": 0.170893086,
+        "exit_code": 0,
+        "original_token_count": 695,
+        "output": "probe-wrapper.json\r\n{\"mode\":\"SINGLE_JVM_SYNTHETIC_TEST_RECEIPT\",\"Result\":\"FAIL\",\"Root\":\"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE\",\"BaseVerified\":true,\"AuthorityVerified\":true,\"TSVRead\":1,\"HarnessSourceRead\":1,\"HarnessCopies\":1,\"LocalInstallerPreflightRead\":1,\"ExternalGet\":189,\"ExternalRead\":189,\"ExternalBytes\":115118021,\"ProcessStartAttempt\":1,\"Started\":true,\"Exited\":true,\"ExitCode\":1,\"Timeout\":false,\"KillAttempt\":0,\"CleanupComplete\":true,\"CaptureComplete\":true,\"StdoutComplete\":true,\"StderrComplete\":true,\"StdoutBytes\":518,\"StdoutSHA256\":\"9CF2C1DBA02A2DE2AA5E0073B1E6E957377E06230444E38A3DBEA51E9967E5CA\",\"StderrBytes\":710,\"StderrSHA256\":\"8570F977B990F40CB57912DC6D9C14C74B0518B2580D99D010CA81E0757B4D73\",\"TestSchemaChecked\":false,\"Failure\":{\"Phase\":\"TEST_VALIDATE\",\"Tag\":\"CHILD_RESULT_OR_STREAM\",\"Class\":\"System.Management.Automation.RuntimeException\"},\"SecondaryFailure\":[],\"CandidateParseClassLoad\":\"UNKNOWN\",\"CandidateSourceRead\":\"UNKNOWN\",\"CandidateInvocation\":\"UNKNOWN\",\"FourteenCaseInvocation\":\"UNKNOWN\",\"ExplicitInterfaceRequest\":\"NOT_APPLICABLE\",\"HarnessScript\":1,\"ImplicitClassloads\":\"NOT_MEASURED\",\"VersionProvenance\":\"SAME_INPUT_IDENTITIES_NOT_REMEASURED\",\"RuntimeReady\":false,\"OSHardCutoff\":\"NOT_PROVEN\",\"OSFileNetworkIsolation\":\"NOT_PROVEN\",\"ParentToolStderr\":\"UNKNOWN\",\"RealBinding\":\"NOT_CHECKED\",\"Hook\":\"NOT_CHECKED\",\"LibraryExtensionTiming\":\"NOT_CHECKED\",\"SDKCompatibility\":\"NOT_CHECKED\"}\r\nstdout.bin\r\n{\"mode\":\"TEST_SOURCE_SPEC\",\"synthetic\":true,\"runtimeReady\":false,\"result\":\"FAIL\",\"caseId\":\"RAW_GSTRING_PATH\",\"sourceRead\":1,\"parseClassLoad\":1,\"executedCase\":6,\"candidateInvocation\":6,\"completedCases\":[{\"caseId\":\"EMPTY_OWN\",\"result\":\"PASS\",\"invocationCount\":1},{\"caseId\":\"MIXED_OWN\",\"result\":\"PASS\",\"invocationCount\":1},{\"caseId\":\"SAME_OWN\",\"result\":\"PASS\",\"invocationCount\":1},{\"caseId\":\"LATE_VALUE_CONFLICT\",\"result\":\"PASS\",\"invocationCount\":1},{\"caseId\":\"LATE_TYPE_CONFLICT\",\"result\":\"PASS\",\"invocationCount\":1}]}\r\n\r\nstderr.bin\r\nCaught: java.lang.IllegalStateException: OUTER_CLASS\r\njava.lang.IllegalStateException: OUTER_CLASS\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat harness$_run_closure1.doCall(harness.groovy:41)\r\n\tat jdk.internal.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)\r\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n\tat harness.run(harness.groovy:284)\r\n\r\nFAILURE_DISCLOSURE_ONLY; B=0/CLOSED; no assertion verifier or runtime rerun\r\n"
+      }
+    ],
+    "Purpose": "EXISTING_FAILURE_ARTIFACT_DISCLOSURE_NOT_B"
+  },
+  "Budgets": {
+    "A": 1,
+    "Invocation": 1,
+    "B": 0,
+    "Administrative": 1,
+    "Closed": true,
+    "Reason": "INVOCATION_EXIT1_FAIL"
+  },
+  "Closure": {
+    "AuthorityAtExecutionText": "{\r\n  \"TaskId\": \"APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE\",\r\n  \"Status\": \"ISSUED\",\r\n  \"JVM\": 1,\r\n  \"OwnerAuthorization\": \"OWNER_DELEGATED_SINGLE_JVM_SYNTHETIC_TEST_AUTHORIZED\",\r\n  \"ProbeSha256\": \"7251ACF92C24055EEFC5E299DEF620D09263C3F5C4DFA80E7DB3A763702E5CCD\",\r\n  \"ProbeBytes\": 14402,\r\n  \"ProbePath\": \"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-85-SYNTHETIC-INSTALLER-HARNESS-SOURCE\\\\VerifyLocalExtraRecipeInstaller.groovy\",\r\n  \"ManifestPath\": \"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-90-EXACT-188-JAR-IDENTITY\\\\jar-identities.tsv\",\r\n  \"InputRoot\": \"D:\\\\GradleHome\\\\wrapper\\\\dists\\\\gradle-8.14-all\\\\dq61qkzrdg407zji6bwf6hwt7\\\\gradle-8.14\\\\lib\",\r\n  \"OutputRoot\": \"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-112-SINGLE-JVM-SYNTHETIC-INSTALLER-ONCE\",\r\n  \"JavaPath\": \"C:\\\\Program Files\\\\Eclipse Adoptium\\\\jdk-17.0.18.8-hotspot\\\\bin\\\\java.exe\",\r\n  \"InstallerPath\": \"D:\\\\EliteSync-v10\\\\EVIDENCE\\\\APP-M5-84-RAW-OBJECT-INSTALLER-BOUNDARY-SOURCE\\\\LocalExtraRecipeInstaller.groovy\",\r\n  \"InstallerSha256\": \"7D45926082F323750A696439C4CE6E1791C89C9B867A26615DB1CB830888DB37\",\r\n  \"InstallerBytes\": 6141\r\n}\n",
+    "Status": "FIRST_FAILURE_RECORDED_PENDING_INDEPENDENT_REVIEW",
+    "A": 1,
+    "Invocation": 1,
+    "B": 0,
+    "UnexecutedBudgetClosed": true,
+    "Administrative": 1,
+    "Successor": "NONE"
+  }
+}

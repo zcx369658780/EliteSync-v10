@@ -1,0 +1,1 @@
+NO_FINDINGS：全新Sol/high m587_review三允许文件各完整Read1/补读其它路径外部hash运行写入0/工具输出未截断；原188数组与报告顺序逐字一致/nativeAdd全文一致，原A-B各1/exit0，单目录GetItem1/单非递归Filter.jar枚举1/成员读hash0。限额先核emit/失败throw无补查重试，失败路径未执行。作者cmd1955、预写测量、CreateNew1仅作者披露，短名字不替原ID。旧两审查REJECT/CLOSED保留。本意见不代WorkLEVEL2终裁。

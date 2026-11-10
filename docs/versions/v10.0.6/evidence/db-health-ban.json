@@ -1,0 +1,18 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "elitesync-v1006-db",
+    "healthcheck.sh",
+    "--connect",
+    "--innodb_initialized"
+  ],
+  "cwd": ".",
+  "exit": 1,
+  "start": "2026-10-14T14:53:38.731628+00:00",
+  "end": "2026-10-14T14:53:39.026167+00:00",
+  "streams": {
+    "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "d4b772b2c8ed18aac899da2a679acfff6e844f49236aa3c2bb8e9eeab1102d49"
+  }
+}

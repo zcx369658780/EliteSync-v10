@@ -1,0 +1,8 @@
+args: [-p, com.elitesync, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.elitesync"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.elitesync"
+data="android.intent.category.LAUNCHER"

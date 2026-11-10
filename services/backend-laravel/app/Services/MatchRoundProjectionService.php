@@ -26,7 +26,6 @@ class MatchRoundProjectionService
         $userState = DatingRoundUserState::query()->where('round_id', $round->id)->where('user_id', $userId)->first();
         $state = $this->publicState($round, $userState);
         $result = null;
-        $capability = null;
         $projectionFailureCode = null;
         if ($state === 'revealed') {
             $match = $userState?->dating_match_id ? DatingMatch::query()->find($userState->dating_match_id) : null;
@@ -36,14 +35,16 @@ class MatchRoundProjectionService
                     $projectionFailureCode = 'current_match_not_released';
                 } else {
                     $peerId = (int) ((int) $match->user_a === $userId ? $match->user_b : $match->user_a);
-                    $peer = User::query()->find($peerId);
+                    $proposal = app(SlowDatingService::class)->proposal($userId);
+                    if (! $proposal || $proposal['match_id'] !== (int)$match->id || ! $proposal['showcase']) {
+                        return $this->envelope('closed', ['reason_code'=>'proposal_unavailable', 'conversation_capability'=>null]);
+                    }
                     $result = [
                         'match_id' => (int) $match->id,
                         'partner_id' => $peerId,
-                        'partner_nickname' => $peer?->name,
-                        'headline' => trim((string) $match->highlights) ?: '本轮匹配已揭晓',
+                        'partner_nickname' => $proposal['showcase']['public_id'],
+                        'headline' => '本轮候选已揭晓，请独立选择',
                     ];
-                    $capability = app(ConversationCapabilityService::class)->evaluate($userId, $peerId, (int) $match->id);
                 }
             } else {
                 $state = 'no_candidate';
@@ -62,7 +63,7 @@ class MatchRoundProjectionService
                 ? ($projectionFailureCode ?? $round->failure_code ?? $userState?->reason_code ?? 'round_failed')
                 : null,
             'retry_eligible' => $state === 'failed',
-            'user_action' => $this->userAction($state, $capability),
+            'user_action' => $this->userAction($state),
             'projection_version' => (int) ($userState?->projection_version ?? $round->state_version ?? 1),
             'updated_at' => ($userState?->updated_at ?? $round->updated_at)?->toISOString(),
             'round_key' => $round->round_key,
@@ -70,9 +71,11 @@ class MatchRoundProjectionService
             'scheduled_for' => $round->scheduled_for?->toISOString(),
             'reveal_at' => $round->reveal_at?->toISOString(),
             'reason_code' => $state === 'no_candidate' ? 'no_candidate' : ($userState?->reason_code ?? $round->failure_code),
-            'next_action_code' => $state === 'no_candidate' ? 'wait_next_round' : $userState?->next_action_code,
+            'next_action_code' => in_array($state, ['revealed', 'closed'], true)
+                ? null
+                : ($state === 'no_candidate' ? 'wait_next_round' : $userState?->next_action_code),
             'result' => $result,
-            'conversation_capability' => $capability,
+            'conversation_capability' => null,
         ]);
     }
 
@@ -108,14 +111,11 @@ class MatchRoundProjectionService
         return ($round->reveal_at ?? $round->scheduled_for)?->toISOString();
     }
 
-    private function userAction(string $state, ?array $capability): string
+    private function userAction(string $state): string
     {
         return match ($state) {
-            'revealed' => ($capability['can_create'] ?? false) || ($capability['can_send'] ?? false)
-                ? 'open_messages'
-                : 'refresh',
+            'revealed', 'closed' => 'refresh',
             'failed' => 'retry',
-            'closed' => 'view_messages',
             'no_round', 'no_candidate' => 'wait_next_round',
             default => 'wait',
         };

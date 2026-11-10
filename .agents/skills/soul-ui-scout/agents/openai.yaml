@@ -1,0 +1,4 @@
+interface:
+  display_name: "Soul UI Scout"
+  short_description: "Reverse engineer Soul Android UI and feature structure."
+  default_prompt: "Use the Soul UI Scout skill to map the current Soul screen, dump the hierarchy, capture a screenshot, and record visible functions."

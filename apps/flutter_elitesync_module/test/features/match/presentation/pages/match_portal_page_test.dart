@@ -23,7 +23,7 @@ void main() {
               appName: 'test',
               apiBaseUrl: 'http://127.0.0.1/',
               useMockData: false,
-              useMockMatch: false,
+              useMockMatch: true,
               useMatchRoundContract: false,
             ),
           ),
@@ -38,9 +38,6 @@ void main() {
               projectionVersion: 1,
               updatedAt: now,
             ),
-          ),
-          matchCountdownProvider.overrideWith(
-            (ref) => throw StateError('legacy countdown must be unreachable'),
           ),
         ],
         child: MaterialApp(

@@ -1,0 +1,11 @@
+{
+  "commit": "0989812c141ce892915b67c14e9291d34e3c7053",
+  "tests": [
+    "test/features/chat/presentation/conversation_access_gate_test.dart",
+    "test/features/match/presentation/widgets/match_round_contract_view_test.dart",
+    "test/synthetic_main_loop_recovery_baseline_test.dart",
+    "test/features/qualification_diagnostics/qualification_diagnostic_test.dart",
+    "test/features/qualification_diagnostics/qualification_diagnostic_preview_test.dart"
+  ],
+  "scope": "all fixed lib/assets plus named tests and package metadata; no working tree substitution"
+}

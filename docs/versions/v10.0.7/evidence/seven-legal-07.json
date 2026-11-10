@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-15T00:27:11.294690+00:00",
+  "role": "alice",
+  "method": "POST",
+  "path": "/api/v1/messages/read/1",
+  "request": {},
+  "status": 200,
+  "body": {
+    "ok": true
+  }
+}

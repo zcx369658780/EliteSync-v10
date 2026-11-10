@@ -5,9 +5,7 @@ import 'package:flutter_elitesync_module/design_system/components/brand/floating
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 
 void main() {
-  testWidgets('AppShell browse dock exposes no center action copy', (
-    tester,
-  ) async {
+  testWidgets('four-destination dock renders target order', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.light,
@@ -20,8 +18,7 @@ void main() {
             onCenterActionTap: null,
             items: const [
               AppBottomNavItem(icon: Icons.home_outlined, label: '首页'),
-              AppBottomNavItem(icon: Icons.explore_outlined, label: '发现'),
-              AppBottomNavItem(icon: Icons.auto_awesome_outlined, label: '匹配'),
+              AppBottomNavItem(icon: Icons.route_outlined, label: '进展'),
               AppBottomNavItem(icon: Icons.chat_bubble_outline, label: '消息'),
               AppBottomNavItem(icon: Icons.person_outline, label: '我的'),
             ],
@@ -30,9 +27,11 @@ void main() {
       ),
     );
 
-    for (final label in ['首页', '发现', '匹配', '消息', '我的']) {
+    for (final label in ['首页', '进展', '消息', '我的']) {
       expect(find.text(label), findsOneWidget);
     }
+    expect(find.text('发现'), findsNothing);
+    expect(find.text('匹配'), findsNothing);
     expect(find.text('查看状态'), findsNothing);
     expect(find.text('发布状态'), findsNothing);
     expect(find.text('发布'), findsNothing);

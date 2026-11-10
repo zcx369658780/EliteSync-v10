@@ -1,0 +1,14 @@
+{
+  "command": [
+    "D:/flutter/bin/flutter.bat",
+    "analyze"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/apps/flutter_elitesync_module",
+  "exit": 1,
+  "start": "2026-10-15T00:50:22.859299+00:00",
+  "end": "2026-10-15T00:50:42.309037+00:00",
+  "streams": {
+    "stdout": "d32d28fcc7c0c1865f85b368f3ca5d9b0ab03e9192978639aa37b78f5ecd5386",
+    "stderr": "82abe8f3a53b6c0a08a147987d2fee8829ecd261678216e9d0976543648869e2"
+  }
+}

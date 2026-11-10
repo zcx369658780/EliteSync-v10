@@ -1,22 +1,40 @@
+import 'package:flutter_elitesync_module/features/platform_v1014/platform_home_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/browse_scaffold.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/providers/calm_home_projection_provider.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/state/calm_home_projection.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
+      return const PlatformHomePage();
+    }
+    if (const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') ||
+        const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD')) {
+      return const SlowDatingHomePage();
+    }
     final t = context.appTokens;
+    final projection = ref.watch(calmHomeProjectionProvider);
     return BrowseScaffold(
-      header: const _HomeHeader(),
+      header: _CurrentStateArea(projection: projection),
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.xs, 0, t.spacing.huge),
         children: [
-          _SlowDateProgressCard(
-            onOpenMatch: () => context.go(AppRouteNames.match),
+          _NextDecisionArea(
+            decision: projection.nextDecision,
+            onOpen: () => context.go(projection.nextDecision.route),
+          ),
+          SizedBox(height: t.spacing.md),
+          _OptionalSupportArea(
+            onOpenPrivacy: () => context.go(AppRouteNames.mePrivacySettings),
           ),
         ],
       ),
@@ -24,13 +42,16 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomeHeader extends StatelessWidget {
-  const _HomeHeader();
+class _CurrentStateArea extends StatelessWidget {
+  const _CurrentStateArea({required this.projection});
+
+  final CalmHomeProjection projection;
 
   @override
   Widget build(BuildContext context) {
     final t = context.appTokens;
     return Container(
+      key: const ValueKey('home-area-current-state'),
       width: double.infinity,
       padding: EdgeInsets.all(t.spacing.cardPaddingLarge),
       decoration: BoxDecoration(
@@ -42,7 +63,7 @@ class _HomeHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '首页',
+            '当前状态 · Current state',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: t.textPrimary,
               fontWeight: FontWeight.w800,
@@ -50,11 +71,100 @@ class _HomeHeader extends StatelessWidget {
           ),
           SizedBox(height: t.spacing.xxs),
           Text(
-            '从这里查看慢约进展。',
+            '首页只做摘要；访问这里不会改变任何生命周期状态。',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: t.textSecondary,
               height: 1.45,
             ),
+          ),
+          SizedBox(height: t.spacing.md),
+          for (final summary in projection.summaries) ...[
+            _StateSummaryRow(summary: summary),
+            if (summary != projection.summaries.last)
+              Divider(height: t.spacing.lg, color: t.browseBorder),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _StateSummaryRow extends StatelessWidget {
+  const _StateSummaryRow({required this.summary});
+
+  final HomeStateSummary summary;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.appTokens;
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            summary.domain.label,
+            key: ValueKey(summary.domain.stateKey),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: t.textPrimary),
+          ),
+        ),
+        Text(
+          summary.statusLabel,
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
+        ),
+      ],
+    );
+  }
+}
+
+class _NextDecisionArea extends StatelessWidget {
+  const _NextDecisionArea({required this.decision, required this.onOpen});
+
+  final HomeNextDecision decision;
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.appTokens;
+    return Container(
+      key: const ValueKey('home-area-next-decision'),
+      width: double.infinity,
+      padding: EdgeInsets.all(t.spacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        color: t.browseSurface,
+        borderRadius: BorderRadius.circular(t.radius.xl),
+        border: Border.all(color: t.browseBorder),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '下一步 · Next decision',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: t.textPrimary,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: t.spacing.xxs),
+          Text(
+            decision.description,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: t.textSecondary,
+              height: 1.45,
+            ),
+          ),
+          SizedBox(height: t.spacing.md),
+          FilledButton(
+            key: const ValueKey('home-primary-next-decision'),
+            onPressed: onOpen,
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(48),
+              backgroundColor: t.textPrimary,
+              foregroundColor: t.browseSurface,
+            ),
+            child: Text(decision.label),
           ),
         ],
       ),
@@ -62,34 +172,49 @@ class _HomeHeader extends StatelessWidget {
   }
 }
 
-class _SlowDateProgressCard extends StatelessWidget {
-  const _SlowDateProgressCard({required this.onOpenMatch});
+class _OptionalSupportArea extends StatelessWidget {
+  const _OptionalSupportArea({required this.onOpenPrivacy});
 
-  final VoidCallback onOpenMatch;
+  final VoidCallback onOpenPrivacy;
 
   @override
   Widget build(BuildContext context) {
     final t = context.appTokens;
     return Container(
+      key: const ValueKey('home-area-optional-support'),
+      width: double.infinity,
       padding: EdgeInsets.all(t.spacing.cardPaddingLarge),
       decoration: BoxDecoration(
         color: t.browseSurface,
         borderRadius: BorderRadius.circular(t.radius.xl),
         border: Border.all(color: t.browseBorder),
       ),
-      child: SizedBox(
-        width: double.infinity,
-        child: FilledButton.icon(
-          key: const ValueKey('e1-home-primary-match-cta'),
-          onPressed: onOpenMatch,
-          style: FilledButton.styleFrom(
-            minimumSize: const Size.fromHeight(48),
-            backgroundColor: t.textPrimary,
-            foregroundColor: t.browseSurface,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '可选支持 · Optional support',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: t.textPrimary,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-          icon: const Icon(Icons.favorite_rounded),
-          label: const Text('查看慢约进展'),
-        ),
+          SizedBox(height: t.spacing.xxs),
+          Text(
+            '状态尚未建立不代表失败或不符合条件。匹配不等于连接，连接不等于对话，对话也不等于关系。你可以稍后再回来，无需现在继续。',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: t.textSecondary,
+              height: 1.45,
+            ),
+          ),
+          SizedBox(height: t.spacing.sm),
+          TextButton.icon(
+            key: const ValueKey('home-optional-privacy-support'),
+            onPressed: onOpenPrivacy,
+            icon: const Icon(Icons.privacy_tip_outlined),
+            label: const Text('隐私与数据设置'),
+          ),
+        ],
       ),
     );
   }

@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-15T00:18:18.105758+00:00",
+  "role": "bob",
+  "method": "POST",
+  "path": "/api/v1/profile/astro",
+  "request": {
+    "birth_time": "25:99"
+  },
+  "status": 422,
+  "body": {
+    "ok": false,
+    "error": {
+      "code": "validation_error",
+      "message": "The birth time field must match the format H:i.",
+      "details": {
+        "birth_time": [
+          "The birth time field must match the format H:i."
+        ]
+      }
+    }
+  }
+}

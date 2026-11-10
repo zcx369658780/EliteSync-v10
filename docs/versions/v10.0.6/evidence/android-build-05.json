@@ -1,0 +1,21 @@
+{
+  "command": [
+    ".\\gradlew.bat",
+    "assembleDebug",
+    "-PflutterDartDefines=ELITESYNC_V1006_LOCAL_BUILD=true",
+    "-Dhttp.proxyHost=127.0.0.1",
+    "-Dhttps.proxyHost=127.0.0.1",
+    "-Dhttp.proxyPort=7897",
+    "-Dhttps.proxyPort=7897",
+    "--console=plain",
+    "--info"
+  ],
+  "cwd": ".",
+  "exit": 1,
+  "start": "2026-10-14T13:04:12.606452+00:00",
+  "end": "2026-10-14T13:08:12.606431+00:00",
+  "streams": {
+    "stdout": "f065810958874b41fd10ad11516e9e6246d9ec8d460abfb9fea3360366e49f72",
+    "stderr": "91bf3b79dea52490da03b9598d42b111af0e413ffc68ae1eb45a42a7f1694f7e"
+  }
+}

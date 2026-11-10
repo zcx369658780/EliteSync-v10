@@ -1,0 +1,18 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+FDDD                                                                4 / 4 (100%)
+
+Time: 00:01.154, Memory: 54.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1007PrivateMediaTest::test_private_attachment_download_requires_current_participant_consent
+Failed asserting that '{"id":1,"ok":true,"conversation_id":1,"client_message_id":null,"idempotent_replay":false,"message":{"id":1,"room_id":"1_2","sender_id":1,"receiver_id":2,"content":"private fixture","client_message_id":null,"is_read":false,"read_at":null,"created_at":"2026-10-14T23:48:53.000000Z","message_type":"image","has_attachments":true,"attachments":[{"id":1,"attachment_type":"image","sort_order":0,"metadata":{"media_type":"image","status":"ready"},"media_asset":{"id":1,"owner_user_id":1,"media_type":"image","storage_provider":"oss","storage_disk":"v1007","storage_key":"chat-media\/1\/image\/d626c217-c4e3-4527-b0ea-2dc1ff767df3.png","mime_type":"image\/png","size_bytes":68,"width":null,"height":null,"duration_ms":null,"status":"ready","error_code":null,"error_message":null,"public_url":"http:\/\/localhost:8080\/api\/v1\/media\/1\/content","metadata":null,"uploaded_at":"2026-10-14T23:48:53.000000Z","processed_at":"2026-10-14T23:48:53.000000Z"}}]}}' [ASCII](length: 948) contains "/api/v1/media/1/content" [ASCII](length: 23).
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007PrivateMediaTest.php:57
+
+FAILURES!
+Tests: 4, Assertions: 25, Failures: 1, Deprecations: 2.

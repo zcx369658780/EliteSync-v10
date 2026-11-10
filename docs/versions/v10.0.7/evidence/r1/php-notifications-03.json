@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:/tools/php85/php.exe",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1007R1NotificationPrivacyTest.php",
+    "tests/Feature/NotificationApiTest.php",
+    "tests/Feature/MessageApiTest.php",
+    "tests/Feature/V1007LiveConsentTest.php",
+    "tests/Feature/V1007PrivateMediaTest.php"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10/services/backend-laravel",
+  "exit": 0,
+  "start": "2026-10-15T01:59:19.526700+00:00",
+  "end": "2026-10-15T01:59:21.263202+00:00",
+  "streams": {
+    "stdout": "bbb2a8468297cf317d0e9fad85c8b3ab140e7552b4e143351919ae0d2a08ac6f",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

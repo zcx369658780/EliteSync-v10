@@ -1,0 +1,98 @@
+[
+  {
+    "field": "database",
+    "equal": true
+  },
+  {
+    "field": "port",
+    "equal": true
+  },
+  {
+    "field": "users",
+    "equal": true
+  },
+  {
+    "field": "admin_sanctions",
+    "equal": true
+  },
+  {
+    "field": "admin_operation_audits",
+    "equal": true
+  },
+  {
+    "field": "admin_versions",
+    "equal": true
+  },
+  {
+    "field": "dating_rounds",
+    "equal": true
+  },
+  {
+    "field": "matching_runs",
+    "equal": true
+  },
+  {
+    "field": "dating_matches",
+    "equal": true
+  },
+  {
+    "field": "product_connections",
+    "equal": true
+  },
+  {
+    "field": "messaging_consents",
+    "equal": true
+  },
+  {
+    "field": "moderation_reports",
+    "equal": true
+  },
+  {
+    "field": "status_posts",
+    "equal": true
+  },
+  {
+    "field": "app_release_versions",
+    "equal": true
+  },
+  {
+    "field": "notifications",
+    "equal": true
+  },
+  {
+    "field": "answers_by_user",
+    "equal": true
+  },
+  {
+    "field": "attempts_count",
+    "equal": true
+  },
+  {
+    "field": "attempts_sha256",
+    "equal": true
+  },
+  {
+    "field": "answers_sha256",
+    "equal": true
+  },
+  {
+    "field": "question_states",
+    "equal": true
+  },
+  {
+    "field": "drafts",
+    "equal": true
+  },
+  {
+    "field": "tokens_by_user",
+    "equal": true
+  },
+  {
+    "field": "sessions_by_user",
+    "equal": true
+  },
+  {
+    "field": "readiness",
+    "equal": true
+  }
+]

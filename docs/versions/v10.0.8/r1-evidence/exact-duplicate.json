@@ -1,0 +1,14 @@
+{
+  "time": "2026-10-15T09:34:16.506890+00:00",
+  "user": "r1restricted",
+  "status": 200,
+  "body": {
+    "appeal": {
+      "id": 1,
+      "status": "submitted",
+      "submitted_at": "2026-10-15 09:33:29",
+      "note": "V1008R1PleaseReviewRestrictionNoAutoRestore"
+    },
+    "sanction_id": 4
+  }
+}

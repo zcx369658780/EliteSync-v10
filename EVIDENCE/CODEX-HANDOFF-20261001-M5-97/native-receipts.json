@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "thread": {
+    "id": "01a0f74b-03a7-7d41-8185-9c47d92ab428",
+    "kind": "codex",
+    "hostId": "local",
+    "title": "EliteSync-v10 M5-97后只读执行交接",
+    "preview": "",
+    "status": {
+      "type": "idle"
+    },
+    "cwd": "D:\\EliteSync-v10",
+    "createdAt": 1790855283,
+    "updatedAt": 1790855378
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 1,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "turns": [
+    {
+      "id": "01a0f74b-0744-7d92-8630-227425a15dca",
+      "status": "completed",
+      "error": null,
+      "startedAt": 1790855284,
+      "completedAt": 1790855378,
+      "durationMs": 94318,
+      "items": [
+        {
+          "type": "functionCallOutput",
+          "id": "fco_01a0f74b-0758-7e63-910f-40db93c1f399",
+          "name": "create_thread",
+          "namespace": "codex_app",
+          "output": {
+            "text": "<codex_delegation>\n  <source_thread_id>01a0f66b-6c41-7020-99f3-b1c634c82ebf</source_thread_id>\n  <input>Owner已授权30实际往返时自动Codex交接，旧执行01a0f590完成turn30已停止新派。唯一请执行D:\\EliteSync-v10\\EVIDENCE\\CODEX-HANDOFF-20261001-M5-97\\task.md准确完整只读交接。CODEX_SUBAGENTS_DISABLED_FROM_INVOCATION_START。仅task允许入口/五authority首段/两workreview/baseline与精确20冻结，18非bin各Read1、2bin仅身份不正文；不读home-memory-skills/其它文件、不输出全status/历史backlog、不运行Parser/候选/Process/JVM/外部。A1首失败闭无补读重跑、无写入。当前M93未授权未建未派，不能自立后继。完成只短原回执停独立Sol/high及WorkLEVEL2，不能自接受。</input>\n</codex_delegation>",
+            "truncated": false
+          }
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe48850a6887d09854fca89a9ca4e6",
+          "text": "我将按指定 task 执行一次只读交接核验，保留原预算和停止条件，完成后停在独立审查门。",
+          "phase": "commentary"
+        },
+        {
+          "type": "commandExecution",
+          "id": "exec-c883fa68-1b39-4cca-b58d-0550a5653d99",
+          "command": "\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'D:\\\\EliteSync-v10\\\\EVIDENCE\\\\CODEX-HANDOFF-20261001-M5-97\\\\task.md' -Raw\"",
+          "cwd": "D:\\EliteSync-v10",
+          "status": "completed",
+          "exitCode": 0,
+          "durationMs": 172,
+          "output": {
+            "text": "# CODEX-HANDOFF-20261001-M5-97\nISSUED LEVEL2 READONLY EXECUTION HANDOFF. CODEX_SUBAGENTS_DISABLED_FROM_INVOCATION_START.\nOwner authorized automatic execution handoff at conversation threshold; old executor01a0f590-3c90-74c1-b6d4-4c01198d2d3f/local completed30 turns, latest01a0f73f-1e1d-7642-b6de-64285c60452c completed/errornull/idle,cursor156. Stop old newassignments. New thread must use saved local project D:\\EliteSync-v10, no worktree/newrepo, main HEADcf8bfaa4a03b8c9a682105617b185141904413be. Handoff is not successor product/runtime task, not budget reset.\nOnly readonly governance invocation A1, no file writes or candidate execution. Source inputs once: this task; fiveauthority CURRENT.md/AGENTS.md/PRODUCT_DECISIONS.md/TASK_CURRENT.md/REVIEW_GATE.md only first paragraph (bounded text read, not full historical backlog); workspace-before.json full; exact M96 work-review.md; exact M97 work-review.md. These are D:\\EliteSync-v10\\EVIDENCE\\APP-M5-96-TERMINAL-ESCAPE-SOURCE\\work-review.md and D:\\EliteSync-v10\\EVIDENCE\\APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION\\work-review.md. No home/memory/skills/config/other evidence/source reads or discovery. Entry task full read is charged in this allowed read, do not reopen as A source. If startup has already read allowed authority/task, use same-memory input rather than additional reads; transparently count.\nVerify Git branch/head/default directory-granularity status, full old Paths subset unchanged missing0 (never --untracked-files=all). For exactly workspace-before.Frozen20, GetItem each1 and fullordinary FileInfo.Directory/DirectoryInfo.Parent nonreparse to root.18non-bin eachReadAllBytes1/SHA256 compare exact bytes/hash; two .bin identity/size only and carry prior accepted hash without body/hash calls. Do not enumerate directories or other sources, do not reconstruct oracle/parse/execute any frozen source. Plainpipes/loginfalse/ttyfalse, A cmd≤4096chars, aggregate small result≤8192UTF8bytes/8192chars measured before oneemit. Output only branch/HEAD/count/oldmissing and all20 counts/matches/bin-body0, actual input read counts/operations0; never fullstatus/authority/frozen source text. Failfirst closes invocation/unexecutedsteps, no extra read/supplement/retry/helper/handoff replacement.\nReport no unclosed task is resumed; M92/M94 rejected and original budgets/artifacts retained; M95 Work failed process closed; M96 escapedlauncher SOURCEONLY accepted19873/hashD1BE2EC4F621C1F4370731B4278C814CBAD13AEFA07B3DB4851F06AC799377AD frozen19; M97 originalprobe onlySOURCEONLY accepted1343/hashF523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1 frozen20. Full list baseline authoritative. M89/M90 rejections remain,188identities onlyhistorical,external188budget exhausted. M93 precise190fresh reads+singleJVM future unauthorized/uncreated/unissued; no taskself-issuance/no runtime-authority creation. Next needs Work concrete runtime budget and Owner permission. No new author source/runtime task during handoff.\nAll candidate/Parser/Process/JVM/HTTP/SDKbuild/externalread/hash/enumeration/Gitwrite0. Preserve dirty/untracked/frozen/rawfixture/M5-50/oldclosedbudgets, NOT_READY/settings denial/loader-runtimefalse,realbinding-ID-path-hook/fourproject transaction/LibraryExtension timing,OS hardcutoff/file-network isolationNOT_PROVEN,parentstderrUNKNOWN,SDK/internalscopeNOT_CHECKED,failurepathsNOT_EXERCISED. Ban oldD:\\EliteSync,metadata-properties/neighborindex/home-cache-config-SDK,productionDB/API/SSH,data-backup-secret,install/download/UAC; automationPAUSED. UAC requires currentOwner我在 and separate exact authorization. No agents, successor, commit/pull/push/reset/clean/stash, or messages to other threads.\nStop after concise native report; Work will save receipts, arrange independentSol/high boundedreadonly and ownLEVEL2 before selecting this newexecutor. NO_FINDINGS does not replace Work acceptance.\n\r\n",
+            "truncated": false
+          }
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe489103f487d0bcb6f6d909c696f5",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "commandExecution",
+          "id": "exec-1bfd9a74-efe8-46b1-8be8-4fc63c1ac0d6",
+          "command": "\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -NoProfile -Command '$ErrorActionPreference='\"'Stop'\n\"'$r='\"'D:\\\\EliteSync-v10';\"'$h=\"$r'\"\\\\EVIDENCE\\\\CODEX-HANDOFF-20261001-M5-97\\\";\"'$reads=1;$ai=0;$wr=0;$bi=0;$gi=0;$br=0;$fr=0;$rows=@();$phase='\"'authority';\"'$ok=$false\ntry{\nforeach($n in @('\"'CURRENT.md','AGENTS.md','PRODUCT_DECISIONS.md','TASK_CURRENT.md','REVIEW_GATE.md')){\n\"'$s=[IO.File]::OpenText(\"$r'\"\\\\\"'$n\");try{$started=$false;while(($l=$s.ReadLine()) -ne $null){if($l.Trim().Length){$started=$true}else{if($started){break}}}}finally{$s.Dispose()};$reads++;$ai++\n}\n$phase='\"'reviews'\nforeach(\"'$p in @(\"$r'\"\\\\EVIDENCE\\\\APP-M5-96-TERMINAL-ESCAPE-SOURCE\\\\work-review.md\\\",\\\"\"'$r'\"\\\\EVIDENCE\\\\APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION\\\\work-review.md\\\")){\"'$v=[IO.File]::ReadAllText($p);$reads++;$wr++}\n$phase='\"'baseline';\"'$b=[IO.File]::ReadAllText(\"$h'\"\\\\workspace-before.json\\\")|ConvertFrom-Json;\"'$reads++;$bi++\n$phase='\"'git';\"'$branch=git -C $r branch --show-current;if($LASTEXITCODE -ne 0){throw '\"'GIT_BRANCH'};\"'$head=git -C $r rev-parse HEAD;if($LASTEXITCODE -ne 0){throw '\"'GIT_HEAD'};\"'$st=@(git -C $r status --porcelain);if($LASTEXITCODE -ne 0){throw '\"'GIT_STATUS'}\nif(\"'$branch -ne '\"'main' -or \"'$head -ne '\"'cf8bfaa4a03b8c9a682105617b185141904413be'){throw 'REF_MISMATCH'}\n\"'$missing=@($b.Paths|Where-Object{$_ -cnotin $st}).Count;if($missing){throw '\"'OLD_PATHS_MISSING'}\n\"'$phase='\"'frozen';if(@(\"'$b.Frozen).Count -ne 20){throw '\"'FROZEN_COUNT'}\nforeach(\"'$f in $b.Frozen){\n$p=$f.Path;if(-not $p){throw '\"'PATH_SCHEMA'};if(-not [IO.Path]::IsPathRooted(\"'$p)){$p=Join-Path $r $p}\n$i=Get-Item -LiteralPath $p;$gi++;if($i -isnot [IO.FileInfo] -or ($i.Attributes -band [IO.FileAttributes]::ReparsePoint)){throw '\"'FILE_IDENTITY'}\n\"'$d=$i.Directory;while($null -ne $d){if($d -isnot [IO.DirectoryInfo] -or ($d.Attributes -band [IO.FileAttributes]::ReparsePoint)){throw '\"'ANCESTOR_IDENTITY'};\"'$d=$d.Parent}\n$len=$null;$sha=$null\nforeach($k in $f.PSObject.Properties){switch -Regex ($k.Name){'\"'\"'^(Length|Size|Bytes|SizeBytes)$'\"'{\"'$len=$k.Value};'\"'\"'^(Hash|SHA256|Sha256Hash)$'\"'{\"'$sha=$k.Value}}}\nif($null -eq $len -or -not $sha){throw '\"'IDENTITY_SCHEMA'}\nif(\"'$i.Length -ne [long]$len){throw '\"'SIZE_MISMATCH'}\n\"'$bin=$i.Extension -eq '\"'.bin'\nif(\"'$bin){$br++;$match='\"'PRIOR_ACCEPTED_HASH_CARRIED'}else{\"'$bytes=[IO.File]::ReadAllBytes($p);$fr++;$reads++;$sh=[Security.Cryptography.SHA256]::Create();try{$actual=[BitConverter]::ToString($sh.ComputeHash($bytes)).Replace('\"'-','')}finally{\"'$sh.Dispose()};if($bytes.Length -ne [long]$len -or $actual -ne $sha){throw '\"'HASH_MISMATCH'};\"'$match='\"'MATCH'}\n\"'$rows+=@{ordinal=$rows.Count+1;getItem=1;size='\"'MATCH';ancestors='NONREPARSE_TO_ROOT';bodyRead=[int](-not \"'$bin);hash=$match}\n}\nif($fr -ne 18 -or $br -ne 2){throw '\"'BODY_COUNTS'};\"'$ok=$true\n}catch{$failure=$_.Exception.Message}\n$o=[ordered]@{result=$(if($ok){'\"'READONLY_HANDOFF_VERIFIED_PENDING_INDEPENDENT_REVIEW_AND_WORK_LEVEL2'}else{'FIRST_FAILURE_CLOSED'});phase=\"'$phase;failure=$failure;branch=$branch;HEAD=$head;statusCount=$st.Count;oldMissing=$missing;frozenCount=$rows.Count;frozen=$rows;inputReads=@{taskStartup=1;authorityFirstParagraph=$ai;workReviews=$wr;baseline=$bi;nonBinBodies=$fr;binIdentityOnly=$br;total=$reads};binBody=0;operations=@{writes=0;candidate=0;Parser=0;Process=0;JVM=0;HTTP=0;SDKbuild=0;externalReadHashEnumeration=0;Gitwrite=0;agents=0};state='\"'M92/M94 REJECT CLOSED; M95 WORK FAILURE CLOSED; M96/M97 SOURCEONLY ACCEPTED; M89/M90 rejections retained; original budgets retained; M93 UNAUTHORIZED UNCREATED UNISSUED; NOT_READY; automation PAUSED';entryRead='Startup task read success; default login used for entry read; A loginfalse ttyfalse'}\n\"'$out=$o|ConvertTo-Json -Depth 6 -Compress\nif($out.Length -gt 8192 -or [Text.Encoding]::UTF8.GetByteCount($out) -gt 8192){throw '\"'EMIT_LIMIT'}\n[Console]::WriteLine(\"'$out)\nif(-not $ok){exit 1}'",
+          "cwd": "D:\\EliteSync-v10",
+          "status": "failed",
+          "exitCode": 1,
+          "durationMs": 315,
+          "output": {
+            "text": "{\"result\":\"FIRST_FAILURE_CLOSED\",\"phase\":\"git\",\"failure\":\"OLD_PATHS_MISSING\",\"branch\":\"main\",\"HEAD\":\"cf8bfaa4a03b8c9a682105617b185141904413be\",\"statusCount\":255,\"oldMissing\":255,\"frozenCount\":0,\"frozen\":[],\"inputReads\":{\"taskStartup\":1,\"workReviews\":2,\"baseline\":1,\"total\":9,\"binIdentityOnly\":0,\"nonBinBodies\":0,\"authorityFirstParagraph\":5},\"binBody\":0,\"operations\":{\"Gitwrite\":0,\"Process\":0,\"candidate\":0,\"externalReadHashEnumeration\":0,\"Parser\":0,\"agents\":0,\"JVM\":0,\"SDKbuild\":0,\"writes\":0,\"HTTP\":0},\"state\":\"M92/M94 REJECT CLOSED; M95 WORK FAILURE CLOSED; M96/M97 SOURCEONLY ACCEPTED; M89/M90 rejections retained; original budgets retained; M93 UNAUTHORIZED UNCREATED UNISSUED; NOT_READY; automation PAUSED\",\"entryRead\":\"Startup task read success; default login used for entry read; A loginfalse ttyfalse\"}\r\n",
+            "truncated": false
+          }
+        },
+        {
+          "type": "reasoning",
+          "id": "rs_0318c8fd07d6b1cb016abe48cee96487d09b98c5301cc092c0",
+          "summary": [],
+          "content": []
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe48d41be887d0aac85c35b72b5ef1",
+          "text": "A1 已首失败关闭，exit 1；未补读、重跑或写入。\n\n- 分支 `main`、HEAD `cf8bfaa4a03b8c9a682105617b185141904413be` 一致，status 共255项。\n- 原回执：`OLD_PATHS_MISSING / oldMissing=255`。本次直接比较 baseline.Paths 与完整 status 行，比较口径未核实，**不能断言实际丢失255个旧路径**。\n- 已读：task 1、authority首段5、work-review 2、baseline 1；20冻结核验未执行，bin正文0。\n- 候选、JVM、外部访问及写入均0。入口task读取使用默认login，A使用loginfalse/ttyfalse。\n\n交接未完成；停待独立Sol/high与Work LEVEL2裁定。M93仍未授权、未建、未派。",
+          "phase": "final_answer"
+        }
+      ]
+    }
+  ]
+}

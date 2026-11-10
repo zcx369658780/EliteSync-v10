@@ -50,10 +50,10 @@ class AdminApiTest extends TestCase
             ->assertJsonPath('items.0.id', $pendingUser->id);
 
         $this->postJson('/api/v1/admin/verify/'.$pendingUser->id, [
-            'status' => 'approved',
+            'status' => 'approved','reason'=>'approved operating fixture','expected_revision'=>0,'confirm'=>'1',
         ])->assertOk()->assertJsonPath('ok', true);
 
-        $this->postJson('/api/v1/admin/users/'.$pendingUser->id.'/disable')
+        $this->postJson('/api/v1/admin/users/'.$pendingUser->id.'/disable',['reason'=>'disable fixture','expected_revision'=>0,'confirm'=>'1'])
             ->assertOk()
             ->assertJsonPath('ok', true);
 
@@ -127,238 +127,32 @@ class AdminApiTest extends TestCase
 
     public function test_dev_matching_and_release_drop_flow(): void
     {
-        $this->seed();
-
-        $admin = User::create([
-            'phone' => '13800000111',
-            'name' => 'admin',
-            'password' => 'secret123',
-            'role' => 'admin',
-            'verify_status' => 'approved',
-            'city' => 'Nanyang',
-            'gender' => 'male',
-        ]);
-
-        $u1 = User::create([
-            'phone' => '13800000112',
-            'name' => 'u1',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'city' => 'Nanyang',
-            'gender' => 'female',
-        ]);
-
-        User::create([
-            'phone' => '13800000113',
-            'name' => 'u2',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'city' => 'Nanyang',
-            'gender' => 'female',
-        ]);
-
-        $incomplete = User::create([
-            'phone' => '13800000114',
-            'name' => 'u3',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'city' => 'Nanyang',
-            'gender' => 'male',
-        ]);
-
-        Config::set('app.admin_phones', [$admin->phone]);
-        Sanctum::actingAs($admin);
-
-        $this->postJson('/api/v1/questionnaire/answers', [
-            'answers' => $this->fullAnswersPayload(),
-        ])->assertOk();
-        Sanctum::actingAs($u1);
-        $this->postJson('/api/v1/questionnaire/answers', [
-            'answers' => $this->fullAnswersPayload(),
-        ])->assertOk();
-        Sanctum::actingAs($admin);
-
-        $run = $this->postJson('/api/v1/admin/dev/run-matching')
-            ->assertOk()
-            ->assertJsonPath('ok', true)
-            ->json();
-
-        $this->assertGreaterThanOrEqual(1, (int) ($run['pairs'] ?? 0));
-        $this->assertSame(2, (int) ($run['eligible_users'] ?? 0));
-
-        $this->postJson('/api/v1/admin/dev/release-drop')
-            ->assertOk()
-            ->assertJsonPath('ok', true)
-            ->assertJsonPath('released', 1);
-
-        Sanctum::actingAs($u1);
-        $current = $this->getJson('/api/v1/matches/current')
-            ->assertOk()
-            ->assertJsonStructure([
-                'match_reasons' => [
-                    'contract_version',
-                    'generated_at',
-                    'summary',
-                    'match',
-                    'mismatch',
-                    'confidence',
-                    'modules' => [[
-                        'key',
-                        'label',
-                        'algo_version',
-                        'confidence',
-                        'verdict',
-                        'reason_short',
-                        'reason_detail',
-                        'risk_short',
-                        'risk_detail',
-                        'evidence_tags',
-                        'evidence',
-                        'highlights',
-                        'risks',
-                        'degraded',
-                        'degrade_reason',
-                    ]],
-                ],
-            ])
-            ->json();
-        $this->assertNotEmpty(data_get($current, 'match_reasons.modules', []));
-        $this->assertArrayNotHasKey('score', (array) data_get($current, 'match_reasons.modules.0', []));
-        $this->assertArrayNotHasKey('weight', (array) data_get($current, 'match_reasons.modules.0', []));
-
-        Sanctum::actingAs($admin);
-        $this->assertFalse(
-            DatingMatch::query()
-                ->where('user_a', $incomplete->id)
-                ->orWhere('user_b', $incomplete->id)
-                ->exists()
-        );
+        $admin=User::create(['phone'=>'19900999901','role'=>'admin','password'=>'fixture-password']);
+        config(['app.admin_phones'=>[$admin->phone]]);Sanctum::actingAs($admin);
+        $before=DatingMatch::count();
+        foreach(['/api/v1/admin/dev/run-matching','/api/v1/admin/dev/release-drop','/api/v1/admin/dev/matching-debug'] as $path)$this->postJson($path)->assertForbidden();
+        $this->assertSame($before,DatingMatch::count());
+        $this->assertDatabaseCount('matching_runs',0);$this->assertDatabaseCount('matching_operation_audits',0);
     }
 
     public function test_dev_matching_handles_multiple_chunks_without_key_error(): void
     {
-        $this->seed();
-
-        $admin = User::create([
-            'phone' => '13800000121',
-            'name' => 'admin2',
-            'password' => 'secret123',
-            'role' => 'admin',
-            'verify_status' => 'approved',
-            'city' => 'Nanyang',
-            'gender' => 'male',
-        ]);
-
-        $u1 = User::create(['phone' => '13800000122', 'name' => 'u1', 'password' => 'secret123', 'verify_status' => 'approved', 'city' => 'Nanyang', 'gender' => 'female']);
-        $u2 = User::create(['phone' => '13800000123', 'name' => 'u2', 'password' => 'secret123', 'verify_status' => 'approved', 'city' => 'Nanyang', 'gender' => 'male']);
-        $u3 = User::create(['phone' => '13800000124', 'name' => 'u3', 'password' => 'secret123', 'verify_status' => 'approved', 'city' => 'Nanyang', 'gender' => 'female']);
-
-        Config::set('app.admin_phones', [$admin->phone]);
-        Sanctum::actingAs($admin);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => [
-            ...$this->fullAnswersPayload(),
-        ]])->assertOk();
-
-        Sanctum::actingAs($u1);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => [
-            ...$this->fullAnswersPayload(),
-        ]])->assertOk();
-
-        Sanctum::actingAs($u2);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => [
-            ...$this->fullAnswersPayload(),
-        ]])->assertOk();
-
-        Sanctum::actingAs($u3);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => [
-            ...$this->fullAnswersPayload(),
-        ]])->assertOk();
-
-        Sanctum::actingAs($admin);
-        $this->postJson('/api/v1/admin/dev/run-matching')
-            ->assertOk()
-            ->assertJsonPath('ok', true)
-            ->assertJsonPath('pairs', 2);
+        $admin=User::create(['phone'=>'19900999901','role'=>'admin','password'=>'fixture-password']);
+        config(['app.admin_phones'=>[$admin->phone]]);Sanctum::actingAs($admin);
+        $before=DatingMatch::count();
+        foreach(['/api/v1/admin/dev/run-matching','/api/v1/admin/dev/release-drop','/api/v1/admin/dev/matching-debug'] as $path)$this->postJson($path)->assertForbidden();
+        $this->assertSame($before,DatingMatch::count());
+        $this->assertDatabaseCount('matching_runs',0);$this->assertDatabaseCount('matching_operation_audits',0);
     }
 
     public function test_dev_matching_can_toggle_synthetic_user_inclusion(): void
     {
-        $this->seed();
-
-        $admin = User::create([
-            'phone' => '13800000126',
-            'name' => 'admin-syn',
-            'password' => 'secret123',
-            'role' => 'admin',
-            'verify_status' => 'approved',
-            'is_synthetic' => false,
-            'city' => 'Nanyang',
-            'gender' => 'male',
-        ]);
-        $real1 = User::create([
-            'phone' => '13800000127',
-            'name' => 'real-1',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'is_synthetic' => false,
-            'city' => 'Nanyang',
-            'gender' => 'female',
-        ]);
-        $real2 = User::create([
-            'phone' => '13800000128',
-            'name' => 'real-2',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'is_synthetic' => false,
-            'city' => 'Nanyang',
-            'gender' => 'male',
-        ]);
-        $syn = User::create([
-            'phone' => '13800000129',
-            'name' => 'syn-1',
-            'password' => 'secret123',
-            'verify_status' => 'approved',
-            'is_synthetic' => true,
-            'synthetic_batch' => 'test_batch',
-            'city' => 'Nanyang',
-            'gender' => 'female',
-        ]);
-
-        Config::set('app.admin_phones', [$admin->phone]);
-
-        // complete questionnaire for 4 users
-        Sanctum::actingAs($admin);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => $this->fullAnswersPayload()])->assertOk();
-        Sanctum::actingAs($real1);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => $this->fullAnswersPayload()])->assertOk();
-        Sanctum::actingAs($real2);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => $this->fullAnswersPayload()])->assertOk();
-        Sanctum::actingAs($syn);
-        $this->postJson('/api/v1/questionnaire/answers', ['answers' => $this->fullAnswersPayload()])->assertOk();
-
-        Sanctum::actingAs($admin);
-
-        $this->postJson('/api/v1/admin/dev/matching-debug', [
-            'include_synthetic_users' => false,
-        ])->assertOk()->assertJsonPath('include_synthetic_users', false);
-
-        $respOff = $this->postJson('/api/v1/admin/dev/run-matching')
-            ->assertOk()
-            ->assertJsonPath('ok', true)
-            ->assertJsonPath('include_synthetic_users', false)
-            ->json();
-        $this->assertSame(3, (int) ($respOff['eligible_users'] ?? 0));
-
-        $this->postJson('/api/v1/admin/dev/matching-debug', [
-            'include_synthetic_users' => true,
-        ])->assertOk()->assertJsonPath('include_synthetic_users', true);
-
-        $respOn = $this->postJson('/api/v1/admin/dev/run-matching')
-            ->assertOk()
-            ->assertJsonPath('ok', true)
-            ->assertJsonPath('include_synthetic_users', true)
-            ->json();
-        $this->assertSame(4, (int) ($respOn['eligible_users'] ?? 0));
+        $admin=User::create(['phone'=>'19900999901','role'=>'admin','password'=>'fixture-password']);
+        config(['app.admin_phones'=>[$admin->phone]]);Sanctum::actingAs($admin);
+        $before=DatingMatch::count();
+        foreach(['/api/v1/admin/dev/run-matching','/api/v1/admin/dev/release-drop','/api/v1/admin/dev/matching-debug'] as $path)$this->postJson($path)->assertForbidden();
+        $this->assertSame($before,DatingMatch::count());
+        $this->assertDatabaseCount('matching_runs',0);$this->assertDatabaseCount('matching_operation_audits',0);
     }
 
     public function test_admin_endpoints_forbid_non_admin_user(): void
@@ -489,7 +283,7 @@ class AdminApiTest extends TestCase
         $this->assertSame(0, (int) ($dryRun['updated'] ?? -1));
 
         $apply = $this->postJson('/api/v1/admin/questionnaire/prune-low-drop', [
-            'dry_run' => false,
+            'dry_run' => false,'expected_revision'=>$dryRun['expected_revision'],'preview_signature'=>$dryRun['preview_signature'],'reason'=>'retire low drop fixture','confirm'=>'1',
         ])->assertOk()->json();
 
         $this->assertTrue((bool) ($apply['ok'] ?? false));

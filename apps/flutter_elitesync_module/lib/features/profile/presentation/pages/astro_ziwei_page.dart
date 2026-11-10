@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/natal_restoration_charts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -46,6 +47,8 @@ class AstroZiweiPage extends ConsumerWidget {
             ),
             SizedBox(height: t.spacing.md),
             async.when(
+              skipLoadingOnRefresh: false,
+              skipLoadingOnReload: false,
               loading: () =>
                   AstroProfileStateView(spec: astroProfileLoadingSpec('紫微')),
               error: (e, _) {
@@ -68,6 +71,12 @@ class AstroZiweiPage extends ConsumerWidget {
                   );
                 }
 
+                if (profile.containsKey('natal')) {
+                  return NatalProjectionView(
+                    natal: natalMap(profile['natal']),
+                    section: 'ziwei',
+                  );
+                }
                 final ziwei = astroMap(profile['ziwei']);
                 final palaces = astroList(ziwei['palaces']);
                 final lifePalace = astroText(ziwei['life_palace'], '-');

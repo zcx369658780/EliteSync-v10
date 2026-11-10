@@ -1,0 +1,88 @@
+{
+  "utc": "2026-10-15T00:27:11.220529+00:00",
+  "role": "alice",
+  "method": "GET",
+  "path": "/api/v1/messages?peer_id=3",
+  "request": null,
+  "status": 200,
+  "body": {
+    "items": [
+      {
+        "id": 1,
+        "room_id": "",
+        "sender_id": 3,
+        "receiver_id": 2,
+        "content": "V1007 Bob APP message 01",
+        "client_message_id": null,
+        "is_read": true,
+        "read_at": null,
+        "created_at": "2026-10-15T00:19:34.000000Z",
+        "message_type": "text",
+        "has_attachments": false,
+        "attachments": []
+      },
+      {
+        "id": 2,
+        "room_id": "",
+        "sender_id": 3,
+        "receiver_id": 2,
+        "content": "",
+        "client_message_id": null,
+        "is_read": true,
+        "read_at": null,
+        "created_at": "2026-10-15T00:20:13.000000Z",
+        "message_type": "image",
+        "has_attachments": true,
+        "attachments": [
+          {
+            "id": 1,
+            "attachment_type": "image",
+            "sort_order": 0,
+            "metadata": {
+              "media_type": "image",
+              "status": "ready"
+            },
+            "media_asset": {
+              "id": 1,
+              "owner_user_id": 3,
+              "media_type": "image",
+              "storage_provider": "oss",
+              "storage_disk": "v1007",
+              "storage_key": "chat-media/3/image/5d6331b2-7045-477d-ac8a-50686f3df32e.png",
+              "mime_type": "image/jpeg",
+              "size_bytes": 7371,
+              "width": null,
+              "height": null,
+              "duration_ms": null,
+              "status": "ready",
+              "error_code": null,
+              "error_message": null,
+              "public_url": "http://127.0.0.1:8000/api/v1/media/1/content",
+              "metadata": {
+                "source_page": "chat_room",
+                "media_kind": "image"
+              },
+              "uploaded_at": "2026-10-15T00:20:13.000000Z",
+              "processed_at": "2026-10-15T00:20:13.000000Z"
+            }
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "room_id": "",
+        "sender_id": 2,
+        "receiver_id": 3,
+        "content": "V1007 protected route probe",
+        "client_message_id": null,
+        "is_read": false,
+        "read_at": null,
+        "created_at": "2026-10-15T00:27:11.000000Z",
+        "message_type": "text",
+        "has_attachments": false,
+        "attachments": []
+      }
+    ],
+    "total": 3
+  }
+}

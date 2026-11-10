@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
+import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
@@ -16,27 +17,49 @@ import 'package:flutter_elitesync_module/features/chat/data/gateway/chat_media_g
 import 'package:flutter_elitesync_module/features/chat/domain/repository/chat_repository.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/chat_room_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/product_conversation_contract.dart';
+import 'package:flutter_elitesync_module/features/connection/domain/product_connection_contract.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_bubble.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/message_input_bar.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
+final _syntheticAuthorizedConversationAccess =
+    ProductConversationAccessAdapter.resolve(
+      connection: const ProductConnectionEvidence.authoritative(
+        ProductConnectionState.active,
+      ),
+      messagingConsent: const MessagingConsentEvidence.authoritative(
+        MessagingConsentState.mutual,
+      ),
+    );
+
 class FakeLocalStorageService extends LocalStorageService {
   final Map<String, Object?> _values = <String, Object?>{};
+  final List<String> stringReads = [];
+  final List<String> stringWrites = [];
+  final List<String> removals = [];
+
+  void seedString(String key, String value) => _values[key] = value;
+  String? storedString(String key) => _values[key] as String?;
 
   @override
   Future<String?> getString(String key) async {
+    stringReads.add(key);
     final value = _values[key];
     return value is String ? value : null;
   }
 
   @override
   Future<bool> setString(String key, String value) async {
+    stringWrites.add(key);
     _values[key] = value;
     return true;
   }
 
   @override
   Future<bool> remove(String key) async {
+    removals.add(key);
     _values.remove(key);
     return true;
   }
@@ -49,6 +72,7 @@ class FakeChatRepository implements ChatRepository {
   List<MessageEntity> messages = const [];
   bool failMessages = false;
   bool failSend = false;
+  String? echoedClientIdOverride;
   Object? nextSendFailure;
   final List<String?> sentClientMessageIds = <String?>[];
 
@@ -95,7 +119,7 @@ class FakeChatRepository implements ChatRepository {
     return SendMessageResult(
       serverMessageId: 1,
       conversationId: 1,
-      clientMessageId: clientMessageId,
+      clientMessageId: echoedClientIdOverride ?? clientMessageId,
       idempotentReplay: false,
       message: MessageEntity(
         id: '1',
@@ -173,6 +197,9 @@ Widget _chatMediaApp({
 }) {
   return ProviderScope(
     overrides: [
+      conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+        _syntheticAuthorizedConversationAccess,
+      ),
       appEnvProvider.overrideWithValue(
         const AppEnv(
           flavor: AppFlavor.dev,
@@ -200,6 +227,9 @@ Widget _chatMediaApp({
 
 Widget _basicChatApp(FakeChatRepository repository) => ProviderScope(
   overrides: [
+    conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+      _syntheticAuthorizedConversationAccess,
+    ),
     appEnvProvider.overrideWithValue(
       const AppEnv(
         flavor: AppFlavor.dev,
@@ -293,6 +323,20 @@ void main() {
       ),
       isFalse,
     );
+  });
+
+  testWidgets('mismatched acknowledgement stays unknown and retains logical key', (tester) async {
+    final repository = FakeChatRepository()..echoedClientIdOverride = 'unrelated-response';
+    await tester.pumpWidget(_basicChatApp(repository));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'same synthetic payload');
+    await _confirmManualSend(tester);
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'same synthetic payload');
+    expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
+    repository.echoedClientIdOverride = null;
+    await _confirmManualSend(tester);
+    expect(repository.sentClientMessageIds, hasLength(2));
+    expect(repository.sentClientMessageIds[1], repository.sentClientMessageIds[0]);
   });
 
   testWidgets('unchanged explicit retry reuses the exact client key', (
@@ -422,6 +466,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -463,6 +510,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -492,6 +542,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -553,6 +606,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -598,13 +654,53 @@ void main() {
     expect(find.text('选择视频'), findsOneWidget);
   });
 
-  testWidgets('ChatRoomPage opening suggestions write drafts without sending', (
+  testWidgets('ChatRoomPage ignores legacy draft and keeps current input local', (
+    tester,
+  ) async {
+    final storage = FakeLocalStorageService();
+    final repository = FakeChatRepository();
+    final route = ChatRouteState.legacyPeer(peerUserId: 2, title: 'Synthetic Peer');
+    final draftKey = '${CacheKeys.chatDraftPrefix}${route.stableKey}';
+    storage.seedString(draftKey, 'OLD PRIVATE DRAFT');
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
+          localStorageProvider.overrideWithValue(storage),
+          chatRepositoryProvider.overrideWithValue(repository),
+        ],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: ChatRoomPage(routeState: route),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, isEmpty);
+    expect(find.text('OLD PRIVATE DRAFT'), findsNothing);
+    expect(storage.stringReads, isNot(contains(draftKey)));
+
+    await tester.enterText(find.byType(TextField), 'current page input');
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(tester.widget<TextField>(find.byType(TextField)).controller?.text, 'current page input');
+    expect(storage.storedString(draftKey), 'OLD PRIVATE DRAFT');
+    expect(storage.stringWrites, isNot(contains(draftKey)));
+    expect(storage.removals, isNot(contains(draftKey)));
+    expect(repository.sendMessageCount, 0);
+  });
+
+  testWidgets('ChatRoomPage opening suggestions fill input without sending', (
     tester,
   ) async {
     final repository = FakeChatRepository();
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(repository),
         ],
@@ -651,6 +747,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
         ],
@@ -686,6 +785,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           localStorageProvider.overrideWithValue(FakeLocalStorageService()),
           chatRepositoryProvider.overrideWithValue(repository),
         ],
@@ -714,22 +816,27 @@ void main() {
     'ChatRoomPage rolls back failed text send and restores a sanitized draft',
     (tester) async {
       final repository = FakeChatRepository()..failSend = true;
+      final storage = FakeLocalStorageService();
+      final route = ChatRouteState.legacyPeer(
+        peerUserId: 2,
+        title: '九紫瑶瑶',
+      );
+      final draftKey = '${CacheKeys.chatDraftPrefix}${route.stableKey}';
+      storage.seedString(draftKey, 'OLD PRIVATE DRAFT');
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
+            localStorageProvider.overrideWithValue(storage),
             chatRepositoryProvider.overrideWithValue(repository),
           ],
           child: MaterialApp(
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
             themeMode: ThemeMode.light,
-            home: ChatRoomPage(
-              routeState: ChatRouteState.legacyPeer(
-                peerUserId: 2,
-                title: '九紫瑶瑶',
-              ),
-            ),
+            home: ChatRoomPage(routeState: route),
           ),
         ),
       );
@@ -755,9 +862,12 @@ void main() {
         ),
         findsNothing,
       );
-      expect(find.text('发送失败，已恢复输入框，请稍后重试'), findsOneWidget);
+      expect(find.text('发送结果尚未确认；输入已保留，重试会使用同一个消息编号'), findsOneWidget);
       expect(find.textContaining('raw send failure detail'), findsNothing);
       expect(find.textContaining('发送成功'), findsNothing);
+      expect(storage.storedString(draftKey), 'OLD PRIVATE DRAFT');
+      expect(storage.stringWrites, isNot(contains(draftKey)));
+      expect(storage.removals, isNot(contains(draftKey)));
     },
   );
 
