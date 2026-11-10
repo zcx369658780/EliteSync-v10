@@ -1,0 +1,84 @@
+{
+  "schema": "elitesync.ziwei.chart-markers-sources.v1",
+  "outputSchema": "elitesync.ziwei.chart-markers-reference.v1",
+  "status": "SOURCE_RULE_PROFILE_ONLY_NOT_PRODUCT_VERIFIED",
+  "sourceReview": "Named web source facts supplied by the main agent after its web reading; this helper made no network retrieval or printed-edition collation.",
+  "coordinate": "子=0..亥=11; 甲=0..癸=9; sequence placements advance in increasing branch index modulo12.",
+  "dependencyFiles": ["ziwei_chart_markers_reference.py", "ziwei_chart_markers_sources.json", "ziwei_reference.py", "ziwei_reference_sources.json", "ziwei_selected_rule_sources.json"],
+  "dependencyHashPolicy": "Every result records SHA-256 of exact bytes of all five dependencies, including this source file and reference code; no self-referential static hash is embedded.",
+  "sources": [
+    {
+      "id": "classical-life-body-markers",
+      "url": "https://tianjihq.com/en/learn/books/ziwei-doushu-quanshu/21",
+      "title": "紫微斗数全书 安命主、安身主 public transcription",
+      "facts": ["命主: 子贪狼、丑亥巨门、寅戌禄存、卯酉文曲、辰申廉真、巳未武曲、午破军; indexed by life-palace branch.", "身主: 子午火玲、丑未天相、寅申天梁、卯酉天同、辰戌文昌、巳亥天机; indexed by birth-year branch."],
+      "limits": ["Printed edition and transcription fidelity not independently collated.", "廉真 is retained as transcription spelling, normalized to 廉贞 for the selected output.", "火玲 is an ambiguous spelling / paired fire-bell reading; classical text alone does not establish fire-only selection."]
+    },
+    {
+      "id": "modern-marker-choice",
+      "url": "https://ziweihome.com/zh-hans/blog/ming-zhu-shen-zhu-shi-shen-me",
+      "locator": "tables/lines55-68 in main-agent reading",
+      "facts": ["Modern selected body-marker table explicitly uses 火星 for 子午.", "命主 indexed by 命宫 branch and an alternative birth-year-branch convention are distinct profiles."],
+      "limits": ["Only the life-palace 命主 convention and fire-only 身主 table are selected; birth-year 命主 alternative is preserved as an unselected variant.", "Not a unique whole-school or independent-program lineage certification."]
+    },
+    {
+      "id": "sufei-laiyin",
+      "url": "https://ziwei.com.tw/laiyin",
+      "author": "苏菲老师",
+      "facts": ["来因宫 has natal palace stem equal to explicit lunar birth-year stem, with 子丑 excluded.", "Five-tigers palace stems therefore uniquely select 甲戌乙酉丙申丁未戊午己巳庚辰辛卯壬寅癸亥."],
+      "limits": ["Modern author rule; not represented as a 紫微斗数全书 original-text rule or predictive fact.", "Uses independent base five-tigers stems; no product cached marker is consulted."]
+    },
+    {
+      "id": "selected-natal-year-series",
+      "url": "https://www.ziweicn.com/show/3085.html",
+      "localReference": "ziwei_selected_rule_sources.json tables.suiQian / tables.jiangQian",
+      "facts": ["岁建 begins at birth-year branch and its sequence advances forward.", "将星 begins at birth-year trine 帝旺: 申子辰子、巳酉丑酉、寅午戌午、亥卯未卯, then sequence advances forward."],
+      "limits": ["Reuse selected 中州 year-series rules as natal birth-year series; do not validate an entire school.", "Source table names and spellings are retained verbatim, including 岁前 大耗; existing annual alias notes are not silently generalized.", "No flowing-year selection, target-year conversion or scientific prediction is asserted."]
+    }
+  ],
+  "tables": {
+    "soulByLifeBranch": ["贪狼", "巨门", "禄存", "文曲", "廉贞", "武曲", "破军", "武曲", "廉贞", "文曲", "禄存", "巨门"],
+    "bodyByYearBranch": ["火星", "天相", "天梁", "天同", "文昌", "天机", "火星", "天相", "天梁", "天同", "文昌", "天机"],
+    "laiYinByYearStem": [10, 9, 8, 7, 6, 5, 4, 3, 2, 11],
+    "jiangStartByYearBranchModFour": [0, 9, 6, 3]
+  },
+  "fieldProfiles": {
+    "soul_star": {
+      "ruleSources": ["classical-life-body-markers", "modern-marker-choice"],
+      "school": "Selected life-palace 命主 profile",
+      "formula": "soulByLifeBranch[base.lifeBranchIndex]",
+      "limits": ["Alternative birth-year 命主 indexing is not adopted.", "廉真 transcription normalized to 廉贞; life branch inherits independently selected base leap-month convention."]
+    },
+    "body_star": {
+      "ruleSources": ["classical-life-body-markers", "modern-marker-choice"],
+      "school": "Selected modern 火星-only 身主 profile",
+      "formula": "bodyByYearBranch[explicit birth-year branch]",
+      "limits": ["Not indexed by body-palace branch.", "子午 火星 selection is modern explicit profile evidence; 火玲 / fire-bell ambiguity in classical transcription is preserved, not silently resolved as original wording."]
+    },
+    "is_original_palace": {
+      "ruleSources": ["sufei-laiyin"],
+      "school": "苏菲老师 modern 来因宫 rule",
+      "formula": "branch not in 子丑 and base palace stem == explicit lunar birth-year stem; exactly one match, checked against registered ten-stem table",
+      "limits": ["Modern author rule, not 全书 original text or predictive validity.", "is_original_palace denotes 来因宫 under this selected profile only."]
+    },
+    "sui_qian": {
+      "ruleSources": ["selected-natal-year-series"],
+      "school": "Selected 中州 natal birth-year series",
+      "formula": "selected.tables.suiQian[(palaceBranch - birthYearBranch) % 12]",
+      "limits": ["Uses explicit natal year branch; no whole-school equivalence or flowing-year layer is certified."]
+    },
+    "jiang_qian": {
+      "ruleSources": ["selected-natal-year-series"],
+      "school": "Selected 中州 natal birth-year series",
+      "formula": "selected.tables.jiangQian[(palaceBranch - [子,酉,午,卯][birthYearBranch % 4]) % 12]",
+      "limits": ["Uses birth-year trine 帝旺 anchor; no whole-school equivalence or flowing-year layer is certified."]
+    }
+  },
+  "limitations": [
+    "Rule-level markers only; no predictive/scientific efficacy, whole-chart acceptance or exact product compatibility assertion.",
+    "Input legality is limited to independent base validation; no calendar conversion, actual leap-month existence, lunar-month length or birth-time conversion is certified.",
+    "Base placement profile is reused, including its explicit half-month leap convention. Published-source independence does not prove independent program lineage.",
+    "Expected generation, freezing and cache comparison belong to the main agent; this helper only writes sources and performs AST/JSON syntax parsing."
+  ],
+  "productComparison": "NOT_RUN"
+}

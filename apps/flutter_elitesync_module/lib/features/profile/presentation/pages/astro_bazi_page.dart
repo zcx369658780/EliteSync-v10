@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/natal_restoration_charts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -48,6 +49,8 @@ class AstroBaziPage extends ConsumerWidget {
             ),
             SizedBox(height: t.spacing.md),
             async.when(
+              skipLoadingOnRefresh: false,
+              skipLoadingOnReload: false,
               loading: () =>
                   AstroProfileStateView(spec: astroProfileLoadingSpec('八字')),
               error: (e, _) {
@@ -70,6 +73,12 @@ class AstroBaziPage extends ConsumerWidget {
                   );
                 }
 
+                if (profile.containsKey('natal')) {
+                  return NatalProjectionView(
+                    natal: natalMap(profile['natal']),
+                    section: 'bazi',
+                  );
+                }
                 final bazi = astroText(profile['bazi'], '暂无八字');
                 final baziDetails = astroMap(profile['bazi_details']);
                 final trueSolarTime = astroText(profile['true_solar_time']);

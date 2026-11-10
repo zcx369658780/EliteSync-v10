@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-15T07:23:28.126133+00:00",
+  "user": "alice",
+  "status": 200,
+  "body": {
+    "status": "approved",
+    "reason": "V1008 approved after controlled review",
+    "revision": 3,
+    "moderation_status": "normal",
+    "matching_eligibility": {
+      "eligible": true,
+      "reason_code": "eligible",
+      "required_answer_count": 20,
+      "answered_answer_count": 20,
+      "missing_answer_count": 0,
+      "next_action_code": "wait_for_matching"
+    }
+  }
+}

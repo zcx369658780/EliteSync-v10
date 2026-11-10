@@ -1,0 +1,62 @@
+[
+  {
+    "label": "baseline08",
+    "ref": "3a8f7989aa208285b885f1c80f4365f38488ac54",
+    "exact_blob_matches": 503,
+    "archive_CRLF_only": [
+      {
+        "path": "question_bank/question_bank_core_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_docx_scored_v2.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_extended_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_research_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      }
+    ],
+    "unexpected_mismatch": [],
+    "app_class_path_verified_in_snapshot": true,
+    "same_private_env_bytes": true
+  },
+  {
+    "label": "candidate09",
+    "ref": "66a8638581d1017823ac3caa2536568e0de3b939",
+    "exact_blob_matches": 512,
+    "archive_CRLF_only": [
+      {
+        "path": "question_bank/question_bank_core_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_docx_scored_v2.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_extended_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      },
+      {
+        "path": "question_bank/question_bank_research_v1.json",
+        "json_semantically_equal": true,
+        "same_as_original_worktree_bytes": true
+      }
+    ],
+    "unexpected_mismatch": [],
+    "app_class_path_verified_in_snapshot": true,
+    "same_private_env_bytes": true
+  }
+]

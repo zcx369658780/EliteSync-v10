@@ -1,0 +1,11 @@
+{
+  "v2_slice_equal": true,
+  "candidate_v1_no_transport_envelope": true,
+  "transport_envelope_declaration_count": 1,
+  "v2_no_sanctum": true,
+  "expected_stale_sha256": "986308bc4a5d4978986ca55642753982ffb9a8979af4656623f72d187f680e13",
+  "baseline_actual_sha256": "2cf9444502ae1c5b9c50ab5654e08e7d3d4f2d56df605039160de4c9a3c999fb",
+  "candidate_actual_sha256": "7ce3e88145707ca6b24792f20ff661c95282c7da4c2d6e99152475e155c67046",
+  "exit": 0,
+  "method": "literal source assertions evaluated on fixed Git snapshots; original test unchanged"
+}

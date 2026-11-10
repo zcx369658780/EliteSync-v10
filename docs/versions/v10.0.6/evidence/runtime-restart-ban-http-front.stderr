@@ -1,0 +1,14 @@
+127.0.0.1 - - [14/Oct/2026 22:54:17] "GET /api/v1/profile/basic HTTP/1.1" 401 -
+127.0.0.1 - - [14/Oct/2026 22:54:17] "GET /api/v1/profile/basic HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:17] "POST /api/v1/profile/city HTTP/1.1" 401 -
+127.0.0.1 - - [14/Oct/2026 22:54:17] "POST /api/v1/auth/refresh HTTP/1.1" 401 -
+127.0.0.1 - - [14/Oct/2026 22:54:17] "POST /api/v1/auth/login HTTP/1.1" 403 -
+127.0.0.1 - - [14/Oct/2026 22:54:17] "POST /api/v1/auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:45] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:45] "GET /favicon.ico HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:47] "POST /admin/logout HTTP/1.1" 302 -
+127.0.0.1 - - [14/Oct/2026 22:54:47] "GET /admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:47] "GET /favicon.ico HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:59] "GET /admin HTTP/1.1" 302 -
+127.0.0.1 - - [14/Oct/2026 22:54:59] "GET /admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [14/Oct/2026 22:54:59] "GET /favicon.ico HTTP/1.1" 200 -

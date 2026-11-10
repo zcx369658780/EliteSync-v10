@@ -1,0 +1,6 @@
+{
+  "database": "sqlite::memory:",
+  "label": "Q-policy-prior-state-20261015-150735-601",
+  "exit_code": 0,
+  "test": "V1008PolicyTest"
+}

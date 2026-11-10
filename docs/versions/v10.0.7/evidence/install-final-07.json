@@ -1,0 +1,18 @@
+{
+  "command": [
+    "adb",
+    "-s",
+    "emulator-5582",
+    "install",
+    "-r",
+    "C:/Users/zcxve/.codex/visualizations/2026/10/14/01a13afa-b74f-7c11-b7e0-01a04335168d/v1007/packages-final/app-debug.apk"
+  ],
+  "cwd": "C:/Users/zcxve/.codex/worktrees/elitesync-main-be0636e/EliteSync-v10",
+  "exit": 0,
+  "start": "2026-10-15T00:57:40.175437+00:00",
+  "end": "2026-10-15T00:57:43.291649+00:00",
+  "streams": {
+    "stdout": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,45 @@
+PHPUnit 11.5.55 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.3
+Configuration: C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:01.028, Memory: 48.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\V1007QuestionnairePersistenceTest::test_questions_replace_stale_nonempty_snapshot_and_clear_incompatible_draft
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &0 [
+-    0 => 43,
+-    1 => 135,
+-    2 => 52,
+-    3 => 16,
+-    4 => 80,
+-    5 => 75,
+-    6 => 133,
+-    7 => 92,
+-    8 => 106,
+-    9 => 12,
+-    10 => 19,
+-    11 => 91,
+-    12 => 119,
+-    13 => 2,
+-    14 => 53,
+-    15 => 128,
+-    16 => 7,
+-    17 => 27,
+-    18 => 125,
+-    19 => 132,
++    0 => 999991,
++    1 => 999992,
+ ]
+
+C:\Users\zcxve\.codex\worktrees\elitesync-main-be0636e\EliteSync-v10\services\backend-laravel\tests\Feature\V1007QuestionnairePersistenceTest.php:194
+
+FAILURES!
+Tests: 1, Assertions: 5, Failures: 1, Deprecations: 2.

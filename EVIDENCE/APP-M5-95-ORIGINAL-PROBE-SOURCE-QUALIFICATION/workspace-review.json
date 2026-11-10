@@ -1,0 +1,16 @@
+{
+  "Path": "D:\\EliteSync-v10\\EVIDENCE\\APP-M5-92-SINGLE-JVM-API-PROBE-SOURCE\\Probe-GroovyGradleApi.groovy",
+  "Bytes": 1343,
+  "Hash": "F523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1",
+  "OrdinaryFullAncestors": true,
+  "NativeAddExact": false,
+  "NativeDiffTruncated": null,
+  "BHashMatch": true,
+  "OriginalBExit": 0,
+  "OriginalBTruncated": false,
+  "Scope": "SOURCEONLY ORIGINAL ARTIFACT QUALIFICATION",
+  "SourceText": "import groovy.json.JsonOutput\n\n// SOURCE-ONLY. No candidate, file or environment access.\nif (args.length != 0) throw new IllegalStateException('ES_PROBE_ARGS')\nString gv = GroovySystem.version\nString jv = System.getProperty('java.version')\nString rv = System.getProperty('java.runtime.version')\nif (gv != '3.0.24') throw new IllegalStateException('ES_GROOVY_VERSION')\nif (jv != '17.0.18') throw new IllegalStateException('ES_JAVA_VERSION')\nif (rv != '17.0.18+8') throw new IllegalStateException('ES_JAVA_RUNTIME_VERSION')\nList names = [\n    'org.gradle.api.Project',\n    'org.gradle.api.plugins.ExtensionContainer',\n    'org.gradle.api.plugins.ExtraPropertiesExtension'\n]\nList types = []\nfor (String name : names) {\n    Class type = Class.forName(name, false, this.class.classLoader)\n    if (!type.isInterface()) throw new IllegalStateException('ES_NOT_INTERFACE')\n    String location = type.getProtectionDomain()?.getCodeSource()?.getLocation()?.toExternalForm()\n    if (location == null) throw new IllegalStateException('ES_CODE_SOURCE')\n    types.add([className: type.getName(), isInterface: true, codeSource: location])\n}\nprintln JsonOutput.toJson([\n    mode: 'EXACT_GROOVY_GRADLE_API_PROBE', synthetic: true, runtimeReady: false,\n    groovyVersion: gv, javaVersion: jv, javaRuntimeVersion: rv,\n    candidateInvocation: 0, types: types\n])\n",
+  "ThreeFilesEachRead": 1,
+  "ExternalReads": 0,
+  "ParserProcessJVM": 0
+}

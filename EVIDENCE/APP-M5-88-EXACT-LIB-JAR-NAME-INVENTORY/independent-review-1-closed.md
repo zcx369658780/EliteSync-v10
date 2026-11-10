@@ -1,0 +1,1 @@
+REJECT/CLOSED REVIEW_VISIBILITY_INSUFFICIENT。m587_review三允许文件各完整Read1；批量工具聚合输出截断，原A后段及188数组部分不可见，不能NO_FINDINGS。未补读/其它路径/运行/写入。候选可见未冒运行，但188原数组一致性与完整A预算不能独立核。本记录保留；作者A-B不重开。Work另授全新独立审查预算，非补读或追认。

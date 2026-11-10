@@ -270,6 +270,7 @@ class _FakeApiClient extends ApiClient {
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
+    CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
   }) async {
@@ -388,7 +389,6 @@ void main() {
       );
       addTearDown(container.dispose);
       final router = container.read(appRouterProvider);
-      addTearDown(router.dispose);
       final paths = <String>{};
 
       void collect(List<RouteBase> routes) {
@@ -414,13 +414,23 @@ void main() {
   testWidgets('opening the real Edit Profile page preserves existing values', (
     tester,
   ) async {
+    final sessionStorage = await _sessionStorage();
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          appEnvProvider.overrideWithValue(
+            const AppEnv(
+              flavor: AppFlavor.dev,
+              appName: 'Profile fixture',
+              apiBaseUrl: 'http://127.0.0.1',
+              useMockData: true,
+            ),
+          ),
           profileRepositoryProvider.overrideWithValue(
             _ExistingDetailRepository(),
           ),
-          localStorageProvider.overrideWithValue(_FakeLocalStorageService()),
+          localStorageProvider.overrideWithValue(sessionStorage.localStorage),
+          secureStorageProvider.overrideWithValue(sessionStorage.secureStorage),
         ],
         child: MaterialApp(
           theme: AppTheme.light,

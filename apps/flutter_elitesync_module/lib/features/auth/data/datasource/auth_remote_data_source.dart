@@ -16,6 +16,17 @@ class AuthRemoteDataSource {
   final ApiClient _apiClient;
   final bool _useMockAuth;
 
+  Future<void> logout() async {
+    if (_useMockAuth) return;
+    final result = await _apiClient.post('/api/v1/auth/logout');
+    if (result is NetworkFailure<Map<String, dynamic>>) {
+      throw ValidationException(
+        '服务端撤销尚未确认：${result.message}',
+        code: result.code,
+      );
+    }
+  }
+
   Future<LoginResponseDto> login(LoginRequestDto request) async {
     if (_useMockAuth) {
       if (request.phone == '13800000022' && request.password == '1234567aa') {

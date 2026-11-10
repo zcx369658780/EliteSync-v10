@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,12 +22,10 @@ class RtcIncomingCallPage extends ConsumerStatefulWidget {
     super.key,
     required this.callId,
     this.title = '来电',
-    this.autoAccept = true,
   });
 
   final int callId;
   final String title;
-  final bool autoAccept;
 
   @override
   ConsumerState<RtcIncomingCallPage> createState() =>
@@ -36,8 +33,19 @@ class RtcIncomingCallPage extends ConsumerStatefulWidget {
 }
 
 class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
+  SessionState? _ownerSession;
+  bool _sessionInvalidated = false;
+  bool get _currentSession =>
+      mounted &&
+      !_sessionInvalidated &&
+      _ownerSession?.isLoggedIn == true &&
+      identical(ref.read(sessionProvider).asData?.value, _ownerSession);
+
+  void _refresh() {
+    if (_currentSession) ref.invalidate(rtcCallProvider(widget.callId));
+  }
+
   bool _busy = false;
-  int? _autoAcceptedCallId;
 
   @override
   void initState() {
@@ -51,10 +59,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
     Future<RtcSessionEntity> Function() action,
     String okMessage,
   ) async {
-    if (_busy) return null;
+    if (_busy || !_currentSession) return null;
+    final callId = widget.callId;
     setState(() => _busy = true);
     try {
       final session = await action();
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       ref
           .read(frontendTelemetryProvider)
           .rtcCallStatusChanged(
@@ -63,33 +73,18 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
             status: session.status,
           );
       ref.invalidate(rtcCallProvider(widget.callId));
-      if (!mounted) return session;
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       AppFeedback.showInfo(context, okMessage);
       return session;
     } catch (e) {
-      if (!mounted) return null;
+      if (!mounted || !_currentSession || widget.callId != callId) return null;
       AppFeedback.showError(context, e.toString());
       return null;
     } finally {
-      if (mounted) {
+      if (_currentSession && widget.callId == callId) {
         setState(() => _busy = false);
       }
     }
-  }
-
-  Future<void> _autoAcceptAndEnter(RtcSessionEntity session) async {
-    if (_busy || _autoAcceptedCallId == session.id) return;
-    if (!session.canAccept) return;
-    _autoAcceptedCallId = session.id;
-    final updated = await _withAction(
-      () => ref.read(rtcRemoteDataSourceProvider).acceptCall(session.id),
-      '已自动接听来电',
-    );
-    if (!mounted || updated == null) return;
-    context.go(
-      '${AppRouteNames.rtcCall}/${updated.id}',
-      extra: updated.title.isNotEmpty ? updated.title : widget.title,
-    );
   }
 
   String _statusLabel(RtcSessionEntity session) {
@@ -123,7 +118,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
       children: [
         AppInfoSectionCard(
           title: '来电提醒',
-          subtitle: '1v1 语音优先 RTC 最小闭环',
+          subtitle: '接听后才建立实时通话',
           leadingIcon: Icons.call_received_outlined,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +165,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                 runSpacing: t.spacing.xs,
                 children: [
                   AppChoiceChip(
-                    label: session.mode == 'video' ? '视频预留' : '语音优先',
+                    label: session.mode == 'video' ? '视频通话' : '语音通话',
                     onTap: null,
                   ),
                   AppChoiceChip(
@@ -183,7 +178,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
               ),
               SizedBox(height: t.spacing.md),
               Text(
-                '当前只做 1v1 通话最小闭环，接听后会进入通话页，拒绝后会回到结果页。',
+                '由你选择是否接听。查看来电或已有消息同意不会自动接听。',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: t.textSecondary,
                   height: 1.35,
@@ -211,7 +206,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                   ),
                 ),
                 SizedBox(height: t.spacing.sm),
-              ] else ...[
+              ] else if (session.canAccept && session.isIncoming) ...[
                 AppPrimaryButton(
                   label: '接听',
                   isLoading: _busy,
@@ -223,7 +218,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                           .acceptCall(session.id),
                       '已接听来电',
                     );
-                    if (!mounted || updated == null) return;
+                    if (!mounted ||
+                        !_currentSession ||
+                        updated == null ||
+                        updated.id != widget.callId) {
+                      return;
+                    }
                     context.go(
                       '${AppRouteNames.rtcCall}/${updated.id}',
                       extra: updated.title.isNotEmpty
@@ -245,7 +245,12 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                           .rejectCall(session.id),
                       '已拒绝来电',
                     );
-                    if (!mounted || updated == null) return;
+                    if (!mounted ||
+                        !_currentSession ||
+                        updated == null ||
+                        updated.id != widget.callId) {
+                      return;
+                    }
                     context.go(
                       '${AppRouteNames.rtcCallResult}/${updated.id}',
                       extra: updated.title.isNotEmpty
@@ -339,42 +344,54 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentSession = ref.watch(sessionProvider).asData?.value;
+    if (_ownerSession == null && currentSession?.isLoggedIn == true) {
+      _ownerSession = currentSession;
+    }
+    if (_ownerSession != null && !identical(currentSession, _ownerSession)) {
+      _sessionInvalidated = true;
+    }
+    if (!_currentSession) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('通话')),
+        body: const Center(child: Text('登录状态已变化，请重新打开通话')),
+      );
+    }
+
     final sessionAsync = ref.watch(rtcCallProvider(widget.callId));
     final t = context.appTokens;
 
-    return BrowseScaffold(
-      header: AppTopBar(
-        title: widget.title,
-        mode: AppTopBarMode.backTitle,
-        actions: [
-          IconButton(
-            tooltip: '刷新来电',
-            onPressed: () => ref.invalidate(rtcCallProvider(widget.callId)),
-            icon: const Icon(Icons.refresh_rounded),
-          ),
-        ],
-      ),
-      body: sessionAsync.when(
-        loading: () => const AppLoadingSkeleton(lines: 6),
-        error: (e, _) => ListView(
-          padding: EdgeInsets.only(bottom: t.spacing.huge),
-          children: [
-            AppErrorState(
-              title: '来电加载失败',
-              description: e.toString(),
-              onRetry: () => ref.invalidate(rtcCallProvider(widget.callId)),
+    return Scaffold(
+      body: BrowseScaffold(
+        header: AppTopBar(
+          title: widget.title,
+          mode: AppTopBarMode.backTitle,
+          actions: [
+            IconButton(
+              tooltip: '刷新来电',
+              onPressed: _refresh,
+              icon: const Icon(Icons.refresh_rounded),
             ),
           ],
         ),
-        data: (session) {
-          if (widget.autoAccept) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (!mounted) return;
-              unawaited(_autoAcceptAndEnter(session));
-            });
-          }
-          return _buildContent(session, t);
-        },
+        body: sessionAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          loading: () => const AppLoadingSkeleton(lines: 6),
+          error: (e, _) => ListView(
+            padding: EdgeInsets.only(bottom: t.spacing.huge),
+            children: [
+              AppErrorState(
+                title: '来电加载失败',
+                description: e.toString(),
+                onRetry: _refresh,
+              ),
+            ],
+          ),
+          data: (session) {
+            return _buildContent(session, t);
+          },
+        ),
       ),
     );
   }

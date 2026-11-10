@@ -10,8 +10,14 @@ import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/home_provider.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/state/home_ui_state.dart';
+import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
+import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
+import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -55,6 +61,7 @@ class _FakeHomeNotifier extends HomeNotifier {
 Widget _routerApp({
   required AuthStatus authStatus,
   required _RouterFakeLocalStorage storage,
+  bool readinessEstablished = false,
 }) {
   return ProviderScope(
     overrides: [
@@ -68,6 +75,18 @@ Widget _routerApp({
         ),
       ),
       authStatusProvider.overrideWithValue(authStatus),
+      if (readinessEstablished)
+        navigationGuardProvider.overrideWithValue(
+          const NavigationSnapshot(
+            authStatus: AuthStatus.authenticated,
+            verificationStatus: VerificationStatus.unknown,
+            questionnaireStatus: QuestionnaireStatus.unknown,
+            matchStatus: MatchStatus.unknown,
+            canChat: false,
+            readinessState: ReadinessGuardState.ready,
+            isBootstrapLoading: false,
+          ),
+        ),
       localStorageProvider.overrideWithValue(storage),
       appShellRtcInviteWatcherEnabledProvider.overrideWithValue(false),
       homeProvider.overrideWith(_FakeHomeNotifier.new),
@@ -91,32 +110,61 @@ Future<void> _pumpRouter(WidgetTester tester, Widget app) async {
 
 void main() {
   testWidgets(
-    'authenticated production shell reaches every ordinary five-tab destination',
+    'authenticated shell reaches four target destinations and Match child',
     (tester) async {
       final storage = _RouterFakeLocalStorage()..onboardingStatus = 'completed';
       await _pumpRouter(
         tester,
-        _routerApp(authStatus: AuthStatus.authenticated, storage: storage),
+        _routerApp(
+          authStatus: AuthStatus.authenticated,
+          storage: storage,
+          readinessEstablished: true,
+        ),
       );
 
       final dock = find.byType(FloatingDockBottomBar);
       expect(dock, findsOneWidget);
+      expect(
+        tester
+            .widget<FloatingDockBottomBar>(dock)
+            .items
+            .map((item) => item.label)
+            .toList(),
+        ['首页', '进展', '消息', '我的'],
+      );
       final destinations = <String, Type>{
         '首页': HomeShellPage,
-        '发现': DiscoverShellPage,
-        '匹配': MatchShellPage,
+        '进展': ProgressShellPage,
         '消息': MessagesShellPage,
-        '我的': ProfileShellPage,
+        '我的': MeShellPage,
       };
-      for (final entry in destinations.entries) {
+      for (final indexedEntry in destinations.entries.indexed) {
+        final index = indexedEntry.$1;
+        final entry = indexedEntry.$2;
         await tester.tap(
           find.descendant(of: dock, matching: find.text(entry.key)),
         );
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
         expect(find.byType(entry.value), findsOneWidget);
+        final currentDock = tester.widget<FloatingDockBottomBar>(dock);
+        expect(currentDock.currentIndex, index);
+        expect(currentDock.browseMode, index != 1);
       }
 
+      await tester.tap(find.descendant(of: dock, matching: find.text('进展')));
+      await tester.pump();
+      await tester.tap(find.byKey(ProgressPage.matchEntryKey));
+      await tester.pumpAndSettle();
+      expect(find.byType(MatchShellPage), findsOneWidget);
+
+      expect(
+        tester
+            .widget<FloatingDockBottomBar>(dock)
+            .items
+            .map((item) => item.label),
+        isNot(containsAll(['发现', '匹配'])),
+      );
       expect(find.text('管理'), findsNothing);
       await tester.pump(const Duration(seconds: 10));
     },

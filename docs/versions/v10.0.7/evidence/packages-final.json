@@ -1,0 +1,19 @@
+{
+  "source_commit": "7f8da6954db8ef994f91e586c8a4f91fa0bc0a4f",
+  "source_tree": "754b9a65b41ac9393687417836e380effc81c09b",
+  "build": "build-07",
+  "artifacts": [
+    {
+      "source": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\apps\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+      "local_only": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\app-debug.apk",
+      "bytes": 222632154,
+      "sha256": "fe3d9556977e5cbd34ec006a67537fd6f41efbc9d2a57e724f5d64932b102765"
+    },
+    {
+      "source": "C:\\Users\\zcxve\\.codex\\worktrees\\elitesync-main-be0636e\\EliteSync-v10\\apps\\flutter_elitesync_module\\build\\host\\outputs\\repo\\com\\elitesync\\flutter_elitesync_module\\flutter_release\\1.0\\flutter_release-1.0.aar",
+      "local_only": "C:\\Users\\zcxve\\.codex\\visualizations\\2026\\10\\14\\01a13afa-b74f-7c11-b7e0-01a04335168d\\v1007\\packages-final\\flutter_release-1.0.aar",
+      "bytes": 3953324,
+      "sha256": "76800ca93d696d8cfb0db87be930bd106927bb26edd45c4c730ec3193957acb5"
+    }
+  ]
+}
