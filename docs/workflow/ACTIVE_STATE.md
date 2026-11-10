@@ -1,3 +1,13 @@
+# 2026-11-10 同域时钟HOST_ONLY整合、手机前台先行范围已准备未批准（CURRENT ENTRY）
+
+Owner接续普通工程后，在新私有包整合同域时钟及直接依赖；冻结case05不改，Python monotonic与raw QPC分域，旧306.263仍无效。新副本RED两原点复现后，29项时钟/预查/fresh UI检查通过；新手机候选15项主机测试及两项变异检查通过，非作者复核无剩余P1/P2。首次搬迁fixture定位失败已保存并修正，不冒充旧86/6重跑。详见[本节点](V1015_CLOCK_INTEGRATED_PHONE_FOREGROUND_SCOPE_PREPARED_20261110.md)。
+
+仅准备手机前台资格：拟120秒＋清理15秒、24ADB含2清理预留，从48/240接续；原机/user0/已装b621，必要明确Activity最多1、空手机号焦点tap最多1。成功失败均STOP；不截图/输入/提交/媒体，不E启动/安装、不B claim/转交，无grant/claim且HOST_ONLY。一般APP/UI控制权不重复申请，新设备具体范围待Owner批准，旧STOP/后端未耗1不能余额复活。今天设备/SDK/服务/构建安装均0。
+
+产品源码1f/APK b621及原main根255项/index/%SystemDrive%和所有旧原证保持；10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，双端/媒体NOT_RUN、缓存真机UNKNOWN。功能优先/UI最后，不合main/发布、不启v10.1.6。最新私有工程包为v1015-phone-foreground-first-20261110-case01；旧case05终态仍在原runtime-closeout子目录，本节点不覆盖。
+
+---
+
 # 2026-11-10 case05前台资格拒绝后终态保存、Owner交接（CURRENT ENTRY）
 
 本次补存11月9日实际运行及立即停止中断的保存；Owner今日要求完成最新完整任务后本地/GitHub保存并交接。模拟器APP ready已证，手机身份/user0/APK/亮屏解锁通过，但010因非目标或混合UI拒绝，未截图/点击/输入/Activity；Owner后报桌面或其他APP。E控制40+UI11=51，phone旧37+本11=48/240余192；E启动/安装各耗1余0，B未claim仍0耗1余/新增0，唯一末端case05/backend已STOP，不余额复活。详见[终态节点](V1015_PHONE_FOREGROUND_REJECTED_CLOCK_DOMAIN_HANDOFF_20261110.md)。
