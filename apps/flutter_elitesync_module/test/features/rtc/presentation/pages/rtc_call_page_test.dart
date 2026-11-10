@@ -3,7 +3,8 @@ import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_inc
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
-import '../../rtc_test_session.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +23,17 @@ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_liveki
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+
+class _CurrentRtcSession extends SessionNotifier {
+  static SessionState member(int id) => SessionState(
+    status: AuthStatus.authenticated,
+    accessToken: 'rtc-fixture-$id',
+    user: UserSummary(id: id, phone: ''),
+  );
+  @override
+  SessionState build() => member(1);
+  void change(int id) => state = AsyncData(member(id));
+}
 
 class FakeAppTelemetryService extends AppTelemetryService {
   FakeAppTelemetryService()
@@ -58,6 +70,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   int endRequests = 0;
   int acceptRequests = 0;
   Completer<RtcSessionEntity>? pendingFetch;
+  final pendingByCall = <int, Completer<RtcSessionEntity>>{};
   int joinRequests = 0;
   bool denySession = false;
   final List<String> requestOrder = [];
@@ -67,6 +80,7 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
     requestOrder.add('session');
     // Match the real data source: failed HTTP results throw Exception.
     if (denySession) throw Exception('session denied');
+    if (pendingByCall[callId] case final pending?) return pending.future;
     if (pendingFetch != null) return pendingFetch!.future;
     return _session;
   }
@@ -225,9 +239,9 @@ Widget _wrap(
   RtcLiveKitService? service,
 }) {
   final telemetry = FakeAppTelemetryService();
-  return ProviderScope(
+  final container = ProviderContainer(
     overrides: [
-      sessionProvider.overrideWith(RtcTestSession.new),
+      sessionProvider.overrideWith(_CurrentRtcSession.new),
       appEnvProvider.overrideWithValue(
         AppEnv(
           flavor: AppFlavor.dev,
@@ -244,6 +258,10 @@ Widget _wrap(
       if (service != null)
         rtcLiveKitServiceProvider.overrideWith((ref) => service),
     ],
+  );
+  addTearDown(container.dispose);
+  return UncontrolledProviderScope(
+    container: container,
     child: MaterialApp(
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
@@ -253,7 +271,204 @@ Widget _wrap(
   );
 }
 
+RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
+  'id': id,
+  'mode': 'video',
+  'status': 'in_call',
+  'title': '视频通话',
+  'initiator_user_id': 1,
+  'peer_user_id': 2,
+  'peer_name': peer,
+  'is_initiator': true,
+  'is_active': true,
+});
+
 void main() {
+  testWidgets(
+    'same-call polling retains video surface and scroll state until success',
+    (tester) async {
+      final session = _videoCall(97, 'CURRENT_VIDEO_PEER');
+      final rtc = FakeRtcRemoteDataSource(session);
+      final service = NotifyingLeaveRtcService(rtc);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 97, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      final preview = find.byKey(const ValueKey('rtc-local-video-preview'));
+      await tester.ensureVisible(preview);
+      await tester.pumpAndSettle();
+      final previewElement = tester.element(preview);
+      final previewRenderObject = tester.renderObject(preview);
+      final scroll = tester.state<ScrollableState>(
+        find.byType(Scrollable).first,
+      );
+      final offset = scroll.position.pixels;
+      expect(offset, greaterThan(0));
+      rtc.pendingFetch = Completer();
+      await tester.pump(const Duration(seconds: 4));
+      await tester.pump();
+      expect(tester.element(preview), same(previewElement));
+      expect(tester.renderObject(preview), same(previewRenderObject));
+      expect(
+        tester.state<ScrollableState>(find.byType(Scrollable).first),
+        same(scroll),
+      );
+      expect(scroll.position.pixels, offset);
+      expect(service.leaves, isEmpty);
+      rtc.pendingFetch!.complete(session);
+      await tester.pumpAndSettle();
+      expect(tester.element(preview), same(previewElement));
+      expect(scroll.position.pixels, offset);
+      expect(service.connections, [97]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'unmount leaves active media once after Consumer subscriptions detach',
+    (tester) async {
+      final rtc = FakeRtcRemoteDataSource(_videoCall(102, 'EXITED_VIDEO_PEER'));
+      final service = NotifyingLeaveRtcService(rtc);
+      final visible = ValueNotifier(true);
+      await tester.pumpWidget(
+        _wrap(
+          ValueListenableBuilder<bool>(
+            valueListenable: visible,
+            builder: (_, show, _) => show
+                ? const RtcCallPage(callId: 102, autoConnect: false)
+                : const Text('通话页已关闭'),
+          ),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.connections, [102]);
+      visible.value = false;
+      await tester.pumpAndSettle();
+      expect(find.text('通话页已关闭'), findsOneWidget);
+      expect(service.leaves, [102]);
+      expect(tester.takeException(), isNull);
+      service.notifyListeners();
+      await tester.pumpAndSettle();
+      expect(service.leaves, [102]);
+      await tester.pumpWidget(const SizedBox());
+      expect(service.leaves, [102]);
+      visible.dispose();
+    },
+  );
+
+  testWidgets('actual polling error removes video and closes media only once', (
+    tester,
+  ) async {
+    final rtc = FakeRtcRemoteDataSource(_videoCall(98, 'REMOVED_VIDEO_PEER'));
+    final service = NotifyingLeaveRtcService(rtc);
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 98, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(service.connections, [98]);
+    rtc.denySession = true;
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
+    expect(find.text('通话加载失败'), findsOneWidget);
+    expect(find.byKey(const ValueKey('rtc-local-video-preview')), findsNothing);
+    expect(find.text('REMOVED_VIDEO_PEER'), findsNothing);
+    expect(service.leaves, [98]);
+    service.notifyListeners();
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
+    expect(service.leaves, [98]);
+    await tester.pumpWidget(const SizedBox());
+    expect(service.leaves, [98]);
+  });
+
+  testWidgets('pending refreshed video is hidden after account switch', (
+    tester,
+  ) async {
+    final session = _videoCall(99, 'OLD_ACCOUNT_VIDEO_PEER');
+    final rtc = FakeRtcRemoteDataSource(session);
+    final service = NotifyingLeaveRtcService(rtc);
+    const page = RtcCallPage(callId: 99, autoConnect: false);
+    await tester.pumpWidget(
+      _wrap(page, rtc: rtc, service: service, liveKit: true),
+    );
+    await tester.pumpAndSettle();
+    final container = ProviderScope.containerOf(
+      tester.element(find.byWidget(page)),
+    );
+    rtc.pendingFetch = Completer();
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pump();
+    (container.read(sessionProvider.notifier) as _CurrentRtcSession).change(2);
+    await tester.pumpAndSettle();
+    rtc.pendingFetch!.complete(session);
+    await tester.pumpAndSettle();
+    expect(find.text('登录状态已变化，请重新打开通话'), findsOneWidget);
+    expect(find.text('OLD_ACCOUNT_VIDEO_PEER'), findsNothing);
+    expect(find.byKey(const ValueKey('rtc-local-video-preview')), findsNothing);
+    expect(service.leaves, [99]);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'switching calls cannot reuse a pending old call video projection',
+    (tester) async {
+      final first = _videoCall(100, 'OLD_CALL_VIDEO_PEER');
+      final next = _videoCall(101, 'NEW_CALL_VIDEO_PEER');
+      final rtc = FakeRtcRemoteDataSource(first);
+      final service = NotifyingLeaveRtcService(rtc);
+      final callId = ValueNotifier(100);
+      await tester.pumpWidget(
+        _wrap(
+          ValueListenableBuilder<int>(
+            valueListenable: callId,
+            builder: (_, id, _) => RtcCallPage(callId: id, autoConnect: false),
+          ),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      rtc.pendingByCall[100] = Completer();
+      await tester.pump(const Duration(seconds: 4));
+      await tester.pump();
+      rtc.pendingByCall[101] = Completer();
+      callId.value = 101;
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.text('OLD_CALL_VIDEO_PEER'), findsNothing);
+      expect(
+        find.byKey(const ValueKey('rtc-local-video-preview')),
+        findsNothing,
+      );
+      expect(service.leaves, [100]);
+      rtc.pendingByCall[100]!.complete(first);
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.text('OLD_CALL_VIDEO_PEER'), findsNothing);
+      expect(service.connections, [100]);
+      rtc.pendingByCall[101]!.complete(next);
+      await tester.pumpAndSettle();
+      expect(find.text('NEW_CALL_VIDEO_PEER'), findsOneWidget);
+      expect(service.connections, [100, 101]);
+      await tester.pumpWidget(const SizedBox());
+      expect(service.leaves, [100, 101]);
+      callId.dispose();
+    },
+  );
   for (final page in ['call', 'incoming', 'result']) {
     for (final lateResponse in [false, true]) {
       testWidgets(
@@ -308,9 +523,8 @@ void main() {
               .toList();
           if (!lateResponse && page != 'result') expect(oldActions, isNotEmpty);
           // B is the other legitimate participant, but cannot inherit A's action.
-          (container.read(sessionProvider.notifier) as RtcTestSession).change(
-            2,
-          );
+          (container.read(sessionProvider.notifier) as _CurrentRtcSession)
+              .change(2);
           for (final action in oldActions) {
             action?.call();
           }

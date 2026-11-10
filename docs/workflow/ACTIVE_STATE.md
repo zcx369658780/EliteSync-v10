@@ -9,7 +9,8 @@ Owner 已明确继续完善 APP；后续可同时使用两个模拟器进行功�
 - 当前产品API已接通全新独立MariaDB（75项迁移），两个虚构账号实际注册/登录、proposal双方接受、CN/MC授权成功；文字、图片和短视频共10条消息经真实HTTP持久化，幂等重试、before/after分页、认证WebSocket事件、真实ffprobe视频校验和私有媒体完整/分段下载通过。聊天网关运行文件已改到可写storage，非root/只读源码环境实际启动通过。私有回执在 `v1015-current-dev/chat-verification.json` 与 `media-verification.json`。宿主连接先遭复合操作自动审批拒绝；随后增加确切自有资源/回环端口/DB监听检查的较窄操作获准，宿主API健康200、DB不公开。APP联测NOT_RUN，不占用手机。
 - 两个本次新建模拟器均已安装同包、登录两个虚构账号并完成APP文字双向互发（message11/12、已读及加密字段读回确认）。实际系统选择器选图/选短片后分别产生asset3/message13、asset4/message14，均ready并被对端读回；图片实际渲染、完整预览和返回聊天通过，新视频实际原生解码并播放到0:02/0:02，重播控件出现。初次超时已定位开发服务Windows依赖读取：保留权限/播放器时限，使用同一vendor的单一Linux运行缓存后请求4.578→0.047秒，同APK复测通过。私有当前回执 `v1015-current-dev/app-functional-verification-private.json`；不代表完整媒体/权限矩阵或整版PASS，手机未使用。
 - 本次自有开发服务与两模拟器当前仍运行；精确资源/PID/端口在 `v1015-current-dev/runtime-private.json`。专用ADB5038只连接模拟器，实体USB排除；不调用退役执行器。Owner明确叫停时停止自有进程并保留数据/源码交接。
-- v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。RTC/AEC、15/30边界、安全封装、通知和最终集中验收未完成；真机缓存效果UNKNOWN。
+- RTC当前监督网关已接通：两个APP实际语音通话、双向UDP音频RTP及界面挂断后0.672秒房间消失已观察到；不等于AEC或完整撤权≤5秒验收。视频双方持续编码/解码并曾显示模拟器生成画面，但状态轮询反复销毁renderer造成间歇黑屏。现已修正同通话刷新保持画面/滚动、退出通知时序；23项组件检查/analyze及非作者复核通过，实际新包复测待完成。当前开发会话的token调用RTC被设备会话隔离拒绝403，未绕过此保护。详见PROGRESS。
+- v10.1.5 仍 10 PARTIAL、AC05 OPEN、G2 false、真实 Push PENDING。RTC画面稳定性/AEC、15/30边界、安全封装、通知和最终集中验收未完成；真机缓存效果UNKNOWN。
 - 资产整理已完成确认冗余项；[版本与资产索引](../versions/ASSET_VERSION_SUMMARY_20261110.md) 记录归档与保留项。旧 case07 STOP、case08 未激活、旧已耗/未耗事实保留；不继续退役冻结链。
 
 开发顺序：完善 APP 功能与真实开发链 → 协议加密等安全封装 → 集中产品验收。普通实现连续推进，仅做受影响检查与必要验证，不逐动作询问。现有鉴权/数据保护保留，UI按既定最后顺序处理。

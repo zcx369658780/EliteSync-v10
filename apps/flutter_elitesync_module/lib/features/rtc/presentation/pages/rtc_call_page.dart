@@ -93,7 +93,11 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    unawaited(_leaveMediaOnce(widget.callId));
+    final callId = widget.callId;
+    // Consumer removes its subscriptions after State.dispose returns. Leave
+    // immediately afterwards so synchronous media notifications cannot rebuild
+    // the element while it is being unmounted.
+    unawaited(Future<void>.microtask(() => _leaveMediaOnce(callId)));
     _pollTimer?.cancel();
     super.dispose();
   }
@@ -684,7 +688,9 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         ),
         body: sessionAsync.when(
           skipLoadingOnReload: false,
-          skipLoadingOnRefresh: false,
+          // Same-call polls keep video renderers and scroll state mounted.
+          // Dependency reloads and actual errors still replace this projection.
+          skipLoadingOnRefresh: true,
           loading: () => const AppLoadingSkeleton(lines: 6),
           error: (e, _) {
             WidgetsBinding.instance.addPostFrameCallback((_) {

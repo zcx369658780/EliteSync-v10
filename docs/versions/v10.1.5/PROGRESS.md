@@ -6,7 +6,7 @@
 
 原生视频初次加载出现超时；实际量测权限Range请求206但全程4.578秒，框架处理仅几十毫秒。先启用本次API并发进程/代码缓存后仍有首次超时，再将已有许可的同一vendor放入一个可复用Linux运行缓存，实际同请求降为0.047秒。未改变权限、播放器时限或APK；APP发送的新video asset4在接收端实际原生解码、显示画面与进度，并播放到0:02/0:02、出现重播控件。另一端既有视频的播放/重播也已观察到。初始失败和各阶段测量保留，不把本次两秒无声片验证扩大为媒体全矩阵、音质/AEC或真机通过。
 
-私有资源/观测/截图及 `app-functional-verification-private.json` 仅在 `v1015-current-dev`，当前服务和两模拟器仍运行；ADB5038排除实体USB。功能工程继续，Owner明确叫停才停止自有进程并手动交接。RTC控制面缺v1.5精确登记与本机开关，媒体SFU尚未就绪；集中安全/权限、RTC/AEC、通知、15/30和最终统一验收仍未完成。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING、缓存真机UNKNOWN保持。
+私有资源/观测/截图及 `app-functional-verification-private.json` 仅在 `v1015-current-dev`，当前服务和两模拟器仍运行；ADB5038排除实体USB。功能工程继续，Owner明确叫停才停止自有进程并手动交接。RTC当前进展见下文；集中安全/权限、RTC/AEC、通知、15/30和最终统一验收仍未完成。10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING、缓存真机UNKNOWN保持。
 
 ### 当前RTC本机接入准备
 
@@ -14,7 +14,11 @@ RTC开发库白名单已仅补入v1.5精确配对，保留原环境、开关、L
 
 新增 `services/backend-laravel/tools/rtc` 当前开发网关，从具名历史协议实现派生，改为直接调用当前自有API，不运行历史launcher或私有目录桥。沿用签名与当前身份验证、未公开裸SFU、失效房间删除、失败即停媒体及独立匿名pipe watchdog；非作者只读复核未发现P1/P2。6项针对性协议检查在主机与实际Linux运行镜像通过，补了合法结构坏HMAC及GET Content-Length反例。
 
-官方LiveKit v1.13.11已固定镜像digest并仅用于本机；复用已核无凭据的现有Python运行层，构建当前新入口。准备阶段保留旧tar上下文格式失败后，仅修正为标准压缩tar构建成功；未安装Docker插件。自有监督SFU已实际启动，内部监控可读当前API，裸信令仅容器回环且未公开；APP媒体通话尚待实际运行，不能以此节点关闭AC05或声称5秒停媒已证。参考[官方本机运行](https://docs.livekit.io/transport/self-hosting/local/)及[固定配置](https://github.com/livekit/livekit/blob/v1.13.11/config-sample.yaml)。源码/配置/许可与镜像身份回执仅本机必要保留，私有凭据不上GitHub。
+官方LiveKit v1.13.11已固定镜像digest并仅用于本机；复用已核无凭据的现有Python运行层，构建当前新入口。准备阶段保留旧tar上下文格式失败后，仅修正为标准压缩tar构建成功；未安装Docker插件。自有监督SFU已实际启动，内部监控可读当前API，裸信令仅容器回环且未公开。参考[官方本机运行](https://docs.livekit.io/transport/self-hosting/local/)及[固定配置](https://github.com/livekit/livekit/blob/v1.13.11/config-sample.yaml)。源码/配置/许可与镜像身份回执仅本机必要保留，私有凭据不上GitHub。
+
+两个实际APP已完成语音邀请/接听、同房间两参与者、双向UDP音频RTP与收到音轨；界面挂断到房间不存在的同一monotonic量测上界0.672秒，私有 `voice-core-verification-private.json`。首次call1因系统首次麦克风授权期间连接超时，失败保留；call2成功。不保存声音，不宣称真实手机听感/AEC或完整撤权提交到停媒≤5秒已证。
+
+两自有模拟器受控重启启用emulated相机后，call3视频双方持续编码/解码，实际截图已见本地和远端生成测试画面，未用主机webcam。画面间歇黑屏：通话页每4秒轮询进入loading，销毁本地/远端renderer并重置滚动。现改为同通话普通refresh保留data，依赖reload、换号/换call和实际error仍替换旧内容；退出清理移至下一微任务，避免通知正在卸载的Consumer。23项组件检查、定向analyze通过，非作者复核无P1/P2；新APK实际稳定视频复测待完成。以另一设备会话的fixture token读取/结束call3被正常拒绝403（设备会话隔离），未绕过；随后由APP正常返回离开一端媒体，服务端最终ended、房间消失，不冒充UI挂断。AC05仍OPEN。
 
 ## 本日已保存的通知与后端节点
 
