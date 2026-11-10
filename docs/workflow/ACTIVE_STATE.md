@@ -1,3 +1,13 @@
+# 2026-11-10 前台观察器HOST_ONLY修正28项通过，新接续范围待批准（CURRENT ENTRY）
+
+Owner要求继续并报告手机在APP登录界面；报告不重写旧010精确焦点UNKNOWN。新私有副本按AOSP显示状态字段归属将window windows改displays，新增脱敏focus分类；缺失/null/歧义不冒充非目标，不自动启动。修正dump前清理所有权及cleanup覆盖主异常，实际main分支回归GREEN28项唯一测试，两处原缺陷变异预期失败；旧41次日志含15重复不算41项。详见[本节点](V1015_FOREGROUND_OBSERVER_HOST_REPAIRED_SCOPE_PREPARED_20261110.md)。本轮设备/SDK/构建/安装/E/B命令0，原STOP/原证不改，实际Redmi效果UNKNOWN。
+
+新私有包v1015-foreground-observer-host-repair-20261110-case01/execution-01仅准备，无grant/claim。拟120+15秒/24ADB含2清理，从59/240续计；原机/user0/已装b621，fresh空表单/手机焦点，必要tap1，只有明确NON_TARGET才组件启动最多1；无截图输入/登录/媒体/安装/E/B，成功失败都STOP。一般UI控制权不重复申请，新具体范围仍待Owner批准；原未耗后端1仍封旧STOP、不转交或重复申请。
+
+产品源码1f/APK b621，phone59/240余181未变；原main根255项/index/%SystemDrive%及旧资产保护保持。10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING，双端媒体NOT_RUN、缓存真机UNKNOWN；功能优先/UI最后，不合main/发布、不启v10.1.6。最新prepared三件读新包根，先前运行终态仍在原runtime-closeout，不覆盖。
+
+---
+
 # 2026-11-10 手机前台资格已批准一次运行，fresh focus在UI前拒绝STOP（CURRENT ENTRY）
 
 Owner批准且手机就位，原机/user0/已装b621/亮屏解锁检查通过；明确Activity一次exit0，010前台焦点门仍拒绝，未UI dump/read、截图/tap/输入/登录。11ADB、同域含清理7.219秒，phone48+11=59/240余181；runner1，失败即停不重试。011清理exit1，源码在首次dump前误置owned_ui导致不必要删除，清理异常覆盖初始focus错误；两段原证保留，不记清理成功，不猜确切foreground package或产品故障。详见[本节点](V1015_PHONE_FOREGROUND_FOCUS_REJECTED_BEFORE_UI_STOP_20261110.md)。
