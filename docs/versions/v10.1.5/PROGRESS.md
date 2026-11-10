@@ -1,3 +1,13 @@
+# 2026-11-10 手机前台资格已批准一次运行，fresh focus在UI前拒绝STOP（CURRENT ENTRY）
+
+Owner批准且手机就位，原机/user0/已装b621/亮屏解锁检查通过；明确Activity一次exit0，010前台焦点门仍拒绝，未UI dump/read、截图/tap/输入/登录。11ADB、同域含清理7.219秒，phone48+11=59/240余181；runner1，失败即停不重试。011清理exit1，源码在首次dump前误置owned_ui导致不必要删除，清理异常覆盖初始focus错误；两段原证保留，不记清理成功，不猜确切foreground package或产品故障。详见[本节点](../../workflow/V1015_PHONE_FOREGROUND_FOCUS_REJECTED_BEFORE_UI_STOP_20261110.md)。
+
+本轮E/B/构建/安装/转交均0；旧STOP与原未耗后端1保持，不余额复活。无新动态候选，保存后停止。下一普通工程先HOST_ONLY修清理时机/主异常保留及脱敏焦点分类证据，后续设备需新准确范围。本次私有终态为v1015-phone-foreground-first-20261110-case01/execution-01/runtime-closeout-20261110三件；准备根旧报告/回执不覆盖、不当终态。
+
+产品源码1f/APK b621及原main根255项/index/%SystemDrive%和全部原证不动。10 PARTIAL/AC05 OPEN/G2 false/真实Push PENDING；本次APP前台/空表单/focus未证，双端/媒体NOT_RUN、缓存真机UNKNOWN。功能优先/UI最后，不合main/发布、不启v10.1.6。
+
+---
+
 # 2026-11-10 同域时钟HOST_ONLY整合、手机前台先行范围已准备未批准（CURRENT ENTRY）
 
 Owner接续普通工程后，在新私有包整合同域时钟及直接依赖；冻结case05不改，Python monotonic与raw QPC分域，旧306.263仍无效。新副本RED两原点复现后，29项时钟/预查/fresh UI检查通过；新手机候选15项主机测试及两项变异检查通过，非作者复核无剩余P1/P2。首次搬迁fixture定位失败已保存并修正，不冒充旧86/6重跑。详见[本节点](../../workflow/V1015_CLOCK_INTEGRATED_PHONE_FOREGROUND_SCOPE_PREPARED_20261110.md)。
